@@ -2,15 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/error-typo-large-attrset.nix", [[["a", 7, 5], ["b", 8, 5], ["c", 9, 5], ["d", 10, 5], ["e", 11, 5], ["f", 12, 5], ["g", 13, 5], ["h", 14, 5], ["i", 15, 5], ["j", 16, 5]], [["type", 26, 11], ["default", 27, 11]], [["type", 36, 7], ["default", 37, 7]], [["type", 40, 7], ["default", 41, 7]], [["type", 44, 7], ["default", 45, 7]], [["enable", 35, 5], ["enabled", 39, 5], ["disable", 43, 5]], [["enble", 54, 5]], [["options", 50, 3], ["config", 52, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/error-typo-large-attrset.nix", [["a", 7, 5], ["b", 8, 5], ["c", 9, 5], ["d", 10, 5], ["e", 11, 5], ["f", 12, 5], ["g", 13, 5], ["h", 14, 5], ["i", 15, 5], ["j", 16, 5]]);
-const pos$2 = nix.positions(here + "/error-typo-large-attrset.nix", [["type", 26, 11], ["default", 27, 11]]);
-const pos$3 = nix.positions(here + "/error-typo-large-attrset.nix", [["type", 36, 7], ["default", 37, 7]]);
-const pos$4 = nix.positions(here + "/error-typo-large-attrset.nix", [["type", 40, 7], ["default", 41, 7]]);
-const pos$5 = nix.positions(here + "/error-typo-large-attrset.nix", [["type", 44, 7], ["default", 45, 7]]);
-const pos$6 = nix.positions(here + "/error-typo-large-attrset.nix", [["enable", 35, 5], ["enabled", 39, 5], ["disable", 43, 5]]);
-const pos$7 = nix.positions(here + "/error-typo-large-attrset.nix", [["enble", 54, 5]]);
-const pos$8 = nix.positions(here + "/error-typo-large-attrset.nix", [["options", 50, 3], ["config", 52, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const mkOption = nix.thunk(() => nix.attr(lib, "mkOption"));
   const concatMapAttrs = nix.thunk(() => nix.attr(lib, "concatMapAttrs"));
   const ten = nix.thunk(() => ({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     a: null,
     b: null,
     c: null,
@@ -32,33 +25,33 @@ export default nix.lambda((args) => (() => {
   }));
   const generatedOptions = nix.thunk(() => nix.app(concatMapAttrs, (k1) => (_) => nix.app(concatMapAttrs, (k2) => (__1) => nix.app(concatMapAttrs, (k3) => (__2) => nix.attrsDyn({}, [
           [nix.str`${k1}${k2}${k3}`, nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
             }))))],
         ]), ten), ten), ten));
   const sensibleOptions = nix.thunk(() => ({
-    [nix.POS]: pos$6,
+    [nix.POS]: $pos[5],
     enable: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         type: nix.thunk(() => nix.sel(lib, "types", "bool")),
         default: false,
       })))),
     enabled: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         type: nix.thunk(() => nix.sel(lib, "types", "bool")),
         default: false,
       })))),
     disable: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         type: nix.thunk(() => nix.sel(lib, "types", "bool")),
         default: false,
       })))),
   }));
   return {
-    [nix.POS]: pos$8,
+    [nix.POS]: $pos[7],
     options: nix.thunk(() => nix.update(generatedOptions, sensibleOptions)),
-    config: nix.thunk(() => ({ [nix.POS]: pos$7, enble: true })),
+    config: nix.thunk(() => ({ [nix.POS]: $pos[6], enble: true })),
   };
 })(), formals$1);
 //# sourceMappingURL=error-typo-large-attrset.ts.map

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]], [["all", 33, 5], ["yaml", 38, 5], ["ruamel-yaml", 39, 5], ["PyYAML", 40, 5], ["tomli", 41, 5], ["toml", 42, 5], ["msgpack", 43, 5]], [["description", 56, 5], ["homepage", 57, 5], ["changelog", 58, 5], ["license", 59, 5], ["maintainers", 60, 5]], [["pname", 16, 3], ["version", 17, 3], ["pyproject", 18, 3], ["src", 20, 3], ["build-system", 27, 3], ["optional-dependencies", 32, 3], ["nativeCheckInputs", 46, 3], ["disabledTests", 48, 3], ["pythonImportsCheck", 53, 3], ["meta", 55, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, cython: false, fetchFromGitHub: false, msgpack: false, pytestCheckHook: false, pyyaml: false, "ruamel-yaml": false, setuptools: false, toml: false, "tomli-w": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["all", 33, 5], ["yaml", 38, 5], ["ruamel-yaml", 39, 5], ["PyYAML", 40, 5], ["tomli", 41, 5], ["toml", 42, 5], ["msgpack", 43, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 56, 5], ["homepage", 57, 5], ["changelog", 58, 5], ["license", 59, 5], ["maintainers", 60, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 16, 3], ["version", 17, 3], ["pyproject", 18, 3], ["src", 20, 3], ["build-system", 27, 3], ["optional-dependencies", 32, 3], ["nativeCheckInputs", 46, 3], ["disabledTests", 48, 3], ["pythonImportsCheck", 53, 3], ["meta", 55, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = "7.3.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "cdgriffith",
           repo: "Box",
           tag: version,
@@ -34,7 +31,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const build_system = nix.thunk(() => [cython, setuptools]);
       const optional_dependencies = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         all: nix.thunk(() => [msgpack, ruamel_yaml, toml]),
         yaml: nix.thunk(() => [ruamel_yaml]),
         "ruamel-yaml": nix.thunk(() => [ruamel_yaml]),
@@ -47,7 +44,7 @@ export default nix.lambda((args) => (() => {
       const disabledTests = nix.thunk(() => ["test_to_yaml_ruamel"]);
       const pythonImportsCheck = nix.thunk(() => ["box"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Python dictionaries with advanced dot notation access",
         homepage: "https://github.com/cdgriffith/Box",
         changelog: nix.thunk(() => nix.str`https://github.com/cdgriffith/Box/blob/${version}/CHANGES.rst`),
@@ -58,7 +55,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

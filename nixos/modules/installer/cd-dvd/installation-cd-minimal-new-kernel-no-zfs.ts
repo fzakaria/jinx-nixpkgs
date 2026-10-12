@@ -2,21 +2,19 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/installation-cd-minimal-new-kernel-no-zfs.nix", [[["zfs", 6, 29]], [["supportedFilesystems", 6, 8]], [["imports", 4, 3], ["boot", 6, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/installation-cd-minimal-new-kernel-no-zfs.nix", [["zfs", 6, 29]]);
-const pos$2 = nix.positions(here + "/installation-cd-minimal-new-kernel-no-zfs.nix", [["supportedFilesystems", 6, 8]]);
-const pos$3 = nix.positions(here + "/installation-cd-minimal-new-kernel-no-zfs.nix", [["imports", 4, 3], ["boot", 6, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$3,
+    [nix.POS]: $pos[2],
     imports: nix.thunk(() => [nix.path(here, "./installation-cd-minimal-new-kernel.nix")]),
     boot: nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       supportedFilesystems: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         zfs: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), false)),
       })),
     })),

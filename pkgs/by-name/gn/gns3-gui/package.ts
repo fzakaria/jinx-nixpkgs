@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]], [["url", 28, 7], ["hash", 29, 7]], [["package", 74, 7], ["command", 75, 7]], [["version", 73, 11]], [["tests", 73, 5], ["updateScript", 77, 36]], [["description", 81, 5], ["longDescription", 82, 5], ["homepage", 87, 5], ["changelog", 88, 5], ["license", 89, 5], ["platforms", 90, 5], ["maintainers", 91, 5], ["mainProgram", 92, 5]], [["pname", 14, 3], ["version", 15, 3], ["pyproject", 16, 3], ["src", 18, 3], ["patches", 25, 3], ["pythonRelaxDeps", 33, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 41, 3], ["build-system", 43, 3], ["dependencies", 45, 3], ["dontWrapQtApps", 56, 3], ["preFixup", 58, 3], ["nativeCheckInputs", 62, 3], ["preCheck", 67, 3], ["passthru", 72, 3], ["meta", 80, 3]]]);
 const formals$1 = { args: { fetchFromGitHub: false, fetchpatch: false, "gns3-gui": false, "gns3-server": false, lib: false, python3Packages: false, qt6: false, testers: false, writableTmpDirAsHomeHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 28, 7], ["hash", 29, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["package", 74, 7], ["command", 75, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["version", 73, 11]]);
-const pos$5 = nix.positions(here + "/package.nix", [["tests", 73, 5], ["updateScript", 77, 36]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 81, 5], ["longDescription", 82, 5], ["homepage", 87, 5], ["changelog", 88, 5], ["license", 89, 5], ["platforms", 90, 5], ["maintainers", 91, 5], ["mainProgram", 92, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["pyproject", 16, 3], ["src", 18, 3], ["patches", 25, 3], ["pythonRelaxDeps", 33, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 41, 3], ["build-system", 43, 3], ["dependencies", 45, 3], ["dontWrapQtApps", 56, 3], ["preFixup", 58, 3], ["nativeCheckInputs", 62, 3], ["preCheck", 67, 3], ["passthru", 72, 3], ["meta", 80, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "gns3-gui",
       version: "2.2.56.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "GNS3",
           repo: "gns3-gui",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,7 +30,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/GNS3/gns3-gui/commit/e6e2a1cafbc3ce4be9cca3428e60400f25806cde.patch",
             hash: "sha256-T15OCqm+Te9ZOCg/kFf/fd2DY75LfaLHskAAgGYMloI=",
           })))),
@@ -76,11 +70,11 @@ export QT_QPA_PLATFORM=offscreen
       passthru: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(gns3_server, "passthru"));
         return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               package: gns3_gui,
               command: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), gns3_gui)} --version`),
             })))),
@@ -89,7 +83,7 @@ export QT_QPA_PLATFORM=offscreen
       };
       })()),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Graphical Network Simulator 3 GUI",
         longDescription: "Graphical user interface for controlling the GNS3 network simulator. This\nrequires access to a local or remote GNS3 server (it's recommended to\ndownload the official GNS3 VM).\n",
         homepage: "https://www.gns3.com/",

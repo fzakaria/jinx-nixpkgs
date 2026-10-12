@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]], [["incus-lts", 75, 7]], [["tests", 74, 5], ["updateScript", 78, 5]], [["description", 82, 5], ["mainProgram", 83, 5], ["homepage", 84, 5], ["changelog", 85, 5], ["license", 86, 5], ["platforms", 87, 5], ["teams", 88, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["patches", 29, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 45, 3], ["preConfigure", 47, 3], ["postInstall", 51, 3], ["postFixup", 68, 3], ["passthru", 73, 3], ["meta", 81, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fuse3: false, help2man: false, makeWrapper: false, meson: false, ninja: false, "nix-update-script": false, nixosTests: false, "pkg-config": false, python3: false, "util-linux": false, coreutils: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["incus-lts", 75, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 74, 5], ["updateScript", 78, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 82, 5], ["mainProgram", 83, 5], ["homepage", 84, 5], ["changelog", 85, 5], ["license", 86, 5], ["platforms", 87, 5], ["teams", 88, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["patches", 29, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 45, 3], ["preConfigure", 47, 3], ["postInstall", 51, 3], ["postFixup", 68, 3], ["passthru", 73, 3], ["meta", 81, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const util_linux = nix.arg($, "util-linux");
   const coreutils = nix.arg($, "coreutils");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "lxcfs",
       version: "7.0.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "lxc",
           repo: "lxcfs",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -55,15 +51,15 @@ wrapProgram "$out/share/lxcfs/lxc.reboot.hook" --prefix PATH : ${nix.app(nix.sel
 `),
       postFixup: "# liblxcfs.so is reloaded with dlopen()\npatchelf --set-rpath \"$(patchelf --print-rpath \"$out/bin/lxcfs\"):$out/lib\" \"$out/bin/lxcfs\"\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           "incus-lts": nix.thunk(() => nix.sel(nixosTests, "incus-lts", "container")),
         })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "FUSE filesystem for LXC",
         mainProgram: "lxcfs",
         homepage: "https://linuxcontainers.org/lxcfs",

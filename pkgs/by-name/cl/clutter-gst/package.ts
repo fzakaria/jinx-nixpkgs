@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 27, 5], ["sha256", 28, 5]], [["url", 36, 7], ["sha256", 37, 7]], [["packageName", 61, 7], ["versionPolicy", 62, 7]], [["updateScript", 60, 5]], [["description", 67, 5], ["homepage", 69, 5], ["license", 71, 5], ["maintainers", 73, 5], ["platforms", 74, 5]], [["pname", 18, 3], ["version", 19, 3], ["outputs", 21, 3], ["src", 26, 3], ["patches", 31, 3], ["strictDeps", 41, 3], ["nativeBuildInputs", 42, 3], ["propagatedBuildInputs", 47, 3], ["postBuild", 57, 3], ["passthru", 59, 3], ["meta", 66, 3]]]);
 const formals$1 = { args: { fetchurl: false, fetchpatch: false, lib: false, stdenv: false, "pkg-config": false, clutter: false, gtk3: false, glib: false, cogl: false, gnome: false, "gdk-pixbuf": false, "gobject-introspection": false, gst_all_1: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 27, 5], ["sha256", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 36, 7], ["sha256", 37, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["packageName", 61, 7], ["versionPolicy", 62, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 60, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 67, 5], ["homepage", 69, 5], ["license", 71, 5], ["maintainers", 73, 5], ["platforms", 74, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["outputs", 21, 3], ["src", 26, 3], ["patches", 31, 3], ["strictDeps", 41, 3], ["nativeBuildInputs", 42, 3], ["propagatedBuildInputs", 47, 3], ["postBuild", 57, 3], ["passthru", 59, 3], ["meta", 66, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,13 +25,13 @@ export default nix.lambda((args) => (() => {
       const version = "3.0.27";
       const outputs = nix.thunk(() => ["out", "dev"]);
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnome/sources/clutter-gst/${nix.app(nix.sel(lib, "versions", "majorMinor"), version)}/clutter-gst-${version}.tar.xz`),
           sha256: "17czmpl92dzi4h3rn5rishk015yi3jwiw29zv8qan94xcmnbssgy",
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/archlinux/svntogit-packages/raw/c4dd0bbda35aa603ee790676f6e15541f71b6d36/trunk/0001-video-sink-Remove-RGBx-BGRx-support.patch",
             sha256: "sha256-k1fCiM/u7q81UrDYgbqhN/C+q9DVQ+qOyq6vmA3hbSQ=",
           })))),
@@ -54,11 +49,11 @@ export default nix.lambda((args) => (() => {
       ]);
       const postBuild = "rm -rf $out/share/gtk-doc";
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$3, packageName: pname, versionPolicy: "odd-unstable" })))),
+        [nix.POS]: $pos[3],
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: $pos[2], packageName: pname, versionPolicy: "odd-unstable" })))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "GStreamer bindings for clutter",
         homepage: "http://www.clutter-project.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl2Plus")),
@@ -66,7 +61,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname,
         version,
         outputs,

@@ -2,155 +2,22 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/openssh.nix", [[["maintainers", 14, 5]], [["enable", 23, 26]], [["openssh", 23, 18]], [["domain", 26, 13], ["item", 27, 13], ["type", 28, 13], ["value", 29, 13]], [["limits", 24, 36]], [["sshd", 24, 31]], [["services", 24, 22]], [["pam", 24, 18]], [["keys", 32, 49]], [["authorizedKeys", 32, 34]], [["openssh", 32, 26]], [["root", 32, 21]], [["users", 32, 15]], [["services", 23, 9], ["security", 24, 9], ["users", 32, 9]], [["AllowUsers", 43, 20]], [["enable", 42, 11], ["settings", 43, 11]], [["openssh", 41, 18]], [["alice", 49, 11], ["bob", 50, 11], ["carol", 51, 11]], [["keys", 57, 36]], [["authorizedKeys", 57, 21]], [["isNormalUser", 55, 13], ["group", 56, 13], ["openssh", 57, 13]], [["keys", 62, 36]], [["authorizedKeys", 62, 21]], [["isNormalUser", 60, 13], ["group", 61, 13], ["openssh", 62, 13]], [["keys", 67, 36]], [["authorizedKeys", 67, 21]], [["isNormalUser", 65, 13], ["group", 66, 13], ["openssh", 67, 13]], [["alice", 54, 11], ["bob", 59, 11], ["carol", 64, 11]], [["groups", 48, 15], ["users", 53, 15]], [["services", 41, 9], ["users", 48, 9]], [["enable", 77, 11], ["startWhenNeeded", 78, 11]], [["openssh", 76, 18]], [["domain", 82, 13], ["item", 83, 13], ["type", 84, 13], ["value", 85, 13]], [["limits", 80, 36]], [["sshd", 80, 31]], [["services", 80, 22]], [["pam", 80, 18]], [["keys", 88, 49]], [["authorizedKeys", 88, 34]], [["openssh", 88, 26]], [["root", 88, 21]], [["users", 88, 15]], [["services", 76, 9], ["security", 80, 9], ["users", 88, 9]], [["vlans", 95, 22]], [["addr", 104, 31]], [["enable", 101, 9], ["startWhenNeeded", 102, 9], ["ports", 103, 9], ["listenAddresses", 104, 9]], [["openssh", 100, 16]], [["keys", 106, 47]], [["authorizedKeys", 106, 32]], [["openssh", 106, 24]], [["root", 106, 19]], [["users", 106, 13]], [["virtualisation", 95, 7], ["services", 100, 7], ["users", 106, 7]], [["addr", 119, 15], ["port", 120, 15]], [["enable", 116, 11], ["listenAddresses", 117, 11]], [["openssh", 115, 18]], [["services", 115, 9]], [["addr", 135, 15], ["port", 136, 15]], [["enable", 131, 11], ["startWhenNeeded", 132, 11], ["listenAddresses", 133, 11]], [["openssh", 130, 18]], [["services", 130, 9]], [["addr", 150, 15], ["port", 151, 15]], [["addr", 154, 15], ["port", 155, 15]], [["enable", 147, 11], ["listenAddresses", 148, 11], ["extraConfig", 158, 11]], [["openssh", 146, 18]], [["services", 146, 9]], [["linkOpenssl", 188, 13]], [["type", 192, 15], ["path", 193, 15]], [["enable", 186, 11], ["package", 187, 11], ["hostKeys", 190, 11], ["enableRecommendedAlgorithms", 197, 11]], [["openssh", 185, 18]], [["keys", 199, 49]], [["authorizedKeys", 199, 34]], [["openssh", 199, 26]], [["root", 199, 21]], [["users", 199, 15]], [["services", 185, 9], ["users", 199, 9]], [["enable", 208, 11], ["enableRecommendedAlgorithms", 209, 11]], [["openssh", 207, 18]], [["keys", 211, 49]], [["authorizedKeys", 211, 34]], [["openssh", 211, 26]], [["root", 211, 21]], [["users", 211, 15]], [["services", 207, 9], ["users", 211, 9]], [["Ciphers", 222, 13], ["KexAlgorithms", 223, 13], ["Macs", 224, 13]], [["enable", 220, 11], ["settings", 221, 11]], [["openssh", 219, 18]], [["keys", 227, 49]], [["authorizedKeys", 227, 34]], [["openssh", 227, 26]], [["root", 227, 21]], [["users", 227, 15]], [["services", 219, 9], ["users", 227, 9]], [["withPAM", 238, 13]], [["UsePAM", 241, 13]], [["enable", 236, 11], ["package", 237, 11], ["settings", 240, 11]], [["openssh", 235, 18]], [["keys", 244, 49]], [["authorizedKeys", 244, 34]], [["openssh", 244, 26]], [["root", 244, 21]], [["users", 244, 15]], [["services", 235, 9], ["users", 244, 9]], [["withPAM", 255, 13]], [["UsePAM", 258, 13]], [["enable", 253, 11], ["package", 254, 11], ["settings", 257, 11]], [["openssh", 252, 18]], [["keys", 261, 49]], [["authorizedKeys", 261, 34]], [["openssh", 261, 26]], [["root", 261, 21]], [["users", 261, 15]], [["services", 252, 9], ["users", 261, 9]], [["enable", 270, 11], ["extraConfig", 271, 11]], [["openssh", 269, 18]], [["sftponly", 279, 11]], [["keys", 287, 36]], [["authorizedKeys", 287, 21]], [["isNormalUser", 283, 13], ["createHome", 284, 13], ["group", 285, 13], ["shell", 286, 13], ["openssh", 287, 13]], [["alice", 282, 11]], [["groups", 278, 15], ["users", 281, 15]], [["services", 269, 9], ["users", 278, 9]], [["generateHostKeys", 295, 26]], [["openssh", 295, 18]], [["keys", 296, 49]], [["authorizedKeys", 296, 34]], [["openssh", 296, 26]], [["root", 296, 21]], [["users", 296, 15]], [["services", 295, 9], ["users", 296, 9]], [["vlans", 304, 24]], [["virtualisation", 304, 9]], [["server", 19, 5], ["server-allowed-users", 37, 5], ["server-lazy", 72, 5], ["aaa-server-lazy-socket", 94, 5], ["server-localhost-only", 111, 5], ["server-localhost-only-lazy", 126, 5], ["server-match-rule", 142, 5], ["server-no-openssl", 182, 5], ["server-default-algorithms", 204, 5], ["server-null-algorithms", 216, 5], ["server-no-pam", 232, 5], ["server-null-pam", 249, 5], ["server-sftp", 266, 5], ["server-no-sshd-with-key", 292, 5], ["client", 301, 5]], [["name", 12, 3], ["meta", 13, 3], ["nodes", 17, 3], ["testScript", 312, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/openssh.nix", [["maintainers", 14, 5]]);
 const formals$2 = { args: {  }, ellipsis: true };
-const pos$2 = nix.positions(here + "/openssh.nix", [["enable", 23, 26]]);
-const pos$3 = nix.positions(here + "/openssh.nix", [["openssh", 23, 18]]);
-const pos$4 = nix.positions(here + "/openssh.nix", [["domain", 26, 13], ["item", 27, 13], ["type", 28, 13], ["value", 29, 13]]);
-const pos$5 = nix.positions(here + "/openssh.nix", [["limits", 24, 36]]);
-const pos$6 = nix.positions(here + "/openssh.nix", [["sshd", 24, 31]]);
-const pos$7 = nix.positions(here + "/openssh.nix", [["services", 24, 22]]);
-const pos$8 = nix.positions(here + "/openssh.nix", [["pam", 24, 18]]);
-const pos$9 = nix.positions(here + "/openssh.nix", [["keys", 32, 49]]);
-const pos$10 = nix.positions(here + "/openssh.nix", [["authorizedKeys", 32, 34]]);
-const pos$11 = nix.positions(here + "/openssh.nix", [["openssh", 32, 26]]);
-const pos$12 = nix.positions(here + "/openssh.nix", [["root", 32, 21]]);
-const pos$13 = nix.positions(here + "/openssh.nix", [["users", 32, 15]]);
-const pos$14 = nix.positions(here + "/openssh.nix", [["services", 23, 9], ["security", 24, 9], ["users", 32, 9]]);
 const formals$3 = { args: {  }, ellipsis: true };
-const pos$15 = nix.positions(here + "/openssh.nix", [["AllowUsers", 43, 20]]);
-const pos$16 = nix.positions(here + "/openssh.nix", [["enable", 42, 11], ["settings", 43, 11]]);
-const pos$17 = nix.positions(here + "/openssh.nix", [["openssh", 41, 18]]);
-const pos$18 = nix.positions(here + "/openssh.nix", [["alice", 49, 11], ["bob", 50, 11], ["carol", 51, 11]]);
-const pos$19 = nix.positions(here + "/openssh.nix", [["keys", 57, 36]]);
-const pos$20 = nix.positions(here + "/openssh.nix", [["authorizedKeys", 57, 21]]);
-const pos$21 = nix.positions(here + "/openssh.nix", [["isNormalUser", 55, 13], ["group", 56, 13], ["openssh", 57, 13]]);
-const pos$22 = nix.positions(here + "/openssh.nix", [["keys", 62, 36]]);
-const pos$23 = nix.positions(here + "/openssh.nix", [["authorizedKeys", 62, 21]]);
-const pos$24 = nix.positions(here + "/openssh.nix", [["isNormalUser", 60, 13], ["group", 61, 13], ["openssh", 62, 13]]);
-const pos$25 = nix.positions(here + "/openssh.nix", [["keys", 67, 36]]);
-const pos$26 = nix.positions(here + "/openssh.nix", [["authorizedKeys", 67, 21]]);
-const pos$27 = nix.positions(here + "/openssh.nix", [["isNormalUser", 65, 13], ["group", 66, 13], ["openssh", 67, 13]]);
-const pos$28 = nix.positions(here + "/openssh.nix", [["alice", 54, 11], ["bob", 59, 11], ["carol", 64, 11]]);
-const pos$29 = nix.positions(here + "/openssh.nix", [["groups", 48, 15], ["users", 53, 15]]);
-const pos$30 = nix.positions(here + "/openssh.nix", [["services", 41, 9], ["users", 48, 9]]);
 const formals$4 = { args: {  }, ellipsis: true };
-const pos$31 = nix.positions(here + "/openssh.nix", [["enable", 77, 11], ["startWhenNeeded", 78, 11]]);
-const pos$32 = nix.positions(here + "/openssh.nix", [["openssh", 76, 18]]);
-const pos$33 = nix.positions(here + "/openssh.nix", [["domain", 82, 13], ["item", 83, 13], ["type", 84, 13], ["value", 85, 13]]);
-const pos$34 = nix.positions(here + "/openssh.nix", [["limits", 80, 36]]);
-const pos$35 = nix.positions(here + "/openssh.nix", [["sshd", 80, 31]]);
-const pos$36 = nix.positions(here + "/openssh.nix", [["services", 80, 22]]);
-const pos$37 = nix.positions(here + "/openssh.nix", [["pam", 80, 18]]);
-const pos$38 = nix.positions(here + "/openssh.nix", [["keys", 88, 49]]);
-const pos$39 = nix.positions(here + "/openssh.nix", [["authorizedKeys", 88, 34]]);
-const pos$40 = nix.positions(here + "/openssh.nix", [["openssh", 88, 26]]);
-const pos$41 = nix.positions(here + "/openssh.nix", [["root", 88, 21]]);
-const pos$42 = nix.positions(here + "/openssh.nix", [["users", 88, 15]]);
-const pos$43 = nix.positions(here + "/openssh.nix", [["services", 76, 9], ["security", 80, 9], ["users", 88, 9]]);
-const pos$44 = nix.positions(here + "/openssh.nix", [["vlans", 95, 22]]);
-const pos$45 = nix.positions(here + "/openssh.nix", [["addr", 104, 31]]);
-const pos$46 = nix.positions(here + "/openssh.nix", [["enable", 101, 9], ["startWhenNeeded", 102, 9], ["ports", 103, 9], ["listenAddresses", 104, 9]]);
-const pos$47 = nix.positions(here + "/openssh.nix", [["openssh", 100, 16]]);
-const pos$48 = nix.positions(here + "/openssh.nix", [["keys", 106, 47]]);
-const pos$49 = nix.positions(here + "/openssh.nix", [["authorizedKeys", 106, 32]]);
-const pos$50 = nix.positions(here + "/openssh.nix", [["openssh", 106, 24]]);
-const pos$51 = nix.positions(here + "/openssh.nix", [["root", 106, 19]]);
-const pos$52 = nix.positions(here + "/openssh.nix", [["users", 106, 13]]);
-const pos$53 = nix.positions(here + "/openssh.nix", [["virtualisation", 95, 7], ["services", 100, 7], ["users", 106, 7]]);
 const formals$5 = { args: {  }, ellipsis: true };
-const pos$54 = nix.positions(here + "/openssh.nix", [["addr", 119, 15], ["port", 120, 15]]);
-const pos$55 = nix.positions(here + "/openssh.nix", [["enable", 116, 11], ["listenAddresses", 117, 11]]);
-const pos$56 = nix.positions(here + "/openssh.nix", [["openssh", 115, 18]]);
-const pos$57 = nix.positions(here + "/openssh.nix", [["services", 115, 9]]);
 const formals$6 = { args: {  }, ellipsis: true };
-const pos$58 = nix.positions(here + "/openssh.nix", [["addr", 135, 15], ["port", 136, 15]]);
-const pos$59 = nix.positions(here + "/openssh.nix", [["enable", 131, 11], ["startWhenNeeded", 132, 11], ["listenAddresses", 133, 11]]);
-const pos$60 = nix.positions(here + "/openssh.nix", [["openssh", 130, 18]]);
-const pos$61 = nix.positions(here + "/openssh.nix", [["services", 130, 9]]);
 const formals$7 = { args: {  }, ellipsis: true };
-const pos$62 = nix.positions(here + "/openssh.nix", [["addr", 150, 15], ["port", 151, 15]]);
-const pos$63 = nix.positions(here + "/openssh.nix", [["addr", 154, 15], ["port", 155, 15]]);
-const pos$64 = nix.positions(here + "/openssh.nix", [["enable", 147, 11], ["listenAddresses", 148, 11], ["extraConfig", 158, 11]]);
-const pos$65 = nix.positions(here + "/openssh.nix", [["openssh", 146, 18]]);
-const pos$66 = nix.positions(here + "/openssh.nix", [["services", 146, 9]]);
 const formals$8 = { args: {  }, ellipsis: true };
-const pos$67 = nix.positions(here + "/openssh.nix", [["linkOpenssl", 188, 13]]);
-const pos$68 = nix.positions(here + "/openssh.nix", [["type", 192, 15], ["path", 193, 15]]);
-const pos$69 = nix.positions(here + "/openssh.nix", [["enable", 186, 11], ["package", 187, 11], ["hostKeys", 190, 11], ["enableRecommendedAlgorithms", 197, 11]]);
-const pos$70 = nix.positions(here + "/openssh.nix", [["openssh", 185, 18]]);
-const pos$71 = nix.positions(here + "/openssh.nix", [["keys", 199, 49]]);
-const pos$72 = nix.positions(here + "/openssh.nix", [["authorizedKeys", 199, 34]]);
-const pos$73 = nix.positions(here + "/openssh.nix", [["openssh", 199, 26]]);
-const pos$74 = nix.positions(here + "/openssh.nix", [["root", 199, 21]]);
-const pos$75 = nix.positions(here + "/openssh.nix", [["users", 199, 15]]);
-const pos$76 = nix.positions(here + "/openssh.nix", [["services", 185, 9], ["users", 199, 9]]);
 const formals$9 = { args: {  }, ellipsis: true };
-const pos$77 = nix.positions(here + "/openssh.nix", [["enable", 208, 11], ["enableRecommendedAlgorithms", 209, 11]]);
-const pos$78 = nix.positions(here + "/openssh.nix", [["openssh", 207, 18]]);
-const pos$79 = nix.positions(here + "/openssh.nix", [["keys", 211, 49]]);
-const pos$80 = nix.positions(here + "/openssh.nix", [["authorizedKeys", 211, 34]]);
-const pos$81 = nix.positions(here + "/openssh.nix", [["openssh", 211, 26]]);
-const pos$82 = nix.positions(here + "/openssh.nix", [["root", 211, 21]]);
-const pos$83 = nix.positions(here + "/openssh.nix", [["users", 211, 15]]);
-const pos$84 = nix.positions(here + "/openssh.nix", [["services", 207, 9], ["users", 211, 9]]);
 const formals$10 = { args: {  }, ellipsis: true };
-const pos$85 = nix.positions(here + "/openssh.nix", [["Ciphers", 222, 13], ["KexAlgorithms", 223, 13], ["Macs", 224, 13]]);
-const pos$86 = nix.positions(here + "/openssh.nix", [["enable", 220, 11], ["settings", 221, 11]]);
-const pos$87 = nix.positions(here + "/openssh.nix", [["openssh", 219, 18]]);
-const pos$88 = nix.positions(here + "/openssh.nix", [["keys", 227, 49]]);
-const pos$89 = nix.positions(here + "/openssh.nix", [["authorizedKeys", 227, 34]]);
-const pos$90 = nix.positions(here + "/openssh.nix", [["openssh", 227, 26]]);
-const pos$91 = nix.positions(here + "/openssh.nix", [["root", 227, 21]]);
-const pos$92 = nix.positions(here + "/openssh.nix", [["users", 227, 15]]);
-const pos$93 = nix.positions(here + "/openssh.nix", [["services", 219, 9], ["users", 227, 9]]);
 const formals$11 = { args: { pkgs: false }, ellipsis: true };
-const pos$94 = nix.positions(here + "/openssh.nix", [["withPAM", 238, 13]]);
-const pos$95 = nix.positions(here + "/openssh.nix", [["UsePAM", 241, 13]]);
-const pos$96 = nix.positions(here + "/openssh.nix", [["enable", 236, 11], ["package", 237, 11], ["settings", 240, 11]]);
-const pos$97 = nix.positions(here + "/openssh.nix", [["openssh", 235, 18]]);
-const pos$98 = nix.positions(here + "/openssh.nix", [["keys", 244, 49]]);
-const pos$99 = nix.positions(here + "/openssh.nix", [["authorizedKeys", 244, 34]]);
-const pos$100 = nix.positions(here + "/openssh.nix", [["openssh", 244, 26]]);
-const pos$101 = nix.positions(here + "/openssh.nix", [["root", 244, 21]]);
-const pos$102 = nix.positions(here + "/openssh.nix", [["users", 244, 15]]);
-const pos$103 = nix.positions(here + "/openssh.nix", [["services", 235, 9], ["users", 244, 9]]);
 const formals$12 = { args: { pkgs: false }, ellipsis: true };
-const pos$104 = nix.positions(here + "/openssh.nix", [["withPAM", 255, 13]]);
-const pos$105 = nix.positions(here + "/openssh.nix", [["UsePAM", 258, 13]]);
-const pos$106 = nix.positions(here + "/openssh.nix", [["enable", 253, 11], ["package", 254, 11], ["settings", 257, 11]]);
-const pos$107 = nix.positions(here + "/openssh.nix", [["openssh", 252, 18]]);
-const pos$108 = nix.positions(here + "/openssh.nix", [["keys", 261, 49]]);
-const pos$109 = nix.positions(here + "/openssh.nix", [["authorizedKeys", 261, 34]]);
-const pos$110 = nix.positions(here + "/openssh.nix", [["openssh", 261, 26]]);
-const pos$111 = nix.positions(here + "/openssh.nix", [["root", 261, 21]]);
-const pos$112 = nix.positions(here + "/openssh.nix", [["users", 261, 15]]);
-const pos$113 = nix.positions(here + "/openssh.nix", [["services", 252, 9], ["users", 261, 9]]);
 const formals$13 = { args: { pkgs: false }, ellipsis: true };
-const pos$114 = nix.positions(here + "/openssh.nix", [["enable", 270, 11], ["extraConfig", 271, 11]]);
-const pos$115 = nix.positions(here + "/openssh.nix", [["openssh", 269, 18]]);
-const pos$116 = nix.positions(here + "/openssh.nix", [["sftponly", 279, 11]]);
-const pos$117 = nix.positions(here + "/openssh.nix", [["keys", 287, 36]]);
-const pos$118 = nix.positions(here + "/openssh.nix", [["authorizedKeys", 287, 21]]);
-const pos$119 = nix.positions(here + "/openssh.nix", [["isNormalUser", 283, 13], ["createHome", 284, 13], ["group", 285, 13], ["shell", 286, 13], ["openssh", 287, 13]]);
-const pos$120 = nix.positions(here + "/openssh.nix", [["alice", 282, 11]]);
-const pos$121 = nix.positions(here + "/openssh.nix", [["groups", 278, 15], ["users", 281, 15]]);
-const pos$122 = nix.positions(here + "/openssh.nix", [["services", 269, 9], ["users", 278, 9]]);
 const formals$14 = { args: { pkgs: false }, ellipsis: true };
-const pos$123 = nix.positions(here + "/openssh.nix", [["generateHostKeys", 295, 26]]);
-const pos$124 = nix.positions(here + "/openssh.nix", [["openssh", 295, 18]]);
-const pos$125 = nix.positions(here + "/openssh.nix", [["keys", 296, 49]]);
-const pos$126 = nix.positions(here + "/openssh.nix", [["authorizedKeys", 296, 34]]);
-const pos$127 = nix.positions(here + "/openssh.nix", [["openssh", 296, 26]]);
-const pos$128 = nix.positions(here + "/openssh.nix", [["root", 296, 21]]);
-const pos$129 = nix.positions(here + "/openssh.nix", [["users", 296, 15]]);
-const pos$130 = nix.positions(here + "/openssh.nix", [["services", 295, 9], ["users", 296, 9]]);
 const formals$15 = { args: {  }, ellipsis: true };
-const pos$131 = nix.positions(here + "/openssh.nix", [["vlans", 304, 24]]);
-const pos$132 = nix.positions(here + "/openssh.nix", [["virtualisation", 304, 9]]);
-const pos$133 = nix.positions(here + "/openssh.nix", [["server", 19, 5], ["server-allowed-users", 37, 5], ["server-lazy", 72, 5], ["aaa-server-lazy-socket", 94, 5], ["server-localhost-only", 111, 5], ["server-localhost-only-lazy", 126, 5], ["server-match-rule", 142, 5], ["server-no-openssl", 182, 5], ["server-default-algorithms", 204, 5], ["server-null-algorithms", 216, 5], ["server-no-pam", 232, 5], ["server-null-pam", 249, 5], ["server-sftp", 266, 5], ["server-no-sshd-with-key", 292, 5], ["client", 301, 5]]);
-const pos$134 = nix.positions(here + "/openssh.nix", [["name", 12, 3], ["meta", 13, 3], ["nodes", 17, 3], ["testScript", 312, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -161,49 +28,49 @@ export default nix.lambda((args) => (() => {
   const snakeOilEd25519PrivateKey = nix.thunk(() => nix.attr(from, "snakeOilEd25519PrivateKey"));
   const snakeOilEd25519PublicKey = nix.thunk(() => nix.attr(from, "snakeOilEd25519PublicKey"));
   return {
-    [nix.POS]: pos$134,
+    [nix.POS]: $pos[133],
     name: "openssh",
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
       return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "aszlig"))]),
       };
     })()),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$133,
+      [nix.POS]: $pos[132],
       server: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          [nix.POS]: pos$14,
+          [nix.POS]: $pos[13],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$3,
-            openssh: nix.thunk(() => ({ [nix.POS]: pos$2, enable: true })),
+            [nix.POS]: $pos[2],
+            openssh: nix.thunk(() => ({ [nix.POS]: $pos[1], enable: true })),
           })),
           security: nix.thunk(() => ({
-            [nix.POS]: pos$8,
+            [nix.POS]: $pos[7],
             pam: nix.thunk(() => ({
-              [nix.POS]: pos$7,
+              [nix.POS]: $pos[6],
               services: nix.thunk(() => ({
-                [nix.POS]: pos$6,
+                [nix.POS]: $pos[5],
                 sshd: nix.thunk(() => ({
-                  [nix.POS]: pos$5,
+                  [nix.POS]: $pos[4],
                   limits: nix.thunk(() => [
-                    nix.thunk(() => ({ [nix.POS]: pos$4, domain: "*", item: "memlock", type: "-", value: 1024n })),
+                    nix.thunk(() => ({ [nix.POS]: $pos[3], domain: "*", item: "memlock", type: "-", value: 1024n })),
                   ]),
                 })),
               })),
             })),
           })),
           users: nix.thunk(() => ({
-            [nix.POS]: pos$13,
+            [nix.POS]: $pos[12],
             users: nix.thunk(() => ({
-              [nix.POS]: pos$12,
+              [nix.POS]: $pos[11],
               root: nix.thunk(() => ({
-                [nix.POS]: pos$11,
+                [nix.POS]: $pos[10],
                 openssh: nix.thunk(() => ({
-                  [nix.POS]: pos$10,
-                  authorizedKeys: nix.thunk(() => ({ [nix.POS]: pos$9, keys: nix.thunk(() => [snakeOilPublicKey]) })),
+                  [nix.POS]: $pos[9],
+                  authorizedKeys: nix.thunk(() => ({ [nix.POS]: $pos[8], keys: nix.thunk(() => [snakeOilPublicKey]) })),
                 })),
               })),
             })),
@@ -213,50 +80,50 @@ export default nix.lambda((args) => (() => {
       "server-allowed-users": nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$3);
         return {
-          [nix.POS]: pos$30,
+          [nix.POS]: $pos[29],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$17,
+            [nix.POS]: $pos[16],
             openssh: nix.thunk(() => ({
-              [nix.POS]: pos$16,
+              [nix.POS]: $pos[15],
               enable: true,
-              settings: nix.thunk(() => ({ [nix.POS]: pos$15, AllowUsers: nix.thunk(() => ["alice", "bob"]) })),
+              settings: nix.thunk(() => ({ [nix.POS]: $pos[14], AllowUsers: nix.thunk(() => ["alice", "bob"]) })),
             })),
           })),
           users: nix.thunk(() => ({
-            [nix.POS]: pos$29,
+            [nix.POS]: $pos[28],
             groups: nix.thunk(() => ({
-              [nix.POS]: pos$18,
+              [nix.POS]: $pos[17],
               alice: nix.thunk(() => ({})),
               bob: nix.thunk(() => ({})),
               carol: nix.thunk(() => ({})),
             })),
             users: nix.thunk(() => ({
-              [nix.POS]: pos$28,
+              [nix.POS]: $pos[27],
               alice: nix.thunk(() => ({
-                [nix.POS]: pos$21,
+                [nix.POS]: $pos[20],
                 isNormalUser: true,
                 group: "alice",
                 openssh: nix.thunk(() => ({
-                  [nix.POS]: pos$20,
-                  authorizedKeys: nix.thunk(() => ({ [nix.POS]: pos$19, keys: nix.thunk(() => [snakeOilPublicKey]) })),
+                  [nix.POS]: $pos[19],
+                  authorizedKeys: nix.thunk(() => ({ [nix.POS]: $pos[18], keys: nix.thunk(() => [snakeOilPublicKey]) })),
                 })),
               })),
               bob: nix.thunk(() => ({
-                [nix.POS]: pos$24,
+                [nix.POS]: $pos[23],
                 isNormalUser: true,
                 group: "bob",
                 openssh: nix.thunk(() => ({
-                  [nix.POS]: pos$23,
-                  authorizedKeys: nix.thunk(() => ({ [nix.POS]: pos$22, keys: nix.thunk(() => [snakeOilPublicKey]) })),
+                  [nix.POS]: $pos[22],
+                  authorizedKeys: nix.thunk(() => ({ [nix.POS]: $pos[21], keys: nix.thunk(() => [snakeOilPublicKey]) })),
                 })),
               })),
               carol: nix.thunk(() => ({
-                [nix.POS]: pos$27,
+                [nix.POS]: $pos[26],
                 isNormalUser: true,
                 group: "carol",
                 openssh: nix.thunk(() => ({
-                  [nix.POS]: pos$26,
-                  authorizedKeys: nix.thunk(() => ({ [nix.POS]: pos$25, keys: nix.thunk(() => [snakeOilPublicKey]) })),
+                  [nix.POS]: $pos[25],
+                  authorizedKeys: nix.thunk(() => ({ [nix.POS]: $pos[24], keys: nix.thunk(() => [snakeOilPublicKey]) })),
                 })),
               })),
             })),
@@ -266,35 +133,35 @@ export default nix.lambda((args) => (() => {
       "server-lazy": nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$4);
         return {
-          [nix.POS]: pos$43,
+          [nix.POS]: $pos[42],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$32,
-            openssh: nix.thunk(() => ({ [nix.POS]: pos$31, enable: true, startWhenNeeded: true })),
+            [nix.POS]: $pos[31],
+            openssh: nix.thunk(() => ({ [nix.POS]: $pos[30], enable: true, startWhenNeeded: true })),
           })),
           security: nix.thunk(() => ({
-            [nix.POS]: pos$37,
+            [nix.POS]: $pos[36],
             pam: nix.thunk(() => ({
-              [nix.POS]: pos$36,
+              [nix.POS]: $pos[35],
               services: nix.thunk(() => ({
-                [nix.POS]: pos$35,
+                [nix.POS]: $pos[34],
                 sshd: nix.thunk(() => ({
-                  [nix.POS]: pos$34,
+                  [nix.POS]: $pos[33],
                   limits: nix.thunk(() => [
-                    nix.thunk(() => ({ [nix.POS]: pos$33, domain: "*", item: "memlock", type: "-", value: 1024n })),
+                    nix.thunk(() => ({ [nix.POS]: $pos[32], domain: "*", item: "memlock", type: "-", value: 1024n })),
                   ]),
                 })),
               })),
             })),
           })),
           users: nix.thunk(() => ({
-            [nix.POS]: pos$42,
+            [nix.POS]: $pos[41],
             users: nix.thunk(() => ({
-              [nix.POS]: pos$41,
+              [nix.POS]: $pos[40],
               root: nix.thunk(() => ({
-                [nix.POS]: pos$40,
+                [nix.POS]: $pos[39],
                 openssh: nix.thunk(() => ({
-                  [nix.POS]: pos$39,
-                  authorizedKeys: nix.thunk(() => ({ [nix.POS]: pos$38, keys: nix.thunk(() => [snakeOilPublicKey]) })),
+                  [nix.POS]: $pos[38],
+                  authorizedKeys: nix.thunk(() => ({ [nix.POS]: $pos[37], keys: nix.thunk(() => [snakeOilPublicKey]) })),
                 })),
               })),
             })),
@@ -302,27 +169,27 @@ export default nix.lambda((args) => (() => {
         };
       })(), formals$4),
       "aaa-server-lazy-socket": nix.thunk(() => ({
-        [nix.POS]: pos$53,
-        virtualisation: nix.thunk(() => ({ [nix.POS]: pos$44, vlans: nix.thunk(() => [1n, 2n]) })),
+        [nix.POS]: $pos[52],
+        virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[43], vlans: nix.thunk(() => [1n, 2n]) })),
         services: nix.thunk(() => ({
-          [nix.POS]: pos$47,
+          [nix.POS]: $pos[46],
           openssh: nix.thunk(() => ({
-            [nix.POS]: pos$46,
+            [nix.POS]: $pos[45],
             enable: true,
             startWhenNeeded: true,
             ports: nix.thunk(() => [2222n]),
-            listenAddresses: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$45, addr: "0.0.0.0" }))]),
+            listenAddresses: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: $pos[44], addr: "0.0.0.0" }))]),
           })),
         })),
         users: nix.thunk(() => ({
-          [nix.POS]: pos$52,
+          [nix.POS]: $pos[51],
           users: nix.thunk(() => ({
-            [nix.POS]: pos$51,
+            [nix.POS]: $pos[50],
             root: nix.thunk(() => ({
-              [nix.POS]: pos$50,
+              [nix.POS]: $pos[49],
               openssh: nix.thunk(() => ({
-                [nix.POS]: pos$49,
-                authorizedKeys: nix.thunk(() => ({ [nix.POS]: pos$48, keys: nix.thunk(() => [snakeOilPublicKey]) })),
+                [nix.POS]: $pos[48],
+                authorizedKeys: nix.thunk(() => ({ [nix.POS]: $pos[47], keys: nix.thunk(() => [snakeOilPublicKey]) })),
               })),
             })),
           })),
@@ -331,13 +198,13 @@ export default nix.lambda((args) => (() => {
       "server-localhost-only": nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$5);
         return {
-          [nix.POS]: pos$57,
+          [nix.POS]: $pos[56],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$56,
+            [nix.POS]: $pos[55],
             openssh: nix.thunk(() => ({
-              [nix.POS]: pos$55,
+              [nix.POS]: $pos[54],
               enable: true,
-              listenAddresses: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$54, addr: "127.0.0.1", port: 22n }))]),
+              listenAddresses: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: $pos[53], addr: "127.0.0.1", port: 22n }))]),
             })),
           })),
         };
@@ -345,14 +212,14 @@ export default nix.lambda((args) => (() => {
       "server-localhost-only-lazy": nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$6);
         return {
-          [nix.POS]: pos$61,
+          [nix.POS]: $pos[60],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$60,
+            [nix.POS]: $pos[59],
             openssh: nix.thunk(() => ({
-              [nix.POS]: pos$59,
+              [nix.POS]: $pos[58],
               enable: true,
               startWhenNeeded: true,
-              listenAddresses: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$58, addr: "127.0.0.1", port: 22n }))]),
+              listenAddresses: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: $pos[57], addr: "127.0.0.1", port: 22n }))]),
             })),
           })),
         };
@@ -360,15 +227,15 @@ export default nix.lambda((args) => (() => {
       "server-match-rule": nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$7);
         return {
-          [nix.POS]: pos$66,
+          [nix.POS]: $pos[65],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$65,
+            [nix.POS]: $pos[64],
             openssh: nix.thunk(() => ({
-              [nix.POS]: pos$64,
+              [nix.POS]: $pos[63],
               enable: true,
               listenAddresses: nix.thunk(() => [
-                nix.thunk(() => ({ [nix.POS]: pos$62, addr: "127.0.0.1", port: 22n })),
-                nix.thunk(() => ({ [nix.POS]: pos$63, addr: "[::]", port: 22n })),
+                nix.thunk(() => ({ [nix.POS]: $pos[61], addr: "127.0.0.1", port: 22n })),
+                nix.thunk(() => ({ [nix.POS]: $pos[62], addr: "[::]", port: 22n })),
               ]),
               extraConfig: "# Combined test for two (predictable) Match criterias\nMatch LocalAddress 127.0.0.1 LocalPort 22\n  PermitRootLogin yes\n\n# Separate tests for Match criterias\nMatch User root\n  PermitRootLogin yes\nMatch Group root\n  PermitRootLogin yes\nMatch Host nohost.example\n  PermitRootLogin yes\nMatch LocalAddress 127.0.0.1\n  PermitRootLogin yes\nMatch LocalPort 22\n  PermitRootLogin yes\nMatch RDomain nohost.example\n  PermitRootLogin yes\nMatch Address 127.0.0.1\n  PermitRootLogin yes\n",
             })),
@@ -378,28 +245,28 @@ export default nix.lambda((args) => (() => {
       "server-no-openssl": nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$8);
         return {
-          [nix.POS]: pos$76,
+          [nix.POS]: $pos[75],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$70,
+            [nix.POS]: $pos[69],
             openssh: nix.thunk(() => ({
-              [nix.POS]: pos$69,
+              [nix.POS]: $pos[68],
               enable: true,
-              package: nix.thunk(() => nix.app(nix.sel(pkgs, "opensshPackages", "openssh", "override"), nix.thunk(() => ({ [nix.POS]: pos$67, linkOpenssl: false })))),
+              package: nix.thunk(() => nix.app(nix.sel(pkgs, "opensshPackages", "openssh", "override"), nix.thunk(() => ({ [nix.POS]: $pos[66], linkOpenssl: false })))),
               hostKeys: nix.thunk(() => [
-                nix.thunk(() => ({ [nix.POS]: pos$68, type: "ed25519", path: "/etc/ssh/ssh_host_ed25519_key" })),
+                nix.thunk(() => ({ [nix.POS]: $pos[67], type: "ed25519", path: "/etc/ssh/ssh_host_ed25519_key" })),
               ]),
               enableRecommendedAlgorithms: false,
             })),
           })),
           users: nix.thunk(() => ({
-            [nix.POS]: pos$75,
+            [nix.POS]: $pos[74],
             users: nix.thunk(() => ({
-              [nix.POS]: pos$74,
+              [nix.POS]: $pos[73],
               root: nix.thunk(() => ({
-                [nix.POS]: pos$73,
+                [nix.POS]: $pos[72],
                 openssh: nix.thunk(() => ({
-                  [nix.POS]: pos$72,
-                  authorizedKeys: nix.thunk(() => ({ [nix.POS]: pos$71, keys: nix.thunk(() => [snakeOilEd25519PublicKey]) })),
+                  [nix.POS]: $pos[71],
+                  authorizedKeys: nix.thunk(() => ({ [nix.POS]: $pos[70], keys: nix.thunk(() => [snakeOilEd25519PublicKey]) })),
                 })),
               })),
             })),
@@ -409,20 +276,20 @@ export default nix.lambda((args) => (() => {
       "server-default-algorithms": nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$9);
         return {
-          [nix.POS]: pos$84,
+          [nix.POS]: $pos[83],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$78,
-            openssh: nix.thunk(() => ({ [nix.POS]: pos$77, enable: true, enableRecommendedAlgorithms: false })),
+            [nix.POS]: $pos[77],
+            openssh: nix.thunk(() => ({ [nix.POS]: $pos[76], enable: true, enableRecommendedAlgorithms: false })),
           })),
           users: nix.thunk(() => ({
-            [nix.POS]: pos$83,
+            [nix.POS]: $pos[82],
             users: nix.thunk(() => ({
-              [nix.POS]: pos$82,
+              [nix.POS]: $pos[81],
               root: nix.thunk(() => ({
-                [nix.POS]: pos$81,
+                [nix.POS]: $pos[80],
                 openssh: nix.thunk(() => ({
-                  [nix.POS]: pos$80,
-                  authorizedKeys: nix.thunk(() => ({ [nix.POS]: pos$79, keys: nix.thunk(() => [snakeOilEd25519PublicKey]) })),
+                  [nix.POS]: $pos[79],
+                  authorizedKeys: nix.thunk(() => ({ [nix.POS]: $pos[78], keys: nix.thunk(() => [snakeOilEd25519PublicKey]) })),
                 })),
               })),
             })),
@@ -432,24 +299,24 @@ export default nix.lambda((args) => (() => {
       "server-null-algorithms": nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$10);
         return {
-          [nix.POS]: pos$93,
+          [nix.POS]: $pos[92],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$87,
+            [nix.POS]: $pos[86],
             openssh: nix.thunk(() => ({
-              [nix.POS]: pos$86,
+              [nix.POS]: $pos[85],
               enable: true,
-              settings: nix.thunk(() => ({ [nix.POS]: pos$85, Ciphers: null, KexAlgorithms: null, Macs: null })),
+              settings: nix.thunk(() => ({ [nix.POS]: $pos[84], Ciphers: null, KexAlgorithms: null, Macs: null })),
             })),
           })),
           users: nix.thunk(() => ({
-            [nix.POS]: pos$92,
+            [nix.POS]: $pos[91],
             users: nix.thunk(() => ({
-              [nix.POS]: pos$91,
+              [nix.POS]: $pos[90],
               root: nix.thunk(() => ({
-                [nix.POS]: pos$90,
+                [nix.POS]: $pos[89],
                 openssh: nix.thunk(() => ({
-                  [nix.POS]: pos$89,
-                  authorizedKeys: nix.thunk(() => ({ [nix.POS]: pos$88, keys: nix.thunk(() => [snakeOilEd25519PublicKey]) })),
+                  [nix.POS]: $pos[88],
+                  authorizedKeys: nix.thunk(() => ({ [nix.POS]: $pos[87], keys: nix.thunk(() => [snakeOilEd25519PublicKey]) })),
                 })),
               })),
             })),
@@ -460,25 +327,25 @@ export default nix.lambda((args) => (() => {
         const $_1 = nix.formals(args_1, formals$11);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$103,
+          [nix.POS]: $pos[102],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$97,
+            [nix.POS]: $pos[96],
             openssh: nix.thunk(() => ({
-              [nix.POS]: pos$96,
+              [nix.POS]: $pos[95],
               enable: true,
-              package: nix.thunk(() => nix.app(nix.sel(pkgs_1, "opensshPackages", "openssh", "override"), nix.thunk(() => ({ [nix.POS]: pos$94, withPAM: false })))),
-              settings: nix.thunk(() => ({ [nix.POS]: pos$95, UsePAM: false })),
+              package: nix.thunk(() => nix.app(nix.sel(pkgs_1, "opensshPackages", "openssh", "override"), nix.thunk(() => ({ [nix.POS]: $pos[93], withPAM: false })))),
+              settings: nix.thunk(() => ({ [nix.POS]: $pos[94], UsePAM: false })),
             })),
           })),
           users: nix.thunk(() => ({
-            [nix.POS]: pos$102,
+            [nix.POS]: $pos[101],
             users: nix.thunk(() => ({
-              [nix.POS]: pos$101,
+              [nix.POS]: $pos[100],
               root: nix.thunk(() => ({
-                [nix.POS]: pos$100,
+                [nix.POS]: $pos[99],
                 openssh: nix.thunk(() => ({
-                  [nix.POS]: pos$99,
-                  authorizedKeys: nix.thunk(() => ({ [nix.POS]: pos$98, keys: nix.thunk(() => [snakeOilPublicKey]) })),
+                  [nix.POS]: $pos[98],
+                  authorizedKeys: nix.thunk(() => ({ [nix.POS]: $pos[97], keys: nix.thunk(() => [snakeOilPublicKey]) })),
                 })),
               })),
             })),
@@ -489,25 +356,25 @@ export default nix.lambda((args) => (() => {
         const $_1 = nix.formals(args_1, formals$12);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$113,
+          [nix.POS]: $pos[112],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$107,
+            [nix.POS]: $pos[106],
             openssh: nix.thunk(() => ({
-              [nix.POS]: pos$106,
+              [nix.POS]: $pos[105],
               enable: true,
-              package: nix.thunk(() => nix.app(nix.sel(pkgs_1, "opensshPackages", "openssh", "override"), nix.thunk(() => ({ [nix.POS]: pos$104, withPAM: false })))),
-              settings: nix.thunk(() => ({ [nix.POS]: pos$105, UsePAM: null })),
+              package: nix.thunk(() => nix.app(nix.sel(pkgs_1, "opensshPackages", "openssh", "override"), nix.thunk(() => ({ [nix.POS]: $pos[103], withPAM: false })))),
+              settings: nix.thunk(() => ({ [nix.POS]: $pos[104], UsePAM: null })),
             })),
           })),
           users: nix.thunk(() => ({
-            [nix.POS]: pos$112,
+            [nix.POS]: $pos[111],
             users: nix.thunk(() => ({
-              [nix.POS]: pos$111,
+              [nix.POS]: $pos[110],
               root: nix.thunk(() => ({
-                [nix.POS]: pos$110,
+                [nix.POS]: $pos[109],
                 openssh: nix.thunk(() => ({
-                  [nix.POS]: pos$109,
-                  authorizedKeys: nix.thunk(() => ({ [nix.POS]: pos$108, keys: nix.thunk(() => [snakeOilPublicKey]) })),
+                  [nix.POS]: $pos[108],
+                  authorizedKeys: nix.thunk(() => ({ [nix.POS]: $pos[107], keys: nix.thunk(() => [snakeOilPublicKey]) })),
                 })),
               })),
             })),
@@ -518,29 +385,29 @@ export default nix.lambda((args) => (() => {
         const $_1 = nix.formals(args_1, formals$13);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$122,
+          [nix.POS]: $pos[121],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$115,
+            [nix.POS]: $pos[114],
             openssh: nix.thunk(() => ({
-              [nix.POS]: pos$114,
+              [nix.POS]: $pos[113],
               enable: true,
               extraConfig: "Match Group sftponly\n  ChrootDirectory /srv/sftp\n  ForceCommand internal-sftp\n",
             })),
           })),
           users: nix.thunk(() => ({
-            [nix.POS]: pos$121,
-            groups: nix.thunk(() => ({ [nix.POS]: pos$116, sftponly: nix.thunk(() => ({})) })),
+            [nix.POS]: $pos[120],
+            groups: nix.thunk(() => ({ [nix.POS]: $pos[115], sftponly: nix.thunk(() => ({})) })),
             users: nix.thunk(() => ({
-              [nix.POS]: pos$120,
+              [nix.POS]: $pos[119],
               alice: nix.thunk(() => ({
-                [nix.POS]: pos$119,
+                [nix.POS]: $pos[118],
                 isNormalUser: true,
                 createHome: false,
                 group: "sftponly",
                 shell: "/run/current-system/sw/bin/nologin",
                 openssh: nix.thunk(() => ({
-                  [nix.POS]: pos$118,
-                  authorizedKeys: nix.thunk(() => ({ [nix.POS]: pos$117, keys: nix.thunk(() => [snakeOilPublicKey]) })),
+                  [nix.POS]: $pos[117],
+                  authorizedKeys: nix.thunk(() => ({ [nix.POS]: $pos[116], keys: nix.thunk(() => [snakeOilPublicKey]) })),
                 })),
               })),
             })),
@@ -551,20 +418,20 @@ export default nix.lambda((args) => (() => {
         const $_1 = nix.formals(args_1, formals$14);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$130,
+          [nix.POS]: $pos[129],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$124,
-            openssh: nix.thunk(() => ({ [nix.POS]: pos$123, generateHostKeys: true })),
+            [nix.POS]: $pos[123],
+            openssh: nix.thunk(() => ({ [nix.POS]: $pos[122], generateHostKeys: true })),
           })),
           users: nix.thunk(() => ({
-            [nix.POS]: pos$129,
+            [nix.POS]: $pos[128],
             users: nix.thunk(() => ({
-              [nix.POS]: pos$128,
+              [nix.POS]: $pos[127],
               root: nix.thunk(() => ({
-                [nix.POS]: pos$127,
+                [nix.POS]: $pos[126],
                 openssh: nix.thunk(() => ({
-                  [nix.POS]: pos$126,
-                  authorizedKeys: nix.thunk(() => ({ [nix.POS]: pos$125, keys: nix.thunk(() => [snakeOilPublicKey]) })),
+                  [nix.POS]: $pos[125],
+                  authorizedKeys: nix.thunk(() => ({ [nix.POS]: $pos[124], keys: nix.thunk(() => [snakeOilPublicKey]) })),
                 })),
               })),
             })),
@@ -574,8 +441,8 @@ export default nix.lambda((args) => (() => {
       client: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$15);
         return {
-          [nix.POS]: pos$132,
-          virtualisation: nix.thunk(() => ({ [nix.POS]: pos$131, vlans: nix.thunk(() => [1n, 2n]) })),
+          [nix.POS]: $pos[131],
+          virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[130], vlans: nix.thunk(() => [1n, 2n]) })),
         };
       })(), formals$15),
     })),

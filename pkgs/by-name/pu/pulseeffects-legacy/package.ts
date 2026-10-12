@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 54, 5], ["repo", 55, 5], ["rev", 56, 5], ["hash", 57, 5]], [["description", 110, 5], ["mainProgram", 111, 5], ["homepage", 112, 5], ["license", 113, 5], ["maintainers", 114, 5], ["platforms", 115, 5]], [["pname", 50, 3], ["version", 51, 3], ["src", 53, 3], ["nativeBuildInputs", 60, 3], ["buildInputs", 71, 3], ["postPatch", 97, 3], ["preFixup", 102, 3], ["meta", 109, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, meson: false, ninja: false, "pkg-config": false, itstool: false, python3: false, libxml2: false, "desktop-file-utils": false, wrapGAppsHook3: false, gst_all_1: false, pulseaudio: false, gtk3: false, glib: false, glibmm_2_4: false, gtkmm3: false, lilv: false, lv2: false, serd: false, sord: false, sratom: false, libbs2b: false, libsamplerate: false, libsndfile: false, libebur128: false, rnnoise: false, boost187: false, dbus: false, fftwFloat: false, calf: false, "zita-convolver": false, "zam-plugins": false, rubberband: false, "lsp-plugins": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 54, 5], ["repo", 55, 5], ["rev", 56, 5], ["hash", 57, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 110, 5], ["mainProgram", 111, 5], ["homepage", 112, 5], ["license", 113, 5], ["maintainers", 114, 5], ["platforms", 115, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 50, 3], ["version", 51, 3], ["src", 53, 3], ["nativeBuildInputs", 60, 3], ["buildInputs", 71, 3], ["postPatch", 97, 3], ["preFixup", 102, 3], ["meta", 109, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -47,11 +45,11 @@ export default nix.lambda((args) => (() => {
   const lv2Plugins = nix.thunk(() => [calf, lsp_plugins]);
   const ladspaPlugins = nix.thunk(() => [rubberband, zam_plugins]);
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "pulseeffects",
       version: "4.8.7-unstable-2024-09-17",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "wwmm",
           repo: "easyeffects",
           rev: "fbe0a724c1405cee624802f381476cf003dfcfa",
@@ -99,7 +97,7 @@ export default nix.lambda((args) => (() => {
 )
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Limiter, compressor, reverberation, equalizer and auto volume effects for Pulseaudio applications",
         mainProgram: "pulseeffects",
         homepage: "https://github.com/wwmm/easyeffects",

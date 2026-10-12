@@ -2,79 +2,52 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/gonic.nix", [[["maintainers", 4, 8]], [["d", 11, 24]], [["d", 12, 26]], [["d", 13, 28]], [["d", 14, 26]], [["/tmp/music", 11, 11], ["/tmp/podcast", 12, 11], ["/tmp/playlists", 13, 11], ["/tmp/secrets", 14, 11]], [["10-gonic", 10, 9]], [["settings", 9, 24]], [["tmpfiles", 9, 15]], [["name", 22, 11], ["runtimeInputs", 23, 11], ["text", 24, 11]], [["music-path", 33, 11], ["podcast-path", 34, 11], ["playlists-path", 35, 11]], [["enable", 18, 9], ["package", 21, 9], ["settings", 32, 9]], [["gonic", 17, 16]], [["systemd", 9, 7], ["services", 17, 7]], [["d", 45, 24]], [["d", 46, 26]], [["d", 47, 28]], [["d", 48, 24]], [["/tmp/music", 45, 11], ["/tmp/podcast", 46, 11], ["/tmp/playlists", 47, 11], ["/tmp/cache", 48, 11]], [["10-gonic", 44, 9]], [["settings", 43, 24]], [["tmpfiles", 43, 15]], [["music-path", 54, 11], ["podcast-path", 55, 11], ["playlists-path", 56, 11], ["cache-path", 57, 11]], [["enable", 52, 9], ["settings", 53, 9]], [["gonic", 51, 16]], [["systemd", 43, 7], ["services", 51, 7]], [["default_cache_dir", 6, 9], ["custom_cache_dir", 40, 9]], [["name", 3, 3], ["meta", 4, 3], ["nodes", 6, 3], ["testScript", 62, 3]]]);
 const formals$1 = { args: { lib: false, pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/gonic.nix", [["maintainers", 4, 8]]);
 const formals$2 = { args: { config: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/gonic.nix", [["d", 11, 24]]);
-const pos$3 = nix.positions(here + "/gonic.nix", [["d", 12, 26]]);
-const pos$4 = nix.positions(here + "/gonic.nix", [["d", 13, 28]]);
-const pos$5 = nix.positions(here + "/gonic.nix", [["d", 14, 26]]);
-const pos$6 = nix.positions(here + "/gonic.nix", [["/tmp/music", 11, 11], ["/tmp/podcast", 12, 11], ["/tmp/playlists", 13, 11], ["/tmp/secrets", 14, 11]]);
-const pos$7 = nix.positions(here + "/gonic.nix", [["10-gonic", 10, 9]]);
-const pos$8 = nix.positions(here + "/gonic.nix", [["settings", 9, 24]]);
-const pos$9 = nix.positions(here + "/gonic.nix", [["tmpfiles", 9, 15]]);
-const pos$10 = nix.positions(here + "/gonic.nix", [["name", 22, 11], ["runtimeInputs", 23, 11], ["text", 24, 11]]);
-const pos$11 = nix.positions(here + "/gonic.nix", [["music-path", 33, 11], ["podcast-path", 34, 11], ["playlists-path", 35, 11]]);
-const pos$12 = nix.positions(here + "/gonic.nix", [["enable", 18, 9], ["package", 21, 9], ["settings", 32, 9]]);
-const pos$13 = nix.positions(here + "/gonic.nix", [["gonic", 17, 16]]);
-const pos$14 = nix.positions(here + "/gonic.nix", [["systemd", 9, 7], ["services", 17, 7]]);
 const formals$3 = { args: {  }, ellipsis: true };
-const pos$15 = nix.positions(here + "/gonic.nix", [["d", 45, 24]]);
-const pos$16 = nix.positions(here + "/gonic.nix", [["d", 46, 26]]);
-const pos$17 = nix.positions(here + "/gonic.nix", [["d", 47, 28]]);
-const pos$18 = nix.positions(here + "/gonic.nix", [["d", 48, 24]]);
-const pos$19 = nix.positions(here + "/gonic.nix", [["/tmp/music", 45, 11], ["/tmp/podcast", 46, 11], ["/tmp/playlists", 47, 11], ["/tmp/cache", 48, 11]]);
-const pos$20 = nix.positions(here + "/gonic.nix", [["10-gonic", 44, 9]]);
-const pos$21 = nix.positions(here + "/gonic.nix", [["settings", 43, 24]]);
-const pos$22 = nix.positions(here + "/gonic.nix", [["tmpfiles", 43, 15]]);
-const pos$23 = nix.positions(here + "/gonic.nix", [["music-path", 54, 11], ["podcast-path", 55, 11], ["playlists-path", 56, 11], ["cache-path", 57, 11]]);
-const pos$24 = nix.positions(here + "/gonic.nix", [["enable", 52, 9], ["settings", 53, 9]]);
-const pos$25 = nix.positions(here + "/gonic.nix", [["gonic", 51, 16]]);
-const pos$26 = nix.positions(here + "/gonic.nix", [["systemd", 43, 7], ["services", 51, 7]]);
-const pos$27 = nix.positions(here + "/gonic.nix", [["default_cache_dir", 6, 9], ["custom_cache_dir", 40, 9]]);
-const pos$28 = nix.positions(here + "/gonic.nix", [["name", 3, 3], ["meta", 4, 3], ["nodes", 6, 3], ["testScript", 62, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   return {
-    [nix.POS]: pos$28,
+    [nix.POS]: $pos[27],
     name: "gonic",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => nix.sel(pkgs, "gonic", "meta", "maintainers")),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$27,
+      [nix.POS]: $pos[26],
       default_cache_dir: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config = nix.arg($_1, "config");
         return {
-          [nix.POS]: pos$14,
+          [nix.POS]: $pos[13],
           systemd: nix.thunk(() => ({
-            [nix.POS]: pos$9,
+            [nix.POS]: $pos[8],
             tmpfiles: nix.thunk(() => ({
-              [nix.POS]: pos$8,
+              [nix.POS]: $pos[7],
               settings: nix.thunk(() => ({
-                [nix.POS]: pos$7,
+                [nix.POS]: $pos[6],
                 "10-gonic": nix.thunk(() => ({
-                  [nix.POS]: pos$6,
-                  "/tmp/music": nix.thunk(() => ({ [nix.POS]: pos$2, d: nix.thunk(() => ({})) })),
-                  "/tmp/podcast": nix.thunk(() => ({ [nix.POS]: pos$3, d: nix.thunk(() => ({})) })),
-                  "/tmp/playlists": nix.thunk(() => ({ [nix.POS]: pos$4, d: nix.thunk(() => ({})) })),
-                  "/tmp/secrets": nix.thunk(() => ({ [nix.POS]: pos$5, d: nix.thunk(() => ({})) })),
+                  [nix.POS]: $pos[5],
+                  "/tmp/music": nix.thunk(() => ({ [nix.POS]: $pos[1], d: nix.thunk(() => ({})) })),
+                  "/tmp/podcast": nix.thunk(() => ({ [nix.POS]: $pos[2], d: nix.thunk(() => ({})) })),
+                  "/tmp/playlists": nix.thunk(() => ({ [nix.POS]: $pos[3], d: nix.thunk(() => ({})) })),
+                  "/tmp/secrets": nix.thunk(() => ({ [nix.POS]: $pos[4], d: nix.thunk(() => ({})) })),
                 })),
               })),
             })),
           })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$13,
+            [nix.POS]: $pos[12],
             gonic: nix.thunk(() => ({
-              [nix.POS]: pos$12,
+              [nix.POS]: $pos[11],
               enable: true,
               package: nix.thunk(() => nix.app(nix.sel(pkgs, "writeShellApplication"), nix.thunk(() => ({
-                  [nix.POS]: pos$10,
+                  [nix.POS]: $pos[9],
                   name: "gonic-test-wrapper",
                   runtimeInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "gonic"))]),
                   text: nix.thunk(() => nix.str`touch ${nix.sel(config, "services", "gonic", "settings", "cache-path")}/foo && echo "cache dir writeable" >&2
@@ -85,7 +58,7 @@ exec ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgs, "gonic")))}
 `),
                 })))),
               settings: nix.thunk(() => ({
-                [nix.POS]: pos$11,
+                [nix.POS]: $pos[10],
                 "music-path": nix.thunk(() => ["/tmp/music"]),
                 "podcast-path": "/tmp/podcast",
                 "playlists-path": "/tmp/playlists",
@@ -97,30 +70,30 @@ exec ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgs, "gonic")))}
       custom_cache_dir: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$3);
         return {
-          [nix.POS]: pos$26,
+          [nix.POS]: $pos[25],
           systemd: nix.thunk(() => ({
-            [nix.POS]: pos$22,
+            [nix.POS]: $pos[21],
             tmpfiles: nix.thunk(() => ({
-              [nix.POS]: pos$21,
+              [nix.POS]: $pos[20],
               settings: nix.thunk(() => ({
-                [nix.POS]: pos$20,
+                [nix.POS]: $pos[19],
                 "10-gonic": nix.thunk(() => ({
-                  [nix.POS]: pos$19,
-                  "/tmp/music": nix.thunk(() => ({ [nix.POS]: pos$15, d: nix.thunk(() => ({})) })),
-                  "/tmp/podcast": nix.thunk(() => ({ [nix.POS]: pos$16, d: nix.thunk(() => ({})) })),
-                  "/tmp/playlists": nix.thunk(() => ({ [nix.POS]: pos$17, d: nix.thunk(() => ({})) })),
-                  "/tmp/cache": nix.thunk(() => ({ [nix.POS]: pos$18, d: nix.thunk(() => ({})) })),
+                  [nix.POS]: $pos[18],
+                  "/tmp/music": nix.thunk(() => ({ [nix.POS]: $pos[14], d: nix.thunk(() => ({})) })),
+                  "/tmp/podcast": nix.thunk(() => ({ [nix.POS]: $pos[15], d: nix.thunk(() => ({})) })),
+                  "/tmp/playlists": nix.thunk(() => ({ [nix.POS]: $pos[16], d: nix.thunk(() => ({})) })),
+                  "/tmp/cache": nix.thunk(() => ({ [nix.POS]: $pos[17], d: nix.thunk(() => ({})) })),
                 })),
               })),
             })),
           })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$25,
+            [nix.POS]: $pos[24],
             gonic: nix.thunk(() => ({
-              [nix.POS]: pos$24,
+              [nix.POS]: $pos[23],
               enable: true,
               settings: nix.thunk(() => ({
-                [nix.POS]: pos$23,
+                [nix.POS]: $pos[22],
                 "music-path": nix.thunk(() => ["/tmp/music"]),
                 "podcast-path": "/tmp/podcast",
                 "playlists-path": "/tmp/playlists",

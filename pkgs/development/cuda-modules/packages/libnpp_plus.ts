@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/libnpp_plus.nix", [[["message", 22, 7], ["assertion", 25, 7]], [["description", 32, 5], ["longDescription", 33, 5], ["homepage", 37, 5], ["changelog", 38, 5]], [["redistName", 7, 3], ["pname", 8, 3], ["outputs", 10, 3], ["platformAssertions", 20, 3], ["meta", 31, 3]]]);
 const formals$1 = { args: { backendStdenv: false, buildRedist: false, lib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/libnpp_plus.nix", [["message", 22, 7], ["assertion", 25, 7]]);
-const pos$2 = nix.positions(here + "/libnpp_plus.nix", [["description", 32, 5], ["longDescription", 33, 5], ["homepage", 37, 5], ["changelog", 38, 5]]);
-const pos$3 = nix.positions(here + "/libnpp_plus.nix", [["redistName", 7, 3], ["pname", 8, 3], ["outputs", 10, 3], ["platformAssertions", 20, 3], ["meta", 31, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,19 +11,19 @@ export default nix.lambda((args) => (() => {
   const buildRedist = nix.arg($, "buildRedist");
   const lib = nix.arg($, "lib");
   return nix.app(buildRedist, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       redistName: "nppplus",
       pname: "libnpp_plus",
       outputs: nix.thunk(() => ["out", "dev", "include", "lib", "static", "stubs"]),
       platformAssertions: nix.thunk(() => [
         nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           message: nix.thunk(() => nix.add(nix.str`NPP+ releases since 0.10.0 (found ${nix.sel(finalAttrs, "version")})`, nix.str` support CUDA compute capabilities 7.5 and newer (found ${nix.builtins.toJSON(nix.thunk(() => nix.sel(backendStdenv, "cudaCapabilities")))})`)),
           assertion: nix.thunk(() => (!nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(finalAttrs, "version")), "0.10")) || nix.asBool(nix.app(nix.sel(lib, "all"), nix.thunk(() => nix.app(nix.sel(lib, "flip"), nix.thunk(() => nix.sel(lib, "versionAtLeast")), "7.5")), nix.thunk(() => nix.sel(backendStdenv, "cudaCapabilities")))))),
         })),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "C++ support for interfacing with the NVIDIA Performance Primitives (NPP) library",
         longDescription: "NPP is a library of over 5,000 primitives for image and signal processing that lets you easily perform tasks\nsuch as color conversion, image compression, filtering, thresholding, and image manipulation.\n",
         homepage: "https://developer.nvidia.com/npp",

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 26, 5], ["sha256", 27, 5]], [["pname", 32, 7], ["version", 33, 7], ["debianRevision", 34, 7], ["patch", 35, 7], ["hash", 36, 7]], [["description", 61, 5], ["homepage", 62, 5], ["license", 63, 5], ["platforms", 64, 5], ["maintainers", 65, 5]], [["version", 22, 3], ["pname", 23, 3], ["src", 25, 3], ["patches", 30, 3], ["configureFlags", 41, 3], ["nativeBuildInputs", 43, 3], ["buildInputs", 45, 3], ["meta", 60, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, fetchDebianPatch: false, "alsa-lib": false, expat: false, glib: false, libjack2: false, libxext: false, libx11: false, libpng: false, "libpthread-stubs": false, libsmf: false, libsndfile: false, lv2: false, "pkg-config": false, "zita-resampler": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 26, 5], ["sha256", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 32, 7], ["version", 33, 7], ["debianRevision", 34, 7], ["patch", 35, 7], ["hash", 36, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 61, 5], ["homepage", 62, 5], ["license", 63, 5], ["platforms", 64, 5], ["maintainers", 65, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["version", 22, 3], ["pname", 23, 3], ["src", 25, 3], ["patches", 30, 3], ["configureFlags", 41, 3], ["nativeBuildInputs", 43, 3], ["buildInputs", 45, 3], ["meta", 60, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,13 +28,13 @@ export default nix.lambda((args) => (() => {
       const version = "0.9.20";
       const pname = "drumgizmo";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://www.drumgizmo.org/releases/${pname}-${version}/${pname}-${version}.tar.gz`),
           sha256: "sha256-AF8gQLiB29j963uI84TyNHIC0qwEWOCqmZIUWGq8V2o=",
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchDebianPatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             pname: "drumgizmo",
             version: "0.9.20",
             debianRevision: "3",
@@ -63,7 +60,7 @@ export default nix.lambda((args) => (() => {
         zita_resampler,
       ]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "LV2 sample based drum plugin",
         homepage: "https://www.drumgizmo.org",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3Plus")),
@@ -71,7 +68,7 @@ export default nix.lambda((args) => (() => {
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "nico202"))]),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         version,
         pname,
         src,

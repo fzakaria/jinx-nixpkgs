@@ -2,51 +2,41 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/terminal-server.nix", [[["enable", 14, 22], ["videoDrivers", 15, 22]], [["enable", 18, 33]], [["gdm", 18, 29]], [["xserver", 14, 14], ["displayManager", 18, 14]], [["Accept", 24, 20], ["ListenStream", 25, 20]], [["description", 21, 7], ["wantedBy", 22, 7], ["before", 23, 7], ["socketConfig", 24, 7]], [["terminal-server", 20, 21]], [["FD_GEOM", 44, 19], ["FD_XDMCP_IF", 45, 19]], [["StandardInput", 49, 9], ["StandardOutput", 50, 9], ["StandardError", 51, 9], ["ExecStart", 52, 9], ["KillMode", 56, 9]], [["description", 29, 7], ["path", 31, 7], ["environment", 44, 7], ["serviceConfig", 48, 7]], [["terminal-server@", 28, 22]], [["sockets", 20, 13], ["services", 28, 13]], [["services", 14, 5], ["systemd", 20, 5]], [["config", 12, 3]]]);
 const formals$1 = { args: { lib: false, pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/terminal-server.nix", [["enable", 14, 22], ["videoDrivers", 15, 22]]);
-const pos$2 = nix.positions(here + "/terminal-server.nix", [["enable", 18, 33]]);
-const pos$3 = nix.positions(here + "/terminal-server.nix", [["gdm", 18, 29]]);
-const pos$4 = nix.positions(here + "/terminal-server.nix", [["xserver", 14, 14], ["displayManager", 18, 14]]);
-const pos$5 = nix.positions(here + "/terminal-server.nix", [["Accept", 24, 20], ["ListenStream", 25, 20]]);
-const pos$6 = nix.positions(here + "/terminal-server.nix", [["description", 21, 7], ["wantedBy", 22, 7], ["before", 23, 7], ["socketConfig", 24, 7]]);
-const pos$7 = nix.positions(here + "/terminal-server.nix", [["terminal-server", 20, 21]]);
-const pos$8 = nix.positions(here + "/terminal-server.nix", [["FD_GEOM", 44, 19], ["FD_XDMCP_IF", 45, 19]]);
-const pos$9 = nix.positions(here + "/terminal-server.nix", [["StandardInput", 49, 9], ["StandardOutput", 50, 9], ["StandardError", 51, 9], ["ExecStart", 52, 9], ["KillMode", 56, 9]]);
-const pos$10 = nix.positions(here + "/terminal-server.nix", [["description", 29, 7], ["path", 31, 7], ["environment", 44, 7], ["serviceConfig", 48, 7]]);
-const pos$11 = nix.positions(here + "/terminal-server.nix", [["terminal-server@", 28, 22]]);
-const pos$12 = nix.positions(here + "/terminal-server.nix", [["sockets", 20, 13], ["services", 28, 13]]);
-const pos$13 = nix.positions(here + "/terminal-server.nix", [["services", 14, 5], ["systemd", 20, 5]]);
-const pos$14 = nix.positions(here + "/terminal-server.nix", [["config", 12, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   return {
-    [nix.POS]: pos$14,
+    [nix.POS]: $pos[13],
     config: nix.thunk(() => ({
-      [nix.POS]: pos$13,
+      [nix.POS]: $pos[12],
       services: nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        xserver: nix.thunk(() => ({ [nix.POS]: pos$1, enable: true, videoDrivers: [] })),
-        displayManager: nix.thunk(() => ({ [nix.POS]: pos$3, gdm: nix.thunk(() => ({ [nix.POS]: pos$2, enable: true })) })),
+        [nix.POS]: $pos[3],
+        xserver: nix.thunk(() => ({ [nix.POS]: $pos[0], enable: true, videoDrivers: [] })),
+        displayManager: nix.thunk(() => ({
+          [nix.POS]: $pos[2],
+          gdm: nix.thunk(() => ({ [nix.POS]: $pos[1], enable: true })),
+        })),
       })),
       systemd: nix.thunk(() => ({
-        [nix.POS]: pos$12,
+        [nix.POS]: $pos[11],
         sockets: nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           "terminal-server": nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             description: "Terminal Server Socket",
             wantedBy: nix.thunk(() => ["sockets.target"]),
             before: nix.thunk(() => ["multi-user.target"]),
-            socketConfig: nix.thunk(() => ({ [nix.POS]: pos$5, Accept: true, ListenStream: 5900n })),
+            socketConfig: nix.thunk(() => ({ [nix.POS]: $pos[4], Accept: true, ListenStream: 5900n })),
           })),
         })),
         services: nix.thunk(() => ({
-          [nix.POS]: pos$11,
+          [nix.POS]: $pos[10],
           "terminal-server@": nix.thunk(() => ({
-            [nix.POS]: pos$10,
+            [nix.POS]: $pos[9],
             description: "Terminal Server",
             path: nix.thunk(() => [
               nix.thunk(() => nix.sel(pkgs, "xorg-server", "out")),
@@ -60,9 +50,9 @@ export default nix.lambda((args) => (() => {
               nix.thunk(() => nix.sel(pkgs, "util-linux")),
               nix.thunk(() => nix.sel(pkgs, "bash")),
             ]),
-            environment: nix.thunk(() => ({ [nix.POS]: pos$8, FD_GEOM: "1024x786x24", FD_XDMCP_IF: "127.0.0.1" })),
+            environment: nix.thunk(() => ({ [nix.POS]: $pos[7], FD_GEOM: "1024x786x24", FD_XDMCP_IF: "127.0.0.1" })),
             serviceConfig: nix.thunk(() => ({
-              [nix.POS]: pos$9,
+              [nix.POS]: $pos[8],
               StandardInput: "socket",
               StandardOutput: "socket",
               StandardError: "journal",

@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 48, 5], ["owner", 49, 5], ["repo", 50, 5], ["rev", 51, 5], ["hash", 52, 5]], [["DESTDIR", 223, 5]], [["installedTests", 228, 7]], [["tests", 227, 5]], [["homepage", 233, 5], ["changelog", 234, 5], ["description", 235, 5], ["mainProgram", 236, 5], ["teams", 237, 5], ["platforms", 238, 5], ["license", 239, 5]], [["pname", 37, 3], ["version", 38, 3], ["outputs", 40, 3], ["src", 47, 3], ["patches", 55, 3], ["strictDeps", 65, 3], ["depsBuildBuild", 67, 3], ["nativeBuildInputs", 71, 3], ["buildInputs", 92, 3], ["nativeCheckInputs", 113, 3], ["propagatedBuildInputs", 125, 3], ["mesonFlags", 130, 3], ["doCheck", 142, 3], ["doInstallCheck", 143, 3], ["postPatch", 145, 3], ["preCheck", 153, 3], ["checkPhase", 161, 3], ["postCheck", 171, 3], ["postInstall", 183, 3], ["postFixup", 201, 3], ["env", 216, 3], ["passthru", 226, 3], ["meta", 232, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, makeWrapper: false, "pkg-config": false, libxslt: false, meson: false, ninja: false, python3: false, dbus: false, umockdev: false, libeatmydata: false, "gtk-doc": false, "docbook-xsl-nons": false, udev: false, libgudev: false, libusb1: false, glib: false, gettext: false, polkit: false, nixosTests: false, useIMobileDevice: true, libimobiledevice: false, withDocs: true, mesonEmulatorHook: false, withIntrospection: true, buildPackages: false, "gobject-introspection": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 48, 5], ["owner", 49, 5], ["repo", 50, 5], ["rev", 51, 5], ["hash", 52, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["DESTDIR", 223, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["installedTests", 228, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 227, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["homepage", 233, 5], ["changelog", 234, 5], ["description", 235, 5], ["mainProgram", 236, 5], ["teams", 237, 5], ["platforms", 238, 5], ["license", 239, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 37, 3], ["version", 38, 3], ["outputs", 40, 3], ["src", 47, 3], ["patches", 55, 3], ["strictDeps", 65, 3], ["depsBuildBuild", 67, 3], ["nativeBuildInputs", 71, 3], ["buildInputs", 92, 3], ["nativeCheckInputs", 113, 3], ["propagatedBuildInputs", 125, 3], ["mesonFlags", 130, 3], ["doCheck", 142, 3], ["doInstallCheck", 143, 3], ["postPatch", 145, 3], ["preCheck", 153, 3], ["checkPhase", 161, 3], ["postCheck", 171, 3], ["postInstall", 183, 3], ["postFixup", 201, 3], ["env", 216, 3], ["passthru", 226, 3], ["meta", 232, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -42,12 +37,12 @@ export default nix.lambda((args) => (() => {
   const gobject_introspection = nix.arg($, "gobject-introspection");
   nix.assert_((!nix.asBool(withDocs) || nix.asBool(withIntrospection)), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/up/upower/package.nix:34:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "upower",
       version: "1.91.4",
       outputs: nix.thunk(() => nix.concat(["out", "dev"], nix.concat(nix.app(nix.sel(lib, "optionals"), withDocs, nix.thunk(() => ["devdoc"])), nix.app(nix.sel(lib, "optionals"), withIntrospection, nix.thunk(() => ["installedTests"]))))),
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "gitlab.freedesktop.org",
           owner: "upower",
           repo: "upower",
@@ -123,16 +118,16 @@ rmdir --parents --ignore-fail-on-non-empty "$DESTDIR${nix.builtins.storeDir}"
   --prefix GI_TYPELIB_PATH : "${nix.app(nix.sel(lib, "makeSearchPath"), "lib/girepository-1.0", nix.thunk(() => ["$out", nix.thunk(() => nix.sel(umockdev, "out"))]))}" \\
   --prefix PATH : "${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [umockdev]))}"
 `))),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, DESTDIR: "dest" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], DESTDIR: "dest" })),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           installedTests: nix.thunk(() => nix.sel(nixosTests, "installed-tests", "upower")),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "https://upower.freedesktop.org/",
         changelog: nix.thunk(() => nix.str`https://gitlab.freedesktop.org/upower/upower/-/blob/v${nix.sel(finalAttrs, "version")}/NEWS`),
         description: "D-Bus service for power management",

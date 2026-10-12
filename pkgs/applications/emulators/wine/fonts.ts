@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/fonts.nix", [[["description", 22, 5], ["homepage", 23, 5], ["license", 24, 5], ["platforms", 25, 5], ["maintainers", 26, 5]], [["pname", 11, 3], ["version", 12, 17], ["sourceRoot", 14, 3], ["src", 15, 11], ["nativeBuildInputs", 17, 3], ["meta", 21, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, callPackage: false, installFonts: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/fonts.nix", [["description", 22, 5], ["homepage", 23, 5], ["license", 24, 5], ["platforms", 25, 5], ["maintainers", 26, 5]]);
-const pos$2 = nix.positions(here + "/fonts.nix", [["pname", 11, 3], ["version", 12, 17], ["sourceRoot", 14, 3], ["src", 15, 11], ["nativeBuildInputs", 17, 3], ["meta", 21, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,14 +13,14 @@ export default nix.lambda((args) => (() => {
   const installFonts = nix.arg($, "installFonts");
   const src = nix.thunk(() => nix.sel(nix.app(callPackage, nix.path(here, "./sources.nix"), nix.thunk(() => ({}))), "stable"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "wine-fonts",
       version: nix.thunk(() => nix.attr(src, "version")),
       sourceRoot: nix.thunk(() => nix.str`wine-${nix.sel(src, "version")}/fonts`),
       src: src,
       nativeBuildInputs: nix.thunk(() => [installFonts]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Microsoft replacement fonts by the Wine project",
         homepage: "https://wiki.winehq.org/Create_Fonts",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),

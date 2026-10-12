@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 22, 7], ["hash", 25, 7]], [["updateScript", 28, 12]], [["name", 45, 7], ["desktopName", 46, 7], ["exec", 47, 7], ["icon", 48, 7]], [["name", 51, 7], ["desktopName", 52, 7], ["exec", 53, 7], ["icon", 54, 7]], [["name", 57, 7], ["desktopName", 58, 7], ["exec", 59, 7], ["icon", 60, 7]], [["description", 84, 5], ["homepage", 85, 5], ["license", 86, 5], ["maintainers", 87, 5], ["platforms", 91, 5], ["sourceProvenance", 92, 5], ["mainProgram", 96, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["passthru", 28, 3], ["nativeBuildInputs", 39, 3], ["desktopItems", 43, 3], ["installPhase", 64, 3], ["meta", 83, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, copyDesktopItems: false, makeDesktopItem: false, openjdk: false, writeScript: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 22, 7], ["hash", 25, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 28, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 45, 7], ["desktopName", 46, 7], ["exec", 47, 7], ["icon", 48, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["name", 51, 7], ["desktopName", 52, 7], ["exec", 53, 7], ["icon", 54, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["name", 57, 7], ["desktopName", 58, 7], ["exec", 59, 7], ["icon", 60, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 84, 5], ["homepage", 85, 5], ["license", 86, 5], ["maintainers", 87, 5], ["platforms", 91, 5], ["sourceProvenance", 92, 5], ["mainProgram", 96, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["passthru", 28, 3], ["nativeBuildInputs", 39, 3], ["desktopItems", 43, 3], ["installPhase", 64, 3], ["meta", 83, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const openjdk = nix.arg($, "openjdk");
   const writeScript = nix.arg($, "writeScript");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "visual-paradigm-ce",
       version: "18.1.20260914",
       src: nix.thunk(() => (() => {
@@ -29,33 +23,33 @@ export default nix.lambda((args) => (() => {
         const majorMinor = nix.thunk(() => nix.builtins.concatStringsSep(".", nix.thunk(() => nix.app(nix.sel(lib, "dropEnd"), 1n, splitted))));
         const suffix = nix.thunk(() => nix.app(nix.sel(lib, "last"), splitted));
         return nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             url: nix.thunk(() => nix.str`https://eu10-dl.visual-paradigm.com/visual-paradigm/vpce${majorMinor}/${suffix}/Visual_Paradigm_CE_${nix.builtins.replaceStrings(nix.thunk(() => ["."]), nix.thunk(() => ["_"]), majorMinor)}_${suffix}_Linux64_InstallFree.tar.gz`),
             hash: "sha256-Kgfx+bl4i2OTdqIuNfNdELGo8Wt2BZe+YYQS3aJg7V8=",
           })));
       })()),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(writeScript, "update-visual-paradigm-ce", "#!/usr/bin/env nix-shell\n#!nix-shell -i bash -p curl gnused common-updater-scripts\n\nset -eu -o pipefail\n\nversion=\"$(curl -Ls -o /dev/null -w %{url_effective} https://www.visual-paradigm.com/downloads/vpce/checksum.html | sed -E 's#.*/vpce([0-9]+\\.[0-9]+)/([0-9]+)/.*#\\1.\\2#')\"\n\nupdate-source-version visual-paradigm-ce \"$version\"\n")),
       })),
       nativeBuildInputs: nix.thunk(() => [copyDesktopItems]),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "visualparadigm",
             desktopName: "Visual Paradigm",
             exec: "Visual_Paradigm %f",
             icon: "vpuml",
           })))),
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             name: "visualparadigmproductselector",
             desktopName: "Visual Paradigm Product Selector",
             exec: "Visual_Paradigm_Product_Selector",
             icon: "ProductSelector",
           })))),
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             name: "visualparadigmshapeeditor",
             desktopName: "Visual Paradigm Shape Editor",
             exec: "Visual_Paradigm_Shape_Editor",
@@ -80,7 +74,7 @@ done
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "All-in-one UML CASE tool for software development",
         homepage: "https://www.visual-paradigm.com/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

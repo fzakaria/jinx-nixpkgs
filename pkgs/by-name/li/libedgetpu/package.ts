@@ -2,17 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["NIX_CXXSTDLIB_COMPILE", 18, 7]], [["owner", 22, 7], ["repo", 23, 7], ["rev", 24, 7], ["hash", 25, 7]], [["version", 15, 5], ["cmakeFlags", 16, 5], ["env", 17, 5], ["configureFlags", 20, 5], ["src", 21, 5]], [["owner", 34, 5], ["repo", 35, 5], ["rev", 36, 5], ["hash", 37, 5]], [["name", 42, 7], ["url", 43, 7], ["hash", 44, 7]], [["cxxStandard", 63, 28]], [["owner", 76, 7], ["repo", 77, 7], ["rev", 78, 7], ["hash", 79, 7]], [["NIX_CXXSTDLIB_COMPILE", 73, 5], ["TFROOT", 75, 5]], [["homepage", 95, 5], ["description", 96, 5], ["license", 97, 5], ["maintainers", 98, 5], ["platforms", 99, 5]], [["pname", 30, 3], ["version", 31, 3], ["src", 33, 3], ["patches", 40, 3], ["postPatch", 50, 3], ["makeFlags", 56, 3], ["buildInputs", 62, 3], ["doInstallCheck", 68, 3], ["nativeBuildInputs", 70, 3], ["env", 72, 3], ["enableParallelBuilding", 83, 3], ["installPhase", 85, 3], ["meta", 94, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, libusb1: false, "abseil-cpp": false, flatbuffers: false, fetchpatch: false, xxd: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["NIX_CXXSTDLIB_COMPILE", 18, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 22, 7], ["repo", 23, 7], ["rev", 24, 7], ["hash", 25, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 15, 5], ["cmakeFlags", 16, 5], ["env", 17, 5], ["configureFlags", 20, 5], ["src", 21, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["owner", 34, 5], ["repo", 35, 5], ["rev", 36, 5], ["hash", 37, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["name", 42, 7], ["url", 43, 7], ["hash", 44, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["cxxStandard", 63, 28]]);
-const pos$7 = nix.positions(here + "/package.nix", [["owner", 76, 7], ["repo", 77, 7], ["rev", 78, 7], ["hash", 79, 7]]);
-const pos$8 = nix.positions(here + "/package.nix", [["NIX_CXXSTDLIB_COMPILE", 73, 5], ["TFROOT", 75, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["homepage", 95, 5], ["description", 96, 5], ["license", 97, 5], ["maintainers", 98, 5], ["platforms", 99, 5]]);
-const pos$10 = nix.positions(here + "/package.nix", [["pname", 30, 3], ["version", 31, 3], ["src", 33, 3], ["patches", 40, 3], ["postPatch", 50, 3], ["makeFlags", 56, 3], ["buildInputs", 62, 3], ["doInstallCheck", 68, 3], ["nativeBuildInputs", 70, 3], ["env", 72, 3], ["enableParallelBuilding", 83, 3], ["installPhase", 85, 3], ["meta", 94, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,23 +18,23 @@ export default nix.lambda((args) => (() => {
   const flatbuffers_23_5_26 = nix.thunk(() => nix.app(nix.sel(flatbuffers, "overrideAttrs"), (oldAttrs) => (() => {
       const version = "23.5.26";
       const cmakeFlags = nix.thunk(() => nix.concat(nix.selOr(oldAttrs, () => [], "cmakeFlags"), ["-DFLATBUFFERS_BUILD_SHAREDLIB=ON"]));
-      const env = nix.thunk(() => nix.update(nix.selOr(oldAttrs, () => ({}), "env"), { [nix.POS]: pos$1, NIX_CXXSTDLIB_COMPILE: "-std=c++17" }));
+      const env = nix.thunk(() => nix.update(nix.selOr(oldAttrs, () => ({}), "env"), { [nix.POS]: $pos[0], NIX_CXXSTDLIB_COMPILE: "-std=c++17" }));
       const configureFlags = nix.thunk(() => nix.concat(nix.selOr(oldAttrs, () => [], "configureFlags"), ["--enable-shared"]));
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "google",
           repo: "flatbuffers",
           rev: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-e+dNPNbCHYDXUS/W+hMqf/37fhVgEGzId6rhP3cToTE=",
         }))));
-      return { [nix.POS]: pos$3, version, cmakeFlags, env, configureFlags, src };
+      return { [nix.POS]: $pos[2], version, cmakeFlags, env, configureFlags, src };
     })()));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       pname: "libedgetpu",
       version: "0-unstable-2024-03-14",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           owner: "google-coral",
           repo: "libedgetpu",
           rev: "e35aed18fea2e2d25d98352e5a5bd357c170bd4d",
@@ -51,7 +42,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             name: "fix-makefile-to-compile-with-latest-tensorflow.patch",
             url: "https://patch-diff.githubusercontent.com/raw/google-coral/libedgetpu/pull/66.patch",
             hash: "sha256-mMODpQmikfXtsQvtgh26cy97EiykYNLngSjidOBt/3I=",
@@ -62,17 +53,17 @@ export default nix.lambda((args) => (() => {
       postPatch: "# Use dedicated group for coral devices\nsubstituteInPlace debian/edgetpu-accelerator.rules \\\n  --replace-fail \"plugdev\" \"coral\"\n",
       makeFlags: nix.thunk(() => ["-f", "makefile_build/Makefile", "libedgetpu"]),
       buildInputs: nix.thunk(() => [
-        nix.thunk(() => nix.app(nix.sel(abseil_cpp, "override"), nix.thunk(() => ({ [nix.POS]: pos$6, cxxStandard: "17" })))),
+        nix.thunk(() => nix.app(nix.sel(abseil_cpp, "override"), nix.thunk(() => ({ [nix.POS]: $pos[5], cxxStandard: "17" })))),
         libusb1,
         flatbuffers_23_5_26,
       ]),
       doInstallCheck: true,
       nativeBuildInputs: nix.thunk(() => [xxd]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         NIX_CXXSTDLIB_COMPILE: "-std=c++17",
         TFROOT: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             owner: "tensorflow",
             repo: "tensorflow",
             rev: "v2.16.1",
@@ -82,7 +73,7 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: true,
       installPhase: "runHook preInstall\ninstall -Dm555 out/direct/k8/libedgetpu.so.1.0 -t $out/lib\nln -s $out/lib/libedgetpu.so.1.0 $out/lib/libedgetpu.so.1\ninstall -Dm444 debian/edgetpu-accelerator.rules $out/lib/udev/rules.d/99-edgetpu-accelerator.rules\ninstall -Dm444 tflite/public/*.h -t $out/include\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         homepage: "https://github.com/google-coral/libedgetpu",
         description: "Userspace level runtime driver for Coral devices",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

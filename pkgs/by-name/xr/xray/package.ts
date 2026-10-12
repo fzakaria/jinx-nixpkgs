@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]], [["name", 44, 5], ["paths", 45, 5]], [["updateScript", 55, 5]], [["description", 59, 5], ["mainProgram", 60, 5], ["homepage", 61, 5], ["license", 62, 5], ["maintainers", 63, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["vendorHash", 25, 3], ["nativeBuildInputs", 27, 3], ["doCheck", 29, 3], ["ldflags", 31, 3], ["subPackages", 35, 3], ["installPhase", 37, 3], ["assetsDrv", 43, 3], ["postFixup", 48, 3], ["passthru", 54, 3], ["meta", 58, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, symlinkJoin: false, buildGo127Module: false, makeWrapper: false, "nix-update-script": false, "v2ray-rules-dat": false, assets: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 44, 5], ["paths", 45, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 55, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 59, 5], ["mainProgram", 60, 5], ["homepage", 61, 5], ["license", 62, 5], ["maintainers", 63, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["vendorHash", 25, 3], ["nativeBuildInputs", 27, 3], ["doCheck", 29, 3], ["ldflags", 31, 3], ["subPackages", 35, 3], ["installPhase", 37, 3], ["assetsDrv", 43, 3], ["postFixup", 48, 3], ["passthru", 54, 3], ["meta", 58, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const v2ray_rules_dat = nix.arg($, "v2ray-rules-dat");
   const assets = nix.argOr($, "assets", () => [v2ray_rules_dat]);
   return nix.app(buildGo127Module, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "xray",
       version: "26.9.9",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "XTLS",
           repo: "Xray-core",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,14 +32,14 @@ export default nix.lambda((args) => (() => {
       ldflags: nix.thunk(() => ["-s", "-w"]),
       subPackages: nix.thunk(() => ["main"]),
       installPhase: "runHook preInstall\ninstall -Dm555 \"$GOPATH\"/bin/main $out/bin/xray\nrunHook postInstall\n",
-      assetsDrv: nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({ [nix.POS]: pos$2, name: "v2ray-assets", paths: assets })))),
+      assetsDrv: nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({ [nix.POS]: $pos[1], name: "v2ray-assets", paths: assets })))),
       postFixup: "wrapProgram $out/bin/xray \\\n  --set-default V2RAY_LOCATION_ASSET $assetsDrv/share/v2ray \\\n  --set-default XRAY_LOCATION_ASSET $assetsDrv/share/v2ray\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Platform for building proxies to bypass network restrictions. A replacement for v2ray-core, with XTLS support and fully compatible configuration",
         mainProgram: "xray",
         homepage: "https://github.com/XTLS/Xray-core",

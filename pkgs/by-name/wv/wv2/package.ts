@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 17, 5], ["sha256", 18, 5]], [["NIX_CFLAGS_COMPILE", 46, 7]], [["description", 54, 5], ["mainProgram", 55, 5], ["license", 56, 5], ["homepage", 57, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 16, 3], ["patches", 21, 3], ["cmakeFlags", 28, 3], ["preConfigure", 31, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 39, 3], ["env", 46, 3], ["postPatch", 48, 3], ["meta", 53, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, "pkg-config": false, cmake: false, libgsf: false, glib: false, libxml2: false, libiconvReal: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 17, 5], ["sha256", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 46, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 54, 5], ["mainProgram", 55, 5], ["license", 56, 5], ["homepage", 57, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 16, 3], ["patches", 21, 3], ["cmakeFlags", 28, 3], ["preConfigure", 31, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 39, 3], ["env", 46, 3], ["postPatch", 48, 3], ["meta", 53, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const libxml2 = nix.arg($, "libxml2");
   const libiconvReal = nix.arg($, "libiconvReal");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "wv2",
       version: "0.4.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/wvware/wv2-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           sha256: "1p1qxr8z5bsiq8pvlina3c8c1vjcb5d96bs3zz4jj3nb20wnsawz",
         })))),
@@ -39,12 +36,12 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [cmake, pkg_config]),
       buildInputs: nix.thunk(() => nix.concat([libgsf, glib, libxml2], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), libiconvReal))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.str`-I${nix.sel(libxml2, "dev")}/include/libxml2`),
       })),
       postPatch: "substituteInPlace CMakeLists.txt \\\n  --replace-fail \"cmake_minimum_required(VERSION 2.6)\" \"cmake_minimum_required(VERSION 3.10)\"\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Excellent MS Word filter lib, used in most Office suites",
         mainProgram: "wv2-config",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl2")),

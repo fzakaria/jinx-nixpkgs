@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["TargetFramework", 25, 9]], [["name", 22, 5], ["src", 23, 5], ["nugetDeps", 24, 13], ["env", 25, 5], ["packNupkg", 27, 5]], [["TargetFramework", 34, 9]], [["name", 31, 5], ["src", 32, 5], ["nugetDeps", 33, 13], ["env", 34, 5], ["projectReferences", 36, 5]]]);
 const formals$1 = { args: { lib: false, "dotnet-sdk": false, buildPackages: false, runCommand: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["TargetFramework", 25, 9]]);
-const pos$2 = nix.positions(here + "/default.nix", [["name", 22, 5], ["src", 23, 5], ["nugetDeps", 24, 13], ["env", 25, 5], ["packNupkg", 27, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["TargetFramework", 34, 9]]);
-const pos$4 = nix.positions(here + "/default.nix", [["name", 31, 5], ["src", 32, 5], ["nugetDeps", 33, 13], ["env", 34, 5], ["projectReferences", 36, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,19 +15,19 @@ export default nix.lambda((args) => (() => {
   const nugetDeps = nix.path(here, "./nuget-deps.json");
   const TargetFramework = nix.thunk(() => nix.str`net${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.app(nix.sel(lib, "getVersion"), dotnet_sdk)))}`);
   const library = nix.thunk(() => nix.app(buildDotnetModule, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       name: "project-references-test-library",
       src: nix.path(here, "./library"),
       nugetDeps: nugetDeps,
-      env: nix.thunk(() => ({ [nix.POS]: pos$1, TargetFramework: TargetFramework })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[0], TargetFramework: TargetFramework })),
       packNupkg: true,
     }))));
   const application = nix.thunk(() => nix.app(buildDotnetModule, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       name: "project-references-test-application",
       src: nix.path(here, "./application"),
       nugetDeps: nugetDeps,
-      env: nix.thunk(() => ({ [nix.POS]: pos$3, TargetFramework: TargetFramework })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[2], TargetFramework: TargetFramework })),
       projectReferences: nix.thunk(() => [library]),
     }))));
   return nix.app(runCommand, "project-references-test", nix.thunk(() => ({})), nix.thunk(() => nix.str`${application}/bin/Application

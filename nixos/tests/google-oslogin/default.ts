@@ -2,11 +2,9 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["maintainers", 23, 5]], [["server", 28, 5], ["client", 30, 5]], [["name", 21, 3], ["meta", 22, 3], ["nodes", 26, 3], ["testScript", 32, 3]]]);
 const formals$1 = { args: { lib: false, pkgs: false, hostPkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/default.nix", [["maintainers", 23, 5]]);
 const formals$2 = { args: {  }, ellipsis: true };
-const pos$2 = nix.positions(here + "/default.nix", [["server", 28, 5], ["client", 30, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["name", 21, 3], ["meta", 22, 3], ["nodes", 26, 3], ["testScript", 32, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const snakeOilPublicKey = nix.thunk(() => nix.attr(from, "snakeOilPublicKey"));
   const ssh_config = nix.thunk(() => nix.builtins.toFile("ssh.conf", "UserKnownHostsFile=/dev/null\nStrictHostKeyChecking=no\nIdentityFile=~/.ssh/id_snakeoil\n"));
   return {
-    [nix.POS]: pos$3,
+    [nix.POS]: $pos[2],
     name: "google-oslogin",
-    meta: nix.thunk(() => ({ [nix.POS]: pos$1, maintainers: [] })),
+    meta: nix.thunk(() => ({ [nix.POS]: $pos[0], maintainers: [] })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       server: nix.path(here, "./server.nix"),
       client: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);

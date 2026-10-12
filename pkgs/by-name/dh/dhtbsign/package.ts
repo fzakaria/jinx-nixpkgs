@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 11, 5], ["repo", 12, 5], ["rev", 13, 5], ["hash", 14, 5]], [["NIX_CFLAGS_COMPILE", 19, 7]], [["homepage", 40, 5], ["description", 41, 5], ["license", 42, 5], ["maintainers", 43, 5], ["teams", 44, 5], ["mainProgram", 45, 5]], [["pname", 7, 3], ["version", 8, 3], ["src", 10, 3], ["strictDeps", 17, 3], ["env", 19, 3], ["makeFlags", 26, 3], ["installPhase", 33, 3], ["meta", 39, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 11, 5], ["repo", 12, 5], ["rev", 13, 5], ["hash", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 19, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 40, 5], ["description", 41, 5], ["license", 42, 5], ["maintainers", 43, 5], ["teams", 44, 5], ["mainProgram", 45, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 7, 3], ["version", 8, 3], ["src", 10, 3], ["strictDeps", 17, 3], ["env", 19, 3], ["makeFlags", 26, 3], ["installPhase", 33, 3], ["meta", 39, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +11,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "dhtbsign",
       version: "0-unstable-2022-11-10",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "osm0sis",
           repo: "dhtbsign",
           rev: "2b2711dff153485c549240423d9c908a2912f4b2",
@@ -26,7 +23,7 @@ export default nix.lambda((args) => (() => {
         })))),
       strictDeps: true,
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "cc", "isGNU")), nix.thunk(() => ["-Wno-error=stringop-overflow"]))))),
       })),
       makeFlags: nix.thunk(() => [
@@ -35,7 +32,7 @@ export default nix.lambda((args) => (() => {
       ]),
       installPhase: "runHook preInstall\ninstall -Dm555 dhtbsign -t $out/bin\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/osm0sis/dhtbsign",
         description: "Tool to write the DHTB header for Samsung Spreadtrum devices",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

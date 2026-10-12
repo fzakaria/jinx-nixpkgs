@@ -2,87 +2,69 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/template-dropin.nix", [[["ExecStart", 11, 23]], [["description", 10, 9], ["serviceConfig", 11, 9]], [["Environment", 18, 23]], [["overrideStrategy", 16, 9], ["wantedBy", 17, 9], ["serviceConfig", 18, 9]], [["Environment", 25, 23]], [["overrideStrategy", 23, 9], ["wantedBy", 24, 9], ["serviceConfig", 25, 9]], [["test-template@", 9, 24], ["test-template@managed", 15, 24], ["test-template@changed", 22, 24]], [["services", 9, 15]], [["enable", 31, 11], ["wantedBy", 32, 11]], [["Environment", 35, 25]], [["serviceConfig", 35, 11]], [["test-template@managed", 30, 26], ["test-template@changed", 34, 26]], [["services", 30, 17]], [["systemd", 30, 9]], [["configuration", 29, 37]], [["new-generation", 29, 22]], [["systemd", 9, 7], ["specialisation", 29, 7]], [["machine", 5, 9]], [["name", 3, 3], ["nodes", 5, 3], ["testScript", 40, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
 const formals$2 = { args: { pkgs: false, lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/template-dropin.nix", [["ExecStart", 11, 23]]);
-const pos$2 = nix.positions(here + "/template-dropin.nix", [["description", 10, 9], ["serviceConfig", 11, 9]]);
-const pos$3 = nix.positions(here + "/template-dropin.nix", [["Environment", 18, 23]]);
-const pos$4 = nix.positions(here + "/template-dropin.nix", [["overrideStrategy", 16, 9], ["wantedBy", 17, 9], ["serviceConfig", 18, 9]]);
-const pos$5 = nix.positions(here + "/template-dropin.nix", [["Environment", 25, 23]]);
-const pos$6 = nix.positions(here + "/template-dropin.nix", [["overrideStrategy", 23, 9], ["wantedBy", 24, 9], ["serviceConfig", 25, 9]]);
-const pos$7 = nix.positions(here + "/template-dropin.nix", [["test-template@", 9, 24], ["test-template@managed", 15, 24], ["test-template@changed", 22, 24]]);
-const pos$8 = nix.positions(here + "/template-dropin.nix", [["services", 9, 15]]);
-const pos$9 = nix.positions(here + "/template-dropin.nix", [["enable", 31, 11], ["wantedBy", 32, 11]]);
-const pos$10 = nix.positions(here + "/template-dropin.nix", [["Environment", 35, 25]]);
-const pos$11 = nix.positions(here + "/template-dropin.nix", [["serviceConfig", 35, 11]]);
-const pos$12 = nix.positions(here + "/template-dropin.nix", [["test-template@managed", 30, 26], ["test-template@changed", 34, 26]]);
-const pos$13 = nix.positions(here + "/template-dropin.nix", [["services", 30, 17]]);
-const pos$14 = nix.positions(here + "/template-dropin.nix", [["systemd", 30, 9]]);
-const pos$15 = nix.positions(here + "/template-dropin.nix", [["configuration", 29, 37]]);
-const pos$16 = nix.positions(here + "/template-dropin.nix", [["new-generation", 29, 22]]);
-const pos$17 = nix.positions(here + "/template-dropin.nix", [["systemd", 9, 7], ["specialisation", 29, 7]]);
-const pos$18 = nix.positions(here + "/template-dropin.nix", [["machine", 5, 9]]);
-const pos$19 = nix.positions(here + "/template-dropin.nix", [["name", 3, 3], ["nodes", 5, 3], ["testScript", 40, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$19,
+    [nix.POS]: $pos[18],
     name: "stc-template-dropin",
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$18,
+      [nix.POS]: $pos[17],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs = nix.arg($_1, "pkgs");
         const lib_1 = nix.arg($_1, "lib");
         return {
-          [nix.POS]: pos$17,
+          [nix.POS]: $pos[16],
           systemd: nix.thunk(() => ({
-            [nix.POS]: pos$8,
+            [nix.POS]: $pos[7],
             services: nix.thunk(() => ({
-              [nix.POS]: pos$7,
+              [nix.POS]: $pos[6],
               "test-template@": nix.thunk(() => ({
-                [nix.POS]: pos$2,
+                [nix.POS]: $pos[1],
                 description: "A base template for testing",
                 serviceConfig: nix.thunk(() => ({
-                  [nix.POS]: pos$1,
+                  [nix.POS]: $pos[0],
                   ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "coreutils")}/bin/sleep infinity`),
                 })),
               })),
               "test-template@managed": nix.thunk(() => ({
-                [nix.POS]: pos$4,
+                [nix.POS]: $pos[3],
                 overrideStrategy: "asDropin",
                 wantedBy: nix.thunk(() => ["multi-user.target"]),
-                serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$3, Environment: "TEST_VAR=1" })),
+                serviceConfig: nix.thunk(() => ({ [nix.POS]: $pos[2], Environment: "TEST_VAR=1" })),
               })),
               "test-template@changed": nix.thunk(() => ({
-                [nix.POS]: pos$6,
+                [nix.POS]: $pos[5],
                 overrideStrategy: "asDropin",
                 wantedBy: nix.thunk(() => ["multi-user.target"]),
-                serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$5, Environment: "TEST_VAR=1" })),
+                serviceConfig: nix.thunk(() => ({ [nix.POS]: $pos[4], Environment: "TEST_VAR=1" })),
               })),
             })),
           })),
           specialisation: nix.thunk(() => ({
-            [nix.POS]: pos$16,
+            [nix.POS]: $pos[15],
             "new-generation": nix.thunk(() => ({
-              [nix.POS]: pos$15,
+              [nix.POS]: $pos[14],
               configuration: nix.thunk(() => ({
-                [nix.POS]: pos$14,
+                [nix.POS]: $pos[13],
                 systemd: nix.thunk(() => ({
-                  [nix.POS]: pos$13,
+                  [nix.POS]: $pos[12],
                   services: nix.thunk(() => ({
-                    [nix.POS]: pos$12,
+                    [nix.POS]: $pos[11],
                     "test-template@managed": nix.thunk(() => ({
-                      [nix.POS]: pos$9,
+                      [nix.POS]: $pos[8],
                       enable: nix.thunk(() => nix.app(nix.sel(lib_1, "mkForce"), false)),
                       wantedBy: nix.thunk(() => nix.app(nix.sel(lib_1, "mkForce"), [])),
                     })),
                     "test-template@changed": nix.thunk(() => ({
-                      [nix.POS]: pos$11,
+                      [nix.POS]: $pos[10],
                       serviceConfig: nix.thunk(() => ({
-                        [nix.POS]: pos$10,
+                        [nix.POS]: $pos[9],
                         Environment: nix.thunk(() => nix.app(nix.sel(lib_1, "mkForce"), "TEST_VAR=2")),
                       })),
                     })),

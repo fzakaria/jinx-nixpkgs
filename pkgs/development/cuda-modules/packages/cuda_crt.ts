@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/cuda_crt.nix", [[["message", 51, 7], ["assertion", 52, 7]], [["redistName", 9, 3], ["pname", 10, 3], ["outputs", 12, 3], ["postInstall", 19, 3], ["brokenAssertions", 39, 3], ["allowFHSReferences", 57, 3]]]);
 const formals$1 = { args: { lib: false, backendStdenv: false, buildRedist: false, cudaOlder: false, glibc: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/cuda_crt.nix", [["message", 51, 7], ["assertion", 52, 7]]);
-const pos$2 = nix.positions(here + "/cuda_crt.nix", [["redistName", 9, 3], ["pname", 10, 3], ["outputs", 12, 3], ["postInstall", 19, 3], ["brokenAssertions", 39, 3], ["allowFHSReferences", 57, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,14 +13,14 @@ export default nix.lambda((args) => (() => {
   const cudaOlder = nix.arg($, "cudaOlder");
   const glibc = nix.arg($, "glibc");
   return nix.app(buildRedist, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       redistName: "cuda",
       pname: "cuda_crt",
       outputs: nix.thunk(() => ["out"]),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool(nix.app(cudaOlder, "13.2")) && nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(glibc, "version")), "2.42")))), "nixLog \"Patching math_functions.h rsqrt signatures to match glibc's ones\"\nsubstituteInPlace \"${!outputInclude:?}/include/crt/math_functions.h\" \\\n  --replace-fail \\\n    \"rsqrt(double x);\" \\\n    \"rsqrt(double x) noexcept (true);\" \\\n  --replace-fail \\\n    \"rsqrtf(float x);\" \\\n    \"rsqrtf(float x) noexcept (true);\"\n\nnixLog \"Patching math_functions.hpp rsqrt signatures to match glibc's ones\"\nsubstituteInPlace \"${!outputInclude:?}/include/crt/math_functions.hpp\" \\\n  --replace-fail \\\n    \"__func__(double rsqrt(const double a))\" \\\n    \"__func__(double rsqrt(const double a) throw())\" \\\n  --replace-fail \\\n    \"__func__(float rsqrtf(const float a))\" \\\n    \"__func__(float rsqrtf(const float a) throw())\"\n")),
       brokenAssertions: nix.thunk(() => [
         nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           message: "cannot use libc++ on x86_64-linux",
           assertion: nix.thunk(() => (!nix.asBool(nix.eq(nix.sel(backendStdenv, "hostNixSystem"), "x86_64-linux")) || nix.asBool(nix.eq(nix.sel(backendStdenv, "cc", "libcxx"), null)))),
         })),

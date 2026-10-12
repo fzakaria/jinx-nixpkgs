@@ -2,62 +2,51 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/btrbk-no-timer.nix", [[["maintainers", 4, 8]], [["systemPackages", 9, 19]], [["snapshot_dir", 13, 11], ["subvolume", 14, 11]], [["/mnt", 12, 25]], [["volume", 12, 18]], [["onCalendar", 11, 9], ["settings", 12, 9]], [["local", 10, 32]], [["instances", 10, 22]], [["btrbk", 10, 16]], [["environment", 9, 7], ["services", 10, 7]], [["machine", 6, 9]], [["name", 3, 3], ["meta", 4, 3], ["nodes", 6, 3], ["testScript", 19, 3]]]);
 const formals$1 = { args: { lib: false, pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/btrbk-no-timer.nix", [["maintainers", 4, 8]]);
 const formals$2 = { args: {  }, ellipsis: true };
-const pos$2 = nix.positions(here + "/btrbk-no-timer.nix", [["systemPackages", 9, 19]]);
-const pos$3 = nix.positions(here + "/btrbk-no-timer.nix", [["snapshot_dir", 13, 11], ["subvolume", 14, 11]]);
-const pos$4 = nix.positions(here + "/btrbk-no-timer.nix", [["/mnt", 12, 25]]);
-const pos$5 = nix.positions(here + "/btrbk-no-timer.nix", [["volume", 12, 18]]);
-const pos$6 = nix.positions(here + "/btrbk-no-timer.nix", [["onCalendar", 11, 9], ["settings", 12, 9]]);
-const pos$7 = nix.positions(here + "/btrbk-no-timer.nix", [["local", 10, 32]]);
-const pos$8 = nix.positions(here + "/btrbk-no-timer.nix", [["instances", 10, 22]]);
-const pos$9 = nix.positions(here + "/btrbk-no-timer.nix", [["btrbk", 10, 16]]);
-const pos$10 = nix.positions(here + "/btrbk-no-timer.nix", [["environment", 9, 7], ["services", 10, 7]]);
-const pos$11 = nix.positions(here + "/btrbk-no-timer.nix", [["machine", 6, 9]]);
-const pos$12 = nix.positions(here + "/btrbk-no-timer.nix", [["name", 3, 3], ["meta", 4, 3], ["nodes", 6, 3], ["testScript", 19, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   return {
-    [nix.POS]: pos$12,
+    [nix.POS]: $pos[11],
     name: "btrbk-no-timer",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "oxalica"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$11,
+      [nix.POS]: $pos[10],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          [nix.POS]: pos$10,
+          [nix.POS]: $pos[9],
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             systemPackages: nix.thunk(() => (() => {
               const w = nix.withScope(pkgs, null);
               return [nix.thunk(() => nix.lookup(w, "btrfs-progs"))];
             })()),
           })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$9,
+            [nix.POS]: $pos[8],
             btrbk: nix.thunk(() => ({
-              [nix.POS]: pos$8,
+              [nix.POS]: $pos[7],
               instances: nix.thunk(() => ({
-                [nix.POS]: pos$7,
+                [nix.POS]: $pos[6],
                 local: nix.thunk(() => ({
-                  [nix.POS]: pos$6,
+                  [nix.POS]: $pos[5],
                   onCalendar: null,
                   settings: nix.thunk(() => ({
-                    [nix.POS]: pos$5,
+                    [nix.POS]: $pos[4],
                     volume: nix.thunk(() => ({
-                      [nix.POS]: pos$4,
-                      "/mnt": nix.thunk(() => ({ [nix.POS]: pos$3, snapshot_dir: "btrbk/local", subvolume: "to_backup" })),
+                      [nix.POS]: $pos[3],
+                      "/mnt": nix.thunk(() => ({ [nix.POS]: $pos[2], snapshot_dir: "btrbk/local", subvolume: "to_backup" })),
                     })),
                   })),
                 })),

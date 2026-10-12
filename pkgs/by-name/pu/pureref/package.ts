@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["nativeBuildInputs", 25, 9], ["outputHash", 30, 9], ["outputHashMode", 31, 9]], [["pname", 38, 45], ["version", 38, 51], ["src", 38, 59]], [["updateScript", 58, 12]], [["description", 85, 5], ["homepage", 86, 13], ["license", 87, 5], ["maintainers", 88, 5], ["platforms", 93, 5], ["mainProgram", 94, 5], ["sourceProvenance", 95, 5]], [["pname", 41, 11], ["version", 41, 17], ["src", 41, 25], ["nativeBuildInputs", 43, 3], ["extraInstallCommands", 45, 3], ["passthru", 58, 3], ["meta", 84, 3]]]);
 const formals$1 = { args: { lib: false, appimageTools: false, makeWrapper: false, runCommand: false, curl: false, gnugrep: false, cacert: false, writeShellScript: false, blockNetwork: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["nativeBuildInputs", 25, 9], ["outputHash", 30, 9], ["outputHashMode", 31, 9]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 38, 45], ["version", 38, 51], ["src", 38, 59]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 58, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 85, 5], ["homepage", 86, 13], ["license", 87, 5], ["maintainers", 88, 5], ["platforms", 93, 5], ["mainProgram", 94, 5], ["sourceProvenance", 95, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 41, 11], ["version", 41, 17], ["src", 41, 25], ["nativeBuildInputs", 43, 3], ["extraInstallCommands", 45, 3], ["passthru", 58, 3], ["meta", 84, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,16 +23,16 @@ export default nix.lambda((args) => (() => {
   const downloadKeyCmd = nix.thunk(() => nix.str`${kindCurl} "${homepage}/download.php" | grep '%3D%3D' | cut -d '"' -f2`);
   const archiveUrl = (v) => (k) => nix.str`${homepage}/files/build.php?build=LINUX64.Appimage&version=${v}&downloadKey=${k}`;
   const src = nix.thunk(() => nix.app(runCommand, nix.thunk(() => nix.str`PureRef-${version}.AppImage`), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       nativeBuildInputs: nix.thunk(() => [curl, gnugrep, cacert]),
       outputHash: "sha256-N5iyT/WFOFBZdfjHX6lZD2EqiOmTdYQEf2YIlN2o7/M=",
       outputHashMode: "flat",
     })), nix.thunk(() => nix.str`key="$(${downloadKeyCmd})"
 curl -L "${nix.app(archiveUrl, version, "$key")}" --output $out
 `)));
-  const archive = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: pos$2, pname: pname, version: version, src: src }))));
+  const archive = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: $pos[1], pname: pname, version: version, src: src }))));
   return nix.app(nix.sel(appimageTools, "wrapType2"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: pname,
       version: version,
       src: src,
@@ -50,7 +46,7 @@ wrapProgram $out/bin/PureRef \\
   --set FONTCONFIG_FILE /etc/fonts/fonts.conf
 `, nix.app(nix.sel(lib, "optionalString"), blockNetwork, "sed -i 's|--die-with-parent|--unshare-net\\n --die-with-parent|' $out/bin/.PureRef-wrapped\n"))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(writeShellScript, "update-pureref", nix.thunk(() => nix.str`set -eux
 package_nix="${nix.builtins.toString(nix.path(here, "./package.nix"))}"
 
@@ -77,7 +73,7 @@ sed -i "s|outputHash = \\".*\\"|outputHash = \\"$sri\\"|" "$package_nix"
 `))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Reference Image Viewer",
         homepage: homepage,
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

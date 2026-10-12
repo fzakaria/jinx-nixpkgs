@@ -2,82 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["enable", 9, 17]], [["reporting_enabled", 11, 19]], [["http_addr", 14, 11], ["domain", 15, 11]], [["admin_user", 19, 11], ["admin_password", 20, 11], ["secret_key", 21, 11]], [["analytics", 11, 9], ["server", 13, 9], ["security", 18, 9]], [["enable", 8, 7], ["provision", 9, 7], ["settings", 10, 7]], [["grafana", 7, 14]], [["rules", 26, 22]], [["tmpfiles", 26, 13]], [["services", 7, 5], ["systemd", 26, 5]], [["name", 43, 15], ["type", 44, 15], ["access", 45, 15], ["uid", 46, 15]], [["apiVersion", 40, 11], ["datasources", 41, 11]], [["settings", 39, 21]], [["path", 56, 23]], [["name", 55, 15], ["options", 56, 15]], [["apiVersion", 52, 11], ["providers", 53, 11]], [["settings", 51, 20]], [["params", 81, 33], ["type", 82, 33]], [["type", 84, 40]], [["params", 85, 37]], [["type", 86, 39]], [["evaluator", 80, 31], ["operator", 84, 31], ["query", 85, 31], ["reducer", 86, 31], ["type", 87, 31]], [["type", 91, 29], ["uid", 92, 29]], [["conditions", 78, 27], ["datasource", 90, 27], ["expression", 94, 27], ["intervalMs", 95, 27], ["maxDataPoints", 96, 27], ["refId", 97, 27], ["type", 98, 27]], [["refId", 75, 25], ["datasourceUid", 76, 25], ["model", 77, 25]], [["uid", 70, 21], ["title", 71, 21], ["condition", 72, 21], ["data", 73, 21], ["for", 102, 21]], [["name", 65, 17], ["folder", 66, 17], ["interval", 67, 17], ["rules", 68, 17]], [["groups", 63, 13]], [["settings", 62, 17]], [["url", 117, 30]], [["uid", 115, 21], ["type", 116, 21], ["settings", 117, 21]], [["name", 112, 17], ["receivers", 113, 17]], [["contactPoints", 110, 13]], [["settings", 109, 25]], [["receiver", 127, 17]], [["policies", 125, 13]], [["settings", 124, 20]], [["name", 135, 17], ["template", 136, 17]], [["templates", 133, 13]], [["settings", 132, 21]], [["name", 144, 17]], [["muteTimes", 142, 13]], [["settings", 141, 23]], [["rules", 62, 11], ["contactPoints", 109, 11], ["policies", 124, 11], ["templates", 132, 11], ["muteTimings", 141, 11]], [["datasources", 39, 9], ["dashboards", 51, 9], ["alerting", 61, 9]], [["provision", 38, 24]], [["grafana", 38, 16]], [["services", 38, 7]], [["path", 154, 21]], [["path", 155, 20]], [["path", 157, 17]], [["path", 158, 25]], [["path", 159, 20]], [["path", 160, 21]], [["path", 161, 23]], [["rules", 157, 11], ["contactPoints", 158, 11], ["policies", 159, 11], ["templates", 160, 11], ["muteTimings", 161, 11]], [["datasources", 154, 9], ["dashboards", 155, 9], ["alerting", 156, 9]], [["provision", 153, 24]], [["grafana", 153, 16]], [["services", 153, 7]], [["path", 172, 23]], [["path", 173, 22]], [["path", 175, 19]], [["path", 176, 27]], [["path", 177, 22]], [["path", 178, 23]], [["path", 179, 25]], [["rules", 175, 13], ["contactPoints", 176, 13], ["policies", 177, 13], ["templates", 178, 13], ["muteTimings", 179, 13]], [["datasources", 172, 11], ["dashboards", 173, 11], ["alerting", 174, 11]], [["provision", 171, 26]], [["grafana", 171, 18]], [["services", 171, 9]], [["provisionNix", 37, 5], ["provisionYaml", 152, 5], ["provisionYamlDirs", 166, 5]], [["maintainers", 196, 8]], [["name", 194, 3], ["meta", 196, 3], ["containers", 198, 11], ["testScript", 200, 3]]]);
 const formals$1 = { args: { lib: false, pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/default.nix", [["enable", 9, 17]]);
-const pos$2 = nix.positions(here + "/default.nix", [["reporting_enabled", 11, 19]]);
-const pos$3 = nix.positions(here + "/default.nix", [["http_addr", 14, 11], ["domain", 15, 11]]);
-const pos$4 = nix.positions(here + "/default.nix", [["admin_user", 19, 11], ["admin_password", 20, 11], ["secret_key", 21, 11]]);
-const pos$5 = nix.positions(here + "/default.nix", [["analytics", 11, 9], ["server", 13, 9], ["security", 18, 9]]);
-const pos$6 = nix.positions(here + "/default.nix", [["enable", 8, 7], ["provision", 9, 7], ["settings", 10, 7]]);
-const pos$7 = nix.positions(here + "/default.nix", [["grafana", 7, 14]]);
-const pos$8 = nix.positions(here + "/default.nix", [["rules", 26, 22]]);
-const pos$9 = nix.positions(here + "/default.nix", [["tmpfiles", 26, 13]]);
-const pos$10 = nix.positions(here + "/default.nix", [["services", 7, 5], ["systemd", 26, 5]]);
-const pos$11 = nix.positions(here + "/default.nix", [["name", 43, 15], ["type", 44, 15], ["access", 45, 15], ["uid", 46, 15]]);
-const pos$12 = nix.positions(here + "/default.nix", [["apiVersion", 40, 11], ["datasources", 41, 11]]);
-const pos$13 = nix.positions(here + "/default.nix", [["settings", 39, 21]]);
-const pos$14 = nix.positions(here + "/default.nix", [["path", 56, 23]]);
-const pos$15 = nix.positions(here + "/default.nix", [["name", 55, 15], ["options", 56, 15]]);
-const pos$16 = nix.positions(here + "/default.nix", [["apiVersion", 52, 11], ["providers", 53, 11]]);
-const pos$17 = nix.positions(here + "/default.nix", [["settings", 51, 20]]);
-const pos$18 = nix.positions(here + "/default.nix", [["params", 81, 33], ["type", 82, 33]]);
-const pos$19 = nix.positions(here + "/default.nix", [["type", 84, 40]]);
-const pos$20 = nix.positions(here + "/default.nix", [["params", 85, 37]]);
-const pos$21 = nix.positions(here + "/default.nix", [["type", 86, 39]]);
-const pos$22 = nix.positions(here + "/default.nix", [["evaluator", 80, 31], ["operator", 84, 31], ["query", 85, 31], ["reducer", 86, 31], ["type", 87, 31]]);
-const pos$23 = nix.positions(here + "/default.nix", [["type", 91, 29], ["uid", 92, 29]]);
-const pos$24 = nix.positions(here + "/default.nix", [["conditions", 78, 27], ["datasource", 90, 27], ["expression", 94, 27], ["intervalMs", 95, 27], ["maxDataPoints", 96, 27], ["refId", 97, 27], ["type", 98, 27]]);
-const pos$25 = nix.positions(here + "/default.nix", [["refId", 75, 25], ["datasourceUid", 76, 25], ["model", 77, 25]]);
-const pos$26 = nix.positions(here + "/default.nix", [["uid", 70, 21], ["title", 71, 21], ["condition", 72, 21], ["data", 73, 21], ["for", 102, 21]]);
-const pos$27 = nix.positions(here + "/default.nix", [["name", 65, 17], ["folder", 66, 17], ["interval", 67, 17], ["rules", 68, 17]]);
-const pos$28 = nix.positions(here + "/default.nix", [["groups", 63, 13]]);
-const pos$29 = nix.positions(here + "/default.nix", [["settings", 62, 17]]);
-const pos$30 = nix.positions(here + "/default.nix", [["url", 117, 30]]);
-const pos$31 = nix.positions(here + "/default.nix", [["uid", 115, 21], ["type", 116, 21], ["settings", 117, 21]]);
-const pos$32 = nix.positions(here + "/default.nix", [["name", 112, 17], ["receivers", 113, 17]]);
-const pos$33 = nix.positions(here + "/default.nix", [["contactPoints", 110, 13]]);
-const pos$34 = nix.positions(here + "/default.nix", [["settings", 109, 25]]);
-const pos$35 = nix.positions(here + "/default.nix", [["receiver", 127, 17]]);
-const pos$36 = nix.positions(here + "/default.nix", [["policies", 125, 13]]);
-const pos$37 = nix.positions(here + "/default.nix", [["settings", 124, 20]]);
-const pos$38 = nix.positions(here + "/default.nix", [["name", 135, 17], ["template", 136, 17]]);
-const pos$39 = nix.positions(here + "/default.nix", [["templates", 133, 13]]);
-const pos$40 = nix.positions(here + "/default.nix", [["settings", 132, 21]]);
-const pos$41 = nix.positions(here + "/default.nix", [["name", 144, 17]]);
-const pos$42 = nix.positions(here + "/default.nix", [["muteTimes", 142, 13]]);
-const pos$43 = nix.positions(here + "/default.nix", [["settings", 141, 23]]);
-const pos$44 = nix.positions(here + "/default.nix", [["rules", 62, 11], ["contactPoints", 109, 11], ["policies", 124, 11], ["templates", 132, 11], ["muteTimings", 141, 11]]);
-const pos$45 = nix.positions(here + "/default.nix", [["datasources", 39, 9], ["dashboards", 51, 9], ["alerting", 61, 9]]);
-const pos$46 = nix.positions(here + "/default.nix", [["provision", 38, 24]]);
-const pos$47 = nix.positions(here + "/default.nix", [["grafana", 38, 16]]);
-const pos$48 = nix.positions(here + "/default.nix", [["services", 38, 7]]);
-const pos$49 = nix.positions(here + "/default.nix", [["path", 154, 21]]);
-const pos$50 = nix.positions(here + "/default.nix", [["path", 155, 20]]);
-const pos$51 = nix.positions(here + "/default.nix", [["path", 157, 17]]);
-const pos$52 = nix.positions(here + "/default.nix", [["path", 158, 25]]);
-const pos$53 = nix.positions(here + "/default.nix", [["path", 159, 20]]);
-const pos$54 = nix.positions(here + "/default.nix", [["path", 160, 21]]);
-const pos$55 = nix.positions(here + "/default.nix", [["path", 161, 23]]);
-const pos$56 = nix.positions(here + "/default.nix", [["rules", 157, 11], ["contactPoints", 158, 11], ["policies", 159, 11], ["templates", 160, 11], ["muteTimings", 161, 11]]);
-const pos$57 = nix.positions(here + "/default.nix", [["datasources", 154, 9], ["dashboards", 155, 9], ["alerting", 156, 9]]);
-const pos$58 = nix.positions(here + "/default.nix", [["provision", 153, 24]]);
-const pos$59 = nix.positions(here + "/default.nix", [["grafana", 153, 16]]);
-const pos$60 = nix.positions(here + "/default.nix", [["services", 153, 7]]);
-const pos$61 = nix.positions(here + "/default.nix", [["path", 172, 23]]);
-const pos$62 = nix.positions(here + "/default.nix", [["path", 173, 22]]);
-const pos$63 = nix.positions(here + "/default.nix", [["path", 175, 19]]);
-const pos$64 = nix.positions(here + "/default.nix", [["path", 176, 27]]);
-const pos$65 = nix.positions(here + "/default.nix", [["path", 177, 22]]);
-const pos$66 = nix.positions(here + "/default.nix", [["path", 178, 23]]);
-const pos$67 = nix.positions(here + "/default.nix", [["path", 179, 25]]);
-const pos$68 = nix.positions(here + "/default.nix", [["rules", 175, 13], ["contactPoints", 176, 13], ["policies", 177, 13], ["templates", 178, 13], ["muteTimings", 179, 13]]);
-const pos$69 = nix.positions(here + "/default.nix", [["datasources", 172, 11], ["dashboards", 173, 11], ["alerting", 174, 11]]);
-const pos$70 = nix.positions(here + "/default.nix", [["provision", 171, 26]]);
-const pos$71 = nix.positions(here + "/default.nix", [["grafana", 171, 18]]);
-const pos$72 = nix.positions(here + "/default.nix", [["services", 171, 9]]);
-const pos$73 = nix.positions(here + "/default.nix", [["provisionNix", 37, 5], ["provisionYaml", 152, 5], ["provisionYamlDirs", 166, 5]]);
-const pos$74 = nix.positions(here + "/default.nix", [["maintainers", 196, 8]]);
-const pos$75 = nix.positions(here + "/default.nix", [["name", 194, 3], ["meta", 196, 3], ["containers", 198, 11], ["testScript", 200, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -85,19 +11,19 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const mkMerge = nix.thunk(() => nix.attr(lib, "mkMerge"));
   const baseGrafanaConf = nix.thunk(() => ({
-    [nix.POS]: pos$10,
+    [nix.POS]: $pos[9],
     services: nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       grafana: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         enable: true,
-        provision: nix.thunk(() => ({ [nix.POS]: pos$1, enable: true })),
+        provision: nix.thunk(() => ({ [nix.POS]: $pos[0], enable: true })),
         settings: nix.thunk(() => ({
-          [nix.POS]: pos$5,
-          analytics: nix.thunk(() => ({ [nix.POS]: pos$2, reporting_enabled: false })),
-          server: nix.thunk(() => ({ [nix.POS]: pos$3, http_addr: "::1", domain: "localhost" })),
+          [nix.POS]: $pos[4],
+          analytics: nix.thunk(() => ({ [nix.POS]: $pos[1], reporting_enabled: false })),
+          server: nix.thunk(() => ({ [nix.POS]: $pos[2], http_addr: "::1", domain: "localhost" })),
           security: nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             admin_user: "testadmin",
             admin_password: nix.thunk(() => nix.str`$__file{${nix.app(nix.sel(pkgs, "writeText"), "pwd", "snakeoilpwd")}}`),
             secret_key: "11111111111111111111",
@@ -106,9 +32,9 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     systemd: nix.thunk(() => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       tmpfiles: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         rules: nix.thunk(() => (() => {
           const dashboard = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "test.json", nix.thunk(() => nix.builtins.readFile(nix.path(here, "./test_dashboard.json")))));
           return [
@@ -120,23 +46,23 @@ export default nix.lambda((args) => (() => {
     })),
   }));
   const extraNodeConfs = nix.thunk(() => ({
-    [nix.POS]: pos$73,
+    [nix.POS]: $pos[72],
     provisionNix: nix.thunk(() => ({
-      [nix.POS]: pos$48,
+      [nix.POS]: $pos[47],
       services: nix.thunk(() => ({
-        [nix.POS]: pos$47,
+        [nix.POS]: $pos[46],
         grafana: nix.thunk(() => ({
-          [nix.POS]: pos$46,
+          [nix.POS]: $pos[45],
           provision: nix.thunk(() => ({
-            [nix.POS]: pos$45,
+            [nix.POS]: $pos[44],
             datasources: nix.thunk(() => ({
-              [nix.POS]: pos$13,
+              [nix.POS]: $pos[12],
               settings: nix.thunk(() => ({
-                [nix.POS]: pos$12,
+                [nix.POS]: $pos[11],
                 apiVersion: 1n,
                 datasources: nix.thunk(() => [
                   nix.thunk(() => ({
-                    [nix.POS]: pos$11,
+                    [nix.POS]: $pos[10],
                     name: "Test Datasource",
                     type: "testdata",
                     access: "proxy",
@@ -146,55 +72,55 @@ export default nix.lambda((args) => (() => {
               })),
             })),
             dashboards: nix.thunk(() => ({
-              [nix.POS]: pos$17,
+              [nix.POS]: $pos[16],
               settings: nix.thunk(() => ({
-                [nix.POS]: pos$16,
+                [nix.POS]: $pos[15],
                 apiVersion: 1n,
                 providers: nix.thunk(() => [
                   nix.thunk(() => ({
-                    [nix.POS]: pos$15,
+                    [nix.POS]: $pos[14],
                     name: "default",
-                    options: nix.thunk(() => ({ [nix.POS]: pos$14, path: "/var/lib/grafana/dashboards" })),
+                    options: nix.thunk(() => ({ [nix.POS]: $pos[13], path: "/var/lib/grafana/dashboards" })),
                   })),
                 ]),
               })),
             })),
             alerting: nix.thunk(() => ({
-              [nix.POS]: pos$44,
+              [nix.POS]: $pos[43],
               rules: nix.thunk(() => ({
-                [nix.POS]: pos$29,
+                [nix.POS]: $pos[28],
                 settings: nix.thunk(() => ({
-                  [nix.POS]: pos$28,
+                  [nix.POS]: $pos[27],
                   groups: nix.thunk(() => [
                     nix.thunk(() => ({
-                      [nix.POS]: pos$27,
+                      [nix.POS]: $pos[26],
                       name: "test_rule_group",
                       folder: "test_folder",
                       interval: "60s",
                       rules: nix.thunk(() => [
                         nix.thunk(() => ({
-                          [nix.POS]: pos$26,
+                          [nix.POS]: $pos[25],
                           uid: "test_rule",
                           title: "Test Rule",
                           condition: "A",
                           data: nix.thunk(() => [
                             nix.thunk(() => ({
-                              [nix.POS]: pos$25,
+                              [nix.POS]: $pos[24],
                               refId: "A",
                               datasourceUid: "-100",
                               model: nix.thunk(() => ({
-                                [nix.POS]: pos$24,
+                                [nix.POS]: $pos[23],
                                 conditions: nix.thunk(() => [
                                   nix.thunk(() => ({
-                                    [nix.POS]: pos$22,
-                                    evaluator: nix.thunk(() => ({ [nix.POS]: pos$18, params: nix.thunk(() => [3n]), type: "git" })),
-                                    operator: nix.thunk(() => ({ [nix.POS]: pos$19, type: "and" })),
-                                    query: nix.thunk(() => ({ [nix.POS]: pos$20, params: nix.thunk(() => ["A"]) })),
-                                    reducer: nix.thunk(() => ({ [nix.POS]: pos$21, type: "last" })),
+                                    [nix.POS]: $pos[21],
+                                    evaluator: nix.thunk(() => ({ [nix.POS]: $pos[17], params: nix.thunk(() => [3n]), type: "git" })),
+                                    operator: nix.thunk(() => ({ [nix.POS]: $pos[18], type: "and" })),
+                                    query: nix.thunk(() => ({ [nix.POS]: $pos[19], params: nix.thunk(() => ["A"]) })),
+                                    reducer: nix.thunk(() => ({ [nix.POS]: $pos[20], type: "last" })),
                                     type: "query",
                                   })),
                                 ]),
-                                datasource: nix.thunk(() => ({ [nix.POS]: pos$23, type: "__expr__", uid: "-100" })),
+                                datasource: nix.thunk(() => ({ [nix.POS]: $pos[22], type: "__expr__", uid: "-100" })),
                                 expression: "1==0",
                                 intervalMs: 1000n,
                                 maxDataPoints: 43200n,
@@ -211,19 +137,19 @@ export default nix.lambda((args) => (() => {
                 })),
               })),
               contactPoints: nix.thunk(() => ({
-                [nix.POS]: pos$34,
+                [nix.POS]: $pos[33],
                 settings: nix.thunk(() => ({
-                  [nix.POS]: pos$33,
+                  [nix.POS]: $pos[32],
                   contactPoints: nix.thunk(() => [
                     nix.thunk(() => ({
-                      [nix.POS]: pos$32,
+                      [nix.POS]: $pos[31],
                       name: "Test Contact Point",
                       receivers: nix.thunk(() => [
                         nix.thunk(() => ({
-                          [nix.POS]: pos$31,
+                          [nix.POS]: $pos[30],
                           uid: "test_contact_point",
                           type: "prometheus-alertmanager",
-                          settings: nix.thunk(() => ({ [nix.POS]: pos$30, url: "http://localhost:9000" })),
+                          settings: nix.thunk(() => ({ [nix.POS]: $pos[29], url: "http://localhost:9000" })),
                         })),
                       ]),
                     })),
@@ -231,26 +157,26 @@ export default nix.lambda((args) => (() => {
                 })),
               })),
               policies: nix.thunk(() => ({
-                [nix.POS]: pos$37,
+                [nix.POS]: $pos[36],
                 settings: nix.thunk(() => ({
-                  [nix.POS]: pos$36,
-                  policies: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$35, receiver: "Test Contact Point" }))]),
+                  [nix.POS]: $pos[35],
+                  policies: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: $pos[34], receiver: "Test Contact Point" }))]),
                 })),
               })),
               templates: nix.thunk(() => ({
-                [nix.POS]: pos$40,
+                [nix.POS]: $pos[39],
                 settings: nix.thunk(() => ({
-                  [nix.POS]: pos$39,
+                  [nix.POS]: $pos[38],
                   templates: nix.thunk(() => [
-                    nix.thunk(() => ({ [nix.POS]: pos$38, name: "Test Template", template: "Test message" })),
+                    nix.thunk(() => ({ [nix.POS]: $pos[37], name: "Test Template", template: "Test message" })),
                   ]),
                 })),
               })),
               muteTimings: nix.thunk(() => ({
-                [nix.POS]: pos$43,
+                [nix.POS]: $pos[42],
                 settings: nix.thunk(() => ({
-                  [nix.POS]: pos$42,
-                  muteTimes: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$41, name: "Test Mute Timing" }))]),
+                  [nix.POS]: $pos[41],
+                  muteTimes: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: $pos[40], name: "Test Mute Timing" }))]),
                 })),
               })),
             })),
@@ -259,22 +185,22 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     provisionYaml: nix.thunk(() => ({
-      [nix.POS]: pos$60,
+      [nix.POS]: $pos[59],
       services: nix.thunk(() => ({
-        [nix.POS]: pos$59,
+        [nix.POS]: $pos[58],
         grafana: nix.thunk(() => ({
-          [nix.POS]: pos$58,
+          [nix.POS]: $pos[57],
           provision: nix.thunk(() => ({
-            [nix.POS]: pos$57,
-            datasources: nix.thunk(() => ({ [nix.POS]: pos$49, path: nix.path(here, "./datasources.yaml") })),
-            dashboards: nix.thunk(() => ({ [nix.POS]: pos$50, path: nix.path(here, "./dashboards.yaml") })),
+            [nix.POS]: $pos[56],
+            datasources: nix.thunk(() => ({ [nix.POS]: $pos[48], path: nix.path(here, "./datasources.yaml") })),
+            dashboards: nix.thunk(() => ({ [nix.POS]: $pos[49], path: nix.path(here, "./dashboards.yaml") })),
             alerting: nix.thunk(() => ({
-              [nix.POS]: pos$56,
-              rules: nix.thunk(() => ({ [nix.POS]: pos$51, path: nix.path(here, "./rules.yaml") })),
-              contactPoints: nix.thunk(() => ({ [nix.POS]: pos$52, path: nix.path(here, "./contact-points.yaml") })),
-              policies: nix.thunk(() => ({ [nix.POS]: pos$53, path: nix.path(here, "./policies.yaml") })),
-              templates: nix.thunk(() => ({ [nix.POS]: pos$54, path: nix.path(here, "./templates.yaml") })),
-              muteTimings: nix.thunk(() => ({ [nix.POS]: pos$55, path: nix.path(here, "./mute-timings.yaml") })),
+              [nix.POS]: $pos[55],
+              rules: nix.thunk(() => ({ [nix.POS]: $pos[50], path: nix.path(here, "./rules.yaml") })),
+              contactPoints: nix.thunk(() => ({ [nix.POS]: $pos[51], path: nix.path(here, "./contact-points.yaml") })),
+              policies: nix.thunk(() => ({ [nix.POS]: $pos[52], path: nix.path(here, "./policies.yaml") })),
+              templates: nix.thunk(() => ({ [nix.POS]: $pos[53], path: nix.path(here, "./templates.yaml") })),
+              muteTimings: nix.thunk(() => ({ [nix.POS]: $pos[54], path: nix.path(here, "./mute-timings.yaml") })),
             })),
           })),
         })),
@@ -283,41 +209,41 @@ export default nix.lambda((args) => (() => {
     provisionYamlDirs: nix.thunk(() => (() => {
       const mkdir = (p) => nix.app(nix.sel(pkgs, "writeTextDir"), nix.thunk(() => nix.builtins.baseNameOf(p)), nix.thunk(() => nix.builtins.readFile(p)));
       return {
-        [nix.POS]: pos$72,
+        [nix.POS]: $pos[71],
         services: nix.thunk(() => ({
-          [nix.POS]: pos$71,
+          [nix.POS]: $pos[70],
           grafana: nix.thunk(() => ({
-            [nix.POS]: pos$70,
+            [nix.POS]: $pos[69],
             provision: nix.thunk(() => ({
-              [nix.POS]: pos$69,
+              [nix.POS]: $pos[68],
               datasources: nix.thunk(() => ({
-                [nix.POS]: pos$61,
+                [nix.POS]: $pos[60],
                 path: nix.thunk(() => nix.app(mkdir, nix.path(here, "./datasources.yaml"))),
               })),
               dashboards: nix.thunk(() => ({
-                [nix.POS]: pos$62,
+                [nix.POS]: $pos[61],
                 path: nix.thunk(() => nix.app(mkdir, nix.path(here, "./dashboards.yaml"))),
               })),
               alerting: nix.thunk(() => ({
-                [nix.POS]: pos$68,
+                [nix.POS]: $pos[67],
                 rules: nix.thunk(() => ({
-                  [nix.POS]: pos$63,
+                  [nix.POS]: $pos[62],
                   path: nix.thunk(() => nix.app(mkdir, nix.path(here, "./rules.yaml"))),
                 })),
                 contactPoints: nix.thunk(() => ({
-                  [nix.POS]: pos$64,
+                  [nix.POS]: $pos[63],
                   path: nix.thunk(() => nix.app(mkdir, nix.path(here, "./contact-points.yaml"))),
                 })),
                 policies: nix.thunk(() => ({
-                  [nix.POS]: pos$65,
+                  [nix.POS]: $pos[64],
                   path: nix.thunk(() => nix.app(mkdir, nix.path(here, "./policies.yaml"))),
                 })),
                 templates: nix.thunk(() => ({
-                  [nix.POS]: pos$66,
+                  [nix.POS]: $pos[65],
                   path: nix.thunk(() => nix.app(mkdir, nix.path(here, "./templates.yaml"))),
                 })),
                 muteTimings: nix.thunk(() => ({
-                  [nix.POS]: pos$67,
+                  [nix.POS]: $pos[66],
                   path: nix.thunk(() => nix.app(mkdir, nix.path(here, "./mute-timings.yaml"))),
                 })),
               })),
@@ -329,9 +255,9 @@ export default nix.lambda((args) => (() => {
   }));
   const containers = nix.thunk(() => nix.builtins.mapAttrs((_) => (val) => nix.app(mkMerge, nix.thunk(() => [val, baseGrafanaConf])), extraNodeConfs));
   return {
-    [nix.POS]: pos$75,
+    [nix.POS]: $pos[74],
     name: "grafana-provision",
-    meta: nix.thunk(() => ({ [nix.POS]: pos$74, maintainers: [] })),
+    meta: nix.thunk(() => ({ [nix.POS]: $pos[73], maintainers: [] })),
     containers: containers,
     testScript: "start_all()\n\nnodeNix = (\"Nix (new format)\", provisionNix)\nnodeYaml = (\"Nix (YAML)\", provisionYaml)\nnodeYamlDir = (\"Nix (YAML in dirs)\", provisionYamlDirs)\n\nfor description, machine in [nodeNix, nodeYaml, nodeYamlDir]:\n    with subtest(f\"Should start provision node: {description}\"):\n        machine.wait_for_unit(\"grafana.service\")\n        machine.wait_for_open_port(3000, addr=\"::1\")\n\n    with subtest(f\"Successful datasource provision with {description}\"):\n        machine.wait_until_succeeds(\n            \"curl -sSfN -u testadmin:snakeoilpwd http://[::1]:3000/api/datasources/uid/test_datasource | grep Test\\ Datasource\"\n        )\n\n    with subtest(f\"Successful dashboard provision with {description}\"):\n        machine.wait_until_succeeds(\n            \"curl -sSfN -u testadmin:snakeoilpwd http://[::1]:3000/api/dashboards/uid/test_dashboard | grep Test\\ Dashboard\"\n        )\n\n    with subtest(f\"Successful rule provision with {description}\"):\n        machine.wait_until_succeeds(\n            \"curl -sSfN -u testadmin:snakeoilpwd http://[::1]:3000/api/v1/provisioning/alert-rules/test_rule | grep Test\\ Rule\"\n        )\n\n    with subtest(f\"Successful contact point provision with {description}\"):\n        machine.wait_until_succeeds(\n            \"curl -sSfN -u testadmin:snakeoilpwd http://[::1]:3000/api/v1/provisioning/contact-points | grep Test\\ Contact\\ Point\"\n        )\n\n    with subtest(f\"Successful policy provision with {description}\"):\n        machine.wait_until_succeeds(\n            \"curl -sSfN -u testadmin:snakeoilpwd http://[::1]:3000/api/v1/provisioning/policies | grep Test\\ Contact\\ Point\"\n        )\n\n    with subtest(f\"Successful template provision with {description}\"):\n        machine.wait_until_succeeds(\n            \"curl -sSfN -u testadmin:snakeoilpwd http://[::1]:3000/api/v1/provisioning/templates | grep Test\\ Template\"\n        )\n\n    with subtest(\"Successful mute timings provision with {description}\"):\n        machine.wait_until_succeeds(\n            \"curl -sSfN -u testadmin:snakeoilpwd http://[::1]:3000/api/v1/provisioning/mute-timings | grep Test\\ Mute\\ Timing\"\n        )\n",
   };

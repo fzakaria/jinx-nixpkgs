@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/wrapper.nix", [[["name", 79, 5], ["ignoreCollisions", 80, 5], ["pathsToLink", 81, 5], ["paths", 86, 5]], [["name", 104, 7], ["desktopName", 105, 7], ["comment", 106, 7], ["exec", 107, 7], ["icon", 108, 7], ["categories", 109, 7]], [["lib", 227, 11], ["runCommandLocal", 228, 11], ["buildFactorApplication", 229, 11], ["buildFactorVocab", 230, 11]], [["hello-world", 225, 7]], [["defaultLibs", 216, 7], ["defaultBins", 217, 7], ["extraLibs", 218, 7], ["runtimeLibs", 219, 7], ["binPackages", 220, 7], ["extraVocabs", 221, 7], ["vocabTree", 222, 7], ["tests", 224, 5]], [["mainProgram", 237, 5]], [["pname", 91, 3], ["version", 92, 30], ["nativeBuildInputs", 94, 3], ["buildInputs", 98, 3], ["dontUnpack", 100, 3], ["desktopItems", 102, 3], ["installPhase", 116, 3], ["doInstallCheck", 189, 11], ["disabledTests", 190, 3], ["installCheckPhase", 199, 3], ["passthru", 214, 3], ["meta", 236, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, makeWrapper: false, runCommandLocal: false, buildFactorApplication: false, buildFactorVocab: false, buildEnv: false, copyDesktopItems: false, makeDesktopItem: false, "factor-unwrapped": false, cairo: false, freealut: false, "gdk-pixbuf": false, glib: false, "gtk2-x11": false, gtkglext: false, libGL: false, libGLU: false, librsvg: false, graphviz: false, libogg: false, libvorbis: false, openal: false, openssl: false, pango: false, pcre: false, udis86: false, zlib: false, guiSupport: true, extraLibs: true, binPackages: true, extraVocabs: true, enableDefaults: true, doInstallCheck: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/wrapper.nix", [["name", 79, 5], ["ignoreCollisions", 80, 5], ["pathsToLink", 81, 5], ["paths", 86, 5]]);
-const pos$2 = nix.positions(here + "/wrapper.nix", [["name", 104, 7], ["desktopName", 105, 7], ["comment", 106, 7], ["exec", 107, 7], ["icon", 108, 7], ["categories", 109, 7]]);
-const pos$3 = nix.positions(here + "/wrapper.nix", [["lib", 227, 11], ["runCommandLocal", 228, 11], ["buildFactorApplication", 229, 11], ["buildFactorVocab", 230, 11]]);
-const pos$4 = nix.positions(here + "/wrapper.nix", [["hello-world", 225, 7]]);
-const pos$5 = nix.positions(here + "/wrapper.nix", [["defaultLibs", 216, 7], ["defaultBins", 217, 7], ["extraLibs", 218, 7], ["runtimeLibs", 219, 7], ["binPackages", 220, 7], ["extraVocabs", 221, 7], ["vocabTree", 222, 7], ["tests", 224, 5]]);
-const pos$6 = nix.positions(here + "/wrapper.nix", [["mainProgram", 237, 5]]);
-const pos$7 = nix.positions(here + "/wrapper.nix", [["pname", 91, 3], ["version", 92, 30], ["nativeBuildInputs", 94, 3], ["buildInputs", 98, 3], ["dontUnpack", 100, 3], ["desktopItems", 102, 3], ["installPhase", 116, 3], ["doInstallCheck", 189, 11], ["disabledTests", 190, 3], ["installCheckPhase", 199, 3], ["passthru", 214, 3], ["meta", 236, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -58,14 +52,14 @@ export default nix.lambda((args) => (() => {
   const runtimeLibs = nix.thunk(() => nix.concat(defaultLibs, nix.concat(extraLibs, nix.concat(binPackages, nix.concat(nix.app(nix.sel(lib, "flatten"), nix.thunk(() => nix.builtins.map((v) => nix.selOr(v, () => [], "extraLibs"), extraVocabs))), nix.app(optionals, guiSupport, nix.thunk(() => [cairo, freealut, gdk_pixbuf, glib, gtk2_x11, gtkglext, libGL, libGLU, pango])))))));
   const bins = nix.thunk(() => nix.concat(binPackages, nix.concat(defaultBins, nix.app(nix.sel(lib, "flatten"), nix.thunk(() => nix.builtins.map((v) => nix.selOr(v, () => [], "extraPaths"), extraVocabs))))));
   const vocabTree = nix.thunk(() => nix.app(buildEnv, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: nix.thunk(() => nix.str`${nix.sel(factor_unwrapped, "pname")}-vocabs`),
       ignoreCollisions: true,
       pathsToLink: nix.thunk(() => nix.builtins.map((r) => nix.str`/lib/factor/${r}`, nix.thunk(() => ["basis", "core", "extra"]))),
       paths: nix.thunk(() => nix.concat([factor_unwrapped], extraVocabs)),
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: nix.thunk(() => nix.str`${nix.sel(factor_unwrapped, "pname")}-env`),
       version: nix.thunk(() => nix.attr(factor_unwrapped, "version")),
       nativeBuildInputs: nix.thunk(() => [copyDesktopItems, makeWrapper]),
@@ -73,7 +67,7 @@ export default nix.lambda((args) => (() => {
       dontUnpack: true,
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "Factor",
             desktopName: "Factor",
             comment: "A practical stack language",
@@ -161,7 +155,7 @@ $out/bin/factor -e='USING: tools.test tools.test.private
 runHook postInstallCheck
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         defaultLibs: defaultLibs,
         defaultBins: defaultBins,
         extraLibs: extraLibs,
@@ -170,9 +164,9 @@ runHook postInstallCheck
         extraVocabs: extraVocabs,
         vocabTree: vocabTree,
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           "hello-world": nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./test/hello-world")), nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               lib: lib,
               runCommandLocal: runCommandLocal,
               buildFactorApplication: buildFactorApplication,
@@ -180,7 +174,7 @@ runHook postInstallCheck
             })))),
         })),
       })),
-      meta: nix.thunk(() => nix.update(nix.sel(factor_unwrapped, "meta"), { [nix.POS]: pos$6, mainProgram: "factor" })),
+      meta: nix.thunk(() => nix.update(nix.sel(factor_unwrapped, "meta"), { [nix.POS]: $pos[5], mainProgram: "factor" })),
     }));
 })(), formals$1);
 //# sourceMappingURL=wrapper.ts.map

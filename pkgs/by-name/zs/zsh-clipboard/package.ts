@@ -2,16 +2,15 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["description", 16, 5], ["longDescription", 17, 5], ["license", 23, 5], ["maintainers", 24, 5], ["platforms", 25, 5]], [["pname", 4, 3], ["version", 5, 3], ["dontUnpack", 7, 3], ["strictDeps", 8, 3], ["dontBuild", 9, 3], ["installPhase", 11, 3], ["meta", 15, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["description", 16, 5], ["longDescription", 17, 5], ["license", 23, 5], ["maintainers", 24, 5], ["platforms", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 4, 3], ["version", 5, 3], ["dontUnpack", 7, 3], ["strictDeps", 8, 3], ["dontBuild", 9, 3], ["installPhase", 11, 3], ["meta", 15, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const stdenv = nix.arg($, "stdenv");
   const lib = nix.arg($, "lib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "zsh-clipboard",
       version: "1.0",
       dontUnpack: true,
@@ -20,7 +19,7 @@ export default nix.lambda((args) => (() => {
       installPhase: nix.thunk(() => nix.str`install -D -m0444 -T ${nix.path(here, "./clipboard.plugin.zsh")} $out/share/zsh/plugins/clipboard/clipboard.plugin.zsh
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Ohmyzsh plugin that integrates kill-ring with system clipboard",
         longDescription: "Ohmyzsh plugin that integrates kill-ring with system clipboard.\n\nKey bindings for C-y, C-k, C-u, M-d, M-backspace and M-w are rebound.\nBehaviour of these keys should not be changed.\n",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

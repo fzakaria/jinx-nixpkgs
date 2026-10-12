@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]], [["url", 24, 7], ["hash", 25, 7]], [["description", 49, 5], ["homepage", 50, 5], ["maintainers", 51, 5], ["license", 52, 5], ["mainProgram", 53, 5]], [["pname", 9, 3], ["version", 10, 3], ["pyproject", 11, 3], ["src", 13, 3], ["patches", 20, 3], ["build-system", 29, 3], ["dependencies", 33, 3], ["pythonImportsCheck", 37, 3], ["checkPhase", 42, 3], ["meta", 48, 3]]]);
 const formals$1 = { args: { lib: false, python3Packages: false, fetchFromGitHub: false, fetchpatch: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 24, 7], ["hash", 25, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 49, 5], ["homepage", 50, 5], ["maintainers", 51, 5], ["license", 52, 5], ["mainProgram", 53, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["pyproject", 11, 3], ["src", 13, 3], ["patches", 20, 3], ["build-system", 29, 3], ["dependencies", 33, 3], ["pythonImportsCheck", 37, 3], ["checkPhase", 42, 3], ["meta", 48, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,12 +12,12 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const fetchpatch = nix.arg($, "fetchpatch");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "pre-commit-hook-ensure-sops",
       version: "1.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "yuvipanda",
           repo: "pre-commit-hook-ensure-sops",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -28,7 +25,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/yuvipanda/pre-commit-hook-ensure-sops/commit/ed88126afa253df6009af7cbe5aa2369f963be1c.patch",
             hash: "sha256-mMxAoC3WEciO799Rq8gZ2PJ6FT/GbeSpxlr1EPj7r4s=",
           })))),
@@ -44,7 +41,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["pre_commit_hook_ensure_sops"]),
       checkPhase: "runHook preCheck\n$out/bin/pre-commit-hook-ensure-sops --help\nrunHook postCheck\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Pre-commit hook to ensure that files that should be encrypted with sops are",
         homepage: "https://github.com/yuvipanda/pre-commit-hook-ensure-sops",
         maintainers: nix.thunk(() => (() => {

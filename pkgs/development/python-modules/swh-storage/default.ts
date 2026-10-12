@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["domain", 40, 5], ["group", 41, 5], ["owner", 42, 5], ["repo", 43, 5], ["tag", 44, 5], ["hash", 45, 5]], [["changelog", 104, 5], ["description", 105, 5], ["homepage", 106, 5], ["license", 107, 5], ["maintainers", 108, 5]], [["pname", 35, 3], ["version", 36, 3], ["pyproject", 37, 3], ["src", 39, 3], ["build-system", 48, 3], ["dependencies", 53, 3], ["pythonImportsCheck", 71, 3], ["doCheck", 74, 3], ["nativeCheckInputs", 76, 3], ["disabledTestPaths", 88, 3], ["meta", 103, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitLab: false, setuptools: false, "setuptools-scm": false, "backports-entry-points-selectable": false, "cassandra-driver": false, click: false, deprecated: false, flask: false, iso8601: false, "mypy-extensions": false, psycopg: false, "psycopg-pool": false, pyasyncore: false, redis: false, tenacity: false, "swh-core": false, "swh-model": false, "swh-objstorage": false, postgresql: false, postgresqlTestHook: false, "pytest-aiohttp": false, "pytest-mock": false, "pytest-postgresql": false, "pytest-shared-session-scope": false, "pytest-xdist": false, pytestCheckHook: false, "swh-journal": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["domain", 40, 5], ["group", 41, 5], ["owner", 42, 5], ["repo", 43, 5], ["tag", 44, 5], ["hash", 45, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["changelog", 104, 5], ["description", 105, 5], ["homepage", 106, 5], ["license", 107, 5], ["maintainers", 108, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 35, 3], ["version", 36, 3], ["pyproject", 37, 3], ["src", 39, 3], ["build-system", 48, 3], ["dependencies", 53, 3], ["pythonImportsCheck", 71, 3], ["doCheck", 74, 3], ["nativeCheckInputs", 76, 3], ["disabledTestPaths", 88, 3], ["meta", 103, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -40,12 +38,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const swh_journal = nix.arg($, "swh-journal");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "swh-storage",
       version: "4.2.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "gitlab.softwareheritage.org",
           group: "swh",
           owner: "devel",
@@ -96,7 +94,7 @@ export default nix.lambda((args) => (() => {
         "swh/storage/tests/test_cli_object_references.py",
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         changelog: nix.thunk(() => nix.str`https://gitlab.softwareheritage.org/swh/devel/swh-storage/-/tags/${nix.sel(finalAttrs, "src", "tag")}`),
         description: "Abstraction layer over the archive, allowing to access all stored source code artifacts as well as their metadata",
         homepage: "https://gitlab.softwareheritage.org/swh/devel/swh-storage",

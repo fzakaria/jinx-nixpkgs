@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/mirage-git.nix", [[["pname", 18, 3], ["version", 20, 26], ["src", 20, 34], ["propagatedBuildInputs", 22, 3], ["meta", 37, 26]]]);
 const formals$1 = { args: { buildDunePackage: false, "irmin-mirage": false, "irmin-git": false, "mirage-kv": false, cohttp: false, "conduit-lwt": false, "conduit-mirage": false, "git-paf": false, fmt: false, git: false, lwt: false, "mirage-clock": false, uri: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/mirage-git.nix", [["pname", 18, 3], ["version", 20, 26], ["src", 20, 34], ["propagatedBuildInputs", 22, 3], ["meta", 37, 26]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
   const mirage_clock = nix.arg($, "mirage-clock");
   const uri = nix.arg($, "uri");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       pname: "irmin-mirage-git",
       version: nix.thunk(() => nix.attr(irmin_mirage, "version")),
       src: nix.thunk(() => nix.attr(irmin_mirage, "src")),

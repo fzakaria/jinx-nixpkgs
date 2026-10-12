@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 13, 5], ["hash", 14, 5]], [["monica", 27, 18]], [["tests", 27, 12]], [["description", 30, 5], ["homepage", 31, 5], ["longDescription", 32, 5], ["license", 36, 5], ["platforms", 37, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["dontBuild", 17, 3], ["installPhase", 19, 3], ["passthru", 27, 3], ["meta", 29, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, nixosTests: false, dataDir: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 13, 5], ["hash", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["monica", 27, 18]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 27, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 30, 5], ["homepage", 31, 5], ["longDescription", 32, 5], ["license", 36, 5], ["platforms", 37, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["dontBuild", 17, 3], ["installPhase", 19, 3], ["passthru", 27, 3], ["meta", 29, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const dataDir = nix.argOr($, "dataDir", () => "/var/lib/monica");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "monica",
       version: "4.1.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/monicahq/monica/releases/download/v${nix.sel(finalAttrs, "version")}/monica-v${nix.sel(finalAttrs, "version")}.tar.bz2`),
           hash: "sha256-7ZdOSI/gldSWub5FIyYQw3gpLe+PRAnq03u6DXdZ2YE=",
         })))),
@@ -33,11 +29,11 @@ ln -s ${dataDir}/.env $out/.env
 ln -s ${dataDir}/storage $out/storage
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$2, monica: nix.thunk(() => nix.sel(nixosTests, "monica")) })),
+        [nix.POS]: $pos[2],
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[1], monica: nix.thunk(() => nix.sel(nixosTests, "monica")) })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Personal CRM",
         homepage: "https://www.monicahq.com/",
         longDescription: "Remember everything about your friends, family and business\nrelationships.\n",

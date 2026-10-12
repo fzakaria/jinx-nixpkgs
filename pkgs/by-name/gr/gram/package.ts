@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 47, 5], ["repo", 48, 5], ["tag", 49, 5], ["hash", 50, 5]], [["CARGO_PROFILE_RELEASE_DEBUG", 101, 5], ["ALLOW_MISSING_LICENSES", 103, 5], ["OPENSSL_NO_VENDOR", 104, 5], ["LIBSQLITE3_SYS_USE_PKG_CONFIG", 105, 5], ["ZSTD_SYS_USE_PKG_CONFIG", 106, 5], ["RELEASE_VERSION", 107, 5], ["GRAM_UPDATE_EXPLANATION", 108, 5]], [["package", 195, 9], ["command", 196, 9]], [["remoteServerVersion", 194, 7]], [["updateScript", 192, 5], ["tests", 193, 5]], [["description", 202, 5], ["homepage", 203, 5], ["changelog", 204, 5], ["license", 205, 5], ["maintainers", 206, 5], ["mainProgram", 209, 5], ["platforms", 210, 5]], [["pname", 33, 3], ["version", 34, 3], ["outputs", 36, 3], ["src", 46, 3], ["postPatch", 53, 3], ["cargoHash", 60, 3], ["__structuredAttrs", 62, 3], ["nativeBuildInputs", 64, 3], ["dontUseCmakeConfigure", 75, 3], ["buildInputs", 77, 3], ["cargoBuildFlags", 92, 3], ["env", 99, 3], ["preBuild", 111, 3], ["nativeCheckInputs", 115, 3], ["useNextest", 119, 3], ["remoteServerExecutableName", 121, 3], ["installPhase", 122, 3], ["postFixup", 176, 3], ["nativeInstallCheckInputs", 186, 3], ["doInstallCheck", 189, 3], ["passthru", 191, 3], ["meta", 201, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchFromCodeberg: false, cmake: false, "pkg-config": false, protobuf: false, fontconfig: false, openssl: false, sqlite: false, zlib: false, zstd: false, libxkbcommon: false, wayland: false, libxcb: false, stdenv: false, libGL: false, "vulkan-loader": false, envsubst: false, "nix-update-script": false, "cargo-about": false, versionCheckHook: false, "cargo-bundle": false, git: false, testers: false, writableTmpDirAsHomeHook: false, buildRemoteServer: true, buildExtensionCli: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 47, 5], ["repo", 48, 5], ["tag", 49, 5], ["hash", 50, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["CARGO_PROFILE_RELEASE_DEBUG", 101, 5], ["ALLOW_MISSING_LICENSES", 103, 5], ["OPENSSL_NO_VENDOR", 104, 5], ["LIBSQLITE3_SYS_USE_PKG_CONFIG", 105, 5], ["ZSTD_SYS_USE_PKG_CONFIG", 106, 5], ["RELEASE_VERSION", 107, 5], ["GRAM_UPDATE_EXPLANATION", 108, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["package", 195, 9], ["command", 196, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["remoteServerVersion", 194, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["updateScript", 192, 5], ["tests", 193, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 202, 5], ["homepage", 203, 5], ["changelog", 204, 5], ["license", 205, 5], ["maintainers", 206, 5], ["mainProgram", 209, 5], ["platforms", 210, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 33, 3], ["version", 34, 3], ["outputs", 36, 3], ["src", 46, 3], ["postPatch", 53, 3], ["cargoHash", 60, 3], ["__structuredAttrs", 62, 3], ["nativeBuildInputs", 64, 3], ["dontUseCmakeConfigure", 75, 3], ["buildInputs", 77, 3], ["cargoBuildFlags", 92, 3], ["env", 99, 3], ["preBuild", 111, 3], ["nativeCheckInputs", 115, 3], ["useNextest", 119, 3], ["remoteServerExecutableName", 121, 3], ["installPhase", 122, 3], ["postFixup", 176, 3], ["nativeInstallCheckInputs", 186, 3], ["doInstallCheck", 189, 3], ["passthru", 191, 3], ["meta", 201, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -41,12 +35,12 @@ export default nix.lambda((args) => (() => {
   const buildRemoteServer = nix.argOr($, "buildRemoteServer", () => true);
   const buildExtensionCli = nix.argOr($, "buildExtensionCli", () => true);
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "gram",
       version: "3.3.0",
       outputs: nix.thunk(() => nix.concat(["out"], nix.concat(nix.app(nix.sel(lib, "optionals"), buildRemoteServer, nix.thunk(() => ["remote_server"])), nix.app(nix.sel(lib, "optionals"), buildExtensionCli, nix.thunk(() => ["extension_cli"]))))),
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "GramEditor",
           repo: "gram",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -64,7 +58,7 @@ substituteInPlace script/generate-licenses \\
       buildInputs: nix.thunk(() => nix.concat([openssl, sqlite, zlib, zstd], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [fontconfig, libxcb, libxkbcommon])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [git]))))),
       cargoBuildFlags: nix.thunk(() => nix.concat(["--package=gram", "--package=cli"], nix.concat(nix.app(nix.sel(lib, "optionals"), buildRemoteServer, nix.thunk(() => ["--package=remote_server"])), nix.app(nix.sel(lib, "optionals"), buildExtensionCli, nix.thunk(() => ["--package=extension_cli"]))))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         CARGO_PROFILE_RELEASE_DEBUG: "false",
         ALLOW_MISSING_LICENSES: true,
         OPENSSL_NO_VENDOR: true,
@@ -122,19 +116,19 @@ install -Dm644 $src/crates/gram/resources/app.liten.Gram-symbolic.svg $out/share
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           remoteServerVersion: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage", "remote_server")),
               command: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "remoteServerExecutableName")} version`),
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Powerful and modern source code editor",
         homepage: "https://gram-editor.com",
         changelog: nix.thunk(() => nix.str`https://codeberg.org/GramEditor/gram/releases/tag/${nix.sel(finalAttrs, "version")}`),

@@ -2,20 +2,19 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/cuda_opencl.nix", [[["description", 14, 5], ["longDescription", 15, 5], ["homepage", 20, 5]], [["redistName", 3, 3], ["pname", 4, 3], ["outputs", 6, 3], ["meta", 13, 3]]]);
 const formals$1 = { args: { buildRedist: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/cuda_opencl.nix", [["description", 14, 5], ["longDescription", 15, 5], ["homepage", 20, 5]]);
-const pos$2 = nix.positions(here + "/cuda_opencl.nix", [["redistName", 3, 3], ["pname", 4, 3], ["outputs", 6, 3], ["meta", 13, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const buildRedist = nix.arg($, "buildRedist");
   return nix.app(buildRedist, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       redistName: "cuda",
       pname: "cuda_opencl",
       outputs: nix.thunk(() => ["out", "dev", "include", "lib"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Low-level API for heterogeneous computing that runs on CUDA-powered GPUs",
         longDescription: "OpenCL™ (Open Computing Language) is a low-level API for heterogeneous computing that runs on CUDA-powered GPUs.\nUsing the OpenCL API, developers can launch compute kernels written using a limited subset of the C programming\nlanguage on a GPU.\n",
         homepage: "https://developer.nvidia.com/opencl",

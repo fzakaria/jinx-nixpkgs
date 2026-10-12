@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 33, 5], ["repo", 34, 5], ["tag", 35, 5], ["sha256", 36, 5]], [["description", 86, 5], ["mainProgram", 87, 5], ["homepage", 88, 5], ["license", 89, 5], ["platforms", 90, 5], ["maintainers", 91, 5]], [["version", 28, 3], ["pname", 29, 3], ["pyproject", 30, 3], ["src", 32, 3], ["nativeBuildInputs", 39, 3], ["nativeCheckInputs", 43, 3], ["propagatedBuildInputs", 60, 3], ["preCheck", 69, 3], ["postInstall", 73, 3], ["meta", 85, 3]]]);
 const formals$1 = { args: { lib: false, python3: false, fetchFromGitHub: false, withServer: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 33, 5], ["repo", 34, 5], ["tag", 35, 5], ["sha256", 36, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 86, 5], ["mainProgram", 87, 5], ["homepage", 88, 5], ["license", 89, 5], ["platforms", 90, 5], ["maintainers", 91, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 28, 3], ["pname", 29, 3], ["pyproject", 30, 3], ["src", 32, 3], ["nativeBuildInputs", 39, 3], ["nativeCheckInputs", 43, 3], ["propagatedBuildInputs", 60, 3], ["preCheck", 69, 3], ["postInstall", 73, 3], ["meta", 85, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,12 +32,12 @@ export default nix.lambda((args) => (() => {
   })());
   const w_1 = nix.withScope(nix.thunk(() => nix.sel(python3, "pkgs")), null);
   return nix.app(nix.lookup(w_1, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       version: "5.1.1",
       pname: "buku",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "jarun",
           repo: "buku",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -71,7 +69,7 @@ export default nix.lambda((args) => (() => {
       preCheck: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(withServer)), "rm tests/test_{server,views}.py\n")),
       postInstall: nix.thunk(() => nix.add("make install PREFIX=$out\n\nmkdir -p $out/share/zsh/site-functions $out/share/bash-completion/completions $out/share/fish/vendor_completions.d\ncp auto-completion/zsh/* $out/share/zsh/site-functions\ncp auto-completion/bash/* $out/share/bash-completion/completions\ncp auto-completion/fish/* $out/share/fish/vendor_completions.d\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(withServer)), "rm $out/bin/bukuserver\n"))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Private cmdline bookmark manager",
         mainProgram: "buku",
         homepage: "https://github.com/jarun/Buku",

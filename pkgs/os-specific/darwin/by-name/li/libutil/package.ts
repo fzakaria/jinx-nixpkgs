@@ -2,21 +2,20 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["description", 21, 8]], [["releaseName", 7, 3], ["outputs", 9, 3], ["xcodeHash", 15, 3], ["buildInputs", 17, 3], ["meta", 21, 3]]]);
 const formals$1 = { args: { copyfile: false, mkAppleDerivation: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["description", 21, 8]]);
-const pos$2 = nix.positions(here + "/package.nix", [["releaseName", 7, 3], ["outputs", 9, 3], ["xcodeHash", 15, 3], ["buildInputs", 17, 3], ["meta", 21, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const copyfile = nix.arg($, "copyfile");
   const mkAppleDerivation = nix.arg($, "mkAppleDerivation");
   return nix.app(mkAppleDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       releaseName: "libutil",
       outputs: nix.thunk(() => ["out", "dev", "man"]),
       xcodeHash: "sha256-LwR9fmvcdJ/QYlOx+7ffhV4mKvjkwN3rX3+yHSCovKQ=",
       buildInputs: nix.thunk(() => [copyfile]),
-      meta: nix.thunk(() => ({ [nix.POS]: pos$1, description: "System utilities library" })),
+      meta: nix.thunk(() => ({ [nix.POS]: $pos[0], description: "System utilities library" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

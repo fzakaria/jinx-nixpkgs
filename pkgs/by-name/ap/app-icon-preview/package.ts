@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 22, 5], ["group", 23, 5], ["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5], ["forceFetchGit", 28, 5]], [["pname", 32, 26], ["version", 32, 32], ["src", 32, 40], ["hash", 33, 5]], [["updateScript", 52, 12]], [["description", 55, 5], ["homepage", 56, 5], ["license", 57, 5], ["mainProgram", 58, 5], ["maintainers", 59, 5], ["platforms", 60, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["cargoDeps", 31, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 47, 3], ["passthru", 52, 3], ["meta", 54, 3]]]);
 const formals$1 = { args: { cargo: false, "desktop-file-utils": false, fetchFromGitLab: false, lib: false, libadwaita: false, libxml2: false, meson: false, ninja: false, "nix-update-script": false, "pkg-config": false, rustc: false, rustPlatform: false, stdenv: false, wrapGAppsHook4: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 22, 5], ["group", 23, 5], ["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5], ["forceFetchGit", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 32, 26], ["version", 32, 32], ["src", 32, 40], ["hash", 33, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 52, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 55, 5], ["homepage", 56, 5], ["license", 57, 5], ["mainProgram", 58, 5], ["maintainers", 59, 5], ["platforms", 60, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["cargoDeps", 31, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 47, 3], ["passthru", 52, 3], ["meta", 54, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const wrapGAppsHook4 = nix.arg($, "wrapGAppsHook4");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "app-icon-preview",
       version: "3.5.1",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "gitlab.gnome.org",
           group: "World",
           owner: "design",
@@ -40,7 +36,7 @@ export default nix.lambda((args) => (() => {
           forceFetchGit: true,
         })))),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -58,11 +54,11 @@ export default nix.lambda((args) => (() => {
       ]),
       buildInputs: nix.thunk(() => [libadwaita, libxml2]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Tool for designing applications icons",
         homepage: "https://gitlab.gnome.org/World/design/app-icon-preview",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

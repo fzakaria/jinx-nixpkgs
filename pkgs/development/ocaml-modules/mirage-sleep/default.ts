@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 15, 5], ["hash", 16, 5]], [["description", 25, 5], ["homepage", 26, 5], ["changelog", 27, 5], ["license", 28, 5], ["maintainers", 29, 5]], [["version", 11, 11], ["pname", 12, 3], ["src", 14, 3], ["propagatedBuildInputs", 19, 3], ["meta", 24, 3]]]);
 const formals$1 = { args: { lib: false, buildDunePackage: false, fetchurl: false, lwt: false, duration: false, version: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 25, 5], ["homepage", 26, 5], ["changelog", 27, 5], ["license", 28, 5], ["maintainers", 29, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["version", 11, 11], ["pname", 12, 3], ["src", 14, 3], ["propagatedBuildInputs", 19, 3], ["meta", 24, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,17 +14,17 @@ export default nix.lambda((args) => (() => {
   const duration = nix.arg($, "duration");
   const version = nix.argOr($, "version", () => "4.1.0");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       version: version,
       pname: "mirage-sleep",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/mirage/mirage-sleep/releases/download/v${version}/mirage-sleep-${version}.tbz`),
           hash: "sha256-CoHl4LgGbADtDvWb3q0u8aMh2jHT9Gvt47vk0Pzp2bs=",
         })))),
       propagatedBuildInputs: nix.thunk(() => [duration, lwt]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Sleep operations for MirageOS",
         homepage: "https://github.com/mirage/mirage-sleep",
         changelog: nix.thunk(() => nix.str`https://raw.githubusercontent.com/mirage/mirage-sleep/refs/tags/v${version}/CHANGES.md`),

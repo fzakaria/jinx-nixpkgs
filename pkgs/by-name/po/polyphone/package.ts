@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]], [["broken", 62, 5], ["description", 63, 5], ["mainProgram", 64, 5], ["homepage", 65, 5], ["license", 66, 5], ["maintainers", 67, 5], ["platforms", 70, 5]], [["version", 17, 3], ["pname", 18, 3], ["src", 20, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 35, 3], ["preConfigure", 47, 3], ["postConfigure", 51, 3], ["qmakeFlags", 57, 3], ["meta", 61, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, "pkg-config": false, "alsa-lib": false, flac: false, libjack2: false, libogg: false, libvorbis: false, libsndfile: false, rtmidi: false, kdePackages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["broken", 62, 5], ["description", 63, 5], ["mainProgram", 64, 5], ["homepage", 65, 5], ["license", 66, 5], ["maintainers", 67, 5], ["platforms", 70, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 17, 3], ["pname", 18, 3], ["src", 20, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 35, 3], ["preConfigure", 47, 3], ["postConfigure", 51, 3], ["qmakeFlags", 57, 3], ["meta", 61, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const rtmidi = nix.arg($, "rtmidi");
   const kdePackages = nix.arg($, "kdePackages");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       version: "2.5.1",
       pname: "polyphone",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "davy7125",
           repo: "polyphone",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -57,7 +55,7 @@ substituteInPlace Makefile \\
 `),
       qmakeFlags: nix.thunk(() => ["DEFINES+=USE_LOCAL_STK"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         broken: nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")))),
         description: "Soundfont editor for creating musical instruments",
         mainProgram: "polyphone",

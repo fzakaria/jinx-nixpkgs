@@ -2,11 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/tg_owt.nix", [[["owner", 39, 5], ["repo", 40, 5], ["rev", 41, 5], ["hash", 42, 5], ["fetchSubmodules", 43, 5]], [["updateScript", 98, 12]], [["description", 101, 5], ["homepage", 102, 5], ["license", 103, 5], ["maintainers", 104, 5], ["platforms", 105, 5]], [["pname", 35, 3], ["version", 36, 3], ["src", 38, 3], ["patches", 46, 3], ["postPatch", 49, 3], ["outputs", 57, 3], ["nativeBuildInputs", 62, 3], ["propagatedBuildInputs", 69, 3], ["passthru", 98, 3], ["meta", 100, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, "pkg-config": false, cmake: false, ninja: false, python3: false, libjpeg: false, openssl: false, libopus: false, ffmpeg: false, openh264: false, crc32c: false, libvpx: false, libx11: false, libxtst: false, libxcomposite: false, libxdamage: false, libxext: false, libxrender: false, libxrandr: false, libxi: false, glib: false, "abseil-cpp": false, pipewire: false, libgbm: false, libdrm: false, libGL: false, "apple-sdk_15": false, unstableGitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/tg_owt.nix", [["owner", 39, 5], ["repo", 40, 5], ["rev", 41, 5], ["hash", 42, 5], ["fetchSubmodules", 43, 5]]);
-const pos$2 = nix.positions(here + "/tg_owt.nix", [["updateScript", 98, 12]]);
-const pos$3 = nix.positions(here + "/tg_owt.nix", [["description", 101, 5], ["homepage", 102, 5], ["license", 103, 5], ["maintainers", 104, 5], ["platforms", 105, 5]]);
-const pos$4 = nix.positions(here + "/tg_owt.nix", [["pname", 35, 3], ["version", 36, 3], ["src", 38, 3], ["patches", 46, 3], ["postPatch", 49, 3], ["outputs", 57, 3], ["nativeBuildInputs", 62, 3], ["propagatedBuildInputs", 69, 3], ["passthru", 98, 3], ["meta", 100, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -41,11 +38,11 @@ export default nix.lambda((args) => (() => {
   const apple_sdk_15 = nix.arg($, "apple-sdk_15");
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "tg_owt",
       version: "0-unstable-2026-09-23",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "desktop-app",
           repo: "tg_owt",
           rev: "9826d0e27894a575a63d4b15b2acf8e749e3da67",
@@ -77,11 +74,11 @@ export default nix.lambda((args) => (() => {
           libGL,
         ])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [apple_sdk_15]))))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Fork of Google's webrtc library for telegram-desktop",
         homepage: "https://github.com/desktop-app/tg_owt",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

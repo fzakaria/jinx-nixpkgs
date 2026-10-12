@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 25, 5], ["hash", 28, 5]], [["url", 34, 7], ["hash", 35, 7], ["relative", 36, 7], ["revert", 37, 7]], [["homepage", 69, 5], ["description", 70, 5], ["license", 71, 5], ["platforms", 72, 5], ["maintainers", 73, 5]], [["version", 19, 3], ["pyproject", 20, 3], ["pname", 21, 3], ["disabled", 23, 3], ["src", 24, 3], ["patches", 31, 3], ["nativeBuildInputs", 41, 3], ["build-system", 45, 3], ["dependencies", 47, 3], ["nativeCheckInputs", 56, 3], ["pytestFlags", 58, 3], ["disabledTests", 63, 3], ["meta", 68, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchurl: false, fetchpatch2: false, isPyPy: false, R: false, "rpy2-rinterface": false, ipython: false, jinja2: false, numpy: false, pandas: false, setuptools: false, tzlocal: false, pytest9_0CheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 25, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["url", 34, 7], ["hash", 35, 7], ["relative", 36, 7], ["revert", 37, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["homepage", 69, 5], ["description", 70, 5], ["license", 71, 5], ["platforms", 72, 5], ["maintainers", 73, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["version", 19, 3], ["pyproject", 20, 3], ["pname", 21, 3], ["disabled", 23, 3], ["src", 24, 3], ["patches", 31, 3], ["nativeBuildInputs", 41, 3], ["build-system", 45, 3], ["dependencies", 47, 3], ["nativeCheckInputs", 56, 3], ["pytestFlags", 58, 3], ["disabledTests", 63, 3], ["meta", 68, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,13 +27,13 @@ export default nix.lambda((args) => (() => {
       const pname = "rpy2-robjects";
       const disabled = isPyPy;
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://pypi/${nix.builtins.substring(0n, 1n, pname)}/${pname}/${nix.builtins.replaceStrings(nix.thunk(() => ["-"]), nix.thunk(() => ["_"]), pname)}-${version}.tar.gz`),
           hash: "sha256-A9CZ9DagGotR+4+L9gJCCpnHzdqMP84OOg9TLja0r+Q=",
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/rpy2/rpy2/commit/524546eef9b8f7f3d61aeb76d7e7fa7beeabd2d2.patch?full_index=1",
             hash: "sha256-aR44E8wIBlD7UpQKm7B+aMn2p3FQ8dwBwLwkibIpcuM=",
             relative: "rpy2-robjects",
@@ -50,7 +47,7 @@ export default nix.lambda((args) => (() => {
       const pytestFlags = nix.thunk(() => ["-Wignore::pytest.PytestRemovedIn9Warning"]);
       const disabledTests = nix.thunk(() => ["test_ri2pandas"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://rpy2.github.io/",
         description: "Python interface to R",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
@@ -61,7 +58,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         version,
         pyproject,
         pname,

@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["hash", 24, 5], ["leaveDotGit", 33, 5], ["postFetch", 34, 5]], [["OPENSSL_NO_VENDOR", 75, 5], ["PROTOC", 76, 5], ["ROCKSDB_LIB_DIR", 77, 5]], [["extraArgs", 81, 5]], [["updateScript", 80, 12]], [["description", 85, 5], ["homepage", 86, 5], ["license", 87, 5], ["maintainers", 88, 5], ["platforms", 95, 5], ["broken", 99, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["preBuild", 40, 3], ["cargoPatches", 45, 3], ["cargoHash", 50, 3], ["buildType", 52, 3], ["buildAndTestSubdir", 53, 3], ["nativeBuildInputs", 55, 3], ["buildInputs", 63, 3], ["checkInputs", 68, 3], ["doCheck", 72, 3], ["env", 74, 3], ["passthru", 80, 3], ["meta", 84, 3]]]);
 const formals$1 = { args: { cacert: false, fetchFromGitHub: false, lib: false, "nix-update-script": false, openssl: false, "pkg-config": false, protobuf: false, rocksdb: false, "rust-jemalloc-sys-unprefixed": false, rustPlatform: false, rustc: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["hash", 24, 5], ["leaveDotGit", 33, 5], ["postFetch", 34, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["OPENSSL_NO_VENDOR", 75, 5], ["PROTOC", 76, 5], ["ROCKSDB_LIB_DIR", 77, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["extraArgs", 81, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 80, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 85, 5], ["homepage", 86, 5], ["license", 87, 5], ["maintainers", 88, 5], ["platforms", 95, 5], ["broken", 99, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["preBuild", 40, 3], ["cargoPatches", 45, 3], ["cargoHash", 50, 3], ["buildType", 52, 3], ["buildAndTestSubdir", 53, 3], ["nativeBuildInputs", 55, 3], ["buildInputs", 63, 3], ["checkInputs", 68, 3], ["doCheck", 72, 3], ["env", 74, 3], ["passthru", 80, 3], ["meta", 84, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const rustc = nix.arg($, "rustc");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "polkadot",
       version: "2606-2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "paritytech",
           repo: "polkadot-sdk",
           rev: nix.thunk(() => nix.str`polkadot-stable${nix.sel(finalAttrs, "version")}`),
@@ -52,20 +47,20 @@ export default nix.lambda((args) => (() => {
       checkInputs: nix.thunk(() => [cacert]),
       doCheck: false,
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         OPENSSL_NO_VENDOR: 1n,
         PROTOC: nix.thunk(() => nix.str`${protobuf}/bin/protoc`),
         ROCKSDB_LIB_DIR: nix.thunk(() => nix.str`${rocksdb}/lib`),
       })),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             extraArgs: nix.thunk(() => ["--version-regex=polkadot-stable(\\d{4}(?:-\\d+)?)$"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Implementation of a https://polkadot.network node in Rust based on the Substrate framework",
         homepage: "https://github.com/paritytech/polkadot-sdk",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

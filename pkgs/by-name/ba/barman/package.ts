@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]], [["extraArgs", 76, 7]], [["updateScript", 75, 5]], [["description", 84, 5], ["homepage", 85, 5], ["changelog", 86, 5], ["mainProgram", 87, 5], ["license", 88, 5], ["maintainers", 89, 5], ["platforms", 90, 5]], [["pname", 13, 3], ["version", 14, 3], ["pyproject", 15, 3], ["src", 17, 3], ["patches", 24, 3], ["postPatch", 29, 3], ["build-system", 34, 3], ["dependencies", 39, 3], ["nativeCheckInputs", 54, 3], ["disabledTests", 63, 3], ["passthru", 74, 3], ["meta", 83, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, file: false, python3Packages: false, rsync: false, versionCheckHook: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["extraArgs", 76, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 75, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 84, 5], ["homepage", 85, 5], ["changelog", 86, 5], ["mainProgram", 87, 5], ["license", 88, 5], ["maintainers", 89, 5], ["platforms", 90, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["pyproject", 15, 3], ["src", 17, 3], ["patches", 24, 3], ["postPatch", 29, 3], ["build-system", 34, 3], ["dependencies", 39, 3], ["nativeCheckInputs", 54, 3], ["disabledTests", 63, 3], ["passthru", 74, 3], ["meta", 83, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "barman",
       version: "3.19.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "EnterpriseDB",
           repo: "barman",
           tag: nix.thunk(() => nix.str`release/${nix.sel(finalAttrs, "version")}`),
@@ -73,14 +69,14 @@ export default nix.lambda((args) => (() => {
         "test_resolve_mounted_volume_failure",
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["test_get_file_mode"])))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             extraArgs: nix.thunk(() => ["--version-regex", "^release/(\\d+\\.\\d+\\.\\d+)$"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Backup and Recovery Manager for PostgreSQL",
         homepage: "https://www.pgbarman.org/",
         changelog: nix.thunk(() => nix.str`https://github.com/EnterpriseDB/barman/blob/${nix.sel(finalAttrs, "src", "tag")}/RELNOTES.md`),

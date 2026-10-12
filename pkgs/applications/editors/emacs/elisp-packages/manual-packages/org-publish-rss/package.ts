@@ -2,11 +2,8 @@
 import * as nix from "../../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["vc", 13, 5], ["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]], [["updateScript", 20, 12]], [["description", 23, 5], ["homepage", 24, 5], ["license", 25, 5], ["maintainers", 26, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["passthru", 20, 3], ["meta", 22, 3]]]);
 const formals$1 = { args: { lib: false, melpaBuild: false, fetchFromSourcehut: false, unstableGitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["vc", 13, 5], ["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 20, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 23, 5], ["homepage", 24, 5], ["license", 25, 5], ["maintainers", 26, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["passthru", 20, 3], ["meta", 22, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromSourcehut = nix.arg($, "fetchFromSourcehut");
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   return nix.app(melpaBuild, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "org-publish-rss",
       version: "0-unstable-2026-01-09",
       src: nix.thunk(() => nix.app(fetchFromSourcehut, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           vc: "git",
           owner: "~taingram",
           repo: "org-publish-rss",
@@ -27,11 +24,11 @@ export default nix.lambda((args) => (() => {
           hash: "sha256-OPAyTLcYSKYqCcO6DP0yfoNYsIZzOwhZ0u9YcE4+TFU=",
         })))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Automatically generate RSS feeds for org-publish projects",
         homepage: "https://git.sr.ht/~taingram/org-publish-rss",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

@@ -2,20 +2,18 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
-const pos$1 = nix.positions(here + "/dependencies.nix", [["allowAliases", 3, 35]]);
-const pos$2 = nix.positions(here + "/dependencies.nix", [["config", 3, 28]]);
-const pos$3 = nix.positions(here + "/dependencies.nix", [["deps", 11, 7], ["broken", 14, 7]]);
+const $pos = nix.positions(here + "/dependencies.nix", [[["allowAliases", 3, 35]], [["config", 3, 28]], [["deps", 11, 7], ["broken", 14, 7]]]);
 
 export default nix.thunk(() => (() => {
   const pkgs = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../..")), nix.thunk(() => ({
-      [nix.POS]: pos$2,
-      config: nix.thunk(() => ({ [nix.POS]: pos$1, allowAliases: false })),
+      [nix.POS]: $pos[1],
+      config: nix.thunk(() => ({ [nix.POS]: $pos[0], allowAliases: false })),
     }))));
   const lib = nix.thunk(() => nix.attr(pkgs, "lib"));
   const getDeps = (_) => (pkg) => (() => {
     const pname = nix.thunk(() => nix.selOr(pkg, () => null, "pname"));
     return {
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       deps: nix.thunk(() => nix.builtins.filter((x) => (nix.asBool(!nix.eq(x, null)) && nix.asBool(!nix.eq(x, pname))), nix.thunk(() => nix.builtins.map((x) => nix.selOr(x, () => null, "pname"), nix.thunk(() => nix.selOr(pkg, () => [], "propagatedBuildInputs")))))),
       broken: nix.thunk(() => nix.eq(nix.selOr(pkg, () => [null], "meta", "hydraPlatforms"), [])),
     };

@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 15, 62]], [["pkgs", 16, 36], ["python3", 16, 41]], [["owner", 28, 5], ["repo", 29, 5], ["rev", 30, 5], ["hash", 31, 5]], [["url", 38, 7], ["hash", 39, 7]], [["description", 83, 5], ["homepage", 84, 5], ["mainProgram", 85, 5], ["license", 86, 5], ["platforms", 87, 5], ["maintainers", 88, 5]], [["pname", 23, 3], ["version", 24, 11], ["pyproject", 25, 3], ["src", 27, 3], ["patches", 34, 3], ["build-system", 43, 3], ["buildInputs", 47, 3], ["propagatedBuildInputs", 49, 3], ["nativeCheckInputs", 51, 3], ["checkPhase", 60, 3], ["postInstall", 74, 3], ["meta", 82, 3]]]);
 const formals$1 = { args: { pkgs: false, lib: false, glibcLocales: false, python3: false, fetchpatch: false, fetchFromGitHub: false, plugins: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 15, 62]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pkgs", 16, 36], ["python3", 16, 41]]);
-const pos$3 = nix.positions(here + "/package.nix", [["owner", 28, 5], ["repo", 29, 5], ["rev", 30, 5], ["hash", 31, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["url", 38, 7], ["hash", 39, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 83, 5], ["homepage", 84, 5], ["mainProgram", 85, 5], ["license", 86, 5], ["platforms", 87, 5], ["maintainers", 88, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 23, 3], ["version", 24, 11], ["pyproject", 25, 3], ["src", 27, 3], ["patches", 34, 3], ["build-system", 43, 3], ["buildInputs", 47, 3], ["propagatedBuildInputs", 49, 3], ["nativeCheckInputs", 51, 3], ["checkPhase", 60, 3], ["postInstall", 74, 3], ["meta", 82, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,15 +15,15 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const plugins = nix.argOr($, "plugins", () => (p) => []);
   const version = "2.2.0";
-  const allPlugins = nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (name) => (value) => nix.update(value, { [nix.POS]: pos$1, name: name }), nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./plugins.nix")), nix.thunk(() => ({ [nix.POS]: pos$2, pkgs: pkgs, python3: python3 }))))));
+  const allPlugins = nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (name) => (value) => nix.update(value, { [nix.POS]: $pos[0], name: name }), nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./plugins.nix")), nix.thunk(() => ({ [nix.POS]: $pos[1], pkgs: pkgs, python3: python3 }))))));
   const selectedPlugins = nix.thunk(() => nix.app(plugins, allPlugins));
   return nix.app(nix.sel(python3, "pkgs", "buildPythonPackage"), nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "bumblebee-status",
       version: version,
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           owner: "tobi-wan-kenobi",
           repo: "bumblebee-status",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -36,7 +31,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             url: "https://github.com/tobi-wan-kenobi/bumblebee-status/commit/2fe8f1ff1444daf155b18318005f33a76a5d64b4.patch",
             hash: "sha256-BC1cgQDMJkhuEgq8NJ28521CHbEfqIMueHkFXXlZz2w=",
           })))),
@@ -77,7 +72,7 @@ find $out -name "__pycache__" -type d | xargs rm -rv
 cp -r ./themes $out/${nix.sel(python3, "sitePackages")}
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Modular, theme-able status line generator for the i3 window manager",
         homepage: "https://github.com/tobi-wan-kenobi/bumblebee-status",
         mainProgram: "bumblebee-status",

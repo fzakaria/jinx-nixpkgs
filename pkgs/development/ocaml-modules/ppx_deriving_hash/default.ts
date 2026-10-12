@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["version", 15, 9], ["hash", 16, 9]], [["version", 20, 9], ["hash", 21, 9]], [["url", 30, 5], ["hash", 31, 21]], [["homepage", 45, 5], ["description", 46, 5], ["license", 47, 5], ["maintainers", 48, 5]], [["pname", 26, 3], ["version", 27, 19], ["src", 29, 3], ["propagatedBuildInputs", 34, 3], ["doCheck", 40, 3], ["nativeCheckInputs", 41, 3], ["checkInputs", 42, 3], ["meta", 44, 3]]]);
 const formals$1 = { args: { lib: false, fetchurl: false, buildDunePackage: false, cppo: false, ppxlib: false, ppx_deriving: false, ounit2: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["version", 15, 9], ["hash", 16, 9]]);
-const pos$2 = nix.positions(here + "/default.nix", [["version", 20, 9], ["hash", 21, 9]]);
-const pos$3 = nix.positions(here + "/default.nix", [["url", 30, 5], ["hash", 31, 21]]);
-const pos$4 = nix.positions(here + "/default.nix", [["homepage", 45, 5], ["description", 46, 5], ["license", 47, 5], ["maintainers", 48, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 26, 3], ["version", 27, 19], ["src", 29, 3], ["propagatedBuildInputs", 34, 3], ["doCheck", 40, 3], ["nativeCheckInputs", 41, 3], ["checkInputs", 42, 3], ["meta", 44, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,20 +15,20 @@ export default nix.lambda((args) => (() => {
   const ppx_deriving = nix.arg($, "ppx_deriving");
   const ounit2 = nix.arg($, "ounit2");
   const param = nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(ppxlib, "version")), "0.36")) ? {
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     version: "0.1.4",
     hash: "sha256-5EYz9DwAdFW+KmE+9B+iTpsBvHJ9sMt3Dhamgz6oLUU=",
   } : {
-    [nix.POS]: pos$2,
+    [nix.POS]: $pos[1],
     version: "0.1.2",
     hash: "sha256-ss3OALD+9Dm5wtwgvQ0SSL7Cu0xWumwKmLBKPDh4Fa8=",
   }));
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "ppx_deriving_hash",
       version: nix.thunk(() => nix.attr(param, "version")),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           url: nix.thunk(() => nix.str`https://github.com/sim642/ppx_deriving_hash/releases/download/${nix.sel(finalAttrs, "version")}/ppx_deriving_hash-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: nix.thunk(() => nix.attr(param, "hash")),
         })))),
@@ -41,7 +37,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [cppo]),
       checkInputs: nix.thunk(() => [ounit2]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://github.com/sim642/ppx_deriving_hash",
         description: "OCaml PPX deriver for standard hash functions without extra dependencies",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

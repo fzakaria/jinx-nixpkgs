@@ -2,17 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]], [["pname", 33, 13], ["version", 33, 19], ["src", 33, 27], ["license", 35, 5], ["homepage", 36, 5], ["description", 37, 5], ["maintainers", 38, 5], ["hydraPlatforms", 39, 5]], [["postPatch", 52, 7], ["libraryHaskellDepends", 53, 7]], [["postPatch", 72, 7], ["libraryHaskellDepends", 73, 7]], [["postPatch", 85, 7], ["doHaddock", 86, 7], ["libraryHaskellDepends", 87, 7]], [["postPatch", 107, 7], ["doHaddock", 108, 7], ["libraryHaskellDepends", 109, 7]], [["postPatch", 120, 7], ["doHaddock", 121, 7], ["libraryHaskellDepends", 122, 7]], [["postPatch", 137, 7], ["doHaddock", 138, 7], ["libraryHaskellDepends", 139, 7]], [["pname", 149, 5], ["version", 150, 13], ["src", 150, 21], ["sourceRoot", 152, 5], ["npmDepsHash", 154, 5], ["installPhase", 156, 5]], [["isLibrary", 166, 5], ["isExecutable", 167, 5], ["doHaddock", 170, 5], ["enableSharedExecutables", 171, 5], ["postFixup", 172, 5], ["preBuild", 174, 5], ["executableToolDepends", 180, 5], ["postInstall", 186, 5], ["checkPhase", 209, 5], ["executableHaskellDepends", 211, 5]]]);
 const formals$1 = { args: { haskell: false, fetchFromGitHub: false, lib: false, stdenv: false, makeWrapper: false, which: false, buildNpmPackage: false, maude: false, "graphviz-nox": false, glibcLocales: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 33, 13], ["version", 33, 19], ["src", 33, 27], ["license", 35, 5], ["homepage", 36, 5], ["description", 37, 5], ["maintainers", 38, 5], ["hydraPlatforms", 39, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["postPatch", 52, 7], ["libraryHaskellDepends", 53, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["postPatch", 72, 7], ["libraryHaskellDepends", 73, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["postPatch", 85, 7], ["doHaddock", 86, 7], ["libraryHaskellDepends", 87, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["postPatch", 107, 7], ["doHaddock", 108, 7], ["libraryHaskellDepends", 109, 7]]);
-const pos$7 = nix.positions(here + "/package.nix", [["postPatch", 120, 7], ["doHaddock", 121, 7], ["libraryHaskellDepends", 122, 7]]);
-const pos$8 = nix.positions(here + "/package.nix", [["postPatch", 137, 7], ["doHaddock", 138, 7], ["libraryHaskellDepends", 139, 7]]);
-const pos$9 = nix.positions(here + "/package.nix", [["pname", 149, 5], ["version", 150, 13], ["src", 150, 21], ["sourceRoot", 152, 5], ["npmDepsHash", 154, 5], ["installPhase", 156, 5]]);
-const pos$10 = nix.positions(here + "/package.nix", [["isLibrary", 166, 5], ["isExecutable", 167, 5], ["doHaddock", 170, 5], ["enableSharedExecutables", 171, 5], ["postFixup", 172, 5], ["preBuild", 174, 5], ["executableToolDepends", 180, 5], ["postInstall", 186, 5], ["checkPhase", 209, 5], ["executableHaskellDepends", 211, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,14 +21,14 @@ export default nix.lambda((args) => (() => {
   const mkDerivation = nix.thunk(() => nix.attr(haskellPackages, "mkDerivation"));
   const version = "1.12.0";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "tamarin-prover",
       repo: "tamarin-prover",
       tag: version,
       hash: "sha256-yXJIJENygr/lmkrVap4ohb8Pua4kri+yaD/Dy0Hpwn4=",
     }))));
   const common = (pname) => (src_1) => ({
-    [nix.POS]: pos$2,
+    [nix.POS]: $pos[1],
     pname: pname,
     version: version,
     src: src_1,
@@ -51,7 +42,7 @@ export default nix.lambda((args) => (() => {
 cp --remove-destination ${src}/Setup.hs .;
 `);
   const tamarin_prover_utils = nix.thunk(() => nix.app(mkDerivation, nix.thunk(() => nix.update(nix.app(common, "tamarin-prover-utils", nix.thunk(() => nix.add(src, "/lib/utils"))), {
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       postPatch: replaceSymlinks,
       libraryHaskellDepends: nix.thunk(() => (() => {
         const w = nix.withScope(haskellPackages, null);
@@ -71,7 +62,7 @@ cp --remove-destination ${src}/Setup.hs .;
       })()),
     }))));
   const tamarin_prover_term = nix.thunk(() => nix.app(mkDerivation, nix.thunk(() => nix.update(nix.app(common, "tamarin-prover-term", nix.thunk(() => nix.add(src, "/lib/term"))), {
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       postPatch: replaceSymlinks,
       libraryHaskellDepends: nix.thunk(() => nix.concat((() => {
         const w = nix.withScope(haskellPackages, null);
@@ -82,7 +73,7 @@ cp --remove-destination ${src}/Setup.hs .;
       })(), [tamarin_prover_utils])),
     }))));
   const tamarin_prover_theory = nix.thunk(() => nix.app(mkDerivation, nix.thunk(() => nix.update(nix.app(common, "tamarin-prover-theory", nix.thunk(() => nix.add(src, "/lib/theory"))), {
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       postPatch: replaceSymlinks,
       doHaddock: false,
       libraryHaskellDepends: nix.thunk(() => nix.concat((() => {
@@ -99,7 +90,7 @@ cp --remove-destination ${src}/Setup.hs .;
       })(), [tamarin_prover_utils, tamarin_prover_term])),
     }))));
   const tamarin_prover_sapic = nix.thunk(() => nix.app(mkDerivation, nix.thunk(() => nix.update(nix.app(common, "tamarin-prover-sapic", nix.thunk(() => nix.add(src, "/lib/sapic"))), {
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       postPatch: nix.thunk(() => nix.str`cp --remove-destination ${src}/LICENSE .`),
       doHaddock: false,
       libraryHaskellDepends: nix.thunk(() => nix.concat((() => {
@@ -108,7 +99,7 @@ cp --remove-destination ${src}/Setup.hs .;
       })(), [tamarin_prover_theory])),
     }))));
   const tamarin_prover_accountability = nix.thunk(() => nix.app(mkDerivation, nix.thunk(() => nix.update(nix.app(common, "tamarin-prover-accountability", nix.thunk(() => nix.add(src, "/lib/accountability"))), {
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       postPatch: nix.thunk(() => nix.str`cp --remove-destination ${src}/LICENSE .`),
       doHaddock: false,
       libraryHaskellDepends: nix.thunk(() => nix.concat((() => {
@@ -117,7 +108,7 @@ cp --remove-destination ${src}/Setup.hs .;
       })(), [tamarin_prover_utils, tamarin_prover_term, tamarin_prover_theory])),
     }))));
   const tamarin_prover_export = nix.thunk(() => nix.app(mkDerivation, nix.thunk(() => nix.update(nix.app(common, "tamarin-prover-export", nix.thunk(() => nix.add(src, "/lib/export"))), {
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       postPatch: nix.thunk(() => nix.str`cp --remove-destination ${src}/LICENSE .`),
       doHaddock: false,
       libraryHaskellDepends: nix.thunk(() => [
@@ -128,7 +119,7 @@ cp --remove-destination ${src}/Setup.hs .;
       ]),
     }))));
   const tamarin_frontend = nix.thunk(() => nix.app(buildNpmPackage, nix.thunk(() => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       pname: "tamarin-frontend",
       version: version,
       src: src,
@@ -137,7 +128,7 @@ cp --remove-destination ${src}/Setup.hs .;
       installPhase: "mkdir -p $out\ncp dist/* $out/\n",
     }))));
   return nix.app(mkDerivation, nix.thunk(() => nix.update(nix.app(common, "tamarin-prover", src), {
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       isLibrary: false,
       isExecutable: true,
       doHaddock: false,

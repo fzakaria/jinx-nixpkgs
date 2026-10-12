@@ -2,33 +2,8 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/userborn.nix", [[["maintainers", 21, 8]], [["enable", 24, 23]], [["userborn", 24, 14]], [["text", 27, 37]], [["rootpw.secret", 27, 21]], [["etc", 27, 17]], [["hashedPasswordFile", 33, 11]], [["isNormalUser", 36, 11], ["password", 37, 11]], [["isSystemUser", 40, 11], ["group", 41, 11], ["initialHashedPassword", 42, 11]], [["root", 31, 9], ["normalo", 35, 9], ["sysuser", 39, 9]], [["sysusers", 46, 9]], [["users", 30, 7], ["groups", 45, 7]], [["hashedPasswordFile", 56, 13], ["hashedPassword", 57, 13]], [["hashedPassword", 60, 13]], [["initialHashedPassword", 63, 13]], [["isNormalUser", 66, 13], ["hashedPassword", 67, 13]], [["enable", 70, 13], ["isNormalUser", 71, 13]], [["root", 53, 11], ["normalo", 59, 11], ["sysuser", 62, 11], ["new-normalo", 65, 11], ["normalo-disabled", 69, 11]], [["new-group", 75, 11]], [["users", 52, 9], ["groups", 74, 9]], [["users", 51, 7]], [["configuration", 50, 35]], [["new-generation", 50, 20]], [["services", 24, 5], ["environment", 27, 5], ["users", 29, 5], ["specialisation", 50, 5]], [["machine", 23, 9]], [["name", 19, 3], ["meta", 21, 3], ["nodes", 23, 3], ["testScript", 81, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/userborn.nix", [["maintainers", 21, 8]]);
-const pos$2 = nix.positions(here + "/userborn.nix", [["enable", 24, 23]]);
-const pos$3 = nix.positions(here + "/userborn.nix", [["userborn", 24, 14]]);
-const pos$4 = nix.positions(here + "/userborn.nix", [["text", 27, 37]]);
-const pos$5 = nix.positions(here + "/userborn.nix", [["rootpw.secret", 27, 21]]);
-const pos$6 = nix.positions(here + "/userborn.nix", [["etc", 27, 17]]);
-const pos$7 = nix.positions(here + "/userborn.nix", [["hashedPasswordFile", 33, 11]]);
-const pos$8 = nix.positions(here + "/userborn.nix", [["isNormalUser", 36, 11], ["password", 37, 11]]);
-const pos$9 = nix.positions(here + "/userborn.nix", [["isSystemUser", 40, 11], ["group", 41, 11], ["initialHashedPassword", 42, 11]]);
-const pos$10 = nix.positions(here + "/userborn.nix", [["root", 31, 9], ["normalo", 35, 9], ["sysuser", 39, 9]]);
-const pos$11 = nix.positions(here + "/userborn.nix", [["sysusers", 46, 9]]);
-const pos$12 = nix.positions(here + "/userborn.nix", [["users", 30, 7], ["groups", 45, 7]]);
-const pos$13 = nix.positions(here + "/userborn.nix", [["hashedPasswordFile", 56, 13], ["hashedPassword", 57, 13]]);
-const pos$14 = nix.positions(here + "/userborn.nix", [["hashedPassword", 60, 13]]);
-const pos$15 = nix.positions(here + "/userborn.nix", [["initialHashedPassword", 63, 13]]);
-const pos$16 = nix.positions(here + "/userborn.nix", [["isNormalUser", 66, 13], ["hashedPassword", 67, 13]]);
-const pos$17 = nix.positions(here + "/userborn.nix", [["enable", 70, 13], ["isNormalUser", 71, 13]]);
-const pos$18 = nix.positions(here + "/userborn.nix", [["root", 53, 11], ["normalo", 59, 11], ["sysuser", 62, 11], ["new-normalo", 65, 11], ["normalo-disabled", 69, 11]]);
-const pos$19 = nix.positions(here + "/userborn.nix", [["new-group", 75, 11]]);
-const pos$20 = nix.positions(here + "/userborn.nix", [["users", 52, 9], ["groups", 74, 9]]);
-const pos$21 = nix.positions(here + "/userborn.nix", [["users", 51, 7]]);
-const pos$22 = nix.positions(here + "/userborn.nix", [["configuration", 50, 35]]);
-const pos$23 = nix.positions(here + "/userborn.nix", [["new-generation", 50, 20]]);
-const pos$24 = nix.positions(here + "/userborn.nix", [["services", 24, 5], ["environment", 27, 5], ["users", 29, 5], ["specialisation", 50, 5]]);
-const pos$25 = nix.positions(here + "/userborn.nix", [["machine", 23, 9]]);
-const pos$26 = nix.positions(here + "/userborn.nix", [["name", 19, 3], ["meta", 21, 3], ["nodes", 23, 3], ["testScript", 81, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -41,76 +16,76 @@ export default nix.lambda((args) => (() => {
   const updatedSysuserInitialHashedPassword = "$y$j9T$kUBVhgOdSjymSfwfRVja70$eqCwWzVsz0fI0Uc6JsdD2CYMCpfJcErqnIqva2JCi1D";
   const newNormaloHashedPassword = "$y$j9T$UFBMWbGjjVola0YE9YCcV/$jRSi5S6lzkcifbuqjMcyXLTwgOGm9BTQk/G/jYaxroC";
   return {
-    [nix.POS]: pos$26,
+    [nix.POS]: $pos[25],
     name: "userborn",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "nikstur"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$25,
+      [nix.POS]: $pos[24],
       machine: nix.thunk(() => ({
-        [nix.POS]: pos$24,
+        [nix.POS]: $pos[23],
         services: nix.thunk(() => ({
-          [nix.POS]: pos$3,
-          userborn: nix.thunk(() => ({ [nix.POS]: pos$2, enable: true })),
+          [nix.POS]: $pos[2],
+          userborn: nix.thunk(() => ({ [nix.POS]: $pos[1], enable: true })),
         })),
         environment: nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           etc: nix.thunk(() => ({
-            [nix.POS]: pos$5,
-            "rootpw.secret": nix.thunk(() => ({ [nix.POS]: pos$4, text: rootHashedPasswordFile })),
+            [nix.POS]: $pos[4],
+            "rootpw.secret": nix.thunk(() => ({ [nix.POS]: $pos[3], text: rootHashedPasswordFile })),
           })),
         })),
         users: nix.thunk(() => ({
-          [nix.POS]: pos$12,
+          [nix.POS]: $pos[11],
           users: nix.thunk(() => ({
-            [nix.POS]: pos$10,
+            [nix.POS]: $pos[9],
             root: nix.thunk(() => ({
-              [nix.POS]: pos$7,
+              [nix.POS]: $pos[6],
               hashedPasswordFile: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), "/etc/rootpw.secret")),
             })),
-            normalo: nix.thunk(() => ({ [nix.POS]: pos$8, isNormalUser: true, password: normaloPassword })),
+            normalo: nix.thunk(() => ({ [nix.POS]: $pos[7], isNormalUser: true, password: normaloPassword })),
             sysuser: nix.thunk(() => ({
-              [nix.POS]: pos$9,
+              [nix.POS]: $pos[8],
               isSystemUser: true,
               group: "sysusers",
               initialHashedPassword: sysuserInitialHashedPassword,
             })),
           })),
-          groups: nix.thunk(() => ({ [nix.POS]: pos$11, sysusers: nix.thunk(() => ({})) })),
+          groups: nix.thunk(() => ({ [nix.POS]: $pos[10], sysusers: nix.thunk(() => ({})) })),
         })),
         specialisation: nix.thunk(() => ({
-          [nix.POS]: pos$23,
+          [nix.POS]: $pos[22],
           "new-generation": nix.thunk(() => ({
-            [nix.POS]: pos$22,
+            [nix.POS]: $pos[21],
             configuration: nix.thunk(() => ({
-              [nix.POS]: pos$21,
+              [nix.POS]: $pos[20],
               users: nix.thunk(() => ({
-                [nix.POS]: pos$20,
+                [nix.POS]: $pos[19],
                 users: nix.thunk(() => ({
-                  [nix.POS]: pos$18,
+                  [nix.POS]: $pos[17],
                   root: nix.thunk(() => ({
-                    [nix.POS]: pos$13,
+                    [nix.POS]: $pos[12],
                     hashedPasswordFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOverride"), 9n, null)),
                     hashedPassword: updatedRootHashedPassword,
                   })),
-                  normalo: nix.thunk(() => ({ [nix.POS]: pos$14, hashedPassword: updatedNormaloHashedPassword })),
+                  normalo: nix.thunk(() => ({ [nix.POS]: $pos[13], hashedPassword: updatedNormaloHashedPassword })),
                   sysuser: nix.thunk(() => ({
-                    [nix.POS]: pos$15,
+                    [nix.POS]: $pos[14],
                     initialHashedPassword: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), updatedSysuserInitialHashedPassword)),
                   })),
                   "new-normalo": nix.thunk(() => ({
-                    [nix.POS]: pos$16,
+                    [nix.POS]: $pos[15],
                     isNormalUser: true,
                     hashedPassword: newNormaloHashedPassword,
                   })),
-                  "normalo-disabled": nix.thunk(() => ({ [nix.POS]: pos$17, enable: false, isNormalUser: true })),
+                  "normalo-disabled": nix.thunk(() => ({ [nix.POS]: $pos[16], enable: false, isNormalUser: true })),
                 })),
-                groups: nix.thunk(() => ({ [nix.POS]: pos$19, "new-group": nix.thunk(() => ({})) })),
+                groups: nix.thunk(() => ({ [nix.POS]: $pos[18], "new-group": nix.thunk(() => ({})) })),
               })),
             })),
           })),

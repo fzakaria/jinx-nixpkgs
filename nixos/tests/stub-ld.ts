@@ -2,56 +2,42 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/stub-ld.nix", [[["enable", 9, 29]], [["stub-ld", 9, 21]], [["enable", 17, 35]], [["stub-ld", 17, 27]], [["environment", 17, 15]], [["inheritParentConfig", 12, 11], ["configuration", 14, 11]], [["nostub", 11, 24]], [["environment", 9, 9], ["specialisation", 11, 9]], [["machine", 6, 11]], [["src", 31, 50]], [["url", 34, 28], ["hash", 35, 28]], [["url", 36, 26], ["hash", 37, 26]], [["url", 38, 29], ["hash", 39, 29]], [["x86_64-linux", 34, 15], ["i686-linux", 36, 15], ["aarch64-linux", 38, 15]], [["name", 4, 5], ["nodes", 6, 5], ["testScript", 22, 5]]]);
 const formals$1 = { args: { lib: false, pkgs: false }, ellipsis: true };
 const formals$2 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/stub-ld.nix", [["enable", 9, 29]]);
-const pos$2 = nix.positions(here + "/stub-ld.nix", [["stub-ld", 9, 21]]);
 const formals$3 = { args: {  }, ellipsis: true };
-const pos$3 = nix.positions(here + "/stub-ld.nix", [["enable", 17, 35]]);
-const pos$4 = nix.positions(here + "/stub-ld.nix", [["stub-ld", 17, 27]]);
-const pos$5 = nix.positions(here + "/stub-ld.nix", [["environment", 17, 15]]);
-const pos$6 = nix.positions(here + "/stub-ld.nix", [["inheritParentConfig", 12, 11], ["configuration", 14, 11]]);
-const pos$7 = nix.positions(here + "/stub-ld.nix", [["nostub", 11, 24]]);
-const pos$8 = nix.positions(here + "/stub-ld.nix", [["environment", 9, 9], ["specialisation", 11, 9]]);
-const pos$9 = nix.positions(here + "/stub-ld.nix", [["machine", 6, 11]]);
-const pos$10 = nix.positions(here + "/stub-ld.nix", [["src", 31, 50]]);
-const pos$11 = nix.positions(here + "/stub-ld.nix", [["url", 34, 28], ["hash", 35, 28]]);
-const pos$12 = nix.positions(here + "/stub-ld.nix", [["url", 36, 26], ["hash", 37, 26]]);
-const pos$13 = nix.positions(here + "/stub-ld.nix", [["url", 38, 29], ["hash", 39, 29]]);
-const pos$14 = nix.positions(here + "/stub-ld.nix", [["x86_64-linux", 34, 15], ["i686-linux", 36, 15], ["aarch64-linux", 38, 15]]);
-const pos$15 = nix.positions(here + "/stub-ld.nix", [["name", 4, 5], ["nodes", 6, 5], ["testScript", 22, 5]]);
 
 export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./make-test-python.nix")), nix.lambda((args) => (() => {
     const $ = nix.formals(args, formals$1);
     const lib = nix.arg($, "lib");
     const pkgs = nix.arg($, "pkgs");
     return {
-      [nix.POS]: pos$15,
+      [nix.POS]: $pos[14],
       name: "stub-ld",
       nodes: nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         machine: nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$2);
           const lib_1 = nix.arg($_1, "lib");
           return {
-            [nix.POS]: pos$8,
+            [nix.POS]: $pos[7],
             environment: nix.thunk(() => ({
-              [nix.POS]: pos$2,
-              "stub-ld": nix.thunk(() => ({ [nix.POS]: pos$1, enable: true })),
+              [nix.POS]: $pos[1],
+              "stub-ld": nix.thunk(() => ({ [nix.POS]: $pos[0], enable: true })),
             })),
             specialisation: nix.thunk(() => ({
-              [nix.POS]: pos$7,
+              [nix.POS]: $pos[6],
               nostub: nix.thunk(() => ({
-                [nix.POS]: pos$6,
+                [nix.POS]: $pos[5],
                 inheritParentConfig: true,
                 configuration: nix.lambda((args_2) => (() => {
                   const $_2 = nix.formals(args_2, formals$3);
                   return {
-                    [nix.POS]: pos$5,
+                    [nix.POS]: $pos[4],
                     environment: nix.thunk(() => ({
-                      [nix.POS]: pos$4,
+                      [nix.POS]: $pos[3],
                       "stub-ld": nix.thunk(() => ({
-                        [nix.POS]: pos$3,
+                        [nix.POS]: $pos[2],
                         enable: nix.thunk(() => nix.app(nix.sel(lib_1, "mkForce"), false)),
                       })),
                     })),
@@ -66,22 +52,22 @@ export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./mak
         const libDir = nix.thunk(() => nix.sel(pkgs, "stdenv", "hostPlatform", "libDir"));
         const ldsoBasename = nix.thunk(() => nix.app(nix.sel(lib, "last"), nix.thunk(() => nix.app(nix.sel(lib, "splitString"), "/", nix.thunk(() => nix.sel(pkgs, "stdenv", "cc", "bintools", "dynamicLinker"))))));
         const test_exec = nix.thunk(() => nix.builtins.mapAttrs((n) => (v) => nix.app(nix.sel(pkgs, "runCommand"), nix.thunk(() => nix.str`test-exec-${n}`), nix.thunk(() => ({
-              [nix.POS]: pos$10,
+              [nix.POS]: $pos[9],
               src: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchurl"), v)),
             })), "mkdir -p $out;cd $out;tar -xzf $src"), nix.thunk(() => ({
-            [nix.POS]: pos$14,
+            [nix.POS]: $pos[13],
             "x86_64-linux": nix.thunk(() => ({
-              [nix.POS]: pos$11,
+              [nix.POS]: $pos[10],
               url: "https://github.com/rustic-rs/rustic/releases/download/v0.6.1/rustic-v0.6.1-x86_64-unknown-linux-gnu.tar.gz",
               hash: "sha256-3zySzx8MKFprMOi++yr2ZGASE0aRfXHQuG3SN+kWUCI=",
             })),
             "i686-linux": nix.thunk(() => ({
-              [nix.POS]: pos$12,
+              [nix.POS]: $pos[11],
               url: "https://github.com/rustic-rs/rustic/releases/download/v0.6.1/rustic-v0.6.1-i686-unknown-linux-gnu.tar.gz",
               hash: "sha256-fWNiATFeg0B2pfB5zndlnzGn7Ztl8diVS1rFLEDnSLU=",
             })),
             "aarch64-linux": nix.thunk(() => ({
-              [nix.POS]: pos$13,
+              [nix.POS]: $pos[12],
               url: "https://github.com/rustic-rs/rustic/releases/download/v0.6.1/rustic-v0.6.1-aarch64-unknown-linux-gnu.tar.gz",
               hash: "sha256-hnldbd2cctQIAhIKoEZLIWY8H3jiFBClkNy2UlyyvAs=",
             })),

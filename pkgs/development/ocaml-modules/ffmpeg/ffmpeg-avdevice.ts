@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/ffmpeg-avdevice.nix", [[["description", 29, 5]], [["pname", 12, 3], ["minimalOCamlVersion", 14, 3], ["version", 16, 25], ["src", 16, 33], ["nativeBuildInputs", 18, 3], ["buildInputs", 19, 3], ["propagatedBuildInputs", 21, 3], ["doCheck", 26, 3], ["meta", 28, 3]]]);
 const formals$1 = { args: { buildDunePackage: false, "dune-configurator": false, "pkg-config": false, callPackage: false, "ffmpeg-base": true, "ffmpeg-av": false, ffmpeg: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/ffmpeg-avdevice.nix", [["description", 29, 5]]);
-const pos$2 = nix.positions(here + "/ffmpeg-avdevice.nix", [["pname", 12, 3], ["minimalOCamlVersion", 14, 3], ["version", 16, 25], ["src", 16, 33], ["nativeBuildInputs", 18, 3], ["buildInputs", 19, 3], ["propagatedBuildInputs", 21, 3], ["doCheck", 26, 3], ["meta", 28, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const ffmpeg_av = nix.arg($, "ffmpeg-av");
   const ffmpeg = nix.arg($, "ffmpeg");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "ffmpeg-avdevice",
       minimalOCamlVersion: "4.12",
       version: nix.thunk(() => nix.attr(ffmpeg_base, "version")),
@@ -25,7 +24,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [dune_configurator]),
       propagatedBuildInputs: nix.thunk(() => [ffmpeg_av, nix.thunk(() => nix.sel(ffmpeg, "dev"))]),
       doCheck: true,
-      meta: nix.thunk(() => nix.update(nix.sel(ffmpeg_base, "meta"), { [nix.POS]: pos$1, description: "Bindings for the ffmpeg avdevice library" })),
+      meta: nix.thunk(() => nix.update(nix.sel(ffmpeg_base, "meta"), { [nix.POS]: $pos[0], description: "Bindings for the ffmpeg avdevice library" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=ffmpeg-avdevice.ts.map

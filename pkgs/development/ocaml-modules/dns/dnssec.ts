@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/dnssec.nix", [[["description", 34, 5]], [["pname", 14, 3], ["version", 16, 17], ["src", 16, 25], ["propagatedBuildInputs", 18, 3], ["doCheck", 27, 3], ["checkInputs", 28, 3], ["meta", 33, 3]]]);
 const formals$1 = { args: { buildDunePackage: false, dns: false, "mirage-crypto": false, "mirage-crypto-pk": false, "mirage-crypto-ec": false, "domain-name": false, logs: false, alcotest: false, base64: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/dnssec.nix", [["description", 34, 5]]);
-const pos$2 = nix.positions(here + "/dnssec.nix", [["pname", 14, 3], ["version", 16, 17], ["src", 16, 25], ["propagatedBuildInputs", 18, 3], ["doCheck", 27, 3], ["checkInputs", 28, 3], ["meta", 33, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,14 +17,14 @@ export default nix.lambda((args) => (() => {
   const alcotest = nix.arg($, "alcotest");
   const base64 = nix.arg($, "base64");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "dnssec",
       version: nix.thunk(() => nix.attr(dns, "version")),
       src: nix.thunk(() => nix.attr(dns, "src")),
       propagatedBuildInputs: nix.thunk(() => [dns, mirage_crypto, mirage_crypto_pk, mirage_crypto_ec, domain_name, logs]),
       doCheck: true,
       checkInputs: nix.thunk(() => [alcotest, base64]),
-      meta: nix.thunk(() => nix.update(nix.sel(dns, "meta"), { [nix.POS]: pos$1, description: "DNSSec support for OCaml-DNS" })),
+      meta: nix.thunk(() => nix.update(nix.sel(dns, "meta"), { [nix.POS]: $pos[0], description: "DNSSec support for OCaml-DNS" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=dnssec.ts.map

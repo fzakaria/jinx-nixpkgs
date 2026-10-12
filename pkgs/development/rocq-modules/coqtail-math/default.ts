@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["case", 16, 9], ["out", 17, 9]], [["case", 20, 9], ["out", 21, 9]], [["hash", 25, 18]], [["rev", 26, 22], ["hash", 27, 22]], [["8.14", 25, 11], ["20201124", 26, 11]], [["license", 30, 5], ["maintainers", 31, 5]], [["pname", 9, 3], ["owner", 10, 3], ["version", 11, 11], ["defaultVersion", 12, 3], ["release", 25, 3], ["mlPlugin", 28, 3], ["meta", 29, 3]]]);
 const formals$1 = { args: { lib: false, mkCoqDerivation: false, coq: false, version: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["case", 16, 9], ["out", 17, 9]]);
-const pos$2 = nix.positions(here + "/default.nix", [["case", 20, 9], ["out", 21, 9]]);
-const pos$3 = nix.positions(here + "/default.nix", [["hash", 25, 18]]);
-const pos$4 = nix.positions(here + "/default.nix", [["rev", 26, 22], ["hash", 27, 22]]);
-const pos$5 = nix.positions(here + "/default.nix", [["8.14", 25, 11], ["20201124", 26, 11]]);
-const pos$6 = nix.positions(here + "/default.nix", [["license", 30, 5], ["maintainers", 31, 5]]);
-const pos$7 = nix.positions(here + "/default.nix", [["pname", 9, 3], ["owner", 10, 3], ["version", 11, 11], ["defaultVersion", 12, 3], ["release", 25, 3], ["mlPlugin", 28, 3], ["meta", 29, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const coq = nix.arg($, "coq");
   const version = nix.argOr($, "version", () => null);
   return nix.app(mkCoqDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "coqtail-math",
       owner: "coq-community",
       version: version,
@@ -26,32 +20,32 @@ export default nix.lambda((args) => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "versions")), null);
         return nix.app(nix.sel(lib, "switch"), nix.thunk(() => nix.sel(coq, "coq-version")), nix.thunk(() => [
             nix.thunk(() => ({
-              [nix.POS]: pos$1,
+              [nix.POS]: $pos[0],
               case: nix.thunk(() => nix.app(nix.lookup(w, "range"), "8.11", "8.15")),
               out: "8.14",
             })),
             nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               case: nix.thunk(() => nix.app(nix.lookup(w, "range"), "8.11", "8.13")),
               out: "20201124",
             })),
           ]), null);
       })()),
       release: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         "8.14": nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           hash: "sha256:1k8f8idjnx0mf4z479vcx55iz42rjxrbplbznv80m2famxakq03c",
         })),
         "20201124": nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           rev: "5c22c3d7dcd8cf4c47cf84a281780f5915488e9e",
           hash: "sha256-wd+Lh7dpAD4zfpyKuztDmSFEZo5ZiFrR8ti2jUCVvoQ=",
         })),
       })),
       mlPlugin: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3Only")),
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "siraben"))]),
       })),

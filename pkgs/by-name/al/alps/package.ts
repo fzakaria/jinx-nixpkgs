@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]], [["pname", 50, 7], ["version", 51, 28], ["src", 51, 36], ["sourceRoot", 52, 7], ["npmDepsHash", 54, 7], ["postPatch", 56, 7], ["installPhase", 60, 7]], [["alps", 69, 36]], [["frontend", 49, 5], ["tests", 69, 5]], [["description", 73, 5], ["homepage", 74, 5], ["downloadPage", 75, 5], ["license", 76, 5], ["maintainers", 77, 5], ["teams", 83, 5], ["mainProgram", 84, 5]], [["pname", 11, 3], ["version", 12, 3], ["__structuredAttrs", 13, 3], ["src", 15, 3], ["postPatch", 22, 3], ["vendorHash", 31, 3], ["subPackages", 33, 3], ["ldflags", 35, 3], ["postInstall", 40, 3], ["doInstallCheck", 44, 3], ["nativeInstallCheckInputs", 45, 3], ["versionCheckProgramArg", 46, 3], ["passthru", 48, 3], ["meta", 72, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, buildNpmPackage: false, fetchFromGitHub: false, nixosTests: false, "util-linux": false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 50, 7], ["version", 51, 28], ["src", 51, 36], ["sourceRoot", 52, 7], ["npmDepsHash", 54, 7], ["postPatch", 56, 7], ["installPhase", 60, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["alps", 69, 36]]);
-const pos$4 = nix.positions(here + "/package.nix", [["frontend", 49, 5], ["tests", 69, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 73, 5], ["homepage", 74, 5], ["downloadPage", 75, 5], ["license", 76, 5], ["maintainers", 77, 5], ["teams", 83, 5], ["mainProgram", 84, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["__structuredAttrs", 13, 3], ["src", 15, 3], ["postPatch", 22, 3], ["vendorHash", 31, 3], ["subPackages", 33, 3], ["ldflags", 35, 3], ["postInstall", 40, 3], ["doInstallCheck", 44, 3], ["nativeInstallCheckInputs", 45, 3], ["versionCheckProgramArg", 46, 3], ["passthru", 48, 3], ["meta", 72, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const util_linux = nix.arg($, "util-linux");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "alps",
       version: "1",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "migadu",
           repo: "alps",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -49,9 +44,9 @@ cp -r ${nix.sel(finalAttrs, "passthru", "frontend")} frontend/dist
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       versionCheckProgramArg: "-version",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         frontend: nix.thunk(() => nix.app(buildNpmPackage, (finalAttrs$) => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             pname: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-frontend`),
             version: nix.thunk(() => nix.attr(finalAttrs, "version")),
             src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -60,10 +55,10 @@ cp -r ${nix.sel(finalAttrs, "passthru", "frontend")} frontend/dist
             postPatch: "rm -r dist\n",
             installPhase: "runHook preInstall\n\nmkdir -p \"$out\"\ncp -r dist/. \"$out\"\n\nrunHook postInstall\n",
           }))),
-        tests: nix.thunk(() => ({ [nix.POS]: pos$3, alps: nix.thunk(() => nix.attr(nixosTests, "alps")) })),
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[2], alps: nix.thunk(() => nix.attr(nixosTests, "alps")) })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Simple and extensible webmail",
         homepage: "https://github.com/migadu/alps",
         downloadPage: "https://github.com/migadu/alps/releases",

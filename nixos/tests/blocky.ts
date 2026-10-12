@@ -2,55 +2,43 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/blocky.nix", [[["systemPackages", 8, 21]], [["printer.lan", 15, 17]], [["mapping", 14, 15]], [["default", 19, 15]], [["groups", 18, 23]], [["dns", 25, 15], ["http", 26, 15]], [["level", 28, 17]], [["customDNS", 13, 13], ["upstreams", 18, 13], ["ports", 24, 13], ["log", 28, 13]], [["enable", 10, 11], ["settings", 12, 11]], [["blocky", 9, 18]], [["environment", 8, 9], ["services", 9, 9]], [["server", 5, 5]], [["name", 2, 3], ["containers", 4, 3], ["testScript", 34, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/blocky.nix", [["systemPackages", 8, 21]]);
-const pos$2 = nix.positions(here + "/blocky.nix", [["printer.lan", 15, 17]]);
-const pos$3 = nix.positions(here + "/blocky.nix", [["mapping", 14, 15]]);
-const pos$4 = nix.positions(here + "/blocky.nix", [["default", 19, 15]]);
-const pos$5 = nix.positions(here + "/blocky.nix", [["groups", 18, 23]]);
-const pos$6 = nix.positions(here + "/blocky.nix", [["dns", 25, 15], ["http", 26, 15]]);
-const pos$7 = nix.positions(here + "/blocky.nix", [["level", 28, 17]]);
-const pos$8 = nix.positions(here + "/blocky.nix", [["customDNS", 13, 13], ["upstreams", 18, 13], ["ports", 24, 13], ["log", 28, 13]]);
-const pos$9 = nix.positions(here + "/blocky.nix", [["enable", 10, 11], ["settings", 12, 11]]);
-const pos$10 = nix.positions(here + "/blocky.nix", [["blocky", 9, 18]]);
-const pos$11 = nix.positions(here + "/blocky.nix", [["environment", 8, 9], ["services", 9, 9]]);
-const pos$12 = nix.positions(here + "/blocky.nix", [["server", 5, 5]]);
-const pos$13 = nix.positions(here + "/blocky.nix", [["name", 2, 3], ["containers", 4, 3], ["testScript", 34, 3]]);
 
 export default nix.thunk(() => ({
-  [nix.POS]: pos$13,
+  [nix.POS]: $pos[12],
   name: "blocky",
   containers: nix.thunk(() => ({
-    [nix.POS]: pos$12,
+    [nix.POS]: $pos[11],
     server: nix.lambda((args) => (() => {
       const $ = nix.formals(args, formals$1);
       const pkgs = nix.arg($, "pkgs");
       return {
-        [nix.POS]: pos$11,
+        [nix.POS]: $pos[10],
         environment: nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "dnsutils"))]),
         })),
         services: nix.thunk(() => ({
-          [nix.POS]: pos$10,
+          [nix.POS]: $pos[9],
           blocky: nix.thunk(() => ({
-            [nix.POS]: pos$9,
+            [nix.POS]: $pos[8],
             enable: true,
             settings: nix.thunk(() => ({
-              [nix.POS]: pos$8,
+              [nix.POS]: $pos[7],
               customDNS: nix.thunk(() => ({
-                [nix.POS]: pos$3,
+                [nix.POS]: $pos[2],
                 mapping: nix.thunk(() => ({
-                  [nix.POS]: pos$2,
+                  [nix.POS]: $pos[1],
                   "printer.lan": "192.168.178.3,2001:0db8:85a3:08d3:1319:8a2e:0370:7344",
                 })),
               })),
               upstreams: nix.thunk(() => ({
-                [nix.POS]: pos$5,
-                groups: nix.thunk(() => ({ [nix.POS]: pos$4, default: nix.thunk(() => ["8.8.8.8", "1.1.1.1"]) })),
+                [nix.POS]: $pos[4],
+                groups: nix.thunk(() => ({ [nix.POS]: $pos[3], default: nix.thunk(() => ["8.8.8.8", "1.1.1.1"]) })),
               })),
-              ports: nix.thunk(() => ({ [nix.POS]: pos$6, dns: 53n, http: 5000n })),
-              log: nix.thunk(() => ({ [nix.POS]: pos$7, level: "info" })),
+              ports: nix.thunk(() => ({ [nix.POS]: $pos[5], dns: 53n, http: 5000n })),
+              log: nix.thunk(() => ({ [nix.POS]: $pos[6], level: "info" })),
             })),
           })),
         })),

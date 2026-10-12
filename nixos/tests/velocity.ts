@@ -2,49 +2,37 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/velocity.nix", [[["maintainers", 4, 8]], [["ListenFIFO", 14, 17], ["Service", 15, 17]], [["socketConfig", 13, 15]], [["ExecStart", 20, 17], ["DynamicUser", 21, 17], ["StateDirectory", 22, 17], ["WorkingDirectory", 23, 17], ["Sockets", 25, 17], ["StandardInput", 26, 17], ["StandardOutput", 27, 17], ["StandardError", 28, 17]], [["serviceConfig", 19, 15]], [["sockets", 12, 21], ["services", 18, 21]], [["systemd", 12, 13]], [["withVelocityNative", 35, 38]], [["withVelocityNative", 37, 79]], [["systemPackages", 40, 19]], [["imports", 9, 7], ["environment", 40, 7]], [["server", 6, 9]], [["name", 3, 3], ["meta", 4, 3], ["nodes", 6, 3], ["testScript", 43, 3]]]);
 const formals$1 = { args: { lib: false, pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/velocity.nix", [["maintainers", 4, 8]]);
 const formals$2 = { args: {  }, ellipsis: true };
-const pos$2 = nix.positions(here + "/velocity.nix", [["ListenFIFO", 14, 17], ["Service", 15, 17]]);
-const pos$3 = nix.positions(here + "/velocity.nix", [["socketConfig", 13, 15]]);
-const pos$4 = nix.positions(here + "/velocity.nix", [["ExecStart", 20, 17], ["DynamicUser", 21, 17], ["StateDirectory", 22, 17], ["WorkingDirectory", 23, 17], ["Sockets", 25, 17], ["StandardInput", 26, 17], ["StandardOutput", 27, 17], ["StandardError", 28, 17]]);
-const pos$5 = nix.positions(here + "/velocity.nix", [["serviceConfig", 19, 15]]);
-const pos$6 = nix.positions(here + "/velocity.nix", [["sockets", 12, 21], ["services", 18, 21]]);
-const pos$7 = nix.positions(here + "/velocity.nix", [["systemd", 12, 13]]);
-const pos$8 = nix.positions(here + "/velocity.nix", [["withVelocityNative", 35, 38]]);
-const pos$9 = nix.positions(here + "/velocity.nix", [["withVelocityNative", 37, 79]]);
-const pos$10 = nix.positions(here + "/velocity.nix", [["systemPackages", 40, 19]]);
-const pos$11 = nix.positions(here + "/velocity.nix", [["imports", 9, 7], ["environment", 40, 7]]);
-const pos$12 = nix.positions(here + "/velocity.nix", [["server", 6, 9]]);
-const pos$13 = nix.positions(here + "/velocity.nix", [["name", 3, 3], ["meta", 4, 3], ["nodes", 6, 3], ["testScript", 43, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   return {
-    [nix.POS]: pos$13,
+    [nix.POS]: $pos[12],
     name: "velocity",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "Tert0"))]),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$12,
+      [nix.POS]: $pos[11],
       server: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          [nix.POS]: pos$11,
+          [nix.POS]: $pos[10],
           imports: nix.thunk(() => (() => {
             const mkVelocityService = (name) => (pkg) => ({
-              [nix.POS]: pos$7,
+              [nix.POS]: $pos[6],
               systemd: nix.thunk(() => ({
-                [nix.POS]: pos$6,
+                [nix.POS]: $pos[5],
                 sockets: nix.thunk(() => nix.attrsDyn({}, [
                   [nix.force(name), nix.thunk(() => ({
-                    [nix.POS]: pos$3,
+                    [nix.POS]: $pos[2],
                     socketConfig: nix.thunk(() => ({
-                      [nix.POS]: pos$2,
+                      [nix.POS]: $pos[1],
                       ListenFIFO: nix.thunk(() => nix.str`/run/${name}.stdin`),
                       Service: nix.thunk(() => nix.str`${name}`),
                     })),
@@ -52,9 +40,9 @@ export default nix.lambda((args) => (() => {
                 ])),
                 services: nix.thunk(() => nix.attrsDyn({}, [
                   [nix.force(name), nix.thunk(() => ({
-                    [nix.POS]: pos$5,
+                    [nix.POS]: $pos[4],
                     serviceConfig: nix.thunk(() => ({
-                      [nix.POS]: pos$4,
+                      [nix.POS]: $pos[3],
                       ExecStart: nix.thunk(() => nix.str`${pkg}/bin/velocity`),
                       DynamicUser: true,
                       StateDirectory: nix.thunk(() => nix.str`${name}`),
@@ -69,12 +57,12 @@ export default nix.lambda((args) => (() => {
               })),
             });
             return [
-              nix.thunk(() => nix.app(mkVelocityService, "velocity-without-native", nix.thunk(() => nix.app(nix.sel(pkgs, "velocity", "override"), nix.thunk(() => ({ [nix.POS]: pos$8, withVelocityNative: false })))))),
-              nix.thunk(() => nix.app(mkVelocityService, "velocity-with-native", nix.thunk(() => nix.app(nix.sel(pkgs, "velocity", "override"), nix.thunk(() => ({ [nix.POS]: pos$9, withVelocityNative: true })))))),
+              nix.thunk(() => nix.app(mkVelocityService, "velocity-without-native", nix.thunk(() => nix.app(nix.sel(pkgs, "velocity", "override"), nix.thunk(() => ({ [nix.POS]: $pos[7], withVelocityNative: false })))))),
+              nix.thunk(() => nix.app(mkVelocityService, "velocity-with-native", nix.thunk(() => nix.app(nix.sel(pkgs, "velocity", "override"), nix.thunk(() => ({ [nix.POS]: $pos[8], withVelocityNative: true })))))),
             ];
           })()),
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$10,
+            [nix.POS]: $pos[9],
             systemPackages: nix.thunk(() => [
               nix.thunk(() => nix.app(nix.sel(pkgs, "python3", "withPackages"), (p) => [nix.thunk(() => nix.sel(p, "mcstatus"))])),
             ]),

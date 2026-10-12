@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]], [["NLTK_DATA", 54, 7]], [["description", 57, 5], ["homepage", 58, 5], ["license", 59, 5], ["maintainers", 60, 5]], [["version", 11, 3], ["pname", 12, 3], ["pyproject", 13, 3], ["__structuredAttrs", 15, 3], ["src", 17, 3], ["postPatch", 25, 3], ["build-system", 32, 3], ["nativeCheckInputs", 36, 3], ["disabledTests", 40, 3], ["dependencies", 45, 3], ["pythonImportsCheck", 50, 3], ["env", 54, 3], ["meta", 56, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, nltk: false, setuptools: false, pyphen: false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["NLTK_DATA", 54, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 57, 5], ["homepage", 58, 5], ["license", 59, 5], ["maintainers", 60, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["version", 11, 3], ["pname", 12, 3], ["pyproject", 13, 3], ["__structuredAttrs", 15, 3], ["src", 17, 3], ["postPatch", 25, 3], ["build-system", 32, 3], ["nativeCheckInputs", 36, 3], ["disabledTests", 40, 3], ["dependencies", 45, 3], ["pythonImportsCheck", 50, 3], ["env", 54, 3], ["meta", 56, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,13 +15,13 @@ export default nix.lambda((args) => (() => {
   const pyphen = nix.arg($, "pyphen");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       version: "0.7.13",
       pname: "textstat",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "textstat",
           repo: "textstat",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -37,11 +34,11 @@ export default nix.lambda((args) => (() => {
       dependencies: nix.thunk(() => [pyphen, nltk]),
       pythonImportsCheck: nix.thunk(() => ["textstat"]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NLTK_DATA: nix.thunk(() => nix.sel(nltk, "data", "cmudict")),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Python package to calculate readability statistics of a text object",
         homepage: "https://textstat.org",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

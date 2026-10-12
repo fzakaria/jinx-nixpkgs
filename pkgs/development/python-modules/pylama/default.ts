@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 26, 7], ["repo", 27, 7], ["rev", 28, 7], ["hash", 29, 7]], [["git", 34, 9]], [["doCheck", 73, 9]], [["check", 72, 7]], [["tests", 71, 14]], [["description", 78, 7], ["mainProgram", 79, 7], ["homepage", 80, 7], ["changelog", 81, 7], ["license", 82, 7], ["maintainers", 83, 7]], [["pname", 21, 5], ["version", 22, 5], ["pyproject", 23, 5], ["src", 25, 5], ["patches", 32, 5], ["build-system", 40, 5], ["dependencies", 42, 5], ["doCheck", 53, 5], ["nativeCheckInputs", 55, 5], ["preCheck", 60, 5], ["disabledTests", 64, 5], ["pythonImportsCheck", 69, 5], ["passthru", 71, 5], ["meta", 77, 5]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, replaceVars: false, git: false, eradicate: false, mccabe: false, mypy: false, pycodestyle: false, pydocstyle: false, pyflakes: false, vulture: false, setuptools_80: false, pylint: false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 26, 7], ["repo", 27, 7], ["rev", 28, 7], ["hash", 29, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["git", 34, 9]]);
-const pos$3 = nix.positions(here + "/default.nix", [["doCheck", 73, 9]]);
-const pos$4 = nix.positions(here + "/default.nix", [["check", 72, 7]]);
-const pos$5 = nix.positions(here + "/default.nix", [["tests", 71, 14]]);
-const pos$6 = nix.positions(here + "/default.nix", [["description", 78, 7], ["mainProgram", 79, 7], ["homepage", 80, 7], ["changelog", 81, 7], ["license", 82, 7], ["maintainers", 83, 7]]);
-const pos$7 = nix.positions(here + "/default.nix", [["pname", 21, 5], ["version", 22, 5], ["pyproject", 23, 5], ["src", 25, 5], ["patches", 32, 5], ["build-system", 40, 5], ["dependencies", 42, 5], ["doCheck", 53, 5], ["nativeCheckInputs", 55, 5], ["preCheck", 60, 5], ["disabledTests", 64, 5], ["pythonImportsCheck", 69, 5], ["passthru", 71, 5], ["meta", 77, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const version = "8.4.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "klen",
           repo: "pylama",
           rev: version,
@@ -41,7 +35,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./paths.patch"), nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             git: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getBin"), git)}/bin/git`),
           })))),
         nix.path(here, "./pytest-9.1-compat.patch"),
@@ -55,14 +49,14 @@ export default nix.lambda((args) => (() => {
       const disabledTests = nix.thunk(() => ["test_quotes", "test_radon"]);
       const pythonImportsCheck = nix.thunk(() => ["pylama.main"]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
-          check: nix.thunk(() => nix.app(nix.sel(pylama, "overridePythonAttrs"), (_) => ({ [nix.POS]: pos$3, doCheck: true }))),
+          [nix.POS]: $pos[3],
+          check: nix.thunk(() => nix.app(nix.sel(pylama, "overridePythonAttrs"), (_) => ({ [nix.POS]: $pos[2], doCheck: true }))),
         })),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Code audit tool for python",
         mainProgram: "pylama",
         homepage: "https://github.com/klen/pylama",
@@ -74,7 +68,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         pname,
         version,
         pyproject,

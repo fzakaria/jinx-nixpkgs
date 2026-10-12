@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 22, 5], ["sha256", 23, 5]], [["nixos", 61, 5]], [["tests", 60, 12]], [["broken", 76, 5], ["homepage", 78, 5], ["description", 79, 5], ["downloadPage", 80, 5], ["license", 81, 5], ["platforms", 82, 5], ["maintainers", 83, 5], ["mainProgram", 87, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["buildInputs", 26, 3], ["configureLocal", 28, 3], ["preConfigure", 51, 3], ["doCheck", 55, 3], ["checkTarget", 56, 3], ["nativeCheckInputs", 57, 3], ["preCheck", 58, 3], ["passthru", 60, 3], ["meta", 64, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, zlib: false, perl: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 22, 5], ["sha256", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["nixos", 61, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 60, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["broken", 76, 5], ["homepage", 78, 5], ["description", 79, 5], ["downloadPage", 80, 5], ["license", 81, 5], ["platforms", 82, 5], ["maintainers", 83, 5], ["mainProgram", 87, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["buildInputs", 26, 3], ["configureLocal", 28, 3], ["preConfigure", 51, 3], ["doCheck", 55, 3], ["checkTarget", 56, 3], ["nativeCheckInputs", 57, 3], ["preCheck", 58, 3], ["passthru", 60, 3], ["meta", 64, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const utf8Locale = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? "en_US.UTF-8" : "C.UTF-8"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "mandoc",
       version: "1.14.6",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://mandoc.bsd.lv/snapshots/mandoc-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "8bf0d570f01e70a6e124884088870cbed7537f36328d512909eb10cd53179d9c",
         })))),
@@ -55,11 +51,11 @@ UTF8_LOCALE=${utf8Locale}
       nativeCheckInputs: nix.thunk(() => [perl]),
       preCheck: "patchShebangs --build regress/regress.pl",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$2, nixos: nix.thunk(() => nix.sel(nixosTests, "man")) })),
+        [nix.POS]: $pos[2],
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[1], nixos: nix.thunk(() => nix.sel(nixosTests, "man")) })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         broken: nix.thunk(() => !nix.eq(nix.sel(stdenv, "buildPlatform", "system"), nix.sel(stdenv, "hostPlatform", "system"))),
         homepage: "https://mandoc.bsd.lv/",
         description: "Suite of tools compiling mdoc and man",

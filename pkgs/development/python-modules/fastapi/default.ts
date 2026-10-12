@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 49, 5], ["repo", 50, 5], ["tag", 51, 5], ["hash", 52, 5]], [["all", 66, 5], ["standard", 80, 5], ["standard-no-fastapi-cloud-cli", 93, 5]], [["changelog", 140, 5], ["description", 141, 5], ["homepage", 142, 5], ["license", 143, 5], ["maintainers", 144, 5]], [["pname", 43, 3], ["version", 44, 3], ["pyproject", 45, 3], ["__structuredAttrs", 46, 3], ["src", 48, 3], ["build-system", 55, 3], ["dependencies", 57, 3], ["optional-dependencies", 65, 3], ["nativeCheckInputs", 107, 3], ["disabledTests", 124, 3], ["disabledTestPaths", 129, 3], ["pythonImportsCheck", 137, 3], ["meta", 139, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, "pdm-backend": false, "annotated-doc": false, starlette: false, pydantic: false, "typing-extensions": false, "typing-inspection": false, anyio: false, a2wsgi: false, "dirty-equals": false, flask: false, httpx2: false, "inline-snapshot": false, pwdlib: false, pyjwt: false, "pytest-xdist": false, "pytest-timeout": false, pytestCheckHook: false, "fastapi-cli": false, httpx: false, jinja2: false, itsdangerous: false, "python-multipart": false, pyyaml: false, "email-validator": false, uvicorn: false, "pydantic-settings": false, "pydantic-extra-types": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 49, 5], ["repo", 50, 5], ["tag", 51, 5], ["hash", 52, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["all", 66, 5], ["standard", 80, 5], ["standard-no-fastapi-cloud-cli", 93, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["changelog", 140, 5], ["description", 141, 5], ["homepage", 142, 5], ["license", 143, 5], ["maintainers", 144, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 43, 3], ["version", 44, 3], ["pyproject", 45, 3], ["__structuredAttrs", 46, 3], ["src", 48, 3], ["build-system", 55, 3], ["dependencies", 57, 3], ["optional-dependencies", 65, 3], ["nativeCheckInputs", 107, 3], ["disabledTests", 124, 3], ["disabledTestPaths", 129, 3], ["pythonImportsCheck", 137, 3], ["meta", 139, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -41,13 +38,13 @@ export default nix.lambda((args) => (() => {
   const pydantic_settings = nix.arg($, "pydantic-settings");
   const pydantic_extra_types = nix.arg($, "pydantic-extra-types");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "fastapi",
       version: "0.141.1",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "tiangolo",
           repo: "fastapi",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -56,7 +53,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [pdm_backend]),
       dependencies: nix.thunk(() => [annotated_doc, starlette, pydantic, typing_extensions, typing_inspection]),
       "optional-dependencies": nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         all: nix.thunk(() => nix.concat([
           fastapi_cli,
           httpx,
@@ -112,7 +109,7 @@ export default nix.lambda((args) => (() => {
       ]),
       pythonImportsCheck: nix.thunk(() => ["fastapi"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         changelog: nix.thunk(() => nix.str`https://github.com/fastapi/fastapi/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         description: "Web framework for building APIs",
         homepage: "https://github.com/fastapi/fastapi",

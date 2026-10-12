@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 33, 5], ["repo", 34, 5], ["tag", 35, 5], ["hash", 36, 5]], [["description", 76, 5], ["homepage", 77, 5], ["changelog", 78, 5], ["mainProgram", 79, 5], ["license", 80, 5], ["maintainers", 86, 5], ["teams", 87, 5]], [["pname", 27, 3], ["version", 28, 3], ["pyproject", 29, 3], ["__structuredAttrs", 30, 3], ["src", 32, 3], ["build-system", 39, 3], ["dependencies", 43, 3], ["pythonRelaxDeps", 56, 3], ["nativeCheckInputs", 60, 3], ["disabledTests", 65, 3], ["pythonImportsCheck", 71, 3], ["meta", 75, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, appdirs: false, cachetools: false, diskcache: false, "foss-flame": false, "license-expression": false, "packageurl-python": false, "python-magic": false, requests: false, "scancode-toolkit": false, xmltodict: false, pytestCheckHook: false, writableTmpDirAsHomeHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 33, 5], ["repo", 34, 5], ["tag", 35, 5], ["hash", 36, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 76, 5], ["homepage", 77, 5], ["changelog", 78, 5], ["mainProgram", 79, 5], ["license", 80, 5], ["maintainers", 86, 5], ["teams", 87, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 27, 3], ["version", 28, 3], ["pyproject", 29, 3], ["__structuredAttrs", 30, 3], ["src", 32, 3], ["build-system", 39, 3], ["dependencies", 43, 3], ["pythonRelaxDeps", 56, 3], ["nativeCheckInputs", 60, 3], ["disabledTests", 65, 3], ["pythonImportsCheck", 71, 3], ["meta", 75, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,13 +24,13 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "lookup-license",
       version: "0.1.31",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "hesa",
           repo: "lookup-license",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -56,7 +54,7 @@ export default nix.lambda((args) => (() => {
       disabledTests: nix.thunk(() => ["test_lookup_license_url_bad", "test_lookup_license_url_good"]),
       pythonImportsCheck: nix.thunk(() => ["lookup_license"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Python tool to identify license from license text",
         homepage: "https://github.com/hesa/lookup-license",
         changelog: nix.thunk(() => nix.str`https://github.com/hesa/lookup-license/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

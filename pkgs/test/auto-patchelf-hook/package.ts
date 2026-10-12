@@ -2,10 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 34, 5], ["sha256", 35, 5]], [["platforms", 105, 5]], [["name", 31, 3], ["src", 33, 3], ["unpackCmd", 38, 3], ["nativeBuildInputs", 42, 3], ["installPhase", 47, 3], ["buildInputs", 51, 3], ["autoPatchelfIgnoreMissingDeps", 55, 3], ["runtimeDependencies", 60, 11], ["installCheckPhase", 63, 3], ["doInstallCheck", 101, 3], ["__structuredAttrs", 102, 11], ["meta", 103, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, autoPatchelfHook: false, dpkg: false, freetype: false, curl: false, __structuredAttrs: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 34, 5], ["sha256", 35, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["platforms", 105, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 31, 3], ["src", 33, 3], ["unpackCmd", 38, 3], ["nativeBuildInputs", 42, 3], ["installPhase", 47, 3], ["buildInputs", 51, 3], ["autoPatchelfIgnoreMissingDeps", 55, 3], ["runtimeDependencies", 60, 11], ["installCheckPhase", 63, 3], ["doInstallCheck", 101, 3], ["__structuredAttrs", 102, 11], ["meta", 103, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,10 +21,10 @@ export default nix.lambda((args) => (() => {
     "/some/other/dep",
   ], nix.app(nix.sel(lib, "lists", "optional"), __structuredAttrs, "/some/dep with space")));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       name: "auto-patchelf-test",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://tonelib.net/download/221222/ToneLib-Jam-amd64.deb",
           sha256: "sha256-c6At2lRPngQPpE7O+VY/Hsfw+QfIb3COIuHfbqqIEuM=",
         })))),
@@ -64,7 +62,7 @@ test "\${paths[${iAsStr}]}" = "$path"
       })()),
       doInstallCheck: true,
       __structuredAttrs: __structuredAttrs,
-      meta: nix.thunk(() => ({ [nix.POS]: pos$2, platforms: nix.thunk(() => ["x86_64-linux"]) })),
+      meta: nix.thunk(() => ({ [nix.POS]: $pos[1], platforms: nix.thunk(() => ["x86_64-linux"]) })),
     })));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

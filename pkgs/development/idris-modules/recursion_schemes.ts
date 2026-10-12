@@ -2,10 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/recursion_schemes.nix", [[["owner", 24, 5], ["repo", 25, 5], ["rev", 26, 5], ["sha256", 27, 5]], [["description", 31, 5], ["homepage", 32, 5], ["license", 33, 5], ["maintainers", 34, 5]], [["pname", 12, 3], ["version", 13, 3], ["idrisDeps", 15, 3], ["src", 23, 3], ["meta", 30, 3]]]);
 const formals$1 = { args: { "build-idris-package": false, fetchFromGitHub: false, free: false, composition: false, comonad: false, bifunctors: false, hezarfen: false, lib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/recursion_schemes.nix", [["owner", 24, 5], ["repo", 25, 5], ["rev", 26, 5], ["sha256", 27, 5]]);
-const pos$2 = nix.positions(here + "/recursion_schemes.nix", [["description", 31, 5], ["homepage", 32, 5], ["license", 33, 5], ["maintainers", 34, 5]]);
-const pos$3 = nix.positions(here + "/recursion_schemes.nix", [["pname", 12, 3], ["version", 13, 3], ["idrisDeps", 15, 3], ["src", 23, 3], ["meta", 30, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,19 +16,19 @@ export default nix.lambda((args) => (() => {
   const hezarfen = nix.arg($, "hezarfen");
   const lib = nix.arg($, "lib");
   return nix.app(build_idris_package, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "recursion_schemes",
       version: "2018-01-19",
       idrisDeps: nix.thunk(() => [free, composition, comonad, bifunctors, hezarfen]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "vmchale",
           repo: "recursion_schemes",
           rev: "6bcbe0da561f461e7a05e29965a18ec9f87f8d82",
           sha256: "0rbx0yqa0fb7h7qfsvqvirc5q85z51rcwbivn6351jgn3a0inmhf",
         })))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Recursion schemes for Idris",
         homepage: "https://github.com/vmchale/recursion_schemes",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

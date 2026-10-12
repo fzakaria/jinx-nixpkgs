@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]], [["cosmic", 55, 9], ["cosmic-autologin", 56, 9], ["cosmic-noxwayland", 57, 9], ["cosmic-autologin-noxwayland", 58, 9]], [["extraArgs", 63, 7]], [["tests", 53, 5], ["updateScript", 62, 5]], [["homepage", 71, 5], ["description", 72, 5], ["mainProgram", 73, 5], ["license", 74, 5], ["teams", 75, 5], ["platforms", 76, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 18, 3], ["cargoHash", 25, 3], ["separateDebugInfo", 27, 3], ["__structuredAttrs", 28, 3], ["env", 30, 3], ["nativeBuildInputs", 32, 3], ["dontUseJustBuild", 37, 3], ["dontUseJustCheck", 38, 3], ["justFlags", 40, 3], ["buildNoDefaultFeatures", 49, 3], ["buildFeatures", 50, 3], ["passthru", 52, 3], ["meta", 70, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, rustPlatform: false, just: false, libcosmicAppHook: false, "nix-update-script": false, nixosTests: false, enableHardwareAcceleration: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["cosmic", 55, 9], ["cosmic-autologin", 56, 9], ["cosmic-noxwayland", 57, 9], ["cosmic-autologin-noxwayland", 58, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["extraArgs", 63, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 53, 5], ["updateScript", 62, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["homepage", 71, 5], ["description", 72, 5], ["mainProgram", 73, 5], ["license", 74, 5], ["teams", 75, 5], ["platforms", 76, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 18, 3], ["cargoHash", 25, 3], ["separateDebugInfo", 27, 3], ["__structuredAttrs", 28, 3], ["env", 30, 3], ["nativeBuildInputs", 32, 3], ["dontUseJustBuild", 37, 3], ["dontUseJustCheck", 38, 3], ["justFlags", 40, 3], ["buildNoDefaultFeatures", 49, 3], ["buildFeatures", 50, 3], ["passthru", 52, 3], ["meta", 70, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const enableHardwareAcceleration = nix.argOr($, "enableHardwareAcceleration", () => true);
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "cosmic-launcher",
       version: "1.9.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "pop-os",
           repo: "cosmic-launcher",
           tag: nix.thunk(() => nix.str`epoch-${nix.sel(finalAttrs, "version")}`),
@@ -52,21 +47,21 @@ export default nix.lambda((args) => (() => {
       buildNoDefaultFeatures: true,
       buildFeatures: nix.thunk(() => nix.app(nix.sel(lib, "optional"), enableHardwareAcceleration, "wgpu")),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           cosmic: nix.thunk(() => nix.attr(nixosTests, "cosmic")),
           "cosmic-autologin": nix.thunk(() => nix.attr(nixosTests, "cosmic-autologin")),
           "cosmic-noxwayland": nix.thunk(() => nix.attr(nixosTests, "cosmic-noxwayland")),
           "cosmic-autologin-noxwayland": nix.thunk(() => nix.attr(nixosTests, "cosmic-autologin-noxwayland")),
         })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             extraArgs: nix.thunk(() => ["--version-regex", "epoch-(.*)"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "https://github.com/pop-os/cosmic-launcher",
         description: "Launcher for the COSMIC Desktop Environment",
         mainProgram: "cosmic-launcher",

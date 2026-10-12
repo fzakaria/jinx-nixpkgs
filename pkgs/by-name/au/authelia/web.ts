@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/web.nix", [[["fetchFromGitHub", 13, 43]], [["pname", 34, 7], ["version", 35, 7], ["src", 36, 7], ["sourceRoot", 37, 7], ["pnpm", 39, 13], ["fetcherVersion", 40, 5], ["hash", 41, 5]], [["broken", 68, 8]], [["pname", 21, 3], ["src", 22, 11], ["version", 22, 15], ["sourceRoot", 24, 3], ["nativeBuildInputs", 26, 3], ["pnpmDeps", 32, 3], ["postPatch", 44, 3], ["postBuild", 53, 3], ["installPhase", 57, 3], ["meta", 68, 3]]]);
 const formals$1 = { args: { stdenv: false, nodejs: false, fetchPnpmDeps: false, pnpmConfigHook: false, pnpm_12: false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/web.nix", [["fetchFromGitHub", 13, 43]]);
-const pos$2 = nix.positions(here + "/web.nix", [["pname", 34, 7], ["version", 35, 7], ["src", 36, 7], ["sourceRoot", 37, 7], ["pnpm", 39, 13], ["fetcherVersion", 40, 5], ["hash", 41, 5]]);
-const pos$3 = nix.positions(here + "/web.nix", [["broken", 68, 8]]);
-const pos$4 = nix.positions(here + "/web.nix", [["pname", 21, 3], ["src", 22, 11], ["version", 22, 15], ["sourceRoot", 24, 3], ["nativeBuildInputs", 26, 3], ["pnpmDeps", 32, 3], ["postPatch", 44, 3], ["postBuild", 53, 3], ["installPhase", 57, 3], ["meta", 68, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,20 +14,20 @@ export default nix.lambda((args) => (() => {
   const pnpm_12 = nix.arg($, "pnpm_12");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const pnpm = pnpm_12;
-  const from = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./sources.nix")), nix.thunk(() => ({ [nix.POS]: pos$1, fetchFromGitHub: fetchFromGitHub }))));
+  const from = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./sources.nix")), nix.thunk(() => ({ [nix.POS]: $pos[0], fetchFromGitHub: fetchFromGitHub }))));
   const pname = nix.thunk(() => nix.attr(from, "pname"));
   const version = nix.thunk(() => nix.attr(from, "version"));
   const src = nix.thunk(() => nix.attr(from, "src"));
   const pnpmDepsHash = nix.thunk(() => nix.attr(from, "pnpmDepsHash"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: nix.thunk(() => nix.str`${pname}-web`),
       src: src,
       version: version,
       sourceRoot: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "name")}/web`),
       nativeBuildInputs: nix.thunk(() => [nodejs, pnpmConfigHook, pnpm]),
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -43,7 +40,7 @@ export default nix.lambda((args) => (() => {
       postBuild: "pnpm run build\n",
       installPhase: "runHook preInstall\n\nmkdir -p $out/share\nmv dist $out/share/authelia-web\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
       })),
     }));

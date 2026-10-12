@@ -2,60 +2,49 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/qui.nix", [[["maintainers", 5, 8]], [["enable", 16, 9], ["secretFile", 17, 9]], [["qui", 15, 16]], [["port", 25, 20]], [["enable", 23, 11], ["secretFile", 24, 11], ["settings", 25, 11]], [["qui", 22, 18]], [["services", 22, 9]], [["configuration", 21, 35]], [["settingsPort", 21, 22]], [["services", 15, 7], ["specialisation", 21, 7]], [["machine", 7, 9]], [["name", 4, 3], ["meta", 5, 3], ["nodes", 7, 3], ["testScript", 30, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/qui.nix", [["maintainers", 5, 8]]);
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/qui.nix", [["enable", 16, 9], ["secretFile", 17, 9]]);
-const pos$3 = nix.positions(here + "/qui.nix", [["qui", 15, 16]]);
-const pos$4 = nix.positions(here + "/qui.nix", [["port", 25, 20]]);
-const pos$5 = nix.positions(here + "/qui.nix", [["enable", 23, 11], ["secretFile", 24, 11], ["settings", 25, 11]]);
-const pos$6 = nix.positions(here + "/qui.nix", [["qui", 22, 18]]);
-const pos$7 = nix.positions(here + "/qui.nix", [["services", 22, 9]]);
-const pos$8 = nix.positions(here + "/qui.nix", [["configuration", 21, 35]]);
-const pos$9 = nix.positions(here + "/qui.nix", [["settingsPort", 21, 22]]);
-const pos$10 = nix.positions(here + "/qui.nix", [["services", 15, 7], ["specialisation", 21, 7]]);
-const pos$11 = nix.positions(here + "/qui.nix", [["machine", 7, 9]]);
 const formals$3 = { args: { nodes: false }, ellipsis: true };
-const pos$12 = nix.positions(here + "/qui.nix", [["name", 4, 3], ["meta", 5, 3], ["nodes", 7, 3], ["testScript", 30, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$12,
+    [nix.POS]: $pos[11],
     name: "qui",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "undefined-landmark"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$11,
+      [nix.POS]: $pos[10],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs = nix.arg($_1, "pkgs");
         const testSecretFile = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "session_secret", "not-secret"));
         return {
-          [nix.POS]: pos$10,
+          [nix.POS]: $pos[9],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$3,
-            qui: nix.thunk(() => ({ [nix.POS]: pos$2, enable: true, secretFile: testSecretFile })),
+            [nix.POS]: $pos[2],
+            qui: nix.thunk(() => ({ [nix.POS]: $pos[1], enable: true, secretFile: testSecretFile })),
           })),
           specialisation: nix.thunk(() => ({
-            [nix.POS]: pos$9,
+            [nix.POS]: $pos[8],
             settingsPort: nix.thunk(() => ({
-              [nix.POS]: pos$8,
+              [nix.POS]: $pos[7],
               configuration: nix.thunk(() => ({
-                [nix.POS]: pos$7,
+                [nix.POS]: $pos[6],
                 services: nix.thunk(() => ({
-                  [nix.POS]: pos$6,
+                  [nix.POS]: $pos[5],
                   qui: nix.thunk(() => ({
-                    [nix.POS]: pos$5,
+                    [nix.POS]: $pos[4],
                     enable: true,
                     secretFile: testSecretFile,
-                    settings: nix.thunk(() => ({ [nix.POS]: pos$4, port: 7777n })),
+                    settings: nix.thunk(() => ({ [nix.POS]: $pos[3], port: 7777n })),
                   })),
                 })),
               })),

@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]], [["package", 60, 7], ["command", 61, 7], ["version", 62, 7]], [["version", 59, 11]], [["updateScript", 58, 5], ["tests", 59, 5]], [["description", 67, 5], ["homepage", 68, 5], ["changelog", 69, 5], ["license", 70, 5], ["maintainers", 71, 5], ["mainProgram", 75, 5], ["sourceProvenance", 76, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["projectFile", 21, 3], ["nugetDeps", 22, 3], ["postPatch", 24, 3], ["doCheck", 38, 3], ["dotnetBuildFlags", 40, 3], ["dotnet-sdk", 44, 3], ["dotnet-runtime", 45, 3], ["executables", 47, 3], ["makeWrapperArgs", 48, 3], ["passthru", 57, 3], ["meta", 66, 3]]]);
 const formals$1 = { args: { lib: false, openssl: false, git: false, buildDotnetModule: false, dotnetCorePackages: false, fetchFromGitHub: false, testers: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["package", 60, 7], ["command", 61, 7], ["version", 62, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 59, 11]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 58, 5], ["tests", 59, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 67, 5], ["homepage", 68, 5], ["changelog", 69, 5], ["license", 70, 5], ["maintainers", 71, 5], ["mainProgram", 75, 5], ["sourceProvenance", 76, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["projectFile", 21, 3], ["nugetDeps", 22, 3], ["postPatch", 24, 3], ["doCheck", 38, 3], ["dotnetBuildFlags", 40, 3], ["dotnet-sdk", 44, 3], ["dotnet-runtime", 45, 3], ["executables", 47, 3], ["makeWrapperArgs", 48, 3], ["passthru", 57, 3], ["meta", 66, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const testers = nix.arg($, "testers");
   return nix.app(buildDotnetModule, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "recyclarr",
       version: "8.7.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "recyclarr",
           repo: "recyclarr",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -53,12 +48,12 @@ rm .config/dotnet-tools.json
         nix.thunk(() => nix.str`--prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [git, openssl]))}`),
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.path(here, "./update.sh"),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               command: "RECYCLARR_CONFIG_DIR=\"$TMPDIR/recyclarr\" recyclarr --version",
               version: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -66,7 +61,7 @@ rm .config/dotnet-tools.json
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Automatically sync TRaSH guides to your Sonarr and Radarr instances",
         homepage: "https://recyclarr.dev/",
         changelog: nix.thunk(() => nix.str`https://github.com/recyclarr/recyclarr/releases/tag/v${nix.sel(finalAttrs, "version")}`),

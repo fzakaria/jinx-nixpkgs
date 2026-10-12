@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 17, 5], ["sha256", 18, 5]], [["homepage", 45, 5], ["description", 46, 5], ["license", 47, 5], ["platforms", 48, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["postPatch", 21, 3], ["outputs", 25, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 35, 3], ["propagatedBuildInputs", 38, 3], ["configureFlags", 40, 3], ["meta", 44, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, autoreconfHook: false, "pkg-config": false, fftw: false, speexdsp: false, withFft: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 17, 5], ["sha256", 18, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 45, 5], ["description", 46, 5], ["license", 47, 5], ["platforms", 48, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["postPatch", 21, 3], ["outputs", 25, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 35, 3], ["propagatedBuildInputs", 38, 3], ["configureFlags", 40, 3], ["meta", 44, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = "speex";
       const version = "1.2.1";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://downloads.us.xiph.org/releases/speex/speex-${version}.tar.gz`),
           sha256: "sha256-S0TU8rOKNwotmKeDKf78VqDPk9HBvnACkhe6rmYo/uo=",
         }))));
@@ -32,14 +30,14 @@ export default nix.lambda((args) => (() => {
       const propagatedBuildInputs = nix.thunk(() => [speexdsp]);
       const configureFlags = nix.thunk(() => nix.app(nix.sel(lib, "optionals"), withFft, nix.thunk(() => ["--with-fft=gpl-fftw3"])));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://www.speex.org/",
         description: "Open Source/Free Software patent-free audio compression format designed for speech",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
         platforms: nix.thunk(() => nix.concat(nix.sel(lib, "platforms", "unix"), nix.sel(lib, "platforms", "windows"))),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

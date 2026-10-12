@@ -2,9 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["name", 17, 7], ["makeFlags", 19, 7], ["propagatedBuildInputs", 27, 7]]]);
 const formals$1 = { args: { lua: false, writeText: false, toLuaModule: false }, ellipsis: false };
 const formals$2 = { args: { propagatedBuildInputs: true, makeFlags: true }, ellipsis: true };
-const pos$1 = nix.positions(here + "/default.nix", [["name", 17, 7], ["makeFlags", 19, 7], ["propagatedBuildInputs", 27, 7]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
     const propagatedBuildInputs = nix.argOr($_1, "propagatedBuildInputs", () => []);
     const makeFlags = nix.argOr($_1, "makeFlags", () => []);
     return nix.app(toLuaModule, nix.thunk(() => nix.app(nix.sel(lua, "stdenv", "mkDerivation"), nix.thunk(() => nix.update(attrs, {
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           name: nix.thunk(() => nix.add(nix.add(nix.add(nix.str`lua${nix.sel(lua, "luaversion")}-`, nix.sel(attrs, "pname")), "-"), nix.sel(attrs, "version"))),
           makeFlags: nix.thunk(() => nix.concat([
             "PREFIX=$(out)",

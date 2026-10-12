@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]], [["name", 45, 5], ["src", 46, 26], ["sourceRoot", 47, 5], ["hash", 48, 5]], [["ELECTRON_SKIP_BINARY_DOWNLOAD", 53, 7]], [["desktopName", 114, 7], ["name", 115, 7], ["exec", 116, 7], ["terminal", 117, 7], ["type", 118, 7], ["icon", 119, 7], ["mimeTypes", 120, 7], ["categories", 127, 7]], [["extraArgs", 136, 7]], [["updateScript", 135, 5], ["depotdownloader", 141, 5]], [["changelog", 145, 5], ["description", 146, 5], ["homepage", 147, 5], ["license", 148, 5], ["mainProgram", 149, 5], ["maintainers", 150, 5], ["platforms", 156, 5], ["sourceProvenance", 157, 5]], [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["postPatch", 32, 3], ["npmDepsHash", 42, 3], ["extraNpmDeps", 44, 3], ["makeCacheWritable", 51, 3], ["env", 53, 3], ["npmRebuildFlags", 55, 3], ["nativeBuildInputs", 57, 3], ["buildInputs", 63, 3], ["autoPatchelfIgnoreMissingDeps", 67, 3], ["preBuild", 71, 3], ["postBuild", 81, 3], ["installPhase", 92, 3], ["desktopItems", 112, 3], ["passthru", 134, 3], ["meta", 144, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, callPackage: false, "nix-update-script": false, buildNpmPackage: false, fetchNpmDeps: false, fetchFromGitHub: false, makeDesktopItem: false, nodejs_22: false, autoPatchelfHook: false, copyDesktopItems: false, makeWrapper: false, electron: false, "steam-run-free": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 45, 5], ["src", 46, 26], ["sourceRoot", 47, 5], ["hash", 48, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["ELECTRON_SKIP_BINARY_DOWNLOAD", 53, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["desktopName", 114, 7], ["name", 115, 7], ["exec", 116, 7], ["terminal", 117, 7], ["type", 118, 7], ["icon", 119, 7], ["mimeTypes", 120, 7], ["categories", 127, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["extraArgs", 136, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["updateScript", 135, 5], ["depotdownloader", 141, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["changelog", 145, 5], ["description", 146, 5], ["homepage", 147, 5], ["license", 148, 5], ["mainProgram", 149, 5], ["maintainers", 150, 5], ["platforms", 156, 5], ["sourceProvenance", 157, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["postPatch", 32, 3], ["npmDepsHash", 42, 3], ["extraNpmDeps", 44, 3], ["makeCacheWritable", 51, 3], ["env", 53, 3], ["npmRebuildFlags", 55, 3], ["nativeBuildInputs", 57, 3], ["buildInputs", 63, 3], ["autoPatchelfIgnoreMissingDeps", 67, 3], ["preBuild", 71, 3], ["postBuild", 81, 3], ["installPhase", 92, 3], ["desktopItems", 112, 3], ["passthru", 134, 3], ["meta", 144, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const electron = nix.arg($, "electron");
   const steam_run_free = nix.arg($, "steam-run-free");
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "bs-manager",
       version: "1.6.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Zagrios",
           repo: "bs-manager",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -49,14 +42,14 @@ ln -s ${nix.sel(finalAttrs, "passthru", "depotdownloader")}/bin/DepotDownloader 
 `),
       npmDepsHash: "sha256-iyhbqxnIoxq4MH0Qd+h4FRi8/dqg62SvMDe8/XAfKhI=",
       extraNpmDeps: nix.thunk(() => nix.app(fetchNpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           name: nix.thunk(() => nix.str`bs-manager-${nix.sel(finalAttrs, "version")}-extra-npm-deps`),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           sourceRoot: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "name")}/release/app`),
           hash: "sha256-jw7vhYF3//GWIpjlvK+iJakzy2c84Xyx0e6XsBJjAlg=",
         })))),
       makeCacheWritable: true,
-      env: nix.thunk(() => ({ [nix.POS]: pos$3, ELECTRON_SKIP_BINARY_DOWNLOAD: "1" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[2], ELECTRON_SKIP_BINARY_DOWNLOAD: "1" })),
       npmRebuildFlags: nix.thunk(() => ["--ignore-scripts"]),
       nativeBuildInputs: nix.thunk(() => [autoPatchelfHook, copyDesktopItems, makeWrapper]),
       buildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(stdenv, "cc", "cc"))]),
@@ -91,7 +84,7 @@ runHook postInstall
 `),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             desktopName: "BSManager",
             name: "BSManager",
             exec: "bs-manager %U",
@@ -109,15 +102,15 @@ runHook postInstall
           })))),
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             extraArgs: nix.thunk(() => ["--custom-dep", "extraNpmDeps"]),
           })))),
         depotdownloader: nix.thunk(() => nix.app(callPackage, nix.path(here, "./depotdownloader"), nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         changelog: nix.thunk(() => nix.str`https://github.com/Zagrios/bs-manager/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG.md`),
         description: "Your Beat Saber Assistant",
         homepage: "https://github.com/Zagrios/bs-manager",

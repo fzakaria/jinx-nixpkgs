@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 7], ["repo", 21, 7], ["tag", 22, 7], ["hash", 23, 7]], [["pname", 13, 5], ["version", 14, 5], ["strictDeps", 16, 5], ["__structuredAttrs", 17, 5], ["src", 19, 5], ["nativeBuildInputs", 26, 5], ["dontConfigure", 31, 5], ["buildPhase", 33, 5], ["installPhase", 53, 5]], [["escape", 66, 30]], [["CFBundleDevelopmentRegion", 67, 7], ["CFBundleDisplayName", 68, 7], ["CFBundleExecutable", 69, 7], ["CFBundleIconFile", 70, 7], ["CFBundleIconName", 71, 7], ["CFBundleIdentifier", 72, 7], ["CFBundleInfoDictionaryVersion", 73, 7], ["CFBundleName", 74, 7], ["CFBundlePackageType", 75, 7], ["CFBundleShortVersionString", 76, 7], ["CFBundleSupportedPlatforms", 77, 7], ["CFBundleVersion", 78, 7], ["LSApplicationCategoryType", 79, 7], ["LSMinimumSystemVersion", 80, 7], ["LSUIElement", 81, 7], ["NSHumanReadableCopyright", 82, 7]], [["owner", 93, 5], ["repo", 94, 5], ["tag", 95, 5], ["hash", 96, 5]], [["updateScript", 158, 12]], [["description", 161, 5], ["homepage", 162, 5], ["license", 163, 5], ["maintainers", 167, 5], ["platforms", 168, 5]], [["pname", 86, 3], ["version", 87, 3], ["strictDeps", 89, 3], ["__structuredAttrs", 90, 3], ["src", 92, 3], ["nativeBuildInputs", 99, 3], ["buildInputs", 105, 3], ["dontConfigure", 107, 3], ["buildPhase", 109, 3], ["installPhase", 138, 3], ["passthru", 158, 3], ["meta", 160, 3]]]);
 const formals$1 = { args: { actool: false, darwin: false, fetchFromGitHub: false, lib: false, "nix-update-script": false, stdenv: false, swift: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 7], ["repo", 21, 7], ["tag", 22, 7], ["hash", 23, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 13, 5], ["version", 14, 5], ["strictDeps", 16, 5], ["__structuredAttrs", 17, 5], ["src", 19, 5], ["nativeBuildInputs", 26, 5], ["dontConfigure", 31, 5], ["buildPhase", 33, 5], ["installPhase", 53, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["escape", 66, 30]]);
-const pos$4 = nix.positions(here + "/package.nix", [["CFBundleDevelopmentRegion", 67, 7], ["CFBundleDisplayName", 68, 7], ["CFBundleExecutable", 69, 7], ["CFBundleIconFile", 70, 7], ["CFBundleIconName", 71, 7], ["CFBundleIdentifier", 72, 7], ["CFBundleInfoDictionaryVersion", 73, 7], ["CFBundleName", 74, 7], ["CFBundlePackageType", 75, 7], ["CFBundleShortVersionString", 76, 7], ["CFBundleSupportedPlatforms", 77, 7], ["CFBundleVersion", 78, 7], ["LSApplicationCategoryType", 79, 7], ["LSMinimumSystemVersion", 80, 7], ["LSUIElement", 81, 7], ["NSHumanReadableCopyright", 82, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["owner", 93, 5], ["repo", 94, 5], ["tag", 95, 5], ["hash", 96, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["updateScript", 158, 12]]);
-const pos$7 = nix.positions(here + "/package.nix", [["description", 161, 5], ["homepage", 162, 5], ["license", 163, 5], ["maintainers", 167, 5], ["platforms", 168, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 86, 3], ["version", 87, 3], ["strictDeps", 89, 3], ["__structuredAttrs", 90, 3], ["src", 92, 3], ["nativeBuildInputs", 99, 3], ["buildInputs", 105, 3], ["dontConfigure", 107, 3], ["buildPhase", 109, 3], ["installPhase", 138, 3], ["passthru", 158, 3], ["meta", 160, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,13 +15,13 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const swift = nix.arg($, "swift");
   const blueSocket = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "blue-socket",
       version: "2.0.4",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Kitura",
           repo: "BlueSocket",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -39,8 +32,8 @@ export default nix.lambda((args) => (() => {
       buildPhase: "runHook preBuild\n\nbuildDir=\"$PWD/build\"\nmkdir -p \"$buildDir\"\n\nswiftc \\\n  -O \\\n  -swift-version 5 \\\n  -emit-library \\\n  -emit-module \\\n  -module-name Socket \\\n  -emit-module-path \"$buildDir/Socket.swiftmodule\" \\\n  -Xlinker -install_name -Xlinker \"$out/lib/libSocket.dylib\" \\\n  Sources/Socket/*.swift \\\n  -o \"$buildDir/libSocket.dylib\"\n\nrunHook postBuild\n",
       installPhase: "runHook preInstall\n\nmkdir -p \"$out/lib/swift/macosx\"\ncp build/libSocket.dylib \"$out/lib\"\ncp build/Socket.* \"$out/lib/swift/macosx\"\n\nrunHook postInstall\n",
     })));
-  const infoPlist = (version) => nix.app(nix.sel(lib, "generators", "toPlist"), nix.thunk(() => ({ [nix.POS]: pos$3, escape: true })), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+  const infoPlist = (version) => nix.app(nix.sel(lib, "generators", "toPlist"), nix.thunk(() => ({ [nix.POS]: $pos[2], escape: true })), nix.thunk(() => ({
+      [nix.POS]: $pos[3],
       CFBundleDevelopmentRegion: "en",
       CFBundleDisplayName: "SwipeAeroSpace",
       CFBundleExecutable: "SwipeAeroSpace",
@@ -59,13 +52,13 @@ export default nix.lambda((args) => (() => {
       NSHumanReadableCopyright: "©Tricster",
     })));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "swipeaerospace",
       version: "0.3.3",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           owner: "MediosZ",
           repo: "SwipeAeroSpace",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -124,11 +117,11 @@ actool --compile "$app/Contents/Resources" \\
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "Switch AeroSpace workspaces by swiping",
         homepage: "https://github.com/MediosZ/SwipeAeroSpace",
         license: nix.thunk(() => (() => {

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["meek", 27, 9], ["obfs4", 28, 9], ["snowflake", 29, 9], ["tor", 30, 9], ["geoip", 32, 21]], [["mainProgram", 65, 5]], [["pname", 12, 3], ["src", 14, 5], ["version", 15, 5], ["build-system", 16, 5], ["pythonRelaxDeps", 17, 5], ["pyproject", 19, 3], ["sourceRoot", 21, 3], ["patches", 23, 3], ["dependencies", 36, 3], ["nativeBuildInputs", 43, 3], ["buildInputs", 45, 3], ["postInstall", 47, 3], ["dontWrapQtApps", 54, 3], ["preFixup", 56, 3], ["doCheck", 60, 3], ["pythonImportsCheck", 62, 3], ["meta", 64, 3]]]);
 const formals$1 = { args: { python3Packages: false, onionshare: false, replaceVars: false, meek: false, obfs4: false, snowflake: false, tor: false, qt5: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["meek", 27, 9], ["obfs4", 28, 9], ["snowflake", 29, 9], ["tor", 30, 9], ["geoip", 32, 21]]);
-const pos$2 = nix.positions(here + "/package.nix", [["mainProgram", 65, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["src", 14, 5], ["version", 15, 5], ["build-system", 16, 5], ["pythonRelaxDeps", 17, 5], ["pyproject", 19, 3], ["sourceRoot", 21, 3], ["patches", 23, 3], ["dependencies", 36, 3], ["nativeBuildInputs", 43, 3], ["buildInputs", 45, 3], ["postInstall", 47, 3], ["dontWrapQtApps", 54, 3], ["preFixup", 56, 3], ["doCheck", 60, 3], ["pythonImportsCheck", 62, 3], ["meta", 64, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const tor = nix.arg($, "tor");
   const qt5 = nix.arg($, "qt5");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "onionshare",
       src: nix.thunk(() => nix.attr(onionshare, "src")),
       version: nix.thunk(() => nix.attr(onionshare, "version")),
@@ -28,7 +26,7 @@ export default nix.lambda((args) => (() => {
       sourceRoot: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "name")}/desktop`),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix-paths-gui.patch"), nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             meek: meek,
             obfs4: obfs4,
             snowflake: snowflake,
@@ -52,7 +50,7 @@ export default nix.lambda((args) => (() => {
       preFixup: "makeWrapperArgs+=(\"${qtWrapperArgs[@]}\")\n",
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["onionshare"]),
-      meta: nix.thunk(() => nix.update(nix.sel(onionshare, "meta"), { [nix.POS]: pos$2, mainProgram: "onionshare" })),
+      meta: nix.thunk(() => nix.update(nix.sel(onionshare, "meta"), { [nix.POS]: $pos[1], mainProgram: "onionshare" })),
     }));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

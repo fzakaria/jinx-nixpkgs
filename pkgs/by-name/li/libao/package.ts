@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["sha256", 24, 5]], [["name", 30, 7], ["url", 31, 7], ["hash", 32, 7]], [["longDescription", 64, 5], ["homepage", 69, 5], ["license", 70, 5], ["maintainers", 71, 5], ["platforms", 72, 5]], [["version", 16, 3], ["pname", 17, 3], ["src", 20, 3], ["patches", 27, 3], ["configureFlags", 36, 3], ["outputs", 41, 3], ["buildInputs", 48, 3], ["nativeBuildInputs", 56, 3], ["enableParallelBuilding", 61, 3], ["meta", 63, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, fetchpatch: false, autoreconfHook: false, "pkg-config": false, libpulseaudio: false, "alsa-lib": false, libcap: false, config: false, usePulseAudio: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["sha256", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 30, 7], ["url", 31, 7], ["hash", 32, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["longDescription", 64, 5], ["homepage", 69, 5], ["license", 70, 5], ["maintainers", 71, 5], ["platforms", 72, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["version", 16, 3], ["pname", 17, 3], ["src", 20, 3], ["patches", 27, 3], ["configureFlags", 36, 3], ["outputs", 41, 3], ["buildInputs", 48, 3], ["nativeBuildInputs", 56, 3], ["enableParallelBuilding", 61, 3], ["meta", 63, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const config = nix.arg($, "config");
   const usePulseAudio = nix.argOr($, "usePulseAudio", () => nix.selOr(config, () => nix.app(nix.sel(lib, "meta", "availableOn"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")), libpulseaudio), "pulseaudio"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       version: "1.2.2",
       pname: "libao",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "xiph",
           repo: "libao",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -34,7 +31,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "nanosecond-header.patch",
             url: "https://github.com/xiph/libao/commit/1f998f5d6d77674dad01b181811638578ad68242.patch",
             hash: "sha256-cvlyhQq1YS4pVya44LfsKD1R6iSOONsHJGRbP5LlanQ=",
@@ -46,7 +43,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [autoreconfHook, pkg_config]),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         longDescription: "Libao is Xiph.org's cross-platform audio library that allows\nprograms to output audio using a simple API on a wide variety of\nplatforms.\n",
         homepage: "https://xiph.org/ao/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),

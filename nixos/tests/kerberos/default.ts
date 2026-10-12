@@ -2,19 +2,18 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pkgs", 8, 34], ["runTest", 8, 39]], [["mit", 6, 3], ["heimdal", 7, 3], ["ldap", 8, 3]]]);
 const formals$1 = { args: { pkgs: false, runTest: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pkgs", 8, 34], ["runTest", 8, 39]]);
-const pos$2 = nix.positions(here + "/default.nix", [["mit", 6, 3], ["heimdal", 7, 3], ["ldap", 8, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   const runTest = nix.arg($, "runTest");
   return {
-    [nix.POS]: pos$2,
+    [nix.POS]: $pos[1],
     mit: nix.thunk(() => nix.app(runTest, nix.path(here, "./mit.nix"))),
     heimdal: nix.thunk(() => nix.app(runTest, nix.path(here, "./heimdal.nix"))),
-    ldap: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./ldap")), nix.thunk(() => ({ [nix.POS]: pos$1, pkgs: pkgs, runTest: runTest })))),
+    ldap: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./ldap")), nix.thunk(() => ({ [nix.POS]: $pos[0], pkgs: pkgs, runTest: runTest })))),
   };
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

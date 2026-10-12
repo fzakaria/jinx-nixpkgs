@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 14, 5], ["rev", 15, 5], ["hash", 16, 5]], [["description", 27, 5], ["homepage", 28, 5], ["license", 32, 5], ["sourceProvenance", 37, 5], ["platforms", 38, 5], ["maintainers", 39, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["enableParallelBuilding", 19, 3], ["nativeBuildInputs", 21, 3], ["meta", 26, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchgit: false, autoreconfHook: false, sdcc: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 14, 5], ["rev", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 27, 5], ["homepage", 28, 5], ["license", 32, 5], ["sourceProvenance", 37, 5], ["platforms", 38, 5], ["maintainers", 39, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["enableParallelBuilding", 19, 3], ["nativeBuildInputs", 21, 3], ["meta", 26, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const autoreconfHook = nix.arg($, "autoreconfHook");
   const sdcc = nix.arg($, "sdcc");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "sigrok-firmware-fx2lafw",
       version: "0.1.7-unstable-2024-02-03",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "git://sigrok.org/sigrok-firmware-fx2lafw",
           rev: "0f2d3242ffb5582e5b9a018ed9ae9812d517a56e",
           hash: "sha256-xveVcwAwtqKGD3/UvnBz5ASvTyg/6jAlTedZElhV2HE=",
@@ -27,7 +25,7 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: true,
       nativeBuildInputs: nix.thunk(() => [autoreconfHook, sdcc]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Firmware for FX2 logic analyzers",
         homepage: "https://sigrok.org/",
         license: nix.thunk(() => (() => {

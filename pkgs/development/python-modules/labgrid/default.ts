@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 42, 5], ["repo", 43, 5], ["tag", 44, 5], ["hash", 45, 5]], [["updateScript", 48, 12]], [["description", 114, 5], ["homepage", 115, 5], ["license", 116, 5], ["maintainers", 117, 5], ["platforms", 118, 5]], [["pname", 37, 3], ["version", 38, 3], ["pyproject", 39, 3], ["src", 41, 3], ["passthru", 48, 3], ["build-system", 50, 3], ["dependencies", 55, 3], ["pythonRemoveDeps", 73, 3], ["pythonImportsCheck", 75, 3], ["nativeCheckInputs", 77, 3], ["disabledTests", 89, 3], ["pytestFlags", 111, 3], ["meta", 113, 3]]]);
 const formals$1 = { args: { ansicolors: false, attrs: false, buildPythonPackage: false, exceptiongroup: false, fetchFromGitHub: false, fetchpatch: false, fetchpatch2: false, grpcio: false, "grpcio-tools": false, "grpcio-reflection": false, jinja2: false, lib: false, "nix-update-script": false, mock: false, openssh: false, pexpect: false, psutil: false, pyserial: false, pytest: false, pytestCheckHook: false, "pytest-benchmark": false, "pytest-dependency": false, "pytest-mock": false, pyudev: false, pyusb: false, pyyaml: false, "py-netgear-plus": false, requests: false, setuptools: false, "setuptools-scm": false, "util-linux": false, xmodem: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 42, 5], ["repo", 43, 5], ["tag", 44, 5], ["hash", 45, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["updateScript", 48, 12]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 114, 5], ["homepage", 115, 5], ["license", 116, 5], ["maintainers", 117, 5], ["platforms", 118, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 37, 3], ["version", 38, 3], ["pyproject", 39, 3], ["src", 41, 3], ["passthru", 48, 3], ["build-system", 50, 3], ["dependencies", 55, 3], ["pythonRemoveDeps", 73, 3], ["pythonImportsCheck", 75, 3], ["nativeCheckInputs", 77, 3], ["disabledTests", 89, 3], ["pytestFlags", 111, 3], ["meta", 113, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -43,19 +40,19 @@ export default nix.lambda((args) => (() => {
   const util_linux = nix.arg($, "util-linux");
   const xmodem = nix.arg($, "xmodem");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "labgrid",
       version: "26.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "labgrid-project",
           repo: "labgrid",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-SX7FIaSl2sy1hMPEmgGCQQAzXUeFZRw/CrXf/ZHRBDU=",
         })))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       "build-system": nix.thunk(() => [setuptools, setuptools_scm]),
@@ -105,7 +102,7 @@ export default nix.lambda((args) => (() => {
       ]),
       pytestFlags: nix.thunk(() => ["--benchmark-disable"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Embedded control & testing library",
         homepage: "https://github.com/labgrid-project/labgrid",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),

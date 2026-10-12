@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 30, 7], ["repo", 31, 7], ["tag", 32, 7], ["hash", 33, 7]], [["name", 74, 9], ["desktopName", 75, 9], ["genericName", 76, 9], ["exec", 77, 9], ["icon", 78, 9], ["comment", 79, 9], ["categories", 80, 9]], [["updateScript", 88, 14]], [["description", 91, 7], ["homepage", 92, 7], ["downloadPage", 93, 7], ["license", 94, 7], ["maintainers", 95, 7], ["mainProgram", 99, 7]], [["pname", 26, 5], ["version", 27, 5], ["src", 29, 5], ["targetFlutterPlatform", 36, 13], ["pubspecLock", 38, 5], ["gitHashes", 40, 5], ["nativeBuildInputs", 42, 5], ["buildInputs", 46, 5], ["postInstall", 57, 5], ["desktopItems", 72, 5], ["passthru", 88, 5], ["meta", 90, 5]], [["url", 108, 7], ["hash", 109, 7]], [["mainProgram", 130, 7], ["sourceProvenance", 131, 7], ["platforms", 132, 7]], [["pname", 104, 5], ["version", 105, 27], ["src", 107, 5], ["nativeBuildInputs", 112, 5], ["sourceRoot", 117, 5], ["installPhase", 119, 5], ["meta", 129, 5]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, fetchFromGitHub: false, flutter335: false, copyDesktopItems: false, makeDesktopItem: false, undmg: false, makeBinaryWrapper: false, "alsa-lib": false, "libdisplay-info": false, libxpresent: false, libxscrnsaver: false, libepoxy: false, "mpv-unwrapped": false, targetFlutterPlatform: true, baseUrl: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 30, 7], ["repo", 31, 7], ["tag", 32, 7], ["hash", 33, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 74, 9], ["desktopName", 75, 9], ["genericName", 76, 9], ["exec", 77, 9], ["icon", 78, 9], ["comment", 79, 9], ["categories", 80, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 88, 14]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 91, 7], ["homepage", 92, 7], ["downloadPage", 93, 7], ["license", 94, 7], ["maintainers", 95, 7], ["mainProgram", 99, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 26, 5], ["version", 27, 5], ["src", 29, 5], ["targetFlutterPlatform", 36, 13], ["pubspecLock", 38, 5], ["gitHashes", 40, 5], ["nativeBuildInputs", 42, 5], ["buildInputs", 46, 5], ["postInstall", 57, 5], ["desktopItems", 72, 5], ["passthru", 88, 5], ["meta", 90, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["url", 108, 7], ["hash", 109, 7]]);
-const pos$7 = nix.positions(here + "/package.nix", [["mainProgram", 130, 7], ["sourceProvenance", 131, 7], ["platforms", 132, 7]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 104, 5], ["version", 105, 27], ["src", 107, 5], ["nativeBuildInputs", 112, 5], ["sourceRoot", 117, 5], ["installPhase", 119, 5], ["meta", 129, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const baseUrl = nix.argOr($, "baseUrl", () => null);
   const flutter = flutter335;
   const sourceBuild = nix.thunk(() => nix.app(nix.sel(flutter, "buildFlutterApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "fladder",
       version: "0.11.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "DonutWare",
           repo: "Fladder",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -52,7 +45,7 @@ export default nix.lambda((args) => (() => {
 `))))), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.eq(targetFlutterPlatform, "linux")), "# Install SVG icon\ninstall -Dm644 icons/fladder_icon.svg \\\n  $out/share/icons/hicolor/scalable/apps/fladder.svg\n"))),
       desktopItems: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.eq(targetFlutterPlatform, "linux")), nix.thunk(() => [
           nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               name: "fladder",
               desktopName: "Fladder",
               genericName: "Jellyfin Client",
@@ -62,9 +55,9 @@ export default nix.lambda((args) => (() => {
               categories: nix.thunk(() => ["AudioVideo", "Video", "Player"]),
             })))),
         ]))),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$3, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[2], updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Cross-platform Jellyfin client built on top of Flutter",
         homepage: "https://github.com/DonutWare/Fladder",
         downloadPage: "https://github.com/DonutWare/Fladder/releases",
@@ -80,11 +73,11 @@ export default nix.lambda((args) => (() => {
       })),
     })));
   const darwin = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: nix.thunk(() => nix.sel(sourceBuild, "pname")),
       version: nix.thunk(() => nix.attr(sourceBuild, "version")),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           url: nix.thunk(() => nix.str`https://github.com/DonutWare/Fladder/releases/download/v${nix.sel(sourceBuild, "version")}/Fladder-macOS-${nix.sel(sourceBuild, "version")}.dmg`),
           hash: "sha256-23+T6DOhSvq7cQMqBmTIMcVnEo1bYMaszEAndQZe/lE=",
         })))),
@@ -92,7 +85,7 @@ export default nix.lambda((args) => (() => {
       sourceRoot: ".",
       installPhase: "runHook preInstall\n\nmkdir -p $out/Applications\ncp -r Fladder.app $out/Applications\nmakeBinaryWrapper $out/Applications/Fladder.app/Contents/MacOS/Fladder $out/bin/Fladder\n\nrunHook postInstall\n",
       meta: nix.thunk(() => nix.update(nix.sel(sourceBuild, "meta"), {
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         mainProgram: "Fladder",
         sourceProvenance: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "sourceTypes")), null);

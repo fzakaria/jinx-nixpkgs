@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 31, 5], ["hash", 32, 5]], [["description", 58, 5], ["homepage", 59, 5], ["license", 60, 5], ["platforms", 61, 5], ["maintainers", 62, 5]], [["pname", 20, 3], ["version", 21, 3], ["outputs", 23, 3], ["src", 30, 3], ["strictDeps", 35, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 42, 3], ["doCheck", 53, 3], ["enableParallelBuilding", 55, 3], ["meta", 57, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, boost: false, libwpd: false, libwpg: false, "pkg-config": false, zlib: false, gperf: false, librevenge: false, libxml2: false, icu: false, perl: false, cppunit: false, doxygen: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 31, 5], ["hash", 32, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 58, 5], ["homepage", 59, 5], ["license", 60, 5], ["platforms", 61, 5], ["maintainers", 62, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["outputs", 23, 3], ["src", 30, 3], ["strictDeps", 35, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 42, 3], ["doCheck", 53, 3], ["enableParallelBuilding", 55, 3], ["meta", 57, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,12 +23,12 @@ export default nix.lambda((args) => (() => {
   const cppunit = nix.arg($, "cppunit");
   const doxygen = nix.arg($, "doxygen");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "libvisio",
       version: "0.1.11",
       outputs: nix.thunk(() => ["out", "bin", "dev", "doc"]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://dev-www.libreoffice.org/src/libvisio/libvisio-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-Km79QLbZ28tw+6O+UxEjZogrqXtXFR3zaY36R4yNjdM=",
         })))),
@@ -40,7 +38,7 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Library providing ability to interpret and import visio diagrams into various applications",
         homepage: "https://wiki.documentfoundation.org/DLP/Libraries/libvisio",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mpl20")),

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 15, 5], ["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["forceFetchGit", 20, 5], ["hash", 21, 5]], [["url", 26, 7], ["hash", 27, 7]], [["description", 40, 5], ["homepage", 41, 5], ["license", 42, 5], ["maintainers", 43, 5], ["platforms", 44, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["patches", 24, 3], ["buildInputs", 31, 3], ["nativeBuildInputs", 32, 3], ["makeFlags", 34, 3], ["meta", 39, 3]]]);
 const formals$1 = { args: { stdenv: false, fetchFromGitea: false, fetchpatch: false, wvstreams: false, "pkg-config": false, lib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 15, 5], ["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["forceFetchGit", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 26, 7], ["hash", 27, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 40, 5], ["homepage", 41, 5], ["license", 42, 5], ["maintainers", 43, 5], ["platforms", 44, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["patches", 24, 3], ["buildInputs", 31, 3], ["nativeBuildInputs", 32, 3], ["makeFlags", 34, 3], ["meta", 39, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const lib = nix.arg($, "lib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "wvdial",
       version: "0-unstable-2016-06-15",
       src: nix.thunk(() => nix.app(fetchFromGitea, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "gitea.osmocom.org",
           owner: "retronetworking",
           repo: "wvdial",
@@ -31,7 +28,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://git.openembedded.org/meta-openembedded/plain/meta-oe/recipes-connectivity/wvdial/wvdial/typo_pon.wvdial.1.patch?h=73a68490efe05cdbec540ec6f17782816632a24d",
             hash: "sha256-fsneoB5GeKH/nxwW0z8Mk6892PtnZ3J77wP4BGo3Tj8=",
           })))),
@@ -43,7 +40,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`PPPDIR=${nix.builtins.placeholder("out")}/etc/ppp/peers`),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Dialer that automatically recognises the modem",
         homepage: "https://gitea.osmocom.org/retronetworking/wvdial",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl2")),

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 38, 5], ["repo", 39, 5], ["tag", 40, 5], ["hash", 41, 5]], [["NIX_CFLAGS_COMPILE", 120, 7]], [["updateScript", 122, 12]], [["description", 125, 5], ["mainProgram", 126, 5], ["homepage", 127, 5], ["license", 128, 5], ["platforms", 129, 5], ["maintainers", 130, 5]], [["pname", 26, 3], ["version", 27, 3], ["outputs", 29, 3], ["src", 37, 3], ["patches", 44, 3], ["nativeBuildInputs", 62, 3], ["buildInputs", 67, 3], ["propagatedBuildInputs", 78, 3], ["cmakeFlags", 83, 3], ["env", 120, 3], ["passthru", 122, 3], ["meta", 124, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, ninja: false, openssl: false, gflags: false, glog: false, folly: false, fizz: false, wangle: false, zlib: false, zstd: false, xxhash: false, mvfst: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 38, 5], ["repo", 39, 5], ["tag", 40, 5], ["hash", 41, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 120, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 122, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 125, 5], ["mainProgram", 126, 5], ["homepage", 127, 5], ["license", 128, 5], ["platforms", 129, 5], ["maintainers", 130, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 26, 3], ["version", 27, 3], ["outputs", 29, 3], ["src", 37, 3], ["patches", 44, 3], ["nativeBuildInputs", 62, 3], ["buildInputs", 67, 3], ["propagatedBuildInputs", 78, 3], ["cmakeFlags", 83, 3], ["env", 120, 3], ["passthru", 122, 3], ["meta", 124, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,12 +24,12 @@ export default nix.lambda((args) => (() => {
   const mvfst = nix.arg($, "mvfst");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "fbthrift",
       version: "2026.07.27.00",
       outputs: nix.thunk(() => ["out", "lib"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "facebook",
           repo: "fbthrift",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -58,15 +54,15 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.app(nix.sel(lib, "cmakeFeature"), "CMAKE_SHARED_LINKER_FLAGS", "-Wl,-undefined,dynamic_lookup")),
         ])))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), "-fno-assume-unique-vtables")),
       })),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Facebook's branch of Apache Thrift",
         mainProgram: "thrift1",
         homepage: "https://github.com/facebook/fbthrift",

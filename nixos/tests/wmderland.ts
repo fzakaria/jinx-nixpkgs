@@ -2,82 +2,66 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/wmderland.nix", [[["maintainers", 5, 5]], [["user", 15, 40]], [["auto", 15, 35]], [["displayManager", 15, 20]], [["defaultSession", 16, 31]], [["enable", 17, 48]], [["wmderland", 17, 38]], [["windowManager", 17, 24]], [["displayManager", 16, 16], ["xserver", 17, 16]], [["HOME", 23, 11]], [["type", 26, 11], ["RemainAfterExit", 27, 11], ["user", 28, 11]], [["wantedBy", 20, 9], ["before", 21, 9], ["environment", 22, 9], ["unitConfig", 25, 9], ["script", 30, 9]], [["setupWmderlandConfig", 19, 24]], [["services", 19, 15]], [["imports", 11, 7], ["test-support", 15, 7], ["services", 16, 7], ["systemd", 19, 7]], [["machine", 8, 9]], [["name", 3, 3], ["meta", 4, 3], ["nodes", 8, 3], ["testScript", 44, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/wmderland.nix", [["maintainers", 5, 5]]);
 const formals$2 = { args: { lib: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/wmderland.nix", [["user", 15, 40]]);
-const pos$3 = nix.positions(here + "/wmderland.nix", [["auto", 15, 35]]);
-const pos$4 = nix.positions(here + "/wmderland.nix", [["displayManager", 15, 20]]);
-const pos$5 = nix.positions(here + "/wmderland.nix", [["defaultSession", 16, 31]]);
-const pos$6 = nix.positions(here + "/wmderland.nix", [["enable", 17, 48]]);
-const pos$7 = nix.positions(here + "/wmderland.nix", [["wmderland", 17, 38]]);
-const pos$8 = nix.positions(here + "/wmderland.nix", [["windowManager", 17, 24]]);
-const pos$9 = nix.positions(here + "/wmderland.nix", [["displayManager", 16, 16], ["xserver", 17, 16]]);
-const pos$10 = nix.positions(here + "/wmderland.nix", [["HOME", 23, 11]]);
-const pos$11 = nix.positions(here + "/wmderland.nix", [["type", 26, 11], ["RemainAfterExit", 27, 11], ["user", 28, 11]]);
-const pos$12 = nix.positions(here + "/wmderland.nix", [["wantedBy", 20, 9], ["before", 21, 9], ["environment", 22, 9], ["unitConfig", 25, 9], ["script", 30, 9]]);
-const pos$13 = nix.positions(here + "/wmderland.nix", [["setupWmderlandConfig", 19, 24]]);
-const pos$14 = nix.positions(here + "/wmderland.nix", [["services", 19, 15]]);
-const pos$15 = nix.positions(here + "/wmderland.nix", [["imports", 11, 7], ["test-support", 15, 7], ["services", 16, 7], ["systemd", 19, 7]]);
-const pos$16 = nix.positions(here + "/wmderland.nix", [["machine", 8, 9]]);
 const formals$3 = { args: {  }, ellipsis: true };
-const pos$17 = nix.positions(here + "/wmderland.nix", [["name", 3, 3], ["meta", 4, 3], ["nodes", 8, 3], ["testScript", 44, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   return {
-    [nix.POS]: pos$17,
+    [nix.POS]: $pos[16],
     name: "wmderland",
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
       return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "takagiy"))]),
       };
     })()),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$16,
+      [nix.POS]: $pos[15],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const lib = nix.arg($_1, "lib");
         return {
-          [nix.POS]: pos$15,
+          [nix.POS]: $pos[14],
           imports: nix.thunk(() => [
             nix.path(here, "./common/x11.nix"),
             nix.path(here, "./common/user-account.nix"),
           ]),
           "test-support": nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             displayManager: nix.thunk(() => ({
-              [nix.POS]: pos$3,
-              auto: nix.thunk(() => ({ [nix.POS]: pos$2, user: "alice" })),
+              [nix.POS]: $pos[2],
+              auto: nix.thunk(() => ({ [nix.POS]: $pos[1], user: "alice" })),
             })),
           })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$9,
+            [nix.POS]: $pos[8],
             displayManager: nix.thunk(() => ({
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               defaultSession: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), "none+wmderland")),
             })),
             xserver: nix.thunk(() => ({
-              [nix.POS]: pos$8,
+              [nix.POS]: $pos[7],
               windowManager: nix.thunk(() => ({
-                [nix.POS]: pos$7,
-                wmderland: nix.thunk(() => ({ [nix.POS]: pos$6, enable: true })),
+                [nix.POS]: $pos[6],
+                wmderland: nix.thunk(() => ({ [nix.POS]: $pos[5], enable: true })),
               })),
             })),
           })),
           systemd: nix.thunk(() => ({
-            [nix.POS]: pos$14,
+            [nix.POS]: $pos[13],
             services: nix.thunk(() => ({
-              [nix.POS]: pos$13,
+              [nix.POS]: $pos[12],
               setupWmderlandConfig: nix.thunk(() => ({
-                [nix.POS]: pos$12,
+                [nix.POS]: $pos[11],
                 wantedBy: nix.thunk(() => ["multi-user.target"]),
                 before: nix.thunk(() => ["multi-user.target"]),
-                environment: nix.thunk(() => ({ [nix.POS]: pos$10, HOME: "/home/alice" })),
-                unitConfig: nix.thunk(() => ({ [nix.POS]: pos$11, type: "oneshot", RemainAfterExit: true, user: "alice" })),
+                environment: nix.thunk(() => ({ [nix.POS]: $pos[9], HOME: "/home/alice" })),
+                unitConfig: nix.thunk(() => ({ [nix.POS]: $pos[10], type: "oneshot", RemainAfterExit: true, user: "alice" })),
                 script: nix.thunk(() => (() => {
                   const config = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "config", nix.thunk(() => nix.str`set $Mod = Mod1
 bindsym $Mod+Return exec ${nix.sel(pkgs, "xterm")}/bin/xterm -cm -pc

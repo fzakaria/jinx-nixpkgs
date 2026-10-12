@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 39, 5], ["repo", 40, 5], ["tag", 41, 5], ["hash", 42, 5]], [["description", 115, 5], ["homepage", 116, 5], ["changelog", 117, 5], ["license", 118, 5], ["maintainers", 119, 5]], [["pname", 32, 3], ["version", 33, 3], ["pyproject", 34, 3], ["disabled", 36, 3], ["src", 38, 3], ["pythonRelaxDeps", 45, 3], ["build-system", 53, 3], ["dependencies", 55, 3], ["nativeCheckInputs", 74, 3], ["preCheck", 82, 3], ["disabledTests", 89, 3], ["enabledTestPaths", 102, 3], ["disabledTestPaths", 106, 3], ["__darwinAllowLocalNetworking", 110, 3], ["pythonImportsCheck", 112, 3], ["meta", 114, 3]]]);
 const formals$1 = { args: { lib: false, authlib: false, buildPythonPackage: false, deprecation: false, fastapi: false, fetchFromGitHub: false, flask: false, "grpcio-health-checking": false, "grpcio-tools": false, grpcio: false, h5py: false, httpx: false, litestar: false, numpy: false, pandas: false, polars: false, pydantic: false, "pytest-asyncio": false, "pytest-httpserver": false, "pytest-xdist": false, pytestCheckHook: false, pythonOlder: false, requests: false, stdenv: false, "setuptools-scm": false, validators: false, writableTmpDirAsHomeHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 39, 5], ["repo", 40, 5], ["tag", 41, 5], ["hash", 42, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 115, 5], ["homepage", 116, 5], ["changelog", 117, 5], ["license", 118, 5], ["maintainers", 119, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 32, 3], ["version", 33, 3], ["pyproject", 34, 3], ["disabled", 36, 3], ["src", 38, 3], ["pythonRelaxDeps", 45, 3], ["build-system", 53, 3], ["dependencies", 55, 3], ["nativeCheckInputs", 74, 3], ["preCheck", 82, 3], ["disabledTests", 89, 3], ["enabledTestPaths", 102, 3], ["disabledTestPaths", 106, 3], ["__darwinAllowLocalNetworking", 110, 3], ["pythonImportsCheck", 112, 3], ["meta", 114, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -42,7 +40,7 @@ export default nix.lambda((args) => (() => {
       const pyproject = true;
       const disabled = nix.thunk(() => nix.app(pythonOlder, "3.12"));
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "weaviate",
           repo: "weaviate-python-client",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -92,7 +90,7 @@ export default nix.lambda((args) => (() => {
       const __darwinAllowLocalNetworking = true;
       const pythonImportsCheck = nix.thunk(() => ["weaviate"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Python native client for easy interaction with a Weaviate instance",
         homepage: "https://github.com/weaviate/weaviate-python-client",
         changelog: nix.thunk(() => nix.str`https://github.com/weaviate/weaviate-python-client/releases/tag/${nix.sel(src, "tag")}`),
@@ -103,7 +101,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

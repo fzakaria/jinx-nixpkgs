@@ -2,35 +2,10 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/consul.nix", [[["raft_multiplier", 12, 15]], [["retry_interval", 10, 13], ["performance", 11, 5]], [["allowedTCPPorts", 29, 5], ["allowedUDPPorts", 36, 5]], [["systemPackages", 50, 19]], [["address", 54, 11], ["prefixLength", 55, 11]], [["addresses", 52, 39]], [["ipv4", 52, 34]], [["eth1", 52, 29]], [["interfaces", 52, 18], ["firewall", 58, 18]], [["server", 64, 11], ["retry_join", 65, 11], ["bind_addr", 66, 11]], [["enable", 61, 9], ["webUi", 62, 17], ["extraConfig", 63, 9]], [["consul", 60, 16]], [["environment", 50, 7], ["networking", 52, 7], ["services", 60, 7]], [["address", 82, 11], ["prefixLength", 83, 11]], [["addresses", 80, 39]], [["ipv4", 80, 34]], [["eth1", 80, 29]], [["interfaces", 80, 18], ["firewall", 86, 18]], [["min_quorum", 99, 23]], [["server", 94, 13], ["bootstrap_expect", 95, 13], ["autopilot", 99, 13], ["retry_join", 100, 13], ["bind_addr", 108, 13]], [["enable", 91, 11], ["webUi", 92, 19], ["extraConfig", 93, 11]], [["consul", 88, 16]], [["networking", 80, 7], ["services", 88, 7]], [["pkgsReadOnly", 116, 8]], [["server1", 119, 5], ["server2", 120, 5], ["server3", 121, 5], ["client1", 123, 5], ["client2", 124, 5]], [["name", 114, 3], ["node", 116, 3], ["nodes", 118, 3], ["testScript", 127, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/consul.nix", [["raft_multiplier", 12, 15]]);
-const pos$2 = nix.positions(here + "/consul.nix", [["retry_interval", 10, 13], ["performance", 11, 5]]);
-const pos$3 = nix.positions(here + "/consul.nix", [["allowedTCPPorts", 29, 5], ["allowedUDPPorts", 36, 5]]);
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$4 = nix.positions(here + "/consul.nix", [["systemPackages", 50, 19]]);
-const pos$5 = nix.positions(here + "/consul.nix", [["address", 54, 11], ["prefixLength", 55, 11]]);
-const pos$6 = nix.positions(here + "/consul.nix", [["addresses", 52, 39]]);
-const pos$7 = nix.positions(here + "/consul.nix", [["ipv4", 52, 34]]);
-const pos$8 = nix.positions(here + "/consul.nix", [["eth1", 52, 29]]);
-const pos$9 = nix.positions(here + "/consul.nix", [["interfaces", 52, 18], ["firewall", 58, 18]]);
-const pos$10 = nix.positions(here + "/consul.nix", [["server", 64, 11], ["retry_join", 65, 11], ["bind_addr", 66, 11]]);
-const pos$11 = nix.positions(here + "/consul.nix", [["enable", 61, 9], ["webUi", 62, 17], ["extraConfig", 63, 9]]);
-const pos$12 = nix.positions(here + "/consul.nix", [["consul", 60, 16]]);
-const pos$13 = nix.positions(here + "/consul.nix", [["environment", 50, 7], ["networking", 52, 7], ["services", 60, 7]]);
 const formals$3 = { args: { pkgs: false }, ellipsis: true };
-const pos$14 = nix.positions(here + "/consul.nix", [["address", 82, 11], ["prefixLength", 83, 11]]);
-const pos$15 = nix.positions(here + "/consul.nix", [["addresses", 80, 39]]);
-const pos$16 = nix.positions(here + "/consul.nix", [["ipv4", 80, 34]]);
-const pos$17 = nix.positions(here + "/consul.nix", [["eth1", 80, 29]]);
-const pos$18 = nix.positions(here + "/consul.nix", [["interfaces", 80, 18], ["firewall", 86, 18]]);
-const pos$19 = nix.positions(here + "/consul.nix", [["min_quorum", 99, 23]]);
-const pos$20 = nix.positions(here + "/consul.nix", [["server", 94, 13], ["bootstrap_expect", 95, 13], ["autopilot", 99, 13], ["retry_join", 100, 13], ["bind_addr", 108, 13]]);
-const pos$21 = nix.positions(here + "/consul.nix", [["enable", 91, 11], ["webUi", 92, 19], ["extraConfig", 93, 11]]);
-const pos$22 = nix.positions(here + "/consul.nix", [["consul", 88, 16]]);
-const pos$23 = nix.positions(here + "/consul.nix", [["networking", 80, 7], ["services", 88, 7]]);
-const pos$24 = nix.positions(here + "/consul.nix", [["pkgsReadOnly", 116, 8]]);
-const pos$25 = nix.positions(here + "/consul.nix", [["server1", 119, 5], ["server2", 120, 5], ["server3", 121, 5], ["client1", 123, 5], ["client2", 124, 5]]);
-const pos$26 = nix.positions(here + "/consul.nix", [["name", 114, 3], ["node", 116, 3], ["nodes", 118, 3], ["testScript", 127, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -39,14 +14,14 @@ export default nix.lambda((args) => (() => {
   const retry_interval = "1s";
   const raft_multiplier = 1n;
   const defaultExtraConfig = nix.thunk(() => ({
-    [nix.POS]: pos$2,
+    [nix.POS]: $pos[1],
     retry_interval: retry_interval,
-    performance: nix.thunk(() => ({ [nix.POS]: pos$1, raft_multiplier: raft_multiplier })),
+    performance: nix.thunk(() => ({ [nix.POS]: $pos[0], raft_multiplier: raft_multiplier })),
   }));
   const allConsensusServerHosts = nix.thunk(() => ["192.168.1.1", "192.168.1.2", "192.168.1.3"]);
   const allConsensusClientHosts = nix.thunk(() => ["192.168.2.1", "192.168.2.2"]);
   const firewallSettings = nix.thunk(() => ({
-    [nix.POS]: pos$3,
+    [nix.POS]: $pos[2],
     allowedTCPPorts: nix.thunk(() => [8301n, 8302n, 8600n, 8500n, 8300n]),
     allowedUDPPorts: nix.thunk(() => [8301n, 8302n, 8600n]),
   }));
@@ -55,33 +30,33 @@ export default nix.lambda((args) => (() => {
     const pkgs = nix.arg($_1, "pkgs");
     const ip = nix.thunk(() => nix.builtins.elemAt(allConsensusClientHosts, index));
     return {
-      [nix.POS]: pos$13,
+      [nix.POS]: $pos[12],
       environment: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "consul"))]),
       })),
       networking: nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         interfaces: nix.thunk(() => ({
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           eth1: nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             ipv4: nix.thunk(() => ({
-              [nix.POS]: pos$6,
-              addresses: nix.thunk(() => nix.app(nix.sel(pkgs, "lib", "mkOverride"), 0n, nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$5, address: ip, prefixLength: 16n }))]))),
+              [nix.POS]: $pos[5],
+              addresses: nix.thunk(() => nix.app(nix.sel(pkgs, "lib", "mkOverride"), 0n, nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: $pos[4], address: ip, prefixLength: 16n }))]))),
             })),
           })),
         })),
         firewall: firewallSettings,
       })),
       services: nix.thunk(() => ({
-        [nix.POS]: pos$12,
+        [nix.POS]: $pos[11],
         consul: nix.thunk(() => ({
-          [nix.POS]: pos$11,
+          [nix.POS]: $pos[10],
           enable: true,
           webUi: webUi,
           extraConfig: nix.thunk(() => nix.update(defaultExtraConfig, {
-            [nix.POS]: pos$10,
+            [nix.POS]: $pos[9],
             server: false,
             retry_join: allConsensusServerHosts,
             bind_addr: ip,
@@ -97,34 +72,34 @@ export default nix.lambda((args) => (() => {
     const thisConsensusServerHost = nix.thunk(() => nix.builtins.elemAt(allConsensusServerHosts, index));
     const ip = thisConsensusServerHost;
     return {
-      [nix.POS]: pos$23,
+      [nix.POS]: $pos[22],
       networking: nix.thunk(() => ({
-        [nix.POS]: pos$18,
+        [nix.POS]: $pos[17],
         interfaces: nix.thunk(() => ({
-          [nix.POS]: pos$17,
+          [nix.POS]: $pos[16],
           eth1: nix.thunk(() => ({
-            [nix.POS]: pos$16,
+            [nix.POS]: $pos[15],
             ipv4: nix.thunk(() => ({
-              [nix.POS]: pos$15,
-              addresses: nix.thunk(() => nix.app(nix.sel(pkgs, "lib", "mkOverride"), 0n, nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$14, address: ip, prefixLength: 16n }))]))),
+              [nix.POS]: $pos[14],
+              addresses: nix.thunk(() => nix.app(nix.sel(pkgs, "lib", "mkOverride"), 0n, nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: $pos[13], address: ip, prefixLength: 16n }))]))),
             })),
           })),
         })),
         firewall: firewallSettings,
       })),
       services: nix.thunk(() => ({
-        [nix.POS]: pos$22,
+        [nix.POS]: $pos[21],
         consul: nix.thunk(() => (() => {
           nix.assert_(nix.builtins.elem(thisConsensusServerHost, allConsensusServerHosts), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/nixos/tests/consul.nix:89:9");
           return {
-            [nix.POS]: pos$21,
+            [nix.POS]: $pos[20],
             enable: true,
             webUi: webUi,
             extraConfig: nix.thunk(() => nix.update(defaultExtraConfig, {
-              [nix.POS]: pos$20,
+              [nix.POS]: $pos[19],
               server: true,
               bootstrap_expect: numConsensusServers,
-              autopilot: nix.thunk(() => ({ [nix.POS]: pos$19, min_quorum: numConsensusServers })),
+              autopilot: nix.thunk(() => ({ [nix.POS]: $pos[18], min_quorum: numConsensusServers })),
               retry_join: nix.thunk(() => (nix.asBool(nix.eq(numConsensusServers, 1n)) ? nix.force(allConsensusServerHosts) : nix.builtins.filter((h) => !nix.eq(h, thisConsensusServerHost), allConsensusServerHosts))),
               bind_addr: ip,
             })),
@@ -134,11 +109,11 @@ export default nix.lambda((args) => (() => {
     };
   })(), formals$3);
   return {
-    [nix.POS]: pos$26,
+    [nix.POS]: $pos[25],
     name: "consul",
-    node: nix.thunk(() => ({ [nix.POS]: pos$24, pkgsReadOnly: false })),
+    node: nix.thunk(() => ({ [nix.POS]: $pos[23], pkgsReadOnly: false })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$25,
+      [nix.POS]: $pos[24],
       server1: nix.thunk(() => nix.app(server, 0n)),
       server2: nix.thunk(() => nix.app(server, 1n)),
       server3: nix.thunk(() => nix.app(server, 2n)),

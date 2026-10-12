@@ -2,41 +2,21 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/qbit-manage.nix", [[["maintainers", 9, 5]], [["Username", 26, 11], ["Password_PBKDF2", 28, 11], ["Port", 29, 11]], [["WebUI", 25, 34]], [["Preferences", 25, 22]], [["enable", 23, 9], ["webuiPort", 24, 9], ["serverConfig", 25, 9]], [["enable", 37, 13]], [["qbit-manage", 36, 11]], [["services", 35, 9]], [["host", 52, 17], ["user", 53, 17], ["pass", 54, 17]], [["tag", 57, 23]], [["dummy", 57, 17]], [["dummy", 59, 19]], [["root_dir", 60, 25]], [["qbt", 51, 15], ["tracker", 56, 15], ["cat", 59, 15], ["directory", 60, 15]], [["enable", 64, 15], ["port", 65, 15]], [["startupDelay", 69, 15], ["schedule", 70, 15]], [["enable", 46, 13], ["environmentFile", 47, 21], ["extraArgs", 48, 13], ["settings", 50, 13], ["webServer", 63, 13], ["commands", 68, 13]], [["qbittorrent", 44, 19], ["qbit-manage", 45, 11]], [["services", 43, 9]], [["simple", 34, 7], ["declarative", 42, 7]], [["name", 6, 3], ["meta", 8, 3], ["nodes", 14, 3], ["testScript", 77, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/qbit-manage.nix", [["maintainers", 9, 5]]);
-const pos$2 = nix.positions(here + "/qbit-manage.nix", [["Username", 26, 11], ["Password_PBKDF2", 28, 11], ["Port", 29, 11]]);
-const pos$3 = nix.positions(here + "/qbit-manage.nix", [["WebUI", 25, 34]]);
-const pos$4 = nix.positions(here + "/qbit-manage.nix", [["Preferences", 25, 22]]);
-const pos$5 = nix.positions(here + "/qbit-manage.nix", [["enable", 23, 9], ["webuiPort", 24, 9], ["serverConfig", 25, 9]]);
-const pos$6 = nix.positions(here + "/qbit-manage.nix", [["enable", 37, 13]]);
-const pos$7 = nix.positions(here + "/qbit-manage.nix", [["qbit-manage", 36, 11]]);
-const pos$8 = nix.positions(here + "/qbit-manage.nix", [["services", 35, 9]]);
-const pos$9 = nix.positions(here + "/qbit-manage.nix", [["host", 52, 17], ["user", 53, 17], ["pass", 54, 17]]);
-const pos$10 = nix.positions(here + "/qbit-manage.nix", [["tag", 57, 23]]);
-const pos$11 = nix.positions(here + "/qbit-manage.nix", [["dummy", 57, 17]]);
-const pos$12 = nix.positions(here + "/qbit-manage.nix", [["dummy", 59, 19]]);
-const pos$13 = nix.positions(here + "/qbit-manage.nix", [["root_dir", 60, 25]]);
-const pos$14 = nix.positions(here + "/qbit-manage.nix", [["qbt", 51, 15], ["tracker", 56, 15], ["cat", 59, 15], ["directory", 60, 15]]);
-const pos$15 = nix.positions(here + "/qbit-manage.nix", [["enable", 64, 15], ["port", 65, 15]]);
-const pos$16 = nix.positions(here + "/qbit-manage.nix", [["startupDelay", 69, 15], ["schedule", 70, 15]]);
-const pos$17 = nix.positions(here + "/qbit-manage.nix", [["enable", 46, 13], ["environmentFile", 47, 21], ["extraArgs", 48, 13], ["settings", 50, 13], ["webServer", 63, 13], ["commands", 68, 13]]);
-const pos$18 = nix.positions(here + "/qbit-manage.nix", [["qbittorrent", 44, 19], ["qbit-manage", 45, 11]]);
-const pos$19 = nix.positions(here + "/qbit-manage.nix", [["services", 43, 9]]);
-const pos$20 = nix.positions(here + "/qbit-manage.nix", [["simple", 34, 7], ["declarative", 42, 7]]);
 const formals$2 = { args: { nodes: false }, ellipsis: true };
-const pos$21 = nix.positions(here + "/qbit-manage.nix", [["name", 6, 3], ["meta", 8, 3], ["nodes", 14, 3], ["testScript", 77, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   const webUIPort = 8888n;
   return {
-    [nix.POS]: pos$21,
+    [nix.POS]: $pos[20],
     name: "qbit-manage",
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
       return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "flyingpeakock"))]),
       };
     })()),
@@ -45,15 +25,15 @@ export default nix.lambda((args) => (() => {
       const qbittorrent_user = "user";
       const environmentFile = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "qbit-manage.env", "QBIT_PASS=\"adminadmin\"\n"));
       const qbittorrent = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         enable: true,
         webuiPort: null,
         serverConfig: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           Preferences: nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             WebUI: nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               Username: qbittorrent_user,
               Password_PBKDF2: "@ByteArray(6DIf26VOpTCYbgNiO6DAFQ==:e6241eaAWGzRotQZvVA5/up9fj5wwSAThLgXI2lVMsYTu1StUgX9MgmElU3Sa/M8fs+zqwZv9URiUOObjqJGNw==)",
               Port: qbittorrent_port,
@@ -62,41 +42,41 @@ export default nix.lambda((args) => (() => {
         })),
       }));
       return {
-        [nix.POS]: pos$20,
+        [nix.POS]: $pos[19],
         simple: nix.thunk(() => ({
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$7,
-            "qbit-manage": nix.thunk(() => ({ [nix.POS]: pos$6, enable: true })),
+            [nix.POS]: $pos[6],
+            "qbit-manage": nix.thunk(() => ({ [nix.POS]: $pos[5], enable: true })),
           })),
         })),
         declarative: nix.thunk(() => ({
-          [nix.POS]: pos$19,
+          [nix.POS]: $pos[18],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$18,
+            [nix.POS]: $pos[17],
             qbittorrent: qbittorrent,
             "qbit-manage": nix.thunk(() => ({
-              [nix.POS]: pos$17,
+              [nix.POS]: $pos[16],
               enable: true,
               environmentFile: environmentFile,
               extraArgs: nix.thunk(() => ["--skip-qb-version-check"]),
               settings: nix.thunk(() => ({
-                [nix.POS]: pos$14,
+                [nix.POS]: $pos[13],
                 qbt: nix.thunk(() => ({
-                  [nix.POS]: pos$9,
+                  [nix.POS]: $pos[8],
                   host: nix.thunk(() => nix.str`localhost:${nix.builtins.toString(qbittorrent_port)}`),
                   user: qbittorrent_user,
                   pass: "!ENV QBIT_PASS",
                 })),
                 tracker: nix.thunk(() => ({
-                  [nix.POS]: pos$11,
-                  dummy: nix.thunk(() => ({ [nix.POS]: pos$10, tag: "dummy" })),
+                  [nix.POS]: $pos[10],
+                  dummy: nix.thunk(() => ({ [nix.POS]: $pos[9], tag: "dummy" })),
                 })),
-                cat: nix.thunk(() => ({ [nix.POS]: pos$12, dummy: "/tmp" })),
-                directory: nix.thunk(() => ({ [nix.POS]: pos$13, root_dir: "/tmp" })),
+                cat: nix.thunk(() => ({ [nix.POS]: $pos[11], dummy: "/tmp" })),
+                directory: nix.thunk(() => ({ [nix.POS]: $pos[12], root_dir: "/tmp" })),
               })),
-              webServer: nix.thunk(() => ({ [nix.POS]: pos$15, enable: true, port: webUIPort })),
-              commands: nix.thunk(() => ({ [nix.POS]: pos$16, startupDelay: 5n, schedule: 30n })),
+              webServer: nix.thunk(() => ({ [nix.POS]: $pos[14], enable: true, port: webUIPort })),
+              commands: nix.thunk(() => ({ [nix.POS]: $pos[15], startupDelay: 5n, schedule: 30n })),
             })),
           })),
         })),

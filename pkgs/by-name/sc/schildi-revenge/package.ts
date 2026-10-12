@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5], ["fetchSubmodules", 24, 5]], [["src", 29, 26], ["cargoRoot", 29, 30], ["hash", 30, 5]], [["VERGEN_GIT_SHA", 44, 5]], [["pkg", 56, 5], ["data", 57, 5]], [["updateScript", 80, 12]], [["description", 83, 5], ["mainProgram", 84, 5], ["platforms", 85, 5], ["license", 86, 5], ["homepage", 87, 5], ["sourceProvenance", 88, 5], ["maintainers", 92, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["cargoRoot", 27, 3], ["cargoDeps", 28, 3], ["nativeBuildInputs", 33, 3], ["env", 43, 3], ["gradleBuildTask", 47, 3], ["gradleUpdateScript", 49, 3], ["mitmCache", 55, 3], ["installPhase", 60, 3], ["postFixup", 75, 3], ["passthru", 80, 3], ["meta", 82, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, gradle_9: false, "nix-update-script": false, libGL: false, jdk21: false, git: false, cargo: false, rustc: false, rustPlatform: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5], ["fetchSubmodules", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["src", 29, 26], ["cargoRoot", 29, 30], ["hash", 30, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["VERGEN_GIT_SHA", 44, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pkg", 56, 5], ["data", 57, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["updateScript", 80, 12]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 83, 5], ["mainProgram", 84, 5], ["platforms", 85, 5], ["license", 86, 5], ["homepage", 87, 5], ["sourceProvenance", 88, 5], ["maintainers", 92, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["cargoRoot", 27, 3], ["cargoDeps", 28, 3], ["nativeBuildInputs", 33, 3], ["env", 43, 3], ["gradleBuildTask", 47, 3], ["gradleUpdateScript", 49, 3], ["mitmCache", 55, 3], ["installPhase", 60, 3], ["postFixup", 75, 3], ["passthru", 80, 3], ["meta", 82, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const rustc = nix.arg($, "rustc");
   const rustPlatform = nix.arg($, "rustPlatform");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "schildi-revenge",
       version: "26.10.01",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "SchildiChat",
           repo: "schildi-revenge",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,7 +32,7 @@ export default nix.lambda((args) => (() => {
         })))),
       cargoRoot: "matrix-rust-sdk",
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           cargoRoot: nix.thunk(() => nix.attr(finalAttrs, "cargoRoot")),
           hash: "sha256-6v5VqUwiIfkGhByoZN9hVm4zANAgTWHpPBdVHGFmGNc=",
@@ -51,11 +45,14 @@ export default nix.lambda((args) => (() => {
         rustc,
         nix.thunk(() => nix.sel(rustPlatform, "cargoSetupHook")),
       ]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$3, VERGEN_GIT_SHA: "0000000000000000000000000000000000000000" })),
+      env: nix.thunk(() => ({
+        [nix.POS]: $pos[2],
+        VERGEN_GIT_SHA: "0000000000000000000000000000000000000000",
+      })),
       gradleBuildTask: "createReleaseDistributable",
       gradleUpdateScript: "runHook preBuild\n\ngradle createReleaseDistributable composeApp:kspCommonMainKotlinMetadata --write-verification-metadata sha256\n",
       mitmCache: nix.thunk(() => nix.app(nix.sel(gradle_9, "fetchDeps"), nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           pkg: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
           data: nix.path(here, "./deps.json"),
         })))),
@@ -64,11 +61,11 @@ export default nix.lambda((args) => (() => {
 --add-rpath ${nix.app(nix.sel(lib, "makeLibraryPath"), nix.thunk(() => [libGL]))}
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Matrix client for desktop written in Kotlin and using the Matrix Rust SDK",
         mainProgram: "schildichat-revenge",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),

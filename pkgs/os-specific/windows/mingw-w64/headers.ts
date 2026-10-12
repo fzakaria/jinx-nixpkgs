@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/headers.nix", [[["url", 13, 5], ["hash", 14, 5]], [["wine", 30, 28]], [["headersOnly", 28, 5], ["tests", 29, 5], ["updateScript", 32, 5]], [["homepage", 36, 5], ["downloadPage", 37, 5], ["description", 38, 5], ["license", 39, 5], ["platforms", 47, 5], ["teams", 48, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["configureFlags", 17, 3], ["preConfigure", 21, 3], ["passthru", 25, 3], ["meta", 35, 3]]]);
 const formals$1 = { args: { lib: false, nixosTests: false, stdenvNoCC: false, fetchurl: false, crt: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/headers.nix", [["url", 13, 5], ["hash", 14, 5]]);
-const pos$2 = nix.positions(here + "/headers.nix", [["wine", 30, 28]]);
-const pos$3 = nix.positions(here + "/headers.nix", [["headersOnly", 28, 5], ["tests", 29, 5], ["updateScript", 32, 5]]);
-const pos$4 = nix.positions(here + "/headers.nix", [["homepage", 36, 5], ["downloadPage", 37, 5], ["description", 38, 5], ["license", 39, 5], ["platforms", 47, 5], ["teams", 48, 5]]);
-const pos$5 = nix.positions(here + "/headers.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["configureFlags", 17, 3], ["preConfigure", 21, 3], ["passthru", 25, 3], ["meta", 35, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const crt = nix.argOr($, "crt", () => nix.sel(stdenvNoCC, "hostPlatform", "libc"));
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "mingw_w64-headers",
       version: "14.0.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/mingw-w64/mingw-w64-v${nix.sel(finalAttrs, "version")}.tar.bz2`),
           hash: "sha256-bq+SHZ65h9OCCzZOqXdbwZuWXsgUkLb91xZSbCjhmVw=",
         })))),
@@ -30,13 +26,13 @@ export default nix.lambda((args) => (() => {
       ]),
       preConfigure: "cd mingw-w64-headers\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         headersOnly: true,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$2, wine: nix.thunk(() => nix.attr(nixosTests, "wine")) })),
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[1], wine: nix.thunk(() => nix.attr(nixosTests, "wine")) })),
         updateScript: nix.path(here, "./update.nu"),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://www.mingw-w64.org/",
         downloadPage: "https://sourceforge.net/projects/mingw-w64/files/mingw-w64/mingw-w64-release/",
         description: "Collection of headers and libraries for building native Windows applications",

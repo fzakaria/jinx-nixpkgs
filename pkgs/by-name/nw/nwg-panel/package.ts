@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["hash", 33, 5]], [["homepage", 93, 5], ["changelog", 94, 5], ["description", 95, 5], ["license", 96, 5], ["platforms", 97, 5], ["maintainers", 98, 5], ["mainProgram", 99, 5]], [["pname", 25, 3], ["version", 26, 3], ["format", 27, 3], ["src", 29, 3], ["doCheck", 37, 3], ["strictDeps", 40, 3], ["dontWrapGApps", 41, 3], ["buildInputs", 43, 3], ["nativeBuildInputs", 50, 3], ["propagatedBuildInputs", 54, 3], ["postInstall", 68, 3], ["preFixup", 73, 3], ["meta", 92, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, python3Packages: false, wrapGAppsHook3: false, "gobject-introspection": false, "gtk-layer-shell": false, pango: false, "gdk-pixbuf": false, atk: false, hyprland: false, sway: false, systemd: false, "wlr-randr": false, "nwg-menu": false, brightnessctl: false, pamixer: false, pulseaudio: false, "libdbusmenu-gtk3": false, playerctl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["hash", 33, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 93, 5], ["changelog", 94, 5], ["description", 95, 5], ["license", 96, 5], ["platforms", 97, 5], ["maintainers", 98, 5], ["mainProgram", 99, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 25, 3], ["version", 26, 3], ["format", 27, 3], ["src", 29, 3], ["doCheck", 37, 3], ["strictDeps", 40, 3], ["dontWrapGApps", 41, 3], ["buildInputs", 43, 3], ["nativeBuildInputs", 50, 3], ["propagatedBuildInputs", 54, 3], ["postInstall", 68, 3], ["preFixup", 73, 3], ["meta", 92, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,12 +27,12 @@ export default nix.lambda((args) => (() => {
   const libdbusmenu_gtk3 = nix.arg($, "libdbusmenu-gtk3");
   const playerctl = nix.arg($, "playerctl");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "nwg-panel",
       version: "0.10.15",
       format: "setuptools",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "nwg-piotr",
           repo: "nwg-panel",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -75,7 +73,7 @@ export default nix.lambda((args) => (() => {
 )
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/nwg-piotr/nwg-panel",
         changelog: nix.thunk(() => nix.str`https://github.com/nwg-piotr/nwg-panel/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         description: "GTK3-based panel for Sway window manager",

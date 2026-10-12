@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 22, 5], ["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]], [["name", 33, 5], ["src", 34, 26], ["hash", 35, 5]], [["description", 63, 5], ["homepage", 64, 5], ["changelog", 65, 5], ["license", 66, 5], ["maintainers", 67, 5], ["mainProgram", 68, 5], ["platforms", 69, 5]], [["pname", 17, 3], ["version", 18, 3], ["__structuredAttrs", 19, 3], ["src", 21, 3], ["cargoRoot", 29, 3], ["cargoHash", 30, 3], ["npmDeps", 32, 3], ["preBuild", 38, 3], ["tauriBuildFlags", 43, 3], ["nativeBuildInputs", 45, 3], ["buildInputs", 53, 3], ["meta", 62, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, rustPlatform: false, nodejs: false, npmHooks: false, fetchNpmDeps: false, "cargo-tauri": false, "pkg-config": false, wrapGAppsHook4: false, webkitgtk_4_1: false, "apple-sdk_15": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 22, 5], ["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 33, 5], ["src", 34, 26], ["hash", 35, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 63, 5], ["homepage", 64, 5], ["changelog", 65, 5], ["license", 66, 5], ["maintainers", 67, 5], ["mainProgram", 68, 5], ["platforms", 69, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["__structuredAttrs", 19, 3], ["src", 21, 3], ["cargoRoot", 29, 3], ["cargoHash", 30, 3], ["npmDeps", 32, 3], ["preBuild", 38, 3], ["tauriBuildFlags", 43, 3], ["nativeBuildInputs", 45, 3], ["buildInputs", 53, 3], ["meta", 62, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const webkitgtk_4_1 = nix.arg($, "webkitgtk_4_1");
   const apple_sdk_15 = nix.arg($, "apple-sdk_15");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "tikz-editor",
       version: "0.6.0",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           name: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-${nix.sel(finalAttrs, "version")}-source`),
           owner: "DominikPeters",
           repo: "tikz-editor",
@@ -38,7 +35,7 @@ export default nix.lambda((args) => (() => {
       cargoRoot: "apps/desktop/src-tauri",
       cargoHash: "sha256-tIhjljsgDkVHvUKpPAjZUQvmEWNopE/NXjbcIt9LBv4=",
       npmDeps: nix.thunk(() => nix.app(fetchNpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           name: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-${nix.sel(finalAttrs, "version")}-npm-deps`),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           hash: "sha256-dUrnaZ5nVJTHbA5mkigAsa7xhuAnOV8gO3GqqJFQBJQ=",
@@ -53,7 +50,7 @@ export default nix.lambda((args) => (() => {
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [wrapGAppsHook4])))),
       buildInputs: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [webkitgtk_4_1])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [apple_sdk_15])))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "WYSIWYG editor for TikZ diagrams in LaTeX",
         homepage: "https://tikz.dev/editor/",
         changelog: nix.thunk(() => nix.str`https://github.com/DominikPeters/tikz-editor/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]], [["pname", 37, 26], ["data", 38, 5]], [["validate", 77, 11]], [["updateScript", 75, 5], ["tests", 77, 5]], [["description", 103, 5], ["homepage", 104, 5], ["changelog", 105, 5], ["sourceProvenance", 106, 5], ["license", 110, 5], ["mainProgram", 111, 5], ["maintainers", 112, 5], ["platforms", 113, 24]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["strictDeps", 25, 3], ["__structuredAttrs", 26, 3], ["nativeBuildInputs", 28, 3], ["__darwinAllowLocalNetworking", 34, 3], ["mitmCache", 36, 3], ["gradleBuildTask", 43, 3], ["gradleUpdateTask", 46, 3], ["doCheck", 48, 3], ["gradleCheckTask", 49, 3], ["installPhase", 51, 3], ["nativeInstallCheckInputs", 71, 3], ["doInstallCheck", 72, 3], ["passthru", 74, 3], ["meta", 102, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchFromGitHub: false, gradle: false, jre: false, makeWrapper: false, "nix-update-script": false, runCommand: false, versionCheckHook: false, writeText: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 37, 26], ["data", 38, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["validate", 77, 11]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 75, 5], ["tests", 77, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 103, 5], ["homepage", 104, 5], ["changelog", 105, 5], ["sourceProvenance", 106, 5], ["license", 110, 5], ["mainProgram", 111, 5], ["maintainers", 112, 5], ["platforms", 113, 24]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["strictDeps", 25, 3], ["__structuredAttrs", 26, 3], ["nativeBuildInputs", 28, 3], ["__darwinAllowLocalNetworking", 34, 3], ["mitmCache", 36, 3], ["gradleBuildTask", 43, 3], ["gradleUpdateTask", 46, 3], ["doCheck", 48, 3], ["gradleCheckTask", 49, 3], ["installPhase", 51, 3], ["nativeInstallCheckInputs", 71, 3], ["doInstallCheck", 72, 3], ["passthru", 74, 3], ["meta", 102, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const writeText = nix.arg($, "writeText");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "smithy-cli",
       version: "1.72.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "smithy-lang",
           repo: "smithy",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -38,7 +33,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [gradle, makeWrapper]),
       __darwinAllowLocalNetworking: true,
       mitmCache: nix.thunk(() => nix.app(nix.sel(gradle, "fetchDeps"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           data: nix.path(here, "./deps.json"),
         })))),
@@ -67,10 +62,10 @@ runHook postInstall
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           validate: nix.thunk(() => nix.app(runCommand, "smithy-cli-validate-test", nix.thunk(() => ({})), nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))} validate ${nix.app(writeText, "example.smithy", "$version: \"2.0\"\nnamespace example\nservice ExampleService {\n    version: \"2023-01-01\"\n    operations: [GetUser]\n}\noperation GetUser {\n    input: GetUserInput\n    output: GetUserOutput\n}\nstructure GetUserInput {\n    @required\n    userId: String\n}\nstructure GetUserOutput {\n    @required\n    name: String\n}\n")}
 touch $out
 `))),
@@ -79,7 +74,7 @@ touch $out
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(jre, "meta"));
         return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "CLI for the Smithy interface definition language (IDL)",
         homepage: "https://smithy.io/",
         changelog: nix.thunk(() => nix.str`https://github.com/smithy-lang/smithy/releases/tag/${nix.sel(finalAttrs, "version")}`),

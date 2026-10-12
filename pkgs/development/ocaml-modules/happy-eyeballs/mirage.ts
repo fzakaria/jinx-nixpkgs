@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/mirage.nix", [[["description", 36, 5]], [["pname", 16, 3], ["src", 18, 28], ["version", 18, 32], ["propagatedBuildInputs", 20, 3], ["doCheck", 33, 3], ["meta", 35, 3]]]);
 const formals$1 = { args: { buildDunePackage: false, "happy-eyeballs": false, duration: false, "domain-name": false, ipaddr: false, fmt: false, logs: false, lwt: false, "mirage-mtime": false, "mirage-sleep": false, tcpip: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/mirage.nix", [["description", 36, 5]]);
-const pos$2 = nix.positions(here + "/mirage.nix", [["pname", 16, 3], ["src", 18, 28], ["version", 18, 32], ["propagatedBuildInputs", 20, 3], ["doCheck", 33, 3], ["meta", 35, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,7 +19,7 @@ export default nix.lambda((args) => (() => {
   const mirage_sleep = nix.arg($, "mirage-sleep");
   const tcpip = nix.arg($, "tcpip");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "happy-eyeballs-mirage",
       src: nix.thunk(() => nix.attr(happy_eyeballs, "src")),
       version: nix.thunk(() => nix.attr(happy_eyeballs, "version")),
@@ -38,7 +37,7 @@ export default nix.lambda((args) => (() => {
       ]),
       doCheck: true,
       meta: nix.thunk(() => nix.update(nix.sel(happy_eyeballs, "meta"), {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Connecting to a remote host via IP version 4 or 6 using Mirage",
       })),
     })));

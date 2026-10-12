@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 16, 5], ["hash", 17, 5]], [["url", 30, 7], ["hash", 31, 7]], [["description", 36, 5], ["homepage", 37, 5], ["license", 38, 5], ["maintainers", 39, 5], ["platforms", 40, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["nativeBuildInputs", 20, 3], ["buildInputs", 22, 3], ["patches", 28, 3], ["meta", 35, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchzip: false, fetchpatch: false, "pkg-config": false, boost: false, doxygen: false, librevenge: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 30, 7], ["hash", 31, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 36, 5], ["homepage", 37, 5], ["license", 38, 5], ["maintainers", 39, 5], ["platforms", 40, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["nativeBuildInputs", 20, 3], ["buildInputs", 22, 3], ["patches", 28, 3], ["meta", 35, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const doxygen = nix.arg($, "doxygen");
   const librevenge = nix.arg($, "librevenge");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "libpagemaker",
       version: "0.0.4",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://dev-www.libreoffice.org/src/libpagemaker/libpagemaker-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-fAtCNbP0fI2LxTOPPh5zbdF50wWhsrfSoNFPVU9tBas=",
         })))),
@@ -31,13 +28,13 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [boost, doxygen, librevenge]),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://gitlab.archlinux.org/archlinux/packaging/packages/libpagemaker/-/raw/main/libpagemaker-0.0.4-const-ref-exception.patch?ref_type=heads",
             hash: "sha256-yZbiLAZHgzygGetiuoKiQS010pRfZTi2CbAAxQdCZbs=",
           })))),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Adobe PageMaker import library",
         homepage: "https://wiki.documentfoundation.org/DLP/Libraries/libpagemaker",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mpl20")),

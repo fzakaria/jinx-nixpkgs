@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 21, 5], ["hash", 22, 5]], [["updateScript", 38, 12]], [["description", 66, 5], ["homepage", 67, 5], ["license", 68, 5], ["maintainers", 69, 5], ["platforms", 70, 5], ["sourceProvenance", 71, 5]], [["pname", 14, 3], ["version", 15, 3], ["__structuredAttrs", 17, 3], ["strictDeps", 18, 3], ["src", 20, 3], ["sourceRoot", 25, 3], ["nativeBuildInputs", 27, 3], ["installPhase", 29, 3], ["passthru", 38, 3], ["meta", 65, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchurl: false, unzip: false, writeShellScript: false, curl: false, gnugrep: false, gnused: false, coreutils: false, "common-updater-scripts": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 38, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 66, 5], ["homepage", 67, 5], ["license", 68, 5], ["maintainers", 69, 5], ["platforms", 70, 5], ["sourceProvenance", 71, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["__structuredAttrs", 17, 3], ["strictDeps", 18, 3], ["src", 20, 3], ["sourceRoot", 25, 3], ["nativeBuildInputs", 27, 3], ["installPhase", 29, 3], ["passthru", 38, 3], ["meta", 65, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,13 +18,13 @@ export default nix.lambda((args) => (() => {
   const coreutils = nix.arg($, "coreutils");
   const common_updater_scripts = nix.arg($, "common-updater-scripts");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "crossover",
       version: "26.3.0",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://media.codeweavers.com/pub/crossover/cxmac/demo/crossover-${nix.sel(finalAttrs, "version")}.zip`),
           hash: "sha256-hojghIxOX3nxzDUctS0yRH2gDGwAz9O0uy0WTURYmiY=",
         })))),
@@ -35,7 +32,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [unzip]),
       installPhase: "runHook preInstall\n\nmkdir -p $out/Applications\ncp -R CrossOver.app $out/Applications/\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(writeShellScript, "crossover-update-script", nix.thunk(() => nix.str`set -euo pipefail
 export PATH="${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [curl, gnugrep, gnused, coreutils, common_updater_scripts]))}"
 
@@ -55,7 +52,7 @@ update-source-version "crossover" "$new_version" \\
 `))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Run Windows applications on macOS without a Windows license",
         homepage: "https://www.codeweavers.com/crossover",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

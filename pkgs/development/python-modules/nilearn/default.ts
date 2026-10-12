@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 35, 5], ["repo", 36, 5], ["tag", 37, 5], ["hash", 38, 5]], [["description", 81, 5], ["homepage", 82, 5], ["changelog", 83, 5], ["license", 84, 5], ["maintainers", 85, 5]], [["pname", 29, 3], ["version", 30, 3], ["pyproject", 31, 3], ["__structuredAttrs", 32, 3], ["src", 34, 3], ["postPatch", 41, 3], ["build-system", 46, 3], ["pythonRelaxDeps", 53, 3], ["dependencies", 57, 3], ["nativeCheckInputs", 69, 3], ["enabledTestPaths", 78, 3], ["meta", 80, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, "hatch-vcs": false, hatchling: false, joblib: false, nibabel: false, numpy: false, pandas: false, requests: false, "scikit-learn": false, jinja2: false, scipy: false, packaging: false, pytestCheckHook: false, "pytest-timeout": false, "pytest-rerunfailures": false, numpydoc: false, polars: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 35, 5], ["repo", 36, 5], ["tag", 37, 5], ["hash", 38, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 81, 5], ["homepage", 82, 5], ["changelog", 83, 5], ["license", 84, 5], ["maintainers", 85, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 29, 3], ["version", 30, 3], ["pyproject", 31, 3], ["__structuredAttrs", 32, 3], ["src", 34, 3], ["postPatch", 41, 3], ["build-system", 46, 3], ["pythonRelaxDeps", 53, 3], ["dependencies", 57, 3], ["nativeCheckInputs", 69, 3], ["enabledTestPaths", 78, 3], ["meta", 80, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,13 +27,13 @@ export default nix.lambda((args) => (() => {
   const numpydoc = nix.arg($, "numpydoc");
   const polars = nix.arg($, "polars");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "nilearn",
       version: "0.14.1",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "nilearn",
           repo: "nilearn",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -58,7 +56,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook, pytest_timeout, pytest_rerunfailures, numpydoc, polars]),
       enabledTestPaths: nix.thunk(() => ["nilearn/connectome/tests"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Module for statistical learning on neuroimaging data",
         homepage: "https://nilearn.github.io",
         changelog: nix.thunk(() => nix.str`https://github.com/nilearn/nilearn/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

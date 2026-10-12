@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/mirage.nix", [[["description", 83, 5]], [["pname", 36, 3], ["version", 38, 17], ["src", 38, 25], ["patches", 41, 3], ["buildInputs", 43, 3], ["propagatedBuildInputs", 48, 3], ["checkInputs", 74, 3], ["meta", 82, 3]]]);
 const formals$1 = { args: { buildDunePackage: false, git: false, mimic: false, "mimic-happy-eyeballs": false, base64: false, "git-paf": false, awa: false, "awa-mirage": false, tls: false, "tls-mirage": false, uri: false, "happy-eyeballs-mirage": false, "happy-eyeballs": false, "ca-certs-nss": false, "mirage-crypto": false, ptime: false, x509: false, cstruct: false, tcpip: false, "domain-name": false, fmt: false, ipaddr: false, lwt: false, "mirage-flow": false, "mirage-ptime": false, "mirage-sleep": false, alcotest: false, "alcotest-lwt": false, bigstringaf: false, logs: false, ke: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/mirage.nix", [["description", 83, 5]]);
-const pos$2 = nix.positions(here + "/mirage.nix", [["pname", 36, 3], ["version", 38, 17], ["src", 38, 25], ["patches", 41, 3], ["buildInputs", 43, 3], ["propagatedBuildInputs", 48, 3], ["checkInputs", 74, 3], ["meta", 82, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -40,7 +39,7 @@ export default nix.lambda((args) => (() => {
   const logs = nix.arg($, "logs");
   const ke = nix.arg($, "ke");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "git-mirage",
       version: nix.thunk(() => nix.attr(git, "version")),
       src: nix.thunk(() => nix.attr(git, "src")),
@@ -73,7 +72,7 @@ export default nix.lambda((args) => (() => {
       ]),
       checkInputs: nix.thunk(() => [alcotest, alcotest_lwt, bigstringaf, logs, ke]),
       meta: nix.thunk(() => nix.update(nix.sel(git, "meta"), {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Package to use ocaml-git with MirageOS backend",
       })),
     })));

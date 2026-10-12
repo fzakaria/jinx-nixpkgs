@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 29, 5], ["hash", 30, 5]], [["name", 82, 7], ["exec", 83, 7], ["desktopName", 84, 7], ["categories", 85, 7]], [["description", 90, 5], ["homepage", 91, 5], ["longDescription", 92, 5], ["license", 102, 5], ["platforms", 103, 5], ["maintainers", 104, 5], ["mainProgram", 105, 5]], [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["sourceRoot", 33, 3], ["nativeBuildInputs", 35, 3], ["buildFlags", 54, 3], ["preInstall", 71, 3], ["enableParallelBuilding", 78, 3], ["desktopItems", 80, 3], ["meta", 89, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, SDL2: false, fetchurl: false, gzip: false, libvorbis: false, libmad: false, flac: false, libopus: false, opusfile: false, libogg: false, libGL: false, curl: false, libxmp: false, mpg123: false, "vulkan-headers": false, "vulkan-loader": false, copyDesktopItems: false, makeDesktopItem: false, "pkg-config": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 29, 5], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 82, 7], ["exec", 83, 7], ["desktopName", 84, 7], ["categories", 85, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 90, 5], ["homepage", 91, 5], ["longDescription", 92, 5], ["license", 102, 5], ["platforms", 103, 5], ["maintainers", 104, 5], ["mainProgram", 105, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["sourceRoot", 33, 3], ["nativeBuildInputs", 35, 3], ["buildFlags", 54, 3], ["preInstall", 71, 3], ["enableParallelBuilding", 78, 3], ["desktopItems", 80, 3], ["meta", 89, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,11 +28,11 @@ export default nix.lambda((args) => (() => {
   const makeDesktopItem = nix.arg($, "makeDesktopItem");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "ironwail",
       version: "0.8.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/andrei-drexler/ironwail/archive/refs/tags/v${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-rt+u0oY2W7UzsIUs5Tvd3IcBXsM2Z0UEfXNVLejc06U=",
         })))),
@@ -77,7 +74,7 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: true,
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "ironwail",
             exec: "ironwail",
             desktopName: "Ironwail",
@@ -85,7 +82,7 @@ export default nix.lambda((args) => (() => {
           })))),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Fork of the QuakeSpasm engine for iD software's Quake",
         homepage: "https://github.com/andrei-drexler/ironwail",
         longDescription: "Ironwail is a fork of QuakeSpasm with focus on high performance instead of\ncompatibility.\nIt features the ability to play the 2021 re-release content with no setup\nrequired, a mods menu for quick access to installation of mods, and ease of\nswitching to installed mods.\nIt also include various visual features as well as improved limits for playing\nlarger levels with less performance impacts.\n",

@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]], [["ELECTRON_SKIP_BINARY_DOWNLOAD", 36, 5]], [["name", 72, 7], ["type", 73, 7], ["desktopName", 74, 7], ["comment", 75, 7], ["icon", 76, 7], ["exec", 77, 7], ["categories", 78, 7]], [["updateScript", 82, 12]], [["description", 85, 5], ["mainProgram", 86, 5], ["homepage", 87, 5], ["downloadPage", 88, 5], ["changelog", 89, 5], ["license", 90, 5], ["maintainers", 91, 5], ["platforms", 92, 5]], [["pname", 22, 3], ["version", 23, 11], ["src", 23, 19], ["sourceRoot", 25, 3], ["npmDepsHash", 27, 3], ["makeCacheWritable", 28, 3], ["nativeBuildInputs", 30, 3], ["env", 35, 3], ["patches", 39, 3], ["postPatch", 41, 3], ["buildPhase", 45, 3], ["installPhase", 57, 3], ["desktopItems", 70, 3], ["passthru", 82, 3], ["meta", 84, 3]]]);
 const formals$1 = { args: { lib: false, buildNpmPackage: false, fetchFromGitHub: false, electron: false, copyDesktopItems: false, makeDesktopItem: false, "nix-update-script": false, makeWrapper: false, kopia: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["ELECTRON_SKIP_BINARY_DOWNLOAD", 36, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 72, 7], ["type", 73, 7], ["desktopName", 74, 7], ["comment", 75, 7], ["icon", 76, 7], ["exec", 77, 7], ["categories", 78, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 82, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 85, 5], ["mainProgram", 86, 5], ["homepage", 87, 5], ["downloadPage", 88, 5], ["changelog", 89, 5], ["license", 90, 5], ["maintainers", 91, 5], ["platforms", 92, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 22, 3], ["version", 23, 11], ["src", 23, 19], ["sourceRoot", 25, 3], ["npmDepsHash", 27, 3], ["makeCacheWritable", 28, 3], ["nativeBuildInputs", 30, 3], ["env", 35, 3], ["patches", 39, 3], ["postPatch", 41, 3], ["buildPhase", 45, 3], ["installPhase", 57, 3], ["desktopItems", 70, 3], ["passthru", 82, 3], ["meta", 84, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,14 +18,14 @@ export default nix.lambda((args) => (() => {
   const kopia = nix.arg($, "kopia");
   const version = "0.23.1";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "kopia",
       repo: "kopia",
       tag: nix.thunk(() => nix.str`v${version}`),
       hash: "sha256-yjeLV7N/U88oVdP4iJYgSM/QJLAMREaB/2jBcbTDWkA=",
     }))));
   return nix.app(buildNpmPackage, nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "kopia-ui",
       version: version,
       src: src,
@@ -38,7 +33,7 @@ export default nix.lambda((args) => (() => {
       npmDepsHash: "sha256-yj5+qiLfy6CjAOXIzT9OMu860Pefwn+HuJNoBAizb/0=",
       makeCacheWritable: true,
       nativeBuildInputs: nix.thunk(() => [copyDesktopItems, makeWrapper]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, ELECTRON_SKIP_BINARY_DOWNLOAD: 1n })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], ELECTRON_SKIP_BINARY_DOWNLOAD: 1n })),
       patches: nix.thunk(() => [nix.path(here, "./fix-paths.patch")]),
       postPatch: nix.thunk(() => nix.str`substituteInPlace public/utils.js --replace-fail KOPIA ${nix.app(nix.sel(lib, "getExe"), kopia)}
 `),
@@ -65,7 +60,7 @@ runHook postInstall
 `),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "kopia-ui",
             type: "Application",
             desktopName: "KopiaUI",
@@ -76,11 +71,11 @@ runHook postInstall
           })))),
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Cross-platform backup tool with fast, incremental backups, client-side end-to-end encryption, compression and data deduplication",
         mainProgram: "kopia-ui",
         homepage: "https://kopia.io",

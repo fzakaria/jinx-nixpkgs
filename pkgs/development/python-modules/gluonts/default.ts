@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 40, 5], ["repo", 41, 5], ["tag", 42, 5], ["hash", 43, 5]], [["torch", 69, 5]], [["description", 120, 5], ["homepage", 121, 5], ["changelog", 122, 5], ["license", 123, 5], ["maintainers", 124, 5]], [["pname", 34, 3], ["version", 35, 3], ["pyproject", 36, 3], ["__structuredAttrs", 37, 3], ["src", 39, 3], ["build-system", 46, 3], ["patches", 50, 3], ["pythonRelaxDeps", 55, 3], ["dependencies", 59, 3], ["optional-dependencies", 68, 3], ["pythonImportsCheck", 76, 3], ["nativeCheckInputs", 90, 3], ["disabledTestPaths", 101, 3], ["disabledTests", 110, 3], ["meta", 119, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitHub: false, hatchling: false, numpy: false, pandas: false, pydantic: false, tqdm: false, toolz: false, "typing-extensions": false, torch: false, lightning: false, scipy: false, pytestCheckHook: false, distutils: false, matplotlib: false, pyarrow: false, statsmodels: false, writableTmpDirAsHomeHook: false, which: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 40, 5], ["repo", 41, 5], ["tag", 42, 5], ["hash", 43, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["torch", 69, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 120, 5], ["homepage", 121, 5], ["changelog", 122, 5], ["license", 123, 5], ["maintainers", 124, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 34, 3], ["version", 35, 3], ["pyproject", 36, 3], ["__structuredAttrs", 37, 3], ["src", 39, 3], ["build-system", 46, 3], ["patches", 50, 3], ["pythonRelaxDeps", 55, 3], ["dependencies", 59, 3], ["optional-dependencies", 68, 3], ["pythonImportsCheck", 76, 3], ["nativeCheckInputs", 90, 3], ["disabledTestPaths", 101, 3], ["disabledTests", 110, 3], ["meta", 119, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,13 +29,13 @@ export default nix.lambda((args) => (() => {
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   const which = nix.arg($, "which");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "gluonts",
       version: "0.17.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "awslabs",
           repo: "gluonts",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -48,7 +45,7 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [nix.path(here, "./pandas3-compat.patch")]),
       pythonRelaxDeps: nix.thunk(() => ["pandas", "toolz"]),
       dependencies: nix.thunk(() => [numpy, pandas, pydantic, tqdm, toolz, typing_extensions]),
-      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$2, torch: nix.thunk(() => [torch, lightning, scipy]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: $pos[1], torch: nix.thunk(() => [torch, lightning, scipy]) })),
       pythonImportsCheck: nix.thunk(() => [
         "gluonts",
         "gluonts.core",
@@ -74,7 +71,7 @@ export default nix.lambda((args) => (() => {
       disabledTestPaths: nix.thunk(() => nix.concat(["test/torch/model"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["test/torch/test_torch_item_id_info.py"])))),
       disabledTests: nix.thunk(() => nix.concat(["test_against_former_evaluator"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["test_forecast"])))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Probabilistic time series modeling in Python",
         homepage: "https://ts.gluon.ai",
         changelog: nix.thunk(() => nix.str`https://github.com/awslabs/gluonts/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

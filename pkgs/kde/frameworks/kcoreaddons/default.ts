@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 8, 3], ["hasPythonBindings", 10, 3], ["extraNativeBuildInputs", 12, 3], ["extraBuildInputs", 16, 3]]]);
 const formals$1 = { args: { mkKdeDerivation: false, qttools: false, "shared-mime-info": false, qtdeclarative: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 8, 3], ["hasPythonBindings", 10, 3], ["extraNativeBuildInputs", 12, 3], ["extraBuildInputs", 16, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const shared_mime_info = nix.arg($, "shared-mime-info");
   const qtdeclarative = nix.arg($, "qtdeclarative");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       pname: "kcoreaddons",
       hasPythonBindings: true,
       extraNativeBuildInputs: nix.thunk(() => [qttools, shared_mime_info]),

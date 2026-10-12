@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 51, 5], ["hash", 52, 5]], [["NIX_CFLAGS_COMPILE", 86, 7]], [["description", 101, 5], ["longDescription", 102, 5], ["homepage", 186, 5], ["changelog", 187, 5], ["maintainers", 188, 5], ["license", 192, 5], ["platforms", 193, 5]], [["pname", 41, 3], ["version", 42, 3], ["outputs", 44, 3], ["src", 50, 3], ["postPatch", 57, 3], ["nativeBuildInputs", 62, 3], ["buildInputs", 67, 3], ["makeFlags", 80, 3], ["env", 86, 3], ["configurePhase", 88, 3], ["doCheck", 96, 3], ["enableParallelBuilding", 98, 3], ["meta", 100, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, cairo: false, fetchurl: false, gst_all_1: false, jack2: false, "ladspa-header": false, libGL: false, libGLU: false, libxrandr: false, libsndfile: false, lv2: false, php84: false, "pkg-config": false, buildVST3: true, buildVST2: true, buildCLAP: true, buildLV2: true, buildLADSPA: true, buildJACK: true, buildGStreamer: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 51, 5], ["hash", 52, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 86, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 101, 5], ["longDescription", 102, 5], ["homepage", 186, 5], ["changelog", 187, 5], ["maintainers", 188, 5], ["license", 192, 5], ["platforms", 193, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 41, 3], ["version", 42, 3], ["outputs", 44, 3], ["src", 50, 3], ["postPatch", 57, 3], ["nativeBuildInputs", 62, 3], ["buildInputs", 67, 3], ["makeFlags", 80, 3], ["env", 86, 3], ["configurePhase", 88, 3], ["doCheck", 96, 3], ["enableParallelBuilding", 98, 3], ["meta", 100, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -42,12 +39,12 @@ export default nix.lambda((args) => (() => {
     nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(buildGStreamer)), "gst")),
   ]);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "lsp-plugins",
       version: "1.2.35",
       outputs: nix.thunk(() => ["out", "dev", "doc"]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/lsp-plugins/lsp-plugins/releases/download/${nix.sel(finalAttrs, "version")}/lsp-plugins-src-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-LJXse7IZ1WHqPbNgUbbHMhM7zXZCb7g2sd2FDcS1u2w=",
         })))),
@@ -70,7 +67,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`PREFIX=${nix.builtins.placeholder("out")}`),
         nix.thunk(() => nix.str`SHAREDDIR=${nix.builtins.placeholder("out")}/share`),
       ]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-DLSP_NO_EXPERIMENTAL" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], NIX_CFLAGS_COMPILE: "-DLSP_NO_EXPERIMENTAL" })),
       configurePhase: nix.thunk(() => nix.str`runHook preConfigure
 
 make $makeFlags config SUB_FEATURES="${nix.app(nix.sel(lib, "concatStringsSep"), " ", subFeatures)}"
@@ -80,7 +77,7 @@ runHook postConfigure
       doCheck: true,
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Collection of open-source audio plugins",
         longDescription: "Compatible with the following formats:\n\n- CLAP - set of plugins for Clever Audio Plugins API\n- LADSPA - set of plugins for Linux Audio Developer's Simple Plugin API\n- LV2 - set of plugins and UIs for Linux Audio Developer's Simple Plugin API (LADSPA) version 2\n- LinuxVST - set of plugins and UIs for Steinberg's VST 2.4 format ported on GNU/Linux Platform\n- VST3 - set of plugins and UIs for Steinberg's VST 3 format\n- JACK - Standalone versions for JACK Audio connection Kit with UI\n\nContains the following plugins (https://lsp-plug.in/?page=plugins)\n\nEqualizers:\n- Filter\n- Graphic Equalizer\n- Parametric Equalizer\n\nDynamic Processing:\n- Beat Breather\n- Clipper\n- Compressor\n- Dynamics Processor\n- Expander\n- Gate\n- Limiter\n\nMultiband Dynamic Processing:\n- GOTT Compressor\n- Multiband Clipper\n- Multiband Compressor\n- Multiband Dynamics Processor\n- Multiband Expander\n- Multiband Gate\n- Multiband Limiter\n\nConvolution / Reverb Processing:\n- Impulse Responses\n- Impulse Reverb\n- Room Builder\n\nDelay Effects:\n- Artistic Delay\n- Compensation Delay\n- Slap-back Delay\n\nModulation Effects:\n- Chorus\n- Flanger\n- Phaser\n\nAnalyzers:\n- Oscilloscope\n- Phase Detector\n- Spectrum Analyzer\n\nMultiband Processing:\n- Crossover\n\nSamplers:\n- Multisampler\n- Sampler\n\nGenerators / Oscillators:\n- Noise Generator\n- Oscillator\n\nUtility Plugins:\n- A/B Test Plugin\n- Automatic Gain Control\n- Latency Meter\n- Loudness Compensator\n- Mixer\n- Profiler\n- Referencer\n- Return\n- Ring Modulated Sidechain\n- Send\n- Surge Filter\n- Trigger\n\nMatcher plugins:\n- Matcher\n- Sidechain Matcher\n",
         homepage: "https://lsp-plug.in",

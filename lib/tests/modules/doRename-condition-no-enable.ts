@@ -2,18 +2,17 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/doRename-condition-no-enable.nix", [[["result", 4, 5]], [["config", 3, 3]]]);
 const formals$1 = { args: { config: false, options: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/doRename-condition-no-enable.nix", [["result", 4, 5]]);
-const pos$2 = nix.positions(here + "/doRename-condition-no-enable.nix", [["config", 3, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const config = nix.arg($, "config");
   const options = nix.arg($, "options");
   return {
-    [nix.POS]: pos$2,
+    [nix.POS]: $pos[1],
     config: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       result: nix.thunk(() => (() => {
         nix.assert_(nix.eq(nix.sel(config, "services", "foos"), {}), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/doRename-condition-no-enable.nix:5:7");
         nix.assert_(!nix.asBool(nix.sel(options, "services", "foo", "bar", "isDefined")), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/doRename-condition-no-enable.nix:6:7");

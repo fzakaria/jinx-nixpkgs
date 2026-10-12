@@ -2,39 +2,34 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/lact.nix", [[["maintainers", 5, 30]], [["enable", 11, 21]], [["lact", 11, 16]], [["services", 11, 7]], [["machine", 8, 9]], [["name", 3, 3], ["meta", 4, 3], ["nodes", 8, 3], ["testScript", 14, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/lact.nix", [["maintainers", 5, 30]]);
 const formals$2 = { args: { config: false, pkgs: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/lact.nix", [["enable", 11, 21]]);
-const pos$3 = nix.positions(here + "/lact.nix", [["lact", 11, 16]]);
-const pos$4 = nix.positions(here + "/lact.nix", [["services", 11, 7]]);
-const pos$5 = nix.positions(here + "/lact.nix", [["machine", 8, 9]]);
-const pos$6 = nix.positions(here + "/lact.nix", [["name", 3, 3], ["meta", 4, 3], ["nodes", 8, 3], ["testScript", 14, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   return {
-    [nix.POS]: pos$6,
+    [nix.POS]: $pos[5],
     name: "lact",
     meta: nix.thunk(() => (() => {
       const from = nix.thunk(() => nix.sel(pkgs, "lact", "meta"));
       return {
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => nix.attr(from, "maintainers")),
     };
     })()),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config = nix.arg($_1, "config");
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$3,
-            lact: nix.thunk(() => ({ [nix.POS]: pos$2, enable: true })),
+            [nix.POS]: $pos[2],
+            lact: nix.thunk(() => ({ [nix.POS]: $pos[1], enable: true })),
           })),
         };
       })(), formals$2),

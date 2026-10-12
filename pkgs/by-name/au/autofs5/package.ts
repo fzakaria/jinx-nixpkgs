@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 31, 5], ["sha256", 32, 5]], [["url", 36, 7], ["hash", 37, 7]], [["url", 40, 7], ["hash", 41, 7]], [["url", 44, 7], ["hash", 45, 7]], [["url", 48, 7], ["hash", 49, 7]], [["description", 96, 5], ["mainProgram", 97, 5], ["homepage", 98, 5], ["license", 99, 5], ["executables", 100, 5], ["platforms", 101, 5]], [["version", 27, 3], ["pname", 28, 3], ["src", 30, 3], ["patches", 34, 3], ["preConfigure", 53, 3], ["installPhase", 69, 3], ["buildInputs", 74, 3], ["nativeBuildInputs", 88, 3], ["meta", 95, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, flex: false, bison: false, linuxHeaders: false, libtirpc: false, mount: false, umount: false, "nfs-utils": false, e2fsprogs: false, libxml2: false, libkrb5: false, kmod: false, openldap: false, sssd: false, cyrus_sasl: false, openssl: false, "rpcsvc-proto": false, pkgconf: false, fetchpatch: false, libnsl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 31, 5], ["sha256", 32, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 36, 7], ["hash", 37, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 40, 7], ["hash", 41, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["url", 44, 7], ["hash", 45, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["url", 48, 7], ["hash", 49, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 96, 5], ["mainProgram", 97, 5], ["homepage", 98, 5], ["license", 99, 5], ["executables", 100, 5], ["platforms", 101, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["version", 27, 3], ["pname", 28, 3], ["src", 30, 3], ["patches", 34, 3], ["preConfigure", 53, 3], ["installPhase", 69, 3], ["buildInputs", 74, 3], ["nativeBuildInputs", 88, 3], ["meta", 95, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -36,32 +30,32 @@ export default nix.lambda((args) => (() => {
   const fetchpatch = nix.arg($, "fetchpatch");
   const libnsl = nix.arg($, "libnsl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       version: "5.1.9",
       pname: "autofs",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://kernel/linux/daemons/autofs/v5/autofs-${nix.sel(finalAttrs, "version")}.tar.xz`),
           sha256: "sha256-h+avagN5S5Ri6lGXgeUOfSO198ks1Z4RQshdJJOzwks=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "mirror://kernel/linux/daemons/autofs/v5/patches-5.2.0/autofs-5.1.9-update-configure.patch",
             hash: "sha256-BomhNw+lMHcgs5gQlzapZ6p/Ji3gJUVkrLpZssBmwbg=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: "mirror://kernel/linux/daemons/autofs/v5/patches-5.2.0/autofs-5.1.9-fix-ldap_parse_page_control-check.patch",
             hash: "sha256-W757LU9r9kuzLeThif2a1olRtxNrJy5suemLS7yfbIU=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             url: "mirror://kernel/linux/daemons/autofs/v5/patches-5.2.0/autofs-5.1.9-fix-crash-in-make_options_string.patch",
             hash: "sha256-YjTdJ50iNhJ2UjFdrKYEFNt04z0PfmElbFa4GuSskLA=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             url: "mirror://kernel/linux/daemons/autofs/v5/patches-5.2.0/autofs-5.1.9-Fix-incompatible-function-pointer-types-in-cyrus-sasl-module.patch",
             hash: "sha256-erLlqZtVmYqUOsk3S7S50yA0VB8Gzibsv+X50+gcA58=",
           })))),
@@ -96,7 +90,7 @@ unset STRIP # Makefile.rules defines a usable STRIP only without the env var.
       ]),
       nativeBuildInputs: nix.thunk(() => [flex, bison, pkgconf, nix.thunk(() => nix.sel(libnsl, "dev"))]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Kernel-based automounter",
         mainProgram: "automount",
         homepage: "https://www.kernel.org/pub/linux/daemons/autofs/",

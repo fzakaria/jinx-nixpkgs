@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["sha256", 16, 5]], [["PLAT_FLAGS", 21, 5]], [["name", 36, 7], ["url", 37, 7], ["sha256", 38, 7]], [["description", 51, 5], ["homepage", 52, 5], ["maintainers", 53, 5], ["license", 54, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["env", 20, 3], ["patches", 30, 3], ["doCheck", 42, 3], ["installPhase", 44, 3], ["meta", 50, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchpatch: false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["sha256", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["PLAT_FLAGS", 21, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 36, 7], ["url", 37, 7], ["sha256", 38, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 51, 5], ["homepage", 52, 5], ["maintainers", 53, 5], ["license", 54, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["env", 20, 3], ["patches", 30, 3], ["doCheck", 42, 3], ["installPhase", 44, 3], ["meta", 50, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,24 +12,24 @@ export default nix.lambda((args) => (() => {
   const fetchpatch = nix.arg($, "fetchpatch");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "stargate-libcds",
       version: "1.0.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "d3v-t00Lz",
           repo: "libcds",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
           sha256: "sha256-THThEzS8gGdwn3h0EBttaX5ljZH9Ma2Rcg143+GIdU8=",
         })))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         PLAT_FLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.concat([], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isx86_64")), nix.thunk(() => ["-mfpmath=sse", "-mssse3"])))))),
       })),
       patches: nix.thunk(() => [
         nix.path(here, "./Makefile.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "malloc-to-stdlib.patch",
             url: "https://github.com/d3v-t00Lz/libcds/commit/65dc08f059deda8ba5707ba6116b616d0ad0bd8d.patch",
             sha256: "sha256-FIGlobUVrDYOtnHjsWyE420PoULPHEK/3T9Fv8hfTl4=",
@@ -42,7 +38,7 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       installPhase: "runHook preInstall\ninstall -D libcds.so -t $out/lib/\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "C data structure library",
         homepage: "https://github.com/d3v-t00Lz/libcds",
         maintainers: [],

@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 86, 5], ["repo", 87, 5], ["tag", 88, 5], ["hash", 89, 5]], [["pname", 93, 26], ["version", 93, 32], ["src", 93, 40], ["hash", 94, 5], ["postBuild", 97, 5]], [["DAFT_RUNNER", 138, 5], ["NIX_CFLAGS_COMPILE", 139, 5], ["CI", 142, 5], ["DAFT_DASHBOARD_SKIP_BUILD", 143, 5], ["RUSTC_BOOTSTRAP", 146, 5]], [["aws", 163, 5], ["azure", 167, 5], ["clickhouse", 168, 5], ["deltalake", 169, 5], ["gcp", 170, 5], ["google", 171, 5], ["gravitino", 176, 5], ["hudi", 177, 5], ["huggingface", 178, 5], ["iceberg", 182, 5], ["numpy", 183, 5], ["openai", 184, 5], ["pandas", 189, 5], ["postgres", 190, 5], ["ray", 195, 5], ["transformers", 196, 5], ["sql", 203, 5], ["unity", 207, 5], ["video", 211, 5], ["audio", 212, 5], ["viz", 216, 5]], [["description", 364, 5], ["homepage", 365, 5], ["changelog", 366, 5], ["license", 367, 5], ["maintainers", 368, 5], ["mainProgram", 371, 5], ["platforms", 372, 5]], [["pname", 80, 3], ["version", 81, 3], ["pyproject", 82, 3], ["__structuredAttrs", 83, 3], ["src", 85, 3], ["cargoDeps", 92, 3], ["postPatch", 103, 3], ["nativeBuildInputs", 123, 3], ["dontUseCmakeConfigure", 135, 3], ["env", 137, 3], ["pythonRelaxDeps", 149, 3], ["dependencies", 152, 3], ["optional-dependencies", 162, 3], ["nativeCheckInputs", 219, 3], ["preCheck", 271, 3], ["disabledTestPaths", 275, 3], ["disabledTests", 311, 3], ["pythonImportsCheck", 361, 3], ["meta", 363, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitHub: false, rustPlatform: false, cargo: false, "pkg-config": false, rustc: false, nasm: false, packaging: false, pyarrow: false, tqdm: false, "typing-extensions": false, av: false, boto3: false, "clickhouse-connect": false, datasets: false, deltalake: false, "google-genai": false, httpx: false, "huggingface-hub": false, librosa: false, "mypy-boto3-glue": false, numpy: false, openai: false, pandas: false, pgvector: false, pillow: false, psycopg: false, pyiceberg: false, ray: false, requests: false, "sentence-transformers": false, soundfile: false, sqlalchemy: false, sqlglot: false, torch: false, torchvision: false, transformers: false, adlfs: false, cloudpickle: false, dask: false, "databricks-sdk": false, duckdb: false, gcsfs: false, "google-cloud-bigtable": false, hypothesis: false, jax: false, jaxtyping: false, lxml: false, memray: false, moto: false, "opencv-python": false, pydantic: false, pymysql: false, pyodbc: false, "pytest-timeout": false, "pytest-xdist": false, pytestCheckHook: false, reportlab: false, s3fs: false, tenacity: false, tiktoken: false, writableTmpDirAsHomeHook: false, xxhash: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 86, 5], ["repo", 87, 5], ["tag", 88, 5], ["hash", 89, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 93, 26], ["version", 93, 32], ["src", 93, 40], ["hash", 94, 5], ["postBuild", 97, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["DAFT_RUNNER", 138, 5], ["NIX_CFLAGS_COMPILE", 139, 5], ["CI", 142, 5], ["DAFT_DASHBOARD_SKIP_BUILD", 143, 5], ["RUSTC_BOOTSTRAP", 146, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["aws", 163, 5], ["azure", 167, 5], ["clickhouse", 168, 5], ["deltalake", 169, 5], ["gcp", 170, 5], ["google", 171, 5], ["gravitino", 176, 5], ["hudi", 177, 5], ["huggingface", 178, 5], ["iceberg", 182, 5], ["numpy", 183, 5], ["openai", 184, 5], ["pandas", 189, 5], ["postgres", 190, 5], ["ray", 195, 5], ["transformers", 196, 5], ["sql", 203, 5], ["unity", 207, 5], ["video", 211, 5], ["audio", 212, 5], ["viz", 216, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["description", 364, 5], ["homepage", 365, 5], ["changelog", 366, 5], ["license", 367, 5], ["maintainers", 368, 5], ["mainProgram", 371, 5], ["platforms", 372, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 80, 3], ["version", 81, 3], ["pyproject", 82, 3], ["__structuredAttrs", 83, 3], ["src", 85, 3], ["cargoDeps", 92, 3], ["postPatch", 103, 3], ["nativeBuildInputs", 123, 3], ["dontUseCmakeConfigure", 135, 3], ["env", 137, 3], ["pythonRelaxDeps", 149, 3], ["dependencies", 152, 3], ["optional-dependencies", 162, 3], ["nativeCheckInputs", 219, 3], ["preCheck", 271, 3], ["disabledTestPaths", 275, 3], ["disabledTests", 311, 3], ["pythonImportsCheck", 361, 3], ["meta", 363, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -78,20 +73,20 @@ export default nix.lambda((args) => (() => {
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   const xxhash = nix.arg($, "xxhash");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "daft",
       version: "0.7.25",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Eventual-Inc",
           repo: "Daft",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-XVtMB+fZ1zbFoStwlZmmam3/t8eD7vRop+7YlNhuLhs=",
         })))),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -113,7 +108,7 @@ export default nix.lambda((args) => (() => {
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isx86_64")), nix.thunk(() => [nasm])))),
       dontUseCmakeConfigure: true,
       env: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         DAFT_RUNNER: "native",
         NIX_CFLAGS_COMPILE: "-Wno-error",
         CI: "1",
@@ -123,7 +118,7 @@ export default nix.lambda((args) => (() => {
       pythonRelaxDeps: nix.thunk(() => ["tqdm"]),
       dependencies: nix.thunk(() => [packaging, pyarrow, tqdm, typing_extensions]),
       "optional-dependencies": nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         aws: nix.thunk(() => [boto3, mypy_boto3_glue]),
         azure: [],
         clickhouse: nix.thunk(() => [clickhouse_connect]),
@@ -253,7 +248,7 @@ export default nix.lambda((args) => (() => {
       ]),
       pythonImportsCheck: nix.thunk(() => ["daft"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Distributed dataframes for multimodal data",
         homepage: "https://github.com/Eventual-Inc/Daft",
         changelog: nix.thunk(() => nix.str`https://github.com/Eventual-Inc/Daft/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

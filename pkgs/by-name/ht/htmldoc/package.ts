@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]], [["package", 39, 5], ["command", 40, 5]], [["tests", 38, 12]], [["description", 44, 5], ["homepage", 45, 5], ["changelog", 46, 5], ["license", 47, 5], ["maintainers", 48, 5], ["platforms", 49, 5], ["longDescription", 51, 5], ["mainProgram", 56, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 17, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 25, 3], ["postPatch", 34, 3], ["passthru", 38, 3], ["meta", 43, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, testers: false, fetchFromGitHub: false, zlib: false, cups: false, libpng: false, libjpeg: false, "pkg-config": false, htmldoc: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["package", 39, 5], ["command", 40, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 38, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 44, 5], ["homepage", 45, 5], ["changelog", 46, 5], ["license", 47, 5], ["maintainers", 48, 5], ["platforms", 49, 5], ["longDescription", 51, 5], ["mainProgram", 56, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 17, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 25, 3], ["postPatch", 34, 3], ["passthru", 38, 3], ["meta", 43, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const htmldoc = nix.arg($, "htmldoc");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "htmldoc",
       version: "1.9.24",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "michaelrsweet",
           repo: "htmldoc",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,11 +32,11 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [zlib, cups, libpng, libjpeg]),
       postPatch: "substituteInPlace configure --replace-fail \"-arch x86_64 -arch arm64\" \"\"\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        tests: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$2, package: htmldoc, command: "htmldoc --version" })))),
+        [nix.POS]: $pos[2],
+        tests: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: $pos[1], package: htmldoc, command: "htmldoc --version" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Converts HTML files to PostScript and PDF",
         homepage: "https://michaelrsweet.github.io/htmldoc",
         changelog: nix.thunk(() => nix.str`https://github.com/michaelrsweet/htmldoc/releases/tag/v${nix.sel(finalAttrs, "version")}`),

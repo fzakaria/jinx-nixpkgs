@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 17, 13], ["version", 17, 19], ["hash", 18, 5], ["extension", 19, 5]], [["description", 63, 5], ["mainProgram", 64, 5], ["homepage", 65, 5], ["license", 66, 5], ["maintainers", 67, 5]], [["pname", 12, 3], ["version", 13, 3], ["pyproject", 14, 3], ["src", 16, 3], ["build-system", 22, 3], ["propagatedBuildInputs", 26, 3], ["checkInputs", 31, 3], ["disabledTests", 33, 3], ["disabledTestPaths", 46, 3], ["pythonImportsCheck", 60, 3], ["meta", 62, 3]]]);
 const formals$1 = { args: { lib: false, fetchPypi: false, buildPythonPackage: false, "calmjs-types": false, "calmjs-parse": false, pytestCheckHook: false, setuptools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 17, 13], ["version", 17, 19], ["hash", 18, 5], ["extension", 19, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 63, 5], ["mainProgram", 64, 5], ["homepage", 65, 5], ["license", 66, 5], ["maintainers", 67, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 12, 3], ["version", 13, 3], ["pyproject", 14, 3], ["src", 16, 3], ["build-system", 22, 3], ["propagatedBuildInputs", 26, 3], ["checkInputs", 31, 3], ["disabledTests", 33, 3], ["disabledTestPaths", 46, 3], ["pythonImportsCheck", 60, 3], ["meta", 62, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.4.4";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-73NQiY1RMdBrMIlm/VTvHY4dCHL1pQoj6a48CWRos3o=",
@@ -51,7 +49,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const pythonImportsCheck = nix.thunk(() => ["calmjs"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Framework for building toolchains and utilities for working with the Node.js ecosystem",
         mainProgram: "calmjs",
         homepage: "https://github.com/calmjs/calmjs",
@@ -62,7 +60,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

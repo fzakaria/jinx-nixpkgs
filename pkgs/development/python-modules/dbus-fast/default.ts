@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]], [["REQUIRE_CYTHON", 35, 7]], [["description", 70, 5], ["homepage", 71, 5], ["changelog", 72, 5], ["license", 73, 5], ["maintainers", 74, 5]], [["pname", 17, 3], ["version", 18, 3], ["pyproject", 19, 3], ["src", 21, 3], ["postPatch", 28, 3], ["env", 35, 3], ["build-system", 37, 3], ["nativeCheckInputs", 43, 3], ["pythonImportsCheck", 51, 3], ["checkPhase", 58, 3], ["meta", 69, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, cython: false, dbus: false, fetchFromGitHub: false, "poetry-core": false, pytest: false, "pytest-asyncio": false, "pytest-codspeed": false, "pytest-cov-stub": false, python: false, setuptools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["REQUIRE_CYTHON", 35, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 70, 5], ["homepage", 71, 5], ["changelog", 72, 5], ["license", 73, 5], ["maintainers", 74, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 17, 3], ["version", 18, 3], ["pyproject", 19, 3], ["src", 21, 3], ["postPatch", 28, 3], ["env", 35, 3], ["build-system", 37, 3], ["nativeCheckInputs", 43, 3], ["pythonImportsCheck", 51, 3], ["checkPhase", 58, 3], ["meta", 69, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,19 +20,19 @@ export default nix.lambda((args) => (() => {
   const python = nix.arg($, "python");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "dbus-fast",
       version: "5.0.22",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Bluetooth-Devices",
           repo: "dbus-fast",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-tYgsaXOo1zYjWebcWZyGIIbYHCJApwhRnuYcHOP+ZUs=",
         })))),
       postPatch: "substituteInPlace pyproject.toml \\\n  --replace-fail \"Cython>=3,<3.3.0\" Cython\n",
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, REQUIRE_CYTHON: 1n })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], REQUIRE_CYTHON: 1n })),
       "build-system": nix.thunk(() => [cython, poetry_core, setuptools]),
       nativeCheckInputs: nix.thunk(() => [dbus, pytest, pytest_asyncio, pytest_codspeed, pytest_cov_stub]),
       pythonImportsCheck: nix.thunk(() => ["dbus_fast", "dbus_fast.aio", "dbus_fast.service", "dbus_fast.message"]),
@@ -49,7 +46,7 @@ dbus-run-session \\
 runHook postCheck
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Faster version of dbus-next",
         homepage: "https://github.com/bluetooth-devices/dbus-fast",
         changelog: nix.thunk(() => nix.str`https://github.com/Bluetooth-Devices/dbus-fast/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

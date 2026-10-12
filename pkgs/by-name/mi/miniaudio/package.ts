@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]], [["pkg-config", 67, 18]], [["tests", 67, 12]], [["description", 70, 5], ["homepage", 71, 5], ["changelog", 72, 5], ["license", 73, 5], ["maintainers", 77, 5], ["pkgConfigModules", 78, 5], ["platforms", 79, 5]], [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["outputs", 33, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 43, 3], ["cmakeFlags", 52, 3], ["doCheck", 65, 3], ["passthru", 67, 3], ["meta", 69, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, testers: false, cmake: false, ninja: false, "alsa-lib": false, libjack2: false, libpulseaudio: false, libvorbis: false, opusfile: false, sndio: false, alsaSupport: true, pulseSupport: true, jackSupport: true, sndioSupport: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pkg-config", 67, 18]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 67, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 70, 5], ["homepage", 71, 5], ["changelog", 72, 5], ["license", 73, 5], ["maintainers", 77, 5], ["pkgConfigModules", 78, 5], ["platforms", 79, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["outputs", 33, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 43, 3], ["cmakeFlags", 52, 3], ["doCheck", 65, 3], ["passthru", 67, 3], ["meta", 69, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const jackSupport = nix.argOr($, "jackSupport", () => true);
   const sndioSupport = nix.argOr($, "sndioSupport", () => true);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "miniaudio",
       version: "0.11.25",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "mackron",
           repo: "miniaudio",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -54,14 +50,14 @@ export default nix.lambda((args) => (() => {
       ]),
       doCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "testMetaPkgConfig"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Single header audio playback and capture library written in C",
         homepage: "https://github.com/mackron/miniaudio",
         changelog: nix.thunk(() => nix.str`https://github.com/mackron/miniaudio/blob/${nix.sel(finalAttrs, "version")}/CHANGES.md`),

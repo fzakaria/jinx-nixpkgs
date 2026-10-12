@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 11], ["repo", 16, 11], ["rev", 17, 11], ["hash", 18, 11]], [["version", 13, 9], ["src", 14, 9], ["postPatch", 21, 9]], [["impacket", 12, 7]], [["self", 10, 5], ["packageOverrides", 11, 5]], [["owner", 35, 5], ["repo", 36, 5], ["tag", 37, 5], ["hash", 38, 5]], [["description", 107, 5], ["homepage", 108, 5], ["changelog", 109, 5], ["license", 110, 5], ["maintainers", 111, 5], ["mainProgram", 112, 5], ["broken", 116, 5]], [["pname", 30, 3], ["version", 31, 3], ["pyproject", 32, 3], ["src", 34, 3], ["pythonRelaxDeps", 41, 3], ["pythonRemoveDeps", 43, 3], ["postPatch", 50, 3], ["build-system", 62, 3], ["dependencies", 67, 3], ["nativeCheckInputs", 104, 3], ["meta", 106, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, python312: false, writableTmpDirAsHomeHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 11], ["repo", 16, 11], ["rev", 17, 11], ["hash", 18, 11]]);
-const pos$2 = nix.positions(here + "/package.nix", [["version", 13, 9], ["src", 14, 9], ["postPatch", 21, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["impacket", 12, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["self", 10, 5], ["packageOverrides", 11, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["owner", 35, 5], ["repo", 36, 5], ["tag", 37, 5], ["hash", 38, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 107, 5], ["homepage", 108, 5], ["changelog", 109, 5], ["license", 110, 5], ["maintainers", 111, 5], ["mainProgram", 112, 5], ["broken", 116, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 30, 3], ["version", 31, 3], ["pyproject", 32, 3], ["src", 34, 3], ["pythonRelaxDeps", 41, 3], ["pythonRemoveDeps", 43, 3], ["postPatch", 50, 3], ["build-system", 62, 3], ["dependencies", 67, 3], ["nativeCheckInputs", 104, 3], ["meta", 106, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,15 +13,15 @@ export default nix.lambda((args) => (() => {
   const python312 = nix.arg($, "python312");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   const python = nix.thunk(() => nix.app(nix.sel(python312, "override"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       self: python,
       packageOverrides: (self) => (super$) => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         impacket: nix.thunk(() => nix.app(nix.sel(super$, "impacket", "overridePythonAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             version: "0.14.0-unstable-2025-12-03",
             src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                [nix.POS]: pos$1,
+                [nix.POS]: $pos[0],
                 owner: "fortra",
                 repo: "impacket",
                 rev: "caba5facdd3a01b5d0decc6daf5871839f22f792",
@@ -38,12 +32,12 @@ export default nix.lambda((args) => (() => {
       }),
     }))));
   return nix.app(nix.sel(python, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "netexec",
       version: "1.5.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           owner: "Pennyw0rth",
           repo: "NetExec",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -103,7 +97,7 @@ export default nix.lambda((args) => (() => {
         return nix.concat([nix.thunk(() => nix.lookup(w_2, "pytestCheckHook"))], [writableTmpDirAsHomeHook]);
       })()),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Network service exploitation tool (maintained fork of CrackMapExec)",
         homepage: "https://github.com/Pennyw0rth/NetExec",
         changelog: nix.thunk(() => nix.str`https://github.com/Pennyw0rth/NetExec/releases/tag/v${nix.sel(finalAttrs, "version")}`),

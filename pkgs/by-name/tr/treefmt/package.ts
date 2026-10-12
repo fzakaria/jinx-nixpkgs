@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]], [["CGO_ENABLED", 24, 7]], [["evalConfig", 44, 7], ["withConfig", 45, 7], ["buildConfig", 46, 7], ["tests", 49, 5], ["functionsDoc", 52, 5], ["optionsDoc", 55, 5]], [["description", 59, 5], ["longDescription", 60, 5], ["homepage", 73, 5], ["license", 74, 5], ["maintainers", 75, 5], ["mainProgram", 80, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["vendorHash", 20, 3], ["subPackages", 22, 3], ["env", 24, 3], ["ldflags", 26, 3], ["nativeBuildInputs", 33, 3], ["postInstall", 35, 3], ["passthru", 42, 3], ["meta", 58, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildGoModule: false, callPackages: false, fetchFromGitHub: false, installShellFiles: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["CGO_ENABLED", 24, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["evalConfig", 44, 7], ["withConfig", 45, 7], ["buildConfig", 46, 7], ["tests", 49, 5], ["functionsDoc", 52, 5], ["optionsDoc", 55, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 59, 5], ["longDescription", 60, 5], ["homepage", 73, 5], ["license", 74, 5], ["maintainers", 75, 5], ["mainProgram", 80, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["vendorHash", 20, 3], ["subPackages", 22, 3], ["env", 24, 3], ["ldflags", 26, 3], ["nativeBuildInputs", 33, 3], ["postInstall", 35, 3], ["passthru", 42, 3], ["meta", 58, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const installShellFiles = nix.arg($, "installShellFiles");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "treefmt",
       version: "2.6.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "numtide",
           repo: "treefmt",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -30,7 +26,7 @@ export default nix.lambda((args) => (() => {
         })))),
       vendorHash: "sha256-0lYflU2o+hGDGhGzRZIeZy9fv0X58Foqgu0E4lZtwB4=",
       subPackages: nix.thunk(() => ["."]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, CGO_ENABLED: 1n })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], CGO_ENABLED: 1n })),
       ldflags: nix.thunk(() => [
         "-s",
         "-w",
@@ -42,7 +38,7 @@ export default nix.lambda((args) => (() => {
       passthru: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.app(callPackages, nix.path(here, "./lib.nix"), nix.thunk(() => ({}))));
         return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         evalConfig: nix.thunk(() => nix.attr(from, "evalConfig")),
         withConfig: nix.thunk(() => nix.attr(from, "withConfig")),
         buildConfig: nix.thunk(() => nix.attr(from, "buildConfig")),
@@ -52,7 +48,7 @@ export default nix.lambda((args) => (() => {
       };
       })()),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "One CLI to format the code tree",
         longDescription: nix.thunk(() => nix.str`[treefmt](${nix.sel(finalAttrs, "meta", "homepage")}) streamlines the process of applying formatters
 to your project, making it a breeze with just one command line.

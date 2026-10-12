@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["ocr", 27, 5], ["gcv", 31, 5], ["tesseract", 32, 5], ["layoutmodels", 33, 5], ["effdet", 38, 5]], [["owner", 51, 5], ["repo", 52, 5], ["tag", 53, 5], ["hash", 54, 5]], [["description", 102, 5], ["homepage", 103, 5], ["changelog", 104, 5], ["license", 105, 5], ["maintainers", 106, 5]], [["pname", 47, 11], ["version", 47, 17], ["format", 48, 3], ["src", 50, 3], ["patches", 57, 3], ["propagatedBuildInputs", 62, 3], ["pythonImportsCheck", 74, 3], ["nativeCheckInputs", 76, 3], ["disabledTests", 78, 3], ["disabledTestPaths", 93, 3], ["optional-dependencies", 99, 3], ["meta", 101, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, numpy: false, "opencv-python": false, scipy: false, pandas: false, pillow: false, pyyaml: false, iopath: false, pdfplumber: false, pdf2image: false, "google-cloud-vision": false, pytesseract: false, torch: false, torchvision: false, effdet: false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["ocr", 27, 5], ["gcv", 31, 5], ["tesseract", 32, 5], ["layoutmodels", 33, 5], ["effdet", 38, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["owner", 51, 5], ["repo", 52, 5], ["tag", 53, 5], ["hash", 54, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 102, 5], ["homepage", 103, 5], ["changelog", 104, 5], ["license", 105, 5], ["maintainers", 106, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 47, 11], ["version", 47, 17], ["format", 48, 3], ["src", 50, 3], ["patches", 57, 3], ["propagatedBuildInputs", 62, 3], ["pythonImportsCheck", 74, 3], ["nativeCheckInputs", 76, 3], ["disabledTests", 78, 3], ["disabledTestPaths", 93, 3], ["optional-dependencies", 99, 3], ["meta", 101, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,7 +28,7 @@ export default nix.lambda((args) => (() => {
   const pname = "layoutparser";
   const version = "0.3.4";
   const optional_dependencies = nix.thunk(() => ({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     ocr: nix.thunk(() => [google_cloud_vision, pytesseract]),
     gcv: nix.thunk(() => [google_cloud_vision]),
     tesseract: nix.thunk(() => [pytesseract]),
@@ -39,12 +36,12 @@ export default nix.lambda((args) => (() => {
     effdet: nix.thunk(() => [torch, torchvision, effdet]),
   }));
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: pname,
       version: version,
       format: "setuptools",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "Layout-Parser",
           repo: "layout-parser",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -80,7 +77,7 @@ export default nix.lambda((args) => (() => {
       ]),
       "optional-dependencies": optional_dependencies,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Unified toolkit for Deep Learning Based Document Image Analysis",
         homepage: "https://github.com/Layout-Parser/layout-parser",
         changelog: nix.thunk(() => nix.str`https://github.com/Layout-Parser/layout-parser/releases/tag/v${version}`),

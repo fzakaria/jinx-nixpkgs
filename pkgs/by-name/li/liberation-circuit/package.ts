@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]], [["description", 55, 5], ["mainProgram", 56, 5], ["longDescription", 57, 5], ["homepage", 63, 5], ["maintainers", 64, 5], ["license", 65, 5], ["platforms", 66, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["nativeBuildInputs", 22, 3], ["buildInputs", 26, 3], ["dontWrapGApps", 31, 3], ["installPhase", 33, 3], ["postFixup", 49, 3], ["meta", 54, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, "pkg-config": false, allegro5: false, libGL: false, wrapGAppsHook3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 55, 5], ["mainProgram", 56, 5], ["longDescription", 57, 5], ["homepage", 63, 5], ["maintainers", 64, 5], ["license", 65, 5], ["platforms", 66, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["nativeBuildInputs", 22, 3], ["buildInputs", 26, 3], ["dontWrapGApps", 31, 3], ["installPhase", 33, 3], ["postFixup", 49, 3], ["meta", 54, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const libGL = nix.arg($, "libGL");
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "liberation-circuit",
       version: "1.3-unstable-2022-01-02",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "linleyh",
           repo: "liberation-circuit",
           rev: "19e3363547793e931fd9419b61ebc2cd8e257714",
@@ -33,7 +31,7 @@ export default nix.lambda((args) => (() => {
       installPhase: "runHook preInstall\n\nmkdir -p $out/opt\ncp -r bin $out/opt/liberation-circuit\nchmod +x $out/opt/liberation-circuit/launcher.sh\n\ninstall -D linux-packaging/liberation-circuit.desktop $out/share/applications/liberation-circuit.desktop\ninstall -D linux-packaging/liberation-circuit.appdata.xml $out/share/metainfo/liberation-circuit.appdata.xml\ninstall -D linux-packaging/icon-16px.png $out/share/icons/hicolor/16x16/apps/liberation-circuit.png\ninstall -D linux-packaging/icon-32px.png $out/share/icons/hicolor/32x32/apps/liberation-circuit.png\ninstall -D linux-packaging/icon-256px.png $out/share/icons/hicolor/256x256/apps/liberation-circuit.png\n\nrunHook postInstall\n",
       postFixup: "makeWrapper $out/opt/liberation-circuit/launcher.sh $out/bin/liberation-circuit \\\n  \"${gappsWrapperArgs[@]}\"\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Real-time strategy game with programmable units",
         mainProgram: "liberation-circuit",
         longDescription: "Escape from a hostile computer system!\nHarvest data to create an armada of battle-processes to aid your escape!\nTake command directly and play the game as an RTS, or use the game's built-in\neditor and compiler to write your own unit AI in a simplified version of C.\n",

@@ -2,14 +2,14 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["helm-cm-push", 4, 3], ["helm-diff", 6, 3], ["helm-dt", 8, 3], ["helm-git", 10, 3], ["helm-mapkubeapis", 12, 3], ["helm-s3", 14, 3], ["helm-secrets", 16, 3], ["helm-schema", 18, 3], ["helm-unittest", 20, 3]]]);
 const formals$1 = { args: { callPackage: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["helm-cm-push", 4, 3], ["helm-diff", 6, 3], ["helm-dt", 8, 3], ["helm-git", 10, 3], ["helm-mapkubeapis", 12, 3], ["helm-s3", 14, 3], ["helm-secrets", 16, 3], ["helm-schema", 18, 3], ["helm-unittest", 20, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const callPackage = nix.arg($, "callPackage");
   return {
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     "helm-cm-push": nix.thunk(() => nix.app(callPackage, nix.path(here, "./helm-cm-push.nix"), nix.thunk(() => ({})))),
     "helm-diff": nix.thunk(() => nix.app(callPackage, nix.path(here, "./helm-diff.nix"), nix.thunk(() => ({})))),
     "helm-dt": nix.thunk(() => nix.app(callPackage, nix.path(here, "./helm-dt.nix"), nix.thunk(() => ({})))),

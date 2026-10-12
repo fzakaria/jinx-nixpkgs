@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 15, 5], ["name", 16, 5], ["hash", 17, 5]], [["url", 21, 5], ["hash", 22, 5]], [["url", 30, 5], ["hash", 31, 5]], [["moduleNames", 113, 7], ["package", 115, 7], ["nativeBuildInputs", 117, 7]], [["cmake-config", 112, 5]], [["tests", 111, 12]], [["description", 124, 5], ["homepage", 125, 5], ["changelog", 126, 5], ["mainProgram", 127, 5], ["license", 128, 5], ["platforms", 129, 5], ["maintainers", 130, 5]], [["pname", 26, 3], ["version", 27, 3], ["src", 29, 3], ["postPatch", 34, 3], ["nativeBuildInputs", 53, 3], ["propagatedBuildInputs", 61, 3], ["cmakeFlags", 68, 3], ["postInstall", 99, 3], ["passthru", 111, 3], ["meta", 123, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, cmake: false, ninja: false, qt6Packages: false, protobuf: false, "vtk-full": false, testers: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 15, 5], ["name", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 21, 5], ["hash", 22, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 30, 5], ["hash", 31, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["moduleNames", 113, 7], ["package", 115, 7], ["nativeBuildInputs", 117, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["cmake-config", 112, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["tests", 111, 12]]);
-const pos$7 = nix.positions(here + "/package.nix", [["description", 124, 5], ["homepage", 125, 5], ["changelog", 126, 5], ["mainProgram", 127, 5], ["license", 128, 5], ["platforms", 129, 5], ["maintainers", 130, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 26, 3], ["version", 27, 3], ["src", 29, 3], ["postPatch", 34, 3], ["nativeBuildInputs", 53, 3], ["propagatedBuildInputs", 61, 3], ["cmakeFlags", 68, 3], ["postInstall", 99, 3], ["passthru", 111, 3], ["meta", 123, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,22 +18,22 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const paraviewFilesUrl = "https://www.paraview.org/files";
   const doc = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: nix.thunk(() => nix.str`${paraviewFilesUrl}/v6.0/ParaViewGettingStarted-6.0.1.pdf`),
       name: "GettingStarted.pdf",
       hash: "sha256-2ghvb0UXa0Z/YGWzCchB1NKowRdlC/ZQCI3y0tZUdbo=",
     }))));
   const examples = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       url: nix.thunk(() => nix.str`${paraviewFilesUrl}/data/ParaViewTutorialData-20220629.tar.gz`),
       hash: "sha256-OCLvWlwhBL9R981zXWZueMyXVeiqbxsmUYcwIu1doQ4=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "paraview",
       version: "6.0.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           url: nix.thunk(() => nix.str`${paraviewFilesUrl}/v${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/ParaView-v${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-XlasevXpJbPP0/q4JHCTPLq8fo/ah+FK9k+ZXWBk6wY=",
         })))),
@@ -90,11 +83,11 @@ mkdir -p $out/share/paraview/examples
 tar --strip-components=1 -xzf ${examples} -C $out/share/paraview/examples
 `, nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), "install -Dm644 ../Qt/Components/Resources/Icons/pvIcon.svg $out/share/icons/hicolor/scalable/apps/paraview.svg\n")), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "ln -s ../Applications/paraview.app/Contents/MacOS/paraview $out/bin/paraview\n"))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           "cmake-config": nix.thunk(() => nix.app(nix.sel(testers, "hasCmakeConfigModules"), nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               moduleNames: nix.thunk(() => ["ParaView"]),
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(qt6Packages, "wrapQtAppsHook"))]),
@@ -102,7 +95,7 @@ tar --strip-components=1 -xzf ${examples} -C $out/share/paraview/examples
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "3D Data analysis and visualization application",
         homepage: "https://www.paraview.org",
         changelog: nix.thunk(() => nix.str`https://www.kitware.com/paraview-${nix.app(nix.sel(lib, "concatStringsSep"), "-", nix.thunk(() => nix.app(nix.sel(lib, "versions", "splitVersion"), nix.thunk(() => nix.sel(finalAttrs, "version")))))}-release-notes`),

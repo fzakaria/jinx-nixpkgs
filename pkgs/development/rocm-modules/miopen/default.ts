@@ -2,26 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["name", 88, 5], ["paths", 89, 5]], [["preferLocalBuild", 99, 39]], [["url", 102, 19], ["hash", 102, 23], ["name", 103, 11]], [["owner", 125, 5], ["repo", 126, 5], ["tag", 127, 5], ["sparseCheckout", 128, 5], ["fetchSubmodules", 132, 5], ["hash", 133, 5]], [["CFLAGS", 137, 7], ["CXXFLAGS", 138, 7], ["ROCM_PATH", 170, 7], ["LD_LIBRARY_PATH", 171, 7]], [["url", 144, 7], ["hash", 145, 7]], [["url", 148, 7], ["hash", 149, 7]], [["name", 153, 7], ["url", 154, 7], ["hash", 155, 7], ["relative", 156, 7]], [["miopen", 298, 7], ["name", 299, 7], ["testScript", 300, 7]], [["miopen", 303, 7], ["name", 304, 7], ["testScript", 305, 7]], [["miopen", 308, 7], ["name", 309, 7], ["testScript", 310, 7]], [["miopen", 313, 7], ["name", 314, 7], ["testScript", 315, 7]], [["bnorm", 297, 5], ["conv", 302, 5], ["dropout", 307, 5], ["pool", 312, 5]], [["src", 325, 28], ["version", 325, 32], ["frugally-deep", 326, 15], ["nlohmann_json", 326, 29]], [["can-load-models", 324, 5]], [["impureTests", 295, 12], ["tests", 318, 12], ["updateScript", 329, 12]], [["description", 332, 5], ["homepage", 333, 5], ["license", 334, 5], ["teams", 335, 5], ["platforms", 336, 5]], [["version", 121, 11], ["pname", 122, 3], ["src", 124, 3], ["sourceRoot", 135, 3], ["env", 137, 3], ["patches", 141, 3], ["outputs", 160, 3], ["enableParallelBuilding", 169, 3], ["nativeBuildInputs", 173, 3], ["buildInputs", 180, 3], ["cmakeFlags", 212, 3], ["postPatch", 244, 3], ["postBuild", 264, 3], ["postInstall", 272, 3], ["requiredSystemFeatures", 293, 3], ["passthru", 295, 3], ["meta", 331, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, callPackage: false, fetchFromGitHub: false, fetchpatch: false, fetchurl: false, runCommand: false, "pkg-config": false, cmake: false, "rocm-cmake": false, rocblas: false, rocmlir: false, rocrand: false, "rocm-runtime": false, "hipblas-common": false, hipblas: false, hipblaslt: false, clr: false, composable_kernel: false, "frugally-deep": false, "rocm-docs-core": false, half: false, boost: false, sqlite: false, symlinkJoin: false, bzip2: false, lbzip2: false, nlohmann_json: false, texliveSmall: false, doxygen: false, sphinx: false, zlib: false, gtest: false, "rocm-comgr": false, roctracer: false, python3Packages: false, gpuTargets: true, buildDocs: true, buildTests: true, withComposableKernel: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["name", 88, 5], ["paths", 89, 5]]);
 const formals$2 = { args: { url: false, hash: false }, ellipsis: false };
-const pos$2 = nix.positions(here + "/default.nix", [["preferLocalBuild", 99, 39]]);
-const pos$3 = nix.positions(here + "/default.nix", [["url", 102, 19], ["hash", 102, 23], ["name", 103, 11]]);
-const pos$4 = nix.positions(here + "/default.nix", [["owner", 125, 5], ["repo", 126, 5], ["tag", 127, 5], ["sparseCheckout", 128, 5], ["fetchSubmodules", 132, 5], ["hash", 133, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["CFLAGS", 137, 7], ["CXXFLAGS", 138, 7], ["ROCM_PATH", 170, 7], ["LD_LIBRARY_PATH", 171, 7]]);
-const pos$6 = nix.positions(here + "/default.nix", [["url", 144, 7], ["hash", 145, 7]]);
-const pos$7 = nix.positions(here + "/default.nix", [["url", 148, 7], ["hash", 149, 7]]);
-const pos$8 = nix.positions(here + "/default.nix", [["name", 153, 7], ["url", 154, 7], ["hash", 155, 7], ["relative", 156, 7]]);
-const pos$9 = nix.positions(here + "/default.nix", [["miopen", 298, 7], ["name", 299, 7], ["testScript", 300, 7]]);
-const pos$10 = nix.positions(here + "/default.nix", [["miopen", 303, 7], ["name", 304, 7], ["testScript", 305, 7]]);
-const pos$11 = nix.positions(here + "/default.nix", [["miopen", 308, 7], ["name", 309, 7], ["testScript", 310, 7]]);
-const pos$12 = nix.positions(here + "/default.nix", [["miopen", 313, 7], ["name", 314, 7], ["testScript", 315, 7]]);
-const pos$13 = nix.positions(here + "/default.nix", [["bnorm", 297, 5], ["conv", 302, 5], ["dropout", 307, 5], ["pool", 312, 5]]);
-const pos$14 = nix.positions(here + "/default.nix", [["src", 325, 28], ["version", 325, 32], ["frugally-deep", 326, 15], ["nlohmann_json", 326, 29]]);
-const pos$15 = nix.positions(here + "/default.nix", [["can-load-models", 324, 5]]);
-const pos$16 = nix.positions(here + "/default.nix", [["impureTests", 295, 12], ["tests", 318, 12], ["updateScript", 329, 12]]);
-const pos$17 = nix.positions(here + "/default.nix", [["description", 332, 5], ["homepage", 333, 5], ["license", 334, 5], ["teams", 335, 5], ["platforms", 336, 5]]);
-const pos$18 = nix.positions(here + "/default.nix", [["version", 121, 11], ["pname", 122, 3], ["src", 124, 3], ["sourceRoot", 135, 3], ["env", 137, 3], ["patches", 141, 3], ["outputs", 160, 3], ["enableParallelBuilding", 169, 3], ["nativeBuildInputs", 173, 3], ["buildInputs", 180, 3], ["cmakeFlags", 212, 3], ["postPatch", 244, 3], ["postBuild", 264, 3], ["postInstall", 272, 3], ["requiredSystemFeatures", 293, 3], ["passthru", 295, 3], ["meta", 331, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -100,7 +83,7 @@ export default nix.lambda((args) => (() => {
         ];
       })()))));
   const hiprtcCompileRocmPath = nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: "miopen-hiprtc-compile-rocm-path",
       paths: nix.thunk(() => [clr, rocrand]),
     }))));
@@ -108,8 +91,8 @@ export default nix.lambda((args) => (() => {
     const $_1 = nix.formals(args_1, formals$2);
     const url = nix.arg($_1, "url");
     const hash = nix.arg($_1, "hash");
-    return nix.app(runCommand, nix.thunk(() => nix.str`miopen-${name}.kdb`), nix.thunk(() => ({ [nix.POS]: pos$2, preferLocalBuild: true })), nix.thunk(() => nix.str`${lbzip2}/bin/lbzip2 -ckd ${nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+    return nix.app(runCommand, nix.thunk(() => nix.str`miopen-${name}.kdb`), nix.thunk(() => ({ [nix.POS]: $pos[1], preferLocalBuild: true })), nix.thunk(() => nix.str`${lbzip2}/bin/lbzip2 -ckd ${nix.app(fetchurl, nix.thunk(() => ({
+          [nix.POS]: $pos[2],
           url: url,
           hash: hash,
           name: nix.thunk(() => nix.str`${name}.kdb.bz2`),
@@ -120,11 +103,11 @@ export default nix.lambda((args) => (() => {
   const linkKDBsTo = (targetPath) => nix.app(nix.sel(lib, "concatStringsSep"), "", nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (name) => (kdb) => nix.str`ln -sf ${kdb} ${targetPath}/${name}.kdb
 `, kdbs)));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$18,
+      [nix.POS]: $pos[17],
       version: version,
       pname: "miopen",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           owner: "ROCm",
           repo: "rocm-libraries",
           tag: nix.thunk(() => nix.str`rocm-${nix.sel(finalAttrs, "version")}`),
@@ -134,7 +117,7 @@ export default nix.lambda((args) => (() => {
         })))),
       sourceRoot: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "name")}/projects/miopen`),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         CFLAGS: cFlags,
         CXXFLAGS: cFlags,
         ROCM_PATH: clr,
@@ -143,17 +126,17 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [
         nix.path(here, "./skip-preexisting-dbs.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             url: "https://github.com/ROCm/MIOpen/commit/e608b4325646afeabb5e52846997b926d2019d19.patch",
             hash: "sha256-oxa3qlIC2bzbwGxrQOZXoY/S7CpLsMrnWRB7Og0tk0M=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             url: "https://github.com/ROCm/MIOpen/commit/3413d2daaeb44b7d6eadcc03033a5954a118491e.patch",
             hash: "sha256-ST4snUcTmmSI1Ogx815KEX9GdMnmubsavDzXCGJkiKs=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$8,
+            [nix.POS]: $pos[7],
             name: "Extend-MIOpen-ISA-compatibility.patch",
             url: "https://github.com/GZGavinZhao/rocm-libraries/commit/02f0fedffdc197f146dd45f41e10990a00cde3ee.patch",
             hash: "sha256-My32iZw75rvB4fyvUJJ2kw2bU9/39awGteFGjzijixw=",
@@ -227,38 +210,38 @@ patchelf --set-rpath $out/lib:${nix.app(nix.sel(lib, "makeLibraryPath"), nix.thu
 `)))),
       requiredSystemFeatures: nix.thunk(() => ["big-parallel"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$16,
+        [nix.POS]: $pos[15],
         impureTests: nix.thunk(() => ({
-          [nix.POS]: pos$13,
+          [nix.POS]: $pos[12],
           bnorm: nix.thunk(() => nix.app(callPackage, nix.path(here, "./test-runtime-compilation.nix"), nix.thunk(() => ({
-              [nix.POS]: pos$9,
+              [nix.POS]: $pos[8],
               miopen: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               name: "bnorm",
               testScript: "MIOpenDriver bnorm -n 16 -c 16 -H 512 -W 512 -m 1 -F 1 -s 1 -r 1",
             })))),
           conv: nix.thunk(() => nix.app(callPackage, nix.path(here, "./test-runtime-compilation.nix"), nix.thunk(() => ({
-              [nix.POS]: pos$10,
+              [nix.POS]: $pos[9],
               miopen: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               name: "conv",
               testScript: "MIOpenDriver conv -n 1 -c 1 -H 4 -W 4 -k 1 -y 3 -x 3 -p 0 -q 0 -V 0",
             })))),
           dropout: nix.thunk(() => nix.app(callPackage, nix.path(here, "./test-runtime-compilation.nix"), nix.thunk(() => ({
-              [nix.POS]: pos$11,
+              [nix.POS]: $pos[10],
               miopen: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               name: "dropout",
               testScript: "MIOpenDriver dropout -d 64,32,14,14",
             })))),
           pool: nix.thunk(() => nix.app(callPackage, nix.path(here, "./test-runtime-compilation.nix"), nix.thunk(() => ({
-              [nix.POS]: pos$12,
+              [nix.POS]: $pos[11],
               miopen: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               name: "pool",
               testScript: "MIOpenDriver pool -W 1x1x4x4 -y 2 -x 2 -p 0 -q 0 -F 1 -V 0",
             })))),
         })),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$15,
+          [nix.POS]: $pos[14],
           "can-load-models": nix.thunk(() => nix.app(callPackage, nix.path(here, "./test-frugally-deep-model-loading.nix"), nix.thunk(() => ({
-              [nix.POS]: pos$14,
+              [nix.POS]: $pos[13],
               src: nix.thunk(() => nix.attr(finalAttrs, "src")),
               version: nix.thunk(() => nix.attr(finalAttrs, "version")),
               "frugally-deep": frugally_deep,
@@ -268,7 +251,7 @@ patchelf --set-rpath $out/lib:${nix.app(nix.sel(lib, "makeLibraryPath"), nix.thu
         updateScript: nix.path(here, "./update.sh"),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$17,
+        [nix.POS]: $pos[16],
         description: "Machine intelligence library for ROCm",
         homepage: "https://github.com/ROCm/rocm-libraries/tree/develop/projects/miopen",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

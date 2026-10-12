@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/linux.nix", [[["name", 149, 5], ["url", 150, 5], ["hash", 151, 5]], [["libdir", 189, 5], ["librarypath", 190, 5]], [["updateScript", 252, 24]], [["maintainers", 255, 5]], [["pname", 123, 11], ["version", 130, 3], ["rev", 138, 3], ["src", 148, 3], ["nativeBuildInputs", 154, 3], ["dontStrip", 160, 3], ["dontPatchELF", 161, 3], ["unpackPhase", 163, 3], ["dontWrapGApps", 186, 3], ["env", 188, 3], ["installPhase", 193, 3], ["fixupPhase", 235, 3], ["passthru", 252, 3], ["meta", 254, 3]]]);
 const formals$1 = { args: { fetchurl: false, lib: false, stdenv: false, "squashfs-tools": false, libxtst: false, libxscrnsaver: false, libxrender: false, libxrandr: false, libxi: false, libxfixes: false, libxext: false, libxdamage: false, libxcursor: false, libxcomposite: false, libx11: false, libsm: false, libice: false, libxshmfence: false, libxcb: false, "alsa-lib": false, makeShellWrapper: false, wrapGAppsHook3: false, openssl: false, freetype: false, glib: false, pango: false, cairo: false, atk: false, "gdk-pixbuf": false, gtk3: false, cups: false, nspr: false, nss_latest: false, libpng: false, libnotify: false, libgcrypt: false, systemd: false, fontconfig: false, dbus: false, expat: false, "ffmpeg_7-headless": false, curlWithGnuTls: false, zlib: false, zenity: false, "at-spi2-atk": false, "at-spi2-core": false, libpulseaudio: false, libdrm: false, libgbm: false, libxkbcommon: false, pname: false, meta: false, harfbuzz: false, "libayatana-indicator": false, "libayatana-appindicator": false, "ayatana-ido": false, libdbusmenu: false, libGL: false, libva: false, pciutils: false, deviceScaleFactor: true, updateScript: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/linux.nix", [["name", 149, 5], ["url", 150, 5], ["hash", 151, 5]]);
-const pos$2 = nix.positions(here + "/linux.nix", [["libdir", 189, 5], ["librarypath", 190, 5]]);
-const pos$3 = nix.positions(here + "/linux.nix", [["updateScript", 252, 24]]);
-const pos$4 = nix.positions(here + "/linux.nix", [["maintainers", 255, 5]]);
-const pos$5 = nix.positions(here + "/linux.nix", [["pname", 123, 11], ["version", 130, 3], ["rev", 138, 3], ["src", 148, 3], ["nativeBuildInputs", 154, 3], ["dontStrip", 160, 3], ["dontPatchELF", 161, 3], ["unpackPhase", 163, 3], ["dontWrapGApps", 186, 3], ["env", 188, 3], ["installPhase", 193, 3], ["fixupPhase", 235, 3], ["passthru", 252, 3], ["meta", 254, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -126,12 +122,12 @@ export default nix.lambda((args) => (() => {
     zlib,
   ]);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: pname,
       version: "1.2.95.453.g0eeebbed",
       rev: "99",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           name: nix.thunk(() => nix.str`spotify-${nix.sel(finalAttrs, "version")}-${nix.sel(finalAttrs, "rev")}.snap`),
           url: nix.thunk(() => nix.str`https://api.snapcraft.io/api/v1/snaps/download/pOBIoZ2LrCB3rDohMxoYGnbN14EHOgD7_${nix.sel(finalAttrs, "rev")}.snap`),
           hash: "sha512-IRjGDAdXY4O9KkMpNLKnPxgrQp3WmpHbaAIvM6Xq6969HON39dajHebVQAxZUvKOSWOeS9W1yn1Cl/3uFMbwsw==",
@@ -163,7 +159,7 @@ runHook postUnpack
       env: nix.thunk(() => (() => {
         const libdir = nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/lib/spotify`);
         const librarypath = nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "makeLibraryPath"), deps)}:${libdir}`);
-        return { [nix.POS]: pos$2, libdir, librarypath };
+        return { [nix.POS]: $pos[1], libdir, librarypath };
       })()),
       installPhase: nix.thunk(() => nix.str`runHook preInstall
 
@@ -217,9 +213,9 @@ wrapProgramShell $out/share/spotify/spotify \\
 
 runHook postFixup
 `),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$3, updateScript: updateScript })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[2], updateScript: updateScript })),
       meta: nix.thunk(() => nix.update(meta, {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
           return [nix.thunk(() => nix.lookup(w, "ma27"))];

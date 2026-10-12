@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 14, 5], ["sha256", 15, 5]], [["description", 31, 5], ["license", 37, 5], ["homepage", 38, 5], ["sourceProvenance", 39, 5], ["maintainers", 40, 5], ["platforms", 41, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 18, 3], ["buildInputs", 19, 3], ["dontUnpack", 21, 3], ["installPhase", 23, 3], ["meta", 30, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, jre: false, makeWrapper: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 14, 5], ["sha256", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 31, 5], ["license", 37, 5], ["homepage", 38, 5], ["sourceProvenance", 39, 5], ["maintainers", 40, 5], ["platforms", 41, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 18, 3], ["buildInputs", 19, 3], ["dontUnpack", 21, 3], ["installPhase", 23, 3], ["meta", 30, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "varscan";
       const version = "2.4.6";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/dkoboldt/varscan/raw/master/VarScan.v${version}.jar`),
           sha256: "sha256-6CcjC0epbKsDXFxxeOUImSGh4cjR5INqawL/iOOkwqs=",
         }))));
@@ -31,7 +29,7 @@ mkdir -p $out/bin
 makeWrapper ${jre}/bin/java $out/bin/varscan --add-flags "-jar $out/libexec/varscan/varscan.jar"
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Variant calling and somatic mutation/CNV detection for next-generation sequencing data",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
         homepage: "https://github.com/dkoboldt/varscan",
@@ -46,7 +44,7 @@ makeWrapper ${jre}/bin/java $out/bin/varscan --add-flags "-jar $out/libexec/vars
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

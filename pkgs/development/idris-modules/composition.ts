@@ -2,10 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/composition.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["sha256", 17, 5]], [["description", 21, 5], ["homepage", 22, 5], ["license", 23, 5], ["maintainers", 24, 5]], [["pname", 8, 3], ["version", 9, 3], ["idrisDeps", 11, 3], ["src", 13, 3], ["meta", 20, 3]]]);
 const formals$1 = { args: { "build-idris-package": false, fetchFromGitHub: false, hezarfen: false, lib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/composition.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["sha256", 17, 5]]);
-const pos$2 = nix.positions(here + "/composition.nix", [["description", 21, 5], ["homepage", 22, 5], ["license", 23, 5], ["maintainers", 24, 5]]);
-const pos$3 = nix.positions(here + "/composition.nix", [["pname", 8, 3], ["version", 9, 3], ["idrisDeps", 11, 3], ["src", 13, 3], ["meta", 20, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,19 +12,19 @@ export default nix.lambda((args) => (() => {
   const hezarfen = nix.arg($, "hezarfen");
   const lib = nix.arg($, "lib");
   return nix.app(build_idris_package, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "composition",
       version: "2017-11-12",
       idrisDeps: nix.thunk(() => [hezarfen]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "vmchale",
           repo: "composition",
           rev: "8f05e8db750793a9992b315dc0a2c327b837ec8b",
           sha256: "05424xzxx6f3ig0ravib15nr34nqvaq8spcj6b1512raqrvkkay8",
         })))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Composition extras for Idris",
         homepage: "https://github.com/vmchale/composition",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 29, 5], ["repo", 30, 5], ["rev", 31, 5], ["hash", 32, 5]], [["description", 75, 5], ["homepage", 76, 5], ["license", 77, 5], ["mainProgram", 81, 5], ["maintainers", 82, 5], ["broken", 84, 5]], [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 43, 3], ["cargoHash", 50, 3], ["postFixup", 52, 3], ["meta", 74, 3]]]);
 const formals$1 = { args: { stdenv: false, rustPlatform: false, lib: false, fetchFromGitHub: false, "alsa-lib": false, brotli: false, cmake: false, fontconfig: false, libglvnd: false, libxkbcommon: false, libx11: false, libxcursor: false, libxext: false, libxi: false, libxrandr: false, makeWrapper: false, "pkg-config": false, python3: false, wayland: false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 29, 5], ["repo", 30, 5], ["rev", 31, 5], ["hash", 32, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 75, 5], ["homepage", 76, 5], ["license", 77, 5], ["mainProgram", 81, 5], ["maintainers", 82, 5], ["broken", 84, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 43, 3], ["cargoHash", 50, 3], ["postFixup", 52, 3], ["meta", 74, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,11 +28,11 @@ export default nix.lambda((args) => (() => {
   const wayland = nix.arg($, "wayland");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "chiptrack",
       version: "0.5-unstable-2026-02-09",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "jturcotte",
           repo: "chiptrack",
           rev: "3cb0caa5bbc23d0579cdad8187c4371bdf0723a3",
@@ -62,7 +60,7 @@ export default nix.lambda((args) => (() => {
           ])))))}
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Programmable cross-platform sequencer for the Game Boy Advance sound chip",
         homepage: "https://github.com/jturcotte/chiptrack",
         license: nix.thunk(() => (() => {

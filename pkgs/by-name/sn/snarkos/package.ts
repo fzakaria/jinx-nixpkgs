@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["sha256", 18, 5]], [["OPENSSL_NO_VENDOR", 32, 5], ["OPENSSL_LIB_DIR", 33, 5], ["OPENSSL_DIR", 34, 5]], [["broken", 59, 5], ["description", 60, 5], ["homepage", 61, 5], ["license", 62, 5], ["maintainers", 63, 5], ["platforms", 64, 5], ["mainProgram", 65, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["cargoHash", 21, 3], ["nativeBuildInputs", 25, 3], ["env", 30, 3], ["buildInputs", 43, 3], ["doCheck", 49, 3], ["meta", 57, 3]]]);
 const formals$1 = { args: { stdenv: false, fetchFromGitHub: false, lib: false, rustPlatform: false, curl: false, "pkg-config": false, openssl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["sha256", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["OPENSSL_NO_VENDOR", 32, 5], ["OPENSSL_LIB_DIR", 33, 5], ["OPENSSL_DIR", 34, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["broken", 59, 5], ["description", 60, 5], ["homepage", 61, 5], ["license", 62, 5], ["maintainers", 63, 5], ["platforms", 64, 5], ["mainProgram", 65, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["cargoHash", 21, 3], ["nativeBuildInputs", 25, 3], ["env", 30, 3], ["buildInputs", 43, 3], ["doCheck", 49, 3], ["meta", 57, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pname = "snarkos";
       const version = "2.2.7";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ProvableHQ",
           repo: "snarkOS",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -30,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const cargoHash = "sha256-riUOxmuXDP5+BPSPu5+cLBP43bZxAqvVG/k5kvThSAs=";
       const nativeBuildInputs = nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [pkg_config, nix.thunk(() => nix.sel(rustPlatform, "bindgenHook"))])));
       const env = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         OPENSSL_NO_VENDOR: 1n,
         OPENSSL_LIB_DIR: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getLib"), openssl)}/lib`),
         OPENSSL_DIR: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getDev"), openssl)}`),
@@ -38,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const buildInputs = nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [curl])));
       const doCheck = nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         broken: true,
         description: "Decentralized Operating System for Zero-Knowledge Applications",
         homepage: "https://snarkos.org",
@@ -51,7 +48,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "snarkos",
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["sha256", 19, 5]], [["homepage", 56, 5], ["description", 57, 5], ["mainProgram", 60, 5], ["license", 61, 5], ["maintainers", 62, 5], ["platforms", 63, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 15, 3], ["vendorHash", 21, 3], ["outputs", 23, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 32, 3], ["checkPhase", 37, 3], ["buildPhase", 41, 3], ["postBuild", 45, 3], ["installPhase", 49, 3], ["meta", 55, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitHub: false, "go-md2man": false, installShellFiles: false, "pkg-config": false, bcc: false, libseccomp: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["sha256", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 56, 5], ["description", 57, 5], ["mainProgram", 60, 5], ["license", 61, 5], ["maintainers", 62, 5], ["platforms", 63, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 15, 3], ["vendorHash", 21, 3], ["outputs", 23, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 32, 3], ["checkPhase", 37, 3], ["buildPhase", 41, 3], ["postBuild", 45, 3], ["installPhase", 49, 3], ["meta", 55, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const bcc = nix.arg($, "bcc");
   const libseccomp = nix.arg($, "libseccomp");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "oci-seccomp-bpf-hook",
       version: "1.3.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "containers",
           repo: "oci-seccomp-bpf-hook",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -37,7 +35,7 @@ export default nix.lambda((args) => (() => {
       postBuild: "substituteInPlace oci-seccomp-bpf-hook.json --replace HOOK_BIN_DIR \"$out/bin\"\n",
       installPhase: "install -Dm755 bin/* -t $out/bin\ninstall -Dm644 oci-seccomp-bpf-hook.json -t $out\ninstallManPage docs/*.[1-9]\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/containers/oci-seccomp-bpf-hook",
         description: "OCI hook to trace syscalls and generate a seccomp profile\n",
         mainProgram: "oci-seccomp-bpf-hook",

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 24, 13], ["rev", 24, 19], ["hash", 24, 23], ["repo", 25, 5]], [["description", 31, 5], ["mainProgram", 32, 5], ["homepage", 33, 5], ["license", 34, 5], ["maintainers", 35, 5]], [["pname", 21, 11], ["version", 21, 17], ["src", 23, 3], ["cargoHash", 28, 11], ["meta", 30, 3]]]);
 const formals$1 = { args: { fetchFromGitHub: false, lib: false, rustPlatform: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 24, 13], ["rev", 24, 19], ["hash", 24, 23], ["repo", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 31, 5], ["mainProgram", 32, 5], ["homepage", 33, 5], ["license", 34, 5], ["maintainers", 35, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 21, 11], ["version", 21, 17], ["src", 23, 3], ["cargoHash", 28, 11], ["meta", 30, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,13 +18,19 @@ export default nix.lambda((args) => (() => {
   const cargoHash = "sha256-GrHH98jcJaEkCzHe1hoVAeZvTvE0kXdp0bPTIiiOYss=";
   const buildRustPackage = nix.thunk(() => nix.attr(rustPlatform, "buildRustPackage"));
   return nix.app(buildRustPackage, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: pname,
       version: version,
-      src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({ [nix.POS]: pos$1, owner: owner, rev: rev, hash: hash, repo: "cargo-profiler" })))),
+      src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
+          [nix.POS]: $pos[0],
+          owner: owner,
+          rev: rev,
+          hash: hash,
+          repo: "cargo-profiler",
+        })))),
       cargoHash: cargoHash,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Cargo subcommand for profiling Rust binaries",
         mainProgram: "cargo-profiler",
         homepage: "https://github.com/svenstaro/cargo-profiler",

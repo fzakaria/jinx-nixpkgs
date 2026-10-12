@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["ASPHERE", 23, 5], ["BODY", 24, 5], ["CLASS2", 25, 5], ["COLLOID", 26, 5], ["COMPRESS", 27, 5], ["CORESHELL", 28, 5], ["DIPOLE", 29, 5], ["GRANULAR", 30, 5], ["KSPACE", 31, 5], ["MANYBODY", 32, 5], ["MC", 33, 5], ["MISC", 34, 5], ["MOLECULE", 35, 5], ["OPT", 36, 5], ["PERI", 37, 5], ["QEQ", 38, 5], ["REPLICA", 39, 5], ["RIGID", 40, 5], ["SHOCK", 41, 5], ["ML-SNAP", 42, 5], ["SRD", 43, 5], ["REAXFF", 44, 5], ["PYTHON", 45, 5]], [["owner", 65, 5], ["repo", 66, 5], ["tag", 67, 5], ["hash", 68, 5]], [["extraArgs", 88, 7]], [["packages", 83, 13], ["extraCmakeFlags", 84, 13], ["extraBuildInputs", 85, 13], ["extraNativeBuildInputs", 86, 13], ["updateScript", 87, 5]], [["description", 121, 5], ["longDescription", 122, 5], ["homepage", 129, 5], ["license", 130, 5], ["platforms", 131, 5], ["broken", 135, 5], ["maintainers", 136, 5], ["mainProgram", 140, 5]], [["version", 58, 3], ["pname", 59, 3], ["__structuredAttrs", 61, 3], ["strictDeps", 62, 3], ["src", 64, 3], ["preConfigure", 70, 3], ["nativeBuildInputs", 73, 3], ["passthru", 82, 3], ["cmakeFlags", 94, 3], ["buildInputs", 100, 3], ["postInstall", 110, 3], ["meta", 120, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, "pkg-config": false, cmake: false, python3: false, libpng: false, gzip: false, fftw: false, blas: false, lapack: false, packages: true, extraCmakeFlags: true, extraBuildInputs: true, extraNativeBuildInputs: true, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["ASPHERE", 23, 5], ["BODY", 24, 5], ["CLASS2", 25, 5], ["COLLOID", 26, 5], ["COMPRESS", 27, 5], ["CORESHELL", 28, 5], ["DIPOLE", 29, 5], ["GRANULAR", 30, 5], ["KSPACE", 31, 5], ["MANYBODY", 32, 5], ["MC", 33, 5], ["MISC", 34, 5], ["MOLECULE", 35, 5], ["OPT", 36, 5], ["PERI", 37, 5], ["QEQ", 38, 5], ["REPLICA", 39, 5], ["RIGID", 40, 5], ["SHOCK", 41, 5], ["ML-SNAP", 42, 5], ["SRD", 43, 5], ["REAXFF", 44, 5], ["PYTHON", 45, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 65, 5], ["repo", 66, 5], ["tag", 67, 5], ["hash", 68, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["extraArgs", 88, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["packages", 83, 13], ["extraCmakeFlags", 84, 13], ["extraBuildInputs", 85, 13], ["extraNativeBuildInputs", 86, 13], ["updateScript", 87, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 121, 5], ["longDescription", 122, 5], ["homepage", 129, 5], ["license", 130, 5], ["platforms", 131, 5], ["broken", 135, 5], ["maintainers", 136, 5], ["mainProgram", 140, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["version", 58, 3], ["pname", 59, 3], ["__structuredAttrs", 61, 3], ["strictDeps", 62, 3], ["src", 64, 3], ["preConfigure", 70, 3], ["nativeBuildInputs", 73, 3], ["passthru", 82, 3], ["cmakeFlags", 94, 3], ["buildInputs", 100, 3], ["postInstall", 110, 3], ["meta", 120, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,7 +19,7 @@ export default nix.lambda((args) => (() => {
   const blas = nix.arg($, "blas");
   const lapack = nix.arg($, "lapack");
   const packages = nix.argOr($, "packages", () => ({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     ASPHERE: true,
     BODY: true,
     CLASS2: true,
@@ -54,13 +49,13 @@ export default nix.lambda((args) => (() => {
   const extraNativeBuildInputs = nix.argOr($, "extraNativeBuildInputs", () => []);
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       version: "22Jul2025_update5",
       pname: "lammps",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "lammps",
           repo: "lammps",
           tag: nix.thunk(() => nix.str`stable_${nix.sel(finalAttrs, "version")}`),
@@ -69,13 +64,13 @@ export default nix.lambda((args) => (() => {
       preConfigure: "cd cmake\n",
       nativeBuildInputs: nix.thunk(() => nix.concat([cmake, pkg_config], nix.concat(extraNativeBuildInputs, nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(packages, "PYTHON")), nix.thunk(() => [python3]))))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         packages: packages,
         extraCmakeFlags: extraCmakeFlags,
         extraBuildInputs: extraBuildInputs,
         extraNativeBuildInputs: extraNativeBuildInputs,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             extraArgs: nix.thunk(() => ["--version-regex", "stable_(.*)"]),
           })))),
       })),
@@ -85,7 +80,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => nix.concat([fftw, libpng, blas, lapack, gzip], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(packages, "PYTHON")), nix.thunk(() => [python3])), extraBuildInputs))),
       postInstall: "# For backwards compatibility\nln -s $out/bin/lmp $out/bin/lmp_serial\n# Install vim and neovim plugin\ninstall -Dm644 ../../tools/vim/lammps.vim $out/share/vim-plugins/lammps/syntax/lammps.vim\ninstall -Dm644 ../../tools/vim/filetype.vim $out/share/vim-plugins/lammps/ftdetect/lammps.vim\nmkdir -p $out/share/nvim\nln -s $out/share/vim-plugins/lammps $out/share/nvim/site\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Classical Molecular Dynamics simulation code",
         longDescription: "LAMMPS is a classical molecular dynamics simulation code designed to\nrun efficiently on parallel computers. It was developed at Sandia\nNational Laboratories, a US Department of Energy facility, with\nfunding from the DOE. It is an open-source code, distributed freely\nunder the terms of the GNU Public License (GPL).\n",
         homepage: "https://www.lammps.org",

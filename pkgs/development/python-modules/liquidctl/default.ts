@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]], [["description", 77, 5], ["homepage", 78, 5], ["changelog", 79, 5], ["license", 80, 5], ["maintainers", 81, 5], ["mainProgram", 84, 5]], [["pname", 22, 3], ["version", 23, 3], ["pyproject", 24, 3], ["src", 26, 3], ["nativeBuildInputs", 33, 3], ["propagatedBuildInputs", 41, 3], ["propagatedNativeBuildInputs", 52, 3], ["outputs", 54, 3], ["postInstall", 59, 3], ["nativeCheckInputs", 67, 3], ["postBuild", 69, 3], ["pythonImportsCheck", 74, 3], ["meta", 76, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, installShellFiles: false, setuptools: false, "setuptools-scm": false, wheel: false, docopt: false, hidapi: false, pyusb: false, "smbus-cffi": false, "i2c-tools": false, pytestCheckHook: false, colorlog: false, crcmod: false, pillow: false, udevCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 77, 5], ["homepage", 78, 5], ["changelog", 79, 5], ["license", 80, 5], ["maintainers", 81, 5], ["mainProgram", 84, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 22, 3], ["version", 23, 3], ["pyproject", 24, 3], ["src", 26, 3], ["nativeBuildInputs", 33, 3], ["propagatedBuildInputs", 41, 3], ["propagatedNativeBuildInputs", 52, 3], ["outputs", 54, 3], ["postInstall", 59, 3], ["nativeCheckInputs", 67, 3], ["postBuild", 69, 3], ["pythonImportsCheck", 74, 3], ["meta", 76, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.16.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "liquidctl",
           repo: "liquidctl",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -46,7 +44,7 @@ export default nix.lambda((args) => (() => {
       const postBuild = "# needed for pythonImportsCheck\nexport XDG_RUNTIME_DIR=$TMPDIR\n";
       const pythonImportsCheck = nix.thunk(() => ["liquidctl"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Cross-platform CLI and Python drivers for AIO liquid coolers and other devices",
         homepage: "https://github.com/liquidctl/liquidctl",
         changelog: nix.thunk(() => nix.str`https://github.com/liquidctl/liquidctl/blob/${nix.sel(src, "tag")}/CHANGELOG.md`),
@@ -58,7 +56,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "liquidctl",
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

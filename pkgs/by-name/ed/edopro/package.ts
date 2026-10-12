@@ -2,24 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["x86_64-linux", 50, 7], ["aarch64-linux", 51, 7]], [["owner", 64, 5], ["repo", 65, 5], ["rev", 66, 5], ["fetchSubmodules", 67, 5], ["hash", 68, 5]], [["url", 73, 5], ["hash", 74, 5]], [["owner", 82, 7], ["repo", 83, 7], ["rev", 84, 7], ["hash", 85, 7]], [["description", 113, 31], ["platforms", 113, 43], ["homepage", 114, 7], ["license", 115, 7], ["maintainers", 116, 15]], [["pname", 78, 5], ["version", 79, 5], ["src", 81, 5], ["buildInputs", 88, 5], ["enableParallelBuilding", 96, 5], ["buildFlags", 97, 5], ["makeFlags", 98, 5], ["installPhase", 103, 5], ["meta", 112, 5]], [["NIX_LDFLAGS", 173, 11]], [["description", 184, 9], ["homepage", 185, 9], ["license", 186, 9], ["maintainers", 187, 17], ["platforms", 188, 9]], [["pname", 149, 7], ["version", 150, 7], ["src", 152, 7], ["sourceRoot", 153, 7], ["nativeBuildInputs", 155, 7], ["enableParallelBuilding", 159, 7], ["buildFlags", 161, 7], ["makeFlags", 167, 7], ["env", 173, 7], ["installPhase", 175, 7], ["meta", 183, 7]], [["name", 225, 9], ["url", 226, 9], ["hash", 227, 9]], [["CXXFLAGS", 258, 7], ["LDFLAGS", 259, 7]], [["description", 295, 7], ["homepage", 296, 7], ["changelog", 297, 7], ["license", 298, 7], ["mainProgram", 299, 7], ["platforms", 302, 7], ["maintainers", 309, 15]], [["pname", 193, 5], ["version", 194, 5], ["src", 196, 5], ["nativeBuildInputs", 198, 5], ["buildInputs", 203, 5], ["patches", 221, 5], ["postPatch", 234, 5], ["preBuild", 244, 5], ["enableParallelBuilding", 254, 5], ["env", 255, 5], ["buildFlags", 261, 5], ["makeFlags", 266, 5], ["installPhase", 271, 5], ["meta", 294, 5]], [["name", 350, 7], ["runtimeInputs", 351, 7], ["text", 355, 7]], [["updateScript", 419, 12]], [["description", 423, 7], ["homepage", 424, 7], ["changelog", 425, 7], ["license", 426, 7], ["platforms", 427, 7], ["maintainers", 428, 7], ["mainProgram", 431, 5]], [["pname", 401, 3], ["version", 402, 3], ["paths", 403, 3], ["postBuild", 408, 3], ["passthru", 419, 3], ["meta", 421, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch: false, fetchzip: false, makeWrapper: false, premake5: false, writeShellApplication: false, runCommandLocal: false, symlinkJoin: false, writeText: false, imagemagick: false, bzip2: false, curl: false, envsubst: false, flac: false, fmt: false, freetype: false, irrlicht: false, libevent: false, libdecor: false, libgit2: false, libGL: false, libGLU: false, libjpeg: false, libpng: false, libvorbis: false, libx11: false, libxkbcommon: false, libxxf86vm: false, mono: false, nlohmann_json: false, openal: false, SDL2: false, sqlite: false, wayland: false, "egl-wayland": false, zenity: false, covers_url: true, fields_url: true, pics_url: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["x86_64-linux", 50, 7], ["aarch64-linux", 51, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 64, 5], ["repo", 65, 5], ["rev", 66, 5], ["fetchSubmodules", 67, 5], ["hash", 68, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 73, 5], ["hash", 74, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["owner", 82, 7], ["repo", 83, 7], ["rev", 84, 7], ["hash", 85, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 113, 31], ["platforms", 113, 43], ["homepage", 114, 7], ["license", 115, 7], ["maintainers", 116, 15]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 78, 5], ["version", 79, 5], ["src", 81, 5], ["buildInputs", 88, 5], ["enableParallelBuilding", 96, 5], ["buildFlags", 97, 5], ["makeFlags", 98, 5], ["installPhase", 103, 5], ["meta", 112, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["NIX_LDFLAGS", 173, 11]]);
-const pos$8 = nix.positions(here + "/package.nix", [["description", 184, 9], ["homepage", 185, 9], ["license", 186, 9], ["maintainers", 187, 17], ["platforms", 188, 9]]);
-const pos$9 = nix.positions(here + "/package.nix", [["pname", 149, 7], ["version", 150, 7], ["src", 152, 7], ["sourceRoot", 153, 7], ["nativeBuildInputs", 155, 7], ["enableParallelBuilding", 159, 7], ["buildFlags", 161, 7], ["makeFlags", 167, 7], ["env", 173, 7], ["installPhase", 175, 7], ["meta", 183, 7]]);
-const pos$10 = nix.positions(here + "/package.nix", [["name", 225, 9], ["url", 226, 9], ["hash", 227, 9]]);
-const pos$11 = nix.positions(here + "/package.nix", [["CXXFLAGS", 258, 7], ["LDFLAGS", 259, 7]]);
-const pos$12 = nix.positions(here + "/package.nix", [["description", 295, 7], ["homepage", 296, 7], ["changelog", 297, 7], ["license", 298, 7], ["mainProgram", 299, 7], ["platforms", 302, 7], ["maintainers", 309, 15]]);
-const pos$13 = nix.positions(here + "/package.nix", [["pname", 193, 5], ["version", 194, 5], ["src", 196, 5], ["nativeBuildInputs", 198, 5], ["buildInputs", 203, 5], ["patches", 221, 5], ["postPatch", 234, 5], ["preBuild", 244, 5], ["enableParallelBuilding", 254, 5], ["env", 255, 5], ["buildFlags", 261, 5], ["makeFlags", 266, 5], ["installPhase", 271, 5], ["meta", 294, 5]]);
-const pos$14 = nix.positions(here + "/package.nix", [["name", 350, 7], ["runtimeInputs", 351, 7], ["text", 355, 7]]);
-const pos$15 = nix.positions(here + "/package.nix", [["updateScript", 419, 12]]);
-const pos$16 = nix.positions(here + "/package.nix", [["description", 423, 7], ["homepage", 424, 7], ["changelog", 425, 7], ["license", 426, 7], ["platforms", 427, 7], ["maintainers", 428, 7], ["mainProgram", 431, 5]]);
-const pos$17 = nix.positions(here + "/package.nix", [["pname", 401, 3], ["version", 402, 3], ["paths", 403, 3], ["postBuild", 408, 3], ["passthru", 419, 3], ["meta", 421, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -64,7 +48,7 @@ export default nix.lambda((args) => (() => {
   const covers_url = nix.argOr($, "covers_url", () => "https://pics.projectignis.org:2096/pics/cover/{}.jpg");
   const fields_url = nix.argOr($, "fields_url", () => "https://pics.projectignis.org:2096/pics/field/{}.png");
   const pics_url = nix.argOr($, "pics_url", () => "https://pics.projectignis.org:2096/pics/{}.jpg");
-  const archLabel = nix.thunk(() => nix.selOr({ [nix.POS]: pos$1, "x86_64-linux": "x64", "aarch64-linux": "arm64" }, () => nix.builtins.throw(nix.thunk(() => nix.str`${nix.sel(stdenv, "hostPlatform", "system")} is an unsupported arch label for edopro`)), nix.key(nix.sel(stdenv, "hostPlatform", "system"))));
+  const archLabel = nix.thunk(() => nix.selOr({ [nix.POS]: $pos[0], "x86_64-linux": "x64", "aarch64-linux": "arm64" }, () => nix.builtins.throw(nix.thunk(() => nix.str`${nix.sel(stdenv, "hostPlatform", "system")} is an unsupported arch label for edopro`)), nix.key(nix.sel(stdenv, "hostPlatform", "system"))));
   const maintainers = nix.thunk(() => (() => {
     const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
     return [
@@ -74,7 +58,7 @@ export default nix.lambda((args) => (() => {
   })());
   const deps = nix.thunk(() => nix.builtins.import(nix.path(here, "./deps.nix")));
   const edopro_src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       owner: "edo9300",
       repo: "edopro",
       rev: nix.thunk(() => nix.sel(deps, "edopro-rev")),
@@ -82,16 +66,16 @@ export default nix.lambda((args) => (() => {
       hash: nix.thunk(() => nix.sel(deps, "edopro-hash")),
     }))));
   const assets = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       url: nix.thunk(() => nix.str`https://github.com/ProjectIgnis/edopro-assets/releases/download/${nix.sel(deps, "edopro-version")}/ProjectIgnis-EDOPro-${nix.sel(deps, "edopro-version")}-linux.tar.gz`),
       hash: nix.thunk(() => nix.sel(deps, "assets-hash")),
     }))));
   const irrlicht_edopro = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "irrlicht-edopro",
       version: nix.thunk(() => nix.sel(deps, "irrlicht-version")),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           owner: "edo9300",
           repo: "irrlicht1-8-4",
           rev: nix.thunk(() => nix.sel(deps, "irrlicht-rev")),
@@ -105,7 +89,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(irrlicht, "meta"));
         return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: nix.thunk(() => nix.attr(from, "description")),
         platforms: nix.thunk(() => nix.attr(from, "platforms")),
         homepage: "https://github.com/edo9300/irrlicht1-8-4",
@@ -122,7 +106,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.sel(stdenv, "hostPlatform", "extensions", "sharedLibrary")),
       ])));
     return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         pname: "ocgcore-edopro",
         version: nix.thunk(() => nix.sel(deps, "edopro-version")),
         src: edopro_src,
@@ -131,7 +115,7 @@ export default nix.lambda((args) => (() => {
         enableParallelBuilding: true,
         buildFlags: nix.thunk(() => ["verbose=true", "config=release", "ocgcoreshared"]),
         makeFlags: nix.thunk(() => ["-C", "build"]),
-        env: nix.thunk(() => ({ [nix.POS]: pos$7, NIX_LDFLAGS: "--unresolved-symbols=report-all" })),
+        env: nix.thunk(() => ({ [nix.POS]: $pos[6], NIX_LDFLAGS: "--unresolved-symbols=report-all" })),
         installPhase: nix.thunk(() => nix.str`runHook preInstall
 
 install -Dm644 bin/release/*ocgcore*${nix.sel(stdenv, "hostPlatform", "extensions", "sharedLibrary")} $out/lib/${ocgcoreName}
@@ -139,7 +123,7 @@ install -Dm644 bin/release/*ocgcore*${nix.sel(stdenv, "hostPlatform", "extension
 runHook postInstall
 `),
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           description: "YGOPro script engine",
           homepage: "https://github.com/edo9300/ygopro-core",
           license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Plus")),
@@ -149,7 +133,7 @@ runHook postInstall
       })));
   })());
   const edopro = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$13,
+      [nix.POS]: $pos[12],
       pname: "edopro",
       version: nix.thunk(() => nix.sel(deps, "edopro-version")),
       src: edopro_src,
@@ -173,7 +157,7 @@ runHook postInstall
       ]),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$10,
+            [nix.POS]: $pos[9],
             name: "0001-edopro-No-longer-depend-on-fmt-for-localtime.patch",
             url: "https://github.com/edo9300/edopro/commit/c40951ba09f8a8b88d1d4b9b15ca9338da01522c.patch",
             hash: "sha256-wiZRCwSTp9/G97a+zaYjJgmDrc57/5bSBSYur1dcTfA=",
@@ -197,7 +181,7 @@ touch ocgcore/premake5.lua
 `),
       enableParallelBuilding: true,
       env: nix.thunk(() => ({
-        [nix.POS]: pos$11,
+        [nix.POS]: $pos[10],
         CXXFLAGS: "-include cstdint",
         LDFLAGS: nix.thunk(() => nix.str`-I ${irrlicht_edopro}/include -L ${irrlicht_edopro}/bin`),
       })),
@@ -227,7 +211,7 @@ wrapProgram $out/bin/ygoprodll \\
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$12,
+        [nix.POS]: $pos[11],
         description: "Bleeding-edge automatic duel simulator, a fork of the YGOPro client",
         homepage: "https://projectignis.github.io",
         changelog: "https://github.com/edo9300/edopro/releases",
@@ -256,7 +240,7 @@ runHook postInstall
       ])));
     const wrapperZenityMessageTemplate = nix.thunk(() => nix.app(writeText, "edopro-wrapper-multiple-versions-message.txt.in", "Nixpkgs' EDOPro wrapper has found more than 1 directory in: ${EDOPRO_BASE_DIR}\n\nWe expected the only directory to be: ${EDOPRO_DIR}\n\nThere may have been an update, requiring you to migrate any files you care about from an older version.\n\nExamples include:\n\n- decks/*\n- config/system.conf - which has your client's settings\n- any custom things you may have installed into: fonts, skins, script, sound, ...\n- anything you wish to preserve from: replay, screenshots\n\nOnce you have copied over everything important to ${EDOPRO_DIR}, delete the old version's path.\n"));
     return nix.app(writeShellApplication, nix.thunk(() => ({
-        [nix.POS]: pos$14,
+        [nix.POS]: $pos[13],
         name: "edopro",
         runtimeInputs: nix.thunk(() => [envsubst, zenity]),
         text: nix.thunk(() => nix.str`export EDOPRO_VERSION="${nix.sel(deps, "edopro-version")}"
@@ -302,7 +286,7 @@ sed ${assets}/config/io.github.edo9300.EDOPro.desktop.in \\
   >$out/share/applications/io.github.edo9300.EDOPro.desktop
 `)));
   return nix.app(symlinkJoin, nix.thunk(() => ({
-      [nix.POS]: pos$17,
+      [nix.POS]: $pos[16],
       pname: "edopro-application",
       version: nix.thunk(() => nix.sel(deps, "edopro-version")),
       paths: nix.thunk(() => [edopro_script, edopro_desktop]),
@@ -315,11 +299,11 @@ sed ${assets}/config/io.github.edo9300.EDOPro.desktop.in \\
       $out/share/icons/hicolor/"$res"/apps/edopro.png
 done
 `),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$15, updateScript: nix.path(here, "./update.py") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[14], updateScript: nix.path(here, "./update.py") })),
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(edopro, "meta"));
         return {
-        [nix.POS]: pos$16,
+        [nix.POS]: $pos[15],
         description: nix.thunk(() => nix.attr(from, "description")),
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         changelog: nix.thunk(() => nix.attr(from, "changelog")),

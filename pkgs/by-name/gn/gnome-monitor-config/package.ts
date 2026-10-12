@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["hash", 20, 5]], [["description", 48, 5], ["homepage", 49, 5], ["license", 50, 5], ["maintainers", 51, 5], ["platforms", 52, 5], ["mainProgram", 53, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["strictDeps", 23, 3], ["depsBuildBuild", 25, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 36, 3], ["postPatch", 41, 3], ["meta", 47, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, stdenv: false, meson: false, ninja: false, "pkg-config": false, cairo: false, glib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 48, 5], ["homepage", 49, 5], ["license", 50, 5], ["maintainers", 51, 5], ["platforms", 52, 5], ["mainProgram", 53, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["strictDeps", 23, 3], ["depsBuildBuild", 25, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 36, 3], ["postPatch", 41, 3], ["meta", 47, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const cairo = nix.arg($, "cairo");
   const glib = nix.arg($, "glib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "gnome-monitor-config",
       version: "0-unstable-2023-09-26",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "jadahl",
           repo: "gnome-monitor-config",
           rev: "04b854e6411cd9ca75582c108aea63ae3c202f0e",
@@ -34,7 +32,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [cairo, glib]),
       postPatch: "substituteInPlace src/meson.build \\\n  --replace-fail \"executable('gnome-monitor-config', src\" \\\n                 \"executable('gnome-monitor-config', src, install : true\"\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Program to help manage GNOME monitor configuration",
         homepage: "https://github.com/jadahl/gnome-monitor-config",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

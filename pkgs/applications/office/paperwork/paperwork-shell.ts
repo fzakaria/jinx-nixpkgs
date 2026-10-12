@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/paperwork-shell.nix", [[["description", 66, 5], ["homepage", 67, 5], ["license", 68, 5], ["maintainers", 69, 5]], [["pname", 23, 3], ["version", 24, 39], ["src", 24, 47], ["pyproject", 25, 3], ["sourceRoot", 27, 3], ["disabled", 30, 3], ["patchPhase", 32, 3], ["propagatedBuildInputs", 36, 3], ["nativeCheckInputs", 45, 3], ["nativeBuildInputs", 50, 3], ["preBuild", 56, 3], ["preCheck", 60, 3], ["meta", 65, 3]]]);
 const formals$1 = { args: { buildPythonPackage: false, lib: false, callPackage: false, isPy3k: false, isPyPy: false, "openpaperwork-core": false, "openpaperwork-gtk": false, "paperwork-backend": false, fabulous: false, rich: false, getkey: false, psutil: false, "shared-mime-info": false, "setuptools-scm": false, pkgs: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/paperwork-shell.nix", [["description", 66, 5], ["homepage", 67, 5], ["license", 68, 5], ["maintainers", 69, 5]]);
-const pos$2 = nix.positions(here + "/paperwork-shell.nix", [["pname", 23, 3], ["version", 24, 39], ["src", 24, 47], ["pyproject", 25, 3], ["sourceRoot", 27, 3], ["disabled", 30, 3], ["patchPhase", 32, 3], ["propagatedBuildInputs", 36, 3], ["nativeCheckInputs", 45, 3], ["nativeBuildInputs", 50, 3], ["preBuild", 56, 3], ["preCheck", 60, 3], ["meta", 65, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,7 +25,7 @@ export default nix.lambda((args) => (() => {
   return nix.app(buildPythonPackage, (finalAttrs) => (() => {
       const from = nix.thunk(() => nix.app(callPackage, nix.path(here, "./src.nix"), nix.thunk(() => ({}))));
       return {
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "paperwork-shell",
       version: nix.thunk(() => nix.attr(from, "version")),
       src: nix.thunk(() => nix.attr(from, "src")),
@@ -44,7 +43,7 @@ export default nix.lambda((args) => (() => {
       preBuild: "make l10n_compile\n",
       preCheck: "export HOME=$(mktemp -d)\n\"$out/bin/paperwork-cli\" chkdeps\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "CLI for Paperwork",
         homepage: "https://openpaper.work/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

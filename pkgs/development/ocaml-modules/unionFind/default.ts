@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["domain", 14, 5], ["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]], [["description", 22, 5], ["license", 23, 5], ["homepage", 24, 5], ["maintainers", 25, 5]], [["pname", 8, 3], ["version", 9, 3], ["minimalOCamlVersion", 11, 3], ["src", 13, 3], ["meta", 21, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitLab: false, buildDunePackage: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["domain", 14, 5], ["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 22, 5], ["license", 23, 5], ["homepage", 24, 5], ["maintainers", 25, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 8, 3], ["version", 9, 3], ["minimalOCamlVersion", 11, 3], ["src", 13, 3], ["meta", 21, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,12 +11,12 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitLab = nix.arg($, "fetchFromGitLab");
   const buildDunePackage = nix.arg($, "buildDunePackage");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "unionFind",
       version: "20250818",
       minimalOCamlVersion: "4.12",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "gitlab.inria.fr",
           owner: "fpottier",
           repo: "unionfind",
@@ -26,7 +24,7 @@ export default nix.lambda((args) => (() => {
           hash: "sha256-q/3Wx2/JvFO3m51OvMwO6bz+s7+4Vjs4pFgy5+OinNo=",
         })))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Implementations of the union-find data structure",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl2Only")),
         homepage: "https://gitlab.inria.fr/fpottier/unionfind",

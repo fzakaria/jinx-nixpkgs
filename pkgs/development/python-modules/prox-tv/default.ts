@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["sha256", 23, 5]], [["homepage", 47, 5], ["description", 48, 5], ["license", 49, 5], ["maintainers", 50, 5]], [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["src", 19, 3], ["build-system", 26, 3], ["dependencies", 28, 3], ["buildInputs", 33, 3], ["propagatedNativeBuildInputs", 38, 3], ["enableParallelBuilding", 40, 3], ["nativeCheckInputs", 42, 3], ["disabledTests", 44, 3], ["meta", 46, 3]]]);
 const formals$1 = { args: { lib: false, blas: false, lapack: false, buildPythonPackage: false, cffi: false, fetchFromGitHub: false, setuptools: false, pytestCheckHook: false, numpy: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["sha256", 23, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 47, 5], ["description", 48, 5], ["license", 49, 5], ["maintainers", 50, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["src", 19, 3], ["build-system", 26, 3], ["dependencies", 28, 3], ["buildInputs", 33, 3], ["propagatedNativeBuildInputs", 38, 3], ["enableParallelBuilding", 40, 3], ["nativeCheckInputs", 42, 3], ["disabledTests", 44, 3], ["meta", 46, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const numpy = nix.arg($, "numpy");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "prox-tv",
       version: "3.3.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "albarji",
           repo: "proxTV",
           rev: "e621585d5aaa7983fbee68583f7deae995d3bafb",
@@ -39,7 +37,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
       disabledTests: nix.thunk(() => nix.concat(["test_tvp_1d"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["test_tv2_1d"])))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/albarji/proxTV",
         description: "Toolbox for fast Total Variation proximity operators",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

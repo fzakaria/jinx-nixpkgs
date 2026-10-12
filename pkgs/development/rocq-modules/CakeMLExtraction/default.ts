@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["cases", 21, 9], ["out", 25, 17]], [["hash", 39, 13]], [["0.1.0", 39, 5]], [["homepage", 54, 5], ["description", 55, 5], ["maintainers", 56, 5]], [["pname", 12, 3], ["owner", 13, 3], ["repo", 14, 3], ["opam-name", 15, 3], ["version", 17, 11], ["defaultVersion", 18, 3], ["release", 38, 3], ["releaseRev", 41, 3], ["mlPlugin", 43, 3], ["useDune", 44, 3], ["buildInputs", 46, 3], ["propagatedBuildInputs", 51, 3], ["meta", 53, 3]]]);
 const formals$1 = { args: { lib: false, mkCoqDerivation: false, coq: false, "ceres-bs": false, equations: false, "metarocq-erasure-plugin": false, version: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["cases", 21, 9], ["out", 25, 17]]);
-const pos$2 = nix.positions(here + "/default.nix", [["hash", 39, 13]]);
-const pos$3 = nix.positions(here + "/default.nix", [["0.1.0", 39, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["homepage", 54, 5], ["description", 55, 5], ["maintainers", 56, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 12, 3], ["owner", 13, 3], ["repo", 14, 3], ["opam-name", 15, 3], ["version", 17, 11], ["defaultVersion", 18, 3], ["release", 38, 3], ["releaseRev", 41, 3], ["mlPlugin", 43, 3], ["useDune", 44, 3], ["buildInputs", 46, 3], ["propagatedBuildInputs", 51, 3], ["meta", 53, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,14 +15,14 @@ export default nix.lambda((args) => (() => {
   const metarocq_erasure_plugin = nix.arg($, "metarocq-erasure-plugin");
   const version = nix.argOr($, "version", () => null);
   return nix.app(mkCoqDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "CakeMLExtraction",
       owner: "peregrine-project",
       repo: "cakeml-backend",
       "opam-name": "rocq-cakeml-extraction",
       version: version,
       defaultVersion: nix.thunk(() => (() => {
-        const case$ = (coq_1) => (mr) => (out) => ({ [nix.POS]: pos$1, cases: nix.thunk(() => [coq_1, mr]), out: out });
+        const case$ = (coq_1) => (mr) => (out) => ({ [nix.POS]: $pos[0], cases: nix.thunk(() => [coq_1, mr]), out: out });
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "versions")), null);
         return nix.app(nix.sel(lib, "switch"), nix.thunk(() => [
             nix.thunk(() => nix.sel(coq, "coq-version")),
@@ -36,9 +32,9 @@ export default nix.lambda((args) => (() => {
           ]), null);
       })()),
       release: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         "0.1.0": nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           hash: "sha256-diDUTj0l4vliov9+Lg8lNRdkLE7JAfJn8OU7J/HgmDE=",
         })),
       })),
@@ -50,7 +46,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const w = nix.withScope(lib, null);
         return {
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           homepage: "https://peregrine-project.github.io/",
           description: "CakeML backend for Peregrine",
           maintainers: nix.thunk(() => (() => {

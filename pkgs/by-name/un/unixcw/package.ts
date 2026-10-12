@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 18, 5], ["hash", 19, 5]], [["CFLAGS", 46, 7]], [["description", 52, 5], ["longDescription", 53, 5], ["homepage", 68, 5], ["maintainers", 69, 5], ["license", 70, 5], ["platforms", 71, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["patches", 22, 3], ["postPatch", 28, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 39, 3], ["env", 46, 3], ["meta", 51, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, libpulseaudio: false, "alsa-lib": false, "pkg-config": false, qt5: false, ncurses: false, autoreconfHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["CFLAGS", 46, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 52, 5], ["longDescription", 53, 5], ["homepage", 68, 5], ["maintainers", 69, 5], ["license", 70, 5], ["platforms", 71, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["patches", 22, 3], ["postPatch", 28, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 39, 3], ["env", 46, 3], ["meta", 51, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const ncurses = nix.arg($, "ncurses");
   const autoreconfHook = nix.arg($, "autoreconfHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "unixcw",
       version: "3.6.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/unixcw/unixcw-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-Cvg4VSFL+QtMDRSSIYhKtEWPOFfDiXLUKNrr87rdbjI=",
         })))),
@@ -33,11 +30,11 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [autoreconfHook, pkg_config, nix.thunk(() => nix.sel(qt5, "wrapQtAppsHook"))]),
       buildInputs: nix.thunk(() => [libpulseaudio, alsa_lib, nix.thunk(() => nix.sel(qt5, "qtbase")), ncurses]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         CFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-lasound", "-lpulse-simple"]))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Sound characters as Morse code on the soundcard or console speaker",
         longDescription: "unixcw is a project providing libcw library and a set of programs\nusing the library: cw, cwgen, cwcp and xcwcp.\nThe programs are intended for people who want to learn receiving\nand sending Morse code.\nunixcw is developed and tested primarily on GNU/Linux system.\n\ncw  reads  characters  from  an input file, or from standard input,\nand sounds each valid character as Morse code on either the system sound card,\nor the system console speaker.\nAfter it sounds a  character, cw  echoes it to standard output.\nThe input stream can contain embedded command strings.\nThese change the parameters used when sounding the Morse code.\ncw reports any errors in  embedded  commands\n",
         homepage: "https://unixcw.sourceforge.net",

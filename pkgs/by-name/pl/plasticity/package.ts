@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 47, 5], ["hash", 48, 5]], [["updateScript", 51, 12]], [["description", 140, 5], ["homepage", 141, 5], ["license", 142, 5], ["mainProgram", 143, 5], ["sourceProvenance", 144, 5], ["maintainers", 145, 5], ["platforms", 149, 5]], [["pname", 43, 3], ["version", 44, 3], ["src", 46, 3], ["passthru", 51, 3], ["nativeBuildInputs", 53, 3], ["buildInputs", 60, 3], ["runtimeDependencies", 84, 3], ["dontUnpack", 98, 3], ["autoPatchelfIgnoreMissingDeps", 101, 3], ["installPhase", 113, 3], ["preFixup", 126, 3], ["meta", 139, 3]]]);
 const formals$1 = { args: { "alsa-lib": false, "at-spi2-atk": false, autoPatchelfHook: false, cairo: false, cups: false, dbus: false, "desktop-file-utils": false, expat: false, fetchurl: false, "gdk-pixbuf": false, gtk3: false, gvfs: false, "hicolor-icon-theme": false, lib: false, libdrm: false, libglvnd: false, libnotify: false, libxkbcommon: false, libgbm: false, libGL: false, nspr: false, nss: false, openssl: false, pango: false, rpmextract: false, stdenv: false, systemd: false, "trash-cli": false, "vulkan-loader": false, wrapGAppsHook3: false, "xdg-utils": false, libxtst: false, libxrandr: false, libxfixes: false, libxext: false, libxdamage: false, libxcomposite: false, libx11: false, libxcb: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 47, 5], ["hash", 48, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 51, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 140, 5], ["homepage", 141, 5], ["license", 142, 5], ["mainProgram", 143, 5], ["sourceProvenance", 144, 5], ["maintainers", 145, 5], ["platforms", 149, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 43, 3], ["version", 44, 3], ["src", 46, 3], ["passthru", 51, 3], ["nativeBuildInputs", 53, 3], ["buildInputs", 60, 3], ["runtimeDependencies", 84, 3], ["dontUnpack", 98, 3], ["autoPatchelfIgnoreMissingDeps", 101, 3], ["installPhase", 113, 3], ["preFixup", 126, 3], ["meta", 139, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -53,11 +50,11 @@ export default nix.lambda((args) => (() => {
       const pname = "plasticity";
       const version = "26.1.4";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/nkallen/plasticity/releases/download/v${version}/Plasticity-${version}-1.x86_64.rpm`),
           hash: "sha256-paBF0lk8rvuY4lnl5v7nOXaFsZQuNkTtXCoW53xBiMU=",
         }))));
-      const passthru = nix.thunk(() => ({ [nix.POS]: pos$2, updateScript: nix.path(here, "./update.sh") }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: $pos[1], updateScript: nix.path(here, "./update.sh") }));
       const nativeBuildInputs = nix.thunk(() => [wrapGAppsHook3, autoPatchelfHook, rpmextract, libgbm]);
       const buildInputs = nix.thunk(() => [
         alsa_lib,
@@ -116,7 +113,7 @@ rm "$out/lib/Plasticity/libvulkan.so.1"
 ln -s -t "$out/lib/Plasticity" "${nix.app(nix.sel(lib, "getLib"), vulkan_loader)}/lib/libvulkan.so.1"
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "CAD for artists",
         homepage: "https://www.plasticity.xyz",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
@@ -135,7 +132,7 @@ ln -s -t "$out/lib/Plasticity" "${nix.app(nix.sel(lib, "getLib"), vulkan_loader)
         platforms: nix.thunk(() => ["x86_64-linux"]),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

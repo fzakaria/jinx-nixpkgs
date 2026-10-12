@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 27, 5], ["hash", 28, 5]], [["description", 61, 5], ["longDescription", 62, 5], ["homepage", 71, 5], ["license", 72, 5], ["maintainers", 73, 5], ["mainProgram", 74, 5], ["platforms", 75, 26], ["broken", 76, 5]], [["name", 22, 3], ["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 36, 3], ["propagatedBuildInputs", 38, 3], ["strictDeps", 50, 3], ["buildPhase", 52, 3], ["installPhase", 58, 19], ["meta", 60, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, ocaml: false, findlib: false, ocamlbuild: false, topkg: false, uchar: false, result: false, gg: false, otfm: false, brr: false, pdfBackend: true, htmlcBackend: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 61, 5], ["longDescription", 62, 5], ["homepage", 71, 5], ["license", 72, 5], ["maintainers", 73, 5], ["mainProgram", 74, 5], ["platforms", 75, 26], ["broken", 76, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["name", 22, 3], ["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 36, 3], ["propagatedBuildInputs", 38, 3], ["strictDeps", 50, 3], ["buildPhase", 52, 3], ["installPhase", 58, 19], ["meta", 60, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,12 +24,12 @@ export default nix.lambda((args) => (() => {
   const optionals = nix.thunk(() => nix.attr(lib, "optionals"));
   const versionOlder = nix.thunk(() => nix.attr(lib, "versionOlder"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       name: nix.thunk(() => nix.str`ocaml${nix.sel(ocaml, "version")}-${nix.sel(finalAttrs, "pname")}-${nix.sel(finalAttrs, "version")}`),
       pname: "vg",
       version: "0.9.5",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://erratique.ch/software/vg/releases/vg-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-qcTtvIfSUwzpUZDspL+54UTNvWY6u3BTvfGWF6c0Jvw=",
         })))),
@@ -44,7 +42,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(ocaml, "meta"));
         return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Declarative 2D vector graphics for OCaml",
         longDescription: "Vg is an OCaml module for declarative 2D vector graphics. In Vg, images\nare values that denote functions mapping points of the cartesian plane\nto colors. The module provides combinators to define and compose these\nvalues.\n\nRenderers for PDF, SVG and the HTML canvas are distributed with the\nmodule. An API allows to implement new renderers.\n",
         homepage: "https://erratique.ch/software/vg",

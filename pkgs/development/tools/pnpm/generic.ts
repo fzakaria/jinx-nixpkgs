@@ -2,16 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/generic.nix", [[["url", 36, 5], ["hash", 37, 13]], [["pnpm", 95, 17]], [["propagatedBuildInputs", 104, 15]], [["package", 116, 69]], [["pnpm", 115, 25], ["version", 116, 9]], [["fetchDeps", 87, 7], ["configHook", 99, 7], ["nodejs-slim", 109, 7], ["nodejs", 111, 7], ["majorVersion", 112, 15], ["tests", 114, 7], ["updateScript", 118, 7]], [["description", 152, 5], ["homepage", 153, 5], ["changelog", 154, 5], ["license", 155, 5], ["maintainers", 156, 5], ["platforms", 160, 5], ["mainProgram", 161, 5], ["knownVulnerabilities", 162, 13]], [["pname", 32, 3], ["version", 33, 11], ["src", 35, 3], ["nativeBuildInputs", 40, 3], ["buildInputs", 45, 3], ["postUnpack", 52, 3], ["installPhase", 56, 3], ["postInstall", 74, 3], ["passthru", 82, 3], ["strictDeps", 145, 3], ["__structuredAttrs", 146, 3], ["dontBuild", 148, 3], ["dontConfigure", 149, 3], ["meta", 151, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, writeScript: false, fetchPnpmDeps: false, pnpmConfigHook: false, fetchurl: false, installShellFiles: false, nodejs: false, "nodejs-slim": false, testers: false, buildPackages: false, bashNonInteractive: false, tests: false, withNode: true, version: false, hash: false, knownVulnerabilities: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/generic.nix", [["url", 36, 5], ["hash", 37, 13]]);
 const formals$2 = { args: {  }, ellipsis: true };
-const pos$2 = nix.positions(here + "/generic.nix", [["pnpm", 95, 17]]);
-const pos$3 = nix.positions(here + "/generic.nix", [["propagatedBuildInputs", 104, 15]]);
-const pos$4 = nix.positions(here + "/generic.nix", [["package", 116, 69]]);
-const pos$5 = nix.positions(here + "/generic.nix", [["pnpm", 115, 25], ["version", 116, 9]]);
-const pos$6 = nix.positions(here + "/generic.nix", [["fetchDeps", 87, 7], ["configHook", 99, 7], ["nodejs-slim", 109, 7], ["nodejs", 111, 7], ["majorVersion", 112, 15], ["tests", 114, 7], ["updateScript", 118, 7]]);
-const pos$7 = nix.positions(here + "/generic.nix", [["description", 152, 5], ["homepage", 153, 5], ["changelog", 154, 5], ["license", 155, 5], ["maintainers", 156, 5], ["platforms", 160, 5], ["mainProgram", 161, 5], ["knownVulnerabilities", 162, 13]]);
-const pos$8 = nix.positions(here + "/generic.nix", [["pname", 32, 3], ["version", 33, 11], ["src", 35, 3], ["nativeBuildInputs", 40, 3], ["buildInputs", 45, 3], ["postUnpack", 52, 3], ["installPhase", 56, 3], ["postInstall", 74, 3], ["passthru", 82, 3], ["strictDeps", 145, 3], ["__structuredAttrs", 146, 3], ["dontBuild", 148, 3], ["dontConfigure", 149, 3], ["meta", 151, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -35,11 +28,11 @@ export default nix.lambda((args) => (() => {
   const majorVersion = nix.thunk(() => nix.app(nix.sel(lib, "versions", "major"), version));
   const nodejs_slim$ = nix.thunk(() => (nix.asBool(nix.eq(nodejs, null)) ? nix.force(nodejs_slim) : nix.app(nix.sel(lib, "warn"), "pnpm: Override nodejs-slim instead of nodejs", nodejs)));
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "pnpm",
       version: version,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://registry.npmjs.org/pnpm/-/pnpm-${nix.sel(finalAttrs, "version")}.tgz`),
           hash: hash,
         })))),
@@ -64,24 +57,24 @@ runHook postInstall
       passthru: nix.thunk(() => (() => {
         const pnpm$ = nix.thunk(() => nix.sel(buildPackages, nix.key(nix.str`pnpm_${nix.app(nix.sel(lib, "versions", "major"), version)}`)));
         return {
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           fetchDeps: nix.thunk(() => nix.app(nix.sel(lib, "warn"), "pnpm.fetchDeps: The package attribute is deprecated. Use the top-level fetchPnpmDeps attribute instead", nix.lambda((args_1) => (() => {
               const $_1 = nix.formals(args_1, formals$2);
               const args_2 = args_1;
-              return nix.app(fetchPnpmDeps, nix.thunk(() => nix.update(args_2, { [nix.POS]: pos$2, pnpm: pnpm$ })));
+              return nix.app(fetchPnpmDeps, nix.thunk(() => nix.update(args_2, { [nix.POS]: $pos[1], pnpm: pnpm$ })));
             })(), formals$2))),
           configHook: nix.thunk(() => nix.app(nix.sel(lib, "warn"), "pnpm.configHook: The package attribute is deprecated. Use the top-level pnpmConfigHook attribute instead", nix.thunk(() => nix.app(nix.sel(pnpmConfigHook, "overrideAttrs"), (prevAttrs) => ({
-                [nix.POS]: pos$3,
+                [nix.POS]: $pos[2],
                 propagatedBuildInputs: nix.thunk(() => nix.concat(nix.selOr(prevAttrs, () => [], "propagatedBuildInputs"), [pnpm$])),
               }))))),
           "nodejs-slim": nodejs_slim$,
           nodejs: nix.thunk(() => nix.app(nix.sel(lib, "warn"), "pnpm.nodejs: Use pnpm.nodejs-slim instead of pnpm.nodejs", nodejs_slim$)),
           majorVersion: majorVersion,
           tests: nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             pnpm: nix.thunk(() => nix.attr(tests, "pnpm")),
             version: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), withNode, nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-                  [nix.POS]: pos$4,
+                  [nix.POS]: $pos[3],
                   package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
                 })))))),
           })),
@@ -116,7 +109,7 @@ update-source-version pnpm_${majorVersion} "$latestVersion" --file=./pkgs/develo
       dontBuild: true,
       dontConfigure: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "Fast, disk space efficient package manager for JavaScript",
         homepage: "https://pnpm.io/",
         changelog: nix.thunk(() => nix.str`https://github.com/pnpm/pnpm/releases/tag/v${nix.sel(finalAttrs, "version")}`),

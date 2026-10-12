@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 24, 5], ["hash", 25, 5]], [["description", 65, 5], ["longDescription", 66, 5], ["homepage", 73, 5], ["license", 74, 5], ["platforms", 75, 5], ["mainProgram", 76, 5]], [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["depsBuildBuild", 29, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 36, 3], ["enableParallelBuilding", 46, 3], ["doCheck", 48, 3], ["configureFlags", 50, 3], ["preBuild", 53, 3], ["installFlags", 57, 3], ["postInstall", 59, 3], ["meta", 64, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, installShellFiles: false, tcl: false, libiconv: false, fetchurl: false, buildPackages: false, zlib: false, openssl: false, readline: false, withInternalSqlite: true, sqlite: false, ed: false, which: false, withJson: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 65, 5], ["longDescription", 66, 5], ["homepage", 73, 5], ["license", 74, 5], ["platforms", 75, 5], ["mainProgram", 76, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["depsBuildBuild", 29, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 36, 3], ["enableParallelBuilding", 46, 3], ["doCheck", 48, 3], ["configureFlags", 50, 3], ["preBuild", 53, 3], ["installFlags", 57, 3], ["postInstall", 59, 3], ["meta", 64, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const which = nix.arg($, "which");
   const withJson = nix.argOr($, "withJson", () => true);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "fossil",
       version: "2.28",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://www.fossil-scm.org/home/tarball/version-${nix.sel(finalAttrs, "version")}/fossil-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-y5joXR+QZAyYniRSHpD+vJjtjuPyZj2Lg6RFsVvMg9M=",
         })))),
@@ -43,7 +41,7 @@ export default nix.lambda((args) => (() => {
       installFlags: nix.thunk(() => ["INSTALLDIR=$(out)/bin"]),
       postInstall: "installManPage fossil.1\ninstallShellCompletion --cmd fossil tools/fossil-autocomplete.{bash,zsh}\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Simple, high-reliability, distributed software configuration management",
         longDescription: "Fossil is a software configuration management system.  Fossil is\nsoftware that is designed to control and track the development of a\nsoftware project and to record the history of the project. There are\nmany such systems in use today. Fossil strives to distinguish itself\nfrom the others by being extremely simple to setup and operate.\n",
         homepage: "https://www.fossil-scm.org/",

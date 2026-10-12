@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/client.nix", [[["pname", 126, 7], ["doInstallCheck", 129, 7], ["doCheck", 130, 7], ["preCheck", 131, 7], ["enabledTestPaths", 132, 7], ["disabledTestMarks", 133, 7], ["disabledTests", 134, 7], ["pythonImportsCheck", 135, 7], ["dontCheckRuntimeDeps", 136, 7], ["dontCheckPythonMetadata", 137, 7]], [["sans-reverse-dependencies", 125, 5], ["updateScript", 140, 22]], [["description", 144, 5], ["homepage", 145, 5], ["downloadPage", 146, 5], ["changelog", 147, 5], ["license", 148, 5], ["maintainers", 149, 5]], [["pname", 33, 3], ["version", 34, 3], ["pyproject", 35, 3], ["src", 39, 20], ["sourceRoot", 40, 3], ["postPatch", 44, 3], ["preConfigure", 49, 3], ["nativeBuildInputs", 59, 3], ["build-system", 63, 3], ["dependencies", 69, 3], ["nativeCheckInputs", 78, 3], ["disallowedReferences", 90, 3], ["postInstall", 92, 3], ["preCheck", 98, 3], ["enabledTestPaths", 102, 3], ["disabledTestMarks", 106, 3], ["disabledTests", 110, 3], ["pythonImportsCheck", 118, 3], ["__darwinAllowLocalNetworking", 120, 3], ["passthru", 122, 3], ["meta", 143, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, jq: false, hatchling: false, "hatch-requirements-txt": false, "hatch-fancy-pypi-readme": false, fsspec: false, httpx: false, "huggingface-hub": false, packaging: false, "typing-extensions": false, websockets: false, gradio: false, pydub: false, "pytest-asyncio": false, pytestCheckHook: false, requests: false, rich: false, safehttpx: false, tomlkit: false, writableTmpDirAsHomeHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/client.nix", [["pname", 126, 7], ["doInstallCheck", 129, 7], ["doCheck", 130, 7], ["preCheck", 131, 7], ["enabledTestPaths", 132, 7], ["disabledTestMarks", 133, 7], ["disabledTests", 134, 7], ["pythonImportsCheck", 135, 7], ["dontCheckRuntimeDeps", 136, 7], ["dontCheckPythonMetadata", 137, 7]]);
-const pos$2 = nix.positions(here + "/client.nix", [["sans-reverse-dependencies", 125, 5], ["updateScript", 140, 22]]);
-const pos$3 = nix.positions(here + "/client.nix", [["description", 144, 5], ["homepage", 145, 5], ["downloadPage", 146, 5], ["changelog", 147, 5], ["license", 148, 5], ["maintainers", 149, 5]]);
-const pos$4 = nix.positions(here + "/client.nix", [["pname", 33, 3], ["version", 34, 3], ["pyproject", 35, 3], ["src", 39, 20], ["sourceRoot", 40, 3], ["postPatch", 44, 3], ["preConfigure", 49, 3], ["nativeBuildInputs", 59, 3], ["build-system", 63, 3], ["dependencies", 69, 3], ["nativeCheckInputs", 78, 3], ["disallowedReferences", 90, 3], ["postInstall", 92, 3], ["preCheck", 98, 3], ["enabledTestPaths", 102, 3], ["disabledTestMarks", 106, 3], ["disabledTests", 110, 3], ["pythonImportsCheck", 118, 3], ["__darwinAllowLocalNetworking", 120, 3], ["passthru", 122, 3], ["meta", 143, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,7 +30,7 @@ export default nix.lambda((args) => (() => {
   const tomlkit = nix.arg($, "tomlkit");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "gradio-client",
       version: "2.7.1",
       pyproject: true,
@@ -70,9 +67,9 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["gradio_client"]),
       __darwinAllowLocalNetworking: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         "sans-reverse-dependencies": nix.thunk(() => nix.app(nix.sel(finalAttrs, "finalPackage", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             pname: nix.thunk(() => nix.add(nix.sel(old, "pname"), "-sans-reverse-dependencies")),
             doInstallCheck: false,
             doCheck: false,
@@ -87,7 +84,7 @@ export default nix.lambda((args) => (() => {
         updateScript: nix.thunk(() => nix.attr(gradio, "updateScript")),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Lightweight library to use any Gradio app as an API",
         homepage: "https://www.gradio.app/",
         downloadPage: "https://github.com/gradio-app/gradio/tree/main/client/python",

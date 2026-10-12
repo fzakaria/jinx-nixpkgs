@@ -2,46 +2,10 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/angie-api.nix", [[["maintainers", 12, 8]], [["address", 22, 17], ["prefixLength", 23, 17]], [["addresses", 20, 18]], [["ipv4", 20, 13]], [["eth1", 19, 22]], [["allowedTCPPorts", 28, 20]], [["interfaces", 19, 11], ["extraHosts", 27, 11], ["firewall", 28, 11]], [["fail_timeout", 39, 19]], [["backend.example.com:8080", 38, 17]], [["servers", 37, 15], ["extraConfig", 42, 15]], [["fail_timeout", 49, 19]], [["unix:/run/example.sock", 48, 17]], [["servers", 47, 15], ["extraConfig", 52, 15]], [["backend-http", 36, 13], ["backend-socket", 46, 13]], [["extraConfig", 60, 15]], [["/console/", 59, 23]], [["locations", 59, 13]], [["root", 71, 15], ["extraConfig", 79, 15]], [["extraConfig", 87, 15]], [["extraConfig", 94, 15]], [["proxyPass", 101, 15]], [["proxyPass", 104, 15]], [["/test/", 70, 23], ["/test/locked/", 86, 23], ["/test/error/", 93, 23], ["/upstream-http/", 100, 23], ["/upstream-socket/", 103, 23]], [["locations", 70, 13]], [["api.example.com", 58, 24], ["example.com", 69, 24]], [["enable", 32, 11], ["package", 33, 11], ["upstreams", 35, 11], ["virtualHosts", 58, 11]], [["nginx", 31, 18]], [["networking", 18, 9], ["services", 31, 9]], [["systemPackages", 113, 21]], [["address", 118, 17], ["prefixLength", 119, 17]], [["addresses", 116, 18]], [["ipv4", 116, 13]], [["eth1", 115, 22]], [["interfaces", 115, 11], ["extraHosts", 123, 11]], [["environment", 113, 9], ["networking", 114, 9]], [["server", 15, 5], ["client", 110, 5]], [["name", 11, 3], ["meta", 12, 3], ["nodes", 14, 3], ["testScript", 128, 3]]]);
 const formals$1 = { args: { lib: false, pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/angie-api.nix", [["maintainers", 12, 8]]);
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/angie-api.nix", [["address", 22, 17], ["prefixLength", 23, 17]]);
-const pos$3 = nix.positions(here + "/angie-api.nix", [["addresses", 20, 18]]);
-const pos$4 = nix.positions(here + "/angie-api.nix", [["ipv4", 20, 13]]);
-const pos$5 = nix.positions(here + "/angie-api.nix", [["eth1", 19, 22]]);
-const pos$6 = nix.positions(here + "/angie-api.nix", [["allowedTCPPorts", 28, 20]]);
-const pos$7 = nix.positions(here + "/angie-api.nix", [["interfaces", 19, 11], ["extraHosts", 27, 11], ["firewall", 28, 11]]);
-const pos$8 = nix.positions(here + "/angie-api.nix", [["fail_timeout", 39, 19]]);
-const pos$9 = nix.positions(here + "/angie-api.nix", [["backend.example.com:8080", 38, 17]]);
-const pos$10 = nix.positions(here + "/angie-api.nix", [["servers", 37, 15], ["extraConfig", 42, 15]]);
-const pos$11 = nix.positions(here + "/angie-api.nix", [["fail_timeout", 49, 19]]);
-const pos$12 = nix.positions(here + "/angie-api.nix", [["unix:/run/example.sock", 48, 17]]);
-const pos$13 = nix.positions(here + "/angie-api.nix", [["servers", 47, 15], ["extraConfig", 52, 15]]);
-const pos$14 = nix.positions(here + "/angie-api.nix", [["backend-http", 36, 13], ["backend-socket", 46, 13]]);
-const pos$15 = nix.positions(here + "/angie-api.nix", [["extraConfig", 60, 15]]);
-const pos$16 = nix.positions(here + "/angie-api.nix", [["/console/", 59, 23]]);
-const pos$17 = nix.positions(here + "/angie-api.nix", [["locations", 59, 13]]);
-const pos$18 = nix.positions(here + "/angie-api.nix", [["root", 71, 15], ["extraConfig", 79, 15]]);
-const pos$19 = nix.positions(here + "/angie-api.nix", [["extraConfig", 87, 15]]);
-const pos$20 = nix.positions(here + "/angie-api.nix", [["extraConfig", 94, 15]]);
-const pos$21 = nix.positions(here + "/angie-api.nix", [["proxyPass", 101, 15]]);
-const pos$22 = nix.positions(here + "/angie-api.nix", [["proxyPass", 104, 15]]);
-const pos$23 = nix.positions(here + "/angie-api.nix", [["/test/", 70, 23], ["/test/locked/", 86, 23], ["/test/error/", 93, 23], ["/upstream-http/", 100, 23], ["/upstream-socket/", 103, 23]]);
-const pos$24 = nix.positions(here + "/angie-api.nix", [["locations", 70, 13]]);
-const pos$25 = nix.positions(here + "/angie-api.nix", [["api.example.com", 58, 24], ["example.com", 69, 24]]);
-const pos$26 = nix.positions(here + "/angie-api.nix", [["enable", 32, 11], ["package", 33, 11], ["upstreams", 35, 11], ["virtualHosts", 58, 11]]);
-const pos$27 = nix.positions(here + "/angie-api.nix", [["nginx", 31, 18]]);
-const pos$28 = nix.positions(here + "/angie-api.nix", [["networking", 18, 9], ["services", 31, 9]]);
 const formals$3 = { args: { pkgs: false }, ellipsis: true };
-const pos$29 = nix.positions(here + "/angie-api.nix", [["systemPackages", 113, 21]]);
-const pos$30 = nix.positions(here + "/angie-api.nix", [["address", 118, 17], ["prefixLength", 119, 17]]);
-const pos$31 = nix.positions(here + "/angie-api.nix", [["addresses", 116, 18]]);
-const pos$32 = nix.positions(here + "/angie-api.nix", [["ipv4", 116, 13]]);
-const pos$33 = nix.positions(here + "/angie-api.nix", [["eth1", 115, 22]]);
-const pos$34 = nix.positions(here + "/angie-api.nix", [["interfaces", 115, 11], ["extraHosts", 123, 11]]);
-const pos$35 = nix.positions(here + "/angie-api.nix", [["environment", 113, 9], ["networking", 114, 9]]);
-const pos$36 = nix.positions(here + "/angie-api.nix", [["server", 15, 5], ["client", 110, 5]]);
-const pos$37 = nix.positions(here + "/angie-api.nix", [["name", 11, 3], ["meta", 12, 3], ["nodes", 14, 3], ["testScript", 128, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -49,89 +13,89 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const hosts = "192.168.2.101 example.com\n192.168.2.101 api.example.com\n192.168.2.101 backend.example.com\n";
   return {
-    [nix.POS]: pos$37,
+    [nix.POS]: $pos[36],
     name: "angie-api",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "izorkin"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$36,
+      [nix.POS]: $pos[35],
       server: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$28,
+          [nix.POS]: $pos[27],
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             interfaces: nix.thunk(() => ({
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               eth1: nix.thunk(() => ({
-                [nix.POS]: pos$4,
+                [nix.POS]: $pos[3],
                 ipv4: nix.thunk(() => ({
-                  [nix.POS]: pos$3,
+                  [nix.POS]: $pos[2],
                   addresses: nix.thunk(() => [
-                    nix.thunk(() => ({ [nix.POS]: pos$2, address: "192.168.2.101", prefixLength: 24n })),
+                    nix.thunk(() => ({ [nix.POS]: $pos[1], address: "192.168.2.101", prefixLength: 24n })),
                   ]),
                 })),
               })),
             })),
             extraHosts: hosts,
-            firewall: nix.thunk(() => ({ [nix.POS]: pos$6, allowedTCPPorts: nix.thunk(() => [80n]) })),
+            firewall: nix.thunk(() => ({ [nix.POS]: $pos[5], allowedTCPPorts: nix.thunk(() => [80n]) })),
           })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$27,
+            [nix.POS]: $pos[26],
             nginx: nix.thunk(() => ({
-              [nix.POS]: pos$26,
+              [nix.POS]: $pos[25],
               enable: true,
               package: nix.thunk(() => nix.sel(pkgs_1, "angie")),
               upstreams: nix.thunk(() => ({
-                [nix.POS]: pos$14,
+                [nix.POS]: $pos[13],
                 "backend-http": nix.thunk(() => ({
-                  [nix.POS]: pos$10,
+                  [nix.POS]: $pos[9],
                   servers: nix.thunk(() => ({
-                    [nix.POS]: pos$9,
-                    "backend.example.com:8080": nix.thunk(() => ({ [nix.POS]: pos$8, fail_timeout: "0" })),
+                    [nix.POS]: $pos[8],
+                    "backend.example.com:8080": nix.thunk(() => ({ [nix.POS]: $pos[7], fail_timeout: "0" })),
                   })),
                   extraConfig: "zone upstream 256k;\n",
                 })),
                 "backend-socket": nix.thunk(() => ({
-                  [nix.POS]: pos$13,
+                  [nix.POS]: $pos[12],
                   servers: nix.thunk(() => ({
-                    [nix.POS]: pos$12,
-                    "unix:/run/example.sock": nix.thunk(() => ({ [nix.POS]: pos$11, fail_timeout: "0" })),
+                    [nix.POS]: $pos[11],
+                    "unix:/run/example.sock": nix.thunk(() => ({ [nix.POS]: $pos[10], fail_timeout: "0" })),
                   })),
                   extraConfig: "zone upstream 256k;\n",
                 })),
               })),
               virtualHosts: nix.thunk(() => ({
-                [nix.POS]: pos$25,
+                [nix.POS]: $pos[24],
                 "api.example.com": nix.thunk(() => ({
-                  [nix.POS]: pos$17,
+                  [nix.POS]: $pos[16],
                   locations: nix.thunk(() => ({
-                    [nix.POS]: pos$16,
+                    [nix.POS]: $pos[15],
                     "/console/": nix.thunk(() => ({
-                      [nix.POS]: pos$15,
+                      [nix.POS]: $pos[14],
                       extraConfig: "api /status/;\n\nallow 192.168.2.201;\ndeny all;\n",
                     })),
                   })),
                 })),
                 "example.com": nix.thunk(() => ({
-                  [nix.POS]: pos$24,
+                  [nix.POS]: $pos[23],
                   locations: nix.thunk(() => ({
-                    [nix.POS]: pos$23,
+                    [nix.POS]: $pos[22],
                     "/test/": nix.thunk(() => ({
-                      [nix.POS]: pos$18,
+                      [nix.POS]: $pos[17],
                       root: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), nix.thunk(() => nix.app(nix.sel(pkgs_1, "runCommandLocal"), "testdir", nix.thunk(() => ({})), "mkdir -p \"$out/test\"\ncat > \"$out/test/index.html\" <<EOF\n<html><body>Hello World!</body></html>\nEOF\n")))),
                       extraConfig: "status_zone test_zone;\n\nallow 192.168.2.201;\ndeny all;\n",
                     })),
-                    "/test/locked/": nix.thunk(() => ({ [nix.POS]: pos$19, extraConfig: "status_zone test_zone;\n\ndeny all;\n" })),
-                    "/test/error/": nix.thunk(() => ({ [nix.POS]: pos$20, extraConfig: "status_zone test_zone;\n\nallow all;\n" })),
-                    "/upstream-http/": nix.thunk(() => ({ [nix.POS]: pos$21, proxyPass: "http://backend-http" })),
-                    "/upstream-socket/": nix.thunk(() => ({ [nix.POS]: pos$22, proxyPass: "http://backend-socket" })),
+                    "/test/locked/": nix.thunk(() => ({ [nix.POS]: $pos[18], extraConfig: "status_zone test_zone;\n\ndeny all;\n" })),
+                    "/test/error/": nix.thunk(() => ({ [nix.POS]: $pos[19], extraConfig: "status_zone test_zone;\n\nallow all;\n" })),
+                    "/upstream-http/": nix.thunk(() => ({ [nix.POS]: $pos[20], proxyPass: "http://backend-http" })),
+                    "/upstream-socket/": nix.thunk(() => ({ [nix.POS]: $pos[21], proxyPass: "http://backend-socket" })),
                   })),
                 })),
               })),
@@ -143,21 +107,21 @@ export default nix.lambda((args) => (() => {
         const $_1 = nix.formals(args_1, formals$3);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$35,
+          [nix.POS]: $pos[34],
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$29,
+            [nix.POS]: $pos[28],
             systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs_1, "jq"))]),
           })),
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$34,
+            [nix.POS]: $pos[33],
             interfaces: nix.thunk(() => ({
-              [nix.POS]: pos$33,
+              [nix.POS]: $pos[32],
               eth1: nix.thunk(() => ({
-                [nix.POS]: pos$32,
+                [nix.POS]: $pos[31],
                 ipv4: nix.thunk(() => ({
-                  [nix.POS]: pos$31,
+                  [nix.POS]: $pos[30],
                   addresses: nix.thunk(() => [
-                    nix.thunk(() => ({ [nix.POS]: pos$30, address: "192.168.2.201", prefixLength: 24n })),
+                    nix.thunk(() => ({ [nix.POS]: $pos[29], address: "192.168.2.201", prefixLength: 24n })),
                   ]),
                 })),
               })),

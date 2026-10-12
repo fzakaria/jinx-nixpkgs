@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]], [["url", 36, 7], ["hash", 37, 7]], [["clipboard", 58, 5], ["jedi", 59, 5], ["urwid", 60, 5], ["watch", 61, 5]], [["rev-suffix", 77, 5]], [["updateScript", 76, 12]], [["changelog", 81, 5], ["description", 82, 5], ["homepage", 83, 5], ["license", 84, 5], ["maintainers", 85, 5]], [["pname", 22, 3], ["version", 23, 3], ["pyproject", 24, 3], ["src", 26, 3], ["patches", 33, 3], ["postPatch", 41, 3], ["build-system", 46, 3], ["dependencies", 48, 3], ["optional-dependencies", 57, 3], ["postInstall", 64, 3], ["nativeCheckInputs", 69, 3], ["pythonImportsCheck", 74, 3], ["passthru", 76, 3], ["meta", 80, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, fetchpatch: false, curtsies: false, cwcwidth: false, greenlet: false, jedi: false, pygments: false, pytestCheckHook: false, pyperclip: false, pyxdg: false, requests: false, setuptools: false, urwid: false, watchdog: false, gitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["url", 36, 7], ["hash", 37, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["clipboard", 58, 5], ["jedi", 59, 5], ["urwid", 60, 5], ["watch", 61, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["rev-suffix", 77, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["updateScript", 76, 12]]);
-const pos$6 = nix.positions(here + "/default.nix", [["changelog", 81, 5], ["description", 82, 5], ["homepage", 83, 5], ["license", 84, 5], ["maintainers", 85, 5]]);
-const pos$7 = nix.positions(here + "/default.nix", [["pname", 22, 3], ["version", 23, 3], ["pyproject", 24, 3], ["src", 26, 3], ["patches", 33, 3], ["postPatch", 41, 3], ["build-system", 46, 3], ["dependencies", 48, 3], ["optional-dependencies", 57, 3], ["postInstall", 64, 3], ["nativeCheckInputs", 69, 3], ["pythonImportsCheck", 74, 3], ["passthru", 76, 3], ["meta", 80, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -35,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.26";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "bpython",
           repo: "bpython",
           tag: nix.thunk(() => nix.str`${version}-release`),
@@ -43,7 +37,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/bpython/bpython/commit/870e81cb5a6860f1ba15744c81b97f71467eedf9.patch",
             hash: "sha256-z55EkLT51ulz/V3XgjP1cbQza9ztb5YHu1UlXlbaWTQ=",
           })))),
@@ -54,7 +48,7 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [setuptools]);
       const dependencies = nix.thunk(() => [curtsies, cwcwidth, greenlet, pygments, pyxdg, requests]);
       const optional_dependencies = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         clipboard: nix.thunk(() => [pyperclip]),
         jedi: nix.thunk(() => [jedi]),
         urwid: nix.thunk(() => [urwid]),
@@ -64,11 +58,11 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => nix.concat([pytestCheckHook], nix.app(nix.sel(lib, "concatAttrValues"), optional_dependencies)));
       const pythonImportsCheck = nix.thunk(() => ["bpython"]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$5,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$4, "rev-suffix": "-release" })))),
+        [nix.POS]: $pos[4],
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[3], "rev-suffix": "-release" })))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         changelog: nix.thunk(() => nix.str`https://github.com/bpython/bpython/blob/${nix.sel(src, "tag")}/CHANGELOG.rst`),
         description: "Fancy curses interface to the Python interactive interpreter",
         homepage: "https://bpython-interpreter.org/",
@@ -82,7 +76,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         pname,
         version,
         pyproject,

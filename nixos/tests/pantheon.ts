@@ -2,70 +2,56 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/pantheon.nix", [[["maintainers", 6, 8]], [["name", 13, 9], ["destination", 14, 9], ["text", 15, 9]], [["memorySize", 29, 22]], [["enable", 31, 24]], [["enable", 32, 40]], [["pantheon", 32, 31]], [["enable", 35, 24]], [["xserver", 31, 16], ["desktopManager", 32, 16], ["flatpak", 35, 16]], [["excludePackages", 42, 28]], [["systemPackages", 38, 19], ["pantheon", 42, 19]], [["enable", 44, 24]], [["ydotool", 44, 16]], [["imports", 26, 7], ["virtualisation", 29, 7], ["services", 31, 7], ["environment", 38, 7], ["programs", 44, 7]], [["machine", 8, 9]], [["name", 4, 3], ["meta", 6, 3], ["nodes", 8, 3], ["enableOCR", 47, 3], ["testScript", 49, 3]]]);
 const formals$1 = { args: { pkgs: false, lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/pantheon.nix", [["maintainers", 6, 8]]);
 const formals$2 = { args: {  }, ellipsis: true };
-const pos$2 = nix.positions(here + "/pantheon.nix", [["name", 13, 9], ["destination", 14, 9], ["text", 15, 9]]);
-const pos$3 = nix.positions(here + "/pantheon.nix", [["memorySize", 29, 22]]);
-const pos$4 = nix.positions(here + "/pantheon.nix", [["enable", 31, 24]]);
-const pos$5 = nix.positions(here + "/pantheon.nix", [["enable", 32, 40]]);
-const pos$6 = nix.positions(here + "/pantheon.nix", [["pantheon", 32, 31]]);
-const pos$7 = nix.positions(here + "/pantheon.nix", [["enable", 35, 24]]);
-const pos$8 = nix.positions(here + "/pantheon.nix", [["xserver", 31, 16], ["desktopManager", 32, 16], ["flatpak", 35, 16]]);
-const pos$9 = nix.positions(here + "/pantheon.nix", [["excludePackages", 42, 28]]);
-const pos$10 = nix.positions(here + "/pantheon.nix", [["systemPackages", 38, 19], ["pantheon", 42, 19]]);
-const pos$11 = nix.positions(here + "/pantheon.nix", [["enable", 44, 24]]);
-const pos$12 = nix.positions(here + "/pantheon.nix", [["ydotool", 44, 16]]);
-const pos$13 = nix.positions(here + "/pantheon.nix", [["imports", 26, 7], ["virtualisation", 29, 7], ["services", 31, 7], ["environment", 38, 7], ["programs", 44, 7]]);
-const pos$14 = nix.positions(here + "/pantheon.nix", [["machine", 8, 9]]);
 const formals$3 = { args: { nodes: false }, ellipsis: true };
-const pos$15 = nix.positions(here + "/pantheon.nix", [["name", 4, 3], ["meta", 6, 3], ["nodes", 8, 3], ["enableOCR", 47, 3], ["testScript", 49, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$15,
+    [nix.POS]: $pos[14],
     name: "pantheon",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => nix.sel(lib, "teams", "pantheon", "members")),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$14,
+      [nix.POS]: $pos[13],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const videosAutostart = nix.thunk(() => nix.app(nix.sel(pkgs, "writeTextFile"), nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "autostart-elementary-videos",
             destination: "/etc/xdg/autostart/io.elementary.videos.desktop",
             text: "[Desktop Entry]\nVersion=1.0\nName=Videos\nType=Application\nTerminal=false\nExec=io.elementary.videos %U\n",
           }))));
         return {
-          [nix.POS]: pos$13,
+          [nix.POS]: $pos[12],
           imports: nix.thunk(() => [nix.path(here, "./common/user-account.nix")]),
-          virtualisation: nix.thunk(() => ({ [nix.POS]: pos$3, memorySize: 2047n })),
+          virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[2], memorySize: 2047n })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$8,
-            xserver: nix.thunk(() => ({ [nix.POS]: pos$4, enable: true })),
+            [nix.POS]: $pos[7],
+            xserver: nix.thunk(() => ({ [nix.POS]: $pos[3], enable: true })),
             desktopManager: nix.thunk(() => ({
-              [nix.POS]: pos$6,
-              pantheon: nix.thunk(() => ({ [nix.POS]: pos$5, enable: true })),
+              [nix.POS]: $pos[5],
+              pantheon: nix.thunk(() => ({ [nix.POS]: $pos[4], enable: true })),
             })),
-            flatpak: nix.thunk(() => ({ [nix.POS]: pos$7, enable: true })),
+            flatpak: nix.thunk(() => ({ [nix.POS]: $pos[6], enable: true })),
           })),
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$10,
+            [nix.POS]: $pos[9],
             systemPackages: nix.thunk(() => [videosAutostart]),
             pantheon: nix.thunk(() => ({
-              [nix.POS]: pos$9,
+              [nix.POS]: $pos[8],
               excludePackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "gnome-text-editor"))]),
             })),
           })),
           programs: nix.thunk(() => ({
-            [nix.POS]: pos$12,
-            ydotool: nix.thunk(() => ({ [nix.POS]: pos$11, enable: true })),
+            [nix.POS]: $pos[11],
+            ydotool: nix.thunk(() => ({ [nix.POS]: $pos[10], enable: true })),
           })),
         };
       })(), formals$2),

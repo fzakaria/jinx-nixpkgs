@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]], [["ELECTRON_SKIP_BINARY_DOWNLOAD", 26, 7]], [["name", 34, 7], ["desktopName", 35, 7], ["genericName", 36, 7], ["exec", 37, 7], ["icon", 38, 7], ["comment", 39, 7]], [["description", 57, 5], ["homepage", 58, 5], ["license", 59, 5], ["maintainers", 60, 5], ["mainProgram", 61, 5], ["platforms", 62, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["npmDepsHash", 24, 3], ["env", 26, 3], ["dontNpmBuild", 28, 3], ["makeCacheWritable", 30, 3], ["desktopItems", 32, 3], ["nativeBuildInputs", 43, 3], ["postInstall", 48, 3], ["meta", 56, 3]]]);
 const formals$1 = { args: { lib: false, buildNpmPackage: false, fetchFromGitHub: false, makeDesktopItem: false, copyDesktopItems: false, makeWrapper: false, electron_42: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["ELECTRON_SKIP_BINARY_DOWNLOAD", 26, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 34, 7], ["desktopName", 35, 7], ["genericName", 36, 7], ["exec", 37, 7], ["icon", 38, 7], ["comment", 39, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 57, 5], ["homepage", 58, 5], ["license", 59, 5], ["maintainers", 60, 5], ["mainProgram", 61, 5], ["platforms", 62, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["npmDepsHash", 24, 3], ["env", 26, 3], ["dontNpmBuild", 28, 3], ["makeCacheWritable", 30, 3], ["desktopItems", 32, 3], ["nativeBuildInputs", 43, 3], ["postInstall", 48, 3], ["meta", 56, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,19 +19,19 @@ export default nix.lambda((args) => (() => {
       const pname = "pocket-casts";
       const version = "0.14.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "felicianotech",
           repo: "pocket-casts-desktop-app",
           rev: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-UjSwIRN8dM/KYAm0jBXnDCX6Qb4I+vbPA5AA8JO3ODo=",
         }))));
       const npmDepsHash = "sha256-uEKU/7BXl54XxLheCewFsSWsatd7bJriD+1+4EKQAlc=";
-      const env = nix.thunk(() => ({ [nix.POS]: pos$2, ELECTRON_SKIP_BINARY_DOWNLOAD: "1" }));
+      const env = nix.thunk(() => ({ [nix.POS]: $pos[1], ELECTRON_SKIP_BINARY_DOWNLOAD: "1" }));
       const dontNpmBuild = true;
       const makeCacheWritable = true;
       const desktopItems = nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: pname,
             desktopName: "Pocket Casts",
             genericName: "Podcasts Listener",
@@ -52,7 +48,7 @@ makeWrapper ${electron}/bin/electron $out/bin/pocket-casts \\
   --add-flags $out/lib/node_modules/pocket-casts/main.js
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Pocket Casts webapp, packaged for the Linux Desktop",
         homepage: "https://github.com/felicianotech/pocket-casts-desktop-app",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -64,7 +60,7 @@ makeWrapper ${electron}/bin/electron $out/bin/pocket-casts \\
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         src,

@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 50, 5], ["repo", 51, 5], ["tag", 52, 5], ["hash", 53, 5]], [["asyncio", 68, 5], ["mypy", 69, 5], ["mssql", 73, 5], ["mssql_pymysql", 74, 5], ["mssql_pyodbc", 75, 5], ["mysql", 76, 5], ["mysql_connector", 77, 5], ["mariadb_connector", 78, 5], ["oracle", 79, 5], ["oracle_oracledb", 80, 5], ["postgresql", 81, 5], ["postgresql_pg8000", 82, 5], ["postgresql_asyncpg", 83, 5], ["postgresql_psycopg2binary", 84, 5], ["postgresql_psycopg2cffi", 85, 5], ["postgresql_psycopg", 86, 5], ["postgresql_psycopgbinary", 87, 5], ["pymysql", 88, 5], ["aiomysql", 89, 5], ["asyncmy", 91, 5], ["aiosqlite", 92, 5], ["sqlcipher", 93, 5]], [["extraArgs", 111, 5]], [["updateScript", 110, 12]], [["changelog", 118, 5], ["description", 119, 5], ["homepage", 120, 5], ["license", 121, 5]], [["pname", 45, 3], ["version", 46, 3], ["pyproject", 47, 3], ["src", 49, 3], ["postPatch", 56, 3], ["build-system", 60, 3], ["dependencies", 62, 3], ["optional-dependencies", 67, 3], ["nativeCheckInputs", 96, 3], ["disabledTestPaths", 102, 3], ["passthru", 110, 3], ["meta", 117, 3]]]);
 const formals$1 = { args: { lib: false, isPyPy: false, fetchFromGitHub: false, buildPythonPackage: false, "nix-update-script": false, cython: false, setuptools: false, greenlet: false, "typing-extensions": false, aiomysql: false, aiosqlite: false, asyncmy: false, asyncpg: false, "cx-oracle": false, mariadb: false, mypy: false, "mysql-connector-python": false, mysqlclient: false, oracledb: false, pg8000: false, psycopg: false, psycopg2: false, psycopg2cffi: false, pymssql: false, pymysql: false, pyodbc: false, sqlcipher3: false, "types-greenlet": false, mock: false, "pytest-xdist": false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 50, 5], ["repo", 51, 5], ["tag", 52, 5], ["hash", 53, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["asyncio", 68, 5], ["mypy", 69, 5], ["mssql", 73, 5], ["mssql_pymysql", 74, 5], ["mssql_pyodbc", 75, 5], ["mysql", 76, 5], ["mysql_connector", 77, 5], ["mariadb_connector", 78, 5], ["oracle", 79, 5], ["oracle_oracledb", 80, 5], ["postgresql", 81, 5], ["postgresql_pg8000", 82, 5], ["postgresql_asyncpg", 83, 5], ["postgresql_psycopg2binary", 84, 5], ["postgresql_psycopg2cffi", 85, 5], ["postgresql_psycopg", 86, 5], ["postgresql_psycopgbinary", 87, 5], ["pymysql", 88, 5], ["aiomysql", 89, 5], ["asyncmy", 91, 5], ["aiosqlite", 92, 5], ["sqlcipher", 93, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["extraArgs", 111, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["updateScript", 110, 12]]);
-const pos$5 = nix.positions(here + "/default.nix", [["changelog", 118, 5], ["description", 119, 5], ["homepage", 120, 5], ["license", 121, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 45, 3], ["version", 46, 3], ["pyproject", 47, 3], ["src", 49, 3], ["postPatch", 56, 3], ["build-system", 60, 3], ["dependencies", 62, 3], ["optional-dependencies", 67, 3], ["nativeCheckInputs", 96, 3], ["disabledTestPaths", 102, 3], ["passthru", 110, 3], ["meta", 117, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -44,12 +39,12 @@ export default nix.lambda((args) => (() => {
   const pytest_xdist = nix.arg($, "pytest-xdist");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "sqlalchemy",
       version: "2.0.51",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "sqlalchemy",
           repo: "sqlalchemy",
           tag: nix.thunk(() => nix.str`rel_${nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => ["_"]), nix.thunk(() => nix.sel(finalAttrs, "version")))}`),
@@ -59,7 +54,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => nix.concat([setuptools], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(isPyPy)), nix.thunk(() => [cython])))),
       dependencies: nix.thunk(() => [greenlet, typing_extensions]),
       "optional-dependencies": nix.thunk(() => nix.app(nix.sel(lib, "fix"), (self) => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           asyncio: nix.thunk(() => [greenlet]),
           mypy: nix.thunk(() => [mypy, types_greenlet]),
           mssql: nix.thunk(() => [pyodbc]),
@@ -86,14 +81,14 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytest_xdist, pytestCheckHook, mock]),
       disabledTestPaths: nix.thunk(() => ["test/ext/mypy", "test/typing", "test/aaa_profiling"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             extraArgs: nix.thunk(() => ["--version-regex", "^rel_([0-9]+)_([0-9]+)_([0-9]+)$"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         changelog: nix.thunk(() => nix.str`https://github.com/sqlalchemy/sqlalchemy/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         description: "Python SQL toolkit and Object Relational Mapper",
         homepage: "http://www.sqlalchemy.org/",

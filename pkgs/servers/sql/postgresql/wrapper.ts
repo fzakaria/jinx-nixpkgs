@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/wrapper.nix", [[["buildEnv", 14, 7], ["callPackage", 15, 7], ["lib", 16, 7], ["makeBinaryWrapper", 17, 7], ["postgresql", 18, 7]], [["strictDeps", 41, 5], ["nativeBuildInputs", 42, 5]], [["out", 62, 9], ["man", 63, 9]], [["outputs", 61, 7]], [["installedExtensions", 54, 13], ["pkgs", 56, 7], ["psqlSchema", 57, 7], ["pg_config", 60, 5], ["tests", 67, 5], ["withJIT", 72, 5], ["withoutJIT", 73, 5], ["withPackages", 75, 5]], [["pname", 23, 3], ["version", 24, 24], ["paths", 25, 3], ["pathsToLink", 31, 3], ["derivationArgs", 40, 3], ["postBuild", 45, 3], ["passthru", 53, 3]]]);
 const formals$1 = { args: { buildEnv: false, callPackage: false, lib: false, makeBinaryWrapper: false, postgresql: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/wrapper.nix", [["buildEnv", 14, 7], ["callPackage", 15, 7], ["lib", 16, 7], ["makeBinaryWrapper", 17, 7], ["postgresql", 18, 7]]);
-const pos$2 = nix.positions(here + "/wrapper.nix", [["strictDeps", 41, 5], ["nativeBuildInputs", 42, 5]]);
-const pos$3 = nix.positions(here + "/wrapper.nix", [["out", 62, 9], ["man", 63, 9]]);
-const pos$4 = nix.positions(here + "/wrapper.nix", [["outputs", 61, 7]]);
-const pos$5 = nix.positions(here + "/wrapper.nix", [["installedExtensions", 54, 13], ["pkgs", 56, 7], ["psqlSchema", 57, 7], ["pg_config", 60, 5], ["tests", 67, 5], ["withJIT", 72, 5], ["withoutJIT", 73, 5], ["withPackages", 75, 5]]);
-const pos$6 = nix.positions(here + "/wrapper.nix", [["pname", 23, 3], ["version", 24, 24], ["paths", 25, 3], ["pathsToLink", 31, 3], ["derivationArgs", 40, 3], ["postBuild", 45, 3], ["passthru", 53, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,7 +15,7 @@ export default nix.lambda((args) => (() => {
   return (f) => (() => {
     const installedExtensions = nix.thunk(() => nix.app(f, nix.thunk(() => nix.sel(postgresql, "pkgs"))));
     const recurse = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./wrapper.nix")), nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         buildEnv: buildEnv,
         callPackage: callPackage,
         lib: lib,
@@ -28,7 +23,7 @@ export default nix.lambda((args) => (() => {
         postgresql: postgresql,
       }))));
     return nix.app(buildEnv, (finalAttrs) => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname: nix.thunk(() => nix.str`${nix.sel(postgresql, "pname")}-and-plugins`),
         version: nix.thunk(() => nix.attr(postgresql, "version")),
         paths: nix.thunk(() => nix.concat(installedExtensions, [postgresql, nix.thunk(() => nix.sel(postgresql, "man"))])),
@@ -40,7 +35,7 @@ export default nix.lambda((args) => (() => {
           "/share/postgresql/tsearch_data",
         ]),
         derivationArgs: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           strictDeps: true,
           nativeBuildInputs: nix.thunk(() => [makeBinaryWrapper]),
         })),
@@ -50,14 +45,14 @@ export default nix.lambda((args) => (() => {
 `;
         })()),
         passthru: nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           installedExtensions: installedExtensions,
           pkgs: nix.thunk(() => nix.attr(postgresql, "pkgs")),
           psqlSchema: nix.thunk(() => nix.attr(postgresql, "psqlSchema")),
           pg_config: nix.thunk(() => nix.app(nix.sel(postgresql, "pg_config", "override"), nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               outputs: nix.thunk(() => ({
-                [nix.POS]: pos$3,
+                [nix.POS]: $pos[2],
                 out: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
                 man: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               })),

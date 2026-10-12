@@ -2,24 +2,10 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/gitolite.nix", [[["maintainers", 55, 5]], [["enable", 64, 11], ["adminPubkey", 65, 11]], [["enable", 67, 26]], [["gitolite", 63, 18], ["openssh", 67, 18]], [["services", 63, 9]], [["systemPackages", 73, 21]], [["extraConfig", 74, 22]], [["ssh", 74, 18]], [["isNormalUser", 82, 11]], [["isNormalUser", 85, 11]], [["alice", 81, 21], ["bob", 84, 21]], [["users", 81, 15]], [["environment", 73, 9], ["programs", 74, 9], ["users", 81, 9]], [["server", 60, 5], ["client", 70, 5]], [["name", 52, 3], ["meta", 54, 3], ["nodes", 58, 3], ["testScript", 91, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/gitolite.nix", [["maintainers", 55, 5]]);
 const formals$2 = { args: {  }, ellipsis: true };
-const pos$2 = nix.positions(here + "/gitolite.nix", [["enable", 64, 11], ["adminPubkey", 65, 11]]);
-const pos$3 = nix.positions(here + "/gitolite.nix", [["enable", 67, 26]]);
-const pos$4 = nix.positions(here + "/gitolite.nix", [["gitolite", 63, 18], ["openssh", 67, 18]]);
-const pos$5 = nix.positions(here + "/gitolite.nix", [["services", 63, 9]]);
 const formals$3 = { args: { pkgs: false }, ellipsis: true };
-const pos$6 = nix.positions(here + "/gitolite.nix", [["systemPackages", 73, 21]]);
-const pos$7 = nix.positions(here + "/gitolite.nix", [["extraConfig", 74, 22]]);
-const pos$8 = nix.positions(here + "/gitolite.nix", [["ssh", 74, 18]]);
-const pos$9 = nix.positions(here + "/gitolite.nix", [["isNormalUser", 82, 11]]);
-const pos$10 = nix.positions(here + "/gitolite.nix", [["isNormalUser", 85, 11]]);
-const pos$11 = nix.positions(here + "/gitolite.nix", [["alice", 81, 21], ["bob", 84, 21]]);
-const pos$12 = nix.positions(here + "/gitolite.nix", [["users", 81, 15]]);
-const pos$13 = nix.positions(here + "/gitolite.nix", [["environment", 73, 9], ["programs", 74, 9], ["users", 81, 9]]);
-const pos$14 = nix.positions(here + "/gitolite.nix", [["server", 60, 5], ["client", 70, 5]]);
-const pos$15 = nix.positions(here + "/gitolite.nix", [["name", 52, 3], ["meta", 54, 3], ["nodes", 58, 3], ["testScript", 91, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,25 +18,25 @@ export default nix.lambda((args) => (() => {
   const bobPublicKey = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "id_ed25519.pub", "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJZNonUP1ePHLrvn0W9D2hdN6zWWZYFyJc+QR6pOKQEw bob@client\n"));
   const gitoliteAdminConfSnippet = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "gitolite-admin-conf-snippet", "repo alice-project\n    RW+     =   alice\n"));
   return {
-    [nix.POS]: pos$15,
+    [nix.POS]: $pos[14],
     name: "gitolite",
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
       return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "bjornfor"))]),
       };
     })()),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$14,
+      [nix.POS]: $pos[13],
       server: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$4,
-            gitolite: nix.thunk(() => ({ [nix.POS]: pos$2, enable: true, adminPubkey: adminPublicKey })),
-            openssh: nix.thunk(() => ({ [nix.POS]: pos$3, enable: true })),
+            [nix.POS]: $pos[3],
+            gitolite: nix.thunk(() => ({ [nix.POS]: $pos[1], enable: true, adminPubkey: adminPublicKey })),
+            openssh: nix.thunk(() => ({ [nix.POS]: $pos[2], enable: true })),
           })),
         };
       })(), formals$2),
@@ -58,24 +44,24 @@ export default nix.lambda((args) => (() => {
         const $_1 = nix.formals(args_1, formals$3);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$13,
+          [nix.POS]: $pos[12],
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs_1, "git"))]),
           })),
           programs: nix.thunk(() => ({
-            [nix.POS]: pos$8,
+            [nix.POS]: $pos[7],
             ssh: nix.thunk(() => ({
-              [nix.POS]: pos$7,
+              [nix.POS]: $pos[6],
               extraConfig: "Host *\n  UserKnownHostsFile /dev/null\n  StrictHostKeyChecking no\n  # there's nobody around that can input password\n  PreferredAuthentications publickey\n",
             })),
           })),
           users: nix.thunk(() => ({
-            [nix.POS]: pos$12,
+            [nix.POS]: $pos[11],
             users: nix.thunk(() => ({
-              [nix.POS]: pos$11,
-              alice: nix.thunk(() => ({ [nix.POS]: pos$9, isNormalUser: true })),
-              bob: nix.thunk(() => ({ [nix.POS]: pos$10, isNormalUser: true })),
+              [nix.POS]: $pos[10],
+              alice: nix.thunk(() => ({ [nix.POS]: $pos[8], isNormalUser: true })),
+              bob: nix.thunk(() => ({ [nix.POS]: $pos[9], isNormalUser: true })),
             })),
           })),
         };

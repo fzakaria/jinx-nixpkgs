@@ -2,96 +2,14 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/zfs.nix", [[["maintainers", 19, 12]], [["emptyDiskImages", 32, 13], ["useBootLoader", 36, 13], ["useEFIBoot", 37, 13]], [["enable", 39, 36]], [["canTouchEfiVariables", 41, 27]], [["systemd-boot", 39, 23], ["timeout", 40, 23], ["efi", 41, 23]], [["package", 44, 20], ["devNodes", 51, 20], ["forceImportRoot", 53, 20]], [["enable", 46, 31]], [["systemd", 46, 23]], [["loader", 39, 16], ["kernelPackages", 43, 16], ["zfs", 44, 16], ["supportedFilesystems", 45, 16], ["initrd", 46, 16]], [["hostId", 42, 22]], [["systemPackages", 48, 23]], [["registry shares", 59, 17], ["usershare path", 60, 17], ["usershare allow guests", 61, 17], ["usershare max shares", 62, 17], ["usershare owner only", 63, 17]], [["global", 58, 24]], [["enable", 57, 15], ["settings", 58, 15]], [["samba", 56, 22]], [["ExecStartPre", 66, 55]], [["serviceConfig", 66, 41]], [["samba-smbd", 66, 30]], [["services", 66, 21]], [["device", 70, 17], ["fsType", 71, 17]], [["/tmp/mnt", 69, 15]], [["fileSystems", 68, 28]], [["services", 56, 13], ["systemd", 66, 13], ["virtualisation", 68, 13]], [["configuration", 55, 32]], [["requestEncryptionCredentials", 77, 22]], [["zfs", 77, 18]], [["device", 79, 15], ["fsType", 80, 15]], [["device", 83, 15], ["fsType", 84, 15]], [["device", 87, 15], ["fsType", 88, 15], ["options", 89, 15]], [["device", 92, 15], ["fsType", 93, 15], ["options", 94, 15]], [["/automatic", 78, 40], ["/manual", 82, 40], ["/manual/encrypted", 86, 40], ["/manual/httpkey", 91, 40]], [["fileSystems", 78, 28]], [["boot", 77, 13], ["virtualisation", 78, 13]], [["configuration", 76, 37]], [["wantedBy", 99, 51]], [["zfs-import-forcepool", 99, 30]], [["wantedBy", 100, 33]], [["zfs", 100, 29]], [["services", 99, 21], ["targets", 100, 21]], [["forceImportAll", 101, 22], ["forceImportRoot", 102, 22]], [["zfs", 101, 18]], [["device", 104, 15], ["fsType", 105, 15], ["options", 106, 15]], [["/forcepool", 103, 40]], [["fileSystems", 103, 28]], [["systemd", 99, 13], ["boot", 101, 13], ["virtualisation", 103, 13]], [["configuration", 98, 36]], [["samba", 55, 26], ["encryption", 76, 26], ["forcepool", 98, 26]], [["return", 116, 21]], [["/zfskey", 115, 19]], [["locations", 114, 17]], [["localhost", 113, 15]], [["enable", 111, 13], ["virtualHosts", 112, 13]], [["nginx", 110, 20]], [["virtualisation", 31, 11], ["boot", 39, 11], ["networking", 42, 11], ["environment", 48, 11], ["specialisation", 55, 11], ["services", 110, 11]], [["machine", 21, 13]], [["name", 18, 7], ["meta", 19, 7], ["nodes", 21, 7], ["testScript", 124, 7]], [["zfsPackage", 214, 5], ["kernelPackages", 215, 5]], [["zfsPackage", 219, 5], ["kernelPackages", 220, 5]], [["zfsPackage", 224, 5], ["kernelPackages", 225, 5]], [["zfsPackage", 229, 5], ["kernelPackages", 230, 5], ["enableSystemdStage1", 231, 5]], [["system", 236, 15], ["systemdStage1", 237, 7]], [["system", 242, 15], ["systemdStage1", 243, 7]], [["system", 248, 15], ["systemdStage1", 249, 7]], [["system", 254, 15], ["systemdStage1", 255, 7]], [["systemPackages", 264, 23]], [["supportedFilesystems", 265, 16]], [["hostId", 266, 22]], [["emptyDiskImages", 269, 13]], [["expandOnBoot", 280, 26]], [["zfs", 280, 22]], [["services", 280, 13]], [["configuration", 279, 33]], [["resize", 279, 26]], [["environment", 264, 11], ["boot", 265, 11], ["networking", 266, 11], ["virtualisation", 268, 11], ["specialisation", 279, 11]], [["machine", 261, 7]], [["name", 259, 5], ["nodes", 260, 5], ["testScript", 285, 5]], [["supportedFilesystems", 323, 14]], [["hostId", 324, 20]], [["emptyDiskImages", 326, 11]], [["boot", 323, 9], ["networking", 324, 9], ["virtualisation", 325, 9]], [["machine", 320, 11]], [["name", 319, 5], ["nodes", 320, 5], ["testScript", 330, 5]], [["series_2_3", 213, 3], ["series_2_4", 218, 3], ["unstable", 223, 3], ["unstableWithSystemdStage1", 228, 3], ["installerBoot", 234, 3], ["installer", 240, 3], ["installerBootWithSystemdStage1", 246, 3], ["installerWithSystemdStage1", 252, 3], ["expand-partitions", 258, 3], ["zfs-mount-generator", 318, 3]]]);
 const formals$1 = { args: { system: false, pkgs: false, runTest: false }, ellipsis: false };
 const formals$2 = { args: { kernelPackages: false, enableSystemdStage1: true, zfsPackage: false, extraTest: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/zfs.nix", [["maintainers", 19, 12]]);
 const formals$3 = { args: { pkgs: false, lib: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/zfs.nix", [["emptyDiskImages", 32, 13], ["useBootLoader", 36, 13], ["useEFIBoot", 37, 13]]);
-const pos$3 = nix.positions(here + "/zfs.nix", [["enable", 39, 36]]);
-const pos$4 = nix.positions(here + "/zfs.nix", [["canTouchEfiVariables", 41, 27]]);
-const pos$5 = nix.positions(here + "/zfs.nix", [["systemd-boot", 39, 23], ["timeout", 40, 23], ["efi", 41, 23]]);
-const pos$6 = nix.positions(here + "/zfs.nix", [["package", 44, 20], ["devNodes", 51, 20], ["forceImportRoot", 53, 20]]);
-const pos$7 = nix.positions(here + "/zfs.nix", [["enable", 46, 31]]);
-const pos$8 = nix.positions(here + "/zfs.nix", [["systemd", 46, 23]]);
-const pos$9 = nix.positions(here + "/zfs.nix", [["loader", 39, 16], ["kernelPackages", 43, 16], ["zfs", 44, 16], ["supportedFilesystems", 45, 16], ["initrd", 46, 16]]);
-const pos$10 = nix.positions(here + "/zfs.nix", [["hostId", 42, 22]]);
-const pos$11 = nix.positions(here + "/zfs.nix", [["systemPackages", 48, 23]]);
-const pos$12 = nix.positions(here + "/zfs.nix", [["registry shares", 59, 17], ["usershare path", 60, 17], ["usershare allow guests", 61, 17], ["usershare max shares", 62, 17], ["usershare owner only", 63, 17]]);
-const pos$13 = nix.positions(here + "/zfs.nix", [["global", 58, 24]]);
-const pos$14 = nix.positions(here + "/zfs.nix", [["enable", 57, 15], ["settings", 58, 15]]);
-const pos$15 = nix.positions(here + "/zfs.nix", [["samba", 56, 22]]);
-const pos$16 = nix.positions(here + "/zfs.nix", [["ExecStartPre", 66, 55]]);
-const pos$17 = nix.positions(here + "/zfs.nix", [["serviceConfig", 66, 41]]);
-const pos$18 = nix.positions(here + "/zfs.nix", [["samba-smbd", 66, 30]]);
-const pos$19 = nix.positions(here + "/zfs.nix", [["services", 66, 21]]);
-const pos$20 = nix.positions(here + "/zfs.nix", [["device", 70, 17], ["fsType", 71, 17]]);
-const pos$21 = nix.positions(here + "/zfs.nix", [["/tmp/mnt", 69, 15]]);
-const pos$22 = nix.positions(here + "/zfs.nix", [["fileSystems", 68, 28]]);
-const pos$23 = nix.positions(here + "/zfs.nix", [["services", 56, 13], ["systemd", 66, 13], ["virtualisation", 68, 13]]);
-const pos$24 = nix.positions(here + "/zfs.nix", [["configuration", 55, 32]]);
-const pos$25 = nix.positions(here + "/zfs.nix", [["requestEncryptionCredentials", 77, 22]]);
-const pos$26 = nix.positions(here + "/zfs.nix", [["zfs", 77, 18]]);
-const pos$27 = nix.positions(here + "/zfs.nix", [["device", 79, 15], ["fsType", 80, 15]]);
-const pos$28 = nix.positions(here + "/zfs.nix", [["device", 83, 15], ["fsType", 84, 15]]);
-const pos$29 = nix.positions(here + "/zfs.nix", [["device", 87, 15], ["fsType", 88, 15], ["options", 89, 15]]);
-const pos$30 = nix.positions(here + "/zfs.nix", [["device", 92, 15], ["fsType", 93, 15], ["options", 94, 15]]);
-const pos$31 = nix.positions(here + "/zfs.nix", [["/automatic", 78, 40], ["/manual", 82, 40], ["/manual/encrypted", 86, 40], ["/manual/httpkey", 91, 40]]);
-const pos$32 = nix.positions(here + "/zfs.nix", [["fileSystems", 78, 28]]);
-const pos$33 = nix.positions(here + "/zfs.nix", [["boot", 77, 13], ["virtualisation", 78, 13]]);
-const pos$34 = nix.positions(here + "/zfs.nix", [["configuration", 76, 37]]);
-const pos$35 = nix.positions(here + "/zfs.nix", [["wantedBy", 99, 51]]);
-const pos$36 = nix.positions(here + "/zfs.nix", [["zfs-import-forcepool", 99, 30]]);
-const pos$37 = nix.positions(here + "/zfs.nix", [["wantedBy", 100, 33]]);
-const pos$38 = nix.positions(here + "/zfs.nix", [["zfs", 100, 29]]);
-const pos$39 = nix.positions(here + "/zfs.nix", [["services", 99, 21], ["targets", 100, 21]]);
-const pos$40 = nix.positions(here + "/zfs.nix", [["forceImportAll", 101, 22], ["forceImportRoot", 102, 22]]);
-const pos$41 = nix.positions(here + "/zfs.nix", [["zfs", 101, 18]]);
-const pos$42 = nix.positions(here + "/zfs.nix", [["device", 104, 15], ["fsType", 105, 15], ["options", 106, 15]]);
-const pos$43 = nix.positions(here + "/zfs.nix", [["/forcepool", 103, 40]]);
-const pos$44 = nix.positions(here + "/zfs.nix", [["fileSystems", 103, 28]]);
-const pos$45 = nix.positions(here + "/zfs.nix", [["systemd", 99, 13], ["boot", 101, 13], ["virtualisation", 103, 13]]);
-const pos$46 = nix.positions(here + "/zfs.nix", [["configuration", 98, 36]]);
-const pos$47 = nix.positions(here + "/zfs.nix", [["samba", 55, 26], ["encryption", 76, 26], ["forcepool", 98, 26]]);
-const pos$48 = nix.positions(here + "/zfs.nix", [["return", 116, 21]]);
-const pos$49 = nix.positions(here + "/zfs.nix", [["/zfskey", 115, 19]]);
-const pos$50 = nix.positions(here + "/zfs.nix", [["locations", 114, 17]]);
-const pos$51 = nix.positions(here + "/zfs.nix", [["localhost", 113, 15]]);
-const pos$52 = nix.positions(here + "/zfs.nix", [["enable", 111, 13], ["virtualHosts", 112, 13]]);
-const pos$53 = nix.positions(here + "/zfs.nix", [["nginx", 110, 20]]);
-const pos$54 = nix.positions(here + "/zfs.nix", [["virtualisation", 31, 11], ["boot", 39, 11], ["networking", 42, 11], ["environment", 48, 11], ["specialisation", 55, 11], ["services", 110, 11]]);
-const pos$55 = nix.positions(here + "/zfs.nix", [["machine", 21, 13]]);
 const formals$4 = { args: { nodes: false }, ellipsis: true };
-const pos$56 = nix.positions(here + "/zfs.nix", [["name", 18, 7], ["meta", 19, 7], ["nodes", 21, 7], ["testScript", 124, 7]]);
-const pos$57 = nix.positions(here + "/zfs.nix", [["zfsPackage", 214, 5], ["kernelPackages", 215, 5]]);
-const pos$58 = nix.positions(here + "/zfs.nix", [["zfsPackage", 219, 5], ["kernelPackages", 220, 5]]);
-const pos$59 = nix.positions(here + "/zfs.nix", [["zfsPackage", 224, 5], ["kernelPackages", 225, 5]]);
-const pos$60 = nix.positions(here + "/zfs.nix", [["zfsPackage", 229, 5], ["kernelPackages", 230, 5], ["enableSystemdStage1", 231, 5]]);
-const pos$61 = nix.positions(here + "/zfs.nix", [["system", 236, 15], ["systemdStage1", 237, 7]]);
-const pos$62 = nix.positions(here + "/zfs.nix", [["system", 242, 15], ["systemdStage1", 243, 7]]);
-const pos$63 = nix.positions(here + "/zfs.nix", [["system", 248, 15], ["systemdStage1", 249, 7]]);
-const pos$64 = nix.positions(here + "/zfs.nix", [["system", 254, 15], ["systemdStage1", 255, 7]]);
 const formals$5 = { args: { pkgs: false }, ellipsis: true };
-const pos$65 = nix.positions(here + "/zfs.nix", [["systemPackages", 264, 23]]);
-const pos$66 = nix.positions(here + "/zfs.nix", [["supportedFilesystems", 265, 16]]);
-const pos$67 = nix.positions(here + "/zfs.nix", [["hostId", 266, 22]]);
-const pos$68 = nix.positions(here + "/zfs.nix", [["emptyDiskImages", 269, 13]]);
-const pos$69 = nix.positions(here + "/zfs.nix", [["expandOnBoot", 280, 26]]);
-const pos$70 = nix.positions(here + "/zfs.nix", [["zfs", 280, 22]]);
-const pos$71 = nix.positions(here + "/zfs.nix", [["services", 280, 13]]);
-const pos$72 = nix.positions(here + "/zfs.nix", [["configuration", 279, 33]]);
-const pos$73 = nix.positions(here + "/zfs.nix", [["resize", 279, 26]]);
-const pos$74 = nix.positions(here + "/zfs.nix", [["environment", 264, 11], ["boot", 265, 11], ["networking", 266, 11], ["virtualisation", 268, 11], ["specialisation", 279, 11]]);
-const pos$75 = nix.positions(here + "/zfs.nix", [["machine", 261, 7]]);
 const formals$6 = { args: { nodes: false }, ellipsis: true };
-const pos$76 = nix.positions(here + "/zfs.nix", [["name", 259, 5], ["nodes", 260, 5], ["testScript", 285, 5]]);
 const formals$7 = { args: {  }, ellipsis: true };
-const pos$77 = nix.positions(here + "/zfs.nix", [["supportedFilesystems", 323, 14]]);
-const pos$78 = nix.positions(here + "/zfs.nix", [["hostId", 324, 20]]);
-const pos$79 = nix.positions(here + "/zfs.nix", [["emptyDiskImages", 326, 11]]);
-const pos$80 = nix.positions(here + "/zfs.nix", [["boot", 323, 9], ["networking", 324, 9], ["virtualisation", 325, 9]]);
-const pos$81 = nix.positions(here + "/zfs.nix", [["machine", 320, 11]]);
-const pos$82 = nix.positions(here + "/zfs.nix", [["name", 319, 5], ["nodes", 320, 5], ["testScript", 330, 5]]);
-const pos$83 = nix.positions(here + "/zfs.nix", [["series_2_3", 213, 3], ["series_2_4", 218, 3], ["unstable", 223, 3], ["unstableWithSystemdStage1", 228, 3], ["installerBoot", 234, 3], ["installer", 240, 3], ["installerBootWithSystemdStage1", 246, 3], ["installerWithSystemdStage1", 252, 3], ["expand-partitions", 258, 3], ["zfs-mount-generator", 318, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -106,71 +24,71 @@ export default nix.lambda((args) => (() => {
     const zfsPackage = nix.arg($_1, "zfsPackage");
     const extraTest = nix.argOr($_1, "extraTest", () => "");
     return nix.app(runTest, nix.thunk(() => ({
-        [nix.POS]: pos$56,
+        [nix.POS]: $pos[55],
         name: nix.thunk(() => nix.sel(zfsPackage, "kernelModuleAttribute")),
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           maintainers: nix.thunk(() => (() => {
             const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
             return [nix.thunk(() => nix.lookup(w, "elvishjerricco"))];
           })()),
         })),
         nodes: nix.thunk(() => ({
-          [nix.POS]: pos$55,
+          [nix.POS]: $pos[54],
           machine: nix.lambda((args_2) => (() => {
             const $_2 = nix.formals(args_2, formals$3);
             const pkgs_1 = nix.arg($_2, "pkgs");
             const lib_1 = nix.arg($_2, "lib");
             const usersharePath = "/var/lib/samba/usershares";
             return {
-              [nix.POS]: pos$54,
+              [nix.POS]: $pos[53],
               virtualisation: nix.thunk(() => ({
-                [nix.POS]: pos$2,
+                [nix.POS]: $pos[1],
                 emptyDiskImages: nix.thunk(() => [4096n, 4096n]),
                 useBootLoader: true,
                 useEFIBoot: true,
               })),
               boot: nix.thunk(() => ({
-                [nix.POS]: pos$9,
+                [nix.POS]: $pos[8],
                 loader: nix.thunk(() => ({
-                  [nix.POS]: pos$5,
-                  "systemd-boot": nix.thunk(() => ({ [nix.POS]: pos$3, enable: true })),
+                  [nix.POS]: $pos[4],
+                  "systemd-boot": nix.thunk(() => ({ [nix.POS]: $pos[2], enable: true })),
                   timeout: 0n,
-                  efi: nix.thunk(() => ({ [nix.POS]: pos$4, canTouchEfiVariables: true })),
+                  efi: nix.thunk(() => ({ [nix.POS]: $pos[3], canTouchEfiVariables: true })),
                 })),
                 kernelPackages: kernelPackages,
                 zfs: nix.thunk(() => ({
-                  [nix.POS]: pos$6,
+                  [nix.POS]: $pos[5],
                   package: zfsPackage,
                   devNodes: "/dev/disk/by-uuid",
                   forceImportRoot: nix.thunk(() => nix.app(nix.sel(lib_1, "mkDefault"), false)),
                 })),
                 supportedFilesystems: nix.thunk(() => ["zfs"]),
                 initrd: nix.thunk(() => ({
-                  [nix.POS]: pos$8,
-                  systemd: nix.thunk(() => ({ [nix.POS]: pos$7, enable: enableSystemdStage1 })),
+                  [nix.POS]: $pos[7],
+                  systemd: nix.thunk(() => ({ [nix.POS]: $pos[6], enable: enableSystemdStage1 })),
                 })),
               })),
-              networking: nix.thunk(() => ({ [nix.POS]: pos$10, hostId: "deadbeef" })),
+              networking: nix.thunk(() => ({ [nix.POS]: $pos[9], hostId: "deadbeef" })),
               environment: nix.thunk(() => ({
-                [nix.POS]: pos$11,
+                [nix.POS]: $pos[10],
                 systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs_1, "parted"))]),
               })),
               specialisation: nix.thunk(() => ({
-                [nix.POS]: pos$47,
+                [nix.POS]: $pos[46],
                 samba: nix.thunk(() => ({
-                  [nix.POS]: pos$24,
+                  [nix.POS]: $pos[23],
                   configuration: nix.thunk(() => ({
-                    [nix.POS]: pos$23,
+                    [nix.POS]: $pos[22],
                     services: nix.thunk(() => ({
-                      [nix.POS]: pos$15,
+                      [nix.POS]: $pos[14],
                       samba: nix.thunk(() => ({
-                        [nix.POS]: pos$14,
+                        [nix.POS]: $pos[13],
                         enable: true,
                         settings: nix.thunk(() => ({
-                          [nix.POS]: pos$13,
+                          [nix.POS]: $pos[12],
                           global: nix.thunk(() => ({
-                            [nix.POS]: pos$12,
+                            [nix.POS]: $pos[11],
                             "registry shares": true,
                             "usershare path": nix.thunk(() => nix.str`${usersharePath}`),
                             "usershare allow guests": true,
@@ -181,52 +99,52 @@ export default nix.lambda((args) => (() => {
                       })),
                     })),
                     systemd: nix.thunk(() => ({
-                      [nix.POS]: pos$19,
+                      [nix.POS]: $pos[18],
                       services: nix.thunk(() => ({
-                        [nix.POS]: pos$18,
+                        [nix.POS]: $pos[17],
                         "samba-smbd": nix.thunk(() => ({
-                          [nix.POS]: pos$17,
+                          [nix.POS]: $pos[16],
                           serviceConfig: nix.thunk(() => ({
-                            [nix.POS]: pos$16,
+                            [nix.POS]: $pos[15],
                             ExecStartPre: nix.thunk(() => nix.str`${nix.sel(pkgs_1, "coreutils")}/bin/mkdir -m +t -p ${usersharePath}`),
                           })),
                         })),
                       })),
                     })),
                     virtualisation: nix.thunk(() => ({
-                      [nix.POS]: pos$22,
+                      [nix.POS]: $pos[21],
                       fileSystems: nix.thunk(() => ({
-                        [nix.POS]: pos$21,
-                        "/tmp/mnt": nix.thunk(() => ({ [nix.POS]: pos$20, device: "rpool/root", fsType: "zfs" })),
+                        [nix.POS]: $pos[20],
+                        "/tmp/mnt": nix.thunk(() => ({ [nix.POS]: $pos[19], device: "rpool/root", fsType: "zfs" })),
                       })),
                     })),
                   })),
                 })),
                 encryption: nix.thunk(() => ({
-                  [nix.POS]: pos$34,
+                  [nix.POS]: $pos[33],
                   configuration: nix.thunk(() => ({
-                    [nix.POS]: pos$33,
+                    [nix.POS]: $pos[32],
                     boot: nix.thunk(() => ({
-                      [nix.POS]: pos$26,
+                      [nix.POS]: $pos[25],
                       zfs: nix.thunk(() => ({
-                        [nix.POS]: pos$25,
+                        [nix.POS]: $pos[24],
                         requestEncryptionCredentials: nix.thunk(() => ["automatic"]),
                       })),
                     })),
                     virtualisation: nix.thunk(() => ({
-                      [nix.POS]: pos$32,
+                      [nix.POS]: $pos[31],
                       fileSystems: nix.thunk(() => ({
-                        [nix.POS]: pos$31,
-                        "/automatic": nix.thunk(() => ({ [nix.POS]: pos$27, device: "automatic", fsType: "zfs" })),
-                        "/manual": nix.thunk(() => ({ [nix.POS]: pos$28, device: "manual", fsType: "zfs" })),
+                        [nix.POS]: $pos[30],
+                        "/automatic": nix.thunk(() => ({ [nix.POS]: $pos[26], device: "automatic", fsType: "zfs" })),
+                        "/manual": nix.thunk(() => ({ [nix.POS]: $pos[27], device: "manual", fsType: "zfs" })),
                         "/manual/encrypted": nix.thunk(() => ({
-                          [nix.POS]: pos$29,
+                          [nix.POS]: $pos[28],
                           device: "manual/encrypted",
                           fsType: "zfs",
                           options: nix.thunk(() => ["noauto"]),
                         })),
                         "/manual/httpkey": nix.thunk(() => ({
-                          [nix.POS]: pos$30,
+                          [nix.POS]: $pos[29],
                           device: "manual/httpkey",
                           fsType: "zfs",
                           options: nix.thunk(() => ["noauto"]),
@@ -236,36 +154,36 @@ export default nix.lambda((args) => (() => {
                   })),
                 })),
                 forcepool: nix.thunk(() => ({
-                  [nix.POS]: pos$46,
+                  [nix.POS]: $pos[45],
                   configuration: nix.thunk(() => ({
-                    [nix.POS]: pos$45,
+                    [nix.POS]: $pos[44],
                     systemd: nix.thunk(() => ({
-                      [nix.POS]: pos$39,
+                      [nix.POS]: $pos[38],
                       services: nix.thunk(() => ({
-                        [nix.POS]: pos$36,
+                        [nix.POS]: $pos[35],
                         "zfs-import-forcepool": nix.thunk(() => ({
-                          [nix.POS]: pos$35,
+                          [nix.POS]: $pos[34],
                           wantedBy: nix.thunk(() => nix.app(nix.sel(lib_1, "mkVMOverride"), nix.thunk(() => ["forcepool.mount"]))),
                         })),
                       })),
                       targets: nix.thunk(() => ({
-                        [nix.POS]: pos$38,
+                        [nix.POS]: $pos[37],
                         zfs: nix.thunk(() => ({
-                          [nix.POS]: pos$37,
+                          [nix.POS]: $pos[36],
                           wantedBy: nix.thunk(() => nix.app(nix.sel(lib_1, "mkVMOverride"), [])),
                         })),
                       })),
                     })),
                     boot: nix.thunk(() => ({
-                      [nix.POS]: pos$41,
-                      zfs: nix.thunk(() => ({ [nix.POS]: pos$40, forceImportAll: true, forceImportRoot: true })),
+                      [nix.POS]: $pos[40],
+                      zfs: nix.thunk(() => ({ [nix.POS]: $pos[39], forceImportAll: true, forceImportRoot: true })),
                     })),
                     virtualisation: nix.thunk(() => ({
-                      [nix.POS]: pos$44,
+                      [nix.POS]: $pos[43],
                       fileSystems: nix.thunk(() => ({
-                        [nix.POS]: pos$43,
+                        [nix.POS]: $pos[42],
                         "/forcepool": nix.thunk(() => ({
-                          [nix.POS]: pos$42,
+                          [nix.POS]: $pos[41],
                           device: "forcepool",
                           fsType: "zfs",
                           options: nix.thunk(() => ["noauto"]),
@@ -276,17 +194,17 @@ export default nix.lambda((args) => (() => {
                 })),
               })),
               services: nix.thunk(() => ({
-                [nix.POS]: pos$53,
+                [nix.POS]: $pos[52],
                 nginx: nix.thunk(() => ({
-                  [nix.POS]: pos$52,
+                  [nix.POS]: $pos[51],
                   enable: true,
                   virtualHosts: nix.thunk(() => ({
-                    [nix.POS]: pos$51,
+                    [nix.POS]: $pos[50],
                     localhost: nix.thunk(() => ({
-                      [nix.POS]: pos$50,
+                      [nix.POS]: $pos[49],
                       locations: nix.thunk(() => ({
-                        [nix.POS]: pos$49,
-                        "/zfskey": nix.thunk(() => ({ [nix.POS]: pos$48, return: "200 \"httpkeyabc\"" })),
+                        [nix.POS]: $pos[48],
+                        "/zfskey": nix.thunk(() => ({ [nix.POS]: $pos[47], return: "200 \"httpkeyabc\"" })),
                       })),
                     })),
                   })),
@@ -379,61 +297,61 @@ with subtest("boot.zfs.forceImportAll works"):
       })));
   })(), formals$2);
   return {
-    [nix.POS]: pos$83,
+    [nix.POS]: $pos[82],
     series_2_3: nix.thunk(() => nix.app(makeZfsTest, nix.thunk(() => ({
-        [nix.POS]: pos$57,
+        [nix.POS]: $pos[56],
         zfsPackage: nix.thunk(() => nix.sel(pkgs, "zfs_2_3")),
         kernelPackages: nix.thunk(() => nix.sel(pkgs, "linuxPackages")),
       })))),
     series_2_4: nix.thunk(() => nix.app(makeZfsTest, nix.thunk(() => ({
-        [nix.POS]: pos$58,
+        [nix.POS]: $pos[57],
         zfsPackage: nix.thunk(() => nix.sel(pkgs, "zfs_2_4")),
         kernelPackages: nix.thunk(() => nix.sel(pkgs, "linuxPackages")),
       })))),
     unstable: nix.thunk(() => nix.app(makeZfsTest, nix.thunk(() => ({
-        [nix.POS]: pos$59,
+        [nix.POS]: $pos[58],
         zfsPackage: nix.thunk(() => nix.sel(pkgs, "zfs_unstable")),
         kernelPackages: nix.thunk(() => nix.sel(pkgs, "linuxPackages")),
       })))),
     unstableWithSystemdStage1: nix.thunk(() => nix.app(makeZfsTest, nix.thunk(() => ({
-        [nix.POS]: pos$60,
+        [nix.POS]: $pos[59],
         zfsPackage: nix.thunk(() => nix.sel(pkgs, "zfs_unstable")),
         kernelPackages: nix.thunk(() => nix.sel(pkgs, "linuxPackages")),
         enableSystemdStage1: true,
       })))),
-    installerBoot: nix.thunk(() => nix.sel(nix.app(nix.builtins.import(nix.path(here, "./installer.nix")), nix.thunk(() => ({ [nix.POS]: pos$61, system: system, systemdStage1: false }))), "separateBootZfs")),
-    installer: nix.thunk(() => nix.sel(nix.app(nix.builtins.import(nix.path(here, "./installer.nix")), nix.thunk(() => ({ [nix.POS]: pos$62, system: system, systemdStage1: false }))), "zfsroot")),
-    installerBootWithSystemdStage1: nix.thunk(() => nix.sel(nix.app(nix.builtins.import(nix.path(here, "./installer.nix")), nix.thunk(() => ({ [nix.POS]: pos$63, system: system, systemdStage1: true }))), "separateBootZfs")),
-    installerWithSystemdStage1: nix.thunk(() => nix.sel(nix.app(nix.builtins.import(nix.path(here, "./installer.nix")), nix.thunk(() => ({ [nix.POS]: pos$64, system: system, systemdStage1: true }))), "zfsroot")),
+    installerBoot: nix.thunk(() => nix.sel(nix.app(nix.builtins.import(nix.path(here, "./installer.nix")), nix.thunk(() => ({ [nix.POS]: $pos[60], system: system, systemdStage1: false }))), "separateBootZfs")),
+    installer: nix.thunk(() => nix.sel(nix.app(nix.builtins.import(nix.path(here, "./installer.nix")), nix.thunk(() => ({ [nix.POS]: $pos[61], system: system, systemdStage1: false }))), "zfsroot")),
+    installerBootWithSystemdStage1: nix.thunk(() => nix.sel(nix.app(nix.builtins.import(nix.path(here, "./installer.nix")), nix.thunk(() => ({ [nix.POS]: $pos[62], system: system, systemdStage1: true }))), "separateBootZfs")),
+    installerWithSystemdStage1: nix.thunk(() => nix.sel(nix.app(nix.builtins.import(nix.path(here, "./installer.nix")), nix.thunk(() => ({ [nix.POS]: $pos[63], system: system, systemdStage1: true }))), "zfsroot")),
     "expand-partitions": nix.thunk(() => nix.app(runTest, nix.thunk(() => ({
-        [nix.POS]: pos$76,
+        [nix.POS]: $pos[75],
         name: "multi-disk-zfs",
         nodes: nix.thunk(() => ({
-          [nix.POS]: pos$75,
+          [nix.POS]: $pos[74],
           machine: nix.lambda((args_1) => (() => {
             const $_1 = nix.formals(args_1, formals$5);
             const pkgs_1 = nix.arg($_1, "pkgs");
             return {
-              [nix.POS]: pos$74,
+              [nix.POS]: $pos[73],
               environment: nix.thunk(() => ({
-                [nix.POS]: pos$65,
+                [nix.POS]: $pos[64],
                 systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs_1, "parted"))]),
               })),
-              boot: nix.thunk(() => ({ [nix.POS]: pos$66, supportedFilesystems: nix.thunk(() => ["zfs"]) })),
-              networking: nix.thunk(() => ({ [nix.POS]: pos$67, hostId: "00000000" })),
+              boot: nix.thunk(() => ({ [nix.POS]: $pos[65], supportedFilesystems: nix.thunk(() => ["zfs"]) })),
+              networking: nix.thunk(() => ({ [nix.POS]: $pos[66], hostId: "00000000" })),
               virtualisation: nix.thunk(() => ({
-                [nix.POS]: pos$68,
+                [nix.POS]: $pos[67],
                 emptyDiskImages: nix.thunk(() => [20480n, 20480n, 20480n, 20480n, 20480n, 20480n]),
               })),
               specialisation: nix.thunk(() => ({
-                [nix.POS]: pos$73,
+                [nix.POS]: $pos[72],
                 resize: nix.thunk(() => ({
-                  [nix.POS]: pos$72,
+                  [nix.POS]: $pos[71],
                   configuration: nix.thunk(() => ({
-                    [nix.POS]: pos$71,
+                    [nix.POS]: $pos[70],
                     services: nix.thunk(() => ({
-                      [nix.POS]: pos$70,
-                      zfs: nix.thunk(() => ({ [nix.POS]: pos$69, expandOnBoot: nix.thunk(() => ["tank"]) })),
+                      [nix.POS]: $pos[69],
+                      zfs: nix.thunk(() => ({ [nix.POS]: $pos[68], expandOnBoot: nix.thunk(() => ["tank"]) })),
                     })),
                   })),
                 })),
@@ -448,17 +366,17 @@ with subtest("boot.zfs.forceImportAll works"):
         })(), formals$6),
       })))),
     "zfs-mount-generator": nix.thunk(() => nix.app(runTest, nix.thunk(() => ({
-        [nix.POS]: pos$82,
+        [nix.POS]: $pos[81],
         name: "zfs-mount-generator",
         nodes: nix.thunk(() => ({
-          [nix.POS]: pos$81,
+          [nix.POS]: $pos[80],
           machine: nix.lambda((args_1) => (() => {
             const $_1 = nix.formals(args_1, formals$7);
             return {
-              [nix.POS]: pos$80,
-              boot: nix.thunk(() => ({ [nix.POS]: pos$77, supportedFilesystems: nix.thunk(() => ["zfs"]) })),
-              networking: nix.thunk(() => ({ [nix.POS]: pos$78, hostId: "00000000" })),
-              virtualisation: nix.thunk(() => ({ [nix.POS]: pos$79, emptyDiskImages: nix.thunk(() => [4096n]) })),
+              [nix.POS]: $pos[79],
+              boot: nix.thunk(() => ({ [nix.POS]: $pos[76], supportedFilesystems: nix.thunk(() => ["zfs"]) })),
+              networking: nix.thunk(() => ({ [nix.POS]: $pos[77], hostId: "00000000" })),
+              virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[78], emptyDiskImages: nix.thunk(() => [4096n]) })),
             };
           })(), formals$7),
         })),

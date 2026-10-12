@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/test_config.nix", [[["header", 15, 5], ["__structuredAttrs", 39, 5]]]);
 const formals$1 = { args: { lib: false, runCommand: false, "util-linux": false, stdenv: false, runtimeShell: false, bashInteractive: false, libapparmor: false, "apparmor-parser": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/test_config.nix", [["header", 15, 5], ["__structuredAttrs", 39, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const libapparmor = nix.arg($, "libapparmor");
   const apparmor_parser = nix.arg($, "apparmor-parser");
   return nix.app(runCommand, "logprof_conf", nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       header: nix.thunk(() => nix.str`[settings]
   # /etc/apparmor.d/ is read-only on NixOS
   profiledir = /var/cache/apparmor/logprof

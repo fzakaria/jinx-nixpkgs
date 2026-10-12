@@ -2,23 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["flutter", 13, 62]], [["hash", 54, 27]], [["version", 52, 17], ["src", 53, 17]], [["version", 60, 17], ["__intentionallyOverridingVersion", 61, 17]], [["url", 65, 44], ["hash", 66, 29]], [["src", 64, 19]], [["owner", 73, 15], ["repo", 74, 15], ["tag", 75, 15], ["hash", 76, 15]], [["version", 35, 11], ["engineVersion", 36, 11], ["patches", 37, 11], ["pubspecLock", 38, 11], ["artifactHashes", 39, 11], ["channel", 40, 11], ["dart", 43, 9], ["src", 70, 9]], [["flutter", 99, 13]], [["wrapFlutter", 97, 19], ["mkCustomFlutter", 97, 31], ["mkFlutter", 97, 47], ["buildFlutterApplication", 98, 11]], [["passthru", 96, 9]], [["patches", 115, 13]], [["wrapFlutter", 128, 11], ["mkFlutter", 128, 23]], [["beta", 131, 3]], [["stable", 134, 3]]]);
 const formals$1 = { args: { callPackage: false, fetchzip: false, fetchFromGitHub: false, dart: false, "dart-bin": false, lib: false, stdenv: false, runCommand: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["flutter", 13, 62]]);
 const formals$2 = { args: { version: false, engineVersion: false, dartVersion: false, flutterHash: false, dartHash: false, patches: false, pubspecLock: false, artifactHashes: false, channel: false }, ellipsis: false };
-const pos$2 = nix.positions(here + "/default.nix", [["hash", 54, 27]]);
-const pos$3 = nix.positions(here + "/default.nix", [["version", 52, 17], ["src", 53, 17]]);
-const pos$4 = nix.positions(here + "/default.nix", [["version", 60, 17], ["__intentionallyOverridingVersion", 61, 17]]);
-const pos$5 = nix.positions(here + "/default.nix", [["url", 65, 44], ["hash", 66, 29]]);
-const pos$6 = nix.positions(here + "/default.nix", [["src", 64, 19]]);
-const pos$7 = nix.positions(here + "/default.nix", [["owner", 73, 15], ["repo", 74, 15], ["tag", 75, 15], ["hash", 76, 15]]);
-const pos$8 = nix.positions(here + "/default.nix", [["version", 35, 11], ["engineVersion", 36, 11], ["patches", 37, 11], ["pubspecLock", 38, 11], ["artifactHashes", 39, 11], ["channel", 40, 11], ["dart", 43, 9], ["src", 70, 9]]);
-const pos$9 = nix.positions(here + "/default.nix", [["flutter", 99, 13]]);
-const pos$10 = nix.positions(here + "/default.nix", [["wrapFlutter", 97, 19], ["mkCustomFlutter", 97, 31], ["mkFlutter", 97, 47], ["buildFlutterApplication", 98, 11]]);
-const pos$11 = nix.positions(here + "/default.nix", [["passthru", 96, 9]]);
-const pos$12 = nix.positions(here + "/default.nix", [["patches", 115, 13]]);
-const pos$13 = nix.positions(here + "/default.nix", [["wrapFlutter", 128, 11], ["mkFlutter", 128, 23]]);
-const pos$14 = nix.positions(here + "/default.nix", [["beta", 131, 3]]);
-const pos$15 = nix.positions(here + "/default.nix", [["stable", 134, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,7 +17,7 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const runCommand = nix.arg($, "runCommand");
   const mkCustomFlutter = (args_1) => nix.app(callPackage, nix.path(here, "./flutter.nix"), args_1);
-  const wrapFlutter = (flutter) => nix.app(callPackage, nix.path(here, "./wrapper.nix"), nix.thunk(() => ({ [nix.POS]: pos$1, flutter: flutter })));
+  const wrapFlutter = (flutter) => nix.app(callPackage, nix.path(here, "./wrapper.nix"), nix.thunk(() => ({ [nix.POS]: $pos[0], flutter: flutter })));
   const getPatches = (dir) => (() => {
     const files = nix.thunk(() => nix.builtins.attrNames(nix.thunk(() => nix.builtins.readDir(dir))));
     return (nix.asBool(nix.builtins.pathExists(dir)) ? nix.builtins.map((f) => nix.add(dir, nix.add("/", f)), files) : []);
@@ -48,7 +34,7 @@ export default nix.lambda((args) => (() => {
     const artifactHashes = nix.arg($_1, "artifactHashes");
     const channel = nix.arg($_1, "channel");
     const args_2 = nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       version: version,
       engineVersion: engineVersion,
       patches: patches,
@@ -58,24 +44,24 @@ export default nix.lambda((args) => (() => {
       dart: nix.thunk(() => (() => {
         const hash = nix.thunk(() => nix.selOr(dartHash, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenv, "hostPlatform", "system")}`)), nix.key(nix.sel(stdenv, "hostPlatform", "system"))));
         return (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), version, "3.41")) ? nix.app(nix.sel(dart_bin, "overrideAttrs"), (oldAttrs) => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             version: dartVersion,
-            src: nix.thunk(() => nix.app(nix.sel(oldAttrs, "src", "overrideAttrs"), (_) => ({ [nix.POS]: pos$2, hash: hash }))),
+            src: nix.thunk(() => nix.app(nix.sel(oldAttrs, "src", "overrideAttrs"), (_) => ({ [nix.POS]: $pos[1], hash: hash }))),
           })) : nix.app(nix.sel(nix.app(nix.sel(dart_bin, "overrideAttrs"), (_) => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             version: dartVersion,
             __intentionallyOverridingVersion: true,
           })), "overrideAttrs"), (oldAttrs) => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => (() => {
                 const from = nix.thunk(() => nix.sel(oldAttrs, "src"));
-                return { [nix.POS]: pos$5, url: nix.thunk(() => nix.attr(from, "url")), hash: hash };
+                return { [nix.POS]: $pos[4], url: nix.thunk(() => nix.attr(from, "url")), hash: hash };
               })()))),
           })));
       })()),
       src: nix.thunk(() => (() => {
         const source = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             owner: "flutter",
             repo: "flutter",
             tag: version,
@@ -90,14 +76,14 @@ touch $out/bin/cache/engine.realm
       })()),
     }));
     return nix.app(nix.sel(nix.app(mkCustomFlutter, args_2), "overrideAttrs"), (prev) => (next) => ({
-        [nix.POS]: pos$11,
+        [nix.POS]: $pos[10],
         passthru: nix.thunk(() => nix.update(nix.sel(next, "passthru"), {
-          [nix.POS]: pos$10,
+          [nix.POS]: $pos[9],
           wrapFlutter: wrapFlutter,
           mkCustomFlutter: mkCustomFlutter,
           mkFlutter: mkFlutter,
           buildFlutterApplication: nix.thunk(() => nix.app(callPackage, nix.path(here, "./build-support/build-flutter-application.nix"), nix.thunk(() => ({
-              [nix.POS]: pos$9,
+              [nix.POS]: $pos[8],
               flutter: nix.thunk(() => nix.app(wrapFlutter, nix.thunk(() => nix.app(mkCustomFlutter, args_2)))),
             })))),
         })),
@@ -107,17 +93,17 @@ touch $out/bin/cache/engine.realm
       const versionDir = nix.thunk(() => nix.add(nix.path(here, "./versions"), nix.str`/${version}`));
       const data = nix.thunk(() => nix.app(nix.sel(lib, "importJSON"), nix.thunk(() => nix.add(versionDir, "/data.json"))));
       return nix.app(nix.sel(lib, "nameValuePair"), nix.thunk(() => nix.str`v${version}`), nix.thunk(() => nix.app(wrapFlutter, nix.thunk(() => nix.app(mkFlutter, nix.thunk(() => nix.update({
-              [nix.POS]: pos$12,
+              [nix.POS]: $pos[11],
               patches: nix.thunk(() => nix.concat(nix.app(getPatches, nix.path(here, "./patches")), nix.app(getPatches, nix.thunk(() => nix.add(versionDir, "/patches"))))),
             }, data)))))));
     })(), nix.thunk(() => nix.builtins.readDir(nix.path(here, "./versions")))));
   const stableFlutterVersions = nix.thunk(() => nix.app(nix.sel(lib, "attrsets", "filterAttrs"), (_) => (v) => nix.eq(nix.sel(v, "channel"), "stable"), flutterVersions));
   const betaFlutterVersions = nix.thunk(() => nix.app(nix.sel(lib, "attrsets", "filterAttrs"), (_) => (v) => nix.eq(nix.sel(v, "channel"), "beta"), flutterVersions));
-  return nix.update(flutterVersions, nix.update({ [nix.POS]: pos$13, wrapFlutter: wrapFlutter, mkFlutter: mkFlutter }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(betaFlutterVersions, {})), nix.thunk(() => ({
-      [nix.POS]: pos$14,
+  return nix.update(flutterVersions, nix.update({ [nix.POS]: $pos[12], wrapFlutter: wrapFlutter, mkFlutter: mkFlutter }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(betaFlutterVersions, {})), nix.thunk(() => ({
+      [nix.POS]: $pos[13],
       beta: nix.thunk(() => nix.sel(flutterVersions, nix.key(nix.app(nix.sel(lib, "last"), nix.thunk(() => nix.app(nix.sel(lib, "naturalSort"), nix.thunk(() => nix.builtins.attrNames(betaFlutterVersions)))))))),
     }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(stableFlutterVersions, {})), nix.thunk(() => ({
-      [nix.POS]: pos$15,
+      [nix.POS]: $pos[14],
       stable: nix.thunk(() => nix.sel(flutterVersions, nix.key(nix.app(nix.sel(lib, "last"), nix.thunk(() => nix.app(nix.sel(lib, "naturalSort"), nix.thunk(() => nix.builtins.attrNames(stableFlutterVersions)))))))),
     }))))));
 })(), formals$1);

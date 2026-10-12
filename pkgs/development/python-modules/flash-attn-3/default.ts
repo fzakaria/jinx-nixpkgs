@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["stdenv", 21, 47]], [["owner", 34, 5], ["repo", 35, 5], ["rev", 36, 5], ["hash", 37, 5], ["fetchSubmodules", 38, 5]], [["FLASH_ATTENTION_FORCE_BUILD", 65, 5], ["FLASH_ATTENTION_SKIP_CUDA_BUILD", 66, 5], ["TORCH_CUDA_ARCH_LIST", 69, 5]], [["extraArgs", 100, 5]], [["updateScript", 99, 12]], [["description", 107, 5], ["homepage", 108, 5], ["license", 109, 5], ["maintainers", 110, 5], ["broken", 112, 5]], [["pname", 22, 3], ["version", 23, 3], ["pyproject", 24, 3], ["__structuredAttrs", 25, 3], ["src", 33, 3], ["sourceRoot", 41, 3], ["postPatch", 43, 3], ["preConfigure", 59, 3], ["env", 64, 3], ["build-system", 72, 3], ["nativeBuildInputs", 78, 3], ["buildInputs", 82, 3], ["dependencies", 86, 3], ["pythonImportsCheck", 91, 3], ["doCheck", 97, 3], ["passthru", 99, 3], ["meta", 106, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, ninja: false, setuptools: false, torch: false, einops: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["stdenv", 21, 47]]);
-const pos$2 = nix.positions(here + "/default.nix", [["owner", 34, 5], ["repo", 35, 5], ["rev", 36, 5], ["hash", 37, 5], ["fetchSubmodules", 38, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["FLASH_ATTENTION_FORCE_BUILD", 65, 5], ["FLASH_ATTENTION_SKIP_CUDA_BUILD", 66, 5], ["TORCH_CUDA_ARCH_LIST", 69, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["extraArgs", 100, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["updateScript", 99, 12]]);
-const pos$6 = nix.positions(here + "/default.nix", [["description", 107, 5], ["homepage", 108, 5], ["license", 109, 5], ["maintainers", 110, 5], ["broken", 112, 5]]);
-const pos$7 = nix.positions(here + "/default.nix", [["pname", 22, 3], ["version", 23, 3], ["pyproject", 24, 3], ["__structuredAttrs", 25, 3], ["src", 33, 3], ["sourceRoot", 41, 3], ["postPatch", 43, 3], ["preConfigure", 59, 3], ["env", 64, 3], ["build-system", 72, 3], ["nativeBuildInputs", 78, 3], ["buildInputs", 82, 3], ["dependencies", 86, 3], ["pythonImportsCheck", 91, 3], ["doCheck", 97, 3], ["passthru", 99, 3], ["meta", 106, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,14 +18,14 @@ export default nix.lambda((args) => (() => {
   const cudaCapabilities = nix.thunk(() => nix.attr(torch, "cudaCapabilities"));
   const cudaPackages = nix.thunk(() => nix.attr(torch, "cudaPackages"));
   const cudaSupport = nix.thunk(() => nix.attr(torch, "cudaSupport"));
-  return nix.app(nix.sel(buildPythonPackage, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, stdenv: nix.thunk(() => nix.attr(torch, "stdenv")) })), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+  return nix.app(nix.sel(buildPythonPackage, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], stdenv: nix.thunk(() => nix.attr(torch, "stdenv")) })), (finalAttrs) => ({
+      [nix.POS]: $pos[6],
       pname: "flash-attn-3",
       version: "3.0.0-unstable-2026-06-10",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "Dao-AILab",
           repo: "flash-attention",
           rev: "fc8cbad6b6b90220cf6ef8121c29e299a3ba7d9a",
@@ -42,7 +36,7 @@ export default nix.lambda((args) => (() => {
       postPatch: nix.thunk(() => nix.add("substituteInPlace setup.py \\\n  --replace-fail \\\n    'subprocess.run([\"git\", \"submodule\", \"update\", \"--init\", \"../csrc/cutlass\"])' \\\n    'pass'\n", "substituteInPlace setup.py \\\n  --replace-fail \\\n    'if bare_metal_version >= Version(\"12.3\") and bare_metal_version < Version(\"13.0\") and bare_metal_version != Version(\"12.8\"):' \\\n    'if False:'\n")),
       preConfigure: "export MAX_JOBS=\"$NIX_BUILD_CORES\"\nexport NVCC_THREADS=2\n",
       env: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         FLASH_ATTENTION_FORCE_BUILD: "TRUE",
         FLASH_ATTENTION_SKIP_CUDA_BUILD: "FALSE",
         TORCH_CUDA_ARCH_LIST: nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), ";", cudaCapabilities)),
@@ -54,14 +48,14 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["flash_attn_config", "flash_attn_interface"]),
       doCheck: false,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             extraArgs: nix.thunk(() => ["--version=branch", "--version-regex=v(3.*)"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Official implementation of FlashAttention-3",
         homepage: "https://github.com/Dao-AILab/flash-attention/blob/main/hopper",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

@@ -2,8 +2,7 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
-const pos$1 = nix.positions(here + "/shell.nix", [["alexandria", 14, 11], ["str", 15, 11], ["dexador", 16, 11], ["cl-ppcre", 17, 11], ["sqlite", 18, 11], ["arrow-macros", 19, 11], ["jzon", 20, 11]]);
-const pos$2 = nix.positions(here + "/shell.nix", [["packages", 8, 3]]);
+const $pos = nix.positions(here + "/shell.nix", [[["alexandria", 14, 11], ["str", 15, 11], ["dexador", 16, 11], ["cl-ppcre", 17, 11], ["sqlite", 18, 11], ["arrow-macros", 19, 11], ["jzon", 20, 11]], [["packages", 8, 3]]]);
 
 export default nix.thunk(() => (() => {
   const from = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../../ci")), nix.thunk(() => ({}))));
@@ -12,11 +11,11 @@ export default nix.thunk(() => (() => {
   const mkShellNoCC = nix.thunk(() => nix.attr(pkgs, "mkShellNoCC"));
   const sbcl = nix.thunk(() => nix.attr(pkgs, "sbcl"));
   return nix.app(mkShellNoCC, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       packages: nix.thunk(() => [
         nix.thunk(() => nix.sel(fmt, "pkg")),
         nix.thunk(() => nix.app(nix.sel(sbcl, "withPackages"), (ps) => nix.builtins.attrValues(nix.thunk(() => ({
-              [nix.POS]: pos$1,
+              [nix.POS]: $pos[0],
               alexandria: nix.thunk(() => nix.attr(ps, "alexandria")),
               str: nix.thunk(() => nix.attr(ps, "str")),
               dexador: nix.thunk(() => nix.attr(ps, "dexador")),

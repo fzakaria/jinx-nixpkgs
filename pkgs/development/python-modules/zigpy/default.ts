@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 31, 5], ["repo", 32, 5], ["tag", 33, 5], ["hash", 34, 5]], [["description", 91, 5], ["homepage", 92, 5], ["changelog", 93, 5], ["license", 94, 5], ["maintainers", 95, 5], ["platforms", 96, 5]], [["pname", 26, 3], ["version", 27, 3], ["pyproject", 28, 3], ["src", 30, 3], ["postPatch", 37, 3], ["build-system", 46, 3], ["dependencies", 48, 3], ["nativeCheckInputs", 61, 3], ["disabledTests", 71, 3], ["disabledTestPaths", 76, 3], ["pythonImportsCheck", 82, 3], ["meta", 90, 3]]]);
 const formals$1 = { args: { lib: false, aiohttp: false, aioresponses: false, aiosqlite: false, attrs: false, buildPythonPackage: false, crccheck: false, cryptography: false, fetchFromGitHub: false, filelock: false, freezegun: false, frozendict: false, jsonschema: false, "pytest-asyncio": false, "pytest-timeout": false, "pytest-xdist": false, pytestCheckHook: false, serialx: false, setuptools: false, "typing-extensions": false, voluptuous: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 31, 5], ["repo", 32, 5], ["tag", 33, 5], ["hash", 34, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 91, 5], ["homepage", 92, 5], ["changelog", 93, 5], ["license", 94, 5], ["maintainers", 95, 5], ["platforms", 96, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 26, 3], ["version", 27, 3], ["pyproject", 28, 3], ["src", 30, 3], ["postPatch", 37, 3], ["build-system", 46, 3], ["dependencies", 48, 3], ["nativeCheckInputs", 61, 3], ["disabledTests", 71, 3], ["disabledTestPaths", 76, 3], ["pythonImportsCheck", 82, 3], ["meta", 90, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,12 +29,12 @@ export default nix.lambda((args) => (() => {
   const typing_extensions = nix.arg($, "typing-extensions");
   const voluptuous = nix.arg($, "voluptuous");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "zigpy",
       version: "2.2.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "zigpy",
           repo: "zigpy",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -81,7 +79,7 @@ rm -r tools
         "zigpy.zcl",
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Library implementing a ZigBee stack",
         homepage: "https://github.com/zigpy/zigpy",
         changelog: nix.thunk(() => nix.str`https://github.com/zigpy/zigpy/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

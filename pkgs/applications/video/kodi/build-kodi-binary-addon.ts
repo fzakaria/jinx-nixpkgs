@@ -2,9 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/build-kodi-binary-addon.nix", [[["name", 24, 7], ["dontStrip", 26, 7], ["nativeBuildInputs", 28, 7], ["buildInputs", 29, 7], ["extraRuntimeDependencies", 36, 15], ["cmakeFlags", 39, 7], ["installPhase", 47, 7]]]);
 const formals$1 = { args: { stdenv: false, toKodiAddon: false, addonDir: false, cmake: false, kodi: false, "kodi-platform": false, libcec_platform: false }, ellipsis: false };
 const formals$2 = { args: { name: true, namespace: false, version: false, extraNativeBuildInputs: true, extraBuildInputs: true, extraRuntimeDependencies: true, extraCMakeFlags: true, extraInstallPhase: true }, ellipsis: true };
-const pos$1 = nix.positions(here + "/build-kodi-binary-addon.nix", [["name", 24, 7], ["dontStrip", 26, 7], ["nativeBuildInputs", 28, 7], ["buildInputs", 29, 7], ["extraRuntimeDependencies", 36, 15], ["cmakeFlags", 39, 7], ["installPhase", 47, 7]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,7 +27,7 @@ export default nix.lambda((args) => (() => {
     const extraCMakeFlags = nix.argOr($_1, "extraCMakeFlags", () => []);
     const extraInstallPhase = nix.argOr($_1, "extraInstallPhase", () => "");
     return nix.app(toKodiAddon, nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => nix.update({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           name: nix.thunk(() => nix.add("kodi-", name)),
           dontStrip: true,
           nativeBuildInputs: nix.thunk(() => nix.concat([cmake], extraNativeBuildInputs)),

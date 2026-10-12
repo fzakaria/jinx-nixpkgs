@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 34, 5], ["owner", 35, 5], ["repo", 36, 5], ["rev", 37, 5], ["hash", 38, 5]], [["NIX_LDFLAGS", 71, 5]], [["description", 91, 5], ["homepage", 92, 5], ["license", 93, 5], ["platforms", 94, 5], ["maintainers", 95, 5]], [["pname", 30, 3], ["version", 31, 3], ["src", 33, 3], ["nativeBuildInputs", 41, 3], ["buildInputs", 49, 3], ["env", 70, 3], ["preConfigure", 74, 3], ["enableParallelBuilding", 78, 3], ["configureFlags", 80, 3], ["postInstall", 86, 3], ["meta", 90, 3]]]);
 const formals$1 = { args: { fetchFromGitHub: false, lib: false, stdenv: false, autoconf: false, automake: false, "pkg-config": false, m4: false, curl: false, libGLU: false, libGL: false, libxmu: false, libxi: false, libglut: false, libjpeg: false, libtool: false, wxwidgets_3_2: false, "libxcb-util": false, sqlite: false, gtk3: false, patchelf: false, libxscrnsaver: false, libnotify: false, libx11: false, libxcb: false, headless: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 34, 5], ["owner", 35, 5], ["repo", 36, 5], ["rev", 37, 5], ["hash", 38, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_LDFLAGS", 71, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 91, 5], ["homepage", 92, 5], ["license", 93, 5], ["platforms", 94, 5], ["maintainers", 95, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 30, 3], ["version", 31, 3], ["src", 33, 3], ["nativeBuildInputs", 41, 3], ["buildInputs", 49, 3], ["env", 70, 3], ["preConfigure", 74, 3], ["enableParallelBuilding", 78, 3], ["configureFlags", 80, 3], ["postInstall", 86, 3], ["meta", 90, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -39,7 +36,7 @@ export default nix.lambda((args) => (() => {
       const pname = "boinc";
       const version = "8.2.15";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           name: nix.thunk(() => nix.str`${pname}-${version}-src`),
           owner: "BOINC",
           repo: "boinc",
@@ -62,7 +59,7 @@ export default nix.lambda((args) => (() => {
           libxcb,
           libxcb_util,
         ]))));
-      const env = nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.asBool(headless)), nix.thunk(() => ({ [nix.POS]: pos$2, NIX_LDFLAGS: "-lX11" }))));
+      const env = nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.asBool(headless)), nix.thunk(() => ({ [nix.POS]: $pos[1], NIX_LDFLAGS: "-lX11" }))));
       const preConfigure = "./_autosetup\n";
       const enableParallelBuilding = true;
       const configureFlags = nix.thunk(() => nix.concat([
@@ -71,7 +68,7 @@ export default nix.lambda((args) => (() => {
       ], nix.app(nix.sel(lib, "optionals"), headless, nix.thunk(() => ["--disable-manager"]))));
       const postInstall = "install --mode=444 -D 'client/scripts/boinc-client.service' \"$out/etc/systemd/system/boinc.service\"\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Free software for distributed and grid computing",
         homepage: "https://boinc.berkeley.edu/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl2Plus")),
@@ -82,7 +79,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

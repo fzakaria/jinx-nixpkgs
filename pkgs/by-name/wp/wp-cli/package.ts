@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 20, 5], ["hash", 21, 5]], [["memory_limit", 27, 13]], [["phar.readonly", 28, 14]], [["PHP", 27, 9], ["Phar", 28, 9]], [["url", 39, 5], ["hash", 40, 5]], [["completion", 85, 13], ["updateScript", 86, 5]], [["description", 94, 5], ["homepage", 95, 5], ["changelog", 96, 5], ["license", 97, 5], ["maintainers", 98, 5], ["platforms", 99, 5], ["mainProgram", 100, 5]], [["pname", 35, 3], ["version", 36, 11], ["src", 38, 3], ["dontUnpack", 43, 3], ["dontConfigure", 44, 3], ["dontBuild", 45, 3], ["nativeBuildInputs", 47, 3], ["installPhase", 55, 3], ["doInstallCheck", 76, 3], ["nativeInstallCheckInputs", 78, 3], ["versionCheckProgram", 80, 3], ["versionCheckProgramArg", 82, 3], ["passthru", 84, 3], ["meta", 93, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, formats: false, installShellFiles: false, makeWrapper: false, versionCheckHook: false, php: false, writeScript: false, "nix-update": false, "common-updater-scripts": false, phpIniFile: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["memory_limit", 27, 13]]);
-const pos$3 = nix.positions(here + "/package.nix", [["phar.readonly", 28, 14]]);
-const pos$4 = nix.positions(here + "/package.nix", [["PHP", 27, 9], ["Phar", 28, 9]]);
-const pos$5 = nix.positions(here + "/package.nix", [["url", 39, 5], ["hash", 40, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["completion", 85, 13], ["updateScript", 86, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["description", 94, 5], ["homepage", 95, 5], ["changelog", 96, 5], ["license", 97, 5], ["maintainers", 98, 5], ["platforms", 99, 5], ["mainProgram", 100, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 35, 3], ["version", 36, 11], ["src", 38, 3], ["dontUnpack", 43, 3], ["dontConfigure", 44, 3], ["dontBuild", 45, 3], ["nativeBuildInputs", 47, 3], ["installPhase", 55, 3], ["doInstallCheck", 76, 3], ["nativeInstallCheckInputs", 78, 3], ["versionCheckProgram", 80, 3], ["versionCheckProgramArg", 82, 3], ["passthru", 84, 3], ["meta", 93, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,21 +21,21 @@ export default nix.lambda((args) => (() => {
   const phpIniFile = nix.argOr($, "phpIniFile", () => null);
   const version = "2.12.0";
   const completion = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: nix.thunk(() => nix.str`https://raw.githubusercontent.com/wp-cli/wp-cli/v${version}/utils/wp-completion.bash`),
       hash: "sha256-RDygYQzK6NLWrOug7EqnkpuH7Wz1T2Zq/tGNZjoYo5U=",
     }))));
   const ini = nix.thunk(() => (nix.asBool(nix.eq(phpIniFile, null)) ? nix.app(nix.sel(nix.app(nix.sel(formats, "ini"), nix.thunk(() => ({}))), "generate"), "php.ini", nix.thunk(() => ({
-      [nix.POS]: pos$4,
-      PHP: nix.thunk(() => ({ [nix.POS]: pos$2, memory_limit: nix.thunk(() => nix.neg(1n)) })),
-      Phar: nix.thunk(() => ({ [nix.POS]: pos$3, "phar.readonly": "Off" })),
+      [nix.POS]: $pos[3],
+      PHP: nix.thunk(() => ({ [nix.POS]: $pos[1], memory_limit: nix.thunk(() => nix.neg(1n)) })),
+      Phar: nix.thunk(() => ({ [nix.POS]: $pos[2], "phar.readonly": "Off" })),
     }))) : nix.force(phpIniFile)));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "wp-cli",
       version: version,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           url: nix.thunk(() => nix.str`https://github.com/wp-cli/wp-cli/releases/download/v${version}/wp-cli-${version}.phar`),
           hash: "sha256-zjTd2Dj3NR1nWQaNCXk/JnVUY7SkYQpaXAqXtoIg2Fw=",
         })))),
@@ -74,7 +67,7 @@ runHook postInstall
       versionCheckProgram: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/bin/wp`),
       versionCheckProgramArg: "--info",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         completion: completion,
         updateScript: nix.thunk(() => nix.app(writeScript, "update-wp-cli", nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), nix_update)}
 version=$(nix-instantiate --eval -E "with import ./. {}; wp-cli.version or (lib.getVersion wp-cli)" | tr -d '"')
@@ -82,7 +75,7 @@ ${nix.app(nix.sel(lib, "getExe'"), common_updater_scripts, "update-source-versio
 `))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "Command line interface for WordPress",
         homepage: "https://wp-cli.org",
         changelog: nix.thunk(() => nix.str`https://github.com/wp-cli/wp-cli/releases/tag/v${nix.sel(finalAttrs, "version")}`),

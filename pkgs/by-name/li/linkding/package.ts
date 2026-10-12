@@ -2,20 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["django", 22, 7]], [["self", 20, 5], ["packageOverrides", 21, 5]], [["plugins", 27, 5], ["python3", 28, 5]], [["url", 38, 7], ["name", 39, 7], ["hash", 40, 7]], [["pname", 34, 5], ["version", 35, 13], ["src", 37, 5], ["nativeBuildInputs", 43, 5], ["buildInputs", 48, 5], ["dontUnpack", 53, 5], ["buildPhase", 55, 5], ["installPhase", 64, 5]], [["owner", 77, 5], ["repo", 78, 5], ["tag", 79, 5], ["hash", 80, 5]], [["postgres", 103, 5]], [["version", 119, 26], ["pname", 121, 5], ["src", 122, 5], ["npmDepsHash", 124, 5], ["installPhase", 126, 5]], [["linkding", 281, 28], ["linkding-postgres", 281, 37]], [["extraArgs", 284, 7]], [["python", 276, 7], ["icuExtension", 277, 7], ["uwsgiWithPython", 278, 7], ["tests", 280, 5], ["updateScript", 283, 5]], [["description", 292, 5], ["homepage", 293, 5], ["changelog", 294, 5], ["license", 295, 5], ["maintainers", 296, 5], ["platforms", 300, 5]], [["pname", 72, 3], ["version", 73, 11], ["pyproject", 74, 3], ["src", 76, 3], ["__structuredAttrs", 83, 3], ["build-system", 85, 3], ["dependencies", 89, 3], ["optional-dependencies", 102, 3], ["dontCheckRuntimeDeps", 106, 3], ["dontWrapPythonPrograms", 109, 3], ["pyprojectAppendix", 111, 3], ["ui", 118, 3], ["postPatch", 134, 3], ["preBuild", 229, 3], ["postBuild", 237, 3], ["postInstall", 242, 3], ["passthru", 274, 3], ["meta", 291, 3]]]);
 const formals$1 = { args: { lib: false, buildNpmPackage: false, fetchFromGitHub: false, fetchurl: false, gcc: false, icu: false, "nix-update-script": false, nixosTests: false, "pkg-config": false, python3: false, sqlite: false, stdenv: false, uwsgi: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["django", 22, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["self", 20, 5], ["packageOverrides", 21, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["plugins", 27, 5], ["python3", 28, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["url", 38, 7], ["name", 39, 7], ["hash", 40, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 34, 5], ["version", 35, 13], ["src", 37, 5], ["nativeBuildInputs", 43, 5], ["buildInputs", 48, 5], ["dontUnpack", 53, 5], ["buildPhase", 55, 5], ["installPhase", 64, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["owner", 77, 5], ["repo", 78, 5], ["tag", 79, 5], ["hash", 80, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["postgres", 103, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["version", 119, 26], ["pname", 121, 5], ["src", 122, 5], ["npmDepsHash", 124, 5], ["installPhase", 126, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["linkding", 281, 28], ["linkding-postgres", 281, 37]]);
-const pos$10 = nix.positions(here + "/package.nix", [["extraArgs", 284, 7]]);
-const pos$11 = nix.positions(here + "/package.nix", [["python", 276, 7], ["icuExtension", 277, 7], ["uwsgiWithPython", 278, 7], ["tests", 280, 5], ["updateScript", 283, 5]]);
-const pos$12 = nix.positions(here + "/package.nix", [["description", 292, 5], ["homepage", 293, 5], ["changelog", 294, 5], ["license", 295, 5], ["maintainers", 296, 5], ["platforms", 300, 5]]);
-const pos$13 = nix.positions(here + "/package.nix", [["pname", 72, 3], ["version", 73, 11], ["pyproject", 74, 3], ["src", 76, 3], ["__structuredAttrs", 83, 3], ["build-system", 85, 3], ["dependencies", 89, 3], ["optional-dependencies", 102, 3], ["dontCheckRuntimeDeps", 106, 3], ["dontWrapPythonPrograms", 109, 3], ["pyprojectAppendix", 111, 3], ["ui", 118, 3], ["postPatch", 134, 3], ["preBuild", 229, 3], ["postBuild", 237, 3], ["postInstall", 242, 3], ["passthru", 274, 3], ["meta", 291, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,17 +22,17 @@ export default nix.lambda((args) => (() => {
   const uwsgi = nix.arg($, "uwsgi");
   const version = "1.47.0";
   const python = nix.thunk(() => nix.app(nix.sel(python3, "override"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       self: python,
-      packageOverrides: (final) => (prev) => ({ [nix.POS]: pos$1, django: nix.thunk(() => nix.sel(prev, "django_6")) }),
+      packageOverrides: (final) => (prev) => ({ [nix.POS]: $pos[0], django: nix.thunk(() => nix.sel(prev, "django_6")) }),
     }))));
-  const uwsgiWithPython = nix.thunk(() => nix.app(nix.sel(uwsgi, "override"), nix.thunk(() => ({ [nix.POS]: pos$3, plugins: nix.thunk(() => ["python3"]), python3: python }))));
+  const uwsgiWithPython = nix.thunk(() => nix.app(nix.sel(uwsgi, "override"), nix.thunk(() => ({ [nix.POS]: $pos[2], plugins: nix.thunk(() => ["python3"]), python3: python }))));
   const icuExtension = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "linkding-sqlite-icu",
       version: version,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           url: "https://www.sqlite.org/src/raw/ext/icu/icu.c?name=91c021c7e3e8bbba286960810fa303295c622e323567b2e6def4ce58e4466e60",
           name: "icu.c",
           hash: "sha256-DkELE5p82yZVz0GVFdWWAEU8eo10ob0fqx66Q7rxv+U=",
@@ -65,12 +53,12 @@ runHook postBuild
       installPhase: "runHook preInstall\ninstall -Dm755 libicu.so $out/lib/libicu.so\nrunHook postInstall\n",
     }))));
   return nix.app(nix.sel(python, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$13,
+      [nix.POS]: $pos[12],
       pname: "linkding",
       version: version,
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           owner: "sissbruecker",
           repo: "linkding",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -97,7 +85,7 @@ runHook postBuild
         ];
       })()),
       "optional-dependencies": nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         postgres: nix.thunk(() => (() => {
           const w_2 = nix.withScope(nix.thunk(() => nix.sel(python, "pkgs")), null);
           return [nix.thunk(() => nix.lookup(w_2, "psycopg"))];
@@ -107,7 +95,7 @@ runHook postBuild
       dontWrapPythonPrograms: true,
       pyprojectAppendix: "[tool.setuptools.packages.find]\ninclude = [\"bookmarks*\"]\n[tool.setuptools.package-data]\nbookmarks = [\"static/**/*\", \"styles/**/*\", \"templates/**/*\", \"version.txt\"]\n",
       ui: nix.thunk(() => nix.app(buildNpmPackage, nix.thunk(() => ({
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           pname: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-ui`),
           src: nix.thunk(() => nix.sel(finalAttrs, "src")),
@@ -246,19 +234,19 @@ chmod +x $out/bin/linkding-bootstrap
 `;
       })()),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$11,
+        [nix.POS]: $pos[10],
         python: python,
         icuExtension: icuExtension,
         uwsgiWithPython: uwsgiWithPython,
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           linkding: nix.thunk(() => nix.attr(nixosTests, "linkding")),
           "linkding-postgres": nix.thunk(() => nix.attr(nixosTests, "linkding-postgres")),
         })),
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$10, extraArgs: nix.thunk(() => ["--subpackage", "ui"]) })))),
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: $pos[9], extraArgs: nix.thunk(() => ["--subpackage", "ui"]) })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$12,
+        [nix.POS]: $pos[11],
         description: "Self-hosted bookmark manager designed to be minimal, fast, and easy to set up",
         homepage: "https://linkding.link/",
         changelog: nix.thunk(() => nix.str`https://github.com/sissbruecker/linkding/releases/tag/v${nix.sel(finalAttrs, "version")}`),

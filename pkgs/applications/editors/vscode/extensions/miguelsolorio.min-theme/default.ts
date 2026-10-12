@@ -2,26 +2,24 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["name", 5, 5], ["publisher", 6, 5], ["version", 7, 5], ["hash", 8, 5]], [["description", 11, 5], ["downloadPage", 12, 5], ["homepage", 13, 5], ["license", 14, 5]], [["mktplcRef", 4, 3], ["meta", 10, 3]]]);
 const formals$1 = { args: { lib: false, "vscode-utils": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["name", 5, 5], ["publisher", 6, 5], ["version", 7, 5], ["hash", 8, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 11, 5], ["downloadPage", 12, 5], ["homepage", 13, 5], ["license", 14, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["mktplcRef", 4, 3], ["meta", 10, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const vscode_utils = nix.arg($, "vscode-utils");
   return nix.app(nix.sel(vscode_utils, "buildVscodeMarketplaceExtension"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       mktplcRef: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         name: "min-theme",
         publisher: "miguelsolorio",
         version: "1.5.0",
         hash: "sha256-DF/9OlWmjmnZNRBs2hk0qEWN38RcgacdVl9e75N8ZMY=",
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Minimal theme for VS Code that comes in dark and light",
         downloadPage: "https://marketplace.visualstudio.com/items?itemName=miguelsolorio.min-theme",
         homepage: "https://github.com/miguelsolorio/min-theme",

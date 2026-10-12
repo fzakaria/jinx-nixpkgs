@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 30, 5], ["repo", 31, 5], ["rev", 33, 5], ["hash", 34, 5]], [["updateScript", 60, 12]], [["homepage", 63, 5], ["description", 64, 5], ["license", 65, 5], ["platforms", 66, 5], ["maintainers", 67, 5]], [["pname", 23, 3], ["version", 24, 3], ["strictDeps", 26, 3], ["__structuredAttrs", 27, 3], ["src", 29, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 44, 3], ["mesonBuildType", 58, 3], ["passthru", 60, 3], ["meta", 62, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, meson: false, ninja: false, "pkg-config": false, "wayland-scanner": false, wayland: false, "wayland-protocols": false, "sdbus-cpp_2": false, systemd: false, pipewire: false, libdrm: false, libgbm: false, cairo: false, tomlplusplus: false, nlohmann_json: false, gtk4: false, unstableGitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 30, 5], ["repo", 31, 5], ["rev", 33, 5], ["hash", 34, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 60, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 63, 5], ["description", 64, 5], ["license", 65, 5], ["platforms", 66, 5], ["maintainers", 67, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 23, 3], ["version", 24, 3], ["strictDeps", 26, 3], ["__structuredAttrs", 27, 3], ["src", 29, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 44, 3], ["mesonBuildType", 58, 3], ["passthru", 60, 3], ["meta", 62, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,13 +27,13 @@ export default nix.lambda((args) => (() => {
   const gtk4 = nix.arg($, "gtk4");
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "xdg-desktop-portal-umbriel",
       version: "0-unstable-2026-09-26",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "noctalia-dev",
           repo: "xdg-desktop-portal-umbriel",
           rev: "d6bd72cabd83e3084fb2f2e24898d8ffa4a8c24f",
@@ -58,11 +55,11 @@ export default nix.lambda((args) => (() => {
       ]),
       mesonBuildType: "release",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/noctalia-dev/xdg-desktop-portal-umbriel",
         description: "xdg-desktop-portal backend for the Umbriel compositor",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

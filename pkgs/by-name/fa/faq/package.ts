@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["hash", 20, 5]], [["description", 45, 5], ["mainProgram", 46, 5], ["homepage", 47, 5], ["license", 48, 5], ["maintainers", 49, 5]], [["pname", 10, 3], ["version", 12, 3], ["__structuredAttrs", 14, 3], ["src", 16, 3], ["vendorHash", 22, 3], ["buildInputs", 24, 3], ["ldflags", 29, 3], ["tags", 34, 3], ["subPackages", 38, 3], ["doCheck", 42, 3], ["meta", 44, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitHub: false, jq: false, oniguruma: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 45, 5], ["mainProgram", 46, 5], ["homepage", 47, 5], ["license", 48, 5], ["maintainers", 49, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 12, 3], ["__structuredAttrs", 14, 3], ["src", 16, 3], ["vendorHash", 22, 3], ["buildInputs", 24, 3], ["ldflags", 29, 3], ["tags", 34, 3], ["subPackages", 38, 3], ["doCheck", 42, 3], ["meta", 44, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const jq = nix.arg($, "jq");
   const oniguruma = nix.arg($, "oniguruma");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "faq",
       version: "0.0.7-unstable-2022-01-09",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "jzelinskie",
           repo: "faq",
           rev: "594bb8e15dc4070300f39c168354784988646231",
@@ -36,7 +34,7 @@ export default nix.lambda((args) => (() => {
       subPackages: nix.thunk(() => ["cmd/faq"]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Intended to be a more flexible jq, supporting additional formats",
         mainProgram: "faq",
         homepage: "https://github.com/jzelinskie/faq",

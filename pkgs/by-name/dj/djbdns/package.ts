@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 14, 5], ["sha256", 15, 5]], [["url", 25, 5], ["sha256", 26, 5]], [["tinydns", 62, 5]], [["tests", 61, 12]], [["description", 66, 5], ["longDescription", 67, 5], ["homepage", 68, 5], ["license", 69, 5], ["maintainers", 70, 5]], [["pname", 21, 3], ["version", 22, 11], ["src", 24, 3], ["patches", 29, 3], ["postPatch", 41, 3], ["installPhase", 49, 3], ["passthru", 61, 3], ["meta", 65, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, glibc: false, "dns-root-data": false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 14, 5], ["sha256", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 25, 5], ["sha256", 26, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tinydns", 62, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 61, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 66, 5], ["longDescription", 67, 5], ["homepage", 68, 5], ["license", 69, 5], ["maintainers", 70, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 11], ["src", 24, 3], ["patches", 29, 3], ["postPatch", 41, 3], ["installPhase", 49, 3], ["passthru", 61, 3], ["meta", 65, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,16 +15,16 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const version = "1.05";
   const manSrc = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: nix.thunk(() => nix.str`http://smarden.org/pape/djb/manpages/djbdns-${version}-man-20031023.tar.gz`),
       sha256: "0sg51gjy6j1hnrra406q1qhf5kvk1m00y8qqhs6r0a699gqmh75s",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "djbdns",
       version: version,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: nix.thunk(() => nix.str`https://cr.yp.to/djbdns/djbdns-${version}.tar.gz`),
           sha256: "0j3baf92vkczr5fxww7rp1b7gmczxmmgrqc8w2dy7kgk09m85k9w",
         })))),
@@ -56,11 +51,11 @@ done;
 rm -rv djbdns-man;
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$3, tinydns: nix.thunk(() => nix.sel(nixosTests, "tinydns")) })),
+        [nix.POS]: $pos[3],
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[2], tinydns: nix.thunk(() => nix.sel(nixosTests, "tinydns")) })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Collection of Domain Name System tools",
         longDescription: "Includes software for all the fundamental DNS operations: DNS cache: finding addresses of Internet hosts; DNS server: publishing addresses of Internet hosts; and DNS client: talking to a DNS cache.",
         homepage: "https://cr.yp.to/djbdns.html",

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["sha256", 16, 5], ["rev", 17, 5], ["repo", 18, 5], ["owner", 19, 5]], [["NIX_CFLAGS_COMPILE", 46, 7]], [["homepage", 56, 5], ["description", 57, 5], ["license", 58, 5], ["maintainers", 59, 5], ["platforms", 60, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["cmakeFlags", 22, 3], ["postPatch", 26, 3], ["env", 46, 3], ["nativeBuildInputs", 48, 3], ["buildInputs", 49, 3], ["meta", 55, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, boost: false, cmake: false, curl: false, ruby: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["sha256", 16, 5], ["rev", 17, 5], ["repo", 18, 5], ["owner", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 46, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 56, 5], ["description", 57, 5], ["license", 58, 5], ["maintainers", 59, 5], ["platforms", 60, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["cmakeFlags", 22, 3], ["postPatch", 26, 3], ["env", 46, 3], ["nativeBuildInputs", 48, 3], ["buildInputs", 49, 3], ["meta", 55, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const curl = nix.arg($, "curl");
   const ruby = nix.arg($, "ruby");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "leatherman",
       version: "1.12.13",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           sha256: "sha256-rfh4JLnLekx9UhyLH6eDJUeItPROmY/Lc6mcWpbGb3s=",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
           repo: "leatherman",
@@ -30,11 +27,11 @@ export default nix.lambda((args) => (() => {
         })))),
       cmakeFlags: nix.thunk(() => ["-DLEATHERMAN_ENABLE_TESTING=OFF"]),
       postPatch: "substituteInPlace CMakeLists.txt --replace-fail \\\n  \"cmake_minimum_required(VERSION 3.2.2)\" \\\n  \"cmake_minimum_required(VERSION 3.10)\"\n\n# boost 1.89 removed the boost_system stub library\nsubstituteInPlace \\\n  curl/CMakeLists.txt \\\n  dynamic_library/CMakeLists.txt \\\n  execution/CMakeLists.txt \\\n  file_util/CMakeLists.txt \\\n  locale/CMakeLists.txt \\\n  logging/CMakeLists.txt \\\n  ruby/CMakeLists.txt \\\n  util/CMakeLists.txt \\\n  windows/CMakeLists.txt \\\n  --replace-fail ' system' \"\"\nsubstituteInPlace tests/CMakeLists.txt --replace-fail 'system ' \"\"\n",
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-Wno-error" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], NIX_CFLAGS_COMPILE: "-Wno-error" })),
       nativeBuildInputs: nix.thunk(() => [cmake]),
       buildInputs: nix.thunk(() => [boost, curl, ruby]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/puppetlabs/leatherman/",
         description: "Collection of C++ and CMake utility libraries",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

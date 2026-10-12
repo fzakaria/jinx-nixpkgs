@@ -2,32 +2,9 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/nezha.nix", [[["name", 13, 5], ["value", 14, 5]], [["maintainers", 20, 8]], [["enable", 27, 18]], [["address", 31, 11], ["prefixLength", 32, 11]], [["addresses", 30, 30]], [["ipv4", 30, 25]], [["eth1", 30, 20]], [["hostName", 25, 9], ["domain", 26, 9], ["firewall", 27, 9], ["hosts", 28, 9], ["useDHCP", 29, 9], ["interfaces", 30, 9]], [["server", 40, 11]], [["enable", 36, 9], ["debug", 37, 9], ["genUuid", 38, 9], ["settings", 39, 9], ["clientSecretFile", 42, 9]], [["nezha-agent", 35, 16]], [["networking", 24, 7], ["services", 35, 7]], [["enable", 50, 20]], [["address", 54, 13], ["prefixLength", 55, 13]], [["addresses", 53, 32]], [["ipv4", 53, 27]], [["eth1", 53, 22]], [["firewall", 50, 11], ["hosts", 51, 11], ["useDHCP", 52, 11], ["interfaces", 53, 11]], [["listenhost", 62, 13], ["listenport", 64, 13]], [["enable", 59, 11], ["debug", 60, 11], ["settings", 61, 11], ["mutableConfig", 66, 11], ["jwtSecretFile", 67, 11], ["agentSecretFile", 68, 11]], [["nezha", 58, 18]], [["networking", 49, 9], ["services", 58, 9]], [["agent", 23, 5], ["dashboard", 46, 5]], [["name", 18, 3], ["meta", 20, 3], ["containers", 22, 3], ["testScript", 73, 3]]]);
 const formals$1 = { args: { lib: false, pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/nezha.nix", [["name", 13, 5], ["value", 14, 5]]);
-const pos$2 = nix.positions(here + "/nezha.nix", [["maintainers", 20, 8]]);
-const pos$3 = nix.positions(here + "/nezha.nix", [["enable", 27, 18]]);
-const pos$4 = nix.positions(here + "/nezha.nix", [["address", 31, 11], ["prefixLength", 32, 11]]);
-const pos$5 = nix.positions(here + "/nezha.nix", [["addresses", 30, 30]]);
-const pos$6 = nix.positions(here + "/nezha.nix", [["ipv4", 30, 25]]);
-const pos$7 = nix.positions(here + "/nezha.nix", [["eth1", 30, 20]]);
-const pos$8 = nix.positions(here + "/nezha.nix", [["hostName", 25, 9], ["domain", 26, 9], ["firewall", 27, 9], ["hosts", 28, 9], ["useDHCP", 29, 9], ["interfaces", 30, 9]]);
-const pos$9 = nix.positions(here + "/nezha.nix", [["server", 40, 11]]);
-const pos$10 = nix.positions(here + "/nezha.nix", [["enable", 36, 9], ["debug", 37, 9], ["genUuid", 38, 9], ["settings", 39, 9], ["clientSecretFile", 42, 9]]);
-const pos$11 = nix.positions(here + "/nezha.nix", [["nezha-agent", 35, 16]]);
-const pos$12 = nix.positions(here + "/nezha.nix", [["networking", 24, 7], ["services", 35, 7]]);
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$13 = nix.positions(here + "/nezha.nix", [["enable", 50, 20]]);
-const pos$14 = nix.positions(here + "/nezha.nix", [["address", 54, 13], ["prefixLength", 55, 13]]);
-const pos$15 = nix.positions(here + "/nezha.nix", [["addresses", 53, 32]]);
-const pos$16 = nix.positions(here + "/nezha.nix", [["ipv4", 53, 27]]);
-const pos$17 = nix.positions(here + "/nezha.nix", [["eth1", 53, 22]]);
-const pos$18 = nix.positions(here + "/nezha.nix", [["firewall", 50, 11], ["hosts", 51, 11], ["useDHCP", 52, 11], ["interfaces", 53, 11]]);
-const pos$19 = nix.positions(here + "/nezha.nix", [["listenhost", 62, 13], ["listenport", 64, 13]]);
-const pos$20 = nix.positions(here + "/nezha.nix", [["enable", 59, 11], ["debug", 60, 11], ["settings", 61, 11], ["mutableConfig", 66, 11], ["jwtSecretFile", 67, 11], ["agentSecretFile", 68, 11]]);
-const pos$21 = nix.positions(here + "/nezha.nix", [["nezha", 58, 18]]);
-const pos$22 = nix.positions(here + "/nezha.nix", [["networking", 49, 9], ["services", 58, 9]]);
-const pos$23 = nix.positions(here + "/nezha.nix", [["agent", 23, 5], ["dashboard", 46, 5]]);
-const pos$24 = nix.positions(here + "/nezha.nix", [["name", 18, 3], ["meta", 20, 3], ["containers", 22, 3], ["testScript", 73, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -41,39 +18,39 @@ export default nix.lambda((args) => (() => {
     [nix.str`${dashboard_host}`, "192.168.0.1"],
   ]));
   const hostsEntries = nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs'"), (k) => (v) => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: v,
       value: nix.thunk(() => nix.app(nix.sel(lib, "singleton"), k)),
     }), hosts));
   return {
-    [nix.POS]: pos$24,
+    [nix.POS]: $pos[23],
     name: "nezha",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "moraxyc"))];
       })()),
     })),
     containers: nix.thunk(() => ({
-      [nix.POS]: pos$23,
+      [nix.POS]: $pos[22],
       agent: (_) => ({
-        [nix.POS]: pos$12,
+        [nix.POS]: $pos[11],
         networking: nix.thunk(() => ({
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           hostName: nix.thunk(() => nix.builtins.elemAt(nix.thunk(() => nix.app(nix.sel(lib, "splitString"), ".", agent_host)), 0n)),
           domain: nix.thunk(() => nix.builtins.elemAt(nix.thunk(() => nix.app(nix.sel(lib, "splitString"), ".", agent_host)), 1n)),
-          firewall: nix.thunk(() => ({ [nix.POS]: pos$3, enable: false })),
+          firewall: nix.thunk(() => ({ [nix.POS]: $pos[2], enable: false })),
           hosts: hostsEntries,
           useDHCP: false,
           interfaces: nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             eth1: nix.thunk(() => ({
-              [nix.POS]: pos$6,
+              [nix.POS]: $pos[5],
               ipv4: nix.thunk(() => ({
-                [nix.POS]: pos$5,
+                [nix.POS]: $pos[4],
                 addresses: nix.thunk(() => nix.app(nix.sel(lib, "singleton"), nix.thunk(() => ({
-                    [nix.POS]: pos$4,
+                    [nix.POS]: $pos[3],
                     address: nix.thunk(() => nix.sel(hosts, nix.key(nix.str`${agent_host}`))),
                     prefixLength: 24n,
                   })))),
@@ -82,14 +59,14 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         services: nix.thunk(() => ({
-          [nix.POS]: pos$11,
+          [nix.POS]: $pos[10],
           "nezha-agent": nix.thunk(() => ({
-            [nix.POS]: pos$10,
+            [nix.POS]: $pos[9],
             enable: true,
             debug: true,
             genUuid: true,
             settings: nix.thunk(() => ({
-              [nix.POS]: pos$9,
+              [nix.POS]: $pos[8],
               server: nix.thunk(() => nix.add(nix.sel(hosts, nix.key(nix.str`${dashboard_host}`)), ":80")),
             })),
             clientSecretFile: agentSecret,
@@ -100,20 +77,20 @@ export default nix.lambda((args) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$22,
+          [nix.POS]: $pos[21],
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$18,
-            firewall: nix.thunk(() => ({ [nix.POS]: pos$13, enable: false })),
+            [nix.POS]: $pos[17],
+            firewall: nix.thunk(() => ({ [nix.POS]: $pos[12], enable: false })),
             hosts: hostsEntries,
             useDHCP: false,
             interfaces: nix.thunk(() => ({
-              [nix.POS]: pos$17,
+              [nix.POS]: $pos[16],
               eth1: nix.thunk(() => ({
-                [nix.POS]: pos$16,
+                [nix.POS]: $pos[15],
                 ipv4: nix.thunk(() => ({
-                  [nix.POS]: pos$15,
+                  [nix.POS]: $pos[14],
                   addresses: nix.thunk(() => nix.app(nix.sel(lib, "singleton"), nix.thunk(() => ({
-                      [nix.POS]: pos$14,
+                      [nix.POS]: $pos[13],
                       address: nix.thunk(() => nix.sel(hosts, nix.key(nix.str`${dashboard_host}`))),
                       prefixLength: 24n,
                     })))),
@@ -122,12 +99,12 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$21,
+            [nix.POS]: $pos[20],
             nezha: nix.thunk(() => ({
-              [nix.POS]: pos$20,
+              [nix.POS]: $pos[19],
               enable: true,
               debug: true,
-              settings: nix.thunk(() => ({ [nix.POS]: pos$19, listenhost: "0.0.0.0", listenport: 80n })),
+              settings: nix.thunk(() => ({ [nix.POS]: $pos[18], listenhost: "0.0.0.0", listenport: 80n })),
               mutableConfig: true,
               jwtSecretFile: nix.thunk(() => nix.app(nix.sel(pkgs_1, "writeText"), "fakejwt", "fakejwt")),
               agentSecretFile: agentSecret,

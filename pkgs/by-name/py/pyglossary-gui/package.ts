@@ -2,12 +2,12 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["enableGui", 7, 5], ["enableCmd", 8, 5]]]);
 const formals$1 = { args: { python3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["enableGui", 7, 5], ["enableCmd", 8, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const python3 = nix.arg($, "python3");
-  return nix.app(nix.sel(python3, "pkgs", "toPythonApplication"), nix.thunk(() => nix.app(nix.sel(python3, "pkgs", "pyglossary", "override"), nix.thunk(() => ({ [nix.POS]: pos$1, enableGui: true, enableCmd: true })))));
+  return nix.app(nix.sel(python3, "pkgs", "toPythonApplication"), nix.thunk(() => nix.app(nix.sel(python3, "pkgs", "pyglossary", "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], enableGui: true, enableCmd: true })))));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

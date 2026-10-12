@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 14, 5], ["hash", 15, 5]], [["description", 41, 5], ["mainProgram", 42, 5], ["sourceProvenance", 43, 5], ["license", 44, 5], ["platforms", 45, 5], ["homepage", 46, 5], ["maintainers", 47, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["installPhase", 18, 3], ["postFixup", 34, 3], ["nativeBuildInputs", 38, 3], ["meta", 40, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, makeWrapper: false, fetchzip: false, jre: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 14, 5], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 41, 5], ["mainProgram", 42, 5], ["sourceProvenance", 43, 5], ["license", 44, 5], ["platforms", 45, 5], ["homepage", 46, 5], ["maintainers", 47, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["installPhase", 18, 3], ["postFixup", 34, 3], ["nativeBuildInputs", 38, 3], ["meta", 40, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const fetchzip = nix.arg($, "fetchzip");
   const jre = nix.arg($, "jre");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "bftools",
       version: "7.3.0",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`http://downloads.openmicroscopy.org/bio-formats/${nix.sel(finalAttrs, "version")}/artifacts/bftools.zip`),
           hash: "sha256-EQ7P07d53e6Q/9Wt2Pa1h0TfuYblOZeByGW30oE3i6M=",
         })))),
@@ -28,7 +26,7 @@ export default nix.lambda((args) => (() => {
 `),
       nativeBuildInputs: nix.thunk(() => [makeWrapper]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Bundle of scripts for using Bio-Formats on the command line with bioformats_package.jar already included",
         mainProgram: "showinf",
         sourceProvenance: nix.thunk(() => (() => {

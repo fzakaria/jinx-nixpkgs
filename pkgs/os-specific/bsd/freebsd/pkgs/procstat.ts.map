@@ -1,1 +1,1 @@
-{"version":3,"file":"procstat.ts","sources":["../../../../../../../../../../../nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/os-specific/bsd/freebsd/pkgs/procstat.nix"],"names":[],"mappings":";;;;;;;;eAAA;;;;;;SAMA,uCAAa;;YACJ;mCACO;+BAKJ,CACR,OACA,OACA;gBAGS;6BAEX,iCAAmB"}
+{"version":3,"file":"procstat.ts","sources":["../../../../../../../../../../../nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/os-specific/bsd/freebsd/pkgs/procstat.nix"],"names":[],"mappings":";;;;;;;eAAA;;;;;;SAMA,uCAAa;;YACJ;mCACO;+BAKJ,CACR,OACA,OACA;gBAGS;6BAEX,mCAAmB"}

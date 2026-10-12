@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 11, 5], ["repo", 12, 5], ["rev", 13, 5], ["hash", 14, 5]], [["mainProgram", 28, 5], ["description", 29, 5], ["homepage", 30, 5], ["changelog", 31, 5], ["license", 32, 5], ["maintainers", 33, 5], ["platforms", 34, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 10, 3], ["nativeBuildInputs", 17, 3], ["npmDepsHash", 18, 3], ["postConfigure", 22, 3], ["meta", 27, 3]]]);
 const formals$1 = { args: { buildNpmPackage: false, fetchFromGitHub: false, lib: false, jq: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 11, 5], ["repo", 12, 5], ["rev", 13, 5], ["hash", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["mainProgram", 28, 5], ["description", 29, 5], ["homepage", 30, 5], ["changelog", 31, 5], ["license", 32, 5], ["maintainers", 33, 5], ["platforms", 34, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 10, 3], ["nativeBuildInputs", 17, 3], ["npmDepsHash", 18, 3], ["postConfigure", 22, 3], ["meta", 27, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const jq = nix.arg($, "jq");
   return nix.app(buildNpmPackage, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "json2ts",
       version: "15.0.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "bcherny",
           repo: "json-schema-to-typescript",
           rev: "118d6a8e7a5a9397d1d390ce297f127ae674a623",
@@ -28,7 +26,7 @@ export default nix.lambda((args) => (() => {
       npmDepsHash: "sha256-kLKau4SBxI9bMAd7X8/FQfCza2sYl/+0bg2LQcOQIJo=",
       postConfigure: "jq '.compilerOptions.forceConsistentCasingInFileNames = false' tsconfig.json > temp.json\nmv temp.json tsconfig.json\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         mainProgram: "json2ts",
         description: "Compile JSON Schema to TypeScript type declarations",
         homepage: "https://github.com/bcherny/json-schema-to-typescript",

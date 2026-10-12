@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 25, 5], ["sha256", 26, 5]], [["homepage", 47, 5], ["license", 48, 5], ["description", 49, 5], ["platforms", 50, 5]], [["pname", 13, 3], ["version", 14, 3], ["nativeBuildInputs", 16, 3], ["buildInputs", 17, 3], ["src", 24, 3], ["patchPhase", 29, 3], ["buildPhase", 39, 3], ["meta", 46, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, "pkg-config": false, libx11: false, libxft: false, libxinerama: false, libxpm: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 25, 5], ["sha256", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 47, 5], ["license", 48, 5], ["description", 49, 5], ["platforms", 50, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["nativeBuildInputs", 16, 3], ["buildInputs", 17, 3], ["src", 24, 3], ["patchPhase", 29, 3], ["buildPhase", 39, 3], ["meta", 46, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,20 +16,20 @@ export default nix.lambda((args) => (() => {
   const libxinerama = nix.arg($, "libxinerama");
   const libxpm = nix.arg($, "libxpm");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "dzen2",
       version: "0.9.5",
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [libx11, libxft, libxinerama, libxpm]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/robm/dzen/tarball/master/dzen2-${nix.sel(finalAttrs, "version")}git.tar.gz`),
           sha256: "d4f7943cd39dc23fd825eb684b49dc3484860fa8443d30b06ee38af72a53b556",
         })))),
       patchPhase: "CFLAGS=\" -Wall -Os ${INCS} -DVERSION=\\\"${VERSION}\\\" -DDZEN_XINERAMA -DDZEN_XPM -DDZEN_XFT `pkg-config --cflags xft`\"\nLIBS=\" -L/usr/lib -lc -lXft -lXpm -lXinerama -lX11\"\necho \"CFLAGS=$CFLAGS\" >>config.mk\necho \"LIBS=$LIBS\" >>config.mk\necho \"LDFLAGS=$LIBS\" >>config.mk\nsubstituteInPlace config.mk --replace /usr/local \"$out\"\nsubstituteInPlace gadgets/config.mk --replace /usr/local \"$out\"\n",
       buildPhase: "mkdir -p $out/bin $out/man/man1\nmake clean install\ncd gadgets\nmake clean install\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/robm/dzen",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         description: "X notification utility",

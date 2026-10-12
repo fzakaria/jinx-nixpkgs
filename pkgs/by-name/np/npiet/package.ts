@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 18, 5], ["hash", 19, 5]], [["NIX_CFLAGS_COMPILE", 41, 7]], [["hello", 51, 9], ["prime", 52, 9], ["no-prime", 53, 9], ["brainfuck", 54, 9]], [["tests", 45, 12]], [["description", 59, 5], ["longDescription", 60, 5], ["homepage", 64, 5], ["changelog", 65, 5], ["license", 66, 5], ["platforms", 67, 5], ["mainProgram", 68, 5], ["maintainers", 69, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["buildInputs", 22, 3], ["nativeBuildInputs", 28, 3], ["postPatch", 30, 3], ["env", 41, 3], ["strictDeps", 43, 3], ["passthru", 45, 3], ["meta", 58, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, gd: false, giflib: false, groff: false, libpng: false, tk: false, callPackage: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 41, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["hello", 51, 9], ["prime", 52, 9], ["no-prime", 53, 9], ["brainfuck", 54, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 45, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 59, 5], ["longDescription", 60, 5], ["homepage", 64, 5], ["changelog", 65, 5], ["license", 66, 5], ["platforms", 67, 5], ["mainProgram", 68, 5], ["maintainers", 69, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["buildInputs", 22, 3], ["nativeBuildInputs", 28, 3], ["postPatch", 30, 3], ["env", 41, 3], ["strictDeps", 43, 3], ["passthru", 45, 3], ["meta", 58, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const tk = nix.arg($, "tk");
   const callPackage = nix.arg($, "callPackage");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "npiet",
       version: "1.3f",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://www.bertnase.de/npiet/npiet-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-Le2FYGKr1zWZ6F4edozmvGC6LbItx9aptidj3KBLhVo=",
         })))),
@@ -40,14 +35,14 @@ substituteInPlace npiet-foogol.c \\
 substituteInPlace npietedit \\
   --replace-fail 'exec wish' 'exec ${tk}/bin/wish'
 `),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-std=gnu17" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], NIX_CFLAGS_COMPILE: "-std=gnu17" })),
       strictDeps: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => (() => {
           const all_tests = nix.thunk(() => nix.app(callPackage, nix.path(here, "./tests"), nix.thunk(() => ({}))));
           return {
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             hello: nix.thunk(() => nix.attr(all_tests, "hello")),
             prime: nix.thunk(() => nix.attr(all_tests, "prime")),
             "no-prime": nix.thunk(() => nix.attr(all_tests, "no-prime")),
@@ -56,7 +51,7 @@ substituteInPlace npietedit \\
         })()),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Interpreter for piet programs. Also includes npietedit and npiet-foogol",
         longDescription: "npiet is an interpreter for the piet programming language.\nInstead of text, piet programs are pictures. Commands are determined based on changes in color.\n",
         homepage: "https://www.bertnase.de/npiet/",

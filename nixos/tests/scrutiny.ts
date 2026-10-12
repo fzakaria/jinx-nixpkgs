@@ -2,62 +2,51 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/scrutiny.nix", [[["maintainers", 5, 8]], [["_secret", 22, 19]], [["urls", 20, 22]], [["notify", 20, 15]], [["enable", 29, 30]], [["enable", 18, 13], ["settings", 19, 13], ["collector", 29, 20]], [["scrutiny", 17, 11]], [["libraries", 37, 19]], [["systemPackages", 32, 21]], [["services", 16, 9], ["environment", 32, 9]], [["machine", 8, 5]], [["name", 4, 3], ["meta", 5, 3], ["nodes", 7, 3], ["testScript", 75, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/scrutiny.nix", [["maintainers", 5, 8]]);
 const formals$2 = { args: { self: false, pkgs: false, lib: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/scrutiny.nix", [["_secret", 22, 19]]);
-const pos$3 = nix.positions(here + "/scrutiny.nix", [["urls", 20, 22]]);
-const pos$4 = nix.positions(here + "/scrutiny.nix", [["notify", 20, 15]]);
-const pos$5 = nix.positions(here + "/scrutiny.nix", [["enable", 29, 30]]);
-const pos$6 = nix.positions(here + "/scrutiny.nix", [["enable", 18, 13], ["settings", 19, 13], ["collector", 29, 20]]);
-const pos$7 = nix.positions(here + "/scrutiny.nix", [["scrutiny", 17, 11]]);
-const pos$8 = nix.positions(here + "/scrutiny.nix", [["libraries", 37, 19]]);
-const pos$9 = nix.positions(here + "/scrutiny.nix", [["systemPackages", 32, 21]]);
-const pos$10 = nix.positions(here + "/scrutiny.nix", [["services", 16, 9], ["environment", 32, 9]]);
-const pos$11 = nix.positions(here + "/scrutiny.nix", [["machine", 8, 5]]);
-const pos$12 = nix.positions(here + "/scrutiny.nix", [["name", 4, 3], ["meta", 5, 3], ["nodes", 7, 3], ["testScript", 75, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$12,
+    [nix.POS]: $pos[11],
     name: "scrutiny",
-    meta: nix.thunk(() => ({ [nix.POS]: pos$1, maintainers: [] })),
+    meta: nix.thunk(() => ({ [nix.POS]: $pos[0], maintainers: [] })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$11,
+      [nix.POS]: $pos[10],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const self = nix.arg($_1, "self");
         const pkgs = nix.arg($_1, "pkgs");
         const lib_1 = nix.arg($_1, "lib");
         return {
-          [nix.POS]: pos$10,
+          [nix.POS]: $pos[9],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             scrutiny: nix.thunk(() => ({
-              [nix.POS]: pos$6,
+              [nix.POS]: $pos[5],
               enable: true,
               settings: nix.thunk(() => ({
-                [nix.POS]: pos$4,
+                [nix.POS]: $pos[3],
                 notify: nix.thunk(() => ({
-                  [nix.POS]: pos$3,
+                  [nix.POS]: $pos[2],
                   urls: nix.thunk(() => [
                     nix.thunk(() => ({
-                      [nix.POS]: pos$2,
+                      [nix.POS]: $pos[1],
                       _secret: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "notify-script", nix.thunk(() => nix.str`script://${nix.app(nix.sel(pkgs, "writeShellScript"), "touch-test-file", "echo \"HelloWorld\" > /run/scrutiny/hello\n")}`))),
                     })),
                   ]),
                 })),
               })),
-              collector: nix.thunk(() => ({ [nix.POS]: pos$5, enable: true })),
+              collector: nix.thunk(() => ({ [nix.POS]: $pos[4], enable: true })),
             })),
           })),
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$9,
+            [nix.POS]: $pos[8],
             systemPackages: nix.thunk(() => (() => {
               const seleniumScript = nix.thunk(() => nix.app(nix.sel(pkgs, "writers", "writePython3Bin"), "selenium-script", nix.thunk(() => ({
-                  [nix.POS]: pos$8,
+                  [nix.POS]: $pos[7],
                   libraries: nix.thunk(() => (() => {
                     const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "python3Packages")), null);
                     return [nix.thunk(() => nix.lookup(w, "selenium"))];

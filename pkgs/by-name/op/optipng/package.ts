@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 16, 5], ["hash", 17, 5]], [["homepage", 50, 5], ["description", 51, 5], ["license", 52, 5], ["platforms", 53, 5], ["mainProgram", 54, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["buildInputs", 20, 3], ["preConfigure", 24, 3], ["dontDisableStatic", 29, 3], ["dontAddStaticConfigureFlags", 30, 3], ["configurePlatforms", 31, 3], ["configureFlags", 33, 3], ["postInstall", 41, 3], ["meta", 49, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, libpng: false, static: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 50, 5], ["description", 51, 5], ["license", 52, 5], ["platforms", 53, 5], ["mainProgram", 54, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["buildInputs", 20, 3], ["preConfigure", 24, 3], ["dontDisableStatic", 29, 3], ["dontAddStaticConfigureFlags", 30, 3], ["configurePlatforms", 31, 3], ["configureFlags", 33, 3], ["postInstall", 41, 3], ["meta", 49, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "optipng";
       const version = "7.9.1";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/optipng/optipng-${version}.tar.gz`),
           hash: "sha256-wleb5YwsZtrp1jFU7cs9Qn/vZMsA7Ar/B5ydFW7Ebyk=",
         }))));
@@ -30,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const configureFlags = nix.thunk(() => nix.concat(["--with-system-zlib", "--with-system-libpng"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.eq(nix.sel(stdenv, "hostPlatform"), nix.sel(stdenv, "buildPlatform"))), [])));
       const postInstall = nix.thunk(() => (nix.asBool((nix.asBool(!nix.eq(nix.sel(stdenv, "hostPlatform"), nix.sel(stdenv, "buildPlatform"))) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isWindows")))) ? "mv \"$out\"/bin/optipng{,.exe}\n" : null));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://optipng.sourceforge.net/",
         description: "PNG optimizer",
         license: nix.thunk(() => nix.sel(lib, "licenses", "zlib")),
@@ -38,7 +36,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "optipng",
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]], [["nativeBuildInputs", 49, 15]], [["assertion", 40, 9], ["expected", 41, 9], ["actual", 46, 9]], [["complete", 39, 7]], [["extraArgs", 57, 40]], [["shellPath", 36, 5], ["tests", 38, 5], ["updateScript", 57, 5]], [["description", 61, 5], ["homepage", 62, 5], ["changelog", 63, 5], ["license", 64, 5], ["maintainers", 65, 5], ["mainProgram", 66, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["cargoHash", 24, 3], ["nativeInstallCheckInputs", 26, 3], ["doInstallCheck", 29, 3], ["versionCheckProgram", 30, 3], ["doCheck", 33, 3], ["passthru", 35, 3], ["meta", 60, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchFromGitHub: false, versionCheckHook: false, testers: false, runCommand: false, writeText: false, "nix-update-script": false, brush: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["nativeBuildInputs", 49, 15]]);
-const pos$3 = nix.positions(here + "/package.nix", [["assertion", 40, 9], ["expected", 41, 9], ["actual", 46, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["complete", 39, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["extraArgs", 57, 40]]);
-const pos$6 = nix.positions(here + "/package.nix", [["shellPath", 36, 5], ["tests", 38, 5], ["updateScript", 57, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["description", 61, 5], ["homepage", 62, 5], ["changelog", 63, 5], ["license", 64, 5], ["maintainers", 65, 5], ["mainProgram", 66, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["cargoHash", 24, 3], ["nativeInstallCheckInputs", 26, 3], ["doInstallCheck", 29, 3], ["versionCheckProgram", 30, 3], ["doCheck", 33, 3], ["passthru", 35, 3], ["meta", 60, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const brush = nix.arg($, "brush");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "brush",
       version: "0.4.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "reubeno",
           repo: "brush",
           tag: nix.thunk(() => nix.str`brush-shell-v${nix.sel(finalAttrs, "version")}`),
@@ -40,24 +33,24 @@ export default nix.lambda((args) => (() => {
       versionCheckProgram: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/bin/${nix.sel(finalAttrs, "meta", "mainProgram")}`),
       doCheck: false,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         shellPath: "/bin/brush",
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           complete: nix.thunk(() => nix.app(nix.sel(testers, "testEqualContents"), nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               assertion: "brushinfo performs to inspect completions",
               expected: nix.thunk(() => nix.app(writeText, "expected", "brush\nbrushctl\nbrushinfo\n")),
-              actual: nix.thunk(() => nix.app(runCommand, "actual", nix.thunk(() => ({ [nix.POS]: pos$2, nativeBuildInputs: nix.thunk(() => [brush]) })), "brush -c 'brushinfo complete line bru' >$out\n")),
+              actual: nix.thunk(() => nix.app(runCommand, "actual", nix.thunk(() => ({ [nix.POS]: $pos[1], nativeBuildInputs: nix.thunk(() => [brush]) })), "brush -c 'brushinfo complete line bru' >$out\n")),
             })))),
         })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             extraArgs: nix.thunk(() => ["--version-regex=brush-shell-v([\\d\\.]+)"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "Bash/POSIX-compatible shell implemented in Rust",
         homepage: "https://github.com/reubeno/brush",
         changelog: nix.thunk(() => nix.str`https://github.com/reubeno/brush/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

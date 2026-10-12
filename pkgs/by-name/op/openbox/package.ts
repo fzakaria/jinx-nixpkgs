@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 61, 5], ["sha256", 62, 5]], [["url", 66, 5], ["sha256", 67, 5]], [["url", 74, 7], ["sha256", 75, 7]], [["url", 81, 7], ["sha256", 82, 7]], [["description", 105, 5], ["homepage", 106, 5], ["license", 107, 5], ["platforms", 108, 5]], [["pname", 25, 3], ["version", 26, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 36, 3], ["propagatedBuildInputs", 49, 3], ["strictDeps", 54, 3], ["pythonPath", 56, 3], ["src", 60, 3], ["setlayoutSrc", 65, 3], ["patches", 70, 3], ["postBuild", 86, 3], ["postInstall", 89, 3], ["doInstallCheck", 101, 3], ["nativeInstallCheckInputs", 102, 3], ["meta", 104, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, fetchpatch: false, autoreconfHook: false, "pkg-config": false, python3: false, libxml2: false, libxinerama: false, libxcursor: false, libxau: false, libxrandr: false, libice: false, libsm: false, imlib2: false, pango: false, bashNonInteractive: false, libstartup_notification: false, makeWrapper: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 61, 5], ["sha256", 62, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 66, 5], ["sha256", 67, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 74, 7], ["sha256", 75, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["url", 81, 7], ["sha256", 82, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 105, 5], ["homepage", 106, 5], ["license", 107, 5], ["platforms", 108, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 25, 3], ["version", 26, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 36, 3], ["propagatedBuildInputs", 49, 3], ["strictDeps", 54, 3], ["pythonPath", 56, 3], ["src", 60, 3], ["setlayoutSrc", 65, 3], ["patches", 70, 3], ["postBuild", 86, 3], ["postInstall", 89, 3], ["doInstallCheck", 101, 3], ["nativeInstallCheckInputs", 102, 3], ["meta", 104, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,7 +28,7 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "openbox",
       version: "3.6.1",
       nativeBuildInputs: nix.thunk(() => [
@@ -62,23 +57,23 @@ export default nix.lambda((args) => (() => {
         return [nix.thunk(() => nix.lookup(w, "pyxdg"))];
       })()),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://openbox.org/dist/openbox/openbox-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "1xvyvqxlhy08n61rjkckmrzah2si1i7nmc7s8h07riqq01vc0jlb",
         })))),
       setlayoutSrc: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: "https://openbox.org/dist/tools/setlayout.c",
           sha256: "1ci9lq4qqhl31yz1jwwjiawah0f7x0vx44ap8baw7r6rdi00pyiv",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: "https://raw.githubusercontent.com/archlinux/svntogit-community/90cb57ef53d952bb6ab4c33a184f815bbe1791c0/openbox/trunk/py3.patch",
             sha256: "1ks99awlkhd5ph9kz94s1r6m1bfvh42g4rmxd14dyg5b421p1ljc",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             url: "https://github.com/Mikachu/openbox/commit/d41128e5a1002af41c976c8860f8299cfcd3cd72.patch",
             sha256: "sha256-4/aoI4y98JPybZ1MNI7egOhkroQgh/oeGnYrhNGX4t4=",
           })))),
@@ -88,7 +83,7 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "X window manager for non-desktop embedded systems",
         homepage: "http://openbox.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

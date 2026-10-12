@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["sha256", 17, 5]], [["owner", 26, 5], ["repo", 27, 5], ["rev", 28, 5], ["sha256", 29, 5]], [["homepage", 69, 5], ["description", 70, 5], ["maintainers", 71, 5], ["license", 72, 5], ["platforms", 73, 5], ["mainProgram", 74, 5]], [["pname", 22, 3], ["version", 23, 11], ["src", 25, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 33, 3], ["prePatch", 40, 3], ["buildPhase", 44, 3], ["installPhase", 62, 3], ["meta", 68, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, libusb1: false, "pkg-config": false, pmutils: false, udev: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["sha256", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 26, 5], ["repo", 27, 5], ["rev", 28, 5], ["sha256", 29, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 69, 5], ["description", 70, 5], ["maintainers", 71, 5], ["license", 72, 5], ["platforms", 73, 5], ["mainProgram", 74, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 22, 3], ["version", 23, 11], ["src", 25, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 33, 3], ["prePatch", 40, 3], ["buildPhase", 44, 3], ["installPhase", 62, 3], ["meta", 68, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,18 +16,18 @@ export default nix.lambda((args) => (() => {
   const udev = nix.arg($, "udev");
   const version = "2.1.1";
   const daemonlib = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "Tinkerforge",
       repo: "daemonlib",
       rev: nix.thunk(() => nix.str`brickd-${version}`),
       sha256: "sha256-0HhuC4r1S4NJa2FSJa7+fNCfcoRTBckikYbGSE+2FbE=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "brickd",
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "Tinkerforge",
           repo: "brickd",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -57,7 +54,7 @@ done
 `),
       installPhase: "cd ../brickd\nmkdir -p $out/bin\ncp brickd $out/bin/brickd\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://www.tinkerforge.com/",
         description: "Daemon (or service on Windows) that acts as a bridge between the Bricks/Bricklets and the API bindings for the different programming languages",
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "qknight"))]),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 25, 5], ["repo", 26, 5], ["rev", 27, 5], ["sha256", 28, 5]], [["description", 37, 5], ["mainProgram", 38, 5], ["homepage", 39, 5], ["license", 40, 5], ["maintainers", 41, 5]], [["pname", 12, 3], ["version", 13, 3], ["nativeBuildInputs", 15, 3], ["buildInputs", 19, 3], ["src", 24, 3], ["cargoHash", 31, 3], ["cargoBuildFlags", 34, 3], ["meta", 36, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchFromGitHub: false, libusb1: false, libftdi: false, "cargo-readme": false, "pkg-config": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 25, 5], ["repo", 26, 5], ["rev", 27, 5], ["sha256", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 37, 5], ["mainProgram", 38, 5], ["homepage", 39, 5], ["license", 40, 5], ["maintainers", 41, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["nativeBuildInputs", 15, 3], ["buildInputs", 19, 3], ["src", 24, 3], ["cargoHash", 31, 3], ["cargoBuildFlags", 34, 3], ["meta", 36, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,13 +15,13 @@ export default nix.lambda((args) => (() => {
   const cargo_readme = nix.arg($, "cargo-readme");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "humility",
       version: "0-unstable-2025-02-25",
       nativeBuildInputs: nix.thunk(() => [pkg_config, cargo_readme]),
       buildInputs: nix.thunk(() => [libusb1, libftdi]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "oxidecomputer",
           repo: "humility",
           rev: "4e9b9f9efb455d62b44345b7c8659dcd962c73da",
@@ -32,7 +30,7 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-GZkHPoDKiqTVwRAWXXbELXC1I/KRO+9sshY8/rGbA4A=",
       cargoBuildFlags: nix.thunk(() => ["-p humility-cli"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Debugger for Hubris",
         mainProgram: "humility",
         homepage: "https://github.com/oxidecomputer/humility",

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 38, 5], ["repo", 39, 5], ["tag", 40, 5], ["fetchSubmodules", 41, 5], ["preFetch", 45, 5], ["hash", 49, 5]], [["NIX_CFLAGS_COMPILE", 82, 7]], [["description", 127, 5], ["longDescription", 128, 5], ["homepage", 133, 5], ["changelog", 134, 5], ["license", 135, 5], ["maintainers", 139, 5], ["platforms", 140, 5], ["mainProgram", 141, 5]], [["pname", 31, 3], ["version", 32, 3], ["__structuredAttrs", 34, 3], ["strictDeps", 35, 3], ["src", 37, 3], ["nativeBuildInputs", 52, 3], ["buildInputs", 61, 3], ["env", 82, 3], ["cmakeFlags", 84, 3], ["postFixup", 99, 3], ["doInstallCheck", 110, 3], ["nativeInstallCheckInputs", 111, 3], ["versionCheckProgram", 112, 3], ["versionCheckKeepEnvironment", 113, 3], ["preVersionCheck", 118, 3], ["meta", 126, 3]]]);
 const formals$1 = { args: { SDL2: false, SDL2_image: false, SDL2_mixer: false, SDL2_ttf: false, boost: false, cmake: false, gettext: false, fetchFromGitHub: false, ffmpeg: false, fuzzylite: false, innoextract: false, lib: false, libsquish: false, luajit: false, minizip: false, ninja: false, onetbb: false, onnxruntime: false, "pkg-config": false, python3: false, qt6: false, stdenv: false, unshield: false, versionCheckHook: false, xz: false, zlib: false, enableMMAI: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 38, 5], ["repo", 39, 5], ["tag", 40, 5], ["fetchSubmodules", 41, 5], ["preFetch", 45, 5], ["hash", 49, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 82, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 127, 5], ["longDescription", 128, 5], ["homepage", 133, 5], ["changelog", 134, 5], ["license", 135, 5], ["maintainers", 139, 5], ["platforms", 140, 5], ["mainProgram", 141, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 31, 3], ["version", 32, 3], ["__structuredAttrs", 34, 3], ["strictDeps", 35, 3], ["src", 37, 3], ["nativeBuildInputs", 52, 3], ["buildInputs", 61, 3], ["env", 82, 3], ["cmakeFlags", 84, 3], ["postFixup", 99, 3], ["doInstallCheck", 110, 3], ["nativeInstallCheckInputs", 111, 3], ["versionCheckProgram", 112, 3], ["versionCheckKeepEnvironment", 113, 3], ["preVersionCheck", 118, 3], ["meta", 126, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -38,13 +35,13 @@ export default nix.lambda((args) => (() => {
   const zlib = nix.arg($, "zlib");
   const enableMMAI = nix.argOr($, "enableMMAI", () => true);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "vcmi",
       version: "1.7.5",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "vcmi",
           repo: "vcmi",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -79,7 +76,7 @@ export default nix.lambda((args) => (() => {
         zlib,
       ], nix.app(nix.sel(lib, "optional"), enableMMAI, onnxruntime))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "cc", "isGNU")), "-Wno-mismatched-tags")),
       })),
       cmakeFlags: nix.thunk(() => [
@@ -105,7 +102,7 @@ export default nix.lambda((args) => (() => {
       versionCheckKeepEnvironment: nix.thunk(() => ["XDG_CACHE_HOME", "XDG_CONFIG_HOME", "XDG_DATA_HOME"]),
       preVersionCheck: "cd $(mktemp -d)\nexport \\\n  XDG_CACHE_HOME=\"$TMPDIR\" \\\n  XDG_CONFIG_HOME=\"$TMPDIR\" \\\n  XDG_DATA_HOME=\"$TMPDIR\"\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Open-source engine for Heroes of Might and Magic III",
         longDescription: "VCMI is an open-source engine for Heroes of Might and Magic III, offering\nnew and extended possibilities. To use VCMI, you need to own the original\ndata files.\n",
         homepage: "https://vcmi.eu",

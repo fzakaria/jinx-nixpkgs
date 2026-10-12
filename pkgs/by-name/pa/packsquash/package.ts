@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["repo", 15, 5], ["owner", 16, 5], ["tag", 17, 5], ["hash", 18, 5]], [["RUSTC_BOOTSTRAP", 25, 5], ["RUSTFLAGS", 28, 5]], [["updateScript", 41, 12]], [["description", 44, 5], ["homepage", 45, 5], ["changelog", 46, 5], ["license", 47, 5], ["maintainers", 48, 5], ["mainProgram", 49, 5]], [["pname", 10, 3], ["version", 11, 3], ["__structuredAttrs", 12, 3], ["src", 14, 3], ["cargoHash", 21, 3], ["env", 23, 3], ["nativeBuildInputs", 31, 3], ["checkFlags", 34, 3], ["doInstallCheck", 38, 3], ["nativeInstallCheckInputs", 39, 3], ["passthru", 41, 3], ["meta", 43, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, rustPlatform: false, cmake: false, versionCheckHook: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["repo", 15, 5], ["owner", 16, 5], ["tag", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["RUSTC_BOOTSTRAP", 25, 5], ["RUSTFLAGS", 28, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 41, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 44, 5], ["homepage", 45, 5], ["changelog", 46, 5], ["license", 47, 5], ["maintainers", 48, 5], ["mainProgram", 49, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["__structuredAttrs", 12, 3], ["src", 14, 3], ["cargoHash", 21, 3], ["env", 23, 3], ["nativeBuildInputs", 31, 3], ["checkFlags", 34, 3], ["doInstallCheck", 38, 3], ["nativeInstallCheckInputs", 39, 3], ["passthru", 41, 3], ["meta", 43, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,29 +14,29 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "packsquash",
       version: "0.4.1",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           repo: "PackSquash",
           owner: "ComunidadAylas",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-c2nVG9qjla3E5O5oD57+KxYh21Iu+fL1LFNC+rw6QR0=",
         })))),
       cargoHash: "sha256-dx2Cm2zNr9FARd1fc6ehynxrA1qHwtQQGMmEbGuc0dk=",
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, RUSTC_BOOTSTRAP: 1n, RUSTFLAGS: "-A stable-features" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], RUSTC_BOOTSTRAP: 1n, RUSTFLAGS: "-A stable-features" })),
       nativeBuildInputs: nix.thunk(() => [cmake]),
       checkFlags: nix.thunk(() => ["--skip=squash_zip::system_id::tests"]),
       doInstallCheck: true,
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Resource and data pack optimizer for Minecraft: Java Edition",
         homepage: "https://packsquash.aylas.org/",
         changelog: nix.thunk(() => nix.str`https://github.com/ComunidadAylas/PackSquash/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

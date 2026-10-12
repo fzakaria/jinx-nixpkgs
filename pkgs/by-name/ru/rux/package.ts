@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]], [["description", 49, 5], ["homepage", 50, 5], ["license", 51, 5], ["maintainers", 52, 5], ["mainProgram", 56, 5], ["platforms", 57, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["postPatch", 20, 3], ["strictDeps", 25, 3], ["__structuredAttrs", 26, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 33, 3], ["cmakeFlags", 37, 3], ["installPhase", 41, 3], ["meta", 48, 3]]]);
 const formals$1 = { args: { lib: false, llvmPackages_21: false, fetchFromGitHub: false, cmake: false, ninja: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 49, 5], ["homepage", 50, 5], ["license", 51, 5], ["maintainers", 52, 5], ["mainProgram", 56, 5], ["platforms", 57, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["postPatch", 20, 3], ["strictDeps", 25, 3], ["__structuredAttrs", 26, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 33, 3], ["cmakeFlags", 37, 3], ["installPhase", 41, 3], ["meta", 48, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const cmake = nix.arg($, "cmake");
   const ninja = nix.arg($, "ninja");
   return nix.app(nix.sel(llvmPackages_21, "libcxxStdenv", "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "rux",
       version: "0.3.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "rux-lang",
           repo: "Rux",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,7 +33,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const w = nix.withScope(lib, null);
         return {
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           description: "A fast, compiled, strongly typed, multi-paradigm programming language",
           homepage: "https://rux-lang.dev",
           license: nix.thunk(() => nix.sel(nix.lookup(w, "licenses"), "mit")),

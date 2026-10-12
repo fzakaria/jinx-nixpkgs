@@ -2,57 +2,46 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/nohang.nix", [[["maintainers", 6, 5]], [["memorySize", 15, 22]], [["enable", 17, 23]], [["nohang", 17, 16]], [["enable", 19, 20]], [["ExecStart", 24, 11]], [["description", 22, 9], ["serviceConfig", 23, 9]], [["testbloat", 21, 24]], [["oomd", 19, 15], ["services", 21, 15]], [["virtualisation", 15, 7], ["services", 17, 7], ["systemd", 19, 7]], [["machine", 11, 9]], [["name", 4, 3], ["meta", 5, 3], ["nodes", 11, 3], ["testScript", 32, 3]]]);
 const formals$1 = { args: { lib: false, pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/nohang.nix", [["maintainers", 6, 5]]);
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/nohang.nix", [["memorySize", 15, 22]]);
-const pos$3 = nix.positions(here + "/nohang.nix", [["enable", 17, 23]]);
-const pos$4 = nix.positions(here + "/nohang.nix", [["nohang", 17, 16]]);
-const pos$5 = nix.positions(here + "/nohang.nix", [["enable", 19, 20]]);
-const pos$6 = nix.positions(here + "/nohang.nix", [["ExecStart", 24, 11]]);
-const pos$7 = nix.positions(here + "/nohang.nix", [["description", 22, 9], ["serviceConfig", 23, 9]]);
-const pos$8 = nix.positions(here + "/nohang.nix", [["testbloat", 21, 24]]);
-const pos$9 = nix.positions(here + "/nohang.nix", [["oomd", 19, 15], ["services", 21, 15]]);
-const pos$10 = nix.positions(here + "/nohang.nix", [["virtualisation", 15, 7], ["services", 17, 7], ["systemd", 19, 7]]);
-const pos$11 = nix.positions(here + "/nohang.nix", [["machine", 11, 9]]);
-const pos$12 = nix.positions(here + "/nohang.nix", [["name", 4, 3], ["meta", 5, 3], ["nodes", 11, 3], ["testScript", 32, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   return {
-    [nix.POS]: pos$12,
+    [nix.POS]: $pos[11],
     name: "nohang",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "Dev380"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$11,
+      [nix.POS]: $pos[10],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$10,
-          virtualisation: nix.thunk(() => ({ [nix.POS]: pos$2, memorySize: 1024n })),
+          [nix.POS]: $pos[9],
+          virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[1], memorySize: 1024n })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$4,
-            nohang: nix.thunk(() => ({ [nix.POS]: pos$3, enable: true })),
+            [nix.POS]: $pos[3],
+            nohang: nix.thunk(() => ({ [nix.POS]: $pos[2], enable: true })),
           })),
           systemd: nix.thunk(() => ({
-            [nix.POS]: pos$9,
-            oomd: nix.thunk(() => ({ [nix.POS]: pos$5, enable: false })),
+            [nix.POS]: $pos[8],
+            oomd: nix.thunk(() => ({ [nix.POS]: $pos[4], enable: false })),
             services: nix.thunk(() => ({
-              [nix.POS]: pos$8,
+              [nix.POS]: $pos[7],
               testbloat: nix.thunk(() => ({
-                [nix.POS]: pos$7,
+                [nix.POS]: $pos[6],
                 description: "Create a lot of memory pressure",
                 serviceConfig: nix.thunk(() => ({
-                  [nix.POS]: pos$6,
+                  [nix.POS]: $pos[5],
                   ExecStart: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(pkgs_1, "coreutils")), "tail")} /dev/zero`),
                 })),
               })),

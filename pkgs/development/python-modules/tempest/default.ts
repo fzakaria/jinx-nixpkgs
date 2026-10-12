@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 39, 13], ["version", 39, 19], ["hash", 40, 5]], [["description", 103, 5], ["homepage", 104, 5], ["license", 105, 5], ["mainProgram", 106, 5], ["teams", 107, 5]], [["pname", 34, 3], ["version", 35, 3], ["pyproject", 36, 3], ["src", 38, 3], ["postPatch", 43, 3], ["pythonRelaxDeps", 48, 3], ["build-system", 50, 3], ["dependencies", 52, 3], ["nativeCheckInputs", 76, 3], ["checkPhase", 82, 3], ["pythonImportsCheck", 100, 3], ["meta", 102, 3]]]);
 const formals$1 = { args: { lib: false, bash: false, buildPythonPackage: false, cliff: false, debtcollector: false, defusedxml: false, fetchPypi: false, fixtures: false, hacking: false, jsonschema: false, netaddr: false, "oslo-concurrency": false, "oslo-config": false, "oslo-log": false, "oslo-serialization": false, "oslo-utils": false, oslotest: false, paramiko: false, pbr: false, prettytable: false, python: false, pyyaml: false, setuptools: false, stestr: false, stevedore: false, "python-subunit": false, testscenarios: false, testtools: false, urllib3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 39, 13], ["version", 39, 19], ["hash", 40, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 103, 5], ["homepage", 104, 5], ["license", 105, 5], ["mainProgram", 106, 5], ["teams", 107, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 34, 3], ["version", 35, 3], ["pyproject", 36, 3], ["src", 38, 3], ["postPatch", 43, 3], ["pythonRelaxDeps", 48, 3], ["build-system", 50, 3], ["dependencies", 52, 3], ["nativeCheckInputs", 76, 3], ["checkPhase", 82, 3], ["pythonImportsCheck", 100, 3], ["meta", 102, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -43,7 +41,7 @@ export default nix.lambda((args) => (() => {
       const version = "46.2.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-F/K0X4wHZOR4dvicGwQ9JOeh25iyqfKkgjiIZc6qWLY=",
@@ -93,7 +91,7 @@ stestr --test-path tempest/tests run -e <(echo "
 `);
       const pythonImportsCheck = nix.thunk(() => ["tempest"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "OpenStack integration test suite that runs against live OpenStack cluster and validates an OpenStack deployment",
         homepage: "https://github.com/openstack/tempest",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -101,7 +99,7 @@ stestr --test-path tempest/tests run -e <(echo "
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "openstack"))]),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

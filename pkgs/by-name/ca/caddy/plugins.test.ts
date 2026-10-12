@@ -2,53 +2,45 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/plugins.test.nix", [[["maintainers", 5, 8]], [["plugins", 16, 11], ["hash", 17, 11]], [["extraConfig", 24, 37]], [["localhost:80", 24, 22]], [["enable", 13, 9], ["package", 15, 9], ["globalConfig", 20, 9], ["virtualHosts", 24, 9]], [["caddy", 12, 16]], [["services", 12, 7]], [["machine", 9, 9]], [["name", 4, 3], ["meta", 5, 3], ["nodes", 9, 3], ["testScript", 31, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/plugins.test.nix", [["maintainers", 5, 8]]);
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/plugins.test.nix", [["plugins", 16, 11], ["hash", 17, 11]]);
-const pos$3 = nix.positions(here + "/plugins.test.nix", [["extraConfig", 24, 37]]);
-const pos$4 = nix.positions(here + "/plugins.test.nix", [["localhost:80", 24, 22]]);
-const pos$5 = nix.positions(here + "/plugins.test.nix", [["enable", 13, 9], ["package", 15, 9], ["globalConfig", 20, 9], ["virtualHosts", 24, 9]]);
-const pos$6 = nix.positions(here + "/plugins.test.nix", [["caddy", 12, 16]]);
-const pos$7 = nix.positions(here + "/plugins.test.nix", [["services", 12, 7]]);
-const pos$8 = nix.positions(here + "/plugins.test.nix", [["machine", 9, 9]]);
-const pos$9 = nix.positions(here + "/plugins.test.nix", [["name", 4, 3], ["meta", 5, 3], ["nodes", 9, 3], ["testScript", 31, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$9,
+    [nix.POS]: $pos[8],
     name: "caddy-plugins",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "stepbrobd"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             caddy: nix.thunk(() => ({
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               enable: true,
               package: nix.thunk(() => nix.app(nix.sel(pkgs, "caddy", "withPlugins"), nix.thunk(() => ({
-                  [nix.POS]: pos$2,
+                  [nix.POS]: $pos[1],
                   plugins: nix.thunk(() => ["github.com/caddyserver/replace-response@v0.0.0-20250618171559-80962887e4c6"]),
                   hash: "sha256-RvnrhgktjwNkG/3/th2q/ec6g7fMfGn6qLlGcz2B4TI=",
                 })))),
               globalConfig: "order replace after encode\n",
               virtualHosts: nix.thunk(() => ({
-                [nix.POS]: pos$4,
+                [nix.POS]: $pos[3],
                 "localhost:80": nix.thunk(() => ({
-                  [nix.POS]: pos$3,
+                  [nix.POS]: $pos[2],
                   extraConfig: "respond \"hello world\"\nreplace world nixos\n",
                 })),
               })),

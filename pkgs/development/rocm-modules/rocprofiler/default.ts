@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["name", 29, 5], ["paths", 31, 5], ["postBuild", 40, 5]], [["owner", 50, 5], ["repo", 51, 5], ["tag", 52, 5], ["sparseCheckout", 53, 5], ["fetchSubmodules", 57, 5], ["hash", 58, 5]], [["CXXFLAGS", 88, 7]], [["finalAttrs", 131, 54]], [["updateScript", 131, 12], ["rocmtoolkit-merged", 132, 12]], [["description", 135, 5], ["homepage", 136, 5], ["license", 137, 5], ["teams", 138, 5], ["platforms", 139, 5]], [["pname", 46, 3], ["version", 47, 3], ["src", 49, 3], ["sourceRoot", 60, 3], ["nativeBuildInputs", 62, 3], ["buildInputs", 73, 3], ["propagatedBuildInputs", 85, 3], ["env", 88, 3], ["cmakeFlags", 90, 3], ["postPatch", 101, 3], ["postInstall", 118, 3], ["postFixup", 125, 3], ["passthru", 131, 3], ["meta", 134, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, rocmUpdateScript: false, symlinkJoin: false, cmake: false, clang: false, clr: false, aqlprofile: false, "rocm-core": false, "rocm-runtime": false, "rocm-device-libs": false, roctracer: false, rocdbgapi: false, numactl: false, libpciaccess: false, libxml2: false, llvm: false, elfutils: false, mpi: false, gtest: false, python3Packages: false, gpuTargets: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["name", 29, 5], ["paths", 31, 5], ["postBuild", 40, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["owner", 50, 5], ["repo", 51, 5], ["tag", 52, 5], ["sparseCheckout", 53, 5], ["fetchSubmodules", 57, 5], ["hash", 58, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["CXXFLAGS", 88, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["finalAttrs", 131, 54]]);
-const pos$5 = nix.positions(here + "/default.nix", [["updateScript", 131, 12], ["rocmtoolkit-merged", 132, 12]]);
-const pos$6 = nix.positions(here + "/default.nix", [["description", 135, 5], ["homepage", 136, 5], ["license", 137, 5], ["teams", 138, 5], ["platforms", 139, 5]]);
-const pos$7 = nix.positions(here + "/default.nix", [["pname", 46, 3], ["version", 47, 3], ["src", 49, 3], ["sourceRoot", 60, 3], ["nativeBuildInputs", 62, 3], ["buildInputs", 73, 3], ["propagatedBuildInputs", 85, 3], ["env", 88, 3], ["cmakeFlags", 90, 3], ["postPatch", 101, 3], ["postInstall", 118, 3], ["postFixup", 125, 3], ["passthru", 131, 3], ["meta", 134, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -37,17 +31,17 @@ export default nix.lambda((args) => (() => {
   const python3Packages = nix.arg($, "python3Packages");
   const gpuTargets = nix.argOr($, "gpuTargets", () => nix.selOr(clr, () => nix.sel(clr, "gpuTargets"), "localGpuTargets"));
   const rocmtoolkit_merged = nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: "rocmtoolkit-merged",
       paths: nix.thunk(() => [rocm_core, rocm_runtime, rocm_device_libs, roctracer, rocdbgapi, clr]),
       postBuild: "rm -rf $out/nix-support\n",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "rocprofiler",
       version: "7.2.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "ROCm",
           repo: "rocm-systems",
           tag: nix.thunk(() => nix.str`rocm-${nix.sel(finalAttrs, "version")}`),
@@ -79,7 +73,7 @@ export default nix.lambda((args) => (() => {
       ]),
       propagatedBuildInputs: nix.thunk(() => [rocmtoolkit_merged]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         CXXFLAGS: nix.thunk(() => nix.str`-I${libpciaccess}/include -I${nix.sel(numactl, "dev")}/include -I${rocmtoolkit_merged}/include -I${nix.sel(elfutils, "dev")}/include -w`),
       })),
       cmakeFlags: nix.thunk(() => [
@@ -115,12 +109,12 @@ ln -s ${clr}/bin/rocm_agent_enumerator $out/bin/rocm_agent_enumerator
   --add-needed libhsa-amd-aqlprofile64.so
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
-        updateScript: nix.thunk(() => nix.app(rocmUpdateScript, nix.thunk(() => ({ [nix.POS]: pos$4, finalAttrs: finalAttrs })))),
+        [nix.POS]: $pos[4],
+        updateScript: nix.thunk(() => nix.app(rocmUpdateScript, nix.thunk(() => ({ [nix.POS]: $pos[3], finalAttrs: finalAttrs })))),
         "rocmtoolkit-merged": rocmtoolkit_merged,
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Profiling with perf-counters and derived metrics",
         homepage: "https://github.com/ROCm/rocm-systems/tree/develop/projects/rocprofiler",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

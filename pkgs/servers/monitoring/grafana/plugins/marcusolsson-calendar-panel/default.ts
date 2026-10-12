@@ -2,21 +2,20 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["description", 8, 5], ["license", 9, 5], ["maintainers", 10, 5], ["platforms", 11, 5]], [["pname", 4, 3], ["version", 5, 3], ["zipHash", 6, 3], ["meta", 7, 3]]]);
 const formals$1 = { args: { grafanaPlugin: false, lib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["description", 8, 5], ["license", 9, 5], ["maintainers", 10, 5], ["platforms", 11, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 4, 3], ["version", 5, 3], ["zipHash", 6, 3], ["meta", 7, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const grafanaPlugin = nix.arg($, "grafanaPlugin");
   const lib = nix.arg($, "lib");
   return nix.app(grafanaPlugin, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "marcusolsson-calendar-panel",
       version: "4.2.4",
       zipHash: "sha256-pqPz/wFzx3ffyMYYCoo34bof5UQ/Qz67V/E9c4QSizg=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Calendar Panel is a Grafana plugin that displays events from various data sources",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
         maintainers: nix.thunk(() => (() => {

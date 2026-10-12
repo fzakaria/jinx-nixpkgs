@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["rev", 24, 5], ["hash", 25, 5], ["fetchSubmodules", 26, 5]], [["description", 50, 5], ["longDescription", 51, 5], ["homepage", 56, 35], ["license", 57, 5], ["maintainers", 58, 5], ["platforms", 62, 5], ["mainProgram", 63, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 33, 3], ["prePatch", 41, 3], ["preConfigure", 47, 3], ["meta", 49, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, automake: false, autoconf: false, openssl: false, zlib: false, libpcap: false, boost: false, useCairo: true, cairo: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["rev", 24, 5], ["hash", 25, 5], ["fetchSubmodules", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 50, 5], ["longDescription", 51, 5], ["homepage", 56, 35], ["license", 57, 5], ["maintainers", 58, 5], ["platforms", 62, 5], ["mainProgram", 63, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 33, 3], ["prePatch", 41, 3], ["preConfigure", 47, 3], ["meta", 49, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const useCairo = nix.argOr($, "useCairo", () => false);
   const cairo = nix.arg($, "cairo");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "tcpflow",
       version: "1.6.1-unstable-2026-01-29",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "simsong",
           repo: "tcpflow",
           rev: "8d47b53a54da58e9c9b78efed8b379d98c6113e4",
@@ -39,7 +37,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(finalAttrs, "src", "meta"));
         return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "TCP stream extractor",
         longDescription: "tcpflow is a program that captures data transmitted as part of TCP\nconnections (flows), and stores the data in a way that is convenient for\nprotocol analysis and debugging.\n",
         homepage: nix.thunk(() => nix.attr(from, "homepage")),

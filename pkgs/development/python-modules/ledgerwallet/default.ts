@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 26, 5], ["repo", 27, 5], ["rev", 28, 5], ["hash", 29, 5]], [["homepage", 64, 5], ["description", 65, 5], ["mainProgram", 66, 5], ["license", 67, 5], ["maintainers", 68, 5]], [["pname", 21, 3], ["version", 22, 3], ["pyproject", 23, 3], ["src", 25, 3], ["buildInputs", 32, 3], ["propagatedBuildInputs", 36, 3], ["postPatch", 50, 3], ["preBuild", 57, 3], ["pythonImportsCheck", 61, 3], ["meta", 63, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, buildPythonPackage: false, cryptography: false, click: false, construct: false, ecdsa: false, hidapi: false, intelhex: false, pillow: false, protobuf: false, requests: false, setuptools: false, "setuptools-scm": false, tabulate: false, toml: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 26, 5], ["repo", 27, 5], ["rev", 28, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 64, 5], ["description", 65, 5], ["mainProgram", 66, 5], ["license", 67, 5], ["maintainers", 68, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 21, 3], ["version", 22, 3], ["pyproject", 23, 3], ["src", 25, 3], ["buildInputs", 32, 3], ["propagatedBuildInputs", 36, 3], ["postPatch", 50, 3], ["preBuild", 57, 3], ["pythonImportsCheck", 61, 3], ["meta", 63, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.5.3";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "LedgerHQ",
           repo: "ledgerctl",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -54,7 +52,7 @@ export default nix.lambda((args) => (() => {
       const preBuild = "protoc --python_out=. --pyi_out=. ledgerwallet/proto/*.proto\n";
       const pythonImportsCheck = nix.thunk(() => ["ledgerwallet"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/LedgerHQ/ledgerctl",
         description: "Library to control Ledger devices",
         mainProgram: "ledgerctl",
@@ -65,7 +63,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

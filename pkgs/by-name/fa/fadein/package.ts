@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 29, 5], ["hash", 30, 5]], [["description", 85, 5], ["homepage", 86, 5], ["changelog", 87, 5], ["license", 88, 5], ["mainProgram", 89, 5], ["maintainers", 90, 5], ["platforms", 91, 5]], [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["strictDeps", 33, 3], ["__structuredAttrs", 34, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 41, 3], ["installPhase", 60, 3], ["meta", 84, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchzip: false, autoPatchelfHook: false, cairo: false, fontconfig: false, "gdk-pixbuf": false, glib: false, gtk3: false, libuuid: false, pango: false, zlib: false, libsm: false, libx11: false, libxxf86vm: false, wayland: false, curl: false, webkitgtk_4_1: false, libjpeg8: false, wrapGAppsHook3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 29, 5], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 85, 5], ["homepage", 86, 5], ["changelog", 87, 5], ["license", 88, 5], ["mainProgram", 89, 5], ["maintainers", 90, 5], ["platforms", 91, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["strictDeps", 33, 3], ["__structuredAttrs", 34, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 41, 3], ["installPhase", 60, 3], ["meta", 84, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,11 +28,11 @@ export default nix.lambda((args) => (() => {
   const libjpeg8 = nix.arg($, "libjpeg8");
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "fadein",
       version: "5.0.15",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://web.archive.org/web/20260929081038/https://www.fadeinpro.com/download/demo/fadein-linux-x64-demo.tar.gz",
           hash: "sha256-pfpdAouRUTL8NhemKDybzi6B2J2Y/DCTfWZpmt1kMQU=",
         })))),
@@ -61,7 +59,7 @@ export default nix.lambda((args) => (() => {
       ]),
       installPhase: "runHook preInstall\nmkdir -p $out/share\ncp -r usr/share/* $out/share\n\n# Fix icons\nfor size in 16 24 32 48 64 96 128 256 512; do\n  install -Dm444 \\\n    \"usr/share/fadein/icon_app/fadein_icon_${size}x${size}.png\" \\\n    \"$out/share/icons/hicolor/${size}x${size}/apps/fadein.png\"\n\n  install -Dm444 \\\n    \"usr/share/fadein/icon_app/fadein_doc_${size}x${size}.png\" \\\n    \"$out/share/icons/hicolor/${size}x${size}/mimetypes/application-x-fadein-document.png\"\ndone\n\nsubstituteInPlace $out/share/applications/fadein.desktop \\\n  --replace-fail 'Icon=/usr/share/fadein/icon_app/fadein_icon_256x256.png' 'Icon=fadein'\n\nmkdir -p $out/bin\nln -s \"$out/share/fadein/fadein\" \"$out/bin/fadein\"\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Writing motion picture screenplays",
         homepage: "https://www.fadeinpro.com/",
         changelog: "https://www.fadeinpro.com/page.pl?content=version_notes",

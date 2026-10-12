@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 40, 5], ["repo", 41, 5], ["tag", 42, 5], ["hash", 43, 5]], [["voxconvert-roundtrip", 113, 5], ["voxconvert-all-formats", 114, 5], ["run-voxedit", 115, 5]], [["tests", 112, 12]], [["description", 119, 5], ["longDescription", 120, 5], ["homepage", 127, 5], ["downloadPage", 128, 5], ["license", 129, 5], ["maintainers", 133, 5], ["platforms", 134, 5], ["broken", 136, 5]], [["pname", 36, 3], ["version", 37, 3], ["src", 39, 3], ["prePatch", 46, 3], ["nativeBuildInputs", 55, 3], ["buildInputs", 63, 3], ["doCheck", 84, 3], ["checkInputs", 86, 3], ["postInstall", 90, 3], ["passthru", 112, 3], ["meta", 118, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, "pkg-config": false, ninja: false, python3: false, makeWrapper: false, "backward-cpp": false, curl: false, enet: false, freetype: false, glm: false, gtest: false, libbfd: false, libdwarf: false, libjpeg: false, libuuid: false, libuv: false, libx11: false, lua5_4: false, lzfse: false, "opencl-headers": false, SDL2: false, SDL2_mixer: false, "wayland-protocols": false, callPackage: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 40, 5], ["repo", 41, 5], ["tag", 42, 5], ["hash", 43, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["voxconvert-roundtrip", 113, 5], ["voxconvert-all-formats", 114, 5], ["run-voxedit", 115, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 112, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 119, 5], ["longDescription", 120, 5], ["homepage", 127, 5], ["downloadPage", 128, 5], ["license", 129, 5], ["maintainers", 133, 5], ["platforms", 134, 5], ["broken", 136, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 36, 3], ["version", 37, 3], ["src", 39, 3], ["prePatch", 46, 3], ["nativeBuildInputs", 55, 3], ["buildInputs", 63, 3], ["doCheck", 84, 3], ["checkInputs", 86, 3], ["postInstall", 90, 3], ["passthru", 112, 3], ["meta", 118, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -40,11 +36,11 @@ export default nix.lambda((args) => (() => {
   const callPackage = nix.arg($, "callPackage");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "vengi-tools",
       version: "0.4.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "vengi-voxel",
           repo: "vengi",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -73,16 +69,16 @@ export default nix.lambda((args) => (() => {
       checkInputs: nix.thunk(() => [gtest]),
       postInstall: nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? "mkdir -p $out/Applications\nmv $out/*.app $out/Applications/\n\nmkdir -p $out/bin\nln -s $out/Applications/vengi-voxconvert.app/Contents/MacOS/vengi-voxconvert $out/bin/vengi-voxconvert\n" : "for prog in $out/bin/*; do\n  wrapProgram \"$prog\" \\\n    --set CORE_PATH $out/share/$(basename \"$prog\")/\ndone\n")),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           "voxconvert-roundtrip": nix.thunk(() => nix.app(callPackage, nix.path(here, "./test-voxconvert-roundtrip.nix"), nix.thunk(() => ({})))),
           "voxconvert-all-formats": nix.thunk(() => nix.app(callPackage, nix.path(here, "./test-voxconvert-all-formats.nix"), nix.thunk(() => ({})))),
           "run-voxedit": nix.thunk(() => nix.sel(nixosTests, "vengi-tools")),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Tools from the vengi voxel engine, including a thumbnailer, a converter, and the VoxEdit voxel editor",
         longDescription: "Tools from the vengi C++ voxel game engine. It includes a voxel editor\nwith character animation support and loading/saving into a lot of voxel\nvolume formats. There are other tools like e.g. a thumbnailer for your\nfilemanager and a command line tool to convert between several voxel\nformats.\n",
         homepage: "https://vengi-voxel.github.io/vengi/",

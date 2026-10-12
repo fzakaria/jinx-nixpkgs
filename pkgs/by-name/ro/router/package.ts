@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5]], [["RUSTY_V8_ARCHIVE", 40, 7]], [["package", 49, 43]], [["version", 49, 11]], [["updateScript", 48, 5], ["tests", 49, 5]], [["description", 53, 5], ["homepage", 54, 5], ["license", 55, 5], ["platforms", 56, 5], ["maintainers", 61, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["cargoHash", 26, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 34, 3], ["env", 40, 3], ["cargoTestFlags", 42, 3], ["passthru", 47, 3], ["meta", 52, 3]]]);
 const formals$1 = { args: { lib: false, callPackage: false, fetchFromGitHub: false, rustPlatform: false, cmake: false, "pkg-config": false, protobuf: false, elfutils: false, "nix-update-script": false, testers: false, router: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["RUSTY_V8_ARCHIVE", 40, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["package", 49, 43]]);
-const pos$4 = nix.positions(here + "/package.nix", [["version", 49, 11]]);
-const pos$5 = nix.positions(here + "/package.nix", [["updateScript", 48, 5], ["tests", 49, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 53, 5], ["homepage", 54, 5], ["license", 55, 5], ["platforms", 56, 5], ["maintainers", 61, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["cargoHash", 26, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 34, 3], ["env", 40, 3], ["cargoTestFlags", 42, 3], ["passthru", 47, 3], ["meta", 52, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const pname = "router";
       const version = "1.56.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "apollographql",
           repo: "router",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -38,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [cmake, pkg_config, protobuf]);
       const buildInputs = nix.thunk(() => [elfutils]);
       const env = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         RUSTY_V8_ARCHIVE: nix.thunk(() => nix.app(callPackage, nix.path(here, "./librusty_v8.nix"), nix.thunk(() => ({})))),
       }));
       const cargoTestFlags = nix.thunk(() => [
@@ -46,15 +40,15 @@ export default nix.lambda((args) => (() => {
         "--skip=query_planner::tests::missing_typename_and_fragments_in_requires",
       ]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$3, package: router })))),
+          [nix.POS]: $pos[3],
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: $pos[2], package: router })))),
         })),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Configurable, high-performance routing runtime for Apollo Federation",
         homepage: "https://www.apollographql.com/docs/router/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "elastic20")),
@@ -62,7 +56,7 @@ export default nix.lambda((args) => (() => {
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "bbigras"))]),
       }));
       return {
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         pname,
         version,
         src,

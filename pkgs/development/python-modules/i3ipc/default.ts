@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]], [["url", 36, 7], ["hash", 37, 7]], [["FONTCONFIG_FILE", 55, 7]], [["description", 80, 5], ["homepage", 81, 5], ["changelog", 82, 5], ["license", 83, 5]], [["pname", 21, 3], ["version", 22, 3], ["pyproject", 23, 3], ["src", 25, 3], ["patches", 32, 3], ["postPatch", 46, 3], ["build-system", 51, 3], ["dependencies", 52, 3], ["env", 55, 3], ["nativeCheckInputs", 57, 3], ["disabledTestPaths", 68, 3], ["pythonImportsCheck", 77, 3], ["meta", 79, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, fetchpatch: false, coreutils: false, setuptools: false, "python-xlib": false, fontconfig: false, pytestCheckHook: false, writableTmpDirAsHomeHook: false, "pytest-asyncio": false, "pytest-timeout": false, "pytest-xvfb": false, i3: false, xvfb: false, xdpyinfo: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["url", 36, 7], ["hash", 37, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["FONTCONFIG_FILE", 55, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 80, 5], ["homepage", 81, 5], ["changelog", 82, 5], ["license", 83, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 21, 3], ["version", 22, 3], ["pyproject", 23, 3], ["src", 25, 3], ["patches", 32, 3], ["postPatch", 46, 3], ["build-system", 51, 3], ["dependencies", 52, 3], ["env", 55, 3], ["nativeCheckInputs", 57, 3], ["disabledTestPaths", 68, 3], ["pythonImportsCheck", 77, 3], ["meta", 79, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.2.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "altdesktop",
           repo: "i3ipc-python",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -40,7 +36,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/altdesktop/i3ipc-python/commit/2e6533e8df42c124f2cb10677dbb3639745a6610.patch",
             hash: "sha256-DjJrMLPL1hbufukaWOiC3Utyw2nXs9y7SCKML9DP71g=",
           })))),
@@ -52,7 +48,7 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [setuptools]);
       const dependencies = nix.thunk(() => [python_xlib]);
       const env = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         FONTCONFIG_FILE: nix.thunk(() => nix.str`${nix.sel(fontconfig, "out")}/etc/fonts/fonts.conf`),
       }));
       const nativeCheckInputs = nix.thunk(() => [
@@ -73,14 +69,14 @@ export default nix.lambda((args) => (() => {
       ]);
       const pythonImportsCheck = nix.thunk(() => ["i3ipc"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Improved Python library to control i3wm and sway",
         homepage: "https://github.com/altdesktop/i3ipc-python",
         changelog: nix.thunk(() => nix.str`https://github.com/altdesktop/i3ipc-python/releases/tag/${nix.sel(src, "tag")}`),
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         pyproject,

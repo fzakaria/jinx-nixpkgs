@@ -2,12 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/5.nix", [[["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5]], [["name", 36, 7], ["url", 37, 7], ["hash", 38, 7]], [["NIX_CFLAGS_COMPILE", 73, 7]], [["homepage", 87, 5], ["description", 88, 5], ["mainProgram", 89, 5], ["license", 90, 5], ["maintainers", 91, 5], ["platforms", 92, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["buildInputs", 26, 3], ["patches", 33, 3], ["postPatch", 43, 3], ["buildPhase", 59, 3], ["env", 73, 3], ["installPhase", 79, 3], ["premake_cmd", 83, 3], ["setupHook", 84, 3], ["meta", 86, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch: false, cacert: false, libuuid: false, readline: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/5.nix", [["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/5.nix", [["name", 36, 7], ["url", 37, 7], ["hash", 38, 7]]);
-const pos$3 = nix.positions(here + "/5.nix", [["NIX_CFLAGS_COMPILE", 73, 7]]);
-const pos$4 = nix.positions(here + "/5.nix", [["homepage", 87, 5], ["description", 88, 5], ["mainProgram", 89, 5], ["license", 90, 5], ["maintainers", 91, 5], ["platforms", 92, 5]]);
-const pos$5 = nix.positions(here + "/5.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["buildInputs", 26, 3], ["patches", 33, 3], ["postPatch", 43, 3], ["buildPhase", 59, 3], ["env", 73, 3], ["installPhase", 79, 3], ["premake_cmd", 83, 3], ["setupHook", 84, 3], ["meta", 86, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const libuuid = nix.arg($, "libuuid");
   const readline = nix.arg($, "readline");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "premake5",
       version: "5.0.0-beta8",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "premake",
           repo: "premake-core",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -32,7 +28,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => nix.concat([libuuid], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [readline])))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "0001-premake5-Fix-filters-using-alias-value.patch",
             url: "https://github.com/premake/premake-core/commit/d01097bb38da6855beeef7158b8b04ab1e63249b.patch",
             hash: "sha256-ZGhNUoXZbbW9ioFnAgPwypYhepoChtWF1SOCxs1WLj8=",
@@ -46,14 +42,14 @@ export default nix.lambda((args) => (() => {
   -f Bootstrap.mak linux
 `)),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), nix.thunk(() => ["-Wno-error=implicit-function-declaration"]))))),
       })),
       installPhase: "install -Dm755 bin/release/premake5 $out/bin/premake5\n",
       premake_cmd: "premake5",
       setupHook: nix.path(here, "./setup-hook.sh"),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://premake.github.io",
         description: "Simple build configuration and project generation tool using lua",
         mainProgram: "premake5",

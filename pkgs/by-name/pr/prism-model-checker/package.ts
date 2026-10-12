@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["hash", 26, 5]], [["name", 38, 7], ["desktopName", 39, 7], ["type", 40, 7], ["icon", 41, 7], ["terminal", 42, 7], ["categories", 43, 7], ["exec", 47, 7], ["comment", 48, 7]], [["description", 95, 5], ["homepage", 97, 5], ["license", 98, 5], ["maintainers", 99, 5], ["platforms", 100, 5], ["mainProgram", 101, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["nativeBuildInputs", 29, 3], ["desktopItems", 36, 3], ["postPatch", 52, 3], ["makeFlags", 56, 3], ["preBuild", 63, 3], ["installPhase", 67, 3], ["meta", 94, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, gccStdenv: false, coreutils: false, fetchFromGitHub: false, openjdk: false, jre: false, cctools: false, copyDesktopItems: false, makeDesktopItem: false, makeWrapper: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 38, 7], ["desktopName", 39, 7], ["type", 40, 7], ["icon", 41, 7], ["terminal", 42, 7], ["categories", 43, 7], ["exec", 47, 7], ["comment", 48, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 95, 5], ["homepage", 97, 5], ["license", 98, 5], ["maintainers", 99, 5], ["platforms", 100, 5], ["mainProgram", 101, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["nativeBuildInputs", 29, 3], ["desktopItems", 36, 3], ["postPatch", 52, 3], ["makeFlags", 56, 3], ["preBuild", 63, 3], ["installPhase", 67, 3], ["meta", 94, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const stdenv$ = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? nix.force(gccStdenv) : nix.force(stdenv)));
   return nix.app(nix.sel(stdenv$, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "prism-model-checker",
       version: "4.10",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "prismmodelchecker",
           repo: "prism",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,7 +33,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => nix.concat([openjdk, copyDesktopItems, makeWrapper], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv$, "hostPlatform", "isDarwin")), nix.thunk(() => [cctools])))),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "prism-model-checker-xprism",
             desktopName: "XPrism",
             type: "Application",
@@ -82,7 +79,7 @@ done
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Probabilistic Symbolic Model Checker",
         homepage: "https://www.prismmodelchecker.org",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

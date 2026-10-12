@@ -2,22 +2,10 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 30, 7], ["repo", 31, 7], ["tag", 32, 7], ["hash", 33, 7]], [["homepage", 55, 7], ["license", 56, 7]], [["pname", 26, 5], ["version", 27, 5], ["src", 29, 5], ["vendorHash", 36, 5], ["buildPhase", 38, 5], ["installPhase", 46, 5], ["meta", 54, 5]], [["owner", 63, 5], ["repo", 64, 5], ["tag", 65, 5], ["hash", 66, 5]], [["pname", 87, 9], ["version", 88, 17], ["src", 88, 25], ["passthru", 89, 23], ["postPatch", 91, 9], ["installPhase", 96, 9]], [["pname", 108, 9], ["version", 109, 17], ["src", 109, 25], ["passthru", 110, 23], ["postPatch", 112, 9], ["installPhase", 120, 9]], [["media_kit_libs_linux", 84, 5], ["media_kit_video", 105, 5]], [["src", 158, 19], ["nativeBuildInputs", 159, 11]], [["supportedFeatures", 169, 11]], [["command", 173, 9], ["supportedFeatures", 180, 9]], [["pubspecSource", 155, 5], ["updateScript", 164, 5]], [["description", 186, 5], ["homepage", 187, 5], ["mainProgram", 188, 5], ["license", 189, 5], ["maintainers", 190, 5], ["platforms", 191, 5]], [["pname", 70, 3], ["version", 71, 11], ["src", 71, 19], ["postPatch", 73, 3], ["pubspecLock", 78, 3], ["gitHashes", 80, 3], ["customSourceBuilders", 82, 3], ["nativeBuildInputs", 130, 3], ["buildInputs", 136, 3], ["postInstall", 145, 3], ["passthru", 154, 3], ["meta", 185, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildGoModule: false, flutter347: false, fetchFromGitHub: false, autoPatchelfHook: false, "desktop-file-utils": false, "alsa-lib": false, libdrm: false, libepoxy: false, libgbm: false, libpulseaudio: false, "mpv-unwrapped": false, mimalloc: false, imagemagick: false, runCommand: false, "yq-go": false, "_experimental-update-script-combinators": false, "nix-update-script": false, dart: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 30, 7], ["repo", 31, 7], ["tag", 32, 7], ["hash", 33, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 55, 7], ["license", 56, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 26, 5], ["version", 27, 5], ["src", 29, 5], ["vendorHash", 36, 5], ["buildPhase", 38, 5], ["installPhase", 46, 5], ["meta", 54, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["owner", 63, 5], ["repo", 64, 5], ["tag", 65, 5], ["hash", 66, 5]]);
 const formals$2 = { args: { version: false, src: false }, ellipsis: true };
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 87, 9], ["version", 88, 17], ["src", 88, 25], ["passthru", 89, 23], ["postPatch", 91, 9], ["installPhase", 96, 9]]);
 const formals$3 = { args: { version: false, src: false }, ellipsis: true };
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 108, 9], ["version", 109, 17], ["src", 109, 25], ["passthru", 110, 23], ["postPatch", 112, 9], ["installPhase", 120, 9]]);
-const pos$7 = nix.positions(here + "/package.nix", [["media_kit_libs_linux", 84, 5], ["media_kit_video", 105, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["src", 158, 19], ["nativeBuildInputs", 159, 11]]);
-const pos$9 = nix.positions(here + "/package.nix", [["supportedFeatures", 169, 11]]);
-const pos$10 = nix.positions(here + "/package.nix", [["command", 173, 9], ["supportedFeatures", 180, 9]]);
-const pos$11 = nix.positions(here + "/package.nix", [["pubspecSource", 155, 5], ["updateScript", 164, 5]]);
-const pos$12 = nix.positions(here + "/package.nix", [["description", 186, 5], ["homepage", 187, 5], ["mainProgram", 188, 5], ["license", 189, 5], ["maintainers", 190, 5], ["platforms", 191, 5]]);
-const pos$13 = nix.positions(here + "/package.nix", [["pname", 70, 3], ["version", 71, 11], ["src", 71, 19], ["postPatch", 73, 3], ["pubspecLock", 78, 3], ["gitHashes", 80, 3], ["customSourceBuilders", 82, 3], ["nativeBuildInputs", 130, 3], ["buildInputs", 136, 3], ["postInstall", 145, 3], ["passthru", 154, 3], ["meta", 185, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -42,11 +30,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const dart = nix.arg($, "dart");
   const libopencc = nix.thunk(() => nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "libopencc",
       version: "1.0.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Predidit",
           repo: "open_chinese_convert_bridge",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -56,21 +44,21 @@ export default nix.lambda((args) => (() => {
       buildPhase: "runHook preBuild\n\ngo build -buildmode=c-shared -o libopencc.so\n\nrunHook postBuild\n",
       installPhase: "runHook preInstall\n\ninstall -D --mode=0644 libopencc.so --target-directory $out/lib\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/Predidit/open_chinese_convert_bridge",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
       })),
     })));
   const version = "1.4.7";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       owner: "Predidit",
       repo: "oneAnime",
       tag: version,
       hash: "sha256-p5o+DtHeZx5S8mxzLrPFEhpKxuprZNnXsJtj1+Mi2BI=",
     }))));
   return nix.app(nix.sel(flutter347, "buildFlutterApplication"), nix.thunk(() => ({
-      [nix.POS]: pos$13,
+      [nix.POS]: $pos[12],
       pname: "oneanime",
       version: version,
       src: src,
@@ -80,7 +68,7 @@ export default nix.lambda((args) => (() => {
       pubspecLock: nix.thunk(() => nix.app(nix.sel(lib, "importJSON"), nix.path(here, "./pubspec.lock.json"))),
       gitHashes: nix.thunk(() => nix.app(nix.sel(lib, "importJSON"), nix.path(here, "./git-hashes.json"))),
       customSourceBuilders: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         media_kit_libs_linux: nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$2);
           const version_1 = nix.arg($_1, "version");
@@ -95,7 +83,7 @@ sed -i '/set(PLUGIN_NAME "media_kit_libs_linux_plugin")/i add_custom_target("MIM
 `);
               const installPhase = "runHook preInstall\n\ncp -r . $out\n\nrunHook postInstall\n";
               return {
-                [nix.POS]: pos$5,
+                [nix.POS]: $pos[4],
                 pname,
                 version: version_2,
                 src: src_2,
@@ -122,7 +110,7 @@ sed -i '/if(MEDIA_KIT_LIBS_AVAILABLE)/i \\
 `);
               const installPhase = "runHook preInstall\n\ncp -r . $out\n\nrunHook postInstall\n";
               return {
-                [nix.POS]: pos$6,
+                [nix.POS]: $pos[5],
                 pname,
                 version: version_2,
                 src: src_2,
@@ -143,13 +131,13 @@ desktop-file-edit oneAnime.desktop \\
 install -D --mode=0644 oneAnime.desktop --target-directory $out/share/applications
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$11,
-        pubspecSource: nix.thunk(() => nix.app(runCommand, "pubspec.lock.json", nix.thunk(() => ({ [nix.POS]: pos$8, src: src, nativeBuildInputs: nix.thunk(() => [yq_go]) })), "yq eval --output-format=json --prettyPrint $src/pubspec.lock > \"$out\"\n")),
+        [nix.POS]: $pos[10],
+        pubspecSource: nix.thunk(() => nix.app(runCommand, "pubspec.lock.json", nix.thunk(() => ({ [nix.POS]: $pos[7], src: src, nativeBuildInputs: nix.thunk(() => [yq_go]) })), "yq eval --output-format=json --prettyPrint $src/pubspec.lock > \"$out\"\n")),
         updateScript: nix.thunk(() => nix.app(nix.sel(_experimental_update_script_combinators, "sequence"), nix.thunk(() => [
             nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
-            nix.thunk(() => nix.update(nix.app(nix.sel(_experimental_update_script_combinators, "copyAttrOutputToFile"), "oneanime.pubspecSource", nix.path(here, "./pubspec.lock.json")), { [nix.POS]: pos$9, supportedFeatures: [] })),
+            nix.thunk(() => nix.update(nix.app(nix.sel(_experimental_update_script_combinators, "copyAttrOutputToFile"), "oneanime.pubspecSource", nix.path(here, "./pubspec.lock.json")), { [nix.POS]: $pos[8], supportedFeatures: [] })),
             nix.thunk(() => ({
-              [nix.POS]: pos$10,
+              [nix.POS]: $pos[9],
               command: nix.thunk(() => [
                 nix.thunk(() => nix.sel(dart, "fetchGitHashesScript")),
                 "--input",
@@ -162,7 +150,7 @@ install -D --mode=0644 oneAnime.desktop --target-directory $out/share/applicatio
           ]))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$12,
+        [nix.POS]: $pos[11],
         description: "Anime1 third-party client with bullet screen",
         homepage: "https://github.com/Predidit/oneAnime",
         mainProgram: "oneanime",

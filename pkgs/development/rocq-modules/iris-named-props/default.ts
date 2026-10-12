@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["case", 17, 9], ["out", 18, 9]], [["hash", 21, 24], ["rev", 22, 24]], [["2023-08-14", 21, 11]], [["description", 25, 5], ["maintainers", 26, 5]], [["pname", 10, 3], ["owner", 11, 3], ["version", 12, 11], ["defaultVersion", 13, 3], ["release", 21, 3], ["propagatedBuildInputs", 23, 3], ["meta", 24, 3]]]);
 const formals$1 = { args: { lib: false, mkCoqDerivation: false, coq: false, version: true, iris: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["case", 17, 9], ["out", 18, 9]]);
-const pos$2 = nix.positions(here + "/default.nix", [["hash", 21, 24], ["rev", 22, 24]]);
-const pos$3 = nix.positions(here + "/default.nix", [["2023-08-14", 21, 11]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 25, 5], ["maintainers", 26, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 10, 3], ["owner", 11, 3], ["version", 12, 11], ["defaultVersion", 13, 3], ["release", 21, 3], ["propagatedBuildInputs", 23, 3], ["meta", 24, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const version = nix.argOr($, "version", () => null);
   const iris = nix.arg($, "iris");
   return nix.app(mkCoqDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "iris-named-props",
       owner: "tchajed",
       version: version,
@@ -25,23 +21,23 @@ export default nix.lambda((args) => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "versions")), null);
         return nix.app(nix.sel(lib, "switch"), nix.thunk(() => nix.sel(coq, "version")), nix.thunk(() => [
             nix.thunk(() => ({
-              [nix.POS]: pos$1,
+              [nix.POS]: $pos[0],
               case: nix.thunk(() => nix.app(nix.lookup(w, "range"), "8.16", "8.19")),
               out: "2023-08-14",
             })),
           ]), null);
       })()),
       release: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         "2023-08-14": nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           hash: "sha256-gu9qOdHO0qJ2B9Y9Vf66q08iNJcfuECJO66fizFB08g=",
           rev: "ca1871dd33649f27257a0fbf94076acc80ecffbc",
         })),
       })),
       propagatedBuildInputs: nix.thunk(() => [iris]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Named props for Iris",
         maintainers: nix.thunk(() => (() => {
           const w_1 = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);

@@ -2,11 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]], [["pluginName", 37, 12]], [["description", 40, 5], ["homepage", 41, 5], ["changelog", 42, 5], ["license", 43, 5], ["maintainers", 44, 5], ["platforms", 45, 5]], [["pname", 11, 3], ["version", 12, 3], ["pyproject", 13, 3], ["__structuredAttrs", 14, 3], ["src", 16, 3], ["build-system", 23, 3], ["dependencies", 25, 3], ["nativeCheckInputs", 27, 3], ["preFixup", 29, 3], ["dontUsePythonImportsCheck", 33, 3], ["pythonImportsCheck", 35, 3], ["passthru", 37, 3], ["meta", 39, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, icalendar: false, netbox: false, python: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pluginName", 37, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 40, 5], ["homepage", 41, 5], ["changelog", 42, 5], ["license", 43, 5], ["maintainers", 44, 5], ["platforms", 45, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["pyproject", 13, 3], ["__structuredAttrs", 14, 3], ["src", 16, 3], ["build-system", 23, 3], ["dependencies", 25, 3], ["nativeCheckInputs", 27, 3], ["preFixup", 29, 3], ["dontUsePythonImportsCheck", 33, 3], ["pythonImportsCheck", 35, 3], ["passthru", 37, 3], ["meta", 39, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,13 +15,13 @@ export default nix.lambda((args) => (() => {
   const netbox = nix.arg($, "netbox");
   const python = nix.arg($, "python");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "netbox-notices",
       version: "1.3.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "jsenecal",
           repo: "netbox-notices",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -37,9 +34,9 @@ export default nix.lambda((args) => (() => {
 `),
       dontUsePythonImportsCheck: nix.thunk(() => !nix.eq(nix.sel(python, "pythonVersion"), nix.sel(netbox, "python", "pythonVersion"))),
       pythonImportsCheck: nix.thunk(() => ["notices"]),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, pluginName: "notices" })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[1], pluginName: "notices" })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "NetBox plugin to track maintenance and outage events against NetBox models",
         homepage: "https://github.com/jsenecal/netbox-notices",
         changelog: nix.thunk(() => nix.str`https://github.com/jsenecal/netbox-notices/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

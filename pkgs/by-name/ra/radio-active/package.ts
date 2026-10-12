@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["version", 19, 17], ["hash", 20, 9]], [["version", 16, 15], ["src", 18, 7]], [["owner", 33, 5], ["repo", 34, 5], ["rev", 35, 5], ["hash", 36, 5]], [["description", 62, 5], ["homepage", 63, 5], ["changelog", 64, 5], ["license", 65, 5], ["maintainers", 66, 5]], [["pname", 29, 11], ["version", 29, 17], ["pyproject", 30, 3], ["src", 32, 3], ["postPatch", 39, 3], ["build-system", 48, 3], ["dependencies", 50, 3], ["meta", 61, 3]]]);
 const formals$1 = { args: { lib: false, python3Packages: false, fetchFromGitHub: false, ffmpeg: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["version", 19, 17], ["hash", 20, 9]]);
-const pos$2 = nix.positions(here + "/package.nix", [["version", 16, 15], ["src", 18, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["owner", 33, 5], ["repo", 34, 5], ["rev", 35, 5], ["hash", 36, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 62, 5], ["homepage", 63, 5], ["changelog", 64, 5], ["license", 65, 5], ["maintainers", 66, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 29, 11], ["version", 29, 17], ["pyproject", 30, 3], ["src", 32, 3], ["postPatch", 39, 3], ["build-system", 48, 3], ["dependencies", 50, 3], ["meta", 61, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,10 +14,10 @@ export default nix.lambda((args) => (() => {
   const pyradios_1_0_2 = nix.thunk(() => nix.app(nix.sel(python3Packages, "pyradios", "overrideAttrs"), (finalAttrs) => (previousAttrs) => (() => {
       const version_1 = "1.0.2";
       return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         version: version_1,
         src: nix.thunk(() => nix.app(nix.sel(previousAttrs, "src", "override"), nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             version: version_1,
             hash: "sha256-O30ExmvWu4spwDytFVPWGjR8w3XSTaWd2Z0LGQibq9g=",
           })))),
@@ -30,12 +26,12 @@ export default nix.lambda((args) => (() => {
   const pname = "radio-active";
   const version = "2.9.1";
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: pname,
       version: version,
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           owner: "S0AndS0",
           repo: "radio-active",
           rev: "2befa6a309d9c411ef1ea522e706ed3e098e5341",
@@ -66,7 +62,7 @@ substituteInPlace radioactive/ffplay.py \\
         ];
       })()),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Play any radios from around the globe right from the terminal",
         homepage: "https://www.radio-browser.info/",
         changelog: nix.thunk(() => nix.str`https://github.com/deep5050/radio-active/releases/tag/v${version}`),

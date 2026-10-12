@@ -2,16 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["hash", 15, 19]], [["hash", 16, 19]], [["hash", 17, 19]], [["hash", 18, 19]], [["hash", 19, 19]], [["1.2.2", 15, 11], ["1.2.1", 16, 11], ["1.2.0", 17, 11], ["1.1.3", 18, 11], ["1.1.2", 19, 11]], [["cases", 25, 9], ["out", 29, 17]], [["description", 49, 5], ["maintainers", 50, 5], ["license", 51, 5], ["platforms", 52, 5]], [["pname", 11, 3], ["releaseRev", 13, 3], ["release", 15, 3], ["version", 21, 11], ["defaultVersion", 22, 3], ["propagatedBuildInputs", 43, 3], ["meta", 48, 3]]]);
 const formals$1 = { args: { lib: false, mkCoqDerivation: false, coq: false, mathcomp: false, stdlib: false, version: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["hash", 15, 19]]);
-const pos$2 = nix.positions(here + "/default.nix", [["hash", 16, 19]]);
-const pos$3 = nix.positions(here + "/default.nix", [["hash", 17, 19]]);
-const pos$4 = nix.positions(here + "/default.nix", [["hash", 18, 19]]);
-const pos$5 = nix.positions(here + "/default.nix", [["hash", 19, 19]]);
-const pos$6 = nix.positions(here + "/default.nix", [["1.2.2", 15, 11], ["1.2.1", 16, 11], ["1.2.0", 17, 11], ["1.1.3", 18, 11], ["1.1.2", 19, 11]]);
-const pos$7 = nix.positions(here + "/default.nix", [["cases", 25, 9], ["out", 29, 17]]);
-const pos$8 = nix.positions(here + "/default.nix", [["description", 49, 5], ["maintainers", 50, 5], ["license", 51, 5], ["platforms", 52, 5]]);
-const pos$9 = nix.positions(here + "/default.nix", [["pname", 11, 3], ["releaseRev", 13, 3], ["release", 15, 3], ["version", 21, 11], ["defaultVersion", 22, 3], ["propagatedBuildInputs", 43, 3], ["meta", 48, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,35 +14,35 @@ export default nix.lambda((args) => (() => {
   const stdlib = nix.arg($, "stdlib");
   const version = nix.argOr($, "version", () => null);
   return nix.app(mkCoqDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       pname: "reglang",
       releaseRev: (v) => nix.str`v${v}`,
       release: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         "1.2.2": nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           hash: "sha256-js1JaLSpYbxfiAfh8XvGsnJpx5DV13heouUm3oeBfNg=",
         })),
         "1.2.1": nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           hash: "sha256-giCRK8wzpVVzXAkFAieQDWqSsP7upSJSUUHkwG4QqO4=",
         })),
         "1.2.0": nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           hash: "sha256-gSqQ7D2HLwM4oYopTWkMFYfYXxsH/7VxI3AyrLwNf3o=",
         })),
         "1.1.3": nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           hash: "sha256-kaselYm8K0JBsTlcI6K24m8qpv8CZ9+VNDJrOtFaExg=",
         })),
         "1.1.2": nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           hash: "sha256-SEnMilLNxh6a3oiDNGLaBr8quQ/nO2T9Fwdf/1il2Yk=",
         })),
       })),
       version: version,
       defaultVersion: nix.thunk(() => (() => {
-        const case$ = (coq_1) => (mc) => (out) => ({ [nix.POS]: pos$7, cases: nix.thunk(() => [coq_1, mc]), out: out });
+        const case$ = (coq_1) => (mc) => (out) => ({ [nix.POS]: $pos[6], cases: nix.thunk(() => [coq_1, mc]), out: out });
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "versions")), null);
         return nix.app(nix.sel(lib, "switch"), nix.thunk(() => [
             nix.thunk(() => nix.sel(coq, "coq-version")),
@@ -64,7 +56,7 @@ export default nix.lambda((args) => (() => {
       })()),
       propagatedBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(mathcomp, "ssreflect")), stdlib]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         description: "Regular Language Representations in Coq",
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);

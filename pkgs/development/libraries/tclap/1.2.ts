@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/1.2.nix", [[["url", 12, 5], ["sha256", 13, 5]], [["homepage", 17, 5], ["description", 18, 5], ["platforms", 19, 5], ["license", 20, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["meta", 16, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/1.2.nix", [["url", 12, 5], ["sha256", 13, 5]]);
-const pos$2 = nix.positions(here + "/1.2.nix", [["homepage", 17, 5], ["description", 18, 5], ["platforms", 19, 5], ["license", 20, 5]]);
-const pos$3 = nix.positions(here + "/1.2.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["meta", 16, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,18 +14,18 @@ export default nix.lambda((args) => (() => {
       const pname = "tclap";
       const version = "1.2.5";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/tclap/${pname}-${version}.tar.gz`),
           sha256: "sha256-u2SfdtrjXo0Ny6S1Ks/U4GLXh+aoG0P3pLASdRUxZaY=",
         }))));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://tclap.sourceforge.net/",
         description: "Templatized C++ Command Line Parser Library",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       }));
-      return { [nix.POS]: pos$3, pname, version, src, meta };
+      return { [nix.POS]: $pos[2], pname, version, src, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=1.2.ts.map

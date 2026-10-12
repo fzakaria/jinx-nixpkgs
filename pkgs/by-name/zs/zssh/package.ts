@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 17, 5], ["sha256", 18, 5]], [["name", 27, 7], ["url", 28, 7], ["sha256", 29, 7]], [["description", 48, 5], ["homepage", 49, 5], ["license", 50, 5], ["maintainers", 51, 5], ["platforms", 52, 5]], [["pname", 13, 3], ["version", 14, 11], ["src", 16, 3], ["nativeBuildInputs", 21, 3], ["buildInputs", 22, 3], ["patches", 24, 3], ["patchFlags", 33, 3], ["postPatch", 35, 3], ["postBuild", 43, 3], ["meta", 47, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, readline: false, autoreconfHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 17, 5], ["sha256", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 27, 7], ["url", 28, 7], ["sha256", 29, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 48, 5], ["homepage", 49, 5], ["license", 50, 5], ["maintainers", 51, 5], ["platforms", 52, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 11], ["src", 16, 3], ["nativeBuildInputs", 21, 3], ["buildInputs", 22, 3], ["patches", 24, 3], ["patchFlags", 33, 3], ["postPatch", 35, 3], ["postBuild", 43, 3], ["meta", 47, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const autoreconfHook = nix.arg($, "autoreconfHook");
   const version = "1.5c";
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "zssh",
       version: version,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/zssh/zssh-${nix.sel(finalAttrs, "version")}.tgz`),
           sha256: "06z73iq59lz8ibjrgs7d3xl39vh9yld1988yx8khssch4pw41s52",
         })))),
@@ -29,7 +26,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [readline]),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "fix_use_ptmx_on_arch.patch",
             url: "https://raw.githubusercontent.com/archlinux/svntogit-community/0a7c92543f9309856d02e31196f06d7c3eaa8b67/trunk/fix_use_ptmx_on_arch.patch",
             sha256: "12daw9wpy58ql882zww945wk9cg2adwp8qsr5rvazx0xq0qawgbr",
@@ -39,7 +36,7 @@ export default nix.lambda((args) => (() => {
       postPatch: "sed -i 1i'#include <pty.h>' openpty.c\n# readline has renamed the type name\nsubstituteInPlace completion.c \\\n  --replace-fail CPPFunction rl_completion_func_t\n",
       postBuild: "install -dm755 \"$out\"/{bin,share/man/man1}\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "SSH and Telnet client with ZMODEM file transfer capability",
         homepage: "https://zssh.sourceforge.net/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

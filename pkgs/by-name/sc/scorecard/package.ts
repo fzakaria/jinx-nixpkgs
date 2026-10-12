@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5], ["leaveDotGit", 25, 5], ["postFetch", 26, 5]], [["package", 92, 5], ["command", 93, 5], ["version", 94, 5]], [["version", 91, 18]], [["tests", 91, 12]], [["homepage", 98, 5], ["changelog", 99, 5], ["description", 100, 5], ["mainProgram", 101, 5], ["license", 102, 5], ["maintainers", 103, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["vendorHash", 34, 3], ["nativeBuildInputs", 40, 3], ["subPackages", 42, 3], ["ldflags", 44, 3], ["preBuild", 52, 3], ["__darwinAllowLocalNetworking", 57, 3], ["nativeCheckInputs", 59, 3], ["preCheck", 61, 3], ["checkFlags", 72, 3], ["postInstall", 76, 3], ["doInstallCheck", 83, 3], ["installCheckPhase", 84, 3], ["passthru", 91, 3], ["meta", 97, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildGoModule: false, fetchFromGitHub: false, installShellFiles: false, testers: false, scorecard: false, gitMinimal: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5], ["leaveDotGit", 25, 5], ["postFetch", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["package", 92, 5], ["command", 93, 5], ["version", 94, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 91, 18]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 91, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["homepage", 98, 5], ["changelog", 99, 5], ["description", 100, 5], ["mainProgram", 101, 5], ["license", 102, 5], ["maintainers", 103, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["vendorHash", 34, 3], ["nativeBuildInputs", 40, 3], ["subPackages", 42, 3], ["ldflags", 44, 3], ["preBuild", 52, 3], ["__darwinAllowLocalNetworking", 57, 3], ["nativeCheckInputs", 59, 3], ["preCheck", 61, 3], ["checkFlags", 72, 3], ["postInstall", 76, 3], ["doInstallCheck", 83, 3], ["installCheckPhase", 84, 3], ["passthru", 91, 3], ["meta", 97, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const scorecard = nix.arg($, "scorecard");
   const gitMinimal = nix.arg($, "gitMinimal");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "scorecard",
       version: "5.5.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ossf",
           repo: "scorecard",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -55,11 +50,11 @@ $out/bin/scorecard version 2>&1 | grep "v${nix.sel(finalAttrs, "version")}"
 runHook postInstallCheck
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               package: scorecard,
               command: "scorecard version",
               version: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -67,7 +62,7 @@ runHook postInstallCheck
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "https://github.com/ossf/scorecard",
         changelog: nix.thunk(() => nix.str`https://github.com/ossf/scorecard/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "Security health metrics for Open Source",

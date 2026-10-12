@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["sha256", 16, 5]], [["NIX_CFLAGS_COMPILE", 19, 7]], [["description", 27, 5], ["longDescription", 28, 5], ["homepage", 33, 5], ["maintainers", 34, 5], ["platforms", 35, 5], ["license", 36, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["env", 19, 3], ["postInstall", 22, 3], ["enableParallelBuilding", 24, 3], ["meta", 26, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["sha256", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 19, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 27, 5], ["longDescription", 28, 5], ["homepage", 33, 5], ["maintainers", 34, 5], ["platforms", 35, 5], ["license", 36, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["env", 19, 3], ["postInstall", 22, 3], ["enableParallelBuilding", 24, 3], ["meta", 26, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,21 +11,21 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "mp4v2",
       version: "5.0.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "TechSmith",
           repo: "mp4v2",
           rev: nix.thunk(() => nix.str`Release-ThirdParty-MP4v2-${nix.sel(finalAttrs, "version")}`),
           sha256: "sha256-OP+oVTH9pqYfHtYL1Kjrs1qey/J40ijLi5Gu8GJnvSY=",
         })))),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-Wno-error=narrowing" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], NIX_CFLAGS_COMPILE: "-Wno-error=narrowing" })),
       postInstall: "ln -s mp4v2/mp4v2.h $out/include/mp4.h",
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Provides functions to read, create, and modify mp4 files",
         longDescription: "MP4v2 library provides an API to work with mp4 files\nas defined by ISO-IEC:14496-1:2001 MPEG-4 Systems.\nThis container format is derived from Apple's QuickTime format.\n",
         homepage: "https://github.com/TechSmith/mp4v2",

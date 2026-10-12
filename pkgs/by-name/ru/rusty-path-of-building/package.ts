@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]], [["pname", 47, 7], ["version", 48, 28], ["src", 49, 7], ["nativeBuildInputs", 51, 7], ["buildInputs", 52, 7], ["installFlags", 53, 7]], [["name", 83, 7], ["desktopName", 84, 7], ["comment", 85, 7], ["exec", 86, 7], ["terminal", 87, 7], ["type", 88, 7], ["icon", 89, 7], ["categories", 90, 7], ["keywords", 91, 7], ["mimeTypes", 98, 7]], [["name", 101, 7], ["desktopName", 102, 7], ["comment", 103, 7], ["exec", 104, 7], ["terminal", 105, 7], ["type", 106, 7], ["icon", 107, 7], ["categories", 108, 7], ["keywords", 109, 7]], [["description", 120, 5], ["homepage", 121, 5], ["changelog", 122, 5], ["license", 123, 5], ["maintainers", 124, 5], ["mainProgram", 128, 5]], [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["cargoHash", 30, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 39, 3], ["postInstall", 59, 3], ["postFixup", 63, 3], ["desktopItems", 81, 3], ["meta", 119, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchFromGitHub: false, copyDesktopItems: false, makeDesktopItem: false, makeWrapper: false, "pkg-config": false, icoutils: false, luajit: false, zlib: false, libxkbcommon: false, "vulkan-loader": false, wayland: false, libxi: false, libxcursor: false, libx11: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 47, 7], ["version", 48, 28], ["src", 49, 7], ["nativeBuildInputs", 51, 7], ["buildInputs", 52, 7], ["installFlags", 53, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 83, 7], ["desktopName", 84, 7], ["comment", 85, 7], ["exec", 86, 7], ["terminal", 87, 7], ["type", 88, 7], ["icon", 89, 7], ["categories", 90, 7], ["keywords", 91, 7], ["mimeTypes", 98, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["name", 101, 7], ["desktopName", 102, 7], ["comment", 103, 7], ["exec", 104, 7], ["terminal", 105, 7], ["type", 106, 7], ["icon", 107, 7], ["categories", 108, 7], ["keywords", 109, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 120, 5], ["homepage", 121, 5], ["changelog", 122, 5], ["license", 123, 5], ["maintainers", 124, 5], ["mainProgram", 128, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["cargoHash", 30, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 39, 3], ["postInstall", 59, 3], ["postFixup", 63, 3], ["desktopItems", 81, 3], ["meta", 119, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const libxcursor = nix.arg($, "libxcursor");
   const libx11 = nix.arg($, "libx11");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "rusty-path-of-building",
       version: "0.2.18",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "meehl",
           repo: "rusty-path-of-building",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -47,7 +42,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.sel(luajit, "pkgs", "luautf8")),
         nix.thunk(() => nix.sel(luajit, "pkgs", "luasocket")),
         nix.thunk(() => nix.app(nix.sel(luajit, "pkgs", "buildLuaPackage"), nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             pname: "lzip",
             version: nix.thunk(() => nix.attr(finalAttrs, "version")),
             src: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src")}/lua/libs/lzip`),
@@ -69,7 +64,7 @@ wrapProgram $out/bin/rusty-path-of-building \\
 `),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "rusty-path-of-building-1",
             desktopName: "Path of Building",
             comment: "Offline build planner for Path of Exile",
@@ -82,7 +77,7 @@ wrapProgram $out/bin/rusty-path-of-building \\
             mimeTypes: nix.thunk(() => ["x-scheme-handler/pob"]),
           })))),
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             name: "rusty-path-of-building-2",
             desktopName: "Path of Building 2",
             comment: "Offline build planner for Path of Exile 2",
@@ -95,7 +90,7 @@ wrapProgram $out/bin/rusty-path-of-building \\
           })))),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "A cross-platform runtime for Path of Building and Path of Building 2.",
         homepage: "https://github.com/meehl/rusty-path-of-building",
         changelog: nix.thunk(() => nix.str`https://github.com/meehl/rusty-path-of-building/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG.md`),

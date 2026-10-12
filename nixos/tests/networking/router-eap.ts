@@ -2,34 +2,9 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/router-eap.nix", [[["name", 48, 9], ["runtimeInputs", 50, 9], ["excludeShellChecks", 53, 9], ["text", 55, 9]], [["name", 69, 7], ["builder", 70, 7], ["args", 71, 7], ["system", 72, 22]], [["ExecStart", 101, 9], ["Restart", 102, 9], ["ExecReload", 103, 9], ["RuntimeDirectory", 104, 9]], [["description", 98, 7], ["wantedBy", 99, 7], ["serviceConfig", 100, 7]], [["vlans", 109, 18]], [["net.ipv6.conf.all.forwarding", 114, 22]], [["sysctl", 114, 15]], [["kernel", 114, 8]], [["checkReversePath", 118, 14], ["allowedUDPPorts", 119, 14]], [["address", 127, 17], ["prefixLength", 128, 17]], [["addresses", 125, 18]], [["address", 133, 17], ["prefixLength", 134, 17]], [["addresses", 131, 18]], [["ipv4", 125, 13], ["ipv6", 131, 13]], [["useDHCP", 116, 5], ["useNetworkd", 117, 5], ["firewall", 118, 5], ["interfaces", 120, 5]], [["enable", 144, 5], ["configDir", 145, 5], ["debug", 146, 5]], [["mode", 155, 24]], [["ieee8021x", 157, 11], ["wpa", 158, 11], ["wpa_key_mgmt", 159, 11], ["rsn_pairwise", 160, 11], ["eap_reauth_period", 161, 11], ["own_ip_addr", 162, 11], ["nas_identifier", 163, 11], ["auth_server_addr", 164, 11], ["auth_server_port", 165, 11], ["auth_server_shared_secret", 166, 11]], [["ssid", 154, 24], ["authentication", 155, 9], ["settings", 156, 9]], [["channel", 152, 7], ["networks", 153, 7]], [["enable", 150, 5], ["radios", 151, 5]], [["freeradius", 143, 12], ["hostapd", 149, 12]], [["after", 177, 9], ["wants", 181, 9]], [["hostapd", 172, 20]], [["services", 172, 11]], [["virtualisation", 109, 3], ["boot", 114, 3], ["networking", 115, 3], ["services", 143, 3], ["systemd", 172, 3]]]);
 const formals$1 = { args: { eapCerts: false, wifi: true }, ellipsis: false };
 const formals$2 = { args: { config: false, pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/router-eap.nix", [["name", 48, 9], ["runtimeInputs", 50, 9], ["excludeShellChecks", 53, 9], ["text", 55, 9]]);
-const pos$2 = nix.positions(here + "/router-eap.nix", [["name", 69, 7], ["builder", 70, 7], ["args", 71, 7], ["system", 72, 22]]);
-const pos$3 = nix.positions(here + "/router-eap.nix", [["ExecStart", 101, 9], ["Restart", 102, 9], ["ExecReload", 103, 9], ["RuntimeDirectory", 104, 9]]);
-const pos$4 = nix.positions(here + "/router-eap.nix", [["description", 98, 7], ["wantedBy", 99, 7], ["serviceConfig", 100, 7]]);
-const pos$5 = nix.positions(here + "/router-eap.nix", [["vlans", 109, 18]]);
-const pos$6 = nix.positions(here + "/router-eap.nix", [["net.ipv6.conf.all.forwarding", 114, 22]]);
-const pos$7 = nix.positions(here + "/router-eap.nix", [["sysctl", 114, 15]]);
-const pos$8 = nix.positions(here + "/router-eap.nix", [["kernel", 114, 8]]);
-const pos$9 = nix.positions(here + "/router-eap.nix", [["checkReversePath", 118, 14], ["allowedUDPPorts", 119, 14]]);
-const pos$10 = nix.positions(here + "/router-eap.nix", [["address", 127, 17], ["prefixLength", 128, 17]]);
-const pos$11 = nix.positions(here + "/router-eap.nix", [["addresses", 125, 18]]);
-const pos$12 = nix.positions(here + "/router-eap.nix", [["address", 133, 17], ["prefixLength", 134, 17]]);
-const pos$13 = nix.positions(here + "/router-eap.nix", [["addresses", 131, 18]]);
-const pos$14 = nix.positions(here + "/router-eap.nix", [["ipv4", 125, 13], ["ipv6", 131, 13]]);
-const pos$15 = nix.positions(here + "/router-eap.nix", [["useDHCP", 116, 5], ["useNetworkd", 117, 5], ["firewall", 118, 5], ["interfaces", 120, 5]]);
-const pos$16 = nix.positions(here + "/router-eap.nix", [["enable", 144, 5], ["configDir", 145, 5], ["debug", 146, 5]]);
-const pos$17 = nix.positions(here + "/router-eap.nix", [["mode", 155, 24]]);
-const pos$18 = nix.positions(here + "/router-eap.nix", [["ieee8021x", 157, 11], ["wpa", 158, 11], ["wpa_key_mgmt", 159, 11], ["rsn_pairwise", 160, 11], ["eap_reauth_period", 161, 11], ["own_ip_addr", 162, 11], ["nas_identifier", 163, 11], ["auth_server_addr", 164, 11], ["auth_server_port", 165, 11], ["auth_server_shared_secret", 166, 11]]);
-const pos$19 = nix.positions(here + "/router-eap.nix", [["ssid", 154, 24], ["authentication", 155, 9], ["settings", 156, 9]]);
-const pos$20 = nix.positions(here + "/router-eap.nix", [["channel", 152, 7], ["networks", 153, 7]]);
-const pos$21 = nix.positions(here + "/router-eap.nix", [["enable", 150, 5], ["radios", 151, 5]]);
-const pos$22 = nix.positions(here + "/router-eap.nix", [["freeradius", 143, 12], ["hostapd", 149, 12]]);
-const pos$23 = nix.positions(here + "/router-eap.nix", [["after", 177, 9], ["wants", 181, 9]]);
-const pos$24 = nix.positions(here + "/router-eap.nix", [["hostapd", 172, 20]]);
-const pos$25 = nix.positions(here + "/router-eap.nix", [["services", 172, 11]]);
-const pos$26 = nix.positions(here + "/router-eap.nix", [["virtualisation", 109, 3], ["boot", 114, 3], ["networking", 115, 3], ["services", 143, 3], ["systemd", 172, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -44,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const clientsConfig = nix.thunk(() => nix.builtins.toFile("client.conf", "client localhost {\n  ipaddr = 127.0.0.1\n  secret = insecure\n  require_message_authenticator = no\n}\n"));
       const usersConfig = nix.thunk(() => nix.builtins.toFile("users.conf", "testuser\tCleartext-Password := \"supersecret\"\n"));
       const buildScript = nix.thunk(() => nix.app(nix.sel(pkgs, "writeShellApplication"), nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           name: "builder",
           runtimeInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "coreutils"))]),
           excludeShellChecks: nix.thunk(() => ["SC2154"]),
@@ -60,7 +35,7 @@ cp --force ${clientsConfig} "$out/clients.conf"
 `),
         }))));
       return nix.app(nix.builtins.derivation, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           name: "radius_dir",
           builder: nix.thunk(() => nix.str`${nix.sel(pkgs, "bash")}/bin/bash`),
           args: nix.thunk(() => [nix.thunk(() => nix.str`${buildScript}/bin/builder`)]),
@@ -72,11 +47,11 @@ cp --force ${clientsConfig} "$out/clients.conf"
     const wiredHostapdService = nix.thunk(() => (() => {
       const hostapdConfig = nix.thunk(() => nix.builtins.toFile("hostapd.conf", "interface=eth1\ndriver=wired\nlogger_stdout=-1\nlogger_stdout_level=1\ndebug=2\ndump_file=/tmp/hostapd.dump\nieee8021x=1\neap_reauth_period=3600\nuse_pae_group_addr=1\n##### RADIUS configuration ####################################################\nown_ip_addr=127.0.0.1\nnas_identifier=ap.example.com\nauth_server_addr=127.0.0.1\nauth_server_port=1812\nauth_server_shared_secret=insecure\n"));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "IEEE 802.11 Host Access-Point Daemon",
         wantedBy: nix.thunk(() => ["multi-user.target"]),
         serviceConfig: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           ExecStart: nix.thunk(() => nix.str`${nix.sel(pkgs, "hostapd")}/bin/hostapd ${hostapdConfig}`),
           Restart: "always",
           ExecReload: nix.thunk(() => nix.str`${nix.sel(pkgs, "coreutils")}/bin/kill -HUP $MAINPID`),
@@ -85,41 +60,41 @@ cp --force ${clientsConfig} "$out/clients.conf"
       };
     })());
     return {
-      [nix.POS]: pos$26,
-      virtualisation: nix.thunk(() => ({ [nix.POS]: pos$5, vlans: nix.thunk(() => [1n, 2n, 3n]) })),
+      [nix.POS]: $pos[25],
+      virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[4], vlans: nix.thunk(() => [1n, 2n, 3n]) })),
       boot: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         kernel: nix.thunk(() => ({
-          [nix.POS]: pos$7,
-          sysctl: nix.thunk(() => ({ [nix.POS]: pos$6, "net.ipv6.conf.all.forwarding": true })),
+          [nix.POS]: $pos[6],
+          sysctl: nix.thunk(() => ({ [nix.POS]: $pos[5], "net.ipv6.conf.all.forwarding": true })),
         })),
       })),
       networking: nix.thunk(() => ({
-        [nix.POS]: pos$15,
+        [nix.POS]: $pos[14],
         useDHCP: false,
         useNetworkd: true,
         firewall: nix.thunk(() => ({
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           checkReversePath: true,
           allowedUDPPorts: nix.thunk(() => [547n]),
         })),
         interfaces: nix.thunk(() => nix.app(nix.sel(lib, "mkOverride"), 0n, nix.thunk(() => nix.app(nix.sel(lib, "listToAttrs"), nix.thunk(() => nix.app(nix.sel(lib, "forEach"), vlanIfs, (n) => nix.app(nix.sel(lib, "nameValuePair"), nix.thunk(() => nix.str`eth${nix.builtins.toString(n)}`), nix.thunk(() => ({
-                  [nix.POS]: pos$14,
+                  [nix.POS]: $pos[13],
                   ipv4: nix.thunk(() => ({
-                    [nix.POS]: pos$11,
+                    [nix.POS]: $pos[10],
                     addresses: nix.thunk(() => [
                       nix.thunk(() => ({
-                        [nix.POS]: pos$10,
+                        [nix.POS]: $pos[9],
                         address: nix.thunk(() => nix.str`192.168.${nix.builtins.toString(n)}.1`),
                         prefixLength: 24n,
                       })),
                     ]),
                   })),
                   ipv6: nix.thunk(() => ({
-                    [nix.POS]: pos$13,
+                    [nix.POS]: $pos[12],
                     addresses: nix.thunk(() => [
                       nix.thunk(() => ({
-                        [nix.POS]: pos$12,
+                        [nix.POS]: $pos[11],
                         address: nix.thunk(() => nix.str`fd00:1234:5678:${nix.builtins.toString(n)}::1`),
                         prefixLength: 64n,
                       })),
@@ -128,22 +103,22 @@ cp --force ${clientsConfig} "$out/clients.conf"
                 }))))))))),
       })),
       services: nix.thunk(() => ({
-        [nix.POS]: pos$22,
-        freeradius: nix.thunk(() => ({ [nix.POS]: pos$16, enable: true, configDir: radiusDir, debug: true })),
+        [nix.POS]: $pos[21],
+        freeradius: nix.thunk(() => ({ [nix.POS]: $pos[15], enable: true, configDir: radiusDir, debug: true })),
         hostapd: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.eq(wifi, null)), nix.thunk(() => ({
-            [nix.POS]: pos$21,
+            [nix.POS]: $pos[20],
             enable: true,
             radios: nix.thunk(() => nix.attrsDyn({}, [
               [nix.sel(wifi, "interface"), nix.thunk(() => ({
-                [nix.POS]: pos$20,
+                [nix.POS]: $pos[19],
                 channel: 1n,
                 networks: nix.thunk(() => nix.attrsDyn({}, [
                   [nix.sel(wifi, "interface"), nix.thunk(() => ({
-                    [nix.POS]: pos$19,
+                    [nix.POS]: $pos[18],
                     ssid: nix.thunk(() => nix.attr(wifi, "ssid")),
-                    authentication: nix.thunk(() => ({ [nix.POS]: pos$17, mode: "none" })),
+                    authentication: nix.thunk(() => ({ [nix.POS]: $pos[16], mode: "none" })),
                     settings: nix.thunk(() => ({
-                      [nix.POS]: pos$18,
+                      [nix.POS]: $pos[17],
                       ieee8021x: true,
                       wpa: 2n,
                       wpa_key_mgmt: "WPA-EAP",
@@ -162,11 +137,11 @@ cp --force ${clientsConfig} "$out/clients.conf"
           })))),
       })),
       systemd: nix.thunk(() => ({
-        [nix.POS]: pos$25,
+        [nix.POS]: $pos[24],
         services: nix.thunk(() => ({
-          [nix.POS]: pos$24,
+          [nix.POS]: $pos[23],
           hostapd: nix.thunk(() => (nix.asBool(nix.eq(wifi, null)) ? nix.force(wiredHostapdService) : {
-            [nix.POS]: pos$23,
+            [nix.POS]: $pos[22],
             after: nix.thunk(() => ["freeradius.service", "vwifi-client.service"]),
             wants: nix.thunk(() => ["freeradius.service", "vwifi-client.service"]),
           })),

@@ -2,34 +2,28 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/mympd.nix", [[["http_port", 9, 9]], [["enable", 7, 7], ["settings", 8, 7]], [["enable", 13, 18]], [["mympd", 6, 14], ["mpd", 13, 14]], [["services", 6, 5]], [["mympd", 5, 9]], [["name", 3, 3], ["nodes", 5, 3], ["testScript", 16, 3]]]);
 const formals$1 = { args: { pkgs: false, lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/mympd.nix", [["http_port", 9, 9]]);
-const pos$2 = nix.positions(here + "/mympd.nix", [["enable", 7, 7], ["settings", 8, 7]]);
-const pos$3 = nix.positions(here + "/mympd.nix", [["enable", 13, 18]]);
-const pos$4 = nix.positions(here + "/mympd.nix", [["mympd", 6, 14], ["mpd", 13, 14]]);
-const pos$5 = nix.positions(here + "/mympd.nix", [["services", 6, 5]]);
-const pos$6 = nix.positions(here + "/mympd.nix", [["mympd", 5, 9]]);
-const pos$7 = nix.positions(here + "/mympd.nix", [["name", 3, 3], ["nodes", 5, 3], ["testScript", 16, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$7,
+    [nix.POS]: $pos[6],
     name: "mympd",
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       mympd: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         services: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           mympd: nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             enable: true,
-            settings: nix.thunk(() => ({ [nix.POS]: pos$1, http_port: 8081n })),
+            settings: nix.thunk(() => ({ [nix.POS]: $pos[0], http_port: 8081n })),
           })),
-          mpd: nix.thunk(() => ({ [nix.POS]: pos$3, enable: true })),
+          mpd: nix.thunk(() => ({ [nix.POS]: $pos[2], enable: true })),
         })),
       })),
     })),

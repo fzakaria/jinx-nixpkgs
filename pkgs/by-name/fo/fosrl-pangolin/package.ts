@@ -2,22 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 46, 5], ["repo", 47, 5], ["tag", 48, 5], ["hash", 49, 5]], [["dashboard_url", 114, 13]], [["base_domain", 115, 25]], [["domain1", 115, 17]], [["base_endpoint", 116, 16]], [["secret", 117, 16]], [["app", 114, 9], ["domains", 115, 9], ["gerbil", 116, 9], ["server", 117, 9]], [["NODE_OPTIONS", 123, 13], ["NODE_ENV", 124, 13], ["ENVIRONMENT", 125, 13]], [["mjs", 158, 11], ["command", 159, 11]], [["mjs", 162, 11], ["command", 163, 11]], [["mjs", 166, 11], ["command", 167, 11]], [["pangolin", 173, 36]], [["databaseType", 172, 13], ["tests", 173, 5], ["updateScript", 174, 5]], [["description", 178, 5], ["homepage", 179, 5], ["changelog", 180, 5], ["license", 181, 5], ["maintainers", 182, 5], ["platforms", 186, 5], ["mainProgram", 187, 5]], [["pname", 39, 3], ["version", 40, 3], ["__structuredAttrs", 42, 3], ["enableParallelBuilding", 43, 3], ["src", 45, 3], ["nodejs", 52, 3], ["npmDepsFetcherVersion", 53, 3], ["npmDepsHash", 54, 3], ["npmFlags", 55, 3], ["nativeBuildInputs", 57, 3], ["postUnpack", 63, 3], ["preBuild", 75, 3], ["buildPhase", 81, 3], ["preInstall", 90, 3], ["installPhase", 92, 3], ["preFixup", 111, 3], ["passthru", 171, 3], ["meta", 177, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, esbuild: false, buildNpmPackage: false, makeWrapper: false, formats: false, databaseType: true, edition: true, environmentVariables: true, nixosTests: false, nodejs_22: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 46, 5], ["repo", 47, 5], ["tag", 48, 5], ["hash", 49, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["dashboard_url", 114, 13]]);
-const pos$3 = nix.positions(here + "/package.nix", [["base_domain", 115, 25]]);
-const pos$4 = nix.positions(here + "/package.nix", [["domain1", 115, 17]]);
-const pos$5 = nix.positions(here + "/package.nix", [["base_endpoint", 116, 16]]);
-const pos$6 = nix.positions(here + "/package.nix", [["secret", 117, 16]]);
-const pos$7 = nix.positions(here + "/package.nix", [["app", 114, 9], ["domains", 115, 9], ["gerbil", 116, 9], ["server", 117, 9]]);
-const pos$8 = nix.positions(here + "/package.nix", [["NODE_OPTIONS", 123, 13], ["NODE_ENV", 124, 13], ["ENVIRONMENT", 125, 13]]);
-const pos$9 = nix.positions(here + "/package.nix", [["mjs", 158, 11], ["command", 159, 11]]);
-const pos$10 = nix.positions(here + "/package.nix", [["mjs", 162, 11], ["command", 163, 11]]);
-const pos$11 = nix.positions(here + "/package.nix", [["mjs", 166, 11], ["command", 167, 11]]);
-const pos$12 = nix.positions(here + "/package.nix", [["pangolin", 173, 36]]);
-const pos$13 = nix.positions(here + "/package.nix", [["databaseType", 172, 13], ["tests", 173, 5], ["updateScript", 174, 5]]);
-const pos$14 = nix.positions(here + "/package.nix", [["description", 178, 5], ["homepage", 179, 5], ["changelog", 180, 5], ["license", 181, 5], ["maintainers", 182, 5], ["platforms", 186, 5], ["mainProgram", 187, 5]]);
-const pos$15 = nix.positions(here + "/package.nix", [["pname", 39, 3], ["version", 40, 3], ["__structuredAttrs", 42, 3], ["enableParallelBuilding", 43, 3], ["src", 45, 3], ["nodejs", 52, 3], ["npmDepsFetcherVersion", 53, 3], ["npmDepsHash", 54, 3], ["npmFlags", 55, 3], ["nativeBuildInputs", 57, 3], ["postUnpack", 63, 3], ["preBuild", 75, 3], ["buildPhase", 81, 3], ["preInstall", 90, 3], ["installPhase", 92, 3], ["preFixup", 111, 3], ["passthru", 171, 3], ["meta", 177, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -37,13 +23,13 @@ export default nix.lambda((args) => (() => {
   nix.assert_(nix.app(nix.sel(lib, "assertOneOf"), "edition", edition, nix.thunk(() => ["enterprise", "oss", "saas"])), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/fo/fosrl-pangolin/package.nix:21:1");
   const db = (isLong) => (nix.asBool(nix.eq(databaseType, "sqlite")) ? "sqlite" : (nix.asBool(isLong) ? "postgresql" : "pg"));
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      [nix.POS]: pos$15,
+      [nix.POS]: $pos[14],
       pname: "pangolin",
       version: "1.24.0",
       __structuredAttrs: true,
       enableParallelBuilding: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "fosrl",
           repo: "pangolin",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -64,42 +50,42 @@ npm run db:generate
       installPhase: "runHook preInstall\n\ncp -r node_modules $out/share/pangolin/node_modules\ncp -r .next/standalone/. $out/share/pangolin\ncp -r .next/static $out/share/pangolin/.next/static\ncp -r dist $out/share/pangolin/dist\ncp -r server/migrations $out/share/pangolin/dist/init\ncp package.json $out/share/pangolin/package.json\n\ncp server/db/names.json $out/share/pangolin/dist/names.json\ncp server/db/ios_models.json $out/share/pangolin/dist/ios_models.json\ncp server/db/mac_models.json $out/share/pangolin/dist/mac_models.json\n\ncp -r public $out/share/pangolin/public\n\nrunHook postInstall\n",
       preFixup: nix.thunk(() => (() => {
         const defaultConfig = nix.thunk(() => nix.app(nix.sel(nix.app(nix.sel(formats, "yaml"), nix.thunk(() => ({}))), "generate"), "pangolin-default-config", nix.thunk(() => ({
-            [nix.POS]: pos$7,
-            app: nix.thunk(() => ({ [nix.POS]: pos$2, dashboard_url: "https://pangolin.example.test" })),
+            [nix.POS]: $pos[6],
+            app: nix.thunk(() => ({ [nix.POS]: $pos[1], dashboard_url: "https://pangolin.example.test" })),
             domains: nix.thunk(() => ({
-              [nix.POS]: pos$4,
-              domain1: nix.thunk(() => ({ [nix.POS]: pos$3, base_domain: "example.test" })),
+              [nix.POS]: $pos[3],
+              domain1: nix.thunk(() => ({ [nix.POS]: $pos[2], base_domain: "example.test" })),
             })),
-            gerbil: nix.thunk(() => ({ [nix.POS]: pos$5, base_endpoint: "pangolin.example.test" })),
+            gerbil: nix.thunk(() => ({ [nix.POS]: $pos[4], base_endpoint: "pangolin.example.test" })),
             server: nix.thunk(() => ({
-              [nix.POS]: pos$6,
+              [nix.POS]: $pos[5],
               secret: "A secret string used for encrypting sensitive data. Must be at least 8 characters long.",
             })),
           }))));
         const variablesMapped = (isServer) => nix.add(nix.app(nix.sel(lib, "concatMapAttrsStringSep"), " ", (name) => (value) => nix.str`--set ${name} ${value}`, nix.thunk(() => nix.update({
-            [nix.POS]: pos$8,
+            [nix.POS]: $pos[7],
             NODE_OPTIONS: "enable-source-maps",
             NODE_ENV: "development",
             ENVIRONMENT: "prod",
           }, environmentVariables))), nix.app(nix.sel(lib, "optionalString"), isServer, nix.thunk(() => nix.str` --run '${nix.app(nix.sel(lib, "concatMapStringsSep"), " && ", (dir) => nix.str`test -f ${dir}/.nix_skip_setup || { rm -${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.eq(dir, ".next")), "r")}f ${dir} && ${(nix.asBool(nix.eq(dir, ".next")) ? "cp -rd" : "ln -s")} ${nix.builtins.placeholder("out")}/share/pangolin/${dir} .; }`, nix.thunk(() => [".next", "public", "node_modules"]))} && test -f config/config.yml || { install -Dm600 ${defaultConfig} config/config.yml && { test -z $EDITOR && { echo "Please edit $(pwd)/config/config.yml" and run the server again. && exit 255; } || $EDITOR config/config.yml; }; } && command ${nix.builtins.placeholder("out")}/bin/migrate-pangolin-database'`)));
         return nix.app(nix.sel(lib, "concatMapStrings"), (attr) => nix.str`makeWrapper $out/share/pangolin/dist/${nix.sel(attr, "mjs")}.mjs $out/bin/${nix.sel(attr, "command")} ${nix.app(variablesMapped, nix.thunk(() => nix.eq(nix.sel(attr, "mjs"), "server")))}
 `, nix.thunk(() => [
-            nix.thunk(() => ({ [nix.POS]: pos$9, mjs: "cli", command: "pangctl" })),
-            nix.thunk(() => ({ [nix.POS]: pos$10, mjs: "migrations", command: "migrate-pangolin-database" })),
-            nix.thunk(() => ({ [nix.POS]: pos$11, mjs: "server", command: "pangolin" })),
+            nix.thunk(() => ({ [nix.POS]: $pos[8], mjs: "cli", command: "pangctl" })),
+            nix.thunk(() => ({ [nix.POS]: $pos[9], mjs: "migrations", command: "migrate-pangolin-database" })),
+            nix.thunk(() => ({ [nix.POS]: $pos[10], mjs: "server", command: "pangolin" })),
           ]));
       })()),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$13,
+        [nix.POS]: $pos[12],
         databaseType: databaseType,
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$12,
+          [nix.POS]: $pos[11],
           pangolin: nix.thunk(() => nix.attr(nixosTests, "pangolin")),
         })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$14,
+        [nix.POS]: $pos[13],
         description: "Tunneled reverse proxy server with identity and access control",
         homepage: "https://github.com/fosrl/pangolin",
         changelog: nix.thunk(() => nix.str`https://github.com/fosrl/pangolin/releases/tag/${nix.sel(finalAttrs, "version")}`),

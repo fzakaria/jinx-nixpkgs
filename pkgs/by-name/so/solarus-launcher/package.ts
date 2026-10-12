@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["qlementine-src", 31, 7], ["qlementine-icons-src", 32, 7], ["qtappinstancemanager-src", 33, 7]], [["description", 61, 5], ["longDescription", 62, 5], ["homepage", 67, 5], ["mainProgram", 68, 5], ["license", 69, 5], ["maintainers", 75, 5], ["platforms", 76, 5]], [["pname", 24, 3], ["version", 25, 21], ["src", 27, 3], ["patches", 29, 3], ["strictDeps", 37, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 45, 3], ["meta", 60, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, replaceVars: false, cmake: false, ninja: false, luajit: false, SDL2: false, SDL2_image: false, SDL2_ttf: false, physfs: false, openal: false, libmodplug: false, libvorbis: false, solarus: false, glm: false, qt6: false, qlementine: false, "qlementine-icons": false, qtappinstancemanager: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["qlementine-src", 31, 7], ["qlementine-icons-src", 32, 7], ["qtappinstancemanager-src", 33, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 61, 5], ["longDescription", 62, 5], ["homepage", 67, 5], ["mainProgram", 68, 5], ["license", 69, 5], ["maintainers", 75, 5], ["platforms", 76, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 24, 3], ["version", 25, 21], ["src", 27, 3], ["patches", 29, 3], ["strictDeps", 37, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 45, 3], ["meta", 60, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,13 +27,13 @@ export default nix.lambda((args) => (() => {
   const qlementine_icons = nix.arg($, "qlementine-icons");
   const qtappinstancemanager = nix.arg($, "qtappinstancemanager");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "solarus-launcher",
       version: nix.thunk(() => nix.attr(solarus, "version")),
       src: nix.thunk(() => nix.add(nix.sel(solarus, "src"), "/launcher")),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./github-fetches.patch"), nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             "qlementine-src": nix.thunk(() => nix.sel(qlementine, "src")),
             "qlementine-icons-src": nix.thunk(() => nix.sel(qlementine_icons, "src")),
             "qtappinstancemanager-src": nix.thunk(() => nix.sel(qtappinstancemanager, "src")),
@@ -63,7 +61,7 @@ export default nix.lambda((args) => (() => {
         glm,
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Launcher for the Zelda-like ARPG game engine, Solarus",
         longDescription: "Solarus is a game engine for Zelda-like ARPG games written in lua.\nMany full-fledged games have been written for the engine.\nGames can be created easily using the editor.\n",
         homepage: "https://www.solarus-games.org",

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 17, 9], ["hash", 18, 9]], [["url", 22, 9], ["hash", 23, 9]], [["updateScript", 32, 12]], [["changelog", 43, 5], ["description", 44, 5], ["homepage", 45, 5], ["license", 46, 5], ["maintainers", 47, 5], ["platforms", 48, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 28, 3], ["sourceRoot", 30, 3], ["passthru", 32, 3], ["installPhase", 34, 3], ["meta", 42, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchurl: false, unzip: false, joker: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 17, 9], ["hash", 18, 9]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 22, 9], ["hash", 23, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 32, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["changelog", 43, 5], ["description", 44, 5], ["homepage", 45, 5], ["license", 46, 5], ["maintainers", 47, 5], ["platforms", 48, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 28, 3], ["sourceRoot", 30, 3], ["passthru", 32, 3], ["installPhase", 34, 3], ["meta", 42, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,15 +14,15 @@ export default nix.lambda((args) => (() => {
   const joker = nix.arg($, "joker");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "goku",
       version: "0.8.0",
       src: nix.thunk(() => (nix.asBool(nix.sel(stdenvNoCC, "hostPlatform", "isAarch64")) ? nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/yqrashawn/GokuRakuJoudo/releases/download/v${nix.sel(finalAttrs, "version")}/goku-arm.zip`),
           hash: "sha256-yRLxUfAQZ+rE7/42wnjls6UnT+vb/b5Y3lVWujZGEAg=",
         }))) : nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: nix.thunk(() => nix.str`https://github.com/yqrashawn/GokuRakuJoudo/releases/download/v${nix.sel(finalAttrs, "version")}/goku.zip`),
           hash: "sha256-hbk7QF0kTeBcot4OFV/yhVOUV/OpE44d/7nofdoBipg=",
         }))))),
@@ -34,12 +30,12 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [joker]),
       sourceRoot: nix.thunk(() => (nix.asBool(nix.sel(stdenvNoCC, "hostPlatform", "isAarch64")) ? "goku" : ".")),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       installPhase: "runHook preInstall\nmkdir -p \"$out/bin\"\nchmod +x {goku,gokuw}\ncp {goku,gokuw} \"$out/bin\"\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         changelog: nix.thunk(() => nix.str`https://github.com/yqrashawn/GokuRakuJoudo/blob/v${nix.sel(finalAttrs, "version")}/CHANGELOG.org`),
         description: "Karabiner configurator",
         homepage: "https://github.com/yqrashawn/GokuRakuJoudo",

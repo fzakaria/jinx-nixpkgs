@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/libidris2_support.nix", [[["description", 32, 8]], [["pname", 9, 3], ["version", 10, 3], ["src", 11, 3], ["strictDeps", 13, 3], ["buildInputs", 14, 3], ["enableParallelBuilding", 16, 3], ["makeFlags", 17, 3], ["buildFlags", 22, 3], ["installTargets", 24, 3], ["postInstall", 26, 3], ["meta", 32, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, gmp: false, "idris2-src": false, "idris2-version": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/libidris2_support.nix", [["description", 32, 8]]);
-const pos$2 = nix.positions(here + "/libidris2_support.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 11, 3], ["strictDeps", 13, 3], ["buildInputs", 14, 3], ["enableParallelBuilding", 16, 3], ["makeFlags", 17, 3], ["buildFlags", 22, 3], ["installTargets", 24, 3], ["postInstall", 26, 3], ["meta", 32, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const idris2_src = nix.arg($, "idris2-src");
   const idris2_version = nix.arg($, "idris2-version");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "libidris2_support",
       version: idris2_version,
       src: idris2_src,
@@ -28,7 +27,7 @@ export default nix.lambda((args) => (() => {
 mv "$out/idris2-${nix.sel(finalAttrs, "version")}/support" "$out/share"
 rm -rf $out/idris2-${nix.sel(finalAttrs, "version")}
 `),
-      meta: nix.thunk(() => ({ [nix.POS]: pos$1, description: "Runtime library for Idris2" })),
+      meta: nix.thunk(() => ({ [nix.POS]: $pos[0], description: "Runtime library for Idris2" })),
     }));
 })(), formals$1);
 //# sourceMappingURL=libidris2_support.ts.map

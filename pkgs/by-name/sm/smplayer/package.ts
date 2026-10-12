@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]], [["NIX_CFLAGS_COMPILE", 36, 7]], [["homepage", 39, 5], ["description", 40, 5], ["longDescription", 41, 5], ["changelog", 59, 5], ["license", 60, 5], ["maintainers", 61, 5], ["platforms", 62, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["nativeBuildInputs", 22, 3], ["buildInputs", 27, 3], ["enableParallelBuilding", 29, 3], ["dontUseQmakeConfigure", 31, 3], ["makeFlags", 33, 3], ["env", 36, 3], ["meta", 38, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, qt5: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 36, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 39, 5], ["description", 40, 5], ["longDescription", 41, 5], ["changelog", 59, 5], ["license", 60, 5], ["maintainers", 61, 5], ["platforms", 62, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["nativeBuildInputs", 22, 3], ["buildInputs", 27, 3], ["enableParallelBuilding", 29, 3], ["dontUseQmakeConfigure", 31, 3], ["makeFlags", 33, 3], ["env", 36, 3], ["meta", 38, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const qtscript = nix.thunk(() => nix.attr(qt5, "qtscript"));
   const wrapQtAppsHook = nix.thunk(() => nix.attr(qt5, "wrapQtAppsHook"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "smplayer",
       version: "26.8.29",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "smplayer-dev",
           repo: "smplayer",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -33,9 +30,9 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: true,
       dontUseQmakeConfigure: true,
       makeFlags: nix.thunk(() => [nix.thunk(() => nix.str`PREFIX=${nix.builtins.placeholder("out")}`)]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-Wno-error=unused-but-set-variable" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], NIX_CFLAGS_COMPILE: "-Wno-error=unused-but-set-variable" })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://www.smplayer.info",
         description: "Complete front-end for MPlayer",
         longDescription: "SMPlayer is a free media player for Windows and Linux with built-in codecs\nthat can play virtually all video and audio formats. It doesn't need any\nexternal codecs. Just install SMPlayer and you'll be able to play all\nformats without the hassle to find and install codec packs.\n\nOne of the most interesting features of SMPlayer: it remembers the\nsettings of all files you play. So you start to watch a movie but you have\nto leave... don't worry, when you open that movie again it will be resumed\nat the same point you left it, and with the same settings: audio track,\nsubtitles, volume...\n\nSMPlayer is a graphical user interface (GUI) for the award-winning\nMPlayer, which is capable of playing almost all known video and audio\nformats. But apart from providing access for the most common and useful\noptions of MPlayer, SMPlayer adds other interesting features like the\npossibility to play Youtube videos or download subtitles.\n",

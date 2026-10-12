@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]], [["url", 29, 7], ["hash", 30, 7]], [["updateScript", 64, 12]], [["broken", 68, 5], ["description", 69, 5], ["longDescription", 70, 5], ["homepage", 77, 5], ["changelog", 78, 5], ["sourceProvenance", 79, 5], ["license", 80, 5], ["maintainers", 81, 5], ["mainProgram", 85, 5], ["platforms", 86, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["patches", 25, 3], ["postPatch", 34, 3], ["postInstall", 42, 3], ["nativeBuildInputs", 47, 3], ["buildInputs", 49, 3], ["strictDeps", 56, 3], ["doCheck", 58, 3], ["enableParallelBuilding", 60, 3], ["__structuredAttrs", 62, 3], ["passthru", 64, 3], ["meta", 66, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch2: false, autoreconfHook: false, zlib: false, libpng: false, libjpeg: false, libwebp: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 29, 7], ["hash", 30, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 64, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["broken", 68, 5], ["description", 69, 5], ["longDescription", 70, 5], ["homepage", 77, 5], ["changelog", 78, 5], ["sourceProvenance", 79, 5], ["license", 80, 5], ["maintainers", 81, 5], ["mainProgram", 85, 5], ["platforms", 86, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["patches", 25, 3], ["postPatch", 34, 3], ["postInstall", 42, 3], ["nativeBuildInputs", 47, 3], ["buildInputs", 49, 3], ["strictDeps", 56, 3], ["doCheck", 58, 3], ["enableParallelBuilding", 60, 3], ["__structuredAttrs", 62, 3], ["passthru", 64, 3], ["meta", 66, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const libwebp = nix.arg($, "libwebp");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "imageworsener",
       version: "1.3.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "jsummers",
           repo: "imageworsener",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -34,7 +30,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/jsummers/imageworsener/commit/91c7c79d86f55920193d17a7b87631b14ac7779f.patch?full_index=1",
             hash: "sha256-8vxht0FiQFOdglwaO0ZQpg5BNYXXHROkznZ+Caxm/v0=",
           })))),
@@ -48,11 +44,11 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: true,
       __structuredAttrs: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
         description: "Raster image scaling and processing utility",
         longDescription: "ImageWorsener is a cross-platform command-line utility and library for\nimage scaling and other image processing. It has full support for PNG,\nJPEG, BMP formats, experimental support for WebP, read-only support for\nGIF, and limited support for some other image formats. It’s not as\nfast or memory-efficient as some utilities, but it’s very accurate.\n",

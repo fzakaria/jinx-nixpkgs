@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 31, 5], ["repo", 32, 5], ["tag", 33, 5], ["hash", 34, 5]], [["data", 121, 5], ["dataDir", 122, 5]], [["changelog", 128, 5], ["description", 129, 5], ["mainProgram", 130, 5], ["homepage", 131, 5], ["license", 132, 5], ["maintainers", 133, 5]], [["pname", 26, 3], ["version", 27, 3], ["pyproject", 28, 3], ["src", 30, 3], ["postPatch", 37, 3], ["build-system", 49, 3], ["dependencies", 51, 3], ["preInstallCheck", 59, 3], ["nativeCheckInputs", 99, 3], ["disabledTestPaths", 109, 3], ["disabledTests", 113, 3], ["pythonImportsCheck", 118, 3], ["passthru", 120, 3], ["__darwinAllowLocalNetworking", 125, 3], ["meta", 127, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, pkgs: false, fetchFromGitHub: false, buildPythonPackage: false, click: false, defusedxml: false, joblib: false, regex: false, setuptools: false, tqdm: false, nltk: false, matplotlib: false, numpy: false, pyparsing: false, pytestCheckHook: false, "pytest-mock": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 31, 5], ["repo", 32, 5], ["tag", 33, 5], ["hash", 34, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["data", 121, 5], ["dataDir", 122, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["changelog", 128, 5], ["description", 129, 5], ["mainProgram", 130, 5], ["homepage", 131, 5], ["license", 132, 5], ["maintainers", 133, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 26, 3], ["version", 27, 3], ["pyproject", 28, 3], ["src", 30, 3], ["postPatch", 37, 3], ["build-system", 49, 3], ["dependencies", 51, 3], ["preInstallCheck", 59, 3], ["nativeCheckInputs", 99, 3], ["disabledTestPaths", 109, 3], ["disabledTests", 113, 3], ["pythonImportsCheck", 118, 3], ["passthru", 120, 3], ["__darwinAllowLocalNetworking", 125, 3], ["meta", 127, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,12 +25,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const pytest_mock = nix.arg($, "pytest-mock");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "nltk",
       version: "3.10.3",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "nltk",
           repo: "nltk",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -91,13 +88,13 @@ export default nix.lambda((args) => (() => {
       disabledTests: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["test_chartparser_app_uses_pickle_load_not_pickle_load_standard"]))),
       pythonImportsCheck: nix.thunk(() => ["nltk"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         data: nix.thunk(() => nix.sel(pkgs, "nltk-data")),
         dataDir: nix.thunk(() => nix.app(nix.sel(pkgs, "callPackage"), nix.path(here, "./data-dir.nix"), nix.thunk(() => ({})))),
       })),
       __darwinAllowLocalNetworking: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         changelog: nix.thunk(() => nix.str`https://github.com/nltk/nltk/blob/${nix.sel(finalAttrs, "src", "tag")}/ChangeLog`),
         description: "Natural Language Processing ToolKit",
         mainProgram: "nltk",

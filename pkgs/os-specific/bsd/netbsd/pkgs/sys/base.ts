@@ -2,10 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/base.nix", [[["NIX_CFLAGS_COMPILE", 70, 7]], [["platforms", 88, 8]], [["path", 18, 3], ["prePatch", 21, 3], ["patches", 26, 3], ["postPatch", 35, 3], ["CONFIG", 43, 3], ["propagatedBuildInputs", 45, 3], ["nativeBuildInputs", 46, 3], ["postConfigure", 59, 3], ["makeFlags", 67, 3], ["hardeningDisable", 68, 3], ["MKKMOD", 69, 3], ["env", 70, 3], ["postBuild", 76, 3], ["postInstall", 80, 3], ["postIncludes", 84, 3], ["meta", 88, 3], ["extraPaths", 89, 3]]]);
 const formals$1 = { args: { lib: false, mkDerivation: false, include: false, bsdSetupHook: false, netbsdSetupHook: false, makeMinimal: false, install: false, tsort: false, lorder: false, statHook: false, uudecode: false, config: false, genassym: false, defaultMakeFlags: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/base.nix", [["NIX_CFLAGS_COMPILE", 70, 7]]);
-const pos$2 = nix.positions(here + "/base.nix", [["platforms", 88, 8]]);
-const pos$3 = nix.positions(here + "/base.nix", [["path", 18, 3], ["prePatch", 21, 3], ["patches", 26, 3], ["postPatch", 35, 3], ["CONFIG", 43, 3], ["propagatedBuildInputs", 45, 3], ["nativeBuildInputs", 46, 3], ["postConfigure", 59, 3], ["makeFlags", 67, 3], ["hardeningDisable", 68, 3], ["MKKMOD", 69, 3], ["env", 70, 3], ["postBuild", 76, 3], ["postInstall", 80, 3], ["postIncludes", 84, 3], ["meta", 88, 3], ["extraPaths", 89, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,7 +22,7 @@ export default nix.lambda((args) => (() => {
   const genassym = nix.arg($, "genassym");
   const defaultMakeFlags = nix.arg($, "defaultMakeFlags");
   return {
-    [nix.POS]: pos$3,
+    [nix.POS]: $pos[2],
     path: "sys",
     prePatch: "substituteInPlace sys/conf/Makefile.kern.inc \\\n  --replace \"-Wa,--fatal-warnings\" \"\"\n",
     patches: nix.thunk(() => [
@@ -51,14 +49,14 @@ export default nix.lambda((args) => (() => {
     hardeningDisable: nix.thunk(() => ["pic"]),
     MKKMOD: "no",
     env: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-Wno-error=array-parameter", "-Wno-error=array-bounds", "-Wa,--no-warn"]))),
     })),
     postBuild: "make -C arch/$MACHINE/compile/$CONFIG $makeFlags\n",
     postInstall: "cp arch/$MACHINE/compile/$CONFIG/netbsd $out\n",
     postIncludes: "install $BSDSRCDIR/lib/libossaudio/soundcard.h $out/include/soundcard.h\n",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       platforms: nix.thunk(() => nix.sel(lib, "platforms", "netbsd")),
     })),
     extraPaths: nix.thunk(() => ["common", "lib/libossaudio"]),

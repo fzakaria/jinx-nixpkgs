@@ -2,15 +2,9 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/systemd-escaping.nix", [[["Type", 54, 25], ["ExecStart", 55, 25]], [["description", 53, 11], ["serviceConfig", 54, 11]], [["echo", 33, 24]], [["services", 33, 15]], [["systemd", 33, 7]], [["machine", 25, 9]], [["name", 23, 3], ["nodes", 25, 3], ["testScript", 61, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
 const formals$2 = { args: { pkgs: false, lib: false, utils: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/systemd-escaping.nix", [["Type", 54, 25], ["ExecStart", 55, 25]]);
-const pos$2 = nix.positions(here + "/systemd-escaping.nix", [["description", 53, 11], ["serviceConfig", 54, 11]]);
-const pos$3 = nix.positions(here + "/systemd-escaping.nix", [["echo", 33, 24]]);
-const pos$4 = nix.positions(here + "/systemd-escaping.nix", [["services", 33, 15]]);
-const pos$5 = nix.positions(here + "/systemd-escaping.nix", [["systemd", 33, 7]]);
-const pos$6 = nix.positions(here + "/systemd-escaping.nix", [["machine", 25, 9]]);
-const pos$7 = nix.positions(here + "/systemd-escaping.nix", [["name", 23, 3], ["nodes", 25, 3], ["testScript", 61, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,21 +24,21 @@ done
     23n,
   ]);
   return {
-    [nix.POS]: pos$7,
+    [nix.POS]: $pos[6],
     name: "systemd-escaping",
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       machine: nix.lambda((args_2) => (() => {
         const $_1 = nix.formals(args_2, formals$2);
         const pkgs_1 = nix.arg($_1, "pkgs");
         const lib = nix.arg($_1, "lib");
         const utils = nix.arg($_1, "utils");
         return {
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           systemd: nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             services: nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               echo: nix.thunk(() => (() => {
                 nix.assert_(!nix.asBool(nix.sel(nix.builtins.tryEval(nix.thunk(() => nix.app(nix.sel(utils, "escapeSystemdExecArgs"), nix.thunk(() => [[]])))), "success")), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/nixos/tests/systemd-escaping.nix:34:9");
                 nix.assert_(!nix.asBool(nix.sel(nix.builtins.tryEval(nix.thunk(() => nix.app(nix.sel(utils, "escapeSystemdExecArgs"), nix.thunk(() => [nix.thunk(() => ({}))])))), "success")), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/nixos/tests/systemd-escaping.nix:35:9");
@@ -61,10 +55,10 @@ done
                 nix.assert_(!nix.asBool(nix.sel(nix.builtins.tryEval(nix.thunk(() => nix.app(nix.sel(utils, "escapeSystemdPath"), "/mnt/../foo"))), "success")), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/nixos/tests/systemd-escaping.nix:50:9");
                 nix.assert_(!nix.asBool(nix.sel(nix.builtins.tryEval(nix.thunk(() => nix.app(nix.sel(utils, "escapeSystemdPath"), "."))), "success")), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/nixos/tests/systemd-escaping.nix:51:9");
                 return {
-                  [nix.POS]: pos$2,
+                  [nix.POS]: $pos[1],
                   description: "Echo to the journal",
                   serviceConfig: nix.thunk(() => ({
-                    [nix.POS]: pos$1,
+                    [nix.POS]: $pos[0],
                     Type: "oneshot",
                     ExecStart: nix.thunk(() => nix.str`${echoAll} ${nix.app(nix.sel(utils, "escapeSystemdExecArgs"), args_1)}
 `),

@@ -2,15 +2,14 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["wireplumber", 25, 70]], [["source", 3, 3], ["buildAstalModule", 4, 3], ["apps", 6, 3], ["astal3", 7, 3], ["astal4", 8, 3], ["auth", 9, 3], ["battery", 10, 3], ["bluetooth", 11, 3], ["brightness", 12, 3], ["cava", 13, 3], ["gjs", 14, 3], ["greet", 15, 3], ["hyprland", 16, 3], ["io", 17, 3], ["mpris", 18, 3], ["network", 19, 3], ["notifd", 20, 3], ["powerprofiles", 21, 3], ["quarrel", 22, 3], ["river", 23, 3], ["tray", 24, 3], ["wireplumber", 25, 3], ["wl", 26, 3]]]);
 const formals$1 = { args: { wireplumber: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["wireplumber", 25, 70]]);
-const pos$2 = nix.positions(here + "/default.nix", [["source", 3, 3], ["buildAstalModule", 4, 3], ["apps", 6, 3], ["astal3", 7, 3], ["astal4", 8, 3], ["auth", 9, 3], ["battery", 10, 3], ["bluetooth", 11, 3], ["brightness", 12, 3], ["cava", 13, 3], ["gjs", 14, 3], ["greet", 15, 3], ["hyprland", 16, 3], ["io", 17, 3], ["mpris", 18, 3], ["network", 19, 3], ["notifd", 20, 3], ["powerprofiles", 21, 3], ["quarrel", 22, 3], ["river", 23, 3], ["tray", 24, 3], ["wireplumber", 25, 3], ["wl", 26, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const wireplumber = nix.arg($, "wireplumber");
   return (self) => ({
-    [nix.POS]: pos$2,
+    [nix.POS]: $pos[1],
     source: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./source.nix"), nix.thunk(() => ({})))),
     buildAstalModule: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./buildAstalModule.nix"), nix.thunk(() => ({})))),
     apps: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./modules/apps.nix"), nix.thunk(() => ({})))),
@@ -32,7 +31,7 @@ export default nix.lambda((args) => (() => {
     quarrel: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./modules/quarrel.nix"), nix.thunk(() => ({})))),
     river: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./modules/river.nix"), nix.thunk(() => ({})))),
     tray: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./modules/tray.nix"), nix.thunk(() => ({})))),
-    wireplumber: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./modules/wireplumber.nix"), nix.thunk(() => ({ [nix.POS]: pos$1, wireplumber: wireplumber })))),
+    wireplumber: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./modules/wireplumber.nix"), nix.thunk(() => ({ [nix.POS]: $pos[0], wireplumber: wireplumber })))),
     wl: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./modules/wl.nix"), nix.thunk(() => ({})))),
   });
 })(), formals$1);

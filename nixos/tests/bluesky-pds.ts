@@ -2,32 +2,26 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/bluesky-pds.nix", [[["PDS_PORT", 9, 9], ["PDS_HOSTNAME", 10, 9], ["PDS_JWT_SECRET", 13, 9], ["PDS_ADMIN_PASSWORD", 14, 9], ["PDS_PLC_ROTATION_KEY_K256_PRIVATE_KEY_HEX", 15, 9]], [["enable", 7, 7], ["settings", 8, 7]], [["bluesky-pds", 6, 14]], [["services", 6, 5]], [["machine", 5, 14]], [["maintainers", 26, 8]], [["name", 3, 3], ["containers", 5, 3], ["testScript", 20, 3], ["meta", 26, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/bluesky-pds.nix", [["PDS_PORT", 9, 9], ["PDS_HOSTNAME", 10, 9], ["PDS_JWT_SECRET", 13, 9], ["PDS_ADMIN_PASSWORD", 14, 9], ["PDS_PLC_ROTATION_KEY_K256_PRIVATE_KEY_HEX", 15, 9]]);
-const pos$2 = nix.positions(here + "/bluesky-pds.nix", [["enable", 7, 7], ["settings", 8, 7]]);
-const pos$3 = nix.positions(here + "/bluesky-pds.nix", [["bluesky-pds", 6, 14]]);
-const pos$4 = nix.positions(here + "/bluesky-pds.nix", [["services", 6, 5]]);
-const pos$5 = nix.positions(here + "/bluesky-pds.nix", [["machine", 5, 14]]);
-const pos$6 = nix.positions(here + "/bluesky-pds.nix", [["maintainers", 26, 8]]);
-const pos$7 = nix.positions(here + "/bluesky-pds.nix", [["name", 3, 3], ["containers", 5, 3], ["testScript", 20, 3], ["meta", 26, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$7,
+    [nix.POS]: $pos[6],
     name: "PDS",
     containers: nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       machine: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         services: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           "bluesky-pds": nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             enable: true,
             settings: nix.thunk(() => ({
-              [nix.POS]: pos$1,
+              [nix.POS]: $pos[0],
               PDS_PORT: 3000n,
               PDS_HOSTNAME: "example.com",
               PDS_JWT_SECRET: "7b93fee53be046bf59c27a32a0fb2069",
@@ -40,7 +34,7 @@ export default nix.lambda((args) => (() => {
     })),
     testScript: "machine.wait_for_unit(\"bluesky-pds.service\")\nmachine.wait_for_open_port(3000)\nmachine.succeed(\"curl --fail http://localhost:3000\")\n",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "t4ccer"))];

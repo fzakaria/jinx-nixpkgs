@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 33, 5], ["exec", 34, 5], ["comment", 35, 5], ["desktopName", 36, 5], ["genericName", 37, 5], ["icon", 38, 5], ["categories", 39, 5]], [["owner", 47, 5], ["repo", 48, 5], ["tag", 49, 5], ["hash", 50, 5]], [["homepage", 113, 5], ["description", 114, 5], ["longDescription", 115, 5], ["sourceProvenance", 119, 5], ["license", 123, 5], ["platforms", 124, 5], ["maintainers", 125, 5], ["mainProgram", 128, 5]], [["pname", 43, 3], ["version", 44, 3], ["src", 46, 3], ["nativeBuildInputs", 53, 3], ["buildInputs", 61, 3], ["dontWrapGApps", 67, 3], ["buildPhase", 71, 3], ["installPhase", 77, 3], ["postFixup", 104, 3], ["meta", 112, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, makeDesktopItem: false, makeWrapper: false, wrapGAppsHook3: false, stripJavaArchivesHook: false, ant: false, jdk: false, jre: false, gtk3: false, glib: false, libxtst: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 33, 5], ["exec", 34, 5], ["comment", 35, 5], ["desktopName", 36, 5], ["genericName", 37, 5], ["icon", 38, 5], ["categories", 39, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 47, 5], ["repo", 48, 5], ["tag", 49, 5], ["hash", 50, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 113, 5], ["description", 114, 5], ["longDescription", 115, 5], ["sourceProvenance", 119, 5], ["license", 123, 5], ["platforms", 124, 5], ["maintainers", 125, 5], ["mainProgram", 128, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 43, 3], ["version", 44, 3], ["src", 46, 3], ["nativeBuildInputs", 53, 3], ["buildInputs", 61, 3], ["dontWrapGApps", 67, 3], ["buildPhase", 71, 3], ["installPhase", 77, 3], ["postFixup", 104, 3], ["meta", 112, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,7 +22,7 @@ export default nix.lambda((args) => (() => {
   const libxtst = nix.arg($, "libxtst");
   const swtSystem = nix.thunk(() => (nix.asBool(nix.eq(nix.sel(stdenv, "hostPlatform", "system"), "i686-linux")) ? "linux" : (nix.asBool(nix.eq(nix.sel(stdenv, "hostPlatform", "system"), "x86_64-linux")) ? "linux64" : (nix.asBool(nix.eq(nix.sel(stdenv, "hostPlatform", "system"), "aarch64-linux")) ? "linux-arm64" : (nix.asBool(nix.eq(nix.sel(stdenv, "hostPlatform", "system"), "x86_64-darwin")) ? "macos64" : (nix.asBool(nix.eq(nix.sel(stdenv, "hostPlatform", "system"), "aarch64-darwin")) ? "macos-aarch64" : nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenv, "hostPlatform", "system")}`))))))));
   const desktopItem = nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: "jameica",
       exec: "jameica",
       comment: "Free Runtime Environment for Java Applications.",
@@ -38,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const pname = "jameica";
       const version = "2.12.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "willuhn",
           repo: "jameica",
           tag: version,
@@ -77,7 +74,7 @@ cp -r releases/${version}/tmp/jameica.app $out/Applications/Jameica.app
   "\${gappsWrapperArgs[@]}"
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://www.willuhn.de/products/jameica/",
         description: "Free Runtime Environment for Java Applications",
         longDescription: "Runtime Environment for plugins like Hibiscus (HBCI Online Banking),\nSynTAX (accounting) and JVerein (club management).\n",
@@ -97,7 +94,7 @@ cp -r releases/${version}/tmp/jameica.app $out/Applications/Jameica.app
         mainProgram: "jameica",
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

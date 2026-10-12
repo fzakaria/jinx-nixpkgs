@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 13, 5], ["hash", 14, 5]], [["homepage", 65, 5], ["description", 66, 5], ["maintainers", 67, 5], ["license", 68, 5], ["platforms", 69, 5], ["mainProgram", 73, 5], ["sourceProvenance", 74, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 12, 3], ["nativeBuildInputs", 17, 3], ["dontBuild", 22, 3], ["dontConfigure", 23, 3], ["unpackPhase", 25, 3], ["installPhase", 32, 3], ["meta", 64, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, makeWrapper: false, "temurin-jre-bin": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 13, 5], ["hash", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 65, 5], ["description", 66, 5], ["maintainers", 67, 5], ["license", 68, 5], ["platforms", 69, 5], ["mainProgram", 73, 5], ["sourceProvenance", 74, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 12, 3], ["nativeBuildInputs", 17, 3], ["dontBuild", 22, 3], ["dontConfigure", 23, 3], ["unpackPhase", 25, 3], ["installPhase", 32, 3], ["meta", 64, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const temurin_jre_bin = nix.arg($, "temurin-jre-bin");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "halo",
       version: "2.26.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/halo-dev/halo/releases/download/v${nix.sel(finalAttrs, "version")}/halo-${nix.sel(finalAttrs, "version")}.jar`),
           hash: "sha256-eh1uoIAOiUBnKquZpzKLe9lSDil2dxaVlDKABKQZkbw=",
         })))),
@@ -58,7 +56,7 @@ makeWrapper ${temurin_jre_bin}/bin/java $out/bin/halo \\
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://www.halo.run",
         description: "Self-hosted dynamic blogging program",
         maintainers: nix.thunk(() => (() => {

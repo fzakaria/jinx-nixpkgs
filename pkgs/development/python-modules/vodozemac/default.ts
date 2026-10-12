@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]], [["src", 23, 26], ["hash", 24, 5]], [["description", 43, 5], ["homepage", 44, 5], ["license", 45, 5], ["maintainers", 46, 5]], [["pname", 11, 3], ["version", 12, 3], ["pyproject", 13, 3], ["src", 15, 3], ["cargoDeps", 22, 3], ["nativeBuildInputs", 27, 3], ["preCheck", 32, 3], ["nativeCheckInputs", 37, 3], ["meta", 42, 3]]]);
 const formals$1 = { args: { buildPythonPackage: false, fetchFromGitHub: false, hypothesis: false, lib: false, pytestCheckHook: false, rustPlatform: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["src", 23, 26], ["hash", 24, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 43, 5], ["homepage", 44, 5], ["license", 45, 5], ["maintainers", 46, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 11, 3], ["version", 12, 3], ["pyproject", 13, 3], ["src", 15, 3], ["cargoDeps", 22, 3], ["nativeBuildInputs", 27, 3], ["preCheck", 32, 3], ["nativeCheckInputs", 37, 3], ["meta", 42, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,19 +14,19 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const rustPlatform = nix.arg($, "rustPlatform");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "vodozemac",
       version: "0.10.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "matrix-nio",
           repo: "vodozemac-python",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-y0mJsDRJzhwkYOERyMxvw4ih6bSMtmT+YTXds1bIyMI=",
         })))),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           hash: "sha256-owvBFMoem6hn4dC9pR/DVqZoHFl7oIRBBodmAgWmDxU=",
         })))),
@@ -40,7 +37,7 @@ export default nix.lambda((args) => (() => {
       preCheck: "# do not shadow imports\nrm -r vodozemac\n",
       nativeCheckInputs: nix.thunk(() => [hypothesis, pytestCheckHook]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Python bindings for vodozemac",
         homepage: "https://github.com/matrix-nio/vodozemac-python",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["sha256", 18, 5]], [["description", 37, 5], ["homepage", 38, 5], ["maintainers", 39, 5], ["license", 40, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 14, 3], ["pyproject", 21, 3], ["nativeBuildInputs", 23, 3], ["nativeCheckInputs", 25, 3], ["pytestFlags", 27, 3], ["pythonImportsCheck", 34, 3], ["meta", 36, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, "poetry-core": false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["sha256", 18, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 37, 5], ["homepage", 38, 5], ["maintainers", 39, 5], ["license", 40, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 14, 3], ["pyproject", 21, 3], ["nativeBuildInputs", 23, 3], ["nativeCheckInputs", 25, 3], ["pytestFlags", 27, 3], ["pythonImportsCheck", 34, 3], ["meta", 36, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const poetry_core = nix.arg($, "poetry-core");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "timeslot",
       version: "0.1.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ErikBjare",
           repo: "timeslot",
           rev: "af35445e96cbb2f3fb671a75aac6aa93e4e7e7a6",
@@ -31,7 +29,7 @@ export default nix.lambda((args) => (() => {
       pytestFlags: nix.thunk(() => ["--override-ini=addopts="]),
       pythonImportsCheck: nix.thunk(() => ["timeslot"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Data type for representing time slots with a start and end",
         homepage: "https://github.com/ErikBjare/timeslot",
         maintainers: nix.thunk(() => (() => {

@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["homepage", 37, 5], ["changelog", 38, 5], ["description", 39, 5], ["license", 40, 5], ["maintainers", 41, 5], ["mainProgram", 44, 5]], [["pname", 11, 3], ["version", 13, 19], ["src", 13, 27], ["vendorHash", 13, 31], ["subPackages", 15, 3], ["ldflags", 19, 3], ["nativeCheckInputs", 24, 3], ["doCheck", 29, 3], ["doInstallCheck", 30, 3], ["nativeInstallCheckInputs", 32, 3], ["meta", 36, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fleet: false, writableTmpDirAsHomeHook: false, versionCheckHook: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["homepage", 37, 5], ["changelog", 38, 5], ["description", 39, 5], ["license", 40, 5], ["maintainers", 41, 5], ["mainProgram", 44, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 13, 19], ["src", 13, 27], ["vendorHash", 13, 31], ["subPackages", 15, 3], ["ldflags", 19, 3], ["nativeCheckInputs", 24, 3], ["doCheck", 29, 3], ["doInstallCheck", 30, 3], ["nativeInstallCheckInputs", 32, 3], ["meta", 36, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "fleetctl",
       version: nix.thunk(() => nix.attr(fleet, "version")),
       src: nix.thunk(() => nix.attr(fleet, "src")),
@@ -30,7 +29,7 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))),
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         homepage: "https://github.com/fleetdm/fleet",
         changelog: nix.thunk(() => nix.str`https://github.com/fleetdm/fleet/releases/tag/fleet-v${nix.sel(finalAttrs, "version")}`),
         description: "CLI tool for managing Fleet",

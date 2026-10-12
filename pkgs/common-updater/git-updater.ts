@@ -2,9 +2,9 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/git-updater.nix", [[["pname", 24, 5], ["version", 25, 5], ["attrPath", 26, 5], ["allowedVersions", 27, 5], ["ignoredVersions", 28, 5], ["rev-prefix", 29, 5], ["rev-suffix", 30, 5], ["odd-unstable", 31, 5], ["patchlevel-unstable", 32, 5], ["versionLister", 34, 3]]]);
 const formals$1 = { args: { lib: false, genericUpdater: false, "common-updater-scripts": false }, ellipsis: false };
 const formals$2 = { args: { pname: true, version: true, attrPath: true, allowedVersions: true, ignoredVersions: true, "rev-prefix": true, "rev-suffix": true, "odd-unstable": true, "patchlevel-unstable": true, url: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/git-updater.nix", [["pname", 24, 5], ["version", 25, 5], ["attrPath", 26, 5], ["allowedVersions", 27, 5], ["ignoredVersions", 28, 5], ["rev-prefix", 29, 5], ["rev-suffix", 30, 5], ["odd-unstable", 31, 5], ["patchlevel-unstable", 32, 5], ["versionLister", 34, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,7 +24,7 @@ export default nix.lambda((args) => (() => {
     const patchlevel_unstable = nix.argOr($_1, "patchlevel-unstable", () => false);
     const url = nix.argOr($_1, "url", () => null);
     return nix.app(genericUpdater, nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         pname: pname,
         version: version,
         attrPath: attrPath,

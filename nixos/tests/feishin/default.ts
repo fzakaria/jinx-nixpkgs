@@ -2,19 +2,17 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["system", 4, 40], ["pkgs", 4, 47]], [["system", 5, 40], ["pkgs", 5, 47]], [["caddy", 4, 3], ["nginx", 5, 3]]]);
 const formals$1 = { args: { system: false, pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/default.nix", [["system", 4, 40], ["pkgs", 4, 47]]);
-const pos$2 = nix.positions(here + "/default.nix", [["system", 5, 40], ["pkgs", 5, 47]]);
-const pos$3 = nix.positions(here + "/default.nix", [["caddy", 4, 3], ["nginx", 5, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const system = nix.arg($, "system");
   const pkgs = nix.arg($, "pkgs");
   return {
-    [nix.POS]: pos$3,
-    caddy: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./caddy.nix")), nix.thunk(() => ({ [nix.POS]: pos$1, system: system, pkgs: pkgs })))),
-    nginx: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./nginx.nix")), nix.thunk(() => ({ [nix.POS]: pos$2, system: system, pkgs: pkgs })))),
+    [nix.POS]: $pos[2],
+    caddy: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./caddy.nix")), nix.thunk(() => ({ [nix.POS]: $pos[0], system: system, pkgs: pkgs })))),
+    nginx: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./nginx.nix")), nix.thunk(() => ({ [nix.POS]: $pos[1], system: system, pkgs: pkgs })))),
   };
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

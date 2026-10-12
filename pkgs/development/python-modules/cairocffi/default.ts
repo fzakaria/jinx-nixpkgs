@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 26, 13], ["version", 26, 19], ["hash", 27, 5]], [["ext", 33, 7], ["cairo", 34, 7], ["glib", 35, 7], ["gdk_pixbuf", 36, 7]], [["changelog", 62, 5], ["homepage", 63, 5], ["license", 64, 5], ["maintainers", 65, 5], ["description", 66, 5]], [["pname", 21, 3], ["version", 22, 3], ["pyproject", 23, 3], ["src", 25, 3], ["patches", 30, 3], ["nativeBuildInputs", 41, 3], ["propagatedBuildInputs", 43, 3], ["nativeCheckInputs", 49, 3], ["pythonImportsCheck", 55, 3], ["__impureHostDeps", 59, 3], ["meta", 61, 3]]]);
 const formals$1 = { args: { stdenv: false, buildPythonPackage: false, fetchPypi: false, lib: false, replaceVars: false, pikepdf: false, pytestCheckHook: false, cairo: false, cffi: false, "flit-core": false, numpy: false, withXcffib: true, xcffib: false, glib: false, "gdk-pixbuf": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 26, 13], ["version", 26, 19], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["ext", 33, 7], ["cairo", 34, 7], ["glib", 35, 7], ["gdk_pixbuf", 36, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["changelog", 62, 5], ["homepage", 63, 5], ["license", 64, 5], ["maintainers", 65, 5], ["description", 66, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 21, 3], ["version", 22, 3], ["pyproject", 23, 3], ["src", 25, 3], ["patches", 30, 3], ["nativeBuildInputs", 41, 3], ["propagatedBuildInputs", 43, 3], ["nativeCheckInputs", 49, 3], ["pythonImportsCheck", 55, 3], ["__impureHostDeps", 59, 3], ["meta", 61, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,14 +27,14 @@ export default nix.lambda((args) => (() => {
       const version = "1.7.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-LkjuhkiE7Eo6NL+oyauZmfaIKG63FKFaQ+ydBow2VXs=",
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./dlopen-paths.patch"), nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             ext: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "extensions", "sharedLibrary")),
             cairo: nix.thunk(() => nix.sel(cairo, "out")),
             glib: nix.thunk(() => nix.sel(glib, "out")),
@@ -51,7 +48,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["cairocffi"]);
       const __impureHostDeps = nix.thunk(() => ["/System/Library/Fonts"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         changelog: nix.thunk(() => nix.str`https://github.com/Kozea/cairocffi/blob/v${version}/NEWS.rst`),
         homepage: "https://github.com/SimonSapin/cairocffi",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
@@ -59,7 +56,7 @@ export default nix.lambda((args) => (() => {
         description: "cffi-based cairo bindings for Python",
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["x86_64", 14, 7], ["i686", 15, 7], ["aarch64", 16, 7], ["riscv64", 17, 7]], [["owner", 33, 5], ["repo", 34, 5], ["tag", 35, 5], ["hash", 36, 5]], [["description", 126, 5], ["homepage", 127, 5], ["license", 128, 5], ["platforms", 129, 5], ["maintainers", 130, 5]], [["pname", 26, 3], ["version", 27, 3], ["__structuredAttrs", 29, 3], ["strictDeps", 30, 3], ["src", 32, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 44, 3], ["nativeVersionInterface", 46, 3], ["nativeVersionHeader", 53, 3], ["postPatch", 66, 3], ["buildPhase", 75, 3], ["installPhase", 105, 3], ["meta", 125, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, jdk: false, findbugs: false, ncurses: false, zip: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["x86_64", 14, 7], ["i686", 15, 7], ["aarch64", 16, 7], ["riscv64", 17, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 33, 5], ["repo", 34, 5], ["tag", 35, 5], ["hash", 36, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 126, 5], ["homepage", 127, 5], ["license", 128, 5], ["platforms", 129, 5], ["maintainers", 130, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 26, 3], ["version", 27, 3], ["__structuredAttrs", 29, 3], ["strictDeps", 30, 3], ["src", 32, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 44, 3], ["nativeVersionInterface", 46, 3], ["nativeVersionHeader", 53, 3], ["postPatch", 66, 3], ["buildPhase", 75, 3], ["installPhase", 105, 3], ["meta", 125, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const ncurses = nix.arg($, "ncurses");
   const zip = nix.arg($, "zip");
   const archId = nix.thunk(() => nix.selOr({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     x86_64: "amd64",
     i686: "i386",
     aarch64: "aarch64",
@@ -27,13 +24,13 @@ export default nix.lambda((args) => (() => {
   const platformId = nix.thunk(() => nix.str`linux-${archId}`);
   const nativeVersionHash = "1def1411415f61bf3af743bc5b6707747c0891f09f0c88961ee8f79bc544acac";
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "gradle-native-platform",
       version: "0.22-milestone-28",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "gradle",
           repo: "native-platform",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -105,7 +102,7 @@ stage "${platformId}-ncurses6" jni/libnative-platform-curses.so native-platform-
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "JNI native libraries for Gradle",
         homepage: "https://github.com/gradle/native-platform",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

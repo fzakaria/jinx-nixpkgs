@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["hash", 33, 5], ["fetchSubmodules", 34, 5]], [["homepage", 80, 5], ["description", 81, 5], ["license", 82, 5], ["maintainers", 83, 5], ["platforms", 84, 5]], [["pname", 26, 3], ["version", 27, 3], ["src", 29, 3], ["nativeBuildInputs", 37, 3], ["cmakeFlags", 39, 3], ["propagatedBuildInputs", 44, 3], ["patches", 61, 3], ["installCheckPhase", 68, 3], ["doInstallCheck", 77, 3], ["meta", 79, 3]]]);
 const formals$1 = { args: { stdenv: false, fetchFromGitHub: false, cmake: false, jsoncpp: false, libossp_uuid: false, zlib: false, lib: false, openssl: false, brotli: false, "c-ares": false, sqliteSupport: true, sqlite: false, postgresSupport: true, libpq: false, redisSupport: true, hiredis: false, mysqlSupport: true, libmysqlclient: false, mariadb: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["hash", 33, 5], ["fetchSubmodules", 34, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 80, 5], ["description", 81, 5], ["license", 82, 5], ["maintainers", 83, 5], ["platforms", 84, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 26, 3], ["version", 27, 3], ["src", 29, 3], ["nativeBuildInputs", 37, 3], ["cmakeFlags", 39, 3], ["propagatedBuildInputs", 44, 3], ["patches", 61, 3], ["installCheckPhase", 68, 3], ["doInstallCheck", 77, 3], ["meta", 79, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,11 +27,11 @@ export default nix.lambda((args) => (() => {
   const libmysqlclient = nix.arg($, "libmysqlclient");
   const mariadb = nix.arg($, "mariadb");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "drogon",
       version: "1.9.12",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "drogonframework",
           repo: "drogon",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -50,7 +48,7 @@ export default nix.lambda((args) => (() => {
       installCheckPhase: "(\n  cd ..\n  PATH=$PATH:$out/bin $SHELL test.sh\n)\n",
       doInstallCheck: nix.thunk(() => nix.eq(nix.sel(stdenv, "buildPlatform"), nix.sel(stdenv, "hostPlatform"))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/drogonframework/drogon",
         description: "C++14/17 based HTTP web application framework",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

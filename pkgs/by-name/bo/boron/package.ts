@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 13, 5], ["sha256", 14, 5]], [["homepage", 45, 5], ["description", 46, 5], ["mainProgram", 47, 5], ["license", 48, 5], ["platforms", 49, 5], ["maintainers", 50, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["dontAddPrefix", 18, 3], ["preConfigure", 20, 3], ["configureFlags", 24, 3], ["makeFlags", 26, 3], ["buildInputs", 28, 3], ["installTargets", 32, 3], ["doCheck", 37, 3], ["checkPhase", 39, 3], ["meta", 44, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 13, 5], ["sha256", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 45, 5], ["description", 46, 5], ["mainProgram", 47, 5], ["license", 48, 5], ["platforms", 49, 5], ["maintainers", 50, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["dontAddPrefix", 18, 3], ["preConfigure", 20, 3], ["configureFlags", 24, 3], ["makeFlags", 26, 3], ["buildInputs", 28, 3], ["installTargets", 32, 3], ["doCheck", 37, 3], ["checkPhase", 39, 3], ["meta", 44, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "boron",
       version: "2.1.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://sourceforge.net/projects/urlan/files/Boron/boron-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "sha256-50HKcK2hQpe9k9RIoVa/N5krTRKlW9AsGYTmHITx7Nc=",
         })))),
@@ -31,7 +29,7 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       checkPhase: "patchShebangs .\nmake -C test\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://urlan.sourceforge.net/boron/",
         description: "Scripting language and C library useful for building DSLs",
         mainProgram: "boron",

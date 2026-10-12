@@ -2,21 +2,8 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/gemstash.nix", [[["maintainers", 8, 10]], [["enable", 11, 25]], [["gemstash", 11, 16]], [["services", 11, 7]], [["machine", 10, 11]], [["name", 7, 5], ["meta", 8, 5], ["nodes", 10, 5], ["testScript", 15, 5]], [["maintainers", 25, 10]], [["bind", 32, 11]], [["enable", 29, 9], ["openFirewall", 30, 9], ["settings", 31, 9]], [["gemstash", 28, 16]], [["services", 28, 7]], [["machine", 27, 11]], [["name", 24, 5], ["meta", 25, 5], ["nodes", 27, 5], ["testScript", 38, 5]], [["gemstash_works", 6, 3], ["gemstash_custom_port", 23, 3]]]);
 const formals$1 = { args: { runTest: false, pkgs: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/gemstash.nix", [["maintainers", 8, 10]]);
-const pos$2 = nix.positions(here + "/gemstash.nix", [["enable", 11, 25]]);
-const pos$3 = nix.positions(here + "/gemstash.nix", [["gemstash", 11, 16]]);
-const pos$4 = nix.positions(here + "/gemstash.nix", [["services", 11, 7]]);
-const pos$5 = nix.positions(here + "/gemstash.nix", [["machine", 10, 11]]);
-const pos$6 = nix.positions(here + "/gemstash.nix", [["name", 7, 5], ["meta", 8, 5], ["nodes", 10, 5], ["testScript", 15, 5]]);
-const pos$7 = nix.positions(here + "/gemstash.nix", [["maintainers", 25, 10]]);
-const pos$8 = nix.positions(here + "/gemstash.nix", [["bind", 32, 11]]);
-const pos$9 = nix.positions(here + "/gemstash.nix", [["enable", 29, 9], ["openFirewall", 30, 9], ["settings", 31, 9]]);
-const pos$10 = nix.positions(here + "/gemstash.nix", [["gemstash", 28, 16]]);
-const pos$11 = nix.positions(here + "/gemstash.nix", [["services", 28, 7]]);
-const pos$12 = nix.positions(here + "/gemstash.nix", [["machine", 27, 11]]);
-const pos$13 = nix.positions(here + "/gemstash.nix", [["name", 24, 5], ["meta", 25, 5], ["nodes", 27, 5], ["testScript", 38, 5]]);
-const pos$14 = nix.positions(here + "/gemstash.nix", [["gemstash_works", 6, 3], ["gemstash_custom_port", 23, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,50 +11,50 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const lib = nix.thunk(() => nix.attr(pkgs, "lib"));
   return {
-    [nix.POS]: pos$14,
+    [nix.POS]: $pos[13],
     gemstash_works: nix.thunk(() => nix.app(runTest, nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         name: "gemstash-works",
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           maintainers: nix.thunk(() => (() => {
             const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
             return [nix.thunk(() => nix.lookup(w, "viraptor"))];
           })()),
         })),
         nodes: nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           machine: nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             services: nix.thunk(() => ({
-              [nix.POS]: pos$3,
-              gemstash: nix.thunk(() => ({ [nix.POS]: pos$2, enable: true })),
+              [nix.POS]: $pos[2],
+              gemstash: nix.thunk(() => ({ [nix.POS]: $pos[1], enable: true })),
             })),
           })),
         })),
         testScript: "machine.wait_for_unit(\"gemstash.service\")\nmachine.wait_for_file(\"/var/lib/gemstash\")\nmachine.wait_for_open_port(9292)\nmachine.succeed(\"curl http://localhost:9292\")\n",
       })))),
     gemstash_custom_port: nix.thunk(() => nix.app(runTest, nix.thunk(() => ({
-        [nix.POS]: pos$13,
+        [nix.POS]: $pos[12],
         name: "gemstash-custom-port",
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           maintainers: nix.thunk(() => (() => {
             const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
             return [nix.thunk(() => nix.lookup(w, "viraptor"))];
           })()),
         })),
         nodes: nix.thunk(() => ({
-          [nix.POS]: pos$12,
+          [nix.POS]: $pos[11],
           machine: nix.thunk(() => ({
-            [nix.POS]: pos$11,
+            [nix.POS]: $pos[10],
             services: nix.thunk(() => ({
-              [nix.POS]: pos$10,
+              [nix.POS]: $pos[9],
               gemstash: nix.thunk(() => ({
-                [nix.POS]: pos$9,
+                [nix.POS]: $pos[8],
                 enable: true,
                 openFirewall: true,
-                settings: nix.thunk(() => ({ [nix.POS]: pos$8, bind: "tcp://0.0.0.0:12345" })),
+                settings: nix.thunk(() => ({ [nix.POS]: $pos[7], bind: "tcp://0.0.0.0:12345" })),
               })),
             })),
           })),

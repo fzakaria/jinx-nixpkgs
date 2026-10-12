@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["withVerto", 68, 5]], [["enableLDAP", 72, 5]], [["url", 80, 5], ["hash", 81, 5]], [["NIX_CFLAGS_COMPILE", 137, 7]], [["description", 170, 5], ["longDescription", 171, 5], ["homepage", 178, 5], ["license", 179, 5], ["maintainers", 180, 5], ["platforms", 184, 5], ["mainProgram", 185, 5]], [["pname", 76, 3], ["version", 77, 3], ["src", 79, 3], ["nativeBuildInputs", 84, 3], ["buildInputs", 95, 3], ["postPatch", 121, 3], ["env", 137, 3], ["pythonPath", 138, 3], ["configureFlags", 144, 3], ["postInstall", 150, 3], ["postFixup", 158, 3], ["nativeInstallCheckInputs", 163, 3], ["versionCheckProgram", 166, 3], ["doInstallCheck", 167, 3], ["meta", 169, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, "pkg-config": false, autoconf: false, automake: false, krb5: false, openldap: false, popt: false, cyrus_sasl: false, curl: false, xmlrpc_c: false, "ding-libs": false, "p11-kit": false, gettext: false, nspr: false, nss: false, "_389-ds-base": false, svrcore: false, libuuid: false, talloc: false, tevent: false, samba4: false, libunistring: false, libverto: false, libpwquality: false, systemdLibs: false, python3Packages: false, bind: false, sssd: false, jre: false, rhino: false, lesscpy: false, jansson: false, runtimeShell: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["withVerto", 68, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["enableLDAP", 72, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 80, 5], ["hash", 81, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 137, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 170, 5], ["longDescription", 171, 5], ["homepage", 178, 5], ["license", 179, 5], ["maintainers", 180, 5], ["platforms", 184, 5], ["mainProgram", 185, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 76, 3], ["version", 77, 3], ["src", 79, 3], ["nativeBuildInputs", 84, 3], ["buildInputs", 95, 3], ["postPatch", 121, 3], ["env", 137, 3], ["pythonPath", 138, 3], ["configureFlags", 144, 3], ["postInstall", 150, 3], ["postFixup", 158, 3], ["nativeInstallCheckInputs", 163, 3], ["versionCheckProgram", 166, 3], ["doInstallCheck", 167, 3], ["meta", 169, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -76,15 +71,15 @@ export default nix.lambda((args) => (() => {
       nix.thunk(() => nix.lookup(w, "ifaddr")),
     ];
   })());
-  const kerberos = nix.thunk(() => nix.app(nix.sel(krb5, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, withVerto: true }))));
+  const kerberos = nix.thunk(() => nix.app(nix.sel(krb5, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], withVerto: true }))));
   const sasl = cyrus_sasl;
-  const samba = nix.thunk(() => nix.app(nix.sel(samba4, "override"), nix.thunk(() => ({ [nix.POS]: pos$2, enableLDAP: true }))));
+  const samba = nix.thunk(() => nix.app(nix.sel(samba4, "override"), nix.thunk(() => ({ [nix.POS]: $pos[1], enableLDAP: true }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "freeipa",
       version: "4.13.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           url: nix.thunk(() => nix.str`https://releases.pagure.org/freeipa/freeipa-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-U1MSfXxWynK8LUWDdtRX+LDMRRzb0x3Hk5qIBY6RUnw=",
         })))),
@@ -137,7 +132,7 @@ substituteInPlace ipaplatform/nixos/paths.py \\
   --subst-var-by kerberos ${kerberos}
 `),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.str`-I${_389_ds_base}/include/dirsrv`),
       })),
       pythonPath: pythonInputs,
@@ -157,7 +152,7 @@ substituteInPlace ipaplatform/nixos/paths.py \\
       versionCheckProgram: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/bin/ipa`),
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Identity, Policy and Audit system",
         longDescription: "IPA is an integrated solution to provide centrally managed Identity (users,\nhosts, services), Authentication (SSO, 2FA), and Authorization\n(host access control, SELinux user roles, services). The solution provides\nfeatures for further integration with Linux based clients (SUDO, automount)\nand integration with Active Directory based infrastructures (Trusts).\n",
         homepage: "https://www.freeipa.org/",

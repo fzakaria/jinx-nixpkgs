@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["enableCxx", 13, 32]], [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["fetchSubmodules", 23, 5], ["hash", 24, 5]], [["nixMupdfLibPath", 29, 7], ["nixMupdfIncludePath", 30, 7]], [["description", 52, 5], ["longDescription", 53, 5], ["homepage", 64, 5], ["changelog", 65, 5], ["license", 66, 5], ["mainProgram", 67, 5], ["maintainers", 68, 5], ["platforms", 72, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["patches", 27, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 43, 3], ["meta", 51, 3]]]);
 const formals$1 = { args: { lib: false, mupdf: false, stdenv: false, fetchFromGitHub: false, replaceVars: false, cmake: false, qt6: false, desktopToDarwinBundle: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["enableCxx", 13, 32]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["fetchSubmodules", 23, 5], ["hash", 24, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["nixMupdfLibPath", 29, 7], ["nixMupdfIncludePath", 30, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 52, 5], ["longDescription", 53, 5], ["homepage", 64, 5], ["changelog", 65, 5], ["license", 66, 5], ["mainProgram", 67, 5], ["maintainers", 68, 5], ["platforms", 72, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["patches", 27, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 43, 3], ["meta", 51, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,13 +15,13 @@ export default nix.lambda((args) => (() => {
   const cmake = nix.arg($, "cmake");
   const qt6 = nix.arg($, "qt6");
   const desktopToDarwinBundle = nix.arg($, "desktopToDarwinBundle");
-  const mupdf_cxx = nix.thunk(() => nix.app(nix.sel(mupdf, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, enableCxx: true }))));
+  const mupdf_cxx = nix.thunk(() => nix.app(nix.sel(mupdf, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], enableCxx: true }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "librum",
       version: "0.12.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "Librum-Reader",
           repo: "Librum",
           tag: nix.thunk(() => nix.str`v.${nix.sel(finalAttrs, "version")}`),
@@ -34,7 +30,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./use_mupdf_in_nixpkgs.patch"), nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             nixMupdfLibPath: nix.thunk(() => nix.str`${nix.sel(mupdf_cxx, "out")}/lib`),
             nixMupdfIncludePath: nix.thunk(() => nix.str`${nix.sel(mupdf_cxx, "dev")}/include`),
           })))),
@@ -49,7 +45,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.sel(qt6, "qtsvg")),
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [nix.thunk(() => nix.sel(qt6, "qtwayland"))])))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Application designed to make reading enjoyable and straightforward",
         longDescription: "Librum is an application designed to make reading enjoyable\nand straightforward for everyone. It's not just an e-book\nreader. With Librum, you can manage your own online library\nand access it from any device anytime, anywhere. It has\nfeatures like note-taking, AI tooling, and highlighting,\nwhile offering customization to make it as personal as you\nwant! Librum also provides free access to over 70,000 books\nand personal reading statistics while being free and\ncompletely open source.\n",
         homepage: "https://librumreader.com",

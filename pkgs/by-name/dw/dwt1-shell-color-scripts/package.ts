@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]], [["homepage", 50, 5], ["description", 51, 5], ["license", 52, 5], ["maintainers", 53, 5], ["platforms", 54, 5], ["mainProgram", 55, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["nativeBuildInputs", 19, 3], ["postPatch", 21, 3], ["installPhase", 26, 3], ["postFixup", 40, 3], ["meta", 49, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchFromGitLab: false, installShellFiles: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 50, 5], ["description", 51, 5], ["license", 52, 5], ["maintainers", 53, 5], ["platforms", 54, 5], ["mainProgram", 55, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["nativeBuildInputs", 19, 3], ["postPatch", 21, 3], ["installPhase", 26, 3], ["postFixup", 40, 3], ["meta", 49, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitLab = nix.arg($, "fetchFromGitLab");
   const installShellFiles = nix.arg($, "installShellFiles");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "dwt1-shell-color-scripts",
       version: "1.1-unstable-2023-03-27",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "dwt1",
           repo: "shell-color-scripts",
           rev: "576735cf656ece1bfd314e617b91c0e9d486d262",
@@ -29,7 +27,7 @@ export default nix.lambda((args) => (() => {
       installPhase: "runHook preInstall\n\nmkdir -p $out/bin $out/share/shell-color-scripts\ninstall -Dm755 colorscript.sh $out/bin/colorscript\ncp -r colorscripts $out/share/shell-color-scripts/colorscripts\n\ninstallManPage colorscript.1\ninstallShellCompletion --fish completions/colorscript.fish\ninstallShellCompletion --zsh completions/_colorscript\n\nrunHook postInstall\n",
       postFixup: "substituteInPlace \\\n  $out/bin/colorscript \\\n  $out/share/fish/vendor_completions.d/colorscript.fish \\\n  $out/share/zsh/site-functions/_colorscript \\\n  --replace-fail \"/opt/shell-color-scripts/colorscripts\" \\\n    \"$out/share/shell-color-scripts/colorscripts\"\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://gitlab.com/dwt1/shell-color-scripts",
         description: "Collection of shell color scripts collected by dt (Derek Taylor)",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

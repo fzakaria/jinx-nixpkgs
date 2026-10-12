@@ -2,8 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["efl", 7, 5], ["enlightenment", 10, 5], ["econnman", 13, 5], ["ecrire", 14, 5], ["ephoto", 15, 5], ["evisum", 16, 5], ["rage", 17, 5], ["terminology", 18, 5]]]);
 const formals$1 = { args: { lib: false, pkgs: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["efl", 7, 5], ["enlightenment", 10, 5], ["econnman", 13, 5], ["ecrire", 14, 5], ["ephoto", 15, 5], ["evisum", 16, 5], ["rage", 17, 5], ["terminology", 18, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   return nix.app(nix.sel(lib, "makeScope"), nix.thunk(() => nix.sel(pkgs, "newScope")), (self) => (() => {
       const w = nix.withScope(self, null);
       return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         efl: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "./efl"), nix.thunk(() => ({})))),
         enlightenment: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "./enlightenment"), nix.thunk(() => ({})))),
         econnman: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "./econnman"), nix.thunk(() => ({})))),

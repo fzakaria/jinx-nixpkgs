@@ -2,21 +2,19 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
-const pos$1 = nix.positions(here + "/shards.nix", [["owner", 3, 5], ["repo", 4, 5], ["rev", 5, 5], ["sha256", 6, 5]]);
-const pos$2 = nix.positions(here + "/shards.nix", [["owner", 9, 5], ["repo", 10, 5], ["rev", 11, 5], ["sha256", 12, 5]]);
-const pos$3 = nix.positions(here + "/shards.nix", [["fifo", 2, 3], ["rsub", 8, 3]]);
+const $pos = nix.positions(here + "/shards.nix", [[["owner", 3, 5], ["repo", 4, 5], ["rev", 5, 5], ["sha256", 6, 5]], [["owner", 9, 5], ["repo", 10, 5], ["rev", 11, 5], ["sha256", 12, 5]], [["fifo", 2, 3], ["rsub", 8, 3]]]);
 
 export default nix.thunk(() => ({
-  [nix.POS]: pos$3,
+  [nix.POS]: $pos[2],
   fifo: nix.thunk(() => ({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     owner: "alexherbo2",
     repo: "fifo.cr",
     rev: "37a2cc2718af0f8a1c50071106d7a5ca3a0d3da2",
     sha256: "0syh2819dzsfb562z645sajfh7xplhh3mxdachjnzlsdfqkxw85r",
   })),
   rsub: nix.thunk(() => ({
-    [nix.POS]: pos$2,
+    [nix.POS]: $pos[1],
     owner: "alexherbo2",
     repo: "rsub.cr",
     rev: "43c6b9836ee281328bccfdf8c669bab26448e3b3",

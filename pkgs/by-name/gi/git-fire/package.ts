@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]], [["description", 28, 5], ["longDescription", 31, 5], ["homepage", 34, 5], ["license", 35, 5], ["platforms", 36, 5], ["maintainers", 37, 5], ["mainProgram", 38, 5]], [["pname", 8, 3], ["version", 9, 3], ["strictDeps", 11, 3], ["__structuredAttrs", 12, 3], ["src", 14, 3], ["installPhase", 21, 3], ["meta", 27, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 28, 5], ["longDescription", 31, 5], ["homepage", 34, 5], ["license", 35, 5], ["platforms", 36, 5], ["maintainers", 37, 5], ["mainProgram", 38, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["strictDeps", 11, 3], ["__structuredAttrs", 12, 3], ["src", 14, 3], ["installPhase", 21, 3], ["meta", 27, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,13 +11,13 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "git-fire",
       version: "0.2.3-unstable-2017-08-18",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "qw3rtman",
           repo: "git-fire",
           rev: "d72b68ed356f726c77c60294f9220275f16c9931",
@@ -27,7 +25,7 @@ export default nix.lambda((args) => (() => {
         })))),
       installPhase: "runHook preInstall\ninstall -D -m755 $src/git-fire $out/bin/git-fire\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Push ALL changes in a git repository\n",
         longDescription: "In the event of an emergency (fire, etc.), automatically commit all changes/files in a repository, pushing to all known remotes all commits and stashes.\n",
         homepage: "https://github.com/qw3rtman/git-fire",

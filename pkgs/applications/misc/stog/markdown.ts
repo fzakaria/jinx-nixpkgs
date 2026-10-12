@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/markdown.nix", [[["description", 20, 5]], [["pname", 9, 3], ["version", 11, 18], ["src", 11, 26], ["buildInputs", 13, 3], ["propagatedBuildInputs", 14, 3], ["meta", 19, 3]]]);
 const formals$1 = { args: { buildDunePackage: false, stog: false, ocf_ppx: false, omd: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/markdown.nix", [["description", 20, 5]]);
-const pos$2 = nix.positions(here + "/markdown.nix", [["pname", 9, 3], ["version", 11, 18], ["src", 11, 26], ["buildInputs", 13, 3], ["propagatedBuildInputs", 14, 3], ["meta", 19, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,13 +12,13 @@ export default nix.lambda((args) => (() => {
   const ocf_ppx = nix.arg($, "ocf_ppx");
   const omd = nix.arg($, "omd");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "stog_markdown",
       version: nix.thunk(() => nix.attr(stog, "version")),
       src: nix.thunk(() => nix.attr(stog, "src")),
       buildInputs: nix.thunk(() => [ocf_ppx]),
       propagatedBuildInputs: nix.thunk(() => [omd, stog]),
-      meta: nix.thunk(() => nix.update(nix.sel(stog, "meta"), { [nix.POS]: pos$1, description: "Stog plugin to use markdown syntax" })),
+      meta: nix.thunk(() => nix.update(nix.sel(stog, "meta"), { [nix.POS]: $pos[0], description: "Stog plugin to use markdown syntax" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=markdown.ts.map

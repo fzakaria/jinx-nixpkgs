@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/update-resolv-conf.nix", [[["owner", 24, 5], ["repo", 25, 5], ["rev", 26, 5], ["sha256", 27, 5]], [["description", 42, 5], ["homepage", 43, 5], ["maintainers", 44, 5], ["license", 45, 5], ["platforms", 46, 5]], [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["nativeBuildInputs", 30, 3], ["installPhase", 32, 3], ["meta", 41, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, makeWrapper: false, openresolv: false, coreutils: false, systemd: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/update-resolv-conf.nix", [["owner", 24, 5], ["repo", 25, 5], ["rev", 26, 5], ["sha256", 27, 5]]);
-const pos$2 = nix.positions(here + "/update-resolv-conf.nix", [["description", 42, 5], ["homepage", 43, 5], ["maintainers", 44, 5], ["license", 45, 5], ["platforms", 46, 5]]);
-const pos$3 = nix.positions(here + "/update-resolv-conf.nix", [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["nativeBuildInputs", 30, 3], ["installPhase", 32, 3], ["meta", 41, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const systemd = nix.arg($, "systemd");
   const binPath = nix.thunk(() => nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [coreutils, openresolv, systemd])));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "update-resolv-conf",
       version: "unstable-2017-06-21",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "alfredopalhares",
           repo: "openvpn-update-resolv-conf",
           rev: "43093c2f970bf84cd374e18ec05ac6d9cae444b8",
@@ -37,7 +35,7 @@ for i in $out/libexec/openvpn/*; do
 done
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Script to update your /etc/resolv.conf with DNS settings that come from the received push dhcp-options",
         homepage: "https://github.com/alfredopalhares/openvpn-update-resolv-conf/",
         maintainers: [],

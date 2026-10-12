@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 16, 5], ["sha256", 17, 5]], [["NIX_CFLAGS_COMPILE", 20, 7]], [["homepage", 32, 5], ["description", 33, 5], ["platforms", 34, 5], ["license", 35, 5], ["mainProgram", 36, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["env", 20, 3], ["buildInputs", 22, 3], ["hardeningDisable", 29, 3], ["meta", 31, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, libxrandr: false, libxext: false, libx11: false, xorgproto: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 16, 5], ["sha256", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 20, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 32, 5], ["description", 33, 5], ["platforms", 34, 5], ["license", 35, 5], ["mainProgram", 36, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["env", 20, 3], ["buildInputs", 22, 3], ["hardeningDisable", 29, 3], ["meta", 31, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,19 +15,19 @@ export default nix.lambda((args) => (() => {
   const libx11 = nix.arg($, "libx11");
   const xorgproto = nix.arg($, "xorgproto");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "x2vnc",
       version: "1.7.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://fredrik.hubbe.net/x2vnc/x2vnc-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "00bh9j3m6snyd2fgnzhj5vlkj9ibh69gfny9bfzlxbnivb06s1yw",
         })))),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-std=gnu89" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], NIX_CFLAGS_COMPILE: "-std=gnu89" })),
       buildInputs: nix.thunk(() => [libx11, xorgproto, libxext, libxrandr]),
       hardeningDisable: nix.thunk(() => ["format"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "http://fredrik.hubbe.net/x2vnc.html",
         description: "Program to control a remote VNC server",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),

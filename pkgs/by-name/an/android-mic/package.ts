@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 21, 5], ["hash", 22, 5]], [["owner", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["hash", 33, 5]], [["PROTOC", 62, 5], ["ANDROID_MIC_COMMIT", 63, 5], ["RNNOISE_MODEL_PATH", 64, 5]], [["updateScript", 87, 5]], [["description", 91, 5], ["homepage", 92, 5], ["changelog", 93, 5], ["license", 94, 5], ["maintainers", 95, 5], ["platforms", 96, 5], ["mainProgram", 97, 5]], [["pname", 26, 3], ["version", 27, 3], ["src", 29, 3], ["sourceRoot", 36, 3], ["postPatch", 38, 3], ["cargoHash", 43, 3], ["__structuredAttrs", 45, 3], ["nativeBuildInputs", 47, 3], ["buildInputs", 55, 3], ["env", 61, 3], ["dontUseJustBuild", 67, 3], ["dontUseJustCheck", 68, 3], ["justFlags", 70, 3], ["preFixup", 79, 3], ["doInstallCheck", 83, 3], ["nativeInstallCheckInputs", 84, 3], ["passthru", 86, 3], ["meta", 90, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchurl: false, rustPlatform: false, libcosmicAppHook: false, "pkg-config": false, protobuf: false, just: false, "alsa-lib": false, libjack2: false, pipewire: false, "android-tools": false, versionCheckHook: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["hash", 33, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["PROTOC", 62, 5], ["ANDROID_MIC_COMMIT", 63, 5], ["RNNOISE_MODEL_PATH", 64, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 87, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 91, 5], ["homepage", 92, 5], ["changelog", 93, 5], ["license", 94, 5], ["maintainers", 95, 5], ["platforms", 96, 5], ["mainProgram", 97, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 26, 3], ["version", 27, 3], ["src", 29, 3], ["sourceRoot", 36, 3], ["postPatch", 38, 3], ["cargoHash", 43, 3], ["__structuredAttrs", 45, 3], ["nativeBuildInputs", 47, 3], ["buildInputs", 55, 3], ["env", 61, 3], ["dontUseJustBuild", 67, 3], ["dontUseJustCheck", 68, 3], ["justFlags", 70, 3], ["preFixup", 79, 3], ["doInstallCheck", 83, 3], ["nativeInstallCheckInputs", 84, 3], ["passthru", 86, 3], ["meta", 90, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,16 +23,16 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const nix_update_script = nix.arg($, "nix-update-script");
   const rnnoiseModel = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: "https://media.xiph.org/rnnoise/models/rnnoise_data-0a8755f8e2d834eff6a54714ecc7d75f9932e845df35f8b59bc52a7cfe6e8b37.tar.gz",
       hash: "sha256-CodV+OLYNO/2pUcU7MfXX5ky6EXfNfi1m8UqfP5uizc=",
     }))));
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "android-mic",
       version: "2.2.10",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "teamclouday",
           repo: "AndroidMic",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -58,7 +53,7 @@ export default nix.lambda((args) => (() => {
       ]),
       buildInputs: nix.thunk(() => [alsa_lib, libjack2, pipewire]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         PROTOC: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), protobuf)),
         ANDROID_MIC_COMMIT: nix.thunk(() => nix.sel(finalAttrs, "version")),
         RNNOISE_MODEL_PATH: nix.thunk(() => nix.str`${rnnoiseModel}`),
@@ -78,11 +73,11 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Use your Android phone as a microphone for your PC",
         homepage: "https://github.com/teamclouday/AndroidMic",
         changelog: nix.thunk(() => nix.str`https://github.com/teamclouday/AndroidMic/releases/tag/${nix.sel(finalAttrs, "version")}`),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]], [["description", 42, 5], ["longDescription", 44, 5], ["homepage", 52, 5], ["license", 54, 5], ["platforms", 55, 5], ["mainProgram", 56, 5], ["maintainers", 57, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["buildInputs", 27, 3], ["nativeBuildInputs", 36, 3], ["meta", 41, 3]]]);
 const formals$1 = { args: { fetchFromGitHub: false, lib: false, stdenv: false, libunwind: false, libraw1394: false, libjpeg: false, libiec61883: false, libdv: false, libavc1394: false, "pkg-config": false, autoreconfHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 42, 5], ["longDescription", 44, 5], ["homepage", 52, 5], ["license", 54, 5], ["platforms", 55, 5], ["mainProgram", 56, 5], ["maintainers", 57, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["buildInputs", 27, 3], ["nativeBuildInputs", 36, 3], ["meta", 41, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const autoreconfHook = nix.arg($, "autoreconfHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "dvgrab",
       version: "3.5.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ddennedy",
           repo: "dvgrab",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,7 +32,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [libunwind, libraw1394, libjpeg, libiec61883, libdv, libavc1394]),
       nativeBuildInputs: nix.thunk(() => [autoreconfHook, pkg_config]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Receive and store audio & video over IEEE1394",
         longDescription: "dvgrab receives audio and video data from a digital camcorder via an\nIEEE1394 (widely known as FireWire) or USB link and stores them into\none of several file formats. It features autosplit of long video\nsequences, and supports saving the data as raw frames, AVI type 1,\nAVI type 2, Quicktime DV, a series of JPEG stills or MPEG2-TS.\n",
         homepage: "https://github.com/ddennedy/dvgrab",

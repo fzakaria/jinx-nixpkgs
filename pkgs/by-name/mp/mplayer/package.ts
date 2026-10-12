@@ -2,17 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 84, 9], ["sha256", 85, 9]], [["url", 89, 9], ["sha256", 90, 9]], [["url", 94, 9], ["sha256", 95, 9]], [["license", 112, 14]], [["pname", 103, 9], ["src", 105, 9], ["installPhase", 107, 9], ["meta", 112, 9]], [["url", 126, 5], ["rev", 127, 5], ["hash", 128, 5]], [["NIX_CFLAGS_COMPILE", 254, 7]], [["NIX_LDFLAGS", 257, 7]], [["description", 295, 5], ["homepage", 296, 5], ["license", 297, 5], ["maintainers", 299, 5], ["platforms", 300, 5], ["broken", 307, 5]], [["pname", 122, 3], ["version", 123, 3], ["src", 125, 3], ["prePatch", 131, 3], ["depsBuildBuild", 138, 3], ["nativeBuildInputs", 139, 3], ["buildInputs", 146, 3], ["strictDeps", 184, 3], ["configurePlatforms", 186, 3], ["configureFlags", 187, 3], ["preConfigure", 235, 3], ["postConfigure", 247, 3], ["env", 251, 3], ["installTargets", 275, 3], ["enableParallelBuilding", 277, 3], ["postInstall", 280, 3], ["nativeInstallCheckInputs", 288, 3], ["versionCheckProgramArg", 289, 3], ["doInstallCheck", 290, 3], ["__structuredAttrs", 292, 3], ["meta", 294, 3]]]);
 const formals$1 = { args: { config: false, lib: false, stdenv: false, fetchurl: false, fetchsvn: false, "pkg-config": false, freetype: false, yasm: false, ffmpeg_7: false, aalibSupport: true, aalib: false, fontconfigSupport: true, fontconfig: false, freefont_ttf: false, fribidiSupport: true, fribidi: false, x11Support: true, libx11: false, libxext: false, libGLU: false, libGL: false, xineramaSupport: true, libxinerama: false, xvSupport: true, libxv: false, alsaSupport: true, "alsa-lib": false, screenSaverSupport: true, libxscrnsaver: false, vdpauSupport: true, libvdpau: false, cddaSupport: true, cdparanoia: false, dvdnavSupport: true, libdvdnav_4_2_1: false, dvdreadSupport: true, libdvdread: false, bluraySupport: true, libbluray: false, amrSupport: true, amrnb: false, amrwb: false, cacaSupport: true, libcaca: false, lameSupport: true, lame: false, speexSupport: true, speex: false, theoraSupport: true, libtheora: false, x264Support: true, x264: false, jackaudioSupport: true, libjack2: false, pulseSupport: true, libpulseaudio: false, bs2bSupport: true, libbs2b: false, v4lSupport: true, libv4l: false, libpngSupport: true, libpng: false, libjpegSupport: true, libjpeg: false, useUnfreeCodecs: true, buildPackages: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 84, 9], ["sha256", 85, 9]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 89, 9], ["sha256", 90, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 94, 9], ["sha256", 95, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["license", 112, 14]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 103, 9], ["src", 105, 9], ["installPhase", 107, 9], ["meta", 112, 9]]);
-const pos$6 = nix.positions(here + "/package.nix", [["url", 126, 5], ["rev", 127, 5], ["hash", 128, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 254, 7]]);
-const pos$8 = nix.positions(here + "/package.nix", [["NIX_LDFLAGS", 257, 7]]);
-const pos$9 = nix.positions(here + "/package.nix", [["description", 295, 5], ["homepage", 296, 5], ["license", 297, 5], ["maintainers", 299, 5], ["platforms", 300, 5], ["broken", 307, 5]]);
-const pos$10 = nix.positions(here + "/package.nix", [["pname", 122, 3], ["version", 123, 3], ["src", 125, 3], ["prePatch", 131, 3], ["depsBuildBuild", 138, 3], ["nativeBuildInputs", 139, 3], ["buildInputs", 146, 3], ["strictDeps", 184, 3], ["configurePlatforms", 186, 3], ["configureFlags", 187, 3], ["preConfigure", 235, 3], ["postConfigure", 247, 3], ["env", 251, 3], ["installTargets", 275, 3], ["enableParallelBuilding", 277, 3], ["postInstall", 280, 3], ["nativeInstallCheckInputs", 288, 3], ["versionCheckProgramArg", 289, 3], ["doInstallCheck", 290, 3], ["__structuredAttrs", 292, 3], ["meta", 294, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -89,36 +80,36 @@ export default nix.lambda((args) => (() => {
     const dir = "http://www.mplayerhq.hu/MPlayer/releases/codecs/";
     const version = "20071007";
     return (nix.asBool(nix.eq(nix.sel(stdenv, "hostPlatform", "system"), "i686-linux")) ? nix.app(fetchurl, nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         url: nix.thunk(() => nix.str`${dir}/essential-${version}.tar.bz2`),
         sha256: "18vls12n12rjw0mzw4pkp9vpcfmd1c21rzha19d7zil4hn7fs2ic",
       }))) : (nix.asBool(nix.eq(nix.sel(stdenv, "hostPlatform", "system"), "x86_64-linux")) ? nix.app(fetchurl, nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         url: nix.thunk(() => nix.str`${dir}/essential-amd64-${version}.tar.bz2`),
         sha256: "13xf5b92w1ra5hw00ck151lypbmnylrnznq9hhb0sj36z5wz290x",
       }))) : (nix.asBool(nix.eq(nix.sel(stdenv, "hostPlatform", "system"), "powerpc-linux")) ? nix.app(fetchurl, nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         url: nix.thunk(() => nix.str`${dir}/essential-ppc-${version}.tar.bz2`),
         sha256: "18mlj8dp4wnz42xbhdk1jlz2ygra6fbln9wyrcyvynxh96g1871z",
       }))) : null)));
   })());
   const codecs = nix.thunk(() => (nix.asBool(!nix.eq(codecs_src, null)) ? nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "MPlayer-codecs-essential",
       src: codecs_src,
       installPhase: "mkdir $out\ncp -prv * $out\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
       })),
     }))) : null));
   const crossBuild = nix.thunk(() => !nix.eq(nix.sel(stdenv, "hostPlatform"), nix.sel(stdenv, "buildPlatform")));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       pname: "mplayer",
       version: "1.5-unstable-2024-12-21",
       src: nix.thunk(() => nix.app(fetchsvn, nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           url: "svn://svn.mplayerhq.hu/mplayer/trunk",
           rev: "38668",
           hash: "sha256-ezWYBkhiSBgf/SeTrO6sKGbL/IrX+82KXCIlqYMEtgY=",
@@ -171,10 +162,10 @@ rm -rf ffmpeg
       preConfigure: "configureFlagsArray+=(\n  \"--cc=$CC\"\n  \"--host-cc=$CC_FOR_BUILD\"\n  \"--as=$AS\"\n  \"--nm=$NM\"\n  \"--ar=$AR\"\n  \"--ranlib=$RANLIB\"\n  \"--windres=$WINDRES\"\n)\n",
       postConfigure: "echo CONFIG_MPEGAUDIODSP=yes >> config.mak\n",
       env: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           NIX_CFLAGS_COMPILE: "-Wno-int-conversion -Wno-incompatible-function-pointer-types",
         }))), {
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         NIX_LDFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optionals"), fontconfigSupport, nix.thunk(() => ["-lfontconfig"])), nix.concat(nix.app(nix.sel(lib, "optionals"), fribidiSupport, nix.thunk(() => ["-lfribidi"])), nix.concat(nix.app(nix.sel(lib, "optionals"), x11Support, nix.thunk(() => ["-lX11", "-lXext"])), nix.concat(nix.app(nix.sel(lib, "optionals"), x264Support, nix.thunk(() => ["-lx264"])), ["-lfreetype"]))))))),
       })),
       installTargets: nix.thunk(() => nix.concat(["install"], nix.app(nix.sel(lib, "optional"), x11Support, "install-gui"))),
@@ -190,7 +181,7 @@ fi
       doInstallCheck: true,
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         description: "Movie player that supports many video formats",
         homepage: "http://mplayerhq.hu",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

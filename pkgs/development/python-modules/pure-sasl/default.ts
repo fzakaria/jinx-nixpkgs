@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]], [["gssapi", 33, 5]], [["description", 50, 5], ["homepage", 51, 5], ["changelog", 52, 5], ["license", 53, 5], ["maintainers", 54, 5]], [["pname", 19, 3], ["version", 20, 3], ["pyproject", 21, 3], ["src", 23, 3], ["build-system", 30, 3], ["optional-dependencies", 32, 3], ["pythonImportsCheck", 36, 3], ["nativeCheckInputs", 42, 3], ["meta", 49, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, pykerberos: false, mock: false, pytestCheckHook: false, six: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["gssapi", 33, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 50, 5], ["homepage", 51, 5], ["changelog", 52, 5], ["license", 53, 5], ["maintainers", 54, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 19, 3], ["version", 20, 3], ["pyproject", 21, 3], ["src", 23, 3], ["build-system", 30, 3], ["optional-dependencies", 32, 3], ["pythonImportsCheck", 36, 3], ["nativeCheckInputs", 42, 3], ["meta", 49, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,18 +20,18 @@ export default nix.lambda((args) => (() => {
       const version = "0.6.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "thobbs",
           repo: "pure-sasl",
           tag: version,
           hash: "sha256-AHoZ3QZLr0JLE8+a2zkB06v2wRknxhgm/tcEPXaJX/U=",
         }))));
       const build_system = nix.thunk(() => [setuptools]);
-      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, gssapi: nix.thunk(() => [pykerberos]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: $pos[1], gssapi: nix.thunk(() => [pykerberos]) }));
       const pythonImportsCheck = nix.thunk(() => ["puresasl", "puresasl.client", "puresasl.mechanisms"]);
       const nativeCheckInputs = nix.thunk(() => nix.concat([mock, pytestCheckHook, six], nix.app(nix.sel(lib, "concatAttrValues"), optional_dependencies)));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Reasonably high-level SASL client written in pure Python",
         homepage: "http://github.com/thobbs/pure-sasl",
         changelog: nix.thunk(() => nix.str`https://github.com/thobbs/pure-sasl/blob/${nix.sel(src, "tag")}/CHANGES.rst`),
@@ -45,7 +42,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

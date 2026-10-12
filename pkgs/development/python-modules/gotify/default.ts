@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]], [["updateScript", 59, 12]], [["changelog", 62, 5], ["description", 63, 5], ["homepage", 64, 5], ["license", 65, 5], ["maintainers", 66, 5], ["broken", 70, 5]], [["pname", 18, 3], ["version", 19, 3], ["pyproject", 20, 3], ["disabled", 21, 3], ["src", 23, 3], ["build-system", 30, 3], ["dependencies", 32, 3], ["doCheck", 38, 3], ["postPatch", 41, 3], ["nativeCheckInputs", 48, 3], ["pythonImportsCheck", 55, 3], ["passthru", 59, 3], ["meta", 61, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitHub: false, pythonAtLeast: false, "flit-core": false, "nix-update-script": false, httpx: false, websockets: false, pytestCheckHook: false, "pytest-asyncio": false, typeguard: false, "gotify-server": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["updateScript", 59, 12]]);
-const pos$3 = nix.positions(here + "/default.nix", [["changelog", 62, 5], ["description", 63, 5], ["homepage", 64, 5], ["license", 65, 5], ["maintainers", 66, 5], ["broken", 70, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 18, 3], ["version", 19, 3], ["pyproject", 20, 3], ["disabled", 21, 3], ["src", 23, 3], ["build-system", 30, 3], ["dependencies", 32, 3], ["doCheck", 38, 3], ["postPatch", 41, 3], ["nativeCheckInputs", 48, 3], ["pythonImportsCheck", 55, 3], ["passthru", 59, 3], ["meta", 61, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const pyproject = true;
       const disabled = nix.thunk(() => nix.app(pythonAtLeast, "3.14"));
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "d-k-bo",
           repo: "python-gotify",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -46,11 +43,11 @@ ln -s "${gotify_server}/bin/server" ./tests/test-server/gotify-linux-arm64
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook, pytest_asyncio, typeguard, gotify_server]);
       const pythonImportsCheck = nix.thunk(() => ["gotify"]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         changelog: nix.thunk(() => nix.str`https://github.com/d-k-bo/python-gotify/releases/tag/v${version}`),
         description: "Python library to access your gotify server",
         homepage: "https://github.com/d-k-bo/python-gotify",
@@ -59,7 +56,7 @@ ln -s "${gotify_server}/bin/server" ./tests/test-server/gotify-linux-arm64
         broken: nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(gotify_server, "version")), "2.9.0")),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

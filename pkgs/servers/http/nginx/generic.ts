@@ -2,20 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/generic.nix", [[["url", 101, 9], ["hash", 102, 17]], [["NIX_CFLAGS_COMPILE", 190, 5]], [["CONFIG_BIG_ENDIAN", 218, 5]], [["url", 256, 11], ["sha256", 257, 11]], [["url", 260, 11], ["sha256", 261, 11]], [["url", 264, 11], ["sha256", 265, 11]], [["url", 268, 11], ["sha256", 269, 11]], [["nginx", 320, 11], ["nginx-auth", 321, 11], ["nginx-dynamic-modules", 322, 11], ["nginx-etag", 323, 11], ["nginx-etag-compression", 324, 11], ["nginx-globalredirect", 325, 11], ["nginx-http3", 326, 11], ["nginx-lua", 327, 11], ["nginx-proxyprotocol", 328, 11], ["nginx-pubhtml", 329, 11], ["nginx-sso", 330, 11], ["nginx-status-page", 331, 11], ["nginx-unix-socket", 332, 11], ["variants", 334, 9], ["acme-integration", 335, 9], ["acme-integration-without-reload", 336, 9]], [["modules", 316, 13], ["dynamicModules", 316, 21], ["tests", 317, 5]], [["updateScript", 340, 24]], [["description", 348, 9], ["mainProgram", 349, 9], ["homepage", 350, 9], ["license", 351, 9], ["broken", 352, 9], ["platforms", 353, 9], ["maintainers", 354, 9]], [["pname", 89, 11], ["version", 89, 17], ["nginxVersion", 89, 25], ["outputs", 91, 3], ["src", 96, 3], ["nativeBuildInputs", 105, 3], ["buildInputs", 111, 3], ["dontAddStaticConfigureFlags", 124, 3], ["configureFlags", 126, 3], ["env", 189, 3], ["configurePlatforms", 221, 3], ["preConfigure", 225, 3], ["patches", 245, 3], ["postPatch", 276, 3], ["enableParallelBuilding", 282, 3], ["preInstall", 284, 3], ["disallowedReferences", 296, 3], ["stripDebugList", 298, 11], ["postInstall", 300, 3], ["passthru", 315, 3], ["meta", 343, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, fetchpatch: false, openssl: false, "zlib-ng": false, pcre2: false, libxml2: false, libxslt: false, "nginx-doc": false, nixosTests: false, installShellFiles: false, replaceVars: false, gd: false, geoip: false, perl: false, withDebug: true, withGeoIP: true, withImageFilter: true, withKTLS: true, withStream: true, withMail: true, withPerl: true, withSlice: true, modules: true }, ellipsis: true };
 const formals$2 = { args: { pname: true, version: false, nginxVersion: true, src: true, hash: true, configureFlags: true, nativeBuildInputs: true, buildInputs: true, extraPatches: true, fixPatch: true, postPatch: true, preConfigure: true, preInstall: true, postInstall: true, stripDebugList: true, meta: true, "nginx-doc": true, passthru: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/generic.nix", [["url", 101, 9], ["hash", 102, 17]]);
-const pos$2 = nix.positions(here + "/generic.nix", [["NIX_CFLAGS_COMPILE", 190, 5]]);
-const pos$3 = nix.positions(here + "/generic.nix", [["CONFIG_BIG_ENDIAN", 218, 5]]);
-const pos$4 = nix.positions(here + "/generic.nix", [["url", 256, 11], ["sha256", 257, 11]]);
-const pos$5 = nix.positions(here + "/generic.nix", [["url", 260, 11], ["sha256", 261, 11]]);
-const pos$6 = nix.positions(here + "/generic.nix", [["url", 264, 11], ["sha256", 265, 11]]);
-const pos$7 = nix.positions(here + "/generic.nix", [["url", 268, 11], ["sha256", 269, 11]]);
-const pos$8 = nix.positions(here + "/generic.nix", [["nginx", 320, 11], ["nginx-auth", 321, 11], ["nginx-dynamic-modules", 322, 11], ["nginx-etag", 323, 11], ["nginx-etag-compression", 324, 11], ["nginx-globalredirect", 325, 11], ["nginx-http3", 326, 11], ["nginx-lua", 327, 11], ["nginx-proxyprotocol", 328, 11], ["nginx-pubhtml", 329, 11], ["nginx-sso", 330, 11], ["nginx-status-page", 331, 11], ["nginx-unix-socket", 332, 11], ["variants", 334, 9], ["acme-integration", 335, 9], ["acme-integration-without-reload", 336, 9]]);
-const pos$9 = nix.positions(here + "/generic.nix", [["modules", 316, 13], ["dynamicModules", 316, 21], ["tests", 317, 5]]);
-const pos$10 = nix.positions(here + "/generic.nix", [["updateScript", 340, 24]]);
-const pos$11 = nix.positions(here + "/generic.nix", [["description", 348, 9], ["mainProgram", 349, 9], ["homepage", 350, 9], ["license", 351, 9], ["broken", 352, 9], ["platforms", 353, 9], ["maintainers", 354, 9]]);
-const pos$12 = nix.positions(here + "/generic.nix", [["pname", 89, 11], ["version", 89, 17], ["nginxVersion", 89, 25], ["outputs", 91, 3], ["src", 96, 3], ["nativeBuildInputs", 105, 3], ["buildInputs", 111, 3], ["dontAddStaticConfigureFlags", 124, 3], ["configureFlags", 126, 3], ["env", 189, 3], ["configurePlatforms", 221, 3], ["preConfigure", 225, 3], ["patches", 245, 3], ["postPatch", 276, 3], ["enableParallelBuilding", 282, 3], ["preInstall", 284, 3], ["disallowedReferences", 296, 3], ["stripDebugList", 298, 11], ["postInstall", 300, 3], ["passthru", 315, 3], ["meta", 343, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -74,13 +63,13 @@ export default nix.lambda((args) => (() => {
     const mkDerivation = (args_2) => nix.app(nix.sel(lib, "foldl"), (drv) => (mod) => nix.app(nix.sel(drv, "overrideAttrs"), nix.thunk(() => nix.sel(mod, "forNginx"))), nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), args_2)), nix.thunk(() => nix.app(nix.sel(lib, "filter"), (mod) => nix.has(mod, "forNginx"), modules)));
     nix.assert_(nix.app(nix.sel(lib, "assertMsg"), nix.thunk(() => nix.eq(nix.app(nix.sel(lib, "unique"), moduleNames), moduleNames)), nix.thunk(() => nix.str`nginx: duplicate modules: ${nix.app(nix.sel(lib, "concatStringsSep"), ", ", moduleNames)}. A common cause for this is that services.nginx.additionalModules adds a module which the nixos module itself already adds.`)), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/servers/http/nginx/generic.nix:85:1");
     return nix.app(mkDerivation, nix.thunk(() => ({
-        [nix.POS]: pos$12,
+        [nix.POS]: $pos[11],
         pname: pname,
         version: version,
         nginxVersion: nginxVersion,
         outputs: nix.thunk(() => ["out", "doc"]),
         src: nix.thunk(() => (nix.asBool(!nix.eq(src, null)) ? nix.force(src) : nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             url: nix.thunk(() => nix.str`https://nginx.org/download/nginx-${version}.tar.gz`),
             hash: hash,
           }))))),
@@ -130,7 +119,7 @@ export default nix.lambda((args) => (() => {
             return (nix.asBool(nix.lookup(w, "isLinux")) || nix.asBool(nix.lookup(w, "isFreeBSD")));
           })()), "--with-file-aio"), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(nix.sel(stdenv, "buildPlatform"), nix.sel(stdenv, "hostPlatform"))), nix.thunk(() => nix.str`--crossbuild=${nix.sel(stdenv, "hostPlatform", "uname", "system")}::${nix.sel(stdenv, "hostPlatform", "uname", "processor")}`)), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(dynamicModules, [])), nix.thunk(() => nix.str`--modules-path=${nix.builtins.placeholder("out")}/modules`)), configureFlags))))))))))))),
         env: nix.thunk(() => nix.update({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.concat([
               nix.thunk(() => nix.str`-I${nix.sel(libxml2, "dev")}/include/libxml2`),
               "-Wno-error=implicit-fallthrough",
@@ -141,7 +130,7 @@ export default nix.lambda((args) => (() => {
                 "-Wno-error=unused-but-set-variable",
               ])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isMusl")), nix.thunk(() => ["-Wno-error=cpp"])))))))),
         }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(stdenv, "buildPlatform"), nix.sel(stdenv, "hostPlatform"))), nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             CONFIG_BIG_ENDIAN: nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isBigEndian")) ? "y" : "n")),
           }))))),
         configurePlatforms: [],
@@ -151,22 +140,22 @@ export default nix.lambda((args) => (() => {
             nix.path(here, "./nix-skip-check-logs-path.patch"),
           ], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.eq(nix.sel(stdenv, "hostPlatform"), nix.sel(stdenv, "buildPlatform"))), nix.thunk(() => [
               nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-                  [nix.POS]: pos$4,
+                  [nix.POS]: $pos[3],
                   url: "https://raw.githubusercontent.com/openwrt/packages/c057dfb09c7027287c7862afab965a4cd95293a3/net/nginx/patches/102-sizeof_test_fix.patch",
                   sha256: "0i2k30ac8d7inj9l6bl0684kjglam2f68z8lf3xggcc2i5wzhh8a",
                 })))),
               nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-                  [nix.POS]: pos$5,
+                  [nix.POS]: $pos[4],
                   url: "https://raw.githubusercontent.com/openwrt/packages/c057dfb09c7027287c7862afab965a4cd95293a3/net/nginx/patches/101-feature_test_fix.patch",
                   sha256: "0v6890a85aqmw60pgj3mm7g8nkaphgq65dj4v9c6h58wdsrc6f0y",
                 })))),
               nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-                  [nix.POS]: pos$6,
+                  [nix.POS]: $pos[5],
                   url: "https://raw.githubusercontent.com/openwrt/packages/c057dfb09c7027287c7862afab965a4cd95293a3/net/nginx/patches/103-sys_nerr.patch",
                   sha256: "0s497x6mkz947aw29wdy073k8dyjq8j99lax1a1mzpikzr4rxlmd",
                 })))),
               nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-                  [nix.POS]: pos$7,
+                  [nix.POS]: $pos[6],
                   url: "https://raw.githubusercontent.com/openwrt/packages/c057dfb09c7027287c7862afab965a4cd95293a3/net/nginx/patches/104-endianness_fix.patch",
                   sha256: "sha256-M7V3ZJfKImur2OoqXcoL+CbgFj/huWnfZ4xMCmvkqfc=",
                 })))),
@@ -189,11 +178,11 @@ fi
           return nix.add(postInstall, dynamicPost);
         })()),
         passthru: nix.thunk(() => nix.update({
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           modules: modules,
           dynamicModules: dynamicModules,
           tests: nix.thunk(() => nix.selOr(passthru, () => ({
-              [nix.POS]: pos$8,
+              [nix.POS]: $pos[7],
               nginx: nix.thunk(() => nix.attr(nixosTests, "nginx")),
               "nginx-auth": nix.thunk(() => nix.attr(nixosTests, "nginx-auth")),
               "nginx-dynamic-modules": nix.thunk(() => nix.attr(nixosTests, "nginx-dynamic-modules")),
@@ -212,11 +201,11 @@ fi
               "acme-integration-without-reload": nix.thunk(() => nix.sel(nixosTests, "acme", "nginx-without-reload")),
             }), "tests")),
         }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.has(passthru, "updateScript")), nix.thunk(() => ({
-            [nix.POS]: pos$10,
+            [nix.POS]: $pos[9],
             updateScript: nix.thunk(() => nix.attr(passthru, "updateScript")),
           }))))),
         meta: nix.thunk(() => (nix.asBool(!nix.eq(meta, null)) ? nix.force(meta) : {
-          [nix.POS]: pos$11,
+          [nix.POS]: $pos[10],
           description: "Reverse proxy and lightweight webserver",
           mainProgram: "nginx",
           homepage: "https://nginx.org",

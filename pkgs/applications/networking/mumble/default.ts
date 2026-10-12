@@ -2,22 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["connectivity", 89, 24]], [["tests", 89, 18]], [["description", 92, 11], ["homepage", 93, 11], ["license", 94, 11], ["maintainers", 95, 11], ["platforms", 100, 11]], [["pname", 49, 9], ["version", 50, 9], ["nativeBuildInputs", 52, 9], ["buildInputs", 63, 9], ["cmakeFlags", 73, 9], ["preConfigure", 85, 9], ["passthru", 89, 9], ["meta", 91, 9]], [["NIX_CFLAGS_COMPILE", 153, 11]], [["type", 108, 7], ["platforms", 110, 7], ["nativeBuildInputs", 111, 7], ["buildInputs", 115, 7], ["cmakeFlags", 134, 7], ["env", 153, 7], ["patches", 155, 7], ["postInstall", 160, 7], ["postFixup", 180, 7]], [["type", 194, 7], ["cmakeFlags", 196, 7], ["buildInputs", 205, 7]], [["stdenv", 211, 7], ["type", 212, 7], ["cmakeFlags", 214, 7]], [["owner", 226, 7], ["repo", 227, 7], ["tag", 228, 7], ["hash", 229, 7], ["fetchSubmodules", 230, 7]], [["version", 222, 5], ["src", 225, 5]], [["mainProgram", 235, 55]], [["meta", 235, 50]], [["mainProgram", 236, 55]], [["meta", 236, 50]], [["mumble", 235, 3], ["murmur", 236, 3], ["overlay", 237, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, "pkg-config": false, qt5: false, cmake: false, ninja: false, avahi: false, boost: false, libopus: false, libsndfile: false, speexdsp: false, protobuf: false, libcap: false, "alsa-lib": false, python3: false, rnnoise: false, nixosTests: false, poco: false, flac: false, libogg: false, libvorbis: false, stdenv_32bit: false, alsaSupport: true, iceSupport: true, "zeroc-ice": false, jackSupport: true, libjack2: false, pipewireSupport: true, pipewire: false, pulseSupport: true, libpulseaudio: false, speechdSupport: true, "speechd-minimal": false, "microsoft-gsl": false, nlohmann_json: false, xar: false, makeBinaryWrapper: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["connectivity", 89, 24]]);
-const pos$2 = nix.positions(here + "/default.nix", [["tests", 89, 18]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 92, 11], ["homepage", 93, 11], ["license", 94, 11], ["maintainers", 95, 11], ["platforms", 100, 11]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 49, 9], ["version", 50, 9], ["nativeBuildInputs", 52, 9], ["buildInputs", 63, 9], ["cmakeFlags", 73, 9], ["preConfigure", 85, 9], ["passthru", 89, 9], ["meta", 91, 9]]);
-const pos$5 = nix.positions(here + "/default.nix", [["NIX_CFLAGS_COMPILE", 153, 11]]);
-const pos$6 = nix.positions(here + "/default.nix", [["type", 108, 7], ["platforms", 110, 7], ["nativeBuildInputs", 111, 7], ["buildInputs", 115, 7], ["cmakeFlags", 134, 7], ["env", 153, 7], ["patches", 155, 7], ["postInstall", 160, 7], ["postFixup", 180, 7]]);
-const pos$7 = nix.positions(here + "/default.nix", [["type", 194, 7], ["cmakeFlags", 196, 7], ["buildInputs", 205, 7]]);
-const pos$8 = nix.positions(here + "/default.nix", [["stdenv", 211, 7], ["type", 212, 7], ["cmakeFlags", 214, 7]]);
-const pos$9 = nix.positions(here + "/default.nix", [["owner", 226, 7], ["repo", 227, 7], ["tag", 228, 7], ["hash", 229, 7], ["fetchSubmodules", 230, 7]]);
-const pos$10 = nix.positions(here + "/default.nix", [["version", 222, 5], ["src", 225, 5]]);
-const pos$11 = nix.positions(here + "/default.nix", [["mainProgram", 235, 55]]);
-const pos$12 = nix.positions(here + "/default.nix", [["meta", 235, 50]]);
-const pos$13 = nix.positions(here + "/default.nix", [["mainProgram", 236, 55]]);
-const pos$14 = nix.positions(here + "/default.nix", [["meta", 236, 50]]);
-const pos$15 = nix.positions(here + "/default.nix", [["mumble", 235, 3], ["murmur", 236, 3], ["overlay", 237, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -60,7 +46,7 @@ export default nix.lambda((args) => (() => {
   const xar = nix.arg($, "xar");
   const makeBinaryWrapper = nix.arg($, "makeBinaryWrapper");
   const generic = (overrides) => (source_1) => nix.app(nix.sel(nix.selOr(overrides, () => nix.force(stdenv), "stdenv"), "mkDerivation"), nix.thunk(() => nix.update(source_1, nix.update(overrides, {
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: nix.thunk(() => nix.sel(overrides, "type")),
       version: nix.thunk(() => nix.sel(source_1, "version")),
       nativeBuildInputs: nix.thunk(() => nix.concat([
@@ -85,14 +71,14 @@ export default nix.lambda((args) => (() => {
       ], nix.selOr(overrides, () => [], "cmakeFlags"))),
       preConfigure: "patchShebangs scripts\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           connectivity: nix.thunk(() => nix.sel(nixosTests, "mumble")),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Low-latency, high quality voice chat software",
         homepage: "https://mumble.info",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
@@ -108,7 +94,7 @@ export default nix.lambda((args) => (() => {
       })),
     }))));
   const client = (source_1) => nix.app(generic, nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       type: "mumble",
       platforms: nix.thunk(() => nix.sel(lib, "platforms", "darwin")),
       nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(qt5, "qttools"))]),
@@ -138,7 +124,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "alsa", nix.thunk(() => (nix.asBool(!nix.asBool(jackSupport)) && nix.asBool(alsaSupport))))),
       ]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), speechdSupport, nix.thunk(() => nix.str`-I${speechd_minimal}/include/speech-dispatcher`))),
       })),
       patches: nix.thunk(() => [
@@ -168,7 +154,7 @@ makeBinaryWrapper $out/Applications/Mumble.app/Contents/MacOS/mumble $out/bin/mu
 `))),
     })), source_1);
   const server = (source_1) => nix.app(generic, nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       type: "murmur",
       cmakeFlags: nix.thunk(() => nix.concat([
         "-D client=OFF",
@@ -180,7 +166,7 @@ makeBinaryWrapper $out/Applications/Mumble.app/Contents/MacOS/mumble $out/bin/mu
       buildInputs: nix.thunk(() => nix.concat([libcap], nix.app(nix.sel(lib, "optional"), iceSupport, zeroc_ice))),
     })), source_1);
   const overlay = (source_1) => nix.app(generic, nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       stdenv: stdenv_32bit,
       type: "mumble-overlay",
       cmakeFlags: nix.thunk(() => ["-D server=OFF", "-D client=OFF", "-D overlay=ON"]),
@@ -188,24 +174,24 @@ makeBinaryWrapper $out/Applications/Mumble.app/Contents/MacOS/mumble $out/bin/mu
   const source = nix.thunk(() => (() => {
     const version = "1.5.915";
     const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         owner: "mumble-voip",
         repo: "mumble",
         tag: nix.thunk(() => nix.str`v${version}`),
         hash: "sha256-pbO+V8p/vqn+jIFWvcHOKhpr1Nv0nXaHG9lFiMRTntM=",
         fetchSubmodules: true,
       }))));
-    return { [nix.POS]: pos$10, version, src };
+    return { [nix.POS]: $pos[9], version, src };
   })());
   return {
-    [nix.POS]: pos$15,
+    [nix.POS]: $pos[14],
     mumble: nix.thunk(() => nix.app(nix.sel(lib, "recursiveUpdate"), nix.thunk(() => nix.app(client, source)), nix.thunk(() => ({
-        [nix.POS]: pos$12,
-        meta: nix.thunk(() => ({ [nix.POS]: pos$11, mainProgram: "mumble" })),
+        [nix.POS]: $pos[11],
+        meta: nix.thunk(() => ({ [nix.POS]: $pos[10], mainProgram: "mumble" })),
       })))),
     murmur: nix.thunk(() => nix.app(nix.sel(lib, "recursiveUpdate"), nix.thunk(() => nix.app(server, source)), nix.thunk(() => ({
-        [nix.POS]: pos$14,
-        meta: nix.thunk(() => ({ [nix.POS]: pos$13, mainProgram: "mumble-server" })),
+        [nix.POS]: $pos[13],
+        meta: nix.thunk(() => ({ [nix.POS]: $pos[12], mainProgram: "mumble-server" })),
       })))),
     overlay: nix.thunk(() => nix.app(overlay, source)),
   };

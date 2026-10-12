@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]], [["NIX_CFLAGS_COMPILE", 30, 7]], [["description", 41, 5], ["homepage", 42, 5], ["license", 43, 5], ["platforms", 44, 5], ["mainProgram", 45, 5], ["maintainers", 46, 5]], [["pname", 10, 3], ["version", 12, 3], ["src", 14, 3], ["postPatch", 21, 3], ["env", 30, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 36, 3], ["meta", 40, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, ncurses: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 30, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 41, 5], ["homepage", 42, 5], ["license", 43, 5], ["platforms", 44, 5], ["mainProgram", 45, 5], ["maintainers", 46, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 12, 3], ["src", 14, 3], ["postPatch", 21, 3], ["env", 30, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 36, 3], ["meta", 40, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,22 +13,22 @@ export default nix.lambda((args) => (() => {
   const cmake = nix.arg($, "cmake");
   const ncurses = nix.arg($, "ncurses");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "msnake",
       version: "0.1.1-unstable-2020-02-01",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "mogria",
           repo: "msnake",
           rev: "830967fc8195216120fedcac1574113b367a0f9a",
           hash: "sha256-5q3yT7amPF+SSvO6/eUU7IiK0k6f3nme9YYBUobSuuo=",
         })))),
       postPatch: "substituteInPlace CMakeLists.txt \\\n  --replace-fail \\\n    \"cmake_minimum_required(VERSION 2.8.4)\" \\\n    \"cmake_minimum_required(VERSION 4.0)\" \\\n  --replace-fail \"project(msnake)\" \"project(msnake C)\"\n",
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-std=gnu17" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], NIX_CFLAGS_COMPILE: "-std=gnu17" })),
       nativeBuildInputs: nix.thunk(() => [cmake]),
       buildInputs: nix.thunk(() => [ncurses]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Multiplatform command line snake game",
         homepage: "https://github.com/mogria/msnake",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

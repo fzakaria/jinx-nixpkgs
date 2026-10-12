@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["pname", 14, 5], ["version", 15, 5], ["hash", 16, 5]], [["SHEAR_VERSION", 23, 5]], [["package", 35, 9]], [["version", 34, 7]], [["updateScript", 32, 5], ["tests", 33, 5]], [["description", 41, 5], ["mainProgram", 42, 5], ["homepage", 43, 5], ["changelog", 44, 5], ["license", 45, 5], ["maintainers", 46, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["cargoHash", 19, 3], ["env", 21, 3], ["cargoTestFlags", 27, 3], ["passthru", 31, 3], ["meta", 40, 3]]]);
 const formals$1 = { args: { lib: false, fetchCrate: false, rustPlatform: false, "nix-update-script": false, testers: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["pname", 14, 5], ["version", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["SHEAR_VERSION", 23, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["package", 35, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["version", 34, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["updateScript", 32, 5], ["tests", 33, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 41, 5], ["mainProgram", 42, 5], ["homepage", 43, 5], ["changelog", 44, 5], ["license", 45, 5], ["maintainers", 46, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["cargoHash", 19, 3], ["env", 21, 3], ["cargoTestFlags", 27, 3], ["passthru", 31, 3], ["meta", 40, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,34 +13,34 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const testers = nix.arg($, "testers");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "cargo-shear",
       version: "1.14.0",
       src: nix.thunk(() => nix.app(fetchCrate, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "cargo-shear",
           version: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-4WZXton9oyI+c4mYtXwvT7HI5pxqv8lGmd9S2YwnOWM=",
         })))),
       cargoHash: "sha256-I2VDiE+FtBKZHvU9TgS06CVO3ukQ2KGZMgZoHSZLCKQ=",
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         SHEAR_VERSION: nix.thunk(() => nix.sel(finalAttrs, "version")),
       })),
       cargoTestFlags: nix.thunk(() => ["--lib"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Detect and fix unused/misplaced dependencies from Cargo.toml",
         mainProgram: "cargo-shear",
         homepage: "https://github.com/Boshen/cargo-shear",

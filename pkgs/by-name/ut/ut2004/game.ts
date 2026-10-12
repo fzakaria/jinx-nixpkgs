@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/game.nix", [[["aarch64-linux", 21, 7], ["x86_64-linux", 22, 7]], [["url", 34, 5], ["hash", 35, 5]], [["name", 147, 7], ["desktopName", 148, 7], ["comment", 149, 7], ["exec", 150, 7], ["icon", 151, 7], ["categories", 152, 7]], [["description", 157, 5], ["longDescription", 158, 5], ["homepage", 163, 5], ["license", 164, 5], ["maintainers", 165, 5], ["mainProgram", 166, 5], ["platforms", 167, 5], ["sourceProvenance", 171, 5]], [["pname", 27, 3], ["version", 28, 3], ["__structuredAttrs", 30, 3], ["strictDeps", 31, 3], ["src", 33, 3], ["buildInputs", 38, 3], ["nativeBuildInputs", 45, 3], ["unpackPhase", 52, 3], ["installPhase", 122, 3], ["appendRunpaths", 141, 3], ["desktopItems", 145, 3], ["meta", 156, 3]]]);
 const formals$1 = { args: { autoPatchelfHook: false, copyDesktopItems: false, fetchurl: false, imagemagick: false, lib: false, libGL: false, libarchive: false, makeDesktopItem: false, openal: false, sdl3: false, stdenv: false, ut2004Packages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/game.nix", [["aarch64-linux", 21, 7], ["x86_64-linux", 22, 7]]);
-const pos$2 = nix.positions(here + "/game.nix", [["url", 34, 5], ["hash", 35, 5]]);
-const pos$3 = nix.positions(here + "/game.nix", [["name", 147, 7], ["desktopName", 148, 7], ["comment", 149, 7], ["exec", 150, 7], ["icon", 151, 7], ["categories", 152, 7]]);
-const pos$4 = nix.positions(here + "/game.nix", [["description", 157, 5], ["longDescription", 158, 5], ["homepage", 163, 5], ["license", 164, 5], ["maintainers", 165, 5], ["mainProgram", 166, 5], ["platforms", 167, 5], ["sourceProvenance", 171, 5]]);
-const pos$5 = nix.positions(here + "/game.nix", [["pname", 27, 3], ["version", 28, 3], ["__structuredAttrs", 30, 3], ["strictDeps", 31, 3], ["src", 33, 3], ["buildInputs", 38, 3], ["nativeBuildInputs", 45, 3], ["unpackPhase", 52, 3], ["installPhase", 122, 3], ["appendRunpaths", 141, 3], ["desktopItems", 145, 3], ["meta", 156, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,15 +21,15 @@ export default nix.lambda((args) => (() => {
   const ut2004Packages = nix.arg($, "ut2004Packages");
   const gameData = nix.thunk(() => nix.sel(ut2004Packages, "data"));
   const patch_version = "3374-preview-23";
-  const systemDir = nix.thunk(() => nix.selOr({ [nix.POS]: pos$1, "aarch64-linux": "SystemARM64", "x86_64-linux": "System" }, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported platform: ${nix.sel(stdenv, "hostPlatform", "system")}`)), nix.key(nix.sel(stdenv, "hostPlatform", "system"))));
+  const systemDir = nix.thunk(() => nix.selOr({ [nix.POS]: $pos[0], "aarch64-linux": "SystemARM64", "x86_64-linux": "System" }, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported platform: ${nix.sel(stdenv, "hostPlatform", "system")}`)), nix.key(nix.sel(stdenv, "hostPlatform", "system"))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "ut2004",
       version: patch_version,
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: nix.thunk(() => nix.str`https://github.com/OldUnreal/UT2004Patches/releases/download/${patch_version}/OldUnreal-UT2004Patch3374-Linux-094b94dc.tar.bz2`),
           hash: "sha256-F56kPIgxv/FHAFhQzTc8DsK3Dc9vhBwhCcFSXvEa1NM=",
         })))),
@@ -129,7 +125,7 @@ runHook postInstall
       ]),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "ut2004",
             desktopName: "Unreal Tournament 2004",
             comment: nix.thunk(() => nix.str`Unreal Tournament 2004 with OldUnreal patch ${patch_version}`),
@@ -139,7 +135,7 @@ runHook postInstall
           })))),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "First-person arena shooter",
         longDescription: nix.thunk(() => nix.str`Unreal Tournament 2004 with OldUnreal patch ${patch_version}.
 Pin ut2004Packages.image to avoid downloading the disc image when build tools are updated (for example libarchive) at the cost of extra disk space.

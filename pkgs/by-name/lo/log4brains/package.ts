@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]], [["yarnLock", 30, 5], ["hash", 31, 5]], [["NIX_LOG4BRAINS_VERSION", 39, 7]], [["log4brains", 103, 5]], [["basic-scenario", 102, 18]], [["tests", 102, 12]], [["description", 107, 5], ["longDescription", 108, 5], ["homepage", 112, 5], ["license", 113, 5], ["mainProgram", 114, 5], ["maintainers", 115, 5], ["platforms", 116, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["yarnOfflineCache", 29, 3], ["patches", 35, 3], ["postPatch", 45, 3], ["preInstall", 61, 3], ["postInstall", 76, 3], ["nativeBuildInputs", 89, 3], ["passthru", 102, 3], ["meta", 106, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, callPackage: false, fetchFromGitHub: false, fetchYarnDeps: false, yarnConfigHook: false, yarnBuildHook: false, yarnInstallHook: false, nodejs: false, yarn: false, moreutils: false, jq: false, makeBinaryWrapper: false, fetchpatch2: false, replaceVars: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["yarnLock", 30, 5], ["hash", 31, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["NIX_LOG4BRAINS_VERSION", 39, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["log4brains", 103, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["basic-scenario", 102, 18]]);
-const pos$6 = nix.positions(here + "/package.nix", [["tests", 102, 12]]);
-const pos$7 = nix.positions(here + "/package.nix", [["description", 107, 5], ["longDescription", 108, 5], ["homepage", 112, 5], ["license", 113, 5], ["mainProgram", 114, 5], ["maintainers", 115, 5], ["platforms", 116, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["yarnOfflineCache", 29, 3], ["patches", 35, 3], ["postPatch", 45, 3], ["preInstall", 61, 3], ["postInstall", 76, 3], ["nativeBuildInputs", 89, 3], ["passthru", 102, 3], ["meta", 106, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,24 +23,24 @@ export default nix.lambda((args) => (() => {
   const fetchpatch2 = nix.arg($, "fetchpatch2");
   const replaceVars = nix.arg($, "replaceVars");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "log4brains",
       version: "1.1.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "thomvaill",
           repo: "log4brains",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-2EAETbICK3XSjAEoLV0KP2xeOYlw8qgctit+shMp5Qs=",
         })))),
       yarnOfflineCache: nix.thunk(() => nix.app(fetchYarnDeps, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           yarnLock: nix.thunk(() => nix.add(nix.sel(finalAttrs, "src"), "/yarn.lock")),
           hash: "sha256-HHiWlOYwR+PhfpQlUfuTXUiQ+6w1HATGlmflQvqdNlg=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./0001-replace-version-check-using-package.json.patch"), nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             NIX_LOG4BRAINS_VERSION: nix.thunk(() => nix.sel(finalAttrs, "version")),
           })))),
         nix.path(here, "./0002-move-nextjs-build-into-temporary-directory.patch"),
@@ -73,17 +66,17 @@ wrapProgram $out/bin/log4brains \\
         jq,
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           "basic-scenario": nix.thunk(() => nix.app(callPackage, nix.path(here, "./test-basic-scenario.nix"), nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               log4brains: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "Architecture Decision Records (ADR) management and publication tool",
         longDescription: "Log4brains is a docs-as-code knowledge base for your development and infrastructure projects.\nIt enables you to log Architecture Decision Records (ADR) right from your IDE and to publish them automatically as a static website.\n",
         homepage: "https://github.com/thomvaill/log4brains",

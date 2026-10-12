@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/unix.nix", [[["description", 80, 5], ["homepage", 81, 24], ["license", 81, 33], ["maintainers", 81, 41]], [["pname", 36, 3], ["version", 37, 17], ["src", 37, 25], ["minimalOCamlVersion", 39, 3], ["buildInputs", 41, 3], ["propagatedBuildInputs", 45, 3], ["checkInputs", 66, 3], ["nativeCheckInputs", 76, 3], ["doCheck", 77, 3], ["meta", 79, 3]]]);
 const formals$1 = { args: { buildDunePackage: false, git: false, rresult: false, bigstringaf: false, fmt: false, bos: false, fpath: false, uri: false, digestif: false, logs: false, lwt: false, astring: false, cmdliner: false, decompress: false, "domain-name": false, ipaddr: false, mtime: false, tcpip: false, "mirage-flow": false, alcotest: false, "alcotest-lwt": false, base64: false, cstruct: false, ke: false, "mirage-crypto-rng": false, "git-binary": false, mimic: false, tls: false, cacert: false, "happy-eyeballs-lwt": false, "git-mirage": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/unix.nix", [["description", 80, 5], ["homepage", 81, 24], ["license", 81, 33], ["maintainers", 81, 41]]);
-const pos$2 = nix.positions(here + "/unix.nix", [["pname", 36, 3], ["version", 37, 17], ["src", 37, 25], ["minimalOCamlVersion", 39, 3], ["buildInputs", 41, 3], ["propagatedBuildInputs", 45, 3], ["checkInputs", 66, 3], ["nativeCheckInputs", 76, 3], ["doCheck", 77, 3], ["meta", 79, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -40,7 +39,7 @@ export default nix.lambda((args) => (() => {
   const happy_eyeballs_lwt = nix.arg($, "happy-eyeballs-lwt");
   const git_mirage = nix.arg($, "git-mirage");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "git-unix",
       version: nix.thunk(() => nix.attr(git, "version")),
       src: nix.thunk(() => nix.attr(git, "src")),
@@ -73,7 +72,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(git, "meta"));
         return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Unix backend for the Git protocol(s)",
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         license: nix.thunk(() => nix.attr(from, "license")),

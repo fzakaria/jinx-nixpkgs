@@ -2,10 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/eternal.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["sha256", 17, 5]], [["description", 28, 5], ["homepage", 29, 5], ["license", 30, 5], ["maintainers", 31, 5]], [["pname", 8, 3], ["version", 9, 3], ["idrisDeps", 11, 3], ["src", 13, 3], ["postUnpack", 20, 3], ["meta", 27, 3]]]);
 const formals$1 = { args: { "build-idris-package": false, fetchFromGitHub: false, effects: false, lib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/eternal.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["sha256", 17, 5]]);
-const pos$2 = nix.positions(here + "/eternal.nix", [["description", 28, 5], ["homepage", 29, 5], ["license", 30, 5], ["maintainers", 31, 5]]);
-const pos$3 = nix.positions(here + "/eternal.nix", [["pname", 8, 3], ["version", 9, 3], ["idrisDeps", 11, 3], ["src", 13, 3], ["postUnpack", 20, 3], ["meta", 27, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,12 +12,12 @@ export default nix.lambda((args) => (() => {
   const effects = nix.arg($, "effects");
   const lib = nix.arg($, "lib");
   return nix.app(build_idris_package, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "eternal",
       version: "2018-07-02",
       idrisDeps: nix.thunk(() => [effects]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Heather",
           repo: "Control.Eternal.Idris",
           rev: "2f84b0dd49a7a29a2f852ba96cabfe8322e0852b",
@@ -27,7 +25,7 @@ export default nix.lambda((args) => (() => {
         })))),
       postUnpack: "printf 'makefile = Makefile\\n' >> source/eternal.ipkg\nprintf 'objs = readProcess.o\\n' >> source/eternal.ipkg\nsed -i 's/\\/usr\\/local\\/idris\\/readProcess.h/readProcess.h/g' source/Control/Eternal/System/Process.idr\nsed -i 's/\\/usr\\/local\\/idris\\/readProcess.o/readProcess.o/g' source/Control/Eternal/System/Process.idr\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Infix pipe operators and some Nat, Float, String conversions",
         homepage: "https://github.com/Heather/Control.Eternal.Idris",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

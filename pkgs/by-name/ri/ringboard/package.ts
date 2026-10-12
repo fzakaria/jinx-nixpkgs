@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 31, 5], ["repo", 32, 5], ["tag", 33, 5], ["hash", 34, 5]], [["nixos", 104, 11]], [["tests", 104, 5], ["updateScript", 105, 5]], [["description", 109, 5], ["homepage", 110, 5], ["changelog", 111, 5], ["license", 112, 5], ["platforms", 113, 5], ["maintainers", 114, 5]], [["pname", 25, 3], ["version", 27, 3], ["__structuredAttrs", 28, 3], ["src", 30, 3], ["cargoHash", 37, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 43, 3], ["buildPhase", 57, 3], ["doCheck", 85, 3], ["postInstall", 87, 3], ["passthru", 103, 3], ["meta", 108, 3]]]);
 const formals$1 = { args: { stdenv: false, rustPlatform: false, fetchFromGitHub: false, lib: false, libxkbcommon: false, libGL: false, wayland: false, libxrandr: false, libxi: false, libxcursor: false, libx11: false, makeWrapper: false, displayServer: true, nixosTests: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 31, 5], ["repo", 32, 5], ["tag", 33, 5], ["hash", 34, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["nixos", 104, 11]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 104, 5], ["updateScript", 105, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 109, 5], ["homepage", 110, 5], ["changelog", 111, 5], ["license", 112, 5], ["platforms", 113, 5], ["maintainers", 114, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 25, 3], ["version", 27, 3], ["__structuredAttrs", 28, 3], ["src", 30, 3], ["cargoHash", 37, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 43, 3], ["buildPhase", 57, 3], ["doCheck", 85, 3], ["postInstall", 87, 3], ["passthru", 103, 3], ["meta", 108, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,12 +24,12 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   nix.assert_(nix.app(nix.sel(lib, "assertOneOf"), "displayServer", displayServer, nix.thunk(() => ["x11", "wayland"])), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/ri/ringboard/package.nix:19:1");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: nix.thunk(() => nix.add("ringboard", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.eq(displayServer, "wayland")), "-wayland"))),
       version: "0.17.0",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "SUPERCILEX",
           repo: "clipboard-history",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -76,12 +72,12 @@ sed -i "s|Exec=ringboard-egui|Exec=$out/bin/ringboard-egui toggle|g" $out/share/
 sed -i "s|Icon=ringboard|Icon=$out/share/icons/hicolor/1024x1024/ringboard.jpeg|g" $out/share/applications/ringboard-egui.desktop
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$2, nixos: nix.thunk(() => nix.sel(nixosTests, "ringboard")) })),
+        [nix.POS]: $pos[2],
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[1], nixos: nix.thunk(() => nix.sel(nixosTests, "ringboard")) })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Fast, efficient, and composable clipboard manager for Linux",
         homepage: "https://github.com/SUPERCILEX/clipboard-history",
         changelog: nix.thunk(() => nix.str`https://github.com/SUPERCILEX/clipboard-history/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

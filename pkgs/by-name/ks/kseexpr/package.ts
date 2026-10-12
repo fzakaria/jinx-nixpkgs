@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 16, 5], ["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["hash", 20, 5]], [["homepage", 44, 5], ["description", 45, 5], ["maintainers", 46, 5], ["license", 47, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 15, 3], ["patches", 23, 3], ["nativeBuildInputs", 28, 3], ["dontWrapQtApps", 33, 3], ["buildInputs", 35, 3], ["meta", 43, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, cmake: false, qt6: false, kdePackages: false, bison: false, flex: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 16, 5], ["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 44, 5], ["description", 45, 5], ["maintainers", 46, 5], ["license", 47, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 15, 3], ["patches", 23, 3], ["nativeBuildInputs", 28, 3], ["dontWrapQtApps", 33, 3], ["buildInputs", 35, 3], ["meta", 43, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const bison = nix.arg($, "bison");
   const flex = nix.arg($, "flex");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "kseexpr",
       version: "6.0.0.0",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "invent.kde.org",
           owner: "graphics",
           repo: "kseexpr",
@@ -40,7 +38,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.sel(qt6, "qttools")),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://invent.kde.org/graphics/kseexpr",
         description: "Embeddable expression evaluation engine",
         maintainers: [],

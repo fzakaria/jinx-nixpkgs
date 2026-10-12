@@ -2,9 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/install-bin.nix", [[["platforms", 10, 10]], [["nativeBuildInputs", 9, 5], ["meta", 10, 5]]]);
 const formals$1 = { args: { lib: false, installShellFiles: false, runCommandLocal: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/install-bin.nix", [["platforms", 10, 10]]);
-const pos$2 = nix.positions(here + "/install-bin.nix", [["nativeBuildInputs", 9, 5], ["meta", 10, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -12,10 +11,10 @@ export default nix.lambda((args) => (() => {
   const installShellFiles = nix.arg($, "installShellFiles");
   const runCommandLocal = nix.arg($, "runCommandLocal");
   return nix.app(runCommandLocal, "install-shell-files--install-bin", nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       nativeBuildInputs: nix.thunk(() => [installShellFiles]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       })),
     })), "mkdir -p bin\necho \"echo hello za warudo\" > bin/hello\necho \"echo amigo me gusta mucho\" > bin/amigo\n\ninstallBin bin/*\n\ncmp bin/amigo $out/bin/amigo\ncmp bin/hello $out/bin/hello\n");

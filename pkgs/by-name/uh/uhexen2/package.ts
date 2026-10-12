@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 19, 5], ["sha256", 20, 5], ["rev", 21, 5]], [["NIX_CFLAGS_COMPILE", 48, 7]], [["broken", 75, 5], ["description", 76, 5], ["longDescription", 77, 5], ["homepage", 83, 5], ["license", 84, 5], ["maintainers", 85, 5], ["platforms", 86, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["buildInputs", 24, 3], ["preBuild", 34, 3], ["env", 48, 3], ["buildPhase", 50, 3], ["installPhase", 66, 3], ["meta", 74, 3]]]);
 const formals$1 = { args: { lib: false, fetchgit: false, SDL: false, stdenv: false, "alsa-lib": false, libGL: false, libogg: false, libvorbis: false, libmad: false, xdelta: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 19, 5], ["sha256", 20, 5], ["rev", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 48, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["broken", 75, 5], ["description", 76, 5], ["longDescription", 77, 5], ["homepage", 83, 5], ["license", 84, 5], ["maintainers", 85, 5], ["platforms", 86, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["buildInputs", 24, 3], ["preBuild", 34, 3], ["env", 48, 3], ["buildPhase", 50, 3], ["installPhase", 66, 3], ["meta", 74, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,22 +18,22 @@ export default nix.lambda((args) => (() => {
   const libmad = nix.arg($, "libmad");
   const xdelta = nix.arg($, "xdelta");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "uhexen2",
       version: "1.5.9",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://git.code.sf.net/p/uhexen2/uhexen2",
           sha256: "0crdihbnb92awkikn15mzdpkj1x9s34xixf1r7fxxf762m60niks",
           rev: "4ef664bc41e3998b0d2a55ff1166dadf34c936be",
         })))),
       buildInputs: nix.thunk(() => [SDL, alsa_lib, libGL, libogg, libvorbis, libmad, xdelta]),
       preBuild: "makeFiles=(\n    \"engine/hexen2 glh2\"\n    \"engine/hexen2 clean\"\n    \"engine/hexen2 h2\"\n    \"engine/hexen2/server\"\n    \"engine/hexenworld/client glhw\"\n    \"engine/hexenworld/client clean\"\n    \"engine/hexenworld/client hw\"\n    \"engine/hexenworld/server\"\n    \"h2patch\"\n)\n",
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-std=gnu17" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], NIX_CFLAGS_COMPILE: "-std=gnu17" })),
       buildPhase: "runHook preBuild\nfor makefile in \"${makeFiles[@]}\"; do\n      local flagsArray=(\n        -j$NIX_BUILD_CORES\n        SHELL=$SHELL\n        $makeFlags \"${makeFlagsArray[@]}\"\n        $buildFlags \"${buildFlagsArray[@]}\"\n      )\n      echoCmd 'build flags' \"\"${flagsArray[@]}\"\"\n      make  -C $makefile \"\"${flagsArray[@]}\"\"\n      unset flagsArray\ndone\nrunHook postBuild\n",
       installPhase: "runHook preInstall\ninstall -Dm755 engine/hexen2/{glhexen2,hexen2,server/h2ded} -t $out/bin\ninstall -Dm755 engine/hexenworld/{client/glhwcl,client/hwcl,server/hwsv} -t $out/bin\ninstall -Dm755 h2patch/h2patch -t $out/bin\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
         description: "Cross-platform port of Hexen II game",
         longDescription: "Hammer of Thyrion (uHexen2) is a cross-platform port of Raven Software's Hexen II source.\nIt is based on an older linux port, Anvil of Thyrion.\nHoT includes countless bug fixes, improved music, sound and video modes, opengl improvements,\nsupport for many operating systems and architectures, and documentation among many others.\n",

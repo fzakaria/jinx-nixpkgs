@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 14, 5], ["hash", 15, 5]], [["NIX_CFLAGS_COMPILE", 32, 7]], [["description", 35, 5], ["longDescription", 36, 5], ["homepage", 41, 5], ["license", 42, 5], ["platforms", 43, 5], ["maintainers", 44, 5]], [["version", 10, 3], ["pname", 11, 3], ["src", 13, 3], ["patches", 18, 3], ["buildInputs", 27, 3], ["env", 32, 3], ["meta", 34, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, libmcrypt: false, libmhash: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 14, 5], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 32, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 35, 5], ["longDescription", 36, 5], ["homepage", 41, 5], ["license", 42, 5], ["platforms", 43, 5], ["maintainers", 44, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["version", 10, 3], ["pname", 11, 3], ["src", 13, 3], ["patches", 18, 3], ["buildInputs", 27, 3], ["env", 32, 3], ["meta", 34, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const libmcrypt = nix.arg($, "libmcrypt");
   const libmhash = nix.arg($, "libmhash");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       version: "2.6.8",
       pname: "mcrypt",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/mcrypt/MCrypt/${nix.sel(finalAttrs, "version")}/mcrypt-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-UUWqhE5UzKid2rb7fdnllSgR2NeHxPS/J+smHmwYIJg=",
         })))),
@@ -34,11 +31,11 @@ export default nix.lambda((args) => (() => {
       ]),
       buildInputs: nix.thunk(() => [libmcrypt, libmhash]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: "-Wno-error=implicit-function-declaration",
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Replacement for old UNIX crypt(1)",
         longDescription: "mcrypt, and the accompanying libmcrypt, are intended to be replacements\nfor the old Unix crypt, except that they are under the GPL and support an\never-wider range of algorithms and modes.\n",
         homepage: "https://mcrypt.sourceforge.net",

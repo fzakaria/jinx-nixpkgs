@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]], [["gtk3", 39, 13], ["applicationName", 40, 5]], [["description", 46, 5], ["mainProgram", 47, 5], ["longDescription", 48, 5], ["homepage", 54, 5], ["license", 55, 5], ["maintainers", 56, 5], ["platforms", 57, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 30, 3], ["passthru", 38, 3], ["makeFlags", 43, 3], ["meta", 45, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, "pkg-config": false, libsoup_3: false, webkitgtk_4_1: false, gtk3: false, "glib-networking": false, "gsettings-desktop-schemas": false, wrapGAppsHook3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["gtk3", 39, 13], ["applicationName", 40, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 46, 5], ["mainProgram", 47, 5], ["longDescription", 48, 5], ["homepage", 54, 5], ["license", 55, 5], ["maintainers", 56, 5], ["platforms", 57, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 30, 3], ["passthru", 38, 3], ["makeFlags", 43, 3], ["meta", 45, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const gsettings_desktop_schemas = nix.arg($, "gsettings-desktop-schemas");
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "vimb",
       version: "3.7.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "fanglingsu",
           repo: "vimb",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -33,10 +30,10 @@ export default nix.lambda((args) => (() => {
         })))),
       nativeBuildInputs: nix.thunk(() => [wrapGAppsHook3, pkg_config]),
       buildInputs: nix.thunk(() => [gtk3, libsoup_3, webkitgtk_4_1, glib_networking, gsettings_desktop_schemas]),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, gtk3: gtk3, applicationName: "Vimb" })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[1], gtk3: gtk3, applicationName: "Vimb" })),
       makeFlags: nix.thunk(() => [nix.thunk(() => nix.str`PREFIX=${nix.builtins.placeholder("out")}`)]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Vim-like browser",
         mainProgram: "vimb",
         longDescription: "A fast and lightweight vim like web browser based on the webkit web\nbrowser engine and the GTK toolkit. Vimb is modal like the great vim\neditor and also easily configurable during runtime. Vimb is mostly\nkeyboard driven and does not detract you from your daily work.\n",

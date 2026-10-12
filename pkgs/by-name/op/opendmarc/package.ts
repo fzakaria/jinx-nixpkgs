@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["hash", 20, 5]], [["NIX_CFLAGS_COMPILE", 30, 7]], [["description", 67, 5], ["homepage", 68, 5], ["license", 69, 5], ["maintainers", 73, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["outputs", 23, 3], ["env", 30, 3], ["buildInputs", 35, 3], ["nativeBuildInputs", 36, 3], ["postPatch", 41, 3], ["configureFlags", 46, 3], ["postFixup", 50, 3], ["meta", 66, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, autoreconfHook: false, libmilter: false, perl: false, perlPackages: false, makeWrapper: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 30, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 67, 5], ["homepage", 68, 5], ["license", 69, 5], ["maintainers", 73, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["outputs", 23, 3], ["env", 30, 3], ["buildInputs", 35, 3], ["nativeBuildInputs", 36, 3], ["postPatch", 41, 3], ["configureFlags", 46, 3], ["postFixup", 50, 3], ["meta", 66, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const perlPackages = nix.arg($, "perlPackages");
   const makeWrapper = nix.arg($, "makeWrapper");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "opendmarc",
       version: "1.4.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "trusteddomainproject",
           repo: "opendmarc",
           rev: nix.thunk(() => nix.str`rel-opendmarc-${nix.builtins.replaceStrings(nix.thunk(() => ["."]), nix.thunk(() => ["-"]), nix.thunk(() => nix.sel(finalAttrs, "version")))}`),
@@ -31,7 +28,7 @@ export default nix.lambda((args) => (() => {
         })))),
       outputs: nix.thunk(() => ["bin", "dev", "out", "doc"]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-std=gnu17"]))),
       })),
       buildInputs: nix.thunk(() => [perl]),
@@ -51,7 +48,7 @@ export default nix.lambda((args) => (() => {
 done
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Free open source software implementation of the DMARC specification",
         homepage: "http://www.trusteddomain.org/opendmarc/",
         license: nix.thunk(() => (() => {

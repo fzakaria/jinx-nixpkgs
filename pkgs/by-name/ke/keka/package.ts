@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 12, 5], ["hash", 13, 5]], [["description", 30, 5], ["homepage", 31, 5], ["license", 32, 5], ["sourceProvenance", 33, 5], ["maintainers", 34, 5], ["platforms", 38, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["nativeBuildInputs", 16, 3], ["installPhase", 18, 3], ["meta", 29, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchzip: false, makeWrapper: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 12, 5], ["hash", 13, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 30, 5], ["homepage", 31, 5], ["license", 32, 5], ["sourceProvenance", 33, 5], ["maintainers", 34, 5], ["platforms", 38, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["nativeBuildInputs", 16, 3], ["installPhase", 18, 3], ["meta", 29, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,18 +12,18 @@ export default nix.lambda((args) => (() => {
   const fetchzip = nix.arg($, "fetchzip");
   const makeWrapper = nix.arg($, "makeWrapper");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "keka",
       version: "1.6.8",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/aonez/Keka/releases/download/v${nix.sel(finalAttrs, "version")}/Keka-${nix.sel(finalAttrs, "version")}.zip`),
           hash: "sha256-sVPoH7owX6VvKKqLrEcZww0zWpmY/pV2+LHtg683gds=",
         })))),
       nativeBuildInputs: nix.thunk(() => [makeWrapper]),
       installPhase: "runHook preInstall\n\nmkdir -p $out/Applications $out/bin\ncp -r . $out/Applications/Keka.app\nmakeWrapper $out/Applications/Keka.app/Contents/MacOS/Keka $out/bin/keka \\\n  --add-flags \"--cli\"\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "macOS file archiver",
         homepage: "https://www.keka.io",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

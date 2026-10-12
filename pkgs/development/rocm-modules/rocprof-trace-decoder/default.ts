@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 17, 5], ["repo", 18, 5], ["rev", 20, 5], ["sparseCheckout", 21, 5], ["hash", 25, 5]], [["description", 79, 5], ["homepage", 80, 5], ["license", 81, 5], ["teams", 82, 5], ["platforms", 83, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["sourceRoot", 28, 3], ["patches", 30, 3], ["strictDeps", 36, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 40, 3], ["cmakeFlags", 45, 3], ["nativeCheckInputs", 49, 3], ["checkInputs", 53, 3], ["preCheck", 58, 3], ["checkPhase", 62, 3], ["doCheck", 76, 3], ["meta", 78, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, rocmPackages: false, cmake: false, python3: false, nlohmann_json: false, gtest: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 17, 5], ["repo", 18, 5], ["rev", 20, 5], ["sparseCheckout", 21, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 79, 5], ["homepage", 80, 5], ["license", 81, 5], ["teams", 82, 5], ["platforms", 83, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["sourceRoot", 28, 3], ["patches", 30, 3], ["strictDeps", 36, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 40, 3], ["cmakeFlags", 45, 3], ["nativeCheckInputs", 49, 3], ["checkInputs", 53, 3], ["preCheck", 58, 3], ["checkPhase", 62, 3], ["doCheck", 76, 3], ["meta", 78, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const nlohmann_json = nix.arg($, "nlohmann_json");
   const gtest = nix.arg($, "gtest");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "rocprof-trace-decoder",
       version: "0.1.7",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ROCm",
           repo: "rocm-systems",
           rev: "feeca99950c590e0b8228733405c4a1a10fa4773",
@@ -57,7 +55,7 @@ runHook postCheck
       })()),
       doCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Library for decoding ROCm thread trace data",
         homepage: "https://github.com/ROCm/rocm-systems/tree/develop/projects/rocprof-trace-decoder",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

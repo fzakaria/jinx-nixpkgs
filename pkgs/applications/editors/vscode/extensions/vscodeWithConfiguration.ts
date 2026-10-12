@@ -2,9 +2,9 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/vscodeWithConfiguration.nix", [[["origin", 22, 5], ["target", 23, 5]]]);
 const formals$1 = { args: { lib: false, writeShellScriptBin: false, extensionsFromVscodeMarketplace: false, vscodeDefault: false }, ellipsis: false };
 const formals$2 = { args: { vscode: true, nixExtensions: true, mutableExtensions: true, vscodeExtsFolderName: true, "user-data-dir": true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/vscodeWithConfiguration.nix", [["origin", 22, 5], ["target", 23, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
     const nixExtsDrvs = nix.thunk(() => nix.app(extensionsFromVscodeMarketplace, nixExtensions));
     const mutExtsDrvs = nix.thunk(() => nix.app(extensionsFromVscodeMarketplace, mutableExtensions));
     const mutableExtsPaths = nix.thunk(() => nix.app(nix.sel(lib, "forEach"), mutExtsDrvs, (e) => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         origin: nix.thunk(() => nix.str`${e}/share/vscode/extensions/${nix.sel(e, "vscodeExtUniqueId")}`),
         target: nix.thunk(() => nix.str`${vscodeExtsFolderName}/${nix.sel(e, "vscodeExtUniqueId")}-${nix.sel(nix.app(nix.sel(lib, "findSingle"), (ext) => nix.eq(nix.str`${nix.sel(ext, "publisher")}.${nix.sel(ext, "name")}`, nix.sel(e, "vscodeExtUniqueId")), "", "m", mutableExtensions), "version")}`),
       })));

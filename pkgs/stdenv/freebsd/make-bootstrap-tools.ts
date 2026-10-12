@@ -2,14 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/make-bootstrap-tools.nix", [[["nativeBuildInputs", 12, 9]], [["rootPaths", 19, 43]], [["singleBinary", 45, 45]], [["coreutils", 46, 32]], [["postFixup", 92, 9]], [["locales", 100, 35]], [["unpack", 54, 3], ["bootstrap-tools", 65, 3], ["build", 119, 3]]]);
 const formals$1 = { args: { pkgs: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/make-bootstrap-tools.nix", [["nativeBuildInputs", 12, 9]]);
-const pos$2 = nix.positions(here + "/make-bootstrap-tools.nix", [["rootPaths", 19, 43]]);
-const pos$3 = nix.positions(here + "/make-bootstrap-tools.nix", [["singleBinary", 45, 45]]);
-const pos$4 = nix.positions(here + "/make-bootstrap-tools.nix", [["coreutils", 46, 32]]);
-const pos$5 = nix.positions(here + "/make-bootstrap-tools.nix", [["postFixup", 92, 9]]);
-const pos$6 = nix.positions(here + "/make-bootstrap-tools.nix", [["locales", 100, 35]]);
-const pos$7 = nix.positions(here + "/make-bootstrap-tools.nix", [["unpack", 54, 3], ["bootstrap-tools", 65, 3], ["build", 119, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,8 +13,8 @@ export default nix.lambda((args) => (() => {
   const from = nix.thunk(() => nix.sel(pkgs, "buildPackages"));
   const dumpnar = nix.thunk(() => nix.attr(from, "dumpnar"));
   const rsync = nix.thunk(() => nix.attr(from, "rsync"));
-  const pack_all = (packCmd) => (name) => (pkgs_1) => (fixups) => nix.app(runCommand, name, nix.thunk(() => ({ [nix.POS]: pos$1, nativeBuildInputs: nix.thunk(() => [rsync, dumpnar]) })), nix.thunk(() => nix.str`base=$PWD
-requisites="$(cat ${nix.app(closureInfo, nix.thunk(() => ({ [nix.POS]: pos$2, rootPaths: pkgs_1 })))}/store-paths)"
+  const pack_all = (packCmd) => (name) => (pkgs_1) => (fixups) => nix.app(runCommand, name, nix.thunk(() => ({ [nix.POS]: $pos[0], nativeBuildInputs: nix.thunk(() => [rsync, dumpnar]) })), nix.thunk(() => nix.str`base=$PWD
+requisites="$(cat ${nix.app(closureInfo, nix.thunk(() => ({ [nix.POS]: $pos[1], rootPaths: pkgs_1 })))}/store-paths)"
 for f in $requisites; do
   cd $f
   rsync --safe-links --chmod="+w" -av . $base
@@ -45,8 +39,8 @@ ${packCmd}
 `));
   const nar_all = nix.thunk(() => nix.app(pack_all, "dumpnar . | xz -9 -e -T $NIX_BUILD_CORES >$out"));
   const tar_all = nix.thunk(() => nix.app(pack_all, "XZ_OPT=\"-9 -e -T $NIX_BUILD_CORES\" tar cJf $out --hard-dereference --sort=name --numeric-owner --owner=0 --group=0 --mtime=@1 ."));
-  const coreutils_big = nix.thunk(() => nix.app(nix.sel(pkgs, "coreutils", "override"), nix.thunk(() => ({ [nix.POS]: pos$3, singleBinary: false }))));
-  const mkdir = nix.thunk(() => nix.app(runCommand, "mkdir", nix.thunk(() => ({ [nix.POS]: pos$4, coreutils: coreutils_big })), "mkdir -p $out/bin\ncp $coreutils/bin/mkdir $out/bin\ncp $coreutils/bin/cp $out/bin\ncp $coreutils/bin/mv $out/bin\n"));
+  const coreutils_big = nix.thunk(() => nix.app(nix.sel(pkgs, "coreutils", "override"), nix.thunk(() => ({ [nix.POS]: $pos[2], singleBinary: false }))));
+  const mkdir = nix.thunk(() => nix.app(runCommand, "mkdir", nix.thunk(() => ({ [nix.POS]: $pos[3], coreutils: coreutils_big })), "mkdir -p $out/bin\ncp $coreutils/bin/mkdir $out/bin\ncp $coreutils/bin/cp $out/bin\ncp $coreutils/bin/mv $out/bin\n"));
   return (() => {
     const unpack = nix.thunk(() => nix.app(nar_all, "unpack.nar.xz", nix.thunk(() => (() => {
         const w = nix.withScope(pkgs, null);
@@ -78,21 +72,21 @@ ${packCmd}
           nix.thunk(() => nix.lookup(w_1, "gzip")),
           nix.thunk(() => nix.lookup(w_1, "bzip2")),
           nix.thunk(() => nix.sel(nix.lookup(w_1, "bzip2"), "dev")),
-          nix.thunk(() => nix.app(nix.sel(nix.lookup(w_1, "curl"), "overrideAttrs"), (old) => ({ [nix.POS]: pos$5, postFixup: "rm $bin/bin/wcurl" }))),
+          nix.thunk(() => nix.app(nix.sel(nix.lookup(w_1, "curl"), "overrideAttrs"), (old) => ({ [nix.POS]: $pos[4], postFixup: "rm $bin/bin/wcurl" }))),
           nix.thunk(() => nix.lookup(w_1, "expand-response-params")),
           nix.thunk(() => nix.lookup(w_1, "binutils-unwrapped")),
           nix.thunk(() => nix.sel(nix.lookup(w_1, "freebsd"), "libc")),
           nix.thunk(() => nix.sel(nix.lookup(w_1, "stdenv"), "cc", "libcxx")),
           nix.thunk(() => nix.sel(nix.lookup(w_1, "stdenv"), "cc", "libcxx", "dev")),
           nix.thunk(() => nix.sel(llvmPackages, "clang-unwrapped")),
-          nix.thunk(() => nix.app(nix.sel(nix.lookup(w_1, "freebsd"), "locales", "override"), nix.thunk(() => ({ [nix.POS]: pos$6, locales: nix.thunk(() => ["C.UTF-8"]) })))),
+          nix.thunk(() => nix.app(nix.sel(nix.lookup(w_1, "freebsd"), "locales", "override"), nix.thunk(() => ({ [nix.POS]: $pos[5], locales: nix.thunk(() => ["C.UTF-8"]) })))),
         ];
       })()), nix.thunk(() => nix.str`xargs rm -f <${nix.path(here, "./bootstrap-tools-spurious.txt")}`)));
     const build = nix.thunk(() => nix.app(runCommand, "build", nix.thunk(() => ({})), nix.thunk(() => nix.str`mkdir -p $out/on-server
 ln -s ${unpack} $out/on-server/unpack.nar.xz
 ln -s ${bootstrap_tools} $out/on-server/bootstrap-tools.tar.xz
 `)));
-    return { [nix.POS]: pos$7, unpack, "bootstrap-tools": bootstrap_tools, build };
+    return { [nix.POS]: $pos[6], unpack, "bootstrap-tools": bootstrap_tools, build };
   })();
 })(), formals$1);
 //# sourceMappingURL=make-bootstrap-tools.ts.map

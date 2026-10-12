@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]], [["bin/vscode_runner", 28, 5]], [["updateScript", 45, 12]], [["description", 48, 5], ["homepage", 49, 5], ["changelog", 50, 5], ["license", 51, 5], ["sourceProvenance", 52, 5], ["maintainers", 53, 5], ["mainProgram", 54, 5], ["platforms", 55, 40]], [["pname", 20, 3], ["version", 21, 11], ["src", 21, 19], ["vendorHash", 23, 3], ["pubspecLock", 25, 3], ["dartEntryPoints", 27, 3], ["buildInputs", 31, 3], ["postInstall", 33, 3], ["passthru", 45, 3], ["meta", 47, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, buildDartApplication: false, kdePackages: false, sqlite: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["bin/vscode_runner", 28, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 45, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 48, 5], ["homepage", 49, 5], ["changelog", 50, 5], ["license", 51, 5], ["sourceProvenance", 52, 5], ["maintainers", 53, 5], ["mainProgram", 54, 5], ["platforms", 55, 40]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 11], ["src", 21, 19], ["vendorHash", 23, 3], ["pubspecLock", 25, 3], ["dartEntryPoints", 27, 3], ["buildInputs", 31, 3], ["postInstall", 33, 3], ["passthru", 45, 3], ["meta", 47, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,27 +14,27 @@ export default nix.lambda((args) => (() => {
   const sqlite = nix.arg($, "sqlite");
   const version = "1.9.3";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "Merrit",
       repo: "vscode-runner",
       rev: nix.thunk(() => nix.str`v${version}`),
       hash: "sha256-qeB6lroBxdZP5+AFfMgTzli2ID8Ed3+1m2nACb1d+Bk=",
     }))));
   return nix.app(buildDartApplication, nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "vscode-runner",
       version: version,
       src: src,
       vendorHash: "sha256-jS4jH00uxZIX81sZQIi+s42ofmXpD4/tPMRV2heaM2U=",
       pubspecLock: nix.thunk(() => nix.app(nix.sel(lib, "importJSON"), nix.path(here, "./pubspec.lock.json"))),
-      dartEntryPoints: nix.thunk(() => ({ [nix.POS]: pos$2, "bin/vscode_runner": "bin/vscode_runner.dart" })),
+      dartEntryPoints: nix.thunk(() => ({ [nix.POS]: $pos[1], "bin/vscode_runner": "bin/vscode_runner.dart" })),
       buildInputs: nix.thunk(() => [sqlite]),
       postInstall: "substituteInPlace ./package/codes.merritt.vscode_runner.service \\\n  --replace-fail \"Exec=\" \"Exec=$out/bin/vscode_runner\"\ninstall -D \\\n  ./package/codes.merritt.vscode_runner.service \\\n  $out/share/dbus-1/services/codes.merritt.vscode_runner.service\n\ninstall -D \\\n  ./package/plasma-runner-vscode_runner.desktop \\\n  $out/share/krunner/dbusplugins/plasma-runner-vscode_runner.desktop\n",
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$3, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[2], updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(kdePackages, "krunner", "meta"));
         return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "KRunner plugin for quickly opening recent VSCode workspaces",
         homepage: "https://github.com/Merrit/vscode-runner",
         changelog: nix.thunk(() => nix.str`https://github.com/Merrit/vscode-runner/blob/${nix.sel(src, "rev")}/CHANGELOG.md`),

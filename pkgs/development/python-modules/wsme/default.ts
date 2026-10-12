@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 26, 5], ["version", 27, 26], ["hash", 28, 5]], [["description", 51, 5], ["homepage", 52, 5], ["changelog", 53, 5], ["license", 54, 5], ["maintainers", 55, 5]], [["pname", 21, 3], ["version", 22, 3], ["pyproject", 23, 3], ["src", 25, 3], ["build-system", 31, 3], ["dependencies", 33, 3], ["nativeCheckInputs", 40, 3], ["meta", 50, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, pbr: false, webob: false, simplegeneric: false, netaddr: false, "importlib-metadata": false, transaction: false, pecan: false, sphinx: false, flask: false, "flask-restful": false, webtest: false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 26, 5], ["version", 27, 26], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 51, 5], ["homepage", 52, 5], ["changelog", 53, 5], ["license", 54, 5], ["maintainers", 55, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 21, 3], ["version", 22, 3], ["pyproject", 23, 3], ["src", 25, 3], ["build-system", 31, 3], ["dependencies", 33, 3], ["nativeCheckInputs", 40, 3], ["meta", 50, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,12 +23,12 @@ export default nix.lambda((args) => (() => {
   const webtest = nix.arg($, "webtest");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "wsme",
       version: "0.13.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "wsme",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-W/MgEO2UPs+z8IeVpGAuJoPfXV6ozHHq8evj9EnzmDM=",
@@ -39,7 +37,7 @@ export default nix.lambda((args) => (() => {
       dependencies: nix.thunk(() => [webob, simplegeneric, netaddr, importlib_metadata]),
       nativeCheckInputs: nix.thunk(() => [transaction, pecan, sphinx, flask, flask_restful, webtest, pytestCheckHook]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Simplify the writing of REST APIs, and extend them with additional protocols",
         homepage: "https://pythonhosted.org/WSME/",
         changelog: "https://pythonhosted.org/WSME/changes.html",

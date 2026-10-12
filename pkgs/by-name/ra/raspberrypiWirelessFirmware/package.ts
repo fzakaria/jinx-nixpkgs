@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 13, 7], ["owner", 14, 7], ["repo", 15, 7], ["rev", 16, 7], ["hash", 17, 7]], [["name", 20, 7], ["owner", 21, 7], ["repo", 22, 7], ["rev", 23, 7], ["hash", 24, 7]], [["description", 57, 5], ["homepage", 58, 5], ["license", 59, 5], ["maintainers", 60, 5], ["platforms", 61, 5], ["sourceProvenance", 62, 5]], [["pname", 8, 3], ["version", 9, 3], ["srcs", 11, 3], ["sourceRoot", 28, 3], ["dontBuild", 30, 3], ["dontFixup", 32, 3], ["installPhase", 34, 3], ["meta", 56, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 13, 7], ["owner", 14, 7], ["repo", 15, 7], ["rev", 16, 7], ["hash", 17, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 20, 7], ["owner", 21, 7], ["repo", 22, 7], ["rev", 23, 7], ["hash", 24, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 57, 5], ["homepage", 58, 5], ["license", 59, 5], ["maintainers", 60, 5], ["platforms", 61, 5], ["sourceProvenance", 62, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["srcs", 11, 3], ["sourceRoot", 28, 3], ["dontBuild", 30, 3], ["dontFixup", 32, 3], ["installPhase", 34, 3], ["meta", 56, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,12 +11,12 @@ export default nix.lambda((args) => (() => {
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "raspberrypi-wireless-firmware",
       version: "0-unstable-2025-04-08",
       srcs: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             name: "bluez-firmware",
             owner: "RPi-Distro",
             repo: "bluez-firmware",
@@ -27,7 +24,7 @@ export default nix.lambda((args) => (() => {
             hash: "sha256-t+D4VUfEIov83KV4wiKp6TqXTHXGkxg/mANi4GW7QHs=",
           })))),
         nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "firmware-nonfree",
             owner: "RPi-Distro",
             repo: "firmware-nonfree",
@@ -40,7 +37,7 @@ export default nix.lambda((args) => (() => {
       dontFixup: true,
       installPhase: "runHook preInstall\nmkdir -p \"$out/lib/firmware/brcm\"\n\n# Wifi firmware\ncp -rv \"$NIX_BUILD_TOP/firmware-nonfree/debian/config/brcm80211/.\" \"$out/lib/firmware/\"\n\n# Bluetooth firmware\ncp -rv \"$NIX_BUILD_TOP/bluez-firmware/debian/firmware/broadcom/.\" \"$out/lib/firmware/brcm\"\n\n# brcmfmac43455-sdio.bin is a symlink to the non-existent path: ../cypress/cyfmac43455-sdio.bin.\n# See https://github.com/RPi-Distro/firmware-nonfree/issues/26\nln -s \"./cyfmac43455-sdio-standard.bin\" \"$out/lib/firmware/cypress/cyfmac43455-sdio.bin\"\n\npushd $out/lib/firmware/brcm &>/dev/null\n# Symlinks for Zero 2W\nln -s \"./brcmfmac43436-sdio.clm_blob\" \"$out/lib/firmware/brcm/brcmfmac43430b0-sdio.clm_blob\"\npopd &>/dev/null\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Firmware for builtin Wifi/Bluetooth devices in the Raspberry Pi 3+ and Zero W",
         homepage: "https://github.com/RPi-Distro/firmware-nonfree",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfreeRedistributableFirmware")),

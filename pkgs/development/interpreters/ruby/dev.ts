@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/dev.nix", [[["ruby", 14, 5]], [["bundler", 17, 5]], [["name", 21, 3], ["paths", 22, 3], ["pathsToLink", 27, 3], ["ignoreCollisions", 28, 3]]]);
 const formals$1 = { args: { buildEnv: false, ruby: false, bundler: false, bundix: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/dev.nix", [["ruby", 14, 5]]);
-const pos$2 = nix.positions(here + "/dev.nix", [["bundler", 17, 5]]);
-const pos$3 = nix.positions(here + "/dev.nix", [["name", 21, 3], ["paths", 22, 3], ["pathsToLink", 27, 3], ["ignoreCollisions", 28, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,10 +11,10 @@ export default nix.lambda((args) => (() => {
   const ruby = nix.arg($, "ruby");
   const bundler = nix.arg($, "bundler");
   const bundix = nix.arg($, "bundix");
-  const bundler_ = nix.thunk(() => nix.app(nix.sel(bundler, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, ruby: ruby }))));
-  const bundix_ = nix.thunk(() => nix.app(nix.sel(bundix, "override"), nix.thunk(() => ({ [nix.POS]: pos$2, bundler: bundler_ }))));
+  const bundler_ = nix.thunk(() => nix.app(nix.sel(bundler, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], ruby: ruby }))));
+  const bundix_ = nix.thunk(() => nix.app(nix.sel(bundix, "override"), nix.thunk(() => ({ [nix.POS]: $pos[1], bundler: bundler_ }))));
   return nix.app(buildEnv, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       name: nix.thunk(() => nix.str`${nix.sel(ruby, "rubyEngine")}-dev-${nix.sel(ruby, "version")}`),
       paths: nix.thunk(() => [bundix_, bundler_, ruby]),
       pathsToLink: nix.thunk(() => ["/bin"]),

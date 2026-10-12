@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["hash", 25, 5]], [["description", 50, 5], ["homepage", 51, 5], ["license", 52, 5], ["platforms", 58, 5], ["maintainers", 59, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 36, 3], ["propagatedBuildInputs", 40, 3], ["dontDropIconThemeCache", 45, 3], ["postPatch", 47, 3], ["meta", 49, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, meson: false, sassc: false, "pkg-config": false, glib: false, ninja: false, python3: false, gtk3: false, "gnome-themes-extra": false, "humanity-icon-theme": false, "hicolor-icon-theme": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 50, 5], ["homepage", 51, 5], ["license", 52, 5], ["platforms", 58, 5], ["maintainers", 59, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 36, 3], ["propagatedBuildInputs", 40, 3], ["dontDropIconThemeCache", 45, 3], ["postPatch", 47, 3], ["meta", 49, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const humanity_icon_theme = nix.arg($, "humanity-icon-theme");
   const hicolor_icon_theme = nix.arg($, "hicolor-icon-theme");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "yaru",
       version: "25.10.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ubuntu",
           repo: "yaru",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -39,7 +37,7 @@ export default nix.lambda((args) => (() => {
       dontDropIconThemeCache: true,
       postPatch: "patchShebangs .",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Ubuntu community theme 'yaru' - default Ubuntu theme since 18.10",
         homepage: "https://github.com/ubuntu/yaru",
         license: nix.thunk(() => (() => {

@@ -2,13 +2,9 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["rev", 39, 21], ["leaveDotGit", 39, 25], ["url", 40, 13]], [["gitRepoUrl", 47, 23]], [["url", 44, 13], ["passthru", 46, 13]], [["name", 53, 17]], [["rev", 57, 36]]]);
 const formals$1 = { args: { fetchgit: false, fetchzip: false, lib: false }, ellipsis: false };
 const formals$2 = { args: { owner: false, repo: false, rev: false, domain: true, name: true, leaveDotGit: true, deepClone: true }, ellipsis: true };
-const pos$1 = nix.positions(here + "/default.nix", [["rev", 39, 21], ["leaveDotGit", 39, 25], ["url", 40, 13]]);
-const pos$2 = nix.positions(here + "/default.nix", [["gitRepoUrl", 47, 23]]);
-const pos$3 = nix.positions(here + "/default.nix", [["url", 44, 13], ["passthru", 46, 13]]);
-const pos$4 = nix.positions(here + "/default.nix", [["name", 53, 17]]);
-const pos$5 = nix.positions(here + "/default.nix", [["rev", 57, 36]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,12 +25,12 @@ export default nix.lambda((args) => (() => {
       const useFetchGit = nix.thunk(() => (nix.asBool(leaveDotGit) || nix.asBool(deepClone)));
       const fetcher = nix.thunk(() => (nix.asBool(useFetchGit) ? nix.force(fetchgit) : nix.force(fetchzip)));
       const gitRepoUrl = nix.thunk(() => nix.str`git://${domain}/${owner}/${repo}`);
-      const fetcherArgs = nix.thunk(() => nix.update((nix.asBool(useFetchGit) ? { [nix.POS]: pos$1, rev: rev, leaveDotGit: leaveDotGit, url: gitRepoUrl } : {
-        [nix.POS]: pos$3,
+      const fetcherArgs = nix.thunk(() => nix.update((nix.asBool(useFetchGit) ? { [nix.POS]: $pos[0], rev: rev, leaveDotGit: leaveDotGit, url: gitRepoUrl } : {
+        [nix.POS]: $pos[2],
         url: nix.thunk(() => nix.str`https://${domain}/${owner}/${repo}/${rev}/snap.tar.gz`),
-        passthru: nix.thunk(() => ({ [nix.POS]: pos$2, gitRepoUrl: gitRepoUrl })),
-      }), nix.update(passthruAttrs, { [nix.POS]: pos$4, name: name })));
-      return nix.update(nix.app(fetcher, fetcherArgs), { [nix.POS]: pos$5, rev: rev });
+        passthru: nix.thunk(() => ({ [nix.POS]: $pos[1], gitRepoUrl: gitRepoUrl })),
+      }), nix.update(passthruAttrs, { [nix.POS]: $pos[3], name: name })));
+      return nix.update(nix.app(fetcher, fetcherArgs), { [nix.POS]: $pos[4], rev: rev });
     })(), formals$2));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

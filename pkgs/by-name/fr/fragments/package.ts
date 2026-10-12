@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 30, 5], ["owner", 31, 5], ["repo", 32, 5], ["rev", 33, 5], ["hash", 34, 5]], [["pname", 38, 13], ["version", 38, 19], ["src", 38, 27], ["hash", 39, 5]], [["updateScript", 71, 5]], [["homepage", 75, 5], ["description", 76, 5], ["maintainers", 77, 5], ["teams", 80, 5], ["license", 81, 5], ["platforms", 82, 5], ["mainProgram", 83, 5]], [["pname", 26, 3], ["version", 27, 3], ["src", 29, 3], ["cargoDeps", 37, 3], ["nativeBuildInputs", 42, 3], ["buildInputs", 55, 3], ["preFixup", 64, 3], ["passthru", 70, 3], ["meta", 74, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, "appstream-glib": false, cargo: false, dbus: false, "desktop-file-utils": false, git: false, glib: false, gtk4: false, libadwaita: false, meson: false, ninja: false, "nix-update-script": false, openssl: false, "pkg-config": false, rustPlatform: false, rustc: false, sqlite: false, transmission_4: false, wrapGAppsHook4: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 30, 5], ["owner", 31, 5], ["repo", 32, 5], ["rev", 33, 5], ["hash", 34, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 38, 13], ["version", 38, 19], ["src", 38, 27], ["hash", 39, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 71, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 75, 5], ["description", 76, 5], ["maintainers", 77, 5], ["teams", 80, 5], ["license", 81, 5], ["platforms", 82, 5], ["mainProgram", 83, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 26, 3], ["version", 27, 3], ["src", 29, 3], ["cargoDeps", 37, 3], ["nativeBuildInputs", 42, 3], ["buildInputs", 55, 3], ["preFixup", 64, 3], ["passthru", 70, 3], ["meta", 74, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -36,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const pname = "fragments";
       const version = "3.0.1";
       const src = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "gitlab.gnome.org",
           owner: "World",
           repo: "Fragments",
@@ -44,7 +40,7 @@ export default nix.lambda((args) => (() => {
           hash: "sha256-lTOO6ZQWImaFqYZ3qerYYHWj/eOLYU/2k2Wh/ju9Njw=",
         }))));
       const cargoDeps = nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: pname,
           version: version,
           src: src,
@@ -68,11 +64,11 @@ export default nix.lambda((args) => (() => {
 )
 `);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://gitlab.gnome.org/World/Fragments",
         description: "Easy to use BitTorrent client for the GNOME desktop environment",
         maintainers: nix.thunk(() => (() => {
@@ -85,7 +81,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "fragments",
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         src,

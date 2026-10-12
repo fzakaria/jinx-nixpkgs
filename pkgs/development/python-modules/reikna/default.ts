@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 23, 13], ["version", 23, 19], ["hash", 24, 5]], [["description", 45, 5], ["homepage", 46, 5], ["license", 47, 5]], [["pname", 18, 3], ["version", 19, 3], ["format", 20, 3], ["src", 22, 3], ["nativeCheckInputs", 27, 3], ["propagatedBuildInputs", 33, 3], ["doCheck", 42, 3], ["meta", 44, 3]]]);
 const formals$1 = { args: { lib: false, fetchPypi: false, buildPythonPackage: false, sphinx: false, "pytest-cov-stub": false, pytestCheckHook: false, mako: false, numpy: false, funcsigs: false, withCuda: true, pycuda: false, withOpenCL: true, pyopencl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 23, 13], ["version", 23, 19], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 45, 5], ["homepage", 46, 5], ["license", 47, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 18, 3], ["version", 19, 3], ["format", 20, 3], ["src", 22, 3], ["nativeCheckInputs", 27, 3], ["propagatedBuildInputs", 33, 3], ["doCheck", 42, 3], ["meta", 44, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.9.0";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-uzIoGCkIINgmO+r0vAzmihS14GWv5ygakMz3tKIG3zA=",
@@ -36,13 +34,13 @@ export default nix.lambda((args) => (() => {
       const propagatedBuildInputs = nix.thunk(() => nix.concat([mako, numpy, funcsigs], nix.concat(nix.app(nix.sel(lib, "optional"), withCuda, pycuda), nix.app(nix.sel(lib, "optional"), withOpenCL, pyopencl))));
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "GPGPU algorithms for PyCUDA and PyOpenCL",
         homepage: "https://github.com/fjarri/reikna",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         format,

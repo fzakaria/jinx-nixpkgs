@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["pname", 14, 26], ["version", 14, 32], ["hash", 15, 5]], [["description", 42, 5], ["homepage", 43, 5], ["changelog", 44, 5], ["license", 45, 5], ["maintainers", 46, 5], ["mainProgram", 47, 5]], [["pname", 9, 3], ["version", 10, 3], ["pyproject", 11, 3], ["src", 13, 3], ["build-system", 18, 3], ["nativeBuildInputs", 23, 3], ["dependencies", 25, 3], ["doCheck", 32, 3], ["postInstall", 34, 3], ["meta", 41, 3]]]);
 const formals$1 = { args: { lib: false, fetchPypi: false, installShellFiles: false, python3Packages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["pname", 14, 26], ["version", 14, 32], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 42, 5], ["homepage", 43, 5], ["changelog", 44, 5], ["license", 45, 5], ["maintainers", 46, 5], ["mainProgram", 47, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["pyproject", 11, 3], ["src", 13, 3], ["build-system", 18, 3], ["nativeBuildInputs", 23, 3], ["dependencies", 25, 3], ["doCheck", 32, 3], ["postInstall", 34, 3], ["meta", 41, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,12 +12,12 @@ export default nix.lambda((args) => (() => {
   const installShellFiles = nix.arg($, "installShellFiles");
   const python3Packages = nix.arg($, "python3Packages");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "tmuxp",
       version: "1.74.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-ngSA6gEpmWAmNYh+BGHTlcLYqm42qFtabR1l3NbHgJw=",
@@ -43,7 +41,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       postInstall: "installShellCompletion --cmd tmuxp \\\n  --bash <(shtab --shell=bash -u tmuxp.cli.create_parser) \\\n  --fish <(shtab --shell=fish -u tmuxp.cli.create_parser) \\\n  --zsh <(shtab --shell=zsh -u tmuxp.cli.create_parser)\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "tmux session manager",
         homepage: "https://tmuxp.git-pull.com/",
         changelog: nix.thunk(() => nix.str`https://github.com/tmux-python/tmuxp/raw/v${nix.sel(finalAttrs, "version")}/CHANGES`),

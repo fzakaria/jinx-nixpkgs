@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]], [["name", 39, 7], ["url", 40, 7], ["hash", 41, 7]], [["updateScript", 52, 12]], [["broken", 56, 5], ["description", 57, 5], ["homepage", 58, 5], ["license", 59, 5], ["mainProgram", 60, 5], ["maintainers", 61, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["nodejs", 24, 3], ["npmDepsHash", 26, 3], ["npmDepsFetcherVersion", 27, 3], ["makeCacheWritable", 29, 3], ["nativeBuildInputs", 31, 3], ["patches", 36, 3], ["postPatch", 45, 3], ["passthru", 52, 3], ["meta", 54, 3]]]);
 const formals$1 = { args: { buildNpmPackage: false, cctools: false, fetchFromGitHub: false, fetchpatch: false, lib: false, "nix-update-script": false, nodejs_22: false, python3Minimal: false, stdenvNoCC: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 39, 7], ["url", 40, 7], ["hash", 41, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 52, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["broken", 56, 5], ["description", 57, 5], ["homepage", 58, 5], ["license", 59, 5], ["mainProgram", 60, 5], ["maintainers", 61, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["nodejs", 24, 3], ["npmDepsHash", 26, 3], ["npmDepsFetcherVersion", 27, 3], ["makeCacheWritable", 29, 3], ["nativeBuildInputs", 31, 3], ["patches", 36, 3], ["postPatch", 45, 3], ["passthru", 52, 3], ["meta", 54, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const python3Minimal = nix.arg($, "python3Minimal");
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "dl-librescore",
       version: "0.35.40",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "LibreScore",
           repo: "dl-librescore",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,7 +34,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => nix.concat([python3Minimal], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenvNoCC, "hostPlatform", "isDarwin")), nix.thunk(() => [cctools])))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "update-pdfkit.patch",
             url: "https://github.com/LibreScore/dl-librescore/commit/3694697d2d3f3f59ca32ee962999b3dd22c81de7.patch",
             hash: "sha256-ikEJNwKMDWpWBQnS3ur76vZqF+zRI6D5d0AyLDdreJY=",
@@ -46,11 +42,11 @@ export default nix.lambda((args) => (() => {
       ]),
       postPatch: "for file in src/i18n/*.json; do\n  substituteInPlace \"$file\" --replace-quiet \\\n    'Run npm i -g dl-librescore@{{latest}} to update' \"\"\ndone\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         broken: nix.thunk(() => nix.sel(stdenvNoCC, "hostPlatform", "isDarwin")),
         description: "Download sheet music",
         homepage: "https://github.com/LibreScore/dl-librescore",

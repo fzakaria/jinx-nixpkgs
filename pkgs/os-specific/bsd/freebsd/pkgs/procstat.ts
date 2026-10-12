@@ -2,9 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/procstat.nix", [[["mainProgram", 22, 8]], [["path", 8, 3], ["buildInputs", 9, 3], ["outputs", 14, 3], ["MK_TESTS", 20, 3], ["meta", 22, 3]]]);
 const formals$1 = { args: { lib: false, mkDerivation: false, libxo: false, libsbuf: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/procstat.nix", [["mainProgram", 22, 8]]);
-const pos$2 = nix.positions(here + "/procstat.nix", [["path", 8, 3], ["buildInputs", 9, 3], ["outputs", 14, 3], ["MK_TESTS", 20, 3], ["meta", 22, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,12 +12,12 @@ export default nix.lambda((args) => (() => {
   const libxo = nix.arg($, "libxo");
   const libsbuf = nix.arg($, "libsbuf");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       path: "usr.bin/procstat",
       buildInputs: nix.thunk(() => [libxo, libsbuf]),
       outputs: nix.thunk(() => ["out", "man", "debug"]),
       MK_TESTS: "no",
-      meta: nix.thunk(() => ({ [nix.POS]: pos$1, mainProgram: "procstat" })),
+      meta: nix.thunk(() => ({ [nix.POS]: $pos[0], mainProgram: "procstat" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=procstat.ts.map

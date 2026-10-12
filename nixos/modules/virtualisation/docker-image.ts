@@ -2,30 +2,25 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/docker-image.nix", [[["postBootCommands", 8, 8]], [["enable", 14, 23]], [["firewall", 14, 14]], [["startWhenNeeded", 17, 20]], [["openssh", 17, 12]], [["imports", 4, 3], ["boot", 8, 3], ["networking", 14, 3], ["services", 17, 3]]]);
 const formals$1 = { args: {  }, ellipsis: true };
-const pos$1 = nix.positions(here + "/docker-image.nix", [["postBootCommands", 8, 8]]);
-const pos$2 = nix.positions(here + "/docker-image.nix", [["enable", 14, 23]]);
-const pos$3 = nix.positions(here + "/docker-image.nix", [["firewall", 14, 14]]);
-const pos$4 = nix.positions(here + "/docker-image.nix", [["startWhenNeeded", 17, 20]]);
-const pos$5 = nix.positions(here + "/docker-image.nix", [["openssh", 17, 12]]);
-const pos$6 = nix.positions(here + "/docker-image.nix", [["imports", 4, 3], ["boot", 8, 3], ["networking", 14, 3], ["services", 17, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   return {
-    [nix.POS]: pos$6,
+    [nix.POS]: $pos[5],
     imports: nix.thunk(() => [nix.path(here, "../profiles/docker-container.nix")]),
     boot: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       postBootCommands: "# Set virtualisation to docker\necho \"docker\" > /run/systemd/container\n",
     })),
     networking: nix.thunk(() => ({
-      [nix.POS]: pos$3,
-      firewall: nix.thunk(() => ({ [nix.POS]: pos$2, enable: false })),
+      [nix.POS]: $pos[2],
+      firewall: nix.thunk(() => ({ [nix.POS]: $pos[1], enable: false })),
     })),
     services: nix.thunk(() => ({
-      [nix.POS]: pos$5,
-      openssh: nix.thunk(() => ({ [nix.POS]: pos$4, startWhenNeeded: false })),
+      [nix.POS]: $pos[4],
+      openssh: nix.thunk(() => ({ [nix.POS]: $pos[3], startWhenNeeded: false })),
     })),
   };
 })(), formals$1);

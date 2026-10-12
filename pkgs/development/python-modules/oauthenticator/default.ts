@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 28, 13], ["version", 28, 19], ["hash", 29, 5]], [["googlegroups", 45, 5], ["mediawiki", 49, 5]], [["description", 79, 5], ["homepage", 80, 5], ["changelog", 81, 5], ["license", 82, 5], ["maintainers", 83, 5]], [["pname", 23, 3], ["version", 24, 3], ["pyproject", 25, 3], ["src", 27, 3], ["build-system", 32, 3], ["dependencies", 34, 3], ["optional-dependencies", 44, 3], ["nativeCheckInputs", 52, 3], ["disabledTests", 60, 3], ["pythonImportsCheck", 76, 3], ["meta", 78, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, "google-api-python-client": false, "google-auth-oauthlib": false, jsonschema: false, jupyterhub: false, mwoauth: false, pyjwt: false, "pytest-asyncio": false, "pytest-cov-stub": false, pytestCheckHook: false, requests: false, "requests-mock": false, "ruamel-yaml": false, setuptools: false, tornado: false, traitlets: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 28, 13], ["version", 28, 19], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["googlegroups", 45, 5], ["mediawiki", 49, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 79, 5], ["homepage", 80, 5], ["changelog", 81, 5], ["license", 82, 5], ["maintainers", 83, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 23, 3], ["version", 24, 3], ["pyproject", 25, 3], ["src", 27, 3], ["build-system", 32, 3], ["dependencies", 34, 3], ["optional-dependencies", 44, 3], ["nativeCheckInputs", 52, 3], ["disabledTests", 60, 3], ["pythonImportsCheck", 76, 3], ["meta", 78, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const version = "17.3.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-5dkMskEf/z3G/MFjNGgjPA4OAjlCLAh8dzTRaFBVuPM=",
@@ -41,7 +38,7 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [setuptools]);
       const dependencies = nix.thunk(() => [jsonschema, jupyterhub, pyjwt, requests, ruamel_yaml, tornado, traitlets]);
       const optional_dependencies = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         googlegroups: nix.thunk(() => [google_api_python_client, google_auth_oauthlib]),
         mediawiki: nix.thunk(() => [mwoauth]),
       }));
@@ -61,7 +58,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const pythonImportsCheck = nix.thunk(() => ["oauthenticator"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Authenticate JupyterHub users with common OAuth providers",
         homepage: "https://github.com/jupyterhub/oauthenticator",
         changelog: nix.thunk(() => nix.str`https://github.com/jupyterhub/oauthenticator/blob/${version}/docs/source/reference/changelog.md`),
@@ -69,7 +66,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

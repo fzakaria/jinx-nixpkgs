@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 18, 5], ["hash", 19, 5]], [["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]], [["package", 70, 37]], [["version", 70, 5], ["nominatim", 71, 26]], [["tests", 69, 12]], [["description", 75, 5], ["homepage", 76, 5], ["license", 77, 5], ["platforms", 78, 5], ["maintainers", 79, 5], ["teams", 80, 5], ["mainProgram", 84, 5]], [["pname", 23, 3], ["version", 24, 3], ["pyproject", 25, 3], ["src", 27, 3], ["postPatch", 34, 3], ["build-system", 47, 3], ["dependencies", 51, 3], ["propagatedBuildInputs", 63, 3], ["pythonImportsCheck", 67, 3], ["passthru", 69, 3], ["meta", 74, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, fetchurl: false, osm2pgsql: false, python3Packages: false, nominatim: false, nixosTests: false, testers: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["package", 70, 37]]);
-const pos$4 = nix.positions(here + "/package.nix", [["version", 70, 5], ["nominatim", 71, 26]]);
-const pos$5 = nix.positions(here + "/package.nix", [["tests", 69, 12]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 75, 5], ["homepage", 76, 5], ["license", 77, 5], ["platforms", 78, 5], ["maintainers", 79, 5], ["teams", 80, 5], ["mainProgram", 84, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 23, 3], ["version", 24, 3], ["pyproject", 25, 3], ["src", 27, 3], ["postPatch", 34, 3], ["build-system", 47, 3], ["dependencies", 51, 3], ["propagatedBuildInputs", 63, 3], ["pythonImportsCheck", 67, 3], ["passthru", 69, 3], ["meta", 74, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,17 +16,17 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const testers = nix.arg($, "testers");
   const countryGrid = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: "https://web.archive.org/web/20220323041006/https://nominatim.org/data/country_grid.sql.gz",
       hash: "sha256-/mY5Oq9WF0klXOv0xh0TqEJeMmuM5QQJ2IxANRZd4Ek=",
     }))));
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "nominatim",
       version: "5.3.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "osm-search",
           repo: "Nominatim",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -69,15 +63,15 @@ cd packaging/nominatim-db
       propagatedBuildInputs: nix.thunk(() => [osm2pgsql]),
       pythonImportsCheck: nix.thunk(() => ["nominatim_db"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$3, package: nominatim })))),
+          [nix.POS]: $pos[3],
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: $pos[2], package: nominatim })))),
           nominatim: nix.thunk(() => nix.attr(nixosTests, "nominatim")),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Search engine for OpenStreetMap data (DB, CLI)",
         homepage: "https://nominatim.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

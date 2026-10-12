@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 12, 5], ["sha256", 13, 5]], [["url", 17, 5], ["sha256", 18, 5]], [["description", 43, 5], ["homepage", 44, 5], ["license", 45, 5], ["maintainers", 46, 5], ["platforms", 47, 5]], [["pname", 22, 11], ["version", 22, 17], ["nativeBuildInputs", 24, 3], ["sourceRoot", 26, 3], ["unpackPhase", 28, 3], ["installPhase", 33, 3], ["outputHashAlgo", 38, 3], ["outputHashMode", 39, 3], ["outputHash", 40, 3], ["meta", 42, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, unzip: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 12, 5], ["sha256", 13, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 17, 5], ["sha256", 18, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 43, 5], ["homepage", 44, 5], ["license", 45, 5], ["maintainers", 46, 5], ["platforms", 47, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 22, 11], ["version", 22, 17], ["nativeBuildInputs", 24, 3], ["sourceRoot", 26, 3], ["unpackPhase", 28, 3], ["installPhase", 33, 3], ["outputHashAlgo", 38, 3], ["outputHashMode", 39, 3], ["outputHash", 40, 3], ["meta", 42, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,17 +14,17 @@ export default nix.lambda((args) => (() => {
   const pname = "meslo-lg";
   const version = "1.2.1";
   const meslo_lg = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: nix.thunk(() => nix.str`https://raw.githubusercontent.com/andreberg/Meslo-Font/09a431d546d211130352c28eb0466e5d7d5aeaf0/dist/v${version}/Meslo%20LG%20v${version}.zip`),
       sha256: "1l08mxlzaz3i5bamnfr49s2k4k23vdm64b8nz2ha33ysimkbgg6h",
     }))));
   const meslo_lg_dz = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       url: nix.thunk(() => nix.str`https://raw.githubusercontent.com/andreberg/Meslo-Font/09a431d546d211130352c28eb0466e5d7d5aeaf0/dist/v${version}/Meslo%20LG%20DZ%20v${version}.zip`),
       sha256: "0lnbkrvcpgz9chnvix79j6fiz36wj6n46brb7b1746182rl1l875",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: pname,
       version: version,
       nativeBuildInputs: nix.thunk(() => [unzip]),
@@ -40,7 +37,7 @@ unzip -j ${meslo_lg_dz}
       outputHashMode: "recursive",
       outputHash: "1cppf8sk6r5wjnnas9n6iyag6pj9jvaic66lvwpqg3742s5akx6x",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Customized version of Apple’s Menlo-Regular font",
         homepage: "https://github.com/andreberg/Meslo-Font/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

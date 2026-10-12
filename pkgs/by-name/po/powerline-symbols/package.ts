@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["license", 13, 32], ["priority", 14, 7], ["maintainers", 15, 7]], [["meta", 12, 5]]]);
 const formals$1 = { args: { lib: false, runCommand: false, powerline: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["license", 13, 32], ["priority", 14, 7], ["maintainers", 15, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["meta", 12, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const powerline = nix.arg($, "powerline");
   const version = nix.thunk(() => nix.attr(powerline, "version"));
   return nix.app(runCommand, nix.thunk(() => nix.str`powerline-symbols-${version}`), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(powerline, "meta"));
         return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         license: nix.thunk(() => nix.attr(from, "license")),
         priority: nix.thunk(() => nix.add(nix.selOr(powerline, () => nix.sel(lib, "meta", "defaultPriority"), "meta", "priority"), 1n)),
         maintainers: nix.thunk(() => (() => {

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 31, 5], ["repo", 32, 5], ["tag", 33, 5], ["hash", 34, 5]], [["updateScript", 68, 12]], [["description", 71, 5], ["mainProgram", 72, 5], ["homepage", 73, 5], ["changelog", 74, 5], ["license", 75, 5], ["maintainers", 76, 5]], [["pname", 26, 3], ["version", 27, 3], ["__structuredAttrs", 28, 3], ["src", 30, 3], ["cargoHash", 37, 3], ["buildFeatures", 39, 3], ["buildInputs", 44, 3], ["nativeBuildInputs", 49, 3], ["nativeCheckInputs", 53, 3], ["checkFlags", 57, 3], ["nativeInstallCheckInputs", 63, 3], ["doInstallCheck", 66, 3], ["passthru", 68, 3], ["meta", 70, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, rustPlatform: false, fetchFromGitHub: false, libunwind: false, xz: false, python3: false, versionCheckHook: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 31, 5], ["repo", 32, 5], ["tag", 33, 5], ["hash", 34, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 68, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 71, 5], ["mainProgram", 72, 5], ["homepage", 73, 5], ["changelog", 74, 5], ["license", 75, 5], ["maintainers", 76, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 26, 3], ["version", 27, 3], ["__structuredAttrs", 28, 3], ["src", 30, 3], ["cargoHash", 37, 3], ["buildFeatures", 39, 3], ["buildInputs", 44, 3], ["nativeBuildInputs", 49, 3], ["nativeCheckInputs", 53, 3], ["checkFlags", 57, 3], ["nativeInstallCheckInputs", 63, 3], ["doInstallCheck", 66, 3], ["passthru", 68, 3], ["meta", 70, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const supportsUnwind = nix.thunk(() => (nix.asBool((nix.asBool(nix.sel(stdenv, "hostPlatform", "isWindows")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isx86_64")))) || nix.asBool((nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) && nix.asBool((nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch")) || nix.asBool(nix.sel(stdenv, "hostPlatform", "isx86_64"))))))));
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "py-spy",
       version: "0.4.2",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "benfred",
           repo: "py-spy",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -43,11 +40,11 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Sampling profiler for Python programs",
         mainProgram: "py-spy",
         homepage: "https://github.com/benfred/py-spy",

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]], [["smoke-test", 69, 5]], [["tests", 68, 12], ["updateScript", 72, 12]], [["description", 75, 5], ["homepage", 76, 5], ["license", 78, 5], ["maintainers", 79, 5], ["mainProgram", 85, 5], ["platforms", 86, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["nativeBuildInputs", 27, 3], ["propagatedBuildInputs", 31, 3], ["projectFile", 33, 3], ["executables", 34, 3], ["nugetDeps", 35, 3], ["runtimeDeps", 36, 3], ["dotnet-sdk", 41, 3], ["dotnet-runtime", 42, 3], ["dotnetBuildFlags", 43, 3], ["makeWrapperArgs", 45, 3], ["postFixup", 53, 3], ["nativeInstallCheckInputs", 63, 3], ["doInstallCheck", 66, 3], ["passthru", 68, 3], ["meta", 74, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, nixosTests: false, dotnetCorePackages: false, buildDotnetModule: false, "jellyfin-ffmpeg": false, fontconfig: false, freetype: false, "jellyfin-web": false, sqlite: false, versionCheckHook: false, jq: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["smoke-test", 69, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 68, 12], ["updateScript", 72, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 75, 5], ["homepage", 76, 5], ["license", 78, 5], ["maintainers", 79, 5], ["mainProgram", 85, 5], ["platforms", 86, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["nativeBuildInputs", 27, 3], ["propagatedBuildInputs", 31, 3], ["projectFile", 33, 3], ["executables", 34, 3], ["nugetDeps", 35, 3], ["runtimeDeps", 36, 3], ["dotnet-sdk", 41, 3], ["dotnet-runtime", 42, 3], ["dotnetBuildFlags", 43, 3], ["makeWrapperArgs", 45, 3], ["postFixup", 53, 3], ["nativeInstallCheckInputs", 63, 3], ["doInstallCheck", 66, 3], ["passthru", 68, 3], ["meta", 74, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const jq = nix.arg($, "jq");
   return nix.app(buildDotnetModule, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "jellyfin",
       version: "12.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "jellyfin",
           repo: "jellyfin",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -53,15 +49,15 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           "smoke-test": nix.thunk(() => nix.sel(nixosTests, "jellyfin")),
         })),
         updateScript: nix.path(here, "./update.sh"),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Free Software Media System",
         homepage: "https://jellyfin.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

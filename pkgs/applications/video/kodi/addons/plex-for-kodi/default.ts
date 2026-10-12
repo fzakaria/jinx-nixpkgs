@@ -2,12 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["sha256", 21, 5]], [["attrPath", 37, 7]], [["updateScript", 36, 5]], [["homepage", 46, 5], ["description", 47, 5], ["license", 48, 5], ["maintainers", 49, 5]], [["pname", 13, 3], ["namespace", 14, 3], ["version", 15, 3], ["src", 17, 3], ["patches", 27, 3], ["propagatedBuildInputs", 29, 3], ["passthru", 35, 3], ["postInstall", 41, 3], ["meta", 45, 3]]]);
 const formals$1 = { args: { lib: false, addonDir: false, buildKodiAddon: false, fetchFromGitHub: false, addonUpdateScript: false, "kodi-six": false, six: false, requests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["sha256", 21, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["attrPath", 37, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["updateScript", 36, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["homepage", 46, 5], ["description", 47, 5], ["license", 48, 5], ["maintainers", 49, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 13, 3], ["namespace", 14, 3], ["version", 15, 3], ["src", 17, 3], ["patches", 27, 3], ["propagatedBuildInputs", 29, 3], ["passthru", 35, 3], ["postInstall", 41, 3], ["meta", 45, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const namespace = "script.plex";
       const version = "0.7.9-rev4";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "pannal",
           repo: "plex-for-kodi",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -33,20 +29,20 @@ export default nix.lambda((args) => (() => {
       const patches = nix.thunk(() => [nix.path(here, "./plex-template-dir.patch")]);
       const propagatedBuildInputs = nix.thunk(() => [six, requests, kodi_six]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(addonUpdateScript, nix.thunk(() => ({ [nix.POS]: pos$2, attrPath: "kodi.packages.plex" })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(addonUpdateScript, nix.thunk(() => ({ [nix.POS]: $pos[1], attrPath: "kodi.packages.plex" })))),
       }));
       const postInstall = nix.thunk(() => nix.str`mv /build/source/addon.xml $out${addonDir}/${namespace}/
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://www.plex.tv",
         description: "Unofficial Plex for Kodi add-on",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),
         maintainers: nix.thunk(() => nix.sel(lib, "teams", "kodi", "members")),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         namespace,
         version,

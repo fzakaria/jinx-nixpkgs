@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 15, 5], ["hash", 16, 5]], [["homepage", 35, 5], ["description", 36, 5], ["sourceProvenance", 37, 5], ["license", 38, 5], ["maintainers", 39, 5], ["mainProgram", 40, 5], ["platforms", 41, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["buildInputs", 19, 3], ["nativeBuildInputs", 20, 3], ["sourceRoot", 24, 3], ["installPhase", 26, 3], ["meta", 34, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, jre: false, makeWrapper: false, unzip: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 35, 5], ["description", 36, 5], ["sourceProvenance", 37, 5], ["license", 38, 5], ["maintainers", 39, 5], ["mainProgram", 40, 5], ["platforms", 41, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["buildInputs", 19, 3], ["nativeBuildInputs", 20, 3], ["sourceRoot", 24, 3], ["installPhase", 26, 3], ["meta", 34, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const unzip = nix.arg($, "unzip");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "astrolabe-generator",
       version: "3.3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/wymarc/astrolabe-generator/releases/download/v${nix.sel(finalAttrs, "version")}/AstrolabeGenerator-${nix.sel(finalAttrs, "version")}.zip`),
           hash: "sha256-yTYiUEjxlfZbFNSxvF56LlUPL3kRH6QVFq4GhXN1L5A=",
         })))),
@@ -34,7 +32,7 @@ makeWrapper ${jre}/bin/java $out/bin/AstrolabeGenerator \\
   --add-flags "-jar $out/share/java/AstrolabeGenerator-${nix.sel(finalAttrs, "version")}.jar"
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://www.astrolabeproject.com",
         description: "Java-based tool for generating EPS files for constructing astrolabes and related tools",
         sourceProvenance: nix.thunk(() => (() => {

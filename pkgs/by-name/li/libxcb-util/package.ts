@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 20, 5], ["hash", 21, 5]], [["pkg-config", 39, 11]], [["updateScript", 31, 5], ["tests", 39, 5]], [["description", 43, 5], ["longDescription", 44, 5], ["homepage", 51, 5], ["license", 52, 5], ["maintainers", 53, 5], ["pkgConfigModules", 54, 5], ["platforms", 60, 5]], [["pname", 11, 3], ["version", 12, 3], ["outputs", 14, 3], ["src", 19, 3], ["strictDeps", 24, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 27, 3], ["propagatedBuildInputs", 28, 3], ["passthru", 30, 3], ["meta", 42, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, "pkg-config": false, libxcb: false, writeScript: false, testers: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pkg-config", 39, 11]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 31, 5], ["tests", 39, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 43, 5], ["longDescription", 44, 5], ["homepage", 51, 5], ["license", 52, 5], ["maintainers", 53, 5], ["pkgConfigModules", 54, 5], ["platforms", 60, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["outputs", 14, 3], ["src", 19, 3], ["strictDeps", 24, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 27, 3], ["propagatedBuildInputs", 28, 3], ["passthru", 30, 3], ["meta", 42, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const writeScript = nix.arg($, "writeScript");
   const testers = nix.arg($, "testers");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "libxcb-util",
       version: "0.4.1",
       outputs: nix.thunk(() => ["out", "dev"]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://xorg/individual/xcb/xcb-util-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-Wr47u9jlTw+j7JRSkbfo+oz9PMzENxj4dYQw+UEm5RI=",
         })))),
@@ -33,7 +29,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [libxcb]),
       propagatedBuildInputs: nix.thunk(() => [libxcb]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(writeScript, nix.thunk(() => nix.str`update-${nix.sel(finalAttrs, "pname")}`), nix.thunk(() => nix.str`#!/usr/bin/env nix-shell
 #!nix-shell -i bash -p common-updater-scripts
 version="$(list-directory-versions --pname xcb-util \\
@@ -42,12 +38,12 @@ version="$(list-directory-versions --pname xcb-util \\
 update-source-version ${nix.sel(finalAttrs, "pname")} "$version"
 `))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "testMetaPkgConfig"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "XCB utility libraries",
         longDescription: "The XCB util modules provides a number of libraries which sit on top of libxcb, the core\nX protocol library, and some of the extension libraries. These experimental libraries provide\nconvenience functions and interfaces which make the raw X protocol more usable. Some of the\nlibraries also provide client-side code which is not strictly part of the X protocol but which\nhave traditionally been provided by Xlib.\n",
         homepage: "https://gitlab.freedesktop.org/xorg/lib/libxcb-util",

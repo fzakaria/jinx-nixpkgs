@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["pname", 13, 5], ["version", 14, 38], ["meta", 14, 46], ["strictDeps", 16, 5], ["__structuredAttrs", 17, 5], ["dontUnpack", 19, 5], ["nativeBuildInputs", 21, 5], ["installPhase", 23, 5]]]);
 const formals$1 = { args: { stdenv: false, jq: false, "hydrogen-web-unwrapped": false, config: false, conf: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["pname", 13, 5], ["version", 14, 38], ["meta", 14, 46], ["strictDeps", 16, 5], ["__structuredAttrs", 17, 5], ["dontUnpack", 19, 5], ["nativeBuildInputs", 21, 5], ["installPhase", 23, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const config = nix.arg($, "config");
   const conf = nix.argOr($, "conf", () => nix.selOr(config, () => ({}), "hydrogen-web", "conf"));
   return (nix.asBool(nix.eq(conf, {})) ? nix.force(hydrogen_web_unwrapped) : nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       pname: nix.thunk(() => nix.str`${nix.sel(hydrogen_web_unwrapped, "pname")}-wrapped`),
       version: nix.thunk(() => nix.attr(hydrogen_web_unwrapped, "version")),
       meta: nix.thunk(() => nix.attr(hydrogen_web_unwrapped, "meta")),

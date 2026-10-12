@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 14, 5], ["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["sha256", 18, 5]], [["description", 36, 5], ["homepage", 37, 5], ["license", 38, 5], ["maintainers", 39, 5], ["platforms", 40, 5], ["mainProgram", 41, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["buildInputs", 21, 3], ["patchPhase", 23, 3], ["dontBuild", 28, 3], ["installPhase", 30, 3], ["meta", 35, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, perl: false, xkeyboard_config: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 14, 5], ["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["sha256", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 36, 5], ["homepage", 37, 5], ["license", 38, 5], ["maintainers", 39, 5], ["platforms", 40, 5], ["mainProgram", 41, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["buildInputs", 21, 3], ["patchPhase", 23, 3], ["dontBuild", 28, 3], ["installPhase", 30, 3], ["meta", 35, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const perl = nix.arg($, "perl");
   const xkeyboard_config = nix.arg($, "xkeyboard_config");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "ckbcomp",
       version: "1.242",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "salsa.debian.org",
           owner: "installer-team",
           repo: "console-setup",
@@ -33,7 +31,7 @@ substituteInPlace Keyboard/ckbcomp --replace "rules = 'xorg'" "rules = 'base'"
       dontBuild: true,
       installPhase: "install -Dm0555 -t $out/bin Keyboard/ckbcomp\ninstall -Dm0444 -t $out/share/man/man1 man/ckbcomp.1\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Compiles a XKB keyboard description to a keymap suitable for loadkeys",
         homepage: "https://salsa.debian.org/installer-team/console-setup",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

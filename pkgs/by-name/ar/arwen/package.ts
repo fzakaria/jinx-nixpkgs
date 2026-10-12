@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 12, 5], ["repo", 13, 5], ["rev", 14, 5], ["hash", 15, 5]], [["description", 23, 5], ["longDescription", 24, 5], ["homepage", 39, 5], ["mainProgram", 40, 5], ["license", 41, 5], ["platforms", 42, 5], ["maintainers", 43, 5], ["teams", 44, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["cargoHash", 18, 3], ["__structuredAttrs", 20, 3], ["meta", 22, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 12, 5], ["repo", 13, 5], ["rev", 14, 5], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 23, 5], ["longDescription", 24, 5], ["homepage", 39, 5], ["mainProgram", 40, 5], ["license", 41, 5], ["platforms", 42, 5], ["maintainers", 43, 5], ["teams", 44, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["cargoHash", 18, 3], ["__structuredAttrs", 20, 3], ["meta", 22, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,11 +11,11 @@ export default nix.lambda((args) => (() => {
   const rustPlatform = nix.arg($, "rustPlatform");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "arwen",
       version: "0.0.5-unstable-2026-04-07",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "nichmor",
           repo: "arwen",
           rev: "696351a8c208315b0dfd4a1e5c37288a689ccd2e",
@@ -26,7 +24,7 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-bj7YB7xNlfdrYYZv3CDuqkm+/pg+C1KwizPTlNqQWt8=",
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Cross-platform patching of shared libraries in Rust",
         longDescription: "Arwen is a command-line utility and Rust library designed to modify\nexecutable files and shared libraries.\n\nSpecifically, it targets the ELF format (commonly used on Linux, BSD, and\nother Unix-like systems) and the Mach-O format (used on macOS and iOS).\n\nIt allows you to inspect and rewrite various properties within these\nfiles that influence how they load and link with other libraries at\nruntime.\n\nThink of arwen as a modern, unified, Rust-based alternative to the\nwidely-used patchelf (for ELF files) and install_name_tool (for Mach-O\nfiles). It combines the core functionalities of both into a single tool.\n",
         homepage: "https://github.com/nichmor/arwen",

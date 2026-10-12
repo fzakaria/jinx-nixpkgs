@@ -2,11 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["strictDeps", 24, 9], ["__structuredAttrs", 25, 9]], [["monorepoSrc", 106, 5], ["isFullBuild", 107, 13]], [["broken", 113, 5], ["homepage", 114, 5], ["description", 115, 5]], [["pname", 44, 11], ["version", 44, 17], ["patches", 44, 25], ["src", 46, 3], ["sourceRoot", 48, 3], ["nativeBuildInputs", 50, 3], ["buildInputs", 57, 3], ["strictDeps", 59, 3], ["outputs", 61, 3], ["postUnpack", 63, 3], ["prePatch", 69, 3], ["postPatch", 74, 3], ["postInstall", 78, 3], ["cmakeFlags", 90, 3], ["passthru", 105, 3], ["__structuredAttrs", 110, 3], ["meta", 112, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, llvm_meta: false, src: true, monorepoSrc: true, version: false, release_version: false, runCommand: false, python3: false, python3Packages: false, patches: true, cmake: false, ninja: false, isFullBuild: true, linuxHeaders: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["strictDeps", 24, 9], ["__structuredAttrs", 25, 9]]);
-const pos$2 = nix.positions(here + "/default.nix", [["monorepoSrc", 106, 5], ["isFullBuild", 107, 13]]);
-const pos$3 = nix.positions(here + "/default.nix", [["broken", 113, 5], ["homepage", 114, 5], ["description", 115, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 44, 11], ["version", 44, 17], ["patches", 44, 25], ["src", 46, 3], ["sourceRoot", 48, 3], ["nativeBuildInputs", 50, 3], ["buildInputs", 57, 3], ["strictDeps", 59, 3], ["outputs", 61, 3], ["postUnpack", 63, 3], ["prePatch", 69, 3], ["postPatch", 74, 3], ["postInstall", 78, 3], ["cmakeFlags", 90, 3], ["passthru", 105, 3], ["__structuredAttrs", 110, 3], ["meta", 112, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,7 +23,7 @@ export default nix.lambda((args) => (() => {
   const isFullBuild = nix.argOr($, "isFullBuild", () => true);
   const linuxHeaders = nix.arg($, "linuxHeaders");
   const pname = "libc";
-  const src$ = nix.thunk(() => nix.app(runCommand, nix.thunk(() => nix.str`${pname}-src-${version}`), nix.thunk(() => ({ [nix.POS]: pos$1, strictDeps: true, __structuredAttrs: true })), nix.thunk(() => nix.add(nix.str`mkdir -p "$out"
+  const src$ = nix.thunk(() => nix.app(runCommand, nix.thunk(() => nix.str`${pname}-src-${version}`), nix.thunk(() => ({ [nix.POS]: $pos[0], strictDeps: true, __structuredAttrs: true })), nix.thunk(() => nix.add(nix.str`mkdir -p "$out"
 cp -r ${monorepoSrc}/cmake "$out"
 cp -r ${monorepoSrc}/runtimes "$out"
 cp -r ${monorepoSrc}/llvm "$out"
@@ -36,7 +33,7 @@ cp -r ${monorepoSrc}/${pname} "$out"
 `))))));
   const needHdrGen = nix.thunk(() => (nix.asBool(isFullBuild) || nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), release_version, "22"))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: pname,
       version: version,
       patches: patches,
@@ -63,10 +60,10 @@ chmod -R u+w ../
           nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "CMAKE_C_COMPILER_WORKS", true)),
           nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "CMAKE_CXX_COMPILER_WORKS", true)),
         ])))),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, monorepoSrc: monorepoSrc, isFullBuild: isFullBuild })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[1], monorepoSrc: monorepoSrc, isFullBuild: isFullBuild })),
       __structuredAttrs: true,
       meta: nix.thunk(() => nix.update(llvm_meta, {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
         homepage: "https://libc.llvm.org/",
         description: "Standard C library for LLVM",

@@ -2,10 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/obs-transition-table.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["sha256", 18, 5]], [["description", 34, 5], ["homepage", 35, 5], ["maintainers", 36, 5], ["license", 37, 5], ["platforms", 38, 31]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 21, 3], ["buildInputs", 22, 3], ["dontWrapQtApps", 27, 3], ["postInstall", 29, 3], ["meta", 33, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, "obs-studio": false, qt6: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/obs-transition-table.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["sha256", 18, 5]]);
-const pos$2 = nix.positions(here + "/obs-transition-table.nix", [["description", 34, 5], ["homepage", 35, 5], ["maintainers", 36, 5], ["license", 37, 5], ["platforms", 38, 31]]);
-const pos$3 = nix.positions(here + "/obs-transition-table.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 21, 3], ["buildInputs", 22, 3], ["dontWrapQtApps", 27, 3], ["postInstall", 29, 3], ["meta", 33, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const obs_studio = nix.arg($, "obs-studio");
   const qt6 = nix.arg($, "qt6");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "obs-transition-table",
       version: "0.2.7-unstable-2024-11-27",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "exeldro",
           repo: "obs-transition-table",
           rev: "976fe236dac7082b6c953f950fcb9e50495ce624",
@@ -33,7 +31,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(obs_studio, "meta"));
         return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Plugin for OBS Studio to add a Transition Table to the tools menu",
         homepage: "https://github.com/exeldro/obs-transition-table",
         maintainers: nix.thunk(() => (() => {

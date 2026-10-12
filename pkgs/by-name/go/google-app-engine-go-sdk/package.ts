@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 17, 9], ["sha256", 18, 9]], [["url", 22, 9], ["sha256", 23, 9]], [["description", 42, 5], ["version", 43, 5], ["homepage", 44, 5], ["sourceProvenance", 45, 5], ["license", 49, 5], ["platforms", 50, 5], ["maintainers", 53, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 14, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 27, 3], ["installPhase", 29, 3], ["meta", 41, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchzip: false, python3Packages: false, makeWrapper: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 17, 9], ["sha256", 18, 9]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 22, 9], ["sha256", 23, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 42, 5], ["version", 43, 5], ["homepage", 44, 5], ["sourceProvenance", 45, 5], ["license", 49, 5], ["platforms", 50, 5], ["maintainers", 53, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 14, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 27, 3], ["installPhase", 29, 3], ["meta", 41, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,15 +14,15 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const w = nix.withScope(python3Packages, null);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "google-app-engine-go-sdk",
       version: "1.9.61",
       src: nix.thunk(() => (nix.asBool(nix.eq(nix.sel(stdenv, "hostPlatform", "system"), "x86_64-linux")) ? nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://storage.googleapis.com/appengine-sdks/featured/go_appengine_sdk_linux_amd64-${nix.sel(finalAttrs, "version")}.zip`),
           sha256: "1i2j9ympl1218akwsmm7yb31v0gibgpzlb657bcravi1irfv1hhs",
         }))) : nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: nix.thunk(() => nix.str`https://storage.googleapis.com/appengine-sdks/featured/go_appengine_sdk_darwin_amd64-${nix.sel(finalAttrs, "version")}.zip`),
           sha256: "0s8sqyc72lnc7dxd4cl559gyfx83x71jjpsld3i3nbp3mwwamczp",
         }))))),
@@ -42,7 +39,7 @@ for i in goapp go-app-stager *.py; do
 done
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Google App Engine SDK for Go",
         version: nix.thunk(() => nix.sel(finalAttrs, "version")),
         homepage: "https://cloud.google.com/appengine/docs/go/",

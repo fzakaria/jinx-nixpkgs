@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5], ["leaveDotGit", 23, 5], ["postFetch", 24, 5]], [["version", 64, 28], ["package", 65, 7], ["command", 66, 7]], [["version", 63, 11]], [["updateScript", 62, 5], ["tests", 63, 5]], [["changelog", 71, 5], ["description", 72, 5], ["homepage", 73, 5], ["license", 74, 5], ["mainProgram", 75, 5], ["maintainers", 76, 5]], [["pname", 14, 3], ["version", 15, 3], ["vendorHash", 16, 3], ["src", 18, 3], ["ldflags", 30, 3], ["preBuild", 37, 3], ["buildInputs", 41, 3], ["nativeBuildInputs", 43, 3], ["postInstall", 45, 3], ["doCheck", 59, 3], ["passthru", 61, 3], ["meta", 70, 3]]]);
 const formals$1 = { args: { buildGoModule: false, fetchFromGitHub: false, lib: false, "nix-update-script": false, testers: false, "symfony-cli": false, nssTools: false, makeBinaryWrapper: false, installShellFiles: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5], ["leaveDotGit", 23, 5], ["postFetch", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["version", 64, 28], ["package", 65, 7], ["command", 66, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 63, 11]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 62, 5], ["tests", 63, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["changelog", 71, 5], ["description", 72, 5], ["homepage", 73, 5], ["license", 74, 5], ["mainProgram", 75, 5], ["maintainers", 76, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["vendorHash", 16, 3], ["src", 18, 3], ["ldflags", 30, 3], ["preBuild", 37, 3], ["buildInputs", 41, 3], ["nativeBuildInputs", 43, 3], ["postInstall", 45, 3], ["doCheck", 59, 3], ["passthru", 61, 3], ["meta", 70, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const makeBinaryWrapper = nix.arg($, "makeBinaryWrapper");
   const installShellFiles = nix.arg($, "installShellFiles");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "symfony-cli",
       version: "5.22.0",
       vendorHash: "sha256-YFcv+lmD8TZUsN2zYK1usfuLVqzGYdsJ+ScDRcpSORs=",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "symfony-cli",
           repo: "symfony-cli",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -57,12 +52,12 @@ installShellCompletion --cmd symfony \\
 `),
       doCheck: false,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               version: nix.thunk(() => nix.attr(finalAttrs, "version")),
               package: symfony_cli,
               command: "symfony version --no-ansi",
@@ -70,7 +65,7 @@ installShellCompletion --cmd symfony \\
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         changelog: nix.thunk(() => nix.str`https://github.com/symfony-cli/symfony-cli/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "Symfony CLI",
         homepage: "https://github.com/symfony-cli/symfony-cli",

@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["description", 47, 5]], [["nativeBuildInputs", 13, 3], ["postFixup", 17, 3], ["meta", 46, 3]]]);
 const formals$1 = { args: { lib: false, sbt: false, makeWrapper: false, boehmgc: false, libunwind: false, re2: false, llvmPackages: false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["description", 47, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["nativeBuildInputs", 13, 3], ["postFixup", 17, 3], ["meta", 46, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const llvmPackages = nix.arg($, "llvmPackages");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(sbt, "overrideAttrs"), (previousAttrs) => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       nativeBuildInputs: nix.thunk(() => nix.concat(nix.selOr(previousAttrs, () => [], "nativeBuildInputs"), [makeWrapper])),
       postFixup: nix.thunk(() => nix.add(nix.selOr(previousAttrs, () => "", "postFixup"), nix.str`for program in sbt sbtn; do
   [ -e "$out/bin/$program" ] || continue
@@ -43,7 +42,7 @@ export default nix.lambda((args) => (() => {
 done
 `)),
       meta: nix.thunk(() => nix.update(nix.sel(previousAttrs, "meta"), {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: nix.thunk(() => nix.add(nix.sel(previousAttrs, "meta", "description"), ", with the Scala Native toolchain")),
       })),
     }));

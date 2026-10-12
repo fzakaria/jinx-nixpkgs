@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["sha256", 21, 5]], [["NIX_CFLAGS_COMPILE", 71, 7]], [["nixos", 73, 18]], [["tests", 73, 12]], [["description", 76, 5], ["homepage", 77, 5], ["license", 78, 5], ["maintainers", 79, 5], ["mainProgram", 80, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["vendorHash", 24, 3], ["tags", 26, 3], ["ldflags", 28, 3], ["subPackages", 35, 3], ["buildInputs", 41, 3], ["nativeBuildInputs", 43, 3], ["postInstall", 48, 3], ["env", 71, 3], ["passthru", 73, 3], ["meta", 75, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildGoModule: false, fetchFromGitHub: false, pam: false, coreutils: false, installShellFiles: false, scdoc: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["sha256", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 71, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["nixos", 73, 18]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 73, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 76, 5], ["homepage", 77, 5], ["license", 78, 5], ["maintainers", 79, 5], ["mainProgram", 80, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["vendorHash", 24, 3], ["tags", 26, 3], ["ldflags", 28, 3], ["subPackages", 35, 3], ["buildInputs", 41, 3], ["nativeBuildInputs", 43, 3], ["postInstall", 48, 3], ["env", 71, 3], ["passthru", 73, 3], ["meta", 75, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const scdoc = nix.arg($, "scdoc");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "maddy",
       version: "0.9.6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "foxcpp",
           repo: "maddy",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -65,15 +60,15 @@ substitute dist/systemd/maddy@.service $out/lib/systemd/system/maddy@.service \\
   --replace-fail "/bin/kill" "${coreutils}/bin/kill"
 `),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), "-Wno-error=strict-prototypes")),
       })),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$3, nixos: nix.thunk(() => nix.sel(nixosTests, "maddy")) })),
+        [nix.POS]: $pos[3],
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[2], nixos: nix.thunk(() => nix.sel(nixosTests, "maddy")) })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Composable all-in-one mail server",
         homepage: "https://maddy.email",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/wrapper.nix", [[["cores", 44, 51]], [["cores", 42, 13], ["unwrapped", 43, 5], ["withCores", 44, 5]], [["changelog", 57, 7], ["description", 58, 7], ["homepage", 59, 7], ["license", 60, 7], ["mainProgram", 61, 7], ["maintainers", 62, 7], ["teams", 63, 7], ["platforms", 64, 7], ["longDescription", 67, 5]], [["pname", 34, 3], ["version", 35, 3], ["paths", 37, 3], ["nativeBuildInputs", 39, 3], ["passthru", 41, 3], ["postBuild", 47, 3], ["meta", 55, 3]]]);
 const formals$1 = { args: { lib: false, libretro: false, makeBinaryWrapper: false, "retroarch-bare": false, writeText: false, symlinkJoin: false, cores: true, settings: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/wrapper.nix", [["cores", 44, 51]]);
-const pos$2 = nix.positions(here + "/wrapper.nix", [["cores", 42, 13], ["unwrapped", 43, 5], ["withCores", 44, 5]]);
-const pos$3 = nix.positions(here + "/wrapper.nix", [["changelog", 57, 7], ["description", 58, 7], ["homepage", 59, 7], ["license", 60, 7], ["mainProgram", 61, 7], ["maintainers", 62, 7], ["teams", 63, 7], ["platforms", 64, 7], ["longDescription", 67, 5]]);
-const pos$4 = nix.positions(here + "/wrapper.nix", [["pname", 34, 3], ["version", 35, 3], ["paths", 37, 3], ["nativeBuildInputs", 39, 3], ["passthru", 41, 3], ["postBuild", 47, 3], ["meta", 55, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,16 +22,16 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.str`-L ${nix.add(nix.builtins.placeholder("out"), p)}`),
         ], coresPath))), ["--add-flags", nix.thunk(() => nix.str`--appendconfig=${settingsPath}`)]))));
   return nix.app(symlinkJoin, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "retroarch-with-cores",
       version: nix.thunk(() => nix.app(nix.sel(lib, "getVersion"), retroarch_bare)),
       paths: nix.thunk(() => nix.concat([retroarch_bare], cores)),
       nativeBuildInputs: nix.thunk(() => [makeBinaryWrapper]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         cores: cores,
         unwrapped: retroarch_bare,
-        withCores: (coreFun) => nix.app(nix.sel(retroarch_bare, "wrapper"), nix.thunk(() => ({ [nix.POS]: pos$1, cores: nix.thunk(() => nix.app(coreFun, libretro)) }))),
+        withCores: (coreFun) => nix.app(nix.sel(retroarch_bare, "wrapper"), nix.thunk(() => ({ [nix.POS]: $pos[0], cores: nix.thunk(() => nix.app(coreFun, libretro)) }))),
       })),
       postBuild: nix.thunk(() => nix.str`# remove core specific binaries
 find $out/bin -name 'retroarch-*' -type l -delete
@@ -45,7 +42,7 @@ wrapProgram $out/bin/retroarch ${wrapperArgs}
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(retroarch_bare, "meta"));
         return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         changelog: nix.thunk(() => nix.attr(from, "changelog")),
         description: nix.thunk(() => nix.attr(from, "description")),
         homepage: nix.thunk(() => nix.attr(from, "homepage")),

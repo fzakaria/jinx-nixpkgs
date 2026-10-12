@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 45, 5], ["hash", 46, 5]], [["homepage", 195, 5], ["description", 196, 5], ["license", 197, 5], ["mainProgram", 201, 5], ["platforms", 202, 5], ["maintainers", 203, 5], ["changelog", 208, 5]], [["pname", 41, 3], ["version", 42, 3], ["src", 44, 3], ["enableParallelBuilding", 49, 3], ["nativeBuildInputs", 51, 3], ["buildInputs", 52, 3], ["configurePhase", 78, 3], ["installPhase", 174, 3], ["meta", 194, 3]]]);
 const formals$1 = { args: { coreutils: false, db: false, fetchurl: false, openssl: false, pcre2: false, perl: false, "pkg-config": false, lib: false, stdenv: false, libxcrypt: false, procps: false, killall: false, enableLDAP: true, openldap: false, enableMySQL: true, libmysqlclient: false, zlib: false, enablePgSQL: true, libpq: false, enableSqlite: true, sqlite: false, enableAuthDovecot: true, dovecot: false, enablePAM: true, pam: false, enableSPF: true, libspf2: false, enableDMARC: true, opendmarc: false, enableRedis: true, hiredis: false, enableJSON: true, jansson: false, enableSRS: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 45, 5], ["hash", 46, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 195, 5], ["description", 196, 5], ["license", 197, 5], ["mainProgram", 201, 5], ["platforms", 202, 5], ["maintainers", 203, 5], ["changelog", 208, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 41, 3], ["version", 42, 3], ["src", 44, 3], ["enableParallelBuilding", 49, 3], ["nativeBuildInputs", 51, 3], ["buildInputs", 52, 3], ["configurePhase", 78, 3], ["installPhase", 174, 3], ["meta", 194, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -48,11 +46,11 @@ export default nix.lambda((args) => (() => {
       return [nix.thunk(() => nix.lookup(w, "FileFcntlLock"))];
     })()));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "exim",
       version: "4.100.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://ftp.exim.org/pub/exim/exim4/exim-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-6ftB9nJKWxNtZMnRnbxfJklK+Hmj5+MZD5Fjnqp5+g0=",
         })))),
@@ -131,7 +129,7 @@ runHook postConfigure
 `),
       installPhase: "runHook preInstall\n\nmkdir -p $out/bin $out/share/man/man8\ncp doc/exim.8 $out/share/man/man8\n\n( cd build-Linux-*\n  cp exicyclog exim_checkaccess exim_dumpdb exim_lock exim_tidydb \\\n    exipick exiqsumm exigrep exim_dbmbuild exim exim_fixdb eximstats \\\n    exinext exiqgrep exiwhat \\\n    $out/bin )\n\n( cd $out/bin\n  for i in mailq newaliases rmail rsmtp runq sendmail; do\n    ln -s exim $i\n  done )\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://exim.org/",
         description: "Mail transfer agent (MTA)",
         license: nix.thunk(() => (() => {

@@ -2,8 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/libncurses.nix", [[["path", 9, 3], ["extraPaths", 10, 3], ["MK_TESTS", 15, 3], ["preBuild", 16, 3], ["buildInputs", 19, 3], ["postInstall", 22, 3]]]);
 const formals$1 = { args: { lib: false, versionData: false, mkDerivation: false, "libncurses-tinfo": false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/libncurses.nix", [["path", 9, 3], ["extraPaths", 10, 3], ["MK_TESTS", 15, 3], ["preBuild", 16, 3], ["buildInputs", 19, 3], ["postInstall", 22, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const mkDerivation = nix.arg($, "mkDerivation");
   const libncurses_tinfo = nix.arg($, "libncurses-tinfo");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       path: "lib/ncurses/ncurses",
       extraPaths: nix.thunk(() => ["lib/ncurses", "contrib/ncurses", "lib/Makefile.inc"]),
       MK_TESTS: "no",

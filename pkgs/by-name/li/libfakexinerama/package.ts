@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 14, 5], ["sha256", 15, 5]], [["homepage", 43, 5], ["description", 44, 5], ["platforms", 45, 5], ["maintainers", 46, 5], ["license", 47, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["buildInputs", 18, 3], ["buildPhase", 23, 3], ["installPhase", 31, 3], ["meta", 42, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, libx11: false, libxinerama: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 14, 5], ["sha256", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 43, 5], ["description", 44, 5], ["platforms", 45, 5], ["maintainers", 46, 5], ["license", 47, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["buildInputs", 18, 3], ["buildPhase", 23, 3], ["installPhase", 31, 3], ["meta", 42, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const libx11 = nix.arg($, "libx11");
   const libxinerama = nix.arg($, "libxinerama");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "libfakexinerama",
       version: "0.1.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://www.xpra.org/src/libfakeXinerama-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           sha256: "0gxb8jska2anbb3c1m8asbglgnwylgdr44x9lr8yh91hjxsqadkx",
         })))),
@@ -27,7 +25,7 @@ export default nix.lambda((args) => (() => {
       buildPhase: "runHook preBuild\n\n$CC -O2 -Wall fakeXinerama.c -fPIC -o libfakeXinerama.so.1.0 -shared\n\nrunHook postBuild\n",
       installPhase: "runHook preInstall\n\ninstall -Dm555 libfakeXinerama.so.1.0 -t \"$out/lib\"\nln -s libfakeXinerama.so.1.0 \"$out/lib/libXinerama.so.1.0\"\nln -s libXinerama.so.1.0 \"$out/lib/libXinerama.so.1\"\nln -s libXinerama.so.1 \"$out/lib/libXinerama.so\"\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "http://xpra.org/",
         description: "fakeXinerama for Xpra",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),

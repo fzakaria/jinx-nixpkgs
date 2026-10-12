@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 32, 5], ["repo", 33, 5], ["rev", 34, 5], ["hash", 35, 5]], [["description", 73, 5], ["mainProgram", 74, 5], ["platforms", 75, 5], ["homepage", 76, 5], ["license", 77, 5], ["maintainers", 78, 5]], [["pname", 28, 3], ["version", 29, 3], ["src", 31, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 43, 3], ["buildFlags", 55, 3], ["cmakeFlags", 60, 3], ["preConfigure", 66, 3], ["doCheck", 70, 3], ["meta", 72, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromCodeberg: false, cmake: false, libuuid: false, expat: false, libiconv: false, botan3: false, systemdLibs: false, "pkg-config": false, python3Packages: false, withIDN: true, libidn: false, withPostgreSQL: true, libpq: false, withSQLite: true, sqlite: false, withUDNS: true, udns: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 32, 5], ["repo", 33, 5], ["rev", 34, 5], ["hash", 35, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 73, 5], ["mainProgram", 74, 5], ["platforms", 75, 5], ["homepage", 76, 5], ["license", 77, 5], ["maintainers", 78, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 28, 3], ["version", 29, 3], ["src", 31, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 43, 3], ["buildFlags", 55, 3], ["cmakeFlags", 60, 3], ["preConfigure", 66, 3], ["doCheck", 70, 3], ["meta", 72, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,11 +28,11 @@ export default nix.lambda((args) => (() => {
   const udns = nix.arg($, "udns");
   nix.assert_(nix.app(nix.sel(lib, "assertMsg"), nix.thunk(() => (nix.asBool(withPostgreSQL) || nix.asBool(withSQLite))), "At least one Biboumi database provider required"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/bi/biboumi/package.nix:23:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "biboumi",
       version: "9.0-unstable-2025-10-27",
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "poezio",
           repo: "biboumi",
           rev: "61242c35bc825d58c9db4301b5696bc17428bf98",
@@ -47,7 +45,7 @@ export default nix.lambda((args) => (() => {
       preConfigure: "substituteInPlace CMakeLists.txt --replace /etc/biboumi $out/etc/biboumi\n",
       doCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Modern XMPP IRC gateway",
         mainProgram: "biboumi",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),

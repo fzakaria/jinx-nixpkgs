@@ -2,17 +2,16 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/store-registration-info.nix", [[["rootPaths", 7, 44]], [["regInfo", 10, 11], ["regInfoPath", 11, 3]]]);
 const formals$1 = { args: { hostPkgs: false, rootPaths: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/store-registration-info.nix", [["rootPaths", 7, 44]]);
-const pos$2 = nix.positions(here + "/store-registration-info.nix", [["regInfo", 10, 11], ["regInfoPath", 11, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const hostPkgs = nix.arg($, "hostPkgs");
   const rootPaths = nix.arg($, "rootPaths");
-  const regInfo = nix.thunk(() => nix.app(nix.sel(hostPkgs, "closureInfo"), nix.thunk(() => ({ [nix.POS]: pos$1, rootPaths: rootPaths }))));
+  const regInfo = nix.thunk(() => nix.app(nix.sel(hostPkgs, "closureInfo"), nix.thunk(() => ({ [nix.POS]: $pos[0], rootPaths: rootPaths }))));
   return {
-    [nix.POS]: pos$2,
+    [nix.POS]: $pos[1],
     regInfo: regInfo,
     regInfoPath: nix.thunk(() => nix.str`/nix/.ro-store/${nix.builtins.baseNameOf(regInfo)}/registration`),
   };

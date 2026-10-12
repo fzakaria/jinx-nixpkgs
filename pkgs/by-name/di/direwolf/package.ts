@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 35, 5], ["repo", 36, 5], ["tag", 37, 5], ["hash", 38, 5]], [["updateScript", 98, 12]], [["description", 101, 5], ["homepage", 102, 5], ["mainProgram", 103, 5], ["license", 104, 5], ["platforms", 105, 5], ["maintainers", 106, 5]], [["pname", 31, 3], ["version", 32, 3], ["src", 34, 3], ["nativeBuildInputs", 41, 3], ["strictDeps", 46, 3], ["buildInputs", 48, 3], ["nativeInstallCheckInputs", 67, 3], ["preConfigure", 69, 3], ["postPatch", 74, 3], ["doInstallCheck", 94, 3], ["versionCheckProgramArg", 96, 3], ["passthru", 98, 3], ["meta", 100, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch: false, avahi: false, avahiSupport: true, "alsa-lib": false, cmake: false, libgpiod: false, libgpiodSupport: true, gpsd: false, gpsdSupport: true, hamlib_4: false, hamlib: true, hamlibSupport: true, hidapi: false, perl: false, portaudio: false, python3: false, sndio: false, espeak: false, udev: false, udevCheckHook: false, versionCheckHook: false, "nix-update-script": false, extraScripts: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 35, 5], ["repo", 36, 5], ["tag", 37, 5], ["hash", 38, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 98, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 101, 5], ["homepage", 102, 5], ["mainProgram", 103, 5], ["license", 104, 5], ["platforms", 105, 5], ["maintainers", 106, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 31, 3], ["version", 32, 3], ["src", 34, 3], ["nativeBuildInputs", 41, 3], ["strictDeps", 46, 3], ["buildInputs", 48, 3], ["nativeInstallCheckInputs", 67, 3], ["preConfigure", 69, 3], ["postPatch", 74, 3], ["doInstallCheck", 94, 3], ["versionCheckProgramArg", 96, 3], ["passthru", 98, 3], ["meta", 100, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -37,11 +34,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const extraScripts = nix.argOr($, "extraScripts", () => false);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "direwolf",
       version: "1.8.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "wb2osz",
           repo: "direwolf",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -59,11 +56,11 @@ substituteInPlace scripts/dwespeak.sh \\
       doInstallCheck: true,
       versionCheckProgramArg: nix.thunk(() => ["-u"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Soundcard Packet TNC, APRS Digipeater, IGate, APRStt gateway",
         homepage: "https://github.com/wb2osz/direwolf/",
         mainProgram: "direwolf",

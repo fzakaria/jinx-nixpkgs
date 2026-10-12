@@ -2,16 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["case", 25, 11], ["out", 26, 11]], [["case", 29, 11], ["out", 30, 11]], [["case", 33, 11], ["out", 34, 11]], [["hash", 37, 19]], [["hash", 38, 19]], [["hash", 39, 21]], [["2.3", 37, 13], ["2.2", 38, 13], ["2.1.1", 39, 13]], [["description", 50, 7], ["maintainers", 51, 7], ["license", 52, 7]], [["pname", 14, 5], ["owner", 15, 5], ["version", 16, 13], ["sourceRoot", 17, 5], ["postPatch", 18, 5], ["defaultVersion", 21, 5], ["release", 37, 5], ["releaseRev", 40, 5], ["propagatedBuildInputs", 42, 5], ["meta", 49, 5]]]);
 const formals$1 = { args: { lib: false, mkCoqDerivation: false, coq: false, interval: false, compcert: false, flocq: false, bignums: false, version: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["case", 25, 11], ["out", 26, 11]]);
-const pos$2 = nix.positions(here + "/default.nix", [["case", 29, 11], ["out", 30, 11]]);
-const pos$3 = nix.positions(here + "/default.nix", [["case", 33, 11], ["out", 34, 11]]);
-const pos$4 = nix.positions(here + "/default.nix", [["hash", 37, 19]]);
-const pos$5 = nix.positions(here + "/default.nix", [["hash", 38, 19]]);
-const pos$6 = nix.positions(here + "/default.nix", [["hash", 39, 21]]);
-const pos$7 = nix.positions(here + "/default.nix", [["2.3", 37, 13], ["2.2", 38, 13], ["2.1.1", 39, 13]]);
-const pos$8 = nix.positions(here + "/default.nix", [["description", 50, 7], ["maintainers", 51, 7], ["license", 52, 7]]);
-const pos$9 = nix.positions(here + "/default.nix", [["pname", 14, 5], ["owner", 15, 5], ["version", 16, 13], ["sourceRoot", 17, 5], ["postPatch", 18, 5], ["defaultVersion", 21, 5], ["release", 37, 5], ["releaseRev", 40, 5], ["propagatedBuildInputs", 42, 5], ["meta", 49, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const bignums = nix.arg($, "bignums");
   const version = nix.argOr($, "version", () => null);
   const self = nix.thunk(() => nix.app(mkCoqDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       pname: "vcfloat",
       owner: "VeriNum",
       version: version,
@@ -34,41 +26,41 @@ export default nix.lambda((args) => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "versions")), null);
         return nix.app(nix.sel(lib, "switch"), nix.thunk(() => nix.sel(coq, "coq-version")), nix.thunk(() => [
             nix.thunk(() => ({
-              [nix.POS]: pos$1,
+              [nix.POS]: $pos[0],
               case: nix.thunk(() => nix.app(nix.lookup(w, "isEq"), "8.20")),
               out: "2.3",
             })),
             nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               case: nix.thunk(() => nix.app(nix.lookup(w, "isEq"), "8.19")),
               out: "2.2",
             })),
             nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               case: nix.thunk(() => nix.app(nix.lookup(w, "range"), "8.16", "8.18")),
               out: "2.1.1",
             })),
           ]), null);
       })()),
       release: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         "2.3": nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           hash: "sha256-fV7w/kYTpcBxrHFzEvx+eydDHbGH05/seucrgSjKK3w=",
         })),
         "2.2": nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           hash: "sha256-PyMm84ZYh+dOnl8Kk2wlYsQ+S/d1Hsp6uv2twTedEPg=",
         })),
         "2.1.1": nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           hash: "sha256-bd/XSQhyFUAnSm2bhZEZBWB6l4/Ptlm9JrWu6w9BOpw=",
         })),
       })),
       releaseRev: (v) => nix.str`v${v}`,
       propagatedBuildInputs: nix.thunk(() => [interval, compcert, flocq, bignums]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         description: "Tool for Coq proofs about floating-point round-off error",
         maintainers: nix.thunk(() => (() => {
           const w_1 = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);

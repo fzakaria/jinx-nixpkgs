@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/mirage.nix", [[["description", 22, 5]], [["pname", 11, 3], ["src", 12, 20], ["version", 12, 24], ["propagatedBuildInputs", 14, 3], ["meta", 21, 3]]]);
 const formals$1 = { args: { buildDunePackage: false, gluten: false, "gluten-lwt": false, "faraday-lwt": false, "conduit-mirage": false, "mirage-flow": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/mirage.nix", [["description", 22, 5]]);
-const pos$2 = nix.positions(here + "/mirage.nix", [["pname", 11, 3], ["src", 12, 20], ["version", 12, 24], ["propagatedBuildInputs", 14, 3], ["meta", 21, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const conduit_mirage = nix.arg($, "conduit-mirage");
   const mirage_flow = nix.arg($, "mirage-flow");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "gluten-mirage",
       src: nix.thunk(() => nix.attr(gluten, "src")),
       version: nix.thunk(() => nix.attr(gluten, "version")),
       propagatedBuildInputs: nix.thunk(() => [gluten_lwt, faraday_lwt, conduit_mirage, mirage_flow]),
-      meta: nix.thunk(() => nix.update(nix.sel(gluten, "meta"), { [nix.POS]: pos$1, description: "Mirage support for gluten" })),
+      meta: nix.thunk(() => nix.update(nix.sel(gluten, "meta"), { [nix.POS]: $pos[0], description: "Mirage support for gluten" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=mirage.ts.map

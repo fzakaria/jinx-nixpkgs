@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 36, 5], ["repo", 37, 5], ["rev", 38, 5], ["hash", 39, 5]], [["updateScript", 42, 12]], [["url", 45, 5], ["hash", 46, 5]], [["desktopName", 96, 7], ["name", 97, 7], ["exec", 98, 7], ["icon", 99, 7], ["comment", 100, 7], ["categories", 101, 7]], [["description", 131, 5], ["homepage", 132, 5], ["platforms", 133, 5], ["license", 134, 5], ["mainProgram", 135, 5], ["maintainers", 136, 5]], [["pname", 32, 3], ["version", 33, 3], ["src", 35, 3], ["passthru", 42, 3], ["icon", 44, 3], ["nativeBuildInputs", 49, 3], ["buildInputs", 58, 3], ["postPatch", 74, 3], ["postInstall", 83, 3], ["desktopItems", 94, 3], ["postFixup", 107, 3], ["meta", 130, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, unstableGitUpdater: false, fetchurl: false, "pkg-config": false, cmake: false, libcbor: false, openssl: false, zlib: false, gnugrep: false, gawk: false, pcsclite: false, udev: false, imagemagick: false, python3: false, xterm: false, makeDesktopItem: false, copyDesktopItems: false, libuv: false, libsolv: false, libcouchbase: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 36, 5], ["repo", 37, 5], ["rev", 38, 5], ["hash", 39, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 42, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 45, 5], ["hash", 46, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["desktopName", 96, 7], ["name", 97, 7], ["exec", 98, 7], ["icon", 99, 7], ["comment", 100, 7], ["categories", 101, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 131, 5], ["homepage", 132, 5], ["platforms", 133, 5], ["license", 134, 5], ["mainProgram", 135, 5], ["maintainers", 136, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 32, 3], ["version", 33, 3], ["src", 35, 3], ["passthru", 42, 3], ["icon", 44, 3], ["nativeBuildInputs", 49, 3], ["buildInputs", 58, 3], ["postPatch", 74, 3], ["postInstall", 83, 3], ["desktopItems", 94, 3], ["postFixup", 107, 3], ["meta", 130, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -39,18 +34,18 @@ export default nix.lambda((args) => (() => {
       const pname = "fido2-manage";
       const version = "0-unstable-2025-06-06";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "token2",
           repo: "fido2-manage",
           rev: "4fc6a4e0d905dcc2a7bfee70232a0398e9e4b45d",
           hash: "sha256-olkEUHJ350FIMUlWG37wqSfO2wyYni4CYspwa4lAO5w=",
         }))));
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       }));
       const icon = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           url: "https://token2.net/img/icon/logo-white.png",
           hash: "sha256-UpxRzn24v1vigMFlofVU+YOzKrkxCu2Pk5iktqFgNO8=",
         }))));
@@ -64,7 +59,7 @@ install $src/gui.py $out/bin/fido2-manage-gui
 `)), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "install $src/fido2-manage-mac.sh $out/bin/fido2-manage\n")));
       const desktopItems = nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [
           nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               desktopName: "Fido2 Manager",
               name: "fido2-manage",
               exec: "fido2-manage-gui",
@@ -91,7 +86,7 @@ sed -i '1i #!${nix.sel(pythonEnv, "interpreter")}' $out/bin/fido2-manage-gui
   --replace-fail "ggrep" "${gnugrep}/bin/grep"
 `))));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Manage FIDO2.1 devices over USB or NFC, including Passkeys",
         homepage: "https://github.com/token2/fido2-manage",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
@@ -103,7 +98,7 @@ sed -i '1i #!${nix.sel(pythonEnv, "interpreter")}' $out/bin/fido2-manage-gui
         })()),
       }));
       return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname,
         version,
         src,

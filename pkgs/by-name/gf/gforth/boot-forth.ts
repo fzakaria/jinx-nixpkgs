@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/boot-forth.nix", [[["url", 15, 5], ["sha256", 16, 5]], [["description", 29, 5], ["homepage", 30, 5], ["license", 31, 5], ["platforms", 32, 5]], [["pname", 12, 3], ["version", 13, 11], ["src", 14, 3], ["patches", 19, 3], ["buildInputs", 24, 3], ["configureFlags", 26, 3], ["meta", 28, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, m4: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/boot-forth.nix", [["url", 15, 5], ["sha256", 16, 5]]);
-const pos$2 = nix.positions(here + "/boot-forth.nix", [["description", 29, 5], ["homepage", 30, 5], ["license", 31, 5], ["platforms", 32, 5]]);
-const pos$3 = nix.positions(here + "/boot-forth.nix", [["pname", 12, 3], ["version", 13, 11], ["src", 14, 3], ["patches", 19, 3], ["buildInputs", 24, 3], ["configureFlags", 26, 3], ["meta", 28, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const m4 = nix.arg($, "m4");
   const version = "0.7.3";
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "gforth-boot",
       version: version,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://ftp.gnu.org/gnu/gforth/gforth-${version}.tar.gz`),
           sha256: "1c1bahc9ypmca8rv2dijiqbangm1d9av286904yw48ph7ciz4qig",
         })))),
@@ -27,7 +25,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [m4]),
       configureFlags: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["--build=x86_64-apple-darwin"]))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Forth implementation of the GNU project (outdated version used to bootstrap)",
         homepage: "https://www.gnu.org/software/gforth/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

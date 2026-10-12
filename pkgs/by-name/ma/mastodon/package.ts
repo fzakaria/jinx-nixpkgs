@@ -2,16 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["patches", 19, 52]], [["nodejs", 27, 40]], [["name", 39, 5], ["version", 40, 13], ["gemset", 40, 21], ["ruby", 40, 28], ["gemdir", 41, 5]], [["src", 50, 15], ["hash", 51, 7], ["missingHashes", 52, 7]], [["pname", 45, 5], ["src", 46, 13], ["version", 46, 17], ["missingHashes", 48, 5], ["yarnOfflineCache", 49, 5], ["nativeBuildInputs", 55, 5], ["RAILS_ENV", 65, 5], ["NODE_ENV", 66, 5], ["buildPhase", 68, 5], ["installPhase", 100, 5]], [["mastodon", 178, 11]], [["tests", 178, 5], ["updateScript", 180, 5]], [["description", 184, 5], ["homepage", 185, 5], ["license", 186, 5], ["platforms", 187, 5], ["maintainers", 192, 5]], [["pname", 31, 11], ["version", 31, 17], ["__structuredAttrs", 33, 3], ["strictDeps", 34, 3], ["src", 36, 3], ["mastodonGems", 38, 3], ["mastodonModules", 44, 3], ["propagatedBuildInputs", 112, 3], ["nativeBuildInputs", 113, 3], ["buildInputs", 114, 3], ["buildPhase", 119, 3], ["installPhase", 159, 3], ["passthru", 177, 3], ["meta", 183, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, "nodejs-slim_22": false, bundlerEnv: false, nixosTests: false, "yarn-berry_4": false, callPackage: false, ruby_3_3: false, writeShellScript: false, brotli: false, python3: false, pname: true, version: true, patches: true, srcOverride: true, gemset: true, yarnHash: true, yarnMissingHashes: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["patches", 19, 52]]);
-const pos$2 = nix.positions(here + "/package.nix", [["nodejs", 27, 40]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 39, 5], ["version", 40, 13], ["gemset", 40, 21], ["ruby", 40, 28], ["gemdir", 41, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["src", 50, 15], ["hash", 51, 7], ["missingHashes", 52, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 45, 5], ["src", 46, 13], ["version", 46, 17], ["missingHashes", 48, 5], ["yarnOfflineCache", 49, 5], ["nativeBuildInputs", 55, 5], ["RAILS_ENV", 65, 5], ["NODE_ENV", 66, 5], ["buildPhase", 68, 5], ["installPhase", 100, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["mastodon", 178, 11]]);
-const pos$7 = nix.positions(here + "/package.nix", [["tests", 178, 5], ["updateScript", 180, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["description", 184, 5], ["homepage", 185, 5], ["license", 186, 5], ["platforms", 187, 5], ["maintainers", 192, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["pname", 31, 11], ["version", 31, 17], ["__structuredAttrs", 33, 3], ["strictDeps", 34, 3], ["src", 36, 3], ["mastodonGems", 38, 3], ["mastodonModules", 44, 3], ["propagatedBuildInputs", 112, 3], ["nativeBuildInputs", 113, 3], ["buildInputs", 114, 3], ["buildPhase", 119, 3], ["installPhase", 159, 3], ["passthru", 177, 3], ["meta", 183, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,13 +21,13 @@ export default nix.lambda((args) => (() => {
   const pname = nix.argOr($, "pname", () => "mastodon");
   const version = nix.argOr($, "version", () => nix.sel(srcOverride, "version"));
   const patches = nix.argOr($, "patches", () => []);
-  const srcOverride = nix.argOr($, "srcOverride", () => nix.app(callPackage, nix.path(here, "./source.nix"), nix.thunk(() => ({ [nix.POS]: pos$1, patches: patches }))));
+  const srcOverride = nix.argOr($, "srcOverride", () => nix.app(callPackage, nix.path(here, "./source.nix"), nix.thunk(() => ({ [nix.POS]: $pos[0], patches: patches }))));
   const gemset = nix.argOr($, "gemset", () => nix.add(nix.path(here, "./."), "/gemset.nix"));
   const yarnHash = nix.argOr($, "yarnHash", () => nix.sel(srcOverride, "yarnHash"));
   const yarnMissingHashes = nix.argOr($, "yarnMissingHashes", () => nix.sel(srcOverride, "yarnMissingHashes"));
   const nodejs_slim = nodejs_slim_22;
   const ruby = ruby_3_3;
-  const yarn_berry = nix.thunk(() => nix.app(nix.sel(yarn_berry_4, "override"), nix.thunk(() => ({ [nix.POS]: pos$2, nodejs: nodejs_slim }))));
+  const yarn_berry = nix.thunk(() => nix.app(nix.sel(yarn_berry_4, "override"), nix.thunk(() => ({ [nix.POS]: $pos[1], nodejs: nodejs_slim }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => (() => {
       const pname_1 = pname;
       const version_1 = version;
@@ -43,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const strictDeps = true;
       const src = srcOverride;
       const mastodonGems = nix.thunk(() => nix.app(bundlerEnv, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           name: nix.thunk(() => nix.str`${pname_1}-gems-${version_1}`),
           version: version_1,
           gemset: gemset,
@@ -51,12 +43,17 @@ export default nix.lambda((args) => (() => {
           gemdir: src,
         }))));
       const mastodonModules = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           pname: nix.thunk(() => nix.str`${pname_1}-modules`),
           src: src,
           version: version_1,
           missingHashes: yarnMissingHashes,
-          yarnOfflineCache: nix.thunk(() => nix.app(nix.sel(yarn_berry, "fetchYarnBerryDeps"), nix.thunk(() => ({ [nix.POS]: pos$4, src: src, hash: yarnHash, missingHashes: yarnMissingHashes })))),
+          yarnOfflineCache: nix.thunk(() => nix.app(nix.sel(yarn_berry, "fetchYarnBerryDeps"), nix.thunk(() => ({
+              [nix.POS]: $pos[3],
+              src: src,
+              hash: yarnHash,
+              missingHashes: yarnMissingHashes,
+            })))),
           nativeBuildInputs: nix.thunk(() => [
             nodejs_slim,
             yarn_berry,
@@ -90,12 +87,15 @@ runHook postInstall
 `;
       })());
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$7,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$6, mastodon: nix.thunk(() => nix.sel(nixosTests, "mastodon")) })),
+        [nix.POS]: $pos[6],
+        tests: nix.thunk(() => ({
+          [nix.POS]: $pos[5],
+          mastodon: nix.thunk(() => nix.sel(nixosTests, "mastodon")),
+        })),
         updateScript: nix.path(here, "./update.sh"),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         description: "Self-hosted, globally interconnected microblogging software based on ActivityPub",
         homepage: "https://joinmastodon.org",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Plus")),
@@ -110,7 +110,7 @@ runHook postInstall
         })()),
       }));
       return {
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         pname: pname_1,
         version: version_1,
         __structuredAttrs,

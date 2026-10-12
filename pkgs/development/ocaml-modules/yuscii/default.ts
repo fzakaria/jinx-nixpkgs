@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 20, 5], ["sha256", 21, 5]], [["description", 35, 5], ["license", 36, 5], ["homepage", 37, 5], ["maintainers", 38, 5]], [["pname", 13, 3], ["version", 14, 3], ["minimalOCamlVersion", 16, 3], ["duneVersion", 17, 3], ["src", 19, 3], ["nativeCheckInputs", 24, 3], ["checkInputs", 27, 3], ["doCheck", 32, 3], ["meta", 34, 3]]]);
 const formals$1 = { args: { alcotest: false, buildDunePackage: false, ocaml: false, fetchzip: false, gcc: false, fmt: false, lib: false, uutf: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 20, 5], ["sha256", 21, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 35, 5], ["license", 36, 5], ["homepage", 37, 5], ["maintainers", 38, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 13, 3], ["version", 14, 3], ["minimalOCamlVersion", 16, 3], ["duneVersion", 17, 3], ["src", 19, 3], ["nativeCheckInputs", 24, 3], ["checkInputs", 27, 3], ["doCheck", 32, 3], ["meta", 34, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const minimalOCamlVersion = "4.03";
       const duneVersion = "3";
       const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/mirage/yuscii/releases/download/v${version}/yuscii-v${version}.tbz`),
           sha256: "0idywlkw0fbakrxv65swnr5bj7f2vns9kpay7q03gzlv82p670hy",
         }))));
@@ -31,14 +29,14 @@ export default nix.lambda((args) => (() => {
       const checkInputs = nix.thunk(() => [alcotest, fmt, uutf]);
       const doCheck = nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(ocaml, "version")), "4.08"));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Simple mapper between UTF-7 to Unicode according RFC2152",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         homepage: "https://github.com/mirage/yuscii",
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         minimalOCamlVersion,

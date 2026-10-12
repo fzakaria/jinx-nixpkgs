@@ -2,13 +2,9 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["LC_ALL", 57, 9]], [["graalvmDrv", 101, 17]], [["platforms", 107, 35]], [["env", 56, 7], ["dontUnpack", 61, 15], ["strictDeps", 61, 26], ["__structuredAttrs", 61, 37], ["nativeBuildInputs", 63, 7], ["buildInputs", 71, 7], ["nativeImageArgs", 73, 7], ["buildPhase", 75, 7], ["installPhase", 84, 7], ["postInstall", 93, 7], ["disallowedReferences", 98, 7], ["passthru", 100, 7], ["meta", 105, 7]], [["constructDrv", 10, 3], ["excludeDrvArgNames", 12, 3], ["extendDrvArgs", 20, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, glibcLocales: false, removeReferencesTo: false, graalvmPackages: false }, ellipsis: false };
 const formals$2 = { args: { dontUnpack: true, strictDeps: true, __structuredAttrs: true, graalvmDrv: true, executable: true, nativeImageBuildArgs: true, extraNativeImageBuildArgs: true, graalvmXmx: true, env: true, meta: true, passthru: true }, ellipsis: true };
-const pos$1 = nix.positions(here + "/default.nix", [["LC_ALL", 57, 9]]);
-const pos$2 = nix.positions(here + "/default.nix", [["graalvmDrv", 101, 17]]);
-const pos$3 = nix.positions(here + "/default.nix", [["platforms", 107, 35]]);
-const pos$4 = nix.positions(here + "/default.nix", [["env", 56, 7], ["dontUnpack", 61, 15], ["strictDeps", 61, 26], ["__structuredAttrs", 61, 37], ["nativeBuildInputs", 63, 7], ["buildInputs", 71, 7], ["nativeImageArgs", 73, 7], ["buildPhase", 75, 7], ["installPhase", 84, 7], ["postInstall", 93, 7], ["disallowedReferences", 98, 7], ["passthru", 100, 7], ["meta", 105, 7]]);
-const pos$5 = nix.positions(here + "/default.nix", [["constructDrv", 10, 3], ["excludeDrvArgNames", 12, 3], ["extendDrvArgs", 20, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const removeReferencesTo = nix.arg($, "removeReferencesTo");
   const graalvmPackages = nix.arg($, "graalvmPackages");
   return nix.app(nix.sel(lib, "extendMkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       constructDrv: nix.thunk(() => nix.sel(stdenv, "mkDerivation")),
       excludeDrvArgNames: nix.thunk(() => [
         "executable",
@@ -48,8 +44,8 @@ export default nix.lambda((args) => (() => {
         const meta = nix.argOr($_1, "meta", () => ({}));
         const passthru = nix.argOr($_1, "passthru", () => ({}));
         return {
-          [nix.POS]: pos$4,
-          env: nix.thunk(() => nix.update({ [nix.POS]: pos$1, LC_ALL: "en_US.UTF-8" }, env)),
+          [nix.POS]: $pos[3],
+          env: nix.thunk(() => nix.update({ [nix.POS]: $pos[0], LC_ALL: "en_US.UTF-8" }, env)),
           dontUnpack: dontUnpack,
           strictDeps: strictDeps,
           __structuredAttrs: __structuredAttrs,
@@ -67,10 +63,10 @@ runHook postInstall
 ${nix.selOr(args_2, () => "", "postInstall")}
 `),
           disallowedReferences: nix.thunk(() => [graalvmDrv]),
-          passthru: nix.thunk(() => nix.update({ [nix.POS]: pos$2, graalvmDrv: graalvmDrv }, passthru)),
+          passthru: nix.thunk(() => nix.update({ [nix.POS]: $pos[1], graalvmDrv: graalvmDrv }, passthru)),
           meta: nix.thunk(() => nix.update((() => {
             const from = nix.thunk(() => nix.sel(graalvmDrv, "meta"));
-            return { [nix.POS]: pos$3, platforms: nix.thunk(() => nix.attr(from, "platforms")) };
+            return { [nix.POS]: $pos[2], platforms: nix.thunk(() => nix.attr(from, "platforms")) };
           })(), meta)),
         };
       })(), formals$2),

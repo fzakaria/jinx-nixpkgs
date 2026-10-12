@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 42, 7], ["hash", 43, 7]], [["pname", 40, 26], ["version", 40, 32], ["src", 41, 5]], [["name", 115, 7], ["exec", 116, 7], ["icon", 117, 7], ["desktopName", 118, 7], ["comment", 119, 7], ["categories", 120, 7], ["keywords", 121, 7], ["mimeTypes", 126, 7]], [["description", 131, 5], ["homepage", 132, 5], ["license", 133, 5], ["maintainers", 134, 5], ["platforms", 138, 5], ["sourceProvenance", 139, 5]], [["pname", 36, 3], ["version", 37, 3], ["src", 39, 3], ["nativeBuildInputs", 47, 3], ["buildInputs", 54, 3], ["strictDeps", 59, 3], ["installPhase", 61, 3], ["postConfigure", 76, 3], ["desktopItems", 111, 3], ["meta", 130, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, appimageTools: false, fetchurl: false, graphicsmagick: false, makeWrapper: false, copyDesktopItems: false, autoPatchelfHook: false, libxxf86vm: false, libxrandr: false, libxext: false, libxcursor: false, libx11: false, xrandr: false, libxcb: false, libpulseaudio: false, libGL: false, udev: false, "xdg-utils": false, electron: false, addDriverRunpath: false, makeDesktopItem: false, jdk8: false, jdk17: false, jdk21: false, jdks: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 42, 7], ["hash", 43, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 40, 26], ["version", 40, 32], ["src", 41, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 115, 7], ["exec", 116, 7], ["icon", 117, 7], ["desktopName", 118, 7], ["comment", 119, 7], ["categories", 120, 7], ["keywords", 121, 7], ["mimeTypes", 126, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 131, 5], ["homepage", 132, 5], ["license", 133, 5], ["maintainers", 134, 5], ["platforms", 138, 5], ["sourceProvenance", 139, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 36, 3], ["version", 37, 3], ["src", 39, 3], ["nativeBuildInputs", 47, 3], ["buildInputs", 54, 3], ["strictDeps", 59, 3], ["installPhase", 61, 3], ["postConfigure", 76, 3], ["desktopItems", 111, 3], ["meta", 130, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -38,15 +34,15 @@ export default nix.lambda((args) => (() => {
   const jdk21 = nix.arg($, "jdk21");
   const jdks = nix.argOr($, "jdks", () => [jdk8, jdk17, jdk21]);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "gdlauncher-carbon",
       version: "2.0.24",
       src: nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              [nix.POS]: pos$1,
+              [nix.POS]: $pos[0],
               url: nix.thunk(() => nix.str`https://cdn-raw.gdl.gg/launcher/GDLauncher__${nix.sel(finalAttrs, "version")}__linux__x64.AppImage`),
               hash: "sha256-d5ZvWSLA/7mY0540TDLMW9qmEFA5xC6Zd83IWakOmGo=",
             })))),
@@ -79,7 +75,7 @@ export default nix.lambda((args) => (() => {
       })()),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "GDLauncher",
             exec: "gdlauncher-carbon",
             icon: "gdlauncher-carbon",
@@ -91,7 +87,7 @@ export default nix.lambda((args) => (() => {
           })))),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Simple, yet powerful Minecraft custom launcher with a strong focus on the user experience",
         homepage: "https://gdlauncher.com/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsl11")),

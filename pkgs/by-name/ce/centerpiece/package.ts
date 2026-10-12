@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 24, 5], ["repo", 25, 5], ["rev", 26, 5], ["hash", 27, 5]], [["homepage", 60, 5], ["description", 61, 5], ["license", 62, 5], ["maintainers", 63, 5], ["platforms", 67, 5], ["mainProgram", 68, 5]], [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["cargoHash", 30, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 33, 3], ["postFixup", 47, 3], ["meta", 59, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, "pkg-config": false, dbus: false, "vulkan-loader": false, libGL: false, fetchFromGitHub: false, rustPlatform: false, libxkbcommon: false, wayland: false, enableX11: true, libxrandr: false, libxi: false, libxcursor: false, libx11: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 24, 5], ["repo", 25, 5], ["rev", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 60, 5], ["description", 61, 5], ["license", 62, 5], ["maintainers", 63, 5], ["platforms", 67, 5], ["mainProgram", 68, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["cargoHash", 30, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 33, 3], ["postFixup", 47, 3], ["meta", 59, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const libxcursor = nix.arg($, "libxcursor");
   const libx11 = nix.arg($, "libx11");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "centerpiece",
       version: "1.1.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "friedow",
           repo: "centerpiece",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -42,7 +40,7 @@ export default nix.lambda((args) => (() => {
 patchelf --set-rpath "$rpath:${nix.app(nix.sel(lib, "makeLibraryPath"), nix.thunk(() => [libGL, libxkbcommon, vulkan_loader, wayland]))}" $out/bin/centerpiece
 `))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/friedow/centerpiece",
         description: "Your trusty omnibox search",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

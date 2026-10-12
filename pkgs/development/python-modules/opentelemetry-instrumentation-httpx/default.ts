@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["homepage", 44, 5], ["description", 45, 5]], [["version", 17, 43], ["src", 17, 51], ["pname", 18, 3], ["pyproject", 19, 3], ["sourceRoot", 21, 3], ["build-system", 23, 3], ["dependencies", 25, 3], ["nativeCheckInputs", 33, 3], ["doCheck", 39, 3], ["pythonImportsCheck", 41, 3], ["meta", 43, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, hatchling: false, httpx: false, "opentelemetry-api": false, "opentelemetry-instrumentation": false, "opentelemetry-util-http": false, "opentelemetry-test-utils": false, "opentelemetry-semantic-conventions": false, pytestCheckHook: false, pythonOlder: false, respx: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["homepage", 44, 5], ["description", 45, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["version", 17, 43], ["src", 17, 51], ["pname", 18, 3], ["pyproject", 19, 3], ["sourceRoot", 21, 3], ["build-system", 23, 3], ["dependencies", 25, 3], ["nativeCheckInputs", 33, 3], ["doCheck", 39, 3], ["pythonImportsCheck", 41, 3], ["meta", 43, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,7 +20,7 @@ export default nix.lambda((args) => (() => {
   const pythonOlder = nix.arg($, "pythonOlder");
   const respx = nix.arg($, "respx");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       version: nix.thunk(() => nix.attr(opentelemetry_instrumentation, "version")),
       src: nix.thunk(() => nix.attr(opentelemetry_instrumentation, "src")),
       pname: "opentelemetry-instrumentation-httpx",
@@ -39,7 +38,7 @@ export default nix.lambda((args) => (() => {
       doCheck: nix.thunk(() => nix.app(pythonOlder, "3.14")),
       pythonImportsCheck: nix.thunk(() => ["opentelemetry.instrumentation.httpx"]),
       meta: nix.thunk(() => nix.update(nix.sel(opentelemetry_instrumentation, "meta"), {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         homepage: "https://github.com/open-telemetry/opentelemetry-python-contrib/blob/main/instrumentation/opentelemetry-instrumentation-httpx",
         description: "Allows tracing HTTP requests made by the httpx library",
       })),

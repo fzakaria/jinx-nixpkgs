@@ -2,9 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/libcMinimal.nix", [[["MK_TESTS", 98, 5], ["MK_SYMVER", 99, 5], ["MK_SSP", 100, 5], ["MK_NLS", 101, 5], ["MK_ICONV", 102, 5], ["MK_NS_CACHING", 103, 5], ["MK_INET6_SUPPORT", 104, 5], ["MK_HESIOD", 105, 5], ["MK_NIS", 106, 5], ["MK_HYPERV", 107, 5], ["MK_FP_LIBC", 108, 5], ["MK_MALLOC_PRODUCTION", 109, 5], ["MK_MACHDEP_OPTIMIZATIONS", 110, 5]], [["pname", 19, 3], ["path", 20, 3], ["extraPaths", 21, 3], ["outputs", 50, 3], ["noLibc", 56, 3], ["buildInputs", 58, 3], ["extraNativeBuildInputs", 64, 3], ["postPatch", 76, 3], ["preBuild", 83, 3], ["postBuild", 87, 3], ["postInstall", 91, 3], ["alwaysKeepStatic", 95, 3], ["env", 97, 3], ["hardeningDisable", 114, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, mkDerivation: false, include: false, rpcgen: false, flex: false, byacc: false, gencat: false, csu: false, i18n: false, libsys: false, llvmPackages: false, libcompiler_rt: false, extraSrc: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/libcMinimal.nix", [["MK_TESTS", 98, 5], ["MK_SYMVER", 99, 5], ["MK_SSP", 100, 5], ["MK_NLS", 101, 5], ["MK_ICONV", 102, 5], ["MK_NS_CACHING", 103, 5], ["MK_INET6_SUPPORT", 104, 5], ["MK_HESIOD", 105, 5], ["MK_NIS", 106, 5], ["MK_HYPERV", 107, 5], ["MK_FP_LIBC", 108, 5], ["MK_MALLOC_PRODUCTION", 109, 5], ["MK_MACHDEP_OPTIMIZATIONS", 110, 5]]);
-const pos$2 = nix.positions(here + "/libcMinimal.nix", [["pname", 19, 3], ["path", 20, 3], ["extraPaths", 21, 3], ["outputs", 50, 3], ["noLibc", 56, 3], ["buildInputs", 58, 3], ["extraNativeBuildInputs", 64, 3], ["postPatch", 76, 3], ["preBuild", 83, 3], ["postBuild", 87, 3], ["postInstall", 91, 3], ["alwaysKeepStatic", 95, 3], ["env", 97, 3], ["hardeningDisable", 114, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,7 +22,7 @@ export default nix.lambda((args) => (() => {
   const libcompiler_rt = nix.arg($, "libcompiler_rt");
   const extraSrc = nix.argOr($, "extraSrc", () => []);
   return nix.app(mkDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "libcMinimal",
       path: "lib/libc",
       extraPaths: nix.thunk(() => nix.concat([
@@ -63,7 +62,7 @@ substituteInPlace $BSDSRCDIR/include/paths.h --replace '/usr/share/i18n' '${i18n
       postInstall: "make -C $BSDSRCDIR/lib/libc_nonshared $makeFlags install\n",
       alwaysKeepStatic: true,
       env: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         MK_TESTS: "no",
         MK_SYMVER: "yes",
         MK_SSP: "yes",

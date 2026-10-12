@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 16, 5], ["sha256", 17, 5]], [["url", 22, 7], ["sha256", 23, 7]], [["url", 26, 7], ["sha256", 27, 7]], [["NIX_CFLAGS_COMPILE", 36, 7]], [["package", 58, 5], ["command", 59, 5]], [["tests", 57, 12]], [["description", 63, 5], ["homepage", 64, 5], ["license", 65, 5], ["platforms", 66, 5], ["maintainers", 67, 5], ["mainProgram", 68, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["patches", 20, 3], ["env", 36, 3], ["postPatch", 38, 3], ["postInstall", 46, 3], ["buildInputs", 53, 3], ["nativeBuildInputs", 55, 3], ["passthru", 57, 3], ["meta", 62, 3]]]);
 const formals$1 = { args: { lib: false, gcc14Stdenv: false, fetchurl: false, cmake: false, imagemagick: false, testers: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 16, 5], ["sha256", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 22, 7], ["sha256", 23, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 26, 7], ["sha256", 27, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 36, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["package", 58, 5], ["command", 59, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["tests", 57, 12]]);
-const pos$7 = nix.positions(here + "/package.nix", [["description", 63, 5], ["homepage", 64, 5], ["license", 65, 5], ["platforms", 66, 5], ["maintainers", 67, 5], ["mainProgram", 68, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["patches", 20, 3], ["env", 36, 3], ["postPatch", 38, 3], ["postInstall", 46, 3], ["buildInputs", 53, 3], ["nativeBuildInputs", 55, 3], ["passthru", 57, 3], ["meta", 62, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,42 +14,42 @@ export default nix.lambda((args) => (() => {
   const imagemagick = nix.arg($, "imagemagick");
   const testers = nix.arg($, "testers");
   return nix.app(nix.sel(gcc14Stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "cuneiform",
       version: "1.1.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://launchpad.net/cuneiform-linux/1.1/1.1/+download/cuneiform-linux-1.1.0.tar.bz2",
           sha256: "1bdvppyfx2184zmzcylskd87cxv56d8f32jf7g1qc8779l2hszjp",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://raw.githubusercontent.com/archlinux/svntogit-community/a2ec92f05de006b56d16ac6a6c370d54a554861a/cuneiform/trunk/build-fix.patch",
             sha256: "19cmrlx4khn30qqrpyayn7bicg8yi0wpz1x1bvqqrbvr3kwldxyj",
           })))),
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: "https://gitweb.gentoo.org/repo/gentoo.git/plain/app-text/cuneiform/files/cuneiform-1.1.0-gcc11.patch?id=fd8e596c6a5eab634656e265c3da5241f5ceee8c",
             sha256: "14bp2f4dvlgxnpdza1rgszhkbxhp6p7lhgnb1s7c1x7vwdrx0ri7",
           })))),
         nix.path(here, "./gcc14-fix.patch"),
       ]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$4, NIX_CFLAGS_COMPILE: "-fcommon" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[3], NIX_CFLAGS_COMPILE: "-fcommon" })),
       postPatch: "rm cuneiform_src/Kern/hhh/tigerh/h/strings.h\nsubstituteInPlace CMakeLists.txt --replace-fail \\\n  'cmake_minimum_required(VERSION 2.6.2)' \\\n  'cmake_minimum_required(VERSION 3.10)'\n",
       postInstall: "if [[ -d ${!outputLib}/lib64 ]]; then\n  mv ${!outputLib}/lib64 ${!outputLib}/lib\n  ln -s lib ${!outputLib}/lib64\nfi\n",
       buildInputs: nix.thunk(() => [imagemagick]),
       nativeBuildInputs: nix.thunk(() => [cmake]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         tests: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             command: "cuneiform",
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "Multi-language OCR system",
         homepage: "https://launchpad.net/cuneiform-linux",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

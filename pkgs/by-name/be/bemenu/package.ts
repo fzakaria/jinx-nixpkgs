@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 33, 5], ["repo", 34, 5], ["rev", 35, 5], ["hash", 36, 5]], [["homepage", 90, 5], ["description", 91, 5], ["license", 92, 5], ["maintainers", 93, 5], ["mainProgram", 94, 5], ["platforms", 95, 5]], [["pname", 29, 3], ["version", 30, 3], ["src", 32, 3], ["postPatch", 39, 3], ["strictDeps", 43, 3], ["nativeBuildInputs", 44, 3], ["buildInputs", 51, 3], ["makeFlags", 72, 3], ["buildFlags", 74, 3], ["postInstall", 81, 3], ["meta", 89, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, cairo: false, libxkbcommon: false, pango: false, fribidi: false, harfbuzz: false, "pkg-config": false, scdoc: false, makeWrapper: false, ncursesSupport: true, ncurses: false, waylandSupport: true, wayland: false, "wayland-protocols": false, "wayland-scanner": false, x11Support: true, libxinerama: false, libxft: false, libxdmcp: false, libx11: false, "libpthread-stubs": false, libxcb: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 33, 5], ["repo", 34, 5], ["rev", 35, 5], ["hash", 36, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 90, 5], ["description", 91, 5], ["license", 92, 5], ["maintainers", 93, 5], ["mainProgram", 94, 5], ["platforms", 95, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 29, 3], ["version", 30, 3], ["src", 32, 3], ["postPatch", 39, 3], ["strictDeps", 43, 3], ["nativeBuildInputs", 44, 3], ["buildInputs", 51, 3], ["makeFlags", 72, 3], ["buildFlags", 74, 3], ["postInstall", 81, 3], ["meta", 89, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,11 +32,11 @@ export default nix.lambda((args) => (() => {
   const libpthread_stubs = nix.arg($, "libpthread-stubs");
   const libxcb = nix.arg($, "libxcb");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "bemenu",
       version: "0.6.23",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Cloudef",
           repo: "bemenu",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -52,7 +50,7 @@ export default nix.lambda((args) => (() => {
       buildFlags: nix.thunk(() => nix.concat(["clients"], nix.concat(nix.app(nix.sel(lib, "optional"), ncursesSupport, "curses"), nix.concat(nix.app(nix.sel(lib, "optional"), waylandSupport, "wayland"), nix.app(nix.sel(lib, "optional"), x11Support, "x11"))))),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "so=\"$(find \"$out/lib\" -name \"libbemenu.so.[0-9]\" -print -quit)\"\nfor f in \"$out/bin/\"*; do\n    install_name_tool -change \"$(basename $so)\" \"$so\" $f\n    wrapProgram $f --set BEMENU_BACKEND curses\ndone\n")),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/Cloudef/bemenu",
         description: "Dynamic menu library and client program inspired by dmenu",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

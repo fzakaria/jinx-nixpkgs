@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 26, 5], ["repo", 27, 5], ["rev", 28, 5], ["sha256", 29, 5]], [["url", 34, 5], ["hash", 35, 5]], [["description", 56, 5], ["homepage", 57, 35], ["license", 58, 5], ["maintainers", 59, 5], ["mainProgram", 60, 5]], [["pname", 20, 3], ["version", 21, 3], ["minimalOCamlVersion", 23, 3], ["src", 25, 3], ["patches", 33, 3], ["buildInputs", 38, 3], ["propagatedBuildInputs", 43, 3], ["meta", 55, 3]]]);
 const formals$1 = { args: { lib: false, buildDunePackage: false, fetchFromGitHub: false, fetchpatch: false, ppx_assert: true, ppx_bench: true, ppx_bin_prot: true, ppx_compare: true, ppx_enumerate: true, ppx_expect: false, ppx_hash: false, ppx_here: false, ppx_optcomp: false, ppx_sexp_conv: false, ppx_sexp_value: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 26, 5], ["repo", 27, 5], ["rev", 28, 5], ["sha256", 29, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["url", 34, 5], ["hash", 35, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 56, 5], ["homepage", 57, 35], ["license", 58, 5], ["maintainers", 59, 5], ["mainProgram", 60, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 20, 3], ["version", 21, 3], ["minimalOCamlVersion", 23, 3], ["src", 25, 3], ["patches", 33, 3], ["buildInputs", 38, 3], ["propagatedBuildInputs", 43, 3], ["meta", 55, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,19 +23,19 @@ export default nix.lambda((args) => (() => {
   const ppx_sexp_conv = nix.arg($, "ppx_sexp_conv");
   const ppx_sexp_value = nix.argOr($, "ppx_sexp_value", () => null);
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "ppx_bap",
       version: "0.14",
       minimalOCamlVersion: "4.07",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "BinaryAnalysisPlatform",
           repo: "ppx_bap",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           sha256: "1c6rcdp8bicdiwqc2mb59cl9l2vxlp3y8hmnr9x924fq7acly248",
         })))),
       patches: nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: "https://github.com/BinaryAnalysisPlatform/ppx_bap/commit/7f197648978758fbcbf553da50d7a9248d34f7e4.patch",
           hash: "sha256-oOdcA06mb0W5jDhF4nutEijy6yu/6kMjKOUcNxUSk6k=",
         })))),
@@ -57,7 +54,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(finalAttrs, "src", "meta"));
         return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Set of ppx rewriters for BAP",
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

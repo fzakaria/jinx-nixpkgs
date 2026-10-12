@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/dual-function-keys.nix", [[["group", 15, 5], ["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]], [["homepage", 41, 5], ["description", 42, 5], ["license", 43, 5], ["maintainers", 44, 5], ["platforms", 45, 5], ["mainProgram", 46, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 22, 3], ["buildInputs", 24, 3], ["prePatch", 29, 3], ["installFlags", 35, 3], ["meta", 40, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitLab: false, "pkg-config": false, "yaml-cpp": false, libevdev: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/dual-function-keys.nix", [["group", 15, 5], ["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/dual-function-keys.nix", [["homepage", 41, 5], ["description", 42, 5], ["license", 43, 5], ["maintainers", 44, 5], ["platforms", 45, 5], ["mainProgram", 46, 5]]);
-const pos$3 = nix.positions(here + "/dual-function-keys.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 22, 3], ["buildInputs", 24, 3], ["prePatch", 29, 3], ["installFlags", 35, 3], ["meta", 40, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname = "dual-function-keys";
       const version = "1.5.0";
       const src = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           group: "interception",
           owner: "linux/plugins",
           repo: pname,
@@ -31,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const prePatch = "substituteInPlace config.mk --replace \\\n  '/usr/include/libevdev-1.0' \\\n  \"$(pkg-config --cflags libevdev | cut -c 3-)\"\n";
       const installFlags = nix.thunk(() => ["DESTDIR=$(out)", "PREFIX="]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://gitlab.com/interception/linux/plugins/dual-function-keys",
         description: "Tap for one key, hold for another",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -43,7 +41,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "dual-function-keys",
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

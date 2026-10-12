@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 14, 5], ["hash", 15, 5]], [["updateScript", 39, 5]], [["description", 43, 5], ["homepage", 44, 5], ["license", 45, 5], ["maintainers", 46, 5], ["mainProgram", 47, 5], ["platforms", 48, 5], ["sourceProvenance", 49, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["sourceRoot", 18, 3], ["nativeBuildInputs", 20, 3], ["dontPatch", 25, 3], ["dontConfigure", 26, 3], ["dontBuild", 27, 3], ["installPhase", 29, 3], ["passthru", 38, 3], ["meta", 42, 3]]]);
 const formals$1 = { args: { stdenvNoCC: false, lib: false, fetchurl: false, unzip: false, makeWrapper: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 14, 5], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 39, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 43, 5], ["homepage", 44, 5], ["license", 45, 5], ["maintainers", 46, 5], ["mainProgram", 47, 5], ["platforms", 48, 5], ["sourceProvenance", 49, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["sourceRoot", 18, 3], ["nativeBuildInputs", 20, 3], ["dontPatch", 25, 3], ["dontConfigure", 26, 3], ["dontBuild", 27, 3], ["installPhase", 29, 3], ["passthru", 38, 3], ["meta", 42, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const unzip = nix.arg($, "unzip");
   const makeWrapper = nix.arg($, "makeWrapper");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "loopwm",
       version: "1.4.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/MrKai77/Loop/releases/download/${nix.sel(finalAttrs, "version")}/Loop.zip`),
           hash: "sha256-UU6X+qs4Q837ixhZuRMzcEY5oaLOWA5PaE117+AH04Y=",
         })))),
@@ -30,9 +27,9 @@ export default nix.lambda((args) => (() => {
       dontConfigure: true,
       dontBuild: true,
       installPhase: "runHook preInstall\nmkdir -p $out/{Applications,bin}\ncp -r Loop.app $out/Applications\nmakeWrapper $out/Applications/Loop.app/Contents/MacOS/Loop $out/bin/loopwm \\\n  --set LOOP_SKIP_UPDATE_CHECK 1\nrunHook postInstall\n",
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[1], updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "macOS Window management made elegant",
         homepage: "https://github.com/MrKai77/Loop",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

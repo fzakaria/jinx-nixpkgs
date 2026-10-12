@@ -2,10 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]], [["description", 64, 5], ["homepage", 65, 5], ["license", 66, 5], ["maintainers", 67, 5], ["platforms", 68, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 29, 3], ["preConfigure", 34, 3], ["configureFlags", 36, 3], ["preFixup", 46, 3], ["tclRequiresCheck", 61, 3], ["meta", 63, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, automake: false, autoconf: false, libtool: false, readline: false, mkTclDerivation: false, tk: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 64, 5], ["homepage", 65, 5], ["license", 66, 5], ["maintainers", 67, 5], ["platforms", 68, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 29, 3], ["preConfigure", 34, 3], ["configureFlags", 36, 3], ["preFixup", 46, 3], ["tclRequiresCheck", 61, 3], ["meta", 63, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const mkTclDerivation = nix.arg($, "mkTclDerivation");
   const tk = nix.arg($, "tk");
   return nix.app(mkTclDerivation, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "tclreadline",
       version: "2.5.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "flightaware",
           repo: "tclreadline",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -42,7 +40,7 @@ export default nix.lambda((args) => (() => {
       preFixup: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), "needed_libraries=$(ls .libs | grep '\\.\\(so\\|la\\)$')\nfor lib in $needed_libraries; do\n  if ! ls $out/lib | grep \"$lib\"; then\n    echo \"$lib was not installed correctly\"\n    exit 1\n  fi\ndone\nfor executable in $out/bin/{wishrl,tclshrl}; do\n  patchelf --set-rpath \\\n    \"$(patchelf --print-rpath \"$executable\" | sed \"s@$builddir/.libs@$out/lib@\")\" \\\n    \"$executable\"\ndone\n")),
       tclRequiresCheck: nix.thunk(() => ["tclreadline"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "GNU readline for interactive tcl shells",
         homepage: "https://github.com/flightaware/tclreadline",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 9, 5], ["sha256", 10, 5]], [["url", 19, 5], ["sha256", 20, 5]], [["NIX_CFLAGS_COMPILE", 36, 5]], [["nixos", 48, 18]], [["tests", 48, 12]], [["description", 51, 5], ["homepage", 52, 5], ["license", 53, 5], ["maintainers", 54, 5], ["platforms", 55, 5], ["mainProgram", 56, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["patches", 24, 3], ["configureFlags", 31, 3], ["env", 35, 3], ["postInstall", 39, 3], ["enableParallelBuilding", 43, 3], ["strictDeps", 45, 3], ["__structuredAttrs", 46, 3], ["passthru", 48, 3], ["meta", 50, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 9, 5], ["sha256", 10, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 19, 5], ["sha256", 20, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 36, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["nixos", 48, 18]]);
-const pos$5 = nix.positions(here + "/package.nix", [["tests", 48, 12]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 51, 5], ["homepage", 52, 5], ["license", 53, 5], ["maintainers", 54, 5], ["platforms", 55, 5], ["mainProgram", 56, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["patches", 24, 3], ["configureFlags", 31, 3], ["env", 35, 3], ["postInstall", 39, 3], ["enableParallelBuilding", 43, 3], ["strictDeps", 45, 3], ["__structuredAttrs", 46, 3], ["passthru", 48, 3], ["meta", 50, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,16 +12,16 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const nixosTests = nix.arg($, "nixosTests");
   const db = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: "mirror://savannah/hddtemp/hddtemp.db",
       sha256: "1fr6qgns6qv7cr40lic5yqwkkc7yjmmgx8j0z6d93csg3smzhhya",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "hddtemp",
       version: "0.3-beta15",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: nix.thunk(() => nix.str`mirror://savannah/hddtemp/hddtemp-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           sha256: "sha256-YYVBWEBUCT1TvootnoHJcXTzDwCvkcuHAKl+RC1571s=",
         })))),
@@ -41,7 +35,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`--with-db-path=${nix.builtins.placeholder("out")}/share/hddtemp/hddtemp.db`),
       ]),
       env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "cc", "isGNU")), nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           NIX_CFLAGS_COMPILE: "-Wno-error=implicit-function-declaration",
         })))),
       postInstall: nix.thunk(() => nix.str`install -Dm444 ${db} $out/share/hddtemp/hddtemp.db
@@ -50,11 +44,11 @@ export default nix.lambda((args) => (() => {
       strictDeps: true,
       __structuredAttrs: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$4, nixos: nix.thunk(() => nix.sel(nixosTests, "hddtemp")) })),
+        [nix.POS]: $pos[4],
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[3], nixos: nix.thunk(() => nix.sel(nixosTests, "hddtemp")) })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Tool for displaying hard disk temperature",
         homepage: "https://savannah.nongnu.org/projects/hddtemp/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

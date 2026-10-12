@@ -2,52 +2,40 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/snapper.nix", [[["serial", 11, 39]], [["deviceExtraOpts", 11, 23]], [["size", 10, 11], ["driveConfig", 11, 11]], [["device", 17, 11], ["fsType", 18, 11], ["autoFormat", 19, 11]], [["/home", 16, 9]], [["emptyDiskImages", 8, 22], ["fileSystems", 15, 22]], [["SUBVOLUME", 22, 37]], [["home", 22, 32]], [["configs", 22, 24], ["filters", 23, 24]], [["snapper", 22, 16]], [["virtualisation", 8, 7], ["services", 22, 7]], [["machine", 5, 9]], [["name", 3, 3], ["nodes", 5, 3], ["testScript", 26, 3]]]);
 const formals$1 = { args: {  }, ellipsis: true };
 const formals$2 = { args: { pkgs: false, lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/snapper.nix", [["serial", 11, 39]]);
-const pos$2 = nix.positions(here + "/snapper.nix", [["deviceExtraOpts", 11, 23]]);
-const pos$3 = nix.positions(here + "/snapper.nix", [["size", 10, 11], ["driveConfig", 11, 11]]);
-const pos$4 = nix.positions(here + "/snapper.nix", [["device", 17, 11], ["fsType", 18, 11], ["autoFormat", 19, 11]]);
-const pos$5 = nix.positions(here + "/snapper.nix", [["/home", 16, 9]]);
-const pos$6 = nix.positions(here + "/snapper.nix", [["emptyDiskImages", 8, 22], ["fileSystems", 15, 22]]);
-const pos$7 = nix.positions(here + "/snapper.nix", [["SUBVOLUME", 22, 37]]);
-const pos$8 = nix.positions(here + "/snapper.nix", [["home", 22, 32]]);
-const pos$9 = nix.positions(here + "/snapper.nix", [["configs", 22, 24], ["filters", 23, 24]]);
-const pos$10 = nix.positions(here + "/snapper.nix", [["snapper", 22, 16]]);
-const pos$11 = nix.positions(here + "/snapper.nix", [["virtualisation", 8, 7], ["services", 22, 7]]);
-const pos$12 = nix.positions(here + "/snapper.nix", [["machine", 5, 9]]);
 const formals$3 = { args: { nodes: false }, ellipsis: true };
-const pos$13 = nix.positions(here + "/snapper.nix", [["name", 3, 3], ["nodes", 5, 3], ["testScript", 26, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   return {
-    [nix.POS]: pos$13,
+    [nix.POS]: $pos[12],
     name: "snapper",
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$12,
+      [nix.POS]: $pos[11],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs = nix.arg($_1, "pkgs");
         const lib = nix.arg($_1, "lib");
         return {
-          [nix.POS]: pos$11,
+          [nix.POS]: $pos[10],
           virtualisation: nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             emptyDiskImages: nix.thunk(() => [
               nix.thunk(() => ({
-                [nix.POS]: pos$3,
+                [nix.POS]: $pos[2],
                 size: 4096n,
                 driveConfig: nix.thunk(() => ({
-                  [nix.POS]: pos$2,
-                  deviceExtraOpts: nix.thunk(() => ({ [nix.POS]: pos$1, serial: "aux" })),
+                  [nix.POS]: $pos[1],
+                  deviceExtraOpts: nix.thunk(() => ({ [nix.POS]: $pos[0], serial: "aux" })),
                 })),
               })),
             ]),
             fileSystems: nix.thunk(() => ({
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               "/home": nix.thunk(() => ({
-                [nix.POS]: pos$4,
+                [nix.POS]: $pos[3],
                 device: "/dev/disk/by-id/virtio-aux",
                 fsType: "btrfs",
                 autoFormat: true,
@@ -55,12 +43,12 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$10,
+            [nix.POS]: $pos[9],
             snapper: nix.thunk(() => ({
-              [nix.POS]: pos$9,
+              [nix.POS]: $pos[8],
               configs: nix.thunk(() => ({
-                [nix.POS]: pos$8,
-                home: nix.thunk(() => ({ [nix.POS]: pos$7, SUBVOLUME: "/home" })),
+                [nix.POS]: $pos[7],
+                home: nix.thunk(() => ({ [nix.POS]: $pos[6], SUBVOLUME: "/home" })),
               })),
               filters: "/nix",
             })),

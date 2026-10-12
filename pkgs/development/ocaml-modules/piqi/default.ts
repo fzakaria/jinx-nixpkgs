@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["sha256", 23, 5]], [["homepage", 55, 5], ["description", 56, 5], ["license", 57, 5], ["maintainers", 58, 5], ["broken", 59, 5]], [["version", 15, 3], ["pname", 16, 3], ["name", 17, 3], ["src", 19, 3], ["nativeBuildInputs", 26, 3], ["propagatedBuildInputs", 31, 3], ["strictDeps", 38, 3], ["patches", 40, 3], ["createFindlibDestdir", 45, 3], ["postBuild", 47, 3], ["installTargets", 49, 3], ["meta", 54, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, ocaml: false, findlib: false, which: false, sedlex: false, "easy-format": false, xmlm: false, base64: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["sha256", 23, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 55, 5], ["description", 56, 5], ["license", 57, 5], ["maintainers", 58, 5], ["broken", 59, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["version", 15, 3], ["pname", 16, 3], ["name", 17, 3], ["src", 19, 3], ["nativeBuildInputs", 26, 3], ["propagatedBuildInputs", 31, 3], ["strictDeps", 38, 3], ["patches", 40, 3], ["createFindlibDestdir", 45, 3], ["postBuild", 47, 3], ["installTargets", 49, 3], ["meta", 54, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const pname = "piqi";
       const name = nix.thunk(() => nix.str`ocaml${nix.sel(ocaml, "version")}-${pname}-${version}`);
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "alavrik",
           repo: pname,
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -41,7 +39,7 @@ export default nix.lambda((args) => (() => {
       const postBuild = "make -C piqilib piqilib.cma";
       const installTargets = nix.thunk(() => ["install", "ocaml-install"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/alavrik/piqi",
         description: "Universal schema language and a collection of tools built around it",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -49,7 +47,7 @@ export default nix.lambda((args) => (() => {
         broken: nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(ocaml, "version")), "5.0")),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         version,
         pname,
         name,

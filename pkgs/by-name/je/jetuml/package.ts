@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["enableJavaFX", 13, 30]], [["url", 20, 5], ["hash", 21, 5]], [["name", 36, 7], ["desktopName", 37, 7], ["genericName", 38, 7], ["categories", 39, 7], ["icon", 44, 7], ["exec", 45, 7], ["comment", 46, 7]], [["homepage", 68, 5], ["description", 69, 5], ["mainProgram", 70, 5], ["sourceProvenance", 71, 5], ["license", 72, 5], ["platforms", 73, 5], ["maintainers", 74, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["dontUnpack", 24, 3], ["strictDeps", 26, 3], ["nativeBuildInputs", 28, 3], ["desktopItems", 34, 3], ["installPhase", 50, 3], ["meta", 67, 3]]]);
 const formals$1 = { args: { stdenvNoCC: false, lib: false, makeDesktopItem: false, copyDesktopItems: false, fetchurl: false, jdk: false, makeBinaryWrapper: false, imagemagick: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["enableJavaFX", 13, 30]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 20, 5], ["hash", 21, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 36, 7], ["desktopName", 37, 7], ["genericName", 38, 7], ["categories", 39, 7], ["icon", 44, 7], ["exec", 45, 7], ["comment", 46, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 68, 5], ["description", 69, 5], ["mainProgram", 70, 5], ["sourceProvenance", 71, 5], ["license", 72, 5], ["platforms", 73, 5], ["maintainers", 74, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["dontUnpack", 24, 3], ["strictDeps", 26, 3], ["nativeBuildInputs", 28, 3], ["desktopItems", 34, 3], ["installPhase", 50, 3], ["meta", 67, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,13 +15,13 @@ export default nix.lambda((args) => (() => {
   const jdk = nix.arg($, "jdk");
   const makeBinaryWrapper = nix.arg($, "makeBinaryWrapper");
   const imagemagick = nix.arg($, "imagemagick");
-  const jdkWithFX = nix.thunk(() => nix.app(nix.sel(jdk, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, enableJavaFX: true }))));
+  const jdkWithFX = nix.thunk(() => nix.app(nix.sel(jdk, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], enableJavaFX: true }))));
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "jetuml",
       version: "3.10",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: nix.thunk(() => nix.str`https://github.com/prmr/JetUML/releases/download/v${nix.sel(finalAttrs, "version")}/JetUML-${nix.sel(finalAttrs, "version")}.jar`),
           hash: "sha256-X3mLfK06gQnZ9vzYX1CDw6r6krIuZU9DtujgcferxsM=",
         })))),
@@ -34,7 +30,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [makeBinaryWrapper, copyDesktopItems, imagemagick]),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "jetuml",
             desktopName: "JetUML",
             genericName: "UML Tool",
@@ -60,7 +56,7 @@ makeWrapper ${jdkWithFX}/lib/openjdk/bin/java $out/bin/jetuml \\
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://www.jetuml.org/",
         description: "Desktop application for fast UML diagramming",
         mainProgram: "jetuml",

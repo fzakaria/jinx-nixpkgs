@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 12, 5], ["repo", 13, 5], ["rev", 14, 5], ["sha256", 15, 5]], [["name", 26, 5], ["homepage", 27, 5], ["license", 28, 5], ["maintainers", 29, 5], ["description", 30, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["patchPhase", 21, 3], ["meta", 25, 3]]]);
 const formals$1 = { args: { buildOctavePackage: false, lib: false, fetchFromBitbucket: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 12, 5], ["repo", 13, 5], ["rev", 14, 5], ["sha256", 15, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["name", 26, 5], ["homepage", 27, 5], ["license", 28, 5], ["maintainers", 29, 5], ["description", 30, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["patchPhase", 21, 3], ["meta", 25, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,7 +14,7 @@ export default nix.lambda((args) => (() => {
       const pname = "octclip";
       const version = "2.0.3";
       const src = nix.thunk(() => nix.app(fetchFromBitbucket, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "jgpallero",
           repo: pname,
           rev: nix.thunk(() => nix.str`OctCLIP-${version}`),
@@ -24,7 +22,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patchPhase = "sed -i s/\"error(errorText)\"/\"error(\\\"%s\\\", errorText)\"/g src/*.cc\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         name: "GNU Octave Clipping Polygons Tool",
         homepage: "https://gnu-octave.github.io/packages/octclip/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
@@ -34,7 +32,7 @@ export default nix.lambda((args) => (() => {
         })()),
         description: "Perform boolean operations with polygons using the Greiner-Hormann algorithm",
       }));
-      return { [nix.POS]: pos$3, pname, version, src, patchPhase, meta };
+      return { [nix.POS]: $pos[2], pname, version, src, patchPhase, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

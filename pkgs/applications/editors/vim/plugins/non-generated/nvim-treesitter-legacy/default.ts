@@ -2,28 +2,26 @@
 import * as nix from "../../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 6, 5], ["repo", 7, 5], ["rev", 8, 5], ["hash", 9, 5]], [["homepage", 11, 8], ["hydraPlatforms", 12, 8]], [["pname", 3, 3], ["version", 4, 3], ["src", 5, 3], ["meta", 11, 3]]]);
 const formals$1 = { args: { vimUtils: false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 6, 5], ["repo", 7, 5], ["rev", 8, 5], ["hash", 9, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 11, 8], ["hydraPlatforms", 12, 8]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 3, 3], ["version", 4, 3], ["src", 5, 3], ["meta", 11, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const vimUtils = nix.arg($, "vimUtils");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(vimUtils, "buildVimPlugin"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "nvim-treesitter-legacy",
       version: "0.10.0-unstable-2025-05-24",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "nvim-treesitter",
           repo: "nvim-treesitter",
           rev: "42fc28ba918343ebfd5565147a42a26580579482",
           hash: "sha256-CVs9FTdg3oKtRjz2YqwkMr0W5qYLGfVyxyhE3qnGYbI=",
         })))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/nvim-treesitter/nvim-treesitter/",
         hydraPlatforms: [],
       })),

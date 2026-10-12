@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["x86_64-linux", 18, 5], ["aarch64-linux", 19, 5], ["aarch64-darwin", 20, 5]], [["x86_64-linux", 23, 5], ["aarch64-linux", 24, 5], ["aarch64-darwin", 25, 5]], [["url", 37, 7], ["hash", 38, 7]], [["updateScript", 108, 12]], [["description", 111, 5], ["longDescription", 112, 5], ["homepage", 117, 5], ["changelog", 118, 5], ["mainProgram", 119, 5], ["platforms", 120, 5], ["license", 121, 5], ["maintainers", 122, 5]], [["pname", 29, 3], ["version", 30, 3], ["src", 31, 3], ["strictDeps", 41, 3], ["__structuredAttrs", 42, 3], ["sourceRoot", 44, 3], ["nativeBuildInputs", 46, 3], ["buildInputs", 56, 3], ["dontBuild", 64, 3], ["doInstallCheck", 65, 3], ["versionCheckProgramArg", 66, 3], ["versionCheckKeepEnvironment", 67, 3], ["preVersionCheck", 68, 3], ["installPhase", 72, 3], ["passthru", 108, 3], ["meta", 110, 3]]]);
 const formals$1 = { args: { lib: false, fetchurl: false, stdenvNoCC: false, installShellFiles: false, autoPatchelfHook: false, makeWrapper: false, gccForLibs: false, e2fsprogs: false, lz4: false, xxhash: false, zlib: false, zstd: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["x86_64-linux", 18, 5], ["aarch64-linux", 19, 5], ["aarch64-darwin", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["x86_64-linux", 23, 5], ["aarch64-linux", 24, 5], ["aarch64-darwin", 25, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 37, 7], ["hash", 38, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 108, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 111, 5], ["longDescription", 112, 5], ["homepage", 117, 5], ["changelog", 118, 5], ["mainProgram", 119, 5], ["platforms", 120, 5], ["license", 121, 5], ["maintainers", 122, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 29, 3], ["version", 30, 3], ["src", 31, 3], ["strictDeps", 41, 3], ["__structuredAttrs", 42, 3], ["sourceRoot", 44, 3], ["nativeBuildInputs", 46, 3], ["buildInputs", 56, 3], ["dontBuild", 64, 3], ["doInstallCheck", 65, 3], ["versionCheckProgramArg", 66, 3], ["versionCheckKeepEnvironment", 67, 3], ["preVersionCheck", 68, 3], ["installPhase", 72, 3], ["passthru", 108, 3], ["meta", 110, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,26 +21,26 @@ export default nix.lambda((args) => (() => {
   const zstd = nix.arg($, "zstd");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const hashes = nix.thunk(() => ({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     "x86_64-linux": "sha256-qJy0OAB167IJOBA7yY7GMyf76r5Dpx8Fdd2yhaBR6rQ=",
     "aarch64-linux": "sha256-ajxF31L/MnIrsz5NLGb5kg4oS5o63roXr8/Oo600bv8=",
     "aarch64-darwin": "sha256-lH5ogmxisS3i+gulsKZ6lTkRojISA8BPfAmCzPwPFpQ=",
   }));
   const platformName = nix.thunk(() => ({
-    [nix.POS]: pos$2,
+    [nix.POS]: $pos[1],
     "x86_64-linux": "linux-amd64",
     "aarch64-linux": "linux-arm64",
     "aarch64-darwin": "darwin",
   }));
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "docker-sbx",
       version: "0.47.0",
       src: nix.thunk(() => (() => {
         const throwPlat = nix.thunk(() => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported platform ${nix.sel(stdenvNoCC, "hostPlatform", "system")}`)));
         const p = nix.thunk(() => nix.selOr(platformName, () => nix.force(throwPlat), nix.key(nix.sel(stdenvNoCC, "hostPlatform", "system"))));
         return nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: nix.thunk(() => nix.str`https://github.com/docker/sbx-releases/releases/download/v${nix.sel(finalAttrs, "version")}/DockerSandboxes-${p}.tar.gz`),
             hash: nix.thunk(() => nix.selOr(hashes, () => nix.force(throwPlat), nix.key(nix.sel(stdenvNoCC, "hostPlatform", "system")))),
           })));
@@ -71,9 +66,9 @@ ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv
 
 runHook postInstall
 ` : "runHook preInstall\n\nmkdir -pv $out/Applications $out/bin\ncp -rv Sbx.app $out/Applications\nln -sv $out/Applications/Sbx.app/Contents/MacOS/{sbx,llmman} $out/bin\n\ninstallShellCompletion \\\n  --bash --name sbx.bash Sbx.app/Contents/Resources/completions/bash/sbx \\\n  --zsh  --name _sbx     Sbx.app/Contents/Resources/completions/zsh/_sbx \\\n  --fish --name sbx.fish Sbx.app/Contents/Resources/completions/fish/sbx.fish\n\nrunHook postInstall\n")),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$4, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[3], updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Safe environments for agents",
         longDescription: "Docker Sandboxes provides sandboxes with controlled access to your\nfilesystem, network, and tools. This means your agents can work\nautonomously without putting your machine or data at risk.\n",
         homepage: "https://docs.docker.com/reference/cli/sbx/",

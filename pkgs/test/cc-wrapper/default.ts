@@ -2,9 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["platforms", 166, 8]], [["pname", 28, 3], ["version", 29, 3], ["buildCommand", 31, 3], ["meta", 166, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, glibc: false, buildPackages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["platforms", 166, 8]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 28, 3], ["version", 29, 3], ["buildCommand", 31, 3], ["meta", 166, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,7 +20,7 @@ export default nix.lambda((args) => (() => {
   const CXX = nix.thunk(() => nix.str`PATH= ${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(stdenv, "cc")), nix.thunk(() => nix.str`${nix.sel(stdenv, "cc", "targetPrefix")}c++`))}`);
   const READELF = nix.thunk(() => nix.str`PATH= ${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(stdenv, "cc")), nix.thunk(() => nix.str`${nix.sel(stdenv, "cc", "targetPrefix")}readelf`))}`);
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: nix.thunk(() => nix.str`cc-wrapper-test-${nix.sel(stdenv, "cc", "cc", "pname")}${libcxxStdenvSuffix}`),
       version: nix.thunk(() => nix.sel(stdenv, "cc", "version")),
       buildCommand: nix.thunk(() => nix.str`echo "Testing: ${nix.sel(stdenv, "cc", "name")}" >&2
@@ -138,7 +137,7 @@ NIX_CC_USE_RESPONSE_FILE=1 NIX_LD_USE_RESPONSE_FILE=1 ${CC} -v
 touch $out
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       })),
     })));

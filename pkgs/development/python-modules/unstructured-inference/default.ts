@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 32, 5], ["repo", 33, 5], ["tag", 34, 5], ["hash", 35, 5]], [["description", 102, 5], ["homepage", 103, 5], ["changelog", 104, 5], ["license", 105, 5], ["maintainers", 106, 5], ["platforms", 107, 5]], [["pname", 27, 3], ["version", 28, 3], ["pyproject", 29, 3], ["src", 31, 3], ["build-system", 38, 3], ["pythonRelaxDeps", 40, 3], ["dependencies", 45, 3], ["nativeCheckInputs", 62, 3], ["doCheck", 74, 3], ["preCheck", 76, 3], ["disabledTests", 80, 3], ["disabledTestPaths", 88, 3], ["pythonImportsCheck", 99, 3], ["meta", 101, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, accelerate: false, "huggingface-hub": false, layoutparser: false, onnx: false, onnxruntime: false, "opencv-python": false, "python-multipart": false, rapidfuzz: false, transformers: false, pytestCheckHook: false, coverage: false, click: false, httpx: false, mypy: false, "pytest-cov-stub": false, pdf2image: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 32, 5], ["repo", 33, 5], ["tag", 34, 5], ["hash", 35, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 102, 5], ["homepage", 103, 5], ["changelog", 104, 5], ["license", 105, 5], ["maintainers", 106, 5], ["platforms", 107, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 27, 3], ["version", 28, 3], ["pyproject", 29, 3], ["src", 31, 3], ["build-system", 38, 3], ["pythonRelaxDeps", 40, 3], ["dependencies", 45, 3], ["nativeCheckInputs", 62, 3], ["doCheck", 74, 3], ["preCheck", 76, 3], ["disabledTests", 80, 3], ["disabledTestPaths", 88, 3], ["pythonImportsCheck", 99, 3], ["meta", 101, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,12 +28,12 @@ export default nix.lambda((args) => (() => {
   const pytest_cov_stub = nix.arg($, "pytest-cov-stub");
   const pdf2image = nix.arg($, "pdf2image");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "unstructured-inference",
       version: "1.1.7",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Unstructured-IO",
           repo: "unstructured-inference",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -81,7 +79,7 @@ export default nix.lambda((args) => (() => {
       ]),
       pythonImportsCheck: nix.thunk(() => ["unstructured_inference"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Hosted model inference code for layout parsing models",
         homepage: "https://github.com/Unstructured-IO/unstructured-inference",
         changelog: nix.thunk(() => nix.str`https://github.com/Unstructured-IO/unstructured-inference/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

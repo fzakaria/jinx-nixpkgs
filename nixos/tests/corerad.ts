@@ -2,77 +2,55 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
-const pos$1 = nix.positions(here + "/corerad.nix", [["net.ipv6.conf.all.forwarding", 7, 9]]);
-const pos$2 = nix.positions(here + "/corerad.nix", [["sysctl", 6, 19]]);
-const pos$3 = nix.positions(here + "/corerad.nix", [["kernel", 6, 12]]);
-const pos$4 = nix.positions(here + "/corerad.nix", [["address", 12, 13], ["prefixLength", 13, 13]]);
-const pos$5 = nix.positions(here + "/corerad.nix", [["addresses", 10, 14]]);
-const pos$6 = nix.positions(here + "/corerad.nix", [["ipv6", 10, 9]]);
-const pos$7 = nix.positions(here + "/corerad.nix", [["eth1", 9, 29]]);
-const pos$8 = nix.positions(here + "/corerad.nix", [["interfaces", 9, 18]]);
-const pos$9 = nix.positions(here + "/corerad.nix", [["name", 26, 15], ["monitor", 27, 15]]);
-const pos$10 = nix.positions(here + "/corerad.nix", [["prefix", 32, 28]]);
-const pos$11 = nix.positions(here + "/corerad.nix", [["name", 30, 15], ["advertise", 31, 15], ["prefix", 32, 15]]);
-const pos$12 = nix.positions(here + "/corerad.nix", [["address", 36, 13], ["prometheus", 37, 13]]);
-const pos$13 = nix.positions(here + "/corerad.nix", [["interfaces", 24, 11], ["debug", 35, 11]]);
-const pos$14 = nix.positions(here + "/corerad.nix", [["enable", 18, 9], ["settings", 23, 9]]);
-const pos$15 = nix.positions(here + "/corerad.nix", [["corerad", 17, 16]]);
-const pos$16 = nix.positions(here + "/corerad.nix", [["boot", 6, 7], ["networking", 9, 7], ["services", 17, 7]]);
+const $pos = nix.positions(here + "/corerad.nix", [[["net.ipv6.conf.all.forwarding", 7, 9]], [["sysctl", 6, 19]], [["kernel", 6, 12]], [["address", 12, 13], ["prefixLength", 13, 13]], [["addresses", 10, 14]], [["ipv6", 10, 9]], [["eth1", 9, 29]], [["interfaces", 9, 18]], [["name", 26, 15], ["monitor", 27, 15]], [["prefix", 32, 28]], [["name", 30, 15], ["advertise", 31, 15], ["prefix", 32, 15]], [["address", 36, 13], ["prometheus", 37, 13]], [["interfaces", 24, 11], ["debug", 35, 11]], [["enable", 18, 9], ["settings", 23, 9]], [["corerad", 17, 16]], [["boot", 6, 7], ["networking", 9, 7], ["services", 17, 7]], [["net.ipv6.conf.all.autoconf", 48, 11]], [["sysctl", 47, 21]], [["kernel", 47, 14]], [["systemPackages", 50, 21]], [["boot", 47, 9], ["environment", 50, 9]], [["router", 4, 5], ["client", 42, 5]], [["name", 2, 3], ["nodes", 3, 3], ["testScript", 56, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
-const pos$17 = nix.positions(here + "/corerad.nix", [["net.ipv6.conf.all.autoconf", 48, 11]]);
-const pos$18 = nix.positions(here + "/corerad.nix", [["sysctl", 47, 21]]);
-const pos$19 = nix.positions(here + "/corerad.nix", [["kernel", 47, 14]]);
-const pos$20 = nix.positions(here + "/corerad.nix", [["systemPackages", 50, 21]]);
-const pos$21 = nix.positions(here + "/corerad.nix", [["boot", 47, 9], ["environment", 50, 9]]);
-const pos$22 = nix.positions(here + "/corerad.nix", [["router", 4, 5], ["client", 42, 5]]);
-const pos$23 = nix.positions(here + "/corerad.nix", [["name", 2, 3], ["nodes", 3, 3], ["testScript", 56, 3]]);
 
 export default nix.thunk(() => ({
-  [nix.POS]: pos$23,
+  [nix.POS]: $pos[22],
   name: "corerad",
   nodes: nix.thunk(() => ({
-    [nix.POS]: pos$22,
+    [nix.POS]: $pos[21],
     router: nix.thunk(() => ({
-      [nix.POS]: pos$16,
+      [nix.POS]: $pos[15],
       boot: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         kernel: nix.thunk(() => ({
-          [nix.POS]: pos$2,
-          sysctl: nix.thunk(() => ({ [nix.POS]: pos$1, "net.ipv6.conf.all.forwarding": true })),
+          [nix.POS]: $pos[1],
+          sysctl: nix.thunk(() => ({ [nix.POS]: $pos[0], "net.ipv6.conf.all.forwarding": true })),
         })),
       })),
       networking: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         interfaces: nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           eth1: nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             ipv6: nix.thunk(() => ({
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               addresses: nix.thunk(() => [
-                nix.thunk(() => ({ [nix.POS]: pos$4, address: "fd00:dead:beef:dead::1", prefixLength: 64n })),
+                nix.thunk(() => ({ [nix.POS]: $pos[3], address: "fd00:dead:beef:dead::1", prefixLength: 64n })),
               ]),
             })),
           })),
         })),
       })),
       services: nix.thunk(() => ({
-        [nix.POS]: pos$15,
+        [nix.POS]: $pos[14],
         corerad: nix.thunk(() => ({
-          [nix.POS]: pos$14,
+          [nix.POS]: $pos[13],
           enable: true,
           settings: nix.thunk(() => ({
-            [nix.POS]: pos$13,
+            [nix.POS]: $pos[12],
             interfaces: nix.thunk(() => [
-              nix.thunk(() => ({ [nix.POS]: pos$9, name: "eth0", monitor: true })),
+              nix.thunk(() => ({ [nix.POS]: $pos[8], name: "eth0", monitor: true })),
               nix.thunk(() => ({
-                [nix.POS]: pos$11,
+                [nix.POS]: $pos[10],
                 name: "eth1",
                 advertise: true,
-                prefix: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$10, prefix: "::/64" }))]),
+                prefix: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: $pos[9], prefix: "::/64" }))]),
               })),
             ]),
-            debug: nix.thunk(() => ({ [nix.POS]: pos$12, address: "localhost:9430", prometheus: true })),
+            debug: nix.thunk(() => ({ [nix.POS]: $pos[11], address: "localhost:9430", prometheus: true })),
           })),
         })),
       })),
@@ -81,16 +59,16 @@ export default nix.thunk(() => ({
       const $ = nix.formals(args, formals$1);
       const pkgs = nix.arg($, "pkgs");
       return {
-        [nix.POS]: pos$21,
+        [nix.POS]: $pos[20],
         boot: nix.thunk(() => ({
-          [nix.POS]: pos$19,
+          [nix.POS]: $pos[18],
           kernel: nix.thunk(() => ({
-            [nix.POS]: pos$18,
-            sysctl: nix.thunk(() => ({ [nix.POS]: pos$17, "net.ipv6.conf.all.autoconf": true })),
+            [nix.POS]: $pos[17],
+            sysctl: nix.thunk(() => ({ [nix.POS]: $pos[16], "net.ipv6.conf.all.autoconf": true })),
           })),
         })),
         environment: nix.thunk(() => ({
-          [nix.POS]: pos$20,
+          [nix.POS]: $pos[19],
           systemPackages: nix.thunk(() => (() => {
             const w = nix.withScope(pkgs, null);
             return [nix.thunk(() => nix.lookup(w, "ndisc6"))];

@@ -2,12 +2,12 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
-const pos$1 = nix.positions(here + "/5.2.x.nix", [["version", 2, 3], ["tag", 3, 3], ["sourceSha256", 4, 3]]);
+const $pos = nix.positions(here + "/5.2.x.nix", [[["version", 2, 3], ["tag", 3, 3], ["sourceSha256", 4, 3]]]);
 
 export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./generic.nix")), nix.thunk(() => (() => {
     const version = "5.2.1";
     const tag = nix.thunk(() => nix.str`v${version}`);
     const sourceSha256 = "sha256-KaVe9FMGm4ZVMpwAT12fA67T0qZS3ZueiI8z85+xSwE=";
-    return { [nix.POS]: pos$1, version, tag, sourceSha256 };
+    return { [nix.POS]: $pos[0], version, tag, sourceSha256 };
   })())));
 //# sourceMappingURL=5.2.x.ts.map

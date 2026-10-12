@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 53, 5], ["repo", 54, 5], ["tag", 55, 5], ["sparseCheckout", 56, 5], ["hash", 60, 5]], [["finalAttrs", 122, 54]], [["updateScript", 122, 12]], [["description", 127, 5], ["homepage", 128, 5], ["license", 129, 5], ["teams", 130, 5], ["platforms", 131, 5], ["timeout", 132, 5], ["maxSilent", 133, 5]], [["pname", 39, 3], ["version", 40, 3], ["outputs", 42, 3], ["src", 52, 3], ["sourceRoot", 62, 3], ["nativeBuildInputs", 64, 3], ["buildInputs", 74, 3], ["cmakeFlags", 90, 3], ["postInstall", 109, 3], ["passthru", 122, 3], ["requiredSystemFeatures", 124, 3], ["meta", 126, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, rocmUpdateScript: false, cmake: false, "rocm-cmake": false, rocblas: false, rocprim: false, rocsparse: false, clr: false, fmt: false, gtest: false, gfortran: false, "lapack-reference": false, buildTests: true, buildBenchmarks: true, gpuTargets: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 53, 5], ["repo", 54, 5], ["tag", 55, 5], ["sparseCheckout", 56, 5], ["hash", 60, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["finalAttrs", 122, 54]]);
-const pos$3 = nix.positions(here + "/default.nix", [["updateScript", 122, 12]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 127, 5], ["homepage", 128, 5], ["license", 129, 5], ["teams", 130, 5], ["platforms", 131, 5], ["timeout", 132, 5], ["maxSilent", 133, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 39, 3], ["version", 40, 3], ["outputs", 42, 3], ["src", 52, 3], ["sourceRoot", 62, 3], ["nativeBuildInputs", 64, 3], ["buildInputs", 74, 3], ["cmakeFlags", 90, 3], ["postInstall", 109, 3], ["passthru", 122, 3], ["requiredSystemFeatures", 124, 3], ["meta", 126, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -44,12 +40,12 @@ export default nix.lambda((args) => (() => {
       "gfx1201",
     ], "localGpuTargets"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: nix.thunk(() => nix.str`rocsolver${nix.sel(clr, "gpuArchSuffix")}`),
       version: "7.2.3",
       outputs: nix.thunk(() => nix.concat(["out"], nix.concat(nix.app(nix.sel(lib, "optionals"), buildTests, nix.thunk(() => ["test"])), nix.app(nix.sel(lib, "optionals"), buildBenchmarks, nix.thunk(() => ["benchmark"]))))),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ROCm",
           repo: "rocm-libraries",
           tag: nix.thunk(() => nix.str`rocm-${nix.sel(finalAttrs, "version")}`),
@@ -70,12 +66,12 @@ export default nix.lambda((args) => (() => {
         ])), nix.concat(nix.app(nix.sel(lib, "optionals"), buildTests, nix.thunk(() => ["-DBUILD_CLIENTS_TESTS=ON"])), nix.app(nix.sel(lib, "optionals"), buildBenchmarks, nix.thunk(() => ["-DBUILD_CLIENTS_BENCHMARKS=ON"])))))),
       postInstall: nix.thunk(() => nix.add(nix.add(nix.app(nix.sel(lib, "optionalString"), buildTests, "mkdir -p $test/bin\nmv $out/bin/rocsolver-test $test/bin\n"), nix.app(nix.sel(lib, "optionalString"), buildBenchmarks, "mkdir -p $benchmark/bin\nmv $out/bin/rocsolver-bench $benchmark/bin\n")), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool(buildTests) || nix.asBool(buildBenchmarks))), "rmdir $out/bin\n"))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(rocmUpdateScript, nix.thunk(() => ({ [nix.POS]: pos$2, finalAttrs: finalAttrs })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(rocmUpdateScript, nix.thunk(() => ({ [nix.POS]: $pos[1], finalAttrs: finalAttrs })))),
       })),
       requiredSystemFeatures: nix.thunk(() => ["big-parallel"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "ROCm LAPACK implementation",
         homepage: "https://github.com/ROCm/rocm-libraries/tree/develop/projects/rocsolver",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

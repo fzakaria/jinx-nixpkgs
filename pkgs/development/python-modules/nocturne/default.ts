@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["hash", 25, 5]], [["gtest_src", 37, 7]], [["description", 62, 5], ["homepage", 63, 5], ["license", 64, 5], ["maintainers", 65, 5]], [["pname", 17, 3], ["version", 18, 3], ["pyproject", 19, 3], ["src", 21, 3], ["postUnpack", 29, 3], ["patches", 35, 3], ["build-system", 41, 3], ["nativeBuildInputs", 45, 3], ["dontUseCmakeConfigure", 46, 3], ["buildInputs", 48, 3], ["dependencies", 51, 3], ["doCheck", 57, 3], ["pythonImportsCheck", 59, 3], ["meta", 61, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, nlohmann_json: false, pybind11: false, replaceVars: false, gtest: false, setuptools: false, cmake: false, sfml_2: false, "hydra-core": false, pyvirtualdisplay: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["gtest_src", 37, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 62, 5], ["homepage", 63, 5], ["license", 64, 5], ["maintainers", 65, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 17, 3], ["version", 18, 3], ["pyproject", 19, 3], ["src", 21, 3], ["postUnpack", 29, 3], ["patches", 35, 3], ["build-system", 41, 3], ["nativeBuildInputs", 45, 3], ["dontUseCmakeConfigure", 46, 3], ["buildInputs", 48, 3], ["dependencies", 51, 3], ["doCheck", 57, 3], ["pythonImportsCheck", 59, 3], ["meta", 61, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const hydra_core = nix.arg($, "hydra-core");
   const pyvirtualdisplay = nix.arg($, "pyvirtualdisplay");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "nocturne",
       version: "0-unstable-2024-06-19",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "facebookresearch",
           repo: "nocturne",
           rev: "6d1e0f329f7acbed01c934842b269333540af6d2",
@@ -39,7 +36,7 @@ ln -s ${nix.sel(nlohmann_json, "src")} $sourceRoot/third_party/json
 ln -s ${nix.sel(pybind11, "src")} $sourceRoot/third_party/pybind11
 `),
       patches: nix.thunk(() => [
-        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./dependencies.patch"), nix.thunk(() => ({ [nix.POS]: pos$2, gtest_src: nix.thunk(() => nix.sel(gtest, "src")) })))),
+        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./dependencies.patch"), nix.thunk(() => ({ [nix.POS]: $pos[1], gtest_src: nix.thunk(() => nix.sel(gtest, "src")) })))),
       ]),
       "build-system": nix.thunk(() => [setuptools]),
       nativeBuildInputs: nix.thunk(() => [cmake]),
@@ -49,7 +46,7 @@ ln -s ${nix.sel(pybind11, "src")} $sourceRoot/third_party/pybind11
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["nocturne"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Data-driven, fast driving simulator for multi-agent coordination under partial observability",
         homepage: "https://github.com/facebookresearch/nocturne",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

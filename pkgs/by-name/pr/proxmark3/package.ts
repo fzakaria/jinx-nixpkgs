@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 36, 5], ["repo", 37, 5], ["rev", 38, 5], ["hash", 39, 5]], [["updateScript", 88, 12]], [["description", 91, 5], ["homepage", 92, 5], ["license", 93, 5], ["maintainers", 94, 5], ["platforms", 98, 5], ["mainProgram", 99, 5]], [["pname", 32, 3], ["version", 33, 3], ["src", 35, 3], ["postPatch", 42, 3], ["nativeBuildInputs", 54, 3], ["buildInputs", 60, 3], ["makeFlags", 74, 3], ["enableParallelBuilding", 84, 3], ["doInstallCheck", 86, 3], ["passthru", 88, 3], ["meta", 90, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, "pkg-config": false, "gcc-arm-embedded": false, readline: false, bzip2: false, openssl: false, jansson: false, gd: false, whereami: false, lua: false, lz4: false, udevCheckHook: false, "nix-update-script": false, withGui: true, libsForQt5: false, withPython: true, python3: false, withBlueshark: true, bluez5: false, withGeneric: true, withSmall: true, withoutFunctions: true, hardwarePlatform: true, hardwarePlatformExtras: true, standalone: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 36, 5], ["repo", 37, 5], ["rev", 38, 5], ["hash", 39, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 88, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 91, 5], ["homepage", 92, 5], ["license", 93, 5], ["maintainers", 94, 5], ["platforms", 98, 5], ["mainProgram", 99, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 32, 3], ["version", 33, 3], ["src", 35, 3], ["postPatch", 42, 3], ["nativeBuildInputs", 54, 3], ["buildInputs", 60, 3], ["makeFlags", 74, 3], ["enableParallelBuilding", 84, 3], ["doInstallCheck", 86, 3], ["passthru", 88, 3], ["meta", 90, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -39,11 +36,11 @@ export default nix.lambda((args) => (() => {
   const standalone = nix.argOr($, "standalone", () => "LF_SAMYRUN");
   nix.assert_((!nix.asBool(withBlueshark) || nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux"))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/pr/proxmark3/package.nix:30:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "proxmark3",
       version: "4.23346",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "RfidResearchGroup",
           repo: "proxmark3",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -72,11 +69,11 @@ substituteInPlace client/Makefile \\
       enableParallelBuilding: true,
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Client for proxmark3, powerful general purpose RFID tool",
         homepage: "https://github.com/RfidResearchGroup/proxmark3",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

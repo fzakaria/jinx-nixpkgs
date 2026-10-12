@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["tag", 15, 5], ["hash", 16, 5]], [["description", 46, 5], ["changelog", 47, 5], ["homepage", 48, 5], ["maintainers", 49, 5], ["mainProgram", 50, 5], ["license", 51, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["preBuild", 19, 3], ["patches", 24, 3], ["dubLock", 29, 3], ["doCheck", 31, 3], ["installPhase", 33, 3], ["nativeInstallCheckInputs", 39, 3], ["doInstallCheck", 43, 3], ["meta", 45, 3]]]);
 const formals$1 = { args: { lib: false, buildDubPackage: false, fetchFromGitHub: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["tag", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 46, 5], ["changelog", 47, 5], ["homepage", 48, 5], ["maintainers", 49, 5], ["mainProgram", 50, 5], ["license", 51, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["preBuild", 19, 3], ["patches", 24, 3], ["dubLock", 29, 3], ["doCheck", 31, 3], ["installPhase", 33, 3], ["nativeInstallCheckInputs", 39, 3], ["doInstallCheck", 43, 3], ["meta", 45, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,7 +15,7 @@ export default nix.lambda((args) => (() => {
       const pname = "dfmt";
       const version = "0.15.2";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "dlang-community",
           repo: "dfmt",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -33,7 +31,7 @@ echo "v${version}" > bin/dubhash.txt
       const nativeInstallCheckInputs = nix.thunk(() => [versionCheckHook]);
       const doInstallCheck = true;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Formatter for D source code",
         changelog: nix.thunk(() => nix.str`https://github.com/dlang-community/dfmt/releases/tag/v${version}`),
         homepage: "https://github.com/dlang-community/dfmt",
@@ -45,7 +43,7 @@ echo "v${version}" > bin/dubhash.txt
         license: nix.thunk(() => nix.sel(lib, "licenses", "boost")),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

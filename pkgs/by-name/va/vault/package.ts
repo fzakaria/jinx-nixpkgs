@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]], [["vault", 61, 7], ["vault-postgresql", 62, 7], ["vault-dev", 63, 7], ["vault-agent", 64, 7]], [["tests", 59, 12]], [["homepage", 69, 5], ["description", 70, 5], ["changelog", 71, 5], ["license", 72, 5], ["mainProgram", 73, 5], ["maintainers", 74, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["vendorHash", 24, 3], ["proxyVendor", 26, 3], ["subPackages", 28, 3], ["nativeBuildInputs", 30, 3], ["tags", 35, 3], ["ldflags", 37, 3], ["postInstall", 45, 3], ["passthru", 59, 3], ["meta", 68, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, buildGoModule: false, installShellFiles: false, nixosTests: false, makeWrapper: false, gawk: false, glibc: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["vault", 61, 7], ["vault-postgresql", 62, 7], ["vault-dev", 63, 7], ["vault-agent", 64, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 59, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 69, 5], ["description", 70, 5], ["changelog", 71, 5], ["license", 72, 5], ["mainProgram", 73, 5], ["maintainers", 74, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["vendorHash", 24, 3], ["proxyVendor", 26, 3], ["subPackages", 28, 3], ["nativeBuildInputs", 30, 3], ["tags", 35, 3], ["ldflags", 37, 3], ["postInstall", 45, 3], ["passthru", 59, 3], ["meta", 68, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const gawk = nix.arg($, "gawk");
   const glibc = nix.arg($, "glibc");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "vault",
       version: "2.0.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "hashicorp",
           repo: "vault",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -47,9 +43,9 @@ export default nix.lambda((args) => (() => {
   --prefix PATH ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [gawk, glibc]))}
 `)))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           vault: nix.thunk(() => nix.attr(nixosTests, "vault")),
           "vault-postgresql": nix.thunk(() => nix.attr(nixosTests, "vault-postgresql")),
           "vault-dev": nix.thunk(() => nix.attr(nixosTests, "vault-dev")),
@@ -57,7 +53,7 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://developer.hashicorp.com/vault",
         description: "Tool for managing secrets",
         changelog: nix.thunk(() => nix.str`https://github.com/hashicorp/vault/blob/v${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

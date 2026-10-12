@@ -2,24 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/tests.nix", [[["backend", 9, 56]], [["repoId", 27, 9], ["rev", 28, 9], ["hash", 29, 9]], [["repoId", 32, 9], ["tag", 33, 9], ["hash", 34, 9]], [["repoId", 37, 9], ["repoType", 38, 9], ["domain", 39, 9], ["rev", 40, 9], ["hash", 41, 9]], [["custom", 48, 18]], [["repoId", 44, 9], ["repoType", 45, 9], ["rev", 46, 9], ["hash", 47, 9], ["passthru", 48, 9]], [["repoId", 51, 9], ["rev", 52, 9], ["branchName", 53, 9], ["deepClone", 54, 9], ["fetchSubmodules", 55, 9], ["fetchTags", 56, 9], ["leaveDotGit", 57, 9], ["hash", 58, 9]], [["repoId", 94, 7], ["hash", 95, 7]], [["repoId", 101, 7], ["rev", 102, 7], ["tag", 103, 7], ["hash", 104, 7]], [["repoId", 110, 7], ["rev", 111, 7], ["hash", 112, 7]], [["repoId", 118, 7], ["repoType", 119, 7], ["rev", 120, 7], ["hash", 121, 7]], [["repoId", 127, 7], ["rev", 128, 7], ["hash", 129, 7]], [["repoId", 135, 7], ["rev", 136, 7], ["backend", 137, 7], ["hash", 138, 7]], [["repoId", 144, 7], ["rev", 145, 7], ["backend", 146, 7], ["hash", 147, 7]], [["repoId", 152, 5], ["rev", 153, 5], ["hash", 154, 5]], [["repoId", 158, 5], ["rev", 159, 5], ["rootDir", 160, 5], ["hash", 161, 5]], [["apiSurface", 24, 3], ["missingRevOrTag", 92, 3], ["bothRevAndTag", 99, 3], ["invalidRepoId", 108, 3], ["invalidRepoType", 116, 3], ["defaultXetBackend", 125, 3], ["explicitXetBackend", 133, 3], ["invalidBackend", 142, 3], ["simple", 151, 3], ["rootDir", 157, 3]]]);
 const formals$1 = { args: { lib: false, testers: false, fetchFromHuggingFace: false, runCommand: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/tests.nix", [["backend", 9, 56]]);
-const pos$2 = nix.positions(here + "/tests.nix", [["repoId", 27, 9], ["rev", 28, 9], ["hash", 29, 9]]);
-const pos$3 = nix.positions(here + "/tests.nix", [["repoId", 32, 9], ["tag", 33, 9], ["hash", 34, 9]]);
-const pos$4 = nix.positions(here + "/tests.nix", [["repoId", 37, 9], ["repoType", 38, 9], ["domain", 39, 9], ["rev", 40, 9], ["hash", 41, 9]]);
-const pos$5 = nix.positions(here + "/tests.nix", [["custom", 48, 18]]);
-const pos$6 = nix.positions(here + "/tests.nix", [["repoId", 44, 9], ["repoType", 45, 9], ["rev", 46, 9], ["hash", 47, 9], ["passthru", 48, 9]]);
-const pos$7 = nix.positions(here + "/tests.nix", [["repoId", 51, 9], ["rev", 52, 9], ["branchName", 53, 9], ["deepClone", 54, 9], ["fetchSubmodules", 55, 9], ["fetchTags", 56, 9], ["leaveDotGit", 57, 9], ["hash", 58, 9]]);
-const pos$8 = nix.positions(here + "/tests.nix", [["repoId", 94, 7], ["hash", 95, 7]]);
-const pos$9 = nix.positions(here + "/tests.nix", [["repoId", 101, 7], ["rev", 102, 7], ["tag", 103, 7], ["hash", 104, 7]]);
-const pos$10 = nix.positions(here + "/tests.nix", [["repoId", 110, 7], ["rev", 111, 7], ["hash", 112, 7]]);
-const pos$11 = nix.positions(here + "/tests.nix", [["repoId", 118, 7], ["repoType", 119, 7], ["rev", 120, 7], ["hash", 121, 7]]);
-const pos$12 = nix.positions(here + "/tests.nix", [["repoId", 127, 7], ["rev", 128, 7], ["hash", 129, 7]]);
-const pos$13 = nix.positions(here + "/tests.nix", [["repoId", 135, 7], ["rev", 136, 7], ["backend", 137, 7], ["hash", 138, 7]]);
-const pos$14 = nix.positions(here + "/tests.nix", [["repoId", 144, 7], ["rev", 145, 7], ["backend", 146, 7], ["hash", 147, 7]]);
-const pos$15 = nix.positions(here + "/tests.nix", [["repoId", 152, 5], ["rev", 153, 5], ["hash", 154, 5]]);
-const pos$16 = nix.positions(here + "/tests.nix", [["repoId", 158, 5], ["rev", 159, 5], ["rootDir", 160, 5], ["hash", 161, 5]]);
-const pos$17 = nix.positions(here + "/tests.nix", [["apiSurface", 24, 3], ["missingRevOrTag", 92, 3], ["bothRevAndTag", 99, 3], ["invalidRepoId", 108, 3], ["invalidRepoType", 116, 3], ["defaultXetBackend", 125, 3], ["explicitXetBackend", 133, 3], ["invalidBackend", 142, 3], ["simple", 151, 3], ["rootDir", 157, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const fetchFromHuggingFace = nix.arg($, "fetchFromHuggingFace");
   const runCommand = nix.arg($, "runCommand");
-  const fetchWithLFS = (args_1) => nix.app(fetchFromHuggingFace, nix.thunk(() => nix.update(args_1, { [nix.POS]: pos$1, backend: "lfs" })));
+  const fetchWithLFS = (args_1) => nix.app(fetchFromHuggingFace, nix.thunk(() => nix.update(args_1, { [nix.POS]: $pos[0], backend: "lfs" })));
   const fetchTestRepository = nix.thunk(() => nix.app(nix.sel(testers, "invalidateFetcherByDrvHash"), fetchWithLFS));
   const fakeRev = "0123456789abcdef0123456789abcdef01234567";
   const expectEvalFailure = (name) => (expr) => (() => {
@@ -37,22 +21,22 @@ touch "$out"
 `));
   })();
   return {
-    [nix.POS]: pos$17,
+    [nix.POS]: $pos[16],
     apiSurface: nix.thunk(() => (() => {
       const unnamespaced = nix.thunk(() => nix.app(fetchWithLFS, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           repoId: "gpt2",
           rev: fakeRev,
           hash: nix.thunk(() => nix.sel(lib, "fakeHash")),
         }))));
       const tagged = nix.thunk(() => nix.app(fetchWithLFS, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           repoId: "kitten/tagged-model",
           tag: "v1.0",
           hash: nix.thunk(() => nix.sel(lib, "fakeHash")),
         }))));
       const dataset = nix.thunk(() => nix.app(fetchWithLFS, nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           repoId: "kitten/dataset",
           repoType: "dataset",
           domain: "hf.example",
@@ -60,15 +44,15 @@ touch "$out"
           hash: nix.thunk(() => nix.sel(lib, "fakeHash")),
         }))));
       const space = nix.thunk(() => nix.app(fetchWithLFS, nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           repoId: "kitten/space",
           repoType: "space",
           rev: fakeRev,
           hash: nix.thunk(() => nix.sel(lib, "fakeHash")),
-          passthru: nix.thunk(() => ({ [nix.POS]: pos$5, custom: "value" })),
+          passthru: nix.thunk(() => ({ [nix.POS]: $pos[4], custom: "value" })),
         }))));
       const fetchgitOptions = nix.thunk(() => nix.app(fetchWithLFS, nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           repoId: "kitten/fetchgit-options",
           rev: fakeRev,
           branchName: "huggingface",
@@ -109,58 +93,58 @@ touch "$out"
 `));
     })()),
     missingRevOrTag: nix.thunk(() => nix.app(expectEvalFailure, "fetchFromHuggingFace-missing-rev-or-tag", nix.thunk(() => nix.sel(nix.app(fetchFromHuggingFace, nix.thunk(() => ({
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           repoId: "gpt2",
           hash: nix.thunk(() => nix.sel(lib, "fakeHash")),
         }))), "drvPath")))),
     bothRevAndTag: nix.thunk(() => nix.app(expectEvalFailure, "fetchFromHuggingFace-both-rev-and-tag", nix.thunk(() => nix.sel(nix.app(fetchFromHuggingFace, nix.thunk(() => ({
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           repoId: "gpt2",
           rev: fakeRev,
           tag: "main",
           hash: nix.thunk(() => nix.sel(lib, "fakeHash")),
         }))), "drvPath")))),
     invalidRepoId: nix.thunk(() => nix.app(expectEvalFailure, "fetchFromHuggingFace-invalid-repo-id", nix.thunk(() => nix.sel(nix.app(fetchFromHuggingFace, nix.thunk(() => ({
-          [nix.POS]: pos$10,
+          [nix.POS]: $pos[9],
           repoId: "broken/repo/id",
           rev: fakeRev,
           hash: nix.thunk(() => nix.sel(lib, "fakeHash")),
         }))), "drvPath")))),
     invalidRepoType: nix.thunk(() => nix.app(expectEvalFailure, "fetchFromHuggingFace-invalid-repo-type", nix.thunk(() => nix.sel(nix.app(fetchFromHuggingFace, nix.thunk(() => ({
-          [nix.POS]: pos$11,
+          [nix.POS]: $pos[10],
           repoId: "gpt2",
           repoType: "collection",
           rev: fakeRev,
           hash: nix.thunk(() => nix.sel(lib, "fakeHash")),
         }))), "drvPath")))),
     defaultXetBackend: nix.thunk(() => nix.app(expectEvalFailure, "fetchFromHuggingFace-default-xet-backend", nix.thunk(() => nix.sel(nix.app(fetchFromHuggingFace, nix.thunk(() => ({
-          [nix.POS]: pos$12,
+          [nix.POS]: $pos[11],
           repoId: "gpt2",
           rev: fakeRev,
           hash: nix.thunk(() => nix.sel(lib, "fakeHash")),
         }))), "drvPath")))),
     explicitXetBackend: nix.thunk(() => nix.app(expectEvalFailure, "fetchFromHuggingFace-explicit-xet-backend", nix.thunk(() => nix.sel(nix.app(fetchFromHuggingFace, nix.thunk(() => ({
-          [nix.POS]: pos$13,
+          [nix.POS]: $pos[12],
           repoId: "gpt2",
           rev: fakeRev,
           backend: "xet",
           hash: nix.thunk(() => nix.sel(lib, "fakeHash")),
         }))), "drvPath")))),
     invalidBackend: nix.thunk(() => nix.app(expectEvalFailure, "fetchFromHuggingFace-invalid-backend", nix.thunk(() => nix.sel(nix.app(fetchFromHuggingFace, nix.thunk(() => ({
-          [nix.POS]: pos$14,
+          [nix.POS]: $pos[13],
           repoId: "gpt2",
           rev: fakeRev,
           backend: "git",
           hash: nix.thunk(() => nix.sel(lib, "fakeHash")),
         }))), "drvPath")))),
     simple: nix.thunk(() => nix.app(fetchTestRepository, nix.thunk(() => ({
-        [nix.POS]: pos$15,
+        [nix.POS]: $pos[14],
         repoId: "hf-internal-testing/tiny-random-gpt2",
         rev: "71034c5d8bde858ff824298bdedc65515b97d2b9",
         hash: "sha256-8K9B/C62GW5lXC0c8QQpQ9QAE1UMoG+kYqvGhnWIp64=",
       })))),
     rootDir: nix.thunk(() => nix.app(fetchTestRepository, nix.thunk(() => ({
-        [nix.POS]: pos$16,
+        [nix.POS]: $pos[15],
         repoId: "hf-internal-testing/tiny-random-BertModel",
         rev: "fc08ad9cc33be9aef4f55cc80e16ef5ae3d5981c",
         rootDir: "onnx",

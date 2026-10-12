@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 47, 26], ["version", 47, 32], ["hash", 48, 5]], [["description", 90, 5], ["homepage", 91, 5], ["license", 92, 5], ["maintainers", 93, 5], ["mainProgram", 94, 5]], [["pname", 41, 3], ["version", 42, 3], ["pyproject", 43, 3], ["__structuredAttrs", 44, 3], ["src", 46, 3], ["build-system", 51, 3], ["dependencies", 56, 3], ["pythonImportsCheck", 83, 3], ["nativeCheckInputs", 85, 3], ["meta", 89, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, hatchling: false, "hatch-vcs": false, aiohttp: false, backoff: false, bokeh: false, boto3: false, click: false, dask: false, distributed: false, fabric: false, filelock: false, gilknocker: false, httpx: false, "importlib-metadata": false, invoke: false, ipywidgets: false, jmespath: false, jsondiff: false, paramiko: false, pip: false, "pip-requirements-parser": false, "prometheus-client": false, rich: false, toml: false, "typing-extensions": false, wheel: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 47, 26], ["version", 47, 32], ["hash", 48, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 90, 5], ["homepage", 91, 5], ["license", 92, 5], ["maintainers", 93, 5], ["mainProgram", 94, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 41, 3], ["version", 42, 3], ["pyproject", 43, 3], ["__structuredAttrs", 44, 3], ["src", 46, 3], ["build-system", 51, 3], ["dependencies", 56, 3], ["pythonImportsCheck", 83, 3], ["nativeCheckInputs", 85, 3], ["meta", 89, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -40,13 +38,13 @@ export default nix.lambda((args) => (() => {
   const wheel = nix.arg($, "wheel");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "coiled",
       version: "1.135.4",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-o9u/qVECGK/E0AnBwSYv2BYmmejk+zUHnTL+FCJOU/A=",
@@ -81,7 +79,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["coiled"]),
       nativeCheckInputs: nix.thunk(() => [versionCheckHook]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Python client for coiled.io dask clusters",
         homepage: "https://www.coiled.io/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "elastic20")),

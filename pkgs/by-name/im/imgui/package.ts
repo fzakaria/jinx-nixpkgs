@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["postSdl3", 50, 13], ["others", 51, 13]], [["url", 66, 11], ["hash", 67, 11]], [["src", 53, 21], ["patches", 54, 5]], [["owner", 84, 5], ["repo", 85, 5], ["tag", 86, 5], ["hash", 87, 5]], [["demo", 135, 7]], [["tests", 134, 5]], [["broken", 141, 5], ["description", 153, 5], ["homepage", 154, 5], ["license", 155, 5], ["maintainers", 156, 5], ["platforms", 159, 5]], [["pname", 74, 3], ["version", 75, 3], ["outputs", 76, 3], ["src", 83, 3], ["cmakeRules", 90, 3], ["postPatch", 91, 3], ["nativeBuildInputs", 95, 3], ["propagatedBuildInputs", 97, 3], ["cmakeFlags", 107, 3], ["passthru", 133, 3], ["meta", 139, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, applyPatches: false, callPackage: false, cmake: false, fetchFromGitHub: false, fetchpatch: false, glfw: false, libGL: false, SDL2: false, sdl3: false, vcpkg: false, "vulkan-headers": false, "vulkan-loader": false, imgui: false, IMGUI_LINK_GLVND: true, IMGUI_BUILD_ALLEGRO5_BINDING: true, IMGUI_BUILD_ANDROID_BINDING: true, IMGUI_BUILD_DX9_BINDING: true, IMGUI_BUILD_DX10_BINDING: true, IMGUI_BUILD_DX11_BINDING: true, IMGUI_BUILD_DX12_BINDING: true, IMGUI_BUILD_GLFW_BINDING: true, IMGUI_BUILD_GLUT_BINDING: true, IMGUI_BUILD_METAL_BINDING: true, IMGUI_BUILD_OPENGL2_BINDING: true, IMGUI_BUILD_OPENGL3_BINDING: true, IMGUI_BUILD_OSX_BINDING: true, IMGUI_BUILD_SDL3_BINDING: true, IMGUI_BUILD_SDL3_RENDERER_BINDING: true, IMGUI_BUILD_SDL2_BINDING: true, IMGUI_BUILD_SDL2_RENDERER_BINDING: true, IMGUI_BUILD_SDLGPU3_BINDING: true, IMGUI_BUILD_VULKAN_BINDING: true, IMGUI_BUILD_WIN32_BINDING: true, IMGUI_FREETYPE: true, IMGUI_FREETYPE_LUNASVG: true, IMGUI_USE_WCHAR32: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["postSdl3", 50, 13], ["others", 51, 13]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 66, 11], ["hash", 67, 11]]);
-const pos$3 = nix.positions(here + "/package.nix", [["src", 53, 21], ["patches", 54, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["owner", 84, 5], ["repo", 85, 5], ["tag", 86, 5], ["hash", 87, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["demo", 135, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["tests", 134, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["broken", 141, 5], ["description", 153, 5], ["homepage", 154, 5], ["license", 155, 5], ["maintainers", 156, 5], ["platforms", 159, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 74, 3], ["version", 75, 3], ["outputs", 76, 3], ["src", 83, 3], ["cmakeRules", 90, 3], ["postPatch", 91, 3], ["nativeBuildInputs", 95, 3], ["propagatedBuildInputs", 97, 3], ["cmakeFlags", 107, 3], ["passthru", 133, 3], ["meta", 139, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -53,29 +46,29 @@ export default nix.lambda((args) => (() => {
   const IMGUI_FREETYPE_LUNASVG = nix.argOr($, "IMGUI_FREETYPE_LUNASVG", () => false);
   const IMGUI_USE_WCHAR32 = nix.argOr($, "IMGUI_USE_WCHAR32", () => false);
   const vcpkgRevs = nix.thunk(() => ({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     postSdl3: nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(vcpkg, "version")), "2025.03.19")),
     others: nix.thunk(() => !nix.asBool(nix.sel(vcpkgRevs, "postSdl3"))),
   }));
   const vcpkgSource = nix.thunk(() => nix.app(applyPatches, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       src: nix.thunk(() => nix.attr(vcpkg, "src")),
       patches: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(vcpkgRevs, "postSdl3")), nix.thunk(() => [nix.path(here, "./0001-imgui-allow-installing-into-split-outputs.patch")])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(vcpkgRevs, "others")), nix.thunk(() => [
           fetchpatch,
           nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/microsoft/vcpkg/commit/4108dd75ce9731a4fdcf50fd05034405156eaddf.patch",
             hash: "sha256-jXbR0NfyuO8EESmva5A+H3WmBfCG83OiA8ZCcWsRhQA=",
           })),
         ])))),
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "imgui",
       version: "1.91.4",
       outputs: nix.thunk(() => ["out", "lib"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           owner: "ocornut",
           repo: "imgui",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -111,14 +104,14 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "IMGUI_USE_WCHAR32", IMGUI_USE_WCHAR32)),
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           demo: nix.thunk(() => nix.app(callPackage, nix.path(here, "./demo"), nix.thunk(() => ({})))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         broken: nix.thunk(() => (nix.asBool((nix.asBool((nix.asBool((nix.asBool((nix.asBool((nix.asBool((nix.asBool((nix.asBool((nix.asBool((nix.asBool(IMGUI_BUILD_SDL2_BINDING) || nix.asBool(IMGUI_BUILD_SDL2_RENDERER_BINDING))) || nix.asBool(IMGUI_FREETYPE))) || nix.asBool(IMGUI_FREETYPE_LUNASVG))) || nix.asBool(IMGUI_BUILD_DX9_BINDING))) || nix.asBool(IMGUI_BUILD_DX10_BINDING))) || nix.asBool(IMGUI_BUILD_DX11_BINDING))) || nix.asBool(IMGUI_BUILD_DX12_BINDING))) || nix.asBool(IMGUI_BUILD_WIN32_BINDING))) || nix.asBool(IMGUI_BUILD_ALLEGRO5_BINDING))) || nix.asBool(IMGUI_BUILD_ANDROID_BINDING))),
         description: "Bloat-free Graphical User interface for C++ with minimal dependencies",
         homepage: "https://github.com/ocornut/imgui",

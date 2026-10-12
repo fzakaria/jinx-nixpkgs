@@ -2,14 +2,14 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["xonsh-direnv", 5, 3], ["xontrib-abbrevs", 6, 3], ["xontrib-bashisms", 7, 3], ["xontrib-debug-tools", 8, 3], ["xontrib-distributed", 9, 3], ["xontrib-fish-completer", 10, 3], ["xontrib-jedi", 11, 3], ["xontrib-jupyter", 12, 3], ["xontrib-vox", 13, 3], ["xontrib-whole-word-jumping", 14, 3]]]);
 const formals$1 = { args: { callPackage: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["xonsh-direnv", 5, 3], ["xontrib-abbrevs", 6, 3], ["xontrib-bashisms", 7, 3], ["xontrib-debug-tools", 8, 3], ["xontrib-distributed", 9, 3], ["xontrib-fish-completer", 10, 3], ["xontrib-jedi", 11, 3], ["xontrib-jupyter", 12, 3], ["xontrib-vox", 13, 3], ["xontrib-whole-word-jumping", 14, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const callPackage = nix.arg($, "callPackage");
   return {
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     "xonsh-direnv": nix.thunk(() => nix.app(callPackage, nix.path(here, "./xonsh-direnv"), nix.thunk(() => ({})))),
     "xontrib-abbrevs": nix.thunk(() => nix.app(callPackage, nix.path(here, "./xontrib-abbrevs"), nix.thunk(() => ({})))),
     "xontrib-bashisms": nix.thunk(() => nix.app(callPackage, nix.path(here, "./xontrib-bashisms"), nix.thunk(() => ({})))),

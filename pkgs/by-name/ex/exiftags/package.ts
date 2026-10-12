@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 12, 5], ["sha256", 13, 5]], [["homepage", 31, 5], ["description", 32, 5], ["license", 33, 5], ["maintainers", 34, 5], ["platforms", 35, 5], ["knownVulnerabilities", 36, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["patchPhase", 16, 3], ["preInstall", 26, 3], ["meta", 30, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 12, 5], ["sha256", 13, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 31, 5], ["description", 32, 5], ["license", 33, 5], ["maintainers", 34, 5], ["platforms", 35, 5], ["knownVulnerabilities", 36, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["patchPhase", 16, 3], ["preInstall", 26, 3], ["meta", 30, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,14 +14,14 @@ export default nix.lambda((args) => (() => {
       const pname = "exiftags";
       const version = "1.01";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://johnst.org/sw/exiftags/exiftags-${version}.tar.gz`),
           sha256: "194ifl6hybx2a5x8jhlh9i56k3qfc6p2l72z0ii1b7v0bzg48myr",
         }))));
       const patchPhase = "sed -i -e s@/usr/local@$out@ Makefile\n\nsubstituteInPlace makers.h \\\n  --replace-fail \"void (*propfun)();\" \"void (*propfun)(struct exifprop *, struct exiftags *);\" \\\n  --replace-fail \"struct ifd *(*ifdfun)();\" \"struct ifd *(*ifdfun)(u_int32_t, struct tiffmeta *);\"\nsubstituteInPlace canon.c \\\n  --replace-fail \"int (*valfun)()\" \"int (*valfun)(struct exifprop *, struct exifprop *, unsigned char *, struct exiftags *)\"\n";
       const preInstall = "mkdir -p $out/bin $out/man/man1\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "http://johnst.org/sw/exiftags/",
         description: "Displays EXIF data from JPEG files",
         license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
@@ -34,7 +32,7 @@ export default nix.lambda((args) => (() => {
         })()),
         knownVulnerabilities: nix.thunk(() => ["CVE-2023-50671", "CVE-2024-42851"]),
       }));
-      return { [nix.POS]: pos$3, pname, version, src, patchPhase, preInstall, meta };
+      return { [nix.POS]: $pos[2], pname, version, src, patchPhase, preInstall, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

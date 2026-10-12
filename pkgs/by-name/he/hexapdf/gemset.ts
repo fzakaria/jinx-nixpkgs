@@ -2,24 +2,16 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
-const pos$1 = nix.positions(here + "/gemset.nix", [["remotes", 6, 7], ["sha256", 7, 7], ["type", 8, 7]]);
-const pos$2 = nix.positions(here + "/gemset.nix", [["groups", 3, 5], ["platforms", 4, 5], ["source", 5, 5], ["version", 10, 5]]);
-const pos$3 = nix.positions(here + "/gemset.nix", [["remotes", 16, 7], ["sha256", 17, 7], ["type", 18, 7]]);
-const pos$4 = nix.positions(here + "/gemset.nix", [["groups", 13, 5], ["platforms", 14, 5], ["source", 15, 5], ["version", 20, 5]]);
-const pos$5 = nix.positions(here + "/gemset.nix", [["remotes", 31, 7], ["sha256", 32, 7], ["type", 33, 7]]);
-const pos$6 = nix.positions(here + "/gemset.nix", [["dependencies", 23, 5], ["groups", 28, 5], ["platforms", 29, 5], ["source", 30, 5], ["version", 35, 5]]);
-const pos$7 = nix.positions(here + "/gemset.nix", [["remotes", 41, 7], ["sha256", 42, 7], ["type", 43, 7]]);
-const pos$8 = nix.positions(here + "/gemset.nix", [["groups", 38, 5], ["platforms", 39, 5], ["source", 40, 5], ["version", 45, 5]]);
-const pos$9 = nix.positions(here + "/gemset.nix", [["cmdparse", 2, 3], ["geom2d", 12, 3], ["hexapdf", 22, 3], ["openssl", 37, 3]]);
+const $pos = nix.positions(here + "/gemset.nix", [[["remotes", 6, 7], ["sha256", 7, 7], ["type", 8, 7]], [["groups", 3, 5], ["platforms", 4, 5], ["source", 5, 5], ["version", 10, 5]], [["remotes", 16, 7], ["sha256", 17, 7], ["type", 18, 7]], [["groups", 13, 5], ["platforms", 14, 5], ["source", 15, 5], ["version", 20, 5]], [["remotes", 31, 7], ["sha256", 32, 7], ["type", 33, 7]], [["dependencies", 23, 5], ["groups", 28, 5], ["platforms", 29, 5], ["source", 30, 5], ["version", 35, 5]], [["remotes", 41, 7], ["sha256", 42, 7], ["type", 43, 7]], [["groups", 38, 5], ["platforms", 39, 5], ["source", 40, 5], ["version", 45, 5]], [["cmdparse", 2, 3], ["geom2d", 12, 3], ["hexapdf", 22, 3], ["openssl", 37, 3]]]);
 
 export default nix.thunk(() => ({
-  [nix.POS]: pos$9,
+  [nix.POS]: $pos[8],
   cmdparse: nix.thunk(() => ({
-    [nix.POS]: pos$2,
+    [nix.POS]: $pos[1],
     groups: nix.thunk(() => ["default"]),
     platforms: [],
     source: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       remotes: nix.thunk(() => ["https://rubygems.org"]),
       sha256: "0f87jny4zk21iyrkyyw4kpnq8ymrwjay02ipagwapimy237cmigp",
       type: "gem",
@@ -27,11 +19,11 @@ export default nix.thunk(() => ({
     version: "3.0.7",
   })),
   geom2d: nix.thunk(() => ({
-    [nix.POS]: pos$4,
+    [nix.POS]: $pos[3],
     groups: nix.thunk(() => ["default"]),
     platforms: [],
     source: nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       remotes: nix.thunk(() => ["https://rubygems.org"]),
       sha256: "1nafcfznjqycxd062cais64ydgl99xddh4zy4hp7bwn4j3m9h2ga",
       type: "gem",
@@ -39,12 +31,12 @@ export default nix.thunk(() => ({
     version: "0.4.1",
   })),
   hexapdf: nix.thunk(() => ({
-    [nix.POS]: pos$6,
+    [nix.POS]: $pos[5],
     dependencies: nix.thunk(() => ["cmdparse", "geom2d", "openssl"]),
     groups: nix.thunk(() => ["default"]),
     platforms: [],
     source: nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       remotes: nix.thunk(() => ["https://rubygems.org"]),
       sha256: "13dbscnf7c3jlghlkgl01b7hzgx2ps26m57qmhyv5g626n342i4c",
       type: "gem",
@@ -52,11 +44,11 @@ export default nix.thunk(() => ({
     version: "1.0.2",
   })),
   openssl: nix.thunk(() => ({
-    [nix.POS]: pos$8,
+    [nix.POS]: $pos[7],
     groups: nix.thunk(() => ["default"]),
     platforms: [],
     source: nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       remotes: nix.thunk(() => ["https://rubygems.org"]),
       sha256: "054d6ybgjdzxw567m7rbnd46yp6gkdbc5ihr536vxd3p15vbhjrw",
       type: "gem",

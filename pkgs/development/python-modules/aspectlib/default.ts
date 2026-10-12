@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 20, 13], ["version", 20, 19], ["hash", 21, 5]], [["name", 27, 7], ["url", 28, 7], ["hash", 29, 7]], [["name", 32, 7], ["url", 33, 7], ["hash", 34, 7], ["includes", 35, 7]], [["changelog", 61, 5], ["description", 62, 5], ["homepage", 63, 5], ["license", 64, 5], ["maintainers", 65, 5]], [["pname", 14, 3], ["version", 15, 3], ["pyproject", 17, 3], ["src", 19, 3], ["patches", 24, 3], ["nativeBuildInputs", 39, 3], ["propagatedBuildInputs", 41, 3], ["pythonImportsCheck", 43, 3], ["nativeCheckInputs", 50, 3], ["pytestFlags", 56, 3], ["__darwinAllowLocalNetworking", 58, 3], ["meta", 60, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, fetchpatch: false, setuptools: false, fields: false, "process-tests": false, pytestCheckHook: false, tornado: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 20, 13], ["version", 20, 19], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["name", 27, 7], ["url", 28, 7], ["hash", 29, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["name", 32, 7], ["url", 33, 7], ["hash", 34, 7], ["includes", 35, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["changelog", 61, 5], ["description", 62, 5], ["homepage", 63, 5], ["license", 64, 5], ["maintainers", 65, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 14, 3], ["version", 15, 3], ["pyproject", 17, 3], ["src", 19, 3], ["patches", 24, 3], ["nativeBuildInputs", 39, 3], ["propagatedBuildInputs", 41, 3], ["pythonImportsCheck", 43, 3], ["nativeCheckInputs", 50, 3], ["pytestFlags", 56, 3], ["__darwinAllowLocalNetworking", 58, 3], ["meta", 60, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,20 +21,20 @@ export default nix.lambda((args) => (() => {
       const version = "2.0.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-pLRhudoLUxrry5PvzePegIpyxgIm3Y2QLEZ9E/r3zpI=",
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "darwin-compat.patch",
             url: "https://github.com/ionelmc/python-aspectlib/commit/ef2c12304f08723dc8e79d1c59bc32c946d758dc.patch",
             hash: "sha256-gtPFtwDsGIMkHTyuoiLk+SAGgB2Wyx/Si9HIdoIsvI8=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "pluggy-compat.patch",
             url: "https://github.com/ionelmc/python-aspectlib/commit/b85abdb0565d1598ce56bd49d49dc709d4e16081.patch",
             hash: "sha256-hW9xF50RjlrKXyABc69dkiV7YUeee95MnF0J/xQDWd4=",
@@ -52,7 +48,7 @@ export default nix.lambda((args) => (() => {
       const pytestFlags = nix.thunk(() => ["-Wignore::DeprecationWarning"]);
       const __darwinAllowLocalNetworking = true;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         changelog: nix.thunk(() => nix.str`https://github.com/ionelmc/python-aspectlib/blob/v${version}/CHANGELOG.rst`),
         description: "Aspect-oriented programming, monkey-patch and decorators library",
         homepage: "https://github.com/ionelmc/python-aspectlib",
@@ -63,7 +59,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         pyproject,

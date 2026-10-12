@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["which", 11, 5], ["awkscript", 12, 5]], [["test", 14, 18]], [["tests", 14, 12]], [["description", 16, 5], ["license", 17, 5], ["maintainers", 18, 5]], [["name", 9, 3], ["substitutions", 10, 3], ["passthru", 14, 3], ["meta", 15, 3]]]);
 const formals$1 = { args: { lib: false, makeSetupHook: false, which: false, callPackage: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["which", 11, 5], ["awkscript", 12, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["test", 14, 18]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 14, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 16, 5], ["license", 17, 5], ["maintainers", 18, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["name", 9, 3], ["substitutions", 10, 3], ["passthru", 14, 3], ["meta", 15, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,22 +12,22 @@ export default nix.lambda((args) => (() => {
   const which = nix.arg($, "which");
   const callPackage = nix.arg($, "callPackage");
   return nix.app(makeSetupHook, nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       name: "patch-ppd-files",
       substitutions: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         which: nix.thunk(() => nix.app(nix.sel(lib, "getBin"), which)),
         awkscript: nix.path(here, "./patch-ppd-lines.awk"),
       })),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           test: nix.thunk(() => nix.app(callPackage, nix.path(here, "./test.nix"), nix.thunk(() => ({})))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Setup hook to patch executable paths in ppd files",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "yarny"))]),

@@ -2,18 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 14, 5], ["hash", 15, 5]], [["url", 18, 5], ["hash", 19, 5]], [["url", 22, 5], ["hash", 23, 5]], [["url", 26, 5], ["hash", 27, 5]], [["url", 30, 5], ["hash", 31, 5]], [["url", 34, 5], ["hash", 35, 5]], [["url", 38, 5], ["hash", 39, 5]], [["owner", 48, 5], ["repo", 49, 5], ["tag", 50, 5], ["hash", 51, 5]], [["ZSTD_SYS_USE_PKG_CONFIG", 89, 7]], [["description", 94, 5], ["homepage", 95, 5], ["changelog", 96, 5], ["license", 97, 5], ["maintainers", 98, 5], ["mainProgram", 99, 5]], [["pname", 44, 3], ["version", 45, 3], ["src", 47, 3], ["postPatch", 54, 3], ["cargoHash", 79, 3], ["nativeBuildInputs", 81, 3], ["buildInputs", 83, 3], ["env", 89, 3], ["__darwinAllowLocalNetworking", 91, 3], ["meta", 93, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchFromGitHub: false, "pkg-config": false, sqlite: false, unixodbc: false, zstd: false, fetchurl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 14, 5], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 18, 5], ["hash", 19, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 22, 5], ["hash", 23, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["url", 26, 5], ["hash", 27, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["url", 30, 5], ["hash", 31, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["url", 34, 5], ["hash", 35, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["url", 38, 5], ["hash", 39, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["owner", 48, 5], ["repo", 49, 5], ["tag", 50, 5], ["hash", 51, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["ZSTD_SYS_USE_PKG_CONFIG", 89, 7]]);
-const pos$10 = nix.positions(here + "/package.nix", [["description", 94, 5], ["homepage", 95, 5], ["changelog", 96, 5], ["license", 97, 5], ["maintainers", 98, 5], ["mainProgram", 99, 5]]);
-const pos$11 = nix.positions(here + "/package.nix", [["pname", 44, 3], ["version", 45, 3], ["src", 47, 3], ["postPatch", 54, 3], ["cargoHash", 79, 3], ["nativeBuildInputs", 81, 3], ["buildInputs", 83, 3], ["env", 89, 3], ["__darwinAllowLocalNetworking", 91, 3], ["meta", 93, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,46 +16,46 @@ export default nix.lambda((args) => (() => {
   const zstd = nix.arg($, "zstd");
   const fetchurl = nix.arg($, "fetchurl");
   const apexcharts = nix.thunk(() => ({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     url: "https://cdn.jsdelivr.net/npm/apexcharts@5.13.0/dist/apexcharts.min.js",
     hash: "sha256-DgRUn+X1cxT0z5O+QcrX48NuVrY1KhoCmHPvVZAvS8k=",
   }));
   const tablerCss = nix.thunk(() => ({
-    [nix.POS]: pos$2,
+    [nix.POS]: $pos[1],
     url: "https://cdn.jsdelivr.net/npm/@tabler/core@1.4.0/dist/css/tabler.min.css",
     hash: "sha256-fvdQvRBUamldCxJ2etgEi9jz7F3n2u+xBn+dDao9HJo=",
   }));
   const tomSelectCss = nix.thunk(() => ({
-    [nix.POS]: pos$3,
+    [nix.POS]: $pos[2],
     url: "https://cdn.jsdelivr.net/npm/tom-select@2.6.1/dist/css/tom-select.bootstrap5.css",
     hash: "sha256-vW5UjM/Ka9/jIY8I5s5KcudaTRWh/cCGE1ZUsrJvlI0=",
   }));
   const tablerVendorsCss = nix.thunk(() => ({
-    [nix.POS]: pos$4,
+    [nix.POS]: $pos[3],
     url: "https://cdn.jsdelivr.net/npm/@tabler/core@1.4.0/dist/css/tabler-vendors.min.css",
     hash: "sha256-/VPz9GtiH1Es1KGLY706UIayEEgG93B6aIBa3WzwKYc=",
   }));
   const tablerJs = nix.thunk(() => ({
-    [nix.POS]: pos$5,
+    [nix.POS]: $pos[4],
     url: "https://cdn.jsdelivr.net/npm/@tabler/core@1.4.0/dist/js/tabler.min.js",
     hash: "sha256-tgx2Fg6XYkV027jPEKvmrummSTtgCW/fwV3R3SvZnrk=",
   }));
   const tablerIcons = nix.thunk(() => ({
-    [nix.POS]: pos$6,
+    [nix.POS]: $pos[5],
     url: "https://cdn.jsdelivr.net/npm/@tabler/icons-sprite@3.44.0/dist/tabler-sprite.svg",
     hash: "sha256-aHeH8IGC75mepyW2gj/aYrW7LCEtjobwxvGnVp5j3Uc=",
   }));
   const tomselect = nix.thunk(() => ({
-    [nix.POS]: pos$7,
+    [nix.POS]: $pos[6],
     url: "https://cdn.jsdelivr.net/npm/tom-select@2.6.1/dist/js/tom-select.popular.min.js",
     hash: "sha256-KmjMBvL4Ni3AYc9OCi9xSEuamESyLEBL4B2gzFrWPGE=",
   }));
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$11,
+      [nix.POS]: $pos[10],
       pname: "sqlpage",
       version: "0.45.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           owner: "sqlpage",
           repo: "SQLpage",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -97,10 +87,10 @@ substituteInPlace build.rs \\
       cargoHash: "sha256-ZT1le+YtArIebctgIZFUPk3AKPCDug8R2+dJjZiw028=",
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [sqlite, unixodbc, zstd]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$9, ZSTD_SYS_USE_PKG_CONFIG: true })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[8], ZSTD_SYS_USE_PKG_CONFIG: true })),
       __darwinAllowLocalNetworking: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         description: "SQL-only webapp builder, empowering data analysts to build websites and applications quickly",
         homepage: "https://github.com/sqlpage/SQLpage",
         changelog: nix.thunk(() => nix.str`https://github.com/sqlpage/SQLpage/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 38, 7], ["owner", 39, 7], ["repo", 40, 7], ["rev", 41, 7], ["hash", 42, 7]], [["version", 36, 5], ["src", 37, 5], ["buildInputs", 45, 5]], [["domain", 53, 5], ["owner", 54, 5], ["repo", 55, 5], ["rev", 56, 5], ["hash", 57, 5]], [["hardcodeZeroVersion", 110, 5]], [["updateScript", 109, 12]], [["description", 114, 5], ["homepage", 115, 5], ["license", 116, 5], ["maintainers", 117, 33], ["platforms", 117, 45]], [["pname", 49, 3], ["version", 50, 3], ["src", 52, 3], ["patches", 60, 3], ["postPatch", 66, 3], ["nativeBuildInputs", 72, 3], ["buildInputs", 88, 3], ["passthru", 109, 3], ["meta", 113, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, "blueprint-compiler": false, meson: false, ninja: false, "pkg-config": false, vala: false, glib: false, gtk4: false, "desktop-file-utils": false, itstool: false, python3: false, "json-glib": false, libgee: false, libadwaita: false, libarchive: false, libglycin: false, "libglycin-gtk4": false, libhighscore: false, libmanette: false, sqlite: false, libGL: false, libepoxy: false, libpulseaudio: false, SDL2: false, librsvg: false, libmirage: false, feedbackd: false, unstableGitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 38, 7], ["owner", 39, 7], ["repo", 40, 7], ["rev", 41, 7], ["hash", 42, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["version", 36, 5], ["src", 37, 5], ["buildInputs", 45, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["domain", 53, 5], ["owner", 54, 5], ["repo", 55, 5], ["rev", 56, 5], ["hash", 57, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["hardcodeZeroVersion", 110, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["updateScript", 109, 12]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 114, 5], ["homepage", 115, 5], ["license", 116, 5], ["maintainers", 117, 33], ["platforms", 117, 45]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 49, 3], ["version", 50, 3], ["src", 52, 3], ["patches", 60, 3], ["postPatch", 66, 3], ["nativeBuildInputs", 72, 3], ["buildInputs", 88, 3], ["passthru", 109, 3], ["meta", 113, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -44,10 +38,10 @@ export default nix.lambda((args) => (() => {
   const feedbackd = nix.arg($, "feedbackd");
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   const libmanette_1_alpha = nix.thunk(() => nix.app(nix.sel(libmanette, "overrideAttrs"), (prev) => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       version: "0.2.13-unstable-2025-10-10",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "gitlab.gnome.org",
           owner: "GNOME",
           repo: "libmanette",
@@ -57,11 +51,11 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => nix.concat(nix.sel(prev, "buildInputs"), [libadwaita])),
     })));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "highscore-unwrapped",
       version: "0-unstable-2026-02-01",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           domain: "gitlab.gnome.org",
           owner: "World",
           repo: "highscore",
@@ -106,13 +100,13 @@ export default nix.lambda((args) => (() => {
         feedbackd,
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
-        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: pos$4, hardcodeZeroVersion: true })))),
+        [nix.POS]: $pos[4],
+        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[3], hardcodeZeroVersion: true })))),
       })),
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(libhighscore, "meta"));
         return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Rewrite of Highscore, formerly gnome-games",
         homepage: "https://gitlab.gnome.org/World/highscore/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

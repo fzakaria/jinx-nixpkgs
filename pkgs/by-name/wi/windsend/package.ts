@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]], [["NIX_CFLAGS_COMPILE", 53, 7]], [["name", 57, 7], ["exec", 58, 7], ["icon", 59, 7], ["desktopName", 60, 7]], [["updateScript", 68, 12]], [["description", 71, 5], ["homepage", 72, 5], ["mainProgram", 73, 5], ["license", 74, 5], ["maintainers", 75, 5], ["platforms", 76, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["pubspecLock", 29, 3], ["gitHashes", 31, 3], ["sourceRoot", 33, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 40, 3], ["dontUseCmakeConfigure", 51, 3], ["env", 53, 3], ["desktopItems", 55, 3], ["postInstall", 64, 3], ["passthru", 68, 3], ["meta", 70, 3]]]);
 const formals$1 = { args: { lib: false, flutter341: false, fetchFromGitHub: false, cmake: false, copyDesktopItems: false, makeDesktopItem: false, libx11: false, libxcursor: false, libxinerama: false, libxi: false, libxext: false, libxrandr: false, libxtst: false, sqlite: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 53, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 57, 7], ["exec", 58, 7], ["icon", 59, 7], ["desktopName", 60, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 68, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 71, 5], ["homepage", 72, 5], ["mainProgram", 73, 5], ["license", 74, 5], ["maintainers", 75, 5], ["platforms", 76, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["pubspecLock", 29, 3], ["gitHashes", 31, 3], ["sourceRoot", 33, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 40, 3], ["dontUseCmakeConfigure", 51, 3], ["env", 53, 3], ["desktopItems", 55, 3], ["postInstall", 64, 3], ["passthru", 68, 3], ["meta", 70, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const libxtst = nix.arg($, "libxtst");
   const sqlite = nix.arg($, "sqlite");
   return nix.app(nix.sel(flutter341, "buildFlutterApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "windsend",
       version: "1.7.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "doraemonkeys",
           repo: "WindSend",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -43,10 +38,10 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [cmake, copyDesktopItems]),
       buildInputs: nix.thunk(() => [libx11, libxcursor, libxrandr, libxinerama, libxi, libxext, libxtst, sqlite]),
       dontUseCmakeConfigure: true,
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-Wno-error=unused-result" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], NIX_CFLAGS_COMPILE: "-Wno-error=unused-result" })),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "windsend",
             exec: "WindSend",
             icon: "windsend",
@@ -54,9 +49,9 @@ export default nix.lambda((args) => (() => {
           })))),
       ]),
       postInstall: "install -Dm644 ../../app_icon/web/icon-512.png $out/share/icons/hicolor/512x512/apps/windsend.png\n",
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$4, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[3], updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Quickly and securely sync clipboard, transfer files and directories between devices",
         homepage: "https://github.com/doraemonkeys/WindSend",
         mainProgram: "WindSend",

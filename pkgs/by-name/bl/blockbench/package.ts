@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]], [["ELECTRON_SKIP_BINARY_DOWNLOAD", 42, 7]], [["name", 92, 7], ["exec", 93, 7], ["icon", 94, 7], ["desktopName", 95, 7], ["comment", 96, 7], ["categories", 97, 7], ["startupWMClass", 98, 7], ["terminal", 99, 7]], [["changelog", 104, 5], ["description", 105, 5], ["homepage", 106, 5], ["license", 107, 5], ["mainProgram", 108, 5], ["maintainers", 109, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["patches", 24, 3], ["nativeBuildInputs", 31, 3], ["npmDepsHash", 39, 3], ["makeCacheWritable", 40, 3], ["env", 42, 3], ["postConfigure", 45, 3], ["npmBuildScript", 49, 3], ["postBuild", 51, 3], ["installPhase", 63, 3], ["desktopItems", 90, 3], ["meta", 103, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildNpmPackage: false, fetchFromGitHub: false, makeWrapper: false, imagemagick: false, copyDesktopItems: false, makeDesktopItem: false, electron: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["ELECTRON_SKIP_BINARY_DOWNLOAD", 42, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 92, 7], ["exec", 93, 7], ["icon", 94, 7], ["desktopName", 95, 7], ["comment", 96, 7], ["categories", 97, 7], ["startupWMClass", 98, 7], ["terminal", 99, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["changelog", 104, 5], ["description", 105, 5], ["homepage", 106, 5], ["license", 107, 5], ["mainProgram", 108, 5], ["maintainers", 109, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["patches", 24, 3], ["nativeBuildInputs", 31, 3], ["npmDepsHash", 39, 3], ["makeCacheWritable", 40, 3], ["env", 42, 3], ["postConfigure", 45, 3], ["npmBuildScript", 49, 3], ["postBuild", 51, 3], ["installPhase", 63, 3], ["desktopItems", 90, 3], ["meta", 103, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const pname = "blockbench";
       const version = "5.1.6";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "JannisX11",
           repo: "blockbench",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -34,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => nix.concat([makeWrapper], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), nix.thunk(() => [imagemagick, copyDesktopItems]))));
       const npmDepsHash = "sha256-EYtpxi9sTpn5Xpvf84UGAFkqJS+/p9vHwNUu/Vve4pg=";
       const makeCacheWritable = true;
-      const env = nix.thunk(() => ({ [nix.POS]: pos$2, ELECTRON_SKIP_BINARY_DOWNLOAD: 1n }));
+      const env = nix.thunk(() => ({ [nix.POS]: $pos[1], ELECTRON_SKIP_BINARY_DOWNLOAD: 1n }));
       const postConfigure = nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "sed -i \"/afterSign/d\" package.json\n"));
       const npmBuildScript = "build-electron";
       const postBuild = nix.thunk(() => nix.str`# electronDist needs to be modifiable on Darwin
@@ -62,7 +58,7 @@ makeWrapper ${nix.app(nix.sel(lib, "getExe"), electron)} $out/bin/blockbench \\
 `))), "runHook postInstall\n"));
       const desktopItems = nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "blockbench",
             exec: "blockbench %U",
             icon: "blockbench",
@@ -74,7 +70,7 @@ makeWrapper ${nix.app(nix.sel(lib, "getExe"), electron)} $out/bin/blockbench \\
           })))),
       ]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         changelog: nix.thunk(() => nix.str`https://github.com/JannisX11/blockbench/releases/tag/v${version}`),
         description: "Low-poly 3D modeling and animation software",
         homepage: "https://blockbench.net/",
@@ -86,7 +82,7 @@ makeWrapper ${nix.app(nix.sel(lib, "getExe"), electron)} $out/bin/blockbench \\
         })()),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         src,

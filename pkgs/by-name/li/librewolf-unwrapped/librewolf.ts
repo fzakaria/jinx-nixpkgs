@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/librewolf.nix", [[["src", 87, 15], ["extraPatches", 87, 19]], [["librewolf", 86, 5], ["extraPrefsFiles", 89, 13], ["extraPoliciesFiles", 89, 29]], [["packageVersion", 12, 17], ["firefox", 12, 32], ["source", 12, 40], ["extraPatches", 14, 3], ["extraConfigureFlags", 16, 3], ["extraPreConfigure", 27, 3], ["extraPostPatch", 32, 3], ["localSettingsPrefs", 72, 3], ["extraPrefsFiles", 78, 3], ["extraPoliciesFiles", 83, 3], ["extraPassthru", 85, 3]]]);
 const formals$1 = { args: { callPackage: false, runCommand: false, lib: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/librewolf.nix", [["src", 87, 15], ["extraPatches", 87, 19]]);
-const pos$2 = nix.positions(here + "/librewolf.nix", [["librewolf", 86, 5], ["extraPrefsFiles", 89, 13], ["extraPoliciesFiles", 89, 29]]);
-const pos$3 = nix.positions(here + "/librewolf.nix", [["packageVersion", 12, 17], ["firefox", 12, 32], ["source", 12, 40], ["extraPatches", 14, 3], ["extraConfigureFlags", 16, 3], ["extraPreConfigure", 27, 3], ["extraPostPatch", 32, 3], ["localSettingsPrefs", 72, 3], ["extraPrefsFiles", 78, 3], ["extraPoliciesFiles", 83, 3], ["extraPassthru", 85, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -76,13 +74,13 @@ substitute ${source}/settings/defaults/pref/local-settings.js $out \\
     ]);
     const extraPoliciesFiles = nix.thunk(() => [nix.thunk(() => nix.str`${source}/settings/distribution/policies.json`)]);
     const extraPassthru = nix.thunk(() => ({
-      [nix.POS]: pos$2,
-      librewolf: nix.thunk(() => ({ [nix.POS]: pos$1, src: src, extraPatches: extraPatches })),
+      [nix.POS]: $pos[1],
+      librewolf: nix.thunk(() => ({ [nix.POS]: $pos[0], src: src, extraPatches: extraPatches })),
       extraPrefsFiles: extraPrefsFiles,
       extraPoliciesFiles: extraPoliciesFiles,
     }));
     return {
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       packageVersion,
       firefox,
       source,

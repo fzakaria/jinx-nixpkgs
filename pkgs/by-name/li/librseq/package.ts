@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["sha256", 17, 5]], [["description", 49, 5], ["homepage", 50, 5], ["license", 51, 5], ["platforms", 52, 5], ["maintainers", 53, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["outputs", 20, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 26, 3], ["installTargets", 28, 3], ["doCheck", 33, 3], ["separateDebugInfo", 34, 3], ["enableParallelBuilding", 35, 3], ["patchPhase", 37, 3], ["postInstall", 44, 3], ["meta", 48, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, autoreconfHook: false, linuxHeaders: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["sha256", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 49, 5], ["homepage", 50, 5], ["license", 51, 5], ["platforms", 52, 5], ["maintainers", 53, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["outputs", 20, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 26, 3], ["installTargets", 28, 3], ["doCheck", 33, 3], ["separateDebugInfo", 34, 3], ["enableParallelBuilding", 35, 3], ["patchPhase", 37, 3], ["postInstall", 44, 3], ["meta", 48, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "librseq";
       const version = nix.thunk(() => nix.str`0.1.0pre71_${nix.builtins.substring(0n, 7n, nix.thunk(() => nix.sel(src, "rev")))}`);
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "compudj",
           repo: "librseq",
           rev: "170f840b498e1aff068b90188727a656111bfc2f",
@@ -34,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const patchPhase = "patchShebangs tests\n";
       const postInstall = "rm -rf $out/share\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Userspace library for the Linux Restartable Sequence API",
         homepage: "https://github.com/compudj/librseq",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Only")),
@@ -45,7 +43,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

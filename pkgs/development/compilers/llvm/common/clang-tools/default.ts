@@ -2,11 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["smokeOk", 80, 7], ["smokeOkClangTidy", 84, 7], ["smokeErr", 88, 7], ["environmentErr", 94, 7]], [["tests", 66, 12]], [["description", 103, 5], ["maintainers", 104, 5]], [["pname", 17, 3], ["version", 18, 3], ["dontUnpack", 19, 3], ["strictDeps", 21, 3], ["__structuredAttrs", 22, 3], ["buildInputs", 24, 3], ["installPhase", 26, 3], ["passthru", 66, 3], ["meta", 102, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, runCommand: false, writeText: false, bashNonInteractive: false, "clang-unwrapped": false, clang: false, libcxxClang: false, llvm_meta: false, enableLibcxx: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["smokeOk", 80, 7], ["smokeOkClangTidy", 84, 7], ["smokeErr", 88, 7], ["environmentErr", 94, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["tests", 66, 12]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 103, 5], ["maintainers", 104, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 17, 3], ["version", 18, 3], ["dontUnpack", 19, 3], ["strictDeps", 21, 3], ["__structuredAttrs", 22, 3], ["buildInputs", 24, 3], ["installPhase", 26, 3], ["passthru", 66, 3], ["meta", 102, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,7 +18,7 @@ export default nix.lambda((args) => (() => {
   const llvm_meta = nix.arg($, "llvm_meta");
   const enableLibcxx = nix.argOr($, "enableLibcxx", () => false);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "clang-tools",
       version: nix.thunk(() => nix.app(nix.sel(lib, "getVersion"), clang_unwrapped)),
       dontUnpack: true,
@@ -67,11 +64,11 @@ ln -s ${nix.sel(clang_unwrapped, "lib")}/lib $out/lib
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         tests: nix.thunk(() => (() => {
           const src = nix.thunk(() => nix.app(writeText, "main.cpp", "#include <assert.h>\n#include <iostream>\n\nint main() {\n  assert(true);\n  std::cout << \"Hi!\";\n}\n"));
           return {
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             smokeOk: nix.thunk(() => nix.app(runCommand, "clang-tools-test-smoke-ok", nix.thunk(() => ({})), nix.thunk(() => nix.str`${nix.sel(finalAttrs, "finalPackage")}/bin/clangd  --check=${src}
 touch $out
 `))),
@@ -92,7 +89,7 @@ touch $out
         })()),
       })),
       meta: nix.thunk(() => nix.update(llvm_meta, {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Standalone command line tools for C++ development",
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);

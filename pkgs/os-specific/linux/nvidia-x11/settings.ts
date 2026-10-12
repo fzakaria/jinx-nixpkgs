@@ -2,16 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/settings.nix", [[["owner", 30, 5], ["repo", 31, 5], ["rev", 32, 5], ["sha256", 33, 13]], [["homepage", 37, 5], ["platforms", 38, 5]], [["description", 82, 7], ["license", 84, 7]], [["pname", 42, 5], ["version", 43, 5], ["src", 44, 13], ["buildInputs", 46, 5], ["preBuild", 51, 5], ["makeFlags", 55, 5], ["patches", 61, 5], ["installPhase", 71, 5], ["meta", 81, 5]], [["url", 107, 7], ["hash", 108, 7]], [["url", 118, 11], ["hash", 119, 11]], [["libXNVCtrl", 192, 13]], [["description", 196, 5], ["license", 198, 5], ["mainProgram", 199, 5]], [["pname", 99, 3], ["version", 100, 3], ["src", 102, 11], ["patches", 104, 3], ["postPatch", 122, 3], ["enableParallelBuilding", 126, 3], ["makeFlags", 127, 3], ["preBuild", 129, 3], ["nativeBuildInputs", 137, 3], ["buildInputs", 144, 3], ["installFlags", 161, 3], ["postInstall", 163, 3], ["binaryName", 183, 3], ["postFixup", 184, 3], ["passthru", 191, 3], ["meta", 195, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, fetchpatch: false, "pkg-config": false, m4: false, jansson: false, gtk2: false, dbus: false, "vulkan-headers": false, gtk3: false, libxv: false, libxrandr: false, libxext: false, libxxf86vm: false, libvdpau: false, librsvg: false, libglvnd: false, wrapGAppsHook3: false, addDriverRunpath: false, withGtk2: true, withGtk3: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/settings.nix", [["owner", 30, 5], ["repo", 31, 5], ["rev", 32, 5], ["sha256", 33, 13]]);
-const pos$2 = nix.positions(here + "/settings.nix", [["homepage", 37, 5], ["platforms", 38, 5]]);
-const pos$3 = nix.positions(here + "/settings.nix", [["description", 82, 7], ["license", 84, 7]]);
-const pos$4 = nix.positions(here + "/settings.nix", [["pname", 42, 5], ["version", 43, 5], ["src", 44, 13], ["buildInputs", 46, 5], ["preBuild", 51, 5], ["makeFlags", 55, 5], ["patches", 61, 5], ["installPhase", 71, 5], ["meta", 81, 5]]);
-const pos$5 = nix.positions(here + "/settings.nix", [["url", 107, 7], ["hash", 108, 7]]);
-const pos$6 = nix.positions(here + "/settings.nix", [["url", 118, 11], ["hash", 119, 11]]);
-const pos$7 = nix.positions(here + "/settings.nix", [["libXNVCtrl", 192, 13]]);
-const pos$8 = nix.positions(here + "/settings.nix", [["description", 196, 5], ["license", 198, 5], ["mainProgram", 199, 5]]);
-const pos$9 = nix.positions(here + "/settings.nix", [["pname", 99, 3], ["version", 100, 3], ["src", 102, 11], ["patches", 104, 3], ["postPatch", 122, 3], ["enableParallelBuilding", 126, 3], ["makeFlags", 127, 3], ["preBuild", 129, 3], ["nativeBuildInputs", 137, 3], ["buildInputs", 144, 3], ["installFlags", 161, 3], ["postInstall", 163, 3], ["binaryName", 183, 3], ["postFixup", 184, 3], ["passthru", 191, 3], ["meta", 195, 3]]);
 
 export default (nvidia_x11) => (sha256) => nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -38,19 +30,19 @@ export default (nvidia_x11) => (sha256) => nix.lambda((args) => (() => {
   const withGtk2 = nix.argOr($, "withGtk2", () => false);
   const withGtk3 = nix.argOr($, "withGtk3", () => true);
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "NVIDIA",
       repo: "nvidia-settings",
       rev: nix.thunk(() => nix.sel(nvidia_x11, "settingsVersion")),
       sha256: sha256,
     }))));
   const meta = nix.thunk(() => ({
-    [nix.POS]: pos$2,
+    [nix.POS]: $pos[1],
     homepage: "https://www.nvidia.com/object/unix.html",
     platforms: nix.thunk(() => nix.sel(nvidia_x11, "meta", "platforms")),
   }));
   const libXNVCtrl = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "libXNVCtrl",
       version: nix.thunk(() => nix.sel(nvidia_x11, "settingsVersion")),
       src: src,
@@ -62,7 +54,7 @@ export default (nvidia_x11) => (sha256) => nix.lambda((args) => (() => {
       ]),
       installPhase: "mkdir -p $out/lib\nmkdir -p $out/include/NVCtrl\n\ncp libXNVCtrl.a $out/lib\ncp NVCtrl.h     $out/include/NVCtrl\ncp NVCtrlLib.h  $out/include/NVCtrl\ncp -P libXNVCtrl.so* $out/lib\n",
       meta: nix.thunk(() => nix.update(meta, {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "NVIDIA NV-CONTROL X extension",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       })),
@@ -70,16 +62,16 @@ export default (nvidia_x11) => (sha256) => nix.lambda((args) => (() => {
   const runtimeDependencies = nix.thunk(() => [libglvnd, libxrandr, libxv]);
   const runtimeLibraryPath = nix.thunk(() => nix.app(nix.sel(lib, "makeLibraryPath"), runtimeDependencies));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       pname: "nvidia-settings",
       version: nix.thunk(() => nix.sel(nvidia_x11, "settingsVersion")),
       src: src,
       patches: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(nvidia_x11, "settingsVersion")), "440")), nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             url: "https://github.com/NVIDIA/nvidia-settings/commit/a7c1f5fce6303a643fadff7d85d59934bd0cf6b6.patch",
             hash: "sha256-ZwF3dRTYt/hO8ELg9weoz1U/XcU93qiJL2d1aq1Jlak=",
           }))))), nix.app(nix.sel(lib, "optional"), nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(nvidia_x11, "settingsVersion")), "515.43.04")) && nix.asBool(nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(nvidia_x11, "settingsVersion")), "545.29")))), nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             url: "https://github.com/NVIDIA/nvidia-settings/pull/99/commits/2e0575197e2b3247deafd2a48f45afc038939a06.patch",
             hash: "sha256-wKuO5CUTUuwYvsP46Pz+6fI0yxLNpZv8qlbL0TFkEFE=",
           }))))))),
@@ -108,9 +100,9 @@ export default (nvidia_x11) => (sha256) => nix.lambda((args) => (() => {
 
 addDriverRunpath $out/bin/$binaryName
 `),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$7, libXNVCtrl: libXNVCtrl })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[6], libXNVCtrl: libXNVCtrl })),
       meta: nix.thunk(() => nix.update(meta, {
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         description: "Settings application for NVIDIA graphics cards",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfreeRedistributable")),
         mainProgram: "nvidia-settings",

@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 25, 5], ["repo", 26, 5], ["rev", 27, 5], ["hash", 28, 5]], [["xen", 32, 46]], [["url", 35, 7], ["hash", 36, 7]], [["url", 39, 7], ["hash", 40, 7]], [["description", 73, 5], ["longDescription", 74, 5], ["license", 81, 5], ["teams", 82, 5], ["homepage", 83, 5]], [["pname", 14, 3], ["version", 15, 3], ["minimalOCamlVersion", 17, 3], ["outputs", 19, 3], ["src", 24, 3], ["patches", 31, 3], ["buildInputs", 44, 3], ["checkInputs", 50, 3], ["postPatch", 66, 3], ["doCheck", 70, 3], ["meta", 72, 3]]]);
 const formals$1 = { args: { lib: false, buildDunePackage: false, fetchFromGitHub: false, replaceVars: false, fetchpatch: false, "dune-site": false, fmt: false, xen: false, alcotest: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 25, 5], ["repo", 26, 5], ["rev", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["xen", 32, 46]]);
-const pos$3 = nix.positions(here + "/default.nix", [["url", 35, 7], ["hash", 36, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["url", 39, 7], ["hash", 40, 7]]);
-const pos$5 = nix.positions(here + "/default.nix", [["description", 73, 5], ["longDescription", 74, 5], ["license", 81, 5], ["teams", 82, 5], ["homepage", 83, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 14, 3], ["version", 15, 3], ["minimalOCamlVersion", 17, 3], ["outputs", 19, 3], ["src", 24, 3], ["patches", 31, 3], ["buildInputs", 44, 3], ["checkInputs", 50, 3], ["postPatch", 66, 3], ["doCheck", 70, 3], ["meta", 72, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,27 +17,27 @@ export default nix.lambda((args) => (() => {
   const xen = nix.arg($, "xen");
   const alcotest = nix.arg($, "alcotest");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "oxenstored",
       version: "25.3.0",
       minimalOCamlVersion: "4.13",
       outputs: nix.thunk(() => ["out", "doc"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "xapi-project",
           repo: "oxenstored",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-+JXgVO6m63sPzVTwpq/ztDBx/x/g5vtU1Xbcd+t5ons=",
         })))),
       patches: nix.thunk(() => [
-        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./xen-paths.patch"), nix.thunk(() => ({ [nix.POS]: pos$2, xen: xen })))),
+        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./xen-paths.patch"), nix.thunk(() => ({ [nix.POS]: $pos[1], xen: xen })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: "https://xenbits.xenproject.org/xsa/xsa512-oxenstored-1.patch",
             hash: "sha256-+IWQTWIPrSJGGUCoLykYXQgVMBzTxgDpXLz0aTzk1dk=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             url: "https://xenbits.xenproject.org/xsa/xsa512-oxenstored-2.patch",
             hash: "sha256-1u/X7hRA1omTVK5lRKrzyY0eIQC9zcea6XyGE3mEgeE=",
           })))),
@@ -52,7 +47,7 @@ export default nix.lambda((args) => (() => {
       postPatch: "rm -rf xsd_glue\n",
       doCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "OCaml implementation of Xenstore",
         longDescription: "Formerly developed in the monolithic Xen repository, `oxenstored` was\nforked during the development cycle of Xen 4.20 and is now built separately.\n\nUses the `xsd_glue` plugin interface from the `xen` package to ensure ABI\ncompatibility with Xen's `domain_getinfo_v1` plugin.\n",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Only")),

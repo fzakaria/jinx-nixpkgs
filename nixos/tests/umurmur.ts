@@ -2,20 +2,10 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/umurmur.nix", [[["systemPackages", 8, 19]], [["imports", 7, 7], ["environment", 8, 7]], [["maintainers", 15, 5]], [["name", 29, 17], ["parent", 30, 17], ["description", 31, 17], ["noenter", 32, 17]], [["name", 35, 17], ["parent", 36, 17], ["description", 37, 17]], [["password", 26, 13], ["channels", 27, 13], ["default_channel", 40, 13], ["bindport", 41, 13]], [["enable", 23, 11], ["openFirewall", 24, 11], ["settings", 25, 11]], [["umurmur", 22, 18]], [["services", 22, 9]], [["server", 19, 5], ["client1", 46, 5], ["client2", 47, 5]], [["name", 13, 3], ["meta", 14, 3], ["nodes", 18, 3], ["testScript", 50, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/umurmur.nix", [["systemPackages", 8, 19]]);
-const pos$2 = nix.positions(here + "/umurmur.nix", [["imports", 7, 7], ["environment", 8, 7]]);
-const pos$3 = nix.positions(here + "/umurmur.nix", [["maintainers", 15, 5]]);
 const formals$3 = { args: {  }, ellipsis: true };
-const pos$4 = nix.positions(here + "/umurmur.nix", [["name", 29, 17], ["parent", 30, 17], ["description", 31, 17], ["noenter", 32, 17]]);
-const pos$5 = nix.positions(here + "/umurmur.nix", [["name", 35, 17], ["parent", 36, 17], ["description", 37, 17]]);
-const pos$6 = nix.positions(here + "/umurmur.nix", [["password", 26, 13], ["channels", 27, 13], ["default_channel", 40, 13], ["bindport", 41, 13]]);
-const pos$7 = nix.positions(here + "/umurmur.nix", [["enable", 23, 11], ["openFirewall", 24, 11], ["settings", 25, 11]]);
-const pos$8 = nix.positions(here + "/umurmur.nix", [["umurmur", 22, 18]]);
-const pos$9 = nix.positions(here + "/umurmur.nix", [["services", 22, 9]]);
-const pos$10 = nix.positions(here + "/umurmur.nix", [["server", 19, 5], ["client1", 46, 5], ["client2", 47, 5]]);
-const pos$11 = nix.positions(here + "/umurmur.nix", [["name", 13, 3], ["meta", 14, 3], ["nodes", 18, 3], ["testScript", 50, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,50 +14,50 @@ export default nix.lambda((args) => (() => {
     const $_1 = nix.formals(args_1, formals$2);
     const pkgs_1 = nix.arg($_1, "pkgs");
     return {
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       imports: nix.thunk(() => [nix.path(here, "./common/x11.nix")]),
       environment: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs_1, "mumble"))]),
       })),
     };
   })(), formals$2);
   const port = 56457n;
   return {
-    [nix.POS]: pos$11,
+    [nix.POS]: $pos[10],
     name: "mumble",
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "_3JlOy-PYCCKUi"))]),
       };
     })()),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       server: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$3);
         return {
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$8,
+            [nix.POS]: $pos[7],
             umurmur: nix.thunk(() => ({
-              [nix.POS]: pos$7,
+              [nix.POS]: $pos[6],
               enable: true,
               openFirewall: true,
               settings: nix.thunk(() => ({
-                [nix.POS]: pos$6,
+                [nix.POS]: $pos[5],
                 password: "testpassword",
                 channels: nix.thunk(() => [
                   nix.thunk(() => ({
-                    [nix.POS]: pos$4,
+                    [nix.POS]: $pos[3],
                     name: "root",
                     parent: "",
                     description: "Root channel. No entry.",
                     noenter: true,
                   })),
                   nix.thunk(() => ({
-                    [nix.POS]: pos$5,
+                    [nix.POS]: $pos[4],
                     name: "lobby",
                     parent: "root",
                     description: "Lobby channel",

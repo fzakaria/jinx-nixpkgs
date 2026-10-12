@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 11, 5], ["repo", 12, 5], ["rev", 13, 5], ["hash", 14, 5]], [["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]], [["owner", 25, 5], ["repo", 26, 5], ["rev", 27, 5], ["hash", 28, 5]], [["owner", 32, 5], ["repo", 33, 5], ["rev", 34, 5], ["hash", 35, 5]], [["owner", 43, 5], ["repo", 44, 5], ["tag", 45, 5], ["hash", 46, 5], ["fetchSubmodules", 48, 5]], [["homepage", 113, 5], ["description", 114, 5], ["license", 115, 5], ["platforms", 116, 5], ["maintainers", 117, 5], ["mainProgram", 118, 5]], [["pname", 39, 3], ["version", 40, 3], ["src", 42, 3], ["nativeBuildInputs", 51, 3], ["buildInputs", 57, 3], ["cmakeFlags", 63, 3], ["postPatch", 67, 3], ["postInstall", 105, 3], ["meta", 112, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, qt6: false, stdenv: false, cmake: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 11, 5], ["repo", 12, 5], ["rev", 13, 5], ["hash", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["owner", 25, 5], ["repo", 26, 5], ["rev", 27, 5], ["hash", 28, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["owner", 32, 5], ["repo", 33, 5], ["rev", 34, 5], ["hash", 35, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["owner", 43, 5], ["repo", 44, 5], ["tag", 45, 5], ["hash", 46, 5], ["fetchSubmodules", 48, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["homepage", 113, 5], ["description", 114, 5], ["license", 115, 5], ["platforms", 116, 5], ["maintainers", 117, 5], ["mainProgram", 118, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 39, 3], ["version", 40, 3], ["src", 42, 3], ["nativeBuildInputs", 51, 3], ["buildInputs", 57, 3], ["cmakeFlags", 63, 3], ["postPatch", 67, 3], ["postInstall", 105, 3], ["meta", 112, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,39 +13,39 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const cmake = nix.arg($, "cmake");
   const ads_src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "githubuser0xFFFF",
       repo: "Qt-Advanced-Docking-System",
       rev: "34b68d6eab1556cf851d24e033909332771f3dfe",
       hash: "sha256-ojXH9lXs4lzhgclA8BFmyOuWy4DQE0SGK3OzuhHp000=",
     }))));
   const qsimpleupdater_src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       owner: "alex-spataru",
       repo: "QSimpleUpdater",
       rev: "8e7017f7fbdc2b4b1a26ed1eef9ebcba6a50639c",
       hash: "sha256-YU7z0U8W3s9RE41FPrWObpUOzTpqOQl4nDgyTqvnofc=",
     }))));
   const singleapplication_src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       owner: "itay-grudev",
       repo: "SingleApplication",
       rev: "494772e98cef0aa88124f154feb575cc60b08b38",
       hash: "sha256-OwfAikUJ+rC0BSLXILs0fBd1ilzu31ghMslwrgbnKhk=",
     }))));
   const editorconfig_core_qt_src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       owner: "editorconfig",
       repo: "editorconfig-core-qt",
       rev: "ab62f0554abf2bbe4d45427b36a8b2f81ca7b4ab",
       hash: "sha256-EMvkww+SWsLnjCB3gYykz0miLiSFpreoRHJpzgysX/0=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "notepad-next",
       version: "0.15",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           owner: "dail8859",
           repo: "NotepadNext",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -109,7 +103,7 @@ echo "target_link_libraries(lexilla PRIVATE scintilla)" >> thirdparty/CMakeLists
       meta: nix.thunk(() => (() => {
         const w = nix.withScope(lib, null);
         return {
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           homepage: "https://github.com/dail8859/NotepadNext",
           description: "Cross-platform, reimplementation of Notepad++",
           license: nix.thunk(() => nix.sel(nix.lookup(w, "licenses"), "gpl3Plus")),

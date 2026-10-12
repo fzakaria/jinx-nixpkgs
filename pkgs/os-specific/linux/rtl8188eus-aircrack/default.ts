@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]], [["description", 38, 5], ["homepage", 39, 5], ["license", 40, 5], ["maintainers", 41, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["prePatch", 20, 3], ["hardeningDisable", 27, 3], ["enableParallelBuilding", 29, 3], ["nativeBuildInputs", 31, 3], ["preInstall", 33, 3], ["meta", 37, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, kernel: false, bc: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 38, 5], ["homepage", 39, 5], ["license", 40, 5], ["maintainers", 41, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["prePatch", 20, 3], ["hardeningDisable", 27, 3], ["enableParallelBuilding", 29, 3], ["nativeBuildInputs", 31, 3], ["preInstall", 33, 3], ["meta", 37, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const kernel = nix.arg($, "kernel");
   const bc = nix.arg($, "bc");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "rtl8188eus-aircrack",
       version: nix.thunk(() => nix.str`${nix.sel(kernel, "version")}-unstable-2026-08-18`),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "gglluukk",
           repo: "rtl8188eus",
           rev: "f48878a7a66b1281e6eab0cf2b55e7149510daf2",
@@ -36,7 +34,7 @@ export default nix.lambda((args) => (() => {
       preInstall: nix.thunk(() => nix.str`mkdir -p "$out/lib/modules/${nix.sel(kernel, "modDirVersion")}/kernel/net/wireless/"
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "RealTek RTL8188eus WiFi driver with monitor mode & frame injection support",
         homepage: "https://github.com/gglluukk/rtl8188eus",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

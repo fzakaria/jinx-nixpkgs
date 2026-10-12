@@ -2,18 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]], [["yarnLock", 38, 7], ["hash", 39, 7]], [["nodejs", 45, 32]], [["NUXT_TELEMETRY_DISABLED", 51, 7]], [["description", 84, 7], ["license", 85, 7], ["maintainers", 86, 7]], [["name", 31, 5], ["version", 32, 13], ["src", 33, 5], ["__structuredAttrs", 35, 5], ["yarnOfflineCache", 37, 5], ["nativeBuildInputs", 42, 5], ["env", 50, 5], ["configurePhase", 54, 5], ["buildPhase", 70, 5], ["installPhase", 77, 5], ["meta", 83, 5]], [["extraArgs", 211, 7]], [["mealie", 217, 28]], [["frontend", 209, 13], ["updateScript", 210, 5], ["tests", 216, 5]], [["description", 222, 5], ["longDescription", 223, 5], ["homepage", 229, 5], ["changelog", 230, 5], ["license", 231, 5], ["maintainers", 232, 5], ["mainProgram", 237, 5]], [["pname", 97, 3], ["version", 98, 11], ["src", 98, 19], ["pyproject", 99, 3], ["__structuredAttrs", 101, 3], ["build-system", 103, 3], ["nativeBuildInputs", 105, 3], ["dontWrapPythonPrograms", 107, 3], ["pythonRelaxDeps", 109, 3], ["dependencies", 111, 3], ["postPatch", 161, 3], ["postInstall", 171, 3], ["nativeCheckInputs", 193, 3], ["preCheck", 199, 3], ["disabledTests", 203, 3], ["passthru", 208, 3], ["meta", 221, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, makeWrapper: false, nixosTests: false, python3: false, "nltk-data": false, writeShellScript: false, "nix-update-script": false, fetchYarnDeps: false, "dart-sass": false, nodejs: false, "fixup-yarn-lock": false, stdenv: false, yarn: false, writableTmpDirAsHomeHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["yarnLock", 38, 7], ["hash", 39, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["nodejs", 45, 32]]);
-const pos$4 = nix.positions(here + "/package.nix", [["NUXT_TELEMETRY_DISABLED", 51, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 84, 7], ["license", 85, 7], ["maintainers", 86, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["name", 31, 5], ["version", 32, 13], ["src", 33, 5], ["__structuredAttrs", 35, 5], ["yarnOfflineCache", 37, 5], ["nativeBuildInputs", 42, 5], ["env", 50, 5], ["configurePhase", 54, 5], ["buildPhase", 70, 5], ["installPhase", 77, 5], ["meta", 83, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["extraArgs", 211, 7]]);
-const pos$8 = nix.positions(here + "/package.nix", [["mealie", 217, 28]]);
-const pos$9 = nix.positions(here + "/package.nix", [["frontend", 209, 13], ["updateScript", 210, 5], ["tests", 216, 5]]);
-const pos$10 = nix.positions(here + "/package.nix", [["description", 222, 5], ["longDescription", 223, 5], ["homepage", 229, 5], ["changelog", 230, 5], ["license", 231, 5], ["maintainers", 232, 5], ["mainProgram", 237, 5]]);
-const pos$11 = nix.positions(here + "/package.nix", [["pname", 97, 3], ["version", 98, 11], ["src", 98, 19], ["pyproject", 99, 3], ["__structuredAttrs", 101, 3], ["build-system", 103, 3], ["nativeBuildInputs", 105, 3], ["dontWrapPythonPrograms", 107, 3], ["pythonRelaxDeps", 109, 3], ["dependencies", 111, 3], ["postPatch", 161, 3], ["postInstall", 171, 3], ["nativeCheckInputs", 193, 3], ["preCheck", 199, 3], ["disabledTests", 203, 3], ["passthru", 208, 3], ["meta", 221, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,36 +24,36 @@ export default nix.lambda((args) => (() => {
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   const version = "3.22.0";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "mealie-recipes",
       repo: "mealie",
       tag: nix.thunk(() => nix.str`v${version}`),
       hash: "sha256-3jDKcDHiA+7ePJGEyGhBSZrhkFQYHrak+AiOHoMv2qE=",
     }))));
   const frontend = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       name: "mealie-frontend",
       version: version,
       src: nix.thunk(() => nix.str`${src}/frontend`),
       __structuredAttrs: true,
       yarnOfflineCache: nix.thunk(() => nix.app(fetchYarnDeps, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           yarnLock: nix.thunk(() => nix.str`${src}/frontend/yarn.lock`),
           hash: "sha256-S0i7FGD6be/MIBZRDlEb65tzVUuMPLkg9rL71lkrmms=",
         })))),
       nativeBuildInputs: nix.thunk(() => [
         fixup_yarn_lock,
         nodejs,
-        nix.thunk(() => nix.app(nix.sel(yarn, "override"), nix.thunk(() => ({ [nix.POS]: pos$3, nodejs: nodejs })))),
+        nix.thunk(() => nix.app(nix.sel(yarn, "override"), nix.thunk(() => ({ [nix.POS]: $pos[2], nodejs: nodejs })))),
         writableTmpDirAsHomeHook,
         dart_sass,
       ]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$4, NUXT_TELEMETRY_DISABLED: 1n })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[3], NUXT_TELEMETRY_DISABLED: 1n })),
       configurePhase: "runHook preConfigure\n\nsed -i 's+\"@nuxt/fonts\",+// NUXT FONTS DISABLED+g' nuxt.config.ts\n\nyarn config --offline set yarn-offline-mirror \"$yarnOfflineCache\"\nfixup-yarn-lock yarn.lock\nyarn install --offline --frozen-lockfile --no-progress --non-interactive --ignore-scripts\npatchShebangs node_modules\n\nsubstituteInPlace node_modules/sass-embedded/dist/lib/src/compiler-path.js \\\n  --replace-fail 'compilerCommand = (() => {' 'compilerCommand = (() => { return [\"dart-sass\"];'\n\nrunHook postConfigure\n",
       buildPhase: "runHook preBuild\n\nyarn --offline generate\nrunHook postBuild\n",
       installPhase: "runHook preInstall\nmv .output/public $out\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Frontend for Mealie",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),
         maintainers: nix.thunk(() => (() => {
@@ -78,7 +68,7 @@ export default nix.lambda((args) => (() => {
   const python = python3;
   const pythonpkgs = nix.thunk(() => nix.sel(python, "pkgs"));
   return nix.app(nix.sel(pythonpkgs, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$11,
+      [nix.POS]: $pos[10],
       pname: "mealie",
       version: version,
       src: src,
@@ -176,13 +166,13 @@ makeWrapper ${init_db} $out/libexec/init_db \\
 `),
       disabledTests: nix.thunk(() => ["test_pg_connection_url_encode_password"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         frontend: frontend,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$7, extraArgs: nix.thunk(() => ["-s", "frontend"]) })))),
-        tests: nix.thunk(() => ({ [nix.POS]: pos$8, mealie: nix.thunk(() => nix.attr(nixosTests, "mealie")) })),
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: $pos[6], extraArgs: nix.thunk(() => ["-s", "frontend"]) })))),
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[7], mealie: nix.thunk(() => nix.attr(nixosTests, "mealie")) })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         description: "Self hosted recipe manager and meal planner",
         longDescription: "Mealie is a self hosted recipe manager and meal planner with a REST API and a reactive frontend\napplication built in NuxtJS for a pleasant user experience for the whole family. Easily add recipes into your\ndatabase by providing the URL and Mealie will automatically import the relevant data or add a family recipe with\nthe UI editor.\n",
         homepage: "https://mealie.io",

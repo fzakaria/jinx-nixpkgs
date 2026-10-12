@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 30, 7], ["hash", 31, 7]], [["url", 34, 7], ["hash", 35, 7]], [["url", 38, 7], ["hash", 39, 7]], [["aarch64-linux", 29, 5], ["x86_64-linux", 33, 5], ["aarch64-darwin", 37, 5]], [["homepage", 51, 7], ["description", 52, 7], ["license", 53, 7], ["sourceProvenance", 54, 7], ["platforms", 55, 7], ["maintainers", 56, 7]], [["pname", 45, 5], ["version", 46, 13], ["src", 48, 5], ["meta", 50, 5]], [["nativeBuildInputs", 65, 9], ["setSourceRoot", 67, 9], ["installPhase", 71, 9]], [["nativeBuildInputs", 82, 9], ["buildInputs", 89, 9], ["outputs", 109, 9], ["installPhase", 114, 9]]]);
 const formals$1 = { args: { "alsa-lib": false, autoPatchelfHook: false, dpkg: false, evince: false, fetchurl: false, flac: false, gccForLibs: false, imagemagick: false, kdePackages: false, lib: false, libmicrohttpd: false, libogg: false, "libusb-compat-0_1": false, llvmPackages: false, mpfr: false, stdenvNoCC: false, undmg: false, wavpack: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 30, 7], ["hash", 31, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 34, 7], ["hash", 35, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 38, 7], ["hash", 39, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["aarch64-linux", 29, 5], ["x86_64-linux", 33, 5], ["aarch64-darwin", 37, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["homepage", 51, 7], ["description", 52, 7], ["license", 53, 7], ["sourceProvenance", 54, 7], ["platforms", 55, 7], ["maintainers", 56, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 45, 5], ["version", 46, 13], ["src", 48, 5], ["meta", 50, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["nativeBuildInputs", 65, 9], ["setSourceRoot", 67, 9], ["installPhase", 71, 9]]);
-const pos$8 = nix.positions(here + "/package.nix", [["nativeBuildInputs", 82, 9], ["buildInputs", 89, 9], ["outputs", 109, 9], ["installPhase", 114, 9]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -41,25 +34,25 @@ export default nix.lambda((args) => (() => {
     return nix.str`${nix.app(nix.lookup(w, "major"), version)}${nix.app(nix.lookup(w, "minor"), version)}${nix.app(nix.lookup(w, "patch"), version)}`;
   })());
   const srcs = nix.thunk(() => ({
-    [nix.POS]: pos$4,
+    [nix.POS]: $pos[3],
     "aarch64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         url: nix.thunk(() => nix.str`https://signalyst.com/bins/${latestDebianCodename}/hqplayer${majorVersion}desktop_${version}_arm64.deb`),
         hash: "sha256-remml9wtBrJXiSA96rBjf0tbVJquskq2o+kmeAxI84M=",
       })))),
     "x86_64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         url: nix.thunk(() => nix.str`https://signalyst.com/bins/${latestUbuntuCodename}/hqplayer${majorVersion}desktop_${version}_amd64.deb`),
         hash: "sha256-Lx0E7lM7lLl44s7+T17JJmjKzdKmXJbD5iXDBJelT24=",
       })))),
     "aarch64-darwin": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         url: nix.thunk(() => nix.str`https://signalyst.com/bins/HQPlayer${majorVersion}Desktop-arm64-${compactVersion}.dmg`),
         hash: "sha256-H2F75NltbzfxC/zrVwMKALvx2ar+S0is0Nk8lsRx+Fc=",
       })))),
   }));
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => nix.update({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "hqplayer-desktop",
       version: version,
       src: nix.thunk(() => (() => {
@@ -67,7 +60,7 @@ export default nix.lambda((args) => (() => {
         return nix.selOr(srcs, () => nix.app(nix.builtins.throw, nix.thunk(() => nix.str`Unsupported system: ${nix.lookup(w_1, "system")}`)), nix.key(nix.force(nix.lookup(w_1, "system"))));
       })()),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "https://www.signalyst.com",
         description: "High-end upsampling multichannel software HD-audio player",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
@@ -85,13 +78,13 @@ export default nix.lambda((args) => (() => {
         })()),
       })),
     }, (nix.asBool(nix.sel(stdenvNoCC, "hostPlatform", "isDarwin")) ? {
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       nativeBuildInputs: nix.thunk(() => [undmg]),
       setSourceRoot: nix.thunk(() => nix.str`sourceRoot=HQPlayer${majorVersion}Desktop.app
 `),
       installPhase: "runHook preInstall\n\nmkdir --parents \"$out\"/Applications\ncp --recursive . \"$_\"/\"$sourceRoot\"\n\nrunHook postInstall\n",
     } : {
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       nativeBuildInputs: nix.thunk(() => [
         autoPatchelfHook,
         dpkg,

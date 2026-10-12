@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 13, 5], ["hash", 14, 5]], [["homepage", 45, 5], ["description", 46, 5], ["mainProgram", 47, 5], ["license", 48, 5], ["platforms", 49, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["buildInputs", 17, 3], ["buildFlags", 19, 3], ["postPatch", 25, 3], ["installPhase", 36, 3], ["meta", 44, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, libx11: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 13, 5], ["hash", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 45, 5], ["description", 46, 5], ["mainProgram", 47, 5], ["license", 48, 5], ["platforms", 49, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["buildInputs", 17, 3], ["buildFlags", 19, 3], ["postPatch", 25, 3], ["installPhase", 36, 3], ["meta", 44, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const libx11 = nix.arg($, "libx11");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "icbm3d",
       version: "0.4",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`ftp://ftp.tuxpaint.org/unix/x/icbm3d/icbm3d.${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-mtQcFU70dpV3GiaHXVQVvO3LE5NSseIXXzhtIGsAOP0=",
         })))),
@@ -27,7 +25,7 @@ export default nix.lambda((args) => (() => {
       postPatch: "substituteInPlace randnum.c --replace-fail 'stdio.h' 'stdlib.h'\nsed -i '1i\\\n#include <string.h>' text.c\n\n# The Makefile tries to install icbm3d immediately after building it, and\n# ends up trying to copy it to /icbm3d. Normally this just gets an error\n# and moves on, but it's probably better to not try it in the first place.\nsed -i '/INSTALLROOT/d' makefile\n",
       installPhase: "runHook preInstall\n\ninstall -Dm755 -t $out/bin icbm3d\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "http://www.newbreedsoftware.com/icbm3d/",
         description: "3D vector-based clone of the atari game Missile Command",
         mainProgram: "icbm3d",

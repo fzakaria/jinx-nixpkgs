@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/browser-downloads.nix", [[["url", 17, 13], ["stripRoot", 17, 17]], [["x86_64-linux", 22, 5], ["aarch64-linux", 23, 5], ["aarch64-darwin", 24, 5]], [["x86_64-linux", 28, 5], ["aarch64-linux", 29, 5], ["aarch64-darwin", 30, 5]], [["x86_64-linux", 34, 5], ["aarch64-linux", 35, 5], ["aarch64-darwin", 36, 5]], [["x86_64-linux", 40, 5], ["aarch64-linux", 41, 5], ["aarch64-darwin", 42, 5]], [["x86_64-linux", 46, 5], ["aarch64-linux", 47, 5], ["aarch64-darwin", 48, 5]], [["chromium", 21, 3], ["chromium-headless-shell", 27, 3], ["firefox", 33, 3], ["webkit", 39, 3], ["ffmpeg", 45, 3]]]);
 const formals$1 = { args: { name: false, revision: false, browserVersion: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/browser-downloads.nix", [["url", 17, 13], ["stripRoot", 17, 17]]);
-const pos$2 = nix.positions(here + "/browser-downloads.nix", [["x86_64-linux", 22, 5], ["aarch64-linux", 23, 5], ["aarch64-darwin", 24, 5]]);
-const pos$3 = nix.positions(here + "/browser-downloads.nix", [["x86_64-linux", 28, 5], ["aarch64-linux", 29, 5], ["aarch64-darwin", 30, 5]]);
-const pos$4 = nix.positions(here + "/browser-downloads.nix", [["x86_64-linux", 34, 5], ["aarch64-linux", 35, 5], ["aarch64-darwin", 36, 5]]);
-const pos$5 = nix.positions(here + "/browser-downloads.nix", [["x86_64-linux", 40, 5], ["aarch64-linux", 41, 5], ["aarch64-darwin", 42, 5]]);
-const pos$6 = nix.positions(here + "/browser-downloads.nix", [["x86_64-linux", 46, 5], ["aarch64-linux", 47, 5], ["aarch64-darwin", 48, 5]]);
-const pos$7 = nix.positions(here + "/browser-downloads.nix", [["chromium", 21, 3], ["chromium-headless-shell", 27, 3], ["firefox", 33, 3], ["webkit", 39, 3], ["ffmpeg", 45, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,35 +15,35 @@ export default nix.lambda((args) => (() => {
     return nix.str`https://cdn.playwright.dev/builds/cft/${browserVersion}/${path}`;
   })();
   const registryUrl = (browser) => (archive) => nix.str`https://cdn.playwright.dev/dbazure/download/playwright/builds/${browser}/${revision}/${archive}`;
-  const mk = (url) => (stripRoot) => ({ [nix.POS]: pos$1, url: url, stripRoot: stripRoot });
+  const mk = (url) => (stripRoot) => ({ [nix.POS]: $pos[0], url: url, stripRoot: stripRoot });
   return nix.sel({
-    [nix.POS]: pos$7,
+    [nix.POS]: $pos[6],
     chromium: nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       "x86_64-linux": nix.thunk(() => nix.app(mk, nix.thunk(() => nix.app(cftUrl, "linux64/chrome-linux64.zip")), true)),
       "aarch64-linux": nix.thunk(() => nix.app(mk, nix.thunk(() => nix.app(cftUrl, "linux-arm64/chrome-linux-arm64.zip")), true)),
       "aarch64-darwin": nix.thunk(() => nix.app(mk, nix.thunk(() => nix.app(cftUrl, "mac-arm64/chrome-mac-arm64.zip")), false)),
     })),
     "chromium-headless-shell": nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       "x86_64-linux": nix.thunk(() => nix.app(mk, nix.thunk(() => nix.app(cftUrl, "linux64/chrome-headless-shell-linux64.zip")), false)),
       "aarch64-linux": nix.thunk(() => nix.app(mk, nix.thunk(() => nix.app(cftUrl, "linux-arm64/chrome-headless-shell-linux-arm64.zip")), false)),
       "aarch64-darwin": nix.thunk(() => nix.app(mk, nix.thunk(() => nix.app(cftUrl, "mac-arm64/chrome-headless-shell-mac-arm64.zip")), false)),
     })),
     firefox: nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       "x86_64-linux": nix.thunk(() => nix.app(mk, nix.thunk(() => nix.app(registryUrl, "firefox", "firefox-ubuntu-24.04.zip")), true)),
       "aarch64-linux": nix.thunk(() => nix.app(mk, nix.thunk(() => nix.app(registryUrl, "firefox", "firefox-ubuntu-24.04-arm64.zip")), true)),
       "aarch64-darwin": nix.thunk(() => nix.app(mk, nix.thunk(() => nix.app(registryUrl, "firefox", "firefox-mac-arm64.zip")), false)),
     })),
     webkit: nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       "x86_64-linux": nix.thunk(() => nix.app(mk, nix.thunk(() => nix.app(registryUrl, "webkit", "webkit-ubuntu-24.04.zip")), false)),
       "aarch64-linux": nix.thunk(() => nix.app(mk, nix.thunk(() => nix.app(registryUrl, "webkit", "webkit-ubuntu-24.04-arm64.zip")), false)),
       "aarch64-darwin": nix.thunk(() => nix.app(mk, nix.thunk(() => nix.app(registryUrl, "webkit", "webkit-mac-15-arm64.zip")), false)),
     })),
     ffmpeg: nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       "x86_64-linux": nix.thunk(() => nix.app(mk, nix.thunk(() => nix.app(registryUrl, "ffmpeg", "ffmpeg-linux.zip")), false)),
       "aarch64-linux": nix.thunk(() => nix.app(mk, nix.thunk(() => nix.app(registryUrl, "ffmpeg", "ffmpeg-linux-arm64.zip")), false)),
       "aarch64-darwin": nix.thunk(() => nix.app(mk, nix.thunk(() => nix.app(registryUrl, "ffmpeg", "ffmpeg-mac-arm64.zip")), false)),

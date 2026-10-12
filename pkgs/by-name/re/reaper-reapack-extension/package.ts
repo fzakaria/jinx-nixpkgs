@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["description", 13, 5], ["homepage", 14, 5], ["license", 15, 5], ["maintainers", 19, 5], ["platforms", 20, 5]], [["pname", 10, 3], ["version", 11, 3], ["meta", 12, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, callPackage: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["description", 13, 5], ["homepage", 14, 5], ["license", 15, 5], ["maintainers", 19, 5], ["platforms", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["meta", 12, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const callPackage = nix.arg($, "callPackage");
   const p = nix.thunk(() => (nix.asBool(nix.sel(stdenvNoCC, "hostPlatform", "isDarwin")) ? nix.path(here, "./darwin.nix") : nix.path(here, "./linux.nix")));
   return nix.app(callPackage, p, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "reaper-reapack-extension",
       version: "1.2.6",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Package manager for REAPER",
         homepage: "https://reapack.com/",
         license: nix.thunk(() => (() => {

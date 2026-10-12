@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 35, 5], ["sha256", 36, 5]], [["name", 48, 7], ["url", 49, 7], ["sha256", 50, 7]], [["name", 56, 7], ["url", 57, 7], ["sha256", 58, 7]], [["name", 62, 7], ["url", 63, 7], ["sha256", 64, 7]], [["homepage", 101, 5], ["description", 102, 5], ["longDescription", 103, 5], ["license", 109, 5], ["maintainers", 110, 5], ["platforms", 113, 5], ["mainProgram", 114, 5], ["knownVulnerabilities", 115, 5]], [["pname", 27, 3], ["version", 31, 3], ["format", 32, 3], ["src", 34, 3], ["patches", 39, 3], ["nativeBuildInputs", 68, 3], ["buildInputs", 72, 3], ["propagatedBuildInputs", 73, 3], ["makeWrapperArgs", 79, 3], ["setupPyBuildFlags", 89, 3], ["postInstall", 93, 3], ["doCheck", 98, 3], ["meta", 100, 3]]]);
 const formals$1 = { args: { lib: false, fetchurl: false, fetchpatch: false, buildPythonPackage: false, zip: false, ffmpeg: false, rtmpdump: false, atomicparsley: false, pycryptodome: false, pandoc: false, generateManPage: true, ffmpegSupport: true, rtmpSupport: true, hlsEncryptedSupport: true, installShellFiles: false, makeWrapper: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 35, 5], ["sha256", 36, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["name", 48, 7], ["url", 49, 7], ["sha256", 50, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["name", 56, 7], ["url", 57, 7], ["sha256", 58, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["name", 62, 7], ["url", 63, 7], ["sha256", 64, 7]]);
-const pos$5 = nix.positions(here + "/default.nix", [["homepage", 101, 5], ["description", 102, 5], ["longDescription", 103, 5], ["license", 109, 5], ["maintainers", 110, 5], ["platforms", 113, 5], ["mainProgram", 114, 5], ["knownVulnerabilities", 115, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 27, 3], ["version", 31, 3], ["format", 32, 3], ["src", 34, 3], ["patches", 39, 3], ["nativeBuildInputs", 68, 3], ["buildInputs", 72, 3], ["propagatedBuildInputs", 73, 3], ["makeWrapperArgs", 79, 3], ["setupPyBuildFlags", 89, 3], ["postInstall", 93, 3], ["doCheck", 98, 3], ["meta", 100, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,25 +28,25 @@ export default nix.lambda((args) => (() => {
       const version = "2021.12.17";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://yt-dl.org/downloads/${version}/${pname}-${version}.tar.gz`),
           sha256: "sha256-nzuZyLd4RVFltFJfIVBehsf/Vl86wxnhlzPYEBlBNd8=",
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "fix-youtube-dl-speed.patch",
             url: "https://github.com/ytdl-org/youtube-dl/compare/57044eacebc6f2f3cd83c345e1b6e659a22e4773...1e677567cd083d43f55daef0cc74e5fa24575ae3.diff",
             sha256: "11s0j3w60r75xx20p0x2j3yc4d3yvz99r0572si8b5qd93lqs4pr",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "avoid-crashing-if-nsig-decode-fails.patch",
             url: "https://github.com/ytdl-org/youtube-dl/commit/41f0043983c831b7c0c3614340d2f66ec153087b.diff",
             sha256: "sha256-a72gWhBXCLjuBBD36PpZ5F/AHBdiBv4W8Wf9g4P/aBY=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             name: "fix-n-descrambling.patch",
             url: "https://github.com/ytdl-org/youtube-dl/commit/a0068bd6bec16008bda7a39caecccbf84881c603.diff",
             sha256: "sha256-tSuEns4jputa2nOOo6JsFXpK3hvJ/+z1/ymcLsd3A6w=",
@@ -70,7 +65,7 @@ export default nix.lambda((args) => (() => {
       const postInstall = "installShellCompletion youtube-dl.zsh\n";
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "https://ytdl-org.github.io/youtube-dl/",
         description: "Command-line tool to download videos from YouTube.com and other sites",
         longDescription: "youtube-dl is a small, Python-based command-line program to download\nvideos from YouTube.com and a few more sites.  youtube-dl is released to\nthe public domain, which means you can modify it, redistribute it or use\nit however you like.\n",
@@ -87,7 +82,7 @@ export default nix.lambda((args) => (() => {
         knownVulnerabilities: nix.thunk(() => ["youtube-dl is unmaintained, migrate to yt-dlp, if possible"]),
       }));
       return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname,
         version,
         format,

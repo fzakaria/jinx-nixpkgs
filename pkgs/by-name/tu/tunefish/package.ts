@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 24, 5], ["repo", 25, 5], ["rev", 26, 5], ["hash", 27, 5], ["fetchSubmodules", 28, 5]], [["homepage", 78, 5], ["description", 79, 5], ["license", 80, 5], ["maintainers", 81, 5], ["platforms", 82, 5]], [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["strictDeps", 31, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 39, 3], ["makeFlags", 51, 3], ["postPatch", 57, 3], ["installPhase", 61, 3], ["enableParallelBuilding", 75, 3], ["meta", 77, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, "pkg-config": false, python3: false, "alsa-lib": false, curl: false, freetype: false, libGL: false, libx11: false, libxcursor: false, libxext: false, libxinerama: false, libxrandr: false, writableTmpDirAsHomeHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 24, 5], ["repo", 25, 5], ["rev", 26, 5], ["hash", 27, 5], ["fetchSubmodules", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 78, 5], ["description", 79, 5], ["license", 80, 5], ["maintainers", 81, 5], ["platforms", 82, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["strictDeps", 31, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 39, 3], ["makeFlags", 51, 3], ["postPatch", 57, 3], ["installPhase", 61, 3], ["enableParallelBuilding", 75, 3], ["meta", 77, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const libxrandr = nix.arg($, "libxrandr");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "tunefish",
       version: "0-unstable-2021-12-19",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "jpcima",
           repo: "tunefish",
           rev: "c801c6cab63bb9e78e38ed69bd92024f2c667f00",
@@ -54,7 +52,7 @@ export default nix.lambda((args) => (() => {
       installPhase: "runHook preInstall\n\nmkdir -p $out/lib/{lv2,vst,vst3}\n\npushd src/tunefish4/Builds/LinuxMakefile/build\ncp -r \"Tunefish4.lv2\" $out/lib/lv2\ncp -r \"Tunefish4.vst3\" $out/lib/vst3\ncp \"Tunefish4.so\" $out/lib/vst\npopd\n\nrunHook postInstall\n",
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://tunefish-synth.com/",
         description: "Virtual analog synthesizer LV2 plugin",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

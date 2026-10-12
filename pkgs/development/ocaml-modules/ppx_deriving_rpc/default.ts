@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["homepage", 29, 5], ["description", 30, 5], ["license", 31, 5], ["maintainers", 32, 5]], [["pname", 12, 3], ["version", 14, 20], ["src", 14, 28], ["propagatedBuildInputs", 16, 3], ["checkInputs", 22, 3], ["doCheck", 26, 3], ["meta", 28, 3]]]);
 const formals$1 = { args: { lib: false, buildDunePackage: false, rpclib: false, alcotest: false, ppxlib: false, ppx_deriving: false, yojson: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["homepage", 29, 5], ["description", 30, 5], ["license", 31, 5], ["maintainers", 32, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 12, 3], ["version", 14, 20], ["src", 14, 28], ["propagatedBuildInputs", 16, 3], ["checkInputs", 22, 3], ["doCheck", 26, 3], ["meta", 28, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const ppx_deriving = nix.arg($, "ppx_deriving");
   const yojson = nix.arg($, "yojson");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "ppx_deriving_rpc",
       version: nix.thunk(() => nix.attr(rpclib, "version")),
       src: nix.thunk(() => nix.attr(rpclib, "src")),
@@ -24,7 +23,7 @@ export default nix.lambda((args) => (() => {
       checkInputs: nix.thunk(() => [alcotest, yojson]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         homepage: "https://github.com/mirage/ocaml-rpc",
         description: "Ppx deriver for ocaml-rpc",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),

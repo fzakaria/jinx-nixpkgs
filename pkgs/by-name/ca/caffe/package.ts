@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 32, 5], ["sha256", 33, 5]], [["owner", 42, 5], ["repo", 43, 5], ["tag", 44, 5], ["hash", 45, 5]], [["name", 122, 7], ["url", 123, 7], ["hash", 124, 7]], [["major", 129, 38], ["minor", 129, 44]], [["description", 173, 5], ["longDescription", 174, 5], ["homepage", 179, 5], ["maintainers", 180, 5], ["broken", 181, 5], ["license", 184, 5], ["platforms", 185, 5]], [["pname", 38, 3], ["version", 39, 3], ["src", 41, 3], ["nativeBuildInputs", 48, 3], ["cmakeFlags", 53, 3], ["buildInputs", 64, 3], ["propagatedBuildInputs", 83, 3], ["outputs", 109, 3], ["propagatedBuildOutputs", 113, 3], ["patches", 115, 3], ["postPatch", 133, 3], ["preConfigure", 142, 3], ["postInstall", 147, 3], ["doInstallCheck", 162, 3], ["installCheckPhase", 163, 3], ["meta", 172, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, config: false, fetchFromGitHub: false, fetchurl: false, fetchpatch: false, cmake: false, boost: false, gflags: false, glog: false, "hdf5-cpp": false, opencv4WithoutCuda: false, protobuf: false, doxygen: false, openblas: false, lmdbSupport: true, lmdb: false, leveldbSupport: true, leveldb: false, snappy: false, pythonSupport: true, python: true, numpy: true, replaceVars: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 32, 5], ["sha256", 33, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 42, 5], ["repo", 43, 5], ["tag", 44, 5], ["hash", 45, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 122, 7], ["url", 123, 7], ["hash", 124, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["major", 129, 38], ["minor", 129, 44]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 173, 5], ["longDescription", 174, 5], ["homepage", 179, 5], ["maintainers", 180, 5], ["broken", 181, 5], ["license", 184, 5], ["platforms", 185, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 38, 3], ["version", 39, 3], ["src", 41, 3], ["nativeBuildInputs", 48, 3], ["cmakeFlags", 53, 3], ["buildInputs", 64, 3], ["propagatedBuildInputs", 83, 3], ["outputs", 109, 3], ["propagatedBuildOutputs", 113, 3], ["patches", 115, 3], ["postPatch", 133, 3], ["preConfigure", 142, 3], ["postInstall", 147, 3], ["doInstallCheck", 162, 3], ["installCheckPhase", 163, 3], ["meta", 172, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -38,16 +33,16 @@ export default nix.lambda((args) => (() => {
   const replaceVars = nix.arg($, "replaceVars");
   const toggle = (bool) => (nix.asBool(bool) ? "ON" : "OFF");
   const test_model_weights = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: "http://dl.caffe.berkeleyvision.org/bvlc_reference_caffenet.caffemodel",
       sha256: "472d4a06035497b180636d8a82667129960371375bd10fcb6df5c6c7631f25e0",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "caffe",
       version: "1.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "BVLC",
           repo: "caffe",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -88,7 +83,7 @@ export default nix.lambda((args) => (() => {
         nix.path(here, "./random-shuffle.patch"),
         nix.path(here, "./random-shuffle-includes.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "support-opencv4",
             url: "https://github.com/BVLC/caffe/pull/6638/commits/0a04cc2ccd37ba36843c18fea2d5cbae6e7dd2b5.patch",
             hash: "sha256-ZegTvp0tTHlopQv+UzHDigs6XLkP2VfqLCWXl6aKJSI=",
@@ -96,7 +91,7 @@ export default nix.lambda((args) => (() => {
       ], nix.app(nix.sel(lib, "optional"), pythonSupport, nix.thunk(() => nix.app(replaceVars, nix.path(here, "./python.patch"), nix.thunk(() => (() => {
             const from = nix.thunk(() => nix.sel(python, "sourceVersion"));
             return {
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             major: nix.thunk(() => nix.attr(from, "major")),
             minor: nix.thunk(() => nix.attr(from, "minor")),
           };
@@ -118,7 +113,7 @@ $bin/bin/caffe test \\
   -weights "${test_model_weights}"
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Deep learning framework",
         longDescription: "Caffe is a deep learning framework made with expression, speed, and\nmodularity in mind. It is developed by the Berkeley Vision and Learning\nCenter (BVLC) and by community contributors.\n",
         homepage: "http://caffe.berkeleyvision.org/",

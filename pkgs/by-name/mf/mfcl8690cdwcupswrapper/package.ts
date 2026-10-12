@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 19, 5], ["hash", 20, 5]], [["description", 58, 5], ["homepage", 59, 5], ["license", 60, 5], ["platforms", 61, 5], ["maintainers", 62, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["nativeBuildInputs", 23, 3], ["dontUnpack", 28, 3], ["installPhase", 30, 3], ["meta", 57, 3]]]);
 const formals$1 = { args: { coreutils: false, dpkg: false, fetchurl: false, gnugrep: false, gnused: false, makeWrapper: false, mfcl8690cdwlpr: false, perl: false, lib: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 58, 5], ["homepage", 59, 5], ["license", 60, 5], ["platforms", 61, 5], ["maintainers", 62, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["nativeBuildInputs", 23, 3], ["dontUnpack", 28, 3], ["installPhase", 30, 3], ["meta", 57, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const pname = "mfcl8690cdwcupswrapper";
       const version = "1.5.0-3";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://download.brother.com/welcome/dlf103250/mfcl8690cdwcupswrapper-${version}.i386.deb`),
           hash: "sha256-CREQRr4nhw1pD+8AfD5p/EHpx3R6vQIO8h6VtnHxXls=",
         }))));
@@ -49,7 +47,7 @@ ln $dir/cupswrapper/brother_lpdwrapper_mfcl8690cdw $out/lib/cups/filter
 ln $dir/cupswrapper/brother_mfcl8690cdw_printer_en.ppd $out/share/cups/model
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Brother MFC-L8690CDW CUPS wrapper driver",
         homepage: "https://www.brother.com/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
@@ -60,7 +58,7 @@ ln $dir/cupswrapper/brother_mfcl8690cdw_printer_en.ppd $out/share/cups/model
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

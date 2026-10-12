@@ -2,11 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 19, 5], ["nativeBuildInputs", 21, 5], ["buildCommand", 23, 5]], [["NIX_CFLAGS_COMPILE", 183, 7]], [["description", 196, 8]], [["releaseName", 156, 3], ["outputs", 158, 3], ["xcodeHash", 163, 3], ["patches", 165, 3], ["postPatch", 173, 3], ["env", 183, 3], ["nativeBuildInputs", 185, 3], ["buildInputs", 189, 3], ["meta", 196, 3]]]);
 const formals$1 = { args: { libpcap: false, libresolv: false, libutil: false, mkAppleDerivation: false, openssl: false, "pkg-config": false, file_cmds: false, sourceRelease: false, stdenvNoCC: false, unifdef: false, xnuHeaders: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 19, 5], ["nativeBuildInputs", 21, 5], ["buildCommand", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 183, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 196, 8]]);
-const pos$4 = nix.positions(here + "/package.nix", [["releaseName", 156, 3], ["outputs", 158, 3], ["xcodeHash", 163, 3], ["patches", 165, 3], ["postPatch", 173, 3], ["env", 183, 3], ["nativeBuildInputs", 185, 3], ["buildInputs", 189, 3], ["meta", 196, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,7 +20,7 @@ export default nix.lambda((args) => (() => {
   const xnuHeaders = nix.arg($, "xnuHeaders");
   const xnu = nix.thunk(() => nix.app(sourceRelease, "xnu"));
   const privateHeaders = nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: "network_cmds-deps-private-headers",
       nativeBuildInputs: nix.thunk(() => [unifdef]),
       buildCommand: nix.thunk(() => nix.str`# Different strategies are needed to make private headers available to network_cmds:
@@ -157,7 +154,7 @@ install -D -t "$out/include/sys" \\
 `),
     }))));
   return nix.app(mkAppleDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       releaseName: "network_cmds",
       outputs: nix.thunk(() => ["out", "man"]),
       xcodeHash: "sha256-OIYpa71CvCOL8Ln7s8wUqWj9yD9lEeRifkj5gPvD78Y=",
@@ -167,12 +164,12 @@ install -D -t "$out/include/sys" \\
       ]),
       postPatch: "# Fix invalid pointer conversion error from trying to pass `NULL` to a `size_t`.\nsubstituteInPlace ndp.tproj/ndp.c \\\n  --replace-fail 'NULL, NULL);' 'NULL, 0);'\n\n# Fix invalid pointer conversion error. These parameters seem to be in the wrong order …\nsubstituteInPlace netstat.tproj/main.c \\\n  --replace-fail 'tp->pr_name, tp->pr_protocol' 'tp->pr_protocol, tp->pr_name'\n",
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.str`-I${privateHeaders}/include`),
       })),
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [libpcap, libresolv, libutil, openssl]),
-      meta: nix.thunk(() => ({ [nix.POS]: pos$3, description: "Network commands for Darwin" })),
+      meta: nix.thunk(() => ({ [nix.POS]: $pos[2], description: "Network commands for Darwin" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["version", 16, 26], ["pname", 17, 5], ["hash", 18, 5]], [["package", 56, 7], ["command", 57, 7]], [["version", 55, 11]], [["updateScript", 54, 5], ["tests", 55, 5]], [["homepage", 62, 5], ["changelog", 63, 5], ["description", 64, 5], ["license", 65, 5], ["mainProgram", 66, 5], ["maintainers", 67, 5]], [["pname", 11, 3], ["version", 12, 3], ["pyproject", 13, 3], ["src", 15, 3], ["pythonRelaxDeps", 21, 3], ["build-system", 23, 3], ["dependencies", 27, 3], ["doCheck", 35, 3], ["nativeCheckInputs", 37, 3], ["disabledTestPaths", 43, 3], ["pytestFlags", 49, 3], ["passthru", 53, 3], ["meta", 61, 3]]]);
 const formals$1 = { args: { lib: false, "aws-encryption-sdk-cli": false, fetchPypi: false, "nix-update-script": false, python3Packages: false, testers: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["version", 16, 26], ["pname", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["package", 56, 7], ["command", 57, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 55, 11]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 54, 5], ["tests", 55, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["homepage", 62, 5], ["changelog", 63, 5], ["description", 64, 5], ["license", 65, 5], ["mainProgram", 66, 5], ["maintainers", 67, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["pyproject", 13, 3], ["src", 15, 3], ["pythonRelaxDeps", 21, 3], ["build-system", 23, 3], ["dependencies", 27, 3], ["doCheck", 35, 3], ["nativeCheckInputs", 37, 3], ["disabledTestPaths", 43, 3], ["pytestFlags", 49, 3], ["passthru", 53, 3], ["meta", 61, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const python3Packages = nix.arg($, "python3Packages");
   const testers = nix.arg($, "testers");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "aws-encryption-sdk-cli",
       version: "4.3.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           pname: "aws_encryption_sdk_cli",
           hash: "sha256-FfLgR7gocZ0cLV7bxqvKNI+Fs7kQF0XhR3zf6tHXwOE=",
@@ -56,19 +51,19 @@ export default nix.lambda((args) => (() => {
       disabledTestPaths: nix.thunk(() => ["test/integration"]),
       pytestFlags: nix.thunk(() => ["-Wignore::pytest.PytestRemovedIn8Warning"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               package: aws_encryption_sdk_cli,
               command: "aws-encryption-cli --version",
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "https://aws-encryption-sdk-cli.readthedocs.io/",
         changelog: nix.thunk(() => nix.str`https://github.com/aws/aws-encryption-sdk-cli/blob/v${nix.sel(finalAttrs, "version")}/CHANGELOG.rst`),
         description: "CLI wrapper around aws-encryption-sdk-python",

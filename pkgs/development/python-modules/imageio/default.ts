@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 35, 5], ["repo", 36, 5], ["rev", 37, 5], ["leaveDotGit", 38, 5], ["hash", 39, 5]], [["owner", 50, 5], ["repo", 51, 5], ["tag", 52, 5], ["hash", 53, 5]], [["bsdf", 69, 5], ["dicom", 70, 5], ["feisem", 71, 5], ["ffmpeg", 72, 5], ["fits", 76, 5], ["freeimage", 77, 5], ["lytro", 78, 5], ["numpy", 79, 5], ["pillow", 80, 5], ["simpleitk", 81, 5], ["spe", 82, 5], ["swf", 83, 5], ["tifffile", 84, 5], ["pyav", 85, 5], ["heif", 86, 5]], [["description", 111, 5], ["homepage", 112, 5], ["changelog", 113, 5], ["license", 114, 5], ["maintainers", 115, 5]], [["pname", 45, 3], ["version", 46, 3], ["pyproject", 47, 3], ["src", 49, 3], ["postPatch", 56, 3], ["build-system", 61, 3], ["dependencies", 63, 3], ["optional-dependencies", 68, 3], ["nativeCheckInputs", 89, 3], ["pytestFlags", 99, 3], ["disabledTestMarks", 101, 3], ["disabledTestPaths", 104, 3], ["preCheck", 106, 3], ["meta", 110, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitHub: false, isPyPy: false, setuptools: false, libGL: false, numpy: false, pillow: false, astropy: false, av: false, "imageio-ffmpeg": false, "pillow-heif": false, psutil: false, tifffile: false, fsspec: false, gitMinimal: false, pytestCheckHook: false, writableTmpDirAsHomeHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 35, 5], ["repo", 36, 5], ["rev", 37, 5], ["leaveDotGit", 38, 5], ["hash", 39, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["owner", 50, 5], ["repo", 51, 5], ["tag", 52, 5], ["hash", 53, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["bsdf", 69, 5], ["dicom", 70, 5], ["feisem", 71, 5], ["ffmpeg", 72, 5], ["fits", 76, 5], ["freeimage", 77, 5], ["lytro", 78, 5], ["numpy", 79, 5], ["pillow", 80, 5], ["simpleitk", 81, 5], ["spe", 82, 5], ["swf", 83, 5], ["tifffile", 84, 5], ["pyav", 85, 5], ["heif", 86, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 111, 5], ["homepage", 112, 5], ["changelog", 113, 5], ["license", 114, 5], ["maintainers", 115, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 45, 3], ["version", 46, 3], ["pyproject", 47, 3], ["src", 49, 3], ["postPatch", 56, 3], ["build-system", 61, 3], ["dependencies", 63, 3], ["optional-dependencies", 68, 3], ["nativeCheckInputs", 89, 3], ["pytestFlags", 99, 3], ["disabledTestMarks", 101, 3], ["disabledTestPaths", 104, 3], ["preCheck", 106, 3], ["meta", 110, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,7 +27,7 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   const test_images = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "imageio",
       repo: "test_images",
       rev: "f676c96b1af7e04bb1eed1e4551e058eb2f14acd",
@@ -44,7 +40,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.38.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "imageio",
           repo: "imageio",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -56,7 +52,7 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [setuptools]);
       const dependencies = nix.thunk(() => [numpy, pillow]);
       const optional_dependencies = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         bsdf: [],
         dicom: [],
         feisem: [],
@@ -79,7 +75,7 @@ export default nix.lambda((args) => (() => {
       const disabledTestPaths = nix.thunk(() => ["tests/test_freeimage.py"]);
       const preCheck = "export IMAGEIO_USERDIR=$(mktemp -d)\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Library for reading and writing a wide range of image, video, scientific, and volumetric data formats",
         homepage: "https://imageio.readthedocs.io",
         changelog: nix.thunk(() => nix.str`https://github.com/imageio/imageio/blob/${nix.sel(src, "tag")}/CHANGELOG.md`),
@@ -90,7 +86,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         pyproject,

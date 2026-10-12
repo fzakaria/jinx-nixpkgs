@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]], [["gtkSupport", 45, 44]], [["description", 73, 5], ["homepage", 74, 5], ["license", 75, 5], ["maintainers", 76, 5], ["mainProgram", 80, 5], ["platforms", 81, 5]], [["pname", 20, 3], ["version", 21, 3], ["pyproject", 22, 3], ["src", 24, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 42, 3], ["dependencies", 54, 3], ["dontWrapGApps", 66, 3], ["preFixup", 68, 3], ["meta", 72, 3]]]);
 const formals$1 = { args: { lib: false, python3Packages: false, "blueprint-compiler": false, "desktop-file-utils": false, fetchFromGitHub: false, gst_all_1: false, "gobject-introspection": false, libadwaita: false, "libportal-gtk4": false, meson: false, networkmanager: false, ninja: false, pipewire: false, "pkg-config": false, wrapGAppsHook4: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["gtkSupport", 45, 44]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 73, 5], ["homepage", 74, 5], ["license", 75, 5], ["maintainers", 76, 5], ["mainProgram", 80, 5], ["platforms", 81, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["pyproject", 22, 3], ["src", 24, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 42, 3], ["dependencies", 54, 3], ["dontWrapGApps", 66, 3], ["preFixup", 68, 3], ["meta", 72, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,12 +23,12 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const wrapGAppsHook4 = nix.arg($, "wrapGAppsHook4");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "cobang",
       version: "2.8.0",
       pyproject: false,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "hongquan",
           repo: "CoBang",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -48,7 +45,7 @@ export default nix.lambda((args) => (() => {
       ]),
       buildInputs: nix.thunk(() => [
         nix.thunk(() => nix.sel(gst_all_1, "gst-plugins-base")),
-        nix.thunk(() => nix.app(nix.sel(gst_all_1, "gst-plugins-good", "override"), nix.thunk(() => ({ [nix.POS]: pos$2, gtkSupport: true })))),
+        nix.thunk(() => nix.app(nix.sel(gst_all_1, "gst-plugins-good", "override"), nix.thunk(() => ({ [nix.POS]: $pos[1], gtkSupport: true })))),
         nix.thunk(() => nix.sel(gst_all_1, "gst-plugins-rs")),
         libadwaita,
         libportal_gtk4,
@@ -70,7 +67,7 @@ export default nix.lambda((args) => (() => {
       dontWrapGApps: true,
       preFixup: "makeWrapperArgs+=(\"${gappsWrapperArgs[@]}\")\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "QR code scanner desktop app for Linux",
         homepage: "https://github.com/hongquan/CoBang",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

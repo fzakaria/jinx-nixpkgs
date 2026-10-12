@@ -2,18 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["buildInputs", 35, 9]], [["gemName", 39, 51], ["version", 39, 59], ["source", 39, 67]], [["name", 40, 13], ["src", 41, 13], ["unpackPhase", 42, 13], ["nativeBuildInputs", 43, 13], ["hash", 45, 11]], [["cargoDeps", 38, 9], ["dontBuild", 47, 9], ["nativeBuildInputs", 48, 9], ["disallowedReferences", 54, 9], ["preInstall", 57, 9], ["postInstall", 60, 9]], [["trilogy", 34, 7], ["commonmarker", 37, 7]], [["name", 21, 5], ["ruby", 23, 5], ["gemdir", 24, 5], ["groups", 25, 5], ["gemConfig", 33, 5]], [["url", 75, 5], ["hash", 76, 5]], [["redmine", 103, 18]], [["tests", 103, 12]], [["homepage", 106, 5], ["changelog", 107, 5], ["platforms", 108, 5], ["maintainers", 109, 5], ["license", 114, 5]], [["pname", 68, 3], ["version", 69, 11], ["strictDeps", 71, 3], ["__structuredAttrs", 72, 3], ["src", 74, 3], ["nativeBuildInputs", 79, 3], ["buildInputs", 80, 3], ["buildPhase", 86, 3], ["installPhase", 91, 3], ["passthru", 103, 3], ["meta", 105, 3]]]);
 const formals$1 = { args: { defaultGemConfig: false, lib: false, stdenvNoCC: false, fetchurl: false, fetchpatch: false, bundlerEnv: false, ruby_4_0: false, makeWrapper: false, nixosTests: false, openssl: false, rustc: false, cargo: false, rustPlatform: false, buildRubyGem: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["buildInputs", 35, 9]]);
-const pos$2 = nix.positions(here + "/package.nix", [["gemName", 39, 51], ["version", 39, 59], ["source", 39, 67]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 40, 13], ["src", 41, 13], ["unpackPhase", 42, 13], ["nativeBuildInputs", 43, 13], ["hash", 45, 11]]);
-const pos$4 = nix.positions(here + "/package.nix", [["cargoDeps", 38, 9], ["dontBuild", 47, 9], ["nativeBuildInputs", 48, 9], ["disallowedReferences", 54, 9], ["preInstall", 57, 9], ["postInstall", 60, 9]]);
-const pos$5 = nix.positions(here + "/package.nix", [["trilogy", 34, 7], ["commonmarker", 37, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["name", 21, 5], ["ruby", 23, 5], ["gemdir", 24, 5], ["groups", 25, 5], ["gemConfig", 33, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["url", 75, 5], ["hash", 76, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["redmine", 103, 18]]);
-const pos$9 = nix.positions(here + "/package.nix", [["tests", 103, 12]]);
-const pos$10 = nix.positions(here + "/package.nix", [["homepage", 106, 5], ["changelog", 107, 5], ["platforms", 108, 5], ["maintainers", 109, 5], ["license", 114, 5]]);
-const pos$11 = nix.positions(here + "/package.nix", [["pname", 68, 3], ["version", 69, 11], ["strictDeps", 71, 3], ["__structuredAttrs", 72, 3], ["src", 74, 3], ["nativeBuildInputs", 79, 3], ["buildInputs", 80, 3], ["buildPhase", 86, 3], ["installPhase", 91, 3], ["passthru", 103, 3], ["meta", 105, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,25 +23,25 @@ export default nix.lambda((args) => (() => {
   const buildRubyGem = nix.arg($, "buildRubyGem");
   const version = "7.0.2";
   const rubyEnv = nix.thunk(() => nix.app(bundlerEnv, nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       name: nix.thunk(() => nix.str`redmine-env-${version}`),
       ruby: ruby_4_0,
       gemdir: nix.path(here, "./."),
       groups: nix.thunk(() => ["development", "ldap", "markdown", "common_mark", "minimagick", "test"]),
       gemConfig: nix.thunk(() => nix.update(defaultGemConfig, {
-        [nix.POS]: pos$5,
-        trilogy: (attrs) => ({ [nix.POS]: pos$1, buildInputs: nix.thunk(() => [openssl]) }),
+        [nix.POS]: $pos[4],
+        trilogy: (attrs) => ({ [nix.POS]: $pos[0], buildInputs: nix.thunk(() => [openssl]) }),
         commonmarker: (attrs) => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => (() => {
               const from = nix.thunk(() => nix.app(buildRubyGem, nix.thunk(() => ({
-                  [nix.POS]: pos$2,
+                  [nix.POS]: $pos[1],
                   gemName: nix.thunk(() => nix.attr(attrs, "gemName")),
                   version: nix.thunk(() => nix.attr(attrs, "version")),
                   source: nix.thunk(() => nix.attr(attrs, "source")),
                 }))));
               return {
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               name: nix.thunk(() => nix.attr(from, "name")),
               src: nix.thunk(() => nix.attr(from, "src")),
               unpackPhase: nix.thunk(() => nix.attr(from, "unpackPhase")),
@@ -73,13 +63,13 @@ export default nix.lambda((args) => (() => {
       })),
     }))));
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$11,
+      [nix.POS]: $pos[10],
       pname: "redmine",
       version: version,
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           url: nix.thunk(() => nix.str`https://www.redmine.org/releases/redmine-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-1F5tTDc8w8jTPx9NSi/64eGtsYcDFgcHRnST3ntL5ZE=",
         })))),
@@ -101,11 +91,11 @@ done
 makeWrapper ${nix.sel(rubyEnv, "wrappedRuby")}/bin/ruby $out/bin/rdm-mailhandler.rb --add-flags $out/share/redmine/extra/mail_handler/rdm-mailhandler.rb
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$9,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$8, redmine: nix.thunk(() => nix.sel(nixosTests, "redmine")) })),
+        [nix.POS]: $pos[8],
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[7], redmine: nix.thunk(() => nix.sel(nixosTests, "redmine")) })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         homepage: "https://www.redmine.org/",
         changelog: "https://www.redmine.org/projects/redmine/wiki/changelog",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),

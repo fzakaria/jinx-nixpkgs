@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["homepage", 46, 5], ["description", 47, 5]], [["version", 21, 43], ["src", 21, 51], ["pname", 22, 3], ["pyproject", 23, 3], ["sourceRoot", 25, 3], ["build-system", 27, 3], ["dependencies", 29, 3], ["nativeCheckInputs", 38, 3], ["pythonImportsCheck", 43, 3], ["meta", 45, 3]]]);
 const formals$1 = { args: { buildPythonPackage: false, hatchling: false, "opentelemetry-api": false, "opentelemetry-instrumentation": false, "opentelemetry-semantic-conventions": false, packaging: false, sqlalchemy: false, wrapt: false, "opentelemetry-test-utils": false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["homepage", 46, 5], ["description", 47, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["version", 21, 43], ["src", 21, 51], ["pname", 22, 3], ["pyproject", 23, 3], ["sourceRoot", 25, 3], ["build-system", 27, 3], ["dependencies", 29, 3], ["nativeCheckInputs", 38, 3], ["pythonImportsCheck", 43, 3], ["meta", 45, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,7 +18,7 @@ export default nix.lambda((args) => (() => {
   const opentelemetry_test_utils = nix.arg($, "opentelemetry-test-utils");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       version: nix.thunk(() => nix.attr(opentelemetry_instrumentation, "version")),
       src: nix.thunk(() => nix.attr(opentelemetry_instrumentation, "src")),
       pname: "opentelemetry-instrumentation-sqlalchemy",
@@ -37,7 +36,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [opentelemetry_test_utils, pytestCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["opentelemetry.instrumentation.sqlalchemy"]),
       meta: nix.thunk(() => nix.update(nix.sel(opentelemetry_instrumentation, "meta"), {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         homepage: "https://github.com/open-telemetry/opentelemetry-python-contrib/tree/main/instrumentation/opentelemetry-instrumentation-sqlalchemy",
         description: "SQLAlchemy instrumentation for OpenTelemetry",
       })),

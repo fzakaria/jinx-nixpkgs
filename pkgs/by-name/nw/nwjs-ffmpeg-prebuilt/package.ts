@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["x64", 19, 9], ["ia32", 20, 9]], [["url", 24, 7], ["hash", 25, 7]], [["description", 41, 5], ["homepage", 42, 5], ["platforms", 43, 5], ["sourceProvenance", 47, 5], ["maintainers", 48, 5], ["license", 52, 5]], [["pname", 13, 3], ["version", 14, 11], ["src", 16, 3], ["sourceRoot", 27, 3], ["nativeBuildInputs", 29, 3], ["installPhase", 31, 3], ["meta", 40, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, unzip: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["x64", 19, 9], ["ia32", 20, 9]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 24, 7], ["hash", 25, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 41, 5], ["homepage", 42, 5], ["platforms", 43, 5], ["sourceProvenance", 47, 5], ["maintainers", 48, 5], ["license", 52, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 11], ["src", 16, 3], ["sourceRoot", 27, 3], ["nativeBuildInputs", 29, 3], ["installPhase", 31, 3], ["meta", 40, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,17 +14,17 @@ export default nix.lambda((args) => (() => {
   const bits = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "is64bit")) ? "x64" : "ia32"));
   const version = "0.114.2";
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "nwjs-ffmpeg-prebuilt",
       version: version,
       src: nix.thunk(() => (() => {
         const hashes = nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           x64: "sha256-pjQonrh+UVBIL464FpeFonng6lsHdbqozy2Ye3YLfWM=",
           ia32: "sha256-pjQonrh+UVBIL464FpeFonng6lsHdbqozy2Ye3YLfWM=",
         }));
         return nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: nix.thunk(() => nix.str`https://github.com/nwjs-ffmpeg-prebuilt/nwjs-ffmpeg-prebuilt/releases/download/${version}/${version}-linux-${bits}.zip`),
             hash: nix.thunk(() => nix.sel(hashes, nix.key(nix.force(bits)))),
           })));
@@ -36,7 +33,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [unzip]),
       installPhase: "runHook preInstall\n\nmkdir -p $out/lib\ncp -R libffmpeg.so $out/lib/\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "App runtime based on Chromium and node.js",
         homepage: "https://nwjs.io/",
         platforms: nix.thunk(() => ["i686-linux", "x86_64-linux"]),

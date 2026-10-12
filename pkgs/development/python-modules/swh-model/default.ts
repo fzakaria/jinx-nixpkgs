@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["domain", 33, 5], ["group", 34, 5], ["owner", 35, 5], ["repo", 36, 5], ["tag", 37, 5], ["hash", 38, 5]], [["description", 79, 5], ["homepage", 80, 5], ["license", 81, 5], ["maintainers", 82, 5]], [["pname", 28, 3], ["version", 29, 3], ["pyproject", 30, 3], ["src", 32, 3], ["build-system", 41, 3], ["dependencies", 46, 3], ["pythonImportsCheck", 58, 3], ["nativeCheckInputs", 60, 3], ["disabledTestPaths", 71, 3], ["meta", 78, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitLab: false, setuptools: false, "setuptools-scm": false, attrs: false, "attrs-strict": false, dateutils: false, deprecated: false, hypothesis: false, iso8601: false, "typing-extensions": false, click: false, dulwich: false, aiohttp: false, pytestCheckHook: false, pytz: false, "types-click": false, "types-python-dateutil": false, "types-pytz": false, "types-deprecated": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["domain", 33, 5], ["group", 34, 5], ["owner", 35, 5], ["repo", 36, 5], ["tag", 37, 5], ["hash", 38, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 79, 5], ["homepage", 80, 5], ["license", 81, 5], ["maintainers", 82, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 28, 3], ["version", 29, 3], ["pyproject", 30, 3], ["src", 32, 3], ["build-system", 41, 3], ["dependencies", 46, 3], ["pythonImportsCheck", 58, 3], ["nativeCheckInputs", 60, 3], ["disabledTestPaths", 71, 3], ["meta", 78, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,12 +30,12 @@ export default nix.lambda((args) => (() => {
   const types_pytz = nix.arg($, "types-pytz");
   const types_deprecated = nix.arg($, "types-deprecated");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "swh-model",
       version: "8.4.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "gitlab.softwareheritage.org",
           group: "swh",
           owner: "devel",
@@ -74,7 +72,7 @@ export default nix.lambda((args) => (() => {
           "swh/model/tests/test_from_disk.py::DirectoryToObjects::test_exclude_trailing",
         ]))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Implementation of the Data model of the Software Heritage project, used to archive source code artifacts",
         homepage: "https://gitlab.softwareheritage.org/swh/devel/swh-model",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

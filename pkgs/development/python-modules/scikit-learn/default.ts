@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 34, 5], ["version", 35, 13], ["hash", 36, 5]], [["url", 44, 7], ["hash", 45, 7]], [["LC_ALL", 90, 7]], [["description", 132, 5], ["changelog", 133, 5], ["homepage", 140, 5], ["license", 141, 5], ["maintainers", 142, 5]], [["__structuredAttrs", 27, 3], ["pname", 29, 3], ["version", 30, 3], ["pyproject", 31, 3], ["src", 33, 3], ["patches", 39, 3], ["postPatch", 49, 3], ["buildInputs", 59, 3], ["nativeBuildInputs", 66, 3], ["build-system", 70, 3], ["dependencies", 77, 3], ["nativeCheckInputs", 85, 3], ["env", 90, 3], ["doCheck", 93, 3], ["disabledTests", 95, 3], ["pytestFlags", 117, 3], ["preCheck", 124, 3], ["pythonImportsCheck", 129, 3], ["meta", 131, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, buildPythonPackage: false, fetchPypi: false, fetchpatch: false, cython: false, gfortran: false, "meson-python": false, numpy: false, scipy: false, glibcLocales: false, llvmPackages: false, pytestCheckHook: false, "pytest-xdist": false, joblib: false, narwhals: false, pillow: false, threadpoolctl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 34, 5], ["version", 35, 13], ["hash", 36, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["url", 44, 7], ["hash", 45, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["LC_ALL", 90, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 132, 5], ["changelog", 133, 5], ["homepage", 140, 5], ["license", 141, 5], ["maintainers", 142, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["__structuredAttrs", 27, 3], ["pname", 29, 3], ["version", 30, 3], ["pyproject", 31, 3], ["src", 33, 3], ["patches", 39, 3], ["postPatch", 49, 3], ["buildInputs", 59, 3], ["nativeBuildInputs", 66, 3], ["build-system", 70, 3], ["dependencies", 77, 3], ["nativeCheckInputs", 85, 3], ["env", 90, 3], ["doCheck", 93, 3], ["disabledTests", 95, 3], ["pytestFlags", 117, 3], ["preCheck", 124, 3], ["pythonImportsCheck", 129, 3], ["meta", 131, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -35,14 +31,14 @@ export default nix.lambda((args) => (() => {
       const version = "1.9.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "scikit_learn",
           version: version,
           hash: "sha256-iDMmaYnTpREBeKn64weDZ1Rgck0OHvsTsUkB0sZgxVc=",
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/scikit-learn/scikit-learn/commit/aeadb51af96556dd0f884c0037c9dc9993449538.patch",
             hash: "sha256-J7igLpK8pdcbgMwxFqaAGDEwm87VrLHb+ckg/pEh6IY=",
           })))),
@@ -60,7 +56,7 @@ substituteInPlace pyproject.toml \\
       const build_system = nix.thunk(() => [cython, meson_python, numpy, scipy]);
       const dependencies = nix.thunk(() => [joblib, narwhals, numpy, scipy, threadpoolctl]);
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook, pytest_xdist]);
-      const env = nix.thunk(() => ({ [nix.POS]: pos$3, LC_ALL: "en_US.UTF-8" }));
+      const env = nix.thunk(() => ({ [nix.POS]: $pos[2], LC_ALL: "en_US.UTF-8" }));
       const doCheck = nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")));
       const disabledTests = nix.thunk(() => nix.concat([
         "test_feature_importance_regression",
@@ -73,7 +69,7 @@ substituteInPlace pyproject.toml \\
       const preCheck = "cd $TMPDIR\nexport HOME=$TMPDIR\n";
       const pythonImportsCheck = nix.thunk(() => ["sklearn"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Set of python modules for machine learning and data mining",
         changelog: nix.thunk(() => (() => {
           const major = nix.thunk(() => nix.app(nix.sel(lib, "versions", "major"), version));
@@ -89,7 +85,7 @@ substituteInPlace pyproject.toml \\
         })()),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         __structuredAttrs,
         pname,
         version,

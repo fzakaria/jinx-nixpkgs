@@ -2,11 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/egg2nix.nix", [[["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["sha256", 20, 5]], [["url", 25, 7], ["hash", 26, 7]], [["description", 36, 5], ["mainProgram", 37, 5], ["homepage", 38, 5], ["license", 39, 5], ["platforms", 40, 5], ["maintainers", 41, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["patches", 23, 3], ["buildInputs", 30, 3], ["meta", 35, 3]]]);
 const formals$1 = { args: { lib: false, eggDerivation: false, fetchFromGitHub: false, chickenEggs: false, fetchpatch: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/egg2nix.nix", [["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["sha256", 20, 5]]);
-const pos$2 = nix.positions(here + "/egg2nix.nix", [["url", 25, 7], ["hash", 26, 7]]);
-const pos$3 = nix.positions(here + "/egg2nix.nix", [["description", 36, 5], ["mainProgram", 37, 5], ["homepage", 38, 5], ["license", 39, 5], ["platforms", 40, 5], ["maintainers", 41, 5]]);
-const pos$4 = nix.positions(here + "/egg2nix.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["patches", 23, 3], ["buildInputs", 30, 3], ["meta", 35, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "egg2nix";
       const version = "0.5";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "the-kenny",
           repo: "egg2nix",
           rev: version,
@@ -27,7 +24,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/the-kenny/egg2nix/commit/7d20ed520b8fe4debeefc78271c8c836015f95dc.patch",
             hash: "sha256-emMnxu6HnpcDWcO7rAe0VOy2ZPfPhqj5bQv9foOkjY0=",
           })))),
@@ -40,7 +37,7 @@ export default nix.lambda((args) => (() => {
         ];
       })());
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Generate nix-expression from CHICKEN scheme eggs",
         mainProgram: "egg2nix",
         homepage: "https://github.com/the-kenny/egg2nix",
@@ -51,7 +48,7 @@ export default nix.lambda((args) => (() => {
           return [nix.thunk(() => nix.lookup(w_1, "corngood"))];
         })()),
       }));
-      return { [nix.POS]: pos$4, pname, version, src, patches, buildInputs, meta };
+      return { [nix.POS]: $pos[3], pname, version, src, patches, buildInputs, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=egg2nix.ts.map

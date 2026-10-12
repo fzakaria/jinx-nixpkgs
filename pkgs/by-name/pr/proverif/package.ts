@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 18, 5], ["hash", 19, 5]], [["description", 66, 5], ["homepage", 67, 5], ["license", 68, 5], ["platforms", 69, 5], ["maintainers", 70, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["strictDeps", 22, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 32, 3], ["nativeCheckInputs", 35, 3], ["buildPhase", 37, 3], ["doCheck", 43, 3], ["checkPhase", 44, 3], ["installPhase", 50, 3], ["meta", 65, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, ocamlPackages: false, makeBinaryWrapper: false, graphviz: false, m4: false, enable_interact: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 66, 5], ["homepage", 67, 5], ["license", 68, 5], ["platforms", 69, 5], ["maintainers", 70, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["strictDeps", 22, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 32, 3], ["nativeCheckInputs", 35, 3], ["buildPhase", 37, 3], ["doCheck", 43, 3], ["checkPhase", 44, 3], ["installPhase", 50, 3], ["meta", 65, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const m4 = nix.arg($, "m4");
   const enable_interact = nix.argOr($, "enable_interact", () => false);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "proverif",
       version: "2.05",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://bblanche.gitlabpages.inria.fr/proverif/proverif${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-SHH1PDKrSgRmmgYMSIa6XZCASWlj+5gKmmLSxCnOq8Q=",
         })))),
@@ -55,7 +53,7 @@ wrapProgram $out/bin/proverif_interact \\
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Cryptographic protocol verifier in the formal model",
         homepage: "https://bblanche.gitlabpages.inria.fr/proverif/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),

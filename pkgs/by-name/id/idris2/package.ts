@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 9], ["repo", 17, 9], ["rev", 18, 9], ["hash", 19, 9]], [["idris2-version", 14, 7], ["idris2-src", 15, 7], ["mkPrelude", 22, 7], ["prelude", 23, 7], ["base", 24, 7], ["linear", 25, 7], ["network", 26, 7], ["contrib", 27, 7], ["test", 28, 7], ["libidris2_support", 30, 7], ["idris2-unwrapped", 31, 7]]]);
 const formals$1 = { args: { lib: false, newScope: false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 9], ["repo", 17, 9], ["rev", 18, 9], ["hash", 19, 9]]);
-const pos$2 = nix.positions(here + "/package.nix", [["idris2-version", 14, 7], ["idris2-src", 15, 7], ["mkPrelude", 22, 7], ["prelude", 23, 7], ["base", 24, 7], ["linear", 25, 7], ["network", 26, 7], ["contrib", 27, 7], ["test", 28, 7], ["libidris2_support", 30, 7], ["idris2-unwrapped", 31, 7]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,10 +13,10 @@ export default nix.lambda((args) => (() => {
   const idris2CompilerPackages = nix.thunk(() => nix.app(nix.sel(lib, "makeScope"), newScope, (self) => (() => {
       const callPackage = nix.thunk(() => nix.attr(self, "callPackage"));
       return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         "idris2-version": "0.8.0",
         "idris2-src": nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             owner: "idris-lang",
             repo: "Idris2",
             rev: nix.thunk(() => nix.str`v${nix.sel(self, "idris2-version")}`),

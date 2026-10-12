@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]], [["updateScript", 74, 12]], [["description", 77, 5], ["homepage", 78, 5], ["changelog", 79, 5], ["license", 80, 5], ["maintainers", 81, 5], ["platforms", 82, 5], ["mainProgram", 83, 5], ["broken", 85, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["__structuredAttrs", 27, 3], ["strictDeps", 28, 3], ["patches", 30, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 44, 3], ["cmakeFlags", 51, 3], ["postInstall", 54, 3], ["doInstallCheck", 59, 3], ["nativeInstallCheckInputs", 61, 3], ["hardeningDisable", 66, 3], ["preInstallCheck", 68, 3], ["versionCheckKeepEnvironment", 72, 3], ["versionCheckProgramArg", 73, 3], ["passthru", 74, 3], ["meta", 76, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, bzip2: false, cmake: false, "nix-update-script": false, "pkg-config": false, qt6: false, versionCheckHook: false, writableTmpDirAsHomeHook: false, xxd: false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 74, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 77, 5], ["homepage", 78, 5], ["changelog", 79, 5], ["license", 80, 5], ["maintainers", 81, 5], ["platforms", 82, 5], ["mainProgram", 83, 5], ["broken", 85, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["__structuredAttrs", 27, 3], ["strictDeps", 28, 3], ["patches", 30, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 44, 3], ["cmakeFlags", 51, 3], ["postInstall", 54, 3], ["doInstallCheck", 59, 3], ["nativeInstallCheckInputs", 61, 3], ["hardeningDisable", 66, 3], ["preInstallCheck", 68, 3], ["versionCheckKeepEnvironment", 72, 3], ["versionCheckProgramArg", 73, 3], ["passthru", 74, 3], ["meta", 76, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const xxd = nix.arg($, "xxd");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "doomseeker",
       version: "1.5.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "DoomseekerTeam",
           repo: "Doomseeker",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -62,11 +59,11 @@ export default nix.lambda((args) => (() => {
       versionCheckKeepEnvironment: "HOME QT_QPA_PLATFORM",
       versionCheckProgramArg: "--version-json",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Multiplayer server browser for many Doom source ports",
         homepage: "https://doomseeker.drdteam.org/",
         changelog: nix.thunk(() => nix.str`https://github.com/DoomseekerTeam/Doomseeker/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

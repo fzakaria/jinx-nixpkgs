@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["description", 25, 5], ["homepage", 26, 5], ["license", 27, 5], ["platforms", 28, 5]], [["pname", 8, 3], ["version", 9, 3], ["udevRules", 11, 3], ["dontUnpack", 12, 3], ["nativeBuildInputs", 14, 3], ["doInstallCheck", 18, 3], ["installPhase", 20, 3], ["meta", 24, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, udevCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["description", 25, 5], ["homepage", 26, 5], ["license", 27, 5], ["platforms", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["udevRules", 11, 3], ["dontUnpack", 12, 3], ["nativeBuildInputs", 14, 3], ["doInstallCheck", 18, 3], ["installPhase", 20, 3], ["meta", 24, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,14 +20,14 @@ export default nix.lambda((args) => (() => {
       const installPhase = nix.thunk(() => nix.str`install -Dm 644 "${udevRules}" "$out/lib/udev/rules.d/50-numworks-calculator.rules"
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Udev rules for Numworks calculators",
         homepage: "https://numworks.com",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         pname,
         version,
         udevRules,

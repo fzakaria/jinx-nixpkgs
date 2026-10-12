@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]], [["name", 27, 7], ["url", 28, 7], ["hash", 29, 7]], [["changelog", 56, 5], ["description", 57, 5], ["homepage", 58, 5], ["license", 59, 5], ["maintainers", 60, 5]], [["pname", 13, 3], ["version", 14, 3], ["pyproject", 15, 3], ["src", 17, 3], ["patches", 24, 3], ["build-system", 33, 3], ["dependencies", 35, 3], ["pythonImportsCheck", 37, 3], ["nativeCheckInputs", 39, 3], ["disabledTests", 44, 3], ["disabledTestPaths", 53, 3], ["meta", 55, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, fetchpatch: false, aiohttp: false, pytestCheckHook: false, "pytest-aiohttp": false, setuptools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["name", 27, 7], ["url", 28, 7], ["hash", 29, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["changelog", 56, 5], ["description", 57, 5], ["homepage", 58, 5], ["license", 59, 5], ["maintainers", 60, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 13, 3], ["version", 14, 3], ["pyproject", 15, 3], ["src", 17, 3], ["patches", 24, 3], ["build-system", 33, 3], ["dependencies", 35, 3], ["pythonImportsCheck", 37, 3], ["nativeCheckInputs", 39, 3], ["disabledTests", 44, 3], ["disabledTestPaths", 53, 3], ["meta", 55, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.8.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "aio-libs",
           repo: "aiohttp-cors",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -31,7 +28,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "replace-deprecated-asyncio.iscoroutinefunction-with-its-counterpart-from-inspect.patch",
             url: "https://github.com/aio-libs/aiohttp-cors/commit/efafc0f780a494377910f2328057f83e95f8bf74.patch",
             hash: "sha256-BvE5qqAx83+084khkHt4zjXgR7Bu/ceqMOOh/6fe5TA=",
@@ -49,7 +46,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const disabledTestPaths = nix.thunk(() => ["tests/integration"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         changelog: nix.thunk(() => nix.str`https://github.com/aio-libs/aiohttp-cors/blob/${nix.sel(src, "tag")}/CHANGES.rst`),
         description: "CORS support for aiohttp",
         homepage: "https://github.com/aio-libs/aiohttp-cors",
@@ -57,7 +54,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

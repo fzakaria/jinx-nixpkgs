@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/lwt.nix", [[["description", 23, 5]], [["pname", 9, 3], ["version", 11, 21], ["src", 11, 29], ["propagatedBuildInputs", 13, 3], ["checkInputs", 18, 3], ["doCheck", 20, 3], ["meta", 22, 3]]]);
 const formals$1 = { args: { buildDunePackage: false, alcotest: false, graphql: false, lwt: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/lwt.nix", [["description", 23, 5]]);
-const pos$2 = nix.positions(here + "/lwt.nix", [["pname", 9, 3], ["version", 11, 21], ["src", 11, 29], ["propagatedBuildInputs", 13, 3], ["checkInputs", 18, 3], ["doCheck", 20, 3], ["meta", 22, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,14 +12,14 @@ export default nix.lambda((args) => (() => {
   const graphql = nix.arg($, "graphql");
   const lwt = nix.arg($, "lwt");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "graphql-lwt",
       version: nix.thunk(() => nix.attr(graphql, "version")),
       src: nix.thunk(() => nix.attr(graphql, "src")),
       propagatedBuildInputs: nix.thunk(() => [graphql, lwt]),
       checkInputs: nix.thunk(() => [alcotest]),
       doCheck: true,
-      meta: nix.thunk(() => nix.update(nix.sel(graphql, "meta"), { [nix.POS]: pos$1, description: "Build GraphQL schemas with Lwt support" })),
+      meta: nix.thunk(() => nix.update(nix.sel(graphql, "meta"), { [nix.POS]: $pos[0], description: "Build GraphQL schemas with Lwt support" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=lwt.ts.map

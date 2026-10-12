@@ -2,9 +2,8 @@
 import * as nix from "../../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["homepage", 12, 25], ["license", 12, 34], ["description", 13, 5]], [["pname", 6, 3], ["src", 7, 18], ["version", 7, 22], ["files", 9, 3], ["meta", 11, 3]]]);
 const formals$1 = { args: { melpaBuild: false, haskellPackages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["homepage", 12, 25], ["license", 12, 34], ["description", 13, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 6, 3], ["src", 7, 18], ["version", 7, 22], ["files", 9, 3], ["meta", 11, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -12,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const haskellPackages = nix.arg($, "haskellPackages");
   const Agda = nix.thunk(() => nix.sel(haskellPackages, "Agda"));
   return nix.app(melpaBuild, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "agda2-mode",
       src: nix.thunk(() => nix.attr(Agda, "src")),
       version: nix.thunk(() => nix.attr(Agda, "version")),
@@ -20,7 +19,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(Agda, "meta"));
         return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         license: nix.thunk(() => nix.attr(from, "license")),
         description: "Agda2-mode for Emacs extracted from Agda package",

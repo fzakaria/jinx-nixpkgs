@@ -2,11 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/build-dhall-github-package.nix", [[["name", 37, 9], ["owner", 39, 17], ["repo", 39, 23], ["rev", 39, 28]], [["dependencies", 59, 15], ["source", 59, 28], ["name", 61, 7], ["code", 63, 7]], [["documentationRoot", 66, 7], ["baseImportUrl", 68, 7]]]);
 const formals$1 = { args: { buildDhallPackage: false, fetchFromGitHub: false, lib: false }, ellipsis: false };
 const formals$2 = { args: { name: false, dependencies: true, source: true, directory: true, file: true, document: true, owner: false, repo: false, rev: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/build-dhall-github-package.nix", [["name", 37, 9], ["owner", 39, 17], ["repo", 39, 23], ["rev", 39, 28]]);
-const pos$2 = nix.positions(here + "/build-dhall-github-package.nix", [["dependencies", 59, 15], ["source", 59, 28], ["name", 61, 7], ["code", 63, 7]]);
-const pos$3 = nix.positions(here + "/build-dhall-github-package.nix", [["documentationRoot", 66, 7], ["baseImportUrl", 68, 7]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const rev = nix.arg($_1, "rev");
       const versionedName = nix.thunk(() => nix.str`${name}-${rev}`);
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => nix.update({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           name: nix.thunk(() => nix.str`${versionedName}-source`),
           owner: owner,
           repo: repo,
@@ -45,13 +43,13 @@ export default nix.lambda((args) => (() => {
           ]))))));
       const prefix = nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(directory, "")), nix.thunk(() => nix.str`/${directory}`)));
       return nix.app(buildDhallPackage, nix.thunk(() => nix.update({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           dependencies: dependencies,
           source: source,
           name: versionedName,
           code: nix.thunk(() => nix.str`${src}${prefix}/${file}`),
         }, nix.app(nix.sel(lib, "optionalAttrs"), document, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             documentationRoot: nix.thunk(() => nix.str`${src}/${prefix}`),
             baseImportUrl: nix.thunk(() => nix.str`https://raw.githubusercontent.com/${owner}/${repo}/${rev}${prefix}`),
           }))))));

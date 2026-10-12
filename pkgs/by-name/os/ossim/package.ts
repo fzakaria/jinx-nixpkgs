@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]], [["url", 33, 7], ["hash", 34, 7]], [["description", 74, 5], ["homepage", 75, 5], ["license", 76, 5], ["teams", 77, 5], ["platforms", 78, 5]], [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["patches", 30, 3], ["postPatch", 38, 3], ["nativeBuildInputs", 44, 3], ["buildInputs", 49, 3], ["cmakeFlags", 61, 3], ["postInstall", 66, 3], ["meta", 73, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch: false, cmake: false, makeWrapper: false, curl: false, freetype: false, geos: false, jsoncpp: false, libgeotiff: false, libjpeg: false, libtiff: false, proj: false, sqlite: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 33, 7], ["hash", 34, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 74, 5], ["homepage", 75, 5], ["license", 76, 5], ["teams", 77, 5], ["platforms", 78, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["patches", 30, 3], ["postPatch", 38, 3], ["nativeBuildInputs", 44, 3], ["buildInputs", 49, 3], ["cmakeFlags", 61, 3], ["postInstall", 66, 3], ["meta", 73, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const proj = nix.arg($, "proj");
   const sqlite = nix.arg($, "sqlite");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "ossim",
       version: "2.12.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ossimlabs",
           repo: "ossim",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,7 +35,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/ossimlabs/ossim/commit/13b9fa9ae54f79a7e7728408de6246e00d38f399.patch",
             hash: "sha256-AKzOT+JurB/54gvzn2a5amw+uIupaNxssnEhc8CSfPM=",
           })))),
@@ -55,7 +52,7 @@ export default nix.lambda((args) => (() => {
       ]),
       postInstall: "for binary in $out/bin/ossim-*; do\n  wrapProgram $binary \\\n    --prefix LD_LIBRARY_PATH \":\" $out/lib\ndone\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Open Source Software Image Map library",
         homepage: "https://github.com/ossimlabs/ossim",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["mainProgram", 15, 8]], [["pname", 8, 3], ["extraNativeBuildInputs", 10, 3], ["extraBuildInputs", 11, 3], ["meta", 15, 3]]]);
 const formals$1 = { args: { mkKdeDerivation: false, "pkg-config": false, lcms2: false, libxrandr: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["mainProgram", 15, 8]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 8, 3], ["extraNativeBuildInputs", 10, 3], ["extraBuildInputs", 11, 3], ["meta", 15, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const lcms2 = nix.arg($, "lcms2");
   const libxrandr = nix.arg($, "libxrandr");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "colord-kde",
       extraNativeBuildInputs: nix.thunk(() => [pkg_config]),
       extraBuildInputs: nix.thunk(() => [lcms2, libxrandr]),
-      meta: nix.thunk(() => ({ [nix.POS]: pos$1, mainProgram: "colord-kde-icc-importer" })),
+      meta: nix.thunk(() => ({ [nix.POS]: $pos[0], mainProgram: "colord-kde-icc-importer" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]], [["NIX_CFLAGS_COMPILE", 30, 5]], [["homepage", 34, 5], ["description", 35, 5], ["longDescription", 36, 5], ["license", 47, 5], ["maintainers", 48, 5], ["platforms", 49, 5], ["badPlatforms", 50, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["nativeBuildInputs", 19, 3], ["postPatch", 23, 3], ["env", 28, 3], ["meta", 33, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 30, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 34, 5], ["description", 35, 5], ["longDescription", 36, 5], ["license", 47, 5], ["maintainers", 48, 5], ["platforms", 49, 5], ["badPlatforms", 50, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["nativeBuildInputs", 19, 3], ["postPatch", 23, 3], ["env", 28, 3], ["meta", 33, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const cmake = nix.arg($, "cmake");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "argagg",
       version: "0.4.7",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "vietjtnguyen",
           repo: "argagg",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -27,9 +24,9 @@ export default nix.lambda((args) => (() => {
         })))),
       nativeBuildInputs: nix.thunk(() => [cmake]),
       postPatch: "substituteInPlace CMakeLists.txt \\\n  --replace-fail \"cmake_minimum_required( VERSION 2.8 )\" \"cmake_minimum_required(VERSION 3.10)\"\n",
-      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-Wno-error=deprecated-declarations" })))),
+      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), nix.thunk(() => ({ [nix.POS]: $pos[1], NIX_CFLAGS_COMPILE: "-Wno-error=deprecated-declarations" })))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/vietjtnguyen/argagg",
         description: "Argument Aggregator",
         longDescription: "argagg is yet another C++ command line argument/option parser. It was\nwritten as a simple and idiomatic alternative to other frameworks like\ngetopt, Boost program options, TCLAP, and others. The goal is to achieve\nthe majority of argument parsing needs in a simple manner with an easy to\nuse API. It operates as a single pass over all arguments, recognizing\nflags prefixed by - (short) or -- (long) and aggregating them into easy to\naccess structures with lots of convenience functions. It defers processing\ntypes until you access them, so the result structures end up just being\npointers into the original command line argument C-strings.\n",

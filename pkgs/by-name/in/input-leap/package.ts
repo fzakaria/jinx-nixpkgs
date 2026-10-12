@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["withLibdnssdCompat", 23, 29]], [["owner", 31, 5], ["repo", 32, 5], ["rev", 33, 5], ["hash", 34, 5], ["fetchSubmodules", 35, 5]], [["description", 83, 5], ["longDescription", 84, 5], ["homepage", 92, 5], ["license", 93, 5], ["maintainers", 94, 5], ["platforms", 99, 5]], [["pname", 27, 3], ["version", 28, 3], ["src", 30, 3], ["patches", 38, 3], ["nativeBuildInputs", 40, 3], ["buildInputs", 48, 3], ["cmakeFlags", 69, 3], ["dontWrapGApps", 74, 3], ["preFixup", 75, 3], ["meta", 82, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, curl: false, libice: false, libsm: false, libx11: false, libxdmcp: false, libxext: false, libxinerama: false, libxrandr: false, libxtst: false, libei: false, libportal: false, openssl: false, pkgsStatic: false, "pkg-config": false, qt6: false, wrapGAppsHook3: false, avahi: false, "avahi'": true, withLibei: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["withLibdnssdCompat", 23, 29]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 31, 5], ["repo", 32, 5], ["rev", 33, 5], ["hash", 34, 5], ["fetchSubmodules", 35, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 83, 5], ["longDescription", 84, 5], ["homepage", 92, 5], ["license", 93, 5], ["maintainers", 94, 5], ["platforms", 99, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 27, 3], ["version", 28, 3], ["src", 30, 3], ["patches", 38, 3], ["nativeBuildInputs", 40, 3], ["buildInputs", 48, 3], ["cmakeFlags", 69, 3], ["dontWrapGApps", 74, 3], ["preFixup", 75, 3], ["meta", 82, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,14 +28,14 @@ export default nix.lambda((args) => (() => {
   const qt6 = nix.arg($, "qt6");
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   const avahi = nix.arg($, "avahi");
-  const avahi$ = nix.argOr($, "avahi'", () => nix.app(nix.sel(avahi, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, withLibdnssdCompat: true }))));
+  const avahi$ = nix.argOr($, "avahi'", () => nix.app(nix.sel(avahi, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], withLibdnssdCompat: true }))));
   const withLibei = nix.argOr($, "withLibei", () => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "input-leap",
       version: "3.0.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "input-leap",
           repo: "input-leap",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -76,7 +73,7 @@ export default nix.lambda((args) => (() => {
 )
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Open-source KVM software",
         longDescription: "Input Leap is software that mimics the functionality of a KVM switch, which historically\nwould allow you to use a single keyboard and mouse to control multiple computers by\nphysically turning a dial on the box to switch the machine you're controlling at any\ngiven moment. Input Leap does this in software, allowing you to tell it which machine\nto control by moving your mouse to the edge of the screen, or by using a keypress\nto switch focus to a different system.\n",
         homepage: "https://github.com/input-leap/input-leap",

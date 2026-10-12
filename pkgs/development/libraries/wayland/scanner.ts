@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/scanner.nix", [[["package", 47, 7], ["versionCheck", 48, 7]], [["pkg-config", 46, 11]], [["tests", 46, 5]], [["homepage", 53, 28], ["license", 53, 37], ["maintainers", 53, 45], ["mainProgram", 54, 5], ["description", 55, 5], ["platforms", 56, 5], ["pkgConfigModules", 57, 5]], [["pname", 15, 3], ["version", 16, 21], ["src", 16, 29], ["outputs", 18, 3], ["separateDebugInfo", 23, 3], ["mesonFlags", 25, 3], ["depsBuildBuild", 31, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 40, 3], ["passthru", 45, 3], ["meta", 52, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, testers: false, wayland: false, meson: false, "pkg-config": false, ninja: false, "wayland-scanner": false, expat: false, libxml2: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/scanner.nix", [["package", 47, 7], ["versionCheck", 48, 7]]);
-const pos$2 = nix.positions(here + "/scanner.nix", [["pkg-config", 46, 11]]);
-const pos$3 = nix.positions(here + "/scanner.nix", [["tests", 46, 5]]);
-const pos$4 = nix.positions(here + "/scanner.nix", [["homepage", 53, 28], ["license", 53, 37], ["maintainers", 53, 45], ["mainProgram", 54, 5], ["description", 55, 5], ["platforms", 56, 5], ["pkgConfigModules", 57, 5]]);
-const pos$5 = nix.positions(here + "/scanner.nix", [["pname", 15, 3], ["version", 16, 21], ["src", 16, 29], ["outputs", 18, 3], ["separateDebugInfo", 23, 3], ["mesonFlags", 25, 3], ["depsBuildBuild", 31, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 40, 3], ["passthru", 45, 3], ["meta", 52, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,7 +18,7 @@ export default nix.lambda((args) => (() => {
   const expat = nix.arg($, "expat");
   const libxml2 = nix.arg($, "libxml2");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "wayland-scanner",
       version: nix.thunk(() => nix.attr(wayland, "version")),
       src: nix.thunk(() => nix.attr(wayland, "src")),
@@ -37,11 +33,11 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => nix.concat([meson, pkg_config, ninja], nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(nix.sel(stdenv, "hostPlatform"), nix.sel(stdenv, "buildPlatform"))), wayland_scanner))),
       buildInputs: nix.thunk(() => [expat, libxml2]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "hasPkgConfigModules"), nix.thunk(() => ({
-              [nix.POS]: pos$1,
+              [nix.POS]: $pos[0],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               versionCheck: true,
             })))),
@@ -50,7 +46,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(wayland, "meta"));
         return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         license: nix.thunk(() => nix.attr(from, "license")),
         maintainers: nix.thunk(() => nix.attr(from, "maintainers")),

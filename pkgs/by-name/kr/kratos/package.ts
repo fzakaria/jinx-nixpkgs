@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]], [["mainProgram", 55, 5], ["description", 56, 5], ["homepage", 57, 5], ["license", 58, 5], ["maintainers", 59, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["vendorHash", 20, 3], ["subPackages", 22, 3], ["tags", 24, 3], ["ldflags", 27, 3], ["doCheck", 34, 3], ["preBuild", 36, 3], ["doInstallCheck", 50, 3], ["nativeInstallCheckInputs", 51, 3], ["versionCheckProgramArg", 52, 3], ["meta", 54, 3]]]);
 const formals$1 = { args: { fetchFromGitHub: false, buildGoModule: false, lib: false, stdenv: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["mainProgram", 55, 5], ["description", 56, 5], ["homepage", 57, 5], ["license", 58, 5], ["maintainers", 59, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["vendorHash", 20, 3], ["subPackages", 22, 3], ["tags", 24, 3], ["ldflags", 27, 3], ["doCheck", 34, 3], ["preBuild", 36, 3], ["doInstallCheck", 50, 3], ["nativeInstallCheckInputs", 51, 3], ["versionCheckProgramArg", 52, 3], ["meta", 54, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "kratos",
       version: "26.2.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ory",
           repo: "kratos",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -48,7 +46,7 @@ substituteInPlace Makefile --replace-fail '/usr/bin/env bash' '${nix.sel(stdenv,
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       versionCheckProgramArg: nix.thunk(() => ["version"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         mainProgram: "kratos",
         description: "API-first Identity and User Management system that is built according to cloud architecture best practices",
         homepage: "https://www.ory.sh/kratos/",

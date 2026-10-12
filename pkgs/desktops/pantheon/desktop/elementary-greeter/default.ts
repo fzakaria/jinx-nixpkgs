@@ -2,13 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 39, 5], ["repo", 40, 5], ["rev", 43, 5], ["hash", 44, 5]], [["default_wallpaper", 51, 7]], [["path", 119, 9], ["name", 120, 9]], [["updateScript", 115, 5], ["xgreeters", 117, 5]], [["description", 126, 5], ["homepage", 127, 5], ["license", 128, 5], ["platforms", 129, 5], ["teams", 130, 5], ["mainProgram", 131, 5]], [["pname", 35, 3], ["version", 36, 3], ["src", 38, 3], ["patches", 47, 3], ["depsBuildBuild", 55, 3], ["nativeBuildInputs", 57, 3], ["buildInputs", 67, 3], ["mesonFlags", 82, 3], ["preFixup", 90, 3], ["postFixup", 109, 3], ["passthru", 114, 3], ["meta", 125, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, "nix-update-script": false, linkFarm: false, replaceVars: false, "elementary-greeter": false, "pkg-config": false, meson: false, ninja: false, vala: false, "desktop-file-utils": false, gtk3: false, granite: false, libgee: false, libhandy: false, gala: false, "gnome-desktop": false, "gnome-settings-daemon": false, mutter: false, "elementary-icon-theme": false, "elementary-settings-daemon": false, "wingpanel-with-indicators": false, "elementary-gtk-theme": false, "nixos-artwork": false, lightdm: false, "gdk-pixbuf": false, dbus: false, "wayland-scanner": false, wrapGAppsHook3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 39, 5], ["repo", 40, 5], ["rev", 43, 5], ["hash", 44, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["default_wallpaper", 51, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["path", 119, 9], ["name", 120, 9]]);
-const pos$4 = nix.positions(here + "/default.nix", [["updateScript", 115, 5], ["xgreeters", 117, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["description", 126, 5], ["homepage", 127, 5], ["license", 128, 5], ["platforms", 129, 5], ["teams", 130, 5], ["mainProgram", 131, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 35, 3], ["version", 36, 3], ["src", 38, 3], ["patches", 47, 3], ["depsBuildBuild", 55, 3], ["nativeBuildInputs", 57, 3], ["buildInputs", 67, 3], ["mesonFlags", 82, 3], ["preFixup", 90, 3], ["postFixup", 109, 3], ["passthru", 114, 3], ["meta", 125, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -43,11 +38,11 @@ export default nix.lambda((args) => (() => {
   const wayland_scanner = nix.arg($, "wayland-scanner");
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "elementary-greeter",
       version: "8.1.2-unstable-2025-01-12",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "elementary",
           repo: "greeter",
           rev: "5510466126f7aa3412a21c055d59f8eb5fcc8d29",
@@ -56,7 +51,7 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [
         nix.path(here, "./sysconfdir-install.patch"),
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./hardcode-fallback-background.patch"), nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             default_wallpaper: nix.thunk(() => nix.str`${nix.sel(nixos_artwork, "wallpapers", "simple-dark-gray", "gnomeFilePath")}`),
           })))),
       ]),
@@ -108,18 +103,18 @@ export default nix.lambda((args) => (() => {
 `),
       postFixup: "substituteInPlace $out/share/xgreeters/io.elementary.greeter.desktop \\\n  --replace-fail \"Exec=io.elementary.greeter\" \"Exec=$out/bin/io.elementary.greeter\"\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         xgreeters: nix.thunk(() => nix.app(linkFarm, "pantheon-greeter-xgreeters", nix.thunk(() => [
             nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               path: nix.thunk(() => nix.str`${elementary_greeter}/share/xgreeters/io.elementary.greeter.desktop`),
               name: "io.elementary.greeter.desktop",
             })),
           ]))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "LightDM Greeter for Pantheon",
         homepage: "https://github.com/elementary/greeter",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

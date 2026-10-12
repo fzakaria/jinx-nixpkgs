@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["sha256", 19, 5]], [["name", 25, 7], ["url", 26, 7], ["hash", 27, 7]], [["homepage", 50, 5], ["description", 51, 5], ["mainProgram", 52, 5], ["license", 53, 5], ["longDescription", 55, 5], ["platforms", 63, 5], ["maintainers", 64, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["patches", 22, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 37, 3], ["postInstall", 44, 3], ["meta", 49, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch: false, cmake: false, "pkg-config": false, libsForQt5: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["sha256", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 25, 7], ["url", 26, 7], ["hash", 27, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 50, 5], ["description", 51, 5], ["mainProgram", 52, 5], ["license", 53, 5], ["longDescription", 55, 5], ["platforms", 63, 5], ["maintainers", 64, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["patches", 22, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 37, 3], ["postInstall", 44, 3], ["meta", 49, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const libsForQt5 = nix.arg($, "libsForQt5");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "qcomicbook",
       version: "0.9.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "stolowski",
           repo: "QComicBook",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -30,7 +27,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "cmake-4-compatibility.patch",
             url: "https://github.com/stolowski/QComicBook/commit/424a188f63171842ce8fad86fa85c4e03e405618.patch?full_index=1",
             hash: "sha256-q0X2i21JgtBfRfyMGpuUyB9GtIiWiFo6IWME6EBMSwk=",
@@ -45,7 +42,7 @@ export default nix.lambda((args) => (() => {
       ]),
       postInstall: "substituteInPlace $out/share/applications/*.desktop \\\n  --replace \"Exec=qcomicbook\" \"Exec=$out/bin/qcomicbook\"\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/stolowski/QComicBook",
         description: "Comic book reader in Qt5",
         mainProgram: "qcomicbook",

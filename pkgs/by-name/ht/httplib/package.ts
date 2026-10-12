@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]], [["prefix", 36, 9], ["includedir", 37, 9]], [["name", 32, 7], ["version", 33, 28], ["cflags", 34, 7], ["variables", 35, 7], ["description", 39, 33]], [["homepage", 44, 5], ["description", 45, 5], ["changelog", 46, 5], ["license", 47, 5], ["maintainers", 48, 5], ["platforms", 51, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 21, 3], ["buildInputs", 26, 3], ["strictDeps", 28, 3], ["pkgconfigItems", 30, 3], ["meta", 43, 3]]]);
 const formals$1 = { args: { lib: false, cmake: false, fetchFromGitHub: false, openssl: false, stdenv: false, copyPkgconfigItems: false, makePkgconfigItem: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["prefix", 36, 9], ["includedir", 37, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 32, 7], ["version", 33, 28], ["cflags", 34, 7], ["variables", 35, 7], ["description", 39, 33]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 44, 5], ["description", 45, 5], ["changelog", 46, 5], ["license", 47, 5], ["maintainers", 48, 5], ["platforms", 51, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 21, 3], ["buildInputs", 26, 3], ["strictDeps", 28, 3], ["pkgconfigItems", 30, 3], ["meta", 43, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const copyPkgconfigItems = nix.arg($, "copyPkgconfigItems");
   const makePkgconfigItem = nix.arg($, "makePkgconfigItem");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "httplib",
       version: "0.58.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "yhirose",
           repo: "cpp-httplib",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -40,15 +36,15 @@ export default nix.lambda((args) => (() => {
             const variables = nix.thunk(() => (() => {
               const prefix = nix.thunk(() => nix.builtins.placeholder("out"));
               const includedir = nix.thunk(() => nix.str`${prefix}/include`);
-              return { [nix.POS]: pos$2, prefix, includedir };
+              return { [nix.POS]: $pos[1], prefix, includedir };
             })());
             const from = nix.thunk(() => nix.sel(finalAttrs, "meta"));
             const description = nix.thunk(() => nix.attr(from, "description"));
-            return { [nix.POS]: pos$3, name, version, cflags, variables, description };
+            return { [nix.POS]: $pos[2], name, version, cflags, variables, description };
           })()))),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://github.com/yhirose/cpp-httplib",
         description: "C++ header-only HTTP/HTTPS server and client library",
         changelog: nix.thunk(() => nix.str`https://github.com/yhirose/cpp-httplib/releases/tag/${nix.sel(finalAttrs, "src", "rev")}`),

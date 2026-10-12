@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]], [["name", 31, 7], ["url", 32, 7], ["hash", 33, 7]], [["homepage", 66, 5], ["changelog", 67, 5], ["description", 68, 5], ["license", 69, 5], ["platforms", 70, 5], ["maintainers", 71, 5], ["mainProgram", 74, 5]], [["updateScript", 76, 12]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["patches", 28, 3], ["postPatch", 37, 3], ["nativeBuildInputs", 43, 3], ["buildInputs", 51, 3], ["cmakeFlags", 59, 3], ["qtWrapperArgs", 61, 3], ["meta", 65, 3], ["passthru", 76, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchpatch: false, fetchFromGitHub: false, "nix-update-script": false, "pkg-config": false, cmake: false, qt6: false, libuuid: false, "seafile-shared": false, jansson: false, libsearpc: false, withShibboleth: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 31, 7], ["url", 32, 7], ["hash", 33, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 66, 5], ["changelog", 67, 5], ["description", 68, 5], ["license", 69, 5], ["platforms", 70, 5], ["maintainers", 71, 5], ["mainProgram", 74, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 76, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["patches", 28, 3], ["postPatch", 37, 3], ["nativeBuildInputs", 43, 3], ["buildInputs", 51, 3], ["cmakeFlags", 59, 3], ["qtWrapperArgs", 61, 3], ["meta", 65, 3], ["passthru", 76, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const libsearpc = nix.arg($, "libsearpc");
   const withShibboleth = nix.argOr($, "withShibboleth", () => true);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "seafile-client",
       version: "9.0.20",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "haiwen",
           repo: "seafile-client",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -37,7 +33,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "fix_build_with_QT6.patch",
             url: "https://aur.archlinux.org/cgit/aur.git/plain/fix_build_with_QT6.diff?h=seafile-client&id=8bbd6e5017f03dbb368603b4313738b0d783ca2a",
             hash: "sha256-N1fepqjTm/M17+TgwNTUecP/wGVlBuZEtTezFgJEeVM=",
@@ -62,7 +58,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`--suffix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [seafile_shared]))}`),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/haiwen/seafile-client",
         changelog: nix.thunk(() => nix.str`https://github.com/haiwen/seafile-client/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         description: "Desktop client for Seafile, the Next-generation Open Source Cloud Storage",
@@ -75,7 +71,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "seafile-applet",
       })),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
     }));

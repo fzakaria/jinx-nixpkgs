@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["did", 15, 5], ["tag", 16, 5], ["hash", 17, 5]], [["description", 43, 5], ["homepage", 44, 5], ["license", 45, 5], ["maintainers", 46, 5], ["platforms", 47, 5], ["mainProgram", 48, 5]], [["__structuredAttrs", 10, 3], ["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["cargoHash", 20, 3], ["cargoBuildFlags", 22, 3], ["cargoTestFlags", 27, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 33, 3], ["postInstall", 38, 3], ["meta", 42, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromTangled: false, rustPlatform: false, "pkg-config": false, udev: false, acl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["did", 15, 5], ["tag", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 43, 5], ["homepage", 44, 5], ["license", 45, 5], ["maintainers", 46, 5], ["platforms", 47, 5], ["mainProgram", 48, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["__structuredAttrs", 10, 3], ["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["cargoHash", 20, 3], ["cargoBuildFlags", 22, 3], ["cargoTestFlags", 27, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 33, 3], ["postInstall", 38, 3], ["meta", 42, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const udev = nix.arg($, "udev");
   const acl = nix.arg($, "acl");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       __structuredAttrs: true,
       pname: "sessiond-uaccess",
       version: "0.1.1",
       src: nix.thunk(() => nix.app(fetchFromTangled, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           did: "did:plc:vj3bxta3i3cp26nn46yideoh",
           tag: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-X2ePs10hjZNOcHAJuN4J5KeBQaW24E2jMRq0biNdY3E=",
@@ -33,7 +31,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [acl, udev]),
       postInstall: "install -Dm644 -t $out/share/sessiond-uaccess/rules sessiond-uaccess/rules/*.lua\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Dynamic device access manager",
         homepage: "https://tangled.org/r0chd.pl/sessiond",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

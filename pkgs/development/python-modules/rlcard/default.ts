@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]], [["name", 31, 7], ["url", 32, 7], ["hash", 33, 7]], [["description", 88, 5], ["homepage", 89, 5], ["changelog", 90, 5], ["license", 91, 5], ["maintainers", 92, 5]], [["pname", 16, 3], ["version", 17, 3], ["pyproject", 18, 3], ["src", 20, 3], ["patches", 27, 3], ["postPatch", 40, 3], ["build-system", 47, 3], ["dependencies", 52, 3], ["pythonImportsCheck", 59, 3], ["nativeCheckInputs", 61, 3], ["disabledTests", 66, 3], ["meta", 87, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, wheel: false, numpy: false, pip: false, termcolor: false, pytestCheckHook: false, torch: false, fetchpatch2: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["name", 31, 7], ["url", 32, 7], ["hash", 33, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 88, 5], ["homepage", 89, 5], ["changelog", 90, 5], ["license", 91, 5], ["maintainers", 92, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 16, 3], ["version", 17, 3], ["pyproject", 18, 3], ["src", 20, 3], ["patches", 27, 3], ["postPatch", 40, 3], ["build-system", 47, 3], ["dependencies", 52, 3], ["pythonImportsCheck", 59, 3], ["nativeCheckInputs", 61, 3], ["disabledTests", 66, 3], ["meta", 87, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.0.7";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "datamllab",
           repo: "rlcard",
           tag: version,
@@ -34,7 +31,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "remove-distutils.patch",
             url: "https://github.com/datamllab/rlcard/commit/e44378157aaf229ffe2aaef9fafe500c2844045e.patch",
             hash: "sha256-aQS4d9ETj6pDv26G77mC+0xHQMA2hjspAxtAyz0rA6Y=",
@@ -62,7 +59,7 @@ export default nix.lambda((args) => (() => {
         "test_reorganize",
       ]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Reinforcement Learning / AI Bots in Card (Poker) Games - Blackjack, Leduc, Texas, DouDizhu, Mahjong, UNO",
         homepage: "https://github.com/datamllab/rlcard",
         changelog: nix.thunk(() => nix.str`https://github.com/datamllab/rlcard/releases/tag/${version}`),
@@ -73,7 +70,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

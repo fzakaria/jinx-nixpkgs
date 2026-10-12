@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 27, 13], ["version", 27, 19], ["hash", 28, 5]], [["i2p", 44, 5], ["tor", 45, 5]], [["description", 57, 5], ["longDescription", 58, 5], ["homepage", 63, 5], ["license", 64, 5], ["maintainers", 65, 5]], [["pname", 17, 3], ["version", 18, 3], ["pyproject", 20, 3], ["build-system", 21, 3], ["src", 26, 3], ["postPatch", 31, 3], ["dependencies", 36, 3], ["optional-dependencies", 43, 3], ["nativeCheckInputs", 48, 3], ["pythonImportsCheck", 54, 3], ["meta", 56, 3]]]);
 const formals$1 = { args: { buildPythonPackage: false, fetchPypi: false, lib: false, mock: false, pyopenssl: false, pytestCheckHook: false, setuptools: false, six: false, twisted: false, "txi2p-tahoe": false, txtorcon: false, versioneer: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 27, 13], ["version", 27, 19], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["i2p", 44, 5], ["tor", 45, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 57, 5], ["longDescription", 58, 5], ["homepage", 63, 5], ["license", 64, 5], ["maintainers", 65, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 17, 3], ["version", 18, 3], ["pyproject", 20, 3], ["build-system", 21, 3], ["src", 26, 3], ["postPatch", 31, 3], ["dependencies", 36, 3], ["optional-dependencies", 43, 3], ["nativeCheckInputs", 48, 3], ["pythonImportsCheck", 54, 3], ["meta", 56, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const pyproject = true;
       const build_system = nix.thunk(() => [setuptools, versioneer]);
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-vWsAdUDbWQuG3e0oAtLq8rA4Ys2wg38fD/h+E1ViQQg=",
@@ -36,14 +33,14 @@ export default nix.lambda((args) => (() => {
       const postPatch = "# Remove vendorized versioneer.py\nrm versioneer.py\n";
       const dependencies = nix.thunk(() => nix.concat([six, twisted, pyopenssl], nix.sel(twisted, "optional-dependencies", "tls")));
       const optional_dependencies = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         i2p: nix.thunk(() => [txi2p_tahoe]),
         tor: nix.thunk(() => [txtorcon]),
       }));
       const nativeCheckInputs = nix.thunk(() => nix.concat([mock, pytestCheckHook], nix.app(nix.sel(lib, "concatAttrValues"), optional_dependencies)));
       const pythonImportsCheck = nix.thunk(() => ["foolscap"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "RPC protocol for Python that follows the distributed object-capability model",
         longDescription: "\"Foolscap\" is the name for the next-generation RPC protocol, intended to\nreplace Perspective Broker (part of Twisted). Foolscap is a protocol to\nimplement a distributed object-capabilities model in Python.\n",
         homepage: "https://github.com/warner/foolscap",
@@ -51,7 +48,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

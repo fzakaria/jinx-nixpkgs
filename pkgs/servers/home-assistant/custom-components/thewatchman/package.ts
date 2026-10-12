@@ -2,10 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]], [["description", 47, 5], ["homepage", 48, 5], ["maintainers", 49, 5], ["license", 50, 5]], [["owner", 12, 3], ["domain", 13, 3], ["version", 14, 3], ["src", 16, 3], ["ignoreVersionRequirement", 23, 3], ["dontBuild", 27, 3], ["dependencies", 29, 3], ["nativeCheckInputs", 33, 3], ["disabledTests", 39, 3], ["meta", 46, 3]]]);
 const formals$1 = { args: { lib: false, buildHomeAssistantComponent: false, fetchFromGitHub: false, prettytable: false, "pytest-cov-stub": false, "pytest-homeassistant-custom-component": false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 47, 5], ["homepage", 48, 5], ["maintainers", 49, 5], ["license", 50, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["owner", 12, 3], ["domain", 13, 3], ["version", 14, 3], ["src", 16, 3], ["ignoreVersionRequirement", 23, 3], ["dontBuild", 27, 3], ["dependencies", 29, 3], ["nativeCheckInputs", 33, 3], ["disabledTests", 39, 3], ["meta", 46, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const domain = "watchman";
       const version = "0.8.6";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "dummylabs",
           repo: "thewatchman",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -33,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytest_cov_stub, pytest_homeassistant_custom_component, pytestCheckHook]);
       const disabledTests = nix.thunk(() => ["test_automations_parsing", "test_debounce_rescan"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Keep track of missing entities and services in your config files",
         homepage: "https://github.com/dummylabs/thewatchman",
         maintainers: nix.thunk(() => (() => {
@@ -43,7 +41,7 @@ export default nix.lambda((args) => (() => {
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         owner,
         domain,
         version,

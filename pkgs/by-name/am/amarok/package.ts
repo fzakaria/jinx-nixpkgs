@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 31, 5], ["hash", 32, 5]], [["LANG", 89, 7]], [["homepage", 98, 5], ["description", 99, 5], ["license", 100, 5], ["maintainers", 101, 5], ["mainProgram", 102, 5]], [["pname", 27, 3], ["version", 28, 3], ["src", 30, 3], ["outputs", 35, 3], ["buildInputs", 40, 3], ["nativeBuildInputs", 78, 3], ["env", 89, 3], ["postInstall", 91, 3], ["meta", 97, 3]]]);
 const formals$1 = { args: { stdenv: false, fetchurl: false, lib: false, cmake: false, "pkg-config": false, kdePackages: false, fftw: false, curl: false, ffmpeg: false, "gdk-pixbuf": false, gst_all_1: false, libaio: false, libmtp: false, "libsysprof-capture": false, libunwind: false, loudmouth: false, lzo: false, lz4: false, "mariadb-embedded": false, snappy: false, taglib: false, taglib_extras: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 31, 5], ["hash", 32, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["LANG", 89, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 98, 5], ["description", 99, 5], ["license", 100, 5], ["maintainers", 101, 5], ["mainProgram", 102, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 27, 3], ["version", 28, 3], ["src", 30, 3], ["outputs", 35, 3], ["buildInputs", 40, 3], ["nativeBuildInputs", 78, 3], ["env", 89, 3], ["postInstall", 91, 3], ["meta", 97, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,11 +30,11 @@ export default nix.lambda((args) => (() => {
   const taglib = nix.arg($, "taglib");
   const taglib_extras = nix.arg($, "taglib_extras");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "amarok",
       version: "3.3.3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://kde/stable/amarok/${nix.sel(finalAttrs, "version")}/amarok-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-aOnoPX2MDL3UcJWOdogV9XPWHzzjK+e8G4f7VtYiQ24=",
         })))),
@@ -92,10 +89,10 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.lookup(w_2, "wrapQtAppsHook")),
         ];
       })())),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, LANG: "C.UTF-8" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], LANG: "C.UTF-8" })),
       postInstall: "qtWrapperArgs+=(\n  --prefix GST_PLUGIN_SYSTEM_PATH_1_0 : \"$GST_PLUGIN_SYSTEM_PATH_1_0\"\n)\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://amarok.kde.org",
         description: "Powerful music player with an intuitive interface",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

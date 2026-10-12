@@ -2,16 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["test", 20, 7], ["kernelFilter", 21, 7]], [["test", 25, 7], ["kernelFilter", 26, 7]], [["test", 31, 7], ["kernelFilter", 32, 7], ["flavour", 33, 7]], [["test", 36, 7], ["kernelFilter", 37, 7], ["flavour", 38, 7]], [["test", 41, 7], ["kernelFilter", 42, 7], ["flavour", 43, 7]], [["thinpool", 19, 5], ["vdo", 24, 5], ["raid-sd-stage-1", 30, 5], ["thinpool-sd-stage-1", 35, 5], ["vdo-sd-stage-1", 40, 5]], [["kernelPackages", 63, 15], ["mkXfsFlags", 64, 23]], [["args", 62, 21]], [["imports", 61, 13], ["_module", 62, 13]]]);
 const formals$1 = { args: { pkgs: false, runTest: false, kernelVersionsToTest: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["test", 20, 7], ["kernelFilter", 21, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["test", 25, 7], ["kernelFilter", 26, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["test", 31, 7], ["kernelFilter", 32, 7], ["flavour", 33, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["test", 36, 7], ["kernelFilter", 37, 7], ["flavour", 38, 7]]);
-const pos$5 = nix.positions(here + "/default.nix", [["test", 41, 7], ["kernelFilter", 42, 7], ["flavour", 43, 7]]);
-const pos$6 = nix.positions(here + "/default.nix", [["thinpool", 19, 5], ["vdo", 24, 5], ["raid-sd-stage-1", 30, 5], ["thinpool-sd-stage-1", 35, 5], ["vdo-sd-stage-1", 40, 5]]);
-const pos$7 = nix.positions(here + "/default.nix", [["kernelPackages", 63, 15], ["mkXfsFlags", 64, 23]]);
-const pos$8 = nix.positions(here + "/default.nix", [["args", 62, 21]]);
-const pos$9 = nix.positions(here + "/default.nix", [["imports", 61, 13], ["_module", 62, 13]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,31 +12,31 @@ export default nix.lambda((args) => (() => {
   const kernelVersionsToTest = nix.argOr($, "kernelVersionsToTest", () => ["5.10", "5.15", "6.1", "6.6", "6.12", "latest"]);
   const lib = nix.thunk(() => nix.attr(pkgs, "lib"));
   const tests = nix.thunk(() => ({
-    [nix.POS]: pos$6,
+    [nix.POS]: $pos[5],
     thinpool: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       test: nix.path(here, "./thinpool.nix"),
       kernelFilter: nix.thunk(() => nix.sel(lib, "id")),
     })),
     vdo: nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       test: nix.path(here, "./vdo.nix"),
       kernelFilter: nix.thunk(() => nix.app(nix.sel(lib, "filter"), (v) => nix.eq(v, "latest"))),
     })),
     "raid-sd-stage-1": nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       test: nix.path(here, "./systemd-stage-1.nix"),
       kernelFilter: nix.thunk(() => nix.app(nix.sel(lib, "filter"), (v) => !nix.eq(v, "5.15"))),
       flavour: "raid",
     })),
     "thinpool-sd-stage-1": nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       test: nix.path(here, "./systemd-stage-1.nix"),
       kernelFilter: nix.thunk(() => nix.sel(lib, "id")),
       flavour: "thinpool",
     })),
     "vdo-sd-stage-1": nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       test: nix.path(here, "./systemd-stage-1.nix"),
       kernelFilter: nix.thunk(() => nix.app(nix.sel(lib, "filter"), (v) => nix.eq(v, "latest"))),
       flavour: "vdo",
@@ -54,12 +46,12 @@ export default nix.lambda((args) => (() => {
           const v$ = nix.thunk(() => nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => ["_"]), version));
           const mkXfsFlags = nix.thunk(() => nix.add(nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(lib, "versionOlder"), version, "5.10")), " -m bigtime=0 -m inobtcount=0 "), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(lib, "versionOlder"), version, "5.19")), " -i nrext64=0 ")));
           return nix.app(nix.sel(lib, "flip"), nix.thunk(() => nix.sel(lib, "mapAttrsToList")), tests, (name) => (t) => nix.app(nix.sel(lib, "nameValuePair"), nix.thunk(() => nix.str`lvm-${name}-linux-${v$}`), nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.builtins.elem(version, nix.thunk(() => nix.app(nix.sel(t, "kernelFilter"), kernelVersionsToTest)))), nix.thunk(() => nix.app(runTest, nix.thunk(() => ({
-                    [nix.POS]: pos$9,
+                    [nix.POS]: $pos[8],
                     imports: nix.thunk(() => [nix.thunk(() => nix.sel(t, "test"))]),
                     _module: nix.thunk(() => ({
-                      [nix.POS]: pos$8,
+                      [nix.POS]: $pos[7],
                       args: nix.thunk(() => nix.update({
-                        [nix.POS]: pos$7,
+                        [nix.POS]: $pos[6],
                         kernelPackages: nix.thunk(() => nix.sel(pkgs, nix.key(nix.str`linuxPackages_${v$}`))),
                         mkXfsFlags: mkXfsFlags,
                       }, nix.builtins.removeAttrs(t, nix.thunk(() => ["test", "kernelFilter"])))),

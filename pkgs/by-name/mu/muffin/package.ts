@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 55, 5], ["repo", 56, 5], ["rev", 57, 5], ["hash", 58, 5]], [["zenity", 63, 15]], [["homepage", 123, 5], ["description", 124, 5], ["mainProgram", 125, 5], ["license", 126, 5], ["platforms", 127, 5], ["teams", 128, 5]], [["pname", 45, 3], ["version", 46, 3], ["outputs", 48, 3], ["src", 54, 3], ["patches", 61, 3], ["nativeBuildInputs", 67, 3], ["buildInputs", 79, 3], ["propagatedBuildInputs", 104, 3], ["mesonFlags", 112, 3], ["postPatch", 118, 3], ["meta", 122, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, replaceVars: false, cairo: false, "cinnamon-desktop": false, dbus: false, "desktop-file-utils": false, "egl-wayland": false, glib: false, "gobject-introspection": false, graphene: false, gtk3: false, "json-glib": false, libcanberra: false, libdrm: false, libgbm: false, libgnomekbd: false, libgudev: false, libinput: false, libstartup_notification: false, libwacom: false, libxcvt: false, libxdamage: false, libxkbcommon: false, libxtst: false, "mesa-gl-headers": false, meson: false, ninja: false, pipewire: false, "pkg-config": false, python3: false, udev: false, wayland: false, "wayland-protocols": false, "wayland-scanner": false, wrapGAppsHook3: false, "xorg-server": false, xwayland: false, zenity: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 55, 5], ["repo", 56, 5], ["rev", 57, 5], ["hash", 58, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["zenity", 63, 15]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 123, 5], ["description", 124, 5], ["mainProgram", 125, 5], ["license", 126, 5], ["platforms", 127, 5], ["teams", 128, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 45, 3], ["version", 46, 3], ["outputs", 48, 3], ["src", 54, 3], ["patches", 61, 3], ["nativeBuildInputs", 67, 3], ["buildInputs", 79, 3], ["propagatedBuildInputs", 104, 3], ["mesonFlags", 112, 3], ["postPatch", 118, 3], ["meta", 122, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -51,19 +48,19 @@ export default nix.lambda((args) => (() => {
   const xwayland = nix.arg($, "xwayland");
   const zenity = nix.arg($, "zenity");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "muffin",
       version: "6.6.3",
       outputs: nix.thunk(() => ["out", "dev", "man"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "linuxmint",
           repo: "muffin",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-PNL6PAZinds+kqCUCesJkTS+93juhm35sPE7RFUdxeU=",
         })))),
       patches: nix.thunk(() => [
-        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix-paths.patch"), nix.thunk(() => ({ [nix.POS]: pos$2, zenity: zenity })))),
+        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix-paths.patch"), nix.thunk(() => ({ [nix.POS]: $pos[1], zenity: zenity })))),
       ]),
       nativeBuildInputs: nix.thunk(() => [
         desktop_file_utils,
@@ -107,7 +104,7 @@ export default nix.lambda((args) => (() => {
       ]),
       postPatch: "patchShebangs src/backends/native/gen-default-modes.py\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/linuxmint/muffin",
         description: "Window management library for the Cinnamon desktop (libmuffin) and its sample WM binary (muffin)",
         mainProgram: "muffin",

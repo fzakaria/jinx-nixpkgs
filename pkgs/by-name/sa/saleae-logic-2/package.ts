@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 11, 5], ["hash", 12, 5]], [["name", 15, 5], ["exec", 16, 5], ["icon", 17, 5], ["comment", 18, 5], ["desktopName", 19, 5], ["genericName", 20, 5], ["categories", 21, 5]], [["pname", 29, 58], ["version", 29, 64], ["src", 29, 72]], [["homepage", 75, 5], ["changelog", 76, 5], ["description", 77, 5], ["license", 78, 5], ["platforms", 79, 5], ["maintainers", 80, 5]], [["pname", 25, 11], ["version", 25, 17], ["src", 25, 25], ["extraInstallCommands", 27, 3], ["extraPkgs", 42, 3], ["meta", 74, 3]]]);
 const formals$1 = { args: { lib: false, fetchurl: false, makeDesktopItem: false, appimageTools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 11, 5], ["hash", 12, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 15, 5], ["exec", 16, 5], ["icon", 17, 5], ["comment", 18, 5], ["desktopName", 19, 5], ["genericName", 20, 5], ["categories", 21, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 29, 58], ["version", 29, 64], ["src", 29, 72]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 75, 5], ["changelog", 76, 5], ["description", 77, 5], ["license", 78, 5], ["platforms", 79, 5], ["maintainers", 80, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 25, 11], ["version", 25, 17], ["src", 25, 25], ["extraInstallCommands", 27, 3], ["extraPkgs", 42, 3], ["meta", 74, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const pname = "saleae-logic-2";
   const version = "2.4.44";
   const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: nix.thunk(() => nix.str`https://downloads2.saleae.com/logic2/Logic-${version}-linux-x64.AppImage`),
       hash: "sha256-lJp0al4tRqXwb6I8iziCav481XNAuEjASo1ZfUWdYLU=",
     }))));
   const desktopItem = nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       name: "saleae-logic-2",
       exec: "saleae-logic-2",
       icon: "Logic",
@@ -33,12 +29,12 @@ export default nix.lambda((args) => (() => {
       categories: nix.thunk(() => ["Development"]),
     }))));
   return nix.app(nix.sel(appimageTools, "wrapType2"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: pname,
       version: version,
       src: src,
       extraInstallCommands: nix.thunk(() => (() => {
-        const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: pos$3, pname: pname, version: version, src: src }))));
+        const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: $pos[2], pname: pname, version: version, src: src }))));
         return nix.str`mkdir -p $out/etc/udev/rules.d
 cp ${appimageContents}/resources/linux-x64/99-SaleaeLogic.rules $out/etc/udev/rules.d/
 mkdir $out/share
@@ -83,7 +79,7 @@ done
         ];
       })(),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://www.saleae.com/",
         changelog: "https://ideas.saleae.com/f/changelog/",
         description: "Software for Saleae logic analyzers",

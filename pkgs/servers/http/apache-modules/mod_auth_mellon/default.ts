@@ -2,10 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 26, 5], ["repo", 27, 5], ["rev", 28, 5], ["sha256", 29, 5]], [["homepage", 63, 5], ["description", 64, 5], ["mainProgram", 65, 5], ["license", 66, 5], ["platforms", 67, 5], ["maintainers", 68, 5]], [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 38, 3], ["configureFlags", 50, 3], ["installPhase", 55, 3], ["meta", 62, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, apacheHttpd: false, autoconf: false, automake: false, autoreconfHook: false, curl: false, fetchFromGitHub: false, glib: false, lasso: false, libtool: false, libxml2: false, libxslt: false, openssl: false, "pkg-config": false, xmlsec: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 26, 5], ["repo", 27, 5], ["rev", 28, 5], ["sha256", 29, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 63, 5], ["description", 64, 5], ["mainProgram", 65, 5], ["license", 66, 5], ["platforms", 67, 5], ["maintainers", 68, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 38, 3], ["configureFlags", 50, 3], ["installPhase", 55, 3], ["meta", 62, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const pname = "mod_auth_mellon";
       const version = "0.19.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "latchset",
           repo: "mod_auth_mellon",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -43,7 +41,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const installPhase = "mkdir -p $out/bin\ncp ./mellon_create_metadata.sh $out/bin\nmkdir -p $out/modules\ncp ./.libs/mod_auth_mellon.so $out/modules\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/latchset/mod_auth_mellon",
         description: "Apache module with a simple SAML 2.0 service provider",
         mainProgram: "mellon_create_metadata.sh",
@@ -55,7 +53,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

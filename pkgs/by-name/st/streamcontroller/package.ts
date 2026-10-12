@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["repo", 30, 5], ["owner", 31, 5], ["rev", 32, 13], ["hash", 33, 5]], [["name", 79, 7], ["desktopName", 80, 7], ["exec", 81, 7], ["icon", 82, 7], ["comment", 83, 7], ["categories", 84, 7]], [["description", 202, 5], ["homepage", 203, 5], ["license", 204, 5], ["mainProgram", 205, 5], ["maintainers", 206, 5], ["platforms", 207, 5]], [["pname", 25, 3], ["version", 27, 3], ["src", 29, 3], ["dontBuild", 41, 3], ["installPhase", 42, 3], ["desktopItems", 77, 3], ["nativeBuildInputs", 88, 3], ["buildInputs", 95, 3], ["doInstallCheck", 199, 3], ["meta", 201, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, isKde: true, python3Packages: false, fetchFromGitHub: false, copyDesktopItems: false, makeDesktopItem: false, wrapGAppsHook4: false, "gobject-introspection": false, libadwaita: false, libportal: false, "libportal-gtk4": false, "xdg-desktop-portal": false, "xdg-desktop-portal-gtk": false, kdotool: false, udevCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["repo", 30, 5], ["owner", 31, 5], ["rev", 32, 13], ["hash", 33, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 79, 7], ["desktopName", 80, 7], ["exec", 81, 7], ["icon", 82, 7], ["comment", 83, 7], ["categories", 84, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 202, 5], ["homepage", 203, 5], ["license", 204, 5], ["mainProgram", 205, 5], ["maintainers", 206, 5], ["platforms", 207, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 25, 3], ["version", 27, 3], ["src", 29, 3], ["dontBuild", 41, 3], ["installPhase", 42, 3], ["desktopItems", 77, 3], ["nativeBuildInputs", 88, 3], ["buildInputs", 95, 3], ["doInstallCheck", 199, 3], ["meta", 201, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const udevCheckHook = nix.arg($, "udevCheckHook");
   const rev = "12052dec15d0e0948032c7ec11eff2da0d109106";
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "streamcontroller",
       version: "1.5.0-beta.14",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           repo: "StreamController",
           owner: "StreamController",
           rev: rev,
@@ -68,7 +65,7 @@ runHook postInstall
       })()),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "StreamController",
             desktopName: "StreamController",
             exec: "streamcontroller",
@@ -185,7 +182,7 @@ runHook postInstall
       })())),
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Elegant Linux app for the Elgato Stream Deck with support for plugins",
         homepage: "https://streamcontroller.core447.com/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

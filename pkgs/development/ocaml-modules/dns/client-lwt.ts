@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/client-lwt.nix", [[["pname", 17, 3], ["src", 18, 17], ["version", 18, 21], ["propagatedBuildInputs", 20, 3], ["checkInputs", 32, 3], ["doCheck", 33, 3], ["meta", 35, 3]]]);
 const formals$1 = { args: { buildDunePackage: false, dns: false, "dns-client": false, lwt: false, "mirage-crypto-rng": false, mtime: false, ipaddr: false, alcotest: false, "ca-certs": false, "happy-eyeballs": false, "happy-eyeballs-lwt": false, "tls-lwt": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/client-lwt.nix", [["pname", 17, 3], ["src", 18, 17], ["version", 18, 21], ["propagatedBuildInputs", 20, 3], ["checkInputs", 32, 3], ["doCheck", 33, 3], ["meta", 35, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
   const happy_eyeballs_lwt = nix.arg($, "happy-eyeballs-lwt");
   const tls_lwt = nix.arg($, "tls-lwt");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       pname: "dns-client-lwt",
       src: nix.thunk(() => nix.attr(dns, "src")),
       version: nix.thunk(() => nix.attr(dns, "version")),

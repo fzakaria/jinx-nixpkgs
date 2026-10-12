@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["tag", 15, 5], ["hash", 16, 5]], [["pkg-config", 72, 18]], [["tests", 72, 12]], [["maintainers", 75, 5], ["description", 76, 5], ["homepage", 77, 5], ["license", 78, 5], ["pkgConfigModules", 79, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 12, 3], ["__structuredAttrs", 19, 3], ["sourceRoot", 21, 3], ["postPatch", 23, 3], ["nativeBuildInputs", 37, 3], ["propagatedBuildInputs", 43, 3], ["qmakeFlags", 51, 3], ["pkgConfigFile", 53, 3], ["postInstall", 55, 3], ["passthru", 72, 3], ["meta", 74, 3]]]);
 const formals$1 = { args: { fetchFromGitHub: false, stdenv: false, testers: false, validatePkgConfig: false, lib: false, qt6: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["tag", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pkg-config", 72, 18]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 72, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["maintainers", 75, 5], ["description", 76, 5], ["homepage", 77, 5], ["license", 78, 5], ["pkgConfigModules", 79, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 12, 3], ["__structuredAttrs", 19, 3], ["sourceRoot", 21, 3], ["postPatch", 23, 3], ["nativeBuildInputs", 37, 3], ["propagatedBuildInputs", 43, 3], ["qmakeFlags", 51, 3], ["pkgConfigFile", 53, 3], ["postInstall", 55, 3], ["passthru", 72, 3], ["meta", 74, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const qt6 = nix.arg($, "qt6");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "qtwebapp",
       version: "1.9.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "fffaraz",
           repo: "QtWebApp",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -44,14 +40,14 @@ export default nix.lambda((args) => (() => {
       pkgConfigFile: nix.path(here, "./pkg-config.in"),
       postInstall: "mkdir -p \"$out/lib/pkgconfig\"\ncp \"$pkgConfigFile\" \"$out/lib/pkgconfig/QtWebApp.pc\"\nsubstituteInPlace \"$out/lib/pkgconfig/QtWebApp.pc\" \\\n  --subst-var out \\\n  --subst-var version\n\nmkdir -p \"$out/include/QtWebApp/httpserver\"\ncp httpserver/*.h \"$out/include/QtWebApp/httpserver\"\n\nmkdir -p \"$out/include/QtWebApp/logging\"\ncp logging/*.h \"$out/include/QtWebApp/logging\"\n\nmkdir -p \"$out/include/QtWebApp/templateengine\"\ncp templateengine/*.h \"$out/include/QtWebApp/templateengine\"\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "testMetaPkgConfig"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
           return [nix.thunk(() => nix.lookup(w, "xddxdd"))];

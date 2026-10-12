@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["hash", 26, 5]], [["tagPrefix", 73, 5]], [["updateScript", 72, 12]], [["homepage", 77, 5], ["description", 78, 5], ["longDescription", 79, 5], ["license", 84, 5], ["mainProgram", 85, 5], ["maintainers", 86, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 36, 3], ["configureFlags", 44, 3], ["prePatch", 46, 3], ["postPatch", 52, 3], ["postInstall", 63, 3], ["doCheck", 68, 3], ["passthru", 72, 3], ["meta", 76, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, autoreconfHook: false, "pkg-config": false, gettext: false, xxd: false, glib: false, libxml2: false, ncurses: false, popt: false, libxslt: false, screen: false, unstableGitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["tagPrefix", 73, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 72, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 77, 5], ["description", 78, 5], ["longDescription", 79, 5], ["license", 84, 5], ["mainProgram", 85, 5], ["maintainers", 86, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 36, 3], ["configureFlags", 44, 3], ["prePatch", 46, 3], ["postPatch", 52, 3], ["postInstall", 63, 3], ["doCheck", 68, 3], ["passthru", 72, 3], ["meta", 76, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const screen = nix.arg($, "screen");
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "apt-dater",
       version: "1.0.4-unstable-2026-02-15",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "DE-IBH",
           repo: "apt-dater",
           rev: "eb3df6923262051082df2e9377516553da9ba508",
@@ -52,11 +48,11 @@ substituteInPlace build/screen_sockpath \\
       postInstall: "substituteInPlace $out/bin/adsh \\\n  --replace-fail \"apt-dater\" \"$out/bin/apt-dater\"\n",
       doCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, tagPrefix: "v" })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[1], tagPrefix: "v" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://github.com/DE-IBH/apt-dater",
         description: "Terminal-based remote package update manager",
         longDescription: "Provides an ncurses frontend for managing package updates on a large\nnumber of remote hosts using SSH. It supports Debian-based managed hosts\nas well as rug (e.g. openSUSE) and yum (e.g. CentOS) based systems.\n",

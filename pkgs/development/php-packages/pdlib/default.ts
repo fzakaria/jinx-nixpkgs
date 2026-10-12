@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["sha256", 19, 5]], [["guiSupport", 23, 36]], [["description", 26, 5], ["license", 27, 5], ["homepage", 28, 5], ["teams", 29, 5]], [["pname", 13, 11], ["version", 13, 17], ["src", 15, 3], ["nativeBuildInputs", 22, 3], ["buildInputs", 23, 3], ["meta", 25, 3]]]);
 const formals$1 = { args: { buildPecl: false, fetchFromGitHub: false, lib: false, "pkg-config": false, dlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["sha256", 19, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["guiSupport", 23, 36]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 26, 5], ["license", 27, 5], ["homepage", 28, 5], ["teams", 29, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 13, 11], ["version", 13, 17], ["src", 15, 3], ["nativeBuildInputs", 22, 3], ["buildInputs", 23, 3], ["meta", 25, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const pname = "pdlib";
   const version = "1.1.0";
   return nix.app(buildPecl, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: pname,
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "goodspb",
           repo: "pdlib",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -30,10 +27,10 @@ export default nix.lambda((args) => (() => {
         })))),
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [
-        nix.thunk(() => nix.app(nix.sel(dlib, "override"), nix.thunk(() => ({ [nix.POS]: pos$2, guiSupport: true })))),
+        nix.thunk(() => nix.app(nix.sel(dlib, "override"), nix.thunk(() => ({ [nix.POS]: $pos[1], guiSupport: true })))),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "PHP extension for Dlib",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         homepage: "https://github.com/goodspb/pdlib",

@@ -2,9 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/ok.nix", [[["https://example.com", 15, 5]], [["site", 12, 3], ["relocatable", 13, 3], ["remap", 14, 3]]]);
 const formals$1 = { args: { runCommand: false, testers: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/ok.nix", [["https://example.com", 15, 5]]);
-const pos$2 = nix.positions(here + "/ok.nix", [["site", 12, 3], ["relocatable", 13, 3], ["remap", 14, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,8 +13,8 @@ export default nix.lambda((args) => (() => {
   return nix.app(nix.sel(testers, "lycheeLinkCheck"), nix.thunk(() => (() => {
       const site = nix.thunk(() => nix.add(sitePkg, "/dist"));
       const relocatable = false;
-      const remap = nix.thunk(() => ({ [nix.POS]: pos$1, "https://example.com": site }));
-      return { [nix.POS]: pos$2, site, relocatable, remap };
+      const remap = nix.thunk(() => ({ [nix.POS]: $pos[0], "https://example.com": site }));
+      return { [nix.POS]: $pos[1], site, relocatable, remap };
     })()));
 })(), formals$1);
 //# sourceMappingURL=ok.ts.map

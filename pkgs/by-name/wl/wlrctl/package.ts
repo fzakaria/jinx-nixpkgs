@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]], [["NIX_CFLAGS_COMPILE", 43, 7]], [["description", 46, 5], ["homepage", 47, 5], ["license", 48, 5], ["maintainers", 49, 5], ["platforms", 53, 5], ["mainProgram", 54, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["strictDeps", 25, 3], ["__structuredAttrs", 26, 3], ["depsBuildBuild", 28, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 38, 3], ["env", 43, 3], ["meta", 45, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromSourcehut: false, meson: false, "pkg-config": false, scdoc: false, ninja: false, libxkbcommon: false, wayland: false, "wayland-scanner": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 43, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 46, 5], ["homepage", 47, 5], ["license", 48, 5], ["maintainers", 49, 5], ["platforms", 53, 5], ["mainProgram", 54, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["strictDeps", 25, 3], ["__structuredAttrs", 26, 3], ["depsBuildBuild", 28, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 38, 3], ["env", 43, 3], ["meta", 45, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const wayland = nix.arg($, "wayland");
   const wayland_scanner = nix.arg($, "wayland-scanner");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "wlrctl",
       version: "0.2.2",
       src: nix.thunk(() => nix.app(fetchFromSourcehut, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "~brocellous",
           repo: "wlrctl",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,9 +33,9 @@ export default nix.lambda((args) => (() => {
       depsBuildBuild: nix.thunk(() => [pkg_config]),
       nativeBuildInputs: nix.thunk(() => [meson, pkg_config, scdoc, ninja, wayland_scanner]),
       buildInputs: nix.thunk(() => [libxkbcommon, wayland]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-Wno-error=type-limits" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], NIX_CFLAGS_COMPILE: "-Wno-error=type-limits" })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Command line utility for miscellaneous wlroots Wayland extensions",
         homepage: "https://git.sr.ht/~brocellous/wlrctl",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

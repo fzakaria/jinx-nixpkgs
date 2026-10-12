@@ -2,8 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/wrapper.nix", [[["pname", 23, 3], ["version", 24, 23], ["src", 26, 3], ["paths", 28, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 38, 3], ["dontUnpack", 40, 3], ["dontConfigure", 41, 3], ["dontBuild", 42, 3], ["preferLocalBuild", 44, 3], ["allowSubstitutes", 45, 3], ["installPhase", 47, 3], ["preFixup", 54, 3], ["__structuredAttrs", 61, 3], ["meta", 63, 23]]]);
 const formals$1 = { args: { lib: false, wrapGAppsHook3: false, glib: false, stdenv: false, lndir: false, wingpanel: false, wingpanelIndicators: false, "switchboard-with-plugs": false, indicators: true, useDefaultIndicators: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/wrapper.nix", [["pname", 23, 3], ["version", 24, 23], ["src", 26, 3], ["paths", 28, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 38, 3], ["dontUnpack", 40, 3], ["dontConfigure", 41, 3], ["dontBuild", 42, 3], ["preferLocalBuild", 44, 3], ["allowSubstitutes", 45, 3], ["installPhase", 47, 3], ["preFixup", 54, 3], ["__structuredAttrs", 61, 3], ["meta", 63, 23]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
   const useDefaultIndicators = nix.argOr($, "useDefaultIndicators", () => true);
   const selectedIndicators = nix.thunk(() => (nix.asBool(nix.eq(indicators, null)) ? nix.force(wingpanelIndicators) : nix.concat(indicators, nix.app(nix.sel(lib, "optionals"), useDefaultIndicators, wingpanelIndicators))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       pname: nix.thunk(() => nix.str`${nix.sel(wingpanel, "pname")}-with-indicators`),
       version: nix.thunk(() => nix.attr(wingpanel, "version")),
       src: null,

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["libressl", 19, 5], ["bearssl", 20, 5]], [["pname", 32, 5], ["version", 33, 5], ["sha256", 34, 5], ["description", 35, 5], ["maintainers", 36, 5]], [["description", 39, 8]], [["pname", 27, 3], ["version", 28, 3], ["sha256", 29, 3], ["manpages", 31, 3], ["meta", 39, 3], ["outputs", 41, 3], ["buildInputs", 48, 3], ["configureFlags", 57, 3], ["postInstall", 68, 3]]]);
 const formals$1 = { args: { lib: false, skawarePackages: false, skalibs: false, execline: false, s6: false, "s6-dns": false, sslSupport: true, libressl: false, bearssl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["libressl", 19, 5], ["bearssl", 20, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 32, 5], ["version", 33, 5], ["sha256", 34, 5], ["description", 35, 5], ["maintainers", 36, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 39, 8]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 27, 3], ["version", 28, 3], ["sha256", 29, 3], ["manpages", 31, 3], ["meta", 39, 3], ["outputs", 41, 3], ["buildInputs", 48, 3], ["configureFlags", 57, 3], ["postInstall", 68, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,15 +17,15 @@ export default nix.lambda((args) => (() => {
   const libressl = nix.arg($, "libressl");
   const bearssl = nix.arg($, "bearssl");
   const sslSupportEnabled = nix.thunk(() => !nix.eq(sslSupport, false));
-  const sslLibs = nix.thunk(() => ({ [nix.POS]: pos$1, libressl: libressl, bearssl: bearssl }));
+  const sslLibs = nix.thunk(() => ({ [nix.POS]: $pos[0], libressl: libressl, bearssl: bearssl }));
   nix.assert_((!nix.asBool(sslSupportEnabled) || nix.asBool(nix.has(sslLibs, nix.key(nix.force(sslSupport))))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/development/skaware-packages/s6-networking/default.nix:24:1");
   return nix.app(nix.sel(skawarePackages, "buildPackage"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "s6-networking",
       version: "2.8.0.1",
       sha256: "sha256-bwEcM7oFhs5Y/u4M+FSgsIfpCC/b0kq7eGFIRjgw80E=",
       manpages: nix.thunk(() => nix.app(nix.sel(skawarePackages, "buildManPages"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: "s6-networking-man-pages",
           version: "2.7.2.1.4",
           sha256: "sha256-N5BXi21JEgF3X5FKg5SzKNKfzYS5uTRqbUvbsrEZ2xg=",
@@ -36,7 +33,7 @@ export default nix.lambda((args) => (() => {
           maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "sternenseemann"))]),
         })))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Suite of small networking utilities for Unix systems",
       })),
       outputs: nix.thunk(() => ["bin", "lib", "dev", "doc", "out"]),

@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 37, 5], ["repo", 38, 5], ["tag", 39, 5], ["hash", 40, 5], ["fetchSubmodules", 41, 5]], [["rev-prefix", 44, 40]], [["updateScript", 44, 12]], [["withIcu", 76, 26]], [["description", 127, 5], ["homepage", 128, 5], ["changelog", 129, 5], ["maintainers", 130, 5], ["teams", 133, 5], ["license", 134, 5], ["platforms", 135, 5]], [["pname", 33, 3], ["version", 34, 3], ["src", 36, 3], ["passthru", 44, 3], ["postPatch", 46, 3], ["outputs", 57, 3], ["patches", 59, 3], ["nativeBuildInputs", 66, 3], ["buildInputs", 71, 3], ["cmakeFlags", 94, 3], ["doCheck", 110, 3], ["preBuild", 116, 3], ["preInstall", 122, 3], ["meta", 126, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, gitUpdater: false, buildPackages: false, cmake: false, "pkg-config": false, boost: false, cairo: false, freetype: false, gdal: false, harfbuzz: false, icu: false, libavif: false, libjpeg: false, libpng: false, libtiff: false, libwebp: false, libxml2: false, proj: false, python3: false, sqlite: false, zlib: false, catch2: false, libpq: false, protozero: false, sparsehash: false, openssl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 37, 5], ["repo", 38, 5], ["tag", 39, 5], ["hash", 40, 5], ["fetchSubmodules", 41, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["rev-prefix", 44, 40]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 44, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["withIcu", 76, 26]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 127, 5], ["homepage", 128, 5], ["changelog", 129, 5], ["maintainers", 130, 5], ["teams", 133, 5], ["license", 134, 5], ["platforms", 135, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 33, 3], ["version", 34, 3], ["src", 36, 3], ["passthru", 44, 3], ["postPatch", 46, 3], ["outputs", 57, 3], ["patches", 59, 3], ["nativeBuildInputs", 66, 3], ["buildInputs", 71, 3], ["cmakeFlags", 94, 3], ["doCheck", 110, 3], ["preBuild", 116, 3], ["preInstall", 122, 3], ["meta", 126, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -41,11 +36,11 @@ export default nix.lambda((args) => (() => {
   const sparsehash = nix.arg($, "sparsehash");
   const openssl = nix.arg($, "openssl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "mapnik",
       version: "4.3.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "mapnik",
           repo: "mapnik",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -53,8 +48,8 @@ export default nix.lambda((args) => (() => {
           fetchSubmodules: true,
         })))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, "rev-prefix": "v" })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[1], "rev-prefix": "v" })))),
       })),
       postPatch: nix.thunk(() => nix.str`substituteInPlace configure \\
   --replace-fail '$PYTHON scons/scons.py' ${nix.sel(buildPackages, "scons")}/bin/scons
@@ -75,7 +70,7 @@ rm -r deps/mapbox/protozero
         cairo,
         freetype,
         gdal,
-        nix.thunk(() => nix.app(nix.sel(harfbuzz, "override"), nix.thunk(() => ({ [nix.POS]: pos$4, withIcu: true })))),
+        nix.thunk(() => nix.app(nix.sel(harfbuzz, "override"), nix.thunk(() => ({ [nix.POS]: $pos[3], withIcu: true })))),
         icu,
         libavif,
         libjpeg,
@@ -108,7 +103,7 @@ cd build
 `),
       preInstall: "install -Dm755 ../utils/mapnik-config/mapnik-config -t $out/bin\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Open source toolkit for developing mapping applications",
         homepage: "https://mapnik.org",
         changelog: nix.thunk(() => nix.str`https://github.com/mapnik/mapnik/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

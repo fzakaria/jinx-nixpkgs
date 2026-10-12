@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 15, 3], ["src", 18, 5], ["version", 19, 5], ["meta", 20, 5], ["duneVersion", 23, 3], ["nativeBuildInputs", 25, 3], ["propagatedBuildInputs", 29, 3]]]);
 const formals$1 = { args: { buildDunePackage: false, netchannel: false, ppx_sexp_conv: false, lwt: false, cstruct: false, "mirage-net": false, "mirage-xen": false, "io-page": false, "lwt-dllist": false, logs: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 15, 3], ["src", 18, 5], ["version", 19, 5], ["meta", 20, 5], ["duneVersion", 23, 3], ["nativeBuildInputs", 25, 3], ["propagatedBuildInputs", 29, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
   const lwt_dllist = nix.arg($, "lwt-dllist");
   const logs = nix.arg($, "logs");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       pname: "mirage-net-xen",
       src: nix.thunk(() => nix.attr(netchannel, "src")),
       version: nix.thunk(() => nix.attr(netchannel, "version")),

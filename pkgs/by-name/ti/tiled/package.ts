@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 30, 5], ["repo", 31, 5], ["rev", 32, 5], ["sha256", 33, 5]], [["description", 88, 5], ["homepage", 89, 5], ["license", 90, 5], ["maintainers", 94, 5], ["platforms", 98, 5]], [["pname", 26, 3], ["version", 27, 3], ["src", 29, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 41, 3], ["outputs", 48, 3], ["strictDeps", 53, 3], ["configurePhase", 55, 3], ["buildPhase", 65, 3], ["installPhase", 73, 3], ["postInstall", 81, 3], ["meta", 87, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, "pkg-config": false, qaseprite: false, qbs: false, libsForQt5: false, zlib: false, zstd: false, libGL: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 30, 5], ["repo", 31, 5], ["rev", 32, 5], ["sha256", 33, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 88, 5], ["homepage", 89, 5], ["license", 90, 5], ["maintainers", 94, 5], ["platforms", 98, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 26, 3], ["version", 27, 3], ["src", 29, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 41, 3], ["outputs", 48, 3], ["strictDeps", 53, 3], ["configurePhase", 55, 3], ["buildPhase", 65, 3], ["installPhase", 73, 3], ["postInstall", 81, 3], ["meta", 87, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,11 +26,11 @@ export default nix.lambda((args) => (() => {
       nix.thunk(() => nix.sel(libsForQt5, "qtwayland")),
     ])));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "tiled",
       version: "1.12.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "mapeditor",
           repo: "tiled",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -54,7 +52,7 @@ runHook postConfigure
       installPhase: "runHook preInstall\n\nqbs install --settings-dir . --install-root $out config:release\n\nrunHook postInstall\n",
       postInstall: "substituteInPlace $out/share/thumbnailers/tiled.thumbnailer \\\n  --replace-fail \"TryExec=tmxrasterizer\" \"TryExec=$out/bin/tmxrasterizer\" \\\n  --replace-fail \"Exec=tmxrasterizer\" \"Exec=$out/bin/tmxrasterizer\"\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Free, easy to use and flexible tile map editor",
         homepage: "https://www.mapeditor.org/",
         license: nix.thunk(() => (() => {

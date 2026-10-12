@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 31, 7], ["repo", 32, 7], ["rev", 33, 7], ["hash", 34, 7], ["postFetch", 36, 7]], [["NG_CLI_ANALYTICS", 54, 7], ["CI", 55, 7]], [["pname", 25, 5], ["version", 26, 5], ["__structuredAttrs", 27, 5], ["strictDeps", 28, 5], ["src", 30, 5], ["postPatch", 41, 5], ["npmDepsHash", 49, 5], ["npmBuildScript", 51, 5], ["env", 53, 5], ["installPhase", 58, 5], ["postInstall", 67, 5]], [["owner", 79, 5], ["repo", 80, 5], ["tag", 81, 5], ["hash", 82, 5], ["stripRoot", 83, 5]], [["updateScript", 163, 12]], [["description", 166, 5], ["homepage", 167, 5], ["license", 168, 5], ["maintainers", 169, 5]], [["pname", 74, 3], ["version", 75, 11], ["channel", 75, 19], ["buildDate", 75, 27], ["__structuredAttrs", 76, 3], ["src", 78, 3], ["nugetDeps", 86, 3], ["dotnet-sdk", 88, 3], ["dotnet-runtime", 89, 3], ["enableParallelBuilding", 91, 3], ["nativeBuildInputs", 93, 3], ["buildInputs", 95, 3], ["autoPatchelfIgnoreMissingDeps", 101, 3], ["executables", 111, 3], ["postPatch", 130, 3], ["postFixup", 137, 3], ["passthru", 163, 3], ["meta", 165, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildNpmPackage: false, buildDotnetModule: false, fetchFromGitHub: false, autoPatchelfHook: false, dotnetCorePackages: false, "npm-lockfile-fix": false, icu: false, openssl: false, krb5: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 31, 7], ["repo", 32, 7], ["rev", 33, 7], ["hash", 34, 7], ["postFetch", 36, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NG_CLI_ANALYTICS", 54, 7], ["CI", 55, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 25, 5], ["version", 26, 5], ["__structuredAttrs", 27, 5], ["strictDeps", 28, 5], ["src", 30, 5], ["postPatch", 41, 5], ["npmDepsHash", 49, 5], ["npmBuildScript", 51, 5], ["env", 53, 5], ["installPhase", 58, 5], ["postInstall", 67, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["owner", 79, 5], ["repo", 80, 5], ["tag", 81, 5], ["hash", 82, 5], ["stripRoot", 83, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["updateScript", 163, 12]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 166, 5], ["homepage", 167, 5], ["license", 168, 5], ["maintainers", 169, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 74, 3], ["version", 75, 11], ["channel", 75, 19], ["buildDate", 75, 27], ["__structuredAttrs", 76, 3], ["src", 78, 3], ["nugetDeps", 86, 3], ["dotnet-sdk", 88, 3], ["dotnet-runtime", 89, 3], ["enableParallelBuilding", 91, 3], ["nativeBuildInputs", 93, 3], ["buildInputs", 95, 3], ["autoPatchelfIgnoreMissingDeps", 101, 3], ["executables", 111, 3], ["postPatch", 130, 3], ["postFixup", 137, 3], ["passthru", 163, 3], ["meta", 165, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,13 +25,13 @@ export default nix.lambda((args) => (() => {
   const ngclientRev = "374ce0d56d519caa88999989e10dc16ef39c4536";
   const ngclientHash = "sha256-4EGtVo79p7P+L21vnVhl1ameFe1RL+7nsEmickONrYw=";
   const ngclient = nix.thunk(() => nix.app(buildNpmPackage, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "ngclient",
       version: ngclientVersion,
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "duplicati",
           repo: "ngclient",
           rev: ngclientRev,
@@ -48,19 +42,19 @@ export default nix.lambda((args) => (() => {
       postPatch: "substituteInPlace package.json \\\n  --replace-fail '\"build:prod\": \"bun run gen:font & ng build' \\\n                 '\"build:prod\": \"npm run gen:font && ng build' \\\n  --replace-fail '\"gen:font\": \"ship-fg' \\\n                 '\"gen:font\": \"node node_modules/.bin/ship-fg'\n",
       npmDepsHash: "sha256-jDHpuGm7juGjlRQ4Sq85lW6lcSwYSczryYxdL8uE9gg=",
       npmBuildScript: "build:prod",
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, NG_CLI_ANALYTICS: "false", CI: "true" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], NG_CLI_ANALYTICS: "false", CI: "true" })),
       installPhase: "runHook preInstall\n\nmkdir -p $out\ncp -r dist/ngclient/* $out/\n\nrunHook postInstall\n",
       postInstall: "substituteInPlace $out/browser/index.html \\\n    --replace-fail '<base href=\"/\">' '<base href=\"/ngclient/\">'\n",
     }))));
   return nix.app(buildDotnetModule, nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "duplicati",
       version: version,
       channel: channel,
       buildDate: buildDate,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           owner: "duplicati",
           repo: "duplicati",
           tag: nix.thunk(() => nix.str`v${version}_${channel}_${buildDate}`),
@@ -98,9 +92,9 @@ rm -rf Duplicati/Server/webroot/ngclient
 ln -s ${ngclient}/browser Duplicati/Server/webroot/ngclient
 `),
       postFixup: "for mapping in \\\n  \"Duplicati.Agent:duplicati-agent\" \\\n  \"Duplicati.GUI.TrayIcon:duplicati\" \\\n  \"Duplicati.Server:duplicati-server\" \\\n  \"Duplicati.Service:duplicati-service\" \\\n  \"Duplicati.CommandLine:duplicati-cli\" \\\n  \"Duplicati.CommandLine.SyncTool:duplicati-sync-tool\" \\\n  \"Duplicati.CommandLine.SourceTool:duplicati-source-tool\" \\\n  \"Duplicati.CommandLine.DatabaseTool:duplicati-database-tool\" \\\n  \"Duplicati.CommandLine.SharpAESCrypt:duplicati-aescrypt\" \\\n  \"Duplicati.CommandLine.AutoUpdater:duplicati-autoupdater\" \\\n  \"Duplicati.CommandLine.BackendTester:duplicati-backend-tester\" \\\n  \"Duplicati.CommandLine.BackendTool:duplicati-backend-tool\" \\\n  \"Duplicati.CommandLine.RecoveryTool:duplicati-recovery-tool\" \\\n  \"Duplicati.CommandLine.SecretTool:duplicati-secret-tool\" \\\n  \"Duplicati.CommandLine.ServerUtil:duplicati-server-util\" \\\n  \"Duplicati.CommandLine.Snapshots:duplicati-snapshots\"\ndo\n  IFS=: read -r source target <<< \"$mapping\"\n  mv \"$out/bin/$source\" \"$out/bin/$target\"\ndone\n\ncp \"$out/bin/duplicati-server\" \"$out/lib/duplicati/duplicati-server\"\n",
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$5, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[4], updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Free backup client that securely stores encrypted, incremental, compressed backups on cloud storage services and remote file servers",
         homepage: "https://www.duplicati.com/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21")),

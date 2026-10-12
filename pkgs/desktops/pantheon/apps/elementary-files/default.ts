@@ -2,11 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 38, 5], ["repo", 39, 5], ["rev", 40, 5], ["hash", 41, 5]], [["updateScript", 71, 5]], [["description", 75, 5], ["homepage", 76, 5], ["license", 77, 5], ["platforms", 78, 5], ["teams", 79, 5], ["mainProgram", 80, 5]], [["pname", 29, 3], ["version", 30, 3], ["outputs", 32, 3], ["src", 37, 3], ["nativeBuildInputs", 44, 3], ["buildInputs", 53, 3], ["passthru", 70, 3], ["meta", 74, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, "nix-update-script": false, "pkg-config": false, meson: false, ninja: false, vala: false, "desktop-file-utils": false, libcanberra: false, gtk3: false, glib: false, libgee: false, libhandy: false, "libportal-gtk3": false, granite: false, pango: false, poppler_gi: false, sqlite: false, zeitgeist: false, libcloudproviders: false, "libgit2-glib": false, wrapGAppsHook3: false, systemdLibs: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 38, 5], ["repo", 39, 5], ["rev", 40, 5], ["hash", 41, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["updateScript", 71, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 75, 5], ["homepage", 76, 5], ["license", 77, 5], ["platforms", 78, 5], ["teams", 79, 5], ["mainProgram", 80, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 29, 3], ["version", 30, 3], ["outputs", 32, 3], ["src", 37, 3], ["nativeBuildInputs", 44, 3], ["buildInputs", 53, 3], ["passthru", 70, 3], ["meta", 74, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -39,7 +36,7 @@ export default nix.lambda((args) => (() => {
       const version = "7.3.2";
       const outputs = nix.thunk(() => ["out", "dev"]);
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "elementary",
           repo: "files",
           rev: version,
@@ -63,11 +60,11 @@ export default nix.lambda((args) => (() => {
         zeitgeist,
       ]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "File browser designed for elementary OS",
         homepage: "https://github.com/elementary/files",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
@@ -76,7 +73,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "io.elementary.files",
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         outputs,

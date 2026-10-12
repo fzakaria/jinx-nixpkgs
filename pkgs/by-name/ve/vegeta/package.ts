@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]], [["Version", 25, 7], ["Commit", 26, 7], ["Date", 27, 7]], [["description", 36, 5], ["longDescription", 37, 5], ["homepage", 42, 5], ["changelog", 43, 5], ["license", 44, 5], ["maintainers", 45, 5], ["mainProgram", 46, 5]], [["pname", 8, 3], ["version", 9, 3], ["rev", 10, 3], ["src", 12, 3], ["vendorHash", 19, 3], ["subPackages", 21, 3], ["ldflags", 23, 3], ["meta", 35, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, buildGoModule: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["Version", 25, 7], ["Commit", 26, 7], ["Date", 27, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 36, 5], ["longDescription", 37, 5], ["homepage", 42, 5], ["changelog", 43, 5], ["license", 44, 5], ["maintainers", 45, 5], ["mainProgram", 46, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["rev", 10, 3], ["src", 12, 3], ["vendorHash", 19, 3], ["subPackages", 21, 3], ["ldflags", 23, 3], ["meta", 35, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,7 +15,7 @@ export default nix.lambda((args) => (() => {
       const version = "12.13.0";
       const rev = "03ca49e9b419c106db29d687827c4c823d8b8ece";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "tsenart",
           repo: "vegeta",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -27,13 +24,13 @@ export default nix.lambda((args) => (() => {
       const vendorHash = "sha256-0Ho1HYckFHaWEE6Ti3fIL/t0hBj5MnKOd4fOZx+LYiE=";
       const subPackages = nix.thunk(() => ["."]);
       const ldflags = nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "mapAttrsToList"), (n) => (v) => nix.str`-X main.${n}=${v}`, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           Version: version,
           Commit: rev,
           Date: "1970-01-01T00:00:00Z",
         }))), ["-s", "-w", "-extldflags '-static'"]));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Versatile HTTP load testing tool",
         longDescription: "Vegeta is a versatile HTTP load testing tool built out of a need to drill\nHTTP services with a constant request rate. It can be used both as a\ncommand line utility and a library.\n",
         homepage: "https://github.com/tsenart/vegeta/",
@@ -46,7 +43,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "vegeta",
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         rev,

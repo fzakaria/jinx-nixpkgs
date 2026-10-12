@@ -2,11 +2,9 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pluginName", 30, 9], ["nativeBuildInputs", 31, 9], ["buildPhase", 35, 9], ["postPatch", 43, 9], ["installPhase", 57, 9]], [["lib", 70, 7], ["fetchgit", 71, 7], ["fetchFromGitHub", 72, 7], ["fetchFromGitLab", 73, 7], ["fetchFromGitea", 74, 7], ["python3", 75, 7], ["poetry", 76, 7], ["buildMaubotPlugin", 77, 7]], [["buildMaubotPlugin", 83, 11], ["allOfficialPlugins", 85, 3], ["allPlugins", 89, 3]]]);
 const formals$1 = { args: { lib: false, fetchgit: false, fetchFromGitHub: false, fetchFromGitLab: false, fetchFromGitea: false, stdenvNoCC: false, callPackage: false, ensureNewerSourcesForZipFilesHook: false, maubot: false, python3: false, poetry: false, formats: false }, ellipsis: false };
 const formals$2 = { args: { version: false, pname: false, base_config: true }, ellipsis: true };
-const pos$1 = nix.positions(here + "/default.nix", [["pluginName", 30, 9], ["nativeBuildInputs", 31, 9], ["buildPhase", 35, 9], ["postPatch", 43, 9], ["installPhase", 57, 9]]);
-const pos$2 = nix.positions(here + "/default.nix", [["lib", 70, 7], ["fetchgit", 71, 7], ["fetchFromGitHub", 72, 7], ["fetchFromGitLab", 73, 7], ["fetchFromGitea", 74, 7], ["python3", 75, 7], ["poetry", 76, 7], ["buildMaubotPlugin", 77, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["buildMaubotPlugin", 83, 11], ["allOfficialPlugins", 85, 3], ["allPlugins", 89, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,7 +27,7 @@ export default nix.lambda((args) => (() => {
     const pname = nix.arg($_1, "pname");
     const base_config = nix.argOr($_1, "base_config", () => null);
     return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => nix.update(nix.builtins.removeAttrs(attrs, nix.thunk(() => ["base_config"])), {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         pluginName: nix.thunk(() => nix.str`${pname}-v${version}.mbp`),
         nativeBuildInputs: nix.thunk(() => nix.concat(nix.selOr(attrs, () => [], "nativeBuildInputs"), [ensureNewerSourcesForZipFilesHook, maubot])),
         buildPhase: "runHook preBuild\n\nmbc build\n\nrunHook postBuild\n",
@@ -40,7 +38,7 @@ cp "${(nix.asBool((nix.asBool(nix.builtins.isPath(base_config)) || nix.asBool(ni
       })));
   })(), formals$2);
   const generated = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./generated.nix")), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       lib: lib,
       fetchgit: fetchgit,
       fetchFromGitHub: fetchFromGitHub,
@@ -51,7 +49,7 @@ cp "${(nix.asBool((nix.asBool(nix.builtins.isPath(base_config)) || nix.asBool(ni
       buildMaubotPlugin: buildMaubotPlugin,
     }))));
   return nix.update(generated, {
-    [nix.POS]: pos$3,
+    [nix.POS]: $pos[2],
     buildMaubotPlugin: buildMaubotPlugin,
     allOfficialPlugins: nix.thunk(() => nix.builtins.filter((x) => (nix.asBool(nix.sel(x, "isOfficial")) && nix.asBool(!nix.asBool(nix.sel(x, "meta", "broken")))), nix.thunk(() => nix.builtins.attrValues(generated)))),
     allPlugins: nix.thunk(() => nix.builtins.filter((x) => !nix.asBool(nix.sel(x, "meta", "broken")), nix.thunk(() => nix.builtins.attrValues(generated)))),

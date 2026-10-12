@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]], [["updateScript", 74, 12]], [["description", 77, 5], ["longDescription", 78, 5], ["homepage", 82, 5], ["license", 83, 5], ["maintainers", 84, 5], ["mainProgram", 85, 5], ["platforms", 86, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["strictDeps", 26, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 31, 3], ["postPatch", 36, 3], ["doCheck", 48, 3], ["nativeCheckInputs", 50, 3], ["checkInputs", 55, 3], ["checkPhase", 57, 3], ["installPhase", 65, 3], ["passthru", 74, 3], ["meta", 76, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchFromGitHub: false, patsh: false, bashNonInteractive: false, "pkg-config": false, gcc: false, gsl: false, targetPackages: false, cc: true, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 74, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 77, 5], ["longDescription", 78, 5], ["homepage", 82, 5], ["license", 83, 5], ["maintainers", 84, 5], ["mainProgram", 85, 5], ["platforms", 86, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["strictDeps", 26, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 31, 3], ["postPatch", 36, 3], ["doCheck", 48, 3], ["nativeCheckInputs", 50, 3], ["checkInputs", 55, 3], ["checkPhase", 57, 3], ["installPhase", 65, 3], ["passthru", 74, 3], ["meta", 76, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const cc = nix.argOr($, "cc", () => nix.sel(targetPackages, "stdenv", "cc"));
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "c99sh",
       version: "1.1.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "RhysU",
           repo: "c99sh",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -50,11 +47,11 @@ substituteInPlace c99sh \\
       checkPhase: "runHook preCheck\n\n./tests\n\nrunHook postCheck\n",
       installPhase: "runHook preInstall\n\nmkdir --parents $out/bin\ncp --no-dereference c*sh $out/bin # c11sh and cxxsh\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Shebang-friendly script for \"interpreting\" C files",
         longDescription: "Shebang-friendly script for \\\"interpreting\\\" single C99, C11,\nand C++ files, including rcfile support\n",
         homepage: "https://github.com/RhysU/c99sh",

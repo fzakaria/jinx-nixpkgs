@@ -2,73 +2,13 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/thanos.nix", [[["accessKey", 11, 5], ["secretKey", 12, 5]], [["idle_conn_timeout", 27, 9], ["insecure_skip_verify", 28, 9]], [["enable", 31, 9]], [["bucket", 18, 7], ["endpoint", 19, 7], ["region", 20, 7], ["access_key", 21, 7], ["secret_key", 22, 7], ["insecure", 23, 7], ["signature_version2", 24, 7], ["put_user_metadata", 25, 7], ["http_config", 26, 7], ["trace", 30, 7]], [["type", 16, 5], ["config", 17, 5]], [["config", 15, 12]], [["diskSize", 43, 24], ["memorySize", 44, 24]], [["systemPackages", 45, 21]], [["allowedTCPPorts", 49, 29]], [["firewall", 49, 20]], [["instance", 60, 21]], [["targets", 58, 19], ["labels", 59, 19]], [["job_name", 55, 15], ["static_configs", 56, 15]], [["targets", 70, 19]], [["job_name", 66, 15], ["scrape_interval", 67, 15], ["static_configs", 68, 15]], [["some_label", 86, 15]], [["external_labels", 85, 13]], [["listen-address", 97, 15]], [["interval", 99, 23]], [["enable", 96, 11], ["web", 97, 11], ["persistMetrics", 98, 11], ["persistence", 99, 11], ["stateDir", 100, 11]], [["enable", 51, 11], ["enableReload", 52, 11], ["scrapeConfigs", 53, 11], ["rules", 75, 11], ["globalConfig", 84, 11], ["extraFlags", 89, 11], ["pushgateway", 95, 29]], [["enable", 104, 13], ["grpc-address", 105, 13], ["objstore", 106, 21]], [["sidecar", 103, 11]], [["prometheus", 50, 18], ["thanos", 102, 18]], [["systemPackages", 139, 27]], [["targets", 149, 25]], [["job_name", 146, 21], ["static_configs", 147, 21]], [["scrapeConfigs", 144, 17]], [["prometheus", 143, 24]], [["environment", 139, 15], ["services", 143, 15]], [["configuration", 138, 13]], [["prometheus-config-change", 137, 11]], [["virtualisation", 43, 9], ["environment", 45, 9], ["networking", 49, 9], ["services", 50, 9], ["specialisation", 136, 9]], [["systemPackages", 163, 21]], [["enable", 165, 11], ["http-address", 166, 11], ["endpoints", 167, 11]], [["downstream-url", 174, 26]], [["enable", 172, 11], ["http-address", 173, 11], ["query-frontend", 174, 11]], [["query", 164, 25], ["query-frontend", 171, 25]], [["thanos", 164, 18]], [["environment", 163, 9], ["services", 164, 9]], [["diskSize", 181, 24], ["memorySize", 182, 24]], [["systemPackages", 183, 21]], [["enable", 189, 11], ["http-address", 190, 11], ["grpc-address", 191, 11], ["objstore", 192, 19], ["sync-block-duration", 193, 11]], [["enable", 196, 11], ["http-address", 197, 11], ["objstore", 198, 19], ["consistency-delay", 199, 11]], [["enable", 202, 11], ["http-address", 203, 11], ["endpoints", 204, 11]], [["store", 188, 25], ["compact", 195, 25], ["query", 201, 25]], [["thanos", 188, 18]], [["virtualisation", 181, 9], ["environment", 183, 9], ["services", 188, 9]], [["diskSize", 215, 11]], [["allowedTCPPorts", 217, 29]], [["firewall", 217, 20]], [["s3_region", 229, 15], ["api_bind_addr", 230, 15]], [["rpc_bind_addr", 223, 13], ["rpc_public_addr", 224, 13], ["rpc_secret", 225, 13], ["replication_factor", 226, 13], ["s3_api", 228, 13]], [["enable", 220, 11], ["package", 221, 11], ["settings", 222, 11]], [["enable", 236, 11], ["openFirewall", 237, 11]], [["node", 235, 39]], [["exporters", 235, 29]], [["garage", 219, 18], ["prometheus", 235, 18]], [["virtualisation", 214, 9], ["networking", 217, 9], ["services", 219, 9]], [["prometheus", 40, 5], ["query", 160, 5], ["store", 178, 5], ["garage", 210, 5]], [["name", 37, 3], ["nodes", 39, 3], ["testScript", 242, 3]]]);
 const formals$1 = { args: {  }, ellipsis: true };
-const pos$1 = nix.positions(here + "/thanos.nix", [["accessKey", 11, 5], ["secretKey", 12, 5]]);
-const pos$2 = nix.positions(here + "/thanos.nix", [["idle_conn_timeout", 27, 9], ["insecure_skip_verify", 28, 9]]);
-const pos$3 = nix.positions(here + "/thanos.nix", [["enable", 31, 9]]);
-const pos$4 = nix.positions(here + "/thanos.nix", [["bucket", 18, 7], ["endpoint", 19, 7], ["region", 20, 7], ["access_key", 21, 7], ["secret_key", 22, 7], ["insecure", 23, 7], ["signature_version2", 24, 7], ["put_user_metadata", 25, 7], ["http_config", 26, 7], ["trace", 30, 7]]);
-const pos$5 = nix.positions(here + "/thanos.nix", [["type", 16, 5], ["config", 17, 5]]);
-const pos$6 = nix.positions(here + "/thanos.nix", [["config", 15, 12]]);
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$7 = nix.positions(here + "/thanos.nix", [["diskSize", 43, 24], ["memorySize", 44, 24]]);
-const pos$8 = nix.positions(here + "/thanos.nix", [["systemPackages", 45, 21]]);
-const pos$9 = nix.positions(here + "/thanos.nix", [["allowedTCPPorts", 49, 29]]);
-const pos$10 = nix.positions(here + "/thanos.nix", [["firewall", 49, 20]]);
-const pos$11 = nix.positions(here + "/thanos.nix", [["instance", 60, 21]]);
-const pos$12 = nix.positions(here + "/thanos.nix", [["targets", 58, 19], ["labels", 59, 19]]);
-const pos$13 = nix.positions(here + "/thanos.nix", [["job_name", 55, 15], ["static_configs", 56, 15]]);
-const pos$14 = nix.positions(here + "/thanos.nix", [["targets", 70, 19]]);
-const pos$15 = nix.positions(here + "/thanos.nix", [["job_name", 66, 15], ["scrape_interval", 67, 15], ["static_configs", 68, 15]]);
-const pos$16 = nix.positions(here + "/thanos.nix", [["some_label", 86, 15]]);
-const pos$17 = nix.positions(here + "/thanos.nix", [["external_labels", 85, 13]]);
-const pos$18 = nix.positions(here + "/thanos.nix", [["listen-address", 97, 15]]);
-const pos$19 = nix.positions(here + "/thanos.nix", [["interval", 99, 23]]);
-const pos$20 = nix.positions(here + "/thanos.nix", [["enable", 96, 11], ["web", 97, 11], ["persistMetrics", 98, 11], ["persistence", 99, 11], ["stateDir", 100, 11]]);
-const pos$21 = nix.positions(here + "/thanos.nix", [["enable", 51, 11], ["enableReload", 52, 11], ["scrapeConfigs", 53, 11], ["rules", 75, 11], ["globalConfig", 84, 11], ["extraFlags", 89, 11], ["pushgateway", 95, 29]]);
-const pos$22 = nix.positions(here + "/thanos.nix", [["enable", 104, 13], ["grpc-address", 105, 13], ["objstore", 106, 21]]);
-const pos$23 = nix.positions(here + "/thanos.nix", [["sidecar", 103, 11]]);
-const pos$24 = nix.positions(here + "/thanos.nix", [["prometheus", 50, 18], ["thanos", 102, 18]]);
-const pos$25 = nix.positions(here + "/thanos.nix", [["systemPackages", 139, 27]]);
-const pos$26 = nix.positions(here + "/thanos.nix", [["targets", 149, 25]]);
-const pos$27 = nix.positions(here + "/thanos.nix", [["job_name", 146, 21], ["static_configs", 147, 21]]);
-const pos$28 = nix.positions(here + "/thanos.nix", [["scrapeConfigs", 144, 17]]);
-const pos$29 = nix.positions(here + "/thanos.nix", [["prometheus", 143, 24]]);
-const pos$30 = nix.positions(here + "/thanos.nix", [["environment", 139, 15], ["services", 143, 15]]);
-const pos$31 = nix.positions(here + "/thanos.nix", [["configuration", 138, 13]]);
-const pos$32 = nix.positions(here + "/thanos.nix", [["prometheus-config-change", 137, 11]]);
-const pos$33 = nix.positions(here + "/thanos.nix", [["virtualisation", 43, 9], ["environment", 45, 9], ["networking", 49, 9], ["services", 50, 9], ["specialisation", 136, 9]]);
 const formals$3 = { args: { pkgs: false }, ellipsis: true };
-const pos$34 = nix.positions(here + "/thanos.nix", [["systemPackages", 163, 21]]);
-const pos$35 = nix.positions(here + "/thanos.nix", [["enable", 165, 11], ["http-address", 166, 11], ["endpoints", 167, 11]]);
-const pos$36 = nix.positions(here + "/thanos.nix", [["downstream-url", 174, 26]]);
-const pos$37 = nix.positions(here + "/thanos.nix", [["enable", 172, 11], ["http-address", 173, 11], ["query-frontend", 174, 11]]);
-const pos$38 = nix.positions(here + "/thanos.nix", [["query", 164, 25], ["query-frontend", 171, 25]]);
-const pos$39 = nix.positions(here + "/thanos.nix", [["thanos", 164, 18]]);
-const pos$40 = nix.positions(here + "/thanos.nix", [["environment", 163, 9], ["services", 164, 9]]);
 const formals$4 = { args: { pkgs: false }, ellipsis: true };
-const pos$41 = nix.positions(here + "/thanos.nix", [["diskSize", 181, 24], ["memorySize", 182, 24]]);
-const pos$42 = nix.positions(here + "/thanos.nix", [["systemPackages", 183, 21]]);
-const pos$43 = nix.positions(here + "/thanos.nix", [["enable", 189, 11], ["http-address", 190, 11], ["grpc-address", 191, 11], ["objstore", 192, 19], ["sync-block-duration", 193, 11]]);
-const pos$44 = nix.positions(here + "/thanos.nix", [["enable", 196, 11], ["http-address", 197, 11], ["objstore", 198, 19], ["consistency-delay", 199, 11]]);
-const pos$45 = nix.positions(here + "/thanos.nix", [["enable", 202, 11], ["http-address", 203, 11], ["endpoints", 204, 11]]);
-const pos$46 = nix.positions(here + "/thanos.nix", [["store", 188, 25], ["compact", 195, 25], ["query", 201, 25]]);
-const pos$47 = nix.positions(here + "/thanos.nix", [["thanos", 188, 18]]);
-const pos$48 = nix.positions(here + "/thanos.nix", [["virtualisation", 181, 9], ["environment", 183, 9], ["services", 188, 9]]);
 const formals$5 = { args: { pkgs: false }, ellipsis: true };
-const pos$49 = nix.positions(here + "/thanos.nix", [["diskSize", 215, 11]]);
-const pos$50 = nix.positions(here + "/thanos.nix", [["allowedTCPPorts", 217, 29]]);
-const pos$51 = nix.positions(here + "/thanos.nix", [["firewall", 217, 20]]);
-const pos$52 = nix.positions(here + "/thanos.nix", [["s3_region", 229, 15], ["api_bind_addr", 230, 15]]);
-const pos$53 = nix.positions(here + "/thanos.nix", [["rpc_bind_addr", 223, 13], ["rpc_public_addr", 224, 13], ["rpc_secret", 225, 13], ["replication_factor", 226, 13], ["s3_api", 228, 13]]);
-const pos$54 = nix.positions(here + "/thanos.nix", [["enable", 220, 11], ["package", 221, 11], ["settings", 222, 11]]);
-const pos$55 = nix.positions(here + "/thanos.nix", [["enable", 236, 11], ["openFirewall", 237, 11]]);
-const pos$56 = nix.positions(here + "/thanos.nix", [["node", 235, 39]]);
-const pos$57 = nix.positions(here + "/thanos.nix", [["exporters", 235, 29]]);
-const pos$58 = nix.positions(here + "/thanos.nix", [["garage", 219, 18], ["prometheus", 235, 18]]);
-const pos$59 = nix.positions(here + "/thanos.nix", [["virtualisation", 214, 9], ["networking", 217, 9], ["services", 219, 9]]);
-const pos$60 = nix.positions(here + "/thanos.nix", [["prometheus", 40, 5], ["query", 160, 5], ["store", 178, 5], ["garage", 210, 5]]);
 const formals$6 = { args: { nodes: false }, ellipsis: true };
-const pos$61 = nix.positions(here + "/thanos.nix", [["name", 37, 3], ["nodes", 39, 3], ["testScript", 242, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -78,17 +18,17 @@ export default nix.lambda((args) => (() => {
   const pushgwPort = 9091n;
   const frontPort = 9092n;
   const s3 = nix.thunk(() => ({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     accessKey: "GKaaaaaaaaaaaaaaaaaaaaaaaa",
     secretKey: "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
   }));
   const objstore = nix.thunk(() => ({
-    [nix.POS]: pos$6,
+    [nix.POS]: $pos[5],
     config: nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       type: "S3",
       config: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         bucket: "thanos-bucket",
         endpoint: nix.thunk(() => nix.str`garage:${nix.builtins.toString(garagePort)}`),
         region: "garage",
@@ -97,62 +37,62 @@ export default nix.lambda((args) => (() => {
         insecure: true,
         signature_version2: false,
         put_user_metadata: nix.thunk(() => ({})),
-        http_config: nix.thunk(() => ({ [nix.POS]: pos$2, idle_conn_timeout: "0s", insecure_skip_verify: false })),
-        trace: nix.thunk(() => ({ [nix.POS]: pos$3, enable: false })),
+        http_config: nix.thunk(() => ({ [nix.POS]: $pos[1], idle_conn_timeout: "0s", insecure_skip_verify: false })),
+        trace: nix.thunk(() => ({ [nix.POS]: $pos[2], enable: false })),
       })),
     })),
   }));
   return {
-    [nix.POS]: pos$61,
+    [nix.POS]: $pos[60],
     name: "thanos",
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$60,
+      [nix.POS]: $pos[59],
       prometheus: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$33,
+          [nix.POS]: $pos[32],
           virtualisation: nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             diskSize: nix.thunk(() => nix.mul(2n, 1024n)),
             memorySize: 2048n,
           })),
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$8,
+            [nix.POS]: $pos[7],
             systemPackages: nix.thunk(() => [
               nix.thunk(() => nix.sel(pkgs, "grpc-health-probe")),
               nix.thunk(() => nix.sel(pkgs, "jq")),
             ]),
           })),
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$10,
-            firewall: nix.thunk(() => ({ [nix.POS]: pos$9, allowedTCPPorts: nix.thunk(() => [grpcPort]) })),
+            [nix.POS]: $pos[9],
+            firewall: nix.thunk(() => ({ [nix.POS]: $pos[8], allowedTCPPorts: nix.thunk(() => [grpcPort]) })),
           })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$24,
+            [nix.POS]: $pos[23],
             prometheus: nix.thunk(() => ({
-              [nix.POS]: pos$21,
+              [nix.POS]: $pos[20],
               enable: true,
               enableReload: true,
               scrapeConfigs: nix.thunk(() => [
                 nix.thunk(() => ({
-                  [nix.POS]: pos$13,
+                  [nix.POS]: $pos[12],
                   job_name: "prometheus",
                   static_configs: nix.thunk(() => [
                     nix.thunk(() => ({
-                      [nix.POS]: pos$12,
+                      [nix.POS]: $pos[11],
                       targets: nix.thunk(() => [nix.thunk(() => nix.str`127.0.0.1:${nix.builtins.toString(queryPort)}`)]),
-                      labels: nix.thunk(() => ({ [nix.POS]: pos$11, instance: "localhost" })),
+                      labels: nix.thunk(() => ({ [nix.POS]: $pos[10], instance: "localhost" })),
                     })),
                   ]),
                 })),
                 nix.thunk(() => ({
-                  [nix.POS]: pos$15,
+                  [nix.POS]: $pos[14],
                   job_name: "pushgateway",
                   scrape_interval: "1s",
                   static_configs: nix.thunk(() => [
                     nix.thunk(() => ({
-                      [nix.POS]: pos$14,
+                      [nix.POS]: $pos[13],
                       targets: nix.thunk(() => [nix.thunk(() => nix.str`127.0.0.1:${nix.builtins.toString(pushgwPort)}`)]),
                     })),
                   ]),
@@ -162,29 +102,29 @@ export default nix.lambda((args) => (() => {
                 "groups:\n  - name: test\n    rules:\n      - record: testrule\n        expr: count(up{job=\"prometheus\"})\n",
               ]),
               globalConfig: nix.thunk(() => ({
-                [nix.POS]: pos$17,
-                external_labels: nix.thunk(() => ({ [nix.POS]: pos$16, some_label: "required by thanos" })),
+                [nix.POS]: $pos[16],
+                external_labels: nix.thunk(() => ({ [nix.POS]: $pos[15], some_label: "required by thanos" })),
               })),
               extraFlags: nix.thunk(() => [
                 "--storage.tsdb.min-block-duration=5s",
                 "--storage.tsdb.max-block-duration=5s",
               ]),
               pushgateway: nix.thunk(() => ({
-                [nix.POS]: pos$20,
+                [nix.POS]: $pos[19],
                 enable: true,
                 web: nix.thunk(() => ({
-                  [nix.POS]: pos$18,
+                  [nix.POS]: $pos[17],
                   "listen-address": nix.thunk(() => nix.str`:${nix.builtins.toString(pushgwPort)}`),
                 })),
                 persistMetrics: true,
-                persistence: nix.thunk(() => ({ [nix.POS]: pos$19, interval: "1s" })),
+                persistence: nix.thunk(() => ({ [nix.POS]: $pos[18], interval: "1s" })),
                 stateDir: "prometheus-pushgateway",
               })),
             })),
             thanos: nix.thunk(() => ({
-              [nix.POS]: pos$23,
+              [nix.POS]: $pos[22],
               sidecar: nix.thunk(() => ({
-                [nix.POS]: pos$22,
+                [nix.POS]: $pos[21],
                 enable: true,
                 "grpc-address": nix.thunk(() => nix.str`0.0.0.0:${nix.builtins.toString(grpcPort)}`),
                 objstore: objstore,
@@ -192,25 +132,25 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           specialisation: nix.thunk(() => ({
-            [nix.POS]: pos$32,
+            [nix.POS]: $pos[31],
             "prometheus-config-change": nix.thunk(() => ({
-              [nix.POS]: pos$31,
+              [nix.POS]: $pos[30],
               configuration: nix.thunk(() => ({
-                [nix.POS]: pos$30,
+                [nix.POS]: $pos[29],
                 environment: nix.thunk(() => ({
-                  [nix.POS]: pos$25,
+                  [nix.POS]: $pos[24],
                   systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "yq"))]),
                 })),
                 services: nix.thunk(() => ({
-                  [nix.POS]: pos$29,
+                  [nix.POS]: $pos[28],
                   prometheus: nix.thunk(() => ({
-                    [nix.POS]: pos$28,
+                    [nix.POS]: $pos[27],
                     scrapeConfigs: nix.thunk(() => [
                       nix.thunk(() => ({
-                        [nix.POS]: pos$27,
+                        [nix.POS]: $pos[26],
                         job_name: "garage-node_exporter",
                         static_configs: nix.thunk(() => [
-                          nix.thunk(() => ({ [nix.POS]: pos$26, targets: nix.thunk(() => ["garage:9100"]) })),
+                          nix.thunk(() => ({ [nix.POS]: $pos[25], targets: nix.thunk(() => ["garage:9100"]) })),
                         ]),
                       })),
                     ]),
@@ -225,27 +165,27 @@ export default nix.lambda((args) => (() => {
         const $_1 = nix.formals(args_1, formals$3);
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$40,
+          [nix.POS]: $pos[39],
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$34,
+            [nix.POS]: $pos[33],
             systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "jq"))]),
           })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$39,
+            [nix.POS]: $pos[38],
             thanos: nix.thunk(() => ({
-              [nix.POS]: pos$38,
+              [nix.POS]: $pos[37],
               query: nix.thunk(() => ({
-                [nix.POS]: pos$35,
+                [nix.POS]: $pos[34],
                 enable: true,
                 "http-address": nix.thunk(() => nix.str`0.0.0.0:${nix.builtins.toString(queryPort)}`),
                 endpoints: nix.thunk(() => [nix.thunk(() => nix.str`prometheus:${nix.builtins.toString(grpcPort)}`)]),
               })),
               "query-frontend": nix.thunk(() => ({
-                [nix.POS]: pos$37,
+                [nix.POS]: $pos[36],
                 enable: true,
                 "http-address": nix.thunk(() => nix.str`0.0.0.0:${nix.builtins.toString(frontPort)}`),
                 "query-frontend": nix.thunk(() => ({
-                  [nix.POS]: pos$36,
+                  [nix.POS]: $pos[35],
                   "downstream-url": nix.thunk(() => nix.str`http://127.0.0.1:${nix.builtins.toString(queryPort)}`),
                 })),
               })),
@@ -257,14 +197,14 @@ export default nix.lambda((args) => (() => {
         const $_1 = nix.formals(args_1, formals$4);
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$48,
+          [nix.POS]: $pos[47],
           virtualisation: nix.thunk(() => ({
-            [nix.POS]: pos$41,
+            [nix.POS]: $pos[40],
             diskSize: nix.thunk(() => nix.mul(2n, 1024n)),
             memorySize: 2048n,
           })),
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$42,
+            [nix.POS]: $pos[41],
             systemPackages: nix.thunk(() => (() => {
               const w = nix.withScope(pkgs, null);
               return [
@@ -275,11 +215,11 @@ export default nix.lambda((args) => (() => {
             })()),
           })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$47,
+            [nix.POS]: $pos[46],
             thanos: nix.thunk(() => ({
-              [nix.POS]: pos$46,
+              [nix.POS]: $pos[45],
               store: nix.thunk(() => ({
-                [nix.POS]: pos$43,
+                [nix.POS]: $pos[42],
                 enable: true,
                 "http-address": "0.0.0.0:10902",
                 "grpc-address": nix.thunk(() => nix.str`0.0.0.0:${nix.builtins.toString(grpcPort)}`),
@@ -287,14 +227,14 @@ export default nix.lambda((args) => (() => {
                 "sync-block-duration": "1s",
               })),
               compact: nix.thunk(() => ({
-                [nix.POS]: pos$44,
+                [nix.POS]: $pos[43],
                 enable: true,
                 "http-address": "0.0.0.0:10903",
                 objstore: objstore,
                 "consistency-delay": "5s",
               })),
               query: nix.thunk(() => ({
-                [nix.POS]: pos$45,
+                [nix.POS]: $pos[44],
                 enable: true,
                 "http-address": nix.thunk(() => nix.str`0.0.0.0:${nix.builtins.toString(queryPort)}`),
                 endpoints: nix.thunk(() => [nix.thunk(() => nix.str`localhost:${nix.builtins.toString(grpcPort)}`)]),
@@ -307,36 +247,36 @@ export default nix.lambda((args) => (() => {
         const $_1 = nix.formals(args_1, formals$5);
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$59,
-          virtualisation: nix.thunk(() => ({ [nix.POS]: pos$49, diskSize: nix.thunk(() => nix.mul(2n, 1024n)) })),
+          [nix.POS]: $pos[58],
+          virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[48], diskSize: nix.thunk(() => nix.mul(2n, 1024n)) })),
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$51,
-            firewall: nix.thunk(() => ({ [nix.POS]: pos$50, allowedTCPPorts: nix.thunk(() => [garagePort]) })),
+            [nix.POS]: $pos[50],
+            firewall: nix.thunk(() => ({ [nix.POS]: $pos[49], allowedTCPPorts: nix.thunk(() => [garagePort]) })),
           })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$58,
+            [nix.POS]: $pos[57],
             garage: nix.thunk(() => ({
-              [nix.POS]: pos$54,
+              [nix.POS]: $pos[53],
               enable: true,
               package: nix.thunk(() => nix.sel(pkgs, "garage_2")),
               settings: nix.thunk(() => ({
-                [nix.POS]: pos$53,
+                [nix.POS]: $pos[52],
                 rpc_bind_addr: "127.0.0.1:3901",
                 rpc_public_addr: "127.0.0.1:3901",
                 rpc_secret: "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
                 replication_factor: 1n,
                 s3_api: nix.thunk(() => ({
-                  [nix.POS]: pos$52,
+                  [nix.POS]: $pos[51],
                   s3_region: "garage",
                   api_bind_addr: nix.thunk(() => nix.str`0.0.0.0:${nix.builtins.toString(garagePort)}`),
                 })),
               })),
             })),
             prometheus: nix.thunk(() => ({
-              [nix.POS]: pos$57,
+              [nix.POS]: $pos[56],
               exporters: nix.thunk(() => ({
-                [nix.POS]: pos$56,
-                node: nix.thunk(() => ({ [nix.POS]: pos$55, enable: true, openFirewall: true })),
+                [nix.POS]: $pos[55],
+                node: nix.thunk(() => ({ [nix.POS]: $pos[54], enable: true, openFirewall: true })),
               })),
             })),
           })),

@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["description", 34, 5]], [["pname", 12, 3], ["src", 13, 21], ["version", 13, 25], ["pyproject", 14, 3], ["sourceRoot", 16, 3], ["build-system", 18, 3], ["dependencies", 20, 3], ["nativeCheckInputs", 27, 3], ["pytestFlags", 29, 3], ["meta", 33, 3]]]);
 const formals$1 = { args: { buildPythonPackage: false, acme: false, certbot: false, "google-api-python-client": false, "google-auth": false, pytestCheckHook: false, setuptools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["description", 34, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 12, 3], ["src", 13, 21], ["version", 13, 25], ["pyproject", 14, 3], ["sourceRoot", 16, 3], ["build-system", 18, 3], ["dependencies", 20, 3], ["nativeCheckInputs", 27, 3], ["pytestFlags", 29, 3], ["meta", 33, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,11 +25,11 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const pytestFlags = nix.thunk(() => ["-pno:cacheprovider"]);
       const meta = nix.thunk(() => nix.update(nix.sel(certbot, "meta"), {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Google Cloud DNS Authenticator plugin for Certbot",
       }));
       return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         pname,
         src,
         version,

@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 34, 5], ["repo", 35, 5], ["tag", 36, 5], ["fetchSubmodules", 37, 5], ["hash", 38, 5]], [["package", 97, 7], ["command", 98, 7]], [["version", 96, 11]], [["updateScript", 95, 5], ["tests", 96, 5]], [["description", 105, 5], ["homepage", 106, 5], ["license", 107, 5], ["platforms", 108, 5], ["maintainers", 109, 5], ["changelog", 110, 5], ["mainProgram", 111, 5]], [["pname", 30, 3], ["version", 31, 3], ["src", 33, 3], ["postPatch", 41, 3], ["mesonFlags", 50, 3], ["nativeBuildInputs", 55, 3], ["buildInputs", 66, 3], ["dontWrapQtApps", 77, 3], ["installPhase", 80, 3], ["passthru", 94, 3], ["meta", 104, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, gitUpdater: false, testers: false, fetchFromGitHub: false, meson: false, ninja: false, "pkg-config": false, bison: false, flex: false, libiconv: false, libpng: false, libjpeg: false, libwebp: false, zlib: false, withQt5: true, qt5: false, withQt6: true, qt6: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 34, 5], ["repo", 35, 5], ["tag", 36, 5], ["fetchSubmodules", 37, 5], ["hash", 38, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["package", 97, 7], ["command", 98, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 96, 11]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 95, 5], ["tests", 96, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 105, 5], ["homepage", 106, 5], ["license", 107, 5], ["platforms", 108, 5], ["maintainers", 109, 5], ["changelog", 110, 5], ["mainProgram", 111, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 30, 3], ["version", 31, 3], ["src", 33, 3], ["postPatch", 41, 3], ["mesonFlags", 50, 3], ["nativeBuildInputs", 55, 3], ["buildInputs", 66, 3], ["dontWrapQtApps", 77, 3], ["installPhase", 80, 3], ["passthru", 94, 3], ["meta", 104, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -35,11 +30,11 @@ export default nix.lambda((args) => (() => {
   const qt = nix.thunk(() => (nix.asBool(withQt5) ? nix.force(qt5) : nix.force(qt6)));
   const withGUI = nix.thunk(() => (nix.asBool(withQt5) || nix.asBool(withQt6)));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: nix.thunk(() => nix.add("alice-tools", nix.app(nix.sel(lib, "optionalString"), withGUI, nix.thunk(() => nix.str`-qt${nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(qt, "qtbase", "version")))}`)))),
       version: "0.13.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "nunuhara",
           repo: "alice-tools",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -59,19 +54,19 @@ export PATH=${nix.sel(qt, "qtbase", "dev")}/libexec:$PATH
       dontWrapQtApps: true,
       installPhase: nix.thunk(() => nix.add(nix.add("runHook preInstall\n\ninstall -Dm755 src/alice $out/bin/alice\n", nix.app(nix.sel(lib, "optionalString"), withGUI, "install -Dm755 src/galice $out/bin/galice\nwrapQtApp $out/bin/galice\n")), "\nrunHook postInstall\n")),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               command: nix.thunk(() => nix.add(nix.app(nix.sel(lib, "optionalString"), withGUI, "env QT_QPA_PLATFORM=minimal "), nix.str`${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))} --version`)),
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Tools for extracting/editing files from AliceSoft games",
         homepage: "https://github.com/nunuhara/alice-tools",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

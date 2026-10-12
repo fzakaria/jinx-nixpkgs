@@ -2,78 +2,13 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/synapse.nix", [[["nativeBuildInputs", 17, 9]], [["certificateFiles", 39, 20]], [["pki", 39, 16]], [["allowedTCPPorts", 46, 18]], [["hostName", 44, 9], ["domain", 45, 9], ["firewall", 46, 9]], [["m.server", 63, 17]], [["extraConfig", 59, 50]], [["/.well-known/matrix/server", 59, 21]], [["sslCertificate", 56, 11], ["sslCertificateKey", 57, 11], ["addSSL", 58, 11], ["locations", 59, 11]], [["enable", 54, 9], ["virtualHosts", 55, 9]], [["nginx", 53, 16]], [["security", 39, 7], ["networking", 43, 7], ["services", 53, 7]], [["server_name", 84, 13]], [["server_name", 85, 13]], [["names", 102, 17], ["compress", 103, 17]], [["port", 97, 13], ["type", 98, 13], ["tls", 99, 13], ["resources", 100, 13], ["bind_addresses", 106, 13]], [["names", 118, 17], ["compress", 121, 17]], [["names", 124, 17], ["compress", 127, 17]], [["port", 109, 13], ["bind_addresses", 110, 13], ["type", 113, 13], ["tls", 114, 13], ["x_forwarded", 115, 13], ["resources", 116, 13]], [["ip_range_blacklist", 81, 9], ["trusted_key_servers", 83, 9], ["registration_shared_secret", 88, 9], ["public_baseurl", 89, 9], ["tls_certificate_path", 90, 9], ["tls_private_key_path", 91, 9], ["listeners", 92, 9]], [["enable", 77, 7], ["settings", 78, 7]], [["maintainers", 138, 40]], [["smtp_host", 161, 17], ["smtp_port", 162, 17], ["require_transport_security", 163, 17], ["notif_from", 164, 17], ["app_name", 165, 17]], [["names", 173, 23], ["compress", 174, 23]], [["path", 169, 19], ["type", 170, 19], ["resources", 171, 19]], [["password", 181, 22]], [["name", 180, 17], ["args", 181, 17]], [["server_name", 159, 15], ["email", 160, 15], ["listeners", 167, 15], ["database", 179, 15], ["federation_sender_instances", 183, 15]], [["federation_sender", 187, 15]], [["settings", 158, 13], ["configureRedisLocally", 185, 13], ["workers", 186, 13]], [["enable", 193, 11], ["initialScript", 200, 11]], [["matrix-synapse", 155, 18], ["postgresql", 192, 18]], [["systemPackages", 209, 21]], [["imports", 151, 9], ["services", 155, 9], ["environment", 209, 9]], [["certificateFiles", 251, 22]], [["pki", 251, 18]], [["enable", 258, 20]], [["hostName", 256, 11], ["domain", 257, 11], ["firewall", 258, 11]], [["myhostname", 269, 13], ["mynetworks_style", 271, 13], ["debug_peer_level", 272, 13], ["smtpd_relay_restrictions", 273, 13], ["smtpd_tls_protocols", 279, 13], ["smtpd_tls_mandatory_protocols", 280, 13], ["smtpd_tls_chain_files", 281, 13]], [["main", 268, 20]], [["enable", 262, 11], ["enableSubmission", 263, 11], ["transport", 266, 11], ["settings", 268, 11]], [["postfix", 261, 18]], [["security", 251, 9], ["networking", 255, 9], ["services", 261, 9]], [["name", 305, 24]], [["database", 305, 15], ["server_name", 306, 15]], [["settings", 304, 13]], [["matrix-synapse", 301, 18]], [["imports", 297, 9], ["services", 301, 9]], [["permittedInsecurePackages", 320, 15]], [["config", 319, 13]], [["systemPackages", 315, 21]], [["certificateFiles", 326, 22]], [["pki", 326, 18]], [["isNormalUser", 329, 17]], [["isNormalUser", 330, 15]], [["alice", 329, 11], ["bob", 330, 11]], [["users", 328, 15]], [["useNetworkd", 333, 20]], [["_secret", 344, 34]], [["enabled", 342, 15], ["prometheus_enabled", 343, 15], ["anonymization_salt", 344, 15], ["raw_retention_days", 345, 15]], [["listen_addr", 337, 13], ["frontend_url", 338, 13], ["database_url", 339, 13], ["magic_token_secret", 340, 13], ["statistics", 341, 13]], [["enable", 335, 11], ["settings", 336, 11]], [["rust-federation-tester", 334, 18]], [["environment", 315, 9], ["security", 326, 9], ["users", 328, 9], ["networking", 333, 9], ["services", 334, 9]], [["synapse-with-workers", 142, 5], ["mailserver", 248, 5], ["synapse-minimal", 289, 5], ["client", 312, 5]], [["name", 136, 3], ["meta", 137, 3], ["nodes", 141, 3], ["testScript", 352, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/synapse.nix", [["nativeBuildInputs", 17, 9]]);
 const formals$2 = { args: { lib: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/synapse.nix", [["certificateFiles", 39, 20]]);
-const pos$3 = nix.positions(here + "/synapse.nix", [["pki", 39, 16]]);
-const pos$4 = nix.positions(here + "/synapse.nix", [["allowedTCPPorts", 46, 18]]);
-const pos$5 = nix.positions(here + "/synapse.nix", [["hostName", 44, 9], ["domain", 45, 9], ["firewall", 46, 9]]);
-const pos$6 = nix.positions(here + "/synapse.nix", [["m.server", 63, 17]]);
-const pos$7 = nix.positions(here + "/synapse.nix", [["extraConfig", 59, 50]]);
-const pos$8 = nix.positions(here + "/synapse.nix", [["/.well-known/matrix/server", 59, 21]]);
-const pos$9 = nix.positions(here + "/synapse.nix", [["sslCertificate", 56, 11], ["sslCertificateKey", 57, 11], ["addSSL", 58, 11], ["locations", 59, 11]]);
-const pos$10 = nix.positions(here + "/synapse.nix", [["enable", 54, 9], ["virtualHosts", 55, 9]]);
-const pos$11 = nix.positions(here + "/synapse.nix", [["nginx", 53, 16]]);
-const pos$12 = nix.positions(here + "/synapse.nix", [["security", 39, 7], ["networking", 43, 7], ["services", 53, 7]]);
-const pos$13 = nix.positions(here + "/synapse.nix", [["server_name", 84, 13]]);
-const pos$14 = nix.positions(here + "/synapse.nix", [["server_name", 85, 13]]);
-const pos$15 = nix.positions(here + "/synapse.nix", [["names", 102, 17], ["compress", 103, 17]]);
-const pos$16 = nix.positions(here + "/synapse.nix", [["port", 97, 13], ["type", 98, 13], ["tls", 99, 13], ["resources", 100, 13], ["bind_addresses", 106, 13]]);
-const pos$17 = nix.positions(here + "/synapse.nix", [["names", 118, 17], ["compress", 121, 17]]);
-const pos$18 = nix.positions(here + "/synapse.nix", [["names", 124, 17], ["compress", 127, 17]]);
-const pos$19 = nix.positions(here + "/synapse.nix", [["port", 109, 13], ["bind_addresses", 110, 13], ["type", 113, 13], ["tls", 114, 13], ["x_forwarded", 115, 13], ["resources", 116, 13]]);
-const pos$20 = nix.positions(here + "/synapse.nix", [["ip_range_blacklist", 81, 9], ["trusted_key_servers", 83, 9], ["registration_shared_secret", 88, 9], ["public_baseurl", 89, 9], ["tls_certificate_path", 90, 9], ["tls_private_key_path", 91, 9], ["listeners", 92, 9]]);
-const pos$21 = nix.positions(here + "/synapse.nix", [["enable", 77, 7], ["settings", 78, 7]]);
-const pos$22 = nix.positions(here + "/synapse.nix", [["maintainers", 138, 40]]);
 const formals$3 = { args: { lib: false, config: false, pkgs: false, nodes: false }, ellipsis: true };
-const pos$23 = nix.positions(here + "/synapse.nix", [["smtp_host", 161, 17], ["smtp_port", 162, 17], ["require_transport_security", 163, 17], ["notif_from", 164, 17], ["app_name", 165, 17]]);
-const pos$24 = nix.positions(here + "/synapse.nix", [["names", 173, 23], ["compress", 174, 23]]);
-const pos$25 = nix.positions(here + "/synapse.nix", [["path", 169, 19], ["type", 170, 19], ["resources", 171, 19]]);
-const pos$26 = nix.positions(here + "/synapse.nix", [["password", 181, 22]]);
-const pos$27 = nix.positions(here + "/synapse.nix", [["name", 180, 17], ["args", 181, 17]]);
-const pos$28 = nix.positions(here + "/synapse.nix", [["server_name", 159, 15], ["email", 160, 15], ["listeners", 167, 15], ["database", 179, 15], ["federation_sender_instances", 183, 15]]);
-const pos$29 = nix.positions(here + "/synapse.nix", [["federation_sender", 187, 15]]);
-const pos$30 = nix.positions(here + "/synapse.nix", [["settings", 158, 13], ["configureRedisLocally", 185, 13], ["workers", 186, 13]]);
-const pos$31 = nix.positions(here + "/synapse.nix", [["enable", 193, 11], ["initialScript", 200, 11]]);
-const pos$32 = nix.positions(here + "/synapse.nix", [["matrix-synapse", 155, 18], ["postgresql", 192, 18]]);
-const pos$33 = nix.positions(here + "/synapse.nix", [["systemPackages", 209, 21]]);
-const pos$34 = nix.positions(here + "/synapse.nix", [["imports", 151, 9], ["services", 155, 9], ["environment", 209, 9]]);
 const formals$4 = { args: { lib: false }, ellipsis: true };
-const pos$35 = nix.positions(here + "/synapse.nix", [["certificateFiles", 251, 22]]);
-const pos$36 = nix.positions(here + "/synapse.nix", [["pki", 251, 18]]);
-const pos$37 = nix.positions(here + "/synapse.nix", [["enable", 258, 20]]);
-const pos$38 = nix.positions(here + "/synapse.nix", [["hostName", 256, 11], ["domain", 257, 11], ["firewall", 258, 11]]);
-const pos$39 = nix.positions(here + "/synapse.nix", [["myhostname", 269, 13], ["mynetworks_style", 271, 13], ["debug_peer_level", 272, 13], ["smtpd_relay_restrictions", 273, 13], ["smtpd_tls_protocols", 279, 13], ["smtpd_tls_mandatory_protocols", 280, 13], ["smtpd_tls_chain_files", 281, 13]]);
-const pos$40 = nix.positions(here + "/synapse.nix", [["main", 268, 20]]);
-const pos$41 = nix.positions(here + "/synapse.nix", [["enable", 262, 11], ["enableSubmission", 263, 11], ["transport", 266, 11], ["settings", 268, 11]]);
-const pos$42 = nix.positions(here + "/synapse.nix", [["postfix", 261, 18]]);
-const pos$43 = nix.positions(here + "/synapse.nix", [["security", 251, 9], ["networking", 255, 9], ["services", 261, 9]]);
 const formals$5 = { args: { nodes: false, config: false, lib: false }, ellipsis: true };
-const pos$44 = nix.positions(here + "/synapse.nix", [["name", 305, 24]]);
-const pos$45 = nix.positions(here + "/synapse.nix", [["database", 305, 15], ["server_name", 306, 15]]);
-const pos$46 = nix.positions(here + "/synapse.nix", [["settings", 304, 13]]);
-const pos$47 = nix.positions(here + "/synapse.nix", [["matrix-synapse", 301, 18]]);
-const pos$48 = nix.positions(here + "/synapse.nix", [["imports", 297, 9], ["services", 301, 9]]);
 const formals$6 = { args: { pkgs: false }, ellipsis: true };
-const pos$49 = nix.positions(here + "/synapse.nix", [["permittedInsecurePackages", 320, 15]]);
-const pos$50 = nix.positions(here + "/synapse.nix", [["config", 319, 13]]);
-const pos$51 = nix.positions(here + "/synapse.nix", [["systemPackages", 315, 21]]);
-const pos$52 = nix.positions(here + "/synapse.nix", [["certificateFiles", 326, 22]]);
-const pos$53 = nix.positions(here + "/synapse.nix", [["pki", 326, 18]]);
-const pos$54 = nix.positions(here + "/synapse.nix", [["isNormalUser", 329, 17]]);
-const pos$55 = nix.positions(here + "/synapse.nix", [["isNormalUser", 330, 15]]);
-const pos$56 = nix.positions(here + "/synapse.nix", [["alice", 329, 11], ["bob", 330, 11]]);
-const pos$57 = nix.positions(here + "/synapse.nix", [["users", 328, 15]]);
-const pos$58 = nix.positions(here + "/synapse.nix", [["useNetworkd", 333, 20]]);
-const pos$59 = nix.positions(here + "/synapse.nix", [["_secret", 344, 34]]);
-const pos$60 = nix.positions(here + "/synapse.nix", [["enabled", 342, 15], ["prometheus_enabled", 343, 15], ["anonymization_salt", 344, 15], ["raw_retention_days", 345, 15]]);
-const pos$61 = nix.positions(here + "/synapse.nix", [["listen_addr", 337, 13], ["frontend_url", 338, 13], ["database_url", 339, 13], ["magic_token_secret", 340, 13], ["statistics", 341, 13]]);
-const pos$62 = nix.positions(here + "/synapse.nix", [["enable", 335, 11], ["settings", 336, 11]]);
-const pos$63 = nix.positions(here + "/synapse.nix", [["rust-federation-tester", 334, 18]]);
-const pos$64 = nix.positions(here + "/synapse.nix", [["environment", 315, 9], ["security", 326, 9], ["users", 328, 9], ["networking", 333, 9], ["services", 334, 9]]);
-const pos$65 = nix.positions(here + "/synapse.nix", [["synapse-with-workers", 142, 5], ["mailserver", 248, 5], ["synapse-minimal", 289, 5], ["client", 312, 5]]);
-const pos$66 = nix.positions(here + "/synapse.nix", [["name", 136, 3], ["meta", 137, 3], ["nodes", 141, 3], ["testScript", 352, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -86,7 +21,7 @@ export default nix.lambda((args) => (() => {
   const bobName = "bob";
   const bobPassword = "hunter2";
   const mkBundle = (domain) => nix.app(nix.sel(pkgs, "runCommand"), nix.thunk(() => nix.str`bundle-${domain}`), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "minica"))]),
     })), nix.thunk(() => nix.str`minica -ca-cert ${ca_pem} -ca-key ${ca_key} \\
   -domains ${domain}
@@ -103,37 +38,37 @@ install -Dm444 -t $out ${domain}/{key,cert}.pem
       const $_1 = nix.formals(args_1, formals$2);
       const lib = nix.arg($_1, "lib");
       return {
-        [nix.POS]: pos$12,
+        [nix.POS]: $pos[11],
         security: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           pki: nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             certificateFiles: nix.thunk(() => [nix.thunk(() => nix.sel(mailerCerts, "ca", "cert"))]),
           })),
         })),
         networking: nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           hostName: nix.thunk(() => nix.app(nix.sel(lib, "head"), nix.thunk(() => nix.app(nix.sel(lib, "strings", "splitString"), ".", domain)))),
           domain: nix.thunk(() => nix.app(nix.sel(lib, "last"), nix.thunk(() => nix.app(nix.sel(lib, "strings", "splitString"), ".", domain)))),
-          firewall: nix.thunk(() => ({ [nix.POS]: pos$4, allowedTCPPorts: nix.thunk(() => [80n, 443n, 8448n]) })),
+          firewall: nix.thunk(() => ({ [nix.POS]: $pos[3], allowedTCPPorts: nix.thunk(() => [80n, 443n, 8448n]) })),
         })),
         services: nix.thunk(() => ({
-          [nix.POS]: pos$11,
+          [nix.POS]: $pos[10],
           nginx: nix.thunk(() => ({
-            [nix.POS]: pos$10,
+            [nix.POS]: $pos[9],
             enable: true,
             virtualHosts: nix.thunk(() => nix.attrsDyn({}, [
               [nix.str`${domain}`, nix.thunk(() => ({
-                [nix.POS]: pos$9,
+                [nix.POS]: $pos[8],
                 sslCertificate: nix.thunk(() => nix.str`${bundle}/cert.pem`),
                 sslCertificateKey: nix.thunk(() => nix.str`${bundle}/key.pem`),
                 addSSL: true,
                 locations: nix.thunk(() => ({
-                  [nix.POS]: pos$8,
+                  [nix.POS]: $pos[7],
                   "/.well-known/matrix/server": nix.thunk(() => ({
-                    [nix.POS]: pos$7,
+                    [nix.POS]: $pos[6],
                     extraConfig: nix.thunk(() => nix.str`default_type application/json;
-return 200 '${nix.builtins.toJSON(nix.thunk(() => ({ [nix.POS]: pos$6, "m.server": nix.thunk(() => nix.str`${domain}:8448`) })))}';
+return 200 '${nix.builtins.toJSON(nix.thunk(() => ({ [nix.POS]: $pos[5], "m.server": nix.thunk(() => nix.str`${domain}:8448`) })))}';
 `),
                   })),
                 })),
@@ -147,14 +82,14 @@ return 200 '${nix.builtins.toJSON(nix.thunk(() => ({ [nix.POS]: pos$6, "m.server
   const mkSynapseConfig = (domain) => (primaryIP) => (() => {
     const bundle = nix.thunk(() => nix.app(mkBundle, domain));
     return {
-      [nix.POS]: pos$21,
+      [nix.POS]: $pos[20],
       enable: true,
       settings: nix.thunk(() => ({
-        [nix.POS]: pos$20,
+        [nix.POS]: $pos[19],
         ip_range_blacklist: [],
         trusted_key_servers: nix.thunk(() => [
-          nix.thunk(() => ({ [nix.POS]: pos$13, server_name: "hs1.test" })),
-          nix.thunk(() => ({ [nix.POS]: pos$14, server_name: "hs2.test" })),
+          nix.thunk(() => ({ [nix.POS]: $pos[12], server_name: "hs1.test" })),
+          nix.thunk(() => ({ [nix.POS]: $pos[13], server_name: "hs2.test" })),
         ]),
         registration_shared_secret: registrationSharedSecret,
         public_baseurl: nix.thunk(() => nix.str`https://${domain}`),
@@ -162,25 +97,25 @@ return 200 '${nix.builtins.toJSON(nix.thunk(() => ({ [nix.POS]: pos$6, "m.server
         tls_private_key_path: nix.thunk(() => nix.str`${bundle}/key.pem`),
         listeners: nix.thunk(() => [
           nix.thunk(() => ({
-            [nix.POS]: pos$16,
+            [nix.POS]: $pos[15],
             port: 8008n,
             type: "http",
             tls: false,
             resources: nix.thunk(() => [
-              nix.thunk(() => ({ [nix.POS]: pos$15, names: nix.thunk(() => ["client"]), compress: true })),
+              nix.thunk(() => ({ [nix.POS]: $pos[14], names: nix.thunk(() => ["client"]), compress: true })),
             ]),
             bind_addresses: nix.thunk(() => ["::1"]),
           })),
           nix.thunk(() => ({
-            [nix.POS]: pos$19,
+            [nix.POS]: $pos[18],
             port: 8448n,
             bind_addresses: nix.thunk(() => [primaryIP]),
             type: "http",
             tls: true,
             x_forwarded: false,
             resources: nix.thunk(() => [
-              nix.thunk(() => ({ [nix.POS]: pos$17, names: nix.thunk(() => ["client"]), compress: true })),
-              nix.thunk(() => ({ [nix.POS]: pos$18, names: nix.thunk(() => ["federation"]), compress: false })),
+              nix.thunk(() => ({ [nix.POS]: $pos[16], names: nix.thunk(() => ["client"]), compress: true })),
+              nix.thunk(() => ({ [nix.POS]: $pos[17], names: nix.thunk(() => ["federation"]), compress: false })),
             ]),
           })),
         ]),
@@ -188,17 +123,17 @@ return 200 '${nix.builtins.toJSON(nix.thunk(() => ({ [nix.POS]: pos$6, "m.server
     };
   })();
   return {
-    [nix.POS]: pos$66,
+    [nix.POS]: $pos[65],
     name: "matrix-synapse",
     meta: nix.thunk(() => (() => {
       const from = nix.thunk(() => nix.sel(pkgs, "matrix-synapse", "meta"));
       return {
-      [nix.POS]: pos$22,
+      [nix.POS]: $pos[21],
       maintainers: nix.thunk(() => nix.attr(from, "maintainers")),
     };
     })()),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$65,
+      [nix.POS]: $pos[64],
       "synapse-with-workers": nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$3);
         const lib = nix.arg($_1, "lib");
@@ -206,19 +141,19 @@ return 200 '${nix.builtins.toJSON(nix.thunk(() => ({ [nix.POS]: pos$6, "m.server
         const pkgs_1 = nix.arg($_1, "pkgs");
         const nodes = nix.arg($_1, "nodes");
         return {
-          [nix.POS]: pos$34,
+          [nix.POS]: $pos[33],
           imports: nix.thunk(() => [nix.thunk(() => nix.app(mkHomeserverBase, "hs1.test", nodes))]),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$32,
+            [nix.POS]: $pos[31],
             "matrix-synapse": nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
                 nix.thunk(() => nix.app(mkSynapseConfig, "hs1.test", nix.thunk(() => nix.sel(config, "networking", "primaryIPAddress")))),
                 nix.thunk(() => ({
-                  [nix.POS]: pos$30,
+                  [nix.POS]: $pos[29],
                   settings: nix.thunk(() => ({
-                    [nix.POS]: pos$28,
+                    [nix.POS]: $pos[27],
                     server_name: "hs1.test",
                     email: nix.thunk(() => ({
-                      [nix.POS]: pos$23,
+                      [nix.POS]: $pos[22],
                       smtp_host: mailerDomain,
                       smtp_port: 25n,
                       require_transport_security: true,
@@ -227,33 +162,37 @@ return 200 '${nix.builtins.toJSON(nix.thunk(() => ({ [nix.POS]: pos$6, "m.server
                     })),
                     listeners: nix.thunk(() => [
                       nix.thunk(() => ({
-                        [nix.POS]: pos$25,
+                        [nix.POS]: $pos[24],
                         path: "/run/matrix-synapse/main_replication.sock",
                         type: "http",
                         resources: nix.thunk(() => [
-                          nix.thunk(() => ({ [nix.POS]: pos$24, names: nix.thunk(() => ["replication"]), compress: false })),
+                          nix.thunk(() => ({
+                            [nix.POS]: $pos[23],
+                            names: nix.thunk(() => ["replication"]),
+                            compress: false,
+                          })),
                         ]),
                       })),
                     ]),
                     database: nix.thunk(() => ({
-                      [nix.POS]: pos$27,
+                      [nix.POS]: $pos[26],
                       name: "psycopg2",
-                      args: nix.thunk(() => ({ [nix.POS]: pos$26, password: "synapse" })),
+                      args: nix.thunk(() => ({ [nix.POS]: $pos[25], password: "synapse" })),
                     })),
                     federation_sender_instances: nix.thunk(() => ["federation_sender"]),
                   })),
                   configureRedisLocally: true,
-                  workers: nix.thunk(() => ({ [nix.POS]: pos$29, federation_sender: nix.thunk(() => ({})) })),
+                  workers: nix.thunk(() => ({ [nix.POS]: $pos[28], federation_sender: nix.thunk(() => ({})) })),
                 })),
               ]))),
             postgresql: nix.thunk(() => ({
-              [nix.POS]: pos$31,
+              [nix.POS]: $pos[30],
               enable: true,
               initialScript: nix.thunk(() => nix.app(nix.sel(pkgs_1, "writeText"), "synapse-init.sql", "CREATE ROLE \"matrix-synapse\" WITH LOGIN PASSWORD 'synapse';\nCREATE DATABASE \"matrix-synapse\" WITH OWNER \"matrix-synapse\"\n  TEMPLATE template0\n  LC_COLLATE = \"C\"\n  LC_CTYPE = \"C\";\n")),
             })),
           })),
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$33,
+            [nix.POS]: $pos[32],
             systemPackages: nix.thunk(() => (() => {
               const sendTestMailStarttls = nix.thunk(() => nix.app(nix.sel(pkgs_1, "writeScriptBin"), "send-testmail-starttls", nix.thunk(() => nix.str`#!${nix.sel(pkgs_1, "python3", "interpreter")}
 import smtplib
@@ -290,31 +229,31 @@ curl --fail -XPOST 'https://hs1.test:8448/_matrix/client/r0/account/password/ema
         const $_1 = nix.formals(args_1, formals$4);
         const lib = nix.arg($_1, "lib");
         return {
-          [nix.POS]: pos$43,
+          [nix.POS]: $pos[42],
           security: nix.thunk(() => ({
-            [nix.POS]: pos$36,
+            [nix.POS]: $pos[35],
             pki: nix.thunk(() => ({
-              [nix.POS]: pos$35,
+              [nix.POS]: $pos[34],
               certificateFiles: nix.thunk(() => [nix.thunk(() => nix.sel(mailerCerts, "ca", "cert"))]),
             })),
           })),
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$38,
+            [nix.POS]: $pos[37],
             hostName: nix.thunk(() => nix.app(nix.sel(lib, "head"), nix.thunk(() => nix.app(nix.sel(lib, "strings", "splitString"), ".", mailerDomain)))),
             domain: nix.thunk(() => nix.app(nix.sel(lib, "last"), nix.thunk(() => nix.app(nix.sel(lib, "strings", "splitString"), ".", mailerDomain)))),
-            firewall: nix.thunk(() => ({ [nix.POS]: pos$37, enable: false })),
+            firewall: nix.thunk(() => ({ [nix.POS]: $pos[36], enable: false })),
           })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$42,
+            [nix.POS]: $pos[41],
             postfix: nix.thunk(() => ({
-              [nix.POS]: pos$41,
+              [nix.POS]: $pos[40],
               enable: true,
               enableSubmission: true,
               transport: "example.com discard:silently",
               settings: nix.thunk(() => ({
-                [nix.POS]: pos$40,
+                [nix.POS]: $pos[39],
                 main: nix.thunk(() => ({
-                  [nix.POS]: pos$39,
+                  [nix.POS]: $pos[38],
                   myhostname: nix.thunk(() => nix.str`${mailerDomain}`),
                   mynetworks_style: "subnet",
                   debug_peer_level: "10",
@@ -337,17 +276,17 @@ curl --fail -XPOST 'https://hs1.test:8448/_matrix/client/r0/account/password/ema
         const config = nix.arg($_1, "config");
         const lib = nix.arg($_1, "lib");
         return {
-          [nix.POS]: pos$48,
+          [nix.POS]: $pos[47],
           imports: nix.thunk(() => [nix.thunk(() => nix.app(mkHomeserverBase, "hs2.test", nodes))]),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$47,
+            [nix.POS]: $pos[46],
             "matrix-synapse": nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
                 nix.thunk(() => nix.app(mkSynapseConfig, "hs2.test", nix.thunk(() => nix.sel(config, "networking", "primaryIPAddress")))),
                 nix.thunk(() => ({
-                  [nix.POS]: pos$46,
+                  [nix.POS]: $pos[45],
                   settings: nix.thunk(() => ({
-                    [nix.POS]: pos$45,
-                    database: nix.thunk(() => ({ [nix.POS]: pos$44, name: "sqlite3" })),
+                    [nix.POS]: $pos[44],
+                    database: nix.thunk(() => ({ [nix.POS]: $pos[43], name: "sqlite3" })),
                     server_name: "hs2.test",
                   })),
                 })),
@@ -359,14 +298,14 @@ curl --fail -XPOST 'https://hs1.test:8448/_matrix/client/r0/account/password/ema
         const $_1 = nix.formals(args_1, formals$6);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$64,
+          [nix.POS]: $pos[63],
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$51,
+            [nix.POS]: $pos[50],
             systemPackages: nix.thunk(() => [
               nix.thunk(() => nix.sel(nix.app(nix.builtins.import(nix.thunk(() => nix.sel(pkgs_1, "path"))), nix.thunk(() => ({
-                  [nix.POS]: pos$50,
+                  [nix.POS]: $pos[49],
                   config: nix.thunk(() => nix.update(nix.sel(pkgs_1, "config"), {
-                    [nix.POS]: pos$49,
+                    [nix.POS]: $pos[48],
                     permittedInsecurePackages: nix.thunk(() => ["olm-3.2.16"]),
                   })),
                 }))), "matrix-commander")),
@@ -374,37 +313,37 @@ curl --fail -XPOST 'https://hs1.test:8448/_matrix/client/r0/account/password/ema
             ]),
           })),
           security: nix.thunk(() => ({
-            [nix.POS]: pos$53,
+            [nix.POS]: $pos[52],
             pki: nix.thunk(() => ({
-              [nix.POS]: pos$52,
+              [nix.POS]: $pos[51],
               certificateFiles: nix.thunk(() => [nix.thunk(() => nix.sel(mailerCerts, "ca", "cert"))]),
             })),
           })),
           users: nix.thunk(() => ({
-            [nix.POS]: pos$57,
+            [nix.POS]: $pos[56],
             users: nix.thunk(() => ({
-              [nix.POS]: pos$56,
-              alice: nix.thunk(() => ({ [nix.POS]: pos$54, isNormalUser: true })),
-              bob: nix.thunk(() => ({ [nix.POS]: pos$55, isNormalUser: true })),
+              [nix.POS]: $pos[55],
+              alice: nix.thunk(() => ({ [nix.POS]: $pos[53], isNormalUser: true })),
+              bob: nix.thunk(() => ({ [nix.POS]: $pos[54], isNormalUser: true })),
             })),
           })),
-          networking: nix.thunk(() => ({ [nix.POS]: pos$58, useNetworkd: true })),
+          networking: nix.thunk(() => ({ [nix.POS]: $pos[57], useNetworkd: true })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$63,
+            [nix.POS]: $pos[62],
             "rust-federation-tester": nix.thunk(() => ({
-              [nix.POS]: pos$62,
+              [nix.POS]: $pos[61],
               enable: true,
               settings: nix.thunk(() => ({
-                [nix.POS]: pos$61,
+                [nix.POS]: $pos[60],
                 listen_addr: "unix:/run/rust-federation-tester/rust-federation-tester.sock",
                 frontend_url: "http://localhost:8080",
                 database_url: "sqlite:///var/lib/rust-federation-tester/db?mode=rwc",
                 magic_token_secret: "foobarfoobarfoobarfoobarfoobarfoobarfoobarfoobarfoobarfoobar",
                 statistics: nix.thunk(() => ({
-                  [nix.POS]: pos$60,
+                  [nix.POS]: $pos[59],
                   enabled: true,
                   prometheus_enabled: true,
-                  anonymization_salt: nix.thunk(() => ({ [nix.POS]: pos$59, _secret: nix.thunk(() => nix.str`${anonHashF}`) })),
+                  anonymization_salt: nix.thunk(() => ({ [nix.POS]: $pos[58], _secret: nix.thunk(() => nix.str`${anonHashF}`) })),
                   raw_retention_days: 30n,
                 })),
               })),

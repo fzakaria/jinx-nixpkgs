@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["version", 13, 9], ["sha256", 14, 9]], [["version", 18, 9], ["sha256", 19, 9]], [["url", 28, 5], ["sha256", 29, 21]], [["homepage", 44, 5], ["description", 45, 5], ["license", 46, 5], ["maintainers", 47, 5], ["broken", 48, 5], ["platforms", 49, 26]], [["pname", 24, 3], ["version", 25, 19], ["src", 27, 3], ["nativeBuildInputs", 32, 3], ["strictDeps", 37, 3], ["installTargets", 39, 3], ["createFindlibDestdir", 41, 3], ["meta", 43, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, ocaml: false, findlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["version", 13, 9], ["sha256", 14, 9]]);
-const pos$2 = nix.positions(here + "/default.nix", [["version", 18, 9], ["sha256", 19, 9]]);
-const pos$3 = nix.positions(here + "/default.nix", [["url", 28, 5], ["sha256", 29, 21]]);
-const pos$4 = nix.positions(here + "/default.nix", [["homepage", 44, 5], ["description", 45, 5], ["license", 46, 5], ["maintainers", 47, 5], ["broken", 48, 5], ["platforms", 49, 26]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 24, 3], ["version", 25, 19], ["src", 27, 3], ["nativeBuildInputs", 32, 3], ["strictDeps", 37, 3], ["installTargets", 39, 3], ["createFindlibDestdir", 41, 3], ["meta", 43, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,20 +13,20 @@ export default nix.lambda((args) => (() => {
   const ocaml = nix.arg($, "ocaml");
   const findlib = nix.arg($, "findlib");
   const param = nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(ocaml, "version")), "4.02")) ? {
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     version: "0.6",
     sha256: "18wpyxblz9jh5bfp0hpffnd0q8cq1b0dqp0f36vhqydfknlnpx8y",
   } : {
-    [nix.POS]: pos$2,
+    [nix.POS]: $pos[1],
     version: "0.5",
     sha256: "1j17rhifdjv1z262dma148ywg34x0zjn8vczdrnkwajsm4qg1hw3",
   }));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: nix.thunk(() => nix.str`ocaml${nix.sel(ocaml, "version")}-functory`),
       version: nix.thunk(() => nix.attr(param, "version")),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           url: nix.thunk(() => nix.str`https://www.lri.fr/~filliatr/functory/download/functory-${nix.sel(param, "version")}.tar.gz`),
           sha256: nix.thunk(() => nix.attr(param, "sha256")),
         })))),
@@ -41,7 +37,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(ocaml, "meta"));
         return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://www.lri.fr/~filliatr/functory/",
         description: "Distributed computing library for Objective Caml which facilitates distributed execution of parallelizable computations in a seamless fashion",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21")),

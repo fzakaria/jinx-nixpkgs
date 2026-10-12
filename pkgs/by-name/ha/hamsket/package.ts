@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 13, 5], ["sha256", 14, 5]], [["desktopName", 19, 7], ["name", 20, 7], ["exec", 21, 7], ["icon", 22, 7], ["categories", 23, 7]], [["pname", 28, 13], ["version", 28, 19], ["src", 28, 27]], [["description", 42, 5], ["homepage", 43, 5], ["license", 44, 5], ["maintainers", 45, 5], ["platforms", 46, 5], ["sourceProvenance", 47, 5]], [["pname", 33, 11], ["version", 33, 17], ["src", 33, 25], ["extraInstallCommands", 35, 3], ["meta", 41, 3]]]);
 const formals$1 = { args: { lib: false, appimageTools: false, fetchurl: false, makeDesktopItem: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 13, 5], ["sha256", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["desktopName", 19, 7], ["name", 20, 7], ["exec", 21, 7], ["icon", 22, 7], ["categories", 23, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 28, 13], ["version", 28, 19], ["src", 28, 27]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 42, 5], ["homepage", 43, 5], ["license", 44, 5], ["maintainers", 45, 5], ["platforms", 46, 5], ["sourceProvenance", 47, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 33, 11], ["version", 33, 17], ["src", 33, 25], ["extraInstallCommands", 35, 3], ["meta", 41, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,21 +14,21 @@ export default nix.lambda((args) => (() => {
   const pname = "hamsket";
   const version = "0.6.5";
   const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: nix.thunk(() => nix.str`https://github.com/TheGoddessInari/hamsket/releases/download/nightly/Hamsket-${version}.AppImage`),
       sha256: "sha256-r85ZwcalBd/nCIBxOaQk7XClxj7VZtxwky4eWWm2tZ8=",
     }))));
   const desktopItem = nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       desktopName: "Hamsket",
       name: pname,
       exec: pname,
       icon: pname,
       categories: nix.thunk(() => ["Network"]),
     }))));
-  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: pos$3, pname: pname, version: version, src: src }))));
+  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: $pos[2], pname: pname, version: version, src: src }))));
   return nix.app(nix.sel(appimageTools, "wrapType2"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: pname,
       version: version,
       src: src,
@@ -41,7 +37,7 @@ install -Dm644 ${appimageContents}/usr/share/icons/hicolor/256x256/apps/hamsket*
 install -Dm644 ${desktopItem}/share/applications/* $out/share/applications
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Free and open source messaging and emailing app that combines common web applications into one",
         homepage: "https://github.com/TheGoddessInari/hamsket",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

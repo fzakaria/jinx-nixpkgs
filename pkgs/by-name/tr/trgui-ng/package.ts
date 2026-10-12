@@ -2,16 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]], [["description", 28, 5], ["homepage", 29, 5], ["license", 30, 5], ["maintainers", 31, 5]], [["TRGUING_VERSION", 49, 9]], [["description", 52, 7]], [["pname", 35, 5], ["version", 36, 13], ["src", 36, 21], ["npmDepsHash", 37, 5], ["npmBuildScript", 39, 5], ["installPhase", 41, 5], ["env", 49, 5], ["meta", 51, 5]], [["extraArgs", 96, 7]], [["updateScript", 95, 5], ["frontend", 101, 13]], [["mainProgram", 105, 5]], [["pname", 58, 3], ["version", 59, 11], ["src", 59, 19], ["cargoHash", 61, 3], ["postPatch", 63, 3], ["nativeBuildInputs", 76, 3], ["buildInputs", 81, 3], ["cargoRoot", 91, 3], ["buildAndTestSubdir", 92, 3], ["passthru", 94, 3], ["meta", 104, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, "alsa-lib": false, buildNpmPackage: false, "cargo-tauri": false, "dbip-country-lite": false, glib: false, "libayatana-appindicator": false, "nix-update-script": false, openssl: false, "pkg-config": false, rustPlatform: false, webkitgtk_4_1: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 28, 5], ["homepage", 29, 5], ["license", 30, 5], ["maintainers", 31, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["TRGUING_VERSION", 49, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 52, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 35, 5], ["version", 36, 13], ["src", 36, 21], ["npmDepsHash", 37, 5], ["npmBuildScript", 39, 5], ["installPhase", 41, 5], ["env", 49, 5], ["meta", 51, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["extraArgs", 96, 7]]);
-const pos$7 = nix.positions(here + "/package.nix", [["updateScript", 95, 5], ["frontend", 101, 13]]);
-const pos$8 = nix.positions(here + "/package.nix", [["mainProgram", 105, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["pname", 58, 3], ["version", 59, 11], ["src", 59, 19], ["cargoHash", 61, 3], ["postPatch", 63, 3], ["nativeBuildInputs", 76, 3], ["buildInputs", 81, 3], ["cargoRoot", 91, 3], ["buildAndTestSubdir", 92, 3], ["passthru", 94, 3], ["meta", 104, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,14 +23,14 @@ export default nix.lambda((args) => (() => {
   const webkitgtk_4_1 = nix.arg($, "webkitgtk_4_1");
   const version = "1.5.1";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "openscopeproject",
       repo: "TrguiNG",
       tag: nix.thunk(() => nix.str`v${version}`),
       hash: "sha256-IcOkKYxkU7c+sIPcig10sR1L66xb7oYim7KALWsz9rQ=",
     }))));
   const meta = nix.thunk(() => ({
-    [nix.POS]: pos$2,
+    [nix.POS]: $pos[1],
     description: "Remote GUI for Transmission torrent daemon",
     homepage: "https://github.com/openscopeproject/TrguiNG",
     license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Plus")),
@@ -48,7 +40,7 @@ export default nix.lambda((args) => (() => {
     })()),
   }));
   const frontend = nix.thunk(() => nix.app(buildNpmPackage, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "TrguiNG-frontend",
       version: version,
       src: src,
@@ -56,13 +48,13 @@ export default nix.lambda((args) => (() => {
       npmBuildScript: "webpack-prod",
       installPhase: "runHook preInstall\n\ncp -r dist/ $out\n\nrunHook postInstall\n",
       env: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         TRGUING_VERSION: nix.thunk(() => nix.sel(finalAttrs, "version")),
       })),
-      meta: nix.thunk(() => nix.update(meta, { [nix.POS]: pos$4, description: "Web UI for Transmission torrent daemon" })),
+      meta: nix.thunk(() => nix.update(meta, { [nix.POS]: $pos[3], description: "Web UI for Transmission torrent daemon" })),
     })));
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       pname: "TrguiNG",
       version: version,
       src: src,
@@ -81,11 +73,11 @@ substituteInPlace src-tauri/tauri.conf.json \\
       cargoRoot: "src-tauri",
       buildAndTestSubdir: "src-tauri",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$7,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$6, extraArgs: nix.thunk(() => ["-s", "frontend"]) })))),
+        [nix.POS]: $pos[6],
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: $pos[5], extraArgs: nix.thunk(() => ["-s", "frontend"]) })))),
         frontend: frontend,
       })),
-      meta: nix.thunk(() => nix.update(meta, { [nix.POS]: pos$8, mainProgram: "TrguiNG" })),
+      meta: nix.thunk(() => nix.update(meta, { [nix.POS]: $pos[7], mainProgram: "TrguiNG" })),
     }));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

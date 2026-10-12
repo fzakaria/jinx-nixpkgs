@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 23, 26], ["version", 23, 32], ["hash", 24, 5]], [["homepage", 55, 5], ["description", 56, 5], ["changelog", 57, 5], ["license", 58, 5], ["maintainers", 59, 5]], [["pname", 18, 3], ["version", 19, 3], ["pyproject", 20, 3], ["src", 22, 3], ["pythonRelaxDeps", 27, 3], ["build-system", 33, 3], ["dependencies", 38, 3], ["doCheck", 50, 3], ["pythonImportsCheck", 52, 3], ["meta", 54, 3]]]);
 const formals$1 = { args: { lib: false, astunparse: false, build: false, buildPythonPackage: false, execnb: false, fastcore: false, fastgit: false, fetchPypi: false, ghapi: false, ipywidgets: false, pyyaml: false, setuptools: false, watchdog: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 23, 26], ["version", 23, 32], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 55, 5], ["description", 56, 5], ["changelog", 57, 5], ["license", 58, 5], ["maintainers", 59, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 18, 3], ["version", 19, 3], ["pyproject", 20, 3], ["src", 22, 3], ["pythonRelaxDeps", 27, 3], ["build-system", 33, 3], ["dependencies", 38, 3], ["doCheck", 50, 3], ["pythonImportsCheck", 52, 3], ["meta", 54, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const setuptools = nix.arg($, "setuptools");
   const watchdog = nix.arg($, "watchdog");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "nbdev",
       version: "3.3.12",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-D5je848qb6oYy60LwZGAbJAmt1GMiBSnXYsPPquWfaE=",
@@ -39,7 +37,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["nbdev"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/AnswerDotAI/nbdev",
         description: "Create delightful software with Jupyter Notebooks",
         changelog: nix.thunk(() => nix.str`https://github.com/AnswerDotAI/nbdev/blob/${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 33, 5], ["repo", 34, 5], ["tag", 35, 5], ["hash", 36, 5]], [["url", 94, 7], ["hash", 95, 7]], [["NIX_CFLAGS_COMPILE", 99, 7]], [["updateScript", 102, 5]], [["description", 106, 5], ["longDescription", 107, 5], ["homepage", 114, 5], ["changelog", 115, 5], ["license", 116, 5], ["maintainers", 117, 5], ["mainProgram", 118, 5], ["platforms", 119, 5]], [["pname", 29, 3], ["version", 30, 3], ["src", 32, 3], ["strictDeps", 39, 3], ["__structuredAttrs", 40, 3], ["nativeBuildInputs", 42, 3], ["buildInputs", 47, 3], ["dontDisableStatic", 69, 3], ["enableParallelBuilding", 71, 3], ["configurePlatforms", 73, 3], ["configureFlags", 74, 3], ["preConfigure", 78, 3], ["postConfigure", 83, 3], ["patches", 91, 3], ["env", 99, 3], ["passthru", 101, 3], ["meta", 105, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, nasm: false, "pkg-config": false, "alsa-lib": false, curl: false, flac: false, fluidsynth: false, freetype: false, libjpeg: false, libmad: false, libmpeg2: false, libogg: false, libtheora: false, libvorbis: false, libGLU: false, libGL: false, libx11: false, SDL2: false, zlib: false, cctools: false, fetchpatch: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 33, 5], ["repo", 34, 5], ["tag", 35, 5], ["hash", 36, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 94, 7], ["hash", 95, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 99, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 102, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 106, 5], ["longDescription", 107, 5], ["homepage", 114, 5], ["changelog", 115, 5], ["license", 116, 5], ["maintainers", 117, 5], ["mainProgram", 118, 5], ["platforms", 119, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 29, 3], ["version", 30, 3], ["src", 32, 3], ["strictDeps", 39, 3], ["__structuredAttrs", 40, 3], ["nativeBuildInputs", 42, 3], ["buildInputs", 47, 3], ["dontDisableStatic", 69, 3], ["enableParallelBuilding", 71, 3], ["configurePlatforms", 73, 3], ["configureFlags", 74, 3], ["preConfigure", 78, 3], ["postConfigure", 83, 3], ["patches", 91, 3], ["env", 99, 3], ["passthru", 101, 3], ["meta", 105, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -37,11 +32,11 @@ export default nix.lambda((args) => (() => {
   const fetchpatch = nix.arg($, "fetchpatch");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "scummvm",
       version: "2026.3.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "scummvm",
           repo: "scummvm",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -76,21 +71,21 @@ export default nix.lambda((args) => (() => {
 `)))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/scummvm/scummvm/commit/e2ef63e84123c199ab55de445e406aa626147e10.patch",
             hash: "sha256-sdabI0W6Apav/pgGBxY+usHUakxECZtYu2tdyi8gojk=",
           })))),
       ]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-fpermissive"]))),
       })),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Program to run certain classic graphical point-and-click adventure games (such as Monkey Island)",
         longDescription: "ScummVM is a program which allows you to run a variety of classic\ngraphical point-and-click adventure games and role-playing games,\nprovided you already have their data files. It reimplements the original\nengines (SCUMM, SCI, AGS, and many more) so those games can be played\non systems and hardware they were never designed for.\n",
         homepage: "https://www.scummvm.org/",

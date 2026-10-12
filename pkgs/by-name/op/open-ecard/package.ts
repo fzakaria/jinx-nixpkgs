@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 15, 7], ["sha256", 16, 7]], [["url", 19, 7], ["sha256", 20, 7]], [["url", 23, 7], ["sha256", 24, 7]], [["richclient", 14, 5], ["cifs", 18, 5], ["logo", 22, 5]], [["name", 39, 5], ["desktopName", 40, 5], ["genericName", 41, 5], ["comment", 42, 5], ["icon", 43, 5], ["exec", 44, 5], ["categories", 45, 5]], [["description", 68, 5], ["mainProgram", 70, 5], ["homepage", 71, 5], ["sourceProvenance", 72, 5], ["license", 73, 5], ["maintainers", 74, 5], ["platforms", 75, 5]], [["pname", 29, 3], ["version", 30, 11], ["src", 32, 3], ["dontUnpack", 34, 3], ["nativeBuildInputs", 36, 3], ["desktopItem", 38, 3], ["installPhase", 51, 3], ["meta", 67, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, jre: false, pcsclite: false, makeDesktopItem: false, makeWrapper: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 15, 7], ["sha256", 16, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 19, 7], ["sha256", 20, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 23, 7], ["sha256", 24, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["richclient", 14, 5], ["cifs", 18, 5], ["logo", 22, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["name", 39, 5], ["desktopName", 40, 5], ["genericName", 41, 5], ["comment", 42, 5], ["icon", 43, 5], ["exec", 44, 5], ["categories", 45, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 68, 5], ["mainProgram", 70, 5], ["homepage", 71, 5], ["sourceProvenance", 72, 5], ["license", 73, 5], ["maintainers", 74, 5], ["platforms", 75, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 29, 3], ["version", 30, 11], ["src", 32, 3], ["dontUnpack", 34, 3], ["nativeBuildInputs", 36, 3], ["desktopItem", 38, 3], ["installPhase", 51, 3], ["meta", 67, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,19 +16,19 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const version = "1.2.4";
   const srcs = nix.thunk(() => ({
-    [nix.POS]: pos$4,
+    [nix.POS]: $pos[3],
     richclient: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         url: nix.thunk(() => nix.str`https://jnlp.openecard.org/richclient-${version}-20171212-0958.jar`),
         sha256: "1ckhyhszp4zhfb5mn67lz603b55z814jh0sz0q5hriqzx017j7nr",
       })))),
     cifs: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         url: nix.thunk(() => nix.str`https://jnlp.openecard.org/cifs-${version}-20171212-0958.jar`),
         sha256: "0rc862lx3y6sw87r1v5xjmqqpysyr1x6yqhycqmcdrwz0j3wykrr",
       })))),
     logo: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         url: "https://raw.githubusercontent.com/ecsec/open-ecard/1.2.3/gui/graphics/src/main/ext/oec_logo_bg-transparent.svg",
         sha256: "0rpmyv10vjx2yfpm03mqliygcww8af2wnrnrppmsazdplksaxkhs",
       })))),
@@ -46,7 +40,7 @@ export default nix.lambda((args) => (() => {
       const dontUnpack = true;
       const nativeBuildInputs = nix.thunk(() => [makeWrapper]);
       const desktopItem = nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           name: pname,
           desktopName: "Open eCard App",
           genericName: "eCard App",
@@ -70,7 +64,7 @@ makeWrapper ${jre}/bin/java $out/bin/${pname} \\
   --suffix LD_LIBRARY_PATH ':' ${nix.app(nix.sel(lib, "getLib"), pcsclite)}/lib
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Client side implementation of the eCard-API-Framework (BSI\n      TR-03112) and related international standards, such as ISO/IEC 24727",
         mainProgram: "open-ecard",
         homepage: "https://www.openecard.org/",
@@ -86,7 +80,7 @@ makeWrapper ${jre}/bin/java $out/bin/${pname} \\
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         pname,
         version: version_1,
         src,

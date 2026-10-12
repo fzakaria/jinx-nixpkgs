@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 34, 5], ["repo", 35, 5], ["tag", 36, 5], ["hash", 37, 5]], [["recaptcha", 75, 5]], [["description", 88, 5], ["homepage", 89, 5], ["changelog", 90, 5], ["license", 91, 5], ["maintainers", 92, 5]], [["pname", 29, 3], ["version", 30, 3], ["pyproject", 31, 3], ["src", 33, 3], ["pythonRelaxDeps", 40, 3], ["build-system", 51, 3], ["dependencies", 53, 3], ["optional-dependencies", 74, 3], ["doCheck", 83, 3], ["pythonImportsCheck", 85, 3], ["meta", 87, 3]]]);
 const formals$1 = { args: { lib: false, "aiohttp-socks": false, aiohttp: false, beautifulsoup4: false, buildPythonPackage: false, dateparser: false, dnspython: false, fetchFromGitHub: false, "lookyloo-models": false, orjson: false, "playwright-stealth": false, playwright: false, "poetry-core": false, "pure-magic-rs": false, pydub: false, "pyfaup-rs": false, "python-socks": false, pytz: false, requests: false, "rfc3161-client": false, setuptools: false, speechrecognition: false, tzdata: false, w3lib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 34, 5], ["repo", 35, 5], ["tag", 36, 5], ["hash", 37, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["recaptcha", 75, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 88, 5], ["homepage", 89, 5], ["changelog", 90, 5], ["license", 91, 5], ["maintainers", 92, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 29, 3], ["version", 30, 3], ["pyproject", 31, 3], ["src", 33, 3], ["pythonRelaxDeps", 40, 3], ["build-system", 51, 3], ["dependencies", 53, 3], ["optional-dependencies", 74, 3], ["doCheck", 83, 3], ["pythonImportsCheck", 85, 3], ["meta", 87, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -35,12 +32,12 @@ export default nix.lambda((args) => (() => {
   const tzdata = nix.arg($, "tzdata");
   const w3lib = nix.arg($, "w3lib");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "playwrightcapture",
       version: "1.41.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Lookyloo",
           repo: "PlaywrightCapture",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -78,13 +75,13 @@ export default nix.lambda((args) => (() => {
         w3lib,
       ]),
       "optional-dependencies": nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         recaptcha: nix.thunk(() => [speechrecognition, pydub, requests]),
       })),
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["playwrightcapture"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Capture a URL with Playwright",
         homepage: "https://github.com/Lookyloo/PlaywrightCapture",
         changelog: nix.thunk(() => nix.str`https://github.com/Lookyloo/PlaywrightCapture/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

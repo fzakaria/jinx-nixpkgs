@@ -2,34 +2,29 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/nix-builder-vm.nix", [[["port", 23, 17]], [["port", 24, 16]], [["from", 22, 11], ["guest", 23, 11], ["host", 24, 11]], [["forwardPorts", 20, 7], ["graphics", 30, 7], ["useNixStoreImage", 42, 7]], [["virtualisation", 19, 5]], [["imports", 13, 3], ["config", 18, 3]]]);
 const formals$1 = { args: { config: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/nix-builder-vm.nix", [["port", 23, 17]]);
-const pos$2 = nix.positions(here + "/nix-builder-vm.nix", [["port", 24, 16]]);
-const pos$3 = nix.positions(here + "/nix-builder-vm.nix", [["from", 22, 11], ["guest", 23, 11], ["host", 24, 11]]);
-const pos$4 = nix.positions(here + "/nix-builder-vm.nix", [["forwardPorts", 20, 7], ["graphics", 30, 7], ["useNixStoreImage", 42, 7]]);
-const pos$5 = nix.positions(here + "/nix-builder-vm.nix", [["virtualisation", 19, 5]]);
-const pos$6 = nix.positions(here + "/nix-builder-vm.nix", [["imports", 13, 3], ["config", 18, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const config = nix.arg($, "config");
   return {
-    [nix.POS]: pos$6,
+    [nix.POS]: $pos[5],
     imports: nix.thunk(() => [
       nix.path(here, "./nix-builder.nix"),
       nix.path(here, "../virtualisation/qemu-vm.nix"),
     ]),
     config: nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       virtualisation: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         forwardPorts: nix.thunk(() => [
           nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             from: "host",
-            guest: nix.thunk(() => ({ [nix.POS]: pos$1, port: 22n })),
+            guest: nix.thunk(() => ({ [nix.POS]: $pos[0], port: 22n })),
             host: nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               port: nix.thunk(() => nix.sel(config, "virtualisation", "darwin-builder", "hostPort")),
             })),
           })),

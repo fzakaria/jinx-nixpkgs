@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 19, 5], ["version", 20, 13], ["hash", 21, 5]], [["name", 27, 7], ["url", 28, 7], ["hash", 29, 7]], [["changelog", 53, 5], ["description", 54, 5], ["homepage", 55, 5], ["license", 56, 5], ["maintainers", 57, 5]], [["pname", 13, 3], ["version", 14, 3], ["pyproject", 15, 3], ["src", 18, 3], ["patches", 24, 3], ["build-system", 33, 3], ["dependencies", 35, 3], ["buildInputs", 39, 3], ["pythonImportsCheck", 43, 3], ["nativeCheckInputs", 45, 3], ["doCheck", 50, 3], ["meta", 52, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchpatch: false, fetchPypi: false, "poetry-core": false, aioresponses: false, pytest: false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 19, 5], ["version", 20, 13], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["name", 27, 7], ["url", 28, 7], ["hash", 29, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["changelog", 53, 5], ["description", 54, 5], ["homepage", 55, 5], ["license", 56, 5], ["maintainers", 57, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 13, 3], ["version", 14, 3], ["pyproject", 15, 3], ["src", 18, 3], ["patches", 24, 3], ["build-system", 33, 3], ["dependencies", 35, 3], ["buildInputs", 39, 3], ["pythonImportsCheck", 43, 3], ["nativeCheckInputs", 45, 3], ["doCheck", 50, 3], ["meta", 52, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,14 +20,14 @@ export default nix.lambda((args) => (() => {
       const version = "0.3.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "pytest_aioresponses",
           version: version,
           hash: "sha256-VnezLfoaNpCLNHUktYZ6qzWsHFzh1JcCRNb2YAm8p7Y=",
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "use-poetry-core.patch",
             url: "https://github.com/pheanex/pytest-aioresponses/commit/05595c1b73a9d9b01179bd434fb7cc57230c9251.patch",
             hash: "sha256-CejYyzAYwsueI0k9O4fcTGC0O8dz0vgE057IrvC5YRo=",
@@ -43,7 +40,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         changelog: "https://github.com/pheanex/pytest-aioresponses/blob/main/Changelog",
         description: "Py.test integration for aioresponses",
         homepage: "https://github.com/pheanex/pytest-aioresponses",
@@ -51,7 +48,7 @@ export default nix.lambda((args) => (() => {
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "dotlambda"))]),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

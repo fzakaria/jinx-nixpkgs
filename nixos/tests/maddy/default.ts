@@ -2,14 +2,14 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["unencrypted", 4, 3], ["tls", 5, 3]]]);
 const formals$1 = { args: { handleTest: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["unencrypted", 4, 3], ["tls", 5, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const handleTest = nix.arg($, "handleTest");
   return {
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     unencrypted: nix.thunk(() => nix.app(handleTest, nix.path(here, "./unencrypted.nix"), nix.thunk(() => ({})))),
     tls: nix.thunk(() => nix.app(handleTest, nix.path(here, "./tls.nix"), nix.thunk(() => ({})))),
   };

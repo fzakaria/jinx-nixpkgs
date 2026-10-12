@@ -2,44 +2,36 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/atmosphere.nix", [[["memorySize", 19, 22]], [["RUST_BACKTRACE", 31, 21]], [["wantedBy", 22, 9], ["requires", 23, 9], ["after", 24, 9], ["script", 25, 9], ["environment", 31, 9]], [["stardust-xr-atmosphere", 21, 29]], [["services", 21, 20]], [["user", 21, 15]], [["imports", 17, 7], ["virtualisation", 19, 7], ["systemd", 21, 7]], [["machine", 8, 9]], [["name", 3, 3], ["skipTypeCheck", 6, 3], ["nodes", 8, 3], ["testScript", 35, 3]]]);
 const formals$1 = { args: {  }, ellipsis: true };
 const formals$2 = { args: { lib: false, pkgs: false, config: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/atmosphere.nix", [["memorySize", 19, 22]]);
-const pos$2 = nix.positions(here + "/atmosphere.nix", [["RUST_BACKTRACE", 31, 21]]);
-const pos$3 = nix.positions(here + "/atmosphere.nix", [["wantedBy", 22, 9], ["requires", 23, 9], ["after", 24, 9], ["script", 25, 9], ["environment", 31, 9]]);
-const pos$4 = nix.positions(here + "/atmosphere.nix", [["stardust-xr-atmosphere", 21, 29]]);
-const pos$5 = nix.positions(here + "/atmosphere.nix", [["services", 21, 20]]);
-const pos$6 = nix.positions(here + "/atmosphere.nix", [["user", 21, 15]]);
-const pos$7 = nix.positions(here + "/atmosphere.nix", [["imports", 17, 7], ["virtualisation", 19, 7], ["systemd", 21, 7]]);
-const pos$8 = nix.positions(here + "/atmosphere.nix", [["machine", 8, 9]]);
 const formals$3 = { args: { nodes: false }, ellipsis: true };
-const pos$9 = nix.positions(here + "/atmosphere.nix", [["name", 3, 3], ["skipTypeCheck", 6, 3], ["nodes", 8, 3], ["testScript", 35, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   return {
-    [nix.POS]: pos$9,
+    [nix.POS]: $pos[8],
     name: "stardust-xr-atmosphere",
     skipTypeCheck: true,
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const lib = nix.arg($_1, "lib");
         const pkgs = nix.arg($_1, "pkgs");
         const config = nix.arg($_1, "config");
         return {
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           imports: nix.thunk(() => [nix.path(here, "./common.nix")]),
-          virtualisation: nix.thunk(() => ({ [nix.POS]: pos$1, memorySize: 4096n })),
+          virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[0], memorySize: 4096n })),
           systemd: nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             user: nix.thunk(() => ({
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               services: nix.thunk(() => ({
-                [nix.POS]: pos$4,
+                [nix.POS]: $pos[3],
                 "stardust-xr-atmosphere": nix.thunk(() => ({
-                  [nix.POS]: pos$3,
+                  [nix.POS]: $pos[2],
                   wantedBy: nix.thunk(() => ["xdg-desktop-autostart.target"]),
                   requires: nix.thunk(() => ["stardust-xr-server.service"]),
                   after: nix.thunk(() => ["stardust-xr-server.service"]),
@@ -48,7 +40,7 @@ ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgs, "stardust-xr-atm
 ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgs, "stardust-xr-atmosphere")))} set-default the_grid
 ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgs, "stardust-xr-atmosphere")))} show
 `),
-                  environment: nix.thunk(() => ({ [nix.POS]: pos$2, RUST_BACKTRACE: "full" })),
+                  environment: nix.thunk(() => ({ [nix.POS]: $pos[1], RUST_BACKTRACE: "full" })),
                 })),
               })),
             })),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["publisher", 13, 5], ["name", 14, 5], ["version", 15, 5], ["hash", 16, 5]], [["description", 25, 5], ["downloadPage", 26, 5], ["homepage", 27, 5], ["license", 28, 5]], [["mktplcRef", 12, 3], ["postInstall", 19, 3], ["meta", 24, 3]]]);
 const formals$1 = { args: { lib: false, "vscode-utils": false, jq: false, akkuPackages: false, chez: false, akku: false, moreutils: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["publisher", 13, 5], ["name", 14, 5], ["version", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 25, 5], ["downloadPage", 26, 5], ["homepage", 27, 5], ["license", 28, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["mktplcRef", 12, 3], ["postInstall", 19, 3], ["meta", 24, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,9 +15,9 @@ export default nix.lambda((args) => (() => {
   const akku = nix.arg($, "akku");
   const moreutils = nix.arg($, "moreutils");
   return nix.app(nix.sel(vscode_utils, "buildVscodeMarketplaceExtension"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       mktplcRef: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         publisher: "ufo5260987423",
         name: "magic-scheme",
         version: "0.0.16",
@@ -29,7 +27,7 @@ export default nix.lambda((args) => (() => {
 ${nix.app(nix.sel(lib, "getExe"), jq)} '.contributes.configuration.properties."magicScheme.scheme-langserver.serverPath".default = "${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(akkuPackages, "scheme-langserver")), "scheme-langserver")}" | .contributes.configuration.properties."magicScheme.scheme.path".default = "${nix.app(nix.sel(lib, "getExe'"), chez, "scheme")}" | .contributes.configuration.properties."magicScheme.akku.path".default = "${nix.app(nix.sel(lib, "getExe"), akku)}"' package.json | ${nix.app(nix.sel(lib, "getExe'"), moreutils, "sponge")} package.json
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Adds support for Scheme(r6rs standard)",
         downloadPage: "https://marketplace.visualstudio.com/items?itemName=ufo5260987423.magic-scheme",
         homepage: "https://github.com/ufo5260987423/magic-scheme",

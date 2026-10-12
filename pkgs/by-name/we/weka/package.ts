@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 20, 5], ["sha256", 21, 5]], [["name", 68, 7], ["exec", 69, 7], ["icon", 70, 7], ["desktopName", 71, 7], ["categories", 72, 7]], [["name", 80, 7], ["exec", 81, 7], ["icon", 82, 7], ["desktopName", 83, 7], ["categories", 84, 7]], [["homepage", 93, 5], ["description", 94, 5], ["mainProgram", 95, 5], ["sourceProvenance", 96, 5], ["license", 97, 5], ["maintainers", 98, 5], ["platforms", 99, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["nativeBuildInputs", 24, 3], ["installPhase", 33, 3], ["desktopItems", 66, 3], ["meta", 92, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, openjdk11: false, unzip: false, makeWrapper: false, makeDesktopItem: false, copyDesktopItems: false, "xdg-utils": false, imagemagick: false, maxMemoryAllocationPool: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 20, 5], ["sha256", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 68, 7], ["exec", 69, 7], ["icon", 70, 7], ["desktopName", 71, 7], ["categories", 72, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 80, 7], ["exec", 81, 7], ["icon", 82, 7], ["desktopName", 83, 7], ["categories", 84, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 93, 5], ["description", 94, 5], ["mainProgram", 95, 5], ["sourceProvenance", 96, 5], ["license", 97, 5], ["maintainers", 98, 5], ["platforms", 99, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["nativeBuildInputs", 24, 3], ["installPhase", 33, 3], ["desktopItems", 66, 3], ["meta", 92, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const pname = "weka";
       const version = "3.9.6";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/weka/${nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => ["-"]), nix.thunk(() => nix.str`weka-${version}`))}.zip`),
           sha256: "sha256-8fVN4MXYqXNEmyVtXh1IrauHTBZWgWG8AvsGI5Y9Aj0=",
         }))));
@@ -64,7 +60,7 @@ runHook postInstall
 `);
       const desktopItems = nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "weka",
             exec: "weka",
             icon: "weka",
@@ -72,7 +68,7 @@ runHook postInstall
             categories: nix.thunk(() => ["Science", "ArtificialIntelligence", "ComputerScience"]),
           })))),
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "weka-doc",
             exec: "weka-doc",
             icon: "weka",
@@ -81,7 +77,7 @@ runHook postInstall
           })))),
       ]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://www.cs.waikato.ac.nz/ml/weka/",
         description: "Collection of machine learning algorithms for data mining tasks",
         mainProgram: "weka",
@@ -94,7 +90,7 @@ runHook postInstall
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         src,

@@ -2,37 +2,10 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/vscode-remote-ssh.nix", [[["maintainers", 12, 7], ["timeout", 13, 7], ["broken", 15, 7]], [["address", 29, 17], ["prefixLength", 30, 17]], [["addresses", 27, 45]], [["ipv4", 27, 40]], [["eth1", 27, 35]], [["interfaces", 27, 24]], [["enable", 33, 30]], [["openssh", 33, 22]], [["keys", 34, 53]], [["authorizedKeys", 34, 38]], [["openssh", 34, 30]], [["root", 34, 25]], [["users", 34, 19]], [["additionalPaths", 35, 28]], [["networking", 27, 13], ["services", 33, 13], ["users", 34, 13], ["virtualisation", 35, 13]], [["address", 50, 17], ["prefixLength", 51, 17]], [["addresses", 48, 45]], [["ipv4", 48, 40]], [["eth1", 48, 35]], [["interfaces", 48, 24], ["hosts", 54, 24]], [["user", 55, 46]], [["auto", 55, 41]], [["displayManager", 55, 26]], [["vscodeExtensions", 58, 17]], [["systemPackages", 56, 25]], [["imports", 44, 13], ["networking", 48, 13], ["test-support", 55, 13], ["environment", 56, 13]], [["server", 24, 9], ["client", 41, 9]], [["name", 9, 5], ["meta", 11, 5], ["nodes", 18, 5], ["enableOCR", 66, 5], ["testScript", 68, 5]]]);
 const formals$1 = { args: { lib: false, pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/vscode-remote-ssh.nix", [["maintainers", 12, 7], ["timeout", 13, 7], ["broken", 15, 7]]);
 const formals$2 = { args: {  }, ellipsis: true };
-const pos$2 = nix.positions(here + "/vscode-remote-ssh.nix", [["address", 29, 17], ["prefixLength", 30, 17]]);
-const pos$3 = nix.positions(here + "/vscode-remote-ssh.nix", [["addresses", 27, 45]]);
-const pos$4 = nix.positions(here + "/vscode-remote-ssh.nix", [["ipv4", 27, 40]]);
-const pos$5 = nix.positions(here + "/vscode-remote-ssh.nix", [["eth1", 27, 35]]);
-const pos$6 = nix.positions(here + "/vscode-remote-ssh.nix", [["interfaces", 27, 24]]);
-const pos$7 = nix.positions(here + "/vscode-remote-ssh.nix", [["enable", 33, 30]]);
-const pos$8 = nix.positions(here + "/vscode-remote-ssh.nix", [["openssh", 33, 22]]);
-const pos$9 = nix.positions(here + "/vscode-remote-ssh.nix", [["keys", 34, 53]]);
-const pos$10 = nix.positions(here + "/vscode-remote-ssh.nix", [["authorizedKeys", 34, 38]]);
-const pos$11 = nix.positions(here + "/vscode-remote-ssh.nix", [["openssh", 34, 30]]);
-const pos$12 = nix.positions(here + "/vscode-remote-ssh.nix", [["root", 34, 25]]);
-const pos$13 = nix.positions(here + "/vscode-remote-ssh.nix", [["users", 34, 19]]);
-const pos$14 = nix.positions(here + "/vscode-remote-ssh.nix", [["additionalPaths", 35, 28]]);
-const pos$15 = nix.positions(here + "/vscode-remote-ssh.nix", [["networking", 27, 13], ["services", 33, 13], ["users", 34, 13], ["virtualisation", 35, 13]]);
 const formals$3 = { args: {  }, ellipsis: true };
-const pos$16 = nix.positions(here + "/vscode-remote-ssh.nix", [["address", 50, 17], ["prefixLength", 51, 17]]);
-const pos$17 = nix.positions(here + "/vscode-remote-ssh.nix", [["addresses", 48, 45]]);
-const pos$18 = nix.positions(here + "/vscode-remote-ssh.nix", [["ipv4", 48, 40]]);
-const pos$19 = nix.positions(here + "/vscode-remote-ssh.nix", [["eth1", 48, 35]]);
-const pos$20 = nix.positions(here + "/vscode-remote-ssh.nix", [["interfaces", 48, 24], ["hosts", 54, 24]]);
-const pos$21 = nix.positions(here + "/vscode-remote-ssh.nix", [["user", 55, 46]]);
-const pos$22 = nix.positions(here + "/vscode-remote-ssh.nix", [["auto", 55, 41]]);
-const pos$23 = nix.positions(here + "/vscode-remote-ssh.nix", [["displayManager", 55, 26]]);
-const pos$24 = nix.positions(here + "/vscode-remote-ssh.nix", [["vscodeExtensions", 58, 17]]);
-const pos$25 = nix.positions(here + "/vscode-remote-ssh.nix", [["systemPackages", 56, 25]]);
-const pos$26 = nix.positions(here + "/vscode-remote-ssh.nix", [["imports", 44, 13], ["networking", 48, 13], ["test-support", 55, 13], ["environment", 56, 13]]);
-const pos$27 = nix.positions(here + "/vscode-remote-ssh.nix", [["server", 24, 9], ["client", 41, 9]]);
-const pos$28 = nix.positions(here + "/vscode-remote-ssh.nix", [["name", 9, 5], ["meta", 11, 5], ["nodes", 18, 5], ["enableOCR", 66, 5], ["testScript", 68, 5]]);
 
 export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./make-test-python.nix")), nix.lambda((args) => (() => {
     const $ = nix.formals(args, formals$1);
@@ -45,52 +18,52 @@ export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./mak
     const rev = nix.thunk(() => nix.attr(from_1, "rev"));
     const vscodeServer = nix.thunk(() => nix.attr(from_1, "vscodeServer"));
     return {
-      [nix.POS]: pos$28,
+      [nix.POS]: $pos[27],
       name: "vscode-remote-ssh",
-      meta: nix.thunk(() => ({ [nix.POS]: pos$1, maintainers: [], timeout: 600n, broken: true })),
+      meta: nix.thunk(() => ({ [nix.POS]: $pos[0], maintainers: [], timeout: 600n, broken: true })),
       nodes: nix.thunk(() => (() => {
         const serverAddress = "192.168.0.2";
         const clientAddress = "192.168.0.1";
         return {
-          [nix.POS]: pos$27,
+          [nix.POS]: $pos[26],
           server: nix.lambda((args_1) => (() => {
             const $_1 = nix.formals(args_1, formals$2);
             return {
-              [nix.POS]: pos$15,
+              [nix.POS]: $pos[14],
               networking: nix.thunk(() => ({
-                [nix.POS]: pos$6,
+                [nix.POS]: $pos[5],
                 interfaces: nix.thunk(() => ({
-                  [nix.POS]: pos$5,
+                  [nix.POS]: $pos[4],
                   eth1: nix.thunk(() => ({
-                    [nix.POS]: pos$4,
+                    [nix.POS]: $pos[3],
                     ipv4: nix.thunk(() => ({
-                      [nix.POS]: pos$3,
+                      [nix.POS]: $pos[2],
                       addresses: nix.thunk(() => [
-                        nix.thunk(() => ({ [nix.POS]: pos$2, address: serverAddress, prefixLength: 24n })),
+                        nix.thunk(() => ({ [nix.POS]: $pos[1], address: serverAddress, prefixLength: 24n })),
                       ]),
                     })),
                   })),
                 })),
               })),
               services: nix.thunk(() => ({
-                [nix.POS]: pos$8,
-                openssh: nix.thunk(() => ({ [nix.POS]: pos$7, enable: true })),
+                [nix.POS]: $pos[7],
+                openssh: nix.thunk(() => ({ [nix.POS]: $pos[6], enable: true })),
               })),
               users: nix.thunk(() => ({
-                [nix.POS]: pos$13,
+                [nix.POS]: $pos[12],
                 users: nix.thunk(() => ({
-                  [nix.POS]: pos$12,
+                  [nix.POS]: $pos[11],
                   root: nix.thunk(() => ({
-                    [nix.POS]: pos$11,
+                    [nix.POS]: $pos[10],
                     openssh: nix.thunk(() => ({
-                      [nix.POS]: pos$10,
-                      authorizedKeys: nix.thunk(() => ({ [nix.POS]: pos$9, keys: nix.thunk(() => [snakeOilPublicKey]) })),
+                      [nix.POS]: $pos[9],
+                      authorizedKeys: nix.thunk(() => ({ [nix.POS]: $pos[8], keys: nix.thunk(() => [snakeOilPublicKey]) })),
                     })),
                   })),
                 })),
               })),
               virtualisation: nix.thunk(() => ({
-                [nix.POS]: pos$14,
+                [nix.POS]: $pos[13],
                 additionalPaths: nix.thunk(() => (() => {
                   const w = nix.withScope(pkgs, null);
                   return [
@@ -105,21 +78,21 @@ export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./mak
           client: nix.lambda((args_1) => (() => {
             const $_1 = nix.formals(args_1, formals$3);
             return {
-              [nix.POS]: pos$26,
+              [nix.POS]: $pos[25],
               imports: nix.thunk(() => [
                 nix.path(here, "./common/x11.nix"),
                 nix.path(here, "./common/user-account.nix"),
               ]),
               networking: nix.thunk(() => ({
-                [nix.POS]: pos$20,
+                [nix.POS]: $pos[19],
                 interfaces: nix.thunk(() => ({
-                  [nix.POS]: pos$19,
+                  [nix.POS]: $pos[18],
                   eth1: nix.thunk(() => ({
-                    [nix.POS]: pos$18,
+                    [nix.POS]: $pos[17],
                     ipv4: nix.thunk(() => ({
-                      [nix.POS]: pos$17,
+                      [nix.POS]: $pos[16],
                       addresses: nix.thunk(() => [
-                        nix.thunk(() => ({ [nix.POS]: pos$16, address: clientAddress, prefixLength: 24n })),
+                        nix.thunk(() => ({ [nix.POS]: $pos[15], address: clientAddress, prefixLength: 24n })),
                       ]),
                     })),
                   })),
@@ -127,17 +100,17 @@ export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./mak
                 hosts: nix.thunk(() => nix.attrsDyn({}, [[serverAddress, nix.thunk(() => ["server"])]])),
               })),
               "test-support": nix.thunk(() => ({
-                [nix.POS]: pos$23,
+                [nix.POS]: $pos[22],
                 displayManager: nix.thunk(() => ({
-                  [nix.POS]: pos$22,
-                  auto: nix.thunk(() => ({ [nix.POS]: pos$21, user: "alice" })),
+                  [nix.POS]: $pos[21],
+                  auto: nix.thunk(() => ({ [nix.POS]: $pos[20], user: "alice" })),
                 })),
               })),
               environment: nix.thunk(() => ({
-                [nix.POS]: pos$25,
+                [nix.POS]: $pos[24],
                 systemPackages: nix.thunk(() => [
                   nix.thunk(() => nix.app(nix.sel(pkgs, "vscode-with-extensions", "override"), nix.thunk(() => ({
-                      [nix.POS]: pos$24,
+                      [nix.POS]: $pos[23],
                       vscodeExtensions: nix.thunk(() => [
                         nix.thunk(() => nix.sel(pkgs, "vscode-extensions", "ms-vscode-remote", "remote-ssh")),
                       ]),

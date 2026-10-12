@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 34, 5], ["sha256", 35, 5]], [["homepage", 76, 5], ["license", 77, 5], ["teams", 78, 5], ["platforms", 79, 5], ["mainProgram", 80, 5]], [["pname", 24, 3], ["version", 25, 3], ["outputs", 27, 3], ["src", 33, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 51, 3], ["propagatedBuildInputs", 56, 3], ["mesonFlags", 70, 3], ["meta", 75, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, colord: false, gettext: false, meson: false, ninja: false, "gobject-introspection": false, "gtk-doc": false, "docbook-xsl-ns": false, "docbook-xsl-nons": false, docbook_xml_dtd_412: false, libxslt: false, glib: false, withGtk4: true, gtk3: false, gtk4: false, "pkg-config": false, lcms2: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 34, 5], ["sha256", 35, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 76, 5], ["license", 77, 5], ["teams", 78, 5], ["platforms", 79, 5], ["mainProgram", 80, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 24, 3], ["version", 25, 3], ["outputs", 27, 3], ["src", 33, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 51, 3], ["propagatedBuildInputs", 56, 3], ["mesonFlags", 70, 3], ["meta", 75, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,12 +27,12 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const lcms2 = nix.arg($, "lcms2");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "colord-gtk",
       version: "0.3.1",
       outputs: nix.thunk(() => ["out", "dev", "devdoc"]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://www.freedesktop.org/software/colord/releases/colord-gtk-${nix.sel(finalAttrs, "version")}.tar.xz`),
           sha256: "wXa4ibdWMKF/Tj1+8kwJo+EjaOYzSWCHRZyLU6w6Ei0=",
         })))),
@@ -57,7 +55,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`-Dgtk3=${nix.app(nix.sel(lib, "boolToString"), nix.thunk(() => !nix.asBool(withGtk4)))}`),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://www.freedesktop.org/software/colord/intro.html",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "gnome"))]),

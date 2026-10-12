@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 33, 13], ["version", 33, 19], ["hash", 34, 5]], [["description", 79, 5], ["homepage", 80, 5], ["changelog", 81, 5], ["license", 82, 5], ["maintainers", 83, 5]], [["pname", 28, 3], ["version", 29, 3], ["pyproject", 30, 3], ["src", 32, 3], ["postPatch", 37, 3], ["build-system", 42, 3], ["propagatedBuildInputs", 47, 3], ["nativeCheckInputs", 59, 3], ["pythonImportsCheck", 71, 3], ["disabledTestPaths", 73, 3], ["meta", 78, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, decorator: false, fetchPypi: false, setuptools: false, "setuptools-scm": false, formencode: false, httpretty: false, libxml2: false, lxml: false, mock: false, nocasedict: false, nocaselist: false, pbr: false, ply: false, pytestCheckHook: false, pytz: false, pyyaml: false, requests: false, "requests-mock": false, six: false, testfixtures: false, yamlloader: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 33, 13], ["version", 33, 19], ["hash", 34, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 79, 5], ["homepage", 80, 5], ["changelog", 81, 5], ["license", 82, 5], ["maintainers", 83, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 28, 3], ["version", 29, 3], ["pyproject", 30, 3], ["src", 32, 3], ["postPatch", 37, 3], ["build-system", 42, 3], ["propagatedBuildInputs", 47, 3], ["nativeCheckInputs", 59, 3], ["pythonImportsCheck", 71, 3], ["disabledTestPaths", 73, 3], ["meta", 78, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -37,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.9.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-tTfr6DfE/W8ifHXdGWF14QW5X66a3PGfeQRXujV1M0M=",
@@ -59,7 +57,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["pywbem"]);
       const disabledTestPaths = nix.thunk(() => ["tests/leaktest", "tests/end2endtest"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Support for the WBEM standard for systems management",
         homepage: "https://pywbem.github.io",
         changelog: nix.thunk(() => nix.str`https://github.com/pywbem/pywbem/blob/${version}/docs/changes.rst`),
@@ -67,7 +65,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

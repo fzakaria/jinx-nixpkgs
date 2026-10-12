@@ -2,25 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 78, 11], ["hash", 79, 19]], [["NIX_CFLAGS_COMPILE", 122, 13]], [["NIX_CFLAGS_COMPILE", 126, 13]], [["mariadb-galera-rsync", 214, 13], ["mysql", 215, 13], ["mysql-autobackup", 216, 13], ["mysql-backup", 217, 13], ["mysql-replication", 218, 13]], [["tests", 207, 18]], [["description", 222, 11], ["homepage", 223, 11], ["license", 224, 11], ["maintainers", 225, 11], ["platforms", 231, 11]], [["version", 75, 17], ["src", 77, 9], ["outputs", 82, 9], ["nativeBuildInputs", 87, 9], ["buildInputs", 94, 9], ["prePatch", 116, 9], ["env", 119, 9], ["patches", 129, 9], ["cmakeFlags", 140, 9], ["postInstall", 188, 9], ["postFixup", 198, 9], ["passthru", 207, 9], ["meta", 221, 9]], [["mainProgram", 267, 13]], [["pname", 242, 11], ["patches", 244, 11], ["buildInputs", 248, 11], ["cmakeFlags", 251, 11], ["postInstall", 258, 11], ["meta", 266, 11]], [["CXXFLAGS", 397, 13]], [["client", 402, 19], ["server", 403, 11]], [["mainProgram", 407, 11]], [["pname", 280, 9], ["nativeBuildInputs", 282, 9], ["buildInputs", 288, 9], ["propagatedBuildInputs", 313, 9], ["postPatch", 315, 9], ["cmakeFlags", 320, 9], ["preConfigure", 361, 9], ["postInstall", 365, 9], ["env", 395, 9], ["passthru", 401, 9], ["meta", 406, 9]], [["version", 416, 5], ["hash", 417, 5]], [["version", 421, 5], ["hash", 422, 5]], [["version", 426, 5], ["hash", 427, 5]], [["version", 431, 5], ["hash", 432, 5]], [["mariadb_106", 414, 3], ["mariadb_1011", 419, 3], ["mariadb_114", 424, 3], ["mariadb_118", 429, 3]]]);
 const formals$1 = { args: { version: false, hash: false, lib: false, stdenv: false, fetchurl: false, nixosTests: false, buildPackages: false, bison: false, boost: false, cmake: false, fixDarwinDylibNames: false, flex: false, makeWrapper: false, "pkg-config": false, curl: false, libiconv: false, ncurses: false, openssl: false, pcre2: false, libkrb5: false, libaio: false, liburing: false, systemd: false, cctools: false, perl: false, jemalloc: false, less: false, libedit: false, bzip2: false, lz4: false, lzo: false, snappy: false, xz: false, zlib: false, zstd: false, cracklib: false, judy: false, libevent: false, libxml2: false, "linux-pam": false, numactl: false, fmt: false, withStorageMroonga: true, kytea: false, libsodium: false, "msgpack-cxx": false, zeromq: false, withStorageRocks: true, withEmbedded: true, withNuma: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 78, 11], ["hash", 79, 19]]);
-const pos$2 = nix.positions(here + "/default.nix", [["NIX_CFLAGS_COMPILE", 122, 13]]);
-const pos$3 = nix.positions(here + "/default.nix", [["NIX_CFLAGS_COMPILE", 126, 13]]);
-const pos$4 = nix.positions(here + "/default.nix", [["mariadb-galera-rsync", 214, 13], ["mysql", 215, 13], ["mysql-autobackup", 216, 13], ["mysql-backup", 217, 13], ["mysql-replication", 218, 13]]);
-const pos$5 = nix.positions(here + "/default.nix", [["tests", 207, 18]]);
-const pos$6 = nix.positions(here + "/default.nix", [["description", 222, 11], ["homepage", 223, 11], ["license", 224, 11], ["maintainers", 225, 11], ["platforms", 231, 11]]);
-const pos$7 = nix.positions(here + "/default.nix", [["version", 75, 17], ["src", 77, 9], ["outputs", 82, 9], ["nativeBuildInputs", 87, 9], ["buildInputs", 94, 9], ["prePatch", 116, 9], ["env", 119, 9], ["patches", 129, 9], ["cmakeFlags", 140, 9], ["postInstall", 188, 9], ["postFixup", 198, 9], ["passthru", 207, 9], ["meta", 221, 9]]);
-const pos$8 = nix.positions(here + "/default.nix", [["mainProgram", 267, 13]]);
-const pos$9 = nix.positions(here + "/default.nix", [["pname", 242, 11], ["patches", 244, 11], ["buildInputs", 248, 11], ["cmakeFlags", 251, 11], ["postInstall", 258, 11], ["meta", 266, 11]]);
-const pos$10 = nix.positions(here + "/default.nix", [["CXXFLAGS", 397, 13]]);
-const pos$11 = nix.positions(here + "/default.nix", [["client", 402, 19], ["server", 403, 11]]);
-const pos$12 = nix.positions(here + "/default.nix", [["mainProgram", 407, 11]]);
-const pos$13 = nix.positions(here + "/default.nix", [["pname", 280, 9], ["nativeBuildInputs", 282, 9], ["buildInputs", 288, 9], ["propagatedBuildInputs", 313, 9], ["postPatch", 315, 9], ["cmakeFlags", 320, 9], ["preConfigure", 361, 9], ["postInstall", 365, 9], ["env", 395, 9], ["passthru", 401, 9], ["meta", 406, 9]]);
-const pos$14 = nix.positions(here + "/default.nix", [["version", 416, 5], ["hash", 417, 5]]);
-const pos$15 = nix.positions(here + "/default.nix", [["version", 421, 5], ["hash", 422, 5]]);
-const pos$16 = nix.positions(here + "/default.nix", [["version", 426, 5], ["hash", 427, 5]]);
-const pos$17 = nix.positions(here + "/default.nix", [["version", 431, 5], ["hash", 432, 5]]);
-const pos$18 = nix.positions(here + "/default.nix", [["mariadb_106", 414, 3], ["mariadb_1011", 419, 3], ["mariadb_114", 424, 3], ["mariadb_118", 429, 3]]);
 
 export default nix.thunk(() => (() => {
   const generic = nix.lambda((args) => (() => {
@@ -86,10 +69,10 @@ export default nix.thunk(() => (() => {
         ];
       })()));
     const common = (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       version: version,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://archive.mariadb.org/mariadb-${nix.sel(finalAttrs, "version")}/source/mariadb-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: hash,
         })))),
@@ -97,7 +80,7 @@ export default nix.thunk(() => (() => {
       nativeBuildInputs: nix.thunk(() => nix.concat([cmake, pkg_config], nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), fixDarwinDylibNames), nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), makeWrapper)))),
       buildInputs: nix.thunk(() => nix.concat([libiconv, ncurses, zlib, pcre2, openssl, curl], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => nix.concat([libkrb5, systemd], (nix.asBool(nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(finalAttrs, "version")), "10.6")) ? [libaio] : [liburing])))), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [cctools, perl, libedit])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), nix.thunk(() => [jemalloc])))))),
       prePatch: "sed -i 's,[^\"]*/var/log,/var/log,g' storage/mroonga/vendor/groonga/CMakeLists.txt\n",
-      env: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) && nix.asBool(!nix.asBool(nix.sel(stdenv, "hostPlatform", "isGnu"))))), nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-D_LARGEFILE64_SOURCE" }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isx86_64")))), nix.thunk(() => ({ [nix.POS]: pos$3, NIX_CFLAGS_COMPILE: "-DHAVE_NETDB_H" }))))),
+      env: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) && nix.asBool(!nix.asBool(nix.sel(stdenv, "hostPlatform", "isGnu"))))), nix.thunk(() => ({ [nix.POS]: $pos[1], NIX_CFLAGS_COMPILE: "-D_LARGEFILE64_SOURCE" }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isx86_64")))), nix.thunk(() => ({ [nix.POS]: $pos[2], NIX_CFLAGS_COMPILE: "-DHAVE_NETDB_H" }))))),
       patches: nix.thunk(() => nix.concat([
         nix.path(here, "./patch/cmake-includedir.patch"),
         nix.path(here, "./patch/include-cstdint-full.patch"),
@@ -141,11 +124,11 @@ export default nix.thunk(() => (() => {
       postFixup: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), nix.thunk(() => nix.str`wrapProgram $out/bin/mytop --set PATH ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [less, ncurses]))}
 `))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         tests: nix.thunk(() => (() => {
           const testVersion = nix.thunk(() => nix.str`mariadb_${nix.builtins.replaceStrings(nix.thunk(() => ["."]), nix.thunk(() => [""]), nix.thunk(() => nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))))}`);
           return {
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             "mariadb-galera-rsync": nix.thunk(() => nix.sel(nixosTests, "mariadb-galera", nix.key(nix.force(testVersion)))),
             mysql: nix.thunk(() => nix.sel(nixosTests, "mysql", nix.key(nix.force(testVersion)))),
             "mysql-autobackup": nix.thunk(() => nix.sel(nixosTests, "mysql-autobackup", nix.key(nix.force(testVersion)))),
@@ -155,7 +138,7 @@ export default nix.thunk(() => (() => {
         })()),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Enhanced, drop-in replacement for MySQL",
         homepage: "https://mariadb.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
@@ -174,7 +157,7 @@ export default nix.thunk(() => (() => {
     const client = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => (() => {
         const common$ = nix.thunk(() => nix.app(common, finalAttrs));
         return nix.update(common$, {
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           pname: "mariadb-client",
           patches: nix.thunk(() => nix.concat(nix.sel(common$, "patches"), [nix.path(here, "./patch/cmake-plugin-includedir.patch")])),
           buildInputs: nix.thunk(() => nix.concat(nix.sel(common$, "buildInputs"), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(common$, "version")), "10.11")), nix.thunk(() => [fmt])))),
@@ -190,13 +173,13 @@ rm "$out"/lib/{libmariadb${libExt},libmysqlclient${libExt},libmysqlclient_r${lib
 mv "$libmysqlclient_path" "$out"/lib/libmysqlclient${libExt}
 ln -sv libmysqlclient${libExt} "$out"/lib/libmysqlclient_r${libExt}
 `)),
-          meta: nix.thunk(() => nix.update(nix.sel(common$, "meta"), { [nix.POS]: pos$8, mainProgram: "mariadb" })),
+          meta: nix.thunk(() => nix.update(nix.sel(common$, "meta"), { [nix.POS]: $pos[7], mainProgram: "mariadb" })),
         });
       })()));
     return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => (() => {
         const common$ = nix.thunk(() => nix.app(common, finalAttrs));
         return nix.update(common$, {
-          [nix.POS]: pos$13,
+          [nix.POS]: $pos[12],
           pname: "mariadb-server",
           nativeBuildInputs: nix.thunk(() => nix.concat(nix.sel(common$, "nativeBuildInputs"), [bison, nix.thunk(() => nix.sel(boost, "dev")), flex])),
           buildInputs: nix.thunk(() => nix.concat(nix.sel(common$, "buildInputs"), nix.concat([bzip2, lz4, lzo, snappy, xz, zstd, cracklib, judy, libevent, libxml2], nix.concat(nix.app(nix.sel(lib, "optional"), withNuma, numactl), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [linux_pam])), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), mytopEnv), nix.concat(nix.app(nix.sel(lib, "optionals"), withStorageMroonga, nix.thunk(() => [kytea, libsodium, msgpack_cxx, zeromq])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(common$, "version")), "10.11")), nix.thunk(() => [fmt]))))))))),
@@ -222,35 +205,35 @@ ln -sv libmysqlclient${libExt} "$out"/lib/libmysqlclient_r${libExt}
             ]))))))))))),
           preConfigure: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), "patchShebangs scripts/mytop.sh\n")),
           postInstall: nix.thunk(() => nix.add(nix.add(nix.add(nix.add(nix.add(nix.sel(common$, "postInstall"), "rm -r \"$out\"/share/aclocal\nchmod +x \"$out\"/bin/wsrep_sst_common\nrm -f \"$out\"/bin/{mariadb-client-test,mariadb-test,mysql_client_test,mysqltest}\n"), nix.app(nix.sel(lib, "optionalString"), withStorageMroonga, "mv \"$out\"/share/{groonga,groonga-normalizer-mysql} \"$out\"/share/doc/mysql\n")), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool((nix.asBool(!nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))) && nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(common$, "version")), "10.6")))) && nix.asBool(nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(common$, "version")), "10.11")))), "mv \"$out\"/OFF/suite/plugins/pam/pam_mariadb_mtr.so \"$out\"/share/pam/lib/security\n")), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool(!nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))) && nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(common$, "version")), "10.11")))), "mv \"$out\"/lib/mysql/plugin/test_pam_modules/pam_mariadb_mtr.so \"$out\"/share/pam/lib/security\n")), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool(!nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))) && nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(common$, "version")), "10.6")))), "mv \"$out\"/OFF/suite/plugins/pam/mariadb_mtr \"$out\"/share/pam/etc/security\nrm -r \"$out\"/OFF\n"))),
-          env: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isi686")), nix.thunk(() => ({ [nix.POS]: pos$10, CXXFLAGS: "-fpermissive" }))), nix.selOr(common$, () => ({}), "env"))),
+          env: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isi686")), nix.thunk(() => ({ [nix.POS]: $pos[9], CXXFLAGS: "-fpermissive" }))), nix.selOr(common$, () => ({}), "env"))),
           passthru: nix.thunk(() => ({
-            [nix.POS]: pos$11,
+            [nix.POS]: $pos[10],
             client: client,
             server: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
           })),
-          meta: nix.thunk(() => nix.update(nix.sel(common$, "meta"), { [nix.POS]: pos$12, mainProgram: "mariadbd" })),
+          meta: nix.thunk(() => nix.update(nix.sel(common$, "meta"), { [nix.POS]: $pos[11], mainProgram: "mariadbd" })),
         });
       })());
   })(), formals$1);
   return (self) => ({
-    [nix.POS]: pos$18,
+    [nix.POS]: $pos[17],
     mariadb_106: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), generic, nix.thunk(() => ({
-        [nix.POS]: pos$14,
+        [nix.POS]: $pos[13],
         version: "10.6.27",
         hash: "sha256-jrdq07Gz0UxWYRzMkQQoFB/lYWAEOBnmR0FgOF9pZl4=",
       })))),
     mariadb_1011: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), generic, nix.thunk(() => ({
-        [nix.POS]: pos$15,
+        [nix.POS]: $pos[14],
         version: "10.11.18",
         hash: "sha256-pGhSxoB1vnwxx7M/7iM8W1oAyMKBF/UgTRJOTy/Vb6g=",
       })))),
     mariadb_114: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), generic, nix.thunk(() => ({
-        [nix.POS]: pos$16,
+        [nix.POS]: $pos[15],
         version: "11.4.12",
         hash: "sha256-WreIPbUZv86/3SqsCbxVRKEs4yjznt1G0L8BaQYV72w=",
       })))),
     mariadb_118: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), generic, nix.thunk(() => ({
-        [nix.POS]: pos$17,
+        [nix.POS]: $pos[16],
         version: "11.8.8",
         hash: "sha256-vQI6SVn68BLbfw6/wNJ2cp5n5UQ98ZMWP5jYD9/FJMk=",
       })))),

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 17, 5], ["sha256", 18, 5]], [["desktopName", 41, 7], ["name", 42, 7], ["comment", 43, 7], ["icon", 44, 7], ["exec", 45, 7], ["categories", 46, 7]], [["homepage", 95, 5], ["changelog", 96, 5], ["description", 97, 5], ["mainProgram", 98, 5], ["license", 99, 5], ["platforms", 103, 5], ["maintainers", 104, 5]], [["pname", 12, 3], ["version", 13, 3], ["pyproject", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 21, 3], ["pythonPath", 27, 3], ["nativeCheckInputs", 34, 3], ["desktopItems", 39, 3], ["dontBuild", 53, 3], ["doCheck", 54, 3], ["patchPhase", 56, 3], ["installPhase", 60, 3], ["checkPhase", 82, 3], ["dontWrapGApps", 88, 3], ["preFixup", 90, 3], ["meta", 94, 3]]]);
 const formals$1 = { args: { lib: false, fetchurl: false, python3: false, gettext: false, makeDesktopItem: false, copyDesktopItems: false, wrapGAppsHook3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 17, 5], ["sha256", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["desktopName", 41, 7], ["name", 42, 7], ["comment", 43, 7], ["icon", 44, 7], ["exec", 45, 7], ["categories", 46, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 95, 5], ["changelog", 96, 5], ["description", 97, 5], ["mainProgram", 98, 5], ["license", 99, 5], ["platforms", 103, 5], ["maintainers", 104, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["pyproject", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 21, 3], ["pythonPath", 27, 3], ["nativeCheckInputs", 34, 3], ["desktopItems", 39, 3], ["dontBuild", 53, 3], ["doCheck", 54, 3], ["patchPhase", 56, 3], ["installPhase", 60, 3], ["checkPhase", 82, 3], ["dontWrapGApps", 88, 3], ["preFixup", 90, 3], ["meta", 94, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const copyDesktopItems = nix.arg($, "copyDesktopItems");
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "timeline",
       version: "2.11.0",
       pyproject: false,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/thetimelineproj/timeline-${nix.sel(finalAttrs, "version")}.zip`),
           sha256: "sha256-XJ5Gu3nFLtSaEedzxBZERtPydIFMWWGi5frXWmgKxVA=",
         })))),
@@ -44,7 +41,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [gettext, nix.thunk(() => nix.sel(python3, "pkgs", "mock"))]),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             desktopName: "Timeline",
             name: "timeline",
             comment: "Display and navigate information on a timeline",
@@ -81,7 +78,7 @@ runHook postCheck
       dontWrapGApps: true,
       preFixup: "makeWrapperArgs+=(\"${gappsWrapperArgs[@]}\")\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://thetimelineproj.sourceforge.net/",
         changelog: "https://thetimelineproj.sourceforge.net/changelog.html",
         description: "Display and navigate information on a timeline",

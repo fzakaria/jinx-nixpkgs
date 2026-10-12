@@ -2,16 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]], [["CGO_ENABLED", 26, 7]], [["package", 37, 31]], [["nativeBuildInputs", 40, 40]], [["assertion", 39, 9], ["actual", 40, 9], ["expected", 49, 9]], [["version", 37, 7], ["examples", 38, 7]], [["updateScript", 35, 5], ["tests", 36, 5]], [["description", 61, 5], ["longDescription", 62, 5], ["homepage", 68, 5], ["changelog", 69, 5], ["license", 70, 5], ["mainProgram", 71, 5], ["maintainers", 72, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["vendorHash", 22, 3], ["subPackages", 24, 3], ["env", 26, 3], ["ldflags", 28, 3], ["passthru", 34, 3], ["meta", 60, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitHub: false, "nix-update-script": false, testers: false, writeText: false, runCommand: false, jj: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["CGO_ENABLED", 26, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["package", 37, 31]]);
-const pos$4 = nix.positions(here + "/package.nix", [["nativeBuildInputs", 40, 40]]);
-const pos$5 = nix.positions(here + "/package.nix", [["assertion", 39, 9], ["actual", 40, 9], ["expected", 49, 9]]);
-const pos$6 = nix.positions(here + "/package.nix", [["version", 37, 7], ["examples", 38, 7]]);
-const pos$7 = nix.positions(here + "/package.nix", [["updateScript", 35, 5], ["tests", 36, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["description", 61, 5], ["longDescription", 62, 5], ["homepage", 68, 5], ["changelog", 69, 5], ["license", 70, 5], ["mainProgram", 71, 5], ["maintainers", 72, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["vendorHash", 22, 3], ["subPackages", 24, 3], ["env", 26, 3], ["ldflags", 28, 3], ["passthru", 34, 3], ["meta", 60, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const runCommand = nix.arg($, "runCommand");
   const jj = nix.arg($, "jj");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       pname: "jj",
       version: "1.9.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "tidwall",
           repo: "jj",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,31 +28,31 @@ export default nix.lambda((args) => (() => {
         })))),
       vendorHash: "sha256-39rA3jMGYhsh1nrGzI1vfHZzZDy4O6ooYWB8af654mM=",
       subPackages: nix.thunk(() => ["cmd/jj"]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, CGO_ENABLED: "0" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], CGO_ENABLED: "0" })),
       ldflags: nix.thunk(() => [
         "-s",
         "-w",
         nix.thunk(() => nix.str`-X main.version=${nix.sel(finalAttrs, "version")}`),
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => (() => {
           const w = nix.withScope(testers, null);
           return {
-            [nix.POS]: pos$6,
-            version: nix.thunk(() => nix.app(nix.lookup(w, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$3, package: jj })))),
+            [nix.POS]: $pos[5],
+            version: nix.thunk(() => nix.app(nix.lookup(w, "testVersion"), nix.thunk(() => ({ [nix.POS]: $pos[2], package: jj })))),
             examples: nix.thunk(() => nix.app(nix.lookup(w, "testEqualContents"), nix.thunk(() => ({
-                [nix.POS]: pos$5,
+                [nix.POS]: $pos[4],
                 assertion: "examples from projects README.md work",
-                actual: nix.thunk(() => nix.app(runCommand, "actual", nix.thunk(() => ({ [nix.POS]: pos$4, nativeBuildInputs: nix.thunk(() => [jj]) })), "{\n  echo '{\"name\":{\"first\":\"Tom\",\"last\":\"Smith\"}}' | jj name.last\n  echo '{\"name\":{\"first\":\"Tom\",\"last\":\"Smith\"}}' | jj name\n  echo '{\"name\":{\"first\":\"Tom\",\"last\":\"Smith\"}}' | jj -v Andy name.first\n  echo '{\"friends\":[\"Tom\",\"Jane\",\"Carol\"]}' | jj -v Andy friends.-1\n  echo '{\"age\":46,\"name\":{\"first\":\"Tom\",\"last\":\"Smith\"}}' | jj -D age\n} > $out\n")),
+                actual: nix.thunk(() => nix.app(runCommand, "actual", nix.thunk(() => ({ [nix.POS]: $pos[3], nativeBuildInputs: nix.thunk(() => [jj]) })), "{\n  echo '{\"name\":{\"first\":\"Tom\",\"last\":\"Smith\"}}' | jj name.last\n  echo '{\"name\":{\"first\":\"Tom\",\"last\":\"Smith\"}}' | jj name\n  echo '{\"name\":{\"first\":\"Tom\",\"last\":\"Smith\"}}' | jj -v Andy name.first\n  echo '{\"friends\":[\"Tom\",\"Jane\",\"Carol\"]}' | jj -v Andy friends.-1\n  echo '{\"age\":46,\"name\":{\"first\":\"Tom\",\"last\":\"Smith\"}}' | jj -D age\n} > $out\n")),
                 expected: nix.thunk(() => nix.app(writeText, "expected", "Smith\n{\"first\":\"Tom\",\"last\":\"Smith\"}\n{\"name\":{\"first\":\"Andy\",\"last\":\"Smith\"}}\n{\"friends\":[\"Tom\",\"Jane\",\"Carol\",\"Andy\"]}\n{\"name\":{\"first\":\"Tom\",\"last\":\"Smith\"}}\n")),
               })))),
           };
         })()),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         description: "JSON Stream Editor (command line utility)",
         longDescription: "JJ is a command line utility that provides a fast and simple way to retrieve\nor update values from JSON documents. It's powered by GJSON and SJSON under the hood.\nIt's fast because it avoids parsing irrelevant sections of json, skipping over values\nthat do not apply, and aborts as soon as the target value has been found or updated.\n",
         homepage: "https://github.com/tidwall/jj",

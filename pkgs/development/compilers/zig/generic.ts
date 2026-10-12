@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/generic.nix", [[["owner", 26, 5], ["repo", 27, 5], ["rev", 28, 5], ["hash", 29, 13]], [["stdenv", 133, 7], ["callPackage", 134, 7], ["wrapCCWith", 135, 7], ["wrapBintoolsWith", 136, 7], ["overrideCC", 137, 7], ["zig", 139, 5]], [["zig_default_cpu_flag", 162, 5], ["zig_default_optimize_flag", 164, 5]], [["description", 174, 5], ["homepage", 175, 5], ["changelog", 176, 5], ["donationPage", 177, 5], ["license", 178, 5], ["maintainers", 179, 5], ["teams", 180, 5], ["mainProgram", 181, 5], ["platforms", 182, 5]], [["pname", 22, 3], ["version", 23, 11], ["src", 25, 3], ["patches", 32, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 44, 3], ["cmakeFlags", 54, 3], ["outputs", 63, 3], ["strictDeps", 68, 3], ["__structuredAttrs", 70, 3], ["__impureHostDeps", 77, 3], ["preBuild", 81, 3], ["postPatch", 85, 3], ["postBuild", 104, 3], ["postInstall", 118, 3], ["doInstallCheck", 122, 3], ["installCheckPhase", 123, 3], ["passthru", 131, 3], ["env", 142, 3], ["setupHook", 167, 3], ["propagatedNativeBuildInputs", 171, 3], ["meta", 173, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromCodeberg: false, cmake: false, llvmPackages: false, xcbuild: false, libxml2: false, ninja: false, zlib: false, coreutils: false, callPackage: false, version: false, hash: false, overrideCC: false, wrapCCWith: false, wrapBintoolsWith: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/generic.nix", [["owner", 26, 5], ["repo", 27, 5], ["rev", 28, 5], ["hash", 29, 13]]);
-const pos$2 = nix.positions(here + "/generic.nix", [["stdenv", 133, 7], ["callPackage", 134, 7], ["wrapCCWith", 135, 7], ["wrapBintoolsWith", 136, 7], ["overrideCC", 137, 7], ["zig", 139, 5]]);
-const pos$3 = nix.positions(here + "/generic.nix", [["zig_default_cpu_flag", 162, 5], ["zig_default_optimize_flag", 164, 5]]);
-const pos$4 = nix.positions(here + "/generic.nix", [["description", 174, 5], ["homepage", 175, 5], ["changelog", 176, 5], ["donationPage", 177, 5], ["license", 178, 5], ["maintainers", 179, 5], ["teams", 180, 5], ["mainProgram", 181, 5], ["platforms", 182, 5]]);
-const pos$5 = nix.positions(here + "/generic.nix", [["pname", 22, 3], ["version", 23, 11], ["src", 25, 3], ["patches", 32, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 44, 3], ["cmakeFlags", 54, 3], ["outputs", 63, 3], ["strictDeps", 68, 3], ["__structuredAttrs", 70, 3], ["__impureHostDeps", 77, 3], ["preBuild", 81, 3], ["postPatch", 85, 3], ["postBuild", 104, 3], ["postInstall", 118, 3], ["doInstallCheck", 122, 3], ["installCheckPhase", 123, 3], ["passthru", 131, 3], ["env", 142, 3], ["setupHook", 167, 3], ["propagatedNativeBuildInputs", 171, 3], ["meta", 173, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const wrapCCWith = nix.arg($, "wrapCCWith");
   const wrapBintoolsWith = nix.arg($, "wrapBintoolsWith");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "zig",
       version: version,
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ziglang",
           repo: "zig",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -73,7 +69,7 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       installCheckPhase: "runHook preInstallCheck\n\n$out/bin/zig test --cache-dir \"$TMPDIR/zig-test-cache\" -I $src/test $src/test/behavior.zig\n\nrunHook postInstallCheck\n",
       passthru: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./passthru.nix")), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           stdenv: stdenv,
           callPackage: callPackage,
           wrapCCWith: wrapCCWith,
@@ -82,14 +78,14 @@ export default nix.lambda((args) => (() => {
           zig: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
         })))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         zig_default_cpu_flag: "-Dcpu=baseline",
         zig_default_optimize_flag: "--release=safe",
       })),
       setupHook: nix.path(here, "./setup-hook.sh"),
       propagatedNativeBuildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [xcbuild]))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "General-purpose programming language and toolchain for maintaining robust, optimal, and reusable software",
         homepage: "https://ziglang.org/",
         changelog: nix.thunk(() => nix.str`https://ziglang.org/download/${nix.sel(finalAttrs, "version")}/release-notes.html`),

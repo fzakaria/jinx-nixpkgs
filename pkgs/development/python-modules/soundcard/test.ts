@@ -2,54 +2,34 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/test.nix", [[["systemPackages", 7, 19]], [["enable", 9, 27], ["systemWide", 10, 27]], [["pulseaudio", 9, 16]], [["options", 12, 27]], [["qemu", 12, 22]], [["environment", 7, 7], ["services", 9, 7], ["virtualisation", 12, 7]], [["machine", 4, 9]], [["PermitRootLogin", 22, 33]], [["enable", 21, 24], ["settings", 22, 24]], [["openssh", 21, 16]], [["initialPassword", 23, 29], ["hashedPassword", 24, 29], ["hashedPasswordFile", 25, 29], ["initialHashedPassword", 26, 29]], [["root", 23, 24]], [["extraUsers", 23, 13]], [["port", 30, 16]], [["port", 31, 17]], [["from", 29, 11], ["host", 30, 11], ["guest", 31, 11]], [["forwardPorts", 27, 22]], [["services", 21, 7], ["users", 23, 7], ["virtualisation", 27, 7]], [["machine", 18, 21]], [["nodes", 18, 15]], [["name", 2, 3], ["nodes", 4, 3], ["interactive", 18, 3], ["testScript", 36, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/test.nix", [["systemPackages", 7, 19]]);
-const pos$2 = nix.positions(here + "/test.nix", [["enable", 9, 27], ["systemWide", 10, 27]]);
-const pos$3 = nix.positions(here + "/test.nix", [["pulseaudio", 9, 16]]);
-const pos$4 = nix.positions(here + "/test.nix", [["options", 12, 27]]);
-const pos$5 = nix.positions(here + "/test.nix", [["qemu", 12, 22]]);
-const pos$6 = nix.positions(here + "/test.nix", [["environment", 7, 7], ["services", 9, 7], ["virtualisation", 12, 7]]);
-const pos$7 = nix.positions(here + "/test.nix", [["machine", 4, 9]]);
 const formals$2 = { args: {  }, ellipsis: true };
-const pos$8 = nix.positions(here + "/test.nix", [["PermitRootLogin", 22, 33]]);
-const pos$9 = nix.positions(here + "/test.nix", [["enable", 21, 24], ["settings", 22, 24]]);
-const pos$10 = nix.positions(here + "/test.nix", [["openssh", 21, 16]]);
-const pos$11 = nix.positions(here + "/test.nix", [["initialPassword", 23, 29], ["hashedPassword", 24, 29], ["hashedPasswordFile", 25, 29], ["initialHashedPassword", 26, 29]]);
-const pos$12 = nix.positions(here + "/test.nix", [["root", 23, 24]]);
-const pos$13 = nix.positions(here + "/test.nix", [["extraUsers", 23, 13]]);
-const pos$14 = nix.positions(here + "/test.nix", [["port", 30, 16]]);
-const pos$15 = nix.positions(here + "/test.nix", [["port", 31, 17]]);
-const pos$16 = nix.positions(here + "/test.nix", [["from", 29, 11], ["host", 30, 11], ["guest", 31, 11]]);
-const pos$17 = nix.positions(here + "/test.nix", [["forwardPorts", 27, 22]]);
-const pos$18 = nix.positions(here + "/test.nix", [["services", 21, 7], ["users", 23, 7], ["virtualisation", 27, 7]]);
-const pos$19 = nix.positions(here + "/test.nix", [["machine", 18, 21]]);
-const pos$20 = nix.positions(here + "/test.nix", [["nodes", 18, 15]]);
-const pos$21 = nix.positions(here + "/test.nix", [["name", 2, 3], ["nodes", 4, 3], ["interactive", 18, 3], ["testScript", 36, 3]]);
 
 export default nix.thunk(() => ({
-  [nix.POS]: pos$21,
+  [nix.POS]: $pos[20],
   name: "Python Soundcard Library Test",
   nodes: nix.thunk(() => ({
-    [nix.POS]: pos$7,
+    [nix.POS]: $pos[6],
     machine: nix.lambda((args) => (() => {
       const $ = nix.formals(args, formals$1);
       const pkgs = nix.arg($, "pkgs");
       return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         environment: nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           systemPackages: nix.thunk(() => [
             nix.thunk(() => nix.app(nix.sel(pkgs, "python3", "withPackages"), (ps) => [nix.thunk(() => nix.sel(ps, "soundcard"))])),
           ]),
         })),
         services: nix.thunk(() => ({
-          [nix.POS]: pos$3,
-          pulseaudio: nix.thunk(() => ({ [nix.POS]: pos$2, enable: true, systemWide: true })),
+          [nix.POS]: $pos[2],
+          pulseaudio: nix.thunk(() => ({ [nix.POS]: $pos[1], enable: true, systemWide: true })),
         })),
         virtualisation: nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           qemu: nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             options: nix.thunk(() => [
               "-device virtio-sound-pci,audiodev=my_audiodev",
               "-audiodev wav,id=my_audiodev",
@@ -60,27 +40,27 @@ export default nix.thunk(() => ({
     })(), formals$1),
   })),
   interactive: nix.thunk(() => ({
-    [nix.POS]: pos$20,
+    [nix.POS]: $pos[19],
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$19,
+      [nix.POS]: $pos[18],
       machine: nix.lambda((args) => (() => {
         const $ = nix.formals(args, formals$2);
         return {
-          [nix.POS]: pos$18,
+          [nix.POS]: $pos[17],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$10,
+            [nix.POS]: $pos[9],
             openssh: nix.thunk(() => ({
-              [nix.POS]: pos$9,
+              [nix.POS]: $pos[8],
               enable: true,
-              settings: nix.thunk(() => ({ [nix.POS]: pos$8, PermitRootLogin: "yes" })),
+              settings: nix.thunk(() => ({ [nix.POS]: $pos[7], PermitRootLogin: "yes" })),
             })),
           })),
           users: nix.thunk(() => ({
-            [nix.POS]: pos$13,
+            [nix.POS]: $pos[12],
             extraUsers: nix.thunk(() => ({
-              [nix.POS]: pos$12,
+              [nix.POS]: $pos[11],
               root: nix.thunk(() => ({
-                [nix.POS]: pos$11,
+                [nix.POS]: $pos[10],
                 initialPassword: "",
                 hashedPassword: null,
                 hashedPasswordFile: null,
@@ -89,13 +69,13 @@ export default nix.thunk(() => ({
             })),
           })),
           virtualisation: nix.thunk(() => ({
-            [nix.POS]: pos$17,
+            [nix.POS]: $pos[16],
             forwardPorts: nix.thunk(() => [
               nix.thunk(() => ({
-                [nix.POS]: pos$16,
+                [nix.POS]: $pos[15],
                 from: "host",
-                host: nix.thunk(() => ({ [nix.POS]: pos$14, port: 2222n })),
-                guest: nix.thunk(() => ({ [nix.POS]: pos$15, port: 22n })),
+                host: nix.thunk(() => ({ [nix.POS]: $pos[13], port: 2222n })),
+                guest: nix.thunk(() => ({ [nix.POS]: $pos[14], port: 22n })),
               })),
             ]),
           })),

@@ -2,22 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["buildType", 73, 7], ["jonquil", 74, 22]], [["buildType", 78, 7], ["test-drive", 79, 22]], [["buildType", 83, 7], ["mstore", 84, 22], ["mctc-lib", 84, 29], ["multicharge", 84, 38]], [["buildType", 88, 7], ["toml-f", 89, 22], ["test-drive", 89, 29]], [["buildType", 93, 7], ["mctc-lib", 94, 22]], [["buildType", 98, 7], ["mctc-lib", 99, 22], ["mstore", 99, 31]], [["buildType", 102, 40]], [["buildType", 105, 7], ["mctc-lib", 106, 22], ["mstore", 106, 31], ["toml-f", 106, 38]], [["buildType", 110, 7], ["mctc-lib", 112, 9], ["mstore", 113, 9], ["toml-f", 114, 9], ["multicharge", 115, 9], ["dftd4", 116, 9], ["simple-dftd3", 117, 9]], [["mctc-lib", 123, 9], ["toml-f", 124, 9], ["multicharge", 125, 9], ["dftd4", 126, 9], ["simple-dftd3", 127, 9]], [["mctc-lib", 72, 5], ["toml-f", 77, 5], ["dftd4", 82, 5], ["jonquil", 87, 5], ["mstore", 92, 5], ["multicharge", 97, 5], ["test-drive", 102, 5], ["simple-dftd3", 104, 5], ["tblite", 109, 5], ["sirius", 121, 5]], [["owner", 141, 5], ["repo", 142, 5], ["rev", 143, 5], ["hash", 144, 5], ["fetchSubmodules", 145, 5]], [["mpi", 255, 13]], [["description", 287, 5], ["homepage", 288, 5], ["license", 289, 5], ["maintainers", 290, 5], ["platforms", 291, 5]], [["pname", 134, 3], ["version", 135, 3], ["strictDeps", 137, 3], ["__structuredAttrs", 138, 3], ["src", 140, 3], ["patches", 148, 3], ["nativeBuildInputs", 157, 3], ["buildInputs", 170, 3], ["propagatedBuildInputs", 214, 3], ["propagatedUserEnvPkgs", 215, 3], ["postPatch", 217, 3], ["cmakeFlags", 221, 3], ["nativeCheckInputs", 250, 3], ["passthru", 254, 3], ["outputs", 258, 3], ["postInstall", 263, 3], ["doInstallCheck", 274, 3], ["installCheckPhase", 276, 3], ["meta", 286, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, mpiCheckPhaseHook: false, cmake: false, python3: false, gfortran: false, boost: false, blas: false, lapack: false, dbcsr: false, fftw: false, libint: false, libvori: false, libxc_7: false, dftd4: false, "simple-dftd3": false, tblite: false, mpi: false, gsl: false, scalapack: false, makeWrapper: false, libxsmm: false, spglib: false, which: false, "pkg-config": false, plumed: false, zlib: false, "hdf5-fortran-mpi": false, sirius: false, libvdwxc: false, spla: false, spfft: false, trexio: false, "toml-f": false, greenx: false, gmp: false, enableElpa: true, elpa: false, cudaPackages: false, rocmPackages: false, newScope: false, "mctc-lib": false, jonquil: false, multicharge: false, mstore: false, "test-drive": false, config: false, gpuBackend: true, hipTarget: true, cudaTarget: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["buildType", 73, 7], ["jonquil", 74, 22]]);
-const pos$2 = nix.positions(here + "/package.nix", [["buildType", 78, 7], ["test-drive", 79, 22]]);
-const pos$3 = nix.positions(here + "/package.nix", [["buildType", 83, 7], ["mstore", 84, 22], ["mctc-lib", 84, 29], ["multicharge", 84, 38]]);
-const pos$4 = nix.positions(here + "/package.nix", [["buildType", 88, 7], ["toml-f", 89, 22], ["test-drive", 89, 29]]);
-const pos$5 = nix.positions(here + "/package.nix", [["buildType", 93, 7], ["mctc-lib", 94, 22]]);
-const pos$6 = nix.positions(here + "/package.nix", [["buildType", 98, 7], ["mctc-lib", 99, 22], ["mstore", 99, 31]]);
-const pos$7 = nix.positions(here + "/package.nix", [["buildType", 102, 40]]);
-const pos$8 = nix.positions(here + "/package.nix", [["buildType", 105, 7], ["mctc-lib", 106, 22], ["mstore", 106, 31], ["toml-f", 106, 38]]);
-const pos$9 = nix.positions(here + "/package.nix", [["buildType", 110, 7], ["mctc-lib", 112, 9], ["mstore", 113, 9], ["toml-f", 114, 9], ["multicharge", 115, 9], ["dftd4", 116, 9], ["simple-dftd3", 117, 9]]);
-const pos$10 = nix.positions(here + "/package.nix", [["mctc-lib", 123, 9], ["toml-f", 124, 9], ["multicharge", 125, 9], ["dftd4", 126, 9], ["simple-dftd3", 127, 9]]);
-const pos$11 = nix.positions(here + "/package.nix", [["mctc-lib", 72, 5], ["toml-f", 77, 5], ["dftd4", 82, 5], ["jonquil", 87, 5], ["mstore", 92, 5], ["multicharge", 97, 5], ["test-drive", 102, 5], ["simple-dftd3", 104, 5], ["tblite", 109, 5], ["sirius", 121, 5]]);
-const pos$12 = nix.positions(here + "/package.nix", [["owner", 141, 5], ["repo", 142, 5], ["rev", 143, 5], ["hash", 144, 5], ["fetchSubmodules", 145, 5]]);
-const pos$13 = nix.positions(here + "/package.nix", [["mpi", 255, 13]]);
-const pos$14 = nix.positions(here + "/package.nix", [["description", 287, 5], ["homepage", 288, 5], ["license", 289, 5], ["maintainers", 290, 5], ["platforms", 291, 5]]);
-const pos$15 = nix.positions(here + "/package.nix", [["pname", 134, 3], ["version", 135, 3], ["strictDeps", 137, 3], ["__structuredAttrs", 138, 3], ["src", 140, 3], ["patches", 148, 3], ["nativeBuildInputs", 157, 3], ["buildInputs", 170, 3], ["propagatedBuildInputs", 214, 3], ["propagatedUserEnvPkgs", 215, 3], ["postPatch", 217, 3], ["cmakeFlags", 221, 3], ["nativeCheckInputs", 250, 3], ["passthru", 254, 3], ["outputs", 258, 3], ["postInstall", 263, 3], ["doInstallCheck", 274, 3], ["installCheckPhase", 276, 3], ["meta", 286, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -74,51 +60,51 @@ export default nix.lambda((args) => (() => {
   const cudaTarget = nix.argOr($, "cudaTarget", () => "80");
   nix.assert_(nix.builtins.elem(gpuBackend, nix.thunk(() => ["none", "cuda", "rocm"])), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/cp/cp2k/package.nix:64:1");
   const grimmeCmake = nix.thunk(() => nix.app(nix.sel(lib, "makeScope"), newScope, (self) => ({
-      [nix.POS]: pos$11,
+      [nix.POS]: $pos[10],
       "mctc-lib": nix.thunk(() => nix.app(nix.sel(mctc_lib, "override"), nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           buildType: "cmake",
           jonquil: nix.thunk(() => nix.attr(self, "jonquil")),
         })))),
       "toml-f": nix.thunk(() => nix.app(nix.sel(toml_f, "override"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           buildType: "cmake",
           "test-drive": nix.thunk(() => nix.attr(self, "test-drive")),
         })))),
       dftd4: nix.thunk(() => nix.app(nix.sel(dftd4, "override"), nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           buildType: "cmake",
           mstore: nix.thunk(() => nix.attr(self, "mstore")),
           "mctc-lib": nix.thunk(() => nix.attr(self, "mctc-lib")),
           multicharge: nix.thunk(() => nix.attr(self, "multicharge")),
         })))),
       jonquil: nix.thunk(() => nix.app(nix.sel(jonquil, "override"), nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           buildType: "cmake",
           "toml-f": nix.thunk(() => nix.attr(self, "toml-f")),
           "test-drive": nix.thunk(() => nix.attr(self, "test-drive")),
         })))),
       mstore: nix.thunk(() => nix.app(nix.sel(mstore, "override"), nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           buildType: "cmake",
           "mctc-lib": nix.thunk(() => nix.attr(self, "mctc-lib")),
         })))),
       multicharge: nix.thunk(() => nix.app(nix.sel(multicharge, "override"), nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           buildType: "cmake",
           "mctc-lib": nix.thunk(() => nix.attr(self, "mctc-lib")),
           mstore: nix.thunk(() => nix.attr(self, "mstore")),
         })))),
-      "test-drive": nix.thunk(() => nix.app(nix.sel(test_drive, "override"), nix.thunk(() => ({ [nix.POS]: pos$7, buildType: "cmake" })))),
+      "test-drive": nix.thunk(() => nix.app(nix.sel(test_drive, "override"), nix.thunk(() => ({ [nix.POS]: $pos[6], buildType: "cmake" })))),
       "simple-dftd3": nix.thunk(() => nix.app(nix.sel(simple_dftd3, "override"), nix.thunk(() => ({
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           buildType: "cmake",
           "mctc-lib": nix.thunk(() => nix.attr(self, "mctc-lib")),
           mstore: nix.thunk(() => nix.attr(self, "mstore")),
           "toml-f": nix.thunk(() => nix.attr(self, "toml-f")),
         })))),
       tblite: nix.thunk(() => nix.app(nix.sel(tblite, "override"), nix.thunk(() => ({
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           buildType: "cmake",
           "mctc-lib": nix.thunk(() => nix.attr(self, "mctc-lib")),
           mstore: nix.thunk(() => nix.attr(self, "mstore")),
@@ -128,7 +114,7 @@ export default nix.lambda((args) => (() => {
           "simple-dftd3": nix.thunk(() => nix.attr(self, "simple-dftd3")),
         })))),
       sirius: nix.thunk(() => nix.app(nix.sel(sirius, "override"), nix.thunk(() => ({
-          [nix.POS]: pos$10,
+          [nix.POS]: $pos[9],
           "mctc-lib": nix.thunk(() => nix.attr(self, "mctc-lib")),
           "toml-f": nix.thunk(() => nix.attr(self, "toml-f")),
           multicharge: nix.thunk(() => nix.attr(self, "multicharge")),
@@ -137,13 +123,13 @@ export default nix.lambda((args) => (() => {
         })))),
     })));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$15,
+      [nix.POS]: $pos[14],
       pname: "cp2k",
       version: "2026.2",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$12,
+          [nix.POS]: $pos[11],
           owner: "cp2k",
           repo: "cp2k",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -225,13 +211,13 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.app(nix.sel(lib, "strings", "cmakeFeature"), "CMAKE_CUDA_ARCHITECTURES", cudaTarget)),
         ]))))),
       nativeCheckInputs: nix.thunk(() => [mpiCheckPhaseHook]),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$13, mpi: mpi })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[12], mpi: mpi })),
       outputs: nix.thunk(() => ["out", "dev"]),
       postInstall: "mkdir -p $out/share/cp2k\ncp -r ../data/* $out/share/cp2k\n\nfor i in $out/bin/*; do\n  wrapProgram $i \\\n    --set-default CP2K_DATA_DIR $out/share/cp2k \\\n    --set-default OMP_NUM_THREADS 1\ndone\n",
       doInstallCheck: nix.thunk(() => nix.eq(gpuBackend, "none")),
       installCheckPhase: "runHook preInstallCheck\n\nfor TEST in $out/bin/{dbt_tas,dbt,libcp2k,parallel_rng_types,gx_ac}_unittest.psmp; do\n  mpirun -n 2 $TEST\ndone\n\nrunHook postInstallCheck\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$14,
+        [nix.POS]: $pos[13],
         description: "Quantum chemistry and solid state physics program",
         homepage: "https://www.cp2k.org",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

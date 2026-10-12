@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["sha256", 18, 5]], [["updateScript", 40, 5]], [["description", 44, 5], ["longDescription", 45, 5], ["homepage", 49, 5], ["license", 50, 5], ["maintainers", 51, 5], ["platforms", 54, 5], ["mainProgram", 55, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["projectFile", 21, 3], ["enableParallelBuilding", 26, 3], ["doCheck", 28, 3], ["nugetDeps", 30, 3], ["dotnet-sdk", 32, 3], ["dotnet-runtime", 33, 3], ["postInstall", 35, 3], ["passthru", 39, 3], ["meta", 43, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, buildDotnetModule: false, dotnetCorePackages: false, audiothekar: false, testers: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["sha256", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 40, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 44, 5], ["longDescription", 45, 5], ["homepage", 49, 5], ["license", 50, 5], ["maintainers", 51, 5], ["platforms", 54, 5], ["mainProgram", 55, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["projectFile", 21, 3], ["enableParallelBuilding", 26, 3], ["doCheck", 28, 3], ["nugetDeps", 30, 3], ["dotnet-sdk", 32, 3], ["dotnet-runtime", 33, 3], ["postInstall", 35, 3], ["passthru", 39, 3], ["meta", 43, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname = "audiothekar";
       const version = "1.0.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "fxsth",
           repo: "audiothekar",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -34,9 +31,9 @@ export default nix.lambda((args) => (() => {
       const dotnet_runtime = nix.thunk(() => nix.sel(dotnetCorePackages, "runtime_8_0"));
       const postInstall = nix.thunk(() => nix.str`install -m 644 -D -t "$out/share/doc/${pname}" License.md
 `);
-      const passthru = nix.thunk(() => ({ [nix.POS]: pos$2, updateScript: nix.path(here, "./update.sh") }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: $pos[1], updateScript: nix.path(here, "./update.sh") }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Download-Client für die ARD-Audiothek",
         longDescription: "Audiothekar is a command line client to browse and download programs from\nGerman public broadcast online offering at https://www.ardaudiothek.de/.\n",
         homepage: "https://github.com/fxsth/Audiothekar",
@@ -49,7 +46,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "audiothekar-cli",
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

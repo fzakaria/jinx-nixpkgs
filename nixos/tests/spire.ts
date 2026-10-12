@@ -2,85 +2,12 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/spire.nix", [[["SPIFFE_ENDPOINT_SOCKET", 44, 29]], [["variables", 44, 19]], [["source", 46, 55]], [["spire.trust_bundle", 46, 34]], [["credentials", 46, 22]], [["ImportCredential", 47, 50]], [["serviceConfig", 47, 36]], [["spire-agent", 47, 24]], [["services", 47, 15]], [["isNormalUser", 52, 9], ["group", 53, 9]], [["workload", 51, 19]], [["workload", 55, 20]], [["users", 51, 13], ["groups", 55, 13]], [["environment", 44, 7], ["virtualisation", 46, 7], ["systemd", 47, 7], ["users", 51, 7]], [["enable", 65, 11], ["provisioning", 68, 11]], [["useEFIBoot", 63, 9], ["tpm", 64, 9]], [["systemPackages", 97, 19]], [["trust_domain", 103, 13], ["server_address", 104, 13], ["trust_bundle_format", 105, 13], ["trust_bundle_path", 106, 13]], [["plugin_data", 109, 31]], [["memory", 109, 24]], [["plugin_data", 110, 30]], [["tpm", 110, 26]], [["plugin_data", 111, 38]], [["plugin_data", 112, 35]], [["systemd", 111, 30], ["unix", 112, 30]], [["KeyManager", 109, 13], ["NodeAttestor", 110, 13], ["WorkloadAttestor", 111, 13]], [["agent", 102, 11], ["plugins", 108, 11]], [["enable", 100, 9], ["settings", 101, 9]], [["agent", 99, 22]], [["spire", 99, 16]], [["imports", 61, 7], ["virtualisation", 62, 7], ["environment", 97, 7], ["services", 99, 7]], [["domain", 125, 20]], [["source", 126, 57]], [["spire/server/certs/tpm-ca.crt", 126, 25]], [["etc", 126, 21]], [["trust_domain", 131, 20]], [["plugin_data", 133, 33]], [["memory", 133, 26]], [["database_type", 135, 17], ["connection_string", 136, 17]], [["plugin_data", 134, 29]], [["sql", 134, 25]], [["plugin_data", 138, 39]], [["ca_path", 139, 44]], [["plugin_data", 139, 32]], [["join_token", 138, 28], ["tpm", 139, 28]], [["KeyManager", 133, 15], ["DataStore", 134, 15], ["NodeAttestor", 138, 15]], [["server", 131, 13], ["plugins", 132, 13]], [["enable", 128, 11], ["openFirewall", 129, 11], ["settings", 130, 11]], [["server", 127, 24]], [["spire", 127, 18]], [["networking", 125, 9], ["environment", 126, 9], ["services", 127, 9]], [["source", 148, 53]], [["spire.join_token", 148, 34]], [["credentials", 148, 22]], [["ImportCredential", 149, 50]], [["serviceConfig", 149, 36]], [["spire-agent", 149, 24]], [["services", 149, 15]], [["trust_domain", 155, 13], ["server_address", 156, 13], ["join_token_file", 157, 13], ["trust_bundle_format", 158, 13], ["trust_bundle_path", 159, 13]], [["plugin_data", 162, 31]], [["memory", 162, 24]], [["plugin_data", 163, 37]], [["join_token", 163, 26]], [["plugin_data", 164, 38]], [["plugin_data", 165, 35]], [["systemd", 164, 30], ["unix", 165, 30]], [["KeyManager", 162, 13], ["NodeAttestor", 163, 13], ["WorkloadAttestor", 164, 13]], [["agent", 154, 11], ["plugins", 161, 11]], [["enable", 152, 9], ["settings", 153, 9]], [["agent", 151, 22]], [["spire", 151, 16]], [["imports", 146, 7], ["virtualisation", 148, 7], ["systemd", 149, 7], ["services", 151, 7]], [["server", 122, 5], ["agent", 145, 5], ["tpmAgent", 171, 5], ["tpmSelectorAgent", 172, 5]], [["name", 119, 3], ["nodes", 121, 3], ["testScript", 175, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
 const formals$2 = { args: { config: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/spire.nix", [["SPIFFE_ENDPOINT_SOCKET", 44, 29]]);
-const pos$2 = nix.positions(here + "/spire.nix", [["variables", 44, 19]]);
-const pos$3 = nix.positions(here + "/spire.nix", [["source", 46, 55]]);
-const pos$4 = nix.positions(here + "/spire.nix", [["spire.trust_bundle", 46, 34]]);
-const pos$5 = nix.positions(here + "/spire.nix", [["credentials", 46, 22]]);
-const pos$6 = nix.positions(here + "/spire.nix", [["ImportCredential", 47, 50]]);
-const pos$7 = nix.positions(here + "/spire.nix", [["serviceConfig", 47, 36]]);
-const pos$8 = nix.positions(here + "/spire.nix", [["spire-agent", 47, 24]]);
-const pos$9 = nix.positions(here + "/spire.nix", [["services", 47, 15]]);
-const pos$10 = nix.positions(here + "/spire.nix", [["isNormalUser", 52, 9], ["group", 53, 9]]);
-const pos$11 = nix.positions(here + "/spire.nix", [["workload", 51, 19]]);
-const pos$12 = nix.positions(here + "/spire.nix", [["workload", 55, 20]]);
-const pos$13 = nix.positions(here + "/spire.nix", [["users", 51, 13], ["groups", 55, 13]]);
-const pos$14 = nix.positions(here + "/spire.nix", [["environment", 44, 7], ["virtualisation", 46, 7], ["systemd", 47, 7], ["users", 51, 7]]);
 const formals$3 = { args: { pkgs: false, lib: false }, ellipsis: true };
-const pos$15 = nix.positions(here + "/spire.nix", [["enable", 65, 11], ["provisioning", 68, 11]]);
-const pos$16 = nix.positions(here + "/spire.nix", [["useEFIBoot", 63, 9], ["tpm", 64, 9]]);
-const pos$17 = nix.positions(here + "/spire.nix", [["systemPackages", 97, 19]]);
-const pos$18 = nix.positions(here + "/spire.nix", [["trust_domain", 103, 13], ["server_address", 104, 13], ["trust_bundle_format", 105, 13], ["trust_bundle_path", 106, 13]]);
-const pos$19 = nix.positions(here + "/spire.nix", [["plugin_data", 109, 31]]);
-const pos$20 = nix.positions(here + "/spire.nix", [["memory", 109, 24]]);
-const pos$21 = nix.positions(here + "/spire.nix", [["plugin_data", 110, 30]]);
-const pos$22 = nix.positions(here + "/spire.nix", [["tpm", 110, 26]]);
-const pos$23 = nix.positions(here + "/spire.nix", [["plugin_data", 111, 38]]);
-const pos$24 = nix.positions(here + "/spire.nix", [["plugin_data", 112, 35]]);
-const pos$25 = nix.positions(here + "/spire.nix", [["systemd", 111, 30], ["unix", 112, 30]]);
-const pos$26 = nix.positions(here + "/spire.nix", [["KeyManager", 109, 13], ["NodeAttestor", 110, 13], ["WorkloadAttestor", 111, 13]]);
-const pos$27 = nix.positions(here + "/spire.nix", [["agent", 102, 11], ["plugins", 108, 11]]);
-const pos$28 = nix.positions(here + "/spire.nix", [["enable", 100, 9], ["settings", 101, 9]]);
-const pos$29 = nix.positions(here + "/spire.nix", [["agent", 99, 22]]);
-const pos$30 = nix.positions(here + "/spire.nix", [["spire", 99, 16]]);
-const pos$31 = nix.positions(here + "/spire.nix", [["imports", 61, 7], ["virtualisation", 62, 7], ["environment", 97, 7], ["services", 99, 7]]);
 const formals$4 = { args: { config: false }, ellipsis: true };
-const pos$32 = nix.positions(here + "/spire.nix", [["domain", 125, 20]]);
-const pos$33 = nix.positions(here + "/spire.nix", [["source", 126, 57]]);
-const pos$34 = nix.positions(here + "/spire.nix", [["spire/server/certs/tpm-ca.crt", 126, 25]]);
-const pos$35 = nix.positions(here + "/spire.nix", [["etc", 126, 21]]);
-const pos$36 = nix.positions(here + "/spire.nix", [["trust_domain", 131, 20]]);
-const pos$37 = nix.positions(here + "/spire.nix", [["plugin_data", 133, 33]]);
-const pos$38 = nix.positions(here + "/spire.nix", [["memory", 133, 26]]);
-const pos$39 = nix.positions(here + "/spire.nix", [["database_type", 135, 17], ["connection_string", 136, 17]]);
-const pos$40 = nix.positions(here + "/spire.nix", [["plugin_data", 134, 29]]);
-const pos$41 = nix.positions(here + "/spire.nix", [["sql", 134, 25]]);
-const pos$42 = nix.positions(here + "/spire.nix", [["plugin_data", 138, 39]]);
-const pos$43 = nix.positions(here + "/spire.nix", [["ca_path", 139, 44]]);
-const pos$44 = nix.positions(here + "/spire.nix", [["plugin_data", 139, 32]]);
-const pos$45 = nix.positions(here + "/spire.nix", [["join_token", 138, 28], ["tpm", 139, 28]]);
-const pos$46 = nix.positions(here + "/spire.nix", [["KeyManager", 133, 15], ["DataStore", 134, 15], ["NodeAttestor", 138, 15]]);
-const pos$47 = nix.positions(here + "/spire.nix", [["server", 131, 13], ["plugins", 132, 13]]);
-const pos$48 = nix.positions(here + "/spire.nix", [["enable", 128, 11], ["openFirewall", 129, 11], ["settings", 130, 11]]);
-const pos$49 = nix.positions(here + "/spire.nix", [["server", 127, 24]]);
-const pos$50 = nix.positions(here + "/spire.nix", [["spire", 127, 18]]);
-const pos$51 = nix.positions(here + "/spire.nix", [["networking", 125, 9], ["environment", 126, 9], ["services", 127, 9]]);
-const pos$52 = nix.positions(here + "/spire.nix", [["source", 148, 53]]);
-const pos$53 = nix.positions(here + "/spire.nix", [["spire.join_token", 148, 34]]);
-const pos$54 = nix.positions(here + "/spire.nix", [["credentials", 148, 22]]);
-const pos$55 = nix.positions(here + "/spire.nix", [["ImportCredential", 149, 50]]);
-const pos$56 = nix.positions(here + "/spire.nix", [["serviceConfig", 149, 36]]);
-const pos$57 = nix.positions(here + "/spire.nix", [["spire-agent", 149, 24]]);
-const pos$58 = nix.positions(here + "/spire.nix", [["services", 149, 15]]);
-const pos$59 = nix.positions(here + "/spire.nix", [["trust_domain", 155, 13], ["server_address", 156, 13], ["join_token_file", 157, 13], ["trust_bundle_format", 158, 13], ["trust_bundle_path", 159, 13]]);
-const pos$60 = nix.positions(here + "/spire.nix", [["plugin_data", 162, 31]]);
-const pos$61 = nix.positions(here + "/spire.nix", [["memory", 162, 24]]);
-const pos$62 = nix.positions(here + "/spire.nix", [["plugin_data", 163, 37]]);
-const pos$63 = nix.positions(here + "/spire.nix", [["join_token", 163, 26]]);
-const pos$64 = nix.positions(here + "/spire.nix", [["plugin_data", 164, 38]]);
-const pos$65 = nix.positions(here + "/spire.nix", [["plugin_data", 165, 35]]);
-const pos$66 = nix.positions(here + "/spire.nix", [["systemd", 164, 30], ["unix", 165, 30]]);
-const pos$67 = nix.positions(here + "/spire.nix", [["KeyManager", 162, 13], ["NodeAttestor", 163, 13], ["WorkloadAttestor", 164, 13]]);
-const pos$68 = nix.positions(here + "/spire.nix", [["agent", 154, 11], ["plugins", 161, 11]]);
-const pos$69 = nix.positions(here + "/spire.nix", [["enable", 152, 9], ["settings", 153, 9]]);
-const pos$70 = nix.positions(here + "/spire.nix", [["agent", 151, 22]]);
-const pos$71 = nix.positions(here + "/spire.nix", [["spire", 151, 16]]);
-const pos$72 = nix.positions(here + "/spire.nix", [["imports", 146, 7], ["virtualisation", 148, 7], ["systemd", 149, 7], ["services", 151, 7]]);
-const pos$73 = nix.positions(here + "/spire.nix", [["server", 122, 5], ["agent", 145, 5], ["tpmAgent", 171, 5], ["tpmSelectorAgent", 172, 5]]);
 const formals$5 = { args: { nodes: false }, ellipsis: true };
-const pos$74 = nix.positions(here + "/spire.nix", [["name", 119, 3], ["nodes", 121, 3], ["testScript", 175, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -91,38 +18,41 @@ export default nix.lambda((args) => (() => {
     const $_1 = nix.formals(args_1, formals$2);
     const config = nix.arg($_1, "config");
     return {
-      [nix.POS]: pos$14,
+      [nix.POS]: $pos[13],
       environment: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         variables: nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           SPIFFE_ENDPOINT_SOCKET: nix.thunk(() => nix.sel(config, "services", "spire", "agent", "settings", "agent", "socket_path")),
         })),
       })),
       virtualisation: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         credentials: nix.thunk(() => ({
-          [nix.POS]: pos$4,
-          "spire.trust_bundle": nix.thunk(() => ({ [nix.POS]: pos$3, source: "./trust_bundle" })),
+          [nix.POS]: $pos[3],
+          "spire.trust_bundle": nix.thunk(() => ({ [nix.POS]: $pos[2], source: "./trust_bundle" })),
         })),
       })),
       systemd: nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         services: nix.thunk(() => ({
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           "spire-agent": nix.thunk(() => ({
-            [nix.POS]: pos$7,
-            serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$6, ImportCredential: nix.thunk(() => ["spire.trust_bundle"]) })),
+            [nix.POS]: $pos[6],
+            serviceConfig: nix.thunk(() => ({
+              [nix.POS]: $pos[5],
+              ImportCredential: nix.thunk(() => ["spire.trust_bundle"]),
+            })),
           })),
         })),
       })),
       users: nix.thunk(() => ({
-        [nix.POS]: pos$13,
+        [nix.POS]: $pos[12],
         users: nix.thunk(() => ({
-          [nix.POS]: pos$11,
-          workload: nix.thunk(() => ({ [nix.POS]: pos$10, isNormalUser: true, group: "workload" })),
+          [nix.POS]: $pos[10],
+          workload: nix.thunk(() => ({ [nix.POS]: $pos[9], isNormalUser: true, group: "workload" })),
         })),
-        groups: nix.thunk(() => ({ [nix.POS]: pos$12, workload: nix.thunk(() => ({})) })),
+        groups: nix.thunk(() => ({ [nix.POS]: $pos[11], workload: nix.thunk(() => ({})) })),
       })),
     };
   })(), formals$2);
@@ -131,13 +61,13 @@ export default nix.lambda((args) => (() => {
     const pkgs_1 = nix.arg($_1, "pkgs");
     const lib = nix.arg($_1, "lib");
     return {
-      [nix.POS]: pos$31,
+      [nix.POS]: $pos[30],
       imports: nix.thunk(() => [agent]),
       virtualisation: nix.thunk(() => ({
-        [nix.POS]: pos$16,
+        [nix.POS]: $pos[15],
         useEFIBoot: true,
         tpm: nix.thunk(() => ({
-          [nix.POS]: pos$15,
+          [nix.POS]: $pos[14],
           enable: true,
           provisioning: nix.thunk(() => nix.str`export PATH=${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [
               nix.thunk(() => nix.sel(pkgs_1, "openssl")),
@@ -165,39 +95,39 @@ tpm2_nvwrite 0x01c00002 -C o -i ekcert.der
         })),
       })),
       environment: nix.thunk(() => ({
-        [nix.POS]: pos$17,
+        [nix.POS]: $pos[16],
         systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs_1, "spire-tpm-plugin"))]),
       })),
       services: nix.thunk(() => ({
-        [nix.POS]: pos$30,
+        [nix.POS]: $pos[29],
         spire: nix.thunk(() => ({
-          [nix.POS]: pos$29,
+          [nix.POS]: $pos[28],
           agent: nix.thunk(() => ({
-            [nix.POS]: pos$28,
+            [nix.POS]: $pos[27],
             enable: true,
             settings: nix.thunk(() => ({
-              [nix.POS]: pos$27,
+              [nix.POS]: $pos[26],
               agent: nix.thunk(() => ({
-                [nix.POS]: pos$18,
+                [nix.POS]: $pos[17],
                 trust_domain: trustDomain,
                 server_address: nix.thunk(() => nix.str`server.${trustDomain}`),
                 trust_bundle_format: "pem",
                 trust_bundle_path: "$CREDENTIALS_DIRECTORY/spire.trust_bundle",
               })),
               plugins: nix.thunk(() => ({
-                [nix.POS]: pos$26,
+                [nix.POS]: $pos[25],
                 KeyManager: nix.thunk(() => ({
-                  [nix.POS]: pos$20,
-                  memory: nix.thunk(() => ({ [nix.POS]: pos$19, plugin_data: nix.thunk(() => ({})) })),
+                  [nix.POS]: $pos[19],
+                  memory: nix.thunk(() => ({ [nix.POS]: $pos[18], plugin_data: nix.thunk(() => ({})) })),
                 })),
                 NodeAttestor: nix.thunk(() => ({
-                  [nix.POS]: pos$22,
-                  tpm: nix.thunk(() => ({ [nix.POS]: pos$21, plugin_data: nix.thunk(() => ({})) })),
+                  [nix.POS]: $pos[21],
+                  tpm: nix.thunk(() => ({ [nix.POS]: $pos[20], plugin_data: nix.thunk(() => ({})) })),
                 })),
                 WorkloadAttestor: nix.thunk(() => ({
-                  [nix.POS]: pos$25,
-                  systemd: nix.thunk(() => ({ [nix.POS]: pos$23, plugin_data: nix.thunk(() => ({})) })),
-                  unix: nix.thunk(() => ({ [nix.POS]: pos$24, plugin_data: nix.thunk(() => ({})) })),
+                  [nix.POS]: $pos[24],
+                  systemd: nix.thunk(() => ({ [nix.POS]: $pos[22], plugin_data: nix.thunk(() => ({})) })),
+                  unix: nix.thunk(() => ({ [nix.POS]: $pos[23], plugin_data: nix.thunk(() => ({})) })),
                 })),
               })),
             })),
@@ -207,57 +137,57 @@ tpm2_nvwrite 0x01c00002 -C o -i ekcert.der
     };
   })(), formals$3);
   return {
-    [nix.POS]: pos$74,
+    [nix.POS]: $pos[73],
     name: "spire",
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$73,
+      [nix.POS]: $pos[72],
       server: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$4);
         const config = nix.arg($_1, "config");
         return {
-          [nix.POS]: pos$51,
-          networking: nix.thunk(() => ({ [nix.POS]: pos$32, domain: trustDomain })),
+          [nix.POS]: $pos[50],
+          networking: nix.thunk(() => ({ [nix.POS]: $pos[31], domain: trustDomain })),
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$35,
+            [nix.POS]: $pos[34],
             etc: nix.thunk(() => ({
-              [nix.POS]: pos$34,
-              "spire/server/certs/tpm-ca.crt": nix.thunk(() => ({ [nix.POS]: pos$33, source: nix.path(here, "./tpm-ek/ca.crt") })),
+              [nix.POS]: $pos[33],
+              "spire/server/certs/tpm-ca.crt": nix.thunk(() => ({ [nix.POS]: $pos[32], source: nix.path(here, "./tpm-ek/ca.crt") })),
             })),
           })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$50,
+            [nix.POS]: $pos[49],
             spire: nix.thunk(() => ({
-              [nix.POS]: pos$49,
+              [nix.POS]: $pos[48],
               server: nix.thunk(() => ({
-                [nix.POS]: pos$48,
+                [nix.POS]: $pos[47],
                 enable: true,
                 openFirewall: true,
                 settings: nix.thunk(() => ({
-                  [nix.POS]: pos$47,
-                  server: nix.thunk(() => ({ [nix.POS]: pos$36, trust_domain: trustDomain })),
+                  [nix.POS]: $pos[46],
+                  server: nix.thunk(() => ({ [nix.POS]: $pos[35], trust_domain: trustDomain })),
                   plugins: nix.thunk(() => ({
-                    [nix.POS]: pos$46,
+                    [nix.POS]: $pos[45],
                     KeyManager: nix.thunk(() => ({
-                      [nix.POS]: pos$38,
-                      memory: nix.thunk(() => ({ [nix.POS]: pos$37, plugin_data: nix.thunk(() => ({})) })),
+                      [nix.POS]: $pos[37],
+                      memory: nix.thunk(() => ({ [nix.POS]: $pos[36], plugin_data: nix.thunk(() => ({})) })),
                     })),
                     DataStore: nix.thunk(() => ({
-                      [nix.POS]: pos$41,
+                      [nix.POS]: $pos[40],
                       sql: nix.thunk(() => ({
-                        [nix.POS]: pos$40,
+                        [nix.POS]: $pos[39],
                         plugin_data: nix.thunk(() => ({
-                          [nix.POS]: pos$39,
+                          [nix.POS]: $pos[38],
                           database_type: "sqlite3",
                           connection_string: "$STATE_DIRECTORY/datastore.sqlite3",
                         })),
                       })),
                     })),
                     NodeAttestor: nix.thunk(() => ({
-                      [nix.POS]: pos$45,
-                      join_token: nix.thunk(() => ({ [nix.POS]: pos$42, plugin_data: nix.thunk(() => ({})) })),
+                      [nix.POS]: $pos[44],
+                      join_token: nix.thunk(() => ({ [nix.POS]: $pos[41], plugin_data: nix.thunk(() => ({})) })),
                       tpm: nix.thunk(() => ({
-                        [nix.POS]: pos$44,
-                        plugin_data: nix.thunk(() => ({ [nix.POS]: pos$43, ca_path: "/etc/spire/server/certs" })),
+                        [nix.POS]: $pos[43],
+                        plugin_data: nix.thunk(() => ({ [nix.POS]: $pos[42], ca_path: "/etc/spire/server/certs" })),
                       })),
                     })),
                   })),
@@ -268,36 +198,36 @@ tpm2_nvwrite 0x01c00002 -C o -i ekcert.der
         };
       })(), formals$4),
       agent: nix.thunk(() => ({
-        [nix.POS]: pos$72,
+        [nix.POS]: $pos[71],
         imports: nix.thunk(() => [agent]),
         virtualisation: nix.thunk(() => ({
-          [nix.POS]: pos$54,
+          [nix.POS]: $pos[53],
           credentials: nix.thunk(() => ({
-            [nix.POS]: pos$53,
-            "spire.join_token": nix.thunk(() => ({ [nix.POS]: pos$52, source: "./join_token" })),
+            [nix.POS]: $pos[52],
+            "spire.join_token": nix.thunk(() => ({ [nix.POS]: $pos[51], source: "./join_token" })),
           })),
         })),
         systemd: nix.thunk(() => ({
-          [nix.POS]: pos$58,
+          [nix.POS]: $pos[57],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$57,
+            [nix.POS]: $pos[56],
             "spire-agent": nix.thunk(() => ({
-              [nix.POS]: pos$56,
-              serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$55, ImportCredential: nix.thunk(() => ["spire.join_token"]) })),
+              [nix.POS]: $pos[55],
+              serviceConfig: nix.thunk(() => ({ [nix.POS]: $pos[54], ImportCredential: nix.thunk(() => ["spire.join_token"]) })),
             })),
           })),
         })),
         services: nix.thunk(() => ({
-          [nix.POS]: pos$71,
+          [nix.POS]: $pos[70],
           spire: nix.thunk(() => ({
-            [nix.POS]: pos$70,
+            [nix.POS]: $pos[69],
             agent: nix.thunk(() => ({
-              [nix.POS]: pos$69,
+              [nix.POS]: $pos[68],
               enable: true,
               settings: nix.thunk(() => ({
-                [nix.POS]: pos$68,
+                [nix.POS]: $pos[67],
                 agent: nix.thunk(() => ({
-                  [nix.POS]: pos$59,
+                  [nix.POS]: $pos[58],
                   trust_domain: trustDomain,
                   server_address: nix.thunk(() => nix.str`server.${trustDomain}`),
                   join_token_file: "$CREDENTIALS_DIRECTORY/spire.join_token",
@@ -305,19 +235,19 @@ tpm2_nvwrite 0x01c00002 -C o -i ekcert.der
                   trust_bundle_path: "$CREDENTIALS_DIRECTORY/spire.trust_bundle",
                 })),
                 plugins: nix.thunk(() => ({
-                  [nix.POS]: pos$67,
+                  [nix.POS]: $pos[66],
                   KeyManager: nix.thunk(() => ({
-                    [nix.POS]: pos$61,
-                    memory: nix.thunk(() => ({ [nix.POS]: pos$60, plugin_data: nix.thunk(() => ({})) })),
+                    [nix.POS]: $pos[60],
+                    memory: nix.thunk(() => ({ [nix.POS]: $pos[59], plugin_data: nix.thunk(() => ({})) })),
                   })),
                   NodeAttestor: nix.thunk(() => ({
-                    [nix.POS]: pos$63,
-                    join_token: nix.thunk(() => ({ [nix.POS]: pos$62, plugin_data: nix.thunk(() => ({})) })),
+                    [nix.POS]: $pos[62],
+                    join_token: nix.thunk(() => ({ [nix.POS]: $pos[61], plugin_data: nix.thunk(() => ({})) })),
                   })),
                   WorkloadAttestor: nix.thunk(() => ({
-                    [nix.POS]: pos$66,
-                    systemd: nix.thunk(() => ({ [nix.POS]: pos$64, plugin_data: nix.thunk(() => ({})) })),
-                    unix: nix.thunk(() => ({ [nix.POS]: pos$65, plugin_data: nix.thunk(() => ({})) })),
+                    [nix.POS]: $pos[65],
+                    systemd: nix.thunk(() => ({ [nix.POS]: $pos[63], plugin_data: nix.thunk(() => ({})) })),
+                    unix: nix.thunk(() => ({ [nix.POS]: $pos[64], plugin_data: nix.thunk(() => ({})) })),
                   })),
                 })),
               })),

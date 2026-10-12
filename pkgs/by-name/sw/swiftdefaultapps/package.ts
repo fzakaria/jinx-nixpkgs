@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 14, 5], ["stripRoot", 15, 5], ["sha256", 16, 5]], [["description", 26, 5], ["homepage", 27, 5], ["license", 28, 5], ["maintainers", 29, 5], ["platforms", 30, 5], ["mainProgram", 31, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 13, 3], ["installPhase", 19, 3], ["meta", 25, 3]]]);
 const formals$1 = { args: { fetchzip: false, lib: false, stdenvNoCC: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 14, 5], ["stripRoot", 15, 5], ["sha256", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 26, 5], ["homepage", 27, 5], ["license", 28, 5], ["maintainers", 29, 5], ["platforms", 30, 5], ["mainProgram", 31, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 13, 3], ["installPhase", 19, 3], ["meta", 25, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,14 +14,14 @@ export default nix.lambda((args) => (() => {
       const pname = "swiftdefaultapps";
       const version = "2.0.1";
       const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/Lord-Kamina/SwiftDefaultApps/releases/download/v${version}/SwiftDefaultApps-v${version}.zip`),
           stripRoot: false,
           sha256: "sha256-0HsHjZBPUzmdvHy7E9EdZj6zwaXjSX2u5aj8pij0u3E=",
         }))));
       const installPhase = "runHook preInstall\ninstall -D './swda' \"$out/bin/swda\"\nrunHook postInstall\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "View and change the default application for url schemes and UTIs",
         homepage: "https://github.com/Lord-Kamina/SwiftDefaultApps",
         license: nix.thunk(() => nix.sel(lib, "licenses", "beerware")),
@@ -31,7 +29,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "darwin")),
         mainProgram: "swda",
       }));
-      return { [nix.POS]: pos$3, pname, version, src, installPhase, meta };
+      return { [nix.POS]: $pos[2], pname, version, src, installPhase, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

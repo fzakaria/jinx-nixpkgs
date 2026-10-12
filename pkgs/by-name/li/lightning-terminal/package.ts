@@ -2,18 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5], ["leaveDotGit", 32, 5], ["postFetch", 34, 5]], [["nativeBuildInputs", 107, 11]], [["name", 105, 9], ["derivationArgs", 106, 9]], [["litd-app", 102, 18]], [["rev-prefix", 128, 7], ["ignoredVersions", 129, 7]], [["command", 132, 7], ["supportedFeatures", 164, 7]], [["tests", 102, 12], ["updateScript", 126, 12]], [["yarnLock", 173, 7], ["hash", 174, 7]], [["pname", 169, 5], ["src", 170, 5], ["version", 171, 5], ["yarnOfflineCache", 172, 5], ["postPatch", 179, 5], ["nativeBuildInputs", 184, 5], ["preBuild", 191, 5], ["installPhase", 197, 5]], [["description", 204, 5], ["homepage", 205, 5], ["license", 206, 5], ["changelog", 207, 5], ["maintainers", 208, 5], ["mainProgram", 209, 5]], [["pname", 25, 3], ["version", 26, 3], ["src", 27, 3], ["vendorHash", 44, 3], ["buildInputs", 46, 3], ["postUnpack", 47, 3], ["ldflags", 58, 3], ["preBuild", 68, 3], ["subPackages", 79, 3], ["tags", 84, 3], ["doInstallCheck", 96, 3], ["versionCheckProgram", 97, 3], ["nativeInstallCheckInputs", 98, 3], ["passthru", 102, 3], ["lightning-app", 168, 3], ["meta", 203, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildGoModule: false, fetchFromGitHub: false, nodejs: false, yarn: false, yarnConfigHook: false, yarnBuildHook: false, fetchYarnDeps: false, go: false, versionCheckHook: false, runCommandWith: false, curl: false, "lightning-terminal": false, "_experimental-update-script-combinators": false, gitUpdater: false, nurl: false, nix: false, gitMinimal: false, writeShellScript: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5], ["leaveDotGit", 32, 5], ["postFetch", 34, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["nativeBuildInputs", 107, 11]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 105, 9], ["derivationArgs", 106, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["litd-app", 102, 18]]);
-const pos$5 = nix.positions(here + "/package.nix", [["rev-prefix", 128, 7], ["ignoredVersions", 129, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["command", 132, 7], ["supportedFeatures", 164, 7]]);
-const pos$7 = nix.positions(here + "/package.nix", [["tests", 102, 12], ["updateScript", 126, 12]]);
-const pos$8 = nix.positions(here + "/package.nix", [["yarnLock", 173, 7], ["hash", 174, 7]]);
-const pos$9 = nix.positions(here + "/package.nix", [["pname", 169, 5], ["src", 170, 5], ["version", 171, 5], ["yarnOfflineCache", 172, 5], ["postPatch", 179, 5], ["nativeBuildInputs", 184, 5], ["preBuild", 191, 5], ["installPhase", 197, 5]]);
-const pos$10 = nix.positions(here + "/package.nix", [["description", 204, 5], ["homepage", 205, 5], ["license", 206, 5], ["changelog", 207, 5], ["maintainers", 208, 5], ["mainProgram", 209, 5]]);
-const pos$11 = nix.positions(here + "/package.nix", [["pname", 25, 3], ["version", 26, 3], ["src", 27, 3], ["vendorHash", 44, 3], ["buildInputs", 46, 3], ["postUnpack", 47, 3], ["ldflags", 58, 3], ["preBuild", 68, 3], ["subPackages", 79, 3], ["tags", 84, 3], ["doInstallCheck", 96, 3], ["versionCheckProgram", 97, 3], ["nativeInstallCheckInputs", 98, 3], ["passthru", 102, 3], ["lightning-app", 168, 3], ["meta", 203, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -41,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const pname = "lightning-terminal";
       const version = "0.17.0-alpha";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "lightninglabs",
           repo: "lightning-terminal",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -93,22 +83,22 @@ ldflags+=" -X github.com/lightningnetwork/lnd/build.CommitHash=$(cat COMMIT)"
       const versionCheckProgram = nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/bin/litcli`);
       const nativeInstallCheckInputs = nix.thunk(() => [versionCheckHook]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           "litd-app": nix.thunk(() => nix.app(runCommandWith, nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               name: "test-litd-app",
               derivationArgs: nix.thunk(() => ({
-                [nix.POS]: pos$2,
+                [nix.POS]: $pos[1],
                 nativeBuildInputs: nix.thunk(() => [curl, lightning_terminal]),
               })),
             })), "litd \\\n  --uipassword=12345678 \\\n  --insecure-httplisten=127.0.0.1:8080 \\\n  --httpslisten= &\nsleep 2\nGETindexHTTPCode=$(curl -o /dev/null -w \"%{http_code}\" -Lvs 127.0.0.1:8080/index.html)\nif [ \"$GETindexHTTPCode\" = 200 ]; then\n  touch $out\nfi\n")),
         })),
         updateScript: nix.thunk(() => nix.app(nix.sel(_experimental_update_script_combinators, "sequence"), nix.thunk(() => [
-            nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$5, "rev-prefix": "v", ignoredVersions: ".*rc.*" })))),
+            nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[4], "rev-prefix": "v", ignoredVersions: ".*rc.*" })))),
             nix.thunk(() => ({
-              [nix.POS]: pos$6,
+              [nix.POS]: $pos[5],
               command: nix.thunk(() => [
                 nix.thunk(() => nix.app(writeShellScript, "update-hashes.sh", nix.thunk(() => nix.str`set -euxo pipefail
 
@@ -139,12 +129,12 @@ fi
           ]))),
       }));
       const lightning_app = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           pname: "lightning-app",
           src: nix.thunk(() => nix.str`${src}/app`),
           version: "0.0.1",
           yarnOfflineCache: nix.thunk(() => nix.app(fetchYarnDeps, nix.thunk(() => ({
-              [nix.POS]: pos$8,
+              [nix.POS]: $pos[7],
               yarnLock: nix.thunk(() => nix.str`${src}/app/yarn.lock`),
               hash: "sha256-EJwrnsIBwLKDI3mF54EjLvaKu1PYKKLXed9SKKwUZNA=",
             })))),
@@ -154,7 +144,7 @@ fi
           installPhase: "mkdir -p $out\ncp -r build/* $out/\n",
         }))));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         description: "All-in-one Lightning node management tool that includes LND, Loop, Pool, Faraday, and Tapd",
         homepage: "https://github.com/lightninglabs/lightning-terminal",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -166,7 +156,7 @@ fi
         mainProgram: "litcli",
       }));
       return {
-        [nix.POS]: pos$11,
+        [nix.POS]: $pos[10],
         pname,
         version,
         src,

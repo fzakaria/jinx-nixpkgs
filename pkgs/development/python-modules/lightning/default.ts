@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 13, 3], ["pyproject", 14, 3], ["__structuredAttrs", 15, 3], ["version", 18, 5], ["src", 19, 5], ["build-system", 20, 5], ["meta", 21, 5], ["dependencies", 24, 3], ["nativeCheckInputs", 26, 3], ["doCheck", 33, 3], ["pythonImportsCheck", 35, 3]]]);
 const formals$1 = { args: { buildPythonPackage: false, "pytorch-lightning": false, psutil: false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 13, 3], ["pyproject", 14, 3], ["__structuredAttrs", 15, 3], ["version", 18, 5], ["src", 19, 5], ["build-system", 20, 5], ["meta", 21, 5], ["dependencies", 24, 3], ["nativeCheckInputs", 26, 3], ["doCheck", 33, 3], ["pythonImportsCheck", 35, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const psutil = nix.arg($, "psutil");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       pname: "lightning",
       pyproject: true,
       __structuredAttrs: true,

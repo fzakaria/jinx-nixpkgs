@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/tesseract4.nix", [[["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["hash", 24, 5]], [["description", 59, 5], ["homepage", 60, 5], ["license", 61, 5], ["maintainers", 62, 5], ["platforms", 63, 5], ["mainProgram", 64, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["postPatch", 29, 3], ["enableParallelBuilding", 41, 3], ["nativeBuildInputs", 43, 3], ["buildInputs", 49, 3], ["meta", 58, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, autoreconfHook: false, "autoconf-archive": false, "pkg-config": false, leptonica: false, libpng: false, libtiff: false, icu: false, pango: false, "opencl-headers": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/tesseract4.nix", [["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/tesseract4.nix", [["description", 59, 5], ["homepage", 60, 5], ["license", 61, 5], ["maintainers", 62, 5], ["platforms", 63, 5], ["mainProgram", 64, 5]]);
-const pos$3 = nix.positions(here + "/tesseract4.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["postPatch", 29, 3], ["enableParallelBuilding", 41, 3], ["nativeBuildInputs", 43, 3], ["buildInputs", 49, 3], ["meta", 58, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const pango = nix.arg($, "pango");
   const opencl_headers = nix.arg($, "opencl-headers");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "tesseract",
       version: "4.1.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "tesseract-ocr",
           repo: "tesseract",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -37,7 +35,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pkg_config, autoreconfHook, autoconf_archive]),
       buildInputs: nix.thunk(() => [leptonica, libpng, libtiff, icu, pango, opencl_headers]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "OCR engine",
         homepage: "https://github.com/tesseract-ocr/tesseract",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

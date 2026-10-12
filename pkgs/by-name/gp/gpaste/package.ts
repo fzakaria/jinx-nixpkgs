@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 27, 5], ["hash", 28, 5]], [["pname", 82, 53]], [["updateScript", 82, 12]], [["homepage", 85, 5], ["changelog", 86, 5], ["description", 87, 5], ["mainProgram", 88, 5], ["license", 89, 5], ["platforms", 90, 5], ["teams", 91, 5], ["maintainers", 92, 5]], [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["patches", 31, 3], ["postPatch", 37, 3], ["nativeBuildInputs", 42, 3], ["buildInputs", 52, 3], ["mesonFlags", 62, 3], ["postInstall", 68, 3], ["passthru", 82, 3], ["meta", 84, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, gjs: false, glib: false, "gobject-introspection": false, gtk3: false, gtk4: false, gcr_4: false, libadwaita: false, meson: false, ninja: false, pango: false, "pkg-config": false, vala: false, "desktop-file-utils": false, directoryListingUpdater: false, wrapGAppsHook3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 82, 53]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 82, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 85, 5], ["changelog", 86, 5], ["description", 87, 5], ["mainProgram", 88, 5], ["license", 89, 5], ["platforms", 90, 5], ["teams", 91, 5], ["maintainers", 92, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["patches", 31, 3], ["postPatch", 37, 3], ["nativeBuildInputs", 42, 3], ["buildInputs", 52, 3], ["mesonFlags", 62, 3], ["postInstall", 68, 3], ["passthru", 82, 3], ["meta", 84, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const directoryListingUpdater = nix.arg($, "directoryListingUpdater");
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "gpaste",
       version: "45.5",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://www.imagination-land.org/files/gpaste/GPaste-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-seoPqmec9F4/zwmLjpAOUBBIVvLbFRMVPZ3jcloRrZE=",
         })))),
@@ -70,11 +66,11 @@ substitute "${nix.path(here, "./wrapper.js")}" "$extensionDir/prefs.js" \\
   --subst-var-by typelibDir "${nix.builtins.placeholder("out")}/lib/girepository-1.0"
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(directoryListingUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, pname: "GPaste" })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(directoryListingUpdater, nix.thunk(() => ({ [nix.POS]: $pos[1], pname: "GPaste" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://github.com/Keruspe/GPaste",
         changelog: nix.thunk(() => nix.str`https://github.com/Keruspe/GPaste/blob/v${nix.sel(finalAttrs, "version")}/NEWS`),
         description: "Clipboard management system with GNOME integration",

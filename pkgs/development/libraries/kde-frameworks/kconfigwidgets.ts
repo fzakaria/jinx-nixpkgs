@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/kconfigwidgets.nix", [[["pname", 17, 3], ["nativeBuildInputs", 18, 3], ["buildInputs", 23, 3], ["propagatedBuildInputs", 29, 3], ["outputs", 35, 3], ["outputBin", 39, 3], ["postInstall", 40, 3]]]);
 const formals$1 = { args: { mkDerivation: false, cmake: false, "extra-cmake-modules": false, kauth: false, kcodecs: false, kconfig: false, kdoctools: false, kguiaddons: false, ki18n: false, kwidgetsaddons: false, qttools: false, qtbase: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/kconfigwidgets.nix", [["pname", 17, 3], ["nativeBuildInputs", 18, 3], ["buildInputs", 23, 3], ["propagatedBuildInputs", 29, 3], ["outputs", 35, 3], ["outputBin", 39, 3], ["postInstall", 40, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
   const qttools = nix.arg($, "qttools");
   const qtbase = nix.arg($, "qtbase");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       pname: "kconfigwidgets",
       nativeBuildInputs: nix.thunk(() => [cmake, extra_cmake_modules, kdoctools]),
       buildInputs: nix.thunk(() => [kguiaddons, ki18n, qtbase, qttools]),

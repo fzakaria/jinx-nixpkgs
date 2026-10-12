@@ -2,14 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/vmr.nix", [[["url", 98, 5], ["hash", 99, 5]], [["LOCALE_ARCHIVE", 445, 5], ["NIX_CFLAGS_COMPILE", 452, 5]], [["NIX_CC_WRAPPER_SUPPRESS_TARGET_WARNING", 456, 5]], [["TOOLCHAIN", 459, 5], ["ROOTFS_DIR", 460, 5]], [["releaseManifest", 584, 13], ["buildRid", 584, 29], ["hostRid", 584, 38], ["icu", 585, 5], ["hasILCompiler", 587, 5], ["hasCrossTargetBug", 588, 5]], [["description", 592, 5], ["homepage", 593, 5], ["license", 594, 5], ["maintainers", 595, 5], ["mainProgram", 596, 5], ["platforms", 597, 5]], [["pname", 85, 3], ["version", 86, 11], ["strictDeps", 88, 3], ["__structuredAttrs", 89, 3], ["preHook", 92, 3], ["src", 97, 3], ["depsBuildBuild", 102, 3], ["nativeBuildInputs", 109, 3], ["buildInputs", 142, 3], ["sandboxProfile", 153, 3], ["patches", 159, 3], ["postPatch", 182, 3], ["prepFlags", 394, 3], ["configurePhase", 403, 3], ["postConfigure", 434, 3], ["dontConfigureNuget", 439, 3], ["dontUseCmakeConfigure", 440, 3], ["env", 442, 3], ["buildFlags", 466, 3], ["buildPhase", 492, 3], ["outputs", 515, 3], ["installPhase", 520, 3], ["preFixup", 577, 3], ["separateDebugInfo", 581, 3], ["passthru", 583, 3], ["meta", 591, 3]]]);
 const formals$1 = { args: { llvmPackages_20: false, lib: false, fetchurl: false, fetchpatch2: false, dotnetCorePackages: false, jq: false, curl: false, git: false, cmake: false, "pkg-config": false, zlib: false, icu: false, "lttng-ust_2_12": false, krb5: false, glibcLocales: false, ensureNewerSourcesForZipFilesHook: false, darwin: false, swift: false, xcbuild: false, openssl: false, getconf: false, python3: false, xmlstarlet: false, nodejs: false, cpio: false, ninja: false, callPackage: false, unzip: false, yq: false, installShellFiles: false, runCommand: false, pkgsBuildHost: false, sigtool: false, baseName: true, bootstrapSdk: false, releaseManifestFile: false, tarballHash: false, hasRuntime: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/vmr.nix", [["url", 98, 5], ["hash", 99, 5]]);
-const pos$2 = nix.positions(here + "/vmr.nix", [["LOCALE_ARCHIVE", 445, 5], ["NIX_CFLAGS_COMPILE", 452, 5]]);
-const pos$3 = nix.positions(here + "/vmr.nix", [["NIX_CC_WRAPPER_SUPPRESS_TARGET_WARNING", 456, 5]]);
-const pos$4 = nix.positions(here + "/vmr.nix", [["TOOLCHAIN", 459, 5], ["ROOTFS_DIR", 460, 5]]);
-const pos$5 = nix.positions(here + "/vmr.nix", [["releaseManifest", 584, 13], ["buildRid", 584, 29], ["hostRid", 584, 38], ["icu", 585, 5], ["hasILCompiler", 587, 5], ["hasCrossTargetBug", 588, 5]]);
-const pos$6 = nix.positions(here + "/vmr.nix", [["description", 592, 5], ["homepage", 593, 5], ["license", 594, 5], ["maintainers", 595, 5], ["mainProgram", 596, 5], ["platforms", 597, 5]]);
-const pos$7 = nix.positions(here + "/vmr.nix", [["pname", 85, 3], ["version", 86, 11], ["strictDeps", 88, 3], ["__structuredAttrs", 89, 3], ["preHook", 92, 3], ["src", 97, 3], ["depsBuildBuild", 102, 3], ["nativeBuildInputs", 109, 3], ["buildInputs", 142, 3], ["sandboxProfile", 153, 3], ["patches", 159, 3], ["postPatch", 182, 3], ["prepFlags", 394, 3], ["configurePhase", 403, 3], ["postConfigure", 434, 3], ["dontConfigureNuget", 439, 3], ["dontUseCmakeConfigure", 440, 3], ["env", 442, 3], ["buildFlags", 466, 3], ["buildPhase", 492, 3], ["outputs", 515, 3], ["installPhase", 520, 3], ["preFixup", 577, 3], ["separateDebugInfo", 581, 3], ["passthru", 583, 3], ["meta", 591, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -71,7 +65,7 @@ export default nix.lambda((args) => (() => {
   const version = release;
   const runtimeDeps = (hostPlatform_1) => nix.concat([zlib, _icu, openssl], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(hostPlatform_1, "isLinux")), nix.thunk(() => [krb5, lttng_ust_2_12])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(hostPlatform_1, "isDarwin")), nix.thunk(() => [krb5]))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => nix.attrsDyn({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: nix.thunk(() => nix.str`${baseName}-vmr`),
       version: version,
       strictDeps: true,
@@ -80,7 +74,7 @@ export default nix.lambda((args) => (() => {
 export DYLD_LIBRARY_PATH
 `))),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`${sourceRepository}/archive/refs/tags/${tag}.tar.gz`),
           hash: tarballHash,
         })))),
@@ -259,11 +253,11 @@ buildFlags+=(--with-shared-components "$PWD"/.shared-components)
       dontConfigureNuget: true,
       dontUseCmakeConfigure: true,
       env: nix.thunk(() => nix.update({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         LOCALE_ARCHIVE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool(isLinux) && nix.asBool(!nix.eq(glibcLocales, null)))), nix.thunk(() => nix.str`${glibcLocales}/lib/locale/locale-archive`))),
         NIX_CFLAGS_COMPILE: "-Wno-unused-command-line-argument",
-      }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) && nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), version, "11")))), nix.thunk(() => ({ [nix.POS]: pos$3, NIX_CC_WRAPPER_SUPPRESS_TARGET_WARNING: "1" }))), nix.app(nix.sel(lib, "optionalAttrs"), isCross, nix.thunk(() => ({
-          [nix.POS]: pos$4,
+      }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) && nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), version, "11")))), nix.thunk(() => ({ [nix.POS]: $pos[2], NIX_CC_WRAPPER_SUPPRESS_TARGET_WARNING: "1" }))), nix.app(nix.sel(lib, "optionalAttrs"), isCross, nix.thunk(() => ({
+          [nix.POS]: $pos[3],
           TOOLCHAIN: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "config")),
           ROOTFS_DIR: nix.thunk(() => nix.app(runCommand, "rootfs", nix.thunk(() => ({})), "mkdir $out\nln -s /nix $out/\n")),
         })))))),
@@ -314,7 +308,7 @@ runHook postInstall
       preFixup: "stripExclude=(\\*.dll crossgen2)\n",
       separateDebugInfo: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         releaseManifest: releaseManifest,
         buildRid: buildRid,
         hostRid: hostRid,
@@ -323,7 +317,7 @@ runHook postInstall
         hasCrossTargetBug: false,
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Core functionality needed to create .NET Core projects, that is shared between Visual Studio and CLI",
         homepage: "https://dotnet.github.io/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

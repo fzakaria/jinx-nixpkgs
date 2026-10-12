@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["description", 24, 5], ["homepage", 25, 5], ["license", 26, 5], ["maintainers", 27, 5], ["mainProgram", 28, 5], ["platforms", 29, 5]], [["owner", 36, 7], ["repo", 37, 7], ["rev", 38, 7], ["hash", 39, 7]], [["pname", 33, 13], ["version", 33, 19], ["meta", 33, 27], ["src", 35, 5], ["postPatch", 42, 5], ["nativeBuildInputs", 52, 5], ["configurePhase", 57, 5], ["installPhase", 59, 5]], [["url", 70, 7], ["hash", 71, 7]], [["sourceProvenance", 96, 7]], [["pname", 67, 13], ["version", 67, 19], ["src", 69, 5], ["dontPatch", 74, 5], ["dontConfigure", 75, 5], ["dontBuild", 76, 5], ["nativeBuildInputs", 78, 5], ["unpackPhase", 83, 5], ["installPhase", 88, 5], ["meta", 95, 5]]]);
 const formals$1 = { args: { lib: false, stdenv: false, stdenvNoCC: false, fetchFromGitHub: false, fetchurl: false, swift: false, swiftpm: false, swiftpm2nix: false, libarchive: false, p7zip: false, fromSource: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["description", 24, 5], ["homepage", 25, 5], ["license", 26, 5], ["maintainers", 27, 5], ["mainProgram", 28, 5], ["platforms", 29, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 36, 7], ["repo", 37, 7], ["rev", 38, 7], ["hash", 39, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 33, 13], ["version", 33, 19], ["meta", 33, 27], ["src", 35, 5], ["postPatch", 42, 5], ["nativeBuildInputs", 52, 5], ["configurePhase", 57, 5], ["installPhase", 59, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["url", 70, 7], ["hash", 71, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["sourceProvenance", 96, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 67, 13], ["version", 67, 19], ["src", 69, 5], ["dontPatch", 74, 5], ["dontConfigure", 75, 5], ["dontBuild", 76, 5], ["nativeBuildInputs", 78, 5], ["unpackPhase", 83, 5], ["installPhase", 88, 5], ["meta", 95, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,7 +22,7 @@ export default nix.lambda((args) => (() => {
   const pname = "dockutil";
   const version = "3.1.3";
   const meta = nix.thunk(() => ({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     description: "Tool for managing dock items",
     homepage: "https://github.com/kcrawford/dockutil",
     license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -39,12 +34,12 @@ export default nix.lambda((args) => (() => {
     platforms: nix.thunk(() => nix.sel(lib, "platforms", "darwin")),
   }));
   const buildFromSource = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: pname,
       version: version,
       meta: meta,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "kcrawford",
           repo: "dockutil",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -59,11 +54,11 @@ runHook postInstall
 `),
     })));
   const installBinary = nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: pname,
       version: version,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           url: nix.thunk(() => nix.str`https://github.com/kcrawford/dockutil/releases/download/${nix.sel(finalAttrs, "version")}/dockutil-${nix.sel(finalAttrs, "version")}.pkg`),
           hash: "sha256-9g24Jz/oDXxIJFiL7bU4pTh2dcORftsAENq59S0/JYI=",
         })))),
@@ -74,7 +69,7 @@ runHook postInstall
       unpackPhase: "7z x $src\nbsdtar -xf Payload~\n",
       installPhase: "runHook preInstall\nmkdir -p $out/bin\ninstall -Dm755 usr/local/bin/dockutil -t $out/bin\nrunHook postInstall\n",
       meta: nix.thunk(() => nix.update(meta, {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         sourceProvenance: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "sourceTypes", "binaryNativeCode"))]),
       })),
     })));

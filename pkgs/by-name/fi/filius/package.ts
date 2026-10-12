@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]], [["updateScript", 70, 12]], [["homepage", 73, 5], ["downloadPage", 75, 5], ["description", 76, 5], ["longDescription", 77, 5], ["license", 84, 5], ["maintainers", 88, 5], ["platforms", 89, 5], ["mainProgram", 90, 5], ["sourceProvenance", 91, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["mvnHash", 22, 3], ["mvnParameters", 23, 3], ["doCheck", 26, 3], ["postPatch", 28, 3], ["nativeBuildInputs", 33, 3], ["installPhase", 38, 3], ["postInstall", 55, 3], ["passthru", 70, 3], ["meta", 72, 3]]]);
 const formals$1 = { args: { lib: false, maven: false, fetchFromGitLab: false, makeWrapper: false, jre: false, wrapGAppsHook3: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 70, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 73, 5], ["downloadPage", 75, 5], ["description", 76, 5], ["longDescription", 77, 5], ["license", 84, 5], ["maintainers", 88, 5], ["platforms", 89, 5], ["mainProgram", 90, 5], ["sourceProvenance", 91, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["mvnHash", 22, 3], ["mvnParameters", 23, 3], ["doCheck", 26, 3], ["postPatch", 28, 3], ["nativeBuildInputs", 33, 3], ["installPhase", 38, 3], ["postInstall", 55, 3], ["passthru", 70, 3], ["meta", 72, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pname = "filius";
       const version = "2.14.0";
       const src = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "filius1",
           repo: "filius",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -49,11 +46,11 @@ runHook postInstall
 `);
       const postInstall = "install -Dm444 src/deb/application-filius-project.xml $out/share/mime/packages/application-filius-project.xml\n\nfor size in {32,64,96}; do\n  install -Dm444 src/deb/icons/hicolor/\"$size\"x\"$size\"/apps/filius.png $out/share/icons/hicolor/\"$size\"x\"$size\"/apps/filius.png\n  install -Dm444 src/deb/icons/hicolor/\"$size\"x\"$size\"/apps/filius.png $out/share/icons/hicolor/\"$size\"x\"$size\"/mimetypes/filius.png\ndone\n\nmkdir -p $out/share/man/man1/\ncp src/deb/filius.1 $out/share/man/man1/\n\nmkdir -p $out/share/applications\ncp src/deb/filius.desktop $out/share/applications/\n";
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://www.lernsoftware-filius.de/",
         downloadPage: "https://www.lernsoftware-filius.de/Herunterladen",
         description: "A computer network simulator for secondary schools",
@@ -74,7 +71,7 @@ runHook postInstall
         sourceProvenance: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "sourceTypes", "fromSource"))]),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

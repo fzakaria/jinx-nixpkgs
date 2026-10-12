@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["fetchSubmodules", 25, 5], ["hash", 26, 5]], [["homepage", 52, 5], ["description", 53, 5], ["maintainers", 54, 5], ["license", 55, 5], ["platforms", 56, 5], ["mainProgram", 57, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 40, 3], ["postInstall", 46, 3], ["meta", 51, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, wrapGAppsHook4: false, "appstream-glib": false, "blueprint-compiler": false, "desktop-file-utils": false, meson: false, ninja: false, "pkg-config": false, glib: false, gjs: false, libadwaita: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["fetchSubmodules", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 52, 5], ["description", 53, 5], ["maintainers", 54, 5], ["license", 55, 5], ["platforms", 56, 5], ["mainProgram", 57, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 40, 3], ["postInstall", 46, 3], ["meta", 51, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const gjs = nix.arg($, "gjs");
   const libadwaita = nix.arg($, "libadwaita");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "design",
       version: "48-alpha1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "dubstar-04",
           repo: "Design",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -47,7 +45,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [glib, libadwaita]),
       postInstall: "mv $out/bin/io.github.dubstar_04.design $out/share/design/\nln -s $out/share/design/io.github.dubstar_04.design $out/bin\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/dubstar-04/Design",
         description: "2D CAD For GNOME",
         maintainers: nix.thunk(() => (() => {

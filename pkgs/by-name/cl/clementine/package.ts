@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 55, 5], ["repo", 56, 5], ["tag", 57, 5], ["hash", 58, 5]], [["homepage", 149, 5], ["description", 150, 5], ["license", 151, 5], ["platforms", 152, 5], ["mainProgram", 153, 5], ["maintainers", 154, 5]], [["pname", 51, 3], ["version", 52, 3], ["src", 54, 3], ["nativeBuildInputs", 61, 3], ["buildInputs", 73, 3], ["postPatch", 107, 3], ["preConfigure", 131, 3], ["cmakeFlags", 135, 3], ["dontWrapQtApps", 141, 3], ["postInstall", 143, 3], ["meta", 148, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, boost: false, cmake: false, chromaprint: false, gettext: false, gst_all_1: false, qt5: false, libsForQt5: false, taglib_1: false, fftw: false, glew: false, sqlite: false, libgpod: false, libplist: false, usbmuxd: false, libmtp: false, libpulseaudio: false, gvfs: false, libcdio: false, projectm_3: false, protobuf: false, "pkg-config": false, sparsehash: false, config: false, "util-linuxMinimal": false, libunwind: false, libselinux: false, elfutils: false, libsepol: false, orc: false, "alsa-lib": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 55, 5], ["repo", 56, 5], ["tag", 57, 5], ["hash", 58, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 149, 5], ["description", 150, 5], ["license", 151, 5], ["platforms", 152, 5], ["mainProgram", 153, 5], ["maintainers", 154, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 51, 3], ["version", 52, 3], ["src", 54, 3], ["nativeBuildInputs", 61, 3], ["buildInputs", 73, 3], ["postPatch", 107, 3], ["preConfigure", 131, 3], ["cmakeFlags", 135, 3], ["dontWrapQtApps", 141, 3], ["postInstall", 143, 3], ["meta", 148, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -56,11 +54,11 @@ export default nix.lambda((args) => (() => {
     ];
   })());
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "clementine",
       version: "1.4.1-60-g1a3e8b56f",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "clementine-player",
           repo: "Clementine",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -110,7 +108,7 @@ export default nix.lambda((args) => (() => {
       dontWrapQtApps: true,
       postInstall: "wrapQtApp $out/bin/clementine \\\n  --prefix GST_PLUGIN_SYSTEM_PATH_1_0 : \"$GST_PLUGIN_SYSTEM_PATH_1_0\"\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://www.clementine-player.org",
         description: "Multiplatform music player",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

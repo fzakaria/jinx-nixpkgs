@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 31, 5], ["repo", 32, 5], ["tag", 33, 5], ["hash", 34, 5]], [["ghostwriter", 57, 5], ["translate", 58, 5]], [["description", 78, 5], ["homepage", 79, 5], ["changelog", 80, 5], ["license", 81, 5], ["maintainers", 82, 5], ["mainProgram", 83, 5]], [["pname", 26, 3], ["version", 27, 3], ["pyproject", 28, 3], ["src", 30, 3], ["pythonRelaxDeps", 37, 3], ["build-system", 39, 3], ["dependencies", 41, 3], ["optional-dependencies", 56, 3], ["nativeCheckInputs", 61, 3], ["preCheck", 66, 3], ["pythonImportsCheck", 70, 3], ["disabledTestMarks", 72, 3], ["meta", 77, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, certifi: false, cvss: false, deepl: false, django: false, fetchFromGitHub: false, gql: false, pytestCheckHook: false, pyyaml: false, requests: false, rich: false, setuptools: false, sqlparse: false, termcolor: false, "tomli-w": false, tomli: false, tomlkit: false, urllib3: false, writableTmpDirAsHomeHook: false, xmltodict: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 31, 5], ["repo", 32, 5], ["tag", 33, 5], ["hash", 34, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["ghostwriter", 57, 5], ["translate", 58, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 78, 5], ["homepage", 79, 5], ["changelog", 80, 5], ["license", 81, 5], ["maintainers", 82, 5], ["mainProgram", 83, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 26, 3], ["version", 27, 3], ["pyproject", 28, 3], ["src", 30, 3], ["pythonRelaxDeps", 37, 3], ["build-system", 39, 3], ["dependencies", 41, 3], ["optional-dependencies", 56, 3], ["nativeCheckInputs", 61, 3], ["preCheck", 66, 3], ["pythonImportsCheck", 70, 3], ["disabledTestMarks", 72, 3], ["meta", 77, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,12 +29,12 @@ export default nix.lambda((args) => (() => {
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   const xmltodict = nix.arg($, "xmltodict");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "reptor",
       version: "0.34",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Syslifters",
           repo: "reptor",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -60,7 +57,7 @@ export default nix.lambda((args) => (() => {
         xmltodict,
       ]),
       "optional-dependencies": nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         ghostwriter: nix.thunk(() => nix.concat([gql], nix.sel(gql, "optional-dependencies", "aiohttp"))),
         translate: nix.thunk(() => [deepl]),
       })),
@@ -69,7 +66,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["reptor"]),
       disabledTestMarks: nix.thunk(() => ["integration"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Module to do automated pentest reporting with SysReptor",
         homepage: "https://github.com/Syslifters/reptor",
         changelog: nix.thunk(() => nix.str`https://github.com/Syslifters/reptor/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

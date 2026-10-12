@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]], [["packages", 30, 9], ["targetPackages", 31, 9]], [["description", 88, 5], ["homepage", 89, 5], ["mainProgram", 90, 5], ["license", 91, 5], ["maintainers", 92, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["dotnet-sdk", 21, 3], ["projectFile", 35, 3], ["nugetDeps", 39, 3], ["dontDotnetFixup", 41, 3], ["nativeBuildInputs", 43, 3], ["postPatch", 45, 3], ["dotnetFlags", 50, 3], ["buildPhase", 55, 3], ["installPhase", 68, 3], ["meta", 87, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, mono: false, buildDotnetModule: false, dotnetCorePackages: false, unzip: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["packages", 30, 9], ["targetPackages", 31, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 88, 5], ["homepage", 89, 5], ["mainProgram", 90, 5], ["license", 91, 5], ["maintainers", 92, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["dotnet-sdk", 21, 3], ["projectFile", 35, 3], ["nugetDeps", 39, 3], ["dontDotnetFixup", 41, 3], ["nativeBuildInputs", 43, 3], ["postPatch", 45, 3], ["dotnetFlags", 50, 3], ["buildPhase", 55, 3], ["installPhase", 68, 3], ["meta", 87, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname = "roslyn";
       const version = "4.14.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "dotnet",
           repo: "roslyn",
           tag: "NET-SDK-9.0.304",
@@ -34,7 +31,7 @@ export default nix.lambda((args) => (() => {
               nix.thunk(() => nix.lookup(w, "sdk_8_0")),
             ])));
           return {
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           packages: nix.thunk(() => nix.attr(from, "packages")),
           targetPackages: nix.thunk(() => nix.attr(from, "targetPackages")),
         };
@@ -77,7 +74,7 @@ makeWrapper ${mono}/bin/mono $out/bin/vbc \\
 runHook postInstall
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: ".NET C# and Visual Basic compiler",
         homepage: "https://github.com/dotnet/roslyn",
         mainProgram: "csc",
@@ -88,7 +85,7 @@ runHook postInstall
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

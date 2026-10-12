@@ -2,14 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 31, 9], ["rev", 32, 9], ["repo", 33, 17], ["sha256", 33, 22]], [["description", 50, 9], ["longDescription", 51, 9], ["license", 63, 9], ["homepage", 64, 9], ["maintainers", 65, 9]], [["pname", 27, 7], ["version", 28, 15], ["src", 30, 7], ["nativeBuildInputs", 36, 15], ["postPatch", 36, 33], ["installPhase", 38, 7], ["meta", 49, 7]], [["repo", 71, 5], ["version", 72, 5], ["docsToInstall", 73, 5], ["nativeBuildInputs", 80, 5], ["sha256", 81, 5]], [["repo", 84, 5], ["version", 85, 5], ["docsToInstall", 86, 5], ["nativeBuildInputs", 92, 5], ["postPatch", 93, 5], ["sha256", 98, 5]], [["liberation_ttf_v1", 70, 3], ["liberation_ttf_v2", 83, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fontforge: false, installFonts: false, python3: false }, ellipsis: false };
 const formals$2 = { args: { version: false, repo: false, sha256: false, docsToInstall: false, nativeBuildInputs: false, postPatch: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 31, 9], ["rev", 32, 9], ["repo", 33, 17], ["sha256", 33, 22]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 50, 9], ["longDescription", 51, 9], ["license", 63, 9], ["homepage", 64, 9], ["maintainers", 65, 9]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 27, 7], ["version", 28, 15], ["src", 30, 7], ["nativeBuildInputs", 36, 15], ["postPatch", 36, 33], ["installPhase", 38, 7], ["meta", 49, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["repo", 71, 5], ["version", 72, 5], ["docsToInstall", 73, 5], ["nativeBuildInputs", 80, 5], ["sha256", 81, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["repo", 84, 5], ["version", 85, 5], ["docsToInstall", 86, 5], ["nativeBuildInputs", 92, 5], ["postPatch", 93, 5], ["sha256", 98, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["liberation_ttf_v1", 70, 3], ["liberation_ttf_v2", 83, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,7 +29,7 @@ export default nix.lambda((args) => (() => {
         const pname = "liberation-fonts";
         const version_1 = version;
         const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             owner: "liberationfonts",
             rev: version_1,
             repo: repo,
@@ -52,7 +47,7 @@ done
 runHook postInstall
 `);
         const meta = nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           description: "Liberation Fonts, replacements for Times New Roman, Arial, and Courier New",
           longDescription: "The Liberation Fonts are intended to be replacements for the three most\ncommonly used fonts on Microsoft systems: Times New Roman, Arial, and\nCourier New. Since 2012 they are based on croscore fonts.\n\nThere are three sets: Sans (a substitute for Arial, Albany, Helvetica,\nNimbus Sans L, and Bitstream Vera Sans), Serif (a substitute for Times\nNew Roman, Thorndale, Nimbus Roman, and Bitstream Vera Serif) and Mono\n(a substitute for Courier New, Cumberland, Courier, Nimbus Mono L, and\nBitstream Vera Sans Mono).\n",
           license: nix.thunk(() => nix.sel(lib, "licenses", "ofl")),
@@ -63,7 +58,7 @@ runHook postInstall
           })()),
         }));
         return {
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           pname,
           version: version_1,
           src,
@@ -75,9 +70,9 @@ runHook postInstall
       })()));
   })(), formals$2);
   return {
-    [nix.POS]: pos$6,
+    [nix.POS]: $pos[5],
     liberation_ttf_v1: nix.thunk(() => nix.app(common, nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         repo: "liberation-1.7-fonts",
         version: "1.07.5",
         docsToInstall: nix.thunk(() => ["AUTHORS", "ChangeLog", "COPYING", "License.txt", "README"]),
@@ -85,7 +80,7 @@ runHook postInstall
         sha256: "1ffl10mf78hx598sy9qr5m6q2b8n3mpnsj73bwixnd4985gsz56v",
       })))),
     liberation_ttf_v2: nix.thunk(() => nix.app(common, nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         repo: "liberation-fonts",
         version: "2.1.5",
         docsToInstall: nix.thunk(() => ["AUTHORS", "ChangeLog", "LICENSE", "README.md"]),

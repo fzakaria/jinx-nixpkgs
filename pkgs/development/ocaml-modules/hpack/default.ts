@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 14, 5], ["hash", 15, 5]], [["license", 29, 5], ["description", 30, 5], ["homepage", 31, 5], ["maintainers", 32, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["minimalOCamlVersion", 18, 3], ["propagatedBuildInputs", 20, 3], ["doCheck", 26, 3], ["meta", 28, 3]]]);
 const formals$1 = { args: { buildDunePackage: false, lib: false, fetchurl: false, angstrom: false, faraday: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 14, 5], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["license", 29, 5], ["description", 30, 5], ["homepage", 31, 5], ["maintainers", 32, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["minimalOCamlVersion", 18, 3], ["propagatedBuildInputs", 20, 3], ["doCheck", 26, 3], ["meta", 28, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const angstrom = nix.arg($, "angstrom");
   const faraday = nix.arg($, "faraday");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "hpack",
       version: "0.13.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/anmonteiro/ocaml-h2/releases/download/${nix.sel(finalAttrs, "version")}/h2-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-DYm28XgXUpTnogciO+gdW4P8Mbl1Sb7DTwQyo7KoBw8=",
         })))),
@@ -27,7 +25,7 @@ export default nix.lambda((args) => (() => {
       propagatedBuildInputs: nix.thunk(() => [angstrom, faraday]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
         description: "HPACK (Header Compression for HTTP/2) implementation in OCaml",
         homepage: "https://github.com/anmonteiro/ocaml-h2",

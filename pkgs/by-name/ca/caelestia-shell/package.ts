@@ -2,16 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 40, 5], ["repo", 41, 5], ["rev", 42, 5], ["hash", 43, 5]], [["fontDirectories", 61, 5]], [["url", 77, 5], ["hash", 78, 5]], [["cmakeBuildType", 82, 13], ["name", 83, 5], ["src", 84, 5], ["nativeBuildInputs", 86, 5], ["cmakeFlags", 91, 5]], [["cmakeBuildType", 99, 13], ["name", 100, 5], ["src", 101, 5], ["nativeBuildInputs", 103, 5], ["buildInputs", 108, 5], ["dontWrapQtApps", 120, 5], ["cmakeFlags", 121, 5]], [["cmakeBuildType", 129, 13], ["name", 130, 5], ["src", 131, 5], ["nativeBuildInputs", 133, 5], ["buildInputs", 137, 5], ["dontWrapQtApps", 143, 5], ["cmakeFlags", 144, 5]], [["plugin", 200, 13], ["extras", 200, 20], ["m3shapesModule", 200, 27], ["updateScript", 201, 5]], [["description", 205, 5], ["homepage", 206, 5], ["license", 207, 5], ["mainProgram", 208, 5], ["maintainers", 209, 5], ["platforms", 210, 5]], [["version", 151, 11], ["cmakeBuildType", 151, 19], ["pname", 152, 3], ["__structuredAttrs", 153, 3], ["strictDeps", 154, 3], ["src", 155, 3], ["nativeBuildInputs", 157, 3], ["buildInputs", 163, 3], ["cmakeFlags", 173, 3], ["postPatch", 179, 3], ["postInstall", 186, 3], ["passthru", 199, 3], ["meta", 204, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, fetchFromGitHub: false, makeWrapper: false, makeFontsConf: false, fish: false, ddcutil: false, brightnessctl: false, networkmanager: false, lm_sensors: false, swappy: false, "wl-clipboard": false, libqalculate: false, bash: false, hyprland: false, "material-symbols": false, rubik: false, "nerd-fonts": false, qt6: false, quickshell: false, aubio: false, libcava: false, fftw: false, pipewire: false, "xkeyboard-config": false, cmake: false, ninja: false, "pkg-config": false, "caelestia-cli": false, debug: true, withCli: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 40, 5], ["repo", 41, 5], ["rev", 42, 5], ["hash", 43, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["fontDirectories", 61, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 77, 5], ["hash", 78, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["cmakeBuildType", 82, 13], ["name", 83, 5], ["src", 84, 5], ["nativeBuildInputs", 86, 5], ["cmakeFlags", 91, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["cmakeBuildType", 99, 13], ["name", 100, 5], ["src", 101, 5], ["nativeBuildInputs", 103, 5], ["buildInputs", 108, 5], ["dontWrapQtApps", 120, 5], ["cmakeFlags", 121, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["cmakeBuildType", 129, 13], ["name", 130, 5], ["src", 131, 5], ["nativeBuildInputs", 133, 5], ["buildInputs", 137, 5], ["dontWrapQtApps", 143, 5], ["cmakeFlags", 144, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["plugin", 200, 13], ["extras", 200, 20], ["m3shapesModule", 200, 27], ["updateScript", 201, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["description", 205, 5], ["homepage", 206, 5], ["license", 207, 5], ["mainProgram", 208, 5], ["maintainers", 209, 5], ["platforms", 210, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["version", 151, 11], ["cmakeBuildType", 151, 19], ["pname", 152, 3], ["__structuredAttrs", 153, 3], ["strictDeps", 154, 3], ["src", 155, 3], ["nativeBuildInputs", 157, 3], ["buildInputs", 163, 3], ["cmakeFlags", 173, 3], ["postPatch", 179, 3], ["postInstall", 186, 3], ["passthru", 199, 3], ["meta", 204, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -50,7 +42,7 @@ export default nix.lambda((args) => (() => {
   const version = "2.5.0";
   const rev = "d999d4878ee4cec134168e60d913714566a8cfa6";
   const m3shapes_src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "soramanew",
       repo: "m3shapes",
       rev: "32ad9ce328bb77ed349b40a3be10ee9ea610b8ab",
@@ -69,7 +61,7 @@ export default nix.lambda((args) => (() => {
     hyprland,
   ], nix.app(nix.sel(lib, "optional"), withCli, caelestia_cli)));
   const fontconfig = nix.thunk(() => nix.app(makeFontsConf, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       fontDirectories: nix.thunk(() => [
         material_symbols,
         rubik,
@@ -83,12 +75,12 @@ export default nix.lambda((args) => (() => {
     nix.thunk(() => nix.app(nix.sel(lib, "cmakeFeature"), "DISTRIBUTOR", "nixpkgs")),
   ]);
   const shellSrc = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       url: nix.thunk(() => nix.str`https://github.com/caelestia-dots/shell/releases/download/v${version}/caelestia-shell-v${version}.tar.gz`),
       hash: "sha256-a++f7/n5xq/rb98Lm7HPw8/X3/TCoCDoB51nIJdfO2o=",
     }))));
   const extras = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       cmakeBuildType: cmakeBuildType,
       name: "caelestia-extras",
       src: shellSrc,
@@ -99,7 +91,7 @@ export default nix.lambda((args) => (() => {
       ], cmakeVersionFlags)),
     }))));
   const plugin = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       cmakeBuildType: cmakeBuildType,
       name: "caelestia-qml-plugin",
       src: shellSrc,
@@ -122,7 +114,7 @@ export default nix.lambda((args) => (() => {
       ], cmakeVersionFlags)),
     }))));
   const m3shapesModule = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       cmakeBuildType: cmakeBuildType,
       name: "caelestia-m3shapes",
       src: m3shapes_src,
@@ -138,7 +130,7 @@ export default nix.lambda((args) => (() => {
       ]),
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       version: version,
       cmakeBuildType: cmakeBuildType,
       pname: "caelestia-shell",
@@ -172,14 +164,14 @@ mkdir -p $out/lib
 ln -s ${extras}/lib/* $out/lib/
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         plugin: plugin,
         extras: extras,
         m3shapesModule: m3shapesModule,
         updateScript: nix.path(here, "./update.sh"),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         description: "Fluid, morphing shell for your Linux desktop",
         homepage: "https://github.com/caelestia-dots/shell",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

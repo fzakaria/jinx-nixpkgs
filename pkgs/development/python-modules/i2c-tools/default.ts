@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["homepage", 17, 30], ["platforms", 17, 39], ["description", 19, 5], ["license", 21, 5], ["maintainers", 22, 5]], [["pname", 8, 23], ["version", 8, 29], ["src", 8, 37], ["format", 10, 3], ["buildInputs", 12, 3], ["preConfigure", 14, 3], ["meta", 16, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, "i2c-tools": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["homepage", 17, 30], ["platforms", 17, 39], ["description", 19, 5], ["license", 21, 5], ["maintainers", 22, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 8, 23], ["version", 8, 29], ["src", 8, 37], ["format", 10, 3], ["buildInputs", 12, 3], ["preConfigure", 14, 3], ["meta", 16, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -12,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const buildPythonPackage = nix.arg($, "buildPythonPackage");
   const i2c_tools = nix.arg($, "i2c-tools");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: nix.thunk(() => nix.attr(i2c_tools, "pname")),
       version: nix.thunk(() => nix.attr(i2c_tools, "version")),
       src: nix.thunk(() => nix.attr(i2c_tools, "src")),
@@ -22,7 +21,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(i2c_tools, "meta"));
         return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         platforms: nix.thunk(() => nix.attr(from, "platforms")),
         description: "Wrapper for i2c-tools' smbus stuff",

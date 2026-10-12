@@ -2,19 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]], [["owner", 33, 5], ["repo", 34, 5], ["tag", 35, 5], ["hash", 36, 5]], [["owner", 39, 5], ["repo", 40, 5], ["tag", 41, 5], ["hash", 42, 5]], [["name", 45, 5], ["src", 46, 5], ["sourceRoot", 47, 5], ["npmDepsHash", 48, 5], ["dontNpmBuild", 49, 5], ["postPatch", 50, 5], ["postInstall", 54, 5]], [["name", 59, 5], ["src", 60, 5], ["sourceRoot", 61, 5], ["nativeBuildInputs", 62, 5], ["buildInputs", 65, 5], ["npmDepsHash", 68, 5], ["npmFlags", 69, 5], ["dontNpmBuild", 70, 5], ["postInstall", 71, 5]], [["name", 80, 5], ["src", 81, 5], ["sourceRoot", 83, 5], ["npmDepsHash", 85, 5], ["dontNpmBuild", 87, 5], ["postInstall", 89, 5]], [["owner", 153, 7], ["repo", 154, 7], ["tag", 155, 7], ["hash", 156, 7]], [["nixosTest", 218, 9]], [["name", 222, 9], ["targetPkgs", 224, 9], ["extraBuildCommands", 230, 9], ["extraBwrapArgs", 235, 9]], [["x2t", 211, 9], ["x2t-with-fonts-and-themes", 212, 9], ["common", 213, 9], ["docservice", 214, 9], ["fileconverter", 215, 9], ["tests", 217, 7], ["fhs", 221, 7]], [["description", 242, 7], ["longDescription", 243, 7], ["homepage", 247, 7], ["license", 248, 7], ["platforms", 249, 7], ["maintainers", 253, 7]], [["pname", 149, 5], ["version", 150, 5], ["src", 152, 5], ["buildPhase", 159, 5], ["installPhase", 165, 5], ["dontStrip", 207, 5], ["passthru", 209, 5], ["meta", 241, 5]]]);
 const formals$1 = { args: { buildFHSEnv: false, buildNpmPackage: false, callPackage: false, dpkg: false, fetchFromGitHub: false, fetchurl: false, "gcc-unwrapped": false, lib: false, lndir: false, nixosTests: false, "pkg-config": false, runCommand: false, stdenv: false, vips: false, writeScript: false, "extra-fonts": true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 33, 5], ["repo", 34, 5], ["tag", 35, 5], ["hash", 36, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["owner", 39, 5], ["repo", 40, 5], ["tag", 41, 5], ["hash", 42, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["name", 45, 5], ["src", 46, 5], ["sourceRoot", 47, 5], ["npmDepsHash", 48, 5], ["dontNpmBuild", 49, 5], ["postPatch", 50, 5], ["postInstall", 54, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["name", 59, 5], ["src", 60, 5], ["sourceRoot", 61, 5], ["nativeBuildInputs", 62, 5], ["buildInputs", 65, 5], ["npmDepsHash", 68, 5], ["npmFlags", 69, 5], ["dontNpmBuild", 70, 5], ["postInstall", 71, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["name", 80, 5], ["src", 81, 5], ["sourceRoot", 83, 5], ["npmDepsHash", 85, 5], ["dontNpmBuild", 87, 5], ["postInstall", 89, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["owner", 153, 7], ["repo", 154, 7], ["tag", 155, 7], ["hash", 156, 7]]);
-const pos$8 = nix.positions(here + "/package.nix", [["nixosTest", 218, 9]]);
-const pos$9 = nix.positions(here + "/package.nix", [["name", 222, 9], ["targetPkgs", 224, 9], ["extraBuildCommands", 230, 9], ["extraBwrapArgs", 235, 9]]);
-const pos$10 = nix.positions(here + "/package.nix", [["x2t", 211, 9], ["x2t-with-fonts-and-themes", 212, 9], ["common", 213, 9], ["docservice", 214, 9], ["fileconverter", 215, 9], ["tests", 217, 7], ["fhs", 221, 7]]);
-const pos$11 = nix.positions(here + "/package.nix", [["description", 242, 7], ["longDescription", 243, 7], ["homepage", 247, 7], ["license", 248, 7], ["platforms", 249, 7], ["maintainers", 253, 7]]);
-const pos$12 = nix.positions(here + "/package.nix", [["pname", 149, 5], ["version", 150, 5], ["src", 152, 5], ["buildPhase", 159, 5], ["installPhase", 165, 5], ["dontStrip", 207, 5], ["passthru", 209, 5], ["meta", 241, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -37,28 +26,28 @@ export default nix.lambda((args) => (() => {
   const version = "9.3.1";
   const x2t = nix.thunk(() => nix.app(callPackage, nix.path(here, "./x2t.nix"), nix.thunk(() => ({}))));
   const server_src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "ONLYOFFICE",
       repo: "server",
       tag: "v9.3.1.1",
       hash: "sha256-uN1L/4I7wrg0BqAAu3zdn8LqtdfJDAHnAMbCvzQnOvI=",
     }))));
   const document_templates_src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       owner: "ONLYOFFICE",
       repo: "document-templates",
       tag: "v9.3.1.1",
       hash: "sha256-+52+MK/8DARJrQRbIpN5nk3j3J9cy6Wd1FDMnCVZKRE=",
     }))));
   const document_formats_src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       owner: "ONLYOFFICE",
       repo: "document-formats",
       tag: "v9.3.1.1",
       hash: "sha256-HpGhV+PGbQ5hHH6mPQTAdFpBT3nUni4VtDxTExJypAc=",
     }))));
   const common = nix.thunk(() => nix.app(buildNpmPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       name: "onlyoffice-server-Common",
       src: server_src,
       sourceRoot: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "name")}/Common`),
@@ -70,7 +59,7 @@ sed -e "s/^const buildVersion = '[0-9.]*'/const buildVersion = '${version}'/" -i
       postInstall: "ln -s $out/lib/node_modules/common $out/lib/node_modules/Common\n",
     })));
   const docservice = nix.thunk(() => nix.app(buildNpmPackage, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       name: "onlyoffice-server-DocService",
       src: server_src,
       sourceRoot: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "name")}/DocService`),
@@ -87,7 +76,7 @@ ln -s $out/lib/node_modules/coauthoring $out/lib/node_modules/DocService
 `),
     })));
   const fileconverter = nix.thunk(() => nix.app(buildNpmPackage, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       name: "onlyoffice-server-FileConverter",
       src: server_src,
       sourceRoot: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "name")}/FileConverter`),
@@ -148,11 +137,11 @@ ${nix.sel(x2t, "components", "allthemesgen")}/bin/allthemesgen \\
   --params="280,224"
 `)));
   const onlyoffice_documentserver = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$12,
+      [nix.POS]: $pos[11],
       pname: "onlyoffice-documentserver",
       version: "9.3.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           owner: "ONLYOFFICE",
           repo: "document-server-package",
           tag: "v9.3.1.11",
@@ -200,18 +189,18 @@ mkdir -p $out/var/lib/onlyoffice
 `),
       dontStrip: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         x2t: x2t,
         "x2t-with-fonts-and-themes": x2t_with_fonts_and_themes,
         common: common,
         docservice: docservice,
         fileconverter: fileconverter,
         tests: nix.thunk(() => nix.update({
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           nixosTest: nix.thunk(() => nix.sel(nixosTests, "onlyoffice")),
         }, nix.sel(x2t, "tests"))),
         fhs: nix.thunk(() => nix.app(buildFHSEnv, nix.thunk(() => ({
-            [nix.POS]: pos$9,
+            [nix.POS]: $pos[8],
             name: "onlyoffice-wrapper",
             targetPkgs: (pkgs) => [
               nix.thunk(() => nix.sel(gcc_unwrapped, "lib")),
@@ -225,7 +214,7 @@ cp -ar ${onlyoffice_documentserver}/var/www/* $out/var/www/
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$11,
+        [nix.POS]: $pos[10],
         description: "ONLYOFFICE Document Server is an online office suite comprising viewers and editors",
         longDescription: "ONLYOFFICE Document Server is an online office suite comprising viewers and editors for texts, spreadsheets and presentations,\nfully compatible with Office Open XML formats: .docx, .xlsx, .pptx and enabling collaborative editing in real time.\n",
         homepage: "https://github.com/ONLYOFFICE/DocumentServer",

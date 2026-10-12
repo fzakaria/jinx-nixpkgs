@@ -2,37 +2,10 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/mapAttrsOfSubmodule.nix", [[["default", 18, 33]], [["enable", 18, 13]], [["options", 18, 5]], [["type", 23, 5]], [["type", 26, 5]], [["elemType", 29, 24]], [["type", 29, 5]], [["services", 22, 11], ["files", 25, 11], ["noDefs", 28, 11], ["result", 31, 11]], [["enable", 33, 27]], [["empty", 32, 19], ["default", 33, 19]], [["enable", 35, 24]], [["empty", 34, 16], ["default", 35, 16], ["quirk", 36, 16]], [["name", 40, 17], ["cfg", 40, 22], ["prio", 41, 9]], [["enable", 45, 15]], [["name", 44, 11], ["cfg", 45, 11], ["prio", 46, 11]], [["enable", 50, 15]], [["name", 49, 11], ["cfg", 50, 11], ["prio", 51, 11]], [["empty", 43, 9], ["default", 48, 9]], [["name", 56, 17], ["cfg", 56, 22], ["prio", 57, 9]], [["enable", 61, 15]], [["name", 60, 11], ["cfg", 61, 11], ["prio", 62, 11]], [["enable", 66, 15]], [["name", 65, 11], ["cfg", 66, 11], ["prio", 67, 11]], [["enable", 71, 15]], [["name", 70, 11], ["cfg", 71, 11], ["prio", 72, 11]], [["empty", 59, 9], ["default", 64, 9], ["quirk", 69, 9]], [["services", 32, 10], ["files", 34, 10], ["result", 37, 10]], [["options", 22, 3], ["config", 32, 3]]]);
 const formals$1 = { args: { lib: false, options: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/mapAttrsOfSubmodule.nix", [["default", 18, 33]]);
-const pos$2 = nix.positions(here + "/mapAttrsOfSubmodule.nix", [["enable", 18, 13]]);
-const pos$3 = nix.positions(here + "/mapAttrsOfSubmodule.nix", [["options", 18, 5]]);
-const pos$4 = nix.positions(here + "/mapAttrsOfSubmodule.nix", [["type", 23, 5]]);
-const pos$5 = nix.positions(here + "/mapAttrsOfSubmodule.nix", [["type", 26, 5]]);
-const pos$6 = nix.positions(here + "/mapAttrsOfSubmodule.nix", [["elemType", 29, 24]]);
-const pos$7 = nix.positions(here + "/mapAttrsOfSubmodule.nix", [["type", 29, 5]]);
-const pos$8 = nix.positions(here + "/mapAttrsOfSubmodule.nix", [["services", 22, 11], ["files", 25, 11], ["noDefs", 28, 11], ["result", 31, 11]]);
-const pos$9 = nix.positions(here + "/mapAttrsOfSubmodule.nix", [["enable", 33, 27]]);
-const pos$10 = nix.positions(here + "/mapAttrsOfSubmodule.nix", [["empty", 32, 19], ["default", 33, 19]]);
-const pos$11 = nix.positions(here + "/mapAttrsOfSubmodule.nix", [["enable", 35, 24]]);
-const pos$12 = nix.positions(here + "/mapAttrsOfSubmodule.nix", [["empty", 34, 16], ["default", 35, 16], ["quirk", 36, 16]]);
 const formals$2 = { args: { cfg: false, opt: false }, ellipsis: false };
-const pos$13 = nix.positions(here + "/mapAttrsOfSubmodule.nix", [["name", 40, 17], ["cfg", 40, 22], ["prio", 41, 9]]);
-const pos$14 = nix.positions(here + "/mapAttrsOfSubmodule.nix", [["enable", 45, 15]]);
-const pos$15 = nix.positions(here + "/mapAttrsOfSubmodule.nix", [["name", 44, 11], ["cfg", 45, 11], ["prio", 46, 11]]);
-const pos$16 = nix.positions(here + "/mapAttrsOfSubmodule.nix", [["enable", 50, 15]]);
-const pos$17 = nix.positions(here + "/mapAttrsOfSubmodule.nix", [["name", 49, 11], ["cfg", 50, 11], ["prio", 51, 11]]);
-const pos$18 = nix.positions(here + "/mapAttrsOfSubmodule.nix", [["empty", 43, 9], ["default", 48, 9]]);
 const formals$3 = { args: { cfg: false, opt: false }, ellipsis: false };
-const pos$19 = nix.positions(here + "/mapAttrsOfSubmodule.nix", [["name", 56, 17], ["cfg", 56, 22], ["prio", 57, 9]]);
-const pos$20 = nix.positions(here + "/mapAttrsOfSubmodule.nix", [["enable", 61, 15]]);
-const pos$21 = nix.positions(here + "/mapAttrsOfSubmodule.nix", [["name", 60, 11], ["cfg", 61, 11], ["prio", 62, 11]]);
-const pos$22 = nix.positions(here + "/mapAttrsOfSubmodule.nix", [["enable", 66, 15]]);
-const pos$23 = nix.positions(here + "/mapAttrsOfSubmodule.nix", [["name", 65, 11], ["cfg", 66, 11], ["prio", 67, 11]]);
-const pos$24 = nix.positions(here + "/mapAttrsOfSubmodule.nix", [["enable", 71, 15]]);
-const pos$25 = nix.positions(here + "/mapAttrsOfSubmodule.nix", [["name", 70, 11], ["cfg", 71, 11], ["prio", 72, 11]]);
-const pos$26 = nix.positions(here + "/mapAttrsOfSubmodule.nix", [["empty", 59, 9], ["default", 64, 9], ["quirk", 69, 9]]);
-const pos$27 = nix.positions(here + "/mapAttrsOfSubmodule.nix", [["services", 32, 10], ["files", 34, 10], ["result", 37, 10]]);
-const pos$28 = nix.positions(here + "/mapAttrsOfSubmodule.nix", [["options", 22, 3], ["config", 32, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -47,48 +20,48 @@ export default nix.lambda((args) => (() => {
   const def = nix.thunk(() => nix.sel(nix.app(nix.sel(lib, "mkDefault"), null), "priority"));
   const optdef = nix.thunk(() => nix.sel(nix.app(nix.sel(lib, "mkOptionDefault"), null), "priority"));
   const enabledModule = nix.thunk(() => ({
-    [nix.POS]: pos$3,
+    [nix.POS]: $pos[2],
     options: nix.thunk(() => ({
-      [nix.POS]: pos$2,
-      enable: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({ [nix.POS]: pos$1, default: true })))),
+      [nix.POS]: $pos[1],
+      enable: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({ [nix.POS]: $pos[0], default: true })))),
     })),
   }));
   return {
-    [nix.POS]: pos$28,
+    [nix.POS]: $pos[27],
     options: nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       services: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           type: nix.thunk(() => nix.app(attrsOf, nix.thunk(() => nix.app(submodule, enabledModule)))),
         })))),
       files: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           type: nix.thunk(() => nix.app(lazyAttrsOf, nix.thunk(() => nix.app(submodule, enabledModule)))),
         })))),
       noDefs: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           type: nix.thunk(() => nix.app(attrsWith, nix.thunk(() => ({
-              [nix.POS]: pos$6,
+              [nix.POS]: $pos[5],
               elemType: nix.thunk(() => nix.app(submodule, enabledModule)),
             })))),
         })))),
       result: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({})))),
     })),
     config: nix.thunk(() => ({
-      [nix.POS]: pos$27,
+      [nix.POS]: $pos[26],
       services: nix.thunk(() => ({
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         empty: nix.thunk(() => ({})),
         default: nix.thunk(() => ({
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), false)),
         })),
       })),
       files: nix.thunk(() => ({
-        [nix.POS]: pos$12,
+        [nix.POS]: $pos[11],
         empty: nix.thunk(() => ({})),
         default: nix.thunk(() => ({
-          [nix.POS]: pos$11,
+          [nix.POS]: $pos[10],
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), false)),
         })),
         quirk: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), false, nix.thunk(() => ({})))),
@@ -99,23 +72,23 @@ export default nix.lambda((args) => (() => {
             const cfg = nix.arg($_1, "cfg");
             const opt = nix.arg($_1, "opt");
             return {
-              [nix.POS]: pos$13,
+              [nix.POS]: $pos[12],
               name: name,
               cfg: cfg,
               prio: nix.thunk(() => nix.sel(opt, "enable", "highestPrio")),
             };
           })(), formals$2), nix.thunk(() => nix.sel(options, "services"))), {
-          [nix.POS]: pos$18,
+          [nix.POS]: $pos[17],
           empty: nix.thunk(() => ({
-            [nix.POS]: pos$15,
+            [nix.POS]: $pos[14],
             name: "empty",
-            cfg: nix.thunk(() => ({ [nix.POS]: pos$14, enable: true })),
+            cfg: nix.thunk(() => ({ [nix.POS]: $pos[13], enable: true })),
             prio: optdef,
           })),
           default: nix.thunk(() => ({
-            [nix.POS]: pos$17,
+            [nix.POS]: $pos[16],
             name: "default",
-            cfg: nix.thunk(() => ({ [nix.POS]: pos$16, enable: false })),
+            cfg: nix.thunk(() => ({ [nix.POS]: $pos[15], enable: false })),
             prio: def,
           })),
         }), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/mapAttrsOfSubmodule.nix:38:5");
@@ -124,29 +97,29 @@ export default nix.lambda((args) => (() => {
             const cfg = nix.arg($_1, "cfg");
             const opt = nix.arg($_1, "opt");
             return {
-              [nix.POS]: pos$19,
+              [nix.POS]: $pos[18],
               name: name,
               cfg: cfg,
               prio: nix.thunk(() => nix.sel(opt, "enable", "highestPrio")),
             };
           })(), formals$3), nix.thunk(() => nix.sel(options, "files"))), {
-          [nix.POS]: pos$26,
+          [nix.POS]: $pos[25],
           empty: nix.thunk(() => ({
-            [nix.POS]: pos$21,
+            [nix.POS]: $pos[20],
             name: "empty",
-            cfg: nix.thunk(() => ({ [nix.POS]: pos$20, enable: true })),
+            cfg: nix.thunk(() => ({ [nix.POS]: $pos[19], enable: true })),
             prio: optdef,
           })),
           default: nix.thunk(() => ({
-            [nix.POS]: pos$23,
+            [nix.POS]: $pos[22],
             name: "default",
-            cfg: nix.thunk(() => ({ [nix.POS]: pos$22, enable: false })),
+            cfg: nix.thunk(() => ({ [nix.POS]: $pos[21], enable: false })),
             prio: def,
           })),
           quirk: nix.thunk(() => ({
-            [nix.POS]: pos$25,
+            [nix.POS]: $pos[24],
             name: "quirk",
-            cfg: nix.thunk(() => ({ [nix.POS]: pos$24, enable: true })),
+            cfg: nix.thunk(() => ({ [nix.POS]: $pos[23], enable: true })),
             prio: optdef,
           })),
         }), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/mapAttrsOfSubmodule.nix:54:5");

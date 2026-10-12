@@ -2,17 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["domain", 30, 9], ["owner", 31, 9], ["repo", 32, 9], ["rev", 33, 9], ["hash", 34, 17]], [["OPENSSL_NO_VENDOR", 53, 11]], [["extraArgs", 84, 11]], [["tests", 82, 9], ["updateScript", 83, 9]], [["description", 92, 9], ["changelog", 93, 9], ["homepage", 94, 9], ["license", 95, 9], ["maintainers", 96, 9], ["knownVulnerabilities", 102, 9], ["broken", 103, 17], ["mainProgram", 104, 9]], [["pname", 26, 7], ["version", 27, 15], ["src", 29, 7], ["cargoHash", 37, 15], ["cargoPatches", 37, 25], ["nativeBuildInputs", 39, 7], ["buildInputs", 45, 7], ["checkInputs", 49, 7], ["env", 53, 7], ["buildFeatures", 57, 7], ["postInstall", 71, 7], ["passthru", 81, 7], ["meta", 91, 7]], [["version", 110, 5], ["hash", 111, 5], ["cargoHash", 112, 5]], [["version", 116, 5], ["hash", 117, 5], ["cargoHash", 118, 5]], [["garage_1", 109, 3], ["garage_2", 115, 3], ["garage", 121, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchFromGitea: false, fetchpatch2: false, installShellFiles: false, openssl: false, "pkg-config": false, protobuf: false, cacert: false, "nix-update-script": false, nixosTests: false, stdenv: false }, ellipsis: false };
 const formals$2 = { args: { version: false, hash: false, cargoHash: false, cargoPatches: true, eol: true, broken: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["domain", 30, 9], ["owner", 31, 9], ["repo", 32, 9], ["rev", 33, 9], ["hash", 34, 17]]);
-const pos$2 = nix.positions(here + "/default.nix", [["OPENSSL_NO_VENDOR", 53, 11]]);
-const pos$3 = nix.positions(here + "/default.nix", [["extraArgs", 84, 11]]);
-const pos$4 = nix.positions(here + "/default.nix", [["tests", 82, 9], ["updateScript", 83, 9]]);
-const pos$5 = nix.positions(here + "/default.nix", [["description", 92, 9], ["changelog", 93, 9], ["homepage", 94, 9], ["license", 95, 9], ["maintainers", 96, 9], ["knownVulnerabilities", 102, 9], ["broken", 103, 17], ["mainProgram", 104, 9]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 26, 7], ["version", 27, 15], ["src", 29, 7], ["cargoHash", 37, 15], ["cargoPatches", 37, 25], ["nativeBuildInputs", 39, 7], ["buildInputs", 45, 7], ["checkInputs", 49, 7], ["env", 53, 7], ["buildFeatures", 57, 7], ["postInstall", 71, 7], ["passthru", 81, 7], ["meta", 91, 7]]);
-const pos$7 = nix.positions(here + "/default.nix", [["version", 110, 5], ["hash", 111, 5], ["cargoHash", 112, 5]]);
-const pos$8 = nix.positions(here + "/default.nix", [["version", 116, 5], ["hash", 117, 5], ["cargoHash", 118, 5]]);
-const pos$9 = nix.positions(here + "/default.nix", [["garage_1", 109, 3], ["garage_2", 115, 3], ["garage", 121, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -37,11 +29,11 @@ export default nix.lambda((args) => (() => {
     const eol = nix.argOr($_1, "eol", () => false);
     const broken = nix.argOr($_1, "broken", () => false);
     return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname: "garage",
         version: version,
         src: nix.thunk(() => nix.app(fetchFromGitea, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             domain: "git.deuxfleurs.fr",
             owner: "Deuxfleurs",
             repo: "garage",
@@ -53,7 +45,7 @@ export default nix.lambda((args) => (() => {
         nativeBuildInputs: nix.thunk(() => [installShellFiles, protobuf, pkg_config]),
         buildInputs: nix.thunk(() => [openssl]),
         checkInputs: nix.thunk(() => [cacert]),
-        env: nix.thunk(() => ({ [nix.POS]: pos$2, OPENSSL_NO_VENDOR: true })),
+        env: nix.thunk(() => ({ [nix.POS]: $pos[1], OPENSSL_NO_VENDOR: true })),
         buildFeatures: nix.thunk(() => [
           "bundled-libs",
           "consul-discovery",
@@ -69,10 +61,10 @@ export default nix.lambda((args) => (() => {
         ]),
         postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), version, "2.3.0")) && nix.asBool(nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))))), "installShellCompletion --cmd garage \\\n  --bash <($out/bin/garage completions bash) \\\n  --fish <($out/bin/garage completions fish) \\\n  --zsh <($out/bin/garage completions zsh)\n")),
         passthru: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           tests: nix.thunk(() => nix.sel(nixosTests, nix.key(nix.str`garage_${nix.app(nix.sel(lib, "versions", "major"), version)}`))),
           updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               extraArgs: nix.thunk(() => [
                 "--version-regex",
                 nix.thunk(() => nix.str`v(${nix.app(nix.sel(lib, "versions", "major"), version)}\\.[0-9.]+)`),
@@ -80,7 +72,7 @@ export default nix.lambda((args) => (() => {
             })))),
         })),
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           description: "S3-compatible object store for small self-hosted geo-distributed deployments",
           changelog: nix.thunk(() => nix.str`https://git.deuxfleurs.fr/Deuxfleurs/garage/releases/tag/v${version}`),
           homepage: "https://garagehq.deuxfleurs.fr",
@@ -102,19 +94,19 @@ export default nix.lambda((args) => (() => {
   })(), formals$2);
   return (() => {
     const garage_1 = nix.thunk(() => nix.app(generic, nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         version: "1.3.1",
         hash: "sha256-wkCnJmbulnhzwHvzdpzh9MRceOzmPdhOogffwhqNGPg=",
         cargoHash: "sha256-jfYe2A6zkVgTLrWBDbahICSKCRO3FwsBPNSVFapH0Rs=",
       }))));
     const garage_2 = nix.thunk(() => nix.app(generic, nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         version: "2.4.1",
         hash: "sha256-+3w4R0IGxc7GCVW3t7Izt6Y5PVUjxHsdLrr74ckR9Mg=",
         cargoHash: "sha256-G928EsavtEgxugLzpBGSbo2RMHLzu9PZf9r3GqU5J3E=",
       }))));
     const garage = garage_1;
-    return { [nix.POS]: pos$9, garage_1, garage_2, garage };
+    return { [nix.POS]: $pos[8], garage_1, garage_2, garage };
   })();
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

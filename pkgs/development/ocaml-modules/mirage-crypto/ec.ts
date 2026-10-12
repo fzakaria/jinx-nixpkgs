@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/ec.nix", [[["description", 45, 5]], [["pname", 17, 3], ["src", 20, 5], ["version", 21, 5], ["nativeBuildInputs", 24, 3], ["buildInputs", 25, 3], ["propagatedBuildInputs", 28, 3], ["doCheck", 33, 3], ["checkInputs", 34, 3], ["meta", 44, 3]]]);
 const formals$1 = { args: { buildDunePackage: false, "mirage-crypto": false, "dune-configurator": false, "pkg-config": false, "mirage-crypto-rng": false, alcotest: false, "asn1-combinators": false, ohex: false, ounit2: false, ppx_deriving_yojson: false, ppx_deriving: false, yojson: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/ec.nix", [["description", 45, 5]]);
-const pos$2 = nix.positions(here + "/ec.nix", [["pname", 17, 3], ["src", 20, 5], ["version", 21, 5], ["nativeBuildInputs", 24, 3], ["buildInputs", 25, 3], ["propagatedBuildInputs", 28, 3], ["doCheck", 33, 3], ["checkInputs", 34, 3], ["meta", 44, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,7 +20,7 @@ export default nix.lambda((args) => (() => {
   const ppx_deriving = nix.arg($, "ppx_deriving");
   const yojson = nix.arg($, "yojson");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "mirage-crypto-ec",
       src: nix.thunk(() => nix.attr(mirage_crypto, "src")),
       version: nix.thunk(() => nix.attr(mirage_crypto, "version")),
@@ -39,7 +38,7 @@ export default nix.lambda((args) => (() => {
         yojson,
       ]),
       meta: nix.thunk(() => nix.update(nix.sel(mirage_crypto, "meta"), {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Elliptic Curve Cryptography with primitives taken from Fiat",
       })),
     })));

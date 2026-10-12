@@ -2,62 +2,45 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/error-typo-deeply-nested.nix", [[["default", 7, 9], ["type", 8, 9]], [["default", 15, 17], ["type", 16, 17]], [["default", 20, 19], ["type", 21, 19]], [["default", 24, 19], ["type", 25, 19]], [["certificate", 19, 17], ["certificateKey", 23, 17]], [["enableSSL", 14, 15], ["ssl", 18, 15]], [["options", 13, 13]], [["type", 11, 9], ["default", 31, 9]], [["enable", 6, 7], ["virtualHosts", 10, 7]], [["nginx", 5, 5]], [["services", 4, 11]], [["certficate", 39, 11]], [["ssl", 39, 7]], [["example.com", 37, 33]], [["virtualHosts", 37, 20]], [["nginx", 37, 14]], [["services", 37, 5]], [["options", 4, 3], ["config", 36, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/error-typo-deeply-nested.nix", [["default", 7, 9], ["type", 8, 9]]);
-const pos$2 = nix.positions(here + "/error-typo-deeply-nested.nix", [["default", 15, 17], ["type", 16, 17]]);
-const pos$3 = nix.positions(here + "/error-typo-deeply-nested.nix", [["default", 20, 19], ["type", 21, 19]]);
-const pos$4 = nix.positions(here + "/error-typo-deeply-nested.nix", [["default", 24, 19], ["type", 25, 19]]);
-const pos$5 = nix.positions(here + "/error-typo-deeply-nested.nix", [["certificate", 19, 17], ["certificateKey", 23, 17]]);
-const pos$6 = nix.positions(here + "/error-typo-deeply-nested.nix", [["enableSSL", 14, 15], ["ssl", 18, 15]]);
-const pos$7 = nix.positions(here + "/error-typo-deeply-nested.nix", [["options", 13, 13]]);
-const pos$8 = nix.positions(here + "/error-typo-deeply-nested.nix", [["type", 11, 9], ["default", 31, 9]]);
-const pos$9 = nix.positions(here + "/error-typo-deeply-nested.nix", [["enable", 6, 7], ["virtualHosts", 10, 7]]);
-const pos$10 = nix.positions(here + "/error-typo-deeply-nested.nix", [["nginx", 5, 5]]);
-const pos$11 = nix.positions(here + "/error-typo-deeply-nested.nix", [["services", 4, 11]]);
-const pos$12 = nix.positions(here + "/error-typo-deeply-nested.nix", [["certficate", 39, 11]]);
-const pos$13 = nix.positions(here + "/error-typo-deeply-nested.nix", [["ssl", 39, 7]]);
-const pos$14 = nix.positions(here + "/error-typo-deeply-nested.nix", [["example.com", 37, 33]]);
-const pos$15 = nix.positions(here + "/error-typo-deeply-nested.nix", [["virtualHosts", 37, 20]]);
-const pos$16 = nix.positions(here + "/error-typo-deeply-nested.nix", [["nginx", 37, 14]]);
-const pos$17 = nix.positions(here + "/error-typo-deeply-nested.nix", [["services", 37, 5]]);
-const pos$18 = nix.positions(here + "/error-typo-deeply-nested.nix", [["options", 4, 3], ["config", 36, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$18,
+    [nix.POS]: $pos[17],
     options: nix.thunk(() => ({
-      [nix.POS]: pos$11,
+      [nix.POS]: $pos[10],
       services: nix.thunk(() => ({
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         nginx: nix.thunk(() => ({
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              [nix.POS]: pos$1,
+              [nix.POS]: $pos[0],
               default: false,
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
             })))),
           virtualHosts: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              [nix.POS]: pos$8,
+              [nix.POS]: $pos[7],
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-                    [nix.POS]: pos$7,
+                    [nix.POS]: $pos[6],
                     options: nix.thunk(() => ({
-                      [nix.POS]: pos$6,
+                      [nix.POS]: $pos[5],
                       enableSSL: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          [nix.POS]: pos$2,
+                          [nix.POS]: $pos[1],
                           default: false,
                           type: nix.thunk(() => nix.sel(lib, "types", "bool")),
                         })))),
                       ssl: nix.thunk(() => ({
-                        [nix.POS]: pos$5,
+                        [nix.POS]: $pos[4],
                         certificate: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            [nix.POS]: pos$3,
+                            [nix.POS]: $pos[2],
                             default: "",
                             type: nix.thunk(() => nix.sel(lib, "types", "str")),
                           })))),
                         certificateKey: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            [nix.POS]: pos$4,
+                            [nix.POS]: $pos[3],
                             default: "",
                             type: nix.thunk(() => nix.sel(lib, "types", "str")),
                           })))),
@@ -70,16 +53,16 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => ({
-      [nix.POS]: pos$17,
+      [nix.POS]: $pos[16],
       services: nix.thunk(() => ({
-        [nix.POS]: pos$16,
+        [nix.POS]: $pos[15],
         nginx: nix.thunk(() => ({
-          [nix.POS]: pos$15,
+          [nix.POS]: $pos[14],
           virtualHosts: nix.thunk(() => ({
-            [nix.POS]: pos$14,
+            [nix.POS]: $pos[13],
             "example.com": nix.thunk(() => ({
-              [nix.POS]: pos$13,
-              ssl: nix.thunk(() => ({ [nix.POS]: pos$12, certficate: "/path/to/cert" })),
+              [nix.POS]: $pos[12],
+              ssl: nix.thunk(() => ({ [nix.POS]: $pos[11], certficate: "/path/to/cert" })),
             })),
           })),
         })),

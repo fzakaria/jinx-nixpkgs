@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 53, 5], ["repo", 54, 5], ["tag", 55, 5], ["hash", 56, 5]], [["description", 137, 5], ["homepage", 138, 5], ["changelog", 139, 5], ["license", 140, 5], ["maintainers", 141, 5], ["mainProgram", 142, 5]], [["pname", 47, 3], ["version", 48, 3], ["pyproject", 49, 3], ["__structuredAttrs", 50, 3], ["src", 52, 3], ["build-system", 59, 3], ["dependencies", 61, 3], ["nativeCheckInputs", 96, 3], ["pythonImportsCheck", 105, 3], ["disabledTests", 107, 3], ["meta", 136, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, base58: false, beautifulsoup4: false, bech32: false, brotli: false, buildPythonPackage: false, colorama: false, cryptography: false, deepdiff: false, fetchFromGitHub: false, gitpython: false, hatchling: false, humanfriendly: false, hypothesis: false, lxml: false, numpy: false, odfpy: false, onnxruntime: false, openpyxl: false, pandas: false, "pdfminer-six": false, psutil: false, pybase62: false, pygments: false, pyjks: false, pysquashfsimage: false, pytestCheckHook: false, "python-dateutil": false, "python-docx": false, "python-pptx": false, pythonOlder: false, pyxlsb: false, pyyaml: false, rpmfile: false, striprtf: false, tabulate: false, tqdm: false, versionCheckHook: false, whatthepatch: false, xlrd: false, zstandard: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 53, 5], ["repo", 54, 5], ["tag", 55, 5], ["hash", 56, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 137, 5], ["homepage", 138, 5], ["changelog", 139, 5], ["license", 140, 5], ["maintainers", 141, 5], ["mainProgram", 142, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 47, 3], ["version", 48, 3], ["pyproject", 49, 3], ["__structuredAttrs", 50, 3], ["src", 52, 3], ["build-system", 59, 3], ["dependencies", 61, 3], ["nativeCheckInputs", 96, 3], ["pythonImportsCheck", 105, 3], ["disabledTests", 107, 3], ["meta", 136, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -52,13 +50,13 @@ export default nix.lambda((args) => (() => {
   const xlrd = nix.arg($, "xlrd");
   const zstandard = nix.arg($, "zstandard");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "credsweeper",
       version: "1.19.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Samsung",
           repo: "CredSweeper",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -121,7 +119,7 @@ export default nix.lambda((args) => (() => {
           "test_sqlite_injection_n",
         ])))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Tool to detect credentials in any directories or files",
         homepage: "https://github.com/Samsung/CredSweeper",
         changelog: nix.thunk(() => nix.str`https://github.com/Samsung/CredSweeper/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

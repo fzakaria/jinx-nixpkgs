@@ -2,11 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["extraArgs", 20, 5]], [["updateScript", 18, 12]], [["description", 24, 5], ["mainProgram", 25, 5], ["homepage", 26, 5], ["license", 27, 5], ["maintainers", 28, 5]], [["pname", 11, 3], ["version", 12, 21], ["src", 12, 29], ["cargoHash", 12, 33], ["nativeBuildInputs", 14, 3], ["buildAndTestSubdir", 16, 3], ["passthru", 18, 3], ["meta", 23, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, rustPlatform: false, nushell: false, "pkg-config": false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["extraArgs", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 18, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 24, 5], ["mainProgram", 25, 5], ["homepage", 26, 5], ["license", 27, 5], ["maintainers", 28, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 21], ["src", 12, 29], ["cargoHash", 12, 33], ["nativeBuildInputs", 14, 3], ["buildAndTestSubdir", 16, 3], ["passthru", 18, 3], ["meta", 23, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "nu_plugin_formats",
       version: nix.thunk(() => nix.attr(nushell, "version")),
       src: nix.thunk(() => nix.attr(nushell, "src")),
@@ -25,11 +22,11 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => nix.concat([pkg_config], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), nix.thunk(() => [nix.thunk(() => nix.sel(rustPlatform, "bindgenHook"))])))),
       buildAndTestSubdir: "crates/nu_plugin_formats",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$1, extraArgs: nix.thunk(() => ["--version=skip"]) })))),
+        [nix.POS]: $pos[1],
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: $pos[0], extraArgs: nix.thunk(() => ["--version=skip"]) })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Formats plugin for Nushell",
         mainProgram: "nu_plugin_formats",
         homepage: nix.thunk(() => nix.str`https://github.com/nushell/nushell/tree/${nix.sel(finalAttrs, "version")}/crates/nu_plugin_formats`),

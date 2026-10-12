@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5], ["fetchSubmodules", 24, 5]], [["homepage", 52, 5], ["description", 53, 5], ["platforms", 54, 5], ["maintainers", 60, 5], ["license", 65, 5], ["mainProgram", 69, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["cargoHash", 27, 3], ["nativeBuildInputs", 29, 3], ["buildAndTestSubdir", 34, 3], ["buildNoDefaultFeatures", 35, 3], ["buildFeatures", 36, 3], ["postInstall", 39, 3], ["cargoCheckNoDefaultFeatures", 48, 3], ["cargoCheckFeatures", 49, 3], ["meta", 51, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchFromGitHub: false, installShellFiles: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5], ["fetchSubmodules", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 52, 5], ["description", 53, 5], ["platforms", 54, 5], ["maintainers", 60, 5], ["license", 65, 5], ["mainProgram", 69, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["cargoHash", 27, 3], ["nativeBuildInputs", 29, 3], ["buildAndTestSubdir", 34, 3], ["buildNoDefaultFeatures", 35, 3], ["buildFeatures", 36, 3], ["postInstall", 39, 3], ["cargoCheckNoDefaultFeatures", 48, 3], ["cargoCheckFeatures", 49, 3], ["meta", 51, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const installShellFiles = nix.arg($, "installShellFiles");
   const features = nix.thunk(() => ["rustls-webpki", "geosparql", "rdf-12"]);
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "oxigraph",
       version: "0.5.11",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "oxigraph",
           repo: "oxigraph",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,7 +33,7 @@ export default nix.lambda((args) => (() => {
       cargoCheckNoDefaultFeatures: true,
       cargoCheckFeatures: features,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/oxigraph/oxigraph",
         description: "SPARQL graph database",
         platforms: nix.thunk(() => ["x86_64-linux", "aarch64-linux", "aarch64-darwin", "riscv64-linux"]),

@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 38, 5], ["repo", 39, 5], ["tag", 40, 5], ["hash", 41, 5]], [["src", 45, 26], ["pname", 45, 30], ["version", 45, 36], ["hash", 46, 5]], [["extraLoaders", 84, 12]], [["updateScript", 97, 5]], [["description", 101, 5], ["homepage", 102, 5], ["mainProgram", 103, 5], ["license", 104, 5], ["maintainers", 105, 5], ["platforms", 109, 5]], [["pname", 34, 3], ["version", 35, 3], ["src", 37, 3], ["cargoDeps", 44, 3], ["nativeBuildInputs", 49, 3], ["buildInputs", 64, 3], ["preFixup", 80, 3], ["passthru", 96, 3], ["meta", 100, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, rustPlatform: false, cargo: false, rustc: false, fetchFromGitLab: false, gtk4: false, libadwaita: false, openssl: false, meson: false, ninja: false, "pkg-config": false, wrapGAppsHook4: false, glib: false, appstream: false, "desktop-file-utils": false, "blueprint-compiler": false, sqlite: false, "clapper-unwrapped": false, "clapper-enhancers": false, gettext: false, gst_all_1: false, "glib-networking": false, gnome: false, libjxl: false, libheif: false, "webp-pixbuf-loader": false, librsvg: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 38, 5], ["repo", 39, 5], ["tag", 40, 5], ["hash", 41, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["src", 45, 26], ["pname", 45, 30], ["version", 45, 36], ["hash", 46, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["extraLoaders", 84, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 97, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 101, 5], ["homepage", 102, 5], ["mainProgram", 103, 5], ["license", 104, 5], ["maintainers", 105, 5], ["platforms", 109, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 34, 3], ["version", 35, 3], ["src", 37, 3], ["cargoDeps", 44, 3], ["nativeBuildInputs", 49, 3], ["buildInputs", 64, 3], ["preFixup", 80, 3], ["passthru", 96, 3], ["meta", 100, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -42,18 +37,18 @@ export default nix.lambda((args) => (() => {
   const librsvg = nix.arg($, "librsvg");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "pipeline",
       version: "4.1.0",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "schmiddi-on-mobile",
           repo: "pipeline",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-8/UMZGXCwqUw1EL7QFnpRqtSA6D9sU1ycG+AeHNeaXw=",
         })))),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
@@ -90,7 +85,7 @@ export default nix.lambda((args) => (() => {
       ]),
       preFixup: nix.thunk(() => nix.str`gappsWrapperArgs+=(
    --set GDK_PIXBUF_MODULE_FILE ${nix.app(nix.sel(gnome, "_gdkPixbufCacheBuilder_DO_NOT_USE"), nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           extraLoaders: nix.thunk(() => [
             libjxl,
             librsvg,
@@ -102,11 +97,11 @@ export default nix.lambda((args) => (() => {
 )
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Watch YouTube and PeerTube videos in one place",
         homepage: "https://mobile.schmidhuberj.de/pipeline",
         mainProgram: "tubefeeder",

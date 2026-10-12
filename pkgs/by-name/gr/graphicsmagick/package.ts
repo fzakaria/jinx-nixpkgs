@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 34, 5], ["hash", 35, 5]], [["graphicsmagick", 90, 7]], [["buildInputs", 96, 13]], [["issue-157920", 93, 7]], [["imagemagick-compat", 89, 5], ["tests", 92, 5]], [["homepage", 105, 5], ["description", 106, 5], ["longDescription", 107, 5], ["license", 114, 5], ["maintainers", 115, 5], ["mainProgram", 116, 5], ["platforms", 117, 5]], [["pname", 30, 3], ["version", 31, 3], ["src", 33, 3], ["outputs", 38, 3], ["buildInputs", 43, 3], ["nativeBuildInputs", 60, 3], ["configureFlags", 67, 3], ["postConfigure", 80, 3], ["postInstall", 84, 3], ["passthru", 88, 3], ["meta", 104, 3]]]);
 const formals$1 = { args: { lib: false, bzip2: false, callPackage: false, coreutils: false, fetchurl: false, fixDarwinDylibNames: false, freetype: false, ghostscript: false, graphviz: false, libx11: false, libjpeg: false, libjxl: false, libpng: false, libtiff: false, libtool: false, libwebp: false, libxml2: false, libheif: false, nukeReferences: false, "pkg-config": false, quantumdepth: true, runCommand: false, stdenv: false, xz: false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 34, 5], ["hash", 35, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["graphicsmagick", 90, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["buildInputs", 96, 13]]);
-const pos$4 = nix.positions(here + "/package.nix", [["issue-157920", 93, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["imagemagick-compat", 89, 5], ["tests", 92, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["homepage", 105, 5], ["description", 106, 5], ["longDescription", 107, 5], ["license", 114, 5], ["maintainers", 115, 5], ["mainProgram", 116, 5], ["platforms", 117, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 30, 3], ["version", 31, 3], ["src", 33, 3], ["outputs", 38, 3], ["buildInputs", 43, 3], ["nativeBuildInputs", 60, 3], ["configureFlags", 67, 3], ["postConfigure", 80, 3], ["postInstall", 84, 3], ["passthru", 88, 3], ["meta", 104, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -39,11 +33,11 @@ export default nix.lambda((args) => (() => {
   const xz = nix.arg($, "xz");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "graphicsmagick",
       version: "1.3.48",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/graphicsmagick/GraphicsMagick-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-khjreBeREPkTcQZqt1yztN0DS5u0ZLKc6bq3oRl5Iys=",
         })))),
@@ -75,22 +69,22 @@ export default nix.lambda((args) => (() => {
       postConfigure: "nuke-refs -e $out ./magick/magick_config.h\n",
       postInstall: "sed -i 's/-ltiff.*'\\'/\\'/ $out/bin/*\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         "imagemagick-compat": nix.thunk(() => nix.app(callPackage, nix.path(here, "./imagemagick-compat.nix"), nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             graphicsmagick: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
           })))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           "issue-157920": nix.thunk(() => nix.app(runCommand, "issue-157920-regression-test", nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               buildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(finalAttrs, "finalPackage"))]),
             })), nix.thunk(() => nix.str`gm convert ${graphviz}/share/doc/graphviz/neatoguide.pdf jpg:$out
 `))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         homepage: "http://www.graphicsmagick.org",
         description: "Swiss army knife of image processing",
         longDescription: "GraphicsMagick is the swiss army knife of image processing, providing a\nrobust and efficient collection of tools and libraries which support\nreading, writing, and manipulating an image in over 92 major formats\nincluding important formats like DPX, GIF, JPEG, JPEG-2000, JXL, PNG, PDF,\nPNM, TIFF, and WebP.\n",

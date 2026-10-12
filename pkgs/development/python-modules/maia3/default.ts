@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]], [["description", 44, 5], ["homepage", 45, 5], ["license", 46, 5], ["maintainers", 47, 5], ["mainProgram", 48, 5]], [["pname", 13, 3], ["version", 14, 3], ["pyproject", 15, 3], ["src", 17, 3], ["__structuredAttrs", 24, 3], ["postPatch", 27, 3], ["build-system", 32, 3], ["dependencies", 34, 3], ["pythonImportsCheck", 41, 3], ["meta", 43, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, "huggingface-hub": false, numpy: false, chess: false, torch: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 44, 5], ["homepage", 45, 5], ["license", 46, 5], ["maintainers", 47, 5], ["mainProgram", 48, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 13, 3], ["version", 14, 3], ["pyproject", 15, 3], ["src", 17, 3], ["__structuredAttrs", 24, 3], ["postPatch", 27, 3], ["build-system", 32, 3], ["dependencies", 34, 3], ["pythonImportsCheck", 41, 3], ["meta", 43, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const chess = nix.arg($, "chess");
   const torch = nix.arg($, "torch");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "maia3",
       version: "0.1.0-unstable-2026-05-25",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "CSSLab",
           repo: "maia3",
           rev: "1e13597c42d4858b7cfd7cfdae01e297263364b2",
@@ -35,7 +33,7 @@ export default nix.lambda((args) => (() => {
       dependencies: nix.thunk(() => [huggingface_hub, numpy, chess, torch]),
       pythonImportsCheck: nix.thunk(() => ["maia3"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Inference tools for Maia3 chess models",
         homepage: "https://github.com/CSSLab/maia3",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),

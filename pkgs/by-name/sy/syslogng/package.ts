@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["withCompression", 66, 41]], [["owner", 73, 5], ["repo", 74, 5], ["tag", 75, 5], ["hash", 76, 5], ["fetchSubmodules", 77, 5]], [["homepage", 145, 5], ["description", 146, 5], ["license", 147, 5], ["maintainers", 151, 5], ["platforms", 152, 5]], [["pname", 69, 3], ["version", 70, 3], ["src", 72, 3], ["nativeBuildInputs", 79, 3], ["buildInputs", 92, 3], ["configureFlags", 119, 3], ["outputs", 137, 3], ["enableParallelBuilding", 142, 3], ["meta", 144, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, "autoconf-archive": false, autoreconfHook: false, bison: false, flex: false, openssl: false, libcap: false, curl: false, which: false, eventlog: false, "pkg-config": false, glib: false, hiredis: false, systemdLibs: false, perl: false, python3: false, riemann_c_client: false, protobufc: false, "paho-mqtt-c": false, python3Packages: false, libnet: false, json_c: false, libuuid: false, libivykis: false, libxslt: false, docbook_xsl: false, pcre2: false, mongoc: false, "rabbitmq-c": false, libesmtp: false, rdkafka: false, gperf: false, withGrpc: true, grpc: false, protobuf: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["withCompression", 66, 41]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 73, 5], ["repo", 74, 5], ["tag", 75, 5], ["hash", 76, 5], ["fetchSubmodules", 77, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 145, 5], ["description", 146, 5], ["license", 147, 5], ["maintainers", 151, 5], ["platforms", 152, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 69, 3], ["version", 70, 3], ["src", 72, 3], ["nativeBuildInputs", 79, 3], ["buildInputs", 92, 3], ["configureFlags", 119, 3], ["outputs", 137, 3], ["enableParallelBuilding", 142, 3], ["meta", 144, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -73,13 +70,13 @@ export default nix.lambda((args) => (() => {
     ];
   })();
   const py = nix.thunk(() => nix.app(nix.sel(python3, "withPackages"), python_deps));
-  const systemdLibs$ = nix.thunk(() => nix.app(nix.sel(systemdLibs, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, withCompression: true }))));
+  const systemdLibs$ = nix.thunk(() => nix.app(nix.sel(systemdLibs, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], withCompression: true }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "syslog-ng",
       version: "4.12.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "syslog-ng",
           repo: "syslog-ng",
           tag: nix.thunk(() => nix.str`syslog-ng-${nix.sel(finalAttrs, "version")}`),
@@ -139,7 +136,7 @@ export default nix.lambda((args) => (() => {
       outputs: nix.thunk(() => ["out", "man"]),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://www.syslog-ng.com",
         description: "Next-generation syslogd with advanced networking and filtering capabilities",
         license: nix.thunk(() => (() => {

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]], [["tor", 55, 5]], [["description", 63, 5], ["homepage", 64, 5], ["changelog", 65, 5], ["license", 66, 5], ["maintainers", 67, 5]], [["pname", 23, 3], ["version", 24, 3], ["pyproject", 25, 3], ["src", 27, 3], ["build-system", 34, 3], ["dependencies", 39, 3], ["optional-dependencies", 54, 3], ["nativeCheckInputs", 58, 3], ["pythonImportsCheck", 60, 3], ["meta", 62, 3]]]);
 const formals$1 = { args: { lib: false, arrow: false, beautifulsoup4: false, bibtexparser: false, buildPythonPackage: false, deprecated: false, "fake-useragent": false, fetchFromGitHub: false, "free-proxy": false, httpx: false, "python-dotenv": false, requests: false, selenium: false, setuptools: false, "sphinx-rtd-theme": false, stem: false, "typing-extensions": false, wheel: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["tor", 55, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 63, 5], ["homepage", 64, 5], ["changelog", 65, 5], ["license", 66, 5], ["maintainers", 67, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 23, 3], ["version", 24, 3], ["pyproject", 25, 3], ["src", 27, 3], ["build-system", 34, 3], ["dependencies", 39, 3], ["optional-dependencies", 54, 3], ["nativeCheckInputs", 58, 3], ["pythonImportsCheck", 60, 3], ["meta", 62, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.7.11";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "scholarly-python-package",
           repo: "scholarly",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -54,11 +51,11 @@ export default nix.lambda((args) => (() => {
         sphinx_rtd_theme,
         typing_extensions,
       ]);
-      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, tor: nix.thunk(() => [stem]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: $pos[1], tor: nix.thunk(() => [stem]) }));
       const nativeCheckInputs = nix.thunk(() => nix.app(nix.sel(lib, "concatAttrValues"), optional_dependencies));
       const pythonImportsCheck = nix.thunk(() => ["scholarly"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Retrieve author and publication information from Google Scholar",
         homepage: "https://scholarly.readthedocs.io/",
         changelog: nix.thunk(() => nix.str`https://github.com/scholarly-python-package/scholarly/releases/tag/${nix.sel(src, "tag")}`),
@@ -69,7 +66,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 21, 5], ["rev", 22, 5], ["hash", 23, 5]], [["NIX_CFLAGS_COMPILE", 54, 7]], [["description", 57, 5], ["homepage", 58, 5], ["license", 59, 5], ["platforms", 60, 5], ["maintainers", 61, 5], ["mainProgram", 62, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["buildInputs", 26, 3], ["nativeBuildInputs", 36, 3], ["postPatch", 41, 3], ["cmakeFlags", 50, 3], ["env", 54, 3], ["meta", 56, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, cmake: false, fetchgit: false, "libnl-tiny": false, libubox: false, uci: false, ubus: false, ucode: false, json_c: false, "pkg-config": false, udebug: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 21, 5], ["rev", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 54, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 57, 5], ["homepage", 58, 5], ["license", 59, 5], ["platforms", 60, 5], ["maintainers", 61, 5], ["mainProgram", 62, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["buildInputs", 26, 3], ["nativeBuildInputs", 36, 3], ["postPatch", 41, 3], ["cmakeFlags", 50, 3], ["env", 54, 3], ["meta", 56, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const udebug = nix.arg($, "udebug");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "netifd",
       version: "0-unstable-2026-02-26",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://git.openwrt.org/project/netifd.git",
           rev: "69a5afc9713adf31edbf3228a7a372ada7bba449",
           hash: "sha256-R/ryiFiKNM7zrIgzlalAK0lNJF/vzWL56E9CbptJtmI=",
@@ -39,11 +36,11 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeFeature"), "LIBNL_LIBS", "-lnl-tiny")),
       ]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.str`-I${libnl_tiny}/include/libnl-tiny`),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "OpenWrt Network interface configuration daemon",
         homepage: "https://git.openwrt.org/?p=project/netifd.git;a=summary",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Only")),

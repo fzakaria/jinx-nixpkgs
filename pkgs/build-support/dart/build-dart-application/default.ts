@@ -2,22 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["nativeBuildInputs", 77, 15]], [["dart", 83, 59]], [["buildDrvArgs", 83, 69]], [["packageRoot", 98, 54]], [["passthru", 98, 45]], [["dart", 96, 11]], [["src", 88, 11], ["packageRoot", 89, 11], ["pubspecLock", 90, 11], ["gitHashes", 91, 11], ["customSourceBuilders", 92, 11], ["sdkSourceBuilders", 94, 9]], [["pname", 117, 11], ["dependencies", 119, 11], ["dependencySources", 129, 37]], [["pubspecLock", 115, 17], ["packageConfig", 116, 9], ["extraSetupCommands", 131, 9]], [["dart", 134, 45]], [["pubspecLock", 207, 9]], [["platforms", 212, 9]], [["pubspecLockFile", 154, 9], ["packageConfig", 155, 9], ["sdkSetupScript", 156, 9], ["dartCompileCommand", 157, 9], ["dartOutputType", 158, 9], ["dartRuntimeCommand", 159, 9], ["dartCompileFlags", 160, 9], ["dartJitFlags", 161, 9], ["outputs", 164, 7], ["dartEntryPoints", 170, 7], ["runtimeDependencies", 176, 7], ["nativeBuildInputs", 178, 7], ["preConfigure", 196, 7], ["dontStrip", 202, 7], ["passAsFile", 204, 7], ["passthru", 206, 7], ["meta", 211, 7]], [["constructDrv", 18, 3], ["excludeDrvArgNames", 20, 3], ["extendDrvArgs", 27, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, callPackage: false, runCommand: false, writeText: false, pub2nix: false, dartHooks: false, makeWrapper: false, dart: false, nodejs: false, darwin: false, jq: false, yq: false }, ellipsis: false };
 const formals$2 = { args: { src: false, sourceRoot: true, packageRoot: true, gitHashes: true, sdkSourceBuilders: true, customSourceBuilders: true, sdkSetupScript: true, extraPackageConfigSetup: true, dartOutputType: true, dartCompileCommand: true, dartCompileFlags: true, dartJitFlags: true, dartEntryPoints: true, dartRuntimeCommand: true, runtimeDependencies: true, extraWrapProgramArgs: true, autoPubspecLock: true, pubspecLock: true }, ellipsis: true };
-const pos$1 = nix.positions(here + "/default.nix", [["nativeBuildInputs", 77, 15]]);
-const pos$2 = nix.positions(here + "/default.nix", [["dart", 83, 59]]);
-const pos$3 = nix.positions(here + "/default.nix", [["buildDrvArgs", 83, 69]]);
-const pos$4 = nix.positions(here + "/default.nix", [["packageRoot", 98, 54]]);
-const pos$5 = nix.positions(here + "/default.nix", [["passthru", 98, 45]]);
-const pos$6 = nix.positions(here + "/default.nix", [["dart", 96, 11]]);
-const pos$7 = nix.positions(here + "/default.nix", [["src", 88, 11], ["packageRoot", 89, 11], ["pubspecLock", 90, 11], ["gitHashes", 91, 11], ["customSourceBuilders", 92, 11], ["sdkSourceBuilders", 94, 9]]);
-const pos$8 = nix.positions(here + "/default.nix", [["pname", 117, 11], ["dependencies", 119, 11], ["dependencySources", 129, 37]]);
-const pos$9 = nix.positions(here + "/default.nix", [["pubspecLock", 115, 17], ["packageConfig", 116, 9], ["extraSetupCommands", 131, 9]]);
-const pos$10 = nix.positions(here + "/default.nix", [["dart", 134, 45]]);
-const pos$11 = nix.positions(here + "/default.nix", [["pubspecLock", 207, 9]]);
-const pos$12 = nix.positions(here + "/default.nix", [["platforms", 212, 9]]);
-const pos$13 = nix.positions(here + "/default.nix", [["pubspecLockFile", 154, 9], ["packageConfig", 155, 9], ["sdkSetupScript", 156, 9], ["dartCompileCommand", 157, 9], ["dartOutputType", 158, 9], ["dartRuntimeCommand", 159, 9], ["dartCompileFlags", 160, 9], ["dartJitFlags", 161, 9], ["outputs", 164, 7], ["dartEntryPoints", 170, 7], ["runtimeDependencies", 176, 7], ["nativeBuildInputs", 178, 7], ["preConfigure", 196, 7], ["dontStrip", 202, 7], ["passAsFile", 204, 7], ["passthru", 206, 7], ["meta", 211, 7]]);
-const pos$14 = nix.positions(here + "/default.nix", [["constructDrv", 18, 3], ["excludeDrvArgNames", 20, 3], ["extendDrvArgs", 27, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -35,7 +22,7 @@ export default nix.lambda((args) => (() => {
   const jq = nix.arg($, "jq");
   const yq = nix.arg($, "yq");
   return nix.app(nix.sel(lib, "extendMkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$14,
+      [nix.POS]: $pos[13],
       constructDrv: nix.thunk(() => nix.sel(stdenv, "mkDerivation")),
       excludeDrvArgNames: nix.thunk(() => ["gitHashes", "sdkSourceBuilders", "pubspecLock", "customSourceBuilders"]),
       extendDrvArgs: (finalAttrs) => nix.lambda((args_1) => (() => {
@@ -60,22 +47,22 @@ export default nix.lambda((args) => (() => {
         const autoPubspecLock = nix.argOr($_1, "autoPubspecLock", () => null);
         const pubspecLock = nix.argOr($_1, "pubspecLock", () => (nix.asBool(nix.eq(autoPubspecLock, null)) ? nix.builtins.throw("The pubspecLock argument is required. If import-from-derivation is allowed (it isn't in Nixpkgs), you can set autoPubspecLock to the path to a pubspec.lock instead.") : (() => {
           nix.assert_((nix.asBool(nix.builtins.pathExists(autoPubspecLock)) || nix.asBool(nix.builtins.throw("The pubspec.lock file could not be found!"))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/build-support/dart/build-dart-application/default.nix:74:11");
-          return nix.app(nix.sel(lib, "importJSON"), nix.thunk(() => nix.app(runCommand, nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getName"), args_2)}-pubspec-lock-json`), nix.thunk(() => ({ [nix.POS]: pos$1, nativeBuildInputs: nix.thunk(() => [yq]) })), nix.thunk(() => nix.str`yq . '${autoPubspecLock}' > "$out"`))));
+          return nix.app(nix.sel(lib, "importJSON"), nix.thunk(() => nix.app(runCommand, nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getName"), args_2)}-pubspec-lock-json`), nix.thunk(() => ({ [nix.POS]: $pos[0], nativeBuildInputs: nix.thunk(() => [yq]) })), nix.thunk(() => nix.str`yq . '${autoPubspecLock}' > "$out"`))));
         })()));
-        const generators = nix.thunk(() => nix.app(callPackage, nix.path(here, "./generators.nix"), nix.thunk(() => ({ [nix.POS]: pos$2, dart: dart })), nix.thunk(() => ({ [nix.POS]: pos$3, buildDrvArgs: args_2 }))));
+        const generators = nix.thunk(() => nix.app(callPackage, nix.path(here, "./generators.nix"), nix.thunk(() => ({ [nix.POS]: $pos[1], dart: dart })), nix.thunk(() => ({ [nix.POS]: $pos[2], buildDrvArgs: args_2 }))));
         const pubspecLockFile = nix.thunk(() => nix.builtins.toJSON(pubspecLock));
         const pubspecLockData = nix.thunk(() => nix.app(nix.sel(pub2nix, "readPubspecLock"), nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             src: src,
             packageRoot: packageRoot,
             pubspecLock: pubspecLock,
             gitHashes: gitHashes,
             customSourceBuilders: customSourceBuilders,
             sdkSourceBuilders: nix.thunk(() => nix.update({
-              [nix.POS]: pos$6,
+              [nix.POS]: $pos[5],
               dart: (name) => nix.app(runCommand, nix.thunk(() => nix.str`dart-sdk-${name}`), nix.thunk(() => ({
-                  [nix.POS]: pos$5,
-                  passthru: nix.thunk(() => ({ [nix.POS]: pos$4, packageRoot: "." })),
+                  [nix.POS]: $pos[4],
+                  passthru: nix.thunk(() => ({ [nix.POS]: $pos[3], packageRoot: "." })),
                 })), nix.thunk(() => nix.str`for path in '${dart}/pkg/${name}'; do
   if [ -d "$path" ]; then
     ln -s "$path" "$out"
@@ -91,24 +78,24 @@ fi
             }, sdkSourceBuilders)),
           }))));
         const packageConfig = nix.thunk(() => nix.app(nix.sel(generators, "linkPackageConfig"), nix.thunk(() => ({
-            [nix.POS]: pos$9,
+            [nix.POS]: $pos[8],
             pubspecLock: pubspecLock,
             packageConfig: nix.thunk(() => nix.app(nix.sel(pub2nix, "generatePackageConfig"), nix.thunk(() => ({
-                [nix.POS]: pos$8,
+                [nix.POS]: $pos[7],
                 pname: nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(args_2, "pname"), null)) ? nix.str`${nix.sel(args_2, "pname")}-${nix.sel(args_2, "version")}` : null)),
                 dependencies: nix.thunk(() => nix.builtins.concatLists(nix.thunk(() => nix.builtins.attrValues(nix.thunk(() => nix.sel(pubspecLockData, "dependencies")))))),
                 dependencySources: nix.thunk(() => nix.attr(pubspecLockData, "dependencySources")),
               })))),
             extraSetupCommands: extraPackageConfigSetup,
           }))));
-        const from = nix.thunk(() => nix.app(nix.sel(dartHooks, "override"), nix.thunk(() => ({ [nix.POS]: pos$10, dart: dart }))));
+        const from = nix.thunk(() => nix.app(nix.sel(dartHooks, "override"), nix.thunk(() => ({ [nix.POS]: $pos[9], dart: dart }))));
         const dartConfigHook = nix.thunk(() => nix.attr(from, "dartConfigHook"));
         const dartBuildHook = nix.thunk(() => nix.attr(from, "dartBuildHook"));
         const dartInstallHook = nix.thunk(() => nix.attr(from, "dartInstallHook"));
         const dartFixupHook = nix.thunk(() => nix.attr(from, "dartFixupHook"));
         nix.assert_((!nix.asBool(!nix.asBool((nix.asBool(nix.builtins.isString(dartOutputType)) && nix.asBool(!nix.eq(dartOutputType, ""))))) || nix.asBool(nix.builtins.throw("dartOutputType must be a non-empty string"))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/build-support/dart/build-dart-application/default.nix:142:5");
         return nix.update(nix.builtins.removeAttrs(args_2, nix.thunk(() => ["gitHashes", "sdkSourceBuilders", "pubspecLock", "customSourceBuilders"])), {
-          [nix.POS]: pos$13,
+          [nix.POS]: $pos[12],
           pubspecLockFile: pubspecLockFile,
           packageConfig: packageConfig,
           sdkSetupScript: sdkSetupScript,
@@ -132,9 +119,9 @@ fi
           preConfigure: nix.thunk(() => nix.add(nix.selOr(args_2, () => "", "preConfigure"), "ln -sf \"$pubspecLockFilePath\" pubspec.lock\n")),
           dontStrip: nix.thunk(() => nix.selOr(args_2, () => nix.eq(dartOutputType, "exe"), "dontStrip")),
           passAsFile: nix.thunk(() => ["pubspecLockFile"]),
-          passthru: nix.thunk(() => nix.update({ [nix.POS]: pos$11, pubspecLock: pubspecLockData }, nix.selOr(args_2, () => ({}), "passthru"))),
+          passthru: nix.thunk(() => nix.update({ [nix.POS]: $pos[10], pubspecLock: pubspecLockData }, nix.selOr(args_2, () => ({}), "passthru"))),
           meta: nix.thunk(() => nix.update(nix.selOr(args_2, () => ({}), "meta"), {
-            [nix.POS]: pos$12,
+            [nix.POS]: $pos[11],
             platforms: nix.thunk(() => nix.selOr(args_2, () => nix.sel(dart, "meta", "platforms"), "meta", "platforms")),
           })),
         });

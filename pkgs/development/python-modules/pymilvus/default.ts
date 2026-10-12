@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 41, 5], ["repo", 42, 5], ["tag", 43, 5], ["hash", 44, 5]], [["bulk_writer", 73, 5]], [["description", 113, 5], ["homepage", 114, 5], ["changelog", 115, 5], ["license", 116, 5], ["maintainers", 117, 5]], [["pname", 36, 3], ["version", 37, 3], ["pyproject", 38, 3], ["src", 40, 3], ["build-system", 47, 3], ["pythonRelaxDeps", 53, 3], ["pythonRemoveDeps", 57, 3], ["dependencies", 61, 3], ["optional-dependencies", 72, 3], ["pythonImportsCheck", 82, 3], ["nativeCheckInputs", 84, 3], ["disabledTests", 93, 3], ["disabledTestPaths", 104, 3], ["meta", 112, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, gitpython: false, setuptools: false, "setuptools-scm": false, cachetools: false, grpcio: false, orjson: false, pandas: false, protobuf: false, "python-dotenv": false, "azure-storage-blob": false, minio: false, pyarrow: false, requests: false, urllib3: false, "grpcio-testing": false, "pytest-asyncio": false, "pytest-benchmark": false, pytestCheckHook: false, scipy: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 41, 5], ["repo", 42, 5], ["tag", 43, 5], ["hash", 44, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["bulk_writer", 73, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 113, 5], ["homepage", 114, 5], ["changelog", 115, 5], ["license", 116, 5], ["maintainers", 117, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 36, 3], ["version", 37, 3], ["pyproject", 38, 3], ["src", 40, 3], ["build-system", 47, 3], ["pythonRelaxDeps", 53, 3], ["pythonRemoveDeps", 57, 3], ["dependencies", 61, 3], ["optional-dependencies", 72, 3], ["pythonImportsCheck", 82, 3], ["nativeCheckInputs", 84, 3], ["disabledTests", 93, 3], ["disabledTestPaths", 104, 3], ["meta", 112, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,12 +30,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const scipy = nix.arg($, "scipy");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "pymilvus",
       version: "2.6.12",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "milvus-io",
           repo: "pymilvus",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -49,7 +46,7 @@ export default nix.lambda((args) => (() => {
       pythonRemoveDeps: nix.thunk(() => ["milvus-lite"]),
       dependencies: nix.thunk(() => [cachetools, grpcio, orjson, pandas, protobuf, python_dotenv, setuptools]),
       "optional-dependencies": nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         bulk_writer: nix.thunk(() => [azure_storage_blob, minio, pyarrow, requests, urllib3]),
       })),
       pythonImportsCheck: nix.thunk(() => ["pymilvus"]),
@@ -61,7 +58,7 @@ export default nix.lambda((args) => (() => {
       ]),
       disabledTestPaths: nix.thunk(() => ["examples/", "tests/test_bulk_writer_stage.py"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Python SDK for Milvus",
         homepage: "https://github.com/milvus-io/pymilvus",
         changelog: nix.thunk(() => nix.str`https://github.com/milvus-io/pymilvus/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/mirage.nix", [[["description", 29, 5], ["maintainers", 30, 5]], [["pname", 12, 3], ["version", 14, 22], ["src", 14, 30], ["duneVersion", 16, 3], ["propagatedBuildInputs", 18, 3], ["doCheck", 26, 3], ["meta", 28, 3]]]);
 const formals$1 = { args: { lib: false, buildDunePackage: false, alcotest: false, lwt: false, logs: false, "mirage-clock": false, duration: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/mirage.nix", [["description", 29, 5], ["maintainers", 30, 5]]);
-const pos$2 = nix.positions(here + "/mirage.nix", [["pname", 12, 3], ["version", 14, 22], ["src", 14, 30], ["duneVersion", 16, 3], ["propagatedBuildInputs", 18, 3], ["doCheck", 26, 3], ["meta", 28, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const mirage_clock = nix.arg($, "mirage-clock");
   const duration = nix.arg($, "duration");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "alcotest-mirage",
       version: nix.thunk(() => nix.attr(alcotest, "version")),
       src: nix.thunk(() => nix.attr(alcotest, "src")),
@@ -24,7 +23,7 @@ export default nix.lambda((args) => (() => {
       propagatedBuildInputs: nix.thunk(() => [alcotest, lwt, logs, mirage_clock, duration]),
       doCheck: true,
       meta: nix.thunk(() => nix.update(nix.sel(alcotest, "meta"), {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Mirage implementation for Alcotest",
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);

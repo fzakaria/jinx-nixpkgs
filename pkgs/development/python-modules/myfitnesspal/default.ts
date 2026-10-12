@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 27, 13], ["version", 27, 19], ["hash", 28, 5]], [["description", 72, 5], ["mainProgram", 73, 5], ["homepage", 74, 5], ["license", 75, 5]], [["pname", 22, 3], ["version", 23, 3], ["pyproject", 24, 3], ["src", 26, 3], ["pythonRelaxDeps", 31, 3], ["nativeBuildInputs", 33, 3], ["propagatedBuildInputs", 35, 3], ["nativeCheckInputs", 49, 3], ["postPatch", 54, 3], ["disabledTests", 64, 3], ["pythonImportsCheck", 69, 3], ["meta", 71, 3]]]);
 const formals$1 = { args: { lib: false, blessed: false, "browser-cookie3": false, buildPythonPackage: false, cloudscraper: false, fetchPypi: false, keyring: false, "keyrings-alt": false, lxml: false, measurement: false, mock: false, pytestCheckHook: false, "python-dateutil": false, requests: false, rich: false, setuptools: false, "typing-extensions": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 27, 13], ["version", 27, 19], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 72, 5], ["mainProgram", 73, 5], ["homepage", 74, 5], ["license", 75, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 22, 3], ["version", 23, 3], ["pyproject", 24, 3], ["src", 26, 3], ["pythonRelaxDeps", 31, 3], ["nativeBuildInputs", 33, 3], ["propagatedBuildInputs", 35, 3], ["nativeCheckInputs", 49, 3], ["postPatch", 54, 3], ["disabledTests", 64, 3], ["pythonImportsCheck", 69, 3], ["meta", 71, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.1.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-eE807M8qFDlSMAcE+GFJyve1YfmlWmB3ML9VJhMUeIE=",
@@ -56,14 +54,14 @@ export default nix.lambda((args) => (() => {
       const disabledTests = nix.thunk(() => ["test_integration"]);
       const pythonImportsCheck = nix.thunk(() => ["myfitnesspal"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Python module to access meal tracking data stored in MyFitnessPal",
         mainProgram: "myfitnesspal",
         homepage: "https://github.com/coddingtonbear/python-myfitnesspal",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

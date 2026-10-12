@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]], [["name", 95, 5], ["desktopName", 96, 5], ["exec", 97, 5], ["icon", 98, 5]], [["mainProgram", 102, 5], ["description", 103, 5], ["homepage", 104, 5], ["license", 105, 5], ["maintainers", 106, 5], ["platforms", 107, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["postPatch", 27, 3], ["preConfigure", 56, 3], ["qtWrapperArgs", 60, 3], ["nativeBuildInputs", 69, 3], ["buildInputs", 75, 3], ["installPhase", 85, 3], ["desktopItem", 94, 3], ["meta", 101, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, qt6: false, "pkg-config": false, taglib: false, "alsa-lib": false, pulseaudio: false, cld2: false, libbass: false, libbass_fx: false, makeDesktopItem: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["name", 95, 5], ["desktopName", 96, 5], ["exec", 97, 5], ["icon", 98, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["mainProgram", 102, 5], ["description", 103, 5], ["homepage", 104, 5], ["license", 105, 5], ["maintainers", 106, 5], ["platforms", 107, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["postPatch", 27, 3], ["preConfigure", 56, 3], ["qtWrapperArgs", 60, 3], ["nativeBuildInputs", 69, 3], ["buildInputs", 75, 3], ["installPhase", 85, 3], ["desktopItem", 94, 3], ["meta", 101, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const libbass_fx = nix.arg($, "libbass_fx");
   const makeDesktopItem = nix.arg($, "makeDesktopItem");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "ultrastar-creator",
       version: "1.3.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "UltraStar-Deluxe",
           repo: "UltraStar-Creator",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -80,14 +77,14 @@ sed -i \\
       ]),
       installPhase: "runHook preInstall\n\ninstall -Dm644 ../setup/unix/UltraStar-Creator.png $out/share/icons/hicolor/128x128/apps/ultrastar-creator.png\nln -s \"$desktopItem/share/applications\" \"$out/share/\"\n\nrunHook postInstall\n",
       desktopItem: nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           name: nix.thunk(() => nix.sel(finalAttrs, "pname")),
           desktopName: "UltraStar-Creator",
           exec: "UltraStar-Creator",
           icon: "ultrastar-creator",
         })))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         mainProgram: "UltraStar-Creator",
         description: "Ultrastar karaoke song creation tool",
         homepage: "https://github.com/UltraStar-Deluxe/UltraStar-Creator",

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["host", 25, 5], ["port", 26, 5], ["password", 27, 5], ["secret", 28, 5]], [["owner", 38, 5], ["repo", 39, 5], ["tag", 40, 5], ["hash", 41, 5]], [["description", 151, 5], ["homepage", 152, 5], ["changelog", 153, 5], ["license", 154, 5], ["maintainers", 155, 5]], [["pname", 33, 3], ["version", 34, 3], ["pyproject", 35, 3], ["src", 37, 3], ["build-system", 44, 3], ["dependencies", 49, 3], ["nativeCheckInputs", 59, 3], ["doCheck", 78, 3], ["pytestFlags", 102, 3], ["disabledTests", 109, 3], ["pythonImportsCheck", 148, 3], ["meta", 150, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, pytestCheckHook: false, setuptools: false, "setuptools-scm": false, urllib3: false, requests: false, "requests-toolbelt": false, pyjwt: false, "importlib-metadata": false, packaging: false, mock: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["host", 25, 5], ["port", 26, 5], ["password", 27, 5], ["secret", 28, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["owner", 38, 5], ["repo", 39, 5], ["tag", 40, 5], ["hash", 41, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 151, 5], ["homepage", 152, 5], ["changelog", 153, 5], ["license", 154, 5], ["maintainers", 155, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 33, 3], ["version", 34, 3], ["pyproject", 35, 3], ["src", 37, 3], ["build-system", 44, 3], ["dependencies", 49, 3], ["nativeCheckInputs", 59, 3], ["doCheck", 78, 3], ["pytestFlags", 102, 3], ["disabledTests", 109, 3], ["pythonImportsCheck", 148, 3], ["meta", 150, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,19 +21,19 @@ export default nix.lambda((args) => (() => {
   const packaging = nix.arg($, "packaging");
   const mock = nix.arg($, "mock");
   const testDBOpts = nix.thunk(() => ({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     host: "127.0.0.1",
     port: "8529",
     password: "test",
     secret: "secret",
   }));
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "python-arango",
       version: "8.3.6",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "arangodb",
           repo: "python-arango",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -83,7 +80,7 @@ export default nix.lambda((args) => (() => {
       ]),
       pythonImportsCheck: nix.thunk(() => ["arango"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Python Driver for ArangoDB",
         homepage: "https://github.com/ArangoDB-Community/python-arango",
         changelog: nix.thunk(() => nix.str`https://github.com/ArangoDB-Community/python-arango/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

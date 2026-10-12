@@ -2,10 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]], [["description", 30, 5], ["homepage", 31, 5], ["changelog", 32, 5], ["maintainers", 33, 5], ["license", 34, 5]], [["owner", 9, 3], ["domain", 10, 3], ["version", 11, 3], ["src", 13, 3], ["dependencies", 20, 3], ["ignoreVersionRequirement", 24, 3], ["meta", 29, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, buildHomeAssistantComponent: false, pyemvue: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 30, 5], ["homepage", 31, 5], ["changelog", 32, 5], ["maintainers", 33, 5], ["license", 34, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["owner", 9, 3], ["domain", 10, 3], ["version", 11, 3], ["src", 13, 3], ["dependencies", 20, 3], ["ignoreVersionRequirement", 24, 3], ["meta", 29, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const domain = "emporia_vue";
       const version = "0.12.4";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "magico13",
           repo: "ha-emporia-vue",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -27,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const dependencies = nix.thunk(() => [pyemvue]);
       const ignoreVersionRequirement = nix.thunk(() => ["boto3", "pyemvue"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Reads data from the Emporia Vue energy monitor into Home Assistant",
         homepage: "https://github.com/magico13/ha-emporia-vue",
         changelog: nix.thunk(() => nix.str`https://github.com/magico13/ha-emporia-vue/releases/tag/v${version}`),
@@ -38,7 +36,7 @@ export default nix.lambda((args) => (() => {
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         owner,
         domain,
         version,

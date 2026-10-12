@@ -2,19 +2,18 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/fstat.nix", [[["mainProgram", 14, 8]], [["path", 6, 3], ["outputs", 8, 3], ["meta", 14, 3]]]);
 const formals$1 = { args: { lib: false, mkDerivation: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/fstat.nix", [["mainProgram", 14, 8]]);
-const pos$2 = nix.positions(here + "/fstat.nix", [["path", 6, 3], ["outputs", 8, 3], ["meta", 14, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const mkDerivation = nix.arg($, "mkDerivation");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       path: "usr.bin/fstat",
       outputs: nix.thunk(() => ["out", "man", "debug"]),
-      meta: nix.thunk(() => ({ [nix.POS]: pos$1, mainProgram: "fstat" })),
+      meta: nix.thunk(() => ({ [nix.POS]: $pos[0], mainProgram: "fstat" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=fstat.ts.map

@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]], [["package", 107, 7], ["versionCheck", 108, 7]], [["pkg-config", 106, 11]], [["tests", 106, 5], ["updateScript", 110, 5]], [["description", 114, 5], ["homepage", 115, 5], ["changelog", 116, 5], ["license", 117, 5], ["maintainers", 118, 5], ["mainProgram", 119, 5], ["platforms", 120, 5], ["pkgConfigModules", 121, 5]], [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["outputs", 32, 3], ["postPatch", 39, 3], ["strictDeps", 56, 3], ["nativeBuildInputs", 58, 3], ["buildInputs", 65, 3], ["nativeCheckInputs", 74, 3], ["checkInputs", 79, 3], ["cmakeFlags", 83, 3], ["doCheck", 87, 3], ["enableParallelChecking", 90, 3], ["disabledTests", 92, 3], ["preFixup", 101, 3], ["passthru", 105, 3], ["meta", 113, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitLab: false, gitUpdater: false, testers: false, boost: false, cmake: false, ctestCheckHook: false, dbus: false, doxygen: false, graphviz: false, gtest: false, libxml2: false, lomiri: false, "pkg-config": false, "process-cpp": false, "properties-cpp": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["package", 107, 7], ["versionCheck", 108, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pkg-config", 106, 11]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 106, 5], ["updateScript", 110, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 114, 5], ["homepage", 115, 5], ["changelog", 116, 5], ["license", 117, 5], ["maintainers", 118, 5], ["mainProgram", 119, 5], ["platforms", 120, 5], ["pkgConfigModules", 121, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["outputs", 32, 3], ["postPatch", 39, 3], ["strictDeps", 56, 3], ["nativeBuildInputs", 58, 3], ["buildInputs", 65, 3], ["nativeCheckInputs", 74, 3], ["checkInputs", 79, 3], ["cmakeFlags", 83, 3], ["doCheck", 87, 3], ["enableParallelChecking", 90, 3], ["disabledTests", 92, 3], ["preFixup", 101, 3], ["passthru", 105, 3], ["meta", 113, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const process_cpp = nix.arg($, "process-cpp");
   const properties_cpp = nix.arg($, "properties-cpp");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "dbus-cpp",
       version: "5.0.6",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ubports",
           repo: "development/core/lib-cpp/dbus-cpp",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -62,11 +57,11 @@ export default nix.lambda((args) => (() => {
       disabledTests: nix.thunk(() => ["async_execution_load_test", "executor_test"]),
       preFixup: "moveToOutput libexec/examples $examples\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "hasPkgConfigModules"), nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               versionCheck: true,
             })))),
@@ -74,7 +69,7 @@ export default nix.lambda((args) => (() => {
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Dbus-binding leveraging C++-11",
         homepage: "https://gitlab.com/ubports/development/core/lib-cpp/dbus-cpp",
         changelog: nix.thunk(() => nix.str`https://gitlab.com/ubports/development/core/lib-cpp/dbus-cpp/-/blob/${nix.sel(finalAttrs, "version")}/ChangeLog`),

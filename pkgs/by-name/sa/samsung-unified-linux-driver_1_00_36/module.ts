@@ -2,23 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/module.nix", [[["enable", 30, 7]], [["samsung-unified-linux-driver_1_00_36", 29, 14]], [["services", 29, 5]], [["drivers", 34, 23]], [["printing", 34, 14]], [["extraBackends", 35, 19]], [["sane", 35, 14]], [["source", 37, 40]], [["source", 38, 52]], [["source", 40, 48]], [["source", 42, 26]], [["source", 43, 40]], [["samsung/scanner/share/oem.conf", 37, 7], ["smfp-common/scanner/share/libsane-smfp.cfg", 38, 7], ["smfp-common/scanner/share/pagesize.xml", 40, 7], ["sane.d/smfp.conf", 42, 7], ["sane.d/dll.d/smfp-scanner.conf", 43, 7]], [["etc", 36, 17]], [["services", 34, 5], ["hardware", 35, 5], ["environment", 36, 5]], [["options", 28, 3], ["config", 33, 3]]]);
 const formals$1 = { args: { config: false, pkgs: false, lib: true }, ellipsis: true };
-const pos$1 = nix.positions(here + "/module.nix", [["enable", 30, 7]]);
-const pos$2 = nix.positions(here + "/module.nix", [["samsung-unified-linux-driver_1_00_36", 29, 14]]);
-const pos$3 = nix.positions(here + "/module.nix", [["services", 29, 5]]);
-const pos$4 = nix.positions(here + "/module.nix", [["drivers", 34, 23]]);
-const pos$5 = nix.positions(here + "/module.nix", [["printing", 34, 14]]);
-const pos$6 = nix.positions(here + "/module.nix", [["extraBackends", 35, 19]]);
-const pos$7 = nix.positions(here + "/module.nix", [["sane", 35, 14]]);
-const pos$8 = nix.positions(here + "/module.nix", [["source", 37, 40]]);
-const pos$9 = nix.positions(here + "/module.nix", [["source", 38, 52]]);
-const pos$10 = nix.positions(here + "/module.nix", [["source", 40, 48]]);
-const pos$11 = nix.positions(here + "/module.nix", [["source", 42, 26]]);
-const pos$12 = nix.positions(here + "/module.nix", [["source", 43, 40]]);
-const pos$13 = nix.positions(here + "/module.nix", [["samsung/scanner/share/oem.conf", 37, 7], ["smfp-common/scanner/share/libsane-smfp.cfg", 38, 7], ["smfp-common/scanner/share/pagesize.xml", 40, 7], ["sane.d/smfp.conf", 42, 7], ["sane.d/dll.d/smfp-scanner.conf", 43, 7]]);
-const pos$14 = nix.positions(here + "/module.nix", [["etc", 36, 17]]);
-const pos$15 = nix.positions(here + "/module.nix", [["services", 34, 5], ["hardware", 35, 5], ["environment", 36, 5]]);
-const pos$16 = nix.positions(here + "/module.nix", [["options", 28, 3], ["config", 33, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,49 +13,49 @@ export default nix.lambda((args) => (() => {
   const cfg = nix.thunk(() => nix.sel(config, "services", "samsung-unified-linux-driver_1_00_36"));
   const pkg = nix.thunk(() => nix.sel(pkgs, "samsung-unified-linux-driver_1_00_36"));
   return {
-    [nix.POS]: pos$16,
+    [nix.POS]: $pos[15],
     options: nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       services: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         "samsung-unified-linux-driver_1_00_36": nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "samsung-unified-linux-driver_1_00_36")),
         })),
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        [nix.POS]: pos$15,
+        [nix.POS]: $pos[14],
         services: nix.thunk(() => ({
-          [nix.POS]: pos$5,
-          printing: nix.thunk(() => ({ [nix.POS]: pos$4, drivers: nix.thunk(() => [pkg]) })),
+          [nix.POS]: $pos[4],
+          printing: nix.thunk(() => ({ [nix.POS]: $pos[3], drivers: nix.thunk(() => [pkg]) })),
         })),
         hardware: nix.thunk(() => ({
-          [nix.POS]: pos$7,
-          sane: nix.thunk(() => ({ [nix.POS]: pos$6, extraBackends: nix.thunk(() => [pkg]) })),
+          [nix.POS]: $pos[6],
+          sane: nix.thunk(() => ({ [nix.POS]: $pos[5], extraBackends: nix.thunk(() => [pkg]) })),
         })),
         environment: nix.thunk(() => ({
-          [nix.POS]: pos$14,
+          [nix.POS]: $pos[13],
           etc: nix.thunk(() => ({
-            [nix.POS]: pos$13,
+            [nix.POS]: $pos[12],
             "samsung/scanner/share/oem.conf": nix.thunk(() => ({
-              [nix.POS]: pos$8,
+              [nix.POS]: $pos[7],
               source: nix.thunk(() => nix.str`${pkg}/etc/samsung/scanner/share/oem.conf`),
             })),
             "smfp-common/scanner/share/libsane-smfp.cfg": nix.thunk(() => ({
-              [nix.POS]: pos$9,
+              [nix.POS]: $pos[8],
               source: nix.thunk(() => nix.str`${pkg}/etc/smfp-common/scanner/share/libsane-smfp.cfg`),
             })),
             "smfp-common/scanner/share/pagesize.xml": nix.thunk(() => ({
-              [nix.POS]: pos$10,
+              [nix.POS]: $pos[9],
               source: nix.thunk(() => nix.str`${pkg}/etc/smfp-common/scanner/share/pagesize.xml`),
             })),
             "sane.d/smfp.conf": nix.thunk(() => ({
-              [nix.POS]: pos$11,
+              [nix.POS]: $pos[10],
               source: nix.thunk(() => nix.str`${pkg}/etc/sane.d/smfp.conf`),
             })),
             "sane.d/dll.d/smfp-scanner.conf": nix.thunk(() => ({
-              [nix.POS]: pos$12,
+              [nix.POS]: $pos[11],
               source: nix.thunk(() => nix.str`${pkg}/etc/sane.d/dll.d/smfp-scanner.conf`),
             })),
           })),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 12, 5], ["repo", 13, 5], ["rev", 14, 5], ["hash", 15, 5]], [["description", 36, 5], ["homepage", 37, 5], ["license", 38, 5], ["mainProgram", 39, 5], ["maintainers", 40, 5], ["platforms", 41, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["buildPhase", 18, 3], ["installPhase", 27, 3], ["meta", 35, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 12, 5], ["repo", 13, 5], ["rev", 14, 5], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 36, 5], ["homepage", 37, 5], ["license", 38, 5], ["mainProgram", 39, 5], ["maintainers", 40, 5], ["platforms", 41, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["buildPhase", 18, 3], ["installPhase", 27, 3], ["meta", 35, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,11 +11,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "insert-dylib",
       version: "0-unstable-2016-08-28",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Tyilo",
           repo: "insert_dylib",
           rev: "c8beef66a08688c2feeee2c9b6eaf1061c2e67a9",
@@ -26,7 +24,7 @@ export default nix.lambda((args) => (() => {
       buildPhase: "runHook preBuild\n\nmkdir -p Products/Release\n$CC -o Products/Release/insert_dylib insert_dylib/main.c\n\nrunHook postBuild\n",
       installPhase: "runHook preInstall\n\ninstall -Dm755 Products/Release/insert_dylib -t $out/bin\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Command line utility for inserting a dylib load command into a Mach-O binary",
         homepage: "https://github.com/tyilo/insert_dylib",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["withCUDA", 41, 7], ["withCuDNN", 42, 7], ["rocmSupport", 43, 15]], [["ctranslate2-cpp", 40, 5]], [["owner", 53, 5], ["repo", 54, 5], ["tag", 55, 5], ["hash", 56, 5]], [["mainProgram", 102, 5], ["description", 103, 5], ["homepage", 104, 5], ["changelog", 105, 5], ["license", 106, 5], ["maintainers", 107, 5]], [["pname", 48, 3], ["version", 49, 3], ["pyproject", 50, 3], ["src", 52, 3], ["postPatch", 63, 3], ["build-system", 68, 3], ["pythonRelaxDeps", 70, 3], ["dependencies", 75, 3], ["nativeCheckInputs", 95, 3], ["pythonImportsCheck", 99, 3], ["meta", 101, 3]]]);
 const formals$1 = { args: { config: false, lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, ctranslate2: false, "faster-whisper": false, "huggingface-hub": false, nltk: false, numpy: false, omegaconf: false, pandas: false, "pyannote-audio": false, torch: false, torchaudio: false, torchcodec: false, torchvision: false, transformers: false, ffmpeg: false, "ctranslate2-cpp": false, versionCheckHook: false, cudaSupport: true, rocmSupport: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["withCUDA", 41, 7], ["withCuDNN", 42, 7], ["rocmSupport", 43, 15]]);
-const pos$2 = nix.positions(here + "/default.nix", [["ctranslate2-cpp", 40, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["owner", 53, 5], ["repo", 54, 5], ["tag", 55, 5], ["hash", 56, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["mainProgram", 102, 5], ["description", 103, 5], ["homepage", 104, 5], ["changelog", 105, 5], ["license", 106, 5], ["maintainers", 107, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 48, 3], ["version", 49, 3], ["pyproject", 50, 3], ["src", 52, 3], ["postPatch", 63, 3], ["build-system", 68, 3], ["pythonRelaxDeps", 70, 3], ["dependencies", 75, 3], ["nativeCheckInputs", 95, 3], ["pythonImportsCheck", 99, 3], ["meta", 101, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -36,21 +32,21 @@ export default nix.lambda((args) => (() => {
   const cudaSupport = nix.argOr($, "cudaSupport", () => nix.sel(config, "cudaSupport"));
   const rocmSupport = nix.argOr($, "rocmSupport", () => nix.sel(config, "rocmSupport"));
   const ctranslate = nix.thunk(() => nix.app(nix.sel(ctranslate2, "override"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       "ctranslate2-cpp": nix.thunk(() => nix.app(nix.sel(ctranslate2_cpp, "override"), nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           withCUDA: cudaSupport,
           withCuDNN: cudaSupport,
           rocmSupport: rocmSupport,
         })))),
     }))));
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "whisperx",
       version: "3.8.6",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           owner: "m-bain",
           repo: "whisperX",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -79,7 +75,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [versionCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["whisperx"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         mainProgram: "whisperx",
         description: "Automatic Speech Recognition with Word-level Timestamps (& Diarization)",
         homepage: "https://github.com/m-bain/whisperX",

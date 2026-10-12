@@ -2,14 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/helm-unittest.nix", [[["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]], [["plugins", 56, 11]], [["nativeBuildInputs", 61, 11]], [["smoke", 53, 11]], [["tests", 53, 5], ["updateScript", 73, 5]], [["description", 77, 5], ["homepage", 78, 5], ["license", 79, 5], ["maintainers", 80, 5]], [["pname", 16, 3], ["version", 17, 11], ["src", 19, 3], ["vendorHash", 26, 3], ["postPatch", 28, 3], ["subPackages", 40, 3], ["installPhase", 42, 3], ["passthru", 52, 3], ["meta", 76, 3]]]);
 const formals$1 = { args: { buildGoModule: false, fetchFromGitHub: false, "kubernetes-helm": false, lib: false, "nix-update-script": false, runCommand: false, wrapHelm: false, writableTmpDirAsHomeHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/helm-unittest.nix", [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/helm-unittest.nix", [["plugins", 56, 11]]);
-const pos$3 = nix.positions(here + "/helm-unittest.nix", [["nativeBuildInputs", 61, 11]]);
-const pos$4 = nix.positions(here + "/helm-unittest.nix", [["smoke", 53, 11]]);
-const pos$5 = nix.positions(here + "/helm-unittest.nix", [["tests", 53, 5], ["updateScript", 73, 5]]);
-const pos$6 = nix.positions(here + "/helm-unittest.nix", [["description", 77, 5], ["homepage", 78, 5], ["license", 79, 5], ["maintainers", 80, 5]]);
-const pos$7 = nix.positions(here + "/helm-unittest.nix", [["pname", 16, 3], ["version", 17, 11], ["src", 19, 3], ["vendorHash", 26, 3], ["postPatch", 28, 3], ["subPackages", 40, 3], ["installPhase", 42, 3], ["passthru", 52, 3], ["meta", 76, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   const version = "1.2.1";
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "helm-unittest",
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "helm-unittest",
           repo: "helm-unittest",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -38,16 +32,16 @@ export default nix.lambda((args) => (() => {
       subPackages: nix.thunk(() => ["cmd/helm-unittest"]),
       installPhase: "runHook preInstall\n\ninstall -dm755 \"$out/helm-unittest\"\ninstall -m755 -Dt \"$out/helm-unittest\" \"$GOPATH/bin/helm-unittest\"\ninstall -m644 -Dt \"$out/helm-unittest\" ./plugin.yaml\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           smoke: nix.thunk(() => (() => {
             const helm = nix.thunk(() => nix.app(wrapHelm, kubernetes_helm, nix.thunk(() => ({
-                [nix.POS]: pos$2,
+                [nix.POS]: $pos[1],
                 plugins: nix.thunk(() => [nix.thunk(() => nix.sel(finalAttrs, "finalPackage"))]),
               }))));
             return nix.app(runCommand, "helm-unittest-plugin-smoke", nix.thunk(() => ({
-                [nix.POS]: pos$3,
+                [nix.POS]: $pos[2],
                 nativeBuildInputs: nix.thunk(() => [helm, writableTmpDirAsHomeHook]),
               })), nix.thunk(() => nix.str`cp -r ${nix.path(here, "./tests/helm-unittest/smoke")} chart
 chmod -R u+w chart
@@ -59,7 +53,7 @@ touch $out
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "BDD styled unit test framework for Kubernetes Helm charts as a Helm plugin",
         homepage: "https://github.com/helm-unittest/helm-unittest",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

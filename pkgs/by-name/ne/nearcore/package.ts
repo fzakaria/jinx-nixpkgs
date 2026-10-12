@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["tag", 19, 5], ["sha256", 21, 5]], [["CARGO_PROFILE_RELEASE_CODEGEN_UNITS", 33, 5], ["CARGO_PROFILE_RELEASE_LTO", 34, 5], ["NEAR_RELEASE_BUILD", 35, 5], ["OPENSSL_NO_VENDOR", 37, 5]], [["broken", 60, 5], ["description", 61, 5], ["homepage", 62, 5], ["license", 63, 5], ["maintainers", 64, 5], ["platforms", 67, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 15, 3], ["cargoHash", 24, 3], ["cargoPatches", 25, 3], ["postPatch", 27, 3], ["env", 32, 3], ["buildAndTestSubdir", 41, 3], ["doCheck", 42, 3], ["buildInputs", 44, 3], ["nativeBuildInputs", 49, 3], ["requiredSystemFeatures", 56, 3], ["meta", 58, 3]]]);
 const formals$1 = { args: { rustPlatform: false, lib: false, fetchFromGitHub: false, zlib: false, openssl: false, "pkg-config": false, protobuf: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["tag", 19, 5], ["sha256", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["CARGO_PROFILE_RELEASE_CODEGEN_UNITS", 33, 5], ["CARGO_PROFILE_RELEASE_LTO", 34, 5], ["NEAR_RELEASE_BUILD", 35, 5], ["OPENSSL_NO_VENDOR", 37, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["broken", 60, 5], ["description", 61, 5], ["homepage", 62, 5], ["license", 63, 5], ["maintainers", 64, 5], ["platforms", 67, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 15, 3], ["cargoHash", 24, 3], ["cargoPatches", 25, 3], ["postPatch", 27, 3], ["env", 32, 3], ["buildAndTestSubdir", 41, 3], ["doCheck", 42, 3], ["buildInputs", 44, 3], ["nativeBuildInputs", 49, 3], ["requiredSystemFeatures", 56, 3], ["meta", 58, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pname = "nearcore";
       const version = "1.30.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "near",
           repo: "nearcore",
           tag: version,
@@ -33,7 +30,7 @@ export default nix.lambda((args) => (() => {
   --replace 'get_git_version()?' '"nix:${version}"'
 `);
       const env = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         CARGO_PROFILE_RELEASE_CODEGEN_UNITS: "1",
         CARGO_PROFILE_RELEASE_LTO: "fat",
         NEAR_RELEASE_BUILD: "release",
@@ -45,7 +42,7 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [pkg_config, protobuf, nix.thunk(() => nix.sel(rustPlatform, "bindgenHook"))]);
       const requiredSystemFeatures = nix.thunk(() => ["big-parallel"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         broken: true,
         description: "Reference client for NEAR Protocol",
         homepage: "https://github.com/near/nearcore",
@@ -57,7 +54,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => ["x86_64-linux"]),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

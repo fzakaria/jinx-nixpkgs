@@ -2,17 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["aarch64-linux", 37, 7], ["x86_64-linux", 38, 7]], [["version", 32, 5], ["gitRevision", 33, 5], ["chromiumVersion", 34, 5], ["srcHashes", 36, 5]], [["owner", 48, 7], ["repo", 49, 7], ["tag", 50, 7], ["fetchSubmodules", 51, 7], ["hash", 52, 7]], [["type", 97, 9], ["terminal", 98, 9], ["name", 99, 9], ["desktopName", 100, 9], ["genericName", 101, 9], ["comment", 102, 9], ["exec", 103, 9], ["icon", 104, 9], ["categories", 105, 9], ["startupWMClass", 106, 9]], [["pname", 44, 5], ["version", 45, 5], ["src", 47, 5], ["nativeBuildInputs", 55, 5], ["buildInputs", 64, 5], ["cmakeFlags", 74, 5], ["preConfigure", 81, 5], ["postFixup", 86, 5], ["desktopItems", 95, 5]], [["homepage", 155, 5], ["changelog", 156, 5], ["description", 157, 5], ["longDescription", 158, 5], ["license", 161, 5], ["maintainers", 162, 5], ["platforms", 167, 5], ["mainProgram", 168, 5]], [["message", 171, 21]], [["broken", 171, 14]], [["problems", 171, 5]], [["pname", 112, 18], ["version", 112, 24], ["targetPkgs", 114, 3], ["extraInstallCommands", 143, 3], ["runScript", 152, 3], ["meta", 154, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromCodeberg: false, makeWrapper: false, cmake: false, ninja: false, libarchive: false, libz: false, "cef-binary": false, luajit: false, libxxf86vm: false, libxi: false, libxext: false, libx11: false, libsm: false, libxcb: false, libgbm: false, glib: false, jdk17: false, pango: false, cairo: false, "pkg-config": false, libnotify: false, buildFHSEnv: false, makeDesktopItem: false, copyDesktopItems: false, enableRS3: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["aarch64-linux", 37, 7], ["x86_64-linux", 38, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["version", 32, 5], ["gitRevision", 33, 5], ["chromiumVersion", 34, 5], ["srcHashes", 36, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["owner", 48, 7], ["repo", 49, 7], ["tag", 50, 7], ["fetchSubmodules", 51, 7], ["hash", 52, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["type", 97, 9], ["terminal", 98, 9], ["name", 99, 9], ["desktopName", 100, 9], ["genericName", 101, 9], ["comment", 102, 9], ["exec", 103, 9], ["icon", 104, 9], ["categories", 105, 9], ["startupWMClass", 106, 9]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 44, 5], ["version", 45, 5], ["src", 47, 5], ["nativeBuildInputs", 55, 5], ["buildInputs", 64, 5], ["cmakeFlags", 74, 5], ["preConfigure", 81, 5], ["postFixup", 86, 5], ["desktopItems", 95, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["homepage", 155, 5], ["changelog", 156, 5], ["description", 157, 5], ["longDescription", 158, 5], ["license", 161, 5], ["maintainers", 162, 5], ["platforms", 167, 5], ["mainProgram", 168, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["message", 171, 21]]);
-const pos$8 = nix.positions(here + "/package.nix", [["broken", 171, 14]]);
-const pos$9 = nix.positions(here + "/package.nix", [["problems", 171, 5]]);
-const pos$10 = nix.positions(here + "/package.nix", [["pname", 112, 18], ["version", 112, 24], ["targetPkgs", 114, 3], ["extraInstallCommands", 143, 3], ["runScript", 152, 3], ["meta", 154, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -44,22 +35,22 @@ export default nix.lambda((args) => (() => {
   const copyDesktopItems = nix.arg($, "copyDesktopItems");
   const enableRS3 = nix.argOr($, "enableRS3", () => false);
   const cef = nix.thunk(() => nix.app(nix.sel(cef_binary, "override"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       version: "141.0.7",
       gitRevision: "a5714cc",
       chromiumVersion: "141.0.7390.108",
       srcHashes: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         "aarch64-linux": "sha256-2A0hVzUVMBemhjnFE/CrKs4CU96Qkxy8S/SieaEJjwE=",
         "x86_64-linux": "sha256-tZzUxeXxbYP8YfIQLbiSyihPcjZM9cd2Ad8gGCSvdGk=",
       })),
     }))));
   const bolt = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "bolt-launcher",
       version: "0.24.0",
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           owner: "AdamCake",
           repo: "Bolt",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -83,7 +74,7 @@ cp ../icon/256.png $out/share/icons/hicolor/256x256/apps/${nix.sel(finalAttrs, "
 `),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             type: "Application",
             terminal: false,
             name: "Bolt",
@@ -98,7 +89,7 @@ cp ../icon/256.png $out/share/icons/hicolor/256x256/apps/${nix.sel(finalAttrs, "
       ]),
     })));
   return nix.app(buildFHSEnv, nix.thunk(() => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       pname: nix.thunk(() => nix.attr(bolt, "pname")),
       version: nix.thunk(() => nix.attr(bolt, "version")),
       targetPkgs: (pkgs) => nix.concat([bolt], nix.concat((() => {
@@ -134,7 +125,7 @@ ln -s ${bolt}/share/icons/hicolor/256x256/apps/*.png $out/share/icons/hicolor/25
 `),
       runScript: nix.thunk(() => nix.str`${nix.sel(bolt, "name")}`),
       meta: nix.thunk(() => nix.update({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         homepage: "https://codeberg.org/Adamcake/Bolt",
         changelog: nix.thunk(() => nix.str`https://codeberg.org/Adamcake/Bolt/releases/tag/${nix.sel(bolt, "version")}`),
         description: "Alternative launcher for RuneScape",
@@ -151,11 +142,11 @@ ln -s ${bolt}/share/icons/hicolor/256x256/apps/*.png $out/share/icons/hicolor/25
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
         mainProgram: "bolt-launcher",
       }, nix.app(nix.sel(lib, "optionalAttrs"), enableRS3, nix.thunk(() => ({
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           problems: nix.thunk(() => ({
-            [nix.POS]: pos$8,
+            [nix.POS]: $pos[7],
             broken: nix.thunk(() => ({
-              [nix.POS]: pos$7,
+              [nix.POS]: $pos[6],
               message: "OpenSSL 1.1 has been end of life since 2023 and will be removed soon.",
             })),
           })),

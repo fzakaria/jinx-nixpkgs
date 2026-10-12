@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 26, 5], ["repo", 27, 5], ["rev", 28, 5], ["hash", 29, 5]], [["homepage", 62, 5], ["description", 63, 5], ["longDescription", 64, 5], ["license", 71, 5], ["maintainers", 72, 5], ["platforms", 73, 5], ["mainProgram", 74, 5]], [["pname", 15, 3], ["version", 16, 3], ["outputs", 18, 3], ["src", 25, 3], ["patches", 32, 3], ["nativeBuildInputs", 46, 3], ["buildInputs", 52, 3], ["doCheck", 59, 3], ["meta", 61, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, ninja: false, "pkg-config": false, eigen: false, ffmpeg: false, libresample: false, kissfft: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 26, 5], ["repo", 27, 5], ["rev", 28, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 62, 5], ["description", 63, 5], ["longDescription", 64, 5], ["license", 71, 5], ["maintainers", 72, 5], ["platforms", 73, 5], ["mainProgram", 74, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["outputs", 18, 3], ["src", 25, 3], ["patches", 32, 3], ["nativeBuildInputs", 46, 3], ["buildInputs", 52, 3], ["doCheck", 59, 3], ["meta", 61, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const libresample = nix.arg($, "libresample");
   const kissfft = nix.arg($, "kissfft");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "musly",
       version: "0.1-unstable-2019-09-05",
       outputs: nix.thunk(() => ["bin", "dev", "out", "doc"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "dominikschnitzer",
           repo: "musly",
           rev: "7a0c6a9a2782e6fca84fb86fce5232a8c8a104ed",
@@ -42,7 +40,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [eigen, ffmpeg, libresample, kissfft]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://www.musly.org",
         description: "Fast and high-quality audio music similarity library written in C/C++",
         longDescription: "Musly analyzes the the audio signal of music pieces to estimate their similarity.\nNo meta-data about the music piece is included in the similarity estimation.\nTo use Musly in your application, have a look at the library documentation\nor try the command line application included in the package and start generating\nsome automatic music playlists right away.\n",

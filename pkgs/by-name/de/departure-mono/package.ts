@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 12, 5], ["stripRoot", 13, 5], ["hash", 14, 5]], [["changelog", 30, 5], ["description", 31, 5], ["homepage", 32, 5], ["license", 33, 5], ["platforms", 34, 5], ["maintainers", 35, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["sourceRoot", 17, 3], ["installPhase", 19, 3], ["meta", 29, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchzip: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 12, 5], ["stripRoot", 13, 5], ["hash", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["changelog", 30, 5], ["description", 31, 5], ["homepage", 32, 5], ["license", 33, 5], ["platforms", 34, 5], ["maintainers", 35, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["sourceRoot", 17, 3], ["installPhase", 19, 3], ["meta", 29, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,11 +11,11 @@ export default nix.lambda((args) => (() => {
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   const fetchzip = nix.arg($, "fetchzip");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "departure-mono",
       version: "1.500",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/rektdeckard/departure-mono/releases/download/v${nix.sel(finalAttrs, "version")}/DepartureMono-${nix.sel(finalAttrs, "version")}.zip`),
           stripRoot: false,
           hash: "sha256-XYL76L266MKqClxfbPn/C6+x/vcs7AD56DtiDmQam2A=",
@@ -25,7 +23,7 @@ export default nix.lambda((args) => (() => {
       sourceRoot: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "name")}/DepartureMono-${nix.sel(finalAttrs, "version")}`),
       installPhase: "runHook preInstall\n\ninstall -D -m 444 *.otf -t $out/share/fonts/otf\ninstall -D -m 444 *.woff -t $out/share/fonts/woff\ninstall -D -m 444 *.woff2 -t $out/share/fonts/woff2\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         changelog: nix.thunk(() => nix.str`https://github.com/rektdeckard/departure-mono/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "Departure Mono is a monospaced pixel font with a lo-fi technical vibe",
         homepage: "https://departuremono.com/",

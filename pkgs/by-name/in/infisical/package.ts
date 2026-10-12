@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["x86_64-linux", 33, 11], ["aarch64-linux", 34, 11], ["aarch64-darwin", 35, 11]], [["name", 43, 24], ["url", 43, 29], ["hash", 43, 33]], [["package", 73, 43]], [["version", 73, 11]], [["updateScript", 72, 5], ["tests", 73, 5]], [["description", 77, 5], ["longDescription", 78, 5], ["homepage", 82, 5], ["changelog", 83, 5], ["license", 84, 5], ["mainProgram", 85, 5], ["maintainers", 86, 5], ["teams", 87, 5], ["platforms", 88, 5]], [["pname", 47, 3], ["version", 48, 3], ["src", 49, 11], ["nativeBuildInputs", 51, 3], ["doCheck", 53, 3], ["dontConfigure", 54, 3], ["dontStrip", 55, 3], ["sourceRoot", 57, 3], ["buildPhase", 58, 3], ["checkPhase", 59, 3], ["installPhase", 60, 3], ["postInstall", 66, 3], ["passthru", 71, 3], ["meta", 76, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, testers: false, installShellFiles: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["x86_64-linux", 33, 11], ["aarch64-linux", 34, 11], ["aarch64-darwin", 35, 11]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 43, 24], ["url", 43, 29], ["hash", 43, 33]]);
-const pos$3 = nix.positions(here + "/package.nix", [["package", 73, 43]]);
-const pos$4 = nix.positions(here + "/package.nix", [["version", 73, 11]]);
-const pos$5 = nix.positions(here + "/package.nix", [["updateScript", 72, 5], ["tests", 73, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 77, 5], ["longDescription", 78, 5], ["homepage", 82, 5], ["changelog", 83, 5], ["license", 84, 5], ["mainProgram", 85, 5], ["maintainers", 86, 5], ["teams", 87, 5], ["platforms", 88, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 47, 3], ["version", 48, 3], ["src", 49, 11], ["nativeBuildInputs", 51, 3], ["doCheck", 53, 3], ["dontConfigure", 54, 3], ["dontStrip", 55, 3], ["sourceRoot", 57, 3], ["buildPhase", 58, 3], ["checkPhase", 59, 3], ["installPhase", 60, 3], ["postInstall", 66, 3], ["passthru", 71, 3], ["meta", 76, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const version = "0.43.132";
   const src = nix.thunk(() => (() => {
     const suffix = nix.thunk(() => nix.selOr({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       "x86_64-linux": "linux_amd64",
       "aarch64-linux": "linux_arm64",
       "aarch64-darwin": "darwin_arm64",
@@ -30,10 +24,10 @@ export default nix.lambda((args) => (() => {
     const name = nix.thunk(() => nix.str`cli_${version}_${suffix}.tar.gz`);
     const hash = nix.thunk(() => nix.sel(buildHashes, nix.key(nix.str`${nix.sel(stdenv, "hostPlatform", "system")}`)));
     const url = nix.thunk(() => nix.str`https://github.com/Infisical/cli/releases/download/v${version}/${name}`);
-    return nix.app(fetchurl, nix.thunk(() => ({ [nix.POS]: pos$2, name: name, url: url, hash: hash })));
+    return nix.app(fetchurl, nix.thunk(() => ({ [nix.POS]: $pos[1], name: name, url: url, hash: hash })));
   })());
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "infisical",
       version: version,
       src: src,
@@ -47,18 +41,18 @@ export default nix.lambda((args) => (() => {
       installPhase: "mkdir -p $out/bin/ $out/share/completions/ $out/share/man/\ncp infisical $out/bin\ncp completions/* $out/share/completions/\ncp manpages/* $out/share/man/\n",
       postInstall: "installManPage share/man/infisical.1.gz\ninstallShellCompletion share/completions/infisical.{bash,fish,zsh}\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         updateScript: nix.path(here, "./update.sh"),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Official Infisical CLI",
         longDescription: "Infisical is the open-source secret management platform:\nSync secrets across your team/infrastructure and prevent secret leaks.\n",
         homepage: "https://infisical.com",

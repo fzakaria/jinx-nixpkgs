@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 20, 5], ["hash", 21, 5]], [["url", 48, 5], ["rev-prefix", 49, 5]], [["updateScript", 47, 12]], [["license", 53, 5], ["mainProgram", 54, 5], ["homepage", 55, 5], ["description", 56, 5], ["platforms", 57, 5], ["maintainers", 58, 5], ["sourceProvenance", 59, 5]], [["pname", 13, 3], ["version", 14, 3], ["__structuredAttrs", 16, 3], ["strictDeps", 17, 3], ["src", 19, 3], ["nativeBuildInputs", 24, 3], ["installPhase", 26, 3], ["postInstall", 35, 3], ["doInstallCheck", 42, 3], ["nativeInstallCheckInputs", 43, 3], ["passthru", 47, 3], ["meta", 52, 3]]]);
 const formals$1 = { args: { fetchzip: false, gitUpdater: false, installShellFiles: false, lib: false, stdenv: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 48, 5], ["rev-prefix", 49, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 47, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["license", 53, 5], ["mainProgram", 54, 5], ["homepage", 55, 5], ["description", 56, 5], ["platforms", 57, 5], ["maintainers", 58, 5], ["sourceProvenance", 59, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["__structuredAttrs", 16, 3], ["strictDeps", 17, 3], ["src", 19, 3], ["nativeBuildInputs", 24, 3], ["installPhase", 26, 3], ["postInstall", 35, 3], ["doInstallCheck", 42, 3], ["nativeInstallCheckInputs", 43, 3], ["passthru", 47, 3], ["meta", 52, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,13 +15,13 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const appName = "AeroSpace.app";
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "aerospace",
       version: "0.21.3-Beta",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/nikitabobko/AeroSpace/releases/download/v${nix.sel(finalAttrs, "version")}/AeroSpace-v${nix.sel(finalAttrs, "version")}.zip`),
           hash: "sha256-JHXtF3IKUbge7z2cMBi4L9IruiByNPCIKugLe4ymvys=",
         })))),
@@ -41,15 +37,15 @@ runHook postInstall
       doInstallCheck: true,
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/nikitabobko/AeroSpace.git",
             "rev-prefix": "v",
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         mainProgram: "aerospace",
         homepage: "https://github.com/nikitabobko/AeroSpace",

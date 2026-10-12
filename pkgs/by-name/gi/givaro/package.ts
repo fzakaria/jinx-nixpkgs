@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["sha256", 20, 5]], [["name", 27, 7], ["url", 28, 7], ["hash", 29, 7]], [["description", 66, 5], ["homepage", 67, 5], ["mainProgram", 68, 5], ["license", 69, 5], ["maintainers", 70, 5], ["platforms", 71, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["patches", 23, 3], ["enableParallelBuilding", 33, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 40, 3], ["propagatedBuildInputs", 41, 3], ["configureFlags", 43, 3], ["doInstallCheck", 61, 3], ["installCheckTarget", 62, 3], ["doCheck", 63, 3], ["meta", 65, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch2: false, automake: false, autoconf: false, libtool: false, autoreconfHook: false, gmpxx: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["sha256", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 27, 7], ["url", 28, 7], ["hash", 29, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 66, 5], ["homepage", 67, 5], ["mainProgram", 68, 5], ["license", 69, 5], ["maintainers", 70, 5], ["platforms", 71, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["patches", 23, 3], ["enableParallelBuilding", 33, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 40, 3], ["propagatedBuildInputs", 41, 3], ["configureFlags", 43, 3], ["doInstallCheck", 61, 3], ["installCheckTarget", 62, 3], ["doCheck", 63, 3], ["meta", 65, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const pname = "givaro";
       const version = "4.2.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "linbox-team",
           repo: "givaro",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -32,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const patches = nix.thunk(() => [
         nix.path(here, "./skip-gmp-check.patch"),
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "libc++-support.patch",
             url: "https://github.com/linbox-team/givaro/commit/464d53db36038c36a72bbad48c97bc141f62e161.diff?full_index=1",
             hash: "sha256-aI9PPjIQCvt9QKywxid+FVx71Buo8d6U7d+PLsKR4+k=",
@@ -59,7 +56,7 @@ export default nix.lambda((args) => (() => {
       const installCheckTarget = "check";
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "C++ library for arithmetic and algebraic computations",
         homepage: "https://casys.gricad-pages.univ-grenoble-alpes.fr/givaro/",
         mainProgram: "givaro-config",
@@ -68,7 +65,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

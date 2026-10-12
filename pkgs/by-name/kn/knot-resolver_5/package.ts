@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 41, 7], ["sha256", 42, 7]], [["description", 148, 7], ["homepage", 149, 7], ["license", 150, 7], ["platforms", 151, 7], ["maintainers", 152, 7], ["mainProgram", 155, 7]], [["pname", 37, 5], ["version", 38, 5], ["src", 40, 5], ["outputs", 45, 5], ["postPatch", 51, 5], ["preConfigure", 78, 5], ["nativeBuildInputs", 82, 5], ["buildInputs", 89, 5], ["mesonFlags", 112, 5], ["postInstall", 125, 5], ["__darwinAllowLocalNetworking", 133, 5], ["doInstallCheck", 134, 5], ["nativeInstallCheckInputs", 135, 5], ["installCheckPhase", 143, 5], ["meta", 147, 5]], [["nativeBuildInputs", 162, 9], ["buildInputs", 163, 9], ["preferLocalBuild", 170, 9], ["allowSubstitutes", 171, 9], ["version", 172, 29], ["meta", 172, 37]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, runCommand: false, "pkg-config": false, meson: false, ninja: false, makeWrapper: false, "knot-dns": false, luajitPackages: false, libuv: false, gnutls: false, lmdb: false, jemalloc: false, systemdMinimal: false, libcap_ng: false, "dns-root-data": false, nghttp2: false, fstrm: false, protobufc: false, cmocka: false, which: false, cacert: false, extraFeatures: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 41, 7], ["sha256", 42, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 148, 7], ["homepage", 149, 7], ["license", 150, 7], ["platforms", 151, 7], ["maintainers", 152, 7], ["mainProgram", 155, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 37, 5], ["version", 38, 5], ["src", 40, 5], ["outputs", 45, 5], ["postPatch", 51, 5], ["preConfigure", 78, 5], ["nativeBuildInputs", 82, 5], ["buildInputs", 89, 5], ["mesonFlags", 112, 5], ["postInstall", 125, 5], ["__darwinAllowLocalNetworking", 133, 5], ["doInstallCheck", 134, 5], ["nativeInstallCheckInputs", 135, 5], ["installCheckPhase", 143, 5], ["meta", 147, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["nativeBuildInputs", 162, 9], ["buildInputs", 163, 9], ["preferLocalBuild", 170, 9], ["allowSubstitutes", 171, 9], ["version", 172, 29], ["meta", 172, 37]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -40,11 +37,11 @@ export default nix.lambda((args) => (() => {
   const optionalString = nix.thunk(() => nix.attr(lib, "optionalString"));
   const lua = luajitPackages;
   const unwrapped = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "knot-resolver_5",
       version: "5.7.8",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://knot-resolver.nic.cz/release/knot-resolver-${nix.sel(finalAttrs, "version")}.tar.xz`),
           sha256: "e9367304b41a32e9290cb339a0f968b5c590d0453c2b1f26af79268bba08e46c",
         })))),
@@ -94,7 +91,7 @@ done
       ]),
       installCheckPhase: "meson test --print-errorlogs --no-suite snowflake\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Caching validating DNS resolver, from .cz domain registry",
         homepage: "https://knot-resolver.cz",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
@@ -104,7 +101,7 @@ done
       })),
     })));
   const wrapped_full = nix.thunk(() => nix.app(runCommand, nix.thunk(() => nix.sel(unwrapped, "name")), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       nativeBuildInputs: nix.thunk(() => [makeWrapper]),
       buildInputs: nix.thunk(() => (() => {
         const w = nix.withScope(luajitPackages, null);

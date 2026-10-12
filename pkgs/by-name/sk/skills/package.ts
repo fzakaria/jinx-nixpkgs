@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]], [["fetcherVersion", 27, 5], ["pname", 28, 26], ["version", 28, 32], ["src", 28, 40], ["pnpm", 29, 13], ["hash", 30, 5]], [["package", 70, 5]], [["version", 69, 18]], [["updateScript", 68, 12], ["tests", 69, 12]], [["changelog", 74, 5], ["description", 75, 5], ["homepage", 76, 5], ["license", 77, 5], ["maintainers", 78, 5], ["mainProgram", 79, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["pnpmDeps", 26, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 39, 3], ["buildPhase", 43, 3], ["installPhase", 51, 3], ["passthru", 68, 3], ["meta", 73, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchPnpmDeps: false, pnpm_10: false, nodejs: false, pnpmConfigHook: false, "nix-update-script": false, testers: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["fetcherVersion", 27, 5], ["pname", 28, 26], ["version", 28, 32], ["src", 28, 40], ["pnpm", 29, 13], ["hash", 30, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["package", 70, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["version", 69, 18]]);
-const pos$5 = nix.positions(here + "/package.nix", [["updateScript", 68, 12], ["tests", 69, 12]]);
-const pos$6 = nix.positions(here + "/package.nix", [["changelog", 74, 5], ["description", 75, 5], ["homepage", 76, 5], ["license", 77, 5], ["maintainers", 78, 5], ["mainProgram", 79, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["pnpmDeps", 26, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 39, 3], ["buildPhase", 43, 3], ["installPhase", 51, 3], ["passthru", 68, 3], ["meta", 73, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,18 +18,18 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const pnpm = pnpm_10;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "skills",
       version: "1.7.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "vercel-labs",
           repo: "skills",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-wynuiFQK0QR6bbClhGNM+tsoyAE/bsHSSwDUPVb8+gE=",
         })))),
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           fetcherVersion: 3n,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
@@ -48,18 +42,18 @@ export default nix.lambda((args) => (() => {
       buildPhase: "runHook preBuild\n\nnode_modules/.bin/obuild\n\nrunHook postBuild\n",
       installPhase: "runHook preInstall\n\nrm -rf node_modules\npnpm install --force --offline --production --ignore-scripts\n\nmkdir -p $out/lib/node_modules/skills/\nmkdir $out/bin\ncp -r dist bin node_modules package.json $out/lib/node_modules/skills\n\nln -s $out/lib/node_modules/skills/bin/cli.mjs $out/bin/skills\nchmod +x $out/bin/skills\npatchShebangs $out/bin/skills\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         changelog: nix.thunk(() => nix.str`https://github.com/vercel-labs/skills/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "The open agent skills tool",
         homepage: "https://github.com/vercel-labs/skills",

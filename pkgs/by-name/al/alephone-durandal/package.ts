@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 11, 5], ["hash", 12, 5]], [["description", 16, 5], ["longDescription", 17, 5], ["homepage", 22, 5]], [["pname", 4, 3], ["desktopName", 5, 3], ["version", 6, 3], ["icon", 7, 3], ["zip", 10, 3], ["meta", 15, 3]]]);
 const formals$1 = { args: { alephone: false, fetchurl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 11, 5], ["hash", 12, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 16, 5], ["longDescription", 17, 5], ["homepage", 22, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 4, 3], ["desktopName", 5, 3], ["version", 6, 3], ["icon", 7, 3], ["zip", 10, 3], ["meta", 15, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,17 +15,17 @@ export default nix.lambda((args) => (() => {
       const version = "20240510";
       const icon = nix.thunk(() => nix.add(nix.sel(alephone, "icons"), "/marathon2.png"));
       const zip = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/Aleph-One-Marathon/alephone/releases/download/release-${version}/Marathon2-${version}-Data.zip`),
           hash: "sha256-uoBl1/7XlXmMLqpk3tvme9w18q4Yh0WCrmqSzjGxNz0=",
         }))));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Second chapter of the Marathon trilogy",
         longDescription: "Fresh from your triumph on the starship Marathon, you are seized by the rogue computer Durandal to do his bidding in a distant part of the galaxy. Within the ruins of an ancient civilization, you must seek the remnants of a lost clan and uncover their long-buried secrets. Battle opponents ancient and terrible, with sophisticated weapons and devious strategies, all the while struggling to escape the alien nightmare…\n\nThis release of Marathon 2: Durandal includes the classic graphics, and revamped high-definition textures and monsters from the Xbox Live Arcade edition.\n",
         homepage: "https://alephone.lhowon.org/games/marathon2.html",
       }));
-      return { [nix.POS]: pos$3, pname, desktopName, version, icon, zip, meta };
+      return { [nix.POS]: $pos[2], pname, desktopName, version, icon, zip, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

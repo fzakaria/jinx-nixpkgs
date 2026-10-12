@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["stdenv", 29, 47]], [["owner", 36, 5], ["repo", 37, 5], ["rev", 38, 5], ["fetchSubmodules", 41, 5], ["hash", 42, 5]], [["git_rev", 47, 7]], [["CUDA_HOME", 59, 5]], [["extraArgs", 87, 5]], [["updateScript", 86, 12]], [["description", 91, 5], ["homepage", 92, 5], ["license", 93, 5], ["maintainers", 94, 5], ["broken", 95, 5]], [["pname", 30, 3], ["version", 31, 3], ["pyproject", 32, 3], ["__structuredAttrs", 33, 3], ["src", 35, 3], ["patches", 45, 3], ["postPatch", 51, 3], ["env", 58, 3], ["build-system", 62, 3], ["buildInputs", 67, 3], ["pythonImportsCheck", 81, 3], ["doCheck", 84, 3], ["passthru", 86, 3], ["meta", 90, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, replaceVars: false, cudaPackages: false, setuptools: false, torch: false, pybind11: false, "nix-update-script": false, config: false, cudaSupport: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["stdenv", 29, 47]]);
-const pos$2 = nix.positions(here + "/default.nix", [["owner", 36, 5], ["repo", 37, 5], ["rev", 38, 5], ["fetchSubmodules", 41, 5], ["hash", 42, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["git_rev", 47, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["CUDA_HOME", 59, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["extraArgs", 87, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["updateScript", 86, 12]]);
-const pos$7 = nix.positions(here + "/default.nix", [["description", 91, 5], ["homepage", 92, 5], ["license", 93, 5], ["maintainers", 94, 5], ["broken", 95, 5]]);
-const pos$8 = nix.positions(here + "/default.nix", [["pname", 30, 3], ["version", 31, 3], ["pyproject", 32, 3], ["__structuredAttrs", 33, 3], ["src", 35, 3], ["patches", 45, 3], ["postPatch", 51, 3], ["env", 58, 3], ["build-system", 62, 3], ["buildInputs", 67, 3], ["pythonImportsCheck", 81, 3], ["doCheck", 84, 3], ["passthru", 86, 3], ["meta", 90, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,14 +21,14 @@ export default nix.lambda((args) => (() => {
   const getBin = nix.thunk(() => nix.attr(lib, "getBin"));
   const optionalAttrs = nix.thunk(() => nix.attr(lib, "optionalAttrs"));
   const optionals = nix.thunk(() => nix.attr(lib, "optionals"));
-  return nix.app(nix.sel(buildPythonPackage, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, stdenv: nix.thunk(() => nix.attr(torch, "stdenv")) })), (finalAttrs) => ({
-      [nix.POS]: pos$8,
+  return nix.app(nix.sel(buildPythonPackage, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], stdenv: nix.thunk(() => nix.attr(torch, "stdenv")) })), (finalAttrs) => ({
+      [nix.POS]: $pos[7],
       pname: "flash-mla",
       version: "0-unstable-2026-04-29",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "deepseek-ai",
           repo: "FlashMLA",
           rev: "9241ae3ef9bac614dd25e45e507e089f888280e0",
@@ -44,13 +37,13 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./inject-git-rev.patch"), nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             git_rev: nix.thunk(() => nix.str`+${nix.sel(finalAttrs, "src", "rev")}`),
           })))),
       ]),
       postPatch: "substituteInPlace setup.py \\\n  --replace-fail \\\n    'subprocess.run([\"git\", \"submodule\", \"update\", \"--init\", \"csrc/cutlass\"])' \\\n    \"\"\n",
       env: nix.thunk(() => nix.app(optionalAttrs, cudaSupport, nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           CUDA_HOME: nix.thunk(() => nix.sel(nix.app(getBin, nix.thunk(() => nix.sel(cudaPackages, "cuda_nvcc"))), "outPath")),
         })))),
       "build-system": nix.thunk(() => [setuptools, torch]),
@@ -67,11 +60,11 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["flash_mla"]),
       doCheck: false,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$5, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
+        [nix.POS]: $pos[5],
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: $pos[4], extraArgs: nix.thunk(() => ["--version=branch"]) })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "Efficient Multi-head Latent Attention Kernels",
         homepage: "https://github.com/deepseek-ai/FlashMLA",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

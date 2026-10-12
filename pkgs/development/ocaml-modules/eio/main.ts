@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/main.nix", [[["pname", 12, 3], ["meta", 14, 5], ["src", 15, 5], ["patches", 16, 5], ["version", 17, 5], ["minimalOCamlVersion", 20, 3], ["dontStrip", 22, 3], ["buildInputs", 24, 3], ["propagatedBuildInputs", 26, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildDunePackage: false, "dune-configurator": false, eio: false, eio_posix: false, eio_linux: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/main.nix", [["pname", 12, 3], ["meta", 14, 5], ["src", 15, 5], ["patches", 16, 5], ["version", 17, 5], ["minimalOCamlVersion", 20, 3], ["dontStrip", 22, 3], ["buildInputs", 24, 3], ["propagatedBuildInputs", 26, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const eio_posix = nix.arg($, "eio_posix");
   const eio_linux = nix.arg($, "eio_linux");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       pname: "eio_main",
       meta: nix.thunk(() => nix.attr(eio, "meta")),
       src: nix.thunk(() => nix.attr(eio, "src")),

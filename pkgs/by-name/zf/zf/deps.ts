@@ -2,26 +2,12 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/deps.nix", [[["nativeBuildInputs", 19, 9]], [["url", 34, 37], ["hash", 34, 41]], [["name", 36, 33], ["artifact", 36, 38]], [["name", 53, 15], ["rev", 53, 20], ["hash", 53, 24], ["url", 54, 7], ["deepClone", 55, 7], ["fetchSubmodules", 56, 7]], [["name", 71, 19], ["hash", 71, 24], ["url", 72, 11]], [["name", 75, 19], ["hash", 75, 24], ["url", 76, 11]], [["name", 79, 19], ["hash", 79, 24], ["url", 80, 11]], [["name", 83, 19], ["hash", 83, 24], ["url", 84, 11]], [["git+http", 70, 9], ["git+https", 74, 9], ["http", 78, 9], ["https", 82, 9]], [["name", 94, 7], ["url", 95, 7], ["hash", 96, 7]], [["name", 92, 5], ["path", 93, 5]], [["name", 102, 7], ["url", 103, 7], ["hash", 104, 7]], [["name", 100, 5], ["path", 101, 5]], [["name", 110, 7], ["url", 111, 7], ["hash", 112, 7]], [["name", 108, 5], ["path", 109, 5]]]);
 const formals$1 = { args: { lib: false, linkFarm: false, fetchurl: false, fetchgit: false, runCommandLocal: false, zig_0_15: false, name: true }, ellipsis: false };
 const formals$2 = { args: { name: false, artifact: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/deps.nix", [["nativeBuildInputs", 19, 9]]);
 const formals$3 = { args: { name: false, url: false, hash: false }, ellipsis: false };
-const pos$2 = nix.positions(here + "/deps.nix", [["url", 34, 37], ["hash", 34, 41]]);
-const pos$3 = nix.positions(here + "/deps.nix", [["name", 36, 33], ["artifact", 36, 38]]);
 const formals$4 = { args: { name: false, url: false, hash: false }, ellipsis: false };
-const pos$4 = nix.positions(here + "/deps.nix", [["name", 53, 15], ["rev", 53, 20], ["hash", 53, 24], ["url", 54, 7], ["deepClone", 55, 7], ["fetchSubmodules", 56, 7]]);
 const formals$5 = { args: { name: false, url: false, hash: false }, ellipsis: false };
-const pos$5 = nix.positions(here + "/deps.nix", [["name", 71, 19], ["hash", 71, 24], ["url", 72, 11]]);
-const pos$6 = nix.positions(here + "/deps.nix", [["name", 75, 19], ["hash", 75, 24], ["url", 76, 11]]);
-const pos$7 = nix.positions(here + "/deps.nix", [["name", 79, 19], ["hash", 79, 24], ["url", 80, 11]]);
-const pos$8 = nix.positions(here + "/deps.nix", [["name", 83, 19], ["hash", 83, 24], ["url", 84, 11]]);
-const pos$9 = nix.positions(here + "/deps.nix", [["git+http", 70, 9], ["git+https", 74, 9], ["http", 78, 9], ["https", 82, 9]]);
-const pos$10 = nix.positions(here + "/deps.nix", [["name", 94, 7], ["url", 95, 7], ["hash", 96, 7]]);
-const pos$11 = nix.positions(here + "/deps.nix", [["name", 92, 5], ["path", 93, 5]]);
-const pos$12 = nix.positions(here + "/deps.nix", [["name", 102, 7], ["url", 103, 7], ["hash", 104, 7]]);
-const pos$13 = nix.positions(here + "/deps.nix", [["name", 100, 5], ["path", 101, 5]]);
-const pos$14 = nix.positions(here + "/deps.nix", [["name", 110, 7], ["url", 111, 7], ["hash", 112, 7]]);
-const pos$15 = nix.positions(here + "/deps.nix", [["name", 108, 5], ["path", 109, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -36,7 +22,7 @@ export default nix.lambda((args) => (() => {
     const $_1 = nix.formals(args_1, formals$2);
     const name_1 = nix.arg($_1, "name");
     const artifact = nix.arg($_1, "artifact");
-    return nix.app(runCommandLocal, name_1, nix.thunk(() => ({ [nix.POS]: pos$1, nativeBuildInputs: nix.thunk(() => [zig_0_15]) })), nix.thunk(() => nix.str`hash="$(zig fetch --global-cache-dir "$TMPDIR" ${artifact})"
+    return nix.app(runCommandLocal, name_1, nix.thunk(() => ({ [nix.POS]: $pos[0], nativeBuildInputs: nix.thunk(() => [zig_0_15]) })), nix.thunk(() => nix.str`hash="$(zig fetch --global-cache-dir "$TMPDIR" ${artifact})"
 mv "$TMPDIR/p/$hash" "$out"
 chmod 755 "$out"
 `));
@@ -46,8 +32,8 @@ chmod 755 "$out"
     const name_1 = nix.arg($_1, "name");
     const url = nix.arg($_1, "url");
     const hash = nix.arg($_1, "hash");
-    const artifact = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({ [nix.POS]: pos$2, url: url, hash: hash }))));
-    return nix.app(unpackZigArtifact, nix.thunk(() => ({ [nix.POS]: pos$3, name: name_1, artifact: artifact })));
+    const artifact = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({ [nix.POS]: $pos[1], url: url, hash: hash }))));
+    return nix.app(unpackZigArtifact, nix.thunk(() => ({ [nix.POS]: $pos[2], name: name_1, artifact: artifact })));
   })(), formals$3);
   const fetchGitZig = nix.lambda((args_1) => (() => {
     const $_1 = nix.formals(args_1, formals$4);
@@ -60,7 +46,7 @@ chmod 755 "$out"
     const rev_base = nix.thunk(() => nix.builtins.elemAt(parts, 1n));
     const rev = nix.thunk(() => (nix.asBool(!nix.eq(nix.builtins.match("^[a-fA-F0-9]{40}$", rev_base), null)) ? nix.force(rev_base) : nix.str`refs/heads/${rev_base}`));
     return nix.app(fetchgit, nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         name: name_1,
         rev: rev,
         hash: hash,
@@ -78,27 +64,27 @@ chmod 755 "$out"
     const proto = nix.thunk(() => nix.builtins.elemAt(parts, 0n));
     const path = nix.thunk(() => nix.builtins.elemAt(parts, 1n));
     const fetcher = nix.thunk(() => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       "git+http": nix.thunk(() => nix.app(fetchGitZig, nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           name: name_1,
           hash: hash,
           url: nix.thunk(() => nix.str`http://${path}`),
         })))),
       "git+https": nix.thunk(() => nix.app(fetchGitZig, nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           name: name_1,
           hash: hash,
           url: nix.thunk(() => nix.str`https://${path}`),
         })))),
       http: nix.thunk(() => nix.app(fetchZig, nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           name: name_1,
           hash: hash,
           url: nix.thunk(() => nix.str`http://${path}`),
         })))),
       https: nix.thunk(() => nix.app(fetchZig, nix.thunk(() => ({
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           name: name_1,
           hash: hash,
           url: nix.thunk(() => nix.str`https://${path}`),
@@ -108,30 +94,30 @@ chmod 755 "$out"
   })(), formals$5);
   return nix.app(linkFarm, name, nix.thunk(() => [
       nix.thunk(() => ({
-        [nix.POS]: pos$11,
+        [nix.POS]: $pos[10],
         name: "uucode-0.1.0-ZZjBPj96QADXyt5sqwBJUnhaDYs_qBeeKijZvlRa0eqM",
         path: nix.thunk(() => nix.app(fetchZigArtifact, nix.thunk(() => ({
-            [nix.POS]: pos$10,
+            [nix.POS]: $pos[9],
             name: "uucode",
             url: "git+https://github.com/jacobsandlund/uucode#5f05f8f83a75caea201f12cc8ea32a2d82ea9732",
             hash: "sha256-sHPh+TQSdUGus/QTbj7KSJJkTuNTrK4VNmQDjS30Lf8=",
           })))),
       })),
       nix.thunk(() => ({
-        [nix.POS]: pos$13,
+        [nix.POS]: $pos[12],
         name: "vaxis-0.5.1-BWNV_LosCQAGmCCNOLljCIw6j6-yt53tji6n6rwJ2BhS",
         path: nix.thunk(() => nix.app(fetchZigArtifact, nix.thunk(() => ({
-            [nix.POS]: pos$12,
+            [nix.POS]: $pos[11],
             name: "vaxis",
             url: "https://github.com/rockorager/libvaxis/archive/7dbb9fd3122e4ffad262dd7c151d80d863b68558.tar.gz",
             hash: "sha256-LnIzK8icW1Qexua9SHaeHz+3V8QAbz0a+UC1T5sIjvY=",
           })))),
       })),
       nix.thunk(() => ({
-        [nix.POS]: pos$15,
+        [nix.POS]: $pos[14],
         name: "zigimg-0.1.0-8_eo2vHnEwCIVW34Q14Ec-xUlzIoVg86-7FU2ypPtxms",
         path: nix.thunk(() => nix.app(fetchZigArtifact, nix.thunk(() => ({
-            [nix.POS]: pos$14,
+            [nix.POS]: $pos[13],
             name: "zigimg",
             url: "https://github.com/ivanstepanovftw/zigimg/archive/d7b7ab0ba0899643831ef042bd73289510b39906.tar.gz",
             hash: "sha256-LB7Xa6KzVRRUSwwnyWM+y6fDG+kIDjfnoBDJO1obxVM=",

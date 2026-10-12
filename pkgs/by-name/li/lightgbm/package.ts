@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 56, 5], ["repo", 57, 5], ["tag", 58, 5], ["fetchSubmodules", 59, 5], ["hash", 60, 5]], [["name", 68, 7], ["url", 69, 7], ["hash", 70, 7]], [["pythonPackage", 222, 7]], [["tests", 221, 5]], [["description", 227, 5], ["mainProgram", 228, 5], ["homepage", 229, 5], ["changelog", 230, 5], ["license", 231, 5], ["platforms", 232, 5], ["maintainers", 233, 5]], [["pname", 49, 3], ["version", 50, 3], ["strictDeps", 52, 3], ["__structuredAttrs", 53, 3], ["src", 55, 3], ["patches", 63, 3], ["postPatch", 75, 3], ["nativeBuildInputs", 98, 3], ["buildInputs", 117, 3], ["propagatedBuildInputs", 119, 3], ["cmakeFlags", 128, 3], ["configurePhase", 162, 3], ["buildPhase", 168, 3], ["doCheck", 170, 11], ["installPhase", 172, 3], ["postFixup", 214, 3], ["passthru", 220, 3], ["meta", 226, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, config: false, fetchFromGitHub: false, fetchpatch: false, cmake: false, gtest: false, doCheck: true, cudaSupport: true, openclSupport: true, mpiSupport: true, javaWrapper: true, hdfsSupport: true, pythonLibrary: true, rLibrary: true, cudaPackages: false, "opencl-headers": false, "ocl-icd": false, boost: false, llvmPackages: false, openmpi: false, openjdk: false, swig: false, hadoop: false, R: false, rPackages: false, pandoc: false, python3Packages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 56, 5], ["repo", 57, 5], ["tag", 58, 5], ["fetchSubmodules", 59, 5], ["hash", 60, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 68, 7], ["url", 69, 7], ["hash", 70, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pythonPackage", 222, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 221, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 227, 5], ["mainProgram", 228, 5], ["homepage", 229, 5], ["changelog", 230, 5], ["license", 231, 5], ["platforms", 232, 5], ["maintainers", 233, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 49, 3], ["version", 50, 3], ["strictDeps", 52, 3], ["__structuredAttrs", 53, 3], ["src", 55, 3], ["patches", 63, 3], ["postPatch", 75, 3], ["nativeBuildInputs", 98, 3], ["buildInputs", 117, 3], ["propagatedBuildInputs", 119, 3], ["cmakeFlags", 128, 3], ["configurePhase", 162, 3], ["buildPhase", 168, 3], ["doCheck", 170, 11], ["installPhase", 172, 3], ["postFixup", 214, 3], ["passthru", 220, 3], ["meta", 226, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -44,13 +39,13 @@ export default nix.lambda((args) => (() => {
   nix.assert_((!nix.asBool(openclSupport) || nix.asBool(!nix.asBool(cudaSupport))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/li/lightgbm/package.nix:33:1");
   nix.assert_((!nix.asBool(cudaSupport) || nix.asBool(!nix.asBool(openclSupport))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/li/lightgbm/package.nix:34:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: nix.thunk(() => nix.add(nix.app(nix.sel(lib, "optionalString"), rLibrary, "r-"), "lightgbm")),
       version: "4.6.0",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "lightgbm-org",
           repo: "lightgbm",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -59,7 +54,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "fix-boost-sha1",
             url: "https://raw.githubusercontent.com/conda-forge/lightgbm-feedstock/68ca96d25d8a6f7281310a4ad3b8d5cdd01f067b/recipe/patches/0003-boost-sha1.patch",
             hash: "sha256-Hw2YmoduOPri7O1XV2p/3Ny4hC8xq7Jq4zoSuKhVeVQ=",
@@ -109,14 +104,14 @@ rm -rf $out/tmp
 `))), "runHook postInstall\n")),
       postFixup: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), rLibrary, "if test -e $out/nix-support/propagated-build-inputs; then\n  ln -s $out/nix-support/propagated-build-inputs $out/nix-support/propagated-user-env-packages\nfi\n")),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           pythonPackage: nix.thunk(() => nix.sel(python3Packages, "lightgbm")),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Gradient boosting framework that uses tree based learning algorithms",
         mainProgram: "lightgbm",
         homepage: "https://github.com/lightgbm-org/LightGBM",

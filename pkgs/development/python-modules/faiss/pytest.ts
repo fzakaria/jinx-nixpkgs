@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/pytest.nix", [[["description", 38, 5]], [["pname", 13, 3], ["version", 14, 19], ["pyproject", 16, 3], ["src", 18, 3], ["dontBuild", 20, 3], ["dontInstall", 21, 3], ["disabledTestPaths", 24, 3], ["disabledTests", 26, 3], ["nativeCheckInputs", 31, 3], ["meta", 37, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, faiss: false, "faiss-build": false, scipy: false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/pytest.nix", [["description", 38, 5]]);
-const pos$2 = nix.positions(here + "/pytest.nix", [["pname", 13, 3], ["version", 14, 19], ["pyproject", 16, 3], ["src", 18, 3], ["dontBuild", 20, 3], ["dontInstall", 21, 3], ["disabledTestPaths", 24, 3], ["disabledTests", 26, 3], ["nativeCheckInputs", 31, 3], ["meta", 37, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   nix.assert_(nix.sel(faiss, "pythonSupport"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/development/python-modules/faiss/pytest.nix:10:1");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "faiss-pytest-suite",
       version: nix.thunk(() => nix.attr(faiss, "version")),
       pyproject: false,
@@ -26,7 +25,7 @@ export default nix.lambda((args) => (() => {
       disabledTestPaths: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(faiss, "cudaSupport")), nix.thunk(() => ["test_contrib.py"]))),
       disabledTests: nix.thunk(() => ["test_update_codebooks_with_double"]),
       nativeCheckInputs: nix.thunk(() => [faiss, pytestCheckHook, scipy]),
-      meta: nix.thunk(() => nix.update(nix.sel(faiss, "meta"), { [nix.POS]: pos$1, description: "Faiss test suite" })),
+      meta: nix.thunk(() => nix.update(nix.sel(faiss, "meta"), { [nix.POS]: $pos[0], description: "Faiss test suite" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=pytest.ts.map

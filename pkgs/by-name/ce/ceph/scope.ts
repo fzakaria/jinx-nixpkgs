@@ -2,18 +2,17 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/scope.nix", [[["enablePython", 20, 7], ["python", 21, 7]], [["ceph-rocksdb", 5, 3], ["ceph-python", 8, 3], ["ceph-python-common", 9, 3], ["ceph-python-env", 10, 3], ["ceph-boost", 17, 3], ["ceph-meta", 26, 3], ["ceph-src", 29, 3], ["ceph", 31, 3]]]);
 const formals$1 = { args: { lib: false, pkgs: false }, ellipsis: false };
 const formals$2 = { args: { python314: false }, ellipsis: false };
 const formals$3 = { args: { boost187: false, "ceph-python": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/scope.nix", [["enablePython", 20, 7], ["python", 21, 7]]);
-const pos$2 = nix.positions(here + "/scope.nix", [["ceph-rocksdb", 5, 3], ["ceph-python", 8, 3], ["ceph-python-common", 9, 3], ["ceph-python-env", 10, 3], ["ceph-boost", 17, 3], ["ceph-meta", 26, 3], ["ceph-src", 29, 3], ["ceph", 31, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   return nix.app(nix.sel(lib, "makeScope"), nix.thunk(() => nix.sel(pkgs, "newScope")), (self) => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       "ceph-rocksdb": nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./rocksdb.nix"), nix.thunk(() => ({})))),
       "ceph-python": nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$2);
@@ -26,7 +25,7 @@ export default nix.lambda((args) => (() => {
           const $_1 = nix.formals(args_1, formals$3);
           const boost187 = nix.arg($_1, "boost187");
           const ceph_python = nix.arg($_1, "ceph-python");
-          return nix.app(nix.sel(boost187, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, enablePython: true, python: ceph_python })));
+          return nix.app(nix.sel(boost187, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], enablePython: true, python: ceph_python })));
         })(), formals$3), nix.thunk(() => ({})))),
       "ceph-meta": nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./meta.nix"), nix.thunk(() => ({})))),
       "ceph-src": nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./src.nix"), nix.thunk(() => ({})))),

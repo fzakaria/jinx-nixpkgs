@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5]], [["EXQLITE_USE_SYSTEM", 29, 5], ["EXQLITE_SYSTEM_CFLAGS", 30, 5], ["EXQLITE_SYSTEM_LDFLAGS", 31, 5]], [["pname", 35, 5], ["src", 36, 13], ["version", 36, 17], ["hash", 37, 5]], [["yarnLock", 42, 5], ["sha256", 43, 5]], [["updateScript", 82, 12]], [["description", 85, 5], ["homepage", 86, 5], ["changelog", 87, 5], ["license", 88, 5], ["maintainers", 89, 5], ["platforms", 90, 5], ["mainProgram", 91, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 19, 3], ["env", 28, 3], ["mixFodDeps", 34, 3], ["removeCookie", 39, 3], ["yarnOfflineCache", 41, 3], ["nativeBuildInputs", 46, 3], ["buildInputs", 51, 3], ["postBuild", 53, 3], ["postInstall", 73, 3], ["passthru", 82, 3], ["meta", 84, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, fetchYarnDeps: false, beamPackages: false, sqlite: false, yarn: false, nodejs: false, esbuild: false, tailwindcss: false, "fixup-yarn-lock": false, apprise: false, "nix-update-script": false, "yt-dlp": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["EXQLITE_USE_SYSTEM", 29, 5], ["EXQLITE_SYSTEM_CFLAGS", 30, 5], ["EXQLITE_SYSTEM_LDFLAGS", 31, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 35, 5], ["src", 36, 13], ["version", 36, 17], ["hash", 37, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["yarnLock", 42, 5], ["sha256", 43, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["updateScript", 82, 12]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 85, 5], ["homepage", 86, 5], ["changelog", 87, 5], ["license", 88, 5], ["maintainers", 89, 5], ["platforms", 90, 5], ["mainProgram", 91, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 19, 3], ["env", 28, 3], ["mixFodDeps", 34, 3], ["removeCookie", 39, 3], ["yarnOfflineCache", 41, 3], ["nativeBuildInputs", 46, 3], ["buildInputs", 51, 3], ["postBuild", 53, 3], ["postInstall", 73, 3], ["passthru", 82, 3], ["meta", 84, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,20 +24,20 @@ export default nix.lambda((args) => (() => {
       const pname = "pinchflat";
       const version = "2025.9.26";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "kieraneglin",
           repo: "pinchflat",
           rev: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-45lw/48WTlfwTMWsCryNY3g3W9Ff31vMvw0W9znAJGk=",
         }))));
       const env = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         EXQLITE_USE_SYSTEM: "1",
         EXQLITE_SYSTEM_CFLAGS: nix.thunk(() => nix.str`-I${nix.sel(sqlite, "dev")}/include`),
         EXQLITE_SYSTEM_LDFLAGS: nix.thunk(() => nix.str`-L${nix.sel(sqlite, "out")}/lib -lsqlite3`),
       }));
       const mixFodDeps = nix.thunk(() => nix.app(nix.sel(beamPackages, "fetchMixDeps"), nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           pname: nix.thunk(() => nix.str`mix-deps-${pname}`),
           src: src,
           version: version,
@@ -51,7 +45,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const removeCookie = false;
       const yarnOfflineCache = nix.thunk(() => nix.app(fetchYarnDeps, nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           yarnLock: nix.thunk(() => nix.str`${src}/assets/yarn.lock`),
           sha256: "sha256-xJL+qcohtu+OmZ31E1QU9uqBWAFGejKIO3XRd+R6z/4=",
         }))));
@@ -79,11 +73,11 @@ mix do deps.loadpaths --no-deps-check, tailwind default --minify + esbuild defau
       const postInstall = nix.thunk(() => nix.str`wrapProgram $out/bin/pinchflat --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [apprise, yt_dlp]))}
 `);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Your next YouTube media manager",
         homepage: "https://github.com/kieraneglin/pinchflat",
         changelog: nix.thunk(() => nix.str`https://github.com/kieraneglin/pinchflat/releases/tag/v${version}`),
@@ -96,7 +90,7 @@ mix do deps.loadpaths --no-deps-check, tailwind default --minify + esbuild defau
         mainProgram: "pinchflat",
       }));
       return {
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         pname,
         version,
         src,

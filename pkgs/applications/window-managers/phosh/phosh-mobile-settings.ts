@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/phosh-mobile-settings.nix", [[["domain", 39, 5], ["owner", 40, 5], ["repo", 41, 5], ["rev", 42, 5], ["hash", 43, 5], ["forceFetchGit", 45, 5]], [["domain", 49, 5], ["owner", 50, 5], ["repo", 51, 5], ["tag", 52, 5], ["hash", 53, 5], ["forceFetchGit", 55, 5]], [["domain", 59, 5], ["owner", 60, 5], ["repo", 61, 5], ["rev", 62, 5], ["hash", 63, 5], ["forceFetchGit", 65, 5]], [["domain", 73, 5], ["group", 74, 5], ["owner", 75, 5], ["repo", 76, 5], ["rev", 77, 5], ["hash", 78, 5], ["forceFetchGit", 80, 5]], [["phosh", 129, 11]], [["tests", 129, 5], ["updateScript", 130, 5]], [["description", 134, 5], ["mainProgram", 135, 5], ["homepage", 136, 5], ["changelog", 137, 5], ["license", 138, 5], ["maintainers", 139, 5], ["platforms", 143, 5]], [["pname", 69, 3], ["version", 70, 3], ["src", 72, 3], ["nativeBuildInputs", 83, 3], ["buildInputs", 95, 3], ["postPatch", 116, 3], ["postInstall", 122, 3], ["passthru", 128, 3], ["meta", 133, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, nixosTests: false, "nix-update-script": false, meson: false, ninja: false, "pkg-config": false, "wayland-scanner": false, wrapGAppsHook4: false, "desktop-file-utils": false, feedbackd: false, gtk4: false, libadwaita: false, lm_sensors: false, phoc: false, phosh: false, "wayland-protocols": false, "json-glib": false, gsound: false, gmobile: false, "gnome-desktop": false, libpulseaudio: false, libportal: false, "libportal-gtk4": false, glib: false, libyaml: false, "mobile-broadband-provider-info": false, modemmanager: false, "gobject-introspection": false, appstream: false, gst_all_1: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/phosh-mobile-settings.nix", [["domain", 39, 5], ["owner", 40, 5], ["repo", 41, 5], ["rev", 42, 5], ["hash", 43, 5], ["forceFetchGit", 45, 5]]);
-const pos$2 = nix.positions(here + "/phosh-mobile-settings.nix", [["domain", 49, 5], ["owner", 50, 5], ["repo", 51, 5], ["tag", 52, 5], ["hash", 53, 5], ["forceFetchGit", 55, 5]]);
-const pos$3 = nix.positions(here + "/phosh-mobile-settings.nix", [["domain", 59, 5], ["owner", 60, 5], ["repo", 61, 5], ["rev", 62, 5], ["hash", 63, 5], ["forceFetchGit", 65, 5]]);
-const pos$4 = nix.positions(here + "/phosh-mobile-settings.nix", [["domain", 73, 5], ["group", 74, 5], ["owner", 75, 5], ["repo", 76, 5], ["rev", 77, 5], ["hash", 78, 5], ["forceFetchGit", 80, 5]]);
-const pos$5 = nix.positions(here + "/phosh-mobile-settings.nix", [["phosh", 129, 11]]);
-const pos$6 = nix.positions(here + "/phosh-mobile-settings.nix", [["tests", 129, 5], ["updateScript", 130, 5]]);
-const pos$7 = nix.positions(here + "/phosh-mobile-settings.nix", [["description", 134, 5], ["mainProgram", 135, 5], ["homepage", 136, 5], ["changelog", 137, 5], ["license", 138, 5], ["maintainers", 139, 5], ["platforms", 143, 5]]);
-const pos$8 = nix.positions(here + "/phosh-mobile-settings.nix", [["pname", 69, 3], ["version", 70, 3], ["src", 72, 3], ["nativeBuildInputs", 83, 3], ["buildInputs", 95, 3], ["postPatch", 116, 3], ["postInstall", 122, 3], ["passthru", 128, 3], ["meta", 133, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -47,7 +40,7 @@ export default nix.lambda((args) => (() => {
   const appstream = nix.arg($, "appstream");
   const gst_all_1 = nix.arg($, "gst_all_1");
   const gvc = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       domain: "gitlab.gnome.org",
       owner: "guidog",
       repo: "libgnome-volume-control",
@@ -56,7 +49,7 @@ export default nix.lambda((args) => (() => {
       forceFetchGit: true,
     }))));
   const libcellbroadcast = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       domain: "gitlab.freedesktop.org",
       owner: "devrtz",
       repo: "cellbroadcastd",
@@ -65,7 +58,7 @@ export default nix.lambda((args) => (() => {
       forceFetchGit: true,
     }))));
   const gvdb = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       domain: "gitlab.gnome.org",
       owner: "GNOME",
       repo: "gvdb",
@@ -77,7 +70,7 @@ export default nix.lambda((args) => (() => {
       const pname = "phosh-mobile-settings";
       const version = "0.54.0";
       const src = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           domain: "gitlab.gnome.org",
           group: "World",
           owner: "Phosh",
@@ -126,12 +119,12 @@ ln -s '${phosh}/lib/phosh' "$out/lib/phosh"
 glib-compile-schemas "$out/share/glib-2.0/schemas"
 `);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$6,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$5, phosh: nix.thunk(() => nix.sel(nixosTests, "phosh")) })),
+        [nix.POS]: $pos[5],
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[4], phosh: nix.thunk(() => nix.sel(nixosTests, "phosh")) })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "Settings app for mobile specific things",
         mainProgram: "phosh-mobile-settings",
         homepage: "https://gitlab.gnome.org/World/Phosh/phosh-mobile-settings",
@@ -147,7 +140,7 @@ glib-compile-schemas "$out/share/glib-2.0/schemas"
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         pname,
         version,
         src,

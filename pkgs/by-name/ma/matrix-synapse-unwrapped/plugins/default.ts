@@ -2,14 +2,14 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["matrix-http-rendezvous-synapse", 4, 3], ["matrix-synapse-ldap3", 5, 3], ["matrix-synapse-mjolnir-antispam", 6, 3], ["matrix-synapse-pam", 7, 3], ["matrix-synapse-s3-storage-provider", 8, 3], ["matrix-synapse-shared-secret-auth", 9, 3], ["synapse-http-antispam", 10, 3]]]);
 const formals$1 = { args: { callPackage: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["matrix-http-rendezvous-synapse", 4, 3], ["matrix-synapse-ldap3", 5, 3], ["matrix-synapse-mjolnir-antispam", 6, 3], ["matrix-synapse-pam", 7, 3], ["matrix-synapse-s3-storage-provider", 8, 3], ["matrix-synapse-shared-secret-auth", 9, 3], ["synapse-http-antispam", 10, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const callPackage = nix.arg($, "callPackage");
   return {
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     "matrix-http-rendezvous-synapse": nix.thunk(() => nix.app(callPackage, nix.path(here, "./rendezvous.nix"), nix.thunk(() => ({})))),
     "matrix-synapse-ldap3": nix.thunk(() => nix.app(callPackage, nix.path(here, "./ldap3.nix"), nix.thunk(() => ({})))),
     "matrix-synapse-mjolnir-antispam": nix.thunk(() => nix.app(callPackage, nix.path(here, "./mjolnir-antispam.nix"), nix.thunk(() => ({})))),

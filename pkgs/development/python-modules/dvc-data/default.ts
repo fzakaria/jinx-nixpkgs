@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]], [["description", 52, 5], ["homepage", 53, 5], ["changelog", 54, 5], ["license", 55, 5], ["maintainers", 56, 5], ["mainProgram", 57, 5]], [["pname", 19, 3], ["version", 20, 3], ["pyproject", 21, 3], ["disabled", 23, 3], ["src", 25, 3], ["build-system", 32, 3], ["dependencies", 34, 3], ["doCheck", 47, 3], ["pythonImportsCheck", 49, 3], ["meta", 51, 3]]]);
 const formals$1 = { args: { lib: false, attrs: false, buildPythonPackage: false, dictdiffer: false, diskcache: false, "dvc-objects": false, fetchFromGitHub: false, fsspec: false, orjson: false, pygtrie: false, pythonOlder: false, "setuptools-scm": false, sqltrie: false, tqdm: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 52, 5], ["homepage", 53, 5], ["changelog", 54, 5], ["license", 55, 5], ["maintainers", 56, 5], ["mainProgram", 57, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 19, 3], ["version", 20, 3], ["pyproject", 21, 3], ["disabled", 23, 3], ["src", 25, 3], ["build-system", 32, 3], ["dependencies", 34, 3], ["doCheck", 47, 3], ["pythonImportsCheck", 49, 3], ["meta", 51, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,13 +22,13 @@ export default nix.lambda((args) => (() => {
   const sqltrie = nix.arg($, "sqltrie");
   const tqdm = nix.arg($, "tqdm");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "dvc-data",
       version: "3.18.3",
       pyproject: true,
       disabled: nix.thunk(() => nix.app(pythonOlder, "3.12")),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "iterative",
           repo: "dvc-data",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -51,7 +49,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["dvc_data"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "DVC's data management subsystem",
         homepage: "https://github.com/iterative/dvc-data",
         changelog: nix.thunk(() => nix.str`https://github.com/iterative/dvc-data/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

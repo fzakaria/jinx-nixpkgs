@@ -2,10 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 37, 5], ["repo", 38, 5], ["tag", 39, 5], ["hash", 40, 5]], [["description", 108, 5], ["mainProgram", 109, 5], ["license", 110, 5], ["homepage", 111, 5], ["changelog", 112, 5], ["platforms", 113, 5], ["maintainers", 114, 5]], [["pname", 31, 3], ["version", 32, 3], ["__structuredAttrs", 33, 3], ["strictDeps", 34, 3], ["src", 36, 3], ["patches", 43, 3], ["postPatch", 54, 3], ["nativeBuildInputs", 67, 3], ["buildInputs", 79, 3], ["outputs", 90, 3], ["nativeCheckInputs", 95, 3], ["checkFlags", 101, 3], ["doCheck", 105, 3], ["meta", 107, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, gfortran: false, buildType: true, meson: false, ninja: false, cmake: false, "pkg-config": false, blas: false, lapack: false, "mctc-lib": false, mstore: false, "toml-f": false, multicharge: false, dftd4: false, "simple-dftd3": false, python3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 37, 5], ["repo", 38, 5], ["tag", 39, 5], ["hash", 40, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 108, 5], ["mainProgram", 109, 5], ["license", 110, 5], ["homepage", 111, 5], ["changelog", 112, 5], ["platforms", 113, 5], ["maintainers", 114, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 31, 3], ["version", 32, 3], ["__structuredAttrs", 33, 3], ["strictDeps", 34, 3], ["src", 36, 3], ["patches", 43, 3], ["postPatch", 54, 3], ["nativeBuildInputs", 67, 3], ["buildInputs", 79, 3], ["outputs", 90, 3], ["nativeCheckInputs", 95, 3], ["checkFlags", 101, 3], ["doCheck", 105, 3], ["meta", 107, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,13 +28,13 @@ export default nix.lambda((args) => (() => {
   nix.assert_((nix.asBool(!nix.asBool(nix.sel(blas, "isILP64"))) && nix.asBool(!nix.asBool(nix.sel(lapack, "isILP64")))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/development/libraries/science/chemistry/tblite/default.nix:22:1");
   nix.assert_(nix.builtins.elem(buildType, nix.thunk(() => ["meson", "cmake"])), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/development/libraries/science/chemistry/tblite/default.nix:23:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "tblite",
       version: "0.6.0",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "tblite",
           repo: "tblite",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -55,7 +53,7 @@ export default nix.lambda((args) => (() => {
       checkFlags: nix.thunk(() => ["-j1"]),
       doCheck: nix.thunk(() => nix.eq(buildType, "meson")),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Light-weight tight-binding framework",
         mainProgram: "tblite",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3Plus")),

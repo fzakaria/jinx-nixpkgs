@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["jdk", 22, 5], ["modules", 23, 5]], [["url", 54, 5], ["hash", 55, 5]], [["name", 132, 7], ["exec", 133, 7], ["icon", 134, 7], ["comment", 135, 7], ["desktopName", 136, 7], ["categories", 137, 7], ["startupWMClass", 138, 7]], [["url", 142, 40]], [["updateScript", 142, 12]], [["description", 145, 5], ["homepage", 146, 5], ["sourceProvenance", 147, 5], ["license", 148, 5], ["maintainers", 149, 5], ["mainProgram", 154, 5], ["platforms", 155, 5]], [["pname", 50, 3], ["version", 51, 3], ["src", 53, 3], ["nativeBuildInputs", 58, 3], ["buildInputs", 66, 3], ["dontWrapGApps", 68, 3], ["dontConfigure", 70, 3], ["dontBuild", 71, 3], ["installPhase", 73, 3], ["postFixup", 121, 3], ["desktopItems", 130, 3], ["passthru", 142, 3], ["meta", 144, 3]]]);
 const formals$1 = { args: { autoPatchelfHook: false, copyDesktopItems: false, fetchurl: false, glib: false, "glib-networking": false, gtk3: false, jdk21_headless: false, jre_minimal: false, lib: false, libsecret: false, makeDesktopItem: false, makeWrapper: false, stdenvNoCC: false, webkitgtk_4_1: false, wrapGAppsHook3: false, imagemagick: false, gitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["jdk", 22, 5], ["modules", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 54, 5], ["hash", 55, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 132, 7], ["exec", 133, 7], ["icon", 134, 7], ["comment", 135, 7], ["desktopName", 136, 7], ["categories", 137, 7], ["startupWMClass", 138, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["url", 142, 40]]);
-const pos$5 = nix.positions(here + "/package.nix", [["updateScript", 142, 12]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 145, 5], ["homepage", 146, 5], ["sourceProvenance", 147, 5], ["license", 148, 5], ["maintainers", 149, 5], ["mainProgram", 154, 5], ["platforms", 155, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 50, 3], ["version", 51, 3], ["src", 53, 3], ["nativeBuildInputs", 58, 3], ["buildInputs", 66, 3], ["dontWrapGApps", 68, 3], ["dontConfigure", 70, 3], ["dontBuild", 71, 3], ["installPhase", 73, 3], ["postFixup", 121, 3], ["desktopItems", 130, 3], ["passthru", 142, 3], ["meta", 144, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,7 +25,7 @@ export default nix.lambda((args) => (() => {
   const imagemagick = nix.arg($, "imagemagick");
   const gitUpdater = nix.arg($, "gitUpdater");
   const jre = nix.thunk(() => nix.app(nix.sel(jre_minimal, "override"), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       jdk: jdk21_headless,
       modules: nix.thunk(() => [
         "java.base",
@@ -52,11 +46,11 @@ export default nix.lambda((args) => (() => {
     }))));
   const runtimeDeps = nix.thunk(() => [glib, glib_networking, gtk3, libsecret, webkitgtk_4_1]);
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "PortfolioPerformance",
       version: "0.88.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: nix.thunk(() => nix.str`https://github.com/buchen/portfolio/releases/download/${nix.sel(finalAttrs, "version")}/PortfolioPerformance-${nix.sel(finalAttrs, "version")}-linux.gtk.x86_64.tar.gz`),
           hash: "sha256-F3DZVIijg/O5fl56GzD5/RIiAKFviAeMqkgjlR6a6sI=",
         })))),
@@ -75,7 +69,7 @@ makeWrapper $out/portfolio/PortfolioPerformance $out/bin/portfolio \\
 `),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "Portfolio",
             exec: "portfolio",
             icon: "portfolio",
@@ -86,11 +80,11 @@ makeWrapper $out/portfolio/PortfolioPerformance $out/bin/portfolio \\
           })))),
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$4, url: "https://github.com/buchen/portfolio.git" })))),
+        [nix.POS]: $pos[4],
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[3], url: "https://github.com/buchen/portfolio.git" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Simple tool to calculate the overall performance of an investment portfolio",
         homepage: "https://www.portfolio-performance.info/",
         sourceProvenance: nix.thunk(() => (() => {

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["hash", 24, 5]], [["description", 62, 5], ["maintainers", 63, 5], ["platforms", 64, 5], ["license", 65, 5], ["homepage", 66, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["postPatch", 27, 3], ["buildInputs", 32, 3], ["hardeningDisable", 46, 3], ["enableParallelBuilding", 49, 3], ["doCheck", 51, 3], ["checkTarget", 52, 3], ["doInstallCheck", 54, 3], ["installCheckPhase", 55, 3], ["meta", 61, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, libx11: false, libxcrypt: false, fetchFromGitHub: false, coreutils: false, libpng: false, libxft: false, freetype: false, zlib: false, libjpeg: false, openssl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 62, 5], ["maintainers", 63, 5], ["platforms", 64, 5], ["license", 65, 5], ["homepage", 66, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["postPatch", 27, 3], ["buildInputs", 32, 3], ["hardeningDisable", 46, 3], ["enableParallelBuilding", 49, 3], ["doCheck", 51, 3], ["checkTarget", 52, 3], ["doInstallCheck", 54, 3], ["installCheckPhase", 55, 3], ["meta", 61, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const libjpeg = nix.arg($, "libjpeg");
   const openssl = nix.arg($, "openssl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "unicon-lang",
       version: "13.2-unstable-2025-06-02",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "uniconproject",
           repo: "unicon",
           rev: "cf3b53b9578a004a52146a7adadc2a9409426624",
@@ -43,7 +41,7 @@ substituteInPlace tests/Makedefs --replace-fail "/bin/echo" "${coreutils}/bin/ec
       doInstallCheck: true,
       installCheckPhase: "runHook preInstallCheck\n$out/bin/unicon -version\nrunHook postInstallCheck\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Very high level, goal-directed, object-oriented, general purpose applications language",
         maintainers: [],
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),

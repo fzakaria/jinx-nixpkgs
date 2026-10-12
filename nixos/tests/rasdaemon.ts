@@ -2,40 +2,35 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/rasdaemon.nix", [[["maintainers", 5, 35]], [["enable", 13, 9], ["record", 15, 9], ["labels", 17, 9]], [["rasdaemon", 12, 16]], [["imports", 11, 7], ["hardware", 12, 7]], [["machine", 8, 9]], [["name", 3, 3], ["meta", 4, 3], ["nodes", 8, 3], ["testScript", 26, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/rasdaemon.nix", [["maintainers", 5, 35]]);
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/rasdaemon.nix", [["enable", 13, 9], ["record", 15, 9], ["labels", 17, 9]]);
-const pos$3 = nix.positions(here + "/rasdaemon.nix", [["rasdaemon", 12, 16]]);
-const pos$4 = nix.positions(here + "/rasdaemon.nix", [["imports", 11, 7], ["hardware", 12, 7]]);
-const pos$5 = nix.positions(here + "/rasdaemon.nix", [["machine", 8, 9]]);
-const pos$6 = nix.positions(here + "/rasdaemon.nix", [["name", 3, 3], ["meta", 4, 3], ["nodes", 8, 3], ["testScript", 26, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   return {
-    [nix.POS]: pos$6,
+    [nix.POS]: $pos[5],
     name: "rasdaemon",
     meta: nix.thunk(() => (() => {
       const from = nix.thunk(() => nix.sel(pkgs, "rasdaemon", "meta"));
       return {
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => nix.attr(from, "maintainers")),
     };
     })()),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           imports: nix.thunk(() => [nix.path(here, "../modules/profiles/minimal.nix")]),
           hardware: nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             rasdaemon: nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               enable: true,
               record: true,
               labels: "vendor: none\n  product: none\n  model: none\n    DIMM_0: 0.0.0;\n",

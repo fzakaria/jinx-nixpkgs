@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/gui.nix", [[["GOWORK", 26, 7]], [["mainProgram", 50, 5]], [["pname", 11, 3], ["patches", 14, 5], ["src", 15, 5], ["tags", 16, 5], ["version", 17, 5], ["nativeBuildInputs", 20, 3], ["buildInputs", 24, 3], ["env", 26, 3], ["proxyVendor", 28, 3], ["vendorHash", 29, 3], ["modRoot", 30, 3], ["ldflags", 32, 3], ["postInstall", 38, 3], ["doInstallCheck", 45, 3], ["nativeInstallCheckInputs", 46, 3], ["versionCheckProgramArg", 47, 3], ["meta", 49, 3]]]);
 const formals$1 = { args: { buildGoModule: false, cbconvert: false, gtk3: false, "pkg-config": false, versionCheckHook: false, wrapGAppsHook3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/gui.nix", [["GOWORK", 26, 7]]);
-const pos$2 = nix.positions(here + "/gui.nix", [["mainProgram", 50, 5]]);
-const pos$3 = nix.positions(here + "/gui.nix", [["pname", 11, 3], ["patches", 14, 5], ["src", 15, 5], ["tags", 16, 5], ["version", 17, 5], ["nativeBuildInputs", 20, 3], ["buildInputs", 24, 3], ["env", 26, 3], ["proxyVendor", 28, 3], ["vendorHash", 29, 3], ["modRoot", 30, 3], ["ldflags", 32, 3], ["postInstall", 38, 3], ["doInstallCheck", 45, 3], ["nativeInstallCheckInputs", 46, 3], ["versionCheckProgramArg", 47, 3], ["meta", 49, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "cbconvert-gui",
       patches: nix.thunk(() => nix.attr(cbconvert, "patches")),
       src: nix.thunk(() => nix.attr(cbconvert, "src")),
@@ -24,7 +22,7 @@ export default nix.lambda((args) => (() => {
       version: nix.thunk(() => nix.attr(cbconvert, "version")),
       nativeBuildInputs: nix.thunk(() => [pkg_config, wrapGAppsHook3]),
       buildInputs: nix.thunk(() => nix.concat(nix.sel(cbconvert, "buildInputs"), [gtk3])),
-      env: nix.thunk(() => ({ [nix.POS]: pos$1, GOWORK: "off" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[0], GOWORK: "off" })),
       proxyVendor: true,
       vendorHash: "sha256-jG8pQdY01MMCumNLBiHdgZ1pvp653WWaUCXD/gEuSpk=",
       modRoot: "cmd/cbconvert-gui",
@@ -37,7 +35,7 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       versionCheckProgramArg: "version",
-      meta: nix.thunk(() => nix.update(nix.sel(cbconvert, "meta"), { [nix.POS]: pos$2, mainProgram: "cbconvert-gui" })),
+      meta: nix.thunk(() => nix.update(nix.sel(cbconvert, "meta"), { [nix.POS]: $pos[1], mainProgram: "cbconvert-gui" })),
     }));
 })(), formals$1);
 //# sourceMappingURL=gui.ts.map

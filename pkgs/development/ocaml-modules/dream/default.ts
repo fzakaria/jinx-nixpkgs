@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 39, 7], ["hash", 40, 7]], [["pname", 36, 5], ["version", 37, 5], ["src", 38, 5], ["doCheck", 42, 5], ["propagatedBuildInputs", 43, 5]], [["description", 89, 5]], [["pname", 54, 3], ["version", 56, 24], ["src", 56, 32], ["patches", 59, 3], ["buildInputs", 61, 3], ["propagatedBuildInputs", 63, 3], ["meta", 88, 3]]]);
 const formals$1 = { args: { buildDunePackage: false, "dream-pure": false, lwt_ppx: false, "camlp-streams": false, "caqti-lwt": false, cstruct: false, digestif: false, "dream-httpaf": false, "graphql-lwt": false, "h2-lwt-unix": false, "httpun-lwt-unix": false, "httpun-ws": false, lambdasoup: false, lwt_ssl: false, "magic-mime": false, markup: false, "mirage-clock": false, "mirage-crypto-rng": false, "multipart_form-lwt": false, ssl: false, unstrctrd: false, uri: false, yojson: false, fetchurl: false, duration: false, logs: false, mtime: false, lwt: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 39, 7], ["hash", 40, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 36, 5], ["version", 37, 5], ["src", 38, 5], ["doCheck", 42, 5], ["propagatedBuildInputs", 43, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 89, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 54, 3], ["version", 56, 24], ["src", 56, 32], ["patches", 59, 3], ["buildInputs", 61, 3], ["propagatedBuildInputs", 63, 3], ["meta", 88, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -39,11 +36,11 @@ export default nix.lambda((args) => (() => {
   const mtime = nix.arg($, "mtime");
   const lwt = nix.arg($, "lwt");
   const mirage_crypto_rng_lwt = nix.thunk(() => nix.app(buildDunePackage, (finalAttrs) => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "mirage-crypto-rng-lwt",
       version: "1.2.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/mirage/mirage-crypto/releases/download/v${nix.sel(finalAttrs, "version")}/mirage-crypto-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-CVQrzZbB02j/m6iFMQX0wXgdjJTCQA3586wGEO4H5n4=",
         })))),
@@ -51,7 +48,7 @@ export default nix.lambda((args) => (() => {
       propagatedBuildInputs: nix.thunk(() => [mirage_crypto_rng, duration, logs, mtime, lwt]),
     })));
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "dream",
       version: nix.thunk(() => nix.attr(dream_pure, "version")),
       src: nix.thunk(() => nix.attr(dream_pure, "src")),
@@ -81,7 +78,7 @@ export default nix.lambda((args) => (() => {
         uri,
         yojson,
       ]),
-      meta: nix.thunk(() => nix.update(nix.sel(dream_pure, "meta"), { [nix.POS]: pos$3, description: "Tidy, feature-complete Web framework" })),
+      meta: nix.thunk(() => nix.update(nix.sel(dream_pure, "meta"), { [nix.POS]: $pos[2], description: "Tidy, feature-complete Web framework" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

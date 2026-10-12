@@ -2,11 +2,9 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/freshrss-utils.nix", [[["FreshRssExtUniqueId", 50, 19]], [["pname", 26, 9], ["version", 29, 11], ["src", 30, 11], ["configurePhase", 31, 11], ["buildPhase", 32, 11], ["dontPatchELF", 33, 11], ["dontStrip", 34, 11], ["sourceRoot", 35, 11], ["installPrefix", 38, 9], ["installPhase", 40, 9], ["passthru", 49, 9]], [["buildFreshRssExtension", 56, 11]]]);
 const formals$1 = { args: { stdenv: false, unzip: false }, ellipsis: false };
 const formals$2 = { args: { pname: false, version: false, src: false, FreshRssExtUniqueId: false, configurePhase: true, buildPhase: true, dontPatchELF: true, dontStrip: true, passthru: true, sourceRoot: true }, ellipsis: true };
-const pos$1 = nix.positions(here + "/freshrss-utils.nix", [["FreshRssExtUniqueId", 50, 19]]);
-const pos$2 = nix.positions(here + "/freshrss-utils.nix", [["pname", 26, 9], ["version", 29, 11], ["src", 30, 11], ["configurePhase", 31, 11], ["buildPhase", 32, 11], ["dontPatchELF", 33, 11], ["dontStrip", 34, 11], ["sourceRoot", 35, 11], ["installPrefix", 38, 9], ["installPhase", 40, 9], ["passthru", 49, 9]]);
-const pos$3 = nix.positions(here + "/freshrss-utils.nix", [["buildFreshRssExtension", 56, 11]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,7 +24,7 @@ export default nix.lambda((args) => (() => {
     const passthru = nix.argOr($_1, "passthru", () => ({}));
     const sourceRoot = nix.argOr($_1, "sourceRoot", () => "source");
     return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => nix.update(nix.builtins.removeAttrs(args_2, nix.thunk(() => ["FreshRssExtUniqueId"])), {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         pname: nix.thunk(() => nix.str`freshrss-extension-${pname}`),
         version: version,
         src: src,
@@ -37,9 +35,9 @@ export default nix.lambda((args) => (() => {
         sourceRoot: sourceRoot,
         installPrefix: nix.thunk(() => nix.str`share/freshrss/extensions/xExtension-${FreshRssExtUniqueId}`),
         installPhase: "runHook preInstall\n\nmkdir -p \"$out/$installPrefix\"\nfind . -mindepth 1 -maxdepth 1 | xargs -d'\\n' mv -t \"$out/$installPrefix/\"\n\nrunHook postInstall\n",
-        passthru: nix.thunk(() => nix.update(passthru, { [nix.POS]: pos$1, FreshRssExtUniqueId: FreshRssExtUniqueId })),
+        passthru: nix.thunk(() => nix.update(passthru, { [nix.POS]: $pos[0], FreshRssExtUniqueId: FreshRssExtUniqueId })),
       })));
   })(), formals$2);
-  return { [nix.POS]: pos$3, buildFreshRssExtension: buildFreshRssExtension };
+  return { [nix.POS]: $pos[2], buildFreshRssExtension: buildFreshRssExtension };
 })(), formals$1);
 //# sourceMappingURL=freshrss-utils.ts.map

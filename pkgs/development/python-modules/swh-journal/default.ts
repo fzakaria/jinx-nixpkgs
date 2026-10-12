@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["domain", 22, 5], ["group", 23, 5], ["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]], [["description", 60, 5], ["homepage", 61, 5], ["license", 62, 5], ["maintainers", 63, 5]], [["pname", 17, 3], ["version", 18, 3], ["pyproject", 19, 3], ["src", 21, 3], ["build-system", 30, 3], ["dependencies", 35, 3], ["pythonImportsCheck", 42, 3], ["nativeCheckInputs", 44, 3], ["disabledTestPaths", 49, 3], ["meta", 59, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitLab: false, setuptools: false, "setuptools-scm": false, "confluent-kafka": false, msgpack: false, "swh-core": false, "swh-model": false, pytestCheckHook: false, "pytest-mock": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["domain", 22, 5], ["group", 23, 5], ["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 60, 5], ["homepage", 61, 5], ["license", 62, 5], ["maintainers", 63, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 17, 3], ["version", 18, 3], ["pyproject", 19, 3], ["src", 21, 3], ["build-system", 30, 3], ["dependencies", 35, 3], ["pythonImportsCheck", 42, 3], ["nativeCheckInputs", 44, 3], ["disabledTestPaths", 49, 3], ["meta", 59, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const pytest_mock = nix.arg($, "pytest-mock");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "swh-journal",
       version: "2.0.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "gitlab.softwareheritage.org",
           group: "swh",
           owner: "devel",
@@ -44,7 +42,7 @@ export default nix.lambda((args) => (() => {
           "swh/journal/tests/test_pytest_plugin.py",
         ])))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Persistent logger of changes to the archive, with publish-subscribe support",
         homepage: "https://gitlab.softwareheritage.org/swh/devel/swh-journal",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

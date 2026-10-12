@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 19, 5], ["url", 20, 5], ["sha256", 21, 5]], [["description", 63, 5], ["homepage", 64, 5], ["changelog", 65, 5], ["license", 66, 5], ["maintainers", 67, 5], ["platforms", 68, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["patches", 24, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 32, 3], ["doCheck", 40, 3], ["outputs", 42, 3], ["installPhase", 48, 3], ["meta", 62, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, cmake: false, "pkg-config": false, zlib: false, libpng: false, libjpeg: false, giflib: false, libtiff: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 19, 5], ["url", 20, 5], ["sha256", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 63, 5], ["homepage", 64, 5], ["changelog", 65, 5], ["license", 66, 5], ["maintainers", 67, 5], ["platforms", 68, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["patches", 24, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 32, 3], ["doCheck", 40, 3], ["outputs", 42, 3], ["installPhase", 48, 3], ["meta", 62, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const pname = "pslib";
       const version = "0.4.8";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           name: nix.thunk(() => nix.str`${pname}-snixource-${version}.tar.gz`),
           url: nix.thunk(() => nix.str`mirror://sourceforge/${pname}/${pname}-${version}.tar.gz`),
           sha256: "sha256-gaWNvBLuUUy0o+HWCOyG6KmzxDrYCY6PV3WbA/jjH64=",
@@ -46,7 +44,7 @@ mkdir -p $doc/share/doc/${pname}
 cp -r ../doc/. $doc/share/doc/${pname}
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "C-library for generating multi page PostScript documents",
         homepage: "https://pslib.sourceforge.net/",
         changelog: "https://sourceforge.net/p/pslib/git/ci/master/tree/pslib/ChangeLog",
@@ -58,7 +56,7 @@ cp -r ../doc/. $doc/share/doc/${pname}
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

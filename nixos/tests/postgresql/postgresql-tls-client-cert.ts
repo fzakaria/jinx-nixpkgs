@@ -2,43 +2,11 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/postgresql-tls-client-cert.nix", [[["buildInputs", 16, 13]], [["maintainers", 39, 14]], [["Type", 48, 17], ["RemainAfterExit", 49, 17]], [["wantedBy", 45, 15], ["serviceConfig", 47, 15], ["script", 52, 15]], [["create-keys", 44, 30]], [["services", 44, 21]], [["name", 65, 19], ["ensureDBOwnership", 66, 19]], [["ssl", 71, 17], ["ssl_ca_file", 72, 17], ["ssl_cert_file", 73, 17], ["ssl_key_file", 74, 17]], [["package", 60, 23], ["enable", 61, 15], ["enableTCPIP", 62, 15], ["ensureUsers", 63, 15], ["ensureDatabases", 69, 15], ["settings", 70, 15], ["authentication", 76, 15]], [["postgresql", 59, 22]], [["address", 84, 21], ["prefixLength", 85, 21]], [["addresses", 82, 22]], [["ipv6", 82, 17]], [["eth1", 81, 26]], [["allowedTCPPorts", 89, 24]], [["interfaces", 81, 15], ["firewall", 89, 15]], [["systemd", 44, 13], ["services", 59, 13], ["networking", 80, 13]], [["Type", 100, 17], ["RemainAfterExit", 101, 17]], [["wantedBy", 97, 15], ["serviceConfig", 99, 15], ["script", 104, 15]], [["create-keys", 96, 30]], [["services", 96, 21]], [["PGHOST", 113, 17], ["PGPORT", 114, 17], ["PGDATABASE", 115, 17], ["PGUSER", 116, 17], ["PGSSLMODE", 117, 17], ["PGSSLCERT", 118, 17], ["PGSSLKEY", 119, 17], ["PGSSLROOTCERT", 120, 17]], [["variables", 112, 15], ["systemPackages", 122, 15]], [["address", 128, 21], ["prefixLength", 129, 21]], [["addresses", 126, 22]], [["ipv6", 126, 17]], [["eth1", 125, 26]], [["fc00::1", 134, 17]], [["interfaces", 125, 15], ["hosts", 133, 15]], [["systemd", 96, 13], ["environment", 111, 13], ["networking", 124, 13]], [["server", 41, 15], ["client", 93, 15]], [["name", 38, 9], ["meta", 39, 9], ["nodes", 41, 9], ["testScript", 139, 9]], [["makeTestFor", 147, 20]]]);
 const formals$1 = { args: { runTest: false, genTests: false }, ellipsis: true };
 const formals$2 = { args: { lib: false, pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/postgresql-tls-client-cert.nix", [["buildInputs", 16, 13]]);
-const pos$2 = nix.positions(here + "/postgresql-tls-client-cert.nix", [["maintainers", 39, 14]]);
 const formals$3 = { args: {  }, ellipsis: true };
-const pos$3 = nix.positions(here + "/postgresql-tls-client-cert.nix", [["Type", 48, 17], ["RemainAfterExit", 49, 17]]);
-const pos$4 = nix.positions(here + "/postgresql-tls-client-cert.nix", [["wantedBy", 45, 15], ["serviceConfig", 47, 15], ["script", 52, 15]]);
-const pos$5 = nix.positions(here + "/postgresql-tls-client-cert.nix", [["create-keys", 44, 30]]);
-const pos$6 = nix.positions(here + "/postgresql-tls-client-cert.nix", [["services", 44, 21]]);
-const pos$7 = nix.positions(here + "/postgresql-tls-client-cert.nix", [["name", 65, 19], ["ensureDBOwnership", 66, 19]]);
-const pos$8 = nix.positions(here + "/postgresql-tls-client-cert.nix", [["ssl", 71, 17], ["ssl_ca_file", 72, 17], ["ssl_cert_file", 73, 17], ["ssl_key_file", 74, 17]]);
-const pos$9 = nix.positions(here + "/postgresql-tls-client-cert.nix", [["package", 60, 23], ["enable", 61, 15], ["enableTCPIP", 62, 15], ["ensureUsers", 63, 15], ["ensureDatabases", 69, 15], ["settings", 70, 15], ["authentication", 76, 15]]);
-const pos$10 = nix.positions(here + "/postgresql-tls-client-cert.nix", [["postgresql", 59, 22]]);
-const pos$11 = nix.positions(here + "/postgresql-tls-client-cert.nix", [["address", 84, 21], ["prefixLength", 85, 21]]);
-const pos$12 = nix.positions(here + "/postgresql-tls-client-cert.nix", [["addresses", 82, 22]]);
-const pos$13 = nix.positions(here + "/postgresql-tls-client-cert.nix", [["ipv6", 82, 17]]);
-const pos$14 = nix.positions(here + "/postgresql-tls-client-cert.nix", [["eth1", 81, 26]]);
-const pos$15 = nix.positions(here + "/postgresql-tls-client-cert.nix", [["allowedTCPPorts", 89, 24]]);
-const pos$16 = nix.positions(here + "/postgresql-tls-client-cert.nix", [["interfaces", 81, 15], ["firewall", 89, 15]]);
-const pos$17 = nix.positions(here + "/postgresql-tls-client-cert.nix", [["systemd", 44, 13], ["services", 59, 13], ["networking", 80, 13]]);
 const formals$4 = { args: {  }, ellipsis: true };
-const pos$18 = nix.positions(here + "/postgresql-tls-client-cert.nix", [["Type", 100, 17], ["RemainAfterExit", 101, 17]]);
-const pos$19 = nix.positions(here + "/postgresql-tls-client-cert.nix", [["wantedBy", 97, 15], ["serviceConfig", 99, 15], ["script", 104, 15]]);
-const pos$20 = nix.positions(here + "/postgresql-tls-client-cert.nix", [["create-keys", 96, 30]]);
-const pos$21 = nix.positions(here + "/postgresql-tls-client-cert.nix", [["services", 96, 21]]);
-const pos$22 = nix.positions(here + "/postgresql-tls-client-cert.nix", [["PGHOST", 113, 17], ["PGPORT", 114, 17], ["PGDATABASE", 115, 17], ["PGUSER", 116, 17], ["PGSSLMODE", 117, 17], ["PGSSLCERT", 118, 17], ["PGSSLKEY", 119, 17], ["PGSSLROOTCERT", 120, 17]]);
-const pos$23 = nix.positions(here + "/postgresql-tls-client-cert.nix", [["variables", 112, 15], ["systemPackages", 122, 15]]);
-const pos$24 = nix.positions(here + "/postgresql-tls-client-cert.nix", [["address", 128, 21], ["prefixLength", 129, 21]]);
-const pos$25 = nix.positions(here + "/postgresql-tls-client-cert.nix", [["addresses", 126, 22]]);
-const pos$26 = nix.positions(here + "/postgresql-tls-client-cert.nix", [["ipv6", 126, 17]]);
-const pos$27 = nix.positions(here + "/postgresql-tls-client-cert.nix", [["eth1", 125, 26]]);
-const pos$28 = nix.positions(here + "/postgresql-tls-client-cert.nix", [["fc00::1", 134, 17]]);
-const pos$29 = nix.positions(here + "/postgresql-tls-client-cert.nix", [["interfaces", 125, 15], ["hosts", 133, 15]]);
-const pos$30 = nix.positions(here + "/postgresql-tls-client-cert.nix", [["systemd", 96, 13], ["environment", 111, 13], ["networking", 124, 13]]);
-const pos$31 = nix.positions(here + "/postgresql-tls-client-cert.nix", [["server", 41, 15], ["client", 93, 15]]);
-const pos$32 = nix.positions(here + "/postgresql-tls-client-cert.nix", [["name", 38, 9], ["meta", 39, 9], ["nodes", 41, 9], ["testScript", 139, 9]]);
-const pos$33 = nix.positions(here + "/postgresql-tls-client-cert.nix", [["makeTestFor", 147, 20]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -49,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const lib = nix.arg($_1, "lib");
       const pkgs = nix.arg($_1, "pkgs");
       const runWithOpenSSL = (file) => (cmd) => nix.app(nix.sel(pkgs, "runCommand"), file, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           buildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "openssl"))]),
         })), cmd);
       const caKey = nix.thunk(() => nix.app(runWithOpenSSL, "ca.key", "openssl ecparam -name prime256v1 -genkey -noout -out $out"));
@@ -68,29 +36,29 @@ openssl x509 -req -in client.csr -CA ${caCert} -CAkey ${caKey} \\
 `)));
       const clientKeyPath = "/root";
       return {
-        [nix.POS]: pos$32,
+        [nix.POS]: $pos[31],
         name: nix.thunk(() => nix.str`postgresql-tls-client-cert-${nix.sel(package$, "name")}`),
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           maintainers: nix.thunk(() => (() => {
             const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
             return [nix.thunk(() => nix.lookup(w, "erictapen"))];
           })()),
         })),
         nodes: nix.thunk(() => ({
-          [nix.POS]: pos$31,
+          [nix.POS]: $pos[30],
           server: nix.lambda((args_2) => (() => {
             const $_2 = nix.formals(args_2, formals$3);
             return {
-              [nix.POS]: pos$17,
+              [nix.POS]: $pos[16],
               systemd: nix.thunk(() => ({
-                [nix.POS]: pos$6,
+                [nix.POS]: $pos[5],
                 services: nix.thunk(() => ({
-                  [nix.POS]: pos$5,
+                  [nix.POS]: $pos[4],
                   "create-keys": nix.thunk(() => ({
-                    [nix.POS]: pos$4,
+                    [nix.POS]: $pos[3],
                     wantedBy: nix.thunk(() => ["postgresql.target"]),
-                    serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$3, Type: "oneshot", RemainAfterExit: true })),
+                    serviceConfig: nix.thunk(() => ({ [nix.POS]: $pos[2], Type: "oneshot", RemainAfterExit: true })),
                     script: nix.thunk(() => nix.str`mkdir -p '${serverKeyPath}'
 cp '${serverKey}' '${serverKeyPath}/server.key'
 chown postgres:postgres '${serverKeyPath}/server.key'
@@ -100,18 +68,18 @@ chmod 600 '${serverKeyPath}/server.key'
                 })),
               })),
               services: nix.thunk(() => ({
-                [nix.POS]: pos$10,
+                [nix.POS]: $pos[9],
                 postgresql: nix.thunk(() => ({
-                  [nix.POS]: pos$9,
+                  [nix.POS]: $pos[8],
                   package: package$,
                   enable: true,
                   enableTCPIP: true,
                   ensureUsers: nix.thunk(() => [
-                    nix.thunk(() => ({ [nix.POS]: pos$7, name: "test", ensureDBOwnership: true })),
+                    nix.thunk(() => ({ [nix.POS]: $pos[6], name: "test", ensureDBOwnership: true })),
                   ]),
                   ensureDatabases: nix.thunk(() => ["test"]),
                   settings: nix.thunk(() => ({
-                    [nix.POS]: pos$8,
+                    [nix.POS]: $pos[7],
                     ssl: "on",
                     ssl_ca_file: nix.thunk(() => nix.builtins.toString(caCert)),
                     ssl_cert_file: nix.thunk(() => nix.builtins.toString(serverCert)),
@@ -121,35 +89,35 @@ chmod 600 '${serverKeyPath}/server.key'
                 })),
               })),
               networking: nix.thunk(() => ({
-                [nix.POS]: pos$16,
+                [nix.POS]: $pos[15],
                 interfaces: nix.thunk(() => ({
-                  [nix.POS]: pos$14,
+                  [nix.POS]: $pos[13],
                   eth1: nix.thunk(() => ({
-                    [nix.POS]: pos$13,
+                    [nix.POS]: $pos[12],
                     ipv6: nix.thunk(() => ({
-                      [nix.POS]: pos$12,
+                      [nix.POS]: $pos[11],
                       addresses: nix.thunk(() => [
-                        nix.thunk(() => ({ [nix.POS]: pos$11, address: "fc00::1", prefixLength: 120n })),
+                        nix.thunk(() => ({ [nix.POS]: $pos[10], address: "fc00::1", prefixLength: 120n })),
                       ]),
                     })),
                   })),
                 })),
-                firewall: nix.thunk(() => ({ [nix.POS]: pos$15, allowedTCPPorts: nix.thunk(() => [5432n]) })),
+                firewall: nix.thunk(() => ({ [nix.POS]: $pos[14], allowedTCPPorts: nix.thunk(() => [5432n]) })),
               })),
             };
           })(), formals$3),
           client: nix.lambda((args_2) => (() => {
             const $_2 = nix.formals(args_2, formals$4);
             return {
-              [nix.POS]: pos$30,
+              [nix.POS]: $pos[29],
               systemd: nix.thunk(() => ({
-                [nix.POS]: pos$21,
+                [nix.POS]: $pos[20],
                 services: nix.thunk(() => ({
-                  [nix.POS]: pos$20,
+                  [nix.POS]: $pos[19],
                   "create-keys": nix.thunk(() => ({
-                    [nix.POS]: pos$19,
+                    [nix.POS]: $pos[18],
                     wantedBy: nix.thunk(() => ["multi-user.target"]),
-                    serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$18, Type: "oneshot", RemainAfterExit: true })),
+                    serviceConfig: nix.thunk(() => ({ [nix.POS]: $pos[17], Type: "oneshot", RemainAfterExit: true })),
                     script: nix.thunk(() => nix.str`mkdir -p '${clientKeyPath}'
 cp '${clientKey}' '${clientKeyPath}/client.key'
 chown root:root '${clientKeyPath}/client.key'
@@ -159,9 +127,9 @@ chmod 600 '${clientKeyPath}/client.key'
                 })),
               })),
               environment: nix.thunk(() => ({
-                [nix.POS]: pos$23,
+                [nix.POS]: $pos[22],
                 variables: nix.thunk(() => ({
-                  [nix.POS]: pos$22,
+                  [nix.POS]: $pos[21],
                   PGHOST: "db.test.example",
                   PGPORT: "5432",
                   PGDATABASE: "test",
@@ -174,20 +142,20 @@ chmod 600 '${clientKeyPath}/client.key'
                 systemPackages: nix.thunk(() => [package$]),
               })),
               networking: nix.thunk(() => ({
-                [nix.POS]: pos$29,
+                [nix.POS]: $pos[28],
                 interfaces: nix.thunk(() => ({
-                  [nix.POS]: pos$27,
+                  [nix.POS]: $pos[26],
                   eth1: nix.thunk(() => ({
-                    [nix.POS]: pos$26,
+                    [nix.POS]: $pos[25],
                     ipv6: nix.thunk(() => ({
-                      [nix.POS]: pos$25,
+                      [nix.POS]: $pos[24],
                       addresses: nix.thunk(() => [
-                        nix.thunk(() => ({ [nix.POS]: pos$24, address: "fc00::2", prefixLength: 120n })),
+                        nix.thunk(() => ({ [nix.POS]: $pos[23], address: "fc00::2", prefixLength: 120n })),
                       ]),
                     })),
                   })),
                 })),
-                hosts: nix.thunk(() => ({ [nix.POS]: pos$28, "fc00::1": nix.thunk(() => ["db.test.example"]) })),
+                hosts: nix.thunk(() => ({ [nix.POS]: $pos[27], "fc00::1": nix.thunk(() => ["db.test.example"]) })),
               })),
             };
           })(), formals$4),
@@ -195,6 +163,6 @@ chmod 600 '${clientKeyPath}/client.key'
         testScript: "server.wait_for_unit(\"multi-user.target\")\nclient.wait_for_unit(\"multi-user.target\")\nclient.succeed(\"psql -c \\\"SELECT 1;\\\"\")\n",
       };
     })(), formals$2));
-  return nix.app(genTests, nix.thunk(() => ({ [nix.POS]: pos$33, makeTestFor: makeTestFor })));
+  return nix.app(genTests, nix.thunk(() => ({ [nix.POS]: $pos[32], makeTestFor: makeTestFor })));
 })(), formals$1);
 //# sourceMappingURL=postgresql-tls-client-cert.ts.map

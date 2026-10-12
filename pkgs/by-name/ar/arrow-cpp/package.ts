@@ -2,22 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["apis", 12, 5]], [["name", 69, 5], ["owner", 70, 5], ["repo", 71, 5], ["rev", 72, 5], ["hash", 73, 5]], [["name", 77, 5], ["owner", 78, 5], ["repo", 79, 5], ["rev", 80, 5], ["hash", 81, 5]], [["owner", 91, 5], ["repo", 92, 5], ["rev", 93, 5], ["hash", 94, 5]], [["url", 103, 7], ["hash", 104, 7]], [["url", 117, 9], ["hash", 118, 9]], [["ARROW_JEMALLOC_URL", 116, 7]], [["owner", 124, 9], ["repo", 125, 9], ["tag", 126, 9], ["hash", 127, 9]], [["owner", 131, 9], ["repo", 132, 9], ["tag", 133, 9], ["hash", 134, 9]], [["owner", 138, 9], ["repo", 139, 9], ["tag", 140, 9], ["hash", 141, 9]], [["ARROW_MIMALLOC_URL", 123, 7], ["ARROW_XSIMD_URL", 130, 7], ["ARROW_SUBSTRAIT_URL", 137, 7], ["LZ4_HOME", 145, 7], ["PROTOBUF_HOME", 146, 7], ["SNAPPY_HOME", 147, 7], ["ZSTD_HOME", 148, 7], ["ARROW_TEST_DATA", 149, 7], ["PARQUET_TEST_DATA", 150, 7], ["GTEST_FILTER", 151, 7]], [["broken", 350, 5], ["description", 351, 5], ["homepage", 352, 5], ["changelog", 353, 5], ["license", 354, 5], ["platforms", 355, 5], ["maintainers", 356, 5], ["pkgConfigModules", 361, 5]], [["pkg-config", 384, 11]], [["enableFlight", 379, 7], ["enableJemalloc", 380, 7], ["enableS3", 381, 7], ["enableGcs", 382, 7], ["tests", 384, 5]], [["pname", 87, 3], ["version", 88, 11], ["src", 90, 3], ["sourceRoot", 97, 3], ["patches", 99, 3], ["patchFlags", 107, 3], ["env", 112, 3], ["nativeBuildInputs", 178, 3], ["buildInputs", 186, 3], ["hardeningDisable", 231, 3], ["preConfigure", 233, 3], ["cmakeFlags", 239, 3], ["doInstallCheck", 297, 3], ["__darwinAllowLocalNetworking", 299, 3], ["nativeInstallCheckInputs", 301, 3], ["installCheckPhase", 309, 3], ["__structuredAttrs", 346, 3], ["meta", 348, 3], ["passthru", 377, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, fetchpatch: false, fetchFromGitHub: false, fixDarwinDylibNames: false, "apache-orc": false, autoconf: false, "aws-sdk-cpp": false, "aws-sdk-cpp-arrow": true, "azure-sdk-for-cpp": false, azurite: false, boost: false, brotli: false, bzip2: false, cmake: false, crc32c: false, curl: false, flatbuffers: false, gflags: false, glog: false, "google-cloud-cpp": false, grpc: false, gtest: false, libbacktrace: false, lz4: false, ninja: false, nlohmann_json: false, openssl: false, perl: false, "pkg-config": false, protobuf: false, python3: false, rapidjson: false, re2: false, snappy: false, sqlite: false, thrift: false, tzdata: false, utf8proc: false, which: false, zlib: false, zstd: false, testers: false, enableShared: true, enableFlight: true, enableJemalloc: true, enableS3: true, enableGcs: true, enableAzure: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["apis", 12, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 69, 5], ["owner", 70, 5], ["repo", 71, 5], ["rev", 72, 5], ["hash", 73, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 77, 5], ["owner", 78, 5], ["repo", 79, 5], ["rev", 80, 5], ["hash", 81, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["owner", 91, 5], ["repo", 92, 5], ["rev", 93, 5], ["hash", 94, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["url", 103, 7], ["hash", 104, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["url", 117, 9], ["hash", 118, 9]]);
-const pos$7 = nix.positions(here + "/package.nix", [["ARROW_JEMALLOC_URL", 116, 7]]);
-const pos$8 = nix.positions(here + "/package.nix", [["owner", 124, 9], ["repo", 125, 9], ["tag", 126, 9], ["hash", 127, 9]]);
-const pos$9 = nix.positions(here + "/package.nix", [["owner", 131, 9], ["repo", 132, 9], ["tag", 133, 9], ["hash", 134, 9]]);
-const pos$10 = nix.positions(here + "/package.nix", [["owner", 138, 9], ["repo", 139, 9], ["tag", 140, 9], ["hash", 141, 9]]);
-const pos$11 = nix.positions(here + "/package.nix", [["ARROW_MIMALLOC_URL", 123, 7], ["ARROW_XSIMD_URL", 130, 7], ["ARROW_SUBSTRAIT_URL", 137, 7], ["LZ4_HOME", 145, 7], ["PROTOBUF_HOME", 146, 7], ["SNAPPY_HOME", 147, 7], ["ZSTD_HOME", 148, 7], ["ARROW_TEST_DATA", 149, 7], ["PARQUET_TEST_DATA", 150, 7], ["GTEST_FILTER", 151, 7]]);
-const pos$12 = nix.positions(here + "/package.nix", [["broken", 350, 5], ["description", 351, 5], ["homepage", 352, 5], ["changelog", 353, 5], ["license", 354, 5], ["platforms", 355, 5], ["maintainers", 356, 5], ["pkgConfigModules", 361, 5]]);
-const pos$13 = nix.positions(here + "/package.nix", [["pkg-config", 384, 11]]);
-const pos$14 = nix.positions(here + "/package.nix", [["enableFlight", 379, 7], ["enableJemalloc", 380, 7], ["enableS3", 381, 7], ["enableGcs", 382, 7], ["tests", 384, 5]]);
-const pos$15 = nix.positions(here + "/package.nix", [["pname", 87, 3], ["version", 88, 11], ["src", 90, 3], ["sourceRoot", 97, 3], ["patches", 99, 3], ["patchFlags", 107, 3], ["env", 112, 3], ["nativeBuildInputs", 178, 3], ["buildInputs", 186, 3], ["hardeningDisable", 231, 3], ["preConfigure", 233, 3], ["cmakeFlags", 239, 3], ["doInstallCheck", 297, 3], ["__darwinAllowLocalNetworking", 299, 3], ["nativeInstallCheckInputs", 301, 3], ["installCheckPhase", 309, 3], ["__structuredAttrs", 346, 3], ["meta", 348, 3], ["passthru", 377, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,7 +17,7 @@ export default nix.lambda((args) => (() => {
   const autoconf = nix.arg($, "autoconf");
   const aws_sdk_cpp = nix.arg($, "aws-sdk-cpp");
   const aws_sdk_cpp_arrow = nix.argOr($, "aws-sdk-cpp-arrow", () => nix.app(nix.sel(aws_sdk_cpp, "override"), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       apis: nix.thunk(() => ["cognito-identity", "config", "identity-management", "s3", "sts", "transfer"]),
     }))));
   const azure_sdk_for_cpp = nix.arg($, "azure-sdk-for-cpp");
@@ -75,7 +61,7 @@ export default nix.lambda((args) => (() => {
   const enableGcs = nix.argOr($, "enableGcs", () => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isRiscV64")));
   const enableAzure = nix.argOr($, "enableAzure", () => true);
   const arrow_testing = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       name: "arrow-testing",
       owner: "apache",
       repo: "arrow-testing",
@@ -83,7 +69,7 @@ export default nix.lambda((args) => (() => {
       hash: "sha256-mna6I/a5ZxMLdWN0QfCsgsre6yMeuSv4syX5ePGLhfg=",
     }))));
   const parquet_testing = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       name: "parquet-testing",
       owner: "apache",
       repo: "parquet-testing",
@@ -92,11 +78,11 @@ export default nix.lambda((args) => (() => {
     }))));
   const version = "24.0.0";
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$15,
+      [nix.POS]: $pos[14],
       pname: "arrow-cpp",
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           owner: "apache",
           repo: "arrow",
           rev: nix.thunk(() => nix.str`apache-arrow-${version}`),
@@ -105,37 +91,37 @@ export default nix.lambda((args) => (() => {
       sourceRoot: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "name")}/cpp`),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             url: "https://github.com/apache/arrow/commit/e6a89be6c7cc537b04844796bd84ac8240942050.patch",
             hash: "sha256-hB2ebq6a64FPBZeg7aS+tSZZIzhFs3w9A3n2NK+/ob8=",
           })))),
       ]),
       patchFlags: nix.thunk(() => ["-p2"]),
       env: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "optionalAttrs"), enableJemalloc, nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           ARROW_JEMALLOC_URL: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              [nix.POS]: pos$6,
+              [nix.POS]: $pos[5],
               url: "https://github.com/jemalloc/jemalloc/releases/download/5.3.0/jemalloc-5.3.0.tar.bz2",
               hash: "sha256-LbgtHnEZ3z5xt2QCGbbf6EeJvAU3mDw7esT3GJrs/qo=",
             })))),
         }))), {
-        [nix.POS]: pos$11,
+        [nix.POS]: $pos[10],
         ARROW_MIMALLOC_URL: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$8,
+            [nix.POS]: $pos[7],
             owner: "microsoft",
             repo: "mimalloc",
             tag: "v3.1.5",
             hash: "sha256-fk6nfyBFS1G0sJwUJVgTC1+aKd0We/JjsIYTO+IOfyg=",
           })))),
         ARROW_XSIMD_URL: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$9,
+            [nix.POS]: $pos[8],
             owner: "xtensor-stack",
             repo: "xsimd",
             tag: "14.0.0",
             hash: "sha256-ijNoHb6xC+OHJbUB4j1PRsoHMzjrnOHVoDRe/nKguDo=",
           })))),
         ARROW_SUBSTRAIT_URL: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$10,
+            [nix.POS]: $pos[9],
             owner: "substrait-io",
             repo: "substrait",
             tag: "v0.44.0",
@@ -275,7 +261,7 @@ runHook postInstallCheck
       })()),
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$12,
+        [nix.POS]: $pos[11],
         broken: nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isx86_64")))),
         description: "Cross-language development platform for in-memory data",
         homepage: "https://arrow.apache.org/docs/cpp/",
@@ -307,13 +293,13 @@ runHook postInstallCheck
         ]),
       })),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$14,
+        [nix.POS]: $pos[13],
         enableFlight: enableFlight,
         enableJemalloc: enableJemalloc,
         enableS3: enableS3,
         enableGcs: enableGcs,
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$13,
+          [nix.POS]: $pos[12],
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "testMetaPkgConfig"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
         })),
       })),

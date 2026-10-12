@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["withGdal", 15, 41]], [["django", 15, 7]], [["self", 13, 5], ["packageOverrides", 14, 5]], [["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]], [["pythonPath", 75, 5]], [["description", 146, 5], ["homepage", 147, 5], ["license", 148, 5], ["maintainers", 149, 5], ["teams", 153, 5], ["mainProgram", 157, 5]], [["pname", 21, 3], ["version", 22, 3], ["pyproject", 23, 3], ["__structuredAttrs", 25, 3], ["src", 27, 3], ["build-system", 34, 3], ["dependencies", 38, 3], ["pythonRelaxDeps", 63, 3], ["passthru", 74, 3], ["nativeBuildInputs", 78, 3], ["postInstall", 82, 3], ["nativeCheckInputs", 95, 3], ["preCheck", 114, 3], ["disabledTestPaths", 121, 3], ["disabledTests", 126, 3], ["meta", 145, 3]]]);
 const formals$1 = { args: { lib: false, python3: false, fetchFromGitHub: false, writeShellScript: false, makeWrapper: false, postgresql: false, postgresqlTestHook: false, "playwright-driver": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["withGdal", 15, 41]]);
-const pos$2 = nix.positions(here + "/package.nix", [["django", 15, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["self", 13, 5], ["packageOverrides", 14, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pythonPath", 75, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 146, 5], ["homepage", 147, 5], ["license", 148, 5], ["maintainers", 149, 5], ["teams", 153, 5], ["mainProgram", 157, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 3], ["pyproject", 23, 3], ["__structuredAttrs", 25, 3], ["src", 27, 3], ["build-system", 34, 3], ["dependencies", 38, 3], ["pythonRelaxDeps", 63, 3], ["passthru", 74, 3], ["nativeBuildInputs", 78, 3], ["postInstall", 82, 3], ["nativeCheckInputs", 95, 3], ["preCheck", 114, 3], ["disabledTestPaths", 121, 3], ["disabledTests", 126, 3], ["meta", 145, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,21 +16,21 @@ export default nix.lambda((args) => (() => {
   const postgresqlTestHook = nix.arg($, "postgresqlTestHook");
   const playwright_driver = nix.arg($, "playwright-driver");
   const python = nix.thunk(() => nix.app(nix.sel(python3, "override"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       self: python,
       packageOverrides: (final) => (prev) => ({
-        [nix.POS]: pos$2,
-        django: nix.thunk(() => nix.app(nix.sel(prev, "django_5", "override"), nix.thunk(() => ({ [nix.POS]: pos$1, withGdal: true })))),
+        [nix.POS]: $pos[1],
+        django: nix.thunk(() => nix.app(nix.sel(prev, "django_5", "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], withGdal: true })))),
       }),
     }))));
   return nix.app(nix.sel(python, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "umap",
       version: "3.8.1",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           owner: "umap-project",
           repo: "umap",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -78,7 +72,7 @@ export default nix.lambda((args) => (() => {
         "pillow",
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pythonPath: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "finalPackage")}/${nix.sel(python, "sitePackages")}:${nix.app(nix.sel(python, "pkgs", "makePythonPath"), nix.thunk(() => nix.sel(finalAttrs, "passthru", "dependencies")))}`),
       })),
       nativeBuildInputs: nix.thunk(() => [makeWrapper]),
@@ -131,7 +125,7 @@ export postgresqlTestUserOptions="LOGIN SUPERUSER" # Allow creation of databases
         "test_good_request_passes",
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "UMap lets you create maps with OpenStreetMap layers in a minute and embed them in your site",
         homepage: "https://github.com/umap-project/umap/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),

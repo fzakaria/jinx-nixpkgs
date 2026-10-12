@@ -2,100 +2,72 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/nginx-status-page.nix", [[["maintainers", 5, 5]], [["vlans", 12, 24]], [["enable", 17, 20]], [["useNetworkd", 15, 11], ["useDHCP", 16, 11], ["firewall", 17, 11]], [["Address", 22, 25]], [["name", 21, 11], ["networkConfig", 22, 11]], [["01-eth1", 20, 34]], [["networks", 20, 25]], [["network", 20, 17]], [["return", 28, 60]], [["/index.html", 28, 46]], [["locations", 28, 36]], [["localhost", 28, 24]], [["enable", 26, 11], ["statusPage", 27, 11], ["virtualHosts", 28, 11]], [["nginx", 25, 18]], [["systemPackages", 31, 21]], [["virtualisation", 12, 9], ["networking", 14, 9], ["systemd", 20, 9], ["services", 25, 9], ["environment", 31, 9]], [["vlans", 37, 24]], [["enable", 42, 20]], [["useNetworkd", 40, 11], ["useDHCP", 41, 11], ["firewall", 42, 11]], [["Address", 47, 25]], [["name", 46, 11], ["networkConfig", 47, 11]], [["01-eth1", 45, 34]], [["networks", 45, 25]], [["network", 45, 17]], [["systemPackages", 50, 21]], [["virtualisation", 37, 9], ["networking", 39, 9], ["systemd", 45, 9], ["environment", 50, 9]], [["webserver", 9, 5], ["client", 34, 5]], [["name", 3, 3], ["meta", 4, 3], ["nodes", 8, 3], ["testScript", 54, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/nginx-status-page.nix", [["maintainers", 5, 5]]);
 const formals$2 = { args: {  }, ellipsis: true };
-const pos$2 = nix.positions(here + "/nginx-status-page.nix", [["vlans", 12, 24]]);
-const pos$3 = nix.positions(here + "/nginx-status-page.nix", [["enable", 17, 20]]);
-const pos$4 = nix.positions(here + "/nginx-status-page.nix", [["useNetworkd", 15, 11], ["useDHCP", 16, 11], ["firewall", 17, 11]]);
-const pos$5 = nix.positions(here + "/nginx-status-page.nix", [["Address", 22, 25]]);
-const pos$6 = nix.positions(here + "/nginx-status-page.nix", [["name", 21, 11], ["networkConfig", 22, 11]]);
-const pos$7 = nix.positions(here + "/nginx-status-page.nix", [["01-eth1", 20, 34]]);
-const pos$8 = nix.positions(here + "/nginx-status-page.nix", [["networks", 20, 25]]);
-const pos$9 = nix.positions(here + "/nginx-status-page.nix", [["network", 20, 17]]);
-const pos$10 = nix.positions(here + "/nginx-status-page.nix", [["return", 28, 60]]);
-const pos$11 = nix.positions(here + "/nginx-status-page.nix", [["/index.html", 28, 46]]);
-const pos$12 = nix.positions(here + "/nginx-status-page.nix", [["locations", 28, 36]]);
-const pos$13 = nix.positions(here + "/nginx-status-page.nix", [["localhost", 28, 24]]);
-const pos$14 = nix.positions(here + "/nginx-status-page.nix", [["enable", 26, 11], ["statusPage", 27, 11], ["virtualHosts", 28, 11]]);
-const pos$15 = nix.positions(here + "/nginx-status-page.nix", [["nginx", 25, 18]]);
-const pos$16 = nix.positions(here + "/nginx-status-page.nix", [["systemPackages", 31, 21]]);
-const pos$17 = nix.positions(here + "/nginx-status-page.nix", [["virtualisation", 12, 9], ["networking", 14, 9], ["systemd", 20, 9], ["services", 25, 9], ["environment", 31, 9]]);
 const formals$3 = { args: {  }, ellipsis: true };
-const pos$18 = nix.positions(here + "/nginx-status-page.nix", [["vlans", 37, 24]]);
-const pos$19 = nix.positions(here + "/nginx-status-page.nix", [["enable", 42, 20]]);
-const pos$20 = nix.positions(here + "/nginx-status-page.nix", [["useNetworkd", 40, 11], ["useDHCP", 41, 11], ["firewall", 42, 11]]);
-const pos$21 = nix.positions(here + "/nginx-status-page.nix", [["Address", 47, 25]]);
-const pos$22 = nix.positions(here + "/nginx-status-page.nix", [["name", 46, 11], ["networkConfig", 47, 11]]);
-const pos$23 = nix.positions(here + "/nginx-status-page.nix", [["01-eth1", 45, 34]]);
-const pos$24 = nix.positions(here + "/nginx-status-page.nix", [["networks", 45, 25]]);
-const pos$25 = nix.positions(here + "/nginx-status-page.nix", [["network", 45, 17]]);
-const pos$26 = nix.positions(here + "/nginx-status-page.nix", [["systemPackages", 50, 21]]);
-const pos$27 = nix.positions(here + "/nginx-status-page.nix", [["virtualisation", 37, 9], ["networking", 39, 9], ["systemd", 45, 9], ["environment", 50, 9]]);
-const pos$28 = nix.positions(here + "/nginx-status-page.nix", [["webserver", 9, 5], ["client", 34, 5]]);
 const formals$4 = { args: { nodes: false }, ellipsis: true };
-const pos$29 = nix.positions(here + "/nginx-status-page.nix", [["name", 3, 3], ["meta", 4, 3], ["nodes", 8, 3], ["testScript", 54, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   return {
-    [nix.POS]: pos$29,
+    [nix.POS]: $pos[28],
     name: "nginx-status-page",
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
       return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "h7x4"))]),
       };
     })()),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$28,
+      [nix.POS]: $pos[27],
       webserver: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          [nix.POS]: pos$17,
-          virtualisation: nix.thunk(() => ({ [nix.POS]: pos$2, vlans: nix.thunk(() => [1n]) })),
+          [nix.POS]: $pos[16],
+          virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[1], vlans: nix.thunk(() => [1n]) })),
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             useNetworkd: true,
             useDHCP: false,
-            firewall: nix.thunk(() => ({ [nix.POS]: pos$3, enable: false })),
+            firewall: nix.thunk(() => ({ [nix.POS]: $pos[2], enable: false })),
           })),
           systemd: nix.thunk(() => ({
-            [nix.POS]: pos$9,
+            [nix.POS]: $pos[8],
             network: nix.thunk(() => ({
-              [nix.POS]: pos$8,
+              [nix.POS]: $pos[7],
               networks: nix.thunk(() => ({
-                [nix.POS]: pos$7,
+                [nix.POS]: $pos[6],
                 "01-eth1": nix.thunk(() => ({
-                  [nix.POS]: pos$6,
+                  [nix.POS]: $pos[5],
                   name: "eth1",
-                  networkConfig: nix.thunk(() => ({ [nix.POS]: pos$5, Address: "10.0.0.1/24" })),
+                  networkConfig: nix.thunk(() => ({ [nix.POS]: $pos[4], Address: "10.0.0.1/24" })),
                 })),
               })),
             })),
           })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$15,
+            [nix.POS]: $pos[14],
             nginx: nix.thunk(() => ({
-              [nix.POS]: pos$14,
+              [nix.POS]: $pos[13],
               enable: true,
               statusPage: true,
               virtualHosts: nix.thunk(() => ({
-                [nix.POS]: pos$13,
+                [nix.POS]: $pos[12],
                 localhost: nix.thunk(() => ({
-                  [nix.POS]: pos$12,
+                  [nix.POS]: $pos[11],
                   locations: nix.thunk(() => ({
-                    [nix.POS]: pos$11,
-                    "/index.html": nix.thunk(() => ({ [nix.POS]: pos$10, return: "200 'hello world\n'" })),
+                    [nix.POS]: $pos[10],
+                    "/index.html": nix.thunk(() => ({ [nix.POS]: $pos[9], return: "200 'hello world\n'" })),
                   })),
                 })),
               })),
             })),
           })),
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$16,
+            [nix.POS]: $pos[15],
             systemPackages: nix.thunk(() => (() => {
               const w_1 = nix.withScope(pkgs, null);
               return [nix.thunk(() => nix.lookup(w_1, "curl"))];
@@ -106,30 +78,30 @@ export default nix.lambda((args) => (() => {
       client: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$3);
         return {
-          [nix.POS]: pos$27,
-          virtualisation: nix.thunk(() => ({ [nix.POS]: pos$18, vlans: nix.thunk(() => [1n]) })),
+          [nix.POS]: $pos[26],
+          virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[17], vlans: nix.thunk(() => [1n]) })),
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$20,
+            [nix.POS]: $pos[19],
             useNetworkd: true,
             useDHCP: false,
-            firewall: nix.thunk(() => ({ [nix.POS]: pos$19, enable: false })),
+            firewall: nix.thunk(() => ({ [nix.POS]: $pos[18], enable: false })),
           })),
           systemd: nix.thunk(() => ({
-            [nix.POS]: pos$25,
+            [nix.POS]: $pos[24],
             network: nix.thunk(() => ({
-              [nix.POS]: pos$24,
+              [nix.POS]: $pos[23],
               networks: nix.thunk(() => ({
-                [nix.POS]: pos$23,
+                [nix.POS]: $pos[22],
                 "01-eth1": nix.thunk(() => ({
-                  [nix.POS]: pos$22,
+                  [nix.POS]: $pos[21],
                   name: "eth1",
-                  networkConfig: nix.thunk(() => ({ [nix.POS]: pos$21, Address: "10.0.0.2/24" })),
+                  networkConfig: nix.thunk(() => ({ [nix.POS]: $pos[20], Address: "10.0.0.2/24" })),
                 })),
               })),
             })),
           })),
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$26,
+            [nix.POS]: $pos[25],
             systemPackages: nix.thunk(() => (() => {
               const w_1 = nix.withScope(pkgs, null);
               return [nix.thunk(() => nix.lookup(w_1, "curl"))];

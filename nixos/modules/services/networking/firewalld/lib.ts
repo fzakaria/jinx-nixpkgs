@@ -2,17 +2,9 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/lib.nix", [[["type", 21, 33]], [["type", 22, 31]], [["from", 21, 15], ["to", 22, 15]], [["options", 20, 13]], [["type", 17, 7], ["description", 27, 7], ["apply", 28, 7]], [["type", 32, 5], ["description", 38, 5]], [["port", 51, 7], ["protocol", 52, 7]], [["options", 50, 5]], [["mkPortOption", 42, 11], ["protocolOption", 43, 11], ["toXmlAttrs", 45, 3], ["mkXmlAttr", 46, 3], ["filterNullAttrs", 47, 3], ["portProtocolOptions", 49, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: false };
 const formals$2 = { args: { optional: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/lib.nix", [["type", 21, 33]]);
-const pos$2 = nix.positions(here + "/lib.nix", [["type", 22, 31]]);
-const pos$3 = nix.positions(here + "/lib.nix", [["from", 21, 15], ["to", 22, 15]]);
-const pos$4 = nix.positions(here + "/lib.nix", [["options", 20, 13]]);
-const pos$5 = nix.positions(here + "/lib.nix", [["type", 17, 7], ["description", 27, 7], ["apply", 28, 7]]);
-const pos$6 = nix.positions(here + "/lib.nix", [["type", 32, 5], ["description", 38, 5]]);
-const pos$7 = nix.positions(here + "/lib.nix", [["port", 51, 7], ["protocol", 52, 7]]);
-const pos$8 = nix.positions(here + "/lib.nix", [["options", 50, 5]]);
-const pos$9 = nix.positions(here + "/lib.nix", [["mkPortOption", 42, 11], ["protocolOption", 43, 11], ["toXmlAttrs", 45, 3], ["mkXmlAttr", 46, 3], ["filterNullAttrs", 47, 3], ["portProtocolOptions", 49, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,14 +20,14 @@ export default nix.lambda((args) => (() => {
     const $_1 = nix.formals(args_1, formals$2);
     const optional = nix.argOr($_1, "optional", () => false);
     return nix.app(mkOption, nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         type: nix.thunk(() => (() => {
           const type = nix.thunk(() => nix.app(either, port, nix.thunk(() => nix.app(submodule, nix.thunk(() => ({
-                [nix.POS]: pos$4,
+                [nix.POS]: $pos[3],
                 options: nix.thunk(() => ({
-                  [nix.POS]: pos$3,
-                  from: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({ [nix.POS]: pos$1, type: port })))),
-                  to: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({ [nix.POS]: pos$2, type: port })))),
+                  [nix.POS]: $pos[2],
+                  from: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({ [nix.POS]: $pos[0], type: port })))),
+                  to: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({ [nix.POS]: $pos[1], type: port })))),
                 })),
               }))))));
           return (nix.asBool(optional) ? nix.app(nullOr, type) : nix.force(type));
@@ -45,21 +37,21 @@ export default nix.lambda((args) => (() => {
       })));
   })(), formals$2);
   const protocolOption = nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       type: nix.thunk(() => nix.app(enum$, nix.thunk(() => ["tcp", "udp", "sctp", "dccp"]))),
       description: "",
     }))));
   return {
-    [nix.POS]: pos$9,
+    [nix.POS]: $pos[8],
     mkPortOption: mkPortOption,
     protocolOption: protocolOption,
     toXmlAttrs: nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs'"), (name) => nix.app(nix.sel(lib, "nameValuePair"), nix.thunk(() => nix.add("@", name))))),
     mkXmlAttr: (name) => (value) => nix.attrsDyn({}, [[nix.str`@${name}`, value]]),
     filterNullAttrs: nix.thunk(() => nix.app(nix.sel(lib, "filterAttrsRecursive"), (_) => (value) => !nix.eq(value, null))),
     portProtocolOptions: nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       options: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         port: nix.thunk(() => nix.app(mkPortOption, nix.thunk(() => ({})))),
         protocol: protocolOption,
       })),

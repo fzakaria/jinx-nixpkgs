@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 13, 5], ["repo", 14, 5], ["tag", 15, 5], ["hash", 16, 5]], [["updateScript", 25, 12]], [["changelog", 28, 5], ["description", 29, 5], ["homepage", 30, 5], ["license", 31, 5], ["mainProgram", 32, 5], ["maintainers", 33, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["composerLock", 19, 3], ["vendorHash", 20, 3], ["doInstallCheck", 22, 3], ["nativeInstallCheckInputs", 23, 3], ["passthru", 25, 3], ["meta", 27, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, php: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 13, 5], ["repo", 14, 5], ["tag", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["updateScript", 25, 12]]);
-const pos$3 = nix.positions(here + "/default.nix", [["changelog", 28, 5], ["description", 29, 5], ["homepage", 30, 5], ["license", 31, 5], ["mainProgram", 32, 5], ["maintainers", 33, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["composerLock", 19, 3], ["vendorHash", 20, 3], ["doInstallCheck", 22, 3], ["nativeInstallCheckInputs", 23, 3], ["passthru", 25, 3], ["meta", 27, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const php = nix.arg($, "php");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(php, "buildComposerProject2"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "php-cs-fixer",
       version: "3.95.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "PHP-CS-Fixer",
           repo: "PHP-CS-Fixer",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -29,9 +26,9 @@ export default nix.lambda((args) => (() => {
       vendorHash: "sha256-VIwZQutV2qlz0kZDQCncEM8Wa2zT9o+oM9O+FmhiTas=",
       doInstallCheck: true,
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[1], updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         changelog: nix.thunk(() => nix.str`https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "Tool to automatically fix PHP coding standards issues",
         homepage: "https://cs.symfony.com/",

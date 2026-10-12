@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 24, 9], ["hash", 25, 9]], [["url", 29, 9], ["hash", 30, 9]], [["description", 67, 5], ["homepage", 68, 5], ["license", 69, 5], ["platforms", 70, 5], ["maintainers", 71, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 37, 3], ["dontConfigure", 47, 3], ["dontBuild", 49, 3], ["installPhase", 51, 3], ["dontStrip", 64, 3], ["meta", 66, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, autoPatchelfHook: false, "alsa-lib": false, "libxcrypt-legacy": false, "lttng-ust_2_12": false, libxtst: false, libxrender: false, libxext: false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 24, 9], ["hash", 25, 9]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 29, 9], ["hash", 30, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 67, 5], ["homepage", 68, 5], ["license", 69, 5], ["platforms", 70, 5], ["maintainers", 71, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 37, 3], ["dontConfigure", 47, 3], ["dontBuild", 49, 3], ["installPhase", 51, 3], ["dontStrip", 64, 3], ["meta", 66, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,11 +22,11 @@ export default nix.lambda((args) => (() => {
       const pname = "cov-build";
       const version = "2022.12.2";
       const src = nix.thunk(() => (nix.asBool(nix.eq(nix.sel(stdenv, "hostPlatform", "system"), "i686-linux")) ? nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://archive.org/download/cov-analysis-linux-${version}.tar/cov-analysis-linux-${version}.tar.gz`),
           hash: "sha256-Jr9bMUo9GRp+dgoAPqKxaTqWYWh4djGArdG9ukUK+ZY=",
         }))) : (nix.asBool(nix.eq(nix.sel(stdenv, "hostPlatform", "system"), "x86_64-linux")) ? nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: nix.thunk(() => nix.str`https://archive.org/download/cov-analysis-linux64-${version}.tar/cov-analysis-linux64-${version}.tar.gz`),
           hash: "sha256-CyNKILJXlDMOCXbZZF4r/knz0orRx32oSj+Kpq/nxXQ=",
         }))) : nix.builtins.throw(nix.thunk(() => nix.str`Unsupported platform '${nix.sel(stdenv, "hostPlatform", "system")}'`)))));
@@ -48,7 +45,7 @@ export default nix.lambda((args) => (() => {
       const installPhase = "mkdir -p $out/bin $out/libexec\nmv * $out/libexec\nfor x in cov-build cov-capture cov-configure cov-emit cov-emit-java \\\n  cov-export-cva cov-extract-scm cov-help cov-import-scm cov-link \\\n  cov-internal-clang cov-internal-emit-clang cov-internal-nm \\\n  cov-internal-emit-java-bytecode cov-internal-reduce cov-translate \\\n  cov-preprocess cov-internal-pid-to-db cov-manage-emit \\\n  cov-manage-history; do\n    ln -s $out/libexec/bin/$x $out/bin/$x;\ndone\n";
       const dontStrip = true;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Coverity Scan build tools",
         homepage: "https://scan.coverity.com",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfreeRedistributable")),
@@ -56,7 +53,7 @@ export default nix.lambda((args) => (() => {
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "thoughtpolice"))]),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

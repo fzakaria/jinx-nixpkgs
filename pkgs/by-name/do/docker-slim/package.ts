@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]], [["CGO_ENABLED", 21, 7]], [["description", 48, 5], ["homepage", 49, 5], ["changelog", 50, 5], ["license", 51, 5], ["maintainers", 52, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["vendorHash", 19, 3], ["env", 21, 3], ["subPackages", 23, 3], ["nativeBuildInputs", 28, 3], ["preBuild", 30, 3], ["ldflags", 34, 3], ["postInstall", 43, 3], ["meta", 47, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitHub: false, makeBinaryWrapper: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["CGO_ENABLED", 21, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 48, 5], ["homepage", 49, 5], ["changelog", 50, 5], ["license", 51, 5], ["maintainers", 52, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["vendorHash", 19, 3], ["env", 21, 3], ["subPackages", 23, 3], ["nativeBuildInputs", 28, 3], ["preBuild", 30, 3], ["ldflags", 34, 3], ["postInstall", 43, 3], ["meta", 47, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,18 +12,18 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const makeBinaryWrapper = nix.arg($, "makeBinaryWrapper");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "docker-slim",
       version: "1.40.11",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "slimtoolkit",
           repo: "slim",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-X+1euWp4W53axbiBpL82bUPfod/JNhGVGWgOqKyhz6A=",
         })))),
       vendorHash: null,
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, CGO_ENABLED: 0n })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], CGO_ENABLED: 0n })),
       subPackages: nix.thunk(() => ["cmd/slim", "cmd/slim-sensor"]),
       nativeBuildInputs: nix.thunk(() => [makeBinaryWrapper]),
       preBuild: "go generate ./...\n",
@@ -38,7 +35,7 @@ export default nix.lambda((args) => (() => {
       ]),
       postInstall: "wrapProgram \"$out/bin/slim\" --add-flags '--state-path \"$(pwd)\"'\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Minify and secure Docker containers",
         homepage: "https://slimtoolkit.org/",
         changelog: nix.thunk(() => nix.str`https://github.com/slimtoolkit/slim/raw/${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

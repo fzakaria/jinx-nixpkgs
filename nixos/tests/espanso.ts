@@ -2,84 +2,45 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/espanso.nix", [[["maintainers", 7, 12]], [["enable", 15, 32]], [["espanso", 15, 24]], [["mode", 24, 76], ["user", 24, 81], ["group", 24, 86]], [["d", 24, 62]], [["mode", 25, 46], ["user", 25, 51], ["group", 25, 56]], [["d", 25, 32]], [["mode", 26, 53], ["user", 26, 58], ["group", 26, 63]], [["d", 26, 39]], [["mode", 27, 52], ["user", 27, 57], ["group", 27, 62]], [["d", 27, 38]], [["mode", 29, 21], ["user", 30, 29], ["group", 30, 34]], [["f", 28, 51]], [["trigger", 38, 27], ["replace", 39, 27]], [["matches", 36, 23]], [["mode", 33, 21], ["user", 34, 29], ["group", 34, 34], ["argument", 35, 21]], [["f", 32, 47]], [["espanso", 16, 41]], [["settings", 16, 32]], [["tmpfiles", 16, 23]], [["imports", 14, 15], ["services", 15, 15], ["systemd", 16, 15]], [["imports", 48, 11]], [["machine", 9, 13]], [["name", 6, 7], ["meta", 7, 7], ["nodes", 9, 7], ["enableOCR", 54, 7], ["testScript", 55, 7]], [["user", 66, 38]], [["auto", 66, 33]], [["displayManager", 66, 18]], [["extraGroups", 67, 23]], [["alice", 67, 17]], [["users", 67, 11]], [["imports", 65, 5], ["test-support", 66, 5], ["users", 67, 5]], [["enable", 72, 21]], [["sway", 72, 16]], [["user", 77, 15], ["command", 78, 15]], [["initial_session", 84, 23], ["default_session", 85, 15]], [["enable", 82, 13], ["settings", 83, 13]], [["package", 88, 17]], [["greetd", 74, 9], ["espanso", 88, 9]], [["programs", 72, 7], ["services", 73, 7]], [["x11", 64, 3], ["wayland", 69, 3]]]);
 const formals$1 = { args: { lib: false, runTest: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/espanso.nix", [["maintainers", 7, 12]]);
 const formals$2 = { args: { pkgs: false, config: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/espanso.nix", [["enable", 15, 32]]);
-const pos$3 = nix.positions(here + "/espanso.nix", [["espanso", 15, 24]]);
-const pos$4 = nix.positions(here + "/espanso.nix", [["mode", 24, 76], ["user", 24, 81], ["group", 24, 86]]);
-const pos$5 = nix.positions(here + "/espanso.nix", [["d", 24, 62]]);
-const pos$6 = nix.positions(here + "/espanso.nix", [["mode", 25, 46], ["user", 25, 51], ["group", 25, 56]]);
-const pos$7 = nix.positions(here + "/espanso.nix", [["d", 25, 32]]);
-const pos$8 = nix.positions(here + "/espanso.nix", [["mode", 26, 53], ["user", 26, 58], ["group", 26, 63]]);
-const pos$9 = nix.positions(here + "/espanso.nix", [["d", 26, 39]]);
-const pos$10 = nix.positions(here + "/espanso.nix", [["mode", 27, 52], ["user", 27, 57], ["group", 27, 62]]);
-const pos$11 = nix.positions(here + "/espanso.nix", [["d", 27, 38]]);
-const pos$12 = nix.positions(here + "/espanso.nix", [["mode", 29, 21], ["user", 30, 29], ["group", 30, 34]]);
-const pos$13 = nix.positions(here + "/espanso.nix", [["f", 28, 51]]);
-const pos$14 = nix.positions(here + "/espanso.nix", [["trigger", 38, 27], ["replace", 39, 27]]);
-const pos$15 = nix.positions(here + "/espanso.nix", [["matches", 36, 23]]);
-const pos$16 = nix.positions(here + "/espanso.nix", [["mode", 33, 21], ["user", 34, 29], ["group", 34, 34], ["argument", 35, 21]]);
-const pos$17 = nix.positions(here + "/espanso.nix", [["f", 32, 47]]);
-const pos$18 = nix.positions(here + "/espanso.nix", [["espanso", 16, 41]]);
-const pos$19 = nix.positions(here + "/espanso.nix", [["settings", 16, 32]]);
-const pos$20 = nix.positions(here + "/espanso.nix", [["tmpfiles", 16, 23]]);
-const pos$21 = nix.positions(here + "/espanso.nix", [["imports", 14, 15], ["services", 15, 15], ["systemd", 16, 15]]);
-const pos$22 = nix.positions(here + "/espanso.nix", [["imports", 48, 11]]);
-const pos$23 = nix.positions(here + "/espanso.nix", [["machine", 9, 13]]);
-const pos$24 = nix.positions(here + "/espanso.nix", [["name", 6, 7], ["meta", 7, 7], ["nodes", 9, 7], ["enableOCR", 54, 7], ["testScript", 55, 7]]);
-const pos$25 = nix.positions(here + "/espanso.nix", [["user", 66, 38]]);
-const pos$26 = nix.positions(here + "/espanso.nix", [["auto", 66, 33]]);
-const pos$27 = nix.positions(here + "/espanso.nix", [["displayManager", 66, 18]]);
-const pos$28 = nix.positions(here + "/espanso.nix", [["extraGroups", 67, 23]]);
-const pos$29 = nix.positions(here + "/espanso.nix", [["alice", 67, 17]]);
-const pos$30 = nix.positions(here + "/espanso.nix", [["users", 67, 11]]);
-const pos$31 = nix.positions(here + "/espanso.nix", [["imports", 65, 5], ["test-support", 66, 5], ["users", 67, 5]]);
 const formals$3 = { args: { pkgs: false, config: false }, ellipsis: true };
-const pos$32 = nix.positions(here + "/espanso.nix", [["enable", 72, 21]]);
-const pos$33 = nix.positions(here + "/espanso.nix", [["sway", 72, 16]]);
-const pos$34 = nix.positions(here + "/espanso.nix", [["user", 77, 15], ["command", 78, 15]]);
-const pos$35 = nix.positions(here + "/espanso.nix", [["initial_session", 84, 23], ["default_session", 85, 15]]);
-const pos$36 = nix.positions(here + "/espanso.nix", [["enable", 82, 13], ["settings", 83, 13]]);
-const pos$37 = nix.positions(here + "/espanso.nix", [["package", 88, 17]]);
-const pos$38 = nix.positions(here + "/espanso.nix", [["greetd", 74, 9], ["espanso", 88, 9]]);
-const pos$39 = nix.positions(here + "/espanso.nix", [["programs", 72, 7], ["services", 73, 7]]);
-const pos$40 = nix.positions(here + "/espanso.nix", [["x11", 64, 3], ["wayland", 69, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const runTest = nix.arg($, "runTest");
   const makeTest = (conf) => nix.app(runTest, nix.thunk(() => ({
-      [nix.POS]: pos$24,
+      [nix.POS]: $pos[23],
       name: "espanso",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
           return [nix.thunk(() => nix.lookup(w, "n8henrie"))];
         })()),
       })),
       nodes: nix.thunk(() => ({
-        [nix.POS]: pos$23,
+        [nix.POS]: $pos[22],
         machine: nix.thunk(() => (() => {
           const base = nix.lambda((args_1) => (() => {
             const $_1 = nix.formals(args_1, formals$2);
             const pkgs = nix.arg($_1, "pkgs");
             const config = nix.arg($_1, "config");
             return {
-              [nix.POS]: pos$21,
+              [nix.POS]: $pos[20],
               imports: nix.thunk(() => [nix.path(here, "./common/user-account.nix")]),
               services: nix.thunk(() => ({
-                [nix.POS]: pos$3,
-                espanso: nix.thunk(() => ({ [nix.POS]: pos$2, enable: true })),
+                [nix.POS]: $pos[2],
+                espanso: nix.thunk(() => ({ [nix.POS]: $pos[1], enable: true })),
               })),
               systemd: nix.thunk(() => ({
-                [nix.POS]: pos$20,
+                [nix.POS]: $pos[19],
                 tmpfiles: nix.thunk(() => ({
-                  [nix.POS]: pos$19,
+                  [nix.POS]: $pos[18],
                   settings: nix.thunk(() => ({
-                    [nix.POS]: pos$18,
+                    [nix.POS]: $pos[17],
                     espanso: nix.thunk(() => (() => {
                       const confdir = nix.thunk(() => nix.str`${nix.sel(config, "users", "users", "alice", "home")}/.config/espanso`);
                       const mode = "0755";
@@ -87,36 +48,36 @@ export default nix.lambda((args) => (() => {
                       const group = nix.thunk(() => nix.sel(config, "users", "users", "alice", "group"));
                       return nix.attrsDyn({}, [
                         [nix.str`${nix.sel(config, "users", "users", "alice", "home")}/.config`, nix.thunk(() => ({
-                          [nix.POS]: pos$5,
-                          d: nix.thunk(() => ({ [nix.POS]: pos$4, mode: mode, user: user, group: group })),
+                          [nix.POS]: $pos[4],
+                          d: nix.thunk(() => ({ [nix.POS]: $pos[3], mode: mode, user: user, group: group })),
                         }))],
                         [nix.str`${confdir}`, nix.thunk(() => ({
-                          [nix.POS]: pos$7,
-                          d: nix.thunk(() => ({ [nix.POS]: pos$6, mode: mode, user: user, group: group })),
+                          [nix.POS]: $pos[6],
+                          d: nix.thunk(() => ({ [nix.POS]: $pos[5], mode: mode, user: user, group: group })),
                         }))],
                         [nix.str`${confdir}/config`, nix.thunk(() => ({
-                          [nix.POS]: pos$9,
-                          d: nix.thunk(() => ({ [nix.POS]: pos$8, mode: mode, user: user, group: group })),
+                          [nix.POS]: $pos[8],
+                          d: nix.thunk(() => ({ [nix.POS]: $pos[7], mode: mode, user: user, group: group })),
                         }))],
                         [nix.str`${confdir}/match`, nix.thunk(() => ({
-                          [nix.POS]: pos$11,
-                          d: nix.thunk(() => ({ [nix.POS]: pos$10, mode: mode, user: user, group: group })),
+                          [nix.POS]: $pos[10],
+                          d: nix.thunk(() => ({ [nix.POS]: $pos[9], mode: mode, user: user, group: group })),
                         }))],
                         [nix.str`${confdir}/config/default.yml`, nix.thunk(() => ({
-                          [nix.POS]: pos$13,
-                          f: nix.thunk(() => ({ [nix.POS]: pos$12, mode: "0644", user: user, group: group })),
+                          [nix.POS]: $pos[12],
+                          f: nix.thunk(() => ({ [nix.POS]: $pos[11], mode: "0644", user: user, group: group })),
                         }))],
                         [nix.str`${confdir}/match/base.yml`, nix.thunk(() => ({
-                          [nix.POS]: pos$17,
+                          [nix.POS]: $pos[16],
                           f: nix.thunk(() => ({
-                            [nix.POS]: pos$16,
+                            [nix.POS]: $pos[15],
                             mode: "0644",
                             user: user,
                             group: group,
                             argument: nix.thunk(() => nix.app(nix.sel(lib, "toJSON"), nix.thunk(() => ({
-                                [nix.POS]: pos$15,
+                                [nix.POS]: $pos[14],
                                 matches: nix.thunk(() => [
-                                  nix.thunk(() => ({ [nix.POS]: pos$14, trigger: ":nixostest", replace: "My NixOS Test Passed!" })),
+                                  nix.thunk(() => ({ [nix.POS]: $pos[13], trigger: ":nixostest", replace: "My NixOS Test Passed!" })),
                                 ]),
                               })))),
                           })),
@@ -128,29 +89,29 @@ export default nix.lambda((args) => (() => {
               })),
             };
           })(), formals$2);
-          return { [nix.POS]: pos$22, imports: nix.thunk(() => [base, conf]) };
+          return { [nix.POS]: $pos[21], imports: nix.thunk(() => [base, conf]) };
         })()),
       })),
       enableOCR: true,
       testScript: "machine.wait_for_unit(\"graphical.target\")\nmachine.wait_for_text(\"Espanso is running!\")\nmachine.send_chars(\":nixostest\")\nmachine.wait_for_text(\"My NixOS Test Passed!\")\n",
     })));
   return {
-    [nix.POS]: pos$40,
+    [nix.POS]: $pos[39],
     x11: nix.thunk(() => nix.app(makeTest, nix.thunk(() => ({
-        [nix.POS]: pos$31,
+        [nix.POS]: $pos[30],
         imports: nix.thunk(() => [nix.path(here, "./common/x11.nix")]),
         "test-support": nix.thunk(() => ({
-          [nix.POS]: pos$27,
+          [nix.POS]: $pos[26],
           displayManager: nix.thunk(() => ({
-            [nix.POS]: pos$26,
-            auto: nix.thunk(() => ({ [nix.POS]: pos$25, user: "alice" })),
+            [nix.POS]: $pos[25],
+            auto: nix.thunk(() => ({ [nix.POS]: $pos[24], user: "alice" })),
           })),
         })),
         users: nix.thunk(() => ({
-          [nix.POS]: pos$30,
+          [nix.POS]: $pos[29],
           users: nix.thunk(() => ({
-            [nix.POS]: pos$29,
-            alice: nix.thunk(() => ({ [nix.POS]: pos$28, extraGroups: nix.thunk(() => ["input"]) })),
+            [nix.POS]: $pos[28],
+            alice: nix.thunk(() => ({ [nix.POS]: $pos[27], extraGroups: nix.thunk(() => ["input"]) })),
           })),
         })),
       })))),
@@ -159,31 +120,31 @@ export default nix.lambda((args) => (() => {
         const pkgs = nix.arg($_1, "pkgs");
         const config = nix.arg($_1, "config");
         return {
-          [nix.POS]: pos$39,
+          [nix.POS]: $pos[38],
           programs: nix.thunk(() => ({
-            [nix.POS]: pos$33,
-            sway: nix.thunk(() => ({ [nix.POS]: pos$32, enable: true })),
+            [nix.POS]: $pos[32],
+            sway: nix.thunk(() => ({ [nix.POS]: $pos[31], enable: true })),
           })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$38,
+            [nix.POS]: $pos[37],
             greetd: nix.thunk(() => (() => {
               const initial_session = nix.thunk(() => ({
-                [nix.POS]: pos$34,
+                [nix.POS]: $pos[33],
                 user: nix.thunk(() => nix.sel(config, "users", "users", "alice", "name")),
                 command: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgs, "sway")))),
               }));
               return {
-                [nix.POS]: pos$36,
+                [nix.POS]: $pos[35],
                 enable: true,
                 settings: nix.thunk(() => ({
-                  [nix.POS]: pos$35,
+                  [nix.POS]: $pos[34],
                   initial_session: initial_session,
                   default_session: initial_session,
                 })),
               };
             })()),
             espanso: nix.thunk(() => ({
-              [nix.POS]: pos$37,
+              [nix.POS]: $pos[36],
               package: nix.thunk(() => nix.sel(pkgs, "espanso-wayland")),
             })),
           })),

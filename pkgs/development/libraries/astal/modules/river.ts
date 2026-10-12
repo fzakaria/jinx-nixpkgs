@@ -2,9 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/river.nix", [[["description", 14, 8]], [["name", 8, 3], ["nativeBuildInputs", 9, 3], ["buildInputs", 10, 3], ["meta", 14, 3], ["postUnpack", 16, 3]]]);
 const formals$1 = { args: { buildAstalModule: false, "json-glib": false, wl: false, "wl-vapi-gen": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/river.nix", [["description", 14, 8]]);
-const pos$2 = nix.positions(here + "/river.nix", [["name", 8, 3], ["nativeBuildInputs", 9, 3], ["buildInputs", 10, 3], ["meta", 14, 3], ["postUnpack", 16, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const wl = nix.arg($, "wl");
   const wl_vapi_gen = nix.arg($, "wl-vapi-gen");
   return nix.app(buildAstalModule, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       name: "river",
       nativeBuildInputs: nix.thunk(() => [wl_vapi_gen]),
       buildInputs: nix.thunk(() => [json_glib, wl]),
-      meta: nix.thunk(() => ({ [nix.POS]: pos$1, description: "Astal module for River using IPC" })),
+      meta: nix.thunk(() => ({ [nix.POS]: $pos[0], description: "Astal module for River using IPC" })),
       postUnpack: "rm -rf $sourceRoot/subprojects\nmkdir -p $sourceRoot/subprojects\ncp -r --remove-destination $src/lib/wayland-glib $sourceRoot/subprojects/wayland-glib\n",
     })));
 })(), formals$1);

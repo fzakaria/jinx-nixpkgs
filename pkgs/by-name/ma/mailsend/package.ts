@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]], [["name", 31, 7], ["url", 32, 7], ["hash", 33, 7]], [["name", 38, 7], ["url", 39, 7], ["hash", 40, 7]], [["NIX_CFLAGS_COMPILE", 44, 7]], [["description", 55, 5], ["license", 56, 5], ["maintainers", 57, 5], ["platforms", 58, 5], ["homepage", 59, 5], ["downloadPage", 60, 5], ["mainProgram", 61, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["buildInputs", 21, 3], ["configureFlags", 24, 3], ["patches", 28, 3], ["env", 44, 3], ["enableParallelBuilding", 46, 3], ["nativeInstallCheckInputs", 48, 3], ["doInstallCheck", 51, 3], ["versionCheckProgramArg", 52, 3], ["meta", 54, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch: false, openssl: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 31, 7], ["url", 32, 7], ["hash", 33, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 38, 7], ["url", 39, 7], ["hash", 40, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 44, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 55, 5], ["license", 56, 5], ["maintainers", 57, 5], ["platforms", 58, 5], ["homepage", 59, 5], ["downloadPage", 60, 5], ["mainProgram", 61, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["buildInputs", 21, 3], ["configureFlags", 24, 3], ["patches", 28, 3], ["env", 44, 3], ["enableParallelBuilding", 46, 3], ["nativeInstallCheckInputs", 48, 3], ["doInstallCheck", 51, 3], ["versionCheckProgramArg", 52, 3], ["meta", 54, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const openssl = nix.arg($, "openssl");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "mailsend",
       version: "1.19",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "muquit",
           repo: "mailsend",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -33,20 +28,20 @@ export default nix.lambda((args) => (() => {
       configureFlags: nix.thunk(() => [nix.thunk(() => nix.str`--with-openssl=${nix.sel(openssl, "dev")}`)]),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "openssl-1-1-hmac.patch",
             url: "https://github.com/muquit/mailsend/commit/960df6d7a11eef90128dc2ae660866b27f0e4336.patch",
             hash: "sha256-Gy4pZMYoUXcjMatw5BSk+IUKXjgpLCwPXtfC++WPKAM=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "parallel-install.patch",
             url: "https://github.com/muquit/mailsend/commit/acd4ebedbce0e4af3c7b6632f905f73e642ca38c.patch",
             hash: "sha256-p8tNnkU6cMopuP63kVtRbD9aenhzL1EAXlvvFh4fucE=",
           })))),
       ]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         NIX_CFLAGS_COMPILE: "-Wno-error=implicit-function-declaration",
       })),
       enableParallelBuilding: true,
@@ -54,7 +49,7 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       versionCheckProgramArg: "-V",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "CLI email sending tool",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
         maintainers: nix.thunk(() => (() => {

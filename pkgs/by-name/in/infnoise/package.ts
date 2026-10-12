@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["sha256", 19, 5]], [["url", 25, 7], ["sha256", 26, 7]], [["GIT_COMMIT", 31, 5], ["GIT_VERSION", 32, 5], ["GIT_DATE", 33, 5]], [["package", 60, 43]], [["version", 60, 11]], [["tests", 60, 5]], [["homepage", 64, 5], ["description", 65, 5], ["longDescription", 66, 5], ["license", 70, 5], ["maintainers", 71, 5], ["platforms", 75, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["patches", 22, 3], ["env", 30, 3], ["buildInputs", 36, 3], ["nativeBuildInputs", 38, 3], ["doInstallCheck", 42, 3], ["makefile", 44, 3], ["makeFlags", 45, 3], ["postPatch", 46, 3], ["postInstall", 51, 3], ["passthru", 59, 3], ["meta", 63, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch: false, libftdi: false, testers: false, udevCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["sha256", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 25, 7], ["sha256", 26, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["GIT_COMMIT", 31, 5], ["GIT_VERSION", 32, 5], ["GIT_DATE", 33, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["package", 60, 43]]);
-const pos$5 = nix.positions(here + "/package.nix", [["version", 60, 11]]);
-const pos$6 = nix.positions(here + "/package.nix", [["tests", 60, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["homepage", 64, 5], ["description", 65, 5], ["longDescription", 66, 5], ["license", 70, 5], ["maintainers", 71, 5], ["platforms", 75, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["patches", 22, 3], ["env", 30, 3], ["buildInputs", 36, 3], ["nativeBuildInputs", 38, 3], ["doInstallCheck", 42, 3], ["makefile", 44, 3], ["makeFlags", 45, 3], ["postPatch", 46, 3], ["postInstall", 51, 3], ["passthru", 59, 3], ["meta", 63, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const udevCheckHook = nix.arg($, "udevCheckHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "infnoise",
       version: "0.3.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "leetronics",
           repo: "infnoise",
           rev: "19bb69894724d87b32b7b9b86022bb4b26c919f8",
@@ -34,13 +27,13 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/leetronics/infnoise/commit/04d52a975bf78d2aff2bb4c176c286715e1948ba.patch",
             sha256: "sha256-vtPAR6gCyny9UP+U6/7X8CPEUuMDl7RIyICIwiaWyfc=",
           })))),
       ]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         GIT_COMMIT: nix.thunk(() => nix.sel(finalAttrs, "src", "rev")),
         GIT_VERSION: nix.thunk(() => nix.sel(finalAttrs, "version")),
         GIT_DATE: "2023-02-14",
@@ -53,17 +46,17 @@ export default nix.lambda((args) => (() => {
       postPatch: "cd software\nsubstituteInPlace init_scripts/infnoise.service --replace \"/usr/local\" \"$out\"\n",
       postInstall: "make -C tools\n# 2e6cfbe made findlongest executable, but it's a C file\nchmod -x tools/*.c\nfind ./tools/ -executable -type f -exec \\\n  sh -c \"install -Dm755 {} $out/bin/infnoise-\\$(basename {})\" \\;\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         homepage: "https://github.com/leetronics/infnoise",
         description: "Driver for the Infinite Noise TRNG",
         longDescription: "The Infinite Noise TRNG is a USB key hardware true random number generator.\nIt can either provide rng for userland applications, or provide rng for the OS entropy.\n",

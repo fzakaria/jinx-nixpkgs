@@ -2,17 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["outputHash", 43, 13]], [["outputHash", 46, 13], ["outputHashAlgo", 47, 13]], [["nodejs-slim", 53, 24]], [["fetcherVersion", 227, 21], ["serve", 228, 13]], [["name", 77, 11], ["nativeBuildInputs", 79, 11], ["impureEnvVars", 93, 11], ["installPhase", 96, 11], ["fixupPhase", 166, 11], ["passthru", 226, 11], ["dontConfigure", 231, 11], ["dontBuild", 232, 11], ["outputHashMode", 233, 11]], [["npmArch", 248, 7], ["npmPlatform", 249, 7]], [["license", 251, 10]], [["name", 241, 5], ["propagatedBuildInputs", 242, 5], ["substitutions", 247, 5], ["meta", 251, 5]], [["fetchPnpmDeps", 25, 3], ["pnpmConfigHook", 240, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, callPackage: false, jq: false, moreutils: false, cacert: false, makeSetupHook: false, pnpm: false, "pnpm-fixup-state-db": false, sqlite: false, writableTmpDirAsHomeHook: false, yq: false, zstd: false }, ellipsis: false };
 const formals$2 = { args: { hash: true, pname: false, pnpm: true, pnpmWorkspaces: true, prePnpmInstall: true, pnpmInstallFlags: true, fetcherVersion: true }, ellipsis: true };
-const pos$1 = nix.positions(here + "/default.nix", [["outputHash", 43, 13]]);
-const pos$2 = nix.positions(here + "/default.nix", [["outputHash", 46, 13], ["outputHashAlgo", 47, 13]]);
-const pos$3 = nix.positions(here + "/default.nix", [["nodejs-slim", 53, 24]]);
-const pos$4 = nix.positions(here + "/default.nix", [["fetcherVersion", 227, 21], ["serve", 228, 13]]);
-const pos$5 = nix.positions(here + "/default.nix", [["name", 77, 11], ["nativeBuildInputs", 79, 11], ["impureEnvVars", 93, 11], ["installPhase", 96, 11], ["fixupPhase", 166, 11], ["passthru", 226, 11], ["dontConfigure", 231, 11], ["dontBuild", 232, 11], ["outputHashMode", 233, 11]]);
-const pos$6 = nix.positions(here + "/default.nix", [["npmArch", 248, 7], ["npmPlatform", 249, 7]]);
-const pos$7 = nix.positions(here + "/default.nix", [["license", 251, 10]]);
-const pos$8 = nix.positions(here + "/default.nix", [["name", 241, 5], ["propagatedBuildInputs", 242, 5], ["substitutions", 247, 5], ["meta", 251, 5]]);
-const pos$9 = nix.positions(here + "/default.nix", [["fetchPnpmDeps", 25, 3], ["pnpmConfigHook", 240, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,7 +24,7 @@ export default nix.lambda((args) => (() => {
   const pnpmLatest = pnpm;
   const supportedFetcherVersions = nix.thunk(() => [3n, 4n]);
   return {
-    [nix.POS]: pos$9,
+    [nix.POS]: $pos[8],
     fetchPnpmDeps: nix.thunk(() => nix.app(nix.sel(lib, "makeOverridable"), nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const args_2 = args_1;
@@ -44,10 +36,10 @@ export default nix.lambda((args) => (() => {
         const pnpmInstallFlags = nix.argOr($_1, "pnpmInstallFlags", () => []);
         const fetcherVersion = nix.argOr($_1, "fetcherVersion", () => null);
         const args$ = nix.thunk(() => nix.builtins.removeAttrs(args_2, nix.thunk(() => ["hash", "pname"])));
-        const hash$ = nix.thunk(() => (nix.asBool(!nix.eq(hash, "")) ? { [nix.POS]: pos$1, outputHash: hash } : { [nix.POS]: pos$2, outputHash: "", outputHashAlgo: "sha256" }));
+        const hash$ = nix.thunk(() => (nix.asBool(!nix.eq(hash, "")) ? { [nix.POS]: $pos[0], outputHash: hash } : { [nix.POS]: $pos[1], outputHash: "", outputHashAlgo: "sha256" }));
         const filterFlags = nix.thunk(() => nix.app(nix.sel(lib, "map"), (package$) => nix.str`--filter=${package$}`, pnpmWorkspaces));
         const pnpm_fixup_state_db$ = nix.thunk(() => nix.app(nix.sel(pnpm_fixup_state_db, "override"), nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             "nodejs-slim": nix.thunk(() => nix.attr(pnpm_1, "nodejs-slim")),
           }))));
         nix.assert_((nix.asBool(!nix.eq(fetcherVersion, null)) || nix.asBool(nix.builtins.throw("fetchPnpmDeps: `fetcherVersion` is not set, see https://nixos.org/manual/nixpkgs/stable/#javascript-pnpm-fetcherVersion."))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/build-support/node/fetch-pnpm-deps/default.nix:56:5");
@@ -55,7 +47,7 @@ export default nix.lambda((args) => (() => {
         nix.assert_((nix.asBool(nix.builtins.elem(fetcherVersion, supportedFetcherVersions)) || nix.asBool(nix.builtins.throw(nix.thunk(() => nix.str`fetchPnpmDeps \`fetcherVersion\` is not set to a supported value (${nix.app(nix.sel(lib, "concatStringsSep"), ", ", nix.thunk(() => nix.builtins.map(nix.builtins.toString, supportedFetcherVersions)))}), see https://nixos.org/manual/nixpkgs/stable/#javascript-pnpm-fetcherVersion.`)))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/build-support/node/fetch-pnpm-deps/default.nix:64:5");
         nix.assert_((nix.asBool(!nix.asBool((nix.asBool(nix.eq(fetcherVersion, 3n)) && nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(pnpm_1, "version")), "11.0.0"))))) || nix.asBool(nix.builtins.throw("fetchPnpmDeps `fetcherVersion = 3` is no longer supported for `pnpm_11` or newer. Please upgrade to the latest, see https://nixos.org/manual/nixpkgs/stable/#javascript-pnpm-fetcherVersion."))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/build-support/node/fetch-pnpm-deps/default.nix:68:5");
         return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => nix.update(args$, nix.update({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             name: nix.thunk(() => nix.str`${pname}-pnpm-deps`),
             nativeBuildInputs: nix.thunk(() => nix.concat([
               cacert,
@@ -191,7 +183,7 @@ find $storePath -type d -print0 | xargs --no-run-if-empty -0 chmod 555
 runHook postFixup
 `),
             passthru: nix.thunk(() => nix.update(nix.selOr(args_2, () => ({}), "passthru"), {
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               fetcherVersion: fetcherVersion,
               serve: nix.thunk(() => nix.builtins.throw("fetchPnpmDeps: `serve` has been deprecated as it was removed in pnpm 11 and only had a niche use case.")),
             })),
@@ -201,15 +193,18 @@ runHook postFixup
           }, hash$)));
       })(), formals$2))),
     pnpmConfigHook: nix.thunk(() => nix.app(makeSetupHook, nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         name: "pnpm-config-hook",
         propagatedBuildInputs: nix.thunk(() => [sqlite, writableTmpDirAsHomeHook, zstd]),
         substitutions: nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           npmArch: nix.thunk(() => nix.sel(stdenvNoCC, "targetPlatform", "node", "arch")),
           npmPlatform: nix.thunk(() => nix.sel(stdenvNoCC, "targetPlatform", "node", "platform")),
         })),
-        meta: nix.thunk(() => ({ [nix.POS]: pos$7, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
+        meta: nix.thunk(() => ({
+          [nix.POS]: $pos[6],
+          license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
+        })),
       })), nix.path(here, "./pnpm-config-hook.sh"))),
   };
 })(), formals$1);

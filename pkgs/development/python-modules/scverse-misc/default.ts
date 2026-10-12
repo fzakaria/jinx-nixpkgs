@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 37, 5], ["repo", 38, 5], ["tag", 39, 5], ["hash", 40, 5]], [["datasets", 54, 5], ["settings", 60, 5], ["spatialdata", 64, 5], ["sphinx", 67, 5]], [["description", 81, 5], ["homepage", 82, 5], ["changelog", 83, 5], ["license", 84, 5], ["maintainers", 85, 5]], [["pname", 31, 3], ["version", 32, 3], ["pyproject", 33, 3], ["__structuredAttrs", 34, 3], ["src", 36, 3], ["build-system", 43, 3], ["dependencies", 48, 3], ["optional-dependencies", 53, 3], ["pythonImportsCheck", 73, 3], ["nativeCheckInputs", 75, 3], ["meta", 80, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, "hatch-vcs": false, hatchling: false, "session-info2": false, "typing-extensions": false, anndata: false, pooch: false, pyyaml: false, tqdm: false, "pydantic-settings": false, "python-dotenv": false, sphinx: false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 37, 5], ["repo", 38, 5], ["tag", 39, 5], ["hash", 40, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["datasets", 54, 5], ["settings", 60, 5], ["spatialdata", 64, 5], ["sphinx", 67, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 81, 5], ["homepage", 82, 5], ["changelog", 83, 5], ["license", 84, 5], ["maintainers", 85, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 31, 3], ["version", 32, 3], ["pyproject", 33, 3], ["__structuredAttrs", 34, 3], ["src", 36, 3], ["build-system", 43, 3], ["dependencies", 48, 3], ["optional-dependencies", 53, 3], ["pythonImportsCheck", 73, 3], ["nativeCheckInputs", 75, 3], ["meta", 80, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,13 +23,13 @@ export default nix.lambda((args) => (() => {
   const sphinx = nix.arg($, "sphinx");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "scverse-misc",
       version: "0.1.6",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "scverse",
           repo: "scverse-misc",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -41,7 +38,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [hatch_vcs, hatchling]),
       dependencies: nix.thunk(() => [session_info2, typing_extensions]),
       "optional-dependencies": nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         datasets: nix.thunk(() => [anndata, pooch, pyyaml, tqdm]),
         settings: nix.thunk(() => [pydantic_settings, python_dotenv]),
         spatialdata: [],
@@ -50,7 +47,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["scverse_misc"]),
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook, pyyaml]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Miscellaneous utility code used by scverse packages",
         homepage: "https://github.com/scverse/scverse-misc",
         changelog: nix.thunk(() => nix.str`https://github.com/scverse/scverse-misc/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

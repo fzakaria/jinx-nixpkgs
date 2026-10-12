@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 34, 5], ["extension", 35, 5], ["hash", 36, 5]], [["GNULIB_SRCDIR", 40, 5]], [["homepage", 78, 5], ["description", 79, 5], ["mainProgram", 80, 5], ["license", 81, 5], ["maintainers", 82, 5], ["platforms", 83, 5]], [["pname", 20, 3], ["version", 21, 3], ["src", 33, 3], ["env", 39, 3], ["postPatch", 45, 3], ["nativeBuildInputs", 49, 3], ["buildInputs", 61, 3], ["preConfigure", 63, 3], ["configureFlags", 68, 3], ["postInstall", 73, 3], ["meta", 77, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchzip: false, autoconf269: false, automake: false, gengetopt: false, gettext: false, gnulib: false, "gtk-doc": false, help2man: false, libtool: false, perl: false, texinfo: false, withShishi: true, shishi: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 34, 5], ["extension", 35, 5], ["hash", 36, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["GNULIB_SRCDIR", 40, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 78, 5], ["description", 79, 5], ["mainProgram", 80, 5], ["license", 81, 5], ["maintainers", 82, 5], ["platforms", 83, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["src", 33, 3], ["env", 39, 3], ["postPatch", 45, 3], ["nativeBuildInputs", 49, 3], ["buildInputs", 61, 3], ["preConfigure", 63, 3], ["configureFlags", 68, 3], ["postInstall", 73, 3], ["meta", 77, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,16 +23,16 @@ export default nix.lambda((args) => (() => {
   const withShishi = nix.argOr($, "withShishi", () => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")));
   const shishi = nix.arg($, "shishi");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "gss",
       version: "1.0.4",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://gitweb.git.savannah.gnu.org/gitweb/?p=gss.git;a=snapshot;h=v${nix.sel(finalAttrs, "version")};sf=tgz`),
           extension: "tar.gz",
           hash: "sha256-yT19kwAhGzbIoMjRbrrsn6CyvkMH5v1nxxWpnGYmZUw=",
         })))),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, GNULIB_SRCDIR: nix.thunk(() => nix.sel(gnulib, "src")) })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], GNULIB_SRCDIR: nix.thunk(() => nix.sel(gnulib, "src")) })),
       postPatch: "rm tests/krb5context.c\n",
       nativeBuildInputs: nix.thunk(() => [
         autoconf269,
@@ -56,7 +53,7 @@ export default nix.lambda((args) => (() => {
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), withShishi, nix.thunk(() => nix.str`sed -i 's,\\(-lshishi\\),-L${shishi}/lib \\1,' $out/lib/libgss.la
 `))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://www.gnu.org/software/gss/",
         description: "Generic Security Service",
         mainProgram: "gss",

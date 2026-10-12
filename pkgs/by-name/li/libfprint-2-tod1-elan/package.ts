@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 17, 5], ["hash", 18, 5], ["postFetch", 20, 5]], [["driverPath", 44, 12]], [["description", 47, 5], ["homepage", 48, 5], ["sourceProvenance", 49, 5], ["license", 50, 5], ["platforms", 51, 5], ["maintainers", 52, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 29, 3], ["installPhase", 36, 3], ["passthru", 44, 3], ["meta", 46, 3]]]);
 const formals$1 = { args: { stdenvNoCC: false, lib: false, fetchzip: false, "libfprint-tod": false, openssl: false, gusb: false, glib: false, autoPatchelfHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 17, 5], ["hash", 18, 5], ["postFetch", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["driverPath", 44, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 47, 5], ["homepage", 48, 5], ["sourceProvenance", 49, 5], ["license", 50, 5], ["platforms", 51, 5], ["maintainers", 52, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 29, 3], ["installPhase", 36, 3], ["passthru", 44, 3], ["meta", 46, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const glib = nix.arg($, "glib");
   const autoPatchelfHook = nix.arg($, "autoPatchelfHook");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "libfprint-2-tod1-elan",
       version: "0.0.8",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://download.lenovo.com/pccbbs/mobiles/r1slf01w.zip",
           hash: "sha256-GD/BebPto1fFLgyvpiitt+ngwEtdsnKsvdFNeSmVDmw=",
           postFetch: "unpackFile $out/*\nrm $out/*.zip\nmv * $out/\n",
@@ -31,9 +28,9 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [autoPatchelfHook]),
       buildInputs: nix.thunk(() => [libfprint_tod, openssl, gusb, glib]),
       installPhase: "runHook preInstall\n\ninstall -Dm444 libfprint-2-tod1-elan.so -t \"$out/lib/libfprint-2/tod-1/\"\n\nrunHook postInstall\n",
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, driverPath: "/lib/libfprint-2/tod-1" })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[1], driverPath: "/lib/libfprint-2/tod-1" })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Elan(04f3:0c4b) driver module for libfprint-2-tod Touch OEM Driver",
         homepage: "https://support.lenovo.com/us/en/downloads/ds560939-elan-fingerprint-driver-for-ubuntu-2204-thinkpad-e14-gen-4-e15-gen-4",
         sourceProvenance: nix.thunk(() => (() => {

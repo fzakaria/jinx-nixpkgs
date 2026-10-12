@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["fetchSubmodules", 32, 5], ["hash", 33, 5]], [["updateScript", 79, 12]], [["homepage", 82, 5], ["description", 83, 5], ["teams", 84, 5], ["license", 85, 5], ["platforms", 86, 5], ["mainProgram", 87, 5]], [["pname", 24, 3], ["version", 25, 3], ["pyproject", 26, 3], ["src", 28, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 46, 3], ["dependencies", 59, 3], ["dontWrapGApps", 67, 3], ["preFixup", 69, 3], ["postFixup", 73, 3], ["doCheck", 77, 3], ["passthru", 79, 3], ["meta", 81, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, wrapGAppsHook4: false, python3: false, "blueprint-compiler": false, "desktop-file-utils": false, meson: false, ninja: false, "pkg-config": false, glib: false, gtk4: false, "gobject-introspection": false, gst_all_1: false, libsoup_3: false, "glib-networking": false, libadwaita: false, libsecret: false, libspelling: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["fetchSubmodules", 32, 5], ["hash", 33, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 79, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 82, 5], ["description", 83, 5], ["teams", 84, 5], ["license", 85, 5], ["platforms", 86, 5], ["mainProgram", 87, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 24, 3], ["version", 25, 3], ["pyproject", 26, 3], ["src", 28, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 46, 3], ["dependencies", 59, 3], ["dontWrapGApps", 67, 3], ["preFixup", 69, 3], ["postFixup", 73, 3], ["doCheck", 77, 3], ["passthru", 79, 3], ["meta", 81, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,12 +27,12 @@ export default nix.lambda((args) => (() => {
   const libspelling = nix.arg($, "libspelling");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "dialect",
       version: "2.6.1",
       pyproject: false,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "dialect-app",
           repo: "dialect",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -77,11 +74,11 @@ export default nix.lambda((args) => (() => {
       postFixup: "patchShebangs --update --host $out/share/dialect/search_provider\n",
       doCheck: false,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://dialectapp.org",
         description: "Translation app for GNOME",
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "gnome-circle"))]),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 25, 5], ["repo", 26, 5], ["rev", 27, 5], ["hash", 28, 5]], [["description", 76, 5], ["homepage", 77, 5], ["license", 78, 5], ["maintainers", 79, 5], ["mainProgram", 80, 5], ["platforms", 81, 5]], [["pname", 20, 3], ["version", 21, 3], ["pyproject", 22, 3], ["src", 24, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 43, 3], ["propagatedBuildInputs", 49, 3], ["postPatch", 56, 3], ["dontWrapGApps", 61, 3], ["preFixup", 63, 3], ["meta", 75, 3]]]);
 const formals$1 = { args: { lib: false, python3Packages: false, fetchFromGitLab: false, meson: false, ninja: false, glib: false, "pkg-config": false, pandoc: false, appstream: false, "blueprint-compiler": false, "gobject-introspection": false, wrapGAppsHook4: false, dbus: false, libadwaita: false, "xdg-user-dirs": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 25, 5], ["repo", 26, 5], ["rev", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 76, 5], ["homepage", 77, 5], ["license", 78, 5], ["maintainers", 79, 5], ["mainProgram", 80, 5], ["platforms", 81, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["pyproject", 22, 3], ["src", 24, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 43, 3], ["propagatedBuildInputs", 49, 3], ["postPatch", 56, 3], ["dontWrapGApps", 61, 3], ["preFixup", 63, 3], ["meta", 75, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,12 +23,12 @@ export default nix.lambda((args) => (() => {
   const libadwaita = nix.arg($, "libadwaita");
   const xdg_user_dirs = nix.arg($, "xdg-user-dirs");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "hydrapaper",
       version: "3.3.2",
       pyproject: false,
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "gabmus",
           repo: "HydraPaper",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -64,7 +62,7 @@ export default nix.lambda((args) => (() => {
 makeWrapperArgs+=("\${gappsWrapperArgs[@]}")
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "GNOME utility for setting different wallpapers on individual monitors",
         homepage: "https://hydrapaper.gabmus.org",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["fletTarget", 33, 5]], [["description", 41, 5], ["homepage", 42, 5], ["changelog", 43, 5], ["license", 44, 5], ["maintainers", 45, 5]], [["pname", 16, 3], ["version", 17, 33], ["src", 17, 41], ["pyproject", 18, 3], ["sourceRoot", 20, 3], ["build-system", 22, 3], ["dependencies", 24, 3], ["pythonImportsCheck", 30, 3], ["web", 32, 3], ["postInstall", 36, 3], ["meta", 40, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, "flet-client-flutter": false, "poetry-core": false, flet: false, fastapi: false, uvicorn: false, python: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["fletTarget", 33, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 41, 5], ["homepage", 42, 5], ["changelog", 43, 5], ["license", 44, 5], ["maintainers", 45, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 16, 3], ["version", 17, 33], ["src", 17, 41], ["pyproject", 18, 3], ["sourceRoot", 20, 3], ["build-system", 22, 3], ["dependencies", 24, 3], ["pythonImportsCheck", 30, 3], ["web", 32, 3], ["postInstall", 36, 3], ["meta", 40, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,11 +24,11 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [poetry_core]);
       const dependencies = nix.thunk(() => [flet, fastapi, uvicorn]);
       const pythonImportsCheck = nix.thunk(() => ["flet_web"]);
-      const web = nix.thunk(() => nix.app(nix.sel(flet_client_flutter, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, fletTarget: "web" }))));
+      const web = nix.thunk(() => nix.app(nix.sel(flet_client_flutter, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], fletTarget: "web" }))));
       const postInstall = nix.thunk(() => nix.str`ln -s $web $out/${nix.sel(python, "sitePackages")}/flet_web/web
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Flet web client in Flutter",
         homepage: "https://flet.dev/",
         changelog: nix.thunk(() => nix.str`https://github.com/flet-dev/flet/releases/tag/v${version}`),
@@ -41,7 +39,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

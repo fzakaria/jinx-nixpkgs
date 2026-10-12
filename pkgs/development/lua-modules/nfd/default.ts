@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5], ["fetchSubmodules", 20, 5]], [["zenity", 26, 15]], [["LUA_LIBDIR", 31, 28]], [["variables", 31, 18]], [["description", 45, 5], ["homepage", 46, 5], ["license", 47, 5], ["maintainers", 48, 5], ["broken", 49, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["patches", 24, 3], ["knownRockspec", 29, 3], ["luarocksConfig", 31, 3], ["nativeBuildInputs", 32, 3], ["postInstall", 34, 3], ["doInstallCheck", 38, 3], ["nativeInstallCheckInputs", 39, 3], ["installCheckPhase", 40, 3], ["meta", 44, 3]]]);
 const formals$1 = { args: { fetchFromGitHub: false, buildLuarocksPackage: false, lua: false, "pkg-config": false, lib: false, replaceVars: false, zenity: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5], ["fetchSubmodules", 20, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["zenity", 26, 15]]);
-const pos$3 = nix.positions(here + "/default.nix", [["LUA_LIBDIR", 31, 28]]);
-const pos$4 = nix.positions(here + "/default.nix", [["variables", 31, 18]]);
-const pos$5 = nix.positions(here + "/default.nix", [["description", 45, 5], ["homepage", 46, 5], ["license", 47, 5], ["maintainers", 48, 5], ["broken", 49, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["patches", 24, 3], ["knownRockspec", 29, 3], ["luarocksConfig", 31, 3], ["nativeBuildInputs", 32, 3], ["postInstall", 34, 3], ["doInstallCheck", 38, 3], ["nativeInstallCheckInputs", 39, 3], ["installCheckPhase", 40, 3], ["meta", 44, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const replaceVars = nix.arg($, "replaceVars");
   const zenity = nix.arg($, "zenity");
   return nix.app(buildLuarocksPackage, nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "nfd",
       version: "scm-1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Vexatos",
           repo: "nativefiledialog",
           rev: "bea4560b9269bdc142fef946ccd8682450748958",
@@ -32,12 +27,12 @@ export default nix.lambda((args) => (() => {
           fetchSubmodules: true,
         })))),
       patches: nix.thunk(() => [
-        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./zenity.patch"), nix.thunk(() => ({ [nix.POS]: pos$2, zenity: zenity })))),
+        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./zenity.patch"), nix.thunk(() => ({ [nix.POS]: $pos[1], zenity: zenity })))),
       ]),
       knownRockspec: "lua/nfd-scm-1.rockspec",
       luarocksConfig: nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        variables: nix.thunk(() => ({ [nix.POS]: pos$3, LUA_LIBDIR: nix.thunk(() => nix.str`${lua}/lib`) })),
+        [nix.POS]: $pos[3],
+        variables: nix.thunk(() => ({ [nix.POS]: $pos[2], LUA_LIBDIR: nix.thunk(() => nix.str`${lua}/lib`) })),
       })),
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       postInstall: "find $out -name nfd_zenity.so -execdir mv {} nfd.so \\;\n",
@@ -45,7 +40,7 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [nix.thunk(() => nix.sel(lua, "pkgs", "busted"))]),
       installCheckPhase: "busted lua/spec/\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Tiny, neat Lua library that invokes native file open and save dialogs",
         homepage: "https://github.com/Alloyed/nativefiledialog/tree/master/lua",
         license: nix.thunk(() => nix.sel(lib, "licenses", "zlib")),

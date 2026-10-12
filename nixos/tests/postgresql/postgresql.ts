@@ -2,29 +2,12 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/postgresql.nix", [[["postgresql", 12, 7], ["postgresql-backup-all", 13, 7], ["postgresql-clauses", 14, 7]], [["maintainers", 40, 11]], [["package", 47, 23], ["enable", 48, 15], ["identMap", 49, 15]], [["enable", 55, 15], ["databases", 56, 15], ["pgdumpOptions", 57, 15], ["pgdumpAllOptions", 58, 15]], [["postgresql", 46, 22], ["postgresqlBackup", 54, 22]], [["services", 46, 13]], [["machine", 43, 15]], [["name", 38, 9], ["meta", 39, 9], ["nodes", 43, 9], ["testScript", 62, 9]], [["maintainers", 170, 11]], [["superuser", 183, 21], ["createdb", 184, 21], ["createrole", 185, 21], ["inherit", 186, 21], ["login", 187, 21], ["replication", 188, 21], ["bypassrls", 189, 21], ["password", 191, 21], ["connection_limit", 192, 21]], [["name", 181, 19], ["ensureClauses", 182, 19]], [["name", 196, 19]], [["package", 177, 23], ["enable", 178, 15], ["ensureUsers", 179, 15]], [["postgresql", 176, 22]], [["services", 176, 13]], [["machine", 173, 15]], [["name", 168, 9], ["meta", 169, 9], ["nodes", 173, 9], ["testScript", 202, 9]], [["makeTestFor", 270, 20]]]);
 const formals$1 = { args: { runTest: false, genTests: false, lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/postgresql.nix", [["postgresql", 12, 7], ["postgresql-backup-all", 13, 7], ["postgresql-clauses", 14, 7]]);
 const formals$2 = { args: { lib: false, pkgs: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/postgresql.nix", [["maintainers", 40, 11]]);
 const formals$3 = { args: { config: false }, ellipsis: true };
-const pos$3 = nix.positions(here + "/postgresql.nix", [["package", 47, 23], ["enable", 48, 15], ["identMap", 49, 15]]);
-const pos$4 = nix.positions(here + "/postgresql.nix", [["enable", 55, 15], ["databases", 56, 15], ["pgdumpOptions", 57, 15], ["pgdumpAllOptions", 58, 15]]);
-const pos$5 = nix.positions(here + "/postgresql.nix", [["postgresql", 46, 22], ["postgresqlBackup", 54, 22]]);
-const pos$6 = nix.positions(here + "/postgresql.nix", [["services", 46, 13]]);
-const pos$7 = nix.positions(here + "/postgresql.nix", [["machine", 43, 15]]);
-const pos$8 = nix.positions(here + "/postgresql.nix", [["name", 38, 9], ["meta", 39, 9], ["nodes", 43, 9], ["testScript", 62, 9]]);
 const formals$4 = { args: { lib: false }, ellipsis: true };
-const pos$9 = nix.positions(here + "/postgresql.nix", [["maintainers", 170, 11]]);
 const formals$5 = { args: {  }, ellipsis: true };
-const pos$10 = nix.positions(here + "/postgresql.nix", [["superuser", 183, 21], ["createdb", 184, 21], ["createrole", 185, 21], ["inherit", 186, 21], ["login", 187, 21], ["replication", 188, 21], ["bypassrls", 189, 21], ["password", 191, 21], ["connection_limit", 192, 21]]);
-const pos$11 = nix.positions(here + "/postgresql.nix", [["name", 181, 19], ["ensureClauses", 182, 19]]);
-const pos$12 = nix.positions(here + "/postgresql.nix", [["name", 196, 19]]);
-const pos$13 = nix.positions(here + "/postgresql.nix", [["package", 177, 23], ["enable", 178, 15], ["ensureUsers", 179, 15]]);
-const pos$14 = nix.positions(here + "/postgresql.nix", [["postgresql", 176, 22]]);
-const pos$15 = nix.positions(here + "/postgresql.nix", [["services", 176, 13]]);
-const pos$16 = nix.positions(here + "/postgresql.nix", [["machine", 173, 15]]);
-const pos$17 = nix.positions(here + "/postgresql.nix", [["name", 168, 9], ["meta", 169, 9], ["nodes", 173, 9], ["testScript", 202, 9]]);
-const pos$18 = nix.positions(here + "/postgresql.nix", [["makeTestFor", 270, 20]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const genTests = nix.arg($, "genTests");
   const lib = nix.arg($, "lib");
   const makeTestFor = (package$) => nix.app(nix.sel(lib, "recurseIntoAttrs"), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       postgresql: nix.thunk(() => nix.app(makeTestForWithBackupAll, package$, false)),
       "postgresql-backup-all": nix.thunk(() => nix.app(makeTestForWithBackupAll, package$, true)),
       "postgresql-clauses": nix.thunk(() => nix.app(makeEnsureTestFor, package$)),
@@ -43,32 +26,32 @@ export default nix.lambda((args) => (() => {
       const pkgs = nix.arg($_1, "pkgs");
       const test_sql = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "postgresql-test", "CREATE EXTENSION pgcrypto; -- just to check if lib loading works\nCREATE TABLE sth (\n  id int\n);\nINSERT INTO sth (id) VALUES (1);\nINSERT INTO sth (id) VALUES (1);\nINSERT INTO sth (id) VALUES (1);\nINSERT INTO sth (id) VALUES (1);\nINSERT INTO sth (id) VALUES (1);\nCREATE TABLE xmltest ( doc xml );\nINSERT INTO xmltest (doc) VALUES ('<test>ok</test>'); -- check if libxml2 enabled\n"));
       return {
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         name: nix.thunk(() => nix.str`postgresql${nix.app(nix.sel(lib_1, "optionalString"), backupAll, "-backup-all")}-${nix.sel(package$, "name")}`),
         meta: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib_1, "maintainers")), null);
           return {
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "zagy"))]),
           };
         })()),
         nodes: nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           machine: nix.lambda((args_2) => (() => {
             const $_2 = nix.formals(args_2, formals$3);
             const config = nix.arg($_2, "config");
             return {
-              [nix.POS]: pos$6,
+              [nix.POS]: $pos[5],
               services: nix.thunk(() => ({
-                [nix.POS]: pos$5,
+                [nix.POS]: $pos[4],
                 postgresql: nix.thunk(() => ({
-                  [nix.POS]: pos$3,
+                  [nix.POS]: $pos[2],
                   package: package$,
                   enable: true,
                   identMap: "postgres root postgres\n",
                 })),
                 postgresqlBackup: nix.thunk(() => ({
-                  [nix.POS]: pos$4,
+                  [nix.POS]: $pos[3],
                   enable: true,
                   databases: nix.thunk(() => nix.app(nix.sel(lib_1, "optional"), nix.thunk(() => !nix.asBool(backupAll)), "postgres")),
                   pgdumpOptions: "--restrict-key=ABCDEFGHIJKLMNOPQRSTUVWXYZ",
@@ -180,33 +163,33 @@ machine.shutdown()
       const $_1 = nix.formals(args_1, formals$4);
       const lib_1 = nix.arg($_1, "lib");
       return {
-        [nix.POS]: pos$17,
+        [nix.POS]: $pos[16],
         name: nix.thunk(() => nix.str`postgresql-clauses-${nix.sel(package$, "name")}`),
         meta: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib_1, "maintainers")), null);
           return {
-            [nix.POS]: pos$9,
+            [nix.POS]: $pos[8],
             maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "zagy"))]),
           };
         })()),
         nodes: nix.thunk(() => ({
-          [nix.POS]: pos$16,
+          [nix.POS]: $pos[15],
           machine: nix.lambda((args_2) => (() => {
             const $_2 = nix.formals(args_2, formals$5);
             return {
-              [nix.POS]: pos$15,
+              [nix.POS]: $pos[14],
               services: nix.thunk(() => ({
-                [nix.POS]: pos$14,
+                [nix.POS]: $pos[13],
                 postgresql: nix.thunk(() => ({
-                  [nix.POS]: pos$13,
+                  [nix.POS]: $pos[12],
                   package: package$,
                   enable: true,
                   ensureUsers: nix.thunk(() => [
                     nix.thunk(() => ({
-                      [nix.POS]: pos$11,
+                      [nix.POS]: $pos[10],
                       name: "all-clauses",
                       ensureClauses: nix.thunk(() => ({
-                        [nix.POS]: pos$10,
+                        [nix.POS]: $pos[9],
                         superuser: true,
                         createdb: true,
                         createrole: true,
@@ -218,7 +201,7 @@ machine.shutdown()
                         connection_limit: 5n,
                       })),
                     })),
-                    nix.thunk(() => ({ [nix.POS]: pos$12, name: "default-clauses" })),
+                    nix.thunk(() => ({ [nix.POS]: $pos[11], name: "default-clauses" })),
                   ]),
                 })),
               })),
@@ -288,6 +271,6 @@ machine.shutdown()
         })()),
       };
     })(), formals$4));
-  return nix.app(genTests, nix.thunk(() => ({ [nix.POS]: pos$18, makeTestFor: makeTestFor })));
+  return nix.app(genTests, nix.thunk(() => ({ [nix.POS]: $pos[17], makeTestFor: makeTestFor })));
 })(), formals$1);
 //# sourceMappingURL=postgresql.ts.map

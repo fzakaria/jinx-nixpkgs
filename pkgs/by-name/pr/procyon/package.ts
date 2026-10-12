@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["modules", 13, 5]], [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]], [["owner", 32, 5], ["repo", 33, 5], ["tag", 34, 5], ["hash", 35, 5]], [["description", 67, 5], ["homepage", 68, 5], ["license", 69, 5], ["maintainers", 70, 5], ["mainProgram", 71, 5]], [["pname", 28, 3], ["version", 29, 3], ["src", 31, 3], ["postPatch", 38, 3], ["nativeBuildInputs", 52, 3], ["installPhase", 58, 3], ["meta", 66, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, makeShellWrapper: false, jdk_headless: false, jre_minimal: false, gradle: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["modules", 13, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["owner", 32, 5], ["repo", 33, 5], ["tag", 34, 5], ["hash", 35, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 67, 5], ["homepage", 68, 5], ["license", 69, 5], ["maintainers", 70, 5], ["mainProgram", 71, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 28, 3], ["version", 29, 3], ["src", 31, 3], ["postPatch", 38, 3], ["nativeBuildInputs", 52, 3], ["installPhase", 58, 3], ["meta", 66, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const jre_minimal = nix.arg($, "jre_minimal");
   const gradle = nix.arg($, "gradle");
   const jre = nix.thunk(() => nix.app(nix.sel(jre_minimal, "override"), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       modules: nix.thunk(() => ["java.base", "java.compiler", "java.logging"]),
     }))));
   const jcommander_src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       owner: "cbeust",
       repo: "jcommander",
       tag: "1.78",
@@ -33,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const pname = "procyon";
       const version = "0.6.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           owner: "mstrobel",
           repo: "procyon",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -59,7 +55,7 @@ makeWrapper ${jre}/bin/java $out/bin/procyon \\
   --add-flags "-jar $out/share/procyon/procyon-decompiler.jar"
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Suite of Java metaprogramming tools including a Java decompiler",
         homepage: "https://github.com/mstrobel/procyon/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -70,7 +66,7 @@ makeWrapper ${jre}/bin/java $out/bin/procyon \\
         mainProgram: "procyon",
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         src,

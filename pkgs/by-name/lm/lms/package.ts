@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 28, 5], ["repo", 29, 5], ["rev", 30, 5], ["hash", 31, 5]], [["homepage", 70, 5], ["changelog", 71, 5], ["description", 72, 5], ["license", 73, 5], ["platforms", 74, 5], ["mainProgram", 75, 5], ["maintainers", 76, 5]], [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["strictDeps", 34, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 41, 3], ["postPatch", 57, 3], ["postInstall", 61, 3], ["meta", 69, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, "pkg-config": false, gtest: false, boost: false, wt: false, taglib: false, libconfig: false, libarchive: false, graphicsmagick: false, ffmpeg: false, zlib: false, stb: false, openssl: false, xxhash: false, pugixml: false, onnxruntime: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 28, 5], ["repo", 29, 5], ["rev", 30, 5], ["hash", 31, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 70, 5], ["changelog", 71, 5], ["description", 72, 5], ["license", 73, 5], ["platforms", 74, 5], ["mainProgram", 75, 5], ["maintainers", 76, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["strictDeps", 34, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 41, 3], ["postPatch", 57, 3], ["postInstall", 61, 3], ["meta", 69, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,11 +27,11 @@ export default nix.lambda((args) => (() => {
   const pugixml = nix.arg($, "pugixml");
   const onnxruntime = nix.arg($, "onnxruntime");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "lms",
       version: "3.80.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "epoupon",
           repo: "lms",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -64,7 +62,7 @@ substituteInPlace $out/share/lms/default.service --replace-fail "/usr/bin/lms" "
 install -Dm444 $out/share/lms/default.service -T $out/lib/systemd/system/lmsd.service
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/epoupon/lms",
         changelog: nix.thunk(() => nix.str`https://github.com/epoupon/lms/releases/tag/${nix.sel(finalAttrs, "src", "rev")}`),
         description: "Lightweight Music Server - Access your self-hosted music using a web interface",

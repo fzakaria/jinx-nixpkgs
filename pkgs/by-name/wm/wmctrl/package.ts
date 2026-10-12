@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 18, 5], ["sha256", 19, 5]], [["homepage", 34, 5], ["description", 35, 5], ["license", 36, 5], ["platforms", 37, 5], ["maintainers", 38, 5], ["mainProgram", 39, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["strictDeps", 22, 3], ["depsBuildBuild", 23, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 25, 3], ["patches", 31, 3], ["meta", 33, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, libx11: false, glib: false, "pkg-config": false, libxmu: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 18, 5], ["sha256", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 34, 5], ["description", 35, 5], ["license", 36, 5], ["platforms", 37, 5], ["maintainers", 38, 5], ["mainProgram", 39, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["strictDeps", 22, 3], ["depsBuildBuild", 23, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 25, 3], ["patches", 31, 3], ["meta", 33, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const libxmu = nix.arg($, "libxmu");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "wmctrl",
       version: "1.07",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://sites.google.com/site/tstyblo/wmctrl/wmctrl-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "1afclc57b9017a73mfs9w7lbdvdipmf9q0xdk116f61gnvyix2np",
         })))),
@@ -31,7 +29,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [libx11, libxmu, glib]),
       patches: nix.thunk(() => [nix.path(here, "./64-bit-data.patch")]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://sites.google.com/site/tstyblo/wmctrl",
         description: "CLI tool to interact with EWMH/NetWM compatible X Window Managers",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

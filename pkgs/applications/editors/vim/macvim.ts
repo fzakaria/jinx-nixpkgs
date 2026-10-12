@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/macvim.nix", [[["stdenv", 29, 47]], [["owner", 37, 5], ["repo", 38, 5], ["tag", 39, 5], ["hash", 44, 5]], [["NIX_CFLAGS_COMPILE", 191, 7]], [["description", 203, 5], ["homepage", 204, 5], ["license", 205, 5], ["maintainers", 206, 5], ["platforms", 207, 5], ["hydraPlatforms", 208, 5]], [["pname", 32, 3], ["version", 34, 3], ["src", 36, 3], ["enableParallelBuilding", 47, 3], ["nativeBuildInputs", 49, 3], ["buildInputs", 52, 3], ["patches", 67, 3], ["postPatch", 79, 3], ["configureFlags", 110, 3], ["preConfigure", 133, 3], ["postConfigure", 160, 3], ["postInstall", 167, 3], ["hardeningDisable", 189, 3], ["env", 191, 3], ["sandboxProfile", 196, 3], ["meta", 202, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, callPackage: false, fetchFromGitHub: false, "apple-sdk_14": false, ncurses: false, gettext: false, "pkg-config": false, cscope: false, ruby_3_4: false, tcl: false, perl: false, luajit: false, python3: false, withXcodePath: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/macvim.nix", [["stdenv", 29, 47]]);
-const pos$2 = nix.positions(here + "/macvim.nix", [["owner", 37, 5], ["repo", 38, 5], ["tag", 39, 5], ["hash", 44, 5]]);
-const pos$3 = nix.positions(here + "/macvim.nix", [["NIX_CFLAGS_COMPILE", 191, 7]]);
-const pos$4 = nix.positions(here + "/macvim.nix", [["description", 203, 5], ["homepage", 204, 5], ["license", 205, 5], ["maintainers", 206, 5], ["platforms", 207, 5], ["hydraPlatforms", 208, 5]]);
-const pos$5 = nix.positions(here + "/macvim.nix", [["pname", 32, 3], ["version", 34, 3], ["src", 36, 3], ["enableParallelBuilding", 47, 3], ["nativeBuildInputs", 49, 3], ["buildInputs", 52, 3], ["patches", 67, 3], ["postPatch", 79, 3], ["configureFlags", 110, 3], ["preConfigure", 133, 3], ["postConfigure", 160, 3], ["postInstall", 167, 3], ["hardeningDisable", 189, 3], ["env", 191, 3], ["sandboxProfile", 196, 3], ["meta", 202, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,13 +23,13 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const withXcodePath = nix.argOr($, "withXcodePath", () => null);
   const ruby = ruby_3_4;
-  const common = nix.thunk(() => nix.app(callPackage, nix.path(here, "./common.nix"), nix.thunk(() => ({ [nix.POS]: pos$1, stdenv: stdenv }))));
+  const common = nix.thunk(() => nix.app(callPackage, nix.path(here, "./common.nix"), nix.thunk(() => ({ [nix.POS]: $pos[0], stdenv: stdenv }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "macvim",
       version: "182",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "macvim-dev",
           repo: "macvim",
           tag: nix.thunk(() => (() => {
@@ -77,10 +73,10 @@ substituteInPlace src/Makefile \\
 `),
       postInstall: "mkdir -p $out/Applications\ncp -r src/MacVim/build/Release/MacVim.app $out/Applications\nrm -rf $out/MacVim.app\n\nmkdir -p $out/bin\nfor prog in ex vi {,g,m,r}vi{m,mdiff,ew}; do\n  ln -s $out/Applications/MacVim.app/Contents/bin/mvim $out/bin/$prog\ndone\nfor prog in {,g}vimtutor xxd; do\n  ln -s $out/Applications/MacVim.app/Contents/bin/$prog $out/bin/$prog\ndone\nln -s $out/Applications/MacVim.app/Contents/bin/gvimtutor $out/bin/mvimtutor\n\nmkdir -p $out/share\nln -s $out/Applications/MacVim.app/Contents/man $out/share/man\n\n# Remove manpages from tools we aren't providing\nfind $out/Applications/MacVim.app/Contents/man \\( -name evim.1 -or -name eview.1 \\) -delete\n",
       hardeningDisable: nix.thunk(() => nix.concat(nix.sel(common, "hardeningDisable"), ["format"])),
-      env: nix.thunk(() => ({ [nix.POS]: pos$3, NIX_CFLAGS_COMPILE: "-DOS_LOG_FORMAT_WARNINGS" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[2], NIX_CFLAGS_COMPILE: "-DOS_LOG_FORMAT_WARNINGS" })),
       sandboxProfile: "(allow file-read* file-write* process-exec mach-lookup)\n; block homebrew dependencies\n(deny file-read* file-write* process-exec mach-lookup (subpath \"/usr/local\") (with no-log))\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Vim - the text editor - for macOS",
         homepage: "https://macvim.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "vim")),

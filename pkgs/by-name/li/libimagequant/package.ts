@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["hash", 24, 5]], [["lockFile", 29, 5]], [["package", 55, 7], ["moduleNames", 56, 7]], [["vips", 51, 13], ["pillow", 52, 28], ["pkg-config", 54, 5]], [["tests", 50, 12]], [["homepage", 61, 5], ["description", 62, 5], ["longDescription", 63, 5], ["license", 64, 5], ["platforms", 65, 5], ["maintainers", 66, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["cargoLock", 27, 3], ["postPatch", 32, 3], ["nativeBuildInputs", 36, 3], ["postBuild", 38, 3], ["postInstall", 44, 3], ["passthru", 50, 3], ["meta", 60, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, buildPackages: false, rustPlatform: false, "cargo-c": false, python3: false, testers: false, vips: false, libimagequant: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["lockFile", 29, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["package", 55, 7], ["moduleNames", 56, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["vips", 51, 13], ["pillow", 52, 28], ["pkg-config", 54, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["tests", 50, 12]]);
-const pos$6 = nix.positions(here + "/package.nix", [["homepage", 61, 5], ["description", 62, 5], ["longDescription", 63, 5], ["license", 64, 5], ["platforms", 65, 5], ["maintainers", 66, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["cargoLock", 27, 3], ["postPatch", 32, 3], ["nativeBuildInputs", 36, 3], ["postBuild", 38, 3], ["postInstall", 44, 3], ["passthru", 50, 3], ["meta", 60, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,17 +18,17 @@ export default nix.lambda((args) => (() => {
   const vips = nix.arg($, "vips");
   const libimagequant = nix.arg($, "libimagequant");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "libimagequant",
       version: "4.4.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ImageOptim",
           repo: "libimagequant",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-A7idjAAJ+syqIahyU+LPZBF+MLxVDymY+M3HM7d/qk0=",
         })))),
-      cargoLock: nix.thunk(() => ({ [nix.POS]: pos$2, lockFile: nix.path(here, "./Cargo.lock") })),
+      cargoLock: nix.thunk(() => ({ [nix.POS]: $pos[1], lockFile: nix.path(here, "./Cargo.lock") })),
       postPatch: nix.thunk(() => nix.str`ln -s ${nix.path(here, "./Cargo.lock")} Cargo.lock
 `),
       nativeBuildInputs: nix.thunk(() => [cargo_c]),
@@ -47,15 +41,15 @@ ${nix.sel(buildPackages, "rust", "envVars", "setEnv")} cargo cinstall --release 
 popd
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         tests: nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(python3, "pkgs"));
           return {
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           vips: vips,
           pillow: nix.thunk(() => nix.attr(from, "pillow")),
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "hasPkgConfigModules"), nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               package: libimagequant,
               moduleNames: nix.thunk(() => ["imagequant"]),
             })))),
@@ -63,7 +57,7 @@ popd
         })()),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         homepage: "https://pngquant.org/lib/",
         description: "Image quantization library",
         longDescription: "Small, portable C library for high-quality conversion of RGBA images to 8-bit indexed-color (palette) images.",

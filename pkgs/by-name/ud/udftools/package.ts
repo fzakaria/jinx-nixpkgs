@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]], [["NIX_CFLAGS_COMPILE", 34, 7]], [["description", 47, 5], ["homepage", 48, 5], ["maintainers", 49, 5], ["platforms", 50, 5], ["license", 51, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["nativeBuildInputs", 22, 3], ["buildInputs", 27, 3], ["hardeningDisable", 32, 3], ["env", 34, 3], ["preConfigure", 36, 3], ["meta", 46, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, ncurses: false, readline: false, autoreconfHook: false, "pkg-config": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 34, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 47, 5], ["homepage", 48, 5], ["maintainers", 49, 5], ["platforms", 50, 5], ["license", 51, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["nativeBuildInputs", 22, 3], ["buildInputs", 27, 3], ["hardeningDisable", 32, 3], ["env", 34, 3], ["preConfigure", 36, 3], ["meta", 46, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const autoreconfHook = nix.arg($, "autoreconfHook");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "udftools",
       version: "2.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "pali",
           repo: "udftools",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -31,10 +28,10 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [autoreconfHook, pkg_config]),
       buildInputs: nix.thunk(() => [ncurses, readline]),
       hardeningDisable: nix.thunk(() => ["fortify"]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-std=gnu99" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], NIX_CFLAGS_COMPILE: "-std=gnu99" })),
       preConfigure: "sed -e '1i#include <limits.h>' -i cdrwtool/cdrwtool.c -i pktsetup/pktsetup.c\nsed -e 's@[(]char[*][)]spm [+]=@spm = ((char*) spm) + @' -i wrudf/wrudf.c\nsed -e '38i#include <string.h>' -i wrudf/wrudf-cdrw.c\nsed -e '12i#include <string.h>' -i wrudf/wrudf-cdr.c\nsed -e '37i#include <stdlib.h>' -i wrudf/ide-pc.c\nsed -e '46i#include <sys/sysmacros.h>' -i mkudffs/main.c\nsed -e \"s@\\$(DESTDIR)/lib/udev/rules.d@$out/lib/udev/rules.d@\" -i pktsetup/Makefile.am\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "UDF tools",
         homepage: "https://github.com/pali/udftools",
         maintainers: nix.thunk(() => (() => {

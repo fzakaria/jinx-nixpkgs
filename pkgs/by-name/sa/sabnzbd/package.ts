@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["pname", 55, 11], ["version", 56, 11], ["hash", 57, 11]], [["version", 53, 9], ["src", 54, 9]], [["owner", 81, 5], ["repo", 82, 5], ["rev", 83, 5], ["hash", 84, 5]], [["smoke-test", 104, 11]], [["tests", 104, 5], ["updateScript", 105, 5]], [["description", 109, 5], ["homepage", 110, 5], ["license", 111, 5], ["platforms", 112, 5], ["maintainers", 113, 5], ["mainProgram", 116, 5]], [["version", 77, 3], ["pname", 78, 3], ["src", 80, 3], ["nativeBuildInputs", 87, 3], ["buildInputs", 88, 3], ["installPhase", 90, 3], ["passthru", 103, 3], ["meta", 108, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, coreutils: false, fetchFromGitHub: false, fetchPypi: false, python3: false, "par2cmdline-turbo": false, unzip: false, unrar: false, p7zip: false, "util-linux": false, makeWrapper: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["pname", 55, 11], ["version", 56, 11], ["hash", 57, 11]]);
-const pos$2 = nix.positions(here + "/package.nix", [["version", 53, 9], ["src", 54, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["owner", 81, 5], ["repo", 82, 5], ["rev", 83, 5], ["hash", 84, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["smoke-test", 104, 11]]);
-const pos$5 = nix.positions(here + "/package.nix", [["tests", 104, 5], ["updateScript", 105, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 109, 5], ["homepage", 110, 5], ["license", 111, 5], ["platforms", 112, 5], ["maintainers", 113, 5], ["mainProgram", 116, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["version", 77, 3], ["pname", 78, 3], ["src", 80, 3], ["nativeBuildInputs", 87, 3], ["buildInputs", 88, 3], ["installPhase", 90, 3], ["passthru", 103, 3], ["meta", 108, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -60,10 +54,10 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.lookup(w, "rarfile")),
         nix.thunk(() => nix.lookup(w, "rebulk")),
         nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "sabctools"), "overridePythonAttrs"), (old) => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             version: sabctoolsVersion,
             src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-                [nix.POS]: pos$1,
+                [nix.POS]: $pos[0],
                 pname: "sabctools",
                 version: sabctoolsVersion,
                 hash: sabctoolsHash,
@@ -81,7 +75,7 @@ export default nix.lambda((args) => (() => {
       const version = "5.1.3";
       const pname = "sabnzbd";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           owner: "sabnzbd",
           repo: "sabnzbd",
           rev: version,
@@ -101,15 +95,15 @@ wrapProgram $out/bin/sabnzbd --set PATH ${path}
 runHook postInstall
 `);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           "smoke-test": nix.thunk(() => nix.sel(nixosTests, "sabnzbd")),
         })),
         updateScript: nix.path(here, "./update.sh"),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Usenet NZB downloader, par2 repairer and auto extracting server",
         homepage: "https://sabnzbd.org",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
@@ -121,7 +115,7 @@ runHook postInstall
         mainProgram: "sabnzbd",
       }));
       return {
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         version,
         pname,
         src,

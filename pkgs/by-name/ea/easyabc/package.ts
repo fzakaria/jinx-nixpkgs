@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5]], [["fluidsynth", 28, 7], ["soundfont", 29, 7], ["ghostscript", 30, 7]], [["description", 69, 5], ["mainProgram", 70, 5], ["homepage", 71, 5], ["license", 72, 5], ["platforms", 73, 5], ["maintainers", 74, 5]], [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["src", 19, 3], ["patches", 26, 3], ["nativeBuildInputs", 34, 3], ["dependencies", 36, 3], ["dontBuild", 45, 3], ["strictDeps", 48, 3], ["installPhase", 50, 3], ["meta", 68, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, replaceVars: false, python3: false, fluidsynth: false, "soundfont-fluid": false, wrapGAppsHook3: false, abcmidi: false, abcm2ps: false, ghostscript: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["fluidsynth", 28, 7], ["soundfont", 29, 7], ["ghostscript", 30, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 69, 5], ["mainProgram", 70, 5], ["homepage", 71, 5], ["license", 72, 5], ["platforms", 73, 5], ["maintainers", 74, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["src", 19, 3], ["patches", 26, 3], ["nativeBuildInputs", 34, 3], ["dependencies", 36, 3], ["dontBuild", 45, 3], ["strictDeps", 48, 3], ["installPhase", 50, 3], ["meta", 68, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const abcm2ps = nix.arg($, "abcm2ps");
   const ghostscript = nix.arg($, "ghostscript");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "easyabc",
       version: "1.3.8.7-unstable-2025-01-12",
       pyproject: false,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "jwdj",
           repo: "easyabc",
           rev: "2cfa74d138d485523cae9b889186add3a249f2e4",
@@ -34,7 +31,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./hardcoded-paths.patch"), nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             fluidsynth: nix.thunk(() => nix.str`${fluidsynth}/lib/libfluidsynth.so`),
             soundfont: nix.thunk(() => nix.str`${soundfont_fluid}/share/soundfonts/FluidR3_GM2-2.sf2`),
             ghostscript: nix.thunk(() => nix.str`${ghostscript}/bin/gs`),
@@ -69,7 +66,7 @@ makeWrapper ${nix.sel(python3, "interpreter")} $out/bin/easyabc \\
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "ABC music notation editor",
         mainProgram: "easyabc",
         homepage: "https://easyabc.sourceforge.net/",

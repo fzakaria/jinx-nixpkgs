@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 31, 5], ["version", 32, 26], ["hash", 33, 5]], [["pythonImportsCheck", 71, 7], ["doCheck", 75, 7]], [["pytest", 70, 5]], [["tests", 69, 12]], [["description", 80, 5], ["homepage", 81, 5], ["license", 82, 5], ["maintainers", 83, 5]], [["pname", 24, 3], ["version", 25, 3], ["pyproject", 26, 3], ["__structuredAttrs", 27, 3], ["src", 30, 3], ["build-system", 36, 3], ["pythonRemoveDeps", 40, 3], ["pythonRelaxDeps", 49, 3], ["dependencies", 54, 3], ["nativeCheckInputs", 59, 3], ["doCheck", 67, 3], ["passthru", 69, 3], ["meta", 79, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, setuptools: false, hidapi: false, pyusb: false, click: false, pytestCheckHook: false, spsdk: false, writableTmpDirAsHomeHook: false, "spsdk-mcu-link": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 31, 5], ["version", 32, 26], ["hash", 33, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pythonImportsCheck", 71, 7], ["doCheck", 75, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pytest", 70, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["tests", 69, 12]]);
-const pos$5 = nix.positions(here + "/default.nix", [["description", 80, 5], ["homepage", 81, 5], ["license", 82, 5], ["maintainers", 83, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 24, 3], ["version", 25, 3], ["pyproject", 26, 3], ["__structuredAttrs", 27, 3], ["src", 30, 3], ["build-system", 36, 3], ["pythonRemoveDeps", 40, 3], ["pythonRelaxDeps", 49, 3], ["dependencies", 54, 3], ["nativeCheckInputs", 59, 3], ["doCheck", 67, 3], ["passthru", 69, 3], ["meta", 79, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,13 +19,13 @@ export default nix.lambda((args) => (() => {
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   const spsdk_mcu_link = nix.arg($, "spsdk-mcu-link");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "spsdk-mcu-link",
       version: "0.6.14",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "spsdk_mcu_link",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-9zcBx/apHX1RG0HbVvl/KzfCi4FRC56U2iSt6l1Urh8=",
@@ -42,18 +37,18 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [click, pytestCheckHook, spsdk, writableTmpDirAsHomeHook]),
       doCheck: false,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           pytest: nix.thunk(() => nix.app(nix.sel(spsdk_mcu_link, "overridePythonAttrs"), nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               pythonImportsCheck: nix.thunk(() => ["spsdk_mcu_link"]),
               doCheck: true,
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Debugger probe plugin for SPSDK supporting LPC-Link/MCU-Link from NXP",
         homepage: "https://pypi.org/project/spsdk-mcu-link",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 33, 5], ["version", 34, 13], ["hash", 35, 5]], [["xauth", 40, 7], ["xdpyinfo", 41, 7]], [["doCheck", 56, 38]], [["description", 65, 5], ["homepage", 66, 5], ["license", 67, 5], ["maintainers", 68, 5]], [["pname", 28, 3], ["version", 29, 3], ["pyproject", 30, 3], ["src", 32, 3], ["patches", 38, 3], ["build-system", 45, 3], ["doCheck", 47, 3], ["nativeCheckInputs", 49, 3], ["pytestFlags", 62, 3], ["meta", 64, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchPypi: false, replaceVars: false, "xorg-server": false, xvfb: false, xmessage: false, xdpyinfo: false, xauth: false, setuptools: false, easyprocess: false, entrypoint2: false, pillow: false, psutil: false, "pytest-timeout": false, "pytest-xdist": false, pytestCheckHook: false, vncdotool: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 33, 5], ["version", 34, 13], ["hash", 35, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["xauth", 40, 7], ["xdpyinfo", 41, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["doCheck", 56, 38]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 65, 5], ["homepage", 66, 5], ["license", 67, 5], ["maintainers", 68, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 28, 3], ["version", 29, 3], ["pyproject", 30, 3], ["src", 32, 3], ["patches", 38, 3], ["build-system", 45, 3], ["doCheck", 47, 3], ["nativeCheckInputs", 49, 3], ["pytestFlags", 62, 3], ["meta", 64, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -35,14 +31,14 @@ export default nix.lambda((args) => (() => {
       const version = "3.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "PyVirtualDisplay",
           version: version,
           hash: "sha256-CXVbw86263JfsH7KVCX0PyNY078I4A0qm3kqGu3RYVk=",
         }))));
       const patches = nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [
           nix.thunk(() => nix.app(replaceVars, nix.path(here, "./paths.patch"), nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               xauth: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), xauth)),
               xdpyinfo: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), xdpyinfo)),
             })))),
@@ -56,14 +52,14 @@ export default nix.lambda((args) => (() => {
         psutil,
         pytest_timeout,
         pytestCheckHook,
-        nix.thunk(() => nix.app(nix.sel(vncdotool, "overridePythonAttrs"), nix.thunk(() => ({ [nix.POS]: pos$3, doCheck: false })))),
+        nix.thunk(() => nix.app(nix.sel(vncdotool, "overridePythonAttrs"), nix.thunk(() => ({ [nix.POS]: $pos[2], doCheck: false })))),
         xorg_server,
         xmessage,
         xvfb,
       ]);
       const pytestFlags = nix.thunk(() => ["-v"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Python wrapper for Xvfb, Xephyr and Xvnc",
         homepage: "https://github.com/ponty/pyvirtualdisplay",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsdOriginal")),
@@ -73,7 +69,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         pyproject,

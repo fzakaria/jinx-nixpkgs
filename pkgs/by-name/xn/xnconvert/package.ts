@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 16, 11], ["hash", 17, 11]], [["nativeBuildInputs", 14, 9], ["src", 15, 9]], [["name", 25, 7], ["desktopName", 26, 7], ["exec", 27, 7], ["icon", 28, 7], ["comment", 29, 7], ["categories", 30, 7]], [["url", 40, 5], ["hash", 41, 5]], [["homepage", 56, 5], ["description", 57, 5], ["longDescription", 58, 5], ["platforms", 67, 5], ["license", 68, 5], ["mainProgram", 69, 5], ["maintainers", 70, 5]], [["pname", 36, 3], ["version", 37, 11], ["src", 39, 3], ["extraPkgs", 44, 3], ["extraInstallCommands", 48, 3], ["meta", 55, 3]]]);
 const formals$1 = { args: { lib: false, fetchurl: false, appimageTools: false, makeDesktopItem: false, imagemagick: false, runCommand: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 16, 11], ["hash", 17, 11]]);
-const pos$2 = nix.positions(here + "/package.nix", [["nativeBuildInputs", 14, 9], ["src", 15, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 25, 7], ["desktopName", 26, 7], ["exec", 27, 7], ["icon", 28, 7], ["comment", 29, 7], ["categories", 30, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["url", 40, 5], ["hash", 41, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["homepage", 56, 5], ["description", 57, 5], ["longDescription", 58, 5], ["platforms", 67, 5], ["license", 68, 5], ["mainProgram", 69, 5], ["maintainers", 70, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 36, 3], ["version", 37, 11], ["src", 39, 3], ["extraPkgs", 44, 3], ["extraInstallCommands", 48, 3], ["meta", 55, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,16 +14,16 @@ export default nix.lambda((args) => (() => {
   const imagemagick = nix.arg($, "imagemagick");
   const runCommand = nix.arg($, "runCommand");
   const icon = nix.thunk(() => nix.app(runCommand, "xnconvert-icon.png", nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       nativeBuildInputs: nix.thunk(() => [imagemagick]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://www.xnview.com/img/app-xnconvert-512.webp",
           hash: "sha256-le+rvthQndY3KbkPYuMGZDDcvdpvH9CIS2REP1vmDXg=",
         })))),
     })), "convert $src $out\n"));
   const desktopItem = nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       name: "xnconvert",
       desktopName: "XnConvert",
       exec: "xnconvert",
@@ -38,11 +33,11 @@ export default nix.lambda((args) => (() => {
     }))));
   const version = "1.116.0";
   return nix.app(nix.sel(appimageTools, "wrapType2"), nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "xnconvert",
       version: version,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           url: nix.thunk(() => nix.str`https://download.xnview.com/versions/XnConvert/XnConvert-${version}.glibc2.34-x86_64.AppImage`),
           hash: "sha256-CYAo208cOKz67IVlyPlf9KH90WNX1jsK2sYI+0J1C8A=",
         })))),
@@ -53,7 +48,7 @@ mkdir -p $out/share/applications/
 cp ${desktopItem}/share/applications/*.desktop $out/share/applications/
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "https://www.xnview.com/en/xnconvert",
         description: "Fast, powerful and free cross-platform batch image converter",
         longDescription: "XnConvert is a fast, powerful and free cross-platform batch image converter.\nIt allows to automate editing of your photo collections: you can rotate,\nconvert and compress your images, photos and pictures easily, and apply over\n80 actions (like resize, crop, color adjustments, filter, ...).\nAll common picture and graphics formats are supported (JPEG, TIFF, PNG, GIF,\nWebP, PSD, JPEG2000, JPEG-XL, OpenEXR, camera RAW, HEIC, PDF, DNG, CR2).\nYou can save and re-use your presets for another batch image conversion.\n",

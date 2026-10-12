@@ -2,10 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/modules.nix", [[["name", 10, 7], ["destination", 11, 7], ["text", 12, 7]], [["modules", 25, 5]], [["nativeBuildInputs", 33, 5]]]);
 const formals$1 = { args: { freecad: false, runCommand: false, writeTextFile: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/modules.nix", [["name", 10, 7], ["destination", 11, 7], ["text", 12, 7]]);
-const pos$2 = nix.positions(here + "/modules.nix", [["modules", 25, 5]]);
-const pos$3 = nix.positions(here + "/modules.nix", [["nativeBuildInputs", 33, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const runCommand = nix.arg($, "runCommand");
   const writeTextFile = nix.arg($, "writeTextFile");
   const mkModule = (n) => nix.app(writeTextFile, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: nix.thunk(() => nix.str`module-${n}`),
       destination: "/Init.py",
       text: nix.thunk(() => nix.str`import sys
@@ -27,8 +25,8 @@ f.close()
     })));
   const module_1 = nix.thunk(() => nix.app(mkModule, "1"));
   const module_2 = nix.thunk(() => nix.app(mkModule, "2"));
-  const freecad_customized = nix.thunk(() => nix.app(nix.sel(freecad, "customize"), nix.thunk(() => ({ [nix.POS]: pos$2, modules: nix.thunk(() => [module_1, module_2]) }))));
-  return nix.app(runCommand, "freecad-test-modules", nix.thunk(() => ({ [nix.POS]: pos$3, nativeBuildInputs: nix.thunk(() => [freecad_customized]) })), nix.thunk(() => nix.str`mkdir $out
+  const freecad_customized = nix.thunk(() => nix.app(nix.sel(freecad, "customize"), nix.thunk(() => ({ [nix.POS]: $pos[1], modules: nix.thunk(() => [module_1, module_2]) }))));
+  return nix.app(runCommand, "freecad-test-modules", nix.thunk(() => ({ [nix.POS]: $pos[2], nativeBuildInputs: nix.thunk(() => [freecad_customized]) })), nix.thunk(() => nix.str`mkdir $out
 HOME="$(mktemp -d)" FreeCADCmd --log-file $out/freecad.log -c "sys.exit(0)" </dev/null
 test -f $out/module-1.touch
 test -f $out/module-2.touch

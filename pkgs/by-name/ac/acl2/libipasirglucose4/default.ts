@@ -2,10 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 19, 5], ["hash", 20, 5]], [["description", 42, 5], ["license", 43, 5], ["platforms", 44, 5], ["maintainers", 45, 5]], [["pname", 10, 3], ["version", 14, 3], ["libname", 16, 3], ["src", 18, 3], ["nativeBuildInputs", 22, 3], ["buildInputs", 24, 3], ["sourceRoot", 26, 3], ["patches", 27, 3], ["makeFlags", 29, 3], ["postBuild", 31, 3], ["installPhase", 37, 3], ["meta", 41, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, zlib: false, unzip: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 42, 5], ["license", 43, 5], ["platforms", 44, 5], ["maintainers", 45, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 10, 3], ["version", 14, 3], ["libname", 16, 3], ["src", 18, 3], ["nativeBuildInputs", 22, 3], ["buildInputs", 24, 3], ["sourceRoot", 26, 3], ["patches", 27, 3], ["makeFlags", 29, 3], ["postBuild", 31, 3], ["installPhase", 37, 3], ["meta", 41, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const zlib = nix.arg($, "zlib");
   const unzip = nix.arg($, "unzip");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "libipasirglucose4",
       version: "2017",
       libname: nix.thunk(() => nix.add(nix.sel(finalAttrs, "pname"), nix.sel(stdenv, "hostPlatform", "extensions", "sharedLibrary"))),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://baldur.iti.kit.edu/sat-competition-2017/solvers/incremental/glucose-ipasir.zip",
           hash: "sha256-svGDbCLlPNCg1skHycV9cRS1zecasZodgo3v5Jt6kHU=",
         })))),
@@ -36,7 +34,7 @@ export default nix.lambda((args) => (() => {
       installPhase: nix.thunk(() => nix.str`install -D ${nix.sel(finalAttrs, "libname")} $out/lib/${nix.sel(finalAttrs, "libname")}
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Shared library providing IPASIR interface to the Glucose SAT solver",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),

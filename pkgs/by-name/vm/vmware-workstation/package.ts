@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 56, 5], ["hash", 57, 5]], [["pname", 61, 5], ["version", 62, 26], ["targetPkgs", 63, 5]], [["owner", 71, 5], ["repo", 72, 5], ["tag", 73, 5], ["hash", 74, 5]], [["name", 88, 5], ["paths", 89, 5], ["postBuild", 90, 5]], [["description", 390, 5], ["homepage", 391, 5], ["sourceProvenance", 392, 5], ["license", 393, 5], ["platforms", 394, 5], ["mainProgram", 395, 5], ["maintainers", 396, 5]], [["pname", 51, 3], ["version", 52, 3], ["build", 53, 3], ["src", 55, 3], ["vmware-unpack-env", 60, 3], ["unpackPhase", 66, 3], ["macOSUnlockerSrc", 70, 3], ["postPatch", 77, 3], ["readline70_compat63", 87, 3], ["nativeBuildInputs", 95, 3], ["buildInputs", 108, 3], ["installPhase", 140, 3], ["meta", 389, 3]]]);
 const formals$1 = { args: { stdenv: false, buildFHSEnv: false, fetchurl: false, lib: false, zlib: false, gdbm: false, libxslt: false, libxml2: false, libuuid: false, readline: false, readline70: false, xz: false, cups: false, libaio: false, "vulkan-loader": false, "alsa-lib": false, libpulseaudio: false, "libxcrypt-legacy": false, libGL: false, numactl: false, libxtst: false, libxscrnsaver: false, libxrender: false, libxrandr: false, libxi: false, libxinerama: false, libxft: false, libxfixes: false, libxext: false, libxdmcp: false, libxdamage: false, libxcursor: false, libxcomposite: false, libxau: false, libx11: false, kmod: false, python3: false, autoPatchelfHook: false, makeWrapper: false, symlinkJoin: false, enableInstaller: true, bzip2: false, sqlite: false, enableMacOSGuests: true, fetchFromGitHub: false, unzip: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 56, 5], ["hash", 57, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 61, 5], ["version", 62, 26], ["targetPkgs", 63, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["owner", 71, 5], ["repo", 72, 5], ["tag", 73, 5], ["hash", 74, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["name", 88, 5], ["paths", 89, 5], ["postBuild", 90, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 390, 5], ["homepage", 391, 5], ["sourceProvenance", 392, 5], ["license", 393, 5], ["platforms", 394, 5], ["mainProgram", 395, 5], ["maintainers", 396, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 51, 3], ["version", 52, 3], ["build", 53, 3], ["src", 55, 3], ["vmware-unpack-env", 60, 3], ["unpackPhase", 66, 3], ["macOSUnlockerSrc", 70, 3], ["postPatch", 77, 3], ["readline70_compat63", 87, 3], ["nativeBuildInputs", 95, 3], ["buildInputs", 108, 3], ["installPhase", 140, 3], ["meta", 389, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -59,17 +54,17 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const unzip = nix.arg($, "unzip");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "vmware-workstation",
       version: "25H2u1",
       build: "25219725",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://archive.org/download/VMware-Workstation-Full-${nix.sel(finalAttrs, "version")}-${nix.sel(finalAttrs, "build")}.x86_64/VMware-Workstation-Full-${nix.sel(finalAttrs, "version")}-${nix.sel(finalAttrs, "build")}.x86_64.bundle`),
           hash: "sha256-chqpPE68qlGsbbde2Xx6TbEKqIEQRGiQ2x5Av6/HVmo=",
         })))),
       "vmware-unpack-env": nix.thunk(() => nix.app(buildFHSEnv, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: "vmware-unpack-env",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           targetPkgs: (pkgs) => [zlib],
@@ -77,7 +72,7 @@ export default nix.lambda((args) => (() => {
       unpackPhase: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "vmware-unpack-env")}/bin/vmware-unpack-env -c "sh ${nix.sel(finalAttrs, "src")} --extract unpacked"
 `),
       macOSUnlockerSrc: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           owner: "paolo-projects",
           repo: "unlocker",
           tag: "3.0.5",
@@ -92,7 +87,7 @@ substituteInPlace unlocker/unlocker.py --replace \\
   "/usr/lib/vmware/lib/libvmwarebase.so/libvmwarebase.so" "$out/lib/vmware/lib/libvmwarebase.so/libvmwarebase.so"
 `))),
       readline70_compat63: nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           name: "readline70_compat63",
           paths: nix.thunk(() => [readline70]),
           postBuild: "ln -s $out/lib/libreadline.so $out/lib/libreadline.so.6\n",
@@ -378,7 +373,7 @@ done
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Industry standard desktop hypervisor for x86-64 architecture",
         homepage: "https://www.vmware.com/products/desktop-hypervisor/workstation-and-fusion",
         sourceProvenance: nix.thunk(() => (() => {

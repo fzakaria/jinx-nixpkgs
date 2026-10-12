@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["sha256", 18, 5]], [["BuildTime", 31, 5], ["GitCommitID", 32, 5], ["GoVersion", 33, 5], ["GoArch", 34, 5]], [["trickster", 40, 43]], [["tests", 40, 12]], [["description", 43, 5], ["mainProgram", 44, 5], ["longDescription", 45, 5], ["homepage", 49, 5], ["license", 50, 5], ["maintainers", 51, 5], ["platforms", 52, 5]], [["pname", 10, 3], ["version", 11, 3], ["rev", 12, 3], ["src", 14, 3], ["vendorHash", 21, 3], ["subPackages", 23, 3], ["ldflags", 25, 3], ["doCheck", 38, 3], ["passthru", 40, 3], ["meta", 42, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitHub: false, go: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["sha256", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["BuildTime", 31, 5], ["GitCommitID", 32, 5], ["GoVersion", 33, 5], ["GoArch", 34, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["trickster", 40, 43]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 40, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 43, 5], ["mainProgram", 44, 5], ["longDescription", 45, 5], ["homepage", 49, 5], ["license", 50, 5], ["maintainers", 51, 5], ["platforms", 52, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["rev", 12, 3], ["src", 14, 3], ["vendorHash", 21, 3], ["subPackages", 23, 3], ["ldflags", 25, 3], ["doCheck", 38, 3], ["passthru", 40, 3], ["meta", 42, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.1.5";
       const rev = "4595bd6a1ae1165ef497251ad85c646dadc8a925";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "trickstercache",
           repo: "trickster",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -31,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const vendorHash = null;
       const subPackages = nix.thunk(() => ["cmd/trickster"]);
       const ldflags = nix.thunk(() => nix.concat(["-extldflags '-static'", "-s", "-w"], nix.app(nix.sel(lib, "mapAttrsToList"), (n) => (v) => nix.str`-X main.application${n}=${v}`, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           BuildTime: "1970-01-01T00:00:00+0000",
           GitCommitID: rev,
           GoVersion: nix.thunk(() => nix.str`go${nix.sel(go, "version")}}`),
@@ -39,14 +34,14 @@ export default nix.lambda((args) => (() => {
         })))));
       const doCheck = false;
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           trickster: nix.thunk(() => nix.attr(nixosTests, "trickster")),
         })),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Reverse proxy cache and time series dashboard accelerator",
         mainProgram: "trickster",
         longDescription: "Trickster is a fully-featured HTTP Reverse Proxy Cache for HTTP\napplications like static file servers and web APIs.\n",
@@ -59,7 +54,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname,
         version,
         rev,

@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["version", 16, 9], ["sha256", 17, 9]], [["version", 21, 9], ["sha256", 22, 9]], [["url", 31, 5], ["hash", 32, 5]], [["url", 35, 5], ["hash", 36, 5]], [["url", 39, 5], ["hash", 40, 5]], [["owner", 51, 5], ["repo", 52, 5], ["rev", 53, 5], ["sha256", 54, 21]], [["homepage", 81, 5], ["changelog", 82, 5], ["description", 83, 5], ["license", 84, 5], ["maintainers", 85, 5]], [["pname", 45, 3], ["version", 46, 19], ["minimalOCamlVersion", 48, 3], ["src", 50, 3], ["propagatedBuildInputs", 57, 3], ["preBuild", 65, 3], ["checkInputs", 72, 3], ["doCheck", 76, 3], ["dontStrip", 78, 3], ["meta", 80, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, fetchurl: false, buildDunePackage: false, gen: false, ppxlib: false, uchar: false, ppx_expect: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["version", 16, 9], ["sha256", 17, 9]]);
-const pos$2 = nix.positions(here + "/default.nix", [["version", 21, 9], ["sha256", 22, 9]]);
-const pos$3 = nix.positions(here + "/default.nix", [["url", 31, 5], ["hash", 32, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["url", 35, 5], ["hash", 36, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["url", 39, 5], ["hash", 40, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["owner", 51, 5], ["repo", 52, 5], ["rev", 53, 5], ["sha256", 54, 21]]);
-const pos$7 = nix.positions(here + "/default.nix", [["homepage", 81, 5], ["changelog", 82, 5], ["description", 83, 5], ["license", 84, 5], ["maintainers", 85, 5]]);
-const pos$8 = nix.positions(here + "/default.nix", [["pname", 45, 3], ["version", 46, 19], ["minimalOCamlVersion", 48, 3], ["src", 50, 3], ["propagatedBuildInputs", 57, 3], ["preBuild", 65, 3], ["checkInputs", 72, 3], ["doCheck", 76, 3], ["dontStrip", 78, 3], ["meta", 80, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,39 +16,39 @@ export default nix.lambda((args) => (() => {
   const uchar = nix.arg($, "uchar");
   const ppx_expect = nix.arg($, "ppx_expect");
   const param = nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(ppxlib, "version")), "0.26.0")) ? {
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     version: "3.7",
     sha256: "sha256-ucqrJkzS6cVogGUf1vU8oBpSryneMBqTjzxwsOi6Egs=",
   } : {
-    [nix.POS]: pos$2,
+    [nix.POS]: $pos[1],
     version: "2.5",
     sha256: "sha256:062a5dvrzvb81l3a9phljrhxfw9nlb61q341q0a6xn65hll3z2wy",
   }));
   const unicodeVersion = "17.0.0";
   const baseUrl = nix.thunk(() => nix.str`https://www.unicode.org/Public/${unicodeVersion}`);
   const DerivedCoreProperties = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       url: nix.thunk(() => nix.str`${baseUrl}/ucd/DerivedCoreProperties.txt`),
       hash: "sha256-JMf+0RlcSC+q79XB5+uCHF7h+23gfs26pktWqZ2iLAg=",
     }))));
   const DerivedGeneralCategory = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       url: nix.thunk(() => nix.str`${baseUrl}/ucd/extracted/DerivedGeneralCategory.txt`),
       hash: "sha256-1i5bq3DKdPCZND9xIk+gUcsf3WGhq0XASIxEz8C2EC4=",
     }))));
   const PropList = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       url: nix.thunk(() => nix.str`${baseUrl}/ucd/PropList.txt`),
       hash: "sha256-Ew3N3Kra8HEAi9/OHndD4E/fvJEIhvAX2fmskx2MZN0=",
     }))));
   const atLeast31 = nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(param, "version")), "3.1"));
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "sedlex",
       version: nix.thunk(() => nix.attr(param, "version")),
       minimalOCamlVersion: "4.08",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           owner: "ocaml-community",
           repo: "sedlex",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -71,7 +64,7 @@ ln -s ${PropList} src/generator/data/PropList.txt
       doCheck: true,
       dontStrip: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         homepage: "https://github.com/ocaml-community/sedlex",
         changelog: nix.thunk(() => nix.str`https://github.com/ocaml-community/sedlex/raw/v${nix.sel(finalAttrs, "version")}/CHANGES`),
         description: "OCaml lexer generator for Unicode",

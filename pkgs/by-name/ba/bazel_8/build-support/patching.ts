@@ -2,22 +2,21 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/patching.nix", [[["name", 15, 7], ["dontUnpack", 16, 7], ["buildPhase", 17, 7], ["installPhase", 22, 7]], [["addFilePatch", 9, 3]]]);
 const formals$1 = { args: { stdenv: false }, ellipsis: false };
 const formals$2 = { args: { path: false, file: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/patching.nix", [["name", 15, 7], ["dontUnpack", 16, 7], ["buildPhase", 17, 7], ["installPhase", 22, 7]]);
-const pos$2 = nix.positions(here + "/patching.nix", [["addFilePatch", 9, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const stdenv = nix.arg($, "stdenv");
   return {
-    [nix.POS]: pos$2,
+    [nix.POS]: $pos[1],
     addFilePatch: nix.lambda((args_1) => (() => {
       const $_1 = nix.formals(args_1, formals$2);
       const path = nix.arg($_1, "path");
       const file = nix.arg($_1, "file");
       return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           name: "add_file.patch",
           dontUnpack: true,
           buildPhase: nix.thunk(() => nix.str`mkdir -p $(dirname "${path}")

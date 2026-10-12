@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["sha256", 17, 5]], [["url", 27, 7], ["hash", 28, 7]], [["url", 33, 7], ["hash", 34, 7]], [["description", 52, 5], ["homepage", 53, 5], ["license", 54, 5], ["maintainers", 55, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 20, 3], ["patches", 22, 3], ["doCheck", 38, 3], ["checkPhase", 39, 3], ["meta", 51, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, fetchpatch: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["sha256", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 27, 7], ["hash", 28, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 33, 7], ["hash", 34, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 52, 5], ["homepage", 53, 5], ["license", 54, 5], ["maintainers", 55, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 20, 3], ["patches", 22, 3], ["doCheck", 38, 3], ["checkPhase", 39, 3], ["meta", 51, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const cmake = nix.arg($, "cmake");
   const fetchpatch = nix.arg($, "fetchpatch");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "muparserx",
       version: "4.0.12",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "beltoforion",
           repo: "muparserx",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -30,12 +26,12 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [cmake]),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/beltoforion/muparserx/commit/d671af0882d4ba09a4bba810877b796f1877d41e.patch?full_index=1",
             hash: "sha256-4pJrPTMVpTLZWu+PpTtgmtzryObw6vY/kjgsrPDqljw=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: "https://github.com/beltoforion/muparserx/commit/c605872591d542e1630e3fcc4b292d8a0702acd2.patch?full_index=1",
             hash: "sha256-CZPh/+vBhuUXGGEE1fPQiaojpInWhGmFk1HG9pGuAPw=",
           })))),
@@ -43,7 +39,7 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       checkPhase: "echo \"***Muparserx self-test***\"\necho \"quit\" | ./example > test_result.log\ncat test_result.log\nif grep -Fqi \"failed\" test_result.log; then\n  echo \">=1 muparserx tests failed\"\n  exit 1\nelse\n  echo -e \"\\nmuparserx tests succeeded\"\nfi\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "C++ Library for Parsing Expressions with Strings, Complex Numbers, Vectors, Matrices and more",
         homepage: "https://beltoforion.de/en/muparserx/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

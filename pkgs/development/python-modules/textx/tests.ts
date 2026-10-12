@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/tests.nix", [[["license", 53, 26], ["maintainers", 53, 34], ["description", 54, 5], ["homepage", 55, 5]], [["pname", 21, 3], ["version", 22, 19], ["pyproject", 23, 3], ["srcs", 25, 3], ["dontBuild", 27, 3], ["dontInstall", 28, 3], ["nativeCheckInputs", 30, 3], ["enabledTestPaths", 47, 3], ["disabledTests", 48, 3], ["meta", 52, 3]]]);
 const formals$1 = { args: { buildPythonPackage: false, attrs: false, click: false, gprof2dot: false, html5lib: false, jinja2: false, "memory-profiler": false, psutil: false, pytestCheckHook: false, setuptools: false, textx: false, "textx-data-dsl": false, "textx-example-project": false, "textx-flow-codegen": false, "textx-flow-dsl": false, "textx-types-dsl": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/tests.nix", [["license", 53, 26], ["maintainers", 53, 34], ["description", 54, 5], ["homepage", 55, 5]]);
-const pos$2 = nix.positions(here + "/tests.nix", [["pname", 21, 3], ["version", 22, 19], ["pyproject", 23, 3], ["srcs", 25, 3], ["dontBuild", 27, 3], ["dontInstall", 28, 3], ["nativeCheckInputs", 30, 3], ["enabledTestPaths", 47, 3], ["disabledTests", 48, 3], ["meta", 52, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,7 +24,7 @@ export default nix.lambda((args) => (() => {
   const textx_flow_dsl = nix.arg($, "textx-flow-dsl");
   const textx_types_dsl = nix.arg($, "textx-types-dsl");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "textx-tests",
       version: nix.thunk(() => nix.attr(textx, "version")),
       pyproject: false,
@@ -53,7 +52,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(textx, "meta"));
         return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         license: nix.thunk(() => nix.attr(from, "license")),
         maintainers: nix.thunk(() => nix.attr(from, "maintainers")),
         description: "passthru.tests for textx",

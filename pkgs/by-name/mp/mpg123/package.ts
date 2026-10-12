@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 27, 5], ["hash", 28, 5]], [["updateScript", 82, 5]], [["description", 96, 5], ["homepage", 97, 5], ["license", 98, 5], ["maintainers", 99, 5], ["platforms", 100, 5]], [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["outputs", 31, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 42, 3], ["configureFlags", 51, 3], ["enableParallelBuilding", 65, 3], ["postInstall", 67, 3], ["preFixup", 72, 3], ["postFixup", 76, 3], ["passthru", 81, 3], ["meta", 95, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, makeWrapper: false, "pkg-config": false, libOnly: true, withAlsa: true, "alsa-lib": false, withPulse: true, libpulseaudio: false, withCoreAudio: true, withJack: true, libjack2: false, withConplay: true, perl: false, writeScript: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 82, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 96, 5], ["homepage", 97, 5], ["license", 98, 5], ["maintainers", 99, 5], ["platforms", 100, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["outputs", 31, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 42, 3], ["configureFlags", 51, 3], ["enableParallelBuilding", 65, 3], ["postInstall", 67, 3], ["preFixup", 72, 3], ["postFixup", 76, 3], ["passthru", 81, 3], ["meta", 95, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const writeScript = nix.arg($, "writeScript");
   nix.assert_((!nix.asBool(withConplay) || nix.asBool(!nix.asBool(libOnly))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/mp/mpg123/package.nix:20:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "optionalString"), libOnly, "lib")}mpg123`),
       version: "1.33.7",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/mpg123/mpg123-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           hash: "sha256-MdDjWkylZ+ybXr2mwwYrtENdbT6s1u8NlcrdeFTcA+4=",
         })))),
@@ -47,7 +44,7 @@ export default nix.lambda((args) => (() => {
       preFixup: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), withConplay, "patchShebangs $conplay/bin/conplay\n")),
       postFixup: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), withConplay, "wrapProgram $conplay/bin/conplay \\\n  --prefix PATH : $out/bin\n")),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(writeScript, "update-mpg123", nix.thunk(() => nix.str`#!/usr/bin/env nix-shell
 #!nix-shell -i bash -p curl pcre2 common-updater-scripts
 
@@ -60,7 +57,7 @@ update-source-version ${nix.sel(finalAttrs, "pname")} "$new_version"
 `))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Fast console MPEG Audio Player and decoder library",
         homepage: "https://mpg123.org",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Only")),

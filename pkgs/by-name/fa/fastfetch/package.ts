@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["unwrapped", 178, 15], ["runtimeDependencies", 179, 7], ["runtimePrograms", 180, 7], ["minimal", 181, 7]], [["priority", 185, 7], ["longDescription", 186, 7]], [["pname", 164, 5], ["version", 165, 25], ["strictDeps", 167, 5], ["__structuredAttrs", 168, 5], ["outputs", 170, 5], ["nativeBuildInputs", 175, 5], ["passthru", 177, 5], ["meta", 184, 5], ["preferLocalBuild", 194, 5]]]);
 const formals$1 = { args: { lib: false, stdenv: false, runCommand: false, "apple-sdk_15": false, chafa: false, dbus: false, dconf: false, ddcutil: false, enlightenment: false, glib: false, imagemagick: false, libdrm: false, libelf: false, libglvnd: false, libpulseaudio: false, libva: false, libvdpau: false, libxcb: false, libxrandr: false, makeBinaryWrapper: false, moltenvk: false, "ocl-icd": false, rpm: false, sqlite: false, "vulkan-loader": false, wayland: false, xfconf: false, zfs: false, zlib: false, "fastfetch-unwrapped": false, audioSupport: true, brightnessSupport: true, codecSupport: true, dbusSupport: true, flashfetchSupport: true, terminalSupport: true, enlightenmentSupport: true, gnomeSupport: true, imageSupport: true, openclSupport: true, openglSupport: true, rpmSupport: true, sqliteSupport: true, vulkanSupport: true, waylandSupport: true, x11Support: true, xfceSupport: true, zfsSupport: true, runtimeDependencies: true, extraRuntimeDependencies: true, runtimePrograms: true, extraRuntimePrograms: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["unwrapped", 178, 15], ["runtimeDependencies", 179, 7], ["runtimePrograms", 180, 7], ["minimal", 181, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["priority", 185, 7], ["longDescription", 186, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 164, 5], ["version", 165, 25], ["strictDeps", 167, 5], ["__structuredAttrs", 168, 5], ["outputs", 170, 5], ["nativeBuildInputs", 175, 5], ["passthru", 177, 5], ["meta", 184, 5], ["preferLocalBuild", 194, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -68,7 +66,7 @@ export default nix.lambda((args) => (() => {
   const runtimeLibraryPath = nix.thunk(() => nix.app(nix.sel(lib, "makeLibraryPath"), resolvedRuntimeDependencies));
   const runtimeProgramPath = nix.thunk(() => nix.app(nix.sel(lib, "makeBinPath"), resolvedRuntimePrograms));
   return nix.app(runCommand, nix.thunk(() => nix.str`fastfetch-${nix.sel(unwrapped, "version")}`), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "fastfetch",
       version: nix.thunk(() => nix.attr(unwrapped, "version")),
       strictDeps: true,
@@ -76,14 +74,14 @@ export default nix.lambda((args) => (() => {
       outputs: nix.thunk(() => ["out", "man"]),
       nativeBuildInputs: nix.thunk(() => [makeBinaryWrapper]),
       passthru: nix.thunk(() => nix.update(nix.builtins.removeAttrs(nix.thunk(() => nix.sel(unwrapped, "passthru")), nix.thunk(() => ["updateScript"])), {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         unwrapped: unwrapped,
         runtimeDependencies: resolvedRuntimeDependencies,
         runtimePrograms: resolvedRuntimePrograms,
         minimal: nix.thunk(() => nix.app(nix.sel(lib, "warnOnInstantiate"), "`fastfetch.minimal` has been renamed to `fastfetch-unwrapped`", unwrapped)),
       })),
       meta: nix.thunk(() => nix.update(nix.sel(unwrapped, "meta"), {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         priority: nix.thunk(() => nix.sub(nix.selOr(unwrapped, () => nix.sel(lib, "meta", "defaultPriority"), "meta", "priority"), 1n)),
         longDescription: "Fast and highly customizable system info script.\n\nThis wrapped package makes optional runtime libraries available to the\nfull-featured fastfetch-unwrapped binary.\n",
       })),

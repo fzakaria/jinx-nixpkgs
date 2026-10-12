@@ -2,14 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 34, 5], ["repo", 35, 5], ["rev", 36, 5], ["hash", 37, 5]], [["name", 51, 7], ["url", 52, 7], ["revert", 53, 7], ["includes", 54, 7], ["hash", 58, 7]], [["LC_ALL", 96, 7]], [["pkg-config", 123, 11]], [["tests", 123, 5], ["updateScript", 124, 5]], [["description", 128, 5], ["homepage", 129, 5], ["changelog", 130, 5], ["license", 131, 5], ["teams", 132, 5], ["platforms", 133, 5], ["mainProgram", 134, 5], ["pkgConfigModules", 135, 5]], [["pname", 30, 3], ["version", 31, 3], ["src", 33, 3], ["outputs", 40, 3], ["patches", 46, 3], ["postPatch", 62, 3], ["strictDeps", 71, 3], ["nativeBuildInputs", 73, 3], ["buildInputs", 82, 3], ["env", 96, 3], ["nativeCheckInputs", 98, 3], ["checkInputs", 103, 3], ["cmakeFlags", 109, 3], ["doCheck", 115, 3], ["preCheck", 117, 3], ["passthru", 122, 3], ["meta", 127, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitLab: false, fetchpatch: false, gitUpdater: false, testers: false, cmake: false, "cmake-extras": false, dbus: false, doxygen: false, glibcLocales: false, "gsettings-qt": false, gtest: false, intltool: false, "json-glib": false, libapparmor: false, libqtdbustest: false, "pkg-config": false, qdjango: false, qtbase: false, qtdeclarative: false, qtxmlpatterns: false, "ubports-click": false, validatePkgConfig: false, wrapQtAppsHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 34, 5], ["repo", 35, 5], ["rev", 36, 5], ["hash", 37, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["name", 51, 7], ["url", 52, 7], ["revert", 53, 7], ["includes", 54, 7], ["hash", 58, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["LC_ALL", 96, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pkg-config", 123, 11]]);
-const pos$5 = nix.positions(here + "/default.nix", [["tests", 123, 5], ["updateScript", 124, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["description", 128, 5], ["homepage", 129, 5], ["changelog", 130, 5], ["license", 131, 5], ["teams", 132, 5], ["platforms", 133, 5], ["mainProgram", 134, 5], ["pkgConfigModules", 135, 5]]);
-const pos$7 = nix.positions(here + "/default.nix", [["pname", 30, 3], ["version", 31, 3], ["src", 33, 3], ["outputs", 40, 3], ["patches", 46, 3], ["postPatch", 62, 3], ["strictDeps", 71, 3], ["nativeBuildInputs", 73, 3], ["buildInputs", 82, 3], ["env", 96, 3], ["nativeCheckInputs", 98, 3], ["checkInputs", 103, 3], ["cmakeFlags", 109, 3], ["doCheck", 115, 3], ["preCheck", 117, 3], ["passthru", 122, 3], ["meta", 127, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -39,11 +33,11 @@ export default nix.lambda((args) => (() => {
   const validatePkgConfig = nix.arg($, "validatePkgConfig");
   const wrapQtAppsHook = nix.arg($, "wrapQtAppsHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "libusermetrics",
       version: "1.4.2",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ubports",
           repo: "development/core/libusermetrics",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -52,7 +46,7 @@ export default nix.lambda((args) => (() => {
       outputs: nix.thunk(() => ["out", "dev", "doc"]),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "0001-libusermetrics-revert-qdjango-vendoring.patch",
             url: "https://gitlab.com/ubports/development/core/libusermetrics/-/commit/87f83dd4711bfb4e94fd87bc68403a9bd5cfef2a.patch",
             revert: true,
@@ -80,7 +74,7 @@ substituteInPlace doc/CMakeLists.txt \\
         qtbase,
       ]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         LC_ALL: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage", "doCheck")), "en_US.UTF-8")),
       })),
       nativeCheckInputs: nix.thunk(() => [dbus, glibcLocales]),
@@ -95,15 +89,15 @@ substituteInPlace doc/CMakeLists.txt \\
 export QML2_IMPORT_PATH=${nix.app(nix.sel(lib, "getBin"), qtdeclarative)}/lib/qt-${nix.sel(qtbase, "version")}/qml/
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "testMetaPkgConfig"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
         })),
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Enables apps to locally store interesting numerical data for later presentation",
         homepage: "https://gitlab.com/ubports/development/core/libusermetrics",
         changelog: nix.thunk(() => nix.str`https://gitlab.com/ubports/development/core/libusermetrics/-/blob/${nix.sel(finalAttrs, "version")}/ChangeLog`),

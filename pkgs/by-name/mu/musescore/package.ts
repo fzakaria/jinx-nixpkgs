@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 43, 5], ["repo", 44, 5], ["tag", 45, 5], ["hash", 46, 5]], [["url", 54, 7], ["hash", 55, 7]], [["nixos", 198, 18]], [["tests", 198, 12]], [["description", 201, 5], ["homepage", 202, 5], ["license", 203, 5], ["maintainers", 204, 5], ["mainProgram", 209, 5], ["platforms", 210, 5]], [["pname", 39, 3], ["version", 40, 3], ["src", 42, 3], ["patches", 49, 3], ["cmakeFlags", 59, 3], ["qtWrapperArgs", 86, 3], ["preFixup", 106, 3], ["dontWrapGApps", 110, 3], ["nativeBuildInputs", 112, 3], ["buildInputs", 125, 3], ["preConfigure", 156, 3], ["strictDeps", 162, 3], ["__structuredAttrs", 163, 3], ["postInstall", 165, 3], ["dontWrapQtApps", 188, 3], ["postFixup", 189, 3], ["doCheck", 196, 3], ["passthru", 198, 3], ["meta", 200, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch: false, cmake: false, ninja: false, "pkg-config": false, wrapGAppsHook3: false, "alsa-lib": false, "alsa-plugins": false, ffmpeg: false, flac: false, freetype: false, qt6: false, lame: false, libjack2: false, libogg: false, libopus: false, libopusenc: false, libpulseaudio: false, libsndfile: false, libvorbis: false, mnxdom: false, portaudio: false, portmidi: false, pugixml: false, utf8cpp: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 43, 5], ["repo", 44, 5], ["tag", 45, 5], ["hash", 46, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 54, 7], ["hash", 55, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["nixos", 198, 18]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 198, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 201, 5], ["homepage", 202, 5], ["license", 203, 5], ["maintainers", 204, 5], ["mainProgram", 209, 5], ["platforms", 210, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 39, 3], ["version", 40, 3], ["src", 42, 3], ["patches", 49, 3], ["cmakeFlags", 59, 3], ["qtWrapperArgs", 86, 3], ["preFixup", 106, 3], ["dontWrapGApps", 110, 3], ["nativeBuildInputs", 112, 3], ["buildInputs", 125, 3], ["preConfigure", 156, 3], ["strictDeps", 162, 3], ["__structuredAttrs", 163, 3], ["postInstall", 165, 3], ["dontWrapQtApps", 188, 3], ["postFixup", 189, 3], ["doCheck", 196, 3], ["passthru", 198, 3], ["meta", 200, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -41,11 +36,11 @@ export default nix.lambda((args) => (() => {
   const utf8cpp = nix.arg($, "utf8cpp");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "musescore",
       version: "4.7.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "musescore",
           repo: "MuseScore",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -53,7 +48,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/musescore/MuseScore/commit/f273501e418842351c4bda10cce32b0e329eaff1.patch",
             hash: "sha256-zrZRzeAHSFGtCuw/o4A3b1Blbo3FxKGxw1UDu9IggzY=",
           })))),
@@ -127,11 +122,11 @@ export default nix.lambda((args) => (() => {
       postFixup: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), "mkdir -p $out/libexec\nmv $out/bin/mscore $out/libexec\nmakeQtWrapper $out/libexec/mscore $out/bin/mscore\n")),
       doCheck: false,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$3, nixos: nix.thunk(() => nix.sel(nixosTests, "musescore")) })),
+        [nix.POS]: $pos[3],
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[2], nixos: nix.thunk(() => nix.sel(nixosTests, "musescore")) })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Music notation and composition software",
         homepage: "https://musescore.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

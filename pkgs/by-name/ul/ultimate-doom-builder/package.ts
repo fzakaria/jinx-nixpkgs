@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["hash", 26, 5]], [["name", 114, 7], ["exec", 115, 7], ["icon", 116, 7], ["desktopName", 117, 7], ["comment", 118, 7], ["categories", 119, 7]], [["updateScript", 128, 12]], [["homepage", 131, 5], ["description", 132, 5], ["mainProgram", 133, 5], ["longDescription", 134, 5], ["license", 139, 5], ["platforms", 140, 5], ["maintainers", 141, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 36, 3], ["postPatch", 43, 3], ["buildPhase", 61, 3], ["installPhase", 85, 3], ["desktopItems", 112, 3], ["passthru", 128, 3], ["meta", 130, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, makeWrapper: false, msbuild: false, mono: false, libGL: false, libpng: false, libx11: false, libxfixes: false, makeDesktopItem: false, copyDesktopItems: false, unstableGitUpdater: false, autoPatchelfHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 114, 7], ["exec", 115, 7], ["icon", 116, 7], ["desktopName", 117, 7], ["comment", 118, 7], ["categories", 119, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 128, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 131, 5], ["description", 132, 5], ["mainProgram", 133, 5], ["longDescription", 134, 5], ["license", 139, 5], ["platforms", 140, 5], ["maintainers", 141, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 36, 3], ["postPatch", 43, 3], ["buildPhase", 61, 3], ["installPhase", 85, 3], ["desktopItems", 112, 3], ["passthru", 128, 3], ["meta", 130, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   const autoPatchelfHook = nix.arg($, "autoPatchelfHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "ultimate-doom-builder",
       version: "0-unstable-2026-02-01",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "UltimateDoomBuilder",
           repo: "UltimateDoomBuilder",
           rev: "9d7a12b1164dc53964b594395f9d5d825a43ac12",
@@ -96,7 +92,7 @@ runHook postInstall
 `),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "ultimate-doom-builder",
             exec: "ultimate-doom-builder",
             icon: "ultimate-doom-builder",
@@ -106,11 +102,11 @@ runHook postInstall
           })))),
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://github.com/UltimateDoomBuilder/UltimateDoomBuilder",
         description: "Advanced Doom map editor based on Doom Builder 2 with Mono support",
         mainProgram: "ultimate-doom-builder",

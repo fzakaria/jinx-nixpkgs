@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["x86_64-linux", 20, 9], ["aarch64-linux", 21, 9]], [["x86_64-linux", 27, 9], ["aarch64-linux", 28, 9]], [["url", 25, 7], ["hash", 26, 7]], [["updateScript", 51, 12]], [["description", 59, 5], ["homepage", 60, 5], ["license", 61, 5], ["sourceProvenance", 62, 5], ["platforms", 63, 5], ["maintainers", 67, 5], ["mainProgram", 68, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 38, 3], ["installPhase", 40, 3], ["doInstallCheck", 49, 3], ["passthru", 51, 3], ["meta", 58, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchzip: false, upx: false, autoPatchelfHook: false, versionCheckHook: false, writeShellScript: false, "nix-update": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["x86_64-linux", 20, 9], ["aarch64-linux", 21, 9]]);
-const pos$2 = nix.positions(here + "/package.nix", [["x86_64-linux", 27, 9], ["aarch64-linux", 28, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 25, 7], ["hash", 26, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 51, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 59, 5], ["homepage", 60, 5], ["license", 61, 5], ["sourceProvenance", 62, 5], ["platforms", 63, 5], ["maintainers", 67, 5], ["mainProgram", 68, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 38, 3], ["installPhase", 40, 3], ["doInstallCheck", 49, 3], ["passthru", 51, 3], ["meta", 58, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,17 +16,17 @@ export default nix.lambda((args) => (() => {
   const writeShellScript = nix.arg($, "writeShellScript");
   const nix_update = nix.arg($, "nix-update");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "snell-server",
       version: "5.0.1",
       src: nix.thunk(() => (() => {
         const selectSystem = (attrs) => nix.sel(attrs, nix.key(nix.sel(stdenv, "hostPlatform", "system")));
-        const arch = nix.thunk(() => nix.app(selectSystem, nix.thunk(() => ({ [nix.POS]: pos$1, "x86_64-linux": "amd64", "aarch64-linux": "aarch64" }))));
+        const arch = nix.thunk(() => nix.app(selectSystem, nix.thunk(() => ({ [nix.POS]: $pos[0], "x86_64-linux": "amd64", "aarch64-linux": "aarch64" }))));
         return nix.app(fetchzip, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: nix.thunk(() => nix.str`https://dl.nssurge.com/snell/snell-server-v${nix.sel(finalAttrs, "version")}-linux-${arch}.zip`),
             hash: nix.thunk(() => nix.app(selectSystem, nix.thunk(() => ({
-                [nix.POS]: pos$2,
+                [nix.POS]: $pos[1],
                 "x86_64-linux": "sha256-J2kRVJRC0GhxLMarg7Ucdk8uvzTsKbFHePEflPjwsHU=",
                 "aarch64-linux": "sha256-UT+Rd6TEMYL/+xfqGxGN/tiSBvN8ntDrkCBj4PuMRwg=",
               })))),
@@ -44,7 +39,7 @@ export default nix.lambda((args) => (() => {
       installPhase: "runHook preInstall\n\nupx -d snell-server\ninstall -Dm755 snell-server $out/bin/snell-server\n\nrunHook postInstall\n",
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(writeShellScript, "update-snell-server", nix.thunk(() => nix.str`latestVersion=$(curl --fail --silent https://kb.nssurge.com/surge-knowledge-base/release-notes/snell | grep -oE 'snell-server-v[0-9]+\\.[0-9]+\\.[0-9]+' | sed 's/snell-server-v//' | sort -V | tail -n1)
 if [[ "$latestVersion" == "$UPDATE_NIX_OLD_VERSION" ]]; then exit 0; fi
 ${nix.app(nix.sel(lib, "getExe"), nix_update)} pkgsCross.gnu64.snell --version "$latestVersion"
@@ -52,7 +47,7 @@ ${nix.app(nix.sel(lib, "getExe"), nix_update)} pkgsCross.aarch64-multiplatform.s
 `))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Lean encrypted proxy protocol",
         homepage: "https://kb.nssurge.com/surge-knowledge-base/release-notes/snell",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

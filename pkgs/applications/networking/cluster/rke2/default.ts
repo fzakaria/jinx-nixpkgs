@@ -2,8 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["rke2_1_34", 8, 3], ["rke2_1_35", 10, 3], ["rke2_1_36", 12, 3], ["rke2_stable", 15, 3], ["rke2_latest", 16, 3]]]);
 const formals$1 = { args: { lib: false, callPackage: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/default.nix", [["rke2_1_34", 8, 3], ["rke2_1_35", 10, 3], ["rke2_1_36", 12, 3], ["rke2_stable", 15, 3], ["rke2_latest", 16, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,7 +18,14 @@ export default nix.lambda((args) => (() => {
     const rke2_1_36 = nix.thunk(() => nix.app(common, nix.thunk(() => nix.builtins.import(nix.path(here, "./1_36/versions.nix"))), extraArgs));
     const rke2_stable = rke2_1_35;
     const rke2_latest = rke2_1_36;
-    return { [nix.POS]: pos$1, rke2_1_34, rke2_1_35, rke2_1_36, rke2_stable, rke2_latest };
+    return {
+      [nix.POS]: $pos[0],
+      rke2_1_34,
+      rke2_1_35,
+      rke2_1_36,
+      rke2_stable,
+      rke2_latest,
+    };
   })();
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

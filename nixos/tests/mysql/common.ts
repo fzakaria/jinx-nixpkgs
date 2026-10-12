@@ -2,21 +2,19 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/common.nix", [[["mysql84", 7, 20]], [["percona-server_8_4", 10, 20]], [["mariadbPackages", 3, 3], ["mysqlPackages", 6, 3], ["perconaPackages", 9, 3], ["mkTestName", 12, 3]]]);
 const formals$1 = { args: { lib: false, pkgs: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/common.nix", [["mysql84", 7, 20]]);
-const pos$2 = nix.positions(here + "/common.nix", [["percona-server_8_4", 10, 20]]);
-const pos$3 = nix.positions(here + "/common.nix", [["mariadbPackages", 3, 3], ["mysqlPackages", 6, 3], ["perconaPackages", 9, 3], ["mkTestName", 12, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   return {
-    [nix.POS]: pos$3,
+    [nix.POS]: $pos[2],
     mariadbPackages: nix.thunk(() => nix.app(nix.sel(lib, "filterAttrs"), (n) => (_) => nix.app(nix.sel(lib, "hasPrefix"), "mariadb", n), nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../../pkgs/servers/sql/mariadb")), pkgs)))),
-    mysqlPackages: nix.thunk(() => ({ [nix.POS]: pos$1, mysql84: nix.thunk(() => nix.attr(pkgs, "mysql84")) })),
+    mysqlPackages: nix.thunk(() => ({ [nix.POS]: $pos[0], mysql84: nix.thunk(() => nix.attr(pkgs, "mysql84")) })),
     perconaPackages: nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       "percona-server_8_4": nix.thunk(() => nix.attr(pkgs, "percona-server_8_4")),
     })),
     mkTestName: (pkg) => nix.str`${nix.builtins.replaceStrings(nix.thunk(() => ["-"]), nix.thunk(() => ["_"]), nix.thunk(() => nix.sel(pkg, "pname")))}_${nix.builtins.replaceStrings(nix.thunk(() => ["."]), nix.thunk(() => [""]), nix.thunk(() => nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(pkg, "version")))))}`,

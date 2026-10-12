@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]], [["CGO_ENABLED", 27, 7]], [["changelog", 83, 5], ["description", 84, 5], ["homepage", 85, 5], ["license", 86, 5], ["maintainers", 87, 5], ["mainProgram", 91, 5], ["platforms", 92, 5]], [["pname", 13, 3], ["version", 14, 3], ["__structuredAttrs", 16, 3], ["src", 18, 3], ["vendorHash", 25, 3], ["env", 27, 3], ["outputs", 29, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 36, 3], ["ldflags", 38, 3], ["postPatch", 45, 3], ["postInstall", 58, 3], ["nativeInstallCheckInputs", 79, 3], ["doInstallCheck", 80, 3], ["meta", 82, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitHub: false, runtimeShell: false, installShellFiles: false, bc: false, ncurses: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["CGO_ENABLED", 27, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["changelog", 83, 5], ["description", 84, 5], ["homepage", 85, 5], ["license", 86, 5], ["maintainers", 87, 5], ["mainProgram", 91, 5], ["platforms", 92, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["__structuredAttrs", 16, 3], ["src", 18, 3], ["vendorHash", 25, 3], ["env", 27, 3], ["outputs", 29, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 36, 3], ["ldflags", 38, 3], ["postPatch", 45, 3], ["postInstall", 58, 3], ["nativeInstallCheckInputs", 79, 3], ["doInstallCheck", 80, 3], ["meta", 82, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,19 +16,19 @@ export default nix.lambda((args) => (() => {
   const ncurses = nix.arg($, "ncurses");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "fzf",
       version: "0.74.4",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "junegunn",
           repo: "fzf",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-QQ4hwbTeZ6MSojjCFn7dlISz1aGQbewGq4wnfs3/4K0=",
         })))),
       vendorHash: "sha256-NojjUf/3c4q4B96eQ/qcI+GdRvHakHUyMRaQ6/IZpEw=",
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, CGO_ENABLED: 0n })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], CGO_ENABLED: 0n })),
       outputs: nix.thunk(() => ["out", "man"]),
       nativeBuildInputs: nix.thunk(() => [installShellFiles]),
       buildInputs: nix.thunk(() => [ncurses]),
@@ -73,7 +70,7 @@ chmod +x $out/bin/fzf-share
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         changelog: nix.thunk(() => nix.str`https://github.com/junegunn/fzf/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG.md`),
         description: "Command-line fuzzy finder written in Go",
         homepage: "https://github.com/junegunn/fzf",

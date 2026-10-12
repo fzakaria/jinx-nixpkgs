@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/kirigami2.nix", [[["pname", 12, 3], ["nativeBuildInputs", 13, 3], ["buildInputs", 18, 3], ["outputs", 23, 3]]]);
 const formals$1 = { args: { mkDerivation: false, cmake: false, "extra-cmake-modules": false, qtbase: false, qtquickcontrols2: false, qtgraphicaleffects: false, qttools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/kirigami2.nix", [["pname", 12, 3], ["nativeBuildInputs", 13, 3], ["buildInputs", 18, 3], ["outputs", 23, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const qtgraphicaleffects = nix.arg($, "qtgraphicaleffects");
   const qttools = nix.arg($, "qttools");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       pname: "kirigami2",
       nativeBuildInputs: nix.thunk(() => [cmake, extra_cmake_modules, qttools]),
       buildInputs: nix.thunk(() => [qtbase, qtquickcontrols2, qtgraphicaleffects]),

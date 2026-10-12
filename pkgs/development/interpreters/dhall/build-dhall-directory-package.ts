@@ -2,10 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/build-dhall-directory-package.nix", [[["name", 24, 15], ["dependencies", 24, 20], ["source", 24, 33], ["code", 26, 7]], [["documentationRoot", 29, 37]]]);
 const formals$1 = { args: { buildDhallPackage: false, lib: false }, ellipsis: false };
 const formals$2 = { args: { name: false, dependencies: true, source: true, src: false, file: true, document: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/build-dhall-directory-package.nix", [["name", 24, 15], ["dependencies", 24, 20], ["source", 24, 33], ["code", 26, 7]]);
-const pos$2 = nix.positions(here + "/build-dhall-directory-package.nix", [["documentationRoot", 29, 37]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,12 +19,12 @@ export default nix.lambda((args) => (() => {
       const file = nix.argOr($_1, "file", () => "package.dhall");
       const document = nix.argOr($_1, "document", () => false);
       return nix.app(buildDhallPackage, nix.thunk(() => nix.update({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           name: name,
           dependencies: dependencies,
           source: source,
           code: nix.thunk(() => nix.str`${src}/${file}`),
-        }, nix.app(nix.sel(lib, "optionalAttrs"), document, nix.thunk(() => ({ [nix.POS]: pos$2, documentationRoot: nix.thunk(() => nix.str`${src}`) }))))));
+        }, nix.app(nix.sel(lib, "optionalAttrs"), document, nix.thunk(() => ({ [nix.POS]: $pos[1], documentationRoot: nix.thunk(() => nix.str`${src}`) }))))));
     })(), formals$2));
 })(), formals$1);
 //# sourceMappingURL=build-dhall-directory-package.ts.map

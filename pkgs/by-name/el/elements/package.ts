@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 29, 5], ["repo", 30, 5], ["rev", 31, 5], ["sha256", 32, 5]], [["description", 100, 5], ["longDescription", 101, 5], ["homepage", 107, 5], ["maintainers", 108, 5], ["license", 109, 5], ["platforms", 110, 5]], [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 46, 3], ["configureFlags", 63, 3], ["hardeningDisable", 81, 3], ["nativeCheckInputs", 86, 3], ["doCheck", 88, 3], ["checkFlags", 90, 3], ["enableParallelBuilding", 97, 3], ["meta", 99, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, autoreconfHook: false, "pkg-config": false, "util-linux": false, hexdump: false, darwin: false, boost: false, libevent: false, miniupnpc: false, zeromq: false, zlib: false, db48: false, sqlite: false, qrencode: false, qt5: false, python3: false, withGui: true, withWallet: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 29, 5], ["repo", 30, 5], ["rev", 31, 5], ["sha256", 32, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 100, 5], ["longDescription", 101, 5], ["homepage", 107, 5], ["maintainers", 108, 5], ["license", 109, 5], ["platforms", 110, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 46, 3], ["configureFlags", 63, 3], ["hardeningDisable", 81, 3], ["nativeCheckInputs", 86, 3], ["doCheck", 88, 3], ["checkFlags", 90, 3], ["enableParallelBuilding", 97, 3], ["meta", 99, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,11 +28,11 @@ export default nix.lambda((args) => (() => {
   const withGui = nix.argOr($, "withGui", () => true);
   const withWallet = nix.argOr($, "withWallet", () => true);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: nix.thunk(() => (nix.asBool(withGui) ? "elements" : "elementsd")),
       version: "23.3.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ElementsProject",
           repo: "elements",
           rev: nix.thunk(() => nix.str`elements-${nix.sel(finalAttrs, "version")}`),
@@ -59,7 +57,7 @@ export default nix.lambda((args) => (() => {
       checkFlags: nix.thunk(() => nix.concat(["LC_ALL=en_US.UTF-8"], nix.app(nix.sel(lib, "optional"), withGui, nix.thunk(() => nix.str`QT_PLUGIN_PATH=${nix.sel(qt5, "qtbase")}/${nix.sel(qt5, "qtbase", "qtPluginPrefix")}`)))),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Open Source implementation of advanced blockchain features extending the Bitcoin protocol",
         longDescription: "The Elements blockchain platform is a collection of feature experiments and extensions to the\nBitcoin protocol. This platform enables anyone to build their own businesses or networks\npegged to Bitcoin as a sidechain or run as a standalone blockchain with arbitrary asset\ntokens.\n",
         homepage: "https://www.github.com/ElementsProject/elements",

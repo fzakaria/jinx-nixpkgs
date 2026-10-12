@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 21, 7], ["version", 22, 28], ["src", 22, 36], ["nativeBuildInputs", 23, 7], ["installPhase", 33, 7]], [["url", 50, 7], ["sha256", 51, 7]], [["description", 83, 7], ["homepage", 84, 7], ["changelog", 85, 7], ["license", 86, 7], ["maintainers", 87, 7]], [["pname", 41, 5], ["version", 42, 5], ["pyproject", 43, 5], ["build-system", 44, 5], ["disabled", 47, 5], ["src", 49, 5], ["prePatch", 55, 5], ["postPatch", 64, 5], ["nativeBuildInputs", 68, 5], ["propagatedBuildInputs", 72, 5], ["doCheck", 78, 5], ["pythonImportsCheck", 80, 5], ["meta", 82, 5]]]);
 const formals$1 = { args: { autoPatchelfHook: false, buildPythonPackage: false, fetchurl: false, lib: false, numpy: false, onetbb: false, python: false, pythonOlder: false, setuptools: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 21, 7], ["version", 22, 28], ["src", 22, 36], ["nativeBuildInputs", 23, 7], ["installPhase", 33, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["url", 50, 7], ["sha256", 51, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 83, 7], ["homepage", 84, 7], ["changelog", 85, 7], ["license", 86, 7], ["maintainers", 87, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 41, 5], ["version", 42, 5], ["pyproject", 43, 5], ["build-system", 44, 5], ["disabled", 47, 5], ["src", 49, 5], ["prePatch", 55, 5], ["postPatch", 64, 5], ["nativeBuildInputs", 68, 5], ["propagatedBuildInputs", 72, 5], ["doCheck", 78, 5], ["pythonImportsCheck", 80, 5], ["meta", 82, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const mosek_major_minor = nix.thunk(() => nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version"))));
       const python_major_version = nix.thunk(() => nix.sel(python, "sourceVersion", "major"));
       const mosek_libs = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "mosek-libs",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -35,14 +32,14 @@ ln -snf ${onetbb}/lib/libtbb.so.12 $out/lib/libtbb.so.12
 `),
         }))));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname: "mosek",
         version: "11.2.2",
         pyproject: true,
         "build-system": nix.thunk(() => [setuptools]),
         disabled: nix.thunk(() => nix.app(pythonOlder, "3.9")),
         src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: nix.thunk(() => nix.str`https://download.mosek.com/stable/${nix.sel(finalAttrs, "version")}/mosektoolslinux64x86.tar.bz2`),
             sha256: "sha256-DVSZ+8ggmK7EyiaHYCUjxQ/3mY5GcUlgXVRfReiBkiw=",
           })))),
@@ -56,7 +53,7 @@ ln -snf ${onetbb}/lib/libtbb.so.12 $out/lib/libtbb.so.12
         meta: nix.thunk(() => (() => {
           const w = nix.withScope(lib, null);
           return {
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             description: "Python interface for MOSEK - the package for large scale convex, conic and mixed-integer optimization.",
             homepage: "https://www.mosek.com/",
             changelog: nix.thunk(() => nix.str`https://docs.mosek.com/${mosek_major_minor}/releasenotes/changes.html`),

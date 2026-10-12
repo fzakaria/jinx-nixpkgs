@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]], [["description", 55, 5], ["homepage", 56, 5], ["license", 57, 5], ["platforms", 59, 5], ["maintainers", 60, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["outputs", 20, 3], ["patches", 25, 3], ["nativeBuildInputs", 33, 3], ["mesonBuildType", 38, 3], ["postPatch", 42, 3], ["meta", 54, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, meson: false, ninja: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 55, 5], ["homepage", 56, 5], ["license", 57, 5], ["platforms", 59, 5], ["maintainers", 60, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["outputs", 20, 3], ["patches", 25, 3], ["nativeBuildInputs", 33, 3], ["mesonBuildType", 38, 3], ["postPatch", 42, 3], ["meta", 54, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const meson = nix.arg($, "meson");
   const ninja = nix.arg($, "ninja");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "ldacbt",
       version: "2.0.72",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "open-vela",
           repo: "external_libldac",
           rev: "5b4bf66096ba0d69615efb2422ba3d023c34c2fd",
@@ -43,7 +41,7 @@ awk -v want=${nix.sel(finalAttrs, "version")} '
 ' src/ldacBT_api.c > VERSION
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Sony LDAC Bluetooth decoder library (from AOSP via open-vela)",
         homepage: "https://github.com/open-vela/external_libldac",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

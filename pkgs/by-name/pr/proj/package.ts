@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]], [["name", 39, 7], ["url", 41, 7], ["hash", 42, 7]], [["proj", 92, 38]], [["python", 91, 5], ["proj", 92, 5]], [["tests", 90, 12]], [["changelog", 96, 5], ["description", 97, 5], ["homepage", 98, 5], ["license", 99, 5], ["maintainers", 100, 5], ["teams", 101, 5], ["platforms", 102, 5]], [["pname", 21, 3], ["version", 22, 3], ["__structuredAttrs", 23, 3], ["strictDeps", 24, 3], ["src", 26, 3], ["patches", 33, 3], ["outputs", 46, 3], ["nativeBuildInputs", 51, 3], ["buildInputs", 56, 3], ["nativeCheckInputs", 63, 3], ["checkInputs", 68, 3], ["cmakeFlags", 72, 3], ["preCheck", 79, 3], ["doCheck", 88, 3], ["passthru", 90, 3], ["meta", 95, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, "pkg-config": false, buildPackages: false, callPackage: false, sqlite: false, libtiff: false, curl: false, gtest: false, nlohmann_json: false, python3: false, cacert: false, writableTmpDirAsHomeHook: false, fetchpatch2: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 39, 7], ["url", 41, 7], ["hash", 42, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["proj", 92, 38]]);
-const pos$4 = nix.positions(here + "/package.nix", [["python", 91, 5], ["proj", 92, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["tests", 90, 12]]);
-const pos$6 = nix.positions(here + "/package.nix", [["changelog", 96, 5], ["description", 97, 5], ["homepage", 98, 5], ["license", 99, 5], ["maintainers", 100, 5], ["teams", 101, 5], ["platforms", 102, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 3], ["__structuredAttrs", 23, 3], ["strictDeps", 24, 3], ["src", 26, 3], ["patches", 33, 3], ["outputs", 46, 3], ["nativeBuildInputs", 51, 3], ["buildInputs", 56, 3], ["nativeCheckInputs", 63, 3], ["checkInputs", 68, 3], ["cmakeFlags", 72, 3], ["preCheck", 79, 3], ["doCheck", 88, 3], ["passthru", 90, 3], ["meta", 95, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,13 +24,13 @@ export default nix.lambda((args) => (() => {
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   const fetchpatch2 = nix.arg($, "fetchpatch2");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "proj",
       version: "9.9.0",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "OSGeo",
           repo: "PROJ",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -45,7 +39,7 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [
         nix.path(here, "./only-add-curl-for-static-builds.patch"),
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "fix_issue_with_target_compile_features.patch",
             url: "https://github.com/OSGeo/PROJ/commit/7ea0fd3ba479845464b34ccf5265b8e6d055cde5.patch?full_index=1",
             hash: "sha256-IIe0T1/8Jv7tvhUupFn46PaFi7zggAT79EC55cmxHSs=",
@@ -70,15 +64,18 @@ export ${libPathEnvVar}=$PWD/lib
       })()),
       doCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           python: nix.thunk(() => nix.sel(python3, "pkgs", "pyproj")),
-          proj: nix.thunk(() => nix.app(callPackage, nix.path(here, "./tests.nix"), nix.thunk(() => ({ [nix.POS]: pos$3, proj: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")) })))),
+          proj: nix.thunk(() => nix.app(callPackage, nix.path(here, "./tests.nix"), nix.thunk(() => ({
+              [nix.POS]: $pos[2],
+              proj: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
+            })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         changelog: nix.thunk(() => nix.str`https://github.com/OSGeo/PROJ/blob/${nix.sel(finalAttrs, "src", "tag")}/NEWS.md`),
         description: "Cartographic Projections Library",
         homepage: "https://proj.org/",

@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["withCompression", 69, 41]], [["url", 76, 5], ["hash", 77, 5]], [["name", 83, 7], ["url", 84, 7], ["hash", 85, 7]], [["NIX_CFLAGS_LINK", 204, 7]], [["tests", 206, 12]], [["homepage", 209, 5], ["description", 210, 5], ["mainProgram", 211, 5], ["changelog", 212, 5], ["license", 213, 5], ["platforms", 214, 5], ["maintainers", 215, 5]], [["pname", 72, 3], ["version", 73, 3], ["src", 75, 3], ["patches", 80, 3], ["nativeBuildInputs", 89, 3], ["buildInputs", 96, 3], ["configureFlags", 128, 3], ["env", 204, 3], ["passthru", 206, 3], ["meta", 208, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, fetchpatch: false, "pkg-config": false, autoreconfHook: false, "autoconf-archive": false, libestr: false, json_c: false, zlib: false, docutils: false, libfastjson: false, withLibyaml: true, libyaml: false, withKrb5: true, libkrb5: false, withSystemd: true, systemdLibs: false, withJemalloc: true, jemalloc: false, withMysql: true, libmysqlclient: false, withPostgres: true, libpq: false, withDbi: true, libdbi: false, withNetSnmp: true, "net-snmp": false, withUuid: true, libuuid: false, withCurl: true, curl: false, withGnutls: true, gnutls: false, withGcrypt: true, libgcrypt: false, withLognorm: true, liblognorm: false, withMaxminddb: true, libmaxminddb: false, withOpenssl: true, openssl: false, withRelp: true, librelp: false, withKsi: true, libksi: false, withLogging: true, liblogging: false, withNet: true, libnet: false, withHadoop: true, hadoop: false, withRdkafka: true, rdkafka: false, withMongo: true, mongoc: false, withCzmq: true, czmq: false, withRabbitmq: true, "rabbitmq-c": false, withHiredis: true, hiredis: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["withCompression", 69, 41]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 76, 5], ["hash", 77, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 83, 7], ["url", 84, 7], ["hash", 85, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_LINK", 204, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["tests", 206, 12]]);
-const pos$6 = nix.positions(here + "/package.nix", [["homepage", 209, 5], ["description", 210, 5], ["mainProgram", 211, 5], ["changelog", 212, 5], ["license", 213, 5], ["platforms", 214, 5], ["maintainers", 215, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 72, 3], ["version", 73, 3], ["src", 75, 3], ["patches", 80, 3], ["nativeBuildInputs", 89, 3], ["buildInputs", 96, 3], ["configureFlags", 128, 3], ["env", 204, 3], ["passthru", 206, 3], ["meta", 208, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -76,19 +70,19 @@ export default nix.lambda((args) => (() => {
   const withHiredis = nix.argOr($, "withHiredis", () => true);
   const hiredis = nix.arg($, "hiredis");
   const nixosTests = nix.arg($, "nixosTests");
-  const systemdLibs$ = nix.thunk(() => nix.app(nix.sel(systemdLibs, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, withCompression: true }))));
+  const systemdLibs$ = nix.thunk(() => nix.app(nix.sel(systemdLibs, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], withCompression: true }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "rsyslog",
       version: "8.2608.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: nix.thunk(() => nix.str`https://www.rsyslog.com/files/download/rsyslog/rsyslog-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-49YMg0BSaMQi+V/ux0BFWhzEuRHQC9hCTV0ScrxQmxo=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "CVE-2026-78002.patch",
             url: "https://github.com/rsyslog/rsyslog/commit/667e3f61aec5ee02c5c2ee6f0f8accf6fe4301a9.patch",
             hash: "sha256-QsxOJCvr6VBbLbXzednwgvCfisSvNm6zfxPaMFxXVT0=",
@@ -171,10 +165,10 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "enableFeature"), withCurl, "omhttp")),
         nix.thunk(() => nix.app(nix.sel(lib, "enableFeature"), true, "generate-man-pages")),
       ]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$4, NIX_CFLAGS_LINK: "-lz" })),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$5, tests: nix.thunk(() => nix.sel(nixosTests, "rsyslogd")) })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[3], NIX_CFLAGS_LINK: "-lz" })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[4], tests: nix.thunk(() => nix.sel(nixosTests, "rsyslogd")) })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         homepage: "https://www.rsyslog.com/",
         description: "Enhanced syslog implementation",
         mainProgram: "rsyslogd",

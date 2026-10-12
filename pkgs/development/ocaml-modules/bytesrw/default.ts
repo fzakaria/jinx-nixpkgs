@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 29, 5], ["hash", 30, 5]], [["description", 75, 5], ["longDescription", 76, 5], ["homepage", 84, 5], ["license", 85, 5], ["maintainers", 86, 5]], [["pname", 23, 3], ["version", 24, 3], ["minimalOCamlVersion", 26, 3], ["src", 28, 3], ["buildInputs", 33, 3], ["postPatch", 44, 3], ["buildPhase", 49, 3], ["meta", 74, 3]]]);
 const formals$1 = { args: { lib: false, fetchzip: false, topkg: false, buildTopkgPackage: false, withBlake3: true, libblake3: false, withLibmd: true, libmd: false, withMbedtls: true, mbedtls_4: false, withXxh: true, xxhash: false, withZlib: true, zlib: false, withZstd: true, zstd: false, withCmdliner: true, cmdliner: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 29, 5], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 75, 5], ["longDescription", 76, 5], ["homepage", 84, 5], ["license", 85, 5], ["maintainers", 86, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 23, 3], ["version", 24, 3], ["minimalOCamlVersion", 26, 3], ["src", 28, 3], ["buildInputs", 33, 3], ["postPatch", 44, 3], ["buildPhase", 49, 3], ["meta", 74, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.4.1";
       const minimalOCamlVersion = "4.14.0";
       const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://erratique.ch/software/bytesrw/releases/bytesrw-${version}.tbz`),
           hash: "sha256-gdtrLILtbKJCu9ENUG9BTNTAUg4/JA7YvHnIWACNwds=",
         }))));
@@ -55,7 +53,7 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.app(nix.sel(lib, "boolToString"), withCmdliner)),
         ]))}`);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Composable, memory efficient, byte stream readers and writers compatible with effect-based concurrency",
         longDescription: "Bytesrw extends the OCaml Bytes module with composable, memory efficient,\nbyte stream readers and writers compatible with effect-based concurrency.\n\nExcept for byte slice life-times, these abstractions intentionally\nseparate away resource management and the specifics of reading and\nwriting bytes.\n",
         homepage: "https://erratique.ch/software/bytesrw",
@@ -66,7 +64,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         minimalOCamlVersion,

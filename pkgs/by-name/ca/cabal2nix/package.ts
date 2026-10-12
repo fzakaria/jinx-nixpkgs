@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["pname", 10, 33], ["version", 10, 39], ["meta", 10, 47], ["nativeBuildInputs", 11, 3], ["paths", 12, 3], ["postBuild", 13, 3]]]);
 const formals$1 = { args: { lib: false, symlinkJoin: false, "cabal2nix-unwrapped": false, makeWrapper: false, "nix-prefetch-scripts": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["pname", 10, 33], ["version", 10, 39], ["meta", 10, 47], ["nativeBuildInputs", 11, 3], ["paths", 12, 3], ["postBuild", 13, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const nix_prefetch_scripts = nix.arg($, "nix-prefetch-scripts");
   return nix.app(symlinkJoin, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       pname: nix.thunk(() => nix.attr(cabal2nix_unwrapped, "pname")),
       version: nix.thunk(() => nix.attr(cabal2nix_unwrapped, "version")),
       meta: nix.thunk(() => nix.attr(cabal2nix_unwrapped, "meta")),

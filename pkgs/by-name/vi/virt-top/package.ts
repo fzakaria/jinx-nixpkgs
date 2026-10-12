@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 22, 5], ["rev", 23, 5], ["hash", 24, 5]], [["description", 58, 5], ["homepage", 59, 5], ["license", 60, 5], ["maintainers", 61, 5], ["platforms", 62, 5], ["mainProgram", 63, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["patches", 27, 3], ["strictDeps", 31, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 40, 3], ["postPatch", 51, 3], ["meta", 57, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchgit: false, "ocaml-ng": false, autoreconfHook: false, libxml2: false, "pkg-config": false, getopt: false, gettext: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 22, 5], ["rev", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 58, 5], ["homepage", 59, 5], ["license", 60, 5], ["maintainers", 61, 5], ["platforms", 62, 5], ["mainProgram", 63, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["patches", 27, 3], ["strictDeps", 31, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 40, 3], ["postPatch", 51, 3], ["meta", 57, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const pname = "virt-top";
       const version = "1.1.2";
       const src = nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "git://git.annexia.org/virt-top.git",
           rev: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-C1a47pWtjb38bnwmZ2Zq7/LlW3+BF5BGNMRFi97/ngU=",
@@ -52,7 +50,7 @@ substituteInPlace ocaml-link.sh.in --replace-fail '#!/bin/bash' '#!${nix.sel(std
 substituteInPlace configure.ac --replace-fail 'AC_CONFIG_MACRO_DIR([m4])' 'AC_CONFIG_MACRO_DIRS([m4 ${gettext}/share/gettext/m4])'
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Top-like utility for showing stats of virtualized domains",
         homepage: "https://people.redhat.com/~rjones/virt-top/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),
@@ -61,7 +59,7 @@ substituteInPlace configure.ac --replace-fail 'AC_CONFIG_MACRO_DIR([m4])' 'AC_CO
         mainProgram: "virt-top",
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

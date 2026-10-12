@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/update.nix", [[["name", 14, 3], ["runtimeInputs", 15, 3], ["text", 25, 3]]]);
 const formals$1 = { args: { writeShellApplication: false, "common-updater-scripts": false, coreutils: false, curl: false, gnugrep: false, gnupg: false, gnused: false, xidel: false, baseUrl: true, version: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/update.nix", [["name", 14, 3], ["runtimeInputs", 15, 3], ["text", 25, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
   const baseUrl = nix.argOr($, "baseUrl", () => "https://archive.mozilla.org/pub/firefox/releases/");
   const version = nix.argOr($, "version", () => "");
   return nix.app(writeShellApplication, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: nix.thunk(() => nix.str`update-spidermonkey_${version}`),
       runtimeInputs: nix.thunk(() => [common_updater_scripts, coreutils, curl, gnugrep, gnupg, gnused, xidel]),
       text: nix.thunk(() => nix.str`set -eux

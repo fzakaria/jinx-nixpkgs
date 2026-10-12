@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 34, 5], ["repo", 35, 5], ["tag", 36, 5], ["hash", 37, 5]], [["MODE", 113, 19]], [["pname", 103, 15], ["version", 104, 36], ["src", 104, 44], ["sourceRoot", 105, 15], ["__structuredAttrs", 107, 15], ["nativeBuildInputs", 109, 15], ["buildInputs", 111, 15], ["env", 113, 15], ["buildPhase", 115, 15], ["doCheck", 121, 15], ["checkPhase", 122, 15], ["installPhase", 128, 15]], [["requiredSystemFeatures", 139, 39]], [["example-spt", 138, 9], ["example-hvt", 139, 9]], [["target", 95, 13], ["tests", 97, 5]], [["description", 144, 5], ["homepage", 145, 5], ["changelog", 146, 5], ["license", 147, 5], ["maintainers", 148, 5], ["teams", 149, 5], ["platforms", 150, 5]], [["pname", 30, 3], ["version", 31, 3], ["src", 33, 3], ["strictDeps", 40, 3], ["__structuredAttrs", 41, 3], ["nativeBuildInputs", 43, 3], ["propagatedBuildInputs", 50, 3], ["setupHook", 52, 3], ["postPatch", 56, 3], ["preConfigure", 68, 3], ["configureScript", 72, 3], ["configureFlags", 73, 3], ["dontAddDisableDepTrack", 76, 3], ["dontAddStaticConfigureFlags", 77, 3], ["configurePlatforms", 78, 3], ["dontStrip", 80, 3], ["enableParallelBuilding", 82, 3], ["doCheck", 84, 3], ["checkTarget", 85, 3], ["doInstallCheck", 87, 3], ["installCheckPhase", 88, 3], ["passthru", 94, 3], ["meta", 143, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, buildDunePackage: false, ocaml: false, findlib: false, fmt: false, opam: false, solo5: false, target: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 34, 5], ["repo", 35, 5], ["tag", 36, 5], ["hash", 37, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["MODE", 113, 19]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 103, 15], ["version", 104, 36], ["src", 104, 44], ["sourceRoot", 105, 15], ["__structuredAttrs", 107, 15], ["nativeBuildInputs", 109, 15], ["buildInputs", 111, 15], ["env", 113, 15], ["buildPhase", 115, 15], ["doCheck", 121, 15], ["checkPhase", 122, 15], ["installPhase", 128, 15]]);
-const pos$4 = nix.positions(here + "/default.nix", [["requiredSystemFeatures", 139, 39]]);
-const pos$5 = nix.positions(here + "/default.nix", [["example-spt", 138, 9], ["example-hvt", 139, 9]]);
-const pos$6 = nix.positions(here + "/default.nix", [["target", 95, 13], ["tests", 97, 5]]);
-const pos$7 = nix.positions(here + "/default.nix", [["description", 144, 5], ["homepage", 145, 5], ["changelog", 146, 5], ["license", 147, 5], ["maintainers", 148, 5], ["teams", 149, 5], ["platforms", 150, 5]]);
-const pos$8 = nix.positions(here + "/default.nix", [["pname", 30, 3], ["version", 31, 3], ["src", 33, 3], ["strictDeps", 40, 3], ["__structuredAttrs", 41, 3], ["nativeBuildInputs", 43, 3], ["propagatedBuildInputs", 50, 3], ["setupHook", 52, 3], ["postPatch", 56, 3], ["preConfigure", 68, 3], ["configureScript", 72, 3], ["configureFlags", 73, 3], ["dontAddDisableDepTrack", 76, 3], ["dontAddStaticConfigureFlags", 77, 3], ["configurePlatforms", 78, 3], ["dontStrip", 80, 3], ["enableParallelBuilding", 82, 3], ["doCheck", 84, 3], ["checkTarget", 85, 3], ["doInstallCheck", 87, 3], ["installCheckPhase", 88, 3], ["passthru", 94, 3], ["meta", 143, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const entry = nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "elem"), nix.thunk(() => nix.sel(ocaml, "version")), allowlisted)) ? nix.sel(ocaml, "version") : nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(ocaml, "version")))));
   nix.assert_(nix.app(nix.sel(lib, "asserts", "assertOneOf"), "ocaml-solo5's ocaml version", entry, allowlisted), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/development/ocaml-modules/ocaml-solo5/default.nix:27:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "ocaml-solo5",
       version: "1.3.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "mirage",
           repo: "ocaml-solo5",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -62,11 +55,11 @@ done
       doInstallCheck: true,
       installCheckPhase: "runHook preInstallCheck\n$out/lib/ocaml-solo5/bin/ocamlopt.opt -config | grep \"^c_compiler: .*-solo5-ocaml-\"\nrunHook postInstallCheck\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         target: target,
         tests: nix.thunk(() => (() => {
           const example = (mode) => (attrs) => nix.app(buildDunePackage, nix.thunk(() => nix.update({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               pname: nix.thunk(() => nix.str`ocaml-solo5-example-${mode}`),
               version: nix.thunk(() => nix.attr(finalAttrs, "version")),
               src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -74,7 +67,7 @@ done
               __structuredAttrs: true,
               nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(finalAttrs, "finalPackage"))]),
               buildInputs: nix.thunk(() => [fmt]),
-              env: nix.thunk(() => ({ [nix.POS]: pos$2, MODE: mode })),
+              env: nix.thunk(() => ({ [nix.POS]: $pos[1], MODE: mode })),
               buildPhase: "runHook preBuild\ndune build @default\nrunHook postBuild\n",
               doCheck: true,
               checkPhase: "runHook preCheck\ndune build @runtest --display short\nrunHook postCheck\n",
@@ -84,14 +77,14 @@ runHook postInstall
 `),
             }, attrs)));
           return {
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             "example-spt": nix.thunk(() => nix.app(example, "spt", nix.thunk(() => ({})))),
-            "example-hvt": nix.thunk(() => nix.app(example, "hvt", nix.thunk(() => ({ [nix.POS]: pos$4, requiredSystemFeatures: nix.thunk(() => ["kvm"]) })))),
+            "example-hvt": nix.thunk(() => nix.app(example, "hvt", nix.thunk(() => ({ [nix.POS]: $pos[3], requiredSystemFeatures: nix.thunk(() => ["kvm"]) })))),
           };
         })()),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "OCaml cross-compiler to the freestanding Solo5 backend",
         homepage: "https://github.com/mirage/ocaml-solo5",
         changelog: nix.thunk(() => nix.str`https://raw.githubusercontent.com/mirage/ocaml-solo5/v${nix.sel(finalAttrs, "version")}/CHANGES.md`),

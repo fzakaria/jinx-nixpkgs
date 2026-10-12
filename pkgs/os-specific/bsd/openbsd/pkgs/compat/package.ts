@@ -2,19 +2,18 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["description", 8, 7], ["platforms", 9, 7], ["maintainers", 10, 7]], [["include", 5, 5], ["meta", 7, 5]]]);
 const formals$1 = { args: { runCommand: false, lib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["description", 8, 7], ["platforms", 9, 7], ["maintainers", 10, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["include", 5, 5], ["meta", 7, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const runCommand = nix.arg($, "runCommand");
   const lib = nix.arg($, "lib");
   return nix.app(runCommand, "openbsd-compat", nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       include: nix.path(here, "./include"),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Header-only library for running OpenBSD software on Linux",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
         maintainers: nix.thunk(() => (() => {

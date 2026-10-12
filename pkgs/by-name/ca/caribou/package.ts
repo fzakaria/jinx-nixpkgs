@@ -2,17 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 33, 5], ["hash", 34, 5]], [["url", 41, 7], ["hash", 42, 7]], [["url", 46, 7], ["hash", 47, 7]], [["name", 50, 7], ["url", 51, 7], ["hash", 52, 7]], [["name", 55, 7], ["url", 56, 7], ["hash", 57, 7]], [["NIX_CFLAGS_COMPILE", 102, 5]], [["packageName", 106, 41]], [["updateScript", 106, 5]], [["description", 110, 5], ["mainProgram", 111, 5], ["homepage", 112, 5], ["license", 113, 5], ["maintainers", 114, 5], ["platforms", 115, 5], ["broken", 118, 5]], [["pname", 29, 3], ["version", 30, 3], ["src", 32, 3], ["patches", 37, 3], ["nativeBuildInputs", 63, 3], ["buildInputs", 75, 3], ["propagatedBuildInputs", 86, 3], ["configureFlags", 91, 3], ["postPatch", 93, 3], ["env", 98, 3], ["passthru", 105, 3], ["meta", 109, 3]]]);
 const formals$1 = { args: { fetchurl: false, lib: false, stdenv: false, "pkg-config": false, gnome: false, glib: false, gtk3: false, "gobject-introspection": false, clutter: false, dbus: false, python3: false, libxml2: false, libxklavier: false, libxtst: false, intltool: false, libxslt: false, "at-spi2-core": false, autoreconfHook: false, wrapGAppsHook3: false, libgee: false, vala: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 33, 5], ["hash", 34, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 41, 7], ["hash", 42, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 46, 7], ["hash", 47, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["name", 50, 7], ["url", 51, 7], ["hash", 52, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["name", 55, 7], ["url", 56, 7], ["hash", 57, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 102, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["packageName", 106, 41]]);
-const pos$8 = nix.positions(here + "/package.nix", [["updateScript", 106, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["description", 110, 5], ["mainProgram", 111, 5], ["homepage", 112, 5], ["license", 113, 5], ["maintainers", 114, 5], ["platforms", 115, 5], ["broken", 118, 5]]);
-const pos$10 = nix.positions(here + "/package.nix", [["pname", 29, 3], ["version", 30, 3], ["src", 32, 3], ["patches", 37, 3], ["nativeBuildInputs", 63, 3], ["buildInputs", 75, 3], ["propagatedBuildInputs", 86, 3], ["configureFlags", 91, 3], ["postPatch", 93, 3], ["env", 98, 3], ["passthru", 105, 3], ["meta", 109, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -42,33 +33,33 @@ export default nix.lambda((args) => (() => {
       return [nix.thunk(() => nix.lookup(w, "pygobject3"))];
     })()));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       pname: "caribou",
       version: "0.4.21",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnome/sources/caribou/${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/caribou-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-nEPZ9L0w9P6n94DU6LFPdYkQfFLpy2vSAr0NHCBk3lU=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://bugzilla.gnome.org/attachment.cgi?id=364774",
             hash: "sha256-bU+/PTfkMh0KAUNCDhYYJ2iq9JlWLtwztdO4/EohYZY=",
           })))),
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: "https://gitlab.gnome.org/GNOME/caribou/-/commit/c52ce71c49dc8d6109a58d16cc8d491d7bd1d781.patch",
             hash: "sha256-jbF1Ygp8Q0ENN/5aEpROuK5zkufIfn6cGW8dncl7ET4=",
           })))),
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             name: "fix-build-modern-vala.patch",
             url: "https://gitlab.gnome.org/GNOME/caribou/-/commit/76fbd11575f918fc898cb0f5defe07f67c11ec38.patch",
             hash: "sha256-XkyRYXWmlcHTx2q81WFUMXV273MKkG5DeTAhdOY/wmM=",
           })))),
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             name: "CVE-2021-3567.patch",
             url: "https://gitlab.gnome.org/GNOME/caribou/-/commit/d41c8e44b12222a290eaca16703406b113a630c6.patch",
             hash: "sha256-yIsEqSflpAdQPAB6eNr6fctxzyACu7N1HVfMIdCQou0=",
@@ -100,15 +91,15 @@ export default nix.lambda((args) => (() => {
       configureFlags: nix.thunk(() => ["--enable-gtk2-module=no"]),
       postPatch: "patchShebangs .\nsubstituteInPlace libcaribou/Makefile.am --replace \"--shared-library=libcaribou.so.0\" \"--shared-library=$out/lib/libcaribou.so.0\"\n",
       env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "cc", "isGNU")), nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           NIX_CFLAGS_COMPILE: "-Wno-error=incompatible-pointer-types",
         })))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$8,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$7, packageName: "caribou" })))),
+        [nix.POS]: $pos[7],
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: $pos[6], packageName: "caribou" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         description: "Input assistive technology intended for switch and pointer users",
         mainProgram: "caribou-preferences",
         homepage: "https://gitlab.gnome.org/Archive/caribou",

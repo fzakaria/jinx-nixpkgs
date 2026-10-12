@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 14, 5], ["sha256", 15, 5]], [["NIX_CFLAGS_COMPILE", 31, 7]], [["description", 44, 5], ["longDescription", 46, 5], ["homepage", 57, 5], ["license", 58, 5], ["maintainers", 59, 5], ["platforms", 60, 5], ["mainProgram", 61, 5]], [["version", 11, 3], ["pname", 12, 3], ["src", 13, 3], ["nativeBuildInputs", 18, 3], ["buildInputs", 19, 3], ["hardeningDisable", 24, 3], ["patchPhase", 26, 3], ["env", 31, 3], ["configureFlags", 34, 3], ["postInstall", 39, 3], ["meta", 43, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, tcl: false, tk: false, makeWrapper: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 14, 5], ["sha256", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 31, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 44, 5], ["longDescription", 46, 5], ["homepage", 57, 5], ["license", 58, 5], ["maintainers", 59, 5], ["platforms", 60, 5], ["mainProgram", 61, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["version", 11, 3], ["pname", 12, 3], ["src", 13, 3], ["nativeBuildInputs", 18, 3], ["buildInputs", 19, 3], ["hardeningDisable", 24, 3], ["patchPhase", 26, 3], ["env", 31, 3], ["configureFlags", 34, 3], ["postInstall", 39, 3], ["meta", 43, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const tk = nix.arg($, "tk");
   const makeWrapper = nix.arg($, "makeWrapper");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       version: "3.0",
       pname: "wordnet",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://wordnetcode.princeton.edu/${nix.sel(finalAttrs, "version")}/WordNet-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           sha256: "08pgjvd2vvmqk3h641x63nxp7wqimb9r30889mkyfh2agc62sjbc",
         })))),
@@ -29,14 +26,14 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [tcl, tk]),
       hardeningDisable: nix.thunk(() => ["format"]),
       patchPhase: "sed \"13i#define USE_INTERP_RESULT 1\" -i src/stubs.c\n",
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-Wno-error=implicit-int" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], NIX_CFLAGS_COMPILE: "-Wno-error=implicit-int" })),
       configureFlags: nix.thunk(() => [
         nix.thunk(() => nix.str`--with-tcl=${tcl}/lib`),
         nix.thunk(() => nix.str`--with-tk=${tk}/lib`),
       ]),
       postInstall: "wrapProgram $out/bin/wnb    --prefix PATH : \"$out/bin\"\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Lexical database for the English language",
         longDescription: "WordNet® is a large lexical database of English.  Nouns, verbs,\nadjectives and adverbs are grouped into sets of cognitive synonyms\n(synsets), each expressing a distinct concept.  Synsets are\ninterlinked by means of conceptual-semantic and lexical relations.\nThe resulting network of meaningfully related words and concepts can\nbe navigated with the browser.  WordNet is also freely and publicly\navailable for download.  WordNet's structure makes it a useful tool\nfor computational linguistics and natural language processing.\n",
         homepage: "https://wordnet.princeton.edu/",

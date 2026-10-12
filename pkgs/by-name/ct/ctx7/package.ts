@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]], [["pname", 44, 26], ["version", 44, 32], ["src", 44, 40], ["pnpm", 45, 13], ["fetcherVersion", 46, 5], ["hash", 47, 5]], [["extraArgs", 83, 5]], [["updateScript", 82, 12]], [["description", 90, 5], ["homepage", 91, 5], ["license", 92, 5], ["maintainers", 93, 5], ["mainProgram", 94, 5], ["platforms", 95, 5]], [["pname", 19, 3], ["version", 20, 3], ["__structuredAttrs", 22, 3], ["strictDeps", 23, 3], ["src", 25, 3], ["nativeBuildInputs", 32, 3], ["dontInstallAgentSkills", 41, 3], ["pnpmDeps", 43, 3], ["buildPhase", 50, 3], ["installPhase", 58, 3], ["nativeInstallCheckInputs", 79, 3], ["doInstallCheck", 80, 3], ["passthru", 82, 3], ["meta", 89, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, installAgentSkills: false, makeWrapper: false, "nix-update-script": false, versionCheckHook: false, nodejs: false, pnpm_10: false, pnpmConfigHook: false, fetchPnpmDeps: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 44, 26], ["version", 44, 32], ["src", 44, 40], ["pnpm", 45, 13], ["fetcherVersion", 46, 5], ["hash", 47, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["extraArgs", 83, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 82, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 90, 5], ["homepage", 91, 5], ["license", 92, 5], ["maintainers", 93, 5], ["mainProgram", 94, 5], ["platforms", 95, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["__structuredAttrs", 22, 3], ["strictDeps", 23, 3], ["src", 25, 3], ["nativeBuildInputs", 32, 3], ["dontInstallAgentSkills", 41, 3], ["pnpmDeps", 43, 3], ["buildPhase", 50, 3], ["installPhase", 58, 3], ["nativeInstallCheckInputs", 79, 3], ["doInstallCheck", 80, 3], ["passthru", 82, 3], ["meta", 89, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,13 +20,13 @@ export default nix.lambda((args) => (() => {
   const fetchPnpmDeps = nix.arg($, "fetchPnpmDeps");
   const pnpm = pnpm_10;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "ctx7",
       version: "0.5.14",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "upstash",
           repo: "context7",
           tag: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}@${nix.sel(finalAttrs, "version")}`),
@@ -40,7 +35,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [nodejs, pnpm, pnpmConfigHook, makeWrapper, installAgentSkills]),
       dontInstallAgentSkills: true,
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -76,9 +71,9 @@ runHook postInstall
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             extraArgs: nix.thunk(() => [
               "--version-regex",
               nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}@(.*)`),
@@ -86,7 +81,7 @@ runHook postInstall
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Context7 CLI - Manage AI coding skills and documentation context",
         homepage: "https://context7.com/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

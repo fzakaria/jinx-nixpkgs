@@ -2,16 +2,10 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/hostname.nix", [[["maintainers", 24, 9]], [["hostName", 32, 22], ["domain", 33, 22]], [["systemPackages", 35, 23]], [["networking", 32, 11], ["environment", 35, 11]], [["machine", 29, 13]], [["name", 22, 7], ["meta", 23, 7], ["nodes", 29, 7], ["testScript", 40, 7]], [["noExplicitDomain", 80, 3], ["explicitDomain", 82, 3]]]);
 const formals$1 = { args: { pkgs: false, runTest: false, lib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/hostname.nix", [["maintainers", 24, 9]]);
 const formals$2 = { args: { lib: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/hostname.nix", [["hostName", 32, 22], ["domain", 33, 22]]);
-const pos$3 = nix.positions(here + "/hostname.nix", [["systemPackages", 35, 23]]);
-const pos$4 = nix.positions(here + "/hostname.nix", [["networking", 32, 11], ["environment", 35, 11]]);
-const pos$5 = nix.positions(here + "/hostname.nix", [["machine", 29, 13]]);
 const formals$3 = { args: { nodes: false }, ellipsis: true };
-const pos$6 = nix.positions(here + "/hostname.nix", [["name", 22, 7], ["meta", 23, 7], ["nodes", 29, 7], ["testScript", 40, 7]]);
-const pos$7 = nix.positions(here + "/hostname.nix", [["noExplicitDomain", 80, 3], ["explicitDomain", 82, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,25 +20,25 @@ export default nix.lambda((args) => (() => {
       return (nix.asBool((nix.asBool(nix.sel(res, "success")) && nix.asBool(!nix.eq(nix.sel(res, "value"), null)))) ? nix.sel(res, "value") : "null");
     })();
     return nix.app(runTest, nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         name: nix.thunk(() => nix.str`hostname-${fqdn}`),
         meta: nix.thunk(() => (() => {
           const w_1 = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), w);
           return {
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w_1, "blitz"))]),
           };
         })()),
         nodes: nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           machine: nix.lambda((args_1) => (() => {
             const $_1 = nix.formals(args_1, formals$2);
             const lib_1 = nix.arg($_1, "lib");
             return {
-              [nix.POS]: pos$4,
-              networking: nix.thunk(() => ({ [nix.POS]: pos$2, hostName: hostName, domain: domain })),
+              [nix.POS]: $pos[3],
+              networking: nix.thunk(() => ({ [nix.POS]: $pos[1], hostName: hostName, domain: domain })),
               environment: nix.thunk(() => ({
-                [nix.POS]: pos$3,
+                [nix.POS]: $pos[2],
                 systemPackages: nix.thunk(() => (() => {
                   const w_2 = nix.withScope(pkgs, w);
                   return [nix.thunk(() => nix.lookup(w_2, "inetutils"))];
@@ -93,7 +87,7 @@ assert "${fqdn}" == machine.succeed("getent hosts ${hostName} | awk '{print $2}'
       })));
   })();
   return {
-    [nix.POS]: pos$7,
+    [nix.POS]: $pos[6],
     noExplicitDomain: nix.thunk(() => nix.app(makeHostNameTest, "ahost", null, null)),
     explicitDomain: nix.thunk(() => nix.app(makeHostNameTest, "ahost", "adomain", "ahost.adomain")),
   };

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]], [["signal", 31, 5]], [["description", 62, 5], ["longDescription", 63, 5], ["homepage", 67, 5], ["changelog", 68, 5], ["license", 69, 5], ["maintainers", 70, 5]], [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["src", 19, 3], ["build-system", 26, 3], ["dependencies", 28, 3], ["optional-dependencies", 30, 3], ["nativeCheckInputs", 34, 3], ["pythonImportsCheck", 42, 3], ["disabledTests", 44, 3], ["meta", 61, 3]]]);
 const formals$1 = { args: { lib: false, blinker: false, botocore: false, buildPythonPackage: false, fetchFromGitHub: false, freezegun: false, "pytest-env": false, "pytest-mock": false, pytestCheckHook: false, setuptools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["signal", 31, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 62, 5], ["longDescription", 63, 5], ["homepage", 67, 5], ["changelog", 68, 5], ["license", 69, 5], ["maintainers", 70, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["src", 19, 3], ["build-system", 26, 3], ["dependencies", 28, 3], ["optional-dependencies", 30, 3], ["nativeCheckInputs", 34, 3], ["pythonImportsCheck", 42, 3], ["disabledTests", 44, 3], ["meta", 61, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "6.1.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "pynamodb",
           repo: "PynamoDB",
           tag: version,
@@ -33,7 +30,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const build_system = nix.thunk(() => [setuptools]);
       const dependencies = nix.thunk(() => [botocore]);
-      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, signal: nix.thunk(() => [blinker]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: $pos[1], signal: nix.thunk(() => [blinker]) }));
       const nativeCheckInputs = nix.thunk(() => nix.concat([freezegun, pytest_env, pytest_mock, pytestCheckHook], nix.sel(optional_dependencies, "signal")));
       const pythonImportsCheck = nix.thunk(() => ["pynamodb"]);
       const disabledTests = nix.thunk(() => [
@@ -50,7 +47,7 @@ export default nix.lambda((args) => (() => {
         "test_connection_make_api_call__binary_attributes",
       ]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Interface for Amazon’s DynamoDB",
         longDescription: "DynamoDB is a great NoSQL service provided by Amazon, but the API is\nverbose. PynamoDB presents you with a simple, elegant API.\n",
         homepage: "http://jlafon.io/pynamodb.html",
@@ -59,7 +56,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

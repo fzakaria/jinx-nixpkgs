@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5], ["fetchSubmodules", 30, 5]], [["url", 35, 5], ["rev", 36, 5], ["fetchLFS", 37, 5], ["rootDir", 38, 5], ["hash", 39, 5]], [["model_dir", 44, 7]], [["description", 92, 5], ["homepage", 93, 5], ["license", 94, 5], ["maintainers", 95, 5]], [["pname", 21, 3], ["version", 22, 3], ["pyproject", 23, 3], ["src", 25, 3], ["tsqyomiModelDir", 34, 3], ["patches", 42, 3], ["postPatch", 48, 3], ["build-system", 52, 3], ["dontUseCmakeConfigure", 59, 3], ["dependencies", 61, 3], ["nativeCheckInputs", 69, 3], ["preCheck", 75, 3], ["disabledTestPaths", 84, 3], ["pythonImportsCheck", 89, 3], ["meta", 91, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, replaceVars: false, buildPythonPackage: false, fetchFromGitHub: false, fetchgit: false, cmake: false, cython: false, numpy: false, setuptools: false, pydantic: false, sudachipy: false, "sudachidict-core": false, "typing-extensions": false, pytestCheckHook: false, onnxruntime: false, tokenizers: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5], ["fetchSubmodules", 30, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["url", 35, 5], ["rev", 36, 5], ["fetchLFS", 37, 5], ["rootDir", 38, 5], ["hash", 39, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["model_dir", 44, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 92, 5], ["homepage", 93, 5], ["license", 94, 5], ["maintainers", 95, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 21, 3], ["version", 22, 3], ["pyproject", 23, 3], ["src", 25, 3], ["tsqyomiModelDir", 34, 3], ["patches", 42, 3], ["postPatch", 48, 3], ["build-system", 52, 3], ["dontUseCmakeConfigure", 59, 3], ["dependencies", 61, 3], ["nativeCheckInputs", 69, 3], ["preCheck", 75, 3], ["disabledTestPaths", 84, 3], ["pythonImportsCheck", 89, 3], ["meta", 91, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,12 +25,12 @@ export default nix.lambda((args) => (() => {
   const onnxruntime = nix.arg($, "onnxruntime");
   const tokenizers = nix.arg($, "tokenizers");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "pyopenjtalk-plus",
       version: "0.4.1-post9",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "tsukumijima",
           repo: "pyopenjtalk-plus",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -42,7 +38,7 @@ export default nix.lambda((args) => (() => {
           fetchSubmodules: true,
         })))),
       tsqyomiModelDir: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: "https://huggingface.co/tsukumijima/tsqyomi-models",
           rev: "680596dd2ad2bad59ee5db3741e197cfce79f9b4",
           fetchLFS: true,
@@ -51,7 +47,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./tsqyomi_model_dir.patch"), nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             model_dir: nix.thunk(() => nix.sel(finalAttrs, "tsqyomiModelDir")),
           })))),
       ]),
@@ -65,7 +61,7 @@ export default nix.lambda((args) => (() => {
       disabledTestPaths: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.eq(nix.sel(stdenv, "hostPlatform", "system"), "aarch64-linux")), nix.thunk(() => ["tests/test_tsqyomi_regression.py"]))),
       pythonImportsCheck: nix.thunk(() => ["pyopenjtalk"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Python wrapper for OpenJTalk with additional improvements",
         homepage: "https://github.com/tsukumijima/pyopenjtalk-plus",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

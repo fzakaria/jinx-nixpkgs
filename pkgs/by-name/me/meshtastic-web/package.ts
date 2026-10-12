@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5], ["fetchSubmodules", 20, 5], ["leaveDotGit", 21, 5], ["postFetch", 22, 5]], [["pnpm", 32, 5], ["fetcherVersion", 33, 5], ["pname", 35, 7], ["version", 36, 7], ["src", 37, 7], ["pnpmWorkspaces", 38, 7], ["hash", 40, 5]], [["description", 75, 5], ["homepage", 76, 5], ["license", 77, 5], ["platforms", 78, 5], ["maintainers", 79, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["pnpmWorkspaces", 29, 3], ["pnpmRoot", 30, 3], ["pnpmDeps", 31, 3], ["nativeBuildInputs", 43, 3], ["preConfigure", 49, 3], ["buildPhase", 55, 3], ["installPhase", 65, 3], ["meta", 74, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, pnpm_10: false, fetchPnpmDeps: false, pnpmConfigHook: false, nodejs: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5], ["fetchSubmodules", 20, 5], ["leaveDotGit", 21, 5], ["postFetch", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pnpm", 32, 5], ["fetcherVersion", 33, 5], ["pname", 35, 7], ["version", 36, 7], ["src", 37, 7], ["pnpmWorkspaces", 38, 7], ["hash", 40, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 75, 5], ["homepage", 76, 5], ["license", 77, 5], ["platforms", 78, 5], ["maintainers", 79, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["pnpmWorkspaces", 29, 3], ["pnpmRoot", 30, 3], ["pnpmDeps", 31, 3], ["nativeBuildInputs", 43, 3], ["preConfigure", 49, 3], ["buildPhase", 55, 3], ["installPhase", 65, 3], ["meta", 74, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const pnpmConfigHook = nix.arg($, "pnpmConfigHook");
   const nodejs = nix.arg($, "nodejs");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "meshtastic-web",
       version: "2.6.7",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "meshtastic",
           repo: "web",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,7 +31,7 @@ export default nix.lambda((args) => (() => {
       pnpmWorkspaces: nix.thunk(() => ["*"]),
       pnpmRoot: "packages/web",
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pnpm: pnpm_10,
           fetcherVersion: 4n,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
@@ -51,7 +48,7 @@ export default nix.lambda((args) => (() => {
       buildPhase: "runHook preBuild\n\npushd packages/web\npnpm install\npnpm run build\n\nrunHook postBuild\n",
       installPhase: "runHook preInstall\n\nmkdir -p $out\ncp -ar dist/. $out/\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Meshtastic Web Client/JS Monorepo",
         homepage: "https://github.com/meshtastic/web",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

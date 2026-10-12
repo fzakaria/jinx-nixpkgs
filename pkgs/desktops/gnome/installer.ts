@@ -2,10 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/installer.nix", [[["baseName", 16, 17]], [["image", 16, 11]], [["system", 13, 15], ["modules", 14, 7]]]);
 const formals$1 = { args: { isoBaseName: true, system: true, extraModules: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/installer.nix", [["baseName", 16, 17]]);
-const pos$2 = nix.positions(here + "/installer.nix", [["image", 16, 11]]);
-const pos$3 = nix.positions(here + "/installer.nix", [["system", 13, 15], ["modules", 14, 7]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,13 +12,13 @@ export default nix.lambda((args) => (() => {
   const extraModules = nix.argOr($, "extraModules", () => []);
   const module = nix.path(here, "../../../../nixos/modules/installer/cd-dvd/installation-cd-graphical-gnome.nix");
   const config = nix.thunk(() => nix.sel(nix.app(nix.builtins.import(nix.path(here, "../../../../nixos/lib/eval-config.nix")), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       system: system,
       modules: nix.thunk(() => nix.concat([
         module,
         nix.thunk(() => ({
-          [nix.POS]: pos$2,
-          image: nix.thunk(() => ({ [nix.POS]: pos$1, baseName: isoBaseName })),
+          [nix.POS]: $pos[1],
+          image: nix.thunk(() => ({ [nix.POS]: $pos[0], baseName: isoBaseName })),
         })),
       ], extraModules)),
     }))), "config"));

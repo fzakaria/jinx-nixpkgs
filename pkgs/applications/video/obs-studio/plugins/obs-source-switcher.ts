@@ -2,10 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/obs-source-switcher.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]], [["description", 31, 5], ["homepage", 32, 5], ["maintainers", 33, 5], ["license", 34, 5], ["platforms", 35, 31]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 20, 3], ["buildInputs", 22, 3], ["cmakeFlags", 24, 3], ["postInstall", 26, 3], ["meta", 30, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, "obs-studio": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/obs-source-switcher.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/obs-source-switcher.nix", [["description", 31, 5], ["homepage", 32, 5], ["maintainers", 33, 5], ["license", 34, 5], ["platforms", 35, 31]]);
-const pos$3 = nix.positions(here + "/obs-source-switcher.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 20, 3], ["buildInputs", 22, 3], ["cmakeFlags", 24, 3], ["postInstall", 26, 3], ["meta", 30, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const cmake = nix.arg($, "cmake");
   const obs_studio = nix.arg($, "obs-studio");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "obs-source-switcher",
       version: "0.4.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "exeldro",
           repo: "obs-source-switcher",
           rev: "b229f40faceb0bb39cea41ce0ce2f2f236c0cbd1",
@@ -32,7 +30,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(obs_studio, "meta"));
         return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Plugin for OBS Studio to switch between a list of sources",
         homepage: "https://github.com/exeldro/obs-source-switcher",
         maintainers: nix.thunk(() => (() => {

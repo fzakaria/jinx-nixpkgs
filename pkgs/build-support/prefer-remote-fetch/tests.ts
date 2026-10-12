@@ -2,13 +2,9 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/tests.nix", [[["name", 25, 7], ["url", 26, 7], ["rev", 27, 7], ["sha256", 28, 7]], [["name", 32, 7], ["owner", 33, 7], ["repo", 34, 7], ["rev", 35, 7], ["hash", 36, 7]], [["url", 40, 7], ["sha256", 41, 7]], [["url", 45, 7], ["sha256", 46, 7]], [["fetchgit", 24, 5], ["fetchFromGitHub", 31, 5], ["fetchurl", 39, 5], ["fetchzip", 44, 5]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
 const formals$2 = { args: { testers: false, fetchgit: false, fetchFromGitHub: false, fetchurl: false, fetchzip: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/tests.nix", [["name", 25, 7], ["url", 26, 7], ["rev", 27, 7], ["sha256", 28, 7]]);
-const pos$2 = nix.positions(here + "/tests.nix", [["name", 32, 7], ["owner", 33, 7], ["repo", 34, 7], ["rev", 35, 7], ["hash", 36, 7]]);
-const pos$3 = nix.positions(here + "/tests.nix", [["url", 40, 7], ["sha256", 41, 7]]);
-const pos$4 = nix.positions(here + "/tests.nix", [["url", 45, 7], ["sha256", 46, 7]]);
-const pos$5 = nix.positions(here + "/tests.nix", [["fetchgit", 24, 5], ["fetchFromGitHub", 31, 5], ["fetchurl", 39, 5], ["fetchzip", 44, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,16 +22,16 @@ export default nix.lambda((args) => (() => {
       const fetchurl = nix.arg($_1, "fetchurl");
       const fetchzip = nix.arg($_1, "fetchzip");
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         fetchgit: nix.thunk(() => nix.app(check, fetchgit, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             name: "simple-nix-source",
             url: "https://github.com/NixOS/nix",
             rev: "9d9dbe6ed05854e03811c361a3380e09183f4f4a",
             sha256: "sha256-7DszvbCNTjpzGRmpIVAWXk20P0/XTrWZ79KSOGLrUWY=",
           })))),
         fetchFromGitHub: nix.thunk(() => nix.app(check, fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "simple-nix-source",
             owner: "NixOS",
             repo: "nix",
@@ -43,12 +39,12 @@ export default nix.lambda((args) => (() => {
             hash: "sha256-7DszvbCNTjpzGRmpIVAWXk20P0/XTrWZ79KSOGLrUWY=",
           })))),
         fetchurl: nix.thunk(() => nix.app(check, fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: "https://gist.github.com/glandium/01d54cefdb70561b5f6675e08f2990f2/archive/2f430f0c136a69b0886281d0c76708997d8878af.zip",
             sha256: "sha256-J/ZWC23GmFfew/56NQvPqKzqkWgjOaPvbMicFJnuJxI=",
           })))),
         fetchzip: nix.thunk(() => nix.app(check, fetchzip, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             url: "https://gist.github.com/glandium/01d54cefdb70561b5f6675e08f2990f2/archive/2f430f0c136a69b0886281d0c76708997d8878af.zip",
             sha256: "sha256-0ecwgL8qUavSj1+WkaxpmRBmu7cvj53V5eXQV71fddU=",
           })))),

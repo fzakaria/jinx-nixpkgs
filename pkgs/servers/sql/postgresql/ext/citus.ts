@@ -2,20 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/citus.nix", [[["version", 17, 7], ["hash", 18, 7]], [["version", 21, 7], ["hash", 22, 7]], [["version", 25, 7], ["hash", 26, 7]], [["version", 29, 7], ["hash", 30, 7]], [["18", 16, 5], ["17", 20, 5], ["16", 24, 5], ["15", 28, 5]], [["version", 36, 7], ["hash", 37, 7]], [["owner", 45, 5], ["repo", 46, 5], ["tag", 47, 5], ["hash", 48, 22]], [["query", 78, 9], ["expected", 79, 9], ["description", 80, 9]], [["finalPackage", 59, 26], ["postgresqlExtraSettings", 60, 5], ["sql", 63, 5], ["asserts", 76, 5]], [["extension", 58, 18]], [["tests", 58, 12]], [["broken", 86, 5], ["description", 87, 5], ["homepage", 88, 5], ["changelog", 89, 5], ["license", 90, 5], ["maintainers", 91, 5], ["platforms", 92, 31]], [["pname", 41, 3], ["version", 42, 20], ["src", 44, 3], ["buildInputs", 51, 3], ["enableUpdateScript", 56, 3], ["passthru", 58, 3], ["meta", 85, 3]]]);
 const formals$1 = { args: { curl: false, fetchFromGitHub: false, lib: false, lz4: false, postgresql: false, postgresqlBuildExtension: false, postgresqlTestExtension: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/citus.nix", [["version", 17, 7], ["hash", 18, 7]]);
-const pos$2 = nix.positions(here + "/citus.nix", [["version", 21, 7], ["hash", 22, 7]]);
-const pos$3 = nix.positions(here + "/citus.nix", [["version", 25, 7], ["hash", 26, 7]]);
-const pos$4 = nix.positions(here + "/citus.nix", [["version", 29, 7], ["hash", 30, 7]]);
-const pos$5 = nix.positions(here + "/citus.nix", [["18", 16, 5], ["17", 20, 5], ["16", 24, 5], ["15", 28, 5]]);
-const pos$6 = nix.positions(here + "/citus.nix", [["version", 36, 7], ["hash", 37, 7]]);
-const pos$7 = nix.positions(here + "/citus.nix", [["owner", 45, 5], ["repo", 46, 5], ["tag", 47, 5], ["hash", 48, 22]]);
-const pos$8 = nix.positions(here + "/citus.nix", [["query", 78, 9], ["expected", 79, 9], ["description", 80, 9]]);
-const pos$9 = nix.positions(here + "/citus.nix", [["finalPackage", 59, 26], ["postgresqlExtraSettings", 60, 5], ["sql", 63, 5], ["asserts", 76, 5]]);
-const pos$10 = nix.positions(here + "/citus.nix", [["extension", 58, 18]]);
-const pos$11 = nix.positions(here + "/citus.nix", [["tests", 58, 12]]);
-const pos$12 = nix.positions(here + "/citus.nix", [["broken", 86, 5], ["description", 87, 5], ["homepage", 88, 5], ["changelog", 89, 5], ["license", 90, 5], ["maintainers", 91, 5], ["platforms", 92, 31]]);
-const pos$13 = nix.positions(here + "/citus.nix", [["pname", 41, 3], ["version", 42, 20], ["src", 44, 3], ["buildInputs", 51, 3], ["enableUpdateScript", 56, 3], ["passthru", 58, 3], ["meta", 85, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,39 +15,39 @@ export default nix.lambda((args) => (() => {
   const postgresqlBuildExtension = nix.arg($, "postgresqlBuildExtension");
   const postgresqlTestExtension = nix.arg($, "postgresqlTestExtension");
   const sources = nix.thunk(() => ({
-    [nix.POS]: pos$5,
+    [nix.POS]: $pos[4],
     "18": nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       version: "14.2.0",
       hash: "sha256-iJb+aUcTeN9BLil72/KG8jObU79Cmyl49UDz7iCUAMk=",
     })),
     "17": nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       version: "14.2.0",
       hash: "sha256-iJb+aUcTeN9BLil72/KG8jObU79Cmyl49UDz7iCUAMk=",
     })),
     "16": nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       version: "14.2.0",
       hash: "sha256-iJb+aUcTeN9BLil72/KG8jObU79Cmyl49UDz7iCUAMk=",
     })),
     "15": nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       version: "13.4.0",
       hash: "sha256-o3RFtOlkBvgFFfT1+BlTD6XbAOiSzBPaMi6/m8i7+9k=",
     })),
   }));
   const source = nix.thunk(() => nix.selOr(sources, () => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       version: "",
       hash: nix.thunk(() => nix.builtins.throw(nix.thunk(() => nix.str`Source for citus is not available for ${nix.sel(postgresql, "version")}`))),
     }), nix.key(nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(postgresql, "version"))))));
   return nix.app(postgresqlBuildExtension, (finalAttrs) => ({
-      [nix.POS]: pos$13,
+      [nix.POS]: $pos[12],
       pname: "citus",
       version: nix.thunk(() => nix.attr(source, "version")),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           owner: "citusdata",
           repo: "citus",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -68,17 +56,17 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [curl, lz4]),
       enableUpdateScript: false,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$11,
+        [nix.POS]: $pos[10],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$10,
+          [nix.POS]: $pos[9],
           extension: nix.thunk(() => nix.app(postgresqlTestExtension, nix.thunk(() => ({
-              [nix.POS]: pos$9,
+              [nix.POS]: $pos[8],
               finalPackage: nix.thunk(() => nix.attr(finalAttrs, "finalPackage")),
               postgresqlExtraSettings: "shared_preload_libraries=citus\n",
               sql: "CREATE EXTENSION citus;\n\nCREATE TABLE examples (\n  id bigserial,\n  shard_key int,\n  PRIMARY KEY (id, shard_key)\n);\n\nSELECT create_distributed_table('examples', 'shard_key');\n\nINSERT INTO examples (shard_key) SELECT shard % 10 FROM generate_series(1,1000) shard;\n",
               asserts: nix.thunk(() => [
                 nix.thunk(() => ({
-                  [nix.POS]: pos$8,
+                  [nix.POS]: $pos[7],
                   query: "SELECT count(*) FROM examples",
                   expected: "1000",
                   description: "Distributed table can be queried successfully.",
@@ -90,7 +78,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(postgresql, "meta"));
         return {
-        [nix.POS]: pos$12,
+        [nix.POS]: $pos[11],
         broken: nix.thunk(() => !nix.asBool(nix.builtins.elem(nix.thunk(() => nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(postgresql, "version")))), nix.thunk(() => nix.builtins.attrNames(sources))))),
         description: "Distributed PostgreSQL as an extension",
         homepage: "https://www.citusdata.com/",

@@ -2,15 +2,15 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/update.nix", [[["baseUrl", 8, 5]]]);
 const formals$1 = { args: { callPackage: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/update.nix", [["baseUrl", 8, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const args_1 = args;
   const callPackage = nix.arg($, "callPackage");
   return nix.app(callPackage, nix.path(here, "../../browsers/firefox/update.nix"), nix.thunk(() => nix.update({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       baseUrl: "https://archive.mozilla.org/pub/thunderbird/releases/",
     }, nix.builtins.removeAttrs(args_1, nix.thunk(() => ["callPackage"])))));
 })(), formals$1);

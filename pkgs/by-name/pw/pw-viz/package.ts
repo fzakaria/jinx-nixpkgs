@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 24, 5], ["repo", 25, 5], ["rev", 26, 5], ["hash", 27, 5]], [["description", 65, 5], ["homepage", 66, 5], ["license", 67, 5], ["maintainers", 68, 5], ["platforms", 69, 5]], [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["cargoPatches", 30, 3], ["cargoHash", 34, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 38, 3], ["postFixup", 53, 3], ["meta", 64, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchFromGitHub: false, "pkg-config": false, expat: false, fontconfig: false, freetype: false, libGL: false, libxkbcommon: false, pipewire: false, wayland: false, libxrandr: false, libxi: false, libxcursor: false, libx11: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 24, 5], ["repo", 25, 5], ["rev", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 65, 5], ["homepage", 66, 5], ["license", 67, 5], ["maintainers", 68, 5], ["platforms", 69, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["cargoPatches", 30, 3], ["cargoHash", 34, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 38, 3], ["postFixup", 53, 3], ["meta", 64, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const libxcursor = nix.arg($, "libxcursor");
   const libx11 = nix.arg($, "libx11");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "pw-viz",
       version: "0.3.0-2025-12-12",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ax9d",
           repo: "pw-viz",
           rev: "b3fb0fb05059ba12f58d2a998842e13f0636cfed",
@@ -56,7 +54,7 @@ export default nix.lambda((args) => (() => {
   --add-rpath ${nix.app(nix.sel(lib, "makeLibraryPath"), nix.thunk(() => [libGL, libxkbcommon, wayland]))}
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Simple and elegant pipewire graph editor",
         homepage: "https://github.com/ax9d/pw-viz",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

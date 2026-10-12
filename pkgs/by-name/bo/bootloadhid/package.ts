@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 13, 5], ["hash", 14, 5]], [["description", 35, 5], ["homepage", 36, 5], ["license", 37, 5], ["maintainers", 38, 5], ["mainProgram", 39, 5], ["platforms", 40, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["nativeBuildInputs", 17, 3], ["makeFlags", 21, 3], ["setSourceRoot", 23, 3], ["installPhase", 25, 3], ["meta", 34, 3]]]);
 const formals$1 = { args: { fetchurl: false, lib: false, "libusb-compat-0_1": false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 13, 5], ["hash", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 35, 5], ["homepage", 36, 5], ["license", 37, 5], ["maintainers", 38, 5], ["mainProgram", 39, 5], ["platforms", 40, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["nativeBuildInputs", 17, 3], ["makeFlags", 21, 3], ["setSourceRoot", 23, 3], ["installPhase", 25, 3], ["meta", 34, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const libusb_compat_0_1 = nix.arg($, "libusb-compat-0_1");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "bootloadhid",
       version: "0-unstable-2012-12-08",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://www.obdev.at/downloads/vusb/bootloadHID.2012-12-08.tar.gz",
           hash: "sha256-FU5+OGKaOi7sLfZm7foe4vLppXAY8X2fD48GTMINh1Q=",
         })))),
@@ -27,7 +25,7 @@ export default nix.lambda((args) => (() => {
       setSourceRoot: "sourceRoot=$(echo */commandline)",
       installPhase: "runHook preInstall\n\nmkdir -p $out/bin\ninstall bootloadHID $out/bin\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "USB boot loader for AVR microcontrollers with at least 2 kB of boot load section, e.g. ATMega8",
         homepage: "https://www.obdev.at/products/vusb/bootloadhid.html",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

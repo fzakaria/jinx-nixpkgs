@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 49, 5], ["repo", 50, 5], ["tag", 51, 5], ["hash", 52, 5]], [["dilation", 92, 5]], [["updateScript", 122, 12]], [["changelog", 125, 5], ["description", 126, 5], ["homepage", 127, 5], ["license", 128, 5], ["maintainers", 129, 5], ["mainProgram", 130, 5]], [["pname", 44, 3], ["version", 45, 3], ["pyproject", 46, 3], ["src", 48, 3], ["postPatch", 55, 3], ["build-system", 67, 3], ["dependencies", 72, 3], ["optional-dependencies", 91, 3], ["nativeBuildInputs", 95, 3], ["nativeCheckInputs", 99, 3], ["__darwinAllowLocalNetworking", 109, 3], ["postInstall", 111, 3], ["passthru", 122, 3], ["meta", 124, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitHub: false, installShellFiles: false, setuptools: false, versioneer: false, attrs: false, autobahn: false, automat: false, click: false, cryptography: false, humanize: false, "iterable-io": false, pynacl: false, qrcode: false, spake2: false, tqdm: false, twisted: false, txtorcon: false, "zipstream-ng": false, noiseprotocol: false, "net-tools": false, unixtools: false, hypothesis: false, "magic-wormhole-mailbox-server": false, "magic-wormhole-transit-relay": false, pytestCheckHook: false, "pytest-twisted": false, gitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 49, 5], ["repo", 50, 5], ["tag", 51, 5], ["hash", 52, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["dilation", 92, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["updateScript", 122, 12]]);
-const pos$4 = nix.positions(here + "/default.nix", [["changelog", 125, 5], ["description", 126, 5], ["homepage", 127, 5], ["license", 128, 5], ["maintainers", 129, 5], ["mainProgram", 130, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 44, 3], ["version", 45, 3], ["pyproject", 46, 3], ["src", 48, 3], ["postPatch", 55, 3], ["build-system", 67, 3], ["dependencies", 72, 3], ["optional-dependencies", 91, 3], ["nativeBuildInputs", 95, 3], ["nativeCheckInputs", 99, 3], ["__darwinAllowLocalNetworking", 109, 3], ["postInstall", 111, 3], ["passthru", 122, 3], ["meta", 124, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -42,12 +38,12 @@ export default nix.lambda((args) => (() => {
   const pytest_twisted = nix.arg($, "pytest-twisted");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "magic-wormhole",
       version: "0.24.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "magic-wormhole",
           repo: "magic-wormhole",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -75,7 +71,7 @@ export default nix.lambda((args) => (() => {
         txtorcon,
         zipstream_ng,
       ], nix.concat(nix.sel(autobahn, "optional-dependencies", "twisted"), nix.sel(twisted, "optional-dependencies", "tls")))),
-      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$2, dilation: nix.thunk(() => [noiseprotocol]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: $pos[1], dilation: nix.thunk(() => [noiseprotocol]) })),
       nativeBuildInputs: nix.thunk(() => [installShellFiles]),
       nativeCheckInputs: nix.thunk(() => nix.concat([
         hypothesis,
@@ -95,11 +91,11 @@ installShellCompletion --cmd ${nix.sel(finalAttrs, "meta", "mainProgram")} \\
 rm $out/wormhole_complete.*
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         changelog: nix.thunk(() => nix.str`https://github.com/magic-wormhole/magic-wormhole/blob/${nix.sel(finalAttrs, "src", "rev")}/NEWS.md`),
         description: "Securely transfer data between computers",
         homepage: "https://magic-wormhole.readthedocs.io/",

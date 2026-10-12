@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]], [["NIX_CFLAGS_COMPILE", 49, 5], ["LDFLAGS", 57, 5], ["BUILD_CC", 61, 5], ["TCLLIBDIR", 62, 5]], [["changelog", 94, 5], ["description", 95, 5], ["mainProgram", 96, 5], ["homepage", 97, 5], ["license", 98, 5], ["maintainers", 99, 5], ["platforms", 100, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 31, 3], ["depsBuildBuild", 38, 3], ["configureFlags", 42, 3], ["env", 48, 3], ["postInstall", 66, 3], ["meta", 93, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, openssl: false, tcl: false, buildPackages: false, readline: false, ncurses: false, zlib: false, sqlite: false, "util-linux": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 49, 5], ["LDFLAGS", 57, 5], ["BUILD_CC", 61, 5], ["TCLLIBDIR", 62, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["changelog", 94, 5], ["description", 95, 5], ["mainProgram", 96, 5], ["homepage", 97, 5], ["license", 98, 5], ["maintainers", 99, 5], ["platforms", 100, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 31, 3], ["depsBuildBuild", 38, 3], ["configureFlags", 42, 3], ["env", 48, 3], ["postInstall", 66, 3], ["meta", 93, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const sqlite = nix.arg($, "sqlite");
   const util_linux = nix.arg($, "util-linux");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "sqlcipher",
       version: "4.19.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "sqlcipher",
           repo: "sqlcipher",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -41,7 +38,7 @@ export default nix.lambda((args) => (() => {
         "--enable-load-extension",
       ]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => [
             nix.thunk(() => nix.sel(sqlite, "NIX_CFLAGS_COMPILE")),
             "-DSQLITE_HAS_CODEC",
@@ -55,7 +52,7 @@ export default nix.lambda((args) => (() => {
       })),
       postInstall: nix.thunk(() => nix.add(nix.add("mv $out/bin/{sqlite3,sqlcipher}\nmkdir $out/include/sqlcipher\nmv $out/include/sqlite3.h $out/include/sqlcipher/sqlite3.h\nmv $out/include/sqlite3ext.h $out/include/sqlcipher/sqlite3ext.h\nmv $out/lib/lib{sqlite3,sqlcipher}.a\nrm -f $out/lib/libsqlite3.0.dylib $out/lib/libsqlite3.dylib $out/lib/libsqlite3.so $out/lib/libsqlite3.so.0\nrename libsqlite3 libsqlcipher $out/lib/libsqlite3*\nmv $out/lib/pkgconfig/{sqlite3,sqlcipher}.pc\nmv $out/share/man/man1/{sqlite3,sqlcipher}.1\nsubstituteInPlace $out/lib/pkgconfig/sqlcipher.pc \\\n  --replace-fail \"-lsqlite3\" \"-lsqlcipher\" \\\n  --replace-fail \"-lz\" \"-lz -lcrypto\" \\\n  --replace-fail \"includedir}\" \"includedir}/sqlcipher\"\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "f=$(echo $out/lib/libsqlcipher.*.dylib)\nln --symbolic --force \"$f\" $out/lib/libsqlcipher.0.dylib\nln --symbolic --force \"$f\" $out/lib/libsqlcipher.dylib\nln --symbolic --force \"$f\" $out/lib/libsqlite3.dylib\n")), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), "f=$(echo $out/lib/libsqlcipher.so.*)\nln --symbolic --force \"$f\" $out/lib/libsqlcipher.so.0\nln --symbolic --force \"$f\" $out/lib/libsqlcipher.so\n"))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         changelog: nix.thunk(() => nix.str`https://github.com/sqlcipher/sqlcipher/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG.md`),
         description: "SQLite extension that provides 256 bit AES encryption of database files",
         mainProgram: "sqlcipher",

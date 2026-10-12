@@ -2,26 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["isILP64", 71, 9]], [["isILP64", 78, 9]], [["blas", 85, 5], ["lapack", 86, 5]], [["blas", 89, 5], ["lapack", 90, 5]], [["blas", 96, 9], ["lapack", 97, 9]], [["url", 109, 5], ["sha256", 110, 5]], [["fontDirectories", 198, 39]], [["FONTCONFIG_FILE", 198, 5], ["LC_ALL", 203, 5]], [["NIX_LDFLAGS", 207, 5], ["NIX_CFLAGS_COMPILE", 209, 5]], [["F77_INTEGER_8_FLAG", 213, 5]], [["pkgs", 262, 7], ["config", 264, 9], ["lib", 265, 9], ["stdenv", 266, 9], ["fetchurl", 267, 9], ["newScope", 268, 9], ["octave", 270, 7]], [["octave", 273, 7], ["makeSetupHook", 274, 25], ["makeWrapper", 274, 39]], [["octave", 282, 7], ["wrapOctave", 283, 15], ["computeRequiredOctavePackages", 284, 32]], [["buildEnv", 286, 57], ["octavePackages", 286, 66]], [["package", 291, 9], ["command", 292, 9]], [["wrapper", 290, 7]], [["sitePath", 254, 5], ["octPkgsPath", 255, 5], ["blas", 256, 5], ["lapack", 257, 5], ["qrupdate", 258, 5], ["arpack", 259, 5], ["suitesparse", 260, 5], ["octavePackages", 261, 5], ["wrapOctave", 272, 5], ["fftw", 276, 13], ["fftwSinglePrec", 276, 18], ["portaudio", 277, 13], ["jdk", 278, 13], ["python", 279, 5], ["enableQt", 280, 13], ["enableReadline", 280, 22], ["enableJava", 280, 37], ["buildEnv", 281, 5], ["withPackages", 286, 5], ["pkgs", 287, 5], ["interpreter", 288, 5], ["tests", 289, 5]], [["homepage", 298, 5], ["license", 299, 5], ["maintainers", 300, 5], ["description", 304, 5]], [["version", 105, 3], ["pname", 106, 3], ["src", 108, 3], ["postPatch", 113, 3], ["buildInputs", 117, 3], ["nativeBuildInputs", 166, 3], ["doCheck", 177, 3], ["nativeCheckInputs", 179, 3], ["preCheck", 187, 3], ["enableParallelBuilding", 191, 3], ["env", 193, 3], ["preConfigure", 218, 3], ["configureFlags", 222, 3], ["postInstall", 249, 3], ["passthru", 253, 3], ["meta", 297, 3]]]);
 const formals$1 = { args: { stdenv: false, pkgs: false, config: false, lib: false, fetchurl: false, gfortran: false, ncurses: false, perl: false, flex: false, testers: false, texinfo: false, qhull: false, libsndfile: false, portaudio: false, libx11: false, graphicsmagick: false, pcre2: false, "pkg-config": false, libGL: false, libGLU: false, fltk: false, fftw: false, fftwSinglePrec: false, "fast-float": false, zlib: false, curl: false, rapidjson: false, blas: false, lapack: false, qrupdate: false, arpack: false, suitesparse: false, use64BitIdx: true, libwebp: false, gl2ps: false, ghostscript: false, hdf5: false, glpk: false, gnuplot: false, enableReadline: true, readline: false, enableJava: true, jdk: false, python3: false, sundials: false, newScope: false, callPackage: false, enableQt: true, qt6Packages: false, libiconv: false, writableTmpDirAsHomeHook: false, makeFontsConf: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["isILP64", 71, 9]]);
-const pos$2 = nix.positions(here + "/default.nix", [["isILP64", 78, 9]]);
-const pos$3 = nix.positions(here + "/default.nix", [["blas", 85, 5], ["lapack", 86, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["blas", 89, 5], ["lapack", 90, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["blas", 96, 9], ["lapack", 97, 9]]);
-const pos$6 = nix.positions(here + "/default.nix", [["url", 109, 5], ["sha256", 110, 5]]);
-const pos$7 = nix.positions(here + "/default.nix", [["fontDirectories", 198, 39]]);
-const pos$8 = nix.positions(here + "/default.nix", [["FONTCONFIG_FILE", 198, 5], ["LC_ALL", 203, 5]]);
-const pos$9 = nix.positions(here + "/default.nix", [["NIX_LDFLAGS", 207, 5], ["NIX_CFLAGS_COMPILE", 209, 5]]);
-const pos$10 = nix.positions(here + "/default.nix", [["F77_INTEGER_8_FLAG", 213, 5]]);
-const pos$11 = nix.positions(here + "/default.nix", [["pkgs", 262, 7], ["config", 264, 9], ["lib", 265, 9], ["stdenv", 266, 9], ["fetchurl", 267, 9], ["newScope", 268, 9], ["octave", 270, 7]]);
-const pos$12 = nix.positions(here + "/default.nix", [["octave", 273, 7], ["makeSetupHook", 274, 25], ["makeWrapper", 274, 39]]);
-const pos$13 = nix.positions(here + "/default.nix", [["octave", 282, 7], ["wrapOctave", 283, 15], ["computeRequiredOctavePackages", 284, 32]]);
-const pos$14 = nix.positions(here + "/default.nix", [["buildEnv", 286, 57], ["octavePackages", 286, 66]]);
-const pos$15 = nix.positions(here + "/default.nix", [["package", 291, 9], ["command", 292, 9]]);
-const pos$16 = nix.positions(here + "/default.nix", [["wrapper", 290, 7]]);
-const pos$17 = nix.positions(here + "/default.nix", [["sitePath", 254, 5], ["octPkgsPath", 255, 5], ["blas", 256, 5], ["lapack", 257, 5], ["qrupdate", 258, 5], ["arpack", 259, 5], ["suitesparse", 260, 5], ["octavePackages", 261, 5], ["wrapOctave", 272, 5], ["fftw", 276, 13], ["fftwSinglePrec", 276, 18], ["portaudio", 277, 13], ["jdk", 278, 13], ["python", 279, 5], ["enableQt", 280, 13], ["enableReadline", 280, 22], ["enableJava", 280, 37], ["buildEnv", 281, 5], ["withPackages", 286, 5], ["pkgs", 287, 5], ["interpreter", 288, 5], ["tests", 289, 5]]);
-const pos$18 = nix.positions(here + "/default.nix", [["homepage", 298, 5], ["license", 299, 5], ["maintainers", 300, 5], ["description", 304, 5]]);
-const pos$19 = nix.positions(here + "/default.nix", [["version", 105, 3], ["pname", 106, 3], ["src", 108, 3], ["postPatch", 113, 3], ["buildInputs", 117, 3], ["nativeBuildInputs", 166, 3], ["doCheck", 177, 3], ["nativeCheckInputs", 179, 3], ["preCheck", 187, 3], ["enableParallelBuilding", 191, 3], ["env", 193, 3], ["preConfigure", 218, 3], ["configureFlags", 222, 3], ["postInstall", 249, 3], ["passthru", 253, 3], ["meta", 297, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -77,18 +59,18 @@ export default nix.lambda((args) => (() => {
   const libiconv = nix.arg($, "libiconv");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   const makeFontsConf = nix.arg($, "makeFontsConf");
-  const blas$ = nix.thunk(() => (nix.asBool(use64BitIdx) ? nix.app(nix.sel(blas, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, isILP64: true }))) : nix.force(blas)));
-  const lapack$ = nix.thunk(() => (nix.asBool(use64BitIdx) ? nix.app(nix.sel(lapack, "override"), nix.thunk(() => ({ [nix.POS]: pos$2, isILP64: true }))) : nix.force(lapack)));
-  const qrupdate$ = nix.thunk(() => nix.app(nix.sel(qrupdate, "override"), nix.thunk(() => ({ [nix.POS]: pos$3, blas: blas$, lapack: lapack$ }))));
-  const arpack$ = nix.thunk(() => nix.app(nix.sel(arpack, "override"), nix.thunk(() => ({ [nix.POS]: pos$4, blas: blas$, lapack: lapack$ }))));
-  const suitesparse$ = nix.thunk(() => (nix.asBool(!nix.eq(suitesparse, null)) ? nix.app(nix.sel(suitesparse, "override"), nix.thunk(() => ({ [nix.POS]: pos$5, blas: blas$, lapack: lapack$ }))) : null));
+  const blas$ = nix.thunk(() => (nix.asBool(use64BitIdx) ? nix.app(nix.sel(blas, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], isILP64: true }))) : nix.force(blas)));
+  const lapack$ = nix.thunk(() => (nix.asBool(use64BitIdx) ? nix.app(nix.sel(lapack, "override"), nix.thunk(() => ({ [nix.POS]: $pos[1], isILP64: true }))) : nix.force(lapack)));
+  const qrupdate$ = nix.thunk(() => nix.app(nix.sel(qrupdate, "override"), nix.thunk(() => ({ [nix.POS]: $pos[2], blas: blas$, lapack: lapack$ }))));
+  const arpack$ = nix.thunk(() => nix.app(nix.sel(arpack, "override"), nix.thunk(() => ({ [nix.POS]: $pos[3], blas: blas$, lapack: lapack$ }))));
+  const suitesparse$ = nix.thunk(() => (nix.asBool(!nix.eq(suitesparse, null)) ? nix.app(nix.sel(suitesparse, "override"), nix.thunk(() => ({ [nix.POS]: $pos[4], blas: blas$, lapack: lapack$ }))) : null));
   const allPkgs = pkgs;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$19,
+      [nix.POS]: $pos[18],
       version: "11.3.0",
       pname: "octave",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           url: nix.thunk(() => nix.str`mirror://gnu/octave/octave-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "sha256-y1if6zzvhNE0hUaDcYycE+C0ceqRbQdhvnqMTiYaMtE=",
         })))),
@@ -136,14 +118,14 @@ export default nix.lambda((args) => (() => {
       preCheck: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), enableQt, "export XDG_RUNTIME_DIR=$TMPDIR\n")),
       enableParallelBuilding: true,
       env: nix.thunk(() => nix.update({
-        [nix.POS]: pos$8,
-        FONTCONFIG_FILE: nix.thunk(() => nix.app(makeFontsConf, nix.thunk(() => ({ [nix.POS]: pos$7, fontDirectories: [] })))),
+        [nix.POS]: $pos[7],
+        FONTCONFIG_FILE: nix.thunk(() => nix.app(makeFontsConf, nix.thunk(() => ({ [nix.POS]: $pos[6], fontDirectories: [] })))),
         LC_ALL: "C.UTF-8",
       }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           NIX_LDFLAGS: "-lobjc",
           NIX_CFLAGS_COMPILE: "-Wno-format-security",
-        }))), nix.app(nix.sel(lib, "optionalAttrs"), use64BitIdx, nix.thunk(() => ({ [nix.POS]: pos$10, F77_INTEGER_8_FLAG: "-fdefault-integer-8" })))))),
+        }))), nix.app(nix.sel(lib, "optionalAttrs"), use64BitIdx, nix.thunk(() => ({ [nix.POS]: $pos[9], F77_INTEGER_8_FLAG: "-fdefault-integer-8" })))))),
       preConfigure: nix.thunk(() => nix.str`export PATH="$PATH:${nix.sel(qt6Packages, "qttools")}/libexec"
 `),
       configureFlags: nix.thunk(() => nix.concat([
@@ -164,7 +146,7 @@ export default nix.lambda((args) => (() => {
         const arpack_1 = arpack$;
         const suitesparse_1 = suitesparse$;
         const octavePackages = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../../top-level/octave-packages.nix")), nix.thunk(() => ({
-            [nix.POS]: pos$11,
+            [nix.POS]: $pos[10],
             pkgs: allPkgs,
             config: config,
             lib: lib,
@@ -174,7 +156,7 @@ export default nix.lambda((args) => (() => {
             octave: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
           }))));
         const wrapOctave = nix.thunk(() => nix.app(callPackage, nix.path(here, "./wrap-octave.nix"), nix.thunk(() => ({
-            [nix.POS]: pos$12,
+            [nix.POS]: $pos[11],
             octave: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             makeSetupHook: nix.thunk(() => nix.attr(allPkgs, "makeSetupHook")),
             makeWrapper: nix.thunk(() => nix.attr(allPkgs, "makeWrapper")),
@@ -188,24 +170,24 @@ export default nix.lambda((args) => (() => {
         const enableReadline_1 = enableReadline;
         const enableJava_1 = enableJava;
         const buildEnv = nix.thunk(() => nix.app(callPackage, nix.path(here, "./build-env.nix"), nix.thunk(() => ({
-            [nix.POS]: pos$13,
+            [nix.POS]: $pos[12],
             octave: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             wrapOctave: wrapOctave,
             computeRequiredOctavePackages: nix.thunk(() => nix.attr(octavePackages, "computeRequiredOctavePackages")),
           }))));
-        const withPackages = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./with-packages.nix")), nix.thunk(() => ({ [nix.POS]: pos$14, buildEnv: buildEnv, octavePackages: octavePackages }))));
+        const withPackages = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./with-packages.nix")), nix.thunk(() => ({ [nix.POS]: $pos[13], buildEnv: buildEnv, octavePackages: octavePackages }))));
         const pkgs_1 = octavePackages;
         const interpreter = nix.thunk(() => nix.str`${nix.sel(finalAttrs, "finalPackage")}/bin/octave`);
         const tests = nix.thunk(() => ({
-          [nix.POS]: pos$16,
+          [nix.POS]: $pos[15],
           wrapper: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$15,
+              [nix.POS]: $pos[14],
               package: nix.thunk(() => nix.app(nix.sel(finalAttrs, "finalPackage", "withPackages"), (ps) => [nix.thunk(() => nix.sel(ps, "doctest"))])),
               command: "octave --version",
             })))),
         }));
         return {
-          [nix.POS]: pos$17,
+          [nix.POS]: $pos[16],
           sitePath,
           octPkgsPath,
           blas: blas_1,
@@ -231,7 +213,7 @@ export default nix.lambda((args) => (() => {
         };
       })()),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$18,
+        [nix.POS]: $pos[17],
         homepage: "https://www.gnu.org/software/octave/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
         maintainers: nix.thunk(() => (() => {

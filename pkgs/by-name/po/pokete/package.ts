@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["sha256", 20, 5]], [["package", 45, 7], ["command", 46, 7], ["version", 47, 7]], [["pokete-version", 44, 5]], [["tests", 43, 12]], [["description", 52, 5], ["mainProgram", 53, 5], ["homepage", 54, 5], ["license", 55, 5], ["maintainers", 56, 5]], [["pname", 11, 3], ["version", 12, 3], ["pyproject", 14, 3], ["src", 16, 3], ["pythonPath", 23, 3], ["buildPhase", 28, 3], ["installPhase", 32, 3], ["postFixup", 39, 3], ["passthru", 43, 3], ["meta", 51, 3]]]);
 const formals$1 = { args: { lib: false, python3: false, fetchFromGitHub: false, testers: false, pokete: false, faketty: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["sha256", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["package", 45, 7], ["command", 46, 7], ["version", 47, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pokete-version", 44, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 43, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 52, 5], ["mainProgram", 53, 5], ["homepage", 54, 5], ["license", 55, 5], ["maintainers", 56, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["pyproject", 14, 3], ["src", 16, 3], ["pythonPath", 23, 3], ["buildPhase", 28, 3], ["installPhase", 32, 3], ["postFixup", 39, 3], ["passthru", 43, 3], ["meta", 51, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const pokete = nix.arg($, "pokete");
   const faketty = nix.arg($, "faketty");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "pokete",
       version: "0.9.1",
       pyproject: false,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "lxgr-linux",
           repo: "pokete",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -42,11 +37,11 @@ export default nix.lambda((args) => (() => {
       installPhase: "mkdir -p $out/share/pokete\ncp -r assets pokete_classes pokete_data mods *.py $out/share/pokete/\nmkdir -p $out/bin\nln -s $out/share/pokete/pokete.py $out/bin/pokete\n",
       postFixup: "wrapPythonProgramsIn $out/share/pokete \"${pythonPath[*]}\"\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           "pokete-version": nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               package: pokete,
               command: nix.thunk(() => nix.str`${faketty}/bin/faketty pokete --help`),
               version: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -54,7 +49,7 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Terminal based Pokemon like game",
         mainProgram: "pokete",
         homepage: "https://lxgr-linux.github.io/pokete",

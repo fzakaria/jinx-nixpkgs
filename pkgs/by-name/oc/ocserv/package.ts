@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]], [["homepage", 58, 5], ["license", 59, 5], ["description", 60, 5], ["maintainers", 61, 5]], [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 41, 3], ["meta", 57, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, autoreconfHook: false, "pkg-config": false, ipcalc: false, nettle: false, gnutls: false, libev: false, protobufc: false, guile: false, geoip: false, libseccomp: false, gperf: false, readline: false, lz4: false, ronn: false, pam: false, libxcrypt: false, "oath-toolkit": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 58, 5], ["license", 59, 5], ["description", 60, 5], ["maintainers", 61, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 41, 3], ["meta", 57, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,11 +28,11 @@ export default nix.lambda((args) => (() => {
   const libxcrypt = nix.arg($, "libxcrypt");
   const oath_toolkit = nix.arg($, "oath-toolkit");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "ocserv",
       version: "1.4.1",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "openconnect",
           repo: "ocserv",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -57,7 +55,7 @@ export default nix.lambda((args) => (() => {
         oath_toolkit,
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://gitlab.com/openconnect/ocserv",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
         description: "OpenConnect VPN server (ocserv), a server for the OpenConnect VPN client",

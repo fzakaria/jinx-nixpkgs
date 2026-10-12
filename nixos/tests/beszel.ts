@@ -2,133 +2,67 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/beszel.nix", [[["maintainers", 4, 8]], [["vlans", 10, 24]], [["Address", 14, 25]], [["name", 13, 11], ["networkConfig", 14, 11]], [["01-eth1", 12, 34]], [["networks", 12, 25]], [["network", 12, 17]], [["allowedTCPPorts", 27, 29]], [["useNetworkd", 18, 11], ["useDHCP", 19, 11], ["firewall", 27, 20]], [["enable", 23, 11], ["host", 24, 11]], [["hub", 22, 25]], [["beszel", 22, 18]], [["systemPackages", 31, 21]], [["virtualisation", 10, 9], ["systemd", 12, 9], ["networking", 17, 9], ["services", 22, 9], ["environment", 31, 9]], [["vlans", 39, 24]], [["Address", 43, 25]], [["name", 42, 11], ["networkConfig", 43, 11]], [["01-eth1", 41, 34]], [["networks", 41, 25]], [["network", 41, 17]], [["useNetworkd", 47, 11], ["useDHCP", 48, 11]], [["systemPackages", 51, 21]], [["HUB_URL", 56, 25], ["KEY_FILE", 57, 25], ["TOKEN_FILE", 58, 25]], [["enable", 55, 13], ["environment", 56, 13], ["openFirewall", 59, 13]], [["agent", 54, 27]], [["beszel", 54, 20]], [["services", 54, 11]], [["configuration", 53, 32]], [["GPU_COLLECTOR", 68, 25]], [["enable", 67, 13], ["environment", 68, 13]], [["agent", 66, 27]], [["beszel", 66, 20]], [["services", 66, 11]], [["configuration", 65, 36]], [["GPU_COLLECTOR", 75, 25]], [["enable", 74, 13], ["environment", 75, 13]], [["agent", 73, 27]], [["beszel", 73, 20]], [["services", 73, 11]], [["configuration", 72, 38]], [["GPU_COLLECTOR", 83, 25]], [["enable", 85, 15], ["deviceAllow", 86, 15]], [["enable", 81, 13], ["environment", 83, 13], ["smartmon", 84, 13]], [["agent", 80, 27]], [["beszel", 80, 20]], [["services", 80, 11]], [["configuration", 79, 39]], [["hostId", 92, 22]], [["supportedFilesystems", 93, 16]], [["enable", 94, 33]], [["agent", 94, 27]], [["beszel", 94, 20]], [["networking", 92, 11], ["boot", 93, 11], ["services", 94, 11]], [["configuration", 91, 30]], [["SKIP_GPU", 101, 15], ["GPU_COLLECTOR", 102, 15]], [["enable", 99, 13], ["environment", 100, 13]], [["agent", 98, 27]], [["beszel", 98, 20]], [["services", 98, 11]], [["configuration", 97, 38]], [["agent", 53, 24], ["gpu-sysfs", 65, 24], ["gpu-devices", 72, 24], ["gpu-smartmon", 79, 24], ["zfs", 91, 24], ["gpu-skipped", 97, 24]], [["virtualisation", 39, 9], ["systemd", 41, 9], ["networking", 46, 9], ["environment", 51, 9], ["specialisation", 53, 9]], [["hubHost", 7, 5], ["agentHost", 36, 5]], [["email", 134, 13], ["password", 135, 13]], [["identity", 140, 13], ["password", 141, 13]], [["host", 155, 13], ["name", 156, 13], ["pkey", 157, 13], ["port", 158, 13], ["tkn", 159, 13], ["users", 160, 13]], [["name", 3, 3], ["meta", 4, 3], ["nodes", 6, 3], ["testScript", 109, 3]]]);
 const formals$1 = { args: { pkgs: false, lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/beszel.nix", [["maintainers", 4, 8]]);
 const formals$2 = { args: { config: false, pkgs: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/beszel.nix", [["vlans", 10, 24]]);
-const pos$3 = nix.positions(here + "/beszel.nix", [["Address", 14, 25]]);
-const pos$4 = nix.positions(here + "/beszel.nix", [["name", 13, 11], ["networkConfig", 14, 11]]);
-const pos$5 = nix.positions(here + "/beszel.nix", [["01-eth1", 12, 34]]);
-const pos$6 = nix.positions(here + "/beszel.nix", [["networks", 12, 25]]);
-const pos$7 = nix.positions(here + "/beszel.nix", [["network", 12, 17]]);
-const pos$8 = nix.positions(here + "/beszel.nix", [["allowedTCPPorts", 27, 29]]);
-const pos$9 = nix.positions(here + "/beszel.nix", [["useNetworkd", 18, 11], ["useDHCP", 19, 11], ["firewall", 27, 20]]);
-const pos$10 = nix.positions(here + "/beszel.nix", [["enable", 23, 11], ["host", 24, 11]]);
-const pos$11 = nix.positions(here + "/beszel.nix", [["hub", 22, 25]]);
-const pos$12 = nix.positions(here + "/beszel.nix", [["beszel", 22, 18]]);
-const pos$13 = nix.positions(here + "/beszel.nix", [["systemPackages", 31, 21]]);
-const pos$14 = nix.positions(here + "/beszel.nix", [["virtualisation", 10, 9], ["systemd", 12, 9], ["networking", 17, 9], ["services", 22, 9], ["environment", 31, 9]]);
 const formals$3 = { args: { config: false, pkgs: false }, ellipsis: true };
-const pos$15 = nix.positions(here + "/beszel.nix", [["vlans", 39, 24]]);
-const pos$16 = nix.positions(here + "/beszel.nix", [["Address", 43, 25]]);
-const pos$17 = nix.positions(here + "/beszel.nix", [["name", 42, 11], ["networkConfig", 43, 11]]);
-const pos$18 = nix.positions(here + "/beszel.nix", [["01-eth1", 41, 34]]);
-const pos$19 = nix.positions(here + "/beszel.nix", [["networks", 41, 25]]);
-const pos$20 = nix.positions(here + "/beszel.nix", [["network", 41, 17]]);
-const pos$21 = nix.positions(here + "/beszel.nix", [["useNetworkd", 47, 11], ["useDHCP", 48, 11]]);
-const pos$22 = nix.positions(here + "/beszel.nix", [["systemPackages", 51, 21]]);
-const pos$23 = nix.positions(here + "/beszel.nix", [["HUB_URL", 56, 25], ["KEY_FILE", 57, 25], ["TOKEN_FILE", 58, 25]]);
-const pos$24 = nix.positions(here + "/beszel.nix", [["enable", 55, 13], ["environment", 56, 13], ["openFirewall", 59, 13]]);
-const pos$25 = nix.positions(here + "/beszel.nix", [["agent", 54, 27]]);
-const pos$26 = nix.positions(here + "/beszel.nix", [["beszel", 54, 20]]);
-const pos$27 = nix.positions(here + "/beszel.nix", [["services", 54, 11]]);
-const pos$28 = nix.positions(here + "/beszel.nix", [["configuration", 53, 32]]);
-const pos$29 = nix.positions(here + "/beszel.nix", [["GPU_COLLECTOR", 68, 25]]);
-const pos$30 = nix.positions(here + "/beszel.nix", [["enable", 67, 13], ["environment", 68, 13]]);
-const pos$31 = nix.positions(here + "/beszel.nix", [["agent", 66, 27]]);
-const pos$32 = nix.positions(here + "/beszel.nix", [["beszel", 66, 20]]);
-const pos$33 = nix.positions(here + "/beszel.nix", [["services", 66, 11]]);
-const pos$34 = nix.positions(here + "/beszel.nix", [["configuration", 65, 36]]);
-const pos$35 = nix.positions(here + "/beszel.nix", [["GPU_COLLECTOR", 75, 25]]);
-const pos$36 = nix.positions(here + "/beszel.nix", [["enable", 74, 13], ["environment", 75, 13]]);
-const pos$37 = nix.positions(here + "/beszel.nix", [["agent", 73, 27]]);
-const pos$38 = nix.positions(here + "/beszel.nix", [["beszel", 73, 20]]);
-const pos$39 = nix.positions(here + "/beszel.nix", [["services", 73, 11]]);
-const pos$40 = nix.positions(here + "/beszel.nix", [["configuration", 72, 38]]);
-const pos$41 = nix.positions(here + "/beszel.nix", [["GPU_COLLECTOR", 83, 25]]);
-const pos$42 = nix.positions(here + "/beszel.nix", [["enable", 85, 15], ["deviceAllow", 86, 15]]);
-const pos$43 = nix.positions(here + "/beszel.nix", [["enable", 81, 13], ["environment", 83, 13], ["smartmon", 84, 13]]);
-const pos$44 = nix.positions(here + "/beszel.nix", [["agent", 80, 27]]);
-const pos$45 = nix.positions(here + "/beszel.nix", [["beszel", 80, 20]]);
-const pos$46 = nix.positions(here + "/beszel.nix", [["services", 80, 11]]);
-const pos$47 = nix.positions(here + "/beszel.nix", [["configuration", 79, 39]]);
-const pos$48 = nix.positions(here + "/beszel.nix", [["hostId", 92, 22]]);
-const pos$49 = nix.positions(here + "/beszel.nix", [["supportedFilesystems", 93, 16]]);
-const pos$50 = nix.positions(here + "/beszel.nix", [["enable", 94, 33]]);
-const pos$51 = nix.positions(here + "/beszel.nix", [["agent", 94, 27]]);
-const pos$52 = nix.positions(here + "/beszel.nix", [["beszel", 94, 20]]);
-const pos$53 = nix.positions(here + "/beszel.nix", [["networking", 92, 11], ["boot", 93, 11], ["services", 94, 11]]);
-const pos$54 = nix.positions(here + "/beszel.nix", [["configuration", 91, 30]]);
-const pos$55 = nix.positions(here + "/beszel.nix", [["SKIP_GPU", 101, 15], ["GPU_COLLECTOR", 102, 15]]);
-const pos$56 = nix.positions(here + "/beszel.nix", [["enable", 99, 13], ["environment", 100, 13]]);
-const pos$57 = nix.positions(here + "/beszel.nix", [["agent", 98, 27]]);
-const pos$58 = nix.positions(here + "/beszel.nix", [["beszel", 98, 20]]);
-const pos$59 = nix.positions(here + "/beszel.nix", [["services", 98, 11]]);
-const pos$60 = nix.positions(here + "/beszel.nix", [["configuration", 97, 38]]);
-const pos$61 = nix.positions(here + "/beszel.nix", [["agent", 53, 24], ["gpu-sysfs", 65, 24], ["gpu-devices", 72, 24], ["gpu-smartmon", 79, 24], ["zfs", 91, 24], ["gpu-skipped", 97, 24]]);
-const pos$62 = nix.positions(here + "/beszel.nix", [["virtualisation", 39, 9], ["systemd", 41, 9], ["networking", 46, 9], ["environment", 51, 9], ["specialisation", 53, 9]]);
-const pos$63 = nix.positions(here + "/beszel.nix", [["hubHost", 7, 5], ["agentHost", 36, 5]]);
 const formals$4 = { args: { nodes: false }, ellipsis: true };
-const pos$64 = nix.positions(here + "/beszel.nix", [["email", 134, 13], ["password", 135, 13]]);
-const pos$65 = nix.positions(here + "/beszel.nix", [["identity", 140, 13], ["password", 141, 13]]);
-const pos$66 = nix.positions(here + "/beszel.nix", [["host", 155, 13], ["name", 156, 13], ["pkey", 157, 13], ["port", 158, 13], ["tkn", 159, 13], ["users", 160, 13]]);
-const pos$67 = nix.positions(here + "/beszel.nix", [["name", 3, 3], ["meta", 4, 3], ["nodes", 6, 3], ["testScript", 109, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$67,
+    [nix.POS]: $pos[66],
     name: "beszel",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "h7x4"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$63,
+      [nix.POS]: $pos[62],
       hubHost: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config = nix.arg($_1, "config");
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$14,
-          virtualisation: nix.thunk(() => ({ [nix.POS]: pos$2, vlans: nix.thunk(() => [1n]) })),
+          [nix.POS]: $pos[13],
+          virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[1], vlans: nix.thunk(() => [1n]) })),
           systemd: nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             network: nix.thunk(() => ({
-              [nix.POS]: pos$6,
+              [nix.POS]: $pos[5],
               networks: nix.thunk(() => ({
-                [nix.POS]: pos$5,
+                [nix.POS]: $pos[4],
                 "01-eth1": nix.thunk(() => ({
-                  [nix.POS]: pos$4,
+                  [nix.POS]: $pos[3],
                   name: "eth1",
-                  networkConfig: nix.thunk(() => ({ [nix.POS]: pos$3, Address: "10.0.0.1/24" })),
+                  networkConfig: nix.thunk(() => ({ [nix.POS]: $pos[2], Address: "10.0.0.1/24" })),
                 })),
               })),
             })),
           })),
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$9,
+            [nix.POS]: $pos[8],
             useNetworkd: true,
             useDHCP: false,
             firewall: nix.thunk(() => ({
-              [nix.POS]: pos$8,
+              [nix.POS]: $pos[7],
               allowedTCPPorts: nix.thunk(() => [nix.thunk(() => nix.sel(config, "services", "beszel", "hub", "port"))]),
             })),
           })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$12,
+            [nix.POS]: $pos[11],
             beszel: nix.thunk(() => ({
-              [nix.POS]: pos$11,
-              hub: nix.thunk(() => ({ [nix.POS]: pos$10, enable: true, host: "10.0.0.1" })),
+              [nix.POS]: $pos[10],
+              hub: nix.thunk(() => ({ [nix.POS]: $pos[9], enable: true, host: "10.0.0.1" })),
             })),
           })),
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$13,
+            [nix.POS]: $pos[12],
             systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(config, "services", "beszel", "hub", "package"))]),
           })),
         };
@@ -138,45 +72,45 @@ export default nix.lambda((args) => (() => {
         const config = nix.arg($_1, "config");
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$62,
-          virtualisation: nix.thunk(() => ({ [nix.POS]: pos$15, vlans: nix.thunk(() => [1n]) })),
+          [nix.POS]: $pos[61],
+          virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[14], vlans: nix.thunk(() => [1n]) })),
           systemd: nix.thunk(() => ({
-            [nix.POS]: pos$20,
+            [nix.POS]: $pos[19],
             network: nix.thunk(() => ({
-              [nix.POS]: pos$19,
+              [nix.POS]: $pos[18],
               networks: nix.thunk(() => ({
-                [nix.POS]: pos$18,
+                [nix.POS]: $pos[17],
                 "01-eth1": nix.thunk(() => ({
-                  [nix.POS]: pos$17,
+                  [nix.POS]: $pos[16],
                   name: "eth1",
-                  networkConfig: nix.thunk(() => ({ [nix.POS]: pos$16, Address: "10.0.0.2/24" })),
+                  networkConfig: nix.thunk(() => ({ [nix.POS]: $pos[15], Address: "10.0.0.2/24" })),
                 })),
               })),
             })),
           })),
-          networking: nix.thunk(() => ({ [nix.POS]: pos$21, useNetworkd: true, useDHCP: false })),
+          networking: nix.thunk(() => ({ [nix.POS]: $pos[20], useNetworkd: true, useDHCP: false })),
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$22,
+            [nix.POS]: $pos[21],
             systemPackages: nix.thunk(() => (() => {
               const w = nix.withScope(pkgs_1, null);
               return [nix.thunk(() => nix.lookup(w, "jq"))];
             })()),
           })),
           specialisation: nix.thunk(() => ({
-            [nix.POS]: pos$61,
+            [nix.POS]: $pos[60],
             agent: nix.thunk(() => ({
-              [nix.POS]: pos$28,
+              [nix.POS]: $pos[27],
               configuration: nix.thunk(() => ({
-                [nix.POS]: pos$27,
+                [nix.POS]: $pos[26],
                 services: nix.thunk(() => ({
-                  [nix.POS]: pos$26,
+                  [nix.POS]: $pos[25],
                   beszel: nix.thunk(() => ({
-                    [nix.POS]: pos$25,
+                    [nix.POS]: $pos[24],
                     agent: nix.thunk(() => ({
-                      [nix.POS]: pos$24,
+                      [nix.POS]: $pos[23],
                       enable: true,
                       environment: nix.thunk(() => ({
-                        [nix.POS]: pos$23,
+                        [nix.POS]: $pos[22],
                         HUB_URL: "http://10.0.0.1:8090",
                         KEY_FILE: "/var/lib/beszel-agent/id_ed25519.pub",
                         TOKEN_FILE: "/var/lib/beszel-agent/token",
@@ -188,53 +122,53 @@ export default nix.lambda((args) => (() => {
               })),
             })),
             "gpu-sysfs": nix.thunk(() => ({
-              [nix.POS]: pos$34,
+              [nix.POS]: $pos[33],
               configuration: nix.thunk(() => ({
-                [nix.POS]: pos$33,
+                [nix.POS]: $pos[32],
                 services: nix.thunk(() => ({
-                  [nix.POS]: pos$32,
+                  [nix.POS]: $pos[31],
                   beszel: nix.thunk(() => ({
-                    [nix.POS]: pos$31,
+                    [nix.POS]: $pos[30],
                     agent: nix.thunk(() => ({
-                      [nix.POS]: pos$30,
+                      [nix.POS]: $pos[29],
                       enable: true,
-                      environment: nix.thunk(() => ({ [nix.POS]: pos$29, GPU_COLLECTOR: nix.thunk(() => ["amd_sysfs"]) })),
+                      environment: nix.thunk(() => ({ [nix.POS]: $pos[28], GPU_COLLECTOR: nix.thunk(() => ["amd_sysfs"]) })),
                     })),
                   })),
                 })),
               })),
             })),
             "gpu-devices": nix.thunk(() => ({
-              [nix.POS]: pos$40,
+              [nix.POS]: $pos[39],
               configuration: nix.thunk(() => ({
-                [nix.POS]: pos$39,
+                [nix.POS]: $pos[38],
                 services: nix.thunk(() => ({
-                  [nix.POS]: pos$38,
+                  [nix.POS]: $pos[37],
                   beszel: nix.thunk(() => ({
-                    [nix.POS]: pos$37,
+                    [nix.POS]: $pos[36],
                     agent: nix.thunk(() => ({
-                      [nix.POS]: pos$36,
+                      [nix.POS]: $pos[35],
                       enable: true,
-                      environment: nix.thunk(() => ({ [nix.POS]: pos$35, GPU_COLLECTOR: nix.thunk(() => ["intel_gpu_top"]) })),
+                      environment: nix.thunk(() => ({ [nix.POS]: $pos[34], GPU_COLLECTOR: nix.thunk(() => ["intel_gpu_top"]) })),
                     })),
                   })),
                 })),
               })),
             })),
             "gpu-smartmon": nix.thunk(() => ({
-              [nix.POS]: pos$47,
+              [nix.POS]: $pos[46],
               configuration: nix.thunk(() => ({
-                [nix.POS]: pos$46,
+                [nix.POS]: $pos[45],
                 services: nix.thunk(() => ({
-                  [nix.POS]: pos$45,
+                  [nix.POS]: $pos[44],
                   beszel: nix.thunk(() => ({
-                    [nix.POS]: pos$44,
+                    [nix.POS]: $pos[43],
                     agent: nix.thunk(() => ({
-                      [nix.POS]: pos$43,
+                      [nix.POS]: $pos[42],
                       enable: true,
-                      environment: nix.thunk(() => ({ [nix.POS]: pos$41, GPU_COLLECTOR: "intel_gpu_top" })),
+                      environment: nix.thunk(() => ({ [nix.POS]: $pos[40], GPU_COLLECTOR: "intel_gpu_top" })),
                       smartmon: nix.thunk(() => ({
-                        [nix.POS]: pos$42,
+                        [nix.POS]: $pos[41],
                         enable: true,
                         deviceAllow: nix.thunk(() => ["/dev/nvme0"]),
                       })),
@@ -244,33 +178,33 @@ export default nix.lambda((args) => (() => {
               })),
             })),
             zfs: nix.thunk(() => ({
-              [nix.POS]: pos$54,
+              [nix.POS]: $pos[53],
               configuration: nix.thunk(() => ({
-                [nix.POS]: pos$53,
-                networking: nix.thunk(() => ({ [nix.POS]: pos$48, hostId: "8425e349" })),
-                boot: nix.thunk(() => ({ [nix.POS]: pos$49, supportedFilesystems: nix.thunk(() => ["zfs"]) })),
+                [nix.POS]: $pos[52],
+                networking: nix.thunk(() => ({ [nix.POS]: $pos[47], hostId: "8425e349" })),
+                boot: nix.thunk(() => ({ [nix.POS]: $pos[48], supportedFilesystems: nix.thunk(() => ["zfs"]) })),
                 services: nix.thunk(() => ({
-                  [nix.POS]: pos$52,
+                  [nix.POS]: $pos[51],
                   beszel: nix.thunk(() => ({
-                    [nix.POS]: pos$51,
-                    agent: nix.thunk(() => ({ [nix.POS]: pos$50, enable: true })),
+                    [nix.POS]: $pos[50],
+                    agent: nix.thunk(() => ({ [nix.POS]: $pos[49], enable: true })),
                   })),
                 })),
               })),
             })),
             "gpu-skipped": nix.thunk(() => ({
-              [nix.POS]: pos$60,
+              [nix.POS]: $pos[59],
               configuration: nix.thunk(() => ({
-                [nix.POS]: pos$59,
+                [nix.POS]: $pos[58],
                 services: nix.thunk(() => ({
-                  [nix.POS]: pos$58,
+                  [nix.POS]: $pos[57],
                   beszel: nix.thunk(() => ({
-                    [nix.POS]: pos$57,
+                    [nix.POS]: $pos[56],
                     agent: nix.thunk(() => ({
-                      [nix.POS]: pos$56,
+                      [nix.POS]: $pos[55],
                       enable: true,
                       environment: nix.thunk(() => ({
-                        [nix.POS]: pos$55,
+                        [nix.POS]: $pos[54],
                         SKIP_GPU: true,
                         GPU_COLLECTOR: nix.thunk(() => ["intel_gpu_top"]),
                       })),
@@ -298,8 +232,8 @@ with subtest("Start hub"):
   hubHost.wait_for_open_port(${nix.builtins.toString(nix.thunk(() => nix.sel(hubCfg, "port")))}, "${nix.builtins.toString(nix.thunk(() => nix.sel(hubCfg, "host")))}")
 
 with subtest("Register user"):
-  agentHost.succeed('curl -f --json \\'${nix.builtins.toJSON(nix.thunk(() => ({ [nix.POS]: pos$64, email: "admin@example.com", password: "password" })))}\\' "${nix.sel(agentCfg, "environment", "HUB_URL")}/api/beszel/create-user"')
-  user = json.loads(agentHost.succeed('curl -f --json \\'${nix.builtins.toJSON(nix.thunk(() => ({ [nix.POS]: pos$65, identity: "admin@example.com", password: "password" })))}\\' ${nix.sel(agentCfg, "environment", "HUB_URL")}/api/collections/users/auth-with-password').strip())
+  agentHost.succeed('curl -f --json \\'${nix.builtins.toJSON(nix.thunk(() => ({ [nix.POS]: $pos[63], email: "admin@example.com", password: "password" })))}\\' "${nix.sel(agentCfg, "environment", "HUB_URL")}/api/beszel/create-user"')
+  user = json.loads(agentHost.succeed('curl -f --json \\'${nix.builtins.toJSON(nix.thunk(() => ({ [nix.POS]: $pos[64], identity: "admin@example.com", password: "password" })))}\\' ${nix.sel(agentCfg, "environment", "HUB_URL")}/api/collections/users/auth-with-password').strip())
 
 with subtest("Install agent credentials"):
   agentHost.succeed("mkdir -p \\"$(dirname '${nix.sel(agentCfg, "environment", "KEY_FILE")}')\\" \\"$(dirname '${nix.sel(agentCfg, "environment", "TOKEN_FILE")}')\\"")
@@ -310,7 +244,7 @@ with subtest("Install agent credentials"):
 
 with subtest("Register agent in hub"):
   agentHost.succeed(f'curl -H \\'Authorization: {user["token"]}\\' -f --json \\'{${nix.builtins.toJSON(nix.thunk(() => ({
-          [nix.POS]: pos$66,
+          [nix.POS]: $pos[65],
           host: "10.0.0.2",
           name: "agent",
           pkey: "{sshkey}",

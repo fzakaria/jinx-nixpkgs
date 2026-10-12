@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["case", 19, 37], ["out", 19, 42]], [["sha256", 29, 21]], [["sha256", 30, 21]], [["sha256", 31, 21]], [["9.0.0", 29, 13], ["9.1.0", 30, 13], ["9.2.0", 31, 13]], [["description", 36, 7], ["license", 37, 7]], [["pname", 11, 5], ["repo", 12, 5], ["owner", 13, 5], ["opam-name", 14, 5], ["version", 16, 13], ["defaultVersion", 17, 5], ["releaseRev", 27, 5], ["release", 29, 5], ["mlPlugin", 33, 5], ["meta", 35, 5]], [["configurePhase", 47, 9], ["buildPhase", 50, 9], ["installPhase", 53, 9]]]);
 const formals$1 = { args: { "rocq-core": false, mkRocqDerivation: false, lib: false, version: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["case", 19, 37], ["out", 19, 42]]);
-const pos$2 = nix.positions(here + "/default.nix", [["sha256", 29, 21]]);
-const pos$3 = nix.positions(here + "/default.nix", [["sha256", 30, 21]]);
-const pos$4 = nix.positions(here + "/default.nix", [["sha256", 31, 21]]);
-const pos$5 = nix.positions(here + "/default.nix", [["9.0.0", 29, 13], ["9.1.0", 30, 13], ["9.2.0", 31, 13]]);
-const pos$6 = nix.positions(here + "/default.nix", [["description", 36, 7], ["license", 37, 7]]);
-const pos$7 = nix.positions(here + "/default.nix", [["pname", 11, 5], ["repo", 12, 5], ["owner", 13, 5], ["opam-name", 14, 5], ["version", 16, 13], ["defaultVersion", 17, 5], ["releaseRev", 27, 5], ["release", 29, 5], ["mlPlugin", 33, 5], ["meta", 35, 5]]);
-const pos$8 = nix.positions(here + "/default.nix", [["configurePhase", 47, 9], ["buildPhase", 50, 9], ["installPhase", 53, 9]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,14 +12,14 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const version = nix.argOr($, "version", () => null);
   const derivation = nix.thunk(() => nix.app(mkRocqDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "stdlib",
       repo: "stdlib",
       owner: "rocq-prover",
       "opam-name": "rocq-stdlib",
       version: version,
       defaultVersion: nix.thunk(() => (() => {
-        const case$ = (case$_1) => (out) => ({ [nix.POS]: pos$1, case: case$_1, out: out });
+        const case$ = (case$_1) => (out) => ({ [nix.POS]: $pos[0], case: case$_1, out: out });
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "versions")), null);
         return nix.app(nix.sel(lib, "switch"), nix.thunk(() => nix.sel(rocq_core, "version")), nix.thunk(() => [
             nix.thunk(() => nix.app(case$, nix.thunk(() => nix.app(nix.lookup(w, "range"), "9.3", "9.3")), "9.2.0")),
@@ -36,29 +29,29 @@ export default nix.lambda((args) => (() => {
       })()),
       releaseRev: (v) => nix.str`V${v}`,
       release: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         "9.0.0": nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           sha256: "sha256-2l7ak5Q/NbiNvUzIVXOniEneDXouBMNSSVFbD1Pf8cQ=",
         })),
         "9.1.0": nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           sha256: "sha256-D/kCMsJDg5OnP37GhvXIr2Fi/xCbgCCzoikKx5rL6p4=",
         })),
         "9.2.0": nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           sha256: "sha256-ySNY8XUQOH6B1B2p+39jdJ7UjIMrRDl499JJwpLEHuM=",
         })),
       })),
       mlPlugin: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Rocq Proof Assistant -- Standard Library",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Only")),
       })),
     }))));
   const patched_derivation = nix.thunk(() => nix.app(nix.sel(derivation, "overrideAttrs"), (o) => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(rocq_core, "rocq-version"), "dev")) && nix.asBool(nix.app(nix.sel(lib, "versions", "isLe"), "8.20", nix.thunk(() => nix.sel(rocq_core, "rocq-version")))))), nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         configurePhase: "echo no configuration\n",
         buildPhase: "echo building nothing\n",
         installPhase: "echo installing nothing\n# Make an output directory rather than a file, so this is more friendly to buildEnv\nmkdir $out\n",

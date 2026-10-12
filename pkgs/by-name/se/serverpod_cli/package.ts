@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]], [["bin/serverpod", 24, 5]], [["updateScript", 51, 12]], [["mainProgram", 54, 5], ["homepage", 55, 5], ["description", 56, 5], ["longDescription", 57, 5], ["changelog", 65, 5], ["license", 66, 5], ["maintainers", 67, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 14, 3], ["sourceRoot", 21, 3], ["dartEntryPoints", 23, 3], ["pubspecLock", 27, 3], ["nativeBuildInputs", 29, 3], ["nativeInstallCheckInputs", 31, 3], ["doInstallCheck", 36, 3], ["versionCheckKeepEnvironment", 38, 3], ["preBuild", 40, 3], ["passthru", 51, 3], ["meta", 53, 3]]]);
 const formals$1 = { args: { lib: false, buildDartApplication: false, fetchFromGitHub: false, "yq-go": false, versionCheckHook: false, writableTmpDirAsHomeHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["bin/serverpod", 24, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 51, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["mainProgram", 54, 5], ["homepage", 55, 5], ["description", 56, 5], ["longDescription", 57, 5], ["changelog", 65, 5], ["license", 66, 5], ["maintainers", 67, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 14, 3], ["sourceRoot", 21, 3], ["dartEntryPoints", 23, 3], ["pubspecLock", 27, 3], ["nativeBuildInputs", 29, 3], ["nativeInstallCheckInputs", 31, 3], ["doInstallCheck", 36, 3], ["versionCheckKeepEnvironment", 38, 3], ["preBuild", 40, 3], ["passthru", 51, 3], ["meta", 53, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,23 +17,23 @@ export default nix.lambda((args) => (() => {
       const pname = "serverpod_cli";
       const version = "3.4.13";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "serverpod",
           repo: "serverpod",
           tag: version,
           hash: "sha256-IDIeYvjv4JqhzT39dQiVuNhwQ0STg/EwkwPRFqh5hCw=",
         }))));
       const sourceRoot = nix.thunk(() => nix.str`${nix.sel(src, "name")}/tools/serverpod_cli`);
-      const dartEntryPoints = nix.thunk(() => ({ [nix.POS]: pos$2, "bin/serverpod": "bin/serverpod_cli.dart" }));
+      const dartEntryPoints = nix.thunk(() => ({ [nix.POS]: $pos[1], "bin/serverpod": "bin/serverpod_cli.dart" }));
       const pubspecLock = nix.thunk(() => nix.app(nix.sel(lib, "importJSON"), nix.path(here, "./pubspec.lock.json")));
       const nativeBuildInputs = nix.thunk(() => [yq_go]);
       const nativeInstallCheckInputs = nix.thunk(() => [versionCheckHook, writableTmpDirAsHomeHook]);
       const doInstallCheck = true;
       const versionCheckKeepEnvironment = "HOME";
       const preBuild = "# Set productionMode to true.\nsubstituteInPlace lib/src/generated/version.dart \\\n  --replace-fail \"const productionMode = false;\" \"const productionMode = true;\"\n\n# Remove the dependency_overrides section.\n# Relative path overrides in the monorepo break the Nix build which expects\n# all dependencies to be resolved via the lockfile.\nyq -i 'del(.dependency_overrides)' pubspec.yaml\n";
-      const passthru = nix.thunk(() => ({ [nix.POS]: pos$3, updateScript: nix.path(here, "./update.sh") }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: $pos[2], updateScript: nix.path(here, "./update.sh") }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         mainProgram: "serverpod",
         homepage: "https://serverpod.dev",
         description: "Command line tools for Serverpod",
@@ -50,7 +46,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         src,

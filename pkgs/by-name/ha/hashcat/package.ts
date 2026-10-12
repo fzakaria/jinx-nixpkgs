@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 31, 5], ["hash", 32, 5]], [["description", 128, 5], ["mainProgram", 129, 5], ["homepage", 130, 5], ["license", 131, 5], ["platforms", 132, 5], ["maintainers", 133, 5]], [["pname", 24, 3], ["version", 25, 3], ["strictDeps", 27, 3], ["__structuredAttrs", 28, 3], ["src", 30, 3], ["postPatch", 35, 3], ["nativeBuildInputs", 45, 3], ["buildInputs", 52, 3], ["makeFlags", 73, 3], ["enableParallelBuilding", 88, 3], ["preFixup", 90, 3], ["postFixup", 98, 3], ["nativeInstallCheckInputs", 124, 3], ["doInstallCheck", 125, 3], ["meta", 127, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, addDriverRunpath: false, config: false, cudaPackages: false, cudaSupport: true, fetchurl: false, makeWrapper: false, minizip: false, "opencl-headers": false, "ocl-icd": false, perl: false, python3: false, rocmPackages: false, rocmSupport: true, xxhash: false, zlib: false, libiconv: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 31, 5], ["hash", 32, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 128, 5], ["mainProgram", 129, 5], ["homepage", 130, 5], ["license", 131, 5], ["platforms", 132, 5], ["maintainers", 133, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 24, 3], ["version", 25, 3], ["strictDeps", 27, 3], ["__structuredAttrs", 28, 3], ["src", 30, 3], ["postPatch", 35, 3], ["nativeBuildInputs", 45, 3], ["buildInputs", 52, 3], ["makeFlags", 73, 3], ["enableParallelBuilding", 88, 3], ["preFixup", 90, 3], ["postFixup", 98, 3], ["nativeInstallCheckInputs", 124, 3], ["doInstallCheck", 125, 3], ["meta", 127, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,13 +27,13 @@ export default nix.lambda((args) => (() => {
   const libiconv = nix.arg($, "libiconv");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "hashcat",
       version: "7.1.2",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://hashcat.net/files/hashcat-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-lUamMm10dTC0T8wHm6utQDBKh/MtPJCAAW1Ys5z8i5Y=",
         })))),
@@ -82,7 +80,7 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Fast password cracker",
         mainProgram: "hashcat",
         homepage: "https://hashcat.net/hashcat/",

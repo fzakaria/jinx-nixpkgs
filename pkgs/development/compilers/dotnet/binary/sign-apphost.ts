@@ -2,8 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/sign-apphost.nix", [[["codesign", 10, 3]]]);
 const formals$1 = { args: { replaceVars: false, callPackage: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/sign-apphost.nix", [["codesign", 10, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -11,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const callPackage = nix.arg($, "callPackage");
   const sigtool = nix.thunk(() => nix.app(callPackage, nix.path(here, "../sigtool.nix"), nix.thunk(() => ({}))));
   return nix.app(replaceVars, nix.path(here, "./sign-apphost.proj"), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       codesign: nix.thunk(() => nix.str`${sigtool}/bin/codesign`),
     })));
 })(), formals$1);

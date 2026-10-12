@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 12, 5], ["repo", 13, 5], ["rev", 14, 5], ["sha256", 15, 5]], [["homepage", 32, 5], ["description", 33, 5], ["license", 34, 5], ["maintainers", 35, 5], ["platforms", 36, 5], ["mainProgram", 37, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["postPatch", 18, 3], ["installPhase", 23, 3], ["meta", 31, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 12, 5], ["repo", 13, 5], ["rev", 14, 5], ["sha256", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 32, 5], ["description", 33, 5], ["license", 34, 5], ["maintainers", 35, 5], ["platforms", 36, 5], ["mainProgram", 37, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["postPatch", 18, 3], ["installPhase", 23, 3], ["meta", 31, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,11 +11,11 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "dwmbar",
       version: "0-unstable-2021-12-22",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "thytom",
           repo: "dwmbar",
           rev: "574f5703c558a56bc9c354471543511255423dc7",
@@ -26,7 +24,7 @@ export default nix.lambda((args) => (() => {
       postPatch: "substituteInPlace dwmbar \\\n  --replace 'DEFAULT_CONFIG_DIR=\"/usr/share/dwmbar\"' \"DEFAULT_CONFIG_DIR=\\\"$out/share/dwmbar\\\"\"\n",
       installPhase: "install -d $out/share/dwmbar\ncp -r modules $out/share/dwmbar/\ninstall -D -t $out/share/dwmbar/ config\ninstall -D -t $out/share/dwmbar/ bar.sh\ninstall -Dm755 -t $out/bin/ dwmbar\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/thytom/dwmbar",
         description: "Modular Status Bar for dwm",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

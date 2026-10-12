@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 31, 5], ["repo", 32, 5], ["tag", 33, 5], ["hash", 34, 5]], [["updateScript", 95, 12]], [["description", 98, 5], ["homepage", 99, 5], ["license", 100, 5], ["platforms", 101, 5], ["maintainers", 102, 5]], [["pname", 22, 3], ["version", 23, 3], ["outputs", 25, 3], ["src", 30, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 42, 3], ["cmakeFlags", 52, 3], ["doCheck", 62, 3], ["checkPhase", 64, 3], ["postPatch", 80, 3], ["passthru", 95, 3], ["meta", 97, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, ninja: false, glog: false, gflags: false, folly: false, fb303: false, wangle: false, fbthrift: false, gtest: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 31, 5], ["repo", 32, 5], ["tag", 33, 5], ["hash", 34, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 95, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 98, 5], ["homepage", 99, 5], ["license", 100, 5], ["platforms", 101, 5], ["maintainers", 102, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 22, 3], ["version", 23, 3], ["outputs", 25, 3], ["src", 30, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 42, 3], ["cmakeFlags", 52, 3], ["doCheck", 62, 3], ["checkPhase", 64, 3], ["postPatch", 80, 3], ["passthru", 95, 3], ["meta", 97, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const gtest = nix.arg($, "gtest");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "edencommon",
       version: "2026.07.27.00",
       outputs: nix.thunk(() => ["out", "dev"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "facebookexperimental",
           repo: "edencommon",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -57,11 +54,11 @@ runHook postCheck
 `),
       postPatch: "# The CMake build requires the FBThrift Python support even though\n# it’s not used, presumably because of the relevant code having\n# been moved in from another repository.\nsubstituteInPlace CMakeLists.txt \\\n  --replace-fail \\\n    'find_package(FBThrift CONFIG REQUIRED COMPONENTS cpp2 py)' \\\n    'find_package(FBThrift CONFIG REQUIRED COMPONENTS cpp2)'\n\n# this header was missing. this is likely a consequence of fmt v12.2.0\n# changing the definition of its fmt/core.h header, which is included in\n# the same file.\nsed -e '1i #include <string>' -i eden/common/utils/String.h\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Shared library for Meta's source control filesystem tools (EdenFS and Watchman)",
         homepage: "https://github.com/facebookexperimental/edencommon",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

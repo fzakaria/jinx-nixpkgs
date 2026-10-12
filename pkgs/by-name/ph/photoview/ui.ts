@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/ui.nix", [[["description", 26, 5], ["homepage", 27, 5], ["license", 28, 5], ["maintainers", 29, 5], ["platforms", 30, 5]], [["pname", 9, 3], ["version", 10, 11], ["src", 12, 3], ["npmDepsHash", 14, 3], ["NODE_ENV", 16, 3], ["installPhase", 18, 3], ["meta", 25, 3]]]);
 const formals$1 = { args: { src: false, version: false, lib: false, buildNpmPackage: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/ui.nix", [["description", 26, 5], ["homepage", 27, 5], ["license", 28, 5], ["maintainers", 29, 5], ["platforms", 30, 5]]);
-const pos$2 = nix.positions(here + "/ui.nix", [["pname", 9, 3], ["version", 10, 11], ["src", 12, 3], ["npmDepsHash", 14, 3], ["NODE_ENV", 16, 3], ["installPhase", 18, 3], ["meta", 25, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const buildNpmPackage = nix.arg($, "buildNpmPackage");
   return nix.app(buildNpmPackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "photoview-ui",
       version: version,
       src: nix.thunk(() => nix.str`${src}/ui`),
@@ -21,7 +20,7 @@ export default nix.lambda((args) => (() => {
       NODE_ENV: "production",
       installPhase: "runHook preInstall\nmkdir -p $out\ncp -r dist/* $out/\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Web UI for Photoview photo gallery",
         homepage: "https://photoview.github.io/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),

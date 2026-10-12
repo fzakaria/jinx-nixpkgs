@@ -2,16 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 26, 5], ["repo", 27, 5], ["rev", 28, 5], ["hash", 29, 5]], [["package", 116, 39]], [["package", 117, 50]], [["nativeBuildInputs", 125, 40]], [["assertion", 119, 9], ["expected", 122, 9], ["actual", 125, 9]], [["version", 116, 7], ["pkg-config", 117, 7], ["no-usr", 118, 7]], [["tests", 115, 5], ["updateScript", 130, 5]], [["description", 134, 5], ["license", 135, 5], ["homepage", 136, 5], ["maintainers", 137, 5], ["platforms", 138, 5], ["mainProgram", 139, 5], ["pkgConfigModules", 140, 5]], [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["nativeBuildInputs", 32, 3], ["depsBuildBuild", 39, 3], ["buildInputs", 41, 3], ["postPatch", 46, 3], ["outputs", 71, 3], ["preBuild", 79, 3], ["makeFlags", 96, 3], ["installFlags", 101, 3], ["enableParallelBuilding", 106, 3], ["postInstall", 108, 3], ["passthru", 114, 3], ["meta", 133, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, flex: false, libuuid: false, libx86emu: false, perl: false, kmod: false, systemdMinimal: false, testers: false, binutils: false, writeText: false, runCommand: false, validatePkgConfig: false, gitUpdater: false, buildPackages: false, perlPackages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 26, 5], ["repo", 27, 5], ["rev", 28, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["package", 116, 39]]);
-const pos$3 = nix.positions(here + "/package.nix", [["package", 117, 50]]);
-const pos$4 = nix.positions(here + "/package.nix", [["nativeBuildInputs", 125, 40]]);
-const pos$5 = nix.positions(here + "/package.nix", [["assertion", 119, 9], ["expected", 122, 9], ["actual", 125, 9]]);
-const pos$6 = nix.positions(here + "/package.nix", [["version", 116, 7], ["pkg-config", 117, 7], ["no-usr", 118, 7]]);
-const pos$7 = nix.positions(here + "/package.nix", [["tests", 115, 5], ["updateScript", 130, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["description", 134, 5], ["license", 135, 5], ["homepage", 136, 5], ["maintainers", 137, 5], ["platforms", 138, 5], ["mainProgram", 139, 5], ["pkgConfigModules", 140, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["nativeBuildInputs", 32, 3], ["depsBuildBuild", 39, 3], ["buildInputs", 41, 3], ["postPatch", 46, 3], ["outputs", 71, 3], ["preBuild", 79, 3], ["makeFlags", 96, 3], ["installFlags", 101, 3], ["enableParallelBuilding", 106, 3], ["postInstall", 108, 3], ["passthru", 114, 3], ["meta", 133, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const buildPackages = nix.arg($, "buildPackages");
   const perlPackages = nix.arg($, "perlPackages");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       pname: "hwinfo",
       version: "26.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "opensuse",
           repo: "hwinfo",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -100,29 +92,29 @@ make -C src/isdn/cdb CC=$CC_FOR_BUILD -j $NIX_BUILD_CORES isdn_cdb mk_isdnhwdb
       enableParallelBuilding: false,
       postInstall: "moveToOutput bin \"$bin\"\nmoveToOutput lib \"$lib\"\nmoveToOutput share/bash-completion \"$bin\"\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "hasPkgConfigModules"), nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
           "no-usr": nix.thunk(() => nix.app(nix.sel(testers, "testEqualContents"), nix.thunk(() => ({
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               assertion: "There should be no /usr/ paths in the binaries",
               expected: nix.thunk(() => nix.app(writeText, "expected", "if [ -x /usr/bin/lshal ] ; then\n")),
-              actual: nix.thunk(() => nix.app(runCommand, "actual", nix.thunk(() => ({ [nix.POS]: pos$4, nativeBuildInputs: nix.thunk(() => [binutils]) })), nix.thunk(() => nix.str`strings ${nix.sel(finalAttrs, "finalPackage")}/bin/* | grep /usr/ > $out
+              actual: nix.thunk(() => nix.app(runCommand, "actual", nix.thunk(() => ({ [nix.POS]: $pos[3], nativeBuildInputs: nix.thunk(() => [binutils]) })), nix.thunk(() => nix.str`strings ${nix.sel(finalAttrs, "finalPackage")}/bin/* | grep /usr/ > $out
 `))),
             })))),
         })),
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         description: "Hardware detection tool from openSUSE",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),
         homepage: "https://github.com/openSUSE/hwinfo",

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 28, 5], ["repo", 29, 5], ["rev", 30, 5], ["hash", 31, 5], ["fetchSubmodules", 32, 5]], [["description", 124, 5], ["longDescription", 125, 5], ["mainProgram", 134, 5], ["homepage", 135, 5], ["license", 136, 5], ["maintainers", 137, 5], ["platforms", 141, 5]], [["pname", 23, 3], ["version", 24, 3], ["src", 27, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 40, 3], ["buildPhase", 55, 3], ["dontConfigure", 60, 3], ["installPhase", 72, 3], ["postFixup", 118, 3], ["meta", 123, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, cmake: false, ninja: false, python3: false, withGodef: true, godef: false, withGopls: true, gopls: false, withRustAnalyzer: true, "rust-analyzer": false, withTypescript: true, typescript_5: false, "abseil-cpp": false, boost: false, llvmPackages: false, fixDarwinDylibNames: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 28, 5], ["repo", 29, 5], ["rev", 30, 5], ["hash", 31, 5], ["fetchSubmodules", 32, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 124, 5], ["longDescription", 125, 5], ["mainProgram", 134, 5], ["homepage", 135, 5], ["license", 136, 5], ["maintainers", 137, 5], ["platforms", 141, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 23, 3], ["version", 24, 3], ["src", 27, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 40, 3], ["buildPhase", 55, 3], ["dontConfigure", 60, 3], ["installPhase", 72, 3], ["postFixup", 118, 3], ["meta", 123, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const llvmPackages = nix.arg($, "llvmPackages");
   const fixDarwinDylibNames = nix.arg($, "fixDarwinDylibNames");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "ycmd",
       version: "0-unstable-2025-10-24",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ycm-core",
           repo: "ycmd",
           rev: "7895484ad55e0cbd0686e882891d59661f183476",
@@ -88,7 +86,7 @@ ln -sf ${typescript_5} $TARGET
 `)))),
       postFixup: "substituteInPlace $out/lib/ycmd/ycmd/__main__.py \\\n  --replace __file__ \"'$out/lib/ycmd/ycmd/__main__.py'\"\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Code-completion and comprehension server",
         longDescription: "Note if YouCompleteMe Vim plugin complains with;\n\n> ImportError: Python version mismatch: module was compiled for Python 3.13, but the interpreter version is incompatible: 3.10.18\n\n...  then set something similar to following in `programs.vim.extraConfig`;\n\n    let g:ycm_server_python_interpreter = \"${python3.interpreter}\"\n",
         mainProgram: "ycmd",

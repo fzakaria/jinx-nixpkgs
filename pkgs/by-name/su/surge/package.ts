@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 28, 5], ["hash", 29, 5]], [["owner", 33, 5], ["repo", 34, 5], ["rev", 38, 5], ["hash", 39, 5]], [["url", 47, 7], ["hash", 48, 7], ["name", 49, 7]], [["NIX_CFLAGS_COMPILE", 74, 7], ["NIX_LDFLAGS", 82, 7]], [["description", 110, 5], ["homepage", 114, 5], ["license", 115, 5], ["platforms", 116, 5], ["maintainers", 117, 5]], [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["extraContent", 32, 3], ["patches", 42, 3], ["nativeBuildInputs", 53, 3], ["buildInputs", 60, 3], ["env", 74, 3], ["postPatch", 84, 3], ["installPhase", 96, 3], ["doInstallCheck", 101, 3], ["installCheckPhase", 103, 3], ["meta", 109, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, fetchpatch: false, fetchFromGitHub: false, cmake: false, gitMinimal: false, "pkg-config": false, python3: false, cairo: false, libsndfile: false, libxcb: false, libxkbcommon: false, "libxcb-util": false, "libxcb-cursor": false, "libxcb-keysyms": false, zenity: false, curl: false, rsync: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 28, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 33, 5], ["repo", 34, 5], ["rev", 38, 5], ["hash", 39, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 47, 7], ["hash", 48, 7], ["name", 49, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 74, 7], ["NIX_LDFLAGS", 82, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 110, 5], ["homepage", 114, 5], ["license", 115, 5], ["platforms", 116, 5], ["maintainers", 117, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["extraContent", 32, 3], ["patches", 42, 3], ["nativeBuildInputs", 53, 3], ["buildInputs", 60, 3], ["env", 74, 3], ["postPatch", 84, 3], ["installPhase", 96, 3], ["doInstallCheck", 101, 3], ["installCheckPhase", 103, 3], ["meta", 109, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,16 +27,16 @@ export default nix.lambda((args) => (() => {
   const curl = nix.arg($, "curl");
   const rsync = nix.arg($, "rsync");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "surge",
       version: "1.9.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/surge-synthesizer/releases/releases/download/${nix.sel(finalAttrs, "version")}/SurgeSrc_${nix.sel(finalAttrs, "version")}.tgz`),
           hash: "sha256-k7x+s84OpazARlHWXEP1aC57+o3uEduAzYDeyBwlTgE=",
         })))),
       extraContent: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "surge-synthesizer",
           repo: "surge-extra-content",
           rev: "afc591cc06d9adc3dc8dc515a55c66873fa10296",
@@ -49,7 +44,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: "https://github.com/surge-synthesizer/surge/commit/7a552038bab4b000d188ae425aa97963dc91db17.patch",
             hash: "sha256-5Flf0uJqEK6e+sadB+vr6phdvvdZYXcFFfm4ywhAeW0=",
             name: "glibc_build_fix.patch",
@@ -69,7 +64,7 @@ export default nix.lambda((args) => (() => {
         rsync,
       ]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         NIX_CFLAGS_COMPILE: "-Wno-deprecated",
         NIX_LDFLAGS: "-z noexecstack",
       })),
@@ -87,7 +82,7 @@ substituteInPlace libs/libsamplerate/CMakeLists.txt \\
       doInstallCheck: true,
       installCheckPhase: "export HOME=$(mktemp -d)\nexport SURGE_DISABLE_NETWORK_TESTS=TRUE\nbuild/surge-headless\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "LV2 & VST3 synthesizer plug-in (previously released as Vember Audio\nSurge)\n",
         homepage: "https://surge-synthesizer.github.io",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]], [["extras", 45, 5]], [["description", 79, 5], ["homepage", 80, 5], ["changelog", 81, 5], ["license", 82, 5], ["maintainers", 83, 5]], [["pname", 20, 3], ["version", 21, 3], ["pyproject", 22, 3], ["src", 24, 3], ["build-system", 31, 3], ["dependencies", 35, 3], ["optional-dependencies", 43, 3], ["nativeCheckInputs", 54, 3], ["pythonImportsCheck", 59, 3], ["pytestFlags", 61, 3], ["disabledTests", 65, 3], ["disabledTestPaths", 70, 3], ["meta", 78, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, imageio: false, numpy: false, pytestCheckHook: false, "scikit-image": false, slicerator: false, packaging: false, tifffile: false, jinja2: false, jpype1: false, matplotlib: false, moviepy: false, setuptools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["extras", 45, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 79, 5], ["homepage", 80, 5], ["changelog", 81, 5], ["license", 82, 5], ["maintainers", 83, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 20, 3], ["version", 21, 3], ["pyproject", 22, 3], ["src", 24, 3], ["build-system", 31, 3], ["dependencies", 35, 3], ["optional-dependencies", 43, 3], ["nativeCheckInputs", 54, 3], ["pythonImportsCheck", 59, 3], ["pytestFlags", 61, 3], ["disabledTests", 65, 3], ["disabledTestPaths", 70, 3], ["meta", 78, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,12 +23,12 @@ export default nix.lambda((args) => (() => {
   const moviepy = nix.arg($, "moviepy");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "pims",
       version: "0.7",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "soft-matter",
           repo: "pims",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -40,7 +37,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [setuptools]),
       dependencies: nix.thunk(() => [slicerator, imageio, numpy, packaging, tifffile]),
       "optional-dependencies": nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         extras: nix.thunk(() => [jinja2, jpype1, matplotlib, moviepy, scikit_image]),
       })),
       nativeCheckInputs: nix.thunk(() => nix.concat([pytestCheckHook], nix.sel(finalAttrs, "passthru", "optional-dependencies", "extras"))),
@@ -49,7 +46,7 @@ export default nix.lambda((args) => (() => {
       disabledTests: nix.thunk(() => ["TestVideo_ImageIO"]),
       disabledTestPaths: nix.thunk(() => ["pims/tests/test_display.py", "pims/tests/test_bioformats.py"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Module to load video and sequential images in various formats",
         homepage: "https://github.com/soft-matter/pims",
         changelog: nix.thunk(() => nix.str`https://github.com/soft-matter/pims/releases/tag/v${nix.sel(finalAttrs, "version")}`),

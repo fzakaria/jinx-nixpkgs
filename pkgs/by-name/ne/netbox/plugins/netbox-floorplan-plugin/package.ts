@@ -2,11 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]], [["pluginName", 42, 12]], [["description", 45, 5], ["homepage", 46, 5], ["changelog", 47, 5], ["license", 48, 5], ["maintainers", 49, 5]], [["__structuredAttrs", 12, 3], ["pname", 14, 3], ["version", 15, 3], ["pyproject", 16, 3], ["disabled", 18, 3], ["src", 20, 3], ["build-system", 27, 3], ["nativeCheckInputs", 29, 3], ["preFixup", 35, 3], ["dontUsePythonImportsCheck", 39, 3], ["pythonImportsCheck", 40, 3], ["passthru", 42, 3], ["meta", 44, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, netbox: false, django: false, netaddr: false, python: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pluginName", 42, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 45, 5], ["homepage", 46, 5], ["changelog", 47, 5], ["license", 48, 5], ["maintainers", 49, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["__structuredAttrs", 12, 3], ["pname", 14, 3], ["version", 15, 3], ["pyproject", 16, 3], ["disabled", 18, 3], ["src", 20, 3], ["build-system", 27, 3], ["nativeCheckInputs", 29, 3], ["preFixup", 35, 3], ["dontUsePythonImportsCheck", 39, 3], ["pythonImportsCheck", 40, 3], ["passthru", 42, 3], ["meta", 44, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,14 +16,14 @@ export default nix.lambda((args) => (() => {
   const netaddr = nix.arg($, "netaddr");
   const python = nix.arg($, "python");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       __structuredAttrs: true,
       pname: "netbox-floorplan-plugin",
       version: "0.9.2",
       pyproject: true,
       disabled: nix.thunk(() => !nix.eq(nix.sel(python, "pythonVersion"), nix.sel(netbox, "python", "pythonVersion"))),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "netbox-community",
           repo: "netbox-floorplan-plugin",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -38,9 +35,9 @@ export default nix.lambda((args) => (() => {
 `),
       dontUsePythonImportsCheck: nix.thunk(() => !nix.eq(nix.sel(python, "pythonVersion"), nix.sel(netbox, "python", "pythonVersion"))),
       pythonImportsCheck: nix.thunk(() => ["netbox_floorplan"]),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, pluginName: "netbox_floorplan" })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[1], pluginName: "netbox_floorplan" })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Netbox plugin providing floorplan mapping capability for locations and sites",
         homepage: "https://github.com/netbox-community/netbox-floorplan-plugin",
         changelog: nix.thunk(() => nix.str`https://github.com/netbox-community/netbox-floorplan-plugin/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

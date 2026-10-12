@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["x86_64-linux", 16, 7], ["aarch64-linux", 17, 7], ["aarch64-darwin", 18, 7]], [["owner", 33, 5], ["repo", 34, 5], ["tag", 35, 5], ["hash", 36, 5]], [["CGO_ENABLED", 47, 7]], [["description", 79, 5], ["homepage", 80, 5], ["changelog", 81, 5], ["license", 82, 5], ["maintainers", 83, 5], ["platforms", 88, 5], ["broken", 93, 5]], [["pname", 24, 3], ["version", 28, 3], ["src", 32, 3], ["vendorHash", 39, 3], ["subPackages", 41, 3], ["tags", 42, 3], ["env", 47, 3], ["proxyVendor", 48, 3], ["nativeBuildInputs", 50, 3], ["preBuild", 56, 3], ["postInstall", 61, 3], ["doCheck", 76, 3], ["meta", 78, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, buildGoModule: false, "protoc-gen-grpc-web": false, "protoc-gen-js": false, protobuf: false, "tantivy-go": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["x86_64-linux", 16, 7], ["aarch64-linux", 17, 7], ["aarch64-darwin", 18, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 33, 5], ["repo", 34, 5], ["tag", 35, 5], ["hash", 36, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["CGO_ENABLED", 47, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 79, 5], ["homepage", 80, 5], ["changelog", 81, 5], ["license", 82, 5], ["maintainers", 83, 5], ["platforms", 88, 5], ["broken", 93, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 24, 3], ["version", 28, 3], ["src", 32, 3], ["vendorHash", 39, 3], ["subPackages", 41, 3], ["tags", 42, 3], ["env", 47, 3], ["proxyVendor", 48, 3], ["nativeBuildInputs", 50, 3], ["preBuild", 56, 3], ["postInstall", 61, 3], ["doCheck", 76, 3], ["meta", 78, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,17 +16,17 @@ export default nix.lambda((args) => (() => {
   const protobuf = nix.arg($, "protobuf");
   const tantivy_go = nix.arg($, "tantivy-go");
   const arch = nix.thunk(() => nix.selOr({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     "x86_64-linux": "linux-amd64-musl",
     "aarch64-linux": "linux-arm64-musl",
     "aarch64-darwin": "darwin-arm64",
   }, () => nix.builtins.throw(nix.thunk(() => nix.str`anytype-heart not supported on ${nix.sel(stdenv, "hostPlatform", "system")}`)), nix.key(nix.sel(stdenv, "hostPlatform", "system"))));
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "anytype-heart",
       version: "0.51.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "anyproto",
           repo: "anytype-heart",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -39,7 +35,7 @@ export default nix.lambda((args) => (() => {
       vendorHash: "sha256-yDTaCubG6/gxtEuUuXfoqBnc1GplrYqjwPCXAXPcQIM=",
       subPackages: nix.thunk(() => ["cmd/grpcserver"]),
       tags: nix.thunk(() => ["nosigar", "nowatchdog"]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$3, CGO_ENABLED: 1n })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[2], CGO_ENABLED: 1n })),
       proxyVendor: true,
       nativeBuildInputs: nix.thunk(() => [protoc_gen_grpc_web, protoc_gen_js, protobuf]),
       preBuild: nix.thunk(() => nix.str`mkdir -p deps/libs/${arch}
@@ -48,7 +44,7 @@ cp ${tantivy_go}/lib/libtantivy_go.a deps/libs/${arch}
       postInstall: "mv $out/bin/grpcserver $out/bin/anytypeHelper\nmkdir -p $out/lib/protos\nfind pb -type f -name \"*.proto\" -exec cp {} $out/lib/protos/ \\;\nfind pkg/lib/pb -type f -name \"*.proto\" -exec cp {} $out/lib/protos/ \\;\n\nmkdir -p $out/lib/json/generated\ncp pkg/lib/bundle/system*.json $out/lib/json/generated\ncp pkg/lib/bundle/internal*.json $out/lib/json/generated\n\nmkdir -p $out/share\ncp LICENSE.md $out/share\n",
       doCheck: false,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Shared library for Anytype clients",
         homepage: "https://anytype.io/",
         changelog: nix.thunk(() => nix.str`https://github.com/anyproto/anytype-heart/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

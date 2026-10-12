@@ -2,22 +2,21 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["platforms", 16, 8]], [["path", 3, 3], ["extraPaths", 4, 3], ["patches", 10, 3], ["preBuild", 11, 3], ["meta", 16, 3]]]);
 const formals$1 = { args: { mkDerivation: false, lib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["platforms", 16, 8]]);
-const pos$2 = nix.positions(here + "/package.nix", [["path", 3, 3], ["extraPaths", 4, 3], ["patches", 10, 3], ["preBuild", 11, 3], ["meta", 16, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const mkDerivation = nix.arg($, "mkDerivation");
   const lib = nix.arg($, "lib");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       path: "usr.sbin/makefs",
       extraPaths: nix.thunk(() => ["sys/sys", "sys/ufs", "sys/msdosfs", "sys/dev"]),
       patches: nix.thunk(() => [nix.path(here, "./compat.patch")]),
       preBuild: "mkdir -p $BSDSRCDIR/usr.sbin/makefs/include\nln -s $BSDSRCDIR $BSDSRCDIR/usr.sbin/makefs/include/bsdroot\nexport NIX_CFLAGS_COMPILE=\"$NIX_CFLAGS_COMPILE -I$BSDSRCDIR/usr.sbin/makefs/include\"\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       })),
     })));

@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["updateScript", 30, 12]], [["hash", 38, 48], ["url", 39, 7]], [["pname", 35, 13], ["meta", 35, 19], ["passthru", 35, 24], ["version", 36, 46], ["src", 37, 5], ["sourceRoot", 42, 5], ["postPatch", 44, 5], ["nativeBuildInputs", 49, 5], ["buildInputs", 55, 5], ["runtimeDependencies", 64, 5], ["installPhase", 77, 5], ["postFixup", 91, 5]], [["hash", 104, 33], ["url", 105, 7]], [["pname", 101, 13], ["meta", 101, 19], ["passthru", 101, 24], ["version", 102, 31], ["src", 103, 5], ["sourceRoot", 108, 5], ["nativeBuildInputs", 111, 5], ["dontPatchShebangs", 116, 5], ["installPhase", 118, 5]], [["description", 129, 5], ["homepage", 130, 5], ["license", 131, 5], ["sourceProvenance", 135, 5], ["maintainers", 136, 5], ["platforms", 141, 5]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, stdenv: false, fetchurl: false, autoPatchelfHook: false, _7zz: false, zstd: false, "alsa-lib": false, curl: false, fontconfig: false, libglvnd: false, libxkbcommon: false, "vulkan-loader": false, wayland: false, "xdg-utils": false, libxi: false, libxcursor: false, libx11: false, libxcb: false, xz: false, zlib: false, makeWrapper: false, waylandSupport: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["updateScript", 30, 12]]);
-const pos$2 = nix.positions(here + "/package.nix", [["hash", 38, 48], ["url", 39, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 35, 13], ["meta", 35, 19], ["passthru", 35, 24], ["version", 36, 46], ["src", 37, 5], ["sourceRoot", 42, 5], ["postPatch", 44, 5], ["nativeBuildInputs", 49, 5], ["buildInputs", 55, 5], ["runtimeDependencies", 64, 5], ["installPhase", 77, 5], ["postFixup", 91, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["hash", 104, 33], ["url", 105, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 101, 13], ["meta", 101, 19], ["passthru", 101, 24], ["version", 102, 31], ["src", 103, 5], ["sourceRoot", 108, 5], ["nativeBuildInputs", 111, 5], ["dontPatchShebangs", 116, 5], ["installPhase", 118, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 129, 5], ["homepage", 130, 5], ["license", 131, 5], ["sourceProvenance", 135, 5], ["maintainers", 136, 5], ["platforms", 141, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -37,12 +32,12 @@ export default nix.lambda((args) => (() => {
   const waylandSupport = nix.argOr($, "waylandSupport", () => false);
   const pname = "warp-terminal";
   const versions = nix.thunk(() => nix.app(nix.sel(lib, "importJSON"), nix.path(here, "./versions.json")));
-  const passthru = nix.thunk(() => ({ [nix.POS]: pos$1, updateScript: nix.path(here, "./update.sh") }));
+  const passthru = nix.thunk(() => ({ [nix.POS]: $pos[0], updateScript: nix.path(here, "./update.sh") }));
   const linux_arch = nix.thunk(() => (nix.asBool(nix.eq(nix.sel(stdenv, "hostPlatform", "system"), "x86_64-linux")) ? "x86_64" : "aarch64"));
   const linux = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => (() => {
       const from = nix.thunk(() => nix.sel(versions, nix.key(nix.str`linux_${linux_arch}`)));
       return {
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: pname,
       meta: meta,
       passthru: passthru,
@@ -50,7 +45,7 @@ export default nix.lambda((args) => (() => {
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => (() => {
           const from_1 = nix.thunk(() => nix.sel(versions, nix.key(nix.str`linux_${linux_arch}`)));
           return {
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           hash: nix.thunk(() => nix.attr(from_1, "hash")),
           url: nix.thunk(() => nix.str`https://releases.warp.dev/stable/v${nix.sel(finalAttrs, "version")}/warp-terminal-v${nix.sel(finalAttrs, "version")}-1-${linux_arch}.pkg.tar.zst`),
         };
@@ -84,7 +79,7 @@ export default nix.lambda((args) => (() => {
   const darwin = nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => (() => {
       const from = nix.thunk(() => nix.sel(versions, "darwin"));
       return {
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: pname,
       meta: meta,
       passthru: passthru,
@@ -92,7 +87,7 @@ export default nix.lambda((args) => (() => {
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => (() => {
           const from_1 = nix.thunk(() => nix.sel(versions, "darwin"));
           return {
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           hash: nix.thunk(() => nix.attr(from_1, "hash")),
           url: nix.thunk(() => nix.str`https://releases.warp.dev/stable/v${nix.sel(finalAttrs, "version")}/Warp.dmg`),
         };
@@ -104,7 +99,7 @@ export default nix.lambda((args) => (() => {
     };
     })()));
   const meta = nix.thunk(() => ({
-    [nix.POS]: pos$6,
+    [nix.POS]: $pos[5],
     description: "Rust-based terminal",
     homepage: "https://www.warp.dev",
     license: nix.thunk(() => (() => {

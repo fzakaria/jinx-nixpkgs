@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 7], ["repo", 16, 7], ["tag", 17, 7], ["hash", 18, 7]], [["url", 21, 7], ["hash", 22, 7]], [["description", 50, 5], ["homepage", 51, 5], ["changelog", 52, 5], ["license", 53, 5], ["mainProgram", 54, 5], ["maintainers", 55, 5], ["platforms", 58, 5]], [["pname", 10, 3], ["version", 11, 3], ["srcs", 13, 3], ["sourceRoot", 25, 3], ["postUnpack", 26, 3], ["postPatch", 31, 3], ["cargoRoot", 35, 3], ["buildAndTestSubdir", 36, 3], ["cargoVendorDir", 37, 3], ["nativeBuildInputs", 39, 3], ["postInstall", 43, 3], ["meta", 49, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, fetchurl: false, rustPlatform: false, libfaketime: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 7], ["repo", 16, 7], ["tag", 17, 7], ["hash", 18, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 21, 7], ["hash", 22, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 50, 5], ["homepage", 51, 5], ["changelog", 52, 5], ["license", 53, 5], ["mainProgram", 54, 5], ["maintainers", 55, 5], ["platforms", 58, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["srcs", 13, 3], ["sourceRoot", 25, 3], ["postUnpack", 26, 3], ["postPatch", 31, 3], ["cargoRoot", 35, 3], ["buildAndTestSubdir", 36, 3], ["cargoVendorDir", 37, 3], ["nativeBuildInputs", 39, 3], ["postInstall", 43, 3], ["meta", 49, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,19 +13,19 @@ export default nix.lambda((args) => (() => {
   const rustPlatform = nix.arg($, "rustPlatform");
   const libfaketime = nix.arg($, "libfaketime");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "nmstate",
       version: "2.2.57",
       srcs: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             owner: "nmstate",
             repo: "nmstate",
             tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
             hash: "sha256-7X51XmoSwlIrbsdJFfTQ23bhO3bitkHXOObL6JaGpvI=",
           })))),
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: nix.thunk(() => nix.str`https://github.com/nmstate/nmstate/releases/download/v${nix.sel(finalAttrs, "version")}/nmstate-vendor-${nix.sel(finalAttrs, "version")}.tar.xz`),
             hash: "sha256-stOHNezPLPjSrt/f3HmhqWMxSaSfOh/hYVGB2+l8Pb4=",
           })))),
@@ -42,7 +39,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [libfaketime]),
       postInstall: "ln -s ../target rust/target\nsource_date=$(date --utc --date=@$SOURCE_DATE_EPOCH \"+%F %T\")\nPREFIX=$out LIBDIR=$out/lib RELEASE=1 SKIP_PYTHON_INSTALL=1 faketime -f \"$source_date\" make install\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Nmstate: A Declarative Network API",
         homepage: "https://nmstate.io/",
         changelog: nix.thunk(() => nix.str`https://github.com/nmstate/nmstate/blob/v${nix.sel(finalAttrs, "version")}/CHANGELOG`),

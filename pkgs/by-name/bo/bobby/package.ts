@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]], [["pname", 32, 26], ["version", 32, 32], ["src", 32, 40], ["hash", 33, 5]], [["updateScript", 67, 12]], [["changelog", 73, 5], ["description", 74, 5], ["donationPage", 75, 5], ["homepage", 76, 5], ["license", 77, 5], ["maintainers", 78, 5], ["teams", 81, 5], ["mainProgram", 82, 5]], [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["cargoDeps", 31, 3], ["buildInputs", 36, 3], ["postPatch", 44, 3], ["nativeBuildInputs", 49, 3], ["mesonCheckFlags", 61, 3], ["doCheck", 65, 3], ["passthru", 67, 3], ["__structuredAttrs", 69, 3], ["strictDeps", 70, 3], ["meta", 72, 3]]]);
 const formals$1 = { args: { cargo: false, "desktop-file-utils": false, fetchFromGitHub: false, glib: false, gtk4: false, lib: false, libadwaita: false, meson: false, ninja: false, "nix-update-script": false, "pkg-config": false, rustc: false, rustPlatform: false, sqlite: false, stdenv: false, wrapGAppsHook4: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 32, 26], ["version", 32, 32], ["src", 32, 40], ["hash", 33, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 67, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["changelog", 73, 5], ["description", 74, 5], ["donationPage", 75, 5], ["homepage", 76, 5], ["license", 77, 5], ["maintainers", 78, 5], ["teams", 81, 5], ["mainProgram", 82, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["cargoDeps", 31, 3], ["buildInputs", 36, 3], ["postPatch", 44, 3], ["nativeBuildInputs", 49, 3], ["mesonCheckFlags", 61, 3], ["doCheck", 65, 3], ["passthru", 67, 3], ["__structuredAttrs", 69, 3], ["strictDeps", 70, 3], ["meta", 72, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,18 +24,18 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const wrapGAppsHook4 = nix.arg($, "wrapGAppsHook4");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "bobby",
       version: "50.0.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "hbons",
           repo: "bobby",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-/N7CmzPwUdGkHIZujCGW3LvsGM6DdXrcm2kH6XlVGDA=",
         })))),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -61,13 +57,13 @@ export default nix.lambda((args) => (() => {
       mesonCheckFlags: nix.thunk(() => ["--print-errorlogs"]),
       doCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       __structuredAttrs: true,
       strictDeps: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         changelog: nix.thunk(() => nix.str`https://github.com/hbons/Bobby/blob/${nix.sel(finalAttrs, "src", "tag")}/data/studio.planetpeanut.Bobby.metainfo.xml`),
         description: "Browse SQLite files",
         donationPage: "https://planetpeanut.studio/sponsors",

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]], [["CGO_ENABLED", 21, 7]], [["description", 56, 5], ["homepage", 57, 5], ["license", 58, 5], ["maintainers", 59, 5], ["platforms", 60, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["vendorHash", 19, 3], ["env", 21, 3], ["buildPhase", 23, 3], ["installPhase", 31, 3], ["meta", 55, 3]]]);
 const formals$1 = { args: { buildGoModule: false, fetchFromGitHub: false, lib: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["CGO_ENABLED", 21, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 56, 5], ["homepage", 57, 5], ["license", 58, 5], ["maintainers", 59, 5], ["platforms", 60, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["vendorHash", 19, 3], ["env", 21, 3], ["buildPhase", 23, 3], ["installPhase", 31, 3], ["meta", 55, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,18 +12,18 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "libcue-lang",
       version: "0-unstable-2025-11-12",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "cue-lang",
           repo: "libcue",
           rev: "3dea836f38b69a36d1e87752c4bfa7e78d99fc04",
           hash: "sha256-ARWPFxM17pqfAuspNPR9wZSq+hcnTFuGlN+jm07sX/M=",
         })))),
       vendorHash: "sha256-iZhICV5FpkJyHl42gP0rPrxobHKFId54sVVES7JZR9E=",
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, CGO_ENABLED: "1" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], CGO_ENABLED: "1" })),
       buildPhase: nix.thunk(() => nix.str`runHook preBuild
 
 go build -buildmode=c-shared -o libcue${nix.sel(stdenv, "hostPlatform", "extensions", "sharedLibrary")} -v .
@@ -56,7 +53,7 @@ EOF
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Use CUE from C and C-like languages",
         homepage: "https://cuelang.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

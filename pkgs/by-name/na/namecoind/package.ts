@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["fetchSubmodules", 30, 5], ["hash", 31, 5]], [["description", 74, 5], ["homepage", 75, 5], ["license", 76, 5], ["maintainers", 77, 5], ["platforms", 78, 5]], [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 45, 3], ["enableParallelBuilding", 55, 3], ["cmakeFlags", 57, 3], ["nativeCheckInputs", 68, 3], ["doCheck", 70, 3], ["checkFlags", 71, 3], ["meta", 73, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, python3: false, boost: false, libevent: false, db4: false, miniupnpc: false, sqlite: false, "pkg-config": false, cmake: false, ninja: false, "util-linux": false, hexdump: false, zeromq: false, zlib: false, darwin: false, withWallet: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["fetchSubmodules", 30, 5], ["hash", 31, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 74, 5], ["homepage", 75, 5], ["license", 76, 5], ["maintainers", 77, 5], ["platforms", 78, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 45, 3], ["enableParallelBuilding", 55, 3], ["cmakeFlags", 57, 3], ["nativeCheckInputs", 68, 3], ["doCheck", 70, 3], ["checkFlags", 71, 3], ["meta", 73, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const darwin = nix.arg($, "darwin");
   const withWallet = nix.argOr($, "withWallet", () => true);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "namecoind",
       version: "31.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "namecoin",
           repo: "namecoin-core",
           tag: nix.thunk(() => nix.str`nc${nix.sel(finalAttrs, "version")}`),
@@ -53,7 +51,7 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       checkFlags: nix.thunk(() => ["LC_ALL=en_US.UTF-8"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Decentralized open source information registration and transfer system based on the Bitcoin cryptocurrency",
         homepage: "https://namecoin.org",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

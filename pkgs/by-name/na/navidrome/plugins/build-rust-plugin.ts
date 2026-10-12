@@ -2,13 +2,9 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/build-rust-plugin.nix", [[["RUSTFLAGS", 37, 9]], [["isNavidromePlugin", 42, 9]], [["platforms", 47, 9], ["maintainers", 48, 9]], [["__structuredAttrs", 30, 7], ["nativeBuildInputs", 31, 7], ["env", 36, 7], ["passthru", 41, 7], ["meta", 46, 7]], [["constructDrv", 10, 3], ["excludeDrvArgNames", 12, 3], ["extendDrvArgs", 17, 3]]]);
 const formals$1 = { args: { rustPlatform: false, lib: false, lld: false, zip: false, navidrome: false, navidromePluginInstallHook: false }, ellipsis: false };
 const formals$2 = { args: { pname: false, version: false, src: false, cargoHash: false, meta: false, env: true, passthru: true }, ellipsis: true };
-const pos$1 = nix.positions(here + "/build-rust-plugin.nix", [["RUSTFLAGS", 37, 9]]);
-const pos$2 = nix.positions(here + "/build-rust-plugin.nix", [["isNavidromePlugin", 42, 9]]);
-const pos$3 = nix.positions(here + "/build-rust-plugin.nix", [["platforms", 47, 9], ["maintainers", 48, 9]]);
-const pos$4 = nix.positions(here + "/build-rust-plugin.nix", [["__structuredAttrs", 30, 7], ["nativeBuildInputs", 31, 7], ["env", 36, 7], ["passthru", 41, 7], ["meta", 46, 7]]);
-const pos$5 = nix.positions(here + "/build-rust-plugin.nix", [["constructDrv", 10, 3], ["excludeDrvArgNames", 12, 3], ["extendDrvArgs", 17, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const navidrome = nix.arg($, "navidrome");
   const navidromePluginInstallHook = nix.arg($, "navidromePluginInstallHook");
   return nix.app(nix.sel(lib, "extendMkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       constructDrv: nix.thunk(() => nix.sel(rustPlatform, "buildRustPackage")),
       excludeDrvArgNames: nix.thunk(() => ["meta", "passthru"]),
       extendDrvArgs: (finalAttrs) => nix.lambda((args_1) => (() => {
@@ -33,13 +29,13 @@ export default nix.lambda((args) => (() => {
         const env = nix.argOr($_1, "env", () => ({}));
         const passthru = nix.argOr($_1, "passthru", () => ({}));
         return {
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           __structuredAttrs: true,
           nativeBuildInputs: nix.thunk(() => [lld, navidromePluginInstallHook]),
-          env: nix.thunk(() => nix.update({ [nix.POS]: pos$1, RUSTFLAGS: "-C linker=wasm-ld" }, env)),
-          passthru: nix.thunk(() => nix.update({ [nix.POS]: pos$2, isNavidromePlugin: true }, passthru)),
+          env: nix.thunk(() => nix.update({ [nix.POS]: $pos[0], RUSTFLAGS: "-C linker=wasm-ld" }, env)),
+          passthru: nix.thunk(() => nix.update({ [nix.POS]: $pos[1], isNavidromePlugin: true }, passthru)),
           meta: nix.thunk(() => nix.update(meta, {
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             platforms: nix.thunk(() => nix.sel(lib, "platforms", "wasi")),
             maintainers: nix.thunk(() => nix.concat(nix.sel(navidrome, "meta", "maintainers"), nix.selOr(meta, () => [], "maintainers"))),
           })),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["sha256", 25, 5]], [["description", 48, 5], ["mainProgram", 49, 5], ["homepage", 50, 5], ["license", 51, 5], ["maintainers", 52, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["makeFlags", 28, 3], ["postPatch", 30, 3], ["preBuild", 43, 3], ["meta", 47, 3]]]);
 const formals$1 = { args: { stdenv: false, fetchFromGitHub: false, withMySQL: true, withPSQL: true, withSQLite: true, mariadb: false, postgresql: false, sqlite: false, gawk: false, gnugrep: false, findutils: false, gnused: false, lib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["sha256", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 48, 5], ["mainProgram", 49, 5], ["homepage", 50, 5], ["license", 51, 5], ["maintainers", 52, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["makeFlags", 28, 3], ["postPatch", 30, 3], ["preBuild", 43, 3], ["meta", 47, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const gnused = nix.arg($, "gnused");
   const lib = nix.arg($, "lib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "shmig",
       version: "1.0.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "mbucc",
           repo: "shmig",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -47,7 +45,7 @@ substituteInPlace shmig \\
 `),
       preBuild: "mkdir -p $out/bin\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Minimalistic database migration tool with MySQL, PostgreSQL and SQLite support",
         mainProgram: "shmig",
         homepage: "https://github.com/mbucc/shmig",

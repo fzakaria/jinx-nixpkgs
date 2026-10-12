@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]], [["pname", 35, 26], ["data", 36, 5]], [["nixos", 61, 5]], [["tests", 60, 12]], [["description", 65, 5], ["homepage", 66, 5], ["license", 67, 5], ["platforms", 68, 24], ["maintainers", 69, 5], ["mainProgram", 70, 5], ["sourceProvenance", 71, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["patches", 22, 3], ["nativeBuildInputs", 29, 3], ["mitmCache", 34, 3], ["__darwinAllowLocalNetworking", 40, 3], ["gradleBuildTask", 42, 3], ["installPhase", 44, 3], ["passthru", 60, 3], ["meta", 64, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchFromGitHub: false, gradle_8: false, makeWrapper: false, jdk: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 35, 26], ["data", 36, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["nixos", 61, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 60, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 65, 5], ["homepage", 66, 5], ["license", 67, 5], ["platforms", 68, 24], ["maintainers", 69, 5], ["mainProgram", 70, 5], ["sourceProvenance", 71, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["patches", 22, 3], ["nativeBuildInputs", 29, 3], ["mitmCache", 34, 3], ["__darwinAllowLocalNetworking", 40, 3], ["gradleBuildTask", 42, 3], ["installPhase", 44, 3], ["passthru", 60, 3], ["meta", 64, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const jdk = nix.arg($, "jdk");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "marytts",
       version: "5.2.1-unstable-2024-10-09",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "marytts",
           repo: "marytts",
           rev: "1c2aaa0751b7cef8ae83216dd78b4c61232b3840",
@@ -33,7 +28,7 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [nix.path(here, "./gradle-8.patch")]),
       nativeBuildInputs: nix.thunk(() => [gradle_8, makeWrapper]),
       mitmCache: nix.thunk(() => nix.app(nix.sel(gradle_8, "fetchDeps"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           data: nix.path(here, "./deps.json"),
         })))),
@@ -54,13 +49,13 @@ makeWrapper ${nix.app(nix.sel(lib, "getExe"), jdk)} $out/bin/marytts-server \\
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        tests: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenvNoCC, "hostPlatform", "isLinux")), nix.thunk(() => ({ [nix.POS]: pos$3, nixos: nix.thunk(() => nix.sel(nixosTests, "marytts")) })))),
+        [nix.POS]: $pos[3],
+        tests: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenvNoCC, "hostPlatform", "isLinux")), nix.thunk(() => ({ [nix.POS]: $pos[2], nixos: nix.thunk(() => nix.sel(nixosTests, "marytts")) })))),
       })),
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(jdk, "meta"));
         return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Open-source, multilingual text-to-speech synthesis system written in pure Java",
         homepage: "https://marytts.github.io/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3Only")),

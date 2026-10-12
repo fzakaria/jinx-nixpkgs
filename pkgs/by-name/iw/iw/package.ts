@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 14, 5], ["hash", 15, 5]], [["homepage", 32, 5], ["description", 33, 5], ["longDescription", 34, 5], ["license", 40, 5], ["mainProgram", 41, 5], ["maintainers", 42, 5], ["platforms", 45, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 18, 3], ["buildInputs", 20, 3], ["outputs", 22, 3], ["makeFlags", 27, 3], ["strictDeps", 29, 3], ["meta", 31, 3]]]);
 const formals$1 = { args: { lib: false, fetchurl: false, libnl: false, "pkg-config": false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 14, 5], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 32, 5], ["description", 33, 5], ["longDescription", 34, 5], ["license", 40, 5], ["mainProgram", 41, 5], ["maintainers", 42, 5], ["platforms", 45, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 18, 3], ["buildInputs", 20, 3], ["outputs", 22, 3], ["makeFlags", 27, 3], ["strictDeps", 29, 3], ["meta", 31, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "iw",
       version: "6.17",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://www.kernel.org/pub/software/network/iw/iw-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-fRguSYKJqzmyV9pngNVi5BU3cQf1A1juW1W4z+QLHjM=",
         })))),
@@ -29,7 +27,7 @@ export default nix.lambda((args) => (() => {
       makeFlags: nix.thunk(() => [nix.thunk(() => nix.str`PREFIX=${nix.builtins.placeholder("out")}`)]),
       strictDeps: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://wireless.wiki.kernel.org/en/users/Documentation/iw",
         description: "Tool to use nl80211",
         longDescription: "iw is a new nl80211 based CLI configuration utility for wireless devices.\nIt supports all new drivers that have been added to the kernel recently.\nThe old tool iwconfig, which uses Wireless Extensions interface, is\ndeprecated and it's strongly recommended to switch to iw and nl80211.\n",

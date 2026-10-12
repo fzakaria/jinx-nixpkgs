@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 37, 5], ["repo", 38, 5], ["rev", 39, 5], ["sha256", 40, 5]], [["libelf", 83, 5]], [["description", 87, 5], ["mainProgram", 88, 5], ["longDescription", 89, 5], ["homepage", 94, 5], ["license", 95, 5], ["platforms", 96, 5], ["maintainers", 97, 5]], [["pname", 33, 3], ["version", 34, 3], ["src", 36, 3], ["nativeBuildInputs", 43, 3], ["buildInputs", 56, 3], ["postPatch", 66, 3], ["cmakeFlags", 73, 3], ["passthru", 80, 3], ["meta", 86, 3]]]);
 const formals$1 = { args: { lib: false, callPackage: false, stdenv: false, fetchFromGitHub: false, cmake: false, bison: false, flex: false, "pkg-config": false, libusb1: false, elfutils: false, libftdi1: false, readline: false, hidapi: false, libserialport: false, "libusb-compat-0_1": false, docSupport: true, texliveMedium: false, texinfo: false, texi2html: false, unixtools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 37, 5], ["repo", 38, 5], ["rev", 39, 5], ["sha256", 40, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["libelf", 83, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 87, 5], ["mainProgram", 88, 5], ["longDescription", 89, 5], ["homepage", 94, 5], ["license", 95, 5], ["platforms", 96, 5], ["maintainers", 97, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 33, 3], ["version", 34, 3], ["src", 36, 3], ["nativeBuildInputs", 43, 3], ["buildInputs", 56, 3], ["postPatch", 66, 3], ["cmakeFlags", 73, 3], ["passthru", 80, 3], ["meta", 86, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,11 +29,11 @@ export default nix.lambda((args) => (() => {
   const unixtools = nix.arg($, "unixtools");
   const useElfutils = nix.thunk(() => nix.app(nix.sel(lib, "meta", "availableOn"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")), elfutils));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "avrdude",
       version: "8.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "avrdudes",
           repo: "avrdude",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -60,11 +57,11 @@ export default nix.lambda((args) => (() => {
       postPatch: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(useElfutils)), "# vendored libelf is a static library\nsed -i \"s/PREFERRED_LIBELF elf/PREFERRED_LIBELF libelf.a elf/\" CMakeLists.txt\n")),
       cmakeFlags: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optionals"), docSupport, nix.thunk(() => ["-DBUILD_DOC=ON"])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => ["-DHAVE_LINUXSPI=ON", "-DHAVE_PARPORT=ON"])))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         libelf: nix.thunk(() => nix.app(callPackage, nix.path(here, "./libelf.nix"), nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Command-line tool for programming Atmel AVR microcontrollers",
         mainProgram: "avrdude",
         longDescription: "AVRDUDE (AVR Downloader/UploaDEr) is an utility to\ndownload/upload/manipulate the ROM and EEPROM contents of AVR\nmicrocontrollers using the in-system programming technique (ISP).\n",

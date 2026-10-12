@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["preferLocalBuild", 65, 43]]]);
 const formals$1 = { args: { lib: false, runCommand: false, "budgie-desktop": false, "budgie-desktop-view": false, glib: false, "gsettings-desktop-schemas": false, mutter: false, "nixos-artwork": false, "nixos-background-light": true, "nixos-background-dark": true, extraGSettingsOverrides: true, extraGSettingsOverridePackages: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["preferLocalBuild", 65, 43]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -56,7 +56,7 @@ show-active-mounts=true
 ${extraGSettingsOverrides}
 `);
   const gsettingsOverridePackages = nix.thunk(() => nix.concat([budgie_desktop, budgie_desktop_view, gsettings_desktop_schemas, mutter], extraGSettingsOverridePackages));
-  return nix.app(runCommand, "budgie-gsettings-overrides", nix.thunk(() => ({ [nix.POS]: pos$1, preferLocalBuild: true })), nix.thunk(() => nix.str`data_dir="$out/share/gsettings-schemas/nixos-gsettings-overrides"
+  return nix.app(runCommand, "budgie-gsettings-overrides", nix.thunk(() => ({ [nix.POS]: $pos[0], preferLocalBuild: true })), nix.thunk(() => nix.str`data_dir="$out/share/gsettings-schemas/nixos-gsettings-overrides"
 schema_dir="$data_dir/glib-2.0/schemas"
 mkdir -p "$schema_dir"
 

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 32, 5], ["repo", 33, 5], ["tag", 34, 5], ["hash", 35, 5]], [["gymnasium", 50, 5], ["render", 55, 5]], [["description", 84, 5], ["homepage", 85, 5], ["license", 86, 5], ["maintainers", 87, 5]], [["pname", 24, 3], ["version", 25, 3], ["pyproject", 26, 3], ["disabled", 29, 3], ["src", 31, 3], ["build-system", 38, 3], ["dependencies", 40, 3], ["optional-dependencies", 49, 3], ["pythonRelaxDeps", 62, 3], ["disabledTests", 67, 3], ["nativeCheckInputs", 74, 3], ["pythonImportsCheck", 81, 3], ["meta", 83, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, gym: false, "gym-notices": false, gymnasium: false, matplotlib: false, moviepy: false, numpy: false, opencv4: false, pyglet: false, pytestCheckHook: false, pythonOlder: false, pyyaml: false, setuptools: false, shimmy: false, six: false, torch: false, tqdm: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 32, 5], ["repo", 33, 5], ["tag", 34, 5], ["hash", 35, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["gymnasium", 50, 5], ["render", 55, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 84, 5], ["homepage", 85, 5], ["license", 86, 5], ["maintainers", 87, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 24, 3], ["version", 25, 3], ["pyproject", 26, 3], ["disabled", 29, 3], ["src", 31, 3], ["build-system", 38, 3], ["dependencies", 40, 3], ["optional-dependencies", 49, 3], ["pythonRelaxDeps", 62, 3], ["disabledTests", 67, 3], ["nativeCheckInputs", 74, 3], ["pythonImportsCheck", 81, 3], ["meta", 83, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -35,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const pyproject = true;
       const disabled = nix.thunk(() => nix.app(pythonOlder, "3.12"));
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "proroklab",
           repo: "VectorizedMultiAgentSimulator",
           tag: version,
@@ -44,7 +41,7 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [setuptools]);
       const dependencies = nix.thunk(() => [gym, gym_notices, numpy, pyglet, six, torch]);
       const optional_dependencies = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         gymnasium: nix.thunk(() => [gymnasium, shimmy]),
         render: nix.thunk(() => [matplotlib, moviepy, opencv4]),
       }));
@@ -53,7 +50,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => nix.concat([pytestCheckHook, pyyaml, tqdm], nix.sel(optional_dependencies, "gymnasium")));
       const pythonImportsCheck = nix.thunk(() => ["vmas"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "A vectorized differentiable simulator designed for efficient Multi-Agent Reinforcement Learning benchmarking",
         homepage: "https://github.com/proroklab/VectorizedMultiAgentSimulator",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),
@@ -63,7 +60,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

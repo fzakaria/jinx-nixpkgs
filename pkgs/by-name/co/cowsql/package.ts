@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]], [["url", 29, 7], ["hash", 30, 7]], [["tests", 55, 21], ["updateScript", 57, 5]], [["changelog", 61, 5], ["description", 62, 5], ["homepage", 63, 5], ["license", 64, 5], ["teams", 65, 5], ["platforms", 66, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["patches", 26, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 39, 3], ["enableParallelBuilding", 45, 3], ["doCheck", 47, 3], ["outputs", 49, 3], ["passthru", 54, 3], ["meta", 60, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, autoreconfHook: false, "pkg-config": false, libuv: false, "raft-cowsql": false, sqlite: false, incus: false, "nix-update-script": false, fetchpatch: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 29, 7], ["hash", 30, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 55, 21], ["updateScript", 57, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["changelog", 61, 5], ["description", 62, 5], ["homepage", 63, 5], ["license", 64, 5], ["teams", 65, 5], ["platforms", 66, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["patches", 26, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 39, 3], ["enableParallelBuilding", 45, 3], ["doCheck", 47, 3], ["outputs", 49, 3], ["passthru", 54, 3], ["meta", 60, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const fetchpatch = nix.arg($, "fetchpatch");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "cowsql",
       version: "1.15.9",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "cowsql",
           repo: "cowsql",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,7 +31,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/cowsql/cowsql/commit/7c4d73151969ead4f81077ae243d81396ce67988.patch",
             hash: "sha256-aJkf3egKbF23KNC0feDkxh8gIEupsyDBY3PTKuT6lcQ=",
           })))),
@@ -46,12 +42,12 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       outputs: nix.thunk(() => ["dev", "out"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => nix.attr(incus, "tests")),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         changelog: nix.thunk(() => nix.str`https://github.com/cowsql/cowsql/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "Embeddable, replicated and fault tolerant SQL engine",
         homepage: "https://github.com/cowsql/cowsql",

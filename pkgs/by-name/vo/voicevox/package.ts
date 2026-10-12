@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]], [["electron_path", 36, 7], ["sevenzip_path", 37, 7], ["voicevox_engine_path", 38, 7]], [["pname", 54, 7], ["version", 55, 7], ["src", 56, 7], ["patches", 57, 7], ["postPatch", 58, 7], ["pnpm", 61, 5], ["nativeBuildInputs", 65, 5], ["fetcherVersion", 70, 5], ["hash", 71, 5]], [["ELECTRON_SKIP_BINARY_DOWNLOAD", 87, 7]], [["name", 139, 7], ["exec", 140, 7], ["icon", 141, 7], ["desktopName", 142, 7], ["categories", 143, 7], ["mimeTypes", 144, 7]], [["changelog", 149, 5], ["description", 150, 5], ["homepage", 151, 5], ["license", 152, 5], ["mainProgram", 153, 5], ["maintainers", 154, 5], ["platforms", 158, 5]], [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["patches", 34, 3], ["postPatch", 42, 3], ["pnpmDeps", 52, 3], ["nativeBuildInputs", 74, 3], ["env", 87, 3], ["buildPhase", 89, 3], ["installPhase", 113, 3], ["desktopItems", 137, 3], ["meta", 148, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, makeDesktopItem: false, replaceVars: false, copyDesktopItems: false, "dart-sass": false, jq: false, makeWrapper: false, moreutils: false, nodejs: false, fetchPnpmDeps: false, pnpmConfigHook: false, pnpm_10: false, _7zz: false, electron: false, "voicevox-engine": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["electron_path", 36, 7], ["sevenzip_path", 37, 7], ["voicevox_engine_path", 38, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 54, 7], ["version", 55, 7], ["src", 56, 7], ["patches", 57, 7], ["postPatch", 58, 7], ["pnpm", 61, 5], ["nativeBuildInputs", 65, 5], ["fetcherVersion", 70, 5], ["hash", 71, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["ELECTRON_SKIP_BINARY_DOWNLOAD", 87, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["name", 139, 7], ["exec", 140, 7], ["icon", 141, 7], ["desktopName", 142, 7], ["categories", 143, 7], ["mimeTypes", 144, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["changelog", 149, 5], ["description", 150, 5], ["homepage", 151, 5], ["license", 152, 5], ["mainProgram", 153, 5], ["maintainers", 154, 5], ["platforms", 158, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["patches", 34, 3], ["postPatch", 42, 3], ["pnpmDeps", 52, 3], ["nativeBuildInputs", 74, 3], ["env", 87, 3], ["buildPhase", 89, 3], ["installPhase", 113, 3], ["desktopItems", 137, 3], ["meta", 148, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const electron = nix.arg($, "electron");
   const voicevox_engine = nix.arg($, "voicevox-engine");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "voicevox",
       version: "0.25.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "VOICEVOX",
           repo: "voicevox",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -43,7 +37,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./hardcode-paths.patch"), nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             electron_path: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), electron)),
             sevenzip_path: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), _7zz)),
             voicevox_engine_path: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), voicevox_engine)),
@@ -51,7 +45,7 @@ export default nix.lambda((args) => (() => {
       ]),
       postPatch: "# don't fail if node version doesn't fit the constraint\nsubstituteInPlace .npmrc \\\n  --replace-fail \"engine-strict=true\" \"\"\n\n# unlock the overly specific pnpm package version pin\n# and also set version to a proper value\njq \"del(.packageManager) | .version = \\\"$version\\\"\" package.json | sponge package.json\n",
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -63,7 +57,7 @@ export default nix.lambda((args) => (() => {
           hash: "sha256-0Z/C4x4ZDPC+3o5i6KJgFqmAhHk9CUhoPB9+6yyLtdE=",
         })))),
       nativeBuildInputs: nix.thunk(() => nix.concat([dart_sass, jq, makeWrapper, moreutils, nodejs, pnpmConfigHook, pnpm_10], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [copyDesktopItems])))),
-      env: nix.thunk(() => ({ [nix.POS]: pos$4, ELECTRON_SKIP_BINARY_DOWNLOAD: "1" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[3], ELECTRON_SKIP_BINARY_DOWNLOAD: "1" })),
       buildPhase: nix.thunk(() => nix.str`runHook preBuild
 
 # force sass-embedded to use our own sass from PATH instead of the bundled one
@@ -105,7 +99,7 @@ runHook postInstall
 `),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             name: "voicevox",
             exec: "voicevox",
             icon: "voicevox",
@@ -115,7 +109,7 @@ runHook postInstall
           })))),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         changelog: nix.thunk(() => nix.str`https://github.com/VOICEVOX/voicevox/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         description: "Editor for the VOICEVOX speech synthesis software",
         homepage: "https://github.com/VOICEVOX/voicevox",

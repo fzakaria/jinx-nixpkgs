@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 24, 5], ["sha256", 25, 5]], [["homepage", 67, 5], ["description", 68, 5], ["license", 69, 5], ["platforms", 73, 5], ["maintainers", 74, 5]], [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["postPatch", 28, 3], ["cmakeFlags", 35, 3], ["makeFlags", 41, 3], ["nativeBuildInputs", 43, 3], ["buildInputs", 45, 3], ["fixupPhase", 59, 3], ["meta", 66, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, cmake: false, libGL: false, libGLU: false, libxv: false, libxtst: false, libxi: false, libjpeg_turbo: false, fltk_1_3: false, "libxcb-keysyms": false, "opencl-headers": false, "opencl-clhpp": false, "ocl-icd": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 24, 5], ["sha256", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 67, 5], ["description", 68, 5], ["license", 69, 5], ["platforms", 73, 5], ["maintainers", 74, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["postPatch", 28, 3], ["cmakeFlags", 35, 3], ["makeFlags", 41, 3], ["nativeBuildInputs", 43, 3], ["buildInputs", 45, 3], ["fixupPhase", 59, 3], ["meta", 66, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const opencl_clhpp = nix.arg($, "opencl-clhpp");
   const ocl_icd = nix.arg($, "ocl-icd");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "virtualgl-lib",
       version: "3.0.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/virtualgl/VirtualGL-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "sha256-OIEbwAQ71yOuHIzM+iaK7QkUJrKg6sXpGuFQOUPjM2w=",
         })))),
@@ -56,7 +54,7 @@ export default nix.lambda((args) => (() => {
       ]),
       fixupPhase: "substituteInPlace $out/bin/vglrun \\\n  --replace \"LD_PRELOAD=libvglfaker\" \"LD_PRELOAD=$out/lib/libvglfaker\" \\\n  --replace \"LD_PRELOAD=libdlfaker\" \"LD_PRELOAD=$out/lib/libdlfaker\" \\\n  --replace \"LD_PRELOAD=libgefaker\" \"LD_PRELOAD=$out/lib/libgefaker\"\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://www.virtualgl.org/",
         description: "X11 GL rendering in a remote computer with full 3D hw acceleration",
         license: nix.thunk(() => (() => {

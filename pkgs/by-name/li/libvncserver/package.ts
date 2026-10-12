@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]], [["name", 39, 7], ["url", 40, 7], ["hash", 41, 7]], [["name", 45, 7], ["url", 46, 7], ["hash", 47, 7]], [["name", 51, 7], ["url", 52, 7], ["hash", 53, 7]], [["description", 92, 5], ["homepage", 93, 5], ["license", 94, 5], ["maintainers", 95, 5], ["platforms", 96, 5]], [["pname", 19, 3], ["version", 20, 3], ["outputs", 22, 3], ["src", 27, 3], ["patches", 34, 3], ["nativeBuildInputs", 57, 3], ["cmakeFlags", 61, 3], ["postPatch", 71, 3], ["buildInputs", 76, 3], ["propagatedBuildInputs", 85, 3], ["doCheck", 89, 3], ["meta", 91, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch: false, cmake: false, libjpeg: false, openssl: false, zlib: false, libpng: false, withSystemd: true, systemd: false, enableShared: true, buildExamples: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 39, 7], ["url", 40, 7], ["hash", 41, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 45, 7], ["url", 46, 7], ["hash", 47, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["name", 51, 7], ["url", 52, 7], ["hash", 53, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 92, 5], ["homepage", 93, 5], ["license", 94, 5], ["maintainers", 95, 5], ["platforms", 96, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["outputs", 22, 3], ["src", 27, 3], ["patches", 34, 3], ["nativeBuildInputs", 57, 3], ["cmakeFlags", 61, 3], ["postPatch", 71, 3], ["buildInputs", 76, 3], ["propagatedBuildInputs", 85, 3], ["doCheck", 89, 3], ["meta", 91, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const enableShared = nix.argOr($, "enableShared", () => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isStatic")));
   const buildExamples = nix.argOr($, "buildExamples", () => false);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "libvncserver",
       version: "0.9.15",
       outputs: nix.thunk(() => ["out", "dev"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "LibVNC",
           repo: "libvncserver",
           tag: nix.thunk(() => nix.str`LibVNCServer-${nix.sel(finalAttrs, "version")}`),
@@ -40,19 +35,19 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [
         nix.path(here, "./pkgconfig.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "libvncserver-fix-cmake-4.patch",
             url: "https://github.com/LibVNC/libvncserver/commit/e64fa928170f22a2e21b5bbd6d46c8f8e7dd7a96.patch",
             hash: "sha256-AAZ3H34+nLqQggb/sNSx2gIGK96m4zatHX3wpyjNLOA=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "CVE-2026-32854.patch",
             url: "https://github.com/LibVNC/libvncserver/commit/dc78dee51a7e270e537a541a17befdf2073f5314.patch",
             hash: "sha256-CgVfvsrgZWnjIzu/0UegoAuCqO7WHhCDVvhH8Yk1cXo=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             name: "CVE-2026-32853.patch",
             url: "https://github.com/LibVNC/libvncserver/commit/009008e2f4d5a54dd71f422070df3af7b3dbc931.patch",
             hash: "sha256-ZgpiIS7KoRzDmVLQ0J86wTFFykCBVMt6bZwJsFvIO74=",
@@ -70,7 +65,7 @@ export default nix.lambda((args) => (() => {
       propagatedBuildInputs: nix.thunk(() => [zlib]),
       doCheck: enableShared,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "VNC server library",
         homepage: "https://libvnc.github.io/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

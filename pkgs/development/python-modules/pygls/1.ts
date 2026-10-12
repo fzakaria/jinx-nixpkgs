@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/1.nix", [[["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]], [["ws", 41, 5]], [["skipBulkUpdate", 59, 12]], [["broken", 62, 5], ["description", 63, 5], ["homepage", 64, 5], ["changelog", 65, 5], ["license", 66, 5], ["maintainers", 67, 5]], [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["src", 19, 3], ["pythonRelaxDeps", 26, 3], ["nativeBuildInputs", 31, 3], ["propagatedBuildInputs", 35, 3], ["optional-dependencies", 40, 3], ["nativeCheckInputs", 44, 3], ["__darwinAllowLocalNetworking", 50, 3], ["preCheck", 52, 3], ["pythonImportsCheck", 57, 3], ["passthru", 59, 3], ["meta", 61, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitHub: false, lsprotocol: false, "poetry-core": false, "pytest-asyncio": false, pytestCheckHook: false, typeguard: false, websockets: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/1.nix", [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/1.nix", [["ws", 41, 5]]);
-const pos$3 = nix.positions(here + "/1.nix", [["skipBulkUpdate", 59, 12]]);
-const pos$4 = nix.positions(here + "/1.nix", [["broken", 62, 5], ["description", 63, 5], ["homepage", 64, 5], ["changelog", 65, 5], ["license", 66, 5], ["maintainers", 67, 5]]);
-const pos$5 = nix.positions(here + "/1.nix", [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["src", 19, 3], ["pythonRelaxDeps", 26, 3], ["nativeBuildInputs", 31, 3], ["propagatedBuildInputs", 35, 3], ["optional-dependencies", 40, 3], ["nativeCheckInputs", 44, 3], ["__darwinAllowLocalNetworking", 50, 3], ["preCheck", 52, 3], ["pythonImportsCheck", 57, 3], ["passthru", 59, 3], ["meta", 61, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const typeguard = nix.arg($, "typeguard");
   const websockets = nix.arg($, "websockets");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "pygls",
       version: "1.3.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "openlawlibrary",
           repo: "pygls",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,14 +32,14 @@ export default nix.lambda((args) => (() => {
       pythonRelaxDeps: nix.thunk(() => ["lsprotocol"]),
       nativeBuildInputs: nix.thunk(() => [poetry_core]),
       propagatedBuildInputs: nix.thunk(() => [lsprotocol, typeguard]),
-      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$2, ws: nix.thunk(() => [websockets]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: $pos[1], ws: nix.thunk(() => [websockets]) })),
       nativeCheckInputs: nix.thunk(() => [pytest_asyncio, pytestCheckHook]),
       __darwinAllowLocalNetworking: true,
       preCheck: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "# Darwin issue: OSError: [Errno 24] Too many open files\nulimit -n 1024\n")),
       pythonImportsCheck: nix.thunk(() => ["pygls"]),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$3, skipBulkUpdate: true })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[2], skipBulkUpdate: true })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         broken: nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(lsprotocol, "version")), "2024")),
         description: "Pythonic generic implementation of the Language Server Protocol",
         homepage: "https://github.com/openlawlibrary/pygls",

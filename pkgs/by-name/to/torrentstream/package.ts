@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]], [["homepage", 38, 5], ["description", 39, 5], ["license", 40, 5], ["platforms", 41, 5], ["mainProgram", 42, 5], ["maintainers", 43, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["sourceRoot", 19, 3], ["dotnet-runtime", 21, 3], ["dotnet-sdk", 22, 3], ["executables", 23, 3], ["nugetDeps", 24, 3], ["projectFile", 25, 3], ["selfContainedBuild", 26, 3], ["dotnetFlags", 28, 3], ["patches", 33, 3], ["meta", 37, 3]]]);
 const formals$1 = { args: { lib: false, buildDotnetModule: false, fetchFromGitHub: false, dotnetCorePackages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 38, 5], ["description", 39, 5], ["license", 40, 5], ["platforms", 41, 5], ["mainProgram", 42, 5], ["maintainers", 43, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["sourceRoot", 19, 3], ["dotnet-runtime", 21, 3], ["dotnet-sdk", 22, 3], ["executables", 23, 3], ["nugetDeps", 24, 3], ["projectFile", 25, 3], ["selfContainedBuild", 26, 3], ["dotnetFlags", 28, 3], ["patches", 33, 3], ["meta", 37, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,7 +15,7 @@ export default nix.lambda((args) => (() => {
       const pname = "torrentstream";
       const version = "1.0.1.11";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "trueromanus",
           repo: "TorrentStream",
           rev: version,
@@ -33,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const dotnetFlags = nix.thunk(() => ["-p:PublishAot=false", "-p:PublishSingleFile=true"]);
       const patches = nix.thunk(() => [nix.path(here, "./0001-display-the-message-of-caught-exceptions.patch")]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/trueromanus/TorrentStream",
         description: "Simple web server for streaming torrent files in video players",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),
@@ -45,7 +43,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

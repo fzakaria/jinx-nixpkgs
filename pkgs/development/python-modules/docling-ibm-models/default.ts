@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 38, 5], ["repo", 39, 5], ["tag", 40, 5], ["hash", 41, 5]], [["changelog", 93, 5], ["description", 94, 5], ["homepage", 95, 5], ["license", 96, 5], ["maintainers", 97, 5]], [["pname", 32, 3], ["version", 33, 3], ["pyproject", 34, 3], ["__structuredAttrs", 35, 3], ["src", 37, 3], ["build-system", 44, 3], ["pythonRelaxDeps", 48, 3], ["dependencies", 53, 3], ["pythonImportsCheck", 70, 3], ["nativeCheckInputs", 72, 3], ["disabledTestPaths", 78, 3], ["disabledTests", 83, 3], ["meta", 92, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, "poetry-core": false, accelerate: false, "docling-core": false, "huggingface-hub": false, jsonlines: false, numpy: false, "opencv-python-headless": false, pillow: false, pydantic: false, rtree: false, safetensors: false, torch: false, torchvision: false, tqdm: false, transformers: false, datasets: false, pytestCheckHook: false, writableTmpDirAsHomeHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 38, 5], ["repo", 39, 5], ["tag", 40, 5], ["hash", 41, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["changelog", 93, 5], ["description", 94, 5], ["homepage", 95, 5], ["license", 96, 5], ["maintainers", 97, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 32, 3], ["version", 33, 3], ["pyproject", 34, 3], ["__structuredAttrs", 35, 3], ["src", 37, 3], ["build-system", 44, 3], ["pythonRelaxDeps", 48, 3], ["dependencies", 53, 3], ["pythonImportsCheck", 70, 3], ["nativeCheckInputs", 72, 3], ["disabledTestPaths", 78, 3], ["disabledTests", 83, 3], ["meta", 92, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,13 +29,13 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "docling-ibm-models",
       version: "3.14.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "docling-project",
           repo: "docling-ibm-models",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -72,7 +70,7 @@ export default nix.lambda((args) => (() => {
         "test_tf_predictor",
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         changelog: nix.thunk(() => nix.str`https://github.com/DS4SD/docling-ibm-models/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),
         description: "Docling IBM models",
         homepage: "https://github.com/DS4SD/docling-ibm-models",

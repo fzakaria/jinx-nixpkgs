@@ -2,38 +2,30 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/graphite.nix", [[["timeZone", 8, 14]], [["enable", 11, 13], ["extraConfig", 12, 13]], [["enableCache", 16, 18]], [["enable", 17, 18]], [["web", 10, 11], ["carbon", 16, 11], ["seyren", 17, 11]], [["graphite", 9, 18]], [["time", 8, 9], ["services", 9, 9]], [["one", 5, 5]], [["name", 3, 3], ["nodes", 4, 3], ["testScript", 22, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
 const formals$2 = { args: {  }, ellipsis: true };
-const pos$1 = nix.positions(here + "/graphite.nix", [["timeZone", 8, 14]]);
-const pos$2 = nix.positions(here + "/graphite.nix", [["enable", 11, 13], ["extraConfig", 12, 13]]);
-const pos$3 = nix.positions(here + "/graphite.nix", [["enableCache", 16, 18]]);
-const pos$4 = nix.positions(here + "/graphite.nix", [["enable", 17, 18]]);
-const pos$5 = nix.positions(here + "/graphite.nix", [["web", 10, 11], ["carbon", 16, 11], ["seyren", 17, 11]]);
-const pos$6 = nix.positions(here + "/graphite.nix", [["graphite", 9, 18]]);
-const pos$7 = nix.positions(here + "/graphite.nix", [["time", 8, 9], ["services", 9, 9]]);
-const pos$8 = nix.positions(here + "/graphite.nix", [["one", 5, 5]]);
-const pos$9 = nix.positions(here + "/graphite.nix", [["name", 3, 3], ["nodes", 4, 3], ["testScript", 22, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   return {
-    [nix.POS]: pos$9,
+    [nix.POS]: $pos[8],
     name: "graphite",
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       one: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          [nix.POS]: pos$7,
-          time: nix.thunk(() => ({ [nix.POS]: pos$1, timeZone: "UTC" })),
+          [nix.POS]: $pos[6],
+          time: nix.thunk(() => ({ [nix.POS]: $pos[0], timeZone: "UTC" })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             graphite: nix.thunk(() => ({
-              [nix.POS]: pos$5,
-              web: nix.thunk(() => ({ [nix.POS]: pos$2, enable: true, extraConfig: "SECRET_KEY = \"abcd\";\n" })),
-              carbon: nix.thunk(() => ({ [nix.POS]: pos$3, enableCache: true })),
-              seyren: nix.thunk(() => ({ [nix.POS]: pos$4, enable: false })),
+              [nix.POS]: $pos[4],
+              web: nix.thunk(() => ({ [nix.POS]: $pos[1], enable: true, extraConfig: "SECRET_KEY = \"abcd\";\n" })),
+              carbon: nix.thunk(() => ({ [nix.POS]: $pos[2], enableCache: true })),
+              seyren: nix.thunk(() => ({ [nix.POS]: $pos[3], enable: false })),
             })),
           })),
         };

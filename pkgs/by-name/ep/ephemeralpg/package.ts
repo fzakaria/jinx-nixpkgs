@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 13, 5], ["hash", 14, 5]], [["description", 28, 5], ["license", 29, 5], ["homepage", 30, 5], ["platforms", 31, 5], ["maintainers", 32, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 12, 3], ["nativeBuildInputs", 16, 3], ["installPhase", 17, 3], ["meta", 27, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, postgresql: false, getopt: false, makeWrapper: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 13, 5], ["hash", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 28, 5], ["license", 29, 5], ["homepage", 30, 5], ["platforms", 31, 5], ["maintainers", 32, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 12, 3], ["nativeBuildInputs", 16, 3], ["installPhase", 17, 3], ["meta", 27, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const getopt = nix.arg($, "getopt");
   const makeWrapper = nix.arg($, "makeWrapper");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "ephemeralpg",
       version: "3.4",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://eradman.com/ephemeralpg/code/ephemeralpg-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-IwAIJFW/ahDXGgINi4N9mG3XKw74JXK6+SLxGMZ8tS0=",
         })))),
@@ -30,7 +28,7 @@ PREFIX=$out make install
 wrapProgram $out/bin/pg_tmp --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [postgresql, getopt]))}
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Run tests on an isolated, temporary PostgreSQL database",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),
         homepage: "https://eradman.com/ephemeralpg/",

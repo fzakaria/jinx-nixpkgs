@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 29, 5], ["repo", 30, 5], ["rev", 31, 5], ["hash", 32, 5]], [["homepage", 83, 5], ["description", 84, 5], ["longDescription", 85, 5], ["license", 97, 5], ["maintainers", 98, 5], ["platforms", 103, 5]], [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 41, 3], ["doCheck", 51, 3], ["postInstall", 53, 3], ["postFixup", 58, 3], ["meta", 82, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromSourcehut: false, SDL2: false, SDL2_gfx: false, SDL2_image: false, SDL2_ttf: false, busybox: false, curl: false, "geoclue2-with-demo-agent": false, gpsd: false, jq: false, makeWrapper: false, mobroute: false, ncurses: false, "pkg-config": false, "util-linux": false, xwininfo: false, zenity: false, zig_0_14: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 29, 5], ["repo", 30, 5], ["rev", 31, 5], ["hash", 32, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 83, 5], ["description", 84, 5], ["longDescription", 85, 5], ["license", 97, 5], ["maintainers", 98, 5], ["platforms", 103, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 41, 3], ["doCheck", 51, 3], ["postInstall", 53, 3], ["postFixup", 58, 3], ["meta", 82, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,11 +28,11 @@ export default nix.lambda((args) => (() => {
   const zenity = nix.arg($, "zenity");
   const zig_0_14 = nix.arg($, "zig_0_14");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "mepo",
       version: "1.3.4",
       src: nix.thunk(() => nix.app(fetchFromSourcehut, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "~mil",
           repo: "mepo",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -55,7 +53,7 @@ for program in $out/bin/* ; do
 done
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://mepo.lrdu.org",
         description: "Fast, simple, and hackable OSM map viewer",
         longDescription: "Mepo is a fast, simple, and hackable OSM map viewer for desktop & mobile\nLinux devices (like the PinePhone, Librem 5, postmarketOS devices etc.)\nand both environment's various user interfaces (Wayland & X\ninclusive). Environments supported include Phosh, Sxmo, Plasma Mobile,\ndesktop X, and desktop Wayland. Mepo works both offline and online,\nfeatures a minimalist both touch/mouse and keyboard compatible interface,\nand offers a UNIX-philosophy inspired underlying design, exposing a\npowerful JSON API to allow the user to change & add functionality\nsuch as adding their own search & routing scripts,\nadd arbitrary buttons/keybindings to the UI, and more.\n",

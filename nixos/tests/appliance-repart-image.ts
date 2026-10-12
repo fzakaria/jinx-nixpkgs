@@ -2,35 +2,10 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/appliance-repart-image.nix", [[["maintainers", 17, 8]], [["enable", 30, 33]], [["device", 43, 11], ["fsType", 44, 11]], [["/", 42, 9]], [["directBoot", 30, 22], ["mountHostNixStore", 31, 22], ["useEFIBoot", 32, 22], ["fileSystems", 41, 22]], [["enable", 36, 24]], [["grub", 36, 19]], [["loader", 36, 12]], [["id", 38, 20], ["version", 39, 20]], [["image", 38, 14]], [["source", 61, 60]], [["source", 64, 67]], [["Type", 68, 15], ["Format", 69, 15], ["SizeMinBytes", 75, 15]], [["contents", 56, 13], ["repartConfig", 67, 13]], [["Type", 80, 15], ["Format", 81, 15], ["SizeMinBytes", 82, 15], ["SizeMaxBytes", 83, 15]], [["repartConfig", 79, 13]], [["Type", 89, 15], ["Format", 90, 15], ["Label", 91, 15], ["Minimize", 92, 15]], [["storePaths", 87, 13], ["repartConfig", 88, 13]], [["esp", 55, 11], ["swap", 78, 11], ["root", 86, 11]], [["Type", 98, 13], ["Format", 99, 13], ["SizeMinBytes", 101, 13], ["SizeMaxBytes", 102, 13]], [["repartConfig", 97, 11]], [["enable", 49, 9], ["name", 51, 9], ["sectorSize", 53, 9], ["partitions", 54, 9]], [["repart", 48, 13]], [["imports", 28, 7], ["virtualisation", 30, 7], ["boot", 36, 7], ["system", 38, 7], ["image", 48, 7]], [["machine", 19, 9]], [["name", 15, 3], ["meta", 17, 3], ["nodes", 19, 3], ["testScript", 108, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/appliance-repart-image.nix", [["maintainers", 17, 8]]);
 const formals$2 = { args: { config: false, lib: false, pkgs: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/appliance-repart-image.nix", [["enable", 30, 33]]);
-const pos$3 = nix.positions(here + "/appliance-repart-image.nix", [["device", 43, 11], ["fsType", 44, 11]]);
-const pos$4 = nix.positions(here + "/appliance-repart-image.nix", [["/", 42, 9]]);
-const pos$5 = nix.positions(here + "/appliance-repart-image.nix", [["directBoot", 30, 22], ["mountHostNixStore", 31, 22], ["useEFIBoot", 32, 22], ["fileSystems", 41, 22]]);
-const pos$6 = nix.positions(here + "/appliance-repart-image.nix", [["enable", 36, 24]]);
-const pos$7 = nix.positions(here + "/appliance-repart-image.nix", [["grub", 36, 19]]);
-const pos$8 = nix.positions(here + "/appliance-repart-image.nix", [["loader", 36, 12]]);
-const pos$9 = nix.positions(here + "/appliance-repart-image.nix", [["id", 38, 20], ["version", 39, 20]]);
-const pos$10 = nix.positions(here + "/appliance-repart-image.nix", [["image", 38, 14]]);
-const pos$11 = nix.positions(here + "/appliance-repart-image.nix", [["source", 61, 60]]);
-const pos$12 = nix.positions(here + "/appliance-repart-image.nix", [["source", 64, 67]]);
-const pos$13 = nix.positions(here + "/appliance-repart-image.nix", [["Type", 68, 15], ["Format", 69, 15], ["SizeMinBytes", 75, 15]]);
-const pos$14 = nix.positions(here + "/appliance-repart-image.nix", [["contents", 56, 13], ["repartConfig", 67, 13]]);
-const pos$15 = nix.positions(here + "/appliance-repart-image.nix", [["Type", 80, 15], ["Format", 81, 15], ["SizeMinBytes", 82, 15], ["SizeMaxBytes", 83, 15]]);
-const pos$16 = nix.positions(here + "/appliance-repart-image.nix", [["repartConfig", 79, 13]]);
-const pos$17 = nix.positions(here + "/appliance-repart-image.nix", [["Type", 89, 15], ["Format", 90, 15], ["Label", 91, 15], ["Minimize", 92, 15]]);
-const pos$18 = nix.positions(here + "/appliance-repart-image.nix", [["storePaths", 87, 13], ["repartConfig", 88, 13]]);
-const pos$19 = nix.positions(here + "/appliance-repart-image.nix", [["esp", 55, 11], ["swap", 78, 11], ["root", 86, 11]]);
-const pos$20 = nix.positions(here + "/appliance-repart-image.nix", [["Type", 98, 13], ["Format", 99, 13], ["SizeMinBytes", 101, 13], ["SizeMaxBytes", 102, 13]]);
-const pos$21 = nix.positions(here + "/appliance-repart-image.nix", [["repartConfig", 97, 11]]);
-const pos$22 = nix.positions(here + "/appliance-repart-image.nix", [["enable", 49, 9], ["name", 51, 9], ["sectorSize", 53, 9], ["partitions", 54, 9]]);
-const pos$23 = nix.positions(here + "/appliance-repart-image.nix", [["repart", 48, 13]]);
-const pos$24 = nix.positions(here + "/appliance-repart-image.nix", [["imports", 28, 7], ["virtualisation", 30, 7], ["boot", 36, 7], ["system", 38, 7], ["image", 48, 7]]);
-const pos$25 = nix.positions(here + "/appliance-repart-image.nix", [["machine", 19, 9]]);
 const formals$3 = { args: { nodes: false }, ellipsis: true };
-const pos$26 = nix.positions(here + "/appliance-repart-image.nix", [["name", 15, 3], ["meta", 17, 3], ["nodes", 19, 3], ["testScript", 108, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -39,85 +14,85 @@ export default nix.lambda((args) => (() => {
   const imageId = "nixos-appliance";
   const imageVersion = "1-rc1";
   return {
-    [nix.POS]: pos$26,
+    [nix.POS]: $pos[25],
     name: "appliance-gpt-image",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "nikstur"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$25,
+      [nix.POS]: $pos[24],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config = nix.arg($_1, "config");
         const lib_1 = nix.arg($_1, "lib");
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$24,
+          [nix.POS]: $pos[23],
           imports: nix.thunk(() => [nix.path(here, "../modules/image/repart.nix")]),
           virtualisation: nix.thunk(() => ({
-            [nix.POS]: pos$5,
-            directBoot: nix.thunk(() => ({ [nix.POS]: pos$2, enable: false })),
+            [nix.POS]: $pos[4],
+            directBoot: nix.thunk(() => ({ [nix.POS]: $pos[1], enable: false })),
             mountHostNixStore: false,
             useEFIBoot: true,
             fileSystems: nix.thunk(() => nix.app(nix.sel(lib_1, "mkForce"), nix.thunk(() => ({
-                [nix.POS]: pos$4,
+                [nix.POS]: $pos[3],
                 "/": nix.thunk(() => ({
-                  [nix.POS]: pos$3,
+                  [nix.POS]: $pos[2],
                   device: nix.thunk(() => nix.str`/dev/disk/by-partlabel/${rootPartitionLabel}`),
                   fsType: "ext4",
                 })),
               })))),
           })),
           boot: nix.thunk(() => ({
-            [nix.POS]: pos$8,
+            [nix.POS]: $pos[7],
             loader: nix.thunk(() => ({
-              [nix.POS]: pos$7,
-              grub: nix.thunk(() => ({ [nix.POS]: pos$6, enable: false })),
+              [nix.POS]: $pos[6],
+              grub: nix.thunk(() => ({ [nix.POS]: $pos[5], enable: false })),
             })),
           })),
           system: nix.thunk(() => ({
-            [nix.POS]: pos$10,
-            image: nix.thunk(() => ({ [nix.POS]: pos$9, id: imageId, version: imageVersion })),
+            [nix.POS]: $pos[9],
+            image: nix.thunk(() => ({ [nix.POS]: $pos[8], id: imageId, version: imageVersion })),
           })),
           image: nix.thunk(() => ({
-            [nix.POS]: pos$23,
+            [nix.POS]: $pos[22],
             repart: nix.thunk(() => ({
-              [nix.POS]: pos$22,
+              [nix.POS]: $pos[21],
               enable: true,
               name: "appliance-gpt-image",
               sectorSize: 512n,
               partitions: nix.thunk(() => nix.update({
-                [nix.POS]: pos$19,
+                [nix.POS]: $pos[18],
                 esp: nix.thunk(() => ({
-                  [nix.POS]: pos$14,
+                  [nix.POS]: $pos[13],
                   contents: nix.thunk(() => (() => {
                     const efiArch = nix.thunk(() => nix.sel(config, "nixpkgs", "hostPlatform", "efiArch"));
                     return nix.attrsDyn({}, [
                       [nix.str`/EFI/BOOT/BOOT${nix.app(nix.sel(lib_1, "toUpper"), efiArch)}.EFI`, nix.thunk(() => ({
-                        [nix.POS]: pos$11,
+                        [nix.POS]: $pos[10],
                         source: nix.thunk(() => nix.str`${nix.sel(config, "systemd", "package")}/lib/systemd/boot/efi/systemd-boot${efiArch}.efi`),
                       }))],
                       [nix.str`/EFI/Linux/${nix.sel(config, "system", "boot", "loader", "ukiFile")}`, nix.thunk(() => ({
-                        [nix.POS]: pos$12,
+                        [nix.POS]: $pos[11],
                         source: nix.thunk(() => nix.str`${nix.sel(config, "system", "build", "uki")}/${nix.sel(config, "system", "boot", "loader", "ukiFile")}`),
                       }))],
                     ]);
                   })()),
                   repartConfig: nix.thunk(() => ({
-                    [nix.POS]: pos$13,
+                    [nix.POS]: $pos[12],
                     Type: "esp",
                     Format: "vfat",
                     SizeMinBytes: nix.thunk(() => (nix.asBool(nix.sel(config, "nixpkgs", "hostPlatform", "isx86_64")) ? "64M" : "96M")),
                   })),
                 })),
                 swap: nix.thunk(() => ({
-                  [nix.POS]: pos$16,
+                  [nix.POS]: $pos[15],
                   repartConfig: nix.thunk(() => ({
-                    [nix.POS]: pos$15,
+                    [nix.POS]: $pos[14],
                     Type: "swap",
                     Format: "swap",
                     SizeMinBytes: "10M",
@@ -125,10 +100,10 @@ export default nix.lambda((args) => (() => {
                   })),
                 })),
                 root: nix.thunk(() => ({
-                  [nix.POS]: pos$18,
+                  [nix.POS]: $pos[17],
                   storePaths: nix.thunk(() => [nix.thunk(() => nix.sel(config, "system", "build", "toplevel"))]),
                   repartConfig: nix.thunk(() => ({
-                    [nix.POS]: pos$17,
+                    [nix.POS]: $pos[16],
                     Type: "root",
                     Format: nix.thunk(() => nix.sel(config, "fileSystems", "/", "fsType")),
                     Label: rootPartitionLabel,
@@ -136,9 +111,9 @@ export default nix.lambda((args) => (() => {
                   })),
                 })),
               }, nix.app(nix.sel(lib_1, "genAttrs"), nix.thunk(() => ["squashfs", "erofs", "btrfs", "xfs", "swap", "empty"]), (fsType) => ({
-                  [nix.POS]: pos$21,
+                  [nix.POS]: $pos[20],
                   repartConfig: nix.thunk(() => ({
-                    [nix.POS]: pos$20,
+                    [nix.POS]: $pos[19],
                     Type: "linux-generic",
                     Format: fsType,
                     SizeMinBytes: "10M",

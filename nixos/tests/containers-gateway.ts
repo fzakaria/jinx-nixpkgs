@@ -2,27 +2,8 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/containers-gateway.nix", [[["maintainers", 12, 5]], [["interfaces", 19, 11]], [["br0", 19, 7]], [["address", 24, 11], ["prefixLength", 25, 11]], [["addresses", 22, 16]], [["address", 30, 11], ["prefixLength", 31, 11]], [["addresses", 28, 16]], [["ipv4", 22, 11], ["ipv6", 28, 11]], [["br0", 22, 7]], [["bridges", 18, 16], ["interfaces", 21, 16]], [["address", 44, 26]], [["address", 45, 27]], [["defaultGateway", 44, 11], ["defaultGateway6", 45, 11]], [["enable", 47, 13]], [["networking", 43, 9], ["nix", 47, 9]], [["autoStart", 37, 7], ["privateNetwork", 38, 7], ["hostBridge", 39, 7], ["localAddress", 40, 7], ["localAddress6", 41, 7], ["config", 42, 7]], [["test", 36, 16]], [["networking", 18, 5], ["containers", 36, 5]], [["machine", 17, 9]], [["name", 10, 3], ["meta", 11, 3], ["nodes", 17, 3], ["testScript", 52, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/containers-gateway.nix", [["maintainers", 12, 5]]);
-const pos$2 = nix.positions(here + "/containers-gateway.nix", [["interfaces", 19, 11]]);
-const pos$3 = nix.positions(here + "/containers-gateway.nix", [["br0", 19, 7]]);
-const pos$4 = nix.positions(here + "/containers-gateway.nix", [["address", 24, 11], ["prefixLength", 25, 11]]);
-const pos$5 = nix.positions(here + "/containers-gateway.nix", [["addresses", 22, 16]]);
-const pos$6 = nix.positions(here + "/containers-gateway.nix", [["address", 30, 11], ["prefixLength", 31, 11]]);
-const pos$7 = nix.positions(here + "/containers-gateway.nix", [["addresses", 28, 16]]);
-const pos$8 = nix.positions(here + "/containers-gateway.nix", [["ipv4", 22, 11], ["ipv6", 28, 11]]);
-const pos$9 = nix.positions(here + "/containers-gateway.nix", [["br0", 22, 7]]);
-const pos$10 = nix.positions(here + "/containers-gateway.nix", [["bridges", 18, 16], ["interfaces", 21, 16]]);
-const pos$11 = nix.positions(here + "/containers-gateway.nix", [["address", 44, 26]]);
-const pos$12 = nix.positions(here + "/containers-gateway.nix", [["address", 45, 27]]);
-const pos$13 = nix.positions(here + "/containers-gateway.nix", [["defaultGateway", 44, 11], ["defaultGateway6", 45, 11]]);
-const pos$14 = nix.positions(here + "/containers-gateway.nix", [["enable", 47, 13]]);
-const pos$15 = nix.positions(here + "/containers-gateway.nix", [["networking", 43, 9], ["nix", 47, 9]]);
-const pos$16 = nix.positions(here + "/containers-gateway.nix", [["autoStart", 37, 7], ["privateNetwork", 38, 7], ["hostBridge", 39, 7], ["localAddress", 40, 7], ["localAddress6", 41, 7], ["config", 42, 7]]);
-const pos$17 = nix.positions(here + "/containers-gateway.nix", [["test", 36, 16]]);
-const pos$18 = nix.positions(here + "/containers-gateway.nix", [["networking", 18, 5], ["containers", 36, 5]]);
-const pos$19 = nix.positions(here + "/containers-gateway.nix", [["machine", 17, 9]]);
-const pos$20 = nix.positions(here + "/containers-gateway.nix", [["name", 10, 3], ["meta", 11, 3], ["nodes", 17, 3], ["testScript", 52, 3]]);
 
 export default nix.thunk(() => (() => {
   const hostIp4 = "192.168.0.1";
@@ -33,57 +14,61 @@ export default nix.thunk(() => (() => {
     const $ = nix.formals(args, formals$1);
     const lib = nix.arg($, "lib");
     return {
-      [nix.POS]: pos$20,
+      [nix.POS]: $pos[19],
       name: "containers-gateway",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
           return [nix.thunk(() => nix.lookup(w, "rnhmjoj"))];
         })()),
       })),
       nodes: nix.thunk(() => ({
-        [nix.POS]: pos$19,
+        [nix.POS]: $pos[18],
         machine: nix.thunk(() => ({
-          [nix.POS]: pos$18,
+          [nix.POS]: $pos[17],
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$10,
+            [nix.POS]: $pos[9],
             bridges: nix.thunk(() => ({
-              [nix.POS]: pos$3,
-              br0: nix.thunk(() => ({ [nix.POS]: pos$2, interfaces: [] })),
+              [nix.POS]: $pos[2],
+              br0: nix.thunk(() => ({ [nix.POS]: $pos[1], interfaces: [] })),
             })),
             interfaces: nix.thunk(() => ({
-              [nix.POS]: pos$9,
+              [nix.POS]: $pos[8],
               br0: nix.thunk(() => ({
-                [nix.POS]: pos$8,
+                [nix.POS]: $pos[7],
                 ipv4: nix.thunk(() => ({
-                  [nix.POS]: pos$5,
-                  addresses: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$4, address: hostIp4, prefixLength: 24n }))]),
+                  [nix.POS]: $pos[4],
+                  addresses: nix.thunk(() => [
+                    nix.thunk(() => ({ [nix.POS]: $pos[3], address: hostIp4, prefixLength: 24n })),
+                  ]),
                 })),
                 ipv6: nix.thunk(() => ({
-                  [nix.POS]: pos$7,
-                  addresses: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$6, address: hostIp6, prefixLength: 7n }))]),
+                  [nix.POS]: $pos[6],
+                  addresses: nix.thunk(() => [
+                    nix.thunk(() => ({ [nix.POS]: $pos[5], address: hostIp6, prefixLength: 7n })),
+                  ]),
                 })),
               })),
             })),
           })),
           containers: nix.thunk(() => ({
-            [nix.POS]: pos$17,
+            [nix.POS]: $pos[16],
             test: nix.thunk(() => ({
-              [nix.POS]: pos$16,
+              [nix.POS]: $pos[15],
               autoStart: true,
               privateNetwork: true,
               hostBridge: "br0",
               localAddress: containerIp4,
               localAddress6: containerIp6,
               config: nix.thunk(() => ({
-                [nix.POS]: pos$15,
+                [nix.POS]: $pos[14],
                 networking: nix.thunk(() => ({
-                  [nix.POS]: pos$13,
-                  defaultGateway: nix.thunk(() => ({ [nix.POS]: pos$11, address: hostIp4 })),
-                  defaultGateway6: nix.thunk(() => ({ [nix.POS]: pos$12, address: hostIp6 })),
+                  [nix.POS]: $pos[12],
+                  defaultGateway: nix.thunk(() => ({ [nix.POS]: $pos[10], address: hostIp4 })),
+                  defaultGateway6: nix.thunk(() => ({ [nix.POS]: $pos[11], address: hostIp6 })),
                 })),
-                nix: nix.thunk(() => ({ [nix.POS]: pos$14, enable: false })),
+                nix: nix.thunk(() => ({ [nix.POS]: $pos[13], enable: false })),
               })),
             })),
           })),

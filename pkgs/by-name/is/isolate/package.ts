@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]], [["isolate", 53, 5]], [["tests", 52, 12]], [["description", 57, 5], ["mainProgram", 58, 5], ["homepage", 59, 5], ["license", 60, 5], ["maintainers", 61, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 31, 3], ["patches", 37, 3], ["installPhase", 41, 3], ["passthru", 52, 3], ["meta", 56, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, asciidoc: false, libcap: false, "pkg-config": false, systemdLibs: false, installShellFiles: false, nixosTests: false, libseccomp: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["isolate", 53, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 52, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 57, 5], ["mainProgram", 58, 5], ["homepage", 59, 5], ["license", 60, 5], ["maintainers", 61, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 31, 3], ["patches", 37, 3], ["installPhase", 41, 3], ["passthru", 52, 3], ["meta", 56, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const libseccomp = nix.arg($, "libseccomp");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "isolate",
       version: "2.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ioi",
           repo: "isolate",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -41,11 +37,11 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [nix.path(here, "./take-config-file-from-env.patch")]),
       installPhase: "runHook preInstall\n\ninstall -Dm755 ./isolate $out/bin/isolate\ninstall -Dm755 ./isolate-cg-keeper $out/bin/isolate-cg-keeper\ninstall -Dm755 ./isolate-check-environment $out/bin/isolate-check-environment\ninstallManPage isolate.1\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$2, isolate: nix.thunk(() => nix.sel(nixosTests, "isolate")) })),
+        [nix.POS]: $pos[2],
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[1], isolate: nix.thunk(() => nix.sel(nixosTests, "isolate")) })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Sandbox for securely executing untrusted programs",
         mainProgram: "isolate",
         homepage: "https://github.com/ioi/isolate",

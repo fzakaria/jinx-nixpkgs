@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/miou-unix.nix", [[["description", 35, 5]], [["pname", 15, 3], ["src", 16, 17], ["version", 16, 21], ["propagatedBuildInputs", 18, 3], ["doCheck", 24, 3], ["checkInputs", 25, 3], ["meta", 34, 3]]]);
 const formals$1 = { args: { buildDunePackage: false, crowbar: false, hxd: false, miou: false, "mirage-crypto-rng": false, ohex: false, ptime: false, rresult: false, tls: false, x509: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/miou-unix.nix", [["description", 35, 5]]);
-const pos$2 = nix.positions(here + "/miou-unix.nix", [["pname", 15, 3], ["src", 16, 17], ["version", 16, 21], ["propagatedBuildInputs", 18, 3], ["doCheck", 24, 3], ["checkInputs", 25, 3], ["meta", 34, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,7 +18,7 @@ export default nix.lambda((args) => (() => {
   const tls = nix.arg($, "tls");
   const x509 = nix.arg($, "x509");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "tls-miou-unix",
       src: nix.thunk(() => nix.attr(tls, "src")),
       version: nix.thunk(() => nix.attr(tls, "version")),
@@ -27,7 +26,7 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       checkInputs: nix.thunk(() => [crowbar, hxd, mirage_crypto_rng, ohex, ptime, rresult]),
       meta: nix.thunk(() => nix.update(nix.sel(tls, "meta"), {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Transport Layer Security purely in OCaml, Miou+Unix layer",
       })),
     })));

@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 61, 5], ["repo", 62, 5], ["tag", 63, 5], ["hash", 64, 5]], [["name", 82, 5], ["src", 83, 5], ["hash", 84, 5]], [["urdf", 111, 5], ["dev", 112, 5], ["examples", 125, 5]], [["PLAYWRIGHT_BROWSERS_PATH", 150, 5], ["PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD", 151, 5], ["PLAYWRIGHT_SKIP_VALIDATE_HOST_REQUIREMENTS", 152, 5]], [["changelog", 183, 5], ["description", 184, 5], ["homepage", 185, 5], ["license", 186, 5], ["maintainers", 187, 5]], [["pname", 56, 3], ["version", 57, 3], ["pyproject", 58, 3], ["src", 60, 3], ["postPatch", 67, 3], ["nativeBuildInputs", 76, 3], ["npmDeps", 81, 3], ["preBuild", 87, 3], ["build-system", 93, 3], ["dependencies", 97, 3], ["optional-dependencies", 110, 3], ["nativeCheckInputs", 140, 3], ["checkInputs", 147, 3], ["env", 149, 3], ["disabledTestPaths", 155, 3], ["disabledTests", 159, 3], ["pythonImportsCheck", 169, 3], ["pythonRelaxDeps", 173, 3], ["__darwinAllowLocalNetworking", 180, 3], ["meta", 182, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, nodejs: false, fetchNpmDeps: false, npmHooks: false, hatchling: false, imageio: false, msgspec: false, numpy: false, requests: false, rich: false, tqdm: false, trimesh: false, "typing-extensions": false, websockets: false, yourdfpy: false, zstandard: false, hypothesis: false, liblzfse: false, nodeenv: false, "opencv-python": false, playwright: false, "pre-commit": false, psutil: false, pyright: false, pytest: false, "pytest-playwright": false, "pytest-xdist": false, ruff: false, gdown: false, matplotlib: false, pandas: false, plotly: false, plyfile: false, "robot-descriptions": false, torch: false, tyro: false, pytestCheckHook: false, "playwright-driver": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 61, 5], ["repo", 62, 5], ["tag", 63, 5], ["hash", 64, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["name", 82, 5], ["src", 83, 5], ["hash", 84, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["urdf", 111, 5], ["dev", 112, 5], ["examples", 125, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["PLAYWRIGHT_BROWSERS_PATH", 150, 5], ["PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD", 151, 5], ["PLAYWRIGHT_SKIP_VALIDATE_HOST_REQUIREMENTS", 152, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["changelog", 183, 5], ["description", 184, 5], ["homepage", 185, 5], ["license", 186, 5], ["maintainers", 187, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 56, 3], ["version", 57, 3], ["pyproject", 58, 3], ["src", 60, 3], ["postPatch", 67, 3], ["nativeBuildInputs", 76, 3], ["npmDeps", 81, 3], ["preBuild", 87, 3], ["build-system", 93, 3], ["dependencies", 97, 3], ["optional-dependencies", 110, 3], ["nativeCheckInputs", 140, 3], ["checkInputs", 147, 3], ["env", 149, 3], ["disabledTestPaths", 155, 3], ["disabledTests", 159, 3], ["pythonImportsCheck", 169, 3], ["pythonRelaxDeps", 173, 3], ["__darwinAllowLocalNetworking", 180, 3], ["meta", 182, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -53,12 +48,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const playwright_driver = nix.arg($, "playwright-driver");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "viser",
       version: "1.1.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "viser-project",
           repo: "viser",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -67,7 +62,7 @@ export default nix.lambda((args) => (() => {
       postPatch: "# prepare npm offline cache\nmkdir -p node_modules\ncd src/viser/client\ncp package.json package-lock.json ../../..\nln -s ../../../node_modules\ncd ../../..\n",
       nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(npmHooks, "npmConfigHook")), nodejs]),
       npmDeps: nix.thunk(() => nix.app(fetchNpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           name: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-${nix.sel(finalAttrs, "version")}-npm-deps`),
           src: nix.thunk(() => nix.add(nix.sel(finalAttrs, "src"), "/src/viser/client/")),
           hash: "sha256-ebEJ4lm45L6+Dw1jh0BjciUEQWpFNGqfVMT6loIgZsk=",
@@ -87,7 +82,7 @@ export default nix.lambda((args) => (() => {
         zstandard,
       ]),
       "optional-dependencies": nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         urdf: nix.thunk(() => [yourdfpy]),
         dev: nix.thunk(() => nix.concat([
           hypothesis,
@@ -117,7 +112,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [hypothesis, playwright_driver, pytestCheckHook]),
       checkInputs: nix.thunk(() => nix.app(nix.sel(lib, "filter"), (p) => !nix.eq(nix.sel(p, "pname"), "pre-commit"), nix.thunk(() => nix.sel(finalAttrs, "passthru", "optional-dependencies", "dev")))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         PLAYWRIGHT_BROWSERS_PATH: nix.thunk(() => nix.sel(playwright_driver, "browsers")),
         PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: true,
         PLAYWRIGHT_SKIP_VALIDATE_HOST_REQUIREMENTS: true,
@@ -128,7 +123,7 @@ export default nix.lambda((args) => (() => {
       pythonRelaxDeps: nix.thunk(() => ["rich", "trimesh"]),
       __darwinAllowLocalNetworking: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         changelog: nix.thunk(() => nix.str`https://github.com/viser-project/viser/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         description: "Web-based 3D visualization in Python",
         homepage: "https://github.com/viser-project/viser",

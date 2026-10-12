@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 36, 5], ["repo", 37, 5], ["tag", 38, 5], ["hash", 39, 5], ["fetchSubmodules", 40, 5]], [["extraArgs", 45, 5]], [["updateScript", 43, 12]], [["pname", 51, 26], ["version", 51, 32], ["src", 51, 40], ["hash", 52, 5]], [["extraLoaders", 63, 9]], [["description", 99, 5], ["homepage", 100, 5], ["license", 101, 5], ["maintainers", 102, 5], ["mainProgram", 107, 5], ["platforms", 108, 5]], [["pname", 32, 3], ["version", 33, 3], ["src", 35, 3], ["passthru", 43, 3], ["cargoDeps", 50, 3], ["mesonBuildType", 55, 3], ["postInstall", 60, 3], ["nativeBuildInputs", 71, 3], ["buildInputs", 83, 3], ["meta", 98, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, "nix-update-script": false, cargo: false, meson: false, ninja: false, "pkg-config": false, rustPlatform: false, rustc: false, wrapGAppsHook4: false, cairo: false, dbus: false, "gdk-pixbuf": false, glib: false, gtk4: false, libadwaita: false, openssl: false, pango: false, pipewire: false, sqlite: false, "desktop-file-utils": false, libxml2: false, libsecret: false, gnome: false, librsvg: false, "webp-pixbuf-loader": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 36, 5], ["repo", 37, 5], ["tag", 38, 5], ["hash", 39, 5], ["fetchSubmodules", 40, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["extraArgs", 45, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 43, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 51, 26], ["version", 51, 32], ["src", 51, 40], ["hash", 52, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["extraLoaders", 63, 9]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 99, 5], ["homepage", 100, 5], ["license", 101, 5], ["maintainers", 102, 5], ["mainProgram", 107, 5], ["platforms", 108, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 32, 3], ["version", 33, 3], ["src", 35, 3], ["passthru", 43, 3], ["cargoDeps", 50, 3], ["mesonBuildType", 55, 3], ["postInstall", 60, 3], ["nativeBuildInputs", 71, 3], ["buildInputs", 83, 3], ["meta", 98, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -41,11 +35,11 @@ export default nix.lambda((args) => (() => {
   const librsvg = nix.arg($, "librsvg");
   const webp_pixbuf_loader = nix.arg($, "webp-pixbuf-loader");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "euphonica",
       version: "0.99.7-beta-1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "htkhiem",
           repo: "euphonica",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -53,11 +47,11 @@ export default nix.lambda((args) => (() => {
           fetchSubmodules: true,
         })))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$2, extraArgs: nix.thunk(() => ["--version=unstable"]) })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: $pos[1], extraArgs: nix.thunk(() => ["--version=unstable"]) })))),
       })),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -65,7 +59,7 @@ export default nix.lambda((args) => (() => {
         })))),
       mesonBuildType: "release",
       postInstall: nix.thunk(() => nix.str`export GDK_PIXBUF_MODULE_FILE="${nix.app(nix.sel(gnome, "_gdkPixbufCacheBuilder_DO_NOT_USE"), nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           extraLoaders: nix.thunk(() => [librsvg, webp_pixbuf_loader]),
         })))}"
 `),
@@ -95,7 +89,7 @@ export default nix.lambda((args) => (() => {
         libsecret,
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "MPD client with delusions of grandeur, made with Rust, GTK and Libadwaita",
         homepage: "https://github.com/htkhiem/euphonica",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

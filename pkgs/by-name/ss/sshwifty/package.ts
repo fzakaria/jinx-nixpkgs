@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]], [["nativeBuildInputs", 31, 5], ["preBuild", 32, 5]], [["src", 36, 26], ["hash", 37, 5]], [["sshwifty", 60, 36]], [["extraArgs", 62, 7]], [["tests", 60, 5], ["updateScript", 61, 5]], [["description", 70, 5], ["homepage", 71, 5], ["changelog", 72, 5], ["license", 73, 5], ["maintainers", 74, 5], ["mainProgram", 75, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["nativeBuildInputs", 25, 3], ["overrideModAttrs", 30, 3], ["npmDeps", 35, 3], ["vendorHash", 40, 3], ["preBuild", 42, 3], ["ldflags", 47, 3], ["postInstall", 52, 3], ["nativeInstallCheckInputs", 56, 3], ["doInstallCheck", 57, 3], ["passthru", 59, 3], ["meta", 69, 3]]]);
 const formals$1 = { args: { lib: false, buildGoLatestModule: false, fetchFromGitHub: false, fetchNpmDeps: false, nodejs: false, npmHooks: false, versionCheckHook: false, nixosTests: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["nativeBuildInputs", 31, 5], ["preBuild", 32, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["src", 36, 26], ["hash", 37, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["sshwifty", 60, 36]]);
-const pos$5 = nix.positions(here + "/package.nix", [["extraArgs", 62, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["tests", 60, 5], ["updateScript", 61, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["description", 70, 5], ["homepage", 71, 5], ["changelog", 72, 5], ["license", 73, 5], ["maintainers", 74, 5], ["mainProgram", 75, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["nativeBuildInputs", 25, 3], ["overrideModAttrs", 30, 3], ["npmDeps", 35, 3], ["vendorHash", 40, 3], ["preBuild", 42, 3], ["ldflags", 47, 3], ["postInstall", 52, 3], ["nativeInstallCheckInputs", 56, 3], ["doInstallCheck", 57, 3], ["passthru", 59, 3], ["meta", 69, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(buildGoLatestModule, (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "sshwifty",
       version: "0.4.11-beta-release",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "nirui",
           repo: "sshwifty",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -36,12 +29,12 @@ export default nix.lambda((args) => (() => {
         })))),
       nativeBuildInputs: nix.thunk(() => [nodejs, nix.thunk(() => nix.sel(npmHooks, "npmConfigHook"))]),
       overrideModAttrs: (oldAttrs) => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         nativeBuildInputs: nix.thunk(() => nix.app(nix.sel(lib, "filter"), (drv) => !nix.eq(drv, nix.sel(npmHooks, "npmConfigHook")), nix.thunk(() => nix.sel(oldAttrs, "nativeBuildInputs")))),
         preBuild: null,
       }),
       npmDeps: nix.thunk(() => nix.app(fetchNpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           hash: "sha256-NnRQStZooSS87GyeRc7gls/9EMPdndr/OkHFFHt46HQ=",
         })))),
@@ -55,18 +48,18 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           sshwifty: nix.thunk(() => nix.attr(nixosTests, "sshwifty")),
         })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             extraArgs: nix.thunk(() => ["--version=unstable", "--version-regex=^([0-9.]+(?!.+-prebuild).+$)"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "WebSSH & WebTelnet client",
         homepage: "https://github.com/nirui/sshwifty",
         changelog: nix.thunk(() => nix.str`https://github.com/nirui/sshwifty/releases/tag/${nix.sel(finalAttrs, "version")}`),

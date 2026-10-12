@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["aarch64-darwin", 34, 9], ["x86_64-linux", 35, 9], ["aarch64-linux", 36, 9], ["i686-linux", 37, 9], ["powerpc64le-linux", 38, 9], ["s390x-linux", 39, 9]], [["url", 31, 5], ["hash", 32, 5]], [["updateScript", 60, 12]], [["description", 63, 5], ["homepage", 64, 5], ["license", 65, 5], ["maintainers", 66, 5], ["platforms", 67, 5], ["sourceProvenance", 75, 5], ["mainProgram", 76, 5]], [["pname", 27, 3], ["version", 28, 3], ["src", 30, 3], ["nativeBuildInputs", 44, 3], ["installPhase", 49, 3], ["passthru", 60, 3], ["meta", 62, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchurl: false, installShellFiles: false, writableTmpDirAsHomeHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["aarch64-darwin", 34, 9], ["x86_64-linux", 35, 9], ["aarch64-linux", 36, 9], ["i686-linux", 37, 9], ["powerpc64le-linux", 38, 9], ["s390x-linux", 39, 9]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 31, 5], ["hash", 32, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 60, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 63, 5], ["homepage", 64, 5], ["license", 65, 5], ["maintainers", 66, 5], ["platforms", 67, 5], ["sourceProvenance", 75, 5], ["mainProgram", 76, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 27, 3], ["version", 28, 3], ["src", 30, 3], ["nativeBuildInputs", 44, 3], ["installPhase", 49, 3], ["passthru", 60, 3], ["meta", 62, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,14 +19,14 @@ export default nix.lambda((args) => (() => {
   })());
   const platform = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? "macos_arm64" : nix.str`linux_${arch}`));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "ibmcloud-cli",
       version: "2.46.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: nix.thunk(() => nix.str`https://download.clis.cloud.ibm.com/ibm-cloud-cli/${nix.sel(finalAttrs, "version")}/binaries/IBM_Cloud_CLI_${nix.sel(finalAttrs, "version")}_${platform}.tgz`),
           hash: nix.thunk(() => nix.selOr({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             "aarch64-darwin": "sha256-BxSEmQNIiT3nbBFQdVdo7bJsqtZfq35DyxlJX70/EmU=",
             "x86_64-linux": "sha256-0FaW6eaJJ5YQWjfMIXf4I5spjG8kFeqwH2vm9BNTBzI=",
             "aarch64-linux": "sha256-wZYB9SCIJWl6rZGJnRTevsl/sE2Rel1m6LIp+ZilYng=",
@@ -41,9 +37,9 @@ export default nix.lambda((args) => (() => {
         })))),
       nativeBuildInputs: nix.thunk(() => [installShellFiles, writableTmpDirAsHomeHook]),
       installPhase: "runHook preInstall\n\ninstall -Dm755 ibmcloud $out/bin/ibmcloud\nmkdir -p $out/share/ibmcloud\ncp LICENSE NOTICE $out/share/ibmcloud\ninstallShellCompletion --cmd ibmcloud --bash <($out/bin/ibmcloud --generate-bash-completion)\n\nrunHook postInstall\n",
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$3, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[2], updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Command line client for IBM Cloud",
         homepage: "https://cloud.ibm.com/docs/cli",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

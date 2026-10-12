@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 32, 7], ["repo", 33, 7], ["rev", 34, 7], ["hash", 35, 7]], [["src", 31, 5]], [["owner", 45, 5], ["repo", 46, 5], ["rev", 47, 5], ["hash", 48, 5], ["fetchSubmodules", 49, 5]], [["url", 58, 7], ["hash", 59, 7]], [["mainProgram", 98, 5], ["description", 99, 5], ["homepage", 100, 5], ["maintainers", 101, 5], ["license", 102, 5]], [["pname", 41, 3], ["version", 42, 3], ["src", 44, 3], ["patches", 52, 3], ["postPatch", 65, 3], ["buildInputs", 69, 3], ["nativeBuildInputs", 91, 3], ["meta", 97, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch: false, wxwidgets_3_2: false, gtk3: false, zlib: false, libjpeg: false, libvncserver: false, cmake: false, "pkg-config": false, "libsysprof-capture": false, pcre2: false, "util-linux": false, libselinux: false, libsepol: false, libthai: false, libdatrie: false, libxtst: false, libxdmcp: false, lerc: false, libxkbcommon: false, libepoxy: false, wrapGAppsHook3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 32, 7], ["repo", 33, 7], ["rev", 34, 7], ["hash", 35, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["src", 31, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["owner", 45, 5], ["repo", 46, 5], ["rev", 47, 5], ["hash", 48, 5], ["fetchSubmodules", 49, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["url", 58, 7], ["hash", 59, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["mainProgram", 98, 5], ["description", 99, 5], ["homepage", 100, 5], ["maintainers", 101, 5], ["license", 102, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 41, 3], ["version", 42, 3], ["src", 44, 3], ["patches", 52, 3], ["postPatch", 65, 3], ["buildInputs", 69, 3], ["nativeBuildInputs", 91, 3], ["meta", 97, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -37,9 +32,9 @@ export default nix.lambda((args) => (() => {
   const libepoxy = nix.arg($, "libepoxy");
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   const libvncserver_patched = nix.thunk(() => nix.app(nix.sel(libvncserver, "overrideAttrs"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "LibVNC",
           repo: "libvncserver",
           rev: "ef3b57438564f2877148a23055f3f0ffce66df11",
@@ -47,11 +42,11 @@ export default nix.lambda((args) => (() => {
         })))),
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "MultiVNC",
       version: "0.6.0-2024-10-20",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           owner: "bk138",
           repo: "multivnc",
           rev: "89225243412f43ba2903ffeda98af7fe1f8f4975",
@@ -61,7 +56,7 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [
         nix.path(here, "./nixpkgs.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             url: "https://github.com/bk138/multivnc/commit/002ba7f6b5b88dac3da5c08f99be1f237dcde904.patch",
             hash: "sha256-Qnk7RrUaw9jsaNTbzYqsH0LU8ivT9xX2jfxrES82ArE=",
           })))),
@@ -88,7 +83,7 @@ export default nix.lambda((args) => (() => {
       ]),
       nativeBuildInputs: nix.thunk(() => [cmake, pkg_config, wrapGAppsHook3]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         mainProgram: "multivnc",
         description: "Cross-platform Multicast-enabled VNC viewer based on LibVNCClient",
         homepage: "https://github.com/bk138/multivnc",

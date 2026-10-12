@@ -2,11 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]], [["updateScript", 50, 5]], [["description", 54, 5], ["longDescription", 55, 5], ["homepage", 59, 5], ["license", 60, 5], ["platforms", 61, 5], ["teams", 62, 5], ["mainProgram", 63, 5]], [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 40, 3], ["passthru", 49, 3], ["meta", 53, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, "nix-update-script": false, "pkg-config": false, meson: false, ninja: false, vala: false, "desktop-file-utils": false, gtk4: false, granite7: false, libadwaita: false, "vte-gtk4": false, libgee: false, pcre2: false, wrapGAppsHook4: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["updateScript", 50, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 54, 5], ["longDescription", 55, 5], ["homepage", 59, 5], ["license", 60, 5], ["platforms", 61, 5], ["teams", 62, 5], ["mainProgram", 63, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 40, 3], ["passthru", 49, 3], ["meta", 53, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const pname = "elementary-terminal";
       const version = "8.1.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "elementary",
           repo: "terminal",
           tag: version,
@@ -39,11 +36,11 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [desktop_file_utils, meson, ninja, pkg_config, vala, wrapGAppsHook4]);
       const buildInputs = nix.thunk(() => [granite7, gtk4, libadwaita, libgee, pcre2, vte_gtk4]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Terminal emulator designed for elementary OS",
         longDescription: "A super lightweight, beautiful, and simple terminal. Comes with sane defaults, browser-class tabs, sudo paste protection,\nsmart copy/paste, and little to no configuration.\n",
         homepage: "https://github.com/elementary/terminal",
@@ -53,7 +50,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "io.elementary.terminal",
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

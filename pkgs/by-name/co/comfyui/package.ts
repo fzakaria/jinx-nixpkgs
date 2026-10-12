@@ -2,20 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["cudaPackages", 33, 13]], [["cudaPackages", 36, 13]], [["torch", 32, 11], ["triton", 35, 11]], [["self", 27, 7], ["packageOverrides", 28, 7]], [["owner", 97, 5], ["repo", 98, 5], ["tag", 99, 5], ["hash", 100, 5]], [["name", 137, 7], ["runtimeInputs", 138, 7], ["text", 145, 7]], [["python", 134, 13], ["pythonEnv", 134, 20], ["updateScript", 136, 5]], [["withManager", 179, 7]], [["withManager", 178, 11]], [["tests", 178, 5]], [["description", 184, 5], ["homepage", 185, 5], ["changelog", 186, 5], ["license", 187, 5], ["mainProgram", 188, 5], ["maintainers", 189, 5], ["platforms", 193, 5]], [["pname", 90, 3], ["version", 91, 3], ["strictDeps", 93, 3], ["__structuredAttrs", 94, 3], ["src", 96, 3], ["nativeBuildInputs", 103, 3], ["patches", 105, 3], ["installPhase", 107, 3], ["doInstallCheck", 121, 3], ["installCheckPhase", 122, 3], ["passthru", 133, 3], ["meta", 183, 3]]]);
 const formals$1 = { args: { lib: false, callPackage: false, cudaPackages_13: false, "common-updater-scripts": false, fetchFromGitHub: false, gnutar: false, gzip: false, "nix-update": false, makeBinaryWrapper: false, python3: false, stdenvNoCC: false, withManager: true, writeShellApplication: false, "yq-go": false }, ellipsis: false };
 const formals$2 = { args: { packageOverrides: true }, ellipsis: true };
-const pos$1 = nix.positions(here + "/package.nix", [["cudaPackages", 33, 13]]);
-const pos$2 = nix.positions(here + "/package.nix", [["cudaPackages", 36, 13]]);
-const pos$3 = nix.positions(here + "/package.nix", [["torch", 32, 11], ["triton", 35, 11]]);
-const pos$4 = nix.positions(here + "/package.nix", [["self", 27, 7], ["packageOverrides", 28, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["owner", 97, 5], ["repo", 98, 5], ["tag", 99, 5], ["hash", 100, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["name", 137, 7], ["runtimeInputs", 138, 7], ["text", 145, 7]]);
-const pos$7 = nix.positions(here + "/package.nix", [["python", 134, 13], ["pythonEnv", 134, 20], ["updateScript", 136, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["withManager", 179, 7]]);
-const pos$9 = nix.positions(here + "/package.nix", [["withManager", 178, 11]]);
-const pos$10 = nix.positions(here + "/package.nix", [["tests", 178, 5]]);
-const pos$11 = nix.positions(here + "/package.nix", [["description", 184, 5], ["homepage", 185, 5], ["changelog", 186, 5], ["license", 187, 5], ["mainProgram", 188, 5], ["maintainers", 189, 5], ["platforms", 193, 5]]);
-const pos$12 = nix.positions(here + "/package.nix", [["pname", 90, 3], ["version", 91, 3], ["strictDeps", 93, 3], ["__structuredAttrs", 94, 3], ["src", 96, 3], ["nativeBuildInputs", 103, 3], ["patches", 105, 3], ["installPhase", 107, 3], ["doInstallCheck", 121, 3], ["installCheckPhase", 122, 3], ["passthru", 133, 3], ["meta", 183, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -37,12 +26,12 @@ export default nix.lambda((args) => (() => {
       const $_1 = nix.formals(args_1, formals$2);
       const packageOverrides = nix.argOr($_1, "packageOverrides", () => (_) => (__1) => ({}));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         self: python,
         packageOverrides: nix.thunk(() => nix.app(nix.sel(lib, "composeExtensions"), packageOverrides, (final) => (prev) => ({
-            [nix.POS]: pos$3,
-            torch: nix.thunk(() => nix.app(nix.sel(prev, "torch", "override"), nix.thunk(() => ({ [nix.POS]: pos$1, cudaPackages: cudaPackages_13 })))),
-            triton: nix.thunk(() => nix.app(nix.sel(prev, "triton", "override"), nix.thunk(() => ({ [nix.POS]: pos$2, cudaPackages: cudaPackages_13 })))),
+            [nix.POS]: $pos[2],
+            torch: nix.thunk(() => nix.app(nix.sel(prev, "torch", "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], cudaPackages: cudaPackages_13 })))),
+            triton: nix.thunk(() => nix.app(nix.sel(prev, "triton", "override"), nix.thunk(() => ({ [nix.POS]: $pos[1], cudaPackages: cudaPackages_13 })))),
           }))),
       };
     })(), formals$2)));
@@ -88,13 +77,13 @@ export default nix.lambda((args) => (() => {
   })();
   const pythonEnv = nix.thunk(() => nix.app(nix.sel(python, "withPackages"), appDependencies));
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$12,
+      [nix.POS]: $pos[11],
       pname: "comfyui",
       version: "0.37.0",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           owner: "Comfy-Org",
           repo: "ComfyUI",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -125,24 +114,24 @@ export XDG_DATA_HOME="$(mktemp -d)"
 runHook postInstallCheck
 `),
       passthru: nix.thunk(() => nix.update({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         python: python,
         pythonEnv: pythonEnv,
         updateScript: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.app(writeShellApplication, nix.thunk(() => ({
-              [nix.POS]: pos$6,
+              [nix.POS]: $pos[5],
               name: "update-comfyui",
               runtimeInputs: nix.thunk(() => [common_updater_scripts, gnutar, gzip, nix_update, yq_go]),
               text: "nix-update comfyui\n\nsrc=$(nix-build --no-out-link -A comfyui.src)\n\nwhile IFS= read -r requirement; do\n  if [[ $requirement =~ ^comfy.+==.+ ]]; then\n    pkg=${requirement%%==*}\n    version=${requirement##*==}\n\n    nix-update \"python3Packages.$pkg\" --version \"$version\"\n\n    if [[ $pkg == comfyui-workflow-templates ]]; then\n      wtSrc=$(nix-build --no-out-link -A python3Packages.comfyui-workflow-templates.src)\n\n      while IFS= read -r subRequirement; do\n        if [[ $subRequirement =~ ^comfyui-workflow-templates-.+==.+ ]]; then\n          subPkg=${subRequirement%%==*}\n          subVersion=${subRequirement##*==}\n\n          nix-update \"python3Packages.$subPkg\" --version \"$subVersion\"\n        fi\n      done < <(\n        tar --extract --gzip --to-stdout --file=\"$wtSrc\" --strip-components=1 --wildcards '*/pyproject.toml' \\\n          | yq --input-format toml --output-format yaml '.project.dependencies[]'\n      )\n    fi\n  fi\ndone < \"$src/requirements.txt\"\n",
             })))))),
       }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.asBool(withManager)), nix.thunk(() => ({
-          [nix.POS]: pos$10,
+          [nix.POS]: $pos[9],
           tests: nix.thunk(() => ({
-            [nix.POS]: pos$9,
-            withManager: nix.thunk(() => nix.app(callPackage, nix.path(here, "./package.nix"), nix.thunk(() => ({ [nix.POS]: pos$8, withManager: true })))),
+            [nix.POS]: $pos[8],
+            withManager: nix.thunk(() => nix.app(callPackage, nix.path(here, "./package.nix"), nix.thunk(() => ({ [nix.POS]: $pos[7], withManager: true })))),
           })),
         }))))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$11,
+        [nix.POS]: $pos[10],
         description: "Modular diffusion model GUI, API, and backend with graph and nodes interface",
         homepage: "https://github.com/Comfy-Org/ComfyUI",
         changelog: nix.thunk(() => nix.str`https://github.com/Comfy-Org/ComfyUI/releases/tag/v${nix.sel(finalAttrs, "version")}`),

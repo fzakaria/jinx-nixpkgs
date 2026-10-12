@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["description", 31, 5], ["homepage", 32, 5], ["license", 33, 5], ["platforms", 34, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["sourceRoot", 14, 3], ["nativeBuildInputs", 16, 3], ["buildPhase", 18, 3], ["installPhase", 24, 3], ["meta", 30, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, "linux-firmware": false, libarchive: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["description", 31, 5], ["homepage", 32, 5], ["license", 33, 5], ["platforms", 34, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["sourceRoot", 14, 3], ["nativeBuildInputs", 16, 3], ["buildPhase", 18, 3], ["installPhase", 24, 3], ["meta", 30, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const linux_firmware = nix.arg($, "linux-firmware");
   const libarchive = nix.arg($, "libarchive");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "amd-ucode",
       version: nix.thunk(() => nix.sel(linux_firmware, "version")),
       src: linux_firmware,
@@ -25,7 +24,7 @@ find ${linux_firmware}/lib/firmware/amd-ucode -name \\*.bin -print0 | sort -z |\
 `),
       installPhase: "mkdir -p $out\ntouch -d @$SOURCE_DATE_EPOCH kernel/x86/microcode/AuthenticAMD.bin\necho kernel/x86/microcode/AuthenticAMD.bin | bsdtar --uid 0 --gid 0 -cnf - -T - | bsdtar --null -cf - --format=newc @- > $out/amd-ucode.img\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "AMD Processor microcode patch",
         homepage: "https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfreeRedistributableFirmware")),

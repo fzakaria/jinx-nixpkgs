@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/pointrelease.nix", [[["url", 15, 5], ["sha256", 16, 5]], [["description", 29, 5], ["license", 30, 5], ["platforms", 31, 5], ["maintainers", 32, 5]], [["pname", 11, 3], ["version", 12, 11], ["src", 14, 3], ["buildCommand", 19, 3], ["preferLocalBuild", 26, 3], ["meta", 28, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/pointrelease.nix", [["url", 15, 5], ["sha256", 16, 5]]);
-const pos$2 = nix.positions(here + "/pointrelease.nix", [["description", 29, 5], ["license", 30, 5], ["platforms", 31, 5], ["maintainers", 32, 5]]);
-const pos$3 = nix.positions(here + "/pointrelease.nix", [["pname", 11, 3], ["version", 12, 11], ["src", 14, 3], ["buildCommand", 19, 3], ["preferLocalBuild", 26, 3], ["meta", 28, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,18 +12,18 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const version = "1.32b-3";
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "quake3-pointrelease",
       version: version,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://ftp.gwdg.de/pub/misc/ftp.idsoftware.com/idstuff/quake3/linux/linuxq3apoint-${version}.x86.run`),
           sha256: "11piyksfqyxwl9mpgbc71w9sacsh4d3cdsgia0cy0dbbap2k4qf3",
         })))),
       buildCommand: "sh $src --tar xf\n\nmkdir -p $out/baseq3\ncp baseq3/*.pk3 $out/baseq3\n",
       preferLocalBuild: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Quake 3 Arena point release",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfreeRedistributable")),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),

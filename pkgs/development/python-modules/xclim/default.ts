@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 42, 5], ["repo", 43, 5], ["tag", 44, 5], ["hash", 45, 5]], [["description", 92, 5], ["homepage", 93, 5], ["changelog", 94, 5], ["license", 95, 5], ["maintainers", 96, 5], ["mainProgram", 97, 5]], [["pname", 37, 3], ["version", 38, 3], ["pyproject", 39, 3], ["src", 41, 3], ["build-system", 48, 3], ["dependencies", 53, 3], ["nativeCheckInputs", 79, 3], ["versionCheckProgramArg", 83, 3], ["pythonImportsCheck", 85, 3], ["meta", 91, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, flit: false, setuptools: false, boltons: false, bottleneck: false, "cf-xarray": false, cftime: false, click: false, dask: false, filelock: false, jsonpickle: false, numba: false, packaging: false, pandas: false, pint: false, platformdirs: false, pooch: false, pyarrow: false, pyyaml: false, "scikit-learn": false, scipy: false, statsmodels: false, xarray: false, yamale: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 42, 5], ["repo", 43, 5], ["tag", 44, 5], ["hash", 45, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 92, 5], ["homepage", 93, 5], ["changelog", 94, 5], ["license", 95, 5], ["maintainers", 96, 5], ["mainProgram", 97, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 37, 3], ["version", 38, 3], ["pyproject", 39, 3], ["src", 41, 3], ["build-system", 48, 3], ["dependencies", 53, 3], ["nativeCheckInputs", 79, 3], ["versionCheckProgramArg", 83, 3], ["pythonImportsCheck", 85, 3], ["meta", 91, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -41,7 +39,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.62.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Ouranosinc",
           repo: "xclim",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -75,7 +73,7 @@ export default nix.lambda((args) => (() => {
       const versionCheckProgramArg = "--version";
       const pythonImportsCheck = nix.thunk(() => ["xclim", "xclim.ensembles", "xclim.indices"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Operational Python library supporting climate services, based on xarray",
         homepage: "https://github.com/Ouranosinc/xclim",
         changelog: nix.thunk(() => nix.str`https://github.com/Ouranosinc/xclim/releases/tag/${nix.sel(src, "tag")}`),
@@ -87,7 +85,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "xclim",
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

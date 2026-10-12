@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 12, 5], ["sha256", 13, 5]], [["CXXFLAGS", 20, 7], ["NIX_CFLAGS_COMPILE", 23, 7]], [["homepage", 28, 5], ["license", 29, 5], ["description", 30, 5], ["platforms", 31, 5], ["maintainers", 32, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["patches", 16, 3], ["env", 20, 3], ["meta", 27, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 12, 5], ["sha256", 13, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["CXXFLAGS", 20, 7], ["NIX_CFLAGS_COMPILE", 23, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 28, 5], ["license", 29, 5], ["description", 30, 5], ["platforms", 31, 5], ["maintainers", 32, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["patches", 16, 3], ["env", 20, 3], ["meta", 27, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,22 +11,22 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "nlojet++",
       version: "4.1.3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://desy.de/~znagy/hep-programs/nlojet++/nlojet++-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "18qfn5kjzvnyh29x40zm2maqzfmrnay9r58n8pfpq5lcphdhhv8p",
         })))),
       patches: nix.thunk(() => [nix.path(here, "./nlojet_clang_fix.patch")]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         CXXFLAGS: "-std=c++11",
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")))), "-Dfinite=isfinite")),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "http://www.desy.de/~znagy/Site/NLOJet++.html",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),
         description: "Implementation of calculation of the hadron jet cross sections",

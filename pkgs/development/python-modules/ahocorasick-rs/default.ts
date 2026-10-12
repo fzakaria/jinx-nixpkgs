@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["version", 21, 13], ["pname", 22, 5], ["hash", 23, 5]], [["pname", 27, 13], ["version", 27, 19], ["src", 27, 27], ["hash", 28, 5]], [["description", 50, 5], ["homepage", 51, 5], ["changelog", 52, 5], ["license", 53, 5], ["maintainers", 54, 5]], [["pname", 15, 3], ["version", 16, 3], ["pyproject", 18, 3], ["src", 20, 3], ["cargoDeps", 26, 3], ["nativeBuildInputs", 31, 3], ["dependencies", 36, 3], ["nativeCheckInputs", 38, 3], ["pytestFlags", 45, 3], ["pythonImportsCheck", 47, 3], ["meta", 49, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, pythonOlder: false, fetchPypi: false, rustPlatform: false, pytestCheckHook: false, pyahocorasick: false, hypothesis: false, "typing-extensions": false, "pytest-benchmark": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["version", 21, 13], ["pname", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 27, 13], ["version", 27, 19], ["src", 27, 27], ["hash", 28, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 50, 5], ["homepage", 51, 5], ["changelog", 52, 5], ["license", 53, 5], ["maintainers", 54, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 15, 3], ["version", 16, 3], ["pyproject", 18, 3], ["src", 20, 3], ["cargoDeps", 26, 3], ["nativeBuildInputs", 31, 3], ["dependencies", 36, 3], ["nativeCheckInputs", 38, 3], ["pytestFlags", 45, 3], ["pythonImportsCheck", 47, 3], ["meta", 49, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,13 +22,13 @@ export default nix.lambda((args) => (() => {
       const version = "1.0.3";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           version: version,
           pname: "ahocorasick_rs",
           hash: "sha256-V503Bwp8Idqc2ZiLn7RxKXJztgy0EmWG1tzZn6r8XKU=",
         }))));
       const cargoDeps = nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: pname,
           version: version,
           src: src,
@@ -49,7 +46,7 @@ export default nix.lambda((args) => (() => {
       const pytestFlags = nix.thunk(() => ["--benchmark-disable"]);
       const pythonImportsCheck = nix.thunk(() => ["ahocorasick_rs"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Fast Aho-Corasick algorithm for Python",
         homepage: "https://github.com/G-Research/ahocorasick_rs/",
         changelog: nix.thunk(() => nix.str`https://github.com/G-Research/ahocorasick_rs/blob/${version}/CHANGELOG.md`),
@@ -60,7 +57,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

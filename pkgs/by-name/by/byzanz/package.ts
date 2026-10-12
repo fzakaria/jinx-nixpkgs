@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 25, 5], ["rev", 26, 5], ["hash", 27, 5]], [["NIX_CFLAGS_COMPILE", 39, 7]], [["description", 75, 5], ["homepage", 76, 5], ["license", 77, 5], ["platforms", 78, 5], ["maintainers", 79, 5]], [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["patches", 30, 3], ["preBuild", 35, 3], ["env", 39, 3], ["preAutoreconf", 45, 3], ["nativeBuildInputs", 50, 3], ["buildInputs", 54, 3], ["meta", 74, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchgit: false, wrapGAppsHook3: false, cairo: false, gettext: false, glib: false, "gnome-common": false, gst_all_1: false, gtk3: false, intltool: false, libtool: false, "pkg-config": false, which: false, libxdamage: false, xwininfo: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 25, 5], ["rev", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 39, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 75, 5], ["homepage", 76, 5], ["license", 77, 5], ["platforms", 78, 5], ["maintainers", 79, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["patches", 30, 3], ["preBuild", 35, 3], ["env", 39, 3], ["preAutoreconf", 45, 3], ["nativeBuildInputs", 50, 3], ["buildInputs", 54, 3], ["meta", 74, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const libxdamage = nix.arg($, "libxdamage");
   const xwininfo = nix.arg($, "xwininfo");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "byzanz",
       version: "0.2.1-unstable-2016-03-12",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://gitlab.gnome.org/Archive/byzanz",
           rev: "81235d235d12c9687897f7fc6ec0de1feaed6623",
           hash: "sha256-3DUwXCPBAmeCRlDkiPUgwNyBa6bCvC/TLguMCK3bo4E=",
@@ -42,7 +39,7 @@ export default nix.lambda((args) => (() => {
       ]),
       preBuild: "./autogen.sh --prefix=$out\n",
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.concatStringsSep(" ", nix.thunk(() => [
             "-Wno-error=deprecated-declarations",
             "-Wno-error=incompatible-pointer-types",
@@ -66,7 +63,7 @@ cp ${gettext}/share/gettext/m4/nls.m4 macros/
         ];
       })())),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Tool to record a running X desktop to an animation suitable for presentation in a web browser",
         homepage: "https://gitlab.gnome.org/Archive/byzanz",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

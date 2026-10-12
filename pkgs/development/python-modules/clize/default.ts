@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 22, 26], ["version", 22, 32], ["hash", 23, 5]], [["datetime", 36, 5]], [["description", 67, 5], ["homepage", 68, 5], ["changelog", 69, 5], ["license", 70, 5], ["maintainers", 71, 5]], [["pname", 17, 3], ["version", 18, 3], ["pyproject", 19, 3], ["src", 21, 3], ["build-system", 26, 3], ["dependencies", 28, 3], ["optional-dependencies", 35, 3], ["nativeCheckInputs", 39, 3], ["unittestFlags", 46, 3], ["pythonImportsCheck", 64, 3], ["meta", 66, 3]]]);
 const formals$1 = { args: { lib: false, attrs: false, buildPythonPackage: false, docutils: false, fetchPypi: false, od: false, pygments: false, pythonAtLeast: false, "python-dateutil": false, "repeated-test": false, "setuptools-scm": false, sigtools: false, unittestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 22, 26], ["version", 22, 32], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["datetime", 36, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 67, 5], ["homepage", 68, 5], ["changelog", 69, 5], ["license", 70, 5], ["maintainers", 71, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 17, 3], ["version", 18, 3], ["pyproject", 19, 3], ["src", 21, 3], ["build-system", 26, 3], ["dependencies", 28, 3], ["optional-dependencies", 35, 3], ["nativeCheckInputs", 39, 3], ["unittestFlags", 46, 3], ["pythonImportsCheck", 64, 3], ["meta", 66, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,19 +21,19 @@ export default nix.lambda((args) => (() => {
   const sigtools = nix.arg($, "sigtools");
   const unittestCheckHook = nix.arg($, "unittestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "clize",
       version: "5.0.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-BH9aRHNgJxirG4VnKn4VMDOHF41agcJ13EKd+sHstRA=",
         })))),
       "build-system": nix.thunk(() => [setuptools_scm]),
       dependencies: nix.thunk(() => [attrs, docutils, od, sigtools]),
-      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$2, datetime: nix.thunk(() => [python_dateutil]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: $pos[1], datetime: nix.thunk(() => [python_dateutil]) })),
       nativeCheckInputs: nix.thunk(() => [pygments, unittestCheckHook, python_dateutil, repeated_test]),
       unittestFlags: nix.thunk(() => (() => {
         const disabledTests = nix.thunk(() => nix.concat([
@@ -50,7 +47,7 @@ export default nix.lambda((args) => (() => {
       })()),
       pythonImportsCheck: nix.thunk(() => ["clize"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Command-line argument parsing for Python",
         homepage: "https://github.com/epsy/clize",
         changelog: nix.thunk(() => nix.str`https://github.com/epsy/clize/releases/tag/v${nix.sel(finalAttrs, "version")}`),

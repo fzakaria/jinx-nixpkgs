@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 7], ["repo", 17, 7], ["rev", 18, 7], ["hash", 19, 7]], [["ELECTRON_SKIP_BINARY_DOWNLOAD", 32, 7]], [["description", 35, 5], ["homepage", 36, 5], ["license", 37, 5], ["maintainers", 38, 5], ["platforms", 39, 5], ["mainProgram", 40, 5]], [["pname", 12, 3], ["version", 13, 11], ["src", 14, 3], ["installPhase", 23, 3], ["npmDepsHash", 30, 3], ["dontNpmBuild", 31, 3], ["env", 32, 3], ["meta", 34, 3]]]);
 const formals$1 = { args: { lib: false, buildNpmPackage: false, fetchFromGitHub: false, electron: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 7], ["repo", 17, 7], ["rev", 18, 7], ["hash", 19, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["ELECTRON_SKIP_BINARY_DOWNLOAD", 32, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 35, 5], ["homepage", 36, 5], ["license", 37, 5], ["maintainers", 38, 5], ["platforms", 39, 5], ["mainProgram", 40, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 11], ["src", 14, 3], ["installPhase", 23, 3], ["npmDepsHash", 30, 3], ["dontNpmBuild", 31, 3], ["env", 32, 3], ["meta", 34, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const electron = nix.arg($, "electron");
   const version = "1.2.3";
   return nix.app(buildNpmPackage, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "openfortivpn-webview",
       version: version,
       src: nix.thunk(() => nix.add(nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "gm-vm",
           repo: "openfortivpn-webview",
           rev: nix.thunk(() => nix.str`v${version}-electron`),
@@ -33,9 +30,9 @@ runHook postInstall
 `),
       npmDepsHash: "sha256-NKGu9jZMc+gd4BV1PnF4ukCNkjdUpZIJlYJ7ZzO+5WI=",
       dontNpmBuild: true,
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, ELECTRON_SKIP_BINARY_DOWNLOAD: "1" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], ELECTRON_SKIP_BINARY_DOWNLOAD: "1" })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Application to perform the SAML single sing-on and easily retrieve the SVPNCOOKIE needed by openfortivpn",
         homepage: "https://github.com/gm-vm/openfortivpn-webview",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

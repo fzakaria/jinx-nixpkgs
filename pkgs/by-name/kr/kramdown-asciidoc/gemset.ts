@@ -2,25 +2,17 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
-const pos$1 = nix.positions(here + "/gemset.nix", [["remotes", 7, 7], ["sha256", 8, 7], ["type", 9, 7]]);
-const pos$2 = nix.positions(here + "/gemset.nix", [["dependencies", 3, 5], ["groups", 4, 5], ["platforms", 5, 5], ["source", 6, 5], ["version", 11, 5]]);
-const pos$3 = nix.positions(here + "/gemset.nix", [["remotes", 22, 7], ["sha256", 23, 7], ["type", 24, 7]]);
-const pos$4 = nix.positions(here + "/gemset.nix", [["dependencies", 14, 5], ["groups", 19, 5], ["platforms", 20, 5], ["source", 21, 5], ["version", 26, 5]]);
-const pos$5 = nix.positions(here + "/gemset.nix", [["remotes", 33, 7], ["sha256", 34, 7], ["type", 35, 7]]);
-const pos$6 = nix.positions(here + "/gemset.nix", [["dependencies", 29, 5], ["groups", 30, 5], ["platforms", 31, 5], ["source", 32, 5], ["version", 37, 5]]);
-const pos$7 = nix.positions(here + "/gemset.nix", [["remotes", 43, 7], ["sha256", 44, 7], ["type", 45, 7]]);
-const pos$8 = nix.positions(here + "/gemset.nix", [["groups", 40, 5], ["platforms", 41, 5], ["source", 42, 5], ["version", 47, 5]]);
-const pos$9 = nix.positions(here + "/gemset.nix", [["kramdown", 2, 3], ["kramdown-asciidoc", 13, 3], ["kramdown-parser-gfm", 28, 3], ["rexml", 39, 3]]);
+const $pos = nix.positions(here + "/gemset.nix", [[["remotes", 7, 7], ["sha256", 8, 7], ["type", 9, 7]], [["dependencies", 3, 5], ["groups", 4, 5], ["platforms", 5, 5], ["source", 6, 5], ["version", 11, 5]], [["remotes", 22, 7], ["sha256", 23, 7], ["type", 24, 7]], [["dependencies", 14, 5], ["groups", 19, 5], ["platforms", 20, 5], ["source", 21, 5], ["version", 26, 5]], [["remotes", 33, 7], ["sha256", 34, 7], ["type", 35, 7]], [["dependencies", 29, 5], ["groups", 30, 5], ["platforms", 31, 5], ["source", 32, 5], ["version", 37, 5]], [["remotes", 43, 7], ["sha256", 44, 7], ["type", 45, 7]], [["groups", 40, 5], ["platforms", 41, 5], ["source", 42, 5], ["version", 47, 5]], [["kramdown", 2, 3], ["kramdown-asciidoc", 13, 3], ["kramdown-parser-gfm", 28, 3], ["rexml", 39, 3]]]);
 
 export default nix.thunk(() => ({
-  [nix.POS]: pos$9,
+  [nix.POS]: $pos[8],
   kramdown: nix.thunk(() => ({
-    [nix.POS]: pos$2,
+    [nix.POS]: $pos[1],
     dependencies: nix.thunk(() => ["rexml"]),
     groups: nix.thunk(() => ["default"]),
     platforms: [],
     source: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       remotes: nix.thunk(() => ["https://rubygems.org"]),
       sha256: "1ic14hdcqxn821dvzki99zhmcy130yhv5fqfffkcf87asv5mnbmn",
       type: "gem",
@@ -28,12 +20,12 @@ export default nix.thunk(() => ({
     version: "2.4.0",
   })),
   "kramdown-asciidoc": nix.thunk(() => ({
-    [nix.POS]: pos$4,
+    [nix.POS]: $pos[3],
     dependencies: nix.thunk(() => ["kramdown", "kramdown-parser-gfm", "rexml"]),
     groups: nix.thunk(() => ["default"]),
     platforms: [],
     source: nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       remotes: nix.thunk(() => ["https://rubygems.org"]),
       sha256: "1j7qbpq6zhgcf9ykhz5r1wlr3r8fls6hvhdisxzz4v35rni5kwp9",
       type: "gem",
@@ -41,12 +33,12 @@ export default nix.thunk(() => ({
     version: "2.1.0",
   })),
   "kramdown-parser-gfm": nix.thunk(() => ({
-    [nix.POS]: pos$6,
+    [nix.POS]: $pos[5],
     dependencies: nix.thunk(() => ["kramdown"]),
     groups: nix.thunk(() => ["default"]),
     platforms: [],
     source: nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       remotes: nix.thunk(() => ["https://rubygems.org"]),
       sha256: "0a8pb3v951f4x7h968rqfsa19c8arz21zw1vaj42jza22rap8fgv",
       type: "gem",
@@ -54,11 +46,11 @@ export default nix.thunk(() => ({
     version: "1.1.0",
   })),
   rexml: nix.thunk(() => ({
-    [nix.POS]: pos$8,
+    [nix.POS]: $pos[7],
     groups: nix.thunk(() => ["default"]),
     platforms: [],
     source: nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       remotes: nix.thunk(() => ["https://rubygems.org"]),
       sha256: "05i8518ay14kjbma550mv0jm8a6di8yp5phzrd8rj44z9qnrlrp0",
       type: "gem",

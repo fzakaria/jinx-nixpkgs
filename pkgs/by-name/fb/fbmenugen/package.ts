@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["sha256", 22, 5]], [["xmessage", 27, 7], ["fluxbox", 28, 15], ["gnused", 28, 23], ["fbmenugen", 30, 7]], [["updateScript", 71, 12]], [["homepage", 74, 5], ["description", 75, 5], ["mainProgram", 76, 5], ["license", 77, 5], ["platforms", 78, 5], ["maintainers", 79, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["patches", 25, 3], ["outputs", 34, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 41, 3], ["dontConfigure", 52, 3], ["dontBuild", 54, 3], ["postPatch", 56, 3], ["installPhase", 60, 3], ["postFixup", 67, 3], ["passthru", 71, 3], ["meta", 73, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, fluxbox: false, gnused: false, makeWrapper: false, perlPackages: false, replaceVars: false, xmessage: false, wrapGAppsHook3: false, gitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["sha256", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["xmessage", 27, 7], ["fluxbox", 28, 15], ["gnused", 28, 23], ["fbmenugen", 30, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 71, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 74, 5], ["description", 75, 5], ["mainProgram", 76, 5], ["license", 77, 5], ["platforms", 78, 5], ["maintainers", 79, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["patches", 25, 3], ["outputs", 34, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 41, 3], ["dontConfigure", 52, 3], ["dontBuild", 54, 3], ["postPatch", 56, 3], ["installPhase", 60, 3], ["postFixup", 67, 3], ["passthru", 71, 3], ["meta", 73, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const pname = "fbmenugen";
       const version = "0.87";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "trizen",
           repo: "fbmenugen",
           rev: version,
@@ -33,7 +29,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./0001-Fix-paths.patch"), nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             xmessage: xmessage,
             fluxbox: fluxbox,
             gnused: gnused,
@@ -58,11 +54,11 @@ export default nix.lambda((args) => (() => {
       const installPhase = "runHook preInstall\ninstall -D -t $out/bin fbmenugen\ninstall -D -t $out/etc/xdg/fbmenugen schema.pl\nrunHook postInstall\n";
       const postFixup = "wrapProgram \"$out/bin/fbmenugen\" --prefix PERL5LIB : \"$PERL5LIB\"\n";
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://github.com/trizen/fbmenugen",
         description: "Simple menu generator for the Fluxbox Window Manager",
         mainProgram: "fbmenugen",
@@ -71,7 +67,7 @@ export default nix.lambda((args) => (() => {
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "romildo"))]),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         src,

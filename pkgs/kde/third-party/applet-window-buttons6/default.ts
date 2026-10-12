@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]], [["NIX_CFLAGS_COMPILE", 28, 7]], [["description", 44, 5], ["homepage", 45, 5], ["license", 46, 5], ["maintainers", 47, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["dontWrapQtApps", 25, 3], ["env", 28, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 35, 3], ["meta", 43, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, "extra-cmake-modules": false, kcmutils: false, kcoreaddons: false, kdeclarative: false, kdecoration: false, libplasma: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["NIX_CFLAGS_COMPILE", 28, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 44, 5], ["homepage", 45, 5], ["license", 46, 5], ["maintainers", 47, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["dontWrapQtApps", 25, 3], ["env", 28, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 35, 3], ["meta", 43, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,18 +21,18 @@ export default nix.lambda((args) => (() => {
       const pname = "applet-window-buttons6";
       const version = "0.14.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "moodyhunter",
           repo: "applet-window-buttons6",
           rev: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-HnlgBQKT99vVkl6DWqMkN8Vz+QzzZBGj5tqOJ22VkJ8=",
         }))));
       const dontWrapQtApps = true;
-      const env = nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-std=c++20" }));
+      const env = nix.thunk(() => ({ [nix.POS]: $pos[1], NIX_CFLAGS_COMPILE: "-std=c++20" }));
       const nativeBuildInputs = nix.thunk(() => [cmake, extra_cmake_modules]);
       const buildInputs = nix.thunk(() => [kcmutils, kcoreaddons, kdeclarative, kdecoration, libplasma]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Plasma 6 applet in order to show window buttons in your panels",
         homepage: "https://github.com/moodyhunter/applet-window-buttons6",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),
@@ -45,7 +42,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 33, 13], ["version", 33, 19], ["hash", 34, 5]], [["betamax", 50, 5], ["kerberos", 54, 5], ["oauth1", 55, 5], ["saml2", 56, 5]], [["description", 75, 5], ["homepage", 76, 5], ["license", 77, 5], ["teams", 78, 5]], [["pname", 28, 3], ["version", 29, 3], ["pyproject", 30, 3], ["src", 32, 3], ["build-system", 37, 3], ["dependencies", 39, 3], ["optional-dependencies", 49, 3], ["nativeCheckInputs", 59, 3], ["pythonImportsCheck", 72, 3], ["meta", 74, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, betamax: false, fixtures: false, hacking: false, iso8601: false, lxml: false, oauthlib: false, "os-service-types": false, "oslo-config": false, "oslo-utils": false, pycodestyle: false, pyyaml: false, requests: false, "requests-kerberos": false, "requests-mock": false, setuptools: false, stestrCheckHook: false, stevedore: false, testresources: false, testtools: false, "typing-extensions": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 33, 13], ["version", 33, 19], ["hash", 34, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["betamax", 50, 5], ["kerberos", 54, 5], ["oauth1", 55, 5], ["saml2", 56, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 75, 5], ["homepage", 76, 5], ["license", 77, 5], ["teams", 78, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 28, 3], ["version", 29, 3], ["pyproject", 30, 3], ["src", 32, 3], ["build-system", 37, 3], ["dependencies", 39, 3], ["optional-dependencies", 49, 3], ["nativeCheckInputs", 59, 3], ["pythonImportsCheck", 72, 3], ["meta", 74, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -38,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const version = "5.17.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-gjWazCDHVPyyKBjgkOL+pkfkxcETemrdtJhOn7pwirM=",
@@ -46,7 +43,7 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [setuptools]);
       const dependencies = nix.thunk(() => nix.concat([iso8601, os_service_types, requests, stevedore, typing_extensions], nix.app(nix.sel(lib, "concatAttrValues"), optional_dependencies)));
       const optional_dependencies = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         betamax: nix.thunk(() => [betamax, pyyaml]),
         kerberos: nix.thunk(() => [requests_kerberos]),
         oauth1: nix.thunk(() => [oauthlib]),
@@ -65,14 +62,14 @@ export default nix.lambda((args) => (() => {
       ], nix.app(nix.sel(lib, "concatAttrValues"), optional_dependencies)));
       const pythonImportsCheck = nix.thunk(() => ["keystoneauth1"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Authentication Library for OpenStack Identity",
         homepage: "https://github.com/openstack/keystoneauth",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "openstack"))]),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

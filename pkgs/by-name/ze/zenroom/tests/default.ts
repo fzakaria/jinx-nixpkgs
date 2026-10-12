@@ -2,14 +2,14 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["nativeBuildInputs", 7, 5]]]);
 const formals$1 = { args: { runCommand: false, zenroom: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["nativeBuildInputs", 7, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const runCommand = nix.arg($, "runCommand");
   const zenroom = nix.arg($, "zenroom");
-  return nix.app(runCommand, "basic-tests", nix.thunk(() => ({ [nix.POS]: pos$1, nativeBuildInputs: nix.thunk(() => [zenroom]) })), nix.thunk(() => nix.str`mkdir -p $out
+  return nix.app(runCommand, "basic-tests", nix.thunk(() => ({ [nix.POS]: $pos[0], nativeBuildInputs: nix.thunk(() => [zenroom]) })), nix.thunk(() => nix.str`mkdir -p $out
 
 TEST_DIR="${nix.path(here, "./.")}"
 

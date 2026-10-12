@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]], [["description", 54, 5], ["homepage", 55, 5], ["license", 56, 5], ["maintainers", 57, 5]], [["pname", 21, 3], ["version", 22, 3], ["format", 23, 3], ["src", 25, 3], ["propagatedBuildInputs", 32, 3], ["nativeCheckInputs", 42, 3], ["pythonImportsCheck", 51, 3], ["meta", 53, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, "factory-boy": false, fetchFromGitHub: false, httpretty: false, inflection: false, jsondate: false, mock: false, "more-itertools": false, numpy: false, pandas: false, parameterized: false, pytestCheckHook: false, "python-dateutil": false, requests: false, six: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 54, 5], ["homepage", 55, 5], ["license", 56, 5], ["maintainers", 57, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 21, 3], ["version", 22, 3], ["format", 23, 3], ["src", 25, 3], ["propagatedBuildInputs", 32, 3], ["nativeCheckInputs", 42, 3], ["pythonImportsCheck", 51, 3], ["meta", 53, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.0.4";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Nasdaq",
           repo: "data-link-python",
           tag: version,
@@ -40,7 +38,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [factory_boy, httpretty, jsondate, mock, parameterized, pytestCheckHook]);
       const pythonImportsCheck = nix.thunk(() => ["nasdaqdatalink"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Library for Nasdaq Data Link's RESTful API",
         homepage: "https://github.com/Nasdaq/data-link-python",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -50,7 +48,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         format,

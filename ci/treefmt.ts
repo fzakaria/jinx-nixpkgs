@@ -2,32 +2,18 @@
 import * as nix from "../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/treefmt.nix", [[["command", 37, 9], ["includes", 38, 9], ["options", 42, 9]], [["command", 50, 9], ["excludes", 51, 9], ["includes", 55, 9], ["options", 69, 9]], [["command", 80, 9], ["options", 81, 9], ["includes", 87, 9], ["priority", 88, 9]], [["command", 92, 9], ["includes", 93, 9]], [["language", 102, 17], ["command", 103, 17]], [["nixfmt", 101, 23]], [["presets", 101, 15]], [["command", 97, 9], ["options", 98, 9], ["includes", 108, 9]], [["command", 112, 9], ["excludes", 113, 9], ["includes", 121, 9], ["options", 122, 9], ["priority", 140, 9]], [["command", 146, 9], ["includes", 147, 9]], [["command", 151, 9], ["excludes", 152, 9], ["includes", 158, 9], ["options", 162, 9]], [["command", 169, 9], ["includes", 170, 9]], [["actionlint", 36, 7], ["biome", 49, 7], ["editorconfig-checker", 79, 7], ["keep-sorted", 91, 7], ["markdown-code-runner", 96, 7], ["nixf-diagnose", 111, 7], ["nixfmt", 145, 7], ["yamlfmt", 150, 7], ["zizmor", 168, 7]], [["excludes", 14, 5], ["verbose", 29, 5], ["on-unmatched", 32, 5], ["formatter", 34, 5]], [["runtimeInputs", 7, 3], ["settings", 12, 3]]]);
 const formals$1 = { args: { lib: false, pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/treefmt.nix", [["command", 37, 9], ["includes", 38, 9], ["options", 42, 9]]);
-const pos$2 = nix.positions(here + "/treefmt.nix", [["command", 50, 9], ["excludes", 51, 9], ["includes", 55, 9], ["options", 69, 9]]);
-const pos$3 = nix.positions(here + "/treefmt.nix", [["command", 80, 9], ["options", 81, 9], ["includes", 87, 9], ["priority", 88, 9]]);
-const pos$4 = nix.positions(here + "/treefmt.nix", [["command", 92, 9], ["includes", 93, 9]]);
-const pos$5 = nix.positions(here + "/treefmt.nix", [["language", 102, 17], ["command", 103, 17]]);
-const pos$6 = nix.positions(here + "/treefmt.nix", [["nixfmt", 101, 23]]);
-const pos$7 = nix.positions(here + "/treefmt.nix", [["presets", 101, 15]]);
-const pos$8 = nix.positions(here + "/treefmt.nix", [["command", 97, 9], ["options", 98, 9], ["includes", 108, 9]]);
-const pos$9 = nix.positions(here + "/treefmt.nix", [["command", 112, 9], ["excludes", 113, 9], ["includes", 121, 9], ["options", 122, 9], ["priority", 140, 9]]);
-const pos$10 = nix.positions(here + "/treefmt.nix", [["command", 146, 9], ["includes", 147, 9]]);
-const pos$11 = nix.positions(here + "/treefmt.nix", [["command", 151, 9], ["excludes", 152, 9], ["includes", 158, 9], ["options", 162, 9]]);
-const pos$12 = nix.positions(here + "/treefmt.nix", [["command", 169, 9], ["includes", 170, 9]]);
-const pos$13 = nix.positions(here + "/treefmt.nix", [["actionlint", 36, 7], ["biome", 49, 7], ["editorconfig-checker", 79, 7], ["keep-sorted", 91, 7], ["markdown-code-runner", 96, 7], ["nixf-diagnose", 111, 7], ["nixfmt", 145, 7], ["yamlfmt", 150, 7], ["zizmor", 168, 7]]);
-const pos$14 = nix.positions(here + "/treefmt.nix", [["excludes", 14, 5], ["verbose", 29, 5], ["on-unmatched", 32, 5], ["formatter", 34, 5]]);
-const pos$15 = nix.positions(here + "/treefmt.nix", [["runtimeInputs", 7, 3], ["settings", 12, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   return {
-    [nix.POS]: pos$15,
+    [nix.POS]: $pos[14],
     runtimeInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "gitMinimal"))]),
     settings: nix.thunk(() => ({
-      [nix.POS]: pos$14,
+      [nix.POS]: $pos[13],
       excludes: nix.thunk(() => [
         "*.lock",
         "*.patch",
@@ -44,9 +30,9 @@ export default nix.lambda((args) => (() => {
       verbose: 1n,
       "on-unmatched": "debug",
       formatter: nix.thunk(() => ({
-        [nix.POS]: pos$13,
+        [nix.POS]: $pos[12],
         actionlint: nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           command: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgs, "actionlint")))),
           includes: nix.thunk(() => [".github/workflows/*.yml", ".github/workflows/*.yaml"]),
           options: nix.thunk(() => [
@@ -55,7 +41,7 @@ export default nix.lambda((args) => (() => {
           ]),
         })),
         biome: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           command: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgs, "biome")))),
           excludes: nix.thunk(() => ["*.min.js", "pkgs/*"]),
           includes: nix.thunk(() => [
@@ -82,27 +68,27 @@ export default nix.lambda((args) => (() => {
           ]),
         })),
         "editorconfig-checker": nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           command: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgs, "editorconfig-checker")))),
           options: nix.thunk(() => ["-disable-indent-size", "-disable-charset"]),
           includes: nix.thunk(() => ["*"]),
           priority: 1n,
         })),
         "keep-sorted": nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           command: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgs, "keep-sorted")))),
           includes: nix.thunk(() => ["*"]),
         })),
         "markdown-code-runner": nix.thunk(() => ({
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           command: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgs, "markdown-code-runner")))),
           options: nix.thunk(() => (() => {
             const config = nix.thunk(() => nix.app(nix.sel(pkgs, "writers", "writeTOML"), "markdown-code-runner-config", nix.thunk(() => ({
-                [nix.POS]: pos$7,
+                [nix.POS]: $pos[6],
                 presets: nix.thunk(() => ({
-                  [nix.POS]: pos$6,
+                  [nix.POS]: $pos[5],
                   nixfmt: nix.thunk(() => ({
-                    [nix.POS]: pos$5,
+                    [nix.POS]: $pos[4],
                     language: "nix",
                     command: nix.thunk(() => [
                       nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgs, "nixfmt")))),
@@ -115,7 +101,7 @@ export default nix.lambda((args) => (() => {
           includes: nix.thunk(() => ["*.md"]),
         })),
         "nixf-diagnose": nix.thunk(() => ({
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           command: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgs, "nixf-diagnose")))),
           excludes: nix.thunk(() => [
             "pkgs/servers/home-assistant/component-packages.nix",
@@ -136,12 +122,12 @@ export default nix.lambda((args) => (() => {
           priority: nix.thunk(() => nix.neg(1n)),
         })),
         nixfmt: nix.thunk(() => ({
-          [nix.POS]: pos$10,
+          [nix.POS]: $pos[9],
           command: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgs, "nixfmt")))),
           includes: nix.thunk(() => ["*.nix"]),
         })),
         yamlfmt: nix.thunk(() => ({
-          [nix.POS]: pos$11,
+          [nix.POS]: $pos[10],
           command: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgs, "yamlfmt")))),
           excludes: nix.thunk(() => [
             "pkgs/development/haskell-modules/configuration-hackage2nix/main.yaml",
@@ -151,7 +137,7 @@ export default nix.lambda((args) => (() => {
           options: nix.thunk(() => ["-formatter", "retain_line_breaks=true"]),
         })),
         zizmor: nix.thunk(() => ({
-          [nix.POS]: pos$12,
+          [nix.POS]: $pos[11],
           command: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgs, "zizmor")))),
           includes: nix.thunk(() => [
             ".github/workflows/*.yml",

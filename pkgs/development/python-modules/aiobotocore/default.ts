@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 31, 5], ["repo", 32, 5], ["tag", 33, 5], ["hash", 34, 5]], [["awscli", 57, 5], ["boto3", 58, 5], ["httpx", 59, 5]], [["description", 102, 5], ["homepage", 103, 5], ["changelog", 104, 5], ["license", 105, 5], ["maintainers", 106, 5]], [["pname", 26, 3], ["version", 27, 3], ["pyproject", 28, 3], ["src", 30, 3], ["pythonRelaxDeps", 39, 3], ["build-system", 41, 3], ["dependencies", 45, 3], ["optional-dependencies", 56, 3], ["nativeCheckInputs", 62, 3], ["pythonImportsCheck", 72, 3], ["disabledTests", 74, 3], ["disabledTestPaths", 79, 3], ["disabledTestMarks", 94, 3], ["__darwinAllowLocalNetworking", 99, 3], ["meta", 101, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, aiohttp: false, aioitertools: false, botocore: false, "python-dateutil": false, jmespath: false, multidict: false, urllib3: false, wrapt: false, anyio: false, dill: false, moto: false, "time-machine": false, werkzeug: false, awscli: false, boto3: false, httpx: false, setuptools: false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 31, 5], ["repo", 32, 5], ["tag", 33, 5], ["hash", 34, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["awscli", 57, 5], ["boto3", 58, 5], ["httpx", 59, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 102, 5], ["homepage", 103, 5], ["changelog", 104, 5], ["license", 105, 5], ["maintainers", 106, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 26, 3], ["version", 27, 3], ["pyproject", 28, 3], ["src", 30, 3], ["pythonRelaxDeps", 39, 3], ["build-system", 41, 3], ["dependencies", 45, 3], ["optional-dependencies", 56, 3], ["nativeCheckInputs", 62, 3], ["pythonImportsCheck", 72, 3], ["disabledTests", 74, 3], ["disabledTestPaths", 79, 3], ["disabledTestMarks", 94, 3], ["__darwinAllowLocalNetworking", 99, 3], ["meta", 101, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -36,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.1.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "aio-libs",
           repo: "aiobotocore",
           tag: version,
@@ -55,7 +52,7 @@ export default nix.lambda((args) => (() => {
         wrapt,
       ]);
       const optional_dependencies = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         awscli: nix.thunk(() => [awscli]),
         boto3: nix.thunk(() => [boto3]),
         httpx: nix.thunk(() => [httpx]),
@@ -79,7 +76,7 @@ export default nix.lambda((args) => (() => {
       const disabledTestMarks = nix.thunk(() => ["localonly"]);
       const __darwinAllowLocalNetworking = true;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Python client for amazon services",
         homepage: "https://github.com/aio-libs/aiobotocore",
         changelog: nix.thunk(() => nix.str`https://github.com/aio-libs/aiobotocore/blob/${nix.sel(src, "tag")}/CHANGES.rst`),
@@ -90,7 +87,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

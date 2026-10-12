@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]], [["description", 26, 5], ["homepage", 27, 5], ["license", 28, 5], ["maintainers", 29, 5]], [["tests", 32, 12]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["cargoHash", 20, 3], ["buildInputs", 22, 3], ["nativeBuildInputs", 23, 3], ["meta", 25, 3], ["passthru", 32, 3]]]);
 const formals$1 = { args: { fetchFromGitHub: false, lib: false, nixosTests: false, rustPlatform: false, openssl: false, "pkg-config": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 26, 5], ["homepage", 27, 5], ["license", 28, 5], ["maintainers", 29, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 32, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["cargoHash", 20, 3], ["buildInputs", 22, 3], ["nativeBuildInputs", 23, 3], ["meta", 25, 3], ["passthru", 32, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const openssl = nix.arg($, "openssl");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "agnos",
       version: "0.1.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "krtab",
           repo: "agnos",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -31,7 +28,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [openssl]),
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Obtains certificates from Let's Encrypt using DNS-01 without the need for API access to the DNS provider",
         homepage: "https://github.com/krtab/agnos",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -40,7 +37,7 @@ export default nix.lambda((args) => (() => {
           return [nix.thunk(() => nix.lookup(w, "justinas"))];
         })()),
       })),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$3, tests: nix.thunk(() => nix.sel(nixosTests, "agnos")) })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[2], tests: nix.thunk(() => nix.sel(nixosTests, "agnos")) })),
     }));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

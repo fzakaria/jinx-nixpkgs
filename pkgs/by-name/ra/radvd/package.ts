@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]], [["connman", 45, 26], ["ipv6", 45, 34], ["systemd-networkd-ipv6-prefix-delegation", 45, 39], ["privacy_scripted", 46, 5], ["privacy_networkd", 47, 5]], [["tests", 44, 12]], [["homepage", 51, 5], ["changelog", 52, 5], ["description", 53, 5], ["downloadPage", 54, 5], ["platforms", 55, 5], ["license", 56, 5], ["maintainers", 57, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 34, 3], ["configureFlags", 39, 3], ["makeFlags", 42, 3], ["passthru", 44, 3], ["meta", 50, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, autoreconfHook: false, "pkg-config": false, libbsd: false, libdaemon: false, bison: false, flex: false, check: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["connman", 45, 26], ["ipv6", 45, 34], ["systemd-networkd-ipv6-prefix-delegation", 45, 39], ["privacy_scripted", 46, 5], ["privacy_networkd", 47, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 44, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 51, 5], ["changelog", 52, 5], ["description", 53, 5], ["downloadPage", 54, 5], ["platforms", 55, 5], ["license", 56, 5], ["maintainers", 57, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 34, 3], ["configureFlags", 39, 3], ["makeFlags", 42, 3], ["passthru", 44, 3], ["meta", 50, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const check = nix.arg($, "check");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "radvd",
       version: "2.21",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "radvd-project",
           repo: "radvd",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,9 +34,9 @@ export default nix.lambda((args) => (() => {
       configureFlags: nix.thunk(() => ["--sysconfdir=/etc"]),
       makeFlags: nix.thunk(() => [nix.thunk(() => nix.str`AR=${nix.sel(stdenv, "cc", "targetPrefix")}ar`)]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           connman: nix.thunk(() => nix.attr(nixosTests, "connman")),
           ipv6: nix.thunk(() => nix.attr(nixosTests, "ipv6")),
           "systemd-networkd-ipv6-prefix-delegation": nix.thunk(() => nix.attr(nixosTests, "systemd-networkd-ipv6-prefix-delegation")),
@@ -49,7 +45,7 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "http://www.litech.org/radvd/",
         changelog: nix.thunk(() => nix.str`https://github.com/radvd-project/radvd/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGES`),
         description: "IPv6 Router Advertisement Daemon",

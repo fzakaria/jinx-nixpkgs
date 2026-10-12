@@ -2,36 +2,18 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/multi-node.nix", [[["buildInputs", 7, 7]], [["enable", 78, 9], ["package", 79, 9], ["keyFile", 80, 9], ["certFile", 81, 9], ["trustedCaFile", 82, 9], ["clientCertAuth", 83, 9], ["listenClientUrls", 84, 9], ["listenPeerUrls", 85, 9]], [["etcd", 77, 7]], [["ETCD_CERT_FILE", 90, 7], ["ETCD_KEY_FILE", 91, 7], ["ETCD_CA_FILE", 92, 7], ["ETCDCTL_ENDPOINTS", 93, 7], ["ETCDCTL_CACERT", 94, 7], ["ETCDCTL_CERT", 95, 7], ["ETCDCTL_KEY", 96, 7]], [["variables", 89, 17]], [["allowedTCPPorts", 99, 25]], [["firewall", 99, 16]], [["services", 76, 5], ["environment", 89, 5], ["networking", 99, 5]], [["initialCluster", 112, 11], ["initialAdvertisePeerUrls", 116, 11]], [["etcd", 111, 18]], [["require", 110, 9], ["services", 111, 9]], [["initialCluster", 125, 11], ["initialAdvertisePeerUrls", 129, 11]], [["etcd", 124, 18]], [["require", 123, 9], ["services", 124, 9]], [["initialCluster", 138, 11], ["initialAdvertisePeerUrls", 143, 11], ["initialClusterState", 144, 11]], [["etcd", 137, 18]], [["require", 136, 9], ["services", 137, 9]], [["node1", 107, 5], ["node2", 120, 5], ["node3", 133, 5]], [["name", 104, 3], ["nodes", 106, 3], ["testScript", 149, 3]]]);
 const formals$1 = { args: { pkgs: false, etcd: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/multi-node.nix", [["buildInputs", 7, 7]]);
-const pos$2 = nix.positions(here + "/multi-node.nix", [["enable", 78, 9], ["package", 79, 9], ["keyFile", 80, 9], ["certFile", 81, 9], ["trustedCaFile", 82, 9], ["clientCertAuth", 83, 9], ["listenClientUrls", 84, 9], ["listenPeerUrls", 85, 9]]);
-const pos$3 = nix.positions(here + "/multi-node.nix", [["etcd", 77, 7]]);
-const pos$4 = nix.positions(here + "/multi-node.nix", [["ETCD_CERT_FILE", 90, 7], ["ETCD_KEY_FILE", 91, 7], ["ETCD_CA_FILE", 92, 7], ["ETCDCTL_ENDPOINTS", 93, 7], ["ETCDCTL_CACERT", 94, 7], ["ETCDCTL_CERT", 95, 7], ["ETCDCTL_KEY", 96, 7]]);
-const pos$5 = nix.positions(here + "/multi-node.nix", [["variables", 89, 17]]);
-const pos$6 = nix.positions(here + "/multi-node.nix", [["allowedTCPPorts", 99, 25]]);
-const pos$7 = nix.positions(here + "/multi-node.nix", [["firewall", 99, 16]]);
-const pos$8 = nix.positions(here + "/multi-node.nix", [["services", 76, 5], ["environment", 89, 5], ["networking", 99, 5]]);
 const formals$2 = { args: {  }, ellipsis: true };
-const pos$9 = nix.positions(here + "/multi-node.nix", [["initialCluster", 112, 11], ["initialAdvertisePeerUrls", 116, 11]]);
-const pos$10 = nix.positions(here + "/multi-node.nix", [["etcd", 111, 18]]);
-const pos$11 = nix.positions(here + "/multi-node.nix", [["require", 110, 9], ["services", 111, 9]]);
 const formals$3 = { args: {  }, ellipsis: true };
-const pos$12 = nix.positions(here + "/multi-node.nix", [["initialCluster", 125, 11], ["initialAdvertisePeerUrls", 129, 11]]);
-const pos$13 = nix.positions(here + "/multi-node.nix", [["etcd", 124, 18]]);
-const pos$14 = nix.positions(here + "/multi-node.nix", [["require", 123, 9], ["services", 124, 9]]);
 const formals$4 = { args: {  }, ellipsis: true };
-const pos$15 = nix.positions(here + "/multi-node.nix", [["initialCluster", 138, 11], ["initialAdvertisePeerUrls", 143, 11], ["initialClusterState", 144, 11]]);
-const pos$16 = nix.positions(here + "/multi-node.nix", [["etcd", 137, 18]]);
-const pos$17 = nix.positions(here + "/multi-node.nix", [["require", 136, 9], ["services", 137, 9]]);
-const pos$18 = nix.positions(here + "/multi-node.nix", [["node1", 107, 5], ["node2", 120, 5], ["node3", 133, 5]]);
-const pos$19 = nix.positions(here + "/multi-node.nix", [["name", 104, 3], ["nodes", 106, 3], ["testScript", 149, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   const etcd = nix.arg($, "etcd");
   const runWithOpenSSL = (file) => (cmd) => nix.app(nix.sel(pkgs, "runCommand"), file, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       buildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "openssl"))]),
     })), cmd);
   const ca_key = nix.thunk(() => nix.app(runWithOpenSSL, "ca-key.pem", "openssl genrsa -out $out 2048"));
@@ -67,11 +49,11 @@ export default nix.lambda((args) => (() => {
   const openssl_cnf = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "openssl.cnf", "ions = v3_req\ndistinguished_name = req_distinguished_name\n[req_distinguished_name]\n[ v3_req ]\nbasicConstraints = CA:FALSE\nkeyUsage = digitalSignature, keyEncipherment\nextendedKeyUsage = serverAuth, clientAuth\nsubjectAltName = @alt_names\n[alt_names]\nDNS.1 = node1\nDNS.2 = node2\nDNS.3 = node3\nIP.1 = 127.0.0.1\n"));
   const client_openssl_cnf = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "client-openssl.cnf", "ions = v3_req\ndistinguished_name = req_distinguished_name\n[req_distinguished_name]\n[ v3_req ]\nbasicConstraints = CA:FALSE\nkeyUsage = digitalSignature, keyEncipherment\nextendedKeyUsage = clientAuth\n"));
   const nodeConfig = nix.thunk(() => ({
-    [nix.POS]: pos$8,
+    [nix.POS]: $pos[7],
     services: nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       etcd: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         enable: true,
         package: etcd,
         keyFile: etcd_key,
@@ -83,9 +65,9 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     environment: nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       variables: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         ETCD_CERT_FILE: nix.thunk(() => nix.str`${etcd_client_cert}`),
         ETCD_KEY_FILE: nix.thunk(() => nix.str`${etcd_client_key}`),
         ETCD_CA_FILE: nix.thunk(() => nix.str`${ca_pem}`),
@@ -96,24 +78,24 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     networking: nix.thunk(() => ({
-      [nix.POS]: pos$7,
-      firewall: nix.thunk(() => ({ [nix.POS]: pos$6, allowedTCPPorts: nix.thunk(() => [2380n]) })),
+      [nix.POS]: $pos[6],
+      firewall: nix.thunk(() => ({ [nix.POS]: $pos[5], allowedTCPPorts: nix.thunk(() => [2380n]) })),
     })),
   }));
   return {
-    [nix.POS]: pos$19,
+    [nix.POS]: $pos[18],
     name: "etcd-multi-node",
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$18,
+      [nix.POS]: $pos[17],
       node1: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          [nix.POS]: pos$11,
+          [nix.POS]: $pos[10],
           require: nix.thunk(() => [nodeConfig]),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$10,
+            [nix.POS]: $pos[9],
             etcd: nix.thunk(() => ({
-              [nix.POS]: pos$9,
+              [nix.POS]: $pos[8],
               initialCluster: nix.thunk(() => ["node1=https://node1:2380", "node2=https://node2:2380"]),
               initialAdvertisePeerUrls: nix.thunk(() => ["https://node1:2380"]),
             })),
@@ -123,12 +105,12 @@ export default nix.lambda((args) => (() => {
       node2: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$3);
         return {
-          [nix.POS]: pos$14,
+          [nix.POS]: $pos[13],
           require: nix.thunk(() => [nodeConfig]),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$13,
+            [nix.POS]: $pos[12],
             etcd: nix.thunk(() => ({
-              [nix.POS]: pos$12,
+              [nix.POS]: $pos[11],
               initialCluster: nix.thunk(() => ["node1=https://node1:2380", "node2=https://node2:2380"]),
               initialAdvertisePeerUrls: nix.thunk(() => ["https://node2:2380"]),
             })),
@@ -138,12 +120,12 @@ export default nix.lambda((args) => (() => {
       node3: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$4);
         return {
-          [nix.POS]: pos$17,
+          [nix.POS]: $pos[16],
           require: nix.thunk(() => [nodeConfig]),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$16,
+            [nix.POS]: $pos[15],
             etcd: nix.thunk(() => ({
-              [nix.POS]: pos$15,
+              [nix.POS]: $pos[14],
               initialCluster: nix.thunk(() => [
                 "node1=https://node1:2380",
                 "node2=https://node2:2380",

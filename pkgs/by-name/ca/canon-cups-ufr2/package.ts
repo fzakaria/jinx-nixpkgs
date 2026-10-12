@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 48, 5], ["hash", 49, 5]], [["name", 68, 5], ["checkPhase", 69, 5], ["text", 70, 5]], [["description", 211, 5], ["homepage", 212, 5], ["sourceProvenance", 213, 5], ["license", 214, 5], ["maintainers", 215, 5]], [["pname", 105, 3], ["version", 106, 11], ["src", 107, 3], ["dontPatchELF", 110, 3], ["postUnpack", 112, 3], ["patches", 120, 3], ["postPatch", 124, 3], ["nativeBuildInputs", 139, 3], ["buildInputs", 148, 11], ["configureScript", 150, 3], ["buildPhase", 167, 3], ["installPhase", 175, 3], ["meta", 210, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, writeTextFile: false, writeScript: false, fetchurl: false, unzip: false, autoconf: false, automake: false, libtool: false, makeWrapper: false, cups: false, jbigkit: false, libjpeg: false, libgcrypt: false, glib: false, gtk3: false, "gdk-pixbuf": false, pango: false, cairo: false, atk: false, "pkg-config": false, libxml2_13: false, libredirect: false, ghostscript: false, pkgs: false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 48, 5], ["hash", 49, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 68, 5], ["checkPhase", 69, 5], ["text", 70, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 211, 5], ["homepage", 212, 5], ["sourceProvenance", 213, 5], ["license", 214, 5], ["maintainers", 215, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 105, 3], ["version", 106, 11], ["src", 107, 3], ["dontPatchELF", 110, 3], ["postUnpack", 112, 3], ["patches", 120, 3], ["postPatch", 124, 3], ["nativeBuildInputs", 139, 3], ["buildInputs", 148, 11], ["configureScript", 150, 3], ["buildPhase", 167, 3], ["installPhase", 175, 3], ["meta", 210, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -45,7 +42,7 @@ export default nix.lambda((args) => (() => {
   const suffix2 = "20";
   const versionNoDots = nix.thunk(() => nix.builtins.replaceStrings(nix.thunk(() => ["."]), nix.thunk(() => [""]), version));
   const src_canon = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: nix.thunk(() => nix.str`https://gdlp01.c-wss.com/gds/${dl}/linux-UFRII-drv-v${versionNoDots}-${suffix1}-${suffix2}.tar.gz`),
       hash: "sha256-6QJaaABubEaERpJxfVGxghB8yIb2pCaQZ6+VoqjmYrk=",
     }))));
@@ -64,7 +61,7 @@ export default nix.lambda((args) => (() => {
     atk,
   ]);
   const convertSpec = nix.thunk(() => nix.app(writeTextFile, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       name: "convert-spec.awk",
       checkPhase: "awk -f $target < /dev/null",
       text: nix.thunk(() => nix.str`$1 == "%" phase { inPhase = 1; next }
@@ -181,7 +178,7 @@ makeWrapper "${ghostscript}/bin/gs" "$out/bin/gs" \\
 runHook postInstall
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "CUPS Linux drivers for Canon printers",
         homepage: "http://www.canon.com/",
         sourceProvenance: nix.thunk(() => (() => {
@@ -195,7 +192,7 @@ runHook postInstall
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version: version_1,
         src,

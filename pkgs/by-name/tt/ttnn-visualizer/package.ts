@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]], [["src", 37, 28], ["pname", 37, 32], ["version", 37, 38], ["pnpm", 38, 7], ["fetcherVersion", 39, 7], ["hash", 40, 7], ["postPatch", 41, 7]], [["CI", 51, 7], ["npm_config_yes", 52, 7], ["pnpm_config_confirm_modules_purge", 53, 7]], [["pname", 32, 5], ["version", 33, 13], ["src", 34, 13], ["pnpmDeps", 36, 5], ["nativeBuildInputs", 44, 5], ["env", 50, 5], ["postPatch", 56, 5], ["buildPhase", 72, 5], ["installPhase", 78, 5]], [["pname", 87, 5], ["version", 88, 13], ["pyproject", 89, 5], ["src", 90, 5], ["build-system", 92, 5], ["postPatch", 97, 5], ["propagatedBuildInputs", 102, 5], ["pythonRelaxDeps", 123, 5], ["pythonImportsCheck", 138, 5]], [["description", 156, 7], ["homepage", 157, 7], ["license", 158, 7], ["mainProgram", 159, 7], ["maintainers", 160, 7], ["platforms", 161, 7]], [["strictDeps", 153, 5], ["__structuredAttrs", 154, 5], ["meta", 155, 5]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, fetchPnpmDeps: false, nodejs_24: false, pnpmConfigHook: false, pnpm_11: false, python3: false, stdenvNoCC: false, writeShellScriptBin: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["src", 37, 28], ["pname", 37, 32], ["version", 37, 38], ["pnpm", 38, 7], ["fetcherVersion", 39, 7], ["hash", 40, 7], ["postPatch", 41, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["CI", 51, 7], ["npm_config_yes", 52, 7], ["pnpm_config_confirm_modules_purge", 53, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 32, 5], ["version", 33, 13], ["src", 34, 13], ["pnpmDeps", 36, 5], ["nativeBuildInputs", 44, 5], ["env", 50, 5], ["postPatch", 56, 5], ["buildPhase", 72, 5], ["installPhase", 78, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 87, 5], ["version", 88, 13], ["pyproject", 89, 5], ["src", 90, 5], ["build-system", 92, 5], ["postPatch", 97, 5], ["propagatedBuildInputs", 102, 5], ["pythonRelaxDeps", 123, 5], ["pythonImportsCheck", 138, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 156, 7], ["homepage", 157, 7], ["license", 158, 7], ["mainProgram", 159, 7], ["maintainers", 160, 7], ["platforms", 161, 7]]);
-const pos$7 = nix.positions(here + "/package.nix", [["strictDeps", 153, 5], ["__structuredAttrs", 154, 5], ["meta", 155, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,19 +20,19 @@ export default nix.lambda((args) => (() => {
   const patchNodeEngine = "substituteInPlace package.json \\\n  --replace-fail '\"node\": \"24.15.0\"' '\"node\": \">=24.15.0\"'\nsubstituteInPlace pnpm-workspace.yaml \\\n  --replace-fail 'engineStrict: true' 'engineStrict: false'\n";
   const ps = nix.thunk(() => nix.sel(python3, "pkgs"));
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "tenstorrent",
       repo: "ttnn-visualizer",
       tag: nix.thunk(() => nix.str`v${version}`),
       hash: "sha256-9ohL+xjiu56gasor8+eKsJPWhoDVD1zxFw60QYbWsHQ=",
     }))));
   const frontendSource = nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "ttnn-visualizer-frontend-source",
       version: version,
       src: src,
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
@@ -49,7 +43,7 @@ export default nix.lambda((args) => (() => {
         })))),
       nativeBuildInputs: nix.thunk(() => [nodejs_24, pnpm_11, pnpmConfigHook]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         CI: "true",
         npm_config_yes: "true",
         pnpm_config_confirm_modules_purge: "false",
@@ -72,7 +66,7 @@ PY
       installPhase: "runHook preInstall\nmkdir -p \"$out\"\ncp -r . \"$out/\"\nrunHook postInstall\n",
     })));
   const ttnnVisualizer = nix.thunk(() => nix.app(nix.sel(ps, "buildPythonPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "ttnn-visualizer",
       version: version,
       pyproject: true,
@@ -127,11 +121,11 @@ PY
 export PATH="${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [pythonEnv]))}:$PATH"
 exec ${pythonEnv}/bin/python -m ttnn_visualizer.app "$@"
 `)), "overrideAttrs"), (_) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       strictDeps: true,
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Tool for visualizing and analyzing TT-NN model execution",
         homepage: "https://github.com/tenstorrent/ttnn-visualizer",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

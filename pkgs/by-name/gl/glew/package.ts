@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 20, 5], ["hash", 21, 5]], [["pkg-config", 71, 18]], [["tests", 71, 12]], [["description", 74, 5], ["homepage", 75, 5], ["license", 76, 5], ["pkgConfigModules", 82, 5], ["platforms", 83, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["patches", 24, 3], ["outputs", 33, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 40, 3], ["propagatedBuildInputs", 45, 3], ["cmakeDir", 47, 3], ["cmakeFlags", 48, 3], ["postInstall", 53, 3], ["passthru", 71, 3], ["meta", 73, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, cmake: false, libGLU: false, libxmu: false, libxi: false, libxext: false, enableEGL: true, testers: false, mesa: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pkg-config", 71, 18]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 71, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 74, 5], ["homepage", 75, 5], ["license", 76, 5], ["pkgConfigModules", 82, 5], ["platforms", 83, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["patches", 24, 3], ["outputs", 33, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 40, 3], ["propagatedBuildInputs", 45, 3], ["cmakeDir", 47, 3], ["cmakeFlags", 48, 3], ["postInstall", 53, 3], ["passthru", 71, 3], ["meta", 73, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const mesa = nix.arg($, "mesa");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "glew",
       version: "2.3.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/glew/glew-${nix.sel(finalAttrs, "version")}.tgz`),
           hash: "sha256-tkeQ+UuSas1+j4TF1gAKhstDlnvR5oiwMIkHl5nJ6Ik=",
         })))),
@@ -40,14 +36,14 @@ export default nix.lambda((args) => (() => {
       cmakeFlags: nix.thunk(() => nix.concat(["-DBUILD_SHARED_LIBS=ON"], nix.app(nix.sel(lib, "optional"), enableEGL, "-DGLEW_EGL=ON"))),
       postInstall: "moveToOutput lib/cmake \"${!outputDev}\"\nmoveToOutput lib/pkgconfig \"${!outputDev}\"\n\ncat >> \"${!outputDev}\"/lib/cmake/glew/glew-config.cmake <<EOF\n# nixpkg's workaround for a cmake bug\n# https://discourse.cmake.org/t/the-findglew-cmake-module-does-not-set-glew-libraries-in-some-cases/989/3\nset(GLEW_VERSION \"$version\")\nset(GLEW_LIBRARIES GLEW::glew\\${_glew_target_postfix})\nget_target_property(GLEW_INCLUDE_DIRS GLEW::glew\\${_glew_target_postfix} INTERFACE_INCLUDE_DIRECTORIES)\nset_target_properties(GLEW::GLEW\\${_glew_target_postfix} PROPERTIES\n    IMPORTED_LINK_INTERFACE_LIBRARIES_RELEASE \"\"\n    IMPORTED_IMPLIB_RELEASE \"GLEW\"\n    IMPORTED_IMPLIB_DEBUG \"GLEW\"\n)\nEOF\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "testMetaPkgConfig"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "OpenGL extension loading library for C/C++",
         homepage: "https://glew.sourceforge.net/",
         license: nix.thunk(() => (() => {

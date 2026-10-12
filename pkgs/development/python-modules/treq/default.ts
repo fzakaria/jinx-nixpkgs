@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 27, 26], ["version", 27, 32], ["hash", 28, 5]], [["homepage", 60, 5], ["description", 61, 5], ["license", 62, 5], ["maintainers", 63, 5]], [["pname", 22, 3], ["version", 23, 3], ["pyproject", 24, 3], ["src", 26, 3], ["nativeBuildInputs", 31, 3], ["propagatedBuildInputs", 36, 3], ["nativeCheckInputs", 46, 3], ["checkPhase", 51, 3], ["meta", 59, 3]]]);
 const formals$1 = { args: { lib: false, fetchPypi: false, buildPythonPackage: false, incremental: false, hatchling: false, attrs: false, hyperlink: false, multipart: false, requests: false, twisted: false, httpbin: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 27, 26], ["version", 27, 32], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 60, 5], ["description", 61, 5], ["license", 62, 5], ["maintainers", 63, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 22, 3], ["version", 23, 3], ["pyproject", 24, 3], ["src", 26, 3], ["nativeBuildInputs", 31, 3], ["propagatedBuildInputs", 36, 3], ["nativeCheckInputs", 46, 3], ["checkPhase", 51, 3], ["meta", 59, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const twisted = nix.arg($, "twisted");
   const httpbin = nix.arg($, "httpbin");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "treq",
       version: "25.5.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-Jd3jpVroXsLyxWMyyZrvJVqxT5l9DQBVLr/xNTipgEo=",
@@ -36,7 +34,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [httpbin, twisted]),
       checkPhase: "runHook preCheck\n\ntrial treq\n\nrunHook postCheck\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/twisted/treq",
         description: "Requests-like API built on top of twisted.web's Agent",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

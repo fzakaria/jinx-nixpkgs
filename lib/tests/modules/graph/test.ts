@@ -2,19 +2,12 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
-const pos$1 = nix.positions(here + "/test.nix", [["modules", 5, 5]]);
-const pos$2 = nix.positions(here + "/test.nix", [["key", 17, 7], ["file", 18, 7], ["imports", 19, 7], ["disabled", 20, 7]]);
-const pos$3 = nix.positions(here + "/test.nix", [["key", 23, 7], ["file", 24, 7], ["imports", 25, 7], ["disabled", 26, 7]]);
-const pos$4 = nix.positions(here + "/test.nix", [["key", 37, 15], ["file", 38, 15], ["imports", 39, 15], ["disabled", 40, 15]]);
-const pos$5 = nix.positions(here + "/test.nix", [["key", 33, 11], ["file", 34, 11], ["imports", 35, 11], ["disabled", 43, 11]]);
-const pos$6 = nix.positions(here + "/test.nix", [["key", 29, 7], ["file", 30, 7], ["imports", 31, 7], ["disabled", 46, 7]]);
-const pos$7 = nix.positions(here + "/test.nix", [["key", 53, 11], ["file", 54, 11], ["imports", 55, 11], ["disabled", 56, 11]]);
-const pos$8 = nix.positions(here + "/test.nix", [["key", 49, 7], ["file", 50, 7], ["imports", 51, 7], ["disabled", 59, 7]]);
+const $pos = nix.positions(here + "/test.nix", [[["modules", 5, 5]], [["key", 17, 7], ["file", 18, 7], ["imports", 19, 7], ["disabled", 20, 7]], [["key", 23, 7], ["file", 24, 7], ["imports", 25, 7], ["disabled", 26, 7]], [["key", 37, 15], ["file", 38, 15], ["imports", 39, 15], ["disabled", 40, 15]], [["key", 33, 11], ["file", 34, 11], ["imports", 35, 11], ["disabled", 43, 11]], [["key", 29, 7], ["file", 30, 7], ["imports", 31, 7], ["disabled", 46, 7]], [["key", 53, 11], ["file", 54, 11], ["imports", 55, 11], ["disabled", 56, 11]], [["key", 49, 7], ["file", 50, 7], ["imports", 51, 7], ["disabled", 59, 7]]]);
 
 export default nix.thunk(() => (() => {
   const lib = nix.thunk(() => nix.builtins.import(nix.path(here, "../../..")));
   const evaluation = nix.thunk(() => nix.app(nix.sel(lib, "evalModules"), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       modules: nix.thunk(() => [
         nix.thunk(() => ({})),
         (args) => ({}),
@@ -25,31 +18,31 @@ export default nix.thunk(() => (() => {
   const actual = nix.thunk(() => nix.sel(evaluation, "graph"));
   const expected = nix.thunk(() => [
     nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       key: ":anon-1",
       file: "<unknown-file>",
       imports: [],
       disabled: false,
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       key: ":anon-2",
       file: "<unknown-file>",
       imports: [],
       disabled: false,
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       key: nix.thunk(() => nix.builtins.toString(nix.path(here, "./a.nix"))),
       file: nix.thunk(() => nix.builtins.toString(nix.path(here, "./a.nix"))),
       imports: nix.thunk(() => [
         nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           key: nix.thunk(() => nix.str`${nix.builtins.toString(nix.path(here, "./a.nix"))}:anon-1`),
           file: nix.thunk(() => nix.builtins.toString(nix.path(here, "./a.nix"))),
           imports: nix.thunk(() => [
             nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               key: nix.thunk(() => nix.str`${nix.builtins.toString(nix.path(here, "./a.nix"))}:anon-1:anon-1`),
               file: nix.thunk(() => nix.builtins.toString(nix.path(here, "./a.nix"))),
               imports: [],
@@ -62,12 +55,12 @@ export default nix.thunk(() => (() => {
       disabled: false,
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       key: nix.thunk(() => nix.builtins.toString(nix.path(here, "./b.nix"))),
       file: nix.thunk(() => nix.builtins.toString(nix.path(here, "./b.nix"))),
       imports: nix.thunk(() => [
         nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           key: "explicit-key",
           file: nix.thunk(() => nix.builtins.toString(nix.path(here, "./b.nix"))),
           imports: [],

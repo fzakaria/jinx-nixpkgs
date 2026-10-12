@@ -2,31 +2,24 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
-const pos$1 = nix.positions(here + "/systemd-pstore.nix", [["useEFIBoot", 5, 20]]);
-const pos$2 = nix.positions(here + "/systemd-pstore.nix", [["enable", 6, 25]]);
-const pos$3 = nix.positions(here + "/systemd-pstore.nix", [["systemd", 6, 17]]);
-const pos$4 = nix.positions(here + "/systemd-pstore.nix", [["initrd", 6, 10]]);
-const pos$5 = nix.positions(here + "/systemd-pstore.nix", [["initrdBackdoor", 7, 13]]);
-const pos$6 = nix.positions(here + "/systemd-pstore.nix", [["virtualisation", 5, 5], ["boot", 6, 5], ["testing", 7, 5]]);
-const pos$7 = nix.positions(here + "/systemd-pstore.nix", [["machine", 4, 9]]);
-const pos$8 = nix.positions(here + "/systemd-pstore.nix", [["name", 2, 3], ["nodes", 4, 3], ["testScript", 10, 3]]);
+const $pos = nix.positions(here + "/systemd-pstore.nix", [[["useEFIBoot", 5, 20]], [["enable", 6, 25]], [["systemd", 6, 17]], [["initrd", 6, 10]], [["initrdBackdoor", 7, 13]], [["virtualisation", 5, 5], ["boot", 6, 5], ["testing", 7, 5]], [["machine", 4, 9]], [["name", 2, 3], ["nodes", 4, 3], ["testScript", 10, 3]]]);
 
 export default nix.thunk(() => ({
-  [nix.POS]: pos$8,
+  [nix.POS]: $pos[7],
   name: "systemd-pstore",
   nodes: nix.thunk(() => ({
-    [nix.POS]: pos$7,
+    [nix.POS]: $pos[6],
     machine: nix.thunk(() => ({
-      [nix.POS]: pos$6,
-      virtualisation: nix.thunk(() => ({ [nix.POS]: pos$1, useEFIBoot: true })),
+      [nix.POS]: $pos[5],
+      virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[0], useEFIBoot: true })),
       boot: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         initrd: nix.thunk(() => ({
-          [nix.POS]: pos$3,
-          systemd: nix.thunk(() => ({ [nix.POS]: pos$2, enable: true })),
+          [nix.POS]: $pos[2],
+          systemd: nix.thunk(() => ({ [nix.POS]: $pos[1], enable: true })),
         })),
       })),
-      testing: nix.thunk(() => ({ [nix.POS]: pos$5, initrdBackdoor: true })),
+      testing: nix.thunk(() => ({ [nix.POS]: $pos[4], initrdBackdoor: true })),
     })),
   })),
   testScript: "machine.switch_root()\nwith subtest(\"pstore API fs is mounted\"):\n  machine.succeed(\"stat /sys/fs/pstore\")\n\nwith subtest(\"systemd-pstore.service doesn't run because nothing crashed\"):\n  output = machine.execute(\"systemctl status systemd-pstore.service\", check_return=False)[1]\n  t.assertIn(\"condition unmet\", output)\n  machine.fail(\"stat /var/lib/systemd/pstore/*/*/dmesg.txt\")\n\nwith subtest(\"systemd-pstore.service saves dmesg.txt files\"):\n  machine.execute(\"echo c > /proc/sysrq-trigger\", check_return=False, check_output=False)\n  machine.wait_for_shutdown()\n  machine.switch_root()\n  machine.wait_for_unit(\"systemd-pstore.service\")\n  machine.succeed(\"stat /var/lib/systemd/pstore/*/*/dmesg.txt\")\n\nwith subtest(\"crashes in initrd can be recovered too\"):\n  machine.succeed(\n    \"rm -r /var/lib/systemd/pstore/*\",\n    \"sync\",\n  )\n  machine.shutdown()\n  machine.execute(\"echo c > /proc/sysrq-trigger\", check_return=False, check_output=False)\n  machine.wait_for_shutdown()\n  machine.switch_root()\n  machine.wait_for_unit(\"systemd-pstore.service\")\n  machine.succeed(\"stat /var/lib/systemd/pstore/*/*/dmesg.txt\")\n",

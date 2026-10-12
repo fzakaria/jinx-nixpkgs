@@ -2,29 +2,26 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
-const pos$1 = nix.positions(here + "/checkfonts.nix", [["url", 4, 5], ["hash", 5, 5]]);
-const pos$2 = nix.positions(here + "/checkfonts.nix", [["url", 8, 5], ["hash", 9, 5]]);
-const pos$3 = nix.positions(here + "/checkfonts.nix", [["url", 12, 5], ["hash", 13, 5]]);
-const pos$4 = nix.positions(here + "/checkfonts.nix", [["url", 16, 5], ["hash", 17, 5]]);
+const $pos = nix.positions(here + "/checkfonts.nix", [[["url", 4, 5], ["hash", 5, 5]], [["url", 8, 5], ["hash", 9, 5]], [["url", 12, 5], ["hash", 13, 5]], [["url", 16, 5], ["hash", 17, 5]]]);
 
 export default nix.thunk(() => [
   nix.thunk(() => ({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     url: "https://mirrors.ctan.org/fonts/libertinus-fonts/otf/LibertinusMath-Regular.otf",
     hash: "sha256-PY4QUzxz9/vO4k2rl5GBfno0r3/Zh1FAhif1OPDic7w=",
   })),
   nix.thunk(() => ({
-    [nix.POS]: pos$2,
+    [nix.POS]: $pos[1],
     url: "https://mirrors.ctan.org/fonts/firamath/FiraMath-Regular.otf",
     hash: "sha256-ICjL091NjAzxYIUg60dZlWqDpnkx17bY58MTUgGG41s=",
   })),
   nix.thunk(() => ({
-    [nix.POS]: pos$3,
+    [nix.POS]: $pos[2],
     url: "https://mirrors.ctan.org/fonts/erewhon-math/Erewhon-Math.otf",
     hash: "sha256-7SjKC+XP9KpFAWtZxc+FZZ4VETnDxokUGz+nZ/CWIbI=",
   })),
   nix.thunk(() => ({
-    [nix.POS]: pos$4,
+    [nix.POS]: $pos[3],
     url: "https://mirrors.ctan.org/fonts/concmath-otf/Concrete-Math.otf",
     hash: "sha256-YCukkUgNQoBlotuD0vF1ts9JL8x6xaEW9JxK++GVGZ4=",
   })),

@@ -2,17 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]], [["ZSTD_SYS_USE_PKG_CONFIG", 59, 5]], [["cargo-tauri", 64, 37]], [["cargo-tauri", 68, 43]], [["package", 69, 39]], [["hook", 68, 7], ["version", 69, 7]], [["extraArgs", 73, 7]], [["hook", 64, 5], ["gst-plugin", 65, 5], ["tests", 67, 5], ["updateScript", 72, 5]], [["description", 81, 5], ["homepage", 82, 5], ["changelog", 83, 5], ["license", 84, 5], ["maintainers", 88, 5], ["mainProgram", 92, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["cargoHash", 26, 3], ["nativeBuildInputs", 28, 3], ["postPatch", 33, 3], ["buildInputs", 38, 3], ["patches", 48, 3], ["cargoBuildFlags", 52, 3], ["cargoTestFlags", 56, 3], ["env", 58, 3], ["passthru", 62, 3], ["meta", 80, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, bzip2: false, callPackage: false, rustPlatform: false, fetchFromGitHub: false, "nix-update-script": false, "pkg-config": false, testers: false, xz: false, zstd: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["ZSTD_SYS_USE_PKG_CONFIG", 59, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["cargo-tauri", 64, 37]]);
-const pos$4 = nix.positions(here + "/package.nix", [["cargo-tauri", 68, 43]]);
-const pos$5 = nix.positions(here + "/package.nix", [["package", 69, 39]]);
-const pos$6 = nix.positions(here + "/package.nix", [["hook", 68, 7], ["version", 69, 7]]);
-const pos$7 = nix.positions(here + "/package.nix", [["extraArgs", 73, 7]]);
-const pos$8 = nix.positions(here + "/package.nix", [["hook", 64, 5], ["gst-plugin", 65, 5], ["tests", 67, 5], ["updateScript", 72, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["description", 81, 5], ["homepage", 82, 5], ["changelog", 83, 5], ["license", 84, 5], ["maintainers", 88, 5], ["mainProgram", 92, 5]]);
-const pos$10 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["cargoHash", 26, 3], ["nativeBuildInputs", 28, 3], ["postPatch", 33, 3], ["buildInputs", 38, 3], ["patches", 48, 3], ["cargoBuildFlags", 52, 3], ["cargoTestFlags", 56, 3], ["env", 58, 3], ["passthru", 62, 3], ["meta", 80, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const xz = nix.arg($, "xz");
   const zstd = nix.arg($, "zstd");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       pname: "tauri",
       version: "2.11.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "tauri-apps",
           repo: "tauri",
           tag: nix.thunk(() => nix.str`tauri-cli-v${nix.sel(finalAttrs, "version")}`),
@@ -45,32 +36,32 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [nix.path(here, "./skip-icon-macos.patch")]),
       cargoBuildFlags: nix.thunk(() => ["--package", "tauri-cli"]),
       cargoTestFlags: nix.thunk(() => nix.sel(finalAttrs, "cargoBuildFlags")),
-      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => ({ [nix.POS]: pos$2, ZSTD_SYS_USE_PKG_CONFIG: true })))),
+      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => ({ [nix.POS]: $pos[1], ZSTD_SYS_USE_PKG_CONFIG: true })))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         hook: nix.thunk(() => nix.app(callPackage, nix.path(here, "./hook.nix"), nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             "cargo-tauri": nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
           })))),
         "gst-plugin": nix.thunk(() => nix.app(callPackage, nix.path(here, "./gst-plugin.nix"), nix.thunk(() => ({})))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           hook: nix.thunk(() => nix.app(callPackage, nix.path(here, "./test-app.nix"), nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               "cargo-tauri": nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             extraArgs: nix.thunk(() => ["--version-regex", "tauri-cli-v(.*)"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         description: "Build smaller, faster, and more secure desktop applications with a web frontend",
         homepage: "https://tauri.app/",
         changelog: nix.thunk(() => nix.str`https://github.com/tauri-apps/tauri/releases/tag/tauri-cli-v${nix.sel(finalAttrs, "version")}`),

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/rygel.nix", [[["url", 42, 5], ["sha256", 43, 5]], [["packageName", 101, 7], ["attrPath", 102, 7], ["versionPolicy", 103, 7]], [["updateScript", 100, 5]], [["broken", 112, 5], ["description", 113, 5], ["homepage", 114, 5], ["license", 115, 5], ["teams", 116, 5], ["platforms", 117, 5]], [["pname", 32, 3], ["version", 33, 3], ["outputs", 36, 3], ["src", 41, 3], ["patches", 46, 3], ["nativeBuildInputs", 50, 3], ["buildInputs", 62, 3], ["mesonFlags", 86, 3], ["doCheck", 93, 3], ["postPatch", 95, 3], ["passthru", 99, 3], ["meta", 107, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, meson: false, ninja: false, "pkg-config": false, vala: false, gettext: false, libxml2: false, "gobject-introspection": false, wrapGAppsHook3: false, python3: false, glib: false, "gupnp-av": false, "gupnp-dlna": false, gst_all_1: false, libgee: false, gtk3: false, libmediaart: false, sqlite: false, systemd: false, tinysparql: false, "shared-mime-info": false, gnome: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/rygel.nix", [["url", 42, 5], ["sha256", 43, 5]]);
-const pos$2 = nix.positions(here + "/rygel.nix", [["packageName", 101, 7], ["attrPath", 102, 7], ["versionPolicy", 103, 7]]);
-const pos$3 = nix.positions(here + "/rygel.nix", [["updateScript", 100, 5]]);
-const pos$4 = nix.positions(here + "/rygel.nix", [["broken", 112, 5], ["description", 113, 5], ["homepage", 114, 5], ["license", 115, 5], ["teams", 116, 5], ["platforms", 117, 5]]);
-const pos$5 = nix.positions(here + "/rygel.nix", [["pname", 32, 3], ["version", 33, 3], ["outputs", 36, 3], ["src", 41, 3], ["patches", 46, 3], ["nativeBuildInputs", 50, 3], ["buildInputs", 62, 3], ["mesonFlags", 86, 3], ["doCheck", 93, 3], ["postPatch", 95, 3], ["passthru", 99, 3], ["meta", 107, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -40,7 +36,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.40.4";
       const outputs = nix.thunk(() => ["out", "dev"]);
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnome/sources/${pname}/${nix.app(nix.sel(lib, "versions", "majorMinor"), version)}/${pname}-${version}.tar.xz`),
           sha256: "c22K2+hhX2y8j8//mEXcmF/RDhZinaI2tLUtvt8KNIs=",
         }))));
@@ -87,16 +83,16 @@ export default nix.lambda((args) => (() => {
       const doCheck = true;
       const postPatch = "patchShebangs data/xml/process-xml.py\n";
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             packageName: pname,
             attrPath: nix.thunk(() => nix.str`gnome.${pname}`),
             versionPolicy: "odd-unstable",
           })))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         broken: true,
         description: "Home media solution (UPnP AV MediaServer) that allows you to easily share audio, video and pictures to other devices",
         homepage: "https://gitlab.gnome.org/GNOME/rygel",
@@ -105,7 +101,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         outputs,

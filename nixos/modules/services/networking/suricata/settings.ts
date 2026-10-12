@@ -2,109 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/settings.nix", [[["default", 19, 7], ["example", 20, 7]], [["default", 35, 23], ["description", 36, 23]], [["default", 41, 23], ["description", 42, 23]], [["default", 47, 23], ["description", 48, 23]], [["default", 53, 23], ["description", 54, 23]], [["default", 59, 23], ["description", 60, 23]], [["default", 65, 23], ["description", 66, 23]], [["default", 71, 23], ["description", 72, 23]], [["default", 77, 23], ["description", 78, 23]], [["default", 83, 23], ["description", 84, 23]], [["default", 89, 23], ["description", 90, 23]], [["default", 95, 23], ["description", 96, 23]], [["default", 101, 23], ["description", 102, 23]], [["default", 107, 23], ["description", 108, 23]], [["default", 113, 23], ["description", 114, 23]], [["default", 119, 23], ["description", 120, 23]], [["HOME_NET", 34, 21], ["EXTERNAL_NET", 40, 21], ["HTTP_SERVERS", 46, 21], ["SMTP_SERVERS", 52, 21], ["SQL_SERVERS", 58, 21], ["DNS_SERVERS", 64, 21], ["TELNET_SERVERS", 70, 21], ["AIM_SERVERS", 76, 21], ["DC_SERVERS", 82, 21], ["DNP3_SERVER", 88, 21], ["DNP3_CLIENT", 94, 21], ["MODBUS_CLIENT", 100, 21], ["MODBUS_SERVER", 106, 21], ["ENIP_CLIENT", 112, 21], ["ENIP_SERVER", 118, 21]], [["options", 33, 19]], [["HOME_NET", 129, 17], ["EXTERNAL_NET", 130, 17], ["HTTP_SERVERS", 131, 17], ["SMTP_SERVERS", 132, 17], ["SQL_SERVERS", 133, 17], ["DNS_SERVERS", 134, 17], ["TELNET_SERVERS", 135, 17], ["AIM_SERVERS", 136, 17], ["DC_SERVERS", 137, 17], ["DNP3_SERVER", 138, 17], ["DNP3_CLIENT", 139, 17], ["MODBUS_CLIENT", 140, 17], ["MODBUS_SERVER", 141, 17], ["ENIP_CLIENT", 142, 17], ["ENIP_SERVER", 143, 17]], [["type", 31, 15], ["default", 127, 15], ["example", 128, 15], ["description", 145, 15]], [["HTTP_PORTS", 155, 17], ["SHELLCODE_PORTS", 156, 17], ["ORACLE_PORTS", 157, 17], ["SSH_PORTS", 158, 17], ["DNP3_PORTS", 159, 17], ["MODBUS_PORTS", 160, 17], ["FILE_DATA_PORTS", 161, 17], ["FTP_PORTS", 162, 17], ["GENEVE_PORTS", 163, 17], ["VXLAN_PORTS", 164, 17], ["TEREDO_PORTS", 165, 17]], [["type", 153, 15], ["default", 154, 15], ["description", 167, 15]], [["address-groups", 30, 13], ["port-groups", 152, 13]], [["options", 29, 11]], [["type", 27, 7], ["default", 174, 7], ["description", 175, 7]], [["type", 188, 15], ["default", 189, 15], ["description", 190, 15]], [["type", 197, 15], ["default", 198, 15], ["description", 199, 15]], [["type", 205, 15], ["default", 206, 15], ["description", 207, 15]], [["type", 214, 15], ["default", 215, 15], ["description", 216, 15]], [["enable", 185, 13], ["interval", 187, 13], ["decoder-events", 196, 13], ["decoder-events-prefix", 204, 13], ["stream-events", 213, 13]], [["options", 184, 11]], [["type", 181, 7], ["default", 222, 7], ["description", 223, 7]], [["type", 229, 7], ["default", 230, 7], ["description", 231, 7]], [["enabled", 244, 17]], [["freeformType", 242, 15], ["options", 243, 15]], [["type", 237, 7], ["default", 249, 7], ["example", 250, 7], ["description", 274, 7]], [["type", 290, 7], ["default", 291, 7], ["description", 292, 7]], [["type", 301, 9], ["default", 310, 9], ["description", 311, 9]], [["type", 319, 9], ["default", 320, 9], ["description", 321, 9]], [["type", 329, 9], ["default", 330, 9], ["description", 331, 9]], [["type", 338, 9], ["default", 339, 9], ["description", 340, 9]], [["enable", 349, 11]], [["type", 355, 13], ["default", 364, 13], ["description", 365, 13]], [["type", 371, 13], ["default", 372, 13], ["description", 373, 13]], [["type", 379, 13], ["default", 380, 13], ["description", 381, 13]], [["type", 387, 13], ["default", 388, 13], ["description", 389, 13]], [["enable", 352, 11], ["level", 354, 11], ["filename", 370, 11], ["format", 378, 11], ["type", 386, 11]], [["type", 398, 13], ["default", 399, 13], ["description", 400, 13]], [["type", 406, 13], ["default", 407, 13], ["description", 408, 13]], [["type", 414, 13], ["default", 415, 13], ["description", 416, 13]], [["enable", 395, 11], ["facility", 397, 11], ["format", 405, 11], ["type", 413, 11]], [["console", 348, 9], ["file", 351, 9], ["syslog", 394, 9]], [["default-log-level", 300, 7], ["default-log-format", 318, 7], ["default-output-filter", 328, 7], ["stacktrace-on-signal", 337, 7], ["outputs", 347, 7]], [["type", 432, 17], ["default", 433, 17], ["description", 434, 17]], [["interface", 431, 15]], [["freeformType", 429, 13], ["options", 430, 13]], [["type", 425, 7], ["default", 441, 7], ["description", 442, 7]], [["type", 455, 17], ["default", 456, 17], ["description", 457, 17]], [["interface", 454, 15]], [["freeformType", 452, 13], ["options", 453, 13]], [["type", 448, 7], ["default", 464, 7], ["description", 465, 7]], [["type", 477, 15], ["default", 478, 15], ["description", 479, 15]], [["proc-type", 476, 24]], [["type", 491, 25], ["default", 492, 25], ["description", 493, 25]], [["interface", 490, 23]], [["freeformType", 488, 21], ["options", 489, 21]], [["type", 484, 15], ["default", 500, 15], ["description", 501, 15]], [["eal-params", 476, 13], ["interfaces", 483, 13]], [["options", 475, 11]], [["type", 472, 7], ["default", 507, 7], ["description", 508, 7]], [["type", 524, 17], ["default", 525, 17], ["description", 526, 17]], [["interface", 523, 15]], [["freeformType", 521, 13], ["options", 522, 13]], [["type", 517, 7], ["default", 533, 7], ["description", 534, 7]], [["type", 540, 7], ["default", 545, 7], ["description", 546, 7]], [["checksum-checks", 539, 17]], [["type", 562, 15], ["default", 571, 15], ["description", 572, 15]], [["type", 586, 25], ["default", 591, 25], ["description", 592, 25]], [["enabled", 585, 23]], [["freeformType", 583, 21], ["options", 584, 21]], [["type", 579, 15], ["default", 601, 15], ["description", 602, 15]], [["error-policy", 561, 13], ["protocols", 578, 13]], [["options", 560, 11]], [["type", 557, 7], ["default", 608, 7], ["description", 609, 7]], [["type", 616, 9], ["default", 617, 9], ["description", 618, 9]], [["type", 621, 9], ["default", 622, 9], ["description", 623, 9]], [["user", 615, 7], ["group", 620, 7]], [["type", 628, 7], ["default", 633, 7], ["description", 634, 7]], [["type", 648, 15], ["default", 649, 15], ["description", 650, 15]], [["type", 655, 15], ["default", 656, 15], ["description", 657, 15]], [["enabled", 647, 13], ["filename", 654, 13]], [["options", 646, 11]], [["type", 643, 7], ["default", 663, 7], ["description", 664, 7]], [["type", 675, 7], ["default", 685, 7], ["description", 686, 7]], [["type", 699, 7], ["default", 700, 7], ["description", 701, 7]], [["type", 705, 7], ["default", 706, 7], ["description", 707, 7]], [["type", 711, 7], ["default", 712, 7], ["description", 713, 7]], [["type", 717, 7], ["default", 718, 7], ["defaultText", 719, 7], ["description", 720, 7]], [["type", 724, 7], ["default", 725, 7], ["defaultText", 726, 7], ["description", 727, 7]], [["type", 731, 7], ["default", 732, 7], ["description", 733, 7]], [["vars", 26, 5], ["stats", 180, 5], ["plugins", 228, 5], ["outputs", 236, 5], ["default-log-dir", 289, 5], ["logging", 299, 5], ["af-packet", 424, 5], ["af-xdp", 447, 5], ["dpdk", 471, 5], ["pcap", 516, 5], ["pcap-file", 539, 5], ["app-layer", 556, 5], ["run-as", 614, 5], ["host-mode", 627, 5], ["unix-command", 642, 5], ["exception-policy", 674, 5], ["default-rule-path", 698, 5], ["rule-files", 704, 5], ["classification-file", 710, 5], ["reference-config-file", 716, 5], ["threshold-file", 723, 5], ["includes", 730, 5]], [["freeformType", 24, 3], ["options", 25, 3]]]);
 const formals$1 = { args: { lib: false, config: false, yaml: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/settings.nix", [["default", 19, 7], ["example", 20, 7]]);
-const pos$2 = nix.positions(here + "/settings.nix", [["default", 35, 23], ["description", 36, 23]]);
-const pos$3 = nix.positions(here + "/settings.nix", [["default", 41, 23], ["description", 42, 23]]);
-const pos$4 = nix.positions(here + "/settings.nix", [["default", 47, 23], ["description", 48, 23]]);
-const pos$5 = nix.positions(here + "/settings.nix", [["default", 53, 23], ["description", 54, 23]]);
-const pos$6 = nix.positions(here + "/settings.nix", [["default", 59, 23], ["description", 60, 23]]);
-const pos$7 = nix.positions(here + "/settings.nix", [["default", 65, 23], ["description", 66, 23]]);
-const pos$8 = nix.positions(here + "/settings.nix", [["default", 71, 23], ["description", 72, 23]]);
-const pos$9 = nix.positions(here + "/settings.nix", [["default", 77, 23], ["description", 78, 23]]);
-const pos$10 = nix.positions(here + "/settings.nix", [["default", 83, 23], ["description", 84, 23]]);
-const pos$11 = nix.positions(here + "/settings.nix", [["default", 89, 23], ["description", 90, 23]]);
-const pos$12 = nix.positions(here + "/settings.nix", [["default", 95, 23], ["description", 96, 23]]);
-const pos$13 = nix.positions(here + "/settings.nix", [["default", 101, 23], ["description", 102, 23]]);
-const pos$14 = nix.positions(here + "/settings.nix", [["default", 107, 23], ["description", 108, 23]]);
-const pos$15 = nix.positions(here + "/settings.nix", [["default", 113, 23], ["description", 114, 23]]);
-const pos$16 = nix.positions(here + "/settings.nix", [["default", 119, 23], ["description", 120, 23]]);
-const pos$17 = nix.positions(here + "/settings.nix", [["HOME_NET", 34, 21], ["EXTERNAL_NET", 40, 21], ["HTTP_SERVERS", 46, 21], ["SMTP_SERVERS", 52, 21], ["SQL_SERVERS", 58, 21], ["DNS_SERVERS", 64, 21], ["TELNET_SERVERS", 70, 21], ["AIM_SERVERS", 76, 21], ["DC_SERVERS", 82, 21], ["DNP3_SERVER", 88, 21], ["DNP3_CLIENT", 94, 21], ["MODBUS_CLIENT", 100, 21], ["MODBUS_SERVER", 106, 21], ["ENIP_CLIENT", 112, 21], ["ENIP_SERVER", 118, 21]]);
-const pos$18 = nix.positions(here + "/settings.nix", [["options", 33, 19]]);
-const pos$19 = nix.positions(here + "/settings.nix", [["HOME_NET", 129, 17], ["EXTERNAL_NET", 130, 17], ["HTTP_SERVERS", 131, 17], ["SMTP_SERVERS", 132, 17], ["SQL_SERVERS", 133, 17], ["DNS_SERVERS", 134, 17], ["TELNET_SERVERS", 135, 17], ["AIM_SERVERS", 136, 17], ["DC_SERVERS", 137, 17], ["DNP3_SERVER", 138, 17], ["DNP3_CLIENT", 139, 17], ["MODBUS_CLIENT", 140, 17], ["MODBUS_SERVER", 141, 17], ["ENIP_CLIENT", 142, 17], ["ENIP_SERVER", 143, 17]]);
-const pos$20 = nix.positions(here + "/settings.nix", [["type", 31, 15], ["default", 127, 15], ["example", 128, 15], ["description", 145, 15]]);
-const pos$21 = nix.positions(here + "/settings.nix", [["HTTP_PORTS", 155, 17], ["SHELLCODE_PORTS", 156, 17], ["ORACLE_PORTS", 157, 17], ["SSH_PORTS", 158, 17], ["DNP3_PORTS", 159, 17], ["MODBUS_PORTS", 160, 17], ["FILE_DATA_PORTS", 161, 17], ["FTP_PORTS", 162, 17], ["GENEVE_PORTS", 163, 17], ["VXLAN_PORTS", 164, 17], ["TEREDO_PORTS", 165, 17]]);
-const pos$22 = nix.positions(here + "/settings.nix", [["type", 153, 15], ["default", 154, 15], ["description", 167, 15]]);
-const pos$23 = nix.positions(here + "/settings.nix", [["address-groups", 30, 13], ["port-groups", 152, 13]]);
-const pos$24 = nix.positions(here + "/settings.nix", [["options", 29, 11]]);
-const pos$25 = nix.positions(here + "/settings.nix", [["type", 27, 7], ["default", 174, 7], ["description", 175, 7]]);
-const pos$26 = nix.positions(here + "/settings.nix", [["type", 188, 15], ["default", 189, 15], ["description", 190, 15]]);
-const pos$27 = nix.positions(here + "/settings.nix", [["type", 197, 15], ["default", 198, 15], ["description", 199, 15]]);
-const pos$28 = nix.positions(here + "/settings.nix", [["type", 205, 15], ["default", 206, 15], ["description", 207, 15]]);
-const pos$29 = nix.positions(here + "/settings.nix", [["type", 214, 15], ["default", 215, 15], ["description", 216, 15]]);
-const pos$30 = nix.positions(here + "/settings.nix", [["enable", 185, 13], ["interval", 187, 13], ["decoder-events", 196, 13], ["decoder-events-prefix", 204, 13], ["stream-events", 213, 13]]);
-const pos$31 = nix.positions(here + "/settings.nix", [["options", 184, 11]]);
-const pos$32 = nix.positions(here + "/settings.nix", [["type", 181, 7], ["default", 222, 7], ["description", 223, 7]]);
-const pos$33 = nix.positions(here + "/settings.nix", [["type", 229, 7], ["default", 230, 7], ["description", 231, 7]]);
-const pos$34 = nix.positions(here + "/settings.nix", [["enabled", 244, 17]]);
-const pos$35 = nix.positions(here + "/settings.nix", [["freeformType", 242, 15], ["options", 243, 15]]);
-const pos$36 = nix.positions(here + "/settings.nix", [["type", 237, 7], ["default", 249, 7], ["example", 250, 7], ["description", 274, 7]]);
-const pos$37 = nix.positions(here + "/settings.nix", [["type", 290, 7], ["default", 291, 7], ["description", 292, 7]]);
-const pos$38 = nix.positions(here + "/settings.nix", [["type", 301, 9], ["default", 310, 9], ["description", 311, 9]]);
-const pos$39 = nix.positions(here + "/settings.nix", [["type", 319, 9], ["default", 320, 9], ["description", 321, 9]]);
-const pos$40 = nix.positions(here + "/settings.nix", [["type", 329, 9], ["default", 330, 9], ["description", 331, 9]]);
-const pos$41 = nix.positions(here + "/settings.nix", [["type", 338, 9], ["default", 339, 9], ["description", 340, 9]]);
-const pos$42 = nix.positions(here + "/settings.nix", [["enable", 349, 11]]);
-const pos$43 = nix.positions(here + "/settings.nix", [["type", 355, 13], ["default", 364, 13], ["description", 365, 13]]);
-const pos$44 = nix.positions(here + "/settings.nix", [["type", 371, 13], ["default", 372, 13], ["description", 373, 13]]);
-const pos$45 = nix.positions(here + "/settings.nix", [["type", 379, 13], ["default", 380, 13], ["description", 381, 13]]);
-const pos$46 = nix.positions(here + "/settings.nix", [["type", 387, 13], ["default", 388, 13], ["description", 389, 13]]);
-const pos$47 = nix.positions(here + "/settings.nix", [["enable", 352, 11], ["level", 354, 11], ["filename", 370, 11], ["format", 378, 11], ["type", 386, 11]]);
-const pos$48 = nix.positions(here + "/settings.nix", [["type", 398, 13], ["default", 399, 13], ["description", 400, 13]]);
-const pos$49 = nix.positions(here + "/settings.nix", [["type", 406, 13], ["default", 407, 13], ["description", 408, 13]]);
-const pos$50 = nix.positions(here + "/settings.nix", [["type", 414, 13], ["default", 415, 13], ["description", 416, 13]]);
-const pos$51 = nix.positions(here + "/settings.nix", [["enable", 395, 11], ["facility", 397, 11], ["format", 405, 11], ["type", 413, 11]]);
-const pos$52 = nix.positions(here + "/settings.nix", [["console", 348, 9], ["file", 351, 9], ["syslog", 394, 9]]);
-const pos$53 = nix.positions(here + "/settings.nix", [["default-log-level", 300, 7], ["default-log-format", 318, 7], ["default-output-filter", 328, 7], ["stacktrace-on-signal", 337, 7], ["outputs", 347, 7]]);
-const pos$54 = nix.positions(here + "/settings.nix", [["type", 432, 17], ["default", 433, 17], ["description", 434, 17]]);
-const pos$55 = nix.positions(here + "/settings.nix", [["interface", 431, 15]]);
-const pos$56 = nix.positions(here + "/settings.nix", [["freeformType", 429, 13], ["options", 430, 13]]);
-const pos$57 = nix.positions(here + "/settings.nix", [["type", 425, 7], ["default", 441, 7], ["description", 442, 7]]);
-const pos$58 = nix.positions(here + "/settings.nix", [["type", 455, 17], ["default", 456, 17], ["description", 457, 17]]);
-const pos$59 = nix.positions(here + "/settings.nix", [["interface", 454, 15]]);
-const pos$60 = nix.positions(here + "/settings.nix", [["freeformType", 452, 13], ["options", 453, 13]]);
-const pos$61 = nix.positions(here + "/settings.nix", [["type", 448, 7], ["default", 464, 7], ["description", 465, 7]]);
-const pos$62 = nix.positions(here + "/settings.nix", [["type", 477, 15], ["default", 478, 15], ["description", 479, 15]]);
-const pos$63 = nix.positions(here + "/settings.nix", [["proc-type", 476, 24]]);
-const pos$64 = nix.positions(here + "/settings.nix", [["type", 491, 25], ["default", 492, 25], ["description", 493, 25]]);
-const pos$65 = nix.positions(here + "/settings.nix", [["interface", 490, 23]]);
-const pos$66 = nix.positions(here + "/settings.nix", [["freeformType", 488, 21], ["options", 489, 21]]);
-const pos$67 = nix.positions(here + "/settings.nix", [["type", 484, 15], ["default", 500, 15], ["description", 501, 15]]);
-const pos$68 = nix.positions(here + "/settings.nix", [["eal-params", 476, 13], ["interfaces", 483, 13]]);
-const pos$69 = nix.positions(here + "/settings.nix", [["options", 475, 11]]);
-const pos$70 = nix.positions(here + "/settings.nix", [["type", 472, 7], ["default", 507, 7], ["description", 508, 7]]);
-const pos$71 = nix.positions(here + "/settings.nix", [["type", 524, 17], ["default", 525, 17], ["description", 526, 17]]);
-const pos$72 = nix.positions(here + "/settings.nix", [["interface", 523, 15]]);
-const pos$73 = nix.positions(here + "/settings.nix", [["freeformType", 521, 13], ["options", 522, 13]]);
-const pos$74 = nix.positions(here + "/settings.nix", [["type", 517, 7], ["default", 533, 7], ["description", 534, 7]]);
-const pos$75 = nix.positions(here + "/settings.nix", [["type", 540, 7], ["default", 545, 7], ["description", 546, 7]]);
-const pos$76 = nix.positions(here + "/settings.nix", [["checksum-checks", 539, 17]]);
-const pos$77 = nix.positions(here + "/settings.nix", [["type", 562, 15], ["default", 571, 15], ["description", 572, 15]]);
-const pos$78 = nix.positions(here + "/settings.nix", [["type", 586, 25], ["default", 591, 25], ["description", 592, 25]]);
-const pos$79 = nix.positions(here + "/settings.nix", [["enabled", 585, 23]]);
-const pos$80 = nix.positions(here + "/settings.nix", [["freeformType", 583, 21], ["options", 584, 21]]);
-const pos$81 = nix.positions(here + "/settings.nix", [["type", 579, 15], ["default", 601, 15], ["description", 602, 15]]);
-const pos$82 = nix.positions(here + "/settings.nix", [["error-policy", 561, 13], ["protocols", 578, 13]]);
-const pos$83 = nix.positions(here + "/settings.nix", [["options", 560, 11]]);
-const pos$84 = nix.positions(here + "/settings.nix", [["type", 557, 7], ["default", 608, 7], ["description", 609, 7]]);
-const pos$85 = nix.positions(here + "/settings.nix", [["type", 616, 9], ["default", 617, 9], ["description", 618, 9]]);
-const pos$86 = nix.positions(here + "/settings.nix", [["type", 621, 9], ["default", 622, 9], ["description", 623, 9]]);
-const pos$87 = nix.positions(here + "/settings.nix", [["user", 615, 7], ["group", 620, 7]]);
-const pos$88 = nix.positions(here + "/settings.nix", [["type", 628, 7], ["default", 633, 7], ["description", 634, 7]]);
-const pos$89 = nix.positions(here + "/settings.nix", [["type", 648, 15], ["default", 649, 15], ["description", 650, 15]]);
-const pos$90 = nix.positions(here + "/settings.nix", [["type", 655, 15], ["default", 656, 15], ["description", 657, 15]]);
-const pos$91 = nix.positions(here + "/settings.nix", [["enabled", 647, 13], ["filename", 654, 13]]);
-const pos$92 = nix.positions(here + "/settings.nix", [["options", 646, 11]]);
-const pos$93 = nix.positions(here + "/settings.nix", [["type", 643, 7], ["default", 663, 7], ["description", 664, 7]]);
-const pos$94 = nix.positions(here + "/settings.nix", [["type", 675, 7], ["default", 685, 7], ["description", 686, 7]]);
-const pos$95 = nix.positions(here + "/settings.nix", [["type", 699, 7], ["default", 700, 7], ["description", 701, 7]]);
-const pos$96 = nix.positions(here + "/settings.nix", [["type", 705, 7], ["default", 706, 7], ["description", 707, 7]]);
-const pos$97 = nix.positions(here + "/settings.nix", [["type", 711, 7], ["default", 712, 7], ["description", 713, 7]]);
-const pos$98 = nix.positions(here + "/settings.nix", [["type", 717, 7], ["default", 718, 7], ["defaultText", 719, 7], ["description", 720, 7]]);
-const pos$99 = nix.positions(here + "/settings.nix", [["type", 724, 7], ["default", 725, 7], ["defaultText", 726, 7], ["description", 727, 7]]);
-const pos$100 = nix.positions(here + "/settings.nix", [["type", 731, 7], ["default", 732, 7], ["description", 733, 7]]);
-const pos$101 = nix.positions(here + "/settings.nix", [["vars", 26, 5], ["stats", 180, 5], ["plugins", 228, 5], ["outputs", 236, 5], ["default-log-dir", 289, 5], ["logging", 299, 5], ["af-packet", 424, 5], ["af-xdp", 447, 5], ["dpdk", 471, 5], ["pcap", 516, 5], ["pcap-file", 539, 5], ["app-layer", 556, 5], ["run-as", 614, 5], ["host-mode", 627, 5], ["unix-command", 642, 5], ["exception-policy", 674, 5], ["default-rule-path", 698, 5], ["rule-files", 704, 5], ["classification-file", 710, 5], ["reference-config-file", 716, 5], ["threshold-file", 723, 5], ["includes", 730, 5]]);
-const pos$102 = nix.positions(here + "/settings.nix", [["freeformType", 24, 3], ["options", 25, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -116,96 +15,96 @@ export default nix.lambda((args) => (() => {
   const mkOption = nix.thunk(() => nix.attr(lib, "mkOption"));
   const types = nix.thunk(() => nix.attr(lib, "types"));
   const literalExpression = nix.thunk(() => nix.attr(lib, "literalExpression"));
-  const mkDisableOption = (name) => nix.update(nix.app(mkEnableOption, name), { [nix.POS]: pos$1, default: true, example: false });
+  const mkDisableOption = (name) => nix.update(nix.app(mkEnableOption, name), { [nix.POS]: $pos[0], default: true, example: false });
   return {
-    [nix.POS]: pos$102,
+    [nix.POS]: $pos[101],
     freeformType: nix.thunk(() => nix.sel(yaml, "type")),
     options: nix.thunk(() => ({
-      [nix.POS]: pos$101,
+      [nix.POS]: $pos[100],
       vars: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          [nix.POS]: pos$25,
+          [nix.POS]: $pos[24],
           type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-                [nix.POS]: pos$24,
+                [nix.POS]: $pos[23],
                 options: nix.thunk(() => ({
-                  [nix.POS]: pos$23,
+                  [nix.POS]: $pos[22],
                   "address-groups": nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                      [nix.POS]: pos$20,
+                      [nix.POS]: $pos[19],
                       type: nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-                          [nix.POS]: pos$18,
+                          [nix.POS]: $pos[17],
                           options: nix.thunk(() => ({
-                            [nix.POS]: pos$17,
+                            [nix.POS]: $pos[16],
                             HOME_NET: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                [nix.POS]: pos$2,
+                                [nix.POS]: $pos[1],
                                 default: "[192.168.0.0/16,10.0.0.0/8,172.16.0.0/12]",
                                 description: "HOME_NET variable.\n",
                               })))),
                             EXTERNAL_NET: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                [nix.POS]: pos$3,
+                                [nix.POS]: $pos[2],
                                 default: "!$HOME_NET",
                                 description: "EXTERNAL_NET variable.\n",
                               })))),
                             HTTP_SERVERS: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                [nix.POS]: pos$4,
+                                [nix.POS]: $pos[3],
                                 default: "$HOME_NET",
                                 description: "HTTP_SERVERS variable.\n",
                               })))),
                             SMTP_SERVERS: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                [nix.POS]: pos$5,
+                                [nix.POS]: $pos[4],
                                 default: "$HOME_NET",
                                 description: "SMTP_SERVERS variable.\n",
                               })))),
                             SQL_SERVERS: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                [nix.POS]: pos$6,
+                                [nix.POS]: $pos[5],
                                 default: "$HOME_NET",
                                 description: "SQL_SERVERS variable.\n",
                               })))),
                             DNS_SERVERS: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                [nix.POS]: pos$7,
+                                [nix.POS]: $pos[6],
                                 default: "$HOME_NET",
                                 description: "DNS_SERVERS variable.\n",
                               })))),
                             TELNET_SERVERS: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                [nix.POS]: pos$8,
+                                [nix.POS]: $pos[7],
                                 default: "$HOME_NET",
                                 description: "TELNET_SERVERS variable.\n",
                               })))),
                             AIM_SERVERS: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                [nix.POS]: pos$9,
+                                [nix.POS]: $pos[8],
                                 default: "$EXTERNAL_NET",
                                 description: "AIM_SERVERS variable.\n",
                               })))),
                             DC_SERVERS: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                [nix.POS]: pos$10,
+                                [nix.POS]: $pos[9],
                                 default: "$HOME_NET",
                                 description: "DC_SERVERS variable.\n",
                               })))),
                             DNP3_SERVER: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                [nix.POS]: pos$11,
+                                [nix.POS]: $pos[10],
                                 default: "$HOME_NET",
                                 description: "DNP3_SERVER variable.\n",
                               })))),
                             DNP3_CLIENT: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                [nix.POS]: pos$12,
+                                [nix.POS]: $pos[11],
                                 default: "$HOME_NET",
                                 description: "DNP3_CLIENT variable.\n",
                               })))),
                             MODBUS_CLIENT: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                [nix.POS]: pos$13,
+                                [nix.POS]: $pos[12],
                                 default: "$HOME_NET",
                                 description: "MODBUS_CLIENT variable\n",
                               })))),
                             MODBUS_SERVER: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                [nix.POS]: pos$14,
+                                [nix.POS]: $pos[13],
                                 default: "$HOME_NET",
                                 description: "MODBUS_SERVER variable.\n",
                               })))),
                             ENIP_CLIENT: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                [nix.POS]: pos$15,
+                                [nix.POS]: $pos[14],
                                 default: "$HOME_NET",
                                 description: "ENIP_CLIENT variable.\n",
                               })))),
                             ENIP_SERVER: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                [nix.POS]: pos$16,
+                                [nix.POS]: $pos[15],
                                 default: "$HOME_NET",
                                 description: "ENIP_SERVER variable.\n",
                               })))),
@@ -213,7 +112,7 @@ export default nix.lambda((args) => (() => {
                         })))),
                       default: nix.thunk(() => ({})),
                       example: nix.thunk(() => ({
-                        [nix.POS]: pos$19,
+                        [nix.POS]: $pos[18],
                         HOME_NET: "[192.168.0.0/16,10.0.0.0/8,172.16.0.0/12]",
                         EXTERNAL_NET: "!$HOME_NET",
                         HTTP_SERVERS: "$HOME_NET",
@@ -233,13 +132,13 @@ export default nix.lambda((args) => (() => {
                       description: "The address group variables for suricata, if not defined the\ndefault value of suricata (see example) will be used.\nYour settings will extend the predefined values in example.\n",
                     })))),
                   "port-groups": nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                      [nix.POS]: pos$22,
+                      [nix.POS]: $pos[21],
                       type: nix.thunk(() => (() => {
                         const w = nix.withScope(types, null);
                         return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.lookup(w, "str")))));
                       })()),
                       default: nix.thunk(() => ({
-                        [nix.POS]: pos$21,
+                        [nix.POS]: $pos[20],
                         HTTP_PORTS: "80",
                         SHELLCODE_PORTS: "!80",
                         ORACLE_PORTS: "1521",
@@ -260,34 +159,34 @@ export default nix.lambda((args) => (() => {
           description: "Variables to be used within the suricata rules.\n",
         })))),
       stats: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          [nix.POS]: pos$32,
+          [nix.POS]: $pos[31],
           type: nix.thunk(() => (() => {
             const w = nix.withScope(types, null);
             return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.app(nix.lookup(w, "submodule"), nix.thunk(() => ({
-                  [nix.POS]: pos$31,
+                  [nix.POS]: $pos[30],
                   options: nix.thunk(() => ({
-                    [nix.POS]: pos$30,
+                    [nix.POS]: $pos[29],
                     enable: nix.thunk(() => nix.app(mkEnableOption, "suricata global stats")),
                     interval: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        [nix.POS]: pos$26,
+                        [nix.POS]: $pos[25],
                         type: nix.thunk(() => nix.sel(types, "str")),
                         default: "8",
                         description: "The interval field (in seconds) controls the interval at\nwhich stats are updated in the log.\n",
                       })))),
                     "decoder-events": nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        [nix.POS]: pos$27,
+                        [nix.POS]: $pos[26],
                         type: nix.thunk(() => nix.sel(types, "bool")),
                         default: true,
                         description: "Add decode events to stats\n",
                       })))),
                     "decoder-events-prefix": nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        [nix.POS]: pos$28,
+                        [nix.POS]: $pos[27],
                         type: nix.thunk(() => nix.sel(types, "str")),
                         default: "decoder.event",
                         description: "Decoder event prefix in stats. Has been 'decoder' before, but that leads\nto missing events in the eve.stats records.\n",
                       })))),
                     "stream-events": nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        [nix.POS]: pos$29,
+                        [nix.POS]: $pos[28],
                         type: nix.thunk(() => nix.sel(types, "bool")),
                         default: false,
                         description: "Add stream events as stats.\n",
@@ -299,7 +198,7 @@ export default nix.lambda((args) => (() => {
           description: "Engine statistics such as packet counters, memory use counters and others can be logged in several ways. A separate text log 'stats.log' and an EVE record type 'stats' are enabled by default.\n",
         })))),
       plugins: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          [nix.POS]: pos$33,
+          [nix.POS]: $pos[32],
           type: nix.thunk(() => (() => {
             const w = nix.withScope(types, null);
             return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "path")))));
@@ -308,14 +207,14 @@ export default nix.lambda((args) => (() => {
           description: "Plugins -- Experimental -- specify the filename for each plugin shared object.\n",
         })))),
       outputs: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          [nix.POS]: pos$36,
+          [nix.POS]: $pos[35],
           type: nix.thunk(() => (() => {
             const w = nix.withScope(types, null);
             return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.app(nix.lookup(w, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w, "submodule"), nix.thunk(() => ({
-                      [nix.POS]: pos$35,
+                      [nix.POS]: $pos[34],
                       freeformType: nix.thunk(() => nix.sel(yaml, "type")),
                       options: nix.thunk(() => ({
-                        [nix.POS]: pos$34,
+                        [nix.POS]: $pos[33],
                         enabled: nix.thunk(() => nix.app(mkEnableOption, "<NAME>")),
                       })),
                     })))))))));
@@ -325,88 +224,88 @@ export default nix.lambda((args) => (() => {
           description: "Configure the type of alert (and other) logging you would like.\n\nValid values for <NAME> are e. g. `fast`, `eve-log`, `syslog`, `file-store`, ...\n- `fast`: a line based alerts log similar to Snort's fast.log\n- `eve-log`: Extensible Event Format (nicknamed EVE) event log in JSON format\n\nFor more details regarding the configuration, checkout the shipped suricata.yaml\n```shell\nnix-shell -p suricata yq coreutils-full --command 'yq < $(dirname $(which suricata))/../etc/suricata/suricata.yaml'\n```\nand the [suricata documentation](https://docs.suricata.io/en/latest/output/index.html).\n",
         })))),
       "default-log-dir": nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          [nix.POS]: pos$37,
+          [nix.POS]: $pos[36],
           type: nix.thunk(() => nix.sel(types, "str")),
           default: "/var/log/suricata",
           description: "The default logging directory. Any log or output file will be placed here if it's\nnot specified with a full path name. This can be overridden with the -l command\nline parameter.\n",
         })))),
       logging: nix.thunk(() => ({
-        [nix.POS]: pos$53,
+        [nix.POS]: $pos[52],
         "default-log-level": nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            [nix.POS]: pos$38,
+            [nix.POS]: $pos[37],
             type: nix.thunk(() => nix.app(nix.sel(types, "enum"), nix.thunk(() => ["error", "warning", "notice", "info", "perf", "config", "debug"]))),
             default: "notice",
             description: "The default log level: can be overridden in an output section.\nNote that debug level logging will only be emitted if Suricata was\ncompiled with the --enable-debug configure option.\n",
           })))),
         "default-log-format": nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            [nix.POS]: pos$39,
+            [nix.POS]: $pos[38],
             type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "str")))),
             default: null,
             description: "The default output format. Optional parameter, should default to\nsomething reasonable if not provided. Can be overridden in an\noutput section.  You can leave this out to get the default.\n",
           })))),
         "default-output-filter": nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            [nix.POS]: pos$40,
+            [nix.POS]: $pos[39],
             type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "str")))),
             default: null,
             description: "A regex to filter output.  Can be overridden in an output section.\nDefaults to empty (no filter).\n",
           })))),
         "stacktrace-on-signal": nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            [nix.POS]: pos$41,
+            [nix.POS]: $pos[40],
             type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "str")))),
             default: null,
             description: "Requires libunwind to be available when Suricata is configured and built.\nIf a signal unexpectedly terminates Suricata, displays a brief diagnostic\nmessage with the offending stacktrace if enabled.\n",
           })))),
         outputs: nix.thunk(() => ({
-          [nix.POS]: pos$52,
+          [nix.POS]: $pos[51],
           console: nix.thunk(() => ({
-            [nix.POS]: pos$42,
+            [nix.POS]: $pos[41],
             enable: nix.thunk(() => nix.app(mkDisableOption, "logging to console")),
           })),
           file: nix.thunk(() => ({
-            [nix.POS]: pos$47,
+            [nix.POS]: $pos[46],
             enable: nix.thunk(() => nix.app(mkDisableOption, "logging to file")),
             level: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                [nix.POS]: pos$43,
+                [nix.POS]: $pos[42],
                 type: nix.thunk(() => nix.app(nix.sel(types, "enum"), nix.thunk(() => ["error", "warning", "notice", "info", "perf", "config", "debug"]))),
                 default: "info",
                 description: "Loglevel for logs written to the logfile.\n",
               })))),
             filename: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                [nix.POS]: pos$44,
+                [nix.POS]: $pos[43],
                 type: nix.thunk(() => nix.sel(types, "str")),
                 default: "suricata.log",
                 description: "Filename of the logfile.\n",
               })))),
             format: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                [nix.POS]: pos$45,
+                [nix.POS]: $pos[44],
                 type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "str")))),
                 default: null,
                 description: "Logformat for logs written to the logfile.\n",
               })))),
             type: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                [nix.POS]: pos$46,
+                [nix.POS]: $pos[45],
                 type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "str")))),
                 default: null,
                 description: "Type of logfile.\n",
               })))),
           })),
           syslog: nix.thunk(() => ({
-            [nix.POS]: pos$51,
+            [nix.POS]: $pos[50],
             enable: nix.thunk(() => nix.app(mkEnableOption, "logging to syslog")),
             facility: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                [nix.POS]: pos$48,
+                [nix.POS]: $pos[47],
                 type: nix.thunk(() => nix.sel(types, "str")),
                 default: "local5",
                 description: "Facility to log to.\n",
               })))),
             format: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                [nix.POS]: pos$49,
+                [nix.POS]: $pos[48],
                 type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "str")))),
                 default: null,
                 description: "Logformat for logs send to syslog.\n",
               })))),
             type: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                [nix.POS]: pos$50,
+                [nix.POS]: $pos[49],
                 type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "str")))),
                 default: null,
                 description: "Type of logs send to syslog.\n",
@@ -415,16 +314,16 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       "af-packet": nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          [nix.POS]: pos$57,
+          [nix.POS]: $pos[56],
           type: nix.thunk(() => (() => {
             const w = nix.withScope(types, null);
             return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.app(nix.lookup(w, "submodule"), nix.thunk(() => ({
-                    [nix.POS]: pos$56,
+                    [nix.POS]: $pos[55],
                     freeformType: nix.thunk(() => nix.sel(yaml, "type")),
                     options: nix.thunk(() => ({
-                      [nix.POS]: pos$55,
+                      [nix.POS]: $pos[54],
                       interface: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          [nix.POS]: pos$54,
+                          [nix.POS]: $pos[53],
                           type: nix.thunk(() => nix.sel(types, "str")),
                           default: null,
                           description: "af-packet capture interface, see [upstream docs reagrding tuning](https://docs.suricata.io/en/latest/performance/tuning-considerations.html#af-packet).\n",
@@ -436,16 +335,16 @@ export default nix.lambda((args) => (() => {
           description: "Linux high speed capture support.\n",
         })))),
       "af-xdp": nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          [nix.POS]: pos$61,
+          [nix.POS]: $pos[60],
           type: nix.thunk(() => (() => {
             const w = nix.withScope(types, null);
             return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.app(nix.lookup(w, "submodule"), nix.thunk(() => ({
-                    [nix.POS]: pos$60,
+                    [nix.POS]: $pos[59],
                     freeformType: nix.thunk(() => nix.sel(yaml, "type")),
                     options: nix.thunk(() => ({
-                      [nix.POS]: pos$59,
+                      [nix.POS]: $pos[58],
                       interface: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          [nix.POS]: pos$58,
+                          [nix.POS]: $pos[57],
                           type: nix.thunk(() => nix.sel(types, "str")),
                           default: null,
                           description: "af-xdp capture interface, see [upstream docs](https://docs.suricata.io/en/latest/capture-hardware/af-xdp.html).\n",
@@ -457,17 +356,17 @@ export default nix.lambda((args) => (() => {
           description: "Linux high speed af-xdp capture support, see\n[docs/capture-hardware/af-xdp](https://docs.suricata.io/en/suricata-7.0.3/capture-hardware/af-xdp.html).\n",
         })))),
       dpdk: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          [nix.POS]: pos$70,
+          [nix.POS]: $pos[69],
           type: nix.thunk(() => (() => {
             const w = nix.withScope(types, null);
             return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.app(nix.lookup(w, "submodule"), nix.thunk(() => ({
-                  [nix.POS]: pos$69,
+                  [nix.POS]: $pos[68],
                   options: nix.thunk(() => ({
-                    [nix.POS]: pos$68,
+                    [nix.POS]: $pos[67],
                     "eal-params": nix.thunk(() => ({
-                      [nix.POS]: pos$63,
+                      [nix.POS]: $pos[62],
                       "proc-type": nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          [nix.POS]: pos$62,
+                          [nix.POS]: $pos[61],
                           type: nix.thunk(() => (() => {
                             const w_1 = nix.withScope(types, w);
                             return nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.lookup(w_1, "str")));
@@ -477,16 +376,16 @@ export default nix.lambda((args) => (() => {
                         })))),
                     })),
                     interfaces: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        [nix.POS]: pos$67,
+                        [nix.POS]: $pos[66],
                         type: nix.thunk(() => (() => {
                           const w_1 = nix.withScope(types, w);
                           return nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.app(nix.lookup(w_1, "listOf"), nix.thunk(() => nix.app(nix.lookup(w_1, "submodule"), nix.thunk(() => ({
-                                  [nix.POS]: pos$66,
+                                  [nix.POS]: $pos[65],
                                   freeformType: nix.thunk(() => nix.sel(yaml, "type")),
                                   options: nix.thunk(() => ({
-                                    [nix.POS]: pos$65,
+                                    [nix.POS]: $pos[64],
                                     interface: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                        [nix.POS]: pos$64,
+                                        [nix.POS]: $pos[63],
                                         type: nix.thunk(() => nix.sel(types, "str")),
                                         default: null,
                                         description: "See upstream docs: [docs/capture-hardware/dpdk](https://docs.suricata.io/en/suricata-7.0.7/capture-hardware/dpdk.html) and [docs/configuration/suricata-yaml.html#data-plane-development-kit-dpdk](https://docs.suricata.io/en/suricata-7.0.7/configuration/suricata-yaml.html#data-plane-development-kit-dpdk).\n",
@@ -504,16 +403,16 @@ export default nix.lambda((args) => (() => {
           description: "Data Plane Development Kit is a framework for fast packet processing in data plane applications running on a wide variety of CPU architectures. DPDK's Environment Abstraction Layer (EAL) provides a generic interface to low-level resources. It is a unique way how DPDK libraries access NICs. EAL creates an API for an application to access NIC resources from the userspace level. In DPDK, packets are not retrieved via interrupt handling. Instead, the application polls the NIC for newly received packets.\n\nDPDK allows the user space application to directly access memory where the NIC stores the packets. As a result, neither DPDK nor the application copies the packets for the inspection. The application directly processes packets via passed packet descriptors.\nSee [docs/capture-hardware/dpdk](https://docs.suricata.io/en/suricata-7.0.7/capture-hardware/dpdk.html) and [docs/configuration/suricata-yaml.html#data-plane-development-kit-dpdk](https://docs.suricata.io/en/suricata-7.0.7/configuration/suricata-yaml.html#data-plane-development-kit-dpdk).\n",
         })))),
       pcap: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          [nix.POS]: pos$74,
+          [nix.POS]: $pos[73],
           type: nix.thunk(() => (() => {
             const w = nix.withScope(types, null);
             return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.app(nix.lookup(w, "submodule"), nix.thunk(() => ({
-                    [nix.POS]: pos$73,
+                    [nix.POS]: $pos[72],
                     freeformType: nix.thunk(() => nix.sel(yaml, "type")),
                     options: nix.thunk(() => ({
-                      [nix.POS]: pos$72,
+                      [nix.POS]: $pos[71],
                       interface: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                          [nix.POS]: pos$71,
+                          [nix.POS]: $pos[70],
                           type: nix.thunk(() => nix.sel(types, "str")),
                           default: null,
                           description: "pcap capture interface, see [upstream docs](https://docs.suricata.io/en/latest/manpages/suricata.html).\n",
@@ -525,24 +424,24 @@ export default nix.lambda((args) => (() => {
           description: "Cross platform libpcap capture support.\n",
         })))),
       "pcap-file": nix.thunk(() => ({
-        [nix.POS]: pos$76,
+        [nix.POS]: $pos[75],
         "checksum-checks": nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            [nix.POS]: pos$75,
+            [nix.POS]: $pos[74],
             type: nix.thunk(() => nix.app(nix.sel(types, "enum"), nix.thunk(() => ["yes", "no", "auto"]))),
             default: "auto",
             description: "Possible values are:\n- yes: checksum validation is forced\n- no: checksum validation is disabled\n- auto: Suricata uses a statistical approach to detect when\nchecksum off-loading is used. (default)\nWarning: 'checksum-validation' must be set to yes to have checksum tested.\n",
           })))),
       })),
       "app-layer": nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          [nix.POS]: pos$84,
+          [nix.POS]: $pos[83],
           type: nix.thunk(() => (() => {
             const w = nix.withScope(types, null);
             return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.app(nix.lookup(w, "submodule"), nix.thunk(() => ({
-                  [nix.POS]: pos$83,
+                  [nix.POS]: $pos[82],
                   options: nix.thunk(() => ({
-                    [nix.POS]: pos$82,
+                    [nix.POS]: $pos[81],
                     "error-policy": nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        [nix.POS]: pos$77,
+                        [nix.POS]: $pos[76],
                         type: nix.thunk(() => nix.app(nix.sel(types, "enum"), nix.thunk(() => [
                             "drop-flow",
                             "pass-flow",
@@ -556,16 +455,16 @@ export default nix.lambda((args) => (() => {
                         description: "The error-policy setting applies to all app-layer parsers. Values can be\n\"drop-flow\", \"pass-flow\", \"bypass\", \"drop-packet\", \"pass-packet\", \"reject\" or\n\"ignore\" (the default).\n",
                       })))),
                     protocols: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        [nix.POS]: pos$81,
+                        [nix.POS]: $pos[80],
                         type: nix.thunk(() => (() => {
                           const w_1 = nix.withScope(types, w);
                           return nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.app(nix.lookup(w_1, "attrsOf"), nix.thunk(() => nix.app(nix.lookup(w_1, "submodule"), nix.thunk(() => ({
-                                  [nix.POS]: pos$80,
+                                  [nix.POS]: $pos[79],
                                   freeformType: nix.thunk(() => nix.sel(yaml, "type")),
                                   options: nix.thunk(() => ({
-                                    [nix.POS]: pos$79,
+                                    [nix.POS]: $pos[78],
                                     enabled: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                                        [nix.POS]: pos$78,
+                                        [nix.POS]: $pos[77],
                                         type: nix.thunk(() => nix.app(nix.sel(types, "enum"), nix.thunk(() => ["yes", "no", "detection-only"]))),
                                         default: "no",
                                         description: "The option \"enabled\" takes 3 values - \"yes\", \"no\", \"detection-only\".\n\"yes\" enables both detection and the parser, \"no\" disables both, and\n\"detection-only\" enables protocol detection only (parser disabled).\n",
@@ -583,42 +482,42 @@ export default nix.lambda((args) => (() => {
           description: "app-layer configuration, see [upstream docs](https://docs.suricata.io/en/latest/rules/app-layer.html).\n",
         })))),
       "run-as": nix.thunk(() => ({
-        [nix.POS]: pos$87,
+        [nix.POS]: $pos[86],
         user: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            [nix.POS]: pos$85,
+            [nix.POS]: $pos[84],
             type: nix.thunk(() => nix.sel(types, "str")),
             default: "suricata",
             description: "Run Suricata with a specific user-id.",
           })))),
         group: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            [nix.POS]: pos$86,
+            [nix.POS]: $pos[85],
             type: nix.thunk(() => nix.sel(types, "str")),
             default: "suricata",
             description: "Run Suricata with a specific group-id.",
           })))),
       })),
       "host-mode": nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          [nix.POS]: pos$88,
+          [nix.POS]: $pos[87],
           type: nix.thunk(() => nix.app(nix.sel(types, "enum"), nix.thunk(() => ["router", "sniffer-only", "auto"]))),
           default: "auto",
           description: "If the Suricata box is a router for the sniffed networks, set it to 'router'. If\nit is a pure sniffing setup, set it to 'sniffer-only'. If set to auto, the variable\nis internally switched to 'router' in IPS mode and 'sniffer-only' in IDS mode.\nThis feature is currently only used by the reject* keywords.\n",
         })))),
       "unix-command": nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          [nix.POS]: pos$93,
+          [nix.POS]: $pos[92],
           type: nix.thunk(() => (() => {
             const w = nix.withScope(types, null);
             return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.app(nix.lookup(w, "submodule"), nix.thunk(() => ({
-                  [nix.POS]: pos$92,
+                  [nix.POS]: $pos[91],
                   options: nix.thunk(() => ({
-                    [nix.POS]: pos$91,
+                    [nix.POS]: $pos[90],
                     enabled: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        [nix.POS]: pos$89,
+                        [nix.POS]: $pos[88],
                         type: nix.thunk(() => nix.app(nix.sel(types, "either"), nix.thunk(() => nix.sel(types, "bool")), nix.thunk(() => nix.app(nix.sel(types, "enum"), nix.thunk(() => ["auto"]))))),
                         default: "auto",
                         description: "Enable unix-command socket.\n",
                       })))),
                     filename: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                        [nix.POS]: pos$90,
+                        [nix.POS]: $pos[89],
                         type: nix.thunk(() => nix.sel(types, "path")),
                         default: "/run/suricata/suricata-command.socket",
                         description: "Filename for unix-command socket.\n",
@@ -630,7 +529,7 @@ export default nix.lambda((args) => (() => {
           description: "Unix command socket that can be used to pass commands to Suricata.\nAn external tool can then connect to get information from Suricata\nor trigger some modifications of the engine. Set enabled to yes\nto activate the feature. In auto mode, the feature will only be\nactivated in live capture mode. You can use the filename variable to set\nthe file name of the socket.\n",
         })))),
       "exception-policy": nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          [nix.POS]: pos$94,
+          [nix.POS]: $pos[93],
           type: nix.thunk(() => nix.app(nix.sel(types, "enum"), nix.thunk(() => [
               "auto",
               "drop-packet",
@@ -645,39 +544,39 @@ export default nix.lambda((args) => (() => {
           description: "Define a common behavior for all exception policies.\nIn IPS mode, the default is drop-flow. For cases when that's not possible, the\nengine will fall to drop-packet. To fallback to old behavior (setting each of\nthem individually, or ignoring all), set this to ignore.\nAll values available for exception policies can be used, and there is one\nextra option: auto - which means drop-flow or drop-packet (as explained above)\nin IPS mode, and ignore in IDS mode. Exception policy values are: drop-packet,\ndrop-flow, reject, bypass, pass-packet, pass-flow, ignore (disable).\n",
         })))),
       "default-rule-path": nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          [nix.POS]: pos$95,
+          [nix.POS]: $pos[94],
           type: nix.thunk(() => nix.sel(types, "path")),
           default: "/var/lib/suricata/rules",
           description: "Path in which suricata-update managed rules are stored by default.",
         })))),
       "rule-files": nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          [nix.POS]: pos$96,
+          [nix.POS]: $pos[95],
           type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "str")))),
           default: nix.thunk(() => ["suricata.rules"]),
           description: "Files to load suricata-update managed rules, relative to 'default-rule-path'.",
         })))),
       "classification-file": nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          [nix.POS]: pos$97,
+          [nix.POS]: $pos[96],
           type: nix.thunk(() => nix.sel(types, "str")),
           default: "/var/lib/suricata/rules/classification.config",
           description: "Suricata classification configuration file.",
         })))),
       "reference-config-file": nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          [nix.POS]: pos$98,
+          [nix.POS]: $pos[97],
           type: nix.thunk(() => nix.sel(types, "str")),
           default: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/etc/suricata/reference.config`),
           defaultText: "${config.services.suricata.package}/etc/suricata/reference.config",
           description: "Suricata reference configuration file.",
         })))),
       "threshold-file": nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          [nix.POS]: pos$99,
+          [nix.POS]: $pos[98],
           type: nix.thunk(() => nix.sel(types, "str")),
           default: nix.thunk(() => nix.str`${nix.sel(cfg, "package")}/etc/suricata/threshold.config`),
           defaultText: "${config.services.suricata.package}/etc/suricata/threshold.config",
           description: "Suricata threshold configuration file.",
         })))),
       includes: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          [nix.POS]: pos$100,
+          [nix.POS]: $pos[99],
           type: nix.thunk(() => (() => {
             const w = nix.withScope(types, null);
             return nix.app(nix.lookup(w, "nullOr"), nix.thunk(() => nix.app(nix.lookup(w, "listOf"), nix.thunk(() => nix.lookup(w, "path")))));

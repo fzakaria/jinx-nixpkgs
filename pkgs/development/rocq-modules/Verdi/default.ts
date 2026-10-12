@@ -2,19 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["case", 19, 9], ["out", 20, 9]], [["case", 23, 9], ["out", 24, 9]], [["case", 27, 9], ["out", 28, 9]], [["case", 31, 9], ["out", 32, 9]], [["case", 35, 9], ["out", 36, 9]], [["rev", 39, 22], ["hash", 40, 22]], [["rev", 41, 22], ["hash", 42, 22]], [["rev", 43, 22], ["hash", 44, 22]], [["rev", 45, 22], ["hash", 46, 22]], [["rev", 47, 22], ["hash", 48, 22]], [["20230503", 39, 11], ["20211026", 41, 11], ["20210524", 43, 11], ["20200131", 45, 11], ["20181102", 47, 11]], [["pname", 12, 3], ["owner", 13, 3], ["version", 14, 11], ["defaultVersion", 15, 3], ["release", 39, 3], ["propagatedBuildInputs", 50, 3]]]);
 const formals$1 = { args: { lib: false, mkCoqDerivation: false, coq: false, Cheerios: false, InfSeqExt: false, ssreflect: false, version: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["case", 19, 9], ["out", 20, 9]]);
-const pos$2 = nix.positions(here + "/default.nix", [["case", 23, 9], ["out", 24, 9]]);
-const pos$3 = nix.positions(here + "/default.nix", [["case", 27, 9], ["out", 28, 9]]);
-const pos$4 = nix.positions(here + "/default.nix", [["case", 31, 9], ["out", 32, 9]]);
-const pos$5 = nix.positions(here + "/default.nix", [["case", 35, 9], ["out", 36, 9]]);
-const pos$6 = nix.positions(here + "/default.nix", [["rev", 39, 22], ["hash", 40, 22]]);
-const pos$7 = nix.positions(here + "/default.nix", [["rev", 41, 22], ["hash", 42, 22]]);
-const pos$8 = nix.positions(here + "/default.nix", [["rev", 43, 22], ["hash", 44, 22]]);
-const pos$9 = nix.positions(here + "/default.nix", [["rev", 45, 22], ["hash", 46, 22]]);
-const pos$10 = nix.positions(here + "/default.nix", [["rev", 47, 22], ["hash", 48, 22]]);
-const pos$11 = nix.positions(here + "/default.nix", [["20230503", 39, 11], ["20211026", 41, 11], ["20210524", 43, 11], ["20200131", 45, 11], ["20181102", 47, 11]]);
-const pos$12 = nix.positions(here + "/default.nix", [["pname", 12, 3], ["owner", 13, 3], ["version", 14, 11], ["defaultVersion", 15, 3], ["release", 39, 3], ["propagatedBuildInputs", 50, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const ssreflect = nix.arg($, "ssreflect");
   const version = nix.argOr($, "version", () => null);
   return nix.app(mkCoqDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$12,
+      [nix.POS]: $pos[11],
       pname: "verdi",
       owner: "uwplse",
       version: version,
@@ -34,52 +23,52 @@ export default nix.lambda((args) => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "versions")), null);
         return nix.app(nix.sel(lib, "switch"), nix.thunk(() => nix.sel(coq, "coq-version")), nix.thunk(() => [
             nix.thunk(() => ({
-              [nix.POS]: pos$1,
+              [nix.POS]: $pos[0],
               case: nix.thunk(() => nix.app(nix.lookup(w, "range"), "8.9", "8.18")),
               out: "20230503",
             })),
             nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               case: nix.thunk(() => nix.app(nix.lookup(w, "range"), "8.7", "8.16")),
               out: "20211026",
             })),
             nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               case: nix.thunk(() => nix.app(nix.lookup(w, "range"), "8.7", "8.14")),
               out: "20210524",
             })),
             nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               case: nix.thunk(() => nix.app(nix.lookup(w, "range"), "8.7", "8.13")),
               out: "20200131",
             })),
-            nix.thunk(() => ({ [nix.POS]: pos$5, case: "8.6", out: "20181102" })),
+            nix.thunk(() => ({ [nix.POS]: $pos[4], case: "8.6", out: "20181102" })),
           ]), null);
       })()),
       release: nix.thunk(() => ({
-        [nix.POS]: pos$11,
+        [nix.POS]: $pos[10],
         "20230503": nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           rev: "76833a7b2188e99e358b8439ea6b4f38401c962a",
           hash: "sha256-g59adl/FLMlk9vZciz2I1ZX4PDCElNOgVPCwML8E4DU=",
         })),
         "20211026": nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           rev: "064cc4fb2347453bf695776ed820ffb5fbc1d804",
           hash: "sha256:13xrcyzay5sjszf5lg4s44wl9nrcz22n6gi4h95pkpj0ni5clinx",
         })),
         "20210524": nix.thunk(() => ({
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           rev: "54597d8ac7ab7dd4dae683f651237644bf77701e",
           hash: "sha256:05wb0km2jkhvi8807glxk9fi1kll4lwisiyzkxhqvymz4x6v8xqv",
         })),
         "20200131": nix.thunk(() => ({
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           rev: "fdb4ede19d2150c254f0ebcfbed4fb9547a734b0",
           hash: "sha256:1a2k19f9q5k5djbxplqmmpwck49kw3lrm3aax920h4yb40czkd8m",
         })),
         "20181102": nix.thunk(() => ({
-          [nix.POS]: pos$10,
+          [nix.POS]: $pos[9],
           rev: "25b79cf1be5527ab8dc1b8314fcee93e76a2e564",
           hash: "sha256:1vw47c37k5vaa8vbr6ryqy8riagngwcrfmb3rai37yi9xhdqg55z",
         })),

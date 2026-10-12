@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["pname", 16, 5], ["version", 17, 13], ["nativeBuildInputs", 18, 5], ["buildCommand", 19, 5], ["outputHashMode", 25, 5], ["outputHash", 26, 5]], [["description", 61, 5], ["mainProgram", 62, 5], ["longDescription", 63, 5], ["homepage", 67, 5], ["license", 68, 5], ["maintainers", 69, 5]], [["pname", 11, 3], ["version", 12, 3], ["scalaVersion", 13, 3], ["deps", 15, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 33, 3], ["dontUnpack", 35, 3], ["installPhase", 37, 3], ["doInstallCheck", 46, 3], ["installCheckPhase", 47, 3], ["meta", 60, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, jre: false, setJavaClassPath: false, coursier: false, makeWrapper: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["pname", 16, 5], ["version", 17, 13], ["nativeBuildInputs", 18, 5], ["buildCommand", 19, 5], ["outputHashMode", 25, 5], ["outputHash", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 61, 5], ["mainProgram", 62, 5], ["longDescription", 63, 5], ["homepage", 67, 5], ["license", 68, 5], ["maintainers", 69, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["scalaVersion", 13, 3], ["deps", 15, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 33, 3], ["dontUnpack", 35, 3], ["installPhase", 37, 3], ["doInstallCheck", 46, 3], ["installCheckPhase", 47, 3], ["meta", 60, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.5.3";
       const scalaVersion = "2.13";
       const deps = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: nix.thunk(() => nix.str`${pname}-deps`),
           version: version,
           nativeBuildInputs: nix.thunk(() => [coursier]),
@@ -48,7 +46,7 @@ cat test.v
 grep -qFe "module test" -e "endmodule" test.v
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Flexible Intermediate Representation for RTL",
         mainProgram: "firrtl",
         longDescription: "Firrtl is an intermediate representation (IR) for digital circuits\ndesigned as a platform for writing circuit-level transformations.\n",
@@ -57,7 +55,7 @@ grep -qFe "module test" -e "endmodule" test.v
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         scalaVersion,

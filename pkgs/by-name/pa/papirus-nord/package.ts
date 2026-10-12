@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 43, 7], ["repo", 44, 7], ["rev", 45, 7], ["sha256", 46, 7]], [["description", 74, 7], ["homepage", 75, 7], ["license", 76, 7], ["platforms", 77, 7], ["maintainers", 78, 7]], [["pname", 40, 13], ["version", 40, 19], ["src", 42, 5], ["nativeBuildInputs", 49, 5], ["postPatch", 54, 5], ["installPhase", 58, 5], ["meta", 73, 5]]]);
 const formals$1 = { args: { stdenvNoCC: false, lib: false, fetchFromGitHub: false, gtk3: false, getent: false, "papirus-icon-theme": false, accent: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 43, 7], ["repo", 44, 7], ["rev", 45, 7], ["sha256", 46, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 74, 7], ["homepage", 75, 7], ["license", 76, 7], ["platforms", 77, 7], ["maintainers", 78, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 40, 13], ["version", 40, 19], ["src", 42, 5], ["nativeBuildInputs", 49, 5], ["postPatch", 54, 5], ["installPhase", 58, 5], ["meta", 73, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -41,11 +39,11 @@ export default nix.lambda((args) => (() => {
   const pname = "papirus-nord";
   const version = "3.2.0";
   return nix.app(nix.sel(lib, "checkListOfEnum"), nix.thunk(() => nix.str`${pname}: accent colors`), validAccents, nix.thunk(() => [accent]), nix.thunk(() => nix.sel(stdenvNoCC, "mkDerivation")), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: pname,
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "adapta-projects",
           repo: "papirus-nord",
           rev: version,
@@ -67,7 +65,7 @@ done
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Nord version of Papirus Icon Theme",
         homepage: "https://github.com/Adapta-Projects/Papirus-Nord",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

@@ -2,22 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 14, 7], ["hash", 15, 7]], [["version", 12, 5], ["src", 13, 5]], [["url", 22, 7], ["hash", 23, 7]], [["version", 20, 5], ["src", 21, 5], ["patches", 26, 5]], [["url", 32, 7], ["hash", 33, 7]], [["version", 30, 5], ["src", 31, 5], ["patches", 36, 5]], [["url", 42, 7], ["hash", 43, 7]], [["version", 40, 5], ["src", 41, 5], ["patches", 46, 5]], [["url", 52, 7], ["hash", 53, 7]], [["version", 50, 5], ["src", 51, 5]], [["url", 60, 7], ["hash", 61, 7]], [["version", 58, 5], ["src", 59, 5]], [["url", 68, 7], ["hash", 69, 7]], [["version", 66, 5], ["src", 67, 5]], [["f32", 11, 3], ["f33", 19, 3], ["f34", 29, 3], ["f35", 39, 3], ["f36", 49, 3], ["f37", 57, 3], ["f38", 65, 3]]]);
 const formals$1 = { args: { callPackage: false, lib: false, fetchurl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 14, 7], ["hash", 15, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["version", 12, 5], ["src", 13, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["url", 22, 7], ["hash", 23, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["version", 20, 5], ["src", 21, 5], ["patches", 26, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["url", 32, 7], ["hash", 33, 7]]);
-const pos$6 = nix.positions(here + "/default.nix", [["version", 30, 5], ["src", 31, 5], ["patches", 36, 5]]);
-const pos$7 = nix.positions(here + "/default.nix", [["url", 42, 7], ["hash", 43, 7]]);
-const pos$8 = nix.positions(here + "/default.nix", [["version", 40, 5], ["src", 41, 5], ["patches", 46, 5]]);
-const pos$9 = nix.positions(here + "/default.nix", [["url", 52, 7], ["hash", 53, 7]]);
-const pos$10 = nix.positions(here + "/default.nix", [["version", 50, 5], ["src", 51, 5]]);
-const pos$11 = nix.positions(here + "/default.nix", [["url", 60, 7], ["hash", 61, 7]]);
-const pos$12 = nix.positions(here + "/default.nix", [["version", 58, 5], ["src", 59, 5]]);
-const pos$13 = nix.positions(here + "/default.nix", [["url", 68, 7], ["hash", 69, 7]]);
-const pos$14 = nix.positions(here + "/default.nix", [["version", 66, 5], ["src", 67, 5]]);
-const pos$15 = nix.positions(here + "/default.nix", [["f32", 11, 3], ["f33", 19, 3], ["f34", 29, 3], ["f35", 39, 3], ["f36", 49, 3], ["f37", 57, 3], ["f38", 65, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,72 +12,72 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const fedoraBackground = nix.thunk(() => nix.app(callPackage, nix.path(here, "./generic.nix"), nix.thunk(() => ({}))));
   return {
-    [nix.POS]: pos$15,
+    [nix.POS]: $pos[14],
     f32: nix.thunk(() => nix.app(fedoraBackground, nix.thunk(() => (() => {
         const version = "32.2.2";
         const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             url: nix.thunk(() => nix.str`https://github.com/fedoradesign/backgrounds/releases/download/v${version}/f${nix.app(nix.sel(lib, "versions", "major"), version)}-backgrounds-${version}.tar.xz`),
             hash: "sha256-1F75aae7Jj7M2IPn/vWKcUF+O5mZ0Yey7hWuFj/4Fhg=",
           }))));
-        return { [nix.POS]: pos$2, version, src };
+        return { [nix.POS]: $pos[1], version, src };
       })()))),
     f33: nix.thunk(() => nix.app(fedoraBackground, nix.thunk(() => (() => {
         const version = "33.0.7";
         const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: nix.thunk(() => nix.str`https://github.com/fedoradesign/backgrounds/releases/download/v${version}/f${nix.app(nix.sel(lib, "versions", "major"), version)}-backgrounds-${version}.tar.xz`),
             hash: "sha256-lAn5diEYebCo2ZJCOn9rD87rOasUU0qnSOr0EnZKW4o=",
           }))));
         const patches = nix.thunk(() => [nix.path(here, "./f33-fix-xfce-path.patch")]);
-        return { [nix.POS]: pos$4, version, src, patches };
+        return { [nix.POS]: $pos[3], version, src, patches };
       })()))),
     f34: nix.thunk(() => nix.app(fedoraBackground, nix.thunk(() => (() => {
         const version = "34.0.1";
         const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             url: nix.thunk(() => nix.str`https://github.com/fedoradesign/backgrounds/releases/download/v${version}/f${nix.app(nix.sel(lib, "versions", "major"), version)}-backgrounds-${version}.tar.xz`),
             hash: "sha256-0gotgQ4N0yE8WZbsu7B3jmUIZrycbqjEMxZl01JcJj4=",
           }))));
         const patches = nix.thunk(() => [nix.path(here, "./f34-fix-xfce-path.patch")]);
-        return { [nix.POS]: pos$6, version, src, patches };
+        return { [nix.POS]: $pos[5], version, src, patches };
       })()))),
     f35: nix.thunk(() => nix.app(fedoraBackground, nix.thunk(() => (() => {
         const version = "35.0.1";
         const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             url: nix.thunk(() => nix.str`https://github.com/fedoradesign/backgrounds/releases/download/v${version}/f${nix.app(nix.sel(lib, "versions", "major"), version)}-backgrounds-${version}.tar.xz`),
             hash: "sha256-7t78sQ0BIkzgJ+phO55Bomyz02d8Vx1LAtSkjX8ppgE=",
           }))));
         const patches = nix.thunk(() => [nix.path(here, "./f35-fix-xfce-path.patch")]);
-        return { [nix.POS]: pos$8, version, src, patches };
+        return { [nix.POS]: $pos[7], version, src, patches };
       })()))),
     f36: nix.thunk(() => nix.app(fedoraBackground, nix.thunk(() => (() => {
         const version = "36.1.2";
         const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$9,
+            [nix.POS]: $pos[8],
             url: nix.thunk(() => nix.str`https://github.com/fedoradesign/backgrounds/releases/download/v${version}/f${nix.app(nix.sel(lib, "versions", "major"), version)}-backgrounds-${version}.tar.xz`),
             hash: "sha256-DZr1YHltojl02X/3sErqB/29JBDy/7lDZKnHD+KouHc=",
           }))));
-        return { [nix.POS]: pos$10, version, src };
+        return { [nix.POS]: $pos[9], version, src };
       })()))),
     f37: nix.thunk(() => nix.app(fedoraBackground, nix.thunk(() => (() => {
         const version = "37.0.5";
         const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$11,
+            [nix.POS]: $pos[10],
             url: nix.thunk(() => nix.str`https://github.com/fedoradesign/backgrounds/releases/download/v${version}/f${nix.app(nix.sel(lib, "versions", "major"), version)}-backgrounds-${version}.tar.xz`),
             hash: "sha256-bkjxJDDU0dZURKIK1sd+EOnPt9vvJ5HqHkc6OhPBBn0=",
           }))));
-        return { [nix.POS]: pos$12, version, src };
+        return { [nix.POS]: $pos[11], version, src };
       })()))),
     f38: nix.thunk(() => nix.app(fedoraBackground, nix.thunk(() => (() => {
         const version = "38.1.1";
         const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$13,
+            [nix.POS]: $pos[12],
             url: nix.thunk(() => nix.str`https://github.com/fedoradesign/backgrounds/releases/download/v${version}/f${nix.app(nix.sel(lib, "versions", "major"), version)}-backgrounds-${version}.tar.xz`),
             hash: "sha256-YSNP7GhS5i5mJDsa4UwsXJm8Tv43r9JxrcYIbkXQKm4=",
           }))));
-        return { [nix.POS]: pos$14, version, src };
+        return { [nix.POS]: $pos[13], version, src };
       })()))),
   };
 })(), formals$1);

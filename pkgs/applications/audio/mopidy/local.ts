@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/local.nix", [[["version", 14, 26], ["pname", 15, 5], ["hash", 16, 5]], [["homepage", 35, 5], ["description", 36, 5], ["license", 37, 5], ["maintainers", 38, 5]], [["pname", 9, 3], ["version", 10, 3], ["pyproject", 11, 3], ["src", 13, 3], ["build-system", 19, 3], ["dependencies", 23, 3], ["nativeCheckInputs", 28, 3], ["pythonImportsCheck", 32, 3], ["meta", 34, 3]]]);
 const formals$1 = { args: { lib: false, mopidy: false, pythonPackages: false, fetchPypi: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/local.nix", [["version", 14, 26], ["pname", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/local.nix", [["homepage", 35, 5], ["description", 36, 5], ["license", 37, 5], ["maintainers", 38, 5]]);
-const pos$3 = nix.positions(here + "/local.nix", [["pname", 9, 3], ["version", 10, 3], ["pyproject", 11, 3], ["src", 13, 3], ["build-system", 19, 3], ["dependencies", 23, 3], ["nativeCheckInputs", 28, 3], ["pythonImportsCheck", 32, 3], ["meta", 34, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,12 +12,12 @@ export default nix.lambda((args) => (() => {
   const pythonPackages = nix.arg($, "pythonPackages");
   const fetchPypi = nix.arg($, "fetchPypi");
   return nix.app(nix.sel(pythonPackages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "mopidy-local",
       version: "3.3.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           pname: "mopidy_local",
           hash: "sha256-y6btbGk5UiVan178x7d9jq5OTnKMbuliHv0aRxuZK3o=",
@@ -29,7 +27,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pythonPackages, "pytestCheckHook"))]),
       pythonImportsCheck: nix.thunk(() => ["mopidy_local"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/mopidy/mopidy-local",
         description: "Mopidy extension for playing music from your local music archive",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

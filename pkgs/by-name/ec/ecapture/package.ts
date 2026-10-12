@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["hash", 33, 5], ["fetchSubmodules", 34, 5]], [["configureFlags", 46, 5]], [["CGO_LDFLAGS", 55, 7]], [["updateScript", 131, 12]], [["description", 134, 5], ["changelog", 135, 5], ["homepage", 136, 5], ["platforms", 137, 5], ["license", 141, 5], ["maintainers", 142, 5], ["mainProgram", 143, 5]], [["pname", 26, 3], ["version", 27, 3], ["src", 29, 3], ["nativeBuildInputs", 37, 3], ["newlibpcap", 45, 3], ["buildInputs", 49, 3], ["env", 55, 3], ["ldflags", 61, 3], ["hardeningDisable", 66, 3], ["postPatch", 70, 3], ["postConfigure", 104, 3], ["checkFlags", 121, 3], ["vendorHash", 129, 3], ["passthru", 131, 3], ["meta", 133, 3]]]);
 const formals$1 = { args: { buildGoModule: false, fetchFromGitHub: false, bpftools: false, lib: false, nspr: false, libpcap: false, clang: false, fd: false, "go-bindata": false, glibc: false, gnutls: false, bashInteractive: false, postgresql: false, mariadb: false, openssl: false, bash: false, zsh: false, "nix-update-script": false, llvmPackages: false, withNonBTF: true, kernel: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["hash", 33, 5], ["fetchSubmodules", 34, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["configureFlags", 46, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["CGO_LDFLAGS", 55, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 131, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 134, 5], ["changelog", 135, 5], ["homepage", 136, 5], ["platforms", 137, 5], ["license", 141, 5], ["maintainers", 142, 5], ["mainProgram", 143, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 26, 3], ["version", 27, 3], ["src", 29, 3], ["nativeBuildInputs", 37, 3], ["newlibpcap", 45, 3], ["buildInputs", 49, 3], ["env", 55, 3], ["ldflags", 61, 3], ["hardeningDisable", 66, 3], ["postPatch", 70, 3], ["postConfigure", 104, 3], ["checkFlags", 121, 3], ["vendorHash", 129, 3], ["passthru", 131, 3], ["meta", 133, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -37,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const pname = "ecapture";
       const version = "1.5.2";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "gojue",
           repo: "ecapture",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -52,12 +47,12 @@ export default nix.lambda((args) => (() => {
         go_bindata,
       ]);
       const newlibpcap = nix.thunk(() => nix.app(nix.sel(libpcap, "overrideAttrs"), (previousAttrs) => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           configureFlags: nix.thunk(() => nix.concat(nix.sel(previousAttrs, "configureFlags"), ["--without-libnl"])),
         })));
       const buildInputs = nix.thunk(() => [newlibpcap, nix.thunk(() => nix.sel(glibc, "static")), glibc]);
       const env = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         CGO_LDFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-lpcap", "-lpthread", "-static"]))),
       }));
       const ldflags = nix.thunk(() => ["-extldflags '-static'", "-linkmode=external"]);
@@ -111,11 +106,11 @@ KERN_BUILD_PATH=${nix.sel(kernel, "dev")}/lib/modules/${nix.sel(kernel, "modDirV
       })());
       const vendorHash = "sha256-esBALagv8J4UPYAzV2x3joF0MUxco4OHDFlL32yXe6E=";
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Capture SSL/TLS text content without CA certificate Using eBPF",
         changelog: nix.thunk(() => nix.str`https://github.com/gojue/ecapture/releases/tag/v${version}`),
         homepage: "https://ecapture.cc",
@@ -128,7 +123,7 @@ KERN_BUILD_PATH=${nix.sel(kernel, "dev")}/lib/modules/${nix.sel(kernel, "modDirV
         mainProgram: "ecapture",
       }));
       return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname,
         version,
         src,

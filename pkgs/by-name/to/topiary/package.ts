@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]], [["TOPIARY_LANGUAGE_DIR", 69, 7]], [["updateScript", 85, 12]], [["description", 88, 5], ["homepage", 89, 5], ["changelog", 90, 5], ["license", 91, 5], ["maintainers", 92, 5], ["mainProgram", 95, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["cargoHash", 21, 3], ["nativeBuildInputs", 23, 3], ["cargoBuildFlags", 25, 3], ["checkFlags", 31, 3], ["cargoTestFlags", 67, 3], ["env", 69, 3], ["postInstall", 71, 3], ["nativeInstallCheckInputs", 81, 3], ["doInstallCheck", 83, 3], ["passthru", 85, 3], ["meta", 87, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, rustPlatform: false, fetchFromGitHub: false, installShellFiles: false, versionCheckHook: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["TOPIARY_LANGUAGE_DIR", 69, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 85, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 88, 5], ["homepage", 89, 5], ["changelog", 90, 5], ["license", 91, 5], ["maintainers", 92, 5], ["mainProgram", 95, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["cargoHash", 21, 3], ["nativeBuildInputs", 23, 3], ["cargoBuildFlags", 25, 3], ["checkFlags", 31, 3], ["cargoTestFlags", 67, 3], ["env", 69, 3], ["postInstall", 71, 3], ["nativeInstallCheckInputs", 81, 3], ["doInstallCheck", 83, 3], ["passthru", 85, 3], ["meta", 87, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "topiary",
       version: "0.7.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "topiary",
           repo: "topiary",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -70,18 +66,18 @@ export default nix.lambda((args) => (() => {
       ]),
       cargoTestFlags: nix.thunk(() => nix.sel(finalAttrs, "cargoBuildFlags")),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         TOPIARY_LANGUAGE_DIR: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/share/queries`),
       })),
       postInstall: nix.thunk(() => nix.add("install -Dm444 topiary-queries/queries/* -t $out/share/queries\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "installShellCompletion --cmd topiary \\\n  --bash <($out/bin/topiary completion bash) \\\n  --fish <($out/bin/topiary completion fish) \\\n  --zsh <($out/bin/topiary completion zsh)\n"))),
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Uniform formatter for simple languages, as part of the Tree-sitter ecosystem",
         homepage: "https://github.com/topiary/topiary",
         changelog: nix.thunk(() => nix.str`https://github.com/topiary/topiary/blob/v${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

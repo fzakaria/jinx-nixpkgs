@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 36, 5], ["sha256", 37, 5]], [["name", 48, 7], ["url", 49, 7], ["hash", 50, 7]], [["name", 54, 7], ["url", 55, 7], ["hash", 56, 7]], [["NIX_CFLAGS_COMPILE", 96, 7]], [["description", 111, 5], ["longDescription", 112, 5], ["homepage", 119, 5], ["license", 120, 5], ["maintainers", 122, 5], ["platforms", 125, 5]], [["pname", 32, 3], ["version", 33, 3], ["src", 35, 3], ["patches", 40, 3], ["nativeBuildInputs", 60, 3], ["buildInputs", 69, 3], ["env", 96, 3], ["mesonFlags", 98, 3], ["postPatch", 102, 3], ["postInstall", 106, 3], ["meta", 110, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, fetchpatch: false, meson: false, ninja: false, "pkg-config": false, pixman: false, "alsa-lib": false, openssl: false, libxrandr: false, libxfixes: false, libxext: false, libxrender: false, libxinerama: false, libjpeg: false, zlib: false, "spice-protocol": false, python3: false, glib: false, cyrus_sasl: false, libcacard: false, lz4: false, libopus: false, gst_all_1: false, orc: false, "gdk-pixbuf": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 36, 5], ["sha256", 37, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 48, 7], ["url", 49, 7], ["hash", 50, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 54, 7], ["url", 55, 7], ["hash", 56, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 96, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 111, 5], ["longDescription", 112, 5], ["homepage", 119, 5], ["license", 120, 5], ["maintainers", 122, 5], ["platforms", 125, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 32, 3], ["version", 33, 3], ["src", 35, 3], ["patches", 40, 3], ["nativeBuildInputs", 60, 3], ["buildInputs", 69, 3], ["env", 96, 3], ["mesonFlags", 98, 3], ["postPatch", 102, 3], ["postInstall", 106, 3], ["meta", 110, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -40,24 +35,24 @@ export default nix.lambda((args) => (() => {
   const orc = nix.arg($, "orc");
   const gdk_pixbuf = nix.arg($, "gdk-pixbuf");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "spice",
       version: "0.16.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://www.spice-space.org/download/releases/spice-server/spice-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           sha256: "sha256-Cm7JUo8FNxJhu7LUb/Nee1xF/4m7l1qZr5Wl8g/0cX0=",
         })))),
       patches: nix.thunk(() => [
         nix.path(here, "./remove-rt-on-darwin.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "spice-test-display-base-initializer-anonymous-union.patch",
             url: "https://gitlab.freedesktop.org/spice/spice/-/commit/59bc22a40611121b2ea7888bf3c1a501c4fc0b91.patch",
             hash: "sha256-VQ+DrzmIws3EyZU5c0OqMZwMltUvCW34h5oXuHB8YWs=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "spice-test-gst-initializer-anonymous-union.patch",
             url: "https://gitlab.freedesktop.org/spice/spice/-/commit/a904cd86430aa555a50730e9389e210637a546c1.patch",
             hash: "sha256-6GGqi+Y4I/oftE8zXuRnX021+r7SrQPUdAdBsCv9MIw=",
@@ -91,12 +86,12 @@ export default nix.lambda((args) => (() => {
         spice_protocol,
         zlib,
       ], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [alsa_lib])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [gdk_pixbuf]))))),
-      env: nix.thunk(() => ({ [nix.POS]: pos$4, NIX_CFLAGS_COMPILE: "-fno-stack-protector" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[3], NIX_CFLAGS_COMPILE: "-fno-stack-protector" })),
       mesonFlags: nix.thunk(() => ["-Dgstreamer=1.0"]),
       postPatch: "patchShebangs build-aux\n",
       postInstall: "ln -s spice-server $out/include/spice\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Complete open source solution for interaction with virtualized desktop devices",
         longDescription: "The Spice project aims to provide a complete open source solution for interaction\nwith virtualized desktop devices.The Spice project deals with both the virtualized\ndevices and the front-end. Interaction between front-end and back-end is done using\nVD-Interfaces. The VD-Interfaces (VDI) enable both ends of the solution to be easily\nutilized by a third-party component.\n",
         homepage: "https://www.spice-space.org/",

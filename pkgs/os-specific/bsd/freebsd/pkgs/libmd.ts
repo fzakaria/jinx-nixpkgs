@@ -2,10 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/libmd.nix", [[["platforms", 74, 10]], [["pname", 21, 5], ["path", 22, 5], ["extraPaths", 23, 5], ["outputs", 31, 5], ["noLibc", 37, 5], ["MK_TESTS", 39, 5], ["buildInputs", 41, 5], ["preBuild", 49, 5], ["installPhase", 56, 5], ["meta", 74, 5]], [["nativeBuildInputs", 77, 5]]]);
 const formals$1 = { args: { lib: false, stdenv: false, mkDerivation: false, libcMinimal: false, include: false, libgcc: false, makeMinimal: false, bsdSetupHook: false, freebsdSetupHook: false, compatIfNeeded: false, csu: false, bootstrapInstallation: true, extraSrc: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/libmd.nix", [["platforms", 74, 10]]);
-const pos$2 = nix.positions(here + "/libmd.nix", [["pname", 21, 5], ["path", 22, 5], ["extraPaths", 23, 5], ["outputs", 31, 5], ["noLibc", 37, 5], ["MK_TESTS", 39, 5], ["buildInputs", 41, 5], ["preBuild", 49, 5], ["installPhase", 56, 5], ["meta", 74, 5]]);
-const pos$3 = nix.positions(here + "/libmd.nix", [["nativeBuildInputs", 77, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,7 +21,7 @@ export default nix.lambda((args) => (() => {
   const bootstrapInstallation = nix.argOr($, "bootstrapInstallation", () => false);
   const extraSrc = nix.argOr($, "extraSrc", () => []);
   return nix.app(mkDerivation, nix.thunk(() => nix.update({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: nix.thunk(() => nix.add("libmd", nix.app(nix.sel(lib, "optionalString"), bootstrapInstallation, "-boot"))),
       path: "lib/libmd",
       extraPaths: nix.thunk(() => nix.concat(["sys/crypto", "sys/sys", "sys/kern", "lib/libc/Versions.def"], extraSrc)),
@@ -35,11 +33,11 @@ export default nix.lambda((args) => (() => {
 `)))),
       installPhase: nix.thunk(() => (nix.asBool(!nix.asBool(bootstrapInstallation)) ? null : "# libmd is used by install. do it yourself!\nmkdir -p $out/include $out/lib $man/share/man\ncp libmd.a $out/lib/libmd.a\nfor f in $(make $makeFlags -V INCS); do\n  if [ -e \"$f\" ]; then cp \"$f\" \"$out/include/$f\"; fi\n  if [ -e \"$BSDSRCDIR/sys/crypto/sha2/$f\" ]; then cp \"$BSDSRCDIR/sys/crypto/sha2/$f\" \"$out/include/$f\"; fi\n  if [ -e \"$BSDSRCDIR/sys/crypto/skein/$f\" ]; then cp \"$BSDSRCDIR/sys/crypto/skein/$f\" \"$out/include/$f\"; fi\ndone\nfor f in $(make $makeFlags -V MAN); do\n  cp \"$f\" \"$man/share/man/$f\"\ndone\n")),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       })),
     }, nix.app(nix.sel(lib, "optionalAttrs"), bootstrapInstallation, nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         nativeBuildInputs: nix.thunk(() => [makeMinimal, bsdSetupHook, freebsdSetupHook]),
       }))))));
 })(), formals$1);

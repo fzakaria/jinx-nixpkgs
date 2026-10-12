@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 12, 5], ["repo", 13, 5], ["rev", 14, 5], ["hash", 15, 5]], [["CYPRESS_INSTALL_BINARY", 26, 5], ["NEXT_PUBLIC_DASHBOARD_VERSION", 27, 5]], [["description", 31, 5], ["homepage", 32, 5], ["license", 33, 5], ["maintainers", 34, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["npmDepsHash", 18, 3], ["npmFlags", 19, 3], ["installPhase", 21, 3], ["env", 25, 3], ["meta", 30, 3]]]);
 const formals$1 = { args: { lib: false, buildNpmPackage: false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 12, 5], ["repo", 13, 5], ["rev", 14, 5], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["CYPRESS_INSTALL_BINARY", 26, 5], ["NEXT_PUBLIC_DASHBOARD_VERSION", 27, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 31, 5], ["homepage", 32, 5], ["license", 33, 5], ["maintainers", 34, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["npmDepsHash", 18, 3], ["npmFlags", 19, 3], ["installPhase", 21, 3], ["env", 25, 3], ["meta", 30, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,7 +14,7 @@ export default nix.lambda((args) => (() => {
       const pname = "netbird-dashboard";
       const version = "2.94.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "netbirdio",
           repo: "dashboard",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -27,19 +24,19 @@ export default nix.lambda((args) => (() => {
       const npmFlags = nix.thunk(() => ["--legacy-peer-deps"]);
       const installPhase = "cp -R out $out\n";
       const env = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         CYPRESS_INSTALL_BINARY: 0n,
         NEXT_PUBLIC_DASHBOARD_VERSION: version,
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "NetBird Management Service Web UI Panel",
         homepage: "https://github.com/netbirdio/dashboard",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

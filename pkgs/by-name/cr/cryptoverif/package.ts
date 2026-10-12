@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 14, 5], ["hash", 15, 5]], [["updateScript", 51, 12]], [["description", 64, 5], ["mainProgram", 65, 5], ["homepage", 66, 5], ["license", 67, 5], ["platforms", 68, 5], ["maintainers", 69, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["postPatch", 23, 3], ["strictDeps", 28, 3], ["nativeBuildInputs", 30, 3], ["buildPhase", 32, 3], ["installPhase", 40, 3], ["passthru", 51, 3], ["meta", 63, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, ocaml: false, writeScript: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 14, 5], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 51, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 64, 5], ["mainProgram", 65, 5], ["homepage", 66, 5], ["license", 67, 5], ["platforms", 68, 5], ["maintainers", 69, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["postPatch", 23, 3], ["strictDeps", 28, 3], ["nativeBuildInputs", 30, 3], ["buildPhase", 32, 3], ["installPhase", 40, 3], ["passthru", 51, 3], ["meta", 63, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const ocaml = nix.arg($, "ocaml");
   const writeScript = nix.arg($, "writeScript");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "cryptoverif",
       version: "2.12",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://prosecco.gforge.inria.fr/personal/bblanche/cryptoverif/cryptoverif${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-d3MIYb57+95bB493hdtHiGnTOronYaQo1Qqq1TcJh1c=",
         })))),
@@ -30,11 +27,11 @@ export default nix.lambda((args) => (() => {
       buildPhase: "runHook preBuild\n\n./build\n\nrunHook postBuild\n",
       installPhase: "runHook preInstall\n\nmkdir -p $out/bin $out/libexec\ncp ./cryptoverif   $out/bin\ncp ./default.cvl   $out/libexec\ncp ./default.ocvl  $out/libexec\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(writeScript, "update-cryptoverif", "#!/usr/bin/env nix-shell\n#!nix-shell -i bash -p common-updater-scripts curl pcre2\n\nset -eu -o pipefail\n\nversion=\"$(curl -s https://bblanche.gitlabpages.inria.fr/CryptoVerif/ |\n  pcre2grep -o1 '\\bCryptoVerif version ([.[:alnum:]]+),')\"\n\nupdate-source-version \"$UPDATE_NIX_ATTR_PATH\" \"$version\"\n")),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Cryptographic protocol verifier in the computational model",
         mainProgram: "cryptoverif",
         homepage: "https://bblanche.gitlabpages.inria.fr/CryptoVerif/",

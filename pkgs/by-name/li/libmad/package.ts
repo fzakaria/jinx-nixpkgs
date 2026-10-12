@@ -2,18 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 22, 5], ["sha256", 23, 5]], [["url", 33, 7], ["sha256", 34, 7]], [["url", 37, 7], ["sha256", 38, 7]], [["url", 41, 7], ["sha256", 42, 7]], [["name", 45, 7], ["url", 46, 7], ["sha256", 47, 7]], [["name", 50, 7], ["url", 51, 7], ["sha256", 52, 7]], [["url", 60, 7], ["sha256", 61, 7]], [["audacity", 79, 7], ["mpd", 80, 7], ["normalize", 81, 7], ["streamripper", 82, 7], ["vlc", 83, 7], ["ocaml-mad", 85, 5]], [["tests", 77, 12]], [["homepage", 91, 5], ["description", 92, 5], ["license", 93, 5], ["maintainers", 94, 5], ["platforms", 95, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["outputs", 26, 3], ["patches", 31, 3], ["postPatch", 66, 3], ["nativeBuildInputs", 71, 3], ["strictDeps", 73, 3], ["preConfigure", 75, 3], ["passthru", 77, 3], ["__structuredAttrs", 88, 3], ["meta", 90, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, fetchpatch: false, autoconf: false, audacity: false, mpd: false, normalize: false, ocamlPackages: false, streamripper: false, vlc: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 22, 5], ["sha256", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 33, 7], ["sha256", 34, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 37, 7], ["sha256", 38, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["url", 41, 7], ["sha256", 42, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["name", 45, 7], ["url", 46, 7], ["sha256", 47, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["name", 50, 7], ["url", 51, 7], ["sha256", 52, 7]]);
-const pos$7 = nix.positions(here + "/package.nix", [["url", 60, 7], ["sha256", 61, 7]]);
-const pos$8 = nix.positions(here + "/package.nix", [["audacity", 79, 7], ["mpd", 80, 7], ["normalize", 81, 7], ["streamripper", 82, 7], ["vlc", 83, 7], ["ocaml-mad", 85, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["tests", 77, 12]]);
-const pos$10 = nix.positions(here + "/package.nix", [["homepage", 91, 5], ["description", 92, 5], ["license", 93, 5], ["maintainers", 94, 5], ["platforms", 95, 5]]);
-const pos$11 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["outputs", 26, 3], ["patches", 31, 3], ["postPatch", 66, 3], ["nativeBuildInputs", 71, 3], ["strictDeps", 73, 3], ["preConfigure", 75, 3], ["passthru", 77, 3], ["__structuredAttrs", 88, 3], ["meta", 90, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,46 +19,46 @@ export default nix.lambda((args) => (() => {
   const streamripper = nix.arg($, "streamripper");
   const vlc = nix.arg($, "vlc");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$11,
+      [nix.POS]: $pos[10],
       pname: "libmad",
       version: "0.15.1b",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/mad/libmad-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "14460zhacxhswnzb36qfpd1f2wbk10qvksvm6wyq5hpvdgnw7ymv",
         })))),
       outputs: nix.thunk(() => ["out", "dev"]),
       patches: nix.thunk(() => nix.concat([
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/openwrt/packages/raw/openwrt-19.07/libs/libmad/patches/001-mips_removal_h_constraint.patch",
             sha256: "0layswr6qg6axf4vyz6xrv73jwga34mkma3ifk9w9vrk41454hr5",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: "https://github.com/KaOSx/main/raw/1270b8080f37fb6cca562829a521991800b0a497/libmad/libmad.patch",
             sha256: "0rysq0sn3dfdz6pa6bfqkmk4ymc4rzk5ym7p16dyk37sldg1pbzs",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             url: "https://github.com/KaOSx/main/raw/1270b8080f37fb6cca562829a521991800b0a497/libmad/amd64-64bit.diff",
             sha256: "0mx56dmkbvw3zxnqd2hjng48q0d7q7473pns4n0ksdam29b0c5ar",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             name: "CVE-2017-8372-CVE-2017-8373.patch",
             url: "https://github.com/openwrt/packages/raw/openwrt-19.07/libs/libmad/patches/102-CVE-2017-8373-CVE-2017-8372-md-size.patch",
             sha256: "0p6mkpn66h1ds8jvww28q4vlr58jwm58m9vb7pkvvyvy764agqnk",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             name: "CVE-2017-8374.patch",
             url: "https://github.com/openwrt/packages/raw/openwrt-19.07/libs/libmad/patches/101-CVE-2017-8374-length-check.patch",
             sha256: "1j1ssxwmx9nfahzl62frbzck93xrjc2v3w30c12vmk29iflf1890",
           })))),
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), nix.thunk(() => [
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              [nix.POS]: pos$7,
+              [nix.POS]: $pos[6],
               url: "https://github.com/KaOSx/main/raw/1270b8080f37fb6cca562829a521991800b0a497/libmad/optimize.diff",
               sha256: "0hcxzz9ql1fizyqbsgdchdwi7bvchfr72172j43hpyj53p0yabc6",
             })))),
@@ -78,9 +68,9 @@ export default nix.lambda((args) => (() => {
       strictDeps: true,
       preConfigure: "autoconf",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           audacity: audacity,
           mpd: mpd,
           normalize: normalize,
@@ -91,7 +81,7 @@ export default nix.lambda((args) => (() => {
       })),
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         homepage: "https://sourceforge.net/projects/mad/",
         description: "High-quality, fixed-point MPEG audio decoder supporting MPEG-1 and MPEG-2",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),

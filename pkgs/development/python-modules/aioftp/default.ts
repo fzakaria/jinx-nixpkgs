@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 22, 13], ["version", 22, 19], ["hash", 23, 5]], [["socks", 29, 5]], [["description", 50, 5], ["homepage", 51, 5], ["changelog", 52, 5], ["license", 53, 5], ["maintainers", 54, 5]], [["pname", 17, 3], ["version", 18, 3], ["pyproject", 19, 3], ["src", 21, 3], ["build-system", 26, 3], ["optional-dependencies", 28, 3], ["nativeCheckInputs", 32, 3], ["disabledTests", 42, 3], ["pythonImportsCheck", 47, 3], ["meta", 49, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, "async-timeout": false, buildPythonPackage: false, fetchPypi: false, "pytest-asyncio": false, "pytest-cov-stub": false, "pytest-mock": false, pytestCheckHook: false, setuptools: false, siosocks: false, trustme: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 22, 13], ["version", 22, 19], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["socks", 29, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 50, 5], ["homepage", 51, 5], ["changelog", 52, 5], ["license", 53, 5], ["maintainers", 54, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 17, 3], ["version", 18, 3], ["pyproject", 19, 3], ["src", 21, 3], ["build-system", 26, 3], ["optional-dependencies", 28, 3], ["nativeCheckInputs", 32, 3], ["disabledTests", 42, 3], ["pythonImportsCheck", 47, 3], ["meta", 49, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,13 +24,13 @@ export default nix.lambda((args) => (() => {
       const version = "0.28.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-MR9m6f9yYFX3PnR2T7YuCXq4Btoxd8E/E1bI5+r5pl0=",
         }))));
       const build_system = nix.thunk(() => [setuptools]);
-      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, socks: nix.thunk(() => [siosocks]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: $pos[1], socks: nix.thunk(() => [siosocks]) }));
       const nativeCheckInputs = nix.thunk(() => nix.concat([
         async_timeout,
         pytest_asyncio,
@@ -45,7 +42,7 @@ export default nix.lambda((args) => (() => {
       const disabledTests = nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["test_pasv_connection_pasv_forced_response_address"])));
       const pythonImportsCheck = nix.thunk(() => ["aioftp"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Python FTP client/server for asyncio",
         homepage: "https://aioftp.readthedocs.io/",
         changelog: nix.thunk(() => nix.str`https://github.com/aio-libs/aioftp/blob/${version}/history.rst`),
@@ -53,7 +50,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

@@ -2,17 +2,16 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["name", 37, 15], ["buildInputs", 39, 7], ["nativeBuildInputs", 40, 7], ["propagatedBuildInputs", 41, 7], ["propagatedNativeBuildInputs", 42, 7], ["shellHook", 44, 7], ["phases", 48, 7], ["buildPhase", 50, 7], ["preferLocalBuild", 62, 7], ["allowSubstitutes", 63, 7]], [["constructDrv", 8, 3], ["excludeDrvArgNames", 10, 3], ["extendDrvArgs", 15, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false }, ellipsis: false };
 const formals$2 = { args: { name: true, packages: true, inputsFrom: true }, ellipsis: true };
-const pos$1 = nix.positions(here + "/default.nix", [["name", 37, 15], ["buildInputs", 39, 7], ["nativeBuildInputs", 40, 7], ["propagatedBuildInputs", 41, 7], ["propagatedNativeBuildInputs", 42, 7], ["shellHook", 44, 7], ["phases", 48, 7], ["buildPhase", 50, 7], ["preferLocalBuild", 62, 7], ["allowSubstitutes", 63, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["constructDrv", 8, 3], ["excludeDrvArgNames", 10, 3], ["extendDrvArgs", 15, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(lib, "extendMkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       constructDrv: nix.thunk(() => nix.sel(stdenv, "mkDerivation")),
       excludeDrvArgNames: nix.thunk(() => ["packages", "inputsFrom"]),
       extendDrvArgs: (_finalAttrs) => nix.lambda((args_1) => (() => {
@@ -23,7 +22,7 @@ export default nix.lambda((args) => (() => {
         const inputsFrom = nix.argOr($_1, "inputsFrom", () => []);
         const mergeInputs = (name_1) => nix.concat(nix.selOr(attrs, () => [], nix.key(nix.force(name_1))), nix.app(nix.sel(lib, "subtractLists"), inputsFrom, nix.thunk(() => nix.app(nix.sel(lib, "flatten"), nix.thunk(() => nix.app(nix.sel(lib, "catAttrs"), name_1, inputsFrom))))));
         return {
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           name: name,
           buildInputs: nix.thunk(() => nix.app(mergeInputs, "buildInputs")),
           nativeBuildInputs: nix.thunk(() => nix.concat(packages, nix.app(mergeInputs, "nativeBuildInputs"))),

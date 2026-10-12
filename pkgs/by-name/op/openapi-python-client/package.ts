@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["version", 18, 26], ["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]], [["package", 67, 7]], [["version", 66, 11]], [["tests", 66, 5]], [["description", 72, 5], ["homepage", 73, 5], ["changelog", 74, 5], ["license", 75, 5], ["mainProgram", 76, 5], ["maintainers", 77, 5]], [["pname", 13, 3], ["version", 14, 3], ["pyproject", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 25, 3], ["build-system", 32, 3], ["dependencies", 36, 3], ["pythonRelaxDeps", 53, 3], ["postInstall", 55, 3], ["passthru", 65, 3], ["meta", 71, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, darwin: false, python3Packages: false, fetchFromGitHub: false, installShellFiles: false, testers: false, "openapi-python-client": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["version", 18, 26], ["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["package", 67, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 66, 11]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 66, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 72, 5], ["homepage", 73, 5], ["changelog", 74, 5], ["license", 75, 5], ["mainProgram", 76, 5], ["maintainers", 77, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["pyproject", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 25, 3], ["build-system", 32, 3], ["dependencies", 36, 3], ["pythonRelaxDeps", 53, 3], ["postInstall", 55, 3], ["passthru", 65, 3], ["meta", 71, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const openapi_python_client = nix.arg($, "openapi-python-client");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "openapi-python-client",
       version: "0.29.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           owner: "openapi-generators",
           repo: "openapi-python-client",
@@ -56,14 +51,14 @@ export default nix.lambda((args) => (() => {
       pythonRelaxDeps: nix.thunk(() => ["ruff"]),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "# see: https://github.com/fastapi/typer/blob/5889cf82f4ed925f92e6b0750bf1b1ed9ee672f3/typer/completion.py#L54\n# otherwise shellingham throws exception on darwin\nexport _TYPER_COMPLETE_TEST_DISABLE_SHELL_DETECTION=1\ninstallShellCompletion --cmd openapi-python-client \\\n  --bash <($out/bin/openapi-python-client --show-completion bash) \\\n  --fish <($out/bin/openapi-python-client --show-completion fish) \\\n  --zsh <($out/bin/openapi-python-client --show-completion zsh)\n")),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$2, package: openapi_python_client })))),
+          [nix.POS]: $pos[2],
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: $pos[1], package: openapi_python_client })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Generate modern Python clients from OpenAPI",
         homepage: "https://github.com/openapi-generators/openapi-python-client",
         changelog: nix.thunk(() => nix.str`https://github.com/openapi-generators/openapi-python-client/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

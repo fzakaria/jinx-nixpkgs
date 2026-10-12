@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["version", 17, 5], ["tag", 18, 5], ["sha256", 19, 5]], [["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["sha256", 30, 5]], [["broken", 69, 5], ["homepage", 70, 5], ["description", 71, 5], ["license", 72, 5], ["maintainers", 73, 5], ["platforms", 74, 5], ["mainProgram", 75, 5]], [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["strictDeps", 33, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 39, 3], ["preConfigure", 48, 3], ["preBuild", 54, 3], ["makeFlags", 59, 3], ["installFlags", 66, 3], ["meta", 68, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, onetbb: false, libgit2: false, curl: false, fmt_11: false, nlohmann_json: false, "pkg-config": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["version", 17, 5], ["tag", 18, 5], ["sha256", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["sha256", 30, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["broken", 69, 5], ["homepage", 70, 5], ["description", 71, 5], ["license", 72, 5], ["maintainers", 73, 5], ["platforms", 74, 5], ["mainProgram", 75, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["strictDeps", 33, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 39, 3], ["preConfigure", 48, 3], ["preBuild", 54, 3], ["makeFlags", 59, 3], ["installFlags", 66, 3], ["meta", 68, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,13 +22,13 @@ export default nix.lambda((args) => (() => {
       const version = "4.2.0";
       const tag = nix.thunk(() => nix.str`v${version}`);
       const sha256 = "sha256-NUuEgTpq86rDcsQnpG0IsSmgLT0cXhd1y32gT57QPAw=";
-      return { [nix.POS]: pos$1, owner, repo, version, tag, sha256 };
+      return { [nix.POS]: $pos[0], owner, repo, version, tag, sha256 };
     })())));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => (() => {
       const pname = "cabinpkg";
       const version = "0.11.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "cabinpkg",
           repo: "cabin",
           tag: version,
@@ -47,7 +44,7 @@ cp -rf ${toml11} build/DEPS/toml11
       const makeFlags = nix.thunk(() => ["RELEASE=1", "COMMIT_HASH=", "COMMIT_SHORT_HASH=", "COMMIT_DATE="]);
       const installFlags = nix.thunk(() => [nix.thunk(() => nix.str`PREFIX=${nix.builtins.placeholder("out")}`)]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         broken: nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isx86_64")))),
         homepage: "https://cabinpkg.com",
         description: "Package manager and build system for C++",
@@ -57,7 +54,7 @@ cp -rf ${toml11} build/DEPS/toml11
         mainProgram: "cabin",
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

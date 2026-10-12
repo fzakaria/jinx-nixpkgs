@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]], [["description", 32, 5], ["homepage", 33, 5], ["license", 34, 5], ["maintainers", 35, 5], ["mainProgram", 36, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["preBuild", 22, 3], ["buildInputs", 26, 3], ["meta", 31, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, libpcap: false, libnet: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 32, 5], ["homepage", 33, 5], ["license", 34, 5], ["maintainers", 35, 5], ["mainProgram", 36, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["preBuild", 22, 3], ["buildInputs", 26, 3], ["meta", 31, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "tcptraceroute";
       const version = "1.5beta7";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "mct",
           repo: "tcptraceroute",
           rev: nix.thunk(() => nix.str`${pname}-${version}`),
@@ -27,14 +25,14 @@ export default nix.lambda((args) => (() => {
       const preBuild = "makeFlagsArray=(CFLAGS=\" -g -O2 -Wall\")\n";
       const buildInputs = nix.thunk(() => [libpcap, libnet]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Traceroute implementation using TCP packets",
         homepage: "https://github.com/mct/tcptraceroute",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),
         maintainers: [],
         mainProgram: "tcptraceroute",
       }));
-      return { [nix.POS]: pos$3, pname, version, src, preBuild, buildInputs, meta };
+      return { [nix.POS]: $pos[2], pname, version, src, preBuild, buildInputs, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

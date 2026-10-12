@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5]], [["broken", 43, 5], ["description", 44, 5], ["longDescription", 45, 5], ["homepage", 53, 5], ["license", 54, 5], ["maintainers", 55, 5], ["platforms", 56, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 32, 3], ["hardeningDisable", 40, 3], ["meta", 42, 3]]]);
 const formals$1 = { args: { stdenv: false, fetchFromGitHub: false, lib: false, bison: false, cairo: false, flex: false, libx11: false, libxpm: false, "pkg-config": false, tcl: false, tk: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["broken", 43, 5], ["description", 44, 5], ["longDescription", 45, 5], ["homepage", 53, 5], ["license", 54, 5], ["maintainers", 55, 5], ["platforms", 56, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 32, 3], ["hardeningDisable", 40, 3], ["meta", 42, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const tcl = nix.arg($, "tcl");
   const tk = nix.arg($, "tk");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "xschem",
       version: "3.4.7",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "StefanSchippers",
           repo: "xschem",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -35,7 +33,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [cairo, libx11, libxpm, tcl, tk]),
       hardeningDisable: nix.thunk(() => ["format"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
         description: "Schematic capture and netlisting EDA tool",
         longDescription: "Xschem is a schematic capture program, it allows creation of\nhierarchical representation of circuits with a top down approach.\nBy focusing on interfaces, hierarchy and instance properties a\ncomplex system can be described in terms of simpler building\nblocks. A VHDL or Verilog or Spice netlist can be generated from\nthe drawn schematic, allowing the simulation of the circuit.\n",

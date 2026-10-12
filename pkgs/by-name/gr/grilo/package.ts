@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 40, 5], ["sha256", 41, 5]], [["packageName", 75, 7], ["versionPolicy", 76, 7]], [["updateScript", 74, 5]], [["homepage", 81, 5], ["description", 82, 5], ["teams", 83, 5], ["license", 84, 5], ["platforms", 85, 5]], [["pname", 26, 3], ["version", 27, 3], ["outputs", 29, 3], ["outputBin", 35, 3], ["setupHook", 37, 3], ["src", 39, 3], ["mesonFlags", 44, 3], ["nativeBuildInputs", 48, 3], ["buildInputs", 64, 3], ["passthru", 73, 3], ["meta", 80, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, meson: false, mesonEmulatorHook: false, ninja: false, "pkg-config": false, python3: false, gettext: false, vala: false, glib: false, liboauth: false, gtk3: false, "gtk-doc": false, "docbook-xsl-nons": false, docbook_xml_dtd_43: false, libxml2: false, gnome: false, "gobject-introspection": false, libsoup_3: false, "totem-pl-parser": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 40, 5], ["sha256", 41, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["packageName", 75, 7], ["versionPolicy", 76, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 74, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 81, 5], ["description", 82, 5], ["teams", 83, 5], ["license", 84, 5], ["platforms", 85, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 26, 3], ["version", 27, 3], ["outputs", 29, 3], ["outputBin", 35, 3], ["setupHook", 37, 3], ["src", 39, 3], ["mesonFlags", 44, 3], ["nativeBuildInputs", 48, 3], ["buildInputs", 64, 3], ["passthru", 73, 3], ["meta", 80, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,14 +29,14 @@ export default nix.lambda((args) => (() => {
   const libsoup_3 = nix.arg($, "libsoup_3");
   const totem_pl_parser = nix.arg($, "totem-pl-parser");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "grilo",
       version: "0.3.19",
       outputs: nix.thunk(() => ["out", "dev", "man", "devdoc"]),
       outputBin: "dev",
       setupHook: nix.path(here, "./setup-hook.sh"),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnome/sources/grilo/${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/grilo-${nix.sel(finalAttrs, "version")}.tar.xz`),
           sha256: "CGnIHRmrE5xmfXlWfBTdy2y1y/wBCNBMreKH6ylTZwY=",
         })))),
@@ -59,11 +55,11 @@ export default nix.lambda((args) => (() => {
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform"))))), nix.thunk(() => [mesonEmulatorHook])))),
       buildInputs: nix.thunk(() => [glib, liboauth, gtk3, libxml2, libsoup_3, totem_pl_parser]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$2, packageName: "grilo", versionPolicy: "none" })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: $pos[1], packageName: "grilo", versionPolicy: "none" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://gitlab.gnome.org/GNOME/grilo",
         description: "Framework that provides access to various sources of multimedia content, using a pluggable system",
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "gnome"))]),

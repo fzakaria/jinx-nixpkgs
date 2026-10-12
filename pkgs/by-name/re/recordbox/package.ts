@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 34, 5], ["repo", 35, 5], ["tag", 36, 5], ["hash", 37, 5]], [["pname", 48, 26], ["version", 48, 32], ["src", 48, 40], ["hash", 49, 5]], [["extraArgs", 108, 40]], [["updateScript", 108, 5]], [["description", 112, 5], ["homepage", 113, 5], ["changelog", 114, 5], ["license", 115, 5], ["maintainers", 116, 5], ["mainProgram", 117, 5], ["platforms", 118, 5]], [["pname", 30, 3], ["version", 31, 3], ["src", 33, 3], ["postPatch", 40, 3], ["cargoDeps", 47, 3], ["strictDeps", 52, 3], ["nativeBuildInputs", 54, 3], ["buildInputs", 72, 3], ["mesonBuildType", 93, 3], ["doCheck", 95, 3], ["cargoCheckType", 96, 3], ["checkPhase", 98, 3], ["passthru", 107, 3], ["meta", 111, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, "appstream-glib": false, "blueprint-compiler": false, cargo: false, dbus: false, "desktop-file-utils": false, fetchFromCodeberg: false, glib: false, "glycin-loaders": false, gst_all_1: false, gtk4: false, "hicolor-icon-theme": false, lcms2: false, libadwaita: false, libglycin: false, libseccomp: false, libxml2: false, meson: false, ninja: false, "nix-update-script": false, "pkg-config": false, rustPlatform: false, rustc: false, sqlite: false, wrapGAppsHook4: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 34, 5], ["repo", 35, 5], ["tag", 36, 5], ["hash", 37, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 48, 26], ["version", 48, 32], ["src", 48, 40], ["hash", 49, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["extraArgs", 108, 40]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 108, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 112, 5], ["homepage", 113, 5], ["changelog", 114, 5], ["license", 115, 5], ["maintainers", 116, 5], ["mainProgram", 117, 5], ["platforms", 118, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 30, 3], ["version", 31, 3], ["src", 33, 3], ["postPatch", 40, 3], ["cargoDeps", 47, 3], ["strictDeps", 52, 3], ["nativeBuildInputs", 54, 3], ["buildInputs", 72, 3], ["mesonBuildType", 93, 3], ["doCheck", 95, 3], ["cargoCheckType", 96, 3], ["checkPhase", 98, 3], ["passthru", 107, 3], ["meta", 111, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -39,11 +34,11 @@ export default nix.lambda((args) => (() => {
   const sqlite = nix.arg($, "sqlite");
   const wrapGAppsHook4 = nix.arg($, "wrapGAppsHook4");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "recordbox",
       version: "0.11.0",
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "edestcroix",
           repo: "Recordbox",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -51,7 +46,7 @@ export default nix.lambda((args) => (() => {
         })))),
       postPatch: "# With rustc of version 1.96.0 or later, the following error will occur:\n# `error[E0446]: private type `LyricsSaveDestination` in public interface`.\n# See also the upstream issue <https://codeberg.org/edestcroix/Recordbox/issues/258>.\nsed -i 's/enum LyricsSaveDestination/pub enum LyricsSaveDestination/' src/lyrics/edit_dialog.rs\n",
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -102,11 +97,11 @@ export default nix.lambda((args) => (() => {
       cargoCheckType: nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(finalAttrs, "mesonBuildType"), "debug")) ? "release" : "debug")),
       checkPhase: "runHook preCheck\n\nmesonCheckPhase\ncargoCheckHook\n\nrunHook postCheck\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$3, extraArgs: nix.thunk(() => ["--generate-lockfile"]) })))),
+        [nix.POS]: $pos[3],
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: $pos[2], extraArgs: nix.thunk(() => ["--generate-lockfile"]) })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Relatively simple music player",
         homepage: "https://codeberg.org/edestcroix/Recordbox",
         changelog: nix.thunk(() => nix.str`https://codeberg.org/edestcroix/Recordbox/releases/tag/v${nix.sel(finalAttrs, "version")}`),

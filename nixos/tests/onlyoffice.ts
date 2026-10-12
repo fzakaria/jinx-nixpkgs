@@ -2,31 +2,25 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/onlyoffice.nix", [[["enable", 11, 9], ["port", 12, 17], ["hostname", 13, 9], ["securityNonceFile", 14, 9]], [["onlyoffice", 10, 16]], [["::1", 20, 9]], [["hosts", 19, 18]], [["services", 10, 7], ["networking", 19, 7]], [["machine", 7, 9]], [["name", 5, 3], ["nodes", 7, 3], ["testScript", 24, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/onlyoffice.nix", [["enable", 11, 9], ["port", 12, 17], ["hostname", 13, 9], ["securityNonceFile", 14, 9]]);
-const pos$2 = nix.positions(here + "/onlyoffice.nix", [["onlyoffice", 10, 16]]);
-const pos$3 = nix.positions(here + "/onlyoffice.nix", [["::1", 20, 9]]);
-const pos$4 = nix.positions(here + "/onlyoffice.nix", [["hosts", 19, 18]]);
-const pos$5 = nix.positions(here + "/onlyoffice.nix", [["services", 10, 7], ["networking", 19, 7]]);
-const pos$6 = nix.positions(here + "/onlyoffice.nix", [["machine", 7, 9]]);
-const pos$7 = nix.positions(here + "/onlyoffice.nix", [["name", 5, 3], ["nodes", 7, 3], ["testScript", 24, 3]]);
 
 export default nix.thunk(() => (() => {
   const port = 8000n;
   return {
-    [nix.POS]: pos$7,
+    [nix.POS]: $pos[6],
     name: "onlyoffice",
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       machine: nix.lambda((args) => (() => {
         const $ = nix.formals(args, formals$1);
         const pkgs = nix.arg($, "pkgs");
         return {
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             onlyoffice: nix.thunk(() => ({
-              [nix.POS]: pos$1,
+              [nix.POS]: $pos[0],
               enable: true,
               port: port,
               hostname: "office.example.com",
@@ -34,8 +28,8 @@ export default nix.thunk(() => (() => {
             })),
           })),
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$4,
-            hosts: nix.thunk(() => ({ [nix.POS]: pos$3, "::1": nix.thunk(() => ["office.example.com"]) })),
+            [nix.POS]: $pos[3],
+            hosts: nix.thunk(() => ({ [nix.POS]: $pos[2], "::1": nix.thunk(() => ["office.example.com"]) })),
           })),
         };
       })(), formals$1),

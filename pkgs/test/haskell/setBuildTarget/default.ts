@@ -2,11 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 12, 7], ["version", 13, 7], ["src", 14, 7], ["isLibrary", 15, 7], ["isExecutable", 16, 7], ["executableHaskellDepends", 17, 7], ["license", 18, 7]], [["platforms", 44, 26]], [["meta", 43, 5]]]);
 const formals$1 = { args: { pkgs: false, haskellPackages: false }, ellipsis: false };
 const formals$2 = { args: { mkDerivation: false, base: false, lib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 12, 7], ["version", 13, 7], ["src", 14, 7], ["isLibrary", 15, 7], ["isExecutable", 16, 7], ["executableHaskellDepends", 17, 7], ["license", 18, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["platforms", 44, 26]]);
-const pos$3 = nix.positions(here + "/default.nix", [["meta", 43, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,7 +16,7 @@ export default nix.lambda((args) => (() => {
     const base = nix.arg($_1, "base");
     const lib = nix.arg($_1, "lib");
     return nix.app(mkDerivation, nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         pname: "haskell-setBuildTarget",
         version: "0.1.0.0",
         src: nix.path(here, "./src"),
@@ -43,10 +41,10 @@ fi
 `;
   })();
   return nix.app(nix.sel(pkgs, "runCommand"), "test haskell.lib.compose.setBuildTarget", nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(drv, "meta"));
-        return { [nix.POS]: pos$2, platforms: nix.thunk(() => nix.attr(from, "platforms")) };
+        return { [nix.POS]: $pos[1], platforms: nix.thunk(() => nix.attr(from, "platforms")) };
       })()),
     })), nix.thunk(() => nix.str`${nix.app(test, "foo", "bar")}
 ${nix.app(test, "bar", "foo")}

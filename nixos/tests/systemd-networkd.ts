@@ -2,51 +2,11 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/systemd-networkd.nix", [[["SYSTEMD_LOG_LEVEL", 16, 53]], [["environment", 16, 41]], [["systemd-networkd", 16, 24]], [["custom", 26, 23]], [["routeTables", 26, 11]], [["Kind", 31, 15], ["Name", 32, 15]], [["PrivateKey", 36, 15], ["PrivateKeyFile", 42, 15], ["ListenPort", 43, 15], ["FirewallMark", 44, 15]], [["Endpoint", 48, 17], ["PublicKey", 49, 17], ["PresharedKeyFile", 50, 17], ["AllowedIPs", 51, 17], ["PersistentKeepalive", 52, 17]], [["netdevConfig", 30, 13], ["wireguardConfig", 34, 13], ["wireguardPeers", 46, 13]], [["90-wg0", 29, 11]], [["Name", 59, 25]], [["Unmanaged", 60, 24]], [["matchConfig", 59, 13], ["linkConfig", 60, 13]], [["Name", 64, 15]], [["Gateway", 69, 17], ["Destination", 70, 17]], [["Gateway", 73, 17], ["Destination", 74, 17], ["Table", 75, 17]], [["matchConfig", 63, 13], ["address", 66, 13], ["routes", 67, 13]], [["Name", 81, 15]], [["Table", 89, 17], ["IncomingInterface", 90, 17], ["Family", 91, 17]], [["Table", 94, 17], ["OutgoingInterface", 95, 17]], [["Table", 98, 17], ["From", 99, 17], ["To", 100, 17], ["SourcePort", 101, 17], ["DestinationPort", 102, 17]], [["Table", 105, 17], ["IPProtocol", 106, 17], ["InvertRule", 107, 17]], [["Table", 110, 17], ["IncomingInterface", 111, 17], ["Family", 112, 17]], [["Table", 115, 17], ["FirewallMark", 116, 17]], [["Table", 119, 17], ["FirewallMark", 120, 17]], [["matchConfig", 80, 13], ["address", 83, 13], ["routingPolicyRules", 87, 13]], [["99-nope", 58, 11], ["90-wg0", 62, 11], ["30-eth1", 79, 11]], [["enable", 24, 9], ["config", 25, 9], ["netdevs", 28, 9], ["networks", 57, 9]], [["services", 16, 15], ["network", 23, 15]], [["enable", 19, 27]], [["useNetworkd", 17, 18], ["useDHCP", 18, 18], ["firewall", 19, 18]], [["vlans", 20, 22]], [["text", 22, 87]], [["credstore/network.wireguard.private", 22, 23]], [["systemPackages", 21, 19], ["etc", 22, 19]], [["imports", 15, 7], ["systemd", 16, 7], ["networking", 17, 7], ["virtualisation", 20, 7], ["environment", 21, 7]], [["maintainers", 132, 5]], [["privk", 139, 11], ["pubk", 140, 11], ["systemdCreds", 141, 11], ["nodeId", 142, 11], ["peerId", 143, 11]], [["privk", 152, 11], ["pubk", 153, 11], ["systemdCreds", 154, 11], ["nodeId", 155, 11], ["peerId", 156, 11]], [["node1", 135, 5], ["node2", 148, 5]], [["name", 130, 3], ["meta", 131, 3], ["nodes", 134, 3], ["testScript", 161, 3]]]);
 const formals$1 = { args: { lib: false, pkgs: false, config: false, privk: false, pubk: false, systemdCreds: false, peerId: false, nodeId: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/systemd-networkd.nix", [["SYSTEMD_LOG_LEVEL", 16, 53]]);
-const pos$2 = nix.positions(here + "/systemd-networkd.nix", [["environment", 16, 41]]);
-const pos$3 = nix.positions(here + "/systemd-networkd.nix", [["systemd-networkd", 16, 24]]);
-const pos$4 = nix.positions(here + "/systemd-networkd.nix", [["custom", 26, 23]]);
-const pos$5 = nix.positions(here + "/systemd-networkd.nix", [["routeTables", 26, 11]]);
-const pos$6 = nix.positions(here + "/systemd-networkd.nix", [["Kind", 31, 15], ["Name", 32, 15]]);
-const pos$7 = nix.positions(here + "/systemd-networkd.nix", [["PrivateKey", 36, 15], ["PrivateKeyFile", 42, 15], ["ListenPort", 43, 15], ["FirewallMark", 44, 15]]);
-const pos$8 = nix.positions(here + "/systemd-networkd.nix", [["Endpoint", 48, 17], ["PublicKey", 49, 17], ["PresharedKeyFile", 50, 17], ["AllowedIPs", 51, 17], ["PersistentKeepalive", 52, 17]]);
-const pos$9 = nix.positions(here + "/systemd-networkd.nix", [["netdevConfig", 30, 13], ["wireguardConfig", 34, 13], ["wireguardPeers", 46, 13]]);
-const pos$10 = nix.positions(here + "/systemd-networkd.nix", [["90-wg0", 29, 11]]);
-const pos$11 = nix.positions(here + "/systemd-networkd.nix", [["Name", 59, 25]]);
-const pos$12 = nix.positions(here + "/systemd-networkd.nix", [["Unmanaged", 60, 24]]);
-const pos$13 = nix.positions(here + "/systemd-networkd.nix", [["matchConfig", 59, 13], ["linkConfig", 60, 13]]);
-const pos$14 = nix.positions(here + "/systemd-networkd.nix", [["Name", 64, 15]]);
-const pos$15 = nix.positions(here + "/systemd-networkd.nix", [["Gateway", 69, 17], ["Destination", 70, 17]]);
-const pos$16 = nix.positions(here + "/systemd-networkd.nix", [["Gateway", 73, 17], ["Destination", 74, 17], ["Table", 75, 17]]);
-const pos$17 = nix.positions(here + "/systemd-networkd.nix", [["matchConfig", 63, 13], ["address", 66, 13], ["routes", 67, 13]]);
-const pos$18 = nix.positions(here + "/systemd-networkd.nix", [["Name", 81, 15]]);
-const pos$19 = nix.positions(here + "/systemd-networkd.nix", [["Table", 89, 17], ["IncomingInterface", 90, 17], ["Family", 91, 17]]);
-const pos$20 = nix.positions(here + "/systemd-networkd.nix", [["Table", 94, 17], ["OutgoingInterface", 95, 17]]);
-const pos$21 = nix.positions(here + "/systemd-networkd.nix", [["Table", 98, 17], ["From", 99, 17], ["To", 100, 17], ["SourcePort", 101, 17], ["DestinationPort", 102, 17]]);
-const pos$22 = nix.positions(here + "/systemd-networkd.nix", [["Table", 105, 17], ["IPProtocol", 106, 17], ["InvertRule", 107, 17]]);
-const pos$23 = nix.positions(here + "/systemd-networkd.nix", [["Table", 110, 17], ["IncomingInterface", 111, 17], ["Family", 112, 17]]);
-const pos$24 = nix.positions(here + "/systemd-networkd.nix", [["Table", 115, 17], ["FirewallMark", 116, 17]]);
-const pos$25 = nix.positions(here + "/systemd-networkd.nix", [["Table", 119, 17], ["FirewallMark", 120, 17]]);
-const pos$26 = nix.positions(here + "/systemd-networkd.nix", [["matchConfig", 80, 13], ["address", 83, 13], ["routingPolicyRules", 87, 13]]);
-const pos$27 = nix.positions(here + "/systemd-networkd.nix", [["99-nope", 58, 11], ["90-wg0", 62, 11], ["30-eth1", 79, 11]]);
-const pos$28 = nix.positions(here + "/systemd-networkd.nix", [["enable", 24, 9], ["config", 25, 9], ["netdevs", 28, 9], ["networks", 57, 9]]);
-const pos$29 = nix.positions(here + "/systemd-networkd.nix", [["services", 16, 15], ["network", 23, 15]]);
-const pos$30 = nix.positions(here + "/systemd-networkd.nix", [["enable", 19, 27]]);
-const pos$31 = nix.positions(here + "/systemd-networkd.nix", [["useNetworkd", 17, 18], ["useDHCP", 18, 18], ["firewall", 19, 18]]);
-const pos$32 = nix.positions(here + "/systemd-networkd.nix", [["vlans", 20, 22]]);
-const pos$33 = nix.positions(here + "/systemd-networkd.nix", [["text", 22, 87]]);
-const pos$34 = nix.positions(here + "/systemd-networkd.nix", [["credstore/network.wireguard.private", 22, 23]]);
-const pos$35 = nix.positions(here + "/systemd-networkd.nix", [["systemPackages", 21, 19], ["etc", 22, 19]]);
-const pos$36 = nix.positions(here + "/systemd-networkd.nix", [["imports", 15, 7], ["systemd", 16, 7], ["networking", 17, 7], ["virtualisation", 20, 7], ["environment", 21, 7]]);
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$37 = nix.positions(here + "/systemd-networkd.nix", [["maintainers", 132, 5]]);
 const formals$3 = { args: { pkgs: false }, ellipsis: true };
-const pos$38 = nix.positions(here + "/systemd-networkd.nix", [["privk", 139, 11], ["pubk", 140, 11], ["systemdCreds", 141, 11], ["nodeId", 142, 11], ["peerId", 143, 11]]);
 const formals$4 = { args: { pkgs: false }, ellipsis: true };
-const pos$39 = nix.positions(here + "/systemd-networkd.nix", [["privk", 152, 11], ["pubk", 153, 11], ["systemdCreds", 154, 11], ["nodeId", 155, 11], ["peerId", 156, 11]]);
-const pos$40 = nix.positions(here + "/systemd-networkd.nix", [["node1", 135, 5], ["node2", 148, 5]]);
-const pos$41 = nix.positions(here + "/systemd-networkd.nix", [["name", 130, 3], ["meta", 131, 3], ["nodes", 134, 3], ["testScript", 161, 3]]);
 
 export default nix.thunk(() => (() => {
   const generateNodeConf = nix.lambda((args) => (() => {
@@ -60,31 +20,31 @@ export default nix.thunk(() => (() => {
     const peerId = nix.arg($, "peerId");
     const nodeId = nix.arg($, "nodeId");
     return {
-      [nix.POS]: pos$36,
+      [nix.POS]: $pos[35],
       imports: nix.thunk(() => [nix.path(here, "common/user-account.nix")]),
       systemd: nix.thunk(() => ({
-        [nix.POS]: pos$29,
+        [nix.POS]: $pos[28],
         services: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           "systemd-networkd": nix.thunk(() => ({
-            [nix.POS]: pos$2,
-            environment: nix.thunk(() => ({ [nix.POS]: pos$1, SYSTEMD_LOG_LEVEL: "debug" })),
+            [nix.POS]: $pos[1],
+            environment: nix.thunk(() => ({ [nix.POS]: $pos[0], SYSTEMD_LOG_LEVEL: "debug" })),
           })),
         })),
         network: nix.thunk(() => ({
-          [nix.POS]: pos$28,
+          [nix.POS]: $pos[27],
           enable: true,
           config: nix.thunk(() => ({
-            [nix.POS]: pos$5,
-            routeTables: nix.thunk(() => ({ [nix.POS]: pos$4, custom: 23n })),
+            [nix.POS]: $pos[4],
+            routeTables: nix.thunk(() => ({ [nix.POS]: $pos[3], custom: 23n })),
           })),
           netdevs: nix.thunk(() => ({
-            [nix.POS]: pos$10,
+            [nix.POS]: $pos[9],
             "90-wg0": nix.thunk(() => ({
-              [nix.POS]: pos$9,
-              netdevConfig: nix.thunk(() => ({ [nix.POS]: pos$6, Kind: "wireguard", Name: "wg0" })),
+              [nix.POS]: $pos[8],
+              netdevConfig: nix.thunk(() => ({ [nix.POS]: $pos[5], Kind: "wireguard", Name: "wg0" })),
               wireguardConfig: nix.thunk(() => ({
-                [nix.POS]: pos$7,
+                [nix.POS]: $pos[6],
                 PrivateKey: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), systemdCreds, "@network.wireguard.private")),
                 PrivateKeyFile: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.asBool(systemdCreds)), nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "wg0-priv", privk)))),
                 ListenPort: 51820n,
@@ -92,7 +52,7 @@ export default nix.thunk(() => (() => {
               })),
               wireguardPeers: nix.thunk(() => [
                 nix.thunk(() => ({
-                  [nix.POS]: pos$8,
+                  [nix.POS]: $pos[7],
                   Endpoint: nix.thunk(() => nix.str`192.168.1.${peerId}:51820`),
                   PublicKey: pubk,
                   PresharedKeyFile: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "psk.key", "yTL3sCOL33Wzi6yCnf9uZQl/Z8laSE+zwpqOHC4HhFU=")),
@@ -103,24 +63,24 @@ export default nix.thunk(() => (() => {
             })),
           })),
           networks: nix.thunk(() => ({
-            [nix.POS]: pos$27,
+            [nix.POS]: $pos[26],
             "99-nope": nix.thunk(() => ({
-              [nix.POS]: pos$13,
-              matchConfig: nix.thunk(() => ({ [nix.POS]: pos$11, Name: "eth*" })),
-              linkConfig: nix.thunk(() => ({ [nix.POS]: pos$12, Unmanaged: true })),
+              [nix.POS]: $pos[12],
+              matchConfig: nix.thunk(() => ({ [nix.POS]: $pos[10], Name: "eth*" })),
+              linkConfig: nix.thunk(() => ({ [nix.POS]: $pos[11], Unmanaged: true })),
             })),
             "90-wg0": nix.thunk(() => ({
-              [nix.POS]: pos$17,
-              matchConfig: nix.thunk(() => ({ [nix.POS]: pos$14, Name: "wg0" })),
+              [nix.POS]: $pos[16],
+              matchConfig: nix.thunk(() => ({ [nix.POS]: $pos[13], Name: "wg0" })),
               address: nix.thunk(() => [nix.thunk(() => nix.str`10.0.0.${nodeId}/32`)]),
               routes: nix.thunk(() => [
                 nix.thunk(() => ({
-                  [nix.POS]: pos$15,
+                  [nix.POS]: $pos[14],
                   Gateway: nix.thunk(() => nix.str`10.0.0.${nodeId}`),
                   Destination: "10.0.0.0/24",
                 })),
                 nix.thunk(() => ({
-                  [nix.POS]: pos$16,
+                  [nix.POS]: $pos[15],
                   Gateway: nix.thunk(() => nix.str`10.0.0.${nodeId}`),
                   Destination: "10.0.0.0/24",
                   Table: "custom",
@@ -128,48 +88,48 @@ export default nix.thunk(() => (() => {
               ]),
             })),
             "30-eth1": nix.thunk(() => ({
-              [nix.POS]: pos$26,
-              matchConfig: nix.thunk(() => ({ [nix.POS]: pos$18, Name: "eth1" })),
+              [nix.POS]: $pos[25],
+              matchConfig: nix.thunk(() => ({ [nix.POS]: $pos[17], Name: "eth1" })),
               address: nix.thunk(() => [
                 nix.thunk(() => nix.str`192.168.1.${nodeId}/24`),
                 nix.thunk(() => nix.str`fe80::${nodeId}/64`),
               ]),
               routingPolicyRules: nix.thunk(() => [
-                nix.thunk(() => ({ [nix.POS]: pos$19, Table: 10n, IncomingInterface: "eth1", Family: "both" })),
-                nix.thunk(() => ({ [nix.POS]: pos$20, Table: 20n, OutgoingInterface: "eth1" })),
+                nix.thunk(() => ({ [nix.POS]: $pos[18], Table: 10n, IncomingInterface: "eth1", Family: "both" })),
+                nix.thunk(() => ({ [nix.POS]: $pos[19], Table: 20n, OutgoingInterface: "eth1" })),
                 nix.thunk(() => ({
-                  [nix.POS]: pos$21,
+                  [nix.POS]: $pos[20],
                   Table: 30n,
                   From: "192.168.1.1",
                   To: "192.168.1.2",
                   SourcePort: 666n,
                   DestinationPort: 667n,
                 })),
-                nix.thunk(() => ({ [nix.POS]: pos$22, Table: 40n, IPProtocol: "tcp", InvertRule: true })),
-                nix.thunk(() => ({ [nix.POS]: pos$23, Table: 50n, IncomingInterface: "eth1", Family: "ipv4" })),
-                nix.thunk(() => ({ [nix.POS]: pos$24, Table: 60n, FirewallMark: 4n })),
-                nix.thunk(() => ({ [nix.POS]: pos$25, Table: 70n, FirewallMark: "16/0x1f" })),
+                nix.thunk(() => ({ [nix.POS]: $pos[21], Table: 40n, IPProtocol: "tcp", InvertRule: true })),
+                nix.thunk(() => ({ [nix.POS]: $pos[22], Table: 50n, IncomingInterface: "eth1", Family: "ipv4" })),
+                nix.thunk(() => ({ [nix.POS]: $pos[23], Table: 60n, FirewallMark: 4n })),
+                nix.thunk(() => ({ [nix.POS]: $pos[24], Table: 70n, FirewallMark: "16/0x1f" })),
               ]),
             })),
           })),
         })),
       })),
       networking: nix.thunk(() => ({
-        [nix.POS]: pos$31,
+        [nix.POS]: $pos[30],
         useNetworkd: true,
         useDHCP: false,
-        firewall: nix.thunk(() => ({ [nix.POS]: pos$30, enable: false })),
+        firewall: nix.thunk(() => ({ [nix.POS]: $pos[29], enable: false })),
       })),
-      virtualisation: nix.thunk(() => ({ [nix.POS]: pos$32, vlans: nix.thunk(() => [1n]) })),
+      virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[31], vlans: nix.thunk(() => [1n]) })),
       environment: nix.thunk(() => ({
-        [nix.POS]: pos$35,
+        [nix.POS]: $pos[34],
         systemPackages: nix.thunk(() => (() => {
           const w = nix.withScope(pkgs, null);
           return [nix.thunk(() => nix.lookup(w, "wireguard-tools"))];
         })()),
         etc: nix.thunk(() => ({
-          [nix.POS]: pos$34,
-          "credstore/network.wireguard.private": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), systemdCreds, nix.thunk(() => ({ [nix.POS]: pos$33, text: privk })))),
+          [nix.POS]: $pos[33],
+          "credstore/network.wireguard.private": nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), systemdCreds, nix.thunk(() => ({ [nix.POS]: $pos[32], text: privk })))),
         })),
       })),
     };
@@ -178,23 +138,23 @@ export default nix.thunk(() => (() => {
     const $ = nix.formals(args, formals$2);
     const pkgs = nix.arg($, "pkgs");
     return {
-      [nix.POS]: pos$41,
+      [nix.POS]: $pos[40],
       name: "networkd",
       meta: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
         return {
-          [nix.POS]: pos$37,
+          [nix.POS]: $pos[36],
           maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "picnoir"))]),
         };
       })()),
       nodes: nix.thunk(() => ({
-        [nix.POS]: pos$40,
+        [nix.POS]: $pos[39],
         node1: nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$3);
           const attrs = args_1;
           const pkgs_1 = nix.arg($_1, "pkgs");
           const localConf = nix.thunk(() => ({
-            [nix.POS]: pos$38,
+            [nix.POS]: $pos[37],
             privk: "GDiXWlMQKb379XthwX0haAbK6hTdjblllpjGX0heP00=",
             pubk: "iRxpqj42nnY0Qz8MAQbSm7bXxXP5hkPqWYIULmvW+EE=",
             systemdCreds: false,
@@ -208,7 +168,7 @@ export default nix.thunk(() => (() => {
           const attrs = args_1;
           const pkgs_1 = nix.arg($_1, "pkgs");
           const localConf = nix.thunk(() => ({
-            [nix.POS]: pos$39,
+            [nix.POS]: $pos[38],
             privk: "eHxSI2jwX/P4AOI0r8YppPw0+4NZnjOxfbS5mt06K2k=",
             pubk: "27s0OvaBBdHoJYkH9osZpjpgSOVNw+RaKfboT/Sfq0g=",
             systemdCreds: true,

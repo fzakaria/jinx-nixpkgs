@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 33, 5], ["repo", 34, 5], ["rev", 35, 5], ["hash", 36, 5]], [["CASROOT", 66, 7]], [["description", 69, 5], ["homepage", 70, 5], ["license", 71, 5], ["maintainers", 72, 5], ["mainProgram", 76, 5], ["platforms", 77, 5]], [["pname", 29, 3], ["version", 30, 3], ["src", 32, 3], ["nativeBuildInputs", 39, 3], ["dontUseCmakeConfigure", 50, 3], ["buildInputs", 52, 3], ["env", 66, 3], ["meta", 68, 3]]]);
 const formals$1 = { args: { cmake: false, desktopToDarwinBundle: false, eigen: false, fetchFromGitHub: false, glm: false, "gobject-introspection": false, gtkmm4: false, lib: false, libepoxy: false, libossp_uuid: false, librsvg: false, libspnav: false, libuuid: false, libxml2: false, meson: false, ninja: false, "opencascade-occt_7_6": false, "pkg-config": false, python3: false, stdenv: false, wrapGAppsHook3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 33, 5], ["repo", 34, 5], ["rev", 35, 5], ["hash", 36, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["CASROOT", 66, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 69, 5], ["homepage", 70, 5], ["license", 71, 5], ["maintainers", 72, 5], ["mainProgram", 76, 5], ["platforms", 77, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 29, 3], ["version", 30, 3], ["src", 32, 3], ["nativeBuildInputs", 39, 3], ["dontUseCmakeConfigure", 50, 3], ["buildInputs", 52, 3], ["env", 66, 3], ["meta", 68, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,11 +30,11 @@ export default nix.lambda((args) => (() => {
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   const opencascade_occt = opencascade_occt_7_6;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "dune3d",
       version: "1.4.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "dune3d",
           repo: "dune3d",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -64,9 +61,9 @@ export default nix.lambda((args) => (() => {
         opencascade_occt,
         nix.thunk(() => nix.app(nix.sel(python3, "withPackages"), (pp) => [nix.thunk(() => nix.sel(pp, "pygobject3"))])),
       ]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, CASROOT: opencascade_occt })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], CASROOT: opencascade_occt })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "3D CAD application",
         homepage: "https://dune3d.org",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 50, 5], ["repo", 51, 5], ["tag", 52, 5], ["hash", 53, 5]], [["BUILD_TARGET", 90, 5], ["PREBUILD_KERNELS", 91, 5], ["ROCM_PATH", 92, 5]], [["CXX", 139, 15], ["GPU_ARCHS", 140, 15], ["PYTORCH_ROCM_ARCH", 141, 15]], [["nativeBuildInputs", 133, 13], ["env", 138, 13]], [["jit-module-opus-sort", 162, 7], ["jit-module-mhc", 163, 7]], [["tests", 127, 12]], [["description", 168, 5], ["homepage", 169, 5], ["license", 170, 5], ["sourceProvenance", 171, 5], ["maintainers", 175, 5], ["teams", 176, 5], ["platforms", 177, 5]], [["pname", 45, 3], ["version", 46, 3], ["pyproject", 47, 3], ["src", 49, 3], ["postPatch", 56, 3], ["env", 89, 3], ["build-system", 95, 3], ["buildInputs", 105, 3], ["nativeBuildInputs", 107, 3], ["dependencies", 112, 3], ["doCheck", 124, 3], ["passthru", 127, 3], ["meta", 167, 3]]]);
 const formals$1 = { args: { lib: false, "amd-aiter": false, buildPythonPackage: false, einops: false, fetchFromGitHub: false, ninja: false, numpy: false, packaging: false, pandas: false, psutil: false, pybind11: false, python: false, rocmPackages: false, runCommand: false, setuptools: false, "setuptools-scm": false, torch: false, writableTmpDirAsHomeHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 50, 5], ["repo", 51, 5], ["tag", 52, 5], ["hash", 53, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["BUILD_TARGET", 90, 5], ["PREBUILD_KERNELS", 91, 5], ["ROCM_PATH", 92, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["CXX", 139, 15], ["GPU_ARCHS", 140, 15], ["PYTORCH_ROCM_ARCH", 141, 15]]);
-const pos$4 = nix.positions(here + "/default.nix", [["nativeBuildInputs", 133, 13], ["env", 138, 13]]);
-const pos$5 = nix.positions(here + "/default.nix", [["jit-module-opus-sort", 162, 7], ["jit-module-mhc", 163, 7]]);
-const pos$6 = nix.positions(here + "/default.nix", [["tests", 127, 12]]);
-const pos$7 = nix.positions(here + "/default.nix", [["description", 168, 5], ["homepage", 169, 5], ["license", 170, 5], ["sourceProvenance", 171, 5], ["maintainers", 175, 5], ["teams", 176, 5], ["platforms", 177, 5]]);
-const pos$8 = nix.positions(here + "/default.nix", [["pname", 45, 3], ["version", 46, 3], ["pyproject", 47, 3], ["src", 49, 3], ["postPatch", 56, 3], ["env", 89, 3], ["build-system", 95, 3], ["buildInputs", 105, 3], ["nativeBuildInputs", 107, 3], ["dependencies", 112, 3], ["doCheck", 124, 3], ["passthru", 127, 3], ["meta", 167, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -51,12 +44,12 @@ export default nix.lambda((args) => (() => {
       ];
     })(), [pybind11]))));
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "amd-aiter",
       version: "0.1.11.post1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ROCm",
           repo: "aiter",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -94,7 +87,7 @@ substituteInPlace setup.py \\
     'if False:'
 `),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         BUILD_TARGET: "rocm",
         PREBUILD_KERNELS: "0",
         ROCM_PATH: nix.thunk(() => nix.str`${nix.sel(rocmPackages, "clr")}`),
@@ -105,17 +98,17 @@ substituteInPlace setup.py \\
       dependencies: nix.thunk(() => [einops, ninja, numpy, packaging, pandas, psutil, pybind11, torch]),
       doCheck: false,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         tests: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(torch, "rocmSupport")), nix.thunk(() => (() => {
             const mkJitTest = (name) => (moduleName) => nix.app(runCommand, nix.thunk(() => nix.str`amd-aiter-jit-${name}`), nix.thunk(() => ({
-                [nix.POS]: pos$4,
+                [nix.POS]: $pos[3],
                 nativeBuildInputs: nix.thunk(() => [
                   nix.thunk(() => nix.app(nix.sel(python, "withPackages"), (_) => [amd_aiter])),
                   nix.thunk(() => nix.sel(rocmPackages, "clr")),
                   writableTmpDirAsHomeHook,
                 ]),
                 env: nix.thunk(() => ({
-                  [nix.POS]: pos$3,
+                  [nix.POS]: $pos[2],
                   CXX: "amdclang++",
                   GPU_ARCHS: "gfx942",
                   PYTORCH_ROCM_ARCH: "gfx942",
@@ -136,14 +129,14 @@ print('JIT compile of ${moduleName} finished')
 touch $out
 `));
             return {
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               "jit-module-opus-sort": nix.thunk(() => nix.app(mkJitTest, "opus-sort", "module_moe_sorting_opus")),
               "jit-module-mhc": nix.thunk(() => nix.app(mkJitTest, "mhc", "module_mhc")),
             };
           })()))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "AI Tensor Engine for ROCm",
         homepage: "https://github.com/ROCm/aiter",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

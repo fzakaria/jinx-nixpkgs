@@ -2,23 +2,10 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/releases.nix", [[["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["hash", 25, 5]], [["version", 40, 15], ["pname", 41, 7], ["nativeBuildInputs", 43, 7], ["src", 49, 7], ["outputHash", 51, 7], ["outputHashMode", 52, 7], ["outputHashAlgo", 53, 7], ["patchPhase", 55, 7], ["configurePhase", 59, 7], ["buildPhase", 64, 7], ["installPhase", 69, 7]], [["name", 91, 19], ["hash", 92, 11]], [["CGO_ENABLED", 102, 13]], [["package", 122, 23], ["version", 122, 31], ["command", 123, 15]], [["version", 121, 13]], [["tests", 120, 11], ["updateScript", 127, 11], ["releasesSrc", 128, 19]], [["homepage", 132, 11], ["description", 133, 11], ["longDescription", 134, 11], ["license", 141, 11], ["maintainers", 142, 11], ["mainProgram", 146, 11]], [["pname", 87, 9], ["version", 88, 17], ["src", 90, 9], ["proxyVendor", 95, 17], ["vendorHash", 95, 29], ["nativeBuildInputs", 97, 9], ["env", 102, 9], ["ldflags", 104, 9], ["postInstall", 109, 9], ["passthru", 119, 9], ["meta", 131, 9]], [["name", 154, 5], ["sourceHash", 155, 5], ["vendorHash", 156, 5]], [["name", 160, 5], ["sourceHash", 161, 5], ["vendorHash", 162, 5], ["proxyVendor", 163, 5]], [["name", 167, 5], ["sourceHash", 168, 5], ["vendorHash", 169, 5]], [["name", 173, 5], ["sourceHash", 174, 5], ["vendorHash", 175, 5]], [["otelcol", 153, 3], ["otelcol-contrib", 159, 3], ["otelcol-k8s", 166, 3], ["otelcol-otlp", 172, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitHub: false, installShellFiles: false, testers: false, "opentelemetry-collector-builder": false, go: false, git: false, cacert: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/releases.nix", [["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["hash", 25, 5]]);
 const formals$2 = { args: { name: false, hash: false }, ellipsis: false };
-const pos$2 = nix.positions(here + "/releases.nix", [["version", 40, 15], ["pname", 41, 7], ["nativeBuildInputs", 43, 7], ["src", 49, 7], ["outputHash", 51, 7], ["outputHashMode", 52, 7], ["outputHashAlgo", 53, 7], ["patchPhase", 55, 7], ["configurePhase", 59, 7], ["buildPhase", 64, 7], ["installPhase", 69, 7]]);
 const formals$3 = { args: { name: false, sourceHash: false, vendorHash: false, proxyVendor: true }, ellipsis: false };
-const pos$3 = nix.positions(here + "/releases.nix", [["name", 91, 19], ["hash", 92, 11]]);
-const pos$4 = nix.positions(here + "/releases.nix", [["CGO_ENABLED", 102, 13]]);
-const pos$5 = nix.positions(here + "/releases.nix", [["package", 122, 23], ["version", 122, 31], ["command", 123, 15]]);
-const pos$6 = nix.positions(here + "/releases.nix", [["version", 121, 13]]);
-const pos$7 = nix.positions(here + "/releases.nix", [["tests", 120, 11], ["updateScript", 127, 11], ["releasesSrc", 128, 19]]);
-const pos$8 = nix.positions(here + "/releases.nix", [["homepage", 132, 11], ["description", 133, 11], ["longDescription", 134, 11], ["license", 141, 11], ["maintainers", 142, 11], ["mainProgram", 146, 11]]);
-const pos$9 = nix.positions(here + "/releases.nix", [["pname", 87, 9], ["version", 88, 17], ["src", 90, 9], ["proxyVendor", 95, 17], ["vendorHash", 95, 29], ["nativeBuildInputs", 97, 9], ["env", 102, 9], ["ldflags", 104, 9], ["postInstall", 109, 9], ["passthru", 119, 9], ["meta", 131, 9]]);
-const pos$10 = nix.positions(here + "/releases.nix", [["name", 154, 5], ["sourceHash", 155, 5], ["vendorHash", 156, 5]]);
-const pos$11 = nix.positions(here + "/releases.nix", [["name", 160, 5], ["sourceHash", 161, 5], ["vendorHash", 162, 5], ["proxyVendor", 163, 5]]);
-const pos$12 = nix.positions(here + "/releases.nix", [["name", 167, 5], ["sourceHash", 168, 5], ["vendorHash", 169, 5]]);
-const pos$13 = nix.positions(here + "/releases.nix", [["name", 173, 5], ["sourceHash", 174, 5], ["vendorHash", 175, 5]]);
-const pos$14 = nix.positions(here + "/releases.nix", [["otelcol", 153, 3], ["otelcol-contrib", 159, 3], ["otelcol-k8s", 166, 3], ["otelcol-otlp", 172, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -35,7 +22,7 @@ export default nix.lambda((args) => (() => {
   const builder = nix.thunk(() => nix.str`${opentelemetry_collector_builder}/bin/ocb`);
   const version = "0.155.0";
   const releasesSrc = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "open-telemetry",
       repo: "opentelemetry-collector-releases",
       rev: nix.thunk(() => nix.str`v${version}`),
@@ -46,7 +33,7 @@ export default nix.lambda((args) => (() => {
     const name = nix.arg($_1, "name");
     const hash = nix.arg($_1, "hash");
     return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         version: version,
         pname: nix.thunk(() => nix.str`${name}-src`),
         nativeBuildInputs: nix.thunk(() => [cacert, git, go]),
@@ -73,14 +60,14 @@ rm $out/build.log
     const vendorHash = nix.arg($_1, "vendorHash");
     const proxyVendor = nix.argOr($_1, "proxyVendor", () => false);
     const package$ = nix.thunk(() => nix.app(buildGoModule, nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         pname: name,
         version: version,
-        src: nix.thunk(() => nix.app(mkDistributionSource, nix.thunk(() => ({ [nix.POS]: pos$3, name: name, hash: sourceHash })))),
+        src: nix.thunk(() => nix.app(mkDistributionSource, nix.thunk(() => ({ [nix.POS]: $pos[2], name: name, hash: sourceHash })))),
         proxyVendor: proxyVendor,
         vendorHash: vendorHash,
         nativeBuildInputs: nix.thunk(() => [installShellFiles]),
-        env: nix.thunk(() => ({ [nix.POS]: pos$4, CGO_ENABLED: 0n })),
+        env: nix.thunk(() => ({ [nix.POS]: $pos[3], CGO_ENABLED: 0n })),
         ldflags: nix.thunk(() => ["-s", "-w"]),
         postInstall: nix.thunk(() => nix.str`# Fix binary name
 mv $out/bin/* $out/bin/$pname
@@ -91,11 +78,11 @@ installShellCompletion --cmd ${name} \\
   --zsh <($out/bin/${name} completion zsh)
 `),
         passthru: nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           tests: nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-                [nix.POS]: pos$5,
+                [nix.POS]: $pos[4],
                 package: package$,
                 version: version,
                 command: nix.thunk(() => nix.str`${name} -v`),
@@ -105,7 +92,7 @@ installShellCompletion --cmd ${name} \\
           releasesSrc: releasesSrc,
         })),
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           homepage: "https://github.com/open-telemetry/opentelemetry-collector-releases",
           description: "OpenTelemetry Collector Official Releases",
           longDescription: "The OpenTelemetry Collector offers a vendor-agnostic implementation on how\nto receive, process and export telemetry data. In addition, it removes the\nneed to run, operate and maintain multiple agents/collectors in order to\nsupport open-source telemetry data formats (e.g. Jaeger, Prometheus, etc.)\nsending to multiple open-source or commercial back-ends.\n",
@@ -123,28 +110,28 @@ installShellCompletion --cmd ${name} \\
     return nix.force(package$);
   })(), formals$3);
   return nix.app(nix.sel(lib, "recurseIntoAttrs"), nix.thunk(() => ({
-      [nix.POS]: pos$14,
+      [nix.POS]: $pos[13],
       otelcol: nix.thunk(() => nix.app(mkDistribution, nix.thunk(() => ({
-          [nix.POS]: pos$10,
+          [nix.POS]: $pos[9],
           name: "otelcol",
           sourceHash: "sha256-JY/jg5SeZ90lVLo+t6MuxZAMZ5IpNwEQEz9kC2uYc+8=",
           vendorHash: "sha256-tEA2wCtk2Pm7YJem5jOB/1Iz7K1jKKl/N9VKSumC+WA=",
         })))),
       "otelcol-contrib": nix.thunk(() => nix.app(mkDistribution, nix.thunk(() => ({
-          [nix.POS]: pos$11,
+          [nix.POS]: $pos[10],
           name: "otelcol-contrib",
           sourceHash: "sha256-ANIyUa0bibTYRWC1RZbvYFitaEkmLOiubQxFfmzj4kQ=",
           vendorHash: "sha256-dPaDmhO4XASQ1y3NyetxnJuTr+pIDwF/rwrN5QkBBCA=",
           proxyVendor: true,
         })))),
       "otelcol-k8s": nix.thunk(() => nix.app(mkDistribution, nix.thunk(() => ({
-          [nix.POS]: pos$12,
+          [nix.POS]: $pos[11],
           name: "otelcol-k8s",
           sourceHash: "sha256-cZ+ok52ceYkQE9bG+FFTFYONUQfsC8kbJk5SLZ8IIYU=",
           vendorHash: "sha256-qwlZr0LoXZWf72flpORf19PAkHdITY8bxJGkacG2j+A=",
         })))),
       "otelcol-otlp": nix.thunk(() => nix.app(mkDistribution, nix.thunk(() => ({
-          [nix.POS]: pos$13,
+          [nix.POS]: $pos[12],
           name: "otelcol-otlp",
           sourceHash: "sha256-W1QHjHMn6xWVN08FpJi2YcKzkpxTPbq9MYIbdQxVHHY=",
           vendorHash: "sha256-gX1D+RPCwcp9UMpzAzEYHDsBrn2KdfN/4RxcgKHViYQ=",

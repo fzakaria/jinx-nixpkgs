@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]], [["nativeBuildInputs", 31, 53]], [["smoke", 31, 7]], [["extraArgs", 36, 7]], [["tests", 30, 5], ["updateScript", 35, 5]], [["changelog", 41, 5], ["description", 42, 5], ["homepage", 43, 5], ["license", 44, 5], ["maintainers", 45, 5], ["mainProgram", 49, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["npmDepsHash", 20, 3], ["postPatch", 22, 3], ["dontNpmBuild", 27, 3], ["passthru", 29, 3], ["meta", 40, 3]]]);
 const formals$1 = { args: { lib: false, buildNpmPackage: false, fetchFromGitHub: false, "nix-update-script": false, runCommand: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["nativeBuildInputs", 31, 53]]);
-const pos$3 = nix.positions(here + "/package.nix", [["smoke", 31, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["extraArgs", 36, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["tests", 30, 5], ["updateScript", 35, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["changelog", 41, 5], ["description", 42, 5], ["homepage", 43, 5], ["license", 44, 5], ["maintainers", 45, 5], ["mainProgram", 49, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["npmDepsHash", 20, 3], ["postPatch", 22, 3], ["dontNpmBuild", 27, 3], ["passthru", 29, 3], ["meta", 40, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const runCommand = nix.arg($, "runCommand");
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "markdownlint-cli2",
       version: "0.23.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "DavidAnson",
           repo: "markdownlint-cli2",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,19 +29,19 @@ ln -s ${nix.path(here, "./package-lock.json")} package-lock.json
 `),
       dontNpmBuild: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           smoke: nix.thunk(() => nix.app(runCommand, "markdownlint-cli2-test", nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(finalAttrs, "finalPackage"))]),
             })), nix.thunk(() => nix.str`markdownlint-cli2 ${nix.sel(finalAttrs, "finalPackage")}/lib/node_modules/markdownlint-cli2/CHANGELOG.md > $out
 `))),
         })),
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$4, extraArgs: nix.thunk(() => ["--generate-lockfile"]) })))),
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: $pos[3], extraArgs: nix.thunk(() => ["--generate-lockfile"]) })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         changelog: nix.thunk(() => nix.str`https://github.com/DavidAnson/markdownlint-cli2/blob/v${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),
         description: "Fast, flexible, configuration-based command-line interface for linting Markdown/CommonMark files with the markdownlint library",
         homepage: "https://github.com/DavidAnson/markdownlint-cli2",

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]], [["rev-prefix", 48, 33]], [["skipBulkUpdate", 47, 5], ["updateScript", 48, 5]], [["description", 52, 5], ["homepage", 53, 5], ["changelog", 54, 5], ["license", 55, 5], ["maintainers", 56, 5]], [["pname", 13, 3], ["version", 14, 3], ["pyproject", 15, 3], ["src", 17, 3], ["sourceRoot", 24, 3], ["build-system", 26, 3], ["dependencies", 28, 3], ["pythonRelaxDeps", 33, 3], ["nativeCheckInputs", 35, 3], ["pythonImportsCheck", 37, 3], ["pytestFlags", 42, 3], ["passthru", 46, 3], ["meta", 51, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, gitUpdater: false, "googleapis-common-protos": false, grpcio: false, pytestCheckHook: false, setuptools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["rev-prefix", 48, 33]]);
-const pos$3 = nix.positions(here + "/default.nix", [["skipBulkUpdate", 47, 5], ["updateScript", 48, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 52, 5], ["homepage", 53, 5], ["changelog", 54, 5], ["license", 55, 5], ["maintainers", 56, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 13, 3], ["version", 14, 3], ["pyproject", 15, 3], ["src", 17, 3], ["sourceRoot", 24, 3], ["build-system", 26, 3], ["dependencies", 28, 3], ["pythonRelaxDeps", 33, 3], ["nativeCheckInputs", 35, 3], ["pythonImportsCheck", 37, 3], ["pytestFlags", 42, 3], ["passthru", 46, 3], ["meta", 51, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.14.4";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "googleapis",
           repo: "google-cloud-python",
           tag: nix.thunk(() => nix.str`grpc-google-iam-v1-v${version}`),
@@ -38,12 +34,12 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["google.iam", "google.iam.v1"]);
       const pytestFlags = nix.thunk(() => ["-Wignore::DeprecationWarning"]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         skipBulkUpdate: true,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, "rev-prefix": "grpc-google-iam-v1-v" })))),
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[1], "rev-prefix": "grpc-google-iam-v1-v" })))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "GRPC library for the google-iam-v1 service",
         homepage: "https://github.com/googleapis/google-cloud-python/tree/main/packages/grpc-google-iam-v1",
         changelog: nix.thunk(() => nix.str`https://github.com/googleapis/google-cloud-python/blob/${nix.sel(src, "tag")}/packages/grpc-google-iam-v1/CHANGELOG.md`),
@@ -51,7 +47,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         pyproject,

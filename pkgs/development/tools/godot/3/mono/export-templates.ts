@@ -2,15 +2,14 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/export-templates.nix", [[["homepage", 27, 7]], [["pname", 5, 5], ["godotBuildDescription", 6, 5], ["shouldAddLinkFlagsToPulse", 12, 5], ["shouldBuildTools", 14, 5], ["godotBuildTarget", 15, 5], ["godotBinInstallPath", 16, 5], ["installedGodotBinName", 17, 5], ["stripAllList", 24, 5], ["meta", 26, 5]]]);
 const formals$1 = { args: { "godot3-mono": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/export-templates.nix", [["homepage", 27, 7]]);
-const pos$2 = nix.positions(here + "/export-templates.nix", [["pname", 5, 5], ["godotBuildDescription", 6, 5], ["shouldAddLinkFlagsToPulse", 12, 5], ["shouldBuildTools", 14, 5], ["godotBuildTarget", 15, 5], ["godotBinInstallPath", 16, 5], ["installedGodotBinName", 17, 5], ["stripAllList", 24, 5], ["meta", 26, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const godot3_mono = nix.arg($, "godot3-mono");
   return nix.app(nix.sel(godot3_mono, "overrideAttrs"), (self) => (base) => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "godot3-mono-export-templates",
       godotBuildDescription: "nix mono export templates",
       shouldAddLinkFlagsToPulse: false,
@@ -20,7 +19,7 @@ export default nix.lambda((args) => (() => {
       installedGodotBinName: nix.thunk(() => nix.str`linux_${nix.sel(self, "godotBuildPlatform")}_64_${nix.sel(self, "godotBuildTarget")}`),
       stripAllList: nix.thunk(() => nix.concat(nix.selOr(base, () => [], "stripAllList"), ["share/godot/templates"])),
       meta: nix.thunk(() => nix.update(nix.sel(base, "meta"), {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         homepage: "https://docs.godotengine.org/en/stable/development/compiling/compiling_with_mono.html#export-templates",
       })),
     }));

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]], [["description", 30, 5], ["longDescription", 31, 5], ["homepage", 38, 5], ["maintainers", 39, 5], ["license", 40, 5], ["broken", 41, 5]], [["pname", 15, 3], ["version", 16, 11], ["src", 18, 3], ["buildInputs", 25, 3], ["meta", 29, 3]]]);
 const formals$1 = { args: { buildDunePackage: false, fetchFromGitHub: false, lib: false, reason: false, ppxlib: false, ocaml: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 30, 5], ["longDescription", 31, 5], ["homepage", 38, 5], ["maintainers", 39, 5], ["license", 40, 5], ["broken", 41, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 15, 3], ["version", 16, 11], ["src", 18, 3], ["buildInputs", 25, 3], ["meta", 29, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const ocaml = nix.arg($, "ocaml");
   const version = "1.0.0-alpha1";
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "brisk-reconciler",
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "briskml",
           repo: "brisk-reconciler",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -29,7 +27,7 @@ export default nix.lambda((args) => (() => {
         })))),
       buildInputs: nix.thunk(() => [ppxlib]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "React.js-like reconciler implemented in OCaml/Reason",
         longDescription: "Easily model any `tree-shaped state` with simple `stateful functions`.\n\nDefinitions:\n* tree-shaped state: Any tree shaped-state like the DOM tree, app navigation state, or even rich text document!\n* stateful functions: Functions that maintain state over time. Imagine that you can take any variable in your function and manage its value over the function's invocation. Now, imagine that any function invocation really creates its own \"instance\" of the function which will track this state separately from other invocations of this function.\n",
         homepage: "https://github.com/briskml/brisk-reconciler",

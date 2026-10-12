@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5], ["fetchSubmodules", 31, 5]], [["NIX_LDFLAGS", 48, 7]], [["smoke", 136, 11]], [["updateScript", 134, 5], ["tests", 136, 5]], [["description", 155, 5], ["homepage", 156, 5], ["changelog", 157, 5], ["license", 158, 5], ["maintainers", 159, 5], ["mainProgram", 160, 5], ["platforms", 161, 5]], [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 39, 3], ["env", 48, 3], ["postPatch", 50, 3], ["ninjaFlags", 96, 3], ["postBuild", 100, 3], ["installPhase", 105, 3], ["__darwinAllowLocalNetworking", 126, 3], ["nativeInstallCheckInputs", 128, 3], ["doInstallCheck", 131, 3], ["passthru", 133, 3], ["meta", 154, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, ninja: false, makeWrapper: false, fmt: false, libbfd: false, libunwind: false, rsync: false, versionCheckHook: false, "nix-update-script": false, runCommand: false, "lua-language-server": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5], ["fetchSubmodules", 31, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_LDFLAGS", 48, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["smoke", 136, 11]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 134, 5], ["tests", 136, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 155, 5], ["homepage", 156, 5], ["changelog", 157, 5], ["license", 158, 5], ["maintainers", 159, 5], ["mainProgram", 160, 5], ["platforms", 161, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 39, 3], ["env", 48, 3], ["postPatch", 50, 3], ["ninjaFlags", 96, 3], ["postBuild", 100, 3], ["installPhase", 105, 3], ["__darwinAllowLocalNetworking", 126, 3], ["nativeInstallCheckInputs", 128, 3], ["doInstallCheck", 131, 3], ["passthru", 133, 3], ["meta", 154, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const runCommand = nix.arg($, "runCommand");
   const lua_language_server = nix.arg($, "lua-language-server");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "lua-language-server",
       version: "3.19.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "luals",
           repo: "lua-language-server",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -39,7 +34,7 @@ export default nix.lambda((args) => (() => {
         })))),
       nativeBuildInputs: nix.thunk(() => [ninja, makeWrapper]),
       buildInputs: nix.thunk(() => nix.concat([fmt, libbfd, libunwind], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [rsync])))),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_LDFLAGS: "-lfmt" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], NIX_LDFLAGS: "-lfmt" })),
       postPatch: nix.thunk(() => nix.add("# filewatch tests are failing on darwin\n# this feature is not used in lua-language-server\nsubstituteInPlace 3rd/bee.lua/test/test.lua \\\n  --replace-fail 'require \"test_filewatch\"' \"\"\n\n# use nixpkgs fmt library\nfor d in 3rd/bee.lua 3rd/luamake/bee.lua\ndo\n  rm -r $d/3rd/fmt/*\n  touch $d/3rd/fmt/format.cc\n  substituteInPlace $d/bee/nonstd/format.h $d/bee/nonstd/print.h \\\n    --replace-fail \"include <3rd/fmt/fmt\" \"include <fmt\"\ndone\n\n# flaky tests on linux\n# https://github.com/LuaLS/lua-language-server/issues/2926\nsubstituteInPlace test/tclient/init.lua \\\n  --replace-fail \"require 'tclient.tests.load-relative-library'\" \"\"\n\npushd 3rd/luamake\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => nix.add("sed -i compile/ninja/macos.ninja \\\n  -e '/c++/s,$cc,clang++,' \\\n  -e '/test.lua/s,= .*,= true,' \\\n  -e '/ldl/s,$cc,clang++,'\nsed -i scripts/compiler/gcc.lua \\\n  -e '/cxx_/s,$cc,clang++,'\n", "substituteInPlace compile/ninja/macos.ninja \\\n  --replace-fail \"ditto\" \"rsync -a\"\n\nsubstituteInPlace scripts/writer.lua \\\n  --replace-fail \"ditto\" \"rsync -a\"\n"))))),
       ninjaFlags: nix.thunk(() => [
         nix.thunk(() => nix.str`-fcompile/ninja/${(nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? "macos" : "linux")}.ninja`),
@@ -50,10 +45,10 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           smoke: nix.thunk(() => nix.app(runCommand, "lua-language-server-smoke-test", nix.thunk(() => ({})), nix.thunk(() => nix.str`export XDG_CACHE_HOME=$(mktemp -d)
 
 INIT_REQUEST='{"jsonrpc":"2.0","id":1,"method":"initialize","params":{"processId":null,"rootUri":"file:///tmp","workspaceFolders":[{"uri":"file:///tmp","name":"test"}],"capabilities":{}}}'
@@ -72,7 +67,7 @@ touch $out
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Language server that offers Lua language support",
         homepage: "https://github.com/luals/lua-language-server",
         changelog: nix.thunk(() => nix.str`https://github.com/LuaLS/lua-language-server/blob/${nix.sel(finalAttrs, "version")}/changelog.md`),

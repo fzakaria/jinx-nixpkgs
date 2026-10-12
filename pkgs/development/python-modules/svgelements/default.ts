@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]], [["name", 31, 7], ["url", 32, 7], ["hash", 33, 7]], [["description", 55, 5], ["homepage", 56, 5], ["license", 57, 5], ["maintainers", 58, 5]], [["pname", 18, 3], ["version", 19, 3], ["pyproject", 20, 3], ["src", 22, 3], ["patches", 29, 3], ["build-system", 37, 3], ["pythonImportsCheck", 42, 3], ["nativeCheckInputs", 44, 3], ["meta", 54, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, fetchpatch: false, setuptools: false, wheel: false, anyio: false, numpy: false, pillow: false, "pytest-forked": false, "pytest-xdist": false, pytestCheckHook: false, scipy: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["name", 31, 7], ["url", 32, 7], ["hash", 33, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 55, 5], ["homepage", 56, 5], ["license", 57, 5], ["maintainers", 58, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 18, 3], ["version", 19, 3], ["pyproject", 20, 3], ["src", 22, 3], ["patches", 29, 3], ["build-system", 37, 3], ["pythonImportsCheck", 42, 3], ["nativeCheckInputs", 44, 3], ["meta", 54, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const scipy = nix.arg($, "scipy");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "svgelements",
       version: "1.9.6",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "meerk40t",
           repo: "svgelements",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -37,7 +34,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "fix-assert-tests",
             url: "https://github.com/meerk40t/svgelements/commit/23da98941a94cf1afed39c10750222ccfee73c9f.patch",
             hash: "sha256-/53w4eWlaSNEQxuoAxPrN2HciZ3Az2A2SKcIAlNgKAs=",
@@ -47,7 +44,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["svgelements"]),
       nativeCheckInputs: nix.thunk(() => [anyio, numpy, pillow, pytest_forked, pytest_xdist, pytestCheckHook, scipy]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "SVG Parsing for Elements, Paths, and other SVG Objects",
         homepage: "https://github.com/meerk40t/svgelements",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

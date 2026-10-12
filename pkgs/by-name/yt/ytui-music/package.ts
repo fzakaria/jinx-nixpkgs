@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["hash", 24, 5]], [["tagFormat", 68, 9], ["tagPrefix", 69, 9], ["branch", 74, 9]], [["extraArgs", 78, 9]], [["updateScript", 66, 5]], [["description", 84, 5], ["homepage", 85, 5], ["license", 86, 5], ["maintainers", 87, 5], ["mainProgram", 88, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["cargoHash", 27, 3], ["checkFlags", 29, 3], ["patches", 34, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 44, 3], ["postInstall", 50, 3], ["doInstallCheck", 55, 3], ["installCheckPhase", 57, 3], ["passthru", 65, 3], ["meta", 83, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchFromGitHub: false, "pkg-config": false, openssl: false, sqlite: false, mpv: false, "yt-dlp": false, makeBinaryWrapper: false, "_experimental-update-script-combinators": false, unstableGitUpdater: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["tagFormat", 68, 9], ["tagPrefix", 69, 9], ["branch", 74, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["extraArgs", 78, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 66, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 84, 5], ["homepage", 85, 5], ["license", 86, 5], ["maintainers", 87, 5], ["mainProgram", 88, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["cargoHash", 27, 3], ["checkFlags", 29, 3], ["patches", 34, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 44, 3], ["postInstall", 50, 3], ["doInstallCheck", 55, 3], ["installCheckPhase", 57, 3], ["passthru", 65, 3], ["meta", 83, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "ytui-music",
       version: "2.0.0-rc1-unstable-2025-03-03",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "sudipghimire533",
           repo: "ytui-music",
           rev: "b90293d226f6fc27835372f145e55d385112768b",
@@ -48,14 +43,14 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       installCheckPhase: "runHook preInstallCheck\n\n$out/bin/ytui_music help\n\nrunHook postInstallCheck\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix.sel(_experimental_update_script_combinators, "sequence"), nix.thunk(() => [
-            nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, tagFormat: "v[0-9]*", tagPrefix: "v", branch: "main" })))),
-            nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$3, extraArgs: nix.thunk(() => ["--version=skip"]) })))),
+            nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[1], tagFormat: "v[0-9]*", tagPrefix: "v", branch: "main" })))),
+            nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: $pos[2], extraArgs: nix.thunk(() => ["--version=skip"]) })))),
           ]))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Youtube client in terminal for music",
         homepage: "https://github.com/sudipghimire533/ytui-music",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

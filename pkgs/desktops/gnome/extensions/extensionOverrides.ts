@@ -2,44 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/extensionOverrides.nix", [[["gjs", 60, 9]], [["patches", 58, 5]], [["gmenu_path", 70, 11]], [["patches", 66, 5]], [["maintainers", 77, 10]], [["meta", 77, 5]], [["buildInputs", 81, 5], ["preInstall", 85, 5]], [["maintainers", 94, 10]], [["meta", 94, 5]], [["nativeBuildInputs", 98, 5], ["buildInputs", 102, 5], ["postFixup", 107, 5]], [["gjs", 117, 17], ["xdg_utils", 118, 9], ["gtk3_gsettings_path", 119, 9], ["nautilus_gsettings_path", 120, 9]], [["nativeBuildInputs", 114, 5], ["patches", 115, 5]], [["nativeBuildInputs", 127, 5], ["postPatch", 130, 5], ["postFixup", 134, 5]], [["easyeffects_gsettings_path", 144, 9]], [["patches", 141, 5]], [["hddtemp", 153, 11], ["liquidctl", 154, 11], ["lm_sensors", 155, 11], ["procps", 156, 11], ["smartmontools", 157, 11], ["netcat", 159, 9], ["nvmecli", 160, 9]], [["patches", 150, 5]], [["gjs", 169, 17], ["util_linux", 170, 9], ["xdg_utils", 171, 9], ["gtk_update_icon_cache", 172, 9], ["update_desktop_database", 173, 9], ["nautilus_gsettings_path", 174, 9]], [["nativeBuildInputs", 166, 5], ["patches", 167, 5]], [["domain", 189, 11], ["owner", 190, 11], ["repo", 191, 11], ["tag", 192, 11], ["hash", 193, 11]], [["pname", 183, 9], ["version", 184, 9], ["nativeBuildInputs", 185, 9], ["src", 188, 9], ["installPhase", 195, 9]], [["chinese_calendar_path", 205, 11]], [["patches", 203, 7]], [["cups", 214, 17]], [["patches", 212, 5]], [["gtop_path", 224, 11]], [["patches", 220, 5]], [["typelibPath", 233, 9]], [["maintainers", 236, 10]], [["patches", 231, 5], ["meta", 236, 5]], [["typelibPath", 242, 9]], [["patches", 240, 5]], [["gtop_path", 253, 9]], [["patches", 251, 5]], [["postPatch", 261, 5]], [["postPatch", 268, 5]], [["postPatch", 275, 5]]]);
 const formals$1 = { args: { lib: false, fetchFromGitLab: false, cpio: false, cups: false, ddcutil: false, easyeffects: false, gjs: false, glib: false, "gnome-menus": false, gtk3: false, nautilus: false, "gobject-introspection": false, gsound: false, hddtemp: false, libgda6: false, libgtop: false, libhandy: false, liquidctl: false, lm_sensors: false, "netcat-gnu": false, "nvme-cli": false, procps: false, smartmontools: false, replaceVars: false, stdenvNoCC: false, touchegg: false, "util-linux": false, vte: false, wrapGAppsHook3: false, "xdg-utils": false, gtk4: false, "desktop-file-utils": false, "xdg-user-dirs": false, libglycin: false, "libglycin-gtk4": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/extensionOverrides.nix", [["gjs", 60, 9]]);
-const pos$2 = nix.positions(here + "/extensionOverrides.nix", [["patches", 58, 5]]);
-const pos$3 = nix.positions(here + "/extensionOverrides.nix", [["gmenu_path", 70, 11]]);
-const pos$4 = nix.positions(here + "/extensionOverrides.nix", [["patches", 66, 5]]);
-const pos$5 = nix.positions(here + "/extensionOverrides.nix", [["maintainers", 77, 10]]);
-const pos$6 = nix.positions(here + "/extensionOverrides.nix", [["meta", 77, 5]]);
-const pos$7 = nix.positions(here + "/extensionOverrides.nix", [["buildInputs", 81, 5], ["preInstall", 85, 5]]);
-const pos$8 = nix.positions(here + "/extensionOverrides.nix", [["maintainers", 94, 10]]);
-const pos$9 = nix.positions(here + "/extensionOverrides.nix", [["meta", 94, 5]]);
-const pos$10 = nix.positions(here + "/extensionOverrides.nix", [["nativeBuildInputs", 98, 5], ["buildInputs", 102, 5], ["postFixup", 107, 5]]);
-const pos$11 = nix.positions(here + "/extensionOverrides.nix", [["gjs", 117, 17], ["xdg_utils", 118, 9], ["gtk3_gsettings_path", 119, 9], ["nautilus_gsettings_path", 120, 9]]);
-const pos$12 = nix.positions(here + "/extensionOverrides.nix", [["nativeBuildInputs", 114, 5], ["patches", 115, 5]]);
-const pos$13 = nix.positions(here + "/extensionOverrides.nix", [["nativeBuildInputs", 127, 5], ["postPatch", 130, 5], ["postFixup", 134, 5]]);
-const pos$14 = nix.positions(here + "/extensionOverrides.nix", [["easyeffects_gsettings_path", 144, 9]]);
-const pos$15 = nix.positions(here + "/extensionOverrides.nix", [["patches", 141, 5]]);
-const pos$16 = nix.positions(here + "/extensionOverrides.nix", [["hddtemp", 153, 11], ["liquidctl", 154, 11], ["lm_sensors", 155, 11], ["procps", 156, 11], ["smartmontools", 157, 11], ["netcat", 159, 9], ["nvmecli", 160, 9]]);
-const pos$17 = nix.positions(here + "/extensionOverrides.nix", [["patches", 150, 5]]);
-const pos$18 = nix.positions(here + "/extensionOverrides.nix", [["gjs", 169, 17], ["util_linux", 170, 9], ["xdg_utils", 171, 9], ["gtk_update_icon_cache", 172, 9], ["update_desktop_database", 173, 9], ["nautilus_gsettings_path", 174, 9]]);
-const pos$19 = nix.positions(here + "/extensionOverrides.nix", [["nativeBuildInputs", 166, 5], ["patches", 167, 5]]);
-const pos$20 = nix.positions(here + "/extensionOverrides.nix", [["domain", 189, 11], ["owner", 190, 11], ["repo", 191, 11], ["tag", 192, 11], ["hash", 193, 11]]);
-const pos$21 = nix.positions(here + "/extensionOverrides.nix", [["pname", 183, 9], ["version", 184, 9], ["nativeBuildInputs", 185, 9], ["src", 188, 9], ["installPhase", 195, 9]]);
-const pos$22 = nix.positions(here + "/extensionOverrides.nix", [["chinese_calendar_path", 205, 11]]);
-const pos$23 = nix.positions(here + "/extensionOverrides.nix", [["patches", 203, 7]]);
-const pos$24 = nix.positions(here + "/extensionOverrides.nix", [["cups", 214, 17]]);
-const pos$25 = nix.positions(here + "/extensionOverrides.nix", [["patches", 212, 5]]);
-const pos$26 = nix.positions(here + "/extensionOverrides.nix", [["gtop_path", 224, 11]]);
-const pos$27 = nix.positions(here + "/extensionOverrides.nix", [["patches", 220, 5]]);
-const pos$28 = nix.positions(here + "/extensionOverrides.nix", [["typelibPath", 233, 9]]);
-const pos$29 = nix.positions(here + "/extensionOverrides.nix", [["maintainers", 236, 10]]);
-const pos$30 = nix.positions(here + "/extensionOverrides.nix", [["patches", 231, 5], ["meta", 236, 5]]);
-const pos$31 = nix.positions(here + "/extensionOverrides.nix", [["typelibPath", 242, 9]]);
-const pos$32 = nix.positions(here + "/extensionOverrides.nix", [["patches", 240, 5]]);
-const pos$33 = nix.positions(here + "/extensionOverrides.nix", [["gtop_path", 253, 9]]);
-const pos$34 = nix.positions(here + "/extensionOverrides.nix", [["patches", 251, 5]]);
-const pos$35 = nix.positions(here + "/extensionOverrides.nix", [["postPatch", 261, 5]]);
-const pos$36 = nix.positions(here + "/extensionOverrides.nix", [["postPatch", 268, 5]]);
-const pos$37 = nix.positions(here + "/extensionOverrides.nix", [["postPatch", 275, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -83,24 +47,27 @@ export default nix.lambda((args) => (() => {
   ]));
   return (super$) => nix.app(nix.sel(lib, "trivial", "pipe"), super$, nix.thunk(() => [
       nix.thunk(() => nix.app(patchExtension, "appindicatorsupport@rgcjonas.gmail.com", (old) => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           patches: nix.thunk(() => [
-            nix.thunk(() => nix.app(replaceVars, nix.path(here, "./extensionOverridesPatches/appindicatorsupport_at_rgcjonas.gmail.com.patch"), nix.thunk(() => ({ [nix.POS]: pos$1, gjs: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), gjs)) })))),
+            nix.thunk(() => nix.app(replaceVars, nix.path(here, "./extensionOverridesPatches/appindicatorsupport_at_rgcjonas.gmail.com.patch"), nix.thunk(() => ({
+                [nix.POS]: $pos[0],
+                gjs: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), gjs)),
+              })))),
           ]),
         }))),
       nix.thunk(() => nix.app(patchExtension, "apps-menu@gnome-shell-extensions.gcampax.github.com", (old) => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           patches: nix.thunk(() => [
             nix.thunk(() => nix.app(replaceVars, nix.path(here, "./extensionOverridesPatches/apps-menu_at_gnome-shell-extensions.gcampax.github.com.patch"), nix.thunk(() => ({
-                [nix.POS]: pos$3,
+                [nix.POS]: $pos[2],
                 gmenu_path: nix.thunk(() => nix.str`${gnome_menus}/lib/girepository-1.0`),
               })))),
           ]),
         }))),
       nix.thunk(() => nix.app(patchExtension, "caffeine@patapon.info", (old) => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           meta: nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             maintainers: nix.thunk(() => (() => {
               const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
               return [nix.thunk(() => nix.lookup(w, "eperuffo"))];
@@ -108,7 +75,7 @@ export default nix.lambda((args) => (() => {
           })),
         }))),
       nix.thunk(() => nix.app(patchExtension, "copyous@boerdereinar.dev", (old) => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           buildInputs: nix.thunk(() => [libgda6, gsound]),
           preInstall: nix.thunk(() => nix.str`sed -i "1i import GIRepository from 'gi://GIRepository';\\nGIRepository.Repository.dup_default().prepend_search_path('${libgda6}/lib/girepository-1.0');\\nGIRepository.Repository.dup_default().prepend_search_path('${gsound}/lib/girepository-1.0');\\n" lib/preferences/dependencies/dependencies.js
 sed -i "1i import GIRepository from 'gi://GIRepository';\\nGIRepository.Repository.dup_default().prepend_search_path('${libgda6}/lib/girepository-1.0');\\n" lib/database/entryTracker.js
@@ -117,9 +84,9 @@ sed -i "1i import GIRepository from 'gi://GIRepository';\\nGIRepository.Reposito
 `),
         }))),
       nix.thunk(() => nix.app(patchExtension, "dash-to-dock@micxgx.gmail.com", (old) => ({
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           meta: nix.thunk(() => ({
-            [nix.POS]: pos$8,
+            [nix.POS]: $pos[7],
             maintainers: nix.thunk(() => (() => {
               const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
               return [nix.thunk(() => nix.lookup(w, "rhoriguchi"))];
@@ -127,17 +94,17 @@ sed -i "1i import GIRepository from 'gi://GIRepository';\\nGIRepository.Reposito
           })),
         }))),
       nix.thunk(() => nix.app(patchExtension, "ddterm@amezin.github.com", (old) => ({
-          [nix.POS]: pos$10,
+          [nix.POS]: $pos[9],
           nativeBuildInputs: nix.thunk(() => [gobject_introspection, wrapGAppsHook3]),
           buildInputs: nix.thunk(() => [vte, libhandy, gjs]),
           postFixup: "patchShebangs \"$out/share/gnome-shell/extensions/ddterm@amezin.github.com/bin/com.github.amezin.ddterm\"\nwrapGApp \"$out/share/gnome-shell/extensions/ddterm@amezin.github.com/bin/com.github.amezin.ddterm\"\n",
         }))),
       nix.thunk(() => nix.app(patchExtension, "ding@rastersoft.com", (old) => ({
-          [nix.POS]: pos$12,
+          [nix.POS]: $pos[11],
           nativeBuildInputs: nix.thunk(() => [wrapGAppsHook3]),
           patches: nix.thunk(() => [
             nix.thunk(() => nix.app(replaceVars, nix.path(here, "./extensionOverridesPatches/ding_at_rastersoft.com.patch"), nix.thunk(() => ({
-                [nix.POS]: pos$11,
+                [nix.POS]: $pos[10],
                 gjs: gjs,
                 xdg_utils: xdg_utils,
                 gtk3_gsettings_path: nix.thunk(() => nix.app(nix.sel(glib, "getSchemaPath"), gtk3)),
@@ -146,7 +113,7 @@ sed -i "1i import GIRepository from 'gi://GIRepository';\\nGIRepository.Reposito
           ]),
         }))),
       nix.thunk(() => nix.app(patchExtension, "display-brightness-ddcutil@themightydeity.github.com", (old) => ({
-          [nix.POS]: pos$13,
+          [nix.POS]: $pos[12],
           nativeBuildInputs: nix.thunk(() => [glib]),
           postPatch: nix.thunk(() => nix.str`substituteInPlace "schemas/org.gnome.shell.extensions.display-brightness-ddcutil.gschema.xml" \\
   --replace-fail "/usr/bin/ddcutil" ${nix.app(nix.sel(lib, "getExe"), ddcutil)}
@@ -154,19 +121,19 @@ sed -i "1i import GIRepository from 'gi://GIRepository';\\nGIRepository.Reposito
           postFixup: "rm \"$out/share/gnome-shell/extensions/display-brightness-ddcutil@themightydeity.github.com/schemas/gschemas.compiled\"\nglib-compile-schemas \"$out/share/gnome-shell/extensions/display-brightness-ddcutil@themightydeity.github.com/schemas\"\n",
         }))),
       nix.thunk(() => nix.app(patchExtension, "eepresetselector@ulville.github.io", (old) => ({
-          [nix.POS]: pos$15,
+          [nix.POS]: $pos[14],
           patches: nix.thunk(() => [
             nix.thunk(() => nix.app(replaceVars, nix.path(here, "./extensionOverridesPatches/eepresetselector_at_ulville.github.io.patch"), nix.thunk(() => ({
-                [nix.POS]: pos$14,
+                [nix.POS]: $pos[13],
                 easyeffects_gsettings_path: nix.thunk(() => nix.str`${nix.app(nix.sel(glib, "getSchemaPath"), easyeffects)}`),
               })))),
           ]),
         }))),
       nix.thunk(() => nix.app(patchExtension, "freon@UshakovVasilii_Github.yahoo.com", (old) => ({
-          [nix.POS]: pos$17,
+          [nix.POS]: $pos[16],
           patches: nix.thunk(() => [
             nix.thunk(() => nix.app(replaceVars, nix.path(here, "./extensionOverridesPatches/freon_at_UshakovVasilii_Github.yahoo.com.patch"), nix.thunk(() => ({
-                [nix.POS]: pos$16,
+                [nix.POS]: $pos[15],
                 hddtemp: hddtemp,
                 liquidctl: liquidctl,
                 lm_sensors: lm_sensors,
@@ -178,11 +145,11 @@ sed -i "1i import GIRepository from 'gi://GIRepository';\\nGIRepository.Reposito
           ]),
         }))),
       nix.thunk(() => nix.app(patchExtension, "gtk4-ding@smedius.gitlab.com", (old) => ({
-          [nix.POS]: pos$19,
+          [nix.POS]: $pos[18],
           nativeBuildInputs: nix.thunk(() => [wrapGAppsHook3]),
           patches: nix.thunk(() => [
             nix.thunk(() => nix.app(replaceVars, nix.path(here, "./extensionOverridesPatches/gtk4-ding_at_smedius.gitlab.com.patch"), nix.thunk(() => ({
-                [nix.POS]: pos$18,
+                [nix.POS]: $pos[17],
                 gjs: gjs,
                 util_linux: util_linux,
                 xdg_utils: xdg_utils,
@@ -194,12 +161,12 @@ sed -i "1i import GIRepository from 'gi://GIRepository';\\nGIRepository.Reposito
         }))),
       nix.thunk(() => nix.app(patchExtension, "lunarcal@ailin.nemui", (old) => (() => {
           const chinese_calendar = nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-              [nix.POS]: pos$21,
+              [nix.POS]: $pos[20],
               pname: "chinese-calendar",
               version: "20240107",
               nativeBuildInputs: nix.thunk(() => [cpio]),
               src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-                  [nix.POS]: pos$20,
+                  [nix.POS]: $pos[19],
                   domain: "gitlab.gnome.org",
                   owner: "Nei",
                   repo: "ChineseCalendar",
@@ -209,37 +176,37 @@ sed -i "1i import GIRepository from 'gi://GIRepository';\\nGIRepository.Reposito
               installPhase: "runHook preInstall\nHOME=$out ./install.sh\nrunHook postInstall\n",
             })));
           return {
-            [nix.POS]: pos$23,
+            [nix.POS]: $pos[22],
             patches: nix.thunk(() => [
-              nix.thunk(() => nix.app(replaceVars, nix.path(here, "./extensionOverridesPatches/lunarcal_at_ailin.nemui.patch"), nix.thunk(() => ({ [nix.POS]: pos$22, chinese_calendar_path: chinese_calendar })))),
+              nix.thunk(() => nix.app(replaceVars, nix.path(here, "./extensionOverridesPatches/lunarcal_at_ailin.nemui.patch"), nix.thunk(() => ({ [nix.POS]: $pos[21], chinese_calendar_path: chinese_calendar })))),
             ]),
           };
         })())),
       nix.thunk(() => nix.app(patchExtension, "printers@linux-man.org", (old) => ({
-          [nix.POS]: pos$25,
+          [nix.POS]: $pos[24],
           patches: nix.thunk(() => [
-            nix.thunk(() => nix.app(replaceVars, nix.path(here, "./extensionOverridesPatches/printers_at_linux-man.org.patch"), nix.thunk(() => ({ [nix.POS]: pos$24, cups: cups })))),
+            nix.thunk(() => nix.app(replaceVars, nix.path(here, "./extensionOverridesPatches/printers_at_linux-man.org.patch"), nix.thunk(() => ({ [nix.POS]: $pos[23], cups: cups })))),
           ]),
         }))),
       nix.thunk(() => nix.app(patchExtension, "system-monitor@gnome-shell-extensions.gcampax.github.com", (old) => ({
-          [nix.POS]: pos$27,
+          [nix.POS]: $pos[26],
           patches: nix.thunk(() => [
             nix.thunk(() => nix.app(replaceVars, nix.path(here, "./extensionOverridesPatches/system-monitor_at_gnome-shell-extensions.gcampax.github.com.patch"), nix.thunk(() => ({
-                [nix.POS]: pos$26,
+                [nix.POS]: $pos[25],
                 gtop_path: nix.thunk(() => nix.str`${libgtop}/lib/girepository-1.0`),
               })))),
           ]),
         }))),
       nix.thunk(() => nix.app(patchExtension, "system-monitor-next@paradoxxx.zero.gmail.com", (old) => ({
-          [nix.POS]: pos$30,
+          [nix.POS]: $pos[29],
           patches: nix.thunk(() => [
             nix.thunk(() => nix.app(replaceVars, nix.path(here, "./extensionOverridesPatches/system-monitor-next_at_paradoxxx.zero.gmail.com.patch"), nix.thunk(() => ({
-                [nix.POS]: pos$28,
+                [nix.POS]: $pos[27],
                 typelibPath: nix.thunk(() => nix.app(nix.sel(lib, "makeSearchPath"), "/lib/girepository-1.0", nix.thunk(() => [libgtop]))),
               })))),
           ]),
           meta: nix.thunk(() => ({
-            [nix.POS]: pos$29,
+            [nix.POS]: $pos[28],
             maintainers: nix.thunk(() => (() => {
               const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
               return [nix.thunk(() => nix.lookup(w, "andersk"))];
@@ -247,35 +214,35 @@ sed -i "1i import GIRepository from 'gi://GIRepository';\\nGIRepository.Reposito
           })),
         }))),
       nix.thunk(() => nix.app(patchExtension, "user-theme-x@tuberry.github.io", (old) => ({
-          [nix.POS]: pos$32,
+          [nix.POS]: $pos[31],
           patches: nix.thunk(() => [
             nix.thunk(() => nix.app(replaceVars, nix.path(here, "./extensionOverridesPatches/user-theme-x_at_tuberry.github.io.patch"), nix.thunk(() => ({
-                [nix.POS]: pos$31,
+                [nix.POS]: $pos[30],
                 typelibPath: nix.thunk(() => nix.app(nix.sel(lib, "makeSearchPath"), "/lib/girepository-1.0", nix.thunk(() => [libglycin, libglycin_gtk4]))),
               })))),
           ]),
         }))),
       nix.thunk(() => nix.app(patchExtension, "Vitals@CoreCoding.com", (old) => ({
-          [nix.POS]: pos$34,
+          [nix.POS]: $pos[33],
           patches: nix.thunk(() => [
             nix.thunk(() => nix.app(replaceVars, nix.path(here, "./extensionOverridesPatches/vitals_at_corecoding.com.patch"), nix.thunk(() => ({
-                [nix.POS]: pos$33,
+                [nix.POS]: $pos[32],
                 gtop_path: nix.thunk(() => nix.str`${libgtop}/lib/girepository-1.0`),
               })))),
           ]),
         }))),
       nix.thunk(() => nix.app(patchExtension, "x11gestures@joseexposito.github.io", (old) => ({
-          [nix.POS]: pos$35,
+          [nix.POS]: $pos[34],
           postPatch: nix.thunk(() => nix.str`substituteInPlace "src/touchegg/ToucheggConfig.js" \\
   --replace "GLib.build_filenamev([GLib.DIR_SEPARATOR_S, 'usr', 'share', 'touchegg', 'touchegg.conf'])" "'${touchegg}/share/touchegg/touchegg.conf'"
 `),
         }))),
       nix.thunk(() => nix.app(patchExtension, "pwcalc@thilomaurer.de", nix.thunk(() => ({
-          [nix.POS]: pos$36,
+          [nix.POS]: $pos[35],
           postPatch: "# remove unused dangling symlink\nrm settings-importexport.ui\n",
         })))),
       nix.thunk(() => nix.app(patchExtension, "TeaTimer@zener.sbg.at", nix.thunk(() => ({
-          [nix.POS]: pos$37,
+          [nix.POS]: $pos[36],
           postPatch: "# remove unused dangling symlink\nrm utilities-teatime.svg\n",
         })))),
     ]));

@@ -2,12 +2,9 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/build-mix.nix", [[["ERL_COMPILER_OPTIONS", 43, 9], ["MIX_ENV", 49, 9], ["MIX_TARGET", 50, 9], ["MIX_BUILD_PREFIX", 51, 9], ["MIX_DEBUG", 52, 9], ["HEX_OFFLINE", 53, 9], ["LANG", 55, 9], ["LC_CTYPE", 56, 9], ["beamModuleName", 59, 9]], [["beamDeps", 91, 17]], [["name", 40, 7], ["env", 42, 7], ["__structuredAttrs", 63, 7], ["strictDeps", 64, 7], ["__darwinAllowLocalNetworking", 66, 7], ["setupHook", 72, 7], ["nativeBuildInputs", 76, 7], ["propagatedBuildInputs", 88, 7], ["passthru", 90, 7]], [["constructDrv", 17, 3], ["excludeDrvArgNames", 18, 3], ["extendDrvArgs", 21, 3]]]);
 const formals$1 = { args: { elixir: false, erlang: false, hex: false, beamCopySourceHook: false, beamModuleInstallHook: false, mixBuildDirHook: false, mixCompileHook: false, mixAppConfigPatchHook: false, lib: false, stdenv: false, writeText: false }, ellipsis: false };
 const formals$2 = { args: { beamDeps: true, mixEnv: true, mixTarget: true, appConfigPath: true, enableDebugInfo: true, erlangCompilerOptions: true, erlangDeterministicBuilds: true }, ellipsis: true };
-const pos$1 = nix.positions(here + "/build-mix.nix", [["ERL_COMPILER_OPTIONS", 43, 9], ["MIX_ENV", 49, 9], ["MIX_TARGET", 50, 9], ["MIX_BUILD_PREFIX", 51, 9], ["MIX_DEBUG", 52, 9], ["HEX_OFFLINE", 53, 9], ["LANG", 55, 9], ["LC_CTYPE", 56, 9], ["beamModuleName", 59, 9]]);
-const pos$2 = nix.positions(here + "/build-mix.nix", [["beamDeps", 91, 17]]);
-const pos$3 = nix.positions(here + "/build-mix.nix", [["name", 40, 7], ["env", 42, 7], ["__structuredAttrs", 63, 7], ["strictDeps", 64, 7], ["__darwinAllowLocalNetworking", 66, 7], ["setupHook", 72, 7], ["nativeBuildInputs", 76, 7], ["propagatedBuildInputs", 88, 7], ["passthru", 90, 7]]);
-const pos$4 = nix.positions(here + "/build-mix.nix", [["constructDrv", 17, 3], ["excludeDrvArgNames", 18, 3], ["extendDrvArgs", 21, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,7 +20,7 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const writeText = nix.arg($, "writeText");
   return nix.app(nix.sel(lib, "extendMkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       constructDrv: nix.thunk(() => nix.sel(stdenv, "mkDerivation")),
       excludeDrvArgNames: nix.thunk(() => ["mixEnv"]),
       extendDrvArgs: (finalAttrs) => nix.lambda((args_1) => (() => {
@@ -37,10 +34,10 @@ export default nix.lambda((args) => (() => {
         const erlangCompilerOptions = nix.argOr($_1, "erlangCompilerOptions", () => []);
         const erlangDeterministicBuilds = nix.argOr($_1, "erlangDeterministicBuilds", () => true);
         return {
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           name: nix.thunk(() => nix.str`erlang${nix.sel(erlang, "version")}-${nix.sel(args_2, "name")}-${nix.sel(finalAttrs, "version")}`),
           env: nix.thunk(() => nix.update({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             ERL_COMPILER_OPTIONS: nix.thunk(() => (() => {
               const options = nix.thunk(() => nix.concat(erlangCompilerOptions, nix.app(nix.sel(lib, "optionals"), erlangDeterministicBuilds, nix.thunk(() => ["deterministic"]))));
               return nix.str`[${nix.app(nix.sel(lib, "concatStringsSep"), ",", options)}]`;
@@ -69,7 +66,7 @@ export default nix.lambda((args) => (() => {
             mixAppConfigPatchHook,
           ])),
           propagatedBuildInputs: nix.thunk(() => nix.concat(nix.selOr(args_2, () => [], "propagatedBuildInputs"), beamDeps)),
-          passthru: nix.thunk(() => nix.update(nix.selOr(args_2, () => ({}), "passthru"), { [nix.POS]: pos$2, beamDeps: beamDeps })),
+          passthru: nix.thunk(() => nix.update(nix.selOr(args_2, () => ({}), "passthru"), { [nix.POS]: $pos[1], beamDeps: beamDeps })),
         };
       })(), formals$2),
     })));

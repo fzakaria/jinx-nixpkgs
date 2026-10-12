@@ -2,10 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["repo", 32, 9], ["owner", 33, 9], ["tag", 34, 9], ["hash", 35, 9]], [["pname", 29, 7], ["version", 30, 7], ["src", 31, 7], ["libraryHaskellDepends", 37, 7], ["executableHaskellDepends", 50, 7], ["homepage", 56, 7], ["changelog", 57, 7], ["license", 58, 7], ["mainProgram", 59, 7], ["maintainers", 60, 7]]]);
 const formals$1 = { args: { haskellPackages: false, haskell: false }, ellipsis: false };
 const formals$2 = { args: { mkDerivation: false, fetchFromGitHub: false, lib: false, base: false, vty: false, lens: false, brick: false, linear: false, containers: false, random: false, transformers: false, directory: false, filepath: false, "optparse-applicative": false, "vty-crossplatform": false, mtl: false, extra: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["repo", 32, 9], ["owner", 33, 9], ["tag", 34, 9], ["hash", 35, 9]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 29, 7], ["version", 30, 7], ["src", 31, 7], ["libraryHaskellDepends", 37, 7], ["executableHaskellDepends", 50, 7], ["homepage", 56, 7], ["changelog", 57, 7], ["license", 58, 7], ["mainProgram", 59, 7], ["maintainers", 60, 7]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,7 +33,7 @@ export default nix.lambda((args) => (() => {
             const pname = "tetris";
             const version = "0.1.6";
             const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                [nix.POS]: pos$1,
+                [nix.POS]: $pos[0],
                 repo: "tetris",
                 owner: "Samtay",
                 tag: nix.thunk(() => nix.str`v${version}`),
@@ -60,7 +59,7 @@ export default nix.lambda((args) => (() => {
             const mainProgram = "tetris";
             const maintainers = nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "Svenum"))]);
             return {
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               pname,
               version,
               src,

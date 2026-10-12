@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["x86_64-linux", 20, 9], ["aarch64-linux", 21, 9]], [["url", 17, 5], ["sha256", 18, 5]], [["package", 46, 7]], [["version", 45, 5]], [["tests", 44, 12], ["updateScript", 50, 12]], [["description", 53, 5], ["longDescription", 54, 5], ["homepage", 59, 5], ["license", 60, 5], ["maintainers", 61, 5], ["platforms", 65, 5], ["sourceProvenance", 66, 5], ["mainProgram", 67, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["sourceRoot", 26, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 29, 3], ["installPhase", 35, 3], ["passthru", 44, 3], ["meta", 52, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, autoPatchelfHook: false, "libxcrypt-legacy": false, zlib: false, testers: false, nav: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["x86_64-linux", 20, 9], ["aarch64-linux", 21, 9]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 17, 5], ["sha256", 18, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["package", 46, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["version", 45, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["tests", 44, 12], ["updateScript", 50, 12]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 53, 5], ["longDescription", 54, 5], ["homepage", 59, 5], ["license", 60, 5], ["maintainers", 61, 5], ["platforms", 65, 5], ["sourceProvenance", 66, 5], ["mainProgram", 67, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["sourceRoot", 26, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 29, 3], ["installPhase", 35, 3], ["passthru", 44, 3], ["meta", 52, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,14 +16,14 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const nav = nix.arg($, "nav");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "nav",
       version: "1.5.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: nix.thunk(() => nix.str`https://github.com/Jojo4GH/nav/releases/download/v${nix.sel(finalAttrs, "version")}/nav-${nix.sel(stdenv, "hostPlatform", "parsed", "cpu", "name")}-unknown-linux-gnu.tar.gz`),
           sha256: nix.thunk(() => nix.selOr({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             "x86_64-linux": "sha256-/A6IZRX8v8yKfcxYxo0gxbsZri2dgTs8YH7H2LauaBE=",
             "aarch64-linux": "sha256-YNS/P6TU7qLPn39X6GyUtjBw7GXOi2btd3AV+etpUhQ=",
           }, () => nix.builtins.throw(nix.thunk(() => nix.str`unsupported system ${nix.sel(stdenv, "hostPlatform", "system")}`)), nix.key(nix.sel(stdenv, "hostPlatform", "system")))),
@@ -39,15 +33,15 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(stdenv, "cc", "cc", "lib")), libxcrypt_legacy, zlib]),
       installPhase: "runHook preInstall\n\nmkdir -p $out/bin\ncp nav $out/bin\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$3, package: nav })))),
+          [nix.POS]: $pos[3],
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: $pos[2], package: nav })))),
         })),
         updateScript: nix.path(here, "./update.sh"),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Interactive and stylish replacement for ls & cd",
         longDescription: "To make use of nav, add the following lines to your configuration:\n`programs.bash.shellInit = \"eval \\\"$(nav --init bash)\\\"\";` and\n`programs.zsh.shellInit = \"eval \\\"$(nav --init zsh)\\\"\";`\n",
         homepage: "https://github.com/Jojo4GH/nav",

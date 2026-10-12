@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 25, 5], ["hash", 26, 5]], [["description", 50, 5], ["homepage", 51, 5], ["license", 52, 5], ["maintainers", 53, 5]], [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["propagatedBuildInputs", 29, 3], ["doCheck", 42, 3], ["checkInputs", 43, 3], ["meta", 49, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildDunePackage: false, fetchurl: false, cstruct: false, duration: false, ethernet: false, ipaddr: false, logs: false, lru: false, lwt: false, macaddr: false, "mirage-sleep": false, alcotest: false, bos: false, "mirage-vnetif": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 50, 5], ["homepage", 51, 5], ["license", 52, 5], ["maintainers", 53, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["propagatedBuildInputs", 29, 3], ["doCheck", 42, 3], ["checkInputs", 43, 3], ["meta", 49, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const bos = nix.arg($, "bos");
   const mirage_vnetif = nix.arg($, "mirage-vnetif");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "arp",
       version: "4.1.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/mirage/arp/releases/download/v${nix.sel(finalAttrs, "version")}/arp-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-AvjxveUgSRBNhZQvCp1oa+JfEXSIronECk4nNos8hl0=",
         })))),
@@ -38,7 +36,7 @@ export default nix.lambda((args) => (() => {
       doCheck: nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))),
       checkInputs: nix.thunk(() => [alcotest, bos, mirage_vnetif]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Address Resolution Protocol purely in OCaml",
         homepage: "https://github.com/mirage/arp",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),

@@ -2,46 +2,35 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
-const pos$1 = nix.positions(here + "/trilium-server.nix", [["enable", 5, 31]]);
-const pos$2 = nix.positions(here + "/trilium-server.nix", [["trilium-server", 5, 16]]);
-const pos$3 = nix.positions(here + "/trilium-server.nix", [["services", 5, 7]]);
-const pos$4 = nix.positions(here + "/trilium-server.nix", [["enable", 9, 9], ["dataDir", 10, 9]]);
-const pos$5 = nix.positions(here + "/trilium-server.nix", [["trilium-server", 8, 16]]);
-const pos$6 = nix.positions(here + "/trilium-server.nix", [["services", 8, 7]]);
-const pos$7 = nix.positions(here + "/trilium-server.nix", [["enable", 17, 15], ["hostName", 18, 15]]);
-const pos$8 = nix.positions(here + "/trilium-server.nix", [["enable", 16, 9], ["nginx", 17, 9]]);
-const pos$9 = nix.positions(here + "/trilium-server.nix", [["trilium-server", 15, 16]]);
-const pos$10 = nix.positions(here + "/trilium-server.nix", [["services", 15, 7]]);
-const pos$11 = nix.positions(here + "/trilium-server.nix", [["default", 4, 5], ["configured", 7, 5], ["nginx", 14, 5]]);
-const pos$12 = nix.positions(here + "/trilium-server.nix", [["name", 2, 3], ["nodes", 3, 3], ["testScript", 23, 3]]);
+const $pos = nix.positions(here + "/trilium-server.nix", [[["enable", 5, 31]], [["trilium-server", 5, 16]], [["services", 5, 7]], [["enable", 9, 9], ["dataDir", 10, 9]], [["trilium-server", 8, 16]], [["services", 8, 7]], [["enable", 17, 15], ["hostName", 18, 15]], [["enable", 16, 9], ["nginx", 17, 9]], [["trilium-server", 15, 16]], [["services", 15, 7]], [["default", 4, 5], ["configured", 7, 5], ["nginx", 14, 5]], [["name", 2, 3], ["nodes", 3, 3], ["testScript", 23, 3]]]);
 
 export default nix.thunk(() => ({
-  [nix.POS]: pos$12,
+  [nix.POS]: $pos[11],
   name: "trilium-server",
   nodes: nix.thunk(() => ({
-    [nix.POS]: pos$11,
+    [nix.POS]: $pos[10],
     default: nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       services: nix.thunk(() => ({
-        [nix.POS]: pos$2,
-        "trilium-server": nix.thunk(() => ({ [nix.POS]: pos$1, enable: true })),
+        [nix.POS]: $pos[1],
+        "trilium-server": nix.thunk(() => ({ [nix.POS]: $pos[0], enable: true })),
       })),
     })),
     configured: nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       services: nix.thunk(() => ({
-        [nix.POS]: pos$5,
-        "trilium-server": nix.thunk(() => ({ [nix.POS]: pos$4, enable: true, dataDir: "/data/trilium" })),
+        [nix.POS]: $pos[4],
+        "trilium-server": nix.thunk(() => ({ [nix.POS]: $pos[3], enable: true, dataDir: "/data/trilium" })),
       })),
     })),
     nginx: nix.thunk(() => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       services: nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         "trilium-server": nix.thunk(() => ({
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           enable: true,
-          nginx: nix.thunk(() => ({ [nix.POS]: pos$7, enable: true, hostName: "trilium.example.com" })),
+          nginx: nix.thunk(() => ({ [nix.POS]: $pos[6], enable: true, hostName: "trilium.example.com" })),
         })),
       })),
     })),

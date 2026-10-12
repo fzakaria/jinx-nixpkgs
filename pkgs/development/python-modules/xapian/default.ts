@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 19, 5], ["hash", 20, 5]], [["description", 42, 5], ["homepage", 43, 5], ["changelog", 44, 5], ["license", 45, 5], ["maintainers", 46, 5]], [["pname", 14, 3], ["version", 15, 20], ["pyproject", 16, 3], ["src", 18, 3], ["configureFlags", 23, 3], ["preConfigure", 28, 3], ["buildInputs", 32, 3], ["checkPhase", 37, 3], ["meta", 41, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchurl: false, python: false, sphinx: false, xapian: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 42, 5], ["homepage", 43, 5], ["changelog", 44, 5], ["license", 45, 5], ["maintainers", 46, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 14, 3], ["version", 15, 20], ["pyproject", 16, 3], ["src", 18, 3], ["configureFlags", 23, 3], ["preConfigure", 28, 3], ["buildInputs", 32, 3], ["checkPhase", 37, 3], ["meta", 41, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = nix.thunk(() => nix.attr(xapian, "version"));
       const pyproject = false;
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://oligarchy.co.uk/xapian/${version}/xapian-bindings-${version}.tar.xz`),
           hash: "sha256-o4zHukGIzAvSfcc2nwOQZ3IEcIehxU8bkzVdXpEDwwQ=",
         }))));
@@ -35,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const checkPhase = nix.thunk(() => nix.str`${nix.sel(python, "interpreter")} python${pythonSuffix}/pythontest.py
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Python Bindings for Xapian",
         homepage: "https://xapian.org/",
         changelog: nix.thunk(() => nix.str`https://xapian.org/docs/xapian-bindings-${version}/NEWS`),
@@ -43,7 +41,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

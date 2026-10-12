@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]], [["updateScript", 165, 5]], [["description", 169, 5], ["longDescription", 170, 5], ["homepage", 178, 5], ["changelog", 179, 5], ["license", 180, 5], ["maintainers", 181, 5], ["mainProgram", 182, 5]], [["pname", 13, 3], ["version", 14, 3], ["pyproject", 15, 3], ["src", 17, 3], ["pythonRelaxDeps", 24, 3], ["build-system", 26, 3], ["dependencies", 28, 3], ["__darwinAllowLocalNetworking", 57, 3], ["nativeCheckInputs", 59, 3], ["disabledTests", 73, 3], ["disabledTestPaths", 153, 3], ["pythonImportsCheck", 162, 3], ["passthru", 164, 3], ["meta", 168, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, "nix-update-script": false, php: false, python3Packages: false, versionCheckHook: false, writableTmpDirAsHomeHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 165, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 169, 5], ["longDescription", 170, 5], ["homepage", 178, 5], ["changelog", 179, 5], ["license", 180, 5], ["maintainers", 181, 5], ["mainProgram", 182, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["pyproject", 15, 3], ["src", 17, 3], ["pythonRelaxDeps", 24, 3], ["build-system", 26, 3], ["dependencies", 28, 3], ["__darwinAllowLocalNetworking", 57, 3], ["nativeCheckInputs", 59, 3], ["disabledTests", 73, 3], ["disabledTestPaths", 153, 3], ["pythonImportsCheck", 162, 3], ["passthru", 164, 3], ["meta", 168, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "wapiti",
       version: "3.3.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "wapiti-scanner",
           repo: "wapiti",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -153,11 +150,11 @@ export default nix.lambda((args) => (() => {
       disabledTestPaths: nix.thunk(() => nix.concat(["tests/attack/test_mod_ssl.py"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["tests/web/test_persister.py"])))),
       pythonImportsCheck: nix.thunk(() => ["wapitiCore"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Web application vulnerability scanner",
         longDescription: "Wapiti allows you to audit the security of your websites or web applications.\nIt performs \"black-box\" scans (it does not study the source code) of the web\napplication by crawling the webpages of the deployed webapp, looking for\nscripts and forms where it can inject data. Once it gets the list of URLs,\nforms and their inputs, Wapiti acts like a fuzzer, injecting payloads to see\nif a script is vulnerable.\n",
         homepage: "https://wapiti-scanner.github.io/",

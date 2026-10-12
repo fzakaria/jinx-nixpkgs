@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/pybind11-protobuf.nix", [[["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]], [["description", 67, 5], ["homepage", 68, 5], ["license", 69, 5], ["maintainers", 70, 5]], [["pname", 14, 3], ["version", 15, 3], ["pyproject", 16, 3], ["src", 18, 3], ["patches", 25, 3], ["postPatch", 31, 3], ["nativeBuildInputs", 43, 3], ["buildInputs", 45, 3], ["cmakeFlags", 52, 3], ["meta", 66, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitHub: false, cmake: false, "abseil-cpp_202508": false, protobuf: false, pybind11: false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/pybind11-protobuf.nix", [["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/pybind11-protobuf.nix", [["description", 67, 5], ["homepage", 68, 5], ["license", 69, 5], ["maintainers", 70, 5]]);
-const pos$3 = nix.positions(here + "/pybind11-protobuf.nix", [["pname", 14, 3], ["version", 15, 3], ["pyproject", 16, 3], ["src", 18, 3], ["patches", 25, 3], ["postPatch", 31, 3], ["nativeBuildInputs", 43, 3], ["buildInputs", 45, 3], ["cmakeFlags", 52, 3], ["meta", 66, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const pybind11 = nix.arg($, "pybind11");
   const zlib = nix.arg($, "zlib");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "pybind11-protobuf",
       version: "0-unstable-2025-10-29",
       pyproject: false,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "pybind",
           repo: "pybind11_protobuf",
           rev: "4825dca68c8de73f5655fc50ce79c49c4d814652",
@@ -43,7 +41,7 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "CMAKE_FIND_PACKAGE_PREFER_CONFIG", true)),
         ])))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Pybind11 bindings for Google's Protocol Buffers",
         homepage: "https://github.com/pybind/pybind11_protobuf",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

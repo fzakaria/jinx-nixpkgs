@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 30, 5], ["repo", 31, 5], ["rev", 32, 5], ["hash", 33, 5]], [["src", 37, 5], ["hash", 38, 5]], [["updateScript", 84, 12]], [["description", 87, 5], ["homepage", 88, 5], ["license", 89, 5], ["mainProgram", 90, 5], ["maintainers", 91, 5], ["platforms", 92, 5]], [["pname", 26, 3], ["version", 27, 3], ["src", 29, 3], ["cargoDeps", 36, 3], ["nativeBuildInputs", 41, 3], ["buildInputs", 53, 3], ["preFixup", 71, 3], ["passthru", 84, 3], ["meta", 86, 3]]]);
 const formals$1 = { args: { lib: false, cargo: false, dbus: false, "desktop-file-utils": false, fetchFromGitHub: false, glib: false, gst_all_1: false, gtk4: false, libadwaita: false, libxml2: false, meson: false, ninja: false, "nix-update-script": false, openssl: false, "pkg-config": false, python3: false, python3Packages: false, rustPlatform: false, rustc: false, sqlite: false, stdenv: false, wrapGAppsHook4: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 30, 5], ["repo", 31, 5], ["rev", 32, 5], ["hash", 33, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["src", 37, 5], ["hash", 38, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 84, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 87, 5], ["homepage", 88, 5], ["license", 89, 5], ["mainProgram", 90, 5], ["maintainers", 91, 5], ["platforms", 92, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 26, 3], ["version", 27, 3], ["src", 29, 3], ["cargoDeps", 36, 3], ["nativeBuildInputs", 41, 3], ["buildInputs", 53, 3], ["preFixup", 71, 3], ["passthru", 84, 3], ["meta", 86, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,18 +30,18 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const wrapGAppsHook4 = nix.arg($, "wrapGAppsHook4");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "resonance",
       version: "0-unstable-2023-06-06",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "nate-xyz",
           repo: "resonance",
           rev: "97826093e22418c0efdb4e61cc75d981bb82c120",
           hash: "sha256-DgNUjb8+2WTw91OGgFf97YL6lnODtkftYAP/c05RUPI=",
         })))),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           src: nix.thunk(() => nix.sel(finalAttrs, "src")),
           hash: "sha256-g0gNgTw9zpC9sWAKy/jFNGVtPH/6a84v6r6pRuS0NpU=",
         })))),
@@ -81,11 +77,11 @@ export default nix.lambda((args) => (() => {
         })()))})
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Intuitive GTK4/LibAdwaita music player",
         homepage: "https://github.com/nate-xyz/resonance",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

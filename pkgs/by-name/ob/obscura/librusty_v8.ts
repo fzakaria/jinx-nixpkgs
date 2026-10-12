@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/librusty_v8.nix", [[["x86_64-linux", 10, 5], ["aarch64-linux", 11, 5], ["aarch64-darwin", 12, 5]], [["url", 19, 5], ["sha256", 20, 5]], [["sourceProvenance", 34, 5], ["platforms", 35, 5]], [["name", 16, 3], ["src", 18, 3], ["dontUnpack", 25, 3], ["installPhase", 27, 3], ["meta", 33, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/librusty_v8.nix", [["x86_64-linux", 10, 5], ["aarch64-linux", 11, 5], ["aarch64-darwin", 12, 5]]);
-const pos$2 = nix.positions(here + "/librusty_v8.nix", [["url", 19, 5], ["sha256", 20, 5]]);
-const pos$3 = nix.positions(here + "/librusty_v8.nix", [["sourceProvenance", 34, 5], ["platforms", 35, 5]]);
-const pos$4 = nix.positions(here + "/librusty_v8.nix", [["name", 16, 3], ["src", 18, 3], ["dontUnpack", 25, 3], ["installPhase", 27, 3], ["meta", 33, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,23 +12,23 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const version = "137.3.0";
   const hashes = nix.thunk(() => ({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     "x86_64-linux": "0rv5nl4gcbvdpk3mdwbqvw180nfx2wk173q1cqrvv2h1agg1ys52",
     "aarch64-linux": "14kci8zl7i5cjrbf2jyky5i9gpa4bsjw8khfk4xc8yf1875x0s73",
     "aarch64-darwin": "0w70ykqip4a84z3cb5vibdqw91lywwahl9pc05mw8lp54ikksl30",
   }));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       name: nix.thunk(() => nix.str`librusty_v8-${version}`),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: nix.thunk(() => nix.str`https://github.com/denoland/rusty_v8/releases/download/v${version}/librusty_v8_release_${nix.sel(stdenv, "hostPlatform", "rust", "rustcTarget")}.a.gz`),
           sha256: nix.thunk(() => nix.selOr(hashes, () => nix.builtins.throw(nix.thunk(() => nix.str`librusty_v8: unsupported platform ${nix.sel(stdenv, "hostPlatform", "system")}`)), nix.key(nix.sel(stdenv, "hostPlatform", "system")))),
         })))),
       dontUnpack: true,
       installPhase: "runHook preInstall\ngzip -cd \"$src\" > \"$out\"\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         sourceProvenance: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "sourceTypes")), null);
           return [nix.thunk(() => nix.lookup(w, "binaryNativeCode"))];

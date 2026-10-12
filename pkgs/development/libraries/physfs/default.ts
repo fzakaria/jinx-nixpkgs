@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 18, 9], ["repo", 19, 9], ["rev", 20, 9], ["sha256", 21, 17]], [["homepage", 49, 9], ["description", 50, 9], ["mainProgram", 51, 9], ["changelog", 52, 9], ["license", 53, 9], ["platforms", 54, 9]], [["pname", 14, 7], ["version", 15, 15], ["src", 17, 7], ["patches", 24, 7], ["postPatch", 30, 7], ["nativeBuildInputs", 35, 7], ["buildInputs", 40, 7], ["doInstallCheck", 42, 7], ["installCheckPhase", 44, 7], ["meta", 48, 7]], [["physfs_2", 60, 3], ["physfs", 61, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, doxygen: false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 18, 9], ["repo", 19, 9], ["rev", 20, 9], ["sha256", 21, 17]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 49, 9], ["description", 50, 9], ["mainProgram", 51, 9], ["changelog", 52, 9], ["license", 53, 9], ["platforms", 54, 9]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 14, 7], ["version", 15, 15], ["src", 17, 7], ["patches", 24, 7], ["postPatch", 30, 7], ["nativeBuildInputs", 35, 7], ["buildInputs", 40, 7], ["doInstallCheck", 42, 7], ["installCheckPhase", 44, 7], ["meta", 48, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["physfs_2", 60, 3], ["physfs", 61, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname = "physfs";
       const version_1 = version;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "icculus",
           repo: "physfs",
           rev: nix.thunk(() => nix.str`release-${version_1}`),
@@ -35,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const doInstallCheck = true;
       const installCheckPhase = "./test_physfs --version\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://icculus.org/physfs/",
         description: "Library to provide abstract access to various archives",
         mainProgram: "test_physfs",
@@ -44,7 +41,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version: version_1,
         src,
@@ -58,7 +55,7 @@ export default nix.lambda((args) => (() => {
       };
     })()));
   return {
-    [nix.POS]: pos$4,
+    [nix.POS]: $pos[3],
     physfs_2: nix.thunk(() => nix.app(generic, "2.1.1", "sha256-hmS/bfszit3kD6B2BjnuV50XKueq2GcRaqyAKLkvfLc=")),
     physfs: nix.thunk(() => nix.app(generic, "3.2.0", "sha256-FhFIshX7G3uHEzvHGlDIrXa7Ux6ThQNzVssaENs+JMw=")),
   };

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 11, 5], ["sha256", 12, 5]], [["url", 20, 5], ["sha256", 21, 5]], [["homepage", 37, 5], ["description", 38, 5], ["platforms", 39, 5], ["license", 40, 5], ["maintainers", 41, 5], ["mainProgram", 42, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["buildInputs", 24, 3], ["installPhase", 29, 3], ["meta", 36, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, installShellFiles: false, e2fsprogs: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 11, 5], ["sha256", 12, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 20, 5], ["sha256", 21, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 37, 5], ["description", 38, 5], ["platforms", 39, 5], ["license", 40, 5], ["maintainers", 41, 5], ["mainProgram", 42, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["buildInputs", 24, 3], ["installPhase", 29, 3], ["meta", 36, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,16 +13,16 @@ export default nix.lambda((args) => (() => {
   const installShellFiles = nix.arg($, "installShellFiles");
   const e2fsprogs = nix.arg($, "e2fsprogs");
   const manpage = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: "https://manpages.ubuntu.com/manpages.gz/xenial/man8/zerofree.8.gz",
       sha256: "0y132xmjl02vw41k794psa4nmjpdyky9f6sf0h4f7rvf83z3zy4k",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "zerofree",
       version: "1.1.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: nix.thunk(() => nix.str`https://frippery.org/uml/zerofree-${nix.sel(finalAttrs, "version")}.tgz`),
           sha256: "0rrqfa5z103ws89vi8kfvbks1cfs74ix6n1wb6vs582vnmhwhswm",
         })))),
@@ -36,7 +33,7 @@ cp COPYING $out/share/zerofree/COPYING
 installManPage ${manpage}
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://frippery.org/uml/",
         description: "Zero free blocks from ext2, ext3 and ext4 file-systems",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),

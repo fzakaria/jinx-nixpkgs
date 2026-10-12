@@ -2,19 +2,18 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/base.nix", [[["owner", 7, 5], ["repo", 8, 5], ["rev", 9, 5], ["hash", 10, 5], ["rootDir", 11, 5]], [["version", 4, 3], ["src", 6, 3], ["buildInputs", 14, 3], ["configureFlags", 16, 3], ["makeFlags", 22, 3], ["doCheck", 24, 3]]]);
 const formals$1 = { args: { fetchFromGitHub: false, libiconv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/base.nix", [["owner", 7, 5], ["repo", 8, 5], ["rev", 9, 5], ["hash", 10, 5], ["rootDir", 11, 5]]);
-const pos$2 = nix.positions(here + "/base.nix", [["version", 4, 3], ["src", 6, 3], ["buildInputs", 14, 3], ["configureFlags", 16, 3], ["makeFlags", 22, 3], ["doCheck", 24, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const libiconv = nix.arg($, "libiconv");
   return (finalAttrs) => ({
-    [nix.POS]: pos$2,
+    [nix.POS]: $pos[1],
     version: "0.996",
     src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         owner: "taku910",
         repo: "mecab",
         rev: "5a7db65493a0b57d5fc31734e65300320aaf94c8",

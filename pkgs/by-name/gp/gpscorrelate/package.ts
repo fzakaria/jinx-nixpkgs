@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]], [["description", 60, 5], ["longDescription", 62, 5], ["license", 78, 5], ["homepage", 79, 5], ["changelog", 80, 5], ["platforms", 81, 5], ["maintainers", 82, 5], ["mainProgram", 83, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 38, 3], ["makeFlags", 44, 3], ["doCheck", 51, 3], ["installTargets", 53, 3], ["meta", 59, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, "pkg-config": false, exiv2: false, libxml2: false, gtk3: false, libxslt: false, docbook_xsl: false, docbook_xml_dtd_42: false, "desktop-file-utils": false, wrapGAppsHook3: false, desktopToDarwinBundle: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 60, 5], ["longDescription", 62, 5], ["license", 78, 5], ["homepage", 79, 5], ["changelog", 80, 5], ["platforms", 81, 5], ["maintainers", 82, 5], ["mainProgram", 83, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 38, 3], ["makeFlags", 44, 3], ["doCheck", 51, 3], ["installTargets", 53, 3], ["meta", 59, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   const desktopToDarwinBundle = nix.arg($, "desktopToDarwinBundle");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "gpscorrelate",
       version: "2.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "dfandrich",
           repo: "gpscorrelate",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -51,7 +49,7 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       installTargets: nix.thunk(() => ["install", "install-po", "install-desktop-file"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "GPS photo correlation tool, to add EXIF geotags",
         longDescription: "Digital cameras are cool. So is GPS. And, EXIF tags are really\ncool too.\n\nWhat happens when you merge the three? You end up with a set of\nphotos taken with a digital camera that are \"stamped\" with the\nlocation at which they were taken.\n\nThe EXIF standard defines a number of tags that are for use with GPS.\n\nA variety of programs exist around the place to match GPS data\nwith digital camera photos, but most of them are Windows or\nMacOS only. Which doesn't really suit me that much. Also, each\none takes the GPS data in a different format.\n",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

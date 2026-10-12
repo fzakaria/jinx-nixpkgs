@@ -2,80 +2,45 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/alertmanager-ntfy.nix", [[["alertmanager-ntfy", 5, 5], ["ntfy-sh", 6, 5], ["alertmanager", 7, 5]], [["maintainers", 13, 8]], [["receiver", 23, 11], ["group_by", 24, 11], ["group_wait", 25, 11], ["group_interval", 26, 11], ["repeat_interval", 27, 11]], [["url", 33, 35]], [["name", 32, 13], ["webhook_configs", 33, 13]], [["route", 22, 9], ["receivers", 30, 9]], [["enable", 17, 7], ["listenAddress", 18, 7], ["port", 19, 7], ["configuration", 21, 7]], [["addr", 42, 14]], [["topic", 45, 24]], [["baseurl", 44, 11], ["notification", 45, 11]], [["http", 42, 9], ["ntfy", 43, 9]], [["enable", 40, 7], ["settings", 41, 7]], [["alertmanager", 16, 25], ["alertmanager-ntfy", 39, 25]], [["listen-http", 53, 9], ["base-url", 54, 9]], [["enable", 51, 7], ["settings", 52, 7]], [["prometheus", 16, 14], ["ntfy-sh", 50, 14]], [["services", 16, 5]], [["machine", 15, 9]], [["listenAddress", 60, 38]], [["addr", 61, 57]], [["http", 61, 52]], [["settings", 61, 43]], [["alertmanager", 60, 25], ["alertmanager-ntfy", 61, 25]], [["listen-http", 63, 31]], [["settings", 63, 22]], [["prometheus", 60, 14], ["ntfy-sh", 63, 14]], [["enable", 64, 25]], [["firewall", 64, 16]], [["port", 67, 24]], [["port", 68, 25]], [["from", 66, 7], ["host", 67, 7], ["guest", 68, 7]], [["forwardPorts", 65, 20]], [["services", 60, 5], ["networking", 64, 5], ["virtualisation", 65, 5]], [["machine", 59, 21]], [["nodes", 59, 15]], [["name", 12, 3], ["meta", 13, 3], ["nodes", 15, 3], ["interactive", 59, 3], ["testScript", 72, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/alertmanager-ntfy.nix", [["alertmanager-ntfy", 5, 5], ["ntfy-sh", 6, 5], ["alertmanager", 7, 5]]);
-const pos$2 = nix.positions(here + "/alertmanager-ntfy.nix", [["maintainers", 13, 8]]);
-const pos$3 = nix.positions(here + "/alertmanager-ntfy.nix", [["receiver", 23, 11], ["group_by", 24, 11], ["group_wait", 25, 11], ["group_interval", 26, 11], ["repeat_interval", 27, 11]]);
-const pos$4 = nix.positions(here + "/alertmanager-ntfy.nix", [["url", 33, 35]]);
-const pos$5 = nix.positions(here + "/alertmanager-ntfy.nix", [["name", 32, 13], ["webhook_configs", 33, 13]]);
-const pos$6 = nix.positions(here + "/alertmanager-ntfy.nix", [["route", 22, 9], ["receivers", 30, 9]]);
-const pos$7 = nix.positions(here + "/alertmanager-ntfy.nix", [["enable", 17, 7], ["listenAddress", 18, 7], ["port", 19, 7], ["configuration", 21, 7]]);
-const pos$8 = nix.positions(here + "/alertmanager-ntfy.nix", [["addr", 42, 14]]);
-const pos$9 = nix.positions(here + "/alertmanager-ntfy.nix", [["topic", 45, 24]]);
-const pos$10 = nix.positions(here + "/alertmanager-ntfy.nix", [["baseurl", 44, 11], ["notification", 45, 11]]);
-const pos$11 = nix.positions(here + "/alertmanager-ntfy.nix", [["http", 42, 9], ["ntfy", 43, 9]]);
-const pos$12 = nix.positions(here + "/alertmanager-ntfy.nix", [["enable", 40, 7], ["settings", 41, 7]]);
-const pos$13 = nix.positions(here + "/alertmanager-ntfy.nix", [["alertmanager", 16, 25], ["alertmanager-ntfy", 39, 25]]);
-const pos$14 = nix.positions(here + "/alertmanager-ntfy.nix", [["listen-http", 53, 9], ["base-url", 54, 9]]);
-const pos$15 = nix.positions(here + "/alertmanager-ntfy.nix", [["enable", 51, 7], ["settings", 52, 7]]);
-const pos$16 = nix.positions(here + "/alertmanager-ntfy.nix", [["prometheus", 16, 14], ["ntfy-sh", 50, 14]]);
-const pos$17 = nix.positions(here + "/alertmanager-ntfy.nix", [["services", 16, 5]]);
-const pos$18 = nix.positions(here + "/alertmanager-ntfy.nix", [["machine", 15, 9]]);
-const pos$19 = nix.positions(here + "/alertmanager-ntfy.nix", [["listenAddress", 60, 38]]);
-const pos$20 = nix.positions(here + "/alertmanager-ntfy.nix", [["addr", 61, 57]]);
-const pos$21 = nix.positions(here + "/alertmanager-ntfy.nix", [["http", 61, 52]]);
-const pos$22 = nix.positions(here + "/alertmanager-ntfy.nix", [["settings", 61, 43]]);
-const pos$23 = nix.positions(here + "/alertmanager-ntfy.nix", [["alertmanager", 60, 25], ["alertmanager-ntfy", 61, 25]]);
-const pos$24 = nix.positions(here + "/alertmanager-ntfy.nix", [["listen-http", 63, 31]]);
-const pos$25 = nix.positions(here + "/alertmanager-ntfy.nix", [["settings", 63, 22]]);
-const pos$26 = nix.positions(here + "/alertmanager-ntfy.nix", [["prometheus", 60, 14], ["ntfy-sh", 63, 14]]);
-const pos$27 = nix.positions(here + "/alertmanager-ntfy.nix", [["enable", 64, 25]]);
-const pos$28 = nix.positions(here + "/alertmanager-ntfy.nix", [["firewall", 64, 16]]);
-const pos$29 = nix.positions(here + "/alertmanager-ntfy.nix", [["port", 67, 24]]);
-const pos$30 = nix.positions(here + "/alertmanager-ntfy.nix", [["port", 68, 25]]);
-const pos$31 = nix.positions(here + "/alertmanager-ntfy.nix", [["from", 66, 7], ["host", 67, 7], ["guest", 68, 7]]);
-const pos$32 = nix.positions(here + "/alertmanager-ntfy.nix", [["forwardPorts", 65, 20]]);
-const pos$33 = nix.positions(here + "/alertmanager-ntfy.nix", [["services", 60, 5], ["networking", 64, 5], ["virtualisation", 65, 5]]);
-const pos$34 = nix.positions(here + "/alertmanager-ntfy.nix", [["machine", 59, 21]]);
-const pos$35 = nix.positions(here + "/alertmanager-ntfy.nix", [["nodes", 59, 15]]);
-const pos$36 = nix.positions(here + "/alertmanager-ntfy.nix", [["name", 12, 3], ["meta", 13, 3], ["nodes", 15, 3], ["interactive", 59, 3], ["testScript", 72, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const ports = nix.thunk(() => ({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     "alertmanager-ntfy": 8000n,
     "ntfy-sh": 8001n,
     alertmanager: 8002n,
   }));
   return {
-    [nix.POS]: pos$36,
+    [nix.POS]: $pos[35],
     name: "alertmanager-ntfy",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "defelo"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$18,
+      [nix.POS]: $pos[17],
       machine: nix.thunk(() => ({
-        [nix.POS]: pos$17,
+        [nix.POS]: $pos[16],
         services: nix.thunk(() => ({
-          [nix.POS]: pos$16,
+          [nix.POS]: $pos[15],
           prometheus: nix.thunk(() => ({
-            [nix.POS]: pos$13,
+            [nix.POS]: $pos[12],
             alertmanager: nix.thunk(() => ({
-              [nix.POS]: pos$7,
+              [nix.POS]: $pos[6],
               enable: true,
               listenAddress: "127.0.0.1",
               port: nix.thunk(() => nix.sel(ports, "alertmanager")),
               configuration: nix.thunk(() => ({
-                [nix.POS]: pos$6,
+                [nix.POS]: $pos[5],
                 route: nix.thunk(() => ({
-                  [nix.POS]: pos$3,
+                  [nix.POS]: $pos[2],
                   receiver: "test",
                   group_by: nix.thunk(() => ["..."]),
                   group_wait: "0s",
@@ -84,11 +49,11 @@ export default nix.lambda((args) => (() => {
                 })),
                 receivers: nix.thunk(() => [
                   nix.thunk(() => ({
-                    [nix.POS]: pos$5,
+                    [nix.POS]: $pos[4],
                     name: "test",
                     webhook_configs: nix.thunk(() => [
                       nix.thunk(() => ({
-                        [nix.POS]: pos$4,
+                        [nix.POS]: $pos[3],
                         url: nix.thunk(() => nix.str`http://127.0.0.1:${nix.builtins.toString(nix.thunk(() => nix.sel(ports, "alertmanager-ntfy")))}/hook`),
                       })),
                     ]),
@@ -97,27 +62,27 @@ export default nix.lambda((args) => (() => {
               })),
             })),
             "alertmanager-ntfy": nix.thunk(() => ({
-              [nix.POS]: pos$12,
+              [nix.POS]: $pos[11],
               enable: true,
               settings: nix.thunk(() => ({
-                [nix.POS]: pos$11,
+                [nix.POS]: $pos[10],
                 http: nix.thunk(() => ({
-                  [nix.POS]: pos$8,
+                  [nix.POS]: $pos[7],
                   addr: nix.thunk(() => nix.str`127.0.0.1:${nix.builtins.toString(nix.thunk(() => nix.sel(ports, "alertmanager-ntfy")))}`),
                 })),
                 ntfy: nix.thunk(() => ({
-                  [nix.POS]: pos$10,
+                  [nix.POS]: $pos[9],
                   baseurl: nix.thunk(() => nix.str`http://127.0.0.1:${nix.builtins.toString(nix.thunk(() => nix.sel(ports, "ntfy-sh")))}`),
-                  notification: nix.thunk(() => ({ [nix.POS]: pos$9, topic: "alertmanager" })),
+                  notification: nix.thunk(() => ({ [nix.POS]: $pos[8], topic: "alertmanager" })),
                 })),
               })),
             })),
           })),
           "ntfy-sh": nix.thunk(() => ({
-            [nix.POS]: pos$15,
+            [nix.POS]: $pos[14],
             enable: true,
             settings: nix.thunk(() => ({
-              [nix.POS]: pos$14,
+              [nix.POS]: $pos[13],
               "listen-http": nix.thunk(() => nix.str`127.0.0.1:${nix.builtins.toString(nix.thunk(() => nix.sel(ports, "ntfy-sh")))}`),
               "base-url": nix.thunk(() => nix.str`http://127.0.0.1:${nix.builtins.toString(nix.thunk(() => nix.sel(ports, "ntfy-sh")))}`),
             })),
@@ -126,49 +91,49 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     interactive: nix.thunk(() => ({
-      [nix.POS]: pos$35,
+      [nix.POS]: $pos[34],
       nodes: nix.thunk(() => ({
-        [nix.POS]: pos$34,
+        [nix.POS]: $pos[33],
         machine: nix.thunk(() => ({
-          [nix.POS]: pos$33,
+          [nix.POS]: $pos[32],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$26,
+            [nix.POS]: $pos[25],
             prometheus: nix.thunk(() => ({
-              [nix.POS]: pos$23,
+              [nix.POS]: $pos[22],
               alertmanager: nix.thunk(() => ({
-                [nix.POS]: pos$19,
+                [nix.POS]: $pos[18],
                 listenAddress: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), "0.0.0.0")),
               })),
               "alertmanager-ntfy": nix.thunk(() => ({
-                [nix.POS]: pos$22,
+                [nix.POS]: $pos[21],
                 settings: nix.thunk(() => ({
-                  [nix.POS]: pos$21,
+                  [nix.POS]: $pos[20],
                   http: nix.thunk(() => ({
-                    [nix.POS]: pos$20,
+                    [nix.POS]: $pos[19],
                     addr: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), nix.thunk(() => nix.str`0.0.0.0:${nix.builtins.toString(nix.thunk(() => nix.sel(ports, "alertmanager-ntfy")))}`))),
                   })),
                 })),
               })),
             })),
             "ntfy-sh": nix.thunk(() => ({
-              [nix.POS]: pos$25,
+              [nix.POS]: $pos[24],
               settings: nix.thunk(() => ({
-                [nix.POS]: pos$24,
+                [nix.POS]: $pos[23],
                 "listen-http": nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), nix.thunk(() => nix.str`0.0.0.0:${nix.builtins.toString(nix.thunk(() => nix.sel(ports, "ntfy-sh")))}`))),
               })),
             })),
           })),
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$28,
-            firewall: nix.thunk(() => ({ [nix.POS]: pos$27, enable: false })),
+            [nix.POS]: $pos[27],
+            firewall: nix.thunk(() => ({ [nix.POS]: $pos[26], enable: false })),
           })),
           virtualisation: nix.thunk(() => ({
-            [nix.POS]: pos$32,
+            [nix.POS]: $pos[31],
             forwardPorts: nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (_) => (port) => ({
-                [nix.POS]: pos$31,
+                [nix.POS]: $pos[30],
                 from: "host",
-                host: nix.thunk(() => ({ [nix.POS]: pos$29, port: port })),
-                guest: nix.thunk(() => ({ [nix.POS]: pos$30, port: port })),
+                host: nix.thunk(() => ({ [nix.POS]: $pos[28], port: port })),
+                guest: nix.thunk(() => ({ [nix.POS]: $pos[29], port: port })),
               }), ports)),
           })),
         })),

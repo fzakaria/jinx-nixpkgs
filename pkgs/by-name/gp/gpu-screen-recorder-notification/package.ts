@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 27, 5], ["tag", 28, 5], ["hash", 29, 5]], [["updateScript", 65, 12]], [["description", 68, 5], ["homepage", 69, 5], ["license", 70, 5], ["mainProgram", 71, 5], ["maintainers", 72, 5], ["platforms", 76, 5], ["sourceProvenance", 77, 5]], [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["nativeBuildInputs", 32, 3], ["depsBuildBuild", 40, 3], ["buildInputs", 42, 3], ["__structuredAttrs", 54, 3], ["strictDeps", 55, 3], ["mesonBuildType", 57, 3], ["postInstall", 59, 3], ["passthru", 65, 3], ["meta", 67, 3]]]);
 const formals$1 = { args: { fetchgit: false, gitUpdater: false, "gsettings-desktop-schemas": false, lib: false, libglvnd: false, libx11: false, libxext: false, libxkbcommon: false, libxrandr: false, libxrender: false, makeWrapper: false, meson: false, ninja: false, pango: false, "pkg-config": false, stdenv: false, "wayland-scanner": false, wayland: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 27, 5], ["tag", 28, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 65, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 68, 5], ["homepage", 69, 5], ["license", 70, 5], ["mainProgram", 71, 5], ["maintainers", 72, 5], ["platforms", 76, 5], ["sourceProvenance", 77, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["nativeBuildInputs", 32, 3], ["depsBuildBuild", 40, 3], ["buildInputs", 42, 3], ["__structuredAttrs", 54, 3], ["strictDeps", 55, 3], ["mesonBuildType", 57, 3], ["postInstall", 59, 3], ["passthru", 65, 3], ["meta", 67, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const wayland_scanner = nix.arg($, "wayland-scanner");
   const wayland = nix.arg($, "wayland");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "gpu-screen-recorder-notification",
       version: "1.3.6",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://repo.dec05eba.com/gpu-screen-recorder-notification",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-UmK9aDVsWgMZx9dCA0LFLmY0NLmhwh3O2VgztUzvPOs=",
@@ -59,11 +56,11 @@ export default nix.lambda((args) => (() => {
   --prefix LD_LIBRARY_PATH : "${nix.app(nix.sel(lib, "makeLibraryPath"), nix.thunk(() => [libglvnd]))}"
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Notification in the style of ShadowPlay",
         homepage: "https://git.dec05eba.com/gpu-screen-recorder-notification/about",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

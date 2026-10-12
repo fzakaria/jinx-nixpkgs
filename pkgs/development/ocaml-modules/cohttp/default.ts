@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["6.3.0", 35, 9], ["6.2.1", 36, 9], ["5.3.1", 37, 9]], [["url", 32, 5], ["hash", 33, 5]], [["description", 75, 5], ["license", 76, 5], ["maintainers", 77, 5], ["homepage", 78, 5]], [["pname", 22, 3], ["version", 23, 3], ["src", 31, 3], ["postPatch", 42, 3], ["buildInputs", 46, 3], ["propagatedBuildInputs", 53, 3], ["doCheck", 65, 3], ["checkInputs", 66, 3], ["meta", 74, 3]]]);
 const formals$1 = { args: { lib: false, fetchurl: false, buildDunePackage: false, ocaml: false, ppx_sexp_conv: false, base64: false, jsonm: false, http: false, logs: false, re: false, stringext: false, ipaddr: false, "uri-sexp": false, fmt: false, alcotest: false, crowbar: false, ppx_expect: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["6.3.0", 35, 9], ["6.2.1", 36, 9], ["5.3.1", 37, 9]]);
-const pos$2 = nix.positions(here + "/default.nix", [["url", 32, 5], ["hash", 33, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 75, 5], ["license", 76, 5], ["maintainers", 77, 5], ["homepage", 78, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 22, 3], ["version", 23, 3], ["src", 31, 3], ["postPatch", 42, 3], ["buildInputs", 46, 3], ["propagatedBuildInputs", 53, 3], ["doCheck", 65, 3], ["checkInputs", 66, 3], ["meta", 74, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,14 +25,14 @@ export default nix.lambda((args) => (() => {
   const crowbar = nix.arg($, "crowbar");
   const ppx_expect = nix.arg($, "ppx_expect");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "cohttp",
       version: nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(ocaml, "version")), "5.2")) ? "6.3.0" : (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(ocaml, "version")), "4.13")) ? "6.2.1" : "5.3.1"))),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: nix.thunk(() => nix.str`https://github.com/mirage/ocaml-cohttp/releases/download/v${nix.sel(finalAttrs, "version")}/cohttp-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: nix.thunk(() => nix.sel({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             "6.3.0": "sha256-MRMPaKnwpc2NcbVfBCRW5tNb+LeranGrbXvX29tgeyQ=",
             "6.2.1": "sha256-ZQgCR3Y0QtHcPNkGeLgjO3mHcvA2rIHNHqreH11mpl8=",
             "5.3.1": "sha256-9eJz08Lyn/R71+Ftsj4fPWzQGkC+ACCJhbxDTIjUV2s=",
@@ -49,7 +46,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(finalAttrs, "version")), "6.0.0")) ? nix.force(crowbar) : nix.force(ppx_expect))),
       ])),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "HTTP(S) library for Lwt, Async and Mirage",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "vbgl"))]),

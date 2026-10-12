@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 14, 5], ["sha256", 15, 5]], [["description", 37, 5], ["mainProgram", 38, 5], ["homepage", 39, 5], ["downloadPage", 40, 5], ["license", 41, 5], ["sourceProvenance", 42, 5], ["platforms", 43, 5], ["maintainers", 44, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 18, 3], ["buildInputs", 20, 3], ["installPhase", 22, 3], ["meta", 36, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, makeWrapper: false, jre: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 14, 5], ["sha256", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 37, 5], ["mainProgram", 38, 5], ["homepage", 39, 5], ["downloadPage", 40, 5], ["license", 41, 5], ["sourceProvenance", 42, 5], ["platforms", 43, 5], ["maintainers", 44, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 18, 3], ["buildInputs", 20, 3], ["installPhase", 22, 3], ["meta", 36, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "flink";
       const version = "2.3.0";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://apache/flink/${pname}-${version}/${pname}-${version}-bin-scala_2.12.tgz`),
           sha256: "sha256-tShksMQqNjitsIlbl1QqPKggoMPe/ameum5FwvjKSWo=",
         }))));
@@ -37,7 +35,7 @@ env.log.dir: /tmp/flink-logs
 EOF
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Distributed stream processing framework",
         mainProgram: "flink",
         homepage: "https://flink.apache.org",
@@ -57,7 +55,7 @@ EOF
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

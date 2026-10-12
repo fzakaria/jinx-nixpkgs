@@ -2,10 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 13, 5], ["rev", 14, 5], ["sha256", 15, 5]], [["description", 25, 5], ["homepage", 26, 5], ["license", 27, 5], ["maintainers", 28, 5], ["platforms", 29, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["installPhase", 18, 3], ["meta", 24, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchgit: false, perl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 13, 5], ["rev", 14, 5], ["sha256", 15, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 25, 5], ["homepage", 26, 5], ["license", 27, 5], ["maintainers", 28, 5], ["platforms", 29, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["installPhase", 18, 3], ["meta", 24, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchgit = nix.arg($, "fetchgit");
   const perl = nix.arg($, "perl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "rxvt-unicode-vtwheel",
       version: "0.3.2",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://aur.archlinux.org/urxvt-vtwheel.git",
           rev: "36d3e861664aeae36a45f96100f10f8fe2218035",
           sha256: "1h3vrsbli5q9kr84j5ijbivlhpwlh3l8cv233pg362v2zz4ja8i7",
@@ -28,7 +26,7 @@ mkdir -p $out/lib/urxvt/perl
 cp vtwheel $out/lib/urxvt/perl
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Pass mouse wheel commands to secondary screens (screen, less, nano, etc)",
         homepage: "https://aur.archlinux.org/packages/urxvt-vtwheel",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

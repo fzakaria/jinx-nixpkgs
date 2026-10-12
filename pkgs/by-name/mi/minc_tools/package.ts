@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 25, 5], ["repo", 26, 5], ["rev", 27, 5], ["hash", 28, 5]], [["NIX_CFLAGS_COMPILE", 73, 7]], [["homepage", 82, 5], ["description", 83, 5], ["maintainers", 84, 5], ["platforms", 85, 5], ["license", 86, 5], ["broken", 87, 5]], [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["postPatch", 34, 3], ["nativeBuildInputs", 48, 3], ["buildInputs", 55, 3], ["propagatedBuildInputs", 62, 3], ["cmakeFlags", 67, 3], ["env", 73, 3], ["postFixup", 75, 3], ["meta", 81, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, makeWrapper: false, flex: false, bison: false, perlPackages: false, libminc: false, libjpeg: false, nifticlib: false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 25, 5], ["repo", 26, 5], ["rev", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 73, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 82, 5], ["description", 83, 5], ["maintainers", 84, 5], ["platforms", 85, 5], ["license", 86, 5], ["broken", 87, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["postPatch", 34, 3], ["nativeBuildInputs", 48, 3], ["buildInputs", 55, 3], ["propagatedBuildInputs", 62, 3], ["cmakeFlags", 67, 3], ["env", 73, 3], ["postFixup", 75, 3], ["meta", 81, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const perl = nix.thunk(() => nix.attr(perlPackages, "perl"));
   const TextFormat = nix.thunk(() => nix.attr(perlPackages, "TextFormat"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "minc-tools",
       version: "2.3.06-unstable-2024-11-28",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "BIC-MNI",
           repo: "minc-tools",
           rev: "a72077d92266f9ea4c49b6dd3efd5766b81a104c",
@@ -44,10 +41,10 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`-DZNZ_INCLUDE_DIR=${nifticlib}/include/nifti`),
         nix.thunk(() => nix.str`-DNIFTI_INCLUDE_DIR=${nifticlib}/include/nifti`),
       ]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-D_FillValue=NC_FillValue" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], NIX_CFLAGS_COMPILE: "-D_FillValue=NC_FillValue" })),
       postFixup: "for prog in minccomplete minchistory mincpik; do\n  wrapProgram $out/bin/$prog --prefix PERL5LIB : $PERL5LIB\ndone\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/BIC-MNI/minc-tools",
         description: "Command-line utilities for working with MINC files",
         maintainers: nix.thunk(() => (() => {

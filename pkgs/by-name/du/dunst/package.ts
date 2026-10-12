@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 37, 5], ["repo", 38, 5], ["tag", 39, 5], ["hash", 40, 5]], [["updateScript", 113, 5]], [["description", 117, 5], ["homepage", 118, 5], ["changelog", 119, 5], ["license", 120, 5], ["mainProgram", 121, 5], ["maintainers", 122, 5], ["platforms", 126, 5]], [["pname", 33, 3], ["version", 34, 3], ["src", 36, 3], ["nativeBuildInputs", 43, 3], ["buildInputs", 51, 3], ["outputs", 72, 3], ["makeFlags", 77, 3], ["postInstall", 88, 3], ["nativeInstallCheckInputs", 107, 3], ["doInstallCheck", 110, 3], ["passthru", 112, 3], ["meta", 116, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, makeWrapper: false, "pkg-config": false, which: false, perl: false, jq: false, libxrandr: false, coreutils: false, cairo: false, dbus: false, systemdLibs: false, "gdk-pixbuf": false, glib: false, libx11: false, libxscrnsaver: false, wayland: false, "wayland-protocols": false, libxinerama: false, libnotify: false, pango: false, xorgproto: false, librsvg: false, versionCheckHook: false, "nix-update-script": false, withX11: true, withWayland: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 37, 5], ["repo", 38, 5], ["tag", 39, 5], ["hash", 40, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 113, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 117, 5], ["homepage", 118, 5], ["changelog", 119, 5], ["license", 120, 5], ["mainProgram", 121, 5], ["maintainers", 122, 5], ["platforms", 126, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 33, 3], ["version", 34, 3], ["src", 36, 3], ["nativeBuildInputs", 43, 3], ["buildInputs", 51, 3], ["outputs", 72, 3], ["makeFlags", 77, 3], ["postInstall", 88, 3], ["nativeInstallCheckInputs", 107, 3], ["doInstallCheck", 110, 3], ["passthru", 112, 3], ["meta", 116, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -39,11 +36,11 @@ export default nix.lambda((args) => (() => {
   const withX11 = nix.argOr($, "withX11", () => true);
   const withWayland = nix.argOr($, "withWayland", () => true);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "dunst",
       version: "1.13.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "dunst-project",
           repo: "dunst",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -75,11 +72,11 @@ substituteInPlace \\
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Lightweight and customizable notification daemon",
         homepage: "https://dunst-project.org/",
         changelog: nix.thunk(() => nix.str`https://github.com/dunst-project/dunst/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

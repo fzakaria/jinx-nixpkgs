@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 23, 5], ["hash", 24, 5]], [["name", 59, 5], ["runtimeInputs", 60, 5], ["text", 66, 5]], [["updateScript", 58, 12]], [["description", 84, 5], ["homepage", 85, 5], ["changelog", 86, 5], ["license", 87, 5], ["sourceProvenance", 88, 5], ["maintainers", 89, 5], ["platforms", 90, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["dontPatch", 27, 3], ["dontConfigure", 28, 3], ["dontBuild", 29, 3], ["dontFixup", 30, 3], ["nativeBuildInputs", 32, 3], ["unpackPhase", 38, 3], ["installPhase", 49, 3], ["passthru", 58, 3], ["nativeInstallCheckInputs", 73, 3], ["versionCheckProgram", 74, 3], ["versionCheckProgramArg", 80, 3], ["doInstallCheck", 81, 3], ["meta", 83, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchurl: false, gzip: false, xar: false, cpio: false, writeShellApplication: false, curl: false, cacert: false, gawk: false, "common-updater-scripts": false, versionCheckHook: false, writeShellScript: false, "re-plistbuddy": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 59, 5], ["runtimeInputs", 60, 5], ["text", 66, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 58, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 84, 5], ["homepage", 85, 5], ["changelog", 86, 5], ["license", 87, 5], ["sourceProvenance", 88, 5], ["maintainers", 89, 5], ["platforms", 90, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["dontPatch", 27, 3], ["dontConfigure", 28, 3], ["dontBuild", 29, 3], ["dontFixup", 30, 3], ["nativeBuildInputs", 32, 3], ["unpackPhase", 38, 3], ["installPhase", 49, 3], ["passthru", 58, 3], ["nativeInstallCheckInputs", 73, 3], ["versionCheckProgram", 74, 3], ["versionCheckProgramArg", 80, 3], ["doInstallCheck", 81, 3], ["meta", 83, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const writeShellScript = nix.arg($, "writeShellScript");
   const re_plistbuddy = nix.arg($, "re-plistbuddy");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "enpass-mac",
       version: "6.11.20.2229",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://dl.enpass.io/stable/mac/package/${nix.sel(finalAttrs, "version")}/Enpass.pkg`),
           hash: "sha256-o4IHDeuoOtZ6gvvfxrPFXCou0nkLOpcMnip/+f6eVkU=",
         })))),
@@ -42,9 +38,9 @@ export default nix.lambda((args) => (() => {
       unpackPhase: "runHook preUnpack\n\nxar -xf $src\ngunzip -dc Enpass_temp.pkg/Payload > decompressed.out\ncat decompressed.out | cpio -it | grep -v '/._' > file-list-no-resource-forks.txt\ncat decompressed.out | cpio -i -E file-list-no-resource-forks.txt\n\nrunHook postUnpack\n",
       installPhase: "runHook preInstall\n\nmkdir -p $out/Applications\nmv Enpass.app $out/Applications\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.app(writeShellApplication, nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               name: "enpass-mac-update-script",
               runtimeInputs: nix.thunk(() => [curl, cacert, gawk, common_updater_scripts]),
               text: "url=\"https://www.enpass.io/download/macos/website/stable\"\nversion=$(curl -Ls -o /dev/null -w \"%{url_effective}\" \"$url\" | awk -F'/' '{print $7}')\nupdate-source-version enpass-mac \"$version\"\n",
@@ -61,7 +57,7 @@ echo $marketing_version.$build_version
       ]),
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Choose your own safest place to store passwords",
         homepage: "https://www.enpass.io",
         changelog: "https://www.enpass.io/release-notes/macos-website-ver/",

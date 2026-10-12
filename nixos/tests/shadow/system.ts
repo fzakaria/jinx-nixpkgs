@@ -2,28 +2,10 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/system.nix", [[["maintainers", 18, 8]], [["hostName", 25, 20]], [["PermitRootLogin", 29, 13], ["PasswordAuthentication", 30, 13]], [["enable", 27, 11], ["settings", 28, 11]], [["enable", 63, 24]], [["openssh", 26, 18], ["envfs", 63, 18]], [["mutableUsers", 34, 15], ["defaultUserShell", 42, 15]], [["systemPackages", 36, 21]], [["PASS_MAX_DAYS", 45, 11], ["PASS_MIN_DAYS", 46, 11], ["PASS_WARN_AGE", 47, 11], ["USERGROUPS_ENAB", 48, 11], ["CREATE_HOME", 49, 11], ["UID_MIN", 50, 11], ["GID_MIN", 51, 11]], [["settings", 44, 28]], [["text", 55, 20]], [["newusers", 55, 11]], [["services", 54, 22]], [["loginDefs", 44, 18], ["pam", 54, 18]], [["networking", 25, 9], ["services", 26, 9], ["users", 34, 9], ["environment", 36, 9], ["security", 44, 9]], [["systemPackages", 70, 21]], [["environment", 70, 9]], [["shadowhost", 22, 5], ["controller", 67, 5]], [["name", 16, 3], ["meta", 18, 3], ["nodes", 20, 3], ["testScript", 78, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/system.nix", [["maintainers", 18, 8]]);
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/system.nix", [["hostName", 25, 20]]);
-const pos$3 = nix.positions(here + "/system.nix", [["PermitRootLogin", 29, 13], ["PasswordAuthentication", 30, 13]]);
-const pos$4 = nix.positions(here + "/system.nix", [["enable", 27, 11], ["settings", 28, 11]]);
-const pos$5 = nix.positions(here + "/system.nix", [["enable", 63, 24]]);
-const pos$6 = nix.positions(here + "/system.nix", [["openssh", 26, 18], ["envfs", 63, 18]]);
-const pos$7 = nix.positions(here + "/system.nix", [["mutableUsers", 34, 15], ["defaultUserShell", 42, 15]]);
-const pos$8 = nix.positions(here + "/system.nix", [["systemPackages", 36, 21]]);
-const pos$9 = nix.positions(here + "/system.nix", [["PASS_MAX_DAYS", 45, 11], ["PASS_MIN_DAYS", 46, 11], ["PASS_WARN_AGE", 47, 11], ["USERGROUPS_ENAB", 48, 11], ["CREATE_HOME", 49, 11], ["UID_MIN", 50, 11], ["GID_MIN", 51, 11]]);
-const pos$10 = nix.positions(here + "/system.nix", [["settings", 44, 28]]);
-const pos$11 = nix.positions(here + "/system.nix", [["text", 55, 20]]);
-const pos$12 = nix.positions(here + "/system.nix", [["newusers", 55, 11]]);
-const pos$13 = nix.positions(here + "/system.nix", [["services", 54, 22]]);
-const pos$14 = nix.positions(here + "/system.nix", [["loginDefs", 44, 18], ["pam", 54, 18]]);
-const pos$15 = nix.positions(here + "/system.nix", [["networking", 25, 9], ["services", 26, 9], ["users", 34, 9], ["environment", 36, 9], ["security", 44, 9]]);
 const formals$3 = { args: { pkgs: false }, ellipsis: true };
-const pos$16 = nix.positions(here + "/system.nix", [["systemPackages", 70, 21]]);
-const pos$17 = nix.positions(here + "/system.nix", [["environment", 70, 9]]);
-const pos$18 = nix.positions(here + "/system.nix", [["shadowhost", 22, 5], ["controller", 67, 5]]);
-const pos$19 = nix.positions(here + "/system.nix", [["name", 16, 3], ["meta", 18, 3], ["nodes", 20, 3], ["testScript", 78, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -38,35 +20,35 @@ export default nix.lambda((args) => (() => {
     ]));
   const shadowHostName = "shadowhost";
   return {
-    [nix.POS]: pos$19,
+    [nix.POS]: $pos[18],
     name: "shadow-system-tests",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "joaosreis"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$18,
+      [nix.POS]: $pos[17],
       shadowhost: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$15,
-          networking: nix.thunk(() => ({ [nix.POS]: pos$2, hostName: shadowHostName })),
+          [nix.POS]: $pos[14],
+          networking: nix.thunk(() => ({ [nix.POS]: $pos[1], hostName: shadowHostName })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             openssh: nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               enable: true,
-              settings: nix.thunk(() => ({ [nix.POS]: pos$3, PermitRootLogin: "yes", PasswordAuthentication: false })),
+              settings: nix.thunk(() => ({ [nix.POS]: $pos[2], PermitRootLogin: "yes", PasswordAuthentication: false })),
             })),
-            envfs: nix.thunk(() => ({ [nix.POS]: pos$5, enable: true })),
+            envfs: nix.thunk(() => ({ [nix.POS]: $pos[4], enable: true })),
           })),
-          users: nix.thunk(() => ({ [nix.POS]: pos$7, mutableUsers: true, defaultUserShell: "/bin/sh" })),
+          users: nix.thunk(() => ({ [nix.POS]: $pos[6], mutableUsers: true, defaultUserShell: "/bin/sh" })),
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$8,
+            [nix.POS]: $pos[7],
             systemPackages: nix.thunk(() => (() => {
               const w = nix.withScope(pkgs_1, null);
               return [
@@ -77,11 +59,11 @@ export default nix.lambda((args) => (() => {
             })()),
           })),
           security: nix.thunk(() => ({
-            [nix.POS]: pos$14,
+            [nix.POS]: $pos[13],
             loginDefs: nix.thunk(() => ({
-              [nix.POS]: pos$10,
+              [nix.POS]: $pos[9],
               settings: nix.thunk(() => ({
-                [nix.POS]: pos$9,
+                [nix.POS]: $pos[8],
                 PASS_MAX_DAYS: 99999n,
                 PASS_MIN_DAYS: 0n,
                 PASS_WARN_AGE: 7n,
@@ -92,11 +74,11 @@ export default nix.lambda((args) => (() => {
               })),
             })),
             pam: nix.thunk(() => ({
-              [nix.POS]: pos$13,
+              [nix.POS]: $pos[12],
               services: nix.thunk(() => ({
-                [nix.POS]: pos$12,
+                [nix.POS]: $pos[11],
                 newusers: nix.thunk(() => ({
-                  [nix.POS]: pos$11,
+                  [nix.POS]: $pos[10],
                   text: "auth    required    pam_permit.so\naccount required    pam_permit.so\npassword required   pam_permit.so\nsession required    pam_permit.so\n",
                 })),
               })),
@@ -108,9 +90,9 @@ export default nix.lambda((args) => (() => {
         const $_1 = nix.formals(args_1, formals$3);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$17,
+          [nix.POS]: $pos[16],
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$16,
+            [nix.POS]: $pos[15],
             systemPackages: nix.thunk(() => [controllerPython, nix.thunk(() => nix.sel(pkgs_1, "openssh"))]),
           })),
         };

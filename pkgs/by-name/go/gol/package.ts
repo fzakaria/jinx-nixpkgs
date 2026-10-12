@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]], [["description", 39, 5], ["longDescription", 40, 5], ["homepage", 45, 5], ["license", 46, 5], ["maintainers", 47, 5], ["platforms", 48, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["mvnHash", 20, 3], ["mvnParameters", 21, 3], ["nativeBuildInputs", 23, 3], ["installPhase", 25, 3], ["meta", 38, 3]]]);
 const formals$1 = { args: { lib: false, maven: false, fetchFromGitHub: false, makeWrapper: false, jre: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 39, 5], ["longDescription", 40, 5], ["homepage", 45, 5], ["license", 46, 5], ["maintainers", 47, 5], ["platforms", 48, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["mvnHash", 20, 3], ["mvnParameters", 21, 3], ["nativeBuildInputs", 23, 3], ["installPhase", 25, 3], ["meta", 38, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "gol";
       const version = "1.2.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "clarisma",
           repo: "gol-tool",
           tag: version,
@@ -39,7 +37,7 @@ makeWrapper ${jre}/bin/java $out/bin/gol \\
 runHook postInstall
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Command-line utility for creating and managing Geographic Object Libraries",
         longDescription: "Use the GOL command-line utility to:\n- build and maintain Geographic Object Libraries (GeoDesk's compact database format for OpenStreetMap features)\n- perform GOQL queries and export the results in a variety of formats.\n",
         homepage: "https://docs.geodesk.com/gol",
@@ -48,7 +46,7 @@ runHook postInstall
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

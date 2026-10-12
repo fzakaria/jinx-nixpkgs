@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]], [["CGO_ENABLED", 23, 5]], [["description", 46, 5], ["homepage", 47, 5], ["license", 48, 5], ["maintainers", 49, 5], ["mainProgram", 50, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["vendorHash", 20, 3], ["env", 22, 3], ["buildPhase", 26, 3], ["installPhase", 34, 3], ["meta", 45, 3]]]);
 const formals$1 = { args: { stdenv: false, buildGoModule: false, fetchFromGitHub: false, lib: false, enableStatic: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["CGO_ENABLED", 23, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 46, 5], ["homepage", 47, 5], ["license", 48, 5], ["maintainers", 49, 5], ["mainProgram", 50, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["vendorHash", 20, 3], ["env", 22, 3], ["buildPhase", 26, 3], ["installPhase", 34, 3], ["meta", 45, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,18 +13,18 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const enableStatic = nix.argOr($, "enableStatic", () => nix.sel(stdenv, "hostPlatform", "isStatic"));
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "gobetween",
       version: "0.8.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "yyyar",
           repo: "gobetween",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-xmyqDi2q7J909cWMec9z2u0DJVJjzv86vjYkSfw/3o8=",
         })))),
       vendorHash: "sha256-3jv0dSsJg90J64Ay7USkUOi8cF1Sj+A7v/snJEdJPFU=",
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, CGO_ENABLED: 0n })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], CGO_ENABLED: 0n })),
       buildPhase: nix.thunk(() => nix.str`runHook preBuild
 
 make -e build${nix.app(nix.sel(lib, "optionalString"), enableStatic, "-static")}
@@ -36,7 +33,7 @@ runHook postBuild
 `),
       installPhase: "runHook preInstall\n\nmkdir -p $out/bin\ncp bin/gobetween $out/bin\ncp -r share $out/share\ncp -r config $out/share\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Modern & minimalistic load balancer for the Cloud era",
         homepage: "https://gobetween.io",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

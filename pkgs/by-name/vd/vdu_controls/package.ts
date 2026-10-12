@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["hash", 20, 5]], [["url", 27, 7], ["hash", 28, 7]], [["description", 74, 5], ["homepage", 75, 5], ["license", 76, 5], ["mainProgram", 77, 5]], [["pname", 12, 3], ["version", 13, 3], ["pyproject", 14, 3], ["src", 16, 3], ["patches", 23, 3], ["build-system", 32, 3], ["preBuild", 39, 3], ["nativeBuildInputs", 44, 3], ["desktopItems", 49, 3], ["postInstall", 50, 3], ["dependencies", 60, 3], ["buildInputs", 64, 3], ["preFixup", 69, 3], ["meta", 73, 3]]]);
 const formals$1 = { args: { lib: false, python3: false, fetchFromGitHub: false, fetchpatch: false, qt6: false, copyDesktopItems: false, installShellFiles: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 27, 7], ["hash", 28, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 74, 5], ["homepage", 75, 5], ["license", 76, 5], ["mainProgram", 77, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["pyproject", 14, 3], ["src", 16, 3], ["patches", 23, 3], ["build-system", 32, 3], ["preBuild", 39, 3], ["nativeBuildInputs", 44, 3], ["desktopItems", 49, 3], ["postInstall", 50, 3], ["dependencies", 60, 3], ["buildInputs", 64, 3], ["preFixup", 69, 3], ["meta", 73, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const copyDesktopItems = nix.arg($, "copyDesktopItems");
   const installShellFiles = nix.arg($, "installShellFiles");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "vdu_controls",
       version: "2.4.3",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "digitaltrails",
           repo: "vdu_controls",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -31,7 +28,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/digitaltrails/vdu_controls/commit/ef2ed07398fc88ccc18a11da3cf5ea1500a03cb6.patch",
             hash: "sha256-W0Iv3RXQFnHAzaXHh6ZvGARN4ShsNgOhg9FTpbvnfLo=",
           })))),
@@ -55,7 +52,7 @@ export default nix.lambda((args) => (() => {
       ]),
       preFixup: "makeWrapperArgs+=(\"${qtWrapperArgs[@]}\")\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "VDU controls - a control panel for monitor brightness/contrast",
         homepage: "https://github.com/digitaltrails/vdu_controls",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

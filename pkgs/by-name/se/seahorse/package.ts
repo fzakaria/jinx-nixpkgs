@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 37, 5], ["hash", 38, 5]], [["name", 45, 7], ["url", 46, 7], ["hash", 47, 7]], [["NIX_CFLAGS_COMPILE", 90, 9]], [["packageName", 115, 7]], [["updateScript", 114, 5]], [["homepage", 120, 5], ["description", 121, 5], ["mainProgram", 122, 5], ["teams", 123, 5], ["license", 124, 5], ["platforms", 125, 5]], [["pname", 33, 3], ["version", 34, 3], ["src", 36, 3], ["patches", 41, 3], ["nativeBuildInputs", 51, 3], ["buildInputs", 65, 3], ["doCheck", 81, 3], ["postPatch", 83, 3], ["env", 87, 3], ["preCheck", 97, 3], ["preFixup", 106, 3], ["passthru", 113, 3], ["meta", 119, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, fetchpatch: false, vala: false, meson: false, ninja: false, libpwquality: false, "pkg-config": false, gtk3: false, glib: false, "glib-networking": false, wrapGAppsHook3: false, itstool: false, gnupg: false, "desktop-file-utils": false, libsoup_3: false, gnome: false, gpgme: false, python3: false, openldap: false, gcr_3: false, libsecret: false, avahi: false, "p11-kit": false, openssh: false, "gsettings-desktop-schemas": false, libhandy: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 37, 5], ["hash", 38, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 45, 7], ["url", 46, 7], ["hash", 47, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 90, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["packageName", 115, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["updateScript", 114, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["homepage", 120, 5], ["description", 121, 5], ["mainProgram", 122, 5], ["teams", 123, 5], ["license", 124, 5], ["platforms", 125, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 33, 3], ["version", 34, 3], ["src", 36, 3], ["patches", 41, 3], ["nativeBuildInputs", 51, 3], ["buildInputs", 65, 3], ["doCheck", 81, 3], ["postPatch", 83, 3], ["env", 87, 3], ["preCheck", 97, 3], ["preFixup", 106, 3], ["passthru", 113, 3], ["meta", 119, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -42,17 +36,17 @@ export default nix.lambda((args) => (() => {
   const gsettings_desktop_schemas = nix.arg($, "gsettings-desktop-schemas");
   const libhandy = nix.arg($, "libhandy");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "seahorse",
       version: "47.0.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnome/sources/seahorse/${nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/seahorse-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-nBkX5KYff+u3h4Sc42znF/znBsNGiAuZHQVtVNrbysw=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "seahorse-allow-build-with-gpgme-2_0.patch",
             url: "https://gitlab.gnome.org/GNOME/seahorse/-/commit/aa68522cc696fa491ccfdff735b77bcf113168d0.patch",
             hash: "sha256-xd5K8xUGuMk+41JROsq7QpZ5gD2jPAbv1kQdLI3z9lc=",
@@ -89,7 +83,7 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       postPatch: "patchShebangs build-aux/gpg_check_version.py\n",
       env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "cc", "isGNU")) && nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.app(nix.sel(lib, "getVersion"), nix.thunk(() => nix.sel(stdenv, "cc", "cc")))), "14")))), nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => [
               "-Wno-error=implicit-function-declaration",
               "-Wno-error=int-conversion",
@@ -109,11 +103,11 @@ export HOME=$TMPDIR
 )
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$4, packageName: "seahorse" })))),
+        [nix.POS]: $pos[4],
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: $pos[3], packageName: "seahorse" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         homepage: "https://gitlab.gnome.org/GNOME/seahorse",
         description: "Application for managing encryption keys and passwords in the GnomeKeyring",
         mainProgram: "seahorse",

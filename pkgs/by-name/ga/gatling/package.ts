@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 20, 5], ["sha256", 21, 5]], [["NIX_CFLAGS_COMPILE", 47, 7]], [["description", 50, 5], ["homepage", 51, 5], ["license", 52, 5], ["platforms", 53, 5]], [["pname", 16, 3], ["version", 17, 11], ["src", 19, 3], ["buildInputs", 24, 3], ["configurePhase", 32, 3], ["buildPhase", 43, 3], ["env", 47, 3], ["meta", 49, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, libowfat: false, libcap: false, zlib: false, openssl: false, libxcrypt: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 20, 5], ["sha256", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 47, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 50, 5], ["homepage", 51, 5], ["license", 52, 5], ["platforms", 53, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 11], ["src", 19, 3], ["buildInputs", 24, 3], ["configurePhase", 32, 3], ["buildPhase", 43, 3], ["env", 47, 3], ["meta", 49, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const libxcrypt = nix.arg($, "libxcrypt");
   const version = "0.16";
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "gatling",
       version: version,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://www.fefe.de/gatling/gatling-${nix.sel(finalAttrs, "version")}.tar.xz`),
           sha256: "0nrnws5qrl4frqcsfa9z973vv5mifgr9z170qbvg3mq1wa7475jz",
         })))),
@@ -32,11 +29,11 @@ export default nix.lambda((args) => (() => {
       configurePhase: "runHook preConfigure\n\nsubstituteInPlace Makefile --replace-fail \"/usr/local\" \"$out\"\nsubstituteInPlace GNUmakefile --replace-fail \"/opt/diet\" \"$out\"\nsubstituteInPlace tryalloca.c --replace-fail \"main() {\" \"int main() {\"\nsubstituteInPlace trysocket.c --replace-fail \"main() {\" \"int main() {\"\n\nrunHook postConfigure\n",
       buildPhase: "make gatling\n",
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-Wno-error=incompatible-pointer-types"]))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "High performance web server",
         homepage: "http://www.fefe.de/gatling/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

@@ -2,18 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["case", 17, 35], ["out", 17, 40]], [["hash", 24, 15]], [["hash", 25, 17]], [["hash", 26, 15]], [["hash", 27, 17]], [["hash", 28, 17]], [["1.4-9.0", 24, 5], ["1.4-9.0.1", 25, 5], ["1.4-9.1", 26, 5], ["1.4.1-9.1", 27, 5], ["1.5.1-9.1", 28, 5]], [["utils", 34, 5], ["common", 35, 5], ["template-rocq", 36, 5], ["pcuic", 37, 5], ["safechecker", 38, 5], ["template-pcuic", 39, 5], ["erasure", 43, 5], ["quotation", 47, 5], ["safechecker-plugin", 52, 5], ["erasure-plugin", 56, 5], ["translations", 60, 5], ["all", 61, 5]], [["homepage", 141, 13], ["license", 142, 13], ["maintainers", 143, 13]], [["version", 85, 13], ["pname", 86, 13], ["defaultVersion", 87, 13], ["release", 88, 13], ["releaseRev", 89, 13], ["repo", 90, 13], ["owner", 91, 13], ["mlPlugin", 94, 11], ["propagatedBuildInputs", 95, 11], ["patchPhase", 104, 11], ["configurePhase", 114, 11], ["preBuild", 136, 11], ["meta", 140, 11]], [["passthru", 147, 11]]]);
 const formals$1 = { args: { lib: false, mkCoqDerivation: false, single: true, coq: false, equations: false, ExtLib: false, stdlib: false, version: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["case", 17, 35], ["out", 17, 40]]);
-const pos$2 = nix.positions(here + "/default.nix", [["hash", 24, 15]]);
-const pos$3 = nix.positions(here + "/default.nix", [["hash", 25, 17]]);
-const pos$4 = nix.positions(here + "/default.nix", [["hash", 26, 15]]);
-const pos$5 = nix.positions(here + "/default.nix", [["hash", 27, 17]]);
-const pos$6 = nix.positions(here + "/default.nix", [["hash", 28, 17]]);
-const pos$7 = nix.positions(here + "/default.nix", [["1.4-9.0", 24, 5], ["1.4-9.0.1", 25, 5], ["1.4-9.1", 26, 5], ["1.4.1-9.1", 27, 5], ["1.5.1-9.1", 28, 5]]);
-const pos$8 = nix.positions(here + "/default.nix", [["utils", 34, 5], ["common", 35, 5], ["template-rocq", 36, 5], ["pcuic", 37, 5], ["safechecker", 38, 5], ["template-pcuic", 39, 5], ["erasure", 43, 5], ["quotation", 47, 5], ["safechecker-plugin", 52, 5], ["erasure-plugin", 56, 5], ["translations", 60, 5], ["all", 61, 5]]);
-const pos$9 = nix.positions(here + "/default.nix", [["homepage", 141, 13], ["license", 142, 13], ["maintainers", 143, 13]]);
-const pos$10 = nix.positions(here + "/default.nix", [["version", 85, 13], ["pname", 86, 13], ["defaultVersion", 87, 13], ["release", 88, 13], ["releaseRev", 89, 13], ["repo", 90, 13], ["owner", 91, 13], ["mlPlugin", 94, 11], ["propagatedBuildInputs", 95, 11], ["patchPhase", 104, 11], ["configurePhase", 114, 11], ["preBuild", 136, 11], ["meta", 140, 11]]);
-const pos$11 = nix.positions(here + "/default.nix", [["passthru", 147, 11]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,38 +19,38 @@ export default nix.lambda((args) => (() => {
   const repo = "metarocq";
   const owner = "MetaRocq";
   const defaultVersion = nix.thunk(() => (() => {
-    const case$ = (case$_1) => (out) => ({ [nix.POS]: pos$1, case: case$_1, out: out });
+    const case$ = (case$_1) => (out) => ({ [nix.POS]: $pos[0], case: case$_1, out: out });
     return nix.app(nix.sel(lib, "switch"), nix.thunk(() => nix.sel(coq, "coq-version")), nix.thunk(() => [
         nix.thunk(() => nix.app(case$, "9.1", "1.5.1-9.1")),
         nix.thunk(() => nix.app(case$, "9.0", "1.4-9.0.1")),
       ]), null);
   })());
   const release = nix.thunk(() => ({
-    [nix.POS]: pos$7,
+    [nix.POS]: $pos[6],
     "1.4-9.0": nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       hash: "sha256-5QecDAMkvgfDPZ7/jDfnOgcE+Eb1LTAozP7nz6nkuxg=",
     })),
     "1.4-9.0.1": nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       hash: "sha256-zMUd2A6EG0LYK3L9ABQvS/Et4MDpSmf3Pxd9+IPNYkI=",
     })),
     "1.4-9.1": nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       hash: "sha256-v6jFvUavIzyb/e6ytAaZjxQLFM9uW9TDUB77yRO74eE=",
     })),
     "1.4.1-9.1": nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       hash: "sha256-tzoAWX74lg7pArGVP11QBvDRKMvmGxXvrf3+1E3Y4DI=",
     })),
     "1.5.1-9.1": nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       hash: "sha256-0iFnSzfbufn2XhJ8EPyWu3KIiHYwxfMVQa2KT6GSR7s=",
     })),
   }));
   const releaseRev = (v) => nix.str`v${v}`;
   const packages = nix.thunk(() => ({
-    [nix.POS]: pos$8,
+    [nix.POS]: $pos[7],
     utils: [],
     common: nix.thunk(() => ["utils"]),
     "template-rocq": nix.thunk(() => ["common"]),
@@ -81,7 +71,7 @@ export default nix.lambda((args) => (() => {
     const pname = nix.thunk(() => (nix.asBool(nix.eq(package$, "all")) ? "metarocq" : nix.str`metarocq-${package$}`));
     const pkgallMake = "mkdir all\necho \"all:\" > all/Makefile\necho \"install:\" >> all/Makefile\n";
     const derivation = nix.thunk(() => nix.app(mkCoqDerivation, nix.thunk(() => nix.update({
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         version: version,
         pname: pname,
         defaultVersion: defaultVersion,
@@ -111,7 +101,7 @@ export default nix.lambda((args) => (() => {
         preBuild: nix.thunk(() => nix.str`cd ${pkgpath}
 `),
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           homepage: "https://metarocq.github.io/",
           license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
           maintainers: nix.thunk(() => (() => {
@@ -120,7 +110,7 @@ export default nix.lambda((args) => (() => {
           })()),
         })),
       }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(package$, "single")), nix.thunk(() => ({
-          [nix.POS]: pos$11,
+          [nix.POS]: $pos[10],
           passthru: nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (package$_1) => (deps) => nix.app(metarocq_, package$_1), packages)),
         })))))));
     return nix.force(derivation);

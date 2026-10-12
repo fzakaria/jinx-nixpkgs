@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["withRepart", 28, 7], ["withBootloader", 29, 7], ["withSysusers", 30, 7], ["withFirstboot", 31, 7], ["withEfi", 32, 7], ["withUkify", 33, 7], ["withKernelInstall", 34, 7]], [["postPatch", 38, 9], ["mesonFlags", 45, 9]], [["owner", 77, 5], ["repo", 78, 5], ["tag", 79, 5], ["hash", 80, 5]], [["UKIFY", 85, 7], ["PYTHON_PEFILE", 86, 7], ["NIX_PATH", 87, 7], ["MKOSI_SANDBOX", 88, 7]], [["LIBC", 91, 7], ["LIBSECCOMP", 92, 7]], [["QEMU_FIRMWARE", 97, 7]], [["description", 140, 5], ["homepage", 141, 5], ["changelog", 142, 5], ["license", 143, 5], ["mainProgram", 144, 5], ["maintainers", 145, 5], ["platforms", 149, 5]], [["pname", 67, 3], ["version", 68, 3], ["pyproject", 69, 3], ["outputs", 71, 3], ["src", 76, 3], ["patches", 83, 3], ["postPatch", 101, 3], ["nativeBuildInputs", 107, 3], ["dependencies", 115, 3], ["postBuild", 117, 3], ["checkInputs", 121, 3], ["postInstall", 125, 3], ["postFixup", 131, 3], ["meta", 139, 3]]]);
 const formals$1 = { args: { lib: false, python3Packages: false, fetchFromGitHub: false, stdenv: false, systemd: false, pandoc: false, kmod: false, gnutar: false, "util-linux": false, cpio: false, bash: false, coreutils: false, "btrfs-progs": false, libseccomp: false, replaceVars: false, udevCheckHook: false, withQemu: true, qemu: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["withRepart", 28, 7], ["withBootloader", 29, 7], ["withSysusers", 30, 7], ["withFirstboot", 31, 7], ["withEfi", 32, 7], ["withUkify", 33, 7], ["withKernelInstall", 34, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["postPatch", 38, 9], ["mesonFlags", 45, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["owner", 77, 5], ["repo", 78, 5], ["tag", 79, 5], ["hash", 80, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["UKIFY", 85, 7], ["PYTHON_PEFILE", 86, 7], ["NIX_PATH", 87, 7], ["MKOSI_SANDBOX", 88, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["LIBC", 91, 7], ["LIBSECCOMP", 92, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["QEMU_FIRMWARE", 97, 7]]);
-const pos$7 = nix.positions(here + "/package.nix", [["description", 140, 5], ["homepage", 141, 5], ["changelog", 142, 5], ["license", 143, 5], ["mainProgram", 144, 5], ["maintainers", 145, 5], ["platforms", 149, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 67, 3], ["version", 68, 3], ["pyproject", 69, 3], ["outputs", 71, 3], ["src", 76, 3], ["patches", 83, 3], ["postPatch", 101, 3], ["nativeBuildInputs", 107, 3], ["dependencies", 115, 3], ["postBuild", 117, 3], ["checkInputs", 121, 3], ["postInstall", 125, 3], ["postFixup", 131, 3], ["meta", 139, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,7 +26,7 @@ export default nix.lambda((args) => (() => {
   const withQemu = nix.argOr($, "withQemu", () => false);
   const qemu = nix.arg($, "qemu");
   const systemdForMkosi = nix.thunk(() => nix.app(nix.sel(nix.app(nix.sel(systemd, "override"), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       withRepart: true,
       withBootloader: true,
       withSysusers: true,
@@ -42,7 +35,7 @@ export default nix.lambda((args) => (() => {
       withUkify: true,
       withKernelInstall: true,
     }))), "overrideAttrs"), (prevAttrs) => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       postPatch: nix.thunk(() => nix.add(nix.selOr(prevAttrs, () => "", "postPatch"), "substituteInPlace src/basic/path-util.h \\\n  --replace-fail \"\\\"$out/bin/\\\"\" \\\n  '\"/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\"'\n")),
       mesonFlags: nix.thunk(() => nix.concat(nix.selOr(prevAttrs, () => [], "mesonFlags"), [
         nix.thunk(() => nix.app(nix.sel(lib, "mesonOption"), "nologin-path", "/usr/sbin/nologin")),
@@ -60,13 +53,13 @@ export default nix.lambda((args) => (() => {
     util_linux,
   ], nix.app(nix.sel(lib, "optionals"), withQemu, nix.thunk(() => [qemu]))));
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "mkosi",
       version: "27",
       pyproject: true,
       outputs: nix.thunk(() => ["out", "man"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           owner: "systemd",
           repo: "mkosi",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -74,19 +67,19 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => nix.concat([
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./0001-Use-wrapped-binaries-instead-of-Python-interpreter.patch"), nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             UKIFY: nix.thunk(() => nix.str`${systemdForMkosi}/lib/systemd/ukify`),
             PYTHON_PEFILE: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), pythonWithPefile)),
             NIX_PATH: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.app(nix.sel(lib, "makeBinPath"), deps)))),
             MKOSI_SANDBOX: null,
           })))),
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./0002-Fix-library-resolving.patch"), nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             LIBC: nix.thunk(() => nix.str`${nix.sel(stdenv, "cc", "libc")}/lib/libc.so.6`),
             LIBSECCOMP: nix.thunk(() => nix.str`${nix.sel(libseccomp, "lib")}/lib/libseccomp.so.2`),
           })))),
       ], nix.app(nix.sel(lib, "optional"), withQemu, nix.thunk(() => nix.app(replaceVars, nix.path(here, "./0003-Fix-QEMU-firmware-path.patch"), nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             QEMU_FIRMWARE: nix.thunk(() => nix.str`${qemu}/share/qemu/firmware`),
           }))))))),
       postPatch: "# As we need the $out reference, we can't use `replaceVars` here.\nsubstituteInPlace mkosi/{run,__init__}.py \\\n  --replace-fail '@MKOSI_SANDBOX@' \"$out/bin/mkosi-sandbox\"\n",
@@ -108,7 +101,7 @@ sed "1i#!${nix.sel(python3Packages, "python", "interpreter")} -SI" \\
 chmod +x "$out/bin/mkosi-sandbox"
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "Build legacy-free OS images",
         homepage: "https://github.com/systemd/mkosi",
         changelog: nix.thunk(() => nix.str`https://github.com/systemd/mkosi/releases/tag/v${nix.sel(finalAttrs, "version")}`),

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]], [["updateScript", 24, 12]], [["description", 27, 5], ["homepage", 28, 5], ["changelog", 29, 5], ["license", 30, 5], ["maintainers", 31, 5], ["platforms", 32, 5], ["mainProgram", 37, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["projectFile", 19, 3], ["nugetDeps", 20, 3], ["dotnet-sdk", 21, 3], ["dotnet-runtime", 22, 3], ["passthru", 24, 3], ["meta", 26, 3]]]);
 const formals$1 = { args: { lib: false, buildDotnetModule: false, fetchFromGitHub: false, dotnetCorePackages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 24, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 27, 5], ["homepage", 28, 5], ["changelog", 29, 5], ["license", 30, 5], ["maintainers", 31, 5], ["platforms", 32, 5], ["mainProgram", 37, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["projectFile", 19, 3], ["nugetDeps", 20, 3], ["dotnet-sdk", 21, 3], ["dotnet-runtime", 22, 3], ["passthru", 24, 3], ["meta", 26, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,7 +15,7 @@ export default nix.lambda((args) => (() => {
       const pname = "depotdownloader";
       const version = "3.4.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "SteamRE",
           repo: "DepotDownloader",
           rev: nix.thunk(() => nix.str`DepotDownloader_${version}`),
@@ -28,9 +25,9 @@ export default nix.lambda((args) => (() => {
       const nugetDeps = nix.path(here, "./deps.json");
       const dotnet_sdk = nix.thunk(() => nix.sel(dotnetCorePackages, "sdk_9_0"));
       const dotnet_runtime = nix.thunk(() => nix.sel(dotnetCorePackages, "runtime_9_0"));
-      const passthru = nix.thunk(() => ({ [nix.POS]: pos$2, updateScript: nix.path(here, "./update.sh") }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: $pos[1], updateScript: nix.path(here, "./update.sh") }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Steam depot downloader utilizing the SteamKit2 library",
         homepage: "https://github.com/SteamRE/DepotDownloader",
         changelog: nix.thunk(() => nix.str`https://github.com/SteamRE/DepotDownloader/releases/tag/DepotDownloader_${version}`),
@@ -40,7 +37,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "DepotDownloader",
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

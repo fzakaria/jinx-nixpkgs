@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]], [["GITHUB_REF", 36, 5]], [["description", 78, 5], ["homepage", 79, 5], ["changelog", 80, 5], ["license", 81, 5], ["maintainers", 82, 5]], [["pname", 20, 3], ["version", 21, 3], ["pyproject", 22, 3], ["src", 24, 3], ["postPatch", 31, 3], ["env", 35, 3], ["build-system", 39, 3], ["pythonRemoveDeps", 44, 3], ["dependencies", 49, 3], ["preCheck", 61, 3], ["nativeCheckInputs", 65, 3], ["disabledTests", 70, 3], ["pythonImportsCheck", 75, 3], ["meta", 77, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, cython: false, joblib: false, matplotlib: false, "meson-python": false, numpy: false, pandas: false, "scikit-learn": false, scipy: false, statsmodels: false, urllib3: false, python: false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["GITHUB_REF", 36, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 78, 5], ["homepage", 79, 5], ["changelog", 80, 5], ["license", 81, 5], ["maintainers", 82, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 20, 3], ["version", 21, 3], ["pyproject", 22, 3], ["src", 24, 3], ["postPatch", 31, 3], ["env", 35, 3], ["build-system", 39, 3], ["pythonRemoveDeps", 44, 3], ["dependencies", 49, 3], ["preCheck", 61, 3], ["nativeCheckInputs", 65, 3], ["disabledTests", 70, 3], ["pythonImportsCheck", 75, 3], ["meta", 77, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.1.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "alkaline-ml",
           repo: "pmdarima",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -38,7 +35,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const postPatch = "patchShebangs build_tools/get_tag.py\n";
       const env = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         GITHUB_REF: nix.thunk(() => nix.str`refs/tags/v${version}`),
       }));
       const build_system = nix.thunk(() => [cython, meson_python]);
@@ -50,7 +47,7 @@ export default nix.lambda((args) => (() => {
       const disabledTests = nix.thunk(() => ["test_load_from_web"]);
       const pythonImportsCheck = nix.thunk(() => ["pmdarima"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Statistical library designed to fill the void in Python's time series analysis capabilities, including the equivalent of R's auto.arima function",
         homepage: "https://github.com/alkaline-ml/pmdarima",
         changelog: nix.thunk(() => nix.str`https://github.com/alkaline-ml/pmdarima/releases/tag/v${version}`),
@@ -58,7 +55,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

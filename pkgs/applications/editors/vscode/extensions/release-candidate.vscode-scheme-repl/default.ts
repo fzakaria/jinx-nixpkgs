@@ -2,10 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["publisher", 11, 5], ["name", 12, 5], ["version", 13, 5], ["hash", 14, 5]], [["description", 23, 5], ["downloadPage", 24, 5], ["homepage", 25, 5], ["license", 26, 5]], [["mktplcRef", 10, 3], ["postInstall", 17, 3], ["meta", 22, 3]]]);
 const formals$1 = { args: { lib: false, "vscode-utils": false, jq: false, chez: false, moreutils: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["publisher", 11, 5], ["name", 12, 5], ["version", 13, 5], ["hash", 14, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 23, 5], ["downloadPage", 24, 5], ["homepage", 25, 5], ["license", 26, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["mktplcRef", 10, 3], ["postInstall", 17, 3], ["meta", 22, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,9 +13,9 @@ export default nix.lambda((args) => (() => {
   const chez = nix.arg($, "chez");
   const moreutils = nix.arg($, "moreutils");
   return nix.app(nix.sel(vscode_utils, "buildVscodeMarketplaceExtension"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       mktplcRef: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         publisher: "release-candidate",
         name: "vscode-scheme-repl",
         version: "0.7.4",
@@ -27,7 +25,7 @@ export default nix.lambda((args) => (() => {
 ${nix.app(nix.sel(lib, "getExe"), jq)} '.contributes.configuration.properties."chezScheme.schemePath" = "${nix.app(nix.sel(lib, "getExe'"), chez, "scheme")}"' package.json | ${nix.app(nix.sel(lib, "getExe'"), moreutils, "sponge")} package.json
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Uses REPL for autocompletions and to evaluate expressions",
         downloadPage: "https://marketplace.visualstudio.com/items?itemName=release-candidate.vscode-scheme-repl",
         homepage: "https://github.com/Release-Candidate/vscode-scheme-repl",

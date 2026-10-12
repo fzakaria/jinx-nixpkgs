@@ -2,15 +2,8 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/envfs.nix", [[["enable", 22, 20]], [["envfs", 22, 14]], [["enable", 23, 25]], [["systemd", 23, 17]], [["initrd", 23, 10]], [["services", 22, 5], ["boot", 23, 5]], [["machine", 21, 9]], [["name", 19, 3], ["nodes", 21, 3], ["testScript", 26, 3]]]);
 const formals$1 = { args: { pkgs: false, systemdStage1: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/envfs.nix", [["enable", 22, 20]]);
-const pos$2 = nix.positions(here + "/envfs.nix", [["envfs", 22, 14]]);
-const pos$3 = nix.positions(here + "/envfs.nix", [["enable", 23, 25]]);
-const pos$4 = nix.positions(here + "/envfs.nix", [["systemd", 23, 17]]);
-const pos$5 = nix.positions(here + "/envfs.nix", [["initrd", 23, 10]]);
-const pos$6 = nix.positions(here + "/envfs.nix", [["services", 22, 5], ["boot", 23, 5]]);
-const pos$7 = nix.positions(here + "/envfs.nix", [["machine", 21, 9]]);
-const pos$8 = nix.positions(here + "/envfs.nix", [["name", 19, 3], ["nodes", 21, 3], ["testScript", 26, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,21 +12,21 @@ export default nix.lambda((args) => (() => {
   const pythonShebang = nix.thunk(() => nix.app(nix.sel(pkgs, "writeScript"), "python-shebang", "#!/usr/bin/python\nprint(\"OK\")\n"));
   const bashShebang = nix.thunk(() => nix.app(nix.sel(pkgs, "writeScript"), "bash-shebang", "#!/usr/bin/bash\necho \"OK\"\n"));
   return {
-    [nix.POS]: pos$8,
+    [nix.POS]: $pos[7],
     name: "envfs",
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       machine: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         services: nix.thunk(() => ({
-          [nix.POS]: pos$2,
-          envfs: nix.thunk(() => ({ [nix.POS]: pos$1, enable: true })),
+          [nix.POS]: $pos[1],
+          envfs: nix.thunk(() => ({ [nix.POS]: $pos[0], enable: true })),
         })),
         boot: nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           initrd: nix.thunk(() => ({
-            [nix.POS]: pos$4,
-            systemd: nix.thunk(() => ({ [nix.POS]: pos$3, enable: systemdStage1 })),
+            [nix.POS]: $pos[3],
+            systemd: nix.thunk(() => ({ [nix.POS]: $pos[2], enable: systemdStage1 })),
           })),
         })),
       })),

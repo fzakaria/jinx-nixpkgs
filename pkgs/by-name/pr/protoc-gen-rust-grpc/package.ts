@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["pname", 12, 5], ["version", 13, 26], ["hash", 14, 5]], [["description", 20, 5], ["homepage", 21, 5], ["license", 22, 5], ["maintainers", 23, 5], ["mainProgram", 24, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["cargoHash", 17, 3], ["meta", 19, 3]]]);
 const formals$1 = { args: { fetchCrate: false, lib: false, rustPlatform: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["pname", 12, 5], ["version", 13, 26], ["hash", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 20, 5], ["homepage", 21, 5], ["license", 22, 5], ["maintainers", 23, 5], ["mainProgram", 24, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["cargoHash", 17, 3], ["meta", 19, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,18 +11,18 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const rustPlatform = nix.arg($, "rustPlatform");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "protoc-gen-rust-grpc",
       version: "0.8.3",
       src: nix.thunk(() => nix.app(fetchCrate, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "grpc-compiler",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-gt+Qa68N5EkqhCAvU2ISvVPT9vYPXMySad4DCyTVHkQ=",
         })))),
       cargoHash: "sha256-7PTe7popLS0zYYKv+K4629GkNG1wR/fhGi14a/4pkS0=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Protobuf plugin for generating Rust code for gRPC",
         homepage: "https://github.com/stepancheg/grpc-rust",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

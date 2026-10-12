@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["pname", 16, 7], ["version", 17, 28], ["src", 17, 36], ["sourceRoot", 19, 7], ["patches", 21, 7], ["buildPhase", 28, 7], ["installPhase", 35, 7], ["npmDepsHash", 41, 7]], [["owner", 49, 7], ["repo", 50, 7], ["tag", 51, 7], ["hash", 52, 7]], [["OXDRAW_BUNDLED_WEB_DIST", 67, 9]], [["updateScript", 69, 14]], [["description", 72, 7], ["homepage", 73, 7], ["changelog", 74, 7], ["license", 75, 7], ["maintainers", 76, 7], ["mainProgram", 77, 7], ["platforms", 78, 7]], [["pname", 45, 5], ["version", 46, 5], ["src", 48, 5], ["__structuredAttrs", 55, 5], ["cargoHash", 57, 5], ["nativeBuildInputs", 59, 5], ["buildInputs", 60, 5], ["preBuild", 62, 5], ["env", 67, 5], ["passthru", 69, 5], ["meta", 71, 5]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchFromGitHub: false, "pkg-config": false, openssl: false, buildNpmPackage: false, "geist-font": false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["pname", 16, 7], ["version", 17, 28], ["src", 17, 36], ["sourceRoot", 19, 7], ["patches", 21, 7], ["buildPhase", 28, 7], ["installPhase", 35, 7], ["npmDepsHash", 41, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 49, 7], ["repo", 50, 7], ["tag", 51, 7], ["hash", 52, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["OXDRAW_BUNDLED_WEB_DIST", 67, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 69, 14]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 72, 7], ["homepage", 73, 7], ["changelog", 74, 7], ["license", 75, 7], ["maintainers", 76, 7], ["mainProgram", 77, 7], ["platforms", 78, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 45, 5], ["version", 46, 5], ["src", 48, 5], ["__structuredAttrs", 55, 5], ["cargoHash", 57, 5], ["nativeBuildInputs", 59, 5], ["buildInputs", 60, 5], ["preBuild", 62, 5], ["env", 67, 5], ["passthru", 69, 5], ["meta", 71, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,7 +17,7 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => (() => {
       const frontend = nix.thunk(() => nix.app(buildNpmPackage, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "oxdraw-frontend",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -37,11 +32,11 @@ runHook postBuild
           npmDepsHash: "sha256-Yyox/x78spQqCJDJkPVuzfeAbtd/fdyihDHudIqruo4=",
         }))));
       return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname: "oxdraw",
         version: "0.2.0",
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             owner: "RohanAdwankar",
             repo: "oxdraw",
             tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -52,13 +47,13 @@ runHook postBuild
         nativeBuildInputs: nix.thunk(() => [pkg_config]),
         buildInputs: nix.thunk(() => [openssl]),
         preBuild: "# The build.rs builds the frontend, which we manually build via Nix already\nrm build.rs\n",
-        env: nix.thunk(() => ({ [nix.POS]: pos$3, OXDRAW_BUNDLED_WEB_DIST: frontend })),
+        env: nix.thunk(() => ({ [nix.POS]: $pos[2], OXDRAW_BUNDLED_WEB_DIST: frontend })),
         passthru: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         })),
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           description: "Diagram as Code Tool Written in Rust with Draggable Editing",
           homepage: "https://github.com/RohanAdwankar/oxdraw",
           changelog: nix.thunk(() => nix.str`https://github.com/RohanAdwankar/oxdraw/releases/tag/v${nix.sel(finalAttrs, "version")}`),

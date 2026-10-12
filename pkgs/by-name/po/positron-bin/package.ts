@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 43, 9], ["hash", 44, 9]], [["url", 48, 9], ["hash", 49, 9]], [["url", 53, 9], ["hash", 54, 9]], [["updateScript", 146, 12]], [["description", 149, 5], ["homepage", 150, 5], ["license", 151, 5], ["maintainers", 152, 5], ["mainProgram", 156, 5], ["platforms", 157, 5]], [["dontFixup", 37, 3], ["version", 38, 11], ["pname", 38, 19], ["src", 40, 3], ["buildInputs", 57, 3], ["nativeBuildInputs", 86, 3], ["runtimeDependencies", 96, 3], ["installPhase", 101, 3], ["passthru", 146, 3], ["meta", 148, 3]]]);
 const formals$1 = { args: { lib: false, _7zz: false, "alsa-lib": false, systemd: false, wrapGAppsHook4: false, autoPatchelfHook: false, blas: false, dpkg: false, fetchurl: false, gtk3: false, libglvnd: false, libxkbcommon: false, makeShellWrapper: false, libgbm: false, musl: false, nss: false, patchelf: false, openssl: false, stdenv: false, libxdamage: false, libxcomposite: false, libx11: false, libxkbfile: false, libsecret: false, webkitgtk_4_1: false, libxtst: false, libei: false, libjpeg8: false, pipewire: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 43, 9], ["hash", 44, 9]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 48, 9], ["hash", 49, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 53, 9], ["hash", 54, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 146, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 149, 5], ["homepage", 150, 5], ["license", 151, 5], ["maintainers", 152, 5], ["mainProgram", 156, 5], ["platforms", 157, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["dontFixup", 37, 3], ["version", 38, 11], ["pname", 38, 19], ["src", 40, 3], ["buildInputs", 57, 3], ["nativeBuildInputs", 86, 3], ["runtimeDependencies", 96, 3], ["installPhase", 101, 3], ["passthru", 146, 3], ["meta", 148, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -44,20 +39,20 @@ export default nix.lambda((args) => (() => {
   const pname = "positron-bin";
   const version = "2026.08.2-4";
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       dontFixup: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
       version: version,
       pname: pname,
       src: nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://cdn.posit.co/positron/releases/mac/arm64/Positron-${version}-arm64.dmg`),
           hash: "sha256-ocDWNEWiIfgLcFOTD6KqaqswRpQqf4dVqJe28lDYs9k=",
         }))) : (nix.asBool(nix.eq(nix.sel(stdenv, "hostPlatform", "system"), "aarch64-linux")) ? nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: nix.thunk(() => nix.str`https://cdn.posit.co/positron/releases/deb/arm64/Positron-${version}-arm64.deb`),
           hash: "sha256-EHZZYLGquikmhWYPjv7+I4f1ZkSvyI9Q6nRJXvgGBk0=",
         }))) : nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           url: nix.thunk(() => nix.str`https://cdn.posit.co/positron/releases/deb/x86_64/Positron-${version}-x64.deb`),
           hash: "sha256-DmlFAr24drfuqWK22uPXfHvPIuvQrtq3Yl5hUgcY3Oo=",
         })))))),
@@ -122,9 +117,9 @@ mkdir -p "$out/bin"
 ln -s "$out/share/positron/positron" "$out/bin/positron"
 runHook postInstall
 `)),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$4, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[3], updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Positron, a next-generation data science IDE",
         homepage: "https://github.com/posit-dev/positron",
         license: nix.thunk(() => nix.sel(lib, "licenses", "elastic20")),

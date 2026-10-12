@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 25, 5], ["repo", 26, 5], ["rev", 27, 5], ["sha256", 28, 5]], [["test", 45, 18]], [["tests", 45, 12]], [["description", 48, 5], ["homepage", 49, 5], ["license", 50, 5], ["maintainers", 51, 5], ["platforms", 52, 5], ["mainProgram", 53, 5]], [["pname", 13, 3], ["version", 14, 3], ["nativeBuildInputs", 16, 3], ["buildInputs", 18, 3], ["src", 24, 3], ["makeFlags", 31, 3], ["installPhase", 36, 3], ["passthru", 45, 3], ["meta", 47, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, "pkg-config": false, vte: false, gtk3: false, pcre2: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 25, 5], ["repo", 26, 5], ["rev", 27, 5], ["sha256", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["test", 45, 18]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 45, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 48, 5], ["homepage", 49, 5], ["license", 50, 5], ["maintainers", 51, 5], ["platforms", 52, 5], ["mainProgram", 53, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["nativeBuildInputs", 16, 3], ["buildInputs", 18, 3], ["src", 24, 3], ["makeFlags", 31, 3], ["installPhase", 36, 3], ["passthru", 45, 3], ["meta", 47, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,13 +16,13 @@ export default nix.lambda((args) => (() => {
   const pcre2 = nix.arg($, "pcre2");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "stupidterm",
       version: "2019-03-26",
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [vte, gtk3, pcre2]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "esmil",
           repo: "stupidterm",
           rev: "f824e41c2ca9016db73556c5d2f5a2861e235c8e",
@@ -38,14 +34,14 @@ export default nix.lambda((args) => (() => {
       ]),
       installPhase: "install -D stupidterm $out/bin/stupidterm\ninstall -D -m 644 stupidterm.desktop $out/share/applications/stupidterm.desktop\ninstall -D -m 644 stupidterm.ini $out/share/stupidterm/stupidterm.ini\n\nsubstituteInPlace $out/share/applications/stupidterm.desktop \\\n  --replace \"Exec=st\" \"Exec=$out/bin/stupidterm\"\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           test: nix.thunk(() => nix.sel(nixosTests, "terminal-emulators", "stupidterm")),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Simple wrapper around the VTE terminal emulator widget for GTK",
         homepage: "https://github.com/esmil/stupidterm",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3Plus")),

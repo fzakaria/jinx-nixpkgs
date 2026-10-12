@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5], ["fetchSubmodules", 19, 5]], [["SQLX_OFFLINE", 38, 5], ["RUSTFLAGS", 41, 5], ["PGLS_VERSION", 42, 5]], [["description", 55, 5], ["homepage", 56, 5], ["license", 57, 5], ["maintainers", 58, 5], ["mainProgram", 61, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["cargoHash", 22, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 33, 3], ["env", 37, 3], ["cargoBuildFlags", 45, 3], ["doCheck", 47, 3], ["nativeInstallCheckInputs", 49, 3], ["doInstallCheck", 52, 3], ["meta", 54, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchFromGitHub: false, "rust-jemalloc-sys": false, "tree-sitter": false, nodejs: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5], ["fetchSubmodules", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["SQLX_OFFLINE", 38, 5], ["RUSTFLAGS", 41, 5], ["PGLS_VERSION", 42, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 55, 5], ["homepage", 56, 5], ["license", 57, 5], ["maintainers", 58, 5], ["mainProgram", 61, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["cargoHash", 22, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 33, 3], ["env", 37, 3], ["cargoBuildFlags", 45, 3], ["doCheck", 47, 3], ["nativeInstallCheckInputs", 49, 3], ["doInstallCheck", 52, 3], ["meta", 54, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const nodejs = nix.arg($, "nodejs");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "postgres-language-server",
       version: "0.26.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "supabase-community",
           repo: "postgres-language-server",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -33,7 +30,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(rustPlatform, "bindgenHook")), tree_sitter, nodejs]),
       buildInputs: nix.thunk(() => [rust_jemalloc_sys]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         SQLX_OFFLINE: 1n,
         RUSTFLAGS: "-C strip=symbols -C codegen-units=1",
         PGLS_VERSION: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -43,7 +40,7 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Tools and language server for Postgres",
         homepage: "https://pg-language-server.com",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

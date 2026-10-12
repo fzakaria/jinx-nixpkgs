@@ -2,17 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/python-http-server.nix", [[["type", 17, 9], ["description", 18, 9]], [["type", 22, 9], ["default", 23, 9], ["description", 24, 9]], [["type", 28, 9], ["default", 29, 9], ["defaultText", 30, 9], ["description", 31, 9]], [["package", 16, 7], ["port", 21, 7], ["directory", 27, 7]], [["python-http-server", 15, 5]], [["argv", 37, 13]], [["enable", 49, 9]], [["webroot", 47, 7]], [["process", 37, 5], ["configData", 46, 5]], [["_class", 12, 3], ["options", 14, 3], ["config", 36, 3]]]);
 const formals$1 = { args: { config: false, lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/python-http-server.nix", [["type", 17, 9], ["description", 18, 9]]);
-const pos$2 = nix.positions(here + "/python-http-server.nix", [["type", 22, 9], ["default", 23, 9], ["description", 24, 9]]);
-const pos$3 = nix.positions(here + "/python-http-server.nix", [["type", 28, 9], ["default", 29, 9], ["defaultText", 30, 9], ["description", 31, 9]]);
-const pos$4 = nix.positions(here + "/python-http-server.nix", [["package", 16, 7], ["port", 21, 7], ["directory", 27, 7]]);
-const pos$5 = nix.positions(here + "/python-http-server.nix", [["python-http-server", 15, 5]]);
-const pos$6 = nix.positions(here + "/python-http-server.nix", [["argv", 37, 13]]);
-const pos$7 = nix.positions(here + "/python-http-server.nix", [["enable", 49, 9]]);
-const pos$8 = nix.positions(here + "/python-http-server.nix", [["webroot", 47, 7]]);
-const pos$9 = nix.positions(here + "/python-http-server.nix", [["process", 37, 5], ["configData", 46, 5]]);
-const pos$10 = nix.positions(here + "/python-http-server.nix", [["_class", 12, 3], ["options", 14, 3], ["config", 36, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,25 +12,25 @@ export default nix.lambda((args) => (() => {
   const mkOption = nix.thunk(() => nix.attr(lib, "mkOption"));
   const types = nix.thunk(() => nix.attr(lib, "types"));
   return {
-    [nix.POS]: pos$10,
+    [nix.POS]: $pos[9],
     _class: "service",
     options: nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       "python-http-server": nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         package: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             type: nix.thunk(() => nix.sel(types, "package")),
             description: "Python package to use for the web server",
           })))),
         port: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             type: nix.thunk(() => nix.sel(types, "port")),
             default: 8000n,
             description: "Port to listen on",
           })))),
         directory: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             type: nix.thunk(() => nix.sel(types, "str")),
             default: nix.thunk(() => nix.sel(config, "configData", "webroot", "path")),
             defaultText: nix.thunk(() => nix.app(nix.sel(lib, "literalExpression"), "config.configData.\"webroot\".path")),
@@ -48,9 +39,9 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       process: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         argv: nix.thunk(() => [
           nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(config, "python-http-server", "package")))}`),
           "-m",
@@ -61,9 +52,9 @@ export default nix.lambda((args) => (() => {
         ]),
       })),
       configData: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         webroot: nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => nix.eq(nix.sel(config, "python-http-server", "directory"), nix.sel(config, "configData", "webroot", "path"))))),
         })),
       })),

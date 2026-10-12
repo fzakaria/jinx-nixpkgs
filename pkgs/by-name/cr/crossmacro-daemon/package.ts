@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]], [["updateScript", 69, 12]], [["description", 72, 5], ["homepage", 73, 5], ["changelog", 74, 5], ["license", 75, 5], ["platforms", 76, 5], ["mainProgram", 77, 5], ["maintainers", 78, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["projectFile", 26, 3], ["nugetDeps", 27, 3], ["dotnet-sdk", 29, 3], ["dotnet-runtime", 30, 3], ["selfContainedBuild", 32, 3], ["executables", 33, 3], ["buildType", 34, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 42, 3], ["dotnetFlags", 47, 3], ["postInstall", 58, 3], ["passthru", 69, 3], ["meta", 71, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildDotnetModule: false, dotnetCorePackages: false, fetchFromGitHub: false, "nix-update-script": false, autoPatchelfHook: false, clang: false, patchelf: false, systemd: false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 69, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 72, 5], ["homepage", 73, 5], ["changelog", 74, 5], ["license", 75, 5], ["platforms", 76, 5], ["mainProgram", 77, 5], ["maintainers", 78, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["projectFile", 26, 3], ["nugetDeps", 27, 3], ["dotnet-sdk", 29, 3], ["dotnet-runtime", 30, 3], ["selfContainedBuild", 32, 3], ["executables", 33, 3], ["buildType", 34, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 42, 3], ["dotnetFlags", 47, 3], ["postInstall", 58, 3], ["passthru", 69, 3], ["meta", 71, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const pname = "crossmacro-daemon";
       const version = "1.3.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "alper-han",
           repo: "CrossMacro",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -52,11 +49,11 @@ export default nix.lambda((args) => (() => {
       ]);
       const postInstall = nix.thunk(() => nix.add("install -Dm644 scripts/assets/io.github.alper_han.crossmacro.policy \\\n  $out/share/polkit-1/actions/io.github.alper_han.crossmacro.policy\n\ninstall -Dm644 scripts/assets/50-crossmacro.rules \\\n  $out/share/polkit-1/rules.d/50-crossmacro.rules\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), "patchelf --add-needed libsystemd.so.0 $out/lib/crossmacro-daemon/CrossMacro.Daemon\n")));
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Privileged input daemon for CrossMacro",
         homepage: "https://github.com/alper-han/CrossMacro",
         changelog: nix.thunk(() => nix.str`https://github.com/alper-han/CrossMacro/releases/tag/v${version}`),
@@ -69,7 +66,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

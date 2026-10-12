@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 16, 5], ["version", 17, 13], ["hash", 18, 5]], [["DJANGO_SETTINGS_MODULE", 28, 7]], [["homepage", 36, 5], ["description", 37, 5], ["changelog", 38, 5], ["license", 39, 5]], [["pname", 11, 3], ["version", 12, 3], ["pyproject", 13, 3], ["src", 15, 3], ["build-system", 21, 3], ["buildInputs", 26, 3], ["env", 28, 3], ["doCheck", 31, 3], ["pythonImportsCheck", 33, 3], ["meta", 35, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, setuptools: false, "setuptools-scm": false, django: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 16, 5], ["version", 17, 13], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["DJANGO_SETTINGS_MODULE", 28, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["homepage", 36, 5], ["description", 37, 5], ["changelog", 38, 5], ["license", 39, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 11, 3], ["version", 12, 3], ["pyproject", 13, 3], ["src", 15, 3], ["build-system", 21, 3], ["buildInputs", 26, 3], ["env", 28, 3], ["doCheck", 31, 3], ["pythonImportsCheck", 33, 3], ["meta", 35, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,25 +18,25 @@ export default nix.lambda((args) => (() => {
       const version = "12.11.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "sorl_thumbnail",
           version: version,
           hash: "sha256-GRuJwn7LQLXCo1VJ1VfRfEhBxq/0ObLhe5OLke6kY7M=",
         }))));
       const build_system = nix.thunk(() => [setuptools, setuptools_scm]);
       const buildInputs = nix.thunk(() => [django]);
-      const env = nix.thunk(() => ({ [nix.POS]: pos$2, DJANGO_SETTINGS_MODULE: "sorl.thumbnail.conf.defaults" }));
+      const env = nix.thunk(() => ({ [nix.POS]: $pos[1], DJANGO_SETTINGS_MODULE: "sorl.thumbnail.conf.defaults" }));
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["sorl.thumbnail"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://sorl-thumbnail.readthedocs.org/en/latest/",
         description: "Thumbnails for Django",
         changelog: nix.thunk(() => nix.str`https://github.com/jazzband/sorl-thumbnail/blob/${version}/CHANGES.rst`),
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

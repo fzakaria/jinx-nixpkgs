@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 32, 13], ["version", 32, 19], ["hash", 33, 5]], [["pname", 37, 13], ["version", 37, 19], ["src", 37, 27], ["hash", 38, 5]], [["ROCKSDB_INCLUDE_DIR", 50, 5], ["ROCKSDB_LIB_DIR", 51, 5]], [["description", 91, 5], ["mainProgram", 92, 5], ["homepage", 93, 5], ["changelog", 94, 5], ["maintainers", 95, 5], ["license", 96, 5]], [["pname", 27, 3], ["version", 28, 3], ["pyproject", 29, 3], ["src", 31, 3], ["cargoDeps", 36, 3], ["nativeBuildInputs", 41, 3], ["buildInputs", 47, 3], ["env", 49, 3], ["propagatedBuildInputs", 54, 3], ["pythonImportsCheck", 65, 3], ["nativeCheckInputs", 66, 3], ["disabledTests", 74, 3], ["meta", 90, 3]]]);
 const formals$1 = { args: { lib: false, fetchPypi: false, buildPythonPackage: false, pythonAtLeast: false, stdenv: false, rustPlatform: false, rocksdb_9_10: false, bitstring: false, cachetools: false, cffi: false, deprecation: false, iconv: false, matplotlib: false, numpy: false, scipy: false, screed: false, hypothesis: false, "pytest-xdist": false, pyyaml: false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 32, 13], ["version", 32, 19], ["hash", 33, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 37, 13], ["version", 37, 19], ["src", 37, 27], ["hash", 38, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["ROCKSDB_INCLUDE_DIR", 50, 5], ["ROCKSDB_LIB_DIR", 51, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 91, 5], ["mainProgram", 92, 5], ["homepage", 93, 5], ["changelog", 94, 5], ["maintainers", 95, 5], ["license", 96, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 27, 3], ["version", 28, 3], ["pyproject", 29, 3], ["src", 31, 3], ["cargoDeps", 36, 3], ["nativeBuildInputs", 41, 3], ["buildInputs", 47, 3], ["env", 49, 3], ["propagatedBuildInputs", 54, 3], ["pythonImportsCheck", 65, 3], ["nativeCheckInputs", 66, 3], ["disabledTests", 74, 3], ["meta", 90, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -37,13 +33,13 @@ export default nix.lambda((args) => (() => {
       const version = "4.9.4";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-KIidEQQeOYgxh1x9F6Nn4+WTewldAGdS5Fx/IwL0Ym0=",
         }))));
       const cargoDeps = nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: pname,
           version: version,
           src: src,
@@ -59,7 +55,7 @@ export default nix.lambda((args) => (() => {
       })());
       const buildInputs = nix.thunk(() => [iconv]);
       const env = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         ROCKSDB_INCLUDE_DIR: nix.thunk(() => nix.str`${rocksdb}/include`),
         ROCKSDB_LIB_DIR: nix.thunk(() => nix.str`${rocksdb}/lib`),
       }));
@@ -72,7 +68,7 @@ export default nix.lambda((args) => (() => {
         "test_metagenome_kreport_out_fail",
       ], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(pythonAtLeast, "3.14")), nix.thunk(() => ["test_cmd_3"])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")))), nix.thunk(() => ["rocksdb", "disk_revindex", "create_dataset_picklist"])))));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Quickly search, compare, and analyze genomic and metagenomic data sets",
         mainProgram: "sourmash",
         homepage: "https://sourmash.bio",
@@ -84,7 +80,7 @@ export default nix.lambda((args) => (() => {
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         pyproject,

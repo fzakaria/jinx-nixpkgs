@@ -2,15 +2,15 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/packages.nix", [[["itgmania-unwrapped", 3, 3], ["arrowcloud-theme", 5, 3], ["digital-dance", 6, 3], ["itg2-sm5", 7, 3], ["itg3encore", 8, 3], ["zmod-simply-love", 9, 3]]]);
 const formals$1 = { args: { lib: false, newScope: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/packages.nix", [["itgmania-unwrapped", 3, 3], ["arrowcloud-theme", 5, 3], ["digital-dance", 6, 3], ["itg2-sm5", 7, 3], ["itg3encore", 8, 3], ["zmod-simply-love", 9, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const newScope = nix.arg($, "newScope");
   return nix.app(nix.sel(lib, "makeScope"), newScope, (self) => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       "itgmania-unwrapped": nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./unwrapped.nix"), nix.thunk(() => ({})))),
       "arrowcloud-theme": nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./themes/arrowcloud-theme.nix"), nix.thunk(() => ({})))),
       "digital-dance": nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./themes/digital-dance.nix"), nix.thunk(() => ({})))),

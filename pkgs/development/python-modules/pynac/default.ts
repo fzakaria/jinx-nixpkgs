@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 13, 5], ["sha256", 14, 5]], [["homepage", 18, 5], ["description", 19, 5], ["license", 20, 5]], [["pname", 8, 3], ["version", 9, 3], ["format", 10, 3], ["src", 12, 3], ["meta", 17, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchurl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 13, 5], ["sha256", 14, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 18, 5], ["description", 19, 5], ["license", 20, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 8, 3], ["version", 9, 3], ["format", 10, 3], ["src", 12, 3], ["meta", 17, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,17 +11,17 @@ export default nix.lambda((args) => (() => {
   const buildPythonPackage = nix.arg($, "buildPythonPackage");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "pynac",
       version: "0.2",
       format: "setuptools",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "mirror://sourceforge/project/pynac/pynac/pynac-0.2/pynac-0.2.tar.gz",
           sha256: "0avzqqcxl54karjmla9jbsyid98mva36lxahwmrsx5h40ys2ggxp",
         })))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/se-esss-litterbox/Pynac",
         description: "Python wrapper around the Dynac charged particle simulator",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

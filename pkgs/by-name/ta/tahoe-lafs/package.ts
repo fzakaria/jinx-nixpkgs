@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["SETUPTOOLS_SCM_PRETEND_VERSION", 17, 7]], [["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5]], [["shortName", 150, 9], ["fullName", 151, 9], ["url", 152, 9]], [["description", 138, 5], ["mainProgram", 139, 5], ["longDescription", 140, 5], ["homepage", 146, 5], ["license", 147, 5], ["maintainers", 155, 5], ["platforms", 156, 5]], [["pname", 11, 3], ["version", 12, 3], ["pyproject", 13, 3], ["env", 17, 3], ["src", 19, 3], ["outputs", 26, 3], ["preConfigure", 34, 3], ["build-system", 46, 3], ["nativeBuildInputs", 51, 3], ["dependencies", 62, 3], ["postInstall", 96, 3], ["nativeCheckInputs", 112, 3], ["checkPhase", 128, 3], ["meta", 137, 3]]]);
 const formals$1 = { args: { lib: false, python3Packages: false, fetchFromGitHub: false, installShellFiles: false, texinfo: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["SETUPTOOLS_SCM_PRETEND_VERSION", 17, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["shortName", 150, 9], ["fullName", 151, 9], ["url", 152, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 138, 5], ["mainProgram", 139, 5], ["longDescription", 140, 5], ["homepage", 146, 5], ["license", 147, 5], ["maintainers", 155, 5], ["platforms", 156, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["pyproject", 13, 3], ["env", 17, 3], ["src", 19, 3], ["outputs", 26, 3], ["preConfigure", 34, 3], ["build-system", 46, 3], ["nativeBuildInputs", 51, 3], ["dependencies", 62, 3], ["postInstall", 96, 3], ["nativeCheckInputs", 112, 3], ["checkPhase", 128, 3], ["meta", 137, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +18,11 @@ export default nix.lambda((args) => (() => {
       const version = "1.20.0-unstable-2025-10-12";
       const pyproject = true;
       const env = nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         SETUPTOOLS_SCM_PRETEND_VERSION: nix.thunk(() => nix.builtins.elemAt(nix.thunk(() => nix.builtins.split("-", version)), 0n)),
       }));
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "tahoe-lafs",
           repo: "tahoe-lafs",
           rev: "7b96d16aba511fd34dcc0c14c9db754229e19531",
@@ -109,7 +105,7 @@ export default nix.lambda((args) => (() => {
       })());
       const checkPhase = "runHook preCheck\n\nversion=$SETUPTOOLS_SCM_PRETEND_VERSION runHook versionCheckHook\ntrial --rterrors allmydata\n\nrunHook postCheck\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Tahoe-LAFS, a decentralized, fault-tolerant, distributed storage system",
         mainProgram: "tahoe",
         longDescription: "Tahoe-LAFS is a secure, decentralized, fault-tolerant filesystem.\nThis filesystem is encrypted and spread over multiple peers in\nsuch a way that it remains available even when some of the peers\nare unavailable, malfunctioning, or malicious.\n",
@@ -117,7 +113,7 @@ export default nix.lambda((args) => (() => {
         license: nix.thunk(() => [
           nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
           nix.thunk(() => nix.app(nix.sel(lib, "licenses", "mkLicense"), nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               shortName: "tgppl10",
               fullName: "Transitive Grace Period Public Licence version 1.0",
               url: "https://github.com/tahoe-lafs/tahoe-lafs/blob/master/COPYING.TGPPL.rst",
@@ -130,7 +126,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         pyproject,

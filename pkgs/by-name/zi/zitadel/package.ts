@@ -2,16 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["hash", 24, 5]], [["pname", 31, 7], ["version", 32, 15], ["src", 34, 7], ["proxyVendor", 36, 7], ["vendorHash", 37, 7], ["buildPhase", 39, 7], ["postInstall", 43, 7]], [["pname", 66, 7], ["version", 67, 15], ["src", 69, 7], ["patches", 70, 7], ["nativeBuildInputs", 72, 7], ["buildPhase", 77, 7], ["installPhase", 82, 7], ["outputHashMode", 86, 7], ["outputHashAlgo", 87, 7], ["outputHash", 88, 7]], [["pname", 92, 5], ["version", 93, 13], ["nativeBuildInputs", 94, 5], ["outputPath", 102, 5], ["hash", 103, 5]], [["generateProtobufCode", 149, 15], ["version", 149, 36], ["zitadelRepo", 149, 44]], [["console", 148, 5]], [["description", 154, 5], ["homepage", 155, 5], ["downloadPage", 156, 5], ["platforms", 157, 5], ["license", 158, 5], ["sourceProvenance", 159, 5], ["maintainers", 160, 5]], [["pname", 107, 3], ["version", 108, 11], ["src", 110, 3], ["nativeBuildInputs", 112, 3], ["proxyVendor", 117, 3], ["vendorHash", 118, 3], ["ldflags", 119, 3], ["preBuild", 123, 3], ["doCheck", 140, 3], ["installPhase", 142, 3], ["passthru", 147, 3], ["meta", 153, 3]]]);
 const formals$1 = { args: { stdenv: false, buildGoModule: false, callPackage: false, fetchFromGitHub: false, lib: false, buf: false, cacert: false, "grpc-gateway": false, "protoc-gen-go": false, "protoc-gen-go-grpc": false, "protoc-gen-validate": false, sass: false, statik: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 31, 7], ["version", 32, 15], ["src", 34, 7], ["proxyVendor", 36, 7], ["vendorHash", 37, 7], ["buildPhase", 39, 7], ["postInstall", 43, 7]]);
 const formals$2 = { args: { pname: false, version: false, nativeBuildInputs: true, bufArgs: true, workDir: true, outputPath: false, hash: false }, ellipsis: false };
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 66, 7], ["version", 67, 15], ["src", 69, 7], ["patches", 70, 7], ["nativeBuildInputs", 72, 7], ["buildPhase", 77, 7], ["installPhase", 82, 7], ["outputHashMode", 86, 7], ["outputHashAlgo", 87, 7], ["outputHash", 88, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 92, 5], ["version", 93, 13], ["nativeBuildInputs", 94, 5], ["outputPath", 102, 5], ["hash", 103, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["generateProtobufCode", 149, 15], ["version", 149, 36], ["zitadelRepo", 149, 44]]);
-const pos$6 = nix.positions(here + "/package.nix", [["console", 148, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["description", 154, 5], ["homepage", 155, 5], ["downloadPage", 156, 5], ["platforms", 157, 5], ["license", 158, 5], ["sourceProvenance", 159, 5], ["maintainers", 160, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 107, 3], ["version", 108, 11], ["src", 110, 3], ["nativeBuildInputs", 112, 3], ["proxyVendor", 117, 3], ["vendorHash", 118, 3], ["ldflags", 119, 3], ["preBuild", 123, 3], ["doCheck", 140, 3], ["installPhase", 142, 3], ["passthru", 147, 3], ["meta", 153, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,7 +23,7 @@ export default nix.lambda((args) => (() => {
   const statik = nix.arg($, "statik");
   const version = "2.71.7";
   const zitadelRepo = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "zitadel",
       repo: "zitadel",
       rev: nix.thunk(() => nix.str`v${version}`),
@@ -38,7 +31,7 @@ export default nix.lambda((args) => (() => {
     }))));
   const goModulesHash = "sha256-iZCjHSpQ7Gy41Dd4svRLbyEh1N8VE8U0uCOlN9rfJQU=";
   const buildZitadelProtocGen = (name) => nix.app(buildGoModule, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: nix.thunk(() => nix.str`protoc-gen-${name}`),
       version: version,
       src: zitadelRepo,
@@ -61,7 +54,7 @@ export default nix.lambda((args) => (() => {
     const outputPath = nix.arg($_1, "outputPath");
     const hash = nix.arg($_1, "hash");
     return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname: nix.thunk(() => nix.str`${pname}-buf-generated`),
         version: version_1,
         src: zitadelRepo,
@@ -78,7 +71,7 @@ HOME=$TMPDIR buf generate ${bufArgs}
       })));
   })(), formals$2);
   const protobufGenerated = nix.thunk(() => nix.app(generateProtobufCode, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "zitadel",
       version: version,
       nativeBuildInputs: nix.thunk(() => [
@@ -120,16 +113,16 @@ cp -r ${nix.sel(passthru, "console")}/* internal/api/ui/console/static
       const doCheck = false;
       const installPhase = "mkdir -p $out/bin\ninstall -Dm755 $GOPATH/bin/zitadel $out/bin/\n";
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         console: nix.thunk(() => nix.app(callPackage, nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./console.nix")), nix.thunk(() => ({
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               generateProtobufCode: generateProtobufCode,
               version: version_1,
               zitadelRepo: zitadelRepo,
             })))), nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "Identity and access management platform",
         homepage: "https://zitadel.com/",
         downloadPage: "https://github.com/zitadel/zitadel/releases",
@@ -139,7 +132,7 @@ cp -r ${nix.sel(passthru, "console")}/* internal/api/ui/console/static
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "nrabulinski"))]),
       }));
       return {
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         pname,
         version: version_1,
         src,

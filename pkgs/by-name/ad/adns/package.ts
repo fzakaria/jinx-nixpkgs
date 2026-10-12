@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["urls", 15, 5], ["hash", 19, 5]], [["url", 49, 5], ["rev-prefix", 50, 5]], [["updateScript", 48, 12]], [["homepage", 54, 5], ["description", 55, 5], ["license", 56, 5], ["platforms", 62, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["patches", 22, 3], ["nativeBuildInputs", 24, 3], ["configureFlags", 29, 3], ["enableParallelBuilding", 31, 3], ["doCheck", 34, 3], ["doInstallCheck", 36, 3], ["installCheckPhase", 38, 3], ["passthru", 48, 3], ["meta", 53, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, gnum4: false, autoreconfHook: false, gitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["urls", 15, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 49, 5], ["rev-prefix", 50, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 48, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 54, 5], ["description", 55, 5], ["license", 56, 5], ["platforms", 62, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["patches", 22, 3], ["nativeBuildInputs", 24, 3], ["configureFlags", 29, 3], ["enableParallelBuilding", 31, 3], ["doCheck", 34, 3], ["doInstallCheck", 36, 3], ["installCheckPhase", 38, 3], ["passthru", 48, 3], ["meta", 53, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const autoreconfHook = nix.arg($, "autoreconfHook");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "adns",
       version: "1.6.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           urls: nix.thunk(() => [
             nix.thunk(() => nix.str`https://www.chiark.greenend.org.uk/~ian/adns/ftp/adns-${nix.sel(finalAttrs, "version")}.tar.gz`),
             nix.thunk(() => nix.str`mirror://gnu/adns/adns-${nix.sel(finalAttrs, "version")}.tar.gz`),
@@ -37,15 +33,15 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       installCheckPhase: "runHook preInstallCheck\n\nfor prog in $out/bin/*; do\n  $prog --help > /dev/null && echo $(basename $prog) shows usage\ndone\n\nrunHook postInstallCheck\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://www.chiark.greenend.org.uk/ucgi/~ianmdlvl/githttp/adns.git",
             "rev-prefix": "adns-",
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "http://www.chiark.greenend.org.uk/~ian/adns/",
         description: "Asynchronous DNS resolver library",
         license: nix.thunk(() => [

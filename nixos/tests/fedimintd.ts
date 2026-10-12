@@ -2,47 +2,39 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/fedimintd.nix", [[["maintainers", 9, 5]], [["url", 18, 11]], [["url", 21, 11]], [["enable", 16, 9], ["p2p", 17, 9], ["api_ws", 20, 9], ["environment", 23, 9]], [["mainnet", 15, 26]], [["fedimintd", 15, 16]], [["services", 15, 7]], [["machine", 12, 9]], [["name", 6, 3], ["meta", 8, 3], ["nodes", 12, 3], ["testScript", 27, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/fedimintd.nix", [["maintainers", 9, 5]]);
 const formals$2 = { args: {  }, ellipsis: true };
-const pos$2 = nix.positions(here + "/fedimintd.nix", [["url", 18, 11]]);
-const pos$3 = nix.positions(here + "/fedimintd.nix", [["url", 21, 11]]);
-const pos$4 = nix.positions(here + "/fedimintd.nix", [["enable", 16, 9], ["p2p", 17, 9], ["api_ws", 20, 9], ["environment", 23, 9]]);
-const pos$5 = nix.positions(here + "/fedimintd.nix", [["mainnet", 15, 26]]);
-const pos$6 = nix.positions(here + "/fedimintd.nix", [["fedimintd", 15, 16]]);
-const pos$7 = nix.positions(here + "/fedimintd.nix", [["services", 15, 7]]);
-const pos$8 = nix.positions(here + "/fedimintd.nix", [["machine", 12, 9]]);
 const formals$3 = { args: { nodes: false }, ellipsis: true };
-const pos$9 = nix.positions(here + "/fedimintd.nix", [["name", 6, 3], ["meta", 8, 3], ["nodes", 12, 3], ["testScript", 27, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   return {
-    [nix.POS]: pos$9,
+    [nix.POS]: $pos[8],
     name: "fedimintd",
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
       return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "dpc"))]),
       };
     })()),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             fedimintd: nix.thunk(() => ({
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               mainnet: nix.thunk(() => ({
-                [nix.POS]: pos$4,
+                [nix.POS]: $pos[3],
                 enable: true,
-                p2p: nix.thunk(() => ({ [nix.POS]: pos$2, url: "fedimint://example.com" })),
-                api_ws: nix.thunk(() => ({ [nix.POS]: pos$3, url: "wss://example.com" })),
+                p2p: nix.thunk(() => ({ [nix.POS]: $pos[1], url: "fedimint://example.com" })),
+                api_ws: nix.thunk(() => ({ [nix.POS]: $pos[2], url: "wss://example.com" })),
                 environment: nix.thunk(() => ({})),
               })),
             })),

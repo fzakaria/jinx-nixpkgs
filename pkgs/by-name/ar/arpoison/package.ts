@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 15, 5], ["sha256", 16, 5]], [["description", 29, 5], ["homepage", 30, 5], ["license", 31, 5], ["maintainers", 32, 5], ["platforms", 33, 5], ["mainProgram", 34, 5]], [["pname", 9, 3], ["version", 10, 3], ["buildInputs", 12, 3], ["src", 14, 3], ["postPatch", 19, 3], ["installPhase", 21, 3], ["meta", 28, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchzip: false, libnet: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 15, 5], ["sha256", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 29, 5], ["homepage", 30, 5], ["license", 31, 5], ["maintainers", 32, 5], ["platforms", 33, 5], ["mainProgram", 34, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["buildInputs", 12, 3], ["src", 14, 3], ["postPatch", 19, 3], ["installPhase", 21, 3], ["meta", 28, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,19 +12,19 @@ export default nix.lambda((args) => (() => {
   const fetchzip = nix.arg($, "fetchzip");
   const libnet = nix.arg($, "libnet");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "arpoison",
       version: "0.7",
       buildInputs: nix.thunk(() => [libnet]),
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`http://www.arpoison.net/arpoison-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "0krhszx3s0qwfg4rma5a51ak71nnd9xfs2ibggc3hwiz506s2x37",
         })))),
       postPatch: "substituteInPlace Makefile --replace gcc cc",
       installPhase: "mkdir -p $out/bin $out/share/man/man8\ngzip arpoison.8\ncp arpoison $out/bin\ncp arpoison.8.gz $out/share/man/man8\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "UNIX arp cache update utility",
         homepage: "http://www.arpoison.net/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

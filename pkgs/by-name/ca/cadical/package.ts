@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["3.0.1", 20, 9], ["3.0.0", 21, 9], ["2.2.1", 22, 9], ["2.1.3", 23, 9], ["2.0.0", 24, 9]], [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]], [["includedir", 48, 9], ["libdir", 49, 9]], [["name", 40, 7], ["version", 41, 28], ["cflags", 42, 7], ["libs", 43, 7], ["variables", 47, 7], ["description", 51, 33]], [["includedir", 57, 5], ["libdir", 58, 5]], [["description", 102, 5], ["maintainers", 103, 5], ["platforms", 107, 5], ["license", 108, 5], ["homepage", 109, 5], ["mainProgram", 110, 5]], [["pname", 11, 3], ["version", 12, 11], ["src", 14, 3], ["outputs", 29, 3], ["doCheck", 34, 3], ["nativeBuildInputs", 36, 3], ["pkgconfigItems", 38, 3], ["env", 55, 3], ["enableParallelBuilding", 61, 3], ["postPatch", 64, 3], ["configurePhase", 77, 3], ["installPhase", 85, 3], ["meta", 101, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, copyPkgconfigItems: false, makePkgconfigItem: false, version: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["3.0.1", 20, 9], ["3.0.0", 21, 9], ["2.2.1", 22, 9], ["2.1.3", 23, 9], ["2.0.0", 24, 9]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["includedir", 48, 9], ["libdir", 49, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["name", 40, 7], ["version", 41, 28], ["cflags", 42, 7], ["libs", 43, 7], ["variables", 47, 7], ["description", 51, 33]]);
-const pos$5 = nix.positions(here + "/package.nix", [["includedir", 57, 5], ["libdir", 58, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 102, 5], ["maintainers", 103, 5], ["platforms", 107, 5], ["license", 108, 5], ["homepage", 109, 5], ["mainProgram", 110, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 11], ["src", 14, 3], ["outputs", 29, 3], ["doCheck", 34, 3], ["nativeBuildInputs", 36, 3], ["pkgconfigItems", 38, 3], ["env", 55, 3], ["enableParallelBuilding", 61, 3], ["postPatch", 64, 3], ["configurePhase", 77, 3], ["installPhase", 85, 3], ["meta", 101, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,16 +14,16 @@ export default nix.lambda((args) => (() => {
   const makePkgconfigItem = nix.arg($, "makePkgconfigItem");
   const version = nix.argOr($, "version", () => "3.0.1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "cadical",
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "arminbiere",
           repo: "cadical",
           rev: nix.thunk(() => nix.str`rel-${nix.sel(finalAttrs, "version")}`),
           hash: nix.thunk(() => nix.sel({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             "3.0.1": "sha256-oHebG9VBtEnxmBpfP6A/f/UNIx2AXbLPs0NHPoNlZfY=",
             "3.0.0": "sha256-pymbSC6bwQQ0YCtJd3xWZiC22UEkFiKSLObSOnoQj9I=",
             "2.2.1": "sha256-dYRaw9DI63Nqz0IJkfQYU4y00KSfq1Xv0xZuL1G15CY=",
@@ -44,18 +38,18 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(makePkgconfigItem, nix.thunk(() => (() => {
             const from = nix.thunk(() => nix.sel(finalAttrs, "meta"));
             return {
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             name: "cadical",
             version: nix.thunk(() => nix.attr(finalAttrs, "version")),
             cflags: nix.thunk(() => ["-I${includedir}"]),
             libs: nix.thunk(() => ["-L${libdir}", "-lcadical"]),
-            variables: nix.thunk(() => ({ [nix.POS]: pos$3, includedir: "@includedir@", libdir: "@libdir@" })),
+            variables: nix.thunk(() => ({ [nix.POS]: $pos[2], includedir: "@includedir@", libdir: "@libdir@" })),
             description: nix.thunk(() => nix.attr(from, "description")),
           };
           })()))),
       ]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         includedir: nix.thunk(() => nix.str`${nix.builtins.placeholder("dev")}/include`),
         libdir: nix.thunk(() => nix.str`${nix.builtins.placeholder("lib")}/lib`),
       })),
@@ -77,7 +71,7 @@ install -Dm0755 {LICEN?E,README*,VERSION} "$out/share/doc/${nix.sel(finalAttrs, 
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Simplified Satisfiability Solver",
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);

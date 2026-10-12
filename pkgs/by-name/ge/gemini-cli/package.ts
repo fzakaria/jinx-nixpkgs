@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]], [["updateScript", 112, 12]], [["message", 120, 7], ["urls", 121, 7]], [["removal", 119, 14]], [["description", 115, 5], ["homepage", 116, 5], ["license", 117, 5], ["sourceProvenance", 118, 5], ["problems", 119, 5], ["maintainers", 125, 5], ["platforms", 129, 5], ["mainProgram", 130, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["nodejs", 27, 3], ["npmDepsHash", 29, 3], ["dontPatchElf", 31, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 40, 3], ["preConfigure", 45, 3], ["postPatch", 50, 3], ["disallowedReferences", 77, 3], ["npmBuildScript", 82, 3], ["installPhase", 84, 3], ["passthru", 112, 3], ["meta", 114, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildNpmPackage: false, fetchFromGitHub: false, jq: false, "pkg-config": false, makeWrapper: false, clang_20: false, libsecret: false, ripgrep: false, nodejs_22: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 112, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["message", 120, 7], ["urls", 121, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["removal", 119, 14]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 115, 5], ["homepage", 116, 5], ["license", 117, 5], ["sourceProvenance", 118, 5], ["problems", 119, 5], ["maintainers", 125, 5], ["platforms", 129, 5], ["mainProgram", 130, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["nodejs", 27, 3], ["npmDepsHash", 29, 3], ["dontPatchElf", 31, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 40, 3], ["preConfigure", 45, 3], ["postPatch", 50, 3], ["disallowedReferences", 77, 3], ["npmBuildScript", 82, 3], ["installPhase", 84, 3], ["passthru", 112, 3], ["meta", 114, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const nodejs_22 = nix.arg($, "nodejs_22");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "gemini-cli",
       version: "0.47.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "google-gemini",
           repo: "gemini-cli",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -99,11 +94,11 @@ makeWrapper "${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(finalAttr
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "AI agent that brings the power of Gemini directly into your terminal",
         homepage: "https://github.com/google-gemini/gemini-cli",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -112,9 +107,9 @@ runHook postInstall
           return [nix.thunk(() => nix.lookup(w, "fromSource"))];
         })()),
         problems: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           removal: nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             message: "Unpaid tier and Google AI Pro/Ultra users: Gemini CLI was replaced by Antigravity CLI.",
             urls: nix.thunk(() => [
               "https://developers.googleblog.com/an-important-update-transitioning-gemini-cli-to-antigravity-cli/",

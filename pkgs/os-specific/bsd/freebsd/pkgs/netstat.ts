@@ -2,9 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/netstat.nix", [[["mainProgram", 21, 8]], [["path", 11, 3], ["buildInputs", 13, 3], ["meta", 21, 3]]]);
 const formals$1 = { args: { lib: false, mkDerivation: false, libxo: false, libutil: false, libmemstat: false, libjail: false, libnetgraph: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/netstat.nix", [["mainProgram", 21, 8]]);
-const pos$2 = nix.positions(here + "/netstat.nix", [["path", 11, 3], ["buildInputs", 13, 3], ["meta", 21, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,10 +15,10 @@ export default nix.lambda((args) => (() => {
   const libjail = nix.arg($, "libjail");
   const libnetgraph = nix.arg($, "libnetgraph");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       path: "usr.bin/netstat",
       buildInputs: nix.thunk(() => [libxo, libutil, libmemstat, libjail, libnetgraph]),
-      meta: nix.thunk(() => ({ [nix.POS]: pos$1, mainProgram: "netstat" })),
+      meta: nix.thunk(() => ({ [nix.POS]: $pos[0], mainProgram: "netstat" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=netstat.ts.map

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 16, 5], ["sha256", 17, 5]], [["url", 21, 5], ["sha256", 22, 5]], [["description", 43, 5], ["longDescription", 44, 5], ["license", 50, 5], ["maintainers", 51, 5]], [["pname", 12, 3], ["version", 13, 11], ["src", 15, 3], ["src2", 20, 3], ["nativeBuildInputs", 25, 3], ["unpackCmd", 27, 3], ["installPhase", 32, 3], ["outputHashAlgo", 38, 3], ["outputHashMode", 39, 3], ["outputHash", 40, 3], ["meta", 42, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, dpkg: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 16, 5], ["sha256", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 21, 5], ["sha256", 22, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 43, 5], ["longDescription", 44, 5], ["license", 50, 5], ["maintainers", 51, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 11], ["src", 15, 3], ["src2", 20, 3], ["nativeBuildInputs", 25, 3], ["unpackCmd", 27, 3], ["installPhase", 32, 3], ["outputHashAlgo", 38, 3], ["outputHashMode", 39, 3], ["outputHash", 40, 3], ["meta", 42, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,16 +13,16 @@ export default nix.lambda((args) => (() => {
   const dpkg = nix.arg($, "dpkg");
   const version = "20030809";
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "kochi-substitute",
       version: version,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://debian/pool/main/t/ttf-kochi/ttf-kochi-gothic_${version}-15_all.deb`),
           sha256: "6e2311cd8e880a9328e4d3eef34a1c1f024fc87fba0dce177a0e1584a7360fea",
         })))),
       src2: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: nix.thunk(() => nix.str`mirror://debian/pool/main/t/ttf-kochi/ttf-kochi-mincho_${version}-15_all.deb`),
           sha256: "91ce6c993a3a0f77ed85db76f62ce18632b4c0cbd8f864676359a17ae5e6fa3c",
         })))),
@@ -36,7 +33,7 @@ export default nix.lambda((args) => (() => {
       outputHashMode: "recursive",
       outputHash: "10hcrf51npc1w2jsz5aiw07dgw96vs4wmsz4ai9zyaswipvf8ddy",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Japanese font, a free replacement for MS Gothic and MS Mincho",
         longDescription: "Kochi Gothic and Kochi Mincho were developed as free replacements for the\nMS Gothic and MS Mincho fonts from Microsoft. These are the Debian\nversions of the fonts, which remove some non-free glyphs that were added\nfrom the naga10 font.\n",
         license: nix.thunk(() => nix.sel(lib, "licenses", "wadalab")),

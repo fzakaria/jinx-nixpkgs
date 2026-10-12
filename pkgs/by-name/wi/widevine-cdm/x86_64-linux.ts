@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/x86_64-linux.nix", [[["url", 17, 5], ["hash", 18, 5]], [["updateScript", 41, 12]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 21, 3], ["unpackPhase", 23, 3], ["installPhase", 31, 3], ["passthru", 41, 3], ["meta", 43, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, "go-crx3": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/x86_64-linux.nix", [["url", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/x86_64-linux.nix", [["updateScript", 41, 12]]);
-const pos$3 = nix.positions(here + "/x86_64-linux.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 21, 3], ["unpackPhase", 23, 3], ["installPhase", 31, 3], ["passthru", 41, 3], ["meta", 43, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,18 +13,18 @@ export default nix.lambda((args) => (() => {
   const go_crx3 = nix.arg($, "go-crx3");
   const manifest = nix.thunk(() => nix.builtins.fromJSON(nix.thunk(() => nix.builtins.readFile(nix.path(here, "./x86_64-manifest.json")))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "widevine-cdm",
       version: nix.thunk(() => nix.sel(manifest, "version")),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.sel(manifest, "url")),
           hash: nix.thunk(() => nix.sel(manifest, "sri")),
         })))),
       nativeBuildInputs: nix.thunk(() => [go_crx3]),
       unpackPhase: "unpackDir=\"src\"\ncp \"$src\" \"$unpackDir\".crx # go-crx3 doesn't like .crx3 extensions\ncrx3 unpack \"$unpackDir\".crx\n\ncd \"$unpackDir\"\n",
       installPhase: "runHook preInstall\n\ninstall -vD manifest.json $out/share/google/chrome/WidevineCdm/manifest.json\ninstall -vD LICENSE $out/share/google/chrome/WidevineCdm/LICENSE.txt\ninstall -vD _platform_specific/linux_x64/libwidevinecdm.so $out/share/google/chrome/WidevineCdm/_platform_specific/linux_x64/libwidevinecdm.so\n\nrunHook postInstall\n",
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, updateScript: nix.path(here, "./update-x86_64.py") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[1], updateScript: nix.path(here, "./update-x86_64.py") })),
       meta: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./meta.nix")), lib)),
     }));
 })(), formals$1);

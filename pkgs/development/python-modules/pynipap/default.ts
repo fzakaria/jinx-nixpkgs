@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["description", 25, 5], ["longDescription", 26, 5], ["homepage", 30, 5], ["changelog", 31, 5], ["license", 32, 5], ["maintainers", 33, 5], ["platforms", 36, 5]], [["pname", 11, 3], ["pyproject", 12, 3], ["version", 14, 19], ["src", 14, 27], ["sourceRoot", 16, 3], ["build-system", 18, 3], ["doCheck", 22, 3], ["meta", 24, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, nipap: false, setuptools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["description", 25, 5], ["longDescription", 26, 5], ["homepage", 30, 5], ["changelog", 31, 5], ["license", 32, 5], ["maintainers", 33, 5], ["platforms", 36, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 11, 3], ["pyproject", 12, 3], ["version", 14, 19], ["src", 14, 27], ["sourceRoot", 16, 3], ["build-system", 18, 3], ["doCheck", 22, 3], ["meta", 24, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [setuptools]);
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Python client library for Neat IP Address Planner",
         longDescription: "NIPAP is the best open source IPAM in the known universe,\nchallenging classical IP address management (IPAM) systems in many areas.\n",
         homepage: "https://github.com/SpriteLink/NIPAP",
@@ -34,7 +33,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
       return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         pname,
         pyproject,
         version,

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 22, 5], ["hash", 23, 5]], [["url", 28, 5], ["hash", 29, 5], ["includes", 30, 5]], [["description", 46, 5], ["homepage", 47, 5], ["changelog", 48, 5], ["license", 49, 5], ["maintainers", 50, 5], ["broken", 51, 5]], [["pname", 16, 3], ["version", 17, 3], ["minimalOCamlVersion", 19, 3], ["src", 21, 3], ["patches", 27, 3], ["propagatedBuildInputs", 33, 3], ["doCheck", 43, 3], ["meta", 45, 3]]]);
 const formals$1 = { args: { lib: false, buildDunePackage: false, fetchurl: false, fetchpatch: false, "mirage-crypto-rng": false, mtime: false, gluon: false, randomconv: false, rio: false, telemetry: false, tls: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["url", 28, 5], ["hash", 29, 5], ["includes", 30, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 46, 5], ["homepage", 47, 5], ["changelog", 48, 5], ["license", 49, 5], ["maintainers", 50, 5], ["broken", 51, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 16, 3], ["version", 17, 3], ["minimalOCamlVersion", 19, 3], ["src", 21, 3], ["patches", 27, 3], ["propagatedBuildInputs", 33, 3], ["doCheck", 43, 3], ["meta", 45, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,17 +19,17 @@ export default nix.lambda((args) => (() => {
   const telemetry = nix.arg($, "telemetry");
   const tls = nix.arg($, "tls");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "riot",
       version: "0.0.8",
       minimalOCamlVersion: "5.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/leostera/riot/releases/download/${nix.sel(finalAttrs, "version")}/riot-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-SsiDz53b9bMIT9Q3IwDdB3WKy98WSd9fiieU41qZpeE=",
         })))),
       patches: nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: "https://github.com/riot-ml/riot/commit/bbbf0efce6dc84afba84e84cc231ce7ef2dcaa91.patch",
           hash: "sha256-qsPuEpur5DohOGezSTpOyBq9WxnY9OS6+w2Ls0tZkT8=",
           includes: nix.thunk(() => ["riot/lib/ssl.ml"]),
@@ -40,7 +37,7 @@ export default nix.lambda((args) => (() => {
       propagatedBuildInputs: nix.thunk(() => [gluon, mirage_crypto_rng, mtime, randomconv, rio, telemetry, tls]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Actor-model multi-core scheduler for OCaml 5",
         homepage: "https://github.com/leostera/riot",
         changelog: nix.thunk(() => nix.str`https://github.com/leostera/riot/blob/${nix.sel(finalAttrs, "version")}/CHANGES.md`),

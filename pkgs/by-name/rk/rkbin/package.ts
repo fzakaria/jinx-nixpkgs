@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]], [["BL31_RK3568", 26, 5], ["BL31_RK3588", 27, 5], ["TPL_RK3566", 28, 5], ["TPL_RK3568", 29, 5], ["TPL_RK3588", 30, 5]], [["description", 34, 5], ["homepage", 35, 5], ["license", 36, 5], ["maintainers", 37, 5], ["platforms", 38, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["installPhase", 19, 3], ["passthru", 25, 3], ["meta", 33, 3]]]);
 const formals$1 = { args: { stdenvNoCC: false, lib: false, fetchFromGitHub: false, rkbin: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["BL31_RK3568", 26, 5], ["BL31_RK3588", 27, 5], ["TPL_RK3566", 28, 5], ["TPL_RK3568", 29, 5], ["TPL_RK3588", 30, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 34, 5], ["homepage", 35, 5], ["license", 36, 5], ["maintainers", 37, 5], ["platforms", 38, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["installPhase", 19, 3], ["passthru", 25, 3], ["meta", 33, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const rkbin = nix.arg($, "rkbin");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "rkbin",
       version: "0-unstable-2026-06-26",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "rockchip-linux",
           repo: "rkbin",
           rev: "3e288fe814e059dd06833495f845cab04ac20a5c",
@@ -27,7 +24,7 @@ export default nix.lambda((args) => (() => {
         })))),
       installPhase: "mkdir $out\nmv bin doc $out/\ncp LICENSE $out/doc/LICENSE\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         BL31_RK3568: nix.thunk(() => nix.str`${rkbin}/bin/rk35/rk3568_bl31_v1.46.elf`),
         BL31_RK3588: nix.thunk(() => nix.str`${rkbin}/bin/rk35/rk3588_bl31_v1.56.elf`),
         TPL_RK3566: nix.thunk(() => nix.str`${rkbin}/bin/rk35/rk3566_ddr_1056MHz_v1.26.bin`),
@@ -35,7 +32,7 @@ export default nix.lambda((args) => (() => {
         TPL_RK3588: nix.thunk(() => nix.str`${rkbin}/bin/rk35/rk3588_ddr_lp4_2112MHz_lp5_2400MHz_v1.24.bin`),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Rockchip proprietary bootloader blobs",
         homepage: "https://github.com/rockchip-linux/rkbin",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfreeRedistributableFirmware")),

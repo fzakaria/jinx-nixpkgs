@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["1.0", 19, 9], ["1.1", 20, 9]], [["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]], [["homepage", 28, 5], ["description", 29, 5], ["license", 30, 5], ["maintainers", 31, 5]], [["pname", 10, 3], ["version", 11, 11], ["src", 13, 3], ["propagatedBuildInputs", 25, 3], ["meta", 27, 3]]]);
 const formals$1 = { args: { lib: false, buildDunePackage: false, fetchFromGitHub: false, ppxlib: false, version: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["1.0", 19, 9], ["1.1", 20, 9]]);
-const pos$2 = nix.positions(here + "/default.nix", [["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["homepage", 28, 5], ["description", 29, 5], ["license", 30, 5], ["maintainers", 31, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 10, 3], ["version", 11, 11], ["src", 13, 3], ["propagatedBuildInputs", 25, 3], ["meta", 27, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,23 +13,23 @@ export default nix.lambda((args) => (() => {
   const ppxlib = nix.arg($, "ppxlib");
   const version = nix.argOr($, "version", () => (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(ppxlib, "version")), "0.36.0")) ? "1.1" : "1.0"));
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "ocsigen-ppx-rpc",
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "ocsigen",
           repo: "ocsigen-ppx-rpc",
           tag: version,
           hash: nix.thunk(() => nix.sel({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             "1.0": "sha256:0qgasd89ayamgl2rfyxsipznmwa3pjllkyq9qg0g1f41h8ixpsfh",
             "1.1": "sha256-YjRB0cem+iDnQIIQcHI6vo5crSxAGNGM65qyG3lTtkE=",
           }, nix.key(nix.str`${version}`))),
         })))),
       propagatedBuildInputs: nix.thunk(() => [ppxlib]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/ocsigen/ocsigen-ppx-rpc/",
         description: "Syntax for RPCs for Eliom and Ocsigen Start",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Only")),

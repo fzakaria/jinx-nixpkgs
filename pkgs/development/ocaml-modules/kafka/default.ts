@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 15, 5], ["sha256", 16, 5]], [["homepage", 25, 5], ["description", 26, 5], ["license", 27, 5], ["maintainers", 28, 5], ["broken", 29, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["propagatedBuildInputs", 19, 3], ["meta", 24, 3]]]);
 const formals$1 = { args: { lib: false, fetchurl: false, ocaml: false, buildDunePackage: false, rdkafka: false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 15, 5], ["sha256", 16, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 25, 5], ["description", 26, 5], ["license", 27, 5], ["maintainers", 28, 5], ["broken", 29, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["propagatedBuildInputs", 19, 3], ["meta", 24, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,17 +14,17 @@ export default nix.lambda((args) => (() => {
   const rdkafka = nix.arg($, "rdkafka");
   const zlib = nix.arg($, "zlib");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "kafka",
       version: "0.5",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/didier-wenzek/ocaml-kafka/releases/download/${nix.sel(finalAttrs, "version")}/kafka-${nix.sel(finalAttrs, "version")}.tbz`),
           sha256: "0m9212yap0a00hd0f61i4y4fna3141p77qj3mm7jl1h4q60jdhvy",
         })))),
       propagatedBuildInputs: nix.thunk(() => [rdkafka, zlib]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/didier-wenzek/ocaml-kafka",
         description: "OCaml bindings for Kafka",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

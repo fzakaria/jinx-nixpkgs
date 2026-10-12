@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]], [["changelog", 82, 5], ["description", 83, 5], ["homepage", 84, 5], ["license", 85, 5], ["maintainers", 86, 5], ["mainProgram", 87, 5]], [["pname", 15, 3], ["version", 16, 3], ["pyproject", 18, 3], ["src", 20, 3], ["postPatch", 27, 3], ["build-system", 33, 3], ["dependencies", 35, 3], ["nativeCheckInputs", 61, 3], ["disabledTests", 67, 3], ["disabledTestPaths", 75, 3], ["pythonImportsCheck", 79, 3], ["meta", 81, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, python3Packages: false, fetchFromGitHub: false, writableTmpDirAsHomeHook: false, withMatrix: true, withSlack: true, withEmoji: true, withPid: true, withDbus: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["changelog", 82, 5], ["description", 83, 5], ["homepage", 84, 5], ["license", 85, 5], ["maintainers", 86, 5], ["mainProgram", 87, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["pyproject", 18, 3], ["src", 20, 3], ["postPatch", 27, 3], ["build-system", 33, 3], ["dependencies", 35, 3], ["nativeCheckInputs", 61, 3], ["disabledTests", 67, 3], ["disabledTestPaths", 75, 3], ["pythonImportsCheck", 79, 3], ["meta", 81, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const withPid = nix.argOr($, "withPid", () => true);
   const withDbus = nix.argOr($, "withDbus", () => nix.sel(stdenv, "hostPlatform", "isLinux"));
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "ntfy",
       version: "2.7.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "dschep",
           repo: "ntfy",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -57,7 +55,7 @@ export default nix.lambda((args) => (() => {
       disabledTestPaths: nix.thunk(() => ["tests/test_xmpp.py"]),
       pythonImportsCheck: nix.thunk(() => ["ntfy"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         changelog: nix.thunk(() => nix.str`https://github.com/dschep/ntfy/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         description: "Utility for sending notifications, on demand and when commands finish",
         homepage: "https://ntfy.readthedocs.io/en/latest/",

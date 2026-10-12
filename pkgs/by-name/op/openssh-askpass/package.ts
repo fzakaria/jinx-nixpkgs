@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["description", 27, 5], ["homepage", 28, 5], ["license", 29, 5], ["maintainers", 30, 5]], [["pname", 9, 3], ["src", 10, 21], ["version", 10, 25], ["nativeBuildInputs", 12, 3], ["buildInputs", 13, 3], ["sourceRoot", 15, 3], ["makeFlags", 16, 3], ["dontConfigure", 17, 3], ["installPhase", 19, 3], ["meta", 26, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, openssh: false, gtk3: false, "pkg-config": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["description", 27, 5], ["homepage", 28, 5], ["license", 29, 5], ["maintainers", 30, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["src", 10, 21], ["version", 10, 25], ["nativeBuildInputs", 12, 3], ["buildInputs", 13, 3], ["sourceRoot", 15, 3], ["makeFlags", 16, 3], ["dontConfigure", 17, 3], ["installPhase", 19, 3], ["meta", 26, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const gtk3 = nix.arg($, "gtk3");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "openssh-askpass",
       src: nix.thunk(() => nix.attr(openssh, "src")),
       version: nix.thunk(() => nix.attr(openssh, "version")),
@@ -25,7 +24,7 @@ export default nix.lambda((args) => (() => {
       dontConfigure: true,
       installPhase: "runHook preInstall\nmkdir -p $out/libexec\ncp -a gnome-ssh-askpass3 $out/libexec/gtk-ssh-askpass\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "A passphrase dialog for OpenSSH and GTK",
         homepage: "https://www.openssh.org",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

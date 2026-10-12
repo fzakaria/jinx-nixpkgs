@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 38, 5], ["repo", 39, 5], ["tag", 40, 5], ["hash", 41, 5]], [["src", 61, 26], ["missingHashes", 61, 30], ["sourceRoot", 62, 5], ["hash", 63, 5]], [["HATCH_BUILD_HOOKS_ENABLE", 66, 7]], [["description", 122, 5], ["homepage", 123, 5], ["changelog", 124, 5], ["license", 125, 5], ["teams", 126, 5], ["mainProgram", 127, 5]], [["pname", 33, 3], ["version", 34, 3], ["pyproject", 35, 3], ["src", 37, 3], ["postPatch", 44, 3], ["nativeBuildInputs", 50, 3], ["missingHashes", 58, 3], ["offlineCache", 60, 3], ["env", 66, 3], ["preConfigure", 68, 3], ["preBuild", 72, 3], ["build-system", 76, 3], ["dependencies", 82, 3], ["nativeCheckInputs", 90, 3], ["disabledTestPaths", 102, 3], ["disabledTests", 107, 3], ["pythonImportsCheck", 116, 3], ["meta", 121, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitHub: false, nodejs: false, "yarn-berry_3": false, "hatch-jupyter-builder": false, hatchling: false, "jupyter-builder": false, "markdown-it-py": false, "mdit-py-plugins": false, nbformat: false, packaging: false, pyyaml: false, addBinToPathHook: false, "jupyter-client": false, notebook: false, "pytest-asyncio": false, "pytest-xdist": false, pytestCheckHook: false, versionCheckHook: false, writableTmpDirAsHomeHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 38, 5], ["repo", 39, 5], ["tag", 40, 5], ["hash", 41, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["src", 61, 26], ["missingHashes", 61, 30], ["sourceRoot", 62, 5], ["hash", 63, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["HATCH_BUILD_HOOKS_ENABLE", 66, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 122, 5], ["homepage", 123, 5], ["changelog", 124, 5], ["license", 125, 5], ["teams", 126, 5], ["mainProgram", 127, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 33, 3], ["version", 34, 3], ["pyproject", 35, 3], ["src", 37, 3], ["postPatch", 44, 3], ["nativeBuildInputs", 50, 3], ["missingHashes", 58, 3], ["offlineCache", 60, 3], ["env", 66, 3], ["preConfigure", 68, 3], ["preBuild", 72, 3], ["build-system", 76, 3], ["dependencies", 82, 3], ["nativeCheckInputs", 90, 3], ["disabledTestPaths", 102, 3], ["disabledTests", 107, 3], ["pythonImportsCheck", 116, 3], ["meta", 121, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,12 +30,12 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "jupytext",
       version: "1.19.5",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "mwouts",
           repo: "jupytext",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -49,13 +45,13 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [nodejs, nix.thunk(() => nix.sel(yarn_berry_3, "yarnBerryConfigHook"))]),
       missingHashes: nix.path(here, "./missing-hashes.json"),
       offlineCache: nix.thunk(() => nix.app(nix.sel(yarn_berry_3, "fetchYarnBerryDeps"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           missingHashes: nix.thunk(() => nix.attr(finalAttrs, "missingHashes")),
           sourceRoot: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "name")}/jupyterlab`),
           hash: "sha256-jyo7hbCYntZtpecK8cCoDOSgWT4xA+MaJu+e3N+aHUU=",
         })))),
-      env: nix.thunk(() => ({ [nix.POS]: pos$3, HATCH_BUILD_HOOKS_ENABLE: true })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[2], HATCH_BUILD_HOOKS_ENABLE: true })),
       preConfigure: "pushd jupyterlab\n",
       preBuild: "popd\n",
       "build-system": nix.thunk(() => [hatch_jupyter_builder, hatchling, jupyter_builder]),
@@ -74,7 +70,7 @@ export default nix.lambda((args) => (() => {
       disabledTests: nix.thunk(() => nix.concat(["test_async_and_sync_files_are_in_sync"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["test_load_save_rename"])))),
       pythonImportsCheck: nix.thunk(() => ["jupytext", "jupytext.cli"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Jupyter notebooks as Markdown documents, Julia, Python or R scripts",
         homepage: "https://github.com/mwouts/jupytext",
         changelog: nix.thunk(() => nix.str`https://github.com/mwouts/jupytext/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

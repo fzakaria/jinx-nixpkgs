@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 15, 5], ["hash", 16, 5]], [["description", 37, 5], ["longDescription", 38, 5], ["homepage", 43, 5], ["license", 44, 5], ["maintainers", 45, 5], ["platforms", 46, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["sourceRoot", 18, 3], ["nativeBuildInputs", 20, 3], ["buildInputs", 25, 3], ["cmakeFlags", 30, 3], ["meta", 36, 3]]]);
 const formals$1 = { args: { cmake: false, fetchurl: false, lib: false, libpng: false, ninja: false, stdenv: false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 37, 5], ["longDescription", 38, 5], ["homepage", 43, 5], ["license", 44, 5], ["maintainers", 45, 5], ["platforms", 46, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["sourceRoot", 18, 3], ["nativeBuildInputs", 20, 3], ["buildInputs", 25, 3], ["cmakeFlags", 30, 3], ["meta", 36, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "libsquish",
       version: "1.15",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/project/libsquish/libsquish-${nix.sel(finalAttrs, "version")}.tgz`),
           hash: "sha256-YoeW7rpgiGYYOmHQgNRpZ8ndpnI7wKPsUjJMhdIUcmk=",
         })))),
@@ -33,7 +31,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeFeature"), "CMAKE_POLICY_VERSION_MINIMUM", "3.5")),
       ], nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isx86"))), nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "BUILD_SQUISH_WITH_SSE2", false))))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Library for compressing images with the DXT/S3TC standard",
         longDescription: "The libSquish library compresses images with the DXT standard (also known\nas S3TC). This standard is mainly used by OpenGL and DirectX for the lossy\ncompression of RGBA textures.\n",
         homepage: "https://libsquish.sourceforge.io",

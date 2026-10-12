@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 33, 5], ["owner", 34, 5], ["repo", 35, 5], ["tag", 36, 5], ["hash", 37, 5]], [["rev-prefix", 72, 40]], [["updateScript", 72, 12]], [["description", 75, 5], ["homepage", 76, 5], ["license", 77, 5], ["mainProgram", 78, 5], ["teams", 79, 5], ["platforms", 80, 5]], [["pname", 29, 3], ["version", 30, 3], ["src", 32, 3], ["strictDeps", 40, 3], ["depsBuildBuild", 42, 3], ["nativeBuildInputs", 46, 3], ["buildInputs", 56, 3], ["passthru", 72, 3], ["meta", 74, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitLab: false, gettext: false, glib: false, meson: false, ninja: false, "pkg-config": false, "wayland-scanner": false, wrapGAppsHook3: false, "xfce4-exo": false, gtk3: false, "gtk-layer-shell": false, libx11: false, libxext: false, libxfixes: false, libxtst: false, libxfce4ui: false, libxfce4util: false, wayland: false, "wlr-protocols": false, "xfce4-panel": false, xfconf: false, gitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 33, 5], ["owner", 34, 5], ["repo", 35, 5], ["tag", 36, 5], ["hash", 37, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["rev-prefix", 72, 40]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 72, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 75, 5], ["homepage", 76, 5], ["license", 77, 5], ["mainProgram", 78, 5], ["teams", 79, 5], ["platforms", 80, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 29, 3], ["version", 30, 3], ["src", 32, 3], ["strictDeps", 40, 3], ["depsBuildBuild", 42, 3], ["nativeBuildInputs", 46, 3], ["buildInputs", 56, 3], ["passthru", 72, 3], ["meta", 74, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -36,11 +32,11 @@ export default nix.lambda((args) => (() => {
   const xfconf = nix.arg($, "xfconf");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "xfce4-screenshooter",
       version: "1.11.3",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "gitlab.xfce.org",
           owner: "apps",
           repo: "xfce4-screenshooter",
@@ -66,11 +62,11 @@ export default nix.lambda((args) => (() => {
         xfconf,
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, "rev-prefix": "xfce4-screenshooter-" })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[1], "rev-prefix": "xfce4-screenshooter-" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Screenshot utility for the Xfce desktop",
         homepage: "https://gitlab.xfce.org/apps/xfce4-screenshooter",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

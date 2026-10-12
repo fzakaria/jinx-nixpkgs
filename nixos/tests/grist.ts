@@ -2,20 +2,9 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/grist.nix", [[["port", 15, 18]], [["port", 16, 19]], [["host", 15, 13], ["guest", 16, 13]], [["forwardPorts", 13, 24]], [["allowedTCPPorts", 20, 29]], [["firewall", 20, 20]], [["APP_HOME_URL", 26, 13], ["GRIST_IN_SERVICE", 27, 13], ["GRIST_BOOT_KEY", 28, 13], ["GRIST_HOST", 29, 13], ["DEBUG", 30, 13]], [["enable", 23, 11], ["enableRedis", 24, 11], ["environment", 25, 11]], [["grist", 22, 18]], [["virtualisation", 13, 9], ["networking", 20, 9], ["services", 22, 9]], [["machine", 10, 5]], [["name", 7, 3], ["nodes", 9, 3], ["extraPythonPackages", 36, 3], ["testScript", 40, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/grist.nix", [["port", 15, 18]]);
-const pos$2 = nix.positions(here + "/grist.nix", [["port", 16, 19]]);
-const pos$3 = nix.positions(here + "/grist.nix", [["host", 15, 13], ["guest", 16, 13]]);
-const pos$4 = nix.positions(here + "/grist.nix", [["forwardPorts", 13, 24]]);
-const pos$5 = nix.positions(here + "/grist.nix", [["allowedTCPPorts", 20, 29]]);
-const pos$6 = nix.positions(here + "/grist.nix", [["firewall", 20, 20]]);
-const pos$7 = nix.positions(here + "/grist.nix", [["APP_HOME_URL", 26, 13], ["GRIST_IN_SERVICE", 27, 13], ["GRIST_BOOT_KEY", 28, 13], ["GRIST_HOST", 29, 13], ["DEBUG", 30, 13]]);
-const pos$8 = nix.positions(here + "/grist.nix", [["enable", 23, 11], ["enableRedis", 24, 11], ["environment", 25, 11]]);
-const pos$9 = nix.positions(here + "/grist.nix", [["grist", 22, 18]]);
-const pos$10 = nix.positions(here + "/grist.nix", [["virtualisation", 13, 9], ["networking", 20, 9], ["services", 22, 9]]);
-const pos$11 = nix.positions(here + "/grist.nix", [["machine", 10, 5]]);
-const pos$12 = nix.positions(here + "/grist.nix", [["name", 7, 3], ["nodes", 9, 3], ["extraPythonPackages", 36, 3], ["testScript", 40, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,37 +12,37 @@ export default nix.lambda((args) => (() => {
   const forwardedPort = 8484n;
   const internalPort = 8484n;
   return {
-    [nix.POS]: pos$12,
+    [nix.POS]: $pos[11],
     name: "grist smoke test",
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$11,
+      [nix.POS]: $pos[10],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$10,
+          [nix.POS]: $pos[9],
           virtualisation: nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             forwardPorts: nix.thunk(() => [
               nix.thunk(() => ({
-                [nix.POS]: pos$3,
-                host: nix.thunk(() => ({ [nix.POS]: pos$1, port: forwardedPort })),
-                guest: nix.thunk(() => ({ [nix.POS]: pos$2, port: internalPort })),
+                [nix.POS]: $pos[2],
+                host: nix.thunk(() => ({ [nix.POS]: $pos[0], port: forwardedPort })),
+                guest: nix.thunk(() => ({ [nix.POS]: $pos[1], port: internalPort })),
               })),
             ]),
           })),
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$6,
-            firewall: nix.thunk(() => ({ [nix.POS]: pos$5, allowedTCPPorts: nix.thunk(() => [8484n]) })),
+            [nix.POS]: $pos[5],
+            firewall: nix.thunk(() => ({ [nix.POS]: $pos[4], allowedTCPPorts: nix.thunk(() => [8484n]) })),
           })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$9,
+            [nix.POS]: $pos[8],
             grist: nix.thunk(() => ({
-              [nix.POS]: pos$8,
+              [nix.POS]: $pos[7],
               enable: true,
               enableRedis: true,
               environment: nix.thunk(() => ({
-                [nix.POS]: pos$7,
+                [nix.POS]: $pos[6],
                 APP_HOME_URL: "http://127.0.0.1:8484",
                 GRIST_IN_SERVICE: "true",
                 GRIST_BOOT_KEY: "dummy",

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 35, 5], ["repo", 36, 5], ["tag", 37, 5], ["hash", 38, 5], ["fetchSubmodules", 39, 5]], [["pkg-config", 91, 7]], [["tests", 90, 5], ["updateScript", 93, 5]], [["changelog", 97, 5], ["description", 98, 5], ["homepage", 99, 5], ["license", 100, 5], ["maintainers", 101, 5], ["pkgConfigModules", 105, 5], ["platforms", 106, 5]], [["pname", 31, 3], ["version", 32, 3], ["src", 34, 3], ["postPatch", 42, 3], ["nativeBuildInputs", 47, 3], ["cmakeFlags", 53, 3], ["buildInputs", 65, 3], ["propagatedBuildInputs", 78, 3], ["passthru", 89, 3], ["meta", 96, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, "pkg-config": false, boost: false, curl: false, cxxopts: false, expat: false, geos: false, libgeotiff: false, libspatialite: false, libtiff: false, luajit: false, lz4: false, openssl: false, "prime-server": false, protobuf: false, python3: false, rapidjson: false, "spatialite-tools": false, sqlite: false, zeromq: false, zlib: false, testers: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 35, 5], ["repo", 36, 5], ["tag", 37, 5], ["hash", 38, 5], ["fetchSubmodules", 39, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pkg-config", 91, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 90, 5], ["updateScript", 93, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["changelog", 97, 5], ["description", 98, 5], ["homepage", 99, 5], ["license", 100, 5], ["maintainers", 101, 5], ["pkgConfigModules", 105, 5], ["platforms", 106, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 31, 3], ["version", 32, 3], ["src", 34, 3], ["postPatch", 42, 3], ["nativeBuildInputs", 47, 3], ["cmakeFlags", 53, 3], ["buildInputs", 65, 3], ["propagatedBuildInputs", 78, 3], ["passthru", 89, 3], ["meta", 96, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -38,11 +34,11 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "valhalla",
       version: "3.9.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "valhalla",
           repo: "valhalla",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -76,15 +72,15 @@ export default nix.lambda((args) => (() => {
       ]),
       propagatedBuildInputs: nix.thunk(() => [curl, geos, libspatialite, luajit, prime_server, protobuf, sqlite, zlib]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "testMetaPkgConfig"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
         })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         changelog: nix.thunk(() => nix.str`https://github.com/valhalla/valhalla/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),
         description: "Open Source Routing Engine for OpenStreetMap",
         homepage: "https://valhalla.readthedocs.io/",

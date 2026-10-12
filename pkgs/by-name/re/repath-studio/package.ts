@@ -2,16 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]], [["ELECTRON_SKIP_BINARY_DOWNLOAD", 62, 5], ["PUPPETEER_SKIP_DOWNLOAD", 63, 5]], [["NODE_EXTRA_CA_CERTS", 67, 5]], [["name", 146, 7], ["desktopName", 147, 7], ["exec", 148, 7], ["type", 149, 7], ["terminal", 150, 7], ["icon", 151, 7], ["comment", 152, 7], ["categories", 153, 7]], [["name", 160, 7], ["src", 161, 28], ["patches", 161, 32], ["nativeBuildInputs", 163, 7], ["buildPhase", 169, 7], ["installPhase", 183, 7], ["dontFixup", 214, 7], ["outputHash", 216, 7], ["outputHashMode", 217, 7], ["outputHashAlgo", 218, 7]], [["repath-studio", 228, 36]], [["clojureHome", 159, 5], ["clojureWithHome", 221, 5], ["updateScript", 227, 5], ["tests", 228, 5]], [["changelog", 232, 5], ["description", 233, 5], ["homepage", 234, 5], ["downloadPage", 235, 5], ["license", 236, 5], ["mainProgram", 237, 5], ["maintainers", 238, 5], ["teams", 239, 5], ["platforms", 240, 5]], [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["patches", 35, 3], ["makeCacheWritable", 44, 3], ["npmDepsHash", 46, 3], ["nativeBuildInputs", 48, 3], ["buildInputs", 59, 3], ["env", 61, 3], ["postPatch", 70, 3], ["buildPhase", 79, 3], ["installPhase", 101, 3], ["doCheck", 133, 3], ["checkPhase", 134, 3], ["desktopItems", 144, 3], ["passthru", 157, 3], ["meta", 231, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildNpmPackage: false, fetchFromGitHub: false, "pkg-config": false, electron: false, chromium: false, libicns: false, cacert: false, clojure: false, git: false, vips: false, python3: false, writeShellScriptBin: false, copyDesktopItems: false, makeDesktopItem: false, makeWrapper: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["ELECTRON_SKIP_BINARY_DOWNLOAD", 62, 5], ["PUPPETEER_SKIP_DOWNLOAD", 63, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["NODE_EXTRA_CA_CERTS", 67, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["name", 146, 7], ["desktopName", 147, 7], ["exec", 148, 7], ["type", 149, 7], ["terminal", 150, 7], ["icon", 151, 7], ["comment", 152, 7], ["categories", 153, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["name", 160, 7], ["src", 161, 28], ["patches", 161, 32], ["nativeBuildInputs", 163, 7], ["buildPhase", 169, 7], ["installPhase", 183, 7], ["dontFixup", 214, 7], ["outputHash", 216, 7], ["outputHashMode", 217, 7], ["outputHashAlgo", 218, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["repath-studio", 228, 36]]);
-const pos$7 = nix.positions(here + "/package.nix", [["clojureHome", 159, 5], ["clojureWithHome", 221, 5], ["updateScript", 227, 5], ["tests", 228, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["changelog", 232, 5], ["description", 233, 5], ["homepage", 234, 5], ["downloadPage", 235, 5], ["license", 236, 5], ["mainProgram", 237, 5], ["maintainers", 238, 5], ["teams", 239, 5], ["platforms", 240, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["patches", 35, 3], ["makeCacheWritable", 44, 3], ["npmDepsHash", 46, 3], ["nativeBuildInputs", 48, 3], ["buildInputs", 59, 3], ["env", 61, 3], ["postPatch", 70, 3], ["buildPhase", 79, 3], ["installPhase", 101, 3], ["doCheck", 133, 3], ["checkPhase", 134, 3], ["desktopItems", 144, 3], ["passthru", 157, 3], ["meta", 231, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       pname: "repath-studio",
       version: "0.4.18",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "repath-studio",
           repo: "repath-studio",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -59,11 +51,11 @@ export default nix.lambda((args) => (() => {
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [libicns])))),
       buildInputs: nix.thunk(() => [vips]),
       env: nix.thunk(() => nix.update({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         ELECTRON_SKIP_BINARY_DOWNLOAD: true,
         PUPPETEER_SKIP_DOWNLOAD: true,
       }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           NODE_EXTRA_CA_CERTS: nix.thunk(() => nix.str`${cacert}/etc/ssl/certs/ca-bundle.crt`),
         }))))),
       postPatch: nix.thunk(() => nix.str`substituteInPlace shadow-cljs.edn \\
@@ -120,7 +112,7 @@ runHook postCheck
 `))),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             name: "Repath Studio",
             desktopName: "Repath Studio",
             exec: "repath-studio %U",
@@ -132,9 +124,9 @@ runHook postCheck
           })))),
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         clojureHome: nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             name: nix.thunk(() => nix.str`repath-studio-${nix.sel(finalAttrs, "version")}-clojure-home`),
             src: nix.thunk(() => nix.attr(finalAttrs, "src")),
             patches: nix.thunk(() => nix.attr(finalAttrs, "patches")),
@@ -152,12 +144,12 @@ exec ${nix.app(nix.sel(lib, "getExe'"), clojure, "clojure")} "$@"
 `))),
         updateScript: nix.path(here, "./update.sh"),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           "repath-studio": nix.thunk(() => nix.attr(nixosTests, "repath-studio")),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         changelog: nix.thunk(() => nix.str`https://github.com/repath-studio/repath-studio/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG.md`),
         description: "Cross-platform vector graphics editor, that combines procedural tooling with traditional design workflows",
         homepage: "https://repath.studio",

@@ -2,101 +2,79 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/rstp.nix", [[["address", 19, 23], ["prefixLength", 20, 23]], [["addresses", 17, 24]], [["ipv4", 17, 19]], [["eth0", 16, 17]], [["interfaces", 15, 15]], [["enable", 26, 17]], [["networking", 14, 13], ["nix", 26, 13]], [["autoStart", 9, 11], ["privateNetwork", 10, 11], ["hostBridge", 11, 11], ["config", 13, 11]], [["peer", 8, 9]], [["interfaces", 34, 13], ["rstp", 35, 13]], [["br0", 33, 11]], [["addresses", 41, 18]], [["addresses", 42, 18]], [["ipv4", 41, 13], ["ipv6", 42, 13]], [["address", 48, 17], ["prefixLength", 49, 17]], [["addresses", 46, 18]], [["ipv4", 46, 13]], [["eth1", 40, 11], ["br0", 45, 11]], [["bridges", 32, 9], ["interfaces", 39, 9]], [["vlans", 57, 9]], [["containers", 7, 7], ["networking", 31, 7], ["virtualisation", 56, 7]], [["client", 6, 5]], [["name", 3, 3], ["nodes", 5, 3], ["testScript", 62, 3]]]);
 const formals$1 = { args: { pkgs: false, lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/rstp.nix", [["address", 19, 23], ["prefixLength", 20, 23]]);
-const pos$2 = nix.positions(here + "/rstp.nix", [["addresses", 17, 24]]);
-const pos$3 = nix.positions(here + "/rstp.nix", [["ipv4", 17, 19]]);
-const pos$4 = nix.positions(here + "/rstp.nix", [["eth0", 16, 17]]);
-const pos$5 = nix.positions(here + "/rstp.nix", [["interfaces", 15, 15]]);
-const pos$6 = nix.positions(here + "/rstp.nix", [["enable", 26, 17]]);
-const pos$7 = nix.positions(here + "/rstp.nix", [["networking", 14, 13], ["nix", 26, 13]]);
-const pos$8 = nix.positions(here + "/rstp.nix", [["autoStart", 9, 11], ["privateNetwork", 10, 11], ["hostBridge", 11, 11], ["config", 13, 11]]);
-const pos$9 = nix.positions(here + "/rstp.nix", [["peer", 8, 9]]);
-const pos$10 = nix.positions(here + "/rstp.nix", [["interfaces", 34, 13], ["rstp", 35, 13]]);
-const pos$11 = nix.positions(here + "/rstp.nix", [["br0", 33, 11]]);
-const pos$12 = nix.positions(here + "/rstp.nix", [["addresses", 41, 18]]);
-const pos$13 = nix.positions(here + "/rstp.nix", [["addresses", 42, 18]]);
-const pos$14 = nix.positions(here + "/rstp.nix", [["ipv4", 41, 13], ["ipv6", 42, 13]]);
-const pos$15 = nix.positions(here + "/rstp.nix", [["address", 48, 17], ["prefixLength", 49, 17]]);
-const pos$16 = nix.positions(here + "/rstp.nix", [["addresses", 46, 18]]);
-const pos$17 = nix.positions(here + "/rstp.nix", [["ipv4", 46, 13]]);
-const pos$18 = nix.positions(here + "/rstp.nix", [["eth1", 40, 11], ["br0", 45, 11]]);
-const pos$19 = nix.positions(here + "/rstp.nix", [["bridges", 32, 9], ["interfaces", 39, 9]]);
-const pos$20 = nix.positions(here + "/rstp.nix", [["vlans", 57, 9]]);
-const pos$21 = nix.positions(here + "/rstp.nix", [["containers", 7, 7], ["networking", 31, 7], ["virtualisation", 56, 7]]);
-const pos$22 = nix.positions(here + "/rstp.nix", [["client", 6, 5]]);
-const pos$23 = nix.positions(here + "/rstp.nix", [["name", 3, 3], ["nodes", 5, 3], ["testScript", 62, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$23,
+    [nix.POS]: $pos[22],
     name: "rstp",
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$22,
+      [nix.POS]: $pos[21],
       client: nix.thunk(() => ({
-        [nix.POS]: pos$21,
+        [nix.POS]: $pos[20],
         containers: nix.thunk(() => ({
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           peer: nix.thunk(() => ({
-            [nix.POS]: pos$8,
+            [nix.POS]: $pos[7],
             autoStart: true,
             privateNetwork: true,
             hostBridge: "br0",
             config: nix.thunk(() => ({
-              [nix.POS]: pos$7,
+              [nix.POS]: $pos[6],
               networking: nix.thunk(() => ({
-                [nix.POS]: pos$5,
+                [nix.POS]: $pos[4],
                 interfaces: nix.thunk(() => ({
-                  [nix.POS]: pos$4,
+                  [nix.POS]: $pos[3],
                   eth0: nix.thunk(() => ({
-                    [nix.POS]: pos$3,
+                    [nix.POS]: $pos[2],
                     ipv4: nix.thunk(() => ({
-                      [nix.POS]: pos$2,
+                      [nix.POS]: $pos[1],
                       addresses: nix.thunk(() => [
-                        nix.thunk(() => ({ [nix.POS]: pos$1, address: "192.168.1.122", prefixLength: 24n })),
+                        nix.thunk(() => ({ [nix.POS]: $pos[0], address: "192.168.1.122", prefixLength: 24n })),
                       ]),
                     })),
                   })),
                 })),
               })),
-              nix: nix.thunk(() => ({ [nix.POS]: pos$6, enable: false })),
+              nix: nix.thunk(() => ({ [nix.POS]: $pos[5], enable: false })),
             })),
           })),
         })),
         networking: nix.thunk(() => ({
-          [nix.POS]: pos$19,
+          [nix.POS]: $pos[18],
           bridges: nix.thunk(() => ({
-            [nix.POS]: pos$11,
-            br0: nix.thunk(() => ({ [nix.POS]: pos$10, interfaces: [], rstp: true })),
+            [nix.POS]: $pos[10],
+            br0: nix.thunk(() => ({ [nix.POS]: $pos[9], interfaces: [], rstp: true })),
           })),
           interfaces: nix.thunk(() => ({
-            [nix.POS]: pos$18,
+            [nix.POS]: $pos[17],
             eth1: nix.thunk(() => ({
-              [nix.POS]: pos$14,
+              [nix.POS]: $pos[13],
               ipv4: nix.thunk(() => ({
-                [nix.POS]: pos$12,
+                [nix.POS]: $pos[11],
                 addresses: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), [])),
               })),
               ipv6: nix.thunk(() => ({
-                [nix.POS]: pos$13,
+                [nix.POS]: $pos[12],
                 addresses: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), [])),
               })),
             })),
             br0: nix.thunk(() => ({
-              [nix.POS]: pos$17,
+              [nix.POS]: $pos[16],
               ipv4: nix.thunk(() => ({
-                [nix.POS]: pos$16,
+                [nix.POS]: $pos[15],
                 addresses: nix.thunk(() => [
-                  nix.thunk(() => ({ [nix.POS]: pos$15, address: "192.168.1.2", prefixLength: 24n })),
+                  nix.thunk(() => ({ [nix.POS]: $pos[14], address: "192.168.1.2", prefixLength: 24n })),
                 ]),
               })),
             })),
           })),
         })),
-        virtualisation: nix.thunk(() => ({ [nix.POS]: pos$20, vlans: nix.thunk(() => [1n]) })),
+        virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[19], vlans: nix.thunk(() => [1n]) })),
       })),
     })),
     testScript: "client.start()\nclient.wait_for_unit(\"default.target\")\nclient.wait_until_succeeds(\"journalctl | grep 'Port vb-peer : up'\", timeout=10)\n",

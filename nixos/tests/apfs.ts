@@ -2,33 +2,28 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/apfs.nix", [[["maintainers", 4, 8]], [["emptyDiskImages", 7, 20]], [["supportedFilesystems", 9, 10]], [["virtualisation", 7, 5], ["boot", 9, 5]], [["machine", 6, 9]], [["name", 3, 3], ["meta", 4, 3], ["nodes", 6, 3], ["testScript", 12, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/apfs.nix", [["maintainers", 4, 8]]);
-const pos$2 = nix.positions(here + "/apfs.nix", [["emptyDiskImages", 7, 20]]);
-const pos$3 = nix.positions(here + "/apfs.nix", [["supportedFilesystems", 9, 10]]);
-const pos$4 = nix.positions(here + "/apfs.nix", [["virtualisation", 7, 5], ["boot", 9, 5]]);
-const pos$5 = nix.positions(here + "/apfs.nix", [["machine", 6, 9]]);
-const pos$6 = nix.positions(here + "/apfs.nix", [["name", 3, 3], ["meta", 4, 3], ["nodes", 6, 3], ["testScript", 12, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$6,
+    [nix.POS]: $pos[5],
     name: "apfs",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "Luflosi"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       machine: nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        virtualisation: nix.thunk(() => ({ [nix.POS]: pos$2, emptyDiskImages: nix.thunk(() => [1024n]) })),
-        boot: nix.thunk(() => ({ [nix.POS]: pos$3, supportedFilesystems: nix.thunk(() => ["apfs"]) })),
+        [nix.POS]: $pos[3],
+        virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[1], emptyDiskImages: nix.thunk(() => [1024n]) })),
+        boot: nix.thunk(() => ({ [nix.POS]: $pos[2], supportedFilesystems: nix.thunk(() => ["apfs"]) })),
       })),
     })),
     testScript: "machine.wait_for_unit(\"basic.target\")\nmachine.succeed(\"mkdir /tmp/mnt\")\n\nwith subtest(\"mkapfs refuses to work with a label that is too long\"):\n  machine.fail( \"mkapfs -L '000102030405060708090A0B0C0D0E0F101112131415161718191A1B1C1D1E1F202122232425262728292A2B2C2D2E2F303132333435363738393A3B3C3D3E3F404142434445464748494A4B4C4D4E4F505152535455565758595A5B5C5D5E5F606162636465666768696A6B6C6D6E6F707172737475767778797A7B7C7D7E7F' /dev/vdb\")\n\nwith subtest(\"mkapfs works with the maximum label length\"):\n  machine.succeed(\"mkapfs -L '000102030405060708090A0B0C0D0E0F101112131415161718191A1B1C1D1E1F202122232425262728292A2B2C2D2E2F303132333435363738393A3B3C3D3E3F404142434445464748494A4B4C4D4E4F505152535455565758595A5B5C5D5E5F606162636465666768696A6B6C6D6E6F707172737475767778797A7B7C7D7E7' /dev/vdb\")\n\nwith subtest(\"apfs-label works\"):\n  machine.succeed(\"mkapfs -L 'myLabel' /dev/vdb\")\n  machine.succeed(\"apfs-label /dev/vdb | grep -q myLabel\")\n\nwith subtest(\"Enable case sensitivity and normalization sensitivity\"):\n  machine.succeed(\n      \"mkapfs -s -z /dev/vdb\",\n      \"mount -o cknodes,readwrite /dev/vdb /tmp/mnt\",\n      \"echo 'Hello World 1' > /tmp/mnt/test.txt\",\n      \"[ ! -f /tmp/mnt/TeSt.TxT ] || false\", # Test case sensitivity\n      \"echo 'Hello World 1' | diff - /tmp/mnt/test.txt\",\n      \"echo 'Hello World 2' > /tmp/mnt/\\u0061\\u0301.txt\",\n      \"echo 'Hello World 2' | diff - /tmp/mnt/\\u0061\\u0301.txt\",\n      \"[ ! -f /tmp/mnt/\\u00e1.txt ] || false\", # Test Unicode normalization sensitivity\n      \"umount /tmp/mnt\",\n      \"apfsck /dev/vdb\",\n  )\nwith subtest(\"Disable case sensitivity and normalization sensitivity\"):\n  machine.succeed(\n      \"mkapfs /dev/vdb\",\n      \"mount -o cknodes,readwrite /dev/vdb /tmp/mnt\",\n      \"echo 'bla bla bla' > /tmp/mnt/Test.txt\",\n      \"echo -n 'Hello World' > /tmp/mnt/test.txt\",\n      \"echo ' 1' >> /tmp/mnt/TEST.TXT\",\n      \"umount /tmp/mnt\",\n      \"apfsck /dev/vdb\",\n      \"mount -o cknodes,readwrite /dev/vdb /tmp/mnt\",\n      \"echo 'Hello World 1' | diff - /tmp/mnt/TeSt.TxT\", # Test case insensitivity\n      \"echo 'Hello World 2' > /tmp/mnt/\\u0061\\u0301.txt\",\n      \"echo 'Hello World 2' | diff - /tmp/mnt/\\u0061\\u0301.txt\",\n      \"echo 'Hello World 2' | diff - /tmp/mnt/\\u00e1.txt\", # Test Unicode normalization\n      \"umount /tmp/mnt\",\n      \"apfsck /dev/vdb\",\n  )\nwith subtest(\"Snapshots\"):\n  machine.succeed(\n      \"mkapfs /dev/vdb\",\n      \"mount -o cknodes,readwrite /dev/vdb /tmp/mnt\",\n      \"echo 'Hello World' > /tmp/mnt/test.txt\",\n      \"apfs-snap /tmp/mnt snap-1\",\n      \"rm /tmp/mnt/test.txt\",\n      \"umount /tmp/mnt\",\n      \"mount -o cknodes,readwrite,snap=snap-1 /dev/vdb /tmp/mnt\",\n      \"echo 'Hello World' | diff - /tmp/mnt/test.txt\",\n      \"umount /tmp/mnt\",\n      \"apfsck /dev/vdb\",\n  )\n",

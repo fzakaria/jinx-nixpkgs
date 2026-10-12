@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 34, 5], ["repo", 35, 5], ["tag", 36, 5], ["hash", 37, 5]], [["description", 88, 5], ["homepage", 89, 5], ["changelog", 90, 5], ["license", 91, 5], ["maintainers", 92, 5]], [["pname", 29, 3], ["version", 30, 3], ["pyproject", 31, 3], ["src", 33, 3], ["postPatch", 40, 3], ["build-system", 46, 3], ["pythonRelaxDeps", 51, 3], ["dependencies", 56, 3], ["nativeCheckInputs", 68, 3], ["doCheck", 76, 3], ["disabledTestPaths", 78, 3], ["__darwinAllowLocalNetworking", 83, 3], ["pythonImportsCheck", 85, 3], ["meta", 87, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitHub: false, cython: false, setuptools: false, aiohappyeyeballs: false, "async-interrupt": false, "chacha20poly1305-reuseable": false, cryptography: false, noiseprotocol: false, protobuf: false, tzdata: false, tzlocal: false, zeroconf: false, mock: false, "pytest-asyncio": false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 34, 5], ["repo", 35, 5], ["tag", 36, 5], ["hash", 37, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 88, 5], ["homepage", 89, 5], ["changelog", 90, 5], ["license", 91, 5], ["maintainers", 92, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 29, 3], ["version", 30, 3], ["pyproject", 31, 3], ["src", 33, 3], ["postPatch", 40, 3], ["build-system", 46, 3], ["pythonRelaxDeps", 51, 3], ["dependencies", 56, 3], ["nativeCheckInputs", 68, 3], ["doCheck", 76, 3], ["disabledTestPaths", 78, 3], ["__darwinAllowLocalNetworking", 83, 3], ["pythonImportsCheck", 85, 3], ["meta", 87, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,12 +26,12 @@ export default nix.lambda((args) => (() => {
   const pytest_asyncio = nix.arg($, "pytest-asyncio");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "aioesphomeapi",
       version: "46.3.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "esphome",
           repo: "aioesphomeapi",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -59,7 +57,7 @@ export default nix.lambda((args) => (() => {
       __darwinAllowLocalNetworking: true,
       pythonImportsCheck: nix.thunk(() => ["aioesphomeapi"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Python Client for ESPHome native API",
         homepage: "https://github.com/esphome/aioesphomeapi",
         changelog: nix.thunk(() => nix.str`https://github.com/esphome/aioesphomeapi/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

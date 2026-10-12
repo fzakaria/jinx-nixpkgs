@@ -2,29 +2,25 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/peerflix.nix", [[["enable", 11, 27]], [["peerflix", 11, 18]], [["services", 11, 9]], [["peerflix", 8, 5]], [["name", 5, 3], ["nodes", 7, 3], ["testScript", 15, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
 const formals$2 = { args: {  }, ellipsis: true };
-const pos$1 = nix.positions(here + "/peerflix.nix", [["enable", 11, 27]]);
-const pos$2 = nix.positions(here + "/peerflix.nix", [["peerflix", 11, 18]]);
-const pos$3 = nix.positions(here + "/peerflix.nix", [["services", 11, 9]]);
-const pos$4 = nix.positions(here + "/peerflix.nix", [["peerflix", 8, 5]]);
-const pos$5 = nix.positions(here + "/peerflix.nix", [["name", 5, 3], ["nodes", 7, 3], ["testScript", 15, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   return {
-    [nix.POS]: pos$5,
+    [nix.POS]: $pos[4],
     name: "peerflix",
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       peerflix: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$2,
-            peerflix: nix.thunk(() => ({ [nix.POS]: pos$1, enable: true })),
+            [nix.POS]: $pos[1],
+            peerflix: nix.thunk(() => ({ [nix.POS]: $pos[0], enable: true })),
           })),
         };
       })(), formals$2),

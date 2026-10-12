@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 15, 5], ["hash", 16, 5]], [["incdir", 31, 5]], [["description", 35, 5], ["homepage", 36, 5], ["changelog", 37, 5], ["license", 38, 5], ["platforms", 39, 5], ["maintainers", 40, 5]], [["pname", 10, 3], ["version", 11, 3], ["tag_version", 13, 3], ["src", 14, 3], ["nativeBuildInputs", 19, 3], ["stripDebugList", 25, 3], ["dontPatchELF", 26, 3], ["enableParallelBuilding", 28, 3], ["passthru", 30, 3], ["meta", 34, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoLibc: false, fetchurl: false, automake: false, autoconf: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["incdir", 31, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 35, 5], ["homepage", 36, 5], ["changelog", 37, 5], ["license", 38, 5], ["platforms", 39, 5], ["maintainers", 40, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["tag_version", 13, 3], ["src", 14, 3], ["nativeBuildInputs", 19, 3], ["stripDebugList", 25, 3], ["dontPatchELF", 26, 3], ["enableParallelBuilding", 28, 3], ["passthru", 30, 3], ["meta", 34, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const automake = nix.arg($, "automake");
   const autoconf = nix.arg($, "autoconf");
   return nix.app(nix.sel(stdenvNoLibc, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "avr-libc",
       version: "2.2.1",
       tag_version: nix.thunk(() => nix.builtins.replaceStrings(nix.thunk(() => ["."]), nix.thunk(() => ["_"]), nix.thunk(() => nix.sel(finalAttrs, "version")))),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/avrdudes/avr-libc/releases/download/avr-libc-${nix.sel(finalAttrs, "tag_version")}-release/avr-libc-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           hash: "sha256-AGpjBsu8k4w721g6xU+T/n18jPl/nN6R+RxvsCc6tGU=",
         })))),
@@ -29,9 +26,9 @@ export default nix.lambda((args) => (() => {
       stripDebugList: nix.thunk(() => ["bin"]),
       dontPatchELF: true,
       enableParallelBuilding: true,
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, incdir: "/avr/include" })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[1], incdir: "/avr/include" })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "C runtime library for AVR microcontrollers",
         homepage: "https://github.com/avrdudes/avr-libc",
         changelog: nix.thunk(() => nix.str`https://github.com/avrdudes/avr-libc/blob/avr-libc-${nix.sel(finalAttrs, "tag_version")}-release/NEWS`),

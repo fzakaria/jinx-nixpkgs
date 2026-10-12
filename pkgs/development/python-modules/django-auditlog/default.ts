@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]], [["changelog", 67, 5], ["description", 68, 5], ["homepage", 69, 5], ["downloadPage", 70, 5], ["license", 71, 5], ["maintainers", 72, 5]], [["pname", 18, 3], ["version", 19, 3], ["pyproject", 20, 3], ["src", 22, 3], ["build-system", 29, 3], ["dependencies", 34, 3], ["nativeCheckInputs", 39, 3], ["doCheck", 46, 3], ["postgresqlTestUserOptions", 48, 3], ["checkPhase", 50, 3], ["pythonImportsCheck", 64, 3], ["meta", 66, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, "setuptools-scm": false, django: false, "python-dateutil": false, freezegun: false, psycopg2: false, postgresql: false, postgresqlTestHook: false, python: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["changelog", 67, 5], ["description", 68, 5], ["homepage", 69, 5], ["downloadPage", 70, 5], ["license", 71, 5], ["maintainers", 72, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 18, 3], ["version", 19, 3], ["pyproject", 20, 3], ["src", 22, 3], ["build-system", 29, 3], ["dependencies", 34, 3], ["nativeCheckInputs", 39, 3], ["doCheck", 46, 3], ["postgresqlTestUserOptions", 48, 3], ["checkPhase", 50, 3], ["pythonImportsCheck", 64, 3], ["meta", 66, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.4.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "jazzband",
           repo: "django-auditlog",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -52,7 +50,7 @@ runHook postCheck
 `);
       const pythonImportsCheck = nix.thunk(() => ["auditlog"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         changelog: nix.thunk(() => nix.str`https://github.com/jazzband/django-auditlog/blob/${nix.sel(src, "tag")}/CHANGELOG.md`),
         description: "Django app that keeps a log of changes made to an object",
         homepage: "https://github.com/jazzband/django-auditlog",
@@ -64,7 +62,7 @@ runHook postCheck
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

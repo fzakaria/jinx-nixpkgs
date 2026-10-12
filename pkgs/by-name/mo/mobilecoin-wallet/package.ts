@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 11, 5], ["hash", 12, 5]], [["pname", 14, 54], ["version", 14, 60], ["src", 14, 68]], [["description", 35, 5], ["homepage", 36, 5], ["license", 37, 5], ["maintainers", 38, 5], ["mainProgram", 39, 5], ["platforms", 40, 5]], [["pname", 18, 11], ["version", 18, 17], ["src", 18, 25], ["extraPkgs", 20, 3], ["extraInstallCommands", 22, 3], ["meta", 34, 3]]]);
 const formals$1 = { args: { lib: false, fetchurl: false, appimageTools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 11, 5], ["hash", 12, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 14, 54], ["version", 14, 60], ["src", 14, 68]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 35, 5], ["homepage", 36, 5], ["license", 37, 5], ["maintainers", 38, 5], ["mainProgram", 39, 5], ["platforms", 40, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 18, 11], ["version", 18, 17], ["src", 18, 25], ["extraPkgs", 20, 3], ["extraInstallCommands", 22, 3], ["meta", 34, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,13 +13,13 @@ export default nix.lambda((args) => (() => {
   const pname = "mobilecoin-wallet";
   const version = "1.9.2";
   const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: nix.thunk(() => nix.str`https://github.com/mobilecoinofficial/desktop-wallet/releases/download/v${version}/MobileCoin.Wallet-${version}.AppImage`),
       hash: "sha256-JfG+eHsPFXZKi9Vjbw7CPvhmeMvfPWSDS65Ey4Lb8iQ=",
     }))));
-  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: pos$2, pname: pname, version: version, src: src }))));
+  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: $pos[1], pname: pname, version: version, src: src }))));
   return nix.app(nix.sel(appimageTools, "wrapType2"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: pname,
       version: version,
       src: src,
@@ -38,7 +35,7 @@ substituteInPlace $out/share/applications/${pname}.desktop \\
   --replace "AppRun" "${pname}"
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "User-friendly desktop wallet with support for transaction history, encrypted contact book, gift codes, and payments",
         homepage: "https://github.com/mobilecoinofficial/desktop-wallet",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

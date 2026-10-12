@@ -2,11 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["0.14.3", 20, 9], ["0.16.1", 21, 9]], [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]], [["description", 47, 5], ["homepage", 48, 5], ["license", 49, 5], ["maintainers", 50, 5], ["mainProgram", 51, 5], ["platforms", 52, 26]], [["pname", 11, 3], ["version", 12, 11], ["src", 14, 3], ["createFindlibDestdir", 26, 3], ["nativeBuildInputs", 28, 3], ["strictDeps", 32, 3], ["configurePhase", 34, 3], ["meta", 46, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, ocaml: false, findlib: false, version: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["0.14.3", 20, 9], ["0.16.1", 21, 9]]);
-const pos$2 = nix.positions(here + "/default.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 47, 5], ["homepage", 48, 5], ["license", 49, 5], ["maintainers", 50, 5], ["mainProgram", 51, 5], ["platforms", 52, 26]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 11, 3], ["version", 12, 11], ["src", 14, 3], ["createFindlibDestdir", 26, 3], ["nativeBuildInputs", 28, 3], ["strictDeps", 32, 3], ["configurePhase", 34, 3], ["meta", 46, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,16 +14,16 @@ export default nix.lambda((args) => (() => {
   const findlib = nix.arg($, "findlib");
   const version = nix.argOr($, "version", () => (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(ocaml, "version")), "4.08")) ? "0.16.1" : "0.14.3"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: nix.thunk(() => nix.str`ocaml${nix.sel(ocaml, "version")}-ocamlbuild`),
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "ocaml",
           repo: "ocamlbuild",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: nix.thunk(() => nix.sel({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             "0.14.3": "sha256-dfcNu4ugOYu/M0rRQla7lXum/g1UzncdLGmpPYo0QUM=",
             "0.16.1": "sha256-RpHVX0o4QduN73j+omlZlycRJaGZWfwHO5kq/WsEGZE=",
           }, nix.key(nix.str`${nix.sel(finalAttrs, "version")}`))),
@@ -38,7 +35,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(ocaml, "meta"));
         return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Build system with builtin rules to easily build most OCaml projects",
         homepage: "https://github.com/ocaml/ocamlbuild/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl2")),

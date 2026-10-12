@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]], [["pname", 45, 9], ["version", 46, 30], ["src", 46, 38], ["sourceRoot", 48, 9], ["npmDepsHash", 50, 9], ["npmBuildScript", 52, 9], ["installPhase", 54, 9]], [["description", 86, 5], ["mainProgram", 87, 5], ["homepage", 88, 5], ["license", 89, 5], ["maintainers", 90, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["subPackages", 25, 3], ["vendorHash", 27, 3], ["ldflags", 29, 3], ["nativeBuildInputs", 34, 3], ["doCheck", 40, 3], ["preBuild", 42, 3], ["postInstall", 65, 3], ["nativeInstallCheckInputs", 80, 3], ["doInstallCheck", 83, 3], ["meta", 85, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildGoModule: false, buildNpmPackage: false, buildPackages: false, fetchFromGitHub: false, installShellFiles: false, makeWrapper: false, python3: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 45, 9], ["version", 46, 30], ["src", 46, 38], ["sourceRoot", 48, 9], ["npmDepsHash", 50, 9], ["npmBuildScript", 52, 9], ["installPhase", 54, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 86, 5], ["mainProgram", 87, 5], ["homepage", 88, 5], ["license", 89, 5], ["maintainers", 90, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["subPackages", 25, 3], ["vendorHash", 27, 3], ["ldflags", 29, 3], ["nativeBuildInputs", 34, 3], ["doCheck", 40, 3], ["preBuild", 42, 3], ["postInstall", 65, 3], ["nativeInstallCheckInputs", 80, 3], ["doInstallCheck", 83, 3], ["meta", 85, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "kluctl",
       version: "2.28.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "kluctl",
           repo: "kluctl",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -41,7 +38,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       preBuild: nix.thunk(() => (() => {
         const webui = nix.thunk(() => nix.app(buildNpmPackage, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             pname: "kluctl-webui",
             version: nix.thunk(() => nix.attr(finalAttrs, "version")),
             src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -69,7 +66,7 @@ installShellCompletion --cmd kluctl \\
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Missing glue to put together large Kubernetes deployments",
         mainProgram: "kluctl",
         homepage: "https://kluctl.io/",

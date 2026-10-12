@@ -2,11 +2,8 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/npmrc.nix", [[["enable", 11, 5], ["npmrc", 12, 5]], [["npm", 10, 35]], [["programs", 10, 26]], [["name", 8, 3], ["nodes", 10, 3], ["testScript", 17, 3]]]);
 const formals$1 = { args: {  }, ellipsis: true };
-const pos$1 = nix.positions(here + "/npmrc.nix", [["enable", 11, 5], ["npmrc", 12, 5]]);
-const pos$2 = nix.positions(here + "/npmrc.nix", [["npm", 10, 35]]);
-const pos$3 = nix.positions(here + "/npmrc.nix", [["programs", 10, 26]]);
-const pos$4 = nix.positions(here + "/npmrc.nix", [["name", 8, 3], ["nodes", 10, 3], ["testScript", 17, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,15 +11,15 @@ export default nix.lambda((args) => (() => {
   const settingName = "prefix";
   const settingValue = "/some/path";
   return {
-    [nix.POS]: pos$4,
+    [nix.POS]: $pos[3],
     name: "npmrc",
     nodes: nix.thunk(() => nix.attrsDyn({}, [
       [nix.str`${machineName}`, nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         programs: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           npm: nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             enable: true,
             npmrc: nix.thunk(() => nix.str`${settingName} = ${settingValue}
 `),

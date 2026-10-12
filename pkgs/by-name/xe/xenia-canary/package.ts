@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 27, 5], ["paths", 28, 5]], [["owner", 39, 5], ["repo", 40, 5], ["fetchSubmodules", 41, 5], ["rev", 42, 5], ["hash", 43, 5]], [["NIX_CFLAGS_COMPILE", 63, 7]], [["name", 87, 7], ["desktopName", 88, 7], ["genericName", 89, 7], ["exec", 90, 7], ["comment", 91, 7], ["icon", 92, 7], ["startupWMClass", 93, 7], ["categories", 94, 7], ["keywords", 98, 7]], [["hardcodeZeroVersion", 111, 48]], [["updateScript", 111, 12]], [["description", 114, 5], ["homepage", 115, 5], ["license", 116, 5], ["maintainers", 117, 5], ["mainProgram", 118, 5], ["platforms", 119, 5]], [["pname", 35, 3], ["version", 36, 3], ["src", 38, 3], ["dontConfigure", 46, 3], ["nativeBuildInputs", 48, 3], ["env", 63, 3], ["buildInputs", 67, 3], ["buildPhase", 73, 3], ["runtimeDependencies", 81, 3], ["desktopItems", 85, 3], ["installPhase", 102, 3], ["passthru", 111, 3], ["meta", 113, 3]]]);
 const formals$1 = { args: { lib: false, python3: false, gtk3: false, lz4: false, SDL2: false, "pkg-config": false, "vulkan-loader": false, ninja: false, cmake: false, libuuid: false, "alsa-lib": false, wrapGAppsHook3: false, makeDesktopItem: false, copyDesktopItems: false, glslang: false, "spirv-tools": false, symlinkJoin: false, llvmPackages_20: false, autoPatchelfHook: false, unstableGitUpdater: false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 27, 5], ["paths", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 39, 5], ["repo", 40, 5], ["fetchSubmodules", 41, 5], ["rev", 42, 5], ["hash", 43, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 63, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["name", 87, 7], ["desktopName", 88, 7], ["genericName", 89, 7], ["exec", 90, 7], ["comment", 91, 7], ["icon", 92, 7], ["startupWMClass", 93, 7], ["categories", 94, 7], ["keywords", 98, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["hardcodeZeroVersion", 111, 48]]);
-const pos$6 = nix.positions(here + "/package.nix", [["updateScript", 111, 12]]);
-const pos$7 = nix.positions(here + "/package.nix", [["description", 114, 5], ["homepage", 115, 5], ["license", 116, 5], ["maintainers", 117, 5], ["mainProgram", 118, 5], ["platforms", 119, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 35, 3], ["version", 36, 3], ["src", 38, 3], ["dontConfigure", 46, 3], ["nativeBuildInputs", 48, 3], ["env", 63, 3], ["buildInputs", 67, 3], ["buildPhase", 73, 3], ["runtimeDependencies", 81, 3], ["desktopItems", 85, 3], ["installPhase", 102, 3], ["passthru", 111, 3], ["meta", 113, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -36,16 +29,16 @@ export default nix.lambda((args) => (() => {
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const vulkan_sdk = nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: "vulkan-sdk",
       paths: nix.thunk(() => [glslang, spirv_tools]),
     }))));
   return nix.app(nix.sel(llvmPackages_20, "stdenv", "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "xenia-canary",
       version: "0-unstable-2026-09-22",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "xenia-canary",
           repo: "xenia-canary",
           fetchSubmodules: true,
@@ -68,7 +61,7 @@ export default nix.lambda((args) => (() => {
         libuuid,
       ]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-Wno-error=unused-result"]))),
       })),
       buildInputs: nix.thunk(() => [gtk3, lz4, SDL2]),
@@ -81,7 +74,7 @@ runHook postBuild
       runtimeDependencies: nix.thunk(() => [vulkan_loader]),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             name: "xenia_canary",
             desktopName: "Xenia Canary",
             genericName: "Xbox 360 Emulator",
@@ -95,11 +88,11 @@ runHook postBuild
       ]),
       installPhase: "runHook preInstall\nfind ./build/bin -mindepth 3 -maxdepth 3 -type f -executable -exec install -Dm755 {} -t $out/bin \\;\nfor width in 16 32 48 64 128 256; do\n  install -Dm644 assets/icon/$width.png $out/share/icons/hicolor/${width}x${width}/apps/xenia-canary.png\ndone\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
-        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: pos$5, hardcodeZeroVersion: true })))),
+        [nix.POS]: $pos[5],
+        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[4], hardcodeZeroVersion: true })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "Xbox 360 Emulator Research Project",
         homepage: "https://github.com/xenia-canary/xenia-canary",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

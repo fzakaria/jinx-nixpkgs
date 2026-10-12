@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5]], [["extraArgs", 69, 5]], [["updateScript", 68, 12]], [["description", 76, 5], ["mainProgram", 77, 5], ["homepage", 78, 5], ["license", 79, 5], ["platforms", 80, 5], ["maintainers", 81, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["postPatch", 26, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 38, 3], ["makeFlags", 46, 3], ["configurePhase", 52, 3], ["postInstall", 62, 3], ["strictDeps", 66, 3], ["passthru", 68, 3], ["meta", 75, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, glibmm_2_4: false, "gtk4-layer-shell": false, gtkmm4: false, libevdev: false, "nix-update-script": false, "pkg-config": false, wireplumber: false, wrapGAppsHook4: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["extraArgs", 69, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 68, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 76, 5], ["mainProgram", 77, 5], ["homepage", 78, 5], ["license", 79, 5], ["platforms", 80, 5], ["maintainers", 81, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["postPatch", 26, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 38, 3], ["makeFlags", 46, 3], ["configurePhase", 52, 3], ["postInstall", 62, 3], ["strictDeps", 66, 3], ["passthru", 68, 3], ["meta", 75, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const wireplumber = nix.arg($, "wireplumber");
   const wrapGAppsHook4 = nix.arg($, "wrapGAppsHook4");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "syshud",
       version: "0-unstable-2026-09-07",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "System64fumo",
           repo: "syshud",
           rev: "ef3fb52ea37f57170a5e91b266ed9a449de9d2e9",
@@ -50,11 +46,11 @@ runHook postConfigure
       postInstall: "wrapProgram $out/bin/syshud --prefix LD_LIBRARY_PATH : $out/lib\n",
       strictDeps: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$2, extraArgs: nix.thunk(() => ["--version", "branch"]) })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: $pos[1], extraArgs: nix.thunk(() => ["--version", "branch"]) })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Simple heads up display written in gtkmm 4",
         mainProgram: "syshud",
         homepage: "https://github.com/System64fumo/syshud",

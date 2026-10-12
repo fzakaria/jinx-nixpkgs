@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 23, 9], ["hash", 24, 9]], [["version", 21, 7], ["src", 22, 7]], [["url", 30, 9], ["hash", 33, 9]], [["version", 28, 7], ["src", 29, 7]], [["6", 20, 5], ["7", 27, 5]], [["homepage", 103, 5], ["description", 104, 5], ["platforms", 105, 5], ["sourceProvenance", 106, 5], ["license", 107, 5], ["maintainers", 108, 5], ["mainProgram", 109, 5]], [["pname", 40, 3], ["version", 43, 3], ["src", 45, 3], ["nativeBuildInputs", 47, 3], ["buildInputs", 54, 3], ["dontWrapGApps", 62, 3], ["makeWrapperArgs", 63, 3], ["sourceRoot", 74, 3], ["dontUnpack", 76, 3], ["installPhase", 79, 3], ["preFixup", 96, 3], ["meta", 102, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, unzip: false, udev: false, nwjs: false, "gcc-unwrapped": false, autoPatchelfHook: false, "gsettings-desktop-schemas": false, gtk3: false, wrapGAppsHook3: false, makeWrapper: false, pinegrowVersion: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 23, 9], ["hash", 24, 9]]);
-const pos$2 = nix.positions(here + "/package.nix", [["version", 21, 7], ["src", 22, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 30, 9], ["hash", 33, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["version", 28, 7], ["src", 29, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["6", 20, 5], ["7", 27, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["homepage", 103, 5], ["description", 104, 5], ["platforms", 105, 5], ["sourceProvenance", 106, 5], ["license", 107, 5], ["maintainers", 108, 5], ["mainProgram", 109, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 40, 3], ["version", 43, 3], ["src", 45, 3], ["nativeBuildInputs", 47, 3], ["buildInputs", 54, 3], ["dontWrapGApps", 62, 3], ["makeWrapperArgs", 63, 3], ["sourceRoot", 74, 3], ["dontUnpack", 76, 3], ["installPhase", 79, 3], ["preFixup", 96, 3], ["meta", 102, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,28 +21,28 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const pinegrowVersion = nix.argOr($, "pinegrowVersion", () => "7");
   const versions = nix.thunk(() => ({
-    [nix.POS]: pos$5,
+    [nix.POS]: $pos[4],
     "6": nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       version: "6.8",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://download.pinegrow.com/PinegrowLinux64.${nix.sel(versions, "6", "version")}.zip`),
           hash: "sha256-gqRmu0VR8Aj57UwYYLKICd4FnYZMhM6pTTSGIY5MLMk=",
         })))),
     })),
     "7": nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       version: "7.8",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           url: nix.thunk(() => nix.str`https://github.com/Pinegrow/PinegrowReleases/releases/download/pg${nix.builtins.substring(0n, 4n, nix.thunk(() => nix.sel(versions, "7", "version")))}/PinegrowLinux64.${nix.sel(versions, "7", "version")}.zip`),
           hash: "sha256-tYQfPfzKRwClNwgSoJfMwG3LHhi3O/iFuuwIVHS8OXk=",
         })))),
     })),
   }));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "pinegrow",
       version: nix.thunk(() => nix.sel(versions, nix.key(nix.force(pinegrowVersion)), "version")),
       src: nix.thunk(() => nix.sel(versions, nix.key(nix.force(pinegrowVersion)), "src")),
@@ -64,7 +58,7 @@ export default nix.lambda((args) => (() => {
       installPhase: "runHook preInstall\n\nmkdir -p $out/share/applications $out/bin $out/opt/bin\n# we can't unzip it in $out/lib, because nw.js will start with\n# an empty screen. Therefore it will be unzipped in a non-typical\n# folder and symlinked.\nunzip -q $src -d $out/opt/pinegrow\nsubstituteInPlace $out/opt/pinegrow/Pinegrow.desktop \\\n  --replace 'Exec=sh -c \"$(dirname %k)/PinegrowLibrary\"' 'Exec=sh -c \"$out/bin/pinegrow\"'\nmv $out/opt/pinegrow/Pinegrow.desktop $out/share/applications/pinegrow.desktop\nln -s $out/opt/pinegrow/PinegrowLibrary $out/bin/pinegrow\n\nrunHook postInstall\n",
       preFixup: "wrapProgram $out/bin/pinegrow \\\n  ${makeWrapperArgs[@]} \\\n  ${gappsWrapperArgs[@]}\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         homepage: "https://pinegrow.com",
         description: "UI Web Editor",
         platforms: nix.thunk(() => ["x86_64-linux"]),

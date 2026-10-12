@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["hash", 24, 5]], [["owner", 27, 5], ["repo", 28, 5], ["rev", 29, 5], ["hash", 30, 5]], [["owner", 33, 5], ["repo", 34, 5], ["rev", 35, 5], ["hash", 36, 5]], [["owner", 44, 5], ["repo", 45, 5], ["tag", 46, 5], ["hash", 47, 5]], [["NIX_CFLAGS_COMPILE", 50, 7]], [["url", 59, 7], ["hash", 60, 7]], [["description", 96, 5], ["longDescription", 100, 5], ["homepage", 107, 5], ["license", 108, 5], ["maintainers", 109, 5], ["platforms", 110, 5], ["broken", 112, 5]], [["pname", 40, 3], ["version", 41, 3], ["src", 43, 3], ["env", 50, 3], ["patches", 56, 3], ["nativeBuildInputs", 64, 3], ["buildInputs", 69, 3], ["postUnpack", 79, 3], ["cmakeFlags", 90, 3], ["meta", 95, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchFromCodeberg: false, fetchpatch: false, cmake: false, python3: false, boost186: false, libsodium: false, openssl: false, rapidjson: false, readline: false, unbound: false, zeromq: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 27, 5], ["repo", 28, 5], ["rev", 29, 5], ["hash", 30, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["owner", 33, 5], ["repo", 34, 5], ["rev", 35, 5], ["hash", 36, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["owner", 44, 5], ["repo", 45, 5], ["tag", 46, 5], ["hash", 47, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 50, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["url", 59, 7], ["hash", 60, 7]]);
-const pos$7 = nix.positions(here + "/package.nix", [["description", 96, 5], ["longDescription", 100, 5], ["homepage", 107, 5], ["license", 108, 5], ["maintainers", 109, 5], ["platforms", 110, 5], ["broken", 112, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 40, 3], ["version", 41, 3], ["src", 43, 3], ["env", 50, 3], ["patches", 56, 3], ["nativeBuildInputs", 64, 3], ["buildInputs", 69, 3], ["postUnpack", 79, 3], ["cmakeFlags", 90, 3], ["meta", 95, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,39 +22,39 @@ export default nix.lambda((args) => (() => {
   const unbound = nix.arg($, "unbound");
   const zeromq = nix.arg($, "zeromq");
   const miniupnp = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "miniupnp",
       repo: "miniupnp",
       rev: "miniupnpc_2_2_1",
       hash: "sha256-opd0hcZV+pjC3Mae3Yf6AR5fj6xVwGm9LuU5zEPxBKc=",
     }))));
   const supercop = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       owner: "monero-project",
       repo: "supercop",
       rev: "633500ad8c8759995049ccd022107d1fa8a1bbc9",
       hash: "sha256-26UmESotSWnQ21VbAYEappLpkEMyl0jiuCaezRYd/sE=",
     }))));
   const randomwow = nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       owner: "wownero",
       repo: "RandomWOW",
       rev: "27b099b6dd6fef6e17f58c6dfe00009e9c5df587",
       hash: "sha256-imiXr4irXeKiQ6VMd6f3MJ46zvdvymnRdHGgnEvkT+o=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "wownero",
       version: "0.11.3.0",
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           owner: "wownero",
           repo: "wownero",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-EioXFfUQ+CV6+Ipef1wbmc+taKI98I420J7eqzz15Ss=",
         })))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => [
             "-Wno-error=cast-user-defined",
             "-Wno-error=implicit-function-declaration",
@@ -70,7 +63,7 @@ export default nix.lambda((args) => (() => {
       })),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             url: "https://codeberg.org/wownero/wownero/commit/0d0a656618e396de7ff60368dde708ad9d45f866.patch",
             hash: "sha256-xnpEZxWg5YzOhDIWZjNyXH8GBdK7c2rxL9DewPKghIg=",
           })))),
@@ -91,7 +84,7 @@ ln -s ${supercop} $sourceRoot/external/supercop
         "-DMANUAL_SUBMODULES=ON",
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "A privacy-centric memecoin that was fairly launched on April 1, 2018 with\nno pre-mine, stealth-mine or ICO\n",
         longDescription: "Wownero has a maximum supply of around 184 million WOW with a slow and\nsteady emission over 50 years. It is a fork of Monero, but with its own\ngenesis block, so there is no degradation of privacy due to ring\nsignatures using different participants for the same tx outputs on\nopposing forks.\n",
         homepage: "https://wownero.org/",

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 17, 5], ["sha256", 18, 5]], [["description", 35, 5], ["homepage", 36, 5], ["license", 37, 5], ["maintainers", 38, 5], ["platforms", 39, 5]], [["version", 11, 3], ["pname", 12, 3], ["buildInputs", 14, 3], ["src", 16, 3], ["postPatch", 21, 3], ["configureFlags", 28, 3], ["postInstall", 30, 3], ["meta", 34, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, "net-tools": false, iproute2: false, judy: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 17, 5], ["sha256", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 35, 5], ["homepage", 36, 5], ["license", 37, 5], ["maintainers", 38, 5], ["platforms", 39, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 11, 3], ["pname", 12, 3], ["buildInputs", 14, 3], ["src", 16, 3], ["postPatch", 21, 3], ["configureFlags", 28, 3], ["postInstall", 30, 3], ["meta", 34, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const iproute2 = nix.arg($, "iproute2");
   const judy = nix.arg($, "judy");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       version: "1.2.6",
       pname: "miredo",
       buildInputs: nix.thunk(() => [judy]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://www.remlab.net/files/miredo/miredo-${nix.sel(finalAttrs, "version")}.tar.xz`),
           sha256: "0j9ilig570snbmj48230hf7ms8kvcwi2wblycqrmhh85lksd49ps",
         })))),
@@ -33,7 +31,7 @@ substituteInPlace misc/client-hook.iproute --replace '/sbin/ip' '${iproute2}/bin
       configureFlags: nix.thunk(() => ["--with-Judy"]),
       postInstall: "rm -rf $out/lib/systemd $out/var $out/etc/miredo/miredo.conf\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Teredo IPv6 Tunneling Daemon",
         homepage: "https://www.remlab.net/miredo/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

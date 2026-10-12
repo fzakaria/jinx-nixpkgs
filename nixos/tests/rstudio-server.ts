@@ -2,45 +2,36 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/rstudio-server.nix", [[["maintainers", 4, 8]], [["enable", 16, 31]], [["rstudio-server", 16, 16]], [["services", 16, 7]], [["packages", 29, 56]], [["enable", 28, 9], ["package", 29, 9]], [["rstudio-server", 27, 16]], [["services", 27, 7]], [["machine", 8, 9], ["customPackageMachine", 19, 9]], [["name", 3, 3], ["meta", 4, 3], ["nodes", 8, 3], ["testScript", 33, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/rstudio-server.nix", [["maintainers", 4, 8]]);
 const formals$2 = { args: { config: false, lib: false, pkgs: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/rstudio-server.nix", [["enable", 16, 31]]);
-const pos$3 = nix.positions(here + "/rstudio-server.nix", [["rstudio-server", 16, 16]]);
-const pos$4 = nix.positions(here + "/rstudio-server.nix", [["services", 16, 7]]);
 const formals$3 = { args: { config: false, lib: false, pkgs: false }, ellipsis: true };
-const pos$5 = nix.positions(here + "/rstudio-server.nix", [["packages", 29, 56]]);
-const pos$6 = nix.positions(here + "/rstudio-server.nix", [["enable", 28, 9], ["package", 29, 9]]);
-const pos$7 = nix.positions(here + "/rstudio-server.nix", [["rstudio-server", 27, 16]]);
-const pos$8 = nix.positions(here + "/rstudio-server.nix", [["services", 27, 7]]);
-const pos$9 = nix.positions(here + "/rstudio-server.nix", [["machine", 8, 9], ["customPackageMachine", 19, 9]]);
-const pos$10 = nix.positions(here + "/rstudio-server.nix", [["name", 3, 3], ["meta", 4, 3], ["nodes", 8, 3], ["testScript", 33, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   return {
-    [nix.POS]: pos$10,
+    [nix.POS]: $pos[9],
     name: "rstudio-server-test",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "jbedo"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config = nix.arg($_1, "config");
         const lib = nix.arg($_1, "lib");
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$3,
-            "rstudio-server": nix.thunk(() => ({ [nix.POS]: pos$2, enable: true })),
+            [nix.POS]: $pos[2],
+            "rstudio-server": nix.thunk(() => ({ [nix.POS]: $pos[1], enable: true })),
           })),
         };
       })(), formals$2),
@@ -50,14 +41,14 @@ export default nix.lambda((args) => (() => {
         const lib = nix.arg($_1, "lib");
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             "rstudio-server": nix.thunk(() => ({
-              [nix.POS]: pos$6,
+              [nix.POS]: $pos[5],
               enable: true,
               package: nix.thunk(() => nix.app(nix.sel(pkgs_1, "rstudioServerWrapper", "override"), nix.thunk(() => ({
-                  [nix.POS]: pos$5,
+                  [nix.POS]: $pos[4],
                   packages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs_1, "rPackages", "ggplot2"))]),
                 })))),
             })),

@@ -2,36 +2,9 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/misc.nix", [[["device", 15, 11], ["size", 16, 11]], [["EDITOR", 19, 29]], [["variables", 19, 19]], [["d", 21, 59]], [["/tmp/somefile", 21, 43]], [["10-test", 21, 33]], [["rules", 20, 24], ["settings", 21, 24]], [["wantedBy", 52, 9], ["where", 53, 9]], [["tmpfiles", 20, 15], ["automounts", 51, 15]], [["fsType", 24, 11], ["options", 25, 11]], [["device", 32, 11], ["fsType", 33, 11], ["options", 34, 11]], [["device", 42, 11], ["fsType", 43, 11], ["options", 44, 11]], [["/tmp2", 23, 9], ["/user-mount/point", 31, 9], ["/user-mount/denied-point", 41, 9]], [["fileSystems", 22, 22]], [["isNormalUser", 56, 9], ["group", 57, 9]], [["isNormalUser", 60, 9]], [["sybil", 55, 19], ["alice", 59, 19]], [["users", 55, 13]], [["enable", 63, 9], ["wheelNeedsPassword", 64, 9]], [["sudo", 62, 16]], [["vm.swappiness", 66, 26]], [["sysctl", 66, 19]], [["kernel", 66, 12], ["kernelParams", 67, 12]], [["extraDependencies", 68, 14]], [["enable", 69, 11]], [["swapDevices", 13, 7], ["environment", 19, 7], ["systemd", 20, 7], ["virtualisation", 22, 7], ["users", 55, 7], ["security", 62, 7], ["boot", 66, 7], ["system", 68, 7], ["nix", 69, 7]], [["machine", 10, 9]], [["name", 8, 3], ["nodes", 10, 3], ["testScript", 72, 3]]]);
 const formals$1 = { args: { lib: false, pkgs: false }, ellipsis: true };
 const formals$2 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/misc.nix", [["device", 15, 11], ["size", 16, 11]]);
-const pos$2 = nix.positions(here + "/misc.nix", [["EDITOR", 19, 29]]);
-const pos$3 = nix.positions(here + "/misc.nix", [["variables", 19, 19]]);
-const pos$4 = nix.positions(here + "/misc.nix", [["d", 21, 59]]);
-const pos$5 = nix.positions(here + "/misc.nix", [["/tmp/somefile", 21, 43]]);
-const pos$6 = nix.positions(here + "/misc.nix", [["10-test", 21, 33]]);
-const pos$7 = nix.positions(here + "/misc.nix", [["rules", 20, 24], ["settings", 21, 24]]);
-const pos$8 = nix.positions(here + "/misc.nix", [["wantedBy", 52, 9], ["where", 53, 9]]);
-const pos$9 = nix.positions(here + "/misc.nix", [["tmpfiles", 20, 15], ["automounts", 51, 15]]);
-const pos$10 = nix.positions(here + "/misc.nix", [["fsType", 24, 11], ["options", 25, 11]]);
-const pos$11 = nix.positions(here + "/misc.nix", [["device", 32, 11], ["fsType", 33, 11], ["options", 34, 11]]);
-const pos$12 = nix.positions(here + "/misc.nix", [["device", 42, 11], ["fsType", 43, 11], ["options", 44, 11]]);
-const pos$13 = nix.positions(here + "/misc.nix", [["/tmp2", 23, 9], ["/user-mount/point", 31, 9], ["/user-mount/denied-point", 41, 9]]);
-const pos$14 = nix.positions(here + "/misc.nix", [["fileSystems", 22, 22]]);
-const pos$15 = nix.positions(here + "/misc.nix", [["isNormalUser", 56, 9], ["group", 57, 9]]);
-const pos$16 = nix.positions(here + "/misc.nix", [["isNormalUser", 60, 9]]);
-const pos$17 = nix.positions(here + "/misc.nix", [["sybil", 55, 19], ["alice", 59, 19]]);
-const pos$18 = nix.positions(here + "/misc.nix", [["users", 55, 13]]);
-const pos$19 = nix.positions(here + "/misc.nix", [["enable", 63, 9], ["wheelNeedsPassword", 64, 9]]);
-const pos$20 = nix.positions(here + "/misc.nix", [["sudo", 62, 16]]);
-const pos$21 = nix.positions(here + "/misc.nix", [["vm.swappiness", 66, 26]]);
-const pos$22 = nix.positions(here + "/misc.nix", [["sysctl", 66, 19]]);
-const pos$23 = nix.positions(here + "/misc.nix", [["kernel", 66, 12], ["kernelParams", 67, 12]]);
-const pos$24 = nix.positions(here + "/misc.nix", [["extraDependencies", 68, 14]]);
-const pos$25 = nix.positions(here + "/misc.nix", [["enable", 69, 11]]);
-const pos$26 = nix.positions(here + "/misc.nix", [["swapDevices", 13, 7], ["environment", 19, 7], ["systemd", 20, 7], ["virtualisation", 22, 7], ["users", 55, 7], ["security", 62, 7], ["boot", 66, 7], ["system", 68, 7], ["nix", 69, 7]]);
-const pos$27 = nix.positions(here + "/misc.nix", [["machine", 10, 9]]);
-const pos$28 = nix.positions(here + "/misc.nix", [["name", 8, 3], ["nodes", 10, 3], ["testScript", 72, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -39,61 +12,61 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const foo = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "foo", "Hello World"));
   return {
-    [nix.POS]: pos$28,
+    [nix.POS]: $pos[27],
     name: "misc",
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$27,
+      [nix.POS]: $pos[26],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const lib_1 = nix.arg($_1, "lib");
         return {
-          [nix.POS]: pos$26,
+          [nix.POS]: $pos[25],
           swapDevices: nix.thunk(() => nix.app(nix.sel(lib_1, "mkOverride"), 0n, nix.thunk(() => [
-              nix.thunk(() => ({ [nix.POS]: pos$1, device: "/root/swapfile", size: 128n })),
+              nix.thunk(() => ({ [nix.POS]: $pos[0], device: "/root/swapfile", size: 128n })),
             ]))),
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             variables: nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               EDITOR: nix.thunk(() => nix.app(nix.sel(lib_1, "mkOverride"), 0n, "emacs")),
             })),
           })),
           systemd: nix.thunk(() => ({
-            [nix.POS]: pos$9,
+            [nix.POS]: $pos[8],
             tmpfiles: nix.thunk(() => ({
-              [nix.POS]: pos$7,
+              [nix.POS]: $pos[6],
               rules: nix.thunk(() => ["d /tmp 1777 root root 10d"]),
               settings: nix.thunk(() => ({
-                [nix.POS]: pos$6,
+                [nix.POS]: $pos[5],
                 "10-test": nix.thunk(() => ({
-                  [nix.POS]: pos$5,
-                  "/tmp/somefile": nix.thunk(() => ({ [nix.POS]: pos$4, d: nix.thunk(() => ({})) })),
+                  [nix.POS]: $pos[4],
+                  "/tmp/somefile": nix.thunk(() => ({ [nix.POS]: $pos[3], d: nix.thunk(() => ({})) })),
                 })),
               })),
             })),
             automounts: nix.thunk(() => nix.app(nix.sel(lib_1, "singleton"), nix.thunk(() => ({
-                [nix.POS]: pos$8,
+                [nix.POS]: $pos[7],
                 wantedBy: nix.thunk(() => ["multi-user.target"]),
                 where: "/tmp2",
               })))),
           })),
           virtualisation: nix.thunk(() => ({
-            [nix.POS]: pos$14,
+            [nix.POS]: $pos[13],
             fileSystems: nix.thunk(() => ({
-              [nix.POS]: pos$13,
+              [nix.POS]: $pos[12],
               "/tmp2": nix.thunk(() => ({
-                [nix.POS]: pos$10,
+                [nix.POS]: $pos[9],
                 fsType: "tmpfs",
                 options: nix.thunk(() => ["mode=1777", "noauto"]),
               })),
               "/user-mount/point": nix.thunk(() => ({
-                [nix.POS]: pos$11,
+                [nix.POS]: $pos[10],
                 device: "/user-mount/source",
                 fsType: "none",
                 options: nix.thunk(() => ["bind", "rw", "user", "noauto"]),
               })),
               "/user-mount/denied-point": nix.thunk(() => ({
-                [nix.POS]: pos$12,
+                [nix.POS]: $pos[11],
                 device: "/user-mount/denied-source",
                 fsType: "none",
                 options: nix.thunk(() => ["bind", "rw", "noauto"]),
@@ -101,27 +74,27 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           users: nix.thunk(() => ({
-            [nix.POS]: pos$18,
+            [nix.POS]: $pos[17],
             users: nix.thunk(() => ({
-              [nix.POS]: pos$17,
-              sybil: nix.thunk(() => ({ [nix.POS]: pos$15, isNormalUser: true, group: "wheel" })),
-              alice: nix.thunk(() => ({ [nix.POS]: pos$16, isNormalUser: true })),
+              [nix.POS]: $pos[16],
+              sybil: nix.thunk(() => ({ [nix.POS]: $pos[14], isNormalUser: true, group: "wheel" })),
+              alice: nix.thunk(() => ({ [nix.POS]: $pos[15], isNormalUser: true })),
             })),
           })),
           security: nix.thunk(() => ({
-            [nix.POS]: pos$20,
-            sudo: nix.thunk(() => ({ [nix.POS]: pos$19, enable: true, wheelNeedsPassword: false })),
+            [nix.POS]: $pos[19],
+            sudo: nix.thunk(() => ({ [nix.POS]: $pos[18], enable: true, wheelNeedsPassword: false })),
           })),
           boot: nix.thunk(() => ({
-            [nix.POS]: pos$23,
+            [nix.POS]: $pos[22],
             kernel: nix.thunk(() => ({
-              [nix.POS]: pos$22,
-              sysctl: nix.thunk(() => ({ [nix.POS]: pos$21, "vm.swappiness": 1n })),
+              [nix.POS]: $pos[21],
+              sysctl: nix.thunk(() => ({ [nix.POS]: $pos[20], "vm.swappiness": 1n })),
             })),
             kernelParams: nix.thunk(() => ["vsyscall=emulate"]),
           })),
-          system: nix.thunk(() => ({ [nix.POS]: pos$24, extraDependencies: nix.thunk(() => [foo]) })),
-          nix: nix.thunk(() => ({ [nix.POS]: pos$25, enable: true })),
+          system: nix.thunk(() => ({ [nix.POS]: $pos[23], extraDependencies: nix.thunk(() => [foo]) })),
+          nix: nix.thunk(() => ({ [nix.POS]: $pos[24], enable: true })),
         };
       })(), formals$2),
     })),

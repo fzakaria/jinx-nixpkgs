@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["mainProgram", 54, 8]], [["pname", 27, 3], ["extraNativeBuildInputs", 29, 3], ["extraBuildInputs", 33, 3], ["qtWrapperArgs", 51, 3], ["meta", 54, 3]]]);
 const formals$1 = { args: { mkKdeDerivation: false, fetchpatch: false, qtdeclarative: false, qtmultimedia: false, qtsvg: false, "extra-cmake-modules": false, futuresql: false, kcoreaddons: false, kcrash: false, ki18n: false, "kirigami-addons": false, kirigami: false, kwindowsystem: false, purpose: false, qcoro: false, python3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["mainProgram", 54, 8]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 27, 3], ["extraNativeBuildInputs", 29, 3], ["extraBuildInputs", 33, 3], ["qtWrapperArgs", 51, 3], ["meta", 54, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,7 +29,7 @@ export default nix.lambda((args) => (() => {
     nix.thunk(() => nix.sel(ps, "ytmusicapi")),
   ]);
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "audiotube",
       extraNativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(ps, "pybind11"))]),
       extraBuildInputs: nix.thunk(() => nix.concat([
@@ -51,7 +50,7 @@ export default nix.lambda((args) => (() => {
       qtWrapperArgs: nix.thunk(() => [
         nix.thunk(() => nix.str`--prefix PYTHONPATH : ${nix.app(nix.sel(ps, "makePythonPath"), pythonDeps)}`),
       ]),
-      meta: nix.thunk(() => ({ [nix.POS]: pos$1, mainProgram: "audiotube" })),
+      meta: nix.thunk(() => ({ [nix.POS]: $pos[0], mainProgram: "audiotube" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

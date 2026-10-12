@@ -2,17 +2,16 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["ccextractor", 4, 47]], [["server", 4, 3], ["node", 5, 3]]]);
 const formals$1 = { args: { callPackage: false, ccextractor: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["ccextractor", 4, 47]]);
-const pos$2 = nix.positions(here + "/default.nix", [["server", 4, 3], ["node", 5, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const callPackage = nix.arg($, "callPackage");
   const ccextractor = nix.arg($, "ccextractor");
   return {
-    [nix.POS]: pos$2,
-    server: nix.thunk(() => nix.app(callPackage, nix.path(here, "./server.nix"), nix.thunk(() => ({ [nix.POS]: pos$1, ccextractor: ccextractor })))),
+    [nix.POS]: $pos[1],
+    server: nix.thunk(() => nix.app(callPackage, nix.path(here, "./server.nix"), nix.thunk(() => ({ [nix.POS]: $pos[0], ccextractor: ccextractor })))),
     node: nix.thunk(() => nix.app(callPackage, nix.path(here, "./node.nix"), nix.thunk(() => ({})))),
   };
 })(), formals$1);

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["hash", 20, 5]], [["ROCKSDB_INCLUDE_DIR", 37, 5], ["ROCKSDB_LIB_DIR", 38, 5], ["BITCOIND_SKIP_DOWNLOAD", 42, 5], ["ELECTRUMD_SKIP_DOWNLOAD", 43, 5], ["ELEMENTSD_SKIP_DOWNLOAD", 44, 5]], [["description", 81, 5], ["longDescription", 82, 5], ["homepage", 93, 5], ["license", 94, 5], ["maintainers", 95, 5], ["mainProgram", 96, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["cargoHash", 23, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 30, 3], ["env", 35, 3], ["cargoBuildFlags", 48, 3], ["doCheck", 56, 3], ["checkType", 59, 3], ["checkFlags", 62, 3], ["preCheck", 69, 3], ["doInstallCheck", 75, 3], ["installCheckPhase", 76, 3], ["meta", 80, 3]]]);
 const formals$1 = { args: { bitcoind: false, electrum: false, fetchFromGitHub: false, lib: false, rocksdb: false, "rust-jemalloc-sys": false, rustPlatform: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["ROCKSDB_INCLUDE_DIR", 37, 5], ["ROCKSDB_LIB_DIR", 38, 5], ["BITCOIND_SKIP_DOWNLOAD", 42, 5], ["ELECTRUMD_SKIP_DOWNLOAD", 43, 5], ["ELEMENTSD_SKIP_DOWNLOAD", 44, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 81, 5], ["longDescription", 82, 5], ["homepage", 93, 5], ["license", 94, 5], ["maintainers", 95, 5], ["mainProgram", 96, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["cargoHash", 23, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 30, 3], ["env", 35, 3], ["cargoBuildFlags", 48, 3], ["doCheck", 56, 3], ["checkType", 59, 3], ["checkFlags", 62, 3], ["preCheck", 69, 3], ["doInstallCheck", 75, 3], ["installCheckPhase", 76, 3], ["meta", 80, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = "blockstream-electrs";
       const version = "0.4.1-unstable-2026-04-20";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Blockstream",
           repo: "electrs",
           rev: "503b740cce2133fd07f451cbe93249a4e092b300",
@@ -32,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [nix.thunk(() => nix.sel(rustPlatform, "bindgenHook"))]);
       const buildInputs = nix.thunk(() => [rust_jemalloc_sys]);
       const env = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         ROCKSDB_INCLUDE_DIR: nix.thunk(() => nix.str`${rocksdb}/include`),
         ROCKSDB_LIB_DIR: nix.thunk(() => nix.str`${rocksdb}/lib`),
         BITCOIND_SKIP_DOWNLOAD: true,
@@ -53,7 +50,7 @@ export ELECTRUMD_EXE=${electrum}/bin/electrum
       const doInstallCheck = true;
       const installCheckPhase = "$out/bin/electrs --version\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Efficient re-implementation of Electrum Server in Rust",
         longDescription: "A blockchain index engine and HTTP API written in Rust based on\n[romanz/electrs](https://github.com/romanz/electrs).\n\nUsed as the backend for the [Esplora block explorer](https://github.com/Blockstream/esplora)\npowering <https://blockstream.info>.\n\nAPI documentation [is available here](https://github.com/blockstream/esplora/blob/master/API.md).\n\nDocumentation for the database schema and indexing process [is available here](https://github.com/Blockstream/electrs/blob/new-index/doc/schema.md).\n",
         homepage: "https://github.com/Blockstream/electrs",
@@ -65,7 +62,7 @@ export ELECTRUMD_EXE=${electrum}/bin/electrum
         mainProgram: "electrs",
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

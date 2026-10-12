@@ -2,25 +2,8 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/librenms.nix", [[["maintainers", 9, 8]], [["timeZone", 12, 10]], [["systemPackages", 14, 17]], [["createLocally", 23, 9], ["host", 24, 9], ["database", 25, 9], ["username", 26, 9], ["passwordFile", 27, 9]], [["default", 30, 9]], [["enable_billing", 34, 9]], [["enable", 20, 7], ["hostname", 21, 7], ["database", 22, 7], ["nginx", 29, 7], ["enableOneMinutePolling", 32, 7], ["settings", 33, 7]], [["librenms", 19, 14]], [["Type", 44, 9], ["RemainAfterExit", 45, 9], ["User", 46, 9], ["Group", 47, 9]], [["description", 40, 7], ["after", 41, 7], ["wantedBy", 42, 7], ["serviceConfig", 43, 7], ["script", 49, 7]], [["lnms-api-init", 39, 22]], [["services", 39, 13]], [["time", 12, 5], ["environment", 14, 5], ["services", 19, 5], ["systemd", 39, 5]], [["enable", 66, 7], ["openFirewall", 67, 7], ["configText", 69, 7]], [["snmpd", 65, 14]], [["services", 65, 5]], [["librenms", 11, 9], ["snmphost", 63, 9]], [["name", 8, 3], ["meta", 9, 3], ["nodes", 11, 3], ["testScript", 83, 3]]]);
 const formals$1 = { args: { pkgs: false, lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/librenms.nix", [["maintainers", 9, 8]]);
-const pos$2 = nix.positions(here + "/librenms.nix", [["timeZone", 12, 10]]);
-const pos$3 = nix.positions(here + "/librenms.nix", [["systemPackages", 14, 17]]);
-const pos$4 = nix.positions(here + "/librenms.nix", [["createLocally", 23, 9], ["host", 24, 9], ["database", 25, 9], ["username", 26, 9], ["passwordFile", 27, 9]]);
-const pos$5 = nix.positions(here + "/librenms.nix", [["default", 30, 9]]);
-const pos$6 = nix.positions(here + "/librenms.nix", [["enable_billing", 34, 9]]);
-const pos$7 = nix.positions(here + "/librenms.nix", [["enable", 20, 7], ["hostname", 21, 7], ["database", 22, 7], ["nginx", 29, 7], ["enableOneMinutePolling", 32, 7], ["settings", 33, 7]]);
-const pos$8 = nix.positions(here + "/librenms.nix", [["librenms", 19, 14]]);
-const pos$9 = nix.positions(here + "/librenms.nix", [["Type", 44, 9], ["RemainAfterExit", 45, 9], ["User", 46, 9], ["Group", 47, 9]]);
-const pos$10 = nix.positions(here + "/librenms.nix", [["description", 40, 7], ["after", 41, 7], ["wantedBy", 42, 7], ["serviceConfig", 43, 7], ["script", 49, 7]]);
-const pos$11 = nix.positions(here + "/librenms.nix", [["lnms-api-init", 39, 22]]);
-const pos$12 = nix.positions(here + "/librenms.nix", [["services", 39, 13]]);
-const pos$13 = nix.positions(here + "/librenms.nix", [["time", 12, 5], ["environment", 14, 5], ["services", 19, 5], ["systemd", 39, 5]]);
-const pos$14 = nix.positions(here + "/librenms.nix", [["enable", 66, 7], ["openFirewall", 67, 7], ["configText", 69, 7]]);
-const pos$15 = nix.positions(here + "/librenms.nix", [["snmpd", 65, 14]]);
-const pos$16 = nix.positions(here + "/librenms.nix", [["services", 65, 5]]);
-const pos$17 = nix.positions(here + "/librenms.nix", [["librenms", 11, 9], ["snmphost", 63, 9]]);
-const pos$18 = nix.positions(here + "/librenms.nix", [["name", 8, 3], ["meta", 9, 3], ["nodes", 11, 3], ["testScript", 83, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,57 +12,57 @@ export default nix.lambda((args) => (() => {
   const api_token = "f87f42114e44b63ad1b9e3c3d33d6fbe";
   const wrong_api_token = "e68ba041fcf1eab923a7a6de3af5f726";
   return {
-    [nix.POS]: pos$18,
+    [nix.POS]: $pos[17],
     name: "librenms",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "johannwagner"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$17,
+      [nix.POS]: $pos[16],
       librenms: nix.thunk(() => ({
-        [nix.POS]: pos$13,
-        time: nix.thunk(() => ({ [nix.POS]: pos$2, timeZone: "Europe/Berlin" })),
+        [nix.POS]: $pos[12],
+        time: nix.thunk(() => ({ [nix.POS]: $pos[1], timeZone: "Europe/Berlin" })),
         environment: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           systemPackages: nix.thunk(() => (() => {
             const w = nix.withScope(pkgs, null);
             return [nix.thunk(() => nix.lookup(w, "curl")), nix.thunk(() => nix.lookup(w, "jq"))];
           })()),
         })),
         services: nix.thunk(() => ({
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           librenms: nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             enable: true,
             hostname: "librenms",
             database: nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               createLocally: true,
               host: "localhost",
               database: "librenms",
               username: "librenms",
               passwordFile: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "librenms-db-pass", "librenmsdbpass")),
             })),
-            nginx: nix.thunk(() => ({ [nix.POS]: pos$5, default: true })),
+            nginx: nix.thunk(() => ({ [nix.POS]: $pos[4], default: true })),
             enableOneMinutePolling: true,
-            settings: nix.thunk(() => ({ [nix.POS]: pos$6, enable_billing: true })),
+            settings: nix.thunk(() => ({ [nix.POS]: $pos[5], enable_billing: true })),
           })),
         })),
         systemd: nix.thunk(() => ({
-          [nix.POS]: pos$12,
+          [nix.POS]: $pos[11],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$11,
+            [nix.POS]: $pos[10],
             "lnms-api-init": nix.thunk(() => ({
-              [nix.POS]: pos$10,
+              [nix.POS]: $pos[9],
               description: "LibreNMS API init",
               after: nix.thunk(() => ["librenms-setup.service"]),
               wantedBy: nix.thunk(() => ["multi-user.target"]),
               serviceConfig: nix.thunk(() => ({
-                [nix.POS]: pos$9,
+                [nix.POS]: $pos[8],
                 Type: "oneshot",
                 RemainAfterExit: true,
                 User: "root",
@@ -100,11 +83,11 @@ ${nix.sel(pkgs, "mariadb")}/bin/mysql -D librenms -e "INSERT INTO api_tokens (us
         })),
       })),
       snmphost: nix.thunk(() => ({
-        [nix.POS]: pos$16,
+        [nix.POS]: $pos[15],
         services: nix.thunk(() => ({
-          [nix.POS]: pos$15,
+          [nix.POS]: $pos[14],
           snmpd: nix.thunk(() => ({
-            [nix.POS]: pos$14,
+            [nix.POS]: $pos[13],
             enable: true,
             openFirewall: true,
             configText: "com2sec readonly default public\n\ngroup MyROGroup v2c        readonly\nview all    included  .1                               80\naccess MyROGroup \"\"      any       noauth    exact  all    none   none\n\nsyslocation Testcity, Testcountry\nsyscontact Testi mc Test <test@example.com>\n",

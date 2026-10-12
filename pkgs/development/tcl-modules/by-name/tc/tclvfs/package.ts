@@ -2,10 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 12, 5], ["hash", 13, 5]], [["description", 17, 5], ["homepage", 18, 5], ["license", 19, 5], ["longDescription", 20, 5], ["maintainers", 26, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["meta", 16, 3]]]);
 const formals$1 = { args: { lib: false, mkTclDerivation: false, fetchzip: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 12, 5], ["hash", 13, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 17, 5], ["homepage", 18, 5], ["license", 19, 5], ["longDescription", 20, 5], ["maintainers", 26, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["meta", 16, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,16 +11,16 @@ export default nix.lambda((args) => (() => {
   const mkTclDerivation = nix.arg($, "mkTclDerivation");
   const fetchzip = nix.arg($, "fetchzip");
   return nix.app(mkTclDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "tclvfs",
       version: "1.4-unstable-2023-11-23",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://core.tcl-lang.org/tclvfs/tarball/8cdab08997fe82d8/tclvfs-8cdab08997fe82d8.tar.gz",
           hash: "sha256-DzZ4Puwscbr0KarMyEKeah7jDJy7cfKNBbBSh0boaUw=",
         })))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Tcl extension that exposes Tcl's Virtual File System (VFS) subsystem to the script level",
         homepage: "https://www.tcl-lang.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "tcltk")),

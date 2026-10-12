@@ -2,9 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/configuration-microhs.nix", [[["pname", 20, 5], ["version", 21, 5], ["src", 22, 5], ["isLibrary", 23, 5], ["isExecutable", 24, 5], ["executableHaskellDepends", 25, 5], ["description", 27, 7], ["homepage", 28, 7], ["license", 29, 7], ["mainProgram", 30, 7], ["maintainers", 31, 7]], [["base", 7, 3], ["bytestring", 8, 3], ["deepseq", 9, 3], ["directory", 10, 3], ["process", 11, 3], ["text", 12, 3], ["MicroHs", 13, 3], ["ghc-compat", 16, 3], ["MicroCabal", 19, 3], ["binary", 36, 3], ["Cabal", 37, 3], ["Cabal-syntax", 38, 3], ["containers", 39, 3], ["exceptions", 40, 3], ["filepath", 41, 3], ["ghc-bignum", 42, 3], ["ghc-boot", 43, 3], ["ghc-boot-th", 44, 3], ["ghc-compact", 45, 3], ["ghc-experimental", 46, 3], ["ghc-heap", 47, 3], ["ghc-internal", 48, 3], ["ghc-platform", 49, 3], ["ghc-prim", 50, 3], ["ghci", 51, 3], ["haskeline", 52, 3], ["hpc", 53, 3], ["integer-gmp", 54, 3], ["libiserv", 55, 3], ["mtl", 56, 3], ["os-string", 57, 3], ["parsec", 58, 3], ["pretty", 59, 3], ["rts", 60, 3], ["semaphore-compat", 61, 3], ["stm", 62, 3], ["system-cxx-std-lib", 63, 3], ["template-haskell", 64, 3], ["terminfo", 65, 3], ["time", 66, 3], ["transformers", 67, 3], ["unix", 68, 3], ["xhtml", 69, 3], ["array", 72, 3], ["array-mhs", 73, 3], ["random", 74, 3], ["random-mhs", 75, 3], ["splitmix", 78, 3]]]);
 const formals$1 = { args: { pkgs: false, haskellLib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/configuration-microhs.nix", [["pname", 20, 5], ["version", 21, 5], ["src", 22, 5], ["isLibrary", 23, 5], ["isExecutable", 24, 5], ["executableHaskellDepends", 25, 5], ["description", 27, 7], ["homepage", 28, 7], ["license", 29, 7], ["mainProgram", 30, 7], ["maintainers", 31, 7]]);
-const pos$2 = nix.positions(here + "/configuration-microhs.nix", [["base", 7, 3], ["bytestring", 8, 3], ["deepseq", 9, 3], ["directory", 10, 3], ["process", 11, 3], ["text", 12, 3], ["MicroHs", 13, 3], ["ghc-compat", 16, 3], ["MicroCabal", 19, 3], ["binary", 36, 3], ["Cabal", 37, 3], ["Cabal-syntax", 38, 3], ["containers", 39, 3], ["exceptions", 40, 3], ["filepath", 41, 3], ["ghc-bignum", 42, 3], ["ghc-boot", 43, 3], ["ghc-boot-th", 44, 3], ["ghc-compact", 45, 3], ["ghc-experimental", 46, 3], ["ghc-heap", 47, 3], ["ghc-internal", 48, 3], ["ghc-platform", 49, 3], ["ghc-prim", 50, 3], ["ghci", 51, 3], ["haskeline", 52, 3], ["hpc", 53, 3], ["integer-gmp", 54, 3], ["libiserv", 55, 3], ["mtl", 56, 3], ["os-string", 57, 3], ["parsec", 58, 3], ["pretty", 59, 3], ["rts", 60, 3], ["semaphore-compat", 61, 3], ["stm", 62, 3], ["system-cxx-std-lib", 63, 3], ["template-haskell", 64, 3], ["terminfo", 65, 3], ["time", 66, 3], ["transformers", 67, 3], ["unix", 68, 3], ["xhtml", 69, 3], ["array", 72, 3], ["array-mhs", 73, 3], ["random", 74, 3], ["random-mhs", 75, 3], ["splitmix", 78, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -12,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const haskellLib = nix.arg($, "haskellLib");
   const w = nix.withScope(haskellLib, null);
   return (self) => (super$) => ({
-    [nix.POS]: pos$2,
+    [nix.POS]: $pos[1],
     base: null,
     bytestring: null,
     deepseq: null,
@@ -24,7 +23,7 @@ export default nix.lambda((args) => (() => {
     MicroCabal: nix.thunk(() => nix.app(nix.sel(self, "mkDerivation"), nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(self, "ghc", "microcabal-stage1", "meta"));
         return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         pname: "MicroCabal",
         version: nix.thunk(() => nix.sel(self, "ghc", "microcabal-stage1", "version")),
         src: nix.thunk(() => nix.sel(self, "ghc", "microcabal-stage1", "src")),

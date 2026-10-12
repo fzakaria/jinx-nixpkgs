@@ -2,10 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["name", 10, 5], ["publisher", 11, 5], ["version", 12, 5], ["hash", 13, 5]], [["description", 42, 5], ["homepage", 43, 5], ["license", 44, 5], ["maintainers", 45, 5]], [["mktplcRef", 9, 3], ["nativeBuildInputs", 16, 3], ["postPatch", 21, 3], ["meta", 41, 3]]]);
 const formals$1 = { args: { lib: false, "vscode-utils": false, jq: false, moreutils: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["name", 10, 5], ["publisher", 11, 5], ["version", 12, 5], ["hash", 13, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 42, 5], ["homepage", 43, 5], ["license", 44, 5], ["maintainers", 45, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["mktplcRef", 9, 3], ["nativeBuildInputs", 16, 3], ["postPatch", 21, 3], ["meta", 41, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,9 +12,9 @@ export default nix.lambda((args) => (() => {
   const jq = nix.arg($, "jq");
   const moreutils = nix.arg($, "moreutils");
   return nix.app(nix.sel(vscode_utils, "buildVscodeMarketplaceExtension"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       mktplcRef: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         name: "jupyter",
         publisher: "ms-toolsai",
         version: "2025.9.1",
@@ -25,7 +23,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [jq, moreutils]),
       postPatch: "# Patch 'packages.json' so that the expected '__metadata' field exists.\n# This works around observed extension load failure on vscode's attempt\n# to rewrite 'packages.json' with this new information.\nprint_jq_query() {\n    cat <<\"EOF\"\n.__metadata = {\n  \"id\": \"6c2f1801-1e7f-45b2-9b5c-7782f1e076e8\",\n  \"publisherId\": \"ac8eb7c9-3e59-4b39-8040-f0484d8170ce\",\n  \"publisherDisplayName\": \"Microsoft\",\n  \"installedTimestamp\": 0\n}\nEOF\n}\njq \"$(print_jq_query)\" ./package.json | sponge ./package.json\n# Add a link from temp to /tmp so that the extension gets a writable\n# directory to write to.\nln -s /tmp temp\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Jupyter extension for vscode",
         homepage: "https://github.com/microsoft/vscode-jupyter",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

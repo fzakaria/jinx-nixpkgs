@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]], [["libmpv", 30, 7]], [["description", 90, 5], ["homepage", 91, 5], ["changelog", 92, 5], ["license", 93, 5], ["maintainers", 94, 5], ["platforms", 98, 5], ["mainProgram", 99, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["patches", 28, 3], ["postPatch", 34, 3], ["nativeBuildInputs", 45, 3], ["dontWrapGApps", 52, 3], ["buildInputs", 54, 3], ["pythonPath", 59, 3], ["installPhase", 67, 3], ["preFixup", 78, 3], ["meta", 89, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, replaceVars: false, xapp: false, "xapp-symbolic-icons": false, "circle-flags": false, gettext: false, "gobject-introspection": false, mpv: false, python3: false, wrapGAppsHook3: false, "yt-dlp": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["libmpv", 30, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 90, 5], ["homepage", 91, 5], ["changelog", 92, 5], ["license", 93, 5], ["maintainers", 94, 5], ["platforms", 98, 5], ["mainProgram", 99, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["patches", 28, 3], ["postPatch", 34, 3], ["nativeBuildInputs", 45, 3], ["dontWrapGApps", 52, 3], ["buildInputs", 54, 3], ["pythonPath", 59, 3], ["installPhase", 67, 3], ["preFixup", 78, 3], ["meta", 89, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   const yt_dlp = nix.arg($, "yt-dlp");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "hypnotix",
       version: "5.6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "linuxmint",
           repo: "hypnotix",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -36,7 +33,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./libmpv-path.patch"), nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             libmpv: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getLib"), mpv)}/lib/libmpv${nix.sel(stdenv, "hostPlatform", "extensions", "sharedLibrary")}`),
           })))),
       ]),
@@ -78,7 +75,7 @@ wrapProgram $out/bin/hypnotix \\
   \${gappsWrapperArgs[@]}
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "IPTV streaming application",
         homepage: "https://github.com/linuxmint/hypnotix",
         changelog: nix.thunk(() => nix.str`https://github.com/linuxmint/hypnotix/blob/${nix.sel(finalAttrs, "src", "tag")}/debian/changelog`),

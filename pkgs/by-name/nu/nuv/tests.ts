@@ -2,15 +2,15 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/tests.nix", [[["nativeBuildInputs", 9, 5]]]);
 const formals$1 = { args: { runCommand: false, nuv: false, version: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/tests.nix", [["nativeBuildInputs", 9, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const runCommand = nix.arg($, "runCommand");
   const nuv = nix.arg($, "nuv");
   const version = nix.arg($, "version");
-  return nix.app(runCommand, "nuv-test-run", nix.thunk(() => ({ [nix.POS]: pos$1, nativeBuildInputs: nix.thunk(() => [nuv]) })), nix.thunk(() => nix.str`export TMP_BASE=$(mktemp -d /tmp/.nuv-XXXXX)
+  return nix.app(runCommand, "nuv-test-run", nix.thunk(() => ({ [nix.POS]: $pos[0], nativeBuildInputs: nix.thunk(() => [nuv]) })), nix.thunk(() => nix.str`export TMP_BASE=$(mktemp -d /tmp/.nuv-XXXXX)
 export HOME=$TMP_BASE
 export NUV_REPO=""
 export NUV_ROOT=$TMP_BASE/.nuv/3.0.0/olaris

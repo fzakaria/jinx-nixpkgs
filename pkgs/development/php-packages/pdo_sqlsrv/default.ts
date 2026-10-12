@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["description", 20, 5], ["license", 21, 5], ["homepage", 22, 5], ["teams", 23, 5], ["broken", 24, 5]], [["pname", 10, 3], ["version", 12, 3], ["sha256", 13, 3], ["internalDeps", 15, 3], ["buildInputs", 17, 3], ["meta", 19, 3]]]);
 const formals$1 = { args: { stdenv: false, buildPecl: false, lib: false, libiconv: false, unixodbc: false, php: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["description", 20, 5], ["license", 21, 5], ["homepage", 22, 5], ["teams", 23, 5], ["broken", 24, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 10, 3], ["version", 12, 3], ["sha256", 13, 3], ["internalDeps", 15, 3], ["buildInputs", 17, 3], ["meta", 19, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,14 +14,14 @@ export default nix.lambda((args) => (() => {
   const unixodbc = nix.arg($, "unixodbc");
   const php = nix.arg($, "php");
   return nix.app(buildPecl, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "pdo_sqlsrv",
       version: "5.13.0",
       sha256: "sha256-76hZvMSNl/JSaNvevx2yXyVhDX+jaz7pEHPByZQR4kw=",
       internalDeps: nix.thunk(() => [nix.thunk(() => nix.sel(php, "extensions", "pdo"))]),
       buildInputs: nix.thunk(() => nix.concat([unixodbc], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [libiconv])))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Microsoft Drivers for PHP for SQL Server",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         homepage: "https://github.com/Microsoft/msphpsql",

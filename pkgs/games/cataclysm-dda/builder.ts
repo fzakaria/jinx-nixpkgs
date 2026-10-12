@@ -2,11 +2,9 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/builder.nix", [[["mod", 49, 13], ["soundpack", 50, 13], ["tileset", 51, 13]], [["forTiles", 64, 7], ["forCurses", 65, 7]], [["pname", 23, 5], ["modRoot", 25, 5], ["configurePhase", 27, 5], ["buildPhase", 33, 5], ["checkPhase", 39, 5], ["installPhase", 45, 5], ["passthru", 63, 5]]]);
 const formals$1 = { args: { stdenvNoCC: false, lib: false, type: false }, ellipsis: false };
 const formals$2 = { args: { modName: false, version: false, src: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/builder.nix", [["mod", 49, 13], ["soundpack", 50, 13], ["tileset", 51, 13]]);
-const pos$2 = nix.positions(here + "/builder.nix", [["forTiles", 64, 7], ["forCurses", 65, 7]]);
-const pos$3 = nix.positions(here + "/builder.nix", [["pname", 23, 5], ["modRoot", 25, 5], ["configurePhase", 27, 5], ["buildPhase", 33, 5], ["checkPhase", 39, 5], ["installPhase", 45, 5], ["passthru", 63, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,7 +25,7 @@ export default nix.lambda((args) => (() => {
         const buildPhase = nix.thunk(() => nix.selOr(args_2, () => "runHook preBuild\nrunHook postBuild\n", "buildPhase"));
         const checkPhase = nix.thunk(() => nix.selOr(args_2, () => "runHook preCheck\nrunHook postCheck\n", "checkPhase"));
         const installPhase = nix.thunk(() => (() => {
-          const baseDir = nix.thunk(() => nix.sel({ [nix.POS]: pos$1, mod: "mods", soundpack: "sound", tileset: "gfx" }, nix.key(nix.force(type))));
+          const baseDir = nix.thunk(() => nix.sel({ [nix.POS]: $pos[0], mod: "mods", soundpack: "sound", tileset: "gfx" }, nix.key(nix.force(type))));
           return nix.selOr(args_2, () => nix.str`runHook preInstall
 destdir="$out/share/cataclysm-dda/${baseDir}"
 mkdir -p "$destdir"
@@ -36,12 +34,12 @@ runHook postInstall
 `, "installPhase");
         })());
         const passthru = nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           forTiles: true,
           forCurses: nix.thunk(() => nix.eq(type, "mod")),
         }));
         return {
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           pname,
           modRoot,
           configurePhase,

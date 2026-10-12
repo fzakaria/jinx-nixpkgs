@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]], [["description", 49, 5], ["homepage", 50, 5], ["changelog", 51, 5], ["license", 52, 5], ["maintainers", 53, 5], ["mainProgram", 57, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 21, 3], ["vendorHash", 25, 3], ["ldflags", 27, 3], ["doCheck", 35, 3], ["doInstallCheck", 37, 3], ["nativeInstallCheckInputs", 38, 3], ["versionCheckProgramArg", 39, 3], ["postInstall", 41, 3], ["meta", 48, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, buildGoModule: false, fetchFromGitHub: false, installShellFiles: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 49, 5], ["homepage", 50, 5], ["changelog", 51, 5], ["license", 52, 5], ["maintainers", 53, 5], ["mainProgram", 57, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 21, 3], ["vendorHash", 25, 3], ["ldflags", 27, 3], ["doCheck", 35, 3], ["doInstallCheck", 37, 3], ["nativeInstallCheckInputs", 38, 3], ["versionCheckProgramArg", 39, 3], ["postInstall", 41, 3], ["meta", 48, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname = "hubble";
       const version = "1.20.2";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "cilium",
           repo: "hubble",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -40,7 +38,7 @@ export default nix.lambda((args) => (() => {
       const versionCheckProgramArg = "version";
       const postInstall = nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "installShellCompletion --cmd hubble \\\n  --bash <($out/bin/hubble completion bash) \\\n  --fish <($out/bin/hubble completion fish) \\\n  --zsh <($out/bin/hubble completion zsh)\n"));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Network, Service & Security Observability for Kubernetes using eBPF",
         homepage: "https://github.com/cilium/hubble/",
         changelog: nix.thunk(() => nix.str`https://github.com/cilium/hubble/blob/${nix.sel(src, "tag")}/CHANGELOG.md`),
@@ -55,7 +53,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "hubble",
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 24, 7], ["repo", 25, 7], ["rev", 26, 7], ["hash", 27, 7], ["fetchSubmodules", 28, 7]], [["GIT_CONFIG_COUNT", 32, 11], ["GIT_CONFIG_KEY_0", 33, 11], ["GIT_CONFIG_VALUE_0", 34, 11]], [["env", 31, 9]], [["url", 41, 7], ["hash", 42, 7]], [["name", 56, 7], ["exec", 57, 7], ["icon", 58, 7], ["comment", 59, 7], ["desktopName", 60, 7], ["genericName", 61, 7], ["categories", 62, 7]], [["homepage", 85, 5], ["downloadPage", 86, 5], ["description", 87, 5], ["license", 88, 5], ["platforms", 89, 5], ["mainProgram", 90, 5], ["maintainers", 91, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 22, 3], ["patches", 38, 3], ["nativeBuildInputs", 46, 3], ["desktopItems", 54, 3], ["installPhase", 66, 3], ["meta", 84, 3]]]);
 const formals$1 = { args: { lib: false, zip: false, love: false, imagemagick: false, "strip-nondeterminism": false, copyDesktopItems: false, fetchFromGitHub: false, fetchpatch2: false, makeDesktopItem: false, makeBinaryWrapper: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 24, 7], ["repo", 25, 7], ["rev", 26, 7], ["hash", 27, 7], ["fetchSubmodules", 28, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["GIT_CONFIG_COUNT", 32, 11], ["GIT_CONFIG_KEY_0", 33, 11], ["GIT_CONFIG_VALUE_0", 34, 11]]);
-const pos$3 = nix.positions(here + "/package.nix", [["env", 31, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["url", 41, 7], ["hash", 42, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["name", 56, 7], ["exec", 57, 7], ["icon", 58, 7], ["comment", 59, 7], ["desktopName", 60, 7], ["genericName", 61, 7], ["categories", 62, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["homepage", 85, 5], ["downloadPage", 86, 5], ["description", 87, 5], ["license", 88, 5], ["platforms", 89, 5], ["mainProgram", 90, 5], ["maintainers", 91, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 22, 3], ["patches", 38, 3], ["nativeBuildInputs", 46, 3], ["desktopItems", 54, 3], ["installPhase", 66, 3], ["meta", 84, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,20 +19,20 @@ export default nix.lambda((args) => (() => {
   const makeBinaryWrapper = nix.arg($, "makeBinaryWrapper");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "honey-home",
       version: "0-unstable-2022-10-25",
       src: nix.thunk(() => nix.app(nix.sel(nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "dvdfu",
           repo: "ld38",
           rev: "45bb4bde8a667ee8cfb5034345bec90f70eb3b91",
           hash: "sha256-m8dyCoudTJDfP0KGcoA0Xj5LmRwN/8YOfEwiwCa8sOE=",
           fetchSubmodules: true,
         }))), "overrideAttrs"), (oldAttrs) => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           env: nix.thunk(() => nix.update(nix.selOr(oldAttrs, () => ({}), "env"), {
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             GIT_CONFIG_COUNT: 1n,
             GIT_CONFIG_KEY_0: "url.https://github.com/.insteadOf",
             GIT_CONFIG_VALUE_0: "git@github.com:",
@@ -46,7 +40,7 @@ export default nix.lambda((args) => (() => {
         }))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             url: "https://github.com/dvdfu/ld38/commit/808537065a8dacc903e3d704b381f61b11f91d47.patch?full_index=1",
             hash: "sha256-iXFQWRU2hbKjVGjkwZKgxckRpr3/DUXczNNuMz48ktA=",
           })))),
@@ -54,7 +48,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [copyDesktopItems, makeBinaryWrapper, imagemagick, strip_nondeterminism, zip]),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             name: "Honey Home",
             exec: "honey-home",
             icon: "honey-home",
@@ -81,7 +75,7 @@ makeWrapper ${nix.app(nix.sel(lib, "getExe"), love)} $out/bin/honey-home \\
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         homepage: "https://github.com/dvdfu/ld38",
         downloadPage: "https://dvdfu.itch.io/honey-home",
         description: "A game where you save the bees, Ludum Dare 38 Game Jam winner",

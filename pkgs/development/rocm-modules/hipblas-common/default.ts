@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["sparseCheckout", 17, 5], ["hash", 21, 5]], [["finalAttrs", 35, 54]], [["updateScript", 35, 12]], [["description", 37, 5], ["homepage", 38, 5], ["license", 39, 5], ["teams", 40, 5], ["platforms", 41, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["sourceRoot", 23, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 29, 3], ["strictDeps", 33, 3], ["passthru", 35, 3], ["meta", 36, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, cmake: false, fetchFromGitHub: false, "rocm-cmake": false, rocmUpdateScript: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["sparseCheckout", 17, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["finalAttrs", 35, 54]]);
-const pos$3 = nix.positions(here + "/default.nix", [["updateScript", 35, 12]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 37, 5], ["homepage", 38, 5], ["license", 39, 5], ["teams", 40, 5], ["platforms", 41, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["sourceRoot", 23, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 29, 3], ["strictDeps", 33, 3], ["passthru", 35, 3], ["meta", 36, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const rocm_cmake = nix.arg($, "rocm-cmake");
   const rocmUpdateScript = nix.arg($, "rocmUpdateScript");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "hipblas-common",
       version: "7.2.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ROCm",
           repo: "rocm-libraries",
           tag: nix.thunk(() => nix.str`rocm-${nix.sel(finalAttrs, "version")}`),
@@ -34,11 +30,11 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [rocm_cmake]),
       strictDeps: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(rocmUpdateScript, nix.thunk(() => ({ [nix.POS]: pos$2, finalAttrs: finalAttrs })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(rocmUpdateScript, nix.thunk(() => ({ [nix.POS]: $pos[1], finalAttrs: finalAttrs })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Common files shared by hipBLAS and hipBLASLt",
         homepage: "https://github.com/ROCm/rocm-libraries/tree/develop/projects/hipblas-common",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

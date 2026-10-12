@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 14, 5], ["hash", 15, 5]], [["description", 28, 5], ["license", 29, 5], ["homepage", 30, 5], ["maintainers", 31, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["minimalOCamlVersion", 18, 3], ["propagatedBuildInputs", 20, 3], ["doCheck", 25, 3], ["meta", 27, 3]]]);
 const formals$1 = { args: { buildDunePackage: false, bigstringaf: false, faraday: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 14, 5], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 28, 5], ["license", 29, 5], ["homepage", 30, 5], ["maintainers", 31, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["minimalOCamlVersion", 18, 3], ["propagatedBuildInputs", 20, 3], ["doCheck", 25, 3], ["meta", 27, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const lib = nix.arg($, "lib");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "gluten",
       version: "0.5.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/anmonteiro/gluten/releases/download/${nix.sel(finalAttrs, "version")}/gluten-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-se7Yn59ggLtL0onMjSUsa88B8D05Vybmb6YGcgfnAV8=",
         })))),
@@ -27,7 +25,7 @@ export default nix.lambda((args) => (() => {
       propagatedBuildInputs: nix.thunk(() => [bigstringaf, faraday]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Implementation of a platform specific runtime code for driving network libraries based on state machines, such as http/af, h2 and websocketaf",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
         homepage: "https://github.com/anmonteiro/gluten",

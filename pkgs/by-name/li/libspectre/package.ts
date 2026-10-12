@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 15, 5], ["hash", 16, 5]], [["homepage", 33, 5], ["description", 34, 5], ["longDescription", 36, 5], ["license", 42, 5], ["platforms", 43, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 19, 3], ["buildInputs", 21, 3], ["doCheck", 26, 3], ["checkInputs", 28, 3], ["meta", 32, 3]]]);
 const formals$1 = { args: { fetchurl: false, lib: false, stdenv: false, "pkg-config": false, ghostscript: false, cairo: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 33, 5], ["description", 34, 5], ["longDescription", 36, 5], ["license", 42, 5], ["platforms", 43, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 19, 3], ["buildInputs", 21, 3], ["doCheck", 26, 3], ["checkInputs", 28, 3], ["meta", 32, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const ghostscript = nix.arg($, "ghostscript");
   const cairo = nix.arg($, "cairo");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "libspectre",
       version: "0.2.12",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://libspectre.freedesktop.org/releases/libspectre-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-VadRfNNXK9JWXfDPRQlEoE1Sc7J567NpqJU5GVfw+WA=",
         })))),
@@ -29,7 +27,7 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       checkInputs: nix.thunk(() => [cairo]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "http://libspectre.freedesktop.org/",
         description: "PostScript rendering library",
         longDescription: "libspectre is a small library for rendering Postscript\ndocuments.  It provides a convenient easy to use API for\nhandling and rendering Postscript documents.\n",

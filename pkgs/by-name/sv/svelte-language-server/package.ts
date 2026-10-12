@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]], [["pname", 30, 7], ["version", 31, 7], ["src", 32, 7], ["pnpmWorkspaces", 33, 7], ["pnpm", 35, 13], ["fetcherVersion", 36, 5], ["hash", 37, 5]], [["extraArgs", 72, 5]], [["updateScript", 71, 12]], [["description", 80, 5], ["downloadPage", 81, 5], ["homepage", 82, 5], ["license", 83, 5], ["mainProgram", 84, 5], ["maintainers", 85, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["pnpmWorkspaces", 26, 3], ["pnpmDeps", 28, 3], ["nativeBuildInputs", 40, 3], ["buildPhase", 47, 3], ["installPhase", 55, 3], ["passthru", 71, 3], ["meta", 79, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchPnpmDeps: false, pnpmConfigHook: false, pnpm_10: false, nodejs: false, makeBinaryWrapper: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 30, 7], ["version", 31, 7], ["src", 32, 7], ["pnpmWorkspaces", 33, 7], ["pnpm", 35, 13], ["fetcherVersion", 36, 5], ["hash", 37, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["extraArgs", 72, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 71, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 80, 5], ["downloadPage", 81, 5], ["homepage", 82, 5], ["license", 83, 5], ["mainProgram", 84, 5], ["maintainers", 85, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["pnpmWorkspaces", 26, 3], ["pnpmDeps", 28, 3], ["nativeBuildInputs", 40, 3], ["buildPhase", 47, 3], ["installPhase", 55, 3], ["passthru", 71, 3], ["meta", 79, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const pnpm = pnpm_10;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "svelte-language-server",
       version: "0.18.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "sveltejs",
           repo: "language-tools",
           tag: nix.thunk(() => nix.str`svelte-language-server@${nix.sel(finalAttrs, "version")}`),
@@ -35,7 +30,7 @@ export default nix.lambda((args) => (() => {
         })))),
       pnpmWorkspaces: nix.thunk(() => ["svelte-language-server..."]),
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -61,14 +56,14 @@ makeWrapper ${nix.app(nix.sel(lib, "getExe"), nodejs)} $out/bin/svelteserver \\
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             extraArgs: nix.thunk(() => ["--use-github-releases", "--version-regex", "svelte-language-server@(.*)"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Language server (implementing the language server protocol) for Svelte",
         downloadPage: "https://www.npmjs.com/package/svelte-language-server",
         homepage: "https://github.com/sveltejs/language-tools",

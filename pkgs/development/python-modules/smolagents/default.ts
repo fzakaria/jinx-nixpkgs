@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 61, 5], ["repo", 62, 5], ["tag", 63, 5], ["hash", 64, 5]], [["audio", 82, 5], ["bedrock", 83, 5], ["docker", 88, 5], ["gradio", 96, 5], ["litellm", 97, 5], ["mcp", 98, 5], ["openai", 107, 5], ["toolkit", 114, 5], ["torch", 118, 5], ["transformers", 123, 5]], [["description", 211, 5], ["homepage", 212, 5], ["changelog", 213, 5], ["license", 214, 5], ["maintainers", 215, 5]], [["pname", 56, 3], ["version", 57, 3], ["pyproject", 58, 3], ["src", 60, 3], ["build-system", 67, 3], ["pythonRelaxDeps", 69, 3], ["dependencies", 72, 3], ["optional-dependencies", 81, 3], ["nativeCheckInputs", 138, 3], ["pythonImportsCheck", 147, 3], ["disabledTestPaths", 149, 3], ["disabledTests", 157, 3], ["__darwinAllowLocalNetworking", 208, 3], ["meta", 210, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitHub: false, pythonAtLeast: false, setuptools: false, "huggingface-hub": false, jinja2: false, pillow: false, "python-dotenv": false, requests: false, rich: false, soundfile: false, boto3: false, docker: false, "websocket-client": false, gradio: false, litellm: false, mcp: false, mcpadapt: false, openai: false, ddgs: false, markdownify: false, numpy: false, torch: false, torchvision: false, accelerate: false, transformers: false, ipython: false, "pytest-datadir": false, "pytest-timeout": false, pytestCheckHook: false, "wikipedia-api": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 61, 5], ["repo", 62, 5], ["tag", 63, 5], ["hash", 64, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["audio", 82, 5], ["bedrock", 83, 5], ["docker", 88, 5], ["gradio", 96, 5], ["litellm", 97, 5], ["mcp", 98, 5], ["openai", 107, 5], ["toolkit", 114, 5], ["torch", 118, 5], ["transformers", 123, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 211, 5], ["homepage", 212, 5], ["changelog", 213, 5], ["license", 214, 5], ["maintainers", 215, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 56, 3], ["version", 57, 3], ["pyproject", 58, 3], ["src", 60, 3], ["build-system", 67, 3], ["pythonRelaxDeps", 69, 3], ["dependencies", 72, 3], ["optional-dependencies", 81, 3], ["nativeCheckInputs", 138, 3], ["pythonImportsCheck", 147, 3], ["disabledTestPaths", 149, 3], ["disabledTests", 157, 3], ["__darwinAllowLocalNetworking", 208, 3], ["meta", 210, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -44,12 +41,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const wikipedia_api = nix.arg($, "wikipedia-api");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "smolagents",
       version: "1.26.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "huggingface",
           repo: "smolagents",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -59,7 +56,7 @@ export default nix.lambda((args) => (() => {
       pythonRelaxDeps: nix.thunk(() => ["huggingface-hub"]),
       dependencies: nix.thunk(() => [huggingface_hub, jinja2, pillow, python_dotenv, requests, rich]),
       "optional-dependencies": nix.thunk(() => nix.app(nix.sel(lib, "fix"), (self) => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           audio: nix.thunk(() => nix.concat([soundfile], nix.sel(self, "torch"))),
           bedrock: nix.thunk(() => [boto3]),
           docker: nix.thunk(() => [docker, websocket_client]),
@@ -108,7 +105,7 @@ export default nix.lambda((args) => (() => {
         ]))))),
       __darwinAllowLocalNetworking: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Barebones library for agents",
         homepage: "https://github.com/huggingface/smolagents",
         changelog: nix.thunk(() => nix.str`https://github.com/huggingface/smolagents/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

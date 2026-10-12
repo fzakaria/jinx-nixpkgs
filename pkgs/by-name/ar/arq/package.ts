@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 15, 5], ["hash", 16, 5]], [["updateScript", 43, 12]], [["changelog", 59, 5], ["description", 60, 5], ["homepage", 61, 5], ["license", 62, 5], ["sourceProvenance", 63, 5], ["maintainers", 64, 5], ["platforms", 65, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 19, 3], ["unpackPhase", 24, 3], ["installPhase", 33, 3], ["dontBuild", 38, 3], ["dontFixup", 41, 3], ["passthru", 43, 3], ["meta", 58, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchurl: false, cpio: false, xar: false, writeScript: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 43, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["changelog", 59, 5], ["description", 60, 5], ["homepage", 61, 5], ["license", 62, 5], ["sourceProvenance", 63, 5], ["maintainers", 64, 5], ["platforms", 65, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 19, 3], ["unpackPhase", 24, 3], ["installPhase", 33, 3], ["dontBuild", 38, 3], ["dontFixup", 41, 3], ["passthru", 43, 3], ["meta", 58, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const xar = nix.arg($, "xar");
   const writeScript = nix.arg($, "writeScript");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "arq",
       version: "7.38.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://www.arqbackup.com/download/arqbackup/Arq${nix.sel(finalAttrs, "version")}.pkg`),
           hash: "sha256-RzG1eQybZxXbgWVkeCdIkEE6qaxzDIZ0kaR35sYUv0o=",
         })))),
@@ -31,7 +28,7 @@ export default nix.lambda((args) => (() => {
       dontBuild: true,
       dontFixup: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(writeScript, "update.sh", nix.thunk(() => nix.str`#!/usr/bin/env nix-shell
 #!nix-shell -i bash -p curl coreutils common-updater-scripts
 set -eu -o pipefail
@@ -47,7 +44,7 @@ update-source-version ${nix.sel(finalAttrs, "pname")} "$version" "$hash" --print
 `))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         changelog: "https://www.arqbackup.com/download/arqbackup/arq7_release_notes.html",
         description: "Multi-cloud backup software for your Macs",
         homepage: "https://www.arqbackup.com/",

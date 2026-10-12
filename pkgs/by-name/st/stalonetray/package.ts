@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["sha256", 21, 5]], [["description", 46, 5], ["homepage", 47, 5], ["license", 48, 5], ["platforms", 49, 5], ["maintainers", 50, 5], ["mainProgram", 51, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["preConfigure", 24, 3], ["nativeBuildInputs", 34, 3], ["hardeningDisable", 43, 3], ["meta", 45, 3]]]);
 const formals$1 = { args: { autoreconfHook: false, docbook_xml_dtd_44: false, "docbook-xsl-ns": false, fetchFromGitHub: false, lib: false, libx11: false, libxpm: false, libxslt: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["sha256", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 46, 5], ["homepage", 47, 5], ["license", 48, 5], ["platforms", 49, 5], ["maintainers", 50, 5], ["mainProgram", 51, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["preConfigure", 24, 3], ["nativeBuildInputs", 34, 3], ["hardeningDisable", 43, 3], ["meta", 45, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const libxslt = nix.arg($, "libxslt");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "stalonetray",
       version: "0.8.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "d3adb5",
           repo: "stalonetray",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -39,7 +37,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [autoreconfHook, docbook_xsl_ns, docbook_xml_dtd_44, libx11, libxpm, libxslt]),
       hardeningDisable: nix.thunk(() => ["format"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Stand alone tray",
         homepage: "https://github.com/d3adb5/stalonetray",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

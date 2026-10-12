@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["src", 27, 11], ["substitutions", 28, 11]], [["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5], ["postFetch", 23, 5]], [["src", 50, 13], ["missingHashes", 50, 17], ["hash", 51, 5]], [["changelog", 104, 5], ["description", 105, 5], ["homepage", 106, 5], ["license", 107, 5], ["maintainers", 108, 5]], [["pname", 42, 3], ["src", 44, 5], ["version", 45, 5], ["missingHashes", 46, 5], ["yarnOfflineCache", 49, 3], ["nativeBuildInputs", 54, 3], ["postPatch", 71, 3], ["buildPhase", 78, 3], ["installPhase", 87, 3], ["postFixup", 97, 3], ["meta", 103, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, substitute: false, "yarn-berry_4": false, nodejs: false, jq: false, makeWrapper: false, "pkg-config": false, python3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["src", 27, 11], ["substitutions", 28, 11]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5], ["postFetch", 23, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["src", 50, 13], ["missingHashes", 50, 17], ["hash", 51, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["changelog", 104, 5], ["description", 105, 5], ["homepage", 106, 5], ["license", 107, 5], ["maintainers", 108, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 42, 3], ["src", 44, 5], ["version", 45, 5], ["missingHashes", 46, 5], ["yarnOfflineCache", 49, 3], ["nativeBuildInputs", 54, 3], ["postPatch", 71, 3], ["buildPhase", 78, 3], ["installPhase", 87, 3], ["postFixup", 97, 3], ["meta", 103, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,14 +19,14 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const version = "20.4.0";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       owner: "expo",
       repo: "eas-cli",
       rev: nix.thunk(() => nix.str`v${version}`),
       hash: "sha256-WfzCV304xgTqiKBCsZc5rnzaC+UHA6c155FG+HWBY7s=",
       postFetch: nix.thunk(() => nix.str`cd $out
 patch -p1 < ${nix.app(substitute, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           src: nix.path(here, "./yarn-fix.patch"),
           substitutions: nix.thunk(() => [
             "--replace-fail",
@@ -42,13 +38,13 @@ patch -p1 < ${nix.app(substitute, nix.thunk(() => ({
     }))));
   const missingHashes = nix.path(here, "./missing-hashes.json");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "eas-cli",
       src: src,
       version: version,
       missingHashes: missingHashes,
       yarnOfflineCache: nix.thunk(() => nix.app(nix.sel(yarn_berry_4, "fetchYarnBerryDeps"), nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           src: src,
           missingHashes: missingHashes,
           hash: "sha256-Iqdk0MpXeiKm5hgF68XOKvl0a+5LpXsNNcelCcbfj3s=",
@@ -68,7 +64,7 @@ ln -sf $out/lib/node_modules/eas-cli-root/packages/eas-cli/bin/run $out/bin/eas
 wrapProgram $out/bin/eas --suffix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [nodejs]))}
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         changelog: nix.thunk(() => nix.str`https://github.com/expo/eas-cli/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "EAS command line tool from submodule",
         homepage: "https://github.com/expo/eas-cli",

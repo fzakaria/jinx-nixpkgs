@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["withWebKit", 12, 38]], [["enableJavaFX", 14, 5], ["openjfx_jdk", 15, 13]], [["url", 23, 5], ["sha256", 24, 5]], [["soapui", 64, 43]], [["tests", 64, 12]], [["description", 67, 5], ["homepage", 68, 5], ["sourceProvenance", 69, 5], ["license", 70, 5], ["maintainers", 71, 5], ["platforms", 72, 5], ["mainProgram", 73, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 28, 3], ["installPhase", 30, 3], ["patches", 41, 3], ["passthru", 64, 3], ["meta", 66, 3]]]);
 const formals$1 = { args: { fetchurl: false, lib: false, stdenv: false, writeText: false, openjdk21: false, openjfx21: false, makeWrapper: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["withWebKit", 12, 38]]);
-const pos$2 = nix.positions(here + "/package.nix", [["enableJavaFX", 14, 5], ["openjfx_jdk", 15, 13]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 23, 5], ["sha256", 24, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["soapui", 64, 43]]);
-const pos$5 = nix.positions(here + "/package.nix", [["tests", 64, 12]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 67, 5], ["homepage", 68, 5], ["sourceProvenance", 69, 5], ["license", 70, 5], ["maintainers", 71, 5], ["platforms", 72, 5], ["mainProgram", 73, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 28, 3], ["installPhase", 30, 3], ["patches", 41, 3], ["passthru", 64, 3], ["meta", 66, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,14 +15,14 @@ export default nix.lambda((args) => (() => {
   const openjfx21 = nix.arg($, "openjfx21");
   const makeWrapper = nix.arg($, "makeWrapper");
   const nixosTests = nix.arg($, "nixosTests");
-  const openjfx_jdk = nix.thunk(() => nix.app(nix.sel(openjfx21, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, withWebKit: true }))));
-  const jdk = nix.thunk(() => nix.app(nix.sel(openjdk21, "override"), nix.thunk(() => ({ [nix.POS]: pos$2, enableJavaFX: true, openjfx_jdk: openjfx_jdk }))));
+  const openjfx_jdk = nix.thunk(() => nix.app(nix.sel(openjfx21, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], withWebKit: true }))));
+  const jdk = nix.thunk(() => nix.app(nix.sel(openjdk21, "override"), nix.thunk(() => ({ [nix.POS]: $pos[1], enableJavaFX: true, openjfx_jdk: openjfx_jdk }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "soapui",
       version: "5.10.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           url: nix.thunk(() => nix.str`https://dl.eviware.com/soapuios/${nix.sel(finalAttrs, "version")}/SoapUI-${nix.sel(finalAttrs, "version")}-linux-bin.tar.gz`),
           sha256: "sha256-5zwE/snEYApm23wjTnTWfgiEM0ymSNHPcIzKoY6ZK3c=",
         })))),
@@ -56,11 +50,11 @@ export default nix.lambda((args) => (() => {
 `))),
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$4, soapui: nix.thunk(() => nix.attr(nixosTests, "soapui")) })),
+        [nix.POS]: $pos[4],
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[3], soapui: nix.thunk(() => nix.attr(nixosTests, "soapui")) })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Most Advanced REST & SOAP Testing Tool in the World",
         homepage: "https://www.soapui.org/",
         sourceProvenance: nix.thunk(() => (() => {

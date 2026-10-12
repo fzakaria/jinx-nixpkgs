@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]], [["name", 26, 7], ["url", 27, 7], ["sha256", 28, 7]], [["tzdata", 34, 15]], [["license", 67, 5], ["description", 68, 5], ["homepage", 69, 5], ["platforms", 70, 5], ["maintainers", 71, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["patches", 22, 3], ["postPatch", 40, 3], ["nativeBuildInputs", 47, 3], ["cmakeFlags", 49, 3], ["outputs", 55, 3], ["postInstall", 61, 3], ["meta", 66, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, tzdata: false, fetchpatch: false, replaceVars: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 26, 7], ["url", 27, 7], ["sha256", 28, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tzdata", 34, 15]]);
-const pos$4 = nix.positions(here + "/package.nix", [["license", 67, 5], ["description", 68, 5], ["homepage", 69, 5], ["platforms", 70, 5], ["maintainers", 71, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["patches", 22, 3], ["postPatch", 40, 3], ["nativeBuildInputs", 47, 3], ["cmakeFlags", 49, 3], ["outputs", 55, 3], ["postInstall", 61, 3], ["meta", 66, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const fetchpatch = nix.arg($, "fetchpatch");
   const replaceVars = nix.arg($, "replaceVars");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "howard-hinnant-date",
       version: "3.0.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "HowardHinnant",
           repo: "date",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -31,12 +27,12 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "output-date-pc-for-pkg-config.patch",
             url: "https://git.alpinelinux.org/aports/plain/community/date/538-output-date-pc-for-pkg-config.patch?id=11f6b4d4206b0648182e7b41cd57dcc9ccea0728",
             sha256: "1ma0586jsd89jgwbmd2qlvlc8pshs1pc4zk5drgxi3qvp8ai1154",
           })))),
-        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./make-zoneinfo-available.diff"), nix.thunk(() => ({ [nix.POS]: pos$3, tzdata: tzdata })))),
+        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./make-zoneinfo-available.diff"), nix.thunk(() => ({ [nix.POS]: $pos[2], tzdata: tzdata })))),
       ]),
       postPatch: nix.thunk(() => nix.str`substituteInPlace date.pc.in \\
   --replace '@CMAKE_INSTALL_LIB@' '@CMAKE_INSTALL_FULL_LIBDIR@' \\
@@ -48,7 +44,7 @@ export default nix.lambda((args) => (() => {
       outputs: nix.thunk(() => ["out", "dev"]),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isWindows")), "mkdir $dev/lib\nmv $out/CMake $dev/lib/cmake\n")),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         description: "Date and time library based on the C++11/14/17 <chrono> header",
         homepage: "https://github.com/HowardHinnant/date",

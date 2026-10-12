@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]], [["description", 70, 5], ["homepage", 71, 5], ["changelog", 72, 5], ["license", 73, 5], ["maintainers", 74, 5]], [["pname", 23, 3], ["version", 24, 3], ["pyproject", 25, 3], ["src", 27, 3], ["postPatch", 34, 3], ["cmakeFlags", 40, 3], ["dontUseCmakeConfigure", 44, 3], ["nativeBuildInputs", 46, 3], ["buildInputs", 51, 3], ["build-system", 56, 3], ["dependencies", 60, 3], ["pythonImportsCheck", 67, 3], ["meta", 69, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, cmake: false, pybind11: false, "abseil-cpp": false, setuptools: false, "absl-py": false, attrs: false, numpy: false, wrapt: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 70, 5], ["homepage", 71, 5], ["changelog", 72, 5], ["license", 73, 5], ["maintainers", 74, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 23, 3], ["version", 24, 3], ["pyproject", 25, 3], ["src", 27, 3], ["postPatch", 34, 3], ["cmakeFlags", 40, 3], ["dontUseCmakeConfigure", 44, 3], ["nativeBuildInputs", 46, 3], ["buildInputs", 51, 3], ["build-system", 56, 3], ["dependencies", 60, 3], ["pythonImportsCheck", 67, 3], ["meta", 69, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const numpy = nix.arg($, "numpy");
   const wrapt = nix.arg($, "wrapt");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "dm-tree",
       version: "0.1.10",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "deepmind",
           repo: "tree",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -44,7 +42,7 @@ export default nix.lambda((args) => (() => {
       dependencies: nix.thunk(() => [absl_py, attrs, numpy, wrapt]),
       pythonImportsCheck: nix.thunk(() => ["tree"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Python library for working with nested data structures",
         homepage: "https://github.com/deepmind/tree",
         changelog: nix.thunk(() => nix.str`https://github.com/google-deepmind/tree/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

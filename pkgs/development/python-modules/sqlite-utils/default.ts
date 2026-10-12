@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]], [["package", 50, 50]], [["version", 50, 18]], [["tests", 50, 12]], [["description", 53, 5], ["mainProgram", 54, 5], ["homepage", 55, 5], ["changelog", 56, 5], ["license", 57, 5], ["maintainers", 58, 5]], [["pname", 19, 3], ["version", 20, 3], ["pyproject", 21, 3], ["__structuredAttrs", 22, 3], ["build-system", 24, 3], ["src", 26, 3], ["dependencies", 33, 3], ["nativeCheckInputs", 43, 3], ["pythonImportsCheck", 48, 3], ["passthru", 50, 3], ["meta", 52, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, click: false, "click-default-group": false, "python-dateutil": false, "sqlite-fts4": false, tabulate: false, pip: false, pluggy: false, pytestCheckHook: false, hypothesis: false, testers: false, "sqlite-utils": false, setuptools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["package", 50, 50]]);
-const pos$3 = nix.positions(here + "/default.nix", [["version", 50, 18]]);
-const pos$4 = nix.positions(here + "/default.nix", [["tests", 50, 12]]);
-const pos$5 = nix.positions(here + "/default.nix", [["description", 53, 5], ["mainProgram", 54, 5], ["homepage", 55, 5], ["changelog", 56, 5], ["license", 57, 5], ["maintainers", 58, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 19, 3], ["version", 20, 3], ["pyproject", 21, 3], ["__structuredAttrs", 22, 3], ["build-system", 24, 3], ["src", 26, 3], ["dependencies", 33, 3], ["nativeCheckInputs", 43, 3], ["pythonImportsCheck", 48, 3], ["passthru", 50, 3], ["meta", 52, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,14 +23,14 @@ export default nix.lambda((args) => (() => {
   const sqlite_utils = nix.arg($, "sqlite-utils");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "sqlite-utils",
       version: "4.2.1",
       pyproject: true,
       __structuredAttrs: true,
       "build-system": nix.thunk(() => [setuptools]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "simonw",
           repo: "sqlite-utils",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -53,14 +48,14 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook, hypothesis]),
       pythonImportsCheck: nix.thunk(() => ["sqlite_utils"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$2, package: sqlite_utils })))),
+          [nix.POS]: $pos[2],
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: $pos[1], package: sqlite_utils })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Python CLI utility and library for manipulating SQLite databases",
         mainProgram: "sqlite-utils",
         homepage: "https://github.com/simonw/sqlite-utils",

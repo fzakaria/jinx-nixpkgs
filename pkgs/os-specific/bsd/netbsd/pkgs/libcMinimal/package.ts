@@ -2,10 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["NIX_CFLAGS_COMPILE", 70, 7]], [["platforms", 95, 8]], [["noLibc", 24, 3], ["path", 25, 3], ["pname", 26, 3], ["outputs", 27, 3], ["USE_FORT", 32, 3], ["MKPROFILE", 33, 3], ["extraPaths", 34, 3], ["patches", 42, 3], ["nativeBuildInputs", 50, 3], ["buildInputs", 65, 3], ["env", 70, 3], ["SHLIBINSTALLDIR", 72, 3], ["MKPICINSTALL", 73, 3], ["MK_LIBC_TAGS", 74, 3], ["NLSDIR", 75, 3], ["makeFlags", 77, 3], ["postInstall", 79, 3], ["postPatch", 91, 3], ["meta", 95, 3]]]);
 const formals$1 = { args: { lib: false, mkDerivation: false, defaultMakeFlags: false, bsdSetupHook: false, netbsdSetupHook: false, makeMinimal: false, install: false, mandoc: false, groff: false, flex: false, byacc: false, genassym: false, gencat: false, lorder: false, tsort: false, statHook: false, rpcgen: false, csu: false, headers: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 70, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["platforms", 95, 8]]);
-const pos$3 = nix.positions(here + "/package.nix", [["noLibc", 24, 3], ["path", 25, 3], ["pname", 26, 3], ["outputs", 27, 3], ["USE_FORT", 32, 3], ["MKPROFILE", 33, 3], ["extraPaths", 34, 3], ["patches", 42, 3], ["nativeBuildInputs", 50, 3], ["buildInputs", 65, 3], ["env", 70, 3], ["SHLIBINSTALLDIR", 72, 3], ["MKPICINSTALL", 73, 3], ["MK_LIBC_TAGS", 74, 3], ["NLSDIR", 75, 3], ["makeFlags", 77, 3], ["postInstall", 79, 3], ["postPatch", 91, 3], ["meta", 95, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,7 +27,7 @@ export default nix.lambda((args) => (() => {
   const csu = nix.arg($, "csu");
   const headers = nix.arg($, "headers");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       noLibc: true,
       path: "lib/libc",
       pname: "libcMinimal-netbsd",
@@ -60,7 +58,7 @@ export default nix.lambda((args) => (() => {
       ]),
       buildInputs: nix.thunk(() => [headers, csu]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.str`-B${csu}/lib -fcommon`),
       })),
       SHLIBINSTALLDIR: "$(out)/lib",
@@ -81,7 +79,7 @@ popd
       postPatch: nix.thunk(() => nix.str`sed -i 's,/usr\\(/include/sys/syscall.h\\),${headers}\\1,g' lib/lib*/sys/Makefile.inc
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "netbsd")),
       })),
     })));

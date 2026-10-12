@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 11, 5], ["hash", 12, 5]], [["description", 24, 5], ["homepage", 25, 5], ["license", 26, 5], ["mainProgram", 27, 5], ["maintainers", 28, 5]], [["pname", 7, 3], ["version", 8, 3], ["src", 10, 3], ["postPatch", 15, 3], ["npmDepsHash", 19, 3], ["dontNpmBuild", 21, 3], ["meta", 23, 3]]]);
 const formals$1 = { args: { buildNpmPackage: false, fetchzip: false, lib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 11, 5], ["hash", 12, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 24, 5], ["homepage", 25, 5], ["license", 26, 5], ["mainProgram", 27, 5], ["maintainers", 28, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 7, 3], ["version", 8, 3], ["src", 10, 3], ["postPatch", 15, 3], ["npmDepsHash", 19, 3], ["dontNpmBuild", 21, 3], ["meta", 23, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,11 +11,11 @@ export default nix.lambda((args) => (() => {
   const fetchzip = nix.arg($, "fetchzip");
   const lib = nix.arg($, "lib");
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "ionic-cli",
       version: "7.2.1",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://registry.npmjs.org/@ionic/cli/-/cli-${nix.sel(finalAttrs, "version")}.tgz`),
           hash: "sha256-nrZMMyzoiO7ZJbNrPSRA1sOEy3OpgEXdyNS0JzAaTjY=",
         })))),
@@ -26,7 +24,7 @@ export default nix.lambda((args) => (() => {
       npmDepsHash: "sha256-XI9+c4ECkmowA3Lz3S47m9wRcOKTmr51/wWr1lBy7Lo=",
       dontNpmBuild: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Your go-to tool for developing Ionic apps",
         homepage: "https://ionicframework.com/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

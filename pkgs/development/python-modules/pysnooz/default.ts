@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]], [["description", 64, 5], ["homepage", 65, 5], ["changelog", 66, 5], ["license", 67, 5], ["maintainers", 68, 5]], [["pname", 20, 3], ["version", 21, 3], ["pyproject", 22, 3], ["src", 24, 3], ["patches", 31, 3], ["postPatch", 36, 3], ["build-system", 42, 3], ["dependencies", 44, 3], ["nativeCheckInputs", 53, 3], ["pythonImportsCheck", 61, 3], ["meta", 63, 3]]]);
 const formals$1 = { args: { lib: false, bleak: false, "bleak-retry-connector": false, "bluetooth-sensor-state-data": false, buildPythonPackage: false, events: false, fetchFromGitHub: false, freezegun: false, "home-assistant-bluetooth": false, "poetry-core": false, "pytest-asyncio_0": false, "pytest-cov-stub": false, "pytest-mock": false, pytestCheckHook: false, transitions: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 64, 5], ["homepage", 65, 5], ["changelog", 66, 5], ["license", 67, 5], ["maintainers", 68, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 20, 3], ["version", 21, 3], ["pyproject", 22, 3], ["src", 24, 3], ["patches", 31, 3], ["postPatch", 36, 3], ["build-system", 42, 3], ["dependencies", 44, 3], ["nativeCheckInputs", 53, 3], ["pythonImportsCheck", 61, 3], ["meta", 63, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.10.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "AustinBrunkhorst",
           repo: "pysnooz",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -49,7 +47,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [freezegun, pytest_asyncio_0, pytest_cov_stub, pytest_mock, pytestCheckHook]);
       const pythonImportsCheck = nix.thunk(() => ["pysnooz"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Library to control SNOOZ white noise machines",
         homepage: "https://github.com/AustinBrunkhorst/pysnooz",
         changelog: nix.thunk(() => nix.str`https://github.com/AustinBrunkhorst/pysnooz/blob/v${version}/CHANGELOG.md`),
@@ -60,7 +58,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

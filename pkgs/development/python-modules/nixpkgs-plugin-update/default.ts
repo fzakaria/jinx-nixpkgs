@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["updateScript", 37, 12]], [["description", 40, 5], ["license", 41, 5], ["maintainers", 42, 5]], [["pname", 12, 3], ["version", 13, 3], ["pyproject", 14, 3], ["__structuredAttrs", 15, 3], ["src", 17, 3], ["build-system", 19, 3], ["dependencies", 21, 3], ["nativeCheckInputs", 26, 3], ["postInstallCheck", 31, 3], ["passthru", 37, 3], ["meta", 39, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, "uv-build": false, gitpython: false, packaging: false, ruff: false, mypy: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["updateScript", 37, 12]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 40, 5], ["license", 41, 5], ["maintainers", 42, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 12, 3], ["version", 13, 3], ["pyproject", 14, 3], ["__structuredAttrs", 15, 3], ["src", 17, 3], ["build-system", 19, 3], ["dependencies", 21, 3], ["nativeCheckInputs", 26, 3], ["postInstallCheck", 31, 3], ["passthru", 37, 3], ["meta", 39, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const ruff = nix.arg($, "ruff");
   const mypy = nix.arg($, "mypy");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "nixpkgs-plugin-update",
       version: "0.1.0",
       pyproject: true,
@@ -27,9 +25,9 @@ export default nix.lambda((args) => (() => {
       dependencies: nix.thunk(() => [gitpython, packaging]),
       nativeCheckInputs: nix.thunk(() => [ruff, mypy]),
       postInstallCheck: "ruff check\nmypy\n",
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$1, updateScript: null })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[0], updateScript: null })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Library for updating plugin collections in Nixpkgs",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: nix.thunk(() => (() => {

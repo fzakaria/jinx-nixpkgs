@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 64, 5], ["repo", 65, 5], ["tag", 66, 5], ["hash", 67, 5]], [["aiohttp", 93, 5], ["bedrock", 97, 5], ["datalib", 100, 5], ["httpx2", 105, 5], ["realtime", 110, 5], ["voice-helpers", 113, 5]], [["description", 143, 5], ["homepage", 144, 5], ["changelog", 145, 5], ["license", 146, 5], ["maintainers", 147, 5]], [["pname", 59, 3], ["version", 60, 3], ["pyproject", 61, 3], ["src", 63, 3], ["postPatch", 70, 3], ["build-system", 72, 3], ["dependencies", 77, 3], ["optional-dependencies", 92, 3], ["pythonImportsCheck", 119, 3], ["nativeCheckInputs", 121, 3], ["disabledTestPaths", 134, 3], ["meta", 142, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, hatchling: false, "hatch-fancy-pypi-readme": false, anyio: false, distro: false, httpx: false, jiter: false, pydantic: false, sniffio: false, tqdm: false, "typing-extensions": false, aiohttp: false, "httpx-aiohttp": false, botocore: false, numpy: false, pandas: false, "pandas-stubs": false, httpx2: false, websockets: false, sounddevice: false, pytestCheckHook: false, "dirty-equals": false, "inline-snapshot": false, jsonschema: false, "pytest-asyncio": false, "pytest-mock": false, "pytest-xdist": false, respx: false, withAiohttp: true, withDatalib: true, withRealtime: true, withVoiceHelpers: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 64, 5], ["repo", 65, 5], ["tag", 66, 5], ["hash", 67, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["aiohttp", 93, 5], ["bedrock", 97, 5], ["datalib", 100, 5], ["httpx2", 105, 5], ["realtime", 110, 5], ["voice-helpers", 113, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 143, 5], ["homepage", 144, 5], ["changelog", 145, 5], ["license", 146, 5], ["maintainers", 147, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 59, 3], ["version", 60, 3], ["pyproject", 61, 3], ["src", 63, 3], ["postPatch", 70, 3], ["build-system", 72, 3], ["dependencies", 77, 3], ["optional-dependencies", 92, 3], ["pythonImportsCheck", 119, 3], ["nativeCheckInputs", 121, 3], ["disabledTestPaths", 134, 3], ["meta", 142, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -45,12 +42,12 @@ export default nix.lambda((args) => (() => {
   const withRealtime = nix.argOr($, "withRealtime", () => false);
   const withVoiceHelpers = nix.argOr($, "withVoiceHelpers", () => false);
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "openai",
       version: "2.53.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "openai",
           repo: "openai-python",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -60,7 +57,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [hatchling, hatch_fancy_pypi_readme]),
       dependencies: nix.thunk(() => nix.concat([anyio, distro, httpx, jiter, pydantic, sniffio, tqdm, typing_extensions], nix.concat(nix.app(nix.sel(lib, "optionals"), withAiohttp, nix.thunk(() => nix.sel(finalAttrs, "passthru", "optional-dependencies", "aiohttp"))), nix.concat(nix.app(nix.sel(lib, "optionals"), withDatalib, nix.thunk(() => nix.sel(finalAttrs, "passthru", "optional-dependencies", "datalib"))), nix.concat(nix.app(nix.sel(lib, "optionals"), withRealtime, nix.thunk(() => nix.sel(finalAttrs, "passthru", "optional-dependencies", "realtime"))), nix.app(nix.sel(lib, "optionals"), withVoiceHelpers, nix.thunk(() => nix.sel(finalAttrs, "passthru", "optional-dependencies", "voice-helpers")))))))),
       "optional-dependencies": nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         aiohttp: nix.thunk(() => [aiohttp, httpx_aiohttp]),
         bedrock: nix.thunk(() => [botocore]),
         datalib: nix.thunk(() => [numpy, pandas, pandas_stubs]),
@@ -81,7 +78,7 @@ export default nix.lambda((args) => (() => {
       ], nix.app(nix.sel(lib, "concatAttrValues"), nix.thunk(() => nix.app(nix.sel(lib, "removeAttrs"), nix.thunk(() => nix.sel(finalAttrs, "passthru", "optional-dependencies")), nix.thunk(() => ["datalib"])))))),
       disabledTestPaths: nix.thunk(() => ["tests/api_resources", "tests/lib/chat/test_completions_streaming.py"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Python client library for the OpenAI API",
         homepage: "https://github.com/openai/openai-python",
         changelog: nix.thunk(() => nix.str`https://github.com/openai/openai-python/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

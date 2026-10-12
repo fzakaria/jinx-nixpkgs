@@ -2,19 +2,8 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/waagent.nix", [[["maintainers", 9, 5]], [["Enable", 17, 11], ["Agent", 18, 11], ["DeleteRootPassword", 19, 11], ["RegenerateSshHostKeyPair", 20, 11], ["SshHostKeyPairType", 21, 11], ["MonitorHostName", 22, 11]], [["Format", 25, 11], ["MountOptions", 26, 11]], [["RootDeviceScsiTimeout", 31, 12]], [["Host", 33, 11], ["Port", 34, 11]], [["EnforceLimits", 37, 11], ["Excluded", 38, 11]], [["Provisioning", 16, 9], ["ResourceDisk", 24, 9], ["OS", 31, 9], ["HttpProxy", 32, 9], ["CGroups", 36, 9]], [["enable", 14, 7], ["settings", 15, 7]], [["waagent", 13, 14]], [["services", 13, 5]], [["machine", 12, 9]], [["name", 6, 3], ["meta", 8, 3], ["nodes", 12, 3], ["testScript", 44, 3]]]);
 const formals$1 = { args: { lib: false, pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/waagent.nix", [["maintainers", 9, 5]]);
-const pos$2 = nix.positions(here + "/waagent.nix", [["Enable", 17, 11], ["Agent", 18, 11], ["DeleteRootPassword", 19, 11], ["RegenerateSshHostKeyPair", 20, 11], ["SshHostKeyPairType", 21, 11], ["MonitorHostName", 22, 11]]);
-const pos$3 = nix.positions(here + "/waagent.nix", [["Format", 25, 11], ["MountOptions", 26, 11]]);
-const pos$4 = nix.positions(here + "/waagent.nix", [["RootDeviceScsiTimeout", 31, 12]]);
-const pos$5 = nix.positions(here + "/waagent.nix", [["Host", 33, 11], ["Port", 34, 11]]);
-const pos$6 = nix.positions(here + "/waagent.nix", [["EnforceLimits", 37, 11], ["Excluded", 38, 11]]);
-const pos$7 = nix.positions(here + "/waagent.nix", [["Provisioning", 16, 9], ["ResourceDisk", 24, 9], ["OS", 31, 9], ["HttpProxy", 32, 9], ["CGroups", 36, 9]]);
-const pos$8 = nix.positions(here + "/waagent.nix", [["enable", 14, 7], ["settings", 15, 7]]);
-const pos$9 = nix.positions(here + "/waagent.nix", [["waagent", 13, 14]]);
-const pos$10 = nix.positions(here + "/waagent.nix", [["services", 13, 5]]);
-const pos$11 = nix.positions(here + "/waagent.nix", [["machine", 12, 9]]);
-const pos$12 = nix.positions(here + "/waagent.nix", [["name", 6, 3], ["meta", 8, 3], ["nodes", 12, 3], ["testScript", 44, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,28 +11,28 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const confPath = "/etc/waagent.conf";
   return {
-    [nix.POS]: pos$12,
+    [nix.POS]: $pos[11],
     name: "waagent",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "codgician"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$11,
+      [nix.POS]: $pos[10],
       machine: nix.thunk(() => ({
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         services: nix.thunk(() => ({
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           waagent: nix.thunk(() => ({
-            [nix.POS]: pos$8,
+            [nix.POS]: $pos[7],
             enable: true,
             settings: nix.thunk(() => ({
-              [nix.POS]: pos$7,
+              [nix.POS]: $pos[6],
               Provisioning: nix.thunk(() => ({
-                [nix.POS]: pos$2,
+                [nix.POS]: $pos[1],
                 Enable: false,
                 Agent: "waagent",
                 DeleteRootPassword: false,
@@ -52,13 +41,13 @@ export default nix.lambda((args) => (() => {
                 MonitorHostName: false,
               })),
               ResourceDisk: nix.thunk(() => ({
-                [nix.POS]: pos$3,
+                [nix.POS]: $pos[2],
                 Format: false,
                 MountOptions: nix.thunk(() => ["compress=lzo", "mode=0600"]),
               })),
-              OS: nix.thunk(() => ({ [nix.POS]: pos$4, RootDeviceScsiTimeout: 300n })),
-              HttpProxy: nix.thunk(() => ({ [nix.POS]: pos$5, Host: null, Port: null })),
-              CGroups: nix.thunk(() => ({ [nix.POS]: pos$6, EnforceLimits: false, Excluded: [] })),
+              OS: nix.thunk(() => ({ [nix.POS]: $pos[3], RootDeviceScsiTimeout: 300n })),
+              HttpProxy: nix.thunk(() => ({ [nix.POS]: $pos[4], Host: null, Port: null })),
+              CGroups: nix.thunk(() => ({ [nix.POS]: $pos[5], EnforceLimits: false, Excluded: [] })),
             })),
           })),
         })),

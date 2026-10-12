@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/humantime-fish.nix", [[["owner", 12, 5], ["repo", 13, 5], ["rev", 14, 5], ["sha256", 15, 5]], [["description", 24, 5], ["homepage", 25, 5], ["license", 26, 5], ["maintainers", 27, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["checkPlugins", 18, 3], ["checkPhase", 19, 3], ["meta", 23, 3]]]);
 const formals$1 = { args: { lib: false, buildFishPlugin: false, fetchFromGitHub: false, fishtape: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/humantime-fish.nix", [["owner", 12, 5], ["repo", 13, 5], ["rev", 14, 5], ["sha256", 15, 5]]);
-const pos$2 = nix.positions(here + "/humantime-fish.nix", [["description", 24, 5], ["homepage", 25, 5], ["license", 26, 5], ["maintainers", 27, 5]]);
-const pos$3 = nix.positions(here + "/humantime-fish.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["checkPlugins", 18, 3], ["checkPhase", 19, 3], ["meta", 23, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const fishtape = nix.arg($, "fishtape");
   return nix.app(buildFishPlugin, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "humantime-fish",
       version: "1.0.0-unstable-2022-04-08",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "jorgebucaran",
           repo: "humantime.fish",
           rev: "53b2adb4c6aff0da569c931a3cc006efcd0e7219",
@@ -27,7 +25,7 @@ export default nix.lambda((args) => (() => {
       checkPlugins: nix.thunk(() => [fishtape]),
       checkPhase: "fishtape tests/humantime.fish\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Turn milliseconds into a human-readable string in Fish",
         homepage: "https://github.com/jorgebucaran/humantime.fish",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

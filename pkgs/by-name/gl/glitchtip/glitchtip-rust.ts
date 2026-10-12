@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/glitchtip-rust.nix", [[["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]], [["pname", 22, 26], ["version", 22, 32], ["src", 22, 40], ["hash", 23, 5]], [["description", 36, 5], ["homepage", 37, 5], ["changelog", 38, 5], ["license", 39, 5], ["maintainers", 40, 5]], [["pname", 10, 3], ["version", 11, 3], ["pyproject", 12, 3], ["src", 14, 3], ["cargoDeps", 21, 3], ["nativeBuildInputs", 26, 3], ["dependencies", 31, 3], ["pythonImportsCheck", 33, 3], ["meta", 35, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, "django-vpg": false, fetchFromGitLab: false, rustPlatform: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/glitchtip-rust.nix", [["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/glitchtip-rust.nix", [["pname", 22, 26], ["version", 22, 32], ["src", 22, 40], ["hash", 23, 5]]);
-const pos$3 = nix.positions(here + "/glitchtip-rust.nix", [["description", 36, 5], ["homepage", 37, 5], ["changelog", 38, 5], ["license", 39, 5], ["maintainers", 40, 5]]);
-const pos$4 = nix.positions(here + "/glitchtip-rust.nix", [["pname", 10, 3], ["version", 11, 3], ["pyproject", 12, 3], ["src", 14, 3], ["cargoDeps", 21, 3], ["nativeBuildInputs", 26, 3], ["dependencies", 31, 3], ["pythonImportsCheck", 33, 3], ["meta", 35, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,19 +13,19 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitLab = nix.arg($, "fetchFromGitLab");
   const rustPlatform = nix.arg($, "rustPlatform");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "glitchtip-rust",
       version: "0.9.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "glitchtip",
           repo: "glitchtip-rust",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-XQoJJ3w1HTyOtzjnsU2OD2IkOMLUSvIf+9Xd0sF9s5E=",
         })))),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -41,7 +38,7 @@ export default nix.lambda((args) => (() => {
       dependencies: nix.thunk(() => [django_vpg]),
       pythonImportsCheck: nix.thunk(() => ["gt_rust"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Rust components of GlitchTip Backend",
         homepage: "https://glitchtip.com",
         changelog: nix.thunk(() => nix.str`https://gitlab.com/glitchtip/glitchtip-rust/-/tags/v${nix.sel(finalAttrs, "version")}`),

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/resholve.nix", [[["rSrc", 60, 9], ["binlore", 61, 9], ["resholve", 62, 9]], [["mkDerivation", 53, 7], ["phraseSolution", 54, 7], ["writeScript", 55, 7], ["writeScriptBin", 56, 7], ["tests", 58, 5]], [["description", 70, 5], ["homepage", 71, 5], ["changelog", 72, 5], ["license", 73, 5], ["maintainers", 74, 5], ["platforms", 75, 5], ["knownVulnerabilities", 76, 5]], [["pname", 16, 3], ["version", 17, 11], ["src", 18, 3], ["nativeBuildInputs", 20, 3], ["propagatedBuildInputs", 22, 3], ["makeWrapperArgs", 28, 3], ["postPatch", 35, 3], ["postInstall", 41, 3], ["postFixup", 47, 3], ["passthru", 51, 3], ["__structuredAttrs", 67, 3], ["meta", 69, 3]]]);
 const formals$1 = { args: { lib: false, callPackage: false, installShellFiles: false, rSrc: false, version: false, gawk: false, binlore: false, resholve: false, "resholve-utils": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/resholve.nix", [["rSrc", 60, 9], ["binlore", 61, 9], ["resholve", 62, 9]]);
-const pos$2 = nix.positions(here + "/resholve.nix", [["mkDerivation", 53, 7], ["phraseSolution", 54, 7], ["writeScript", 55, 7], ["writeScriptBin", 56, 7], ["tests", 58, 5]]);
-const pos$3 = nix.positions(here + "/resholve.nix", [["description", 70, 5], ["homepage", 71, 5], ["changelog", 72, 5], ["license", 73, 5], ["maintainers", 74, 5], ["platforms", 75, 5], ["knownVulnerabilities", 76, 5]]);
-const pos$4 = nix.positions(here + "/resholve.nix", [["pname", 16, 3], ["version", 17, 11], ["src", 18, 3], ["nativeBuildInputs", 20, 3], ["propagatedBuildInputs", 22, 3], ["makeWrapperArgs", 28, 3], ["postPatch", 35, 3], ["postInstall", 41, 3], ["postFixup", 47, 3], ["passthru", 51, 3], ["__structuredAttrs", 67, 3], ["meta", 69, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,7 +18,7 @@ export default nix.lambda((args) => (() => {
   const resholve_utils = nix.arg($, "resholve-utils");
   const python27 = nix.thunk(() => nix.app(callPackage, nix.path(here, "./python27.nix"), nix.thunk(() => ({}))));
   return nix.app(nix.sel(python27, "pkgs", "buildPythonApplication"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "resholve",
       version: version,
       src: rSrc,
@@ -47,16 +44,16 @@ done
       postInstall: "installManPage resholve.1\n",
       postFixup: "rm $out/nix-support/propagated-build-inputs\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         mkDerivation: nix.thunk(() => nix.attr(resholve_utils, "mkDerivation")),
         phraseSolution: nix.thunk(() => nix.attr(resholve_utils, "phraseSolution")),
         writeScript: nix.thunk(() => nix.attr(resholve_utils, "writeScript")),
         writeScriptBin: nix.thunk(() => nix.attr(resholve_utils, "writeScriptBin")),
-        tests: nix.thunk(() => nix.app(callPackage, nix.path(here, "./test.nix"), nix.thunk(() => ({ [nix.POS]: pos$1, rSrc: rSrc, binlore: binlore, resholve: resholve })))),
+        tests: nix.thunk(() => nix.app(callPackage, nix.path(here, "./test.nix"), nix.thunk(() => ({ [nix.POS]: $pos[0], rSrc: rSrc, binlore: binlore, resholve: resholve })))),
       })),
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Resolve external shell-script dependencies",
         homepage: "https://github.com/abathur/resholve",
         changelog: nix.thunk(() => nix.str`https://github.com/abathur/resholve/blob/v${version}/CHANGELOG.md`),

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5]], [["updateScript", 50, 12]], [["description", 54, 7], ["longDescription", 55, 7], ["homepage", 56, 7], ["downloadPage", 57, 7], ["license", 58, 7], ["maintainers", 60, 5], ["hydraPlatforms", 61, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["nativeBuildInputs", 26, 3], ["preBuild", 36, 3], ["buildFlags", 37, 3], ["enableParallelBuilding", 41, 3], ["installPhase", 43, 3], ["passthru", 50, 3], ["meta", 52, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, "nix-update-script": false, "twemoji-color-font": false, imagemagick: false, inkscape: false, potrace: false, scfbuild: false, svgo: false, which: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 50, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 54, 7], ["longDescription", 55, 7], ["homepage", 56, 7], ["downloadPage", 57, 7], ["license", 58, 7], ["maintainers", 60, 5], ["hydraPlatforms", 61, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["nativeBuildInputs", 26, 3], ["preBuild", 36, 3], ["buildFlags", 37, 3], ["enableParallelBuilding", 41, 3], ["installPhase", 43, 3], ["passthru", 50, 3], ["meta", 52, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const svgo = nix.arg($, "svgo");
   const which = nix.arg($, "which");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "twemoji-color-font",
       version: "15.1.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "13rac1",
           repo: "twemoji-color-font",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,13 +35,13 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: true,
       installPhase: "runHook preInstall\ninstall -Dm755 build/TwitterColorEmoji-SVGinOT.ttf $out/share/fonts/truetype/TwitterColorEmoji-SVGinOT.ttf\ninstall -Dm644 linux/fontconfig/46-twemoji-color.conf $out/etc/fonts/conf.d/46-twemoji-color.conf\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(twemoji_color_font, "meta"));
         return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: nix.thunk(() => nix.attr(from, "description")),
         longDescription: nix.thunk(() => nix.attr(from, "longDescription")),
         homepage: nix.thunk(() => nix.attr(from, "homepage")),

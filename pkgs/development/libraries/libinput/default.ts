@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["domain", 67, 5], ["owner", 68, 5], ["repo", 69, 5], ["rev", 70, 5], ["hash", 71, 5]], [["libinput-module", 153, 7]], [["patchlevel-unstable", 156, 7]], [["tests", 152, 5], ["updateScript", 155, 5]], [["description", 161, 5], ["mainProgram", 162, 5], ["homepage", 163, 5], ["license", 164, 5], ["platforms", 165, 5], ["maintainers", 166, 5], ["teams", 167, 5], ["changelog", 168, 5], ["badPlatforms", 169, 5]], [["pname", 55, 3], ["version", 56, 3], ["outputs", 58, 3], ["propagatedBuildOutputs", 64, 3], ["src", 66, 3], ["nativeBuildInputs", 74, 3], ["buildInputs", 86, 3], ["propagatedBuildInputs", 115, 3], ["nativeCheckInputs", 119, 3], ["mesonFlags", 124, 3], ["doCheck", 137, 3], ["doInstallCheck", 139, 3], ["postPatch", 141, 3], ["passthru", 151, 3], ["meta", 160, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, gitUpdater: false, "pkg-config": false, meson: false, ninja: false, libevdev: false, mtdev: false, udev: false, wacomSupport: true, libwacom: false, documentationSupport: true, doxygen: false, graphviz: false, runCommand: false, eventGUISupport: true, cairo: false, glib: false, gtk3: false, luaSupport: true, lua5_4: false, testsSupport: true, check: false, valgrind: false, python3: false, nixosTests: false, "wayland-scanner": false, udevCheckHook: false, "epoll-shim": false, "libudev-devd": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["domain", 67, 5], ["owner", 68, 5], ["repo", 69, 5], ["rev", 70, 5], ["hash", 71, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["libinput-module", 153, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["patchlevel-unstable", 156, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["tests", 152, 5], ["updateScript", 155, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["description", 161, 5], ["mainProgram", 162, 5], ["homepage", 163, 5], ["license", 164, 5], ["platforms", 165, 5], ["maintainers", 166, 5], ["teams", 167, 5], ["changelog", 168, 5], ["badPlatforms", 169, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 55, 3], ["version", 56, 3], ["outputs", 58, 3], ["propagatedBuildOutputs", 64, 3], ["src", 66, 3], ["nativeBuildInputs", 74, 3], ["buildInputs", 86, 3], ["propagatedBuildInputs", 115, 3], ["nativeCheckInputs", 119, 3], ["mesonFlags", 124, 3], ["doCheck", 137, 3], ["doInstallCheck", 139, 3], ["postPatch", 141, 3], ["passthru", 151, 3], ["meta", 160, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -62,7 +57,7 @@ ln -s "${env}/bin/sphinx-build" "$out/bin"
       const outputs = nix.thunk(() => ["bin", "out", "dev"]);
       const propagatedBuildOutputs = nix.thunk(() => ["out"]);
       const src = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "gitlab.freedesktop.org",
           owner: "libinput",
           repo: "libinput",
@@ -98,15 +93,15 @@ ln -s "${env}/bin/sphinx-build" "$out/bin"
       const doInstallCheck = true;
       const postPatch = "patchShebangs \\\n  test/symbols-leak-test \\\n  test/check-leftover-udev-rules.sh \\\n  test/helper-copy-and-exec-from-tmp.sh\n\n# Don't create an empty directory under /etc.\nsed -i \"/install_emptydir(dir_etc \\/ 'libinput')/d\" meson.build\n";
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           "libinput-module": nix.thunk(() => nix.sel(nixosTests, "libinput")),
         })),
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$3, "patchlevel-unstable": true })))),
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[2], "patchlevel-unstable": true })))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Handles input devices in Wayland compositors and provides a generic X.Org input driver",
         mainProgram: "libinput",
         homepage: "https://www.freedesktop.org/wiki/Software/libinput/",
@@ -120,7 +115,7 @@ ln -s "${env}/bin/sphinx-build" "$out/bin"
         ]),
       }));
       return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname,
         version,
         outputs,

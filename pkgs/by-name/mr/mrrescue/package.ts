@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 16, 5], ["sha256", 17, 5]], [["name", 21, 5], ["exec", 22, 5], ["icon", 23, 5], ["comment", 24, 5], ["desktopName", 25, 5], ["genericName", 26, 5], ["categories", 27, 5]], [["owner", 37, 5], ["repo", 38, 5], ["rev", 39, 5], ["hash", 40, 5]], [["description", 72, 5], ["homepage", 73, 5], ["mainProgram", 74, 5], ["maintainers", 75, 5], ["platforms", 76, 5], ["license", 77, 5], ["downloadPage", 78, 5]], [["pname", 33, 3], ["version", 34, 3], ["src", 36, 3], ["nativeBuildInputs", 43, 3], ["buildPhase", 51, 3], ["installPhase", 58, 3], ["meta", 71, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchurl: false, love: false, lua: false, makeWrapper: false, makeDesktopItem: false, "strip-nondeterminism": false, zip: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 16, 5], ["sha256", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 21, 5], ["exec", 22, 5], ["icon", 23, 5], ["comment", 24, 5], ["desktopName", 25, 5], ["genericName", 26, 5], ["categories", 27, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["owner", 37, 5], ["repo", 38, 5], ["rev", 39, 5], ["hash", 40, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 72, 5], ["homepage", 73, 5], ["mainProgram", 74, 5], ["maintainers", 75, 5], ["platforms", 76, 5], ["license", 77, 5], ["downloadPage", 78, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 33, 3], ["version", 34, 3], ["src", 36, 3], ["nativeBuildInputs", 43, 3], ["buildPhase", 51, 3], ["installPhase", 58, 3], ["meta", 71, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const strip_nondeterminism = nix.arg($, "strip-nondeterminism");
   const zip = nix.arg($, "zip");
   const icon = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: "http://tangramgames.dk/img/thumb/mrrescue.png",
       sha256: "1y5ahf0m01i1ch03axhvp2kqc6lc1yvh59zgvgxw4w7y3jryw20k",
     }))));
   const desktopItem = nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       name: "mrrescue",
       exec: "mrrescue",
       icon: icon,
@@ -37,11 +33,11 @@ export default nix.lambda((args) => (() => {
       categories: nix.thunk(() => ["Game"]),
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "mrrescue",
       version: "1.02d-unstable-2018-08-18",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           owner: "SimonLarsen",
           repo: "mrrescue",
           rev: "a5be73c60acb8d1be506f7b5e48e784492ba96ce",
@@ -61,7 +57,7 @@ mkdir -p $out/share/applications
 ln -s ${desktopItem}/share/applications/* $out/share/applications/
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Arcade-style fire fighting game",
         homepage: "https://github.com/SimonLarsen/mrrescue",
         mainProgram: "mrrescue",

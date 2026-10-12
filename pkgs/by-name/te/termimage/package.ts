@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["pname", 14, 26], ["version", 14, 32], ["hash", 15, 5]], [["RUSTFLAGS", 25, 7]], [["description", 33, 5], ["homepage", 34, 5], ["changelog", 35, 5], ["license", 36, 5], ["maintainers", 37, 5], ["mainProgram", 38, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["cargoHash", 18, 3], ["nativeBuildInputs", 20, 3], ["env", 25, 3], ["postInstall", 27, 3], ["meta", 32, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchCrate: false, installShellFiles: false, ronn: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["pname", 14, 26], ["version", 14, 32], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["RUSTFLAGS", 25, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 33, 5], ["homepage", 34, 5], ["changelog", 35, 5], ["license", 36, 5], ["maintainers", 37, 5], ["mainProgram", 38, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["cargoHash", 18, 3], ["nativeBuildInputs", 20, 3], ["env", 25, 3], ["postInstall", 27, 3], ["meta", 32, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,21 +13,21 @@ export default nix.lambda((args) => (() => {
   const installShellFiles = nix.arg($, "installShellFiles");
   const ronn = nix.arg($, "ronn");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "termimage",
       version: "1.2.1",
       src: nix.thunk(() => nix.app(fetchCrate, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-1FOPe466GqQfiIpsQT9DJn+FupI2vy9b4+7p31ceY6M=",
         })))),
       cargoHash: "sha256-SIPak7tl/fIH6WzvAl8bjhclZqQ6imC/zdxCnBnEsbk=",
       nativeBuildInputs: nix.thunk(() => [installShellFiles, ronn]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, RUSTFLAGS: "-Adangerous_implicit_autorefs" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], RUSTFLAGS: "-Adangerous_implicit_autorefs" })),
       postInstall: "ronn --roff --organization=\"termimage developers\" termimage.md\ninstallManPage termimage.1\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Display images in your terminal",
         homepage: "https://github.com/nabijaczleweli/termimage",
         changelog: nix.thunk(() => nix.str`https://github.com/nabijaczleweli/termimage/releases/tag/v${nix.sel(finalAttrs, "version")}`),

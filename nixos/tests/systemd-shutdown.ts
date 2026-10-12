@@ -2,19 +2,8 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/systemd-shutdown.nix", [[["maintainers", 12, 8]], [["pre-exitrd", 16, 22]], [["source", 19, 84]], [["/etc/systemd/system-shutdown/shutdown-message", 19, 36]], [["contents", 19, 27]], [["shutdown", 16, 13], ["shutdownRamfs", 19, 13]], [["enable", 26, 25]], [["systemd", 26, 17]], [["initrd", 26, 10]], [["imports", 15, 5], ["systemd", 16, 5], ["boot", 26, 5]], [["machine", 14, 9]], [["name", 11, 3], ["meta", 12, 3], ["nodes", 14, 3], ["testScript", 29, 3]]]);
 const formals$1 = { args: { systemdStage1: false, lib: false, pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/systemd-shutdown.nix", [["maintainers", 12, 8]]);
-const pos$2 = nix.positions(here + "/systemd-shutdown.nix", [["pre-exitrd", 16, 22]]);
-const pos$3 = nix.positions(here + "/systemd-shutdown.nix", [["source", 19, 84]]);
-const pos$4 = nix.positions(here + "/systemd-shutdown.nix", [["/etc/systemd/system-shutdown/shutdown-message", 19, 36]]);
-const pos$5 = nix.positions(here + "/systemd-shutdown.nix", [["contents", 19, 27]]);
-const pos$6 = nix.positions(here + "/systemd-shutdown.nix", [["shutdown", 16, 13], ["shutdownRamfs", 19, 13]]);
-const pos$7 = nix.positions(here + "/systemd-shutdown.nix", [["enable", 26, 25]]);
-const pos$8 = nix.positions(here + "/systemd-shutdown.nix", [["systemd", 26, 17]]);
-const pos$9 = nix.positions(here + "/systemd-shutdown.nix", [["initrd", 26, 10]]);
-const pos$10 = nix.positions(here + "/systemd-shutdown.nix", [["imports", 15, 5], ["systemd", 16, 5], ["boot", 26, 5]]);
-const pos$11 = nix.positions(here + "/systemd-shutdown.nix", [["machine", 14, 9]]);
-const pos$12 = nix.positions(here + "/systemd-shutdown.nix", [["name", 11, 3], ["meta", 12, 3], ["nodes", 14, 3], ["testScript", 29, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,32 +12,32 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const msg = "Shutting down NixOS";
   return {
-    [nix.POS]: pos$12,
+    [nix.POS]: $pos[11],
     name: "systemd-shutdown",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "das_j"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$11,
+      [nix.POS]: $pos[10],
       machine: nix.thunk(() => ({
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         imports: nix.thunk(() => [nix.path(here, "../modules/profiles/minimal.nix")]),
         systemd: nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           shutdown: nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             "pre-exitrd": nix.thunk(() => nix.app(nix.sel(pkgs, "writeShellScript"), "pre-exitrd", "echo pre-exitrd > /run/initramfs/test.txt\n")),
           })),
           shutdownRamfs: nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             contents: nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               "/etc/systemd/system-shutdown/shutdown-message": nix.thunk(() => ({
-                [nix.POS]: pos$3,
+                [nix.POS]: $pos[2],
                 source: nix.thunk(() => nix.app(nix.sel(pkgs, "writeShellScript"), "shutdown-message", nix.thunk(() => nix.str`if test -e /test.txt; then
   # Test should only pass if both scripts run.
   echo "${msg}" > /dev/kmsg
@@ -59,10 +48,10 @@ fi
           })),
         })),
         boot: nix.thunk(() => ({
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           initrd: nix.thunk(() => ({
-            [nix.POS]: pos$8,
-            systemd: nix.thunk(() => ({ [nix.POS]: pos$7, enable: systemdStage1 })),
+            [nix.POS]: $pos[7],
+            systemd: nix.thunk(() => ({ [nix.POS]: $pos[6], enable: systemdStage1 })),
           })),
         })),
       })),

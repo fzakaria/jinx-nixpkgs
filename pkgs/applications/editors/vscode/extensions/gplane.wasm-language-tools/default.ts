@@ -2,10 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["publisher", 15, 5], ["name", 16, 5], ["version", 17, 5], ["hash", 18, 5]], [["description", 28, 5], ["downloadPage", 29, 5], ["homepage", 30, 5], ["license", 31, 5], ["maintainers", 32, 5]], [["mktplcRef", 14, 3], ["buildPhase", 21, 3], ["meta", 27, 3]]]);
 const formals$1 = { args: { lib: false, "vscode-utils": false, "wasm-language-tools": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["publisher", 15, 5], ["name", 16, 5], ["version", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 28, 5], ["downloadPage", 29, 5], ["homepage", 30, 5], ["license", 31, 5], ["maintainers", 32, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["mktplcRef", 14, 3], ["buildPhase", 21, 3], ["meta", 27, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,9 +11,9 @@ export default nix.lambda((args) => (() => {
   const vscode_utils = nix.arg($, "vscode-utils");
   const wasm_language_tools = nix.arg($, "wasm-language-tools");
   return nix.app(nix.sel(vscode_utils, "buildVscodeMarketplaceExtension"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       mktplcRef: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         publisher: "gplane",
         name: "wasm-language-tools",
         version: "1.21.0",
@@ -26,7 +24,7 @@ ln -s ${wasm_language_tools}/bin bin
 runHook postBuild
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Language support of WebAssembly",
         downloadPage: "https://marketplace.visualstudio.com/items?itemName=gplane.wasm-language-tools",
         homepage: "https://github.com/g-plane/vscode-wasm",

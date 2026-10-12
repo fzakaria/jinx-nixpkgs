@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["pname", 18, 5], ["version", 19, 5], ["dontUnpack", 20, 5], ["installPhase", 21, 5]], [["owner", 39, 5], ["repo", 40, 5], ["rev", 41, 5], ["hash", 42, 5]], [["CXXFLAGS", 80, 5]], [["updateScript", 85, 12]], [["homepage", 88, 5], ["description", 89, 5], ["longDescription", 90, 5], ["license", 95, 5], ["platforms", 96, 5], ["teams", 97, 5]], [["pname", 34, 3], ["version", 35, 3], ["src", 38, 3], ["patches", 45, 3], ["nativeBuildInputs", 50, 3], ["propagatedBuildInputs", 54, 3], ["cmakeFlags", 68, 3], ["env", 78, 3], ["separateDebugInfo", 83, 3], ["passthru", 85, 3], ["meta", 87, 3]]]);
 const formals$1 = { args: { lib: false, libucontext: false, "pkg-config": false, clangStdenv: false, fetchFromGitHub: false, cmake: false, openssl: false, zlib: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["pname", 18, 5], ["version", 19, 5], ["dontUnpack", 20, 5], ["installPhase", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 39, 5], ["repo", 40, 5], ["rev", 41, 5], ["hash", 42, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["CXXFLAGS", 80, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 85, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["homepage", 88, 5], ["description", 89, 5], ["longDescription", 90, 5], ["license", 95, 5], ["platforms", 96, 5], ["teams", 97, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 34, 3], ["version", 35, 3], ["src", 38, 3], ["patches", 45, 3], ["nativeBuildInputs", 50, 3], ["propagatedBuildInputs", 54, 3], ["cmakeFlags", 68, 3], ["env", 78, 3], ["separateDebugInfo", 83, 3], ["passthru", 85, 3], ["meta", 87, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,7 +17,7 @@ export default nix.lambda((args) => (() => {
   const zlib = nix.arg($, "zlib");
   const nix_update_script = nix.arg($, "nix-update-script");
   const empty_libgcc_eh = nix.thunk(() => nix.app(nix.sel(clangStdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       pname: "empty-libgcc_eh",
       version: "0",
       dontUnpack: true,
@@ -34,7 +29,7 @@ ${nix.sel(clangStdenv, "cc", "targetPrefix")}ar r "$out"/lib/libgcc_eh.a
       const pname = "capnproto";
       const version = "1.4.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "capnproto",
           repo: "capnproto",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -48,14 +43,14 @@ ${nix.sel(clangStdenv, "cc", "targetPrefix")}ar r "$out"/lib/libgcc_eh.a
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "WITH_FIBERS", true)),
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeFeature"), "CMAKE_BUILD_TYPE", "None")),
       ]);
-      const env = nix.thunk(() => ({ [nix.POS]: pos$3, CXXFLAGS: "-std=c++20" }));
+      const env = nix.thunk(() => ({ [nix.POS]: $pos[2], CXXFLAGS: "-std=c++20" }));
       const separateDebugInfo = true;
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "https://capnproto.org/",
         description: "Cap'n Proto cerealization protocol",
         longDescription: "Cap’n Proto is an insanely fast data interchange format and\ncapability-based RPC system. Think JSON, except binary. Or think Protocol\nBuffers, except faster.\n",
@@ -64,7 +59,7 @@ ${nix.sel(clangStdenv, "cc", "targetPrefix")}ar r "$out"/lib/libgcc_eh.a
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "lix"))]),
       }));
       return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname,
         version,
         src,

@@ -2,10 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["PodParser", 16, 28]], [["cjson", 24, 27], ["luaffi", 24, 33]], [["autosort", 9, 3], ["colorize_nicks", 11, 3], ["edit", 13, 3], ["multiline", 15, 3], ["url_hint", 19, 3], ["weechat-grep", 21, 3], ["weechat-matrix-bridge", 23, 3], ["weechat-matrix", 27, 3], ["weechat-notify-send", 29, 3], ["wee-slack", 31, 3], ["weechat-autosort", 33, 3], ["weechat-otr", 35, 3], ["weechat-go", 37, 3], ["buffer_autoset", 39, 3], ["highmon", 41, 3], ["zncplayback", 43, 3]]]);
 const formals$1 = { args: { callPackage: false, luaPackages: false, perlPackages: false, python3Packages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["PodParser", 16, 28]]);
-const pos$2 = nix.positions(here + "/default.nix", [["cjson", 24, 27], ["luaffi", 24, 33]]);
-const pos$3 = nix.positions(here + "/default.nix", [["autosort", 9, 3], ["colorize_nicks", 11, 3], ["edit", 13, 3], ["multiline", 15, 3], ["url_hint", 19, 3], ["weechat-grep", 21, 3], ["weechat-matrix-bridge", 23, 3], ["weechat-matrix", 27, 3], ["weechat-notify-send", 29, 3], ["wee-slack", 31, 3], ["weechat-autosort", 33, 3], ["weechat-otr", 35, 3], ["weechat-go", 37, 3], ["buffer_autoset", 39, 3], ["highmon", 41, 3], ["zncplayback", 43, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,18 +12,18 @@ export default nix.lambda((args) => (() => {
   const perlPackages = nix.arg($, "perlPackages");
   const python3Packages = nix.arg($, "python3Packages");
   return {
-    [nix.POS]: pos$3,
+    [nix.POS]: $pos[2],
     autosort: nix.thunk(() => nix.app(callPackage, nix.path(here, "./autosort"), nix.thunk(() => ({})))),
     colorize_nicks: nix.thunk(() => nix.app(callPackage, nix.path(here, "./colorize_nicks"), nix.thunk(() => ({})))),
     edit: nix.thunk(() => nix.app(callPackage, nix.path(here, "./edit"), nix.thunk(() => ({})))),
     multiline: nix.thunk(() => nix.app(callPackage, nix.path(here, "./multiline"), nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         PodParser: nix.thunk(() => nix.attr(perlPackages, "PodParser")),
       })))),
     url_hint: nix.thunk(() => nix.app(callPackage, nix.path(here, "./url_hint"), nix.thunk(() => ({})))),
     "weechat-grep": nix.thunk(() => nix.app(callPackage, nix.path(here, "./weechat-grep"), nix.thunk(() => ({})))),
     "weechat-matrix-bridge": nix.thunk(() => nix.app(callPackage, nix.path(here, "./weechat-matrix-bridge"), nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         cjson: nix.thunk(() => nix.attr(luaPackages, "cjson")),
         luaffi: nix.thunk(() => nix.attr(luaPackages, "luaffi")),
       })))),

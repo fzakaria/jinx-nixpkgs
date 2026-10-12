@@ -2,24 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["nodejs", 39, 63]], [["pnpm", 41, 5], ["nodejs", 42, 13]], [["webrtc", 46, 49]], [["owner", 51, 5], ["repo", 52, 5], ["tag", 53, 5], ["hash", 54, 5], ["postFetch", 57, 5]], [["license", 65, 10]], [["url", 63, 5], ["hash", 64, 5], ["meta", 65, 5]], [["pname", 77, 9], ["src", 78, 9], ["version", 79, 9], ["pnpmWorkspaces", 80, 9], ["pnpm", 82, 15], ["prePnpmInstall", 83, 7], ["fetcherVersion", 86, 7], ["hash", 87, 7]], [["pname", 69, 5], ["src", 70, 13], ["version", 70, 17], ["pnpmRoot", 72, 5], ["pnpmWorkspaces", 73, 5], ["pnpmDeps", 75, 5], ["strictDeps", 90, 5], ["nativeBuildInputs", 91, 5], ["installPhase", 98, 5]], [["noto-fonts-color-emoji", 144, 15]], [["pname", 184, 7], ["version", 185, 7], ["src", 186, 7], ["patches", 187, 7], ["pnpm", 189, 13], ["prePnpmInstall", 190, 5], ["fetcherVersion", 193, 5], ["hash", 194, 5]], [["ELECTRON_SKIP_BINARY_DOWNLOAD", 198, 5], ["SIGNAL_ENV", 199, 5], ["SOURCE_DATE_EPOCH", 202, 5]], [["name", 321, 7], ["desktopName", 322, 7], ["exec", 323, 7], ["type", 324, 7], ["terminal", 325, 7], ["icon", 326, 7], ["comment", 327, 7], ["startupWMClass", 328, 7], ["mimeTypes", 329, 7], ["categories", 333, 7]], [["application-launch", 350, 11]], [["command", 351, 18]], [["apple-emoji", 343, 7], ["libsignal-node", 344, 7], ["ringrtc", 345, 7], ["webrtc", 346, 7], ["sticker-creator", 347, 7], ["signal-sqlcipher", 348, 7], ["tests", 350, 5], ["updateScript", 351, 5]], [["description", 355, 5], ["longDescription", 356, 5], ["homepage", 360, 5], ["changelog", 361, 5], ["license", 362, 5], ["maintainers", 368, 5], ["mainProgram", 374, 5], ["platforms", 375, 5]], [["pname", 106, 3], ["src", 107, 11], ["version", 107, 15], ["strictDeps", 109, 3], ["nativeBuildInputs", 110, 3], ["patches", 128, 3], ["postPatch", 148, 3], ["pnpmDeps", 182, 3], ["env", 197, 3], ["preBuild", 205, 3], ["pnpmBuildScript", 277, 3], ["postBuild", 279, 3], ["installPhase", 291, 3], ["desktopItems", 319, 3], ["passthru", 341, 3], ["meta", 354, 3]]]);
 const formals$1 = { args: { actool: false, stdenv: false, lib: false, nodejs_24: false, pnpm_10: false, pnpm_11: false, "node-gyp": false, fetchPnpmDeps: false, pnpmConfigHook: false, pnpmBuildHook: false, electron_44: false, python3: false, makeWrapper: false, callPackage: false, fetchFromGitHub: false, fetchurl: false, jq: false, makeDesktopItem: false, copyDesktopItems: false, xcodebuild: false, replaceVars: false, "noto-fonts-color-emoji": false, nixosTests: false, commandLineArgs: true, withAppleEmojis: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["nodejs", 39, 63]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pnpm", 41, 5], ["nodejs", 42, 13]]);
-const pos$3 = nix.positions(here + "/package.nix", [["webrtc", 46, 49]]);
-const pos$4 = nix.positions(here + "/package.nix", [["owner", 51, 5], ["repo", 52, 5], ["tag", 53, 5], ["hash", 54, 5], ["postFetch", 57, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["license", 65, 10]]);
-const pos$6 = nix.positions(here + "/package.nix", [["url", 63, 5], ["hash", 64, 5], ["meta", 65, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 77, 9], ["src", 78, 9], ["version", 79, 9], ["pnpmWorkspaces", 80, 9], ["pnpm", 82, 15], ["prePnpmInstall", 83, 7], ["fetcherVersion", 86, 7], ["hash", 87, 7]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 69, 5], ["src", 70, 13], ["version", 70, 17], ["pnpmRoot", 72, 5], ["pnpmWorkspaces", 73, 5], ["pnpmDeps", 75, 5], ["strictDeps", 90, 5], ["nativeBuildInputs", 91, 5], ["installPhase", 98, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["noto-fonts-color-emoji", 144, 15]]);
-const pos$10 = nix.positions(here + "/package.nix", [["pname", 184, 7], ["version", 185, 7], ["src", 186, 7], ["patches", 187, 7], ["pnpm", 189, 13], ["prePnpmInstall", 190, 5], ["fetcherVersion", 193, 5], ["hash", 194, 5]]);
-const pos$11 = nix.positions(here + "/package.nix", [["ELECTRON_SKIP_BINARY_DOWNLOAD", 198, 5], ["SIGNAL_ENV", 199, 5], ["SOURCE_DATE_EPOCH", 202, 5]]);
-const pos$12 = nix.positions(here + "/package.nix", [["name", 321, 7], ["desktopName", 322, 7], ["exec", 323, 7], ["type", 324, 7], ["terminal", 325, 7], ["icon", 326, 7], ["comment", 327, 7], ["startupWMClass", 328, 7], ["mimeTypes", 329, 7], ["categories", 333, 7]]);
-const pos$13 = nix.positions(here + "/package.nix", [["application-launch", 350, 11]]);
-const pos$14 = nix.positions(here + "/package.nix", [["command", 351, 18]]);
-const pos$15 = nix.positions(here + "/package.nix", [["apple-emoji", 343, 7], ["libsignal-node", 344, 7], ["ringrtc", 345, 7], ["webrtc", 346, 7], ["sticker-creator", 347, 7], ["signal-sqlcipher", 348, 7], ["tests", 350, 5], ["updateScript", 351, 5]]);
-const pos$16 = nix.positions(here + "/package.nix", [["description", 355, 5], ["longDescription", 356, 5], ["homepage", 360, 5], ["changelog", 361, 5], ["license", 362, 5], ["maintainers", 368, 5], ["mainProgram", 374, 5], ["platforms", 375, 5]]);
-const pos$17 = nix.positions(here + "/package.nix", [["pname", 106, 3], ["src", 107, 11], ["version", 107, 15], ["strictDeps", 109, 3], ["nativeBuildInputs", 110, 3], ["patches", 128, 3], ["postPatch", 148, 3], ["pnpmDeps", 182, 3], ["env", 197, 3], ["preBuild", 205, 3], ["pnpmBuildScript", 277, 3], ["postBuild", 279, 3], ["installPhase", 291, 3], ["desktopItems", 319, 3], ["passthru", 341, 3], ["meta", 354, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -52,13 +36,13 @@ export default nix.lambda((args) => (() => {
   const nodejs = nodejs_24;
   const pnpm = pnpm_11;
   const electron = electron_44;
-  const libsignal_node = nix.thunk(() => nix.app(callPackage, nix.path(here, "./libsignal-node.nix"), nix.thunk(() => ({ [nix.POS]: pos$1, nodejs: nodejs }))));
-  const signal_sqlcipher = nix.thunk(() => nix.app(callPackage, nix.path(here, "./signal-sqlcipher.nix"), nix.thunk(() => ({ [nix.POS]: pos$2, pnpm: pnpm_10, nodejs: nodejs }))));
+  const libsignal_node = nix.thunk(() => nix.app(callPackage, nix.path(here, "./libsignal-node.nix"), nix.thunk(() => ({ [nix.POS]: $pos[0], nodejs: nodejs }))));
+  const signal_sqlcipher = nix.thunk(() => nix.app(callPackage, nix.path(here, "./signal-sqlcipher.nix"), nix.thunk(() => ({ [nix.POS]: $pos[1], pnpm: pnpm_10, nodejs: nodejs }))));
   const webrtc = nix.thunk(() => nix.app(callPackage, nix.path(here, "./webrtc.nix"), nix.thunk(() => ({}))));
-  const ringrtc = nix.thunk(() => nix.app(callPackage, nix.path(here, "./ringrtc.nix"), nix.thunk(() => ({ [nix.POS]: pos$3, webrtc: webrtc }))));
+  const ringrtc = nix.thunk(() => nix.app(callPackage, nix.path(here, "./ringrtc.nix"), nix.thunk(() => ({ [nix.POS]: $pos[2], webrtc: webrtc }))));
   const version = "8.29.0";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       owner: "signalapp",
       repo: "Signal-Desktop",
       tag: nix.thunk(() => nix.str`v${version}`),
@@ -66,23 +50,23 @@ export default nix.lambda((args) => (() => {
       postFetch: "rm $out/fonts/emoji.woff2\n",
     }))));
   const apple_emoji = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       url: nix.thunk(() => nix.str`https://github.com/signalapp/Signal-Desktop/raw/refs/tags/v${version}/fonts/emoji.woff2`),
       hash: "sha256-yGdx5GZVnsmYn+SI9/yAfGhRyzO5Q5Bd0bW9AQyVzv8=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
       })),
     }))));
   const sticker_creator = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "signal-desktop-sticker-creator",
       src: src,
       version: version,
       pnpmRoot: "sticker-creator",
       pnpmWorkspaces: nix.thunk(() => ["signal-art-creator"]),
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
@@ -97,7 +81,7 @@ export default nix.lambda((args) => (() => {
       installPhase: "runHook preInstall\ncp -r sticker-creator/dist $out\nrunHook postInstall\n",
     })));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$17,
+      [nix.POS]: $pos[16],
       pname: "signal-desktop",
       src: src,
       version: version,
@@ -113,11 +97,11 @@ export default nix.lambda((args) => (() => {
         python3,
         jq,
       ], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [xcodebuild])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [copyDesktopItems]))))),
-      patches: nix.thunk(() => nix.concat([nix.path(here, "./force-90-days-expiration.patch")], nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(withAppleEmojis)), nix.thunk(() => nix.app(replaceVars, nix.path(here, "./replace-apple-emoji-with-noto-emoji.patch"), nix.thunk(() => ({ [nix.POS]: pos$9, "noto-fonts-color-emoji": noto_fonts_color_emoji }))))))),
+      patches: nix.thunk(() => nix.concat([nix.path(here, "./force-90-days-expiration.patch")], nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(withAppleEmojis)), nix.thunk(() => nix.app(replaceVars, nix.path(here, "./replace-apple-emoji-with-noto-emoji.patch"), nix.thunk(() => ({ [nix.POS]: $pos[8], "noto-fonts-color-emoji": noto_fonts_color_emoji }))))))),
       postPatch: nix.thunk(() => nix.add("# The spell checker dictionary URL interpolates the electron version,\n# however, the official website only provides dictionaries for electron\n# versions which they vendor into the binary releases. Since we unpin\n# electron to use the one from nixpkgs the URL may point to nonexistent\n# resource if the nixpkgs version is different. To fix this we hardcode\n# the electron version to the declared one here instead of interpolating\n# it at runtime.\nsubstituteInPlace app/updateDefaultSession.main.ts \\\n  --replace-fail \"\\${process.versions.electron}\" \"`jq -r '.devDependencies.electron' < package.json`\"\n\n# Disable auto-updater https://github.com/signalapp/Signal-Desktop/issues/7667\nsubstituteInPlace config/production.json \\\n  --replace-fail '\"updatesEnabled\": true' '\"updatesEnabled\": false'\n\n# pnpm 11 verifies node_modules before every `pnpm run`, which fails\n# after nixpkgs swaps in the prebuilt native modules below.\nsubstituteInPlace pnpm-workspace.yaml \\\n  --replace-fail \"verifyDepsBeforeRun: prompt\" \"verifyDepsBeforeRun: false\"\n\n# Nix builds do not need upstream release hooks (notarization and\n# language-pack postprocessing), and they expect a different macOS\n# app layout than nixpkgs' Electron provides.\nsubstituteInPlace package.json \\\n  --replace-fail '\"artifactBuildCompleted\": \"scripts/artifact-build-completed.mjs\",' \"\" \\\n  --replace-fail '\"afterSign\": \"scripts/after-sign.mjs\",' \"\" \\\n  --replace-fail '\"afterPack\": \"scripts/after-pack.mjs\",' \"\" \\\n  --replace-fail '\"sign\": \"scripts/sign-macos.mjs\",' \"\" \\\n  --replace-fail '\"afterAllArtifactBuild\": \"scripts/after-all-artifact-build.mjs\",' \"\"\n", nix.app(nix.sel(lib, "optionalString"), withAppleEmojis, nix.thunk(() => nix.str`cp ${apple_emoji} fonts/emoji.woff2
 `)))),
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$10,
+          [nix.POS]: $pos[9],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -128,7 +112,7 @@ export default nix.lambda((args) => (() => {
           hash: "sha256-tDyhLzyG5Vo00nH/WAdVABLFn+SZVPs/WRjqReNDIZM=",
         })))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$11,
+        [nix.POS]: $pos[10],
         ELECTRON_SKIP_BINARY_DOWNLOAD: "1",
         SIGNAL_ENV: "production",
         SOURCE_DATE_EPOCH: 1790889255n,
@@ -232,7 +216,7 @@ makeWrapper '${nix.app(nix.sel(lib, "getExe"), electron)}' "$out/bin/signal-desk
 `))), "runHook postInstall\n")),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$12,
+            [nix.POS]: $pos[11],
             name: "signal",
             desktopName: "Signal",
             exec: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "meta", "mainProgram")} %U`),
@@ -246,7 +230,7 @@ makeWrapper '${nix.app(nix.sel(lib, "getExe"), electron)}' "$out/bin/signal-desk
           })))),
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$15,
+        [nix.POS]: $pos[14],
         "apple-emoji": apple_emoji,
         "libsignal-node": libsignal_node,
         ringrtc: ringrtc,
@@ -254,13 +238,16 @@ makeWrapper '${nix.app(nix.sel(lib, "getExe"), electron)}' "$out/bin/signal-desk
         "sticker-creator": sticker_creator,
         "signal-sqlcipher": signal_sqlcipher,
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$13,
+          [nix.POS]: $pos[12],
           "application-launch": nix.thunk(() => nix.sel(nixosTests, "signal-desktop")),
         })),
-        updateScript: nix.thunk(() => ({ [nix.POS]: pos$14, command: nix.thunk(() => [nix.path(here, "./update.sh")]) })),
+        updateScript: nix.thunk(() => ({
+          [nix.POS]: $pos[13],
+          command: nix.thunk(() => [nix.path(here, "./update.sh")]),
+        })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$16,
+        [nix.POS]: $pos[15],
         description: "Private, simple, and secure messenger",
         longDescription: "Signal Desktop is an Electron application that links with your\n\"Signal Android\" or \"Signal iOS\" app.\n",
         homepage: "https://signal.org/",

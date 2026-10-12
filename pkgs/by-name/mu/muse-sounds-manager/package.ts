@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 25, 5], ["hash", 26, 5]], [["description", 69, 5], ["homepage", 70, 5], ["license", 71, 5], ["mainProgram", 72, 5], ["maintainers", 73, 5], ["platforms", 76, 5], ["sourceProvenance", 77, 5]], [["pname", 20, 3], ["version", 21, 3], ["src", 24, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 33, 3], ["runtimeDependencies", 40, 3], ["installPhase", 51, 3], ["postInstall", 62, 3], ["dontStrip", 66, 3], ["meta", 68, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, autoPatchelfHook: false, fontconfig: false, zlib: false, icu: false, libx11: false, libxext: false, libxi: false, libxrandr: false, libice: false, libsm: false, openssl: false, "xdg-utils": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 69, 5], ["homepage", 70, 5], ["license", 71, 5], ["mainProgram", 72, 5], ["maintainers", 73, 5], ["platforms", 76, 5], ["sourceProvenance", 77, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["src", 24, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 33, 3], ["runtimeDependencies", 40, 3], ["installPhase", 51, 3], ["postInstall", 62, 3], ["dontStrip", 66, 3], ["meta", 68, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const openssl = nix.arg($, "openssl");
   const xdg_utils = nix.arg($, "xdg-utils");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "muse-sounds-manager",
       version: "2.2.1.953",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://muse-cdn.com/muse-sounds-manager/Muse_Sounds_Manager_x64_${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-y7fKHh2pG8uT4p0vq20rsW8bSAp1mepkd2sW/06N3EI=",
         })))),
@@ -41,7 +39,7 @@ export default nix.lambda((args) => (() => {
 `),
       dontStrip: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Manage Muse Sounds (Muse Hub) libraries for MuseScore",
         homepage: "https://musescore.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

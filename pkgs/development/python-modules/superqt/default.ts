@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]], [["quantity", 42, 5], ["pyside2", 43, 5], ["pyside6", 44, 5], ["pyqt6", 45, 5], ["pyqt5", 46, 5]], [["description", 58, 5], ["homepage", 59, 5], ["changelog", 60, 5], ["license", 61, 5], ["maintainers", 62, 5]], [["pname", 19, 3], ["version", 20, 3], ["pyproject", 21, 3], ["src", 23, 3], ["build-system", 30, 3], ["dependencies", 35, 3], ["optional-dependencies", 41, 3], ["nativeCheckInputs", 49, 3], ["doCheck", 52, 3], ["meta", 57, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, "hatch-vcs": false, hatchling: false, pint: false, pygments: false, pyqt5: false, pyqt6: false, pyside2: false, pyside6: false, pytestCheckHook: false, qtpy: false, "typing-extensions": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["quantity", 42, 5], ["pyside2", 43, 5], ["pyside6", 44, 5], ["pyqt6", 45, 5], ["pyqt5", 46, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 58, 5], ["homepage", 59, 5], ["changelog", 60, 5], ["license", 61, 5], ["maintainers", 62, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 19, 3], ["version", 20, 3], ["pyproject", 21, 3], ["src", 23, 3], ["build-system", 30, 3], ["dependencies", 35, 3], ["optional-dependencies", 41, 3], ["nativeCheckInputs", 49, 3], ["doCheck", 52, 3], ["meta", 57, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.7.8";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "pyapp-kit",
           repo: "superqt",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -38,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [hatch_vcs, hatchling]);
       const dependencies = nix.thunk(() => [pygments, qtpy, typing_extensions]);
       const optional_dependencies = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         quantity: nix.thunk(() => [pint]),
         pyside2: nix.thunk(() => [pyside2]),
         pyside6: nix.thunk(() => [pyside6]),
@@ -48,7 +45,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Missing widgets and components for Qt-python (napari/superqt)",
         homepage: "https://github.com/napari/superqt",
         changelog: nix.thunk(() => nix.str`https://github.com/pyapp-kit/superqt/releases/tag/${nix.sel(src, "tag")}`),
@@ -59,7 +56,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

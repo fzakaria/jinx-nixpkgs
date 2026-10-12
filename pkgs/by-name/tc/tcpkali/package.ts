@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["sha256", 20, 5]], [["description", 28, 5], ["license", 29, 5], ["homepage", 30, 24], ["platforms", 31, 5], ["maintainers", 32, 5], ["mainProgram", 33, 5]], [["pname", 14, 3], ["version", 15, 11], ["src", 16, 3], ["postPatch", 22, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 26, 3], ["meta", 27, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, autoreconfHook: false, fetchFromGitHub: false, bison: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["sha256", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 28, 5], ["license", 29, 5], ["homepage", 30, 24], ["platforms", 31, 5], ["maintainers", 32, 5], ["mainProgram", 33, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 11], ["src", 16, 3], ["postPatch", 22, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 26, 3], ["meta", 27, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname = "tcpkali";
       const version_1 = version;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "machinezone",
           repo: "tcpkali",
           rev: nix.thunk(() => nix.str`v${version_1}`),
@@ -31,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const meta = nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(src, "meta"));
         return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "High performance TCP and WebSocket load generator and sink",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
@@ -41,7 +39,7 @@ export default nix.lambda((args) => (() => {
       };
       })());
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version: version_1,
         src,

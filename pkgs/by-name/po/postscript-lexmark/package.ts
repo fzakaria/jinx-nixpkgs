@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 15, 5], ["sha256", 16, 5]], [["homepage", 37, 5], ["description", 38, 5], ["platforms", 39, 5], ["license", 40, 5]], [["pname", 11, 3], ["version", 12, 11], ["src", 14, 3], ["nativeBuildInputs", 19, 3], ["sourceRoot", 21, 3], ["unpackPhase", 23, 3], ["installPhase", 30, 3], ["meta", 36, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, rpmextract: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 15, 5], ["sha256", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 37, 5], ["description", 38, 5], ["platforms", 39, 5], ["license", 40, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 11], ["src", 14, 3], ["nativeBuildInputs", 19, 3], ["sourceRoot", 21, 3], ["unpackPhase", 23, 3], ["installPhase", 30, 3], ["meta", 36, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const rpmextract = nix.arg($, "rpmextract");
   const version = "20160218";
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "postscript-lexmark",
       version: version,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://www.openprinting.org/download/printdriver/components/lsb3.2/main/RPMS/noarch/openprinting-ppds-postscript-lexmark-${version}-1lsb3.2.noarch.rpm`),
           sha256: "0wbhvypdr96a5ddg6kj41dn9sbl49n7pfi2vs762ij82hm2gvwcm",
         })))),
@@ -28,7 +26,7 @@ export default nix.lambda((args) => (() => {
       unpackPhase: "rpmextract $src\nfor ppd in opt/OpenPrinting-Lexmark/ppds/Lexmark/*; do\n  gzip -d $ppd\ndone\n",
       installPhase: "mkdir -p $out/share/cups/model/postscript-lexmark\ncp opt/OpenPrinting-Lexmark/ppds/Lexmark/*.ppd $out/share/cups/model/postscript-lexmark/\ncp -r opt/OpenPrinting-Lexmark/doc $out/doc\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://www.openprinting.org/driver/Postscript-Lexmark/",
         description: "Lexmark Postscript Drivers",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),

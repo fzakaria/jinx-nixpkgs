@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 33, 5], ["repo", 34, 5], ["tag", 35, 5], ["hash", 36, 5]], [["CI", 42, 7]], [["CI", 45, 9]], [["env", 45, 5]], [["name", 85, 7], ["desktopName", 86, 7], ["comment", 87, 7], ["type", 88, 7], ["exec", 89, 7], ["icon", 90, 7], ["categories", 91, 7], ["keywords", 95, 7]], [["updateScript", 104, 12]], [["description", 107, 5], ["homepage", 108, 5], ["changelog", 109, 5], ["license", 110, 5], ["maintainers", 111, 5], ["mainProgram", 115, 5], ["platforms", 117, 5]], [["pname", 29, 3], ["version", 30, 3], ["src", 32, 3], ["strictDeps", 38, 3], ["__structuredAttrs", 39, 3], ["env", 42, 3], ["mvnFetchExtraArgs", 44, 3], ["mvnParameters", 48, 3], ["mvnHash", 49, 3], ["nativeBuildInputs", 51, 3], ["installPhase", 56, 3], ["desktopItems", 83, 3], ["passthru", 104, 3], ["meta", 106, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, maven: false, makeWrapper: false, copyDesktopItems: false, makeDesktopItem: false, jre: false, libxkbcommon: false, libx11: false, libxcb: false, libxinerama: false, libxt: false, libxtst: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 33, 5], ["repo", 34, 5], ["tag", 35, 5], ["hash", 36, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["CI", 42, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["CI", 45, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["env", 45, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["name", 85, 7], ["desktopName", 86, 7], ["comment", 87, 7], ["type", 88, 7], ["exec", 89, 7], ["icon", 90, 7], ["categories", 91, 7], ["keywords", 95, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["updateScript", 104, 12]]);
-const pos$7 = nix.positions(here + "/package.nix", [["description", 107, 5], ["homepage", 108, 5], ["changelog", 109, 5], ["license", 110, 5], ["maintainers", 111, 5], ["mainProgram", 115, 5], ["platforms", 117, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 29, 3], ["version", 30, 3], ["src", 32, 3], ["strictDeps", 38, 3], ["__structuredAttrs", 39, 3], ["env", 42, 3], ["mvnFetchExtraArgs", 44, 3], ["mvnParameters", 48, 3], ["mvnHash", 49, 3], ["nativeBuildInputs", 51, 3], ["installPhase", 56, 3], ["desktopItems", 83, 3], ["passthru", 104, 3], ["meta", 106, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const linuxNativeLibraries = nix.thunk(() => [libxkbcommon, libx11, libxcb, libxinerama, libxt, libxtst]);
   return nix.app(nix.sel(maven, "buildMavenPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "ninjabrain-bot",
       version: "1.5.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Ninjabrain1",
           repo: "Ninjabrain-Bot",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -43,8 +36,11 @@ export default nix.lambda((args) => (() => {
         })))),
       strictDeps: true,
       __structuredAttrs: true,
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, CI: "true" })),
-      mvnFetchExtraArgs: nix.thunk(() => ({ [nix.POS]: pos$4, env: nix.thunk(() => ({ [nix.POS]: pos$3, CI: "true" })) })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], CI: "true" })),
+      mvnFetchExtraArgs: nix.thunk(() => ({
+        [nix.POS]: $pos[3],
+        env: nix.thunk(() => ({ [nix.POS]: $pos[2], CI: "true" })),
+      })),
       mvnParameters: "assembly:single",
       mvnHash: "sha256-k/bhq3TyiG+PvUogBeFGpgx+vBFdkEge6UnmnVPUjjg=",
       nativeBuildInputs: nix.thunk(() => [makeWrapper, copyDesktopItems]),
@@ -74,7 +70,7 @@ runHook postInstall
 `),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             name: "ninjabrain-bot",
             desktopName: "Ninjabrain Bot",
             comment: "Stronghold calculator for Minecraft speedrunning",
@@ -86,11 +82,11 @@ runHook postInstall
           })))),
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "Stronghold calculator for Minecraft speedrunning",
         homepage: "https://github.com/Ninjabrain1/Ninjabrain-Bot",
         changelog: nix.thunk(() => nix.str`https://github.com/Ninjabrain1/Ninjabrain-Bot/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

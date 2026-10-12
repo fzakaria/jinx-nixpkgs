@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 14, 5], ["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]], [["pkg", 22, 5], ["data", 23, 5]], [["homepage", 59, 5], ["description", 60, 5], ["longDescription", 61, 5], ["license", 62, 5], ["platforms", 63, 5], ["maintainers", 64, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["mitmCache", 21, 3], ["__darwinAllowLocalNetworking", 26, 3], ["gradleFlags", 28, 3], ["gradleBuildTask", 30, 3], ["doCheck", 32, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 39, 3], ["installPhase", 43, 3], ["meta", 58, 3]]]);
 const formals$1 = { args: { lib: false, jdk: false, stdenv: false, gradle: false, makeWrapper: false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 14, 5], ["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pkg", 22, 5], ["data", 23, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 59, 5], ["description", 60, 5], ["longDescription", 61, 5], ["license", 62, 5], ["platforms", 63, 5], ["maintainers", 64, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["mitmCache", 21, 3], ["__darwinAllowLocalNetworking", 26, 3], ["gradleFlags", 28, 3], ["gradleBuildTask", 30, 3], ["doCheck", 32, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 39, 3], ["installPhase", 43, 3], ["meta", 58, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname = "groovy-language-server";
       const version = "0-unstable-2025-12-03";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           name: nix.thunk(() => nix.str`${pname}-${version}`),
           owner: "GroovyLanguageServer",
           repo: "groovy-language-server",
@@ -28,7 +25,7 @@ export default nix.lambda((args) => (() => {
           hash: "sha256-rLi6xvGFVRvAVmP59Te1MxKA6HzQ+qPtEC5lMws5tFQ=",
         }))));
       const mitmCache = nix.thunk(() => nix.app(nix.sel(gradle, "fetchDeps"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pkg: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
           data: nix.path(here, "./deps.json"),
         }))));
@@ -54,7 +51,7 @@ runHook postInstall
       const meta = nix.thunk(() => (() => {
         const w = nix.withScope(lib, null);
         return {
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           homepage: "https://github.com/GroovyLanguageServer/groovy-language-server",
           description: "Groovy Language Server",
           longDescription: "Groovy Language Server",
@@ -64,7 +61,7 @@ runHook postInstall
         };
       })());
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

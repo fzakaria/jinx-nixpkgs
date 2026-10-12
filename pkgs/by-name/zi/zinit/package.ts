@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]], [["updateScript", 81, 5]], [["homepage", 85, 5], ["description", 86, 5], ["changelog", 87, 5], ["license", 88, 5], ["platforms", 89, 5], ["maintainers", 90, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["outputs", 21, 3], ["strictDeps", 27, 3], ["nativeBuildInputs", 29, 3], ["dontBuild", 31, 3], ["installPhase", 33, 3], ["postFixup", 58, 3], ["doInstallCheck", 65, 3], ["nativeInstallCheckInputs", 66, 3], ["installCheckPhase", 67, 3], ["passthru", 80, 3], ["meta", 84, 3]]]);
 const formals$1 = { args: { stdenvNoCC: false, lib: false, fetchFromGitHub: false, installShellFiles: false, "nix-update-script": false, zsh: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 81, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 85, 5], ["description", 86, 5], ["changelog", 87, 5], ["license", 88, 5], ["platforms", 89, 5], ["maintainers", 90, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["outputs", 21, 3], ["strictDeps", 27, 3], ["nativeBuildInputs", 29, 3], ["dontBuild", 31, 3], ["installPhase", 33, 3], ["postFixup", 58, 3], ["doInstallCheck", 65, 3], ["nativeInstallCheckInputs", 66, 3], ["installCheckPhase", 67, 3], ["passthru", 80, 3], ["meta", 84, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const zsh = nix.arg($, "zsh");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "zinit",
       version: "3.17.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "zdharma-continuum",
           repo: "zinit",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -37,11 +34,11 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [zsh]),
       installCheckPhase: "runHook preInstallCheck\n\nHOME=\"$TMPDIR\" \\\n  ZINIT_DIR=\"$out/share/zinit\" \\\n  zsh -dfc '\n    source \"$ZINIT_DIR/zinit.zsh\"\n    (( $+functions[zinit] ))\n  '\n\nrunHook postInstallCheck\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/zdharma-continuum/zinit",
         description: "Flexible zsh plugin manager",
         changelog: nix.thunk(() => nix.str`https://github.com/zdharma-continuum/zinit/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG.md`),

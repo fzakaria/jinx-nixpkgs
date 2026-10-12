@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 29, 5], ["repo", 30, 5], ["rev", 31, 5], ["hash", 32, 5]], [["NVCCFLAGS", 67, 7]], [["extraArgs", 78, 5]], [["updateScript", 77, 12]], [["badPlatforms", 85, 5], ["broken", 86, 5], ["description", 87, 5], ["homepage", 88, 5], ["license", 89, 5], ["mainProgram", 90, 5], ["maintainers", 91, 5], ["platforms", 95, 5]], [["pname", 23, 3], ["version", 24, 3], ["strictDeps", 26, 3], ["src", 28, 3], ["postPatch", 35, 3], ["nativeBuildInputs", 46, 3], ["buildInputs", 51, 3], ["makeFlags", 58, 3], ["env", 67, 3], ["installPhase", 69, 3], ["passthru", 77, 3], ["meta", 84, 3]]]);
 const formals$1 = { args: { lib: false, autoAddDriverRunpath: false, config: false, cudaPackages: false, fetchFromGitHub: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 29, 5], ["repo", 30, 5], ["rev", 31, 5], ["hash", 32, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NVCCFLAGS", 67, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["extraArgs", 78, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 77, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["badPlatforms", 85, 5], ["broken", 86, 5], ["description", 87, 5], ["homepage", 88, 5], ["license", 89, 5], ["mainProgram", 90, 5], ["maintainers", 91, 5], ["platforms", 95, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 23, 3], ["version", 24, 3], ["strictDeps", 26, 3], ["src", 28, 3], ["postPatch", 35, 3], ["nativeBuildInputs", 46, 3], ["buildInputs", 51, 3], ["makeFlags", 58, 3], ["env", 67, 3], ["installPhase", 69, 3], ["passthru", 77, 3], ["meta", 84, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,12 +27,12 @@ export default nix.lambda((args) => (() => {
   const gencodeString = nix.thunk(() => nix.attr(from_2, "gencodeString"));
   const isJetsonBuild = nix.thunk(() => nix.attr(from_2, "isJetsonBuild"));
   return nix.app(nix.sel(backendStdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "gpu-burn",
       version: "0-unstable-2026-05-27",
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "wilicc",
           repo: "gpu-burn",
           rev: "dfc30426a45613a36b5da53ef901a1e29d3db374",
@@ -59,14 +54,14 @@ substituteInPlace Makefile \\
         nix.thunk(() => nix.str`IS_JETSON=${nix.app(boolToString, isJetsonBuild)}`),
         "COMPUTE=",
       ]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, NVCCFLAGS: gencodeString })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], NVCCFLAGS: gencodeString })),
       installPhase: "runHook preInstall\nmkdir -p $out/{bin,share}\ninstall -Dm755 gpu_burn $out/bin/\ninstall -Dm644 compare.fatbin $out/share/\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$3, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
+        [nix.POS]: $pos[3],
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: $pos[2], extraArgs: nix.thunk(() => ["--version=branch"]) })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         badPlatforms: nix.thunk(() => nix.app(optionals, nix.thunk(() => !nix.asBool(cudaSupport)), nix.thunk(() => nix.sel(lib, "platforms", "all")))),
         broken: nix.thunk(() => !nix.asBool(cudaSupport)),
         description: "Multi-GPU CUDA stress test",

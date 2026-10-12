@@ -2,12 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 39, 5], ["hash", 40, 5]], [["arch", 97, 7], ["os", 101, 7]], [["description", 93, 5], ["homepage", 94, 5], ["license", 95, 5], ["platforms", 96, 5]], [["pname", 29, 3], ["version", 30, 11], ["nativeBuildInputs", 32, 3], ["buildInputs", 36, 3], ["src", 38, 3], ["configurePhase", 43, 3], ["enableParallelBuilding", 49, 3], ["separateDebugInfo", 51, 3], ["installPhase", 54, 3], ["doCheck", 78, 3], ["nativeCheckInputs", 79, 3], ["checkPhase", 83, 3], ["meta", 92, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, dosfstools: false, libseccomp: false, makeWrapper: false, mtools: false, parted: false, "pkg-config": false, qemu_test: false, syslinux: false, "util-linux": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 39, 5], ["hash", 40, 5]]);
 const formals$2 = { args: { arch: false, os: false }, ellipsis: false };
-const pos$2 = nix.positions(here + "/package.nix", [["arch", 97, 7], ["os", 101, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 93, 5], ["homepage", 94, 5], ["license", 95, 5], ["platforms", 96, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 29, 3], ["version", 30, 11], ["nativeBuildInputs", 32, 3], ["buildInputs", 36, 3], ["src", 38, 3], ["configurePhase", 43, 3], ["enableParallelBuilding", 49, 3], ["separateDebugInfo", 51, 3], ["installPhase", 54, 3], ["doCheck", 78, 3], ["nativeCheckInputs", 79, 3], ["checkPhase", 83, 3], ["meta", 92, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,13 +23,13 @@ export default nix.lambda((args) => (() => {
   const version = "0.10.1";
   const targets = nix.thunk(() => ["genode", "hvt", "muen", "spt", "virtio", "xen"]);
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "solo5",
       version: version,
       nativeBuildInputs: nix.thunk(() => [makeWrapper, pkg_config]),
       buildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), libseccomp)),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/Solo5/solo5/releases/download/v${version}/solo5-v${version}.tar.gz`),
           hash: "sha256-UfYkyE1k5S57kRLaYk7hRE4lOCuzjzcTv4SNtlqk9DU=",
         })))),
@@ -58,7 +55,7 @@ runHook postInstall
       nativeCheckInputs: nix.thunk(() => [util_linux, qemu_test]),
       checkPhase: "runHook preCheck\npatchShebangs tests\nsubstituteInPlace scripts/virtio-run/solo5-virtio-run.sh \\\n  --replace \" -no-acpi\" \"\"\n./tests/bats-core/bats ./tests/tests.bats\nrunHook postCheck\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Sandboxed execution environment",
         homepage: "https://github.com/solo5/solo5",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),
@@ -68,7 +65,7 @@ runHook postInstall
             const os = nix.arg($_1, "os");
             return nix.str`${arch}-${os}`;
           })(), formals$2), nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             arch: nix.thunk(() => ["aarch64", "x86_64"]),
             os: nix.thunk(() => ["freebsd", "genode", "linux", "openbsd"]),
           })))),

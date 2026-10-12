@@ -2,22 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 92, 5], ["hash", 93, 5]], [["nixLibSoup3Path", 99, 7]], [["orc", 224, 7], ["orc-compiler", 225, 7], ["nls", 226, 7], ["tests", 228, 7], ["examples", 230, 7], ["glib_debug", 231, 7], ["doc", 232, 7], ["asm", 233, 7], ["qt5", 234, 7], ["qt6", 235, 7], ["gtk3", 236, 7], ["ximagesrc", 237, 7], ["jack", 238, 7], ["dv1394", 241, 7], ["oss", 242, 7], ["oss4", 243, 7], ["pulse", 244, 7], ["v4l2", 245, 7], ["v4l2-gudev", 246, 7], ["rpicamsrc", 248, 7]], [["NIX_LDFLAGS", 262, 5]], [["gtkSupport", 282, 9]], [["qt5Support", 285, 9]], [["qt6Support", 288, 9]], [["gtk", 281, 7], ["qt5", 284, 7], ["qt6", 287, 7]], [["raspiCameraSupport", 293, 9]], [["raspiCamera", 292, 7]], [["odd-unstable", 297, 46]], [["tests", 280, 5], ["updateScript", 297, 5]], [["cpeParts", 311, 17]], [["description", 301, 5], ["homepage", 302, 5], ["longDescription", 303, 5], ["license", 308, 5], ["platforms", 309, 5], ["maintainers", 310, 5], ["identifiers", 311, 5]], [["pname", 83, 3], ["version", 84, 3], ["outputs", 86, 3], ["src", 91, 3], ["patches", 96, 3], ["separateDebugInfo", 103, 3], ["__structuredAttrs", 105, 3], ["strictDeps", 106, 3], ["depsBuildBuild", 108, 3], ["nativeBuildInputs", 110, 3], ["buildInputs", 145, 3], ["mesonFlags", 222, 3], ["postPatch", 255, 3], ["env", 261, 3], ["doCheck", 269, 3], ["dontWrapQtApps", 272, 3], ["preFixup", 275, 3], ["passthru", 279, 3], ["meta", 300, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, replaceVars: false, meson: false, nasm: false, ninja: false, "pkg-config": false, python3: false, "gst-plugins-base": false, orc: false, bzip2: false, gettext: false, libGL: false, libv4l: false, libdv: false, libvpx: false, libdrm: false, speex: false, "opencore-amr": false, flac: false, taglib: false, libshout: false, cairo: false, "gdk-pixbuf": false, aalib: false, libcaca: false, libsoup_3: false, libpulseaudio: false, libintl: false, libxml2: false, lame: false, mpg123: false, twolame: false, gtkSupport: true, gtk3: false, qt5Support: true, qt5: false, qt6Support: true, qt6: false, raspiCameraSupport: true, libraspberrypi: false, enableJack: true, libjack2: false, enableX11: true, libxtst: false, libxi: false, libxfixes: false, libxext: false, libxdamage: false, ncurses: false, enableFireWire: true, libavc1394: false, libiec61883: false, enableOSS: true, enableWayland: true, wayland: false, "wayland-protocols": false, libgudev: false, wavpack: false, glib: false, openssl: false, gstreamer: false, enableDocumentation: true, hotdoc: false, "gst-plugins-good": false, directoryListingUpdater: false, "apple-sdk_gstreamer": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 92, 5], ["hash", 93, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["nixLibSoup3Path", 99, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["orc", 224, 7], ["orc-compiler", 225, 7], ["nls", 226, 7], ["tests", 228, 7], ["examples", 230, 7], ["glib_debug", 231, 7], ["doc", 232, 7], ["asm", 233, 7], ["qt5", 234, 7], ["qt6", 235, 7], ["gtk3", 236, 7], ["ximagesrc", 237, 7], ["jack", 238, 7], ["dv1394", 241, 7], ["oss", 242, 7], ["oss4", 243, 7], ["pulse", 244, 7], ["v4l2", 245, 7], ["v4l2-gudev", 246, 7], ["rpicamsrc", 248, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["NIX_LDFLAGS", 262, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["gtkSupport", 282, 9]]);
-const pos$6 = nix.positions(here + "/default.nix", [["qt5Support", 285, 9]]);
-const pos$7 = nix.positions(here + "/default.nix", [["qt6Support", 288, 9]]);
-const pos$8 = nix.positions(here + "/default.nix", [["gtk", 281, 7], ["qt5", 284, 7], ["qt6", 287, 7]]);
-const pos$9 = nix.positions(here + "/default.nix", [["raspiCameraSupport", 293, 9]]);
-const pos$10 = nix.positions(here + "/default.nix", [["raspiCamera", 292, 7]]);
-const pos$11 = nix.positions(here + "/default.nix", [["odd-unstable", 297, 46]]);
-const pos$12 = nix.positions(here + "/default.nix", [["tests", 280, 5], ["updateScript", 297, 5]]);
-const pos$13 = nix.positions(here + "/default.nix", [["cpeParts", 311, 17]]);
-const pos$14 = nix.positions(here + "/default.nix", [["description", 301, 5], ["homepage", 302, 5], ["longDescription", 303, 5], ["license", 308, 5], ["platforms", 309, 5], ["maintainers", 310, 5], ["identifiers", 311, 5]]);
-const pos$15 = nix.positions(here + "/default.nix", [["pname", 83, 3], ["version", 84, 3], ["outputs", 86, 3], ["src", 91, 3], ["patches", 96, 3], ["separateDebugInfo", 103, 3], ["__structuredAttrs", 105, 3], ["strictDeps", 106, 3], ["depsBuildBuild", 108, 3], ["nativeBuildInputs", 110, 3], ["buildInputs", 145, 3], ["mesonFlags", 222, 3], ["postPatch", 255, 3], ["env", 261, 3], ["doCheck", 269, 3], ["dontWrapQtApps", 272, 3], ["preFixup", 275, 3], ["passthru", 279, 3], ["meta", 300, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -92,18 +78,18 @@ export default nix.lambda((args) => (() => {
   const hostSupportsRaspiCamera = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch32"))));
   nix.assert_((!nix.asBool(raspiCameraSupport) || nix.asBool(hostSupportsRaspiCamera)), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/development/libraries/gstreamer/good/default.nix:80:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$15,
+      [nix.POS]: $pos[14],
       pname: "gst-plugins-good",
       version: "1.28.7",
       outputs: nix.thunk(() => ["out", "dev"]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://gstreamer.freedesktop.org/src/gst-plugins-good/gst-plugins-good-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-hyVpacgs87yFdDAfPnBEqQ3grFAKWifYujjE3eiU3Ys=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./souploader.diff"), nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             nixLibSoup3Path: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getLib"), libsoup_3)}/lib`),
           })))),
       ]),
@@ -165,7 +151,7 @@ export default nix.lambda((args) => (() => {
           ];
         })())), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [libdrm, libGL, libv4l, libpulseaudio, libgudev])), nix.concat(nix.app(nix.sel(lib, "optionals"), enableFireWire, nix.thunk(() => [libavc1394, libiec61883])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [apple_sdk_gstreamer])), nix.concat(nix.app(nix.sel(lib, "optionals"), enableWayland, nix.thunk(() => [wayland])), nix.app(nix.sel(lib, "optionals"), enableJack, nix.thunk(() => [libjack2]))))))))))))),
       mesonFlags: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "mapAttrsToList"), nix.thunk(() => nix.sel(lib, "mesonEnable")), nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           orc: true,
           "orc-compiler": true,
           nls: true,
@@ -192,27 +178,27 @@ export default nix.lambda((args) => (() => {
         ])))),
       postPatch: "patchShebangs \\\n  scripts/extract-release-date-from-doap-file.py \\\n  ext/qt6/qsb-wrapper.py\n",
       env: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         NIX_LDFLAGS: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) || nix.asBool(nix.sel(stdenv, "hostPlatform", "isMusl")))), "-lncurses")),
       })),
       doCheck: false,
       dontWrapQtApps: true,
       preFixup: "moveToOutput \"lib/gstreamer-1.0/pkgconfig\" \"$dev\"\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$12,
+        [nix.POS]: $pos[11],
         tests: nix.thunk(() => nix.update({
-          [nix.POS]: pos$8,
-          gtk: nix.thunk(() => nix.app(nix.sel(gst_plugins_good, "override"), nix.thunk(() => ({ [nix.POS]: pos$5, gtkSupport: true })))),
-          qt5: nix.thunk(() => nix.app(nix.sel(gst_plugins_good, "override"), nix.thunk(() => ({ [nix.POS]: pos$6, qt5Support: true })))),
-          qt6: nix.thunk(() => nix.app(nix.sel(gst_plugins_good, "override"), nix.thunk(() => ({ [nix.POS]: pos$7, qt6Support: true })))),
+          [nix.POS]: $pos[7],
+          gtk: nix.thunk(() => nix.app(nix.sel(gst_plugins_good, "override"), nix.thunk(() => ({ [nix.POS]: $pos[4], gtkSupport: true })))),
+          qt5: nix.thunk(() => nix.app(nix.sel(gst_plugins_good, "override"), nix.thunk(() => ({ [nix.POS]: $pos[5], qt5Support: true })))),
+          qt6: nix.thunk(() => nix.app(nix.sel(gst_plugins_good, "override"), nix.thunk(() => ({ [nix.POS]: $pos[6], qt6Support: true })))),
         }, nix.app(nix.sel(lib, "optionalAttrs"), hostSupportsRaspiCamera, nix.thunk(() => ({
-            [nix.POS]: pos$10,
-            raspiCamera: nix.thunk(() => nix.app(nix.sel(gst_plugins_good, "override"), nix.thunk(() => ({ [nix.POS]: pos$9, raspiCameraSupport: true })))),
+            [nix.POS]: $pos[9],
+            raspiCamera: nix.thunk(() => nix.app(nix.sel(gst_plugins_good, "override"), nix.thunk(() => ({ [nix.POS]: $pos[8], raspiCameraSupport: true })))),
           }))))),
-        updateScript: nix.thunk(() => nix.app(directoryListingUpdater, nix.thunk(() => ({ [nix.POS]: pos$11, "odd-unstable": true })))),
+        updateScript: nix.thunk(() => nix.app(directoryListingUpdater, nix.thunk(() => ({ [nix.POS]: $pos[10], "odd-unstable": true })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$14,
+        [nix.POS]: $pos[13],
         description: "GStreamer Good Plugins",
         homepage: "https://gstreamer.freedesktop.org",
         longDescription: "a set of plug-ins that we consider to have good quality code,\ncorrect functionality, our preferred license (LGPL for the plug-in\ncode, LGPL or LGPL-compatible for the supporting library).\n",
@@ -223,7 +209,7 @@ export default nix.lambda((args) => (() => {
           return [nix.thunk(() => nix.lookup(w_4, "tmarkus"))];
         })()),
         identifiers: nix.thunk(() => ({
-          [nix.POS]: pos$13,
+          [nix.POS]: $pos[12],
           cpeParts: nix.thunk(() => nix.app(nix.sel(gstreamer, "passthru", "gstreamerCpeParts"), nix.thunk(() => nix.sel(finalAttrs, "version")))),
         })),
       })),

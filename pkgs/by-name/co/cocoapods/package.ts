@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["updateScript", 17, 12]], [["description", 20, 5], ["homepage", 21, 5], ["license", 22, 5], ["platforms", 23, 5], ["mainProgram", 24, 5]], [["ruby", 9, 11], ["pname", 10, 3], ["gemfile", 11, 3], ["lockfile", 12, 3], ["gemset", 13, 3], ["exes", 14, 3], ["passthru", 17, 3], ["meta", 19, 3]]]);
 const formals$1 = { args: { lib: false, bundlerApp: false, ruby: false, beta: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["updateScript", 17, 12]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 20, 5], ["homepage", 21, 5], ["license", 22, 5], ["platforms", 23, 5], ["mainProgram", 24, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["ruby", 9, 11], ["pname", 10, 3], ["gemfile", 11, 3], ["lockfile", 12, 3], ["gemset", 13, 3], ["exes", 14, 3], ["passthru", 17, 3], ["meta", 19, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const ruby = nix.arg($, "ruby");
   const beta = nix.argOr($, "beta", () => false);
   return nix.app(bundlerApp, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       ruby: ruby,
       pname: "cocoapods",
       gemfile: nix.thunk(() => (nix.asBool(beta) ? nix.path(here, "./Gemfile-beta") : nix.path(here, "./Gemfile"))),
@@ -22,11 +20,11 @@ export default nix.lambda((args) => (() => {
       gemset: nix.thunk(() => (nix.asBool(beta) ? nix.path(here, "./gemset-beta.nix") : nix.path(here, "./gemset.nix"))),
       exes: nix.thunk(() => ["pod"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         updateScript: nix.thunk(() => nix.builtins.toString(nix.path(here, "./update"))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Manages dependencies for your Xcode projects",
         homepage: "https://github.com/CocoaPods/CocoaPods",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

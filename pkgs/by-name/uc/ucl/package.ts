@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 12, 5], ["sha256", 13, 5]], [["CFLAGS", 18, 7]], [["homepage", 21, 5], ["description", 22, 5], ["license", 23, 5], ["platforms", 24, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["env", 18, 3], ["meta", 20, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 12, 5], ["sha256", 13, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["CFLAGS", 18, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 21, 5], ["description", 22, 5], ["license", 23, 5], ["platforms", 24, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["env", 18, 3], ["meta", 20, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,17 +11,17 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "ucl",
       version: "1.03",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://www.oberhumer.com/opensource/ucl/download/ucl-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "b865299ffd45d73412293369c9754b07637680e5c826915f097577cd27350348",
         })))),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, CFLAGS: "-std=c89" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], CFLAGS: "-std=c89" })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "http://www.oberhumer.com/opensource/ucl/",
         description: "Portable lossless data compression library",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),

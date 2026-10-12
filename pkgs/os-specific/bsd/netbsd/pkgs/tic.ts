@@ -2,8 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/tic.nix", [[["path", 16, 3], ["HOSTPROG", 17, 3], ["buildInputs", 18, 3], ["nativeBuildInputs", 19, 3], ["makeFlags", 28, 3], ["extraPaths", 29, 3]]]);
 const formals$1 = { args: { mkDerivation: false, bsdSetupHook: false, netbsdSetupHook: false, makeMinimal: false, install: false, mandoc: false, groff: false, nbperf: false, compatIfNeeded: false, defaultMakeFlags: false, libterminfo: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/tic.nix", [["path", 16, 3], ["HOSTPROG", 17, 3], ["buildInputs", 18, 3], ["nativeBuildInputs", 19, 3], ["makeFlags", 28, 3], ["extraPaths", 29, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
   const defaultMakeFlags = nix.arg($, "defaultMakeFlags");
   const libterminfo = nix.arg($, "libterminfo");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       path: "tools/tic",
       HOSTPROG: "tic",
       buildInputs: compatIfNeeded,

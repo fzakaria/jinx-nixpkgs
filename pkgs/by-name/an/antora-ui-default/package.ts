@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 8, 5], ["repo", 9, 5], ["rev", 10, 5], ["hash", 11, 5]], [["description", 53, 5], ["homepage", 54, 5], ["license", 55, 5], ["longDescription", 57, 5], ["maintainers", 74, 5], ["platforms", 75, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 41, 3], ["buildCommand", 47, 3], ["meta", 52, 3]]]);
 const formals$1 = { args: { fetchFromGitLab: false, lib: false, stdenvNoCC: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 8, 5], ["repo", 9, 5], ["rev", 10, 5], ["hash", 11, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 53, 5], ["homepage", 54, 5], ["license", 55, 5], ["longDescription", 57, 5], ["maintainers", 74, 5], ["platforms", 75, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 41, 3], ["buildCommand", 47, 3], ["meta", 52, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,20 +11,20 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   const srcFetchFromGitLab = nix.thunk(() => ({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     owner: "trueNAHO",
     repo: "antora-ui-default",
     rev: "11f563294248e9b64124b9289d639e349f2e9f5f",
     hash: "sha256-gUQLLjnWZ1OsAe005IOPIfoM0qmjoevcUuGBRD3oHXA=",
   }));
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "antora-ui-default",
       version: "0-unstable-2024-12-26",
       src: nix.thunk(() => nix.app(fetchFromGitLab, srcFetchFromGitLab)),
       buildCommand: "mkdir --parents \"$out\"\ncp \"$src/ui-bundle.zip\" \"$out\"\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Antora default UI bundle",
         homepage: "https://gitlab.com/antora/antora-ui-default",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mpl20")),

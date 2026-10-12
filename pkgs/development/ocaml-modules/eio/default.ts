@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["minimalOCamlVersion", 32, 9], ["hash", 33, 9]], [["minimalOCamlVersion", 36, 9], ["hash", 37, 9]], [["minimalOCamlVersion", 40, 9], ["hash", 41, 9]], [["0.12", 31, 7], ["1.2", 35, 7], ["1.6", 39, 7]], [["url", 52, 5], ["hash", 53, 21]], [["homepage", 83, 5], ["changelog", 84, 5], ["description", 85, 5], ["license", 86, 5], ["maintainers", 87, 5]], [["pname", 47, 3], ["version", 48, 11], ["minimalOCamlVersion", 49, 19], ["src", 51, 3], ["buildInputs", 56, 3], ["propagatedBuildInputs", 58, 3], ["checkInputs", 70, 3], ["nativeCheckInputs", 76, 3], ["doCheck", 80, 3], ["meta", 82, 3]]]);
 const formals$1 = { args: { lib: false, ocaml: false, version: true, buildDunePackage: false, "dune-configurator": false, bigstringaf: false, cstruct: false, "domain-local-await": false, fetchurl: false, fmt: false, hmap: false, "lwt-dllist": false, mtime: false, optint: false, psq: false, alcotest: false, crowbar: false, mdx: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["minimalOCamlVersion", 32, 9], ["hash", 33, 9]]);
-const pos$2 = nix.positions(here + "/default.nix", [["minimalOCamlVersion", 36, 9], ["hash", 37, 9]]);
-const pos$3 = nix.positions(here + "/default.nix", [["minimalOCamlVersion", 40, 9], ["hash", 41, 9]]);
-const pos$4 = nix.positions(here + "/default.nix", [["0.12", 31, 7], ["1.2", 35, 7], ["1.6", 39, 7]]);
-const pos$5 = nix.positions(here + "/default.nix", [["url", 52, 5], ["hash", 53, 21]]);
-const pos$6 = nix.positions(here + "/default.nix", [["homepage", 83, 5], ["changelog", 84, 5], ["description", 85, 5], ["license", 86, 5], ["maintainers", 87, 5]]);
-const pos$7 = nix.positions(here + "/default.nix", [["pname", 47, 3], ["version", 48, 11], ["minimalOCamlVersion", 49, 19], ["src", 51, 3], ["buildInputs", 56, 3], ["propagatedBuildInputs", 58, 3], ["checkInputs", 70, 3], ["nativeCheckInputs", 76, 3], ["doCheck", 80, 3], ["meta", 82, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,30 +26,30 @@ export default nix.lambda((args) => (() => {
   const crowbar = nix.arg($, "crowbar");
   const mdx = nix.arg($, "mdx");
   const param = nix.thunk(() => nix.sel({
-    [nix.POS]: pos$4,
+    [nix.POS]: $pos[3],
     "0.12": nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       minimalOCamlVersion: "5.0",
       hash: "sha256-2EhHzoX/t4ZBSWrSS+PGq1zCxohc7a1q4lfsrFnZJqA=",
     })),
     "1.2": nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       minimalOCamlVersion: "5.1",
       hash: "sha256-N5LpEr2NSUuy449zCBgl5NISsZcM8sHxspZsqp/WvEA=",
     })),
     "1.6": nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       minimalOCamlVersion: "5.2",
       hash: "sha256-wfBJhrQBCUF2SUhj3eHKmykrWf3GeanXAj5VjYD7WxU=",
     })),
   }, nix.key(nix.str`${version}`)));
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "eio",
       version: version,
       minimalOCamlVersion: nix.thunk(() => nix.attr(param, "minimalOCamlVersion")),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           url: nix.thunk(() => nix.str`https://github.com/ocaml-multicore/eio/releases/download/v${version}/eio-${version}.tbz`),
           hash: nix.thunk(() => nix.attr(param, "hash")),
         })))),
@@ -75,7 +69,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [nix.thunk(() => nix.sel(mdx, "bin"))]),
       doCheck: nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(ocaml, "version")), "5.1")),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         homepage: "https://github.com/ocaml-multicore/eio",
         changelog: nix.thunk(() => nix.str`https://github.com/ocaml-multicore/eio/raw/v${version}/CHANGES.md`),
         description: "Effects-Based Parallel IO for OCaml",

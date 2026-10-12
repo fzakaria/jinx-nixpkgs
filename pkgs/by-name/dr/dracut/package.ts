@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 36, 5], ["repo", 37, 5], ["tag", 38, 5], ["hash", 39, 5]], [["name", 45, 7], ["url", 46, 7], ["hash", 47, 7]], [["updateScript", 122, 12]], [["homepage", 125, 5], ["changelog", 126, 5], ["description", 127, 5], ["license", 128, 5], ["maintainers", 129, 5], ["platforms", 130, 5]], [["pname", 32, 3], ["version", 33, 3], ["src", 35, 3], ["patches", 43, 3], ["strictDeps", 51, 3], ["__structuredAttrs", 52, 3], ["buildInputs", 54, 3], ["nativeBuildInputs", 59, 3], ["postPatch", 67, 3], ["postFixup", 77, 3], ["passthru", 122, 3], ["meta", 124, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, fetchpatch2: false, gitUpdater: false, makeBinaryWrapper: false, "pkg-config": false, asciidoctor: false, libxslt: false, docbook_xsl: false, bash: false, kmod: false, binutils: false, bzip2: false, coreutils: false, cpio: false, findutils: false, gnugrep: false, gnused: false, gnutar: false, gzip: false, lz4: false, lzop: false, "squashfs-tools": false, "util-linux": false, xz: false, zstd: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 36, 5], ["repo", 37, 5], ["tag", 38, 5], ["hash", 39, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 45, 7], ["url", 46, 7], ["hash", 47, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 122, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 125, 5], ["changelog", 126, 5], ["description", 127, 5], ["license", 128, 5], ["maintainers", 129, 5], ["platforms", 130, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 32, 3], ["version", 33, 3], ["src", 35, 3], ["patches", 43, 3], ["strictDeps", 51, 3], ["__structuredAttrs", 52, 3], ["buildInputs", 54, 3], ["nativeBuildInputs", 59, 3], ["postPatch", 67, 3], ["postFixup", 77, 3], ["passthru", 122, 3], ["meta", 124, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -39,11 +35,11 @@ export default nix.lambda((args) => (() => {
   const xz = nix.arg($, "xz");
   const zstd = nix.arg($, "zstd");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "dracut",
       version: "112",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "dracut-ng",
           repo: "dracut",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -51,7 +47,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "CVE-2026-15816.patch",
             url: "https://github.com/dracut-ng/dracut/commit/c4d555716d569038ca38365741e94ee07908f261.patch?full_index=1",
             hash: "sha256-UpeoiMyQgvwMNOjX39v0IQSIlwvM+MczyPKPRWmT6vQ=",
@@ -97,11 +93,11 @@ wrapProgram $out/bin/lsinitrd --set PATH ${nix.app(nix.sel(lib, "makeBinPath"), 
         ]))}
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://dracut-ng.github.io/",
         changelog: nix.thunk(() => nix.str`https://github.com/dracut-ng/dracut/blob/${nix.sel(finalAttrs, "src", "tag")}/NEWS.md`),
         description: "Event driven initramfs infrastructure",

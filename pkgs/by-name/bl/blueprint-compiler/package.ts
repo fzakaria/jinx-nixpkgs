@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 22, 5], ["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["hash", 26, 5]], [["package", 76, 9]], [["version", 75, 7], ["standalone", 82, 7]], [["packageName", 87, 7]], [["tests", 74, 5], ["updateScript", 86, 5]], [["description", 94, 5], ["mainProgram", 95, 5], ["homepage", 96, 5], ["license", 97, 5], ["maintainers", 98, 5], ["teams", 102, 5], ["platforms", 103, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["postPatch", 29, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 41, 3], ["propagatedBuildInputs", 50, 3], ["nativeCheckInputs", 55, 3], ["doCheck", 61, 3], ["checkPhase", 63, 3], ["passthru", 73, 3], ["strictDeps", 91, 3], ["meta", 93, 3]]]);
 const formals$1 = { args: { dbus: false, fetchFromGitLab: false, "gobject-introspection": false, lib: false, libadwaita: false, meson: false, ninja: false, python3: false, runCommand: false, stdenv: false, testers: false, wrapGAppsNoGuiHook: false, "xvfb-run": false, gnome: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 22, 5], ["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["package", 76, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 75, 7], ["standalone", 82, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["packageName", 87, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["tests", 74, 5], ["updateScript", 86, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 94, 5], ["mainProgram", 95, 5], ["homepage", 96, 5], ["license", 97, 5], ["maintainers", 98, 5], ["teams", 102, 5], ["platforms", 103, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["postPatch", 29, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 41, 3], ["propagatedBuildInputs", 50, 3], ["nativeCheckInputs", 55, 3], ["doCheck", 61, 3], ["checkPhase", 63, 3], ["passthru", 73, 3], ["strictDeps", 91, 3], ["meta", 93, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const xvfb_run = nix.arg($, "xvfb-run");
   const gnome = nix.arg($, "gnome");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "blueprint-compiler",
       version: "0.20.4",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "gitlab.gnome.org",
           owner: "GNOME",
           repo: "blueprint-compiler",
@@ -60,21 +54,21 @@ xvfb-run dbus-run-session \\
 runHook postCheck
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
           standalone: nix.thunk(() => nix.app(runCommand, "blueprint-compiler-test-standalone", nix.thunk(() => ({})), nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))} --help && touch $out
 `))),
         })),
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$4, packageName: "blueprint-compiler" })))),
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: $pos[3], packageName: "blueprint-compiler" })))),
       })),
       strictDeps: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Markup language for GTK user interface files",
         mainProgram: "blueprint-compiler",
         homepage: "https://gitlab.gnome.org/GNOME/blueprint-compiler",

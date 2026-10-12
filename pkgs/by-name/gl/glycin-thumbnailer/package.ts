@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["enabledLoaders", 70, 9]], [["glycin-loaders", 69, 7]], [["all-loaders", 68, 5], ["thumbnailer", 79, 5]], [["tests", 67, 12]], [["description", 83, 5], ["homepage", 84, 5], ["changelog", 85, 5], ["license", 86, 5], ["maintainers", 92, 5], ["teams", 93, 5], ["platforms", 94, 5], ["mainProgram", 95, 5]], [["pname", 21, 3], ["version", 23, 23], ["src", 23, 31], ["cargoDeps", 23, 35], ["nativeBuildInputs", 25, 3], ["buildInputs", 36, 3], ["mesonFlags", 45, 3], ["strictDeps", 52, 3], ["__structuredAttrs", 53, 3], ["postInstall", 56, 3], ["passthru", 67, 3], ["meta", 82, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, callPackage: false, cargo: false, fontconfig: false, glib: false, "glycin-loaders": false, "glycin-thumbnailer": false, libglycin: false, libseccomp: false, meson: false, ninja: false, "pkg-config": false, rustc: false, rustPlatform: false, wrapGAppsNoGuiHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["enabledLoaders", 70, 9]]);
-const pos$2 = nix.positions(here + "/package.nix", [["glycin-loaders", 69, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["all-loaders", 68, 5], ["thumbnailer", 79, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 67, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 83, 5], ["homepage", 84, 5], ["changelog", 85, 5], ["license", 86, 5], ["maintainers", 92, 5], ["teams", 93, 5], ["platforms", 94, 5], ["mainProgram", 95, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 23, 23], ["src", 23, 31], ["cargoDeps", 23, 35], ["nativeBuildInputs", 25, 3], ["buildInputs", 36, 3], ["mesonFlags", 45, 3], ["strictDeps", 52, 3], ["__structuredAttrs", 53, 3], ["postInstall", 56, 3], ["passthru", 67, 3], ["meta", 82, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,7 +24,7 @@ export default nix.lambda((args) => (() => {
   const rustPlatform = nix.arg($, "rustPlatform");
   const wrapGAppsNoGuiHook = nix.arg($, "wrapGAppsNoGuiHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "glycin-thumbnailer",
       version: nix.thunk(() => nix.attr(libglycin, "version")),
       src: nix.thunk(() => nix.attr(libglycin, "src")),
@@ -70,13 +65,13 @@ for loader in ${nix.app(nix.sel(lib, "concatStringsSep"), " ", nix.thunk(() => n
 done
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           "all-loaders": nix.thunk(() => nix.app(nix.sel(glycin_thumbnailer, "override"), nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               "glycin-loaders": nix.thunk(() => nix.app(nix.sel(glycin_loaders, "override"), nix.thunk(() => ({
-                  [nix.POS]: pos$1,
+                  [nix.POS]: $pos[0],
                   enabledLoaders: nix.thunk(() => ["heif", "image-rs", "jxl", "raw", "svg"]),
                 })))),
             })))),
@@ -84,7 +79,7 @@ done
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Glycin thumbnailers for several formats",
         homepage: "https://gitlab.gnome.org/GNOME/glycin",
         changelog: nix.thunk(() => nix.str`https://gitlab.gnome.org/GNOME/glycin/-/tags/${nix.sel(finalAttrs, "version")}`),

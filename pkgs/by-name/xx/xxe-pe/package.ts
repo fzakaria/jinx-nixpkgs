@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 18, 5], ["exec", 19, 5], ["icon", 20, 5], ["desktopName", 21, 5], ["genericName", 22, 5], ["categories", 23, 5]], [["url", 45, 7], ["sha256", 48, 7]], [["description", 81, 5], ["homepage", 82, 5], ["license", 83, 5], ["maintainers", 84, 5], ["platforms", 85, 5]], [["pname", 32, 3], ["version", 33, 3], ["src", 35, 3], ["nativeBuildInputs", 51, 3], ["dontStrip", 57, 3], ["installPhase", 59, 3], ["postFixup", 74, 3], ["meta", 80, 3]]]);
 const formals$1 = { args: { stdenv: false, fetchurl: false, lib: false, unzip: false, makeWrapper: false, openjdk11: false, makeDesktopItem: false, icoutils: false, config: false, acceptLicense: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 18, 5], ["exec", 19, 5], ["icon", 20, 5], ["desktopName", 21, 5], ["genericName", 22, 5], ["categories", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 45, 7], ["sha256", 48, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 81, 5], ["homepage", 82, 5], ["license", 83, 5], ["maintainers", 84, 5], ["platforms", 85, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 32, 3], ["version", 33, 3], ["src", 35, 3], ["nativeBuildInputs", 51, 3], ["dontStrip", 57, 3], ["installPhase", 59, 3], ["postFixup", 74, 3], ["meta", 80, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,7 +19,7 @@ export default nix.lambda((args) => (() => {
   const acceptLicense = nix.argOr($, "acceptLicense", () => nix.selOr(config, () => false, "xxe-pe", "acceptLicense"));
   const pkg_path = "$out/lib/xxe";
   const desktopItem = nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: "XMLmind XML Editor Personal Edition",
       exec: "xxe",
       icon: "xxe",
@@ -36,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const src = nix.thunk(() => (() => {
         nix.assert_((!nix.asBool(!nix.asBool(acceptLicense)) || nix.asBool(nix.builtins.throw("You must accept the XMLmind XML Editor Personal Edition License at\nhttps://www.xmlmind.com/xmleditor/license_xxe_perso.html\nby setting nixpkgs config option `xxe-pe.acceptLicense = true;`\nor by using `xxe-pe.override { acceptLicense = true; }` package.\n"))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/xx/xxe-pe/package.nix:36:5");
         return nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: nix.thunk(() => nix.str`https://www.xmlmind.com/xmleditor/_download/xxe-perso-${nix.builtins.replaceStrings(nix.thunk(() => ["."]), nix.thunk(() => ["_"]), version)}.zip`),
             sha256: "sha256-JZ9nQwMrQL/1HKGwvXoWlnTx55ZK/UYjMJAddCtm0rw=",
           })));
@@ -61,7 +58,7 @@ makeWrapper "${pkg_path}/bin/xxe" "$out/bin/xxe" \\
   --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [openjdk11]))}
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Strictly validating, near WYSIWYG, XML editor with DocBook support",
         homepage: "https://www.xmlmind.com/xmleditor/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
@@ -69,7 +66,7 @@ makeWrapper "${pkg_path}/bin/xxe" "$out/bin/xxe" \\
         platforms: nix.thunk(() => ["x86_64-linux"]),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

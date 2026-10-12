@@ -2,39 +2,33 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/nitter.nix", [[["maintainers", 16, 8]], [["port", 22, 14]], [["enable", 20, 7], ["server", 22, 7], ["sessionsFile", 24, 15]], [["nitter", 19, 14]], [["services", 19, 5]], [["machine", 18, 9]], [["name", 15, 3], ["meta", 16, 3], ["nodes", 18, 3], ["testScript", 28, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/nitter.nix", [["maintainers", 16, 8]]);
-const pos$2 = nix.positions(here + "/nitter.nix", [["port", 22, 14]]);
-const pos$3 = nix.positions(here + "/nitter.nix", [["enable", 20, 7], ["server", 22, 7], ["sessionsFile", 24, 15]]);
-const pos$4 = nix.positions(here + "/nitter.nix", [["nitter", 19, 14]]);
-const pos$5 = nix.positions(here + "/nitter.nix", [["services", 19, 5]]);
-const pos$6 = nix.positions(here + "/nitter.nix", [["machine", 18, 9]]);
-const pos$7 = nix.positions(here + "/nitter.nix", [["name", 15, 3], ["meta", 16, 3], ["nodes", 18, 3], ["testScript", 28, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   const sessionsFile = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "sessions.jsonl", "{\"oauth_token\":\"1719213587296620928-BsXY2RIJEw7fjxoNwbBemgjJhueK0m\",\"oauth_token_secret\":\"N0WB0xhL4ng6WTN44aZO82SUJjz7ssI3hHez2CUhTiYqy\"}\n"));
   return {
-    [nix.POS]: pos$7,
+    [nix.POS]: $pos[6],
     name: "nitter",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "erdnaxe"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       machine: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         services: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           nitter: nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             enable: true,
-            server: nix.thunk(() => ({ [nix.POS]: pos$2, port: 80n })),
+            server: nix.thunk(() => ({ [nix.POS]: $pos[1], port: 80n })),
             sessionsFile: sessionsFile,
           })),
         })),

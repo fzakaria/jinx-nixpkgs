@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 12, 5], ["hash", 13, 5]], [["pname", 16, 54], ["version", 16, 60], ["src", 16, 68]], [["description", 29, 5], ["homepage", 30, 5], ["license", 31, 5], ["platforms", 32, 5], ["maintainers", 33, 5], ["mainProgram", 36, 5]], [["pname", 20, 11], ["version", 20, 17], ["src", 20, 25], ["extraInstallCommands", 22, 3], ["meta", 28, 3]]]);
 const formals$1 = { args: { lib: false, appimageTools: false, fetchurl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 12, 5], ["hash", 13, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 16, 54], ["version", 16, 60], ["src", 16, 68]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 29, 5], ["homepage", 30, 5], ["license", 31, 5], ["platforms", 32, 5], ["maintainers", 33, 5], ["mainProgram", 36, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 20, 11], ["version", 20, 17], ["src", 20, 25], ["extraInstallCommands", 22, 3], ["meta", 28, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,13 +13,13 @@ export default nix.lambda((args) => (() => {
   const pname = "codux";
   const version = "15.42.0";
   const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: nix.thunk(() => nix.str`https://github.com/wixplosives/codux-versions/releases/download/${version}/Codux-${version}.x86_64.AppImage`),
       hash: "sha256-rD0yXZAEUcPtxWlWuZD77gjw6JlcUvBsaDYGj+NgLss=",
     }))));
-  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: pos$2, pname: pname, version: version, src: src }))));
+  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: $pos[1], pname: pname, version: version, src: src }))));
   return nix.app(nix.sel(appimageTools, "wrapType2"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: pname,
       version: version,
       src: src,
@@ -31,7 +28,7 @@ cp -r ${appimageContents}/usr/share/icons $out/share
 substituteInPlace $out/share/applications/codux.desktop  --replace 'Exec=AppRun' 'Exec=codux'
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Visual IDE for React",
         homepage: "https://www.codux.com",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 18, 9], ["hash", 19, 9], ["stripRoot", 20, 9]], [["url", 23, 9], ["hash", 24, 9]], [["aarch64-darwin", 17, 7], ["x86_64-linux", 22, 7]], [["description", 30, 5], ["homepage", 31, 5], ["changelog", 32, 5], ["license", 33, 5], ["sourceProvenance", 38, 5], ["maintainers", 39, 5], ["mainProgram", 44, 5], ["platforms", 45, 5]], [["updateScript", 51, 12]], [["pname", 56, 7], ["version", 57, 7], ["src", 58, 7], ["meta", 59, 7], ["passthru", 60, 7], ["nativeBuildInputs", 63, 5], ["installPhase", 65, 5]], [["pname", 79, 7], ["version", 80, 7], ["src", 81, 7], ["meta", 82, 7], ["passthru", 83, 7], ["extraPkgs", 86, 5], ["extraBwrapArgs", 89, 5], ["extraInstallCommands", 93, 5]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchurl: false, fetchzip: false, appimageTools: false, makeWrapper: false, nativeWayland: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 18, 9], ["hash", 19, 9], ["stripRoot", 20, 9]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 23, 9], ["hash", 24, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["aarch64-darwin", 17, 7], ["x86_64-linux", 22, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 30, 5], ["homepage", 31, 5], ["changelog", 32, 5], ["license", 33, 5], ["sourceProvenance", 38, 5], ["maintainers", 39, 5], ["mainProgram", 44, 5], ["platforms", 45, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["updateScript", 51, 12]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 56, 7], ["version", 57, 7], ["src", 58, 7], ["meta", 59, 7], ["passthru", 60, 7], ["nativeBuildInputs", 63, 5], ["installPhase", 65, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 79, 7], ["version", 80, 7], ["src", 81, 7], ["meta", 82, 7], ["passthru", 83, 7], ["extraPkgs", 86, 5], ["extraBwrapArgs", 89, 5], ["extraInstallCommands", 93, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,21 +17,21 @@ export default nix.lambda((args) => (() => {
   const pname = "osu-lazer-bin";
   const version = "2026.1005.0";
   const src = nix.thunk(() => nix.selOr({
-    [nix.POS]: pos$3,
+    [nix.POS]: $pos[2],
     "aarch64-darwin": nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         url: nix.thunk(() => nix.str`https://github.com/ppy/osu/releases/download/${version}-lazer/osu.app.Apple.Silicon.zip`),
         hash: "sha256-ZxiW0ghB1ayNjRo9FqAfeBjT5dMM+j74TGDkWHCcdk8=",
         stripRoot: false,
       })))),
     "x86_64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         url: nix.thunk(() => nix.str`https://github.com/ppy/osu/releases/download/${version}-lazer/osu.AppImage`),
         hash: "sha256-KEEI5lNzqDOb7spA4sFLFSjBd71s4eshQHY5+OUI2i4=",
       })))),
   }, () => nix.builtins.throw(nix.thunk(() => nix.str`osu-lazer-bin: ${nix.sel(stdenvNoCC, "system")} is unsupported.`)), nix.key(nix.sel(stdenvNoCC, "system"))));
   const meta = nix.thunk(() => ({
-    [nix.POS]: pos$4,
+    [nix.POS]: $pos[3],
     description: "Rhythm is just a *click* away (AppImage version for score submission and multiplayer, and binary distribution for Darwin systems)",
     homepage: "https://osu.ppy.sh",
     changelog: nix.thunk(() => nix.str`https://osu.ppy.sh/home/changelog/lazer/${version}`),
@@ -64,9 +58,9 @@ export default nix.lambda((args) => (() => {
     mainProgram: "osu!",
     platforms: nix.thunk(() => ["aarch64-darwin", "x86_64-linux"]),
   }));
-  const passthru = nix.thunk(() => ({ [nix.POS]: pos$5, updateScript: nix.path(here, "./update.sh") }));
+  const passthru = nix.thunk(() => ({ [nix.POS]: $pos[4], updateScript: nix.path(here, "./update.sh") }));
   return (nix.asBool(nix.sel(stdenvNoCC, "hostPlatform", "isDarwin")) ? nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: pname,
       version: version,
       src: src,
@@ -75,7 +69,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [makeWrapper]),
       installPhase: "runHook preInstall\nOSU_WRAPPER=\"$out/Applications/osu!.app/Contents\"\nOSU_CONTENTS=\"osu!.app/Contents\"\nmkdir -p \"$OSU_WRAPPER/MacOS\"\ncp -r \"$OSU_CONTENTS/Info.plist\" \"$OSU_CONTENTS/Resources\" \"$OSU_WRAPPER\"\ncp -r \"osu!.app\" \"$OSU_WRAPPER/Resources/osu-wrapped.app\"\nmakeWrapper \"$OSU_WRAPPER/Resources/osu-wrapped.app/Contents/MacOS/osu!\" \"$OSU_WRAPPER/MacOS/osu!\" --set OSU_EXTERNAL_UPDATE_PROVIDER 1\nrunHook postInstall\n",
     }))) : nix.app(nix.sel(appimageTools, "wrapType2"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: pname,
       version: version,
       src: src,

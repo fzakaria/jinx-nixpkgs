@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["description", 26, 5]], [["pname", 9, 3], ["version", 10, 30], ["src", 10, 38], ["nativeBuildInputs", 11, 3], ["buildInputs", 15, 3], ["doCheck", 19, 3], ["preCheck", 22, 3], ["meta", 25, 3]]]);
 const formals$1 = { args: { buildDunePackage: false, melange: false, reason: false, "reason-react-ppx": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["description", 26, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 9, 3], ["version", 10, 30], ["src", 10, 38], ["nativeBuildInputs", 11, 3], ["buildInputs", 15, 3], ["doCheck", 19, 3], ["preCheck", 22, 3], ["meta", 25, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const reason = nix.arg($, "reason");
   const reason_react_ppx = nix.arg($, "reason-react-ppx");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "reason-react",
       version: nix.thunk(() => nix.attr(reason_react_ppx, "version")),
       src: nix.thunk(() => nix.attr(reason_react_ppx, "src")),
@@ -21,7 +20,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [reason_react_ppx, melange]),
       doCheck: true,
       preCheck: "export DUNE_CACHE=disabled\n",
-      meta: nix.thunk(() => nix.update(nix.sel(reason_react_ppx, "meta"), { [nix.POS]: pos$1, description: "Reason bindings for React.js" })),
+      meta: nix.thunk(() => nix.update(nix.sel(reason_react_ppx, "meta"), { [nix.POS]: $pos[0], description: "Reason bindings for React.js" })),
     }));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

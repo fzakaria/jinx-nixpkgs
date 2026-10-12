@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]], [["dateutil", 32, 5], ["quantities", 33, 5]], [["updateScript", 56, 12]], [["description", 59, 5], ["homepage", 60, 5], ["changelog", 61, 5], ["license", 62, 5], ["maintainers", 63, 5], ["mainProgram", 64, 5]], [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["src", 19, 3], ["build-system", 26, 3], ["optional-dependencies", 31, 3], ["nativeCheckInputs", 39, 3], ["disabledTestPaths", 46, 3], ["disabledTests", 48, 3], ["pythonImportsCheck", 54, 3], ["passthru", 56, 3], ["meta", 58, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, astropy: false, pint: false, "python-dateutil": false, pytestCheckHook: false, versionCheckHook: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["dateutil", 32, 5], ["quantities", 33, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["updateScript", 56, 12]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 59, 5], ["homepage", 60, 5], ["changelog", 61, 5], ["license", 62, 5], ["maintainers", 63, 5], ["mainProgram", 64, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["src", 19, 3], ["build-system", 26, 3], ["optional-dependencies", 31, 3], ["nativeCheckInputs", 39, 3], ["disabledTestPaths", 46, 3], ["disabledTests", 48, 3], ["pythonImportsCheck", 54, 3], ["passthru", 56, 3], ["meta", 58, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "pvl",
       version: "1.3.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "planetarypy",
           repo: "pvl",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,7 +31,7 @@ export default nix.lambda((args) => (() => {
         })))),
       "build-system": nix.thunk(() => [setuptools]),
       "optional-dependencies": nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         dateutil: nix.thunk(() => [python_dateutil]),
         quantities: nix.thunk(() => [astropy, pint]),
       })),
@@ -44,11 +40,11 @@ export default nix.lambda((args) => (() => {
       disabledTests: nix.thunk(() => ["test_loadu", "test_loadu_args"]),
       pythonImportsCheck: nix.thunk(() => ["pvl"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Python implementation of the Parameter Value Language (PVL) used in PDS3 and ISIS labels",
         homepage: "https://github.com/planetarypy/pvl",
         changelog: nix.thunk(() => nix.str`https://github.com/planetarypy/pvl/blob/${nix.sel(finalAttrs, "src", "tag")}/HISTORY.rst`),

@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]], [["NIX_CFLAGS_COMPILE", 108, 5], ["NIX_LDFLAGS", 109, 5]], [["pythonPackage", 121, 7]], [["updateScript", 119, 5], ["tests", 120, 5]], [["description", 126, 5], ["mainProgram", 127, 5], ["license", 128, 5], ["homepage", 129, 5], ["changelog", 130, 5], ["platforms", 131, 5], ["maintainers", 132, 5]], [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["__structuredAttrs", 31, 3], ["strictDeps", 32, 3], ["postPatch", 34, 3], ["dontUseQmakeConfigure", 38, 3], ["dontWrapQtApps", 39, 3], ["nativeBuildInputs", 41, 3], ["buildInputs", 56, 3], ["buildPhase", 69, 3], ["postBuild", 84, 3], ["preFixup", 96, 3], ["env", 107, 3], ["dontInstall", 113, 3], ["hardeningDisable", 116, 3], ["passthru", 118, 3], ["meta", 125, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, installShellFiles: false, "nix-update-script": false, python3: false, python3Packages: false, ruby: false, which: false, perl: false, libgit2: false, libpng: false, expat: false, curl: false, zlib: false, qt6: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 108, 5], ["NIX_LDFLAGS", 109, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pythonPackage", 121, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 119, 5], ["tests", 120, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 126, 5], ["mainProgram", 127, 5], ["license", 128, 5], ["homepage", 129, 5], ["changelog", 130, 5], ["platforms", 131, 5], ["maintainers", 132, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["__structuredAttrs", 31, 3], ["strictDeps", 32, 3], ["postPatch", 34, 3], ["dontUseQmakeConfigure", 38, 3], ["dontWrapQtApps", 39, 3], ["nativeBuildInputs", 41, 3], ["buildInputs", 56, 3], ["buildPhase", 69, 3], ["postBuild", 84, 3], ["preFixup", 96, 3], ["env", 107, 3], ["dontInstall", 113, 3], ["hardeningDisable", 116, 3], ["passthru", 118, 3], ["meta", 125, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const zlib = nix.arg($, "zlib");
   const qt6 = nix.arg($, "qt6");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "klayout",
       version: "0.30.12",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "KLayout",
           repo: "klayout",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -74,22 +69,22 @@ export default nix.lambda((args) => (() => {
       postBuild: nix.thunk(() => nix.add(nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), "install -Dm444 etc/klayout.desktop -t $out/share/applications\ninstall -Dm444 etc/logo.png $out/share/icons/hicolor/256x256/apps/klayout.png\n\ninstallBin $out/lib/klayout\n"), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "mkdir -p $out/Applications\nmv $out/lib/klayout.app $out/Applications/\n"))),
       preFixup: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "exec_name=$out/Applications/klayout.app/Contents/MacOS/klayout\n\nfor lib in $out/lib/libklayout_*.0.dylib; do\n  base_name=$(basename $lib)\n  install_name_tool -change \"$base_name\" \"@rpath/$base_name\" \"$exec_name\"\ndone\n\nwrapQtApp \"$out/Applications/klayout.app/Contents/MacOS/klayout\"\n")),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-Wno-parentheses"]))),
         NIX_LDFLAGS: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "-headerpad_max_install_names")),
       })),
       dontInstall: true,
       hardeningDisable: nix.thunk(() => ["format"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           pythonPackage: nix.thunk(() => nix.sel(python3Packages, "klayout")),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "High performance layout viewer and editor with support for GDS and OASIS",
         mainProgram: "klayout",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

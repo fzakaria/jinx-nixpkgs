@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]], [["compression", 42, 5], ["duckdb", 46, 5], ["elastic", 50, 5], ["geoip", 51, 5], ["avro", 52, 5], ["splunk", 53, 5], ["full", 55, 5]], [["description", 80, 5], ["homepage", 81, 5], ["changelog", 82, 5], ["license", 83, 5], ["maintainers", 84, 5]], [["pname", 23, 3], ["version", 24, 3], ["pyproject", 25, 3], ["src", 27, 3], ["build-system", 34, 3], ["dependencies", 39, 3], ["optional-dependencies", 41, 3], ["nativeCheckInputs", 62, 3], ["pythonImportsCheck", 68, 3], ["disabledTestPaths", 70, 3], ["disabledTests", 77, 3], ["meta", 79, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, duckdb: false, "elastic-transport": false, elasticsearch: false, fastavro: false, fetchFromGitHub: false, httpx: false, lz4: false, maxminddb: false, msgpack: false, pytest7CheckHook: false, pytz: false, "setuptools-scm": false, setuptools: false, structlog: false, tqdm: false, zstandard: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["compression", 42, 5], ["duckdb", 46, 5], ["elastic", 50, 5], ["geoip", 51, 5], ["avro", 52, 5], ["splunk", 53, 5], ["full", 55, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 80, 5], ["homepage", 81, 5], ["changelog", 82, 5], ["license", 83, 5], ["maintainers", 84, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 23, 3], ["version", 24, 3], ["pyproject", 25, 3], ["src", 27, 3], ["build-system", 34, 3], ["dependencies", 39, 3], ["optional-dependencies", 41, 3], ["nativeCheckInputs", 62, 3], ["pythonImportsCheck", 68, 3], ["disabledTestPaths", 70, 3], ["disabledTests", 77, 3], ["meta", 79, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.21";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "fox-it",
           repo: "flow.record",
           tag: version,
@@ -42,7 +39,7 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [setuptools, setuptools_scm]);
       const dependencies = nix.thunk(() => [msgpack]);
       const optional_dependencies = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         compression: nix.thunk(() => [lz4, zstandard]),
         duckdb: nix.thunk(() => [duckdb, pytz]),
         elastic: nix.thunk(() => [elasticsearch]),
@@ -56,7 +53,7 @@ export default nix.lambda((args) => (() => {
       const disabledTestPaths = nix.thunk(() => ["tests/adapter/test_xlsx.py", "tests/tools/test_rdump.py"]);
       const disabledTests = nix.thunk(() => ["test_rdump_fieldtype_path_json"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Library for defining and creating structured data",
         homepage: "https://github.com/fox-it/flow.record",
         changelog: nix.thunk(() => nix.str`https://github.com/fox-it/flow.record/releases/tag/${nix.sel(src, "tag")}`),
@@ -67,7 +64,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/driver.nix", [[["test", 19, 48], ["lib", 19, 53]], [["test", 17, 5], ["stubs", 18, 5], ["should", 19, 5]]]);
 const formals$1 = { args: { writeText: false, lib: false, callPackage: false, testFiles: false, ruby: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/driver.nix", [["test", 19, 48], ["lib", 19, 53]]);
-const pos$2 = nix.positions(here + "/driver.nix", [["test", 17, 5], ["stubs", 18, 5], ["should", 19, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,8 +16,8 @@ export default nix.lambda((args) => (() => {
   const testTools = nix.thunk(() => (() => {
     const test = nix.thunk(() => nix.builtins.import(nix.path(here, "./testing.nix")));
     const stubs = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./stubs.nix")), defs));
-    const should = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./assertions.nix")), nix.thunk(() => ({ [nix.POS]: pos$1, test: test, lib: lib }))));
-    return { [nix.POS]: pos$2, test, stubs, should };
+    const should = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./assertions.nix")), nix.thunk(() => ({ [nix.POS]: $pos[0], test: test, lib: lib }))));
+    return { [nix.POS]: $pos[1], test, stubs, should };
   })());
   const tap = nix.thunk(() => nix.builtins.import(nix.path(here, "./tap-support.nix")));
   const results = nix.thunk(() => nix.builtins.concatLists(nix.thunk(() => nix.builtins.map((file) => nix.app(callPackage, file, testTools), testFiles))));

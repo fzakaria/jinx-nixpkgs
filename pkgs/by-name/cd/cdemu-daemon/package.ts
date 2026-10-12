@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 20, 5], ["hash", 21, 5]], [["updateScript", 46, 5]], [["description", 60, 5], ["longDescription", 61, 5], ["homepage", 72, 5], ["license", 73, 5], ["platforms", 74, 5], ["maintainers", 75, 5], ["mainProgram", 76, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 30, 3], ["postInstall", 36, 3], ["passthru", 45, 3], ["meta", 59, 3]]]);
 const formals$1 = { args: { stdenv: false, cmake: false, "pkg-config": false, glib: false, libao: false, intltool: false, libmirage: false, coreutils: false, fetchurl: false, lib: false, writeScript: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 46, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 60, 5], ["longDescription", 61, 5], ["homepage", 72, 5], ["license", 73, 5], ["platforms", 74, 5], ["maintainers", 75, 5], ["mainProgram", 76, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 30, 3], ["postInstall", 36, 3], ["passthru", 45, 3], ["meta", 59, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const writeScript = nix.arg($, "writeScript");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "cdemu-daemon",
       version: "3.3.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/cdemu/cdemu-daemon-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-rkhxivVGQ2lsCUQEXJupDenj74E3shQXExhTWysf+qo=",
         })))),
@@ -40,11 +37,11 @@ substitute \\
   --replace /bin/true ${coreutils}/bin/true
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(writeScript, "update-cdemu-daemon", "#!/usr/bin/env nix-shell\n#!nix-shell -i bash -p curl pcre2 common-updater-scripts\n\nset -eu -o pipefail\n\n# Fetch the latest version from the SourceForge RSS feed for cdemu-daemon\nnewVersion=\"$(curl -s \"https://sourceforge.net/projects/cdemu/rss?path=/cdemu-daemon\" | pcre2grep -o1 'cdemu-daemon-([0-9.]+)\\.tar\\.xz' | head -n 1)\"\n\nupdate-source-version cdemu-daemon \"$newVersion\"\n")),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Suite of tools for emulating optical drives and discs",
         longDescription: "CDEmu consists of:\n\n- a kernel module implementing a virtual drive-controller\n- libmirage which is a software library for interpreting optical disc images\n- a daemon which emulates the functionality of an optical drive+disc\n- textmode and GTK clients for controlling the emulator\n- an image analyzer to view the structure of image files\n\nOptical media emulated by CDemu can be mounted within Linux. Automounting is also allowed.\n",
         homepage: "https://cdemu.sourceforge.io/about/daemon/",

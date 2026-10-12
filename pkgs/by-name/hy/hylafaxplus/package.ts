@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["config_maxgid", 36, 5], ["ghostscript_version", 37, 5], ["out", 38, 5], ["coreutils", 39, 13], ["ghostscript", 39, 23], ["libtiff", 39, 35]], [["configSite", 43, 13], ["maxuid", 44, 5], ["faxcover_binpath", 45, 5], ["faxsetup_binpath", 49, 5]], [["fakeroot", 60, 13], ["libfaketime", 60, 22]], [["url", 69, 5], ["hash", 70, 5]], [["changelog", 100, 5], ["description", 101, 5], ["downloadPage", 102, 5], ["homepage", 103, 5], ["license", 104, 5], ["maintainers", 105, 5], ["platforms", 106, 5], ["longDescription", 107, 5]], [["pname", 66, 3], ["version", 67, 3], ["src", 68, 3], ["patches", 72, 3], ["buildInputs", 79, 3], ["postPatch", 95, 3], ["dontAddPrefix", 96, 3], ["postInstall", 97, 3], ["postInstallCheck", 98, 3], ["meta", 99, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fakeroot: false, fetchurl: false, libfaketime: false, replaceVars: false, coreutils: false, file: false, findutils: false, gawk: false, ghostscript: false, gnugrep: false, gnused: false, libtiff: false, libxcrypt: false, openssl: false, psmisc: false, sharutils: false, "util-linux": false, zlib: false, jbigkit: true, lcms2: true, openldap: true, pam: true, maxgid: true, maxuid: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["config_maxgid", 36, 5], ["ghostscript_version", 37, 5], ["out", 38, 5], ["coreutils", 39, 13], ["ghostscript", 39, 23], ["libtiff", 39, 35]]);
-const pos$2 = nix.positions(here + "/package.nix", [["configSite", 43, 13], ["maxuid", 44, 5], ["faxcover_binpath", 45, 5], ["faxsetup_binpath", 49, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["fakeroot", 60, 13], ["libfaketime", 60, 22]]);
-const pos$4 = nix.positions(here + "/package.nix", [["url", 69, 5], ["hash", 70, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["changelog", 100, 5], ["description", 101, 5], ["downloadPage", 102, 5], ["homepage", 103, 5], ["license", 104, 5], ["maintainers", 105, 5], ["platforms", 106, 5], ["longDescription", 107, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 66, 3], ["version", 67, 3], ["src", 68, 3], ["patches", 72, 3], ["buildInputs", 79, 3], ["postPatch", 95, 3], ["dontAddPrefix", 96, 3], ["postInstall", 97, 3], ["postInstallCheck", 98, 3], ["meta", 99, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -39,7 +34,7 @@ export default nix.lambda((args) => (() => {
   const maxgid = nix.argOr($, "maxgid", () => 65534n);
   const maxuid = nix.argOr($, "maxuid", () => 65534n);
   const configSite = nix.thunk(() => nix.app(replaceVars, nix.path(here, "./config.site"), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       config_maxgid: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(maxgid, null)), nix.thunk(() => nix.str`CONFIG_MAXGID=${nix.builtins.toString(maxgid)}`))),
       ghostscript_version: nix.thunk(() => nix.sel(ghostscript, "version")),
       out: null,
@@ -48,7 +43,7 @@ export default nix.lambda((args) => (() => {
       libtiff: libtiff,
     }))));
   const postPatch = nix.thunk(() => nix.app(replaceVars, nix.path(here, "./post-patch.sh"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       configSite: configSite,
       maxuid: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(maxuid, null)), nix.thunk(() => nix.builtins.toString(maxuid)))),
       faxcover_binpath: nix.thunk(() => nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [nix.thunk(() => nix.sel(stdenv, "shellPackage")), coreutils]))),
@@ -61,13 +56,13 @@ export default nix.lambda((args) => (() => {
           gawk,
         ]))),
     }))));
-  const postInstall = nix.thunk(() => nix.app(replaceVars, nix.path(here, "./post-install.sh"), nix.thunk(() => ({ [nix.POS]: pos$3, fakeroot: fakeroot, libfaketime: libfaketime }))));
+  const postInstall = nix.thunk(() => nix.app(replaceVars, nix.path(here, "./post-install.sh"), nix.thunk(() => ({ [nix.POS]: $pos[2], fakeroot: fakeroot, libfaketime: libfaketime }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "hylafaxplus",
       version: "7.0.11",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           url: nix.thunk(() => nix.str`mirror://sourceforge/hylafax/hylafax-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha512-JRuJdE17VBrlhVz5GBc2dKBtwzPjljeropcug0bsRvO/8SJvP5PzIP5gbBLpMQKGb77SNp2iNCCOroBOUOn57A==",
         })))),
@@ -92,7 +87,7 @@ export default nix.lambda((args) => (() => {
       postInstall: nix.thunk(() => nix.str`. ${postInstall}`),
       postInstallCheck: nix.thunk(() => nix.str`. ${nix.path(here, "./post-install-check.sh")}`),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         changelog: nix.thunk(() => nix.str`https://hylafax.sourceforge.io/news/${nix.sel(finalAttrs, "version")}.php`),
         description: "Enterprise-class system for sending and receiving facsimiles",
         downloadPage: "https://hylafax.sourceforge.io/download.php",

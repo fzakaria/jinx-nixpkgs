@@ -2,75 +2,51 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/weblate.nix", [[["username", 9, 5], ["password", 10, 5]], [["maintainers", 17, 8]], [["memorySize", 22, 22]], [["enable", 25, 9], ["localDomain", 26, 9], ["djangoSecretKeyFile", 27, 9], ["extraConfig", 28, 9]], [["enableACME", 35, 9], ["sslCertificate", 36, 9], ["sslCertificateKey", 37, 9]], [["virtualHosts", 34, 22]], [["weblate", 24, 16], ["nginx", 34, 16]], [["certificateFiles", 40, 20]], [["pki", 40, 16]], [["::1", 42, 24]], [["allowedTCPPorts", 43, 27]], [["hosts", 42, 18], ["firewall", 43, 18]], [["shell", 48, 27]], [["weblate", 48, 19]], [["users", 48, 13]], [["virtualisation", 22, 7], ["services", 24, 7], ["security", 40, 7], ["networking", 42, 7], ["users", 48, 7]], [["text", 56, 37]], [["xdg/weblate", 56, 23]], [["systemPackages", 54, 19], ["etc", 56, 19]], [["hosts", 63, 18]], [["certificateFiles", 65, 20]], [["pki", 65, 16]], [["environment", 54, 7], ["networking", 63, 7], ["security", 65, 7]], [["server", 19, 9], ["client", 51, 9]], [["name", 16, 3], ["meta", 17, 3], ["nodes", 19, 3], ["testScript", 68, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/weblate.nix", [["username", 9, 5], ["password", 10, 5]]);
-const pos$2 = nix.positions(here + "/weblate.nix", [["maintainers", 17, 8]]);
 const formals$2 = { args: { pkgs: false, lib: false }, ellipsis: true };
-const pos$3 = nix.positions(here + "/weblate.nix", [["memorySize", 22, 22]]);
-const pos$4 = nix.positions(here + "/weblate.nix", [["enable", 25, 9], ["localDomain", 26, 9], ["djangoSecretKeyFile", 27, 9], ["extraConfig", 28, 9]]);
-const pos$5 = nix.positions(here + "/weblate.nix", [["enableACME", 35, 9], ["sslCertificate", 36, 9], ["sslCertificateKey", 37, 9]]);
-const pos$6 = nix.positions(here + "/weblate.nix", [["virtualHosts", 34, 22]]);
-const pos$7 = nix.positions(here + "/weblate.nix", [["weblate", 24, 16], ["nginx", 34, 16]]);
-const pos$8 = nix.positions(here + "/weblate.nix", [["certificateFiles", 40, 20]]);
-const pos$9 = nix.positions(here + "/weblate.nix", [["pki", 40, 16]]);
-const pos$10 = nix.positions(here + "/weblate.nix", [["::1", 42, 24]]);
-const pos$11 = nix.positions(here + "/weblate.nix", [["allowedTCPPorts", 43, 27]]);
-const pos$12 = nix.positions(here + "/weblate.nix", [["hosts", 42, 18], ["firewall", 43, 18]]);
-const pos$13 = nix.positions(here + "/weblate.nix", [["shell", 48, 27]]);
-const pos$14 = nix.positions(here + "/weblate.nix", [["weblate", 48, 19]]);
-const pos$15 = nix.positions(here + "/weblate.nix", [["users", 48, 13]]);
-const pos$16 = nix.positions(here + "/weblate.nix", [["virtualisation", 22, 7], ["services", 24, 7], ["security", 40, 7], ["networking", 42, 7], ["users", 48, 7]]);
 const formals$3 = { args: { pkgs: false, nodes: false }, ellipsis: true };
-const pos$17 = nix.positions(here + "/weblate.nix", [["text", 56, 37]]);
-const pos$18 = nix.positions(here + "/weblate.nix", [["xdg/weblate", 56, 23]]);
-const pos$19 = nix.positions(here + "/weblate.nix", [["systemPackages", 54, 19], ["etc", 56, 19]]);
-const pos$20 = nix.positions(here + "/weblate.nix", [["hosts", 63, 18]]);
-const pos$21 = nix.positions(here + "/weblate.nix", [["certificateFiles", 65, 20]]);
-const pos$22 = nix.positions(here + "/weblate.nix", [["pki", 65, 16]]);
-const pos$23 = nix.positions(here + "/weblate.nix", [["environment", 54, 7], ["networking", 63, 7], ["security", 65, 7]]);
-const pos$24 = nix.positions(here + "/weblate.nix", [["server", 19, 9], ["client", 51, 9]]);
-const pos$25 = nix.positions(here + "/weblate.nix", [["name", 16, 3], ["meta", 17, 3], ["nodes", 19, 3], ["testScript", 68, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   const certs = nix.thunk(() => nix.builtins.import(nix.path(here, "../common/acme/server/snakeoil-certs.nix")));
   const serverDomain = nix.thunk(() => nix.sel(certs, "domain"));
-  const admin = nix.thunk(() => ({ [nix.POS]: pos$1, username: "admin", password: "snakeoilpass" }));
+  const admin = nix.thunk(() => ({ [nix.POS]: $pos[0], username: "admin", password: "snakeoilpass" }));
   const apiToken = "OVJh65sXaAfQMZ4NTcIGbFZIyBZbEZqWTi7azdDf";
   return {
-    [nix.POS]: pos$25,
+    [nix.POS]: $pos[24],
     name: "weblate",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "erictapen"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$24,
+      [nix.POS]: $pos[23],
       server: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs_1 = nix.arg($_1, "pkgs");
         const lib = nix.arg($_1, "lib");
         return {
-          [nix.POS]: pos$16,
-          virtualisation: nix.thunk(() => ({ [nix.POS]: pos$3, memorySize: 2048n })),
+          [nix.POS]: $pos[15],
+          virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[2], memorySize: 2048n })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             weblate: nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               enable: true,
               localDomain: nix.thunk(() => nix.str`${serverDomain}`),
               djangoSecretKeyFile: nix.thunk(() => nix.app(nix.sel(pkgs_1, "writeText"), "weblate-django-secret", "thisissnakeoilsecretwithmorethan50characterscorrecthorsebatterystaple")),
               extraConfig: "# Weblate tries to fetch Avatars from the network\nENABLE_AVATARS = False\n",
             })),
             nginx: nix.thunk(() => ({
-              [nix.POS]: pos$6,
+              [nix.POS]: $pos[5],
               virtualHosts: nix.thunk(() => nix.attrsDyn({}, [
                 [nix.str`${serverDomain}`, nix.thunk(() => ({
-                  [nix.POS]: pos$5,
+                  [nix.POS]: $pos[4],
                   enableACME: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), false)),
                   sslCertificate: nix.thunk(() => nix.sel(certs, nix.key(nix.str`${serverDomain}`), "cert")),
                   sslCertificateKey: nix.thunk(() => nix.sel(certs, nix.key(nix.str`${serverDomain}`), "key")),
@@ -79,26 +55,26 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           security: nix.thunk(() => ({
-            [nix.POS]: pos$9,
+            [nix.POS]: $pos[8],
             pki: nix.thunk(() => ({
-              [nix.POS]: pos$8,
+              [nix.POS]: $pos[7],
               certificateFiles: nix.thunk(() => [nix.thunk(() => nix.sel(certs, "ca", "cert"))]),
             })),
           })),
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$12,
+            [nix.POS]: $pos[11],
             hosts: nix.thunk(() => ({
-              [nix.POS]: pos$10,
+              [nix.POS]: $pos[9],
               "::1": nix.thunk(() => [nix.thunk(() => nix.str`${serverDomain}`)]),
             })),
-            firewall: nix.thunk(() => ({ [nix.POS]: pos$11, allowedTCPPorts: nix.thunk(() => [80n, 443n]) })),
+            firewall: nix.thunk(() => ({ [nix.POS]: $pos[10], allowedTCPPorts: nix.thunk(() => [80n, 443n]) })),
           })),
           users: nix.thunk(() => ({
-            [nix.POS]: pos$15,
+            [nix.POS]: $pos[14],
             users: nix.thunk(() => ({
-              [nix.POS]: pos$14,
+              [nix.POS]: $pos[13],
               weblate: nix.thunk(() => ({
-                [nix.POS]: pos$13,
+                [nix.POS]: $pos[12],
                 shell: nix.thunk(() => nix.sel(pkgs_1, "bashInteractive")),
               })),
             })),
@@ -110,14 +86,14 @@ export default nix.lambda((args) => (() => {
         const pkgs_1 = nix.arg($_1, "pkgs");
         const nodes = nix.arg($_1, "nodes");
         return {
-          [nix.POS]: pos$23,
+          [nix.POS]: $pos[22],
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$19,
+            [nix.POS]: $pos[18],
             systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs_1, "wlc"))]),
             etc: nix.thunk(() => ({
-              [nix.POS]: pos$18,
+              [nix.POS]: $pos[17],
               "xdg/weblate": nix.thunk(() => ({
-                [nix.POS]: pos$17,
+                [nix.POS]: $pos[16],
                 text: nix.thunk(() => nix.str`[weblate]
 url = https://${serverDomain}/api/
 [keys]
@@ -127,15 +103,15 @@ https://${serverDomain}/api/ = ${apiToken}
             })),
           })),
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$20,
+            [nix.POS]: $pos[19],
             hosts: nix.thunk(() => nix.attrsDyn({}, [
               [nix.str`${nix.sel(nodes, "server", "networking", "primaryIPAddress")}`, nix.thunk(() => [nix.thunk(() => nix.str`${serverDomain}`)])],
             ])),
           })),
           security: nix.thunk(() => ({
-            [nix.POS]: pos$22,
+            [nix.POS]: $pos[21],
             pki: nix.thunk(() => ({
-              [nix.POS]: pos$21,
+              [nix.POS]: $pos[20],
               certificateFiles: nix.thunk(() => [nix.thunk(() => nix.sel(certs, "ca", "cert"))]),
             })),
           })),

@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["description", 46, 7], ["homepage", 47, 7], ["changelog", 48, 7], ["license", 49, 7], ["maintainers", 50, 7]], [["pname", 17, 26], ["version", 17, 32], ["src", 17, 40], ["pyproject", 18, 3], ["build-system", 20, 3], ["buildInputs", 24, 3], ["pythonImportsCheck", 26, 3], ["nativeCheckInputs", 28, 3], ["disabledTestPaths", 38, 3], ["meta", 44, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, llvmPackages: false, "ml-dtypes": false, numpy: false, pkgs: false, "pytest-repeat": false, "pytest-xdist": false, pytestCheckHook: false, scipy: false, setuptools: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["description", 46, 7], ["homepage", 47, 7], ["changelog", 48, 7], ["license", 49, 7], ["maintainers", 50, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 17, 26], ["version", 17, 32], ["src", 17, 40], ["pyproject", 18, 3], ["build-system", 20, 3], ["buildInputs", 24, 3], ["pythonImportsCheck", 26, 3], ["nativeCheckInputs", 28, 3], ["disabledTestPaths", 38, 3], ["meta", 44, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,7 +22,7 @@ export default nix.lambda((args) => (() => {
   return nix.app(buildPythonPackage, nix.thunk(() => (() => {
       const from = nix.thunk(() => nix.sel(pkgs, "numkong"));
       return {
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: nix.thunk(() => nix.attr(from, "pname")),
       version: nix.thunk(() => nix.attr(from, "version")),
       src: nix.thunk(() => nix.attr(from, "src")),
@@ -39,7 +38,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from_1 = nix.thunk(() => nix.sel(pkgs, "numkong", "meta"));
         return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: nix.thunk(() => nix.attr(from_1, "description")),
         homepage: nix.thunk(() => nix.attr(from_1, "homepage")),
         changelog: nix.thunk(() => nix.attr(from_1, "changelog")),

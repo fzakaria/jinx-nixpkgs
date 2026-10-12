@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 25, 5], ["sha256", 26, 5]], [["description", 30, 5], ["mainProgram", 31, 5], ["longDescription", 32, 5], ["homepage", 39, 5], ["changelog", 40, 5], ["license", 41, 5], ["maintainers", 42, 5], ["platforms", 45, 5]], [["pname", 13, 3], ["version", 14, 3], ["buildInputs", 16, 3], ["src", 24, 3], ["meta", 29, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, "alsa-lib": false, libopus: false, libogg: false, gmp: false, ncurses: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 25, 5], ["sha256", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 30, 5], ["mainProgram", 31, 5], ["longDescription", 32, 5], ["homepage", 39, 5], ["changelog", 40, 5], ["license", 41, 5], ["maintainers", 42, 5], ["platforms", 45, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["buildInputs", 16, 3], ["src", 24, 3], ["meta", 29, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,17 +16,17 @@ export default nix.lambda((args) => (() => {
   const gmp = nix.arg($, "gmp");
   const ncurses = nix.arg($, "ncurses");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "seren",
       version: "0.0.21",
       buildInputs: nix.thunk(() => [alsa_lib, libopus, libogg, gmp, ncurses]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`http://holdenc.altervista.org/seren/downloads/seren-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "sha256-adI365McrJkvTexvnWjMzpHcJkLY3S/uWfE8u4yuqho=",
         })))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Simple ncurses VoIP program based on the Opus codec",
         mainProgram: "seren",
         longDescription: "Seren is a simple VoIP program based on the Opus codec\nthat allows you to create a voice conference from the terminal, with up to 10\nparticipants, without having to register accounts, exchange emails, or add\npeople to contact lists. All you need to join an existing conference is the\nhost name or IP address of one of the participants.\n",

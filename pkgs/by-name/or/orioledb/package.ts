@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 9], ["repo", 15, 9], ["tag", 16, 9], ["hash", 17, 9]], [["license", 37, 11], ["pkgConfigModules", 38, 11], ["platforms", 39, 11], ["broken", 40, 11], ["description", 42, 9], ["maintainers", 43, 9]], [["pname", 10, 7], ["version", 11, 7], ["src", 13, 7], ["postPatch", 23, 7], ["postInstall", 31, 7], ["meta", 35, 7]]]);
 const formals$1 = { args: { fetchFromGitHub: false, lib: false, postgresql_18: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 9], ["repo", 15, 9], ["tag", 16, 9], ["hash", 17, 9]]);
-const pos$2 = nix.positions(here + "/package.nix", [["license", 37, 11], ["pkgConfigModules", 38, 11], ["platforms", 39, 11], ["broken", 40, 11], ["description", 42, 9], ["maintainers", 43, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 7], ["version", 11, 7], ["src", 13, 7], ["postPatch", 23, 7], ["postInstall", 31, 7], ["meta", 35, 7]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,11 +11,11 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const postgresql_18 = nix.arg($, "postgresql_18");
   const orioledb_postgres = nix.thunk(() => nix.app(nix.sel(postgresql_18, "overrideAttrs"), (finalAttrs) => (oldAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "orioledb-postgres",
       version: "18.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "orioledb",
           repo: "postgres",
           tag: "patches18_3",
@@ -30,7 +28,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(oldAttrs, "meta"));
         return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         license: nix.thunk(() => nix.attr(from, "license")),
         pkgConfigModules: nix.thunk(() => nix.attr(from, "pkgConfigModules")),
         platforms: nix.thunk(() => nix.attr(from, "platforms")),

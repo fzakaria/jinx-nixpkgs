@@ -2,18 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 113, 29], ["hash", 114, 7], ["fetchSubmodules", 115, 7]], [["rev", 119, 11]], [["tag", 121, 11]], [["name", 127, 7], ["url", 128, 7], ["extraPrefix", 129, 7], ["stripLen", 130, 7], ["hash", 131, 7]], [["name", 134, 7], ["url", 135, 7], ["hash", 136, 7]], [["name", 139, 7], ["url", 140, 7], ["hash", 141, 7]], [["name", 144, 7], ["url", 145, 7], ["hash", 146, 7]], [["CXXFLAGS", 156, 5], ["NIX_CFLAGS_COMPILE", 158, 5]], [["dfVersion", 262, 13]], [["description", 266, 5], ["homepage", 267, 5], ["license", 268, 5], ["platforms", 269, 5], ["maintainers", 273, 5]], [["pname", 107, 3], ["version", 108, 11], ["src", 111, 3], ["patches", 125, 3], ["env", 154, 3], ["nativeBuildInputs", 168, 3], ["buildInputs", 179, 3], ["preConfigure", 193, 3], ["cmakeFlags", 199, 3], ["preFixup", 220, 3], ["passthru", 261, 3], ["meta", 265, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchgit: false, fetchpatch: false, cmake: false, fmt: false, ninja: false, writeScriptBin: false, writeText: false, perl: false, XMLLibXML: false, XMLLibXSLT: false, makeWrapper: false, zlib: false, enableStoneSense: true, allegro5: false, libGLU: false, libGL: false, SDL: false, SDL2: false, coreutils: false, "util-linux": false, ncurses: false, strace: false, binutils: false, gnused: false, dfVersion: false, dfVersions: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 113, 29], ["hash", 114, 7], ["fetchSubmodules", 115, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["rev", 119, 11]]);
-const pos$3 = nix.positions(here + "/default.nix", [["tag", 121, 11]]);
-const pos$4 = nix.positions(here + "/default.nix", [["name", 127, 7], ["url", 128, 7], ["extraPrefix", 129, 7], ["stripLen", 130, 7], ["hash", 131, 7]]);
-const pos$5 = nix.positions(here + "/default.nix", [["name", 134, 7], ["url", 135, 7], ["hash", 136, 7]]);
-const pos$6 = nix.positions(here + "/default.nix", [["name", 139, 7], ["url", 140, 7], ["hash", 141, 7]]);
-const pos$7 = nix.positions(here + "/default.nix", [["name", 144, 7], ["url", 145, 7], ["hash", 146, 7]]);
-const pos$8 = nix.positions(here + "/default.nix", [["CXXFLAGS", 156, 5], ["NIX_CFLAGS_COMPILE", 158, 5]]);
-const pos$9 = nix.positions(here + "/default.nix", [["dfVersion", 262, 13]]);
-const pos$10 = nix.positions(here + "/default.nix", [["description", 266, 5], ["homepage", 267, 5], ["license", 268, 5], ["platforms", 269, 5], ["maintainers", 273, 5]]);
-const pos$11 = nix.positions(here + "/default.nix", [["pname", 107, 3], ["version", 108, 11], ["src", 111, 3], ["patches", 125, 3], ["env", 154, 3], ["nativeBuildInputs", 168, 3], ["buildInputs", 179, 3], ["preConfigure", 193, 3], ["cmakeFlags", 199, 3], ["preFixup", 220, 3], ["passthru", 261, 3], ["meta", 265, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -84,43 +74,49 @@ fi
   const needFetchOverrides = nix.thunk(() => nix.app(versionAtLeast, version, "53.07-r1"));
   const fetchOverrides = nix.thunk(() => nix.app(writeText, "fetch-overrides.cmake", "include_guard(GLOBAL)\nfunction(cmake_language_dependency_provider method package_name)\n  if(package_name STREQUAL \"fmt\")\n    find_package(fmt CONFIG QUIET)\n    if(fmt_FOUND)\n      set(${package_name}_PROVIDER_SATISFIED TRUE PARENT_SCOPE)\n      return()\n    endif()\n  endif()\nendfunction()\n"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$11,
+      [nix.POS]: $pos[10],
       pname: "dfhack",
       version: version,
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => nix.update((() => {
           const from = nix.thunk(() => nix.sel(release, "git"));
           return {
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.attr(from, "url")),
           hash: nix.thunk(() => nix.sel(release, "git", "outputHash")),
           fetchSubmodules: true,
         };
-        })(), (nix.asBool(nix.eq(nix.selOr(release, () => "tag", "git", "refType"), "rev")) ? { [nix.POS]: pos$2, rev: nix.thunk(() => nix.sel(release, "git", "revision")) } : { [nix.POS]: pos$3, tag: nix.thunk(() => nix.sel(release, "git", "revision")) }))))),
+        })(), (nix.asBool(nix.eq(nix.selOr(release, () => "tag", "git", "refType"), "rev")) ? {
+          [nix.POS]: $pos[1],
+          rev: nix.thunk(() => nix.sel(release, "git", "revision")),
+        } : {
+          [nix.POS]: $pos[2],
+          tag: nix.thunk(() => nix.sel(release, "git", "revision")),
+        }))))),
       patches: nix.thunk(() => nix.concat(nix.app(optional, nix.thunk(() => nix.app(versionOlder, version, "0.44.12-r3")), nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             name: "fix-stonesense.patch",
             url: "https://github.com/DFHack/stonesense/commit/f5be6fe5fb192f01ae4551ed9217e97fd7f6a0ae.patch",
             extraPrefix: "plugins/stonesense/",
             stripLen: 1n,
             hash: "sha256-wje6Mkct29eyMOcJnbdefwBOLJko/s4JcJe52ojuW+8=",
           }))))), nix.concat(nix.app(optional, nix.thunk(() => nix.app(versionOlder, version, "0.47.04-r1")), nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             name: "fix-protobuf.patch",
             url: "https://github.com/DFHack/dfhack/commit/7bdf958518d2892ee89a7173224a069c4a2190d8.patch",
             hash: "sha256-p+mKhmYbnhWKNiGPMjbYO505Gcg634n0nudqH0NX3KY=",
           }))))), nix.concat(nix.app(optional, needs50Patches, nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             name: "use-system-sdl2.patch",
             url: "https://github.com/DFHack/dfhack/commit/734fb730d72e53ebe67f4a041a24dd7c50307ee3.patch",
             hash: "sha256-uLX0gdVSzKEVibyUc1UxcQzdYkRm6D8DF+1eSOxM+qU=",
           }))))), nix.concat(nix.app(optional, needs50Patches, nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             name: "rename-lerp.patch",
             url: "https://github.com/DFHack/dfhack/commit/389dcf5cfcdb8bfb8deeb05fa5756c9f4f5709d1.patch",
             hash: "sha256-QuDtGURhP+nM+x+8GIKO5LrMcmBkl9JSHHIeqzqGIPQ=",
           }))))), nix.app(optional, nix.thunk(() => nix.app(versionAtLeast, version, "52.02-r2")), nix.path(here, "./use-df-linux-dir.patch"))))))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         CXXFLAGS: nix.thunk(() => nix.app(optionalString, nix.thunk(() => nix.app(versionOlder, version, "0.47.05-r3")), "-fpermissive")),
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.concat(["-Wno-error=deprecated-enum-enum-conversion"], nix.app(optionals, nix.thunk(() => nix.app(versionOlder, version, "0.47")), nix.thunk(() => ["-fpermissive"])))))),
       })),
@@ -163,9 +159,9 @@ fi
 export DF_DIR
 EOF
 `),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$9, dfVersion: dfVersion })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[8], dfVersion: dfVersion })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         description: "Memory hacking library for Dwarf Fortress and a set of tools that use it",
         homepage: "https://github.com/DFHack/dfhack/",
         license: nix.thunk(() => nix.sel(licenses, "zlib")),

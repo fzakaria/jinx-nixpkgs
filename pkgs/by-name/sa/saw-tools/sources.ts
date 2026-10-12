@@ -2,19 +2,17 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
-const pos$1 = nix.positions(here + "/sources.nix", [["url", 5, 5], ["hash", 6, 5]]);
-const pos$2 = nix.positions(here + "/sources.nix", [["url", 9, 5], ["hash", 10, 5]]);
-const pos$3 = nix.positions(here + "/sources.nix", [["aarch64-darwin", 4, 3], ["x86_64-linux", 8, 3]]);
+const $pos = nix.positions(here + "/sources.nix", [[["url", 5, 5], ["hash", 6, 5]], [["url", 9, 5], ["hash", 10, 5]], [["aarch64-darwin", 4, 3], ["x86_64-linux", 8, 3]]]);
 
 export default nix.thunk(() => ({
-  [nix.POS]: pos$3,
+  [nix.POS]: $pos[2],
   "aarch64-darwin": nix.thunk(() => ({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     url: "https://github.com/GaloisInc/saw-script/releases/download/v1.5/saw-1.5-macos-15-ARM64-with-solvers.tar.gz",
     hash: "sha256-1mURJfcnIRhuLrG1Gf4SRXmTzLbztBBRQGcXFFiAWWU=",
   })),
   "x86_64-linux": nix.thunk(() => ({
-    [nix.POS]: pos$2,
+    [nix.POS]: $pos[1],
     url: "https://github.com/GaloisInc/saw-script/releases/download/v1.5/saw-1.5-ubuntu-22.04-X64-with-solvers.tar.gz",
     hash: "sha256-k9Qo93d0IXBRe7P+wU20LjFjM+LdHf6Z2S0Nybmh/4E=",
   })),

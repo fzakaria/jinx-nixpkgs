@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]], [["description", 61, 5], ["homepage", 62, 5], ["changelog", 63, 5], ["license", 64, 5], ["maintainers", 65, 5]], [["pname", 22, 3], ["version", 23, 3], ["pyproject", 24, 3], ["__darwinAllowLocalNetworking", 26, 3], ["src", 28, 3], ["build-system", 35, 3], ["dependencies", 40, 3], ["nativeCheckInputs", 49, 3], ["pythonImportsCheck", 58, 3], ["meta", 60, 3]]]);
 const formals$1 = { args: { lib: false, aiohttp: false, aiointercept: false, aioresponses: false, buildPythonPackage: false, deepdiff: false, fastmcp: false, fetchFromGitHub: false, hatchling: false, pycognito: false, pyjwt: false, "pytest-aiohttp": false, "pytest-cov-stub": false, "pytest-freezegun": false, "pytest-timeout": false, pytestCheckHook: false, "uv-dynamic-versioning": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 61, 5], ["homepage", 62, 5], ["changelog", 63, 5], ["license", 64, 5], ["maintainers", 65, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 22, 3], ["version", 23, 3], ["pyproject", 24, 3], ["__darwinAllowLocalNetworking", 26, 3], ["src", 28, 3], ["build-system", 35, 3], ["dependencies", 40, 3], ["nativeCheckInputs", 49, 3], ["pythonImportsCheck", 58, 3], ["meta", 60, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,13 +25,13 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const uv_dynamic_versioning = nix.arg($, "uv-dynamic-versioning");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "pylitterbot",
       version: "2025.6.6",
       pyproject: true,
       __darwinAllowLocalNetworking: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "natekspencer",
           repo: "pylitterbot",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -51,7 +49,7 @@ export default nix.lambda((args) => (() => {
       ]),
       pythonImportsCheck: nix.thunk(() => ["pylitterbot"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Modulefor controlling a Litter-Robot",
         homepage: "https://github.com/natekspencer/pylitterbot",
         changelog: nix.thunk(() => nix.str`https://github.com/natekspencer/pylitterbot/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

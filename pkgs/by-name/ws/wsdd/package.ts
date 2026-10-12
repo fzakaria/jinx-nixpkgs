@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]], [["samba-wsdd", 41, 11]], [["tests", 41, 5]], [["homepage", 45, 5], ["description", 46, 5], ["maintainers", 47, 5], ["license", 48, 5], ["platforms", 49, 5], ["mainProgram", 50, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["outputs", 22, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 32, 3], ["installPhase", 34, 3], ["passthru", 40, 3], ["meta", 44, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, installShellFiles: false, makeWrapper: false, nixosTests: false, python3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["samba-wsdd", 41, 11]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 41, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 45, 5], ["description", 46, 5], ["maintainers", 47, 5], ["license", 48, 5], ["platforms", 49, 5], ["mainProgram", 50, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["outputs", 22, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 32, 3], ["installPhase", 34, 3], ["passthru", 40, 3], ["meta", 44, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const python3 = nix.arg($, "python3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "wsdd",
       version: "0.9",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "christgau",
           repo: "wsdd",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,14 +30,14 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [python3]),
       installPhase: "install -Dm0555 src/wsdd.py $out/bin/wsdd\ninstallManPage man/wsdd.8\nwrapProgram $out/bin/wsdd --prefix PYTHONPATH : \"$PYTHONPATH\"\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           "samba-wsdd": nix.thunk(() => nix.sel(nixosTests, "samba-wsdd")),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://github.com/christgau/wsdd",
         description: "Web Service Discovery (WSD) host daemon for SMB/Samba",
         maintainers: nix.thunk(() => (() => {

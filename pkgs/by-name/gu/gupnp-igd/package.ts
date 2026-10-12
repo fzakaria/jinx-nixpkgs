@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 29, 5], ["hash", 30, 5]], [["packageName", 64, 7], ["versionPolicy", 65, 7]], [["updateScript", 63, 5]], [["description", 70, 5], ["homepage", 71, 5], ["license", 72, 5], ["platforms", 73, 5]], [["pname", 19, 3], ["version", 20, 3], ["outputs", 22, 3], ["src", 28, 3], ["depsBuildBuild", 33, 3], ["nativeBuildInputs", 37, 3], ["propagatedBuildInputs", 48, 3], ["mesonFlags", 53, 3], ["passthru", 62, 3], ["meta", 69, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, "pkg-config": false, meson: false, ninja: false, gettext: false, "gobject-introspection": false, "gtk-doc": false, docbook_xsl: false, docbook_xml_dtd_412: false, glib: false, gupnp_1_6: false, gnome: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 29, 5], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["packageName", 64, 7], ["versionPolicy", 65, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 63, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 70, 5], ["homepage", 71, 5], ["license", 72, 5], ["platforms", 73, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["outputs", 22, 3], ["src", 28, 3], ["depsBuildBuild", 33, 3], ["nativeBuildInputs", 37, 3], ["propagatedBuildInputs", 48, 3], ["mesonFlags", 53, 3], ["passthru", 62, 3], ["meta", 69, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,12 +22,12 @@ export default nix.lambda((args) => (() => {
   const gupnp_1_6 = nix.arg($, "gupnp_1_6");
   const gnome = nix.arg($, "gnome");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "gupnp-igd",
       version: "1.6.0",
       outputs: nix.thunk(() => nix.concat(["out", "dev"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.eq(nix.sel(stdenv, "buildPlatform"), nix.sel(stdenv, "hostPlatform"))), nix.thunk(() => ["devdoc"])))),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnome/sources/gupnp-igd/${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/gupnp-igd-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-QJmXgzmrIhJtSWjyozK20JT8RMeHl4YHgfH8LxF3G3Q=",
         })))),
@@ -52,11 +48,11 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`-Dintrospection=${nix.app(nix.sel(lib, "boolToString"), nix.thunk(() => nix.eq(nix.sel(stdenv, "buildPlatform"), nix.sel(stdenv, "hostPlatform"))))}`),
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$2, packageName: "gupnp-igd", versionPolicy: "odd-unstable" })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: $pos[1], packageName: "gupnp-igd", versionPolicy: "odd-unstable" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Library to handle UPnP IGD port mapping",
         homepage: "http://www.gupnp.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),

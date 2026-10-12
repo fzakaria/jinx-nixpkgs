@@ -2,17 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["description", 16, 5], ["homepage", 17, 5], ["changelog", 18, 5], ["license", 19, 5], ["maintainers", 20, 5], ["platforms", 24, 5], ["sourceProvenance", 25, 5], ["mainProgram", 26, 5]], [["pname", 11, 3], ["version", 12, 3], ["dontConfigure", 13, 3], ["dontBuild", 14, 3], ["meta", 15, 3], ["nativeBuildInputs", 28, 3]], [["url", 40, 15], ["hash", 41, 15]], [["url", 44, 15], ["hash", 45, 15]], [["url", 48, 15], ["hash", 49, 15]], [["x86_64-linux", 39, 13], ["armv7l-linux", 43, 13], ["aarch64-linux", 47, 13]], [["src", 55, 68], ["pname", 55, 72], ["version", 55, 78]], [["src", 37, 9], ["appimageContents", 55, 9], ["dontUnpack", 57, 9], ["installPhase", 59, 9], ["postFixup", 74, 9]], [["url", 84, 11], ["hash", 85, 11], ["stripRoot", 86, 11]], [["src", 83, 9], ["installPhase", 89, 9]]]);
 const formals$1 = { args: { stdenvNoCC: false, lib: false, fetchurl: false, fetchzip: false, appimageTools: false, makeWrapper: false, electron: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["description", 16, 5], ["homepage", 17, 5], ["changelog", 18, 5], ["license", 19, 5], ["maintainers", 20, 5], ["platforms", 24, 5], ["sourceProvenance", 25, 5], ["mainProgram", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["dontConfigure", 13, 3], ["dontBuild", 14, 3], ["meta", 15, 3], ["nativeBuildInputs", 28, 3]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 40, 15], ["hash", 41, 15]]);
-const pos$4 = nix.positions(here + "/package.nix", [["url", 44, 15], ["hash", 45, 15]]);
-const pos$5 = nix.positions(here + "/package.nix", [["url", 48, 15], ["hash", 49, 15]]);
-const pos$6 = nix.positions(here + "/package.nix", [["x86_64-linux", 39, 13], ["armv7l-linux", 43, 13], ["aarch64-linux", 47, 13]]);
-const pos$7 = nix.positions(here + "/package.nix", [["src", 55, 68], ["pname", 55, 72], ["version", 55, 78]]);
-const pos$8 = nix.positions(here + "/package.nix", [["src", 37, 9], ["appimageContents", 55, 9], ["dontUnpack", 57, 9], ["installPhase", 59, 9], ["postFixup", 74, 9]]);
-const pos$9 = nix.positions(here + "/package.nix", [["url", 84, 11], ["hash", 85, 11], ["stripRoot", 86, 11]]);
-const pos$10 = nix.positions(here + "/package.nix", [["src", 83, 9], ["installPhase", 89, 9]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const dontConfigure = true;
       const dontBuild = true;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Open source user-first chat platform",
         homepage: "https://revolt.chat/",
         changelog: nix.thunk(() => nix.str`https://github.com/revoltchat/desktop/releases/tag/v${version}`),
@@ -50,7 +41,7 @@ export default nix.lambda((args) => (() => {
       }));
       const nativeBuildInputs = nix.thunk(() => [makeWrapper]);
       return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         pname,
         version,
         dontConfigure,
@@ -61,27 +52,27 @@ export default nix.lambda((args) => (() => {
     })())), "overrideAttrs"), (final) => (prev) => (() => {
       const version = nix.thunk(() => nix.attr(prev, "version"));
       return (nix.asBool(nix.sel(stdenvNoCC, "hostPlatform", "isLinux")) ? {
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         src: nix.thunk(() => nix.selOr({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           "x86_64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               url: nix.thunk(() => nix.str`https://github.com/revoltchat/desktop/releases/download/v${version}/Revolt-${version}.AppImage`),
               hash: "sha256-L23Je5p7VmQpOLC+IfmQRk2CKKUm4rNBdsYLvqLTlRY=",
             })))),
           "armv7l-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               url: nix.thunk(() => nix.str`https://github.com/revoltchat/desktop/releases/download/v${version}/Revolt-${version}-armv7l.AppImage`),
               hash: "sha256-Qwya5tgHjMB8IJi0ueGmkzgQMQu+rlsDoWIVpl6Vj2w=",
             })))),
           "aarch64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               url: nix.thunk(() => nix.str`https://github.com/revoltchat/desktop/releases/download/v${version}/Revolt-${version}-arm64.AppImage`),
               hash: "sha256-VQXyXaL4Ma3peO1duAlyFwkb1CRQ/4DNZhjiAnhms6I=",
             })))),
         }, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenvNoCC, "hostPlatform", "system")}`)), nix.key(nix.sel(stdenvNoCC, "hostPlatform", "system")))),
         appimageContents: nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             src: nix.thunk(() => nix.attr(final, "src")),
             pname: nix.thunk(() => nix.attr(final, "pname")),
             version: nix.thunk(() => nix.attr(final, "version")),
@@ -107,9 +98,9 @@ runHook postInstall
       } : (() => {
         nix.assert_(nix.sel(stdenvNoCC, "hostPlatform", "isDarwin"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/re/revolt-desktop/package.nix:81:7");
         return {
-          [nix.POS]: pos$10,
+          [nix.POS]: $pos[9],
           src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-              [nix.POS]: pos$9,
+              [nix.POS]: $pos[8],
               url: nix.thunk(() => nix.str`https://github.com/revoltchat/desktop/releases/download/v${version}/Revolt-${version}-universal-mac.zip`),
               hash: "sha256-CpG1LLYYHa9ho4rotDwSS+wNIJ2z0kBPqu70xKEFg+k=",
               stripRoot: false,

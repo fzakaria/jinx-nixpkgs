@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 23, 5], ["owner", 24, 5], ["repo", 25, 5], ["rev", 26, 5], ["hash", 27, 5]], [["homepage", 64, 5], ["description", 65, 5], ["changelog", 66, 5], ["license", 67, 5], ["mainProgram", 68, 5], ["maintainers", 69, 5], ["platforms", 70, 29]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 35, 3], ["propagatedBuildInputs", 49, 3], ["outputs", 53, 3], ["strictDeps", 61, 3], ["meta", 63, 3]]]);
 const formals$1 = { args: { lib: false, acl: false, attr: false, autoreconfHook: false, bzip2: false, fetchFromGitea: false, libburn: false, libcdio: false, libiconv: false, libisofs: false, "pkg-config": false, readline: false, stdenv: false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 23, 5], ["owner", 24, 5], ["repo", 25, 5], ["rev", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 64, 5], ["description", 65, 5], ["changelog", 66, 5], ["license", 67, 5], ["mainProgram", 68, 5], ["maintainers", 69, 5], ["platforms", 70, 29]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 35, 3], ["propagatedBuildInputs", 49, 3], ["outputs", 53, 3], ["strictDeps", 61, 3], ["meta", 63, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "libisoburn",
       version: "1.5.8.pl02",
       src: nix.thunk(() => nix.app(fetchFromGitea, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "dev.lovelyhq.com",
           owner: "libburnia",
           repo: "libisoburn",
@@ -43,7 +41,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(libisofs, "meta"));
         return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "http://libburnia-project.org/",
         description: "Enables creation and expansion of ISO-9660 filesystems on CD/DVD/BD",
         changelog: nix.thunk(() => nix.str`https://dev.lovelyhq.com/libburnia/libisoburn/src/tag/${nix.sel(finalAttrs, "src", "rev")}/ChangeLog`),

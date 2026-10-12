@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["enableJavaFX", 19, 56]], [["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]], [["updateScript", 76, 12]], [["description", 79, 5], ["homepage", 80, 5], ["license", 81, 5], ["maintainers", 82, 5], ["platforms", 87, 5], ["mainProgram", 88, 5]], [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["buildPhase", 32, 3], ["nativeBuildInputs", 41, 3], ["buildInputs", 46, 3], ["installPhase", 50, 3], ["passthru", 76, 3], ["meta", 78, 3]]]);
 const formals$1 = { args: { stdenv: false, fetchFromGitHub: false, lib: false, "nix-update-script": false, makeWrapper: false, glib: false, gtk3: false, ant: false, jdk: false, libxtst: false, coreutils: false, gnugrep: false, zulu: false, preferZulu: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["enableJavaFX", 19, 56]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 76, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 79, 5], ["homepage", 80, 5], ["license", 81, 5], ["maintainers", 82, 5], ["platforms", 87, 5], ["mainProgram", 88, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["buildPhase", 32, 3], ["nativeBuildInputs", 41, 3], ["buildInputs", 46, 3], ["installPhase", 50, 3], ["passthru", 76, 3], ["meta", 78, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,13 +21,13 @@ export default nix.lambda((args) => (() => {
   const gnugrep = nix.arg($, "gnugrep");
   const zulu = nix.arg($, "zulu");
   const preferZulu = nix.argOr($, "preferZulu", () => false);
-  const jre$ = nix.thunk(() => nix.app(nix.sel((nix.asBool(preferZulu) ? nix.force(zulu) : nix.force(jdk)), "override"), nix.thunk(() => ({ [nix.POS]: pos$1, enableJavaFX: true }))));
+  const jre$ = nix.thunk(() => nix.app(nix.sel((nix.asBool(preferZulu) ? nix.force(zulu) : nix.force(jdk)), "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], enableJavaFX: true }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "davmail",
       version: "7.0.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "mguessan",
           repo: "davmail",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -53,11 +49,11 @@ makeWrapper $out/share/davmail/davmail $out/bin/davmail \\
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Java application which presents a Microsoft Exchange server as local CALDAV, IMAP and SMTP servers",
         homepage: "https://davmail.sourceforge.net/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

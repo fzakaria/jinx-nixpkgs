@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 15, 5], ["rev", 16, 5], ["hash", 17, 5]], [["updateScript", 35, 12]], [["description", 38, 5], ["longDescription", 39, 5], ["homepage", 43, 5], ["license", 44, 5], ["maintainers", 45, 5], ["teams", 46, 5]], [["pname", 10, 3], ["version", 11, 3], ["pyproject", 12, 3], ["src", 14, 3], ["build-system", 20, 3], ["dependencies", 22, 3], ["pythonImportsCheck", 25, 3], ["doCheck", 32, 3], ["passthru", 35, 3], ["meta", 37, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchhg: false, setuptools: false, wokkel: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 15, 5], ["rev", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["updateScript", 35, 12]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 38, 5], ["longDescription", 39, 5], ["homepage", 43, 5], ["license", 44, 5], ["maintainers", 45, 5], ["teams", 46, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 10, 3], ["version", 11, 3], ["pyproject", 12, 3], ["src", 14, 3], ["build-system", 20, 3], ["dependencies", 22, 3], ["pythonImportsCheck", 25, 3], ["doCheck", 32, 3], ["passthru", 35, 3], ["meta", 37, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.8.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchhg, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://repos.goffi.org/sat_tmp",
           rev: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-CEy0/eaPK0nHzsiJq3m7edNyxzAhfwBaNhFhLS0azOw=",
@@ -29,9 +26,9 @@ export default nix.lambda((args) => (() => {
       const dependencies = nix.thunk(() => [wokkel]);
       const pythonImportsCheck = nix.thunk(() => ["sat_tmp.wokkel.pubsub", "sat_tmp.wokkel.rsm", "sat_tmp.wokkel.mam"]);
       const doCheck = false;
-      const passthru = nix.thunk(() => ({ [nix.POS]: pos$2, updateScript: null }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: $pos[1], updateScript: null }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Libervia temporary third party patches",
         longDescription: "This module is used by Libervia project (formerly “Salut à Toi”) project to patch third party modules\nwhen the patches are not yet available upstream. Patches are removed from this module once merged upstream.\n",
         homepage: "https://libervia.org",
@@ -40,7 +37,7 @@ export default nix.lambda((args) => (() => {
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "ngi"))]),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

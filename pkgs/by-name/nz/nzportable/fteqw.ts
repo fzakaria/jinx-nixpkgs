@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/fteqw.nix", [[["owner", 54, 5], ["repo", 55, 5], ["rev", 56, 5], ["hash", 57, 5]], [["description", 151, 5], ["longDescription", 152, 5], ["homepage", 172, 5], ["license", 173, 5], ["platforms", 175, 5], ["maintainers", 183, 5], ["mainProgram", 184, 5]], [["pname", 50, 3], ["version", 51, 3], ["src", 53, 3], ["nativeBuildInputs", 60, 3], ["buildInputs", 69, 3], ["cmakeFlags", 96, 3], ["postInstall", 106, 3], ["postFixup", 110, 3], ["meta", 150, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, ninja: false, "pkg-config": false, makeWrapper: false, zip: false, gettext: false, libpng: false, zlib: false, gnutls: false, libGL: false, libxxf86vm: false, libxxf86dga: false, libxscrnsaver: false, libxrandr: false, libxi: false, libxcursor: false, libx11: false, libxcb: false, "alsa-lib": false, libjpeg: false, libogg: false, libvorbis: false, libopus: false, dbus: false, fontconfig: false, SDL2: false, bullet: false, openexr: false, sqlite: false, addDriverRunpath: false, enableEGL: true, libglvnd: false, enableVulkan: true, "vulkan-headers": false, "vulkan-loader": false, enableWayland: true, wayland: false, libxkbcommon: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/fteqw.nix", [["owner", 54, 5], ["repo", 55, 5], ["rev", 56, 5], ["hash", 57, 5]]);
-const pos$2 = nix.positions(here + "/fteqw.nix", [["description", 151, 5], ["longDescription", 152, 5], ["homepage", 172, 5], ["license", 173, 5], ["platforms", 175, 5], ["maintainers", 183, 5], ["mainProgram", 184, 5]]);
-const pos$3 = nix.positions(here + "/fteqw.nix", [["pname", 50, 3], ["version", 51, 3], ["src", 53, 3], ["nativeBuildInputs", 60, 3], ["buildInputs", 69, 3], ["cmakeFlags", 96, 3], ["postInstall", 106, 3], ["postFixup", 110, 3], ["meta", 150, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -51,11 +49,11 @@ export default nix.lambda((args) => (() => {
   const wayland = nix.arg($, "wayland");
   const libxkbcommon = nix.arg($, "libxkbcommon");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "nzp-fteqw",
       version: "0-unstable-2025-09-25",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "nzp-team",
           repo: "fteqw",
           rev: "f68a2b547d2dc4bf6886b922baa1bff487cc5038",
@@ -113,7 +111,7 @@ export default nix.lambda((args) => (() => {
 `;
       })()),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Nazi Zombies: Portable's fork of Spike's FTEQW engine/client",
         longDescription: "This package contains only the FTEQW engine, and none of the assets used in NZ:P.\nPlease use the `nzportable` package for an out-of-the-box NZ:P experience.\n\nFTEQW supports several graphics options.\nYou can specify those graphics option by overriding the FTEQW package, like this:\n```nix\n  nzp-fteqw.override {\n    enableVulkan = true;\n  }\n```\nAnd in the game, you need to run `setrenderer <renderer>` to change the current renderer.\n\nSupported graphics options are as follows:\n- `enableEGL`: Enable the OpenGL ES renderer (`egl`). Enabled by default.\n- `enableVulkan`: Enable the Vulkan renderer (`xvk`). Enabled by default.\n- `enableWayland`: Enable native Wayland support, instead of using X11.\n  Adds up to two renderers, based on whether EGL and Vulkan are installed: `wlgl` and `wlvk`.\n  Seems to be currently broken and currently not enabled by default.\n",
         homepage: "https://github.com/nzp-team/fteqw",

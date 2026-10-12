@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/linux.nix", [[["updateScript", 153, 12]], [["pname", 53, 5], ["version", 54, 5], ["src", 55, 5], ["meta", 56, 5], ["nativeBuildInputs", 59, 3], ["buildInputs", 63, 3], ["dontConfigure", 65, 3], ["dontBuild", 66, 3], ["dontPatchELF", 67, 3], ["dontWrapGApps", 68, 3], ["installPhase", 70, 3], ["preFixup", 139, 3], ["passthru", 153, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, pname: false, version: false, src: false, meta: false, makeShellWrapper: false, wrapGAppsHook3: false, "alsa-lib": false, "at-spi2-atk": false, "at-spi2-core": false, atk: false, cairo: false, cups: false, dbus: false, expat: false, "gdk-pixbuf": false, glib: false, gtk3: false, libx11: false, libxcomposite: false, libxdamage: false, libxext: false, libxfixes: false, libxrandr: false, libdrm: false, libxcb: false, libxkbcommon: false, libxshmfence: false, libGL: false, libappindicator: false, libgbm: false, nspr: false, nss: false, pango: false, systemd: false, udev: false, "xdg-utils": false, polkitPolicyOwners: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/linux.nix", [["updateScript", 153, 12]]);
-const pos$2 = nix.positions(here + "/linux.nix", [["pname", 53, 5], ["version", 54, 5], ["src", 55, 5], ["meta", 56, 5], ["nativeBuildInputs", 59, 3], ["buildInputs", 63, 3], ["dontConfigure", 65, 3], ["dontBuild", 66, 3], ["dontPatchELF", 67, 3], ["dontWrapGApps", 68, 3], ["installPhase", 70, 3], ["preFixup", 139, 3], ["passthru", 153, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -49,7 +48,7 @@ export default nix.lambda((args) => (() => {
   const polkitPolicyOwners = nix.argOr($, "polkitPolicyOwners", () => []);
   const policyOwners = nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), " ", nix.thunk(() => nix.builtins.map((user) => nix.str`unix-user:${user}`, polkitPolicyOwners))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: pname,
       version: version,
       src: src,
@@ -122,7 +121,7 @@ makeShellWrapper $out/share/1password/1password $out/bin/1password \\
   --prefix LD_LIBRARY_PATH : ${nix.app(nix.sel(lib, "makeLibraryPath"), nix.thunk(() => [udev]))} \\
   --add-flags "\\\${NIXOS_OZONE_WL:+--ozone-platform-hint=auto}"
 `),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$1, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[0], updateScript: nix.path(here, "./update.sh") })),
     })));
 })(), formals$1);
 //# sourceMappingURL=linux.ts.map

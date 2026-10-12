@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 22, 5], ["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["hash", 26, 5]], [["homepage", 55, 5], ["description", 56, 5], ["license", 57, 5], ["mainProgram", 58, 5], ["maintainers", 59, 5], ["platforms", 60, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["depsBuildBuild", 29, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 42, 3], ["mesonFlags", 50, 3], ["strictDeps", 52, 3], ["meta", 54, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitLab: false, libjpeg: false, libpng: false, meson: false, ninja: false, pixman: false, "pkg-config": false, scdoc: false, stdenv: false, wayland: false, "wayland-protocols": false, "wayland-scanner": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 22, 5], ["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 55, 5], ["description", 56, 5], ["license", 57, 5], ["mainProgram", 58, 5], ["maintainers", 59, 5], ["platforms", 60, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["depsBuildBuild", 29, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 42, 3], ["mesonFlags", 50, 3], ["strictDeps", 52, 3], ["meta", 54, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const wayland_protocols = nix.arg($, "wayland-protocols");
   const wayland_scanner = nix.arg($, "wayland-scanner");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "grim",
       version: "1.5.0",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "gitlab.freedesktop.org",
           owner: "emersion",
           repo: "grim",
@@ -40,7 +38,7 @@ export default nix.lambda((args) => (() => {
       mesonFlags: nix.thunk(() => [nix.thunk(() => nix.app(nix.sel(lib, "mesonBool"), "werror", false))]),
       strictDeps: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://gitlab.freedesktop.org/emersion/grim",
         description: "Grab images from a Wayland compositor",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

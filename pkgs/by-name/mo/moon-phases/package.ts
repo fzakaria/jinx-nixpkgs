@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["pname", 12, 13], ["version", 12, 19], ["hash", 13, 5]], [["description", 19, 5], ["homepage", 20, 5], ["license", 21, 5], ["maintainers", 22, 5], ["mainProgram", 23, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["cargoHash", 16, 3], ["meta", 18, 3]]]);
 const formals$1 = { args: { lib: false, fetchCrate: false, rustPlatform: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["pname", 12, 13], ["version", 12, 19], ["hash", 13, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 19, 5], ["homepage", 20, 5], ["license", 21, 5], ["maintainers", 22, 5], ["mainProgram", 23, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["cargoHash", 16, 3], ["meta", 18, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,14 +14,14 @@ export default nix.lambda((args) => (() => {
       const pname = "moon-phases";
       const version = "0.3.3";
       const src = nix.thunk(() => nix.app(fetchCrate, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-8ZdtM246aqc49Q3ygMGk51LIzRA8RIdlaistbKUj3yY=",
         }))));
       const cargoHash = "sha256-8Ada1KBGO1q61dg+4NMJ1Sbipr3ATSP5PO14oQ/QWGs=";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Command-line/WM bar tool to display the moon phase at a certain date",
         homepage: "https://github.com/mirrorwitch/moon-phases",
         license: nix.thunk(() => nix.sel(lib, "licenses", "acsl14")),
@@ -33,7 +31,7 @@ export default nix.lambda((args) => (() => {
         })()),
         mainProgram: "moon-phases",
       }));
-      return { [nix.POS]: pos$3, pname, version, src, cargoHash, meta };
+      return { [nix.POS]: $pos[2], pname, version, src, cargoHash, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

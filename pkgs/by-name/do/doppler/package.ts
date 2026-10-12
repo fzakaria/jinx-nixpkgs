@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]], [["package", 44, 5], ["version", 45, 5]], [["version", 43, 18]], [["tests", 43, 12]], [["description", 49, 5], ["mainProgram", 50, 5], ["homepage", 51, 5], ["license", 52, 5], ["maintainers", 53, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["vendorHash", 22, 3], ["ldflags", 24, 3], ["nativeBuildInputs", 29, 3], ["postInstall", 31, 3], ["passthru", 43, 3], ["meta", 48, 3]]]);
 const formals$1 = { args: { buildGoModule: false, doppler: false, fetchFromGitHub: false, installShellFiles: false, lib: false, testers: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["package", 44, 5], ["version", 45, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 43, 18]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 43, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 49, 5], ["mainProgram", 50, 5], ["homepage", 51, 5], ["license", 52, 5], ["maintainers", 53, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["vendorHash", 22, 3], ["ldflags", 24, 3], ["nativeBuildInputs", 29, 3], ["postInstall", 31, 3], ["passthru", 43, 3], ["meta", 48, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "doppler",
       version: "3.76.6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "dopplerhq",
           repo: "cli",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -38,18 +33,18 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [installShellFiles]),
       postInstall: nix.thunk(() => nix.add("mv $out/bin/cli $out/bin/doppler\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "export HOME=$TMPDIR\nmkdir $HOME/.doppler # to avoid race conditions below\ninstallShellCompletion --cmd doppler \\\n  --bash <($out/bin/doppler completion bash) \\\n  --fish <($out/bin/doppler completion fish) \\\n  --zsh <($out/bin/doppler completion zsh)\n"))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               package: doppler,
               version: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Official CLI for interacting with your Doppler Enclave secrets and configuration",
         mainProgram: "doppler",
         homepage: "https://doppler.com",

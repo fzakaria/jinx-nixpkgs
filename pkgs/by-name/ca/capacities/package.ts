@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 13, 28], ["sha256", 13, 32]], [["pname", 17, 7], ["src", 18, 7], ["version", 19, 7]], [["updateScript", 57, 12]], [["description", 60, 5], ["homepage", 61, 5], ["platforms", 62, 5], ["sourceProvenance", 63, 5], ["license", 64, 5], ["mainProgram", 65, 5], ["maintainers", 66, 5]], [["pname", 25, 5], ["src", 26, 5], ["version", 27, 5], ["extraInstallCommands", 30, 3], ["passthru", 57, 3], ["meta", 59, 3]]]);
 const formals$1 = { args: { fetchurl: false, appimageTools: false, makeWrapper: false, imagemagick: false, lib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 13, 28], ["sha256", 13, 32]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 17, 7], ["src", 18, 7], ["version", 19, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 57, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 60, 5], ["homepage", 61, 5], ["platforms", 62, 5], ["sourceProvenance", 63, 5], ["license", 64, 5], ["mainProgram", 65, 5], ["maintainers", 66, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 25, 5], ["src", 26, 5], ["version", 27, 5], ["extraInstallCommands", 30, 3], ["passthru", 57, 3], ["meta", 59, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,10 +17,10 @@ export default nix.lambda((args) => (() => {
   const url = nix.thunk(() => nix.attr(from, "url"));
   const sha256 = nix.thunk(() => nix.attr(from, "sha256"));
   const pname = "capacities";
-  const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({ [nix.POS]: pos$1, url: url, sha256: sha256 }))));
-  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: pos$2, pname: pname, src: src, version: version }))));
+  const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({ [nix.POS]: $pos[0], url: url, sha256: sha256 }))));
+  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: $pos[1], pname: pname, src: src, version: version }))));
   return nix.app(nix.sel(appimageTools, "wrapType2"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: pname,
       src: src,
       version: version,
@@ -53,9 +49,9 @@ else
   install -m 444 -D capacities_512.png $out/share/icons/hicolor/512x512/apps/capacities.png
 fi
 `),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$3, updateScript: nix.path(here, "./update.py") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[2], updateScript: nix.path(here, "./update.py") })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Calm place to make sense of the world and create amazing things",
         homepage: "https://capacities.io/",
         platforms: nix.thunk(() => ["x86_64-linux"]),

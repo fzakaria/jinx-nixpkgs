@@ -2,11 +2,9 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/build-idris-package.nix", [[["platforms", 40, 9]], [["meta", 39, 7]], [["pname", 46, 5], ["version", 47, 13], ["buildInputs", 49, 5], ["propagatedBuildInputs", 54, 5], ["patchPhase", 59, 5], ["buildPhase", 65, 5], ["checkPhase", 71, 5], ["installPhase", 79, 5]]]);
 const formals$1 = { args: { stdenv: false, lib: false, gmp: false, prelude: false, base: false, "with-packages": false, idris: false }, ellipsis: false };
 const formals$2 = { args: { idrisDeps: true, noPrelude: true, noBase: true, pname: false, version: false, ipkgName: true, extraBuildInputs: true, idrisBuildOptions: true, idrisTestOptions: true, idrisInstallOptions: true, idrisDocOptions: true }, ellipsis: true };
-const pos$1 = nix.positions(here + "/build-idris-package.nix", [["platforms", 40, 9]]);
-const pos$2 = nix.positions(here + "/build-idris-package.nix", [["meta", 39, 7]]);
-const pos$3 = nix.positions(here + "/build-idris-package.nix", [["pname", 46, 5], ["version", 47, 13], ["buildInputs", 49, 5], ["propagatedBuildInputs", 54, 5], ["patchPhase", 59, 5], ["buildPhase", 65, 5], ["checkPhase", 71, 5], ["installPhase", 79, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -42,14 +40,14 @@ export default nix.lambda((args) => (() => {
         "ipkgName",
         "extraBuildInputs",
       ])), {
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       meta: nix.thunk(() => nix.update(nix.sel(attrs, "meta"), {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         platforms: nix.thunk(() => nix.selOr(attrs, () => nix.sel(idris, "meta", "platforms"), "meta", "platforms")),
       })),
     }));
     return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => nix.update({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname: nix.thunk(() => nix.str`idris-${pname}`),
         version: version,
         buildInputs: nix.thunk(() => nix.concat([idris_with_packages, gmp], extraBuildInputs)),

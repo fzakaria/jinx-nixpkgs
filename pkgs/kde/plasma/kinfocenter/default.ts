@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["aha", 25, 5], ["clinfo", 26, 5], ["di_edid_decode", 27, 5], ["dmidecode", 28, 5], ["eglinfo", 29, 5], ["glxinfo", 30, 5], ["ip", 31, 5], ["lsblk", 32, 5], ["lspci", 33, 5], ["lscpu", 34, 5], ["pactl", 35, 5], ["qdbus", 36, 5], ["sensors", 37, 5], ["vulkaninfo", 38, 5], ["waylandinfo", 39, 5], ["xdpyinfo", 40, 5]], [["QtBinariesDir", 51, 9]], [["mainProgram", 80, 8]], [["pname", 44, 3], ["patches", 46, 3], ["postPatch", 57, 3], ["extraNativeBuildInputs", 62, 3], ["extraBuildInputs", 63, 3], ["qtWrapperArgs", 65, 3], ["preFixup", 70, 3], ["postFixup", 75, 3], ["meta", 80, 3]]]);
 const formals$1 = { args: { aha: false, clinfo: false, dmidecode: false, iproute2: false, lib: false, "libdisplay-info": false, libusb1: false, lm_sensors: false, "mesa-demos": false, mkKdeDerivation: false, "pkg-config": false, pciutils: false, pulseaudio: false, qttools: false, replaceVars: false, systemsettings: false, "util-linux": false, "vulkan-tools": false, "wayland-utils": false, xdpyinfo: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["aha", 25, 5], ["clinfo", 26, 5], ["di_edid_decode", 27, 5], ["dmidecode", 28, 5], ["eglinfo", 29, 5], ["glxinfo", 30, 5], ["ip", 31, 5], ["lsblk", 32, 5], ["lspci", 33, 5], ["lscpu", 34, 5], ["pactl", 35, 5], ["qdbus", 36, 5], ["sensors", 37, 5], ["vulkaninfo", 38, 5], ["waylandinfo", 39, 5], ["xdpyinfo", 40, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["QtBinariesDir", 51, 9]]);
-const pos$3 = nix.positions(here + "/default.nix", [["mainProgram", 80, 8]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 44, 3], ["patches", 46, 3], ["postPatch", 57, 3], ["extraNativeBuildInputs", 62, 3], ["extraBuildInputs", 63, 3], ["qtWrapperArgs", 65, 3], ["preFixup", 70, 3], ["postFixup", 75, 3], ["meta", 80, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,7 +28,7 @@ export default nix.lambda((args) => (() => {
   const wayland_utils = nix.arg($, "wayland-utils");
   const xdpyinfo = nix.arg($, "xdpyinfo");
   const tools = nix.thunk(() => ({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     aha: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), aha)),
     clinfo: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), clinfo)),
     di_edid_decode: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), libdisplay_info)),
@@ -50,10 +47,10 @@ export default nix.lambda((args) => (() => {
     xdpyinfo: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), xdpyinfo)),
   }));
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "kinfocenter",
       patches: nix.thunk(() => [
-        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./0001-tool-paths.patch"), nix.thunk(() => nix.update({ [nix.POS]: pos$2, QtBinariesDir: null }, tools)))),
+        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./0001-tool-paths.patch"), nix.thunk(() => nix.update({ [nix.POS]: $pos[1], QtBinariesDir: null }, tools)))),
       ]),
       postPatch: nix.thunk(() => nix.str`substituteInPlace kcms/{firmware_security/fwupdmgr.sh,network/ip.sh} \\
   --replace-fail " aha " " ${nix.app(nix.sel(lib, "getExe"), aha)} "
@@ -66,7 +63,7 @@ export default nix.lambda((args) => (() => {
       postFixup: nix.thunk(() => nix.str`mkdir -p $out/nix-support
 echo "${nix.app(nix.sel(lib, "concatStringsSep"), ":", nix.thunk(() => nix.app(nix.sel(lib, "attrValues"), tools)))}" > $out/nix-support/depends
 `),
-      meta: nix.thunk(() => ({ [nix.POS]: pos$3, mainProgram: "kinfocenter" })),
+      meta: nix.thunk(() => ({ [nix.POS]: $pos[2], mainProgram: "kinfocenter" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

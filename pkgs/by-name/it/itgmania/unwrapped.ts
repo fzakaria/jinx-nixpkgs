@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/unwrapped.nix", [[["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["fetchSubmodules", 32, 5], ["hash", 33, 5]], [["name", 70, 7], ["desktopName", 71, 7], ["genericName", 72, 7], ["tryExec", 73, 7], ["exec", 74, 7], ["terminal", 75, 7], ["icon", 76, 7], ["type", 77, 7], ["comment", 78, 7], ["categories", 79, 7]], [["updateScript", 86, 12]], [["homepage", 89, 5], ["description", 90, 5], ["platforms", 91, 5], ["license", 92, 5], ["maintainers", 98, 5], ["mainProgram", 103, 5]], [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 43, 3], ["cmakeFlags", 57, 3], ["postInstall", 63, 3], ["desktopItems", 68, 3], ["passthru", 86, 3], ["meta", 88, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, nasm: false, "pkg-config": false, copyDesktopItems: false, "alsa-lib": false, glew: false, glib: false, gtk3: false, libmad: false, libogg: false, libpulseaudio: false, "libusb-compat-0_1": false, libvorbis: false, libxtst: false, udev: false, makeDesktopItem: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/unwrapped.nix", [["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["fetchSubmodules", 32, 5], ["hash", 33, 5]]);
-const pos$2 = nix.positions(here + "/unwrapped.nix", [["name", 70, 7], ["desktopName", 71, 7], ["genericName", 72, 7], ["tryExec", 73, 7], ["exec", 74, 7], ["terminal", 75, 7], ["icon", 76, 7], ["type", 77, 7], ["comment", 78, 7], ["categories", 79, 7]]);
-const pos$3 = nix.positions(here + "/unwrapped.nix", [["updateScript", 86, 12]]);
-const pos$4 = nix.positions(here + "/unwrapped.nix", [["homepage", 89, 5], ["description", 90, 5], ["platforms", 91, 5], ["license", 92, 5], ["maintainers", 98, 5], ["mainProgram", 103, 5]]);
-const pos$5 = nix.positions(here + "/unwrapped.nix", [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 43, 3], ["cmakeFlags", 57, 3], ["postInstall", 63, 3], ["desktopItems", 68, 3], ["passthru", 86, 3], ["meta", 88, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,11 +28,11 @@ export default nix.lambda((args) => (() => {
   const makeDesktopItem = nix.arg($, "makeDesktopItem");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "itgmania",
       version: "1.3.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "itgmania",
           repo: "itgmania",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -61,7 +57,7 @@ export default nix.lambda((args) => (() => {
       postInstall: "mkdir -p $out/share/icons/hicolor/scalable/apps/\nln -s $out/itgmania/Data/logo.svg $out/share/icons/hicolor/scalable/apps/itgmania.svg\n",
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "itgmania",
             desktopName: "ITGmania",
             genericName: "Rhythm and dance game",
@@ -75,11 +71,11 @@ export default nix.lambda((args) => (() => {
           })))),
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://www.itgmania.com/",
         description: "Fork of StepMania 5.1, improved for the post-ITG community",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),

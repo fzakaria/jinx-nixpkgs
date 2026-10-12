@@ -2,15 +2,9 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["nativeBuildInputs", 17, 9]], [["name", 15, 7], ["derivationArgs", 16, 7]], [["name", 25, 9], ["nativeBuildInputs", 26, 9]], [["name", 44, 9]], [["name", 57, 9], ["nativeBuildInputs", 58, 9]], [["name", 119, 9], ["nativeBuildInputs", 120, 9]], [["dump-config", 22, 3], ["invalid-keymap", 41, 3], ["parse-zmk", 54, 3], ["draw", 116, 3]]]);
 const formals$1 = { args: { "keymap-drawer": false, runCommandWith: false, testers: false, libxml2: false, xmlstarlet: false, yamllint: false, "yq-go": false }, ellipsis: false };
 const formals$2 = { args: { name: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/default.nix", [["nativeBuildInputs", 17, 9]]);
-const pos$2 = nix.positions(here + "/default.nix", [["name", 15, 7], ["derivationArgs", 16, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["name", 25, 9], ["nativeBuildInputs", 26, 9]]);
-const pos$4 = nix.positions(here + "/default.nix", [["name", 44, 9]]);
-const pos$5 = nix.positions(here + "/default.nix", [["name", 57, 9], ["nativeBuildInputs", 58, 9]]);
-const pos$6 = nix.positions(here + "/default.nix", [["name", 119, 9], ["nativeBuildInputs", 120, 9]]);
-const pos$7 = nix.positions(here + "/default.nix", [["dump-config", 22, 3], ["invalid-keymap", 41, 3], ["parse-zmk", 54, 3], ["draw", 116, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,28 +20,28 @@ export default nix.lambda((args) => (() => {
     const args_2 = args_1;
     const name = nix.arg($_1, "name");
     return nix.app(runCommandWith, nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         name: nix.thunk(() => nix.str`${nix.sel(keymap_drawer, "name")}-${name}`),
         derivationArgs: nix.thunk(() => nix.update(nix.builtins.removeAttrs(args_2, nix.thunk(() => ["name"])), {
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           nativeBuildInputs: nix.thunk(() => nix.concat([keymap_drawer], nix.selOr(args_2, () => [], "nativeBuildInputs"))),
         })),
       })));
   })(), formals$2);
   return {
-    [nix.POS]: pos$7,
+    [nix.POS]: $pos[6],
     "dump-config": nix.thunk(() => nix.app(runKeymapDrawer, nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         name: "dump-config",
         nativeBuildInputs: nix.thunk(() => [yamllint]),
       })), "keymap dump-config --output \"$out\"\n\nif [ ! -s \"$out\" ]; then\n  >&2 echo 'Expected `dump-config` to have content.'\n  exit 1\nfi\n\nyamllint --strict --config-data relaxed \"$out\"\n")),
-    "invalid-keymap": nix.thunk(() => nix.app(nix.sel(testers, "testBuildFailure"), nix.thunk(() => nix.app(runKeymapDrawer, nix.thunk(() => ({ [nix.POS]: pos$4, name: "invalid-keymap" })), nix.thunk(() => nix.str`keymap \\
+    "invalid-keymap": nix.thunk(() => nix.app(nix.sel(testers, "testBuildFailure"), nix.thunk(() => nix.app(runKeymapDrawer, nix.thunk(() => ({ [nix.POS]: $pos[3], name: "invalid-keymap" })), nix.thunk(() => nix.str`keymap \\
   --config ${nix.path(here, "./config.yaml")} \\
   parse --zmk-keymap ${nix.path(here, "./invalid.keymap")} \\
   --output "$out"
 `))))),
     "parse-zmk": nix.thunk(() => nix.app(runKeymapDrawer, nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         name: "parse",
         nativeBuildInputs: nix.thunk(() => [yamllint, yq_go]),
       })), nix.thunk(() => nix.str`keymap \\
@@ -102,7 +96,7 @@ yq --exit-status '.. | select(. == "F1")' "$out" >/dev/null || {
 }
 `))),
     draw: nix.thunk(() => nix.app(runKeymapDrawer, nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         name: "draw",
         nativeBuildInputs: nix.thunk(() => [xmlstarlet, libxml2]),
       })), nix.thunk(() => nix.str`keymap \\

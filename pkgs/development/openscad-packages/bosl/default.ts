@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]], [["description", 22, 5], ["homepage", 23, 5], ["license", 24, 5], ["maintainers", 25, 5]], [["pname", 8, 3], ["version", 9, 3], ["libName", 10, 3], ["installTargets", 12, 3], ["src", 14, 3], ["meta", 21, 3]]]);
 const formals$1 = { args: { lib: false, buildOpenSCADPackage: false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 22, 5], ["homepage", 23, 5], ["license", 24, 5], ["maintainers", 25, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 8, 3], ["version", 9, 3], ["libName", 10, 3], ["installTargets", 12, 3], ["src", 14, 3], ["meta", 21, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,20 +11,20 @@ export default nix.lambda((args) => (() => {
   const buildOpenSCADPackage = nix.arg($, "buildOpenSCADPackage");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(buildOpenSCADPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "bosl",
       version: "unstable-2023-02-19",
       libName: "BOSL",
       installTargets: nix.thunk(() => ["*.scad"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "revarbat",
           repo: "BOSL",
           rev: "4ce427a8a38786e5f74b728c1e33d9fe7d4904d2",
           hash: "sha256-24vqGt0TPe09K1WTP8fDX2Wx4MlsDnigzx7Ha0mXCOg=",
         })))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "The Belfry OpenScad Library - A library of tools, shapes, and helpers to make OpenScad easier to use.",
         homepage: "https://github.com/revarbat/BOSL",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

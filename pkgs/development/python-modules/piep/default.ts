@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 16, 13], ["version", 16, 19], ["hash", 17, 5]], [["description", 29, 5], ["homepage", 30, 5], ["maintainers", 31, 5], ["license", 32, 5], ["mainProgram", 33, 5]], [["version", 11, 3], ["pname", 12, 3], ["pyproject", 13, 3], ["src", 15, 3], ["build-system", 20, 3], ["dependencies", 22, 3], ["pythonImportsCheck", 24, 3], ["nativeCheckInputs", 26, 3], ["meta", 28, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, setuptools: false, pygments: false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 16, 13], ["version", 16, 19], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 29, 5], ["homepage", 30, 5], ["maintainers", 31, 5], ["license", 32, 5], ["mainProgram", 33, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["version", 11, 3], ["pname", 12, 3], ["pyproject", 13, 3], ["src", 15, 3], ["build-system", 20, 3], ["dependencies", 22, 3], ["pythonImportsCheck", 24, 3], ["nativeCheckInputs", 26, 3], ["meta", 28, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pname = "piep";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-aM7KQJZr1P0Hs2ReyRj2ItGUo+fRJ+TU3lLAU2Mu8KA=",
@@ -30,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["piep"]);
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Bringing the power of python to stream editing",
         homepage: "https://github.com/timbertson/piep",
         maintainers: nix.thunk(() => (() => {
@@ -41,7 +39,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "piep",
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         version,
         pname,
         pyproject,

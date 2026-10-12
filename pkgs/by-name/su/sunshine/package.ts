@@ -2,17 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["x86_64-linux", 75, 7], ["aarch64-linux", 76, 7], ["aarch64-darwin", 77, 7]], [["x86_64-linux", 89, 9], ["aarch64-linux", 90, 9], ["aarch64-darwin", 91, 9]], [["url", 82, 5], ["hash", 87, 5]], [["owner", 105, 5], ["repo", 106, 5], ["tag", 107, 5], ["hash", 108, 5], ["fetchSubmodules", 109, 5]], [["src", 113, 26], ["version", 113, 30], ["pname", 114, 5], ["npmDepsHash", 115, 5], ["installPhase", 117, 5]], [["BUILD_VERSION", 281, 5], ["BRANCH", 282, 5], ["COMMIT", 283, 5]], [["sunshine", 317, 36]], [["tests", 317, 5], ["updateScript", 318, 5]], [["description", 322, 5], ["homepage", 323, 5], ["license", 324, 5], ["mainProgram", 325, 5], ["maintainers", 326, 5], ["platforms", 330, 5]], [["pname", 98, 3], ["version", 99, 3], ["__structuredAttrs", 101, 3], ["strictDeps", 102, 3], ["src", 104, 3], ["ui", 112, 3], ["postPatch", 127, 3], ["nativeBuildInputs", 161, 3], ["buildInputs", 185, 3], ["runtimeDependencies", 239, 3], ["cmakeFlags", 247, 3], ["env", 279, 3], ["preBuild", 287, 3], ["buildFlags", 291, 3], ["installPhase", 296, 3], ["dontWrapQtApps", 304, 3], ["postFixup", 306, 3], ["doInstallCheck", 312, 3], ["nativeInstallCheckInputs", 314, 3], ["passthru", 316, 3], ["meta", 321, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchzip: false, autoPatchelfHook: false, autoAddDriverRunpath: false, makeWrapper: false, buildNpmPackage: false, nixosTests: false, cmake: false, avahi: false, libevdev: false, libpulseaudio: false, libxtst: false, libxrandr: false, libxi: false, libxfixes: false, libxdmcp: false, libx11: false, libxcb: false, openssl: false, libopus: false, boost: false, "pkg-config": false, libdrm: false, wayland: false, "wayland-scanner": false, libffi: false, libcap: false, libgbm: false, curl: false, pcre2: false, python3: false, libuuid: false, libselinux: false, libsepol: false, libthai: false, libdatrie: false, libxkbcommon: false, libepoxy: false, libva: false, libvdpau: false, libglvnd: false, numactl: false, "amf-headers": false, "svt-av1": false, shaderc: false, "vulkan-loader": false, qt6: false, libnotify: false, pipewire: false, miniupnpc: false, nlohmann_json: false, config: false, coreutils: false, udevCheckHook: false, cudaSupport: true, cudaPackages: true, "apple-sdk_15": false, darwinMinVersionHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["x86_64-linux", 75, 7], ["aarch64-linux", 76, 7], ["aarch64-darwin", 77, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["x86_64-linux", 89, 9], ["aarch64-linux", 90, 9], ["aarch64-darwin", 91, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 82, 5], ["hash", 87, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["owner", 105, 5], ["repo", 106, 5], ["tag", 107, 5], ["hash", 108, 5], ["fetchSubmodules", 109, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["src", 113, 26], ["version", 113, 30], ["pname", 114, 5], ["npmDepsHash", 115, 5], ["installPhase", 117, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["BUILD_VERSION", 281, 5], ["BRANCH", 282, 5], ["COMMIT", 283, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["sunshine", 317, 36]]);
-const pos$8 = nix.positions(here + "/package.nix", [["tests", 317, 5], ["updateScript", 318, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["description", 322, 5], ["homepage", 323, 5], ["license", 324, 5], ["mainProgram", 325, 5], ["maintainers", 326, 5], ["platforms", 330, 5]]);
-const pos$10 = nix.positions(here + "/package.nix", [["pname", 98, 3], ["version", 99, 3], ["__structuredAttrs", 101, 3], ["strictDeps", 102, 3], ["src", 104, 3], ["ui", 112, 3], ["postPatch", 127, 3], ["nativeBuildInputs", 161, 3], ["buildInputs", 185, 3], ["runtimeDependencies", 239, 3], ["cmakeFlags", 247, 3], ["env", 279, 3], ["preBuild", 287, 3], ["buildFlags", 291, 3], ["installPhase", 296, 3], ["dontWrapQtApps", 304, 3], ["postFixup", 306, 3], ["doInstallCheck", 312, 3], ["nativeInstallCheckInputs", 314, 3], ["passthru", 316, 3], ["meta", 321, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -82,29 +73,29 @@ export default nix.lambda((args) => (() => {
   const stdenv$ = nix.thunk(() => (nix.asBool(cudaSupport) ? nix.sel(cudaPackages, "backendStdenv") : nix.force(stdenv)));
   const buildDepsTag = "v2026.910.121303";
   const ffmpegArch = nix.thunk(() => nix.selOr({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     "x86_64-linux": "Linux-x86_64",
     "aarch64-linux": "Linux-aarch64",
     "aarch64-darwin": "Darwin-arm64",
   }, () => nix.builtins.throw(nix.thunk(() => nix.str`sunshine: unsupported system ${nix.sel(stdenv, "hostPlatform", "system")} for prebuilt ffmpeg`)), nix.key(nix.sel(stdenv, "hostPlatform", "system"))));
   const ffmpegPrebuilt = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       url: nix.thunk(() => nix.str`https://github.com/LizardByte/build-deps/releases/download/${buildDepsTag}/${ffmpegArch}-ffmpeg.tar.gz`),
       hash: nix.thunk(() => nix.sel({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         "x86_64-linux": "sha256-1S57XfkJa+qEYQLmifWyT9ul0SASFhSk1lkk2timnOY=",
         "aarch64-linux": "sha256-1HnlNem4AbcJkhZA8x5hC1/4cCqL8bJDjXNkHCI5IYw=",
         "aarch64-darwin": "sha256-jtBnSo0rn0VCnbfB90by1iBE4zvmtE86Wz2x+PolGmw=",
       }, nix.key(nix.sel(stdenv, "hostPlatform", "system")))),
     }))));
   return nix.app(nix.sel(stdenv$, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       pname: "sunshine",
       version: "2026.914.233613",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           owner: "LizardByte",
           repo: "Sunshine",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -112,7 +103,7 @@ export default nix.lambda((args) => (() => {
           fetchSubmodules: true,
         })))),
       ui: nix.thunk(() => nix.app(buildNpmPackage, nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           pname: "sunshine-ui",
@@ -220,7 +211,7 @@ substituteInPlace packaging/linux/app-dev.lizardbyte.app.Sunshine.service.in \\
           nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "SUNSHINE_BUILD_HOMEBREW", true)),
         ])))))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         BUILD_VERSION: nix.thunk(() => nix.sel(finalAttrs, "version")),
         BRANCH: "master",
         COMMIT: nix.thunk(() => nix.sel(finalAttrs, "src", "rev")),
@@ -237,15 +228,15 @@ substituteInPlace packaging/linux/app-dev.lizardbyte.app.Sunshine.service.in \\
       doInstallCheck: isLinux,
       nativeInstallCheckInputs: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), isLinux, nix.thunk(() => [udevCheckHook]))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           sunshine: nix.thunk(() => nix.attr(nixosTests, "sunshine")),
         })),
         updateScript: nix.path(here, "./updater.sh"),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         description: "Game stream host for Moonlight",
         homepage: "https://github.com/LizardByte/Sunshine",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 15, 5], ["sha256", 16, 5]], [["NIX_CFLAGS_COMPILE", 30, 7]], [["homepage", 38, 5], ["description", 39, 5], ["platforms", 40, 5], ["license", 41, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["hardeningDisable", 19, 3], ["buildInputs", 21, 3], ["buildFlags", 28, 3], ["env", 30, 3], ["installPhase", 32, 3], ["meta", 37, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, motif: false, libxpm: false, libxt: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 15, 5], ["sha256", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 30, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 38, 5], ["description", 39, 5], ["platforms", 40, 5], ["license", 41, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["hardeningDisable", 19, 3], ["buildInputs", 21, 3], ["buildFlags", 28, 3], ["env", 30, 3], ["installPhase", 32, 3], ["meta", 37, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const libxpm = nix.arg($, "libxpm");
   const libxt = nix.arg($, "libxt");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "nedit",
       version: "5.8",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/nedit/nedit-source/nedit-${nix.sel(finalAttrs, "version")}-src.tar.gz`),
           sha256: "sha256-WFGqclLa2VIIRSkXNkAjJWLexKfEQCCfGW1T1KWoB00=",
         })))),
@@ -29,12 +26,12 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [motif, libxpm, libxt]),
       buildFlags: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) || nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")))), "linux")),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.str`-DBUILD_UNTESTED_NEDIT -L${motif}/lib`),
       })),
       installPhase: "mkdir -p $out/bin\ncp -p source/nedit source/nc $out/bin\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://sourceforge.net/projects/nedit",
         description: "Fast, compact Motif/X11 plain text editor",
         platforms: nix.thunk(() => (() => {

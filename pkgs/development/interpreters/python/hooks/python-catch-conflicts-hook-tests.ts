@@ -2,23 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/python-catch-conflicts-hook-tests.nix", [[["some_modification", 16, 40]], [["version", 41, 9], ["src", 42, 9], ["pyproject", 47, 9], ["catchConflicts", 48, 9], ["buildInputs", 49, 9]], [["builder", 58, 7]], [["pname", 82, 5], ["buildInputs", 83, 5], ["propagatedBuildInputs", 89, 5]], [["pname", 99, 5], ["preFixup", 100, 5]], [["pname", 110, 9], ["version", 111, 9], ["src", 112, 9], ["pyproject", 113, 9], ["catchConflicts", 114, 9], ["buildInputs", 115, 9], ["propagatedBuildInputs", 120, 9]], [["pname", 143, 9], ["propagatedBuildInputs", 144, 9]], [["pname", 151, 9], ["propagatedBuildInputs", 152, 9]], [["pname", 156, 9], ["propagatedBuildInputs", 157, 9]], [["pname", 161, 9]], [["pname", 184, 9], ["propagatedBuildInputs", 185, 9]], [["pname", 193, 9], ["propagatedBuildInputs", 194, 9]], [["pname", 198, 9], ["propagatedBuildInputs", 199, 9]], [["pname", 203, 9], ["propagatedBuildInputs", 204, 9]], [["pname", 208, 9]], [["ignores-build-time-deps", 81, 3], ["cyclic-dependencies", 98, 3], ["catches-simple-conflict", 106, 3], ["catches-transitive-conflict", 139, 3], ["catches-conflict-multiple-chains", 180, 3]]]);
 const formals$1 = { args: { lib: false, pythonOnBuildForHost: false, runCommand: false, writeShellScript: false, coreutils: false, gnugrep: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/python-catch-conflicts-hook-tests.nix", [["some_modification", 16, 40]]);
-const pos$2 = nix.positions(here + "/python-catch-conflicts-hook-tests.nix", [["version", 41, 9], ["src", 42, 9], ["pyproject", 47, 9], ["catchConflicts", 48, 9], ["buildInputs", 49, 9]]);
-const pos$3 = nix.positions(here + "/python-catch-conflicts-hook-tests.nix", [["builder", 58, 7]]);
-const pos$4 = nix.positions(here + "/python-catch-conflicts-hook-tests.nix", [["pname", 82, 5], ["buildInputs", 83, 5], ["propagatedBuildInputs", 89, 5]]);
-const pos$5 = nix.positions(here + "/python-catch-conflicts-hook-tests.nix", [["pname", 99, 5], ["preFixup", 100, 5]]);
-const pos$6 = nix.positions(here + "/python-catch-conflicts-hook-tests.nix", [["pname", 110, 9], ["version", 111, 9], ["src", 112, 9], ["pyproject", 113, 9], ["catchConflicts", 114, 9], ["buildInputs", 115, 9], ["propagatedBuildInputs", 120, 9]]);
-const pos$7 = nix.positions(here + "/python-catch-conflicts-hook-tests.nix", [["pname", 143, 9], ["propagatedBuildInputs", 144, 9]]);
-const pos$8 = nix.positions(here + "/python-catch-conflicts-hook-tests.nix", [["pname", 151, 9], ["propagatedBuildInputs", 152, 9]]);
-const pos$9 = nix.positions(here + "/python-catch-conflicts-hook-tests.nix", [["pname", 156, 9], ["propagatedBuildInputs", 157, 9]]);
-const pos$10 = nix.positions(here + "/python-catch-conflicts-hook-tests.nix", [["pname", 161, 9]]);
-const pos$11 = nix.positions(here + "/python-catch-conflicts-hook-tests.nix", [["pname", 184, 9], ["propagatedBuildInputs", 185, 9]]);
-const pos$12 = nix.positions(here + "/python-catch-conflicts-hook-tests.nix", [["pname", 193, 9], ["propagatedBuildInputs", 194, 9]]);
-const pos$13 = nix.positions(here + "/python-catch-conflicts-hook-tests.nix", [["pname", 198, 9], ["propagatedBuildInputs", 199, 9]]);
-const pos$14 = nix.positions(here + "/python-catch-conflicts-hook-tests.nix", [["pname", 203, 9], ["propagatedBuildInputs", 204, 9]]);
-const pos$15 = nix.positions(here + "/python-catch-conflicts-hook-tests.nix", [["pname", 208, 9]]);
-const pos$16 = nix.positions(here + "/python-catch-conflicts-hook-tests.nix", [["ignores-build-time-deps", 81, 3], ["cyclic-dependencies", 98, 3], ["catches-simple-conflict", 106, 3], ["catches-transitive-conflict", 139, 3], ["catches-conflict-multiple-chains", 180, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const coreutils = nix.arg($, "coreutils");
   const gnugrep = nix.arg($, "gnugrep");
   const pythonPkgs = nix.thunk(() => nix.sel(pythonOnBuildForHost, "pkgs"));
-  const customize = (pkg) => nix.app(nix.sel(pkg, "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: pos$1, some_modification: true })));
+  const customize = (pkg) => nix.app(nix.sel(pkg, "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: $pos[0], some_modification: true })));
   const pyprojectToml = (pname) => nix.builtins.toFile("pyproject.toml", nix.thunk(() => nix.str`[project]
 name = "${pname}"
 version = "1.0.0"
@@ -39,7 +24,7 @@ cp ${nix.app(pyprojectToml, pname)} $out/pyproject.toml
 touch $out/src/__init__.py
 `));
   const generatePythonPackage = (args_1) => nix.app(nix.sel(pythonPkgs, "buildPythonPackage"), nix.thunk(() => nix.update({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       version: "1.0.0",
       src: nix.thunk(() => nix.app(runCommand, "my-project-source", nix.thunk(() => ({})), nix.thunk(() => nix.str`mkdir -p $out/src
 cp ${nix.app(pyprojectToml, nix.thunk(() => nix.sel(args_1, "pname")))} $out/pyproject.toml
@@ -50,7 +35,7 @@ touch $out/src/__init__.py
       buildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pythonPkgs, "setuptools"))]),
     }, args_1)));
   const expectFailure = (build) => (errorMsg) => nix.app(nix.sel(lib, "overrideDerivation"), build, (old) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       builder: nix.thunk(() => nix.app(writeShellScript, "test-for-failure", nix.thunk(() => nix.str`export PATH=${coreutils}/bin:${gnugrep}/bin:$PATH
 ${nix.sel(old, "builder")} "$@" > ./log 2>&1
 status=$?
@@ -65,9 +50,9 @@ fi
 `))),
     }));
   return {
-    [nix.POS]: pos$16,
+    [nix.POS]: $pos[15],
     "ignores-build-time-deps": nix.thunk(() => nix.app(generatePythonPackage, nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname: "ignores-build-time-deps",
         buildInputs: nix.thunk(() => [
           nix.thunk(() => nix.sel(pythonPkgs, "build")),
@@ -82,7 +67,7 @@ fi
         ]),
       })))),
     "cyclic-dependencies": nix.thunk(() => nix.app(generatePythonPackage, nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname: "cyclic-dependencies",
         preFixup: "appendToVar propagatedBuildInputs \"$out\"\n",
       })))),
@@ -99,7 +84,7 @@ fi
             nix.thunk(() => nix.app(customize, nix.thunk(() => nix.sel(pythonPkgs, "packaging")))),
           ]);
           return {
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             pname,
             version,
             src,
@@ -113,45 +98,45 @@ fi
     })()),
     "catches-transitive-conflict": nix.thunk(() => (() => {
       const toplevel = nix.thunk(() => nix.app(generatePythonPackage, nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           pname: "catches-transitive-conflict",
           propagatedBuildInputs: nix.thunk(() => [dep1, dep2]),
         }))));
       const dep1 = nix.thunk(() => nix.app(generatePythonPackage, nix.thunk(() => ({
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           pname: "dependency1",
           propagatedBuildInputs: nix.thunk(() => [leaf]),
         }))));
       const dep2 = nix.thunk(() => nix.app(generatePythonPackage, nix.thunk(() => ({
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           pname: "dependency2",
           propagatedBuildInputs: nix.thunk(() => [nix.thunk(() => nix.app(customize, leaf))]),
         }))));
-      const leaf = nix.thunk(() => nix.app(generatePythonPackage, nix.thunk(() => ({ [nix.POS]: pos$10, pname: "leaf" }))));
+      const leaf = nix.thunk(() => nix.app(generatePythonPackage, nix.thunk(() => ({ [nix.POS]: $pos[9], pname: "leaf" }))));
       return nix.app(expectFailure, toplevel, "Found duplicated packages in closure for dependency 'leaf'");
     })()),
     "catches-conflict-multiple-chains": nix.thunk(() => (() => {
       const toplevel = nix.thunk(() => nix.app(generatePythonPackage, nix.thunk(() => ({
-          [nix.POS]: pos$11,
+          [nix.POS]: $pos[10],
           pname: "catches-conflict-multiple-chains",
           propagatedBuildInputs: nix.thunk(() => [dep1, dep2, dep3]),
         }))));
       const dep1 = nix.thunk(() => nix.app(generatePythonPackage, nix.thunk(() => ({
-          [nix.POS]: pos$12,
+          [nix.POS]: $pos[11],
           pname: "dependency1",
           propagatedBuildInputs: nix.thunk(() => [leaf]),
         }))));
       const dep2 = nix.thunk(() => nix.app(generatePythonPackage, nix.thunk(() => ({
-          [nix.POS]: pos$13,
+          [nix.POS]: $pos[12],
           pname: "dependency2",
           propagatedBuildInputs: nix.thunk(() => [leaf]),
         }))));
       const dep3 = nix.thunk(() => nix.app(generatePythonPackage, nix.thunk(() => ({
-          [nix.POS]: pos$14,
+          [nix.POS]: $pos[13],
           pname: "dependency3",
           propagatedBuildInputs: nix.thunk(() => [nix.thunk(() => nix.app(customize, leaf))]),
         }))));
-      const leaf = nix.thunk(() => nix.app(generatePythonPackage, nix.thunk(() => ({ [nix.POS]: pos$15, pname: "leaf" }))));
+      const leaf = nix.thunk(() => nix.app(generatePythonPackage, nix.thunk(() => ({ [nix.POS]: $pos[14], pname: "leaf" }))));
       return nix.app(expectFailure, toplevel, "Found duplicated packages in closure for dependency 'leaf'");
     })()),
   };

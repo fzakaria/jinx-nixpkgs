@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 54, 5], ["repo", 55, 5], ["tag", 56, 5], ["hash", 57, 5]], [["url", 64, 7], ["hash", 65, 7]], [["url", 68, 7], ["hash", 69, 7]], [["cli", 112, 5], ["dislocation", 115, 5], ["docs", 120, 5]], [["description", 188, 5], ["homepage", 189, 5], ["changelog", 190, 5], ["license", 191, 5], ["maintainers", 192, 5]], [["pname", 48, 3], ["version", 49, 3], ["pyproject", 50, 3], ["__structuredAttrs", 51, 3], ["src", 53, 3], ["patches", 60, 3], ["postPatch", 73, 3], ["build-system", 97, 3], ["dependencies", 104, 3], ["optional-dependencies", 111, 3], ["pythonImportsCheck", 133, 3], ["nativeCheckInputs", 135, 3], ["preCheck", 143, 3], ["disabledTestPaths", 147, 3], ["disabledTests", 158, 3], ["meta", 187, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitHub: false, pythonAtLeast: false, fetchpatch: false, "meson-python": false, ninja: false, numpy: false, ase: false, packaging: false, scipy: false, argcomplete: false, atomman: false, nglview: false, ovito: false, jupytext: false, "myst-nb": false, numpydoc: false, "pydata-sphinx-theme": false, sphinx: false, "sphinx-copybutton": false, "sphinx-rtd-theme": false, "sphinxcontrib-spelling": false, "pytest-subtests": false, "pytest-timeout": false, "pytest-xdist": false, sympy: false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 54, 5], ["repo", 55, 5], ["tag", 56, 5], ["hash", 57, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["url", 64, 7], ["hash", 65, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["url", 68, 7], ["hash", 69, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["cli", 112, 5], ["dislocation", 115, 5], ["docs", 120, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["description", 188, 5], ["homepage", 189, 5], ["changelog", 190, 5], ["license", 191, 5], ["maintainers", 192, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 48, 3], ["version", 49, 3], ["pyproject", 50, 3], ["__structuredAttrs", 51, 3], ["src", 53, 3], ["patches", 60, 3], ["postPatch", 73, 3], ["build-system", 97, 3], ["dependencies", 104, 3], ["optional-dependencies", 111, 3], ["pythonImportsCheck", 133, 3], ["nativeCheckInputs", 135, 3], ["preCheck", 143, 3], ["disabledTestPaths", 147, 3], ["disabledTests", 158, 3], ["meta", 187, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -42,13 +37,13 @@ export default nix.lambda((args) => (() => {
   const sympy = nix.arg($, "sympy");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "matscipy",
       version: "1.2.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "libAtoms",
           repo: "matscipy",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -56,12 +51,12 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/libAtoms/matscipy/commit/6a91a4646e30796abe51ef3efa4b479d4471aae0.patch",
             hash: "sha256-PH9I+7+nN6fSkugVbxPCs3LqjhP/fQ5NZjiNQ7F70YU=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: "https://github.com/libAtoms/matscipy/commit/f6478347bbceeab8ec177042b6ed1243e742d55f.patch",
             hash: "sha256-DKk+1TlP+OngcmycsCIE+7s2h/7wa7Gxv9APbuIAoZg=",
           })))),
@@ -74,7 +69,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [meson_python, ninja, numpy]),
       dependencies: nix.thunk(() => [ase, numpy, packaging, scipy]),
       "optional-dependencies": nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         cli: nix.thunk(() => [argcomplete]),
         dislocation: nix.thunk(() => [atomman, nglview, ovito]),
         docs: nix.thunk(() => [
@@ -107,7 +102,7 @@ export default nix.lambda((args) => (() => {
           "test_read_write_lammps_data",
         ]))))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Materials science with Python at the atomic-scale",
         homepage: "https://github.com/libAtoms/matscipy",
         changelog: nix.thunk(() => nix.str`https://github.com/libAtoms/matscipy/blob/${nix.sel(finalAttrs, "src", "tag")}/ChangeLog.md`),

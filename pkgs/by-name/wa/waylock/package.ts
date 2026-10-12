@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]], [["updateScript", 59, 12]], [["homepage", 62, 5], ["changelog", 63, 5], ["description", 64, 5], ["license", 65, 5], ["maintainers", 66, 5], ["mainProgram", 70, 5], ["platforms", 71, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["postPatch", 29, 3], ["deps", 33, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 42, 3], ["zigBuildFlags", 49, 3], ["preBuild", 55, 3], ["passthru", 59, 3], ["meta", 61, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, callPackage: false, fetchFromCodeberg: false, libxkbcommon: false, pam: false, "pkg-config": false, scdoc: false, wayland: false, "wayland-scanner": false, "wayland-protocols": false, zig_0_16: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 59, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 62, 5], ["changelog", 63, 5], ["description", 64, 5], ["license", 65, 5], ["maintainers", 66, 5], ["mainProgram", 70, 5], ["platforms", 71, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["postPatch", 29, 3], ["deps", 33, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 42, 3], ["zigBuildFlags", 49, 3], ["preBuild", 55, 3], ["passthru", 59, 3], ["meta", 61, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const zig_0_16 = nix.arg($, "zig_0_16");
   const zig = zig_0_16;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "waylock",
       version: "1.6.0",
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ifreund",
           repo: "waylock",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -45,9 +42,9 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`${nix.sel(finalAttrs, "deps")}`),
       ]),
       preBuild: "substituteInPlace pam.d/waylock --replace-fail \"system-auth\" \"login\"\n",
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[1], updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://codeberg.org/ifreund/waylock",
         changelog: nix.thunk(() => nix.str`https://codeberg.org/ifreund/waylock/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "Small screenlocker for Wayland compositors",

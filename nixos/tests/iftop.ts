@@ -2,45 +2,38 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/iftop.nix", [[["maintainers", 5, 8]], [["enable", 10, 22]], [["iftop", 10, 16]], [["imports", 9, 7], ["programs", 10, 7]], [["systemPackages", 14, 19]], [["imports", 13, 7], ["environment", 14, 7]], [["withIftop", 8, 5], ["withoutIftop", 12, 5]], [["name", 4, 3], ["meta", 5, 3], ["nodes", 7, 3], ["testScript", 18, 3]]]);
 const formals$1 = { args: { pkgs: false, lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/iftop.nix", [["maintainers", 5, 8]]);
-const pos$2 = nix.positions(here + "/iftop.nix", [["enable", 10, 22]]);
-const pos$3 = nix.positions(here + "/iftop.nix", [["iftop", 10, 16]]);
-const pos$4 = nix.positions(here + "/iftop.nix", [["imports", 9, 7], ["programs", 10, 7]]);
-const pos$5 = nix.positions(here + "/iftop.nix", [["systemPackages", 14, 19]]);
-const pos$6 = nix.positions(here + "/iftop.nix", [["imports", 13, 7], ["environment", 14, 7]]);
-const pos$7 = nix.positions(here + "/iftop.nix", [["withIftop", 8, 5], ["withoutIftop", 12, 5]]);
-const pos$8 = nix.positions(here + "/iftop.nix", [["name", 4, 3], ["meta", 5, 3], ["nodes", 7, 3], ["testScript", 18, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$8,
+    [nix.POS]: $pos[7],
     name: "iftop",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "ma27"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       withIftop: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         imports: nix.thunk(() => [nix.path(here, "./common/user-account.nix")]),
         programs: nix.thunk(() => ({
-          [nix.POS]: pos$3,
-          iftop: nix.thunk(() => ({ [nix.POS]: pos$2, enable: true })),
+          [nix.POS]: $pos[2],
+          iftop: nix.thunk(() => ({ [nix.POS]: $pos[1], enable: true })),
         })),
       })),
       withoutIftop: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         imports: nix.thunk(() => [nix.path(here, "./common/user-account.nix")]),
         environment: nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "iftop"))]),
         })),
       })),

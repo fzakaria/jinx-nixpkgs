@@ -2,16 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["fontDirectories", 21, 31]], [["owner", 31, 7], ["repo", 32, 7], ["tag", 33, 7], ["hash", 34, 7]], [["description", 63, 7], ["homepage", 64, 7], ["license", 65, 7], ["mainProgram", 66, 7]], [["pname", 27, 5], ["version", 28, 5], ["src", 30, 5], ["patches", 37, 5], ["postPatch", 43, 5], ["nativeBuildInputs", 48, 5], ["installPhase", 52, 5], ["meta", 62, 5]], [["owner", 80, 5], ["repo", 81, 5], ["tag", 82, 5], ["hash", 83, 5]], [["gotenberg", 159, 26]], [["updateScript", 157, 12], ["tests", 158, 12]], [["description", 163, 5], ["mainProgram", 164, 5], ["homepage", 165, 5], ["changelog", 166, 5], ["license", 167, 5], ["maintainers", 168, 5]], [["pname", 71, 3], ["version", 72, 3], ["outputs", 74, 3], ["src", 79, 3], ["vendorHash", 86, 3], ["postPatch", 88, 3], ["nativeBuildInputs", 98, 3], ["ldflags", 100, 3], ["checkInputs", 106, 3], ["preCheck", 117, 3], ["checkFlags", 132, 3], ["postInstall", 141, 3], ["preFixup", 146, 3], ["passthru", 157, 3], ["meta", 162, 3]]]);
 const formals$1 = { args: { lib: false, buildGo126Module: false, chromium: false, fetchFromGitHub: false, libreoffice: false, makeBinaryWrapper: false, pdftk: false, qpdf: false, mktemp: false, makeFontsConf: false, liberation_ttf_v2: false, exiftool: false, pdfcpu: false, makeWrapper: false, nixosTests: false, "nix-update-script": false, stdenvNoCC: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["fontDirectories", 21, 31]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 31, 7], ["repo", 32, 7], ["tag", 33, 7], ["hash", 34, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 63, 7], ["homepage", 64, 7], ["license", 65, 7], ["mainProgram", 66, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 27, 5], ["version", 28, 5], ["src", 30, 5], ["patches", 37, 5], ["postPatch", 43, 5], ["nativeBuildInputs", 48, 5], ["installPhase", 52, 5], ["meta", 62, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["owner", 80, 5], ["repo", 81, 5], ["tag", 82, 5], ["hash", 83, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["gotenberg", 159, 26]]);
-const pos$7 = nix.positions(here + "/package.nix", [["updateScript", 157, 12], ["tests", 158, 12]]);
-const pos$8 = nix.positions(here + "/package.nix", [["description", 163, 5], ["mainProgram", 164, 5], ["homepage", 165, 5], ["changelog", 166, 5], ["license", 167, 5], ["maintainers", 168, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["pname", 71, 3], ["version", 72, 3], ["outputs", 74, 3], ["src", 79, 3], ["vendorHash", 86, 3], ["postPatch", 88, 3], ["nativeBuildInputs", 98, 3], ["ldflags", 100, 3], ["checkInputs", 106, 3], ["preCheck", 117, 3], ["checkFlags", 132, 3], ["postInstall", 141, 3], ["preFixup", 146, 3], ["passthru", 157, 3], ["meta", 162, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,16 +24,16 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const nix_update_script = nix.arg($, "nix-update-script");
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
-  const fontsConf = nix.thunk(() => nix.app(makeFontsConf, nix.thunk(() => ({ [nix.POS]: pos$1, fontDirectories: nix.thunk(() => [liberation_ttf_v2]) }))));
+  const fontsConf = nix.thunk(() => nix.app(makeFontsConf, nix.thunk(() => ({ [nix.POS]: $pos[0], fontDirectories: nix.thunk(() => [liberation_ttf_v2]) }))));
   const jre$ = nix.thunk(() => nix.sel(libreoffice, "unwrapped", "jdk"));
   const libreoffice$ = nix.thunk(() => nix.str`${libreoffice}/lib/libreoffice/program/soffice.bin`);
   const getExe = nix.thunk(() => nix.attr(lib, "getExe"));
   const unoconverter = nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "unoconverter",
       version: "0.4.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "gotenberg",
           repo: "unoconverter",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -61,7 +53,7 @@ wrapProgram "$out/bin/unoconv" \\
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Python script for interacting with LibreOffice",
         homepage: "https://github.com/gotenberg/unoconverter",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -69,12 +61,12 @@ runHook postInstall
       })),
     })));
   return nix.app(buildGo126Module, (finalAttrs) => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       pname: "gotenberg",
       version: "8.36.0",
       outputs: nix.thunk(() => ["out", "hyphen"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           owner: "gotenberg",
           repo: "gotenberg",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -125,15 +117,15 @@ export JAVA_HOME=${jre$}
   --set UNOCONVERTER_BIN_PATH "${nix.app(getExe, unoconverter)}"
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           gotenberg: nix.thunk(() => nix.attr(nixosTests, "gotenberg")),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         description: "Converts numerous document formats into PDF files",
         mainProgram: "gotenberg",
         homepage: "https://gotenberg.dev",

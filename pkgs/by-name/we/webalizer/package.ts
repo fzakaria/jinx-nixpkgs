@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 17, 5], ["sha256", 18, 5]], [["NIX_CFLAGS_COMPILE", 23, 7]], [["description", 47, 5], ["homepage", 48, 5], ["platforms", 49, 5], ["license", 50, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["env", 23, 3], ["installFlags", 25, 3], ["preConfigure", 27, 3], ["buildInputs", 32, 3], ["configureFlags", 40, 3], ["meta", 46, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, zlib: false, libpng: false, gd: false, geoip: false, db: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 17, 5], ["sha256", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 23, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 47, 5], ["homepage", 48, 5], ["platforms", 49, 5], ["license", 50, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["env", 23, 3], ["installFlags", 25, 3], ["preConfigure", 27, 3], ["buildInputs", 32, 3], ["configureFlags", 40, 3], ["meta", 46, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,21 +16,21 @@ export default nix.lambda((args) => (() => {
   const geoip = nix.arg($, "geoip");
   const db = nix.arg($, "db");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "webalizer",
       version: "2.23.08",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://debian/pool/main/w/webalizer/webalizer_${nix.sel(finalAttrs, "version")}.orig.tar.gz`),
           sha256: "sha256-7a3bWqQcxKCBoVAOP6lmFdS0G8Eghrzt+ZOAGM557Y0=",
         })))),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-fcommon" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], NIX_CFLAGS_COMPILE: "-fcommon" })),
       installFlags: nix.thunk(() => ["MANDIR=${out}/share/man/man1"]),
       preConfigure: "substituteInPlace ./configure \\\n  --replace \"--static\" \"\"\n",
       buildInputs: nix.thunk(() => [zlib, libpng, gd, geoip, db]),
       configureFlags: nix.thunk(() => ["--enable-dns", "--enable-geoip", "--enable-shared"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Web server log file analysis program",
         homepage: "https://webalizer.net/",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),

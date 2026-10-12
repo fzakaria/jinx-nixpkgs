@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["repo", 11, 5], ["hash", 12, 5]], [["pname", 8, 3], ["src", 10, 3], ["nativeBuildInputs", 15, 3], ["buildInputs", 20, 3]]]);
 const formals$1 = { args: { libxcb: false, "serious-sam-classic": false, "vulkan-headers": false, "vulkan-loader": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["repo", 11, 5], ["hash", 12, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["src", 10, 3], ["nativeBuildInputs", 15, 3], ["buildInputs", 20, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,10 +12,10 @@ export default nix.lambda((args) => (() => {
   const vulkan_headers = nix.arg($, "vulkan-headers");
   const vulkan_loader = nix.arg($, "vulkan-loader");
   return nix.app(nix.sel(serious_sam_classic, "overrideAttrs"), (oldAttrs) => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "serious-sam-classic-vulkan",
       src: nix.thunk(() => nix.app(nix.sel(oldAttrs, "src", "override"), nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           repo: "SeriousSamClassic-VK",
           hash: "sha256-fnWJOmgaW4/PfrmXiN7qodHEXc96/AZCbUo3dwelY6s=",
         })))),

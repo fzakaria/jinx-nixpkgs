@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 54, 5], ["repo", 55, 5], ["rev", 56, 5], ["sha256", 57, 5]], [["description", 84, 5], ["longDescription", 85, 5], ["license", 95, 5], ["homepage", 96, 5], ["maintainers", 97, 5], ["platforms", 98, 5], ["mainProgram", 99, 5]], [["pname", 50, 3], ["version", 51, 3], ["src", 53, 3], ["nativeBuildInputs", 60, 3], ["installPhase", 62, 3], ["outputs", 77, 3], ["meta", 83, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, makeWrapper: false, coreutils: false, gawk: false, procps: false, gnused: false, bc: false, findutils: false, xdpyinfo: false, xprop: false, gnugrep: false, ncurses: false, pciutils: false, darwin: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 54, 5], ["repo", 55, 5], ["rev", 56, 5], ["sha256", 57, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 84, 5], ["longDescription", 85, 5], ["license", 95, 5], ["homepage", 96, 5], ["maintainers", 97, 5], ["platforms", 98, 5], ["mainProgram", 99, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 50, 3], ["version", 51, 3], ["src", 53, 3], ["nativeBuildInputs", 60, 3], ["installPhase", 62, 3], ["outputs", 77, 3], ["meta", 83, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -35,11 +33,11 @@ export default nix.lambda((args) => (() => {
         ];
       })())))))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "screenfetch",
       version: "3.9.9",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "KittyKatt",
           repo: "screenFetch",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -61,7 +59,7 @@ runHook postInstall
 `),
       outputs: nix.thunk(() => ["out", "doc", "man"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Fetches system/theme information in terminal for Linux desktop screenshots",
         longDescription: "screenFetch is a \"Bash Screenshot Information Tool\". This handy Bash\nscript can be used to generate one of those nifty terminal theme\ninformation + ASCII distribution logos you see in everyone's screenshots\nnowadays. It will auto-detect your distribution and display an ASCII\nversion of that distribution's logo and some valuable information to the\nright. There are options to specify no ascii art, colors, taking a\nscreenshot upon displaying info, and even customizing the screenshot\ncommand! This script is very easy to add to and can easily be extended.\n",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

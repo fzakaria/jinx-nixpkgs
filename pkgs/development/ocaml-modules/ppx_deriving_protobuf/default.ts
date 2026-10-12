@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 18, 5], ["sha256", 19, 5]], [["homepage", 30, 5], ["description", 31, 5], ["license", 32, 5], ["maintainers", 33, 5]], [["pname", 12, 3], ["version", 13, 3], ["duneVersion", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 22, 3], ["buildInputs", 23, 3], ["propagatedBuildInputs", 27, 3], ["meta", 29, 3]]]);
 const formals$1 = { args: { lib: false, fetchurl: false, buildDunePackage: false, cppo: false, ppx_deriving: false, ppxlib: false, "dune-configurator": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 18, 5], ["sha256", 19, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 30, 5], ["description", 31, 5], ["license", 32, 5], ["maintainers", 33, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 12, 3], ["version", 13, 3], ["duneVersion", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 22, 3], ["buildInputs", 23, 3], ["propagatedBuildInputs", 27, 3], ["meta", 29, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const ppxlib = nix.arg($, "ppxlib");
   const dune_configurator = nix.arg($, "dune-configurator");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "ppx_deriving_protobuf",
       version: "3.0.0",
       duneVersion: "3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/ocaml-ppx/ppx_deriving_protobuf/releases/download/v${nix.sel(finalAttrs, "version")}/ppx_deriving_protobuf-v${nix.sel(finalAttrs, "version")}.tbz`),
           sha256: "1dc1vxnkd0cnrgac5v3zbaj2lq1d2w8118mp1cmsdxylp06yz1sj",
         })))),
@@ -30,7 +28,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [ppxlib, dune_configurator]),
       propagatedBuildInputs: nix.thunk(() => [ppx_deriving]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/ocaml-ppx/ppx_deriving_protobuf",
         description: "Protocol Buffers codec generator for OCaml",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

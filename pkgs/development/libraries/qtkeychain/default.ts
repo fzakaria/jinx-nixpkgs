@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["sha256", 20, 5]], [["description", 52, 5], ["homepage", 53, 5], ["license", 54, 5], ["platforms", 55, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["dontWrapQtApps", 23, 3], ["cmakeFlags", 25, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 33, 3], ["doInstallCheck", 38, 3], ["installCheckPhase", 43, 3], ["meta", 51, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, "pkg-config": false, qtbase: false, qttools: false, libsecret: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["sha256", 20, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 52, 5], ["homepage", 53, 5], ["license", 54, 5], ["platforms", 55, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["dontWrapQtApps", 23, 3], ["cmakeFlags", 25, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 33, 3], ["doInstallCheck", 38, 3], ["installCheckPhase", 43, 3], ["meta", 51, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = "qtkeychain";
       const version = "0.17.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "frankosterfeld",
           repo: "qtkeychain",
           rev: version,
@@ -42,14 +40,14 @@ grep --quiet -R 'set(PACKAGE_VERSION "${version}"' .
 runHook postInstallCheck
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Platform-independent Qt API for storing passwords securely",
         homepage: "https://github.com/frankosterfeld/qtkeychain",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

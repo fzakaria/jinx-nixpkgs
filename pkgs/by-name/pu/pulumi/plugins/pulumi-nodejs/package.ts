@@ -2,9 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["homepage", 50, 5], ["description", 51, 5], ["license", 52, 5], ["mainProgram", 53, 5], ["maintainers", 54, 5], ["teams", 55, 5]], [["pname", 10, 3], ["version", 11, 20], ["src", 11, 28], ["sourceRoot", 13, 3], ["vendorHash", 15, 3], ["ldflags", 17, 3], ["checkFlags", 23, 3], ["nativeCheckInputs", 34, 3], ["buildInputs", 40, 3], ["postInstall", 44, 3], ["meta", 49, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, pulumi: false, bash: false, nodejs: false, python3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["homepage", 50, 5], ["description", 51, 5], ["license", 52, 5], ["mainProgram", 53, 5], ["maintainers", 54, 5], ["teams", 55, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 20], ["src", 11, 28], ["sourceRoot", 13, 3], ["vendorHash", 15, 3], ["ldflags", 17, 3], ["checkFlags", 23, 3], ["nativeCheckInputs", 34, 3], ["buildInputs", 40, 3], ["postInstall", 44, 3], ["meta", 49, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const nodejs = nix.arg($, "nodejs");
   const python3 = nix.arg($, "python3");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "pulumi-nodejs",
       version: nix.thunk(() => nix.attr(pulumi, "version")),
       src: nix.thunk(() => nix.attr(pulumi, "src")),
@@ -38,7 +37,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [bash]),
       postInstall: "cp -t \"$out/bin\" \\\n  ../../dist/pulumi-resource-pulumi-nodejs\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         homepage: "https://www.pulumi.com/docs/iac/languages-sdks/javascript/",
         description: "Language host for Pulumi programs written in TypeScript & JavaScript (Node.js)",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

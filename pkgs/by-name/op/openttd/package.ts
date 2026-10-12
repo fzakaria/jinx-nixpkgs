@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 43, 5], ["hash", 44, 5]], [["url", 48, 5], ["hash", 49, 5]], [["url", 53, 5], ["hash", 54, 5]], [["pname", 60, 5], ["buildInputs", 61, 5], ["cmakeFlags", 62, 5], ["installPhase", 63, 5]], [["url", 74, 5], ["hash", 75, 5]], [["description", 138, 5], ["mainProgram", 139, 5], ["longDescription", 140, 5], ["homepage", 150, 5], ["changelog", 151, 5], ["license", 152, 5], ["platforms", 153, 5], ["maintainers", 154, 5]], [["pname", 70, 3], ["version", 71, 3], ["src", 73, 3], ["nativeBuildInputs", 78, 3], ["buildInputs", 87, 3], ["nativeInstallCheckInputs", 115, 3], ["doInstallCheck", 116, 3], ["strictDeps", 118, 3], ["postPatch", 120, 3], ["postInstall", 126, 3], ["meta", 137, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchzip: false, fetchpatch: false, cmake: false, "pkg-config": false, SDL2: false, libpng: false, zlib: false, xz: false, freetype: false, fontconfig: false, curl: false, icu: false, harfbuzz: false, expat: false, glib: false, pcre2: false, withOpenGFX: true, withOpenSFX: true, withOpenMSX: true, withFluidSynth: true, fluidsynth: false, "soundfont-fluid": false, "soundfont-name": true, libsndfile: false, flac: false, libogg: false, libvorbis: false, libopus: false, libmpg123: false, pulseaudio: false, "alsa-lib": false, libjack2: false, makeWrapper: false, buildPackages: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 43, 5], ["hash", 44, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 48, 5], ["hash", 49, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 53, 5], ["hash", 54, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 60, 5], ["buildInputs", 61, 5], ["cmakeFlags", 62, 5], ["installPhase", 63, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["url", 74, 5], ["hash", 75, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 138, 5], ["mainProgram", 139, 5], ["longDescription", 140, 5], ["homepage", 150, 5], ["changelog", 151, 5], ["license", 152, 5], ["platforms", 153, 5], ["maintainers", 154, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 70, 3], ["version", 71, 3], ["src", 73, 3], ["nativeBuildInputs", 78, 3], ["buildInputs", 87, 3], ["nativeInstallCheckInputs", 115, 3], ["doInstallCheck", 116, 3], ["strictDeps", 118, 3], ["postPatch", 120, 3], ["postInstall", 126, 3], ["meta", 137, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -51,22 +45,22 @@ export default nix.lambda((args) => (() => {
   const buildPackages = nix.arg($, "buildPackages");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const opengfx = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: "https://cdn.openttd.org/opengfx-releases/8.0/opengfx-8.0-all.zip",
       hash: "sha256-aqLEZ3EptxBZrYQd1IG6B1rSRJJTGIijKu2NIqpAYRA=",
     }))));
   const opensfx = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       url: "https://cdn.openttd.org/opensfx-releases/1.0.3/opensfx-1.0.3-all.zip",
       hash: "sha256-QmfXizrRTu/fUcVOY7tCndv4t4BVW+fb0yUi8LgSYzM=",
     }))));
   const openmsx = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       url: "https://cdn.openttd.org/openmsx-releases/0.4.2/openmsx-0.4.2-all.zip",
       hash: "sha256-ysNFIvo7iaLN8XoaeZuZQFLpBZlYUDLDg7rH6TabaHY=",
     }))));
   const crossTools = nix.thunk(() => nix.app(nix.sel(buildPackages, "openttd", "overrideAttrs"), (oldAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "openttd-tools",
       buildInputs: [],
       cmakeFlags: nix.thunk(() => nix.concat(nix.selOr(oldAttrs, () => [], "cmakeFlags"), [
@@ -75,11 +69,11 @@ export default nix.lambda((args) => (() => {
       installPhase: "install -Dm555 src/strgen/strgen -t $out/bin\ninstall -Dm555 src/settingsgen/settingsgen -t $out/bin\n",
     })));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "openttd",
       version: "15.3",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           url: nix.thunk(() => nix.str`https://cdn.openttd.org/openttd-releases/${nix.sel(finalAttrs, "version")}/openttd-${nix.sel(finalAttrs, "version")}-source.tar.xz`),
           hash: "sha256-xDpDEeWdAWMyA/I+ioQR98vwrL9WXYd5AjswJ4NuVMY=",
         })))),
@@ -122,7 +116,7 @@ export default nix.lambda((args) => (() => {
 `))), nix.app(nix.sel(lib, "optionalString"), withOpenMSX, nix.thunk(() => nix.str`tar -xf ${openmsx}/*.tar -C $out/share/games/openttd/baseset
 `)))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Open source clone of the Microprose game \"Transport Tycoon Deluxe\"",
         mainProgram: "openttd",
         longDescription: "OpenTTD is a transportation economics simulator. In single player mode,\nplayers control a transportation business, and use rail, road, sea, and air\ntransport to move goods and people around the simulated world.\n\nIn multiplayer networked mode, players may:\n  - play competitively as different businesses\n  - play cooperatively controlling the same business\n  - observe as spectators\n",

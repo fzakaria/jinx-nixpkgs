@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]], [["name", 25, 7], ["url", 26, 7], ["hash", 27, 7]], [["description", 60, 5], ["longDescription", 61, 5], ["homepage", 64, 5], ["license", 65, 5], ["maintainers", 66, 5], ["platforms", 67, 5], ["mainProgram", 68, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["patches", 22, 3], ["buildInputs", 31, 3], ["doInstallCheck", 36, 3], ["nativeInstallCheckInputs", 37, 3], ["preConfigure", 39, 3], ["makeFlags", 44, 3], ["installPhase", 49, 3], ["meta", 59, 3]]]);
 const formals$1 = { args: { lib: false, gcc15Stdenv: false, fetchFromGitHub: false, fetchpatch: false, libusb1: false, systemd: false, udevCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 25, 7], ["url", 26, 7], ["hash", 27, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 60, 5], ["longDescription", 61, 5], ["homepage", 64, 5], ["license", 65, 5], ["maintainers", 66, 5], ["platforms", 67, 5], ["mainProgram", 68, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["patches", 22, 3], ["buildInputs", 31, 3], ["doInstallCheck", 36, 3], ["nativeInstallCheckInputs", 37, 3], ["preConfigure", 39, 3], ["makeFlags", 44, 3], ["installPhase", 49, 3], ["meta", 59, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const systemd = nix.arg($, "systemd");
   const udevCheckHook = nix.arg($, "udevCheckHook");
   return nix.app(nix.sel(gcc15Stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "dmrconfig",
       version: "1.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "OpenRTX",
           repo: "dmrconfig",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -30,7 +27,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "fno-common.patch",
             url: "https://github.com/OpenRTX/dmrconfig/commit/1a6901488db26262a6b69f80b0e795864e9e8d0a.patch",
             hash: "sha256-whxo4KeBFXrWLRZS4heeWzr8HpIyxFBEu1ohVZIP/Q4=",
@@ -46,7 +43,7 @@ export default nix.lambda((args) => (() => {
       ]),
       installPhase: "runHook preInstall\n\nmkdir -p $out/bin $out/lib/udev/rules.d\nmake install\ninstall 99-dmr.rules $out/lib/udev/rules.d/99-dmr.rules\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Configuration utility for DMR radios",
         longDescription: "DMRconfig is a utility for programming digital radios via USB programming cable.\n",
         homepage: "https://github.com/OpenRTX/dmrconfig",

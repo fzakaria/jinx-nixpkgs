@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/hardened.nix", [[["url", 12, 5], ["hash", 13, 5]], [["description", 31, 5], ["homepage", 32, 5], ["license", 33, 5], ["platforms", 34, 5], ["maintainers", 35, 5], ["mainProgram", 36, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["buildInputs", 16, 3], ["makeFlags", 18, 3], ["installPhase", 23, 3], ["meta", 30, 3]]]);
 const formals$1 = { args: { lib: false, openssl: false, stdenv: false, fetchurl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/hardened.nix", [["url", 12, 5], ["hash", 13, 5]]);
-const pos$2 = nix.positions(here + "/hardened.nix", [["description", 31, 5], ["homepage", 32, 5], ["license", 33, 5], ["platforms", 34, 5], ["maintainers", 35, 5], ["mainProgram", 36, 5]]);
-const pos$3 = nix.positions(here + "/hardened.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["buildInputs", 16, 3], ["makeFlags", 18, 3], ["installPhase", 23, 3], ["meta", 30, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "ctf-ynetd",
       version: "2024.12.31",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://hxp.io/assets/data/code/ctf-ynetd-2024.12.31.tar.xz",
           hash: "sha256-hUEZZEulmaV3KfKOqE1wl7y4SRUn2/HoOjVDabk5+YA=",
         })))),
@@ -26,7 +24,7 @@ export default nix.lambda((args) => (() => {
       makeFlags: nix.thunk(() => ["ynetd", "pow-solver"]),
       installPhase: "runHook preInstall\ninstall -Dm755 ynetd $out/bin/ynetd\ninstall -Dm755 pow-solver $out/bin/pow-solver\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Fork of ynetd hardened for CTFs with isolation using PID namespaces, minimal overhead proof-of-work checking, and strict resource limits via cgroups",
         homepage: "https://hxp.io/code/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

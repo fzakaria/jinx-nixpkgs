@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 35, 5], ["owner", 36, 5], ["repo", 37, 5], ["rev", 38, 5], ["hash", 39, 5]], [["latest", 100, 7], ["lts", 101, 7]], [["updateScript", 98, 5], ["tests", 99, 5]], [["description", 106, 5], ["homepage", 107, 5], ["changelog", 108, 5], ["license", 109, 5], ["maintainers", 110, 5], ["teams", 111, 5], ["mainProgram", 112, 5]], [["pname", 31, 3], ["version", 32, 3], ["src", 34, 3], ["vendorHash", 42, 3], ["nativeBuildInputs", 44, 3], ["tags", 48, 3], ["ldflags", 53, 3], ["checkFlags", 59, 3], ["preCheck", 70, 3], ["postInstall", 76, 3], ["nativeCheckInputs", 88, 3], ["doInstallCheck", 93, 3], ["nativeInstallCheckInputs", 94, 3], ["versionCheckProgram", 95, 3], ["passthru", 97, 3], ["meta", 105, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, buildGoModule: false, fetchFromGitea: false, nixosTests: false, versionCheckHook: false, "nix-update-script": false, gitMinimal: false, makeWrapper: false, writableTmpDirAsHomeHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 35, 5], ["owner", 36, 5], ["repo", 37, 5], ["rev", 38, 5], ["hash", 39, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["latest", 100, 7], ["lts", 101, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 98, 5], ["tests", 99, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 106, 5], ["homepage", 107, 5], ["changelog", 108, 5], ["license", 109, 5], ["maintainers", 110, 5], ["teams", 111, 5], ["mainProgram", 112, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 31, 3], ["version", 32, 3], ["src", 34, 3], ["vendorHash", 42, 3], ["nativeBuildInputs", 44, 3], ["tags", 48, 3], ["ldflags", 53, 3], ["checkFlags", 59, 3], ["preCheck", 70, 3], ["postInstall", 76, 3], ["nativeCheckInputs", 88, 3], ["doInstallCheck", 93, 3], ["nativeInstallCheckInputs", 94, 3], ["versionCheckProgram", 95, 3], ["passthru", 97, 3], ["meta", 105, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,11 +25,11 @@ export default nix.lambda((args) => (() => {
     "TestInitRepoIfRequired/clone_different_remote",
   ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["TestNewClient", "TestNewEndpointHonoursTLSEnv"]))));
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "forgejo-runner",
       version: "13.2.0",
       src: nix.thunk(() => nix.app(fetchFromGitea, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "code.forgejo.org",
           owner: "forgejo",
           repo: "runner",
@@ -67,16 +63,16 @@ ln -s $out/bin/forgejo-runner $out/bin/act_runner
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       versionCheckProgram: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/bin/${nix.sel(finalAttrs, "meta", "mainProgram")}`),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             latest: nix.thunk(() => nix.sel(nixosTests, "forgejo", "sqlite3")),
             lts: nix.thunk(() => nix.sel(nixosTests, "forgejo-lts", "sqlite3")),
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Runner for Forgejo based on act",
         homepage: "https://code.forgejo.org/forgejo/runner",
         changelog: nix.thunk(() => nix.str`https://code.forgejo.org/forgejo/runner/releases/tag/${nix.sel(finalAttrs, "src", "rev")}`),

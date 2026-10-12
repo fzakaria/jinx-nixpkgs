@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]], [["SOURCE_DATE_EPOCH", 29, 5]], [["package", 58, 5]], [["version", 57, 18]], [["tests", 57, 12]], [["description", 62, 5], ["homepage", 63, 5], ["changelog", 64, 5], ["license", 65, 5], ["maintainers", 66, 5], ["mainProgram", 67, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["cargoHash", 21, 3], ["__structuredAttrs", 23, 3], ["nativeBuildInputs", 25, 3], ["env", 27, 3], ["preBuild", 32, 3], ["cargoTestFlags", 42, 3], ["dontUseCargoParallelTests", 46, 3], ["postInstall", 48, 3], ["passthru", 57, 3], ["meta", 61, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, rustPlatform: false, fetchFromGitHub: false, testers: false, installShellFiles: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["SOURCE_DATE_EPOCH", 29, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["package", 58, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["version", 57, 18]]);
-const pos$5 = nix.positions(here + "/package.nix", [["tests", 57, 12]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 62, 5], ["homepage", 63, 5], ["changelog", 64, 5], ["license", 65, 5], ["maintainers", 66, 5], ["mainProgram", 67, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["cargoHash", 21, 3], ["__structuredAttrs", 23, 3], ["nativeBuildInputs", 25, 3], ["env", 27, 3], ["preBuild", 32, 3], ["cargoTestFlags", 42, 3], ["dontUseCargoParallelTests", 46, 3], ["postInstall", 48, 3], ["passthru", 57, 3], ["meta", 61, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const installShellFiles = nix.arg($, "installShellFiles");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "cqlsh-rs",
       version: "0.5.17",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "scylladb",
           repo: "cqlsh-rs",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -33,23 +27,23 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-dLHziQjQ25xMSunPgXdDFfziONb7iIEhmx9FX4A8i6w=",
       __structuredAttrs: true,
       nativeBuildInputs: nix.thunk(() => [installShellFiles]),
-      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({ [nix.POS]: pos$2, SOURCE_DATE_EPOCH: 1n })))),
+      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({ [nix.POS]: $pos[1], SOURCE_DATE_EPOCH: 1n })))),
       preBuild: "# Remap build directory paths for deterministic output.\n# Must be set in preBuild (not env) because $NIX_BUILD_TOP is a runtime\n# bash variable that cannot be expanded in Nix string literals, and\n# __structuredAttrs re-applies env vars between phases.\nexport RUSTFLAGS=\"--remap-path-prefix=$NIX_BUILD_TOP=/build ${RUSTFLAGS:-}\"\n",
       cargoTestFlags: nix.thunk(() => ["--lib"]),
       dontUseCargoParallelTests: true,
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "installManPage --name cqlsh-rs.1 <($out/bin/cqlsh-rs --generate-man)\n\ninstallShellCompletion --cmd cqlsh-rs \\\n  --bash <($out/bin/cqlsh-rs --completions bash) \\\n  --fish <($out/bin/cqlsh-rs --completions fish) \\\n  --zsh <($out/bin/cqlsh-rs --completions zsh)\n")),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Rust re-implementation of the Apache Cassandra cqlsh shell",
         homepage: "https://scylladb.github.io/cqlsh-rs/",
         changelog: nix.thunk(() => nix.str`https://github.com/scylladb/cqlsh-rs/releases/tag/v${nix.sel(finalAttrs, "version")}`),

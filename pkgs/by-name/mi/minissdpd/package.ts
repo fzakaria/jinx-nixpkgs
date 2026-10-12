@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["sha256", 13, 5], ["url", 14, 5], ["name", 15, 5]], [["description", 34, 5], ["longDescription", 35, 5], ["homepage", 42, 5], ["downloadPage", 43, 5], ["license", 44, 5], ["platforms", 45, 5], ["mainProgram", 46, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["patches", 18, 3], ["buildInputs", 22, 3], ["installFlags", 24, 3], ["enableParallelBuilding", 29, 3], ["doCheck", 31, 3], ["meta", 33, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, libnfnetlink: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["sha256", 13, 5], ["url", 14, 5], ["name", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 34, 5], ["longDescription", 35, 5], ["homepage", 42, 5], ["downloadPage", 43, 5], ["license", 44, 5], ["platforms", 45, 5], ["mainProgram", 46, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["patches", 18, 3], ["buildInputs", 22, 3], ["installFlags", 24, 3], ["enableParallelBuilding", 29, 3], ["doCheck", 31, 3], ["meta", 33, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,7 +15,7 @@ export default nix.lambda((args) => (() => {
       const pname = "minissdpd";
       const version = "1.6.0";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           sha256: "sha256-9MLepqRy4KXMncotxMH8NrpVOOrPjXk4JSkyUXJVRr0=",
           url: nix.thunk(() => nix.str`http://miniupnp.free.fr/files/download.php?file=${pname}-${version}.tar.gz`),
           name: nix.thunk(() => nix.str`${pname}-${version}.tar.gz`),
@@ -28,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const enableParallelBuilding = true;
       const doCheck = true;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Small daemon to speed up UPnP device discoveries",
         longDescription: "MiniSSDPd receives NOTIFY packets and stores (caches) that information\nfor later use by UPnP Control Points on the machine. MiniSSDPd receives\nM-SEARCH packets and answers on behalf of the UPnP devices running on\nthe machine. Software must be patched in order to take advantage of\nMiniSSDPd, and MiniSSDPd must be started before any other UPnP program.\n",
         homepage: "http://miniupnp.free.fr/minissdpd.html",
@@ -38,7 +36,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "minissdpd",
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

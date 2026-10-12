@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/tests.nix", [[["owner", 23, 5], ["repo", 24, 5], ["rev", 26, 5], ["hash", 27, 5]], [["outputHashMode", 72, 11], ["outputHash", 73, 11], ["allowSubstitutes", 75, 9], ["nativeBuildInputs", 76, 17]], [["biber-compatibility", 86, 3], ["workspace", 95, 3], ["nextonic", 103, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, writeText: false, runCommand: false, tectonic: false, curl: false, cacert: false, emptyFile: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/tests.nix", [["owner", 23, 5], ["repo", 24, 5], ["rev", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/tests.nix", [["outputHashMode", 72, 11], ["outputHash", 73, 11], ["allowSubstitutes", 75, 9], ["nativeBuildInputs", 76, 17]]);
-const pos$3 = nix.positions(here + "/tests.nix", [["biber-compatibility", 86, 3], ["workspace", 95, 3], ["nextonic", 103, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const cacert = nix.arg($, "cacert");
   const emptyFile = nix.arg($, "emptyFile");
   const biber_dev_source = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "plk",
       repo: "biber",
       rev: "d43e352586f5c9f98f0331978ca9d0b908986e09",
@@ -36,7 +34,7 @@ else
 fi
 `);
   const networkRequiringTestPkg = (name) => (script) => nix.app(runCommand, nix.thunk(() => nix.str`test-${nix.app(nix.sel(lib, "removePrefix"), nix.thunk(() => nix.str`${nix.builtins.storeDir}/`), nix.thunk(() => nix.sel(tectonic, "outPath")))}-${name}`), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       outputHashMode: nix.thunk(() => nix.attr(emptyFile, "outputHashMode")),
       outputHash: nix.thunk(() => nix.attr(emptyFile, "outputHash")),
       allowSubstitutes: false,
@@ -46,7 +44,7 @@ ${script}
 cp "${emptyFile}" "$out"
 `));
   return nix.app(nix.sel(lib, "mapAttrs"), networkRequiringTestPkg, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       "biber-compatibility": nix.thunk(() => nix.str`# import the test files
 cp "${testfiles}"/* .
 

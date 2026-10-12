@@ -2,21 +2,20 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["description", 10, 5]], [["pname", 4, 3], ["version", 5, 18], ["src", 5, 26], ["dontAddPrefix", 7, 3], ["meta", 9, 3]]]);
 const formals$1 = { args: { buildDunePackage: false, dune: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["description", 10, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 4, 3], ["version", 5, 18], ["src", 5, 26], ["dontAddPrefix", 7, 3], ["meta", 9, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const buildDunePackage = nix.arg($, "buildDunePackage");
   const dune = nix.arg($, "dune");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "fs-io",
       version: nix.thunk(() => nix.attr(dune, "version")),
       src: nix.thunk(() => nix.attr(dune, "src")),
       dontAddPrefix: true,
-      meta: nix.thunk(() => nix.update(nix.sel(dune, "meta"), { [nix.POS]: pos$1, description: "Dune's file system IO library" })),
+      meta: nix.thunk(() => nix.update(nix.sel(dune, "meta"), { [nix.POS]: $pos[0], description: "Dune's file system IO library" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

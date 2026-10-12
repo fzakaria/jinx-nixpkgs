@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["lockFile", 15, 13]], [["userborn-migration", 17, 43]], [["tests", 17, 12]], [["description", 20, 5], ["longDescription", 21, 5], ["license", 32, 5], ["maintainers", 33, 5], ["platforms", 34, 5], ["mainProgram", 35, 5]], [["__structuredAttrs", 8, 3], ["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["cargoLock", 15, 3], ["passthru", 17, 3], ["meta", 19, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["lockFile", 15, 13]]);
-const pos$2 = nix.positions(here + "/package.nix", [["userborn-migration", 17, 43]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 17, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 20, 5], ["longDescription", 21, 5], ["license", 32, 5], ["maintainers", 33, 5], ["platforms", 34, 5], ["mainProgram", 35, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["__structuredAttrs", 8, 3], ["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["cargoLock", 15, 3], ["passthru", 17, 3], ["meta", 19, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,21 +11,21 @@ export default nix.lambda((args) => (() => {
   const rustPlatform = nix.arg($, "rustPlatform");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       __structuredAttrs: true,
       pname: "userborn-import-legacy",
       version: nix.thunk(() => nix.sel(nix.app(nix.sel(lib, "importTOML"), nix.path(here, "./Cargo.toml")), "package", "version")),
       src: nix.thunk(() => nix.builtins.filterSource((name) => (_) => !nix.asBool(nix.app(nix.sel(lib, "hasSuffix"), ".nix", name)), nix.path(here, "./."))),
-      cargoLock: nix.thunk(() => ({ [nix.POS]: pos$1, lockFile: nix.path(here, "./Cargo.lock") })),
+      cargoLock: nix.thunk(() => ({ [nix.POS]: $pos[0], lockFile: nix.path(here, "./Cargo.lock") })),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           "userborn-migration": nix.thunk(() => nix.attr(nixosTests, "userborn-migration")),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "One-shot migration from update-users-groups.pl state to userborn",
         longDescription: "Runs once before userborn on systems migrating from\nupdate-users-groups.pl. Adds locked stub entries to\n/etc/{passwd,group,shadow} for every name in\n/var/lib/nixos/{uid,gid}-map without a live entry so freed ids are\nnot reassigned, and creates previous-userborn.json based on\ndeclarative-{users,groups}.\n\nTemporary. Will be removed once the perl implementation has been\ngone for two NixOS releases.\n",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 17, 5], ["hash", 18, 5]], [["extraArgs", 39, 5]], [["updateScript", 38, 12]], [["description", 43, 5], ["homepage", 44, 5], ["license", 45, 5], ["maintainers", 46, 5], ["platforms", 50, 5], ["sourceProvenance", 51, 5], ["mainProgram", 52, 5]], [["pname", 11, 3], ["version", 12, 3], ["__structuredAttrs", 13, 3], ["strictDeps", 14, 3], ["src", 16, 3], ["sourceRoot", 21, 3], ["nativeBuildInputs", 23, 3], ["installPhase", 28, 3], ["passthru", 38, 3], ["meta", 42, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchurl: false, "nix-update-script": false, makeWrapper: false, unzip: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["extraArgs", 39, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 38, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 43, 5], ["homepage", 44, 5], ["license", 45, 5], ["maintainers", 46, 5], ["platforms", 50, 5], ["sourceProvenance", 51, 5], ["mainProgram", 52, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["__structuredAttrs", 13, 3], ["strictDeps", 14, 3], ["src", 16, 3], ["sourceRoot", 21, 3], ["nativeBuildInputs", 23, 3], ["installPhase", 28, 3], ["passthru", 38, 3], ["meta", 42, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,13 +14,13 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const unzip = nix.arg($, "unzip");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "codexbar",
       version: "0.65.0",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/steipete/CodexBar/releases/download/v${nix.sel(finalAttrs, "version")}/CodexBar-macos-universal-${nix.sel(finalAttrs, "version")}.zip`),
           hash: "sha256-z4/RfA+1T0h1+qiwndnexwXUIPRn8g01zZP3TMzlOLQ=",
         })))),
@@ -32,14 +28,14 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [makeWrapper, unzip]),
       installPhase: "runHook preInstall\n\nmkdir -p $out/Applications\ncp -r CodexBar.app $out/Applications\nmakeWrapper $out/Applications/CodexBar.app/Contents/MacOS/CodexBar $out/bin/codexbar\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             extraArgs: nix.thunk(() => ["--url=https://github.com/steipete/CodexBar"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Show usage stats for AI coding-provider limits",
         homepage: "https://codex.bar/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

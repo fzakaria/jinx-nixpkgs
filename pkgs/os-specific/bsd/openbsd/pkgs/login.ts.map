@@ -1,1 +1,1 @@
-{"version":3,"file":"login.ts","sources":["../../../../../../../../../../../nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/os-specific/bsd/openbsd/pkgs/login.nix"],"names":[],"mappings":";;;;;;;;eAAA;;;;SAIA,uCAAa;;YACJ;mCACO;6BAId,iCAAmB"}
+{"version":3,"file":"login.ts","sources":["../../../../../../../../../../../nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/os-specific/bsd/openbsd/pkgs/login.nix"],"names":[],"mappings":";;;;;;;eAAA;;;;SAIA,uCAAa;;YACJ;mCACO;6BAId,mCAAmB"}

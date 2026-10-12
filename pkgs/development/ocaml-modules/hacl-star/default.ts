@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 13, 3], ["version", 16, 5], ["src", 17, 5], ["meta", 18, 5], ["doCheck", 19, 5], ["minimalOCamlVersion", 22, 3], ["propagatedBuildInputs", 24, 3], ["nativeBuildInputs", 29, 3], ["checkInputs", 33, 3]]]);
 const formals$1 = { args: { buildDunePackage: false, "hacl-star-raw": false, zarith: false, cppo: false, alcotest: false, "secp256k1-internal": false, "qcheck-core": false, cstruct: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 13, 3], ["version", 16, 5], ["src", 17, 5], ["meta", 18, 5], ["doCheck", 19, 5], ["minimalOCamlVersion", 22, 3], ["propagatedBuildInputs", 24, 3], ["nativeBuildInputs", 29, 3], ["checkInputs", 33, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const qcheck_core = nix.arg($, "qcheck-core");
   const cstruct = nix.arg($, "cstruct");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       pname: "hacl-star",
       version: nix.thunk(() => nix.attr(hacl_star_raw, "version")),
       src: nix.thunk(() => nix.attr(hacl_star_raw, "src")),

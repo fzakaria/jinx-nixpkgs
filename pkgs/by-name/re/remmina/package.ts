@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 55, 5], ["repo", 56, 5], ["rev", 57, 5], ["hash", 58, 5]], [["NIX_CFLAGS_COMPILE", 108, 7]], [["license", 141, 5], ["homepage", 142, 5], ["changelog", 143, 5], ["description", 146, 5], ["mainProgram", 147, 5], ["maintainers", 148, 5], ["platforms", 153, 5]], [["pname", 51, 3], ["version", 52, 3], ["src", 54, 3], ["nativeBuildInputs", 61, 3], ["buildInputs", 69, 3], ["env", 108, 3], ["cmakeFlags", 110, 3], ["dontWrapQtApps", 127, 3], ["preFixup", 129, 3], ["meta", 140, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, cmake: false, ninja: false, "pkg-config": false, wrapGAppsHook3: false, curl: false, fuse3: false, desktopToDarwinBundle: false, glib: false, gtk3: false, gettext: false, libxkbfile: false, libx11: false, python3: false, freerdp: false, libssh: false, libgcrypt: false, gnutls: false, pcre2: false, "libdbusmenu-gtk3": false, libappindicator: false, libvncserver: false, "libpthread-stubs": false, libxdmcp: false, libxkbcommon: false, libsecret: false, libsoup_3: false, "spice-protocol": false, "spice-gtk": false, libepoxy: false, "at-spi2-core": false, openssl: false, "gsettings-desktop-schemas": false, "json-glib": false, libsodium: false, harfbuzz: false, wayland: false, "adwaita-icon-theme": false, withLibsecret: true, withWebkitGtk: true, webkitgtk_4_1: false, withVte: true, vte: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 55, 5], ["repo", 56, 5], ["rev", 57, 5], ["hash", 58, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 108, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["license", 141, 5], ["homepage", 142, 5], ["changelog", 143, 5], ["description", 146, 5], ["mainProgram", 147, 5], ["maintainers", 148, 5], ["platforms", 153, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 51, 3], ["version", 52, 3], ["src", 54, 3], ["nativeBuildInputs", 61, 3], ["buildInputs", 69, 3], ["env", 108, 3], ["cmakeFlags", 110, 3], ["dontWrapQtApps", 127, 3], ["preFixup", 129, 3], ["meta", 140, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -56,11 +53,11 @@ export default nix.lambda((args) => (() => {
   const withVte = nix.argOr($, "withVte", () => true);
   const vte = nix.arg($, "vte");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "remmina",
       version: "1.4.43",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Remmina",
           repo: "Remmina",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -97,7 +94,7 @@ export default nix.lambda((args) => (() => {
         python3,
       ], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [fuse3, libappindicator, libdbusmenu_gtk3, wayland])), nix.concat(nix.app(nix.sel(lib, "optionals"), withLibsecret, nix.thunk(() => [libsecret])), nix.concat(nix.app(nix.sel(lib, "optionals"), withWebkitGtk, nix.thunk(() => [webkitgtk_4_1])), nix.app(nix.sel(lib, "optionals"), withVte, nix.thunk(() => [vte]))))))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: "-Wno-error=incompatible-pointer-types",
       })),
       cmakeFlags: nix.thunk(() => nix.concat([
@@ -123,7 +120,7 @@ export default nix.lambda((args) => (() => {
 )
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
         homepage: "https://gitlab.com/Remmina/Remmina",
         changelog: nix.thunk(() => nix.str`https://gitlab.com/Remmina/Remmina/-/blob/master/CHANGELOG.md#${nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => [""]), nix.thunk(() => nix.sel(finalAttrs, "src", "rev")))}`),

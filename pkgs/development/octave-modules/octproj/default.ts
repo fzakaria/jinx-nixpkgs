@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["sha256", 17, 5]], [["extraArgs", 31, 5]], [["updateScript", 30, 12]], [["homepage", 38, 5], ["license", 39, 5], ["maintainers", 40, 5], ["description", 41, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["patchPhase", 21, 3], ["propagatedBuildInputs", 26, 3], ["passthru", 30, 3], ["meta", 37, 3]]]);
 const formals$1 = { args: { buildOctavePackage: false, lib: false, fetchFromBitbucket: false, proj: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["sha256", 17, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["extraArgs", 31, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["updateScript", 30, 12]]);
-const pos$4 = nix.positions(here + "/default.nix", [["homepage", 38, 5], ["license", 39, 5], ["maintainers", 40, 5], ["description", 41, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["patchPhase", 21, 3], ["propagatedBuildInputs", 26, 3], ["passthru", 30, 3], ["meta", 37, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "octproj";
       const version = "3.1.0";
       const src = nix.thunk(() => nix.app(fetchFromBitbucket, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "jgpallero",
           repo: "octproj",
           rev: nix.thunk(() => nix.str`OctPROJ-${version}`),
@@ -29,14 +25,14 @@ export default nix.lambda((args) => (() => {
       const patchPhase = "sed -i s/\"error(errorText)\"/\"error(\\\"%s\\\", errorText)\"/g src/*.cc\nsed -i s/\"warning(errorText)\"/\"warning(\\\"%s\\\", errorText)\"/g src/*.cc\n";
       const propagatedBuildInputs = nix.thunk(() => [proj]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             extraArgs: nix.thunk(() => ["--version-regex", "OctPROJ-(.*)"]),
           })))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://gnu-octave.github.io/packages/octproj/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
         maintainers: nix.thunk(() => (() => {
@@ -46,7 +42,7 @@ export default nix.lambda((args) => (() => {
         description: "GNU Octave bindings to PROJ library for cartographic projections and CRS transformations",
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         src,

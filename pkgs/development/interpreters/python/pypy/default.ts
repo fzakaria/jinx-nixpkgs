@@ -2,15 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["self", 51, 7], ["sourceVersion", 52, 7], ["pythonVersion", 53, 7], ["packageOverrides", 54, 7], ["implementation", 56, 5], ["libPrefix", 57, 5], ["executable", 58, 5], ["sitePackages", 61, 5], ["hasDistutilsCxxPatch", 62, 5], ["pythonAttr", 63, 13], ["pythonOnBuildForBuild", 65, 5], ["pythonOnBuildForHost", 66, 5], ["pythonOnBuildForTarget", 67, 5], ["pythonOnHostForHost", 68, 5], ["pythonOnTargetForTarget", 69, 5], ["pythonABITags", 71, 5]], [["url", 86, 5], ["hash", 87, 13]], [["NIX_CFLAGS_COMPILE", 136, 7]], [["C_INCLUDE_PATH", 139, 7], ["LIBRARY_PATH", 140, 7], ["LD_LIBRARY_PATH", 141, 7]], [["tk", 150, 15], ["tcl", 150, 18], ["tk_dev", 151, 7], ["tcl_dev", 152, 7], ["tk_libprefix", 153, 7], ["tcl_libprefix", 154, 7]], [["out", 171, 24], ["dev", 171, 28], ["libsqlite", 172, 7]], [["homepage", 392, 5], ["changelog", 393, 5], ["description", 394, 5], ["mainProgram", 395, 5], ["license", 396, 5], ["platforms", 397, 5], ["broken", 402, 5], ["maintainers", 403, 5]], [["pname", 83, 11], ["version", 83, 17], ["src", 85, 3], ["nativeBuildInputs", 90, 3], ["buildInputs", 94, 3], ["dontPatchShebangs", 130, 3], ["disallowedReferences", 131, 3], ["env", 133, 3], ["patches", 146, 3], ["postPatch", 181, 3], ["buildPhase", 189, 3], ["installPhase", 202, 3], ["preFixup", 225, 3], ["setupHook", 249, 3], ["checkPhase", 252, 3], ["doInstallCheck", 367, 3], ["installCheckPhase", 368, 3], ["passthru", 388, 11], ["enableParallelBuilding", 389, 3], ["meta", 391, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, replaceVars: false, fetchurl: false, autoconf: false, zlibSupport: true, zlib: false, bzip2: false, "pkg-config": false, lndir: false, libffi: false, sqlite: false, openssl: false, ncurses: false, python: false, expat: false, tcl: false, tk: false, tclPackages: false, libx11: false, gdbm: false, db: false, xz: false, "python-setup-hook": false, optimizationLevel: true, boehmgc: false, hash: false, self: false, packageOverrides: true, pkgsBuildBuild: false, pkgsBuildHost: false, pkgsBuildTarget: false, pkgsHostHost: false, pkgsTargetTarget: false, sourceVersion: false, pythonVersion: false, passthruFun: false, pythonAttr: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["self", 51, 7], ["sourceVersion", 52, 7], ["pythonVersion", 53, 7], ["packageOverrides", 54, 7], ["implementation", 56, 5], ["libPrefix", 57, 5], ["executable", 58, 5], ["sitePackages", 61, 5], ["hasDistutilsCxxPatch", 62, 5], ["pythonAttr", 63, 13], ["pythonOnBuildForBuild", 65, 5], ["pythonOnBuildForHost", 66, 5], ["pythonOnBuildForTarget", 67, 5], ["pythonOnHostForHost", 68, 5], ["pythonOnTargetForTarget", 69, 5], ["pythonABITags", 71, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["url", 86, 5], ["hash", 87, 13]]);
-const pos$3 = nix.positions(here + "/default.nix", [["NIX_CFLAGS_COMPILE", 136, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["C_INCLUDE_PATH", 139, 7], ["LIBRARY_PATH", 140, 7], ["LD_LIBRARY_PATH", 141, 7]]);
-const pos$5 = nix.positions(here + "/default.nix", [["tk", 150, 15], ["tcl", 150, 18], ["tk_dev", 151, 7], ["tcl_dev", 152, 7], ["tk_libprefix", 153, 7], ["tcl_libprefix", 154, 7]]);
-const pos$6 = nix.positions(here + "/default.nix", [["out", 171, 24], ["dev", 171, 28], ["libsqlite", 172, 7]]);
-const pos$7 = nix.positions(here + "/default.nix", [["homepage", 392, 5], ["changelog", 393, 5], ["description", 394, 5], ["mainProgram", 395, 5], ["license", 396, 5], ["platforms", 397, 5], ["broken", 402, 5], ["maintainers", 403, 5]]);
-const pos$8 = nix.positions(here + "/default.nix", [["pname", 83, 11], ["version", 83, 17], ["src", 85, 3], ["nativeBuildInputs", 90, 3], ["buildInputs", 94, 3], ["dontPatchShebangs", 130, 3], ["disallowedReferences", 131, 3], ["env", 133, 3], ["patches", 146, 3], ["postPatch", 181, 3], ["buildPhase", 189, 3], ["installPhase", 202, 3], ["preFixup", 225, 3], ["setupHook", 249, 3], ["checkPhase", 252, 3], ["doInstallCheck", 367, 3], ["installCheckPhase", 368, 3], ["passthru", 388, 11], ["enableParallelBuilding", 389, 3], ["meta", 391, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -77,7 +70,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`pypy${nix.app(nix.sel(lib, "concatStrings"), nix.thunk(() => nix.app(nix.sel(lib, "take"), 2n, nix.thunk(() => nix.app(nix.sel(lib, "splitString"), ".", pythonVersion_1)))))}_pp${nix.sel(sourceVersion_1, "major")}${nix.sel(sourceVersion_1, "minor")}`),
       ]);
       return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         self: self_1,
         sourceVersion: sourceVersion_1,
         pythonVersion: pythonVersion_1,
@@ -107,7 +100,7 @@ export default nix.lambda((args) => (() => {
       const pname_1 = pname;
       const version_1 = version;
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: nix.thunk(() => nix.str`https://downloads.python.org/pypy/pypy${pythonVersion}-v${version_1}-src.tar.bz2`),
           hash: hash,
         }))));
@@ -129,10 +122,10 @@ export default nix.lambda((args) => (() => {
       const dontPatchShebangs = true;
       const disallowedReferences = nix.thunk(() => [python]);
       const env = nix.thunk(() => nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           NIX_CFLAGS_COMPILE: "-Wno-error=incompatible-function-pointer-types",
         }))), {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         C_INCLUDE_PATH: nix.thunk(() => nix.app(nix.sel(lib, "makeSearchPathOutput"), "dev", "include", buildInputs)),
         LIBRARY_PATH: nix.thunk(() => nix.app(nix.sel(lib, "makeLibraryPath"), buildInputs)),
         LD_LIBRARY_PATH: nix.thunk(() => nix.app(nix.sel(lib, "makeLibraryPath"), nix.thunk(() => nix.app(nix.sel(nix.builtins, "filter"), (x) => !nix.eq(nix.sel(x, "outPath"), nix.selOr(stdenv, () => "", "cc", "libc", "outPath")), buildInputs)))),
@@ -140,7 +133,7 @@ export default nix.lambda((args) => (() => {
       const patches = nix.thunk(() => [
         nix.path(here, "./dont_fetch_vendored_deps.patch"),
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./tk_tcl_paths.patch"), nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             tk: tk,
             tcl: tcl,
             tk_dev: nix.thunk(() => nix.sel(tk, "dev")),
@@ -149,7 +142,7 @@ export default nix.lambda((args) => (() => {
             tcl_libprefix: nix.thunk(() => nix.sel(tcl, "libPrefix")),
           })))),
         nix.thunk(() => nix.app(replaceVars, nix.thunk(() => (nix.asBool(isPy3k) ? nix.path(here, "./sqlite_paths.patch") : nix.path(here, "./sqlite_paths_2_7.patch"))), nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             out: nix.thunk(() => nix.attr(sqlite, "out")),
             dev: nix.thunk(() => nix.attr(sqlite, "dev")),
             libsqlite: nix.thunk(() => nix.str`${nix.sel(sqlite, "out")}/lib/libsqlite3${nix.sel(stdenv, "hostPlatform", "extensions", "sharedLibrary")}`),
@@ -303,7 +296,7 @@ $out/bin/${nix.lookup(w_1, "executable")} -c '${imports}'
       const passthru_1 = passthru;
       const enableParallelBuilding = true;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         homepage: "https://www.pypy.org/",
         changelog: nix.thunk(() => nix.str`https://doc.pypy.org/release-v${version_1}.html`),
         description: nix.thunk(() => nix.str`Fast, compliant alternative implementation of the Python language (${pythonVersion})`),
@@ -320,7 +313,7 @@ $out/bin/${nix.lookup(w_1, "executable")} -c '${imports}'
         })()),
       }));
       return {
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         pname: pname_1,
         version: version_1,
         src,

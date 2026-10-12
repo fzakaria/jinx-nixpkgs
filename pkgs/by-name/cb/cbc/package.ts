@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["sha256", 20, 5]], [["homepage", 50, 5], ["license", 51, 5], ["maintainers", 52, 5], ["platforms", 53, 5], ["description", 54, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["configureFlags", 24, 3], ["nativeBuildInputs", 30, 3], ["enableParallelBuilding", 32, 3], ["hardeningDisable", 34, 3], ["buildInputs", 36, 3], ["propagatedBuildInputs", 42, 3], ["meta", 49, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, bzip2: false, cgl: false, clp: false, "pkg-config": false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["sha256", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 50, 5], ["license", 51, 5], ["maintainers", 52, 5], ["platforms", 53, 5], ["description", 54, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["configureFlags", 24, 3], ["nativeBuildInputs", 30, 3], ["enableParallelBuilding", 32, 3], ["hardeningDisable", 34, 3], ["buildInputs", 36, 3], ["propagatedBuildInputs", 42, 3], ["meta", 49, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "cbc",
       version: "2.10.12",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "coin-or",
           repo: "Cbc",
           tag: nix.thunk(() => nix.str`releases/${nix.sel(finalAttrs, "version")}`),
@@ -35,7 +33,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [bzip2, zlib]),
       propagatedBuildInputs: nix.thunk(() => [cgl, clp]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://projects.coin-or.org/Cbc",
         license: nix.thunk(() => nix.sel(lib, "licenses", "epl10")),
         maintainers: [],

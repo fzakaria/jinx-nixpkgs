@@ -2,18 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 28, 5], ["repo", 29, 5], ["rev", 30, 5], ["hash", 31, 5], ["fetchSubmodules", 32, 5]], [["url", 42, 9], ["hash", 43, 9]], [["prebuilt", 41, 10]], [["url", 48, 9], ["hash", 49, 9]], [["prebuilt", 47, 14]], [["url", 58, 11], ["hash", 59, 11]], [["version", 55, 9], ["filename", 56, 9], ["prebuilt", 57, 9]], [["service", 265, 5]], [["tests", 264, 12]], [["description", 269, 5], ["homepage", 270, 5], ["maintainers", 271, 5], ["platforms", 276, 5], ["license", 277, 5]], [["pname", 21, 3], ["version", 23, 3], ["versionTag", 25, 3], ["src", 27, 3], ["postUnpack", 36, 3], ["patches", 80, 3], ["postPatch", 99, 3], ["nativeBuildInputs", 137, 3], ["buildInputs", 148, 3], ["dontUseCmakeConfigure", 153, 3], ["preBuild", 155, 3], ["buildFlags", 170, 3], ["installFlags", 172, 3], ["postInstall", 177, 3], ["stripDebugList", 229, 3], ["postFixup", 236, 3], ["passthru", 264, 3], ["meta", 268, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, fetchFromGitHub: false, cmake: false, coreutils: false, curl: false, file: false, git: false, makeWrapper: false, nixosTests: false, protobuf: false, python3: false, ocaml: false, ocamlPackages: false, which: false, debug: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 28, 5], ["repo", 29, 5], ["rev", 30, 5], ["hash", 31, 5], ["fetchSubmodules", 32, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["url", 42, 9], ["hash", 43, 9]]);
-const pos$3 = nix.positions(here + "/default.nix", [["prebuilt", 41, 10]]);
-const pos$4 = nix.positions(here + "/default.nix", [["url", 48, 9], ["hash", 49, 9]]);
-const pos$5 = nix.positions(here + "/default.nix", [["prebuilt", 47, 14]]);
-const pos$6 = nix.positions(here + "/default.nix", [["url", 58, 11], ["hash", 59, 11]]);
-const pos$7 = nix.positions(here + "/default.nix", [["version", 55, 9], ["filename", 56, 9], ["prebuilt", 57, 9]]);
-const pos$8 = nix.positions(here + "/default.nix", [["service", 265, 5]]);
-const pos$9 = nix.positions(here + "/default.nix", [["tests", 264, 12]]);
-const pos$10 = nix.positions(here + "/default.nix", [["description", 269, 5], ["homepage", 270, 5], ["maintainers", 271, 5], ["platforms", 276, 5], ["license", 277, 5]]);
-const pos$11 = nix.positions(here + "/default.nix", [["pname", 21, 3], ["version", 23, 3], ["versionTag", 25, 3], ["src", 27, 3], ["postUnpack", 36, 3], ["patches", 80, 3], ["postPatch", 99, 3], ["nativeBuildInputs", 137, 3], ["buildInputs", 148, 3], ["dontUseCmakeConfigure", 153, 3], ["preBuild", 155, 3], ["buildFlags", 170, 3], ["installFlags", 172, 3], ["postInstall", 177, 3], ["stripDebugList", 229, 3], ["postFixup", 236, 3], ["passthru", 264, 3], ["meta", 268, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -35,12 +25,12 @@ export default nix.lambda((args) => (() => {
   const which = nix.arg($, "which");
   const debug = nix.argOr($, "debug", () => false);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$11,
+      [nix.POS]: $pos[10],
       pname: "sgx-psw",
       version: "2.29.100.1",
       versionTag: "2.29",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "intel",
           repo: "confidential-computing.sgx",
           rev: nix.thunk(() => nix.str`sgx_${nix.sel(finalAttrs, "versionTag")}`),
@@ -49,17 +39,17 @@ export default nix.lambda((args) => (() => {
         })))),
       postUnpack: nix.thunk(() => (() => {
         const ae = nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           prebuilt: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               url: nix.thunk(() => nix.str`https://download.01.org/intel-sgx/sgx-linux/${nix.sel(finalAttrs, "versionTag")}/prebuilt_ae_${nix.sel(finalAttrs, "versionTag")}.tar.gz`),
               hash: "sha256-Hlh96rYOyml2y50d8ASKz6U97Fl0hbGYECeZiG9nMSQ=",
             })))),
         }));
         const optlib = nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           prebuilt: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               url: nix.thunk(() => nix.str`https://download.01.org/intel-sgx/sgx-linux/${nix.sel(finalAttrs, "versionTag")}/optimized_libs_${nix.sel(finalAttrs, "versionTag")}.tar.gz`),
               hash: "sha256-7mDTaLtpOQLHQ6Fv+FWJ2k/veJZPXIcuj7kOdRtRqhg=",
             })))),
@@ -68,11 +58,11 @@ export default nix.lambda((args) => (() => {
           const version = "1.26";
           const filename = nix.thunk(() => nix.str`prebuilt_dcap_${version}.tar.gz`);
           const prebuilt = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              [nix.POS]: pos$6,
+              [nix.POS]: $pos[5],
               url: nix.thunk(() => nix.str`https://download.01.org/intel-sgx/sgx-dcap/${version}/linux/${filename}`),
               hash: "sha256-TXQ8xh0q9RKPyKqjMvxoQtIH2lxbhCiwpV+HvQxACaw=",
             }))));
-          return { [nix.POS]: pos$7, version, filename, prebuilt };
+          return { [nix.POS]: $pos[6], version, filename, prebuilt };
         })());
         return nix.str`# Make sure this is the right version of linux-sgx
 grep -q '"${nix.sel(finalAttrs, "version")}"' "$src/common/inc/internal/se_version.h" \\
@@ -221,11 +211,11 @@ substituteInPlace $out/lib/systemd/system/aesmd.service \\
                  "${coreutils}/bin/kill"
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$9,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$8, service: nix.thunk(() => nix.sel(nixosTests, "aesmd")) })),
+        [nix.POS]: $pos[8],
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[7], service: nix.thunk(() => nix.sel(nixosTests, "aesmd")) })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         description: "Intel SGX Architectural Enclave Service Manager",
         homepage: "https://github.com/intel/confidential-computing.sgx",
         maintainers: nix.thunk(() => (() => {

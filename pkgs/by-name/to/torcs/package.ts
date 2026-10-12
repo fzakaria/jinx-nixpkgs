@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["hydraPlatforms", 32, 10]], [["pname", 13, 5], ["version", 15, 7], ["src", 16, 7], ["buildInputs", 17, 7], ["dontBuild", 20, 5], ["installTargets", 22, 5], ["postInstall", 23, 5], ["meta", 32, 5]], [["description", 53, 5], ["hydraPlatforms", 54, 5]], [["pname", 36, 3], ["version", 38, 5], ["paths", 41, 3], ["postBuild", 46, 3], ["meta", 52, 3]]]);
 const formals$1 = { args: { imagemagick: false, stdenv: false, symlinkJoin: false, "torcs-without-data": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["hydraPlatforms", 32, 10]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 13, 5], ["version", 15, 7], ["src", 16, 7], ["buildInputs", 17, 7], ["dontBuild", 20, 5], ["installTargets", 22, 5], ["postInstall", 23, 5], ["meta", 32, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 53, 5], ["hydraPlatforms", 54, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 36, 3], ["version", 38, 5], ["paths", 41, 3], ["postBuild", 46, 3], ["meta", 52, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const symlinkJoin = nix.arg($, "symlinkJoin");
   const torcs_without_data = nix.arg($, "torcs-without-data");
   const torcs_data = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "torcs-data",
       version: nix.thunk(() => nix.attr(torcs_without_data, "version")),
       src: nix.thunk(() => nix.attr(torcs_without_data, "src")),
@@ -29,10 +26,10 @@ substituteInPlace torcs.desktop \\
   --replace-fail "Icon=torcs.png" "Icon=torcs"
 install -D -m644 torcs.desktop $out/share/applications/torcs.desktop
 `),
-      meta: nix.thunk(() => ({ [nix.POS]: pos$1, hydraPlatforms: [] })),
+      meta: nix.thunk(() => ({ [nix.POS]: $pos[0], hydraPlatforms: [] })),
     })));
   return nix.app(symlinkJoin, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "torcs",
       version: nix.thunk(() => nix.attr(torcs_without_data, "version")),
       paths: nix.thunk(() => [torcs_without_data, torcs_data]),
@@ -40,7 +37,7 @@ install -D -m644 torcs.desktop $out/share/applications/torcs.desktop
 substituteInPlace $out/bin/torcs \\
   --replace-fail "${torcs_without_data}" "$out"
 `),
-      meta: nix.thunk(() => nix.update(nix.sel(torcs_without_data, "meta"), { [nix.POS]: pos$3, description: "Car racing game", hydraPlatforms: [] })),
+      meta: nix.thunk(() => nix.update(nix.sel(torcs_without_data, "meta"), { [nix.POS]: $pos[2], description: "Car racing game", hydraPlatforms: [] })),
     })));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

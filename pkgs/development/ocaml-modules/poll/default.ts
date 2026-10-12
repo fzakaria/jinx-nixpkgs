@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 18, 5], ["hash", 19, 5]], [["description", 38, 5], ["homepage", 39, 5], ["changelog", 40, 5], ["license", 41, 5], ["maintainers", 42, 5]], [["pname", 12, 3], ["version", 13, 3], ["minimalOCamlVersion", 15, 3], ["src", 17, 3], ["buildInputs", 22, 3], ["propagatedBuildInputs", 27, 3], ["checkInputs", 31, 3], ["doCheck", 35, 3], ["meta", 37, 3]]]);
 const formals$1 = { args: { buildDunePackage: false, "dune-configurator": false, fetchurl: false, kqueue: false, lib: false, ppx_expect: false, ppx_optcomp: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 38, 5], ["homepage", 39, 5], ["changelog", 40, 5], ["license", 41, 5], ["maintainers", 42, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 12, 3], ["version", 13, 3], ["minimalOCamlVersion", 15, 3], ["src", 17, 3], ["buildInputs", 22, 3], ["propagatedBuildInputs", 27, 3], ["checkInputs", 31, 3], ["doCheck", 35, 3], ["meta", 37, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const ppx_expect = nix.arg($, "ppx_expect");
   const ppx_optcomp = nix.arg($, "ppx_optcomp");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "poll",
       version: "0.3.1",
       minimalOCamlVersion: "4.13",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/anuragsoni/poll/releases/download/${nix.sel(finalAttrs, "version")}/poll-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-IX6SivK/IMQaGgMgWiIsNgUSMHP6z1E/TSB0miaQ8pw=",
         })))),
@@ -31,7 +29,7 @@ export default nix.lambda((args) => (() => {
       checkInputs: nix.thunk(() => [ppx_expect]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Portable OCaml interface to macOS/Linux/Windows native IO event notification mechanisms",
         homepage: "https://github.com/anuragsoni/poll",
         changelog: nix.thunk(() => nix.str`https://github.com/anuragsoni/poll/blob/${nix.sel(finalAttrs, "version")}/CHANGES.md`),

@@ -2,8 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 15, 3], ["nativeBuildInputs", 16, 3], ["buildInputs", 20, 3], ["propagatedBuildInputs", 21, 3], ["patches", 22, 3], ["outputs", 27, 3], ["setupHook", 31, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, mkDerivation: false, propagate: false, cmake: false, "extra-cmake-modules": false, kcoreaddons: false, qttools: false, enablePolkit: true, "polkit-qt": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 15, 3], ["nativeBuildInputs", 16, 3], ["buildInputs", 20, 3], ["propagatedBuildInputs", 21, 3], ["patches", 22, 3], ["outputs", 27, 3], ["setupHook", 31, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
   const enablePolkit = nix.argOr($, "enablePolkit", () => nix.sel(stdenv, "hostPlatform", "isLinux"));
   const polkit_qt = nix.arg($, "polkit-qt");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       pname: "kauth",
       nativeBuildInputs: nix.thunk(() => [cmake, extra_cmake_modules]),
       buildInputs: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optional"), enablePolkit, polkit_qt), [qttools])),

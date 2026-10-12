@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["sha256", 18, 5]], [["podman", 35, 43]], [["tests", 35, 12]], [["description", 38, 5], ["homepage", 39, 5], ["license", 40, 5], ["maintainers", 41, 5], ["teams", 42, 5], ["platforms", 43, 5], ["mainProgram", 44, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 21, 3], ["buildInputs", 22, 3], ["enableParallelBuilding", 27, 3], ["strictDeps", 28, 3], ["doInstallCheck", 30, 3], ["installCheckPhase", 31, 3], ["passthru", 35, 3], ["meta", 37, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, autoreconfHook: false, fetchFromGitHub: false, glibc: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["sha256", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["podman", 35, 43]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 35, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 38, 5], ["homepage", 39, 5], ["license", 40, 5], ["maintainers", 41, 5], ["teams", 42, 5], ["platforms", 43, 5], ["mainProgram", 44, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 21, 3], ["buildInputs", 22, 3], ["enableParallelBuilding", 27, 3], ["strictDeps", 28, 3], ["doInstallCheck", 30, 3], ["installCheckPhase", 31, 3], ["passthru", 35, 3], ["meta", 37, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const glibc = nix.arg($, "glibc");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "catatonit",
       version: "0.2.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "openSUSE",
           repo: "catatonit",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,11 +31,11 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       installCheckPhase: "readelf -d $out/bin/catatonit | grep 'There is no dynamic section in this file.'\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$2, podman: nix.thunk(() => nix.attr(nixosTests, "podman")) })),
+        [nix.POS]: $pos[2],
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[1], podman: nix.thunk(() => nix.attr(nixosTests, "podman")) })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Container init that is so simple it's effectively brain-dead",
         homepage: "https://github.com/openSUSE/catatonit",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

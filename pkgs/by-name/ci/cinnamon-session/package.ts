@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 45, 5], ["repo", 46, 5], ["tag", 47, 5], ["hash", 48, 5]], [["homepage", 105, 5], ["description", 106, 5], ["license", 107, 5], ["platforms", 108, 5], ["teams", 109, 5]], [["pname", 41, 3], ["version", 42, 3], ["src", 44, 3], ["buildInputs", 51, 3], ["nativeBuildInputs", 76, 3], ["mesonFlags", 86, 3], ["postPatch", 91, 3], ["preFixup", 97, 3], ["meta", 104, 3]]]);
 const formals$1 = { args: { fetchFromGitHub: false, "cinnamon-desktop": false, "cinnamon-settings-daemon": false, "cinnamon-translations": false, glib: false, "gsettings-desktop-schemas": false, gtk3: false, libcanberra: false, libxslt: false, meson: false, ninja: false, "pkg-config": false, python3: false, lib: false, stdenv: false, systemdLibs: false, wrapGAppsHook3: false, xapp: false, libxtst: false, libxrender: false, libxext: false, libxcomposite: false, libxau: false, libx11: false, xtrans: false, libexecinfo: false, pango: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 45, 5], ["repo", 46, 5], ["tag", 47, 5], ["hash", 48, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 105, 5], ["description", 106, 5], ["license", 107, 5], ["platforms", 108, 5], ["teams", 109, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 41, 3], ["version", 42, 3], ["src", 44, 3], ["buildInputs", 51, 3], ["nativeBuildInputs", 76, 3], ["mesonFlags", 86, 3], ["postPatch", 91, 3], ["preFixup", 97, 3], ["meta", 104, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -45,11 +43,11 @@ export default nix.lambda((args) => (() => {
       ];
     })()));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "cinnamon-session",
       version: "6.6.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "linuxmint",
           repo: "cinnamon-session",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -83,7 +81,7 @@ export default nix.lambda((args) => (() => {
 )
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/linuxmint/cinnamon-session",
         description: "Cinnamon session manager",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),

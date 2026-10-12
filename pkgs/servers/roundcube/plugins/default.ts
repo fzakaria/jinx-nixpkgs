@@ -2,15 +2,15 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["callPackage", 7, 44]]]);
 const formals$1 = { args: { newScope: false, pkgs: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["callPackage", 7, 44]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const newScope = nix.arg($, "newScope");
   const pkgs = nix.arg($, "pkgs");
   const callPackage = nix.thunk(() => nix.app(newScope, nix.thunk(() => nix.update(pkgs, plugins))));
-  const plugins = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./plugins.nix")), nix.thunk(() => ({ [nix.POS]: pos$1, callPackage: callPackage }))));
+  const plugins = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./plugins.nix")), nix.thunk(() => ({ [nix.POS]: $pos[0], callPackage: callPackage }))));
   return nix.force(plugins);
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

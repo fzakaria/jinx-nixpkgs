@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/tsig.nix", [[["description", 26, 5]], [["pname", 10, 3], ["version", 12, 17], ["src", 12, 25], ["propagatedBuildInputs", 14, 3], ["doCheck", 20, 3], ["checkInputs", 21, 3], ["meta", 25, 3]]]);
 const formals$1 = { args: { buildDunePackage: false, dns: false, digestif: false, base64: false, alcotest: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/tsig.nix", [["description", 26, 5]]);
-const pos$2 = nix.positions(here + "/tsig.nix", [["pname", 10, 3], ["version", 12, 17], ["src", 12, 25], ["propagatedBuildInputs", 14, 3], ["doCheck", 20, 3], ["checkInputs", 21, 3], ["meta", 25, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,14 +13,14 @@ export default nix.lambda((args) => (() => {
   const base64 = nix.arg($, "base64");
   const alcotest = nix.arg($, "alcotest");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "dns-tsig",
       version: nix.thunk(() => nix.attr(dns, "version")),
       src: nix.thunk(() => nix.attr(dns, "src")),
       propagatedBuildInputs: nix.thunk(() => [digestif, dns, base64]),
       doCheck: true,
       checkInputs: nix.thunk(() => [alcotest]),
-      meta: nix.thunk(() => nix.update(nix.sel(dns, "meta"), { [nix.POS]: pos$1, description: "TSIG support for DNS" })),
+      meta: nix.thunk(() => nix.update(nix.sel(dns, "meta"), { [nix.POS]: $pos[0], description: "TSIG support for DNS" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=tsig.ts.map

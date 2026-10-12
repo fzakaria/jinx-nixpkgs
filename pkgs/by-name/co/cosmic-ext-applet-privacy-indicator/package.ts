@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]], [["name", 27, 7], ["url", 28, 7], ["hash", 29, 7]], [["updateScript", 53, 12]], [["changelog", 56, 5], ["description", 57, 5], ["homepage", 58, 5], ["license", 59, 5], ["mainProgram", 60, 5], ["maintainers", 61, 5], ["platforms", 62, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["cargoHash", 23, 3], ["cargoPatches", 25, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 39, 3], ["dontUseJustBuild", 41, 3], ["dontUseJustCheck", 42, 3], ["justFlags", 44, 3], ["passthru", 53, 3], ["meta", 55, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, rustPlatform: false, fetchFromGitHub: false, fetchpatch: false, just: false, libcosmicAppHook: false, pipewire: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 27, 7], ["url", 28, 7], ["hash", 29, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 53, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["changelog", 56, 5], ["description", 57, 5], ["homepage", 58, 5], ["license", 59, 5], ["mainProgram", 60, 5], ["maintainers", 61, 5], ["platforms", 62, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["cargoHash", 23, 3], ["cargoPatches", 25, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 39, 3], ["dontUseJustBuild", 41, 3], ["dontUseJustCheck", 42, 3], ["justFlags", 44, 3], ["passthru", 53, 3], ["meta", 55, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const pipewire = nix.arg($, "pipewire");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "cosmic-ext-applet-privacy-indicator",
       version: "0.1.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "D-Brox",
           repo: "cosmic-ext-applet-privacy-indicator",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,7 +30,7 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-Tbcjnbjyo+FoYtRe5KnPiEzV+1PkzHOnbVDRe/pJul0=",
       cargoPatches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "deduplicate-sctk.patch",
             url: "https://patch-diff.githubusercontent.com/raw/D-Brox/cosmic-ext-applet-privacy-indicator/pull/7.diff?full_index=1",
             hash: "sha256-BN32JHouyIqJzBR6Mlp2pw/JhU5c6hdtG+P2SEl/0pA=",
@@ -57,11 +53,11 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`target/${nix.sel(stdenv, "hostPlatform", "rust", "cargoShortTarget")}/release/cosmic-ext-applet-privacy-indicator`),
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         changelog: nix.thunk(() => nix.str`https://github.com/D-Brox/cosmic-ext-applet-privacy-indicator/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "Privacy indicator applet for the COSMIC Desktop Environment",
         homepage: "https://github.com/D-Brox/cosmic-ext-applet-privacy-indicator",

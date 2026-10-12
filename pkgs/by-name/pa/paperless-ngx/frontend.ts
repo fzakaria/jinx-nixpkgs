@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/frontend.nix", [[["pnpm", 28, 13], ["pname", 29, 26], ["version", 29, 32], ["src", 29, 40], ["fetcherVersion", 30, 5], ["hash", 31, 5]], [["pname", 22, 3], ["version", 23, 11], ["src", 25, 3], ["pnpmDeps", 27, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 45, 3], ["CYPRESS_INSTALL_BINARY", 52, 3], ["NG_CLI_ANALYTICS", 53, 3], ["buildPhase", 55, 3], ["doCheck", 67, 3], ["checkPhase", 68, 3], ["installPhase", 76, 3], ["meta", 85, 11]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchPnpmDeps: false, pnpmConfigHook: false, pnpm_10: false, nodejs: false, "node-gyp": false, "pkg-config": false, pango: false, giflib: false, xcbuild: false, src: false, version: false, meta: false, buildPackages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/frontend.nix", [["pnpm", 28, 13], ["pname", 29, 26], ["version", 29, 32], ["src", 29, 40], ["fetcherVersion", 30, 5], ["hash", 31, 5]]);
-const pos$2 = nix.positions(here + "/frontend.nix", [["pname", 22, 3], ["version", 23, 11], ["src", 25, 3], ["pnpmDeps", 27, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 45, 3], ["CYPRESS_INSTALL_BINARY", 52, 3], ["NG_CLI_ANALYTICS", 53, 3], ["buildPhase", 55, 3], ["doCheck", 67, 3], ["checkPhase", 68, 3], ["installPhase", 76, 3], ["meta", 85, 11]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,12 +24,12 @@ export default nix.lambda((args) => (() => {
   const buildPackages = nix.arg($, "buildPackages");
   const pnpm = pnpm_10;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "paperless-ngx-frontend",
       version: version,
       src: nix.thunk(() => nix.add(src, "/src-ui")),
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pnpm: pnpm,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),

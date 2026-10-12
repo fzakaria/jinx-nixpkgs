@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]], [["name", 37, 7], ["url", 38, 7], ["hash", 39, 7]], [["url", 46, 7], ["hash", 47, 7], ["revert", 48, 7]], [["url", 53, 7], ["hash", 54, 7]], [["PKG_CONFIG_SYSTEMD_SYSTEMDSYSTEMUNITDIR", 78, 7]], [["updateScript", 81, 5]], [["homepage", 85, 5], ["description", 86, 5], ["mainProgram", 87, 5], ["license", 88, 5], ["platforms", 89, 5], ["teams", 90, 5]], [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["patches", 35, 3], ["nativeBuildInputs", 58, 3], ["buildInputs", 63, 3], ["env", 78, 3], ["passthru", 80, 3], ["meta", 84, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, fetchpatch: false, "nix-update-script": false, systemd: false, libinput: false, pugixml: false, cairo: false, libxtst: false, libxrandr: false, libxi: false, libxdmcp: false, libx11: false, "libpthread-stubs": false, libxcb: false, "gtk3-x11": false, "pkg-config": false, cmake: false, withPantheon: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 37, 7], ["url", 38, 7], ["hash", 39, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 46, 7], ["hash", 47, 7], ["revert", 48, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["url", 53, 7], ["hash", 54, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["PKG_CONFIG_SYSTEMD_SYSTEMDSYSTEMUNITDIR", 78, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["updateScript", 81, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["homepage", 85, 5], ["description", 86, 5], ["mainProgram", 87, 5], ["license", 88, 5], ["platforms", 89, 5], ["teams", 90, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["patches", 35, 3], ["nativeBuildInputs", 58, 3], ["buildInputs", 63, 3], ["env", 78, 3], ["passthru", 80, 3], ["meta", 84, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -35,11 +28,11 @@ export default nix.lambda((args) => (() => {
   const cmake = nix.arg($, "cmake");
   const withPantheon = nix.argOr($, "withPantheon", () => false);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "touchegg",
       version: "2.0.18",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "JoseExposito",
           repo: "touchegg",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -47,20 +40,20 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => nix.concat([
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "cmake-4-support.patch",
             url: "https://github.com/JoseExposito/touchegg/commit/953c4227253d91c73f5ce46f89947262ebf45b18.patch",
             hash: "sha256-q/rKXLN8wqisw3QfqEtu1ZaJonOYzkYLFRECNYB620g=",
           })))),
       ], nix.app(nix.sel(lib, "optionals"), withPantheon, nix.thunk(() => [
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               url: "https://github.com/JoseExposito/touchegg/commit/34e947181d84620021601e7f28deb1983a154da8.patch",
               hash: "sha256-qbWwmEzVXvDAhhrGvMkKN4YNtnFfRW+Yra+i6VEQX4g=",
               revert: true,
             })))),
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               url: "https://github.com/elementary/os-patches/commit/7d9b133e02132d7f13cf2fe850b2fe4c015c3c5e.patch",
               hash: "sha256-ZOGVkxiXoTORXC6doz5r9IObAbYjhsDjgg3HtzlTSUc=",
             })))),
@@ -81,15 +74,15 @@ export default nix.lambda((args) => (() => {
         libxcb,
       ]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         PKG_CONFIG_SYSTEMD_SYSTEMDSYSTEMUNITDIR: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/lib/systemd/system`),
       })),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         homepage: "https://github.com/JoseExposito/touchegg",
         description: "Linux multi-touch gesture recognizer",
         mainProgram: "touchegg",

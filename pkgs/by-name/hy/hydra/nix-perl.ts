@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/nix-perl.nix", [[["description", 68, 7], ["homepage", 69, 7], ["license", 70, 7], ["platforms", 71, 7]], [["pname", 17, 5], ["version", 18, 25], ["src", 19, 13], ["__structuredAttrs", 21, 5], ["strictDeps", 22, 5], ["sourceRoot", 24, 5], ["nativeBuildInputs", 26, 5], ["buildInputs", 33, 5], ["preConfigure", 42, 5], ["mesonBuildType", 53, 5], ["mesonFlags", 55, 5], ["mesonCheckFlags", 59, 5], ["doCheck", 61, 5], ["nativeCheckInputs", 63, 5], ["meta", 67, 5]]]);
 const formals$1 = { args: { lib: false, stdenv: false, src: false, meson: false, ninja: false, "nix-store": false, perl: false, perlPackages: false, "pkg-config": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/nix-perl.nix", [["description", 68, 7], ["homepage", 69, 7], ["license", 70, 7], ["platforms", 71, 7]]);
-const pos$2 = nix.positions(here + "/nix-perl.nix", [["pname", 17, 5], ["version", 18, 25], ["src", 19, 13], ["__structuredAttrs", 21, 5], ["strictDeps", 22, 5], ["sourceRoot", 24, 5], ["nativeBuildInputs", 26, 5], ["buildInputs", 33, 5], ["preConfigure", 42, 5], ["mesonBuildType", 53, 5], ["mesonFlags", 55, 5], ["mesonCheckFlags", 59, 5], ["doCheck", 61, 5], ["nativeCheckInputs", 63, 5], ["meta", 67, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,7 +17,7 @@ export default nix.lambda((args) => (() => {
   const perlPackages = nix.arg($, "perlPackages");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(perl, "pkgs", "toPerlModule"), nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         pname: "nix-perl",
         version: nix.thunk(() => nix.attr(nix_store, "version")),
         src: src,
@@ -42,7 +41,7 @@ export default nix.lambda((args) => (() => {
         doCheck: true,
         nativeCheckInputs: nix.thunk(() => [nix.thunk(() => nix.sel(perlPackages, "Test2Harness"))]),
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           description: "Perl bindings for the Nix store, as maintained in the Hydra repository",
           homepage: "https://github.com/NixOS/hydra",
           license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),

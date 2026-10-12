@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["version", 20, 26], ["pname", 21, 5], ["hash", 22, 5]], [["description", 39, 5], ["homepage", 40, 5], ["license", 41, 5]], [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["src", 19, 3], ["nativeBuildInputs", 25, 3], ["propagatedBuildInputs", 27, 3], ["pythonImportsCheck", 36, 3], ["meta", 38, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, setuptools: false, ledgercomm: false, packaging: false, bip32: false, coincurve: false, "typing-extensions": false, hidapi: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["version", 20, 26], ["pname", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 39, 5], ["homepage", 40, 5], ["license", 41, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["src", 19, 3], ["nativeBuildInputs", 25, 3], ["propagatedBuildInputs", 27, 3], ["pythonImportsCheck", 36, 3], ["meta", 38, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const typing_extensions = nix.arg($, "typing-extensions");
   const hidapi = nix.arg($, "hidapi");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "ledger-bitcoin",
       version: "0.4.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           pname: "ledger_bitcoin",
           hash: "sha256-PLQpftflV++YNJzcvWZ+9zaMBH1oGMfNy8p6+YuABrY=",
@@ -34,7 +32,7 @@ export default nix.lambda((args) => (() => {
       propagatedBuildInputs: nix.thunk(() => [ledgercomm, packaging, bip32, coincurve, typing_extensions, hidapi]),
       pythonImportsCheck: nix.thunk(() => ["ledger_bitcoin"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Client library for Ledger Bitcoin application",
         homepage: "https://github.com/LedgerHQ/app-bitcoin-new/tree/develop/bitcoin_client/ledger_bitcoin",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

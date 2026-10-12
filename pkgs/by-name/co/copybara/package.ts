@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 20, 5], ["hash", 21, 5]], [["updateScript", 56, 12]], [["description", 59, 5], ["longDescription", 60, 5], ["homepage", 70, 5], ["changelog", 71, 5], ["license", 72, 5], ["maintainers", 73, 5], ["platforms", 74, 35], ["mainProgram", 75, 5], ["sourceProvenance", 76, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["nativeBuildInputs", 24, 3], ["runtimeDeps", 28, 3], ["dontUnpack", 36, 3], ["installPhase", 38, 3], ["doInstallCheck", 52, 3], ["versionCheckProgramArg", 53, 3], ["nativeInstallCheckInputs", 54, 3], ["passthru", 56, 3], ["meta", 58, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, jdk25_headless: false, makeWrapper: false, git: false, gnused: false, gnugrep: false, gawk: false, which: false, versionCheckHook: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 56, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 59, 5], ["longDescription", 60, 5], ["homepage", 70, 5], ["changelog", 71, 5], ["license", 72, 5], ["maintainers", 73, 5], ["platforms", 74, 35], ["mainProgram", 75, 5], ["sourceProvenance", 76, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["nativeBuildInputs", 24, 3], ["runtimeDeps", 28, 3], ["dontUnpack", 36, 3], ["installPhase", 38, 3], ["doInstallCheck", 52, 3], ["versionCheckProgramArg", 53, 3], ["nativeInstallCheckInputs", 54, 3], ["passthru", 56, 3], ["meta", 58, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "copybara",
       version: "20260928",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/google/copybara/releases/download/v${nix.sel(finalAttrs, "version")}/copybara_deploy.jar`),
           hash: "sha256-JYB2Re4Xt7hj9PiFASsGGSuZUmMrVAvfiiEIgxP+SSU=",
         })))),
@@ -50,13 +47,13 @@ runHook postInstall
       versionCheckProgramArg: "version",
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(jdk25_headless, "meta"));
         return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Tool for transforming and moving code between repositories",
         longDescription: "Copybara is a tool used internally at Google for transforming and moving\ncode between repositories. It allows you to maintain code in multiple\nrepositories while keeping them in sync through transformations.\n\nCommon use cases include:\n- Importing sections of code from a confidential repository to a public repository\n- Importing code from a public repository to a confidential repository\n- Moving changes between authoritative and non-authoritative repositories\n",
         homepage: "https://github.com/google/copybara",

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 29, 5], ["sha256", 30, 5]], [["description", 55, 5], ["maintainers", 56, 5], ["sourceProvenance", 57, 5], ["platforms", 58, 5], ["license", 59, 5], ["homepage", 60, 5]], [["src", 28, 3], ["pname", 32, 3], ["version", 33, 11], ["sourceRoot", 35, 3], ["installPhase", 37, 3], ["postFixup", 46, 3], ["preferLocalBuild", 52, 3], ["meta", 54, 3]]]);
 const formals$1 = { args: { fetchurl: false, lib: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 29, 5], ["sha256", 30, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 55, 5], ["maintainers", 56, 5], ["sourceProvenance", 57, 5], ["platforms", 58, 5], ["license", 59, 5], ["homepage", 60, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["src", 28, 3], ["pname", 32, 3], ["version", 33, 11], ["sourceRoot", 35, 3], ["installPhase", 37, 3], ["postFixup", 46, 3], ["preferLocalBuild", 52, 3], ["meta", 54, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,9 +21,9 @@ export default nix.lambda((args) => (() => {
     return (nix.asBool(nix.lookup(w_1, "isx86_64")) ? "1jfsng5n3phw5rqpkid9m5j7m7zgj5bifh7swvba7f97y6imdaax" : "15y6r5w306pcq4g1rn9f7vf70f3a7qhq237ngaf0wxh2nr0aamxp");
   })());
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`http://www.sundtek.de/media/netinst/${platform}/installer.tar.gz`),
           sha256: sha256,
         })))),
@@ -39,7 +37,7 @@ export default nix.lambda((args) => (() => {
 `),
       preferLocalBuild: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Sundtek MediaTV driver",
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "simonvandel"))]),
         sourceProvenance: nix.thunk(() => (() => {

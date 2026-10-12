@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 12, 5], ["hash", 13, 5]], [["pname", 16, 54], ["version", 16, 60], ["src", 16, 68]], [["updateScript", 28, 12]], [["description", 31, 5], ["homepage", 32, 5], ["license", 33, 5], ["maintainers", 34, 5], ["platforms", 35, 5], ["mainProgram", 36, 5], ["sourceProvenance", 37, 5]], [["pname", 19, 11], ["version", 19, 17], ["src", 19, 25], ["extraInstallCommands", 21, 3], ["passthru", 28, 3], ["meta", 30, 3]]]);
 const formals$1 = { args: { appimageTools: false, lib: false, fetchurl: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 12, 5], ["hash", 13, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 16, 54], ["version", 16, 60], ["src", 16, 68]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 28, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 31, 5], ["homepage", 32, 5], ["license", 33, 5], ["maintainers", 34, 5], ["platforms", 35, 5], ["mainProgram", 36, 5], ["sourceProvenance", 37, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 19, 11], ["version", 19, 17], ["src", 19, 25], ["extraInstallCommands", 21, 3], ["passthru", 28, 3], ["meta", 30, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,13 +14,13 @@ export default nix.lambda((args) => (() => {
   const pname = "betterdiscord-installer";
   const version = "1.3.0";
   const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: nix.thunk(() => nix.str`https://github.com/BetterDiscord/Installer/releases/download/v${version}/Betterdiscord-Linux.AppImage`),
       hash: "sha256-In5J6TWoJsFODDwMXd1lMg3341IZJD2OJebVtgISxP0=",
     }))));
-  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: pos$2, pname: pname, version: version, src: src }))));
+  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: $pos[1], pname: pname, version: version, src: src }))));
   return nix.app(nix.sel(appimageTools, "wrapType2"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: pname,
       version: version,
       src: src,
@@ -34,11 +30,11 @@ substituteInPlace $out/share/applications/betterdiscord-installer.desktop \\
 cp -r ${appimageContents}/usr/share/icons $out/share
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Installer for BetterDiscord",
         homepage: "https://betterdiscord.app",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

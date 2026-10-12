@@ -2,10 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/automake-1.16.x.nix", [[["url", 15, 5], ["hash", 16, 5]], [["branch", 42, 5], ["homepage", 43, 5], ["description", 44, 5], ["license", 45, 5], ["longDescription", 46, 5], ["platforms", 51, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["strictDeps", 19, 3], ["nativeBuildInputs", 20, 3], ["buildInputs", 25, 3], ["setupHook", 27, 3], ["doCheck", 29, 3], ["doInstallCheck", 30, 3], ["enableParallelBuilding", 33, 3], ["dontPatchShebangs", 37, 3], ["__structuredAttrs", 39, 3], ["meta", 41, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, perl: false, autoconf: false, updateAutotoolsGnuConfigScriptsHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/automake-1.16.x.nix", [["url", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/automake-1.16.x.nix", [["branch", 42, 5], ["homepage", 43, 5], ["description", 44, 5], ["license", 45, 5], ["longDescription", 46, 5], ["platforms", 51, 5]]);
-const pos$3 = nix.positions(here + "/automake-1.16.x.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["strictDeps", 19, 3], ["nativeBuildInputs", 20, 3], ["buildInputs", 25, 3], ["setupHook", 27, 3], ["doCheck", 29, 3], ["doInstallCheck", 30, 3], ["enableParallelBuilding", 33, 3], ["dontPatchShebangs", 37, 3], ["__structuredAttrs", 39, 3], ["meta", 41, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const autoconf = nix.arg($, "autoconf");
   const updateAutotoolsGnuConfigScriptsHook = nix.arg($, "updateAutotoolsGnuConfigScriptsHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "automake",
       version: "1.16.5",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnu/automake/automake-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-8B1YzW2dd/vcqetLvV6tGYgij9tz1veiAfX41rEYtGk=",
         })))),
@@ -34,7 +32,7 @@ export default nix.lambda((args) => (() => {
       dontPatchShebangs: true,
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         branch: "1.16",
         homepage: "https://www.gnu.org/software/automake/",
         description: "GNU standard-compliant makefile generator",

@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]], [["pname", 34, 26], ["src", 34, 32], ["version", 34, 36], ["composerNoScripts", 35, 5], ["composerStrictValidation", 36, 5], ["strictDeps", 37, 5], ["vendorHash", 38, 5]], [["src", 42, 26], ["name", 43, 5], ["hash", 44, 5]], [["phpPackage", 60, 5], ["tests", 61, 5]], [["description", 65, 5], ["homepage", 66, 5], ["license", 67, 5], ["maintainers", 68, 5], ["platforms", 69, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["buildInputs", 24, 3], ["nativeBuildInputs", 26, 3], ["composerVendor", 33, 3], ["npmDeps", 41, 3], ["preInstall", 47, 3], ["postInstall", 51, 3], ["passthru", 59, 3], ["meta", 64, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, stdenvNoCC: false, nodejs: false, fetchNpmDeps: false, buildPackages: false, php84: false, nixosTests: false, dataDir: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 34, 26], ["src", 34, 32], ["version", 34, 36], ["composerNoScripts", 35, 5], ["composerStrictValidation", 36, 5], ["strictDeps", 37, 5], ["vendorHash", 38, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["src", 42, 26], ["name", 43, 5], ["hash", 44, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["phpPackage", 60, 5], ["tests", 61, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 65, 5], ["homepage", 66, 5], ["license", 67, 5], ["maintainers", 68, 5], ["platforms", 69, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["buildInputs", 24, 3], ["nativeBuildInputs", 26, 3], ["composerVendor", 33, 3], ["npmDeps", 41, 3], ["preInstall", 47, 3], ["postInstall", 51, 3], ["passthru", 59, 3], ["meta", 64, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const dataDir = nix.argOr($, "dataDir", () => "/var/lib/speedtest-tracker");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "speedtest-tracker",
       version: "1.14.6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "alexjustesen",
           repo: "speedtest-tracker",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -40,7 +35,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.sel(php84, "composerHooks2", "composerInstallHook")),
       ]),
       composerVendor: nix.thunk(() => nix.app(nix.sel(php84, "mkComposerVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
@@ -50,7 +45,7 @@ export default nix.lambda((args) => (() => {
           vendorHash: "sha256-a8y0W8kTzvR3wdqiUfzVt2ui5jksneggRqsMsex0Vrc=",
         })))),
       npmDeps: nix.thunk(() => nix.app(fetchNpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           name: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-npm-deps`),
           hash: "sha256-JjHtsW1lfI4xp6qw7ZMCWLF953lKB5bDlBVq4G/Wrz0=",
@@ -63,12 +58,12 @@ ln -s ${dataDir}/storage $out/storage
 ln -s ${dataDir}/cache $out/bootstrap/cache
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         phpPackage: php84,
         tests: nix.thunk(() => nix.sel(nixosTests, "speedtest-tracker")),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Speedtest Tracker is a self-hosted application that monitors the performance and uptime of your internet connection",
         homepage: "https://github.com/alexjustesen/speedtest-tracker",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

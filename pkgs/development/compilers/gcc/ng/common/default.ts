@@ -2,47 +2,9 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["lib", 47, 11], ["gitRelease", 48, 11], ["officialRelease", 49, 11], ["version", 50, 11]], [["lib", 59, 11], ["fetchgit", 60, 11], ["fetchurl", 61, 11], ["release_version", 62, 11], ["gitRelease", 63, 11], ["officialRelease", 64, 11], ["monorepoSrc'", 65, 11], ["version", 66, 11]], [["path", 101, 23]], [["path", 103, 54]], [["name", 78, 9], ["path", 79, 9]], [["releaseInfo", 53, 7], ["release_version", 55, 27], ["version", 55, 43], ["gcc_meta", 69, 7], ["monorepoSrc", 70, 7], ["src", 72, 5], ["versionDir", 73, 5], ["getVersionFile", 75, 5]], [["cc-ldflags", 140, 9]], [["bintools", 160, 9]], [["stdenv", 168, 9], ["langFortran", 169, 9]], [["cc-cflags", 181, 11]], [["cc", 173, 9], ["libcxx", 174, 9], ["bintools", 175, 9], ["extraPackages", 176, 9], ["nixSupport", 180, 9]], [["cc-cflags", 207, 11]], [["cc", 199, 9], ["libcxx", 200, 9], ["bintools", 201, 9], ["extraPackages", 202, 9], ["nixSupport", 206, 9]], [["cc-cflags", 227, 11]], [["cc", 219, 9], ["libcxx", 220, 9], ["bintools", 221, 9], ["extraPackages", 222, 9], ["nixSupport", 226, 9]], [["cc-cflags", 255, 20]], [["cc", 251, 9], ["libcxx", 252, 9], ["bintools", 253, 9], ["extraPackages", 254, 9], ["nixSupport", 255, 9]], [["stdenv", 264, 9], ["threads", 267, 9]], [["stdenv", 274, 9], ["threads", 277, 31]], [["cc-cflags", 293, 20]], [["cc", 287, 9], ["libcxx", 288, 9], ["bintools", 289, 9], ["extraPackages", 290, 9], ["nixSupport", 293, 9]], [["stdenv", 300, 9], ["libgcc", 303, 9]], [["cc-cflags", 316, 24]], [["cc", 310, 13], ["libcxx", 311, 13], ["bintools", 312, 13], ["extraPackages", 313, 13], ["nixSupport", 316, 13]], [["cc-cflags", 334, 20]], [["cc", 328, 9], ["libcxx", 329, 9], ["bintools", 330, 9], ["extraPackages", 331, 9], ["nixSupport", 334, 9]], [["cc-cflags", 348, 11]], [["cc", 340, 9], ["libcxx", 341, 9], ["bintools", 342, 9], ["extraPackages", 343, 9], ["nixSupport", 347, 9]], [["stdenv", 356, 9]], [["cc-cflags", 368, 11]], [["cc", 360, 9], ["libcxx", 361, 9], ["bintools", 362, 9], ["extraPackages", 363, 9], ["nixSupport", 367, 9]], [["stdenv", 377, 9]], [["cc-cflags", 389, 11]], [["cc", 381, 9], ["libcxx", 382, 9], ["bintools", 383, 9], ["extraPackages", 384, 9], ["nixSupport", 388, 9]], [["stdenv", 399, 9], ["gfortran", 400, 9]], [["stdenv", 404, 9]], [["stdenv", 408, 9]], [["threads", 155, 7], ["stdenv", 157, 7], ["gcc-unwrapped", 159, 7], ["libiberty", 163, 7], ["libsanitizer", 164, 7], ["libquadmath", 165, 7], ["gfortran-unwrapped", 167, 7], ["gfortran", 172, 7], ["gfortranNoLibgfortran", 198, 7], ["gcc", 218, 7], ["gccNoLibgcc", 250, 7], ["libgcc-no-libc", 263, 7], ["libgcc-libc", 273, 7], ["libgcc", 280, 7], ["gccWithLibgccNoCxx", 286, 7], ["libstdcxx-no-libc", 299, 7], ["gccWithLibgcc", 306, 7], ["gccWithLibcAndBasicLibgcc", 327, 7], ["gccWithLibc", 339, 7], ["libssp", 355, 7], ["gccWithLibssp", 359, 7], ["libatomic", 376, 7], ["gccWithLibatomic", 380, 7], ["libgfortran", 398, 7], ["libstdcxx", 403, 7], ["libgomp", 407, 7]], [["otherSplices", 111, 11], ["f", 112, 3]]]);
 const formals$1 = { args: { lib: false, newScope: false, stdenv: false, overrideCC: false, fetchgit: false, fetchurl: false, gitRelease: true, officialRelease: true, monorepoSrc: true, version: true, patchesFn: true, wrapCCWith: false, binutilsNoLibc: false, binutils: false, buildGccPackages: false, targetGccPackages: false, windows: false, "makeScopeWithSplicing'": false, otherSplices: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/default.nix", [["lib", 47, 11], ["gitRelease", 48, 11], ["officialRelease", 49, 11], ["version", 50, 11]]);
-const pos$2 = nix.positions(here + "/default.nix", [["lib", 59, 11], ["fetchgit", 60, 11], ["fetchurl", 61, 11], ["release_version", 62, 11], ["gitRelease", 63, 11], ["officialRelease", 64, 11], ["monorepoSrc'", 65, 11], ["version", 66, 11]]);
 const formals$2 = { args: { before: true, after: true, path: false }, ellipsis: false };
-const pos$3 = nix.positions(here + "/default.nix", [["path", 101, 23]]);
-const pos$4 = nix.positions(here + "/default.nix", [["path", 103, 54]]);
-const pos$5 = nix.positions(here + "/default.nix", [["name", 78, 9], ["path", 79, 9]]);
-const pos$6 = nix.positions(here + "/default.nix", [["releaseInfo", 53, 7], ["release_version", 55, 27], ["version", 55, 43], ["gcc_meta", 69, 7], ["monorepoSrc", 70, 7], ["src", 72, 5], ["versionDir", 73, 5], ["getVersionFile", 75, 5]]);
-const pos$7 = nix.positions(here + "/default.nix", [["cc-ldflags", 140, 9]]);
-const pos$8 = nix.positions(here + "/default.nix", [["bintools", 160, 9]]);
-const pos$9 = nix.positions(here + "/default.nix", [["stdenv", 168, 9], ["langFortran", 169, 9]]);
-const pos$10 = nix.positions(here + "/default.nix", [["cc-cflags", 181, 11]]);
-const pos$11 = nix.positions(here + "/default.nix", [["cc", 173, 9], ["libcxx", 174, 9], ["bintools", 175, 9], ["extraPackages", 176, 9], ["nixSupport", 180, 9]]);
-const pos$12 = nix.positions(here + "/default.nix", [["cc-cflags", 207, 11]]);
-const pos$13 = nix.positions(here + "/default.nix", [["cc", 199, 9], ["libcxx", 200, 9], ["bintools", 201, 9], ["extraPackages", 202, 9], ["nixSupport", 206, 9]]);
-const pos$14 = nix.positions(here + "/default.nix", [["cc-cflags", 227, 11]]);
-const pos$15 = nix.positions(here + "/default.nix", [["cc", 219, 9], ["libcxx", 220, 9], ["bintools", 221, 9], ["extraPackages", 222, 9], ["nixSupport", 226, 9]]);
-const pos$16 = nix.positions(here + "/default.nix", [["cc-cflags", 255, 20]]);
-const pos$17 = nix.positions(here + "/default.nix", [["cc", 251, 9], ["libcxx", 252, 9], ["bintools", 253, 9], ["extraPackages", 254, 9], ["nixSupport", 255, 9]]);
-const pos$18 = nix.positions(here + "/default.nix", [["stdenv", 264, 9], ["threads", 267, 9]]);
-const pos$19 = nix.positions(here + "/default.nix", [["stdenv", 274, 9], ["threads", 277, 31]]);
-const pos$20 = nix.positions(here + "/default.nix", [["cc-cflags", 293, 20]]);
-const pos$21 = nix.positions(here + "/default.nix", [["cc", 287, 9], ["libcxx", 288, 9], ["bintools", 289, 9], ["extraPackages", 290, 9], ["nixSupport", 293, 9]]);
-const pos$22 = nix.positions(here + "/default.nix", [["stdenv", 300, 9], ["libgcc", 303, 9]]);
-const pos$23 = nix.positions(here + "/default.nix", [["cc-cflags", 316, 24]]);
-const pos$24 = nix.positions(here + "/default.nix", [["cc", 310, 13], ["libcxx", 311, 13], ["bintools", 312, 13], ["extraPackages", 313, 13], ["nixSupport", 316, 13]]);
-const pos$25 = nix.positions(here + "/default.nix", [["cc-cflags", 334, 20]]);
-const pos$26 = nix.positions(here + "/default.nix", [["cc", 328, 9], ["libcxx", 329, 9], ["bintools", 330, 9], ["extraPackages", 331, 9], ["nixSupport", 334, 9]]);
-const pos$27 = nix.positions(here + "/default.nix", [["cc-cflags", 348, 11]]);
-const pos$28 = nix.positions(here + "/default.nix", [["cc", 340, 9], ["libcxx", 341, 9], ["bintools", 342, 9], ["extraPackages", 343, 9], ["nixSupport", 347, 9]]);
-const pos$29 = nix.positions(here + "/default.nix", [["stdenv", 356, 9]]);
-const pos$30 = nix.positions(here + "/default.nix", [["cc-cflags", 368, 11]]);
-const pos$31 = nix.positions(here + "/default.nix", [["cc", 360, 9], ["libcxx", 361, 9], ["bintools", 362, 9], ["extraPackages", 363, 9], ["nixSupport", 367, 9]]);
-const pos$32 = nix.positions(here + "/default.nix", [["stdenv", 377, 9]]);
-const pos$33 = nix.positions(here + "/default.nix", [["cc-cflags", 389, 11]]);
-const pos$34 = nix.positions(here + "/default.nix", [["cc", 381, 9], ["libcxx", 382, 9], ["bintools", 383, 9], ["extraPackages", 384, 9], ["nixSupport", 388, 9]]);
-const pos$35 = nix.positions(here + "/default.nix", [["stdenv", 399, 9], ["gfortran", 400, 9]]);
-const pos$36 = nix.positions(here + "/default.nix", [["stdenv", 404, 9]]);
-const pos$37 = nix.positions(here + "/default.nix", [["stdenv", 408, 9]]);
-const pos$38 = nix.positions(here + "/default.nix", [["threads", 155, 7], ["stdenv", 157, 7], ["gcc-unwrapped", 159, 7], ["libiberty", 163, 7], ["libsanitizer", 164, 7], ["libquadmath", 165, 7], ["gfortran-unwrapped", 167, 7], ["gfortran", 172, 7], ["gfortranNoLibgfortran", 198, 7], ["gcc", 218, 7], ["gccNoLibgcc", 250, 7], ["libgcc-no-libc", 263, 7], ["libgcc-libc", 273, 7], ["libgcc", 280, 7], ["gccWithLibgccNoCxx", 286, 7], ["libstdcxx-no-libc", 299, 7], ["gccWithLibgcc", 306, 7], ["gccWithLibcAndBasicLibgcc", 327, 7], ["gccWithLibc", 339, 7], ["libssp", 355, 7], ["gccWithLibssp", 359, 7], ["libatomic", 376, 7], ["gccWithLibatomic", 380, 7], ["libgfortran", 398, 7], ["libstdcxx", 403, 7], ["libgomp", 407, 7]]);
-const pos$39 = nix.positions(here + "/default.nix", [["otherSplices", 111, 11], ["f", 112, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -75,7 +37,7 @@ export default nix.lambda((args) => (() => {
     ])));
   const metadata = nix.thunk(() => (() => {
     const from = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./common-let.nix")), nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         lib: nix.thunk(() => nix.attr(args_1, "lib")),
         gitRelease: nix.thunk(() => nix.attr(args_1, "gitRelease")),
         officialRelease: nix.thunk(() => nix.attr(args_1, "officialRelease")),
@@ -85,7 +47,7 @@ export default nix.lambda((args) => (() => {
     const release_version = nix.thunk(() => nix.attr(releaseInfo, "release_version"));
     const version_1 = nix.thunk(() => nix.attr(releaseInfo, "version"));
     const from_1 = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./common-let.nix")), nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         lib: lib,
         fetchgit: fetchgit,
         fetchurl: fetchurl,
@@ -100,7 +62,7 @@ export default nix.lambda((args) => (() => {
     const src = monorepoSrc_1;
     const versionDir = nix.thunk(() => nix.add(nix.builtins.toString(nix.path(here, "../.")), nix.str`/${(nix.asBool(!nix.eq(gitRelease, null)) ? "git" : nix.app(nix.sel(lib, "versions", "major"), release_version))}`));
     const getVersionFile = (p) => nix.builtins.path(nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         name: nix.thunk(() => nix.builtins.baseNameOf(p)),
         path: nix.thunk(() => (() => {
           const patches = nix.thunk(() => nix.app(nix.sel(args_1, "patchesFn"), nix.thunk(() => nix.builtins.import(nix.path(here, "./patches.nix")))));
@@ -115,12 +77,12 @@ export default nix.lambda((args) => (() => {
             const matchAfter = nix.thunk(() => nix.app(check, nix.thunk(() => nix.sel(lib, "versionAtLeast")), after));
             return (nix.asBool(matchBefore) && nix.asBool(matchAfter));
           })(), formals$2);
-          const patchDir = nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.sel((nix.asBool(nix.eq(constraints, null)) ? { [nix.POS]: pos$3, path: nix.thunk(() => nix.sel(metadata, "versionDir")) } : nix.app(nix.sel(lib, "findFirst"), matchConstraint, nix.thunk(() => ({ [nix.POS]: pos$4, path: nix.thunk(() => nix.sel(metadata, "versionDir")) })), constraints)), "path"))));
+          const patchDir = nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.sel((nix.asBool(nix.eq(constraints, null)) ? { [nix.POS]: $pos[2], path: nix.thunk(() => nix.sel(metadata, "versionDir")) } : nix.app(nix.sel(lib, "findFirst"), matchConstraint, nix.thunk(() => ({ [nix.POS]: $pos[3], path: nix.thunk(() => nix.sel(metadata, "versionDir")) })), constraints)), "path"))));
           return nix.str`${patchDir}/${p}`;
         })()),
       })));
     return {
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       releaseInfo,
       release_version,
       version: version_1,
@@ -132,7 +94,7 @@ export default nix.lambda((args) => (() => {
     };
   })());
   return nix.app(makeScopeWithSplicing$, nix.thunk(() => ({
-      [nix.POS]: pos$39,
+      [nix.POS]: $pos[38],
       otherSplices: otherSplices,
       f: (gccPackages) => (() => {
         const callPackage = nix.thunk(() => nix.app(nix.sel(gccPackages, "newScope"), nix.thunk(() => nix.update(args_1, metadata))));
@@ -141,28 +103,28 @@ export default nix.lambda((args) => (() => {
             nix.thunk(() => nix.str`-B${nix.sel(targetGccPackages, "threads")}/lib`),
             nix.thunk(() => nix.str`-isystem ${nix.app(nix.sel(lib, "getDev"), nix.thunk(() => nix.sel(targetGccPackages, "threads")))}/include`),
           ])));
-        const threadsNixSupport = nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(nix.selOr(targetGccPackages, () => null, "threads", "threadModel"), "mcf")), nix.thunk(() => ({ [nix.POS]: pos$7, "cc-ldflags": nix.thunk(() => ["-lmcfgthread"]) }))));
+        const threadsNixSupport = nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(nix.selOr(targetGccPackages, () => null, "threads", "threadModel"), "mcf")), nix.thunk(() => ({ [nix.POS]: $pos[6], "cc-ldflags": nix.thunk(() => ["-lmcfgthread"]) }))));
         return {
-          [nix.POS]: pos$38,
+          [nix.POS]: $pos[37],
           threads: nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isMinGW")) ? nix.sel(windows, "mcfgthreads") : null)),
           stdenv: nix.thunk(() => nix.app(overrideCC, stdenv, nix.thunk(() => nix.sel(gccPackages, "gcc")))),
-          "gcc-unwrapped": nix.thunk(() => nix.app(callPackage, nix.path(here, "./gcc"), nix.thunk(() => ({ [nix.POS]: pos$8, bintools: binutils })))),
+          "gcc-unwrapped": nix.thunk(() => nix.app(callPackage, nix.path(here, "./gcc"), nix.thunk(() => ({ [nix.POS]: $pos[7], bintools: binutils })))),
           libiberty: nix.thunk(() => nix.app(callPackage, nix.path(here, "./libiberty"), nix.thunk(() => ({})))),
           libsanitizer: nix.thunk(() => nix.app(callPackage, nix.path(here, "./libsanitizer"), nix.thunk(() => ({})))),
           libquadmath: nix.thunk(() => nix.app(callPackage, nix.path(here, "./libquadmath"), nix.thunk(() => ({})))),
           "gfortran-unwrapped": nix.thunk(() => nix.app(nix.sel(gccPackages, "gcc-unwrapped", "override"), nix.thunk(() => ({
-              [nix.POS]: pos$9,
+              [nix.POS]: $pos[8],
               stdenv: nix.thunk(() => nix.app(overrideCC, stdenv, nix.thunk(() => nix.sel(buildGccPackages, "gcc")))),
               langFortran: true,
             })))),
           gfortran: nix.thunk(() => nix.app(wrapCCWith, nix.thunk(() => ({
-              [nix.POS]: pos$11,
+              [nix.POS]: $pos[10],
               cc: nix.thunk(() => nix.sel(gccPackages, "gfortran-unwrapped")),
               libcxx: nix.thunk(() => nix.sel(targetGccPackages, "libstdcxx")),
               bintools: binutils,
               extraPackages: nix.thunk(() => nix.concat([nix.thunk(() => nix.sel(targetGccPackages, "libgcc"))], threadsPackages)),
               nixSupport: nix.thunk(() => nix.update(threadsNixSupport, {
-                [nix.POS]: pos$10,
+                [nix.POS]: $pos[9],
                 "cc-cflags": nix.thunk(() => nix.concat([
                   nix.thunk(() => nix.str`-B${nix.sel(targetGccPackages, "libgcc")}/lib`),
                   nix.thunk(() => nix.str`-B${nix.sel(targetGccPackages, "libssp")}/lib`),
@@ -175,13 +137,13 @@ export default nix.lambda((args) => (() => {
               })),
             })))),
           gfortranNoLibgfortran: nix.thunk(() => nix.app(wrapCCWith, nix.thunk(() => ({
-              [nix.POS]: pos$13,
+              [nix.POS]: $pos[12],
               cc: nix.thunk(() => nix.sel(gccPackages, "gfortran-unwrapped")),
               libcxx: nix.thunk(() => nix.sel(targetGccPackages, "libstdcxx")),
               bintools: binutils,
               extraPackages: nix.thunk(() => nix.concat([nix.thunk(() => nix.sel(targetGccPackages, "libgcc"))], threadsPackages)),
               nixSupport: nix.thunk(() => nix.update(threadsNixSupport, {
-                [nix.POS]: pos$12,
+                [nix.POS]: $pos[11],
                 "cc-cflags": nix.thunk(() => nix.concat([
                   nix.thunk(() => nix.str`-B${nix.sel(targetGccPackages, "libgcc")}/lib`),
                   nix.thunk(() => nix.str`-B${nix.sel(targetGccPackages, "libssp")}/lib`),
@@ -190,13 +152,13 @@ export default nix.lambda((args) => (() => {
               })),
             })))),
           gcc: nix.thunk(() => nix.app(wrapCCWith, nix.thunk(() => ({
-              [nix.POS]: pos$15,
+              [nix.POS]: $pos[14],
               cc: nix.thunk(() => nix.sel(gccPackages, "gcc-unwrapped")),
               libcxx: nix.thunk(() => nix.sel(targetGccPackages, "libstdcxx")),
               bintools: binutils,
               extraPackages: nix.thunk(() => nix.concat([nix.thunk(() => nix.sel(targetGccPackages, "libgcc"))], threadsPackages)),
               nixSupport: nix.thunk(() => nix.update(threadsNixSupport, {
-                [nix.POS]: pos$14,
+                [nix.POS]: $pos[13],
                 "cc-cflags": nix.thunk(() => nix.concat([
                   nix.thunk(() => nix.str`-B${nix.sel(targetGccPackages, "libgcc")}/lib`),
                   nix.thunk(() => nix.str`-B${nix.sel(targetGccPackages, "libssp")}/lib`),
@@ -205,50 +167,50 @@ export default nix.lambda((args) => (() => {
               })),
             })))),
           gccNoLibgcc: nix.thunk(() => nix.app(wrapCCWith, nix.thunk(() => ({
-              [nix.POS]: pos$17,
+              [nix.POS]: $pos[16],
               cc: nix.thunk(() => nix.sel(gccPackages, "gcc-unwrapped")),
               libcxx: null,
               bintools: binutilsNoLibc,
               extraPackages: [],
-              nixSupport: nix.thunk(() => ({ [nix.POS]: pos$16, "cc-cflags": nix.thunk(() => ["-nostartfiles"]) })),
+              nixSupport: nix.thunk(() => ({ [nix.POS]: $pos[15], "cc-cflags": nix.thunk(() => ["-nostartfiles"]) })),
             })))),
           "libgcc-no-libc": nix.thunk(() => nix.app(callPackage, nix.path(here, "./libgcc"), nix.thunk(() => ({
-              [nix.POS]: pos$18,
+              [nix.POS]: $pos[17],
               stdenv: nix.thunk(() => nix.app(overrideCC, stdenv, nix.thunk(() => nix.sel(buildGccPackages, "gccNoLibgcc")))),
               threads: null,
             })))),
           "libgcc-libc": nix.thunk(() => nix.app(callPackage, nix.path(here, "./libgcc"), nix.thunk(() => ({
-              [nix.POS]: pos$19,
+              [nix.POS]: $pos[18],
               stdenv: nix.thunk(() => nix.app(overrideCC, stdenv, nix.thunk(() => nix.sel(buildGccPackages, "gccWithLibcAndBasicLibgcc")))),
               threads: nix.thunk(() => nix.attr(gccPackages, "threads")),
             })))),
           libgcc: nix.thunk(() => (nix.asBool(nix.eq(nix.sel(stdenv, "hostPlatform", "libc"), null)) ? nix.sel(gccPackages, "libgcc-no-libc") : nix.sel(gccPackages, "libgcc-libc"))),
           gccWithLibgccNoCxx: nix.thunk(() => nix.app(wrapCCWith, nix.thunk(() => ({
-              [nix.POS]: pos$21,
+              [nix.POS]: $pos[20],
               cc: nix.thunk(() => nix.sel(gccPackages, "gcc-unwrapped")),
               libcxx: null,
               bintools: binutilsNoLibc,
               extraPackages: nix.thunk(() => [nix.thunk(() => nix.sel(targetGccPackages, "libgcc-no-libc"))]),
               nixSupport: nix.thunk(() => ({
-                [nix.POS]: pos$20,
+                [nix.POS]: $pos[19],
                 "cc-cflags": nix.thunk(() => [
                   nix.thunk(() => nix.str`-B${nix.sel(targetGccPackages, "libgcc-no-libc")}/lib`),
                 ]),
               })),
             })))),
           "libstdcxx-no-libc": nix.thunk(() => nix.app(callPackage, nix.path(here, "./libstdcxx"), nix.thunk(() => ({
-              [nix.POS]: pos$22,
+              [nix.POS]: $pos[21],
               stdenv: nix.thunk(() => nix.app(overrideCC, stdenv, nix.thunk(() => nix.sel(buildGccPackages, "gccWithLibgccNoCxx")))),
               libgcc: nix.thunk(() => nix.sel(gccPackages, "libgcc-no-libc")),
             })))),
           gccWithLibgcc: nix.thunk(() => (nix.asBool(nix.sel(stdenv, "targetPlatform", "isCygwin")) ? nix.app(wrapCCWith, nix.thunk(() => ({
-              [nix.POS]: pos$24,
+              [nix.POS]: $pos[23],
               cc: nix.thunk(() => nix.sel(gccPackages, "gcc-unwrapped")),
               libcxx: nix.thunk(() => nix.sel(targetGccPackages, "libstdcxx-no-libc")),
               bintools: binutilsNoLibc,
               extraPackages: nix.thunk(() => [nix.thunk(() => nix.sel(targetGccPackages, "libgcc-no-libc"))]),
               nixSupport: nix.thunk(() => ({
-                [nix.POS]: pos$23,
+                [nix.POS]: $pos[22],
                 "cc-cflags": nix.thunk(() => [
                   nix.thunk(() => nix.str`-B${nix.sel(targetGccPackages, "libgcc-no-libc")}/lib`),
                   nix.thunk(() => nix.str`-B${nix.sel(targetGccPackages, "libstdcxx-no-libc")}/lib`),
@@ -256,41 +218,41 @@ export default nix.lambda((args) => (() => {
               })),
             }))) : nix.sel(gccPackages, "gccWithLibgccNoCxx"))),
           gccWithLibcAndBasicLibgcc: nix.thunk(() => nix.app(wrapCCWith, nix.thunk(() => ({
-              [nix.POS]: pos$26,
+              [nix.POS]: $pos[25],
               cc: nix.thunk(() => nix.sel(gccPackages, "gcc-unwrapped")),
               libcxx: null,
               bintools: binutils,
               extraPackages: nix.thunk(() => [nix.thunk(() => nix.sel(targetGccPackages, "libgcc-no-libc"))]),
               nixSupport: nix.thunk(() => ({
-                [nix.POS]: pos$25,
+                [nix.POS]: $pos[24],
                 "cc-cflags": nix.thunk(() => [
                   nix.thunk(() => nix.str`-B${nix.sel(targetGccPackages, "libgcc-no-libc")}/lib`),
                 ]),
               })),
             })))),
           gccWithLibc: nix.thunk(() => nix.app(wrapCCWith, nix.thunk(() => ({
-              [nix.POS]: pos$28,
+              [nix.POS]: $pos[27],
               cc: nix.thunk(() => nix.sel(gccPackages, "gcc-unwrapped")),
               libcxx: null,
               bintools: binutils,
               extraPackages: nix.thunk(() => nix.concat([nix.thunk(() => nix.sel(targetGccPackages, "libgcc"))], threadsPackages)),
               nixSupport: nix.thunk(() => nix.update(threadsNixSupport, {
-                [nix.POS]: pos$27,
+                [nix.POS]: $pos[26],
                 "cc-cflags": nix.thunk(() => nix.concat([nix.thunk(() => nix.str`-B${nix.sel(targetGccPackages, "libgcc")}/lib`)], threadsCflags)),
               })),
             })))),
           libssp: nix.thunk(() => nix.app(callPackage, nix.path(here, "./libssp"), nix.thunk(() => ({
-              [nix.POS]: pos$29,
+              [nix.POS]: $pos[28],
               stdenv: nix.thunk(() => nix.app(overrideCC, stdenv, nix.thunk(() => nix.sel(buildGccPackages, "gccWithLibc")))),
             })))),
           gccWithLibssp: nix.thunk(() => nix.app(wrapCCWith, nix.thunk(() => ({
-              [nix.POS]: pos$31,
+              [nix.POS]: $pos[30],
               cc: nix.thunk(() => nix.sel(gccPackages, "gcc-unwrapped")),
               libcxx: null,
               bintools: binutils,
               extraPackages: nix.thunk(() => nix.concat([nix.thunk(() => nix.sel(targetGccPackages, "libgcc"))], threadsPackages)),
               nixSupport: nix.thunk(() => nix.update(threadsNixSupport, {
-                [nix.POS]: pos$30,
+                [nix.POS]: $pos[29],
                 "cc-cflags": nix.thunk(() => nix.concat([
                   nix.thunk(() => nix.str`-B${nix.sel(targetGccPackages, "libgcc")}/lib`),
                   nix.thunk(() => nix.str`-B${nix.sel(targetGccPackages, "libssp")}/lib`),
@@ -298,17 +260,17 @@ export default nix.lambda((args) => (() => {
               })),
             })))),
           libatomic: nix.thunk(() => nix.app(callPackage, nix.path(here, "./libatomic"), nix.thunk(() => ({
-              [nix.POS]: pos$32,
+              [nix.POS]: $pos[31],
               stdenv: nix.thunk(() => nix.app(overrideCC, stdenv, nix.thunk(() => nix.sel(buildGccPackages, "gccWithLibssp")))),
             })))),
           gccWithLibatomic: nix.thunk(() => nix.app(wrapCCWith, nix.thunk(() => ({
-              [nix.POS]: pos$34,
+              [nix.POS]: $pos[33],
               cc: nix.thunk(() => nix.sel(gccPackages, "gcc-unwrapped")),
               libcxx: null,
               bintools: binutils,
               extraPackages: nix.thunk(() => nix.concat([nix.thunk(() => nix.sel(targetGccPackages, "libgcc"))], threadsPackages)),
               nixSupport: nix.thunk(() => nix.update(threadsNixSupport, {
-                [nix.POS]: pos$33,
+                [nix.POS]: $pos[32],
                 "cc-cflags": nix.thunk(() => nix.concat([
                   nix.thunk(() => nix.str`-B${nix.sel(targetGccPackages, "libgcc")}/lib`),
                   nix.thunk(() => nix.str`-B${nix.sel(targetGccPackages, "libssp")}/lib`),
@@ -317,16 +279,16 @@ export default nix.lambda((args) => (() => {
               })),
             })))),
           libgfortran: nix.thunk(() => nix.app(callPackage, nix.path(here, "./libgfortran"), nix.thunk(() => ({
-              [nix.POS]: pos$35,
+              [nix.POS]: $pos[34],
               stdenv: nix.thunk(() => nix.app(overrideCC, stdenv, nix.thunk(() => nix.sel(buildGccPackages, "gcc")))),
               gfortran: nix.thunk(() => nix.sel(buildGccPackages, "gfortranNoLibgfortran")),
             })))),
           libstdcxx: nix.thunk(() => nix.app(callPackage, nix.path(here, "./libstdcxx"), nix.thunk(() => ({
-              [nix.POS]: pos$36,
+              [nix.POS]: $pos[35],
               stdenv: nix.thunk(() => nix.app(overrideCC, stdenv, nix.thunk(() => nix.sel(buildGccPackages, "gccWithLibatomic")))),
             })))),
           libgomp: nix.thunk(() => nix.app(callPackage, nix.path(here, "./libgomp"), nix.thunk(() => ({
-              [nix.POS]: pos$37,
+              [nix.POS]: $pos[36],
               stdenv: nix.thunk(() => nix.app(overrideCC, stdenv, nix.thunk(() => nix.sel(buildGccPackages, "gccWithLibatomic")))),
             })))),
         };

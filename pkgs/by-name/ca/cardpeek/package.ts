@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["sha256", 25, 5]], [["am_cv_func_iconv_works", 59, 5]], [["homepage", 65, 5], ["description", 66, 5], ["license", 67, 5], ["platforms", 68, 5], ["maintainers", 69, 5], ["mainProgram", 70, 5]], [["pname", 18, 3], ["version", 19, 11], ["src", 21, 3], ["postPatch", 28, 3], ["nativeBuildInputs", 42, 3], ["buildInputs", 46, 3], ["env", 55, 3], ["enableParallelBuilding", 62, 3], ["meta", 64, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, "pkg-config": false, autoreconfHook: false, glib: false, gtk3: false, pcsclite: false, lua5_2: false, curl: false, readline: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["sha256", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["am_cv_func_iconv_works", 59, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 65, 5], ["description", 66, 5], ["license", 67, 5], ["platforms", 68, 5], ["maintainers", 69, 5], ["mainProgram", 70, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 11], ["src", 21, 3], ["postPatch", 28, 3], ["nativeBuildInputs", 42, 3], ["buildInputs", 46, 3], ["env", 55, 3], ["enableParallelBuilding", 62, 3], ["meta", 64, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const readline = nix.arg($, "readline");
   const version = "0.8.4";
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "cardpeek",
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "L1L1",
           repo: "cardpeek",
           rev: nix.thunk(() => nix.str`cardpeek-${version}`),
@@ -36,10 +33,10 @@ export default nix.lambda((args) => (() => {
       postPatch: nix.thunk(() => nix.add("# gcc15\nsubstituteInPlace lua_nodes.c \\\n  --replace-fail \"ui_update(1)\" \"ui_update()\"\nsubstituteInPlace ui/gtk/gui_cardview.c \\\n  --replace-fail \"ui_update(0)\" \"ui_update()\"\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "# replace xcode check and hard-coded PCSC framework path\nsubstituteInPlace configure.ac \\\n  --replace-fail 'if test ! -e \"/Applications/Xcode.app/\"; then' 'if test yes != yes; then' \\\n  --replace-fail 'PCSC_HEADERS=`ls -d /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/*.sdk/System/Library/Frameworks/PCSC.framework/Versions/Current/Headers/ | sort | head -1`' 'PCSC_HEADERS=$SDKROOT/System/Library/Frameworks/PCSC.framework/Versions/Current/Headers'\n"))),
       nativeBuildInputs: nix.thunk(() => [pkg_config, autoreconfHook]),
       buildInputs: nix.thunk(() => nix.concat([glib, gtk3, lua5_2, curl, readline], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), pcsclite))),
-      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({ [nix.POS]: pos$2, am_cv_func_iconv_works: "yes" })))),
+      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({ [nix.POS]: $pos[1], am_cv_func_iconv_works: "yes" })))),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/L1L1/cardpeek",
         description: "Tool to read the contents of ISO7816 smart cards",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

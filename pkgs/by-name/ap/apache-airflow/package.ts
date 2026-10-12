@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["enabledProviders", 15, 74]], [["apache-airflow", 15, 7]], [["self", 13, 5], ["packageOverrides", 14, 5]], [["pythonPackages", 30, 5]], [["passthru", 29, 3]]]);
 const formals$1 = { args: { fetchFromGitHub: false, fetchpatch: false, fetchPypi: false, python3: false, enabledProviders: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["enabledProviders", 15, 74]]);
-const pos$2 = nix.positions(here + "/package.nix", [["apache-airflow", 15, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["self", 13, 5], ["packageOverrides", 14, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pythonPackages", 30, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["passthru", 29, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,17 +13,17 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const enabledProviders = nix.argOr($, "enabledProviders", () => []);
   const python = nix.thunk(() => nix.app(nix.sel(python3, "override"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       self: python,
       packageOverrides: (pySelf) => (pySuper) => ({
-        [nix.POS]: pos$2,
-        "apache-airflow": nix.thunk(() => nix.app(nix.sel(pySelf, "callPackage"), nix.path(here, "./python-package.nix"), nix.thunk(() => ({ [nix.POS]: pos$1, enabledProviders: enabledProviders })))),
+        [nix.POS]: $pos[1],
+        "apache-airflow": nix.thunk(() => nix.app(nix.sel(pySelf, "callPackage"), nix.path(here, "./python-package.nix"), nix.thunk(() => ({ [nix.POS]: $pos[0], enabledProviders: enabledProviders })))),
       }),
     }))));
   const w = nix.withScope(nix.thunk(() => nix.sel(python, "pkgs")), null);
   return nix.app(nix.sel(nix.app(nix.lookup(w, "toPythonApplication"), nix.thunk(() => nix.lookup(w, "apache-airflow"))), "overrideAttrs"), (previousAttrs) => ({
-      [nix.POS]: pos$5,
-      passthru: nix.thunk(() => nix.update(nix.selOr(previousAttrs, () => ({}), "passthru"), { [nix.POS]: pos$4, pythonPackages: nix.thunk(() => nix.sel(python, "pkgs")) })),
+      [nix.POS]: $pos[4],
+      passthru: nix.thunk(() => nix.update(nix.selOr(previousAttrs, () => ({}), "passthru"), { [nix.POS]: $pos[3], pythonPackages: nix.thunk(() => nix.sel(python, "pkgs")) })),
     }));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

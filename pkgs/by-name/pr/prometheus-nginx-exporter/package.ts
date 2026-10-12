@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["sha256", 16, 5]], [["nginx", 34, 64]], [["tests", 34, 12]], [["description", 37, 5], ["mainProgram", 38, 5], ["homepage", 39, 5], ["license", 40, 5], ["maintainers", 41, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["vendorHash", 19, 3], ["ldflags", 21, 3], ["passthru", 34, 3], ["meta", 36, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitHub: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["sha256", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["nginx", 34, 64]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 34, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 37, 5], ["mainProgram", 38, 5], ["homepage", 39, 5], ["license", 40, 5], ["maintainers", 41, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["vendorHash", 19, 3], ["ldflags", 21, 3], ["passthru", 34, 3], ["meta", 36, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,7 +15,7 @@ export default nix.lambda((args) => (() => {
       const pname = "nginx_exporter";
       const version = "1.5.3";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "nginx",
           repo: "nginx-prometheus-exporter",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -38,14 +34,14 @@ export default nix.lambda((args) => (() => {
         ];
       })());
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(nixosTests, "prometheus-exporters"));
-          return { [nix.POS]: pos$2, nginx: nix.thunk(() => nix.attr(from, "nginx")) };
+          return { [nix.POS]: $pos[1], nginx: nix.thunk(() => nix.attr(from, "nginx")) };
         })()),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "NGINX Prometheus Exporter for NGINX and NGINX Plus",
         mainProgram: "nginx-prometheus-exporter",
         homepage: "https://github.com/nginx/nginx-prometheus-exporter",
@@ -59,7 +55,7 @@ export default nix.lambda((args) => (() => {
           ];
         })()),
       }));
-      return { [nix.POS]: pos$5, pname, version, src, vendorHash, ldflags, passthru, meta };
+      return { [nix.POS]: $pos[4], pname, version, src, vendorHash, ldflags, passthru, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

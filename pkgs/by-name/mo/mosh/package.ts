@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 27, 5], ["repo", 28, 5], ["rev", 29, 5], ["hash", 30, 5]], [["homepage", 91, 5], ["description", 92, 5], ["longDescription", 93, 5], ["license", 101, 5], ["maintainers", 102, 5], ["platforms", 103, 5]], [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 41, 3], ["strictDeps", 53, 3], ["enableParallelBuilding", 55, 3], ["patches", 57, 3], ["postPatch", 68, 3], ["configureFlags", 76, 3], ["postInstall", 78, 3], ["meta", 90, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, zlib: false, protobuf: false, ncurses: false, "pkg-config": false, makeWrapper: false, perl: false, openssl: false, "autoconf-archive": false, autoreconfHook: false, openssh: false, "bash-completion": false, withUtempter: true, libutempter: false, withClient: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 27, 5], ["repo", 28, 5], ["rev", 29, 5], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 91, 5], ["description", 92, 5], ["longDescription", 93, 5], ["license", 101, 5], ["maintainers", 102, 5], ["platforms", 103, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 41, 3], ["strictDeps", 53, 3], ["enableParallelBuilding", 55, 3], ["patches", 57, 3], ["postPatch", 68, 3], ["configureFlags", 76, 3], ["postInstall", 78, 3], ["meta", 90, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const libutempter = nix.arg($, "libutempter");
   const withClient = nix.argOr($, "withClient", () => true);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "mosh",
       version: "1.4.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "mobile-shell",
           repo: "mosh",
           rev: nix.thunk(() => nix.str`mosh-${nix.sel(finalAttrs, "version")}`),
@@ -55,7 +53,7 @@ substituteInPlace scripts/mosh.pl \\
       configureFlags: nix.thunk(() => nix.concat(["--enable-completion"], nix.app(nix.sel(lib, "optional"), withUtempter, "--with-utempter"))),
       postInstall: nix.thunk(() => (nix.asBool(withClient) ? "wrapProgram $out/bin/mosh --prefix PERL5LIB : $PERL5LIB\n" : "rm $out/bin/mosh\nrm $out/bin/mosh-client\nrm -r $out/share/{man,bash-completion}\n")),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://mosh.org/",
         description: "Mobile shell (ssh replacement)",
         longDescription: "Remote terminal application that allows roaming, supports intermittent\nconnectivity, and provides intelligent local echo and line editing of\nuser keystrokes.\n\nMosh is a replacement for SSH. It's more robust and responsive,\nespecially over Wi-Fi, cellular, and long-distance links.\n",

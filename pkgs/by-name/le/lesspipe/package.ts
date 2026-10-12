@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 27, 5], ["repo", 28, 5], ["rev", 29, 5], ["hash", 30, 5]], [["external", 88, 9], ["builtin", 166, 9]], [["scripts", 63, 7], ["interpreter", 64, 7], ["inputs", 65, 7], ["keep", 75, 7], ["fake", 86, 7], ["execer", 168, 7]], [["external", 194, 9], ["builtin", 218, 9]], [["scripts", 174, 7], ["interpreter", 175, 7], ["inputs", 176, 7], ["keep", 183, 7], ["fake", 192, 7], ["execer", 220, 7]], [["description", 227, 5], ["longDescription", 228, 5], ["mainProgram", 239, 5], ["homepage", 240, 5], ["platforms", 241, 5], ["license", 242, 5], ["maintainers", 243, 5]], [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 37, 3], ["strictDeps", 41, 3], ["postPatch", 43, 3], ["configureFlags", 48, 3], ["configurePlatforms", 52, 3], ["dontBuild", 54, 3], ["installFlags", 56, 3], ["postInstall", 58, 3], ["meta", 226, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, makeWrapper: false, perl: false, procps: false, bash: false, resholve: false, "binutils-unwrapped": false, file: false, gnugrep: false, coreutils: false, gnused: false, gnutar: false, iconv: false, ncurses: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 27, 5], ["repo", 28, 5], ["rev", 29, 5], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["external", 88, 9], ["builtin", 166, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["scripts", 63, 7], ["interpreter", 64, 7], ["inputs", 65, 7], ["keep", 75, 7], ["fake", 86, 7], ["execer", 168, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["external", 194, 9], ["builtin", 218, 9]]);
-const pos$5 = nix.positions(here + "/package.nix", [["scripts", 174, 7], ["interpreter", 175, 7], ["inputs", 176, 7], ["keep", 183, 7], ["fake", 192, 7], ["execer", 220, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 227, 5], ["longDescription", 228, 5], ["mainProgram", 239, 5], ["homepage", 240, 5], ["platforms", 241, 5], ["license", 242, 5], ["maintainers", 243, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 37, 3], ["strictDeps", 41, 3], ["postPatch", 43, 3], ["configureFlags", 48, 3], ["configurePlatforms", 52, 3], ["dontBuild", 54, 3], ["installFlags", 56, 3], ["postInstall", 58, 3], ["meta", 226, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const iconv = nix.arg($, "iconv");
   const ncurses = nix.arg($, "ncurses");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "lesspipe",
       version: "2.20",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "wofr06",
           repo: "lesspipe",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -52,13 +46,13 @@ export default nix.lambda((args) => (() => {
 substituteInPlace $out/bin/lesspipe.sh --replace 'nodash strings' "nodash ${binutils_unwrapped}/bin/strings"
 
 ${nix.app(nix.sel(resholve, "phraseSolution"), "lesspipe.sh", nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           scripts: nix.thunk(() => ["bin/lesspipe.sh"]),
           interpreter: nix.thunk(() => nix.str`${bash}/bin/bash`),
           inputs: nix.thunk(() => [coreutils, file, gnugrep, gnused, gnutar, iconv, procps, ncurses]),
           keep: nix.thunk(() => ["$prog", "$c1", "$c2", "$c3", "$c4", "$c5", "$cmd", "$colorizer", "$HOME"]),
           fake: nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             external: nix.thunk(() => [
               "cpio",
               "isoinfo",
@@ -144,13 +138,13 @@ ${nix.app(nix.sel(resholve, "phraseSolution"), "lesspipe.sh", nix.thunk(() => ({
           ]),
         })))}
 ${nix.app(nix.sel(resholve, "phraseSolution"), "lesscomplete", nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           scripts: nix.thunk(() => ["bin/lesscomplete"]),
           interpreter: nix.thunk(() => nix.str`${bash}/bin/bash`),
           inputs: nix.thunk(() => [coreutils, file, gnugrep, gnused, gnutar]),
           keep: nix.thunk(() => ["$prog", "$c1", "$c2", "$c3", "$c4", "$c5", "$cmd"]),
           fake: nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             external: nix.thunk(() => [
               "cpio",
               "isoinfo",
@@ -181,7 +175,7 @@ ${nix.app(nix.sel(resholve, "phraseSolution"), "lesscomplete", nix.thunk(() => (
         })))}
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Preprocessor for less",
         longDescription: "Usually lesspipe.sh is called as an input filter to less. With the help\nof that filter less will display the uncompressed contents of compressed\n(gzip, bzip2, compress, rar, 7-zip, lzip, xz or lzma) files. For files\ncontaining archives and directories, a table of contents will be\ndisplayed (e.g tar, ar, rar, jar, rpm and deb formats). Other supported\nformats include nroff, pdf, ps, dvi, shared library, MS word, OASIS\n(e.g. Openoffice), NetCDF, html, mp3, jpg, png, iso images, MacOSX bom,\nplist and archive formats, perl storable data and gpg encrypted files.\nThis does require additional helper programs being installed.\n",
         mainProgram: "lesspipe.sh",

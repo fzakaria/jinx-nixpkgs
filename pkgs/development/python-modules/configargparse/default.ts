@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]], [["yaml", 31, 5]], [["description", 48, 5], ["homepage", 49, 5], ["changelog", 50, 5], ["license", 51, 5], ["maintainers", 52, 5]], [["pname", 14, 3], ["version", 15, 3], ["pyproject", 16, 3], ["src", 18, 3], ["build-system", 25, 3], ["optional-dependencies", 30, 3], ["nativeCheckInputs", 34, 3], ["disabledTests", 40, 3], ["pythonImportsCheck", 45, 3], ["meta", 47, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, mock: false, pytestCheckHook: false, pyyaml: false, pythonAtLeast: false, setuptools: false, "setuptools-scm": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["yaml", 31, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 48, 5], ["homepage", 49, 5], ["changelog", 50, 5], ["license", 51, 5], ["maintainers", 52, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 14, 3], ["version", 15, 3], ["pyproject", 16, 3], ["src", 18, 3], ["build-system", 25, 3], ["optional-dependencies", 30, 3], ["nativeCheckInputs", 34, 3], ["disabledTests", 40, 3], ["pythonImportsCheck", 45, 3], ["meta", 47, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,24 +17,24 @@ export default nix.lambda((args) => (() => {
   const setuptools = nix.arg($, "setuptools");
   const setuptools_scm = nix.arg($, "setuptools-scm");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "configargparse",
       version: "1.8.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "bw2",
           repo: "ConfigArgParse",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-2r5tm2xdN8uGAle4Ee6w4mWsMxc25/kg+jhH+TONPoY=",
         })))),
       "build-system": nix.thunk(() => [setuptools, setuptools_scm]),
-      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$2, yaml: nix.thunk(() => [pyyaml]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: $pos[1], yaml: nix.thunk(() => [pyyaml]) })),
       nativeCheckInputs: nix.thunk(() => nix.concat([pytestCheckHook, mock], nix.app(nix.sel(lib, "flatten"), nix.thunk(() => nix.builtins.attrValues(nix.thunk(() => nix.sel(finalAttrs, "passthru", "optional-dependencies"))))))),
       disabledTests: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(pythonAtLeast, "3.13")), nix.thunk(() => ["testMutuallyExclusiveArgs"]))),
       pythonImportsCheck: nix.thunk(() => ["configargparse"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Drop-in replacement for argparse",
         homepage: "https://github.com/bw2/ConfigArgParse",
         changelog: nix.thunk(() => nix.str`https://github.com/bw2/ConfigArgParse/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

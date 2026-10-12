@@ -2,18 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["nodejs-slim", 25, 37]], [["extraArgs", 34, 26]], [["PNAME", 43, 9], ["PKG_FILE", 44, 9]], [["name", 36, 7], ["runtimeInputs", 37, 7], ["runtimeEnv", 42, 7], ["text", 46, 7]], [["extraArgs", 63, 7]], [["updateScript", 33, 12]], [["owner", 68, 5], ["repo", 69, 5], ["tag", 70, 5], ["hash", 71, 5]], [["pname", 75, 26], ["version", 75, 32], ["src", 75, 40], ["pnpm", 76, 13], ["fetcherVersion", 77, 5], ["hash", 78, 5]], [["ELECTRON_SKIP_BINARY_DOWNLOAD", 88, 5], ["ELECTRON_OVERRIDE_DIST_PATH", 89, 5]], [["description", 170, 5], ["homepage", 171, 5], ["changelog", 172, 5], ["license", 173, 5], ["maintainers", 174, 5], ["platforms", 177, 29], ["mainProgram", 178, 5]], [["pname", 30, 3], ["version", 31, 3], ["passthru", 33, 3], ["src", 67, 3], ["pnpmDeps", 74, 3], ["patches", 81, 3], ["env", 87, 3], ["nativeBuildInputs", 92, 3], ["buildPhase", 103, 3], ["installPhase", 123, 3], ["meta", 169, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, makeBinaryWrapper: false, electron_43: false, "nodejs-slim_26": false, pnpm_11: false, fetchPnpmDeps: false, pnpmConfigHook: false, darwin: false, "nix-update-script": false, "_experimental-update-script-combinators": false, writeShellApplication: false, nix: false, jq: false, gnugrep: false, podman: false, krunkit: false, extraPackages: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["nodejs-slim", 25, 37]]);
-const pos$2 = nix.positions(here + "/package.nix", [["extraArgs", 34, 26]]);
-const pos$3 = nix.positions(here + "/package.nix", [["PNAME", 43, 9], ["PKG_FILE", 44, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["name", 36, 7], ["runtimeInputs", 37, 7], ["runtimeEnv", 42, 7], ["text", 46, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["extraArgs", 63, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["updateScript", 33, 12]]);
-const pos$7 = nix.positions(here + "/package.nix", [["owner", 68, 5], ["repo", 69, 5], ["tag", 70, 5], ["hash", 71, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 75, 26], ["version", 75, 32], ["src", 75, 40], ["pnpm", 76, 13], ["fetcherVersion", 77, 5], ["hash", 78, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["ELECTRON_SKIP_BINARY_DOWNLOAD", 88, 5], ["ELECTRON_OVERRIDE_DIST_PATH", 89, 5]]);
-const pos$10 = nix.positions(here + "/package.nix", [["description", 170, 5], ["homepage", 171, 5], ["changelog", 172, 5], ["license", 173, 5], ["maintainers", 174, 5], ["platforms", 177, 29], ["mainProgram", 178, 5]]);
-const pos$11 = nix.positions(here + "/package.nix", [["pname", 30, 3], ["version", 31, 3], ["passthru", 33, 3], ["src", 67, 3], ["pnpmDeps", 74, 3], ["patches", 81, 3], ["env", 87, 3], ["nativeBuildInputs", 92, 3], ["buildPhase", 103, 3], ["installPhase", 123, 3], ["meta", 169, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -37,40 +27,40 @@ export default nix.lambda((args) => (() => {
   const krunkit = nix.arg($, "krunkit");
   const extraPackages = nix.argOr($, "extraPackages", () => []);
   const nodejs_slim = nodejs_slim_26;
-  const pnpm = nix.thunk(() => nix.app(nix.sel(pnpm_11, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, "nodejs-slim": nodejs_slim }))));
+  const pnpm = nix.thunk(() => nix.app(nix.sel(pnpm_11, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], "nodejs-slim": nodejs_slim }))));
   const electron = electron_43;
   const appName = "Podman Desktop";
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$11,
+      [nix.POS]: $pos[10],
       pname: "podman-desktop",
       version: "1.29.3",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         updateScript: nix.thunk(() => nix.app(nix.sel(_experimental_update_script_combinators, "sequence"), nix.thunk(() => [
-            nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$2, extraArgs: nix.thunk(() => ["--use-github-releases"]) })))),
+            nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: $pos[1], extraArgs: nix.thunk(() => ["--use-github-releases"]) })))),
             nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.app(writeShellApplication, nix.thunk(() => ({
-                  [nix.POS]: pos$4,
+                  [nix.POS]: $pos[3],
                   name: "podman-desktop-dependencies-updater",
                   runtimeInputs: nix.thunk(() => [nix$, jq, gnugrep]),
                   runtimeEnv: nix.thunk(() => ({
-                    [nix.POS]: pos$3,
+                    [nix.POS]: $pos[2],
                     PNAME: "podman-desktop",
                     PKG_FILE: nix.thunk(() => nix.builtins.toString(nix.path(here, "./package.nix"))),
                   })),
                   text: "new_src=\"$(nix-build --attr \"pkgs.$PNAME.src\" --no-out-link)\"\nget_major_version() {\n  jq -r \"$1\" \"$new_src/package.json\" | grep --perl-regexp --only-matching '[0-9]+' | head -n 1\n}\n\nnew_node_major=\"$(get_major_version '.engines.node')\"\nnew_electron_major=\"$(get_major_version '.devDependencies.electron')\"\nnew_pnpm_major=\"$(get_major_version '.packageManager')\"\n\nsed -i -E \"s/nodejs_[0-9]+/nodejs_$new_node_major/g\" \"$PKG_FILE\"\nsed -i -E \"s/electron_[0-9]+/electron_$new_electron_major/g\" \"$PKG_FILE\"\nsed -i -E \"s/pnpm_[0-9]+/pnpm_$new_pnpm_major/g\" \"$PKG_FILE\"\n",
                 })))))),
-            nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$5, extraArgs: nix.thunk(() => ["--version=skip"]) })))),
+            nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: $pos[4], extraArgs: nix.thunk(() => ["--version=skip"]) })))),
           ]))),
       })),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           owner: "podman-desktop",
           repo: "podman-desktop",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-7fyRrO4qd4sxsVtVuACZUgOzDVC5vGYQi39a+gTCPsM=",
         })))),
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -83,7 +73,7 @@ export default nix.lambda((args) => (() => {
         nix.path(here, "./system-defaults-dir.patch"),
       ]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         ELECTRON_SKIP_BINARY_DOWNLOAD: "1",
         ELECTRON_OVERRIDE_DIST_PATH: nix.thunk(() => nix.sel(electron, "dist")),
       })),
@@ -142,7 +132,7 @@ makeWrapper '${electron}/bin/electron' "$out/bin/podman-desktop" \\
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(electron, "meta"));
         return {
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         description: "Graphical tool for developing on containers and Kubernetes",
         homepage: "https://podman-desktop.io",
         changelog: nix.thunk(() => nix.str`https://github.com/podman-desktop/podman-desktop/releases/tag/v${nix.sel(finalAttrs, "version")}`),

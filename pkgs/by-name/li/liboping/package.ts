@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 16, 5], ["hash", 17, 5]], [["name", 28, 7], ["url", 29, 7], ["sha256", 30, 7]], [["NIX_CFLAGS_COMPILE", 34, 7]], [["description", 57, 5], ["longDescription", 58, 5], ["homepage", 65, 5], ["license", 66, 5], ["platforms", 67, 5], ["maintainers", 68, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["patches", 20, 3], ["env", 34, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 41, 3], ["configureFlags", 46, 3], ["buildFlags", 51, 3], ["meta", 56, 3]]]);
 const formals$1 = { args: { stdenv: false, fetchurl: false, fetchpatch: false, ncurses: true, perl: true, "pkg-config": false, lib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 28, 7], ["url", 29, 7], ["sha256", 30, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 34, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 57, 5], ["longDescription", 58, 5], ["homepage", 65, 5], ["license", 66, 5], ["platforms", 67, 5], ["maintainers", 68, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["patches", 20, 3], ["env", 34, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 41, 3], ["configureFlags", 46, 3], ["buildFlags", 51, 3], ["meta", 56, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,25 +15,25 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const lib = nix.arg($, "lib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "liboping",
       version: "1.10.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://noping.cc/files/liboping-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           hash: "sha256-6ziqk/k+irKC2X4lgvuuqIs/iJoIy8nb8gBZw3edXNg=",
         })))),
       patches: nix.thunk(() => [
         nix.path(here, "./ncurses-6.3.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "format-args.patch",
             url: "https://github.com/octo/liboping/commit/7a50e33f2a686564aa43e4920141e6f64e042df1.patch",
             sha256: "118fl3k84m3iqwfp49g5qil4lw1gcznzmyxnfna0h7za2nm50cxw",
           })))),
       ]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "cc", "isGNU")), "-Wno-error=format-truncation")),
       })),
       nativeBuildInputs: nix.thunk(() => [perl, pkg_config]),
@@ -48,7 +44,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`LD=${nix.sel(stdenv, "cc", "targetPrefix")}cc`),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "C library to generate ICMP echo requests (a.k.a. ping packets)",
         longDescription: "liboping is a C library to generate ICMP echo requests, better known as\n\"ping packets\". It is intended for use in network monitoring applications\nor applications that would otherwise need to fork ping(1) frequently.\nIncluded is a sample application, called oping, which demonstrates the\nlibrary's abilities.\n",
         homepage: "https://noping.cc/",

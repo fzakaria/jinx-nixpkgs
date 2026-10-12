@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 32, 7], ["repo", 33, 7], ["rev", 34, 7], ["hash", 35, 7]], [["description", 73, 7], ["homepage", 74, 7], ["maintainers", 75, 7], ["platforms", 76, 7], ["license", 77, 7]], [["pname", 28, 13], ["version", 29, 5], ["src", 31, 5], ["nativeBuildInputs", 38, 5], ["installPhase", 43, 5], ["meta", 72, 5]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchFromGitHub: false, clickgen: false, python3: false, themeVariants: true, sizeVariants: true, platformVariants: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 32, 7], ["repo", 33, 7], ["rev", 34, 7], ["hash", 35, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 73, 7], ["homepage", 74, 7], ["maintainers", 75, 7], ["platforms", 76, 7], ["license", 77, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 28, 13], ["version", 29, 5], ["src", 31, 5], ["nativeBuildInputs", 38, 5], ["installPhase", 43, 5], ["meta", 72, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const pname_1 = pname;
       const version = "2.0.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ful1e5",
           repo: "fuchsia-cursor",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -45,7 +43,7 @@ ${(nix.asBool(!nix.eq(themeVariants, [])) ? nix.str`name= ctgen build.toml \\
 runHook postInstall
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "First OpenSource port of FuchsiaOS's cursors for Linux and Windows",
         homepage: "https://github.com/ful1e5/fuchsia-cursor",
         maintainers: [],
@@ -53,7 +51,7 @@ runHook postInstall
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname: pname_1,
         version,
         src,

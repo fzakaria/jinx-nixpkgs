@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["x86_64-linux", 23, 7], ["aarch64-linux", 24, 7]], [["owner", 38, 5], ["repo", 39, 5], ["rev", 40, 5], ["hash", 41, 5]], [["pname", 61, 26], ["data", 62, 5]], [["BUILD_VERSION", 117, 7]], [["velocity", 139, 11]], [["updateScript", 120, 5], ["tests", 139, 5]], [["description", 143, 5], ["homepage", 144, 5], ["license", 145, 5], ["sourceProvenance", 149, 5], ["maintainers", 153, 5], ["platforms", 154, 5], ["mainProgram", 155, 5]], [["pname", 34, 3], ["version", 35, 3], ["src", 37, 3], ["nativeBuildInputs", 44, 3], ["buildInputs", 49, 3], ["strictDeps", 58, 3], ["mitmCache", 60, 3], ["gradleUpdateScript", 65, 3], ["patches", 71, 3], ["doCheck", 77, 3], ["postPatch", 79, 3], ["preBuild", 84, 3], ["installPhase", 98, 3], ["env", 117, 3], ["passthru", 119, 3], ["meta", 142, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, gradle_9: false, jdk25: false, makeBinaryWrapper: false, openssl: false, libdeflate: false, jdk25_headless: false, writeScript: false, nixosTests: false, withVelocityNative: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["x86_64-linux", 23, 7], ["aarch64-linux", 24, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 38, 5], ["repo", 39, 5], ["rev", 40, 5], ["hash", 41, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 61, 26], ["data", 62, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["BUILD_VERSION", 117, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["velocity", 139, 11]]);
-const pos$6 = nix.positions(here + "/package.nix", [["updateScript", 120, 5], ["tests", 139, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["description", 143, 5], ["homepage", 144, 5], ["license", 145, 5], ["sourceProvenance", 149, 5], ["maintainers", 153, 5], ["platforms", 154, 5], ["mainProgram", 155, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 34, 3], ["version", 35, 3], ["src", 37, 3], ["nativeBuildInputs", 44, 3], ["buildInputs", 49, 3], ["strictDeps", 58, 3], ["mitmCache", 60, 3], ["gradleUpdateScript", 65, 3], ["patches", 71, 3], ["doCheck", 77, 3], ["postPatch", 79, 3], ["preBuild", 84, 3], ["installPhase", 98, 3], ["env", 117, 3], ["passthru", 119, 3], ["meta", 142, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,16 +20,16 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const withVelocityNative = nix.argOr($, "withVelocityNative", () => nix.builtins.elem(nix.thunk(() => nix.sel(stdenv, "hostPlatform", "system")), nix.thunk(() => ["x86_64-linux", "aarch64-linux"])));
   const velocityNativePlatform = nix.thunk(() => nix.selOr({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     "x86_64-linux": "linux_x86_64",
     "aarch64-linux": "linux_aarch64",
   }, () => (nix.asBool(withVelocityNative) ? nix.builtins.throw(nix.thunk(() => nix.str`velocity native is not supported on ${nix.sel(stdenv, "hostPlatform", "system")}`)) : null), nix.key(nix.sel(stdenv, "hostPlatform", "system"))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "velocity",
       version: "4.2.1-unstable-2026-09-29",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "PaperMC",
           repo: "Velocity",
           rev: "7fc49913145fc6195db95995eb622bf9f5592876",
@@ -46,7 +39,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), withVelocityNative, nix.thunk(() => [openssl, libdeflate, jdk25]))),
       strictDeps: true,
       mitmCache: nix.thunk(() => nix.app(nix.sel(gradle_9, "fetchDeps"), nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           data: nix.path(here, "./deps.json"),
         })))),
@@ -85,11 +78,11 @@ echo ${nix.app(nix.sel(lib, "getLib"), libdeflate)} >> $out/nix-support/runtime-
 runHook postInstall
 `),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         BUILD_VERSION: nix.thunk(() => nix.str`nixpkgs-${nix.sel(finalAttrs, "version")}`),
       })),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         updateScript: nix.thunk(() => nix.app(writeScript, "update-velocity", nix.thunk(() => nix.str`#!/usr/bin/env nix-shell
 #!nix-shell -i bash -p common-updater-scripts
 
@@ -108,10 +101,13 @@ rm -rf "$tmpdir"
 update-source-version "$UPDATE_NIX_ATTR_PATH" "$main_version-unstable-$commit_date" --rev="$commit_hash"
 $(nix-build -A velocity.mitmCache.updateScript)
 `))),
-        tests: nix.thunk(() => ({ [nix.POS]: pos$5, velocity: nix.thunk(() => nix.sel(nixosTests, "velocity")) })),
+        tests: nix.thunk(() => ({
+          [nix.POS]: $pos[4],
+          velocity: nix.thunk(() => nix.sel(nixosTests, "velocity")),
+        })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "Modern, next-generation Minecraft server proxy",
         homepage: "https://papermc.io/software/velocity",
         license: nix.thunk(() => (() => {

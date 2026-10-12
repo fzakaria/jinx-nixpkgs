@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["sha256", 17, 5]], [["ghostscriptSupport", 32, 67]], [["description", 36, 5], ["homepage", 37, 5], ["license", 38, 5], ["platforms", 39, 5], ["maintainers", 40, 5], ["mainProgram", 44, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 20, 3], ["installPhase", 22, 3], ["postFixup", 30, 3], ["meta", 35, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchFromGitHub: false, makeWrapper: false, imagemagick: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["sha256", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["ghostscriptSupport", 32, 67]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 36, 5], ["homepage", 37, 5], ["license", 38, 5], ["platforms", 39, 5], ["maintainers", 40, 5], ["mainProgram", 44, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 20, 3], ["installPhase", 22, 3], ["postFixup", 30, 3], ["meta", 35, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const imagemagick = nix.arg($, "imagemagick");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "lsix",
       version: "1.9.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "hackerb9",
           repo: "lsix",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -30,11 +27,11 @@ export default nix.lambda((args) => (() => {
       installPhase: "runHook preInstall\n\ninstall -Dm755 lsix -t $out/bin\n\nrunHook postInstall\n",
       postFixup: nix.thunk(() => nix.str`wrapProgram $out/bin/lsix \\
   --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [
-          nix.thunk(() => nix.app(nix.sel(imagemagick, "override"), nix.thunk(() => ({ [nix.POS]: pos$2, ghostscriptSupport: true })))),
+          nix.thunk(() => nix.app(nix.sel(imagemagick, "override"), nix.thunk(() => ({ [nix.POS]: $pos[1], ghostscriptSupport: true })))),
         ]))}
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Shows thumbnails in terminal using sixel graphics",
         homepage: "https://github.com/hackerb9/lsix",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

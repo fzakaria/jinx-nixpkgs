@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 26, 5], ["hash", 27, 5]], [["package", 69, 5]], [["version", 68, 18]], [["tests", 68, 12]], [["description", 73, 5], ["mainProgram", 74, 5], ["longDescription", 75, 5], ["homepage", 80, 5], ["license", 81, 5], ["maintainers", 82, 5]], [["pname", 21, 3], ["version", 22, 3], ["pyproject", 23, 3], ["src", 25, 3], ["buildInputs", 30, 3], ["nativeBuildInputs", 35, 3], ["propagatedBuildInputs", 41, 3], ["doCheck", 52, 3], ["dontWrapGApps", 55, 3], ["preFixup", 57, 3], ["postInstall", 64, 3], ["passthru", 68, 3], ["meta", 72, 3]]]);
 const formals$1 = { args: { lib: false, fetchurl: false, "gdk-pixbuf": false, "gobject-introspection": false, gtk3: false, mcomix: false, python3: false, testers: false, wrapGAppsHook3: false, p7zip: false, unrar: false, chardetSupport: true, pdfSupport: true, unrarSupport: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["package", 69, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 68, 18]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 68, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 73, 5], ["mainProgram", 74, 5], ["longDescription", 75, 5], ["homepage", 80, 5], ["license", 81, 5], ["maintainers", 82, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 3], ["pyproject", 23, 3], ["src", 25, 3], ["buildInputs", 30, 3], ["nativeBuildInputs", 35, 3], ["propagatedBuildInputs", 41, 3], ["doCheck", 52, 3], ["dontWrapGApps", 55, 3], ["preFixup", 57, 3], ["postInstall", 64, 3], ["passthru", 68, 3], ["meta", 72, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,12 +22,12 @@ export default nix.lambda((args) => (() => {
   const pdfSupport = nix.argOr($, "pdfSupport", () => true);
   const unrarSupport = nix.argOr($, "unrarSupport", () => false);
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "mcomix",
       version: "3.1.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/mcomix/mcomix-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-oQqq7XvAfet0796Tv5qKJ+G8vxgkoFGbJkz+5YK+zvg=",
         })))),
@@ -59,14 +54,14 @@ export default nix.lambda((args) => (() => {
 `),
       postInstall: "cp -a share $out/\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$2, package: mcomix })))),
+          [nix.POS]: $pos[2],
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: $pos[1], package: mcomix })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Comic book reader and image viewer",
         mainProgram: "mcomix",
         longDescription: "User-friendly, customizable image viewer, specifically designed to handle\ncomic books and manga supporting a variety of container formats\n(including CBR, CBZ, CB7, CBT, LHA and PDF)\n",

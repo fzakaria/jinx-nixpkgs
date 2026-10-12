@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 17, 5], ["sha256", 18, 5]], [["url", 42, 7], ["sha256", 43, 7]], [["description", 48, 5], ["homepage", 49, 5], ["maintainers", 50, 5], ["license", 51, 5], ["platforms", 56, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["outputs", 21, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 32, 3], ["doCheck", 34, 3], ["patchFlags", 36, 3], ["patches", 37, 3], ["meta", 47, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, orc: false, "pkg-config": false, fetchpatch: false, autoreconfHook: false, "gtk-doc": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 17, 5], ["sha256", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 42, 7], ["sha256", 43, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 48, 5], ["homepage", 49, 5], ["maintainers", 50, 5], ["license", 51, 5], ["platforms", 56, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["outputs", 21, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 32, 3], ["doCheck", 34, 3], ["patchFlags", 36, 3], ["patches", 37, 3], ["meta", 47, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const autoreconfHook = nix.arg($, "autoreconfHook");
   const gtk_doc = nix.arg($, "gtk-doc");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "schroedinger",
       version: "1.0.11",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://download.videolan.org/contrib/schroedinger-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "04prr667l4sn4zx256v1z36a0nnkxfdqyln48rbwlamr6l3jlmqy",
         })))),
@@ -35,13 +32,13 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [
         nix.path(here, "./riscv64-orc-backup.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://raw.githubusercontent.com/macports/macports-ports/master/multimedia/schroedinger/files/patch-testsuite-Makefile.am.diff",
             sha256: "0cc8ymvgjgwy7ghca2dd8m8pxpinf27s2i8krf2m3fzv2ckq09v3",
           })))),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Implementation of the Dirac video codec in ANSI C",
         homepage: "https://sourceforge.net/projects/schrodinger/",
         maintainers: [],

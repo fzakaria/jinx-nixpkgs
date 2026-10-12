@@ -2,14 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["package", 102, 9]], [["description", 118, 15], ["license", 119, 41], ["platforms", 119, 49]], [["src", 109, 34], ["version", 109, 38], ["nativeBuildInputs", 111, 13], ["buildInputs", 115, 13], ["meta", 117, 13]], [["pkg-config", 101, 7], ["check-trampolines-dylib", 106, 7]], [["tests", 100, 5]], [["description", 134, 5], ["longDescription", 135, 5], ["homepage", 149, 5], ["license", 150, 5], ["pkgConfigModules", 151, 5]], [["releaseName", 23, 3], ["outputs", 25, 3], ["patches", 32, 3], ["postPatch", 40, 3], ["enableParallelBuilding", 44, 3], ["nativeBuildInputs", 46, 3], ["configurePlatforms", 51, 3], ["configureFlags", 56, 3], ["postConfigure", 61, 3], ["postBuild", 70, 3], ["postInstall", 77, 3], ["preCheck", 87, 3], ["dontStrip", 93, 3], ["doCheck", 95, 11], ["nativeCheckInputs", 97, 3], ["passthru", 99, 3], ["meta", 133, 3]]]);
 const formals$1 = { args: { lib: false, autoreconfHook: false, dejagnu: false, mkAppleDerivation: false, runCommand: false, dyld: false, python3: false, stdenv: false, testers: false, texinfo: false, doCheck: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["package", 102, 9]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 118, 15], ["license", 119, 41], ["platforms", 119, 49]]);
-const pos$3 = nix.positions(here + "/package.nix", [["src", 109, 34], ["version", 109, 38], ["nativeBuildInputs", 111, 13], ["buildInputs", 115, 13], ["meta", 117, 13]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pkg-config", 101, 7], ["check-trampolines-dylib", 106, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["tests", 100, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 134, 5], ["longDescription", 135, 5], ["homepage", 149, 5], ["license", 150, 5], ["pkgConfigModules", 151, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["releaseName", 23, 3], ["outputs", 25, 3], ["patches", 32, 3], ["postPatch", 40, 3], ["enableParallelBuilding", 44, 3], ["nativeBuildInputs", 46, 3], ["configurePlatforms", 51, 3], ["configureFlags", 56, 3], ["postConfigure", 61, 3], ["postBuild", 70, 3], ["postInstall", 77, 3], ["preCheck", 87, 3], ["dontStrip", 93, 3], ["doCheck", 95, 11], ["nativeCheckInputs", 97, 3], ["passthru", 99, 3], ["meta", 133, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,7 +20,7 @@ export default nix.lambda((args) => (() => {
   const doCheck = nix.argOr($, "doCheck", () => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isStatic")));
   const python3_with_macholib = nix.thunk(() => nix.app(nix.sel(python3, "withPackages"), (pkgs) => [nix.thunk(() => nix.sel(pkgs, "macholib"))]));
   return nix.app(mkAppleDerivation, (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       releaseName: "libffi",
       outputs: nix.thunk(() => ["out", "dev", "man", "info"]),
       patches: nix.thunk(() => [
@@ -46,15 +40,15 @@ export default nix.lambda((args) => (() => {
       doCheck: doCheck,
       nativeCheckInputs: nix.thunk(() => [dejagnu]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "hasPkgConfigModules"), nix.thunk(() => ({
-              [nix.POS]: pos$1,
+              [nix.POS]: $pos[0],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
           "check-trampolines-dylib": nix.thunk(() => nix.app(runCommand, "check-trampolines-dylib", nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               src: nix.thunk(() => nix.attr(finalAttrs, "src")),
               version: nix.thunk(() => nix.attr(finalAttrs, "version")),
               nativeBuildInputs: nix.thunk(() => [dyld, python3_with_macholib]),
@@ -62,7 +56,7 @@ export default nix.lambda((args) => (() => {
               meta: nix.thunk(() => (() => {
                 const from = nix.thunk(() => nix.sel(finalAttrs, "meta"));
                 return {
-                [nix.POS]: pos$2,
+                [nix.POS]: $pos[1],
                 description: "Test whether the libffi trampoline was built correctly and works on Darwin.",
                 license: nix.thunk(() => nix.attr(from, "license")),
                 platforms: nix.thunk(() => nix.attr(from, "platforms")),
@@ -78,7 +72,7 @@ touch "$out"
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Foreign function call interface library",
         longDescription: "The libffi library provides a portable, high level programming\ninterface to various calling conventions.  This allows a\nprogrammer to call any function specified by a call interface\ndescription at run-time.\n\nFFI stands for Foreign Function Interface.  A foreign function\ninterface is the popular name for the interface that allows code\nwritten in one language to call code written in another\nlanguage.  The libffi library really only provides the lowest,\nmachine dependent layer of a fully featured foreign function\ninterface.  A layer must exist above libffi that handles type\nconversions for values passed between the two languages.\n",
         homepage: "https://github.com/apple-oss-distributions/libffi/",

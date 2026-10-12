@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 34, 5], ["repo", 35, 5], ["tag", 36, 5], ["hash", 37, 5]], [["gitMinimal", 207, 15], ["pre-commit", 207, 26]], [["i686", 210, 7]], [["tests", 205, 12]], [["description", 214, 5], ["homepage", 215, 5], ["changelog", 216, 5], ["license", 217, 5], ["maintainers", 218, 5], ["mainProgram", 223, 5]], [["pname", 29, 3], ["version", 30, 3], ["pyproject", 31, 3], ["src", 33, 3], ["patches", 40, 3], ["build-system", 46, 3], ["dependencies", 50, 3], ["nativeCheckInputs", 58, 3], ["nativeInstallCheckInputs", 82, 3], ["postPatch", 84, 3], ["preCheck", 95, 3], ["disabledTests", 108, 3], ["pythonImportsCheck", 196, 3], ["preFixup", 201, 3], ["passthru", 205, 3], ["meta", 213, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, python3Packages: false, fetchFromGitHub: false, "cabal-install": false, cargo: false, gitMinimal: false, go: false, perl: false, versionCheckHook: false, writableTmpDirAsHomeHook: false, coursier: false, "dotnet-sdk": false, nodejs: false, callPackage: false, pkgsi686Linux: false, "pre-commit": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 34, 5], ["repo", 35, 5], ["tag", 36, 5], ["hash", 37, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["gitMinimal", 207, 15], ["pre-commit", 207, 26]]);
-const pos$3 = nix.positions(here + "/package.nix", [["i686", 210, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 205, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 214, 5], ["homepage", 215, 5], ["changelog", 216, 5], ["license", 217, 5], ["maintainers", 218, 5], ["mainProgram", 223, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 29, 3], ["version", 30, 3], ["pyproject", 31, 3], ["src", 33, 3], ["patches", 40, 3], ["build-system", 46, 3], ["dependencies", 50, 3], ["nativeCheckInputs", 58, 3], ["nativeInstallCheckInputs", 82, 3], ["postPatch", 84, 3], ["preCheck", 95, 3], ["disabledTests", 108, 3], ["pythonImportsCheck", 196, 3], ["preFixup", 201, 3], ["passthru", 205, 3], ["meta", 213, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,12 +26,12 @@ export default nix.lambda((args) => (() => {
   const pre_commit = nix.arg($, "pre-commit");
   const i686Linux = nix.thunk(() => nix.eq(nix.sel(stdenv, "buildPlatform", "system"), "i686-linux"));
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "pre-commit",
       version: "4.6.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "pre-commit",
           repo: "pre-commit",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -152,14 +147,14 @@ export DOTNET_ROOT="${dotnet_sdk}/share/dotnet"
       preFixup: nix.thunk(() => nix.str`makeWrapperArgs+=(--suffix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [gitMinimal]))})
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        tests: nix.thunk(() => nix.update(nix.app(callPackage, nix.path(here, "./tests.nix"), nix.thunk(() => ({ [nix.POS]: pos$2, gitMinimal: gitMinimal, "pre-commit": pre_commit }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(nix.sel(stdenv, "hostPlatform", "system"), "x86_64-linux")), nix.thunk(() => ({
-            [nix.POS]: pos$3,
+        [nix.POS]: $pos[3],
+        tests: nix.thunk(() => nix.update(nix.app(callPackage, nix.path(here, "./tests.nix"), nix.thunk(() => ({ [nix.POS]: $pos[1], gitMinimal: gitMinimal, "pre-commit": pre_commit }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(nix.sel(stdenv, "hostPlatform", "system"), "x86_64-linux")), nix.thunk(() => ({
+            [nix.POS]: $pos[2],
             i686: nix.thunk(() => nix.sel(pkgsi686Linux, "pre-commit")),
           }))))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Framework for managing and maintaining multi-language pre-commit hooks",
         homepage: "https://pre-commit.com/",
         changelog: nix.thunk(() => nix.str`https://github.com/pre-commit/pre-commit/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

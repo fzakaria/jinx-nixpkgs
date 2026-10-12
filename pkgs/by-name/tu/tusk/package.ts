@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 13, 5], ["sha256", 14, 5]], [["name", 18, 5], ["exec", 19, 5], ["icon", 20, 5], ["desktopName", 21, 5], ["genericName", 22, 5], ["categories", 23, 5]], [["url", 31, 5], ["sha256", 32, 5]], [["description", 45, 5], ["longDescription", 46, 5], ["homepage", 49, 5], ["license", 50, 5], ["maintainers", 51, 5], ["platforms", 52, 5], ["mainProgram", 53, 5]], [["pname", 28, 11], ["version", 28, 17], ["src", 30, 3], ["profile", 35, 3], ["extraInstallCommands", 39, 3], ["meta", 44, 3]]]);
 const formals$1 = { args: { appimageTools: false, fetchurl: false, lib: false, makeDesktopItem: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 13, 5], ["sha256", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 18, 5], ["exec", 19, 5], ["icon", 20, 5], ["desktopName", 21, 5], ["genericName", 22, 5], ["categories", 23, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 31, 5], ["sha256", 32, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 45, 5], ["longDescription", 46, 5], ["homepage", 49, 5], ["license", 50, 5], ["maintainers", 51, 5], ["platforms", 52, 5], ["mainProgram", 53, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 28, 11], ["version", 28, 17], ["src", 30, 3], ["profile", 35, 3], ["extraInstallCommands", 39, 3], ["meta", 44, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const pname = "tusk";
   const version = "0.23.0";
   const icon = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: nix.thunk(() => nix.str`https://raw.githubusercontent.com/klaussinani/tusk/v${version}/static/Icon.png`),
       sha256: "1jqclyrjgg6hir45spg75plfmd8k9nrsrzw3plbcg43s5m1qzihb",
     }))));
   const desktopItem = nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       name: pname,
       exec: pname,
       icon: icon,
@@ -35,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const pname_1 = pname;
       const version_1 = version;
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           url: nix.thunk(() => nix.str`https://github.com/klaussinani/tusk/releases/download/v${version_1}/tusk-${version_1}-x86_64.AppImage`),
           sha256: "02q7wsnhlyq8z74avflrm7805ny8fzlmsmz4bmafp4b4pghjh5ky",
         }))));
@@ -44,7 +40,7 @@ export default nix.lambda((args) => (() => {
 ln -s "${desktopItem}/share/applications" "$out/share/"
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Refined Evernote desktop app",
         longDescription: "Tusk is an unofficial, featureful, open source, community-driven, free Evernote app used by people in more than 140 countries. Tusk is indicated by Evernote as an alternative client for Linux environments trusted by the open source community.\n",
         homepage: "https://klaussinani.github.io/tusk/",
@@ -54,7 +50,7 @@ ln -s "${desktopItem}/share/applications" "$out/share/"
         mainProgram: "tusk",
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname: pname_1,
         version: version_1,
         src,

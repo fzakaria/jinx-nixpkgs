@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 37, 5], ["hash", 38, 5]], [["packageName", 116, 41]], [["updateScript", 116, 5]], [["homepage", 120, 5], ["description", 121, 5], ["mainProgram", 122, 5], ["teams", 123, 5], ["license", 124, 5], ["platforms", 125, 5]], [["pname", 33, 3], ["version", 34, 3], ["src", 36, 3], ["doCheck", 41, 3], ["nativeBuildInputs", 43, 3], ["buildInputs", 57, 3], ["mesonFlags", 74, 3], ["postPatch", 81, 3], ["preCheck", 91, 3], ["postCheck", 105, 3], ["preFixup", 109, 3], ["passthru", 115, 3], ["meta", 119, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, "blueprint-compiler": false, meson: false, ninja: false, gettext: false, "pkg-config": false, gnome: false, glib: false, gtk4: false, "gobject-introspection": false, "gdk-pixbuf": false, librest: false, libgweather: false, geoclue2: false, wrapGAppsHook4: false, "desktop-file-utils": false, libportal: false, libshumate: false, libsecret: false, libsoup_3: false, "gsettings-desktop-schemas": false, gjs: false, libadwaita: false, "geocode-glib_2": false, tzdata: false, writeText: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 37, 5], ["hash", 38, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["packageName", 116, 41]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 116, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 120, 5], ["description", 121, 5], ["mainProgram", 122, 5], ["teams", 123, 5], ["license", 124, 5], ["platforms", 125, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 33, 3], ["version", 34, 3], ["src", 36, 3], ["doCheck", 41, 3], ["nativeBuildInputs", 43, 3], ["buildInputs", 57, 3], ["mesonFlags", 74, 3], ["postPatch", 81, 3], ["preCheck", 91, 3], ["postCheck", 105, 3], ["preFixup", 109, 3], ["passthru", 115, 3], ["meta", 119, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -40,11 +36,11 @@ export default nix.lambda((args) => (() => {
   const tzdata = nix.arg($, "tzdata");
   const writeText = nix.arg($, "writeText");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "gnome-maps",
       version: "50.3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnome/sources/gnome-maps/${nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/gnome-maps-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-CJyo4Vq9cqyD2zhs7xnOveBe74t26qyBkGpLBTVUTiw=",
         })))),
@@ -98,11 +94,11 @@ ln -s $PWD/lib/libgnome-maps.so.0 $out/lib/gnome-maps/libgnome-maps.so.0
       postCheck: "rm $out/lib/gnome-maps/libgnome-maps.so.0\n",
       preFixup: "substituteInPlace \"$out/share/applications/org.gnome.Maps.desktop\" \\\n  --replace-fail \"Exec=gapplication launch org.gnome.Maps\" \\\n                 \"Exec=gnome-maps\"\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$2, packageName: "gnome-maps" })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: $pos[1], packageName: "gnome-maps" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://apps.gnome.org/Maps/",
         description: "Map application for GNOME 3",
         mainProgram: "gnome-maps",

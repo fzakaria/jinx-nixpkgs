@@ -2,15 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/tools.nix", [[["url", 28, 11], ["hash", 29, 11]], [["description", 40, 17], ["homepage", 40, 29], ["mainProgram", 40, 38], ["downloadPage", 41, 9], ["license", 42, 9], ["maintainers", 43, 9], ["platforms", 44, 9]], [["pname", 21, 15], ["version", 22, 7], ["src", 25, 7], ["nativeBuildInputs", 32, 7], ["buildInputs", 33, 7], ["makeFlags", 35, 7], ["installPhase", 37, 7], ["meta", 39, 7]], [["pname", 50, 5], ["makeTarget", 51, 5], ["description", 52, 5], ["homepage", 53, 5], ["mainProgram", 54, 5]], [["pname", 57, 5], ["makeTarget", 58, 5], ["description", 59, 5], ["homepage", 60, 5], ["mainProgram", 61, 5]], [["pname", 64, 5], ["makeTarget", 65, 5], ["description", 66, 5], ["homepage", 67, 5], ["mainProgram", 68, 5]], [["sqldiff", 49, 3], ["sqlite-analyzer", 56, 3], ["sqlite-rsync", 63, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, unzip: false, sqlite: false, tcl: false }, ellipsis: false };
 const formals$2 = { args: { pname: false, makeTarget: false, description: false, homepage: false, mainProgram: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/tools.nix", [["url", 28, 11], ["hash", 29, 11]]);
-const pos$2 = nix.positions(here + "/tools.nix", [["description", 40, 17], ["homepage", 40, 29], ["mainProgram", 40, 38], ["downloadPage", 41, 9], ["license", 42, 9], ["maintainers", 43, 9], ["platforms", 44, 9]]);
-const pos$3 = nix.positions(here + "/tools.nix", [["pname", 21, 15], ["version", 22, 7], ["src", 25, 7], ["nativeBuildInputs", 32, 7], ["buildInputs", 33, 7], ["makeFlags", 35, 7], ["installPhase", 37, 7], ["meta", 39, 7]]);
-const pos$4 = nix.positions(here + "/tools.nix", [["pname", 50, 5], ["makeTarget", 51, 5], ["description", 52, 5], ["homepage", 53, 5], ["mainProgram", 54, 5]]);
-const pos$5 = nix.positions(here + "/tools.nix", [["pname", 57, 5], ["makeTarget", 58, 5], ["description", 59, 5], ["homepage", 60, 5], ["mainProgram", 61, 5]]);
-const pos$6 = nix.positions(here + "/tools.nix", [["pname", 64, 5], ["makeTarget", 65, 5], ["description", 66, 5], ["homepage", 67, 5], ["mainProgram", 68, 5]]);
-const pos$7 = nix.positions(here + "/tools.nix", [["sqldiff", 49, 3], ["sqlite-analyzer", 56, 3], ["sqlite-rsync", 63, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,7 +28,7 @@ export default nix.lambda((args) => (() => {
         const src = nix.thunk(() => (() => {
           nix.assert_(nix.eq(version, nix.sel(sqlite, "version")), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/development/libraries/sqlite/tools.nix:26:9");
           return nix.app(fetchurl, nix.thunk(() => ({
-              [nix.POS]: pos$1,
+              [nix.POS]: $pos[0],
               url: nix.thunk(() => nix.str`https://sqlite.org/2026/sqlite-src-${nix.app(archiveVersion, version)}.zip`),
               hash: "sha256-u4C/ijv/wZJBzoq6WkvHTpw5gAE8sLXw8JdqmVFpQq8=",
             })));
@@ -44,7 +38,7 @@ export default nix.lambda((args) => (() => {
         const makeFlags = nix.thunk(() => [makeTarget]);
         const installPhase = nix.thunk(() => nix.str`install -Dt $out/bin ${makeTarget}`);
         const meta = nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           description: description,
           homepage: homepage,
           mainProgram: mainProgram,
@@ -57,7 +51,7 @@ export default nix.lambda((args) => (() => {
           platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
         }));
         return {
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           pname: pname_1,
           version,
           src,
@@ -70,9 +64,9 @@ export default nix.lambda((args) => (() => {
       })()));
   })(), formals$2);
   return {
-    [nix.POS]: pos$7,
+    [nix.POS]: $pos[6],
     sqldiff: nix.thunk(() => nix.app(mkTool, nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname: "sqldiff",
         makeTarget: "sqldiff",
         description: "Tool that displays the differences between SQLite databases",
@@ -80,7 +74,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "sqldiff",
       })))),
     "sqlite-analyzer": nix.thunk(() => nix.app(mkTool, nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname: "sqlite-analyzer",
         makeTarget: "sqlite3_analyzer",
         description: "Tool that shows statistics about SQLite databases",
@@ -88,7 +82,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "sqlite3_analyzer",
       })))),
     "sqlite-rsync": nix.thunk(() => nix.app(mkTool, nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname: "sqlite-rsync",
         makeTarget: "sqlite3_rsync",
         description: "Database remote-copy tool for SQLite",

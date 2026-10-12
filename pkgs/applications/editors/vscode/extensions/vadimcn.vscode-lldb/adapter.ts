@@ -2,9 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/adapter.nix", [[["lldbServer", 72, 24]], [["pname", 28, 3], ["version", 29, 11], ["src", 29, 19], ["cargoHash", 31, 11], ["LLDB_DYLIB", 37, 3], ["LLDB_INCLUDE", 38, 3], ["nativeBuildInputs", 40, 3], ["buildAndTestSubdir", 45, 3], ["cargoBuildFlags", 51, 3], ["postFixup", 55, 3], ["doCheck", 70, 3], ["passthru", 72, 3]]]);
 const formals$1 = { args: { lib: false, lldb: false, makeWrapper: false, rustPlatform: false, stdenv: false, "codelldb-launch": false, pname: false, src: false, version: false, cargoHash: false, standalone: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/adapter.nix", [["lldbServer", 72, 24]]);
-const pos$2 = nix.positions(here + "/adapter.nix", [["pname", 28, 3], ["version", 29, 11], ["src", 29, 19], ["cargoHash", 31, 11], ["LLDB_DYLIB", 37, 3], ["LLDB_INCLUDE", 38, 3], ["nativeBuildInputs", 40, 3], ["buildAndTestSubdir", 45, 3], ["cargoBuildFlags", 51, 3], ["postFixup", 55, 3], ["doCheck", 70, 3], ["passthru", 72, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,7 +21,7 @@ export default nix.lambda((args) => (() => {
   const lldbServer = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? "/Applications/Xcode.app/Contents/SharedFrameworks/LLDB.framework/Versions/A/Resources/debugserver" : nix.str`${nix.app(nix.sel(lib, "getBin"), lldb)}/bin/lldb-server`));
   const LLVM_TRIPLE = nix.thunk(() => nix.sel(stdenv, "buildPlatform", "rust", "rustcTarget"));
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => nix.attrsDyn({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: nix.thunk(() => nix.str`${pname}-adapter`),
       version: version,
       src: src,
@@ -44,7 +43,7 @@ ${nix.app(nix.sel(lib, "optionalString"), standalone, nix.thunk(() => nix.str`cp
 `))}
 `),
       doCheck: false,
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$1, lldbServer: lldbServer })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[0], lldbServer: lldbServer })),
     }, [
       [nix.str`CC_${LLVM_TRIPLE}`, nix.thunk(() => nix.str`${nix.sel(stdenv, "cc")}/bin/cc`)],
       [nix.str`CXX_${LLVM_TRIPLE}`, nix.thunk(() => nix.str`${nix.sel(stdenv, "cc")}/bin/c++`)],

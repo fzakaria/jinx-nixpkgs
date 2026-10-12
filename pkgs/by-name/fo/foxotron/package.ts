@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 30, 5], ["repo", 31, 5], ["rev", 32, 5], ["fetchSubmodules", 33, 5], ["hash", 34, 5]], [["NIX_CFLAGS_COMPILE", 77, 7]], [["updateScript", 99, 5]], [["description", 103, 5], ["longDescription", 104, 5], ["homepage", 108, 5], ["license", 109, 5], ["maintainers", 110, 5], ["platforms", 111, 5], ["mainProgram", 112, 5]], [["pname", 26, 3], ["version", 27, 3], ["src", 29, 3], ["postPatch", 37, 3], ["nativeBuildInputs", 51, 3], ["buildInputs", 60, 3], ["env", 77, 3], ["hardeningDisable", 83, 3], ["installPhase", 85, 3], ["passthru", 98, 3], ["meta", 102, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, fetchpatch: false, unstableGitUpdater: false, cmake: false, "pkg-config": false, makeWrapper: false, zlib: false, libx11: false, libxrandr: false, libxinerama: false, libxcursor: false, libxi: false, libxext: false, libGLU: false, "alsa-lib": false, fontconfig: false, wayland: false, "wayland-scanner": false, libdecor: false, libxkbcommon: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 30, 5], ["repo", 31, 5], ["rev", 32, 5], ["fetchSubmodules", 33, 5], ["hash", 34, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 77, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 99, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 103, 5], ["longDescription", 104, 5], ["homepage", 108, 5], ["license", 109, 5], ["maintainers", 110, 5], ["platforms", 111, 5], ["mainProgram", 112, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 26, 3], ["version", 27, 3], ["src", 29, 3], ["postPatch", 37, 3], ["nativeBuildInputs", 51, 3], ["buildInputs", 60, 3], ["env", 77, 3], ["hardeningDisable", 83, 3], ["installPhase", 85, 3], ["passthru", 98, 3], ["meta", 102, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,11 +30,11 @@ export default nix.lambda((args) => (() => {
   const libdecor = nix.arg($, "libdecor");
   const libxkbcommon = nix.arg($, "libxkbcommon");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "foxotron",
       version: "2024-09-23-unstable-2026-03-20",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Gargaj",
           repo: "Foxotron",
           rev: "6edbf2e52e59a4206420bc667225a4e18778be76",
@@ -67,7 +63,7 @@ export default nix.lambda((args) => (() => {
           wayland,
         ])))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-Wno-error=array-bounds"]))),
       })),
       hardeningDisable: nix.thunk(() => ["fortify3"]),
@@ -83,11 +79,11 @@ ln -s $out/{lib/foxotron,bin}/Foxotron
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "General purpose model viewer",
         longDescription: "ASSIMP based general purpose model viewer (\"turntable\") created for the\nRevision 2021 3D Graphics Competition.\n",
         homepage: "https://github.com/Gargaj/Foxotron",

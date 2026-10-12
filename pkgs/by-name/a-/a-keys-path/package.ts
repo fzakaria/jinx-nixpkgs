@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]], [["name", 55, 5], ["exec", 56, 5], ["icon", 57, 5], ["desktopName", 58, 5], ["comment", 59, 5], ["genericName", 60, 5], ["categories", 61, 5]], [["homepage", 109, 5], ["description", 110, 5], ["mainProgram", 111, 5], ["license", 112, 5], ["platforms", 117, 5], ["maintainers", 118, 5]], [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 43, 3], ["desktopItem", 54, 3], ["buildPhase", 64, 3], ["installPhase", 83, 3], ["runtimeDependencies", 104, 3], ["meta", 108, 3]]]);
 const formals$1 = { args: { lib: false, autoPatchelfHook: false, copyDesktopItems: false, fetchFromGitHub: false, makeDesktopItem: false, stdenv: false, "alsa-lib": false, "godot3-export-templates": false, "godot3-headless": false, libx11: false, libxcursor: false, libxext: false, libxi: false, libxinerama: false, libxrandr: false, libxrender: false, libglvnd: false, writableTmpDirAsHomeHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 55, 5], ["exec", 56, 5], ["icon", 57, 5], ["desktopName", 58, 5], ["comment", 59, 5], ["genericName", 60, 5], ["categories", 61, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 109, 5], ["description", 110, 5], ["mainProgram", 111, 5], ["license", 112, 5], ["platforms", 117, 5], ["maintainers", 118, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 43, 3], ["desktopItem", 54, 3], ["buildPhase", 64, 3], ["installPhase", 83, 3], ["runtimeDependencies", 104, 3], ["meta", 108, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const libglvnd = nix.arg($, "libglvnd");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "a-keys-path",
       version: "0.7.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "geegaz",
           repo: "A-Key-s-Path",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -56,7 +53,7 @@ export default nix.lambda((args) => (() => {
         libglvnd,
       ]),
       desktopItem: nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           name: "a-keys-path",
           exec: "a-keys-path",
           icon: "a-keys-path",
@@ -103,7 +100,7 @@ runHook postInstall
 `),
       runtimeDependencies: nix.thunk(() => nix.builtins.map(nix.thunk(() => nix.sel(lib, "getLib")), nix.thunk(() => [alsa_lib]))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://geegaz.itch.io/out-of-controls",
         description: "Short puzzle-platformer game made with Godot, running on GLES 2.0",
         mainProgram: "a-keys-path",

@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 19, 7], ["repo", 20, 7], ["rev", 21, 7], ["hash", 22, 7]], [["doCheck", 57, 56]], [["pytest", 57, 20]], [["tests", 57, 14]], [["description", 60, 7], ["homepage", 61, 7], ["license", 62, 7], ["maintainers", 63, 7]], [["pname", 14, 5], ["version", 15, 5], ["pyproject", 16, 5], ["src", 18, 5], ["build-system", 25, 5], ["doCheck", 31, 5], ["nativeCheckInputs", 33, 5], ["disabledTests", 38, 5], ["pythonImportsCheck", 55, 5], ["passthru", 57, 5], ["meta", 59, 5]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, "setuptools-scm": false, wheel: false, "jaraco-test": false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 19, 7], ["repo", 20, 7], ["rev", 21, 7], ["hash", 22, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["doCheck", 57, 56]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pytest", 57, 20]]);
-const pos$4 = nix.positions(here + "/default.nix", [["tests", 57, 14]]);
-const pos$5 = nix.positions(here + "/default.nix", [["description", 60, 7], ["homepage", 61, 7], ["license", 62, 7], ["maintainers", 63, 7]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 14, 5], ["version", 15, 5], ["pyproject", 16, 5], ["src", 18, 5], ["build-system", 25, 5], ["doCheck", 31, 5], ["nativeCheckInputs", 33, 5], ["disabledTests", 38, 5], ["pythonImportsCheck", 55, 5], ["passthru", 57, 5], ["meta", 59, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.2.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "jaraco",
           repo: "backports.tarfile",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -50,21 +45,21 @@ export default nix.lambda((args) => (() => {
       ]);
       const pythonImportsCheck = nix.thunk(() => ["backports.tarfile"]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
-          pytest: nix.thunk(() => nix.app(nix.sel(self, "overridePythonAttrs"), nix.thunk(() => ({ [nix.POS]: pos$2, doCheck: true })))),
+          [nix.POS]: $pos[2],
+          pytest: nix.thunk(() => nix.app(nix.sel(self, "overridePythonAttrs"), nix.thunk(() => ({ [nix.POS]: $pos[1], doCheck: true })))),
         })),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Backport of CPython tarfile module",
         homepage: "https://github.com/jaraco/backports.tarfile",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname,
         version,
         pyproject,

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["skipBulkUpdate", 17, 12]], [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]], [["description", 37, 5], ["homepage", 38, 5], ["changelog", 39, 5], ["license", 40, 5], ["maintainers", 41, 5]], [["pname", 10, 3], ["version", 11, 3], ["pyproject", 12, 3], ["passthru", 17, 3], ["src", 19, 3], ["build-system", 26, 3], ["pythonImportsCheck", 30, 3], ["nativeCheckInputs", 32, 3], ["meta", 36, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["skipBulkUpdate", 17, 12]]);
-const pos$2 = nix.positions(here + "/default.nix", [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 37, 5], ["homepage", 38, 5], ["changelog", 39, 5], ["license", 40, 5], ["maintainers", 41, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 10, 3], ["version", 11, 3], ["pyproject", 12, 3], ["passthru", 17, 3], ["src", 19, 3], ["build-system", 26, 3], ["pythonImportsCheck", 30, 3], ["nativeCheckInputs", 32, 3], ["meta", 36, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,9 +16,9 @@ export default nix.lambda((args) => (() => {
       const pname = "columnize";
       const version = "0.3.11";
       const pyproject = true;
-      const passthru = nix.thunk(() => ({ [nix.POS]: pos$1, skipBulkUpdate: true }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: $pos[0], skipBulkUpdate: true }));
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "rocky",
           repo: "pycolumnize",
           tag: "3.11",
@@ -31,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["columnize"]);
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Python module to align a simple (not nested) list in columns",
         homepage: "https://github.com/rocky/pycolumnize",
         changelog: nix.thunk(() => nix.str`https://github.com/rocky/pycolumnize/blob/${nix.sel(src, "tag")}/ChangeLog`),
@@ -42,7 +39,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

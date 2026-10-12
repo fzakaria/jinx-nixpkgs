@@ -2,32 +2,10 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/ayatana-indicators.nix", [[["maintainers", 9, 5]], [["enable", 21, 9], ["user", 22, 17]], [["auto", 20, 35]], [["displayManager", 20, 20]], [["enable", 27, 29]], [["mate", 27, 24]], [["enable", 26, 9], ["desktopManager", 27, 9]], [["defaultSession", 29, 31]], [["enable", 32, 9], ["packages", 33, 9]], [["enable", 53, 32]], [["packages", 61, 21]], [["enable", 65, 26]], [["xserver", 25, 16], ["displayManager", 29, 16], ["ayatana-indicators", 31, 16], ["accounts-daemon", 53, 16], ["dbus", 61, 16], ["telepathy", 65, 16]], [["enable", 58, 33]], [["networkmanager", 58, 18]], [["systemPackages", 63, 19]], [["group", 68, 9], ["home", 69, 9], ["createHome", 70, 9], ["isSystemUser", 71, 9]], [["usermetrics", 67, 19]], [["usermetrics", 74, 20]], [["users", 67, 13], ["groups", 74, 13]], [["imports", 15, 7], ["test-support", 20, 7], ["services", 25, 7], ["networking", 58, 7], ["environment", 63, 7], ["users", 67, 7]], [["machine", 12, 9]], [["name", 6, 3], ["meta", 8, 3], ["nodes", 12, 3], ["testScript", 78, 3]]]);
 const formals$1 = { args: { pkgs: false, lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/ayatana-indicators.nix", [["maintainers", 9, 5]]);
 const formals$2 = { args: { config: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/ayatana-indicators.nix", [["enable", 21, 9], ["user", 22, 17]]);
-const pos$3 = nix.positions(here + "/ayatana-indicators.nix", [["auto", 20, 35]]);
-const pos$4 = nix.positions(here + "/ayatana-indicators.nix", [["displayManager", 20, 20]]);
-const pos$5 = nix.positions(here + "/ayatana-indicators.nix", [["enable", 27, 29]]);
-const pos$6 = nix.positions(here + "/ayatana-indicators.nix", [["mate", 27, 24]]);
-const pos$7 = nix.positions(here + "/ayatana-indicators.nix", [["enable", 26, 9], ["desktopManager", 27, 9]]);
-const pos$8 = nix.positions(here + "/ayatana-indicators.nix", [["defaultSession", 29, 31]]);
-const pos$9 = nix.positions(here + "/ayatana-indicators.nix", [["enable", 32, 9], ["packages", 33, 9]]);
-const pos$10 = nix.positions(here + "/ayatana-indicators.nix", [["enable", 53, 32]]);
-const pos$11 = nix.positions(here + "/ayatana-indicators.nix", [["packages", 61, 21]]);
-const pos$12 = nix.positions(here + "/ayatana-indicators.nix", [["enable", 65, 26]]);
-const pos$13 = nix.positions(here + "/ayatana-indicators.nix", [["xserver", 25, 16], ["displayManager", 29, 16], ["ayatana-indicators", 31, 16], ["accounts-daemon", 53, 16], ["dbus", 61, 16], ["telepathy", 65, 16]]);
-const pos$14 = nix.positions(here + "/ayatana-indicators.nix", [["enable", 58, 33]]);
-const pos$15 = nix.positions(here + "/ayatana-indicators.nix", [["networkmanager", 58, 18]]);
-const pos$16 = nix.positions(here + "/ayatana-indicators.nix", [["systemPackages", 63, 19]]);
-const pos$17 = nix.positions(here + "/ayatana-indicators.nix", [["group", 68, 9], ["home", 69, 9], ["createHome", 70, 9], ["isSystemUser", 71, 9]]);
-const pos$18 = nix.positions(here + "/ayatana-indicators.nix", [["usermetrics", 67, 19]]);
-const pos$19 = nix.positions(here + "/ayatana-indicators.nix", [["usermetrics", 74, 20]]);
-const pos$20 = nix.positions(here + "/ayatana-indicators.nix", [["users", 67, 13], ["groups", 74, 13]]);
-const pos$21 = nix.positions(here + "/ayatana-indicators.nix", [["imports", 15, 7], ["test-support", 20, 7], ["services", 25, 7], ["networking", 58, 7], ["environment", 63, 7], ["users", 67, 7]]);
-const pos$22 = nix.positions(here + "/ayatana-indicators.nix", [["machine", 12, 9]]);
 const formals$3 = { args: { nodes: false }, ellipsis: true };
-const pos$23 = nix.positions(here + "/ayatana-indicators.nix", [["name", 6, 3], ["meta", 8, 3], ["nodes", 12, 3], ["testScript", 78, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -35,46 +13,46 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const user = "alice";
   return {
-    [nix.POS]: pos$23,
+    [nix.POS]: $pos[22],
     name: "ayatana-indicators",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => nix.sel(lib, "teams", "lomiri", "members")),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$22,
+      [nix.POS]: $pos[21],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config = nix.arg($_1, "config");
         return {
-          [nix.POS]: pos$21,
+          [nix.POS]: $pos[20],
           imports: nix.thunk(() => [
             nix.path(here, "./common/auto.nix"),
             nix.path(here, "./common/user-account.nix"),
           ]),
           "test-support": nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             displayManager: nix.thunk(() => ({
-              [nix.POS]: pos$3,
-              auto: nix.thunk(() => ({ [nix.POS]: pos$2, enable: true, user: user })),
+              [nix.POS]: $pos[2],
+              auto: nix.thunk(() => ({ [nix.POS]: $pos[1], enable: true, user: user })),
             })),
           })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$13,
+            [nix.POS]: $pos[12],
             xserver: nix.thunk(() => ({
-              [nix.POS]: pos$7,
+              [nix.POS]: $pos[6],
               enable: true,
               desktopManager: nix.thunk(() => ({
-                [nix.POS]: pos$6,
-                mate: nix.thunk(() => ({ [nix.POS]: pos$5, enable: true })),
+                [nix.POS]: $pos[5],
+                mate: nix.thunk(() => ({ [nix.POS]: $pos[4], enable: true })),
               })),
             })),
             displayManager: nix.thunk(() => ({
-              [nix.POS]: pos$8,
+              [nix.POS]: $pos[7],
               defaultSession: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), "mate")),
             })),
             "ayatana-indicators": nix.thunk(() => ({
-              [nix.POS]: pos$9,
+              [nix.POS]: $pos[8],
               enable: true,
               packages: nix.thunk(() => (() => {
                 const w = nix.withScope(pkgs, null);
@@ -96,40 +74,40 @@ export default nix.lambda((args) => (() => {
                 })());
               })()),
             })),
-            "accounts-daemon": nix.thunk(() => ({ [nix.POS]: pos$10, enable: true })),
+            "accounts-daemon": nix.thunk(() => ({ [nix.POS]: $pos[9], enable: true })),
             dbus: nix.thunk(() => ({
-              [nix.POS]: pos$11,
+              [nix.POS]: $pos[10],
               packages: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lomiri")), null);
                 return [nix.thunk(() => nix.lookup(w, "libusermetrics"))];
               })()),
             })),
-            telepathy: nix.thunk(() => ({ [nix.POS]: pos$12, enable: true })),
+            telepathy: nix.thunk(() => ({ [nix.POS]: $pos[11], enable: true })),
           })),
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$15,
-            networkmanager: nix.thunk(() => ({ [nix.POS]: pos$14, enable: true })),
+            [nix.POS]: $pos[14],
+            networkmanager: nix.thunk(() => ({ [nix.POS]: $pos[13], enable: true })),
           })),
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$16,
+            [nix.POS]: $pos[15],
             systemPackages: nix.thunk(() => (() => {
               const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lomiri")), null);
               return [nix.thunk(() => nix.lookup(w, "lomiri-schemas"))];
             })()),
           })),
           users: nix.thunk(() => ({
-            [nix.POS]: pos$20,
+            [nix.POS]: $pos[19],
             users: nix.thunk(() => ({
-              [nix.POS]: pos$18,
+              [nix.POS]: $pos[17],
               usermetrics: nix.thunk(() => ({
-                [nix.POS]: pos$17,
+                [nix.POS]: $pos[16],
                 group: "usermetrics",
                 home: "/var/lib/usermetrics",
                 createHome: true,
                 isSystemUser: true,
               })),
             })),
-            groups: nix.thunk(() => ({ [nix.POS]: pos$19, usermetrics: nix.thunk(() => ({})) })),
+            groups: nix.thunk(() => ({ [nix.POS]: $pos[18], usermetrics: nix.thunk(() => ({})) })),
           })),
         };
       })(), formals$2),

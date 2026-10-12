@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 47, 5], ["repo", 48, 5], ["tag", 49, 5], ["hash", 50, 5]], [["updateScript", 150, 12]], [["description", 153, 5], ["mainProgram", 154, 5], ["homepage", 155, 5], ["changelog", 156, 5], ["license", 157, 5], ["maintainers", 158, 5]], [["pname", 42, 3], ["version", 43, 3], ["pyproject", 44, 3], ["src", 46, 3], ["postPatch", 53, 3], ["nativeBuildInputs", 69, 3], ["propagatedBuildInputs", 71, 3], ["nativeCheckInputs", 85, 3], ["disabledTestPaths", 108, 3], ["pythonImportsCheck", 148, 3], ["passthru", 150, 3], ["meta", 152, 3]]]);
 const formals$1 = { args: { lib: false, aenum: false, aiohttp: false, appdirs: false, buildPythonPackage: false, gitUpdater: false, certifi: false, "diff-match-patch": false, fetchFromGitHub: false, flake8: false, "importlib-metadata": false, livereload: false, mypy: false, networkx: false, "ordered-set": false, pillow: false, pixelmatch: false, "poetry-core": false, "pre-commit": false, pydocstyle: false, pyee: false, pylint: false, pytest: false, "pytest-cov-stub": false, "pytest-timeout": false, "pytest-xdist": false, pytestCheckHook: false, "readme-renderer": false, sphinx: false, "sphinxcontrib-asyncio": false, syncer: false, tox: false, tqdm: false, "typing-extensions": false, "typing-inspect": false, urllib3: false, websockets: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 47, 5], ["repo", 48, 5], ["tag", 49, 5], ["hash", 50, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["updateScript", 150, 12]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 153, 5], ["mainProgram", 154, 5], ["homepage", 155, 5], ["changelog", 156, 5], ["license", 157, 5], ["maintainers", 158, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 42, 3], ["version", 43, 3], ["pyproject", 44, 3], ["src", 46, 3], ["postPatch", 53, 3], ["nativeBuildInputs", 69, 3], ["propagatedBuildInputs", 71, 3], ["nativeCheckInputs", 85, 3], ["disabledTestPaths", 108, 3], ["pythonImportsCheck", 148, 3], ["passthru", 150, 3], ["meta", 152, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -52,7 +49,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.0.0rc13";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "dgtlmoon",
           repo: "pyppeteer-ng",
           tag: version,
@@ -133,11 +130,11 @@ export default nix.lambda((args) => (() => {
       ]);
       const pythonImportsCheck = nix.thunk(() => ["pyppeteer"]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Headless chrome/chromium automation library (unofficial port of puppeteer)",
         mainProgram: "pyppeteer-install",
         homepage: "https://github.com/dgtlmoon/pyppeteer-ng",
@@ -149,7 +146,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

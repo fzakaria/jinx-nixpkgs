@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 30, 5], ["hash", 31, 5]], [["packageName", 63, 7]], [["updateScript", 62, 5]], [["homepage", 68, 5], ["changelog", 69, 5], ["description", 70, 5], ["license", 71, 5], ["platforms", 72, 5], ["teams", 73, 5], ["mainProgram", 77, 5]], [["pname", 26, 3], ["version", 27, 3], ["src", 29, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 47, 3], ["postPatch", 57, 3], ["passthru", 61, 3], ["meta", 67, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, "desktop-file-utils": false, gettext: false, glibcLocales: false, itstool: false, libxml2: false, meson: false, ninja: false, "pkg-config": false, python3: false, wrapGAppsHook4: false, cpio: false, glib: false, gnome: false, gtk4: false, libadwaita: false, "json-glib": false, libarchive: false, nautilus: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 30, 5], ["hash", 31, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["packageName", 63, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 62, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 68, 5], ["changelog", 69, 5], ["description", 70, 5], ["license", 71, 5], ["platforms", 72, 5], ["teams", 73, 5], ["mainProgram", 77, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 26, 3], ["version", 27, 3], ["src", 29, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 47, 3], ["postPatch", 57, 3], ["passthru", 61, 3], ["meta", 67, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,11 +29,11 @@ export default nix.lambda((args) => (() => {
   const libarchive = nix.arg($, "libarchive");
   const nautilus = nix.arg($, "nautilus");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "file-roller",
       version: "44.7",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnome/sources/file-roller/${nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/file-roller-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-Z8ralqJAnIWfN46C++hosOnACmnmt7iF1ULGTqKhKX0=",
         })))),
@@ -56,11 +52,11 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [cpio, glib, gtk4, libadwaita, json_glib, libarchive, nautilus]),
       postPatch: "patchShebangs data/set-mime-type-entry.py\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$2, packageName: "file-roller" })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: $pos[1], packageName: "file-roller" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://gitlab.gnome.org/GNOME/file-roller",
         changelog: nix.thunk(() => nix.str`https://gitlab.gnome.org/GNOME/file-roller/-/blob/${nix.sel(finalAttrs, "version")}/NEWS?ref_type=tags`),
         description: "Archive manager for the GNOME desktop environment",

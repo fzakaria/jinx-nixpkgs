@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 14, 5], ["hash", 15, 5]], [["homepage", 59, 5], ["description", 60, 5], ["longDescription", 61, 5], ["changelog", 71, 5], ["license", 72, 5], ["maintainers", 73, 5], ["platforms", 74, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["buildInputs", 18, 3], ["enableParallelBuilding", 20, 3], ["doCheck", 22, 3], ["checkTarget", 23, 3], ["postPatch", 25, 3], ["preCheck", 32, 3], ["postInstall", 45, 3], ["meta", 58, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, coreutils: false, libffi: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 14, 5], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 59, 5], ["description", 60, 5], ["longDescription", 61, 5], ["changelog", 71, 5], ["license", 72, 5], ["maintainers", 73, 5], ["platforms", 74, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["buildInputs", 18, 3], ["enableParallelBuilding", 20, 3], ["doCheck", 22, 3], ["checkTarget", 23, 3], ["postPatch", 25, 3], ["preCheck", 32, 3], ["postInstall", 45, 3], ["meta", 58, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const coreutils = nix.arg($, "coreutils");
   const libffi = nix.arg($, "libffi");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "txr",
       version: "302",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://www.kylheku.com/cgit/txr/snapshot/txr-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           hash: "sha256-8N4BLtYiGOBJ0Jo5rmqTh1mNjqwSp8LX2dkGwnw271Q=",
         })))),
@@ -39,7 +37,7 @@ substituteInPlace tests/018/process.tl --replace /usr/bin/env ${nix.app(nix.sel(
       })()),
       postInstall: "mkdir -p $out/share/vim-plugins/txr/{syntax,ftdetect}\n\ncp {tl,txr}.vim $out/share/vim-plugins/txr/syntax/\n\ncat > $out/share/vim-plugins/txr/ftdetect/txr.vim <<EOF\n  au BufRead,BufNewFile *.txr set filetype=txr | set lisp\n  au BufRead,BufNewFile *.tl,*.tlo set filetype=tl | set lisp\nEOF\nmkdir -p $out/share/nvim\nln -s $out/share/vim-plugins/txr $out/share/nvim/site\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://nongnu.org/txr",
         description: "Original, New Programming Language for Convenient Data Munging",
         longDescription: "TXR is a general-purpose, multi-paradigm programming language. It\ncomprises two languages integrated into a single tool: a text scanning and\nextraction language referred to as the TXR Pattern Language (sometimes\njust \"TXR\"), and a general-purpose dialect of Lisp called TXR Lisp.\n\nTXR can be used for everything from \"one liner\" data transformation tasks\nat the command line, to data scanning and extracting scripts, to full\napplication development in a wide range of areas.\n",

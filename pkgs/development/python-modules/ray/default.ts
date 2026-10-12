@@ -2,16 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["aarch64-darwin", 91, 9], ["aarch64-linux", 92, 9], ["x86_64-linux", 93, 9]], [["cp311", 99, 11], ["cp312", 100, 11], ["cp313", 101, 11], ["cp314", 102, 11]], [["cp311", 105, 11], ["cp312", 106, 11], ["cp313", 107, 11], ["cp314", 108, 11]], [["cp311", 111, 11], ["cp312", 112, 11], ["cp313", 113, 11], ["cp314", 114, 11]], [["x86_64-linux", 98, 9], ["aarch64-linux", 104, 9], ["aarch64-darwin", 110, 9]], [["pname", 119, 28], ["version", 119, 34], ["format", 120, 7], ["dist", 121, 7], ["python", 122, 7], ["abi", 123, 7], ["platform", 124, 7], ["hash", 125, 7]], [["adag", 146, 5], ["air", 147, 5], ["all", 148, 5], ["cgraph", 163, 5], ["client", 166, 5], ["data", 167, 5], ["default", 173, 5], ["llm", 189, 5], ["observability", 206, 5], ["rllib", 209, 5], ["serve", 220, 5], ["serve-async-inference", 234, 5], ["serve-grpc", 240, 5], ["train", 247, 5], ["tune", 253, 5]], [["description", 277, 5], ["homepage", 278, 5], ["changelog", 279, 5], ["license", 280, 5], ["mainProgram", 281, 5], ["maintainers", 282, 5], ["sourceProvenance", 283, 5], ["platforms", 284, 5]], [["pname", 80, 3], ["version", 81, 3], ["format", 82, 3], ["__structuredAttrs", 83, 3], ["disabled", 85, 3], ["src", 87, 3], ["nativeBuildInputs", 130, 3], ["dependencies", 134, 3], ["optional-dependencies", 145, 3], ["postInstall", 266, 3], ["pythonImportsCheck", 270, 3], ["nativeCheckInputs", 272, 3], ["meta", 276, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, pythonAtLeast: false, python: false, fetchPypi: false, autoPatchelfHook: false, click: false, filelock: false, jsonschema: false, msgpack: false, packaging: false, protobuf: false, pyyaml: false, requests: false, cupy: false, grpcio: false, fsspec: false, numpy: false, pandas: false, pyarrow: false, aiohttp: false, "aiohttp-cors": false, colorful: false, opencensus: false, "opentelemetry-exporter-prometheus": false, "opentelemetry-proto": false, "opentelemetry-sdk": false, "prometheus-client": false, pydantic: false, "py-spy": false, "smart-open": false, virtualenv: false, "async-timeout": false, "hf-transfer": false, jsonref: false, meson: false, ninja: false, pybind11: false, typer: false, vllm: false, memray: false, "dm-tree": false, gymnasium: false, lz4: false, ormsgpack: false, scipy: false, fastapi: false, jinja2: false, mmh3: false, starlette: false, uvicorn: false, watchfiles: false, celery: false, pyopenssl: false, tensorboardx: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["aarch64-darwin", 91, 9], ["aarch64-linux", 92, 9], ["x86_64-linux", 93, 9]]);
-const pos$2 = nix.positions(here + "/default.nix", [["cp311", 99, 11], ["cp312", 100, 11], ["cp313", 101, 11], ["cp314", 102, 11]]);
-const pos$3 = nix.positions(here + "/default.nix", [["cp311", 105, 11], ["cp312", 106, 11], ["cp313", 107, 11], ["cp314", 108, 11]]);
-const pos$4 = nix.positions(here + "/default.nix", [["cp311", 111, 11], ["cp312", 112, 11], ["cp313", 113, 11], ["cp314", 114, 11]]);
-const pos$5 = nix.positions(here + "/default.nix", [["x86_64-linux", 98, 9], ["aarch64-linux", 104, 9], ["aarch64-darwin", 110, 9]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 119, 28], ["version", 119, 34], ["format", 120, 7], ["dist", 121, 7], ["python", 122, 7], ["abi", 123, 7], ["platform", 124, 7], ["hash", 125, 7]]);
-const pos$7 = nix.positions(here + "/default.nix", [["adag", 146, 5], ["air", 147, 5], ["all", 148, 5], ["cgraph", 163, 5], ["client", 166, 5], ["data", 167, 5], ["default", 173, 5], ["llm", 189, 5], ["observability", 206, 5], ["rllib", 209, 5], ["serve", 220, 5], ["serve-async-inference", 234, 5], ["serve-grpc", 240, 5], ["train", 247, 5], ["tune", 253, 5]]);
-const pos$8 = nix.positions(here + "/default.nix", [["description", 277, 5], ["homepage", 278, 5], ["changelog", 279, 5], ["license", 280, 5], ["mainProgram", 281, 5], ["maintainers", 282, 5], ["sourceProvenance", 283, 5], ["platforms", 284, 5]]);
-const pos$9 = nix.positions(here + "/default.nix", [["pname", 80, 3], ["version", 81, 3], ["format", 82, 3], ["__structuredAttrs", 83, 3], ["disabled", 85, 3], ["src", 87, 3], ["nativeBuildInputs", 130, 3], ["dependencies", 134, 3], ["optional-dependencies", 145, 3], ["postInstall", 266, 3], ["pythonImportsCheck", 270, 3], ["nativeCheckInputs", 272, 3], ["meta", 276, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -73,7 +65,7 @@ export default nix.lambda((args) => (() => {
   const tensorboardx = nix.arg($, "tensorboardx");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       pname: "ray",
       version: "2.59.0",
       format: "wheel",
@@ -82,29 +74,29 @@ export default nix.lambda((args) => (() => {
       src: nix.thunk(() => (() => {
         const pyShortVersion = nix.thunk(() => nix.str`cp${nix.builtins.replaceStrings(nix.thunk(() => ["."]), nix.thunk(() => [""]), nix.thunk(() => nix.sel(python, "pythonVersion")))}`);
         const platforms = nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           "aarch64-darwin": "macosx_12_0_arm64",
           "aarch64-linux": "manylinux2014_aarch64",
           "x86_64-linux": "manylinux2014_x86_64",
         }));
         const hashes = nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           "x86_64-linux": nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             cp311: "sha256-ZF9Gdu9v8sqBVOg+3ws4WD0iW2xvuDtgUMoWgdw6hog=",
             cp312: "sha256-QFWnpgKT/+5BAFq5s+2ZM+D5tdhFCyFPPAp7HeVQPw4=",
             cp313: "sha256-cP3FvsR8wzpPTg2bCB9mUF4Rmr2Ki8bLLF1JJkJ/zm0=",
             cp314: "sha256-BQeBCZzmQbfYmJbnsNecgggTUp2obJtcZey3yJQD5mc=",
           })),
           "aarch64-linux": nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             cp311: "sha256-5Zu+7Z/TrinjJrz3Om3GuVcCkAQjDp8eh0ZwxOOQsUc=",
             cp312: "sha256-CeLdi6Nn8H8YKfwuNfQenD+p9uwLq6zhPXDr4U6M9mI=",
             cp313: "sha256-WD8m4fGgSu/SMLkIYh3D8+HKXg0gHuCdXwQMpLgk6AA=",
             cp314: "sha256-bWD5t6lPwTisR6B1ZBgnaf1rbO+uBxSqdJmlU73aKUk=",
           })),
           "aarch64-darwin": nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             cp311: "sha256-ztzmr4ZdB40xi8P2keQVJzMdUy3KABf7gkGRyITlmiI=",
             cp312: "sha256-aiQLOTgZwMjAOUDRb6+VIiMAOrHZc21TKMxaX3HJXhw=",
             cp313: "sha256-hDv0j0JyLgwUPrpoRrWBlxa7fl4ES55HebHTrFkzBAs=",
@@ -112,7 +104,7 @@ export default nix.lambda((args) => (() => {
           })),
         }));
         return nix.app(fetchPypi, nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
             version: nix.thunk(() => nix.attr(finalAttrs, "version")),
             format: "wheel",
@@ -126,7 +118,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [autoPatchelfHook]))),
       dependencies: nix.thunk(() => [click, filelock, jsonschema, msgpack, packaging, protobuf, pyyaml, requests]),
       "optional-dependencies": nix.thunk(() => nix.app(nix.sel(lib, "fix"), (self) => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           adag: nix.thunk(() => nix.sel(self, "cgraph")),
           air: nix.thunk(() => nix.app(nix.sel(lib, "unique"), nix.thunk(() => nix.concat(nix.sel(self, "data"), nix.concat(nix.sel(self, "serve"), nix.concat(nix.sel(self, "tune"), nix.sel(self, "train"))))))),
           all: nix.thunk(() => nix.app(nix.sel(lib, "unique"), nix.thunk(() => nix.concat(nix.sel(self, "adag"), nix.concat(nix.sel(self, "air"), nix.concat(nix.sel(self, "cgraph"), nix.concat(nix.sel(self, "client"), nix.concat(nix.sel(self, "data"), nix.concat(nix.sel(self, "default"), nix.concat(nix.sel(self, "observability"), nix.concat(nix.sel(self, "rllib"), nix.concat(nix.sel(self, "serve"), nix.concat(nix.sel(self, "serve-async-inference"), nix.concat(nix.sel(self, "serve-grpc"), nix.concat(nix.sel(self, "train"), nix.sel(self, "tune")))))))))))))))),
@@ -173,7 +165,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["ray"]),
       nativeCheckInputs: nix.thunk(() => [versionCheckHook]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         description: "Unified framework for scaling AI and Python applications",
         homepage: "https://github.com/ray-project/ray",
         changelog: nix.thunk(() => nix.str`https://github.com/ray-project/ray/releases/tag/ray-${nix.sel(finalAttrs, "version")}`),

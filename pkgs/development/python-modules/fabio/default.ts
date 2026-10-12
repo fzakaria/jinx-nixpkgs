@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 23, 13], ["version", 23, 19], ["hash", 24, 5]], [["changelog", 51, 5], ["description", 52, 5], ["homepage", 53, 5], ["license", 54, 5], ["maintainers", 55, 5]], [["pname", 18, 3], ["version", 19, 3], ["pyproject", 20, 3], ["src", 22, 3], ["pythonImportsCheck", 27, 3], ["nativeBuildInputs", 29, 3], ["postPatch", 37, 3], ["dependencies", 41, 3], ["meta", 50, 3]]]);
 const formals$1 = { args: { buildPythonPackage: false, ninja: false, fetchPypi: false, meson: false, lib: false, cython: false, "meson-python": false, numpy: false, lxml: false, h5py: false, hdf5plugin: false, pillow: false, tomli: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 23, 13], ["version", 23, 19], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["changelog", 51, 5], ["description", 52, 5], ["homepage", 53, 5], ["license", 54, 5], ["maintainers", 55, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 18, 3], ["version", 19, 3], ["pyproject", 20, 3], ["src", 22, 3], ["pythonImportsCheck", 27, 3], ["nativeBuildInputs", 29, 3], ["postPatch", 37, 3], ["dependencies", 41, 3], ["meta", 50, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const version = "2025.10.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-wZdjvPoCp4pQfz2RS1ZKiZfIimqntPh/nbTOf6OX0lY=",
@@ -37,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const postPatch = "patchShebangs --build version.py\n";
       const dependencies = nix.thunk(() => [numpy, lxml, h5py, hdf5plugin, pillow, tomli]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         changelog: "https://github.com/silx-kit/fabio/blob/main/doc/source/Changelog.rst",
         description: "I/O library for images produced by 2D X-ray detector",
         homepage: "https://github.com/silx-kit/fabio",
@@ -45,7 +43,7 @@ export default nix.lambda((args) => (() => {
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "pmiddend"))]),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

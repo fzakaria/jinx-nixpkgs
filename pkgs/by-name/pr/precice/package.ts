@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]], [["description", 64, 5], ["homepage", 65, 5], ["license", 66, 5], ["maintainers", 67, 5], ["mainProgram", 68, 5], ["platforms", 69, 5]], [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["cmakeFlags", 30, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 39, 3], ["__darwinAllowLocalNetworking", 49, 3], ["doCheck", 51, 3], ["nativeCheckInputs", 53, 3], ["disabledTests", 58, 3], ["meta", 63, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, "pkg-config": false, boost: false, eigen: false, libxml2: false, mpi: false, python3Packages: false, petsc: false, ctestCheckHook: false, mpiCheckPhaseHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 64, 5], ["homepage", 65, 5], ["license", 66, 5], ["maintainers", 67, 5], ["mainProgram", 68, 5], ["platforms", 69, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["cmakeFlags", 30, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 39, 3], ["__darwinAllowLocalNetworking", 49, 3], ["doCheck", 51, 3], ["nativeCheckInputs", 53, 3], ["disabledTests", 58, 3], ["meta", 63, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const mpiCheckPhaseHook = nix.arg($, "mpiCheckPhaseHook");
   nix.assert_(nix.sel(petsc, "mpiSupport"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/pr/precice/package.nix:17:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "precice",
       version: "3.4.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "precice",
           repo: "precice",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -54,7 +52,7 @@ export default nix.lambda((args) => (() => {
         "precice.Integration/Serial/Time/Explicit/ParallelCoupling/ReadWriteScalarDataWithSubcycling6400Steps",
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "PreCICE stands for Precise Code Interaction Coupling Environment",
         homepage: "https://precice.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3Only")),

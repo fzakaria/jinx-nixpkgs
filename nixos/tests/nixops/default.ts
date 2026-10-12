@@ -2,44 +2,29 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["nixopsPkg", 12, 34]], [["unstable", 12, 5]], [["override", 21, 16]], [["legacyNetwork", 20, 7], ["passthru", 21, 7]], [["systemPackages", 39, 25]], [["substituters", 40, 26]], [["settings", 40, 17]], [["isNormalUser", 41, 32]], [["person", 41, 25]], [["users", 41, 19]], [["writableStore", 42, 28], ["additionalPaths", 43, 28], ["memorySize", 47, 28]], [["includeBuildDependencies", 50, 20]], [["imports", 38, 13], ["environment", 39, 13], ["nix", 40, 13], ["users", 41, 13], ["virtualisation", 42, 13], ["system", 50, 13]], [["imports", 55, 13]], [["deployer", 29, 9], ["server", 52, 9]], [["name", 27, 7], ["nodes", 28, 7], ["testScript", 59, 7]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/default.nix", [["nixopsPkg", 12, 34]]);
-const pos$2 = nix.positions(here + "/default.nix", [["unstable", 12, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["override", 21, 16]]);
-const pos$4 = nix.positions(here + "/default.nix", [["legacyNetwork", 20, 7], ["passthru", 21, 7]]);
 const formals$2 = { args: { nixopsPkg: false }, ellipsis: true };
 const formals$3 = { args: { config: false, lib: false, nodes: false, pkgs: false }, ellipsis: true };
-const pos$5 = nix.positions(here + "/default.nix", [["systemPackages", 39, 25]]);
-const pos$6 = nix.positions(here + "/default.nix", [["substituters", 40, 26]]);
-const pos$7 = nix.positions(here + "/default.nix", [["settings", 40, 17]]);
-const pos$8 = nix.positions(here + "/default.nix", [["isNormalUser", 41, 32]]);
-const pos$9 = nix.positions(here + "/default.nix", [["person", 41, 25]]);
-const pos$10 = nix.positions(here + "/default.nix", [["users", 41, 19]]);
-const pos$11 = nix.positions(here + "/default.nix", [["writableStore", 42, 28], ["additionalPaths", 43, 28], ["memorySize", 47, 28]]);
-const pos$12 = nix.positions(here + "/default.nix", [["includeBuildDependencies", 50, 20]]);
-const pos$13 = nix.positions(here + "/default.nix", [["imports", 38, 13], ["environment", 39, 13], ["nix", 40, 13], ["users", 41, 13], ["virtualisation", 42, 13], ["system", 50, 13]]);
 const formals$4 = { args: { lib: false }, ellipsis: true };
-const pos$14 = nix.positions(here + "/default.nix", [["imports", 55, 13]]);
-const pos$15 = nix.positions(here + "/default.nix", [["deployer", 29, 9], ["server", 52, 9]]);
 const formals$5 = { args: { nodes: false }, ellipsis: true };
-const pos$16 = nix.positions(here + "/default.nix", [["name", 27, 7], ["nodes", 28, 7], ["testScript", 59, 7]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   const lib = nix.thunk(() => nix.attr(pkgs, "lib"));
   const tests = nix.thunk(() => ({
-    [nix.POS]: pos$2,
+    [nix.POS]: $pos[1],
     unstable: nix.thunk(() => nix.app(testsForPackage, nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         nixopsPkg: nix.thunk(() => nix.sel(pkgs, "nixops_unstable_minimal")),
       })))),
   }));
   const testsForPackage = (args_1) => nix.app(nix.sel(lib, "recurseIntoAttrs"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       legacyNetwork: nix.thunk(() => nix.app(testLegacyNetwork, args_1)),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         override: (args$) => nix.app(testsForPackage, nix.thunk(() => nix.update(args_1, args$))),
       })),
     })));
@@ -47,10 +32,10 @@ export default nix.lambda((args) => (() => {
     const $_1 = nix.formals(args_1, formals$2);
     const nixopsPkg = nix.arg($_1, "nixopsPkg");
     return nix.app(nix.sel(pkgs, "testers", "nixosTest"), nix.thunk(() => ({
-        [nix.POS]: pos$16,
+        [nix.POS]: $pos[15],
         name: "nixops-legacy-network",
         nodes: nix.thunk(() => ({
-          [nix.POS]: pos$15,
+          [nix.POS]: $pos[14],
           deployer: nix.lambda((args_2) => (() => {
             const $_2 = nix.formals(args_2, formals$3);
             const config = nix.arg($_2, "config");
@@ -58,25 +43,25 @@ export default nix.lambda((args) => (() => {
             const nodes = nix.arg($_2, "nodes");
             const pkgs_1 = nix.arg($_2, "pkgs");
             return {
-              [nix.POS]: pos$13,
+              [nix.POS]: $pos[12],
               imports: nix.thunk(() => [nix.path(here, "../../modules/installer/cd-dvd/channel.nix")]),
-              environment: nix.thunk(() => ({ [nix.POS]: pos$5, systemPackages: nix.thunk(() => [nixopsPkg]) })),
+              environment: nix.thunk(() => ({ [nix.POS]: $pos[4], systemPackages: nix.thunk(() => [nixopsPkg]) })),
               nix: nix.thunk(() => ({
-                [nix.POS]: pos$7,
+                [nix.POS]: $pos[6],
                 settings: nix.thunk(() => ({
-                  [nix.POS]: pos$6,
+                  [nix.POS]: $pos[5],
                   substituters: nix.thunk(() => nix.app(nix.sel(lib_1, "mkForce"), [])),
                 })),
               })),
               users: nix.thunk(() => ({
-                [nix.POS]: pos$10,
+                [nix.POS]: $pos[9],
                 users: nix.thunk(() => ({
-                  [nix.POS]: pos$9,
-                  person: nix.thunk(() => ({ [nix.POS]: pos$8, isNormalUser: true })),
+                  [nix.POS]: $pos[8],
+                  person: nix.thunk(() => ({ [nix.POS]: $pos[7], isNormalUser: true })),
                 })),
               })),
               virtualisation: nix.thunk(() => ({
-                [nix.POS]: pos$11,
+                [nix.POS]: $pos[10],
                 writableStore: true,
                 additionalPaths: nix.thunk(() => [
                   nix.thunk(() => nix.sel(pkgs_1, "hello")),
@@ -84,14 +69,14 @@ export default nix.lambda((args) => (() => {
                 ]),
                 memorySize: 2048n,
               })),
-              system: nix.thunk(() => ({ [nix.POS]: pos$12, includeBuildDependencies: true })),
+              system: nix.thunk(() => ({ [nix.POS]: $pos[11], includeBuildDependencies: true })),
             };
           })(), formals$3),
           server: nix.lambda((args_2) => (() => {
             const $_2 = nix.formals(args_2, formals$4);
             const lib_1 = nix.arg($_2, "lib");
             return {
-              [nix.POS]: pos$14,
+              [nix.POS]: $pos[13],
               imports: nix.thunk(() => [nix.path(here, "./legacy/base-configuration.nix")]),
             };
           })(), formals$4),

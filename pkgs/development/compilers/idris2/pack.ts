@@ -2,32 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/pack.nix", [[["owner", 20, 7], ["repo", 21, 7], ["rev", 22, 7], ["hash", 23, 7]], [["ipkgName", 17, 5], ["version", 18, 5], ["src", 19, 5], ["idrisLibraries", 25, 5]], [["owner", 32, 7], ["repo", 33, 7], ["rev", 34, 7], ["hash", 35, 7]], [["ipkgName", 29, 5], ["version", 30, 5], ["src", 31, 5], ["idrisLibraries", 37, 5]], [["owner", 44, 7], ["repo", 45, 7], ["rev", 46, 7], ["hash", 47, 7]], [["ipkgName", 41, 5], ["version", 42, 5], ["src", 43, 5], ["idrisLibraries", 49, 5]], [["owner", 56, 7], ["repo", 57, 7], ["rev", 58, 7], ["hash", 59, 7]], [["ipkgName", 53, 5], ["version", 54, 5], ["src", 55, 5], ["idrisLibraries", 61, 5]], [["owner", 68, 7], ["repo", 69, 7], ["rev", 70, 7], ["hash", 71, 7]], [["ipkgName", 65, 5], ["version", 66, 5], ["src", 67, 5], ["idrisLibraries", 73, 5]], [["owner", 80, 7], ["repo", 81, 7], ["rev", 82, 7], ["hash", 83, 7]], [["ipkgName", 77, 5], ["version", 78, 5], ["src", 79, 5], ["idrisLibraries", 85, 5]], [["owner", 95, 7], ["repo", 96, 7], ["rev", 97, 7], ["hash", 98, 7]], [["ipkgName", 92, 5], ["version", 93, 5], ["src", 94, 5], ["idrisLibraries", 100, 5]], [["owner", 110, 7], ["repo", 111, 7], ["rev", 112, 7], ["hash", 113, 7]], [["ipkgName", 107, 5], ["version", 108, 5], ["src", 109, 5], ["idrisLibraries", 115, 5]], [["owner", 125, 7], ["repo", 126, 7], ["rev", 127, 7], ["hash", 128, 7]], [["ipkgName", 122, 5], ["version", 123, 5], ["src", 124, 5], ["idrisLibraries", 130, 5]], [["owner", 140, 7], ["repo", 141, 7], ["rev", 142, 7], ["hash", 143, 7]], [["ipkgName", 137, 5], ["version", 138, 5], ["src", 139, 5], ["idrisLibraries", 145, 5]], [["owner", 159, 7], ["repo", 160, 7], ["rev", 161, 7], ["hash", 162, 7]], [["ipkgName", 156, 5], ["version", 157, 5], ["src", 158, 5], ["idrisLibraries", 164, 5]], [["owner", 174, 7], ["repo", 175, 7], ["rev", 176, 7], ["hash", 177, 7]], [["description", 213, 7], ["mainProgram", 214, 7], ["homepage", 215, 7], ["license", 216, 7], ["maintainers", 217, 7], ["platforms", 221, 44]], [["ipkgName", 171, 5], ["version", 172, 5], ["src", 173, 5], ["idrisLibraries", 179, 5], ["nativeBuildInputs", 187, 5], ["buildInputs", 189, 5], ["postInstall", 197, 5], ["meta", 212, 5]]]);
 const formals$1 = { args: { lib: false, idris2Packages: false, fetchFromGitHub: false, clang: false, chez: false, gmp: false, gnumake: false, zsh: false, makeBinaryWrapper: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/pack.nix", [["owner", 20, 7], ["repo", 21, 7], ["rev", 22, 7], ["hash", 23, 7]]);
-const pos$2 = nix.positions(here + "/pack.nix", [["ipkgName", 17, 5], ["version", 18, 5], ["src", 19, 5], ["idrisLibraries", 25, 5]]);
-const pos$3 = nix.positions(here + "/pack.nix", [["owner", 32, 7], ["repo", 33, 7], ["rev", 34, 7], ["hash", 35, 7]]);
-const pos$4 = nix.positions(here + "/pack.nix", [["ipkgName", 29, 5], ["version", 30, 5], ["src", 31, 5], ["idrisLibraries", 37, 5]]);
-const pos$5 = nix.positions(here + "/pack.nix", [["owner", 44, 7], ["repo", 45, 7], ["rev", 46, 7], ["hash", 47, 7]]);
-const pos$6 = nix.positions(here + "/pack.nix", [["ipkgName", 41, 5], ["version", 42, 5], ["src", 43, 5], ["idrisLibraries", 49, 5]]);
-const pos$7 = nix.positions(here + "/pack.nix", [["owner", 56, 7], ["repo", 57, 7], ["rev", 58, 7], ["hash", 59, 7]]);
-const pos$8 = nix.positions(here + "/pack.nix", [["ipkgName", 53, 5], ["version", 54, 5], ["src", 55, 5], ["idrisLibraries", 61, 5]]);
-const pos$9 = nix.positions(here + "/pack.nix", [["owner", 68, 7], ["repo", 69, 7], ["rev", 70, 7], ["hash", 71, 7]]);
-const pos$10 = nix.positions(here + "/pack.nix", [["ipkgName", 65, 5], ["version", 66, 5], ["src", 67, 5], ["idrisLibraries", 73, 5]]);
-const pos$11 = nix.positions(here + "/pack.nix", [["owner", 80, 7], ["repo", 81, 7], ["rev", 82, 7], ["hash", 83, 7]]);
-const pos$12 = nix.positions(here + "/pack.nix", [["ipkgName", 77, 5], ["version", 78, 5], ["src", 79, 5], ["idrisLibraries", 85, 5]]);
-const pos$13 = nix.positions(here + "/pack.nix", [["owner", 95, 7], ["repo", 96, 7], ["rev", 97, 7], ["hash", 98, 7]]);
-const pos$14 = nix.positions(here + "/pack.nix", [["ipkgName", 92, 5], ["version", 93, 5], ["src", 94, 5], ["idrisLibraries", 100, 5]]);
-const pos$15 = nix.positions(here + "/pack.nix", [["owner", 110, 7], ["repo", 111, 7], ["rev", 112, 7], ["hash", 113, 7]]);
-const pos$16 = nix.positions(here + "/pack.nix", [["ipkgName", 107, 5], ["version", 108, 5], ["src", 109, 5], ["idrisLibraries", 115, 5]]);
-const pos$17 = nix.positions(here + "/pack.nix", [["owner", 125, 7], ["repo", 126, 7], ["rev", 127, 7], ["hash", 128, 7]]);
-const pos$18 = nix.positions(here + "/pack.nix", [["ipkgName", 122, 5], ["version", 123, 5], ["src", 124, 5], ["idrisLibraries", 130, 5]]);
-const pos$19 = nix.positions(here + "/pack.nix", [["owner", 140, 7], ["repo", 141, 7], ["rev", 142, 7], ["hash", 143, 7]]);
-const pos$20 = nix.positions(here + "/pack.nix", [["ipkgName", 137, 5], ["version", 138, 5], ["src", 139, 5], ["idrisLibraries", 145, 5]]);
-const pos$21 = nix.positions(here + "/pack.nix", [["owner", 159, 7], ["repo", 160, 7], ["rev", 161, 7], ["hash", 162, 7]]);
-const pos$22 = nix.positions(here + "/pack.nix", [["ipkgName", 156, 5], ["version", 157, 5], ["src", 158, 5], ["idrisLibraries", 164, 5]]);
-const pos$23 = nix.positions(here + "/pack.nix", [["owner", 174, 7], ["repo", 175, 7], ["rev", 176, 7], ["hash", 177, 7]]);
-const pos$24 = nix.positions(here + "/pack.nix", [["description", 213, 7], ["mainProgram", 214, 7], ["homepage", 215, 7], ["license", 216, 7], ["maintainers", 217, 7], ["platforms", 221, 44]]);
-const pos$25 = nix.positions(here + "/pack.nix", [["ipkgName", 171, 5], ["version", 172, 5], ["src", 173, 5], ["idrisLibraries", 179, 5], ["nativeBuildInputs", 187, 5], ["buildInputs", 189, 5], ["postInstall", 197, 5], ["meta", 212, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -44,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const idris2Api = nix.thunk(() => nix.attr(idris2Packages, "idris2Api"));
   const buildIdris = nix.thunk(() => nix.attr(idris2Packages, "buildIdris"));
   const elab_util = nix.thunk(() => nix.app(buildIdris, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       ipkgName: "elab-util",
       version: "2025-08-14",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "stefan-hoeck",
           repo: "idris2-elab-util",
           rev: "6786ac7ef9931b1c8321a83e007f36a66e139e86",
@@ -57,11 +33,11 @@ export default nix.lambda((args) => (() => {
       idrisLibraries: [],
     }))));
   const filepath = nix.thunk(() => nix.app(buildIdris, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       ipkgName: "filepath",
       version: "2024-10-06",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           owner: "stefan-hoeck",
           repo: "idris2-filepath",
           rev: "0441eaee9ff1d921fc3f4619c2a8d542588c0e99",
@@ -70,11 +46,11 @@ export default nix.lambda((args) => (() => {
       idrisLibraries: [],
     }))));
   const getopts = nix.thunk(() => nix.app(buildIdris, nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       ipkgName: "getopts",
       version: "2023-10-28",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           owner: "idris-community",
           repo: "idris2-getopts",
           rev: "0d41b98f83f3707deb0ffbc595ef36b7d9cb9eab",
@@ -83,11 +59,11 @@ export default nix.lambda((args) => (() => {
       idrisLibraries: [],
     }))));
   const algebra = nix.thunk(() => nix.app(buildIdris, nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       ipkgName: "algebra",
       version: "2024-04-05",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           owner: "stefan-hoeck",
           repo: "idris2-algebra",
           rev: "829f44b7fd961e3f0a7ad9174b395f97ebc33336",
@@ -96,11 +72,11 @@ export default nix.lambda((args) => (() => {
       idrisLibraries: [],
     }))));
   const ref1 = nix.thunk(() => nix.app(buildIdris, nix.thunk(() => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       ipkgName: "ref1",
       version: "2025-10-30",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           owner: "stefan-hoeck",
           repo: "idris2-ref1",
           rev: "ef6d4265deaa6a4f1b5228932102847a4e54e4d2",
@@ -109,11 +85,11 @@ export default nix.lambda((args) => (() => {
       idrisLibraries: [],
     }))));
   const array = nix.thunk(() => nix.app(buildIdris, nix.thunk(() => ({
-      [nix.POS]: pos$12,
+      [nix.POS]: $pos[11],
       ipkgName: "array",
       version: "2025-10-30",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$11,
+          [nix.POS]: $pos[10],
           owner: "stefan-hoeck",
           repo: "idris2-array",
           rev: "cecbd1dd3bae94669a2ed3689ee91ce1616cc34f",
@@ -122,11 +98,11 @@ export default nix.lambda((args) => (() => {
       idrisLibraries: nix.thunk(() => [algebra, ref1]),
     }))));
   const bytestring = nix.thunk(() => nix.app(buildIdris, nix.thunk(() => ({
-      [nix.POS]: pos$14,
+      [nix.POS]: $pos[13],
       ipkgName: "bytestring",
       version: "2025-10-02",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$13,
+          [nix.POS]: $pos[12],
           owner: "stefan-hoeck",
           repo: "idris2-bytestring",
           rev: "082c5114b4016425c9957e955e22fcb0b194ada4",
@@ -135,11 +111,11 @@ export default nix.lambda((args) => (() => {
       idrisLibraries: nix.thunk(() => [algebra, array]),
     }))));
   const refined = nix.thunk(() => nix.app(buildIdris, nix.thunk(() => ({
-      [nix.POS]: pos$16,
+      [nix.POS]: $pos[15],
       ipkgName: "refined",
       version: "2024-04-05",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$15,
+          [nix.POS]: $pos[14],
           owner: "stefan-hoeck",
           repo: "idris2-refined",
           rev: "c585013c33ad5398c91beed71fec61a5b721a8da",
@@ -148,11 +124,11 @@ export default nix.lambda((args) => (() => {
       idrisLibraries: nix.thunk(() => [elab_util, algebra]),
     }))));
   const ilex_core = nix.thunk(() => nix.app(buildIdris, nix.thunk(() => ({
-      [nix.POS]: pos$18,
+      [nix.POS]: $pos[17],
       ipkgName: "core/ilex-core",
       version: "2025-10-31",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$17,
+          [nix.POS]: $pos[16],
           owner: "stefan-hoeck",
           repo: "idris2-ilex",
           rev: "c2d5a219c701a8f694aa95e8d34c7a58d58e5795",
@@ -161,11 +137,11 @@ export default nix.lambda((args) => (() => {
       idrisLibraries: nix.thunk(() => [elab_util, bytestring]),
     }))));
   const ilex = nix.thunk(() => nix.app(buildIdris, nix.thunk(() => ({
-      [nix.POS]: pos$20,
+      [nix.POS]: $pos[19],
       ipkgName: "ilex",
       version: "2025-10-31",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$19,
+          [nix.POS]: $pos[18],
           owner: "stefan-hoeck",
           repo: "idris2-ilex",
           rev: "c2d5a219c701a8f694aa95e8d34c7a58d58e5795",
@@ -174,11 +150,11 @@ export default nix.lambda((args) => (() => {
       idrisLibraries: nix.thunk(() => [elab_util, algebra, array, bytestring, ilex_core, refined]),
     }))));
   const ilex_toml = nix.thunk(() => nix.app(buildIdris, nix.thunk(() => ({
-      [nix.POS]: pos$22,
+      [nix.POS]: $pos[21],
       ipkgName: "toml/ilex-toml",
       version: "2025-10-31",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$21,
+          [nix.POS]: $pos[20],
           owner: "stefan-hoeck",
           repo: "idris2-ilex",
           rev: "c2d5a219c701a8f694aa95e8d34c7a58d58e5795",
@@ -187,11 +163,11 @@ export default nix.lambda((args) => (() => {
       idrisLibraries: nix.thunk(() => [ilex, refined]),
     }))));
   const packPkg = nix.thunk(() => nix.app(buildIdris, nix.thunk(() => ({
-      [nix.POS]: pos$25,
+      [nix.POS]: $pos[24],
       ipkgName: "pack",
       version: "2025-12-27",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$23,
+          [nix.POS]: $pos[22],
           owner: "stefan-hoeck",
           repo: "idris2-pack",
           rev: "cd512a0bf61a6effacc24060bb04106a849df0fe",
@@ -207,7 +183,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(idris2Packages, "idris2", "meta"));
         return {
-        [nix.POS]: pos$24,
+        [nix.POS]: $pos[23],
         description: "Idris2 Package Manager with Curated Package Collections",
         mainProgram: "pack",
         homepage: "https://github.com/stefan-hoeck/idris2-pack",

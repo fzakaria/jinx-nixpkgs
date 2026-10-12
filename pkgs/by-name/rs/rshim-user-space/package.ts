@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 31, 5], ["repo", 32, 5], ["rev", 33, 5], ["hash", 34, 5]], [["description", 102, 5], ["longDescription", 103, 5], ["homepage", 110, 5], ["license", 111, 5], ["platforms", 112, 5], ["maintainers", 113, 5]], [["pname", 27, 3], ["version", 28, 3], ["src", 30, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 44, 3], ["patches", 51, 3], ["prePatch", 61, 3], ["strictDeps", 68, 3], ["preConfigure", 70, 3], ["installPhase", 72, 3], ["postFixup", 81, 3], ["meta", 101, 3]]]);
 const formals$1 = { args: { autoconf: false, automake: false, bashNonInteractive: false, coreutils: false, fetchFromGitHub: false, fuse3: false, gawk: false, gnugrep: false, gnused: false, lib: false, libusb1: false, makeBinaryWrapper: false, pciutils: false, perl: false, "pkg-config": false, procps: false, pv: false, stdenv: false, systemd: false, "util-linux": false, which: false, withBfbInstall: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 31, 5], ["repo", 32, 5], ["rev", 33, 5], ["hash", 34, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 102, 5], ["longDescription", 103, 5], ["homepage", 110, 5], ["license", 111, 5], ["platforms", 112, 5], ["maintainers", 113, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 27, 3], ["version", 28, 3], ["src", 30, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 44, 3], ["patches", 51, 3], ["prePatch", 61, 3], ["strictDeps", 68, 3], ["preConfigure", 70, 3], ["installPhase", 72, 3], ["postFixup", 81, 3], ["meta", 101, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,11 +30,11 @@ export default nix.lambda((args) => (() => {
   const which = nix.arg($, "which");
   const withBfbInstall = nix.argOr($, "withBfbInstall", () => true);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "rshim-user-space",
       version: "2.8.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Mellanox",
           repo: "rshim-user-space",
           rev: nix.thunk(() => nix.str`rshim-${nix.sel(finalAttrs, "version")}`),
@@ -73,7 +71,7 @@ substituteInPlace scripts/bfb-install \\
           ]))}
 `))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "User-space rshim driver for the BlueField SoC",
         longDescription: "The rshim driver provides a way to access the rshim resources on the\nBlueField target from external host machine. The current version\nimplements device files for boot image push and virtual console access.\nIt also creates virtual network interface to connect to the BlueField\ntarget and provides a way to access the internal rshim registers.\n",
         homepage: "https://github.com/Mellanox/rshim-user-space",

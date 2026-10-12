@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/wrapper.nix", [[["description", 53, 5], ["longDescription", 54, 5]], [["pname", 25, 3], ["version", 26, 18], ["outputs", 28, 3], ["paths", 33, 3], ["nativeBuildInputs", 35, 3], ["postBuild", 37, 3], ["meta", 52, 3]]]);
 const formals$1 = { args: { lib: false, symlinkJoin: false, makeWrapper: false, gimpPlugins: false, "gnome-themes-extra": false, plugins: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/wrapper.nix", [["description", 53, 5], ["longDescription", 54, 5]]);
-const pos$2 = nix.positions(here + "/wrapper.nix", [["pname", 25, 3], ["version", 26, 18], ["outputs", 28, 3], ["paths", 33, 3], ["nativeBuildInputs", 35, 3], ["postBuild", 37, 3], ["meta", 52, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,7 +21,7 @@ export default nix.lambda((args) => (() => {
     ]))));
   const majorVersion = nix.thunk(() => nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(gimp, "version"))));
   return nix.app(symlinkJoin, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "gimp-with-plugins",
       version: nix.thunk(() => nix.attr(gimp, "version")),
       outputs: nix.thunk(() => ["out", "man"]),
@@ -42,7 +41,7 @@ done
 ln -s ${nix.sel(gimp, "man")} $man
 `),
       meta: nix.thunk(() => nix.update(nix.sel(gimp, "meta"), {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: nix.thunk(() => nix.str`${nix.sel(gimp, "meta", "description")} with plugins`),
         longDescription: nix.thunk(() => nix.str`Plugins:
 

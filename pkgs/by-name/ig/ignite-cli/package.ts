@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["repo", 15, 5], ["owner", 16, 5], ["rev", 17, 5], ["hash", 18, 5]], [["homepage", 42, 5], ["changelog", 43, 5], ["description", 44, 5], ["license", 45, 5], ["maintainers", 46, 5], ["mainProgram", 47, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["vendorHash", 21, 3], ["nativeBuildInputs", 23, 3], ["doCheck", 26, 3], ["allowGoReference", 29, 3], ["postFixup", 32, 3], ["meta", 41, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, buildGoModule: false, makeWrapper: false, go: false, buf: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["repo", 15, 5], ["owner", 16, 5], ["rev", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 42, 5], ["changelog", 43, 5], ["description", 44, 5], ["license", 45, 5], ["maintainers", 46, 5], ["mainProgram", 47, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["vendorHash", 21, 3], ["nativeBuildInputs", 23, 3], ["doCheck", 26, 3], ["allowGoReference", 29, 3], ["postFixup", 32, 3], ["meta", 41, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const go = nix.arg($, "go");
   const buf = nix.arg($, "buf");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "ignite-cli",
       version: "28.11.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           repo: "cli",
           owner: "ignite",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -33,7 +31,7 @@ export default nix.lambda((args) => (() => {
       postFixup: nix.thunk(() => nix.str`wrapProgram $out/bin/ignite --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [go, buf]))}
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://ignite.com/",
         changelog: nix.thunk(() => nix.str`https://github.com/ignite/cli/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "All-in-one platform to build, launch, and maintain any crypto application on a sovereign and secured blockchain",

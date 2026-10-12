@@ -2,30 +2,18 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/oxwm.nix", [[["maintainers", 6, 5]], [["user", 19, 40]], [["auto", 19, 35]], [["displayManager", 19, 20]], [["defaultSession", 20, 31]], [["enable", 21, 43]], [["oxwm", 21, 38]], [["windowManager", 21, 24]], [["displayManager", 20, 16], ["xserver", 21, 16]], [["systemPackages", 23, 19]], [["imports", 15, 7], ["test-support", 19, 7], ["services", 20, 7], ["environment", 23, 7]], [["machine", 12, 9]], [["name", 3, 3], ["meta", 5, 3], ["nodes", 12, 3], ["testScript", 26, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/oxwm.nix", [["maintainers", 6, 5]]);
 const formals$2 = { args: { pkgs: false, lib: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/oxwm.nix", [["user", 19, 40]]);
-const pos$3 = nix.positions(here + "/oxwm.nix", [["auto", 19, 35]]);
-const pos$4 = nix.positions(here + "/oxwm.nix", [["displayManager", 19, 20]]);
-const pos$5 = nix.positions(here + "/oxwm.nix", [["defaultSession", 20, 31]]);
-const pos$6 = nix.positions(here + "/oxwm.nix", [["enable", 21, 43]]);
-const pos$7 = nix.positions(here + "/oxwm.nix", [["oxwm", 21, 38]]);
-const pos$8 = nix.positions(here + "/oxwm.nix", [["windowManager", 21, 24]]);
-const pos$9 = nix.positions(here + "/oxwm.nix", [["displayManager", 20, 16], ["xserver", 21, 16]]);
-const pos$10 = nix.positions(here + "/oxwm.nix", [["systemPackages", 23, 19]]);
-const pos$11 = nix.positions(here + "/oxwm.nix", [["imports", 15, 7], ["test-support", 19, 7], ["services", 20, 7], ["environment", 23, 7]]);
-const pos$12 = nix.positions(here + "/oxwm.nix", [["machine", 12, 9]]);
-const pos$13 = nix.positions(here + "/oxwm.nix", [["name", 3, 3], ["meta", 5, 3], ["nodes", 12, 3], ["testScript", 26, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$13,
+    [nix.POS]: $pos[12],
     name: "oxwm",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [
@@ -35,40 +23,40 @@ export default nix.lambda((args) => (() => {
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$12,
+      [nix.POS]: $pos[11],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs = nix.arg($_1, "pkgs");
         const lib_1 = nix.arg($_1, "lib");
         return {
-          [nix.POS]: pos$11,
+          [nix.POS]: $pos[10],
           imports: nix.thunk(() => [
             nix.path(here, "./common/x11.nix"),
             nix.path(here, "./common/user-account.nix"),
           ]),
           "test-support": nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             displayManager: nix.thunk(() => ({
-              [nix.POS]: pos$3,
-              auto: nix.thunk(() => ({ [nix.POS]: pos$2, user: "alice" })),
+              [nix.POS]: $pos[2],
+              auto: nix.thunk(() => ({ [nix.POS]: $pos[1], user: "alice" })),
             })),
           })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$9,
+            [nix.POS]: $pos[8],
             displayManager: nix.thunk(() => ({
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               defaultSession: nix.thunk(() => nix.app(nix.sel(lib_1, "mkForce"), "oxwm")),
             })),
             xserver: nix.thunk(() => ({
-              [nix.POS]: pos$8,
+              [nix.POS]: $pos[7],
               windowManager: nix.thunk(() => ({
-                [nix.POS]: pos$7,
-                oxwm: nix.thunk(() => ({ [nix.POS]: pos$6, enable: true })),
+                [nix.POS]: $pos[6],
+                oxwm: nix.thunk(() => ({ [nix.POS]: $pos[5], enable: true })),
               })),
             })),
           })),
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$10,
+            [nix.POS]: $pos[9],
             systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "alacritty"))]),
           })),
         };

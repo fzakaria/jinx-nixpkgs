@@ -2,20 +2,17 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/tests.nix", [[["name", 4, 5], ["owner", 5, 5], ["repo", 6, 5], ["tag", 7, 5], ["sha256", 8, 5]], [["name", 12, 5], ["owner", 13, 5], ["repo", 14, 5], ["tag", 15, 5], ["sha256", 16, 5], ["forceFetchGit", 17, 5]], [["name", 21, 5], ["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["sha256", 25, 5]], [["withEncodedWhitespace", 3, 3], ["withEncodedWhitespaceGit", 11, 3], ["withoutWhitespace", 20, 3]]]);
 const formals$1 = { args: { testers: false, fetchFromBitbucket: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/tests.nix", [["name", 4, 5], ["owner", 5, 5], ["repo", 6, 5], ["tag", 7, 5], ["sha256", 8, 5]]);
-const pos$2 = nix.positions(here + "/tests.nix", [["name", 12, 5], ["owner", 13, 5], ["repo", 14, 5], ["tag", 15, 5], ["sha256", 16, 5], ["forceFetchGit", 17, 5]]);
-const pos$3 = nix.positions(here + "/tests.nix", [["name", 21, 5], ["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["sha256", 25, 5]]);
-const pos$4 = nix.positions(here + "/tests.nix", [["withEncodedWhitespace", 3, 3], ["withEncodedWhitespaceGit", 11, 3], ["withoutWhitespace", 20, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const testers = nix.arg($, "testers");
   const fetchFromBitbucket = nix.arg($, "fetchFromBitbucket");
   return {
-    [nix.POS]: pos$4,
+    [nix.POS]: $pos[3],
     withEncodedWhitespace: nix.thunk(() => nix.app(nix.sel(testers, "invalidateFetcherByDrvHash"), fetchFromBitbucket, nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         name: "withWhitespace",
         owner: "tetov",
         repo: "fetchbitbucket_tester",
@@ -23,7 +20,7 @@ export default nix.lambda((args) => (() => {
         sha256: "sha256-Nf1Cvbx7Sbab8EeSSBU5baLBiuFYiQtITED+f4tfjC0=",
       })))),
     withEncodedWhitespaceGit: nix.thunk(() => nix.app(nix.sel(testers, "invalidateFetcherByDrvHash"), fetchFromBitbucket, nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         name: "withWhitespaceGit",
         owner: "tetov",
         repo: "fetchbitbucket_tester",
@@ -32,7 +29,7 @@ export default nix.lambda((args) => (() => {
         forceFetchGit: true,
       })))),
     withoutWhitespace: nix.thunk(() => nix.app(nix.sel(testers, "invalidateFetcherByDrvHash"), fetchFromBitbucket, nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         name: "withoutWhitespace",
         owner: "tetov",
         repo: "fetchbitbucket_tester",

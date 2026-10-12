@@ -2,23 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["sha256", 30, 13]], [["sha256", 33, 13]], [["sha256", 34, 13]], [["2.4.6", 30, 5], ["2.6.7", 33, 5], ["2.6.8", 34, 5]], [["version", 42, 7], ["system", 43, 7], ["sha256", 44, 7]], [["version", 47, 7], ["system", 48, 7], ["sha256", 49, 7]], [["version", 53, 7], ["system", 54, 7], ["sha256", 55, 7]], [["version", 58, 7], ["system", 59, 7], ["sha256", 60, 7]], [["i686-linux", 41, 5], ["armv7l-linux", 46, 5], ["armv6l-linux", 51, 5], ["x86_64-freebsd", 52, 5], ["x86_64-solaris", 57, 5]], [["cfg", 64, 5]], [["url", 86, 5], ["sha256", 87, 37]], [["NIX_CFLAGS_COMPILE", 257, 7], ["SBCL_MACOSX_VERSION_MIN", 260, 7]], [["stumpwm", 320, 13], ["iolib", 321, 28]], [["tests", 319, 12]], [["broken", 326, 5], ["description", 327, 5], ["homepage", 328, 5], ["license", 329, 5], ["mainProgram", 330, 5], ["teams", 331, 5], ["platforms", 332, 5]], [["pname", 78, 3], ["version", 79, 11], ["__structuredAttrs", 80, 3], ["strictDeps", 81, 3], ["src", 83, 3], ["nativeBuildInputs", 90, 3], ["buildInputs", 105, 3], ["threadSupport", 114, 3], ["purgeNixReferences", 122, 3], ["coreCompression", 123, 3], ["markRegionGC", 124, 3], ["disableImmobileSpace", 125, 3], ["linkableRuntime", 126, 3], ["disabledTestFiles", 132, 3], ["patches", 165, 3], ["postPatch", 182, 3], ["sbclPatchPhase", 195, 3], ["preConfigurePhases", 226, 3], ["enableFeatures", 228, 3], ["disableFeatures", 238, 3], ["buildArgs", 246, 3], ["env", 257, 3], ["buildPhase", 264, 3], ["doCheck", 278, 3], ["checkPhase", 281, 3], ["installPhase", 289, 3], ["setupHook", 308, 3], ["__darwinAllowLocalNetworking", 317, 3], ["passthru", 319, 3], ["meta", 324, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, callPackage: false, darwin: false, ecl: false, coreutils: false, fetchurl: false, ps: false, sbclPackages: false, strace: false, stumpwm: false, texinfo: false, which: false, writableTmpDirAsHomeHook: false, writeText: false, zstd: false, version: false, bootstrapLisp: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["sha256", 30, 13]]);
-const pos$2 = nix.positions(here + "/default.nix", [["sha256", 33, 13]]);
-const pos$3 = nix.positions(here + "/default.nix", [["sha256", 34, 13]]);
-const pos$4 = nix.positions(here + "/default.nix", [["2.4.6", 30, 5], ["2.6.7", 33, 5], ["2.6.8", 34, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["version", 42, 7], ["system", 43, 7], ["sha256", 44, 7]]);
-const pos$6 = nix.positions(here + "/default.nix", [["version", 47, 7], ["system", 48, 7], ["sha256", 49, 7]]);
-const pos$7 = nix.positions(here + "/default.nix", [["version", 53, 7], ["system", 54, 7], ["sha256", 55, 7]]);
-const pos$8 = nix.positions(here + "/default.nix", [["version", 58, 7], ["system", 59, 7], ["sha256", 60, 7]]);
-const pos$9 = nix.positions(here + "/default.nix", [["i686-linux", 41, 5], ["armv7l-linux", 46, 5], ["armv6l-linux", 51, 5], ["x86_64-freebsd", 52, 5], ["x86_64-solaris", 57, 5]]);
-const pos$10 = nix.positions(here + "/default.nix", [["cfg", 64, 5]]);
-const pos$11 = nix.positions(here + "/default.nix", [["url", 86, 5], ["sha256", 87, 37]]);
-const pos$12 = nix.positions(here + "/default.nix", [["NIX_CFLAGS_COMPILE", 257, 7], ["SBCL_MACOSX_VERSION_MIN", 260, 7]]);
-const pos$13 = nix.positions(here + "/default.nix", [["stumpwm", 320, 13], ["iolib", 321, 28]]);
-const pos$14 = nix.positions(here + "/default.nix", [["tests", 319, 12]]);
-const pos$15 = nix.positions(here + "/default.nix", [["broken", 326, 5], ["description", 327, 5], ["homepage", 328, 5], ["license", 329, 5], ["mainProgram", 330, 5], ["teams", 331, 5], ["platforms", 332, 5]]);
-const pos$16 = nix.positions(here + "/default.nix", [["pname", 78, 3], ["version", 79, 11], ["__structuredAttrs", 80, 3], ["strictDeps", 81, 3], ["src", 83, 3], ["nativeBuildInputs", 90, 3], ["buildInputs", 105, 3], ["threadSupport", 114, 3], ["purgeNixReferences", 122, 3], ["coreCompression", 123, 3], ["markRegionGC", 124, 3], ["disableImmobileSpace", 125, 3], ["linkableRuntime", 126, 3], ["disabledTestFiles", 132, 3], ["patches", 165, 3], ["postPatch", 182, 3], ["sbclPatchPhase", 195, 3], ["preConfigurePhases", 226, 3], ["enableFeatures", 228, 3], ["disableFeatures", 238, 3], ["buildArgs", 246, 3], ["env", 257, 3], ["buildPhase", 264, 3], ["doCheck", 278, 3], ["checkPhase", 281, 3], ["installPhase", 289, 3], ["setupHook", 308, 3], ["__darwinAllowLocalNetworking", 317, 3], ["passthru", 319, 3], ["meta", 324, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -41,48 +26,48 @@ export default nix.lambda((args) => (() => {
   const version = nix.arg($, "version");
   const bootstrapLisp = nix.argOr($, "bootstrapLisp", () => null);
   const versionMap = nix.thunk(() => ({
-    [nix.POS]: pos$4,
+    [nix.POS]: $pos[3],
     "2.4.6": nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       sha256: "sha256-pImQeELa4JoXJtYphb96VmcKrqLz7KH7cCO8pnw/MJE=",
     })),
     "2.6.7": nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       sha256: "sha256-Hr3DXJ3I4nG4zRrESWXgC/JV+cAiFlD8t38Ps0wtOt4=",
     })),
     "2.6.8": nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       sha256: "sha256-rVEm39+6XbJ+53vMJYkwIP5SLQt2U9RbTEeVrePdwj0=",
     })),
   }));
   const bootstrapBinaries = nix.thunk(() => (() => {
     const i686_linux = nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       version: "1.2.7",
       system: "x86-linux",
       sha256: "07f3bz4br280qvn85i088vpzj9wcz8wmwrf665ypqx181pz2ai3j",
     }));
     const armv7l_linux = nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       version: "1.2.14",
       system: "armhf-linux",
       sha256: "0sp5445rbvms6qvzhld0kwwvydw51vq5iaf4kdqsf2d9jvaz3yx5",
     }));
     const armv6l_linux = armv7l_linux;
     const x86_64_freebsd = nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       version: "1.2.7",
       system: "x86-64-freebsd",
       sha256: "14k42xiqd2rrim4pd5k5pjcrpkac09qnpynha8j1v4jngrvmw7y6",
     }));
     const x86_64_solaris = nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       version: "1.2.7",
       system: "x86-64-solaris",
       sha256: "05c12fmac4ha72k1ckl6i780rckd7jh4g5s5hiic7fjxnf1kx8d0",
     }));
     return {
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       "i686-linux": i686_linux,
       "armv7l-linux": armv7l_linux,
       "armv6l-linux": armv6l_linux,
@@ -91,13 +76,13 @@ export default nix.lambda((args) => (() => {
     };
   })());
   const sbclBootstrap = nix.thunk(() => nix.app(callPackage, nix.path(here, "./bootstrap.nix"), nix.thunk(() => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       cfg: nix.thunk(() => nix.sel(bootstrapBinaries, nix.key(nix.sel(stdenv, "hostPlatform", "system")))),
     }))));
   const bootstrapLisp$ = nix.thunk(() => (nix.asBool(!nix.eq(bootstrapLisp, null)) ? nix.force(bootstrapLisp) : (nix.asBool(nix.builtins.hasAttr(nix.thunk(() => nix.sel(stdenv, "hostPlatform", "system")), bootstrapBinaries)) ? nix.str`${sbclBootstrap}/bin/sbcl --disable-debugger --no-userinit --no-sysinit` : nix.str`${nix.app(nix.sel(lib, "getExe"), ecl)} --norc`)));
   const posixUtils = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? nix.sel(darwin, "shell_cmds") : nix.force(coreutils)));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$16,
+      [nix.POS]: $pos[15],
       pname: "sbcl",
       version: version,
       __structuredAttrs: true,
@@ -105,7 +90,7 @@ export default nix.lambda((args) => (() => {
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(versionMap, nix.key(nix.force(version))));
           return {
-          [nix.POS]: pos$11,
+          [nix.POS]: $pos[10],
           url: nix.thunk(() => nix.str`mirror://sourceforge/project/sbcl/sbcl/${version}/sbcl-${version}-source.tar.bz2`),
           sha256: nix.thunk(() => nix.attr(from, "sha256")),
         };
@@ -164,7 +149,7 @@ fi
         nix.thunk(() => nix.str`--xc-host=${nix.app(nix.sel(lib, "escapeShellArg"), bootstrapLisp$)}`),
       ], nix.concat(nix.builtins.map((x) => nix.str`--with-${x}`, nix.thunk(() => nix.sel(finalAttrs, "enableFeatures"))), nix.concat(nix.builtins.map((x) => nix.str`--without-${x}`, nix.thunk(() => nix.sel(finalAttrs, "disableFeatures"))), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.eq(nix.sel(stdenv, "hostPlatform", "system"), "aarch64-darwin")), nix.thunk(() => ["--arch=arm64"])))))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$12,
+        [nix.POS]: $pos[11],
         NIX_CFLAGS_COMPILE: "-D_GNU_SOURCE",
         SBCL_MACOSX_VERSION_MIN: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isx86_64")))), "10.12")),
       })),
@@ -182,15 +167,15 @@ runHook postBuild
       setupHook: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(finalAttrs, "purgeNixReferences")), nix.thunk(() => nix.app(writeText, "setupHook.sh", "addEnvHooks \"$targetOffset\" _setSbclHome\n_setSbclHome() {\n  export SBCL_HOME='@out@/lib/sbcl/'\n}\n")))),
       __darwinAllowLocalNetworking: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$14,
+        [nix.POS]: $pos[13],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$13,
+          [nix.POS]: $pos[12],
           stumpwm: stumpwm,
           iolib: nix.thunk(() => nix.attr(sbclPackages, "iolib")),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$15,
+        [nix.POS]: $pos[14],
         broken: nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isx86_64")))),
         description: "Common Lisp compiler",
         homepage: "https://sbcl.org",

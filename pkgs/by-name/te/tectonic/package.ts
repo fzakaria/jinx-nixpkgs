@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["unwrapped", 18, 5], ["biber", 19, 5], ["tests", 20, 5]], [["description", 48, 5], ["maintainers", 49, 5]], [["version", 11, 32], ["pname", 12, 3], ["paths", 13, 3], ["nativeBuildInputs", 15, 3], ["passthru", 17, 3], ["postBuild", 24, 3], ["meta", 47, 3]]]);
 const formals$1 = { args: { lib: false, symlinkJoin: false, "tectonic-unwrapped": false, "biber-for-tectonic": false, makeBinaryWrapper: false, callPackage: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["unwrapped", 18, 5], ["biber", 19, 5], ["tests", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 48, 5], ["maintainers", 49, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 11, 32], ["pname", 12, 3], ["paths", 13, 3], ["nativeBuildInputs", 15, 3], ["passthru", 17, 3], ["postBuild", 24, 3], ["meta", 47, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,13 +14,13 @@ export default nix.lambda((args) => (() => {
   const makeBinaryWrapper = nix.arg($, "makeBinaryWrapper");
   const callPackage = nix.arg($, "callPackage");
   return nix.app(symlinkJoin, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       version: nix.thunk(() => nix.attr(tectonic_unwrapped, "version")),
       pname: nix.thunk(() => nix.str`${nix.sel(tectonic_unwrapped, "pname")}-wrapped`),
       paths: nix.thunk(() => [tectonic_unwrapped]),
       nativeBuildInputs: nix.thunk(() => [makeBinaryWrapper]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         unwrapped: tectonic_unwrapped,
         biber: biber_for_tectonic,
         tests: nix.thunk(() => nix.app(callPackage, nix.path(here, "./tests.nix"), nix.thunk(() => ({})))),
@@ -33,7 +31,7 @@ export default nix.lambda((args) => (() => {
 ln -s $out/bin/tectonic $out/bin/nextonic
 `)),
       meta: nix.thunk(() => nix.update(nix.sel(tectonic_unwrapped, "meta"), {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "TeX/LaTeX engine, wrapped with a compatible biber",
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);

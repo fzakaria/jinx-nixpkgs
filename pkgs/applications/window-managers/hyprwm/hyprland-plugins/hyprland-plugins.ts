@@ -2,11 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/hyprland-plugins.nix", [[["owner", 19, 15], ["repo", 20, 15], ["tag", 21, 15], ["hash", 22, 15]], [["homepage", 32, 15], ["description", 33, 15], ["license", 34, 15], ["teams", 35, 15]], [["pluginName", 26, 13], ["version", 27, 21], ["src", 29, 13], ["nativeBuildInputs", 30, 13], ["meta", 31, 13]], [["borders-plus-plus", 41, 9], ["csgo-vulkan-fix", 42, 9], ["hyprbars", 43, 9], ["hyprfocus", 44, 9]]]);
 const formals$1 = { args: { lib: false, cmake: false, fetchFromGitHub: false, mkHyprlandPlugin: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/hyprland-plugins.nix", [["owner", 19, 15], ["repo", 20, 15], ["tag", 21, 15], ["hash", 22, 15]]);
-const pos$2 = nix.positions(here + "/hyprland-plugins.nix", [["homepage", 32, 15], ["description", 33, 15], ["license", 34, 15], ["teams", 35, 15]]);
-const pos$3 = nix.positions(here + "/hyprland-plugins.nix", [["pluginName", 26, 13], ["version", 27, 21], ["src", 29, 13], ["nativeBuildInputs", 30, 13], ["meta", 31, 13]]);
-const pos$4 = nix.positions(here + "/hyprland-plugins.nix", [["borders-plus-plus", 41, 9], ["csgo-vulkan-fix", 42, 9], ["hyprbars", 43, 9], ["hyprfocus", 44, 9]]);
 
 export default nix.thunk(() => (() => {
   const hyprland_plugins = nix.thunk(() => nix.builtins.mapAttrs((name) => (description) => nix.lambda((args) => (() => {
@@ -17,20 +14,20 @@ export default nix.thunk(() => (() => {
       const mkHyprlandPlugin = nix.arg($, "mkHyprlandPlugin");
       const version = "0.56.0";
       const hyprland_plugins_src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "hyprwm",
           repo: "hyprland-plugins",
           tag: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-piRpwar7VZI3YviYo0a/UMFz9+rLesfv3nRLGKxjVGg=",
         }))));
       return nix.app(mkHyprlandPlugin, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           pluginName: name,
           version: version,
           src: nix.thunk(() => nix.str`${hyprland_plugins_src}/${name}`),
           nativeBuildInputs: nix.thunk(() => [cmake]),
           meta: nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             homepage: "https://github.com/hyprwm/hyprland-plugins",
             description: nix.thunk(() => nix.str`Hyprland ${description} plugin`),
             license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
@@ -38,7 +35,7 @@ export default nix.thunk(() => (() => {
           })),
         })));
     })(), formals$1), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       "borders-plus-plus": "multiple borders",
       "csgo-vulkan-fix": "CS:GO/CS2 Vulkan fix",
       hyprbars: "window title",

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 37, 5], ["repo", 38, 5], ["tag", 39, 5], ["hash", 40, 5]], [["calc", 71, 5], ["s3", 75, 5]], [["description", 126, 5], ["changelog", 127, 5], ["mainProgram", 128, 5], ["homepage", 129, 5], ["license", 130, 5], ["teams", 131, 5]], [["pname", 32, 3], ["version", 33, 3], ["pyproject", 34, 3], ["src", 36, 3], ["postPatch", 43, 3], ["build-system", 54, 3], ["buildInputs", 60, 3], ["dependencies", 62, 3], ["optional-dependencies", 70, 3], ["pythonImportsCheck", 78, 3], ["nativeCheckInputs", 80, 3], ["preCheck", 91, 3], ["disabledTestMarks", 95, 3], ["pytestFlags", 101, 3], ["disabledTests", 106, 3], ["meta", 125, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, cython: false, gdal: false, setuptools: false, attrs: false, certifi: false, click: false, "click-plugins": false, cligj: false, pyparsing: false, shapely: false, boto3: false, fsspec: false, pytestCheckHook: false, pytz: false, snuggs: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 37, 5], ["repo", 38, 5], ["tag", 39, 5], ["hash", 40, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["calc", 71, 5], ["s3", 75, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 126, 5], ["changelog", 127, 5], ["mainProgram", 128, 5], ["homepage", 129, 5], ["license", 130, 5], ["teams", 131, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 32, 3], ["version", 33, 3], ["pyproject", 34, 3], ["src", 36, 3], ["postPatch", 43, 3], ["build-system", 54, 3], ["buildInputs", 60, 3], ["dependencies", 62, 3], ["optional-dependencies", 70, 3], ["pythonImportsCheck", 78, 3], ["nativeCheckInputs", 80, 3], ["preCheck", 91, 3], ["disabledTestMarks", 95, 3], ["pytestFlags", 101, 3], ["disabledTests", 106, 3], ["meta", 125, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,12 +27,12 @@ export default nix.lambda((args) => (() => {
   const snuggs = nix.arg($, "snuggs");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "fiona",
       version: "1.10.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Toblerity",
           repo: "Fiona",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -46,7 +43,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [gdal]),
       dependencies: nix.thunk(() => [attrs, certifi, click, click_plugins, cligj]),
       "optional-dependencies": nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         calc: nix.thunk(() => [pyparsing, shapely]),
         s3: nix.thunk(() => [boto3]),
       })),
@@ -65,7 +62,7 @@ export default nix.lambda((args) => (() => {
         "test_append_memoryfile_drivers",
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "OGR's neat, nimble, no-nonsense API for Python",
         changelog: nix.thunk(() => nix.str`https://github.com/Toblerity/Fiona/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGES.txt`),
         mainProgram: "fio",

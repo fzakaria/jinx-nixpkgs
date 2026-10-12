@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 30, 5], ["hash", 31, 5]], [["fontDirectories", 59, 5]], [["FONTCONFIG_FILE", 58, 7]], [["packageName", 75, 7], ["attrPath", 76, 7], ["versionPolicy", 77, 7]], [["updateScript", 74, 5]], [["description", 82, 5], ["longDescription", 83, 5], ["homepage", 92, 5], ["license", 93, 5], ["teams", 94, 5], ["platforms", 95, 5]], [["pname", 21, 3], ["version", 22, 3], ["outputs", 24, 3], ["src", 29, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 42, 3], ["propagatedBuildInputs", 46, 3], ["nativeCheckInputs", 53, 3], ["env", 58, 3], ["doCheck", 62, 3], ["checkPhase", 64, 3], ["passthru", 73, 3], ["meta", 81, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, "pkg-config": false, meson: false, ninja: false, python3: false, gtk4: false, glib: false, glibmm_2_68: false, cairomm_1_16: false, pangomm_2_48: false, libepoxy: false, gnome: false, makeFontsConf: false, "xvfb-run": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 30, 5], ["hash", 31, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["fontDirectories", 59, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["FONTCONFIG_FILE", 58, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["packageName", 75, 7], ["attrPath", 76, 7], ["versionPolicy", 77, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["updateScript", 74, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 82, 5], ["longDescription", 83, 5], ["homepage", 92, 5], ["license", 93, 5], ["teams", 94, 5], ["platforms", 95, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 3], ["outputs", 24, 3], ["src", 29, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 42, 3], ["propagatedBuildInputs", 46, 3], ["nativeCheckInputs", 53, 3], ["env", 58, 3], ["doCheck", 62, 3], ["checkPhase", 64, 3], ["passthru", 73, 3], ["meta", 81, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,12 +24,12 @@ export default nix.lambda((args) => (() => {
   const makeFontsConf = nix.arg($, "makeFontsConf");
   const xvfb_run = nix.arg($, "xvfb-run");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "gtkmm",
       version: "4.22.0",
       outputs: nix.thunk(() => ["out", "dev"]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnome/sources/gtkmm/${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/gtkmm-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-LoohtLByX2IOM6ruDNND7RIbUzJ1tjKJZhmxyJ6W3mc=",
         })))),
@@ -44,8 +38,8 @@ export default nix.lambda((args) => (() => {
       propagatedBuildInputs: nix.thunk(() => [glibmm_2_68, gtk4, cairomm_1_16, pangomm_2_48]),
       nativeCheckInputs: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), nix.thunk(() => [xvfb_run]))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        FONTCONFIG_FILE: nix.thunk(() => nix.app(makeFontsConf, nix.thunk(() => ({ [nix.POS]: pos$2, fontDirectories: [] })))),
+        [nix.POS]: $pos[2],
+        FONTCONFIG_FILE: nix.thunk(() => nix.app(makeFontsConf, nix.thunk(() => ({ [nix.POS]: $pos[1], fontDirectories: [] })))),
       })),
       doCheck: true,
       checkPhase: nix.thunk(() => nix.str`runHook preCheck
@@ -56,16 +50,16 @@ ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(nix.sel(st
 runHook postCheck
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             packageName: "gtkmm",
             attrPath: "gtkmm4",
             versionPolicy: "odd-unstable",
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "C++ interface to the GTK graphical user interface library",
         longDescription: "gtkmm is the official C++ interface for the popular GUI library\nGTK.  Highlights include typesafe callbacks, and a\ncomprehensive set of widgets that are easily extensible via\ninheritance.  You can create user interfaces either in code or\nwith the Glade User Interface designer, using libglademm.\nThere's extensive documentation, including API reference and a\ntutorial.\n",
         homepage: "https://gitlab.gnome.org/GNOME/gtkmm",

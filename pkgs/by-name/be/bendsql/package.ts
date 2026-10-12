@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["pname", 19, 26], ["version", 19, 32], ["hash", 20, 5]], [["BENDSQL_BUILD_INFO", 30, 5], ["LIBSQLITE3_SYS_USE_PKG_CONFIG", 31, 5]], [["package", 46, 7], ["command", 47, 7]], [["version", 45, 11]], [["tests", 45, 5], ["updateScript", 49, 5]], [["description", 53, 5], ["mainProgram", 54, 5], ["homepage", 55, 5], ["changelog", 56, 5], ["license", 57, 5], ["maintainers", 58, 5]], [["__structuredAttrs", 13, 3], ["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["cargoHash", 23, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 27, 3], ["env", 29, 3], ["postPatch", 34, 3], ["doInstallCheck", 40, 3], ["nativeInstallCheckInputs", 41, 3], ["versionCheckProgramArg", 42, 3], ["passthru", 44, 3], ["meta", 52, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchCrate: false, "pkg-config": false, sqlite: false, versionCheckHook: false, "nix-update-script": false, testers: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["pname", 19, 26], ["version", 19, 32], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["BENDSQL_BUILD_INFO", 30, 5], ["LIBSQLITE3_SYS_USE_PKG_CONFIG", 31, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["package", 46, 7], ["command", 47, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["version", 45, 11]]);
-const pos$5 = nix.positions(here + "/package.nix", [["tests", 45, 5], ["updateScript", 49, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 53, 5], ["mainProgram", 54, 5], ["homepage", 55, 5], ["changelog", 56, 5], ["license", 57, 5], ["maintainers", 58, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["__structuredAttrs", 13, 3], ["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["cargoHash", 23, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 27, 3], ["env", 29, 3], ["postPatch", 34, 3], ["doInstallCheck", 40, 3], ["nativeInstallCheckInputs", 41, 3], ["versionCheckProgramArg", 42, 3], ["passthru", 44, 3], ["meta", 52, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const testers = nix.arg($, "testers");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       __structuredAttrs: true,
       pname: "bendsql",
       version: "0.34.2",
       src: nix.thunk(() => nix.app(fetchCrate, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-TSHUts54DfgWMTHuCUzjRdDVx6QXpOm+5Lhli6rlnqQ=",
@@ -36,7 +30,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [sqlite]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         BENDSQL_BUILD_INFO: "nixpkgs",
         LIBSQLITE3_SYS_USE_PKG_CONFIG: "1",
       })),
@@ -45,11 +39,11 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       versionCheckProgramArg: "--version",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               command: "bendsql --version",
             })))),
@@ -57,7 +51,7 @@ export default nix.lambda((args) => (() => {
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Native command-line client for Databend",
         mainProgram: "bendsql",
         homepage: "https://github.com/databendlabs/bendsql",

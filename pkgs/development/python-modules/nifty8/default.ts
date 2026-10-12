@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["domain", 35, 5], ["owner", 36, 5], ["repo", 37, 5], ["tag", 38, 5], ["hash", 39, 5]], [["homepage", 99, 5], ["changelog", 100, 5], ["description", 101, 5], ["longDescription", 102, 5], ["license", 109, 5], ["maintainers", 110, 5]], [["pname", 30, 3], ["version", 31, 3], ["pyproject", 32, 3], ["src", 34, 3], ["postPatch", 46, 3], ["build-system", 51, 3], ["dependencies", 53, 3], ["nativeCheckInputs", 66, 3], ["preCheck", 74, 3], ["disabledTests", 78, 3], ["__darwinAllowLocalNetworking", 83, 3], ["postCheck", 84, 3], ["pythonImportsCheck", 96, 3], ["meta", 98, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitLab: false, setuptools: false, astropy: false, ducc0: false, h5py: false, jax: false, jaxlib: false, matplotlib: false, mpi: false, mpi4py: false, numpy: false, scipy: false, pytestCheckHook: false, "pytest-xdist": false, mpiCheckPhaseHook: false, openssh: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["domain", 35, 5], ["owner", 36, 5], ["repo", 37, 5], ["tag", 38, 5], ["hash", 39, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 99, 5], ["changelog", 100, 5], ["description", 101, 5], ["longDescription", 102, 5], ["license", 109, 5], ["maintainers", 110, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 30, 3], ["version", 31, 3], ["pyproject", 32, 3], ["src", 34, 3], ["postPatch", 46, 3], ["build-system", 51, 3], ["dependencies", 53, 3], ["nativeCheckInputs", 66, 3], ["preCheck", 74, 3], ["disabledTests", 78, 3], ["__darwinAllowLocalNetworking", 83, 3], ["postCheck", 84, 3], ["pythonImportsCheck", 96, 3], ["meta", 98, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const version = "8.5.7";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "gitlab.mpcdf.mpg.de",
           owner: "ift",
           repo: "nifty",
@@ -51,7 +49,7 @@ export default nix.lambda((args) => (() => {
 `)));
       const pythonImportsCheck = nix.thunk(() => ["nifty8"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://gitlab.mpcdf.mpg.de/ift/nifty",
         changelog: nix.thunk(() => nix.str`https://gitlab.mpcdf.mpg.de/ift/nifty/-/blob/v${version}/ChangeLog.md`),
         description: "Bayesian Imaging library for high-dimensional posteriors",
@@ -63,7 +61,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

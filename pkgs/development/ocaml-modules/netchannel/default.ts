@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 29, 5], ["hash", 30, 5]], [["description", 54, 5], ["license", 55, 5], ["maintainers", 56, 5], ["homepage", 57, 5]], [["pname", 22, 3], ["version", 23, 3], ["minimalOCamlVersion", 25, 3], ["duneVersion", 26, 3], ["src", 28, 3], ["buildInputs", 33, 3], ["propagatedBuildInputs", 37, 3], ["meta", 53, 3]]]);
 const formals$1 = { args: { lib: false, buildDunePackage: false, fetchurl: false, ppx_sexp_conv: false, ppx_cstruct: false, lwt: false, "mirage-net": false, "io-page": false, "mirage-xen": false, ipaddr: false, "mirage-profile": false, "shared-memory-ring": false, sexplib: false, logs: false, macaddr: false, "lwt-dllist": false, result: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 29, 5], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 54, 5], ["license", 55, 5], ["maintainers", 56, 5], ["homepage", 57, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 22, 3], ["version", 23, 3], ["minimalOCamlVersion", 25, 3], ["duneVersion", 26, 3], ["src", 28, 3], ["buildInputs", 33, 3], ["propagatedBuildInputs", 37, 3], ["meta", 53, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,13 +25,13 @@ export default nix.lambda((args) => (() => {
   const lwt_dllist = nix.arg($, "lwt-dllist");
   const result = nix.arg($, "result");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "netchannel",
       version: "2.1.3",
       minimalOCamlVersion: "4.08",
       duneVersion: "3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/mirage/mirage-net-xen/releases/download/v${nix.sel(finalAttrs, "version")}/mirage-net-xen-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-gOpzY4bn9L8wkbeViXy/XQmxKqqJfd99bcHQFitYFOE=",
         })))),
@@ -54,7 +52,7 @@ export default nix.lambda((args) => (() => {
         result,
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Network device for reading and writing Ethernet frames via then Xen netfront/netback protocol",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "sternenseemann"))]),

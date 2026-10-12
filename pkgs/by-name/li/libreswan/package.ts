@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 57, 5], ["hash", 58, 5]], [["libreswan", 143, 43], ["libreswan-nat", 143, 53]], [["tests", 143, 12]], [["homepage", 146, 5], ["description", 147, 5], ["platforms", 148, 5], ["license", 149, 5], ["maintainers", 153, 5], ["mainProgram", 156, 5]], [["pname", 53, 3], ["version", 54, 3], ["src", 56, 3], ["strictDeps", 61, 3], ["nativeBuildInputs", 63, 3], ["buildInputs", 73, 3], ["prePatch", 94, 3], ["makeFlags", 108, 3], ["installFlags", 122, 3], ["postInstall", 127, 3], ["postFixup", 132, 3], ["passthru", 143, 3], ["meta", 145, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, nixosTests: false, "pkg-config": false, systemdLibs: false, gmp: false, unbound: false, bison: false, flex: false, pam: false, libevent: false, libcap_ng: false, libxcrypt: false, curl: false, nspr: false, bash: false, runtimeShell: false, iproute2: false, iptables: false, procps: false, coreutils: false, gnused: false, gawk: false, nss_latest: false, which: false, python3: false, libselinux: false, ldns: false, xmlto: false, docbook_xml_dtd_45: false, docbook_xsl: false, findXMLCatalogs: false, "dns-root-data": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 57, 5], ["hash", 58, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["libreswan", 143, 43], ["libreswan-nat", 143, 53]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 143, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 146, 5], ["description", 147, 5], ["platforms", 148, 5], ["license", 149, 5], ["maintainers", 153, 5], ["mainProgram", 156, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 53, 3], ["version", 54, 3], ["src", 56, 3], ["strictDeps", 61, 3], ["nativeBuildInputs", 63, 3], ["buildInputs", 73, 3], ["prePatch", 94, 3], ["makeFlags", 108, 3], ["installFlags", 122, 3], ["postInstall", 127, 3], ["postFixup", 132, 3], ["passthru", 143, 3], ["meta", 145, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -59,7 +55,7 @@ export default nix.lambda((args) => (() => {
       const pname = "libreswan";
       const version = "5.4.1";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://download.libreswan.org/libreswan-${version}.tar.gz`),
           hash: "sha256-ew+Qyag7OtlrQw2FSVB062JlmQJMlzeJwbC2z/Ay7hA=",
         }))));
@@ -126,15 +122,15 @@ sed -e '0,/^$/{s||export PATH=${binPath}:${nix.builtins.placeholder("out")}/bin:
     -i $hooks
 `);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           libreswan: nix.thunk(() => nix.attr(nixosTests, "libreswan")),
           "libreswan-nat": nix.thunk(() => nix.attr(nixosTests, "libreswan-nat")),
         })),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://libreswan.org",
         description: "Free software implementation of the VPN protocol based on IPSec and the Internet Key Exchange",
         platforms: nix.thunk(() => nix.concat(nix.sel(lib, "platforms", "linux"), nix.sel(lib, "platforms", "freebsd"))),
@@ -152,7 +148,7 @@ sed -e '0,/^$/{s||export PATH=${binPath}:${nix.builtins.placeholder("out")}/bin:
         mainProgram: "ipsec",
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         src,

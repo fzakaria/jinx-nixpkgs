@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 38, 5], ["repo", 39, 5], ["rev", 40, 5], ["sha256", 41, 5], ["fetchSubmodules", 42, 5]], [["NIX_CFLAGS_COMPILE", 62, 7]], [["homepage", 92, 5], ["description", 93, 5], ["longDescription", 94, 5], ["license", 139, 5], ["maintainers", 147, 5], ["platforms", 148, 5]], [["pname", 34, 3], ["version", 35, 3], ["src", 37, 3], ["nativeBuildInputs", 45, 3], ["buildInputs", 51, 3], ["env", 62, 3], ["postPatch", 64, 3], ["postFixup", 69, 3], ["mesonFlags", 84, 3], ["meta", 91, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, "alsa-lib": false, fetchFromGitHub: false, fftwFloat: false, freetype: false, libGL: false, libx11: false, libxcursor: false, libxext: false, libxrender: false, lv2: false, meson: false, ninja: false, "pkg-config": false, plugins: true, buildVST3: true, buildLV2: true, buildVST2: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 38, 5], ["repo", 39, 5], ["rev", 40, 5], ["sha256", 41, 5], ["fetchSubmodules", 42, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 62, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 92, 5], ["description", 93, 5], ["longDescription", 94, 5], ["license", 139, 5], ["maintainers", 147, 5], ["platforms", 148, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 34, 3], ["version", 35, 3], ["src", 37, 3], ["nativeBuildInputs", 45, 3], ["buildInputs", 51, 3], ["env", 62, 3], ["postPatch", 64, 3], ["postFixup", 69, 3], ["mesonFlags", 84, 3], ["meta", 91, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,11 +29,11 @@ export default nix.lambda((args) => (() => {
   const rpathLibs = nix.thunk(() => [fftwFloat]);
   const mesonPlugins = nix.thunk(() => nix.app(nix.sel(lib, "mesonOption"), "plugins", nix.thunk(() => nix.str`[${nix.app(nix.sel(lib, "concatMapStringsSep"), ",", (x) => nix.str`"${x}"`, plugins)}]`)));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "distrho-ports",
       version: "2021-03-15-unstable-2025-08-15",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "DISTRHO",
           repo: "DISTRHO-Ports",
           rev: "d3b62da2e83c69b0866af5bb2e29ac78dc8014cf",
@@ -46,7 +43,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pkg_config, meson, ninja]),
       buildInputs: nix.thunk(() => nix.concat(rpathLibs, [alsa_lib, freetype, libGL, libx11, libxcursor, libxext, libxrender, lv2])),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-fpermissive"]))),
       })),
       postPatch: "chmod +x scripts/*.sh\npatchShebangs scripts\n",
@@ -68,7 +65,7 @@ done
         nix.thunk(() => nix.app(nix.sel(lib, "mesonBool"), "build-vst3", buildVST3)),
       ], nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(plugins, [])), mesonPlugins))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "http://distrho.sourceforge.net/ports",
         description: "Linux audio plugins and LV2 ports",
         longDescription: "You can override this package to only include some plugins like so:\n\n```nix\ndistrho-ports.override {\n  plugins = [ \"vitalium\" \"swankyamp\" ];\n}\n```\n\nAvailable plugins:\n- arctican-function\n- arctican-pilgrim\n- dexed\n- drowaudio-distortion\n- drowaudio-distortionshaper\n- drowaudio-flanger\n- drowaudio-reverb\n- drowaudio-tremolo\n- drumsynth\n- easySSP\n- eqinox\n- HiReSam\n- juce-opl\n- klangfalter\n- LUFSMeter\n- LUFSMeter-Multi\n- luftikus\n- obxd\n- pitchedDelay\n- refine\n- stereosourceseparation\n- swankyamp\n- tal-dub-3\n- tal-filter\n- tal-filter-2\n- tal-noisemaker\n- tal-reverb\n- tal-reverb-2\n- tal-reverb-3\n- tal-vocoder-2\n- temper\n- vex\n- vitalium\n- wolpertinger\n",

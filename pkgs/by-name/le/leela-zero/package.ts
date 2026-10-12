@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5], ["fetchSubmodules", 23, 5]], [["pname", 28, 7], ["version", 29, 7], ["debianRevision", 30, 7], ["patch", 31, 7], ["hash", 32, 7]], [["description", 53, 5], ["homepage", 54, 5], ["license", 55, 5], ["maintainers", 56, 5], ["platforms", 59, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["patches", 26, 3], ["buildInputs", 36, 3], ["nativeBuildInputs", 44, 3], ["cmakeFlags", 46, 3], ["dontWrapQtApps", 50, 3], ["meta", 52, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchDebianPatch: false, boost: false, cmake: false, libsForQt5: false, "ocl-icd": false, "opencl-headers": false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5], ["fetchSubmodules", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 28, 7], ["version", 29, 7], ["debianRevision", 30, 7], ["patch", 31, 7], ["hash", 32, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 53, 5], ["homepage", 54, 5], ["license", 55, 5], ["maintainers", 56, 5], ["platforms", 59, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["patches", 26, 3], ["buildInputs", 36, 3], ["nativeBuildInputs", 44, 3], ["cmakeFlags", 46, 3], ["dontWrapQtApps", 50, 3], ["meta", 52, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const opencl_headers = nix.arg($, "opencl-headers");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "leela-zero",
       version: "0.17-unstable-2023-02-07",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "leela-zero",
           repo: "leela-zero",
           rev: "3ee6d20d0b36ae26120331c610926359cc5837de",
@@ -34,7 +31,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchDebianPatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             pname: nix.thunk(() => nix.sel(finalAttrs, "pname")),
             version: "0.17",
             debianRevision: "1.3",
@@ -53,7 +50,7 @@ export default nix.lambda((args) => (() => {
       cmakeFlags: nix.thunk(() => ["-DCMAKE_POLICY_VERSION_MINIMUM=3.10"]),
       dontWrapQtApps: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Go engine modeled after AlphaGo Zero",
         homepage: "https://github.com/gcp/leela-zero",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

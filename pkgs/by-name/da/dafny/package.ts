@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]], [["verify", 22, 5]], [["owner", 44, 5], ["repo", 45, 5], ["tag", 46, 5], ["hash", 47, 5]], [["tests", 95, 12]], [["description", 98, 5], ["homepage", 99, 5], ["maintainers", 100, 5], ["license", 101, 5], ["platforms", 102, 5]], [["pname", 40, 3], ["version", 41, 3], ["src", 43, 3], ["postPatch", 50, 3], ["dotnet-sdk", 67, 3], ["nativeBuildInputs", 68, 3], ["nugetDeps", 69, 3], ["projectFile", 73, 3], ["executables", 79, 3], ["makeWrapperArgs", 82, 3], ["postFixup", 91, 3], ["passthru", 95, 3], ["meta", 97, 3]]]);
 const formals$1 = { args: { lib: false, buildDotnetModule: false, fetchFromGitHub: false, runCommand: false, dafny: false, writeScript: false, jdk11: false, z3: false, dotnetCorePackages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["verify", 22, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["owner", 44, 5], ["repo", 45, 5], ["tag", 46, 5], ["hash", 47, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 95, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 98, 5], ["homepage", 99, 5], ["maintainers", 100, 5], ["license", 101, 5], ["platforms", 102, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 40, 3], ["version", 41, 3], ["src", 43, 3], ["postPatch", 50, 3], ["dotnet-sdk", 67, 3], ["nativeBuildInputs", 68, 3], ["nugetDeps", 69, 3], ["projectFile", 73, 3], ["executables", 79, 3], ["makeWrapperArgs", 82, 3], ["postFixup", 91, 3], ["passthru", 95, 3], ["meta", 97, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,14 +17,14 @@ export default nix.lambda((args) => (() => {
   const z3 = nix.arg($, "z3");
   const dotnetCorePackages = nix.arg($, "dotnetCorePackages");
   const examples = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "gaberch",
       repo: "Various-Algorithms-Verified-With-Dafny",
       rev: "50e451bbcd15e52e27d5bbbf66b0b4c4abbff41c",
       hash: "sha256-Ng5wve/4gQr/2hsFWUFFcTL3K2xH7dP9w8IrmvWMKyg=",
     }))));
   const tests = nix.thunk(() => ({
-    [nix.POS]: pos$2,
+    [nix.POS]: $pos[1],
     verify: nix.thunk(() => nix.app(runCommand, "dafny-test", nix.thunk(() => ({})), nix.thunk(() => nix.str`mkdir $out
 cp ${examples}/SlowMax.dfy $out
 ${dafny}/bin/dafny verify --allow-warnings $out/SlowMax.dfy
@@ -39,7 +34,7 @@ ${dafny}/bin/dafny verify --allow-warnings $out/SlowMax.dfy
       const pname = "Dafny";
       const version = "4.11.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           owner: "dafny-lang",
           repo: "dafny",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -72,9 +67,9 @@ substituteInPlace Source/DafnyRuntime/DafnyRuntime.csproj \\
         nix.thunk(() => nix.str`--prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [z3, dotnet_sdk]))}`),
       ]);
       const postFixup = "ln -s \"$out/bin/Dafny\" \"$out/bin/dafny\" || true\n";
-      const passthru = nix.thunk(() => ({ [nix.POS]: pos$4, tests: tests }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: $pos[3], tests: tests }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Programming language with built-in specification constructs",
         homepage: "https://research.microsoft.com/dafny",
         maintainers: nix.thunk(() => (() => {
@@ -88,7 +83,7 @@ substituteInPlace Source/DafnyRuntime/DafnyRuntime.csproj \\
         })()),
       }));
       return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname,
         version,
         src,

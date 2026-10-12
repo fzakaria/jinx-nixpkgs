@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 12, 5], ["url", 13, 5], ["hash", 16, 5]], [["NIX_CFLAGS_COMPILE", 26, 7]], [["description", 37, 5], ["license", 38, 5], ["homepage", 39, 5], ["platforms", 40, 5], ["maintainers", 41, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["postPatch", 19, 3], ["dontConfigure", 24, 3], ["env", 26, 3], ["installPhase", 28, 3], ["meta", 36, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 12, 5], ["url", 13, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 26, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 37, 5], ["license", 38, 5], ["homepage", 39, 5], ["platforms", 40, 5], ["maintainers", 41, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["postPatch", 19, 3], ["dontConfigure", 24, 3], ["env", 26, 3], ["installPhase", 28, 3], ["meta", 36, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,17 +14,17 @@ export default nix.lambda((args) => (() => {
       const pname = "dawncut";
       const version = "1.54a";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           name: nix.thunk(() => nix.str`${pname}-${version}.tar.gz`),
           url: nix.thunk(() => nix.str`https://geant4.kek.jp/~tanaka/src/dawncut_${nix.builtins.replaceStrings(nix.thunk(() => ["."]), nix.thunk(() => ["_"]), version)}.taz`),
           hash: "sha256-Ux4fDi7TXePisYAxCMDvtzLYOgxnbxQIO9QacTRrT6k=",
         }))));
       const postPatch = "substituteInPlace Makefile.architecture \\\n  --replace 'CXX      := g++' \"\"\n";
       const dontConfigure = true;
-      const env = nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-std=c++98" }));
+      const env = nix.thunk(() => ({ [nix.POS]: $pos[1], NIX_CFLAGS_COMPILE: "-std=c++98" }));
       const installPhase = "runHook preInstall\n\ninstall -Dm 500 dawncut \"$out/bin/dawncut\"\n\nrunHook postInstall\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Tool to generate a 3D scene data clipped with an arbitrary plane",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
         homepage: "https://geant4.kek.jp/~tanaka/DAWN/About_DAWNCUT.html",
@@ -38,7 +35,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

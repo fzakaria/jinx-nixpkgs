@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 29, 24], ["sha256", 29, 28]], [["description", 125, 5], ["longDescription", 126, 5], ["homepage", 131, 5], ["license", 132, 5], ["platforms", 133, 5], ["hydraPlatforms", 134, 5], ["sourceProvenance", 135, 5]], [["name", 22, 3], ["src", 23, 3], ["shell", 30, 3], ["arch", 31, 3], ["unpackPhase", 36, 3], ["patchPhase", 41, 3], ["installPhase", 111, 3], ["meta", 124, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, config: false, fetchurl: false, libx11: false, libxext: false, libxinerama: false, libxrandr: false, libxrender: false, fontconfig: false, freetype: false, openal: false, runtimeShell: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 29, 24], ["sha256", 29, 28]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 125, 5], ["longDescription", 126, 5], ["homepage", 131, 5], ["license", 132, 5], ["platforms", 133, 5], ["hydraPlatforms", 134, 5], ["sourceProvenance", 135, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 22, 3], ["src", 23, 3], ["shell", 30, 3], ["arch", 31, 3], ["unpackPhase", 36, 3], ["patchPhase", 41, 3], ["installPhase", 111, 3], ["meta", 124, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,13 +22,13 @@ export default nix.lambda((args) => (() => {
   const runtimeShell = nix.arg($, "runtimeShell");
   const makeLibraryPath = nix.thunk(() => nix.attr(lib, "makeLibraryPath"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       name: "oilrush",
       src: nix.thunk(() => (() => {
         const url = nix.thunk(() => nix.selOr(config, () => null, "oilrush", "url"));
         const sha256 = nix.thunk(() => nix.selOr(config, () => null, "oilrush", "sha256"));
         nix.assert_((nix.asBool(!nix.eq(url, null)) && nix.asBool(!nix.eq(sha256, null))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/oi/oilrush/package.nix:28:5");
-        return nix.app(fetchurl, nix.thunk(() => ({ [nix.POS]: pos$1, url: url, sha256: sha256 })));
+        return nix.app(fetchurl, nix.thunk(() => ({ [nix.POS]: $pos[0], url: url, sha256: sha256 })));
       })()),
       shell: nix.thunk(() => nix.sel(stdenv, "shell")),
       arch: nix.thunk(() => (nix.asBool(nix.eq(nix.sel(stdenv, "hostPlatform", "system"), "x86_64-linux")) ? "x64" : nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.eq(nix.sel(stdenv, "hostPlatform", "system"), "i686-linux")), "x86"))),
@@ -107,7 +105,7 @@ EOF
 chmod +x "$out/bin/oilrush"
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Naval strategy game",
         longDescription: "Oil Rush is a real-time naval strategy game based on group control. It\ncombines the strategic challenge of a classical RTS with the sheer fun\nof Tower Defense.\n",
         homepage: "http://oilrush-game.com/",

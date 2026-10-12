@@ -2,11 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["name", 23, 5], ["paths", 24, 5]], [["mainProgram", 68, 5], ["description", 70, 7], ["longDescription", 71, 7], ["homepage", 72, 7], ["license", 73, 7], ["platforms", 75, 29]], [["pname", 29, 3], ["version", 30, 11], ["nativeBuildInputs", 32, 3], ["buildCommand", 34, 3], ["meta", 67, 3]]]);
 const formals$1 = { args: { stdenv: false, buildEnv: false, lib: false, libGL: false, ioquake3: false, makeWrapper: false }, ellipsis: false };
 const formals$2 = { args: { paks: false, pname: true, version: true, description: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["name", 23, 5], ["paths", 24, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["mainProgram", 68, 5], ["description", 70, 7], ["longDescription", 71, 7], ["homepage", 72, 7], ["license", 73, 7], ["platforms", 75, 29]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 29, 3], ["version", 30, 11], ["nativeBuildInputs", 32, 3], ["buildCommand", 34, 3], ["meta", 67, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,12 +22,12 @@ export default nix.lambda((args) => (() => {
     const description = nix.argOr($_1, "description", () => "");
     const libPath = nix.thunk(() => nix.app(nix.sel(lib, "makeLibraryPath"), nix.thunk(() => [libGL, nix.thunk(() => nix.sel(stdenv, "cc", "cc"))])));
     const env = nix.thunk(() => nix.app(buildEnv, nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         name: "quake3-env",
         paths: nix.thunk(() => nix.concat([ioquake3], paks)),
       }))));
     return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname: nix.thunk(() => nix.str`${pname}-${nix.sel(ioquake3, "name")}`),
         version: version,
         nativeBuildInputs: nix.thunk(() => [makeWrapper]),
@@ -65,7 +63,7 @@ wrapProgram $out/Applications/${pname}.app/Contents/MacOS/ioq3ded \\
           const from = nix.thunk(() => nix.sel(nix.app(nix.sel(lib, "head"), paks), "meta"));
           const from_1 = nix.thunk(() => nix.sel(ioquake3, "meta"));
           return {
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           mainProgram: nix.thunk(() => nix.str`${pname}`),
           description: nix.thunk(() => nix.attr(from, "description")),
           longDescription: nix.thunk(() => nix.attr(from, "longDescription")),

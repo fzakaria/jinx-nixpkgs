@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]], [["PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION", 45, 7]], [["description", 87, 5], ["homepage", 88, 5], ["downloadPage", 89, 5], ["changelog", 90, 5], ["license", 91, 5], ["maintainers", 92, 5], ["platforms", 96, 5]], [["pname", 22, 3], ["version", 23, 3], ["pyproject", 24, 3], ["src", 26, 3], ["postPatch", 33, 3], ["build-system", 39, 3], ["env", 45, 3], ["dependencies", 47, 3], ["pythonImportsCheck", 53, 3], ["nativeCheckInputs", 55, 3], ["disabledTests", 66, 3], ["disabledTestPaths", 78, 3], ["meta", 86, 3]]]);
 const formals$1 = { args: { boto3: false, buildPythonPackage: false, fetchFromGitHub: false, lib: false, matplotlib: false, moto: false, numpy: false, packaging: false, protobuf: false, pytestCheckHook: false, torch: false, setuptools: false, "setuptools-scm": false, soundfile: false, stdenv: false, tensorboard: false, torchvision: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION", 45, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 87, 5], ["homepage", 88, 5], ["downloadPage", 89, 5], ["changelog", 90, 5], ["license", 91, 5], ["maintainers", 92, 5], ["platforms", 96, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 22, 3], ["version", 23, 3], ["pyproject", 24, 3], ["src", 26, 3], ["postPatch", 33, 3], ["build-system", 39, 3], ["env", 45, 3], ["dependencies", 47, 3], ["pythonImportsCheck", 53, 3], ["nativeCheckInputs", 55, 3], ["disabledTests", 66, 3], ["disabledTestPaths", 78, 3], ["meta", 86, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.6.4";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "lanpa",
           repo: "tensorboardX",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -40,7 +37,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const postPatch = "# https://github.com/lanpa/tensorboardX/pull/761\nsubstituteInPlace tensorboardX/utils.py tests/test_utils.py \\\n  --replace-fail \"newshape=\" \"shape=\"\n";
       const build_system = nix.thunk(() => [setuptools, setuptools_scm]);
-      const env = nix.thunk(() => ({ [nix.POS]: pos$2, PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION: "python" }));
+      const env = nix.thunk(() => ({ [nix.POS]: $pos[1], PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION: "python" }));
       const dependencies = nix.thunk(() => [packaging, protobuf, numpy]);
       const pythonImportsCheck = nix.thunk(() => ["tensorboardX"]);
       const nativeCheckInputs = nix.thunk(() => [
@@ -60,7 +57,7 @@ export default nix.lambda((args) => (() => {
         "tests/test_record_writer.py",
       ]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Library for writing tensorboard-compatible logs",
         homepage: "https://tensorboardx.readthedocs.io",
         downloadPage: "https://github.com/lanpa/tensorboardX",
@@ -76,7 +73,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

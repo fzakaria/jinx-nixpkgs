@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 79, 9], ["sha256", 80, 9]], [["path", 77, 7], ["src", 78, 7]], [["owner", 95, 5], ["repo", 96, 5], ["tag", 97, 5], ["hash", 98, 5], ["fetchSubmodules", 99, 5]], [["extraArgs", 242, 7]], [["dirName", 239, 13], ["tests", 240, 5], ["updateScript", 241, 5]], [["description", 274, 5], ["homepage", 275, 5], ["license", 276, 5], ["maintainers", 277, 5], ["platforms", 278, 5]], [["pname", 91, 3], ["version", 92, 3], ["src", 94, 3], ["patches", 102, 3], ["postPatch", 107, 3], ["buildInputs", 179, 3], ["nativeBuildInputs", 220, 3], ["cmakeFlags", 226, 3], ["passthru", 238, 3], ["postInstall", 246, 3], ["meta", 273, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, fetchurl: false, cmake: false, makeWrapper: false, "pkg-config": false, "arp-scan": false, curl: false, ffmpeg: false, glib: false, iproute2: false, libjpeg: false, libselinux: false, libsepol: false, mp4v2: false, libmysqlclient: false, mariadb: false, nlohmann_json: false, pcre2: false, perl: false, perlPackages: false, polkit: false, systemd: false, "util-linuxMinimal": false, x264: false, zlib: false, coreutils: false, procps: false, psmisc: false, nixosTests: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 79, 9], ["sha256", 80, 9]]);
-const pos$2 = nix.positions(here + "/package.nix", [["path", 77, 7], ["src", 78, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["owner", 95, 5], ["repo", 96, 5], ["tag", 97, 5], ["hash", 98, 5], ["fetchSubmodules", 99, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["extraArgs", 242, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["dirName", 239, 13], ["tests", 240, 5], ["updateScript", 241, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 274, 5], ["homepage", 275, 5], ["license", 276, 5], ["maintainers", 277, 5], ["platforms", 278, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 91, 3], ["version", 92, 3], ["src", 94, 3], ["patches", 102, 3], ["postPatch", 107, 3], ["buildInputs", 179, 3], ["nativeBuildInputs", 220, 3], ["cmakeFlags", 226, 3], ["passthru", 238, 3], ["postInstall", 246, 3], ["meta", 273, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -47,10 +41,10 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const addons = nix.thunk(() => [
     nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       path: "scripts/ZoneMinder/lib/ZoneMinder/Control/Xiaomi.pm",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://gist.githubusercontent.com/joshstrange/73a2f24dfaf5cd5b470024096ce2680f/raw/e964270c5cdbf95e5b7f214f7f0fc6113791530e/Xiaomi.pm",
           sha256: "04n1ap8fx66xfl9q9rypj48pzbgzikq0gisfsfm8wdsmflarz43v",
         })))),
@@ -63,7 +57,7 @@ export default nix.lambda((args) => (() => {
       const pname = "zoneminder";
       const version = "1.38.4";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           owner: "ZoneMinder",
           repo: "zoneminder",
           tag: version,
@@ -187,10 +181,10 @@ substituteInPlace web/includes/functions.php \\
         nix.thunk(() => nix.str`-DZM_WEB_GROUP=${user}`),
       ]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         dirName: dirName,
         tests: nix.thunk(() => nix.sel(nixosTests, "zoneminder")),
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$4, extraArgs: nix.thunk(() => ["--use-github-releases"]) })))),
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: $pos[3], extraArgs: nix.thunk(() => ["--use-github-releases"]) })))),
       }));
       const postInstall = nix.thunk(() => nix.str`PERL5LIB="$PERL5LIB\${PERL5LIB:+:}$out/${nix.sel(perl, "libPrefix")}"
 
@@ -218,7 +212,7 @@ for f in $out/etc/zoneminder/conf.d/*.conf; do
 done
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Video surveillance software system",
         homepage: "https://zoneminder.com",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),
@@ -229,7 +223,7 @@ done
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         pname,
         version,
         src,

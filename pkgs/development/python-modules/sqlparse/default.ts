@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 21, 13], ["version", 21, 19], ["hash", 22, 5]], [["django", 37, 7], ["django-silk", 38, 7], ["pgadmin4", 39, 7]], [["tests", 35, 12]], [["description", 44, 5], ["longDescription", 45, 5], ["homepage", 48, 5], ["changelog", 49, 5], ["license", 50, 5], ["mainProgram", 51, 5]], [["pname", 16, 3], ["version", 17, 3], ["pyproject", 18, 3], ["src", 20, 3], ["build-system", 25, 3], ["nativeBuildInputs", 27, 3], ["nativeCheckInputs", 29, 3], ["postInstall", 31, 3], ["passthru", 35, 3], ["meta", 43, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, hatchling: false, installShellFiles: false, pytestCheckHook: false, django: false, "django-silk": false, pgadmin4: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 21, 13], ["version", 21, 19], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["django", 37, 7], ["django-silk", 38, 7], ["pgadmin4", 39, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["tests", 35, 12]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 44, 5], ["longDescription", 45, 5], ["homepage", 48, 5], ["changelog", 49, 5], ["license", 50, 5], ["mainProgram", 51, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 16, 3], ["version", 17, 3], ["pyproject", 18, 3], ["src", 20, 3], ["build-system", 25, 3], ["nativeBuildInputs", 27, 3], ["nativeCheckInputs", 29, 3], ["postInstall", 31, 3], ["passthru", 35, 3], ["meta", 43, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.5.5";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-4g1KmwuFhf32OxDTAGbHyUxden7EfIiaLYOjyqk/8o4=",
@@ -35,16 +31,16 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const postInstall = "installManPage docs/sqlformat.1\n";
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           django: django,
           "django-silk": django_silk,
           pgadmin4: pgadmin4,
         })),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Non-validating SQL parser for Python",
         longDescription: "Provides support for parsing, splitting and formatting SQL statements.\n",
         homepage: "https://github.com/andialbrecht/sqlparse",
@@ -53,7 +49,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "sqlformat",
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         pyproject,

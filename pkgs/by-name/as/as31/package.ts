@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 14, 5], ["name", 15, 5], ["hash", 16, 5]], [["url", 25, 7], ["hash", 26, 7]], [["homepage", 45, 5], ["description", 46, 5], ["mainProgram", 47, 5], ["license", 48, 5], ["maintainers", 49, 5], ["platforms", 50, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["patches", 19, 3], ["postPatch", 30, 3], ["preConfigure", 36, 3], ["nativeBuildInputs", 40, 3], ["meta", 44, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, fetchpatch: false, bison: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 14, 5], ["name", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 25, 7], ["hash", 26, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 45, 5], ["description", 46, 5], ["mainProgram", 47, 5], ["license", 48, 5], ["maintainers", 49, 5], ["platforms", 50, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["patches", 19, 3], ["postPatch", 30, 3], ["preConfigure", 36, 3], ["nativeBuildInputs", 40, 3], ["meta", 44, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const fetchpatch = nix.arg($, "fetchpatch");
   const bison = nix.arg($, "bison");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "as31",
       version: "2.3.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://debian/pool/main/a/as31/as31_${nix.sel(finalAttrs, "version")}.orig.tar.gz`),
           name: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-zSEyWHFon5nyq717Mpmdv1XZ5Hz0e8ZABqsP8M83c1U=",
@@ -28,7 +25,7 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [
         nix.path(here, "./0000-getline-break.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://salsa.debian.org/debian/as31/-/raw/76735fbf1fb00ce70ffd98385137908b7bd9bd5c/debian/patches/update_sizebuf_types.patch",
             hash: "sha256-ERrPdY0afKwXmdSLoWmWR55nKfvmieGlz+nhwFWRnrM=",
           })))),
@@ -37,7 +34,7 @@ export default nix.lambda((args) => (() => {
       preConfigure: "chmod +x configure\n",
       nativeBuildInputs: nix.thunk(() => [bison]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://www.pjrc.com/tech/8051/tools/as31-doc.html",
         description: "8031/8051 assembler",
         mainProgram: "as31",

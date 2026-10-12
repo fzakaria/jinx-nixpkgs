@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]], [["efivars", 30, 44]], [["tests", 29, 12]], [["description", 34, 5], ["mainProgram", 35, 5], ["homepage", 36, 5], ["license", 37, 5], ["maintainers", 38, 5]], [["pname", 10, 3], ["version", 11, 3], ["format", 12, 3], ["src", 14, 3], ["propagatedBuildInputs", 22, 3], ["doCheck", 25, 3], ["pythonImportsCheck", 27, 3], ["passthru", 29, 3], ["meta", 33, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, pyyaml: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["efivars", 30, 44]]);
-const pos$3 = nix.positions(here + "/default.nix", [["tests", 29, 12]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 34, 5], ["mainProgram", 35, 5], ["homepage", 36, 5], ["license", 37, 5], ["maintainers", 38, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 10, 3], ["version", 11, 3], ["format", 12, 3], ["src", 14, 3], ["propagatedBuildInputs", 22, 3], ["doCheck", 25, 3], ["pythonImportsCheck", 27, 3], ["passthru", 29, 3], ["meta", 33, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const pyyaml = nix.arg($, "pyyaml");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "ovmfvartool",
       version: "unstable-2022-09-04",
       format: "setuptools",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "baloo",
           repo: "ovmfvartool",
           rev: "6a17190131bf44699ea27815543a65efff880142",
@@ -32,14 +28,14 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["ovmfvartool"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(nixosTests, "nixos-test-driver"));
-          return { [nix.POS]: pos$2, efivars: nix.thunk(() => nix.attr(from, "efivars")) };
+          return { [nix.POS]: $pos[1], efivars: nix.thunk(() => nix.attr(from, "efivars")) };
         })()),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Parse and generate OVMF_VARS.fd from Yaml",
         mainProgram: "ovmfvartool",
         homepage: "https://github.com/hlandau/ovmfvartool",

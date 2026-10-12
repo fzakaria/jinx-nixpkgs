@@ -2,33 +2,9 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/composed-types-valueMeta.nix", [[["type", 9, 11]], [["bar", 8, 17]], [["options", 8, 9]], [["type", 6, 5]], [["type", 19, 11]], [["bar", 18, 17]], [["options", 18, 9]], [["type", 16, 5]], [["attrsOfModule", 30, 15], ["mergedAttrsOfModule", 31, 15], ["listOfModule", 32, 15], ["mergedListOfModule", 33, 15]], [["options", 30, 7]], [["mergedAttrsOfModule", 37, 15], ["mergedListOfModule", 38, 15]], [["options", 37, 7]], [["bar", 46, 13]], [["foo", 46, 9]], [["bar", 49, 13]], [["foo", 49, 9]], [["attrsOfModule", 45, 7], ["mergedAttrsOfModule", 48, 7]], [["bar", 57, 13]], [["bar", 62, 13]], [["listOfModule", 55, 16], ["mergedListOfModule", 60, 16]], [["default", 67, 11]], [["default", 70, 11]], [["listResult", 66, 17], ["mergedListResult", 69, 17]], [["config", 55, 9], ["options", 66, 9]], [["imports", 27, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/composed-types-valueMeta.nix", [["type", 9, 11]]);
-const pos$2 = nix.positions(here + "/composed-types-valueMeta.nix", [["bar", 8, 17]]);
-const pos$3 = nix.positions(here + "/composed-types-valueMeta.nix", [["options", 8, 9]]);
-const pos$4 = nix.positions(here + "/composed-types-valueMeta.nix", [["type", 6, 5]]);
-const pos$5 = nix.positions(here + "/composed-types-valueMeta.nix", [["type", 19, 11]]);
-const pos$6 = nix.positions(here + "/composed-types-valueMeta.nix", [["bar", 18, 17]]);
-const pos$7 = nix.positions(here + "/composed-types-valueMeta.nix", [["options", 18, 9]]);
-const pos$8 = nix.positions(here + "/composed-types-valueMeta.nix", [["type", 16, 5]]);
-const pos$9 = nix.positions(here + "/composed-types-valueMeta.nix", [["attrsOfModule", 30, 15], ["mergedAttrsOfModule", 31, 15], ["listOfModule", 32, 15], ["mergedListOfModule", 33, 15]]);
-const pos$10 = nix.positions(here + "/composed-types-valueMeta.nix", [["options", 30, 7]]);
-const pos$11 = nix.positions(here + "/composed-types-valueMeta.nix", [["mergedAttrsOfModule", 37, 15], ["mergedListOfModule", 38, 15]]);
-const pos$12 = nix.positions(here + "/composed-types-valueMeta.nix", [["options", 37, 7]]);
-const pos$13 = nix.positions(here + "/composed-types-valueMeta.nix", [["bar", 46, 13]]);
-const pos$14 = nix.positions(here + "/composed-types-valueMeta.nix", [["foo", 46, 9]]);
-const pos$15 = nix.positions(here + "/composed-types-valueMeta.nix", [["bar", 49, 13]]);
-const pos$16 = nix.positions(here + "/composed-types-valueMeta.nix", [["foo", 49, 9]]);
-const pos$17 = nix.positions(here + "/composed-types-valueMeta.nix", [["attrsOfModule", 45, 7], ["mergedAttrsOfModule", 48, 7]]);
 const formals$2 = { args: { options: false }, ellipsis: true };
-const pos$18 = nix.positions(here + "/composed-types-valueMeta.nix", [["bar", 57, 13]]);
-const pos$19 = nix.positions(here + "/composed-types-valueMeta.nix", [["bar", 62, 13]]);
-const pos$20 = nix.positions(here + "/composed-types-valueMeta.nix", [["listOfModule", 55, 16], ["mergedListOfModule", 60, 16]]);
-const pos$21 = nix.positions(here + "/composed-types-valueMeta.nix", [["default", 67, 11]]);
-const pos$22 = nix.positions(here + "/composed-types-valueMeta.nix", [["default", 70, 11]]);
-const pos$23 = nix.positions(here + "/composed-types-valueMeta.nix", [["listResult", 66, 17], ["mergedListResult", 69, 17]]);
-const pos$24 = nix.positions(here + "/composed-types-valueMeta.nix", [["config", 55, 9], ["options", 66, 9]]);
-const pos$25 = nix.positions(here + "/composed-types-valueMeta.nix", [["imports", 27, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -36,32 +12,32 @@ export default nix.lambda((args) => (() => {
   const types = nix.thunk(() => nix.attr(lib, "types"));
   const mkOption = nix.thunk(() => nix.attr(lib, "mkOption"));
   const attrsOfModule = nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       type: nix.thunk(() => nix.app(nix.sel(types, "attrsOf"), nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             options: nix.thunk(() => ({
-              [nix.POS]: pos$2,
-              bar: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({ [nix.POS]: pos$1, type: nix.thunk(() => nix.sel(types, "int")) })))),
+              [nix.POS]: $pos[1],
+              bar: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({ [nix.POS]: $pos[0], type: nix.thunk(() => nix.sel(types, "int")) })))),
             })),
           })))))),
     }))));
   const listOfModule = nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             options: nix.thunk(() => ({
-              [nix.POS]: pos$6,
-              bar: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({ [nix.POS]: pos$5, type: nix.thunk(() => nix.sel(types, "int")) })))),
+              [nix.POS]: $pos[5],
+              bar: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({ [nix.POS]: $pos[4], type: nix.thunk(() => nix.sel(types, "int")) })))),
             })),
           })))))),
     }))));
   return {
-    [nix.POS]: pos$25,
+    [nix.POS]: $pos[24],
     imports: nix.thunk(() => [
       nix.thunk(() => ({
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         options: nix.thunk(() => ({
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           attrsOfModule: attrsOfModule,
           mergedAttrsOfModule: attrsOfModule,
           listOfModule: listOfModule,
@@ -69,36 +45,42 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       nix.thunk(() => ({
-        [nix.POS]: pos$12,
+        [nix.POS]: $pos[11],
         options: nix.thunk(() => ({
-          [nix.POS]: pos$11,
+          [nix.POS]: $pos[10],
           mergedAttrsOfModule: attrsOfModule,
           mergedListOfModule: listOfModule,
         })),
       })),
       nix.thunk(() => ({
-        [nix.POS]: pos$17,
-        attrsOfModule: nix.thunk(() => ({ [nix.POS]: pos$14, foo: nix.thunk(() => ({ [nix.POS]: pos$13, bar: 42n })) })),
-        mergedAttrsOfModule: nix.thunk(() => ({ [nix.POS]: pos$16, foo: nix.thunk(() => ({ [nix.POS]: pos$15, bar: 42n })) })),
+        [nix.POS]: $pos[16],
+        attrsOfModule: nix.thunk(() => ({
+          [nix.POS]: $pos[13],
+          foo: nix.thunk(() => ({ [nix.POS]: $pos[12], bar: 42n })),
+        })),
+        mergedAttrsOfModule: nix.thunk(() => ({
+          [nix.POS]: $pos[15],
+          foo: nix.thunk(() => ({ [nix.POS]: $pos[14], bar: 42n })),
+        })),
       })),
       nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const options = nix.arg($_1, "options");
         return {
-          [nix.POS]: pos$24,
+          [nix.POS]: $pos[23],
           config: nix.thunk(() => ({
-            [nix.POS]: pos$20,
-            listOfModule: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$18, bar: 42n }))]),
-            mergedListOfModule: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$19, bar: 42n }))]),
+            [nix.POS]: $pos[19],
+            listOfModule: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: $pos[17], bar: 42n }))]),
+            mergedListOfModule: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: $pos[18], bar: 42n }))]),
           })),
           options: nix.thunk(() => ({
-            [nix.POS]: pos$23,
+            [nix.POS]: $pos[22],
             listResult: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                [nix.POS]: pos$21,
+                [nix.POS]: $pos[20],
                 default: nix.thunk(() => nix.sel(nix.builtins.head(nix.thunk(() => nix.sel(options, "listOfModule", "valueMeta", "list"))), "configuration", "options", "bar", "value")),
               })))),
             mergedListResult: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                [nix.POS]: pos$22,
+                [nix.POS]: $pos[21],
                 default: nix.thunk(() => nix.sel(nix.builtins.head(nix.thunk(() => nix.sel(options, "mergedListOfModule", "valueMeta", "list"))), "configuration", "options", "bar", "value")),
               })))),
           })),

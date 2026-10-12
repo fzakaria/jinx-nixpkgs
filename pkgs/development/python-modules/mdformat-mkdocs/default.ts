@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]], [["recommended", 50, 5]], [["description", 75, 5], ["homepage", 76, 5], ["changelog", 77, 5], ["license", 78, 5], ["maintainers", 79, 5]], [["pname", 22, 3], ["version", 23, 3], ["pyproject", 24, 3], ["src", 26, 3], ["postPatch", 33, 3], ["build-system", 38, 3], ["dependencies", 42, 3], ["optional-dependencies", 49, 3], ["nativeCheckInputs", 62, 3], ["disabledTestPaths", 67, 3], ["pythonImportsCheck", 72, 3], ["meta", 74, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, "uv-build": false, "mdformat-beautysh": false, "mdformat-footnote": false, "mdformat-front-matters": false, "mdformat-gfm": false, "mdformat-simple-breaks": false, mdformat: false, "mdit-py-plugins": false, "more-itertools": false, "pytest-snapshot": false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["recommended", 50, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 75, 5], ["homepage", 76, 5], ["changelog", 77, 5], ["license", 78, 5], ["maintainers", 79, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 22, 3], ["version", 23, 3], ["pyproject", 24, 3], ["src", 26, 3], ["postPatch", 33, 3], ["build-system", 38, 3], ["dependencies", 42, 3], ["optional-dependencies", 49, 3], ["nativeCheckInputs", 62, 3], ["disabledTestPaths", 67, 3], ["pythonImportsCheck", 72, 3], ["meta", 74, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,12 +22,12 @@ export default nix.lambda((args) => (() => {
   const pytest_snapshot = nix.arg($, "pytest-snapshot");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "mdformat-mkdocs",
       version: "5.2.0b0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "KyleKing",
           repo: "mdformat-mkdocs",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -40,7 +37,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [uv_build]),
       dependencies: nix.thunk(() => [mdformat, mdformat_gfm, mdit_py_plugins, more_itertools]),
       "optional-dependencies": nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         recommended: nix.thunk(() => [
           mdformat_beautysh,
           mdformat_footnote,
@@ -52,7 +49,7 @@ export default nix.lambda((args) => (() => {
       disabledTestPaths: nix.thunk(() => ["tests/format/test_parsed_result.py"]),
       pythonImportsCheck: nix.thunk(() => ["mdformat_mkdocs"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Mdformat plugin for MkDocs",
         homepage: "https://github.com/KyleKing/mdformat-mkdocs",
         changelog: nix.thunk(() => nix.str`https://github.com/KyleKing/mdformat-mkdocs/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

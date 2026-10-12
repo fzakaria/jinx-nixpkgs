@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["hash", 33, 5]], [["description", 88, 5], ["homepage", 89, 5], ["license", 90, 5], ["maintainers", 91, 5], ["platforms", 92, 5], ["mainProgram", 93, 5]], [["pname", 26, 3], ["version", 27, 3], ["src", 29, 3], ["postPatch", 37, 3], ["buildPhase", 41, 3], ["nativeBuildInputs", 49, 3], ["installPhase", 55, 3], ["meta", 87, 3]]]);
 const formals$1 = { args: { bash: false, "coreutils-prefixed": false, curl: false, fetchFromGitHub: false, gnused: false, gnugrep: false, installShellFiles: false, jq: false, lib: false, makeWrapper: false, mplayer: false, mpv: false, procps: false, scdoc: false, stdenvNoCC: false, streamlink: false, vlc: false, fzf: false, withMpv: true, withVlc: true, withMplayer: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["hash", 33, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 88, 5], ["homepage", 89, 5], ["license", 90, 5], ["maintainers", 91, 5], ["platforms", 92, 5], ["mainProgram", 93, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 26, 3], ["version", 27, 3], ["src", 29, 3], ["postPatch", 37, 3], ["buildPhase", 41, 3], ["nativeBuildInputs", 49, 3], ["installPhase", 55, 3], ["meta", 87, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,11 +29,11 @@ export default nix.lambda((args) => (() => {
   const withVlc = nix.argOr($, "withVlc", () => false);
   const withMplayer = nix.argOr($, "withMplayer", () => false);
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "wtwitch",
       version: "2.6.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "krathalan",
           repo: "wtwitch",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -58,7 +56,7 @@ wrapProgram $out/bin/wtwitch \\
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Terminal user interface for Twitch",
         homepage: "https://github.com/krathalan/wtwitch",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

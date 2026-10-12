@@ -2,11 +2,8 @@
 import * as nix from "../../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 42]], [["pname", 26, 26], ["version", 26, 32], ["src", 26, 40], ["hash", 27, 54], ["postPatch", 30, 5]], [["mainProgram", 45, 5], ["homepage", 46, 5], ["description", 47, 5], ["platforms", 48, 5], ["license", 49, 5], ["teams", 50, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["strictDeps", 23, 3], ["swiftpmDeps", 25, 3], ["nativeBuildInputs", 35, 3], ["doCheck", 40, 3], ["__structuredAttrs", 42, 3], ["meta", 44, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, fetchSwiftPMDeps: false, stdenv: false, swift: false, swiftpm: false, swift_release: false, swift_sources: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 42]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 26, 26], ["version", 26, 32], ["src", 26, 40], ["hash", 27, 54], ["postPatch", 30, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["mainProgram", 45, 5], ["homepage", 46, 5], ["description", 47, 5], ["platforms", 48, 5], ["license", 49, 5], ["teams", 50, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["strictDeps", 23, 3], ["swiftpmDeps", 25, 3], ["nativeBuildInputs", 35, 3], ["doCheck", 40, 3], ["__structuredAttrs", 42, 3], ["meta", 44, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,13 +16,13 @@ export default nix.lambda((args) => (() => {
   const swift_release = nix.arg($, "swift_release");
   const swift_sources = nix.arg($, "swift_sources");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "swift-format",
       version: swift_release,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(swift_sources, "swift-format"));
           return {
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "swiftlang",
           repo: "swift-format",
           tag: nix.thunk(() => nix.str`swift-${nix.sel(finalAttrs, "version")}-RELEASE`),
@@ -36,7 +33,7 @@ export default nix.lambda((args) => (() => {
       swiftpmDeps: nix.thunk(() => nix.app(fetchSwiftPMDeps, nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(swift_sources, "swift-format", "swiftpmDeps"));
           return {
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -49,7 +46,7 @@ export default nix.lambda((args) => (() => {
       doCheck: nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))),
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         mainProgram: "swift-format",
         homepage: "https://github.com/swiftlang/swift-format",
         description: "Swift code formatter",

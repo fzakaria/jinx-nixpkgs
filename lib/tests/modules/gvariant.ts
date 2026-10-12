@@ -2,31 +2,26 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/gvariant.nix", [[["type", 5, 31]], [["type", 6, 32]], [["examples", 5, 5], ["assertion", 6, 5]], [["bool", 11, 7], ["float", 12, 7], ["int32", 13, 7], ["uint32", 14, 7], ["int16", 15, 7], ["uint16", 16, 7], ["int64", 17, 7], ["uint64", 18, 7], ["array1", 19, 7], ["array2", 20, 7], ["array3", 21, 7], ["emptyArray", 22, 7], ["string", 23, 7], ["escapedString", 24, 7], ["tuple", 27, 7], ["maybe1", 31, 7], ["maybe2", 32, 7], ["variant", 33, 7], ["dictionaryEntry", 34, 7]], [["examples", 10, 5], ["assertion", 37, 5]], [["options", 4, 3], ["config", 9, 3]]]);
 const formals$1 = { args: { config: false, lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/gvariant.nix", [["type", 5, 31]]);
-const pos$2 = nix.positions(here + "/gvariant.nix", [["type", 6, 32]]);
-const pos$3 = nix.positions(here + "/gvariant.nix", [["examples", 5, 5], ["assertion", 6, 5]]);
-const pos$4 = nix.positions(here + "/gvariant.nix", [["bool", 11, 7], ["float", 12, 7], ["int32", 13, 7], ["uint32", 14, 7], ["int16", 15, 7], ["uint16", 16, 7], ["int64", 17, 7], ["uint64", 18, 7], ["array1", 19, 7], ["array2", 20, 7], ["array3", 21, 7], ["emptyArray", 22, 7], ["string", 23, 7], ["escapedString", 24, 7], ["tuple", 27, 7], ["maybe1", 31, 7], ["maybe2", 32, 7], ["variant", 33, 7], ["dictionaryEntry", 34, 7]]);
-const pos$5 = nix.positions(here + "/gvariant.nix", [["examples", 10, 5], ["assertion", 37, 5]]);
-const pos$6 = nix.positions(here + "/gvariant.nix", [["options", 4, 3], ["config", 9, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const config = nix.arg($, "config");
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$6,
+    [nix.POS]: $pos[5],
     options: nix.thunk(() => ({
-      [nix.POS]: pos$3,
-      examples: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({ [nix.POS]: pos$1, type: nix.thunk(() => nix.sel(lib, "types", "attrs")) })))),
-      assertion: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({ [nix.POS]: pos$2, type: nix.thunk(() => nix.sel(lib, "types", "bool")) })))),
+      [nix.POS]: $pos[2],
+      examples: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({ [nix.POS]: $pos[0], type: nix.thunk(() => nix.sel(lib, "types", "attrs")) })))),
+      assertion: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({ [nix.POS]: $pos[1], type: nix.thunk(() => nix.sel(lib, "types", "bool")) })))),
     })),
     config: nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       examples: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "gvariant")), null);
         return {
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           bool: true,
           float: 3.14,
           int32: nix.thunk(() => nix.app(nix.lookup(w, "mkInt32"), nix.thunk(() => nix.neg(42n)))),

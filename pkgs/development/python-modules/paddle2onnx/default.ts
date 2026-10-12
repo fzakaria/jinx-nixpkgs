@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 17, 13], ["version", 17, 19], ["format", 18, 5], ["dist", 19, 5], ["python", 20, 5], ["abi", 21, 5], ["platform", 22, 5], ["hash", 23, 5]], [["description", 42, 5], ["homepage", 43, 5], ["changelog", 44, 5], ["mainProgram", 45, 5], ["license", 46, 5], ["platforms", 47, 5], ["maintainers", 48, 5]], [["pname", 28, 5], ["version", 29, 5], ["src", 30, 5], ["format", 31, 5], ["disabled", 34, 3], ["dependencies", 36, 3], ["meta", 41, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, pythonOlder: false, pythonAtLeast: false, python: false, onnx: false, paddlepaddle: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 17, 13], ["version", 17, 19], ["format", 18, 5], ["dist", 19, 5], ["python", 20, 5], ["abi", 21, 5], ["platform", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 42, 5], ["homepage", 43, 5], ["changelog", 44, 5], ["mainProgram", 45, 5], ["license", 46, 5], ["platforms", 47, 5], ["maintainers", 48, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 28, 5], ["version", 29, 5], ["src", 30, 5], ["format", 31, 5], ["disabled", 34, 3], ["dependencies", 36, 3], ["meta", 41, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,7 +20,7 @@ export default nix.lambda((args) => (() => {
   const format = "wheel";
   const pyShortVersion = nix.thunk(() => nix.str`cp${nix.builtins.replaceStrings(nix.thunk(() => ["."]), nix.thunk(() => [""]), nix.thunk(() => nix.sel(python, "pythonVersion")))}`);
   const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       pname: pname,
       version: version,
       format: "wheel",
@@ -33,7 +31,7 @@ export default nix.lambda((args) => (() => {
       hash: "sha256-RCD6iTvzhGrFjW02lasTwQoM+Xa68Q5b6Ito3KvqdHg=",
     }))));
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: pname,
       version: version,
       src: src,
@@ -41,7 +39,7 @@ export default nix.lambda((args) => (() => {
       disabled: nix.thunk(() => (nix.asBool(nix.app(pythonOlder, "3.12")) || nix.asBool(nix.app(pythonAtLeast, "3.13")))),
       dependencies: nix.thunk(() => [onnx, paddlepaddle]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "ONNX Model Exporter for PaddlePaddle",
         homepage: "https://github.com/PaddlePaddle/Paddle2ONNX",
         changelog: nix.thunk(() => nix.str`https://github.com/PaddlePaddle/Paddle2ONNX/releases/tag/v${version}`),

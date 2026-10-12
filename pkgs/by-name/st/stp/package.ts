@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 33, 5], ["repo", 34, 5], ["tag", 35, 5], ["hash", 36, 5], ["fetchSubmodules", 37, 5]], [["name", 43, 7], ["url", 44, 7], ["hash", 45, 7]], [["name", 95, 9], ["paths", 96, 9]], [["extraArgs", 163, 7]], [["updateScript", 162, 5]], [["description", 171, 5], ["homepage", 172, 5], ["maintainers", 173, 5], ["platforms", 177, 5], ["license", 178, 5]], [["pname", 29, 3], ["version", 30, 3], ["src", 32, 3], ["patches", 40, 3], ["postPatch", 49, 3], ["buildInputs", 73, 3], ["nativeBuildInputs", 82, 3], ["cmakeFlags", 91, 3], ["outputs", 112, 3], ["preConfigure", 117, 3], ["nativeCheckInputs", 131, 3], ["doCheck", 138, 3], ["postInstall", 140, 3], ["doInstallCheck", 149, 3], ["postInstallCheck", 150, 3], ["passthru", 161, 3], ["meta", 170, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, cmake: false, boost: false, bison: false, flex: false, "pkg-config": false, fetchFromGitHub: false, fetchpatch: false, symlinkJoin: false, gitMinimal: false, perl: false, python3: false, zlib: false, minisat: false, cryptominisat: false, gmp: false, cadical_2: false, gtest: false, lit: false, llvmPackages: false, outputcheck: false, "nix-update-script": false, useCadical: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 33, 5], ["repo", 34, 5], ["tag", 35, 5], ["hash", 36, 5], ["fetchSubmodules", 37, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 43, 7], ["url", 44, 7], ["hash", 45, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 95, 9], ["paths", 96, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["extraArgs", 163, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["updateScript", 162, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 171, 5], ["homepage", 172, 5], ["maintainers", 173, 5], ["platforms", 177, 5], ["license", 178, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 29, 3], ["version", 30, 3], ["src", 32, 3], ["patches", 40, 3], ["postPatch", 49, 3], ["buildInputs", 73, 3], ["nativeBuildInputs", 82, 3], ["cmakeFlags", 91, 3], ["outputs", 112, 3], ["preConfigure", 117, 3], ["nativeCheckInputs", 131, 3], ["doCheck", 138, 3], ["postInstall", 140, 3], ["doInstallCheck", 149, 3], ["postInstallCheck", 150, 3], ["passthru", 161, 3], ["meta", 170, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -38,11 +32,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const useCadical = nix.argOr($, "useCadical", () => true);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "stp",
       version: "2.4.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "stp",
           repo: "stp",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -51,7 +45,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "python-3.14-ast-constant.patch",
             url: "https://github.com/stp/stp/commit/e5ab190e872d669b8fcd0d76e432e982707fa706.patch",
             hash: "sha256-EKeLny9sb2XVsJHzSDh2WVvIg8jPIr0MkEqCHvctbB8=",
@@ -62,7 +56,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [cmake, bison, flex, gitMinimal, perl, pkg_config]),
       cmakeFlags: nix.thunk(() => (() => {
         const cadicalDependency = nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: nix.thunk(() => nix.str`stp-${nix.sel(finalAttrs, "version")}-cadical`),
             paths: nix.thunk(() => [
               nix.thunk(() => nix.sel(cadical_2, "lib")),
@@ -102,14 +96,14 @@ PYTHONPATH=$out/${nix.sel(python3, "sitePackages")} ${nix.app(nix.sel(lib, "getE
   "import stp; s = stp.Solver(); a, b, c = s.bitvec('a', 32), s.bitvec('b', 32), s.bitvec('c', 32); s.add(a == 5); s.add(b == 6); s.add(a + b == c); assert s.check(); print(s.model())" >&2
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             extraArgs: nix.thunk(() => ["--version-regex", "^v(2\\.3\\.[0-9]+)$"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Simple Theorem Prover",
         homepage: "https://stp.github.io/",
         maintainers: nix.thunk(() => (() => {

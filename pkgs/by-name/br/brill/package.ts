@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 13, 5], ["hash", 14, 5], ["stripRoot", 15, 5]], [["description", 30, 5], ["longDescription", 31, 5], ["homepage", 38, 5], ["downloadPage", 39, 5], ["license", 40, 5], ["platforms", 41, 5], ["maintainers", 42, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["nativeBuildInputs", 18, 3], ["installPhase", 20, 3], ["meta", 29, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchzip: false, installFonts: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 13, 5], ["hash", 14, 5], ["stripRoot", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 30, 5], ["longDescription", 31, 5], ["homepage", 38, 5], ["downloadPage", 39, 5], ["license", 40, 5], ["platforms", 41, 5], ["maintainers", 42, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["nativeBuildInputs", 18, 3], ["installPhase", 20, 3], ["meta", 29, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchzip = nix.arg($, "fetchzip");
   const installFonts = nix.arg($, "installFonts");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "brill",
       version: "4.000.073",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://web.archive.org/web/20250719162541/https://brill.com/fileasset/The_Brill_Typeface_Package_v_4_0.zip",
           hash: "sha256-ugmEIkeBzD/4C9wkVfbctEtnzI8Kw+YD6KGcbk4BAf4=",
           stripRoot: false,
@@ -26,7 +24,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [installFonts]),
       installPhase: "runHook preInstall\n\ninstall -Dm644 *agreement.pdf -t $out/share/licenses/brill\ninstall -Dm644 *use.pdf       -t $out/share/doc/brill\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "In-house serif typeface for the publishing house Brill, designed by John Hudson; free for non-commercial use",
         longDescription: "Brill has “a neo-classical design geared towards optimum legibility”.\n\nAccording to designer John Hudson (Tiro Typeworks):\n“the mostly vertical contrast axis and expansion stroke model of the Brill types were chosen because they favour the mirrored letters of the International Phonetic Association alphabet. There is an inherent stability in this style that makes it more easily adaptable to a wide variety of shapes than, for instance, a renaissance style type with an oblique axis and broad-nib modelling.\nTechnically, the Brill fonts have to be able to legibly display any combination of the supported characters that might be encountered in text, including sequences of combining diacritic marks above and below letters, and to be able to do so in typographically sophisticated ways involving smallcaps etc. The OpenType Layout programming in the fonts includes smart contextual rules affecting the shape, spacing and mark positioning of characters. The idea is that users will be able to throw pretty much any text at these fonts and get back a legible and aesthetically pleasing display.’\n",
         homepage: "https://brill.com/page/BrillFont/brill-typeface",

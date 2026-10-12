@@ -2,9 +2,8 @@
 import * as nix from "../../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/elm-format-test-lib.nix", [[["url", 24, 5], ["sha256", 25, 5], ["rev", 26, 5], ["fetchSubmodules", 27, 5]], [["pname", 21, 3], ["version", 22, 3], ["src", 23, 3], ["postUnpack", 29, 3], ["libraryHaskellDepends", 30, 3], ["testHaskellDepends", 43, 3], ["testToolDepends", 58, 3], ["doHaddock", 59, 3], ["description", 60, 3], ["license", 61, 3]]]);
 const formals$1 = { args: { mkDerivation: false, "avh4-lib": false, base: false, containers: false, fetchgit: false, filepath: false, hspec: false, "hspec-core": false, "hspec-golden": false, lib: false, mtl: false, split: false, tasty: false, "tasty-discover": false, "tasty-hspec": false, "tasty-hunit": false, text: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/elm-format-test-lib.nix", [["url", 24, 5], ["sha256", 25, 5], ["rev", 26, 5], ["fetchSubmodules", 27, 5]]);
-const pos$2 = nix.positions(here + "/elm-format-test-lib.nix", [["pname", 21, 3], ["version", 22, 3], ["src", 23, 3], ["postUnpack", 29, 3], ["libraryHaskellDepends", 30, 3], ["testHaskellDepends", 43, 3], ["testToolDepends", 58, 3], ["doHaddock", 59, 3], ["description", 60, 3], ["license", 61, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const tasty_hunit = nix.arg($, "tasty-hunit");
   const text = nix.arg($, "text");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "elm-format-test-lib",
       version: "0.0.0.1",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://github.com/avh4/elm-format",
           sha256: "13i1wgva6p9zsx1a7sfb3skc0rv187isb920chkhljyh48c12k8l",
           rev: "4c5bfea5f47b38c1fd7ffa431c51c328a3ae5ba6",

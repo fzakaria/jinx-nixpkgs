@@ -2,25 +2,10 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["updateScript", 13, 14]], [["lockFile", 15, 15]], [["name", 9, 5], ["version", 10, 5], ["src", 11, 5], ["passthru", 13, 5], ["cargoLock", 15, 5]], [["libraries", 21, 9]], [["required", 48, 19], ["type", 49, 19], ["_type", 50, 19]], [["value", 55, 19], ["required", 56, 19], ["type", 57, 19], ["_type", 58, 19]], [["value", 75, 19], ["_type", 76, 11]], [["value", 83, 23], ["optional", 84, 15], ["_type", 85, 15]], [["value", 96, 15], ["optional", 97, 15], ["_type", 98, 15]], [["mkInclude", 42, 9], ["mkAppend", 74, 9], ["mkSubstitution", 79, 9]], [["description", 126, 15]], [["json", 175, 24]], [["name", 144, 23], ["dontUnpack", 146, 15], ["preferLocalBuild", 147, 15], ["json", 149, 15], ["strictDeps", 151, 15], ["nativeBuildInputs", 152, 15], ["buildPhase", 153, 15], ["doCheck", 159, 23], ["nativeCheckInputs", 160, 15], ["checkPhase", 161, 15], ["installPhase", 167, 15], ["__structuredAttrs", 173, 15], ["passthru", 175, 15]], [["hocon-generator", 179, 13], ["hocon-validator", 180, 13]], [["type", 104, 7], ["lib", 131, 7], ["generate", 133, 7]], [["format", 34, 3]]]);
 const formals$1 = { args: { lib: false, pkgs: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["updateScript", 13, 14]]);
-const pos$2 = nix.positions(here + "/default.nix", [["lockFile", 15, 15]]);
-const pos$3 = nix.positions(here + "/default.nix", [["name", 9, 5], ["version", 10, 5], ["src", 11, 5], ["passthru", 13, 5], ["cargoLock", 15, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["libraries", 21, 9]]);
 const formals$2 = { args: { generator: true, validator: true, doCheck: true }, ellipsis: false };
-const pos$5 = nix.positions(here + "/default.nix", [["required", 48, 19], ["type", 49, 19], ["_type", 50, 19]]);
-const pos$6 = nix.positions(here + "/default.nix", [["value", 55, 19], ["required", 56, 19], ["type", 57, 19], ["_type", 58, 19]]);
-const pos$7 = nix.positions(here + "/default.nix", [["value", 75, 19], ["_type", 76, 11]]);
-const pos$8 = nix.positions(here + "/default.nix", [["value", 83, 23], ["optional", 84, 15], ["_type", 85, 15]]);
-const pos$9 = nix.positions(here + "/default.nix", [["value", 96, 15], ["optional", 97, 15], ["_type", 98, 15]]);
-const pos$10 = nix.positions(here + "/default.nix", [["mkInclude", 42, 9], ["mkAppend", 74, 9], ["mkSubstitution", 79, 9]]);
-const pos$11 = nix.positions(here + "/default.nix", [["description", 126, 15]]);
 const formals$3 = { args: { stdenvNoCC: false, "hocon-generator": false, "hocon-validator": false, writeText: false }, ellipsis: false };
-const pos$12 = nix.positions(here + "/default.nix", [["json", 175, 24]]);
-const pos$13 = nix.positions(here + "/default.nix", [["name", 144, 23], ["dontUnpack", 146, 15], ["preferLocalBuild", 147, 15], ["json", 149, 15], ["strictDeps", 151, 15], ["nativeBuildInputs", 152, 15], ["buildPhase", 153, 15], ["doCheck", 159, 23], ["nativeCheckInputs", 160, 15], ["checkPhase", 161, 15], ["installPhase", 167, 15], ["__structuredAttrs", 173, 15], ["passthru", 175, 15]]);
-const pos$14 = nix.positions(here + "/default.nix", [["hocon-generator", 179, 13], ["hocon-validator", 180, 13]]);
-const pos$15 = nix.positions(here + "/default.nix", [["type", 104, 7], ["lib", 131, 7], ["generate", 133, 7]]);
-const pos$16 = nix.positions(here + "/default.nix", [["format", 34, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,29 +14,29 @@ export default nix.lambda((args) => (() => {
   const buildPackages = nix.thunk(() => nix.attr(pkgs, "buildPackages"));
   const callPackage = nix.thunk(() => nix.attr(pkgs, "callPackage"));
   const hocon_generator = nix.thunk(() => nix.app(nix.sel(buildPackages, "rustPlatform", "buildRustPackage"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       name: "hocon-generator",
       version: "0.1.0",
       src: nix.path(here, "./src"),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$1, updateScript: nix.path(here, "./update.sh") })),
-      cargoLock: nix.thunk(() => ({ [nix.POS]: pos$2, lockFile: nix.path(here, "./src/Cargo.lock") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[0], updateScript: nix.path(here, "./update.sh") })),
+      cargoLock: nix.thunk(() => ({ [nix.POS]: $pos[1], lockFile: nix.path(here, "./src/Cargo.lock") })),
     }))));
   const hocon_validator = nix.thunk(() => nix.app(nix.sel(pkgs, "writers", "writePython3Bin"), "hocon-validator", nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       libraries: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "python3Packages", "pyhocon"))]),
     })), "from sys import argv\nfrom pyhocon import ConfigFactory\n\nif not len(argv) == 2:\n    print(\"USAGE: hocon-validator <file>\")\n\nConfigFactory.parse_file(argv[1])\n"));
   return {
-    [nix.POS]: pos$16,
+    [nix.POS]: $pos[15],
     format: nix.lambda((args_1) => (() => {
       const $_1 = nix.formals(args_1, formals$2);
       const generator = nix.argOr($_1, "generator", () => nix.force(hocon_generator));
       const validator = nix.argOr($_1, "validator", () => nix.force(hocon_validator));
       const doCheck = nix.argOr($_1, "doCheck", () => true);
       const hoconLib = nix.thunk(() => ({
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         mkInclude: (value) => (() => {
-          const includeStatement = nix.thunk(() => (nix.asBool((nix.asBool(nix.app(nix.sel(lib, "isAttrs"), value)) && nix.asBool(!nix.asBool(nix.app(nix.sel(lib, "isDerivation"), value))))) ? nix.update({ [nix.POS]: pos$5, required: false, type: null, _type: "include" }, value) : {
-            [nix.POS]: pos$6,
+          const includeStatement = nix.thunk(() => (nix.asBool((nix.asBool(nix.app(nix.sel(lib, "isAttrs"), value)) && nix.asBool(!nix.asBool(nix.app(nix.sel(lib, "isDerivation"), value))))) ? nix.update({ [nix.POS]: $pos[4], required: false, type: null, _type: "include" }, value) : {
+            [nix.POS]: $pos[5],
             value: nix.thunk(() => nix.builtins.toString(value)),
             required: false,
             type: null,
@@ -62,15 +47,15 @@ ${nix.app(nix.sel(lib, "generators", "toPretty"), nix.thunk(() => ({})), include
 `)), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/pkgs-lib/formats/hocon/default.nix:61:11");
           return nix.force(includeStatement);
         })(),
-        mkAppend: (value) => ({ [nix.POS]: pos$7, value: value, _type: "append" }),
-        mkSubstitution: (value) => (nix.asBool(nix.app(nix.sel(lib, "isString"), value)) ? { [nix.POS]: pos$8, value: value, optional: false, _type: "substitution" } : (() => {
+        mkAppend: (value) => ({ [nix.POS]: $pos[6], value: value, _type: "append" }),
+        mkSubstitution: (value) => (nix.asBool(nix.app(nix.sel(lib, "isString"), value)) ? { [nix.POS]: $pos[7], value: value, optional: false, _type: "substitution" } : (() => {
           nix.assert_(nix.app(nix.sel(lib, "assertMsg"), nix.thunk(() => nix.app(nix.sel(lib, "isAttrs"), value)), nix.thunk(() => nix.str`Value of invalid type provided to \`hocon.lib.mkSubstitution\`: ${nix.app(nix.sel(lib, "typeOf"), value)}
 `)), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/pkgs-lib/formats/hocon/default.nix:88:13");
           nix.assert_(nix.app(nix.sel(lib, "assertMsg"), nix.thunk(() => nix.has(value, "value")), nix.thunk(() => nix.str`Argument to \`hocon.lib.mkSubstitution\` is missing a \`value\`:
 ${nix.builtins.toJSON(value)}
 `)), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/pkgs-lib/formats/hocon/default.nix:91:13");
           return {
-            [nix.POS]: pos$9,
+            [nix.POS]: $pos[8],
             value: nix.thunk(() => nix.sel(value, "value")),
             optional: nix.thunk(() => nix.selOr(value, () => false, "optional")),
             _type: "substitution",
@@ -78,7 +63,7 @@ ${nix.builtins.toJSON(value)}
         })()),
       }));
       return {
-        [nix.POS]: pos$15,
+        [nix.POS]: $pos[14],
         type: nix.thunk(() => (() => {
           const type$ = nix.thunk(() => (() => {
             const w = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), null);
@@ -95,7 +80,7 @@ ${nix.builtins.toJSON(value)}
                 nix.thunk(() => nix.app(nix.lookup(w, "addCheck"), nix.thunk(() => nix.app(nix.lookup(w, "listOf"), atomType)), nix.thunk(() => nix.app(nix.sel(lib, "all"), nix.thunk(() => nix.sel(atomType, "check")))))),
                 nix.thunk(() => nix.app(nix.lookup(w, "addCheck"), nix.thunk(() => nix.app(nix.lookup(w, "listOf"), includeType)), nix.thunk(() => nix.app(nix.sel(lib, "all"), nix.thunk(() => nix.sel(includeType, "check")))))),
                 nix.thunk(() => nix.app(nix.lookup(w, "attrsOf"), type$)),
-              ])), { [nix.POS]: pos$11, description: "HOCON value" });
+              ])), { [nix.POS]: $pos[10], description: "HOCON value" });
           })());
           return nix.force(type$);
         })()),
@@ -107,7 +92,7 @@ ${nix.builtins.toJSON(value)}
             const hocon_validator_1 = nix.arg($_2, "hocon-validator");
             const writeText = nix.arg($_2, "writeText");
             return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-                [nix.POS]: pos$13,
+                [nix.POS]: $pos[12],
                 name: name,
                 dontUnpack: true,
                 preferLocalBuild: true,
@@ -121,12 +106,12 @@ ${nix.builtins.toJSON(value)}
                 installPhase: "runHook preInstall\nmv output.conf $out\nrunHook postInstall\n",
                 __structuredAttrs: true,
                 passthru: nix.thunk(() => ({
-                  [nix.POS]: pos$12,
+                  [nix.POS]: $pos[11],
                   json: nix.thunk(() => nix.app(writeText, nix.thunk(() => nix.str`${nix.sel(finalAttrs, "name")}.json`), nix.thunk(() => nix.sel(finalAttrs, "json")))),
                 })),
               }));
           })(), formals$3), nix.thunk(() => ({
-            [nix.POS]: pos$14,
+            [nix.POS]: $pos[13],
             "hocon-generator": generator,
             "hocon-validator": validator,
           }))),

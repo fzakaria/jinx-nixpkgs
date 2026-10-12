@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 27, 5], ["version", 28, 13], ["hash", 29, 5]], [["all", 35, 5], ["attrs", 43, 5], ["cattrs", 44, 5], ["click", 45, 5], ["option-groups", 46, 5], ["jinja", 50, 5], ["pydantic", 51, 5]], [["description", 86, 5], ["homepage", 87, 5], ["changelog", 88, 5], ["license", 89, 5], ["maintainers", 90, 5]], [["pname", 22, 3], ["version", 23, 3], ["pyproject", 24, 3], ["src", 26, 3], ["build-system", 32, 3], ["optional-dependencies", 34, 3], ["nativeBuildInputs", 54, 3], ["nativeCheckInputs", 56, 3], ["enabledTestPaths", 66, 3], ["disabledTests", 68, 3], ["disabledTestPaths", 74, 3], ["pythonImportsCheck", 83, 3], ["meta", 85, 3]]]);
 const formals$1 = { args: { lib: false, attrs: false, buildPythonPackage: false, cattrs: false, "click-option-group": false, click: false, fetchPypi: false, "hatch-vcs": false, hatchling: false, hypothesis: false, jinja2: false, pydantic: false, "pytest-cov-stub": false, pytestCheckHook: false, "python-dotenv": false, pythonAtLeast: false, "rich-click": false, sybil: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 27, 5], ["version", 28, 13], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["all", 35, 5], ["attrs", 43, 5], ["cattrs", 44, 5], ["click", 45, 5], ["option-groups", 46, 5], ["jinja", 50, 5], ["pydantic", 51, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 86, 5], ["homepage", 87, 5], ["changelog", 88, 5], ["license", 89, 5], ["maintainers", 90, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 22, 3], ["version", 23, 3], ["pyproject", 24, 3], ["src", 26, 3], ["build-system", 32, 3], ["optional-dependencies", 34, 3], ["nativeBuildInputs", 54, 3], ["nativeCheckInputs", 56, 3], ["enabledTestPaths", 66, 3], ["disabledTests", 68, 3], ["disabledTestPaths", 74, 3], ["pythonImportsCheck", 83, 3], ["meta", 85, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,14 +30,14 @@ export default nix.lambda((args) => (() => {
       const version = "25.3.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "typed_settings",
           version: version,
           hash: "sha256-hl61LDGE9GdwVkWh5Y251xngi515V0SKKtjLvCLtIaY=",
         }))));
       const build_system = nix.thunk(() => [hatchling]);
       const optional_dependencies = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         all: nix.thunk(() => [attrs, cattrs, click, click_option_group, jinja2, pydantic]),
         attrs: nix.thunk(() => [attrs]),
         cattrs: nix.thunk(() => [cattrs]),
@@ -63,7 +60,7 @@ export default nix.lambda((args) => (() => {
       const disabledTestPaths = nix.thunk(() => nix.concat(["tests/test_onepassword.py"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(pythonAtLeast, "3.14")), nix.thunk(() => ["tests/test_cli_argparse.py"]))));
       const pythonImportsCheck = nix.thunk(() => ["typed_settings"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Typed settings based on attrs classes",
         homepage: "https://gitlab.com/sscherfke/typed-settings",
         changelog: nix.thunk(() => nix.str`https://gitlab.com/sscherfke/typed-settings/-/blob/${version}/CHANGELOG.rst`),
@@ -71,7 +68,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

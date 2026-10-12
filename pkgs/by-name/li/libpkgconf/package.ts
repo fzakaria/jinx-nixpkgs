@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 19, 5], ["hash", 20, 5]], [["url", 63, 5], ["rev-prefix", 64, 5]], [["updateScript", 62, 12]], [["homepage", 68, 5], ["description", 69, 5], ["longDescription", 70, 5], ["changelog", 79, 5], ["license", 80, 5], ["mainProgram", 81, 5], ["maintainers", 82, 5], ["platforms", 85, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 18, 3], ["outputs", 23, 3], ["nativeBuildInputs", 31, 3], ["enableParallelBuilding", 39, 3], ["postFixup", 44, 3], ["passthru", 62, 3], ["meta", 67, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, autoconf: false, automake: false, libtool: false, removeReferencesTo: false, gitUpdater: false, autoreconfHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 63, 5], ["rev-prefix", 64, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 62, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 68, 5], ["description", 69, 5], ["longDescription", 70, 5], ["changelog", 79, 5], ["license", 80, 5], ["mainProgram", 81, 5], ["maintainers", 82, 5], ["platforms", 85, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 18, 3], ["outputs", 23, 3], ["nativeBuildInputs", 31, 3], ["enableParallelBuilding", 39, 3], ["postFixup", 44, 3], ["passthru", 62, 3], ["meta", 67, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const gitUpdater = nix.arg($, "gitUpdater");
   const autoreconfHook = nix.arg($, "autoreconfHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "pkgconf",
       version: "2.5.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/pkgconf/pkgconf/archive/refs/tags/pkgconf-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-eXIbrcrRmH3q2cNgnrSHerm1iCHAa9rLgk8siJfBHyo=",
         })))),
@@ -42,15 +38,15 @@ remove-references-to \\
 `, nix.str`mv ${nix.builtins.placeholder("dev")}/share ${nix.builtins.placeholder("out")}
 `)),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/pkgconf/pkgconf",
             "rev-prefix": "pkgconf-",
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://github.com/pkgconf/pkgconf",
         description: "Package compiler and linker metadata toolkit",
         longDescription: "pkgconf is a program which helps to configure compiler and linker flags\nfor development libraries. It is similar to pkg-config from\nfreedesktop.org.\n\nlibpkgconf is a library which provides access to most of pkgconf's\nfunctionality, to allow other tooling such as compilers and IDEs to\ndiscover and use libraries configured by pkgconf.\n",

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["homepage", 16, 5], ["description", 17, 5], ["sourceProvenance", 18, 5], ["license", 19, 5], ["platforms", 20, 5], ["mainProgram", 24, 5]], [["pname", 29, 52], ["updateScript", 29, 58], ["meta", 29, 71]], [["pname", 31, 51], ["updateScript", 31, 57], ["meta", 31, 70]]]);
 const formals$1 = { args: { lib: false, stdenv: false, callPackage: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/package.nix", [["homepage", 16, 5], ["description", 17, 5], ["sourceProvenance", 18, 5], ["license", 19, 5], ["platforms", 20, 5], ["mainProgram", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 29, 52], ["updateScript", 29, 58], ["meta", 29, 71]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 31, 51], ["updateScript", 31, 57], ["meta", 31, 70]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const pname = "spotify";
   const updateScript = nix.path(here, "./update.sh");
   const meta = nix.thunk(() => ({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     homepage: "https://www.spotify.com/",
     description: "Play music from the Spotify music service",
     sourceProvenance: nix.thunk(() => (() => {
@@ -28,6 +26,6 @@ export default nix.lambda((args) => (() => {
     platforms: nix.thunk(() => ["x86_64-linux", "aarch64-darwin"]),
     mainProgram: "spotify",
   }));
-  return (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? nix.app(callPackage, nix.path(here, "./darwin.nix"), nix.thunk(() => nix.update(extraArgs, { [nix.POS]: pos$2, pname: pname, updateScript: updateScript, meta: meta }))) : nix.app(callPackage, nix.path(here, "./linux.nix"), nix.thunk(() => nix.update(extraArgs, { [nix.POS]: pos$3, pname: pname, updateScript: updateScript, meta: meta }))));
+  return (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? nix.app(callPackage, nix.path(here, "./darwin.nix"), nix.thunk(() => nix.update(extraArgs, { [nix.POS]: $pos[1], pname: pname, updateScript: updateScript, meta: meta }))) : nix.app(callPackage, nix.path(here, "./linux.nix"), nix.thunk(() => nix.update(extraArgs, { [nix.POS]: $pos[2], pname: pname, updateScript: updateScript, meta: meta }))));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

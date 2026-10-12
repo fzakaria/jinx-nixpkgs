@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]], [["description", 54, 5], ["homepage", 55, 5], ["license", 56, 5], ["maintainers", 57, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["patches", 24, 3], ["postPatch", 30, 3], ["cmakeFlags", 38, 3], ["buildInputs", 46, 3], ["nativeBuildInputs", 51, 3], ["meta", 53, 3]]]);
 const formals$1 = { args: { lib: false, boost: false, cmake: false, fetchFromGitHub: false, openssl: false, stdenv: false, enableOpenMP: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 54, 5], ["homepage", 55, 5], ["license", 56, 5], ["maintainers", 57, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["patches", 24, 3], ["postPatch", 30, 3], ["cmakeFlags", 38, 3], ["buildInputs", 46, 3], ["nativeBuildInputs", 51, 3], ["meta", 53, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const enableOpenMP = nix.argOr($, "enableOpenMP", () => false);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "shark",
       version: "4.0-unstable-2024-05-25",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Shark-ML",
           repo: "Shark",
           rev: "16a7cecf1c012ceaa406e3a5af54d1a6a47d5cda",
@@ -42,7 +40,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [boost, openssl]),
       nativeBuildInputs: nix.thunk(() => [cmake]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Fast, modular, general open-source C++ machine learning library",
         homepage: "https://shark-ml.github.io/Shark/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3Only")),

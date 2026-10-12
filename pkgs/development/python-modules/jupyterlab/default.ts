@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 46, 5], ["repo", 47, 5], ["tag", 48, 5], ["hash", 49, 5]], [["src", 69, 26], ["missingHashes", 69, 30], ["sourceRoot", 70, 5], ["hash", 71, 5]], [["description", 131, 5], ["homepage", 132, 5], ["downloadPage", 133, 5], ["changelog", 134, 5], ["license", 135, 5], ["teams", 136, 5], ["mainProgram", 137, 5]], [["pname", 40, 3], ["version", 41, 3], ["pyproject", 42, 3], ["__structuredAttrs", 43, 3], ["src", 45, 3], ["nativeBuildInputs", 52, 3], ["build-system", 57, 3], ["preConfigure", 63, 3], ["missingHashes", 67, 3], ["offlineCache", 68, 3], ["preBuild", 74, 3], ["dependencies", 78, 3], ["makeWrapperArgs", 95, 3], ["postInstall", 103, 3], ["pythonImportsCheck", 112, 3], ["nativeCheckInputs", 114, 3], ["disabledTests", 120, 3], ["__darwinAllowLocalNetworking", 128, 3], ["meta", 130, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, "yarn-berry_3": false, nodejs: false, "hatch-jupyter-builder": false, hatchling: false, "jupyter-builder": false, "async-lru": false, httpx: false, ipykernel: false, jinja2: false, "jupyter-core": false, "jupyter-lsp": false, "jupyter-server": false, "jupyterlab-server": false, "notebook-shim": false, packaging: false, tomli: false, tornado: false, traitlets: false, "pytest-jupyter": false, pytestCheckHook: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 46, 5], ["repo", 47, 5], ["tag", 48, 5], ["hash", 49, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["src", 69, 26], ["missingHashes", 69, 30], ["sourceRoot", 70, 5], ["hash", 71, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 131, 5], ["homepage", 132, 5], ["downloadPage", 133, 5], ["changelog", 134, 5], ["license", 135, 5], ["teams", 136, 5], ["mainProgram", 137, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 40, 3], ["version", 41, 3], ["pyproject", 42, 3], ["__structuredAttrs", 43, 3], ["src", 45, 3], ["nativeBuildInputs", 52, 3], ["build-system", 57, 3], ["preConfigure", 63, 3], ["missingHashes", 67, 3], ["offlineCache", 68, 3], ["preBuild", 74, 3], ["dependencies", 78, 3], ["makeWrapperArgs", 95, 3], ["postInstall", 103, 3], ["pythonImportsCheck", 112, 3], ["nativeCheckInputs", 114, 3], ["disabledTests", 120, 3], ["__darwinAllowLocalNetworking", 128, 3], ["meta", 130, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -36,13 +33,13 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const yarn_berry = yarn_berry_3;
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "jupyterlab",
       version: "4.6.4",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "jupyterlab",
           repo: "jupyterlab",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -53,7 +50,7 @@ export default nix.lambda((args) => (() => {
       preConfigure: "pushd jupyterlab/staging\n",
       missingHashes: nix.path(here, "./missing-hashes.json"),
       offlineCache: nix.thunk(() => nix.app(nix.sel(yarn_berry, "fetchYarnBerryDeps"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           missingHashes: nix.thunk(() => nix.attr(finalAttrs, "missingHashes")),
           sourceRoot: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "name")}/jupyterlab/staging`),
@@ -93,7 +90,7 @@ substitute \\
       disabledTests: nix.thunk(() => ["TestExtension", "TestBuildAPI"]),
       __darwinAllowLocalNetworking: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Jupyter lab environment notebook server extension",
         homepage: "https://jupyter.org/",
         downloadPage: "https://github.com/jupyterlab/jupyterlab",

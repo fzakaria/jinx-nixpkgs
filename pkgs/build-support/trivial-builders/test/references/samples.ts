@@ -2,9 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/samples.nix", [[["outPath", 23, 12]], [["figlet", 13, 5], ["hello", 14, 5], ["zlib", 15, 5], ["zlib-dev", 17, 3], ["norefs", 18, 3], ["norefsDup", 19, 3], ["helloRef", 20, 3], ["helloRefDup", 21, 3], ["path", 22, 3], ["pathLike", 23, 3], ["helloFigletRef", 24, 3], ["selfRef", 25, 3], ["selfRef2", 26, 3], ["emptyFile", 28, 5], ["emptyDirectory", 29, 5]]]);
 const formals$1 = { args: { lib: false, runCommand: false, writeText: false, emptyFile: false, emptyDirectory: false, figlet: false, hello: false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/samples.nix", [["outPath", 23, 12]]);
-const pos$2 = nix.positions(here + "/samples.nix", [["figlet", 13, 5], ["hello", 14, 5], ["zlib", 15, 5], ["zlib-dev", 17, 3], ["norefs", 18, 3], ["norefsDup", 19, 3], ["helloRef", 20, 3], ["helloRefDup", 21, 3], ["path", 22, 3], ["pathLike", 23, 3], ["helloFigletRef", 24, 3], ["selfRef", 25, 3], ["selfRef2", 26, 3], ["emptyFile", 28, 5], ["emptyDirectory", 29, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const hello = nix.arg($, "hello");
   const zlib = nix.arg($, "zlib");
   return {
-    [nix.POS]: pos$2,
+    [nix.POS]: $pos[1],
     figlet: figlet,
     hello: hello,
     zlib: zlib,
@@ -27,7 +26,7 @@ export default nix.lambda((args) => (() => {
     helloRef: nix.thunk(() => nix.app(writeText, "hi", nix.thunk(() => nix.str`hello ${hello}`))),
     helloRefDup: nix.thunk(() => nix.app(writeText, "hi", nix.thunk(() => nix.str`hello ${hello}`))),
     path: nix.path(here, "./apath.txt"),
-    pathLike: nix.thunk(() => ({ [nix.POS]: pos$1, outPath: nix.path(here, "./apath.txt") })),
+    pathLike: nix.thunk(() => ({ [nix.POS]: $pos[0], outPath: nix.path(here, "./apath.txt") })),
     helloFigletRef: nix.thunk(() => nix.app(writeText, "hi", nix.thunk(() => nix.str`hello ${hello} ${figlet}`))),
     selfRef: nix.thunk(() => nix.app(runCommand, "self-ref-1", nix.thunk(() => ({})), "echo $out >$out")),
     selfRef2: nix.thunk(() => nix.app(runCommand, "self-ref-2", nix.thunk(() => ({})), nix.thunk(() => nix.str`echo "${figlet}, $out" >$out`))),

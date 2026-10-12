@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 27, 5], ["hash", 28, 5]], [["owner", 36, 5], ["repo", 37, 5], ["rev", 38, 5], ["hash", 39, 5]], [["NIX_LDFLAGS", 51, 5]], [["name", 57, 7], ["url", 58, 7], ["decode", 60, 7], ["hash", 61, 7]], [["name", 67, 7], ["url", 68, 7], ["hash", 69, 7]], [["homepage", 115, 5], ["description", 116, 5], ["license", 117, 5], ["platforms", 118, 5]], [["pname", 32, 3], ["version", 33, 3], ["src", 35, 3], ["env", 50, 3], ["patches", 54, 3], ["nativeBuildInputs", 75, 3], ["buildInputs", 79, 3], ["configureFlags", 94, 3], ["makeFlags", 104, 3], ["preBuild", 110, 3], ["meta", 114, 3]]]);
 const formals$1 = { args: { autoreconfHook: false, cups: false, dbus: false, dejavu_fonts: false, fetchFromGitHub: false, fetchpatch: false, fetchurl: false, fontconfig: false, ghostscript: false, lcms2: false, lib: false, libexif: false, libjpeg: false, libpng: false, libtiff: false, mupdf: false, "pkg-config": false, poppler: false, "poppler-utils": false, qpdf: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 36, 5], ["repo", 37, 5], ["rev", 38, 5], ["hash", 39, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["NIX_LDFLAGS", 51, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["name", 57, 7], ["url", 58, 7], ["decode", 60, 7], ["hash", 61, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["name", 67, 7], ["url", 68, 7], ["hash", 69, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["homepage", 115, 5], ["description", 116, 5], ["license", 117, 5], ["platforms", 118, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 32, 3], ["version", 33, 3], ["src", 35, 3], ["env", 50, 3], ["patches", 54, 3], ["nativeBuildInputs", 75, 3], ["buildInputs", 79, 3], ["configureFlags", 94, 3], ["makeFlags", 104, 3], ["preBuild", 110, 3], ["meta", 114, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -35,32 +29,32 @@ export default nix.lambda((args) => (() => {
   const qpdf = nix.arg($, "qpdf");
   const stdenv = nix.arg($, "stdenv");
   const testpage = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: "https://codeberg.org/raboof/cups-testpage/releases/download/v0.1/default-testpage.pdf",
       hash: "sha256-gtR/r/tORsXLw4PlFhxm29+//YNAKTT0c4z3GsgtzNw=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "libcupsfilters",
       version: "2.1.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "OpenPrinting",
           repo: "libcupsfilters",
           rev: "2.1.1",
           hash: "sha256-WEcg+NSsny/N1VAR1ejytM+3nOF3JlNuIUPf4w6N2ew=",
         })))),
-      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({ [nix.POS]: pos$3, NIX_LDFLAGS: "-liconv" })))),
+      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({ [nix.POS]: $pos[2], NIX_LDFLAGS: "-liconv" })))),
       patches: nix.thunk(() => nix.concat([
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             name: "CVE-2025-64503.patch",
             url: "https://github.com/OpenPrinting/libcupsfilters/commit/fd01543f372ca3ba1f1c27bd3427110fa0094e3f.patch",
             decode: "sed -e 's/pdftoraster\\.c/pdftoraster\\.cxx/g'",
             hash: "sha256-cKbDHZEc/A51M+ce3kVsRxjRUWA96ynGv/avpq4iUHU=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             name: "CVE-2025-57812.patch",
             url: "https://github.com/OpenPrinting/libcupsfilters/commit/b69dfacec7f176281782e2f7ac44f04bf9633cfa.patch",
             hash: "sha256-rPUbgtTu7j3uUZrtUhUPO1vFbV6naxIWsHf6x3JhS74=",
@@ -98,7 +92,7 @@ export default nix.lambda((args) => (() => {
       preBuild: nix.thunk(() => nix.str`cp ${testpage} data/default-testpage.pdf
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         homepage: "https://github.com/OpenPrinting/libcupsfilters",
         description: "Backends, filters, and other software that was once part of the core CUPS distribution but is no longer maintained by Apple Inc",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

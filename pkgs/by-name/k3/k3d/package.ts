@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]], [["GOWORK", 71, 7]], [["homepage", 74, 5], ["changelog", 75, 5], ["description", 76, 5], ["mainProgram", 77, 5], ["longDescription", 78, 5], ["license", 84, 5], ["maintainers", 85, 5], ["platforms", 92, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["vendorHash", 29, 3], ["deleteVendor", 30, 3], ["nativeBuildInputs", 32, 3], ["excludedPackages", 34, 3], ["ldflags", 39, 3], ["preCheck", 50, 3], ["postInstall", 56, 3], ["doInstallCheck", 63, 3], ["installCheckPhase", 64, 3], ["env", 71, 3], ["meta", 73, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildGoModule: false, fetchFromGitHub: false, installShellFiles: false, k3sVersion: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["GOWORK", 71, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 74, 5], ["changelog", 75, 5], ["description", 76, 5], ["mainProgram", 77, 5], ["longDescription", 78, 5], ["license", 84, 5], ["maintainers", 85, 5], ["platforms", 92, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["vendorHash", 29, 3], ["deleteVendor", 30, 3], ["nativeBuildInputs", 32, 3], ["excludedPackages", 34, 3], ["ldflags", 39, 3], ["preCheck", 50, 3], ["postInstall", 56, 3], ["doInstallCheck", 63, 3], ["installCheckPhase", 64, 3], ["env", 71, 3], ["meta", 73, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const hasVPrefix = (ver) => nix.eq(nix.builtins.elemAt(nix.thunk(() => nix.app(nix.sel(lib, "stringToCharacters"), ver)), 0n), "v");
   const k3sVersionSet = nix.thunk(() => (nix.asBool(!nix.eq(k3sVersion, null)) ? (nix.asBool(nix.app(hasVPrefix, k3sVersion)) ? nix.builtins.throw("k3sVersion should not have a v prefix") : true) : false));
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "k3d",
       version: "5.9.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "k3d-io",
           repo: "k3d",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -49,9 +46,9 @@ $out/bin/k3d --help
 $out/bin/k3d --version | grep -e "k3d version v${nix.sel(finalAttrs, "version")}" ${nix.app(nix.sel(lib, "optionalString"), k3sVersionSet, nix.thunk(() => nix.str`-e "k3s version v${k3sVersion}"`))}
 runHook postInstallCheck
 `),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, GOWORK: "off" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], GOWORK: "off" })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/k3d-io/k3d/",
         changelog: nix.thunk(() => nix.str`https://github.com/k3d-io/k3d/blob/v${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),
         description: "Helper to run k3s (Lightweight Kubernetes. 5 less than k8s) in a docker container",

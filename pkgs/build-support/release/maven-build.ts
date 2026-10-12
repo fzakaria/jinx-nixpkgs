@@ -2,8 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/maven-build.nix", [[["name", 26, 13], ["src", 26, 18], ["phases", 27, 5], ["setupPhase", 29, 5], ["mvnCompile", 40, 5], ["mvnTestCompile", 44, 5], ["mvnTestJar", 48, 5], ["mvnTest", 52, 5], ["mvnJavadoc", 65, 5], ["mvnCheckstyle", 70, 5], ["mvnJar", 75, 5], ["mvnAssembly", 79, 5], ["mvnRelease", 83, 5], ["finalPhase", 98, 5]]]);
 const formals$1 = { args: { stdenv: false, lib: false, name: false, src: false, doTest: true, doTestCompile: true, doJavadoc: true, doCheckstyle: true, doRelease: true, includeTestClasses: true, extraMvnFlags: true }, ellipsis: true };
-const pos$1 = nix.positions(here + "/maven-build.nix", [["name", 26, 13], ["src", 26, 18], ["phases", 27, 5], ["setupPhase", 29, 5], ["mvnCompile", 40, 5], ["mvnTestCompile", 44, 5], ["mvnTestJar", 48, 5], ["mvnTest", 52, 5], ["mvnJavadoc", 65, 5], ["mvnCheckstyle", 70, 5], ["mvnJar", 75, 5], ["mvnAssembly", 79, 5], ["mvnRelease", 83, 5], ["finalPhase", 98, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,7 +25,7 @@ export default nix.lambda((args) => (() => {
       nix.thunk(() => nix.str`${extraMvnFlags}`),
     ])));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => nix.update({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: name,
       src: src,
       phases: nix.thunk(() => nix.str`setupPhase unpackPhase patchPhase mvnCompile ${nix.app(nix.sel(lib, "optionalString"), doTestCompile, "mvnTestCompile mvnTestJar")} ${nix.app(nix.sel(lib, "optionalString"), doTest, "mvnTest")} ${nix.app(nix.sel(lib, "optionalString"), doJavadoc, "mvnJavadoc")} ${nix.app(nix.sel(lib, "optionalString"), doCheckstyle, "mvnCheckstyle")} mvnJar mvnAssembly mvnRelease finalPhase`),

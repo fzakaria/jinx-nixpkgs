@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/sendmail.nix", [[["description", 34, 5]], [["pname", 17, 3], ["version", 18, 21], ["src", 18, 29], ["propagatedBuildInputs", 19, 3], ["doCheck", 28, 3], ["checkInputs", 29, 3], ["meta", 33, 3]]]);
 const formals$1 = { args: { alcotest: false, angstrom: false, base64: false, buildDunePackage: false, colombe: false, hxd: false, ke: false, lib: false, logs: false, mrmime: false, rresult: false, tls: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/sendmail.nix", [["description", 34, 5]]);
-const pos$2 = nix.positions(here + "/sendmail.nix", [["pname", 17, 3], ["version", 18, 21], ["src", 18, 29], ["propagatedBuildInputs", 19, 3], ["doCheck", 28, 3], ["checkInputs", 29, 3], ["meta", 33, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,14 +20,14 @@ export default nix.lambda((args) => (() => {
   const rresult = nix.arg($, "rresult");
   const tls = nix.arg($, "tls");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "sendmail",
       version: nix.thunk(() => nix.attr(colombe, "version")),
       src: nix.thunk(() => nix.attr(colombe, "src")),
       propagatedBuildInputs: nix.thunk(() => [base64, colombe, logs, rresult, hxd, ke, tls]),
       doCheck: true,
       checkInputs: nix.thunk(() => [alcotest, mrmime]),
-      meta: nix.thunk(() => nix.update(nix.sel(colombe, "meta"), { [nix.POS]: pos$1, description: "Library to be able to send an email" })),
+      meta: nix.thunk(() => nix.update(nix.sel(colombe, "meta"), { [nix.POS]: $pos[0], description: "Library to be able to send an email" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=sendmail.ts.map

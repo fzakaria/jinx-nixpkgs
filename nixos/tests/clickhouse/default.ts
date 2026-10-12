@@ -2,68 +2,53 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["package", 10, 15]], [["args", 9, 13]], [["imports", 8, 5], ["_module", 9, 5]], [["package", 16, 15]], [["args", 15, 13]], [["imports", 14, 5], ["_module", 15, 5]], [["package", 22, 15]], [["args", 21, 13]], [["imports", 20, 5], ["_module", 21, 5]], [["package", 28, 15]], [["args", 27, 13]], [["imports", 26, 5], ["_module", 27, 5]], [["package", 34, 15]], [["args", 33, 13]], [["imports", 32, 5], ["_module", 33, 5]], [["base", 7, 3], ["kafka", 13, 3], ["keeper", 19, 3], ["s3", 25, 3], ["ui", 31, 3]]]);
 const formals$1 = { args: { runTest: false, package: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["package", 10, 15]]);
-const pos$2 = nix.positions(here + "/default.nix", [["args", 9, 13]]);
-const pos$3 = nix.positions(here + "/default.nix", [["imports", 8, 5], ["_module", 9, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["package", 16, 15]]);
-const pos$5 = nix.positions(here + "/default.nix", [["args", 15, 13]]);
-const pos$6 = nix.positions(here + "/default.nix", [["imports", 14, 5], ["_module", 15, 5]]);
-const pos$7 = nix.positions(here + "/default.nix", [["package", 22, 15]]);
-const pos$8 = nix.positions(here + "/default.nix", [["args", 21, 13]]);
-const pos$9 = nix.positions(here + "/default.nix", [["imports", 20, 5], ["_module", 21, 5]]);
-const pos$10 = nix.positions(here + "/default.nix", [["package", 28, 15]]);
-const pos$11 = nix.positions(here + "/default.nix", [["args", 27, 13]]);
-const pos$12 = nix.positions(here + "/default.nix", [["imports", 26, 5], ["_module", 27, 5]]);
-const pos$13 = nix.positions(here + "/default.nix", [["package", 34, 15]]);
-const pos$14 = nix.positions(here + "/default.nix", [["args", 33, 13]]);
-const pos$15 = nix.positions(here + "/default.nix", [["imports", 32, 5], ["_module", 33, 5]]);
-const pos$16 = nix.positions(here + "/default.nix", [["base", 7, 3], ["kafka", 13, 3], ["keeper", 19, 3], ["s3", 25, 3], ["ui", 31, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const runTest = nix.arg($, "runTest");
   const package$ = nix.arg($, "package");
   return {
-    [nix.POS]: pos$16,
+    [nix.POS]: $pos[15],
     base: nix.thunk(() => nix.app(runTest, nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         imports: nix.thunk(() => [nix.path(here, "./base.nix")]),
         _module: nix.thunk(() => ({
-          [nix.POS]: pos$2,
-          args: nix.thunk(() => ({ [nix.POS]: pos$1, package: package$ })),
+          [nix.POS]: $pos[1],
+          args: nix.thunk(() => ({ [nix.POS]: $pos[0], package: package$ })),
         })),
       })))),
     kafka: nix.thunk(() => nix.app(runTest, nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         imports: nix.thunk(() => [nix.path(here, "./kafka.nix")]),
         _module: nix.thunk(() => ({
-          [nix.POS]: pos$5,
-          args: nix.thunk(() => ({ [nix.POS]: pos$4, package: package$ })),
+          [nix.POS]: $pos[4],
+          args: nix.thunk(() => ({ [nix.POS]: $pos[3], package: package$ })),
         })),
       })))),
     keeper: nix.thunk(() => nix.app(runTest, nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         imports: nix.thunk(() => [nix.path(here, "./keeper.nix")]),
         _module: nix.thunk(() => ({
-          [nix.POS]: pos$8,
-          args: nix.thunk(() => ({ [nix.POS]: pos$7, package: package$ })),
+          [nix.POS]: $pos[7],
+          args: nix.thunk(() => ({ [nix.POS]: $pos[6], package: package$ })),
         })),
       })))),
     s3: nix.thunk(() => nix.app(runTest, nix.thunk(() => ({
-        [nix.POS]: pos$12,
+        [nix.POS]: $pos[11],
         imports: nix.thunk(() => [nix.path(here, "./s3.nix")]),
         _module: nix.thunk(() => ({
-          [nix.POS]: pos$11,
-          args: nix.thunk(() => ({ [nix.POS]: pos$10, package: package$ })),
+          [nix.POS]: $pos[10],
+          args: nix.thunk(() => ({ [nix.POS]: $pos[9], package: package$ })),
         })),
       })))),
     ui: nix.thunk(() => nix.app(runTest, nix.thunk(() => ({
-        [nix.POS]: pos$15,
+        [nix.POS]: $pos[14],
         imports: nix.thunk(() => [nix.path(here, "./ui.nix")]),
         _module: nix.thunk(() => ({
-          [nix.POS]: pos$14,
-          args: nix.thunk(() => ({ [nix.POS]: pos$13, package: package$ })),
+          [nix.POS]: $pos[13],
+          args: nix.thunk(() => ({ [nix.POS]: $pos[12], package: package$ })),
         })),
       })))),
   };

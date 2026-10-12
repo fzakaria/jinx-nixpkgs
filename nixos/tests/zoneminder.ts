@@ -2,45 +2,38 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/zoneminder.nix", [[["maintainers", 5, 8]], [["createLocally", 12, 18], ["username", 13, 18]], [["enable", 11, 9], ["database", 12, 9]], [["zoneminder", 10, 16]], [["timeZone", 15, 12]], [["services", 10, 7], ["time", 15, 7]], [["machine", 7, 9]], [["name", 4, 3], ["meta", 5, 3], ["nodes", 7, 3], ["testScript", 18, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/zoneminder.nix", [["maintainers", 5, 8]]);
 const formals$2 = { args: {  }, ellipsis: true };
-const pos$2 = nix.positions(here + "/zoneminder.nix", [["createLocally", 12, 18], ["username", 13, 18]]);
-const pos$3 = nix.positions(here + "/zoneminder.nix", [["enable", 11, 9], ["database", 12, 9]]);
-const pos$4 = nix.positions(here + "/zoneminder.nix", [["zoneminder", 10, 16]]);
-const pos$5 = nix.positions(here + "/zoneminder.nix", [["timeZone", 15, 12]]);
-const pos$6 = nix.positions(here + "/zoneminder.nix", [["services", 10, 7], ["time", 15, 7]]);
-const pos$7 = nix.positions(here + "/zoneminder.nix", [["machine", 7, 9]]);
-const pos$8 = nix.positions(here + "/zoneminder.nix", [["name", 4, 3], ["meta", 5, 3], ["nodes", 7, 3], ["testScript", 18, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$8,
+    [nix.POS]: $pos[7],
     name: "zoneminder",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "danielfullmer"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             zoneminder: nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               enable: true,
-              database: nix.thunk(() => ({ [nix.POS]: pos$2, createLocally: true, username: "zoneminder" })),
+              database: nix.thunk(() => ({ [nix.POS]: $pos[1], createLocally: true, username: "zoneminder" })),
             })),
           })),
-          time: nix.thunk(() => ({ [nix.POS]: pos$5, timeZone: "America/New_York" })),
+          time: nix.thunk(() => ({ [nix.POS]: $pos[4], timeZone: "America/New_York" })),
         };
       })(), formals$2),
     })),

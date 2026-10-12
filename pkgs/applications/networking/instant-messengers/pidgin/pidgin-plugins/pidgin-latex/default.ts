@@ -2,11 +2,8 @@
 import * as nix from "../../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 21, 5], ["sha256", 22, 5]], [["wrapArgs", 38, 5]], [["homepage", 47, 5], ["description", 48, 5], ["license", 49, 5], ["platforms", 50, 5], ["maintainers", 51, 5]], [["pname", 17, 3], ["version", 18, 11], ["src", 20, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 26, 3], ["makeFlags", 31, 3], ["postPatch", 33, 3], ["passthru", 37, 3], ["meta", 46, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, "pkg-config": false, pidgin: false, texLive: false, imagemagick: false, glib: false, gtk2: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 21, 5], ["sha256", 22, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["wrapArgs", 38, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["homepage", 47, 5], ["description", 48, 5], ["license", 49, 5], ["platforms", 50, 5], ["maintainers", 51, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 17, 3], ["version", 18, 11], ["src", 20, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 26, 3], ["makeFlags", 31, 3], ["postPatch", 33, 3], ["passthru", 37, 3], ["meta", 46, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const gtk2 = nix.arg($, "gtk2");
   const version = "1.5.0";
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "pidgin-latex",
       version: version,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/pidgin-latex/pidgin-latex_${version}.tar.bz2`),
           sha256: "9c850aee90d7e59de834f83e09fa6e3e51b123f06e265ead70957608ada95441",
         })))),
@@ -34,11 +31,11 @@ export default nix.lambda((args) => (() => {
       makeFlags: nix.thunk(() => ["PREFIX=$(out)"]),
       postPatch: "sed -e 's/-Wl,-soname//' -i Makefile\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         wrapArgs: nix.thunk(() => nix.str`--prefix PATH ':' ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [texLive, imagemagick]))}`),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://sourceforge.net/projects/pidgin-latex/",
         description: "LaTeX rendering plugin for Pidgin IM",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),

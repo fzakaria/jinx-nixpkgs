@@ -2,23 +2,9 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]], [["arm", 35, 11], ["arm64", 36, 11]], [["description", 112, 11], ["homepage", 113, 11], ["changelog", 114, 11], ["license", 115, 11], ["maintainers", 116, 11]], [["pname", 42, 9], ["version", 44, 9], ["src", 46, 9], ["postPatch", 48, 9], ["outputs", 52, 9], ["strictDeps", 57, 9], ["__structuredAttrs", 58, 9], ["enableParallelBuilding", 60, 9], ["depsBuildBuild", 62, 9], ["nativeBuildInputs", 64, 9], ["makeFlags", 75, 9], ["installPhase", 90, 9], ["outputDev", 108, 9], ["outputLib", 109, 9], ["meta", 111, 9]], [["platforms", 133, 15]], [["platform", 131, 5], ["extraMakeFlags", 132, 5], ["extraMeta", 133, 5]], [["platforms", 139, 15]], [["platform", 137, 5], ["extraMakeFlags", 138, 5], ["extraMeta", 139, 5]], [["platforms", 145, 15]], [["platform", 143, 5], ["extraMakeFlags", 144, 5], ["extraMeta", 145, 5]], [["platforms", 151, 15]], [["platform", 149, 5], ["extraMakeFlags", 150, 5], ["extraMeta", 151, 5]], [["platforms", 157, 15]], [["platform", 155, 5], ["extraMakeFlags", 156, 5], ["extraMeta", 157, 5]], [["buildOptee", 128, 11], ["opteeQemuArm", 130, 3], ["opteeQemuAarch64", 136, 3], ["opteeAllwinnerA64", 142, 3], ["opteeRockchipRK3399", 148, 3], ["opteeRockchipRK3588", 154, 3]]]);
 const formals$1 = { args: { dtc: false, fetchFromGitHub: false, lib: false, nukeReferences: false, pkgsBuildBuild: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]]);
 const formals$2 = { args: { version: true, src: true, platform: false, extraMakeFlags: true, extraMeta: true }, ellipsis: true };
-const pos$2 = nix.positions(here + "/default.nix", [["arm", 35, 11], ["arm64", 36, 11]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 112, 11], ["homepage", 113, 11], ["changelog", 114, 11], ["license", 115, 11], ["maintainers", 116, 11]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 42, 9], ["version", 44, 9], ["src", 46, 9], ["postPatch", 48, 9], ["outputs", 52, 9], ["strictDeps", 57, 9], ["__structuredAttrs", 58, 9], ["enableParallelBuilding", 60, 9], ["depsBuildBuild", 62, 9], ["nativeBuildInputs", 64, 9], ["makeFlags", 75, 9], ["installPhase", 90, 9], ["outputDev", 108, 9], ["outputLib", 109, 9], ["meta", 111, 9]]);
-const pos$5 = nix.positions(here + "/default.nix", [["platforms", 133, 15]]);
-const pos$6 = nix.positions(here + "/default.nix", [["platform", 131, 5], ["extraMakeFlags", 132, 5], ["extraMeta", 133, 5]]);
-const pos$7 = nix.positions(here + "/default.nix", [["platforms", 139, 15]]);
-const pos$8 = nix.positions(here + "/default.nix", [["platform", 137, 5], ["extraMakeFlags", 138, 5], ["extraMeta", 139, 5]]);
-const pos$9 = nix.positions(here + "/default.nix", [["platforms", 145, 15]]);
-const pos$10 = nix.positions(here + "/default.nix", [["platform", 143, 5], ["extraMakeFlags", 144, 5], ["extraMeta", 145, 5]]);
-const pos$11 = nix.positions(here + "/default.nix", [["platforms", 151, 15]]);
-const pos$12 = nix.positions(here + "/default.nix", [["platform", 149, 5], ["extraMakeFlags", 150, 5], ["extraMeta", 151, 5]]);
-const pos$13 = nix.positions(here + "/default.nix", [["platforms", 157, 15]]);
-const pos$14 = nix.positions(here + "/default.nix", [["platform", 155, 5], ["extraMakeFlags", 156, 5], ["extraMeta", 157, 5]]);
-const pos$15 = nix.positions(here + "/default.nix", [["buildOptee", 128, 11], ["opteeQemuArm", 130, 3], ["opteeQemuAarch64", 136, 3], ["opteeAllwinnerA64", 142, 3], ["opteeRockchipRK3399", 148, 3], ["opteeRockchipRK3588", 154, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const defaultVersion = "4.7.0";
   const defaultSrc = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "OP-TEE",
       repo: "optee_os",
       rev: defaultVersion,
@@ -47,9 +33,9 @@ export default nix.lambda((args) => (() => {
       const from = nix.thunk(() => nix.sel(stdenv, "hostPlatform"));
       const is32bit = nix.thunk(() => nix.attr(from, "is32bit"));
       const is64bit = nix.thunk(() => nix.attr(from, "is64bit"));
-      const taTarget = nix.thunk(() => nix.sel({ [nix.POS]: pos$2, arm: "ta_arm32", arm64: "ta_arm64" }, nix.key(nix.sel(stdenv, "hostPlatform", "linuxArch"))));
+      const taTarget = nix.thunk(() => nix.sel({ [nix.POS]: $pos[1], arm: "ta_arm32", arm64: "ta_arm64" }, nix.key(nix.sel(stdenv, "hostPlatform", "linuxArch"))));
       return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => nix.update({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           pname: nix.thunk(() => nix.str`optee-os-${platform}`),
           version: nix.thunk(() => (nix.asBool(nix.eq(src, null)) ? defaultVersion : nix.force(version))),
           src: nix.thunk(() => (nix.asBool(nix.eq(src, null)) ? nix.force(defaultSrc) : nix.force(src))),
@@ -94,7 +80,7 @@ runHook postInstall
           outputDev: "devkit",
           outputLib: "devkit",
           meta: nix.thunk(() => nix.update({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             description: "Trusted Execution Environment for ARM",
             homepage: "https://github.com/OP-TEE/optee_os",
             changelog: nix.thunk(() => nix.str`https://github.com/OP-TEE/optee_os/blob/${defaultVersion}/CHANGELOG.md`),
@@ -107,37 +93,37 @@ runHook postInstall
         }, nix.builtins.removeAttrs(args_2, nix.thunk(() => ["extraMeta"])))));
     })(), formals$2)));
   return {
-    [nix.POS]: pos$15,
+    [nix.POS]: $pos[14],
     buildOptee: buildOptee,
     opteeQemuArm: nix.thunk(() => nix.app(buildOptee, nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         platform: "vexpress",
         extraMakeFlags: nix.thunk(() => ["PLATFORM_FLAVOR=qemu_virt"]),
-        extraMeta: nix.thunk(() => ({ [nix.POS]: pos$5, platforms: nix.thunk(() => ["armv7l-linux"]) })),
+        extraMeta: nix.thunk(() => ({ [nix.POS]: $pos[4], platforms: nix.thunk(() => ["armv7l-linux"]) })),
       })))),
     opteeQemuAarch64: nix.thunk(() => nix.app(buildOptee, nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         platform: "vexpress",
         extraMakeFlags: nix.thunk(() => ["PLATFORM_FLAVOR=qemu_armv8a"]),
-        extraMeta: nix.thunk(() => ({ [nix.POS]: pos$7, platforms: nix.thunk(() => ["aarch64-linux"]) })),
+        extraMeta: nix.thunk(() => ({ [nix.POS]: $pos[6], platforms: nix.thunk(() => ["aarch64-linux"]) })),
       })))),
     opteeAllwinnerA64: nix.thunk(() => nix.app(buildOptee, nix.thunk(() => ({
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         platform: "sunxi",
         extraMakeFlags: nix.thunk(() => ["PLATFORM_FLAVOR=sun50i_a64"]),
-        extraMeta: nix.thunk(() => ({ [nix.POS]: pos$9, platforms: nix.thunk(() => ["aarch64-linux"]) })),
+        extraMeta: nix.thunk(() => ({ [nix.POS]: $pos[8], platforms: nix.thunk(() => ["aarch64-linux"]) })),
       })))),
     opteeRockchipRK3399: nix.thunk(() => nix.app(buildOptee, nix.thunk(() => ({
-        [nix.POS]: pos$12,
+        [nix.POS]: $pos[11],
         platform: "rockchip",
         extraMakeFlags: nix.thunk(() => ["PLATFORM_FLAVOR=rk3399"]),
-        extraMeta: nix.thunk(() => ({ [nix.POS]: pos$11, platforms: nix.thunk(() => ["aarch64-linux"]) })),
+        extraMeta: nix.thunk(() => ({ [nix.POS]: $pos[10], platforms: nix.thunk(() => ["aarch64-linux"]) })),
       })))),
     opteeRockchipRK3588: nix.thunk(() => nix.app(buildOptee, nix.thunk(() => ({
-        [nix.POS]: pos$14,
+        [nix.POS]: $pos[13],
         platform: "rockchip",
         extraMakeFlags: nix.thunk(() => ["PLATFORM_FLAVOR=rk3588"]),
-        extraMeta: nix.thunk(() => ({ [nix.POS]: pos$13, platforms: nix.thunk(() => ["aarch64-linux"]) })),
+        extraMeta: nix.thunk(() => ({ [nix.POS]: $pos[12], platforms: nix.thunk(() => ["aarch64-linux"]) })),
       })))),
   };
 })(), formals$1);

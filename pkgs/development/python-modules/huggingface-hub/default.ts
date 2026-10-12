@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 49, 5], ["repo", 50, 5], ["tag", 51, 5], ["hash", 52, 5]], [["all", 73, 5], ["fastai", 75, 5], ["gradio", 80, 5], ["hf_xet", 84, 5], ["mcp", 87, 5], ["oauth", 90, 5], ["torch", 96, 5]], [["description", 111, 5], ["mainProgram", 112, 5], ["homepage", 113, 5], ["changelog", 114, 5], ["license", 115, 5], ["maintainers", 116, 5]], [["pname", 43, 3], ["version", 44, 3], ["pyproject", 45, 3], ["__structuredAttrs", 46, 3], ["src", 48, 3], ["build-system", 55, 3], ["pythonRelaxDeps", 57, 3], ["dependencies", 60, 3], ["optional-dependencies", 72, 3], ["nativeCheckInputs", 103, 3], ["versionCheckProgramArg", 106, 3], ["pythonImportsCheck", 108, 3], ["meta", 110, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, click: false, filelock: false, fsspec: false, "hf-xet": false, httpx: false, packaging: false, pyyaml: false, tqdm: false, "typing-extensions": false, torch: false, safetensors: false, toml: false, fastai: false, fastcore: false, gradio: false, requests: false, authlib: false, fastapi: false, itsdangerous: false, mcp: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 49, 5], ["repo", 50, 5], ["tag", 51, 5], ["hash", 52, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["all", 73, 5], ["fastai", 75, 5], ["gradio", 80, 5], ["hf_xet", 84, 5], ["mcp", 87, 5], ["oauth", 90, 5], ["torch", 96, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 111, 5], ["mainProgram", 112, 5], ["homepage", 113, 5], ["changelog", 114, 5], ["license", 115, 5], ["maintainers", 116, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 43, 3], ["version", 44, 3], ["pyproject", 45, 3], ["__structuredAttrs", 46, 3], ["src", 48, 3], ["build-system", 55, 3], ["pythonRelaxDeps", 57, 3], ["dependencies", 60, 3], ["optional-dependencies", 72, 3], ["nativeCheckInputs", 103, 3], ["versionCheckProgramArg", 106, 3], ["pythonImportsCheck", 108, 3], ["meta", 110, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -36,13 +33,13 @@ export default nix.lambda((args) => (() => {
   const mcp = nix.arg($, "mcp");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "huggingface-hub",
       version: "1.30.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "huggingface",
           repo: "huggingface_hub",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -62,7 +59,7 @@ export default nix.lambda((args) => (() => {
         typing_extensions,
       ]),
       "optional-dependencies": nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         all: [],
         fastai: nix.thunk(() => [toml, fastai, fastcore]),
         gradio: nix.thunk(() => [gradio, requests]),
@@ -75,7 +72,7 @@ export default nix.lambda((args) => (() => {
       versionCheckProgramArg: "version",
       pythonImportsCheck: nix.thunk(() => ["huggingface_hub"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Download and publish models and other files on the huggingface.co hub",
         mainProgram: "hf",
         homepage: "https://github.com/huggingface/huggingface_hub",

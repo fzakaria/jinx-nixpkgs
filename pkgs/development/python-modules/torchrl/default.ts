@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 86, 5], ["repo", 87, 5], ["tag", 88, 5], ["hash", 89, 5]], [["atari", 119, 5], ["brax", 123, 5], ["checkpointing", 127, 5], ["dm-control", 128, 5], ["gym-continuous", 129, 5], ["llm", 133, 5], ["marl", 147, 5], ["offline-data", 152, 5], ["open-spiel", 163, 5], ["procgen", 166, 5], ["rendering", 169, 5], ["replay-buffer", 170, 5], ["utils", 171, 5]], [["description", 352, 5], ["homepage", 353, 5], ["changelog", 354, 5], ["license", 355, 5], ["maintainers", 356, 5]], [["pname", 80, 3], ["version", 81, 3], ["pyproject", 82, 3], ["__structuredAttrs", 83, 3], ["src", 85, 3], ["postPatch", 92, 3], ["build-system", 97, 3], ["dontUseCmakeConfigure", 106, 3], ["dependencies", 108, 3], ["optional-dependencies", 118, 3], ["preBuild", 182, 3], ["pythonImportsCheck", 186, 3], ["preCheck", 189, 3], ["pytestFlags", 195, 3], ["nativeCheckInputs", 205, 3], ["disabledTests", 223, 3], ["disabledTestPaths", 317, 3], ["meta", 351, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitHub: false, cmake: false, ninja: false, numpy: false, pybind11: false, setuptools: false, "setuptools-scm": false, torch: false, cloudpickle: false, hoptorch: false, packaging: false, pyvers: false, tensordict: false, gymnasium: false, brax: false, jax: false, torchsnapshot: false, "dm-control": false, mujoco: false, accelerate: false, datasets: false, einops: false, immutabledict: false, langdetect: false, nltk: false, playwright: false, protobuf: false, safetensors: false, sentencepiece: false, transformers: false, vllm: false, pettingzoo: false, vmas: false, h5py: false, "huggingface-hub": false, minari: false, pandas: false, pillow: false, requests: false, "scikit-learn": false, torchvision: false, tqdm: false, moviepy: false, git: false, "hydra-core": false, tensorboard: false, wandb: false, imageio: false, "pytest-rerunfailures": false, "pytest-xdist": false, pytestCheckHook: false, pyyaml: false, scipy: false, writableTmpDirAsHomeHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 86, 5], ["repo", 87, 5], ["tag", 88, 5], ["hash", 89, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["atari", 119, 5], ["brax", 123, 5], ["checkpointing", 127, 5], ["dm-control", 128, 5], ["gym-continuous", 129, 5], ["llm", 133, 5], ["marl", 147, 5], ["offline-data", 152, 5], ["open-spiel", 163, 5], ["procgen", 166, 5], ["rendering", 169, 5], ["replay-buffer", 170, 5], ["utils", 171, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 352, 5], ["homepage", 353, 5], ["changelog", 354, 5], ["license", 355, 5], ["maintainers", 356, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 80, 3], ["version", 81, 3], ["pyproject", 82, 3], ["__structuredAttrs", 83, 3], ["src", 85, 3], ["postPatch", 92, 3], ["build-system", 97, 3], ["dontUseCmakeConfigure", 106, 3], ["dependencies", 108, 3], ["optional-dependencies", 118, 3], ["preBuild", 182, 3], ["pythonImportsCheck", 186, 3], ["preCheck", 189, 3], ["pytestFlags", 195, 3], ["nativeCheckInputs", 205, 3], ["disabledTests", 223, 3], ["disabledTestPaths", 317, 3], ["meta", 351, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -68,13 +65,13 @@ export default nix.lambda((args) => (() => {
   const scipy = nix.arg($, "scipy");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "torchrl",
       version: "0.14.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "pytorch",
           repo: "rl",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -85,7 +82,7 @@ export default nix.lambda((args) => (() => {
       dontUseCmakeConfigure: true,
       dependencies: nix.thunk(() => [cloudpickle, hoptorch, numpy, packaging, pyvers, tensordict, torch]),
       "optional-dependencies": nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         atari: nix.thunk(() => nix.concat([gymnasium], nix.sel(gymnasium, "optional-dependencies", "atari"))),
         brax: nix.thunk(() => [brax, jax]),
         checkpointing: nix.thunk(() => [torchsnapshot]),
@@ -206,7 +203,7 @@ export default nix.lambda((args) => (() => {
         "test/test_distributed.py::TestSyncCollector",
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Modular, primitive-first, python-first PyTorch library for Reinforcement Learning",
         homepage: "https://github.com/pytorch/rl",
         changelog: nix.thunk(() => nix.str`https://github.com/pytorch/rl/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

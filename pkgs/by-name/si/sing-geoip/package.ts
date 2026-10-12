@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 7], ["repo", 16, 7], ["tag", 17, 7], ["hash", 18, 7]], [["description", 29, 7], ["homepage", 30, 7], ["license", 31, 7], ["maintainers", 32, 7], ["mainProgram", 33, 7]], [["pname", 11, 5], ["version", 12, 5], ["src", 14, 5], ["vendorHash", 21, 5], ["postPatch", 23, 5], ["meta", 28, 5]], [["generator", 61, 24]], [["license", 64, 38]], [["pname", 38, 23], ["version", 39, 31], ["dontUnpack", 41, 3], ["nativeBuildInputs", 43, 3], ["buildPhase", 45, 3], ["installPhase", 53, 3], ["passthru", 61, 3], ["meta", 63, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, buildGoModule: false, fetchFromGitHub: false, "dbip-country-lite": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 7], ["repo", 16, 7], ["tag", 17, 7], ["hash", 18, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 29, 7], ["homepage", 30, 7], ["license", 31, 7], ["maintainers", 32, 7], ["mainProgram", 33, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 11, 5], ["version", 12, 5], ["src", 14, 5], ["vendorHash", 21, 5], ["postPatch", 23, 5], ["meta", 28, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["generator", 61, 24]]);
-const pos$5 = nix.positions(here + "/package.nix", [["license", 64, 38]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 38, 23], ["version", 39, 31], ["dontUnpack", 41, 3], ["nativeBuildInputs", 43, 3], ["buildPhase", 45, 3], ["installPhase", 53, 3], ["passthru", 61, 3], ["meta", 63, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "sing-geoip";
       const version = "20240312";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "SagerNet",
           repo: "sing-geoip",
           tag: version,
@@ -32,7 +27,7 @@ export default nix.lambda((args) => (() => {
 cat ${nix.path(here, "./main.go")} >> main.go
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "GeoIP data for sing-box",
         homepage: "https://github.com/SagerNet/sing-geoip",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
@@ -42,10 +37,10 @@ cat ${nix.path(here, "./main.go")} >> main.go
         })()),
         mainProgram: "sing-geoip",
       }));
-      return { [nix.POS]: pos$3, pname, version, src, vendorHash, postPatch, meta };
+      return { [nix.POS]: $pos[2], pname, version, src, vendorHash, postPatch, meta };
     })())));
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: nix.thunk(() => nix.attr(generator, "pname")),
       version: nix.thunk(() => nix.attr(dbip_country_lite, "version")),
       dontUnpack: true,
@@ -57,10 +52,10 @@ sing-geoip ${nix.sel(dbip_country_lite, "mmdb")}
 runHook postBuild
 `),
       installPhase: "runHook preInstall\n\ninstall -Dm644 rule-set/* -t $out/share/sing-box/rule-set\n\nrunHook postInstall\n",
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$4, generator: generator })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[3], generator: generator })),
       meta: nix.thunk(() => nix.update(nix.sel(generator, "meta"), (() => {
         const from = nix.thunk(() => nix.sel(dbip_country_lite, "meta"));
-        return { [nix.POS]: pos$5, license: nix.thunk(() => nix.attr(from, "license")) };
+        return { [nix.POS]: $pos[4], license: nix.thunk(() => nix.attr(from, "license")) };
       })())),
     })));
 })(), formals$1);

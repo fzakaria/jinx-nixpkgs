@@ -2,10 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]], [["description", 40, 5], ["homepage", 41, 5], ["license", 42, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["postPatch", 22, 3], ["meta", 39, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, buildGhidraScripts: false, binwalk: false, swift: false, yara: false, useSwift: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 40, 5], ["homepage", 41, 5], ["license", 42, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["postPatch", 22, 3], ["meta", 39, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const yara = nix.arg($, "yara");
   const useSwift = nix.argOr($, "useSwift", () => false);
   return nix.app(buildGhidraScripts, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "ghidraninja-ghidra-scripts",
       version: "0-unstable-2020-10-08",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ghidraninja",
           repo: "ghidra_scripts",
           rev: "99f2a8644a29479618f51e2d4e28f10ba5e9ac48",
@@ -34,7 +32,7 @@ substituteInPlace YaraSearch.py --replace-fail '"yara "' '"${nix.app(nix.sel(lib
 `, (nix.asBool(useSwift) ? nix.str`substituteInPlace swift_demangler.py --replace-fail '"swift"' '"${nix.app(nix.sel(lib, "getExe'"), swift, "swift")}"'
 ` : "rm swift_demangler.py\n"))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Scripts for the Ghidra software reverse engineering suite",
         homepage: "https://github.com/ghidraninja/ghidra_scripts",
         license: nix.thunk(() => (() => {

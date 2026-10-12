@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["license", 34, 30], ["platforms", 34, 38], ["description", 35, 5], ["homepage", 36, 5], ["maintainers", 37, 5]], [["pname", 14, 3], ["src", 15, 23], ["version", 15, 27], ["sourceRoot", 16, 3], ["strictDeps", 18, 3], ["nativeBuildInputs", 20, 3], ["buildInputs", 28, 3], ["meta", 33, 3]]]);
 const formals$1 = { args: { "arrow-cpp": false, glib: false, "gobject-introspection": false, lib: false, meson: false, ninja: false, "pkg-config": false, python3: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["license", 34, 30], ["platforms", 34, 38], ["description", 35, 5], ["homepage", 36, 5], ["maintainers", 37, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["src", 15, 23], ["version", 15, 27], ["sourceRoot", 16, 3], ["strictDeps", 18, 3], ["nativeBuildInputs", 20, 3], ["buildInputs", 28, 3], ["meta", 33, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,7 +17,7 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "arrow-glib",
       src: nix.thunk(() => nix.attr(arrow_cpp, "src")),
       version: nix.thunk(() => nix.attr(arrow_cpp, "version")),
@@ -29,7 +28,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(arrow_cpp, "meta"));
         return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         license: nix.thunk(() => nix.attr(from, "license")),
         platforms: nix.thunk(() => nix.attr(from, "platforms")),
         description: "GLib bindings for Apache Arrow",

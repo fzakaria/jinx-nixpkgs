@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/lwt-unix.nix", [[["description", 42, 5]], [["pname", 16, 3], ["version", 17, 24], ["src", 17, 32], ["buildInputs", 19, 3], ["propagatedBuildInputs", 24, 3], ["doCheck", 35, 3], ["checkInputs", 36, 3], ["meta", 41, 3]]]);
 const formals$1 = { args: { buildDunePackage: false, "cohttp-lwt": false, "conduit-lwt-unix": false, "conduit-lwt": false, ppx_sexp_conv: false, cmdliner: false, fmt: false, logs: false, "magic-mime": false, ounit: false, cacert: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/lwt-unix.nix", [["description", 42, 5]]);
-const pos$2 = nix.positions(here + "/lwt-unix.nix", [["pname", 16, 3], ["version", 17, 24], ["src", 17, 32], ["buildInputs", 19, 3], ["propagatedBuildInputs", 24, 3], ["doCheck", 35, 3], ["checkInputs", 36, 3], ["meta", 41, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,7 +19,7 @@ export default nix.lambda((args) => (() => {
   const ounit = nix.arg($, "ounit");
   const cacert = nix.arg($, "cacert");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "cohttp-lwt-unix",
       version: nix.thunk(() => nix.attr(cohttp_lwt, "version")),
       src: nix.thunk(() => nix.attr(cohttp_lwt, "src")),
@@ -29,7 +28,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       checkInputs: nix.thunk(() => [ounit, cacert]),
       meta: nix.thunk(() => nix.update(nix.sel(cohttp_lwt, "meta"), {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "CoHTTP implementation for Unix and Windows using Lwt",
       })),
     })));

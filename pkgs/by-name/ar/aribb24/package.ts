@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 17, 5], ["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]], [["rev-prefix", 34, 33]], [["pkg-config", 35, 11]], [["updateScript", 34, 5], ["tests", 35, 5]], [["description", 39, 5], ["homepage", 40, 5], ["license", 41, 5], ["pkgConfigModules", 42, 5], ["platforms", 43, 5], ["maintainers", 44, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["buildInputs", 24, 3], ["nativeBuildInputs", 28, 3], ["passthru", 33, 3], ["meta", 38, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, testers: false, gitUpdater: false, autoreconfHook: false, "pkg-config": false, libpng: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 17, 5], ["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["rev-prefix", 34, 33]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pkg-config", 35, 11]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 34, 5], ["tests", 35, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 39, 5], ["homepage", 40, 5], ["license", 41, 5], ["pkgConfigModules", 42, 5], ["platforms", 43, 5], ["maintainers", 44, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["buildInputs", 24, 3], ["nativeBuildInputs", 28, 3], ["passthru", 33, 3], ["meta", 38, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const libpng = nix.arg($, "libpng");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "aribb24",
       version: "1.0.4",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "code.videolan.org",
           owner: "jeeb",
           repo: "aribb24",
@@ -35,15 +30,15 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [libpng]),
       nativeBuildInputs: nix.thunk(() => [autoreconfHook, pkg_config]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, "rev-prefix": "v" })))),
+        [nix.POS]: $pos[3],
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[1], "rev-prefix": "v" })))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "testMetaPkgConfig"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Library for ARIB STD-B24, decoding JIS 8 bit characters and parsing MPEG-TS stream",
         homepage: "https://code.videolan.org/jeeb/aribb24/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3Plus")),

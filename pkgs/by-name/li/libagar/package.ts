@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 23, 5], ["hash", 24, 5]], [["description", 58, 5], ["homepage", 59, 5], ["license", 60, 5], ["maintainers", 61, 5], ["platforms", 62, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["preConfigure", 27, 3], ["configureFlags", 32, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 45, 3], ["meta", 57, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, "pkg-config": false, libtool: false, gettext: false, libpng: false, libjpeg: false, libxinerama: false, freetype: false, SDL: false, libGL: false, libmysqlclient: false, fontconfig: false, perl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 58, 5], ["homepage", 59, 5], ["license", 60, 5], ["maintainers", 61, 5], ["platforms", 62, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["preConfigure", 27, 3], ["configureFlags", 32, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 45, 3], ["meta", 57, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const fontconfig = nix.arg($, "fontconfig");
   const perl = nix.arg($, "perl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "libagar",
       version: "1.7.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://stable.hypertriton.com/agar/agar-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-0euZTIJizXDfHU2UYsVFMInbXcgV0BtXZ1CMKSOlllw=",
         })))),
@@ -53,7 +51,7 @@ export default nix.lambda((args) => (() => {
         fontconfig,
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Cross-platform GUI toolkit",
         homepage: "http://libagar.org/index.html",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

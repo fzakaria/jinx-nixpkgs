@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]], [["package", 38, 7], ["command", 39, 7], ["version", 40, 7]], [["version", 37, 11]], [["updateScript", 35, 5], ["tests", 37, 5]], [["description", 52, 5], ["longDescription", 53, 5], ["homepage", 59, 5], ["license", 60, 5], ["maintainers", 61, 5], ["platforms", 62, 5], ["mainProgram", 63, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["modRoot", 24, 3], ["vendorHash", 26, 3], ["ldflags", 28, 3], ["passthru", 34, 3], ["nativeBuildInputs", 44, 3], ["buildInputs", 45, 3], ["postInstall", 47, 3], ["meta", 51, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitHub: false, "nix-update-script": false, makeWrapper: false, openssh: false, libxcrypt: false, testers: false, "shellhub-agent": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["package", 38, 7], ["command", 39, 7], ["version", 40, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 37, 11]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 35, 5], ["tests", 37, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 52, 5], ["longDescription", 53, 5], ["homepage", 59, 5], ["license", 60, 5], ["maintainers", 61, 5], ["platforms", 62, 5], ["mainProgram", 63, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["modRoot", 24, 3], ["vendorHash", 26, 3], ["ldflags", 28, 3], ["passthru", 34, 3], ["nativeBuildInputs", 44, 3], ["buildInputs", 45, 3], ["postInstall", 47, 3], ["meta", 51, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const shellhub_agent = nix.arg($, "shellhub-agent");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "shellhub-agent",
       version: "0.25.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "shellhub-io",
           repo: "shellhub",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -40,12 +35,12 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`-X main.AgentVersion=v${nix.sel(finalAttrs, "version")}`),
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               package: shellhub_agent,
               command: "agent --version",
               version: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -57,7 +52,7 @@ export default nix.lambda((args) => (() => {
       postInstall: nix.thunk(() => nix.str`wrapProgram $out/bin/agent --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [openssh]))}
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Enables easy access any Linux device behind firewall and NAT",
         longDescription: "ShellHub is a modern SSH server for remotely accessing Linux devices via\ncommand line (using any SSH client) or web-based user interface, designed\nas an alternative to _sshd_. Think ShellHub as centralized SSH for the the\nedge and cloud computing.\n",
         homepage: "https://shellhub.io/",

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 12, 5], ["repo", 13, 5], ["rev", 14, 5], ["hash", 15, 5]], [["CGO_ENABLED", 20, 7]], [["homepage", 35, 5], ["changelog", 36, 5], ["description", 37, 5], ["mainProgram", 38, 5], ["license", 39, 5], ["maintainers", 40, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["vendorHash", 18, 3], ["env", 20, 3], ["subPackages", 22, 3], ["tags", 24, 3], ["ldflags", 26, 3], ["doCheck", 32, 3], ["meta", 34, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, buildGoModule: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 12, 5], ["repo", 13, 5], ["rev", 14, 5], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["CGO_ENABLED", 20, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 35, 5], ["changelog", 36, 5], ["description", 37, 5], ["mainProgram", 38, 5], ["license", 39, 5], ["maintainers", 40, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["vendorHash", 18, 3], ["env", 20, 3], ["subPackages", 22, 3], ["tags", 24, 3], ["ldflags", 26, 3], ["doCheck", 32, 3], ["meta", 34, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,18 +11,18 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const buildGoModule = nix.arg($, "buildGoModule");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "slsa-verifier",
       version: "2.7.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "slsa-framework",
           repo: "slsa-verifier",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-9C6MQwOxcRlhkWslHGr1mR6i2c32HMu7wRmozI4dRPI=",
         })))),
       vendorHash: "sha256-L+QoXVxj6bNKkH5vcr+2UsZa+NC+Gn+Nno5vW2YEARw=",
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, CGO_ENABLED: 0n })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], CGO_ENABLED: 0n })),
       subPackages: nix.thunk(() => ["cli/slsa-verifier"]),
       tags: nix.thunk(() => ["netgo"]),
       ldflags: nix.thunk(() => [
@@ -35,7 +32,7 @@ export default nix.lambda((args) => (() => {
       ]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/slsa-framework/slsa-verifier",
         changelog: nix.thunk(() => nix.str`https://github.com/slsa-framework/slsa-verifier/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "Verify provenance from SLSA compliant builders",

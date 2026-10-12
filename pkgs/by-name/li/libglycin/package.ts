@@ -2,18 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 46, 5], ["hash", 47, 5]], [["pname", 51, 26], ["version", 51, 32], ["src", 51, 40], ["hash", 52, 5]], [["CARGO_BUILD_TARGET", 108, 7]], [["attrPath", 116, 11], ["packageName", 117, 11]], [["command", 120, 11], ["supportedFeatures", 133, 11]], [["name", 144, 11]], [["bwrap", 148, 13], ["jq", 149, 13], ["sponge", 150, 13]], [["glycin-loaders", 156, 9], ["glycin-thumbnailer", 157, 9], ["libglycin-gtk4", 158, 9]], [["updateScript", 113, 5], ["patchVendorHook", 141, 5], ["tests", 154, 5]], [["description", 164, 5], ["homepage", 165, 5], ["changelog", 166, 5], ["license", 167, 5], ["maintainers", 173, 5], ["teams", 174, 5], ["platforms", 175, 5], ["pkgConfigModules", 176, 5]], [["pname", 34, 3], ["version", 35, 3], ["outputs", 37, 3], ["setupHook", 43, 3], ["src", 45, 3], ["cargoDeps", 50, 3], ["nativeBuildInputs", 55, 3], ["buildInputs", 71, 3], ["propagatedBuildInputs", 77, 3], ["mesonFlags", 85, 3], ["postPatch", 95, 3], ["postFixup", 103, 3], ["env", 108, 3], ["strictDeps", 110, 3], ["passthru", 112, 3], ["meta", 163, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, makeSetupHook: false, meson: false, ninja: false, "pkg-config": false, rustc: false, cargo: false, python3: false, rustPlatform: false, vala: false, "gi-docgen": false, glib: false, "gobject-introspection": false, "glycin-loaders": false, "glycin-thumbnailer": false, "libglycin-gtk4": false, fontconfig: false, libseccomp: false, lcms2: false, gnome: false, replaceVars: false, bubblewrap: false, "common-updater-scripts": false, "_experimental-update-script-combinators": false, buildPackages: false, withIntrospection: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 46, 5], ["hash", 47, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 51, 26], ["version", 51, 32], ["src", 51, 40], ["hash", 52, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["CARGO_BUILD_TARGET", 108, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["attrPath", 116, 11], ["packageName", 117, 11]]);
-const pos$5 = nix.positions(here + "/package.nix", [["command", 120, 11], ["supportedFeatures", 133, 11]]);
-const pos$6 = nix.positions(here + "/package.nix", [["name", 144, 11]]);
-const pos$7 = nix.positions(here + "/package.nix", [["bwrap", 148, 13], ["jq", 149, 13], ["sponge", 150, 13]]);
-const pos$8 = nix.positions(here + "/package.nix", [["glycin-loaders", 156, 9], ["glycin-thumbnailer", 157, 9], ["libglycin-gtk4", 158, 9]]);
-const pos$9 = nix.positions(here + "/package.nix", [["updateScript", 113, 5], ["patchVendorHook", 141, 5], ["tests", 154, 5]]);
-const pos$10 = nix.positions(here + "/package.nix", [["description", 164, 5], ["homepage", 165, 5], ["changelog", 166, 5], ["license", 167, 5], ["maintainers", 173, 5], ["teams", 174, 5], ["platforms", 175, 5], ["pkgConfigModules", 176, 5]]);
-const pos$11 = nix.positions(here + "/package.nix", [["pname", 34, 3], ["version", 35, 3], ["outputs", 37, 3], ["setupHook", 43, 3], ["src", 45, 3], ["cargoDeps", 50, 3], ["nativeBuildInputs", 55, 3], ["buildInputs", 71, 3], ["propagatedBuildInputs", 77, 3], ["mesonFlags", 85, 3], ["postPatch", 95, 3], ["postFixup", 103, 3], ["env", 108, 3], ["strictDeps", 110, 3], ["passthru", 112, 3], ["meta", 163, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -46,18 +36,18 @@ export default nix.lambda((args) => (() => {
   const buildPackages = nix.arg($, "buildPackages");
   const withIntrospection = nix.argOr($, "withIntrospection", () => (nix.asBool(nix.app(nix.sel(lib, "meta", "availableOn"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")), gobject_introspection)) && nix.asBool(nix.app(nix.sel(stdenv, "hostPlatform", "emulatorAvailable"), buildPackages))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$11,
+      [nix.POS]: $pos[10],
       pname: "libglycin",
       version: "2.1.5",
       outputs: nix.thunk(() => ["out", "dev", "devdoc"]),
       setupHook: nix.path(here, "./path-hook.sh"),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnome/sources/glycin/${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/glycin-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-bAl1fukGMwpgtnBXU6pWvKAHrSGblebjU3UQ1BvDQcg=",
         })))),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -92,16 +82,16 @@ substituteInPlace libglycin/meson.build --replace-fail \\
 `),
       postFixup: "# Cannot be in postInstall, otherwise _multioutDocs hook in preFixup will move right back.\nmoveToOutput \"share/doc\" \"$devdoc\"\n",
       env: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         CARGO_BUILD_TARGET: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "rust", "rustcTargetSpec")),
       })),
       strictDeps: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         updateScript: nix.thunk(() => (() => {
-          const updateSource = nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$4, attrPath: "libglycin", packageName: "glycin" }))));
+          const updateSource = nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: $pos[3], attrPath: "libglycin", packageName: "glycin" }))));
           const updateLockfile = nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             command: nix.thunk(() => [
               "sh",
               "-c",
@@ -113,21 +103,21 @@ update-source-version libglycin --ignore-same-version --source-key=cargoDeps.ven
           }));
           return nix.app(nix.sel(_experimental_update_script_combinators, "sequence"), nix.thunk(() => [updateSource, updateLockfile]));
         })()),
-        patchVendorHook: nix.thunk(() => nix.app(makeSetupHook, nix.thunk(() => ({ [nix.POS]: pos$6, name: "glycinPatchVendorHook" })), nix.thunk(() => nix.app(replaceVars, nix.path(here, "./patch-vendor-hook.sh"), nix.thunk(() => ({
-              [nix.POS]: pos$7,
+        patchVendorHook: nix.thunk(() => nix.app(makeSetupHook, nix.thunk(() => ({ [nix.POS]: $pos[5], name: "glycinPatchVendorHook" })), nix.thunk(() => nix.app(replaceVars, nix.path(here, "./patch-vendor-hook.sh"), nix.thunk(() => ({
+              [nix.POS]: $pos[6],
               bwrap: nix.thunk(() => nix.str`${bubblewrap}/bin/bwrap`),
               jq: nix.thunk(() => nix.str`${nix.sel(buildPackages, "jq")}/bin/jq`),
               sponge: nix.thunk(() => nix.str`${nix.sel(buildPackages, "moreutils")}/bin/sponge`),
             })))))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           "glycin-loaders": glycin_loaders,
           "glycin-thumbnailer": glycin_thumbnailer,
           "libglycin-gtk4": libglycin_gtk4,
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         description: "Sandboxed and extendable image loading library",
         homepage: "https://gitlab.gnome.org/GNOME/glycin",
         changelog: nix.thunk(() => nix.str`https://gitlab.gnome.org/GNOME/glycin/-/tags/${nix.sel(finalAttrs, "version")}`),

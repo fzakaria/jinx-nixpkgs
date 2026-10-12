@@ -2,8 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/wrapper.nix", [[["name", 19, 5], ["paths", 21, 5], ["nativeBuildInputs", 23, 5], ["postBuild", 25, 5]]]);
 const formals$1 = { args: { lib: false, symlinkJoin: false, makeWrapper: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/wrapper.nix", [["name", 19, 5], ["paths", 21, 5], ["nativeBuildInputs", 23, 5], ["postBuild", 25, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   return (unwrapped) => (pkgsSpec) => (() => {
     const mods = nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "isFunction"), pkgsSpec)) ? nix.app(pkgsSpec, nix.thunk(() => nix.sel(unwrapped, "pkgs"))) : nix.force(pkgsSpec)));
     return (nix.asBool(nix.eq(nix.builtins.length(mods), 0n)) ? nix.force(unwrapped) : nix.app(symlinkJoin, nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         name: nix.thunk(() => nix.add(nix.sel(unwrapped, "name"), "-with-mods")),
         paths: nix.thunk(() => nix.concat([unwrapped], mods)),
         nativeBuildInputs: nix.thunk(() => [makeWrapper]),

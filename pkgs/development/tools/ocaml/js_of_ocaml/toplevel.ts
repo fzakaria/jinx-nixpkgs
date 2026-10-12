@@ -2,9 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/toplevel.nix", [[["mainProgram", 13, 5]], [["pname", 8, 3], ["src", 9, 34], ["version", 9, 38], ["buildInputs", 10, 3], ["propagatedBuildInputs", 11, 3], ["meta", 12, 3]]]);
 const formals$1 = { args: { buildDunePackage: false, "js_of_ocaml-compiler": false, ppxlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/toplevel.nix", [["mainProgram", 13, 5]]);
-const pos$2 = nix.positions(here + "/toplevel.nix", [["pname", 8, 3], ["src", 9, 34], ["version", 9, 38], ["buildInputs", 10, 3], ["propagatedBuildInputs", 11, 3], ["meta", 12, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -12,13 +11,13 @@ export default nix.lambda((args) => (() => {
   const js_of_ocaml_compiler = nix.arg($, "js_of_ocaml-compiler");
   const ppxlib = nix.arg($, "ppxlib");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "js_of_ocaml-toplevel",
       src: nix.thunk(() => nix.attr(js_of_ocaml_compiler, "src")),
       version: nix.thunk(() => nix.attr(js_of_ocaml_compiler, "version")),
       buildInputs: nix.thunk(() => [ppxlib]),
       propagatedBuildInputs: nix.thunk(() => [js_of_ocaml_compiler]),
-      meta: nix.thunk(() => nix.update(nix.sel(js_of_ocaml_compiler, "meta"), { [nix.POS]: pos$1, mainProgram: "jsoo_mktop" })),
+      meta: nix.thunk(() => nix.update(nix.sel(js_of_ocaml_compiler, "meta"), { [nix.POS]: $pos[0], mainProgram: "jsoo_mktop" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=toplevel.ts.map

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]], [["description", 83, 5], ["homepage", 84, 5], ["license", 85, 5], ["platforms", 86, 5], ["maintainers", 87, 5]], [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["buildInputs", 32, 3], ["nativeBuildInputs", 47, 3], ["postPatch", 56, 3], ["qmakeFlags", 63, 3], ["installFlags", 72, 3], ["postInstall", 74, 3], ["meta", 82, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, libsForQt5: false, addDriverRunpath: false, "poppler-utils": false, libgbm: false, "xvfb-run": false, fontconfig: false, freetype: false, libxrender: false, libxi: false, libxcb: false, python3: false, git: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 83, 5], ["homepage", 84, 5], ["license", 85, 5], ["platforms", 86, 5], ["maintainers", 87, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["buildInputs", 32, 3], ["nativeBuildInputs", 47, 3], ["postPatch", 56, 3], ["qmakeFlags", 63, 3], ["installFlags", 72, 3], ["postInstall", 74, 3], ["meta", 82, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,11 +27,11 @@ export default nix.lambda((args) => (() => {
       return [nix.thunk(() => nix.lookup(w, "pyqt5"))];
     })()));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "seamly2d",
       version: "2025.8.4.217",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "FashionFreedom",
           repo: "Seamly2D",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -77,7 +75,7 @@ substituteInPlace src/libs/vwidgets/export_format_combobox.cpp \\
       installFlags: nix.thunk(() => ["INSTALL_ROOT=$(out)"]),
       postInstall: "mv $out/share/seamly2d/* $out/share/.\nrmdir $out/share/seamly2d\n\nmkdir -p $out/share/mime/packages\ncp dist/debian/seamly2d.sharedmimeinfo $out/share/mime/packages/seamly2d.xml\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Open source patternmaking software",
         homepage: "https://seamly.io/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

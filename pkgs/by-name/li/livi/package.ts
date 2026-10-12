@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 24, 5], ["repo", 25, 5], ["domain", 26, 5], ["rev", 27, 5], ["hash", 28, 5]], [["homepage", 53, 5], ["changelog", 54, 5], ["description", 55, 5], ["license", 56, 5], ["platforms", 57, 5], ["mainProgram", 58, 5], ["maintainers", 59, 5]], [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 41, 3], ["strictDeps", 50, 3], ["meta", 52, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, meson: false, ninja: false, "pkg-config": false, gst_all_1: false, wrapGAppsHook4: false, "appstream-glib": false, gtk4: false, libadwaita: false, "desktop-file-utils": false, libGL: false, appstream: false, "wayland-scanner": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 24, 5], ["repo", 25, 5], ["domain", 26, 5], ["rev", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 53, 5], ["changelog", 54, 5], ["description", 55, 5], ["license", 56, 5], ["platforms", 57, 5], ["mainProgram", 58, 5], ["maintainers", 59, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 41, 3], ["strictDeps", 50, 3], ["meta", 52, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const appstream = nix.arg($, "appstream");
   const wayland_scanner = nix.arg($, "wayland-scanner");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "livi",
       version: "0.5.0",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "guidog",
           repo: "livi",
           domain: "gitlab.gnome.org",
@@ -57,7 +55,7 @@ export default nix.lambda((args) => (() => {
       ]),
       strictDeps: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://gitlab.gnome.org/guidog/livi",
         changelog: nix.thunk(() => nix.str`https://gitlab.gnome.org/guidog/livi/-/blob/v${nix.sel(finalAttrs, "version")}/NEWS?ref_type=tags`),
         description: "Small video player targeting mobile devices (also named μPlayer)",

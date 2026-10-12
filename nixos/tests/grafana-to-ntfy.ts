@@ -2,62 +2,14 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/grafana-to-ntfy.nix", [[["grafana-to-ntfy", 5, 5], ["ntfy-sh", 6, 5], ["grafana", 7, 5], ["alertmanager", 8, 5]], [["maintainers", 15, 8]], [["ntfyUrl", 21, 9], ["port", 22, 9], ["address", 23, 9]], [["enable", 19, 7], ["settings", 20, 7]], [["listen-http", 30, 9], ["base-url", 31, 9]], [["enable", 28, 7], ["settings", 29, 7]], [["http_port", 38, 16], ["http_addr", 39, 16]], [["admin_user", 40, 18], ["admin_password", 41, 18], ["secret_key", 42, 18]], [["server", 38, 9], ["security", 40, 9]], [["url", 57, 21], ["httpMethod", 58, 21]], [["uid", 53, 19], ["type", 54, 19], ["disableResolveMessage", 55, 19], ["settings", 56, 19]], [["orgId", 49, 15], ["name", 50, 15], ["receivers", 51, 15]], [["apiVersion", 46, 11], ["contactPoints", 47, 11]], [["settings", 45, 23]], [["orgId", 69, 15], ["receiver", 70, 15], ["group_by", 71, 15], ["group_wait", 72, 15], ["group_interval", 73, 15], ["repeat_interval", 74, 15]], [["apiVersion", 66, 11], ["policies", 67, 11]], [["settings", 65, 18]], [["contactPoints", 45, 9], ["policies", 65, 9]], [["alerting", 44, 17]], [["enable", 36, 7], ["settings", 37, 7], ["provision", 44, 7]], [["receiver", 87, 11], ["group_by", 88, 11], ["group_wait", 89, 11], ["group_interval", 90, 11], ["repeat_interval", 91, 11]], [["url", 97, 17]], [["name", 95, 13], ["webhook_configs", 96, 13]], [["route", 86, 9], ["receivers", 93, 9]], [["enable", 82, 7], ["listenAddress", 83, 7], ["port", 84, 7], ["configuration", 85, 7]], [["alertmanager", 81, 25]], [["grafana-to-ntfy", 18, 14], ["ntfy-sh", 27, 14], ["grafana", 35, 14], ["prometheus", 81, 14]], [["services", 18, 5]], [["machine", 17, 9]], [["address", 106, 39]], [["settings", 106, 30]], [["http_addr", 107, 38]], [["server", 107, 31]], [["settings", 107, 22]], [["listenAddress", 108, 38]], [["alertmanager", 108, 25]], [["listen-http", 109, 31]], [["settings", 109, 22]], [["grafana-to-ntfy", 106, 14], ["grafana", 107, 14], ["prometheus", 108, 14], ["ntfy-sh", 109, 14]], [["enable", 110, 25]], [["firewall", 110, 16]], [["port", 113, 24]], [["port", 114, 25]], [["from", 112, 7], ["host", 113, 7], ["guest", 114, 7]], [["forwardPorts", 111, 20]], [["services", 106, 5], ["networking", 110, 5], ["virtualisation", 111, 5]], [["machine", 105, 21]], [["nodes", 105, 15]], [["name", 14, 3], ["meta", 15, 3], ["nodes", 17, 3], ["interactive", 105, 3], ["testScript", 118, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/grafana-to-ntfy.nix", [["grafana-to-ntfy", 5, 5], ["ntfy-sh", 6, 5], ["grafana", 7, 5], ["alertmanager", 8, 5]]);
-const pos$2 = nix.positions(here + "/grafana-to-ntfy.nix", [["maintainers", 15, 8]]);
-const pos$3 = nix.positions(here + "/grafana-to-ntfy.nix", [["ntfyUrl", 21, 9], ["port", 22, 9], ["address", 23, 9]]);
-const pos$4 = nix.positions(here + "/grafana-to-ntfy.nix", [["enable", 19, 7], ["settings", 20, 7]]);
-const pos$5 = nix.positions(here + "/grafana-to-ntfy.nix", [["listen-http", 30, 9], ["base-url", 31, 9]]);
-const pos$6 = nix.positions(here + "/grafana-to-ntfy.nix", [["enable", 28, 7], ["settings", 29, 7]]);
-const pos$7 = nix.positions(here + "/grafana-to-ntfy.nix", [["http_port", 38, 16], ["http_addr", 39, 16]]);
-const pos$8 = nix.positions(here + "/grafana-to-ntfy.nix", [["admin_user", 40, 18], ["admin_password", 41, 18], ["secret_key", 42, 18]]);
-const pos$9 = nix.positions(here + "/grafana-to-ntfy.nix", [["server", 38, 9], ["security", 40, 9]]);
-const pos$10 = nix.positions(here + "/grafana-to-ntfy.nix", [["url", 57, 21], ["httpMethod", 58, 21]]);
-const pos$11 = nix.positions(here + "/grafana-to-ntfy.nix", [["uid", 53, 19], ["type", 54, 19], ["disableResolveMessage", 55, 19], ["settings", 56, 19]]);
-const pos$12 = nix.positions(here + "/grafana-to-ntfy.nix", [["orgId", 49, 15], ["name", 50, 15], ["receivers", 51, 15]]);
-const pos$13 = nix.positions(here + "/grafana-to-ntfy.nix", [["apiVersion", 46, 11], ["contactPoints", 47, 11]]);
-const pos$14 = nix.positions(here + "/grafana-to-ntfy.nix", [["settings", 45, 23]]);
-const pos$15 = nix.positions(here + "/grafana-to-ntfy.nix", [["orgId", 69, 15], ["receiver", 70, 15], ["group_by", 71, 15], ["group_wait", 72, 15], ["group_interval", 73, 15], ["repeat_interval", 74, 15]]);
-const pos$16 = nix.positions(here + "/grafana-to-ntfy.nix", [["apiVersion", 66, 11], ["policies", 67, 11]]);
-const pos$17 = nix.positions(here + "/grafana-to-ntfy.nix", [["settings", 65, 18]]);
-const pos$18 = nix.positions(here + "/grafana-to-ntfy.nix", [["contactPoints", 45, 9], ["policies", 65, 9]]);
-const pos$19 = nix.positions(here + "/grafana-to-ntfy.nix", [["alerting", 44, 17]]);
-const pos$20 = nix.positions(here + "/grafana-to-ntfy.nix", [["enable", 36, 7], ["settings", 37, 7], ["provision", 44, 7]]);
-const pos$21 = nix.positions(here + "/grafana-to-ntfy.nix", [["receiver", 87, 11], ["group_by", 88, 11], ["group_wait", 89, 11], ["group_interval", 90, 11], ["repeat_interval", 91, 11]]);
-const pos$22 = nix.positions(here + "/grafana-to-ntfy.nix", [["url", 97, 17]]);
-const pos$23 = nix.positions(here + "/grafana-to-ntfy.nix", [["name", 95, 13], ["webhook_configs", 96, 13]]);
-const pos$24 = nix.positions(here + "/grafana-to-ntfy.nix", [["route", 86, 9], ["receivers", 93, 9]]);
-const pos$25 = nix.positions(here + "/grafana-to-ntfy.nix", [["enable", 82, 7], ["listenAddress", 83, 7], ["port", 84, 7], ["configuration", 85, 7]]);
-const pos$26 = nix.positions(here + "/grafana-to-ntfy.nix", [["alertmanager", 81, 25]]);
-const pos$27 = nix.positions(here + "/grafana-to-ntfy.nix", [["grafana-to-ntfy", 18, 14], ["ntfy-sh", 27, 14], ["grafana", 35, 14], ["prometheus", 81, 14]]);
-const pos$28 = nix.positions(here + "/grafana-to-ntfy.nix", [["services", 18, 5]]);
-const pos$29 = nix.positions(here + "/grafana-to-ntfy.nix", [["machine", 17, 9]]);
-const pos$30 = nix.positions(here + "/grafana-to-ntfy.nix", [["address", 106, 39]]);
-const pos$31 = nix.positions(here + "/grafana-to-ntfy.nix", [["settings", 106, 30]]);
-const pos$32 = nix.positions(here + "/grafana-to-ntfy.nix", [["http_addr", 107, 38]]);
-const pos$33 = nix.positions(here + "/grafana-to-ntfy.nix", [["server", 107, 31]]);
-const pos$34 = nix.positions(here + "/grafana-to-ntfy.nix", [["settings", 107, 22]]);
-const pos$35 = nix.positions(here + "/grafana-to-ntfy.nix", [["listenAddress", 108, 38]]);
-const pos$36 = nix.positions(here + "/grafana-to-ntfy.nix", [["alertmanager", 108, 25]]);
-const pos$37 = nix.positions(here + "/grafana-to-ntfy.nix", [["listen-http", 109, 31]]);
-const pos$38 = nix.positions(here + "/grafana-to-ntfy.nix", [["settings", 109, 22]]);
-const pos$39 = nix.positions(here + "/grafana-to-ntfy.nix", [["grafana-to-ntfy", 106, 14], ["grafana", 107, 14], ["prometheus", 108, 14], ["ntfy-sh", 109, 14]]);
-const pos$40 = nix.positions(here + "/grafana-to-ntfy.nix", [["enable", 110, 25]]);
-const pos$41 = nix.positions(here + "/grafana-to-ntfy.nix", [["firewall", 110, 16]]);
-const pos$42 = nix.positions(here + "/grafana-to-ntfy.nix", [["port", 113, 24]]);
-const pos$43 = nix.positions(here + "/grafana-to-ntfy.nix", [["port", 114, 25]]);
-const pos$44 = nix.positions(here + "/grafana-to-ntfy.nix", [["from", 112, 7], ["host", 113, 7], ["guest", 114, 7]]);
-const pos$45 = nix.positions(here + "/grafana-to-ntfy.nix", [["forwardPorts", 111, 20]]);
-const pos$46 = nix.positions(here + "/grafana-to-ntfy.nix", [["services", 106, 5], ["networking", 110, 5], ["virtualisation", 111, 5]]);
-const pos$47 = nix.positions(here + "/grafana-to-ntfy.nix", [["machine", 105, 21]]);
-const pos$48 = nix.positions(here + "/grafana-to-ntfy.nix", [["nodes", 105, 15]]);
-const pos$49 = nix.positions(here + "/grafana-to-ntfy.nix", [["name", 14, 3], ["meta", 15, 3], ["nodes", 17, 3], ["interactive", 105, 3], ["testScript", 118, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const ports = nix.thunk(() => ({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     "grafana-to-ntfy": 8080n,
     "ntfy-sh": 8081n,
     grafana: 3000n,
@@ -65,79 +17,79 @@ export default nix.lambda((args) => (() => {
   }));
   const ntfyTopic = "grafana-alerts";
   return {
-    [nix.POS]: pos$49,
+    [nix.POS]: $pos[48],
     name: "grafana-to-ntfy",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "kittyandrew"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$29,
+      [nix.POS]: $pos[28],
       machine: nix.thunk(() => ({
-        [nix.POS]: pos$28,
+        [nix.POS]: $pos[27],
         services: nix.thunk(() => ({
-          [nix.POS]: pos$27,
+          [nix.POS]: $pos[26],
           "grafana-to-ntfy": nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             enable: true,
             settings: nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               ntfyUrl: nix.thunk(() => nix.str`http://127.0.0.1:${nix.builtins.toString(nix.thunk(() => nix.sel(ports, "ntfy-sh")))}/${ntfyTopic}`),
               port: nix.thunk(() => nix.sel(ports, "grafana-to-ntfy")),
               address: "127.0.0.1",
             })),
           })),
           "ntfy-sh": nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             enable: true,
             settings: nix.thunk(() => ({
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               "listen-http": nix.thunk(() => nix.str`127.0.0.1:${nix.builtins.toString(nix.thunk(() => nix.sel(ports, "ntfy-sh")))}`),
               "base-url": nix.thunk(() => nix.str`http://127.0.0.1:${nix.builtins.toString(nix.thunk(() => nix.sel(ports, "ntfy-sh")))}`),
             })),
           })),
           grafana: nix.thunk(() => ({
-            [nix.POS]: pos$20,
+            [nix.POS]: $pos[19],
             enable: true,
             settings: nix.thunk(() => ({
-              [nix.POS]: pos$9,
+              [nix.POS]: $pos[8],
               server: nix.thunk(() => ({
-                [nix.POS]: pos$7,
+                [nix.POS]: $pos[6],
                 http_port: nix.thunk(() => nix.sel(ports, "grafana")),
                 http_addr: "127.0.0.1",
               })),
               security: nix.thunk(() => ({
-                [nix.POS]: pos$8,
+                [nix.POS]: $pos[7],
                 admin_user: "admin",
                 admin_password: "admin",
                 secret_key: "test-only-dummy-key",
               })),
             })),
             provision: nix.thunk(() => ({
-              [nix.POS]: pos$19,
+              [nix.POS]: $pos[18],
               alerting: nix.thunk(() => ({
-                [nix.POS]: pos$18,
+                [nix.POS]: $pos[17],
                 contactPoints: nix.thunk(() => ({
-                  [nix.POS]: pos$14,
+                  [nix.POS]: $pos[13],
                   settings: nix.thunk(() => ({
-                    [nix.POS]: pos$13,
+                    [nix.POS]: $pos[12],
                     apiVersion: 1n,
                     contactPoints: nix.thunk(() => [
                       nix.thunk(() => ({
-                        [nix.POS]: pos$12,
+                        [nix.POS]: $pos[11],
                         orgId: 1n,
                         name: "grafana-to-ntfy",
                         receivers: nix.thunk(() => [
                           nix.thunk(() => ({
-                            [nix.POS]: pos$11,
+                            [nix.POS]: $pos[10],
                             uid: "cp_webhook",
                             type: "webhook",
                             disableResolveMessage: false,
                             settings: nix.thunk(() => ({
-                              [nix.POS]: pos$10,
+                              [nix.POS]: $pos[9],
                               url: nix.thunk(() => nix.str`http://127.0.0.1:${nix.builtins.toString(nix.thunk(() => nix.sel(ports, "grafana-to-ntfy")))}`),
                               httpMethod: "POST",
                             })),
@@ -148,13 +100,13 @@ export default nix.lambda((args) => (() => {
                   })),
                 })),
                 policies: nix.thunk(() => ({
-                  [nix.POS]: pos$17,
+                  [nix.POS]: $pos[16],
                   settings: nix.thunk(() => ({
-                    [nix.POS]: pos$16,
+                    [nix.POS]: $pos[15],
                     apiVersion: 1n,
                     policies: nix.thunk(() => [
                       nix.thunk(() => ({
-                        [nix.POS]: pos$15,
+                        [nix.POS]: $pos[14],
                         orgId: 1n,
                         receiver: "grafana-to-ntfy",
                         group_by: nix.thunk(() => ["..."]),
@@ -169,16 +121,16 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           prometheus: nix.thunk(() => ({
-            [nix.POS]: pos$26,
+            [nix.POS]: $pos[25],
             alertmanager: nix.thunk(() => ({
-              [nix.POS]: pos$25,
+              [nix.POS]: $pos[24],
               enable: true,
               listenAddress: "127.0.0.1",
               port: nix.thunk(() => nix.sel(ports, "alertmanager")),
               configuration: nix.thunk(() => ({
-                [nix.POS]: pos$24,
+                [nix.POS]: $pos[23],
                 route: nix.thunk(() => ({
-                  [nix.POS]: pos$21,
+                  [nix.POS]: $pos[20],
                   receiver: "grafana-to-ntfy",
                   group_by: nix.thunk(() => ["..."]),
                   group_wait: "0s",
@@ -187,11 +139,11 @@ export default nix.lambda((args) => (() => {
                 })),
                 receivers: nix.thunk(() => [
                   nix.thunk(() => ({
-                    [nix.POS]: pos$23,
+                    [nix.POS]: $pos[22],
                     name: "grafana-to-ntfy",
                     webhook_configs: nix.thunk(() => [
                       nix.thunk(() => ({
-                        [nix.POS]: pos$22,
+                        [nix.POS]: $pos[21],
                         url: nix.thunk(() => nix.str`http://127.0.0.1:${nix.builtins.toString(nix.thunk(() => nix.sel(ports, "grafana-to-ntfy")))}`),
                       })),
                     ]),
@@ -204,56 +156,56 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     interactive: nix.thunk(() => ({
-      [nix.POS]: pos$48,
+      [nix.POS]: $pos[47],
       nodes: nix.thunk(() => ({
-        [nix.POS]: pos$47,
+        [nix.POS]: $pos[46],
         machine: nix.thunk(() => ({
-          [nix.POS]: pos$46,
+          [nix.POS]: $pos[45],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$39,
+            [nix.POS]: $pos[38],
             "grafana-to-ntfy": nix.thunk(() => ({
-              [nix.POS]: pos$31,
+              [nix.POS]: $pos[30],
               settings: nix.thunk(() => ({
-                [nix.POS]: pos$30,
+                [nix.POS]: $pos[29],
                 address: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), "0.0.0.0")),
               })),
             })),
             grafana: nix.thunk(() => ({
-              [nix.POS]: pos$34,
+              [nix.POS]: $pos[33],
               settings: nix.thunk(() => ({
-                [nix.POS]: pos$33,
+                [nix.POS]: $pos[32],
                 server: nix.thunk(() => ({
-                  [nix.POS]: pos$32,
+                  [nix.POS]: $pos[31],
                   http_addr: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), "0.0.0.0")),
                 })),
               })),
             })),
             prometheus: nix.thunk(() => ({
-              [nix.POS]: pos$36,
+              [nix.POS]: $pos[35],
               alertmanager: nix.thunk(() => ({
-                [nix.POS]: pos$35,
+                [nix.POS]: $pos[34],
                 listenAddress: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), "0.0.0.0")),
               })),
             })),
             "ntfy-sh": nix.thunk(() => ({
-              [nix.POS]: pos$38,
+              [nix.POS]: $pos[37],
               settings: nix.thunk(() => ({
-                [nix.POS]: pos$37,
+                [nix.POS]: $pos[36],
                 "listen-http": nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), nix.thunk(() => nix.str`0.0.0.0:${nix.builtins.toString(nix.thunk(() => nix.sel(ports, "ntfy-sh")))}`))),
               })),
             })),
           })),
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$41,
-            firewall: nix.thunk(() => ({ [nix.POS]: pos$40, enable: false })),
+            [nix.POS]: $pos[40],
+            firewall: nix.thunk(() => ({ [nix.POS]: $pos[39], enable: false })),
           })),
           virtualisation: nix.thunk(() => ({
-            [nix.POS]: pos$45,
+            [nix.POS]: $pos[44],
             forwardPorts: nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (_) => (port) => ({
-                [nix.POS]: pos$44,
+                [nix.POS]: $pos[43],
                 from: "host",
-                host: nix.thunk(() => ({ [nix.POS]: pos$42, port: port })),
-                guest: nix.thunk(() => ({ [nix.POS]: pos$43, port: port })),
+                host: nix.thunk(() => ({ [nix.POS]: $pos[41], port: port })),
+                guest: nix.thunk(() => ({ [nix.POS]: $pos[42], port: port })),
               }), ports)),
           })),
         })),

@@ -2,22 +2,21 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 7, 28], ["hash", 8, 5]], [["version", 4, 3], ["pname", 5, 3], ["src", 6, 3]]]);
 const formals$1 = { args: { scala: false, fetchurl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 7, 28], ["hash", 8, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["version", 4, 3], ["pname", 5, 3], ["src", 6, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const scala = nix.arg($, "scala");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(scala, "bare", "overrideAttrs"), (oldAttrs) => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       version: "3.8.4",
       pname: "scala-next",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(oldAttrs, "src"));
           return {
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.attr(from, "url")),
           hash: "sha256-yy+aNY7ESe7EF9Y+/Ztvxr1moTsTR9ScJVceyihIV9M=",
         };

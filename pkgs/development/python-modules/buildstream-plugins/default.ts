@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]], [["ignoredVersions", 34, 5]], [["updateScript", 33, 12]], [["changelog", 38, 5], ["description", 39, 5], ["homepage", 40, 5], ["platforms", 41, 5], ["license", 42, 5], ["maintainers", 43, 5]], [["pname", 11, 3], ["version", 12, 3], ["pyproject", 13, 3], ["src", 15, 3], ["build-system", 22, 3], ["pythonImportsCheck", 31, 3], ["passthru", 33, 3], ["meta", 37, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, gitUpdater: false, setuptools: false, cython: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["ignoredVersions", 34, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["updateScript", 33, 12]]);
-const pos$4 = nix.positions(here + "/default.nix", [["changelog", 38, 5], ["description", 39, 5], ["homepage", 40, 5], ["platforms", 41, 5], ["license", 42, 5], ["maintainers", 43, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 11, 3], ["version", 12, 3], ["pyproject", 13, 3], ["src", 15, 3], ["build-system", 22, 3], ["pythonImportsCheck", 31, 3], ["passthru", 33, 3], ["meta", 37, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const setuptools = nix.arg($, "setuptools");
   const cython = nix.arg($, "cython");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "buildstream-plugins",
       version: "2.8.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "apache",
           repo: "buildstream-plugins",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -32,11 +28,11 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [cython, setuptools]),
       pythonImportsCheck: nix.thunk(() => ["buildstream_plugins"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, ignoredVersions: "dev" })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[1], ignoredVersions: "dev" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         changelog: nix.thunk(() => nix.str`https://github.com/apache/buildstream-plugins/blob/${nix.sel(finalAttrs, "src", "tag")}/NEWS`),
         description: "BuildStream plugins",
         homepage: "https://github.com/apache/buildstream-plugins",

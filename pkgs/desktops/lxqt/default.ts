@@ -2,13 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["lxqt-build-tools", 49, 9], ["qtbase", 50, 35], ["qttools", 50, 42], ["qtx11extras", 50, 50]], [["version", 62, 9], ["qtbase", 63, 35]], [["version", 66, 9], ["lxqt-build-tools", 67, 9], ["qtbase", 68, 35], ["qtsvg", 68, 42]], [["version", 71, 9], ["lxqt-build-tools", 72, 9], ["qttools", 73, 35], ["qtx11extras", 73, 43]], [["version", 76, 9], ["lxqt-build-tools", 77, 9], ["qtbase", 78, 35], ["qttools", 78, 42]], [["libqtxdg", 15, 7], ["lxqt-build-tools", 16, 7], ["libsysstat", 17, 7], ["liblxqt", 18, 7], ["qtxdg-tools", 19, 7], ["libdbusmenu-lxqt", 20, 7], ["libfm-qt", 23, 7], ["lxqt-about", 24, 7], ["lxqt-admin", 25, 7], ["lxqt-config", 26, 7], ["lxqt-globalkeys", 27, 7], ["lxqt-menu-data", 28, 7], ["lxqt-notificationd", 29, 7], ["lxqt-openssh-askpass", 30, 7], ["lxqt-policykit", 31, 7], ["lxqt-powermanagement", 32, 7], ["lxqt-qtplugin", 33, 7], ["lxqt-session", 34, 7], ["lxqt-sudo", 35, 7], ["lxqt-themes", 36, 7], ["lxqt-wayland-session", 37, 7], ["pavucontrol-qt", 38, 7], ["qtermwidget", 39, 7], ["lxqt-panel", 42, 7], ["lxqt-runner", 43, 7], ["pcmanfm-qt", 44, 7], ["qterminal", 47, 7], ["compton-conf", 48, 7], ["obconf-qt", 52, 7], ["lximage-qt", 53, 7], ["qps", 54, 7], ["screengrab", 55, 7], ["qlipper", 56, 7], ["lxqt-archiver", 57, 7], ["xdg-desktop-portal-lxqt", 58, 7], ["lxqt-build-tools_0_13", 61, 7], ["libqtxdg_3_12", 65, 7], ["libfm-qt_1_4", 70, 7], ["qtermwidget_1_4", 75, 7], ["preRequisitePackages", 81, 7], ["corePackages", 91, 7], ["optionalPackages", 123, 7]]]);
 const formals$1 = { args: { pkgs: false, makeScope: false, kdePackages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["lxqt-build-tools", 49, 9], ["qtbase", 50, 35], ["qttools", 50, 42], ["qtx11extras", 50, 50]]);
-const pos$2 = nix.positions(here + "/default.nix", [["version", 62, 9], ["qtbase", 63, 35]]);
-const pos$3 = nix.positions(here + "/default.nix", [["version", 66, 9], ["lxqt-build-tools", 67, 9], ["qtbase", 68, 35], ["qtsvg", 68, 42]]);
-const pos$4 = nix.positions(here + "/default.nix", [["version", 71, 9], ["lxqt-build-tools", 72, 9], ["qttools", 73, 35], ["qtx11extras", 73, 43]]);
-const pos$5 = nix.positions(here + "/default.nix", [["version", 76, 9], ["lxqt-build-tools", 77, 9], ["qtbase", 78, 35], ["qttools", 78, 42]]);
-const pos$6 = nix.positions(here + "/default.nix", [["libqtxdg", 15, 7], ["lxqt-build-tools", 16, 7], ["libsysstat", 17, 7], ["liblxqt", 18, 7], ["qtxdg-tools", 19, 7], ["libdbusmenu-lxqt", 20, 7], ["libfm-qt", 23, 7], ["lxqt-about", 24, 7], ["lxqt-admin", 25, 7], ["lxqt-config", 26, 7], ["lxqt-globalkeys", 27, 7], ["lxqt-menu-data", 28, 7], ["lxqt-notificationd", 29, 7], ["lxqt-openssh-askpass", 30, 7], ["lxqt-policykit", 31, 7], ["lxqt-powermanagement", 32, 7], ["lxqt-qtplugin", 33, 7], ["lxqt-session", 34, 7], ["lxqt-sudo", 35, 7], ["lxqt-themes", 36, 7], ["lxqt-wayland-session", 37, 7], ["pavucontrol-qt", 38, 7], ["qtermwidget", 39, 7], ["lxqt-panel", 42, 7], ["lxqt-runner", 43, 7], ["pcmanfm-qt", 44, 7], ["qterminal", 47, 7], ["compton-conf", 48, 7], ["obconf-qt", 52, 7], ["lximage-qt", 53, 7], ["qps", 54, 7], ["screengrab", 55, 7], ["qlipper", 56, 7], ["lxqt-archiver", 57, 7], ["xdg-desktop-portal-lxqt", 58, 7], ["lxqt-build-tools_0_13", 61, 7], ["libqtxdg_3_12", 65, 7], ["libfm-qt_1_4", 70, 7], ["qtermwidget_1_4", 75, 7], ["preRequisitePackages", 81, 7], ["corePackages", 91, 7], ["optionalPackages", 123, 7]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const packages = (self) => (() => {
     const w = nix.withScope(self, null);
     return {
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       libqtxdg: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "./libqtxdg"), nix.thunk(() => ({})))),
       "lxqt-build-tools": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "./lxqt-build-tools"), nix.thunk(() => ({})))),
       libsysstat: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "./libsysstat"), nix.thunk(() => ({})))),
@@ -49,7 +44,7 @@ export default nix.lambda((args) => (() => {
       "compton-conf": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "./compton-conf"), nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(pkgs, "libsForQt5"));
           return {
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           "lxqt-build-tools": nix.thunk(() => nix.lookup(w, "lxqt-build-tools_0_13")),
           qtbase: nix.thunk(() => nix.attr(from, "qtbase")),
           qttools: nix.thunk(() => nix.attr(from, "qttools")),
@@ -66,7 +61,7 @@ export default nix.lambda((args) => (() => {
       "lxqt-build-tools_0_13": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "./lxqt-build-tools"), nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(pkgs, "libsForQt5"));
           return {
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           version: "0.13.0",
           qtbase: nix.thunk(() => nix.attr(from, "qtbase")),
         };
@@ -74,7 +69,7 @@ export default nix.lambda((args) => (() => {
       libqtxdg_3_12: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "./libqtxdg"), nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(pkgs, "libsForQt5"));
           return {
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           version: "3.12.0",
           "lxqt-build-tools": nix.thunk(() => nix.lookup(w, "lxqt-build-tools_0_13")),
           qtbase: nix.thunk(() => nix.attr(from, "qtbase")),
@@ -84,7 +79,7 @@ export default nix.lambda((args) => (() => {
       "libfm-qt_1_4": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "./libfm-qt"), nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(pkgs, "libsForQt5"));
           return {
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           version: "1.4.0",
           "lxqt-build-tools": nix.thunk(() => nix.lookup(w, "lxqt-build-tools_0_13")),
           qttools: nix.thunk(() => nix.attr(from, "qttools")),
@@ -94,7 +89,7 @@ export default nix.lambda((args) => (() => {
       qtermwidget_1_4: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "./qtermwidget"), nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(pkgs, "libsForQt5"));
           return {
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           version: "1.4.0",
           "lxqt-build-tools": nix.thunk(() => nix.lookup(w, "lxqt-build-tools_0_13")),
           qtbase: nix.thunk(() => nix.attr(from, "qtbase")),

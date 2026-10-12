@@ -2,11 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 16, 5], ["sha256", 17, 5]], [["NIX_LDFLAGS", 27, 7]], [["homepage", 39, 5], ["description", 40, 5], ["license", 41, 5], ["platforms", 42, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["buildInputs", 20, 3], ["env", 27, 3], ["patchPhase", 29, 3], ["meta", 38, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, libmtsupport: false, libfacet: false, libbtree: false, multitrandata: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 16, 5], ["sha256", 17, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["NIX_LDFLAGS", 27, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["homepage", 39, 5], ["description", 40, 5], ["license", 41, 5], ["platforms", 42, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["buildInputs", 20, 3], ["env", 27, 3], ["patchPhase", 29, 3], ["meta", 38, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,12 +18,12 @@ export default nix.lambda((args) => (() => {
       const pname = "libmtquery";
       const version = "0.0.1alpha3";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/multitran/libmtquery-${version}.tar.bz2`),
           sha256: "e24c7c15772445f1b14871928d84dd03cf93bd88f9d2b2ed1bf0257c2cf2b15e",
         }))));
       const buildInputs = nix.thunk(() => [libmtsupport, libfacet, libbtree, multitrandata]);
-      const env = nix.thunk(() => ({ [nix.POS]: pos$2, NIX_LDFLAGS: "-lbtree" }));
+      const env = nix.thunk(() => ({ [nix.POS]: $pos[1], NIX_LDFLAGS: "-lbtree" }));
       const patchPhase = nix.thunk(() => nix.str`sed -i -e 's@\\$(DESTDIR)/usr@'$out'@' \\
   -e 's@/usr/include/mt/support@${libmtsupport}/include/mt/support@' \\
   -e 's@/usr/include/btree@${libbtree}/include/btree@' \\
@@ -35,13 +32,13 @@ export default nix.lambda((args) => (() => {
 sed -i -e 's@/usr/share/multitran@${multitrandata}/share/multitran@' src/config.cc
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://multitran.sourceforge.net/",
         description: "Multitran lib: main engine to query translations",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
-      return { [nix.POS]: pos$4, pname, version, src, buildInputs, env, patchPhase, meta };
+      return { [nix.POS]: $pos[3], pname, version, src, buildInputs, env, patchPhase, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

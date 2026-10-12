@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]], [["package", 30, 5], ["command", 31, 5]], [["version", 29, 18]], [["tests", 29, 12]], [["description", 35, 5], ["homepage", 36, 5], ["license", 37, 5], ["maintainers", 38, 5], ["mainProgram", 39, 5], ["platforms", 40, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["projectFile", 20, 3], ["nugetDeps", 21, 3], ["dotnetInstallFlags", 22, 3], ["dotnet-sdk", 24, 3], ["dotnet-runtime", 25, 3], ["executables", 27, 3], ["passthru", 29, 3], ["meta", 34, 3]]]);
 const formals$1 = { args: { lib: false, buildDotnetModule: false, fetchFromGitHub: false, dotnetCorePackages: false, testers: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["package", 30, 5], ["command", 31, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 29, 18]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 29, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 35, 5], ["homepage", 36, 5], ["license", 37, 5], ["maintainers", 38, 5], ["mainProgram", 39, 5], ["platforms", 40, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["projectFile", 20, 3], ["nugetDeps", 21, 3], ["dotnetInstallFlags", 22, 3], ["dotnet-sdk", 24, 3], ["dotnet-runtime", 25, 3], ["executables", 27, 3], ["passthru", 29, 3], ["meta", 34, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const dotnetCorePackages = nix.arg($, "dotnetCorePackages");
   const testers = nix.arg($, "testers");
   return nix.app(buildDotnetModule, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "seq-cli",
       version: "2024.3.922",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "datalust",
           repo: "seqcli",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,18 +30,18 @@ export default nix.lambda((args) => (() => {
       "dotnet-runtime": nix.thunk(() => nix.sel(dotnetCorePackages, "runtime_8_0")),
       executables: nix.thunk(() => ["seqcli"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               command: "seqcli version",
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Seq command-line client. Administer, log, ingest, search, from any OS",
         homepage: "https://github.com/datalust/seqcli",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

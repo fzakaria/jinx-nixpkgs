@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["hash", 26, 5]], [["updateScript", 56, 5]], [["description", 60, 5], ["longDescription", 61, 5], ["homepage", 65, 5], ["license", 66, 5], ["platforms", 67, 5], ["teams", 68, 5], ["mainProgram", 69, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 38, 3], ["mesonFlags", 51, 3], ["passthru", 55, 3], ["meta", 59, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, "nix-update-script": false, meson: false, ninja: false, "pkg-config": false, sassc: false, vala: false, wrapGAppsHook4: false, "gnome-settings-daemon": false, gtk4: false, pango: false, pantheon: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 56, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 60, 5], ["longDescription", 61, 5], ["homepage", 65, 5], ["license", 66, 5], ["platforms", 67, 5], ["teams", 68, 5], ["mainProgram", 69, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 38, 3], ["mesonFlags", 51, 3], ["passthru", 55, 3], ["meta", 59, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const pango = nix.arg($, "pango");
   const pantheon = nix.arg($, "pantheon");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "pantheon-tweaks",
       version: "2.5.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "pantheon-tweaks",
           repo: "pantheon-tweaks",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -48,11 +45,11 @@ export default nix.lambda((args) => (() => {
       })())),
       mesonFlags: nix.thunk(() => ["-Dsystheme_rootdir=/run/current-system/sw/share"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Unofficial system customization app for Pantheon",
         longDescription: "Unofficial system customization app for Pantheon\nthat lets you easily and safely customise your desktop's appearance.\n",
         homepage: "https://github.com/pantheon-tweaks/pantheon-tweaks",

@@ -2,77 +2,52 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/xrdp-with-audio-pulseaudio.nix", [[["maintainers", 14, 5]], [["text", 23, 41]], [["xrdp/test.txt", 23, 25]], [["etc", 23, 21]], [["enable", 26, 29]], [["enable", 25, 23], ["audio", 26, 23], ["defaultWindowManager", 27, 23]], [["enable", 30, 11]], [["xrdp", 25, 18], ["pulseaudio", 29, 18]], [["script", 34, 11], ["wantedBy", 46, 11]], [["pactl-list", 33, 31]], [["services", 33, 22]], [["user", 33, 17]], [["allowedTCPPorts", 49, 29]], [["firewall", 49, 20]], [["imports", 21, 9], ["environment", 23, 9], ["services", 25, 9], ["systemd", 33, 9], ["networking", 49, 9]], [["user", 59, 42]], [["auto", 59, 37]], [["displayManager", 59, 22]], [["systemPackages", 61, 21]], [["enable", 64, 29]], [["enable", 63, 23], ["audio", 64, 23], ["defaultWindowManager", 65, 23]], [["enable", 68, 11]], [["xrdp", 63, 18], ["pulseaudio", 67, 18]], [["imports", 55, 9], ["test-support", 59, 9], ["environment", 61, 9], ["services", 63, 9]], [["server", 18, 5], ["client", 52, 5]], [["name", 12, 3], ["meta", 13, 3], ["nodes", 17, 3], ["testScript", 73, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/xrdp-with-audio-pulseaudio.nix", [["maintainers", 14, 5]]);
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/xrdp-with-audio-pulseaudio.nix", [["text", 23, 41]]);
-const pos$3 = nix.positions(here + "/xrdp-with-audio-pulseaudio.nix", [["xrdp/test.txt", 23, 25]]);
-const pos$4 = nix.positions(here + "/xrdp-with-audio-pulseaudio.nix", [["etc", 23, 21]]);
-const pos$5 = nix.positions(here + "/xrdp-with-audio-pulseaudio.nix", [["enable", 26, 29]]);
-const pos$6 = nix.positions(here + "/xrdp-with-audio-pulseaudio.nix", [["enable", 25, 23], ["audio", 26, 23], ["defaultWindowManager", 27, 23]]);
-const pos$7 = nix.positions(here + "/xrdp-with-audio-pulseaudio.nix", [["enable", 30, 11]]);
-const pos$8 = nix.positions(here + "/xrdp-with-audio-pulseaudio.nix", [["xrdp", 25, 18], ["pulseaudio", 29, 18]]);
-const pos$9 = nix.positions(here + "/xrdp-with-audio-pulseaudio.nix", [["script", 34, 11], ["wantedBy", 46, 11]]);
-const pos$10 = nix.positions(here + "/xrdp-with-audio-pulseaudio.nix", [["pactl-list", 33, 31]]);
-const pos$11 = nix.positions(here + "/xrdp-with-audio-pulseaudio.nix", [["services", 33, 22]]);
-const pos$12 = nix.positions(here + "/xrdp-with-audio-pulseaudio.nix", [["user", 33, 17]]);
-const pos$13 = nix.positions(here + "/xrdp-with-audio-pulseaudio.nix", [["allowedTCPPorts", 49, 29]]);
-const pos$14 = nix.positions(here + "/xrdp-with-audio-pulseaudio.nix", [["firewall", 49, 20]]);
-const pos$15 = nix.positions(here + "/xrdp-with-audio-pulseaudio.nix", [["imports", 21, 9], ["environment", 23, 9], ["services", 25, 9], ["systemd", 33, 9], ["networking", 49, 9]]);
 const formals$3 = { args: { pkgs: false }, ellipsis: true };
-const pos$16 = nix.positions(here + "/xrdp-with-audio-pulseaudio.nix", [["user", 59, 42]]);
-const pos$17 = nix.positions(here + "/xrdp-with-audio-pulseaudio.nix", [["auto", 59, 37]]);
-const pos$18 = nix.positions(here + "/xrdp-with-audio-pulseaudio.nix", [["displayManager", 59, 22]]);
-const pos$19 = nix.positions(here + "/xrdp-with-audio-pulseaudio.nix", [["systemPackages", 61, 21]]);
-const pos$20 = nix.positions(here + "/xrdp-with-audio-pulseaudio.nix", [["enable", 64, 29]]);
-const pos$21 = nix.positions(here + "/xrdp-with-audio-pulseaudio.nix", [["enable", 63, 23], ["audio", 64, 23], ["defaultWindowManager", 65, 23]]);
-const pos$22 = nix.positions(here + "/xrdp-with-audio-pulseaudio.nix", [["enable", 68, 11]]);
-const pos$23 = nix.positions(here + "/xrdp-with-audio-pulseaudio.nix", [["xrdp", 63, 18], ["pulseaudio", 67, 18]]);
-const pos$24 = nix.positions(here + "/xrdp-with-audio-pulseaudio.nix", [["imports", 55, 9], ["test-support", 59, 9], ["environment", 61, 9], ["services", 63, 9]]);
-const pos$25 = nix.positions(here + "/xrdp-with-audio-pulseaudio.nix", [["server", 18, 5], ["client", 52, 5]]);
 const formals$4 = { args: { nodes: false }, ellipsis: true };
-const pos$26 = nix.positions(here + "/xrdp-with-audio-pulseaudio.nix", [["name", 12, 3], ["meta", 13, 3], ["nodes", 17, 3], ["testScript", 73, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   return {
-    [nix.POS]: pos$26,
+    [nix.POS]: $pos[25],
     name: "xrdp-with-audio-pulseaudio",
-    meta: nix.thunk(() => ({ [nix.POS]: pos$1, maintainers: [] })),
+    meta: nix.thunk(() => ({ [nix.POS]: $pos[0], maintainers: [] })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$25,
+      [nix.POS]: $pos[24],
       server: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$15,
+          [nix.POS]: $pos[14],
           imports: nix.thunk(() => [nix.path(here, "./common/user-account.nix")]),
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             etc: nix.thunk(() => ({
-              [nix.POS]: pos$3,
-              "xrdp/test.txt": nix.thunk(() => ({ [nix.POS]: pos$2, text: "Shouldn't conflict" })),
+              [nix.POS]: $pos[2],
+              "xrdp/test.txt": nix.thunk(() => ({ [nix.POS]: $pos[1], text: "Shouldn't conflict" })),
             })),
           })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$8,
+            [nix.POS]: $pos[7],
             xrdp: nix.thunk(() => ({
-              [nix.POS]: pos$6,
+              [nix.POS]: $pos[5],
               enable: true,
-              audio: nix.thunk(() => ({ [nix.POS]: pos$5, enable: true })),
+              audio: nix.thunk(() => ({ [nix.POS]: $pos[4], enable: true })),
               defaultWindowManager: nix.thunk(() => nix.str`${nix.sel(pkgs_1, "xterm")}/bin/xterm`),
             })),
-            pulseaudio: nix.thunk(() => ({ [nix.POS]: pos$7, enable: true })),
+            pulseaudio: nix.thunk(() => ({ [nix.POS]: $pos[6], enable: true })),
           })),
           systemd: nix.thunk(() => ({
-            [nix.POS]: pos$12,
+            [nix.POS]: $pos[11],
             user: nix.thunk(() => ({
-              [nix.POS]: pos$11,
+              [nix.POS]: $pos[10],
               services: nix.thunk(() => ({
-                [nix.POS]: pos$10,
+                [nix.POS]: $pos[9],
                 "pactl-list": nix.thunk(() => ({
-                  [nix.POS]: pos$9,
+                  [nix.POS]: $pos[8],
                   script: nix.thunk(() => nix.str`while [ ! -S /tmp/.xrdp/xrdp_chansrv_audio_in_socket_* ]; do
   sleep 1
 done
@@ -90,8 +65,8 @@ ${nix.sel(pkgs_1, "pulseaudio")}/bin/pactl get-default-sink | tee /tmp/pulseaudi
             })),
           })),
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$14,
-            firewall: nix.thunk(() => ({ [nix.POS]: pos$13, allowedTCPPorts: nix.thunk(() => [3389n]) })),
+            [nix.POS]: $pos[13],
+            firewall: nix.thunk(() => ({ [nix.POS]: $pos[12], allowedTCPPorts: nix.thunk(() => [3389n]) })),
           })),
         };
       })(), formals$2),
@@ -99,31 +74,31 @@ ${nix.sel(pkgs_1, "pulseaudio")}/bin/pactl get-default-sink | tee /tmp/pulseaudi
         const $_1 = nix.formals(args_1, formals$3);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$24,
+          [nix.POS]: $pos[23],
           imports: nix.thunk(() => [
             nix.path(here, "./common/x11.nix"),
             nix.path(here, "./common/user-account.nix"),
           ]),
           "test-support": nix.thunk(() => ({
-            [nix.POS]: pos$18,
+            [nix.POS]: $pos[17],
             displayManager: nix.thunk(() => ({
-              [nix.POS]: pos$17,
-              auto: nix.thunk(() => ({ [nix.POS]: pos$16, user: "alice" })),
+              [nix.POS]: $pos[16],
+              auto: nix.thunk(() => ({ [nix.POS]: $pos[15], user: "alice" })),
             })),
           })),
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$19,
+            [nix.POS]: $pos[18],
             systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs_1, "freerdp"))]),
           })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$23,
+            [nix.POS]: $pos[22],
             xrdp: nix.thunk(() => ({
-              [nix.POS]: pos$21,
+              [nix.POS]: $pos[20],
               enable: true,
-              audio: nix.thunk(() => ({ [nix.POS]: pos$20, enable: true })),
+              audio: nix.thunk(() => ({ [nix.POS]: $pos[19], enable: true })),
               defaultWindowManager: nix.thunk(() => nix.str`${nix.sel(pkgs_1, "icewm")}/bin/icewm`),
             })),
-            pulseaudio: nix.thunk(() => ({ [nix.POS]: pos$22, enable: true })),
+            pulseaudio: nix.thunk(() => ({ [nix.POS]: $pos[21], enable: true })),
           })),
         };
       })(), formals$3),

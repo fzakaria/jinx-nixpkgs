@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 48, 5], ["repo", 49, 5], ["rev", 50, 5], ["hash", 51, 5]], [["ignoredVersions", 99, 5]], [["updateScript", 98, 12]], [["homepage", 103, 5], ["description", 104, 5], ["license", 105, 5], ["platforms", 106, 5], ["teams", 107, 5]], [["pname", 44, 3], ["version", 45, 3], ["src", 47, 3], ["nativeBuildInputs", 54, 3], ["buildInputs", 63, 3], ["mesonFlags", 71, 3], ["postPatch", 76, 3], ["preFixup", 92, 3], ["passthru", 98, 3], ["meta", 102, 3]]]);
 const formals$1 = { args: { stdenv: false, fetchFromGitHub: false, lib: false, "gobject-introspection": false, meson: false, ninja: false, python3: false, gtk3: false, "gdk-pixbuf": false, xapp: false, wrapGAppsHook3: false, gettext: false, polkit: false, glib: false, gitUpdater: false, bubblewrap: false, "xapp-symbolic-icons": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 48, 5], ["repo", 49, 5], ["rev", 50, 5], ["hash", 51, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["ignoredVersions", 99, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 98, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 103, 5], ["description", 104, 5], ["license", 105, 5], ["platforms", 106, 5], ["teams", 107, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 44, 3], ["version", 45, 3], ["src", 47, 3], ["nativeBuildInputs", 54, 3], ["buildInputs", 63, 3], ["mesonFlags", 71, 3], ["postPatch", 76, 3], ["preFixup", 92, 3], ["passthru", 98, 3], ["meta", 102, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -47,11 +43,11 @@ export default nix.lambda((args) => (() => {
       ], nix.sel(nix.lookup(w, "qrcode"), "optional-dependencies", "pil"));
     })()));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "warpinator",
       version: "2.0.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "linuxmint",
           repo: "warpinator",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -79,11 +75,11 @@ substituteInPlace src/warpinator-launch.py \\
 )
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, ignoredVersions: "^master.*" })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[1], ignoredVersions: "^master.*" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://github.com/linuxmint/warpinator",
         description: "Share files across the LAN",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

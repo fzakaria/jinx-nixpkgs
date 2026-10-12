@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5], ["rootDir", 31, 5]], [["web", 46, 5], ["webapi", 47, 5]], [["description", 68, 5], ["homepage", 69, 5], ["changelog", 70, 5], ["license", 71, 5], ["maintainers", 72, 5], ["mainProgram", 73, 5]], [["pname", 22, 3], ["version", 23, 3], ["pyproject", 24, 3], ["src", 26, 3], ["build-system", 34, 3], ["dependencies", 36, 3], ["optional-dependencies", 45, 3], ["nativeCheckInputs", 53, 3], ["pythonImportsCheck", 60, 3], ["postInstall", 62, 3], ["meta", 67, 3]]]);
 const formals$1 = { args: { lib: false, "bitvector-for-humans": false, buildPythonPackage: false, "busylight-core": false, fastapi: false, fetchFromGitHub: false, hidapi: false, httpx: false, loguru: false, pyserial: false, "pytest-mock": false, pytestCheckHook: false, typer: false, udevCheckHook: false, "uv-build": false, uvicorn: false, webcolors: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5], ["rootDir", 31, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["web", 46, 5], ["webapi", 47, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 68, 5], ["homepage", 69, 5], ["changelog", 70, 5], ["license", 71, 5], ["maintainers", 72, 5], ["mainProgram", 73, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 22, 3], ["version", 23, 3], ["pyproject", 24, 3], ["src", 26, 3], ["build-system", 34, 3], ["dependencies", 36, 3], ["optional-dependencies", 45, 3], ["nativeCheckInputs", 53, 3], ["pythonImportsCheck", 60, 3], ["postInstall", 62, 3], ["meta", 67, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,12 +25,12 @@ export default nix.lambda((args) => (() => {
   const uvicorn = nix.arg($, "uvicorn");
   const webcolors = nix.arg($, "webcolors");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "busylight-for-humans",
       version: "1.0.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "JnyJny",
           repo: "busylight",
           tag: nix.thunk(() => nix.str`busylight-cli/v${nix.sel(finalAttrs, "version")}`),
@@ -43,7 +40,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [uv_build]),
       dependencies: nix.thunk(() => [busylight_core, hidapi, loguru, pyserial, typer, webcolors]),
       "optional-dependencies": nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         web: nix.thunk(() => [fastapi]),
         webapi: nix.thunk(() => [fastapi, uvicorn]),
       })),
@@ -51,7 +48,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["busylight"]),
       postInstall: "mkdir -p $out/lib/udev/rules.d\n$out/bin/busylight udev-rules -o $out/lib/udev/rules.d/99-busylight.rules\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Control USB connected presence lights from multiple vendors via the command-line or web API",
         homepage: "https://github.com/JnyJny/busylight",
         changelog: nix.thunk(() => nix.str`https://github.com/JnyJny/busylight/blob/${nix.sel(finalAttrs, "src", "tag")}/${nix.sel(finalAttrs, "src", "rootDir")}/CHANGELOG.md`),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 24, 5], ["sha256", 25, 5]], [["description", 60, 5], ["longDescription", 61, 5], ["homepage", 72, 5], ["license", 73, 5], ["platforms", 74, 5]], [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 33, 3], ["propagatedBuildInputs", 38, 3], ["patchPhase", 46, 3], ["meta", 59, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, libpcap: false, bison: false, flex: false, cyrus_sasl: false, tcp_wrappers: false, "pkg-config": false, procps: false, which: false, wget: false, lsof: false, "net-snmp": false, perl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 24, 5], ["sha256", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 60, 5], ["longDescription", 61, 5], ["homepage", 72, 5], ["license", 73, 5], ["platforms", 74, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 33, 3], ["propagatedBuildInputs", 38, 3], ["patchPhase", 46, 3], ["meta", 59, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const net_snmp = nix.arg($, "net-snmp");
   const perl = nix.arg($, "perl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "argus",
       version: "3.0.8.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`http://qosient.com/argus/src/argus-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "1zzf688dbbcb5z2r9v1p28rddns6znzx35nc05ygza6lp7aknkna",
         })))),
@@ -48,7 +46,7 @@ substituteInPlace events/argus-snmp.sh \\
   --replace /usr/bin/snmpwalk ${nix.app(nix.sel(lib, "getBin"), net_snmp)}/bin/snmpwalk
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Audit Record Generation and Utilization System for networks",
         longDescription: "The Argus Project is focused on developing all\naspects of large scale network situtational awareness derived from\nnetwork activity audit. Argus, itself, is next-generation network\nflow technology, processing packets, either on the wire or in\ncaptures, into advanced network flow data. The data, its models,\nformats, and attributes are designed to support Network\nOperations, Performance and Security Management. If you need to\nknow what is going on in your network, right now or historically,\nyou will find Argus a useful tool.\n",
         homepage: "https://openargus.org",

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 14, 5], ["hash", 15, 5]], [["pname", 21, 5], ["version", 22, 13], ["src", 22, 21], ["buildInputs", 23, 5], ["propagatedBuildInputs", 24, 5]], [["pname", 40, 5], ["version", 41, 13], ["src", 41, 21], ["nativeBuildInputs", 42, 5], ["propagatedBuildInputs", 43, 5]], [["description", 78, 5], ["homepage", 79, 5], ["license", 80, 5], ["maintainers", 81, 5]], [["pname", 49, 11], ["version", 49, 17], ["src", 49, 25], ["nativeBuildInputs", 51, 3], ["propagatedBuildInputs", 55, 3], ["outputs", 64, 3], ["installPhase", 69, 3], ["meta", 77, 3]]]);
 const formals$1 = { args: { darwin: false, fetchurl: false, lib: false, ocamlPackages: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 14, 5], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 21, 5], ["version", 22, 13], ["src", 22, 21], ["buildInputs", 23, 5], ["propagatedBuildInputs", 24, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 40, 5], ["version", 41, 13], ["src", 41, 21], ["nativeBuildInputs", 42, 5], ["propagatedBuildInputs", 43, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 78, 5], ["homepage", 79, 5], ["license", 80, 5], ["maintainers", 81, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 49, 11], ["version", 49, 17], ["src", 49, 25], ["nativeBuildInputs", 51, 3], ["propagatedBuildInputs", 55, 3], ["outputs", 64, 3], ["installPhase", 69, 3], ["meta", 77, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const pname = "alt-ergo";
   const version = "2.6.3";
   const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: nix.thunk(() => nix.str`https://github.com/OCamlPro/alt-ergo/releases/download/v${version}/alt-ergo-${version}.tbz`),
       hash: "sha256-SsK12K5sVKEaDMNJ7HahU6qVcnv1fvnLMwmnBqf7G/o=",
     }))));
   const alt_ergo_lib = nix.thunk(() => nix.app(nix.sel(ocamlPackages, "buildDunePackage"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "alt-ergo-lib",
       version: version,
       src: src,
@@ -48,7 +44,7 @@ export default nix.lambda((args) => (() => {
       })()),
     }))));
   const alt_ergo_parsers = nix.thunk(() => nix.app(nix.sel(ocamlPackages, "buildDunePackage"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "alt-ergo-parsers",
       version: version,
       src: src,
@@ -59,7 +55,7 @@ export default nix.lambda((args) => (() => {
       })())),
     }))));
   return nix.app(nix.sel(ocamlPackages, "buildDunePackage"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: pname,
       version: version,
       src: src,
@@ -80,7 +76,7 @@ mv $bin/lib/alt-ergo $out/lib/ocaml/${nix.sel(ocamlPackages, "ocaml", "version")
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "High-performance theorem prover and SMT solver",
         homepage: "https://alt-ergo.ocamlpro.com/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "ocamlpro_nc")),

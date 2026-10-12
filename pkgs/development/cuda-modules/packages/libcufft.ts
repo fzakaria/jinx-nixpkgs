@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/libcufft.nix", [[["description", 31, 5], ["homepage", 32, 5]], [["redistName", 9, 3], ["pname", 10, 3], ["appendRunpaths", 14, 3], ["outputs", 21, 3], ["meta", 30, 3]]]);
 const formals$1 = { args: { buildRedist: false, cuda_nvrtc: false, cudaAtLeast: false, lib: false, libnvjitlink: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/libcufft.nix", [["description", 31, 5], ["homepage", 32, 5]]);
-const pos$2 = nix.positions(here + "/libcufft.nix", [["redistName", 9, 3], ["pname", 10, 3], ["appendRunpaths", 14, 3], ["outputs", 21, 3], ["meta", 30, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,13 +13,13 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const libnvjitlink = nix.arg($, "libnvjitlink");
   return nix.app(buildRedist, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       redistName: "cuda",
       pname: "libcufft",
       appendRunpaths: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(cudaAtLeast, "12.0")), nix.thunk(() => nix.builtins.map((pkg) => nix.str`${nix.app(nix.sel(lib, "getLib"), pkg)}/lib`, nix.thunk(() => [cuda_nvrtc, libnvjitlink]))))),
       outputs: nix.thunk(() => ["out", "dev", "include", "lib", "static", "stubs"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "High-performance FFT product CUDA library",
         homepage: "https://developer.nvidia.com/cufft",
       })),

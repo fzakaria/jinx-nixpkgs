@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]], [["name", 30, 7], ["url", 31, 7], ["hash", 32, 7]], [["name", 36, 7], ["url", 37, 7], ["hash", 38, 7]], [["description", 66, 5], ["homepage", 67, 5], ["changelog", 68, 5], ["license", 69, 5], ["maintainers", 70, 5]], [["pname", 16, 3], ["version", 17, 3], ["pyproject", 18, 3], ["src", 20, 3], ["patches", 27, 3], ["postPatch", 42, 3], ["build-system", 47, 3], ["dependencies", 49, 3], ["__darwinAllowLocalNetworking", 54, 3], ["nativeCheckInputs", 56, 3], ["pythonImportsCheck", 63, 3], ["meta", 65, 3]]]);
 const formals$1 = { args: { lib: false, aiohttp: false, aresponses: false, buildPythonPackage: false, fetchFromGitHub: false, fetchpatch: false, "poetry-core": false, "pytest-asyncio": false, "pytest-cov-stub": false, pytestCheckHook: false, yarl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["name", 30, 7], ["url", 31, 7], ["hash", 32, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["name", 36, 7], ["url", 37, 7], ["hash", 38, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 66, 5], ["homepage", 67, 5], ["changelog", 68, 5], ["license", 69, 5], ["maintainers", 70, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 16, 3], ["version", 17, 3], ["pyproject", 18, 3], ["src", 20, 3], ["patches", 27, 3], ["postPatch", 42, 3], ["build-system", 47, 3], ["dependencies", 49, 3], ["__darwinAllowLocalNetworking", 54, 3], ["nativeCheckInputs", 56, 3], ["pythonImportsCheck", 63, 3], ["meta", 65, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.5.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "klaasnicolaas",
           repo: "python-cemm",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -35,13 +31,13 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "remove-setuptools-dependency.patch",
             url: "https://github.com/klaasnicolaas/python-cemm/commit/1e373dac078f18563264e6733baf6a93962cac4b.patch",
             hash: "sha256-DVNn4BZwi8yNpKFmzt7YSYhzzB4vaAyrd/My8TtYzj0=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "replace-async_timeout.patch",
             url: "https://github.com/klaasnicolaas/python-cemm/commit/a818e7ccf196cd5cd4c3e6bf503fb932993281ca.patch",
             hash: "sha256-MwPxK+TRZVvf0sS6HS3+CRRY7dDr1qwCCJ+arQ26gWU=",
@@ -56,7 +52,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [aresponses, pytest_asyncio, pytest_cov_stub, pytestCheckHook]);
       const pythonImportsCheck = nix.thunk(() => ["cemm"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Module for interacting with CEMM devices",
         homepage: "https://github.com/klaasnicolaas/python-cemm",
         changelog: nix.thunk(() => nix.str`https://github.com/klaasnicolaas/python-cemm/releases/tag/${nix.sel(src, "tag")}`),
@@ -67,7 +63,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         pyproject,

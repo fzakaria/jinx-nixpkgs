@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]], [["hardcodeZeroVersion", 41, 48]], [["updateScript", 41, 12]], [["description", 44, 5], ["homepage", 45, 5], ["license", 46, 5], ["maintainers", 50, 5], ["platforms", 53, 5], ["broken", 54, 5], ["priority", 55, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 24, 3], ["makeFlags", 25, 3], ["enableParallelBuilding", 29, 3], ["installPhase", 31, 3], ["passthru", 41, 3], ["meta", 43, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, kernel: false, kernelModuleMakeFlags: false, unstableGitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["hardcodeZeroVersion", 41, 48]]);
-const pos$3 = nix.positions(here + "/default.nix", [["updateScript", 41, 12]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 44, 5], ["homepage", 45, 5], ["license", 46, 5], ["maintainers", 50, 5], ["platforms", 53, 5], ["broken", 54, 5], ["priority", 55, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 24, 3], ["makeFlags", 25, 3], ["enableParallelBuilding", 29, 3], ["installPhase", 31, 3], ["passthru", 41, 3], ["meta", 43, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   const modDestDir = nix.thunk(() => nix.str`$out/lib/modules/${nix.sel(kernel, "modDirVersion")}/kernel/drivers/net/wireless/realtek/rtw88`);
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "rtw88",
       version: "0-unstable-2026-02-12",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "lwfinger",
           repo: "rtw88",
           rev: "4e777cb6088f95c16ab3da9458ef78db43010d04",
@@ -43,11 +39,11 @@ find ${modDestDir} -name '*.ko' -exec xz -f {} \\;
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, hardcodeZeroVersion: true })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[1], hardcodeZeroVersion: true })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Backport of the latest Realtek RTW88 driver from wireless-next for older kernels",
         homepage: "https://github.com/lwfinger/rtw88",
         license: nix.thunk(() => (() => {

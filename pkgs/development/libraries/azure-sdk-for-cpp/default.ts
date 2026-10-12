@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["homepage", 54, 7], ["description", 55, 7], ["sourceProvenance", 56, 7], ["license", 57, 7], ["maintainers", 58, 7], ["platforms", 59, 7]], [["stdenv", 20, 7], ["cmake", 21, 7], ["ninja", 22, 7], ["pkg-config", 23, 7], ["curl", 24, 7], ["openssl", 25, 7], ["apple-sdk", 26, 7], ["c-shared-utility", 29, 5], ["macro-utils-c", 30, 5], ["umock-c", 31, 5], ["core", 33, 5], ["core-amqp", 34, 5], ["core-tracing-opentelemetry", 35, 5], ["data-tables", 36, 5], ["identity", 37, 5], ["messaging-eventhubs", 38, 5], ["messaging-eventhubs-checkpointstore-blob", 39, 5], ["security-attestation", 42, 5], ["security-keyvault-administration", 43, 5], ["security-keyvault-certificates", 44, 5], ["security-keyvault-keys", 45, 5], ["security-keyvault-secrets", 46, 5], ["storage-blobs", 47, 5], ["storage-common", 48, 5], ["storage-files-datalake", 49, 5], ["storage-files-shares", 50, 5], ["storage-queues", 51, 5], ["meta", 53, 5]]]);
 const formals$1 = { args: { lib: false, newScope: false, stdenv: false, cmake: false, ninja: false, "pkg-config": false, curl: false, "apple-sdk": false, openssl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["homepage", 54, 7], ["description", 55, 7], ["sourceProvenance", 56, 7], ["license", 57, 7], ["maintainers", 58, 7], ["platforms", 59, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["stdenv", 20, 7], ["cmake", 21, 7], ["ninja", 22, 7], ["pkg-config", 23, 7], ["curl", 24, 7], ["openssl", 25, 7], ["apple-sdk", 26, 7], ["c-shared-utility", 29, 5], ["macro-utils-c", 30, 5], ["umock-c", 31, 5], ["core", 33, 5], ["core-amqp", 34, 5], ["core-tracing-opentelemetry", 35, 5], ["data-tables", 36, 5], ["identity", 37, 5], ["messaging-eventhubs", 38, 5], ["messaging-eventhubs-checkpointstore-blob", 39, 5], ["security-attestation", 42, 5], ["security-keyvault-administration", 43, 5], ["security-keyvault-certificates", 44, 5], ["security-keyvault-keys", 45, 5], ["security-keyvault-secrets", 46, 5], ["storage-blobs", 47, 5], ["storage-common", 48, 5], ["storage-files-datalake", 49, 5], ["storage-files-shares", 50, 5], ["storage-queues", 51, 5], ["meta", 53, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,7 +19,7 @@ export default nix.lambda((args) => (() => {
   return nix.app(nix.sel(lib, "makeScope"), newScope, (self) => (() => {
       const callPackage = nix.thunk(() => nix.sel(self, "callPackage"));
       return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         stdenv: stdenv,
         cmake: cmake,
         ninja: ninja,
@@ -49,7 +48,7 @@ export default nix.lambda((args) => (() => {
         "storage-files-shares": nix.thunk(() => nix.app(callPackage, nix.path(here, "./storage-files-shares.nix"), nix.thunk(() => ({})))),
         "storage-queues": nix.thunk(() => nix.app(callPackage, nix.path(here, "./storage-queues.nix"), nix.thunk(() => ({})))),
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           homepage: "https://azure.github.io/azure-sdk-for-cpp",
           description: "Azure SDK for C++",
           sourceProvenance: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "sourceTypes", "fromSource"))]),

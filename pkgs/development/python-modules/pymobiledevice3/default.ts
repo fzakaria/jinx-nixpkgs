@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 57, 5], ["repo", 58, 5], ["tag", 59, 5], ["hash", 60, 5]], [["changelog", 124, 5], ["description", 125, 5], ["homepage", 126, 5], ["license", 127, 5], ["mainProgram", 128, 5], ["maintainers", 129, 5]], [["pname", 52, 3], ["version", 53, 3], ["pyproject", 54, 3], ["src", 56, 3], ["build-system", 63, 3], ["dependencies", 68, 3], ["pythonImportsCheck", 112, 3], ["nativeCheckInputs", 114, 3], ["enabledTestMarks", 121, 3], ["meta", 123, 3]]]);
 const formals$1 = { args: { bpylist2: false, buildPythonPackage: false, coloredlogs: false, construct: false, "construct-typing": false, cryptography: false, daemonize: false, "developer-disk-image": false, fastapi: false, fetchFromGitHub: false, gpxpy: false, hexdump: false, hyperframe: false, ifaddr: false, inquirer3: false, "ipsw-parser": false, ipython: false, lib: false, "nest-asyncio": false, opack2: false, packaging: false, "parameter-decorators": false, pillow: false, plumbum: false, psutil: false, pycrashreport: false, pygments: false, pygnuutils: false, pykdebugparser: false, "pytest-asyncio": false, pytestCheckHook: false, "python-pcapng": false, pythonOlder: false, "pytun-pmd3": false, pyusb: false, qh3: false, requests: false, setuptools: false, "setuptools-scm": false, srptools: false, "sslpsk-pmd3": false, tqdm: false, typer: false, "typer-injector": false, uvicorn: false, wsproto: false, xonsh: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 57, 5], ["repo", 58, 5], ["tag", 59, 5], ["hash", 60, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["changelog", 124, 5], ["description", 125, 5], ["homepage", 126, 5], ["license", 127, 5], ["mainProgram", 128, 5], ["maintainers", 129, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 52, 3], ["version", 53, 3], ["pyproject", 54, 3], ["src", 56, 3], ["build-system", 63, 3], ["dependencies", 68, 3], ["pythonImportsCheck", 112, 3], ["nativeCheckInputs", 114, 3], ["enabledTestMarks", 121, 3], ["meta", 123, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -61,7 +59,7 @@ export default nix.lambda((args) => (() => {
       const version = "7.7.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "doronz88",
           repo: "pymobiledevice3",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -112,7 +110,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytest_asyncio, pytestCheckHook]);
       const enabledTestMarks = nix.thunk(() => ["cli"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         changelog: nix.thunk(() => nix.str`https://github.com/doronz88/pymobiledevice3/releases/tag/${nix.sel(src, "tag")}`),
         description: "Pure python3 implementation for working with iDevices (iPhone, etc.)",
         homepage: "https://github.com/doronz88/pymobiledevice3",
@@ -121,7 +119,7 @@ export default nix.lambda((args) => (() => {
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "dotlambda"))]),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["LAMMPS_SHARED_LIB", 17, 13]], [["description", 45, 5], ["homepage", 46, 5], ["license", 47, 27], ["maintainers", 48, 5]], [["format", 12, 3], ["pname", 13, 20], ["version", 13, 26], ["src", 13, 34], ["env", 15, 3], ["doCheck", 20, 3], ["preConfigure", 21, 3], ["pythonImportsCheck", 32, 3], ["checkPhase", 40, 3], ["meta", 44, 3]]]);
 const formals$1 = { args: { lib: false, lammps: false, stdenv: false, buildPythonPackage: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["LAMMPS_SHARED_LIB", 17, 13]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 45, 5], ["homepage", 46, 5], ["license", 47, 27], ["maintainers", 48, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["format", 12, 3], ["pname", 13, 20], ["version", 13, 26], ["src", 13, 34], ["env", 15, 3], ["doCheck", 20, 3], ["preConfigure", 21, 3], ["pythonImportsCheck", 32, 3], ["checkPhase", 40, 3], ["meta", 44, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const buildPythonPackage = nix.arg($, "buildPythonPackage");
   const LAMMPS_SHARED_LIB = nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getLib"), lammps)}/lib/liblammps${nix.sel(stdenv, "hostPlatform", "extensions", "library")}`);
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       format: "setuptools",
       pname: nix.thunk(() => nix.attr(lammps, "pname")),
       version: nix.thunk(() => nix.attr(lammps, "version")),
       src: nix.thunk(() => nix.attr(lammps, "src")),
-      env: nix.thunk(() => ({ [nix.POS]: pos$1, LAMMPS_SHARED_LIB: LAMMPS_SHARED_LIB })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[0], LAMMPS_SHARED_LIB: LAMMPS_SHARED_LIB })),
       doCheck: nix.thunk(() => (nix.asBool(nix.has(nix.sel(lammps, "passthru", "packages"), "GPU")) ? !nix.asBool(nix.sel(lammps, "passthru", "packages", "GPU")) : true)),
       preConfigure: nix.thunk(() => nix.str`cd python
 # Upstream assumes that the shared library is located in the same directory
@@ -36,7 +34,7 @@ substituteInPlace lammps/core.py \\
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(lammps, "meta"));
         return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Python Bindings for LAMMPS",
         homepage: "https://docs.lammps.org/Python_head.html",
         license: nix.thunk(() => nix.attr(from, "license")),

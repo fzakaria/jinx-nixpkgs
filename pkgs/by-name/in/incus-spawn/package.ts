@@ -2,17 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 68, 9], ["hash", 69, 9]], [["url", 72, 9], ["hash", 73, 9]], [["url", 76, 9], ["hash", 77, 9]], [["x86_64-linux", 67, 7], ["aarch64-linux", 71, 7], ["aarch64-darwin", 75, 7]], [["url", 82, 7], ["hash", 83, 7]], [["package", 87, 7], ["command", 88, 7]], [["version", 86, 11]], [["sources", 66, 5], ["git-remote-isx", 81, 5], ["tests", 86, 5], ["updateScript", 91, 5]], [["description", 113, 5], ["longDescription", 114, 5], ["homepage", 119, 5], ["changelog", 120, 5], ["license", 121, 5], ["sourceProvenance", 122, 5], ["platforms", 123, 5], ["mainProgram", 124, 5], ["maintainers", 125, 5]], [["version", 17, 3], ["pname", 18, 3], ["src", 20, 3], ["dontUnpack", 24, 3], ["dontBuild", 25, 3], ["dontStrip", 26, 3], ["strictDeps", 28, 3], ["__structuredAttrs", 29, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 36, 3], ["installPhase", 40, 3], ["doInstallCheck", 53, 3], ["installCheckPhase", 54, 3], ["passthru", 65, 3], ["meta", 112, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchurl: false, autoPatchelfHook: false, installShellFiles: false, zlib: false, testers: false, "incus-spawn": false, writeShellScript: false, curl: false, jq: false, "common-updater-scripts": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 68, 9], ["hash", 69, 9]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 72, 9], ["hash", 73, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 76, 9], ["hash", 77, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["x86_64-linux", 67, 7], ["aarch64-linux", 71, 7], ["aarch64-darwin", 75, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["url", 82, 7], ["hash", 83, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["package", 87, 7], ["command", 88, 7]]);
-const pos$7 = nix.positions(here + "/package.nix", [["version", 86, 11]]);
-const pos$8 = nix.positions(here + "/package.nix", [["sources", 66, 5], ["git-remote-isx", 81, 5], ["tests", 86, 5], ["updateScript", 91, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["description", 113, 5], ["longDescription", 114, 5], ["homepage", 119, 5], ["changelog", 120, 5], ["license", 121, 5], ["sourceProvenance", 122, 5], ["platforms", 123, 5], ["mainProgram", 124, 5], ["maintainers", 125, 5]]);
-const pos$10 = nix.positions(here + "/package.nix", [["version", 17, 3], ["pname", 18, 3], ["src", 20, 3], ["dontUnpack", 24, 3], ["dontBuild", 25, 3], ["dontStrip", 26, 3], ["strictDeps", 28, 3], ["__structuredAttrs", 29, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 36, 3], ["installPhase", 40, 3], ["doInstallCheck", 53, 3], ["installCheckPhase", 54, 3], ["passthru", 65, 3], ["meta", 112, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,7 +20,7 @@ export default nix.lambda((args) => (() => {
   const jq = nix.arg($, "jq");
   const common_updater_scripts = nix.arg($, "common-updater-scripts");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       version: "0.2.15",
       pname: "incus-spawn",
       src: nix.thunk(() => nix.selOr(finalAttrs, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported platform: ${nix.sel(stdenvNoCC, "hostPlatform", "system")}`)), "passthru", "sources", nix.key(nix.sel(stdenvNoCC, "hostPlatform", "system")))),
@@ -50,33 +41,33 @@ runHook postInstall
       doInstallCheck: nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenvNoCC, "hostPlatform")))),
       installCheckPhase: "runHook preInstallCheck\n\ninstallShellCompletion --cmd isx \\\n  --bash <($out/bin/isx completion bash) \\\n  --zsh <($out/bin/isx completion zsh) \\\n  --fish <($out/bin/isx completion fish)\n\nrunHook postInstallCheck\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         sources: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           "x86_64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              [nix.POS]: pos$1,
+              [nix.POS]: $pos[0],
               url: nix.thunk(() => nix.str`https://github.com/Sanne/incus-spawn/releases/download/v${nix.sel(finalAttrs, "version")}/incus-spawn-linux-amd64`),
               hash: "sha256-3YEasRSG7n5MLIkKrA1m/8Uu20ZS6D2L0tcDKcbnPoI=",
             })))),
           "aarch64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               url: nix.thunk(() => nix.str`https://github.com/Sanne/incus-spawn/releases/download/v${nix.sel(finalAttrs, "version")}/incus-spawn-linux-aarch64`),
               hash: "sha256-ZoMiinluk8VAb28xIHcYv26K95torSIK+bd8AGvE/Po=",
             })))),
           "aarch64-darwin": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               url: nix.thunk(() => nix.str`https://github.com/Sanne/incus-spawn/releases/download/v${nix.sel(finalAttrs, "version")}/incus-spawn-macos-aarch64`),
               hash: "sha256-dnmm4GwU5pB/ME+W4stW+jUMSUOiKGsuXnQJBRgTkps=",
             })))),
         })),
         "git-remote-isx": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             url: nix.thunk(() => nix.str`https://github.com/Sanne/incus-spawn/releases/download/v${nix.sel(finalAttrs, "version")}/git-remote-isx`),
             hash: "sha256-I9zmdLzO7VcfLHdgFD2Lvwiq4fkDw885j1JWsL8c+hA=",
           })))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$7,
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$6, package: incus_spawn, command: "isx --version" })))),
+          [nix.POS]: $pos[6],
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: $pos[5], package: incus_spawn, command: "isx --version" })))),
         })),
         updateScript: nix.thunk(() => nix.app(writeShellScript, "update-incus-spawn", nix.thunk(() => nix.str`set -o errexit
 export PATH="${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [curl, jq, common_updater_scripts]))}"
@@ -92,7 +83,7 @@ done
 `))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         description: "CLI tool for managing isolated Incus development environments",
         longDescription: "incus-spawn (isx) creates isolated Linux development environments using\nIncus system containers with copy-on-write branching, a MITM TLS proxy\nfor credential isolation, and an interactive TUI.\n",
         homepage: "https://github.com/Sanne/incus-spawn",

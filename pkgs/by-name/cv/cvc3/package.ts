@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["dontDisableStatic", 12, 5]], [["url", 21, 5], ["hash", 22, 5]], [["description", 51, 5], ["mainProgram", 52, 5], ["maintainers", 53, 5], ["platforms", 54, 5], ["license", 55, 5], ["homepage", 56, 5]], [["downloadPage", 60, 7]], [["updateInfo", 59, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["buildInputs", 25, 3], ["patches", 32, 3], ["configureFlags", 35, 3], ["postPatch", 40, 3], ["meta", 50, 3], ["passthru", 58, 3]]]);
 const formals$1 = { args: { lib: false, gccStdenv: false, fetchurl: false, flex: false, bison: false, gmp: false, perl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["dontDisableStatic", 12, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 21, 5], ["hash", 22, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 51, 5], ["mainProgram", 52, 5], ["maintainers", 53, 5], ["platforms", 54, 5], ["license", 55, 5], ["homepage", 56, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["downloadPage", 60, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["updateInfo", 59, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["buildInputs", 25, 3], ["patches", 32, 3], ["configureFlags", 35, 3], ["postPatch", 40, 3], ["meta", 50, 3], ["passthru", 58, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,14 +14,14 @@ export default nix.lambda((args) => (() => {
   const bison = nix.arg($, "bison");
   const gmp = nix.arg($, "gmp");
   const perl = nix.arg($, "perl");
-  const gmp$ = nix.thunk(() => nix.app(nix.sel(lib, "overrideDerivation"), gmp, (_) => ({ [nix.POS]: pos$1, dontDisableStatic: true })));
+  const gmp$ = nix.thunk(() => nix.app(nix.sel(lib, "overrideDerivation"), gmp, (_) => ({ [nix.POS]: $pos[0], dontDisableStatic: true })));
   const stdenv = gccStdenv;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "cvc3",
       version: "2.4.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: nix.thunk(() => nix.str`https://cs.nyu.edu/acsys/cvc3/releases/${nix.sel(finalAttrs, "version")}/cvc3-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-1VsdYAbPusP21MCGlkVYkCw+0O+masSZz7IZPz7krPc=",
         })))),
@@ -45,7 +40,7 @@ for f in parsePL parseLisp parsesmtlib parsesmtlib2 ; do
 done
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Prover for satisfiability modulo theory (SMT)",
         mainProgram: "cvc3",
         maintainers: nix.thunk(() => (() => {
@@ -57,9 +52,9 @@ done
         homepage: "https://cs.nyu.edu/acsys/cvc3/index.html",
       })),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         updateInfo: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           downloadPage: "https://cs.nyu.edu/acsys/cvc3/download.html",
         })),
       })),

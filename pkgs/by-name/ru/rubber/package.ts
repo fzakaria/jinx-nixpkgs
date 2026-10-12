@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]], [["description", 48, 5], ["longDescription", 49, 5], ["license", 58, 5], ["homepage", 59, 5], ["maintainers", 60, 5], ["platforms", 63, 5], ["mainProgram", 64, 5]], [["pname", 14, 3], ["version", 15, 3], ["pyproject", 16, 3], ["src", 18, 3], ["postPatch", 25, 3], ["nativeBuildInputs", 32, 3], ["checkPhase", 37, 3], ["meta", 47, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, python3Packages: false, texinfo: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 48, 5], ["longDescription", 49, 5], ["license", 58, 5], ["homepage", 59, 5], ["maintainers", 60, 5], ["platforms", 63, 5], ["mainProgram", 64, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["pyproject", 16, 3], ["src", 18, 3], ["postPatch", 25, 3], ["nativeBuildInputs", 32, 3], ["checkPhase", 37, 3], ["meta", 47, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const texinfo = nix.arg($, "texinfo");
   const pypkgs = python3Packages;
   return nix.app(nix.sel(pypkgs, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "rubber",
       version: "1.6.6",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "latex-rubber",
           repo: "rubber",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -38,7 +36,7 @@ popd >/dev/null
 runHook postCheck
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Wrapper for LaTeX and friends",
         longDescription: "Rubber is a program whose purpose is to handle all tasks related\nto the compilation of LaTeX documents.  This includes compiling\nthe document itself, of course, enough times so that all\nreferences are defined, and running BibTeX to manage\nbibliographic references.  Automatic execution of dvips to\nproduce PostScript documents is also included, as well as usage\nof pdfLaTeX to produce PDF documents.\n",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

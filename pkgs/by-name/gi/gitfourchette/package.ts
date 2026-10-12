@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]], [["updateScript", 105, 12]], [["description", 108, 5], ["homepage", 109, 5], ["changelog", 110, 5], ["mainProgram", 111, 5], ["license", 112, 5], ["maintainers", 113, 5], ["platforms", 116, 5]], [["pname", 17, 3], ["version", 18, 3], ["pyproject", 19, 3], ["__structuredAttrs", 20, 3], ["src", 22, 3], ["build-system", 29, 3], ["buildInputs", 33, 3], ["nativeBuildInputs", 37, 3], ["propagatedBuildInputs", 41, 3], ["dependencies", 43, 3], ["nativeCheckInputs", 52, 3], ["enabledTestPaths", 61, 3], ["preCheck", 62, 3], ["postPatch", 68, 3], ["preFixup", 82, 3], ["postInstall", 89, 3], ["passthru", 105, 3], ["meta", 107, 3]]]);
 const formals$1 = { args: { lib: false, python3Packages: false, fetchFromGitHub: false, gitMinimal: false, qt6: false, imagemagick: false, openssh: false, cacert: false, bash: false, writableTmpDirAsHomeHook: false, "hicolor-icon-theme": false, "nix-update-script": false, withMfusepy: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 105, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 108, 5], ["homepage", 109, 5], ["changelog", 110, 5], ["mainProgram", 111, 5], ["license", 112, 5], ["maintainers", 113, 5], ["platforms", 116, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["pyproject", 19, 3], ["__structuredAttrs", 20, 3], ["src", 22, 3], ["build-system", 29, 3], ["buildInputs", 33, 3], ["nativeBuildInputs", 37, 3], ["propagatedBuildInputs", 41, 3], ["dependencies", 43, 3], ["nativeCheckInputs", 52, 3], ["enabledTestPaths", 61, 3], ["preCheck", 62, 3], ["postPatch", 68, 3], ["preFixup", 82, 3], ["postInstall", 89, 3], ["passthru", 105, 3], ["meta", 107, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,13 +21,13 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const withMfusepy = nix.argOr($, "withMfusepy", () => true);
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "gitfourchette",
       version: "1.11.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "jorio",
           repo: "gitfourchette",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -90,11 +87,11 @@ patchShebangs update_resources.py test.py test/data
 `),
       postInstall: "install -Dm644 pkg/appimage/gitfourchette.desktop \\\n  $out/share/applications/gitfourchette.desktop\n\nsrc_icon=pkg/appimage/gitfourchette.png\n\ninstall -Dm644 \"$src_icon\" \\\n  $out/share/icons/hicolor/256x256/apps/gitfourchette.png\n\nfor size in 16 22 24 32 48 64 128; do\n  install -d $out/share/icons/hicolor/${size}x${size}/apps\n  magick \"$src_icon\" -resize ${size}x${size} \\\n    $out/share/icons/hicolor/${size}x${size}/apps/gitfourchette.png\ndone\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Comfortable Git UI",
         homepage: "https://gitfourchette.org/",
         changelog: nix.thunk(() => nix.str`https://github.com/jorio/gitfourchette/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

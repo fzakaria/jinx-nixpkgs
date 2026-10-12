@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]], [["updateScript", 42, 12]], [["homepage", 45, 5], ["description", 46, 5], ["changelog", 47, 5], ["license", 48, 5], ["maintainers", 49, 5], ["platforms", 53, 5], ["mainProgram", 54, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["patchPhase", 22, 3], ["projectFile", 27, 3], ["executables", 28, 3], ["nugetDeps", 29, 3], ["dotnetInstallFlags", 31, 3], ["dotnet-sdk", 35, 3], ["dotnet-runtime", 36, 3], ["runtimeDeps", 37, 3], ["doInstallCheck", 39, 3], ["nativeInstallCheckInputs", 40, 3], ["passthru", 42, 3], ["meta", 44, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, buildDotnetModule: false, "ffmpeg-full": false, dotnetCorePackages: false, versionCheckHook: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 42, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 45, 5], ["description", 46, 5], ["changelog", 47, 5], ["license", 48, 5], ["maintainers", 49, 5], ["platforms", 53, 5], ["mainProgram", 54, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["patchPhase", 22, 3], ["projectFile", 27, 3], ["executables", 28, 3], ["nugetDeps", 29, 3], ["dotnetInstallFlags", 31, 3], ["dotnet-sdk", 35, 3], ["dotnet-runtime", 36, 3], ["runtimeDeps", 37, 3], ["doInstallCheck", 39, 3], ["nativeInstallCheckInputs", 40, 3], ["passthru", 42, 3], ["meta", 44, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pname = "tone";
       const version = "0.2.5";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "sandreas",
           repo: "tone",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -40,11 +37,11 @@ export default nix.lambda((args) => (() => {
       const doInstallCheck = true;
       const nativeInstallCheckInputs = nix.thunk(() => [versionCheckHook]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/sandreas/tone",
         description: "Cross platform utility to dump and modify audio metadata for a wide variety of formats",
         changelog: nix.thunk(() => nix.str`https://github.com/sandreas/tone/releases/tag/v${version}`),
@@ -63,7 +60,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "tone",
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]], [["cri-o", 69, 43], ["docker", 69, 49], ["podman", 69, 56]], [["tests", 69, 12]], [["homepage", 72, 5], ["description", 73, 5], ["license", 74, 5], ["maintainers", 75, 5], ["teams", 76, 5], ["platforms", 77, 5], ["mainProgram", 78, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["vendorHash", 28, 3], ["outputs", 29, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 42, 3], ["makeFlags", 48, 3], ["buildPhase", 53, 3], ["installPhase", 60, 3], ["passthru", 69, 3], ["meta", 71, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, buildGoModule: false, "go-md2man": false, installShellFiles: false, "pkg-config": false, which: false, libapparmor: false, libseccomp: false, libselinux: false, stdenv: false, makeBinaryWrapper: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["cri-o", 69, 43], ["docker", 69, 49], ["podman", 69, 56]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 69, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 72, 5], ["description", 73, 5], ["license", 74, 5], ["maintainers", 75, 5], ["teams", 76, 5], ["platforms", 77, 5], ["mainProgram", 78, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["vendorHash", 28, 3], ["outputs", 29, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 42, 3], ["makeFlags", 48, 3], ["buildPhase", 53, 3], ["installPhase", 60, 3], ["passthru", 69, 3], ["meta", 71, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const makeBinaryWrapper = nix.arg($, "makeBinaryWrapper");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "runc",
       version: "1.5.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "opencontainers",
           repo: "runc",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -50,16 +46,16 @@ runHook postBuild
 `),
       installPhase: "runHook preInstall\ninstall -Dm755 runc $out/bin/runc\ninstallManPage man/*/*.[1-9]\nwrapProgram $out/bin/runc \\\n  --prefix PATH : /run/current-system/systemd/bin\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           "cri-o": nix.thunk(() => nix.attr(nixosTests, "cri-o")),
           docker: nix.thunk(() => nix.attr(nixosTests, "docker")),
           podman: nix.thunk(() => nix.attr(nixosTests, "podman")),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://github.com/opencontainers/runc",
         description: "CLI tool for spawning and running containers according to the OCI specification",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

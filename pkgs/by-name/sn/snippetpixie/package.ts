@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 32, 5], ["repo", 33, 5], ["rev", 34, 5], ["sha256", 35, 5]], [["updateScript", 71, 5]], [["description", 75, 5], ["longDescription", 76, 5], ["homepage", 85, 5], ["license", 86, 5], ["teams", 87, 5], ["platforms", 88, 5], ["mainProgram", 89, 5]], [["pname", 28, 3], ["version", 29, 3], ["src", 31, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 49, 3], ["doCheck", 63, 3], ["postPatch", 65, 3], ["passthru", 70, 3], ["meta", 74, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, "nix-update-script": false, meson: false, ninja: false, vala: false, "pkg-config": false, wrapGAppsHook3: false, appstream: false, "desktop-file-utils": false, python3: false, libgee: false, glib: false, gtk3: false, sqlite: false, "at-spi2-atk": false, "at-spi2-core": false, dbus: false, ibus: false, "json-glib": false, pantheon: false, libxtst: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 32, 5], ["repo", 33, 5], ["rev", 34, 5], ["sha256", 35, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 71, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 75, 5], ["longDescription", 76, 5], ["homepage", 85, 5], ["license", 86, 5], ["teams", 87, 5], ["platforms", 88, 5], ["mainProgram", 89, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 28, 3], ["version", 29, 3], ["src", 31, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 49, 3], ["doCheck", 63, 3], ["postPatch", 65, 3], ["passthru", 70, 3], ["meta", 74, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,11 +31,11 @@ export default nix.lambda((args) => (() => {
   const pantheon = nix.arg($, "pantheon");
   const libxtst = nix.arg($, "libxtst");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "snippetpixie",
       version: "1.5.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ianmjones",
           repo: "snippetpixie",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -70,11 +67,11 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       postPatch: "chmod +x meson/post_install.py\npatchShebangs meson/post_install.py\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Your little expandable text snippet helper",
         longDescription: "Your little expandable text snippet helper.\n\nSave your often used text snippets and then expand them whenever you type their abbreviation.\n\nFor example:- \"spr`\" expands to \"Snippet Pixie rules!\"\n\nFor non-accessible applications such as browsers and Electron apps, there's a shortcut (default is Ctrl+`) for opening a search window that pastes the selected snippet.\n",
         homepage: "https://www.snippetpixie.com",

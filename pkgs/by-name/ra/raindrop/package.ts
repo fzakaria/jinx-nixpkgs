@@ -2,16 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 7], ["repo", 21, 7], ["rev", 22, 7], ["hash", 23, 7]], [["SENTRYCLI_SKIP_DOWNLOAD", 32, 9]], [["pname", 16, 5], ["version", 17, 13], ["src", 19, 5], ["npmDepsHash", 26, 5], ["npmBuildScript", 28, 5], ["env", 32, 5], ["installPhase", 34, 5]], [["owner", 49, 5], ["repo", 50, 5], ["rev", 51, 5], ["hash", 52, 5]], [["ELECTRON_SKIP_BINARY_DOWNLOAD", 60, 7]], [["name", 109, 7], ["icon", 110, 7], ["exec", 111, 7], ["desktopName", 112, 7], ["genericName", 113, 7], ["comment", 114, 7], ["categories", 115, 7], ["startupWMClass", 119, 7], ["mimeTypes", 120, 7]], [["updateScript", 124, 12]], [["description", 127, 5], ["homepage", 128, 5], ["changelog", 129, 5], ["license", 130, 5], ["maintainers", 131, 5], ["mainProgram", 132, 5], ["platforms", 133, 5]], [["pname", 43, 3], ["version", 44, 11], ["__structuredAttrs", 46, 3], ["src", 48, 3], ["npmDepsHash", 55, 3], ["makeCacheWritable", 57, 3], ["dontNpmBuild", 58, 3], ["env", 60, 3], ["postPatch", 64, 3], ["nativeBuildInputs", 69, 3], ["installPhase", 75, 3], ["desktopItems", 107, 3], ["passthru", 124, 3], ["meta", 126, 3]]]);
 const formals$1 = { args: { asar: false, buildNpmPackage: false, copyDesktopItems: false, electron: false, fetchFromGitHub: false, lib: false, makeDesktopItem: false, makeWrapper: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 7], ["repo", 21, 7], ["rev", 22, 7], ["hash", 23, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["SENTRYCLI_SKIP_DOWNLOAD", 32, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 16, 5], ["version", 17, 13], ["src", 19, 5], ["npmDepsHash", 26, 5], ["npmBuildScript", 28, 5], ["env", 32, 5], ["installPhase", 34, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["owner", 49, 5], ["repo", 50, 5], ["rev", 51, 5], ["hash", 52, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["ELECTRON_SKIP_BINARY_DOWNLOAD", 60, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["name", 109, 7], ["icon", 110, 7], ["exec", 111, 7], ["desktopName", 112, 7], ["genericName", 113, 7], ["comment", 114, 7], ["categories", 115, 7], ["startupWMClass", 119, 7], ["mimeTypes", 120, 7]]);
-const pos$7 = nix.positions(here + "/package.nix", [["updateScript", 124, 12]]);
-const pos$8 = nix.positions(here + "/package.nix", [["description", 127, 5], ["homepage", 128, 5], ["changelog", 129, 5], ["license", 130, 5], ["maintainers", 131, 5], ["mainProgram", 132, 5], ["platforms", 133, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["pname", 43, 3], ["version", 44, 11], ["__structuredAttrs", 46, 3], ["src", 48, 3], ["npmDepsHash", 55, 3], ["makeCacheWritable", 57, 3], ["dontNpmBuild", 58, 3], ["env", 60, 3], ["postPatch", 64, 3], ["nativeBuildInputs", 69, 3], ["installPhase", 75, 3], ["desktopItems", 107, 3], ["passthru", 124, 3], ["meta", 126, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const sources = nix.thunk(() => nix.app(nix.sel(lib, "importJSON"), nix.path(here, "./sources.json")));
   const version = nix.thunk(() => nix.attr(sources, "version"));
   const webapp = nix.thunk(() => nix.app(buildNpmPackage, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "raindrop-webapp",
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "raindropio",
           repo: "app",
           rev: nix.thunk(() => nix.sel(sources, "webappRev")),
@@ -38,16 +30,16 @@ export default nix.lambda((args) => (() => {
         })))),
       npmDepsHash: nix.thunk(() => nix.sel(sources, "webappNpmHash")),
       npmBuildScript: "build:electron",
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, SENTRYCLI_SKIP_DOWNLOAD: "1" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], SENTRYCLI_SKIP_DOWNLOAD: "1" })),
       installPhase: "runHook preInstall\nmkdir -p $out\ncp -r dist/electron/prod/* $out/\nrunHook postInstall\n",
     }))));
   return nix.app(buildNpmPackage, nix.thunk(() => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       pname: "raindrop",
       version: version,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           owner: "raindropio",
           repo: "desktop",
           rev: nix.thunk(() => nix.sel(sources, "desktopRev")),
@@ -56,7 +48,7 @@ export default nix.lambda((args) => (() => {
       npmDepsHash: nix.thunk(() => nix.sel(sources, "desktopNpmHash")),
       makeCacheWritable: true,
       dontNpmBuild: true,
-      env: nix.thunk(() => ({ [nix.POS]: pos$5, ELECTRON_SKIP_BINARY_DOWNLOAD: "1" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[4], ELECTRON_SKIP_BINARY_DOWNLOAD: "1" })),
       postPatch: nix.thunk(() => nix.str`substituteInPlace package.json \\
   --replace-fail '"version": "0.0.0"' '"version": "${version}"'
 `),
@@ -93,7 +85,7 @@ runHook postInstall
 `),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             name: "raindrop",
             icon: "raindrop",
             exec: "raindrop %U",
@@ -105,9 +97,9 @@ runHook postInstall
             mimeTypes: nix.thunk(() => ["x-scheme-handler/rnio"]),
           })))),
       ]),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$7, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[6], updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         description: "All-in-one bookmark manager",
         homepage: "https://raindrop.io",
         changelog: nix.thunk(() => nix.str`https://github.com/raindropio/desktop/releases/tag/v${version}`),

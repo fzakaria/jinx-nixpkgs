@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 18, 5], ["hash", 19, 5]], [["setupHooks", 87, 37]], [["description", 92, 5], ["longDescription", 94, 5], ["homepage", 104, 5], ["license", 105, 5], ["maintainers", 107, 5], ["mainProgram", 108, 5], ["hydraPlatforms", 111, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["enableParallelBuilding", 22, 3], ["nativeBuildInputs", 26, 3], ["strictDeps", 28, 3], ["hardeningDisable", 31, 3], ["setupHooks", 33, 3], ["postPatch", 38, 3], ["postBuild", 72, 3], ["configureFlags", 77, 3], ["passthru", 87, 3], ["__structuredAttrs", 89, 3], ["meta", 91, 3]]]);
 const formals$1 = { args: { fetchurl: false, stdenv: false, lib: false, updateAutotoolsGnuConfigScriptsHook: false, enableStatic: true, enableShared: true, enableDarwinABICompat: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["setupHooks", 87, 37]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 92, 5], ["longDescription", 94, 5], ["homepage", 104, 5], ["license", 105, 5], ["maintainers", 107, 5], ["mainProgram", 108, 5], ["hydraPlatforms", 111, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["enableParallelBuilding", 22, 3], ["nativeBuildInputs", 26, 3], ["strictDeps", 28, 3], ["hardeningDisable", 31, 3], ["setupHooks", 33, 3], ["postPatch", 38, 3], ["postBuild", 72, 3], ["configureFlags", 77, 3], ["passthru", 87, 3], ["__structuredAttrs", 89, 3], ["meta", 91, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const enableShared = nix.argOr($, "enableShared", () => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isStatic")));
   const enableDarwinABICompat = nix.argOr($, "enableDarwinABICompat", () => false);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "libiconv",
       version: "1.19",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnu/libiconv/libiconv-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-iN2WqMBGTsoUT8eRrmDNMc2O54Mh5nOX4l/AlcShmqY=",
         })))),
@@ -41,12 +38,12 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "enableFeature"), enableShared, "shared")),
       ], nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isFreeBSD")), "--with-pic"), nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isCygwin")), "gl_cv_clean_version_stddef=yes")))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         setupHooks: nix.thunk(() => nix.attr(finalAttrs, "setupHooks")),
       })),
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Iconv(3) implementation",
         longDescription: "Some programs, like mailers and web browsers, must be able to convert\nbetween a given text encoding and the user's encoding.  Other programs\ninternally store strings in Unicode, to facilitate internal processing,\nand need to convert between internal string representation (Unicode)\nand external string representation (a traditional encoding) when they\nare doing I/O.  GNU libiconv is a conversion library for both kinds of\napplications.\n",
         homepage: "https://www.gnu.org/software/libiconv/",

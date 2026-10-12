@@ -2,11 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/common.nix", [[["NIX_CFLAGS_COMPILE", 47, 7]], [["isTiles", 88, 5], ["isCurses", 89, 5]], [["description", 93, 5], ["mainProgram", 94, 5], ["longDescription", 95, 5], ["homepage", 118, 5], ["license", 119, 5], ["maintainers", 120, 5], ["platforms", 125, 5]], [["pname", 23, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 27, 3], ["postPatch", 41, 3], ["env", 47, 3], ["makeFlags", 49, 3], ["postInstall", 67, 3], ["dontStrip", 84, 3], ["enableParallelBuilding", 85, 3], ["passthru", 87, 3], ["meta", 92, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, "pkg-config": false, gettext: false, ncurses: false, tiles: false, SDL2: false, SDL2_image: false, SDL2_mixer: false, SDL2_ttf: false, libx11: false, freetype: false, zlib: false, debug: false, useXdgDir: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/common.nix", [["NIX_CFLAGS_COMPILE", 47, 7]]);
-const pos$2 = nix.positions(here + "/common.nix", [["isTiles", 88, 5], ["isCurses", 89, 5]]);
-const pos$3 = nix.positions(here + "/common.nix", [["description", 93, 5], ["mainProgram", 94, 5], ["longDescription", 95, 5], ["homepage", 118, 5], ["license", 119, 5], ["maintainers", 120, 5], ["platforms", 125, 5]]);
-const pos$4 = nix.positions(here + "/common.nix", [["pname", 23, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 27, 3], ["postPatch", 41, 3], ["env", 47, 3], ["makeFlags", 49, 3], ["postInstall", 67, 3], ["dontStrip", 84, 3], ["enableParallelBuilding", 85, 3], ["passthru", 87, 3], ["meta", 92, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,13 +25,13 @@ export default nix.lambda((args) => (() => {
   const optionals = nix.thunk(() => nix.attr(lib, "optionals"));
   const optionalString = nix.thunk(() => nix.attr(lib, "optionalString"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "cataclysm-dda",
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => nix.concat([gettext, zlib], nix.concat(nix.app(nix.sel(lib, "optionals"), tiles, nix.thunk(() => [SDL2, SDL2_image, SDL2_mixer, SDL2_ttf, libx11, freetype])), nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(tiles)), ncurses)))),
       postPatch: "patchShebangs lang/compile_mo.sh\nsubstituteInPlace data/fontdata.json \\\n  --replace-fail 'data/font/' 'font/'\n",
       env: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(optionalString, nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "-Wno-missing-noreturn")),
       })),
       makeFlags: nix.thunk(() => nix.concat([
@@ -50,12 +47,12 @@ export default nix.lambda((args) => (() => {
       dontStrip: debug,
       enableParallelBuilding: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         isTiles: tiles,
         isCurses: nix.thunk(() => !nix.asBool(tiles)),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Free post-apocalyptic zombie-infested roguelike",
         mainProgram: "cataclysm-tiles",
         longDescription: "Cataclysm: Dark Days Ahead is a roguelike set in a post-apocalyptic world.\nSurviving is difficult: you have been thrown, ill-equipped, into a\nlandscape now riddled with monstrosities of which flesh eating zombies are\nneither the strangest nor the deadliest.\n\nYet with care and a little luck, many things are possible. You may try to\neke out an existence in the forests silently executing threats and\nproviding sustenance with your longbow. You can ride into town in a\njerry-rigged vehicle, all guns blazing, to settle matters in a fug of\nsmoke from your molotovs. You could take a more measured approach and\nconstruct an impregnable fortress, surrounded by traps to protect you from\nthe horrors without. The longer you survive, the more skilled and adapted\nyou will get and the better equipped and armed to deal with the threats\nyou are presented with.\n\nIn the course of your ordeal there will be opportunities and temptations\nto improve or change your very nature. There are tales of survivors fitted\nwith extraordinary cybernetics giving great power and stories too of\ngravely mutated survivors who, warped by their ingestion of exotic\nsubstances or radiation, now more closely resemble insects, birds or fish\nthan their original form.\n",

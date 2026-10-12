@@ -2,9 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/lorder.nix", [[["platforms", 20, 8]], [["noCC", 11, 3], ["path", 12, 3], ["nativeBuildInputs", 13, 3], ["meta", 20, 3]]]);
 const formals$1 = { args: { lib: false, mkDerivation: false, bsdSetupHook: false, openbsdSetupHook: false, makeMinimal: false, install: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/lorder.nix", [["platforms", 20, 8]]);
-const pos$2 = nix.positions(here + "/lorder.nix", [["noCC", 11, 3], ["path", 12, 3], ["nativeBuildInputs", 13, 3], ["meta", 20, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const makeMinimal = nix.arg($, "makeMinimal");
   const install = nix.arg($, "install");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       noCC: true,
       path: "usr.bin/lorder",
       nativeBuildInputs: nix.thunk(() => [bsdSetupHook, openbsdSetupHook, makeMinimal, install]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       })),
     })));

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["OPENSSL_NO_VENDOR", 22, 5]], [["description", 33, 5], ["mainProgram", 34, 5]], [["pname", 8, 3], ["version", 11, 5], ["src", 12, 5], ["cargoDeps", 13, 5], ["buildInputs", 14, 5], ["nativeBuildInputs", 17, 3], ["env", 21, 3], ["cargoBuildFlags", 25, 3], ["doCheck", 30, 3], ["meta", 32, 3]]]);
 const formals$1 = { args: { rustPlatform: false, libdeltachat: false, "pkg-config": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["OPENSSL_NO_VENDOR", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 33, 5], ["mainProgram", 34, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 11, 5], ["src", 12, 5], ["cargoDeps", 13, 5], ["buildInputs", 14, 5], ["nativeBuildInputs", 17, 3], ["env", 21, 3], ["cargoBuildFlags", 25, 3], ["doCheck", 30, 3], ["meta", 32, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,18 +11,18 @@ export default nix.lambda((args) => (() => {
   const libdeltachat = nix.arg($, "libdeltachat");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "deltachat-repl",
       version: nix.thunk(() => nix.attr(libdeltachat, "version")),
       src: nix.thunk(() => nix.attr(libdeltachat, "src")),
       cargoDeps: nix.thunk(() => nix.attr(libdeltachat, "cargoDeps")),
       buildInputs: nix.thunk(() => nix.attr(libdeltachat, "buildInputs")),
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$1, OPENSSL_NO_VENDOR: true })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[0], OPENSSL_NO_VENDOR: true })),
       cargoBuildFlags: nix.thunk(() => ["--package", "deltachat-repl"]),
       doCheck: false,
       meta: nix.thunk(() => nix.update(nix.sel(libdeltachat, "meta"), {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Delta Chat CLI client",
         mainProgram: "deltachat-repl",
       })),

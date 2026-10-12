@@ -2,17 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["categories", 25, 9], ["desktopName", 31, 9], ["exec", 32, 9], ["genericName", 33, 9], ["icon", 34, 9], ["mimeTypes", 35, 9], ["name", 43, 9], ["startupNotify", 44, 9]], [["url", 53, 9], ["curlOptsList", 54, 9], ["hash", 58, 17]], [["description", 99, 9], ["homepage", 100, 9], ["maintainers", 101, 9], ["sourceProvenance", 106, 9], ["license", 107, 9], ["platforms", 108, 9]], [["updateScript", 110, 16]], [["pname", 49, 7], ["version", 50, 15], ["src", 52, 7], ["nativeBuildInputs", 61, 7], ["installPhase", 63, 7], ["meta", 98, 7], ["passthru", 110, 7]], [["version", 117, 7], ["hash", 118, 7], ["platform", 119, 7], ["jdk", 120, 7], ["updateScript", 122, 7]], [["version", 136, 7], ["hash", 137, 7], ["platform", 138, 7], ["jdk", 139, 7]], [["version", 144, 7], ["hash", 145, 7], ["jdk", 146, 7], ["mainProgram", 147, 7]], [["charles5", 115, 3], ["charles4", 134, 3], ["charles3", 142, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, makeWrapper: false, makeDesktopItem: false, fetchurl: false, jdk25: false, jdk11: false, jdk8: false, writeScript: false }, ellipsis: false };
 const formals$2 = { args: { version: false, hash: false, platform: true, jdk: false, updateScript: true }, ellipsis: true };
-const pos$1 = nix.positions(here + "/default.nix", [["categories", 25, 9], ["desktopName", 31, 9], ["exec", 32, 9], ["genericName", 33, 9], ["icon", 34, 9], ["mimeTypes", 35, 9], ["name", 43, 9], ["startupNotify", 44, 9]]);
-const pos$2 = nix.positions(here + "/default.nix", [["url", 53, 9], ["curlOptsList", 54, 9], ["hash", 58, 17]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 99, 9], ["homepage", 100, 9], ["maintainers", 101, 9], ["sourceProvenance", 106, 9], ["license", 107, 9], ["platforms", 108, 9]]);
-const pos$4 = nix.positions(here + "/default.nix", [["updateScript", 110, 16]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 49, 7], ["version", 50, 15], ["src", 52, 7], ["nativeBuildInputs", 61, 7], ["installPhase", 63, 7], ["meta", 98, 7], ["passthru", 110, 7]]);
-const pos$6 = nix.positions(here + "/default.nix", [["version", 117, 7], ["hash", 118, 7], ["platform", 119, 7], ["jdk", 120, 7], ["updateScript", 122, 7]]);
-const pos$7 = nix.positions(here + "/default.nix", [["version", 136, 7], ["hash", 137, 7], ["platform", 138, 7], ["jdk", 139, 7]]);
-const pos$8 = nix.positions(here + "/default.nix", [["version", 144, 7], ["hash", 145, 7], ["jdk", 146, 7], ["mainProgram", 147, 7]]);
-const pos$9 = nix.positions(here + "/default.nix", [["charles5", 115, 3], ["charles4", 134, 3], ["charles3", 142, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,7 +26,7 @@ export default nix.lambda((args) => (() => {
     const jdk = nix.arg($_1, "jdk");
     const updateScript = nix.argOr($_1, "updateScript", () => null);
     const desktopItem = nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         categories: nix.thunk(() => ["Network", "Development", "WebDevelopment", "Java"]),
         desktopName: "Charles",
         exec: "charles %F",
@@ -52,11 +44,11 @@ export default nix.lambda((args) => (() => {
         startupNotify: true,
       }))));
     return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname: "charles",
         version: version,
         src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: nix.thunk(() => nix.str`https://www.charlesproxy.com/assets/release/${version}/charles-proxy-${version}${platform}.tar.gz`),
             curlOptsList: nix.thunk(() => ["--user-agent", "Mozilla/5.0"]),
             hash: hash,
@@ -79,7 +71,7 @@ ${(nix.asBool(nix.app(nix.sel(lib, "versionOlder"), version, "4.0")) ? "for size
 runHook postInstall
 `),
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           description: "Web Debugging Proxy",
           homepage: "https://www.charlesproxy.com/",
           maintainers: nix.thunk(() => (() => {
@@ -97,13 +89,13 @@ runHook postInstall
           license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
           platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
         })),
-        passthru: nix.thunk(() => ({ [nix.POS]: pos$4, updateScript: updateScript })),
+        passthru: nix.thunk(() => ({ [nix.POS]: $pos[3], updateScript: updateScript })),
       })));
   })(), formals$2);
   return {
-    [nix.POS]: pos$9,
+    [nix.POS]: $pos[8],
     charles5: nix.thunk(() => nix.app(generic, nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         version: "5.2.1",
         hash: "sha256-li08tpPDumfXnjeVkkNdO7kRhxqyrGIaWCWU2rV1fu8=",
         platform: "_x86_64",
@@ -111,14 +103,14 @@ runHook postInstall
         updateScript: nix.thunk(() => nix.app(writeScript, "update-charles", "#!/usr/bin/env nix-shell\n#!nix-shell -i bash -p curl gnugrep common-updater-scripts\n\nset -eu -o pipefail\n\nversion=$(curl -A \"Mozilla/5.0\" -s https://www.charlesproxy.com/download/ | grep -oP 'Version \\K[0-9.]+' | head -n1)\n\nupdate-source-version charles5 \"$version\"\n")),
       })))),
     charles4: nix.thunk(() => nix.app(generic, nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         version: "4.6.8",
         hash: "sha256-AaS+zmQTWsGoLEhyGHA/UojmctE7IV0N9fnygNhEPls=",
         platform: "_amd64",
         jdk: jdk11,
       })))),
     charles3: nix.thunk(() => nix.app(generic, nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         version: "3.12.3",
         hash: "sha256-Wotxzf6kutYv1F6q71eJVojVJsATJ81war/w4K1A848=",
         jdk: nix.thunk(() => nix.sel(jdk8, "jre")),

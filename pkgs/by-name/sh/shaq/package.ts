@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]], [["dev", 32, 5], ["lint", 36, 5], ["test", 41, 5]], [["description", 58, 5], ["homepage", 59, 5], ["changelog", 60, 5], ["license", 61, 5], ["maintainers", 62, 5], ["mainProgram", 65, 5]], [["pname", 9, 3], ["version", 10, 3], ["pyproject", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 20, 3], ["propagatedBuildInputs", 24, 3], ["optional-dependencies", 31, 3], ["pythonImportsCheck", 48, 3], ["makeWrapperArgs", 50, 3], ["meta", 57, 3]]]);
 const formals$1 = { args: { lib: false, python3: false, fetchFromGitHub: false, ffmpeg: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["dev", 32, 5], ["lint", 36, 5], ["test", 41, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 58, 5], ["homepage", 59, 5], ["changelog", 60, 5], ["license", 61, 5], ["maintainers", 62, 5], ["mainProgram", 65, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["pyproject", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 20, 3], ["propagatedBuildInputs", 24, 3], ["optional-dependencies", 31, 3], ["pythonImportsCheck", 48, 3], ["makeWrapperArgs", 50, 3], ["meta", 57, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.0.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "woodruffw",
           repo: "shaq",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -38,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const optional_dependencies = nix.thunk(() => (() => {
         const w_1 = nix.withScope(nix.thunk(() => nix.sel(python3, "pkgs")), null);
         return {
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           dev: nix.thunk(() => [
             nix.thunk(() => nix.lookup(w_1, "build")),
             nix.thunk(() => nix.lookup(w_1, "shaq")),
@@ -63,7 +60,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [ffmpeg]))),
       ]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "CLI client for Shazam",
         homepage: "https://github.com/woodruffw/shaq",
         changelog: nix.thunk(() => nix.str`https://github.com/woodruffw/shaq/releases/tag/${nix.sel(src, "rev")}`),
@@ -75,7 +72,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "shaq",
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

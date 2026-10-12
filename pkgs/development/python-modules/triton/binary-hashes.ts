@@ -2,79 +2,68 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
-const pos$1 = nix.positions(here + "/binary-hashes.nix", [["name", 12, 7], ["url", 13, 7], ["hash", 14, 7]]);
-const pos$2 = nix.positions(here + "/binary-hashes.nix", [["name", 17, 7], ["url", 18, 7], ["hash", 19, 7]]);
-const pos$3 = nix.positions(here + "/binary-hashes.nix", [["name", 22, 7], ["url", 23, 7], ["hash", 24, 7]]);
-const pos$4 = nix.positions(here + "/binary-hashes.nix", [["name", 27, 7], ["url", 28, 7], ["hash", 29, 7]]);
-const pos$5 = nix.positions(here + "/binary-hashes.nix", [["name", 32, 7], ["url", 33, 7], ["hash", 34, 7]]);
-const pos$6 = nix.positions(here + "/binary-hashes.nix", [["name", 37, 7], ["url", 38, 7], ["hash", 39, 7]]);
-const pos$7 = nix.positions(here + "/binary-hashes.nix", [["name", 42, 7], ["url", 43, 7], ["hash", 44, 7]]);
-const pos$8 = nix.positions(here + "/binary-hashes.nix", [["name", 47, 7], ["url", 48, 7], ["hash", 49, 7]]);
-const pos$9 = nix.positions(here + "/binary-hashes.nix", [["name", 52, 7], ["url", 53, 7], ["hash", 54, 7]]);
-const pos$10 = nix.positions(here + "/binary-hashes.nix", [["name", 57, 7], ["url", 58, 7], ["hash", 59, 7]]);
-const pos$11 = nix.positions(here + "/binary-hashes.nix", [["x86_64-linux-310", 11, 5], ["x86_64-linux-311", 16, 5], ["x86_64-linux-312", 21, 5], ["x86_64-linux-313", 26, 5], ["x86_64-linux-314", 31, 5], ["aarch64-linux-310", 36, 5], ["aarch64-linux-311", 41, 5], ["aarch64-linux-312", 46, 5], ["aarch64-linux-313", 51, 5], ["aarch64-linux-314", 56, 5]]);
-const pos$12 = nix.positions(here + "/binary-hashes.nix", [["3.7.1", 10, 3]]);
+const $pos = nix.positions(here + "/binary-hashes.nix", [[["name", 12, 7], ["url", 13, 7], ["hash", 14, 7]], [["name", 17, 7], ["url", 18, 7], ["hash", 19, 7]], [["name", 22, 7], ["url", 23, 7], ["hash", 24, 7]], [["name", 27, 7], ["url", 28, 7], ["hash", 29, 7]], [["name", 32, 7], ["url", 33, 7], ["hash", 34, 7]], [["name", 37, 7], ["url", 38, 7], ["hash", 39, 7]], [["name", 42, 7], ["url", 43, 7], ["hash", 44, 7]], [["name", 47, 7], ["url", 48, 7], ["hash", 49, 7]], [["name", 52, 7], ["url", 53, 7], ["hash", 54, 7]], [["name", 57, 7], ["url", 58, 7], ["hash", 59, 7]], [["x86_64-linux-310", 11, 5], ["x86_64-linux-311", 16, 5], ["x86_64-linux-312", 21, 5], ["x86_64-linux-313", 26, 5], ["x86_64-linux-314", 31, 5], ["aarch64-linux-310", 36, 5], ["aarch64-linux-311", 41, 5], ["aarch64-linux-312", 46, 5], ["aarch64-linux-313", 51, 5], ["aarch64-linux-314", 56, 5]], [["3.7.1", 10, 3]]]);
 
 export default (version) => nix.builtins.getAttr(version, nix.thunk(() => ({
-    [nix.POS]: pos$12,
+    [nix.POS]: $pos[11],
     "3.7.1": nix.thunk(() => ({
-      [nix.POS]: pos$11,
+      [nix.POS]: $pos[10],
       "x86_64-linux-310": nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         name: "triton-3.7.1-cp310-cp310-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl",
         url: "https://download.pytorch.org/whl/triton-3.7.1-cp310-cp310-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl",
         hash: "sha256-PWKx3zWPSfzCKdW3fno0bWapPpPBn2hyk26tupqsXwE=",
       })),
       "x86_64-linux-311": nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         name: "triton-3.7.1-cp311-cp311-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl",
         url: "https://download.pytorch.org/whl/triton-3.7.1-cp311-cp311-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl",
         hash: "sha256-QQ03hrLc8e95IEZnB4fcdCuo+ADPLG3d9W4GVvImDbY=",
       })),
       "x86_64-linux-312": nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         name: "triton-3.7.1-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl",
         url: "https://download.pytorch.org/whl/triton-3.7.1-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl",
         hash: "sha256-IlkQ55FJgH3nSgymMWCqKFlWqNZKKVHVWJl8V+JYSuE=",
       })),
       "x86_64-linux-313": nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         name: "triton-3.7.1-cp313-cp313-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl",
         url: "https://download.pytorch.org/whl/triton-3.7.1-cp313-cp313-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl",
         hash: "sha256-WWiLm5JPiHMW3ND66ejL5pfuHR9qs4ZyOYLMns3r7gE=",
       })),
       "x86_64-linux-314": nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         name: "triton-3.7.1-cp314-cp314-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl",
         url: "https://download.pytorch.org/whl/triton-3.7.1-cp314-cp314-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl",
         hash: "sha256-xWy4EDSdNpkCC1t2lUKbm5l1dNqxufRrK2P6I9eVSJQ=",
       })),
       "aarch64-linux-310": nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         name: "triton-3.7.1-cp310-cp310-linux_aarch64.whl",
         url: "https://download.pytorch.org/whl/triton-3.7.1-cp310-cp310-linux_aarch64.whl",
         hash: "sha256-fwLYlMF26bgDI8RnkEnLEiGYkAJ1UBlFUFSKBMcLXC4=",
       })),
       "aarch64-linux-311": nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         name: "triton-3.7.1-cp311-cp311-linux_aarch64.whl",
         url: "https://download.pytorch.org/whl/triton-3.7.1-cp311-cp311-linux_aarch64.whl",
         hash: "sha256-4EtCUt28vG1PUYuz6z1Yay531A7TKAHZp1EW2NbBFps=",
       })),
       "aarch64-linux-312": nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         name: "triton-3.7.1-cp312-cp312-linux_aarch64.whl",
         url: "https://download.pytorch.org/whl/triton-3.7.1-cp312-cp312-linux_aarch64.whl",
         hash: "sha256-HwRqjSYV44mxuOik0QCgPzyx30vBoQemtnixhkQ7ssk=",
       })),
       "aarch64-linux-313": nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         name: "triton-3.7.1-cp313-cp313-linux_aarch64.whl",
         url: "https://download.pytorch.org/whl/triton-3.7.1-cp313-cp313-linux_aarch64.whl",
         hash: "sha256-NIlNUa/xq/ewF/vQxen+chEwXDWZFX/KJR4/QryPAM8=",
       })),
       "aarch64-linux-314": nix.thunk(() => ({
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         name: "triton-3.7.1-cp314-cp314-linux_aarch64.whl",
         url: "https://download.pytorch.org/whl/triton-3.7.1-cp314-cp314-linux_aarch64.whl",
         hash: "sha256-8JH+hQZXlxxxkfeqW8kDdmmtBF2p036rx1GSatu0Vt4=",

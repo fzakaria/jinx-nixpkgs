@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/all-plugins.nix", [[["pname", 12, 5], ["module", 13, 5], ["description", 14, 5]], [["pname", 17, 5], ["module", 18, 5], ["description", 19, 5]], [["pname", 22, 5], ["module", 23, 5], ["description", 24, 5]], [["pname", 28, 5], ["module", 29, 5], ["description", 30, 5]], [["groupId", 48, 7], ["artifactId", 49, 7], ["version", 50, 7], ["hash", 51, 7]], [["groupId", 56, 7], ["artifactId", 57, 7], ["version", 58, 7], ["hash", 59, 7]], [["apple-identity-provider-keycloak", 10, 3], ["keycloak-2fa-app-authenticator", 11, 3], ["keycloak-2fa-email-authenticator", 16, 3], ["keycloak-2fa-sms-authenticator", 21, 3], ["keycloak-discord", 26, 3], ["keycloak-enforce-mfa-authenticator", 27, 3], ["keycloak-home-idp-discovery", 32, 3], ["keycloak-magic-link", 33, 3], ["keycloak-orgs", 34, 3], ["keycloak-remember-me-authenticator", 35, 3], ["keycloak-restrict-client-auth", 36, 3], ["keycloak-secrets-vault-provider", 37, 3], ["junixsocket-common", 41, 3], ["junixsocket-native-common", 42, 3], ["quarkus-systemd-notify", 46, 3], ["quarkus-systemd-notify-deployment", 54, 3]], [["keycloak-metrics-spi", 63, 3], ["scim-for-keycloak", 64, 3], ["scim-keycloak-user-storage-spi", 65, 3]]]);
 const formals$1 = { args: { lib: false, config: false, callPackage: false, fetchMavenArtifact: false, "junixsocket-common": false, "junixsocket-native-common": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/all-plugins.nix", [["pname", 12, 5], ["module", 13, 5], ["description", 14, 5]]);
-const pos$2 = nix.positions(here + "/all-plugins.nix", [["pname", 17, 5], ["module", 18, 5], ["description", 19, 5]]);
-const pos$3 = nix.positions(here + "/all-plugins.nix", [["pname", 22, 5], ["module", 23, 5], ["description", 24, 5]]);
-const pos$4 = nix.positions(here + "/all-plugins.nix", [["pname", 28, 5], ["module", 29, 5], ["description", 30, 5]]);
-const pos$5 = nix.positions(here + "/all-plugins.nix", [["groupId", 48, 7], ["artifactId", 49, 7], ["version", 50, 7], ["hash", 51, 7]]);
-const pos$6 = nix.positions(here + "/all-plugins.nix", [["groupId", 56, 7], ["artifactId", 57, 7], ["version", 58, 7], ["hash", 59, 7]]);
-const pos$7 = nix.positions(here + "/all-plugins.nix", [["apple-identity-provider-keycloak", 10, 3], ["keycloak-2fa-app-authenticator", 11, 3], ["keycloak-2fa-email-authenticator", 16, 3], ["keycloak-2fa-sms-authenticator", 21, 3], ["keycloak-discord", 26, 3], ["keycloak-enforce-mfa-authenticator", 27, 3], ["keycloak-home-idp-discovery", 32, 3], ["keycloak-magic-link", 33, 3], ["keycloak-orgs", 34, 3], ["keycloak-remember-me-authenticator", 35, 3], ["keycloak-restrict-client-auth", 36, 3], ["keycloak-secrets-vault-provider", 37, 3], ["junixsocket-common", 41, 3], ["junixsocket-native-common", 42, 3], ["quarkus-systemd-notify", 46, 3], ["quarkus-systemd-notify-deployment", 54, 3]]);
-const pos$8 = nix.positions(here + "/all-plugins.nix", [["keycloak-metrics-spi", 63, 3], ["scim-for-keycloak", 64, 3], ["scim-keycloak-user-storage-spi", 65, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,29 +14,29 @@ export default nix.lambda((args) => (() => {
   const junixsocket_common = nix.arg($, "junixsocket-common");
   const junixsocket_native_common = nix.arg($, "junixsocket-native-common");
   return nix.update({
-    [nix.POS]: pos$7,
+    [nix.POS]: $pos[6],
     "apple-identity-provider-keycloak": nix.thunk(() => nix.app(callPackage, nix.path(here, "./apple-identity-provider-keycloak"), nix.thunk(() => ({})))),
     "keycloak-2fa-app-authenticator": nix.thunk(() => nix.app(callPackage, nix.path(here, "./netzbegruenung-mfa-plugin.nix"), nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         pname: "keycloak-2fa-app-authenticator",
         module: "app-authenticator",
         description: "Keycloak MFA provider connecting a native mobile app for login approval",
       })))),
     "keycloak-2fa-email-authenticator": nix.thunk(() => nix.app(callPackage, nix.path(here, "./netzbegruenung-mfa-plugin.nix"), nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         pname: "keycloak-2fa-email-authenticator",
         module: "email-authenticator",
         description: "Keycloak authentication provider for 2FA via email OTP",
       })))),
     "keycloak-2fa-sms-authenticator": nix.thunk(() => nix.app(callPackage, nix.path(here, "./netzbegruenung-mfa-plugin.nix"), nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname: "keycloak-2fa-sms-authenticator",
         module: "sms-authenticator",
         description: "Keycloak authentication provider for 2FA via SMS",
       })))),
     "keycloak-discord": nix.thunk(() => nix.app(callPackage, nix.path(here, "./keycloak-discord"), nix.thunk(() => ({})))),
     "keycloak-enforce-mfa-authenticator": nix.thunk(() => nix.app(callPackage, nix.path(here, "./netzbegruenung-mfa-plugin.nix"), nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname: "keycloak-enforce-mfa-authenticator",
         module: "enforce-mfa",
         description: "Keycloak authenticator that enforces MFA",
@@ -57,21 +50,21 @@ export default nix.lambda((args) => (() => {
     "junixsocket-common": nix.thunk(() => nix.sel(junixsocket_common, "passthru", "jar")),
     "junixsocket-native-common": nix.thunk(() => nix.sel(junixsocket_native_common, "passthru", "jar")),
     "quarkus-systemd-notify": nix.thunk(() => nix.sel(nix.app(fetchMavenArtifact, nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         groupId: "io.quarkiverse.systemd.notify",
         artifactId: "quarkus-systemd-notify",
         version: "1.0.1",
         hash: "sha256-3I4j22jyIpokU4kdobkt6cDsALtxYFclA+DV+BqtmLY=",
       }))), "passthru", "jar")),
     "quarkus-systemd-notify-deployment": nix.thunk(() => nix.sel(nix.app(fetchMavenArtifact, nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         groupId: "io.quarkiverse.systemd.notify",
         artifactId: "quarkus-systemd-notify-deployment",
         version: "1.0.1",
         hash: "sha256-xHxzBxriSd/OU8gEcDG00VRkJYPYJDfAfPh/FkQe+zg=",
       }))), "passthru", "jar")),
   }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(config, "allowAliases")), nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       "keycloak-metrics-spi": nix.thunk(() => nix.builtins.throw("keycloak.plugins.keycloak-metrics-spi has been removed in favor of Keycloak's native metrics.")),
       "scim-for-keycloak": nix.thunk(() => nix.builtins.throw("keycloak.plugins.scim-for-keycloak has been removed as it is end-of-life upstream.")),
       "scim-keycloak-user-storage-spi": nix.thunk(() => nix.builtins.throw("keycloak.plugins.scim-keycloak-user-storage-spi has been removed as it is unmaintained upstream.")),

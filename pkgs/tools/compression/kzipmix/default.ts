@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 12, 5], ["hash", 13, 5]], [["description", 25, 5], ["sourceProvenance", 26, 5], ["license", 27, 5], ["homepage", 28, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["installPhase", 16, 3], ["meta", 24, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 12, 5], ["hash", 13, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 25, 5], ["sourceProvenance", 26, 5], ["license", 27, 5], ["homepage", 28, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["installPhase", 16, 3], ["meta", 24, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,7 +14,7 @@ export default nix.lambda((args) => (() => {
       const pname = "kzipmix";
       const version = "20200115";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://www.jonof.id.au/files/kenutils/kzipmix-${version}-linux.tar.gz`),
           hash: "sha256-ePgye0D6/ED53zx6xffLnYhkjed7SPU4BLOZQr9E3yA=",
         }))));
@@ -27,7 +25,7 @@ patchelf --set-interpreter ${nix.sel(stdenv, "cc", "libc")}/lib/ld-linux.so.2 $o
 patchelf --set-interpreter ${nix.sel(stdenv, "cc", "libc")}/lib/ld-linux.so.2 $out/bin/zipmix
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Tool that aggressively optimizes the sizes of Zip archives",
         sourceProvenance: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "sourceTypes")), null);
@@ -36,7 +34,7 @@ patchelf --set-interpreter ${nix.sel(stdenv, "cc", "libc")}/lib/ld-linux.so.2 $o
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
         homepage: "http://advsys.net/ken/utils.htm",
       }));
-      return { [nix.POS]: pos$3, pname, version, src, installPhase, meta };
+      return { [nix.POS]: $pos[2], pname, version, src, installPhase, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

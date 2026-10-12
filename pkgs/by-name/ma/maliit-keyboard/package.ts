@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["sha256", 26, 5]], [["description", 63, 5], ["mainProgram", 64, 5], ["homepage", 65, 5], ["license", 66, 5], ["maintainers", 71, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["postPatch", 29, 3], ["buildInputs", 34, 3], ["cmakeFlags", 46, 3], ["nativeBuildInputs", 51, 3], ["postInstall", 58, 3], ["meta", 62, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, anthy: false, hunspell: false, libchewing: false, libpinyin: false, "maliit-framework": false, cmake: false, "pkg-config": false, wrapGAppsHook3: false, libsForQt5: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["sha256", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 63, 5], ["mainProgram", 64, 5], ["homepage", 65, 5], ["license", 66, 5], ["maintainers", 71, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["postPatch", 29, 3], ["buildInputs", 34, 3], ["cmakeFlags", 46, 3], ["nativeBuildInputs", 51, 3], ["postInstall", 58, 3], ["meta", 62, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   const libsForQt5 = nix.arg($, "libsForQt5");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "maliit-keyboard",
       version: "2.3.1-unstable-2024-09-04",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "maliit",
           repo: "keyboard",
           rev: "cbb0bbfa67354df76c25dbc3b1ea99a376fd15bb",
@@ -56,7 +54,7 @@ export default nix.lambda((args) => (() => {
       ]),
       postInstall: "glib-compile-schemas \"$out\"/share/glib-2.0/schemas\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Virtual keyboard",
         mainProgram: "maliit-keyboard",
         homepage: "http://maliit.github.io/",

@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]], [["vips_lib", 37, 7]], [["module", 159, 18]], [["tests", 159, 12]], [["changelog", 162, 5], ["description", 163, 5], ["homepage", 164, 5], ["license", 165, 5], ["mainProgram", 166, 5], ["maintainers", 167, 5], ["platforms", 168, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["patches", 25, 3], ["npmDepsHash", 45, 3], ["nativeBuildInputs", 47, 3], ["buildInputs", 53, 3], ["buildPhase", 109, 3], ["doCheck", 118, 3], ["nativeCheckInputs", 120, 3], ["checkPhase", 129, 3], ["installPhase", 138, 3], ["passthru", 159, 3], ["meta", 161, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildNpmPackage: false, fetchFromGitHub: false, replaceVars: false, makeBinaryWrapper: false, perl: false, ghostscript: false, vips: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["vips_lib", 37, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["module", 159, 18]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 159, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["changelog", 162, 5], ["description", 163, 5], ["homepage", 164, 5], ["license", 165, 5], ["mainProgram", 166, 5], ["maintainers", 167, 5], ["platforms", 168, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["patches", 25, 3], ["npmDepsHash", 45, 3], ["nativeBuildInputs", 47, 3], ["buildInputs", 53, 3], ["buildPhase", 109, 3], ["doCheck", 118, 3], ["nativeCheckInputs", 120, 3], ["checkPhase", 129, 3], ["installPhase", 138, 3], ["passthru", 159, 3], ["meta", 161, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const pname = "lanraragi";
       const version = "0.9.81";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Difegue",
           repo: "LANraragi",
           tag: nix.thunk(() => nix.str`v.${version}`),
@@ -37,7 +32,7 @@ export default nix.lambda((args) => (() => {
         nix.path(here, "./lower-version-reqs.patch"),
         nix.path(here, "./fix-paths.patch"),
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./vips-lib-path.patch"), nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             vips_lib: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getLib"), vips)}/lib`),
           })))),
         nix.path(here, "./expose-password-hashing.patch"),
@@ -124,11 +119,14 @@ makeWrapper ${nix.app(nix.sel(lib, "getExe"), perl)} $out/bin/helpers/lrr-make-p
 runHook postInstall
 `);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$3, module: nix.thunk(() => nix.sel(nixosTests, "lanraragi")) })),
+        [nix.POS]: $pos[3],
+        tests: nix.thunk(() => ({
+          [nix.POS]: $pos[2],
+          module: nix.thunk(() => nix.sel(nixosTests, "lanraragi")),
+        })),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         changelog: nix.thunk(() => nix.str`https://github.com/Difegue/LANraragi/releases/tag/${nix.sel(src, "tag")}`),
         description: "Web application for archival and reading of manga/doujinshi",
         homepage: "https://github.com/Difegue/LANraragi",
@@ -141,7 +139,7 @@ runHook postInstall
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname,
         version,
         src,

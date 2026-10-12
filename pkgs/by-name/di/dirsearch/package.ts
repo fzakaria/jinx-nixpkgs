@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["dependencies", 11, 5]]]);
 const formals$1 = { args: { lib: false, python3Packages: false, withRustBackend: true, withDbDeps: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["dependencies", 11, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const withRustBackend = nix.argOr($, "withRustBackend", () => true);
   const withDbDeps = nix.argOr($, "withDbDeps", () => true);
   return nix.app(nix.sel(python3Packages, "toPythonApplication"), nix.thunk(() => nix.app(nix.sel(python3Packages, "dirsearch", "overridePythonAttrs"), (prevAttrs) => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         dependencies: nix.thunk(() => nix.concat(nix.selOr(prevAttrs, () => [], "dependencies"), nix.concat(nix.app(nix.sel(lib, "optionals"), withRustBackend, nix.thunk(() => nix.sel(prevAttrs, "optional-dependencies", "rustbackend"))), nix.app(nix.sel(lib, "optionals"), withDbDeps, nix.thunk(() => nix.sel(prevAttrs, "optional-dependencies", "db")))))),
       }))));
 })(), formals$1);

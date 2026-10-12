@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/clang-root.nix", [[["url", 18, 5], ["tag", 19, 5], ["hash", 20, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 23, 3], ["buildInputs", 28, 3], ["patches", 33, 3], ["preConfigure", 37, 3], ["cmakeFlags", 41, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchgit: false, "apple-sdk": false, cmake: false, git: false, llvm_20: false, "pkg-config": false, python3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/clang-root.nix", [["url", 18, 5], ["tag", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/clang-root.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 23, 3], ["buildInputs", 28, 3], ["patches", 33, 3], ["preConfigure", 37, 3], ["cmakeFlags", 41, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const pname = "clang-root";
       const version = "20-20260616-01";
       const src = nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://github.com/root-project/llvm-project",
           tag: nix.thunk(() => nix.str`ROOT-llvm${version}`),
           hash: "sha256-WRgM1vuK2vQ5CC/QkKnLtq6d61rfo1bCV9fIxPYWKiU=",
@@ -45,7 +44,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`-DC_INCLUDE_DIRS=${nix.sel(apple_sdk, "sdkroot")}/usr/include`),
       ] : nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(nix.sel(stdenv, "cc", "libc"), null)), nix.thunk(() => nix.str`-DC_INCLUDE_DIRS=${nix.app(nix.sel(lib, "getDev"), nix.thunk(() => nix.sel(stdenv, "cc", "libc")))}/include`)))));
       return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         pname,
         version,
         src,

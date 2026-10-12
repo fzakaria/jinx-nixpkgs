@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["EDLIB_OMIT_README_RST", 24, 7], ["EDLIB_USE_CYTHON", 25, 7]], [["pname", 11, 5], ["src", 12, 5], ["version", 13, 5], ["meta", 14, 5], ["pyproject", 16, 3], ["sourceRoot", 18, 3], ["preBuild", 20, 3], ["env", 24, 3], ["build-system", 27, 3], ["buildInputs", 32, 3], ["checkPhase", 34, 3], ["pythonImportsCheck", 40, 3]]]);
 const formals$1 = { args: { buildPythonPackage: false, edlib: false, cython: false, python: false, setuptools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["EDLIB_OMIT_README_RST", 24, 7], ["EDLIB_USE_CYTHON", 25, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 11, 5], ["src", 12, 5], ["version", 13, 5], ["meta", 14, 5], ["pyproject", 16, 3], ["sourceRoot", 18, 3], ["preBuild", 20, 3], ["env", 24, 3], ["build-system", 27, 3], ["buildInputs", 32, 3], ["checkPhase", 34, 3], ["pythonImportsCheck", 40, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const python = nix.arg($, "python");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: nix.thunk(() => nix.attr(edlib, "pname")),
       src: nix.thunk(() => nix.attr(edlib, "src")),
       version: nix.thunk(() => nix.attr(edlib, "version")),
@@ -23,7 +22,7 @@ export default nix.lambda((args) => (() => {
       sourceRoot: nix.thunk(() => nix.str`${nix.sel(edlib, "src", "name")}/bindings/python`),
       preBuild: nix.thunk(() => nix.str`ln -s ${nix.sel(edlib, "src")}/edlib .
 `),
-      env: nix.thunk(() => ({ [nix.POS]: pos$1, EDLIB_OMIT_README_RST: 1n, EDLIB_USE_CYTHON: 1n })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[0], EDLIB_OMIT_README_RST: 1n, EDLIB_USE_CYTHON: 1n })),
       "build-system": nix.thunk(() => [setuptools, cython]),
       buildInputs: nix.thunk(() => [edlib]),
       checkPhase: nix.thunk(() => nix.str`runHook preCheck

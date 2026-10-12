@@ -2,16 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 28, 5], ["repo", 29, 5], ["rev", 30, 5], ["hash", 31, 5]], [["owner", 36, 5], ["repo", 37, 5], ["rev", 38, 5], ["hash", 39, 5]], [["owner", 44, 5], ["repo", 45, 5], ["tag", 46, 5], ["hash", 47, 5]], [["owner", 57, 5], ["repo", 58, 5], ["tag", 59, 5], ["hash", 60, 5]], [["NVCC_THREADS", 85, 5]], [["requiredSystemFeatures", 114, 7], ["doCheck", 115, 7]], [["gpuCheck", 113, 5], ["updateScript", 117, 5]], [["description", 121, 5], ["homepage", 122, 5], ["downloadPage", 123, 5], ["changelog", 124, 5], ["license", 125, 5], ["maintainers", 126, 5], ["platforms", 127, 5]], [["pname", 51, 3], ["version", 52, 3], ["__structuredAttrs", 53, 3], ["strictDeps", 54, 3], ["src", 56, 3], ["nativeBuildInputs", 63, 3], ["buildInputs", 71, 3], ["env", 84, 3], ["cmakeFlags", 88, 3], ["doCheck", 110, 3], ["passthru", 112, 3], ["meta", 120, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, config: false, "cpm-cmake": false, fetchFromGitHub: false, cmake: false, "pkg-config": false, fftw: false, fftwFloat: false, llvmPackages: false, cudaPackages: false, "nix-update-script": false, cudaSupport: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 28, 5], ["repo", 29, 5], ["rev", 30, 5], ["hash", 31, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 36, 5], ["repo", 37, 5], ["rev", 38, 5], ["hash", 39, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["owner", 44, 5], ["repo", 45, 5], ["tag", 46, 5], ["hash", 47, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["owner", 57, 5], ["repo", 58, 5], ["tag", 59, 5], ["hash", 60, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["NVCC_THREADS", 85, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["requiredSystemFeatures", 114, 7], ["doCheck", 115, 7]]);
-const pos$7 = nix.positions(here + "/package.nix", [["gpuCheck", 113, 5], ["updateScript", 117, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["description", 121, 5], ["homepage", 122, 5], ["downloadPage", 123, 5], ["changelog", 124, 5], ["license", 125, 5], ["maintainers", 126, 5], ["platforms", 127, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["pname", 51, 3], ["version", 52, 3], ["__structuredAttrs", 53, 3], ["strictDeps", 54, 3], ["src", 56, 3], ["nativeBuildInputs", 63, 3], ["buildInputs", 71, 3], ["env", 84, 3], ["cmakeFlags", 88, 3], ["doCheck", 110, 3], ["passthru", 112, 3], ["meta", 120, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,34 +21,34 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const cudaSupport = nix.argOr($, "cudaSupport", () => nix.sel(config, "cudaSupport"));
   const findfftwSrc = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "egpbos",
       repo: "findFFTW",
       rev: "d449ea0bcbf94a4a1c3dbb2108aa57609a4967ff",
       hash: "sha256-JM3DL43b3dlcazEW2bmJUH+XrIDbE54xwD5fRqnntUI=",
     }))));
   const xsimdSrc = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       owner: "xtensor-stack",
       repo: "xsimd",
       rev: "6842624fc8adafd7168a999e7150b384411da448",
       hash: "sha256-M6b2RDptZW5JwlVYNI4GEL6UI2Q+4sdhYBF/wP5wxeQ=",
     }))));
   const ccclSrc = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       owner: "NVIDIA",
       repo: "cccl",
       tag: "v3.0.2",
       hash: "sha256-sC9TpvhhFJRmZv25/l5L8jKq/wlAKLxf4C6O/a1xw/M=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       pname: "finufft",
       version: "2.5.1",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           owner: "flatironinstitute",
           repo: "finufft",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -68,7 +60,7 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.sel(cudaPackages, "libcufft")),
           nix.thunk(() => nix.sel(cudaPackages, "cccl")),
         ]))))),
-      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), cudaSupport, nix.thunk(() => ({ [nix.POS]: pos$5, NVCC_THREADS: 2n })))),
+      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), cudaSupport, nix.thunk(() => ({ [nix.POS]: $pos[4], NVCC_THREADS: 2n })))),
       cmakeFlags: nix.thunk(() => nix.concat([
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeFeature"), "CPM_SOURCE_CACHE", nix.thunk(() => nix.str`${cpm_cmake}/share`))),
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeFeature"), "CPM_DOWNLOAD_VERSION", nix.thunk(() => nix.sel(cpm_cmake, "version")))),
@@ -84,16 +76,16 @@ export default nix.lambda((args) => (() => {
         ])))),
       doCheck: nix.thunk(() => !nix.asBool(cudaSupport)),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         gpuCheck: nix.thunk(() => nix.app(nix.sel(finalAttrs, "finalPackage", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             requiredSystemFeatures: nix.thunk(() => ["cuda"]),
             doCheck: true,
           })))),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         description: "Non-uniform fast Fourier transform library of types 1, 2, 3 in dimensions 1, 2, 3 on the CPU or GPU",
         homepage: "https://finufft.readthedocs.io/en/latest/index.html",
         downloadPage: "https://github.com/flatironinstitute/finufft",

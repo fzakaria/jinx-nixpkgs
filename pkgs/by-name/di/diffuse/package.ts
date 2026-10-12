@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["sha256", 26, 5]], [["DESTDIR", 61, 7]], [["rev-prefix", 69, 7]], [["updateScript", 68, 5]], [["homepage", 74, 5], ["description", 75, 5], ["mainProgram", 76, 5], ["license", 77, 5], ["maintainers", 78, 5], ["platforms", 79, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["pyproject", 29, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 39, 3], ["propagatedBuildInputs", 46, 3], ["preConfigure", 51, 3], ["mesonFlags", 56, 3], ["env", 61, 3], ["makeWrapperArgs", 63, 3], ["passthru", 67, 3], ["meta", 73, 3]]]);
 const formals$1 = { args: { lib: false, gitUpdater: false, fetchFromGitHub: false, meson: false, ninja: false, gettext: false, wrapGAppsHook3: false, "gobject-introspection": false, pango: false, "gdk-pixbuf": false, python3: false, atk: false, gtk3: false, "hicolor-icon-theme": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["sha256", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["DESTDIR", 61, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["rev-prefix", 69, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 68, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["homepage", 74, 5], ["description", 75, 5], ["mainProgram", 76, 5], ["license", 77, 5], ["maintainers", 78, 5], ["platforms", 79, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["pyproject", 29, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 39, 3], ["propagatedBuildInputs", 46, 3], ["preConfigure", 51, 3], ["mesonFlags", 56, 3], ["env", 61, 3], ["makeWrapperArgs", 63, 3], ["passthru", 67, 3], ["meta", 73, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const gtk3 = nix.arg($, "gtk3");
   const hicolor_icon_theme = nix.arg($, "hicolor-icon-theme");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "diffuse",
       version: "0.11.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "MightyCreak",
           repo: "diffuse",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -49,16 +44,16 @@ export default nix.lambda((args) => (() => {
       })()),
       preConfigure: "# app bundle for macos\nsubstituteInPlace src/diffuse/meson.build data/icons/meson.build src/diffuse/mac-os-app/diffuse-mac.in --replace-fail \"/Applications\" \"$out/Applications\";\n",
       mesonFlags: nix.thunk(() => ["-Db_ndebug=true"]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, DESTDIR: "/" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], DESTDIR: "/" })),
       makeWrapperArgs: nix.thunk(() => [
         nix.thunk(() => nix.str`--prefix XDG_DATA_DIRS : ${hicolor_icon_theme}/share`),
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$3, "rev-prefix": "v" })))),
+        [nix.POS]: $pos[3],
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[2], "rev-prefix": "v" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "https://github.com/MightyCreak/diffuse",
         description: "Graphical tool for merging and comparing text files",
         mainProgram: "diffuse",

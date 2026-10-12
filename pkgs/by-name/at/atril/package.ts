@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 40, 5], ["repo", 41, 5], ["tag", 42, 5], ["fetchSubmodules", 43, 5], ["hash", 44, 5]], [["NIX_CFLAGS_COMPILE", 85, 7]], [["rev-prefix", 98, 5], ["odd-unstable", 99, 5]], [["updateScript", 97, 12]], [["description", 103, 5], ["homepage", 104, 5], ["license", 105, 5], ["platforms", 106, 5], ["teams", 107, 5]], [["pname", 36, 3], ["version", 37, 3], ["src", 39, 3], ["nativeBuildInputs", 47, 3], ["buildInputs", 57, 3], ["configureFlags", 77, 3], ["env", 85, 3], ["makeFlags", 87, 3], ["enableParallelBuilding", 89, 3], ["postInstall", 91, 3], ["passthru", 97, 3], ["meta", 102, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, "pkg-config": false, autoreconfHook: false, "gtk-doc": false, gettext: false, "yelp-tools": false, caja: false, gtk3: false, glib: false, libxml2: false, libarchive: false, libgepub: false, libsecret: false, poppler: false, "mate-desktop": false, itstool: false, "hicolor-icon-theme": false, texlive: false, wrapGAppsHook3: false, enableEpub: true, webkitgtk_4_1: false, enableDjvu: true, djvulibre: false, enablePostScript: true, libspectre: false, enableXps: true, libgxps: false, enableImages: true, gitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 40, 5], ["repo", 41, 5], ["tag", 42, 5], ["fetchSubmodules", 43, 5], ["hash", 44, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 85, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["rev-prefix", 98, 5], ["odd-unstable", 99, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 97, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 103, 5], ["homepage", 104, 5], ["license", 105, 5], ["platforms", 106, 5], ["teams", 107, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 36, 3], ["version", 37, 3], ["src", 39, 3], ["nativeBuildInputs", 47, 3], ["buildInputs", 57, 3], ["configureFlags", 77, 3], ["env", 85, 3], ["makeFlags", 87, 3], ["enableParallelBuilding", 89, 3], ["postInstall", 91, 3], ["passthru", 97, 3], ["meta", 102, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -44,11 +39,11 @@ export default nix.lambda((args) => (() => {
   const enableImages = nix.argOr($, "enableImages", () => false);
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "atril",
       version: "1.28.7",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "mate-desktop",
           repo: "atril",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -78,18 +73,18 @@ export default nix.lambda((args) => (() => {
       ], nix.concat(nix.app(nix.sel(lib, "optionals"), enableDjvu, nix.thunk(() => [djvulibre])), nix.concat(nix.app(nix.sel(lib, "optionals"), enableEpub, nix.thunk(() => [webkitgtk_4_1, libgepub])), nix.concat(nix.app(nix.sel(lib, "optionals"), enablePostScript, nix.thunk(() => [libspectre])), nix.app(nix.sel(lib, "optionals"), enableXps, nix.thunk(() => [libgxps]))))))),
       configureFlags: nix.thunk(() => nix.concat([], nix.concat(nix.app(nix.sel(lib, "optionals"), enableDjvu, nix.thunk(() => ["--enable-djvu"])), nix.concat(nix.app(nix.sel(lib, "optionals"), enableEpub, nix.thunk(() => ["--enable-epub"])), nix.concat(nix.app(nix.sel(lib, "optionals"), enablePostScript, nix.thunk(() => ["--enable-ps"])), nix.concat(nix.app(nix.sel(lib, "optionals"), enableXps, nix.thunk(() => ["--enable-xps"])), nix.app(nix.sel(lib, "optionals"), enableImages, nix.thunk(() => ["--enable-pixbuf"])))))))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.str`-I${nix.sel(glib, "dev")}/include/gio-unix-2.0`),
       })),
       makeFlags: nix.thunk(() => ["cajaextensiondir=$$out/lib/caja/extensions-2.0"]),
       enableParallelBuilding: true,
       postInstall: "substituteInPlace $out/share/thumbnailers/atril.thumbnailer \\\n  --replace-fail \"TryExec=atril-thumbnailer\" \"TryExec=$out/bin/atril-thumbnailer\" \\\n  --replace-fail \"Exec=atril-thumbnailer\" \"Exec=$out/bin/atril-thumbnailer\"\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$3, "rev-prefix": "v", "odd-unstable": true })))),
+        [nix.POS]: $pos[3],
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[2], "rev-prefix": "v", "odd-unstable": true })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Simple multi-page document viewer for the MATE desktop",
         homepage: "https://mate-desktop.org",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

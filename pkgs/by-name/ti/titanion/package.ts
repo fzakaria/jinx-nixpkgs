@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 19, 7], ["url", 20, 7], ["hash", 21, 15]], [["url", 30, 5], ["hash", 33, 5]], [["homepage", 87, 5], ["description", 88, 5], ["mainProgram", 89, 5], ["license", 90, 5], ["maintainers", 91, 5], ["platforms", 92, 5]], [["pname", 26, 3], ["version", 27, 3], ["src", 29, 3], ["patches", 36, 3], ["postPatch", 49, 3], ["nativeBuildInputs", 63, 3], ["buildInputs", 68, 3], ["makeFlags", 76, 3], ["installPhase", 78, 3], ["meta", 86, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchpatch: false, fetchurl: false, unzip: false, ldc: false, libGL: false, libGLU: false, SDL: false, SDL_mixer: false, bulletml: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 19, 7], ["url", 20, 7], ["hash", 21, 15]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 30, 5], ["hash", 33, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 87, 5], ["description", 88, 5], ["mainProgram", 89, 5], ["license", 90, 5], ["maintainers", 91, 5], ["platforms", 92, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 26, 3], ["version", 27, 3], ["src", 29, 3], ["patches", 36, 3], ["postPatch", 49, 3], ["nativeBuildInputs", 63, 3], ["buildInputs", 68, 3], ["makeFlags", 76, 3], ["installPhase", 78, 3], ["meta", 86, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,17 +19,17 @@ export default nix.lambda((args) => (() => {
   const SDL_mixer = nix.arg($, "SDL_mixer");
   const bulletml = nix.arg($, "bulletml");
   const debianPatch = (patchname) => (hash) => nix.app(fetchpatch, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: nix.thunk(() => nix.str`${patchname}.patch`),
       url: nix.thunk(() => nix.str`https://sources.debian.org/data/main/t/titanion/0.3.dfsg1-8/debian/patches/${patchname}`),
       hash: hash,
     })));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "titanion",
       version: "0.3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: nix.thunk(() => nix.str`https://abagames.sakura.ne.jp/windows/ttn${nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => ["_"]), nix.thunk(() => nix.sel(finalAttrs, "version")))}.zip`),
           hash: "sha256-fR0cufi6dU898wP8KGl/vxbfQJzMmMxlYZ3QNGLajfM=",
         })))),
@@ -54,7 +51,7 @@ export default nix.lambda((args) => (() => {
       makeFlags: nix.thunk(() => ["GDC=ldc2"]),
       installPhase: "runHook preInstall\ninstall -Dm755 titanion $out/bin/titanion\nmkdir -p $out/share/games/titanion\ncp -r sounds images $out/share/games/titanion/\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "http://www.asahi-net.or.jp/~cs8k-cyu/windows/ttn_e.html",
         description: "Strike down super high-velocity swooping insects",
         mainProgram: "titanion",

@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 20, 5], ["hash", 21, 5]], [["url", 24, 5], ["hash", 25, 5]], [["url", 28, 5], ["hash", 29, 5]], [["owner", 38, 5], ["repo", 39, 5], ["tag", 40, 5], ["hash", 41, 5]], [["homepage", 77, 5], ["changelog", 78, 5], ["description", 79, 5], ["license", 80, 5], ["maintainers", 81, 5]], [["pname", 33, 3], ["version", 34, 3], ["pyproject", 35, 3], ["src", 37, 3], ["nativeBuildInputs", 44, 3], ["propagatedBuildInputs", 49, 3], ["nativeCheckInputs", 59, 3], ["preCheck", 64, 3], ["pythonImportsCheck", 74, 3], ["meta", 76, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, cython: false, fetchFromGitHub: false, fetchurl: false, matplotlib: false, pillow: false, "pytest-mock": false, pytestCheckHook: false, pywavelets: false, "scikit-learn": false, setuptools: false, torch: false, torchvision: false, tqdm: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["url", 24, 5], ["hash", 25, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["url", 28, 5], ["hash", 29, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["owner", 38, 5], ["repo", 39, 5], ["tag", 40, 5], ["hash", 41, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["homepage", 77, 5], ["changelog", 78, 5], ["description", 79, 5], ["license", 80, 5], ["maintainers", 81, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 33, 3], ["version", 34, 3], ["pyproject", 35, 3], ["src", 37, 3], ["nativeBuildInputs", 44, 3], ["propagatedBuildInputs", 49, 3], ["nativeCheckInputs", 59, 3], ["preCheck", 64, 3], ["pythonImportsCheck", 74, 3], ["meta", 76, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,17 +23,17 @@ export default nix.lambda((args) => (() => {
   const torchvision = nix.arg($, "torchvision");
   const tqdm = nix.arg($, "tqdm");
   const MobileNetV3 = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: "https://download.pytorch.org/models/mobilenet_v3_small-047dcff4.pth",
       hash: "sha256-BH3P9K3e+G6lvC7/E8lhTcEfR6sRYNCnGiXn25lPTh8=",
     }))));
   const ViT = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       url: "https://download.pytorch.org/models/vit_b_16_swag-9ac1b537.pth",
       hash: "sha256-msG1N42ZJ71sg3TODNVX74Dhs/j7wYWd8zLE3J0P2CU=",
     }))));
   const EfficientNet = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       url: "https://download.pytorch.org/models/efficientnet_b4_rwightman-23ab8bcd.pth",
       hash: "sha256-I6uLzVvb72GnpDuRrcrYH2Iv1/NvtJNaVpgo13iIxE4=",
     }))));
@@ -47,7 +42,7 @@ export default nix.lambda((args) => (() => {
       const version = "03.3";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           owner: "idealo",
           repo: "imagededup",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -66,7 +61,7 @@ ln -s ${EfficientNet} $HOME/.cache/torch/hub/checkpoints/${nix.sel(EfficientNet,
 `);
       const pythonImportsCheck = nix.thunk(() => ["imagededup"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "https://idealo.github.io/imagededup/",
         changelog: nix.thunk(() => nix.str`https://github.com/idealo/imagededup/releases/tag/${nix.sel(src, "tag")}`),
         description: "Finding duplicate images made easy",
@@ -77,7 +72,7 @@ ln -s ${EfficientNet} $HOME/.cache/torch/hub/checkpoints/${nix.sel(EfficientNet,
         })()),
       }));
       return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname,
         version,
         pyproject,

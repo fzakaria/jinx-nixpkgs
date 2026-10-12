@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]], [["updateScript", 52, 12]], [["description", 55, 5], ["homepage", 56, 5], ["changelog", 57, 5], ["license", 58, 5], ["maintainers", 59, 5], ["mainProgram", 60, 5]], [["pname", 11, 3], ["version", 12, 3], ["__structuredAttrs", 13, 3], ["src", 15, 3], ["modRoot", 22, 3], ["vendorHash", 24, 3], ["subPackages", 26, 3], ["ldflags", 30, 3], ["doInstallCheck", 36, 3], ["nativeBuildInputs", 38, 3], ["postInstall", 43, 3], ["passthru", 52, 3], ["meta", 54, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitHub: false, "nix-update-script": false, installShellFiles: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 52, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 55, 5], ["homepage", 56, 5], ["changelog", 57, 5], ["license", 58, 5], ["maintainers", 59, 5], ["mainProgram", 60, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["__structuredAttrs", 13, 3], ["src", 15, 3], ["modRoot", 22, 3], ["vendorHash", 24, 3], ["subPackages", 26, 3], ["ldflags", 30, 3], ["doInstallCheck", 36, 3], ["nativeBuildInputs", 38, 3], ["postInstall", 43, 3], ["passthru", 52, 3], ["meta", 54, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const installShellFiles = nix.arg($, "installShellFiles");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "cloudquery",
       version: "6.43.0",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "cloudquery",
           repo: "cloudquery",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -40,11 +37,11 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [installShellFiles, versionCheckHook]),
       postInstall: "mv $out/bin/cli $out/bin/cloudquery\n\ninstallShellCompletion --cmd cloudquery \\\n   --bash <($out/bin/cloudquery completion bash) \\\n   --fish <($out/bin/cloudquery completion fish) \\\n   --zsh <($out/bin/cloudquery completion zsh)\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Data pipelines for cloud config and security data",
         homepage: "https://github.com/cloudquery/cloudquery",
         changelog: nix.thunk(() => nix.str`https://github.com/cloudquery/cloudquery/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

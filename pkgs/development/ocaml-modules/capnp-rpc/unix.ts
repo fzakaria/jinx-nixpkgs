@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/unix.nix", [[["logs", 50, 29]], [["description", 63, 5]], [["pname", 22, 3], ["minimalOCamlVersion", 24, 3], ["src", 26, 23], ["version", 26, 27], ["nativeBuildInputs", 28, 3], ["propagatedBuildInputs", 33, 3], ["checkInputs", 47, 3], ["nativeCheckInputs", 53, 3], ["doCheck", 55, 3], ["__darwinAllowLocalNetworking", 56, 3], ["preCheck", 58, 3], ["meta", 62, 3]]]);
 const formals$1 = { args: { buildDunePackage: false, alcotest: false, astring: false, base64: false, capnp: false, "capnp-rpc": false, "capnp-rpc-net": false, capnproto: false, cmdliner: false, cstruct: false, eio: false, eio_main: false, fmt: false, ipaddr: false, logs: false, mdx: false, "mirage-crypto-rng": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/unix.nix", [["logs", 50, 29]]);
-const pos$2 = nix.positions(here + "/unix.nix", [["description", 63, 5]]);
-const pos$3 = nix.positions(here + "/unix.nix", [["pname", 22, 3], ["minimalOCamlVersion", 24, 3], ["src", 26, 23], ["version", 26, 27], ["nativeBuildInputs", 28, 3], ["propagatedBuildInputs", 33, 3], ["checkInputs", 47, 3], ["nativeCheckInputs", 53, 3], ["doCheck", 55, 3], ["__darwinAllowLocalNetworking", 56, 3], ["preCheck", 58, 3], ["meta", 62, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,7 +25,7 @@ export default nix.lambda((args) => (() => {
   const mdx = nix.arg($, "mdx");
   const mirage_crypto_rng = nix.arg($, "mirage-crypto-rng");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "capnp-rpc-unix",
       minimalOCamlVersion: "5.2",
       src: nix.thunk(() => nix.attr(capnp_rpc, "src")),
@@ -49,13 +47,13 @@ export default nix.lambda((args) => (() => {
       checkInputs: nix.thunk(() => [
         alcotest,
         eio_main,
-        nix.thunk(() => nix.app(nix.sel(mdx, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, logs: logs })))),
+        nix.thunk(() => nix.app(nix.sel(mdx, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], logs: logs })))),
       ]),
       nativeCheckInputs: nix.thunk(() => [nix.thunk(() => nix.sel(mdx, "bin"))]),
       doCheck: true,
       __darwinAllowLocalNetworking: true,
       preCheck: "export XDG_CACHE_HOME=\"$TMPDIR/cache\"\n",
-      meta: nix.thunk(() => nix.update(nix.sel(capnp_rpc, "meta"), { [nix.POS]: pos$2, description: "Unix helpers for Cap'n Proto RPC services" })),
+      meta: nix.thunk(() => nix.update(nix.sel(capnp_rpc, "meta"), { [nix.POS]: $pos[1], description: "Unix helpers for Cap'n Proto RPC services" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=unix.ts.map

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 39, 5], ["repo", 40, 5], ["rev", 41, 5], ["sha256", 42, 5]], [["description", 87, 5], ["longDescription", 88, 5], ["homepage", 93, 5], ["license", 94, 5], ["maintainers", 95, 5], ["platforms", 96, 5]], [["pname", 35, 3], ["version", 36, 3], ["src", 38, 3], ["nativeBuildInputs", 45, 3], ["buildInputs", 53, 3], ["cmakeFlags", 69, 3], ["dontWrapQtApps", 75, 3], ["postInstall", 77, 3], ["meta", 86, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, zlib: false, boost: false, openal: false, glm: false, freetype: false, libGLU: false, SDL2: false, libepoxy: false, dejavu_fonts: false, inkscape: false, optipng: false, imagemagick: false, withCrashReporter: true, qt5: false, curl: true, gdb: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 39, 5], ["repo", 40, 5], ["rev", 41, 5], ["sha256", 42, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 87, 5], ["longDescription", 88, 5], ["homepage", 93, 5], ["license", 94, 5], ["maintainers", 95, 5], ["platforms", 96, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 35, 3], ["version", 36, 3], ["src", 38, 3], ["nativeBuildInputs", 45, 3], ["buildInputs", 53, 3], ["cmakeFlags", 69, 3], ["dontWrapQtApps", 75, 3], ["postInstall", 77, 3], ["meta", 86, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -35,11 +33,11 @@ export default nix.lambda((args) => (() => {
   const optionalString = nix.thunk(() => nix.attr(lib, "optionalString"));
   const platforms = nix.thunk(() => nix.attr(lib, "platforms"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "arx-libertatis",
       version: "1.2.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "arx",
           repo: "ArxLibertatis",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -58,7 +56,7 @@ export default nix.lambda((args) => (() => {
   $out/share/games/arx/misc/dejavusansmono.ttf
 `, nix.app(optionalString, withCrashReporter, "wrapQtApp \"$out/libexec/arxcrashreporter\"\n"))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "First-person role-playing game / dungeon crawler",
         longDescription: "A cross-platform, open source port of Arx Fatalis, a 2002\nfirst-person role-playing game / dungeon crawler\ndeveloped by Arkane Studios.\n",
         homepage: "https://arx-libertatis.org/",

@@ -2,18 +2,10 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/update.nix", [[["overlays", 27, 11]], [["overlays", 31, 11]], [["allowAliases", 34, 14]], [["config", 34, 7]], [["updateScript", 73, 15], ["position", 76, 15]], [["attrPath", 89, 15], ["package", 90, 15]], [["attrPath", 189, 9], ["package", 190, 17]], [["name", 271, 7], ["pname", 272, 7], ["oldVersion", 273, 7], ["updateScript", 274, 7], ["supportedFeatures", 275, 7], ["attrPath", 276, 7]], [["name", 297, 3], ["buildCommand", 298, 3], ["shellHook", 308, 3], ["nativeBuildInputs", 312, 3]]]);
 const formals$1 = { args: { package: true, maintainer: true, team: true, predicate: true, "get-script": true, path: true, "max-workers": true, "include-overlays": true, "keep-going": true, commit: true, "skip-prompt": true, order: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/update.nix", [["overlays", 27, 11]]);
-const pos$2 = nix.positions(here + "/update.nix", [["overlays", 31, 11]]);
-const pos$3 = nix.positions(here + "/update.nix", [["allowAliases", 34, 14]]);
-const pos$4 = nix.positions(here + "/update.nix", [["config", 34, 7]]);
 const formals$2 = { args: { package: false, attrPath: false }, ellipsis: false };
-const pos$5 = nix.positions(here + "/update.nix", [["updateScript", 73, 15], ["position", 76, 15]]);
-const pos$6 = nix.positions(here + "/update.nix", [["attrPath", 89, 15], ["package", 90, 15]]);
-const pos$7 = nix.positions(here + "/update.nix", [["attrPath", 189, 9], ["package", 190, 17]]);
 const formals$3 = { args: { package: false, attrPath: false }, ellipsis: false };
-const pos$8 = nix.positions(here + "/update.nix", [["name", 271, 7], ["pname", 272, 7], ["oldVersion", 273, 7], ["updateScript", 274, 7], ["supportedFeatures", 275, 7], ["attrPath", 276, 7]]);
-const pos$9 = nix.positions(here + "/update.nix", [["name", 297, 3], ["buildCommand", 298, 3], ["shellHook", 308, 3], ["nativeBuildInputs", 312, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,9 +21,9 @@ export default nix.lambda((args) => (() => {
   const commit = nix.argOr($, "commit", () => false);
   const skip_prompt = nix.argOr($, "skip-prompt", () => false);
   const order = nix.argOr($, "order", () => null);
-  const pkgs = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./../../default.nix")), nix.thunk(() => nix.update((nix.asBool(nix.eq(include_overlays, false)) ? { [nix.POS]: pos$1, overlays: [] } : (nix.asBool(nix.eq(include_overlays, true)) ? {} : { [nix.POS]: pos$2, overlays: include_overlays })), {
-      [nix.POS]: pos$4,
-      config: nix.thunk(() => ({ [nix.POS]: pos$3, allowAliases: false })),
+  const pkgs = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./../../default.nix")), nix.thunk(() => nix.update((nix.asBool(nix.eq(include_overlays, false)) ? { [nix.POS]: $pos[0], overlays: [] } : (nix.asBool(nix.eq(include_overlays, true)) ? {} : { [nix.POS]: $pos[1], overlays: include_overlays })), {
+      [nix.POS]: $pos[3],
+      config: nix.thunk(() => ({ [nix.POS]: $pos[2], allowAliases: false })),
     }))));
   const lib = nix.thunk(() => nix.attr(pkgs, "lib"));
   const nubOn = (f) => (list) => (nix.asBool(nix.eq(list, [])) ? [] : (() => {
@@ -47,7 +39,7 @@ export default nix.lambda((args) => (() => {
         const package$_1 = nix.arg($_1, "package");
         const attrPath = nix.arg($_1, "attrPath");
         return {
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           updateScript: nix.thunk(() => nix.app(get_script, package$_1)),
           position: nix.thunk(() => nix.selOr(package$_1, () => null, "meta", "position")),
         };
@@ -56,7 +48,7 @@ export default nix.lambda((args) => (() => {
       return (nix.asBool(nix.sel(result, "success")) ? (() => {
         const evaluatedPathContent = nix.thunk(() => nix.sel(result, "value"));
         return (nix.asBool(nix.app(nix.sel(lib, "isDerivation"), evaluatedPathContent)) ? nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.app(cond, path_1, evaluatedPathContent)), nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             attrPath: nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), ".", path_1)),
             package: evaluatedPathContent,
           }))) : (nix.asBool(nix.app(nix.sel(lib, "isAttrs"), evaluatedPathContent)) ? (nix.asBool((nix.asBool((nix.asBool(nix.eq(path_1, rootPath)) || nix.asBool(nix.selOr(evaluatedPathContent, () => false, "recurseForDerivations")))) || nix.asBool(nix.selOr(evaluatedPathContent, () => false, "recurseForRelease")))) ? nix.app(dedupResults, nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (name) => (elem) => nix.app(packagesWithPathInner, nix.thunk(() => nix.concat(path_1, [name])), elem), evaluatedPathContent))) : []) : []));
@@ -81,7 +73,7 @@ export default nix.lambda((args) => (() => {
   })();
   const packageByName = (path_1) => (pkgs_1) => (() => {
     const package$_1 = nix.thunk(() => nix.app(nix.sel(lib, "attrByPath"), nix.thunk(() => nix.app(nix.sel(lib, "splitString"), ".", path_1)), null, pkgs_1));
-    return (nix.asBool(nix.eq(package$_1, null)) ? nix.builtins.throw(nix.thunk(() => nix.str`Package with an attribute name \`${path_1}\` does not exist.`)) : (nix.asBool(nix.eq(nix.app(get_script, package$_1), null)) ? nix.builtins.throw(nix.thunk(() => nix.str`Package with an attribute name \`${path_1}\` does not have a \`passthru.updateScript\` attribute defined.`)) : { [nix.POS]: pos$7, attrPath: path_1, package: package$_1 }));
+    return (nix.asBool(nix.eq(package$_1, null)) ? nix.builtins.throw(nix.thunk(() => nix.str`Package with an attribute name \`${path_1}\` does not exist.`)) : (nix.asBool(nix.eq(nix.app(get_script, package$_1), null)) ? nix.builtins.throw(nix.thunk(() => nix.str`Package with an attribute name \`${path_1}\` does not have a \`passthru.updateScript\` attribute defined.`)) : { [nix.POS]: $pos[6], attrPath: path_1, package: package$_1 }));
   })();
   const packages = nix.thunk(() => (nix.asBool(!nix.eq(package$, null)) ? [nix.thunk(() => nix.app(packageByName, package$, pkgs))] : (nix.asBool(!nix.eq(predicate, null)) ? nix.app(packagesWithUpdateScriptMatchingPredicate, predicate, pkgs) : (nix.asBool(!nix.eq(maintainer, null)) ? nix.app(packagesWithUpdateScriptAndMaintainer, maintainer, pkgs) : (nix.asBool(!nix.eq(team, null)) ? nix.app(packagesWithUpdateScriptAndTeam, team, pkgs) : (nix.asBool(!nix.eq(path, null)) ? nix.app(packagesWithUpdateScript, path, pkgs) : nix.builtins.throw(nix.thunk(() => nix.str`No arguments provided.
 
@@ -93,7 +85,7 @@ ${helpText}`))))))));
     const attrPath = nix.arg($_1, "attrPath");
     const updateScript = nix.thunk(() => nix.app(get_script, package$_1));
     return {
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       name: nix.thunk(() => nix.sel(package$_1, "name")),
       pname: nix.thunk(() => nix.app(nix.sel(lib, "getName"), package$_1)),
       oldVersion: nix.thunk(() => nix.app(nix.sel(lib, "getVersion"), package$_1)),
@@ -107,7 +99,7 @@ ${helpText}`))))))));
   const optionalArgs = nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(max_workers, null)), nix.thunk(() => nix.str`--max-workers=${max_workers}`)), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.app(isTrue, keep_going)), "--keep-going"), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.app(isTrue, commit)), "--commit"), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.app(isTrue, skip_prompt)), "--skip-prompt"), nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(order, null)), nix.thunk(() => nix.str`--order=${order}`)))))));
   const args_1 = nix.thunk(() => nix.concat([packagesJson], optionalArgs));
   return nix.app(nix.sel(pkgs, "stdenv", "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       name: "nixpkgs-update-script",
       buildCommand: nix.thunk(() => nix.str`echo ""
 echo "----------------------------------------------------------------"

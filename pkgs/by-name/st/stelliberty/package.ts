@@ -2,16 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 29, 5], ["hash", 30, 5]], [["url", 34, 5], ["hash", 35, 5]], [["owner", 47, 5], ["repo", 48, 5], ["tag", 49, 5], ["hash", 50, 5]], [["src", 75, 26], ["hash", 76, 5]], [["name", 143, 7], ["desktopName", 144, 7], ["exec", 145, 7], ["terminal", 146, 7], ["type", 147, 7], ["icon", 148, 7], ["startupNotify", 149, 7], ["comment", 150, 7], ["categories", 151, 7], ["keywords", 155, 7]], [["extraArgs", 163, 47]], [["updateScript", 163, 12]], [["description", 166, 5], ["homepage", 167, 5], ["changelog", 168, 5], ["license", 169, 5], ["mainProgram", 170, 5], ["maintainers", 171, 5], ["platforms", 172, 5]], [["pname", 40, 3], ["version", 41, 3], ["strictDeps", 43, 3], ["__structuredAttrs", 44, 3], ["src", 46, 3], ["projectFile", 53, 3], ["nugetDeps", 57, 3], ["dotnet-sdk", 59, 3], ["dotnet-runtime", 60, 3], ["executables", 61, 3], ["postPatch", 63, 3], ["cargoDeps", 74, 3], ["nativeBuildInputs", 79, 3], ["preBuild", 86, 3], ["runtimeDeps", 102, 3], ["makeWrapperArgs", 112, 3], ["postInstall", 117, 3], ["desktopItems", 141, 3], ["passthru", 163, 3], ["meta", 165, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, fetchurl: false, buildDotnetModule: false, rustPlatform: false, stdenv: false, dotnetCorePackages: false, cargo: false, "dbip-asn-lite": false, "dbip-country-lite": false, "v2ray-geoip": false, "v2ray-domain-list-community": false, mihomo: false, libx11: false, libxcursor: false, libxext: false, libxi: false, libxrandr: false, libice: false, libsm: false, copyDesktopItems: false, makeDesktopItem: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 29, 5], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 34, 5], ["hash", 35, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["owner", 47, 5], ["repo", 48, 5], ["tag", 49, 5], ["hash", 50, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["src", 75, 26], ["hash", 76, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["name", 143, 7], ["desktopName", 144, 7], ["exec", 145, 7], ["terminal", 146, 7], ["type", 147, 7], ["icon", 148, 7], ["startupNotify", 149, 7], ["comment", 150, 7], ["categories", 151, 7], ["keywords", 155, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["extraArgs", 163, 47]]);
-const pos$7 = nix.positions(here + "/package.nix", [["updateScript", 163, 12]]);
-const pos$8 = nix.positions(here + "/package.nix", [["description", 166, 5], ["homepage", 167, 5], ["changelog", 168, 5], ["license", 169, 5], ["mainProgram", 170, 5], ["maintainers", 171, 5], ["platforms", 172, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["pname", 40, 3], ["version", 41, 3], ["strictDeps", 43, 3], ["__structuredAttrs", 44, 3], ["src", 46, 3], ["projectFile", 53, 3], ["nugetDeps", 57, 3], ["dotnet-sdk", 59, 3], ["dotnet-runtime", 60, 3], ["executables", 61, 3], ["postPatch", 63, 3], ["cargoDeps", 74, 3], ["nativeBuildInputs", 79, 3], ["preBuild", 86, 3], ["runtimeDeps", 102, 3], ["makeWrapperArgs", 112, 3], ["postInstall", 117, 3], ["desktopItems", 141, 3], ["passthru", 163, 3], ["meta", 165, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -39,23 +31,23 @@ export default nix.lambda((args) => (() => {
   const makeDesktopItem = nix.arg($, "makeDesktopItem");
   const nix_update_script = nix.arg($, "nix-update-script");
   const google_sans_ttf = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: "https://raw.githubusercontent.com/hprobotic/Google-Sans-Font/refs/heads/master/GoogleSans-Regular.ttf",
       hash: "sha256-l07oQCrtc5H47TUVXbEpUGl7y7460Bq/uBcYtlyxlg0=",
     }))));
   const noto_sans_sc_ttf = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       url: "https://raw.githubusercontent.com/notofonts/noto-cjk/main/Sans/Variable/TTF/Subset/NotoSansSC-VF.ttf",
       hash: "sha256-1ouvy0iicHdJOWqhK7vYM8twQB86mmif0pAsfg0pWWQ=",
     }))));
   return nix.app(buildDotnetModule, (finalAttrs) => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       pname: "stelliberty",
       version: "2.0.36",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           owner: "Kindness-Kismet",
           repo: "stelliberty",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -71,7 +63,7 @@ export default nix.lambda((args) => (() => {
       executables: nix.thunk(() => ["stelliberty"]),
       postPatch: "substituteInPlace Directory.Build.props \\\n  --replace-fail \"<TreatWarningsAsErrors>true</TreatWarningsAsErrors>\" \"\"\n\nsubstituteInPlace native/hub/src/infra/paths.rs \\\n  --replace-fail \"data_core_dir.join\" \"user_data_dir.join\"\n\nsubstituteInPlace native/service/src/core.rs \\\n  --replace-fail \"service_data_root()?.join(\\\"service\\\")\" \"std::env::temp_dir().join(\\\"stelliberty_service\\\")\"\n",
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           hash: "sha256-p7aLfalSxEEc2qakMXLuW7adWirFPzIjDZbdGP9ilaw=",
         })))),
@@ -121,7 +113,7 @@ done
 `),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             name: "stelliberty",
             desktopName: "Stelliberty",
             exec: "stelliberty",
@@ -135,11 +127,11 @@ done
           })))),
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$7,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$6, extraArgs: nix.thunk(() => ["--use-github-releases"]) })))),
+        [nix.POS]: $pos[6],
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: $pos[5], extraArgs: nix.thunk(() => ["--use-github-releases"]) })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         description: "Cross-platform desktop proxy client",
         homepage: "https://github.com/Kindness-Kismet/stelliberty",
         changelog: nix.thunk(() => nix.str`https://github.com/Kindness-Kismet/stelliberty/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

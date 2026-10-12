@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]], [["package", 92, 9], ["command", 93, 9]], [["gns3-server", 90, 28], ["version", 91, 7]], [["tests", 89, 5], ["updateScript", 96, 5]], [["description", 108, 5], ["longDescription", 109, 5], ["homepage", 114, 5], ["changelog", 115, 5], ["license", 116, 5], ["platforms", 117, 5], ["maintainers", 118, 5], ["mainProgram", 119, 5]], [["pname", 16, 3], ["version", 17, 3], ["pyproject", 18, 3], ["src", 20, 3], ["prePatch", 28, 3], ["pythonRelaxDeps", 32, 3], ["build-system", 42, 3], ["dependencies", 44, 3], ["postInstall", 63, 3], ["makeWrapperArgs", 68, 3], ["nativeCheckInputs", 70, 3], ["pytestFlags", 77, 3], ["disabledTestPaths", 82, 3], ["passthru", 88, 3], ["meta", 107, 3]]]);
 const formals$1 = { args: { fetchFromGitHub: false, "gns3-server": false, lib: false, nixosTests: false, pkgsStatic: false, python3Packages: false, stdenv: false, testers: false, "util-linux": false, writableTmpDirAsHomeHook: false, writeScript: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["package", 92, 9], ["command", 93, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["gns3-server", 90, 28], ["version", 91, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 89, 5], ["updateScript", 96, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 108, 5], ["longDescription", 109, 5], ["homepage", 114, 5], ["changelog", 115, 5], ["license", 116, 5], ["platforms", 117, 5], ["maintainers", 118, 5], ["mainProgram", 119, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["pyproject", 18, 3], ["src", 20, 3], ["prePatch", 28, 3], ["pythonRelaxDeps", 32, 3], ["build-system", 42, 3], ["dependencies", 44, 3], ["postInstall", 63, 3], ["makeWrapperArgs", 68, 3], ["nativeCheckInputs", 70, 3], ["pytestFlags", 77, 3], ["disabledTestPaths", 82, 3], ["passthru", 88, 3], ["meta", 107, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   const writeScript = nix.arg($, "writeScript");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "gns3-server",
       version: "2.2.56.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "GNS3",
           repo: "gns3-server",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -90,12 +85,12 @@ export default nix.lambda((args) => (() => {
         "tests/controller/test_project.py",
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           "gns3-server": nix.thunk(() => nix.attr(nixosTests, "gns3-server")),
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               package: gns3_server,
               command: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), gns3_server)} --version`),
             })))),
@@ -103,7 +98,7 @@ export default nix.lambda((args) => (() => {
         updateScript: nix.thunk(() => nix.app(writeScript, "update-gns3", "#!/usr/bin/env nix-shell\n#!nix-shell -i bash -p nix-update\n\nset -eu -o pipefail\n\nnix-update gns3-gui --version-regex '^v(2\\.[\\d\\.]+)$' --commit\nnix-update gns3-server --version-regex '^v(2\\.[\\d\\.]+)$' --commit\n")),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Graphical Network Simulator 3 server",
         longDescription: "The GNS3 server manages emulators such as Dynamips, VirtualBox or\nQemu/KVM. Clients like the GNS3 GUI control the server using a HTTP REST\nAPI.\n",
         homepage: "https://www.gns3.com/",

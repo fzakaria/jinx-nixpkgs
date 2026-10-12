@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 37, 5], ["hash", 38, 5]], [["owner", 46, 5], ["repo", 47, 5], ["rev", 48, 5], ["hash", 49, 5]], [["pname", 54, 7], ["version", 55, 7], ["debianRevision", 56, 7], ["patch", 57, 7], ["hash", 58, 7]], [["description", 96, 5], ["homepage", 97, 5], ["license", 98, 5], ["mainProgram", 99, 5], ["maintainers", 100, 5], ["platforms", 101, 5]], [["version", 42, 3], ["pname", 43, 3], ["src", 45, 3], ["patches", 52, 3], ["postInstall", 62, 3], ["nativeBuildInputs", 70, 3], ["buildInputs", 76, 3], ["cmakeBuildType", 93, 3], ["meta", 95, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, fetchFromGitHub: false, fetchDebianPatch: false, cmake: false, ninja: false, "pkg-config": false, curl: false, freealut: false, freetype: false, glew: false, libb2: false, libepoxy: false, libjpeg: false, libogg: false, libpng: false, libvorbis: false, openal: false, readline: false, SDL2: false, tinyxml: false, enableSoundtrack: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 37, 5], ["hash", 38, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 46, 5], ["repo", 47, 5], ["rev", 48, 5], ["hash", 49, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 54, 7], ["version", 55, 7], ["debianRevision", 56, 7], ["patch", 57, 7], ["hash", 58, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 96, 5], ["homepage", 97, 5], ["license", 98, 5], ["mainProgram", 99, 5], ["maintainers", 100, 5], ["platforms", 101, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["version", 42, 3], ["pname", 43, 3], ["src", 45, 3], ["patches", 52, 3], ["postInstall", 62, 3], ["nativeBuildInputs", 70, 3], ["buildInputs", 76, 3], ["cmakeBuildType", 93, 3], ["meta", 95, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -35,16 +31,16 @@ export default nix.lambda((args) => (() => {
   const tinyxml = nix.arg($, "tinyxml");
   const enableSoundtrack = nix.argOr($, "enableSoundtrack", () => false);
   const soundtrack_src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: "http://www.openclonk.org/download/Music.ocg",
       hash: "sha256-Mye6pl1eSgEQ/vOLfDsdHDjp2ljb3euGKBr7s36+2W4=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       version: "9.0-unstable-2025-01-11",
       pname: "openclonk",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "openclonk",
           repo: "openclonk",
           rev: "db975b4a887883f4413d1ce3181f303d83ee0ab5",
@@ -52,7 +48,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchDebianPatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             pname: "openclonk",
             version: "8.1",
             debianRevision: "3",
@@ -81,7 +77,7 @@ export default nix.lambda((args) => (() => {
       ]),
       cmakeBuildType: "RelWithDebInfo",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Free multiplayer action game in which you control clonks, small but witty and nimble humanoid beings",
         homepage: "https://www.openclonk.org",
         license: nix.thunk(() => (() => {

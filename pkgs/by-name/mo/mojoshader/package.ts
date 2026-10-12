@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 29, 5], ["repo", 30, 5], ["rev", 31, 5], ["postCheckout", 32, 5], ["hash", 33, 5]], [["NIX_CFLAGS_COMPILE", 44, 5]], [["updateScript", 63, 12]], [["description", 76, 5], ["homepage", 77, 5], ["license", 78, 5], ["maintainers", 79, 5], ["platforms", 80, 5]], [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["buildInputs", 36, 3], ["nativeBuildInputs", 38, 3], ["env", 43, 3], ["cmakeFlags", 47, 3], ["installPhase", 54, 3], ["passthru", 63, 3], ["meta", 75, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, writeScript: false, writeShellScriptBin: false, cmake: false, SDL2: false, dxvk_2: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 29, 5], ["repo", 30, 5], ["rev", 31, 5], ["postCheckout", 32, 5], ["hash", 33, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 44, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 63, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 76, 5], ["homepage", 77, 5], ["license", 78, 5], ["maintainers", 79, 5], ["platforms", 80, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["buildInputs", 36, 3], ["nativeBuildInputs", 38, 3], ["env", 43, 3], ["cmakeFlags", 47, 3], ["installPhase", 54, 3], ["passthru", 63, 3], ["meta", 75, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const dxvk_2 = nix.arg($, "dxvk_2");
   const fakeGit = nix.thunk(() => nix.app(writeShellScriptBin, "git", "if [[ \"$1\" = \"rev-parse\" ]]; then\n  echo $out\nelif [[ \"$1\" = \"rev-list\" ]]; then\n  cat $src/.gitrev\nelse\n  echo \"fakeGit: unexpected git command: $@\" >&2\n  exit 1\nfi\n"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "mojoshader",
       version: "0-unstable-2026-09-03",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "icculus",
           repo: "mojoshader",
           rev: "ad5dff84830c2863c841f4b1f4e3df78c705b383",
@@ -35,7 +31,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [SDL2]),
       nativeBuildInputs: nix.thunk(() => [cmake, fakeGit]),
       env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           NIX_CFLAGS_COMPILE: nix.thunk(() => nix.str`-I${dxvk_2}/include/dxvk`),
         })))),
       cmakeFlags: nix.thunk(() => [
@@ -46,7 +42,7 @@ export default nix.lambda((args) => (() => {
       ]),
       installPhase: "runHook preInstall\n\nmkdir -p $out/lib\ninstall -Dm644 libmojoshader.* -t $out/lib\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(writeScript, "update.sh", nix.thunk(() => nix.str`#!/usr/bin/env nix-shell
 #!nix-shell -i bash -p curl jq common-updater-scripts
 
@@ -59,7 +55,7 @@ update-source-version mojoshader 0-unstable-$date --rev=$rev
 `))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Library to work with Direct3D shaders on alternate 3D APIs and non-Windows platforms",
         homepage: "https://icculus.org/mojoshader",
         license: nix.thunk(() => nix.sel(lib, "licenses", "zlib")),

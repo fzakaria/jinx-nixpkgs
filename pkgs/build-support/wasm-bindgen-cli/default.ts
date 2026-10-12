@@ -2,11 +2,9 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["updateScript", 40, 12]], [["homepage", 43, 5], ["license", 44, 5], ["description", 48, 5], ["maintainers", 49, 5], ["mainProgram", 53, 5]], [["pname", 20, 3], ["version", 22, 11], ["src", 22, 19], ["cargoDeps", 22, 23], ["__structuredAttrs", 24, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 28, 3], ["nativeCheckInputs", 35, 3], ["doCheck", 38, 3], ["passthru", 40, 3], ["meta", 42, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchCrate: false, "nix-update-script": false, nodejs_latest: false, "pkg-config": false, openssl: false, stdenv: false, curl: false }, ellipsis: false };
 const formals$2 = { args: { version: true, src: false, cargoDeps: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["updateScript", 40, 12]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 43, 5], ["license", 44, 5], ["description", 48, 5], ["maintainers", 49, 5], ["mainProgram", 53, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 20, 3], ["version", 22, 11], ["src", 22, 19], ["cargoDeps", 22, 23], ["__structuredAttrs", 24, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 28, 3], ["nativeCheckInputs", 35, 3], ["doCheck", 38, 3], ["passthru", 40, 3], ["meta", 42, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,7 +23,7 @@ export default nix.lambda((args) => (() => {
     const src = nix.arg($_1, "src");
     const cargoDeps = nix.arg($_1, "cargoDeps");
     return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname: "wasm-bindgen-cli",
         version: version,
         src: src,
@@ -36,11 +34,11 @@ export default nix.lambda((args) => (() => {
         nativeCheckInputs: nix.thunk(() => [nodejs_latest]),
         doCheck: false,
         passthru: nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         })),
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           homepage: "https://wasm-bindgen.github.io/wasm-bindgen/",
           license: nix.thunk(() => (() => {
             const w = nix.withScope(nix.thunk(() => nix.sel(lib, "licenses")), null);

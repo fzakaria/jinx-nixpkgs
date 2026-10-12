@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]], [["updateScript", 31, 12]], [["description", 34, 5], ["longDescription", 36, 5], ["homepage", 43, 5], ["changelog", 44, 5], ["maintainers", 45, 5], ["mainProgram", 46, 5], ["platforms", 47, 5], ["license", 52, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 12, 3], ["nativeBuildInputs", 19, 3], ["doCheck", 24, 3], ["outputs", 26, 3], ["passthru", 31, 3], ["meta", 33, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, cmake: false, stdenv: false, "nix-update-script": false, asciidoctor: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 31, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 34, 5], ["longDescription", 36, 5], ["homepage", 43, 5], ["changelog", 44, 5], ["maintainers", 45, 5], ["mainProgram", 46, 5], ["platforms", 47, 5], ["license", 52, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 12, 3], ["nativeBuildInputs", 19, 3], ["doCheck", 24, 3], ["outputs", 26, 3], ["passthru", 31, 3], ["meta", 33, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname = "espresso";
       const version = "2.5.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "chipsalliance",
           repo: "espresso",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -30,11 +27,11 @@ export default nix.lambda((args) => (() => {
       const doCheck = true;
       const outputs = nix.thunk(() => ["out", "man"]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Multi-valued PLA minimization",
         longDescription: "Espresso takes as input a two-level representation of a\ntwo-valued (or multiple-valued) Boolean function, and produces a\nminimal equivalent representation.  The algorithms used are new and\nrepresent an advance in both speed and optimality of solution in\nheuristic Boolean minimization.\n",
         homepage: "https://github.com/chipsalliance/espresso",
@@ -48,7 +45,7 @@ export default nix.lambda((args) => (() => {
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

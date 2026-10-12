@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 47, 5], ["repo", 48, 5], ["rev", 49, 5], ["hash", 50, 5], ["fetchSubmodules", 51, 5]], [["description", 121, 5], ["longDescription", 122, 5], ["homepage", 129, 5], ["license", 130, 5], ["mainProgram", 131, 5], ["maintainers", 132, 5], ["platforms", 137, 5]], [["pname", 43, 3], ["version", 44, 3], ["src", 46, 3], ["patches", 54, 3], ["nativeBuildInputs", 58, 3], ["buildInputs", 64, 3], ["cmakeFlags", 101, 3], ["postUnpack", 110, 3], ["postInstall", 115, 3], ["meta", 120, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, "pkg-config": false, cmake: false, freefont_ttf: false, "spice-protocol": false, nettle: false, libbfd: false, fontconfig: false, libffi: false, expat: false, libGL: false, nanosvg: false, libx11: false, libxkbcommon: false, libxext: false, libxrandr: false, libxi: false, libxscrnsaver: false, libxinerama: false, libxcursor: false, libxpresent: false, libxdmcp: false, wayland: false, "wayland-protocols": false, "wayland-scanner": false, pipewire: false, pulseaudio: false, libsamplerate: false, openGLSupport: true, xorgSupport: true, waylandSupport: true, pipewireSupport: true, pulseSupport: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 47, 5], ["repo", 48, 5], ["rev", 49, 5], ["hash", 50, 5], ["fetchSubmodules", 51, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 121, 5], ["longDescription", 122, 5], ["homepage", 129, 5], ["license", 130, 5], ["mainProgram", 131, 5], ["maintainers", 132, 5], ["platforms", 137, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 43, 3], ["version", 44, 3], ["src", 46, 3], ["patches", 54, 3], ["nativeBuildInputs", 58, 3], ["buildInputs", 64, 3], ["cmakeFlags", 101, 3], ["postUnpack", 110, 3], ["postInstall", 115, 3], ["meta", 120, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -45,11 +43,11 @@ export default nix.lambda((args) => (() => {
   const pipewireSupport = nix.argOr($, "pipewireSupport", () => true);
   const pulseSupport = nix.argOr($, "pulseSupport", () => true);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "looking-glass-client",
       version: "B7",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "gnif",
           repo: "LookingGlass",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -86,7 +84,7 @@ export sourceRoot="source/client"
 `),
       postInstall: "mkdir -p $out/share/pixmaps\ncp $src/resources/lg-logo.png $out/share/pixmaps\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "KVM Frame Relay (KVMFR) implementation",
         longDescription: "Looking Glass is an open source application that allows the use of a KVM\n(Kernel-based Virtual Machine) configured for VGA PCI Pass-through\nwithout an attached physical monitor, keyboard or mouse. This is the final\nstep required to move away from dual booting with other operating systems\nfor legacy programs that require high performance graphics.\n",
         homepage: "https://looking-glass.io/",

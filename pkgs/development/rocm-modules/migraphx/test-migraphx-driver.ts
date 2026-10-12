@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/test-migraphx-driver.nix", [[["license", 16, 10]], [["url", 14, 5], ["hash", 15, 5], ["meta", 16, 5]], [["teams", 45, 5]], [["name", 20, 3], ["testedPackage", 21, 3], ["sandboxPaths", 23, 3], ["nativeBuildInputs", 29, 3], ["testScript", 39, 3], ["meta", 44, 3]]]);
 const formals$1 = { args: { lib: false, fetchurl: false, makeImpureTest: false, writableTmpDirAsHomeHook: false, migraphx: false, clr: false, "rocm-smi": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/test-migraphx-driver.nix", [["license", 16, 10]]);
-const pos$2 = nix.positions(here + "/test-migraphx-driver.nix", [["url", 14, 5], ["hash", 15, 5], ["meta", 16, 5]]);
-const pos$3 = nix.positions(here + "/test-migraphx-driver.nix", [["teams", 45, 5]]);
-const pos$4 = nix.positions(here + "/test-migraphx-driver.nix", [["name", 20, 3], ["testedPackage", 21, 3], ["sandboxPaths", 23, 3], ["nativeBuildInputs", 29, 3], ["testScript", 39, 3], ["meta", 44, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,16 +15,16 @@ export default nix.lambda((args) => (() => {
   const clr = nix.arg($, "clr");
   const rocm_smi = nix.arg($, "rocm-smi");
   const resnet18 = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       url: "https://huggingface.co/onnxmodelzoo/resnet18_Opset18_timm/resolve/main/resnet18_Opset18_timm.onnx",
       hash: "sha256-u2Io20n72qoA9atRsFIWb0zHF1WdJYgHQdMWfJhJGHA=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
       })),
     }))));
   return nix.app(makeImpureTest, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       name: "migraphx-driver",
       testedPackage: "rocmPackages.migraphx",
       sandboxPaths: nix.thunk(() => ["/sys", "/dev/dri", "/dev/kfd"]),
@@ -36,7 +33,7 @@ export default nix.lambda((args) => (() => {
 migraphx-driver verify -O --rms-tol 0.03 --atol 1.0 --rtol 0.01 ${resnet18}
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "rocm"))]),
       })),
     })));

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 64, 5], ["sha256", 65, 5]], [["updateScript", 162, 12]], [["description", 178, 5], ["homepage", 179, 5], ["downloadPage", 180, 5], ["license", 181, 5], ["maintainers", 182, 5], ["platforms", 183, 5]], [["pname", 60, 3], ["version", 61, 3], ["src", 63, 3], ["nativeBuildInputs", 68, 3], ["buildInputs", 72, 3], ["libPath", 125, 3], ["unpackPhase", 127, 3], ["postPatch", 132, 3], ["dontPatchELF", 136, 3], ["buildPhase", 138, 3], ["installPhase", 152, 3], ["passthru", 162, 3], ["meta", 177, 3]]]);
 const formals$1 = { args: { lib: false, writeScript: false, stdenv: false, fetchurl: false, "alsa-lib": false, "at-spi2-atk": false, "at-spi2-core": false, atk: false, cairo: false, cups: false, dbus: false, expat: false, fontconfig: false, freetype: false, "gdk-pixbuf": false, glib: false, gtk3: false, harfbuzz: false, libdrm: false, libgcrypt: false, libglvnd: false, libkrb5: false, libpulseaudio: false, libsecret: false, udev: false, libxcb: false, libxkbcommon: false, "libxcrypt-legacy": false, lshw: false, libgbm: false, nspr: false, nss: false, pango: false, zlib: false, zstd: false, libx11: false, libxcomposite: false, libxcursor: false, libxdamage: false, libxext: false, libxfixes: false, libxi: false, libxrandr: false, libxrender: false, libxtst: false, libxshmfence: false, "libxcb-util": false, "libxcb-image": false, "libxcb-keysyms": false, "libxcb-render-util": false, "libxcb-wm": false, p7zip: false, onetbb: false, wayland: false, libxscrnsaver: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 64, 5], ["sha256", 65, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 162, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 178, 5], ["homepage", 179, 5], ["downloadPage", 180, 5], ["license", 181, 5], ["maintainers", 182, 5], ["platforms", 183, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 60, 3], ["version", 61, 3], ["src", 63, 3], ["nativeBuildInputs", 68, 3], ["buildInputs", 72, 3], ["libPath", 125, 3], ["unpackPhase", 127, 3], ["postPatch", 132, 3], ["dontPatchELF", 136, 3], ["buildPhase", 138, 3], ["installPhase", 152, 3], ["passthru", 162, 3], ["meta", 177, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -69,7 +66,7 @@ export default nix.lambda((args) => (() => {
       const pname = "webex";
       const version = "46.8.0.35631";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://binaries.webex.com/WebexDesktop-Ubuntu-2004-Gold/20260810210901/Webex_ubuntu.7z",
           sha256: "7e61e7e1278bc37290f8460a8712d92efbd4a48549030d6dc166bf7b00bee3c7",
         }))));
@@ -144,7 +141,7 @@ done
 `);
       const installPhase = "mkdir -p \"$out/bin\" \"$out/share/applications\"\ncp -r opt \"$out\"\n\nln -s \"$out/opt/Webex/bin/CiscoCollabHost\" \"$out/bin/webex\"\nchmod +x $out/bin/webex\n\nmv \"$out/opt/Webex/bin/webex.desktop\" \"$out/share/applications/webex.desktop\"\n";
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(writeScript, "webex-update-script", nix.thunk(() => nix.str`#!/usr/bin/env nix-shell
 #!nix-shell -i bash -p curl jq common-updater-scripts
 set -eou pipefail;
@@ -160,7 +157,7 @@ update-source-version ${pname} "$version" "$hash" "$url" --file=./pkgs/by-name/w
 `))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "All-in-one app to call, meet, message, and get work done",
         homepage: "https://webex.com/",
         downloadPage: "https://www.webex.com/downloads.html",
@@ -172,7 +169,7 @@ update-source-version ${pname} "$version" "$hash" "$url" --file=./pkgs/by-name/w
         platforms: nix.thunk(() => ["x86_64-linux"]),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

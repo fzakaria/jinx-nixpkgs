@@ -2,8 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/remove-disallowed-packages.nix", [[["buildPhase", 13, 3]]]);
 const formals$1 = { args: { lib: false, jq: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/remove-disallowed-packages.nix", [["buildPhase", 13, 3]]);
 
 export default nix.thunk(() => (() => {
   const disallowedPackages = nix.thunk(() => nix.builtins.fromJSON(nix.thunk(() => nix.builtins.readFile(nix.path(here, "../metadata/disallowed-packages.json")))));
@@ -13,7 +13,7 @@ export default nix.thunk(() => (() => {
     const jq = nix.arg($, "jq");
     const stdenv = nix.arg($, "stdenv");
     return (self) => (super$) => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       buildPhase: nix.thunk(() => nix.add(nix.selOr(super$, () => "", "buildPhase"), nix.str`${nix.app(nix.sel(lib, "concatMapStringsSep"), "\n", (pkg) => nix.app(nix.sel(lib, "concatLines"), nix.thunk(() => nix.concat([
             nix.thunk(() => nix.str`echo "Removing headers and libraries from ${nix.sel(pkg, "package")}"`),
           ], nix.concat(nix.builtins.map((header) => nix.str`rm -rf -- usr/include/${header}`, nix.thunk(() => nix.selOr(pkg, () => [], "headers"))), nix.concat(nix.builtins.map((framework) => nix.str`rm -rf -- System/Library/Frameworks/${framework}`, nix.thunk(() => nix.selOr(pkg, () => [], "frameworks"))), nix.builtins.map((library) => nix.str`rm -rf -- usr/lib/${library}`, nix.thunk(() => nix.selOr(pkg, () => [], "libraries")))))))), disallowedPackages)}

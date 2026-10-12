@@ -2,21 +2,19 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/declare-attrsOf.nix", [[["type", 9, 5], ["default", 10, 5]], [["value", 8, 11], ["testing-laziness-so-don't-read-me", 12, 11]], [["options", 8, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/declare-attrsOf.nix", [["type", 9, 5], ["default", 10, 5]]);
-const pos$2 = nix.positions(here + "/declare-attrsOf.nix", [["value", 8, 11], ["testing-laziness-so-don't-read-me", 12, 11]]);
-const pos$3 = nix.positions(here + "/declare-attrsOf.nix", [["options", 8, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const deathtrapArgs = nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (k) => (_) => nix.builtins.throw(nix.thunk(() => nix.str`The module system is too strict, accessing an unused option's ${k} mkOption-attribute.`)), nix.thunk(() => nix.app(nix.sel(lib, "functionArgs"), nix.thunk(() => nix.sel(lib, "mkOption"))))));
   return {
-    [nix.POS]: pos$3,
+    [nix.POS]: $pos[2],
     options: nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       value: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.sel(lib, "types", "str")))),
           default: nix.thunk(() => ({})),
         })))),

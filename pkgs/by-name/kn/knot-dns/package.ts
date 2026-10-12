@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 40, 5], ["sha256", 41, 5]], [["CFLAGS", 100, 7]], [["knot-resolver_5", 116, 13]], [["nativeBuildInputs", 125, 47]], [["knot-resolver-manager_6", 119, 13], ["knot", 120, 26], ["kea", 120, 31], ["prometheus-exporter", 121, 5], ["deps", 125, 5]], [["tests", 115, 12]], [["description", 136, 5], ["homepage", 137, 5], ["changelog", 138, 5], ["license", 139, 5], ["platforms", 140, 5], ["maintainers", 141, 5], ["mainProgram", 142, 5]], [["pname", 36, 3], ["version", 37, 3], ["src", 39, 3], ["outputs", 44, 3], ["configureFlags", 50, 3], ["patches", 58, 3], ["nativeBuildInputs", 65, 3], ["buildInputs", 71, 3], ["enableParallelBuilding", 97, 3], ["strictDeps", 98, 3], ["env", 100, 3], ["__darwinAllowLocalNetworking", 105, 3], ["doCheck", 107, 3], ["checkFlags", 108, 3], ["doInstallCheck", 109, 3], ["postInstall", 111, 3], ["passthru", 115, 3], ["meta", 135, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, "pkg-config": false, gnutls: false, liburcu: false, lmdb: false, libcap_ng: false, libidn2: false, libunistring: false, systemdLibs: false, nettle: false, libedit: false, zlib: false, libiconv: false, libintl: false, libmaxminddb: false, libbpf: false, nghttp2: false, libmnl: false, "ngtcp2-gnutls": false, "xdp-tools": false, fstrm: false, protobufc: false, autoreconfHook: false, tzdata: false, nixosTests: false, "knot-resolver_5": false, "knot-resolver-manager_6": false, "knot-dns": false, runCommandLocal: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 40, 5], ["sha256", 41, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["CFLAGS", 100, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["knot-resolver_5", 116, 13]]);
-const pos$4 = nix.positions(here + "/package.nix", [["nativeBuildInputs", 125, 47]]);
-const pos$5 = nix.positions(here + "/package.nix", [["knot-resolver-manager_6", 119, 13], ["knot", 120, 26], ["kea", 120, 31], ["prometheus-exporter", 121, 5], ["deps", 125, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["tests", 115, 12]]);
-const pos$7 = nix.positions(here + "/package.nix", [["description", 136, 5], ["homepage", 137, 5], ["changelog", 138, 5], ["license", 139, 5], ["platforms", 140, 5], ["maintainers", 141, 5], ["mainProgram", 142, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 36, 3], ["version", 37, 3], ["src", 39, 3], ["outputs", 44, 3], ["configureFlags", 50, 3], ["patches", 58, 3], ["nativeBuildInputs", 65, 3], ["buildInputs", 71, 3], ["enableParallelBuilding", 97, 3], ["strictDeps", 98, 3], ["env", 100, 3], ["__darwinAllowLocalNetworking", 105, 3], ["doCheck", 107, 3], ["checkFlags", 108, 3], ["doInstallCheck", 109, 3], ["postInstall", 111, 3], ["passthru", 115, 3], ["meta", 135, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -46,11 +39,11 @@ export default nix.lambda((args) => (() => {
   const knot_dns = nix.arg($, "knot-dns");
   const runCommandLocal = nix.arg($, "runCommandLocal");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "knot-dns",
       version: "3.6.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://knot-dns.nic.cz/release/knot-${nix.sel(finalAttrs, "version")}.tar.xz`),
           sha256: "9af5818f6b53f8a387e013676a308d5c932bdb469d47f1ca926e1842badea75e",
         })))),
@@ -86,7 +79,7 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: true,
       strictDeps: true,
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         CFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-O2", "-DNDEBUG"]))),
       })),
       __darwinAllowLocalNetworking: true,
@@ -95,15 +88,15 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       postInstall: "rm -r \"$out\"/lib/*.la\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
-        tests: nix.thunk(() => nix.update({ [nix.POS]: pos$3, "knot-resolver_5": knot_resolver_5 }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => ({
-            [nix.POS]: pos$5,
+        [nix.POS]: $pos[5],
+        tests: nix.thunk(() => nix.update({ [nix.POS]: $pos[2], "knot-resolver_5": knot_resolver_5 }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => ({
+            [nix.POS]: $pos[4],
             "knot-resolver-manager_6": knot_resolver_manager_6,
             knot: nix.thunk(() => nix.attr(nixosTests, "knot")),
             kea: nix.thunk(() => nix.attr(nixosTests, "kea")),
             "prometheus-exporter": nix.thunk(() => nix.sel(nixosTests, "prometheus-exporters", "knot")),
             deps: nix.thunk(() => nix.app(runCommandLocal, "knot-deps-test", nix.thunk(() => ({
-                [nix.POS]: pos$4,
+                [nix.POS]: $pos[3],
                 nativeBuildInputs: nix.thunk(() => [
                   nix.thunk(() => nix.app(nix.sel(lib, "getBin"), nix.thunk(() => nix.sel(stdenv, "cc", "libc")))),
                 ]),
@@ -117,7 +110,7 @@ touch "$out"
           }))))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "Authoritative-only DNS server from .cz domain registry",
         homepage: "https://knot-dns.cz",
         changelog: nix.thunk(() => nix.str`https://gitlab.nic.cz/knot/knot-dns/-/releases/v${nix.sel(finalAttrs, "version")}`),

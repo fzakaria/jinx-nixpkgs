@@ -2,55 +2,40 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/fastnetmon-advanced.nix", [[["maintainers", 5, 8]], [["allowedTCPPorts", 11, 29]], [["firewall", 11, 20]], [["enable", 13, 11], ["config", 14, 11]], [["bird", 12, 18]], [["networking", 11, 9], ["services", 12, 9]], [["allowedTCPPorts", 32, 29]], [["firewall", 32, 20]], [["networks_list", 36, 13], ["gobgp", 37, 13], ["gobgp_flow_spec_announces", 38, 13]], [["local_asn", 42, 15], ["remote_asn", 43, 15], ["local_address", 44, 15], ["remote_address", 45, 15], ["description", 47, 15], ["ipv4_unicast", 48, 15], ["multihop", 49, 15], ["active", 50, 15]], [["bird", 41, 13]], [["enable", 34, 11], ["settings", 35, 11], ["bgpPeers", 40, 11]], [["fastnetmon-advanced", 33, 18]], [["networking", 32, 9], ["services", 33, 9]], [["bird", 8, 5], ["fnm", 29, 5]], [["name", 4, 3], ["meta", 5, 3], ["nodes", 7, 3], ["testScript", 57, 3]]]);
 const formals$1 = { args: { pkgs: false, lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/fastnetmon-advanced.nix", [["maintainers", 5, 8]]);
 const formals$2 = { args: {  }, ellipsis: true };
-const pos$2 = nix.positions(here + "/fastnetmon-advanced.nix", [["allowedTCPPorts", 11, 29]]);
-const pos$3 = nix.positions(here + "/fastnetmon-advanced.nix", [["firewall", 11, 20]]);
-const pos$4 = nix.positions(here + "/fastnetmon-advanced.nix", [["enable", 13, 11], ["config", 14, 11]]);
-const pos$5 = nix.positions(here + "/fastnetmon-advanced.nix", [["bird", 12, 18]]);
-const pos$6 = nix.positions(here + "/fastnetmon-advanced.nix", [["networking", 11, 9], ["services", 12, 9]]);
 const formals$3 = { args: {  }, ellipsis: true };
-const pos$7 = nix.positions(here + "/fastnetmon-advanced.nix", [["allowedTCPPorts", 32, 29]]);
-const pos$8 = nix.positions(here + "/fastnetmon-advanced.nix", [["firewall", 32, 20]]);
-const pos$9 = nix.positions(here + "/fastnetmon-advanced.nix", [["networks_list", 36, 13], ["gobgp", 37, 13], ["gobgp_flow_spec_announces", 38, 13]]);
-const pos$10 = nix.positions(here + "/fastnetmon-advanced.nix", [["local_asn", 42, 15], ["remote_asn", 43, 15], ["local_address", 44, 15], ["remote_address", 45, 15], ["description", 47, 15], ["ipv4_unicast", 48, 15], ["multihop", 49, 15], ["active", 50, 15]]);
-const pos$11 = nix.positions(here + "/fastnetmon-advanced.nix", [["bird", 41, 13]]);
-const pos$12 = nix.positions(here + "/fastnetmon-advanced.nix", [["enable", 34, 11], ["settings", 35, 11], ["bgpPeers", 40, 11]]);
-const pos$13 = nix.positions(here + "/fastnetmon-advanced.nix", [["fastnetmon-advanced", 33, 18]]);
-const pos$14 = nix.positions(here + "/fastnetmon-advanced.nix", [["networking", 32, 9], ["services", 33, 9]]);
-const pos$15 = nix.positions(here + "/fastnetmon-advanced.nix", [["bird", 8, 5], ["fnm", 29, 5]]);
 const formals$4 = { args: { nodes: false }, ellipsis: true };
-const pos$16 = nix.positions(here + "/fastnetmon-advanced.nix", [["name", 4, 3], ["meta", 5, 3], ["nodes", 7, 3], ["testScript", 57, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$16,
+    [nix.POS]: $pos[15],
     name: "fastnetmon-advanced",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "yureka-wdz"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$15,
+      [nix.POS]: $pos[14],
       bird: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$3,
-            firewall: nix.thunk(() => ({ [nix.POS]: pos$2, allowedTCPPorts: nix.thunk(() => [179n]) })),
+            [nix.POS]: $pos[2],
+            firewall: nix.thunk(() => ({ [nix.POS]: $pos[1], allowedTCPPorts: nix.thunk(() => [179n]) })),
           })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             bird: nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               enable: true,
               config: "router id 192.168.1.1;\n\nprotocol bgp fnm {\n  local 192.168.1.1 as 64513;\n  neighbor 192.168.1.2 as 64514;\n  multihop;\n  ipv4 {\n    import all;\n    export none;\n  };\n}\n",
             })),
@@ -60,26 +45,26 @@ export default nix.lambda((args) => (() => {
       fnm: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$3);
         return {
-          [nix.POS]: pos$14,
+          [nix.POS]: $pos[13],
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$8,
-            firewall: nix.thunk(() => ({ [nix.POS]: pos$7, allowedTCPPorts: nix.thunk(() => [179n]) })),
+            [nix.POS]: $pos[7],
+            firewall: nix.thunk(() => ({ [nix.POS]: $pos[6], allowedTCPPorts: nix.thunk(() => [179n]) })),
           })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$13,
+            [nix.POS]: $pos[12],
             "fastnetmon-advanced": nix.thunk(() => ({
-              [nix.POS]: pos$12,
+              [nix.POS]: $pos[11],
               enable: true,
               settings: nix.thunk(() => ({
-                [nix.POS]: pos$9,
+                [nix.POS]: $pos[8],
                 networks_list: nix.thunk(() => ["172.23.42.0/24"]),
                 gobgp: true,
                 gobgp_flow_spec_announces: true,
               })),
               bgpPeers: nix.thunk(() => ({
-                [nix.POS]: pos$11,
+                [nix.POS]: $pos[10],
                 bird: nix.thunk(() => ({
-                  [nix.POS]: pos$10,
+                  [nix.POS]: $pos[9],
                   local_asn: 64514n,
                   remote_asn: 64513n,
                   local_address: "192.168.1.2",

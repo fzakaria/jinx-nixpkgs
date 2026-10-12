@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 12, 5], ["hash", 15, 5]], [["NIX_CFLAGS_COMPILE", 20, 7]], [["description", 50, 5], ["homepage", 51, 5], ["maintainers", 52, 5], ["license", 53, 5], ["sourceProvenance", 57, 5], ["platforms", 58, 5], ["mainProgram", 59, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["enableParallelBuilding", 18, 3], ["env", 20, 3], ["postPatch", 23, 3], ["buildPhase", 28, 3], ["installPhase", 41, 3], ["meta", 49, 3]]]);
 const formals$1 = { args: { fetchzip: false, lib: false, stdenv: false, gmp: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 12, 5], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 20, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 50, 5], ["homepage", 51, 5], ["maintainers", 52, 5], ["license", 53, 5], ["sourceProvenance", 57, 5], ["platforms", 58, 5], ["mainProgram", 59, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["enableParallelBuilding", 18, 3], ["env", 20, 3], ["postPatch", 23, 3], ["buildPhase", 28, 3], ["installPhase", 41, 3], ["meta", 49, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,16 +12,16 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const gmp = nix.arg($, "gmp");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "llr",
       version: "4.0.7b3",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`http://jpenne.free.fr/llr4/llr${nix.builtins.replaceStrings(nix.thunk(() => ["."]), nix.thunk(() => [""]), nix.thunk(() => nix.sel(finalAttrs, "version")))}src.zip`),
           hash: "sha256-U6Mjpcq5Kdkx2f6tVQNBldsN4JiKXZqbil1Lg3Q5Asw=",
         })))),
       enableParallelBuilding: true,
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-std=gnu11" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], NIX_CFLAGS_COMPILE: "-std=gnu11" })),
       postPatch: "substituteInPlace lprime.c \\\n  --replace-fail \"_chdir (buf)\" \"0/* _chdir (buf) */\"\n",
       buildPhase: nix.thunk(() => nix.str`runHook preBuild
 
@@ -39,7 +36,7 @@ runHook postBuild
 `),
       installPhase: "runHook preInstall\n\ninstall -Dm755 llr64 $out/bin/llr\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Primality proving program for numbers of the form N = k*b^n +/- 1, (k < b^n)",
         homepage: "http://jpenne.free.fr/index2.html",
         maintainers: nix.thunk(() => (() => {

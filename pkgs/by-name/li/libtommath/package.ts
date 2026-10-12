@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 13, 5], ["sha256", 14, 5]], [["stdenv", 24, 64]], [["homepage", 41, 5], ["description", 42, 5], ["license", 43, 5], ["platforms", 47, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["patches", 17, 3], ["postPatch", 21, 3], ["preBuild", 29, 3], ["makefile", 36, 3], ["enableParallelBuilding", 38, 3], ["meta", 40, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, libtool: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 13, 5], ["sha256", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["stdenv", 24, 64]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 41, 5], ["description", 42, 5], ["license", 43, 5], ["platforms", 47, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["patches", 17, 3], ["postPatch", 21, 3], ["preBuild", 29, 3], ["makefile", 36, 3], ["enableParallelBuilding", 38, 3], ["meta", 40, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,18 +12,18 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const libtool = nix.arg($, "libtool");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "libtommath",
       version: "1.3.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/libtom/libtommath/releases/download/v${nix.sel(finalAttrs, "version")}/ltm-${nix.sel(finalAttrs, "version")}.tar.xz`),
           sha256: "sha256-KWJy2TQ1mRMI63NgdgDANLVYgHoH6CnnURQuZcz6nQg=",
         })))),
       patches: nix.thunk(() => [nix.path(here, "./force_mp_set_double.patch")]),
       postPatch: nix.thunk(() => nix.str`substituteInPlace makefile.shared \\
   --replace-fail glibtool libtool \\
-  --replace-fail libtool "${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.app(nix.sel(libtool, "override"), nix.thunk(() => ({ [nix.POS]: pos$2, stdenv: stdenv })))))}"
+  --replace-fail libtool "${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.app(nix.sel(libtool, "override"), nix.thunk(() => ({ [nix.POS]: $pos[1], stdenv: stdenv })))))}"
 substituteInPlace makefile_include.mk \\
   --replace-fail "gcc" "${nix.sel(stdenv, "cc", "targetPrefix")}cc"
 `),
@@ -38,7 +35,7 @@ substituteInPlace makefile_include.mk \\
       makefile: "makefile.shared",
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://www.libtom.net/LibTomMath/",
         description: "Library for integer-based number-theoretic applications",
         license: nix.thunk(() => (() => {

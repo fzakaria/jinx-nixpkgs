@@ -2,52 +2,9 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/incus-tests-module.nix", [[["type", 14, 7], ["description", 15, 7]], [["freeformType", 23, 9]], [["description", 21, 7], ["type", 22, 7]], [["type", 34, 17], ["default", 35, 17]], [["type", 39, 17]], [["type", 47, 17], ["description", 48, 17], ["default", 49, 17]], [["type", 53, 17], ["default", 54, 17]], [["freeformType", 59, 19]], [["type", 58, 17], ["description", 61, 17], ["default", 62, 17]], [["type", 71, 17], ["description", 72, 17], ["readOnly", 73, 17]], [["name", 33, 15], ["type", 38, 15], ["imageAlias", 46, 15], ["nixosConfig", 52, 15], ["incusConfig", 57, 15], ["copyChannel", 65, 15], ["testScript", 70, 15]], [["package", 81, 37]], [["incus", 80, 36]], [["virtualisation", 80, 21]], [["configuration", 79, 19]], [["metadata", 88, 21], ["root", 92, 21]], [["metadata", 98, 21], ["root", 99, 21]], [["container", 87, 19], ["virtual-machine", 97, 19]], [["security.secureboot", 110, 26]], [["config", 110, 19]], [["enable", 116, 39]], [["enable", 115, 33], ["nixos", 116, 33]], [["enable", 118, 44]], [["channel", 118, 36]], [["installer", 118, 26]], [["text", 120, 55]], [["nix/registry.json", 120, 35]], [["etc", 120, 31]], [["net.ipv4.ip_forward", 125, 38]], [["sysctl", 125, 31]], [["kernel", 125, 24]], [["documentation", 115, 19], ["system", 118, 19], ["environment", 120, 19], ["boot", 125, 19]], [["incusConfig", 109, 17], ["nixosConfig", 113, 17], ["testScript", 128, 17]], [["options", 32, 13], ["config", 76, 13]], [["type", 28, 7], ["description", 283, 7], ["default", 284, 7]], [["user", 289, 13]], [["ovs", 291, 13]], [["lvm", 294, 7], ["zfs", 295, 7]], [["name", 13, 5], ["package", 18, 5], ["preseed", 20, 5], ["instances", 27, 5], ["appArmor", 287, 5], ["feature", 289, 5], ["network", 291, 5], ["storage", 293, 5]], [["incus", 12, 17]], [["tests", 12, 11]], [["incus", 300, 11]], [["tests", 300, 5]], [["options", 12, 3], ["config", 299, 3]]]);
 const formals$1 = { args: { config: false, lib: false, pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/incus-tests-module.nix", [["type", 14, 7], ["description", 15, 7]]);
-const pos$2 = nix.positions(here + "/incus-tests-module.nix", [["freeformType", 23, 9]]);
-const pos$3 = nix.positions(here + "/incus-tests-module.nix", [["description", 21, 7], ["type", 22, 7]]);
 const formals$2 = { args: { name: false, config: false }, ellipsis: true };
-const pos$4 = nix.positions(here + "/incus-tests-module.nix", [["type", 34, 17], ["default", 35, 17]]);
-const pos$5 = nix.positions(here + "/incus-tests-module.nix", [["type", 39, 17]]);
-const pos$6 = nix.positions(here + "/incus-tests-module.nix", [["type", 47, 17], ["description", 48, 17], ["default", 49, 17]]);
-const pos$7 = nix.positions(here + "/incus-tests-module.nix", [["type", 53, 17], ["default", 54, 17]]);
-const pos$8 = nix.positions(here + "/incus-tests-module.nix", [["freeformType", 59, 19]]);
-const pos$9 = nix.positions(here + "/incus-tests-module.nix", [["type", 58, 17], ["description", 61, 17], ["default", 62, 17]]);
-const pos$10 = nix.positions(here + "/incus-tests-module.nix", [["type", 71, 17], ["description", 72, 17], ["readOnly", 73, 17]]);
-const pos$11 = nix.positions(here + "/incus-tests-module.nix", [["name", 33, 15], ["type", 38, 15], ["imageAlias", 46, 15], ["nixosConfig", 52, 15], ["incusConfig", 57, 15], ["copyChannel", 65, 15], ["testScript", 70, 15]]);
-const pos$12 = nix.positions(here + "/incus-tests-module.nix", [["package", 81, 37]]);
-const pos$13 = nix.positions(here + "/incus-tests-module.nix", [["incus", 80, 36]]);
-const pos$14 = nix.positions(here + "/incus-tests-module.nix", [["virtualisation", 80, 21]]);
-const pos$15 = nix.positions(here + "/incus-tests-module.nix", [["configuration", 79, 19]]);
-const pos$16 = nix.positions(here + "/incus-tests-module.nix", [["metadata", 88, 21], ["root", 92, 21]]);
-const pos$17 = nix.positions(here + "/incus-tests-module.nix", [["metadata", 98, 21], ["root", 99, 21]]);
-const pos$18 = nix.positions(here + "/incus-tests-module.nix", [["container", 87, 19], ["virtual-machine", 97, 19]]);
-const pos$19 = nix.positions(here + "/incus-tests-module.nix", [["security.secureboot", 110, 26]]);
-const pos$20 = nix.positions(here + "/incus-tests-module.nix", [["config", 110, 19]]);
-const pos$21 = nix.positions(here + "/incus-tests-module.nix", [["enable", 116, 39]]);
-const pos$22 = nix.positions(here + "/incus-tests-module.nix", [["enable", 115, 33], ["nixos", 116, 33]]);
-const pos$23 = nix.positions(here + "/incus-tests-module.nix", [["enable", 118, 44]]);
-const pos$24 = nix.positions(here + "/incus-tests-module.nix", [["channel", 118, 36]]);
-const pos$25 = nix.positions(here + "/incus-tests-module.nix", [["installer", 118, 26]]);
-const pos$26 = nix.positions(here + "/incus-tests-module.nix", [["text", 120, 55]]);
-const pos$27 = nix.positions(here + "/incus-tests-module.nix", [["nix/registry.json", 120, 35]]);
-const pos$28 = nix.positions(here + "/incus-tests-module.nix", [["etc", 120, 31]]);
-const pos$29 = nix.positions(here + "/incus-tests-module.nix", [["net.ipv4.ip_forward", 125, 38]]);
-const pos$30 = nix.positions(here + "/incus-tests-module.nix", [["sysctl", 125, 31]]);
-const pos$31 = nix.positions(here + "/incus-tests-module.nix", [["kernel", 125, 24]]);
-const pos$32 = nix.positions(here + "/incus-tests-module.nix", [["documentation", 115, 19], ["system", 118, 19], ["environment", 120, 19], ["boot", 125, 19]]);
-const pos$33 = nix.positions(here + "/incus-tests-module.nix", [["incusConfig", 109, 17], ["nixosConfig", 113, 17], ["testScript", 128, 17]]);
-const pos$34 = nix.positions(here + "/incus-tests-module.nix", [["options", 32, 13], ["config", 76, 13]]);
-const pos$35 = nix.positions(here + "/incus-tests-module.nix", [["type", 28, 7], ["description", 283, 7], ["default", 284, 7]]);
-const pos$36 = nix.positions(here + "/incus-tests-module.nix", [["user", 289, 13]]);
-const pos$37 = nix.positions(here + "/incus-tests-module.nix", [["ovs", 291, 13]]);
-const pos$38 = nix.positions(here + "/incus-tests-module.nix", [["lvm", 294, 7], ["zfs", 295, 7]]);
-const pos$39 = nix.positions(here + "/incus-tests-module.nix", [["name", 13, 5], ["package", 18, 5], ["preseed", 20, 5], ["instances", 27, 5], ["appArmor", 287, 5], ["feature", 289, 5], ["network", 291, 5], ["storage", 293, 5]]);
-const pos$40 = nix.positions(here + "/incus-tests-module.nix", [["incus", 12, 17]]);
-const pos$41 = nix.positions(here + "/incus-tests-module.nix", [["tests", 12, 11]]);
-const pos$42 = nix.positions(here + "/incus-tests-module.nix", [["incus", 300, 11]]);
-const pos$43 = nix.positions(here + "/incus-tests-module.nix", [["tests", 300, 5]]);
-const pos$44 = nix.positions(here + "/incus-tests-module.nix", [["options", 12, 3], ["config", 299, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -57,63 +14,69 @@ export default nix.lambda((args) => (() => {
   const jsonFormat = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "json"), nix.thunk(() => ({}))));
   const cfg = nix.thunk(() => nix.sel(config, "tests", "incus"));
   return {
-    [nix.POS]: pos$44,
+    [nix.POS]: $pos[43],
     options: nix.thunk(() => ({
-      [nix.POS]: pos$41,
+      [nix.POS]: $pos[40],
       tests: nix.thunk(() => ({
-        [nix.POS]: pos$40,
+        [nix.POS]: $pos[39],
         incus: nix.thunk(() => ({
-          [nix.POS]: pos$39,
+          [nix.POS]: $pos[38],
           name: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              [nix.POS]: pos$1,
+              [nix.POS]: $pos[0],
               type: nix.thunk(() => nix.sel(lib, "types", "str")),
               description: "name appended to test",
             })))),
           package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "incus", nix.thunk(() => ({})))),
           preseed: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               description: "configuration provided to incus preseed. https://linuxcontainers.org/incus/docs/main/howto/initialize/#non-interactive-configuration",
-              type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({ [nix.POS]: pos$2, freeformType: nix.thunk(() => nix.sel(jsonFormat, "type")) })))),
+              type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
+                  [nix.POS]: $pos[1],
+                  freeformType: nix.thunk(() => nix.sel(jsonFormat, "type")),
+                })))),
             })))),
           instances: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-              [nix.POS]: pos$35,
+              [nix.POS]: $pos[34],
               type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.lambda((args_1) => (() => {
                     const $_1 = nix.formals(args_1, formals$2);
                     const name = nix.arg($_1, "name");
                     const config_1 = nix.arg($_1, "config");
                     return {
-                      [nix.POS]: pos$34,
+                      [nix.POS]: $pos[33],
                       options: nix.thunk(() => ({
-                        [nix.POS]: pos$11,
+                        [nix.POS]: $pos[10],
                         name: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            [nix.POS]: pos$4,
+                            [nix.POS]: $pos[3],
                             type: nix.thunk(() => nix.sel(lib, "types", "str")),
                             default: name,
                           })))),
                         type: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            [nix.POS]: pos$5,
+                            [nix.POS]: $pos[4],
                             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "enum"), nix.thunk(() => ["container", "virtual-machine"]))),
                           })))),
                         imageAlias: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            [nix.POS]: pos$6,
+                            [nix.POS]: $pos[5],
                             type: nix.thunk(() => nix.sel(lib, "types", "str")),
                             description: "name of image when imported",
                             default: nix.thunk(() => nix.str`nixos/${name}/${nix.sel(config_1, "type")}`),
                           })))),
                         nixosConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            [nix.POS]: pos$7,
+                            [nix.POS]: $pos[6],
                             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.sel(lib, "types", "anything")))),
                             default: nix.thunk(() => ({})),
                           })))),
                         incusConfig: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            [nix.POS]: pos$9,
-                            type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({ [nix.POS]: pos$8, freeformType: nix.thunk(() => nix.sel(jsonFormat, "type")) })))),
+                            [nix.POS]: $pos[8],
+                            type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
+                                [nix.POS]: $pos[7],
+                                freeformType: nix.thunk(() => nix.sel(jsonFormat, "type")),
+                              })))),
                             description: "incus configuration provided at launch",
                             default: nix.thunk(() => ({})),
                           })))),
                         copyChannel: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "copy channel in test image. disabled by default as it forces image\nrebuilds excessively. enable to validate channel things.\n")),
                         testScript: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                            [nix.POS]: pos$10,
+                            [nix.POS]: $pos[9],
                             type: nix.thunk(() => nix.sel(lib, "types", "str")),
                             description: "final script provided to test runner",
                             readOnly: true,
@@ -121,24 +84,24 @@ export default nix.lambda((args) => (() => {
                       })),
                       config: nix.thunk(() => (() => {
                         const releases = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../release.nix")), nix.thunk(() => ({
-                            [nix.POS]: pos$15,
+                            [nix.POS]: $pos[14],
                             configuration: nix.thunk(() => nix.app(nix.sel(lib, "recursiveUpdate"), nix.thunk(() => nix.sel(config_1, "nixosConfig")), nix.thunk(() => ({
-                                [nix.POS]: pos$14,
+                                [nix.POS]: $pos[13],
                                 virtualisation: nix.thunk(() => ({
-                                  [nix.POS]: pos$13,
-                                  incus: nix.thunk(() => ({ [nix.POS]: pos$12, package: nix.thunk(() => nix.attr(cfg, "package")) })),
+                                  [nix.POS]: $pos[12],
+                                  incus: nix.thunk(() => ({ [nix.POS]: $pos[11], package: nix.thunk(() => nix.attr(cfg, "package")) })),
                                 })),
                               })))),
                           }))));
                         const images = nix.thunk(() => ({
-                          [nix.POS]: pos$18,
+                          [nix.POS]: $pos[17],
                           container: nix.thunk(() => ({
-                            [nix.POS]: pos$16,
+                            [nix.POS]: $pos[15],
                             metadata: nix.thunk(() => nix.add(nix.sel(releases, "incusContainerMeta", nix.key(nix.sel(pkgs, "stdenv", "hostPlatform", "system"))), nix.str`/tarball/nixos-image-lxc-*-${nix.sel(pkgs, "stdenv", "hostPlatform", "system")}.tar.xz`)),
                             root: nix.thunk(() => nix.add(nix.sel(releases, "incusContainerImage", nix.key(nix.sel(pkgs, "stdenv", "hostPlatform", "system"))), nix.str`/nixos-lxc-image-${nix.sel(pkgs, "stdenv", "hostPlatform", "system")}.squashfs`)),
                           })),
                           "virtual-machine": nix.thunk(() => ({
-                            [nix.POS]: pos$17,
+                            [nix.POS]: $pos[16],
                             metadata: nix.thunk(() => nix.add(nix.sel(releases, "incusVirtualMachineImageMeta", nix.key(nix.sel(pkgs, "stdenv", "hostPlatform", "system"))), "/*/*.tar.xz")),
                             root: nix.thunk(() => nix.add(nix.sel(releases, "incusVirtualMachineImage", nix.key(nix.sel(pkgs, "stdenv", "hostPlatform", "system"))), "/nixos.qcow2")),
                           })),
@@ -147,46 +110,46 @@ export default nix.lambda((args) => (() => {
                         const metadata = nix.thunk(() => nix.sel(images, nix.key(nix.sel(config_1, "type")), "metadata"));
                         const image_id = nix.thunk(() => nix.str`${nix.sel(config_1, "type")}/${nix.sel(config_1, "name")}`);
                         return {
-                          [nix.POS]: pos$33,
+                          [nix.POS]: $pos[32],
                           incusConfig: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(nix.sel(config_1, "type"), "virtual-machine")), nix.thunk(() => ({
-                              [nix.POS]: pos$20,
-                              config: nix.thunk(() => ({ [nix.POS]: pos$19, "security.secureboot": false })),
+                              [nix.POS]: $pos[19],
+                              config: nix.thunk(() => ({ [nix.POS]: $pos[18], "security.secureboot": false })),
                             })))),
                           nixosConfig: nix.thunk(() => ({
-                            [nix.POS]: pos$32,
+                            [nix.POS]: $pos[31],
                             documentation: nix.thunk(() => ({
-                              [nix.POS]: pos$22,
+                              [nix.POS]: $pos[21],
                               enable: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), false)),
                               nixos: nix.thunk(() => ({
-                                [nix.POS]: pos$21,
+                                [nix.POS]: $pos[20],
                                 enable: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), false)),
                               })),
                             })),
                             system: nix.thunk(() => ({
-                              [nix.POS]: pos$25,
+                              [nix.POS]: $pos[24],
                               installer: nix.thunk(() => ({
-                                [nix.POS]: pos$24,
+                                [nix.POS]: $pos[23],
                                 channel: nix.thunk(() => ({
-                                  [nix.POS]: pos$23,
+                                  [nix.POS]: $pos[22],
                                   enable: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), nix.thunk(() => nix.sel(config_1, "copyChannel")))),
                                 })),
                               })),
                             })),
                             environment: nix.thunk(() => ({
-                              [nix.POS]: pos$28,
+                              [nix.POS]: $pos[27],
                               etc: nix.thunk(() => ({
-                                [nix.POS]: pos$27,
+                                [nix.POS]: $pos[26],
                                 "nix/registry.json": nix.thunk(() => ({
-                                  [nix.POS]: pos$26,
+                                  [nix.POS]: $pos[25],
                                   text: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), "{}")),
                                 })),
                               })),
                             })),
                             boot: nix.thunk(() => ({
-                              [nix.POS]: pos$31,
+                              [nix.POS]: $pos[30],
                               kernel: nix.thunk(() => ({
-                                [nix.POS]: pos$30,
-                                sysctl: nix.thunk(() => ({ [nix.POS]: pos$29, "net.ipv4.ip_forward": "1" })),
+                                [nix.POS]: $pos[29],
+                                sysctl: nix.thunk(() => ({ [nix.POS]: $pos[28], "net.ipv4.ip_forward": "1" })),
                               })),
                             })),
                           })),
@@ -319,15 +282,15 @@ with subtest("[${image_id}] stop with incus-startup.service"):
             })))),
           appArmor: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "AppArmor during tests")),
           feature: nix.thunk(() => ({
-            [nix.POS]: pos$36,
+            [nix.POS]: $pos[35],
             user: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Validate incus user access feature")),
           })),
           network: nix.thunk(() => ({
-            [nix.POS]: pos$37,
+            [nix.POS]: $pos[36],
             ovs: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Validate OVS network integration")),
           })),
           storage: nix.thunk(() => ({
-            [nix.POS]: pos$38,
+            [nix.POS]: $pos[37],
             lvm: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Validate LVM storage integration")),
             zfs: nix.thunk(() => nix.app(nix.sel(lib, "mkEnableOption"), "Validate ZFS storage integration")),
           })),
@@ -335,8 +298,8 @@ with subtest("[${image_id}] stop with incus-startup.service"):
       })),
     })),
     config: nix.thunk(() => ({
-      [nix.POS]: pos$43,
-      tests: nix.thunk(() => ({ [nix.POS]: pos$42, incus: nix.thunk(() => ({})) })),
+      [nix.POS]: $pos[42],
+      tests: nix.thunk(() => ({ [nix.POS]: $pos[41], incus: nix.thunk(() => ({})) })),
     })),
   };
 })(), formals$1);

@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["jdk", 32, 5], ["jre", 33, 5]], [["url", 42, 5], ["hash", 43, 5]], [["package", 107, 7], ["command", 108, 7], ["version", 109, 7]], [["version", 106, 11]], [["tests", 106, 5], ["updateScript", 112, 5]], [["description", 139, 5], ["homepage", 140, 5], ["downloadPage", 141, 5], ["license", 142, 5], ["maintainers", 143, 5], ["platforms", 144, 5], ["mainProgram", 147, 5]], [["pname", 38, 3], ["version", 39, 3], ["src", 41, 3], ["__structuredAttrs", 46, 3], ["strictDeps", 47, 3], ["patches", 49, 3], ["nativeBuildInputs", 53, 3], ["buildInputs", 57, 3], ["runtimeDeps", 61, 3], ["installPhase", 72, 3], ["passthru", 105, 3], ["meta", 138, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, makeWrapper: false, writeScriptBin: false, bash: false, coreutils: false, curl: false, jsvc: false, "mongodb-ce": false, jdk_headless: false, procps: false, which: false, testers: false, writeShellScript: false, "common-updater-scripts": false, pup: false, gnugrep: false, gnused: false, dataDir: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["jdk", 32, 5], ["jre", 33, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 42, 5], ["hash", 43, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["package", 107, 7], ["command", 108, 7], ["version", 109, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["version", 106, 11]]);
-const pos$5 = nix.positions(here + "/package.nix", [["tests", 106, 5], ["updateScript", 112, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 139, 5], ["homepage", 140, 5], ["downloadPage", 141, 5], ["license", 142, 5], ["maintainers", 143, 5], ["platforms", 144, 5], ["mainProgram", 147, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 38, 3], ["version", 39, 3], ["src", 41, 3], ["__structuredAttrs", 46, 3], ["strictDeps", 47, 3], ["patches", 49, 3], ["nativeBuildInputs", 53, 3], ["buildInputs", 57, 3], ["runtimeDeps", 61, 3], ["installPhase", 72, 3], ["passthru", 105, 3], ["meta", 138, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -35,13 +29,13 @@ export default nix.lambda((args) => (() => {
   const dataDir = nix.argOr($, "dataDir", () => "/var/lib/omada");
   const mongodb = mongodb_ce;
   const arch = nix.thunk(() => nix.app(writeScriptBin, "arch", nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe'"), coreutils, "uname")} -m`)));
-  const jsvcWithSameJdkVersion = nix.thunk(() => nix.app(nix.sel(jsvc, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, jdk: jdk_headless, jre: jdk_headless }))));
+  const jsvcWithSameJdkVersion = nix.thunk(() => nix.app(nix.sel(jsvc, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], jdk: jdk_headless, jre: jdk_headless }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "omada-software-controller",
       version: "6.3.0.45",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: "https://static.tp-link.com/upload/software/2026/202609/20260904/Omada_Network_Application_v6.3.0.45_linux_x64_20260903171900.tar.gz",
           hash: "sha256-2t9+GH+ishiSo/Jkda4VNg9B1k9XinDwgB0q4Z2p62o=",
         })))),
@@ -92,11 +86,11 @@ makeWrapper $out/bin/control.sh $out/bin/tpeap \\
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               command: "omada version",
               version: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -121,7 +115,7 @@ update-source-version "omada-software-controller" "$NEW_VERSION" "$NIX_HASH" "$N
       meta: nix.thunk(() => (() => {
         const w = nix.withScope(lib, null);
         return {
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           description: "Omada Software Controller",
           homepage: "https://www.tp-link.com/us/business-networking/omada-sdn-controller/omada-software-controller/",
           downloadPage: "https://www.tp-link.com/us/support/download/omada-software-controller/",

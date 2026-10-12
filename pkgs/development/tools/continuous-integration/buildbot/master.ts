@@ -2,15 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/master.nix", [[["pyproject", 71, 17], ["withPlugins", 72, 9]], [["pname", 50, 7], ["version", 51, 26], ["pyproject", 52, 7], ["dontUnpack", 54, 7], ["dontBuild", 55, 7], ["doCheck", 56, 7], ["nativeBuildInputs", 58, 7], ["propagatedBuildInputs", 62, 7], ["installPhase", 64, 7], ["passthru", 70, 7]], [["owner", 82, 5], ["repo", 83, 5], ["rev", 84, 5], ["hash", 85, 5]], [["withPlugins", 155, 13], ["python", 155, 25], ["updateScript", 156, 5]], [["buildbot", 160, 28]], [["tests", 159, 5]], [["description", 165, 5], ["homepage", 166, 5], ["changelog", 167, 5], ["teams", 168, 5], ["license", 169, 5]], [["pname", 77, 3], ["version", 78, 3], ["pyproject", 79, 3], ["src", 81, 3], ["build-system", 88, 3], ["pythonRelaxDeps", 90, 3], ["dependencies", 94, 3], ["nativeCheckInputs", 118, 3], ["patches", 135, 3], ["postPatch", 141, 3], ["doCheck", 148, 3], ["preCheck", 150, 3], ["passthru", 154, 3], ["meta", 164, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonApplication: false, fetchFromGitHub: false, makeWrapper: false, buildbot: false, python: false, twisted: false, jinja2: false, msgpack: false, "zope-interface": false, sqlalchemy: false, alembic: false, "python-dateutil": false, txaio: false, autobahn: false, pyjwt: false, pyyaml: false, treq: false, txrequests: false, pypugjs: false, boto3: false, moto: false, markdown: false, lz4: false, brotli: false, zstandard: false, "setuptools-trial": false, "buildbot-worker": false, "buildbot-plugins": false, "buildbot-pkg": false, parameterized: false, git: false, openssh: false, setuptools: false, croniter: false, "importlib-resources": false, packaging: false, unidiff: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/master.nix", [["pyproject", 71, 17], ["withPlugins", 72, 9]]);
-const pos$2 = nix.positions(here + "/master.nix", [["pname", 50, 7], ["version", 51, 26], ["pyproject", 52, 7], ["dontUnpack", 54, 7], ["dontBuild", 55, 7], ["doCheck", 56, 7], ["nativeBuildInputs", 58, 7], ["propagatedBuildInputs", 62, 7], ["installPhase", 64, 7], ["passthru", 70, 7]]);
-const pos$3 = nix.positions(here + "/master.nix", [["owner", 82, 5], ["repo", 83, 5], ["rev", 84, 5], ["hash", 85, 5]]);
-const pos$4 = nix.positions(here + "/master.nix", [["withPlugins", 155, 13], ["python", 155, 25], ["updateScript", 156, 5]]);
-const pos$5 = nix.positions(here + "/master.nix", [["buildbot", 160, 28]]);
-const pos$6 = nix.positions(here + "/master.nix", [["tests", 159, 5]]);
-const pos$7 = nix.positions(here + "/master.nix", [["description", 165, 5], ["homepage", 166, 5], ["changelog", 167, 5], ["teams", 168, 5], ["license", 169, 5]]);
-const pos$8 = nix.positions(here + "/master.nix", [["pname", 77, 3], ["version", 78, 3], ["pyproject", 79, 3], ["src", 81, 3], ["build-system", 88, 3], ["pythonRelaxDeps", 90, 3], ["dependencies", 94, 3], ["nativeCheckInputs", 118, 3], ["patches", 135, 3], ["postPatch", 141, 3], ["doCheck", 148, 3], ["preCheck", 150, 3], ["passthru", 154, 3], ["meta", 164, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -68,12 +61,12 @@ export default nix.lambda((args) => (() => {
 ln -sfv ${buildbot}/lib $out/lib
 `);
       const passthru = nix.thunk(() => nix.update(nix.sel(buildbot, "passthru"), {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         pyproject: pyproject,
         withPlugins: (morePlugins) => nix.app(withPlugins, nix.thunk(() => nix.concat(morePlugins, plugins))),
       }));
       return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         pname,
         version,
         pyproject,
@@ -91,7 +84,7 @@ ln -sfv ${buildbot}/lib $out/lib
       const version = "4.3.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           owner: "buildbot",
           repo: "buildbot",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -140,19 +133,19 @@ ln -sfv ${buildbot}/lib $out/lib
       const doCheck = nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")));
       const preCheck = "export PATH=\"$out/bin:$PATH\"\n";
       const passthru = nix.thunk(() => nix.update({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         withPlugins: withPlugins,
         python: python,
         updateScript: nix.path(here, "./update.sh"),
       }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           tests: nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             buildbot: nix.thunk(() => nix.attr(nixosTests, "buildbot")),
           })),
         })))));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "Open-source continuous integration framework for automating software build, test, and release processes",
         homepage: "https://buildbot.net/",
         changelog: nix.thunk(() => nix.str`https://github.com/buildbot/buildbot/releases/tag/v${version}`),
@@ -160,7 +153,7 @@ ln -sfv ${buildbot}/lib $out/lib
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),
       }));
       return {
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         pname,
         version,
         pyproject,

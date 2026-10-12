@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]], [["url", 37, 7], ["hash", 38, 7]], [["homepage", 57, 5], ["description", 58, 5], ["license", 59, 5], ["maintainers", 60, 5]], [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["src", 19, 3], ["prePatch", 26, 3], ["patches", 33, 3], ["nativeBuildInputs", 42, 3], ["build-system", 44, 3], ["dependencies", 46, 3], ["nativeCheckInputs", 48, 3], ["enabledTestPaths", 50, 3], ["preCheck", 52, 3], ["meta", 56, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, fetchpatch: false, buildPythonPackage: false, dos2unix: false, setuptools: false, pyasn1: false, unittestCheckHook: false, gssapi: false, withGssapi: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["url", 37, 7], ["hash", 38, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["homepage", 57, 5], ["description", 58, 5], ["license", 59, 5], ["maintainers", 60, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["src", 19, 3], ["prePatch", 26, 3], ["patches", 33, 3], ["nativeBuildInputs", 42, 3], ["build-system", 44, 3], ["dependencies", 46, 3], ["nativeCheckInputs", 48, 3], ["enabledTestPaths", 50, 3], ["preCheck", 52, 3], ["meta", 56, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.9.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "cannatag",
           repo: "ldap3",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -38,7 +35,7 @@ substituteInPlace _version.json \\
 `);
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/cannatag/ldap3/commit/ca689f4893b944806f90e9d3be2a746ee3c502e4.patch",
             hash: "sha256-A8qI0t1OV3bkKaSdhVWHFBC9MoSkWynqxpgznV+5gh8=",
           })))),
@@ -50,14 +47,14 @@ substituteInPlace _version.json \\
       const enabledTestPaths = nix.thunk(() => ["test/"]);
       const preCheck = "export SERVER=NONE\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/cannatag/ldap3",
         description: "Strictly RFC 4510 conforming LDAP V3 pure Python client library",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3Plus")),
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 41, 5], ["repo", 42, 5], ["tag", 43, 5], ["fetchSubmodules", 45, 5], ["hash", 46, 5]], [["spritecollab", 78, 5]], [["description", 105, 5], ["homepage", 106, 5], ["mainProgram", 107, 5], ["license", 108, 5], ["maintainers", 109, 5], ["badPlatforms", 110, 5]], [["pname", 36, 3], ["version", 37, 3], ["pyproject", 38, 3], ["src", 40, 3], ["postPatch", 49, 3], ["build-system", 58, 3], ["buildInputs", 60, 3], ["pythonRelaxDeps", 62, 3], ["dependencies", 65, 3], ["optional-dependencies", 77, 3], ["nativeCheckInputs", 87, 3], ["preCheck", 94, 3], ["postCheck", 95, 3], ["disabledTestPaths", 97, 3], ["pythonImportsCheck", 102, 3], ["meta", 104, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, armips: false, appdirs: false, "dungeon-eos": false, explorerscript: false, ndspy: false, pillow: false, "pmdsky-debug-py": false, pyyaml: false, "range-typed-integers": false, "skytemple-rust": false, aiohttp: false, gql: false, "graphql-core": false, "lru-dict": false, parameterized: false, pytestCheckHook: false, xmldiff: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 41, 5], ["repo", 42, 5], ["tag", 43, 5], ["fetchSubmodules", 45, 5], ["hash", 46, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["spritecollab", 78, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 105, 5], ["homepage", 106, 5], ["mainProgram", 107, 5], ["license", 108, 5], ["maintainers", 109, 5], ["badPlatforms", 110, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 36, 3], ["version", 37, 3], ["pyproject", 38, 3], ["src", 40, 3], ["postPatch", 49, 3], ["build-system", 58, 3], ["buildInputs", 60, 3], ["pythonRelaxDeps", 62, 3], ["dependencies", 65, 3], ["optional-dependencies", 77, 3], ["nativeCheckInputs", 87, 3], ["preCheck", 94, 3], ["postCheck", 95, 3], ["disabledTestPaths", 97, 3], ["pythonImportsCheck", 102, 3], ["meta", 104, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,12 +29,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const xmldiff = nix.arg($, "xmldiff");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "skytemple-files",
       version: "1.8.5",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "SkyTemple",
           repo: "skytemple-files",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -66,7 +63,7 @@ export default nix.lambda((args) => (() => {
         skytemple_rust,
       ]),
       "optional-dependencies": nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         spritecollab: nix.thunk(() => nix.concat([aiohttp, gql, graphql_core, lru_dict], nix.sel(gql, "optional-dependencies", "aiohttp"))),
       })),
       nativeCheckInputs: nix.thunk(() => nix.concat([parameterized, pytestCheckHook, xmldiff], nix.sel(finalAttrs, "passthru", "optional-dependencies", "spritecollab"))),
@@ -78,7 +75,7 @@ export default nix.lambda((args) => (() => {
       ]),
       pythonImportsCheck: nix.thunk(() => ["skytemple_files"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Python library to edit the ROM of Pokémon Mystery Dungeon Explorers of Sky",
         homepage: "https://github.com/SkyTemple/skytemple-files",
         mainProgram: "skytemple_export_maps",

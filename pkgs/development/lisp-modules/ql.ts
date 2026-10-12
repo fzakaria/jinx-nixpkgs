@@ -2,96 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/ql.nix", [[["nativeLibs", 16, 9]], [["nativeLibs", 19, 9]], [["nativeLibs", 22, 9]], [["nativeLibs", 25, 9]], [["nativeLibs", 28, 9]], [["nativeLibs", 31, 9], ["nativeBuildInputs", 32, 9], ["patches", 33, 9]], [["nativeLibs", 36, 9]], [["nativeLibs", 39, 9]], [["nativeLibs", 42, 9]], [["nativeLibs", 45, 9]], [["nativeLibs", 48, 9]], [["nativeLibs", 51, 9]], [["nativeLibs", 54, 9]], [["nativeLibs", 57, 9]], [["nativeLibs", 60, 9]], [["nativeLibs", 66, 9]], [["nativeLibs", 69, 9]], [["nativeLibs", 72, 9]], [["nativeLibs", 75, 9]], [["nativeLibs", 78, 9]], [["nativeLibs", 81, 9]], [["nativeLibs", 84, 9]], [["groupId", 89, 13], ["artifactId", 90, 13], ["version", 91, 13], ["sha256", 92, 13]], [["javaLibs", 87, 9]], [["nativeBuildInputs", 97, 9], ["nativeLibs", 98, 9], ["patches", 99, 9]], [["nativeBuildInputs", 102, 9], ["nativeLibs", 103, 9]], [["nativeLibs", 106, 9]], [["nativeLibs", 109, 9]], [["nativeLibs", 112, 9]], [["nativeBuildInputs", 115, 9], ["nativeLibs", 116, 9]], [["nativeLibs", 119, 9]], [["configureFlags", 125, 15]], [["nativeLibs", 122, 9]], [["nativeLibs", 134, 9]], [["nativeLibs", 137, 9]], [["nativeLibs", 140, 9]], [["nativeLibs", 143, 9]], [["nativeLibs", 146, 9]], [["nativeLibs", 149, 9]], [["nativeLibs", 152, 9]], [["nativeLibs", 155, 9]], [["nativeLibs", 158, 9]], [["nativeLibs", 161, 9]], [["nativeLibs", 164, 9]], [["nativeLibs", 167, 9]], [["nativeLibs", 170, 9]], [["nativeBuildInputs", 173, 9], ["nativeLibs", 174, 9]], [["nativeLibs", 177, 9]], [["nativeBuildInputs", 180, 9], ["nativeLibs", 181, 9], ["systems", 182, 9]], [["NIX_LDFLAGS", 192, 11]], [["nativeBuildInputs", 189, 9], ["nativeLibs", 190, 9], ["env", 191, 9]], [["postInstall", 199, 9]], [["postInstall", 204, 9]], [["postInstall", 209, 9]], [["postInstall", 214, 9]], [["postInstall", 219, 9]], [["nativeBuildInputs", 224, 9], ["nativeLibs", 225, 9]], [["nativeLibs", 228, 9]], [["nativeLibs", 231, 9]], [["nativeLibs", 234, 9]], [["lispLibs", 237, 9]], [["nativeBuildInputs", 240, 9], ["nativeLibs", 241, 9]], [["nativeBuildInputs", 244, 9], ["nativeLibs", 245, 9]], [["nativeBuildInputs", 248, 9], ["nativeLibs", 249, 9]], [["nativeBuildInputs", 252, 9], ["nativeLibs", 253, 9]], [["nativeLibs", 256, 9]], [["propagatedBuildInputs", 259, 9]], [["propagatedBuildInputs", 262, 9], ["patches", 263, 9]], [["propagatedBuildInputs", 266, 9]], [["nativeLibs", 269, 9]], [["patches", 272, 9], ["nativeLibs", 273, 9]], [["lispLibs", 276, 9], ["systems", 283, 9]], [["lispLibs", 289, 9]], [["systems", 294, 9], ["lispLibs", 298, 9]], [["nativeLibs", 303, 9]], [["nativeLibs", 306, 9]], [["nativeLibs", 309, 9]], [["nativeLibs", 312, 9]], [["nativeLibs", 315, 9]], [["nativeLibs", 318, 9]], [["nativeLibs", 321, 9]], [["nativeLibs", 327, 9]], [["nativeLibs", 330, 9]], [["nativeLibs", 333, 9]], [["nativeLibs", 336, 9]], [["nativeLibs", 339, 9]], [["flags", 342, 9]], [["cl_plus_ssl", 15, 7], ["cl-cffi-gtk-glib", 18, 7], ["cl-cffi-gtk-cairo", 21, 7], ["cl-cairo2", 24, 7], ["cl-cairo2-xlib", 27, 7], ["cl-freetype2", 30, 7], ["cl-pango", 35, 7], ["cl-gtk2-gdk", 38, 7], ["cl-gtk2-glib", 41, 7], ["cl-gtk2-pango", 44, 7], ["cl-rsvg2", 47, 7], ["cl-cffi-gtk-gdk", 50, 7], ["cl-cffi-gtk-gdk-pixbuf", 53, 7], ["cl-cffi-gtk-pango", 56, 7], ["cl-gobject-introspection", 59, 7], ["cl-mysql", 65, 7], ["clsql-postgresql", 68, 7], ["clsql-sqlite3", 71, 7], ["cl-webkit2", 74, 7], ["dbd-mysql", 77, 7], ["enchant", 80, 7], ["lla", 83, 7], ["cffi", 86, 7], ["cffi-libffi", 96, 7], ["cl-rabbit", 101, 7], ["trivial-ssh-libssh2", 105, 7], ["sqlite", 108, 7], ["duckdb", 111, 7], ["cl-libuv", 114, 7], ["cl-liballegro", 118, 7], ["cl-ode", 121, 7], ["classimp", 133, 7], ["sdl2", 136, 7], ["sdl2-image", 139, 7], ["sdl2-mixer", 142, 7], ["sdl2-ttf", 145, 7], ["lispbuilder-sdl-cffi", 148, 7], ["cl-opengl", 151, 7], ["cl-glu", 154, 7], ["cl-glut", 157, 7], ["cl-glfw", 160, 7], ["cl-glfw-opengl-core", 163, 7], ["cl-glfw3", 166, 7], ["lev", 169, 7], ["cl-rdkafka", 172, 7], ["cl-async-ssl", 176, 7], ["iolib", 179, 7], ["cl-ana_dot_hdf-cffi", 188, 7], ["antik", 198, 7], ["antik-base", 203, 7], ["foreign-array", 208, 7], ["physical-dimension", 213, 7], ["science-data", 218, 7], ["gsll", 223, 7], ["cl-libyaml", 227, 7], ["cl-libxml2", 230, 7], ["cl-readline", 233, 7], ["md5", 236, 7], ["pzmq", 239, 7], ["pzmq-compat", 243, 7], ["pzmq-examples", 247, 7], ["pzmq-test", 251, 7], ["cl-git", 255, 7], ["trivial-package-manager", 258, 7], ["cl-sat_dot_glucose", 261, 7], ["cl-sat_dot_minisat", 265, 7], ["hu_dot_dwim_dot_graphviz", 268, 7], ["math", 271, 7], ["mcclim-fonts", 275, 7], ["mcclim-render", 288, 7], ["mcclim-layouts", 293, 7], ["cl-charms", 302, 7], ["libusb-ffi", 305, 7], ["jpeg-turbo", 308, 7], ["vorbisfile-ffi", 311, 7], ["png", 314, 7], ["zmq", 317, 7], ["consfigurator", 320, 7], ["cl-gss", 326, 7], ["magicffi", 329, 7], ["keystone", 332, 7], ["capstone", 335, 7], ["vk", 338, 7], ["_3d-math", 341, 7]], [["build-asdf-system", 348, 47]]]);
 const formals$1 = { args: { pkgs: false, lib: false, stdenv: false, "build-asdf-system": false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/ql.nix", [["nativeLibs", 16, 9]]);
-const pos$2 = nix.positions(here + "/ql.nix", [["nativeLibs", 19, 9]]);
-const pos$3 = nix.positions(here + "/ql.nix", [["nativeLibs", 22, 9]]);
-const pos$4 = nix.positions(here + "/ql.nix", [["nativeLibs", 25, 9]]);
-const pos$5 = nix.positions(here + "/ql.nix", [["nativeLibs", 28, 9]]);
-const pos$6 = nix.positions(here + "/ql.nix", [["nativeLibs", 31, 9], ["nativeBuildInputs", 32, 9], ["patches", 33, 9]]);
-const pos$7 = nix.positions(here + "/ql.nix", [["nativeLibs", 36, 9]]);
-const pos$8 = nix.positions(here + "/ql.nix", [["nativeLibs", 39, 9]]);
-const pos$9 = nix.positions(here + "/ql.nix", [["nativeLibs", 42, 9]]);
-const pos$10 = nix.positions(here + "/ql.nix", [["nativeLibs", 45, 9]]);
-const pos$11 = nix.positions(here + "/ql.nix", [["nativeLibs", 48, 9]]);
-const pos$12 = nix.positions(here + "/ql.nix", [["nativeLibs", 51, 9]]);
-const pos$13 = nix.positions(here + "/ql.nix", [["nativeLibs", 54, 9]]);
-const pos$14 = nix.positions(here + "/ql.nix", [["nativeLibs", 57, 9]]);
-const pos$15 = nix.positions(here + "/ql.nix", [["nativeLibs", 60, 9]]);
-const pos$16 = nix.positions(here + "/ql.nix", [["nativeLibs", 66, 9]]);
-const pos$17 = nix.positions(here + "/ql.nix", [["nativeLibs", 69, 9]]);
-const pos$18 = nix.positions(here + "/ql.nix", [["nativeLibs", 72, 9]]);
-const pos$19 = nix.positions(here + "/ql.nix", [["nativeLibs", 75, 9]]);
-const pos$20 = nix.positions(here + "/ql.nix", [["nativeLibs", 78, 9]]);
-const pos$21 = nix.positions(here + "/ql.nix", [["nativeLibs", 81, 9]]);
-const pos$22 = nix.positions(here + "/ql.nix", [["nativeLibs", 84, 9]]);
-const pos$23 = nix.positions(here + "/ql.nix", [["groupId", 89, 13], ["artifactId", 90, 13], ["version", 91, 13], ["sha256", 92, 13]]);
-const pos$24 = nix.positions(here + "/ql.nix", [["javaLibs", 87, 9]]);
-const pos$25 = nix.positions(here + "/ql.nix", [["nativeBuildInputs", 97, 9], ["nativeLibs", 98, 9], ["patches", 99, 9]]);
-const pos$26 = nix.positions(here + "/ql.nix", [["nativeBuildInputs", 102, 9], ["nativeLibs", 103, 9]]);
-const pos$27 = nix.positions(here + "/ql.nix", [["nativeLibs", 106, 9]]);
-const pos$28 = nix.positions(here + "/ql.nix", [["nativeLibs", 109, 9]]);
-const pos$29 = nix.positions(here + "/ql.nix", [["nativeLibs", 112, 9]]);
-const pos$30 = nix.positions(here + "/ql.nix", [["nativeBuildInputs", 115, 9], ["nativeLibs", 116, 9]]);
-const pos$31 = nix.positions(here + "/ql.nix", [["nativeLibs", 119, 9]]);
-const pos$32 = nix.positions(here + "/ql.nix", [["configureFlags", 125, 15]]);
-const pos$33 = nix.positions(here + "/ql.nix", [["nativeLibs", 122, 9]]);
-const pos$34 = nix.positions(here + "/ql.nix", [["nativeLibs", 134, 9]]);
-const pos$35 = nix.positions(here + "/ql.nix", [["nativeLibs", 137, 9]]);
-const pos$36 = nix.positions(here + "/ql.nix", [["nativeLibs", 140, 9]]);
-const pos$37 = nix.positions(here + "/ql.nix", [["nativeLibs", 143, 9]]);
-const pos$38 = nix.positions(here + "/ql.nix", [["nativeLibs", 146, 9]]);
-const pos$39 = nix.positions(here + "/ql.nix", [["nativeLibs", 149, 9]]);
-const pos$40 = nix.positions(here + "/ql.nix", [["nativeLibs", 152, 9]]);
-const pos$41 = nix.positions(here + "/ql.nix", [["nativeLibs", 155, 9]]);
-const pos$42 = nix.positions(here + "/ql.nix", [["nativeLibs", 158, 9]]);
-const pos$43 = nix.positions(here + "/ql.nix", [["nativeLibs", 161, 9]]);
-const pos$44 = nix.positions(here + "/ql.nix", [["nativeLibs", 164, 9]]);
-const pos$45 = nix.positions(here + "/ql.nix", [["nativeLibs", 167, 9]]);
-const pos$46 = nix.positions(here + "/ql.nix", [["nativeLibs", 170, 9]]);
-const pos$47 = nix.positions(here + "/ql.nix", [["nativeBuildInputs", 173, 9], ["nativeLibs", 174, 9]]);
-const pos$48 = nix.positions(here + "/ql.nix", [["nativeLibs", 177, 9]]);
-const pos$49 = nix.positions(here + "/ql.nix", [["nativeBuildInputs", 180, 9], ["nativeLibs", 181, 9], ["systems", 182, 9]]);
-const pos$50 = nix.positions(here + "/ql.nix", [["NIX_LDFLAGS", 192, 11]]);
-const pos$51 = nix.positions(here + "/ql.nix", [["nativeBuildInputs", 189, 9], ["nativeLibs", 190, 9], ["env", 191, 9]]);
-const pos$52 = nix.positions(here + "/ql.nix", [["postInstall", 199, 9]]);
-const pos$53 = nix.positions(here + "/ql.nix", [["postInstall", 204, 9]]);
-const pos$54 = nix.positions(here + "/ql.nix", [["postInstall", 209, 9]]);
-const pos$55 = nix.positions(here + "/ql.nix", [["postInstall", 214, 9]]);
-const pos$56 = nix.positions(here + "/ql.nix", [["postInstall", 219, 9]]);
-const pos$57 = nix.positions(here + "/ql.nix", [["nativeBuildInputs", 224, 9], ["nativeLibs", 225, 9]]);
-const pos$58 = nix.positions(here + "/ql.nix", [["nativeLibs", 228, 9]]);
-const pos$59 = nix.positions(here + "/ql.nix", [["nativeLibs", 231, 9]]);
-const pos$60 = nix.positions(here + "/ql.nix", [["nativeLibs", 234, 9]]);
-const pos$61 = nix.positions(here + "/ql.nix", [["lispLibs", 237, 9]]);
-const pos$62 = nix.positions(here + "/ql.nix", [["nativeBuildInputs", 240, 9], ["nativeLibs", 241, 9]]);
-const pos$63 = nix.positions(here + "/ql.nix", [["nativeBuildInputs", 244, 9], ["nativeLibs", 245, 9]]);
-const pos$64 = nix.positions(here + "/ql.nix", [["nativeBuildInputs", 248, 9], ["nativeLibs", 249, 9]]);
-const pos$65 = nix.positions(here + "/ql.nix", [["nativeBuildInputs", 252, 9], ["nativeLibs", 253, 9]]);
-const pos$66 = nix.positions(here + "/ql.nix", [["nativeLibs", 256, 9]]);
-const pos$67 = nix.positions(here + "/ql.nix", [["propagatedBuildInputs", 259, 9]]);
-const pos$68 = nix.positions(here + "/ql.nix", [["propagatedBuildInputs", 262, 9], ["patches", 263, 9]]);
-const pos$69 = nix.positions(here + "/ql.nix", [["propagatedBuildInputs", 266, 9]]);
-const pos$70 = nix.positions(here + "/ql.nix", [["nativeLibs", 269, 9]]);
-const pos$71 = nix.positions(here + "/ql.nix", [["patches", 272, 9], ["nativeLibs", 273, 9]]);
-const pos$72 = nix.positions(here + "/ql.nix", [["lispLibs", 276, 9], ["systems", 283, 9]]);
-const pos$73 = nix.positions(here + "/ql.nix", [["lispLibs", 289, 9]]);
-const pos$74 = nix.positions(here + "/ql.nix", [["systems", 294, 9], ["lispLibs", 298, 9]]);
-const pos$75 = nix.positions(here + "/ql.nix", [["nativeLibs", 303, 9]]);
-const pos$76 = nix.positions(here + "/ql.nix", [["nativeLibs", 306, 9]]);
-const pos$77 = nix.positions(here + "/ql.nix", [["nativeLibs", 309, 9]]);
-const pos$78 = nix.positions(here + "/ql.nix", [["nativeLibs", 312, 9]]);
-const pos$79 = nix.positions(here + "/ql.nix", [["nativeLibs", 315, 9]]);
-const pos$80 = nix.positions(here + "/ql.nix", [["nativeLibs", 318, 9]]);
-const pos$81 = nix.positions(here + "/ql.nix", [["nativeLibs", 321, 9]]);
-const pos$82 = nix.positions(here + "/ql.nix", [["nativeLibs", 327, 9]]);
-const pos$83 = nix.positions(here + "/ql.nix", [["nativeLibs", 330, 9]]);
-const pos$84 = nix.positions(here + "/ql.nix", [["nativeLibs", 333, 9]]);
-const pos$85 = nix.positions(here + "/ql.nix", [["nativeLibs", 336, 9]]);
-const pos$86 = nix.positions(here + "/ql.nix", [["nativeLibs", 339, 9]]);
-const pos$87 = nix.positions(here + "/ql.nix", [["flags", 342, 9]]);
-const pos$88 = nix.positions(here + "/ql.nix", [["cl_plus_ssl", 15, 7], ["cl-cffi-gtk-glib", 18, 7], ["cl-cffi-gtk-cairo", 21, 7], ["cl-cairo2", 24, 7], ["cl-cairo2-xlib", 27, 7], ["cl-freetype2", 30, 7], ["cl-pango", 35, 7], ["cl-gtk2-gdk", 38, 7], ["cl-gtk2-glib", 41, 7], ["cl-gtk2-pango", 44, 7], ["cl-rsvg2", 47, 7], ["cl-cffi-gtk-gdk", 50, 7], ["cl-cffi-gtk-gdk-pixbuf", 53, 7], ["cl-cffi-gtk-pango", 56, 7], ["cl-gobject-introspection", 59, 7], ["cl-mysql", 65, 7], ["clsql-postgresql", 68, 7], ["clsql-sqlite3", 71, 7], ["cl-webkit2", 74, 7], ["dbd-mysql", 77, 7], ["enchant", 80, 7], ["lla", 83, 7], ["cffi", 86, 7], ["cffi-libffi", 96, 7], ["cl-rabbit", 101, 7], ["trivial-ssh-libssh2", 105, 7], ["sqlite", 108, 7], ["duckdb", 111, 7], ["cl-libuv", 114, 7], ["cl-liballegro", 118, 7], ["cl-ode", 121, 7], ["classimp", 133, 7], ["sdl2", 136, 7], ["sdl2-image", 139, 7], ["sdl2-mixer", 142, 7], ["sdl2-ttf", 145, 7], ["lispbuilder-sdl-cffi", 148, 7], ["cl-opengl", 151, 7], ["cl-glu", 154, 7], ["cl-glut", 157, 7], ["cl-glfw", 160, 7], ["cl-glfw-opengl-core", 163, 7], ["cl-glfw3", 166, 7], ["lev", 169, 7], ["cl-rdkafka", 172, 7], ["cl-async-ssl", 176, 7], ["iolib", 179, 7], ["cl-ana_dot_hdf-cffi", 188, 7], ["antik", 198, 7], ["antik-base", 203, 7], ["foreign-array", 208, 7], ["physical-dimension", 213, 7], ["science-data", 218, 7], ["gsll", 223, 7], ["cl-libyaml", 227, 7], ["cl-libxml2", 230, 7], ["cl-readline", 233, 7], ["md5", 236, 7], ["pzmq", 239, 7], ["pzmq-compat", 243, 7], ["pzmq-examples", 247, 7], ["pzmq-test", 251, 7], ["cl-git", 255, 7], ["trivial-package-manager", 258, 7], ["cl-sat_dot_glucose", 261, 7], ["cl-sat_dot_minisat", 265, 7], ["hu_dot_dwim_dot_graphviz", 268, 7], ["math", 271, 7], ["mcclim-fonts", 275, 7], ["mcclim-render", 288, 7], ["mcclim-layouts", 293, 7], ["cl-charms", 302, 7], ["libusb-ffi", 305, 7], ["jpeg-turbo", 308, 7], ["vorbisfile-ffi", 311, 7], ["png", 314, 7], ["zmq", 317, 7], ["consfigurator", 320, 7], ["cl-gss", 326, 7], ["magicffi", 329, 7], ["keystone", 332, 7], ["capstone", 335, 7], ["vk", 338, 7], ["_3d-math", 341, 7]]);
-const pos$89 = nix.positions(here + "/ql.nix", [["build-asdf-system", 348, 47]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -100,105 +12,105 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const build_asdf_system = nix.arg($, "build-asdf-system");
   const overrides = (self) => (super$) => ({
-    [nix.POS]: pos$88,
+    [nix.POS]: $pos[87],
     cl_plus_ssl: nix.thunk(() => nix.app(nix.sel(super$, "cl_plus_ssl", "overrideLispAttrs"), (o) => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         nativeLibs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "openssl"))]),
       }))),
     "cl-cffi-gtk-glib": nix.thunk(() => nix.app(nix.sel(super$, "cl-cffi-gtk-glib", "overrideLispAttrs"), (o) => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         nativeLibs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "glib"))]),
       }))),
     "cl-cffi-gtk-cairo": nix.thunk(() => nix.app(nix.sel(super$, "cl-cffi-gtk-cairo", "overrideLispAttrs"), (o) => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         nativeLibs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "cairo"))]),
       }))),
     "cl-cairo2": nix.thunk(() => nix.app(nix.sel(super$, "cl-cairo2", "overrideLispAttrs"), (o) => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         nativeLibs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "cairo"))]),
       }))),
     "cl-cairo2-xlib": nix.thunk(() => nix.app(nix.sel(super$, "cl-cairo2-xlib", "overrideLispAttrs"), (o) => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         nativeLibs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "gtk2-x11"))]),
       }))),
     "cl-freetype2": nix.thunk(() => nix.app(nix.sel(super$, "cl-freetype2", "overrideLispAttrs"), (o) => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         nativeLibs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "freetype"))]),
         nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "freetype"))]),
         patches: nix.thunk(() => [nix.path(here, "./patches/cl-freetype2-fix-grovel-includes.patch")]),
       }))),
     "cl-pango": nix.thunk(() => nix.app(nix.sel(super$, "cl-pango", "overrideLispAttrs"), (o) => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         nativeLibs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "pango"))]),
       }))),
     "cl-gtk2-gdk": nix.thunk(() => nix.app(nix.sel(super$, "cl-gtk2-gdk", "overrideLispAttrs"), (o) => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         nativeLibs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "gtk2-x11"))]),
       }))),
     "cl-gtk2-glib": nix.thunk(() => nix.app(nix.sel(super$, "cl-gtk2-glib", "overrideLispAttrs"), (o) => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         nativeLibs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "glib"))]),
       }))),
     "cl-gtk2-pango": nix.thunk(() => nix.app(nix.sel(super$, "cl-gtk2-pango", "overrideLispAttrs"), (o) => ({
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         nativeLibs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "pango"))]),
       }))),
     "cl-rsvg2": nix.thunk(() => nix.app(nix.sel(super$, "cl-rsvg2", "overrideLispAttrs"), (o) => ({
-        [nix.POS]: pos$11,
+        [nix.POS]: $pos[10],
         nativeLibs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "librsvg"))]),
       }))),
     "cl-cffi-gtk-gdk": nix.thunk(() => nix.app(nix.sel(super$, "cl-cffi-gtk-gdk", "overrideLispAttrs"), (o) => ({
-        [nix.POS]: pos$12,
+        [nix.POS]: $pos[11],
         nativeLibs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "gtk3"))]),
       }))),
     "cl-cffi-gtk-gdk-pixbuf": nix.thunk(() => nix.app(nix.sel(super$, "cl-cffi-gtk-gdk-pixbuf", "overrideLispAttrs"), (o) => ({
-        [nix.POS]: pos$13,
+        [nix.POS]: $pos[12],
         nativeLibs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "gdk-pixbuf"))]),
       }))),
     "cl-cffi-gtk-pango": nix.thunk(() => nix.app(nix.sel(super$, "cl-cffi-gtk-pango", "overrideLispAttrs"), (o) => ({
-        [nix.POS]: pos$14,
+        [nix.POS]: $pos[13],
         nativeLibs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "pango"))]),
       }))),
     "cl-gobject-introspection": nix.thunk(() => nix.app(nix.sel(super$, "cl-gobject-introspection", "overrideLispAttrs"), (o) => ({
-        [nix.POS]: pos$15,
+        [nix.POS]: $pos[14],
         nativeLibs: nix.thunk(() => [
           nix.thunk(() => nix.sel(pkgs, "glib")),
           nix.thunk(() => nix.sel(pkgs, "gobject-introspection")),
         ]),
       }))),
     "cl-mysql": nix.thunk(() => nix.app(nix.sel(super$, "cl-mysql", "overrideLispAttrs"), (o) => ({
-        [nix.POS]: pos$16,
+        [nix.POS]: $pos[15],
         nativeLibs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "mariadb", "client"))]),
       }))),
     "clsql-postgresql": nix.thunk(() => nix.app(nix.sel(super$, "clsql-postgresql", "overrideLispAttrs"), (o) => ({
-        [nix.POS]: pos$17,
+        [nix.POS]: $pos[16],
         nativeLibs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "libpq"))]),
       }))),
     "clsql-sqlite3": nix.thunk(() => nix.app(nix.sel(super$, "clsql-sqlite3", "overrideLispAttrs"), (o) => ({
-        [nix.POS]: pos$18,
+        [nix.POS]: $pos[17],
         nativeLibs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "sqlite"))]),
       }))),
     "cl-webkit2": nix.thunk(() => nix.app(nix.sel(super$, "cl-webkit2", "overrideLispAttrs"), (o) => ({
-        [nix.POS]: pos$19,
+        [nix.POS]: $pos[18],
         nativeLibs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "webkitgtk_4_1"))]),
       }))),
     "dbd-mysql": nix.thunk(() => nix.app(nix.sel(super$, "dbd-mysql", "overrideLispAttrs"), (o) => ({
-        [nix.POS]: pos$20,
+        [nix.POS]: $pos[19],
         nativeLibs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "mariadb", "client"))]),
       }))),
     enchant: nix.thunk(() => nix.app(nix.sel(super$, "enchant", "overrideLispAttrs"), (o) => ({
-        [nix.POS]: pos$21,
+        [nix.POS]: $pos[20],
         nativeLibs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "enchant_2"))]),
       }))),
     lla: nix.thunk(() => nix.app(nix.sel(super$, "lla", "overrideLispAttrs"), (o) => ({
-        [nix.POS]: pos$22,
+        [nix.POS]: $pos[21],
         nativeLibs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "openblas"))]),
       }))),
     cffi: nix.thunk(() => nix.app(nix.sel(super$, "cffi", "overrideLispAttrs"), (o) => ({
-        [nix.POS]: pos$24,
+        [nix.POS]: $pos[23],
         javaLibs: nix.thunk(() => [
           nix.thunk(() => nix.app(nix.sel(pkgs, "fetchMavenArtifact"), nix.thunk(() => ({
-              [nix.POS]: pos$23,
+              [nix.POS]: $pos[22],
               groupId: "net.java.dev.jna",
               artifactId: "jna",
               version: "5.9.0",
@@ -207,212 +119,212 @@ export default nix.lambda((args) => (() => {
         ]),
       }))),
     "cffi-libffi": nix.thunk(() => nix.app(nix.sel(super$, "cffi-libffi", "overrideLispAttrs"), (o) => ({
-        [nix.POS]: pos$25,
+        [nix.POS]: $pos[24],
         nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "libffi"))]),
         nativeLibs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "libffi"))]),
         patches: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [nix.path(here, "./patches/cffi-libffi-darwin-ffi-h.patch")]))),
       }))),
     "cl-rabbit": nix.thunk(() => nix.app(nix.sel(super$, "cl-rabbit", "overrideLispAttrs"), (o) => ({
-        [nix.POS]: pos$26,
+        [nix.POS]: $pos[25],
         nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "rabbitmq-c"))]),
         nativeLibs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "rabbitmq-c"))]),
       }))),
     "trivial-ssh-libssh2": nix.thunk(() => nix.app(nix.sel(super$, "trivial-ssh-libssh2", "overrideLispAttrs"), (o) => ({
-        [nix.POS]: pos$27,
+        [nix.POS]: $pos[26],
         nativeLibs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "libssh2"))]),
       }))),
     sqlite: nix.thunk(() => nix.app(nix.sel(super$, "sqlite", "overrideLispAttrs"), (o) => ({
-        [nix.POS]: pos$28,
+        [nix.POS]: $pos[27],
         nativeLibs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "sqlite"))]),
       }))),
     duckdb: nix.thunk(() => nix.app(nix.sel(super$, "duckdb", "overrideLispAttrs"), (o) => ({
-        [nix.POS]: pos$29,
+        [nix.POS]: $pos[28],
         nativeLibs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "duckdb"))]),
       }))),
     "cl-libuv": nix.thunk(() => nix.app(nix.sel(super$, "cl-libuv", "overrideLispAttrs"), (o) => ({
-        [nix.POS]: pos$30,
+        [nix.POS]: $pos[29],
         nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "libuv"))]),
         nativeLibs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "libuv"))]),
       }))),
     "cl-liballegro": nix.thunk(() => nix.app(nix.sel(super$, "cl-liballegro", "overrideLispAttrs"), (o) => ({
-        [nix.POS]: pos$31,
+        [nix.POS]: $pos[30],
         nativeLibs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "allegro5"))]),
       }))),
     "cl-ode": nix.thunk(() => nix.app(nix.sel(super$, "cl-ode", "overrideLispAttrs"), (o) => ({
-        [nix.POS]: pos$33,
+        [nix.POS]: $pos[32],
         nativeLibs: nix.thunk(() => (() => {
           const ode$ = nix.thunk(() => nix.app(nix.sel(pkgs, "ode", "overrideAttrs"), (o_1) => ({
-              [nix.POS]: pos$32,
+              [nix.POS]: $pos[31],
               configureFlags: nix.thunk(() => ["--enable-shared", "--enable-double-precision"]),
             })));
           return [ode$];
         })()),
       }))),
     classimp: nix.thunk(() => nix.app(nix.sel(super$, "classimp", "overrideLispAttrs"), (o) => ({
-        [nix.POS]: pos$34,
+        [nix.POS]: $pos[33],
         nativeLibs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "assimp"))]),
       }))),
     sdl2: nix.thunk(() => nix.app(nix.sel(super$, "sdl2", "overrideLispAttrs"), (o) => ({
-        [nix.POS]: pos$35,
+        [nix.POS]: $pos[34],
         nativeLibs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "SDL2"))]),
       }))),
     "sdl2-image": nix.thunk(() => nix.app(nix.sel(super$, "sdl2-image", "overrideLispAttrs"), (o) => ({
-        [nix.POS]: pos$36,
+        [nix.POS]: $pos[35],
         nativeLibs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "SDL2_image"))]),
       }))),
     "sdl2-mixer": nix.thunk(() => nix.app(nix.sel(super$, "sdl2-mixer", "overrideLispAttrs"), (o) => ({
-        [nix.POS]: pos$37,
+        [nix.POS]: $pos[36],
         nativeLibs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "SDL2_mixer"))]),
       }))),
     "sdl2-ttf": nix.thunk(() => nix.app(nix.sel(super$, "sdl2-ttf", "overrideLispAttrs"), (o) => ({
-        [nix.POS]: pos$38,
+        [nix.POS]: $pos[37],
         nativeLibs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "SDL2_ttf"))]),
       }))),
     "lispbuilder-sdl-cffi": nix.thunk(() => nix.app(nix.sel(super$, "lispbuilder-sdl-cffi", "overrideLispAttrs"), (o) => ({
-        [nix.POS]: pos$39,
+        [nix.POS]: $pos[38],
         nativeLibs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "SDL"))]),
       }))),
     "cl-opengl": nix.thunk(() => nix.app(nix.sel(super$, "cl-opengl", "overrideLispAttrs"), (o) => ({
-        [nix.POS]: pos$40,
+        [nix.POS]: $pos[39],
         nativeLibs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "libGL"))]),
       }))),
     "cl-glu": nix.thunk(() => nix.app(nix.sel(super$, "cl-glu", "overrideLispAttrs"), (o) => ({
-        [nix.POS]: pos$41,
+        [nix.POS]: $pos[40],
         nativeLibs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "libGLU"))]),
       }))),
     "cl-glut": nix.thunk(() => nix.app(nix.sel(super$, "cl-glut", "overrideLispAttrs"), (o) => ({
-        [nix.POS]: pos$42,
+        [nix.POS]: $pos[41],
         nativeLibs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "libglut"))]),
       }))),
     "cl-glfw": nix.thunk(() => nix.app(nix.sel(super$, "cl-glfw", "overrideLispAttrs"), (o) => ({
-        [nix.POS]: pos$43,
+        [nix.POS]: $pos[42],
         nativeLibs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "glfw"))]),
       }))),
     "cl-glfw-opengl-core": nix.thunk(() => nix.app(nix.sel(super$, "cl-glfw-opengl-core", "overrideLispAttrs"), (o) => ({
-        [nix.POS]: pos$44,
+        [nix.POS]: $pos[43],
         nativeLibs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "libGL"))]),
       }))),
     "cl-glfw3": nix.thunk(() => nix.app(nix.sel(super$, "cl-glfw3", "overrideLispAttrs"), (o) => ({
-        [nix.POS]: pos$45,
+        [nix.POS]: $pos[44],
         nativeLibs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "glfw"))]),
       }))),
     lev: nix.thunk(() => nix.app(nix.sel(super$, "lev", "overrideLispAttrs"), (o) => ({
-        [nix.POS]: pos$46,
+        [nix.POS]: $pos[45],
         nativeLibs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "libev"))]),
       }))),
     "cl-rdkafka": nix.thunk(() => nix.app(nix.sel(super$, "cl-rdkafka", "overrideLispAttrs"), (o) => ({
-        [nix.POS]: pos$47,
+        [nix.POS]: $pos[46],
         nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "rdkafka"))]),
         nativeLibs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "rdkafka"))]),
       }))),
     "cl-async-ssl": nix.thunk(() => nix.app(nix.sel(super$, "cl-async-ssl", "overrideLispAttrs"), (o) => ({
-        [nix.POS]: pos$48,
+        [nix.POS]: $pos[47],
         nativeLibs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "openssl"))]),
       }))),
     iolib: nix.thunk(() => nix.app(nix.sel(super$, "iolib", "overrideLispAttrs"), (o) => ({
-        [nix.POS]: pos$49,
+        [nix.POS]: $pos[48],
         nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "libfixposix"))]),
         nativeLibs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "libfixposix"))]),
         systems: nix.thunk(() => ["iolib", "iolib/os", "iolib/pathnames"]),
       }))),
     "cl-ana_dot_hdf-cffi": nix.thunk(() => nix.app(nix.sel(super$, "cl-ana_dot_hdf-cffi", "overrideLispAttrs"), (o) => ({
-        [nix.POS]: pos$51,
+        [nix.POS]: $pos[50],
         nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "hdf5"))]),
         nativeLibs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "hdf5"))]),
         env: nix.thunk(() => nix.update(nix.selOr(o, () => ({}), "env"), {
-          [nix.POS]: pos$50,
+          [nix.POS]: $pos[49],
           NIX_LDFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-lhdf5"]))),
         })),
       }))),
     antik: nix.thunk(() => nix.app(nix.sel(super$, "antik", "overrideLispAttrs"), (o) => ({
-        [nix.POS]: pos$52,
+        [nix.POS]: $pos[51],
         postInstall: nix.thunk(() => nix.add(nix.selOr(o, () => "", "postInstall"), "rm -f $out/documentation.pdf\n")),
       }))),
     "antik-base": nix.thunk(() => nix.app(nix.sel(super$, "antik-base", "overrideLispAttrs"), (o) => ({
-        [nix.POS]: pos$53,
+        [nix.POS]: $pos[52],
         postInstall: nix.thunk(() => nix.add(nix.selOr(o, () => "", "postInstall"), "rm -f $out/documentation.pdf\n")),
       }))),
     "foreign-array": nix.thunk(() => nix.app(nix.sel(super$, "foreign-array", "overrideLispAttrs"), (o) => ({
-        [nix.POS]: pos$54,
+        [nix.POS]: $pos[53],
         postInstall: nix.thunk(() => nix.add(nix.selOr(o, () => "", "postInstall"), "rm -f $out/documentation.pdf\n")),
       }))),
     "physical-dimension": nix.thunk(() => nix.app(nix.sel(super$, "physical-dimension", "overrideLispAttrs"), (o) => ({
-        [nix.POS]: pos$55,
+        [nix.POS]: $pos[54],
         postInstall: nix.thunk(() => nix.add(nix.selOr(o, () => "", "postInstall"), "rm -f $out/documentation.pdf\n")),
       }))),
     "science-data": nix.thunk(() => nix.app(nix.sel(super$, "science-data", "overrideLispAttrs"), (o) => ({
-        [nix.POS]: pos$56,
+        [nix.POS]: $pos[55],
         postInstall: nix.thunk(() => nix.add(nix.selOr(o, () => "", "postInstall"), "rm -f $out/documentation.pdf\n")),
       }))),
     gsll: nix.thunk(() => nix.app(nix.sel(super$, "gsll", "overrideLispAttrs"), (o) => ({
-        [nix.POS]: pos$57,
+        [nix.POS]: $pos[56],
         nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "gsl"))]),
         nativeLibs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "gsl"))]),
       }))),
     "cl-libyaml": nix.thunk(() => nix.app(nix.sel(super$, "cl-libyaml", "overrideLispAttrs"), (o) => ({
-        [nix.POS]: pos$58,
+        [nix.POS]: $pos[57],
         nativeLibs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "libyaml"))]),
       }))),
     "cl-libxml2": nix.thunk(() => nix.app(nix.sel(super$, "cl-libxml2", "overrideLispAttrs"), (o) => ({
-        [nix.POS]: pos$59,
+        [nix.POS]: $pos[58],
         nativeLibs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "libxml2"))]),
       }))),
     "cl-readline": nix.thunk(() => nix.app(nix.sel(super$, "cl-readline", "overrideLispAttrs"), (o) => ({
-        [nix.POS]: pos$60,
+        [nix.POS]: $pos[59],
         nativeLibs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "readline"))]),
       }))),
     md5: nix.thunk(() => nix.app(nix.sel(super$, "md5", "overrideLispAttrs"), (o) => ({
-        [nix.POS]: pos$61,
+        [nix.POS]: $pos[60],
         lispLibs: nix.thunk(() => [nix.thunk(() => nix.sel(super$, "flexi-streams"))]),
       }))),
     pzmq: nix.thunk(() => nix.app(nix.sel(super$, "pzmq", "overrideLispAttrs"), (o) => ({
-        [nix.POS]: pos$62,
+        [nix.POS]: $pos[61],
         nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "zeromq"))]),
         nativeLibs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "zeromq"))]),
       }))),
     "pzmq-compat": nix.thunk(() => nix.app(nix.sel(super$, "pzmq-compat", "overrideLispAttrs"), (o) => ({
-        [nix.POS]: pos$63,
+        [nix.POS]: $pos[62],
         nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "zeromq"))]),
         nativeLibs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "zeromq"))]),
       }))),
     "pzmq-examples": nix.thunk(() => nix.app(nix.sel(super$, "pzmq-examples", "overrideLispAttrs"), (o) => ({
-        [nix.POS]: pos$64,
+        [nix.POS]: $pos[63],
         nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "zeromq"))]),
         nativeLibs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "zeromq"))]),
       }))),
     "pzmq-test": nix.thunk(() => nix.app(nix.sel(super$, "pzmq-test", "overrideLispAttrs"), (o) => ({
-        [nix.POS]: pos$65,
+        [nix.POS]: $pos[64],
         nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "zeromq"))]),
         nativeLibs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "zeromq"))]),
       }))),
     "cl-git": nix.thunk(() => nix.app(nix.sel(super$, "cl-git", "overrideLispAttrs"), (o) => ({
-        [nix.POS]: pos$66,
+        [nix.POS]: $pos[65],
         nativeLibs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "libgit2"))]),
       }))),
     "trivial-package-manager": nix.thunk(() => nix.app(nix.sel(super$, "trivial-package-manager", "overrideLispAttrs"), (o) => ({
-        [nix.POS]: pos$67,
+        [nix.POS]: $pos[66],
         propagatedBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "which"))]),
       }))),
     "cl-sat_dot_glucose": nix.thunk(() => nix.app(nix.sel(super$, "cl-sat_dot_glucose", "overrideLispAttrs"), (o) => ({
-        [nix.POS]: pos$68,
+        [nix.POS]: $pos[67],
         propagatedBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "glucose"))]),
         patches: nix.thunk(() => [nix.path(here, "./patches/cl-sat-binary-from-path.patch")]),
       }))),
     "cl-sat_dot_minisat": nix.thunk(() => nix.app(nix.sel(super$, "cl-sat_dot_minisat", "overrideLispAttrs"), (o) => ({
-        [nix.POS]: pos$69,
+        [nix.POS]: $pos[68],
         propagatedBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "minisat"))]),
       }))),
     hu_dot_dwim_dot_graphviz: nix.thunk(() => nix.app(nix.sel(super$, "hu_dot_dwim_dot_graphviz", "overrideLispAttrs"), (o) => ({
-        [nix.POS]: pos$70,
+        [nix.POS]: $pos[69],
         nativeLibs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "graphviz"))]),
       }))),
     math: nix.thunk(() => nix.app(nix.sel(super$, "math", "overrideLispAttrs"), (o) => ({
-        [nix.POS]: pos$71,
+        [nix.POS]: $pos[70],
         patches: nix.thunk(() => [nix.path(here, "./patches/math-no-compile-time-directory.patch")]),
         nativeLibs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "fontconfig"))]),
       }))),
     "mcclim-fonts": nix.thunk(() => nix.app(nix.sel(super$, "mcclim-fonts", "overrideLispAttrs"), (o) => ({
-        [nix.POS]: pos$72,
+        [nix.POS]: $pos[71],
         lispLibs: nix.thunk(() => nix.concat(nix.sel(o, "lispLibs"), [
           nix.thunk(() => nix.sel(super$, "cl-dejavu")),
           nix.thunk(() => nix.sel(super$, "zpb-ttf")),
@@ -423,71 +335,71 @@ export default nix.lambda((args) => (() => {
         systems: nix.thunk(() => ["mcclim-fonts", "mcclim-fonts/truetype"]),
       }))),
     "mcclim-render": nix.thunk(() => nix.app(nix.sel(super$, "mcclim-render", "overrideLispAttrs"), (o) => ({
-        [nix.POS]: pos$73,
+        [nix.POS]: $pos[72],
         lispLibs: nix.thunk(() => nix.concat(nix.sel(o, "lispLibs"), [nix.thunk(() => nix.sel(self, "mcclim-fonts"))])),
       }))),
     "mcclim-layouts": nix.thunk(() => nix.app(nix.sel(super$, "mcclim-layouts", "overrideLispAttrs"), (o) => ({
-        [nix.POS]: pos$74,
+        [nix.POS]: $pos[73],
         systems: nix.thunk(() => ["mcclim-layouts", "mcclim-layouts/tab"]),
         lispLibs: nix.thunk(() => nix.concat(nix.sel(o, "lispLibs"), [nix.thunk(() => nix.sel(self, "mcclim"))])),
       }))),
     "cl-charms": nix.thunk(() => nix.app(nix.sel(super$, "cl-charms", "overrideLispAttrs"), (o) => ({
-        [nix.POS]: pos$75,
+        [nix.POS]: $pos[74],
         nativeLibs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "ncurses"))]),
       }))),
     "libusb-ffi": nix.thunk(() => nix.app(nix.sel(super$, "libusb-ffi", "overrideLispAttrs"), (o) => ({
-        [nix.POS]: pos$76,
+        [nix.POS]: $pos[75],
         nativeLibs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "libusb-compat-0_1"))]),
       }))),
     "jpeg-turbo": nix.thunk(() => nix.app(nix.sel(super$, "jpeg-turbo", "overrideLispAttrs"), (o) => ({
-        [nix.POS]: pos$77,
+        [nix.POS]: $pos[76],
         nativeLibs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "libjpeg_turbo"))]),
       }))),
     "vorbisfile-ffi": nix.thunk(() => nix.app(nix.sel(super$, "vorbisfile-ffi", "overrideLispAttrs"), (o) => ({
-        [nix.POS]: pos$78,
+        [nix.POS]: $pos[77],
         nativeLibs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "libvorbis"))]),
       }))),
     png: nix.thunk(() => nix.app(nix.sel(super$, "png", "overrideLispAttrs"), (o) => ({
-        [nix.POS]: pos$79,
+        [nix.POS]: $pos[78],
         nativeLibs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "libpng"))]),
       }))),
     zmq: nix.thunk(() => nix.app(nix.sel(super$, "zmq", "overrideLispAttrs"), (o) => ({
-        [nix.POS]: pos$80,
+        [nix.POS]: $pos[79],
         nativeLibs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "czmq"))]),
       }))),
     consfigurator: nix.thunk(() => nix.app(nix.sel(super$, "consfigurator", "overrideLispAttrs"), (o) => ({
-        [nix.POS]: pos$81,
+        [nix.POS]: $pos[80],
         nativeLibs: nix.thunk(() => [
           nix.thunk(() => nix.sel(pkgs, "acl")),
           nix.thunk(() => nix.sel(pkgs, "libcap")),
         ]),
       }))),
     "cl-gss": nix.thunk(() => nix.app(nix.sel(super$, "cl-gss", "overrideLispAttrs"), (o) => ({
-        [nix.POS]: pos$82,
+        [nix.POS]: $pos[81],
         nativeLibs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "libkrb5"))]),
       }))),
     magicffi: nix.thunk(() => nix.app(nix.sel(super$, "magicffi", "overrideLispAttrs"), (o) => ({
-        [nix.POS]: pos$83,
+        [nix.POS]: $pos[82],
         nativeLibs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "file"))]),
       }))),
     keystone: nix.thunk(() => nix.app(nix.sel(super$, "keystone", "overrideLispAttrs"), (o) => ({
-        [nix.POS]: pos$84,
+        [nix.POS]: $pos[83],
         nativeLibs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "keystone"))]),
       }))),
     capstone: nix.thunk(() => nix.app(nix.sel(super$, "capstone", "overrideLispAttrs"), (o) => ({
-        [nix.POS]: pos$85,
+        [nix.POS]: $pos[84],
         nativeLibs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "capstone"))]),
       }))),
     vk: nix.thunk(() => nix.app(nix.sel(super$, "vk", "overrideLispAttrs"), (o) => ({
-        [nix.POS]: pos$86,
+        [nix.POS]: $pos[85],
         nativeLibs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "vulkan-loader"))]),
       }))),
     "_3d-math": nix.thunk(() => nix.app(nix.sel(super$, "_3d-math", "overrideLispAttrs"), (o) => ({
-        [nix.POS]: pos$87,
+        [nix.POS]: $pos[86],
         flags: nix.thunk(() => nix.concat(nix.sel(o, "flags"), (nix.asBool(nix.eq(nix.sel(o, "program"), "sbcl")) ? ["--dynamic-space-size 4096"] : []))),
       }))),
   });
-  const qlpkgs = nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.builtins.pathExists(nix.path(here, "./imported.nix"))), nix.thunk(() => nix.app(nix.sel(pkgs, "callPackage"), nix.path(here, "./imported.nix"), nix.thunk(() => ({ [nix.POS]: pos$89, "build-asdf-system": build_asdf_system }))))));
+  const qlpkgs = nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.builtins.pathExists(nix.path(here, "./imported.nix"))), nix.thunk(() => nix.app(nix.sel(pkgs, "callPackage"), nix.path(here, "./imported.nix"), nix.thunk(() => ({ [nix.POS]: $pos[88], "build-asdf-system": build_asdf_system }))))));
   return nix.app(nix.sel(qlpkgs, "overrideScope"), overrides);
 })(), formals$1);
 //# sourceMappingURL=ql.ts.map

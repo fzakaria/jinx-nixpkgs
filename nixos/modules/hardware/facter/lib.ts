@@ -2,9 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/lib.nix", [[["hasCpu", 51, 5], ["collectDrivers", 52, 5], ["toZeroPaddedHex", 53, 5], ["hasAmdCpu", 56, 3], ["hasIntelCpu", 57, 3]]]);
 const formals$1 = { args: { hardware: true }, ellipsis: true };
 const formals$2 = { args: { vendor_name: true }, ellipsis: true };
-const pos$1 = nix.positions(here + "/lib.nix", [["hasCpu", 51, 5], ["collectDrivers", 52, 5], ["toZeroPaddedHex", 53, 5], ["hasAmdCpu", 56, 3], ["hasIntelCpu", 57, 3]]);
 
 export default (lib) => (() => {
   const assertMsg = nix.thunk(() => nix.attr(lib, "assertMsg"));
@@ -28,7 +28,7 @@ export default (lib) => (() => {
     return (nix.asBool(nix.eq(len, 1n)) ? nix.str`000${hex}` : (nix.asBool(nix.eq(len, 2n)) ? nix.str`00${hex}` : (nix.asBool(nix.eq(len, 3n)) ? nix.str`0${hex}` : nix.force(hex))));
   })();
   return {
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     hasCpu: hasCpu,
     collectDrivers: collectDrivers,
     toZeroPaddedHex: toZeroPaddedHex,

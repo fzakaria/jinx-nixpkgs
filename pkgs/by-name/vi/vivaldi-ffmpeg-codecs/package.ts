@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 16, 7], ["hash", 17, 7]], [["url", 20, 7], ["hash", 21, 7]], [["x86_64-linux", 15, 5], ["aarch64-linux", 19, 5]], [["sources", 43, 13], ["updateScript", 44, 5]], [["description", 48, 5], ["homepage", 49, 5], ["sourceProvenance", 50, 5], ["license", 51, 5], ["maintainers", 52, 5], ["platforms", 58, 5]], [["pname", 26, 3], ["version", 28, 3], ["src", 30, 3], ["buildInputs", 32, 3], ["unpackPhase", 34, 3], ["installPhase", 38, 3], ["passthru", 42, 3], ["meta", 47, 3]]]);
 const formals$1 = { args: { fetchurl: false, lib: false, "squashfs-tools": false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 16, 7], ["hash", 17, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 20, 7], ["hash", 21, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["x86_64-linux", 15, 5], ["aarch64-linux", 19, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["sources", 43, 13], ["updateScript", 44, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 48, 5], ["homepage", 49, 5], ["sourceProvenance", 50, 5], ["license", 51, 5], ["maintainers", 52, 5], ["platforms", 58, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 26, 3], ["version", 28, 3], ["src", 30, 3], ["buildInputs", 32, 3], ["unpackPhase", 34, 3], ["installPhase", 38, 3], ["passthru", 42, 3], ["meta", 47, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,20 +12,20 @@ export default nix.lambda((args) => (() => {
   const squashfs_tools = nix.arg($, "squashfs-tools");
   const stdenv = nix.arg($, "stdenv");
   const sources = nix.thunk(() => ({
-    [nix.POS]: pos$3,
+    [nix.POS]: $pos[2],
     "x86_64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         url: "https://api.snapcraft.io/api/v1/snaps/download/XXzVIXswXKHqlUATPqGCj2w2l7BxosS8_118.snap",
         hash: "sha256-NYSbCLPCr2oxrVUokEC8g1BiZfIcQLaNKeMBkMNCsaI=",
       })))),
     "aarch64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         url: "https://api.snapcraft.io/api/v1/snaps/download/XXzVIXswXKHqlUATPqGCj2w2l7BxosS8_119.snap",
         hash: "sha256-ehepMMrt0GO9zoi40fFbO4sEQSgRJjbQax6efQnmF60=",
       })))),
   }));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "chromium-codecs-ffmpeg-extra",
       version: "0-unstable-2026-05-18",
       src: nix.thunk(() => nix.sel(sources, nix.key(nix.str`${nix.sel(stdenv, "hostPlatform", "system")}`))),
@@ -39,12 +34,12 @@ export default nix.lambda((args) => (() => {
       installPhase: nix.thunk(() => nix.str`install -vD chromium-ffmpeg-git-${nix.app(nix.sel(lib, "removePrefix"), "0-unstable-", nix.thunk(() => nix.sel(finalAttrs, "version")))}/chromium-ffmpeg/libffmpeg.so $out/lib/libffmpeg.so
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         sources: sources,
         updateScript: nix.path(here, "./update.sh"),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Additional support for proprietary codecs for Vivaldi and other chromium based tools",
         homepage: "https://ffmpeg.org/",
         sourceProvenance: nix.thunk(() => (() => {

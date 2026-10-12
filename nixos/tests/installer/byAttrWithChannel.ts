@@ -2,14 +2,14 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/byAttrWithChannel.nix", [[["modules", 8, 3]]]);
 const formals$1 = { args: { evalConfig: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/byAttrWithChannel.nix", [["modules", 8, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const evalConfig = nix.argOr($, "evalConfig", () => nix.builtins.import(nix.builtins.findFile(nix.builtins.nixPath, "nixpkgs/nixos/lib/eval-config.nix")));
   return nix.app(evalConfig, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       modules: nix.thunk(() => [
         nix.path(here, "./configuration.nix"),
         nix.thunk(() => nix.builtins.import(nix.builtins.findFile(nix.builtins.nixPath, "nixpkgs/nixos/modules/testing/test-instrumentation.nix"))),

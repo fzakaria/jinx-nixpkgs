@@ -2,18 +2,17 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["timeout", 8, 10]], [["buildInputs", 5, 5], ["meta", 8, 5]]]);
 const formals$1 = { args: { runCommandCC: false, tfk8s: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["timeout", 8, 10]]);
-const pos$2 = nix.positions(here + "/default.nix", [["buildInputs", 5, 5], ["meta", 8, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const runCommandCC = nix.arg($, "runCommandCC");
   const tfk8s = nix.arg($, "tfk8s");
   return nix.app(runCommandCC, "tfk8s-test-sample1", nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       buildInputs: nix.thunk(() => [tfk8s]),
-      meta: nix.thunk(() => ({ [nix.POS]: pos$1, timeout: 60n })),
+      meta: nix.thunk(() => ({ [nix.POS]: $pos[0], timeout: 60n })),
     })), nix.thunk(() => nix.str`cmp <(${tfk8s}/bin/tfk8s -f ${nix.path(here, "./input.yaml")}) ${nix.path(here, "./output.tf")} > $out
 `));
 })(), formals$1);

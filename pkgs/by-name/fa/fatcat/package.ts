@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]], [["url", 23, 7], ["hash", 24, 7]], [["CXXFLAGS", 29, 5]], [["rev-prefix", 37, 5]], [["updateScript", 36, 12]], [["description", 41, 5], ["mainProgram", 42, 5], ["homepage", 43, 5], ["license", 44, 5], ["maintainers", 45, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["patches", 20, 3], ["env", 28, 3], ["nativeBuildInputs", 32, 3], ["passthru", 36, 3], ["meta", 40, 3]]]);
 const formals$1 = { args: { lib: false, fetchpatch: false, stdenv: false, fetchFromGitHub: false, cmake: false, gitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 23, 7], ["hash", 24, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["CXXFLAGS", 29, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["rev-prefix", 37, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["updateScript", 36, 12]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 41, 5], ["mainProgram", 42, 5], ["homepage", 43, 5], ["license", 44, 5], ["maintainers", 45, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["patches", 20, 3], ["env", 28, 3], ["nativeBuildInputs", 32, 3], ["passthru", 36, 3], ["meta", 40, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const cmake = nix.arg($, "cmake");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "fatcat",
       version: "1.1.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Gregwar",
           repo: "fatcat",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -32,19 +26,19 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/Gregwar/fatcat/commit/2e3476a84cbe32598d36b5506c21025b3f94eb03.patch",
             hash: "sha256-e5qGcpdHhbp2mZ7O3vBAJnSW5K2aXEfNVUfK/brx9a8=",
           })))),
       ]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$3, CXXFLAGS: "-std=c++11" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[2], CXXFLAGS: "-std=c++11" })),
       nativeBuildInputs: nix.thunk(() => [cmake]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$4, "rev-prefix": "v" })))),
+        [nix.POS]: $pos[4],
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[3], "rev-prefix": "v" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "FAT filesystems explore, extract, repair, and forensic tool",
         mainProgram: "fatcat",
         homepage: "https://github.com/Gregwar/fatcat",

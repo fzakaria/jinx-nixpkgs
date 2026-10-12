@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["license", 12, 5], ["maintainers", 13, 5], ["homepage", 14, 5], ["description", 15, 5], ["platforms", 16, 26]], [["version", 8, 3], ["pname", 9, 3], ["meta", 11, 3], ["src", 19, 3], ["dontBuild", 21, 3], ["installPhase", 23, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, ocaml: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["license", 12, 5], ["maintainers", 13, 5], ["homepage", 14, 5], ["description", 15, 5], ["platforms", 16, 26]]);
-const pos$2 = nix.positions(here + "/default.nix", [["version", 8, 3], ["pname", 9, 3], ["meta", 11, 3], ["src", 19, 3], ["dontBuild", 21, 3], ["installPhase", 23, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -12,13 +11,13 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const ocaml = nix.arg($, "ocaml");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       version: "0.1",
       pname: nix.thunk(() => nix.str`ocaml${nix.sel(ocaml, "version")}-seq`),
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(ocaml, "meta"));
         return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21")),
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "vbgl"))]),
         homepage: "https://github.com/c-cube/seq",

@@ -2,9 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/config.nix", [[["name", 39, 3], ["dontUnpack", 40, 3], ["installPhase", 42, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false }, ellipsis: false };
 const formals$2 = { args: { paths: false, disabledDefaultBackends: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/config.nix", [["name", 39, 3], ["dontUnpack", 40, 3], ["installPhase", 42, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -41,7 +41,7 @@ fi
 sed -i 's/\\b${backend}\\b/# ${backend} disabled by nixos config/' $out/etc/sane.d/dll.conf
 `;
     return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         name: "sane-config",
         dontUnpack: true,
         installPhase: nix.thunk(() => nix.add(nix.add("function symlink () {\n  local target=$1 linkname=$2\n  if [ -e \"$linkname\" ]; then\n    echo \"warning: conflict for $linkname. Overriding $(readlink $linkname) with $target.\"\n  fi\n  ln -sfn \"$target\" \"$linkname\"\n}\n\nmkdir -p $out/etc/sane.d $out/etc/sane.d/dll.d $out/lib/sane\n", nix.app(nix.sel(lib, "concatMapStrings"), installSanePath, paths)), nix.app(nix.sel(lib, "concatMapStrings"), disableBackend, disabledDefaultBackends))),

@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["name", 22, 5], ["url", 23, 5], ["sha256", 24, 5]], [["url", 34, 5], ["hash", 35, 5]], [["buildInputs", 70, 11]], [["uses-curses", 67, 5]], [["tests", 66, 12]], [["description", 83, 5], ["homepage", 84, 5], ["license", 85, 5], ["maintainers", 86, 5], ["platforms", 87, 5]], [["pname", 30, 3], ["version", 31, 3], ["src", 33, 3], ["patches", 38, 3], ["postPatch", 40, 3], ["nativeBuildInputs", 44, 3], ["buildInputs", 45, 3], ["doCheck", 50, 3], ["preConfigure", 52, 3], ["postInstall", 62, 3], ["passthru", 66, 3], ["meta", 82, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, fetchzip: false, perl: false, ncurses: false, aspell: false, glibc: false, runCommand: false, searchNixProfiles: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["name", 22, 5], ["url", 23, 5], ["sha256", 24, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["url", 34, 5], ["hash", 35, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["buildInputs", 70, 11]]);
-const pos$4 = nix.positions(here + "/default.nix", [["uses-curses", 67, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["tests", 66, 12]]);
-const pos$6 = nix.positions(here + "/default.nix", [["description", 83, 5], ["homepage", 84, 5], ["license", 85, 5], ["maintainers", 86, 5], ["platforms", 87, 5]]);
-const pos$7 = nix.positions(here + "/default.nix", [["pname", 30, 3], ["version", 31, 3], ["src", 33, 3], ["patches", 38, 3], ["postPatch", 40, 3], ["nativeBuildInputs", 44, 3], ["buildInputs", 45, 3], ["doCheck", 50, 3], ["preConfigure", 52, 3], ["postInstall", 62, 3], ["passthru", 66, 3], ["meta", 82, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,7 +18,7 @@ export default nix.lambda((args) => (() => {
   const runCommand = nix.arg($, "runCommand");
   const searchNixProfiles = nix.argOr($, "searchNixProfiles", () => true);
   const devaMapsSource = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: "aspell-u-deva",
       url: "https://ftp.gnu.org/gnu/aspell/dict/mr/aspell6-mr-0.10-0.tar.bz2",
       sha256: "1v8cdl8x2j1d4vbvsq1xrqys69bbccd6mi03fywrhkrrljviyri1",
@@ -33,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const pname = "aspell";
       const version = "0.60.8.2";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: nix.thunk(() => nix.str`mirror://gnu/aspell/aspell-${version}.tar.gz`),
           hash: "sha256-V/5IY+rmBI9yJFqFdbRLcY+4XKFLn4wK/EGyVN/XaRk=",
         }))));
@@ -47,10 +41,10 @@ export default nix.lambda((args) => (() => {
       const postInstall = nix.thunk(() => nix.str`cp ${devaMapsSource}/u-deva.{cmap,cset} $out/lib/aspell/
 `);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
-          "uses-curses": nix.thunk(() => nix.app(runCommand, "aspell-curses", nix.thunk(() => ({ [nix.POS]: pos$3, buildInputs: nix.thunk(() => [glibc]) })), nix.thunk(() => nix.str`if ! ldd ${aspell}/bin/aspell | grep -q ${ncurses}
+          [nix.POS]: $pos[3],
+          "uses-curses": nix.thunk(() => nix.app(runCommand, "aspell-curses", nix.thunk(() => ({ [nix.POS]: $pos[2], buildInputs: nix.thunk(() => [glibc]) })), nix.thunk(() => nix.str`if ! ldd ${aspell}/bin/aspell | grep -q ${ncurses}
 then
   echo "Test failure: It does not look like aspell picked up the curses dependency."
   exit 1
@@ -60,7 +54,7 @@ touch $out
         })),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Spell checker for many languages",
         homepage: "http://aspell.net/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl2Plus")),
@@ -71,7 +65,7 @@ touch $out
         })()),
       }));
       return {
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         pname,
         version,
         src,

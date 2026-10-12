@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["rev", 20, 5], ["hash", 21, 5]], [["description", 77, 5], ["mainProgram", 78, 5], ["homepage", 79, 5], ["license", 80, 5], ["platforms", 85, 5], ["maintainers", 86, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["patches", 24, 3], ["buildInputs", 30, 3], ["nativeBuildInputs", 35, 3], ["configureFlags", 41, 3], ["makeFlags", 49, 3], ["enableParallelBuilding", 51, 3], ["postInstall", 53, 3], ["meta", 76, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, "util-linux": false, ncurses: false, flex: false, bison: false, lua5_4: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["rev", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 77, 5], ["mainProgram", 78, 5], ["homepage", 79, 5], ["license", 80, 5], ["platforms", 85, 5], ["maintainers", 86, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["patches", 24, 3], ["buildInputs", 30, 3], ["nativeBuildInputs", 35, 3], ["configureFlags", 41, 3], ["makeFlags", 49, 3], ["enableParallelBuilding", 51, 3], ["postInstall", 53, 3], ["meta", 76, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const bison = nix.arg($, "bison");
   const lua5_4 = nix.arg($, "lua5_4");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "unnethack",
       version: "6.0.14",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "UnNetHack",
           repo: "UnNetHack",
           rev: "c8c1a467bb114fc7cb9967d20ebf389e11e1e7fd",
@@ -62,7 +60,7 @@ EOF
 chmod +x $out/bin/unnethack
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Fork of NetHack",
         mainProgram: "unnethack",
         homepage: "https://unnethack.wordpress.com/",

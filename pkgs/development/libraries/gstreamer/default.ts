@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["ipu6-camera-hal", 43, 7]], [["ipu6-camera-hal", 46, 7]], [["ipuVariant", 50, 7]], [["ipuVariant", 53, 7], ["ipu7x-camera-hal", 54, 7]], [["apple-sdk_gstreamer", 17, 5], ["gstreamer", 19, 5], ["gstreamermm", 21, 5], ["gst-plugins-base", 23, 5], ["gst-plugins-good", 25, 5], ["gst-plugins-bad", 27, 5], ["gst-plugins-ugly", 29, 5], ["gst-plugins-rs", 31, 5], ["gst-rtsp-server", 33, 5], ["gst-libav", 35, 5], ["gst-devtools", 37, 5], ["gst-editing-services", 39, 5], ["icamerasrc-ipu6", 41, 5], ["icamerasrc-ipu6ep", 42, 5], ["icamerasrc-ipu6epmtl", 45, 5], ["icamerasrc-ipu7x", 49, 5], ["icamerasrc-ipu75xa", 52, 5]], [["gst-plugins-viperfx", 60, 5], ["gst-vaapi", 61, 5]]]);
 const formals$1 = { args: { config: false, lib: false, newScope: false, "apple-sdk": false, "ipu6ep-camera-hal": false, "ipu6epmtl-camera-hal": false, "ipu75xa-camera-hal": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["ipu6-camera-hal", 43, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["ipu6-camera-hal", 46, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["ipuVariant", 50, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["ipuVariant", 53, 7], ["ipu7x-camera-hal", 54, 7]]);
-const pos$5 = nix.positions(here + "/default.nix", [["apple-sdk_gstreamer", 17, 5], ["gstreamer", 19, 5], ["gstreamermm", 21, 5], ["gst-plugins-base", 23, 5], ["gst-plugins-good", 25, 5], ["gst-plugins-bad", 27, 5], ["gst-plugins-ugly", 29, 5], ["gst-plugins-rs", 31, 5], ["gst-rtsp-server", 33, 5], ["gst-libav", 35, 5], ["gst-devtools", 37, 5], ["gst-editing-services", 39, 5], ["icamerasrc-ipu6", 41, 5], ["icamerasrc-ipu6ep", 42, 5], ["icamerasrc-ipu6epmtl", 45, 5], ["icamerasrc-ipu7x", 49, 5], ["icamerasrc-ipu75xa", 52, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["gst-plugins-viperfx", 60, 5], ["gst-vaapi", 61, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,7 +17,7 @@ export default nix.lambda((args) => (() => {
   return nix.app(nix.sel(lib, "makeScope"), newScope, (self) => (() => {
       const callPackage = nix.thunk(() => nix.attr(self, "callPackage"));
       return nix.update({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         "apple-sdk_gstreamer": apple_sdk,
         gstreamer: nix.thunk(() => nix.app(callPackage, nix.path(here, "./core"), nix.thunk(() => ({})))),
         gstreamermm: nix.thunk(() => nix.app(callPackage, nix.path(here, "./gstreamermm"), nix.thunk(() => ({})))),
@@ -36,12 +31,16 @@ export default nix.lambda((args) => (() => {
         "gst-devtools": nix.thunk(() => nix.app(callPackage, nix.path(here, "./devtools"), nix.thunk(() => ({})))),
         "gst-editing-services": nix.thunk(() => nix.app(callPackage, nix.path(here, "./ges"), nix.thunk(() => ({})))),
         "icamerasrc-ipu6": nix.thunk(() => nix.app(callPackage, nix.path(here, "./icamerasrc"), nix.thunk(() => ({})))),
-        "icamerasrc-ipu6ep": nix.thunk(() => nix.app(callPackage, nix.path(here, "./icamerasrc"), nix.thunk(() => ({ [nix.POS]: pos$1, "ipu6-camera-hal": ipu6ep_camera_hal })))),
-        "icamerasrc-ipu6epmtl": nix.thunk(() => nix.app(callPackage, nix.path(here, "./icamerasrc"), nix.thunk(() => ({ [nix.POS]: pos$2, "ipu6-camera-hal": ipu6epmtl_camera_hal })))),
-        "icamerasrc-ipu7x": nix.thunk(() => nix.app(callPackage, nix.path(here, "./icamerasrc"), nix.thunk(() => ({ [nix.POS]: pos$3, ipuVariant: "ipu7" })))),
-        "icamerasrc-ipu75xa": nix.thunk(() => nix.app(callPackage, nix.path(here, "./icamerasrc"), nix.thunk(() => ({ [nix.POS]: pos$4, ipuVariant: "ipu7", "ipu7x-camera-hal": ipu75xa_camera_hal })))),
+        "icamerasrc-ipu6ep": nix.thunk(() => nix.app(callPackage, nix.path(here, "./icamerasrc"), nix.thunk(() => ({ [nix.POS]: $pos[0], "ipu6-camera-hal": ipu6ep_camera_hal })))),
+        "icamerasrc-ipu6epmtl": nix.thunk(() => nix.app(callPackage, nix.path(here, "./icamerasrc"), nix.thunk(() => ({ [nix.POS]: $pos[1], "ipu6-camera-hal": ipu6epmtl_camera_hal })))),
+        "icamerasrc-ipu7x": nix.thunk(() => nix.app(callPackage, nix.path(here, "./icamerasrc"), nix.thunk(() => ({ [nix.POS]: $pos[2], ipuVariant: "ipu7" })))),
+        "icamerasrc-ipu75xa": nix.thunk(() => nix.app(callPackage, nix.path(here, "./icamerasrc"), nix.thunk(() => ({
+            [nix.POS]: $pos[3],
+            ipuVariant: "ipu7",
+            "ipu7x-camera-hal": ipu75xa_camera_hal,
+          })))),
       }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(config, "allowAliases")), nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           "gst-plugins-viperfx": nix.thunk(() => nix.builtins.throw("'gst_all_1.gst-plugins-viperfx' was removed as it is broken and not maintained upstream")),
           "gst-vaapi": nix.thunk(() => nix.builtins.throw("'gst_all_1.gst-vaapi' has been removed in GStreamer 1.28. Users are recommended to switch to gst-plugins-bad, however it is not an in-place upgrade.")),
         }))));

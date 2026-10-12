@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]], [["CGO_ENABLED", 28, 7]], [["homepage", 67, 5], ["changelog", 68, 5], ["description", 69, 5], ["mainProgram", 70, 5], ["longDescription", 71, 5], ["license", 77, 5], ["maintainers", 78, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["vendorHash", 21, 3], ["nativeBuildInputs", 23, 3], ["subPackages", 26, 3], ["env", 28, 3], ["ldflags", 30, 3], ["checkFlags", 36, 3], ["nativeCheckInputs", 41, 3], ["preCheck", 42, 3], ["postInstall", 59, 3], ["meta", 66, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildGoModule: false, fetchFromGitHub: false, gitMinimal: false, installShellFiles: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["CGO_ENABLED", 28, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 67, 5], ["changelog", 68, 5], ["description", 69, 5], ["mainProgram", 70, 5], ["longDescription", 71, 5], ["license", 77, 5], ["maintainers", 78, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["vendorHash", 21, 3], ["nativeBuildInputs", 23, 3], ["subPackages", 26, 3], ["env", 28, 3], ["ldflags", 30, 3], ["checkFlags", 36, 3], ["nativeCheckInputs", 41, 3], ["preCheck", 42, 3], ["postInstall", 59, 3], ["meta", 66, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const gitMinimal = nix.arg($, "gitMinimal");
   const installShellFiles = nix.arg($, "installShellFiles");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "ko",
       version: "0.19.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ko-build",
           repo: "ko",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -30,7 +27,7 @@ export default nix.lambda((args) => (() => {
       vendorHash: "sha256-f9eSrBhevZ+eS/ct28GoDfoGu1NT+hVLvZwi2euqBe0=",
       nativeBuildInputs: nix.thunk(() => [installShellFiles]),
       subPackages: ".",
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, CGO_ENABLED: 0n })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], CGO_ENABLED: 0n })),
       ldflags: nix.thunk(() => [
         "-s",
         "-w",
@@ -41,7 +38,7 @@ export default nix.lambda((args) => (() => {
       preCheck: "# Feed in all the tests for testing\n# This is because subPackages above limits what is built to just what we\n# want but also limits the tests\ngetGoDirs() {\n  go list ./...\n}\n\n# resolves some complaints from ko\nexport GOROOT=\"$(go env GOROOT)\"\ngit init\n\n# ko tests will fail if any of those env are set, as ko tries\n# to make sure it can build and target multiple GOOS/GOARCH\nunset GOOS GOARCH GOARM\n",
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "installShellCompletion --cmd ko \\\n  --bash <($out/bin/ko completion bash) \\\n  --fish <($out/bin/ko completion fish) \\\n  --zsh <($out/bin/ko completion zsh)\n")),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/ko-build/ko",
         changelog: nix.thunk(() => nix.str`https://github.com/ko-build/ko/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "Build and deploy Go applications",

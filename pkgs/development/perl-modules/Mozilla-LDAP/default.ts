@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["USE_OPENLDAP", 13, 5], ["LDAPSDKDIR", 14, 5], ["LDAPSDKLIBDIR", 15, 5]], [["url", 19, 5], ["sha256", 20, 5]], [["description", 23, 5], ["homepage", 24, 5], ["license", 25, 5]], [["pname", 9, 3], ["version", 10, 3], ["env", 12, 3], ["src", 18, 3], ["meta", 22, 3]]]);
 const formals$1 = { args: { lib: false, fetchurl: false, openldap: false, buildPerlPackage: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["USE_OPENLDAP", 13, 5], ["LDAPSDKDIR", 14, 5], ["LDAPSDKLIBDIR", 15, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["url", 19, 5], ["sha256", 20, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 23, 5], ["homepage", 24, 5], ["license", 25, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 9, 3], ["version", 10, 3], ["env", 12, 3], ["src", 18, 3], ["meta", 22, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,18 +15,18 @@ export default nix.lambda((args) => (() => {
       const pname = "Mozilla-Ldap";
       const version = "1.5.3";
       const env = nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         USE_OPENLDAP: 1n,
         LDAPSDKDIR: nix.thunk(() => nix.sel(openldap, "dev")),
         LDAPSDKLIBDIR: nix.thunk(() => nix.str`${nix.sel(openldap, "out")}/lib`),
       }));
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: nix.thunk(() => nix.str`https://ftp.mozilla.org/pub/directory/perldap/releases/${version}/src/perl-mozldap-${version}.tar.gz`),
           sha256: "0s0albdw0zvg3w37s7is7gddr4mqwicjxxsy400n1p96l7ipnw4x",
         }))));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Mozilla's ldap client library",
         homepage: "https://metacpan.org/release/perldap",
         license: nix.thunk(() => (() => {
@@ -41,7 +38,7 @@ export default nix.lambda((args) => (() => {
           ];
         })()),
       }));
-      return { [nix.POS]: pos$4, pname, version, env, src, meta };
+      return { [nix.POS]: $pos[3], pname, version, env, src, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

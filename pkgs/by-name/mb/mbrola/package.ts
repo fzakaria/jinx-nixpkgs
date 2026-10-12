@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["license", 14, 5], ["maintainers", 15, 5], ["platforms", 16, 5], ["description", 17, 5], ["homepage", 18, 5]], [["owner", 26, 7], ["repo", 27, 7], ["rev", 28, 7], ["hash", 29, 7]], [["NIX_CFLAGS_COMPILE", 36, 7]], [["description", 47, 7]], [["pname", 22, 5], ["version", 23, 13], ["src", 25, 5], ["makeFlags", 33, 5], ["env", 35, 5], ["installPhase", 39, 5], ["meta", 46, 5]], [["pname", 54, 13], ["version", 54, 19], ["meta", 54, 27]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, runCommandLocal: false, "mbrola-voices": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["license", 14, 5], ["maintainers", 15, 5], ["platforms", 16, 5], ["description", 17, 5], ["homepage", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 26, 7], ["repo", 27, 7], ["rev", 28, 7], ["hash", 29, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 36, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 47, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 22, 5], ["version", 23, 13], ["src", 25, 5], ["makeFlags", 33, 5], ["env", 35, 5], ["installPhase", 39, 5], ["meta", 46, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 54, 13], ["version", 54, 19], ["meta", 54, 27]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const pname = "mbrola";
   const version = "3.3-unstable-2024-01-29";
   const meta = nix.thunk(() => ({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Plus")),
     maintainers: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -31,11 +26,11 @@ export default nix.lambda((args) => (() => {
     homepage: "https://github.com/numediart/MBROLA",
   }));
   const bin = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: nix.thunk(() => nix.str`${pname}-bin`),
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "numediart",
           repo: "MBROLA",
           rev: "bf17e9e1416a647979ac683657a536e8ca5d880e",
@@ -43,16 +38,16 @@ export default nix.lambda((args) => (() => {
         })))),
       makeFlags: nix.thunk(() => [nix.thunk(() => nix.str`CC=${nix.sel(stdenv, "cc", "targetPrefix")}cc`)]),
       env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "cc", "isGNU")), nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           NIX_CFLAGS_COMPILE: "-Wno-error=implicit-function-declaration",
         })))),
       installPhase: "runHook preInstall\ninstall -D Bin/mbrola $out/bin/mbrola\nrm -rf $out/share/mbrola/voices/*\nrunHook postInstall\n",
       meta: nix.thunk(() => nix.update(meta, {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Speech synthesizer based on the concatenation of diphones (binary only)",
       })),
     }))));
-  return nix.app(runCommandLocal, nix.thunk(() => nix.str`${pname}-${version}`), nix.thunk(() => ({ [nix.POS]: pos$6, pname: pname, version: version, meta: meta })), nix.thunk(() => nix.str`mkdir -p "$out/share/mbrola"
+  return nix.app(runCommandLocal, nix.thunk(() => nix.str`${pname}-${version}`), nix.thunk(() => ({ [nix.POS]: $pos[5], pname: pname, version: version, meta: meta })), nix.thunk(() => nix.str`mkdir -p "$out/share/mbrola"
 ln -s '${mbrola_voices}/data' "$out/share/mbrola/voices"
 ln -s '${bin}/bin' "$out/"
 `));

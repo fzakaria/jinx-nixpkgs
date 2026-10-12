@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/test-platomav.nix", [[["timeout", 9, 8]], [["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]], [["name", 8, 3], ["meta", 9, 3], ["src", 12, 3], ["nativeBuildInputs", 19, 3], ["buildPhase", 20, 3]]]);
 const formals$1 = { args: { stdenvNoCC: false, fetchFromGitHub: false, "amd-ucodegen": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/test-platomav.nix", [["timeout", 9, 8]]);
-const pos$2 = nix.positions(here + "/test-platomav.nix", [["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]]);
-const pos$3 = nix.positions(here + "/test-platomav.nix", [["name", 8, 3], ["meta", 9, 3], ["src", 12, 3], ["nativeBuildInputs", 19, 3], ["buildPhase", 20, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,11 +11,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const amd_ucodegen = nix.arg($, "amd-ucodegen");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       name: "amd-ucodegen-test-platomav",
-      meta: nix.thunk(() => ({ [nix.POS]: pos$1, timeout: 60n })),
+      meta: nix.thunk(() => ({ [nix.POS]: $pos[0], timeout: 60n })),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "platomav",
           repo: "CPUMicrocodes",
           rev: "dfc37d654cbe294acb0ec0274763321507dd7838",

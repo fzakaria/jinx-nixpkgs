@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 29, 5], ["repo", 30, 5], ["rev", 31, 5], ["hash", 32, 5]], [["name", 74, 7], ["desktopName", 75, 7], ["exec", 76, 7], ["categories", 77, 7], ["icon", 78, 7], ["comment", 79, 7], ["genericName", 80, 7]], [["description", 85, 5], ["license", 86, 5], ["maintainers", 87, 5], ["homepage", 88, 5], ["platforms", 89, 5], ["mainProgram", 90, 5]], [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["vendorHash", 35, 3], ["tags", 37, 3], ["ldflags", 39, 3], ["buildInputs", 44, 3], ["nativeBuildInputs", 58, 3], ["postInstall", 64, 3], ["desktopItems", 72, 3], ["meta", 84, 3]]]);
 const formals$1 = { args: { buildGoModule: false, copyDesktopItems: false, fetchFromGitLab: false, lib: false, libGL: false, libdecor: false, libgbm: false, libx11: false, libxcursor: false, libxext: false, libxi: false, libxinerama: false, libxkbcommon: false, libxrandr: false, libxxf86vm: false, makeDesktopItem: false, makeWrapper: false, "pkg-config": false, wayland: false, "wl-clipboard": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 29, 5], ["repo", 30, 5], ["rev", 31, 5], ["hash", 32, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 74, 7], ["desktopName", 75, 7], ["exec", 76, 7], ["categories", 77, 7], ["icon", 78, 7], ["comment", 79, 7], ["genericName", 80, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 85, 5], ["license", 86, 5], ["maintainers", 87, 5], ["homepage", 88, 5], ["platforms", 89, 5], ["mainProgram", 90, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["vendorHash", 35, 3], ["tags", 37, 3], ["ldflags", 39, 3], ["buildInputs", 44, 3], ["nativeBuildInputs", 58, 3], ["postInstall", 64, 3], ["desktopItems", 72, 3], ["meta", 84, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,11 +28,11 @@ export default nix.lambda((args) => (() => {
   const wayland = nix.arg($, "wayland");
   const wl_clipboard = nix.arg($, "wl-clipboard");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "clipqr",
       version: "1.4.0",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "imatt-foss",
           repo: "clipqr",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -66,7 +63,7 @@ wrapProgram $out/bin/clipqr \\
 `),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "ClipQR",
             desktopName: "ClipQR",
             exec: "clipqr",
@@ -77,7 +74,7 @@ wrapProgram $out/bin/clipqr \\
           })))),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Scan QR codes on screen and from camera, the result is in your clipboard",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: nix.thunk(() => (() => {

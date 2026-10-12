@@ -2,82 +2,61 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/ipv6.nix", [[["maintainers", 8, 5]], [["interfaces", 18, 32]], [["networking", 18, 21]], [["interfaces", 27, 18], ["tempAddresses", 28, 18]], [["networking", 27, 7]], [["tempAddress", 34, 14]], [["eth1", 34, 9]], [["tempAddresses", 32, 18], ["interfaces", 33, 18]], [["networking", 32, 7]], [["enable", 39, 22], ["adminAddr", 40, 22]], [["httpd", 39, 16]], [["allowedTCPPorts", 41, 27]], [["addresses", 43, 39]], [["ipv6", 43, 34]], [["eth1", 43, 29]], [["firewall", 41, 18], ["interfaces", 43, 18]], [["services", 39, 7], ["networking", 41, 7]], [["enable", 49, 24], ["config", 50, 24]], [["radvd", 49, 18]], [["services", 49, 9]], [["client_defaults", 18, 5], ["client_global_setting", 26, 5], ["client_interface_setting", 31, 5], ["server", 38, 5], ["router", 46, 5]], [["name", 6, 3], ["meta", 7, 3], ["nodes", 11, 3], ["testScript", 60, 3]]]);
 const formals$1 = { args: { pkgs: false, lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/ipv6.nix", [["maintainers", 8, 5]]);
-const pos$2 = nix.positions(here + "/ipv6.nix", [["interfaces", 18, 32]]);
-const pos$3 = nix.positions(here + "/ipv6.nix", [["networking", 18, 21]]);
-const pos$4 = nix.positions(here + "/ipv6.nix", [["interfaces", 27, 18], ["tempAddresses", 28, 18]]);
-const pos$5 = nix.positions(here + "/ipv6.nix", [["networking", 27, 7]]);
-const pos$6 = nix.positions(here + "/ipv6.nix", [["tempAddress", 34, 14]]);
-const pos$7 = nix.positions(here + "/ipv6.nix", [["eth1", 34, 9]]);
-const pos$8 = nix.positions(here + "/ipv6.nix", [["tempAddresses", 32, 18], ["interfaces", 33, 18]]);
-const pos$9 = nix.positions(here + "/ipv6.nix", [["networking", 32, 7]]);
-const pos$10 = nix.positions(here + "/ipv6.nix", [["enable", 39, 22], ["adminAddr", 40, 22]]);
-const pos$11 = nix.positions(here + "/ipv6.nix", [["httpd", 39, 16]]);
-const pos$12 = nix.positions(here + "/ipv6.nix", [["allowedTCPPorts", 41, 27]]);
-const pos$13 = nix.positions(here + "/ipv6.nix", [["addresses", 43, 39]]);
-const pos$14 = nix.positions(here + "/ipv6.nix", [["ipv6", 43, 34]]);
-const pos$15 = nix.positions(here + "/ipv6.nix", [["eth1", 43, 29]]);
-const pos$16 = nix.positions(here + "/ipv6.nix", [["firewall", 41, 18], ["interfaces", 43, 18]]);
-const pos$17 = nix.positions(here + "/ipv6.nix", [["services", 39, 7], ["networking", 41, 7]]);
 const formals$2 = { args: {  }, ellipsis: true };
-const pos$18 = nix.positions(here + "/ipv6.nix", [["enable", 49, 24], ["config", 50, 24]]);
-const pos$19 = nix.positions(here + "/ipv6.nix", [["radvd", 49, 18]]);
-const pos$20 = nix.positions(here + "/ipv6.nix", [["services", 49, 9]]);
-const pos$21 = nix.positions(here + "/ipv6.nix", [["client_defaults", 18, 5], ["client_global_setting", 26, 5], ["client_interface_setting", 31, 5], ["server", 38, 5], ["router", 46, 5]]);
-const pos$22 = nix.positions(here + "/ipv6.nix", [["name", 6, 3], ["meta", 7, 3], ["nodes", 11, 3], ["testScript", 60, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$22,
+    [nix.POS]: $pos[21],
     name: "ipv6",
-    meta: nix.thunk(() => ({ [nix.POS]: pos$1, maintainers: [] })),
+    meta: nix.thunk(() => ({ [nix.POS]: $pos[0], maintainers: [] })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$21,
+      [nix.POS]: $pos[20],
       client_defaults: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         networking: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           interfaces: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), nix.thunk(() => ({})))),
         })),
       })),
       client_global_setting: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         networking: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           interfaces: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), nix.thunk(() => ({})))),
           tempAddresses: "enabled",
         })),
       })),
       client_interface_setting: nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         networking: nix.thunk(() => ({
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           tempAddresses: "disabled",
           interfaces: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), nix.thunk(() => ({
-              [nix.POS]: pos$7,
-              eth1: nix.thunk(() => ({ [nix.POS]: pos$6, tempAddress: "enabled" })),
+              [nix.POS]: $pos[6],
+              eth1: nix.thunk(() => ({ [nix.POS]: $pos[5], tempAddress: "enabled" })),
             })))),
         })),
       })),
       server: nix.thunk(() => ({
-        [nix.POS]: pos$17,
+        [nix.POS]: $pos[16],
         services: nix.thunk(() => ({
-          [nix.POS]: pos$11,
-          httpd: nix.thunk(() => ({ [nix.POS]: pos$10, enable: true, adminAddr: "foo@example.org" })),
+          [nix.POS]: $pos[10],
+          httpd: nix.thunk(() => ({ [nix.POS]: $pos[9], enable: true, adminAddr: "foo@example.org" })),
         })),
         networking: nix.thunk(() => ({
-          [nix.POS]: pos$16,
-          firewall: nix.thunk(() => ({ [nix.POS]: pos$12, allowedTCPPorts: nix.thunk(() => [80n]) })),
+          [nix.POS]: $pos[15],
+          firewall: nix.thunk(() => ({ [nix.POS]: $pos[11], allowedTCPPorts: nix.thunk(() => [80n]) })),
           interfaces: nix.thunk(() => ({
-            [nix.POS]: pos$15,
+            [nix.POS]: $pos[14],
             eth1: nix.thunk(() => ({
-              [nix.POS]: pos$14,
+              [nix.POS]: $pos[13],
               ipv6: nix.thunk(() => ({
-                [nix.POS]: pos$13,
+                [nix.POS]: $pos[12],
                 addresses: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), [])),
               })),
             })),
@@ -87,11 +66,11 @@ export default nix.lambda((args) => (() => {
       router: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          [nix.POS]: pos$20,
+          [nix.POS]: $pos[19],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$19,
+            [nix.POS]: $pos[18],
             radvd: nix.thunk(() => ({
-              [nix.POS]: pos$18,
+              [nix.POS]: $pos[17],
               enable: true,
               config: "interface eth1 {\n  AdvSendAdvert on;\n  # ULA prefix (RFC 4193).\n  prefix fd60:cc69:b537:1::/64 { };\n};\n",
             })),

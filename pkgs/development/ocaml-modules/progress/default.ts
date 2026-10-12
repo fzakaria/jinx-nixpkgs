@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["description", 37, 5], ["homepage", 38, 5], ["license", 39, 5], ["maintainers", 40, 5]], [["pname", 15, 3], ["minimalOCamlVersion", 17, 3], ["version", 19, 22], ["src", 19, 30], ["propagatedBuildInputs", 21, 3], ["doCheck", 30, 3], ["checkInputs", 31, 3], ["meta", 36, 3]]]);
 const formals$1 = { args: { lib: false, buildDunePackage: false, fmt: false, logs: false, mtime: false, optint: false, terminal: false, vector: false, alcotest: false, astring: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["description", 37, 5], ["homepage", 38, 5], ["license", 39, 5], ["maintainers", 40, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 15, 3], ["minimalOCamlVersion", 17, 3], ["version", 19, 22], ["src", 19, 30], ["propagatedBuildInputs", 21, 3], ["doCheck", 30, 3], ["checkInputs", 31, 3], ["meta", 36, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,7 +18,7 @@ export default nix.lambda((args) => (() => {
   const alcotest = nix.arg($, "alcotest");
   const astring = nix.arg($, "astring");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "progress",
       minimalOCamlVersion: "4.08",
       version: nix.thunk(() => nix.attr(terminal, "version")),
@@ -28,7 +27,7 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       checkInputs: nix.thunk(() => [alcotest, astring]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Progress bar library for OCaml",
         homepage: "https://github.com/CraigFe/progress",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

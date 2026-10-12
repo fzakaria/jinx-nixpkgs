@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 33, 5], ["repo", 34, 5], ["tag", 35, 5], ["hash", 36, 5]], [["url", 42, 7], ["hash", 43, 7]], [["optional", 67, 25]], [["homepage", 80, 5], ["description", 81, 5], ["downloadPage", 82, 5], ["license", 83, 5]], [["version", 28, 3], ["pname", 29, 3], ["pyproject", 30, 3], ["src", 32, 3], ["patches", 39, 3], ["postPatch", 47, 3], ["build-system", 51, 3], ["dependencies", 59, 3], ["optional-dependencies", 67, 3], ["nativeCheckInputs", 69, 3], ["doCheck", 71, 3], ["pythonImportsCheck", 73, 3], ["meta", 79, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, fetchpatch2: false, cython: false, "meson-python": false, ninja: false, setuptools: false, numpy: false, scipy: false, nibabel: false, sympy: false, transforms3d: false, matplotlib: false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 33, 5], ["repo", 34, 5], ["tag", 35, 5], ["hash", 36, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["url", 42, 7], ["hash", 43, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["optional", 67, 25]]);
-const pos$4 = nix.positions(here + "/default.nix", [["homepage", 80, 5], ["description", 81, 5], ["downloadPage", 82, 5], ["license", 83, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["version", 28, 3], ["pname", 29, 3], ["pyproject", 30, 3], ["src", 32, 3], ["patches", 39, 3], ["postPatch", 47, 3], ["build-system", 51, 3], ["dependencies", 59, 3], ["optional-dependencies", 67, 3], ["nativeCheckInputs", 69, 3], ["doCheck", 71, 3], ["pythonImportsCheck", 73, 3], ["meta", 79, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const pname = "nipy";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "nipy",
           repo: "nipy",
           tag: version,
@@ -39,7 +35,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/nipy/nipy/pull/589/commits/76f2aae95dede9b8ac025dc32ce94791904f25e4.patch?full_index=1",
             hash: "sha256-Rnwfx6JKl+nE9wvBGKXFtizjuB4Bl1QDF88CvSZU/RQ=",
           })))),
@@ -47,19 +43,19 @@ export default nix.lambda((args) => (() => {
       const postPatch = "patchShebangs nipy/_build_utils/cythoner.py\n";
       const build_system = nix.thunk(() => [cython, meson_python, setuptools, ninja, numpy]);
       const dependencies = nix.thunk(() => [nibabel, numpy, scipy, sympy, transforms3d]);
-      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$3, optional: nix.thunk(() => [matplotlib]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: $pos[2], optional: nix.thunk(() => [matplotlib]) }));
       const nativeCheckInputs = nix.thunk(() => nix.concat([pytestCheckHook], nix.sel(optional_dependencies, "optional")));
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["nipy", "nipy.testing", "nipy.algorithms"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://nipy.org/nipy",
         description: "Software for structural and functional neuroimaging analysis",
         downloadPage: "https://github.com/nipy/nipy",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         version,
         pname,
         pyproject,

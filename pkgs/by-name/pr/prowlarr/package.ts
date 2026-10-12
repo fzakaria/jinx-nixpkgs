@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 28, 7], ["repo", 29, 7], ["tag", 30, 7], ["hash", 31, 7]], [["src", 27, 5], ["postPatch", 33, 5]], [["yarnLock", 52, 5], ["hash", 53, 5]], [["prowlarr", 144, 28]], [["libraries", 148, 7], ["flakeIgnore", 149, 7], ["makeWrapperArgs", 150, 7]], [["tests", 143, 5], ["updateScript", 147, 5]], [["description", 163, 5], ["homepage", 164, 5], ["changelog", 165, 5], ["license", 166, 5], ["maintainers", 167, 5], ["mainProgram", 171, 5]], [["pname", 40, 3], ["version", 41, 11], ["src", 41, 19], ["strictDeps", 43, 3], ["nativeBuildInputs", 44, 3], ["yarnOfflineCache", 51, 3], ["postConfigure", 56, 3], ["postBuild", 62, 3], ["postInstall", 65, 3], ["nugetDeps", 69, 3], ["runtimeDeps", 71, 3], ["dotnet-sdk", 73, 3], ["dotnet-runtime", 74, 3], ["doCheck", 76, 3], ["__darwinAllowLocalNetworking", 78, 3], ["__structuredAttrs", 80, 3], ["executables", 82, 3], ["projectFile", 84, 3], ["testProjectFile", 89, 3], ["dotnetFlags", 99, 3], ["testFilters", 111, 3], ["disabledTests", 124, 3], ["passthru", 142, 3], ["meta", 162, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, stdenvNoCC: false, fetchFromGitHub: false, buildDotnetModule: false, dotnetCorePackages: false, sqlite: false, fetchYarnDeps: false, yarn: false, "fixup-yarn-lock": false, nodejs: false, nixosTests: false, writers: false, python3Packages: false, nix: false, "prefetch-yarn-deps": false, fetchpatch: false, applyPatches: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 28, 7], ["repo", 29, 7], ["tag", 30, 7], ["hash", 31, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["src", 27, 5], ["postPatch", 33, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["yarnLock", 52, 5], ["hash", 53, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["prowlarr", 144, 28]]);
-const pos$5 = nix.positions(here + "/package.nix", [["libraries", 148, 7], ["flakeIgnore", 149, 7], ["makeWrapperArgs", 150, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["tests", 143, 5], ["updateScript", 147, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["description", 163, 5], ["homepage", 164, 5], ["changelog", 165, 5], ["license", 166, 5], ["maintainers", 167, 5], ["mainProgram", 171, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 40, 3], ["version", 41, 11], ["src", 41, 19], ["strictDeps", 43, 3], ["nativeBuildInputs", 44, 3], ["yarnOfflineCache", 51, 3], ["postConfigure", 56, 3], ["postBuild", 62, 3], ["postInstall", 65, 3], ["nugetDeps", 69, 3], ["runtimeDeps", 71, 3], ["dotnet-sdk", 73, 3], ["dotnet-runtime", 74, 3], ["doCheck", 76, 3], ["__darwinAllowLocalNetworking", 78, 3], ["__structuredAttrs", 80, 3], ["executables", 82, 3], ["projectFile", 84, 3], ["testProjectFile", 89, 3], ["dotnetFlags", 99, 3], ["testFilters", 111, 3], ["disabledTests", 124, 3], ["passthru", 142, 3], ["meta", 162, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,9 +27,9 @@ export default nix.lambda((args) => (() => {
   const applyPatches = nix.arg($, "applyPatches");
   const version = "2.6.5.5623";
   const src = nix.thunk(() => nix.app(applyPatches, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Prowlarr",
           repo: "Prowlarr",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -46,14 +39,14 @@ export default nix.lambda((args) => (() => {
     }))));
   const rid = nix.thunk(() => nix.app(nix.sel(dotnetCorePackages, "systemToDotnetRid"), nix.thunk(() => nix.sel(stdenvNoCC, "hostPlatform", "system"))));
   return nix.app(buildDotnetModule, nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "prowlarr",
       version: version,
       src: src,
       strictDeps: true,
       nativeBuildInputs: nix.thunk(() => [nodejs, yarn, prefetch_yarn_deps, fixup_yarn_lock]),
       yarnOfflineCache: nix.thunk(() => nix.app(fetchYarnDeps, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           yarnLock: nix.thunk(() => nix.str`${src}/yarn.lock`),
           hash: "sha256-3V1ywO0eq35+x9I2GyylonEpnsJ80wT7bKLO9FiHchE=",
         })))),
@@ -109,13 +102,13 @@ export default nix.lambda((args) => (() => {
         "NzbDrone.Common.Test.ProcessProviderFixture.kill_all_should_kill_all_process_with_name",
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           prowlarr: nix.thunk(() => nix.attr(nixosTests, "prowlarr")),
         })),
         updateScript: nix.thunk(() => nix.app(nix.sel(writers, "writePython3"), "prowlarr-updater", nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             libraries: nix.thunk(() => (() => {
               const w = nix.withScope(python3Packages, null);
               return [nix.thunk(() => nix.lookup(w, "requests"))];
@@ -130,7 +123,7 @@ export default nix.lambda((args) => (() => {
           })), nix.path(here, "./update.py"))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "Indexer manager/proxy built on the popular arr .net/reactjs base stack",
         homepage: "https://prowlarr.com/",
         changelog: nix.thunk(() => nix.str`https://github.com/Prowlarr/Prowlarr/releases/tag/v${version}`),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["updateScript", 19, 12]], [["description", 22, 5], ["longDescription", 23, 5], ["homepage", 24, 5], ["license", 25, 5], ["maintainers", 26, 5], ["mainProgram", 30, 5]], [["pname", 9, 3], ["gemdir", 10, 3], ["exes", 11, 3], ["buildInputs", 13, 3], ["postBuild", 15, 3], ["passthru", 19, 3], ["meta", 21, 3]]]);
 const formals$1 = { args: { lib: false, bundlerApp: false, bundlerUpdateScript: false, makeBinaryWrapper: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["updateScript", 19, 12]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 22, 5], ["longDescription", 23, 5], ["homepage", 24, 5], ["license", 25, 5], ["maintainers", 26, 5], ["mainProgram", 30, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["gemdir", 10, 3], ["exes", 11, 3], ["buildInputs", 13, 3], ["postBuild", 15, 3], ["passthru", 19, 3], ["meta", 21, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,18 +12,18 @@ export default nix.lambda((args) => (() => {
   const bundlerUpdateScript = nix.arg($, "bundlerUpdateScript");
   const makeBinaryWrapper = nix.arg($, "makeBinaryWrapper");
   return nix.app(bundlerApp, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "fastlane",
       gemdir: nix.path(here, "./."),
       exes: nix.thunk(() => ["fastlane"]),
       buildInputs: nix.thunk(() => [makeBinaryWrapper]),
       postBuild: "wrapProgram $out/bin/fastlane --set FASTLANE_SKIP_UPDATE_CHECK 1\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         updateScript: nix.thunk(() => nix.app(bundlerUpdateScript, "fastlane")),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Tool to automate building and releasing iOS and Android apps",
         longDescription: "fastlane is a tool for iOS and Android developers to automate tedious tasks like generating screenshots, dealing with provisioning profiles, and releasing your application.",
         homepage: "https://fastlane.tools/",

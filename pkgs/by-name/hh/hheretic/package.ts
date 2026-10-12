@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]], [["rev-prefix", 50, 5]], [["updateScript", 49, 12]], [["description", 54, 5], ["homepage", 55, 5], ["license", 56, 5], ["mainProgram", 57, 5], ["maintainers", 58, 5], ["platforms", 59, 24], ["broken", 60, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 29, 3], ["strictDeps", 36, 3], ["enableParallelBuilding", 37, 3], ["configureFlags", 39, 3], ["installPhase", 41, 3], ["passthru", 49, 3], ["meta", 53, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, SDL: false, SDL_mixer: false, libGL: false, libGLU: false, autoreconfHook: false, gitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["rev-prefix", 50, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 49, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 54, 5], ["homepage", 55, 5], ["license", 56, 5], ["mainProgram", 57, 5], ["maintainers", 58, 5], ["platforms", 59, 24], ["broken", 60, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 29, 3], ["strictDeps", 36, 3], ["enableParallelBuilding", 37, 3], ["configureFlags", 39, 3], ["installPhase", 41, 3], ["passthru", 49, 3], ["meta", 53, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const autoreconfHook = nix.arg($, "autoreconfHook");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "hheretic",
       version: "0.2.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "sezero",
           repo: "hheretic",
           rev: nix.thunk(() => nix.str`hheretic-${nix.sel(finalAttrs, "version")}`),
@@ -38,13 +34,13 @@ export default nix.lambda((args) => (() => {
       configureFlags: nix.thunk(() => ["--with-audio=sdlmixer"]),
       installPhase: "runHook preInstall\n\ninstall -Dm755 hheretic-gl -t $out/bin\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, "rev-prefix": "hheretic-" })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[1], "rev-prefix": "hheretic-" })))),
       })),
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(SDL, "meta"));
         return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Linux port of Raven Game's Heretic",
         homepage: "https://hhexen.sourceforge.net/hhexen.html",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

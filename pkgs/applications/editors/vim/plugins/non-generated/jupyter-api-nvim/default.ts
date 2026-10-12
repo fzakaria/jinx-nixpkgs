@@ -2,14 +2,8 @@
 import * as nix from "../../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]], [["RUSTFLAGS", 26, 7]], [["version", 19, 13], ["src", 19, 21], ["pname", 20, 5], ["cargoHash", 22, 5], ["env", 24, 5]], [["attrPath", 44, 7]], [["updateScript", 43, 5], ["jupyter-api-nvim-lib", 48, 13]], [["description", 52, 5], ["homepage", 53, 5], ["license", 54, 5], ["maintainers", 55, 5]], [["pname", 31, 3], ["version", 32, 11], ["src", 32, 19], ["preInstall", 33, 3], ["passthru", 42, 3], ["meta", 51, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchFromGitHub: false, stdenv: false, vimUtils: false, "nix-update-script": false, gitMinimal: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["RUSTFLAGS", 26, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["version", 19, 13], ["src", 19, 21], ["pname", 20, 5], ["cargoHash", 22, 5], ["env", 24, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["attrPath", 44, 7]]);
-const pos$5 = nix.positions(here + "/default.nix", [["updateScript", 43, 5], ["jupyter-api-nvim-lib", 48, 13]]);
-const pos$6 = nix.positions(here + "/default.nix", [["description", 52, 5], ["homepage", 53, 5], ["license", 54, 5], ["maintainers", 55, 5]]);
-const pos$7 = nix.positions(here + "/default.nix", [["pname", 31, 3], ["version", 32, 11], ["src", 32, 19], ["preInstall", 33, 3], ["passthru", 42, 3], ["meta", 51, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,25 +16,25 @@ export default nix.lambda((args) => (() => {
   const gitMinimal = nix.arg($, "gitMinimal");
   const version = "0-unstable-2026-01-10";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "bitbloxhub",
       repo: "jupyter-api.nvim",
       rev: "5dd157fd8cd9ef6d20075c0809f54c9f7af23e43",
       hash: "sha256-N9Z7SaWeT8b2N3EtwwRLW7DCiQk0+tCd9e573DSq7SQ=",
     }))));
   const jupyter_api_nvim_lib = nix.thunk(() => nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       version: version,
       src: src,
       pname: "jupyter-api-nvim-lib",
       cargoHash: "sha256-Oe6NnnNBY2nzYkNYucPpR6iV/8a6/9ZUytKpdHWY+So=",
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         RUSTFLAGS: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "-C link-arg=-undefined -C link-arg=dynamic_lookup")),
       })),
     }))));
   return nix.app(nix.sel(vimUtils, "buildVimPlugin"), nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "jupyter-api.nvim",
       version: version,
       src: src,
@@ -51,15 +45,15 @@ ln -s ${jupyter_api_nvim_lib}/lib/libjupyter_api_nvim${ext} target/release/libju
 `;
       })()),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             attrPath: "vimPlugins.jupyter-api-nvim.jupyter-api-nvim-lib",
           })))),
         "jupyter-api-nvim-lib": jupyter_api_nvim_lib,
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Library for interacting with Jupyter kernels from Neovim Lua",
         homepage: "https://github.com/bitbloxhub/jupyter-api.nvim/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),

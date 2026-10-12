@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["perl", 20, 5], ["su", 24, 5], ["lib", 25, 5], ["configurationDirectory", 27, 13], ["stateDirectory", 27, 36], ["util-linux", 27, 51]], [["containers-imperative", 33, 9], ["containers-ip", 34, 9], ["containers-tmpfs", 35, 9], ["containers-ephemeral", 36, 9], ["containers-unified-hierarchy", 37, 9]], [["tests", 31, 5]], [["mainProgram", 51, 5], ["license", 52, 5]], [["name", 14, 3], ["dir", 15, 3], ["isExecutable", 16, 3], ["src", 17, 3], ["replacements", 19, 3], ["passthru", 30, 3], ["nativeBuildInputs", 42, 3], ["postInstall", 44, 3], ["meta", 50, 3]]]);
 const formals$1 = { args: { lib: false, replaceVarsWith: false, perl: false, shadow: false, "util-linux": false, installShellFiles: false, configurationDirectory: true, stateDirectory: true, nixosTests: false, path: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["perl", 20, 5], ["su", 24, 5], ["lib", 25, 5], ["configurationDirectory", 27, 13], ["stateDirectory", 27, 36], ["util-linux", 27, 51]]);
-const pos$2 = nix.positions(here + "/package.nix", [["containers-imperative", 33, 9], ["containers-ip", 34, 9], ["containers-tmpfs", 35, 9], ["containers-ephemeral", 36, 9], ["containers-unified-hierarchy", 37, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 31, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["mainProgram", 51, 5], ["license", 52, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["name", 14, 3], ["dir", 15, 3], ["isExecutable", 16, 3], ["src", 17, 3], ["replacements", 19, 3], ["passthru", 30, 3], ["nativeBuildInputs", 42, 3], ["postInstall", 44, 3], ["meta", 50, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,13 +18,13 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const path = nix.arg($, "path");
   return nix.app(replaceVarsWith, nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       name: "nixos-container",
       dir: "bin",
       isExecutable: true,
       src: nix.path(here, "./nixos-container.pl"),
       replacements: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         perl: nix.thunk(() => nix.app(nix.sel(perl, "withPackages"), (p) => [
             nix.thunk(() => nix.sel(p, "FileSlurp")),
             nix.thunk(() => nix.sel(p, "IPCRun")),
@@ -40,9 +36,9 @@ export default nix.lambda((args) => (() => {
         "util-linux": util_linux,
       })),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           "containers-imperative": nix.thunk(() => nix.attr(nixosTests, "containers-imperative")),
           "containers-ip": nix.thunk(() => nix.attr(nixosTests, "containers-ip")),
           "containers-tmpfs": nix.thunk(() => nix.attr(nixosTests, "containers-tmpfs")),
@@ -56,7 +52,7 @@ export default nix.lambda((args) => (() => {
   --fish ${nix.path(here, "./nixos-container-completion.fish")}
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         mainProgram: "nixos-container",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       })),

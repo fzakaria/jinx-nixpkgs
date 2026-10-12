@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 21, 5], ["sha256", 22, 5]], [["packageName", 40, 7], ["attrPath", 41, 7], ["versionPolicy", 42, 7]], [["updateScript", 39, 5]], [["description", 47, 5], ["homepage", 48, 5], ["license", 49, 5], ["maintainers", 50, 5], ["platforms", 51, 5]], [["pname", 15, 3], ["version", 16, 3], ["pyproject", 18, 3], ["src", 20, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 31, 3], ["disabled", 36, 3], ["passthru", 38, 3], ["meta", 46, 3]]]);
 const formals$1 = { args: { lib: false, fetchurl: false, meson: false, ninja: false, "pkg-config": false, buildPythonPackage: false, isPy3k: false, "at-spi2-core": false, pygobject3: false, gnome: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 21, 5], ["sha256", 22, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["packageName", 40, 7], ["attrPath", 41, 7], ["versionPolicy", 42, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["updateScript", 39, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 47, 5], ["homepage", 48, 5], ["license", 49, 5], ["maintainers", 50, 5], ["platforms", 51, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 15, 3], ["version", 16, 3], ["pyproject", 18, 3], ["src", 20, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 31, 3], ["disabled", 36, 3], ["passthru", 38, 3], ["meta", 46, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.58.1";
       const pyproject = false;
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnome/sources/pyatspi/${nix.app(nix.sel(lib, "versions", "majorMinor"), version)}/pyatspi-${version}.tar.xz`),
           sha256: "Px8HmTX5JlhDMQJcdTGFjetCJFyZO2USH09LAeawRTY=",
         }))));
@@ -34,16 +30,16 @@ export default nix.lambda((args) => (() => {
       const buildInputs = nix.thunk(() => [at_spi2_core, pygobject3]);
       const disabled = nix.thunk(() => !nix.asBool(isPy3k));
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             packageName: "pyatspi",
             attrPath: "python3.pkgs.pyatspi",
             versionPolicy: "odd-unstable",
           })))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Python client bindings for D-Bus AT-SPI",
         homepage: "https://gitlab.gnome.org/GNOME/pyatspi2",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl2Only")),
@@ -57,7 +53,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         pyproject,

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 24, 5], ["hash", 25, 5]], [["path", 70, 7], ["name", 71, 7]], [["xgreeters", 68, 12]], [["homepage", 76, 5], ["description", 77, 5], ["mainProgram", 78, 5], ["platforms", 79, 5], ["license", 80, 5], ["maintainers", 81, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 35, 3], ["configureFlags", 42, 3], ["postPatch", 49, 3], ["preConfigure", 54, 3], ["installFlags", 58, 3], ["postInstall", 63, 3], ["passthru", 68, 3], ["meta", 75, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, "lightdm-gtk-greeter": false, fetchurl: false, lightdm: false, "pkg-config": false, intltool: false, linkFarm: false, wrapGAppsHook3: false, gtk3: false, "xfce4-dev-tools": false, "at-spi2-core": false, librsvg: false, "hicolor-icon-theme": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["path", 70, 7], ["name", 71, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["xgreeters", 68, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 76, 5], ["description", 77, 5], ["mainProgram", 78, 5], ["platforms", 79, 5], ["license", 80, 5], ["maintainers", 81, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 35, 3], ["configureFlags", 42, 3], ["postPatch", 49, 3], ["preConfigure", 54, 3], ["installFlags", 58, 3], ["postInstall", 63, 3], ["passthru", 68, 3], ["meta", 75, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const librsvg = nix.arg($, "librsvg");
   const hicolor_icon_theme = nix.arg($, "hicolor-icon-theme");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "lightdm-gtk-greeter",
       version: "2.0.9",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/Xubuntu/lightdm-gtk-greeter/releases/download/lightdm-gtk-greeter-${nix.sel(finalAttrs, "version")}/lightdm-gtk-greeter-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-yP3xmKqaP50NrQtI3+I8Ine3kQfo/PxillKQ8QgfZF0=",
         })))),
@@ -51,17 +47,17 @@ export default nix.lambda((args) => (() => {
       ]),
       postInstall: "substituteInPlace \"$out/share/xgreeters/lightdm-gtk-greeter.desktop\" \\\n  --replace-fail \"Exec=lightdm-gtk-greeter\" \"Exec=$out/bin/lightdm-gtk-greeter\"\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         xgreeters: nix.thunk(() => nix.app(linkFarm, "lightdm-gtk-greeter-xgreeters", nix.thunk(() => [
             nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               path: nix.thunk(() => nix.str`${lightdm_gtk_greeter}/share/xgreeters/lightdm-gtk-greeter.desktop`),
               name: "lightdm-gtk-greeter.desktop",
             })),
           ]))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://github.com/Xubuntu/lightdm-gtk-greeter",
         description: "GTK greeter for LightDM",
         mainProgram: "lightdm-gtk-greeter",

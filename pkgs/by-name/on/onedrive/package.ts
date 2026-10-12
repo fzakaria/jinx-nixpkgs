@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["hash", 33, 5]], [["package", 77, 7], ["version", 78, 7]], [["version", 76, 11]], [["tests", 76, 5]], [["homepage", 83, 5], ["description", 84, 5], ["license", 85, 5], ["mainProgram", 86, 5], ["maintainers", 87, 5], ["platforms", 92, 5]], [["pname", 26, 3], ["version", 27, 3], ["src", 29, 3], ["outputs", 36, 3], ["nativeBuildInputs", 42, 3], ["buildInputs", 49, 3], ["configureFlags", 57, 3], ["postInstall", 65, 3], ["passthru", 75, 3], ["meta", 82, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, autoreconfHook: false, installShellFiles: false, ldc: false, "pkg-config": false, coreutils: false, curl: false, dbus: false, libnotify: false, sqlite: false, systemd: false, testers: false, withSystemd: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["hash", 33, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["package", 77, 7], ["version", 78, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 76, 11]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 76, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["homepage", 83, 5], ["description", 84, 5], ["license", 85, 5], ["mainProgram", 86, 5], ["maintainers", 87, 5], ["platforms", 92, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 26, 3], ["version", 27, 3], ["src", 29, 3], ["outputs", 36, 3], ["nativeBuildInputs", 42, 3], ["buildInputs", 49, 3], ["configureFlags", 57, 3], ["postInstall", 65, 3], ["passthru", 75, 3], ["meta", 82, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const withSystemd = nix.argOr($, "withSystemd", () => nix.app(nix.sel(lib, "meta", "availableOn"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")), systemd));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "onedrive",
       version: "2.5.11",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "abraunegg",
           repo: "onedrive",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -55,18 +50,18 @@ substituteInPlace $out/lib/systemd/user/onedrive.service $out/lib/systemd/system
   --replace-fail "/bin/sh -c 'sleep 15'" "${coreutils}/bin/sleep 15"
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               version: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "https://github.com/abraunegg/onedrive",
         description: "Complete tool to interact with OneDrive on Linux",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

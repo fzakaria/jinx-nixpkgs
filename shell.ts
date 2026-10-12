@@ -2,12 +2,8 @@
 import * as nix from "./.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/shell.nix", [[["url", 38, 17], ["sha256", 39, 9]], [["nixpkgs", 46, 34], ["system", 46, 42]], [["system", 49, 47]], [["packages", 58, 3]], [["formatter", 70, 3]]]);
 const formals$1 = { args: { system: true, nixpkgs: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/shell.nix", [["url", 38, 17], ["sha256", 39, 9]]);
-const pos$2 = nix.positions(here + "/shell.nix", [["nixpkgs", 46, 34], ["system", 46, 42]]);
-const pos$3 = nix.positions(here + "/shell.nix", [["system", 49, 47]]);
-const pos$4 = nix.positions(here + "/shell.nix", [["packages", 58, 3]]);
-const pos$5 = nix.positions(here + "/shell.nix", [["formatter", 70, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,19 +21,19 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.str`using revision (${revision}) from ${branch}.`),
           "You may experience some differences to CI.",
         ])))));
-    return nix.app(withWarning, nix.builtins.fetchTarball, nix.thunk(() => ({ [nix.POS]: pos$1, url: url, sha256: hash })));
+    return nix.app(withWarning, nix.builtins.fetchTarball, nix.thunk(() => ({ [nix.POS]: $pos[0], url: url, sha256: hash })));
   })() : null));
-  const from = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./ci")), nix.thunk(() => ({ [nix.POS]: pos$2, nixpkgs: nixpkgs, system: system }))));
+  const from = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./ci")), nix.thunk(() => ({ [nix.POS]: $pos[1], nixpkgs: nixpkgs, system: system }))));
   const pkgs = nix.thunk(() => nix.attr(from, "pkgs"));
   const fmt = nix.thunk(() => nix.attr(from, "fmt"));
-  const curPkgs = nix.thunk(() => nix.builtins.removeAttrs(nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./.")), nix.thunk(() => ({ [nix.POS]: pos$3, system: system })))), nix.thunk(() => ["_type"])));
+  const curPkgs = nix.thunk(() => nix.builtins.removeAttrs(nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./.")), nix.thunk(() => ({ [nix.POS]: $pos[2], system: system })))), nix.thunk(() => ["_type"])));
   return nix.update(curPkgs, nix.update(nix.app(nix.sel(pkgs, "mkShellNoCC"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       packages: nix.thunk(() => [
         nix.thunk(() => nix.sel(pkgs, "nixpkgs-reviewFull")),
         nix.thunk(() => nix.sel(pkgs, "gh")),
         nix.thunk(() => nix.sel(fmt, "pkg")),
       ]),
-    }))), { [nix.POS]: pos$5, formatter: nix.thunk(() => nix.sel(fmt, "pkg")) }));
+    }))), { [nix.POS]: $pos[4], formatter: nix.thunk(() => nix.sel(fmt, "pkg")) }));
 })(), formals$1);
 //# sourceMappingURL=shell.ts.map

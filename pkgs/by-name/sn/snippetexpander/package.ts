@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["description", 56, 5], ["homepage", 57, 5], ["license", 58, 5], ["maintainers", 59, 5], ["platforms", 60, 5], ["mainProgram", 61, 5]], [["src", 12, 30], ["version", 12, 34], ["pname", 14, 3], ["vendorHash", 16, 3], ["proxyVendor", 18, 3], ["modRoot", 20, 3], ["nativeBuildInputs", 22, 3], ["buildInputs", 28, 3], ["ldflags", 33, 3], ["postInstall", 39, 3], ["postFixup", 44, 3], ["meta", 55, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, makeWrapper: false, scdoc: false, installShellFiles: false, snippetexpanderd: false, snippetexpanderx: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["description", 56, 5], ["homepage", 57, 5], ["license", 58, 5], ["maintainers", 59, 5], ["platforms", 60, 5], ["mainProgram", 61, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["src", 12, 30], ["version", 12, 34], ["pname", 14, 3], ["vendorHash", 16, 3], ["proxyVendor", 18, 3], ["modRoot", 20, 3], ["nativeBuildInputs", 22, 3], ["buildInputs", 28, 3], ["ldflags", 33, 3], ["postInstall", 39, 3], ["postFixup", 44, 3], ["meta", 55, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const snippetexpanderd = nix.arg($, "snippetexpanderd");
   const snippetexpanderx = nix.arg($, "snippetexpanderx");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       src: nix.thunk(() => nix.attr(snippetexpanderd, "src")),
       version: nix.thunk(() => nix.attr(snippetexpanderd, "version")),
       pname: "snippetexpander",
@@ -36,7 +35,7 @@ wrapProgram $out/bin/snippetexpander \\
   --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [snippetexpanderd, snippetexpanderx]))}
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Your little expandable text snippet helper CLI",
         homepage: "https://snippetexpander.org",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

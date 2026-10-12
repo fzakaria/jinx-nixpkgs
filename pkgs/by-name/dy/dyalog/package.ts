@@ -2,16 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 74, 11], ["hash", 75, 19]], [["prefix", 80, 9], ["suffix", 81, 9], ["hash", 82, 9]], [["prefix", 85, 9], ["suffix", 86, 9], ["hash", 87, 9]], [["x86_64-linux", 79, 7], ["aarch64-linux", 84, 7]], [["sources", 65, 12]], [["shortName", 195, 7], ["fullName", 196, 7], ["url", 197, 7], ["free", 198, 7]], [["changelog", 189, 5], ["description", 192, 5], ["homepage", 193, 5], ["license", 194, 5], ["mainProgram", 200, 5], ["maintainers", 201, 5], ["platforms", 205, 5], ["sourceProvenance", 206, 5]], [["pname", 61, 3], ["version", 62, 3], ["shortVersion", 63, 3], ["passthru", 65, 3], ["src", 91, 3], ["outputs", 96, 3], ["postUnpack", 98, 3], ["patches", 102, 3], ["nativeBuildInputs", 104, 3], ["buildInputs", 110, 3], ["installPhase", 125, 3], ["preFixup", 179, 3], ["meta", 188, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, config: false, acceptLicense: true, autoPatchelfHook: false, dpkg: false, makeWrapper: false, ncurses5: false, dotnetCorePackages: false, dotnetSupport: true, "alsa-lib": false, gtk3: false, libdrm: false, libGL: false, libgbm: false, nss: false, htmlRendererSupport: true, unixodbc: false, sqaplSupport: true, zeroFootprintRideSupport: true, enableDocs: true }, ellipsis: false };
 const formals$2 = { args: { prefix: false, suffix: false, hash: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 74, 11], ["hash", 75, 19]]);
-const pos$2 = nix.positions(here + "/package.nix", [["prefix", 80, 9], ["suffix", 81, 9], ["hash", 82, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["prefix", 85, 9], ["suffix", 86, 9], ["hash", 87, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["x86_64-linux", 79, 7], ["aarch64-linux", 84, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["sources", 65, 12]]);
-const pos$6 = nix.positions(here + "/package.nix", [["shortName", 195, 7], ["fullName", 196, 7], ["url", 197, 7], ["free", 198, 7]]);
-const pos$7 = nix.positions(here + "/package.nix", [["changelog", 189, 5], ["description", 192, 5], ["homepage", 193, 5], ["license", 194, 5], ["mainProgram", 200, 5], ["maintainers", 201, 5], ["platforms", 205, 5], ["sourceProvenance", 206, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 61, 3], ["version", 62, 3], ["shortVersion", 63, 3], ["passthru", 65, 3], ["src", 91, 3], ["outputs", 96, 3], ["postUnpack", 98, 3], ["patches", 102, 3], ["nativeBuildInputs", 104, 3], ["buildInputs", 110, 3], ["installPhase", 125, 3], ["preFixup", 179, 3], ["meta", 188, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -58,12 +51,12 @@ or you can set the following nixpkgs config option:
 https://docs.dyalog.com/20.0/release-notes/announcements/#new-linux-platform
 `);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "dyalog",
       version: "20.0.53963",
       shortVersion: nix.thunk(() => nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         sources: nix.thunk(() => (() => {
           const fetchArtifact = nix.lambda((args_1) => (() => {
             const $_1 = nix.formals(args_1, formals$2);
@@ -71,21 +64,21 @@ https://docs.dyalog.com/20.0/release-notes/announcements/#new-linux-platform
             const suffix = nix.arg($_1, "suffix");
             const hash = nix.arg($_1, "hash");
             return nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$1,
+                [nix.POS]: $pos[0],
                 url: nix.thunk(() => nix.str`https://download.dyalog.com/download.php?file=${nix.sel(finalAttrs, "shortVersion")}/${prefix}_${nix.sel(finalAttrs, "version")}_${suffix}`),
                 hash: hash,
               })));
           })(), formals$2);
           return {
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             "x86_64-linux": nix.thunk(() => nix.app(fetchArtifact, nix.thunk(() => ({
-                [nix.POS]: pos$2,
+                [nix.POS]: $pos[1],
                 prefix: "linux_64",
                 suffix: "unicode.x86_64.deb",
                 hash: "sha256-4LjB/aHK40HecgZA7YUIoY/CaCnSoMOs9OoIhong8j4=",
               })))),
             "aarch64-linux": nix.thunk(() => nix.app(fetchArtifact, nix.thunk(() => ({
-                [nix.POS]: pos$3,
+                [nix.POS]: $pos[2],
                 prefix: "linux_64",
                 suffix: "unicode.aarch64.deb",
                 hash: "sha256-5uVxMK0yowLOARW+PjFDpFiUNc/0cU/5lzY8t5Z6DxY=",
@@ -151,12 +144,12 @@ done
 `, nix.app(nix.sel(lib, "optionalString"), htmlRendererSupport, nix.thunk(() => nix.str`patchelf ${dyalogHome}/libcef.so --add-needed libudev.so --add-needed libGL.so
 `)))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         changelog: nix.thunk(() => nix.str`https://dyalog.com/dyalog/dyalog-versions/${nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => [""]), nix.thunk(() => nix.sel(finalAttrs, "shortVersion")))}.htm`),
         description: "Dyalog APL interpreter",
         homepage: "https://www.dyalog.com",
         license: nix.thunk(() => nix.app(nix.sel(lib, "licenses", "mkLicense"), nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             shortName: "dyalog",
             fullName: "Dyalog License",
             url: licenseUrl,

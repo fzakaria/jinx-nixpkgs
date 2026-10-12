@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/libcufile.nix", [[["description", 47, 5], ["homepage", 48, 5]], [["redistName", 12, 3], ["pname", 13, 3], ["outputs", 15, 3], ["allowFHSReferences", 23, 3], ["buildInputs", 26, 3], ["appendRunpaths", 33, 3], ["autoPatchelfIgnoreMissingDeps", 41, 3], ["meta", 46, 3]]]);
 const formals$1 = { args: { buildRedist: false, cudaOlder: false, lib: false, liburcu: false, numactl: false, "rdma-core": false, systemdLibs: false, "util-linux": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/libcufile.nix", [["description", 47, 5], ["homepage", 48, 5]]);
-const pos$2 = nix.positions(here + "/libcufile.nix", [["redistName", 12, 3], ["pname", 13, 3], ["outputs", 15, 3], ["allowFHSReferences", 23, 3], ["buildInputs", 26, 3], ["appendRunpaths", 33, 3], ["autoPatchelfIgnoreMissingDeps", 41, 3], ["meta", 46, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const systemdLibs = nix.arg($, "systemdLibs");
   const util_linux = nix.arg($, "util-linux");
   return nix.app(buildRedist, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       redistName: "cuda",
       pname: "libcufile",
       outputs: nix.thunk(() => ["out", "dev", "include", "lib", "static"]),
@@ -26,7 +25,7 @@ export default nix.lambda((args) => (() => {
       appendRunpaths: nix.thunk(() => nix.builtins.map((pkg) => nix.str`${nix.app(nix.sel(lib, "getLib"), pkg)}/lib`, nix.thunk(() => [systemdLibs, util_linux, liburcu, numactl]))),
       autoPatchelfIgnoreMissingDeps: nix.thunk(() => nix.concat(["libcuda.so.1"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(cudaOlder, "11.7")), nix.thunk(() => ["libcufile.so.0"])))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Library to leverage GDS technology",
         homepage: "https://docs.nvidia.com/gpudirect-storage/api-reference-guide",
       })),

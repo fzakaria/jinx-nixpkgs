@@ -2,19 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["version", 13, 33]], [["owner", 30, 7], ["repo", 31, 7], ["tag", 32, 7], ["hash", 33, 7]], [["owner", 37, 7], ["repo", 38, 7], ["tag", 39, 7], ["hash", 40, 7]], [["package", 98, 9], ["version", 99, 9]], [["version", 97, 7]], [["tests", 96, 14]], [["description", 104, 7], ["homepage", 105, 7], ["changelog", 106, 7], ["license", 107, 7], ["platforms", 108, 7], ["maintainers", 109, 7], ["mainProgram", 110, 7]], [["pname", 26, 5], ["version", 27, 5], ["mimalloc-src", 29, 5], ["src", 36, 5], ["postPatch", 48, 5], ["preConfigure", 64, 5], ["nativeBuildInputs", 68, 5], ["buildInputs", 75, 5], ["nativeCheckInputs", 82, 5], ["cmakeFlags", 87, 5], ["passthru", 96, 5], ["meta", 103, 5]], [["package", 148, 13], ["version", 149, 13]], [["version", 147, 11], ["smoke", 151, 11]], [["version", 137, 23], ["src", 137, 31], ["tests", 138, 7]], [["name", 118, 21], ["pname", 118, 26], ["paths", 119, 5], ["nativeBuildInputs", 124, 5], ["postBuild", 125, 5], ["version", 135, 21], ["src", 135, 29], ["meta", 135, 33], ["passthru", 136, 5]]]);
 const formals$1 = { args: { lib: false, stdenv: false, symlinkJoin: false, cmake: false, cctools: false, fetchFromGitHub: false, fetchpatch: false, git: false, gmp: false, cadical: false, "cadical'": true, leangz: false, openssl: false, "pkg-config": false, libuv: false, perl: false, runCommand: false, writeText: false, testers: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["version", 13, 33]]);
-const pos$2 = nix.positions(here + "/default.nix", [["owner", 30, 7], ["repo", 31, 7], ["tag", 32, 7], ["hash", 33, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["owner", 37, 7], ["repo", 38, 7], ["tag", 39, 7], ["hash", 40, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["package", 98, 9], ["version", 99, 9]]);
-const pos$5 = nix.positions(here + "/default.nix", [["version", 97, 7]]);
-const pos$6 = nix.positions(here + "/default.nix", [["tests", 96, 14]]);
-const pos$7 = nix.positions(here + "/default.nix", [["description", 104, 7], ["homepage", 105, 7], ["changelog", 106, 7], ["license", 107, 7], ["platforms", 108, 7], ["maintainers", 109, 7], ["mainProgram", 110, 7]]);
-const pos$8 = nix.positions(here + "/default.nix", [["pname", 26, 5], ["version", 27, 5], ["mimalloc-src", 29, 5], ["src", 36, 5], ["postPatch", 48, 5], ["preConfigure", 64, 5], ["nativeBuildInputs", 68, 5], ["buildInputs", 75, 5], ["nativeCheckInputs", 82, 5], ["cmakeFlags", 87, 5], ["passthru", 96, 5], ["meta", 103, 5]]);
-const pos$9 = nix.positions(here + "/default.nix", [["package", 148, 13], ["version", 149, 13]]);
-const pos$10 = nix.positions(here + "/default.nix", [["version", 147, 11], ["smoke", 151, 11]]);
-const pos$11 = nix.positions(here + "/default.nix", [["version", 137, 23], ["src", 137, 31], ["tests", 138, 7]]);
-const pos$12 = nix.positions(here + "/default.nix", [["name", 118, 21], ["pname", 118, 26], ["paths", 119, 5], ["nativeBuildInputs", 124, 5], ["postBuild", 125, 5], ["version", 135, 21], ["src", 135, 29], ["meta", 135, 33], ["passthru", 136, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,7 +17,7 @@ export default nix.lambda((args) => (() => {
   const git = nix.arg($, "git");
   const gmp = nix.arg($, "gmp");
   const cadical = nix.arg($, "cadical");
-  const cadical$ = nix.argOr($, "cadical'", () => nix.app(nix.sel(cadical, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, version: "2.1.3" }))));
+  const cadical$ = nix.argOr($, "cadical'", () => nix.app(nix.sel(cadical, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], version: "2.1.3" }))));
   const leangz = nix.arg($, "leangz");
   const openssl = nix.arg($, "openssl");
   const pkg_config = nix.arg($, "pkg-config");
@@ -38,18 +27,18 @@ export default nix.lambda((args) => (() => {
   const writeText = nix.arg($, "writeText");
   const testers = nix.arg($, "testers");
   const lean4 = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "lean4",
       version: "4.34.1",
       "mimalloc-src": nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "microsoft",
           repo: "mimalloc",
           tag: "v3.4.5",
           hash: "sha256-vNVZw2YsDkf0GcdFTNb/fXMQLQYvoc8P425LupPShpo=",
         })))),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           owner: "leanprover",
           repo: "lean4",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -81,18 +70,18 @@ substituteInPlace src/lake/Lake/Load/Lean/Elab.lean \\
         nix.thunk(() => nix.str`-DFETCHCONTENT_SOURCE_DIR_MIMALLOC=${nix.sel(finalAttrs, "mimalloc-src")}`),
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               version: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "Automatic and interactive theorem prover",
         homepage: "https://leanprover.github.io/",
         changelog: nix.thunk(() => nix.str`https://github.com/leanprover/lean4/blob/${nix.sel(finalAttrs, "src", "tag")}/RELEASES.md`),
@@ -107,7 +96,7 @@ substituteInPlace src/lake/Lake/Load/Lean/Elab.lean \\
     })));
   const oldStorePath = nix.thunk(() => nix.builtins.substring(0n, 43n, nix.thunk(() => nix.builtins.toString(lean4))));
   const wrapped = nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({
-      [nix.POS]: pos$12,
+      [nix.POS]: $pos[11],
       name: nix.thunk(() => nix.attr(lean4, "name")),
       pname: nix.thunk(() => nix.attr(lean4, "pname")),
       paths: nix.thunk(() => [lean4, cadical$, leangz]),
@@ -124,15 +113,15 @@ done
       src: nix.thunk(() => nix.attr(lean4, "src")),
       meta: nix.thunk(() => nix.attr(lean4, "meta")),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$11,
+        [nix.POS]: $pos[10],
         version: nix.thunk(() => nix.attr(lean4, "version")),
         src: nix.thunk(() => nix.attr(lean4, "src")),
         tests: nix.thunk(() => (() => {
           const src = nix.thunk(() => nix.app(writeText, "smoke.lean", "import Std\nexample : 1 + 1 = 2 := by decide\nexample : ∀ (x y : BitVec 8), x &&& y = y &&& x := by bv_decide\n"));
           return {
-            [nix.POS]: pos$10,
+            [nix.POS]: $pos[9],
             version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-                [nix.POS]: pos$9,
+                [nix.POS]: $pos[8],
                 package: wrapped,
                 version: nix.thunk(() => nix.str`v${nix.sel(lean4, "version")}`),
               })))),

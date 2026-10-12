@@ -2,32 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/mkDefinition.nix", [[["default", 14, 9]], [["conflict", 13, 15]], [["file", 17, 9], ["value", 18, 9]], [["conflict", 16, 14]], [["_file", 12, 7], ["options", 13, 7], ["config", 16, 7]], [["viaConfig", 23, 15]], [["file", 25, 9], ["value", 26, 9]], [["viaConfig", 24, 14]], [["options", 23, 7], ["config", 24, 7]], [["type", 33, 9]], [["mkMerge", 32, 15]], [["file", 37, 11], ["value", 38, 11]], [["file", 41, 11], ["value", 42, 11]], [["mkMerge", 35, 14]], [["options", 32, 7], ["config", 35, 7]], [["type", 50, 9], ["default", 51, 9]], [["mkForce", 49, 15]], [["file", 54, 9], ["value", 55, 9]], [["mkForce", 53, 14]], [["options", 49, 7], ["config", 53, 7]], [["file", 65, 11], ["value", 66, 11]], [["type", 63, 9], ["default", 64, 9]], [["viaOptionDefault", 62, 15]], [["options", 62, 7]], [["imports", 10, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/mkDefinition.nix", [["default", 14, 9]]);
-const pos$2 = nix.positions(here + "/mkDefinition.nix", [["conflict", 13, 15]]);
-const pos$3 = nix.positions(here + "/mkDefinition.nix", [["file", 17, 9], ["value", 18, 9]]);
-const pos$4 = nix.positions(here + "/mkDefinition.nix", [["conflict", 16, 14]]);
-const pos$5 = nix.positions(here + "/mkDefinition.nix", [["_file", 12, 7], ["options", 13, 7], ["config", 16, 7]]);
-const pos$6 = nix.positions(here + "/mkDefinition.nix", [["viaConfig", 23, 15]]);
-const pos$7 = nix.positions(here + "/mkDefinition.nix", [["file", 25, 9], ["value", 26, 9]]);
-const pos$8 = nix.positions(here + "/mkDefinition.nix", [["viaConfig", 24, 14]]);
-const pos$9 = nix.positions(here + "/mkDefinition.nix", [["options", 23, 7], ["config", 24, 7]]);
-const pos$10 = nix.positions(here + "/mkDefinition.nix", [["type", 33, 9]]);
-const pos$11 = nix.positions(here + "/mkDefinition.nix", [["mkMerge", 32, 15]]);
-const pos$12 = nix.positions(here + "/mkDefinition.nix", [["file", 37, 11], ["value", 38, 11]]);
-const pos$13 = nix.positions(here + "/mkDefinition.nix", [["file", 41, 11], ["value", 42, 11]]);
-const pos$14 = nix.positions(here + "/mkDefinition.nix", [["mkMerge", 35, 14]]);
-const pos$15 = nix.positions(here + "/mkDefinition.nix", [["options", 32, 7], ["config", 35, 7]]);
-const pos$16 = nix.positions(here + "/mkDefinition.nix", [["type", 50, 9], ["default", 51, 9]]);
-const pos$17 = nix.positions(here + "/mkDefinition.nix", [["mkForce", 49, 15]]);
-const pos$18 = nix.positions(here + "/mkDefinition.nix", [["file", 54, 9], ["value", 55, 9]]);
-const pos$19 = nix.positions(here + "/mkDefinition.nix", [["mkForce", 53, 14]]);
-const pos$20 = nix.positions(here + "/mkDefinition.nix", [["options", 49, 7], ["config", 53, 7]]);
-const pos$21 = nix.positions(here + "/mkDefinition.nix", [["file", 65, 11], ["value", 66, 11]]);
-const pos$22 = nix.positions(here + "/mkDefinition.nix", [["type", 63, 9], ["default", 64, 9]]);
-const pos$23 = nix.positions(here + "/mkDefinition.nix", [["viaOptionDefault", 62, 15]]);
-const pos$24 = nix.positions(here + "/mkDefinition.nix", [["options", 62, 7]]);
-const pos$25 = nix.positions(here + "/mkDefinition.nix", [["imports", 10, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -36,76 +12,76 @@ export default nix.lambda((args) => (() => {
   const mkDefinition = nix.thunk(() => nix.attr(lib, "mkDefinition"));
   const mkOptionDefault = nix.thunk(() => nix.attr(lib, "mkOptionDefault"));
   return {
-    [nix.POS]: pos$25,
+    [nix.POS]: $pos[24],
     imports: nix.thunk(() => [
       nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         _file: "file",
         options: nix.thunk(() => ({
-          [nix.POS]: pos$2,
-          conflict: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({ [nix.POS]: pos$1, default: 1n })))),
+          [nix.POS]: $pos[1],
+          conflict: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({ [nix.POS]: $pos[0], default: 1n })))),
         })),
         config: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           conflict: nix.thunk(() => nix.app(mkDefinition, nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               file: "other",
               value: nix.thunk(() => nix.app(mkOptionDefault, 42n)),
             })))),
         })),
       })),
       nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         options: nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           viaConfig: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({})))),
         })),
         config: nix.thunk(() => ({
-          [nix.POS]: pos$8,
-          viaConfig: nix.thunk(() => nix.app(mkDefinition, nix.thunk(() => ({ [nix.POS]: pos$7, file: "other", value: true })))),
+          [nix.POS]: $pos[7],
+          viaConfig: nix.thunk(() => nix.app(mkDefinition, nix.thunk(() => ({ [nix.POS]: $pos[6], file: "other", value: true })))),
         })),
       })),
       nix.thunk(() => ({
-        [nix.POS]: pos$15,
+        [nix.POS]: $pos[14],
         options: nix.thunk(() => ({
-          [nix.POS]: pos$11,
-          mkMerge: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({ [nix.POS]: pos$10, type: nix.thunk(() => nix.sel(lib, "types", "bool")) })))),
+          [nix.POS]: $pos[10],
+          mkMerge: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({ [nix.POS]: $pos[9], type: nix.thunk(() => nix.sel(lib, "types", "bool")) })))),
         })),
         config: nix.thunk(() => ({
-          [nix.POS]: pos$14,
+          [nix.POS]: $pos[13],
           mkMerge: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
-              nix.thunk(() => nix.app(mkDefinition, nix.thunk(() => ({ [nix.POS]: pos$12, file: "a.nix", value: true })))),
-              nix.thunk(() => nix.app(mkDefinition, nix.thunk(() => ({ [nix.POS]: pos$13, file: "b.nix", value: true })))),
+              nix.thunk(() => nix.app(mkDefinition, nix.thunk(() => ({ [nix.POS]: $pos[11], file: "a.nix", value: true })))),
+              nix.thunk(() => nix.app(mkDefinition, nix.thunk(() => ({ [nix.POS]: $pos[12], file: "b.nix", value: true })))),
             ]))),
         })),
       })),
       nix.thunk(() => ({
-        [nix.POS]: pos$20,
+        [nix.POS]: $pos[19],
         options: nix.thunk(() => ({
-          [nix.POS]: pos$17,
+          [nix.POS]: $pos[16],
           mkForce: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              [nix.POS]: pos$16,
+              [nix.POS]: $pos[15],
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
               default: false,
             })))),
         })),
         config: nix.thunk(() => ({
-          [nix.POS]: pos$19,
+          [nix.POS]: $pos[18],
           mkForce: nix.thunk(() => nix.app(mkDefinition, nix.thunk(() => ({
-              [nix.POS]: pos$18,
+              [nix.POS]: $pos[17],
               file: "other",
               value: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), true)),
             })))),
         })),
       })),
       nix.thunk(() => ({
-        [nix.POS]: pos$24,
+        [nix.POS]: $pos[23],
         options: nix.thunk(() => ({
-          [nix.POS]: pos$23,
+          [nix.POS]: $pos[22],
           viaOptionDefault: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-              [nix.POS]: pos$22,
+              [nix.POS]: $pos[21],
               type: nix.thunk(() => nix.sel(lib, "types", "bool")),
-              default: nix.thunk(() => nix.app(mkDefinition, nix.thunk(() => ({ [nix.POS]: pos$21, file: "other", value: true })))),
+              default: nix.thunk(() => nix.app(mkDefinition, nix.thunk(() => ({ [nix.POS]: $pos[20], file: "other", value: true })))),
             })))),
         })),
       })),

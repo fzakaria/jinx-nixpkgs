@@ -2,12 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/thirdparty.nix", [[["ncVersion", 10, 60]], [["ncVersion", 12, 62]], [["hmr_enabler", 8, 7], ["memories", 10, 7], ["recognize", 12, 7]], [["apps", 6, 3]]]);
 const formals$1 = { args: { ncVersion: false }, ellipsis: false };
 const formals$2 = { args: { apps: false, callPackage: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/thirdparty.nix", [["ncVersion", 10, 60]]);
-const pos$2 = nix.positions(here + "/thirdparty.nix", [["ncVersion", 12, 62]]);
-const pos$3 = nix.positions(here + "/thirdparty.nix", [["hmr_enabler", 8, 7], ["memories", 10, 7], ["recognize", 12, 7]]);
-const pos$4 = nix.positions(here + "/thirdparty.nix", [["apps", 6, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,12 +14,12 @@ export default nix.lambda((args) => (() => {
     const apps = nix.arg($_1, "apps");
     const callPackage = nix.arg($_1, "callPackage");
     return {
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       apps: nix.thunk(() => nix.app(nix.sel(apps, "extend"), (self) => (super$) => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           hmr_enabler: nix.thunk(() => nix.app(callPackage, nix.path(here, "./apps/hmr_enabler.nix"), nix.thunk(() => ({})))),
-          memories: nix.thunk(() => nix.app(callPackage, nix.path(here, "./apps/memories.nix"), nix.thunk(() => ({ [nix.POS]: pos$1, ncVersion: ncVersion })))),
-          recognize: nix.thunk(() => nix.app(callPackage, nix.path(here, "./apps/recognize.nix"), nix.thunk(() => ({ [nix.POS]: pos$2, ncVersion: ncVersion })))),
+          memories: nix.thunk(() => nix.app(callPackage, nix.path(here, "./apps/memories.nix"), nix.thunk(() => ({ [nix.POS]: $pos[0], ncVersion: ncVersion })))),
+          recognize: nix.thunk(() => nix.app(callPackage, nix.path(here, "./apps/recognize.nix"), nix.thunk(() => ({ [nix.POS]: $pos[1], ncVersion: ncVersion })))),
         }))),
     };
   })(), formals$2);

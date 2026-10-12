@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 13, 5], ["sha256", 14, 5]], [["description", 33, 5], ["license", 36, 5], ["maintainers", 37, 5], ["platforms", 38, 5], ["homepage", 39, 5], ["mainProgram", 40, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["buildInputs", 17, 3], ["configurePhase", 22, 3], ["makeFlags", 30, 3], ["meta", 32, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, libx11: false, libxft: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 13, 5], ["sha256", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 33, 5], ["license", 36, 5], ["maintainers", 37, 5], ["platforms", 38, 5], ["homepage", 39, 5], ["mainProgram", 40, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["buildInputs", 17, 3], ["configurePhase", 22, 3], ["makeFlags", 30, 3], ["meta", 32, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "xfractint";
       const version = "20.04p16";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://www.fractint.net/ftp/current/linux/xfractint-${version}.tar.gz`),
           sha256: "1ba77jifxv8jql044mdydh4p4ms4w5vw3qrqmcfzlvqfxk7h2m2f",
         }))));
@@ -26,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const configurePhase = "runHook preConfigure\n\nsed -e 's@/usr/bin/@@' -i Makefile\n\nrunHook postConfigure\n";
       const makeFlags = nix.thunk(() => ["PREFIX=$(out)"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "raskin"))]),
@@ -35,7 +33,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "xfractint",
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

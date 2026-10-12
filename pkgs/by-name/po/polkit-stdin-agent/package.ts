@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]], [["nixos-rebuild-target-host", 26, 36]], [["updateScript", 25, 5], ["tests", 26, 5]], [["description", 30, 5], ["longDescription", 31, 5], ["homepage", 40, 5], ["license", 41, 5], ["maintainers", 42, 5], ["platforms", 43, 5], ["mainProgram", 44, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["cargoHash", 20, 3], ["__structuredAttrs", 22, 3], ["passthru", 24, 3], ["meta", 29, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchFromCodeberg: false, "nix-update-script": false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["nixos-rebuild-target-host", 26, 36]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 25, 5], ["tests", 26, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 30, 5], ["longDescription", 31, 5], ["homepage", 40, 5], ["license", 41, 5], ["maintainers", 42, 5], ["platforms", 43, 5], ["mainProgram", 44, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["cargoHash", 20, 3], ["__structuredAttrs", 22, 3], ["passthru", 24, 3], ["meta", 29, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "polkit-stdin-agent",
       version: "0.3.3",
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "r-vdp",
           repo: "polkit-stdin-agent",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -30,15 +26,15 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-TbvJit+xbT7IIv7/uxXIKGjgEmVUwwdKfb4ptMQEztM=",
       __structuredAttrs: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           "nixos-rebuild-target-host": nix.thunk(() => nix.attr(nixosTests, "nixos-rebuild-target-host")),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Non-interactive polkit authentication agent that answers PAM prompts from a file descriptor",
         longDescription: "Registers a per-process polkit authentication agent for a wrapped\ncommand and answers the PAM conversation from a file descriptor\ninstead of /dev/tty, giving run0 / systemd-run the same\n\"password on stdin\" ergonomics as `sudo --stdin`.\n\nUsed by `nixos-rebuild --elevate=run0 --ask-elevate-password` to\nauthenticate on a target host over SSH without allocating a TTY.\n",
         homepage: "https://codeberg.org/r-vdp/polkit-stdin-agent",

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 24, 5], ["repo", 25, 5], ["rev", 26, 5], ["sha256", 27, 5]], [["url", 48, 7], ["sha256", 49, 7]], [["description", 62, 5], ["longDescription", 63, 5], ["homepage", 69, 5], ["platforms", 70, 5], ["license", 71, 5], ["mainProgram", 72, 5]], [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 32, 3], ["patches", 45, 3], ["buildPhase", 53, 3], ["installPhase", 57, 3], ["meta", 61, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch: false, audiofile: false, libvorbis: false, fltk: false, fftw: false, fftwFloat: false, minixml: false, "pkg-config": false, libmad: false, libjack2: false, portaudio: false, libsamplerate: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 24, 5], ["repo", 25, 5], ["rev", 26, 5], ["sha256", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 48, 7], ["sha256", 49, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 62, 5], ["longDescription", 63, 5], ["homepage", 69, 5], ["platforms", 70, 5], ["license", 71, 5], ["mainProgram", 72, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 32, 3], ["patches", 45, 3], ["buildPhase", 53, 3], ["installPhase", 57, 3], ["meta", 61, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const portaudio = nix.arg($, "portaudio");
   const libsamplerate = nix.arg($, "libsamplerate");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "paulstretch",
       version: "2.2-2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "paulnasca",
           repo: "paulstretch_cpp",
           rev: "7f5c3993abe420661ea0b808304b0e2b4b0048c5",
@@ -51,7 +48,7 @@ export default nix.lambda((args) => (() => {
       ]),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/paulnasca/paulstretch_cpp/commit/d8671b36135fe66839b11eadcacb474cc8dae0d1.patch",
             sha256: "0lx1rfrs53afkiz1drp456asqgj5yv6hx3lkc01165cv1jsbw6q4",
           })))),
@@ -59,7 +56,7 @@ export default nix.lambda((args) => (() => {
       buildPhase: "bash compile_linux_fftw_jack.sh\n",
       installPhase: "install -Dm555 ./paulstretch $out/bin/paulstretch\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Produces high quality extreme sound stretching",
         longDescription: "This is a program for stretching the audio. It is suitable only for\nextreme sound stretching of the audio (like 50x) and for applying\nspecial effects by \"spectral smoothing\" the sounds.\nIt can transform any sound/music to a texture.\n",
         homepage: "https://github.com/paulnasca/paulstretch_cpp/",

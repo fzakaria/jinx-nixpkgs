@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 15, 5], ["sha256", 16, 5]], [["name", 29, 7], ["url", 30, 7], ["hash", 31, 7]], [["url", 34, 7], ["hash", 35, 7], ["extraPrefix", 36, 7]], [["url", 39, 7], ["hash", 40, 7], ["extraPrefix", 41, 7]], [["url", 44, 7], ["hash", 45, 7], ["extraPrefix", 46, 7]], [["homepage", 62, 5], ["description", 63, 5], ["license", 64, 5], ["platforms", 67, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["outputs", 19, 3], ["patches", 24, 3], ["nativeBuildInputs", 50, 3], ["postPatch", 55, 3], ["enableParallelBuilding", 59, 3], ["meta", 61, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, fetchpatch: false, autoreconfHook: false, "pkg-config": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 15, 5], ["sha256", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 29, 7], ["url", 30, 7], ["hash", 31, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 34, 7], ["hash", 35, 7], ["extraPrefix", 36, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["url", 39, 7], ["hash", 40, 7], ["extraPrefix", 41, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["url", 44, 7], ["hash", 45, 7], ["extraPrefix", 46, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["homepage", 62, 5], ["description", 63, 5], ["license", 64, 5], ["platforms", 67, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["outputs", 19, 3], ["patches", 24, 3], ["nativeBuildInputs", 50, 3], ["postPatch", 55, 3], ["enableParallelBuilding", 59, 3], ["meta", 61, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const autoreconfHook = nix.arg($, "autoreconfHook");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "webrtc-audio-processing",
       version: "0.3.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://freedesktop.org/software/pulseaudio/webrtc-audio-processing/webrtc-audio-processing-${nix.sel(finalAttrs, "version")}.tar.xz`),
           sha256: "1gsx7k77blfy171b6g3m0k0s0072v6jcawhmx1kjs9w5zlwdkzd0",
         })))),
@@ -33,25 +27,25 @@ export default nix.lambda((args) => (() => {
         nix.path(here, "./enable-riscv.patch"),
         nix.path(here, "./enable-powerpc.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "0001-webrtc-audio-processing-big-endian.patch",
             url: "https://gitlab.freedesktop.org/pulseaudio/pulseaudio/uploads/2994c0512aaa76ebf41ce11c7b9ba23e/webrtc-audio-processing-0.2-big-endian.patch",
             hash: "sha256-zVAj9H8SJureQd0t5O5v1je4ia8/gHJOXYxuEBEB6gg=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: "https://raw.githubusercontent.com/freebsd/freebsd-ports/2f3c3b1d9dadc25356da4b612130bf4dea27b817/audio/webrtc-audio-processing0/files/patch-configure.ac",
             hash: "sha256-IOSW3ZLIuRXY/M+MU813M9o0Vu4mcGoAtdNRlJwESHw=",
             extraPrefix: "",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             url: "https://raw.githubusercontent.com/freebsd/freebsd-ports/27f26f19a34755fe4b939a7210d8ba7ee9358a0d/audio/webrtc-audio-processing0/files/patch-webrtc_base_stringutils.h",
             hash: "sha256-j85CdFpDIPhhEquwA3P0r5djnMEGVnvfsPM2bYbURt8=",
             extraPrefix: "",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             url: "https://raw.githubusercontent.com/freebsd/freebsd-ports/0d316feccaf89c1bd804d6001274426a7135c93a/audio/webrtc-audio-processing0/files/patch-webrtc_base_platform__thread.cc",
             hash: "sha256-MsZtNWv3bwxJLxpQaMqj34XIBhqAaO2NkBHjlFWZreA=",
             extraPrefix: "",
@@ -61,7 +55,7 @@ export default nix.lambda((args) => (() => {
       postPatch: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isMusl")), "substituteInPlace webrtc/base/checks.cc --replace 'defined(__UCLIBC__)' 1\n")),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         homepage: "https://www.freedesktop.org/software/pulseaudio/webrtc-audio-processing",
         description: "More Linux packaging friendly copy of the AudioProcessing module from the WebRTC project",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

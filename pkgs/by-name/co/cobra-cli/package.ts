@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["sha256", 19, 5]], [["description", 57, 5], ["mainProgram", 58, 5], ["homepage", 59, 5], ["changelog", 60, 5], ["license", 61, 5], ["maintainers", 62, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["vendorHash", 22, 3], ["nativeBuildInputs", 24, 3], ["allowGoReference", 29, 3], ["postPatch", 31, 3], ["postFixup", 38, 3], ["postInstall", 43, 3], ["meta", 56, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildGoModule: false, fetchFromGitHub: false, makeWrapper: false, installShellFiles: false, go: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["sha256", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 57, 5], ["mainProgram", 58, 5], ["homepage", 59, 5], ["changelog", 60, 5], ["license", 61, 5], ["maintainers", 62, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["vendorHash", 22, 3], ["nativeBuildInputs", 24, 3], ["allowGoReference", 29, 3], ["postPatch", 31, 3], ["postFixup", 38, 3], ["postInstall", 43, 3], ["meta", 56, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const installShellFiles = nix.arg($, "installShellFiles");
   const go = nix.arg($, "go");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "cobra-cli",
       version: "1.3.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "spf13",
           repo: "cobra-cli",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,7 +34,7 @@ export default nix.lambda((args) => (() => {
 `),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "installShellCompletion --cmd cobra-cli \\\n  --bash <($out/bin/cobra-cli completion bash) \\\n  --fish <($out/bin/cobra-cli completion fish) \\\n  --zsh <($out/bin/cobra-cli completion zsh) \\\n\n# Ironically, cobra-cli still uses old, slightly buggy completion code\n# This will correct the #compdef tag and add separate compdef line\n# allowing direct sourcing to also activate the completion\nsubstituteInPlace \"$out/share/zsh/site-functions/_cobra-cli\" \\\n  --replace-fail '#compdef _cobra-cli cobra-cli' \"#compdef cobra-cli\ncompdef _cobra-cli cobra-cli\"\n")),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Cobra CLI tool to generate applications and commands",
         mainProgram: "cobra-cli",
         homepage: "https://github.com/spf13/cobra-cli/",

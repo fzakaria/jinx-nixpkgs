@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]], [["url", 48, 7], ["hash", 49, 7], ["revert", 50, 7]], [["url", 55, 7], ["hash", 56, 7], ["revert", 57, 7]], [["test", 100, 18]], [["tests", 100, 12]], [["description", 103, 5], ["homepage", 104, 5], ["license", 105, 5], ["maintainers", 106, 5], ["platforms", 110, 5]], [["pname", 21, 3], ["version", 22, 3], ["pyproject", 24, 3], ["src", 26, 3], ["build-system", 33, 3], ["patches", 37, 3], ["nativeBuildInputs", 61, 3], ["buildInputs", 67, 3], ["makeWrapperArgs", 77, 3], ["propagatedBuildInputs", 79, 3], ["makeFlags", 88, 3], ["preFixup", 92, 3], ["passthru", 100, 3], ["meta", 102, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, fetchpatch: false, python3: false, python3Packages: false, glibcLocales: false, "gobject-introspection": false, wrapGAppsHook3: false, gtk3: false, keybinder3: false, libnotify: false, libutempter: false, vte: false, libwnck: false, dconf: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 48, 7], ["hash", 49, 7], ["revert", 50, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 55, 7], ["hash", 56, 7], ["revert", 57, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["test", 100, 18]]);
-const pos$5 = nix.positions(here + "/package.nix", [["tests", 100, 12]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 103, 5], ["homepage", 104, 5], ["license", 105, 5], ["maintainers", 106, 5], ["platforms", 110, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 3], ["pyproject", 24, 3], ["src", 26, 3], ["build-system", 33, 3], ["patches", 37, 3], ["nativeBuildInputs", 61, 3], ["buildInputs", 67, 3], ["makeWrapperArgs", 77, 3], ["propagatedBuildInputs", 79, 3], ["makeFlags", 88, 3], ["preFixup", 92, 3], ["passthru", 100, 3], ["meta", 102, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,12 +24,12 @@ export default nix.lambda((args) => (() => {
   const dconf = nix.arg($, "dconf");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "guake",
       version: "3.10.1",
       pyproject: false,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Guake",
           repo: "guake",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -48,13 +42,13 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [
         nix.path(here, "./no-compile-schemas.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/Guake/guake/commit/14abaa0c69cfab64fe3467fbbea211d830042de8.patch",
             hash: "sha256-RjGRFJDTQX2meAaw3UZi/3OxAtIHbRZVpXTbcJk/scY=",
             revert: true,
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: "https://github.com/Guake/guake/commit/8c7a23ba62ee262c033dfa5b0b18d3df71361ff4.patch",
             hash: "sha256-0asXI08XITkFc73EUenV9qxY/Eak+TzygRRK7GvhQUc=",
             revert: true,
@@ -88,14 +82,14 @@ export default nix.lambda((args) => (() => {
 )
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           test: nix.thunk(() => nix.sel(nixosTests, "terminal-emulators", "guake")),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Drop-down terminal for GNOME",
         homepage: "https://guake.github.io/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

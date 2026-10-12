@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 32, 5], ["repo", 33, 5], ["tag", 34, 5], ["hash", 35, 5]], [["url", 41, 7], ["hash", 42, 7]], [["arm", 106, 7], ["musl64", 107, 7], ["riscv64", 108, 7]], [["updateScript", 104, 5], ["tests", 105, 5]], [["description", 113, 5], ["longDescription", 114, 5], ["homepage", 120, 5], ["changelog", 121, 5], ["license", 122, 5], ["maintainers", 126, 5], ["badPlatforms", 127, 5], ["platforms", 129, 5]], [["pname", 22, 3], ["version", 23, 3], ["strictDeps", 24, 3], ["outputs", 26, 3], ["src", 31, 3], ["patches", 38, 3], ["depsBuildBuild", 46, 3], ["nativeBuildInputs", 50, 3], ["mesonFlags", 55, 3], ["doCheck", 101, 3], ["passthru", 103, 3], ["meta", 112, 3]]]);
 const formals$1 = { args: { stdenvNoLibc: false, fetchpatch: false, buildPackages: false, fetchFromGitHub: false, lib: false, meson: false, ninja: false, "nix-update-script": false, pkgsCross: false, multilib: true, "multilib-list": true, "multilib-exclude": true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 32, 5], ["repo", 33, 5], ["tag", 34, 5], ["hash", 35, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 41, 7], ["hash", 42, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["arm", 106, 7], ["musl64", 107, 7], ["riscv64", 108, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 104, 5], ["tests", 105, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 113, 5], ["longDescription", 114, 5], ["homepage", 120, 5], ["changelog", 121, 5], ["license", 122, 5], ["maintainers", 126, 5], ["badPlatforms", 127, 5], ["platforms", 129, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 22, 3], ["version", 23, 3], ["strictDeps", 24, 3], ["outputs", 26, 3], ["src", 31, 3], ["patches", 38, 3], ["depsBuildBuild", 46, 3], ["nativeBuildInputs", 50, 3], ["mesonFlags", 55, 3], ["doCheck", 101, 3], ["passthru", 103, 3], ["meta", 112, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,13 +22,13 @@ export default nix.lambda((args) => (() => {
   const canExecute = nix.thunk(() => nix.app(nix.sel(stdenvNoLibc, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenvNoLibc, "hostPlatform"))));
   const isHosted = nix.thunk(() => !nix.asBool(nix.sel(stdenvNoLibc, "hostPlatform", "isNone")));
   return nix.app(nix.sel(stdenvNoLibc, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "picolibc",
       version: "1.8.12-1",
       strictDeps: true,
       outputs: nix.thunk(() => ["out", "dev"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "picolibc",
           repo: "picolibc",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -41,7 +36,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/picolibc/picolibc/commit/11a46b6ed03c4dca64e0534435da9841e837b160.patch",
             hash: "sha256-i1dKW1L5si0gf0/Sn4sU/BuIof778tvHgCCCY1TxMME=",
           })))),
@@ -71,17 +66,17 @@ export default nix.lambda((args) => (() => {
         ]))))),
       doCheck: nix.thunk(() => (nix.asBool(canExecute) && nix.asBool(nix.eq(nix.sel(stdenvNoLibc, "hostPlatform"), nix.sel(stdenvNoLibc, "buildPlatform"))))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           arm: nix.thunk(() => nix.sel(pkgsCross, "arm-embedded", "picolibc")),
           musl64: nix.thunk(() => nix.sel(pkgsCross, "musl64", "picolibc")),
           riscv64: nix.thunk(() => nix.sel(pkgsCross, "riscv64-embedded", "picolibc")),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "C library designed for embedded 32- and 64-bit systems",
         longDescription: "Picolibc is library offering standard C library APIs that targets small\nembedded systems with limited RAM. Picolibc was formed by blending code\nfrom [Newlib](http://sourceware.org/newlib/) and [AVR\nLibc](https://www.nongnu.org/avr-libc/).\n",
         homepage: "https://keithp.com/picolibc/",

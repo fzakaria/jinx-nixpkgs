@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/test.nix", [[["name", 8, 3], ["nativeCheckInputs", 10, 3], ["dontUnpack", 15, 3], ["doCheck", 16, 3], ["preCheck", 18, 3], ["checkPhase", 22, 3], ["__darwinAllowLocalNetworking", 34, 3], ["installPhase", 36, 3]]]);
 const formals$1 = { args: { memcachedTestHook: false, netcat: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/test.nix", [["name", 8, 3], ["nativeCheckInputs", 10, 3], ["dontUnpack", 15, 3], ["doCheck", 16, 3], ["preCheck", 18, 3], ["checkPhase", 22, 3], ["__darwinAllowLocalNetworking", 34, 3], ["installPhase", 36, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -11,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const netcat = nix.arg($, "netcat");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: "memcached-test-hook-test",
       nativeCheckInputs: nix.thunk(() => [memcachedTestHook, netcat]),
       dontUnpack: true,

@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["src", 29, 11], ["substitutions", 30, 11]], [["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5], ["postFetch", 25, 5]], [["src", 56, 26], ["missingHashes", 56, 30], ["hash", 57, 5]], [["updateScript", 105, 12]], [["changelog", 108, 5], ["description", 109, 5], ["homepage", 110, 5], ["maintainers", 111, 5], ["mainProgram", 112, 5], ["license", 113, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["npmWorkspace", 41, 3], ["nativeBuildInputs", 43, 3], ["missingHashes", 53, 3], ["offlineCache", 55, 3], ["buildPhase", 60, 3], ["installPhase", 68, 3], ["passthru", 105, 3], ["meta", 107, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, substitute: false, nodejs: false, gnutar: false, makeBinaryWrapper: false, "yarn-berry_4": false, nodejsInstallManuals: false, nodejsInstallExecutables: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["src", 29, 11], ["substitutions", 30, 11]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5], ["postFetch", 25, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["src", 56, 26], ["missingHashes", 56, 30], ["hash", 57, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 105, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["changelog", 108, 5], ["description", 109, 5], ["homepage", 110, 5], ["maintainers", 111, 5], ["mainProgram", 112, 5], ["license", 113, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["npmWorkspace", 41, 3], ["nativeBuildInputs", 43, 3], ["missingHashes", 53, 3], ["offlineCache", 55, 3], ["buildPhase", 60, 3], ["installPhase", 68, 3], ["passthru", 105, 3], ["meta", 107, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,18 +18,18 @@ export default nix.lambda((args) => (() => {
   const nodejsInstallManuals = nix.arg($, "nodejsInstallManuals");
   const nodejsInstallExecutables = nix.arg($, "nodejsInstallExecutables");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "gitbeaker-cli",
       version: "43.8.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "jdalrymple",
           repo: "gitbeaker",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-zGcSilIQUKn7iMGFkDZuvPZZM9UcZadczelB7JgVYb4=",
           postFetch: nix.thunk(() => nix.str`cd $out
 patch -p1 < ${nix.app(substitute, nix.thunk(() => ({
-              [nix.POS]: pos$1,
+              [nix.POS]: $pos[0],
               src: nix.path(here, "./yarn-fix.patch"),
               substitutions: nix.thunk(() => [
                 "--replace-fail",
@@ -56,16 +51,16 @@ patch -p1 < ${nix.app(substitute, nix.thunk(() => ({
       ]),
       missingHashes: nix.path(here, "./missing-hashes.json"),
       offlineCache: nix.thunk(() => nix.app(nix.sel(yarn_berry_4, "fetchYarnBerryDeps"), nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           missingHashes: nix.thunk(() => nix.attr(finalAttrs, "missingHashes")),
           hash: "sha256-OMsa/4pRyZVjgYPfYsaj1D+auKOHRAXKtEDYWenI33I=",
         })))),
       buildPhase: "runHook preBuild\n\nyarn workspaces foreach -Rpt --from '@gitbeaker/*' run build\n\nrunHook postBuild\n",
       installPhase: "runHook preInstall\n\nmkdir -p $out/bin\nmkdir -p $out/lib/node_modules/@gitbeaker/cli\nexport yarnTmpDir=$(mktemp -d)\nexport yarnPack=$yarnTmpDir/yarn-pack.tgz\nexport packageRoot=$out/lib/node_modules/@gitbeaker\nexport nodeModPath=$out/lib/node_modules/@gitbeaker/cli/node_modules\n\n# Basically yarnInstallHook\npushd packages\ncp -r ./* \"$packageRoot\"/\npushd cli\nnodejsInstallExecutables ./package.json\nnodejsInstallManuals ./package.json\npopd\npopd\nyarn workspaces focus --production @gitbeaker/cli\nfind node_modules -maxdepth 1 -type d -empty -delete\nrm -rf node_modules/.bin\ncp -r ./node_modules $nodeModPath\npushd $packageRoot\nln -s $nodeModPath core/node_modules\nln -s $nodeModPath requester-utils/node_modules\nln -s $nodeModPath rest/node_modules\npopd\nunlink $nodeModPath/@gitbeaker/cli\nunlink $nodeModPath/@gitbeaker/core\nunlink $nodeModPath/@gitbeaker/requester-utils\nunlink $nodeModPath/@gitbeaker/rest\nrm -rrf $nodeModPath/@gitbeaker\nln -s $packageRoot $nodeModPath\n\nrunHook postInstall\n",
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$4, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[3], updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         changelog: nix.thunk(() => nix.str`https://github.com/jdalrymple/gitbeaker/releases/tag/${nix.sel(finalAttrs, "version")}`),
         description: "CLI Wrapper for the @gitbeaker/rest SDK",
         homepage: "https://github.com/jdalrymple/gitbeaker",

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 81, 5], ["repo", 82, 5], ["tag", 83, 5], ["hash", 84, 5]], [["url", 93, 7], ["hash", 94, 7]], [["providedSessions", 211, 5]], [["homepage", 219, 5], ["description", 220, 5], ["license", 221, 5], ["platforms", 222, 5], ["teams", 223, 5]], [["pname", 77, 3], ["version", 78, 3], ["src", 80, 3], ["patches", 87, 3], ["buildInputs", 98, 3], ["nativeBuildInputs", 144, 3], ["postPatch", 156, 3], ["postInstall", 188, 3], ["preFixup", 193, 3], ["passthru", 210, 3], ["meta", 218, 3]]]);
 const formals$1 = { args: { atk: false, cacert: false, dbus: false, "cinnamon-control-center": false, "cinnamon-desktop": false, "cinnamon-menus": false, "cinnamon-session": false, "cinnamon-translations": false, cjs: false, "evolution-data-server": false, fetchFromGitHub: false, fetchpatch: false, gcr_3: false, "gdk-pixbuf": false, gettext: false, libgnomekbd: false, glib: false, "gobject-introspection": false, gsound: false, gtk3: false, ibus: false, "json-glib": false, libsecret: false, libstartup_notification: false, libxtst: false, libxdamage: false, libgbm: false, muffin: false, networkmanager: false, "pkg-config": false, polkit: false, lib: false, stdenv: false, wrapGAppsHook3: false, libxml2: false, "gtk-doc": false, python3: false, keybinder3: false, cairo: false, xapp: false, upower: false, nemo: false, libnotify: false, accountsservice: false, "gnome-online-accounts": false, "glib-networking": false, graphene: false, pciutils: false, timezonemap: false, libnma: false, meson: false, ninja: false, gst_all_1: false, perl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 81, 5], ["repo", 82, 5], ["tag", 83, 5], ["hash", 84, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 93, 7], ["hash", 94, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["providedSessions", 211, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 219, 5], ["description", 220, 5], ["license", 221, 5], ["platforms", 222, 5], ["teams", 223, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 77, 3], ["version", 78, 3], ["src", 80, 3], ["patches", 87, 3], ["buildInputs", 98, 3], ["nativeBuildInputs", 144, 3], ["postPatch", 156, 3], ["postInstall", 188, 3], ["preFixup", 193, 3], ["passthru", 210, 3], ["meta", 218, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -83,11 +79,11 @@ export default nix.lambda((args) => (() => {
       ];
     })()));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "cinnamon",
       version: "6.6.9",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "linuxmint",
           repo: "cinnamon",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -97,7 +93,7 @@ export default nix.lambda((args) => (() => {
         nix.path(here, "./use-sane-install-dir.patch"),
         nix.path(here, "./libdir.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/linuxmint/cinnamon/commit/3a2d558aa575f0ea364c5b4e30d2eb3ee604ee58.patch",
             hash: "sha256-+uAGuQJ0VsIvMvPFafyoXmU4MiHfbbRXLzeW/n62ucw=",
           })))),
@@ -203,11 +199,11 @@ chmod +x $out/share/cinnamon/applets/printers@cinnamon.org/{cancel-print-dialog,
 wrapGApp $out/share/cinnamon/applets/printers@cinnamon.org/cancel-print-dialog.py
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         providedSessions: nix.thunk(() => ["cinnamon", "cinnamon2d", "cinnamon-wayland"]),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://github.com/linuxmint/cinnamon",
         description: "Cinnamon desktop environment",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

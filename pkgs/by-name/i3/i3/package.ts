@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 45, 5], ["repo", 46, 5], ["tag", 47, 5], ["hash", 48, 5]], [["i3wm", 144, 28]], [["updateScript", 142, 5], ["tests", 143, 5]], [["description", 149, 5], ["homepage", 150, 5], ["maintainers", 151, 5], ["mainProgram", 152, 5], ["license", 153, 5], ["platforms", 154, 5], ["longDescription", 156, 5]], [["pname", 41, 3], ["version", 42, 3], ["src", 44, 3], ["nativeBuildInputs", 51, 3], ["mesonFlags", 65, 3], ["buildInputs", 70, 3], ["postPatch", 92, 3], ["doCheck", 97, 3], ["nativeCheckInputs", 99, 3], ["checkPhase", 108, 3], ["postInstall", 130, 3], ["separateDebugInfo", 139, 3], ["passthru", 141, 3], ["meta", 148, 3]]]);
 const formals$1 = { args: { fetchFromGitHub: false, lib: false, stdenv: false, "pkg-config": false, makeWrapper: false, meson: false, ninja: false, installShellFiles: false, libxcb: false, "libxcb-keysyms": false, "libxcb-util": false, "libxcb-wm": false, xcbutilxrm: false, libstartup_notification: false, libx11: false, pcre2: false, libev: false, yajl: false, "libxcb-cursor": false, perl: false, pango: false, perlPackages: false, libxkbcommon: false, "xorg-server": false, "xvfb-run": false, xdotool: false, xrandr: false, setxkbmap: false, which: false, asciidoc: false, xmlto: false, docbook_xml_dtd_45: false, docbook_xsl: false, findXMLCatalogs: false, nixosTests: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 45, 5], ["repo", 46, 5], ["tag", 47, 5], ["hash", 48, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["i3wm", 144, 28]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 142, 5], ["tests", 143, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 149, 5], ["homepage", 150, 5], ["maintainers", 151, 5], ["mainProgram", 152, 5], ["license", 153, 5], ["platforms", 154, 5], ["longDescription", 156, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 41, 3], ["version", 42, 3], ["src", 44, 3], ["nativeBuildInputs", 51, 3], ["mesonFlags", 65, 3], ["buildInputs", 70, 3], ["postPatch", 92, 3], ["doCheck", 97, 3], ["nativeCheckInputs", 99, 3], ["checkPhase", 108, 3], ["postInstall", 130, 3], ["separateDebugInfo", 139, 3], ["passthru", 141, 3], ["meta", 148, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -48,11 +44,11 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "i3",
       version: "4.25.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "i3",
           repo: "i3",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -103,12 +99,12 @@ export default nix.lambda((args) => (() => {
       postInstall: "wrapProgram \"$out/bin/i3-save-tree\" --prefix PERL5LIB \":\" \"$PERL5LIB\"\nfor program in $out/bin/i3-sensible-*; do\n  sed -i 's/which/command -v/' $program\ndone\n\ninstallManPage man/*.1\n",
       separateDebugInfo: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
-        tests: nix.thunk(() => ({ [nix.POS]: pos$2, i3wm: nix.thunk(() => nix.attr(nixosTests, "i3wm")) })),
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[1], i3wm: nix.thunk(() => nix.attr(nixosTests, "i3wm")) })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Tiling window manager",
         homepage: "https://i3wm.org",
         maintainers: nix.thunk(() => (() => {

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 24, 5], ["hash", 25, 5]], [["description", 71, 5], ["homepage", 72, 5], ["license", 73, 5], ["teams", 74, 5], ["platforms", 75, 5]], [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["outputs", 28, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 39, 3], ["configureFlags", 50, 3], ["strictDeps", 66, 3], ["enableParallelBuilding", 68, 3], ["meta", 70, 3]]]);
 const formals$1 = { args: { lib: false, SDL2: false, autoreconfHook: false, fetchurl: false, libjpeg: false, libpng: false, libtiff: false, libwebp: false, "pkg-config": false, stdenv: false, zlib: false, enableSTB: true, enableSdltest: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 71, 5], ["homepage", 72, 5], ["license", 73, 5], ["teams", 74, 5], ["platforms", 75, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["outputs", 28, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 39, 3], ["configureFlags", 50, 3], ["strictDeps", 66, 3], ["enableParallelBuilding", 68, 3], ["meta", 70, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const enableSTB = nix.argOr($, "enableSTB", () => true);
   const enableSdltest = nix.argOr($, "enableSdltest", () => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "SDL2_image",
       version: "2.8.12",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://www.libsdl.org/projects/SDL_image/release/SDL2_image-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-OT9e+1BTbsE8pPSv+2nMmWbTw/lp5sXnAfrd+fl4U4E=",
         })))),
@@ -45,7 +43,7 @@ export default nix.lambda((args) => (() => {
       strictDeps: true,
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "SDL image library",
         homepage: "https://github.com/libsdl-org/SDL_image",
         license: nix.thunk(() => nix.sel(lib, "licenses", "zlib")),

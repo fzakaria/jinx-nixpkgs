@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]], [["updateScript", 66, 5]], [["homepage", 70, 5], ["changelog", 71, 5], ["description", 72, 5], ["license", 73, 5], ["platforms", 74, 5], ["teams", 75, 5]], [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 39, 3], ["outputs", 55, 3], ["doCheck", 60, 3], ["cmakeBuildType", 62, 3], ["separateDebugInfo", 63, 3], ["passthru", 65, 3], ["meta", 69, 3]]]);
 const formals$1 = { args: { lib: false, gcc16Stdenv: false, fetchFromGitHub: false, "nix-update-script": false, cmake: false, "pkg-config": false, cairo: false, file: false, hyprutils: false, lcms2: false, libGL: false, libdrm: false, libjpeg: false, libjxl: false, librsvg: false, libspng: false, libwebp: false, pango: false, pixman: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 66, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 70, 5], ["changelog", 71, 5], ["description", 72, 5], ["license", 73, 5], ["platforms", 74, 5], ["teams", 75, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 39, 3], ["outputs", 55, 3], ["doCheck", 60, 3], ["cmakeBuildType", 62, 3], ["separateDebugInfo", 63, 3], ["passthru", 65, 3], ["meta", 69, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,11 +27,11 @@ export default nix.lambda((args) => (() => {
   const pango = nix.arg($, "pango");
   const pixman = nix.arg($, "pixman");
   return nix.app(nix.sel(gcc16Stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "hyprgraphics",
       version: "0.5.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "hyprwm",
           repo: "hyprgraphics",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -61,11 +58,11 @@ export default nix.lambda((args) => (() => {
       cmakeBuildType: "RelWithDebInfo",
       separateDebugInfo: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/hyprwm/hyprgraphics",
         changelog: nix.thunk(() => nix.str`https://github.com/hyprwm/hyprgraphics/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         description: "Cpp graphics library for Hypr* ecosystem",

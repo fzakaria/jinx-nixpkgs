@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 15, 5], ["hash", 16, 5]], [["description", 41, 5], ["longDescription", 42, 5], ["homepage", 48, 5], ["license", 49, 5], ["maintainers", 53, 5], ["platforms", 54, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 19, 3], ["buildInputs", 20, 3], ["enableParallelBuilding", 22, 3], ["hardeningDisable", 23, 3], ["postInstall", 27, 3], ["doInstallCheck", 34, 3], ["postInstallCheck", 35, 3], ["meta", 40, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, "pkg-config": false, python3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 41, 5], ["longDescription", 42, 5], ["homepage", 48, 5], ["license", 49, 5], ["maintainers", 53, 5], ["platforms", 54, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 19, 3], ["buildInputs", 20, 3], ["enableParallelBuilding", 22, 3], ["hardeningDisable", 23, 3], ["postInstall", 27, 3], ["doInstallCheck", 34, 3], ["postInstallCheck", 35, 3], ["meta", 40, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const python3 = nix.arg($, "python3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "omniorb",
       version: "4.3.4",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/project/omniorb/omniORB/omniORB-${nix.sel(finalAttrs, "version")}/omniORB-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           hash: "sha256-eXINQV0jzY2pkoek702gqhvTTT5MexUwcVYArcXtPcM=",
         })))),
@@ -35,7 +33,7 @@ rm $out/${nix.sel(python3, "sitePackages")}/omniidl_be/__pycache__/__init__.*.py
 ${nix.app(nix.sel(lib, "getExe"), python3)} -c "import omniidl_be.cxx"
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Robust high performance CORBA ORB for C++ and Python",
         longDescription: "omniORB is a robust high performance CORBA ORB for C++ and Python.\nIt is freely available under the terms of the GNU Lesser General Public License\n(for the libraries),and GNU General Public License (for the tools).\nomniORB is largely CORBA 2.6 compliant.\n",
         homepage: "http://omniorb.sourceforge.net/",

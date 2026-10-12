@@ -2,14 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["outputHash", 44, 9], ["outputHashMode", 45, 9], ["nativeBuildInputs", 46, 9]], [["url", 69, 22], ["hash", 69, 26]], [["updateScript", 73, 5]], [["homepage", 76, 5], ["description", 77, 5], ["platforms", 78, 5], ["license", 83, 5], ["sourceProvenance", 84, 5], ["maintainers", 85, 5]], [["pname", 96, 7], ["version", 97, 7], ["src", 98, 7], ["passthru", 99, 7], ["meta", 100, 7], ["nativeBuildInputs", 103, 5], ["sourceRoot", 104, 5], ["installPhase", 106, 5]], [["pname", 118, 7], ["version", 119, 7], ["src", 120, 7], ["passthru", 121, 7], ["meta", 122, 7], ["nativeBuildInputs", 125, 5], ["buildInputs", 132, 5], ["dontWrapGApps", 147, 5], ["runtimeDependencies", 149, 5], ["installPhase", 154, 5]]]);
 const formals$1 = { args: { "alsa-lib": false, libuuid: false, cups: false, dpkg: false, cacert: false, curl: false, jq: false, glib: false, libssh2: false, gtk3: false, lib: false, "libayatana-appindicator": false, libdrm: false, libgcrypt: false, libkrb5: false, libnotify: false, libgbm: false, libpulseaudio: false, libGL: false, nss: false, libxdamage: false, systemd: false, runCommandLocal: false, stdenv: false, undmg: false, "at-spi2-core": false, autoPatchelfHook: false, writeShellScript: false, makeShellWrapper: false, wrapGAppsHook3: false, commandLineArgs: true, disableAutoUpdate: true }, ellipsis: false };
 const formals$2 = { args: { url: false, hash: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["outputHash", 44, 9], ["outputHashMode", 45, 9], ["nativeBuildInputs", 46, 9]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 69, 22], ["hash", 69, 26]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 73, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 76, 5], ["description", 77, 5], ["platforms", 78, 5], ["license", 83, 5], ["sourceProvenance", 84, 5], ["maintainers", 85, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 96, 7], ["version", 97, 7], ["src", 98, 7], ["passthru", 99, 7], ["meta", 100, 7], ["nativeBuildInputs", 103, 5], ["sourceRoot", 104, 5], ["installPhase", 106, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 118, 7], ["version", 119, 7], ["src", 120, 7], ["passthru", 121, 7], ["meta", 122, 7], ["nativeBuildInputs", 125, 5], ["buildInputs", 132, 5], ["dontWrapGApps", 147, 5], ["runtimeDependencies", 149, 5], ["installPhase", 154, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -50,7 +45,7 @@ export default nix.lambda((args) => (() => {
     const url = nix.arg($_1, "url");
     const hash = nix.arg($_1, "hash");
     return nix.app(runCommandLocal, nix.thunk(() => nix.builtins.baseNameOf(url)), nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         outputHash: hash,
         outputHashMode: "flat",
         nativeBuildInputs: nix.thunk(() => [curl, jq, cacert]),
@@ -69,13 +64,13 @@ curl -fL --retry 3 -o "$out" "$signedUrl"
   const pname = "qq";
   const version = nix.thunk(() => nix.sel(source, "version"));
   const src = nix.thunk(() => nix.app(fetchqq, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       url: nix.thunk(() => nix.attr(source, "url")),
       hash: nix.thunk(() => nix.attr(source, "hash")),
     }))));
-  const passthru = nix.thunk(() => ({ [nix.POS]: pos$3, updateScript: nix.path(here, "./update.sh") }));
+  const passthru = nix.thunk(() => ({ [nix.POS]: $pos[2], updateScript: nix.path(here, "./update.sh") }));
   const meta = nix.thunk(() => ({
-    [nix.POS]: pos$4,
+    [nix.POS]: $pos[3],
     homepage: "https://im.qq.com/index/",
     description: "Messaging app",
     platforms: nix.thunk(() => ["aarch64-darwin", "aarch64-linux", "x86_64-linux"]),
@@ -95,7 +90,7 @@ curl -fL --retry 3 -o "$out" "$signedUrl"
     })()),
   }));
   return (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: pname,
       version: version,
       src: src,
@@ -105,7 +100,7 @@ curl -fL --retry 3 -o "$out" "$signedUrl"
       sourceRoot: ".",
       installPhase: "runHook preInstall\n\nmkdir -p $out/Applications\ncp -a QQ.app $out/Applications\n\nrunHook postInstall\n",
     }))) : nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: pname,
       version: version,
       src: src,

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]], [["description", 73, 5], ["longDescription", 74, 5], ["homepage", 85, 5], ["changelog", 86, 5], ["license", 87, 5], ["maintainers", 88, 5], ["mainProgram", 92, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["vendorHash", 20, 3], ["__structuredAttrs", 22, 3], ["tags", 23, 3], ["subPackages", 29, 3], ["ldflags", 32, 3], ["nativeBuildInputs", 38, 3], ["__darwinAllowLocalNetworking", 40, 3], ["preCheck", 45, 3], ["checkFlags", 48, 3], ["doInstallCheck", 63, 3], ["nativeInstallCheckInputs", 64, 3], ["versionCheckProgramArg", 65, 3], ["postInstall", 66, 3], ["meta", 72, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, buildGoModule: false, installShellFiles: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 73, 5], ["longDescription", 74, 5], ["homepage", 85, 5], ["changelog", 86, 5], ["license", 87, 5], ["maintainers", 88, 5], ["mainProgram", 92, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["vendorHash", 20, 3], ["__structuredAttrs", 22, 3], ["tags", 23, 3], ["subPackages", 29, 3], ["ldflags", 32, 3], ["nativeBuildInputs", 38, 3], ["__darwinAllowLocalNetworking", 40, 3], ["preCheck", 45, 3], ["checkFlags", 48, 3], ["doInstallCheck", 63, 3], ["nativeInstallCheckInputs", 64, 3], ["versionCheckProgramArg", 65, 3], ["postInstall", 66, 3], ["meta", 72, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const installShellFiles = nix.arg($, "installShellFiles");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "oathkeeper",
       version: "26.2.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ory",
           repo: "oathkeeper",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -54,7 +52,7 @@ export default nix.lambda((args) => (() => {
       versionCheckProgramArg: nix.thunk(() => ["version"]),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "installShellCompletion --cmd oathkeeper \\\n  --bash <($out/bin/oathkeeper completion bash) \\\n  --fish <($out/bin/oathkeeper completion fish) \\\n  --zsh <($out/bin/oathkeeper completion zsh)\n")),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Identity and access proxy that authorizes HTTP requests based on sets of rules",
         longDescription: "It follows\n[cloud architecture best practices](https://www.ory.com/docs/ecosystem/software-architecture-philosophy) and focuses on:\n\n- Authenticating and authorizing HTTP requests\n- Acting as a reverse proxy or decision API\n- Mutating requests with identity information\n- Integrating with existing API gateways and proxies\n- Supporting multiple authentication and authorization strategies\n- Working in Zero-Trust network architectures\n",
         homepage: "https://github.com/ory/oathkeeper",

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 33, 5], ["repo", 34, 5], ["rev", 35, 5], ["hash", 36, 5]], [["name", 113, 5], ["exec", 114, 5], ["icon", 115, 5], ["desktopName", 116, 5], ["genericName", 117, 5], ["categories", 118, 5]], [["description", 139, 5], ["homepage", 140, 5], ["license", 141, 5], ["platforms", 142, 5], ["maintainers", 143, 5], ["mainProgram", 144, 5]], [["pname", 29, 3], ["version", 30, 3], ["src", 32, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 46, 3], ["postUnpack", 75, 3], ["patches", 82, 3], ["postPatch", 87, 3], ["cmakeFlags", 104, 3], ["desktopItem", 112, 3], ["postInstall", 124, 3], ["meta", 138, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, makeDesktopItem: false, boost186: false, cmake: false, libgcrypt: false, "libgpg-error": false, libsodium: false, "monero-cli": false, "pkg-config": false, qt5: false, quirc: false, randomx: false, rapidjson: false, stdenv: false, unbound: false, zeromq: false, trezorSupport: true, hidapi: false, libusb1: false, protobuf_21: false, python3: false, udev: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 33, 5], ["repo", 34, 5], ["rev", 35, 5], ["hash", 36, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 113, 5], ["exec", 114, 5], ["icon", 115, 5], ["desktopName", 116, 5], ["genericName", 117, 5], ["categories", 118, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 139, 5], ["homepage", 140, 5], ["license", 141, 5], ["platforms", 142, 5], ["maintainers", 143, 5], ["mainProgram", 144, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 29, 3], ["version", 30, 3], ["src", 32, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 46, 3], ["postUnpack", 75, 3], ["patches", 82, 3], ["postPatch", 87, 3], ["cmakeFlags", 104, 3], ["desktopItem", 112, 3], ["postInstall", 124, 3], ["meta", 138, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -37,7 +34,7 @@ export default nix.lambda((args) => (() => {
       const pname = "monero-gui";
       const version = "0.18.5.2";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "monero-project",
           repo: "monero-gui",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -93,7 +90,7 @@ substituteInPlace CMakeLists.txt \\
 `);
       const cmakeFlags = nix.thunk(() => nix.concat(["-DARCH=default"], nix.app(nix.sel(lib, "optionals"), trezorSupport, nix.thunk(() => ["-DCMAKE_CXX_FLAGS=-fpermissive"]))));
       const desktopItem = nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           name: "monero-wallet-gui",
           exec: "monero-wallet-gui",
           icon: "monero",
@@ -114,7 +111,7 @@ for n in 16 24 32 48 64 96 128 256; do
 done;
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Private, secure, untraceable currency",
         homepage: "https://getmonero.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
@@ -126,7 +123,7 @@ done;
         mainProgram: "monero-wallet-gui",
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

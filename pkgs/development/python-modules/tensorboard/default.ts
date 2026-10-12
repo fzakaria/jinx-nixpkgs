@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 31, 26], ["version", 31, 32], ["format", 32, 5], ["dist", 33, 5], ["python", 34, 5], ["hash", 35, 5]], [["description", 66, 5], ["homepage", 67, 5], ["changelog", 68, 5], ["license", 69, 5], ["mainProgram", 70, 5], ["maintainers", 71, 5], ["sourceProvenance", 74, 5]], [["pname", 23, 3], ["version", 24, 3], ["format", 25, 3], ["__structuredAttrs", 26, 3], ["src", 30, 3], ["dependencies", 38, 3], ["pythonImportsCheck", 51, 3], ["nativeCheckInputs", 61, 3], ["meta", 65, 3]]]);
 const formals$1 = { args: { lib: false, fetchPypi: false, buildPythonPackage: false, "absl-py": false, grpcio: false, markdown: false, numpy: false, packaging: false, pillow: false, protobuf: false, setuptools: false, "tensorboard-data-server": false, werkzeug: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 31, 26], ["version", 31, 32], ["format", 32, 5], ["dist", 33, 5], ["python", 34, 5], ["hash", 35, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 66, 5], ["homepage", 67, 5], ["changelog", 68, 5], ["license", 69, 5], ["mainProgram", 70, 5], ["maintainers", 71, 5], ["sourceProvenance", 74, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 23, 3], ["version", 24, 3], ["format", 25, 3], ["__structuredAttrs", 26, 3], ["src", 30, 3], ["dependencies", 38, 3], ["pythonImportsCheck", 51, 3], ["nativeCheckInputs", 61, 3], ["meta", 65, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,13 +22,13 @@ export default nix.lambda((args) => (() => {
   const werkzeug = nix.arg($, "werkzeug");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "tensorboard",
       version: "2.21.0",
       format: "wheel",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           format: "wheel",
@@ -61,7 +59,7 @@ export default nix.lambda((args) => (() => {
       ]),
       nativeCheckInputs: nix.thunk(() => [versionCheckHook]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "TensorFlow's Visualization Toolkit",
         homepage: "https://github.com/tensorflow/tensorboard",
         changelog: nix.thunk(() => nix.str`https://github.com/tensorflow/tensorboard/blob/${nix.sel(finalAttrs, "version")}/RELEASE.md`),

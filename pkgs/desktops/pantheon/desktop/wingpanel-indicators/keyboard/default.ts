@@ -2,12 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 26, 5], ["repo", 27, 5], ["rev", 28, 5], ["sha256", 29, 5]], [["gkbd_keyboard_display", 34, 7]], [["updateScript", 56, 5]], [["description", 60, 5], ["homepage", 61, 5], ["license", 62, 5], ["platforms", 63, 5], ["teams", 64, 5]], [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["patches", 32, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 46, 3], ["passthru", 55, 3], ["meta", 59, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, "nix-update-script": false, "pkg-config": false, meson: false, ninja: false, replaceVars: false, vala: false, gtk3: false, granite: false, libxml2: false, wingpanel: false, libgee: false, "xkeyboard-config": false, libgnomekbd: false, ibus: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 26, 5], ["repo", 27, 5], ["rev", 28, 5], ["sha256", 29, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["gkbd_keyboard_display", 34, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["updateScript", 56, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 60, 5], ["homepage", 61, 5], ["license", 62, 5], ["platforms", 63, 5], ["teams", 64, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["patches", 32, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 46, 3], ["passthru", 55, 3], ["meta", 59, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const pname = "wingpanel-indicator-keyboard";
       const version = "2.4.2";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "elementary",
           repo: "wingpanel-indicator-keyboard",
           rev: version,
@@ -40,18 +36,18 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix-paths.patch"), nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             gkbd_keyboard_display: nix.thunk(() => nix.str`${libgnomekbd}/bin/gkbd-keyboard-display`),
           })))),
       ]);
       const nativeBuildInputs = nix.thunk(() => [meson, ninja, libxml2, pkg_config, vala]);
       const buildInputs = nix.thunk(() => [granite, gtk3, ibus, libgee, wingpanel, xkeyboard_config]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Keyboard Indicator for Wingpanel",
         homepage: "https://github.com/elementary/wingpanel-indicator-keyboard",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
@@ -59,7 +55,7 @@ export default nix.lambda((args) => (() => {
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "pantheon"))]),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         src,

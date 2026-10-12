@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 27, 5], ["hash", 28, 5]], [["url", 34, 7], ["hash", 35, 7]], [["homepage", 95, 5], ["description", 96, 5], ["license", 97, 5], ["maintainers", 98, 5]], [["pname", 20, 3], ["version", 21, 3], ["__structuredAttrs", 23, 3], ["strictDeps", 24, 3], ["src", 26, 3], ["patches", 31, 3], ["postPatch", 40, 3], ["hardeningDisable", 44, 3], ["outputs", 46, 3], ["setOutputFlags", 48, 3], ["enableParallelBuilding", 50, 3], ["preBuild", 52, 3], ["buildInputs", 58, 3], ["makeFlags", 63, 3], ["nativeCheckInputs", 70, 3], ["testFlags", 74, 3], ["preInstall", 78, 3], ["postInstall", 82, 3], ["meta", 94, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, fetchpatch: false, texlive: false, texliveInfraOnly: false, buildPackages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 34, 7], ["hash", 35, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 95, 5], ["description", 96, 5], ["license", 97, 5], ["maintainers", 98, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["__structuredAttrs", 23, 3], ["strictDeps", 24, 3], ["src", 26, 3], ["patches", 31, 3], ["postPatch", 40, 3], ["hardeningDisable", 44, 3], ["outputs", 46, 3], ["setOutputFlags", 48, 3], ["enableParallelBuilding", 50, 3], ["preBuild", 52, 3], ["buildInputs", 58, 3], ["makeFlags", 63, 3], ["nativeCheckInputs", 70, 3], ["testFlags", 74, 3], ["preInstall", 78, 3], ["postInstall", 82, 3], ["meta", 94, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,13 +17,13 @@ export default nix.lambda((args) => (() => {
   const buildPlatformTools = nix.thunk(() => ["pse2unic", "adobe2h"]);
   const tex = nix.thunk(() => nix.app(nix.sel(texliveInfraOnly, "withPackages"), (ps) => [nix.thunk(() => nix.sel(ps, "collection-fontsrecommended"))]));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "catdvi",
       version: "0.14",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => (() => {
             const w = nix.withScope(finalAttrs, null);
             return nix.str`http://downloads.sourceforge.net/catdvi/catdvi-${nix.lookup(w, "version")}.tar.bz2`;
@@ -35,7 +32,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://sources.debian.org/data/main/c/catdvi/0.14-14/debian/patches/03_kpathsea_version_string_declaration.diff",
             hash: "sha256-d3CPDxXdVVLNtKkN0rC2G02dh/bJrRll/nVzQNggwkk=",
           })))),
@@ -71,7 +68,7 @@ ${nix.app(nix.sel(lib, "concatMapStringsSep"), "\n", (tool) => nix.str`cp ${tool
 ln -s ${tex}/share/texmf-var $out/share/texmf
 `)),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://catdvi.sourceforge.net",
         description: "DVI to plain text translator",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

@@ -2,11 +2,8 @@
 import * as nix from "../../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["version", 21, 37]], [["plugins", 54, 58]], [["plugins", 53, 13], ["withPlugins", 54, 5]], [["postPatch", 34, 3], ["postInstall", 39, 3], ["passthru", 52, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, melpaStablePackages: false, runCommand: false, "tree-sitter-grammars": false, plugins: true, final: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["version", 21, 37]]);
-const pos$2 = nix.positions(here + "/default.nix", [["plugins", 54, 58]]);
-const pos$3 = nix.positions(here + "/default.nix", [["plugins", 53, 13], ["withPlugins", 54, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["postPatch", 34, 3], ["postInstall", 39, 3], ["passthru", 52, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const langName = (g) => nix.app(nix.sel(lib, "removeSuffix"), "-grammar", nix.thunk(() => nix.app(nix.sel(lib, "removePrefix"), "tree-sitter-", nix.thunk(() => nix.sel(g, "pname")))));
   const soName = (g) => nix.add(nix.app(langName, g), nix.sel(stdenv, "hostPlatform", "extensions", "sharedLibrary"));
   const grammarDir = nix.thunk(() => nix.app(runCommand, "emacs-tree-sitter-grammars", nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       version: nix.thunk(() => nix.attr(tree_sitter_langs, "version")),
     })), nix.thunk(() => nix.add("install -d $out/langs/bin\necho -n $version > $out/langs/bin/BUNDLE-VERSION\n", nix.app(nix.sel(lib, "concatStringsSep"), "\n", nix.thunk(() => nix.builtins.map((g) => nix.str`ln -s ${g}/parser $out/langs/bin/${nix.app(soName, g)}`, plugins)))))));
   const siteDir = nix.thunk(() => nix.str`$out/share/emacs/site-lisp/elpa/${nix.sel(tree_sitter_langs, "pname")}-${nix.sel(tree_sitter_langs, "version")}`);
   return nix.app(nix.sel(melpaStablePackages, "tree-sitter-langs", "overrideAttrs"), (old) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       postPatch: nix.thunk(() => nix.add(nix.selOr(old, () => "", "postPatch"), nix.str`substituteInPlace ./tree-sitter-langs-build.el \\
 --replace "tree-sitter-langs-grammar-dir tree-sitter-langs--dir"  "tree-sitter-langs-grammar-dir \\"${grammarDir}/langs\\""
 `)),
@@ -38,10 +35,10 @@ export default nix.lambda((args) => (() => {
 fi
 `, plugins))))),
       passthru: nix.thunk(() => nix.update(nix.selOr(old, () => ({}), "passthru"), {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         plugins: plugins,
         withPlugins: (fn) => nix.app(nix.sel(final, "tree-sitter-langs", "override"), nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             plugins: nix.thunk(() => nix.app(fn, tree_sitter_grammars)),
           }))),
       })),

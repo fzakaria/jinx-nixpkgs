@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["priority", 68, 10]], [["meta", 68, 5], ["name", 69, 5], ["buildCommand", 70, 5], ["preferLocalBuild", 79, 5]], [["curlOptsList", 152, 11]], [["description", 186, 9], ["homepage", 187, 9], ["license", 188, 9], ["platforms", 189, 9], ["sourceProvenance", 194, 9], ["maintainers", 195, 9], ["mainProgram", 199, 9]], [["pname", 163, 15], ["src", 163, 21], ["version", 163, 25], ["nativeBuildInputs", 165, 7], ["unpackPhase", 167, 7], ["installPhase", 176, 7], ["meta", 185, 7]], [["updateScript", 238, 12]], [["pname", 204, 20], ["version", 204, 26], ["meta", 204, 34], ["runScript", 205, 3], ["extraInstallCommands", 221, 3], ["targetPkgs", 236, 3], ["passthru", 238, 3], ["extraOutputsToInstall", 240, 3]]]);
 const formals$1 = { args: { stdenvNoCC: false, stdenv: false, lib: false, fetchurl: false, dpkg: false, nss: false, nspr: false, libxt: false, libxtst: false, libxscrnsaver: false, libxrender: false, libxrandr: false, libxi: false, libxft: false, libxfixes: false, libxext: false, libxdamage: false, libxcursor: false, libxcomposite: false, libx11: false, libsm: false, libice: false, libxshmfence: false, libxcb: false, pango: false, zlib: false, atkmm: false, libdrm: false, libxkbcommon: false, "libxcb-wm": false, "libxcb-image": false, "libxcb-keysyms": false, "libxcb-render-util": false, libgbm: false, "alsa-lib": false, wayland: false, atk: false, qt6: false, "at-spi2-atk": false, "at-spi2-core": false, dbus: false, cups: false, gtk3: false, libxml2: false, cairo: false, freetype: false, fontconfig: false, "vulkan-loader": false, "gdk-pixbuf": false, libexif: false, ffmpeg: false, pulseaudio: false, systemd: false, libuuid: false, expat: false, bzip2: false, glib: false, libva: false, libGL: false, libnotify: false, krb5: false, buildFHSEnv: false, writeShellScript: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["priority", 68, 10]]);
-const pos$2 = nix.positions(here + "/package.nix", [["meta", 68, 5], ["name", 69, 5], ["buildCommand", 70, 5], ["preferLocalBuild", 79, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["curlOptsList", 152, 11]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 186, 9], ["homepage", 187, 9], ["license", 188, 9], ["platforms", 189, 9], ["sourceProvenance", 194, 9], ["maintainers", 195, 9], ["mainProgram", 199, 9]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 163, 15], ["src", 163, 21], ["version", 163, 25], ["nativeBuildInputs", 165, 7], ["unpackPhase", 167, 7], ["installPhase", 176, 7], ["meta", 185, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["updateScript", 238, 12]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 204, 20], ["version", 204, 26], ["meta", 204, 34], ["runScript", 205, 3], ["extraInstallCommands", 221, 3], ["targetPkgs", 236, 3], ["passthru", 238, 3], ["extraOutputsToInstall", 240, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -77,8 +71,8 @@ export default nix.lambda((args) => (() => {
   const buildFHSEnv = nix.arg($, "buildFHSEnv");
   const writeShellScript = nix.arg($, "writeShellScript");
   const wechat_uos_env = nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
-      meta: nix.thunk(() => ({ [nix.POS]: pos$1, priority: 1n })),
+      [nix.POS]: $pos[1],
+      meta: nix.thunk(() => ({ [nix.POS]: $pos[0], priority: 1n })),
       name: "wechat-uos-env",
       buildCommand: nix.thunk(() => nix.str`mkdir -p $out/etc
 mkdir -p $out/usr/bin
@@ -156,11 +150,11 @@ ln -s ${wechat}/opt/* $out/opt/
     const pname = "wechat-uos";
     const version = nix.thunk(() => nix.sel(sources, "version"));
     const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => nix.update({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         curlOptsList: nix.thunk(() => ["-H", "User-Agent: Debian APT-HTTP/1.3 (2.2.4)"]),
       }, nix.selOr(sources, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenv, "hostPlatform", "system")}`)), nix.key(nix.sel(stdenv, "hostPlatform", "system")))))));
     return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname: pname,
         src: src,
         version: version,
@@ -168,7 +162,7 @@ ln -s ${wechat}/opt/* $out/opt/
         unpackPhase: "runHook preUnpack\n\ndpkg -x $src ./wechat-uos\n\nrunHook postUnpack\n",
         installPhase: "runHook preInstall\nmkdir -p $out\n\ncp -r wechat-uos/* $out\n\nrunHook postInstall\n",
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           description: "Messaging app",
           homepage: "https://weixin.qq.com/",
           license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
@@ -189,7 +183,7 @@ ln -s ${wechat}/opt/* $out/opt/
       })));
   })());
   return nix.app(buildFHSEnv, nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: nix.thunk(() => nix.attr(wechat, "pname")),
       version: nix.thunk(() => nix.attr(wechat, "version")),
       meta: nix.thunk(() => nix.attr(wechat, "meta")),
@@ -223,7 +217,7 @@ sed -i \\
   $out/share/applications/com.tencent.wechat.desktop
 `),
       targetPkgs: (pkgs) => [wechat_uos_env],
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$6, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[5], updateScript: nix.path(here, "./update.sh") })),
       extraOutputsToInstall: nix.thunk(() => ["usr", "var/lib/uos", "var/uos", "etc"]),
     })));
 })(), formals$1);

@@ -2,10 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]], [["changelog", 53, 5], ["description", 54, 5], ["homepage", 55, 5], ["license", 56, 5], ["maintainers", 57, 5]], [["owner", 21, 3], ["domain", 22, 3], ["version", 23, 3], ["src", 25, 3], ["dependencies", 32, 3], ["nativeCheckInputs", 40, 3], ["disabledTestPaths", 47, 3], ["meta", 52, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, buildHomeAssistantComponent: false, aiomqtt: false, colorlog: false, loguru: false, "websocket-client": false, websockets: false, "pytest-asyncio": false, pytestCheckHook: false, aiohttp: false, "home-assistant": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["changelog", 53, 5], ["description", 54, 5], ["homepage", 55, 5], ["license", 56, 5], ["maintainers", 57, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["owner", 21, 3], ["domain", 22, 3], ["version", 23, 3], ["src", 25, 3], ["dependencies", 32, 3], ["nativeCheckInputs", 40, 3], ["disabledTestPaths", 47, 3], ["meta", 52, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const domain = "elegoo_printer";
       const version = "2.13.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "danielcherubini",
           repo: "elegoo-homeassistant",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -36,7 +34,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytest_asyncio, pytestCheckHook, aiohttp, home_assistant]);
       const disabledTestPaths = nix.thunk(() => ["custom_components/elegoo_printer/tests/test_coordinator.py"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         changelog: nix.thunk(() => nix.str`https://github.com/danielcherubini/elegoo-homeassistant/releases/tag/v${version}`),
         description: "Home Assistant integration for Elegoo 3D printers using the SDCP protocol",
         homepage: "https://github.com/danielcherubini/elegoo-homeassistant",
@@ -47,7 +45,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         owner,
         domain,
         version,

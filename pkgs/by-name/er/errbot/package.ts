@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]], [["changelog", 64, 5], ["description", 65, 5], ["homepage", 66, 5], ["maintainers", 67, 5], ["license", 68, 5], ["platforms", 69, 5], ["mainProgram", 71, 5]], [["pname", 8, 3], ["version", 9, 3], ["pyproject", 11, 3], ["src", 13, 3], ["build-system", 20, 3], ["pythonRelaxDeps", 24, 3], ["dependencies", 26, 3], ["nativeCheckInputs", 48, 3], ["disabledTests", 53, 3], ["pythonImportsCheck", 61, 3], ["meta", 63, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, python3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["changelog", 64, 5], ["description", 65, 5], ["homepage", 66, 5], ["maintainers", 67, 5], ["license", 68, 5], ["platforms", 69, 5], ["mainProgram", 71, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["pyproject", 11, 3], ["src", 13, 3], ["build-system", 20, 3], ["pythonRelaxDeps", 24, 3], ["dependencies", 26, 3], ["nativeCheckInputs", 48, 3], ["disabledTests", 53, 3], ["pythonImportsCheck", 61, 3], ["meta", 63, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,12 +11,12 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const python3 = nix.arg($, "python3");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "errbot",
       version: "6.2.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "errbotio",
           repo: "errbot",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -68,7 +66,7 @@ export default nix.lambda((args) => (() => {
       ]),
       pythonImportsCheck: nix.thunk(() => ["errbot"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         changelog: nix.thunk(() => nix.str`https://github.com/errbotio/errbot/blob/${nix.sel(finalAttrs, "version")}/CHANGES.rst`),
         description: "Chatbot designed to be simple to extend with plugins written in Python",
         homepage: "http://errbot.io/",

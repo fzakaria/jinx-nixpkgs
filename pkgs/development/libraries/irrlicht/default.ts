@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["fetchzip", 14, 42]], [["homepage", 56, 5], ["license", 57, 5], ["description", 58, 5], ["platforms", 59, 5], ["broken", 61, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["postPatch", 23, 3], ["preConfigure", 31, 3], ["preBuild", 35, 3], ["enableParallelBuilding", 39, 3], ["preInstall", 41, 3], ["buildInputs", 46, 3], ["meta", 55, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchzip: false, libGLU: false, libGL: false, libxrandr: false, libx11: false, libxxf86vm: false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["fetchzip", 14, 42]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 56, 5], ["license", 57, 5], ["description", 58, 5], ["platforms", 59, 5], ["broken", 61, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["postPatch", 23, 3], ["preConfigure", 31, 3], ["preBuild", 35, 3], ["enableParallelBuilding", 39, 3], ["preInstall", 41, 3], ["buildInputs", 46, 3], ["meta", 55, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,9 +16,9 @@ export default nix.lambda((args) => (() => {
   const libx11 = nix.arg($, "libx11");
   const libxxf86vm = nix.arg($, "libxxf86vm");
   const zlib = nix.arg($, "zlib");
-  const common = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./common.nix")), nix.thunk(() => ({ [nix.POS]: pos$1, fetchzip: fetchzip }))));
+  const common = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./common.nix")), nix.thunk(() => ({ [nix.POS]: $pos[0], fetchzip: fetchzip }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: nix.thunk(() => nix.sel(common, "pname")),
       version: nix.thunk(() => nix.sel(common, "version")),
       src: nix.thunk(() => nix.sel(common, "src")),
@@ -31,7 +29,7 @@ export default nix.lambda((args) => (() => {
       preInstall: "sed -i s,/usr/local/lib,$out/lib, Makefile\nmkdir -p $out/lib\n",
       buildInputs: nix.thunk(() => nix.concat([libGLU, libGL, libxrandr, libx11, libxxf86vm], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isAarch64")), zlib))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://irrlicht.sourceforge.io/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "zlib")),
         description: "Open source high performance realtime 3D engine written in C++",

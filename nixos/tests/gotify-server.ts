@@ -2,42 +2,35 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/gotify-server.nix", [[["maintainers", 5, 5]], [["systemPackages", 11, 19]], [["GOTIFY_SERVER_PORT", 16, 11]], [["enable", 14, 9], ["environment", 15, 9]], [["gotify", 13, 16]], [["environment", 11, 7], ["services", 13, 7]], [["machine", 8, 9]], [["name", 3, 3], ["meta", 4, 3], ["nodes", 8, 3], ["testScript", 21, 3]]]);
 const formals$1 = { args: { pkgs: false, lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/gotify-server.nix", [["maintainers", 5, 5]]);
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/gotify-server.nix", [["systemPackages", 11, 19]]);
-const pos$3 = nix.positions(here + "/gotify-server.nix", [["GOTIFY_SERVER_PORT", 16, 11]]);
-const pos$4 = nix.positions(here + "/gotify-server.nix", [["enable", 14, 9], ["environment", 15, 9]]);
-const pos$5 = nix.positions(here + "/gotify-server.nix", [["gotify", 13, 16]]);
-const pos$6 = nix.positions(here + "/gotify-server.nix", [["environment", 11, 7], ["services", 13, 7]]);
-const pos$7 = nix.positions(here + "/gotify-server.nix", [["machine", 8, 9]]);
-const pos$8 = nix.positions(here + "/gotify-server.nix", [["name", 3, 3], ["meta", 4, 3], ["nodes", 8, 3], ["testScript", 21, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$8,
+    [nix.POS]: $pos[7],
     name: "gotify-server",
-    meta: nix.thunk(() => ({ [nix.POS]: pos$1, maintainers: [] })),
+    meta: nix.thunk(() => ({ [nix.POS]: $pos[0], maintainers: [] })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs_1, "jq"))]),
           })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             gotify: nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               enable: true,
-              environment: nix.thunk(() => ({ [nix.POS]: pos$3, GOTIFY_SERVER_PORT: 3000n })),
+              environment: nix.thunk(() => ({ [nix.POS]: $pos[2], GOTIFY_SERVER_PORT: 3000n })),
             })),
           })),
         };

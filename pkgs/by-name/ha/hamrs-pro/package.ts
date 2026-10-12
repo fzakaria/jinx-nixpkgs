@@ -2,16 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 17, 7], ["hash", 18, 7]], [["url", 22, 7], ["hash", 23, 7]], [["url", 26, 7], ["hash", 27, 7]], [["x86_64-linux", 16, 5], ["aarch64-linux", 21, 5], ["aarch64-darwin", 25, 5]], [["updateScript", 33, 12]], [["homepage", 36, 5], ["description", 37, 5], ["sourceProvenance", 38, 5], ["license", 39, 5], ["maintainers", 40, 5], ["platforms", 44, 5]], [["pname", 62, 52], ["version", 62, 58], ["src", 62, 66]], [["pname", 53, 7], ["version", 54, 7], ["src", 55, 7], ["passthru", 56, 7], ["meta", 57, 7], ["extraInstallCommands", 60, 5]], [["pname", 74, 7], ["version", 75, 7], ["src", 76, 7], ["passthru", 77, 7], ["meta", 78, 7], ["nativeBuildInputs", 81, 5], ["sourceRoot", 83, 5], ["installPhase", 85, 5]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, appimageTools: false, fetchurl: false, _7zz: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 17, 7], ["hash", 18, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 22, 7], ["hash", 23, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 26, 7], ["hash", 27, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["x86_64-linux", 16, 5], ["aarch64-linux", 21, 5], ["aarch64-darwin", 25, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["updateScript", 33, 12]]);
-const pos$6 = nix.positions(here + "/package.nix", [["homepage", 36, 5], ["description", 37, 5], ["sourceProvenance", 38, 5], ["license", 39, 5], ["maintainers", 40, 5], ["platforms", 44, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 62, 52], ["version", 62, 58], ["src", 62, 66]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 53, 7], ["version", 54, 7], ["src", 55, 7], ["passthru", 56, 7], ["meta", 57, 7], ["extraInstallCommands", 60, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["pname", 74, 7], ["version", 75, 7], ["src", 76, 7], ["passthru", 77, 7], ["meta", 78, 7], ["nativeBuildInputs", 81, 5], ["sourceRoot", 83, 5], ["installPhase", 85, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,27 +16,27 @@ export default nix.lambda((args) => (() => {
   const version = "2.52.0";
   const throwSystem = nix.thunk(() => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenvNoCC, "hostPlatform", "system")}`)));
   const srcs = nix.thunk(() => ({
-    [nix.POS]: pos$4,
+    [nix.POS]: $pos[3],
     "x86_64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         url: nix.thunk(() => nix.str`https://hamrs-dist.s3.amazonaws.com/hamrs-pro-${version}-linux-x86_64.AppImage`),
         hash: "sha256-Zh/6F2vHGz8Aih4ld34ylKT5y5IuPbgnoAj8V6Z5lsk=",
       })))),
     "aarch64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         url: nix.thunk(() => nix.str`https://hamrs-dist.s3.amazonaws.com/hamrs-pro-${version}-linux-arm64.AppImage`),
         hash: "sha256-beOod63aKwfd1NrS7Or1p4KH5+KMdJ4AGo0mqIGDq9g=",
       })))),
     "aarch64-darwin": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         url: nix.thunk(() => nix.str`https://hamrs-dist.s3.amazonaws.com/hamrs-pro-${version}-mac-arm64.dmg`),
         hash: "sha256-M8JohJkY1U5NQHCiMg82pPhSH/bf1Hah+9jye9P8EzE=",
       })))),
   }));
   const src = nix.thunk(() => nix.selOr(srcs, () => nix.force(throwSystem), nix.key(nix.sel(stdenvNoCC, "hostPlatform", "system"))));
-  const passthru = nix.thunk(() => ({ [nix.POS]: pos$5, updateScript: nix.path(here, "./update.sh") }));
+  const passthru = nix.thunk(() => ({ [nix.POS]: $pos[4], updateScript: nix.path(here, "./update.sh") }));
   const meta = nix.thunk(() => ({
-    [nix.POS]: pos$6,
+    [nix.POS]: $pos[5],
     homepage: "https://hamrs.app/",
     description: "Simple, portable logger tailored for activities like Parks on the Air, Field Day, and more",
     sourceProvenance: nix.thunk(() => (() => {
@@ -68,7 +60,7 @@ export default nix.lambda((args) => (() => {
       const passthru_1 = passthru;
       const meta_1 = meta;
       const extraInstallCommands = nix.thunk(() => (() => {
-        const contents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: pos$7, pname: pname_1, version: version_1, src: src_1 }))));
+        const contents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: $pos[6], pname: pname_1, version: version_1, src: src_1 }))));
         return nix.str`install -m 444 -D ${contents}/${pname_1}.desktop -t $out/share/applications
 substituteInPlace $out/share/applications/${pname_1}.desktop \\
   --replace-fail 'Exec=AppRun' 'Exec=${pname_1}'
@@ -76,7 +68,7 @@ cp -r ${contents}/usr/share/icons $out/share
 `;
       })());
       return {
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         pname: pname_1,
         version: version_1,
         src: src_1,
@@ -86,7 +78,7 @@ cp -r ${contents}/usr/share/icons $out/share
       };
     })())));
   const darwin = nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       pname: pname,
       version: version,
       src: src,

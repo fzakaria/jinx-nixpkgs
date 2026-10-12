@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5], ["fetchSubmodules", 22, 5]], [["extraArgs", 43, 7]], [["shoko", 49, 36]], [["updateScript", 42, 5], ["tests", 49, 5]], [["homepage", 53, 5], ["changelog", 54, 5], ["description", 55, 5], ["license", 56, 5], ["mainProgram", 57, 5], ["maintainers", 58, 5], ["platforms", 59, 33]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["dotnet-sdk", 25, 3], ["dotnet-runtime", 26, 3], ["nugetDeps", 28, 3], ["projectFile", 29, 3], ["dotnetBuildFlags", 30, 3], ["executables", 32, 3], ["makeWrapperArgs", 33, 3], ["runtimeDeps", 39, 3], ["passthru", 41, 3], ["meta", 52, 3]]]);
 const formals$1 = { args: { buildDotnetModule: false, fetchFromGitHub: false, "dotnet-sdk_8": false, "dotnet-aspnetcore_8": false, nixosTests: false, lib: false, mediainfo: false, rhash: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5], ["fetchSubmodules", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["extraArgs", 43, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["shoko", 49, 36]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 42, 5], ["tests", 49, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["homepage", 53, 5], ["changelog", 54, 5], ["description", 55, 5], ["license", 56, 5], ["mainProgram", 57, 5], ["maintainers", 58, 5], ["platforms", 59, 33]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["dotnet-sdk", 25, 3], ["dotnet-runtime", 26, 3], ["nugetDeps", 28, 3], ["projectFile", 29, 3], ["dotnetBuildFlags", 30, 3], ["executables", 32, 3], ["makeWrapperArgs", 33, 3], ["runtimeDeps", 39, 3], ["passthru", 41, 3], ["meta", 52, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const rhash = nix.arg($, "rhash");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(buildDotnetModule, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "shoko",
       version: "5.3.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ShokoAnime",
           repo: "ShokoServer",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -42,17 +37,17 @@ export default nix.lambda((args) => (() => {
       makeWrapperArgs: nix.thunk(() => ["--prefix", "PATH", ":", nix.thunk(() => nix.str`${mediainfo}/bin`)]),
       runtimeDeps: nix.thunk(() => [rhash]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             extraArgs: nix.thunk(() => ["--version-regex", "v([0-9]+\\.[0-9]+\\.[0-9]+).*"]),
           })))),
-        tests: nix.thunk(() => ({ [nix.POS]: pos$3, shoko: nix.thunk(() => nix.attr(nixosTests, "shoko")) })),
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[2], shoko: nix.thunk(() => nix.attr(nixosTests, "shoko")) })),
       })),
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(dotnet_sdk_8, "meta"));
         return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "https://github.com/ShokoAnime/ShokoServer",
         changelog: nix.thunk(() => nix.str`https://github.com/ShokoAnime/ShokoServer/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "Backend for the Shoko anime management system",

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/cudnn.nix", [[["message", 110, 11], ["assertion", 113, 11]], [["message", 117, 11], ["assertion", 120, 11]], [["message", 124, 11], ["assertion", 127, 11]], [["description", 132, 7], ["longDescription", 133, 7], ["homepage", 137, 7], ["changelog", 138, 7], ["license", 140, 7], ["maintainers", 142, 7]], [["redistName", 19, 5], ["pname", 20, 5], ["outputs", 22, 5], ["buildInputs", 30, 5], ["postFixup", 41, 5], ["autoPatchelfIgnoreMissingDeps", 48, 5], ["appendRunpaths", 54, 5], ["platformAssertions", 95, 5], ["meta", 131, 5]]]);
 const formals$1 = { args: { _cuda: false, backendStdenv: false, buildRedist: false, lib: false, libcublas: false, cuda_nvrtc: false, patchelf: false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/cudnn.nix", [["message", 110, 11], ["assertion", 113, 11]]);
-const pos$2 = nix.positions(here + "/cudnn.nix", [["message", 117, 11], ["assertion", 120, 11]]);
-const pos$3 = nix.positions(here + "/cudnn.nix", [["message", 124, 11], ["assertion", 127, 11]]);
-const pos$4 = nix.positions(here + "/cudnn.nix", [["description", 132, 7], ["longDescription", 133, 7], ["homepage", 137, 7], ["changelog", 138, 7], ["license", 140, 7], ["maintainers", 142, 7]]);
-const pos$5 = nix.positions(here + "/cudnn.nix", [["redistName", 19, 5], ["pname", 20, 5], ["outputs", 22, 5], ["buildInputs", 30, 5], ["postFixup", 41, 5], ["autoPatchelfIgnoreMissingDeps", 48, 5], ["appendRunpaths", 54, 5], ["platformAssertions", 95, 5], ["meta", 131, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const cudnnAtLeast = nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(finalAttrs, "version"))));
       const cudnnOlder = nix.thunk(() => nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(finalAttrs, "version"))));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         redistName: "cudnn",
         pname: "cudnn",
         outputs: nix.thunk(() => ["out", "dev", "include", "lib", "static"]),
@@ -43,24 +39,24 @@ ${nix.app(nix.sel(lib, "getExe"), patchelf)} \${!outputLib:?}/lib/libcudnn_ops_i
           const allCCNewerThan35 = nix.thunk(() => (nix.asBool(allCCNewerThan50) || nix.asBool(nix.app(nix.sel(lib, "all"), nix.thunk(() => nix.app(nix.sel(lib, "flip"), nix.thunk(() => nix.sel(lib, "versionAtLeast")), "3.5")), cudaCapabilities))));
           return [
             nix.thunk(() => ({
-              [nix.POS]: pos$1,
+              [nix.POS]: $pos[0],
               message: nix.thunk(() => nix.add(nix.str`cuDNN releases since 8.5 (found ${nix.sel(finalAttrs, "version")})`, nix.str` support CUDA compute capabilities 3.5 and newer (found ${nix.builtins.toJSON(cudaCapabilities)})`)),
               assertion: nix.thunk(() => (!nix.asBool(cudnnAtLeast85) || nix.asBool(allCCNewerThan35))),
             })),
             nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               message: nix.thunk(() => nix.add(nix.str`cuDNN releases since 8.8 (found ${nix.sel(finalAttrs, "version")})`, nix.str` support CUDA compute capabilities 5.0 and newer (found ${nix.builtins.toJSON(cudaCapabilities)})`)),
               assertion: nix.thunk(() => (!nix.asBool(cudnnAtLeast88) || nix.asBool(allCCNewerThan50))),
             })),
             nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               message: nix.thunk(() => nix.add(nix.str`cuDNN releases since 9.12 (found ${nix.sel(finalAttrs, "version")})`, nix.str` support CUDA compute capabilities 7.5 and newer (found ${nix.builtins.toJSON(cudaCapabilities)})`)),
               assertion: nix.thunk(() => (!nix.asBool(cudnnAtLeast912) || nix.asBool(allCCNewerThan75))),
             })),
           ];
         })()),
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           description: "GPU-accelerated library of primitives for deep neural networks",
           longDescription: "The NVIDIA CUDA Deep Neural Network library (cuDNN) is a GPU-accelerated library of primitives for deep neural\nnetworks.\n",
           homepage: "https://developer.nvidia.com/cudnn",

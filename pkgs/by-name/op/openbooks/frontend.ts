@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/frontend.nix", [[["description", 25, 5]], [["pname", 9, 3], ["version", 10, 20], ["src", 12, 3], ["npmDepsHash", 14, 3], ["installPhase", 16, 3], ["meta", 24, 3]]]);
 const formals$1 = { args: { buildNpmPackage: false, callPackage: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/frontend.nix", [["description", 25, 5]]);
-const pos$2 = nix.positions(here + "/frontend.nix", [["pname", 9, 3], ["version", 10, 20], ["src", 12, 3], ["npmDepsHash", 14, 3], ["installPhase", 16, 3], ["meta", 24, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -12,13 +11,13 @@ export default nix.lambda((args) => (() => {
   const callPackage = nix.arg($, "callPackage");
   const common = nix.thunk(() => nix.app(callPackage, nix.path(here, "./common.nix"), nix.thunk(() => ({}))));
   return nix.app(buildNpmPackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "openbooks-frontend",
       version: nix.thunk(() => nix.attr(common, "version")),
       src: nix.thunk(() => nix.str`${nix.sel(common, "src")}/server/app`),
       npmDepsHash: "sha256-OtXPOFK18b6tzFIvXkThafLUw0GlioRmxjzcKYeTalU=",
       installPhase: "runHook preInstall\n\ncp -r dist $out\n\nrunHook postInstall\n",
-      meta: nix.thunk(() => nix.update(nix.sel(common, "meta"), { [nix.POS]: pos$1, description: "Openbooks frontend" })),
+      meta: nix.thunk(() => nix.update(nix.sel(common, "meta"), { [nix.POS]: $pos[0], description: "Openbooks frontend" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=frontend.ts.map

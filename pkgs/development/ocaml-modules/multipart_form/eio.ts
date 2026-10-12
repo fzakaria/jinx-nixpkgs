@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/eio.nix", [[["pname", 11, 3], ["version", 13, 28], ["src", 13, 36], ["meta", 13, 40], ["propagatedBuildInputs", 15, 3]]]);
 const formals$1 = { args: { buildDunePackage: false, multipart_form: false, angstrom: false, bigstringaf: false, eio: false, ke: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/eio.nix", [["pname", 11, 3], ["version", 13, 28], ["src", 13, 36], ["meta", 13, 40], ["propagatedBuildInputs", 15, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const eio = nix.arg($, "eio");
   const ke = nix.arg($, "ke");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       pname: "multipart_form-eio",
       version: nix.thunk(() => nix.attr(multipart_form, "version")),
       src: nix.thunk(() => nix.attr(multipart_form, "src")),

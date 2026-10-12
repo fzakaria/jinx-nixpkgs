@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 20, 5], ["hash", 21, 5]], [["description", 54, 5], ["longDescription", 55, 5], ["homepage", 62, 5], ["license", 63, 5], ["maintainers", 64, 5], ["platforms", 68, 5], ["sourceProvenance", 69, 5], ["mainProgram", 70, 5]], [["strictDeps", 13, 3], ["__structuredAttrs", 14, 3], ["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["dontConfigure", 24, 3], ["dontBuild", 25, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 33, 3], ["installPhase", 37, 3], ["preFixup", 46, 3], ["meta", 53, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchurl: false, autoPatchelfHook: false, dpkg: false, "glib-networking": false, wrapGAppsHook4: false, webkitgtk_4_1: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 54, 5], ["longDescription", 55, 5], ["homepage", 62, 5], ["license", 63, 5], ["maintainers", 64, 5], ["platforms", 68, 5], ["sourceProvenance", 69, 5], ["mainProgram", 70, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["strictDeps", 13, 3], ["__structuredAttrs", 14, 3], ["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["dontConfigure", 24, 3], ["dontBuild", 25, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 33, 3], ["installPhase", 37, 3], ["preFixup", 46, 3], ["meta", 53, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,13 +16,13 @@ export default nix.lambda((args) => (() => {
   const wrapGAppsHook4 = nix.arg($, "wrapGAppsHook4");
   const webkitgtk_4_1 = nix.arg($, "webkitgtk_4_1");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       strictDeps: true,
       __structuredAttrs: true,
       pname: "proton-authenticator",
       version: "1.1.6",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://proton.me/download/authenticator/linux/ProtonAuthenticator_${nix.sel(finalAttrs, "version")}_amd64.deb`),
           hash: "sha256-jHtqBdGE9+Kz5sjPMrCDnHKX0NLscO5Dp4pYYE8L2iU=",
         })))),
@@ -45,7 +43,7 @@ runHook postInstall
 )
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Two-factor authentication manager with optional sync",
         longDescription: "This package provides proton-authenticator as a pre-built binary.\n\nChanged: proton-authenticator is now source-compiled by default.\nUse this package (proton-authenticator-bin) if you prefer the pre-built binary\ninstead of building from source.\n",
         homepage: "https://proton.me/authenticator",

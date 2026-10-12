@@ -2,13 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/pgactive.nix", [[["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]], [["finalPackage", 32, 28], ["postgresqlExtraSettings", 35, 7], ["sql", 41, 7]], [["extension", 31, 5]], [["tests", 30, 12]], [["description", 48, 5], ["homepage", 49, 5], ["changelog", 50, 5], ["maintainers", 51, 5], ["platforms", 52, 5], ["license", 53, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 20, 3], ["postPatch", 24, 3], ["buildInputs", 28, 3], ["passthru", 30, 3], ["meta", 47, 3]]]);
 const formals$1 = { args: { fetchFromGitHub: false, lib: false, postgresql: false, postgresqlBuildExtension: false, postgresqlTestExtension: false, "pkg-config": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/pgactive.nix", [["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/pgactive.nix", [["finalPackage", 32, 28], ["postgresqlExtraSettings", 35, 7], ["sql", 41, 7]]);
-const pos$3 = nix.positions(here + "/pgactive.nix", [["extension", 31, 5]]);
-const pos$4 = nix.positions(here + "/pgactive.nix", [["tests", 30, 12]]);
-const pos$5 = nix.positions(here + "/pgactive.nix", [["description", 48, 5], ["homepage", 49, 5], ["changelog", 50, 5], ["maintainers", 51, 5], ["platforms", 52, 5], ["license", 53, 5]]);
-const pos$6 = nix.positions(here + "/pgactive.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 20, 3], ["postPatch", 24, 3], ["buildInputs", 28, 3], ["passthru", 30, 3], ["meta", 47, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const postgresqlTestExtension = nix.arg($, "postgresqlTestExtension");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(postgresqlBuildExtension, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "pgactive",
       version: "2.1.9",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "aws",
           repo: "pgactive",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -33,11 +28,11 @@ export default nix.lambda((args) => (() => {
       postPatch: "touch .distgitrev\n",
       buildInputs: nix.thunk(() => nix.sel(postgresql, "buildInputs")),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           extension: nix.thunk(() => nix.app(postgresqlTestExtension, nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               finalPackage: nix.thunk(() => nix.attr(finalAttrs, "finalPackage")),
               postgresqlExtraSettings: "shared_preload_libraries = 'pgactive'\ntrack_commit_timestamp = 'on'\nwal_level = 'logical'\n",
               sql: "CREATE EXTENSION pgactive;\n",
@@ -45,7 +40,7 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Active-active Replication Extension for PostgreSQL",
         homepage: "https://github.com/aws/pgactive",
         changelog: nix.thunk(() => nix.str`https://github.com/aws/pgactive/releases/tag/v${nix.sel(finalAttrs, "version")}`),

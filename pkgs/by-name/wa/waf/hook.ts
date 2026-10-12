@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/hook.nix", [[["waf", 14, 13]], [["description", 18, 5], ["maintainers", 19, 24], ["platforms", 19, 36], ["broken", 19, 46], ["license", 20, 5]], [["name", 8, 3], ["substitutions", 10, 3], ["meta", 17, 3]]]);
 const formals$1 = { args: { lib: false, makeSetupHook: false, waf: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/hook.nix", [["waf", 14, 13]]);
-const pos$2 = nix.positions(here + "/hook.nix", [["description", 18, 5], ["maintainers", 19, 24], ["platforms", 19, 36], ["broken", 19, 46], ["license", 20, 5]]);
-const pos$3 = nix.positions(here + "/hook.nix", [["name", 8, 3], ["substitutions", 10, 3], ["meta", 17, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,13 +11,13 @@ export default nix.lambda((args) => (() => {
   const makeSetupHook = nix.arg($, "makeSetupHook");
   const waf = nix.arg($, "waf");
   return nix.app(makeSetupHook, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       name: "waf-setup-hook",
-      substitutions: nix.thunk(() => ({ [nix.POS]: pos$1, waf: waf })),
+      substitutions: nix.thunk(() => ({ [nix.POS]: $pos[0], waf: waf })),
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(waf, "meta"));
         return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Setup hook for using Waf in Nixpkgs",
         maintainers: nix.thunk(() => nix.attr(from, "maintainers")),
         platforms: nix.thunk(() => nix.attr(from, "platforms")),

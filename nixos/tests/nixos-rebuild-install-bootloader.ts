@@ -2,46 +2,40 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/nixos-rebuild-install-bootloader.nix", [[["substituters", 16, 13], ["hashed-mirrors", 17, 13], ["connect-timeout", 18, 13]], [["settings", 15, 15]], [["includeBuildDependencies", 21, 18]], [["cores", 24, 13], ["memorySize", 25, 13], ["useBootLoader", 28, 26]], [["imports", 10, 11], ["nix", 15, 11], ["system", 21, 11], ["virtualisation", 23, 11]], [["machine", 7, 7]], [["name", 4, 5], ["nodes", 6, 5], ["testScript", 32, 5]]]);
 const formals$1 = { args: { pkgs: false, lib: false }, ellipsis: true };
 const formals$2 = { args: { lib: false, pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/nixos-rebuild-install-bootloader.nix", [["substituters", 16, 13], ["hashed-mirrors", 17, 13], ["connect-timeout", 18, 13]]);
-const pos$2 = nix.positions(here + "/nixos-rebuild-install-bootloader.nix", [["settings", 15, 15]]);
-const pos$3 = nix.positions(here + "/nixos-rebuild-install-bootloader.nix", [["includeBuildDependencies", 21, 18]]);
-const pos$4 = nix.positions(here + "/nixos-rebuild-install-bootloader.nix", [["cores", 24, 13], ["memorySize", 25, 13], ["useBootLoader", 28, 26]]);
-const pos$5 = nix.positions(here + "/nixos-rebuild-install-bootloader.nix", [["imports", 10, 11], ["nix", 15, 11], ["system", 21, 11], ["virtualisation", 23, 11]]);
-const pos$6 = nix.positions(here + "/nixos-rebuild-install-bootloader.nix", [["machine", 7, 7]]);
-const pos$7 = nix.positions(here + "/nixos-rebuild-install-bootloader.nix", [["name", 4, 5], ["nodes", 6, 5], ["testScript", 32, 5]]);
 
 export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./make-test-python.nix")), nix.lambda((args) => (() => {
     const $ = nix.formals(args, formals$1);
     const pkgs = nix.arg($, "pkgs");
     const lib = nix.arg($, "lib");
     return {
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       name: "nixos-rebuild-install-bootloader",
       nodes: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         machine: nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$2);
           const lib_1 = nix.arg($_1, "lib");
           const pkgs_1 = nix.arg($_1, "pkgs");
           return {
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             imports: nix.thunk(() => [
               nix.path(here, "../modules/profiles/installation-device.nix"),
               nix.path(here, "../modules/profiles/base.nix"),
             ]),
             nix: nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               settings: nix.thunk(() => ({
-                [nix.POS]: pos$1,
+                [nix.POS]: $pos[0],
                 substituters: nix.thunk(() => nix.app(nix.sel(lib_1, "mkForce"), [])),
                 "hashed-mirrors": null,
                 "connect-timeout": 1n,
               })),
             })),
-            system: nix.thunk(() => ({ [nix.POS]: pos$3, includeBuildDependencies: true })),
-            virtualisation: nix.thunk(() => ({ [nix.POS]: pos$4, cores: 2n, memorySize: 2048n, useBootLoader: true })),
+            system: nix.thunk(() => ({ [nix.POS]: $pos[2], includeBuildDependencies: true })),
+            virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[3], cores: 2n, memorySize: 2048n, useBootLoader: true })),
           };
         })(), formals$2),
       })),

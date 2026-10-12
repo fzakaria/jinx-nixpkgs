@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/mk-plugin-test.nix", [[["SSL_CERT_FILE", 22, 9]], [["nativeBuildInputs", 17, 5], ["env", 22, 5]]]);
 const formals$1 = { args: { cacert: false, runCommand: false, writableTmpDirAsHomeHook: false, yq: false, llm: false, plugin: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/mk-plugin-test.nix", [["SSL_CERT_FILE", 22, 9]]);
-const pos$2 = nix.positions(here + "/mk-plugin-test.nix", [["nativeBuildInputs", 17, 5], ["env", 22, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,10 +15,10 @@ export default nix.lambda((args) => (() => {
   const plugin = nix.arg($, "plugin");
   const venv = nix.thunk(() => nix.app(nix.sel(llm, "pythonModule", "withPackages"), (_) => [llm, plugin]));
   return nix.app(runCommand, nix.thunk(() => nix.str`${nix.sel(plugin, "pname")}-test`), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       nativeBuildInputs: nix.thunk(() => [venv, writableTmpDirAsHomeHook, yq]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         SSL_CERT_FILE: nix.thunk(() => nix.str`${cacert}/etc/ssl/certs/ca-bundle.crt`),
       })),
     })), nix.thunk(() => nix.str`llm plugins | yq --exit-status 'any(.name == "${nix.sel(plugin, "pname")}")'

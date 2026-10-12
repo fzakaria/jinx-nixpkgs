@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 59, 5], ["repo", 60, 5], ["tag", 61, 5], ["hash", 62, 5]], [["crypto", 105, 5], ["db", 106, 5], ["efm", 113, 5], ["esef", 119, 5], ["objectmaker", 120, 5], ["webserver", 122, 5], ["xule", 126, 5]], [["description", 160, 5], ["longDescription", 161, 5], ["mainProgram", 166, 5], ["homepage", 167, 5], ["license", 168, 5], ["maintainers", 169, 5]], [["pname", 54, 3], ["version", 55, 3], ["pyproject", 56, 3], ["src", 58, 3], ["outputs", 65, 3], ["postPatch", 70, 3], ["pythonRelaxDeps", 76, 3], ["build-system", 80, 3], ["dependencies", 85, 3], ["optional-dependencies", 104, 3], ["nativeBuildInputs", 129, 3], ["postInstall", 139, 3], ["nativeCheckInputs", 143, 3], ["disabledTestPaths", 150, 3], ["meta", 159, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, "setuptools-scm": false, bottle: false, certifi: false, filelock: false, isodate: false, jaconv: false, jsonschema: false, lxml: false, numpy: false, openpyxl: false, pillow: false, pyparsing: false, "python-dateutil": false, regex: false, truststore: false, "typing-extensions": false, gui: true, tkinter: false, aniso8601: false, cheroot: false, graphviz: false, holidays: false, matplotlib: false, pg8000: false, pycryptodome: false, pymysql: false, pyodbc: false, pytz: false, rdflib: false, tinycss2: false, tornado: false, sphinxHook: false, "sphinx-autodoc2": false, "myst-parser": false, "sphinx-copybutton": false, furo: false, writableTmpDirAsHomeHook: false, pytestCheckHook: false, boto3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 59, 5], ["repo", 60, 5], ["tag", 61, 5], ["hash", 62, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["crypto", 105, 5], ["db", 106, 5], ["efm", 113, 5], ["esef", 119, 5], ["objectmaker", 120, 5], ["webserver", 122, 5], ["xule", 126, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 160, 5], ["longDescription", 161, 5], ["mainProgram", 166, 5], ["homepage", 167, 5], ["license", 168, 5], ["maintainers", 169, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 54, 3], ["version", 55, 3], ["pyproject", 56, 3], ["src", 58, 3], ["outputs", 65, 3], ["postPatch", 70, 3], ["pythonRelaxDeps", 76, 3], ["build-system", 80, 3], ["dependencies", 85, 3], ["optional-dependencies", 104, 3], ["nativeBuildInputs", 129, 3], ["postInstall", 139, 3], ["nativeCheckInputs", 143, 3], ["disabledTestPaths", 150, 3], ["meta", 159, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -54,12 +51,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const boto3 = nix.arg($, "boto3");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: nix.thunk(() => nix.str`arelle${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(gui)), "-headless")}`),
       version: "2.39.10",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Arelle",
           repo: "Arelle",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -87,7 +84,7 @@ export default nix.lambda((args) => (() => {
         typing_extensions,
       ], nix.app(nix.sel(lib, "optionals"), gui, nix.thunk(() => [tkinter])))),
       "optional-dependencies": nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         crypto: nix.thunk(() => [pycryptodome]),
         db: nix.thunk(() => [pg8000, pymysql, pyodbc, rdflib]),
         efm: nix.thunk(() => [aniso8601, holidays, matplotlib, pytz]),
@@ -104,7 +101,7 @@ export default nix.lambda((args) => (() => {
           "tests/unit_tests/arelle/test_import.py",
         ])))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Open source XBRL platform",
         longDescription: nix.thunk(() => nix.str`An open source facility for XBRL, the eXtensible Business Reporting
 Language supporting various standards, exposed through a Python or

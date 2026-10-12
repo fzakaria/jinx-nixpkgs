@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 21, 5], ["url", 22, 5], ["hash", 23, 5]], [["homepage", 64, 5], ["description", 65, 5], ["license", 66, 5], ["platforms", 67, 5], ["maintainers", 68, 5], ["sourceProvenance", 69, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["nativeBuildInputs", 26, 3], ["dontConfigure", 30, 3], ["dontBuild", 31, 3], ["installPhase", 33, 3], ["preFixup", 43, 3], ["meta", 63, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, requireFile: false, dpkg: false, libxrandr: false, libxi: false, libxinerama: false, libxcursor: false, libx11: false, libGL: false, "alsa-lib": false, pulseaudio: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 21, 5], ["url", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 64, 5], ["description", 65, 5], ["license", 66, 5], ["platforms", 67, 5], ["maintainers", 68, 5], ["sourceProvenance", 69, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["nativeBuildInputs", 26, 3], ["dontConfigure", 30, 3], ["dontBuild", 31, 3], ["installPhase", 33, 3], ["preFixup", 43, 3], ["meta", 63, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const pname = "wonderdraft";
       const version = "1.1.8.2b";
       const src = nix.thunk(() => nix.app(requireFile, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           name: nix.thunk(() => nix.str`Wonderdraft-${version}-Linux64.deb`),
           url: "https://wonderdraft.net/",
           hash: "sha256-3eYnEH6P94z9axFsrkJA4QMcHyg/gNRczqL3h5Sc2Tg=",
@@ -52,7 +50,7 @@ export default nix.lambda((args) => (() => {
 `;
       })());
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://wonderdraft.net/",
         description: "Mapmaking tool for Tabletop Roleplaying Games, designed for city, region, or world scale",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
@@ -67,7 +65,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]], [["url", 29, 7], ["hash", 30, 7]], [["NIX_CFLAGS_COMPILE", 35, 7]], [["emulator", 65, 41], ["rom", 65, 50]], [["version", 61, 26], ["emulator", 62, 5], ["rom", 63, 5], ["run", 64, 5], ["updateScript", 68, 5]], [["homepage", 72, 5], ["description", 73, 5], ["changelog", 74, 5], ["license", 75, 5], ["maintainers", 76, 5], ["mainProgram", 77, 5], ["platforms", 78, 25], ["broken", 79, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 18, 3], ["patches", 27, 3], ["env", 35, 3], ["postPatch", 37, 3], ["dontConfigure", 42, 3], ["buildInputs", 44, 3], ["installPhase", 49, 3], ["passthru", 58, 3], ["meta", 71, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch2: false, SDL2: false, callPackage: false, zlib: false, "nix-update-script": false, fetchpatch: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 29, 7], ["hash", 30, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 35, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["emulator", 65, 41], ["rom", 65, 50]]);
-const pos$5 = nix.positions(here + "/package.nix", [["version", 61, 26], ["emulator", 62, 5], ["rom", 63, 5], ["run", 64, 5], ["updateScript", 68, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["homepage", 72, 5], ["description", 73, 5], ["changelog", 74, 5], ["license", 75, 5], ["maintainers", 76, 5], ["mainProgram", 77, 5], ["platforms", 78, 25], ["broken", 79, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 18, 3], ["patches", 27, 3], ["env", 35, 3], ["postPatch", 37, 3], ["dontConfigure", 42, 3], ["buildInputs", 44, 3], ["installPhase", 49, 3], ["passthru", 58, 3], ["meta", 71, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const fetchpatch = nix.arg($, "fetchpatch");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "x16-emulator",
       version: "48",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "X16Community",
           repo: "x16-emulator",
           tag: nix.thunk(() => nix.str`r${nix.sel(finalAttrs, "version")}`),
@@ -35,25 +29,25 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/X16Community/x16-emulator/commit/3da83c93d46a99635cf73a6f9fdcf1bd4a4ae04f.patch",
             hash: "sha256-DZItqq7B1lXZ6VFsQUdQKn0wt1HaX4ymq2pI2DamY3w=",
           })))),
       ]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$3, NIX_CFLAGS_COMPILE: "-Wno-error=discarded-qualifiers" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[2], NIX_CFLAGS_COMPILE: "-Wno-error=discarded-qualifiers" })),
       postPatch: "substituteInPlace Makefile \\\n  --replace-fail '/bin/echo' 'echo'\n",
       dontConfigure: true,
       buildInputs: nix.thunk(() => [SDL2, zlib]),
       installPhase: "runHook preInstall\n\ninstall -Dm 755 -t $out/bin/ x16emu\ninstall -Dm 444 -t $out/share/doc/x16-emulator/ README.md\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         version: nix.thunk(() => nix.attr(finalAttrs, "version")),
         emulator: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
         rom: nix.thunk(() => nix.app(callPackage, nix.path(here, "./rom.nix"), nix.thunk(() => ({})))),
         run: nix.thunk(() => nix.app(callPackage, nix.path(here, "./run.nix"), nix.thunk(() => ({})), nix.thunk(() => (() => {
             const from = nix.thunk(() => nix.sel(finalAttrs, "finalPackage"));
             return {
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             emulator: nix.thunk(() => nix.attr(from, "emulator")),
             rom: nix.thunk(() => nix.attr(from, "rom")),
           };
@@ -63,7 +57,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(SDL2, "meta"));
         return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         homepage: "https://cx16forum.com/",
         description: "Official emulator of CommanderX16 8-bit computer",
         changelog: nix.thunk(() => nix.str`https://github.com/X16Community/x16-emulator/blob/${nix.sel(finalAttrs, "src", "rev")}/RELEASES.md`),

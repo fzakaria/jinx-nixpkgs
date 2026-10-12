@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 22, 5], ["version", 23, 5], ["format", 24, 5], ["dist", 25, 5], ["python", 26, 5], ["hash", 27, 5]], [["changelog", 52, 5], ["description", 53, 5], ["homepage", 54, 5], ["license", 55, 5], ["maintainers", 56, 5], ["mainProgram", 59, 5]], [["pname", 16, 3], ["version", 17, 3], ["format", 18, 3], ["__structuredAttrs", 19, 3], ["src", 21, 3], ["postInstall", 33, 3], ["build-system", 38, 3], ["dependencies", 42, 3], ["meta", 51, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, setuptools: false, libpulseaudio: false, "audioop-lts": false, lxmf: false, numpy: false, pycodec2: false, rns: false, soundcard: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 22, 5], ["version", 23, 5], ["format", 24, 5], ["dist", 25, 5], ["python", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["changelog", 52, 5], ["description", 53, 5], ["homepage", 54, 5], ["license", 55, 5], ["maintainers", 56, 5], ["mainProgram", 59, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 16, 3], ["version", 17, 3], ["format", 18, 3], ["__structuredAttrs", 19, 3], ["src", 21, 3], ["postInstall", 33, 3], ["build-system", 38, 3], ["dependencies", 42, 3], ["meta", 51, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,13 +19,13 @@ export default nix.lambda((args) => (() => {
   const rns = nix.arg($, "rns");
   const soundcard = nix.arg($, "soundcard");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "lxst",
       version: "0.5.0",
       format: "wheel",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "lxst",
           version: nix.thunk(() => nix.sel(finalAttrs, "version")),
           format: "wheel",
@@ -41,7 +39,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [setuptools]),
       dependencies: nix.thunk(() => [audioop_lts, pycodec2, numpy, rns, lxmf, soundcard]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         changelog: nix.thunk(() => nix.str`https://github.com/markqvist/LXST/releases/tag/${nix.sel(finalAttrs, "version")}`),
         description: "Simple and flexible real-time streaming format and delivery protocol for Reticulum",
         homepage: "https://github.com/markqvist/LXST",

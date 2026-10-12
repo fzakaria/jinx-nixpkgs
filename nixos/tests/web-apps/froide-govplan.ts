@@ -2,37 +2,31 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/froide-govplan.nix", [[["maintainers", 9, 8]], [["memorySize", 13, 22]], [["enable", 14, 31]], [["froide-govplan", 14, 16]], [["virtualisation", 13, 7], ["services", 14, 7]], [["machine", 12, 5]], [["name", 8, 3], ["meta", 9, 3], ["nodes", 11, 3], ["testScript", 18, 3]]]);
 const formals$1 = { args: { lib: false, pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/froide-govplan.nix", [["maintainers", 9, 8]]);
-const pos$2 = nix.positions(here + "/froide-govplan.nix", [["memorySize", 13, 22]]);
-const pos$3 = nix.positions(here + "/froide-govplan.nix", [["enable", 14, 31]]);
-const pos$4 = nix.positions(here + "/froide-govplan.nix", [["froide-govplan", 14, 16]]);
-const pos$5 = nix.positions(here + "/froide-govplan.nix", [["virtualisation", 13, 7], ["services", 14, 7]]);
-const pos$6 = nix.positions(here + "/froide-govplan.nix", [["machine", 12, 5]]);
-const pos$7 = nix.positions(here + "/froide-govplan.nix", [["name", 8, 3], ["meta", 9, 3], ["nodes", 11, 3], ["testScript", 18, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   return {
-    [nix.POS]: pos$7,
+    [nix.POS]: $pos[6],
     name: "froide-govplan",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "onny"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       machine: nix.thunk(() => ({
-        [nix.POS]: pos$5,
-        virtualisation: nix.thunk(() => ({ [nix.POS]: pos$2, memorySize: 2048n })),
+        [nix.POS]: $pos[4],
+        virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[1], memorySize: 2048n })),
         services: nix.thunk(() => ({
-          [nix.POS]: pos$4,
-          "froide-govplan": nix.thunk(() => ({ [nix.POS]: pos$3, enable: true })),
+          [nix.POS]: $pos[3],
+          "froide-govplan": nix.thunk(() => ({ [nix.POS]: $pos[2], enable: true })),
         })),
       })),
     })),

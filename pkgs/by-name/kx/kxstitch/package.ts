@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 16, 5], ["rev", 17, 5], ["hash", 18, 5]], [["homepage", 50, 5], ["description", 51, 5], ["maintainers", 52, 5], ["license", 53, 5], ["platforms", 54, 5], ["mainProgram", 55, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["buildInputs", 21, 3], ["nativeBuildInputs", 31, 3], ["postInstall", 41, 3], ["meta", 49, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchgit: false, cmake: false, imagemagick: false, kdePackages: false, "pkg-config": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 16, 5], ["rev", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 50, 5], ["description", 51, 5], ["maintainers", 52, 5], ["license", 53, 5], ["platforms", 54, 5], ["mainProgram", 55, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["buildInputs", 21, 3], ["nativeBuildInputs", 31, 3], ["postInstall", 41, 3], ["meta", 49, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const kdePackages = nix.arg($, "kdePackages");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "kxstitch",
       version: "2.2.0-unstable-2025-08-16",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://invent.kde.org/graphics/kxstitch.git",
           rev: "bfe934ffc2c2dfa1cc554bc4483a3285b027b00c",
           hash: "sha256-B81nwInFWcQVDJU6VINII8crVPtV5zYBXADVVe+wCu4=",
@@ -47,7 +45,7 @@ export default nix.lambda((args) => (() => {
       })())),
       postInstall: "install -D $src/org.kde.kxstitch.desktop $out/share/applications/org.kde.kxstitch.desktop\n\nfor size in 16 22 32 48 64 128 256; do\n  install -D $src/icons/app/$size-apps-kxstitch.png $out/share/icons/hicolor/$size\\x$size/kxstitch.png\ndone\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://invent.kde.org/graphics/kxstitch",
         description: "Cross stitch pattern and chart creation",
         maintainers: nix.thunk(() => (() => {

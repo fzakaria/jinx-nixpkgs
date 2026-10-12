@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["hash", 24, 5]], [["description", 63, 5], ["homepage", 64, 5], ["changelog", 65, 5], ["license", 66, 5], ["maintainers", 67, 5], ["mainProgram", 68, 5], ["platforms", 69, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 34, 3], ["runtimeDependencies", 42, 3], ["cmakeFlags", 44, 3], ["installPhase", 49, 3], ["meta", 62, 3]]]);
 const formals$1 = { args: { autoPatchelfHook: false, cmake: false, fetchFromGitHub: false, installShellFiles: false, lib: false, libGL: false, ninja: false, stdenv: false, tacent: false, libx11: false, libxcb: false, zenity: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 63, 5], ["homepage", 64, 5], ["changelog", 65, 5], ["license", 66, 5], ["maintainers", 67, 5], ["mainProgram", 68, 5], ["platforms", 69, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 34, 3], ["runtimeDependencies", 42, 3], ["cmakeFlags", 44, 3], ["installPhase", 49, 3], ["meta", 62, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const libxcb = nix.arg($, "libxcb");
   const zenity = nix.arg($, "zenity");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "tacentview",
       version: "1.0.46-unstable-2025-10-12",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "bluescan",
           repo: "tacentview",
           rev: "51569b34ecd3dac9c40106b92deceb4b56feb5de",
@@ -47,7 +45,7 @@ export default nix.lambda((args) => (() => {
       ]),
       installPhase: "runHook preInstall\n\ninstallBin tacentview\n\nmkdir -p $out/share/tacentview\ncp -r ../Assets $out/share/tacentview/\ncp -r ../Linux/deb_template/usr/share/icons $out/share\ncp -r ../Linux/deb_template/usr/share/applications $out/share\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Image and texture viewer",
         homepage: "https://github.com/bluescan/tacentview",
         changelog: nix.thunk(() => nix.str`https://github.com/bluescan/tacentview/releases/tag/v${nix.sel(finalAttrs, "version")}`),

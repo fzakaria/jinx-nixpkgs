@@ -2,10 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/sdl2.nix", [[["owner", 28, 5], ["repo", 29, 5], ["rev", 30, 5], ["sha256", 31, 5]], [["description", 35, 5], ["homepage", 36, 5], ["maintainers", 37, 5]], [["pname", 11, 3], ["version", 12, 3], ["idrisDeps", 14, 3], ["nativeBuildInputs", 16, 3], ["extraBuildInputs", 20, 3], ["prePatch", 25, 3], ["src", 27, 3], ["meta", 34, 3]]]);
 const formals$1 = { args: { "build-idris-package": false, fetchFromGitHub: false, effects: false, lib: false, "pkg-config": false, SDL2: false, SDL2_gfx: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/sdl2.nix", [["owner", 28, 5], ["repo", 29, 5], ["rev", 30, 5], ["sha256", 31, 5]]);
-const pos$2 = nix.positions(here + "/sdl2.nix", [["description", 35, 5], ["homepage", 36, 5], ["maintainers", 37, 5]]);
-const pos$3 = nix.positions(here + "/sdl2.nix", [["pname", 11, 3], ["version", 12, 3], ["idrisDeps", 14, 3], ["nativeBuildInputs", 16, 3], ["extraBuildInputs", 20, 3], ["prePatch", 25, 3], ["src", 27, 3], ["meta", 34, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,14 +22,14 @@ export default nix.lambda((args) => (() => {
       const extraBuildInputs = nix.thunk(() => [SDL2, SDL2_gfx]);
       const prePatch = "patchShebangs .";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "steshaw",
           repo: "idris-sdl2",
           rev: version,
           sha256: "1jslnlzyw04dcvcd7xsdjqa7waxzkm5znddv76sv291jc94xhl4a",
         }))));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "SDL2 binding for Idris",
         homepage: "https://github.com/steshaw/idris-sdl2",
         maintainers: nix.thunk(() => (() => {
@@ -43,7 +41,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         idrisDeps,

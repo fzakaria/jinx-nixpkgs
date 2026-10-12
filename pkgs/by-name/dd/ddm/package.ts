@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 22, 5], ["hash", 23, 5], ["gameUrl", 24, 5], ["upload", 25, 5]], [["name", 74, 7], ["desktopName", 75, 7], ["comment", 76, 7], ["exec", 77, 7], ["terminal", 78, 7], ["icon", 79, 7]], [["description", 84, 5], ["homepage", 85, 5], ["changelog", 86, 5], ["license", 87, 5], ["mainProgram", 88, 5], ["maintainers", 89, 5], ["platforms", 90, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["strictDeps", 28, 3], ["nativeBuildInputs", 30, 3], ["dontConfigure", 37, 3], ["dontBuild", 38, 3], ["installPhase", 40, 3], ["desktopItems", 72, 3], ["meta", 83, 3]]]);
 const formals$1 = { args: { stdenvNoCC: false, lib: false, fetchItchIo: false, asar: false, copyDesktopItems: false, electron: false, makeDesktopItem: false, makeWrapper: false, unzip: false, campaigns: true, cubes: true, constructed: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 22, 5], ["hash", 23, 5], ["gameUrl", 24, 5], ["upload", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 74, 7], ["desktopName", 75, 7], ["comment", 76, 7], ["exec", 77, 7], ["terminal", 78, 7], ["icon", 79, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 84, 5], ["homepage", 85, 5], ["changelog", 86, 5], ["license", 87, 5], ["mainProgram", 88, 5], ["maintainers", 89, 5], ["platforms", 90, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["strictDeps", 28, 3], ["nativeBuildInputs", 30, 3], ["dontConfigure", 37, 3], ["dontBuild", 38, 3], ["installPhase", 40, 3], ["desktopItems", 72, 3], ["meta", 83, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const cubes = nix.argOr($, "cubes", () => []);
   const constructed = nix.argOr($, "constructed", () => []);
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "ddm",
       version: "4.1.0",
       src: nix.thunk(() => nix.app(fetchItchIo, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           name: "DungeonDuelMonsters-linux-x64.zip",
           hash: "sha256-gq2nGwpaStqaVI1pL63xygxOI/z53o+zLwiKizG98Ks=",
           gameUrl: "https://mikaygo.itch.io/ddm",
@@ -59,7 +56,7 @@ mkdir $out/share/ddm/{campaigns,cubes,constructed}
 `, constructed)), "\nrunHook postInstall\n")),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "ddm",
             desktopName: "Dungeon Duel Monsters",
             comment: "A Tabletop Yugioh Experience",
@@ -69,7 +66,7 @@ mkdir $out/share/ddm/{campaigns,cubes,constructed}
           })))),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Tabletop Yugioh Experience",
         homepage: "https://dungeonduelmonsters.com",
         changelog: "https://mikaygo.itch.io/ddm/devlog",

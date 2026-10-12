@@ -2,21 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 29, 5], ["repo", 30, 5], ["rev", 31, 5], ["hash", 32, 5]], [["owner", 37, 7], ["repo", 38, 7], ["rev", 39, 7], ["hash", 40, 7]], [["src", 36, 5], ["patches", 43, 5], ["postPatch", 47, 5]], [["x86_64-linux", 66, 18]], [["aarch64-linux", 67, 19]], [["x86_64-linux", 66, 5], ["aarch64-linux", 67, 5]], [["owner", 77, 5], ["repo", 78, 5], ["rev", 79, 5], ["hash", 80, 5]], [["NIX_CFLAGS_COMPILE", 98, 5]], [["LIBTOOL", 101, 5]], [["preInstall", 105, 5], ["hash", 115, 5]], [["installPhase", 126, 5]], [["rules_js", 141, 13], ["updateScript", 142, 5]], [["description", 149, 5], ["homepage", 150, 5], ["downloadPage", 151, 5], ["license", 152, 5], ["maintainers", 153, 5], ["mainProgram", 154, 5], ["badPlatforms", 155, 5]], [["pname", 73, 3], ["version", 74, 3], ["src", 76, 3], ["patches", 83, 3], ["postPatch", 87, 3], ["bazelFlags", 92, 3], ["env", 97, 3], ["fetchAttrs", 104, 3], ["bazel", 118, 3], ["bazelBuildFlags", 120, 3], ["bazelTargets", 121, 3], ["buildAttrs", 125, 3], ["passthru", 140, 3], ["strictDeps", 145, 3], ["__structuredAttrs", 146, 3], ["meta", 148, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, buildBazelPackage: false, bazel_7: false, "nix-update-script": false, applyPatches: false, nodejs: false, cctools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 29, 5], ["repo", 30, 5], ["rev", 31, 5], ["hash", 32, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 37, 7], ["repo", 38, 7], ["rev", 39, 7], ["hash", 40, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["src", 36, 5], ["patches", 43, 5], ["postPatch", 47, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["x86_64-linux", 66, 18]]);
-const pos$5 = nix.positions(here + "/package.nix", [["aarch64-linux", 67, 19]]);
-const pos$6 = nix.positions(here + "/package.nix", [["x86_64-linux", 66, 5], ["aarch64-linux", 67, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["owner", 77, 5], ["repo", 78, 5], ["rev", 79, 5], ["hash", 80, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 98, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["LIBTOOL", 101, 5]]);
-const pos$10 = nix.positions(here + "/package.nix", [["preInstall", 105, 5], ["hash", 115, 5]]);
-const pos$11 = nix.positions(here + "/package.nix", [["installPhase", 126, 5]]);
-const pos$12 = nix.positions(here + "/package.nix", [["rules_js", 141, 13], ["updateScript", 142, 5]]);
-const pos$13 = nix.positions(here + "/package.nix", [["description", 149, 5], ["homepage", 150, 5], ["downloadPage", 151, 5], ["license", 152, 5], ["maintainers", 153, 5], ["mainProgram", 154, 5], ["badPlatforms", 155, 5]]);
-const pos$14 = nix.positions(here + "/package.nix", [["pname", 73, 3], ["version", 74, 3], ["src", 76, 3], ["patches", 83, 3], ["postPatch", 87, 3], ["bazelFlags", 92, 3], ["env", 97, 3], ["fetchAttrs", 104, 3], ["bazel", 118, 3], ["bazelBuildFlags", 120, 3], ["bazelTargets", 121, 3], ["buildAttrs", 125, 3], ["passthru", 140, 3], ["strictDeps", 145, 3], ["__structuredAttrs", 146, 3], ["meta", 148, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -38,16 +25,16 @@ export default nix.lambda((args) => (() => {
     "livegrep-reload",
   ]);
   const registry = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "bazelbuild",
       repo: "bazel-central-registry",
       rev: "0f256a72067e42d62bb568cc2619f98deed139e2",
       hash: "sha256-OcMLg0KiAQOJZLH8r+QkeQ9bxcEc4L0dCgyUv5PkLQk=",
     }))));
   const rules_js = nix.thunk(() => nix.app(applyPatches, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "aspect-build",
           repo: "rules_js",
           rev: "v2.4.0",
@@ -57,24 +44,24 @@ export default nix.lambda((args) => (() => {
       postPatch: "patchShebangs --build \\\n  npm/private/lifecycle/bundle.sh \\\n  npm/private/lifecycle/min/node-gyp-bin/node-gyp \\\n  npm/private/noop.sh \\\n  npm/private/versions_mirror.sh \\\n  js/private/node_wrapper.sh \\\n  js/private/npm_wrapper.sh\n\nsubstituteInPlace \\\n  npm/private/utils.bzl \\\n  npm/private/lifecycle/lifecycle-hooks.js \\\n  npm/private/lifecycle/min/index.min.js \\\n  js/private/js_binary.sh.tpl \\\n  --replace-fail '#!/usr/bin/env bash' \"#!$(type -p bash)\"\n",
     }))));
   const bazelDepsHashByBuildAndHost = nix.thunk(() => ({
-    [nix.POS]: pos$6,
+    [nix.POS]: $pos[5],
     "x86_64-linux": nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       "x86_64-linux": "sha256-PastkoOioWqlmGFHZiZ2S1ahWZu1UBhqHIfD2M/ff6A=",
     })),
     "aarch64-linux": nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       "aarch64-linux": "sha256-mNWnpmk/dNQYKnP3YbfK5ott0+41I+49aH6RhWEMOGM=",
     })),
   }));
   const bazelDepsHashByHost = nix.thunk(() => nix.selOr(bazelDepsHashByBuildAndHost, () => ({}), nix.key(nix.sel(stdenv, "buildPlatform", "system"))));
   const bazelDepsHash = nix.thunk(() => nix.selOr(bazelDepsHashByHost, () => "", nix.key(nix.sel(stdenv, "hostPlatform", "system"))));
   return nix.app(buildBazelPackage, nix.thunk(() => ({
-      [nix.POS]: pos$14,
+      [nix.POS]: $pos[13],
       pname: "livegrep",
       version: "2026-02-10",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           owner: "livegrep",
           repo: "livegrep",
           rev: "923d5ad71dfe60900e6c2017b2fa4a5ff902ad71",
@@ -87,9 +74,12 @@ export default nix.lambda((args) => (() => {
 substituteInPlace MODULE.bazel --subst-var-by rules_js "${rules_js}"
 `),
       bazelFlags: nix.thunk(() => ["--registry", nix.thunk(() => nix.str`file://${registry}`)]),
-      env: nix.thunk(() => nix.update({ [nix.POS]: pos$8, NIX_CFLAGS_COMPILE: "-Wno-error=discarded-qualifiers" }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({ [nix.POS]: pos$9, LIBTOOL: nix.thunk(() => nix.str`${cctools}/bin/libtool`) }))))),
+      env: nix.thunk(() => nix.update({ [nix.POS]: $pos[7], NIX_CFLAGS_COMPILE: "-Wno-error=discarded-qualifiers" }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({
+          [nix.POS]: $pos[8],
+          LIBTOOL: nix.thunk(() => nix.str`${cctools}/bin/libtool`),
+        }))))),
       fetchAttrs: nix.thunk(() => ({
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         preInstall: "# Avoid bash and $out store paths leaking into the fixed-output derivation\nrm $bazelOut/external/aspect_rules_js~~npm~npm/_exists.sh\nrm -r $bazelOut/external/rules_shell~~sh_configure~local_config_shell\n\n# Remove some non-reproducible and unused files\nrm -r $bazelOut/external/gazelle~~non_module_deps~bazel_gazelle_go_repository_cache\nrm -r $bazelOut/external/gazelle~~non_module_deps~bazel_gazelle_go_repository_tools\n",
         hash: bazelDepsHash,
       })),
@@ -97,7 +87,7 @@ substituteInPlace MODULE.bazel --subst-var-by rules_js "${rules_js}"
       bazelBuildFlags: nix.thunk(() => ["-c opt"]),
       bazelTargets: nix.thunk(() => nix.concat(nix.builtins.map((tool) => nix.str`//src/tools:${tool}`, cc_tools), nix.builtins.map((tool) => nix.str`//cmd/${tool}`, go_tools))),
       buildAttrs: nix.thunk(() => ({
-        [nix.POS]: pos$11,
+        [nix.POS]: $pos[10],
         installPhase: nix.thunk(() => nix.str`pushd "bazel-bin/src/tools"
 install -Dt "$out/bin" ${nix.builtins.toString(cc_tools)}
 popd
@@ -111,14 +101,14 @@ cp -Lr "bazel-bin/cmd/livegrep/livegrep_/livegrep.runfiles/_main/web" "$out/bin/
 `),
       })),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$12,
+        [nix.POS]: $pos[11],
         rules_js: rules_js,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       strictDeps: true,
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$13,
+        [nix.POS]: $pos[12],
         description: "Livegrep is a tool, partially inspired by Google Code Search, for interactive regex search of ~gigabyte-scale source repositories.",
         homepage: "http://livegrep.com/",
         downloadPage: "https://github.com/livegrep/livegrep",

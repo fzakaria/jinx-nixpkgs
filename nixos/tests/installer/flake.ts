@@ -2,40 +2,32 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
-const pos$1 = nix.positions(here + "/flake.nix", [["url", 5, 18]]);
-const pos$2 = nix.positions(here + "/flake.nix", [["nixpkgs", 5, 10]]);
+const $pos = nix.positions(here + "/flake.nix", [[["url", 5, 18]], [["nixpkgs", 5, 10]], [["enable", 17, 25]], [["channel", 17, 17]], [["nix", 17, 13]], [["modules", 12, 9]], [["xyz", 11, 27]], [["nixosConfigurations", 11, 7]], [["inputs", 5, 3], ["outputs", 7, 3]]]);
 const formals$1 = { args: { nixpkgs: false }, ellipsis: true };
-const pos$3 = nix.positions(here + "/flake.nix", [["enable", 17, 25]]);
-const pos$4 = nix.positions(here + "/flake.nix", [["channel", 17, 17]]);
-const pos$5 = nix.positions(here + "/flake.nix", [["nix", 17, 13]]);
-const pos$6 = nix.positions(here + "/flake.nix", [["modules", 12, 9]]);
-const pos$7 = nix.positions(here + "/flake.nix", [["xyz", 11, 27]]);
-const pos$8 = nix.positions(here + "/flake.nix", [["nixosConfigurations", 11, 7]]);
-const pos$9 = nix.positions(here + "/flake.nix", [["inputs", 5, 3], ["outputs", 7, 3]]);
 
 export default nix.thunk(() => ({
-  [nix.POS]: pos$9,
+  [nix.POS]: $pos[8],
   inputs: nix.thunk(() => ({
-    [nix.POS]: pos$2,
-    nixpkgs: nix.thunk(() => ({ [nix.POS]: pos$1, url: "@nixpkgs@" })),
+    [nix.POS]: $pos[1],
+    nixpkgs: nix.thunk(() => ({ [nix.POS]: $pos[0], url: "@nixpkgs@" })),
   })),
   outputs: nix.lambda((args) => (() => {
     const $ = nix.formals(args, formals$1);
     const nixpkgs = nix.arg($, "nixpkgs");
     return {
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       nixosConfigurations: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         xyz: nix.thunk(() => nix.app(nix.sel(nixpkgs, "lib", "nixosSystem"), nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             modules: nix.thunk(() => [
               nix.path(here, "./configuration.nix"),
               nix.thunk(() => nix.add(nixpkgs, "/nixos/modules/testing/test-instrumentation.nix")),
               nix.thunk(() => ({
-                [nix.POS]: pos$5,
+                [nix.POS]: $pos[4],
                 nix: nix.thunk(() => ({
-                  [nix.POS]: pos$4,
-                  channel: nix.thunk(() => ({ [nix.POS]: pos$3, enable: false })),
+                  [nix.POS]: $pos[3],
+                  channel: nix.thunk(() => ({ [nix.POS]: $pos[2], enable: false })),
                 })),
               })),
             ]),

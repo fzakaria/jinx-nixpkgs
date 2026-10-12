@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["hash", 20, 5]], [["broken", 70, 5], ["description", 71, 5], ["homepage", 72, 5], ["changelog", 73, 5], ["license", 74, 5], ["platforms", 75, 5], ["maintainers", 76, 5], ["mainProgram", 77, 5]], [["pname", 11, 3], ["version", 12, 3], ["pyproject", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 23, 3], ["propagatedBuildInputs", 32, 3], ["makeFlags", 43, 3], ["nativeCheckInputs", 48, 3], ["dontWrapQtApps", 53, 3], ["installTargets", 55, 3], ["preFixup", 59, 3], ["postFixup", 65, 3], ["meta", 69, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, python3Packages: false, gettext: false, qt5: false, writableTmpDirAsHomeHook: false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["broken", 70, 5], ["description", 71, 5], ["homepage", 72, 5], ["changelog", 73, 5], ["license", 74, 5], ["platforms", 75, 5], ["maintainers", 76, 5], ["mainProgram", 77, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["pyproject", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 23, 3], ["propagatedBuildInputs", 32, 3], ["makeFlags", 43, 3], ["nativeCheckInputs", 48, 3], ["dontWrapQtApps", 53, 3], ["installTargets", 55, 3], ["preFixup", 59, 3], ["postFixup", 65, 3], ["meta", 69, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "dupeguru",
       version: "4.3.1-unstable-2026-01-06",
       pyproject: false,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "arsenetar",
           repo: "dupeguru",
           rev: "16aa6c21ffc2c33d44ff4a47bfa1a623c16ed626",
@@ -62,7 +60,7 @@ export default nix.lambda((args) => (() => {
       preFixup: "makeWrapperArgs=\"${qtWrapperArgs[@]}\"\n",
       postFixup: "wrapPythonProgramsIn \"$out/share/dupeguru\" \"$out ${pythonPath[*]}\"\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
         description: "GUI tool to find duplicate files in a system",
         homepage: "https://github.com/arsenetar/dupeguru",

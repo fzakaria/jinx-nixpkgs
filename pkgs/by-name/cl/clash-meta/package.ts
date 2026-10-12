@@ -2,19 +2,18 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["mainProgram", 12, 7]], [["pname", 5, 5], ["postInstall", 7, 5], ["meta", 11, 5]]]);
 const formals$1 = { args: { mihomo: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["mainProgram", 12, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 5, 5], ["postInstall", 7, 5], ["meta", 11, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const mihomo = nix.arg($, "mihomo");
   return nix.app(nix.sel(mihomo, "overrideAttrs"), (finalAttrs) => (previousAttrs) => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "clash-meta",
       postInstall: nix.thunk(() => nix.str`mv $out/bin/${nix.sel(previousAttrs, "meta", "mainProgram")} $out/bin/${nix.sel(finalAttrs, "meta", "mainProgram")}
 `),
-      meta: nix.thunk(() => nix.update(nix.sel(previousAttrs, "meta"), { [nix.POS]: pos$1, mainProgram: "clash-meta" })),
+      meta: nix.thunk(() => nix.update(nix.sel(previousAttrs, "meta"), { [nix.POS]: $pos[0], mainProgram: "clash-meta" })),
     }));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

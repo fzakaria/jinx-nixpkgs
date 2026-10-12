@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/unix.nix", [[["description", 41, 5]], [["pname", 14, 3], ["version", 15, 20], ["src", 15, 28], ["minimalOCamlVersion", 17, 3], ["postPatch", 19, 3], ["buildInputs", 23, 3], ["propagatedBuildInputs", 29, 3], ["checkInputs", 36, 3], ["doCheck", 38, 3], ["meta", 40, 3]]]);
 const formals$1 = { args: { buildDunePackage: false, gitlab: false, cmdliner: false, cohttp: false, "cohttp-lwt-unix": false, tls: false, lwt: false, stringext: false, alcotest: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/unix.nix", [["description", 41, 5]]);
-const pos$2 = nix.positions(here + "/unix.nix", [["pname", 14, 3], ["version", 15, 20], ["src", 15, 28], ["minimalOCamlVersion", 17, 3], ["postPatch", 19, 3], ["buildInputs", 23, 3], ["propagatedBuildInputs", 29, 3], ["checkInputs", 36, 3], ["doCheck", 38, 3], ["meta", 40, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,7 +17,7 @@ export default nix.lambda((args) => (() => {
   const stringext = nix.arg($, "stringext");
   const alcotest = nix.arg($, "alcotest");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "gitlab-unix",
       version: nix.thunk(() => nix.attr(gitlab, "version")),
       src: nix.thunk(() => nix.attr(gitlab, "src")),
@@ -28,7 +27,7 @@ export default nix.lambda((args) => (() => {
       propagatedBuildInputs: nix.thunk(() => [gitlab, cmdliner, cohttp_lwt_unix, lwt]),
       checkInputs: nix.thunk(() => [alcotest]),
       doCheck: true,
-      meta: nix.thunk(() => nix.update(nix.sel(gitlab, "meta"), { [nix.POS]: pos$1, description: "Gitlab APIv4 Unix library" })),
+      meta: nix.thunk(() => nix.update(nix.sel(gitlab, "meta"), { [nix.POS]: $pos[0], description: "Gitlab APIv4 Unix library" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=unix.ts.map

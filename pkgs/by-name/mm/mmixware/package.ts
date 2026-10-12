@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 13, 5], ["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["sha256", 17, 5]], [["NIX_CFLAGS_COMPILE", 26, 7]], [["description", 55, 5], ["homepage", 56, 5], ["maintainers", 57, 5], ["platforms", 58, 5], ["license", 59, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["hardeningDisable", 20, 3], ["postPatch", 22, 3], ["env", 26, 3], ["nativeBuildInputs", 34, 3], ["enableParallelBuilding", 35, 3], ["makeFlags", 37, 3], ["installPhase", 43, 3], ["meta", 54, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, texliveMedium: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 13, 5], ["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["sha256", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 26, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 55, 5], ["homepage", 56, 5], ["maintainers", 57, 5], ["platforms", 58, 5], ["license", 59, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["hardeningDisable", 20, 3], ["postPatch", 22, 3], ["env", 26, 3], ["nativeBuildInputs", 34, 3], ["enableParallelBuilding", 35, 3], ["makeFlags", 37, 3], ["installPhase", 43, 3], ["meta", 54, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitLab = nix.arg($, "fetchFromGitLab");
   const texliveMedium = nix.arg($, "texliveMedium");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "mmixware",
       version: "1.0-unstable-2025-06-30",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "gitlab.lrz.de",
           owner: "mmix",
           repo: "mmixware",
@@ -29,7 +26,7 @@ export default nix.lambda((args) => (() => {
       hardeningDisable: nix.thunk(() => ["format"]),
       postPatch: "substituteInPlace Makefile --replace 'rm abstime.h' \"\"\n",
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-fcommon", "-std=gnu17"]))),
       })),
       nativeBuildInputs: nix.thunk(() => [texliveMedium]),
@@ -37,7 +34,7 @@ export default nix.lambda((args) => (() => {
       makeFlags: nix.thunk(() => ["all", "doc", "CFLAGS=-O2"]),
       installPhase: "runHook preInstall\nmkdir -p $out/share/doc\ncp *.ps $out/share/doc\ninstall -Dm755 mmixal -t $out/bin\ninstall -Dm755 mmix -t $out/bin\ninstall -Dm755 mmotype -t $out/bin\ninstall -Dm755 mmmix -t $out/bin\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "MMIX simulator and assembler",
         homepage: "https://www-cs-faculty.stanford.edu/~knuth/mmix-news.html",
         maintainers: nix.thunk(() => (() => {

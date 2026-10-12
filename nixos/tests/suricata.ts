@@ -2,155 +2,120 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/suricata.nix", [[["maintainers", 4, 8]], [["address", 12, 13], ["prefixLength", 13, 13]], [["addresses", 10, 14]], [["useDHCP", 9, 9], ["ipv4", 10, 9]], [["eth1", 8, 29]], [["interfaces", 8, 18]], [["enable", 19, 40]], [["suricata-update", 19, 24]], [["rules", 37, 24]], [["services", 19, 15], ["tmpfiles", 37, 15]], [["systemPackages", 22, 19]], [["HOME_NET", 28, 31]], [["address-groups", 28, 16]], [["enabled", 29, 24]], [["enabled", 30, 30]], [["fast", 30, 25]], [["interface", 31, 27]], [["vars", 28, 11], ["unix-command", 29, 11], ["outputs", 30, 11], ["af-packet", 31, 11], ["classification-file", 32, 11]], [["enable", 25, 9], ["reloadOnRulesetUpdate", 26, 9], ["settings", 27, 9]], [["suricata", 24, 16]], [["networking", 8, 7], ["systemd", 19, 7], ["environment", 22, 7], ["services", 24, 7]], [["address", 48, 13], ["prefixLength", 49, 13]], [["addresses", 46, 14]], [["useDHCP", 45, 9], ["ipv4", 46, 9]], [["eth1", 44, 29]], [["allowedTCPPorts", 60, 27]], [["interfaces", 44, 18], ["firewall", 60, 18]], [["return", 57, 18]], [["/id/", 57, 11]], [["locations", 56, 34]], [["localhost", 56, 22]], [["enable", 55, 9], ["virtualHosts", 56, 9]], [["nginx", 54, 16]], [["imports", 42, 7], ["networking", 44, 7], ["services", 54, 7]], [["ids", 7, 5], ["helper", 41, 5]], [["name", 3, 3], ["meta", 4, 3], ["nodes", 6, 3], ["testScript", 64, 3]]]);
 const formals$1 = { args: { lib: false, pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/suricata.nix", [["maintainers", 4, 8]]);
-const pos$2 = nix.positions(here + "/suricata.nix", [["address", 12, 13], ["prefixLength", 13, 13]]);
-const pos$3 = nix.positions(here + "/suricata.nix", [["addresses", 10, 14]]);
-const pos$4 = nix.positions(here + "/suricata.nix", [["useDHCP", 9, 9], ["ipv4", 10, 9]]);
-const pos$5 = nix.positions(here + "/suricata.nix", [["eth1", 8, 29]]);
-const pos$6 = nix.positions(here + "/suricata.nix", [["interfaces", 8, 18]]);
-const pos$7 = nix.positions(here + "/suricata.nix", [["enable", 19, 40]]);
-const pos$8 = nix.positions(here + "/suricata.nix", [["suricata-update", 19, 24]]);
-const pos$9 = nix.positions(here + "/suricata.nix", [["rules", 37, 24]]);
-const pos$10 = nix.positions(here + "/suricata.nix", [["services", 19, 15], ["tmpfiles", 37, 15]]);
-const pos$11 = nix.positions(here + "/suricata.nix", [["systemPackages", 22, 19]]);
-const pos$12 = nix.positions(here + "/suricata.nix", [["HOME_NET", 28, 31]]);
-const pos$13 = nix.positions(here + "/suricata.nix", [["address-groups", 28, 16]]);
-const pos$14 = nix.positions(here + "/suricata.nix", [["enabled", 29, 24]]);
-const pos$15 = nix.positions(here + "/suricata.nix", [["enabled", 30, 30]]);
-const pos$16 = nix.positions(here + "/suricata.nix", [["fast", 30, 25]]);
-const pos$17 = nix.positions(here + "/suricata.nix", [["interface", 31, 27]]);
-const pos$18 = nix.positions(here + "/suricata.nix", [["vars", 28, 11], ["unix-command", 29, 11], ["outputs", 30, 11], ["af-packet", 31, 11], ["classification-file", 32, 11]]);
-const pos$19 = nix.positions(here + "/suricata.nix", [["enable", 25, 9], ["reloadOnRulesetUpdate", 26, 9], ["settings", 27, 9]]);
-const pos$20 = nix.positions(here + "/suricata.nix", [["suricata", 24, 16]]);
-const pos$21 = nix.positions(here + "/suricata.nix", [["networking", 8, 7], ["systemd", 19, 7], ["environment", 22, 7], ["services", 24, 7]]);
-const pos$22 = nix.positions(here + "/suricata.nix", [["address", 48, 13], ["prefixLength", 49, 13]]);
-const pos$23 = nix.positions(here + "/suricata.nix", [["addresses", 46, 14]]);
-const pos$24 = nix.positions(here + "/suricata.nix", [["useDHCP", 45, 9], ["ipv4", 46, 9]]);
-const pos$25 = nix.positions(here + "/suricata.nix", [["eth1", 44, 29]]);
-const pos$26 = nix.positions(here + "/suricata.nix", [["allowedTCPPorts", 60, 27]]);
-const pos$27 = nix.positions(here + "/suricata.nix", [["interfaces", 44, 18], ["firewall", 60, 18]]);
-const pos$28 = nix.positions(here + "/suricata.nix", [["return", 57, 18]]);
-const pos$29 = nix.positions(here + "/suricata.nix", [["/id/", 57, 11]]);
-const pos$30 = nix.positions(here + "/suricata.nix", [["locations", 56, 34]]);
-const pos$31 = nix.positions(here + "/suricata.nix", [["localhost", 56, 22]]);
-const pos$32 = nix.positions(here + "/suricata.nix", [["enable", 55, 9], ["virtualHosts", 56, 9]]);
-const pos$33 = nix.positions(here + "/suricata.nix", [["nginx", 54, 16]]);
-const pos$34 = nix.positions(here + "/suricata.nix", [["imports", 42, 7], ["networking", 44, 7], ["services", 54, 7]]);
-const pos$35 = nix.positions(here + "/suricata.nix", [["ids", 7, 5], ["helper", 41, 5]]);
-const pos$36 = nix.positions(here + "/suricata.nix", [["name", 3, 3], ["meta", 4, 3], ["nodes", 6, 3], ["testScript", 64, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   return {
-    [nix.POS]: pos$36,
+    [nix.POS]: $pos[35],
     name: "suricata",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "felbinger"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$35,
+      [nix.POS]: $pos[34],
       ids: nix.thunk(() => ({
-        [nix.POS]: pos$21,
+        [nix.POS]: $pos[20],
         networking: nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           interfaces: nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             eth1: nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               useDHCP: false,
               ipv4: nix.thunk(() => ({
-                [nix.POS]: pos$3,
+                [nix.POS]: $pos[2],
                 addresses: nix.thunk(() => [
-                  nix.thunk(() => ({ [nix.POS]: pos$2, address: "192.168.1.2", prefixLength: 24n })),
+                  nix.thunk(() => ({ [nix.POS]: $pos[1], address: "192.168.1.2", prefixLength: 24n })),
                 ]),
               })),
             })),
           })),
         })),
         systemd: nix.thunk(() => ({
-          [nix.POS]: pos$10,
+          [nix.POS]: $pos[9],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$8,
-            "suricata-update": nix.thunk(() => ({ [nix.POS]: pos$7, enable: false })),
+            [nix.POS]: $pos[7],
+            "suricata-update": nix.thunk(() => ({ [nix.POS]: $pos[6], enable: false })),
           })),
           tmpfiles: nix.thunk(() => ({
-            [nix.POS]: pos$9,
+            [nix.POS]: $pos[8],
             rules: nix.thunk(() => [
               "f /var/lib/suricata/rules/suricata.rules 644 suricata suricata 0 alert ip any any -> any any (msg:\"GPL ATTACK_RESPONSE id check returned root\"; content:\"uid=0|28|root|29|\"; classtype:bad-unknown; sid:2100498; rev:7; metadata:created_at 2010_09_23, updated_at 2019_07_26;)",
             ]),
           })),
         })),
         environment: nix.thunk(() => ({
-          [nix.POS]: pos$11,
+          [nix.POS]: $pos[10],
           systemPackages: nix.thunk(() => (() => {
             const w = nix.withScope(pkgs, null);
             return [nix.thunk(() => nix.lookup(w, "suricata"))];
           })()),
         })),
         services: nix.thunk(() => ({
-          [nix.POS]: pos$20,
+          [nix.POS]: $pos[19],
           suricata: nix.thunk(() => ({
-            [nix.POS]: pos$19,
+            [nix.POS]: $pos[18],
             enable: true,
             reloadOnRulesetUpdate: true,
             settings: nix.thunk(() => ({
-              [nix.POS]: pos$18,
+              [nix.POS]: $pos[17],
               vars: nix.thunk(() => ({
-                [nix.POS]: pos$13,
-                "address-groups": nix.thunk(() => ({ [nix.POS]: pos$12, HOME_NET: "192.168.1.0/24" })),
+                [nix.POS]: $pos[12],
+                "address-groups": nix.thunk(() => ({ [nix.POS]: $pos[11], HOME_NET: "192.168.1.0/24" })),
               })),
-              "unix-command": nix.thunk(() => ({ [nix.POS]: pos$14, enabled: true })),
+              "unix-command": nix.thunk(() => ({ [nix.POS]: $pos[13], enabled: true })),
               outputs: nix.thunk(() => [
                 nix.thunk(() => ({
-                  [nix.POS]: pos$16,
-                  fast: nix.thunk(() => ({ [nix.POS]: pos$15, enabled: true })),
+                  [nix.POS]: $pos[15],
+                  fast: nix.thunk(() => ({ [nix.POS]: $pos[14], enabled: true })),
                 })),
               ]),
-              "af-packet": nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$17, interface: "eth1" }))]),
+              "af-packet": nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: $pos[16], interface: "eth1" }))]),
               "classification-file": nix.thunk(() => nix.str`${nix.sel(pkgs, "suricata")}/etc/suricata/classification.config`),
             })),
           })),
         })),
       })),
       helper: nix.thunk(() => ({
-        [nix.POS]: pos$34,
+        [nix.POS]: $pos[33],
         imports: nix.thunk(() => [nix.path(here, "../modules/profiles/minimal.nix")]),
         networking: nix.thunk(() => ({
-          [nix.POS]: pos$27,
+          [nix.POS]: $pos[26],
           interfaces: nix.thunk(() => ({
-            [nix.POS]: pos$25,
+            [nix.POS]: $pos[24],
             eth1: nix.thunk(() => ({
-              [nix.POS]: pos$24,
+              [nix.POS]: $pos[23],
               useDHCP: false,
               ipv4: nix.thunk(() => ({
-                [nix.POS]: pos$23,
+                [nix.POS]: $pos[22],
                 addresses: nix.thunk(() => [
-                  nix.thunk(() => ({ [nix.POS]: pos$22, address: "192.168.1.1", prefixLength: 24n })),
+                  nix.thunk(() => ({ [nix.POS]: $pos[21], address: "192.168.1.1", prefixLength: 24n })),
                 ]),
               })),
             })),
           })),
-          firewall: nix.thunk(() => ({ [nix.POS]: pos$26, allowedTCPPorts: nix.thunk(() => [80n]) })),
+          firewall: nix.thunk(() => ({ [nix.POS]: $pos[25], allowedTCPPorts: nix.thunk(() => [80n]) })),
         })),
         services: nix.thunk(() => ({
-          [nix.POS]: pos$33,
+          [nix.POS]: $pos[32],
           nginx: nix.thunk(() => ({
-            [nix.POS]: pos$32,
+            [nix.POS]: $pos[31],
             enable: true,
             virtualHosts: nix.thunk(() => ({
-              [nix.POS]: pos$31,
+              [nix.POS]: $pos[30],
               localhost: nix.thunk(() => ({
-                [nix.POS]: pos$30,
+                [nix.POS]: $pos[29],
                 locations: nix.thunk(() => ({
-                  [nix.POS]: pos$29,
-                  "/id/": nix.thunk(() => ({ [nix.POS]: pos$28, return: "200 'uid=0(root) gid=0(root) groups=0(root)'" })),
+                  [nix.POS]: $pos[28],
+                  "/id/": nix.thunk(() => ({ [nix.POS]: $pos[27], return: "200 'uid=0(root) gid=0(root) groups=0(root)'" })),
                 })),
               })),
             })),

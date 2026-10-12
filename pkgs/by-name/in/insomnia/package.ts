@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 16, 11], ["hash", 17, 11]], [["url", 20, 11], ["hash", 21, 11]], [["aarch64-darwin", 15, 9], ["x86_64-linux", 19, 9]], [["homepage", 27, 5], ["description", 28, 5], ["mainProgram", 29, 5], ["changelog", 30, 5], ["license", 31, 5], ["platforms", 32, 5], ["maintainers", 36, 5]], [["pname", 46, 7], ["version", 47, 7], ["src", 48, 7], ["meta", 49, 7], ["sourceRoot", 51, 5], ["nativeBuildInputs", 53, 5], ["installPhase", 55, 5]], [["pname", 74, 19], ["version", 74, 25], ["src", 74, 33]], [["pname", 65, 7], ["version", 66, 7], ["src", 67, 7], ["meta", 68, 7], ["extraInstallCommands", 71, 5]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, appimageTools: false, undmg: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 16, 11], ["hash", 17, 11]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 20, 11], ["hash", 21, 11]]);
-const pos$3 = nix.positions(here + "/package.nix", [["aarch64-darwin", 15, 9], ["x86_64-linux", 19, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 27, 5], ["description", 28, 5], ["mainProgram", 29, 5], ["changelog", 30, 5], ["license", 31, 5], ["platforms", 32, 5], ["maintainers", 36, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 46, 7], ["version", 47, 7], ["src", 48, 7], ["meta", 49, 7], ["sourceRoot", 51, 5], ["nativeBuildInputs", 53, 5], ["installPhase", 55, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 74, 19], ["version", 74, 25], ["src", 74, 33]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 65, 7], ["version", 66, 7], ["src", 67, 7], ["meta", 68, 7], ["extraInstallCommands", 71, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,20 +15,20 @@ export default nix.lambda((args) => (() => {
   const pname = "insomnia";
   const version = "13.0.0";
   const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => nix.selOr({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       "aarch64-darwin": nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         url: nix.thunk(() => nix.str`https://github.com/Kong/insomnia/releases/download/core%40${version}/Insomnia.Core-${version}.dmg`),
         hash: "sha256-sPl7KXC8Z13LFZvxuKg02iDbtrCxn//Yrr8AOOf3VD4=",
       })),
       "x86_64-linux": nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         url: nix.thunk(() => nix.str`https://github.com/Kong/insomnia/releases/download/core%40${version}/Insomnia.Core-${version}.AppImage`),
         hash: "sha256-PlcKBQnkmgU/SsLRKX7ohrGHm7B4hK9FMkplwlbFolI=",
       })),
     }, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenv, "system")}`)), nix.key(nix.sel(stdenv, "system"))))));
   const meta = nix.thunk(() => ({
-    [nix.POS]: pos$4,
+    [nix.POS]: $pos[3],
     homepage: "https://insomnia.rest",
     description: "Open-source, cross-platform API client for GraphQL, REST, WebSockets, SSE and gRPC, with Cloud, Local and Git storage",
     mainProgram: "insomnia",
@@ -51,7 +45,7 @@ export default nix.lambda((args) => (() => {
     })()),
   }));
   return (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: pname,
       version: version,
       src: src,
@@ -60,13 +54,13 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [undmg]),
       installPhase: "runHook preInstall\nmkdir -p \"$out/Applications\"\nmv Insomnia.app $out/Applications/\nrunHook postInstall\n",
     }))) : nix.app(nix.sel(appimageTools, "wrapType2"), nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: pname,
       version: version,
       src: src,
       meta: meta,
       extraInstallCommands: nix.thunk(() => (() => {
-        const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: pos$6, pname: pname, version: version, src: src }))));
+        const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: $pos[5], pname: pname, version: version, src: src }))));
         return nix.str`# Install XDG Desktop file and its icon
 install -Dm444 ${appimageContents}/insomnia.desktop -t $out/share/applications
 install -Dm444 ${appimageContents}/insomnia.png -t $out/share/icons/

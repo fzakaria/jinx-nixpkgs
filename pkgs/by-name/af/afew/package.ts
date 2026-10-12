@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["pname", 15, 26], ["version", 15, 32], ["hash", 16, 5]], [["homepage", 59, 5], ["description", 60, 5], ["mainProgram", 61, 5], ["license", 62, 5], ["maintainers", 63, 5]], [["pname", 10, 3], ["version", 11, 3], ["pyproject", 12, 3], ["src", 14, 3], ["build-system", 19, 3], ["nativeBuildInputs", 24, 3], ["sphinxBuilders", 28, 3], ["dependencies", 33, 3], ["nativeCheckInputs", 39, 3], ["makeWrapperArgs", 48, 3], ["outputs", 52, 3], ["meta", 58, 3]]]);
 const formals$1 = { args: { lib: false, python3Packages: false, fetchPypi: false, pkgs: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["pname", 15, 26], ["version", 15, 32], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 59, 5], ["description", 60, 5], ["mainProgram", 61, 5], ["license", 62, 5], ["maintainers", 63, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["pyproject", 12, 3], ["src", 14, 3], ["build-system", 19, 3], ["nativeBuildInputs", 24, 3], ["sphinxBuilders", 28, 3], ["dependencies", 33, 3], ["nativeCheckInputs", 39, 3], ["makeWrapperArgs", 48, 3], ["outputs", 52, 3], ["meta", 58, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "afew",
       version: "4.0.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-gsfqyoVD6CXXd14MiyA5nq0e7wE6yymW9Ssmxpu6+E4=",
@@ -48,7 +46,7 @@ export default nix.lambda((args) => (() => {
       ]),
       outputs: nix.thunk(() => ["out", "doc", "man"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/afewmail/afew",
         description: "Initial tagging script for notmuch mail",
         mainProgram: "afew",

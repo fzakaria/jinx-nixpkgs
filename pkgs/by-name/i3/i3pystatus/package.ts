@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["hash", 26, 5]], [["url", 33, 7], ["hash", 34, 7]], [["updateScript", 95, 12]], [["mainProgram", 98, 5], ["homepage", 99, 5], ["description", 100, 5], ["longDescription", 101, 5], ["license", 105, 5], ["platforms", 106, 5], ["maintainers", 107, 5]], [["version", 17, 3], ["pname", 18, 3], ["pyproject", 19, 3], ["build-system", 20, 3], ["src", 22, 3], ["patches", 29, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 40, 3], ["nativeCheckInputs", 45, 3], ["disabledTests", 53, 3], ["dependencies", 60, 3], ["makeWrapperArgs", 74, 3], ["postPatch", 85, 3], ["postInstall", 89, 3], ["passthru", 95, 3], ["meta", 97, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, libpulseaudio: false, libnotify: false, "gobject-introspection": false, python3Packages: false, unstableGitUpdater: false, fetchpatch2: false, writableTmpDirAsHomeHook: false, extraLibs: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 33, 7], ["hash", 34, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 95, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["mainProgram", 98, 5], ["homepage", 99, 5], ["description", 100, 5], ["longDescription", 101, 5], ["license", 105, 5], ["platforms", 106, 5], ["maintainers", 107, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["version", 17, 3], ["pname", 18, 3], ["pyproject", 19, 3], ["build-system", 20, 3], ["src", 22, 3], ["patches", 29, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 40, 3], ["nativeCheckInputs", 45, 3], ["disabledTests", 53, 3], ["dependencies", 60, 3], ["makeWrapperArgs", 74, 3], ["postPatch", 85, 3], ["postInstall", 89, 3], ["passthru", 95, 3], ["meta", 97, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const pyproject = true;
       const build_system = nix.thunk(() => [nix.thunk(() => nix.sel(python3Packages, "setuptools"))]);
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "enkore",
           repo: "i3pystatus",
           rev: "2cdd90728f6a19b4d7c8346ca76a9fe818898a43",
@@ -35,7 +31,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/enkore/i3pystatus/commit/7a39c3527566411eb1b3e4f79191839ac4b0424e.patch",
             hash: "sha256-kSf2Nrypw8CCHC7acDkQXI27178HA3NJlyRWkHyYOGs=",
           })))),
@@ -81,11 +77,11 @@ export default nix.lambda((args) => (() => {
   \${makeWrapperArgs[@]}
 `);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         mainProgram: "i3pystatus",
         homepage: "https://github.com/enkore/i3pystatus",
         description: "Complete replacement for i3status",
@@ -101,7 +97,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         version,
         pname,
         pyproject,

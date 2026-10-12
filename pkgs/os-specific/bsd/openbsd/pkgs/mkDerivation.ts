@@ -2,15 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/mkDerivation.nix", [[["aarch64", 32, 7], ["armv7l", 33, 7], ["i486", 34, 7], ["i586", 35, 7], ["i686", 36, 7], ["x86_64", 37, 7], ["riscv64", 38, 7]], [["aarch64", 42, 7], ["armv7l", 43, 7], ["i486", 44, 7], ["i586", 45, 7], ["i686", 46, 7], ["x86_64", 47, 7], ["riscv64", 48, 7]], [["nativeBuildInputs", 56, 50]], [["maintainers", 94, 9], ["platforms", 95, 9], ["license", 96, 9]], [["pname", 54, 7], ["version", 55, 7], ["src", 56, 7], ["extraPaths", 68, 7], ["nativeBuildInputs", 70, 7], ["HOST_SH", 80, 7], ["MACHINE", 82, 7], ["MACHINE_ARCH", 83, 7], ["MACHINE_CPU", 84, 7], ["TARGET_MACHINE_ARCH", 86, 7], ["TARGET_MACHINE_CPU", 87, 7], ["COMPONENT_PATH", 89, 7], ["strictDeps", 91, 7], ["meta", 93, 7]], [["CPP", 101, 7]], [["installPhase", 104, 7], ["dontBuild", 105, 7]], [["NOLIBSHARED", 107, 58]]]);
 const formals$1 = { args: { lib: false, stdenv: false, stdenvNoCC: false, stdenvNoLibc: false, stdenvLibcMinimal: false, runCommand: false, rsync: false, source: false, bsdSetupHook: false, openbsdSetupHook: false, makeMinimal: false, install: false, tsort: false, lorder: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/mkDerivation.nix", [["aarch64", 32, 7], ["armv7l", 33, 7], ["i486", 34, 7], ["i586", 35, 7], ["i686", 36, 7], ["x86_64", 37, 7], ["riscv64", 38, 7]]);
-const pos$2 = nix.positions(here + "/mkDerivation.nix", [["aarch64", 42, 7], ["armv7l", 43, 7], ["i486", 44, 7], ["i586", 45, 7], ["i686", 46, 7], ["x86_64", 47, 7], ["riscv64", 48, 7]]);
-const pos$3 = nix.positions(here + "/mkDerivation.nix", [["nativeBuildInputs", 56, 50]]);
-const pos$4 = nix.positions(here + "/mkDerivation.nix", [["maintainers", 94, 9], ["platforms", 95, 9], ["license", 96, 9]]);
-const pos$5 = nix.positions(here + "/mkDerivation.nix", [["pname", 54, 7], ["version", 55, 7], ["src", 56, 7], ["extraPaths", 68, 7], ["nativeBuildInputs", 70, 7], ["HOST_SH", 80, 7], ["MACHINE", 82, 7], ["MACHINE_ARCH", 83, 7], ["MACHINE_CPU", 84, 7], ["TARGET_MACHINE_ARCH", 86, 7], ["TARGET_MACHINE_CPU", 87, 7], ["COMPONENT_PATH", 89, 7], ["strictDeps", 91, 7], ["meta", 93, 7]]);
-const pos$6 = nix.positions(here + "/mkDerivation.nix", [["CPP", 101, 7]]);
-const pos$7 = nix.positions(here + "/mkDerivation.nix", [["installPhase", 104, 7], ["dontBuild", 105, 7]]);
-const pos$8 = nix.positions(here + "/mkDerivation.nix", [["NOLIBSHARED", 107, 58]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,7 +24,7 @@ export default nix.lambda((args) => (() => {
   return nix.app(nix.sel(lib, "makeOverridable"), (attrs) => (() => {
       const stdenv$ = nix.thunk(() => (nix.asBool(nix.selOr(attrs, () => false, "noCC")) ? nix.force(stdenvNoCC) : (nix.asBool(nix.selOr(attrs, () => false, "noLibc")) ? nix.force(stdenvNoLibc) : (nix.asBool(nix.selOr(attrs, () => false, "libcMinimal")) ? nix.force(stdenvLibcMinimal) : nix.force(stdenv)))));
       const machineMap = nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         aarch64: "arm64",
         armv7l: "armv7",
         i486: "i386",
@@ -41,7 +34,7 @@ export default nix.lambda((args) => (() => {
         riscv64: "riscv64",
       }));
       const archMap = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         aarch64: "aarch64",
         armv7l: "arm",
         i486: "i386",
@@ -53,7 +46,7 @@ export default nix.lambda((args) => (() => {
       return nix.app(nix.sel(stdenv$, "mkDerivation"), nix.thunk(() => nix.update((() => {
           const pname = nix.thunk(() => nix.str`${nix.selOr(attrs, () => nix.builtins.baseNameOf(nix.thunk(() => nix.sel(attrs, "path"))), "pname")}-openbsd`);
           const version = "0";
-          const src = nix.thunk(() => nix.app(runCommand, nix.thunk(() => nix.str`${pname}-filtered-src`), nix.thunk(() => ({ [nix.POS]: pos$3, nativeBuildInputs: nix.thunk(() => [rsync]) })), nix.thunk(() => nix.str`for p in ${nix.app(nix.sel(lib, "concatStringsSep"), " ", nix.thunk(() => nix.concat([nix.thunk(() => nix.sel(attrs, "path"))], nix.selOr(attrs, () => [], "extraPaths"))))}; do
+          const src = nix.thunk(() => nix.app(runCommand, nix.thunk(() => nix.str`${pname}-filtered-src`), nix.thunk(() => ({ [nix.POS]: $pos[2], nativeBuildInputs: nix.thunk(() => [rsync]) })), nix.thunk(() => nix.str`for p in ${nix.app(nix.sel(lib, "concatStringsSep"), " ", nix.thunk(() => nix.concat([nix.thunk(() => nix.sel(attrs, "path"))], nix.selOr(attrs, () => [], "extraPaths"))))}; do
   set -x
   path="$out/$p"
   mkdir -p "$(dirname "$path")"
@@ -74,7 +67,7 @@ done
           const COMPONENT_PATH = nix.thunk(() => nix.selOr(attrs, () => null, "path"));
           const strictDeps = true;
           const meta = nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             maintainers: nix.thunk(() => (() => {
               const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
               return [nix.thunk(() => nix.lookup(w, "ericson2314"))];
@@ -83,7 +76,7 @@ done
             license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),
           }));
           return {
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             pname,
             version,
             src,
@@ -100,9 +93,9 @@ done
             meta,
           };
         })(), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv$, "hasCC")), nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             CPP: nix.thunk(() => nix.str`${nix.sel(stdenv$, "cc", "targetPrefix")}cpp`),
-          }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.selOr(attrs, () => false, "headersOnly")), nix.thunk(() => ({ [nix.POS]: pos$7, installPhase: "includesPhase", dontBuild: true }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv$, "hostPlatform", "isStatic")), nix.thunk(() => ({ [nix.POS]: pos$8, NOLIBSHARED: true }))), nix.builtins.removeAttrs(attrs, nix.thunk(() => ["extraNativeBuildInputs"]))))))));
+          }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.selOr(attrs, () => false, "headersOnly")), nix.thunk(() => ({ [nix.POS]: $pos[6], installPhase: "includesPhase", dontBuild: true }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv$, "hostPlatform", "isStatic")), nix.thunk(() => ({ [nix.POS]: $pos[7], NOLIBSHARED: true }))), nix.builtins.removeAttrs(attrs, nix.thunk(() => ["extraNativeBuildInputs"]))))))));
     })());
 })(), formals$1);
 //# sourceMappingURL=mkDerivation.ts.map

@@ -2,16 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["i686-linux", 39, 5], ["x86_64-linux", 40, 5], ["aarch64-linux", 41, 5], ["aarch64-darwin", 42, 5]], [["DisableAppUpdate", 50, 5]], [["policies", 54, 79]], [["url", 72, 37], ["sha256", 72, 41]], [["pname", 139, 9], ["writeScript", 140, 9], ["xidel", 141, 9], ["coreutils", 142, 9], ["gnused", 143, 9], ["gnugrep", 144, 9], ["gnupg", 145, 9], ["curl", 146, 9], ["runtimeShell", 147, 9], ["baseUrl", 149, 7]], [["applicationName", 129, 13], ["binaryName", 129, 29], ["libName", 130, 5], ["withFFmpeg", 131, 5], ["withGSSAPI", 132, 5], ["gtk3", 133, 5], ["updateScript", 137, 5]], [["shortName", 158, 7], ["fullName", 159, 7], ["url", 160, 7], ["free", 175, 7], ["redistributable", 176, 7]], [["changelog", 154, 5], ["description", 155, 5], ["homepage", 156, 5], ["license", 157, 5], ["sourceProvenance", 178, 5], ["platforms", 179, 5], ["hydraPlatforms", 180, 5], ["maintainers", 181, 5], ["mainProgram", 185, 5]], [["pname", 70, 11], ["version", 70, 17], ["src", 72, 3], ["sourceRoot", 74, 3], ["nativeBuildInputs", 76, 3], ["buildInputs", 86, 3], ["runtimeDependencies", 93, 3], ["appendRunpaths", 100, 3], ["patchelfFlags", 104, 3], ["dontFixup", 107, 3], ["installPhase", 109, 3], ["passthru", 128, 3], ["meta", 153, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, config: false, wrapGAppsHook3: false, autoPatchelfHook: false, "alsa-lib": false, curl: false, "dbus-glib": false, gtk3: false, libxtst: false, libva: false, pciutils: false, pipewire: false, "adwaita-icon-theme": false, generated: false, writeScript: false, writeText: false, xidel: false, coreutils: false, gnused: false, gnugrep: false, gnupg: false, runtimeShell: false, systemLocale: true, patchelfUnstable: false, applicationName: true, undmg: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["i686-linux", 39, 5], ["x86_64-linux", 40, 5], ["aarch64-linux", 41, 5], ["aarch64-darwin", 42, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["DisableAppUpdate", 50, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["policies", 54, 79]]);
-const pos$4 = nix.positions(here + "/default.nix", [["url", 72, 37], ["sha256", 72, 41]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 139, 9], ["writeScript", 140, 9], ["xidel", 141, 9], ["coreutils", 142, 9], ["gnused", 143, 9], ["gnugrep", 144, 9], ["gnupg", 145, 9], ["curl", 146, 9], ["runtimeShell", 147, 9], ["baseUrl", 149, 7]]);
-const pos$6 = nix.positions(here + "/default.nix", [["applicationName", 129, 13], ["binaryName", 129, 29], ["libName", 130, 5], ["withFFmpeg", 131, 5], ["withGSSAPI", 132, 5], ["gtk3", 133, 5], ["updateScript", 137, 5]]);
-const pos$7 = nix.positions(here + "/default.nix", [["shortName", 158, 7], ["fullName", 159, 7], ["url", 160, 7], ["free", 175, 7], ["redistributable", 176, 7]]);
-const pos$8 = nix.positions(here + "/default.nix", [["changelog", 154, 5], ["description", 155, 5], ["homepage", 156, 5], ["license", 157, 5], ["sourceProvenance", 178, 5], ["platforms", 179, 5], ["hydraPlatforms", 180, 5], ["maintainers", 181, 5], ["mainProgram", 185, 5]]);
-const pos$9 = nix.positions(here + "/default.nix", [["pname", 70, 11], ["version", 70, 17], ["src", 72, 3], ["sourceRoot", 74, 3], ["nativeBuildInputs", 76, 3], ["buildInputs", 86, 3], ["runtimeDependencies", 93, 3], ["appendRunpaths", 100, 3], ["patchelfFlags", 104, 3], ["dontFixup", 107, 3], ["installPhase", 109, 3], ["passthru", 128, 3], ["meta", 153, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -47,7 +39,7 @@ export default nix.lambda((args) => (() => {
   const sources = nix.thunk(() => nix.attr(generated, "sources"));
   const binaryName = "firefox";
   const mozillaPlatforms = nix.thunk(() => ({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     "i686-linux": "linux-i686",
     "x86_64-linux": "linux-x86_64",
     "aarch64-linux": "linux-aarch64",
@@ -55,18 +47,18 @@ export default nix.lambda((args) => (() => {
   }));
   const arch = nix.thunk(() => nix.sel(mozillaPlatforms, nix.key(nix.sel(stdenv, "hostPlatform", "system"))));
   const sourceMatches = (locale) => (source_1) => (nix.asBool(nix.app(nix.sel(lib, "hasPrefix"), nix.thunk(() => nix.sel(source_1, "locale")), locale)) && nix.asBool(nix.eq(nix.sel(source_1, "arch"), arch)));
-  const policies = nix.thunk(() => nix.update({ [nix.POS]: pos$2, DisableAppUpdate: true }, nix.selOr(config, () => ({}), "firefox", "policies")));
-  const policiesJson = nix.thunk(() => nix.app(writeText, "firefox-policies.json", nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => ({ [nix.POS]: pos$3, policies: policies }))))));
+  const policies = nix.thunk(() => nix.update({ [nix.POS]: $pos[1], DisableAppUpdate: true }, nix.selOr(config, () => ({}), "firefox", "policies")));
+  const policiesJson = nix.thunk(() => nix.app(writeText, "firefox-policies.json", nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => ({ [nix.POS]: $pos[2], policies: policies }))))));
   const defaultSource = nix.thunk(() => nix.app(nix.sel(lib, "findFirst"), nix.thunk(() => nix.app(sourceMatches, "en-US")), nix.thunk(() => ({})), sources));
   const mozLocale = nix.thunk(() => (nix.asBool(nix.eq(systemLocale, "ca_ES@valencia")) ? "ca-valencia" : nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["_"]), nix.thunk(() => ["-"]), systemLocale)));
   const source = nix.thunk(() => nix.app(nix.sel(lib, "findFirst"), nix.thunk(() => nix.app(sourceMatches, mozLocale)), defaultSource, sources));
   const pname = "firefox-bin-unwrapped";
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       pname: pname,
       version: version,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           url: nix.thunk(() => nix.attr(source, "url")),
           sha256: nix.thunk(() => nix.attr(source, "sha256")),
         })))),
@@ -90,7 +82,7 @@ mkdir -p "$out/lib/firefox-bin-${version}/distribution";
 ln -s ${policiesJson} "$out/lib/firefox-bin-${version}/distribution/policies.json";
 `)),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         applicationName: applicationName,
         binaryName: binaryName,
         libName: nix.thunk(() => nix.str`firefox-bin-${version}`),
@@ -98,7 +90,7 @@ ln -s ${policiesJson} "$out/lib/firefox-bin-${version}/distribution/policies.jso
         withGSSAPI: true,
         gtk3: gtk3,
         updateScript: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./update.nix")), nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             pname: pname,
             writeScript: writeScript,
             xidel: xidel,
@@ -112,12 +104,12 @@ ln -s ${policiesJson} "$out/lib/firefox-bin-${version}/distribution/policies.jso
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         changelog: nix.thunk(() => nix.str`https://www.firefox.com/en-US/firefox/${version}/releasenotes/`),
         description: "Mozilla Firefox, free web browser (binary package)",
         homepage: "https://www.mozilla.org/firefox/",
         license: nix.thunk(() => nix.app(nix.sel(lib, "licenses", "mkLicense"), nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             shortName: "firefox",
             fullName: "Firefox Terms of Use",
             url: "https://www.mozilla.org/about/legal/terms/firefox/",

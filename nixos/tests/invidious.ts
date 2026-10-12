@@ -2,89 +2,30 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/invidious.nix", [[["maintainers", 6, 5]], [["enable", 14, 11], ["initialScript", 15, 11], ["enableTCPIP", 19, 11], ["authentication", 20, 11]], [["postgresql", 13, 18]], [["allowedTCPPorts", 24, 29]], [["firewall", 24, 20]], [["services", 13, 9], ["networking", 24, 9]], [["enable", 30, 11]], [["invidious", 29, 18]], [["enable", 36, 21]], [["nginx", 36, 15], ["domain", 37, 15]], [["forceSSL", 40, 15], ["enableACME", 41, 15]], [["invidious.example.com", 39, 41]], [["virtualHosts", 39, 28]], [["invidious", 35, 22], ["nginx", 39, 22]], [["127.0.0.1", 43, 30]], [["hosts", 43, 24]], [["services", 35, 13], ["networking", 43, 13]], [["configuration", 34, 17]], [["enable", 47, 21]], [["enable", 49, 26]], [["log_level", 50, 24]], [["nginx", 47, 15], ["domain", 48, 15], ["sig-helper", 49, 15], ["settings", 50, 15]], [["forceSSL", 53, 15], ["enableACME", 54, 15]], [["invidious.example.com", 52, 41]], [["virtualHosts", 52, 28]], [["invidious", 46, 22], ["nginx", 52, 22]], [["127.0.0.1", 56, 30]], [["hosts", 56, 24]], [["services", 46, 13], ["networking", 56, 13]], [["configuration", 45, 28]], [["enable", 60, 21]], [["nginx", 60, 15], ["domain", 61, 15], ["serviceScale", 62, 15]], [["forceSSL", 65, 15], ["enableACME", 66, 15]], [["invidious.example.com", 64, 41]], [["virtualHosts", 64, 28]], [["invidious", 59, 22], ["nginx", 64, 22]], [["127.0.0.1", 68, 30]], [["hosts", 68, 24]], [["services", 59, 13], ["networking", 68, 13]], [["configuration", 58, 23]], [["enable", 72, 21]], [["enable", 73, 29]], [["nginx", 72, 15], ["http3-ytproxy", 73, 15], ["domain", 74, 15], ["serviceScale", 75, 15]], [["forceSSL", 78, 15], ["enableACME", 79, 15]], [["invidious.example.com", 77, 41]], [["virtualHosts", 77, 28]], [["invidious", 71, 22], ["nginx", 77, 22]], [["127.0.0.1", 81, 30]], [["hosts", 81, 24]], [["services", 71, 13], ["networking", 81, 13]], [["configuration", 70, 31]], [["createLocally", 86, 17], ["host", 87, 17], ["passwordFile", 88, 17]], [["database", 85, 15]], [["invidious", 84, 22]], [["services", 84, 13]], [["configuration", 83, 24]], [["nginx", 34, 11], ["nginx-sig-helper", 45, 11], ["nginx-scale", 58, 11], ["nginx-scale-ytproxy", 70, 11], ["postgres-tcp", 83, 11]], [["services", 29, 9], ["specialisation", 33, 9]], [["postgres-tcp", 10, 5], ["machine", 26, 5]], [["name", 3, 3], ["meta", 5, 3], ["nodes", 9, 3], ["testScript", 96, 3]]]);
 const formals$1 = { args: {  }, ellipsis: true };
-const pos$1 = nix.positions(here + "/invidious.nix", [["maintainers", 6, 5]]);
 const formals$2 = { args: { config: false, pkgs: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/invidious.nix", [["enable", 14, 11], ["initialScript", 15, 11], ["enableTCPIP", 19, 11], ["authentication", 20, 11]]);
-const pos$3 = nix.positions(here + "/invidious.nix", [["postgresql", 13, 18]]);
-const pos$4 = nix.positions(here + "/invidious.nix", [["allowedTCPPorts", 24, 29]]);
-const pos$5 = nix.positions(here + "/invidious.nix", [["firewall", 24, 20]]);
-const pos$6 = nix.positions(here + "/invidious.nix", [["services", 13, 9], ["networking", 24, 9]]);
 const formals$3 = { args: { pkgs: false }, ellipsis: true };
-const pos$7 = nix.positions(here + "/invidious.nix", [["enable", 30, 11]]);
-const pos$8 = nix.positions(here + "/invidious.nix", [["invidious", 29, 18]]);
-const pos$9 = nix.positions(here + "/invidious.nix", [["enable", 36, 21]]);
-const pos$10 = nix.positions(here + "/invidious.nix", [["nginx", 36, 15], ["domain", 37, 15]]);
-const pos$11 = nix.positions(here + "/invidious.nix", [["forceSSL", 40, 15], ["enableACME", 41, 15]]);
-const pos$12 = nix.positions(here + "/invidious.nix", [["invidious.example.com", 39, 41]]);
-const pos$13 = nix.positions(here + "/invidious.nix", [["virtualHosts", 39, 28]]);
-const pos$14 = nix.positions(here + "/invidious.nix", [["invidious", 35, 22], ["nginx", 39, 22]]);
-const pos$15 = nix.positions(here + "/invidious.nix", [["127.0.0.1", 43, 30]]);
-const pos$16 = nix.positions(here + "/invidious.nix", [["hosts", 43, 24]]);
-const pos$17 = nix.positions(here + "/invidious.nix", [["services", 35, 13], ["networking", 43, 13]]);
-const pos$18 = nix.positions(here + "/invidious.nix", [["configuration", 34, 17]]);
-const pos$19 = nix.positions(here + "/invidious.nix", [["enable", 47, 21]]);
-const pos$20 = nix.positions(here + "/invidious.nix", [["enable", 49, 26]]);
-const pos$21 = nix.positions(here + "/invidious.nix", [["log_level", 50, 24]]);
-const pos$22 = nix.positions(here + "/invidious.nix", [["nginx", 47, 15], ["domain", 48, 15], ["sig-helper", 49, 15], ["settings", 50, 15]]);
-const pos$23 = nix.positions(here + "/invidious.nix", [["forceSSL", 53, 15], ["enableACME", 54, 15]]);
-const pos$24 = nix.positions(here + "/invidious.nix", [["invidious.example.com", 52, 41]]);
-const pos$25 = nix.positions(here + "/invidious.nix", [["virtualHosts", 52, 28]]);
-const pos$26 = nix.positions(here + "/invidious.nix", [["invidious", 46, 22], ["nginx", 52, 22]]);
-const pos$27 = nix.positions(here + "/invidious.nix", [["127.0.0.1", 56, 30]]);
-const pos$28 = nix.positions(here + "/invidious.nix", [["hosts", 56, 24]]);
-const pos$29 = nix.positions(here + "/invidious.nix", [["services", 46, 13], ["networking", 56, 13]]);
-const pos$30 = nix.positions(here + "/invidious.nix", [["configuration", 45, 28]]);
-const pos$31 = nix.positions(here + "/invidious.nix", [["enable", 60, 21]]);
-const pos$32 = nix.positions(here + "/invidious.nix", [["nginx", 60, 15], ["domain", 61, 15], ["serviceScale", 62, 15]]);
-const pos$33 = nix.positions(here + "/invidious.nix", [["forceSSL", 65, 15], ["enableACME", 66, 15]]);
-const pos$34 = nix.positions(here + "/invidious.nix", [["invidious.example.com", 64, 41]]);
-const pos$35 = nix.positions(here + "/invidious.nix", [["virtualHosts", 64, 28]]);
-const pos$36 = nix.positions(here + "/invidious.nix", [["invidious", 59, 22], ["nginx", 64, 22]]);
-const pos$37 = nix.positions(here + "/invidious.nix", [["127.0.0.1", 68, 30]]);
-const pos$38 = nix.positions(here + "/invidious.nix", [["hosts", 68, 24]]);
-const pos$39 = nix.positions(here + "/invidious.nix", [["services", 59, 13], ["networking", 68, 13]]);
-const pos$40 = nix.positions(here + "/invidious.nix", [["configuration", 58, 23]]);
-const pos$41 = nix.positions(here + "/invidious.nix", [["enable", 72, 21]]);
-const pos$42 = nix.positions(here + "/invidious.nix", [["enable", 73, 29]]);
-const pos$43 = nix.positions(here + "/invidious.nix", [["nginx", 72, 15], ["http3-ytproxy", 73, 15], ["domain", 74, 15], ["serviceScale", 75, 15]]);
-const pos$44 = nix.positions(here + "/invidious.nix", [["forceSSL", 78, 15], ["enableACME", 79, 15]]);
-const pos$45 = nix.positions(here + "/invidious.nix", [["invidious.example.com", 77, 41]]);
-const pos$46 = nix.positions(here + "/invidious.nix", [["virtualHosts", 77, 28]]);
-const pos$47 = nix.positions(here + "/invidious.nix", [["invidious", 71, 22], ["nginx", 77, 22]]);
-const pos$48 = nix.positions(here + "/invidious.nix", [["127.0.0.1", 81, 30]]);
-const pos$49 = nix.positions(here + "/invidious.nix", [["hosts", 81, 24]]);
-const pos$50 = nix.positions(here + "/invidious.nix", [["services", 71, 13], ["networking", 81, 13]]);
-const pos$51 = nix.positions(here + "/invidious.nix", [["configuration", 70, 31]]);
-const pos$52 = nix.positions(here + "/invidious.nix", [["createLocally", 86, 17], ["host", 87, 17], ["passwordFile", 88, 17]]);
-const pos$53 = nix.positions(here + "/invidious.nix", [["database", 85, 15]]);
-const pos$54 = nix.positions(here + "/invidious.nix", [["invidious", 84, 22]]);
-const pos$55 = nix.positions(here + "/invidious.nix", [["services", 84, 13]]);
-const pos$56 = nix.positions(here + "/invidious.nix", [["configuration", 83, 24]]);
-const pos$57 = nix.positions(here + "/invidious.nix", [["nginx", 34, 11], ["nginx-sig-helper", 45, 11], ["nginx-scale", 58, 11], ["nginx-scale-ytproxy", 70, 11], ["postgres-tcp", 83, 11]]);
-const pos$58 = nix.positions(here + "/invidious.nix", [["services", 29, 9], ["specialisation", 33, 9]]);
-const pos$59 = nix.positions(here + "/invidious.nix", [["postgres-tcp", 10, 5], ["machine", 26, 5]]);
 const formals$4 = { args: { nodes: false }, ellipsis: true };
-const pos$60 = nix.positions(here + "/invidious.nix", [["name", 3, 3], ["meta", 5, 3], ["nodes", 9, 3], ["testScript", 96, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   return {
-    [nix.POS]: pos$60,
+    [nix.POS]: $pos[59],
     name: "invidious",
-    meta: nix.thunk(() => ({ [nix.POS]: pos$1, maintainers: [] })),
+    meta: nix.thunk(() => ({ [nix.POS]: $pos[0], maintainers: [] })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$59,
+      [nix.POS]: $pos[58],
       "postgres-tcp": nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config = nix.arg($_1, "config");
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             postgresql: nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               enable: true,
               initialScript: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "init-postgres-with-password", "CREATE USER invidious WITH PASSWORD 'correct horse battery staple';\nCREATE DATABASE invidious WITH OWNER invidious;\n")),
               enableTCPIP: true,
@@ -92,9 +33,9 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             firewall: nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               allowedTCPPorts: nix.thunk(() => [
                 nix.thunk(() => nix.sel(config, "services", "postgresql", "settings", "port")),
               ]),
@@ -106,128 +47,128 @@ export default nix.lambda((args) => (() => {
         const $_1 = nix.formals(args_1, formals$3);
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$58,
+          [nix.POS]: $pos[57],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$8,
-            invidious: nix.thunk(() => ({ [nix.POS]: pos$7, enable: true })),
+            [nix.POS]: $pos[7],
+            invidious: nix.thunk(() => ({ [nix.POS]: $pos[6], enable: true })),
           })),
           specialisation: nix.thunk(() => ({
-            [nix.POS]: pos$57,
+            [nix.POS]: $pos[56],
             nginx: nix.thunk(() => ({
-              [nix.POS]: pos$18,
+              [nix.POS]: $pos[17],
               configuration: nix.thunk(() => ({
-                [nix.POS]: pos$17,
+                [nix.POS]: $pos[16],
                 services: nix.thunk(() => ({
-                  [nix.POS]: pos$14,
+                  [nix.POS]: $pos[13],
                   invidious: nix.thunk(() => ({
-                    [nix.POS]: pos$10,
-                    nginx: nix.thunk(() => ({ [nix.POS]: pos$9, enable: true })),
+                    [nix.POS]: $pos[9],
+                    nginx: nix.thunk(() => ({ [nix.POS]: $pos[8], enable: true })),
                     domain: "invidious.example.com",
                   })),
                   nginx: nix.thunk(() => ({
-                    [nix.POS]: pos$13,
+                    [nix.POS]: $pos[12],
                     virtualHosts: nix.thunk(() => ({
-                      [nix.POS]: pos$12,
-                      "invidious.example.com": nix.thunk(() => ({ [nix.POS]: pos$11, forceSSL: false, enableACME: false })),
+                      [nix.POS]: $pos[11],
+                      "invidious.example.com": nix.thunk(() => ({ [nix.POS]: $pos[10], forceSSL: false, enableACME: false })),
                     })),
                   })),
                 })),
                 networking: nix.thunk(() => ({
-                  [nix.POS]: pos$16,
-                  hosts: nix.thunk(() => ({ [nix.POS]: pos$15, "127.0.0.1": nix.thunk(() => ["invidious.example.com"]) })),
+                  [nix.POS]: $pos[15],
+                  hosts: nix.thunk(() => ({ [nix.POS]: $pos[14], "127.0.0.1": nix.thunk(() => ["invidious.example.com"]) })),
                 })),
               })),
             })),
             "nginx-sig-helper": nix.thunk(() => ({
-              [nix.POS]: pos$30,
+              [nix.POS]: $pos[29],
               configuration: nix.thunk(() => ({
-                [nix.POS]: pos$29,
+                [nix.POS]: $pos[28],
                 services: nix.thunk(() => ({
-                  [nix.POS]: pos$26,
+                  [nix.POS]: $pos[25],
                   invidious: nix.thunk(() => ({
-                    [nix.POS]: pos$22,
-                    nginx: nix.thunk(() => ({ [nix.POS]: pos$19, enable: true })),
+                    [nix.POS]: $pos[21],
+                    nginx: nix.thunk(() => ({ [nix.POS]: $pos[18], enable: true })),
                     domain: "invidious.example.com",
-                    "sig-helper": nix.thunk(() => ({ [nix.POS]: pos$20, enable: true })),
-                    settings: nix.thunk(() => ({ [nix.POS]: pos$21, log_level: "Trace" })),
+                    "sig-helper": nix.thunk(() => ({ [nix.POS]: $pos[19], enable: true })),
+                    settings: nix.thunk(() => ({ [nix.POS]: $pos[20], log_level: "Trace" })),
                   })),
                   nginx: nix.thunk(() => ({
-                    [nix.POS]: pos$25,
+                    [nix.POS]: $pos[24],
                     virtualHosts: nix.thunk(() => ({
-                      [nix.POS]: pos$24,
-                      "invidious.example.com": nix.thunk(() => ({ [nix.POS]: pos$23, forceSSL: false, enableACME: false })),
+                      [nix.POS]: $pos[23],
+                      "invidious.example.com": nix.thunk(() => ({ [nix.POS]: $pos[22], forceSSL: false, enableACME: false })),
                     })),
                   })),
                 })),
                 networking: nix.thunk(() => ({
-                  [nix.POS]: pos$28,
-                  hosts: nix.thunk(() => ({ [nix.POS]: pos$27, "127.0.0.1": nix.thunk(() => ["invidious.example.com"]) })),
+                  [nix.POS]: $pos[27],
+                  hosts: nix.thunk(() => ({ [nix.POS]: $pos[26], "127.0.0.1": nix.thunk(() => ["invidious.example.com"]) })),
                 })),
               })),
             })),
             "nginx-scale": nix.thunk(() => ({
-              [nix.POS]: pos$40,
+              [nix.POS]: $pos[39],
               configuration: nix.thunk(() => ({
-                [nix.POS]: pos$39,
+                [nix.POS]: $pos[38],
                 services: nix.thunk(() => ({
-                  [nix.POS]: pos$36,
+                  [nix.POS]: $pos[35],
                   invidious: nix.thunk(() => ({
-                    [nix.POS]: pos$32,
-                    nginx: nix.thunk(() => ({ [nix.POS]: pos$31, enable: true })),
+                    [nix.POS]: $pos[31],
+                    nginx: nix.thunk(() => ({ [nix.POS]: $pos[30], enable: true })),
                     domain: "invidious.example.com",
                     serviceScale: 3n,
                   })),
                   nginx: nix.thunk(() => ({
-                    [nix.POS]: pos$35,
+                    [nix.POS]: $pos[34],
                     virtualHosts: nix.thunk(() => ({
-                      [nix.POS]: pos$34,
-                      "invidious.example.com": nix.thunk(() => ({ [nix.POS]: pos$33, forceSSL: false, enableACME: false })),
+                      [nix.POS]: $pos[33],
+                      "invidious.example.com": nix.thunk(() => ({ [nix.POS]: $pos[32], forceSSL: false, enableACME: false })),
                     })),
                   })),
                 })),
                 networking: nix.thunk(() => ({
-                  [nix.POS]: pos$38,
-                  hosts: nix.thunk(() => ({ [nix.POS]: pos$37, "127.0.0.1": nix.thunk(() => ["invidious.example.com"]) })),
+                  [nix.POS]: $pos[37],
+                  hosts: nix.thunk(() => ({ [nix.POS]: $pos[36], "127.0.0.1": nix.thunk(() => ["invidious.example.com"]) })),
                 })),
               })),
             })),
             "nginx-scale-ytproxy": nix.thunk(() => ({
-              [nix.POS]: pos$51,
+              [nix.POS]: $pos[50],
               configuration: nix.thunk(() => ({
-                [nix.POS]: pos$50,
+                [nix.POS]: $pos[49],
                 services: nix.thunk(() => ({
-                  [nix.POS]: pos$47,
+                  [nix.POS]: $pos[46],
                   invidious: nix.thunk(() => ({
-                    [nix.POS]: pos$43,
-                    nginx: nix.thunk(() => ({ [nix.POS]: pos$41, enable: true })),
-                    "http3-ytproxy": nix.thunk(() => ({ [nix.POS]: pos$42, enable: true })),
+                    [nix.POS]: $pos[42],
+                    nginx: nix.thunk(() => ({ [nix.POS]: $pos[40], enable: true })),
+                    "http3-ytproxy": nix.thunk(() => ({ [nix.POS]: $pos[41], enable: true })),
                     domain: "invidious.example.com",
                     serviceScale: 3n,
                   })),
                   nginx: nix.thunk(() => ({
-                    [nix.POS]: pos$46,
+                    [nix.POS]: $pos[45],
                     virtualHosts: nix.thunk(() => ({
-                      [nix.POS]: pos$45,
-                      "invidious.example.com": nix.thunk(() => ({ [nix.POS]: pos$44, forceSSL: false, enableACME: false })),
+                      [nix.POS]: $pos[44],
+                      "invidious.example.com": nix.thunk(() => ({ [nix.POS]: $pos[43], forceSSL: false, enableACME: false })),
                     })),
                   })),
                 })),
                 networking: nix.thunk(() => ({
-                  [nix.POS]: pos$49,
-                  hosts: nix.thunk(() => ({ [nix.POS]: pos$48, "127.0.0.1": nix.thunk(() => ["invidious.example.com"]) })),
+                  [nix.POS]: $pos[48],
+                  hosts: nix.thunk(() => ({ [nix.POS]: $pos[47], "127.0.0.1": nix.thunk(() => ["invidious.example.com"]) })),
                 })),
               })),
             })),
             "postgres-tcp": nix.thunk(() => ({
-              [nix.POS]: pos$56,
+              [nix.POS]: $pos[55],
               configuration: nix.thunk(() => ({
-                [nix.POS]: pos$55,
+                [nix.POS]: $pos[54],
                 services: nix.thunk(() => ({
-                  [nix.POS]: pos$54,
+                  [nix.POS]: $pos[53],
                   invidious: nix.thunk(() => ({
-                    [nix.POS]: pos$53,
+                    [nix.POS]: $pos[52],
                     database: nix.thunk(() => ({
-                      [nix.POS]: pos$52,
+                      [nix.POS]: $pos[51],
                       createLocally: false,
                       host: "postgres-tcp",
                       passwordFile: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "database-password", "correct horse battery staple")))),

@@ -2,22 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 52, 5], ["hash", 53, 5]], [["url", 57, 5], ["hash", 58, 5]], [["url", 63, 5], ["stripRoot", 64, 5], ["hash", 65, 5]], [["owner", 69, 5], ["repo", 70, 5], ["rev", 73, 5], ["hash", 74, 5]], [["owner", 105, 5], ["repo", 106, 5], ["tag", 107, 5], ["hash", 108, 5]], [["name", 113, 5], ["src", 114, 26], ["nativeBuildInputs", 116, 5], ["installPhase", 122, 5], ["dontConfigure", 136, 5], ["dontBuild", 137, 5], ["dontFixup", 138, 5], ["outputHash", 140, 5], ["outputHashAlgo", 141, 5], ["outputHashMode", 142, 5]], [["ELECTRON_SKIP_BINARY_DOWNLOAD", 204, 5], ["CI", 207, 5], ["NIX_LDFLAGS", 210, 5], ["RSTUDIO_VERSION_MAJOR", 212, 5], ["RSTUDIO_VERSION_MINOR", 213, 5], ["RSTUDIO_VERSION_PATCH", 214, 5], ["RSTUDIO_VERSION_SUFFIX", 215, 5]], [["R", 221, 7]], [["libclang", 224, 7]], [["src", 252, 5], ["hash", 253, 5]], [["name", 266, 5], ["src", 267, 26], ["patches", 267, 30], ["postPatch", 268, 5], ["hash", 269, 5]], [["rstudio-server", 377, 28]], [["server", 375, 13], ["tests", 376, 5]], [["changelog", 382, 5], ["description", 383, 5], ["homepage", 384, 5], ["license", 385, 5], ["maintainers", 386, 5], ["mainProgram", 387, 5], ["platforms", 389, 5]], [["pname", 101, 3], ["version", 102, 3], ["src", 104, 3], ["extSrcs", 112, 3], ["nativeBuildInputs", 145, 3], ["buildInputs", 166, 3], ["cmakeFlags", 182, 3], ["env", 203, 3], ["patches", 218, 3], ["postPatch", 233, 3], ["yarnOfflineCache", 251, 3], ["dontYarnInstallDeps", 256, 3], ["npmRoot", 258, 3], ["npmFlags", 261, 3], ["makeCacheWritable", 263, 3], ["npmDeps", 265, 3], ["preConfigure", 272, 3], ["postInstall", 346, 3], ["passthru", 374, 3], ["meta", 381, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, server: true, fetchFromGitHub: false, fetchNpmDeps: false, fetchYarnDeps: false, fetchzip: false, replaceVars: false, runCommand: false, which: false, ant: false, cacert: false, cmake: false, git: false, jdk: false, makeWrapper: false, nodejs: false, npmHooks: false, python3: false, xcbuild: false, yarn: false, yarnConfigHook: false, zip: false, boost191: false, electron_42: false, fontconfig: false, gnumake: false, hunspellDicts: false, libuuid: false, llvmPackages: false, openssl: false, pam: false, pandoc: false, quarto: false, R: false, soci: false, sqlite: false, zlib: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 52, 5], ["hash", 53, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 57, 5], ["hash", 58, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 63, 5], ["stripRoot", 64, 5], ["hash", 65, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["owner", 69, 5], ["repo", 70, 5], ["rev", 73, 5], ["hash", 74, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["owner", 105, 5], ["repo", 106, 5], ["tag", 107, 5], ["hash", 108, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["name", 113, 5], ["src", 114, 26], ["nativeBuildInputs", 116, 5], ["installPhase", 122, 5], ["dontConfigure", 136, 5], ["dontBuild", 137, 5], ["dontFixup", 138, 5], ["outputHash", 140, 5], ["outputHashAlgo", 141, 5], ["outputHashMode", 142, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["ELECTRON_SKIP_BINARY_DOWNLOAD", 204, 5], ["CI", 207, 5], ["NIX_LDFLAGS", 210, 5], ["RSTUDIO_VERSION_MAJOR", 212, 5], ["RSTUDIO_VERSION_MINOR", 213, 5], ["RSTUDIO_VERSION_PATCH", 214, 5], ["RSTUDIO_VERSION_SUFFIX", 215, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["R", 221, 7]]);
-const pos$9 = nix.positions(here + "/package.nix", [["libclang", 224, 7]]);
-const pos$10 = nix.positions(here + "/package.nix", [["src", 252, 5], ["hash", 253, 5]]);
-const pos$11 = nix.positions(here + "/package.nix", [["name", 266, 5], ["src", 267, 26], ["patches", 267, 30], ["postPatch", 268, 5], ["hash", 269, 5]]);
-const pos$12 = nix.positions(here + "/package.nix", [["rstudio-server", 377, 28]]);
-const pos$13 = nix.positions(here + "/package.nix", [["server", 375, 13], ["tests", 376, 5]]);
-const pos$14 = nix.positions(here + "/package.nix", [["changelog", 382, 5], ["description", 383, 5], ["homepage", 384, 5], ["license", 385, 5], ["maintainers", 386, 5], ["mainProgram", 387, 5], ["platforms", 389, 5]]);
-const pos$15 = nix.positions(here + "/package.nix", [["pname", 101, 3], ["version", 102, 3], ["src", 104, 3], ["extSrcs", 112, 3], ["nativeBuildInputs", 145, 3], ["buildInputs", 166, 3], ["cmakeFlags", 182, 3], ["env", 203, 3], ["patches", 218, 3], ["postPatch", 233, 3], ["yarnOfflineCache", 251, 3], ["dontYarnInstallDeps", 256, 3], ["npmRoot", 258, 3], ["npmFlags", 261, 3], ["makeCacheWritable", 263, 3], ["npmDeps", 265, 3], ["preConfigure", 272, 3], ["postInstall", 346, 3], ["passthru", 374, 3], ["meta", 381, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -63,23 +49,23 @@ export default nix.lambda((args) => (() => {
   const electron = electron_42;
   const boost = boost191;
   const mathJax27Src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: "https://s3.amazonaws.com/rstudio-buildtools/mathjax-2.7.9.zip",
       hash: "sha256-eQY8Q7ty7OcCs9E2hLsZjX5GncodGdEIbdUYDdKy9Ds=",
     }))));
   const mathJax4Src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       url: "https://s3.amazonaws.com/rstudio-buildtools/mathjax-4.1.3.zip",
       hash: "sha256-DCfc3H09FXuihKca62oZM6z1nsW8+6kMvad1HBBJI3A=",
     }))));
   const gwt = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       url: "https://rstudio-buildtools.s3.us-east-1.amazonaws.com/gwt/gwt-2.12.2-autumn-hawkbit.tar.gz",
       stripRoot: false,
       hash: "sha256-eRmdDiAjMz/nvQCXmRwGAt6HC3Nr5KACsxahS1cLpHA=",
     }))));
   const quartoSrc = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       owner: "quarto-dev",
       repo: "quarto",
       rev: "828ae28e53b796fb95a33bd7f3c7c109e0709649",
@@ -95,18 +81,18 @@ ln -s ${nix.app(nix.sel(lib, "getExe"), quarto)} $out/bin/quarto
 ln -s ${quarto}/share $out/share
 `)));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$15,
+      [nix.POS]: $pos[14],
       pname: "rstudio",
       version: "2026.09.0+174",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           owner: "rstudio",
           repo: "rstudio",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-67HT2JT0kPXqzCfcgtfRZZ/zM35ZWULb0ooCjagzr3w=",
         })))),
       extSrcs: nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           name: nix.thunk(() => nix.str`rstudio-${nix.sel(finalAttrs, "version")}-ext-srcs`),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           nativeBuildInputs: nix.thunk(() => [cacert, cmake, git]),
@@ -137,7 +123,7 @@ ln -s ${quarto}/share $out/share
           nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "RSTUDIO_INSTALL_FREEDESKTOP", nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")))),
         ])))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         ELECTRON_SKIP_BINARY_DOWNLOAD: "1",
         CI: "1",
         NIX_LDFLAGS: nix.thunk(() => nix.str`-L${R}/lib/R/lib`),
@@ -147,9 +133,9 @@ ln -s ${quarto}/share $out/share
         RSTUDIO_VERSION_SUFFIX: nix.thunk(() => nix.add("+", nix.builtins.toString(nix.thunk(() => nix.app(nix.sel(lib, "tail"), nix.thunk(() => nix.app(nix.sel(lib, "splitString"), "+", nix.thunk(() => nix.sel(finalAttrs, "version"))))))))),
       })),
       patches: nix.thunk(() => [
-        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./r-location.patch"), nix.thunk(() => ({ [nix.POS]: pos$8, R: nix.thunk(() => nix.app(nix.sel(lib, "getBin"), R)) })))),
+        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./r-location.patch"), nix.thunk(() => ({ [nix.POS]: $pos[7], R: nix.thunk(() => nix.app(nix.sel(lib, "getBin"), R)) })))),
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./clang-location.patch"), nix.thunk(() => ({
-            [nix.POS]: pos$9,
+            [nix.POS]: $pos[8],
             libclang: nix.thunk(() => nix.app(nix.sel(lib, "getLib"), nix.thunk(() => nix.sel(llvmPackages, "libclang")))),
           })))),
         nix.path(here, "./ignore-etc-os-release.patch"),
@@ -174,7 +160,7 @@ substituteInPlace src/node/desktop/CMakeLists.txt \\
   --replace-fail "/usr/share" "$out/share"
 `),
       yarnOfflineCache: nix.thunk(() => nix.app(fetchYarnDeps, nix.thunk(() => ({
-          [nix.POS]: pos$10,
+          [nix.POS]: $pos[9],
           src: quartoSrc,
           hash: "sha256-4mPc2gNlXTvAWLdWViceTPk5lizKST7iBMZ42ZcrEZA=",
         })))),
@@ -183,7 +169,7 @@ substituteInPlace src/node/desktop/CMakeLists.txt \\
       npmFlags: nix.thunk(() => ["--ignore-scripts"]),
       makeCacheWritable: true,
       npmDeps: nix.thunk(() => nix.app(fetchNpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$11,
+          [nix.POS]: $pos[10],
           name: nix.thunk(() => nix.str`rstudio-${nix.sel(finalAttrs, "version")}-npm-deps`),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           patches: nix.thunk(() => nix.attr(finalAttrs, "patches")),
@@ -272,15 +258,15 @@ makeWrapper ${nix.app(nix.sel(lib, "getExe"), electron)} "$out/bin/rstudio" \\
 ln -s $out/lib/rstudio/resources/app/bin/{diagnostics,rpostback} $out/bin
 `))), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool(server) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")))), "ln -s $out/Applications/RStudio.app/Contents/MacOS/{postback,r-ldpath,rpostback,rserver,rserver-pam,rsession,rstudio-server} $out/bin\n")), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool(!nix.asBool(server)) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")))), "# electron can't find its files if we use a symlink here\nmakeWrapper $out/Applications/RStudio.app/Contents/MacOS/RStudio $out/bin/rstudio\n\nln -s $out/Applications/RStudio.app/Contents/Resources/app/bin/{diagnostics,rpostback} $out/bin\n"))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$13,
+        [nix.POS]: $pos[12],
         server: server,
         tests: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => ({
-            [nix.POS]: pos$12,
+            [nix.POS]: $pos[11],
             "rstudio-server": nix.thunk(() => nix.attr(nixosTests, "rstudio-server")),
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$14,
+        [nix.POS]: $pos[13],
         changelog: nix.thunk(() => nix.str`https://github.com/rstudio/rstudio/tree/${nix.sel(finalAttrs, "src", "rev")}/version/news`),
         description: "Set of integrated tools for the R language",
         homepage: "https://www.rstudio.com/",

@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["description", 37, 5], ["homepage", 38, 5], ["license", 39, 5], ["maintainers", 40, 5]], [["pname", 14, 3], ["version", 15, 3], ["pyproject", 16, 3], ["src", 18, 19], ["build-system", 20, 3], ["dontUseCmakeConfigure", 28, 3], ["dependencies", 30, 3], ["pythonImportsCheck", 32, 3], ["nativeCheckInputs", 34, 3], ["meta", 36, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, pytestCheckHook: false, "scikit-build-core": false, pybind11: false, numpy: false, cmake: false, ninja: false, pathspec: false, highs: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["description", 37, 5], ["homepage", 38, 5], ["license", 39, 5], ["maintainers", 40, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 14, 3], ["version", 15, 3], ["pyproject", 16, 3], ["src", 18, 19], ["build-system", 20, 3], ["dontUseCmakeConfigure", 28, 3], ["dependencies", 30, 3], ["pythonImportsCheck", 32, 3], ["nativeCheckInputs", 34, 3], ["meta", 36, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,7 +18,7 @@ export default nix.lambda((args) => (() => {
   const pathspec = nix.arg($, "pathspec");
   const highs = nix.arg($, "highs");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "highspy",
       version: nix.thunk(() => nix.sel(highs, "version")),
       pyproject: true,
@@ -30,7 +29,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["highspy"]),
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Linear optimization software",
         homepage: "https://github.com/ERGO-Code/HiGHS",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

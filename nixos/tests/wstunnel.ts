@@ -2,93 +2,58 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
-const pos$1 = nix.positions(here + "/wstunnel.nix", [["vlans", 11, 22]]);
-const pos$2 = nix.positions(here + "/wstunnel.nix", [["certificateFiles", 13, 20]]);
-const pos$3 = nix.positions(here + "/wstunnel.nix", [["pki", 13, 16]]);
-const pos$4 = nix.positions(here + "/wstunnel.nix", [["enable", 18, 18]]);
-const pos$5 = nix.positions(here + "/wstunnel.nix", [["useNetworkd", 16, 9], ["useDHCP", 17, 9], ["firewall", 18, 9]]);
-const pos$6 = nix.positions(here + "/wstunnel.nix", [["Address", 23, 23]]);
-const pos$7 = nix.positions(here + "/wstunnel.nix", [["name", 22, 9], ["networkConfig", 23, 9]]);
-const pos$8 = nix.positions(here + "/wstunnel.nix", [["01-eth1", 21, 32]]);
-const pos$9 = nix.positions(here + "/wstunnel.nix", [["networks", 21, 23]]);
-const pos$10 = nix.positions(here + "/wstunnel.nix", [["network", 21, 15]]);
-const pos$11 = nix.positions(here + "/wstunnel.nix", [["host", 30, 13], ["port", 31, 13]]);
-const pos$12 = nix.positions(here + "/wstunnel.nix", [["tls-certificate", 34, 13], ["tls-private-key", 35, 13]]);
-const pos$13 = nix.positions(here + "/wstunnel.nix", [["listen", 29, 11], ["settings", 33, 11]]);
-const pos$14 = nix.positions(here + "/wstunnel.nix", [["my-server", 28, 17]]);
-const pos$15 = nix.positions(here + "/wstunnel.nix", [["enable", 27, 9], ["servers", 28, 9]]);
-const pos$16 = nix.positions(here + "/wstunnel.nix", [["wstunnel", 26, 16]]);
-const pos$17 = nix.positions(here + "/wstunnel.nix", [["virtualisation", 11, 7], ["security", 13, 7], ["networking", 15, 7], ["systemd", 21, 7], ["services", 26, 7]]);
-const pos$18 = nix.positions(here + "/wstunnel.nix", [["vlans", 42, 22]]);
-const pos$19 = nix.positions(here + "/wstunnel.nix", [["certificateFiles", 44, 20]]);
-const pos$20 = nix.positions(here + "/wstunnel.nix", [["pki", 44, 16]]);
-const pos$21 = nix.positions(here + "/wstunnel.nix", [["enable", 49, 18]]);
-const pos$22 = nix.positions(here + "/wstunnel.nix", [["10.0.0.1", 51, 11]]);
-const pos$23 = nix.positions(here + "/wstunnel.nix", [["useNetworkd", 47, 9], ["useDHCP", 48, 9], ["firewall", 49, 9], ["hosts", 50, 9]]);
-const pos$24 = nix.positions(here + "/wstunnel.nix", [["Address", 57, 23]]);
-const pos$25 = nix.positions(here + "/wstunnel.nix", [["name", 56, 9], ["networkConfig", 57, 9]]);
-const pos$26 = nix.positions(here + "/wstunnel.nix", [["01-eth1", 55, 32]]);
-const pos$27 = nix.positions(here + "/wstunnel.nix", [["networks", 55, 23]]);
-const pos$28 = nix.positions(here + "/wstunnel.nix", [["network", 55, 15]]);
-const pos$29 = nix.positions(here + "/wstunnel.nix", [["local-to-remote", 66, 13], ["remote-to-local", 67, 13]]);
-const pos$30 = nix.positions(here + "/wstunnel.nix", [["autoStart", 63, 11], ["connectTo", 64, 11], ["settings", 65, 11]]);
-const pos$31 = nix.positions(here + "/wstunnel.nix", [["my-client", 62, 17]]);
-const pos$32 = nix.positions(here + "/wstunnel.nix", [["enable", 61, 9], ["clients", 62, 9]]);
-const pos$33 = nix.positions(here + "/wstunnel.nix", [["wstunnel", 60, 16]]);
-const pos$34 = nix.positions(here + "/wstunnel.nix", [["virtualisation", 42, 7], ["security", 44, 7], ["networking", 46, 7], ["systemd", 55, 7], ["services", 60, 7]]);
-const pos$35 = nix.positions(here + "/wstunnel.nix", [["server", 10, 5], ["client", 41, 5]]);
-const pos$36 = nix.positions(here + "/wstunnel.nix", [["name", 7, 3], ["nodes", 9, 3], ["testScript", 74, 3]]);
+const $pos = nix.positions(here + "/wstunnel.nix", [[["vlans", 11, 22]], [["certificateFiles", 13, 20]], [["pki", 13, 16]], [["enable", 18, 18]], [["useNetworkd", 16, 9], ["useDHCP", 17, 9], ["firewall", 18, 9]], [["Address", 23, 23]], [["name", 22, 9], ["networkConfig", 23, 9]], [["01-eth1", 21, 32]], [["networks", 21, 23]], [["network", 21, 15]], [["host", 30, 13], ["port", 31, 13]], [["tls-certificate", 34, 13], ["tls-private-key", 35, 13]], [["listen", 29, 11], ["settings", 33, 11]], [["my-server", 28, 17]], [["enable", 27, 9], ["servers", 28, 9]], [["wstunnel", 26, 16]], [["virtualisation", 11, 7], ["security", 13, 7], ["networking", 15, 7], ["systemd", 21, 7], ["services", 26, 7]], [["vlans", 42, 22]], [["certificateFiles", 44, 20]], [["pki", 44, 16]], [["enable", 49, 18]], [["10.0.0.1", 51, 11]], [["useNetworkd", 47, 9], ["useDHCP", 48, 9], ["firewall", 49, 9], ["hosts", 50, 9]], [["Address", 57, 23]], [["name", 56, 9], ["networkConfig", 57, 9]], [["01-eth1", 55, 32]], [["networks", 55, 23]], [["network", 55, 15]], [["local-to-remote", 66, 13], ["remote-to-local", 67, 13]], [["autoStart", 63, 11], ["connectTo", 64, 11], ["settings", 65, 11]], [["my-client", 62, 17]], [["enable", 61, 9], ["clients", 62, 9]], [["wstunnel", 60, 16]], [["virtualisation", 42, 7], ["security", 44, 7], ["networking", 46, 7], ["systemd", 55, 7], ["services", 60, 7]], [["server", 10, 5], ["client", 41, 5]], [["name", 7, 3], ["nodes", 9, 3], ["testScript", 74, 3]]]);
 
 export default nix.thunk(() => (() => {
   const certs = nix.thunk(() => nix.builtins.import(nix.path(here, "./common/acme/server/snakeoil-certs.nix")));
   const domain = nix.thunk(() => nix.sel(certs, "domain"));
   return {
-    [nix.POS]: pos$36,
+    [nix.POS]: $pos[35],
     name: "wstunnel",
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$35,
+      [nix.POS]: $pos[34],
       server: nix.thunk(() => ({
-        [nix.POS]: pos$17,
-        virtualisation: nix.thunk(() => ({ [nix.POS]: pos$1, vlans: nix.thunk(() => [1n]) })),
+        [nix.POS]: $pos[16],
+        virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[0], vlans: nix.thunk(() => [1n]) })),
         security: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           pki: nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             certificateFiles: nix.thunk(() => [nix.thunk(() => nix.sel(certs, "ca", "cert"))]),
           })),
         })),
         networking: nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           useNetworkd: true,
           useDHCP: false,
-          firewall: nix.thunk(() => ({ [nix.POS]: pos$4, enable: false })),
+          firewall: nix.thunk(() => ({ [nix.POS]: $pos[3], enable: false })),
         })),
         systemd: nix.thunk(() => ({
-          [nix.POS]: pos$10,
+          [nix.POS]: $pos[9],
           network: nix.thunk(() => ({
-            [nix.POS]: pos$9,
+            [nix.POS]: $pos[8],
             networks: nix.thunk(() => ({
-              [nix.POS]: pos$8,
+              [nix.POS]: $pos[7],
               "01-eth1": nix.thunk(() => ({
-                [nix.POS]: pos$7,
+                [nix.POS]: $pos[6],
                 name: "eth1",
-                networkConfig: nix.thunk(() => ({ [nix.POS]: pos$6, Address: "10.0.0.1/24" })),
+                networkConfig: nix.thunk(() => ({ [nix.POS]: $pos[5], Address: "10.0.0.1/24" })),
               })),
             })),
           })),
         })),
         services: nix.thunk(() => ({
-          [nix.POS]: pos$16,
+          [nix.POS]: $pos[15],
           wstunnel: nix.thunk(() => ({
-            [nix.POS]: pos$15,
+            [nix.POS]: $pos[14],
             enable: true,
             servers: nix.thunk(() => ({
-              [nix.POS]: pos$14,
+              [nix.POS]: $pos[13],
               "my-server": nix.thunk(() => ({
-                [nix.POS]: pos$13,
-                listen: nix.thunk(() => ({ [nix.POS]: pos$11, host: "10.0.0.1", port: 443n })),
+                [nix.POS]: $pos[12],
+                listen: nix.thunk(() => ({ [nix.POS]: $pos[10], host: "10.0.0.1", port: 443n })),
                 settings: nix.thunk(() => ({
-                  [nix.POS]: pos$12,
+                  [nix.POS]: $pos[11],
                   "tls-certificate": nix.thunk(() => nix.str`${nix.sel(certs, nix.key(nix.force(domain)), "cert")}`),
                   "tls-private-key": nix.thunk(() => nix.str`${nix.sel(certs, nix.key(nix.force(domain)), "key")}`),
                 })),
@@ -98,49 +63,49 @@ export default nix.thunk(() => (() => {
         })),
       })),
       client: nix.thunk(() => ({
-        [nix.POS]: pos$34,
-        virtualisation: nix.thunk(() => ({ [nix.POS]: pos$18, vlans: nix.thunk(() => [1n]) })),
+        [nix.POS]: $pos[33],
+        virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[17], vlans: nix.thunk(() => [1n]) })),
         security: nix.thunk(() => ({
-          [nix.POS]: pos$20,
+          [nix.POS]: $pos[19],
           pki: nix.thunk(() => ({
-            [nix.POS]: pos$19,
+            [nix.POS]: $pos[18],
             certificateFiles: nix.thunk(() => [nix.thunk(() => nix.sel(certs, "ca", "cert"))]),
           })),
         })),
         networking: nix.thunk(() => ({
-          [nix.POS]: pos$23,
+          [nix.POS]: $pos[22],
           useNetworkd: true,
           useDHCP: false,
-          firewall: nix.thunk(() => ({ [nix.POS]: pos$21, enable: false })),
-          hosts: nix.thunk(() => ({ [nix.POS]: pos$22, "10.0.0.1": nix.thunk(() => [domain]) })),
+          firewall: nix.thunk(() => ({ [nix.POS]: $pos[20], enable: false })),
+          hosts: nix.thunk(() => ({ [nix.POS]: $pos[21], "10.0.0.1": nix.thunk(() => [domain]) })),
         })),
         systemd: nix.thunk(() => ({
-          [nix.POS]: pos$28,
+          [nix.POS]: $pos[27],
           network: nix.thunk(() => ({
-            [nix.POS]: pos$27,
+            [nix.POS]: $pos[26],
             networks: nix.thunk(() => ({
-              [nix.POS]: pos$26,
+              [nix.POS]: $pos[25],
               "01-eth1": nix.thunk(() => ({
-                [nix.POS]: pos$25,
+                [nix.POS]: $pos[24],
                 name: "eth1",
-                networkConfig: nix.thunk(() => ({ [nix.POS]: pos$24, Address: "10.0.0.2/24" })),
+                networkConfig: nix.thunk(() => ({ [nix.POS]: $pos[23], Address: "10.0.0.2/24" })),
               })),
             })),
           })),
         })),
         services: nix.thunk(() => ({
-          [nix.POS]: pos$33,
+          [nix.POS]: $pos[32],
           wstunnel: nix.thunk(() => ({
-            [nix.POS]: pos$32,
+            [nix.POS]: $pos[31],
             enable: true,
             clients: nix.thunk(() => ({
-              [nix.POS]: pos$31,
+              [nix.POS]: $pos[30],
               "my-client": nix.thunk(() => ({
-                [nix.POS]: pos$30,
+                [nix.POS]: $pos[29],
                 autoStart: false,
                 connectTo: nix.thunk(() => nix.str`wss://${domain}:443`),
                 settings: nix.thunk(() => ({
-                  [nix.POS]: pos$29,
+                  [nix.POS]: $pos[28],
                   "local-to-remote": nix.thunk(() => ["tcp://8080:localhost:2080"]),
                   "remote-to-local": nix.thunk(() => ["tcp://2081:localhost:8081"]),
                 })),

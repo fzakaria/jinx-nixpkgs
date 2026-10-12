@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 20, 7], ["hash", 21, 7]], [["url", 24, 7], ["hash", 25, 7]], [["x86_64-linux", 19, 5], ["aarch64-darwin", 23, 5]], [["updateScript", 123, 12]], [["changelog", 126, 5], ["description", 127, 5], ["homepage", 128, 5], ["sourceProvenance", 129, 5], ["license", 130, 5], ["platforms", 131, 5], ["maintainers", 132, 5], ["mainProgram", 133, 5]], [["version", 31, 11], ["pname", 32, 3], ["src", 33, 3], ["sourceRoot", 37, 3], ["installPhase", 39, 3], ["postFixup", 71, 3], ["passthru", 123, 3], ["meta", 125, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, zlib: false, curl: false, xz: false, openssl: false, patchelf: false, runtimeShell: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 20, 7], ["hash", 21, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 24, 7], ["hash", 25, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["x86_64-linux", 19, 5], ["aarch64-darwin", 23, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 123, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["changelog", 126, 5], ["description", 127, 5], ["homepage", 128, 5], ["sourceProvenance", 129, 5], ["license", 130, 5], ["platforms", 131, 5], ["maintainers", 132, 5], ["mainProgram", 133, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["version", 31, 11], ["pname", 32, 3], ["src", 33, 3], ["sourceRoot", 37, 3], ["installPhase", 39, 3], ["postFixup", 71, 3], ["passthru", 123, 3], ["meta", 125, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,20 +20,20 @@ export default nix.lambda((args) => (() => {
   const from = nix.thunk(() => nix.sel(stdenv, "hostPlatform"));
   const system = nix.thunk(() => nix.attr(from, "system"));
   const srcs = nix.thunk(() => ({
-    [nix.POS]: pos$3,
+    [nix.POS]: $pos[2],
     "x86_64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         url: nix.thunk(() => nix.str`https://static.meteor.com/packages-bootstrap/${version}/meteor-bootstrap-os.linux.x86_64.tar.gz`),
         hash: "sha256-4YwcHrFmD9BU2ebeSHHt+LDMXTW1DnFHs8j1SltInAg=",
       })))),
     "aarch64-darwin": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         url: nix.thunk(() => nix.str`https://static.meteor.com/packages-bootstrap/${version}/meteor-bootstrap-os.osx.arm64.tar.gz`),
         hash: "sha256-5utHDLdIaNQlnWg/gH4IZc1kBctnsu8KJYkRa/9NTSM=",
       })))),
   }));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       version: version,
       pname: "meteor",
       src: nix.thunk(() => nix.selOr(srcs, () => nix.builtins.throw(nix.thunk(() => nix.str`unsupported system ${system}`)), nix.key(nix.force(system)))),
@@ -104,9 +99,9 @@ for p in $(find $out/packages -name '*.node'); do
     $p || true
 done
 `)))),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$4, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[3], updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         changelog: nix.thunk(() => nix.str`https://github.com/meteor/meteor/releases/tag/release%2FMETEOR%40${version}`),
         description: "Complete open source platform for building web and mobile apps in pure JavaScript",
         homepage: "https://www.meteor.com/",

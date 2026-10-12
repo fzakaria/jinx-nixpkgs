@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 35, 5], ["hash", 36, 5]], [["description", 101, 5], ["homepage", 102, 5], ["license", 103, 5], ["maintainers", 104, 5], ["mainProgram", 108, 5], ["platforms", 109, 5]], [["pname", 31, 3], ["version", 32, 3], ["src", 34, 3], ["prePatch", 39, 3], ["dontUseCmakeConfigure", 51, 3], ["enableParallelBuilding", 52, 3], ["strictDeps", 53, 3], ["nativeBuildInputs", 55, 3], ["buildInputs", 63, 3], ["hardeningDisable", 81, 3], ["makeFlags", 82, 3], ["postInstall", 89, 3], ["meta", 100, 3]]]);
 const formals$1 = { args: { stdenv: false, fetchurl: false, carla: false, cmake: false, dbus: false, fftwFloat: false, file: false, freetype: false, jansson: false, lib: false, libGL: false, libx11: false, libxcursor: false, libxext: false, libxrandr: false, libarchive: false, libjack2: false, liblo: false, libsamplerate: false, libsndfile: false, makeWrapper: false, "pkg-config": false, python3: false, speexdsp: false, libglvnd: false, headless: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 35, 5], ["hash", 36, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 101, 5], ["homepage", 102, 5], ["license", 103, 5], ["maintainers", 104, 5], ["mainProgram", 108, 5], ["platforms", 109, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 31, 3], ["version", 32, 3], ["src", 34, 3], ["prePatch", 39, 3], ["dontUseCmakeConfigure", 51, 3], ["enableParallelBuilding", 52, 3], ["strictDeps", 53, 3], ["nativeBuildInputs", 55, 3], ["buildInputs", 63, 3], ["hardeningDisable", 81, 3], ["makeFlags", 82, 3], ["postInstall", 89, 3], ["meta", 100, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -36,11 +34,11 @@ export default nix.lambda((args) => (() => {
   const libglvnd = nix.arg($, "libglvnd");
   const headless = nix.argOr($, "headless", () => false);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "cardinal",
       version: "26.02",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/DISTRHO/Cardinal/releases/download/${nix.sel(finalAttrs, "version")}/cardinal+deps-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-4xjRCYN6Y7YtFc4gCd8F7CQxB02PLZQ6DN59rZVPYh0=",
         })))),
@@ -87,7 +85,7 @@ wrapProgram $out/bin/CardinalMini \\
 rm -f $out/bin/CardinalNative
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Plugin wrapper around VCV Rack",
         homepage: "https://github.com/DISTRHO/cardinal",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

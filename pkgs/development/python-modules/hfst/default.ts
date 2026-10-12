@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["description", 38, 5], ["homepage", 39, 5], ["license", 40, 5], ["maintainers", 41, 5]], [["pname", 12, 3], ["format", 13, 3], ["version", 14, 23], ["src", 14, 31], ["sourceRoot", 16, 3], ["postPatch", 18, 3], ["nativeBuildInputs", 23, 3], ["buildInputs", 25, 3], ["setupPyBuildFlags", 30, 3], ["preCheck", 33, 3], ["meta", 37, 3]]]);
 const formals$1 = { args: { lib: false, pkgs: false, stdenv: false, buildPythonPackage: false, foma: false, icu: false, swig: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["description", 38, 5], ["homepage", 39, 5], ["license", 40, 5], ["maintainers", 41, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 12, 3], ["format", 13, 3], ["version", 14, 23], ["src", 14, 31], ["sourceRoot", 16, 3], ["postPatch", 18, 3], ["nativeBuildInputs", 23, 3], ["buildInputs", 25, 3], ["setupPyBuildFlags", 30, 3], ["preCheck", 33, 3], ["meta", 37, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const preCheck = nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => nix.str`export DYLD_LIBRARY_PATH="${foma}/lib"
 `)));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Python bindings for HFST",
         homepage: "https://github.com/hfst/hfst",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),
@@ -39,7 +38,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         pname,
         format,
         version,

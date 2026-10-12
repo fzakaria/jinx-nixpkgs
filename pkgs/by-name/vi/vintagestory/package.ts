@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 34, 5], ["hash", 35, 5]], [["name", 48, 7], ["desktopName", 49, 7], ["exec", 50, 7], ["icon", 51, 7], ["comment", 52, 7], ["categories", 53, 7]], [["name", 57, 7], ["desktopName", 58, 7], ["comment", 59, 7], ["exec", 60, 7], ["mimeTypes", 61, 7], ["noDisplay", 62, 7], ["terminal", 63, 7]], [["updateScript", 112, 5], ["runtimeLibs", 113, 5]], [["description", 132, 5], ["homepage", 133, 5], ["license", 134, 5], ["sourceProvenance", 135, 5], ["platforms", 136, 5], ["maintainers", 137, 5], ["mainProgram", 143, 5]], [["pname", 30, 3], ["version", 31, 3], ["src", 33, 3], ["__structuredAttrs", 38, 3], ["nativeBuildInputs", 40, 3], ["desktopItems", 46, 3], ["installPhase", 67, 3], ["makeWrapperArgs", 79, 3], ["runtimeLibraryPath", 90, 3], ["preFixup", 91, 3], ["doInstallCheck", 108, 3], ["installCheckInputs", 109, 3], ["passthru", 111, 3], ["meta", 131, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, makeWrapper: false, makeDesktopItem: false, copyDesktopItems: false, versionCheckHook: false, installFonts: false, cairo: false, libGLU: false, libglvnd: false, pipewire: false, libpulseaudio: false, "dotnet-runtime_10": false, x11Support: true, libxi: false, libxcursor: false, libx11: false, waylandSupport: true, wayland: true, libxkbcommon: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 34, 5], ["hash", 35, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 48, 7], ["desktopName", 49, 7], ["exec", 50, 7], ["icon", 51, 7], ["comment", 52, 7], ["categories", 53, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 57, 7], ["desktopName", 58, 7], ["comment", 59, 7], ["exec", 60, 7], ["mimeTypes", 61, 7], ["noDisplay", 62, 7], ["terminal", 63, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 112, 5], ["runtimeLibs", 113, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 132, 5], ["homepage", 133, 5], ["license", 134, 5], ["sourceProvenance", 135, 5], ["platforms", 136, 5], ["maintainers", 137, 5], ["mainProgram", 143, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 30, 3], ["version", 31, 3], ["src", 33, 3], ["__structuredAttrs", 38, 3], ["nativeBuildInputs", 40, 3], ["desktopItems", 46, 3], ["installPhase", 67, 3], ["makeWrapperArgs", 79, 3], ["runtimeLibraryPath", 90, 3], ["preFixup", 91, 3], ["doInstallCheck", 108, 3], ["installCheckInputs", 109, 3], ["passthru", 111, 3], ["meta", 131, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -37,11 +32,11 @@ export default nix.lambda((args) => (() => {
   nix.assert_((!nix.asBool(waylandSupport) || nix.asBool(!nix.eq(wayland, null))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/vi/vintagestory/package.nix:26:1");
   nix.assert_((!nix.asBool(waylandSupport) || nix.asBool(!nix.eq(libxkbcommon, null))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/vi/vintagestory/package.nix:27:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "vintagestory",
       version: "1.22.7",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://cdn.vintagestory.at/gamefiles/stable/vs_client_linux-x64_${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-SDzGgnpQwIxcQczQJixvEiPBBOVMpxNcRmBSeNifXeE=",
         })))),
@@ -49,7 +44,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [makeWrapper, copyDesktopItems, installFonts]),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "vintagestory",
             desktopName: "Vintage Story",
             exec: "vintagestory",
@@ -58,7 +53,7 @@ export default nix.lambda((args) => (() => {
             categories: nix.thunk(() => ["Game"]),
           })))),
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "vsmodinstall-handler",
             desktopName: "Vintage Story 1-click Mod Install Handler",
             comment: "Handler for vintagestorymodinstall:// URI scheme",
@@ -89,12 +84,12 @@ makeWrapper ${nix.app(nix.sel(lib, "getExe"), dotnet_runtime_10)} $out/bin/vinta
       doInstallCheck: true,
       installCheckInputs: nix.thunk(() => [versionCheckHook]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.path(here, "./update.sh"),
         runtimeLibs: nix.thunk(() => nix.concat([cairo, libGLU, libglvnd, pipewire, libpulseaudio], nix.concat(nix.app(nix.sel(lib, "optionals"), x11Support, nix.thunk(() => [libx11, libxi, libxcursor])), nix.app(nix.sel(lib, "optionals"), waylandSupport, nix.thunk(() => [wayland, libxkbcommon]))))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "In-development indie sandbox game about innovation and exploration",
         homepage: "https://www.vintagestory.at/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

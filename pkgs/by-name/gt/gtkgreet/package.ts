@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["hash", 26, 5]], [["NIX_CFLAGS_COMPILE", 56, 7]], [["updateScript", 58, 12]], [["description", 61, 5], ["homepage", 62, 5], ["license", 63, 5], ["maintainers", 64, 5], ["platforms", 65, 5], ["mainProgram", 66, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["depsBuildBuild", 29, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 39, 3], ["mesonFlags", 46, 3], ["postPatch", 50, 3], ["env", 56, 3], ["passthru", 58, 3], ["meta", 60, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromSourcehut: false, wrapGAppsHook3: false, "pkg-config": false, cmake: false, meson: false, ninja: false, gtk3: false, "gtk-layer-shell": false, json_c: false, librsvg: false, scdoc: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 56, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 58, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 61, 5], ["homepage", 62, 5], ["license", 63, 5], ["maintainers", 64, 5], ["platforms", 65, 5], ["mainProgram", 66, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["depsBuildBuild", 29, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 39, 3], ["mesonFlags", 46, 3], ["postPatch", 50, 3], ["env", 56, 3], ["passthru", 58, 3], ["meta", 60, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const scdoc = nix.arg($, "scdoc");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "gtkgreet",
       version: "0.8",
       src: nix.thunk(() => nix.app(fetchFromSourcehut, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "~kennylevinsen",
           repo: "gtkgreet",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -41,13 +37,13 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [gtk3, gtk_layer_shell, json_c, librsvg]),
       mesonFlags: nix.thunk(() => ["-Dlayershell=enabled"]),
       postPatch: "substituteInPlace meson.build \\\n  --replace \"dependency('scdoc',\" \"dependency('scdoc', native:true,\"\n",
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-Wno-error=deprecated-declarations" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], NIX_CFLAGS_COMPILE: "-Wno-error=deprecated-declarations" })),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "GTK based greeter for greetd, to be run under cage or similar",
         homepage: "https://git.sr.ht/~kennylevinsen/gtkgreet",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

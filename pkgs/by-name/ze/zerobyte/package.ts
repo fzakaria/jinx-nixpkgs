@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["pname", 19, 7], ["version", 20, 28], ["src", 20, 36], ["__structuredAttrs", 22, 7], ["strictDeps", 23, 7], ["impureEnvVars", 25, 7], ["nativeBuildInputs", 30, 7], ["dontConfigure", 35, 7], ["buildPhase", 37, 7], ["installPhase", 52, 7], ["dontFixup", 69, 7], ["outputHash", 71, 7], ["outputHashAlgo", 72, 7], ["outputHashMode", 73, 7]], [["owner", 84, 5], ["repo", 85, 5], ["tag", 86, 5], ["hash", 87, 5]], [["VITE_APP_VERSION", 99, 5], ["VITE_RESTIC_VERSION", 100, 5], ["VITE_RCLONE_VERSION", 101, 5]], [["extraArgs", 157, 7]], [["zerobyte", 163, 28]], [["node_modules", 155, 5], ["updateScript", 156, 5], ["tests", 162, 5]], [["description", 168, 5], ["homepage", 169, 5], ["changelog", 170, 5], ["license", 171, 5], ["maintainers", 172, 5], ["platforms", 173, 5], ["mainProgram", 177, 5]], [["pname", 77, 3], ["version", 78, 3], ["__structuredAttrs", 80, 3], ["strictDeps", 81, 3], ["src", 83, 3], ["nativeBuildInputs", 90, 3], ["env", 98, 3], ["configurePhase", 104, 3], ["buildPhase", 115, 3], ["installPhase", 124, 3], ["passthru", 154, 3], ["meta", 167, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, bun: false, fetchFromGitHub: false, makeBinaryWrapper: false, "nix-update-script": false, nodejs: false, rclone: false, restic: false, writableTmpDirAsHomeHook: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["pname", 19, 7], ["version", 20, 28], ["src", 20, 36], ["__structuredAttrs", 22, 7], ["strictDeps", 23, 7], ["impureEnvVars", 25, 7], ["nativeBuildInputs", 30, 7], ["dontConfigure", 35, 7], ["buildPhase", 37, 7], ["installPhase", 52, 7], ["dontFixup", 69, 7], ["outputHash", 71, 7], ["outputHashAlgo", 72, 7], ["outputHashMode", 73, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 84, 5], ["repo", 85, 5], ["tag", 86, 5], ["hash", 87, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["VITE_APP_VERSION", 99, 5], ["VITE_RESTIC_VERSION", 100, 5], ["VITE_RCLONE_VERSION", 101, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["extraArgs", 157, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["zerobyte", 163, 28]]);
-const pos$6 = nix.positions(here + "/package.nix", [["node_modules", 155, 5], ["updateScript", 156, 5], ["tests", 162, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["description", 168, 5], ["homepage", 169, 5], ["changelog", 170, 5], ["license", 171, 5], ["maintainers", 172, 5], ["platforms", 173, 5], ["mainProgram", 177, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 77, 3], ["version", 78, 3], ["__structuredAttrs", 80, 3], ["strictDeps", 81, 3], ["src", 83, 3], ["nativeBuildInputs", 90, 3], ["env", 98, 3], ["configurePhase", 104, 3], ["buildPhase", 115, 3], ["installPhase", 124, 3], ["passthru", 154, 3], ["meta", 167, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,7 +19,7 @@ export default nix.lambda((args) => (() => {
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   const nixosTests = nix.arg($, "nixosTests");
   const buildNodeModules = (finalAttrs) => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       pname: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-node_modules`),
       version: nix.thunk(() => nix.attr(finalAttrs, "version")),
       src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -55,13 +48,13 @@ runHook postBuild
       outputHashMode: "recursive",
     })));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "zerobyte",
       version: "0.43.1",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "nicotsx",
           repo: "zerobyte",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -69,7 +62,7 @@ runHook postBuild
         })))),
       nativeBuildInputs: nix.thunk(() => [bun, makeBinaryWrapper, nodejs, writableTmpDirAsHomeHook]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         VITE_APP_VERSION: nix.thunk(() => nix.sel(finalAttrs, "version")),
         VITE_RESTIC_VERSION: nix.thunk(() => nix.sel(restic, "version")),
         VITE_RCLONE_VERSION: nix.thunk(() => nix.sel(rclone, "version")),
@@ -107,19 +100,19 @@ cp -R LICENSES $out/share/doc/zerobyte/LICENSES
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         node_modules: nix.thunk(() => nix.app(buildNodeModules, finalAttrs)),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             extraArgs: nix.thunk(() => ["--subpackage", "node_modules"]),
           })))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           zerobyte: nix.thunk(() => nix.attr(nixosTests, "zerobyte")),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "Backup automation for self-hosters, built on top of restic",
         homepage: "https://github.com/nicotsx/zerobyte",
         changelog: nix.thunk(() => nix.str`https://github.com/nicotsx/zerobyte/releases/tag/v${nix.sel(finalAttrs, "version")}`),

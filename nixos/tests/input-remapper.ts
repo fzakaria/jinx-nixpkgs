@@ -2,78 +2,62 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/input-remapper.nix", [[["maintainers", 6, 5]], [["enable", 20, 24]], [["enable", 21, 31]], [["xserver", 20, 16], ["input-remapper", 21, 16]], [["isNormalUser", 23, 9], ["group", 24, 9]], [["sybil", 22, 19]], [["users", 22, 13]], [["user", 26, 40]], [["auto", 26, 35]], [["displayManager", 26, 20]], [["enable", 36, 9], ["wheelNeedsPassword", 37, 9]], [["setuid", 40, 9], ["owner", 41, 9], ["group", 42, 9], ["source", 43, 9]], [["pkexec", 39, 25]], [["sudo", 35, 16], ["wrappers", 39, 16]], [["imports", 15, 7], ["services", 20, 7], ["users", 22, 7], ["test-support", 26, 7], ["security", 35, 7]], [["machine", 9, 9]], [["name", 4, 3], ["meta", 5, 3], ["nodes", 9, 3], ["enableOCR", 47, 3], ["testScript", 49, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/input-remapper.nix", [["maintainers", 6, 5]]);
 const formals$2 = { args: { config: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/input-remapper.nix", [["enable", 20, 24]]);
-const pos$3 = nix.positions(here + "/input-remapper.nix", [["enable", 21, 31]]);
-const pos$4 = nix.positions(here + "/input-remapper.nix", [["xserver", 20, 16], ["input-remapper", 21, 16]]);
-const pos$5 = nix.positions(here + "/input-remapper.nix", [["isNormalUser", 23, 9], ["group", 24, 9]]);
-const pos$6 = nix.positions(here + "/input-remapper.nix", [["sybil", 22, 19]]);
-const pos$7 = nix.positions(here + "/input-remapper.nix", [["users", 22, 13]]);
-const pos$8 = nix.positions(here + "/input-remapper.nix", [["user", 26, 40]]);
-const pos$9 = nix.positions(here + "/input-remapper.nix", [["auto", 26, 35]]);
-const pos$10 = nix.positions(here + "/input-remapper.nix", [["displayManager", 26, 20]]);
-const pos$11 = nix.positions(here + "/input-remapper.nix", [["enable", 36, 9], ["wheelNeedsPassword", 37, 9]]);
-const pos$12 = nix.positions(here + "/input-remapper.nix", [["setuid", 40, 9], ["owner", 41, 9], ["group", 42, 9], ["source", 43, 9]]);
-const pos$13 = nix.positions(here + "/input-remapper.nix", [["pkexec", 39, 25]]);
-const pos$14 = nix.positions(here + "/input-remapper.nix", [["sudo", 35, 16], ["wrappers", 39, 16]]);
-const pos$15 = nix.positions(here + "/input-remapper.nix", [["imports", 15, 7], ["services", 20, 7], ["users", 22, 7], ["test-support", 26, 7], ["security", 35, 7]]);
-const pos$16 = nix.positions(here + "/input-remapper.nix", [["machine", 9, 9]]);
 const formals$3 = { args: { nodes: false }, ellipsis: true };
-const pos$17 = nix.positions(here + "/input-remapper.nix", [["name", 4, 3], ["meta", 5, 3], ["nodes", 9, 3], ["enableOCR", 47, 3], ["testScript", 49, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   return {
-    [nix.POS]: pos$17,
+    [nix.POS]: $pos[16],
     name: "input-remapper",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "LunNova"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$16,
+      [nix.POS]: $pos[15],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config = nix.arg($_1, "config");
         const user = nix.thunk(() => nix.sel(config, "users", "users", "sybil"));
         return {
-          [nix.POS]: pos$15,
+          [nix.POS]: $pos[14],
           imports: nix.thunk(() => [
             nix.path(here, "./common/user-account.nix"),
             nix.path(here, "./common/x11.nix"),
           ]),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$4,
-            xserver: nix.thunk(() => ({ [nix.POS]: pos$2, enable: true })),
-            "input-remapper": nix.thunk(() => ({ [nix.POS]: pos$3, enable: true })),
+            [nix.POS]: $pos[3],
+            xserver: nix.thunk(() => ({ [nix.POS]: $pos[1], enable: true })),
+            "input-remapper": nix.thunk(() => ({ [nix.POS]: $pos[2], enable: true })),
           })),
           users: nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             users: nix.thunk(() => ({
-              [nix.POS]: pos$6,
-              sybil: nix.thunk(() => ({ [nix.POS]: pos$5, isNormalUser: true, group: "wheel" })),
+              [nix.POS]: $pos[5],
+              sybil: nix.thunk(() => ({ [nix.POS]: $pos[4], isNormalUser: true, group: "wheel" })),
             })),
           })),
           "test-support": nix.thunk(() => ({
-            [nix.POS]: pos$10,
+            [nix.POS]: $pos[9],
             displayManager: nix.thunk(() => ({
-              [nix.POS]: pos$9,
-              auto: nix.thunk(() => ({ [nix.POS]: pos$8, user: nix.thunk(() => nix.sel(user, "name")) })),
+              [nix.POS]: $pos[8],
+              auto: nix.thunk(() => ({ [nix.POS]: $pos[7], user: nix.thunk(() => nix.sel(user, "name")) })),
             })),
           })),
           security: nix.thunk(() => ({
-            [nix.POS]: pos$14,
-            sudo: nix.thunk(() => ({ [nix.POS]: pos$11, enable: true, wheelNeedsPassword: false })),
+            [nix.POS]: $pos[13],
+            sudo: nix.thunk(() => ({ [nix.POS]: $pos[10], enable: true, wheelNeedsPassword: false })),
             wrappers: nix.thunk(() => ({
-              [nix.POS]: pos$13,
+              [nix.POS]: $pos[12],
               pkexec: nix.thunk(() => nix.app(nix.sel(pkgs, "lib", "mkForce"), nix.thunk(() => ({
-                  [nix.POS]: pos$12,
+                  [nix.POS]: $pos[11],
                   setuid: true,
                   owner: "root",
                   group: "root",

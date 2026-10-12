@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["repo", 26, 5], ["owner", 27, 5], ["tag", 28, 5], ["hash", 29, 5], ["fetchSubmodules", 30, 5]], [["description", 121, 5], ["homepage", 122, 5], ["license", 123, 5], ["maintainers", 124, 5]], [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["outputs", 33, 3], ["postPatch", 38, 3], ["nativeBuildInputs", 59, 3], ["buildInputs", 71, 3], ["configureFlags", 78, 3], ["preConfigure", 87, 3], ["postInstall", 91, 3], ["postFixup", 110, 3], ["enableParallelBuilding", 118, 3], ["meta", 120, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, perl: false, autoconf: false, automake: false, removeReferencesTo: false, libtool: false, python3: false, flex: false, libevent: false, targetPackages: false, makeWrapper: false, hwloc: false, munge: false, zlib: false, gitMinimal: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["repo", 26, 5], ["owner", 27, 5], ["tag", 28, 5], ["hash", 29, 5], ["fetchSubmodules", 30, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 121, 5], ["homepage", 122, 5], ["license", 123, 5], ["maintainers", 124, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["outputs", 33, 3], ["postPatch", 38, 3], ["nativeBuildInputs", 59, 3], ["buildInputs", 71, 3], ["configureFlags", 78, 3], ["preConfigure", 87, 3], ["postInstall", 91, 3], ["postFixup", 110, 3], ["enableParallelBuilding", 118, 3], ["meta", 120, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const zlib = nix.arg($, "zlib");
   const gitMinimal = nix.arg($, "gitMinimal");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "pmix",
       version: "6.1.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           repo: "openpmix",
           owner: "openpmix",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -70,7 +68,7 @@ substituteInPlace "\${!outputDev}"/share/pmix/pmixcc-wrapper-data.txt \\
       postFixup: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(lib, "elem"), "dev", nix.thunk(() => nix.sel(finalAttrs, "outputs")))), "# The path to the pmixcc-wrapper-data.txt is hard coded and\n# points to $out instead of dev. Use wrapper to fix paths.\nwrapProgram \"${!outputDev}\"/bin/pmixcc \\\n  --set PMIX_INCLUDEDIR \"${!outputDev}\"/include \\\n  --set PMIX_PKGDATADIR \"${!outputDev}\"/share/pmix\n")),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Process Management Interface for HPC environments",
         homepage: "https://openpmix.github.io/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

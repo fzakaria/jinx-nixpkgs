@@ -2,8 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/qtdeclarative.nix", [[["pname", 9, 3], ["propagatedBuildInputs", 10, 3], ["nativeBuildInputs", 14, 3], ["outputs", 15, 3], ["preConfigure", 20, 3], ["configureFlags", 23, 3], ["devTools", 24, 3]]]);
 const formals$1 = { args: { qtModule: false, python3: false, qtbase: false, qtsvg: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/qtdeclarative.nix", [["pname", 9, 3], ["propagatedBuildInputs", 10, 3], ["nativeBuildInputs", 14, 3], ["outputs", 15, 3], ["preConfigure", 20, 3], ["configureFlags", 23, 3], ["devTools", 24, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const qtbase = nix.arg($, "qtbase");
   const qtsvg = nix.arg($, "qtsvg");
   return nix.app(qtModule, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       pname: "qtdeclarative",
       propagatedBuildInputs: nix.thunk(() => [qtbase, qtsvg]),
       nativeBuildInputs: nix.thunk(() => [python3]),

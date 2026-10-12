@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 16, 5], ["version", 17, 26], ["hash", 18, 5]], [["LC_ALL", 21, 7]], [["description", 31, 5], ["homepage", 32, 5], ["license", 33, 5], ["maintainers", 34, 5], ["knownVulnerabilities", 35, 5]], [["pname", 11, 3], ["version", 12, 3], ["format", 13, 3], ["src", 15, 3], ["env", 21, 3], ["buildInputs", 22, 3], ["checkPhase", 24, 3], ["propagatedBuildInputs", 28, 3], ["meta", 30, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, glibcLocales: false, python: false, tqdm: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 16, 5], ["version", 17, 26], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["LC_ALL", 21, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 31, 5], ["homepage", 32, 5], ["license", 33, 5], ["maintainers", 34, 5], ["knownVulnerabilities", 35, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 11, 3], ["version", 12, 3], ["format", 13, 3], ["src", 15, 3], ["env", 21, 3], ["buildInputs", 22, 3], ["checkPhase", 24, 3], ["propagatedBuildInputs", 28, 3], ["meta", 30, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,23 +14,23 @@ export default nix.lambda((args) => (() => {
   const python = nix.arg($, "python");
   const tqdm = nix.arg($, "tqdm");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "pypdf3",
       version: "1.0.6",
       format: "setuptools",
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "PyPDF3",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-yUbzJzQZ43JY415yJz9JkEqxVyPYenYcERXvmXmfjF8=",
         })))),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, LC_ALL: "en_US.UTF-8" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], LC_ALL: "en_US.UTF-8" })),
       buildInputs: nix.thunk(() => [glibcLocales]),
       checkPhase: nix.thunk(() => nix.str`${nix.sel(python, "interpreter")} -m unittest tests/*.py
 `),
       propagatedBuildInputs: nix.thunk(() => [tqdm]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Pure-Python library built as a PDF toolkit",
         homepage: "https://github.com/sfneal/PyPDF3",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

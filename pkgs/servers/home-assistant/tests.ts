@@ -2,12 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/tests.nix", [[["alexa", 14, 5], ["analytics", 19, 5], ["anthropic", 20, 5], ["assist_pipeline", 21, 5], ["automation", 22, 5], ["axis", 23, 5], ["backup", 24, 5], ["bluetooth", 25, 5], ["braviatv", 26, 5], ["bthome", 27, 5], ["camera", 28, 5], ["deconz", 29, 5], ["elkm1", 30, 5], ["emulated_hue", 31, 5], ["esphome", 34, 5], ["gardena_bluetooth", 35, 5], ["go2rtc", 36, 5], ["google_assistant_sdk", 39, 5], ["google_drive", 40, 5], ["google_generative_ai_conversation", 41, 5], ["govee_ble", 42, 5], ["hassio", 45, 5], ["homeassistant_connect_zbt2", 46, 5], ["homeassistant_hardware", 47, 5], ["homeassistant_sky_connect", 48, 5], ["homeassistant_yellow", 49, 5], ["homekit", 50, 5], ["http", 51, 5], ["influxdb", 56, 5], ["intelliclima", 57, 5], ["logbook", 58, 5], ["lovelace", 59, 5], ["lutron_caseta", 62, 5], ["mastodon", 63, 5], ["matter", 66, 5], ["miele", 67, 5], ["mobile_app", 68, 5], ["mopeka", 69, 5], ["mqtt", 70, 5], ["nest", 71, 5], ["ollama", 74, 5], ["onboarding", 75, 5], ["open_router", 82, 5], ["osoenergy", 83, 5], ["raspberry_pi", 87, 5], ["reolink", 90, 5], ["rss_feed_template", 91, 5], ["script", 94, 5], ["shelly", 95, 5], ["songpal", 96, 5], ["sonos", 99, 5], ["swiss_public_transport", 100, 5], ["system_log", 101, 5], ["unifi_discovery", 104, 5], ["xiaomi_miio", 105, 5], ["yolink", 108, 5], ["zeroconf", 109, 5], ["zha", 110, 5], ["zwave_js", 111, 5]], [["ecovacs", 115, 5], ["jellyfin", 121, 5], ["minecraft_server", 127, 5], ["systemmonitor", 134, 5]], [["conversation", 141, 5], ["homeassistant_connect_zbt2", 145, 5], ["homeassistant", 149, 5], ["zeroconf", 153, 5]], [["broken", 182, 7], ["platforms", 184, 7]], [["pname", 162, 5], ["pyproject", 163, 5], ["dontBuild", 165, 5], ["dontInstall", 166, 5], ["nativeCheckInputs", 168, 5], ["disabledTests", 173, 5], ["disabledTestPaths", 174, 5], ["dontUsePytestXdist", 177, 5], ["enabledTestPaths", 179, 5], ["meta", 181, 5]]]);
 const formals$1 = { args: { lib: false, stdenv: false, "home-assistant": false, writableTmpDirAsHomeHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/tests.nix", [["alexa", 14, 5], ["analytics", 19, 5], ["anthropic", 20, 5], ["assist_pipeline", 21, 5], ["automation", 22, 5], ["axis", 23, 5], ["backup", 24, 5], ["bluetooth", 25, 5], ["braviatv", 26, 5], ["bthome", 27, 5], ["camera", 28, 5], ["deconz", 29, 5], ["elkm1", 30, 5], ["emulated_hue", 31, 5], ["esphome", 34, 5], ["gardena_bluetooth", 35, 5], ["go2rtc", 36, 5], ["google_assistant_sdk", 39, 5], ["google_drive", 40, 5], ["google_generative_ai_conversation", 41, 5], ["govee_ble", 42, 5], ["hassio", 45, 5], ["homeassistant_connect_zbt2", 46, 5], ["homeassistant_hardware", 47, 5], ["homeassistant_sky_connect", 48, 5], ["homeassistant_yellow", 49, 5], ["homekit", 50, 5], ["http", 51, 5], ["influxdb", 56, 5], ["intelliclima", 57, 5], ["logbook", 58, 5], ["lovelace", 59, 5], ["lutron_caseta", 62, 5], ["mastodon", 63, 5], ["matter", 66, 5], ["miele", 67, 5], ["mobile_app", 68, 5], ["mopeka", 69, 5], ["mqtt", 70, 5], ["nest", 71, 5], ["ollama", 74, 5], ["onboarding", 75, 5], ["open_router", 82, 5], ["osoenergy", 83, 5], ["raspberry_pi", 87, 5], ["reolink", 90, 5], ["rss_feed_template", 91, 5], ["script", 94, 5], ["shelly", 95, 5], ["songpal", 96, 5], ["sonos", 99, 5], ["swiss_public_transport", 100, 5], ["system_log", 101, 5], ["unifi_discovery", 104, 5], ["xiaomi_miio", 105, 5], ["yolink", 108, 5], ["zeroconf", 109, 5], ["zha", 110, 5], ["zwave_js", 111, 5]]);
-const pos$2 = nix.positions(here + "/tests.nix", [["ecovacs", 115, 5], ["jellyfin", 121, 5], ["minecraft_server", 127, 5], ["systemmonitor", 134, 5]]);
-const pos$3 = nix.positions(here + "/tests.nix", [["conversation", 141, 5], ["homeassistant_connect_zbt2", 145, 5], ["homeassistant", 149, 5], ["zeroconf", 153, 5]]);
-const pos$4 = nix.positions(here + "/tests.nix", [["broken", 182, 7], ["platforms", 184, 7]]);
-const pos$5 = nix.positions(here + "/tests.nix", [["pname", 162, 5], ["pyproject", 163, 5], ["dontBuild", 165, 5], ["dontInstall", 166, 5], ["nativeCheckInputs", 168, 5], ["disabledTests", 173, 5], ["disabledTestPaths", 174, 5], ["dontUsePytestXdist", 177, 5], ["enabledTestPaths", 179, 5], ["meta", 181, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const extraCheckInputs = nix.thunk(() => (() => {
     const w = nix.withScope(nix.thunk(() => nix.sel(home_assistant, "python3Packages")), null);
     return {
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       alexa: nix.thunk(() => nix.app(concatMap, getComponentDeps, nix.thunk(() => ["cloud", "frontend", "stream"]))),
       analytics: nix.thunk(() => nix.app(getComponentDeps, "homeassistant_hardware")),
       anthropic: nix.thunk(() => nix.concat(nix.app(getComponentDeps, "ai_task"), nix.app(getComponentDeps, "openai_conversation"))),
@@ -87,7 +83,7 @@ export default nix.lambda((args) => (() => {
     };
   })());
   const extraDisabledTestPaths = nix.thunk(() => ({
-    [nix.POS]: pos$2,
+    [nix.POS]: $pos[1],
     ecovacs: nix.thunk(() => [
       "tests/components/ecovacs/test_vacuum.py::test_clean_area_room_from_not_current_map",
       "tests/components/ecovacs/test_vacuum.py::test_clean_area_no_map",
@@ -109,14 +105,14 @@ export default nix.lambda((args) => (() => {
     ]),
   }));
   const extraDisabledTests = nix.thunk(() => ({
-    [nix.POS]: pos$3,
+    [nix.POS]: $pos[2],
     conversation: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isAarch64")), nix.thunk(() => ["test_error_no_device_on_floor"]))),
     homeassistant_connect_zbt2: nix.thunk(() => ["test_usb_device_reactivity"]),
     homeassistant: nix.thunk(() => ["test_deprecated_installation_issue_core"]),
     zeroconf: nix.thunk(() => ["test_subscribe_discovery"]),
   }));
   return nix.app(nix.sel(lib, "genAttrs"), nix.thunk(() => nix.sel(home_assistant, "supportedComponentsWithTests")), (component) => nix.app(nix.sel(home_assistant, "overridePythonAttrs"), (old) => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname: nix.thunk(() => nix.str`homeassistant-test-${component}`),
         pyproject: false,
         dontBuild: true,
@@ -127,7 +123,7 @@ export default nix.lambda((args) => (() => {
         dontUsePytestXdist: true,
         enabledTestPaths: nix.thunk(() => [nix.thunk(() => nix.str`tests/components/${component}`)]),
         meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           broken: nix.thunk(() => nix.app(nix.sel(lib, "elem"), component, [])),
           platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
         })),

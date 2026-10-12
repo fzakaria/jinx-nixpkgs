@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]], [["NIX_CFLAGS_COMPILE", 40, 5], ["OPENSSL_PATH", 44, 5]], [["CPP", 47, 5]], [["description", 66, 5], ["homepage", 67, 5], ["changelog", 68, 5], ["license", 69, 5], ["maintainers", 70, 5]], [["pname", 13, 3], ["version", 14, 3], ["pyproject", 15, 3], ["src", 17, 3], ["postPatch", 25, 3], ["build-system", 33, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 37, 3], ["env", 39, 3], ["nativeCheckInputs", 50, 3], ["disabledTests", 55, 3], ["__darwinAllowLocalNetworking", 61, 3], ["pythonImportsCheck", 63, 3], ["meta", 65, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitLab: false, openssl: false, pytestCheckHook: false, setuptools: false, swig: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["NIX_CFLAGS_COMPILE", 40, 5], ["OPENSSL_PATH", 44, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["CPP", 47, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 66, 5], ["homepage", 67, 5], ["changelog", 68, 5], ["license", 69, 5], ["maintainers", 70, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 13, 3], ["version", 14, 3], ["pyproject", 15, 3], ["src", 17, 3], ["postPatch", 25, 3], ["build-system", 33, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 37, 3], ["env", 39, 3], ["nativeCheckInputs", 50, 3], ["disabledTests", 55, 3], ["__darwinAllowLocalNetworking", 61, 3], ["pythonImportsCheck", 63, 3], ["meta", 65, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const setuptools = nix.arg($, "setuptools");
   const swig = nix.arg($, "swig");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "m2crypto",
       version: "0.50.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "m2crypto",
           repo: "m2crypto",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -36,14 +32,14 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [swig]),
       buildInputs: nix.thunk(() => [openssl]),
       env: nix.thunk(() => nix.update({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => nix.builtins.toString(nix.thunk(() => [
               "-Wno-error=implicit-function-declaration",
               "-Wno-error=incompatible-pointer-types",
             ]))))),
         OPENSSL_PATH: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => nix.str`${nix.sel(openssl, "dev")}`))),
       }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(stdenv, "hostPlatform"), nix.sel(stdenv, "buildPlatform"))), nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           CPP: nix.thunk(() => nix.str`${nix.sel(stdenv, "cc", "targetPrefix")}cpp`),
         }))))),
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook, openssl]),
@@ -51,7 +47,7 @@ export default nix.lambda((args) => (() => {
       __darwinAllowLocalNetworking: true,
       pythonImportsCheck: nix.thunk(() => ["M2Crypto"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Python crypto and SSL toolkit",
         homepage: "https://gitlab.com/m2crypto/m2crypto",
         changelog: nix.thunk(() => nix.str`https://gitlab.com/m2crypto/m2crypto/-/tags/${nix.sel(finalAttrs, "version")}`),

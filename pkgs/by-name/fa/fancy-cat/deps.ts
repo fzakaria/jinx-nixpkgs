@@ -2,17 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/deps.nix", [[["url", 13, 7], ["hash", 14, 7]], [["name", 11, 5], ["path", 12, 5]], [["url", 20, 7], ["hash", 21, 7]], [["name", 18, 5], ["path", 19, 5]], [["url", 27, 7], ["rev", 28, 7], ["hash", 29, 7]], [["name", 25, 5], ["path", 26, 5]], [["url", 35, 7], ["hash", 36, 7]], [["name", 33, 5], ["path", 34, 5]], [["url", 42, 7], ["hash", 43, 7]], [["name", 40, 5], ["path", 41, 5]]]);
 const formals$1 = { args: { linkFarm: false, fetchzip: false, fetchgit: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/deps.nix", [["url", 13, 7], ["hash", 14, 7]]);
-const pos$2 = nix.positions(here + "/deps.nix", [["name", 11, 5], ["path", 12, 5]]);
-const pos$3 = nix.positions(here + "/deps.nix", [["url", 20, 7], ["hash", 21, 7]]);
-const pos$4 = nix.positions(here + "/deps.nix", [["name", 18, 5], ["path", 19, 5]]);
-const pos$5 = nix.positions(here + "/deps.nix", [["url", 27, 7], ["rev", 28, 7], ["hash", 29, 7]]);
-const pos$6 = nix.positions(here + "/deps.nix", [["name", 25, 5], ["path", 26, 5]]);
-const pos$7 = nix.positions(here + "/deps.nix", [["url", 35, 7], ["hash", 36, 7]]);
-const pos$8 = nix.positions(here + "/deps.nix", [["name", 33, 5], ["path", 34, 5]]);
-const pos$9 = nix.positions(here + "/deps.nix", [["url", 42, 7], ["hash", 43, 7]]);
-const pos$10 = nix.positions(here + "/deps.nix", [["name", 40, 5], ["path", 41, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,47 +12,47 @@ export default nix.lambda((args) => (() => {
   const fetchgit = nix.arg($, "fetchgit");
   return nix.app(linkFarm, "zig-packages", nix.thunk(() => [
       nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         name: "fastb64z-1.0.0-x5LyQZ2gAAAYQrdQBKuqfNOY0beaxhunrksEtUOmIjhq",
         path: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             url: "https://github.com/freref/fastb64z/archive/3defc5d33162670c28e42af073cf9bc003017da6.tar.gz",
             hash: "sha256-QaYkoKL2VzY/KKI1HfLuPf6RK54WqkBxkw5+Jc+WRkM=",
           })))),
       })),
       nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         name: "fzwatch-0.2.2-6qM2ONQzAACLaMFX3DGopE-Y6etVZNn8kDh_4LhmWAMp",
         path: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: "https://github.com/freref/fzwatch/archive/eab2fde9ab2a8fd721d4af67e78308fb6b522a16.tar.gz",
             hash: "sha256-PTBQGsmdlhsYWbvfrSBoxElWCTdA1bCeYeDywDOdGDA=",
           })))),
       })),
       nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         name: "uucode-0.1.0-ZZjBPj96QADXyt5sqwBJUnhaDYs_qBeeKijZvlRa0eqM",
         path: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             url: "https://github.com/jacobsandlund/uucode",
             rev: "5f05f8f83a75caea201f12cc8ea32a2d82ea9732",
             hash: "sha256-sHPh+TQSdUGus/QTbj7KSJJkTuNTrK4VNmQDjS30Lf8=",
           })))),
       })),
       nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         name: "vaxis-0.5.1-BWNV_LosCQAGmCCNOLljCIw6j6-yt53tji6n6rwJ2BhS",
         path: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             url: "https://github.com/rockorager/libvaxis/archive/7dbb9fd3122e4ffad262dd7c151d80d863b68558.tar.gz",
             hash: "sha256-zTyrZrIffM+GJIt973tKDeWHmOCwbn7KLDdQxSiK00Y=",
           })))),
       })),
       nix.thunk(() => ({
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         name: "zigimg-0.1.0-8_eo2vHnEwCIVW34Q14Ec-xUlzIoVg86-7FU2ypPtxms",
         path: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-            [nix.POS]: pos$9,
+            [nix.POS]: $pos[8],
             url: "https://github.com/ivanstepanovftw/zigimg/archive/d7b7ab0ba0899643831ef042bd73289510b39906.tar.gz",
             hash: "sha256-vkcTloGX+vRw7e6GYJLO9eocYaEOYjXYE0dT7jscZ4A=",
           })))),

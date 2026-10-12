@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 31, 5], ["repo", 32, 5], ["tag", 33, 5], ["hash", 34, 5], ["fetchSubmodules", 35, 5]], [["LIT_FILTER_OUT", 73, 7]], [["updateScript", 177, 5], ["llvm", 178, 5], ["sv-lang", 179, 5]], [["description", 183, 5], ["homepage", 184, 5], ["license", 185, 5], ["maintainers", 186, 5], ["platforms", 191, 5]], [["pname", 28, 3], ["version", 29, 3], ["src", 30, 3], ["requiredSystemFeatures", 38, 3], ["__structuredAttrs", 40, 3], ["nativeBuildInputs", 42, 3], ["buildInputs", 50, 3], ["cmakeFlags", 60, 3], ["env", 73, 3], ["postPatch", 111, 3], ["doCheck", 141, 3], ["checkTarget", 142, 3], ["doInstallCheck", 144, 3], ["versionCheckProgram", 145, 3], ["versionCheckProgramArg", 146, 3], ["outputs", 148, 3], ["postFixup", 159, 3], ["postInstall", 161, 3], ["passthru", 176, 3], ["meta", 182, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, cmake: false, coreutils: false, python3: false, git: false, fetchFromGitHub: false, ninja: false, lit: false, z3: false, fmt: false, boost: false, mimalloc: false, callPackage: false, versionCheckHook: false, enableSlangFrontend: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 31, 5], ["repo", 32, 5], ["tag", 33, 5], ["hash", 34, 5], ["fetchSubmodules", 35, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["LIT_FILTER_OUT", 73, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 177, 5], ["llvm", 178, 5], ["sv-lang", 179, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 183, 5], ["homepage", 184, 5], ["license", 185, 5], ["maintainers", 186, 5], ["platforms", 191, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 28, 3], ["version", 29, 3], ["src", 30, 3], ["requiredSystemFeatures", 38, 3], ["__structuredAttrs", 40, 3], ["nativeBuildInputs", 42, 3], ["buildInputs", 50, 3], ["cmakeFlags", 60, 3], ["env", 73, 3], ["postPatch", 111, 3], ["doCheck", 141, 3], ["checkTarget", 142, 3], ["doInstallCheck", 144, 3], ["versionCheckProgram", 145, 3], ["versionCheckProgramArg", 146, 3], ["outputs", 148, 3], ["postFixup", 159, 3], ["postInstall", 161, 3], ["passthru", 176, 3], ["meta", 182, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,11 +27,11 @@ export default nix.lambda((args) => (() => {
   const circt_llvm = nix.thunk(() => nix.app(callPackage, nix.path(here, "./circt-llvm.nix"), nix.thunk(() => ({}))));
   const circt_sv_lang = nix.thunk(() => nix.app(callPackage, nix.path(here, "./sv-lang.nix"), nix.thunk(() => ({}))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "circt",
       version: "1.160.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "llvm",
           repo: "circt",
           tag: nix.thunk(() => nix.str`firtool-${nix.sel(finalAttrs, "version")}`),
@@ -56,7 +52,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "CIRCT_SLANG_BUILD_FROM_SOURCE", false)),
       ]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         LIT_FILTER_OUT: nix.thunk(() => (() => {
           const lit_filters = nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), nix.thunk(() => ["CIRCT :: Target/ExportSystemC/.*\\.mlir"])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.eq(nix.sel(stdenv, "hostPlatform", "system"), "x86_64-darwin")), nix.thunk(() => [
               "CIRCT :: Target/ExportSMTLIB/.*\\.mlir",
@@ -125,13 +121,13 @@ substituteInPlace $dev/lib/cmake/circt/CIRCTTargets-release.cmake \\
   --replace-fail "\\\${_IMPORT_PREFIX}/lib" "$lib/lib"
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.path(here, "./update.sh"),
         llvm: circt_llvm,
         "sv-lang": circt_sv_lang,
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Circuit IR compilers and tools",
         homepage: "https://circt.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

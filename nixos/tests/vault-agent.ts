@@ -2,62 +2,47 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/vault-agent.nix", [[["address", 9, 15]], [["token_file_path", 16, 24]], [["type", 15, 17], ["config", 16, 17]], [["method", 13, 13]], [["contents", 24, 13], ["perms", 29, 13], ["destination", 30, 13]], [["vault", 9, 9], ["auto_auth", 11, 9], ["template", 22, 9]], [["settings", 8, 46]], [["example", 8, 38]], [["instances", 8, 28]], [["enable", 36, 9], ["dev", 37, 9], ["devRootTokenID", 38, 9]], [["vault-agent", 8, 16], ["vault", 35, 16]], [["VAULT_ADDR", 44, 11], ["VAULT_TOKEN", 45, 11]], [["systemPackages", 42, 9], ["variables", 43, 9]], [["services", 8, 7], ["environment", 41, 7]], [["machine", 5, 9]], [["name", 3, 3], ["nodes", 5, 3], ["testScript", 50, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
 const formals$2 = { args: { config: false, pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/vault-agent.nix", [["address", 9, 15]]);
-const pos$2 = nix.positions(here + "/vault-agent.nix", [["token_file_path", 16, 24]]);
-const pos$3 = nix.positions(here + "/vault-agent.nix", [["type", 15, 17], ["config", 16, 17]]);
-const pos$4 = nix.positions(here + "/vault-agent.nix", [["method", 13, 13]]);
-const pos$5 = nix.positions(here + "/vault-agent.nix", [["contents", 24, 13], ["perms", 29, 13], ["destination", 30, 13]]);
-const pos$6 = nix.positions(here + "/vault-agent.nix", [["vault", 9, 9], ["auto_auth", 11, 9], ["template", 22, 9]]);
-const pos$7 = nix.positions(here + "/vault-agent.nix", [["settings", 8, 46]]);
-const pos$8 = nix.positions(here + "/vault-agent.nix", [["example", 8, 38]]);
-const pos$9 = nix.positions(here + "/vault-agent.nix", [["instances", 8, 28]]);
-const pos$10 = nix.positions(here + "/vault-agent.nix", [["enable", 36, 9], ["dev", 37, 9], ["devRootTokenID", 38, 9]]);
-const pos$11 = nix.positions(here + "/vault-agent.nix", [["vault-agent", 8, 16], ["vault", 35, 16]]);
-const pos$12 = nix.positions(here + "/vault-agent.nix", [["VAULT_ADDR", 44, 11], ["VAULT_TOKEN", 45, 11]]);
-const pos$13 = nix.positions(here + "/vault-agent.nix", [["systemPackages", 42, 9], ["variables", 43, 9]]);
-const pos$14 = nix.positions(here + "/vault-agent.nix", [["services", 8, 7], ["environment", 41, 7]]);
-const pos$15 = nix.positions(here + "/vault-agent.nix", [["machine", 5, 9]]);
-const pos$16 = nix.positions(here + "/vault-agent.nix", [["name", 3, 3], ["nodes", 5, 3], ["testScript", 50, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   return {
-    [nix.POS]: pos$16,
+    [nix.POS]: $pos[15],
     name: "vault-agent",
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$15,
+      [nix.POS]: $pos[14],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config = nix.arg($_1, "config");
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$14,
+          [nix.POS]: $pos[13],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$11,
+            [nix.POS]: $pos[10],
             "vault-agent": nix.thunk(() => ({
-              [nix.POS]: pos$9,
+              [nix.POS]: $pos[8],
               instances: nix.thunk(() => ({
-                [nix.POS]: pos$8,
+                [nix.POS]: $pos[7],
                 example: nix.thunk(() => ({
-                  [nix.POS]: pos$7,
+                  [nix.POS]: $pos[6],
                   settings: nix.thunk(() => ({
-                    [nix.POS]: pos$6,
+                    [nix.POS]: $pos[5],
                     vault: nix.thunk(() => ({
-                      [nix.POS]: pos$1,
+                      [nix.POS]: $pos[0],
                       address: nix.thunk(() => nix.sel(config, "environment", "variables", "VAULT_ADDR")),
                     })),
                     auto_auth: nix.thunk(() => [
                       nix.thunk(() => ({
-                        [nix.POS]: pos$4,
+                        [nix.POS]: $pos[3],
                         method: nix.thunk(() => [
                           nix.thunk(() => ({
-                            [nix.POS]: pos$3,
+                            [nix.POS]: $pos[2],
                             type: "token_file",
                             config: nix.thunk(() => ({
-                              [nix.POS]: pos$2,
+                              [nix.POS]: $pos[1],
                               token_file_path: nix.thunk(() => nix.app(nix.sel(pkgs_1, "writeText"), "vault-token", nix.thunk(() => nix.sel(config, "environment", "variables", "VAULT_TOKEN")))),
                             })),
                           })),
@@ -66,7 +51,7 @@ export default nix.lambda((args) => (() => {
                     ]),
                     template: nix.thunk(() => [
                       nix.thunk(() => ({
-                        [nix.POS]: pos$5,
+                        [nix.POS]: $pos[4],
                         contents: "{{- with secret \"secret/example\" }}\n{{ .Data.data.key }}\"\n{{- end }}\n",
                         perms: "0600",
                         destination: "/example",
@@ -77,16 +62,20 @@ export default nix.lambda((args) => (() => {
               })),
             })),
             vault: nix.thunk(() => ({
-              [nix.POS]: pos$10,
+              [nix.POS]: $pos[9],
               enable: true,
               dev: true,
               devRootTokenID: nix.thunk(() => nix.sel(config, "environment", "variables", "VAULT_TOKEN")),
             })),
           })),
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$13,
+            [nix.POS]: $pos[12],
             systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs_1, "vault"))]),
-            variables: nix.thunk(() => ({ [nix.POS]: pos$12, VAULT_ADDR: "http://localhost:8200", VAULT_TOKEN: "root" })),
+            variables: nix.thunk(() => ({
+              [nix.POS]: $pos[11],
+              VAULT_ADDR: "http://localhost:8200",
+              VAULT_TOKEN: "root",
+            })),
           })),
         };
       })(), formals$2),

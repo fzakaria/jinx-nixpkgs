@@ -2,13 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/emulate-app.nix", [[["hw.gpu.enabled", 19, 9]], [["includeEmulator", 37, 5], ["includeSystemImages", 38, 5]], [["cmdLineToolsVersion", 42, 5], ["platformVersions", 43, 5], ["systemImageTypes", 44, 5], ["abiVersions", 45, 5]], [["mainProgram", 201, 5]], [["name", 51, 11], ["buildCommand", 53, 3], ["meta", 200, 3]]]);
 const formals$1 = { args: { composeAndroidPackages: false, stdenv: false, lib: false, runtimeShell: false, meta: false }, ellipsis: false };
 const formals$2 = { args: { name: false, app: true, platformVersion: true, abiVersion: true, systemImageType: true, enableGPU: true, configOptions: true, extraAVDFiles: true, package: true, activity: true, androidUserHome: true, avdHomeDir: true, androidAvdHome: true, deviceName: true, sdkExtraArgs: true, androidAvdFlags: true, androidEmulatorFlags: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/emulate-app.nix", [["hw.gpu.enabled", 19, 9]]);
-const pos$2 = nix.positions(here + "/emulate-app.nix", [["includeEmulator", 37, 5], ["includeSystemImages", 38, 5]]);
-const pos$3 = nix.positions(here + "/emulate-app.nix", [["cmdLineToolsVersion", 42, 5], ["platformVersions", 43, 5], ["systemImageTypes", 44, 5], ["abiVersions", 45, 5]]);
-const pos$4 = nix.positions(here + "/emulate-app.nix", [["mainProgram", 201, 5]]);
-const pos$5 = nix.positions(here + "/emulate-app.nix", [["name", 51, 11], ["buildCommand", 53, 3], ["meta", 200, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,7 +21,7 @@ export default nix.lambda((args) => (() => {
     const abiVersion = nix.argOr($_1, "abiVersion", () => "x86");
     const systemImageType = nix.argOr($_1, "systemImageType", () => "default");
     const enableGPU = nix.argOr($_1, "enableGPU", () => false);
-    const configOptions = nix.argOr($_1, "configOptions", () => nix.app(nix.sel(lib, "optionalAttrs"), enableGPU, nix.thunk(() => nix.app(nix.sel(lib, "warn"), "enableGPU argument is deprecated and will be removed; use configOptions instead", nix.thunk(() => ({ [nix.POS]: pos$1, "hw.gpu.enabled": "yes" }))))));
+    const configOptions = nix.argOr($_1, "configOptions", () => nix.app(nix.sel(lib, "optionalAttrs"), enableGPU, nix.thunk(() => nix.app(nix.sel(lib, "warn"), "enableGPU argument is deprecated and will be removed; use configOptions instead", nix.thunk(() => ({ [nix.POS]: $pos[0], "hw.gpu.enabled": "yes" }))))));
     const extraAVDFiles = nix.argOr($_1, "extraAVDFiles", () => []);
     const package$ = nix.argOr($_1, "package", () => null);
     const activity = nix.argOr($_1, "activity", () => null);
@@ -36,8 +32,8 @@ export default nix.lambda((args) => (() => {
     const sdkExtraArgs = nix.argOr($_1, "sdkExtraArgs", () => ({}));
     const androidAvdFlags = nix.argOr($_1, "androidAvdFlags", () => null);
     const androidEmulatorFlags = nix.argOr($_1, "androidEmulatorFlags", () => null);
-    const sdkArgs = nix.thunk(() => nix.update({ [nix.POS]: pos$2, includeEmulator: true, includeSystemImages: true }, nix.update(sdkExtraArgs, {
-      [nix.POS]: pos$3,
+    const sdkArgs = nix.thunk(() => nix.update({ [nix.POS]: $pos[1], includeEmulator: true, includeSystemImages: true }, nix.update(sdkExtraArgs, {
+      [nix.POS]: $pos[2],
       cmdLineToolsVersion: "8.0",
       platformVersions: nix.thunk(() => [platformVersion]),
       systemImageTypes: nix.thunk(() => [systemImageType]),
@@ -45,7 +41,7 @@ export default nix.lambda((args) => (() => {
     })));
     const sdk = nix.thunk(() => nix.sel(nix.app(composeAndroidPackages, sdkArgs), "androidsdk"));
     return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         name: name,
         buildCommand: nix.thunk(() => nix.str`mkdir -p $out/bin
 
@@ -167,7 +163,7 @@ ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool(!nix.eq(pa
 EOF
 chmod +x $out/bin/run-test-emulator
 `),
-        meta: nix.thunk(() => nix.update(meta, { [nix.POS]: pos$4, mainProgram: "run-test-emulator" })),
+        meta: nix.thunk(() => nix.update(meta, { [nix.POS]: $pos[3], mainProgram: "run-test-emulator" })),
       })));
   })(), formals$2);
 })(), formals$1);

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 14, 5], ["rev", 15, 5], ["sha256", 16, 5]], [["description", 25, 5], ["mainProgram", 26, 5], ["homepage", 27, 5], ["license", 28, 5], ["maintainers", 29, 5], ["platforms", 30, 5]], [["pname", 9, 3], ["version", 10, 3], ["sourceRoot", 12, 3], ["src", 13, 3], ["nativeBuildInputs", 19, 3], ["meta", 24, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchsvn: false, libsForQt5: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 14, 5], ["rev", 15, 5], ["sha256", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 25, 5], ["mainProgram", 26, 5], ["homepage", 27, 5], ["license", 28, 5], ["maintainers", 29, 5], ["platforms", 30, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["sourceRoot", 12, 3], ["src", 13, 3], ["nativeBuildInputs", 19, 3], ["meta", 24, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const version = "6.61";
       const sourceRoot = nix.thunk(() => nix.str`${nix.sel(src, "name")}/xflr5`);
       const src = nix.thunk(() => nix.app(fetchsvn, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://svn.code.sf.net/p/xflr5/code/trunk",
           rev: "1480",
           sha256: "sha256-Uj6R15OT5i5tAJEYWqyFyN5Z51Wz5RjO26mWC3Y6QAI=",
@@ -28,7 +26,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.sel(libsForQt5, "wrapQtAppsHook")),
       ]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Analysis tool for airfoils, wings and planes",
         mainProgram: "xflr5",
         homepage: "https://sourceforge.net/projects/xflr5/",
@@ -36,7 +34,7 @@ export default nix.lambda((args) => (() => {
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "esclear"))]),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
-      return { [nix.POS]: pos$3, pname, version, sourceRoot, src, nativeBuildInputs, meta };
+      return { [nix.POS]: $pos[2], pname, version, sourceRoot, src, nativeBuildInputs, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

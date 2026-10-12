@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 27, 5], ["repo", 28, 5], ["rev", 29, 5], ["sha256", 30, 5]], [["NIX_CFLAGS_COMPILE", 68, 5]], [["description", 77, 5], ["homepage", 78, 5], ["license", 79, 5], ["platforms", 80, 5], ["maintainers", 81, 5]], [["libuiohook", 84, 18]], [["tests", 84, 12]], [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 38, 3], ["outputs", 53, 3], ["cmakeFlags", 62, 3], ["env", 67, 3], ["postInstall", 71, 3], ["meta", 76, 3], ["passthru", 84, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, nixosTests: false, cmake: false, "pkg-config": false, libx11: false, libxcb: false, libxkbcommon: false, xinput: false, libxt: false, libxtst: false, libxi: false, libxinerama: false, libxext: false, libxdmcp: false, libxau: false, libxkbfile: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 27, 5], ["repo", 28, 5], ["rev", 29, 5], ["sha256", 30, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 68, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 77, 5], ["homepage", 78, 5], ["license", 79, 5], ["platforms", 80, 5], ["maintainers", 81, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["libuiohook", 84, 18]]);
-const pos$5 = nix.positions(here + "/package.nix", [["tests", 84, 12]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 38, 3], ["outputs", 53, 3], ["cmakeFlags", 62, 3], ["env", 67, 3], ["postInstall", 71, 3], ["meta", 76, 3], ["passthru", 84, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const libxau = nix.arg($, "libxau");
   const libxkbfile = nix.arg($, "libxkbfile");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "libuiohook",
       version: "1.2.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "kwhat",
           repo: "libuiohook",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -58,10 +53,10 @@ export default nix.lambda((args) => (() => {
         ]))),
       outputs: nix.thunk(() => ["out", "test"]),
       cmakeFlags: nix.thunk(() => ["-DENABLE_TEST:BOOL=ON"]),
-      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "cc", "isGNU")), nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-std=gnu17" })))),
+      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "cc", "isGNU")), nix.thunk(() => ({ [nix.POS]: $pos[1], NIX_CFLAGS_COMPILE: "-std=gnu17" })))),
       postInstall: "mkdir -p $test/share\ncp ./uiohook_tests $test/share\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "C library to provide global keyboard and mouse hooks from userland",
         homepage: "https://github.com/kwhat/libuiohook",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),
@@ -72,9 +67,9 @@ export default nix.lambda((args) => (() => {
         })()),
       })),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           libuiohook: nix.thunk(() => nix.sel(nixosTests, "libuiohook")),
         })),
       })),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/export-templates-bin.nix", [[["url", 23, 7], ["hash", 24, 15]], [["changelog", 48, 9], ["description", 49, 9], ["homepage", 50, 9], ["license", 51, 9], ["maintainers", 52, 9], ["sourceProvenance", 54, 7]], [["__structuredAttrs", 17, 5], ["pname", 19, 5], ["version", 20, 5], ["src", 22, 5], ["nativeBuildInputs", 27, 5], ["strictDeps", 31, 5], ["unpackPhase", 33, 5], ["installPhase", 39, 5], ["meta", 46, 5]]]);
 const formals$1 = { args: { fetchurl: false, godot: false, hash: false, lib: false, stdenvNoCC: false, unzip: false, version: false, withMono: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/export-templates-bin.nix", [["url", 23, 7], ["hash", 24, 15]]);
-const pos$2 = nix.positions(here + "/export-templates-bin.nix", [["changelog", 48, 9], ["description", 49, 9], ["homepage", 50, 9], ["license", 51, 9], ["maintainers", 52, 9], ["sourceProvenance", 54, 7]]);
-const pos$3 = nix.positions(here + "/export-templates-bin.nix", [["__structuredAttrs", 17, 5], ["pname", 19, 5], ["version", 20, 5], ["src", 22, 5], ["nativeBuildInputs", 27, 5], ["strictDeps", 31, 5], ["unpackPhase", 33, 5], ["installPhase", 39, 5], ["meta", 46, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const version = nix.arg($, "version");
   const withMono = nix.argOr($, "withMono", () => false);
   const self = nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       __structuredAttrs: true,
       pname: nix.thunk(() => nix.str`godot-export-templates${nix.app(nix.sel(lib, "optionalString"), withMono, "-mono")}-bin`),
       version: version,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/godotengine/godot/releases/download/${version}/Godot_v${version}${nix.app(nix.sel(lib, "optionalString"), withMono, "_mono")}_export_templates.tpz`),
           hash: hash,
         })))),
@@ -34,7 +32,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(godot, "meta"));
         return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         changelog: nix.thunk(() => nix.attr(from, "changelog")),
         description: nix.thunk(() => nix.attr(from, "description")),
         homepage: nix.thunk(() => nix.attr(from, "homepage")),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/3.14-html.nix", [[["url", 14, 5], ["sha256", 15, 5]], [["maintainers", 22, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["installPhase", 17, 3], ["meta", 21, 3]]]);
 const formals$1 = { args: { stdenv: false, fetchurl: false, lib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/3.14-html.nix", [["url", 14, 5], ["sha256", 15, 5]]);
-const pos$2 = nix.positions(here + "/3.14-html.nix", [["maintainers", 22, 5]]);
-const pos$3 = nix.positions(here + "/3.14-html.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["installPhase", 17, 3], ["meta", 21, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,17 +11,17 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const lib = nix.arg($, "lib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "python314-docs-html",
       version: "3.14.8",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://www.python.org/ftp/python/doc/3.14.8/python-3.14.8-docs-html.tar.bz2",
           sha256: "sha256-+6/XHOClP7P9hMtWq2YOgTh6iGvT+tqJhkekN7lCxT0=",
         })))),
       installPhase: "mkdir -p $out/share/doc/python314\ncp -R ./ $out/share/doc/python314/html\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
           return [nix.thunk(() => nix.lookup(w, "panicgh"))];

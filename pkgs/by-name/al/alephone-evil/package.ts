@@ -2,27 +2,25 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 9, 5], ["hash", 10, 5]], [["description", 14, 5], ["homepage", 15, 5]], [["pname", 4, 3], ["version", 5, 3], ["desktopName", 6, 3], ["zip", 8, 3], ["meta", 13, 3]]]);
 const formals$1 = { args: { alephone: false, fetchurl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 9, 5], ["hash", 10, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 14, 5], ["homepage", 15, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 4, 3], ["version", 5, 3], ["desktopName", 6, 3], ["zip", 8, 3], ["meta", 13, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const alephone = nix.arg($, "alephone");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(alephone, "makeWrapper"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "marathon-evil",
       version: "0",
       desktopName: "Marathon-Evil",
       zip: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "http://files3.bungie.org/trilogy/MarathonEvil.zip",
           hash: "sha256-Ja3kvg6fCkRWURgw4av1X0iglTkLrozvAqFnceX60SI=",
         })))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "First conversion for Marathon Infinity",
         homepage: "https://alephone.lhowon.org/scenarios.html",
       })),

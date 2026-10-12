@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 12, 5], ["repo", 13, 5], ["tag", 14, 5], ["hash", 15, 5]], [["description", 55, 5], ["homepage", 56, 5], ["license", 57, 5], ["platforms", 58, 5], ["maintainers", 59, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["separateDebugInfo", 18, 3], ["enableParallelBuilding", 19, 3], ["setOutputFlags", 21, 3], ["dontDisableStatic", 22, 3], ["dontAddStaticConfigureFlags", 23, 3], ["configureFlags", 24, 3], ["hardeningDisable", 30, 3], ["configurePlatforms", 33, 3], ["outputs", 35, 3], ["postInstall", 42, 3], ["meta", 54, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 12, 5], ["repo", 13, 5], ["tag", 14, 5], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 55, 5], ["homepage", 56, 5], ["license", 57, 5], ["platforms", 58, 5], ["maintainers", 59, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["separateDebugInfo", 18, 3], ["enableParallelBuilding", 19, 3], ["setOutputFlags", 21, 3], ["dontDisableStatic", 22, 3], ["dontAddStaticConfigureFlags", 23, 3], ["configureFlags", 24, 3], ["hardeningDisable", 30, 3], ["configurePlatforms", 33, 3], ["outputs", 35, 3], ["postInstall", 42, 3], ["meta", 54, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,11 +11,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "liburing",
       version: "2.14",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "axboe",
           repo: "liburing",
           tag: nix.thunk(() => nix.str`liburing-${nix.sel(finalAttrs, "version")}`),
@@ -46,7 +44,7 @@ for file in $(find ./examples -executable -type f); do
 done
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Userspace library for the Linux io_uring API",
         homepage: "https://github.com/axboe/liburing",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21")),

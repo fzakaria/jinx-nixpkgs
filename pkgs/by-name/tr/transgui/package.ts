@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 26, 5], ["repo", 27, 5], ["rev", 28, 5], ["hash", 29, 5]], [["NIX_LDFLAGS", 50, 7], ["LCL_PLATFORM", 74, 7]], [["name", 77, 5], ["exec", 78, 5], ["icon", 79, 5], ["type", 80, 5], ["comment", 81, 5], ["desktopName", 82, 5], ["genericName", 83, 5], ["categories", 84, 5], ["startupNotify", 90, 5], ["mimeTypes", 91, 5]], [["tagPrefix", 107, 5]], [["updateScript", 106, 12]], [["description", 111, 5], ["homepage", 112, 5], ["license", 113, 5], ["maintainers", 114, 5], ["mainProgram", 115, 5], ["platforms", 116, 5]], [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 36, 3], ["env", 50, 3], ["postPatch", 56, 3], ["preBuild", 63, 3], ["makeFlags", 68, 3], ["desktopItem", 76, 3], ["postInstall", 97, 3], ["passthru", 106, 3], ["meta", 110, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, "pkg-config": false, makeDesktopItem: false, unzip: false, fpc: false, lazarus: false, libx11: false, glib: false, gtk2: false, "gdk-pixbuf": false, pango: false, atk: false, cairo: false, openssl: false, unstableGitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 26, 5], ["repo", 27, 5], ["rev", 28, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_LDFLAGS", 50, 7], ["LCL_PLATFORM", 74, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 77, 5], ["exec", 78, 5], ["icon", 79, 5], ["type", 80, 5], ["comment", 81, 5], ["desktopName", 82, 5], ["genericName", 83, 5], ["categories", 84, 5], ["startupNotify", 90, 5], ["mimeTypes", 91, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tagPrefix", 107, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["updateScript", 106, 12]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 111, 5], ["homepage", 112, 5], ["license", 113, 5], ["maintainers", 114, 5], ["mainProgram", 115, 5], ["platforms", 116, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 36, 3], ["env", 50, 3], ["postPatch", 56, 3], ["preBuild", 63, 3], ["makeFlags", 68, 3], ["desktopItem", 76, 3], ["postInstall", 97, 3], ["passthru", 106, 3], ["meta", 110, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const pname = "transgui";
       const version = "5.18.0-unstable-2026-02-24";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "transmission-remote-gui",
           repo: "transgui",
           rev: "da71b860d4920f7ab847a48bd8d804725ddbad7b",
@@ -55,7 +49,7 @@ export default nix.lambda((args) => (() => {
         openssl,
       ]);
       const env = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_LDFLAGS: nix.thunk(() => nix.str`-L${nix.app(nix.sel(lib, "getLib"), nix.thunk(() => nix.sel(stdenv, "cc", "cc")))}/lib -lX11 -lglib-2.0 -lgtk-x11-2.0
 -lgdk-x11-2.0 -lgdk_pixbuf-2.0 -lpango-1.0 -latk-1.0 -lcairo
 -lc -lcrypto
@@ -68,7 +62,7 @@ lazbuild -B transgui.lpr --lazarusdir=${lazarus}/share/lazarus
 `);
       const makeFlags = nix.thunk(() => ["FPC=fpc", "PP=fpc", "INSTALL_PREFIX=$(out)"]);
       const desktopItem = nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           name: pname,
           exec: nix.thunk(() => nix.str`${pname} %U`),
           icon: pname,
@@ -82,11 +76,11 @@ lazbuild -B transgui.lpr --lazarusdir=${lazarus}/share/lazarus
         }))));
       const postInstall = "mkdir -p \"$out/share/applications\"\ncp $desktopItem/share/applications/* $out/share/applications\nmkdir -p \"$out/share/icons/hicolor/48x48/apps\"\ncp transgui.png \"$out/share/icons/hicolor/48x48/apps\"\nmkdir -p \"$out/share/transgui\"\ncp -r \"./lang\" \"$out/share/transgui\"\n";
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$5,
-        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: pos$4, tagPrefix: "v" })))),
+        [nix.POS]: $pos[4],
+        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[3], tagPrefix: "v" })))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Cross platform front-end for the Transmission BitTorrent client",
         homepage: "https://sourceforge.net/p/transgui",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
@@ -98,7 +92,7 @@ lazbuild -B transgui.lpr --lazarusdir=${lazarus}/share/lazarus
         platforms: nix.thunk(() => ["x86_64-linux"]),
       }));
       return {
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         pname,
         version,
         src,

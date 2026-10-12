@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5], ["leaveDotGit", 18, 5]], [["description", 85, 5], ["homepage", 86, 5], ["changelog", 87, 5], ["license", 88, 5], ["maintainers", 89, 5], ["mainProgram", 90, 5]], [["pname", 9, 3], ["version", 10, 3], ["pyproject", 11, 3], ["src", 13, 3], ["pythonRelaxDeps", 21, 3], ["build-system", 30, 3], ["dependencies", 35, 3], ["nativeCheckInputs", 65, 3], ["pythonImportsCheck", 75, 3], ["disabledTests", 77, 3], ["__darwinAllowLocalNetworking", 82, 3], ["meta", 84, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, git: false, python3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5], ["leaveDotGit", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 85, 5], ["homepage", 86, 5], ["changelog", 87, 5], ["license", 88, 5], ["maintainers", 89, 5], ["mainProgram", 90, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["pyproject", 11, 3], ["src", 13, 3], ["pythonRelaxDeps", 21, 3], ["build-system", 30, 3], ["dependencies", 35, 3], ["nativeCheckInputs", 65, 3], ["pythonImportsCheck", 75, 3], ["disabledTests", 77, 3], ["__darwinAllowLocalNetworking", 82, 3], ["meta", 84, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,12 +12,12 @@ export default nix.lambda((args) => (() => {
   const git = nix.arg($, "git");
   const python3 = nix.arg($, "python3");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "vunnel",
       version: "0.64.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "anchore",
           repo: "vunnel",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -81,7 +79,7 @@ export default nix.lambda((args) => (() => {
       disabledTests: nix.thunk(() => ["test_status"]),
       __darwinAllowLocalNetworking: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Tool for collecting vulnerability data from various sources",
         homepage: "https://github.com/anchore/vunnel",
         changelog: nix.thunk(() => nix.str`https://github.com/anchore/vunnel/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

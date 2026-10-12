@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["packages", 19, 9], ["targetPackages", 20, 9]], [["owner", 30, 5], ["repo", 31, 5], ["rev", 32, 5], ["hash", 33, 5]], [["updateScript", 60, 5]], [["homepage", 64, 5], ["description", 65, 5], ["license", 66, 5], ["maintainers", 67, 5], ["mainProgram", 71, 5]], [["pname", 27, 11], ["dotnet-sdk", 27, 17], ["dotnet-runtime", 27, 28], ["src", 29, 3], ["version", 36, 3], ["projectFile", 37, 3], ["useDotnetFromEnv", 38, 3], ["nugetDeps", 39, 3], ["nativeBuildInputs", 41, 3], ["postPatch", 43, 3], ["dotnetFlags", 49, 3], ["dotnetInstallFlags", 55, 3], ["passthru", 59, 3], ["meta", 63, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, buildDotnetModule: false, dotnetCorePackages: false, jq: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["packages", 19, 9], ["targetPackages", 20, 9]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 30, 5], ["repo", 31, 5], ["rev", 32, 5], ["hash", 33, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 60, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 64, 5], ["description", 65, 5], ["license", 66, 5], ["maintainers", 67, 5], ["mainProgram", 71, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 27, 11], ["dotnet-sdk", 27, 17], ["dotnet-runtime", 27, 28], ["src", 29, 3], ["version", 36, 3], ["projectFile", 37, 3], ["useDotnetFromEnv", 38, 3], ["nugetDeps", 39, 3], ["nativeBuildInputs", 41, 3], ["postPatch", 43, 3], ["dotnetFlags", 49, 3], ["dotnetInstallFlags", 55, 3], ["passthru", 59, 3], ["meta", 63, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,7 +21,7 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.lookup(w, "sdk_8_0")),
         ])));
       return {
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       packages: nix.thunk(() => nix.attr(from, "packages")),
       targetPackages: nix.thunk(() => nix.attr(from, "targetPackages")),
     };
@@ -33,12 +29,12 @@ export default nix.lambda((args) => (() => {
   })());
   const dotnet_runtime = nix.thunk(() => nix.sel(dotnetCorePackages, "runtime_9_0"));
   return nix.app(buildDotnetModule, nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: pname,
       "dotnet-sdk": dotnet_sdk,
       "dotnet-runtime": dotnet_runtime,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "dotnet",
           repo: "razor",
           rev: "763a361771dc544744cc5c19ae32d4878b4e0892",
@@ -52,9 +48,9 @@ export default nix.lambda((args) => (() => {
       postPatch: "# Upstream uses rollForward = latestPatch, which pins to an *exact* .NET SDK version.\njq '.sdk.rollForward = \"latestMinor\"' < global.json > global.json.tmp\nmv global.json.tmp global.json\n",
       dotnetFlags: nix.thunk(() => ["-p:EnableWindowsTargeting=false", "-p:PublishReadyToRun=false"]),
       dotnetInstallFlags: nix.thunk(() => ["-p:InformationalVersion=$version"]),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$3, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[2], updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://github.com/dotnet/razor",
         description: "Razor language server",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

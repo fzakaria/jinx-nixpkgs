@@ -2,11 +2,8 @@
 import * as nix from "../../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["swift-testing", 19, 29]], [["owner", 32, 5], ["repo", 33, 5], ["tag", 34, 5], ["hash", 35, 43]], [["description", 82, 5], ["homepage", 83, 5], ["platforms", 84, 5], ["license", 85, 5], ["maintainers", 86, 5]], [["pname", 23, 3], ["version", 24, 3], ["outputs", 26, 3], ["src", 31, 3], ["patches", 38, 3], ["postPatch", 40, 3], ["strictDeps", 45, 3], ["cmakeFlags", 47, 3], ["preConfigure", 49, 3], ["nativeBuildInputs", 54, 3], ["buildInputs", 60, 3], ["postInstall", 62, 3], ["__structuredAttrs", 79, 3], ["meta", 81, 3]]]);
 const formals$1 = { args: { lib: false, cmake: false, fetchFromGitHub: false, ninja: false, stdenv: false, swift: false, "swift-syntax": false, swift_release: false, swift_sources: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["swift-testing", 19, 29]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 32, 5], ["repo", 33, 5], ["tag", 34, 5], ["hash", 35, 43]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 82, 5], ["homepage", 83, 5], ["platforms", 84, 5], ["license", 85, 5], ["maintainers", 86, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 23, 3], ["version", 24, 3], ["outputs", 26, 3], ["src", 31, 3], ["patches", 38, 3], ["postPatch", 40, 3], ["strictDeps", 45, 3], ["cmakeFlags", 47, 3], ["preConfigure", 49, 3], ["nativeBuildInputs", 54, 3], ["buildInputs", 60, 3], ["postInstall", 62, 3], ["__structuredAttrs", 79, 3], ["meta", 81, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,16 +19,16 @@ export default nix.lambda((args) => (() => {
   const from = nix.thunk(() => nix.sel(stdenv, "hostPlatform", "extensions"));
   const sharedLibrary = nix.thunk(() => nix.attr(from, "sharedLibrary"));
   const buildSharedLibrary = nix.thunk(() => nix.sel(stdenv, "buildPlatform", "extensions", "sharedLibrary"));
-  const swift$ = nix.thunk(() => nix.app(nix.sel(swift, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, "swift-testing": null }))));
+  const swift$ = nix.thunk(() => nix.app(nix.sel(swift, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], "swift-testing": null }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "swift-testing",
       version: swift_release,
       outputs: nix.thunk(() => ["out", "dev"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => (() => {
           const from_1 = nix.thunk(() => nix.sel(swift_sources, "swift-testing"));
           return {
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "swiftlang",
           repo: "swift-testing",
           tag: nix.thunk(() => nix.str`swift-${nix.sel(finalAttrs, "version")}-RELEASE`),
@@ -60,7 +57,7 @@ install_name_tool "\${!outputDev}/lib/swift/host/plugins/testing/libTestingMacro
 `)),
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Modern testing package for Swift",
         homepage: "https://github.com/swiftlang/swift-testing",
         platforms: nix.thunk(() => nix.concat(nix.sel(lib, "platforms", "darwin"), nix.sel(lib, "platforms", "linux"))),

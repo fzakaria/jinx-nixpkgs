@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 37, 5], ["repo", 38, 5], ["rev", 39, 5], ["hash", 40, 5], ["fetchSubmodules", 41, 5]], [["NIX_CFLAGS_COMPILE", 85, 5], ["NIX_LDFLAGS", 97, 5]], [["extraArgs", 119, 5]], [["updateScript", 118, 12]], [["description", 123, 5], ["homepage", 124, 5], ["platforms", 125, 5], ["license", 126, 5], ["maintainers", 127, 5]], [["mainProgram", 130, 5]], [["pname", 30, 3], ["version", 31, 3], ["strictDeps", 33, 3], ["__structuredAttrs", 34, 3], ["src", 36, 3], ["preConfigure", 44, 3], ["postPatch", 51, 3], ["nativeBuildInputs", 63, 3], ["buildInputs", 69, 3], ["cmakeFlags", 80, 3], ["env", 84, 3], ["installPhase", 100, 3], ["passthru", 118, 3], ["meta", 122, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, "nix-update-script": false, cmake: false, ninja: false, "pkg-config": false, libx11: false, libxrandr: false, libxinerama: false, libxext: false, libxcursor: false, freetype: false, fontconfig: false, "alsa-lib": false, buildStandalone: true, buildVST3: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 37, 5], ["repo", 38, 5], ["rev", 39, 5], ["hash", 40, 5], ["fetchSubmodules", 41, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 85, 5], ["NIX_LDFLAGS", 97, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["extraArgs", 119, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 118, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 123, 5], ["homepage", 124, 5], ["platforms", 125, 5], ["license", 126, 5], ["maintainers", 127, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["mainProgram", 130, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 30, 3], ["version", 31, 3], ["strictDeps", 33, 3], ["__structuredAttrs", 34, 3], ["src", 36, 3], ["preConfigure", 44, 3], ["postPatch", 51, 3], ["nativeBuildInputs", 63, 3], ["buildInputs", 69, 3], ["cmakeFlags", 80, 3], ["env", 84, 3], ["installPhase", 100, 3], ["passthru", 118, 3], ["meta", 122, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -35,13 +29,13 @@ export default nix.lambda((args) => (() => {
     nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), buildVST3, "VST3")),
   ]);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "wildergarden-maim",
       version: "1.1.1-unstable-2026-07-23",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ArdenButterfield",
           repo: "Maim",
           rev: "985ed209436d02fb9f805ec983f4ab2c1c37d40a",
@@ -74,7 +68,7 @@ substituteInPlace CMakeLists.txt \\
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeFeature"), "LAME_LIB", "lib/lame/libmp3lame/.libs/libmp3lame.a")),
       ]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-ffat-lto-objects"]))),
         NIX_LDFLAGS: "-lX11",
       })),
@@ -89,17 +83,17 @@ popd
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$3, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
+        [nix.POS]: $pos[3],
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: $pos[2], extraArgs: nix.thunk(() => ["--version=branch"]) })))),
       })),
       meta: nix.thunk(() => nix.update({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Audio plugin for custom MP3 distortion and digital glitches",
         homepage: "https://github.com/ArdenButterfield/Maim",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "mrtnvgr"))]),
-      }, nix.app(nix.sel(lib, "optionalAttrs"), buildStandalone, nix.thunk(() => ({ [nix.POS]: pos$6, mainProgram: "Maim" }))))),
+      }, nix.app(nix.sel(lib, "optionalAttrs"), buildStandalone, nix.thunk(() => ({ [nix.POS]: $pos[5], mainProgram: "Maim" }))))),
     }));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

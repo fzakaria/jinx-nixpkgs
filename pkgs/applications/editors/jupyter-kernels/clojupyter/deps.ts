@@ -2,205 +2,10 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/deps.nix", [[["extraClasspaths", 28, 15]], [["repos", 35, 17], ["artifactId", 36, 9], ["groupId", 37, 9], ["sha512", 38, 9], ["version", 39, 9]], [["name", 33, 7], ["path", 34, 7]], [["repos", 46, 17], ["artifactId", 47, 9], ["groupId", 48, 9], ["sha512", 49, 9], ["version", 50, 9]], [["name", 44, 7], ["path", 45, 7]], [["repos", 57, 17], ["artifactId", 58, 9], ["groupId", 59, 9], ["sha512", 60, 9], ["version", 61, 9]], [["name", 55, 7], ["path", 56, 7]], [["repos", 68, 17], ["artifactId", 69, 9], ["groupId", 70, 9], ["sha512", 71, 9], ["version", 72, 9]], [["name", 66, 7], ["path", 67, 7]], [["repos", 79, 17], ["artifactId", 80, 9], ["groupId", 81, 9], ["sha512", 82, 9], ["version", 83, 9]], [["name", 77, 7], ["path", 78, 7]], [["repos", 90, 17], ["artifactId", 91, 9], ["groupId", 92, 9], ["sha512", 93, 9], ["version", 94, 9]], [["name", 88, 7], ["path", 89, 7]], [["repos", 101, 17], ["artifactId", 102, 9], ["groupId", 103, 9], ["sha512", 104, 9], ["version", 105, 9]], [["name", 99, 7], ["path", 100, 7]], [["repos", 112, 17], ["artifactId", 113, 9], ["groupId", 114, 9], ["sha512", 115, 9], ["version", 116, 9]], [["name", 110, 7], ["path", 111, 7]], [["repos", 123, 17], ["artifactId", 124, 9], ["groupId", 125, 9], ["sha512", 126, 9], ["version", 127, 9]], [["name", 121, 7], ["path", 122, 7]], [["repos", 134, 17], ["artifactId", 135, 9], ["groupId", 136, 9], ["sha512", 137, 9], ["version", 138, 9]], [["name", 132, 7], ["path", 133, 7]], [["repos", 145, 17], ["artifactId", 146, 9], ["groupId", 147, 9], ["sha512", 148, 9], ["version", 149, 9]], [["name", 143, 7], ["path", 144, 7]], [["repos", 156, 17], ["artifactId", 157, 9], ["groupId", 158, 9], ["sha512", 159, 9], ["version", 160, 9]], [["name", 154, 7], ["path", 155, 7]], [["repos", 167, 17], ["artifactId", 168, 9], ["groupId", 169, 9], ["sha512", 170, 9], ["version", 171, 9]], [["name", 165, 7], ["path", 166, 7]], [["repos", 178, 17], ["artifactId", 179, 9], ["groupId", 180, 9], ["sha512", 181, 9], ["version", 182, 9]], [["name", 176, 7], ["path", 177, 7]], [["repos", 189, 17], ["artifactId", 190, 9], ["groupId", 191, 9], ["sha512", 192, 9], ["version", 193, 9]], [["name", 187, 7], ["path", 188, 7]], [["repos", 200, 17], ["artifactId", 201, 9], ["groupId", 202, 9], ["sha512", 203, 9], ["version", 204, 9]], [["name", 198, 7], ["path", 199, 7]], [["repos", 211, 17], ["artifactId", 212, 9], ["groupId", 213, 9], ["sha512", 214, 9], ["version", 215, 9]], [["name", 209, 7], ["path", 210, 7]], [["repos", 222, 17], ["artifactId", 223, 9], ["groupId", 224, 9], ["sha512", 225, 9], ["version", 226, 9]], [["name", 220, 7], ["path", 221, 7]], [["repos", 233, 17], ["artifactId", 234, 9], ["groupId", 235, 9], ["sha512", 236, 9], ["version", 237, 9]], [["name", 231, 7], ["path", 232, 7]], [["repos", 244, 17], ["artifactId", 245, 9], ["groupId", 246, 9], ["sha512", 247, 9], ["version", 248, 9]], [["name", 242, 7], ["path", 243, 7]], [["repos", 255, 17], ["artifactId", 256, 9], ["groupId", 257, 9], ["sha512", 258, 9], ["version", 259, 9]], [["name", 253, 7], ["path", 254, 7]], [["repos", 266, 17], ["artifactId", 267, 9], ["groupId", 268, 9], ["sha512", 269, 9], ["version", 270, 9]], [["name", 264, 7], ["path", 265, 7]], [["repos", 277, 17], ["artifactId", 278, 9], ["groupId", 279, 9], ["sha512", 280, 9], ["version", 281, 9]], [["name", 275, 7], ["path", 276, 7]], [["repos", 288, 17], ["artifactId", 289, 9], ["groupId", 290, 9], ["sha512", 291, 9], ["version", 292, 9]], [["name", 286, 7], ["path", 287, 7]], [["repos", 299, 17], ["artifactId", 300, 9], ["groupId", 301, 9], ["sha512", 302, 9], ["version", 303, 9]], [["name", 297, 7], ["path", 298, 7]], [["repos", 310, 17], ["artifactId", 311, 9], ["groupId", 312, 9], ["sha512", 313, 9], ["version", 314, 9]], [["name", 308, 7], ["path", 309, 7]], [["repos", 321, 17], ["artifactId", 322, 9], ["groupId", 323, 9], ["sha512", 324, 9], ["version", 325, 9]], [["name", 319, 7], ["path", 320, 7]], [["repos", 332, 17], ["artifactId", 333, 9], ["groupId", 334, 9], ["sha512", 335, 9], ["version", 336, 9]], [["name", 330, 7], ["path", 331, 7]], [["repos", 343, 17], ["artifactId", 344, 9], ["groupId", 345, 9], ["sha512", 346, 9], ["version", 347, 9]], [["name", 341, 7], ["path", 342, 7]], [["repos", 354, 17], ["artifactId", 355, 9], ["groupId", 356, 9], ["sha512", 357, 9], ["version", 358, 9]], [["name", 352, 7], ["path", 353, 7]], [["repos", 365, 17], ["artifactId", 366, 9], ["groupId", 367, 9], ["sha512", 368, 9], ["version", 369, 9]], [["name", 363, 7], ["path", 364, 7]], [["repos", 376, 17], ["artifactId", 377, 9], ["groupId", 378, 9], ["sha512", 379, 9], ["version", 380, 9]], [["name", 374, 7], ["path", 375, 7]], [["repos", 387, 17], ["artifactId", 388, 9], ["groupId", 389, 9], ["sha512", 390, 9], ["version", 391, 9]], [["name", 385, 7], ["path", 386, 7]], [["repos", 398, 17], ["artifactId", 399, 9], ["groupId", 400, 9], ["sha512", 401, 9], ["version", 402, 9]], [["name", 396, 7], ["path", 397, 7]], [["repos", 409, 17], ["artifactId", 410, 9], ["groupId", 411, 9], ["sha512", 412, 9], ["version", 413, 9]], [["name", 407, 7], ["path", 408, 7]], [["repos", 420, 17], ["artifactId", 421, 9], ["groupId", 422, 9], ["sha512", 423, 9], ["version", 424, 9]], [["name", 418, 7], ["path", 419, 7]], [["repos", 431, 17], ["artifactId", 432, 9], ["groupId", 433, 9], ["sha512", 434, 9], ["version", 435, 9]], [["name", 429, 7], ["path", 430, 7]], [["repos", 442, 17], ["artifactId", 443, 9], ["groupId", 444, 9], ["sha512", 445, 9], ["version", 446, 9]], [["name", 440, 7], ["path", 441, 7]], [["repos", 453, 17], ["artifactId", 454, 9], ["groupId", 455, 9], ["sha512", 456, 9], ["version", 457, 9]], [["name", 451, 7], ["path", 452, 7]], [["repos", 464, 17], ["artifactId", 465, 9], ["groupId", 466, 9], ["sha512", 467, 9], ["version", 468, 9]], [["name", 462, 7], ["path", 463, 7]], [["repos", 475, 17], ["artifactId", 476, 9], ["groupId", 477, 9], ["sha512", 478, 9], ["version", 479, 9]], [["name", 473, 7], ["path", 474, 7]], [["repos", 486, 17], ["artifactId", 487, 9], ["groupId", 488, 9], ["sha512", 489, 9], ["version", 490, 9]], [["name", 484, 7], ["path", 485, 7]], [["repos", 497, 17], ["artifactId", 498, 9], ["groupId", 499, 9], ["sha512", 500, 9], ["version", 501, 9]], [["name", 495, 7], ["path", 496, 7]], [["repos", 508, 17], ["artifactId", 509, 9], ["groupId", 510, 9], ["sha512", 511, 9], ["version", 512, 9]], [["name", 506, 7], ["path", 507, 7]], [["repos", 519, 17], ["artifactId", 520, 9], ["groupId", 521, 9], ["sha512", 522, 9], ["version", 523, 9]], [["name", 517, 7], ["path", 518, 7]], [["repos", 530, 17], ["artifactId", 531, 9], ["groupId", 532, 9], ["sha512", 533, 9], ["version", 534, 9]], [["name", 528, 7], ["path", 529, 7]], [["repos", 541, 17], ["artifactId", 542, 9], ["groupId", 543, 9], ["sha512", 544, 9], ["version", 545, 9]], [["name", 539, 7], ["path", 540, 7]], [["repos", 552, 17], ["artifactId", 553, 9], ["groupId", 554, 9], ["sha512", 555, 9], ["version", 556, 9]], [["name", 550, 7], ["path", 551, 7]], [["repos", 563, 17], ["artifactId", 564, 9], ["groupId", 565, 9], ["sha512", 566, 9], ["version", 567, 9]], [["name", 561, 7], ["path", 562, 7]], [["repos", 574, 17], ["artifactId", 575, 9], ["groupId", 576, 9], ["sha512", 577, 9], ["version", 578, 9]], [["name", 572, 7], ["path", 573, 7]], [["repos", 585, 17], ["artifactId", 586, 9], ["groupId", 587, 9], ["sha512", 588, 9], ["version", 589, 9]], [["name", 583, 7], ["path", 584, 7]], [["repos", 596, 17], ["artifactId", 597, 9], ["groupId", 598, 9], ["sha512", 599, 9], ["version", 600, 9]], [["name", 594, 7], ["path", 595, 7]], [["repos", 607, 17], ["artifactId", 608, 9], ["groupId", 609, 9], ["sha512", 610, 9], ["version", 611, 9]], [["name", 605, 7], ["path", 606, 7]], [["repos", 618, 17], ["artifactId", 619, 9], ["groupId", 620, 9], ["sha512", 621, 9], ["version", 622, 9]], [["name", 616, 7], ["path", 617, 7]], [["repos", 629, 17], ["artifactId", 630, 9], ["groupId", 631, 9], ["sha512", 632, 9], ["version", 633, 9]], [["name", 627, 7], ["path", 628, 7]], [["repos", 640, 17], ["artifactId", 641, 9], ["groupId", 642, 9], ["sha512", 643, 9], ["version", 644, 9]], [["name", 638, 7], ["path", 639, 7]], [["repos", 651, 17], ["artifactId", 652, 9], ["groupId", 653, 9], ["sha512", 654, 9], ["version", 655, 9]], [["name", 649, 7], ["path", 650, 7]], [["repos", 662, 17], ["artifactId", 663, 9], ["groupId", 664, 9], ["sha512", 665, 9], ["version", 666, 9]], [["name", 660, 7], ["path", 661, 7]], [["repos", 673, 17], ["artifactId", 674, 9], ["groupId", 675, 9], ["sha512", 676, 9], ["version", 677, 9]], [["name", 671, 7], ["path", 672, 7]], [["repos", 684, 17], ["artifactId", 685, 9], ["groupId", 686, 9], ["sha512", 687, 9], ["version", 688, 9]], [["name", 682, 7], ["path", 683, 7]], [["repos", 695, 17], ["artifactId", 696, 9], ["groupId", 697, 9], ["sha512", 698, 9], ["version", 699, 9]], [["name", 693, 7], ["path", 694, 7]], [["repos", 706, 17], ["artifactId", 707, 9], ["groupId", 708, 9], ["sha512", 709, 9], ["version", 710, 9]], [["name", 704, 7], ["path", 705, 7]], [["repos", 717, 17], ["artifactId", 718, 9], ["groupId", 719, 9], ["sha512", 720, 9], ["version", 721, 9]], [["name", 715, 7], ["path", 716, 7]], [["repos", 728, 17], ["artifactId", 729, 9], ["groupId", 730, 9], ["sha512", 731, 9], ["version", 732, 9]], [["name", 726, 7], ["path", 727, 7]], [["repos", 739, 17], ["artifactId", 740, 9], ["groupId", 741, 9], ["sha512", 742, 9], ["version", 743, 9]], [["name", 737, 7], ["path", 738, 7]], [["repos", 750, 17], ["artifactId", 751, 9], ["groupId", 752, 9], ["sha512", 753, 9], ["version", 754, 9]], [["name", 748, 7], ["path", 749, 7]], [["repos", 761, 17], ["artifactId", 762, 9], ["groupId", 763, 9], ["sha512", 764, 9], ["version", 765, 9]], [["name", 759, 7], ["path", 760, 7]], [["repos", 772, 17], ["artifactId", 773, 9], ["groupId", 774, 9], ["sha512", 775, 9], ["version", 776, 9]], [["name", 770, 7], ["path", 771, 7]], [["repos", 783, 17], ["artifactId", 784, 9], ["groupId", 785, 9], ["sha512", 786, 9], ["version", 787, 9]], [["name", 781, 7], ["path", 782, 7]], [["repos", 794, 17], ["artifactId", 795, 9], ["groupId", 796, 9], ["sha512", 797, 9], ["version", 798, 9]], [["name", 792, 7], ["path", 793, 7]], [["repos", 805, 17], ["artifactId", 806, 9], ["groupId", 807, 9], ["sha512", 808, 9], ["version", 809, 9]], [["name", 803, 7], ["path", 804, 7]], [["repos", 816, 17], ["artifactId", 817, 9], ["groupId", 818, 9], ["sha512", 819, 9], ["version", 820, 9]], [["name", 814, 7], ["path", 815, 7]], [["repos", 827, 17], ["artifactId", 828, 9], ["groupId", 829, 9], ["sha512", 830, 9], ["version", 831, 9]], [["name", 825, 7], ["path", 826, 7]], [["repos", 838, 17], ["artifactId", 839, 9], ["groupId", 840, 9], ["sha512", 841, 9], ["version", 842, 9]], [["name", 836, 7], ["path", 837, 7]], [["repos", 849, 17], ["artifactId", 850, 9], ["groupId", 851, 9], ["sha512", 852, 9], ["version", 853, 9]], [["name", 847, 7], ["path", 848, 7]], [["repos", 860, 17], ["artifactId", 861, 9], ["groupId", 862, 9], ["sha512", 863, 9], ["version", 864, 9]], [["name", 858, 7], ["path", 859, 7]], [["repos", 871, 17], ["artifactId", 872, 9], ["groupId", 873, 9], ["sha512", 874, 9], ["version", 875, 9]], [["name", 869, 7], ["path", 870, 7]], [["repos", 882, 17], ["artifactId", 883, 9], ["groupId", 884, 9], ["sha512", 885, 9], ["version", 886, 9]], [["name", 880, 7], ["path", 881, 7]], [["repos", 893, 17], ["artifactId", 894, 9], ["groupId", 895, 9], ["sha512", 896, 9], ["version", 897, 9]], [["name", 891, 7], ["path", 892, 7]], [["repos", 904, 17], ["artifactId", 905, 9], ["groupId", 906, 9], ["sha512", 907, 9], ["version", 908, 9]], [["name", 902, 7], ["path", 903, 7]], [["repos", 915, 17], ["artifactId", 916, 9], ["groupId", 917, 9], ["sha512", 918, 9], ["version", 919, 9]], [["name", 913, 7], ["path", 914, 7]], [["repos", 926, 17], ["artifactId", 927, 9], ["groupId", 928, 9], ["sha512", 929, 9], ["version", 930, 9]], [["name", 924, 7], ["path", 925, 7]], [["repos", 937, 17], ["artifactId", 938, 9], ["groupId", 939, 9], ["sha512", 940, 9], ["version", 941, 9]], [["name", 935, 7], ["path", 936, 7]], [["repos", 948, 17], ["artifactId", 949, 9], ["groupId", 950, 9], ["sha512", 951, 9], ["version", 952, 9]], [["name", 946, 7], ["path", 947, 7]], [["repos", 959, 17], ["artifactId", 960, 9], ["groupId", 961, 9], ["sha512", 962, 9], ["version", 963, 9]], [["name", 957, 7], ["path", 958, 7]], [["repos", 970, 17], ["artifactId", 971, 9], ["groupId", 972, 9], ["sha512", 973, 9], ["version", 974, 9]], [["name", 968, 7], ["path", 969, 7]], [["repos", 981, 17], ["artifactId", 982, 9], ["groupId", 983, 9], ["sha512", 984, 9], ["version", 985, 9]], [["name", 979, 7], ["path", 980, 7]], [["repos", 992, 17], ["artifactId", 993, 9], ["groupId", 994, 9], ["sha512", 995, 9], ["version", 996, 9]], [["name", 990, 7], ["path", 991, 7]], [["repos", 1003, 17], ["artifactId", 1004, 9], ["groupId", 1005, 9], ["sha512", 1006, 9], ["version", 1007, 9]], [["name", 1001, 7], ["path", 1002, 7]], [["repos", 1014, 17], ["artifactId", 1015, 9], ["groupId", 1016, 9], ["sha512", 1017, 9], ["version", 1018, 9]], [["name", 1012, 7], ["path", 1013, 7]], [["repos", 1025, 17], ["artifactId", 1026, 9], ["groupId", 1027, 9], ["sha512", 1028, 9], ["version", 1029, 9]], [["name", 1023, 7], ["path", 1024, 7]], [["repos", 1036, 17], ["artifactId", 1037, 9], ["groupId", 1038, 9], ["sha512", 1039, 9], ["version", 1040, 9]], [["name", 1034, 7], ["path", 1035, 7]], [["repos", 1047, 17], ["artifactId", 1048, 9], ["groupId", 1049, 9], ["sha512", 1050, 9], ["version", 1051, 9]], [["name", 1045, 7], ["path", 1046, 7]], [["repos", 1058, 17], ["artifactId", 1059, 9], ["groupId", 1060, 9], ["sha512", 1061, 9], ["version", 1062, 9]], [["name", 1056, 7], ["path", 1057, 7]], [["repos", 1069, 17], ["artifactId", 1070, 9], ["groupId", 1071, 9], ["sha512", 1072, 9], ["version", 1073, 9]], [["name", 1067, 7], ["path", 1068, 7]], [["repos", 1080, 17], ["artifactId", 1081, 9], ["groupId", 1082, 9], ["sha512", 1083, 9], ["version", 1084, 9]], [["name", 1078, 7], ["path", 1079, 7]], [["repos", 1091, 17], ["artifactId", 1092, 9], ["groupId", 1093, 9], ["sha512", 1094, 9], ["version", 1095, 9]], [["name", 1089, 7], ["path", 1090, 7]], [["makePaths", 17, 3], ["makeClasspaths", 23, 3], ["packages", 31, 3]]]);
 const formals$1 = { args: { pkgs: true }, ellipsis: false };
 const formals$2 = { args: { extraClasspaths: true }, ellipsis: false };
 const formals$3 = { args: { extraClasspaths: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/deps.nix", [["extraClasspaths", 28, 15]]);
-const pos$2 = nix.positions(here + "/deps.nix", [["repos", 35, 17], ["artifactId", 36, 9], ["groupId", 37, 9], ["sha512", 38, 9], ["version", 39, 9]]);
-const pos$3 = nix.positions(here + "/deps.nix", [["name", 33, 7], ["path", 34, 7]]);
-const pos$4 = nix.positions(here + "/deps.nix", [["repos", 46, 17], ["artifactId", 47, 9], ["groupId", 48, 9], ["sha512", 49, 9], ["version", 50, 9]]);
-const pos$5 = nix.positions(here + "/deps.nix", [["name", 44, 7], ["path", 45, 7]]);
-const pos$6 = nix.positions(here + "/deps.nix", [["repos", 57, 17], ["artifactId", 58, 9], ["groupId", 59, 9], ["sha512", 60, 9], ["version", 61, 9]]);
-const pos$7 = nix.positions(here + "/deps.nix", [["name", 55, 7], ["path", 56, 7]]);
-const pos$8 = nix.positions(here + "/deps.nix", [["repos", 68, 17], ["artifactId", 69, 9], ["groupId", 70, 9], ["sha512", 71, 9], ["version", 72, 9]]);
-const pos$9 = nix.positions(here + "/deps.nix", [["name", 66, 7], ["path", 67, 7]]);
-const pos$10 = nix.positions(here + "/deps.nix", [["repos", 79, 17], ["artifactId", 80, 9], ["groupId", 81, 9], ["sha512", 82, 9], ["version", 83, 9]]);
-const pos$11 = nix.positions(here + "/deps.nix", [["name", 77, 7], ["path", 78, 7]]);
-const pos$12 = nix.positions(here + "/deps.nix", [["repos", 90, 17], ["artifactId", 91, 9], ["groupId", 92, 9], ["sha512", 93, 9], ["version", 94, 9]]);
-const pos$13 = nix.positions(here + "/deps.nix", [["name", 88, 7], ["path", 89, 7]]);
-const pos$14 = nix.positions(here + "/deps.nix", [["repos", 101, 17], ["artifactId", 102, 9], ["groupId", 103, 9], ["sha512", 104, 9], ["version", 105, 9]]);
-const pos$15 = nix.positions(here + "/deps.nix", [["name", 99, 7], ["path", 100, 7]]);
-const pos$16 = nix.positions(here + "/deps.nix", [["repos", 112, 17], ["artifactId", 113, 9], ["groupId", 114, 9], ["sha512", 115, 9], ["version", 116, 9]]);
-const pos$17 = nix.positions(here + "/deps.nix", [["name", 110, 7], ["path", 111, 7]]);
-const pos$18 = nix.positions(here + "/deps.nix", [["repos", 123, 17], ["artifactId", 124, 9], ["groupId", 125, 9], ["sha512", 126, 9], ["version", 127, 9]]);
-const pos$19 = nix.positions(here + "/deps.nix", [["name", 121, 7], ["path", 122, 7]]);
-const pos$20 = nix.positions(here + "/deps.nix", [["repos", 134, 17], ["artifactId", 135, 9], ["groupId", 136, 9], ["sha512", 137, 9], ["version", 138, 9]]);
-const pos$21 = nix.positions(here + "/deps.nix", [["name", 132, 7], ["path", 133, 7]]);
-const pos$22 = nix.positions(here + "/deps.nix", [["repos", 145, 17], ["artifactId", 146, 9], ["groupId", 147, 9], ["sha512", 148, 9], ["version", 149, 9]]);
-const pos$23 = nix.positions(here + "/deps.nix", [["name", 143, 7], ["path", 144, 7]]);
-const pos$24 = nix.positions(here + "/deps.nix", [["repos", 156, 17], ["artifactId", 157, 9], ["groupId", 158, 9], ["sha512", 159, 9], ["version", 160, 9]]);
-const pos$25 = nix.positions(here + "/deps.nix", [["name", 154, 7], ["path", 155, 7]]);
-const pos$26 = nix.positions(here + "/deps.nix", [["repos", 167, 17], ["artifactId", 168, 9], ["groupId", 169, 9], ["sha512", 170, 9], ["version", 171, 9]]);
-const pos$27 = nix.positions(here + "/deps.nix", [["name", 165, 7], ["path", 166, 7]]);
-const pos$28 = nix.positions(here + "/deps.nix", [["repos", 178, 17], ["artifactId", 179, 9], ["groupId", 180, 9], ["sha512", 181, 9], ["version", 182, 9]]);
-const pos$29 = nix.positions(here + "/deps.nix", [["name", 176, 7], ["path", 177, 7]]);
-const pos$30 = nix.positions(here + "/deps.nix", [["repos", 189, 17], ["artifactId", 190, 9], ["groupId", 191, 9], ["sha512", 192, 9], ["version", 193, 9]]);
-const pos$31 = nix.positions(here + "/deps.nix", [["name", 187, 7], ["path", 188, 7]]);
-const pos$32 = nix.positions(here + "/deps.nix", [["repos", 200, 17], ["artifactId", 201, 9], ["groupId", 202, 9], ["sha512", 203, 9], ["version", 204, 9]]);
-const pos$33 = nix.positions(here + "/deps.nix", [["name", 198, 7], ["path", 199, 7]]);
-const pos$34 = nix.positions(here + "/deps.nix", [["repos", 211, 17], ["artifactId", 212, 9], ["groupId", 213, 9], ["sha512", 214, 9], ["version", 215, 9]]);
-const pos$35 = nix.positions(here + "/deps.nix", [["name", 209, 7], ["path", 210, 7]]);
-const pos$36 = nix.positions(here + "/deps.nix", [["repos", 222, 17], ["artifactId", 223, 9], ["groupId", 224, 9], ["sha512", 225, 9], ["version", 226, 9]]);
-const pos$37 = nix.positions(here + "/deps.nix", [["name", 220, 7], ["path", 221, 7]]);
-const pos$38 = nix.positions(here + "/deps.nix", [["repos", 233, 17], ["artifactId", 234, 9], ["groupId", 235, 9], ["sha512", 236, 9], ["version", 237, 9]]);
-const pos$39 = nix.positions(here + "/deps.nix", [["name", 231, 7], ["path", 232, 7]]);
-const pos$40 = nix.positions(here + "/deps.nix", [["repos", 244, 17], ["artifactId", 245, 9], ["groupId", 246, 9], ["sha512", 247, 9], ["version", 248, 9]]);
-const pos$41 = nix.positions(here + "/deps.nix", [["name", 242, 7], ["path", 243, 7]]);
-const pos$42 = nix.positions(here + "/deps.nix", [["repos", 255, 17], ["artifactId", 256, 9], ["groupId", 257, 9], ["sha512", 258, 9], ["version", 259, 9]]);
-const pos$43 = nix.positions(here + "/deps.nix", [["name", 253, 7], ["path", 254, 7]]);
-const pos$44 = nix.positions(here + "/deps.nix", [["repos", 266, 17], ["artifactId", 267, 9], ["groupId", 268, 9], ["sha512", 269, 9], ["version", 270, 9]]);
-const pos$45 = nix.positions(here + "/deps.nix", [["name", 264, 7], ["path", 265, 7]]);
-const pos$46 = nix.positions(here + "/deps.nix", [["repos", 277, 17], ["artifactId", 278, 9], ["groupId", 279, 9], ["sha512", 280, 9], ["version", 281, 9]]);
-const pos$47 = nix.positions(here + "/deps.nix", [["name", 275, 7], ["path", 276, 7]]);
-const pos$48 = nix.positions(here + "/deps.nix", [["repos", 288, 17], ["artifactId", 289, 9], ["groupId", 290, 9], ["sha512", 291, 9], ["version", 292, 9]]);
-const pos$49 = nix.positions(here + "/deps.nix", [["name", 286, 7], ["path", 287, 7]]);
-const pos$50 = nix.positions(here + "/deps.nix", [["repos", 299, 17], ["artifactId", 300, 9], ["groupId", 301, 9], ["sha512", 302, 9], ["version", 303, 9]]);
-const pos$51 = nix.positions(here + "/deps.nix", [["name", 297, 7], ["path", 298, 7]]);
-const pos$52 = nix.positions(here + "/deps.nix", [["repos", 310, 17], ["artifactId", 311, 9], ["groupId", 312, 9], ["sha512", 313, 9], ["version", 314, 9]]);
-const pos$53 = nix.positions(here + "/deps.nix", [["name", 308, 7], ["path", 309, 7]]);
-const pos$54 = nix.positions(here + "/deps.nix", [["repos", 321, 17], ["artifactId", 322, 9], ["groupId", 323, 9], ["sha512", 324, 9], ["version", 325, 9]]);
-const pos$55 = nix.positions(here + "/deps.nix", [["name", 319, 7], ["path", 320, 7]]);
-const pos$56 = nix.positions(here + "/deps.nix", [["repos", 332, 17], ["artifactId", 333, 9], ["groupId", 334, 9], ["sha512", 335, 9], ["version", 336, 9]]);
-const pos$57 = nix.positions(here + "/deps.nix", [["name", 330, 7], ["path", 331, 7]]);
-const pos$58 = nix.positions(here + "/deps.nix", [["repos", 343, 17], ["artifactId", 344, 9], ["groupId", 345, 9], ["sha512", 346, 9], ["version", 347, 9]]);
-const pos$59 = nix.positions(here + "/deps.nix", [["name", 341, 7], ["path", 342, 7]]);
-const pos$60 = nix.positions(here + "/deps.nix", [["repos", 354, 17], ["artifactId", 355, 9], ["groupId", 356, 9], ["sha512", 357, 9], ["version", 358, 9]]);
-const pos$61 = nix.positions(here + "/deps.nix", [["name", 352, 7], ["path", 353, 7]]);
-const pos$62 = nix.positions(here + "/deps.nix", [["repos", 365, 17], ["artifactId", 366, 9], ["groupId", 367, 9], ["sha512", 368, 9], ["version", 369, 9]]);
-const pos$63 = nix.positions(here + "/deps.nix", [["name", 363, 7], ["path", 364, 7]]);
-const pos$64 = nix.positions(here + "/deps.nix", [["repos", 376, 17], ["artifactId", 377, 9], ["groupId", 378, 9], ["sha512", 379, 9], ["version", 380, 9]]);
-const pos$65 = nix.positions(here + "/deps.nix", [["name", 374, 7], ["path", 375, 7]]);
-const pos$66 = nix.positions(here + "/deps.nix", [["repos", 387, 17], ["artifactId", 388, 9], ["groupId", 389, 9], ["sha512", 390, 9], ["version", 391, 9]]);
-const pos$67 = nix.positions(here + "/deps.nix", [["name", 385, 7], ["path", 386, 7]]);
-const pos$68 = nix.positions(here + "/deps.nix", [["repos", 398, 17], ["artifactId", 399, 9], ["groupId", 400, 9], ["sha512", 401, 9], ["version", 402, 9]]);
-const pos$69 = nix.positions(here + "/deps.nix", [["name", 396, 7], ["path", 397, 7]]);
-const pos$70 = nix.positions(here + "/deps.nix", [["repos", 409, 17], ["artifactId", 410, 9], ["groupId", 411, 9], ["sha512", 412, 9], ["version", 413, 9]]);
-const pos$71 = nix.positions(here + "/deps.nix", [["name", 407, 7], ["path", 408, 7]]);
-const pos$72 = nix.positions(here + "/deps.nix", [["repos", 420, 17], ["artifactId", 421, 9], ["groupId", 422, 9], ["sha512", 423, 9], ["version", 424, 9]]);
-const pos$73 = nix.positions(here + "/deps.nix", [["name", 418, 7], ["path", 419, 7]]);
-const pos$74 = nix.positions(here + "/deps.nix", [["repos", 431, 17], ["artifactId", 432, 9], ["groupId", 433, 9], ["sha512", 434, 9], ["version", 435, 9]]);
-const pos$75 = nix.positions(here + "/deps.nix", [["name", 429, 7], ["path", 430, 7]]);
-const pos$76 = nix.positions(here + "/deps.nix", [["repos", 442, 17], ["artifactId", 443, 9], ["groupId", 444, 9], ["sha512", 445, 9], ["version", 446, 9]]);
-const pos$77 = nix.positions(here + "/deps.nix", [["name", 440, 7], ["path", 441, 7]]);
-const pos$78 = nix.positions(here + "/deps.nix", [["repos", 453, 17], ["artifactId", 454, 9], ["groupId", 455, 9], ["sha512", 456, 9], ["version", 457, 9]]);
-const pos$79 = nix.positions(here + "/deps.nix", [["name", 451, 7], ["path", 452, 7]]);
-const pos$80 = nix.positions(here + "/deps.nix", [["repos", 464, 17], ["artifactId", 465, 9], ["groupId", 466, 9], ["sha512", 467, 9], ["version", 468, 9]]);
-const pos$81 = nix.positions(here + "/deps.nix", [["name", 462, 7], ["path", 463, 7]]);
-const pos$82 = nix.positions(here + "/deps.nix", [["repos", 475, 17], ["artifactId", 476, 9], ["groupId", 477, 9], ["sha512", 478, 9], ["version", 479, 9]]);
-const pos$83 = nix.positions(here + "/deps.nix", [["name", 473, 7], ["path", 474, 7]]);
-const pos$84 = nix.positions(here + "/deps.nix", [["repos", 486, 17], ["artifactId", 487, 9], ["groupId", 488, 9], ["sha512", 489, 9], ["version", 490, 9]]);
-const pos$85 = nix.positions(here + "/deps.nix", [["name", 484, 7], ["path", 485, 7]]);
-const pos$86 = nix.positions(here + "/deps.nix", [["repos", 497, 17], ["artifactId", 498, 9], ["groupId", 499, 9], ["sha512", 500, 9], ["version", 501, 9]]);
-const pos$87 = nix.positions(here + "/deps.nix", [["name", 495, 7], ["path", 496, 7]]);
-const pos$88 = nix.positions(here + "/deps.nix", [["repos", 508, 17], ["artifactId", 509, 9], ["groupId", 510, 9], ["sha512", 511, 9], ["version", 512, 9]]);
-const pos$89 = nix.positions(here + "/deps.nix", [["name", 506, 7], ["path", 507, 7]]);
-const pos$90 = nix.positions(here + "/deps.nix", [["repos", 519, 17], ["artifactId", 520, 9], ["groupId", 521, 9], ["sha512", 522, 9], ["version", 523, 9]]);
-const pos$91 = nix.positions(here + "/deps.nix", [["name", 517, 7], ["path", 518, 7]]);
-const pos$92 = nix.positions(here + "/deps.nix", [["repos", 530, 17], ["artifactId", 531, 9], ["groupId", 532, 9], ["sha512", 533, 9], ["version", 534, 9]]);
-const pos$93 = nix.positions(here + "/deps.nix", [["name", 528, 7], ["path", 529, 7]]);
-const pos$94 = nix.positions(here + "/deps.nix", [["repos", 541, 17], ["artifactId", 542, 9], ["groupId", 543, 9], ["sha512", 544, 9], ["version", 545, 9]]);
-const pos$95 = nix.positions(here + "/deps.nix", [["name", 539, 7], ["path", 540, 7]]);
-const pos$96 = nix.positions(here + "/deps.nix", [["repos", 552, 17], ["artifactId", 553, 9], ["groupId", 554, 9], ["sha512", 555, 9], ["version", 556, 9]]);
-const pos$97 = nix.positions(here + "/deps.nix", [["name", 550, 7], ["path", 551, 7]]);
-const pos$98 = nix.positions(here + "/deps.nix", [["repos", 563, 17], ["artifactId", 564, 9], ["groupId", 565, 9], ["sha512", 566, 9], ["version", 567, 9]]);
-const pos$99 = nix.positions(here + "/deps.nix", [["name", 561, 7], ["path", 562, 7]]);
-const pos$100 = nix.positions(here + "/deps.nix", [["repos", 574, 17], ["artifactId", 575, 9], ["groupId", 576, 9], ["sha512", 577, 9], ["version", 578, 9]]);
-const pos$101 = nix.positions(here + "/deps.nix", [["name", 572, 7], ["path", 573, 7]]);
-const pos$102 = nix.positions(here + "/deps.nix", [["repos", 585, 17], ["artifactId", 586, 9], ["groupId", 587, 9], ["sha512", 588, 9], ["version", 589, 9]]);
-const pos$103 = nix.positions(here + "/deps.nix", [["name", 583, 7], ["path", 584, 7]]);
-const pos$104 = nix.positions(here + "/deps.nix", [["repos", 596, 17], ["artifactId", 597, 9], ["groupId", 598, 9], ["sha512", 599, 9], ["version", 600, 9]]);
-const pos$105 = nix.positions(here + "/deps.nix", [["name", 594, 7], ["path", 595, 7]]);
-const pos$106 = nix.positions(here + "/deps.nix", [["repos", 607, 17], ["artifactId", 608, 9], ["groupId", 609, 9], ["sha512", 610, 9], ["version", 611, 9]]);
-const pos$107 = nix.positions(here + "/deps.nix", [["name", 605, 7], ["path", 606, 7]]);
-const pos$108 = nix.positions(here + "/deps.nix", [["repos", 618, 17], ["artifactId", 619, 9], ["groupId", 620, 9], ["sha512", 621, 9], ["version", 622, 9]]);
-const pos$109 = nix.positions(here + "/deps.nix", [["name", 616, 7], ["path", 617, 7]]);
-const pos$110 = nix.positions(here + "/deps.nix", [["repos", 629, 17], ["artifactId", 630, 9], ["groupId", 631, 9], ["sha512", 632, 9], ["version", 633, 9]]);
-const pos$111 = nix.positions(here + "/deps.nix", [["name", 627, 7], ["path", 628, 7]]);
-const pos$112 = nix.positions(here + "/deps.nix", [["repos", 640, 17], ["artifactId", 641, 9], ["groupId", 642, 9], ["sha512", 643, 9], ["version", 644, 9]]);
-const pos$113 = nix.positions(here + "/deps.nix", [["name", 638, 7], ["path", 639, 7]]);
-const pos$114 = nix.positions(here + "/deps.nix", [["repos", 651, 17], ["artifactId", 652, 9], ["groupId", 653, 9], ["sha512", 654, 9], ["version", 655, 9]]);
-const pos$115 = nix.positions(here + "/deps.nix", [["name", 649, 7], ["path", 650, 7]]);
-const pos$116 = nix.positions(here + "/deps.nix", [["repos", 662, 17], ["artifactId", 663, 9], ["groupId", 664, 9], ["sha512", 665, 9], ["version", 666, 9]]);
-const pos$117 = nix.positions(here + "/deps.nix", [["name", 660, 7], ["path", 661, 7]]);
-const pos$118 = nix.positions(here + "/deps.nix", [["repos", 673, 17], ["artifactId", 674, 9], ["groupId", 675, 9], ["sha512", 676, 9], ["version", 677, 9]]);
-const pos$119 = nix.positions(here + "/deps.nix", [["name", 671, 7], ["path", 672, 7]]);
-const pos$120 = nix.positions(here + "/deps.nix", [["repos", 684, 17], ["artifactId", 685, 9], ["groupId", 686, 9], ["sha512", 687, 9], ["version", 688, 9]]);
-const pos$121 = nix.positions(here + "/deps.nix", [["name", 682, 7], ["path", 683, 7]]);
-const pos$122 = nix.positions(here + "/deps.nix", [["repos", 695, 17], ["artifactId", 696, 9], ["groupId", 697, 9], ["sha512", 698, 9], ["version", 699, 9]]);
-const pos$123 = nix.positions(here + "/deps.nix", [["name", 693, 7], ["path", 694, 7]]);
-const pos$124 = nix.positions(here + "/deps.nix", [["repos", 706, 17], ["artifactId", 707, 9], ["groupId", 708, 9], ["sha512", 709, 9], ["version", 710, 9]]);
-const pos$125 = nix.positions(here + "/deps.nix", [["name", 704, 7], ["path", 705, 7]]);
-const pos$126 = nix.positions(here + "/deps.nix", [["repos", 717, 17], ["artifactId", 718, 9], ["groupId", 719, 9], ["sha512", 720, 9], ["version", 721, 9]]);
-const pos$127 = nix.positions(here + "/deps.nix", [["name", 715, 7], ["path", 716, 7]]);
-const pos$128 = nix.positions(here + "/deps.nix", [["repos", 728, 17], ["artifactId", 729, 9], ["groupId", 730, 9], ["sha512", 731, 9], ["version", 732, 9]]);
-const pos$129 = nix.positions(here + "/deps.nix", [["name", 726, 7], ["path", 727, 7]]);
-const pos$130 = nix.positions(here + "/deps.nix", [["repos", 739, 17], ["artifactId", 740, 9], ["groupId", 741, 9], ["sha512", 742, 9], ["version", 743, 9]]);
-const pos$131 = nix.positions(here + "/deps.nix", [["name", 737, 7], ["path", 738, 7]]);
-const pos$132 = nix.positions(here + "/deps.nix", [["repos", 750, 17], ["artifactId", 751, 9], ["groupId", 752, 9], ["sha512", 753, 9], ["version", 754, 9]]);
-const pos$133 = nix.positions(here + "/deps.nix", [["name", 748, 7], ["path", 749, 7]]);
-const pos$134 = nix.positions(here + "/deps.nix", [["repos", 761, 17], ["artifactId", 762, 9], ["groupId", 763, 9], ["sha512", 764, 9], ["version", 765, 9]]);
-const pos$135 = nix.positions(here + "/deps.nix", [["name", 759, 7], ["path", 760, 7]]);
-const pos$136 = nix.positions(here + "/deps.nix", [["repos", 772, 17], ["artifactId", 773, 9], ["groupId", 774, 9], ["sha512", 775, 9], ["version", 776, 9]]);
-const pos$137 = nix.positions(here + "/deps.nix", [["name", 770, 7], ["path", 771, 7]]);
-const pos$138 = nix.positions(here + "/deps.nix", [["repos", 783, 17], ["artifactId", 784, 9], ["groupId", 785, 9], ["sha512", 786, 9], ["version", 787, 9]]);
-const pos$139 = nix.positions(here + "/deps.nix", [["name", 781, 7], ["path", 782, 7]]);
-const pos$140 = nix.positions(here + "/deps.nix", [["repos", 794, 17], ["artifactId", 795, 9], ["groupId", 796, 9], ["sha512", 797, 9], ["version", 798, 9]]);
-const pos$141 = nix.positions(here + "/deps.nix", [["name", 792, 7], ["path", 793, 7]]);
-const pos$142 = nix.positions(here + "/deps.nix", [["repos", 805, 17], ["artifactId", 806, 9], ["groupId", 807, 9], ["sha512", 808, 9], ["version", 809, 9]]);
-const pos$143 = nix.positions(here + "/deps.nix", [["name", 803, 7], ["path", 804, 7]]);
-const pos$144 = nix.positions(here + "/deps.nix", [["repos", 816, 17], ["artifactId", 817, 9], ["groupId", 818, 9], ["sha512", 819, 9], ["version", 820, 9]]);
-const pos$145 = nix.positions(here + "/deps.nix", [["name", 814, 7], ["path", 815, 7]]);
-const pos$146 = nix.positions(here + "/deps.nix", [["repos", 827, 17], ["artifactId", 828, 9], ["groupId", 829, 9], ["sha512", 830, 9], ["version", 831, 9]]);
-const pos$147 = nix.positions(here + "/deps.nix", [["name", 825, 7], ["path", 826, 7]]);
-const pos$148 = nix.positions(here + "/deps.nix", [["repos", 838, 17], ["artifactId", 839, 9], ["groupId", 840, 9], ["sha512", 841, 9], ["version", 842, 9]]);
-const pos$149 = nix.positions(here + "/deps.nix", [["name", 836, 7], ["path", 837, 7]]);
-const pos$150 = nix.positions(here + "/deps.nix", [["repos", 849, 17], ["artifactId", 850, 9], ["groupId", 851, 9], ["sha512", 852, 9], ["version", 853, 9]]);
-const pos$151 = nix.positions(here + "/deps.nix", [["name", 847, 7], ["path", 848, 7]]);
-const pos$152 = nix.positions(here + "/deps.nix", [["repos", 860, 17], ["artifactId", 861, 9], ["groupId", 862, 9], ["sha512", 863, 9], ["version", 864, 9]]);
-const pos$153 = nix.positions(here + "/deps.nix", [["name", 858, 7], ["path", 859, 7]]);
-const pos$154 = nix.positions(here + "/deps.nix", [["repos", 871, 17], ["artifactId", 872, 9], ["groupId", 873, 9], ["sha512", 874, 9], ["version", 875, 9]]);
-const pos$155 = nix.positions(here + "/deps.nix", [["name", 869, 7], ["path", 870, 7]]);
-const pos$156 = nix.positions(here + "/deps.nix", [["repos", 882, 17], ["artifactId", 883, 9], ["groupId", 884, 9], ["sha512", 885, 9], ["version", 886, 9]]);
-const pos$157 = nix.positions(here + "/deps.nix", [["name", 880, 7], ["path", 881, 7]]);
-const pos$158 = nix.positions(here + "/deps.nix", [["repos", 893, 17], ["artifactId", 894, 9], ["groupId", 895, 9], ["sha512", 896, 9], ["version", 897, 9]]);
-const pos$159 = nix.positions(here + "/deps.nix", [["name", 891, 7], ["path", 892, 7]]);
-const pos$160 = nix.positions(here + "/deps.nix", [["repos", 904, 17], ["artifactId", 905, 9], ["groupId", 906, 9], ["sha512", 907, 9], ["version", 908, 9]]);
-const pos$161 = nix.positions(here + "/deps.nix", [["name", 902, 7], ["path", 903, 7]]);
-const pos$162 = nix.positions(here + "/deps.nix", [["repos", 915, 17], ["artifactId", 916, 9], ["groupId", 917, 9], ["sha512", 918, 9], ["version", 919, 9]]);
-const pos$163 = nix.positions(here + "/deps.nix", [["name", 913, 7], ["path", 914, 7]]);
-const pos$164 = nix.positions(here + "/deps.nix", [["repos", 926, 17], ["artifactId", 927, 9], ["groupId", 928, 9], ["sha512", 929, 9], ["version", 930, 9]]);
-const pos$165 = nix.positions(here + "/deps.nix", [["name", 924, 7], ["path", 925, 7]]);
-const pos$166 = nix.positions(here + "/deps.nix", [["repos", 937, 17], ["artifactId", 938, 9], ["groupId", 939, 9], ["sha512", 940, 9], ["version", 941, 9]]);
-const pos$167 = nix.positions(here + "/deps.nix", [["name", 935, 7], ["path", 936, 7]]);
-const pos$168 = nix.positions(here + "/deps.nix", [["repos", 948, 17], ["artifactId", 949, 9], ["groupId", 950, 9], ["sha512", 951, 9], ["version", 952, 9]]);
-const pos$169 = nix.positions(here + "/deps.nix", [["name", 946, 7], ["path", 947, 7]]);
-const pos$170 = nix.positions(here + "/deps.nix", [["repos", 959, 17], ["artifactId", 960, 9], ["groupId", 961, 9], ["sha512", 962, 9], ["version", 963, 9]]);
-const pos$171 = nix.positions(here + "/deps.nix", [["name", 957, 7], ["path", 958, 7]]);
-const pos$172 = nix.positions(here + "/deps.nix", [["repos", 970, 17], ["artifactId", 971, 9], ["groupId", 972, 9], ["sha512", 973, 9], ["version", 974, 9]]);
-const pos$173 = nix.positions(here + "/deps.nix", [["name", 968, 7], ["path", 969, 7]]);
-const pos$174 = nix.positions(here + "/deps.nix", [["repos", 981, 17], ["artifactId", 982, 9], ["groupId", 983, 9], ["sha512", 984, 9], ["version", 985, 9]]);
-const pos$175 = nix.positions(here + "/deps.nix", [["name", 979, 7], ["path", 980, 7]]);
-const pos$176 = nix.positions(here + "/deps.nix", [["repos", 992, 17], ["artifactId", 993, 9], ["groupId", 994, 9], ["sha512", 995, 9], ["version", 996, 9]]);
-const pos$177 = nix.positions(here + "/deps.nix", [["name", 990, 7], ["path", 991, 7]]);
-const pos$178 = nix.positions(here + "/deps.nix", [["repos", 1003, 17], ["artifactId", 1004, 9], ["groupId", 1005, 9], ["sha512", 1006, 9], ["version", 1007, 9]]);
-const pos$179 = nix.positions(here + "/deps.nix", [["name", 1001, 7], ["path", 1002, 7]]);
-const pos$180 = nix.positions(here + "/deps.nix", [["repos", 1014, 17], ["artifactId", 1015, 9], ["groupId", 1016, 9], ["sha512", 1017, 9], ["version", 1018, 9]]);
-const pos$181 = nix.positions(here + "/deps.nix", [["name", 1012, 7], ["path", 1013, 7]]);
-const pos$182 = nix.positions(here + "/deps.nix", [["repos", 1025, 17], ["artifactId", 1026, 9], ["groupId", 1027, 9], ["sha512", 1028, 9], ["version", 1029, 9]]);
-const pos$183 = nix.positions(here + "/deps.nix", [["name", 1023, 7], ["path", 1024, 7]]);
-const pos$184 = nix.positions(here + "/deps.nix", [["repos", 1036, 17], ["artifactId", 1037, 9], ["groupId", 1038, 9], ["sha512", 1039, 9], ["version", 1040, 9]]);
-const pos$185 = nix.positions(here + "/deps.nix", [["name", 1034, 7], ["path", 1035, 7]]);
-const pos$186 = nix.positions(here + "/deps.nix", [["repos", 1047, 17], ["artifactId", 1048, 9], ["groupId", 1049, 9], ["sha512", 1050, 9], ["version", 1051, 9]]);
-const pos$187 = nix.positions(here + "/deps.nix", [["name", 1045, 7], ["path", 1046, 7]]);
-const pos$188 = nix.positions(here + "/deps.nix", [["repos", 1058, 17], ["artifactId", 1059, 9], ["groupId", 1060, 9], ["sha512", 1061, 9], ["version", 1062, 9]]);
-const pos$189 = nix.positions(here + "/deps.nix", [["name", 1056, 7], ["path", 1057, 7]]);
-const pos$190 = nix.positions(here + "/deps.nix", [["repos", 1069, 17], ["artifactId", 1070, 9], ["groupId", 1071, 9], ["sha512", 1072, 9], ["version", 1073, 9]]);
-const pos$191 = nix.positions(here + "/deps.nix", [["name", 1067, 7], ["path", 1068, 7]]);
-const pos$192 = nix.positions(here + "/deps.nix", [["repos", 1080, 17], ["artifactId", 1081, 9], ["groupId", 1082, 9], ["sha512", 1083, 9], ["version", 1084, 9]]);
-const pos$193 = nix.positions(here + "/deps.nix", [["name", 1078, 7], ["path", 1079, 7]]);
-const pos$194 = nix.positions(here + "/deps.nix", [["repos", 1091, 17], ["artifactId", 1092, 9], ["groupId", 1093, 9], ["sha512", 1094, 9], ["version", 1095, 9]]);
-const pos$195 = nix.positions(here + "/deps.nix", [["name", 1089, 7], ["path", 1090, 7]]);
-const pos$196 = nix.positions(here + "/deps.nix", [["makePaths", 17, 3], ["makeClasspaths", 23, 3], ["packages", 31, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -221,14 +26,14 @@ export default nix.lambda((args) => (() => {
     const makeClasspaths = nix.lambda((args_1) => (() => {
       const $_1 = nix.formals(args_1, formals$3);
       const extraClasspaths = nix.argOr($_1, "extraClasspaths", () => []);
-      return nix.builtins.concatStringsSep(":", nix.thunk(() => nix.app(makePaths, nix.thunk(() => ({ [nix.POS]: pos$1, extraClasspaths: extraClasspaths })))));
+      return nix.builtins.concatStringsSep(":", nix.thunk(() => nix.app(makePaths, nix.thunk(() => ({ [nix.POS]: $pos[0], extraClasspaths: extraClasspaths })))));
     })(), formals$3);
     const packages = nix.thunk(() => [
       nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         name: "javax.inject/javax.inject",
         path: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchMavenArtifact"), nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             repos: repos,
             artifactId: "javax.inject",
             groupId: "javax.inject",
@@ -237,10 +42,10 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         name: "org.clojure/data.json",
         path: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchMavenArtifact"), nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             repos: repos,
             artifactId: "data.json",
             groupId: "org.clojure",
@@ -249,10 +54,10 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         name: "org.clojure/clojure",
         path: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchMavenArtifact"), nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             repos: repos,
             artifactId: "clojure",
             groupId: "org.clojure",
@@ -261,10 +66,10 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         name: "net.cgrand/sjacket",
         path: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchMavenArtifact"), nix.thunk(() => ({
-            [nix.POS]: pos$8,
+            [nix.POS]: $pos[7],
             repos: repos,
             artifactId: "sjacket",
             groupId: "net.cgrand",
@@ -273,10 +78,10 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       nix.thunk(() => ({
-        [nix.POS]: pos$11,
+        [nix.POS]: $pos[10],
         name: "clojupyter/clojupyter",
         path: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchMavenArtifact"), nix.thunk(() => ({
-            [nix.POS]: pos$10,
+            [nix.POS]: $pos[9],
             repos: repos,
             artifactId: "clojupyter",
             groupId: "clojupyter",
@@ -285,10 +90,10 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       nix.thunk(() => ({
-        [nix.POS]: pos$13,
+        [nix.POS]: $pos[12],
         name: "commons-codec/commons-codec",
         path: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchMavenArtifact"), nix.thunk(() => ({
-            [nix.POS]: pos$12,
+            [nix.POS]: $pos[11],
             repos: repos,
             artifactId: "commons-codec",
             groupId: "commons-codec",
@@ -297,10 +102,10 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       nix.thunk(() => ({
-        [nix.POS]: pos$15,
+        [nix.POS]: $pos[14],
         name: "org.clojure/tools.analyzer",
         path: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchMavenArtifact"), nix.thunk(() => ({
-            [nix.POS]: pos$14,
+            [nix.POS]: $pos[13],
             repos: repos,
             artifactId: "tools.analyzer",
             groupId: "org.clojure",
@@ -309,10 +114,10 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       nix.thunk(() => ({
-        [nix.POS]: pos$17,
+        [nix.POS]: $pos[16],
         name: "org.codehaus.plexus/plexus-component-annotations",
         path: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchMavenArtifact"), nix.thunk(() => ({
-            [nix.POS]: pos$16,
+            [nix.POS]: $pos[15],
             repos: repos,
             artifactId: "plexus-component-annotations",
             groupId: "org.codehaus.plexus",
@@ -321,10 +126,10 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       nix.thunk(() => ({
-        [nix.POS]: pos$19,
+        [nix.POS]: $pos[18],
         name: "org.apache.commons/commons-compress",
         path: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchMavenArtifact"), nix.thunk(() => ({
-            [nix.POS]: pos$18,
+            [nix.POS]: $pos[17],
             repos: repos,
             artifactId: "commons-compress",
             groupId: "org.apache.commons",
@@ -333,10 +138,10 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       nix.thunk(() => ({
-        [nix.POS]: pos$21,
+        [nix.POS]: $pos[20],
         name: "org.apache.commons/commons-lang3",
         path: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchMavenArtifact"), nix.thunk(() => ({
-            [nix.POS]: pos$20,
+            [nix.POS]: $pos[19],
             repos: repos,
             artifactId: "commons-lang3",
             groupId: "org.apache.commons",
@@ -345,10 +150,10 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       nix.thunk(() => ({
-        [nix.POS]: pos$23,
+        [nix.POS]: $pos[22],
         name: "org.clojure/core.specs.alpha",
         path: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchMavenArtifact"), nix.thunk(() => ({
-            [nix.POS]: pos$22,
+            [nix.POS]: $pos[21],
             repos: repos,
             artifactId: "core.specs.alpha",
             groupId: "org.clojure",
@@ -357,10 +162,10 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       nix.thunk(() => ({
-        [nix.POS]: pos$25,
+        [nix.POS]: $pos[24],
         name: "org.tukaani/xz",
         path: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchMavenArtifact"), nix.thunk(() => ({
-            [nix.POS]: pos$24,
+            [nix.POS]: $pos[23],
             repos: repos,
             artifactId: "xz",
             groupId: "org.tukaani",
@@ -369,10 +174,10 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       nix.thunk(() => ({
-        [nix.POS]: pos$27,
+        [nix.POS]: $pos[26],
         name: "org.zeromq/jeromq",
         path: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchMavenArtifact"), nix.thunk(() => ({
-            [nix.POS]: pos$26,
+            [nix.POS]: $pos[25],
             repos: repos,
             artifactId: "jeromq",
             groupId: "org.zeromq",
@@ -381,10 +186,10 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       nix.thunk(() => ({
-        [nix.POS]: pos$29,
+        [nix.POS]: $pos[28],
         name: "org.clojure/spec.alpha",
         path: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchMavenArtifact"), nix.thunk(() => ({
-            [nix.POS]: pos$28,
+            [nix.POS]: $pos[27],
             repos: repos,
             artifactId: "spec.alpha",
             groupId: "org.clojure",
@@ -393,10 +198,10 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       nix.thunk(() => ({
-        [nix.POS]: pos$31,
+        [nix.POS]: $pos[30],
         name: "pandect/pandect",
         path: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchMavenArtifact"), nix.thunk(() => ({
-            [nix.POS]: pos$30,
+            [nix.POS]: $pos[29],
             repos: repos,
             artifactId: "pandect",
             groupId: "pandect",
@@ -405,10 +210,10 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       nix.thunk(() => ({
-        [nix.POS]: pos$33,
+        [nix.POS]: $pos[32],
         name: "org.clojure/tools.cli",
         path: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchMavenArtifact"), nix.thunk(() => ({
-            [nix.POS]: pos$32,
+            [nix.POS]: $pos[31],
             repos: repos,
             artifactId: "tools.cli",
             groupId: "org.clojure",
@@ -417,10 +222,10 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       nix.thunk(() => ({
-        [nix.POS]: pos$35,
+        [nix.POS]: $pos[34],
         name: "com.taoensso/encore",
         path: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchMavenArtifact"), nix.thunk(() => ({
-            [nix.POS]: pos$34,
+            [nix.POS]: $pos[33],
             repos: repos,
             artifactId: "encore",
             groupId: "com.taoensso",
@@ -429,10 +234,10 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       nix.thunk(() => ({
-        [nix.POS]: pos$37,
+        [nix.POS]: $pos[36],
         name: "org.apache.maven.resolver/maven-resolver-transport-wagon",
         path: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchMavenArtifact"), nix.thunk(() => ({
-            [nix.POS]: pos$36,
+            [nix.POS]: $pos[35],
             repos: repos,
             artifactId: "maven-resolver-transport-wagon",
             groupId: "org.apache.maven.resolver",
@@ -441,10 +246,10 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       nix.thunk(() => ({
-        [nix.POS]: pos$39,
+        [nix.POS]: $pos[38],
         name: "org.slf4j/jcl-over-slf4j",
         path: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchMavenArtifact"), nix.thunk(() => ({
-            [nix.POS]: pos$38,
+            [nix.POS]: $pos[37],
             repos: repos,
             artifactId: "jcl-over-slf4j",
             groupId: "org.slf4j",
@@ -453,10 +258,10 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       nix.thunk(() => ({
-        [nix.POS]: pos$41,
+        [nix.POS]: $pos[40],
         name: "org.clojure/tools.analyzer.jvm",
         path: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchMavenArtifact"), nix.thunk(() => ({
-            [nix.POS]: pos$40,
+            [nix.POS]: $pos[39],
             repos: repos,
             artifactId: "tools.analyzer.jvm",
             groupId: "org.clojure",
@@ -465,10 +270,10 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       nix.thunk(() => ({
-        [nix.POS]: pos$43,
+        [nix.POS]: $pos[42],
         name: "org.apache.maven.wagon/wagon-provider-api",
         path: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchMavenArtifact"), nix.thunk(() => ({
-            [nix.POS]: pos$42,
+            [nix.POS]: $pos[41],
             repos: repos,
             artifactId: "wagon-provider-api",
             groupId: "org.apache.maven.wagon",
@@ -477,10 +282,10 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       nix.thunk(() => ({
-        [nix.POS]: pos$45,
+        [nix.POS]: $pos[44],
         name: "io.pedestal/pedestal.log",
         path: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchMavenArtifact"), nix.thunk(() => ({
-            [nix.POS]: pos$44,
+            [nix.POS]: $pos[43],
             repos: repos,
             artifactId: "pedestal.log",
             groupId: "io.pedestal",
@@ -489,10 +294,10 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       nix.thunk(() => ({
-        [nix.POS]: pos$47,
+        [nix.POS]: $pos[46],
         name: "com.fasterxml.jackson.dataformat/jackson-dataformat-cbor",
         path: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchMavenArtifact"), nix.thunk(() => ({
-            [nix.POS]: pos$46,
+            [nix.POS]: $pos[45],
             repos: repos,
             artifactId: "jackson-dataformat-cbor",
             groupId: "com.fasterxml.jackson.dataformat",
@@ -501,10 +306,10 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       nix.thunk(() => ({
-        [nix.POS]: pos$49,
+        [nix.POS]: $pos[48],
         name: "org.apache.maven.resolver/maven-resolver-transport-http",
         path: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchMavenArtifact"), nix.thunk(() => ({
-            [nix.POS]: pos$48,
+            [nix.POS]: $pos[47],
             repos: repos,
             artifactId: "maven-resolver-transport-http",
             groupId: "org.apache.maven.resolver",
@@ -513,10 +318,10 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       nix.thunk(() => ({
-        [nix.POS]: pos$51,
+        [nix.POS]: $pos[50],
         name: "net.cgrand/parsley",
         path: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchMavenArtifact"), nix.thunk(() => ({
-            [nix.POS]: pos$50,
+            [nix.POS]: $pos[49],
             repos: repos,
             artifactId: "parsley",
             groupId: "net.cgrand",
@@ -525,10 +330,10 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       nix.thunk(() => ({
-        [nix.POS]: pos$53,
+        [nix.POS]: $pos[52],
         name: "funcool/cats",
         path: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchMavenArtifact"), nix.thunk(() => ({
-            [nix.POS]: pos$52,
+            [nix.POS]: $pos[51],
             repos: repos,
             artifactId: "cats",
             groupId: "funcool",
@@ -537,10 +342,10 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       nix.thunk(() => ({
-        [nix.POS]: pos$55,
+        [nix.POS]: $pos[54],
         name: "org.apache.maven/maven-model-builder",
         path: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchMavenArtifact"), nix.thunk(() => ({
-            [nix.POS]: pos$54,
+            [nix.POS]: $pos[53],
             repos: repos,
             artifactId: "maven-model-builder",
             groupId: "org.apache.maven",
@@ -549,10 +354,10 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       nix.thunk(() => ({
-        [nix.POS]: pos$57,
+        [nix.POS]: $pos[56],
         name: "io.aviso/pretty",
         path: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchMavenArtifact"), nix.thunk(() => ({
-            [nix.POS]: pos$56,
+            [nix.POS]: $pos[55],
             repos: repos,
             artifactId: "pretty",
             groupId: "io.aviso",
@@ -561,10 +366,10 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       nix.thunk(() => ({
-        [nix.POS]: pos$59,
+        [nix.POS]: $pos[58],
         name: "rewrite-clj/rewrite-clj",
         path: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchMavenArtifact"), nix.thunk(() => ({
-            [nix.POS]: pos$58,
+            [nix.POS]: $pos[57],
             repos: repos,
             artifactId: "rewrite-clj",
             groupId: "rewrite-clj",
@@ -573,10 +378,10 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       nix.thunk(() => ({
-        [nix.POS]: pos$61,
+        [nix.POS]: $pos[60],
         name: "org.codehaus.plexus/plexus-utils",
         path: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchMavenArtifact"), nix.thunk(() => ({
-            [nix.POS]: pos$60,
+            [nix.POS]: $pos[59],
             repos: repos,
             artifactId: "plexus-utils",
             groupId: "org.codehaus.plexus",
@@ -585,10 +390,10 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       nix.thunk(() => ({
-        [nix.POS]: pos$63,
+        [nix.POS]: $pos[62],
         name: "org.apache.maven.resolver/maven-resolver-transport-file",
         path: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchMavenArtifact"), nix.thunk(() => ({
-            [nix.POS]: pos$62,
+            [nix.POS]: $pos[61],
             repos: repos,
             artifactId: "maven-resolver-transport-file",
             groupId: "org.apache.maven.resolver",
@@ -597,10 +402,10 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       nix.thunk(() => ({
-        [nix.POS]: pos$65,
+        [nix.POS]: $pos[64],
         name: "slingshot/slingshot",
         path: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchMavenArtifact"), nix.thunk(() => ({
-            [nix.POS]: pos$64,
+            [nix.POS]: $pos[63],
             repos: repos,
             artifactId: "slingshot",
             groupId: "slingshot",
@@ -609,10 +414,10 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       nix.thunk(() => ({
-        [nix.POS]: pos$67,
+        [nix.POS]: $pos[66],
         name: "org.flatland/ordered",
         path: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchMavenArtifact"), nix.thunk(() => ({
-            [nix.POS]: pos$66,
+            [nix.POS]: $pos[65],
             repos: repos,
             artifactId: "ordered",
             groupId: "org.flatland",
@@ -621,10 +426,10 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       nix.thunk(() => ({
-        [nix.POS]: pos$69,
+        [nix.POS]: $pos[68],
         name: "commons-io/commons-io",
         path: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchMavenArtifact"), nix.thunk(() => ({
-            [nix.POS]: pos$68,
+            [nix.POS]: $pos[67],
             repos: repos,
             artifactId: "commons-io",
             groupId: "commons-io",
@@ -633,10 +438,10 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       nix.thunk(() => ({
-        [nix.POS]: pos$71,
+        [nix.POS]: $pos[70],
         name: "org.apache.maven.wagon/wagon-http-shared",
         path: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchMavenArtifact"), nix.thunk(() => ({
-            [nix.POS]: pos$70,
+            [nix.POS]: $pos[69],
             repos: repos,
             artifactId: "wagon-http-shared",
             groupId: "org.apache.maven.wagon",
@@ -645,10 +450,10 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       nix.thunk(() => ({
-        [nix.POS]: pos$73,
+        [nix.POS]: $pos[72],
         name: "com.fasterxml.jackson.core/jackson-core",
         path: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchMavenArtifact"), nix.thunk(() => ({
-            [nix.POS]: pos$72,
+            [nix.POS]: $pos[71],
             repos: repos,
             artifactId: "jackson-core",
             groupId: "com.fasterxml.jackson.core",
@@ -657,10 +462,10 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       nix.thunk(() => ({
-        [nix.POS]: pos$75,
+        [nix.POS]: $pos[74],
         name: "org.yaml/snakeyaml",
         path: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchMavenArtifact"), nix.thunk(() => ({
-            [nix.POS]: pos$74,
+            [nix.POS]: $pos[73],
             repos: repos,
             artifactId: "snakeyaml",
             groupId: "org.yaml",
@@ -669,10 +474,10 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       nix.thunk(() => ({
-        [nix.POS]: pos$77,
+        [nix.POS]: $pos[76],
         name: "org.ow2.asm/asm",
         path: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchMavenArtifact"), nix.thunk(() => ({
-            [nix.POS]: pos$76,
+            [nix.POS]: $pos[75],
             repos: repos,
             artifactId: "asm",
             groupId: "org.ow2.asm",
@@ -681,10 +486,10 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       nix.thunk(() => ({
-        [nix.POS]: pos$79,
+        [nix.POS]: $pos[78],
         name: "org.slf4j/jul-to-slf4j",
         path: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchMavenArtifact"), nix.thunk(() => ({
-            [nix.POS]: pos$78,
+            [nix.POS]: $pos[77],
             repos: repos,
             artifactId: "jul-to-slf4j",
             groupId: "org.slf4j",
@@ -693,10 +498,10 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       nix.thunk(() => ({
-        [nix.POS]: pos$81,
+        [nix.POS]: $pos[80],
         name: "org.apache.httpcomponents/httpcore",
         path: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchMavenArtifact"), nix.thunk(() => ({
-            [nix.POS]: pos$80,
+            [nix.POS]: $pos[79],
             repos: repos,
             artifactId: "httpcore",
             groupId: "org.apache.httpcomponents",
@@ -705,10 +510,10 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       nix.thunk(() => ({
-        [nix.POS]: pos$83,
+        [nix.POS]: $pos[82],
         name: "io.pedestal/pedestal.interceptor",
         path: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchMavenArtifact"), nix.thunk(() => ({
-            [nix.POS]: pos$82,
+            [nix.POS]: $pos[81],
             repos: repos,
             artifactId: "pedestal.interceptor",
             groupId: "io.pedestal",
@@ -717,10 +522,10 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       nix.thunk(() => ({
-        [nix.POS]: pos$85,
+        [nix.POS]: $pos[84],
         name: "io.dropwizard.metrics/metrics-core",
         path: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchMavenArtifact"), nix.thunk(() => ({
-            [nix.POS]: pos$84,
+            [nix.POS]: $pos[83],
             repos: repos,
             artifactId: "metrics-core",
             groupId: "io.dropwizard.metrics",
@@ -729,10 +534,10 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       nix.thunk(() => ({
-        [nix.POS]: pos$87,
+        [nix.POS]: $pos[86],
         name: "com.grammarly/omniconf",
         path: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchMavenArtifact"), nix.thunk(() => ({
-            [nix.POS]: pos$86,
+            [nix.POS]: $pos[85],
             repos: repos,
             artifactId: "omniconf",
             groupId: "com.grammarly",
@@ -741,10 +546,10 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       nix.thunk(() => ({
-        [nix.POS]: pos$89,
+        [nix.POS]: $pos[88],
         name: "eu.neilalexander/jnacl",
         path: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchMavenArtifact"), nix.thunk(() => ({
-            [nix.POS]: pos$88,
+            [nix.POS]: $pos[87],
             repos: repos,
             artifactId: "jnacl",
             groupId: "eu.neilalexander",
@@ -753,10 +558,10 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       nix.thunk(() => ({
-        [nix.POS]: pos$91,
+        [nix.POS]: $pos[90],
         name: "zprint/zprint",
         path: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchMavenArtifact"), nix.thunk(() => ({
-            [nix.POS]: pos$90,
+            [nix.POS]: $pos[89],
             repos: repos,
             artifactId: "zprint",
             groupId: "zprint",
@@ -765,10 +570,10 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       nix.thunk(() => ({
-        [nix.POS]: pos$93,
+        [nix.POS]: $pos[92],
         name: "com.taoensso/truss",
         path: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchMavenArtifact"), nix.thunk(() => ({
-            [nix.POS]: pos$92,
+            [nix.POS]: $pos[91],
             repos: repos,
             artifactId: "truss",
             groupId: "com.taoensso",
@@ -777,10 +582,10 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       nix.thunk(() => ({
-        [nix.POS]: pos$95,
+        [nix.POS]: $pos[94],
         name: "org.apache.maven.resolver/maven-resolver-api",
         path: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchMavenArtifact"), nix.thunk(() => ({
-            [nix.POS]: pos$94,
+            [nix.POS]: $pos[93],
             repos: repos,
             artifactId: "maven-resolver-api",
             groupId: "org.apache.maven.resolver",
@@ -789,10 +594,10 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       nix.thunk(() => ({
-        [nix.POS]: pos$97,
+        [nix.POS]: $pos[96],
         name: "hiccup/hiccup",
         path: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchMavenArtifact"), nix.thunk(() => ({
-            [nix.POS]: pos$96,
+            [nix.POS]: $pos[95],
             repos: repos,
             artifactId: "hiccup",
             groupId: "hiccup",
@@ -801,10 +606,10 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       nix.thunk(() => ({
-        [nix.POS]: pos$99,
+        [nix.POS]: $pos[98],
         name: "io.opentracing/opentracing-api",
         path: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchMavenArtifact"), nix.thunk(() => ({
-            [nix.POS]: pos$98,
+            [nix.POS]: $pos[97],
             repos: repos,
             artifactId: "opentracing-api",
             groupId: "io.opentracing",
@@ -813,10 +618,10 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       nix.thunk(() => ({
-        [nix.POS]: pos$101,
+        [nix.POS]: $pos[100],
         name: "org.apache.maven/maven-resolver-provider",
         path: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchMavenArtifact"), nix.thunk(() => ({
-            [nix.POS]: pos$100,
+            [nix.POS]: $pos[99],
             repos: repos,
             artifactId: "maven-resolver-provider",
             groupId: "org.apache.maven",
@@ -825,10 +630,10 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       nix.thunk(() => ({
-        [nix.POS]: pos$103,
+        [nix.POS]: $pos[102],
         name: "commons-logging/commons-logging",
         path: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchMavenArtifact"), nix.thunk(() => ({
-            [nix.POS]: pos$102,
+            [nix.POS]: $pos[101],
             repos: repos,
             artifactId: "commons-logging",
             groupId: "commons-logging",
@@ -837,10 +642,10 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       nix.thunk(() => ({
-        [nix.POS]: pos$105,
+        [nix.POS]: $pos[104],
         name: "com.google.guava/guava",
         path: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchMavenArtifact"), nix.thunk(() => ({
-            [nix.POS]: pos$104,
+            [nix.POS]: $pos[103],
             repos: repos,
             artifactId: "guava",
             groupId: "com.google.guava",
@@ -849,10 +654,10 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       nix.thunk(() => ({
-        [nix.POS]: pos$107,
+        [nix.POS]: $pos[106],
         name: "com.fzakaria/slf4j-timbre",
         path: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchMavenArtifact"), nix.thunk(() => ({
-            [nix.POS]: pos$106,
+            [nix.POS]: $pos[105],
             repos: repos,
             artifactId: "slf4j-timbre",
             groupId: "com.fzakaria",
@@ -861,10 +666,10 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       nix.thunk(() => ({
-        [nix.POS]: pos$109,
+        [nix.POS]: $pos[108],
         name: "clojure.java-time/clojure.java-time",
         path: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchMavenArtifact"), nix.thunk(() => ({
-            [nix.POS]: pos$108,
+            [nix.POS]: $pos[107],
             repos: repos,
             artifactId: "clojure.java-time",
             groupId: "clojure.java-time",
@@ -873,10 +678,10 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       nix.thunk(() => ({
-        [nix.POS]: pos$111,
+        [nix.POS]: $pos[110],
         name: "org.apache.maven.resolver/maven-resolver-spi",
         path: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchMavenArtifact"), nix.thunk(() => ({
-            [nix.POS]: pos$110,
+            [nix.POS]: $pos[109],
             repos: repos,
             artifactId: "maven-resolver-spi",
             groupId: "org.apache.maven.resolver",
@@ -885,10 +690,10 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       nix.thunk(() => ({
-        [nix.POS]: pos$113,
+        [nix.POS]: $pos[112],
         name: "org.clojure/algo.generic",
         path: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchMavenArtifact"), nix.thunk(() => ({
-            [nix.POS]: pos$112,
+            [nix.POS]: $pos[111],
             repos: repos,
             artifactId: "algo.generic",
             groupId: "org.clojure",
@@ -897,10 +702,10 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       nix.thunk(() => ({
-        [nix.POS]: pos$115,
+        [nix.POS]: $pos[114],
         name: "borkdude/edamame",
         path: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchMavenArtifact"), nix.thunk(() => ({
-            [nix.POS]: pos$114,
+            [nix.POS]: $pos[113],
             repos: repos,
             artifactId: "edamame",
             groupId: "borkdude",
@@ -909,10 +714,10 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       nix.thunk(() => ({
-        [nix.POS]: pos$117,
+        [nix.POS]: $pos[116],
         name: "com.taoensso/timbre",
         path: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchMavenArtifact"), nix.thunk(() => ({
-            [nix.POS]: pos$116,
+            [nix.POS]: $pos[115],
             repos: repos,
             artifactId: "timbre",
             groupId: "com.taoensso",
@@ -921,10 +726,10 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       nix.thunk(() => ({
-        [nix.POS]: pos$119,
+        [nix.POS]: $pos[118],
         name: "org.clojure/java.jdbc",
         path: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchMavenArtifact"), nix.thunk(() => ({
-            [nix.POS]: pos$118,
+            [nix.POS]: $pos[117],
             repos: repos,
             artifactId: "java.jdbc",
             groupId: "org.clojure",
@@ -933,10 +738,10 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       nix.thunk(() => ({
-        [nix.POS]: pos$121,
+        [nix.POS]: $pos[120],
         name: "org.apache.maven.wagon/wagon-http",
         path: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchMavenArtifact"), nix.thunk(() => ({
-            [nix.POS]: pos$120,
+            [nix.POS]: $pos[119],
             repos: repos,
             artifactId: "wagon-http",
             groupId: "org.apache.maven.wagon",
@@ -945,10 +750,10 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       nix.thunk(() => ({
-        [nix.POS]: pos$123,
+        [nix.POS]: $pos[122],
         name: "io.opentracing/opentracing-noop",
         path: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchMavenArtifact"), nix.thunk(() => ({
-            [nix.POS]: pos$122,
+            [nix.POS]: $pos[121],
             repos: repos,
             artifactId: "opentracing-noop",
             groupId: "io.opentracing",
@@ -957,10 +762,10 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       nix.thunk(() => ({
-        [nix.POS]: pos$125,
+        [nix.POS]: $pos[124],
         name: "net.cgrand/regex",
         path: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchMavenArtifact"), nix.thunk(() => ({
-            [nix.POS]: pos$124,
+            [nix.POS]: $pos[123],
             repos: repos,
             artifactId: "regex",
             groupId: "net.cgrand",
@@ -969,10 +774,10 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       nix.thunk(() => ({
-        [nix.POS]: pos$127,
+        [nix.POS]: $pos[126],
         name: "cider/cider-nrepl",
         path: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchMavenArtifact"), nix.thunk(() => ({
-            [nix.POS]: pos$126,
+            [nix.POS]: $pos[125],
             repos: repos,
             artifactId: "cider-nrepl",
             groupId: "cider",
@@ -981,10 +786,10 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       nix.thunk(() => ({
-        [nix.POS]: pos$129,
+        [nix.POS]: $pos[128],
         name: "com.cemerick/pomegranate",
         path: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchMavenArtifact"), nix.thunk(() => ({
-            [nix.POS]: pos$128,
+            [nix.POS]: $pos[127],
             repos: repos,
             artifactId: "pomegranate",
             groupId: "com.cemerick",
@@ -993,10 +798,10 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       nix.thunk(() => ({
-        [nix.POS]: pos$131,
+        [nix.POS]: $pos[130],
         name: "org.codehaus.plexus/plexus-interpolation",
         path: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchMavenArtifact"), nix.thunk(() => ({
-            [nix.POS]: pos$130,
+            [nix.POS]: $pos[129],
             repos: repos,
             artifactId: "plexus-interpolation",
             groupId: "org.codehaus.plexus",
@@ -1005,10 +810,10 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       nix.thunk(() => ({
-        [nix.POS]: pos$133,
+        [nix.POS]: $pos[132],
         name: "org.apache.httpcomponents/httpclient",
         path: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchMavenArtifact"), nix.thunk(() => ({
-            [nix.POS]: pos$132,
+            [nix.POS]: $pos[131],
             repos: repos,
             artifactId: "httpclient",
             groupId: "org.apache.httpcomponents",
@@ -1017,10 +822,10 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       nix.thunk(() => ({
-        [nix.POS]: pos$135,
+        [nix.POS]: $pos[134],
         name: "cheshire/cheshire",
         path: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchMavenArtifact"), nix.thunk(() => ({
-            [nix.POS]: pos$134,
+            [nix.POS]: $pos[133],
             repos: repos,
             artifactId: "cheshire",
             groupId: "cheshire",
@@ -1029,10 +834,10 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       nix.thunk(() => ({
-        [nix.POS]: pos$137,
+        [nix.POS]: $pos[136],
         name: "tigris/tigris",
         path: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchMavenArtifact"), nix.thunk(() => ({
-            [nix.POS]: pos$136,
+            [nix.POS]: $pos[135],
             repos: repos,
             artifactId: "tigris",
             groupId: "tigris",
@@ -1041,10 +846,10 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       nix.thunk(() => ({
-        [nix.POS]: pos$139,
+        [nix.POS]: $pos[138],
         name: "org.clojure/core.match",
         path: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchMavenArtifact"), nix.thunk(() => ({
-            [nix.POS]: pos$138,
+            [nix.POS]: $pos[137],
             repos: repos,
             artifactId: "core.match",
             groupId: "org.clojure",
@@ -1053,10 +858,10 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       nix.thunk(() => ({
-        [nix.POS]: pos$141,
+        [nix.POS]: $pos[140],
         name: "org.clojure/tools.reader",
         path: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchMavenArtifact"), nix.thunk(() => ({
-            [nix.POS]: pos$140,
+            [nix.POS]: $pos[139],
             repos: repos,
             artifactId: "tools.reader",
             groupId: "org.clojure",
@@ -1065,10 +870,10 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       nix.thunk(() => ({
-        [nix.POS]: pos$143,
+        [nix.POS]: $pos[142],
         name: "org.tcrawley/dynapath",
         path: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchMavenArtifact"), nix.thunk(() => ({
-            [nix.POS]: pos$142,
+            [nix.POS]: $pos[141],
             repos: repos,
             artifactId: "dynapath",
             groupId: "org.tcrawley",
@@ -1077,10 +882,10 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       nix.thunk(() => ({
-        [nix.POS]: pos$145,
+        [nix.POS]: $pos[144],
         name: "org.babashka/sci",
         path: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchMavenArtifact"), nix.thunk(() => ({
-            [nix.POS]: pos$144,
+            [nix.POS]: $pos[143],
             repos: repos,
             artifactId: "sci",
             groupId: "org.babashka",
@@ -1089,10 +894,10 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       nix.thunk(() => ({
-        [nix.POS]: pos$147,
+        [nix.POS]: $pos[146],
         name: "io.opentracing/opentracing-util",
         path: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchMavenArtifact"), nix.thunk(() => ({
-            [nix.POS]: pos$146,
+            [nix.POS]: $pos[145],
             repos: repos,
             artifactId: "opentracing-util",
             groupId: "io.opentracing",
@@ -1101,10 +906,10 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       nix.thunk(() => ({
-        [nix.POS]: pos$149,
+        [nix.POS]: $pos[148],
         name: "org.jsoup/jsoup",
         path: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchMavenArtifact"), nix.thunk(() => ({
-            [nix.POS]: pos$148,
+            [nix.POS]: $pos[147],
             repos: repos,
             artifactId: "jsoup",
             groupId: "org.jsoup",
@@ -1113,10 +918,10 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       nix.thunk(() => ({
-        [nix.POS]: pos$151,
+        [nix.POS]: $pos[150],
         name: "nrepl/nrepl",
         path: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchMavenArtifact"), nix.thunk(() => ({
-            [nix.POS]: pos$150,
+            [nix.POS]: $pos[149],
             repos: repos,
             artifactId: "nrepl",
             groupId: "nrepl",
@@ -1125,10 +930,10 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       nix.thunk(() => ({
-        [nix.POS]: pos$153,
+        [nix.POS]: $pos[152],
         name: "org.apache.maven.resolver/maven-resolver-connector-basic",
         path: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchMavenArtifact"), nix.thunk(() => ({
-            [nix.POS]: pos$152,
+            [nix.POS]: $pos[151],
             repos: repos,
             artifactId: "maven-resolver-connector-basic",
             groupId: "org.apache.maven.resolver",
@@ -1137,10 +942,10 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       nix.thunk(() => ({
-        [nix.POS]: pos$155,
+        [nix.POS]: $pos[154],
         name: "org.xerial/sqlite-jdbc",
         path: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchMavenArtifact"), nix.thunk(() => ({
-            [nix.POS]: pos$154,
+            [nix.POS]: $pos[153],
             repos: repos,
             artifactId: "sqlite-jdbc",
             groupId: "org.xerial",
@@ -1149,10 +954,10 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       nix.thunk(() => ({
-        [nix.POS]: pos$157,
+        [nix.POS]: $pos[156],
         name: "org.apache.maven.resolver/maven-resolver-impl",
         path: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchMavenArtifact"), nix.thunk(() => ({
-            [nix.POS]: pos$156,
+            [nix.POS]: $pos[155],
             repos: repos,
             artifactId: "maven-resolver-impl",
             groupId: "org.apache.maven.resolver",
@@ -1161,10 +966,10 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       nix.thunk(() => ({
-        [nix.POS]: pos$159,
+        [nix.POS]: $pos[158],
         name: "org.slf4j/slf4j-api",
         path: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchMavenArtifact"), nix.thunk(() => ({
-            [nix.POS]: pos$158,
+            [nix.POS]: $pos[157],
             repos: repos,
             artifactId: "slf4j-api",
             groupId: "org.slf4j",
@@ -1173,10 +978,10 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       nix.thunk(() => ({
-        [nix.POS]: pos$161,
+        [nix.POS]: $pos[160],
         name: "org.apache.maven/maven-model",
         path: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchMavenArtifact"), nix.thunk(() => ({
-            [nix.POS]: pos$160,
+            [nix.POS]: $pos[159],
             repos: repos,
             artifactId: "maven-model",
             groupId: "org.apache.maven",
@@ -1185,10 +990,10 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       nix.thunk(() => ({
-        [nix.POS]: pos$163,
+        [nix.POS]: $pos[162],
         name: "org.clojure/test.check",
         path: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchMavenArtifact"), nix.thunk(() => ({
-            [nix.POS]: pos$162,
+            [nix.POS]: $pos[161],
             repos: repos,
             artifactId: "test.check",
             groupId: "org.clojure",
@@ -1197,10 +1002,10 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       nix.thunk(() => ({
-        [nix.POS]: pos$165,
+        [nix.POS]: $pos[164],
         name: "org.apache.maven.resolver/maven-resolver-util",
         path: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchMavenArtifact"), nix.thunk(() => ({
-            [nix.POS]: pos$164,
+            [nix.POS]: $pos[163],
             repos: repos,
             artifactId: "maven-resolver-util",
             groupId: "org.apache.maven.resolver",
@@ -1209,10 +1014,10 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       nix.thunk(() => ({
-        [nix.POS]: pos$167,
+        [nix.POS]: $pos[166],
         name: "io.dropwizard.metrics/metrics-jmx",
         path: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchMavenArtifact"), nix.thunk(() => ({
-            [nix.POS]: pos$166,
+            [nix.POS]: $pos[165],
             repos: repos,
             artifactId: "metrics-jmx",
             groupId: "io.dropwizard.metrics",
@@ -1221,10 +1026,10 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       nix.thunk(() => ({
-        [nix.POS]: pos$169,
+        [nix.POS]: $pos[168],
         name: "io.forward/yaml",
         path: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchMavenArtifact"), nix.thunk(() => ({
-            [nix.POS]: pos$168,
+            [nix.POS]: $pos[167],
             repos: repos,
             artifactId: "yaml",
             groupId: "io.forward",
@@ -1233,10 +1038,10 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       nix.thunk(() => ({
-        [nix.POS]: pos$171,
+        [nix.POS]: $pos[170],
         name: "me.raynes/fs",
         path: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchMavenArtifact"), nix.thunk(() => ({
-            [nix.POS]: pos$170,
+            [nix.POS]: $pos[169],
             repos: repos,
             artifactId: "fs",
             groupId: "me.raynes",
@@ -1245,10 +1050,10 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       nix.thunk(() => ({
-        [nix.POS]: pos$173,
+        [nix.POS]: $pos[172],
         name: "org.clojure/core.memoize",
         path: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchMavenArtifact"), nix.thunk(() => ({
-            [nix.POS]: pos$172,
+            [nix.POS]: $pos[171],
             repos: repos,
             artifactId: "core.memoize",
             groupId: "org.clojure",
@@ -1257,10 +1062,10 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       nix.thunk(() => ({
-        [nix.POS]: pos$175,
+        [nix.POS]: $pos[174],
         name: "org.apache.maven/maven-repository-metadata",
         path: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchMavenArtifact"), nix.thunk(() => ({
-            [nix.POS]: pos$174,
+            [nix.POS]: $pos[173],
             repos: repos,
             artifactId: "maven-repository-metadata",
             groupId: "org.apache.maven",
@@ -1269,10 +1074,10 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       nix.thunk(() => ({
-        [nix.POS]: pos$177,
+        [nix.POS]: $pos[176],
         name: "io.simplect/compose",
         path: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchMavenArtifact"), nix.thunk(() => ({
-            [nix.POS]: pos$176,
+            [nix.POS]: $pos[175],
             repos: repos,
             artifactId: "compose",
             groupId: "io.simplect",
@@ -1281,10 +1086,10 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       nix.thunk(() => ({
-        [nix.POS]: pos$179,
+        [nix.POS]: $pos[178],
         name: "org.clojure/data.priority-map",
         path: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchMavenArtifact"), nix.thunk(() => ({
-            [nix.POS]: pos$178,
+            [nix.POS]: $pos[177],
             repos: repos,
             artifactId: "data.priority-map",
             groupId: "org.clojure",
@@ -1293,10 +1098,10 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       nix.thunk(() => ({
-        [nix.POS]: pos$181,
+        [nix.POS]: $pos[180],
         name: "borkdude/sci.impl.reflector",
         path: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchMavenArtifact"), nix.thunk(() => ({
-            [nix.POS]: pos$180,
+            [nix.POS]: $pos[179],
             repos: repos,
             artifactId: "sci.impl.reflector",
             groupId: "borkdude",
@@ -1305,10 +1110,10 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       nix.thunk(() => ({
-        [nix.POS]: pos$183,
+        [nix.POS]: $pos[182],
         name: "org.apache.maven/maven-builder-support",
         path: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchMavenArtifact"), nix.thunk(() => ({
-            [nix.POS]: pos$182,
+            [nix.POS]: $pos[181],
             repos: repos,
             artifactId: "maven-builder-support",
             groupId: "org.apache.maven",
@@ -1317,10 +1122,10 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       nix.thunk(() => ({
-        [nix.POS]: pos$185,
+        [nix.POS]: $pos[184],
         name: "org.slf4j/log4j-over-slf4j",
         path: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchMavenArtifact"), nix.thunk(() => ({
-            [nix.POS]: pos$184,
+            [nix.POS]: $pos[183],
             repos: repos,
             artifactId: "log4j-over-slf4j",
             groupId: "org.slf4j",
@@ -1329,10 +1134,10 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       nix.thunk(() => ({
-        [nix.POS]: pos$187,
+        [nix.POS]: $pos[186],
         name: "org.clojure/core.cache",
         path: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchMavenArtifact"), nix.thunk(() => ({
-            [nix.POS]: pos$186,
+            [nix.POS]: $pos[185],
             repos: repos,
             artifactId: "core.cache",
             groupId: "org.clojure",
@@ -1341,10 +1146,10 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       nix.thunk(() => ({
-        [nix.POS]: pos$189,
+        [nix.POS]: $pos[188],
         name: "org.clojure/core.async",
         path: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchMavenArtifact"), nix.thunk(() => ({
-            [nix.POS]: pos$188,
+            [nix.POS]: $pos[187],
             repos: repos,
             artifactId: "core.async",
             groupId: "org.clojure",
@@ -1353,10 +1158,10 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       nix.thunk(() => ({
-        [nix.POS]: pos$191,
+        [nix.POS]: $pos[190],
         name: "com.fasterxml.jackson.dataformat/jackson-dataformat-smile",
         path: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchMavenArtifact"), nix.thunk(() => ({
-            [nix.POS]: pos$190,
+            [nix.POS]: $pos[189],
             repos: repos,
             artifactId: "jackson-dataformat-smile",
             groupId: "com.fasterxml.jackson.dataformat",
@@ -1365,10 +1170,10 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       nix.thunk(() => ({
-        [nix.POS]: pos$193,
+        [nix.POS]: $pos[192],
         name: "org.apache.maven/maven-artifact",
         path: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchMavenArtifact"), nix.thunk(() => ({
-            [nix.POS]: pos$192,
+            [nix.POS]: $pos[191],
             repos: repos,
             artifactId: "maven-artifact",
             groupId: "org.apache.maven",
@@ -1377,10 +1182,10 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       nix.thunk(() => ({
-        [nix.POS]: pos$195,
+        [nix.POS]: $pos[194],
         name: "org.clojure/data.codec",
         path: nix.thunk(() => nix.app(nix.sel(pkgs, "fetchMavenArtifact"), nix.thunk(() => ({
-            [nix.POS]: pos$194,
+            [nix.POS]: $pos[193],
             repos: repos,
             artifactId: "data.codec",
             groupId: "org.clojure",
@@ -1389,7 +1194,7 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
     ]);
-    return { [nix.POS]: pos$196, makePaths, makeClasspaths, packages };
+    return { [nix.POS]: $pos[195], makePaths, makeClasspaths, packages };
   })();
 })(), formals$1);
 //# sourceMappingURL=deps.ts.map

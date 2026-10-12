@@ -2,10 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/semidirect.nix", [[["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["sha256", 21, 5]], [["description", 25, 5], ["homepage", 26, 5], ["maintainers", 27, 5]], [["pname", 9, 3], ["version", 10, 3], ["idrisDeps", 12, 3], ["src", 17, 3], ["meta", 24, 3]]]);
 const formals$1 = { args: { "build-idris-package": false, fetchFromGitHub: false, contrib: false, patricia: false, lib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/semidirect.nix", [["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["sha256", 21, 5]]);
-const pos$2 = nix.positions(here + "/semidirect.nix", [["description", 25, 5], ["homepage", 26, 5], ["maintainers", 27, 5]]);
-const pos$3 = nix.positions(here + "/semidirect.nix", [["pname", 9, 3], ["version", 10, 3], ["idrisDeps", 12, 3], ["src", 17, 3], ["meta", 24, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,19 +13,19 @@ export default nix.lambda((args) => (() => {
   const patricia = nix.arg($, "patricia");
   const lib = nix.arg($, "lib");
   return nix.app(build_idris_package, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "semidirect",
       version: "2018-07-02",
       idrisDeps: nix.thunk(() => [contrib, patricia]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "clayrat",
           repo: "idris-semidirect",
           rev: "e19c58f7a25c53bba2ab058821e038bae3c093d2",
           sha256: "0182r9z34kbv3l78pw4qf48ng3hqj4sqzy53074mb0b2c3pikcrl",
         })))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Semidirect products in Idris",
         homepage: "https://github.com/clayrat/idris-semidirect",
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "brainrape"))]),

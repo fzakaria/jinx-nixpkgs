@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5]], [["NIX_LDFLAGS", 52, 5]], [["homepage", 63, 5], ["description", 64, 5], ["mainProgram", 65, 5], ["license", 66, 5], ["maintainers", 67, 5], ["platforms", 68, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["outputs", 26, 3], ["buildInputs", 32, 3], ["nativeBuildInputs", 37, 3], ["mesonFlags", 46, 3], ["env", 51, 3], ["preConfigure", 55, 3], ["meta", 62, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromSourcehut: false, audit: false, "pkg-config": false, libcap: false, gperf: false, meson: false, ninja: false, python3: false, getent: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_LDFLAGS", 52, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 63, 5], ["description", 64, 5], ["mainProgram", 65, 5], ["license", 66, 5], ["maintainers", 67, 5], ["platforms", 68, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["outputs", 26, 3], ["buildInputs", 32, 3], ["nativeBuildInputs", 37, 3], ["mesonFlags", 46, 3], ["env", 51, 3], ["preConfigure", 55, 3], ["meta", 62, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const getent = nix.arg($, "getent");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "basu",
       version: "0.2.1",
       src: nix.thunk(() => nix.app(fetchFromSourcehut, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "~emersion",
           repo: "basu",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,10 +33,10 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [audit, libcap]))),
       nativeBuildInputs: nix.thunk(() => [pkg_config, meson, ninja, python3, getent, gperf]),
       mesonFlags: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux"))), nix.thunk(() => ["-Daudit=disabled", "-Dlibcap=disabled"]))),
-      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "useLLVM")), nix.thunk(() => ({ [nix.POS]: pos$2, NIX_LDFLAGS: "--undefined-version" })))),
+      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "useLLVM")), nix.thunk(() => ({ [nix.POS]: $pos[1], NIX_LDFLAGS: "--undefined-version" })))),
       preConfigure: "pushd src/basic\npatchShebangs \\\n  generate-cap-list.sh generate-errno-list.sh generate-gperfs.py\npopd\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://sr.ht/~emersion/basu",
         description: "Sd-bus library, extracted from systemd",
         mainProgram: "basuctl",

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]], [["nativeBuildInputs", 56, 9]], [["updateScript", 49, 12], ["withAgePlugins", 52, 12]], [["homepage", 64, 5], ["description", 65, 5], ["changelog", 66, 5], ["mainProgram", 67, 5], ["maintainers", 68, 5], ["license", 72, 5]], [["pname", 14, 3], ["version", 15, 3], ["__structuredAttrs", 17, 3], ["src", 19, 3], ["vendorHash", 26, 3], ["subPackages", 28, 3], ["ldflags", 30, 3], ["nativeBuildInputs", 36, 3], ["postInstall", 41, 3], ["nativeInstallCheckInputs", 46, 3], ["doInstallCheck", 47, 3], ["passthru", 49, 3], ["meta", 63, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitHub: false, installShellFiles: false, versionCheckHook: false, "nix-update-script": false, makeWrapper: false, runCommand: false, age: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["nativeBuildInputs", 56, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 49, 12], ["withAgePlugins", 52, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 64, 5], ["description", 65, 5], ["changelog", 66, 5], ["mainProgram", 67, 5], ["maintainers", 68, 5], ["license", 72, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["__structuredAttrs", 17, 3], ["src", 19, 3], ["vendorHash", 26, 3], ["subPackages", 28, 3], ["ldflags", 30, 3], ["nativeBuildInputs", 36, 3], ["postInstall", 41, 3], ["nativeInstallCheckInputs", 46, 3], ["doInstallCheck", 47, 3], ["passthru", 49, 3], ["meta", 63, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const runCommand = nix.arg($, "runCommand");
   const age = nix.arg($, "age");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "sops",
       version: "3.13.3",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "getsops",
           repo: nix.thunk(() => nix.sel(finalAttrs, "pname")),
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -46,14 +42,14 @@ installShellCompletion --cmd sops --zsh ${nix.path(here, "./zsh_autocomplete")}
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
-        withAgePlugins: (filter) => nix.app(runCommand, nix.thunk(() => nix.str`sops-${nix.sel(finalAttrs, "version")}-with-age-plugins`), nix.thunk(() => ({ [nix.POS]: pos$2, nativeBuildInputs: nix.thunk(() => [makeWrapper]) })), nix.thunk(() => nix.str`makeWrapper ${nix.app(nix.sel(lib, "getBin"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))}/bin/sops $out/bin/sops \\
+        withAgePlugins: (filter) => nix.app(runCommand, nix.thunk(() => nix.str`sops-${nix.sel(finalAttrs, "version")}-with-age-plugins`), nix.thunk(() => ({ [nix.POS]: $pos[1], nativeBuildInputs: nix.thunk(() => [makeWrapper]) })), nix.thunk(() => nix.str`makeWrapper ${nix.app(nix.sel(lib, "getBin"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))}/bin/sops $out/bin/sops \\
   --prefix PATH : "${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => nix.app(filter, nix.thunk(() => nix.sel(age, "passthru", "plugins")))))}"
 `)),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://getsops.io/",
         description: "Simple and flexible tool for managing secrets",
         changelog: nix.thunk(() => nix.str`https://github.com/getsops/sops/blob/v${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

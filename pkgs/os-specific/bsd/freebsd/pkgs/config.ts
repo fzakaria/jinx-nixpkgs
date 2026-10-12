@@ -2,9 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/config.nix", [[["platforms", 37, 8]], [["path", 19, 3], ["nativeBuildInputs", 20, 3], ["buildInputs", 32, 3], ["meta", 37, 3]]]);
 const formals$1 = { args: { lib: false, mkDerivation: false, bsdSetupHook: false, freebsdSetupHook: false, makeMinimal: false, install: false, mandoc: false, groff: false, flex: false, byacc: false, file2c: false, compatIfNeeded: false, libnv: false, libsbuf: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/config.nix", [["platforms", 37, 8]]);
-const pos$2 = nix.positions(here + "/config.nix", [["path", 19, 3], ["nativeBuildInputs", 20, 3], ["buildInputs", 32, 3], ["meta", 37, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,7 +22,7 @@ export default nix.lambda((args) => (() => {
   const libnv = nix.arg($, "libnv");
   const libsbuf = nix.arg($, "libsbuf");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       path: "usr.sbin/config",
       nativeBuildInputs: nix.thunk(() => [
         bsdSetupHook,
@@ -38,7 +37,7 @@ export default nix.lambda((args) => (() => {
       ]),
       buildInputs: nix.thunk(() => nix.concat(compatIfNeeded, [libnv, libsbuf])),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       })),
     })));

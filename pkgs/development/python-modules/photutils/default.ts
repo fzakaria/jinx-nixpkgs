@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]], [["all", 52, 5]], [["description", 70, 5], ["homepage", 71, 5], ["changelog", 72, 5], ["license", 73, 5], ["maintainers", 74, 5]], [["pname", 23, 3], ["version", 24, 3], ["pyproject", 25, 3], ["src", 27, 3], ["build-system", 34, 3], ["nativeBuildInputs", 39, 3], ["dependencies", 45, 3], ["optional-dependencies", 51, 3], ["doCheck", 65, 3], ["pythonImportsCheck", 67, 3], ["meta", 69, 3]]]);
 const formals$1 = { args: { lib: false, astropy: false, bottleneck: false, buildPythonPackage: false, cython: false, "extension-helpers": false, fetchFromGitHub: false, gwcs: false, matplotlib: false, numpy: false, rasterio: false, "scikit-image": false, "scikit-learn": false, scipy: false, "setuptools-scm": false, setuptools: false, shapely: false, tqdm: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["all", 52, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 70, 5], ["homepage", 71, 5], ["changelog", 72, 5], ["license", 73, 5], ["maintainers", 74, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 23, 3], ["version", 24, 3], ["pyproject", 25, 3], ["src", 27, 3], ["build-system", 34, 3], ["nativeBuildInputs", 39, 3], ["dependencies", 45, 3], ["optional-dependencies", 51, 3], ["doCheck", 65, 3], ["pythonImportsCheck", 67, 3], ["meta", 69, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,12 +26,12 @@ export default nix.lambda((args) => (() => {
   const shapely = nix.arg($, "shapely");
   const tqdm = nix.arg($, "tqdm");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "photutils",
       version: "3.0.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "astropy",
           repo: "photutils",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -44,7 +41,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [cython, extension_helpers, numpy]),
       dependencies: nix.thunk(() => [astropy, numpy, scipy]),
       "optional-dependencies": nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         all: nix.thunk(() => [
           bottleneck,
           gwcs,
@@ -59,7 +56,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["photutils"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Astropy package for source detection and photometry",
         homepage: "https://github.com/astropy/photutils",
         changelog: nix.thunk(() => nix.str`https://github.com/astropy/photutils/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGES.rst`),

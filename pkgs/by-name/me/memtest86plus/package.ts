@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]], [["systemd-boot-memtest", 34, 18]], [["efi", 24, 12], ["tests", 34, 12]], [["homepage", 37, 5], ["description", 38, 5], ["license", 39, 5], ["platforms", 40, 5], ["maintainers", 44, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["dontPatchELF", 21, 3], ["dontStrip", 22, 3], ["passthru", 24, 3], ["preBuild", 26, 3], ["installPhase", 30, 3], ["meta", 36, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["systemd-boot-memtest", 34, 18]]);
-const pos$3 = nix.positions(here + "/package.nix", [["efi", 24, 12], ["tests", 34, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 37, 5], ["description", 38, 5], ["license", 39, 5], ["platforms", 40, 5], ["maintainers", 44, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["dontPatchELF", 21, 3], ["dontStrip", 22, 3], ["passthru", 24, 3], ["preBuild", 26, 3], ["installPhase", 30, 3], ["meta", 36, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "memtest86+",
       version: "8.10",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "memtest86plus",
           repo: "memtest86plus",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -29,10 +25,10 @@ export default nix.lambda((args) => (() => {
       dontPatchELF: true,
       dontStrip: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         efi: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "finalPackage")}/mt86plus.efi`),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           "systemd-boot-memtest": nix.thunk(() => nix.sel(nixosTests, "systemd-boot", "memtest86")),
         })),
       })),
@@ -40,7 +36,7 @@ export default nix.lambda((args) => (() => {
 `),
       installPhase: "install -Dm0444 mt86plus $out/mt86plus.efi\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://www.memtest.org/",
         description: "Tool to detect memory errors",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

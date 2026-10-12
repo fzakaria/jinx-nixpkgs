@@ -2,14 +2,9 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/deferred-module-error.nix", [[["type", 15, 7]], [["modules", 18, 32]], [["default", 18, 7]], [["deferred", 14, 5], ["result", 17, 5]], [["deferred", 22, 5]], [["options", 13, 3], ["config", 21, 3]]]);
 const formals$1 = { args: { config: false, lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/deferred-module-error.nix", [["type", 15, 7]]);
-const pos$2 = nix.positions(here + "/deferred-module-error.nix", [["modules", 18, 32]]);
-const pos$3 = nix.positions(here + "/deferred-module-error.nix", [["default", 18, 7]]);
-const pos$4 = nix.positions(here + "/deferred-module-error.nix", [["deferred", 14, 5], ["result", 17, 5]]);
 const formals$2 = { args: {  }, ellipsis: true };
-const pos$5 = nix.positions(here + "/deferred-module-error.nix", [["deferred", 22, 5]]);
-const pos$6 = nix.positions(here + "/deferred-module-error.nix", [["options", 13, 3], ["config", 21, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,20 +15,20 @@ export default nix.lambda((args) => (() => {
   const evalModules = nix.thunk(() => nix.attr(lib, "evalModules"));
   const deferredModule = nix.thunk(() => nix.attr(types, "deferredModule"));
   return {
-    [nix.POS]: pos$6,
+    [nix.POS]: $pos[5],
     options: nix.thunk(() => ({
-      [nix.POS]: pos$4,
-      deferred: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({ [nix.POS]: pos$1, type: deferredModule })))),
+      [nix.POS]: $pos[3],
+      deferred: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({ [nix.POS]: $pos[0], type: deferredModule })))),
       result: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           default: nix.thunk(() => nix.sel(nix.app(evalModules, nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               modules: nix.thunk(() => [nix.thunk(() => nix.sel(config, "deferred"))]),
             }))), "config", "result")),
         })))),
     })),
     config: nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       deferred: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return true;

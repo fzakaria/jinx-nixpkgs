@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 31, 5], ["hash", 32, 5]], [["pipewire", 69, 15]], [["url", 72, 7], ["rev-prefix", 73, 7]], [["tests", 68, 5], ["updateScript", 71, 5]], [["homepage", 78, 5], ["changelog", 79, 5], ["description", 80, 5], ["license", 81, 5], ["maintainers", 82, 5], ["platforms", 83, 5]], [["pname", 21, 3], ["version", 22, 3], ["outputs", 24, 3], ["src", 30, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 41, 3], ["propagatedBuildInputs", 47, 3], ["mesonFlags", 49, 3], ["passthru", 67, 3], ["meta", 77, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, lv2: false, meson: false, ninja: false, "pkg-config": false, python3: false, libsndfile: false, serd: false, sord: false, sratom: false, gitUpdater: false, pipewire: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 31, 5], ["hash", 32, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pipewire", 69, 15]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 72, 7], ["rev-prefix", 73, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 68, 5], ["updateScript", 71, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["homepage", 78, 5], ["changelog", 79, 5], ["description", 80, 5], ["license", 81, 5], ["maintainers", 82, 5], ["platforms", 83, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 3], ["outputs", 24, 3], ["src", 30, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 41, 3], ["propagatedBuildInputs", 47, 3], ["mesonFlags", 49, 3], ["passthru", 67, 3], ["meta", 77, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.28.0";
       const outputs = nix.thunk(() => ["out", "dev", "man"]);
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://download.drobilla.net/lilv-${version}.tar.xz`),
           hash: "sha256-jctwrbXPByM1EVprCR9BE3EL3HOrqtqj+enB5VlXsUk=",
         }))));
@@ -43,12 +38,16 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "mesonEnable"), "tests", nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isStatic"))))),
       ], nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => nix.add(nix.add(nix.add(nix.app(nix.sel(lib, "mesonOption"), "default_lv2_path", "~/.lv2:~/Library/Audio/Plug-Ins/LV2:"), "/usr/local/lib/lv2:/usr/lib/lv2:"), "/Library/Audio/Plug-Ins/LV2:"), "~/.nix-profile/lib/lv2"))), nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => nix.add(nix.app(nix.sel(lib, "mesonOption"), "default_lv2_path", "~/.lv2:/usr/local/lib/lv2:/usr/lib/lv2:"), "~/.nix-profile/lib/lv2:/run/current-system/sw/lib/lv2"))))));
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$2, pipewire: pipewire })),
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$3, url: "https://gitlab.com/lv2/lilv.git", "rev-prefix": "v" })))),
+        [nix.POS]: $pos[3],
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[1], pipewire: pipewire })),
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({
+            [nix.POS]: $pos[2],
+            url: "https://gitlab.com/lv2/lilv.git",
+            "rev-prefix": "v",
+          })))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "http://drobilla.net/software/lilv",
         changelog: nix.thunk(() => nix.str`https://gitlab.com/lv2/lilv/-/blob/v${version}/NEWS`),
         description: "C library to make the use of LV2 plugins",
@@ -57,7 +56,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname,
         version,
         outputs,

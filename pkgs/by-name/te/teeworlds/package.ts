@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 27, 5], ["repo", 28, 5], ["rev", 29, 5], ["sha256", 30, 5], ["fetchSubmodules", 31, 5]], [["name", 39, 7], ["url", 40, 7], ["hash", 41, 7]], [["url", 46, 7], ["hash", 47, 7]], [["teeworlds", 122, 18]], [["tests", 122, 12]], [["description", 125, 5], ["mainProgram", 126, 5], ["longDescription", 128, 5], ["homepage", 135, 5], ["license", 136, 5], ["maintainers", 148, 5], ["platforms", 151, 5]], [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["patches", 34, 3], ["postPatch", 51, 3], ["nativeBuildInputs", 71, 3], ["buildInputs", 79, 3], ["cmakeFlags", 97, 3], ["postInstall", 101, 3], ["passthru", 122, 3], ["meta", 124, 3]]]);
 const formals$1 = { args: { fetchFromGitHub: false, fetchpatch: false, lib: false, stdenv: false, cmake: false, "pkg-config": false, python3: false, "alsa-lib": false, libx11: false, libGLU: false, SDL2: false, lua5_3: false, zlib: false, freetype: false, wavpack: false, icoutils: false, nixosTests: false, buildClient: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 27, 5], ["repo", 28, 5], ["rev", 29, 5], ["sha256", 30, 5], ["fetchSubmodules", 31, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 39, 7], ["url", 40, 7], ["hash", 41, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 46, 7], ["hash", 47, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["teeworlds", 122, 18]]);
-const pos$5 = nix.positions(here + "/package.nix", [["tests", 122, 12]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 125, 5], ["mainProgram", 126, 5], ["longDescription", 128, 5], ["homepage", 135, 5], ["license", 136, 5], ["maintainers", 148, 5], ["platforms", 151, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["patches", 34, 3], ["postPatch", 51, 3], ["nativeBuildInputs", 71, 3], ["buildInputs", 79, 3], ["cmakeFlags", 97, 3], ["postInstall", 101, 3], ["passthru", 122, 3], ["meta", 124, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const buildClient = nix.argOr($, "buildClient", () => true);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "teeworlds",
       version: "0.7.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "teeworlds",
           repo: "teeworlds",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -46,13 +40,13 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [
         nix.path(here, "./rename-VERSION-to-VERSION.txt.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "CVE-2021-43518.patch",
             url: "https://salsa.debian.org/games-team/teeworlds/-/raw/a6c4b23c1ce73466e6d89bccbede70e61e8c9cba/debian/patches/CVE-2021-43518.patch",
             hash: "sha256-2MmsucaaYjqLgMww1492gNmHmvBJm/NED+VV5pZDnBY=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: "https://github.com/teeworlds/teeworlds/commit/23f33517b4b0621253862b559f6ed0cd0146bae2.patch",
             hash: "sha256-RZvq/my7N68Kea26WuzLmyaTNOm5eZL5Gw9SGYpTeoQ=",
           })))),
@@ -82,14 +76,14 @@ rm -rf 'src/engine/external/zlib/'
       ]),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), buildClient, nix.thunk(() => nix.add(nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), "# Convert and install desktop icon\nmkdir -p $out/share/icons/hicolor/256x256/apps\nicotool --extract --index 1 --output $out/share/icons/hicolor/256x256/apps/teeworlds.png $src/other/icons/teeworlds.ico\n\n# Install menu item\ninstall -D $src/other/teeworlds.desktop $out/share/applications/teeworlds.desktop\n"), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "mkdir -p \"$out/Applications/teeworlds.app/Contents/MacOS\"\nmkdir -p \"$out/Applications/teeworlds.app/Contents/Resources\"\n\ncp '../other/icons/teeworlds.icns' \"$out/Applications/teeworlds.app/Contents/Resources/\"\ncp '../other/bundle/client/Info.plist.in' \"$out/Applications/teeworlds.app/Contents/Info.plist\"\ncp '../other/bundle/client/PkgInfo' \"$out/Applications/teeworlds.app/Contents/\"\nln -s \"$out/bin/teeworlds\" \"$out/Applications/teeworlds.app/Contents/MacOS/\"\nln -s \"$out/share/teeworlds/data\" \"$out/Applications/teeworlds.app/Contents/Resources/data\"\n"))))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           teeworlds: nix.thunk(() => nix.sel(nixosTests, "teeworlds")),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Retro multiplayer shooter game",
         mainProgram: "teeworlds_srv",
         longDescription: "Teeworlds is a free online multiplayer game, available for all\nmajor operating systems.  Battle with up to 12 players in a\nvariety of game modes, including Team Deathmatch and Capture The\nFlag.  You can even design your own maps!\n",

@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["x86_64-linux", 16, 9], ["aarch64-linux", 17, 9], ["i686-linux", 18, 9], ["aarch64-darwin", 19, 9]], [["x86_64-linux", 22, 9], ["aarch64-linux", 23, 9], ["i686-linux", 24, 9], ["aarch64-darwin", 25, 9]], [["url", 29, 7], ["stripRoot", 30, 7], ["hash", 31, 15]], [["updateScript", 55, 12]], [["description", 58, 5], ["homepage", 59, 5], ["sourceProvenance", 60, 5], ["license", 61, 5], ["maintainers", 62, 5], ["mainProgram", 67, 5], ["platforms", 68, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["dontConfigure", 34, 3], ["dontBuild", 35, 3], ["dontStrip", 36, 3], ["installPhase", 38, 3], ["doInstallCheck", 44, 3], ["installCheckPhase", 45, 3], ["dontPatchELF", 52, 3], ["dontPatchShebangs", 53, 3], ["passthru", 55, 3], ["meta", 57, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchzip: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["x86_64-linux", 16, 9], ["aarch64-linux", 17, 9], ["i686-linux", 18, 9], ["aarch64-darwin", 19, 9]]);
-const pos$2 = nix.positions(here + "/package.nix", [["x86_64-linux", 22, 9], ["aarch64-linux", 23, 9], ["i686-linux", 24, 9], ["aarch64-darwin", 25, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 29, 7], ["stripRoot", 30, 7], ["hash", 31, 15]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 55, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 58, 5], ["homepage", 59, 5], ["sourceProvenance", 60, 5], ["license", 61, 5], ["maintainers", 62, 5], ["mainProgram", 67, 5], ["platforms", 68, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["dontConfigure", 34, 3], ["dontBuild", 35, 3], ["dontStrip", 36, 3], ["installPhase", 38, 3], ["doInstallCheck", 44, 3], ["installCheckPhase", 45, 3], ["dontPatchELF", 52, 3], ["dontPatchShebangs", 53, 3], ["passthru", 55, 3], ["meta", 57, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,21 +18,21 @@ export default nix.lambda((args) => (() => {
         const system = nix.thunk(() => nix.attr(from, "system"));
         const selectSystem = (attrs) => nix.selOr(attrs, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${system}`)), nix.key(nix.force(system)));
         const suffix = nix.thunk(() => nix.app(selectSystem, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             "x86_64-linux": "linux_amd64",
             "aarch64-linux": "linux_arm64",
             "i686-linux": "linux_386",
             "aarch64-darwin": "darwin_arm64",
           }))));
         const hash = nix.thunk(() => nix.app(selectSystem, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             "x86_64-linux": "sha256-THVYezhV7TmChy8IKsE8Agx6ks4wFctuk+GevXhwRv8=",
             "aarch64-linux": "sha256-Wmlpw9gzbdCvgCwf3Nh9JPjjmDKS2P0TNYaRvKqO4fg=",
             "i686-linux": "sha256-Fdxq1r1G17kiCl7b9OBrWwkyo+VoKOvrUPf0p4wZlcs=",
             "aarch64-darwin": "sha256-+zor3j+7saG6AnuIlkJSAsCkMHYuhm0Abmt6TTu8bZI=",
           }))));
         return nix.app(fetchzip, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: nix.thunk(() => nix.str`https://releases.hashicorp.com/vault/${version}/vault_${version}_${suffix}.zip`),
             stripRoot: false,
             hash: hash,
@@ -51,9 +46,9 @@ export default nix.lambda((args) => (() => {
       const installCheckPhase = "runHook preInstallCheck\n$out/bin/vault --help\n$out/bin/vault version\nrunHook postInstallCheck\n";
       const dontPatchELF = true;
       const dontPatchShebangs = true;
-      const passthru = nix.thunk(() => ({ [nix.POS]: pos$4, updateScript: nix.path(here, "./update-bin.sh") }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: $pos[3], updateScript: nix.path(here, "./update-bin.sh") }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Tool for managing secrets, this binary includes the UI",
         homepage: "https://www.vaultproject.io",
         sourceProvenance: nix.thunk(() => (() => {
@@ -73,7 +68,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => ["x86_64-linux", "i686-linux", "aarch64-darwin", "aarch64-linux"]),
       }));
       return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname,
         version,
         src,

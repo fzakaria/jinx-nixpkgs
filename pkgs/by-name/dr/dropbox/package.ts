@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 15, 5], ["exec", 16, 5], ["comment", 17, 5], ["desktopName", 18, 5], ["genericName", 19, 5], ["categories", 20, 5], ["startupNotify", 24, 5], ["icon", 25, 5]], [["description", 114, 5], ["homepage", 115, 5], ["license", 116, 5], ["maintainers", 117, 5], ["platforms", 118, 5], ["mainProgram", 119, 5]], [["version", 30, 11], ["pname", 31, 3], ["dieWithParent", 37, 3], ["unsharePid", 41, 3], ["targetPkgs", 43, 3], ["extraInstallCommands", 77, 3], ["runScript", 82, 3], ["meta", 113, 3]]]);
 const formals$1 = { args: { lib: false, buildFHSEnv: false, writeScript: false, makeDesktopItem: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 15, 5], ["exec", 16, 5], ["comment", 17, 5], ["desktopName", 18, 5], ["genericName", 19, 5], ["categories", 20, 5], ["startupNotify", 24, 5], ["icon", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 114, 5], ["homepage", 115, 5], ["license", 116, 5], ["maintainers", 117, 5], ["platforms", 118, 5], ["mainProgram", 119, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 30, 11], ["pname", 31, 3], ["dieWithParent", 37, 3], ["unsharePid", 41, 3], ["targetPkgs", 43, 3], ["extraInstallCommands", 77, 3], ["runScript", 82, 3], ["meta", 113, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const version = "246.4.3513";
   const installer = nix.thunk(() => nix.str`https://clientupdates.dropboxstatic.com/dbx-releng/client/dropbox-lnx.x86_64-${version}.tar.gz`);
   const desktopItem = nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: "dropbox",
       exec: "dropbox",
       comment: "Sync your files across computers and to the web",
@@ -27,7 +25,7 @@ export default nix.lambda((args) => (() => {
       icon: "dropbox",
     }))));
   return nix.app(buildFHSEnv, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       version: version,
       pname: "dropbox",
       dieWithParent: false,
@@ -100,7 +98,7 @@ fi
 exec "$HOME/.dropbox-dist/dropboxd" "$@"
 `))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Online stored folders (daemon version)",
         homepage: "https://www.dropbox.com/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

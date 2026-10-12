@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 51, 5], ["repo", 52, 5], ["rev", 53, 5], ["hash", 54, 5]], [["description", 116, 5], ["homepage", 117, 5], ["mainProgram", 118, 5], ["maintainers", 119, 5], ["license", 120, 5], ["platforms", 122, 5]], [["pname", 47, 3], ["version", 48, 3], ["src", 50, 3], ["preConfigure", 57, 3], ["preBuild", 64, 3], ["enableParallelBuilding", 68, 3], ["nativeBuildInputs", 70, 3], ["buildInputs", 79, 3], ["meta", 115, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, autoconf: false, automake: false, libtool: false, "pkg-config": false, faad2: false, faac: false, a52dec: false, "alsa-lib": false, fftw: false, lame: false, libavc1394: false, libiec61883: false, libraw1394: false, libsndfile: false, libvorbis: false, libogg: false, libjpeg: false, libtiff: false, freetype: false, mjpegtools: false, x264: false, gettext: false, openexr: false, libxext: false, libxxf86vm: false, libxv: false, libxi: false, libx11: false, libxft: false, xorgproto: false, libtheora: false, libpng: false, libdv: false, libuuid: false, file: false, nasm: false, perl: false, fontconfig: false, intltool: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 51, 5], ["repo", 52, 5], ["rev", 53, 5], ["hash", 54, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 116, 5], ["homepage", 117, 5], ["mainProgram", 118, 5], ["maintainers", 119, 5], ["license", 120, 5], ["platforms", 122, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 47, 3], ["version", 48, 3], ["src", 50, 3], ["preConfigure", 57, 3], ["preBuild", 64, 3], ["enableParallelBuilding", 68, 3], ["nativeBuildInputs", 70, 3], ["buildInputs", 79, 3], ["meta", 115, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -52,11 +50,11 @@ export default nix.lambda((args) => (() => {
   const fontconfig = nix.arg($, "fontconfig");
   const intltool = nix.arg($, "intltool");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "cinelerra-cv",
       version: "2.3-unstable-2025-01-25",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "cinelerra-cv-team",
           repo: "cinelerra-cv",
           rev: "fb6eb391fe907d0f3b48b90f87e7a416408054f3",
@@ -105,7 +103,7 @@ sed -i -e "s@/usr/bin/file@${file}/bin/file@" ./configure
         fontconfig,
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Professional video editing and compositing environment (community version)",
         homepage: "http://cinelerra-cv.wikidot.com/",
         mainProgram: "cinelerracv",

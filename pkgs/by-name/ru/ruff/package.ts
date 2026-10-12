@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]], [["nixos-test-driver-busybox", 84, 7]], [["tests", 83, 5], ["updateScript", 88, 5]], [["description", 94, 5], ["homepage", 95, 5], ["changelog", 96, 5], ["license", 97, 5], ["mainProgram", 98, 5], ["maintainers", 99, 5]], [["pname", 18, 3], ["version", 19, 3], ["__structuredAttrs", 21, 3], ["src", 23, 3], ["cargoBuildFlags", 30, 3], ["cargoHash", 32, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 36, 3], ["postInstall", 40, 3], ["checkType", 53, 3], ["doCheck", 58, 3], ["cargoTestFlags", 64, 3], ["nativeInstallCheckInputs", 77, 3], ["doInstallCheck", 80, 3], ["passthru", 82, 3], ["requiredSystemFeatures", 91, 3], ["meta", 93, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, rustPlatform: false, fetchFromGitHub: false, installShellFiles: false, "rust-jemalloc-sys": false, buildPackages: false, versionCheckHook: false, nixosTests: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["nixos-test-driver-busybox", 84, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 83, 5], ["updateScript", 88, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 94, 5], ["homepage", 95, 5], ["changelog", 96, 5], ["license", 97, 5], ["mainProgram", 98, 5], ["maintainers", 99, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["__structuredAttrs", 21, 3], ["src", 23, 3], ["cargoBuildFlags", 30, 3], ["cargoHash", 32, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 36, 3], ["postInstall", 40, 3], ["checkType", 53, 3], ["doCheck", 58, 3], ["cargoTestFlags", 64, 3], ["nativeInstallCheckInputs", 77, 3], ["doInstallCheck", 80, 3], ["passthru", 82, 3], ["requiredSystemFeatures", 91, 3], ["meta", 93, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "ruff",
       version: "0.16.10",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "astral-sh",
           repo: "ruff",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -62,16 +58,16 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             "nixos-test-driver-busybox": nix.thunk(() => nix.sel(nixosTests, "nixos-test-driver", "busybox")),
           })))),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       requiredSystemFeatures: nix.thunk(() => ["big-parallel"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Extremely fast Python linter and code formatter",
         homepage: "https://github.com/astral-sh/ruff",
         changelog: nix.thunk(() => nix.str`https://github.com/astral-sh/ruff/releases/tag/${nix.sel(finalAttrs, "version")}`),

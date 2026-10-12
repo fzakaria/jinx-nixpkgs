@@ -2,20 +2,19 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/cuda_nvdisasm.nix", [[["description", 9, 5], ["longDescription", 10, 5], ["homepage", 16, 5], ["mainProgram", 17, 5]], [["redistName", 3, 3], ["pname", 4, 3], ["outputs", 6, 3], ["meta", 8, 3]]]);
 const formals$1 = { args: { buildRedist: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/cuda_nvdisasm.nix", [["description", 9, 5], ["longDescription", 10, 5], ["homepage", 16, 5], ["mainProgram", 17, 5]]);
-const pos$2 = nix.positions(here + "/cuda_nvdisasm.nix", [["redistName", 3, 3], ["pname", 4, 3], ["outputs", 6, 3], ["meta", 8, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const buildRedist = nix.arg($, "buildRedist");
   return nix.app(buildRedist, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       redistName: "cuda",
       pname: "cuda_nvdisasm",
       outputs: nix.thunk(() => ["out"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Extracts information from standalone cubin files and presents them in human readable format",
         longDescription: "`nvdisasm` extracts information from standalone cubin files and presents them in human readable format. The\noutput of `nvdisasm` includes CUDA assembly code for each kernel, listing of ELF data sections and other CUDA\nspecific sections. Output style and options are controlled through `nvdisasm` command-line options. `nvdisasm`\nalso does control flow analysis to annotate jump/branch targets and makes the output easier to read.\n",
         homepage: "https://docs.nvidia.com/cuda/cuda-binary-utilities#nvdisasm",

@@ -2,19 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["v8-linux-amd64.tar.xz", 29, 5], ["v8-linux-musl.tar.xz", 30, 5], ["v8-darwin-aarch64.tar.xz", 31, 5]], [["url", 49, 9], ["hash", 50, 9]], [["sourceProvenance", 58, 12]], [["name", 47, 7], ["src", 48, 7], ["sourceRoot", 52, 7], ["dontBuild", 53, 7], ["installPhase", 54, 7], ["meta", 58, 7]], [["owner", 70, 5], ["repo", 71, 5], ["tag", 72, 5], ["hash", 73, 5], ["fetchSubmodules", 74, 5]], [["pname", 78, 26], ["version", 78, 32], ["src", 78, 40], ["hash", 79, 5]], [["LLVM_SYS_221_PREFIX", 131, 7]], [["NAPI_V8_INCLUDE_DIR", 135, 7], ["V8_LIB_DIR", 136, 7]], [["name", 154, 5], ["runtimeInputs", 155, 5], ["text", 159, 5]], [["updateScript", 153, 12]], [["sourceProvenance", 166, 5], ["description", 167, 5], ["mainProgram", 168, 5], ["longDescription", 169, 5], ["homepage", 175, 5], ["license", 176, 5], ["platforms", 177, 5], ["maintainers", 178, 5]], [["pname", 63, 3], ["version", 64, 3], ["__structuredAttrs", 66, 3], ["strictDeps", 67, 3], ["src", 69, 3], ["cargoDeps", 77, 3], ["nativeBuildInputs", 82, 3], ["buildInputs", 91, 3], ["postPatch", 97, 3], ["makeFlags", 115, 3], ["buildFlags", 124, 3], ["env", 129, 3], ["postInstall", 139, 3], ["passthru", 153, 3], ["doCheck", 163, 3], ["meta", 165, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchurl: false, rustPlatform: false, cargo: false, rustc: false, "nix-update": false, curl: false, writeShellApplication: false, installShellFiles: false, llvmPackages_22: false, libffi: false, libxml2: false, fixDarwinDylibNames: false, withLLVM: true, withV8: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["v8-linux-amd64.tar.xz", 29, 5], ["v8-linux-musl.tar.xz", 30, 5], ["v8-darwin-aarch64.tar.xz", 31, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 49, 9], ["hash", 50, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["sourceProvenance", 58, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["name", 47, 7], ["src", 48, 7], ["sourceRoot", 52, 7], ["dontBuild", 53, 7], ["installPhase", 54, 7], ["meta", 58, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["owner", 70, 5], ["repo", 71, 5], ["tag", 72, 5], ["hash", 73, 5], ["fetchSubmodules", 74, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 78, 26], ["version", 78, 32], ["src", 78, 40], ["hash", 79, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["LLVM_SYS_221_PREFIX", 131, 7]]);
-const pos$8 = nix.positions(here + "/package.nix", [["NAPI_V8_INCLUDE_DIR", 135, 7], ["V8_LIB_DIR", 136, 7]]);
-const pos$9 = nix.positions(here + "/package.nix", [["name", 154, 5], ["runtimeInputs", 155, 5], ["text", 159, 5]]);
-const pos$10 = nix.positions(here + "/package.nix", [["updateScript", 153, 12]]);
-const pos$11 = nix.positions(here + "/package.nix", [["sourceProvenance", 166, 5], ["description", 167, 5], ["mainProgram", 168, 5], ["longDescription", 169, 5], ["homepage", 175, 5], ["license", 176, 5], ["platforms", 177, 5], ["maintainers", 178, 5]]);
-const pos$12 = nix.positions(here + "/package.nix", [["pname", 63, 3], ["version", 64, 3], ["__structuredAttrs", 66, 3], ["strictDeps", 67, 3], ["src", 69, 3], ["cargoDeps", 77, 3], ["nativeBuildInputs", 82, 3], ["buildInputs", 91, 3], ["postPatch", 97, 3], ["makeFlags", 115, 3], ["buildFlags", 124, 3], ["env", 129, 3], ["postInstall", 139, 3], ["passthru", 153, 3], ["doCheck", 163, 3], ["meta", 165, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -37,7 +26,7 @@ export default nix.lambda((args) => (() => {
   const withV8 = nix.argOr($, "withV8", () => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isx86_64"))));
   const v8Version = "11.9.7";
   const v8Hashes = nix.thunk(() => ({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     "v8-linux-amd64.tar.xz": "sha256-VOGZOKA07neIixDPJ3BLGeMX37/o9o16X4rYlo/nMbo=",
     "v8-linux-musl.tar.xz": "sha256-drD0YfCA56zej5PFR1olfdUMOOlgYo8LGbxWEJ1NusY=",
     "v8-darwin-aarch64.tar.xz": "sha256-Vk0ys6MjHSa8Gjd7XN0Jj4gyxORU0yP7hEmYk1ENeq4=",
@@ -45,10 +34,10 @@ export default nix.lambda((args) => (() => {
   const v8Prebuilt = nix.thunk(() => (() => {
     const assetName = nix.thunk(() => (nix.asBool((nix.asBool((nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isx86_64")))) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isMusl")))) ? "v8-linux-musl.tar.xz" : (nix.asBool((nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isx86_64")))) ? "v8-linux-amd64.tar.xz" : (nix.asBool((nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")))) ? "v8-darwin-aarch64.tar.xz" : nix.builtins.throw(nix.thunk(() => nix.str`withV8 = true is not supported on ${nix.sel(stdenv, "hostPlatform", "system")}`))))));
     return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         name: nix.thunk(() => nix.str`wasmer-v8-prebuilt-${v8Version}`),
         src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: nix.thunk(() => nix.str`https://github.com/wasmerio/v8-custom-builds/releases/download/${v8Version}/${assetName}`),
             hash: nix.thunk(() => nix.sel(v8Hashes, nix.key(nix.force(assetName)))),
           })))),
@@ -56,19 +45,19 @@ export default nix.lambda((args) => (() => {
         dontBuild: true,
         installPhase: "cp -r . $out\n",
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           sourceProvenance: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "sourceTypes", "binaryNativeCode"))]),
         })),
       })));
   })());
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$12,
+      [nix.POS]: $pos[11],
       pname: "wasmer",
       version: "7.5.0",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           owner: "wasmerio",
           repo: "wasmer",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -76,7 +65,7 @@ export default nix.lambda((args) => (() => {
           fetchSubmodules: true,
         })))),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -99,18 +88,18 @@ export default nix.lambda((args) => (() => {
       ]),
       buildFlags: nix.thunk(() => ["build-wasmer", "build-capi"]),
       env: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "optionalAttrs"), withLLVM, nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           LLVM_SYS_221_PREFIX: nix.thunk(() => nix.sel(llvmPackages_22, "llvm", "dev")),
         }))), nix.app(nix.sel(lib, "optionalAttrs"), withV8, nix.thunk(() => ({
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           NAPI_V8_INCLUDE_DIR: nix.thunk(() => nix.str`${v8Prebuilt}/include`),
           V8_LIB_DIR: nix.thunk(() => nix.str`${v8Prebuilt}/lib`),
         }))))),
       postInstall: nix.thunk(() => nix.add(nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "install -Dm755 target/release/libwasmer.dylib $out/lib/libwasmer.dylib\n"), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "# gen-completions uses argv[0] as the command name, so invoke wasmer with\n# `exec -a wasmer` to avoid baking the absolute store path into the output\n# (which produces invalid fish function names that fail to load).\ninstallShellCompletion --cmd wasmer \\\n  --bash <(exec -a wasmer $out/bin/wasmer gen-completions bash) \\\n  --fish <(exec -a wasmer $out/bin/wasmer gen-completions fish) \\\n  --zsh <(exec -a wasmer $out/bin/wasmer gen-completions zsh)\n"))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         updateScript: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.app(writeShellApplication, nix.thunk(() => ({
-              [nix.POS]: pos$9,
+              [nix.POS]: $pos[8],
               name: "update-wasmer",
               runtimeInputs: nix.thunk(() => [nix_update, curl]),
               text: nix.thunk(() => nix.builtins.readFile(nix.path(here, "./update.sh"))),
@@ -118,7 +107,7 @@ export default nix.lambda((args) => (() => {
       })),
       doCheck: false,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$11,
+        [nix.POS]: $pos[10],
         sourceProvenance: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "sourceTypes")), null);
           return nix.concat([nix.thunk(() => nix.lookup(w, "fromSource"))], nix.app(nix.sel(lib, "optional"), withV8, nix.thunk(() => nix.lookup(w, "binaryNativeCode"))));

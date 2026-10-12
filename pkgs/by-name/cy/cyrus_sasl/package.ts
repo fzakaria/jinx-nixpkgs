@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["urls", 28, 5], ["sha256", 33, 5]], [["url", 41, 7], ["hash", 42, 7]], [["url", 46, 7], ["hash", 47, 7]], [["NIX_CFLAGS_COMPILE", 100, 5]], [["parsedmarc", 108, 26], ["postfix", 108, 37]], [["tests", 107, 12]], [["homepage", 112, 5], ["description", 113, 5], ["platforms", 114, 5], ["license", 115, 5]], [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["patches", 36, 3], ["outputs", 51, 3], ["depsBuildBuild", 59, 3], ["nativeBuildInputs", 60, 3], ["buildInputs", 65, 3], ["configureFlags", 76, 3], ["makeFlags", 97, 3], ["env", 99, 3], ["installFlags", 103, 3], ["passthru", 107, 3], ["meta", 111, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, fetchpatch: false, openssl: false, openldap: false, libmysqlclient: false, libkrb5: false, db: false, gettext: false, pam: false, libxcrypt: false, fixDarwinDylibNames: false, autoreconfHook: false, enableLdap: true, enableMySQL: true, buildPackages: false, pruneLibtoolFiles: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["urls", 28, 5], ["sha256", 33, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 41, 7], ["hash", 42, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 46, 7], ["hash", 47, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 100, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["parsedmarc", 108, 26], ["postfix", 108, 37]]);
-const pos$6 = nix.positions(here + "/package.nix", [["tests", 107, 12]]);
-const pos$7 = nix.positions(here + "/package.nix", [["homepage", 112, 5], ["description", 113, 5], ["platforms", 114, 5], ["license", 115, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["patches", 36, 3], ["outputs", 51, 3], ["depsBuildBuild", 59, 3], ["nativeBuildInputs", 60, 3], ["buildInputs", 65, 3], ["configureFlags", 76, 3], ["makeFlags", 97, 3], ["env", 99, 3], ["installFlags", 103, 3], ["passthru", 107, 3], ["meta", 111, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -37,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const pname = "cyrus-sasl";
       const version = "2.1.28";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           urls: nix.thunk(() => [
             nix.thunk(() => nix.str`https://github.com/cyrusimap/${pname}/releases/download/${pname}-${version}/${pname}-${version}.tar.gz`),
             nix.thunk(() => nix.str`http://www.cyrusimap.org/releases/${pname}-${version}.tar.gz`),
@@ -48,12 +41,12 @@ export default nix.lambda((args) => (() => {
       const patches = nix.thunk(() => [
         nix.path(here, "./cyrus-sasl-ac-try-run-fix.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/cyrusimap/cyrus-sasl/compare/cb549ef71c5bb646fe583697ebdcaba93267a237...dfaa62392e7caecc6ecf0097b4d73738ec4fc0a8.patch",
             hash: "sha256-pc0cZqj1QoxDqgd/j/5q3vWONEPrTm4Pr6MzHlfjRCc=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: "https://src.fedoraproject.org/rpms/cyrus-sasl/raw/388b80c6a8f93667587b4ac2e7992d0aa1c431f9/f/cyrus-sasl-2.1.28-gcc15.patch",
             hash: "sha256-AfSQXFtVh0IHG8Uw9nWMWlkQnyaX3ZMsdZLd7hTru7Q=",
           })))),
@@ -77,27 +70,27 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.str`CFLAGS=-I${nix.sel(libmysqlclient, "dev")}/include/mysql`),
         ])));
       const env = nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "cc", "isGNU")), nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           NIX_CFLAGS_COMPILE: "-Wno-error=implicit-function-declaration",
         }))));
       const installFlags = nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["framedir=$(out)/Library/Frameworks/SASL2.framework"])));
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           parsedmarc: nix.thunk(() => nix.attr(nixosTests, "parsedmarc")),
           postfix: nix.thunk(() => nix.attr(nixosTests, "postfix")),
         })),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         homepage: "https://www.cyrusimap.org/sasl",
         description: "Library for adding authentication support to connection-based protocols",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsdOriginal")),
       }));
       return {
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         pname,
         version,
         src,

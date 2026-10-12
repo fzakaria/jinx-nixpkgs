@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["hash", 26, 5]], [["NIX_CFLAGS_COMPILE", 53, 7]], [["description", 64, 5], ["homepage", 65, 5], ["changelog", 66, 5], ["license", 67, 5], ["teams", 68, 5], ["platforms", 69, 5], ["mainProgram", 70, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 22, 3], ["postPatch", 29, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 39, 3], ["cmakeFlags", 49, 3], ["env", 53, 3], ["postInstall", 55, 3], ["doInstallCheck", 60, 3], ["nativeInstallCheckInputs", 61, 3], ["meta", 63, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, buildPackages: false, cmake: false, boost: false, lua5_5: false, protobuf_21: false, rapidjson: false, shapelib: false, sqlite: false, zlib: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 53, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 64, 5], ["homepage", 65, 5], ["changelog", 66, 5], ["license", 67, 5], ["teams", 68, 5], ["platforms", 69, 5], ["mainProgram", 70, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 22, 3], ["postPatch", 29, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 39, 3], ["cmakeFlags", 49, 3], ["env", 53, 3], ["postInstall", 55, 3], ["doInstallCheck", 60, 3], ["nativeInstallCheckInputs", 61, 3], ["meta", 63, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const zlib = nix.arg($, "zlib");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "tilemaker",
       version: "3.2.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "systemed",
           repo: "tilemaker",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -39,14 +36,14 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [boost, lua5_5, protobuf_21, rapidjson, shapelib, sqlite, zlib]),
       cmakeFlags: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(nix.sel(stdenv, "hostPlatform"), nix.sel(stdenv, "buildPlatform"))), nix.thunk(() => nix.app(nix.sel(lib, "cmakeFeature"), "PROTOBUF_PROTOC_EXECUTABLE", nix.thunk(() => nix.str`${nix.sel(buildPackages, "protobuf")}/bin/protoc`))))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => [nix.thunk(() => nix.str`-DTM_VERSION=${nix.sel(finalAttrs, "version")}`)]))),
       })),
       postInstall: "install -Dm644 ../resources/*.{json,lua} -t $out/share/tilemaker\ncp -r ../server/static $out/share/tilemaker\n",
       doInstallCheck: true,
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Make OpenStreetMap vector tiles without the stack",
         homepage: "https://tilemaker.org/",
         changelog: nix.thunk(() => nix.str`https://github.com/systemed/tilemaker/blob/v${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

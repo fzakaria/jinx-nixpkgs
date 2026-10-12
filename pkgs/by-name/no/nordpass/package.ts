@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 111, 7], ["hash", 112, 7]], [["homepage", 154, 7], ["description", 155, 7], ["license", 156, 7], ["mainProgram", 157, 7], ["maintainers", 158, 7], ["platforms", 159, 7], ["sourceProvenance", 160, 7]], [["pname", 106, 5], ["version", 108, 13], ["src", 110, 5], ["nativeBuildInputs", 115, 5], ["dontStrip", 117, 5], ["dontPatchELF", 118, 5], ["unpackPhase", 120, 5], ["dontWrapGApps", 128, 5], ["installPhase", 130, 5], ["meta", 153, 5]], [["pname", 166, 25], ["version", 166, 31], ["targetPkgs", 167, 3], ["runScript", 168, 3], ["extraInstallCommands", 170, 3], ["meta", 175, 25]]]);
 const formals$1 = { args: { fetchurl: false, lib: false, stdenv: false, "squashfs-tools": false, libxtst: false, libxscrnsaver: false, libxrender: false, libxrandr: false, libxi: false, libxfixes: false, libxext: false, libxdamage: false, libxcursor: false, libxcomposite: false, libx11: false, libsm: false, libice: false, libxshmfence: false, libxcb: false, "alsa-lib": false, freetype: false, glib: false, pango: false, cairo: false, atk: false, "gdk-pixbuf": false, gtk3: false, cups: false, nspr: false, nss_latest: false, libpng: false, libnotify: false, libgcrypt: false, systemd: false, fontconfig: false, dbus: false, expat: false, curlWithGnuTls: false, zlib: false, "at-spi2-atk": false, "at-spi2-core": false, libdrm: false, libgbm: false, libxkbcommon: false, harfbuzz: false, libsecret: false, buildFHSEnv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 111, 7], ["hash", 112, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 154, 7], ["description", 155, 7], ["license", 156, 7], ["mainProgram", 157, 7], ["maintainers", 158, 7], ["platforms", 159, 7], ["sourceProvenance", 160, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 106, 5], ["version", 108, 13], ["src", 110, 5], ["nativeBuildInputs", 115, 5], ["dontStrip", 117, 5], ["dontPatchELF", 118, 5], ["unpackPhase", 120, 5], ["dontWrapGApps", 128, 5], ["installPhase", 130, 5], ["meta", 153, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 166, 25], ["version", 166, 31], ["targetPkgs", 167, 3], ["runScript", 168, 3], ["extraInstallCommands", 170, 3], ["meta", 175, 25]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -107,11 +104,11 @@ export default nix.lambda((args) => (() => {
     zlib,
   ]);
   const thisPackage = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "nordpass",
       version: version,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`${snapBaseUrl}${snapId}_${snapVersion}.snap`),
           hash: "sha256-KIFdUwyojAYTAaBXyLAgsHxMIAfS2rK4b2xtuJjwH8A=",
         })))),
@@ -122,7 +119,7 @@ export default nix.lambda((args) => (() => {
       dontWrapGApps: true,
       installPhase: "runHook preInstall\n\nmkdir -p \"$out/opt/nordpass\"\ncp -r . \"$out/opt/nordpass/\"\n\nmkdir -p $out/bin\nln -s \"$out/opt/nordpass/nordpass\" \"$out/bin/nordpass\"\n\n# Desktop file\nmkdir -p \"$out/share/applications/\"\ncp \"$out/opt/nordpass/meta/gui/nordpass.desktop\" \"$out/share/applications/\"\n# Icon\nmkdir -p \"$out/share/icons/hicolor/512x512/apps\"\ncp \"$out/opt/nordpass/meta/gui/icon.png\" \\\n  \"$out/share/icons/hicolor/512x512/apps/nordpass.png\"\n\nsed -i -e \"s#^Icon=.*\\$#Icon=$out/share/icons/hicolor/512x512/apps/nordpass.png#\" \\\n  \"$out/share/applications/nordpass.desktop\"\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://nordpass.com/",
         description: "Secure and simple password manager for a stress-free online experience",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
@@ -136,7 +133,7 @@ export default nix.lambda((args) => (() => {
       })),
     }))));
   return nix.app(buildFHSEnv, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: nix.thunk(() => nix.attr(thisPackage, "pname")),
       version: nix.thunk(() => nix.attr(thisPackage, "version")),
       targetPkgs: (_) => nix.concat(deps, [thisPackage]),

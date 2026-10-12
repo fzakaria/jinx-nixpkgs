@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 17, 5], ["hash", 18, 5]], [["description", 28, 5], ["homepage", 29, 5], ["license", 30, 5], ["maintainers", 31, 5]], [["pname", 11, 3], ["version", 12, 3], ["duneVersion", 14, 3], ["src", 16, 3], ["propagatedBuildInputs", 21, 3], ["meta", 27, 3]]]);
 const formals$1 = { args: { lib: false, fetchurl: false, buildDunePackage: false, cstruct: false, lwt: false, fmt: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 28, 5], ["homepage", 29, 5], ["license", 30, 5], ["maintainers", 31, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 11, 3], ["version", 12, 3], ["duneVersion", 14, 3], ["src", 16, 3], ["propagatedBuildInputs", 21, 3], ["meta", 27, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,18 +14,18 @@ export default nix.lambda((args) => (() => {
   const lwt = nix.arg($, "lwt");
   const fmt = nix.arg($, "fmt");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "mirage-block",
       version: "3.0.2",
       duneVersion: "3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/mirage/mirage-block/releases/download/v${nix.sel(finalAttrs, "version")}/mirage-block-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-UALUfeL0G1mfSsLgAb/HpQ6OV12YtY+GUOYG6yhUwAI=",
         })))),
       propagatedBuildInputs: nix.thunk(() => [cstruct, lwt, fmt]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Block signatures and implementations for MirageOS",
         homepage: "https://github.com/mirage/mirage-block",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 13, 5], ["hash", 14, 5]], [["wiki-js", 39, 36]], [["tests", 39, 5], ["updateScript", 40, 5]], [["homepage", 44, 5], ["description", 45, 5], ["license", 46, 5], ["maintainers", 47, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["preUnpack", 21, 3], ["sourceRoot", 26, 3], ["dontBuild", 28, 3], ["installPhase", 29, 3], ["passthru", 38, 3], ["meta", 43, 3]]]);
 const formals$1 = { args: { stdenv: false, fetchurl: false, lib: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 13, 5], ["hash", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["wiki-js", 39, 36]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 39, 5], ["updateScript", 40, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 44, 5], ["description", 45, 5], ["license", 46, 5], ["maintainers", 47, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["preUnpack", 21, 3], ["sourceRoot", 26, 3], ["dontBuild", 28, 3], ["installPhase", 29, 3], ["passthru", 38, 3], ["meta", 43, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "wiki-js",
       version: "2.5.314",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/Requarks/wiki/releases/download/v${nix.sel(finalAttrs, "version")}/wiki-js.tar.gz`),
           hash: "sha256-ejczesSZ+z/NFotTsTa6inmzyBnbGFDCc9tnl0Mg/bc=",
         })))),
@@ -29,15 +25,15 @@ export default nix.lambda((args) => (() => {
       dontBuild: true,
       installPhase: "runHook preInstall\n\nmkdir $out\ncp -r . $out\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           "wiki-js": nix.thunk(() => nix.attr(nixosTests, "wiki-js")),
         })),
         updateScript: nix.path(here, "./update.sh"),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://js.wiki/",
         description: "Modern and powerful wiki app built on Node.js",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),

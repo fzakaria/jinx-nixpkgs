@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]], [["crypto", 39, 25]], [["oauthlib", 54, 13]], [["tests", 53, 12]], [["changelog", 58, 5], ["description", 59, 5], ["homepage", 60, 5], ["license", 61, 5], ["maintainers", 62, 5]], [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["src", 19, 3], ["outputs", 26, 3], ["build-system", 31, 3], ["nativeBuildInputs", 33, 3], ["optional-dependencies", 39, 3], ["nativeCheckInputs", 41, 3], ["disabledTests", 46, 3], ["pythonImportsCheck", 51, 3], ["passthru", 53, 3], ["meta", 57, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, cryptography: false, pytestCheckHook: false, sphinxHook: false, "sphinx-rtd-theme": false, "zope-interface": false, oauthlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["crypto", 39, 25]]);
-const pos$3 = nix.positions(here + "/default.nix", [["oauthlib", 54, 13]]);
-const pos$4 = nix.positions(here + "/default.nix", [["tests", 53, 12]]);
-const pos$5 = nix.positions(here + "/default.nix", [["changelog", 58, 5], ["description", 59, 5], ["homepage", 60, 5], ["license", 61, 5], ["maintainers", 62, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["src", 19, 3], ["outputs", 26, 3], ["build-system", 31, 3], ["nativeBuildInputs", 33, 3], ["optional-dependencies", 39, 3], ["nativeCheckInputs", 41, 3], ["disabledTests", 46, 3], ["pythonImportsCheck", 51, 3], ["passthru", 53, 3], ["meta", 57, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const zope_interface = nix.arg($, "zope-interface");
   const oauthlib = nix.arg($, "oauthlib");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "pyjwt",
       version: "2.14.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "jpadilla",
           repo: "pyjwt",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -37,16 +32,16 @@ export default nix.lambda((args) => (() => {
       outputs: nix.thunk(() => ["out", "doc"]),
       "build-system": nix.thunk(() => [setuptools]),
       nativeBuildInputs: nix.thunk(() => [sphinxHook, sphinx_rtd_theme, zope_interface]),
-      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$2, crypto: nix.thunk(() => [cryptography]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: $pos[1], crypto: nix.thunk(() => [cryptography]) })),
       nativeCheckInputs: nix.thunk(() => nix.concat([pytestCheckHook], nix.app(nix.sel(lib, "concatAttrValues"), nix.thunk(() => nix.sel(finalAttrs, "passthru", "optional-dependencies"))))),
       disabledTests: nix.thunk(() => ["test_get_jwt_set_sslcontext_default"]),
       pythonImportsCheck: nix.thunk(() => ["jwt"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$3, oauthlib: oauthlib })),
+        [nix.POS]: $pos[3],
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[2], oauthlib: oauthlib })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         changelog: nix.thunk(() => nix.str`https://github.com/jpadilla/pyjwt/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.rst`),
         description: "JSON Web Token implementation in Python",
         homepage: "https://github.com/jpadilla/pyjwt",

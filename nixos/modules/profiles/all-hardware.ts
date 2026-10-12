@@ -2,11 +2,10 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
-const pos$1 = nix.positions(here + "/all-hardware.nix", [["enableAllHardware", 4, 12]]);
-const pos$2 = nix.positions(here + "/all-hardware.nix", [["hardware", 4, 3]]);
+const $pos = nix.positions(here + "/all-hardware.nix", [[["enableAllHardware", 4, 12]], [["hardware", 4, 3]]]);
 
 export default nix.thunk(() => ({
-  [nix.POS]: pos$2,
-  hardware: nix.thunk(() => ({ [nix.POS]: pos$1, enableAllHardware: true })),
+  [nix.POS]: $pos[1],
+  hardware: nix.thunk(() => ({ [nix.POS]: $pos[0], enableAllHardware: true })),
 }));
 //# sourceMappingURL=all-hardware.ts.map

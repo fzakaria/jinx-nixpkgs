@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 28, 13], ["version", 28, 19], ["hash", 29, 5], ["extension", 30, 5]], [["changelog", 48, 5], ["description", 49, 5], ["mainProgram", 50, 5], ["homepage", 51, 5], ["license", 52, 5], ["maintainers", 53, 5]], [["pname", 24, 11], ["version", 24, 17], ["pyproject", 25, 3], ["src", 27, 3], ["nativeBuildInputs", 33, 3], ["propagatedBuildInputs", 39, 3], ["nativeCheckInputs", 45, 3], ["meta", 47, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, cython: false, "setuptools-scm": false, setuptools_80: false, defcon: false, fonttools: false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 28, 13], ["version", 28, 19], ["hash", 29, 5], ["extension", 30, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["changelog", 48, 5], ["description", 49, 5], ["mainProgram", 50, 5], ["homepage", 51, 5], ["license", 52, 5], ["maintainers", 53, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 24, 11], ["version", 24, 17], ["pyproject", 25, 3], ["src", 27, 3], ["nativeBuildInputs", 33, 3], ["propagatedBuildInputs", 39, 3], ["nativeCheckInputs", 45, 3], ["meta", 47, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version_1 = version;
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname_1,
           version: version_1,
           hash: "sha256-HfVi2ZvWBZImCI9ENwK/Uc/djMY2I/IxN0WaeNe/WAg=",
@@ -35,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const propagatedBuildInputs = nix.thunk(() => nix.concat([defcon, fonttools], nix.sel(fonttools, "optional-dependencies", "ufo")));
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         changelog: nix.thunk(() => nix.str`https://github.com/googlefonts/cu2qu/releases/tag/v${version_1}`),
         description: "Cubic-to-quadratic bezier curve conversion",
         mainProgram: "cu2qu",
@@ -44,7 +42,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname: pname_1,
         version: version_1,
         pyproject,

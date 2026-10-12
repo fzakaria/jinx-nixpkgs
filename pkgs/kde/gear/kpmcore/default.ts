@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 61, 3], ["postPatch", 63, 3], ["preConfigure", 67, 3], ["extraNativeBuildInputs", 74, 3]]]);
 const formals$1 = { args: { lib: false, mkKdeDerivation: false, writeText: false, "pkg-config": false, cryptsetup: false, lvm2: false, mdadm: false, smartmontools: false, systemdMinimal: false, "util-linux": false, "bcachefs-tools": false, "btrfs-progs": false, dosfstools: false, e2fsprogs: false, exfatprogs: false, "f2fs-tools": false, fatresize: false, jfsutils: false, "nilfs-utils": false, ntfs3g: false, udftools: false, xfsprogs: false, zfs: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 61, 3], ["postPatch", 63, 3], ["preConfigure", 67, 3], ["extraNativeBuildInputs", 74, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -53,7 +53,7 @@ export default nix.lambda((args) => (() => {
   ]);
   const trustedprefixes = nix.thunk(() => nix.app(writeText, "kpmcore-trustedprefixes", nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), "\n", nix.thunk(() => nix.builtins.map(nix.thunk(() => nix.sel(lib, "getBin")), runtimeDeps))))));
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       pname: "kpmcore",
       postPatch: nix.thunk(() => nix.str`cp ${trustedprefixes} src/util/trustedprefixes
 `),

@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["hash", 26, 5]], [["NIX_CFLAGS_COMPILE", 75, 5]], [["tagFormat", 111, 5]], [["updateScript", 110, 12]], [["description", 115, 5], ["homepage", 116, 5], ["maintainers", 117, 5], ["license", 121, 5], ["platforms", 125, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 36, 3], ["preConfigure", 46, 3], ["cmakeFlags", 70, 3], ["env", 74, 3], ["postInstall", 78, 3], ["pythonImportsCheck", 103, 3], ["passthru", 110, 3], ["meta", 114, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, unstableGitUpdater: false, cmake: false, ninja: false, "pkg-config": false, eigen_3_4_0: false, zlib: false, libpng: false, boost: false, guile: false, python3: false, libsForQt5: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 75, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tagFormat", 111, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 110, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 115, 5], ["homepage", 116, 5], ["maintainers", 117, 5], ["license", 121, 5], ["platforms", 125, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 36, 3], ["preConfigure", 46, 3], ["cmakeFlags", 70, 3], ["env", 74, 3], ["postInstall", 78, 3], ["pythonImportsCheck", 103, 3], ["passthru", 110, 3], ["meta", 114, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const libsForQt5 = nix.arg($, "libsForQt5");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "libfive",
       version: "0-unstable-2025-11-12",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "libfive",
           repo: "libfive",
           rev: "c9e97343e0af998cd1696e85583eccba95532b96",
@@ -78,7 +73,10 @@ export XDG_CACHE_HOME=$(mktemp -d)/.cache
       cmakeFlags: nix.thunk(() => [
         nix.thunk(() => nix.str`-DGUILE_CCACHE_DIR=${nix.builtins.placeholder("out")}/${nix.sel(guile, "siteCcacheDir")}`),
       ]),
-      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-Wno-error=enum-constexpr-conversion" })))),
+      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), nix.thunk(() => ({
+          [nix.POS]: $pos[1],
+          NIX_CFLAGS_COMPILE: "-Wno-error=enum-constexpr-conversion",
+        })))),
       postInstall: nix.thunk(() => nix.add(nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "# No rules to install the mac app, so do it manually.\nmkdir -p $out/Applications\ncp -r studio/Studio.app $out/Applications/Studio.app\n\ninstall_name_tool -add_rpath $out/lib $out/Applications/Studio.app/Contents/MacOS/Studio\n\nmakeWrapper $out/Applications/Studio.app/Contents/MacOS/Studio $out/bin/Studio\n"), nix.str`# Link "Studio" binary to "libfive-studio" to be more obvious:
 ln -s "$out/bin/Studio" "$out/bin/libfive-studio"
 
@@ -94,11 +92,11 @@ ln -s "$out/${nix.sel(python3, "sitePackages")}" "$out/libfive/bind/python"
 `)),
       pythonImportsCheck: nix.thunk(() => ["libfive", "libfive.runner", "libfive.shape", "libfive.stdlib"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: pos$3, tagFormat: "" })))),
+        [nix.POS]: $pos[3],
+        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[2], tagFormat: "" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Infrastructure for solid modeling with F-Reps in C, C++, and Guile",
         homepage: "https://libfive.com/",
         maintainers: nix.thunk(() => (() => {

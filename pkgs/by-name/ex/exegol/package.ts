@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]], [["shortName", 71, 9], ["fullName", 72, 9], ["url", 73, 9], ["free", 75, 9], ["redistributable", 76, 9]], [["description", 57, 5], ["longDescription", 58, 5], ["homepage", 66, 5], ["changelog", 67, 5], ["license", 68, 5], ["mainProgram", 79, 5], ["maintainers", 80, 5]], [["pname", 8, 3], ["version", 9, 3], ["pyproject", 10, 3], ["__structuredAttrs", 11, 3], ["src", 13, 3], ["build-system", 20, 3], ["pythonRelaxDeps", 22, 3], ["dependencies", 32, 3], ["pythonImportsCheck", 51, 3], ["doCheck", 54, 3], ["meta", 56, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, python3Packages: false, xhost: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["shortName", 71, 9], ["fullName", 72, 9], ["url", 73, 9], ["free", 75, 9], ["redistributable", 76, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 57, 5], ["longDescription", 58, 5], ["homepage", 66, 5], ["changelog", 67, 5], ["license", 68, 5], ["mainProgram", 79, 5], ["maintainers", 80, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["pyproject", 10, 3], ["__structuredAttrs", 11, 3], ["src", 13, 3], ["build-system", 20, 3], ["pythonRelaxDeps", 22, 3], ["dependencies", 32, 3], ["pythonImportsCheck", 51, 3], ["doCheck", 54, 3], ["meta", 56, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,13 +12,13 @@ export default nix.lambda((args) => (() => {
   const python3Packages = nix.arg($, "python3Packages");
   const xhost = nix.arg($, "xhost");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "exegol",
       version: "5.1.13",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ThePorgs",
           repo: "Exegol",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -61,7 +58,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["exegol"]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Fully featured and community-driven hacking environment",
         longDescription: "Exegol is a community-driven hacking environment, powerful and yet\nsimple enough to be used by anyone in day to day engagements. Exegol is\nthe best solution to deploy powerful hacking environments securely,\neasily, professionally. Exegol fits pentesters, CTF players, bug bounty\nhunters, researchers, beginners and advanced users, defenders, from\nstylish macOS users and corporate Windows pros to UNIX-like power users.\n",
         homepage: "https://github.com/ThePorgs/Exegol",
@@ -71,7 +68,7 @@ export default nix.lambda((args) => (() => {
           return [
             nix.thunk(() => nix.lookup(w_2, "gpl3Only")),
             nix.thunk(() => nix.app(nix.lookup(w_2, "mkLicense"), nix.thunk(() => ({
-                [nix.POS]: pos$2,
+                [nix.POS]: $pos[1],
                 shortName: "esl10",
                 fullName: "Exegol Software License (ESL) - Version 1.0",
                 url: "https://docs.exegol.com/legal/software-license",

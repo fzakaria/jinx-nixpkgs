@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 16, 7], ["hash", 17, 7]], [["url", 20, 7], ["hash", 21, 7]], [["x86_64-linux", 15, 5], ["aarch64-linux", 19, 5]], [["updateScript", 56, 12]], [["description", 59, 5], ["homepage", 60, 5], ["license", 61, 5], ["maintainers", 65, 5], ["platforms", 70, 5], ["sourceProvenance", 74, 5], ["mainProgram", 75, 5]], [["pname", 28, 3], ["src", 29, 11], ["version", 29, 15], ["nativeBuildInputs", 31, 3], ["installPhase", 36, 3], ["passthru", 56, 3], ["meta", 58, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, electron: false, dpkg: false, libva: false, makeWrapper: false, commandLineArgs: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 16, 7], ["hash", 17, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 20, 7], ["hash", 21, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["x86_64-linux", 15, 5], ["aarch64-linux", 19, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 56, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 59, 5], ["homepage", 60, 5], ["license", 61, 5], ["maintainers", 65, 5], ["platforms", 70, 5], ["sourceProvenance", 74, 5], ["mainProgram", 75, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 28, 3], ["src", 29, 11], ["version", 29, 15], ["nativeBuildInputs", 31, 3], ["installPhase", 36, 3], ["passthru", 56, 3], ["meta", 58, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,21 +18,21 @@ export default nix.lambda((args) => (() => {
   const sources = nix.thunk(() => nix.builtins.import(nix.path(here, "./sources.nix")));
   const version = nix.thunk(() => nix.sel(sources, "version"));
   const srcs = nix.thunk(() => ({
-    [nix.POS]: pos$3,
+    [nix.POS]: $pos[2],
     "x86_64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         url: nix.thunk(() => nix.str`https://github.com/msojocs/bilibili-linux/releases/download/v${version}/io.github.msojocs.bilibili_${version}_amd64.deb`),
         hash: nix.thunk(() => nix.sel(sources, "x86_64-hash")),
       })))),
     "aarch64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         url: nix.thunk(() => nix.str`https://github.com/msojocs/bilibili-linux/releases/download/v${version}/io.github.msojocs.bilibili_${version}_arm64.deb`),
         hash: nix.thunk(() => nix.sel(sources, "arm64-hash")),
       })))),
   }));
   const src = nix.thunk(() => nix.selOr(srcs, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenv, "hostPlatform", "system")}`)), nix.key(nix.sel(stdenv, "hostPlatform", "system"))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "bilibili",
       src: src,
       version: version,
@@ -60,9 +55,9 @@ makeWrapper ${nix.app(nix.sel(lib, "getExe"), electron)} $out/bin/bilibili \\
 
 runHook postInstall
 `),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$4, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[3], updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Electron-based bilibili desktop client",
         homepage: "https://github.com/msojocs/bilibili-linux",
         license: nix.thunk(() => (() => {

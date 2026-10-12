@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 39, 5], ["repo", 40, 5], ["tag", 41, 5], ["hash", 42, 5]], [["description", 86, 5], ["homepage", 87, 5], ["maintainers", 88, 5], ["mainProgram", 92, 5], ["license", 93, 5], ["platforms", 94, 5]], [["pname", 35, 3], ["version", 36, 3], ["src", 38, 3], ["outputs", 45, 3], ["nativeBuildInputs", 50, 3], ["buildInputs", 55, 3], ["cmakeFlags", 78, 3], ["postFixup", 80, 3], ["meta", 85, 3]]]);
 const formals$1 = { args: { asio: false, cmake: false, curl: false, fetchFromGitHub: false, "ffmpeg-headless": false, gnutls: false, lame: false, lib: false, libev: false, "game-music-emu": false, libmicrohttpd: false, libopenmpt: false, mpg123: false, ncurses: false, "pkg-config": false, portaudio: false, stdenv: false, taglib: false, "alsa-lib": false, pipewireSupport: true, pipewire: false, pulseaudio: false, sndioSupport: true, sndio: false, systemdLibs: false, systemdSupport: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 39, 5], ["repo", 40, 5], ["tag", 41, 5], ["hash", 42, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 86, 5], ["homepage", 87, 5], ["maintainers", 88, 5], ["mainProgram", 92, 5], ["license", 93, 5], ["platforms", 94, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 35, 3], ["version", 36, 3], ["src", 38, 3], ["outputs", 45, 3], ["nativeBuildInputs", 50, 3], ["buildInputs", 55, 3], ["cmakeFlags", 78, 3], ["postFixup", 80, 3], ["meta", 85, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -37,11 +35,11 @@ export default nix.lambda((args) => (() => {
   const systemdSupport = nix.argOr($, "systemdSupport", () => nix.app(nix.sel(lib, "meta", "availableOn"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")), systemdLibs));
   const ffmpeg = ffmpeg_headless;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "musikcube",
       version: "3.0.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "clangen",
           repo: "musikcube",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -67,7 +65,7 @@ export default nix.lambda((args) => (() => {
       cmakeFlags: nix.thunk(() => ["-DDISABLE_STRIP=true"]),
       postFixup: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "install_name_tool -add_rpath $out/share/musikcube $out/share/musikcube/musikcube\ninstall_name_tool -add_rpath $out/share/musikcube $out/share/musikcube/musikcubed\n")),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Terminal-based music player, library, and streaming audio server",
         homepage: "https://github.com/clangen/musikcube",
         maintainers: nix.thunk(() => (() => {

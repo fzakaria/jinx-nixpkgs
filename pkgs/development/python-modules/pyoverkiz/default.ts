@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]], [["nexity", 38, 5]], [["description", 52, 5], ["homepage", 53, 5], ["changelog", 54, 5], ["license", 55, 5], ["maintainers", 56, 5]], [["pname", 17, 3], ["version", 18, 3], ["pyproject", 19, 3], ["src", 21, 3], ["build-system", 28, 3], ["dependencies", 30, 3], ["optional-dependencies", 37, 3], ["nativeCheckInputs", 44, 3], ["pythonImportsCheck", 49, 3], ["meta", 51, 3]]]);
 const formals$1 = { args: { lib: false, aiohttp: false, attrs: false, backoff: false, boto3: false, buildPythonPackage: false, cattrs: false, fetchFromGitHub: false, hatchling: false, "pytest-asyncio": false, pytestCheckHook: false, "warrant-lite": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["nexity", 38, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 52, 5], ["homepage", 53, 5], ["changelog", 54, 5], ["license", 55, 5], ["maintainers", 56, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 17, 3], ["version", 18, 3], ["pyproject", 19, 3], ["src", 21, 3], ["build-system", 28, 3], ["dependencies", 30, 3], ["optional-dependencies", 37, 3], ["nativeCheckInputs", 44, 3], ["pythonImportsCheck", 49, 3], ["meta", 51, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const warrant_lite = nix.arg($, "warrant-lite");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "pyoverkiz",
       version: "2.2.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "iMicknl",
           repo: "python-overkiz-api",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,11 +33,11 @@ export default nix.lambda((args) => (() => {
         })))),
       "build-system": nix.thunk(() => [hatchling]),
       dependencies: nix.thunk(() => [aiohttp, attrs, backoff, cattrs]),
-      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$2, nexity: nix.thunk(() => [boto3, warrant_lite]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: $pos[1], nexity: nix.thunk(() => [boto3, warrant_lite]) })),
       nativeCheckInputs: nix.thunk(() => [pytest_asyncio, pytestCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["pyoverkiz"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Module to interact with the Somfy TaHoma API or other OverKiz APIs",
         homepage: "https://github.com/iMicknl/python-overkiz-api",
         changelog: nix.thunk(() => nix.str`https://github.com/iMicknl/python-overkiz-api/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

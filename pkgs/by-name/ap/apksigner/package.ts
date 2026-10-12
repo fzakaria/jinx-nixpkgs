@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["modules", 15, 5]], [["name", 35, 5], ["url", 36, 5], ["tag", 37, 5], ["hash", 38, 5]], [["pname", 42, 26], ["data", 43, 5]], [["description", 74, 5], ["mainProgram", 75, 5], ["homepage", 76, 5], ["downloadPage", 77, 5], ["license", 78, 5], ["maintainers", 79, 5], ["teams", 83, 5], ["platforms", 84, 5]], [["pname", 27, 3], ["version", 31, 3], ["src", 33, 3], ["mitmCache", 41, 3], ["__darwinAllowLocalNetworking", 46, 3], ["doCheck", 48, 3], ["nativeBuildInputs", 50, 3], ["buildInputs", 55, 3], ["installPhase", 60, 3], ["meta", 73, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchgit: false, jdk_headless: false, jre_minimal: false, gradle_8: false, makeWrapper: false, bashNonInteractive: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["modules", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 35, 5], ["url", 36, 5], ["tag", 37, 5], ["hash", 38, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 42, 26], ["data", 43, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 74, 5], ["mainProgram", 75, 5], ["homepage", 76, 5], ["downloadPage", 77, 5], ["license", 78, 5], ["maintainers", 79, 5], ["teams", 83, 5], ["platforms", 84, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 27, 3], ["version", 31, 3], ["src", 33, 3], ["mitmCache", 41, 3], ["__darwinAllowLocalNetworking", 46, 3], ["doCheck", 48, 3], ["nativeBuildInputs", 50, 3], ["buildInputs", 55, 3], ["installPhase", 60, 3], ["meta", 73, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,7 +17,7 @@ export default nix.lambda((args) => (() => {
   const bashNonInteractive = nix.arg($, "bashNonInteractive");
   const gradle = gradle_8;
   const jre = nix.thunk(() => nix.app(nix.sel(jre_minimal, "override"), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       modules: nix.thunk(() => [
         "java.base",
         "java.compiler",
@@ -33,18 +29,18 @@ export default nix.lambda((args) => (() => {
       ]),
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "apksigner",
       version: "35.0.6",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           name: "apksigner",
           url: "https://android.googlesource.com/platform/tools/apksig",
           tag: "android-15.0.0_r30",
           hash: "sha256-f/PggxvBv8nYUyL9Ukd4YVpunpRWbLL5UYsYhsiDWRE=",
         })))),
       mitmCache: nix.thunk(() => nix.app(nix.sel(gradle, "fetchDeps"), nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           data: nix.path(here, "./deps.json"),
         })))),
@@ -64,7 +60,7 @@ makeWrapper $out/opt/apksigner/bin/apksigner $out/bin/apksigner \\
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Command line tool to sign and verify Android APKs",
         mainProgram: "apksigner",
         homepage: "https://developer.android.com/tools/apksigner",

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["tag", 15, 5], ["hash", 16, 5]], [["grafana-dashboard", 39, 12]], [["description", 42, 5], ["longDescription", 43, 5], ["homepage", 47, 5], ["changelog", 48, 5], ["license", 49, 5], ["maintainers", 50, 5], ["mainProgram", 51, 5], ["platforms", 52, 5]], [["pname", 8, 3], ["version", 9, 3], ["pyproject", 10, 3], ["src", 12, 3], ["build-system", 19, 3], ["nativeBuildInputs", 21, 3], ["dependencies", 23, 3], ["doCheck", 31, 3], ["dontCheckRuntimeDeps", 33, 3], ["postInstall", 35, 3], ["passthru", 39, 3], ["meta", 41, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, python3Packages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["tag", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["grafana-dashboard", 39, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 42, 5], ["longDescription", 43, 5], ["homepage", 47, 5], ["changelog", 48, 5], ["license", 49, 5], ["maintainers", 50, 5], ["mainProgram", 51, 5], ["platforms", 52, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["pyproject", 10, 3], ["src", 12, 3], ["build-system", 19, 3], ["nativeBuildInputs", 21, 3], ["dependencies", 23, 3], ["doCheck", 31, 3], ["dontCheckRuntimeDeps", 33, 3], ["postInstall", 35, 3], ["passthru", 39, 3], ["meta", 41, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,7 +15,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.5.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "arpanghosh8453",
           repo: "garmin-grafana",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -46,11 +43,11 @@ export default nix.lambda((args) => (() => {
       const dontCheckRuntimeDeps = true;
       const postInstall = "install -Dt $out/share/grafana-dashboards -m644 Grafana_Dashboard/Garmin-Grafana-Dashboard.json\n";
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         "grafana-dashboard": nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/share/grafana-dashboards/Garmin-Grafana-Dashboard.json`),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Export Garmin data to InfluxDB",
         longDescription: "A Python script to fetch Garmin health data and populate that in an InfluxDB database,\nfor visualizing long-term health trends with Grafana\n",
         homepage: "https://github.com/arpanghosh8453/garmin-grafana",
@@ -64,7 +61,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

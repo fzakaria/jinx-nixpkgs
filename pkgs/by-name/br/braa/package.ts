@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 12, 5], ["hash", 13, 5]], [["description", 25, 5], ["homepage", 26, 5], ["license", 27, 5], ["platforms", 28, 5], ["maintainers", 29, 5], ["mainProgram", 30, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["buildInputs", 16, 3], ["installPhase", 18, 3], ["meta", 24, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchzip: false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 12, 5], ["hash", 13, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 25, 5], ["homepage", 26, 5], ["license", 27, 5], ["platforms", 28, 5], ["maintainers", 29, 5], ["mainProgram", 30, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["buildInputs", 16, 3], ["installPhase", 18, 3], ["meta", 24, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,18 +12,18 @@ export default nix.lambda((args) => (() => {
   const fetchzip = nix.arg($, "fetchzip");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "braa",
       version: "0.82",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`http://s-tech.elsat.net.pl/braa/braa-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-GS3kk432BdGx/sLzzjXvotD9Qn4S3U4XtMmM0fWMhGA=",
         })))),
       buildInputs: nix.thunk(() => [zlib]),
       installPhase: "runHook preInstall\ninstall -Dm755 braa $out/bin/braa\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Mass snmp scanner",
         homepage: "http://s-tech.elsat.net.pl",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

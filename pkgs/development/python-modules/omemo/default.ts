@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]], [["doCheck", 58, 7]], [["pytest", 57, 5]], [["tests", 56, 12]], [["description", 63, 5], ["longDescription", 64, 5], ["homepage", 74, 5], ["changelog", 75, 5], ["license", 76, 5], ["teams", 77, 5], ["maintainers", 78, 5]], [["pname", 21, 3], ["version", 22, 3], ["pyproject", 23, 3], ["src", 25, 3], ["build-system", 32, 3], ["dependencies", 36, 3], ["doCheck", 41, 3], ["nativeCheckInputs", 43, 3], ["pythonImportsCheck", 52, 3], ["passthru", 56, 3], ["meta", 62, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, buildPythonPackage: false, setuptools: false, "typing-extensions": false, xeddsa: false, pytestCheckHook: false, oldmemo: false, twomemo: false, "pytest-asyncio": false, "pytest-cov-stub": false, omemo: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["doCheck", 58, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pytest", 57, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["tests", 56, 12]]);
-const pos$5 = nix.positions(here + "/default.nix", [["description", 63, 5], ["longDescription", 64, 5], ["homepage", 74, 5], ["changelog", 75, 5], ["license", 76, 5], ["teams", 77, 5], ["maintainers", 78, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 21, 3], ["version", 22, 3], ["pyproject", 23, 3], ["src", 25, 3], ["build-system", 32, 3], ["dependencies", 36, 3], ["doCheck", 41, 3], ["nativeCheckInputs", 43, 3], ["pythonImportsCheck", 52, 3], ["passthru", 56, 3], ["meta", 62, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const pytest_cov_stub = nix.arg($, "pytest-cov-stub");
   const omemo = nix.arg($, "omemo");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "omemo",
       version: "2.1.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Syndace",
           repo: "python-omemo",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -42,14 +37,14 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => nix.concat([pytestCheckHook, oldmemo, twomemo, pytest_asyncio, pytest_cov_stub], nix.sel(oldmemo, "optional-dependencies", "xml"))),
       pythonImportsCheck: nix.thunk(() => ["omemo"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
-          pytest: nix.thunk(() => nix.app(nix.sel(omemo, "overridePythonAttrs"), nix.thunk(() => ({ [nix.POS]: pos$2, doCheck: true })))),
+          [nix.POS]: $pos[2],
+          pytest: nix.thunk(() => nix.app(nix.sel(omemo, "overridePythonAttrs"), nix.thunk(() => ({ [nix.POS]: $pos[1], doCheck: true })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Open python implementation of the OMEMO Multi-End Message and Object Encryption protocol",
         longDescription: "A complete implementation of XEP-0384 on protocol-level, i.e. more than just the cryptography.\npython-omemo supports different versions of the specification through so-called backends.\n\nA backend for OMEMO in the urn:xmpp:omemo:2 namespace (the most recent version of the specification) is available\nin the python-twomemo Python package.\nA backend for (legacy) OMEMO in the eu.siacs.conversations.axolotl namespace is available in the python-oldmemo\npackage.\nMultiple backends can be loaded and used at the same time, the library manages their coexistence transparently.\n",
         homepage: "https://github.com/Syndace/python-omemo",

@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 32, 5], ["owner", 33, 5], ["repo", 34, 5], ["tag", 35, 5], ["hash", 36, 5]], [["examples", 45, 5], ["benchmarks", 46, 5], ["tests", 47, 5], ["hotdoc", 48, 5], ["tools", 49, 5]], [["gst-plugins-good", 71, 27], ["gst-plugins-bad", 71, 44], ["gst-plugins-ugly", 71, 60], ["gnuradio", 72, 15], ["vips", 72, 24], ["qt6-qtmultimedia", 73, 7], ["pkg-config", 74, 7]], [["tests", 70, 5], ["updateScript", 77, 5]], [["cpeParts", 94, 17]], [["description", 81, 5], ["homepage", 82, 5], ["changelog", 83, 5], ["pkgConfigModules", 84, 5], ["license", 90, 5], ["identifiers", 94, 5], ["platforms", 95, 5], ["maintainers", 96, 5]], [["pname", 20, 3], ["version", 21, 3], ["outputs", 23, 3], ["outputBin", 28, 3], ["outputDoc", 29, 3], ["src", 31, 3], ["postPatch", 39, 3], ["mesonFlags", 44, 3], ["nativeBuildInputs", 52, 3], ["doCheck", 61, 3], ["passthru", 69, 3], ["meta", 80, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, testers: false, "nix-update-script": false, fetchFromGitLab: false, meson: false, ninja: false, hotdoc: false, buildDevDoc: true, gnuradio: false, gst_all_1: false, qt6: false, vips: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 32, 5], ["owner", 33, 5], ["repo", 34, 5], ["tag", 35, 5], ["hash", 36, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["examples", 45, 5], ["benchmarks", 46, 5], ["tests", 47, 5], ["hotdoc", 48, 5], ["tools", 49, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["gst-plugins-good", 71, 27], ["gst-plugins-bad", 71, 44], ["gst-plugins-ugly", 71, 60], ["gnuradio", 72, 15], ["vips", 72, 24], ["qt6-qtmultimedia", 73, 7], ["pkg-config", 74, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 70, 5], ["updateScript", 77, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["cpeParts", 94, 17]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 81, 5], ["homepage", 82, 5], ["changelog", 83, 5], ["pkgConfigModules", 84, 5], ["license", 90, 5], ["identifiers", 94, 5], ["platforms", 95, 5], ["maintainers", 96, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["outputs", 23, 3], ["outputBin", 28, 3], ["outputDoc", 29, 3], ["src", 31, 3], ["postPatch", 39, 3], ["mesonFlags", 44, 3], ["nativeBuildInputs", 52, 3], ["doCheck", 61, 3], ["passthru", 69, 3], ["meta", 80, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,14 +21,14 @@ export default nix.lambda((args) => (() => {
   const qt6 = nix.arg($, "qt6");
   const vips = nix.arg($, "vips");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "orc",
       version: "0.4.44",
       outputs: nix.thunk(() => nix.concat(["out", "dev"], nix.app(nix.sel(lib, "optional"), buildDevDoc, "devdoc"))),
       outputBin: "dev",
       outputDoc: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), buildDevDoc, "devdoc")),
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "gitlab.freedesktop.org",
           owner: "gstreamer",
           repo: "orc",
@@ -43,7 +37,7 @@ export default nix.lambda((args) => (() => {
         })))),
       postPatch: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isx86_64")))), "# This benchmark times out on Hydra.nixos.org\nsed -i '/memcpy_speed/d' testsuite/meson.build\n")),
       mesonFlags: nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), nix.thunk(() => nix.sel(lib, "mesonEnable")), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           examples: false,
           benchmarks: false,
           tests: nix.thunk(() => nix.sel(finalAttrs, "finalPackage", "doCheck")),
@@ -53,9 +47,9 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => nix.concat([meson, ninja], nix.app(nix.sel(lib, "optionals"), buildDevDoc, nix.thunk(() => [hotdoc])))),
       doCheck: nix.thunk(() => !nix.asBool((nix.asBool((nix.asBool((nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")))) && nix.asBool(nix.sel(stdenv, "cc", "isGNU")))) && nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(stdenv, "cc", "version")), "12"))))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           "gst-plugins-good": nix.thunk(() => nix.attr(gst_all_1, "gst-plugins-good")),
           "gst-plugins-bad": nix.thunk(() => nix.attr(gst_all_1, "gst-plugins-bad")),
           "gst-plugins-ugly": nix.thunk(() => nix.attr(gst_all_1, "gst-plugins-ugly")),
@@ -67,7 +61,7 @@ export default nix.lambda((args) => (() => {
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Oil Runtime Compiler",
         homepage: "https://gstreamer.freedesktop.org/projects/orc.html",
         changelog: nix.thunk(() => nix.str`https://gitlab.freedesktop.org/gstreamer/orc/-/blob/${nix.sel(finalAttrs, "version")}/RELEASE`),
@@ -80,7 +74,7 @@ export default nix.lambda((args) => (() => {
           ];
         })()),
         identifiers: nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           cpeParts: nix.thunk(() => nix.app(nix.sel(lib, "meta", "cpeFullVersionWithVendor"), "gstreamer", nix.thunk(() => nix.sel(finalAttrs, "version")))),
         })),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),

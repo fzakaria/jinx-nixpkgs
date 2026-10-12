@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["gollum", 20, 18]], [["updateScript", 19, 12], ["tests", 20, 12]], [["description", 23, 5], ["homepage", 24, 5], ["changelog", 25, 5], ["license", 26, 5], ["maintainers", 27, 5], ["platforms", 33, 5], ["mainProgram", 34, 5]], [["pname", 11, 3], ["exes", 12, 3], ["ruby", 14, 11], ["gemdir", 15, 3], ["nativeBuildInputs", 17, 3], ["passthru", 19, 3], ["meta", 22, 3]]]);
 const formals$1 = { args: { lib: false, bundlerApp: false, bundlerUpdateScript: false, ruby: false, makeWrapper: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["gollum", 20, 18]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 19, 12], ["tests", 20, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 23, 5], ["homepage", 24, 5], ["changelog", 25, 5], ["license", 26, 5], ["maintainers", 27, 5], ["platforms", 33, 5], ["mainProgram", 34, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["exes", 12, 3], ["ruby", 14, 11], ["gemdir", 15, 3], ["nativeBuildInputs", 17, 3], ["passthru", 19, 3], ["meta", 22, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,19 +14,19 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(bundlerApp, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "gollum",
       exes: nix.thunk(() => ["gollum"]),
       ruby: ruby,
       gemdir: nix.path(here, "./."),
       nativeBuildInputs: nix.thunk(() => [makeWrapper]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(bundlerUpdateScript, "gollum")),
-        tests: nix.thunk(() => ({ [nix.POS]: pos$1, gollum: nix.thunk(() => nix.sel(nixosTests, "gollum")) })),
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[0], gollum: nix.thunk(() => nix.sel(nixosTests, "gollum")) })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Simple, Git-powered wiki with a sweet API and local frontend",
         homepage: "https://github.com/gollum/gollum",
         changelog: "https://github.com/gollum/gollum/blob/HEAD/HISTORY.md",

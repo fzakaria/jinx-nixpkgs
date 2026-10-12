@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 34, 5], ["repo", 35, 5], ["tag", 36, 5], ["hash", 37, 5]], [["adlfs", 56, 5], ["azure", 57, 5], ["all", 58, 5]], [["description", 79, 5], ["homepage", 80, 5], ["changelog", 81, 5], ["license", 82, 5], ["maintainers", 83, 5], ["mainProgram", 84, 5]], [["pname", 29, 3], ["version", 30, 3], ["pyproject", 31, 3], ["src", 33, 3], ["build-system", 40, 3], ["dependencies", 44, 3], ["optional-dependencies", 55, 3], ["pythonImportsCheck", 61, 3], ["nativeCheckInputs", 65, 3], ["disabledTests", 71, 3], ["meta", 78, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, click: false, packaging: false, pydantic: false, pystac: false, "pystac-client": false, "python-dotenv": false, pytz: false, requests: false, adlfs: false, "azure-storage-blob": false, responses: false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 34, 5], ["repo", 35, 5], ["tag", 36, 5], ["hash", 37, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["adlfs", 56, 5], ["azure", 57, 5], ["all", 58, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 79, 5], ["homepage", 80, 5], ["changelog", 81, 5], ["license", 82, 5], ["maintainers", 83, 5], ["mainProgram", 84, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 29, 3], ["version", 30, 3], ["pyproject", 31, 3], ["src", 33, 3], ["build-system", 40, 3], ["dependencies", 44, 3], ["optional-dependencies", 55, 3], ["pythonImportsCheck", 61, 3], ["nativeCheckInputs", 65, 3], ["disabledTests", 71, 3], ["meta", 78, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.0.0.post0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "microsoft",
           repo: "planetary-computer-sdk-for-python",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -49,7 +46,7 @@ export default nix.lambda((args) => (() => {
         requests,
       ]);
       const optional_dependencies = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         adlfs: nix.thunk(() => [adlfs]),
         azure: nix.thunk(() => [azure_storage_blob]),
         all: nix.thunk(() => nix.app(nix.sel(lib, "concatAttrValues"), nix.thunk(() => nix.app(nix.sel(lib, "removeAttrs"), optional_dependencies, nix.thunk(() => ["all"]))))),
@@ -58,7 +55,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => nix.concat([responses, pytestCheckHook], nix.sel(optional_dependencies, "all")));
       const disabledTests = nix.thunk(() => ["test_get_adlfs_filesystem", "test_get_container_client", "test_signing"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Planetary Computer SDK for Python",
         homepage: "https://github.com/microsoft/planetary-computer-sdk-for-python",
         changelog: nix.thunk(() => nix.str`https://github.com/microsoft/planetary-computer-sdk-for-python/blob/${nix.sel(src, "tag")}/CHANGELOG.md`),
@@ -70,7 +67,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "planetarycomputer",
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

@@ -2,53 +2,9 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/tests.nix", [[["__structuredAttrs", 13, 5], ["strictDeps", 14, 5], ["preferLocalBuild", 15, 5], ["nativeBuildInputs", 16, 5]], [["name", 60, 5], ["src", 61, 5]], [["name", 65, 5], ["src", 66, 5]], [["name", 70, 5], ["drv", 71, 5], ["expectedBuilderLogEntries", 81, 5]], [["name", 87, 5], ["drv", 88, 5], ["expectedBuilderLogEntries", 99, 5]], [["name", 105, 5], ["drv", 106, 5], ["expectedBuilderLogEntries", 116, 5]], [["name", 125, 7], ["scope", 126, 7], ["intro", 127, 7], ["values", 128, 7]], [["name", 123, 5], ["drv", 124, 5], ["expectedBuilderLogEntries", 130, 5]], [["name", 139, 7], ["scope", 140, 7], ["intro", 141, 7], ["values", 142, 7]], [["name", 137, 5], ["drv", 138, 5], ["expectedBuilderLogEntries", 144, 5]], [["name", 152, 7], ["scope", 153, 7], ["intro", 154, 7], ["values", 155, 7]], [["name", 150, 5], ["drv", 151, 5], ["expectedBuilderLogEntries", 157, 5]], [["name", 166, 7], ["scope", 167, 7], ["intro", 168, 7], ["values", 169, 7]], [["name", 164, 5], ["drv", 165, 5], ["expectedBuilderLogEntries", 171, 5]], [["name", 177, 5], ["scope", 178, 5], ["intro", 179, 5], ["values", 180, 5]], [["name", 184, 5], ["scope", 185, 5], ["intro", 186, 5], ["values", 187, 5]], [["name", 191, 5], ["scope", 192, 5], ["intro", 193, 5], ["values", 194, 5]], [["name", 198, 5], ["scope", 199, 5], ["intro", 200, 5], ["values", 201, 5]], [["name", 205, 5], ["scope", 206, 5], ["intro", 207, 5], ["values", 208, 5]], [["name", 212, 5], ["scope", 213, 5], ["intro", 214, 5], ["values", 215, 5]], [["name", 221, 7], ["scope", 222, 7], ["intro", 223, 7], ["values", 224, 7]], [["name", 219, 5], ["drv", 220, 5], ["expectedBuilderLogEntries", 226, 5]], [["name", 235, 7], ["scope", 236, 7], ["intro", 237, 7], ["values", 238, 7]], [["name", 233, 5], ["drv", 234, 5], ["expectedBuilderLogEntries", 240, 5]], [["name", 248, 7], ["scope", 249, 7], ["intro", 250, 7], ["values", 251, 7]], [["name", 246, 5], ["drv", 247, 5], ["expectedBuilderLogEntries", 253, 5]], [["name", 261, 7], ["scope", 262, 7], ["intro", 263, 7], ["values", 264, 7]], [["name", 259, 5], ["drv", 260, 5], ["expectedBuilderLogEntries", 266, 5]], [["name", 274, 7], ["scope", 275, 7], ["intro", 276, 7], ["values", 277, 7]], [["name", 272, 5], ["drv", 273, 5], ["expectedBuilderLogEntries", 279, 5]], [["name", 287, 7], ["scope", 288, 7], ["intro", 289, 7], ["values", 290, 7]], [["name", 285, 5], ["drv", 286, 5], ["expectedBuilderLogEntries", 292, 5]], [["name", 298, 5], ["scope", 299, 5], ["intro", 300, 5], ["values", 301, 5]], [["name", 305, 5], ["scope", 306, 5], ["intro", 307, 5], ["values", 308, 5]], [["name", 312, 5], ["scope", 313, 5], ["intro", 314, 5], ["values", 315, 5]], [["name", 321, 7], ["scope", 322, 7], ["intro", 323, 7], ["values", 324, 7]], [["name", 319, 5], ["drv", 320, 5], ["expectedBuilderLogEntries", 326, 5]], [["name", 334, 7], ["scope", 335, 7], ["intro", 336, 7], ["values", 337, 7]], [["name", 332, 5], ["drv", 333, 5], ["expectedBuilderLogEntries", 339, 5]], [["name", 347, 7], ["scope", 348, 7], ["intro", 349, 7], ["values", 350, 7]], [["name", 345, 5], ["drv", 346, 5], ["expectedBuilderLogEntries", 352, 5]], [["name", 358, 5], ["scope", 359, 5], ["intro", 360, 5], ["values", 361, 5]], [["name", 365, 5], ["scope", 366, 5], ["intro", 367, 5], ["values", 368, 5]], [["name", 372, 5], ["scope", 373, 5], ["intro", 374, 5], ["values", 375, 5]], [["shellcheck", 59, 3], ["shfmt", 64, 3], ["undeclaredFails", 69, 3], ["arrayFails", 86, 3], ["emptyStringNamerefFails", 104, 3], ["namerefToEmptyStringFails", 122, 3], ["sameScopeEmptyStringFails", 136, 3], ["sameScopeEmptyMapFails", 149, 3], ["sameScopeSingletonMapFails", 163, 3], ["sameScopeLocalUnsetMap", 176, 3], ["sameScopeLocalEmptyMap", 183, 3], ["sameScopeLocalSingletonMap", 190, 3], ["sameScopeDeclareUnsetMap", 197, 3], ["sameScopeDeclareEmptyMap", 204, 3], ["sameScopeDeclareSingletonMap", 211, 3], ["previousScopeEmptyStringFails", 218, 3], ["previousScopeEmptyMapFails", 232, 3], ["previousScopeSingletonMapFails", 245, 3], ["previousScopeLocalUnsetMapFails", 258, 3], ["previousScopeLocalEmptyMapFails", 271, 3], ["previousScopeLocalSingletonMapFails", 284, 3], ["previousScopeLocalGlobalUnsetMap", 297, 3], ["previousScopeLocalGlobalEmptyMap", 304, 3], ["previousScopeLocalGlobalSingletonMap", 311, 3], ["previousScopeDeclareUnsetMapFails", 318, 3], ["previousScopeDeclareEmptyMapFails", 331, 3], ["previousScopeDeclareSingletonMapFails", 344, 3], ["previousScopeDeclareGlobalUnsetMap", 357, 3], ["previousScopeDeclareGlobalEmptyMap", 364, 3], ["previousScopeDeclareGlobalSingletonMap", 371, 3]]]);
 const formals$1 = { args: { isDeclaredMap: false, lib: false, runCommand: false, testers: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/tests.nix", [["__structuredAttrs", 13, 5], ["strictDeps", 14, 5], ["preferLocalBuild", 15, 5], ["nativeBuildInputs", 16, 5]]);
 const formals$2 = { args: { name: false, scope: false, intro: false, values: false }, ellipsis: false };
-const pos$2 = nix.positions(here + "/tests.nix", [["name", 60, 5], ["src", 61, 5]]);
-const pos$3 = nix.positions(here + "/tests.nix", [["name", 65, 5], ["src", 66, 5]]);
-const pos$4 = nix.positions(here + "/tests.nix", [["name", 70, 5], ["drv", 71, 5], ["expectedBuilderLogEntries", 81, 5]]);
-const pos$5 = nix.positions(here + "/tests.nix", [["name", 87, 5], ["drv", 88, 5], ["expectedBuilderLogEntries", 99, 5]]);
-const pos$6 = nix.positions(here + "/tests.nix", [["name", 105, 5], ["drv", 106, 5], ["expectedBuilderLogEntries", 116, 5]]);
-const pos$7 = nix.positions(here + "/tests.nix", [["name", 125, 7], ["scope", 126, 7], ["intro", 127, 7], ["values", 128, 7]]);
-const pos$8 = nix.positions(here + "/tests.nix", [["name", 123, 5], ["drv", 124, 5], ["expectedBuilderLogEntries", 130, 5]]);
-const pos$9 = nix.positions(here + "/tests.nix", [["name", 139, 7], ["scope", 140, 7], ["intro", 141, 7], ["values", 142, 7]]);
-const pos$10 = nix.positions(here + "/tests.nix", [["name", 137, 5], ["drv", 138, 5], ["expectedBuilderLogEntries", 144, 5]]);
-const pos$11 = nix.positions(here + "/tests.nix", [["name", 152, 7], ["scope", 153, 7], ["intro", 154, 7], ["values", 155, 7]]);
-const pos$12 = nix.positions(here + "/tests.nix", [["name", 150, 5], ["drv", 151, 5], ["expectedBuilderLogEntries", 157, 5]]);
-const pos$13 = nix.positions(here + "/tests.nix", [["name", 166, 7], ["scope", 167, 7], ["intro", 168, 7], ["values", 169, 7]]);
-const pos$14 = nix.positions(here + "/tests.nix", [["name", 164, 5], ["drv", 165, 5], ["expectedBuilderLogEntries", 171, 5]]);
-const pos$15 = nix.positions(here + "/tests.nix", [["name", 177, 5], ["scope", 178, 5], ["intro", 179, 5], ["values", 180, 5]]);
-const pos$16 = nix.positions(here + "/tests.nix", [["name", 184, 5], ["scope", 185, 5], ["intro", 186, 5], ["values", 187, 5]]);
-const pos$17 = nix.positions(here + "/tests.nix", [["name", 191, 5], ["scope", 192, 5], ["intro", 193, 5], ["values", 194, 5]]);
-const pos$18 = nix.positions(here + "/tests.nix", [["name", 198, 5], ["scope", 199, 5], ["intro", 200, 5], ["values", 201, 5]]);
-const pos$19 = nix.positions(here + "/tests.nix", [["name", 205, 5], ["scope", 206, 5], ["intro", 207, 5], ["values", 208, 5]]);
-const pos$20 = nix.positions(here + "/tests.nix", [["name", 212, 5], ["scope", 213, 5], ["intro", 214, 5], ["values", 215, 5]]);
-const pos$21 = nix.positions(here + "/tests.nix", [["name", 221, 7], ["scope", 222, 7], ["intro", 223, 7], ["values", 224, 7]]);
-const pos$22 = nix.positions(here + "/tests.nix", [["name", 219, 5], ["drv", 220, 5], ["expectedBuilderLogEntries", 226, 5]]);
-const pos$23 = nix.positions(here + "/tests.nix", [["name", 235, 7], ["scope", 236, 7], ["intro", 237, 7], ["values", 238, 7]]);
-const pos$24 = nix.positions(here + "/tests.nix", [["name", 233, 5], ["drv", 234, 5], ["expectedBuilderLogEntries", 240, 5]]);
-const pos$25 = nix.positions(here + "/tests.nix", [["name", 248, 7], ["scope", 249, 7], ["intro", 250, 7], ["values", 251, 7]]);
-const pos$26 = nix.positions(here + "/tests.nix", [["name", 246, 5], ["drv", 247, 5], ["expectedBuilderLogEntries", 253, 5]]);
-const pos$27 = nix.positions(here + "/tests.nix", [["name", 261, 7], ["scope", 262, 7], ["intro", 263, 7], ["values", 264, 7]]);
-const pos$28 = nix.positions(here + "/tests.nix", [["name", 259, 5], ["drv", 260, 5], ["expectedBuilderLogEntries", 266, 5]]);
-const pos$29 = nix.positions(here + "/tests.nix", [["name", 274, 7], ["scope", 275, 7], ["intro", 276, 7], ["values", 277, 7]]);
-const pos$30 = nix.positions(here + "/tests.nix", [["name", 272, 5], ["drv", 273, 5], ["expectedBuilderLogEntries", 279, 5]]);
-const pos$31 = nix.positions(here + "/tests.nix", [["name", 287, 7], ["scope", 288, 7], ["intro", 289, 7], ["values", 290, 7]]);
-const pos$32 = nix.positions(here + "/tests.nix", [["name", 285, 5], ["drv", 286, 5], ["expectedBuilderLogEntries", 292, 5]]);
-const pos$33 = nix.positions(here + "/tests.nix", [["name", 298, 5], ["scope", 299, 5], ["intro", 300, 5], ["values", 301, 5]]);
-const pos$34 = nix.positions(here + "/tests.nix", [["name", 305, 5], ["scope", 306, 5], ["intro", 307, 5], ["values", 308, 5]]);
-const pos$35 = nix.positions(here + "/tests.nix", [["name", 312, 5], ["scope", 313, 5], ["intro", 314, 5], ["values", 315, 5]]);
-const pos$36 = nix.positions(here + "/tests.nix", [["name", 321, 7], ["scope", 322, 7], ["intro", 323, 7], ["values", 324, 7]]);
-const pos$37 = nix.positions(here + "/tests.nix", [["name", 319, 5], ["drv", 320, 5], ["expectedBuilderLogEntries", 326, 5]]);
-const pos$38 = nix.positions(here + "/tests.nix", [["name", 334, 7], ["scope", 335, 7], ["intro", 336, 7], ["values", 337, 7]]);
-const pos$39 = nix.positions(here + "/tests.nix", [["name", 332, 5], ["drv", 333, 5], ["expectedBuilderLogEntries", 339, 5]]);
-const pos$40 = nix.positions(here + "/tests.nix", [["name", 347, 7], ["scope", 348, 7], ["intro", 349, 7], ["values", 350, 7]]);
-const pos$41 = nix.positions(here + "/tests.nix", [["name", 345, 5], ["drv", 346, 5], ["expectedBuilderLogEntries", 352, 5]]);
-const pos$42 = nix.positions(here + "/tests.nix", [["name", 358, 5], ["scope", 359, 5], ["intro", 360, 5], ["values", 361, 5]]);
-const pos$43 = nix.positions(here + "/tests.nix", [["name", 365, 5], ["scope", 366, 5], ["intro", 367, 5], ["values", 368, 5]]);
-const pos$44 = nix.positions(here + "/tests.nix", [["name", 372, 5], ["scope", 373, 5], ["intro", 374, 5], ["values", 375, 5]]);
-const pos$45 = nix.positions(here + "/tests.nix", [["shellcheck", 59, 3], ["shfmt", 64, 3], ["undeclaredFails", 69, 3], ["arrayFails", 86, 3], ["emptyStringNamerefFails", 104, 3], ["namerefToEmptyStringFails", 122, 3], ["sameScopeEmptyStringFails", 136, 3], ["sameScopeEmptyMapFails", 149, 3], ["sameScopeSingletonMapFails", 163, 3], ["sameScopeLocalUnsetMap", 176, 3], ["sameScopeLocalEmptyMap", 183, 3], ["sameScopeLocalSingletonMap", 190, 3], ["sameScopeDeclareUnsetMap", 197, 3], ["sameScopeDeclareEmptyMap", 204, 3], ["sameScopeDeclareSingletonMap", 211, 3], ["previousScopeEmptyStringFails", 218, 3], ["previousScopeEmptyMapFails", 232, 3], ["previousScopeSingletonMapFails", 245, 3], ["previousScopeLocalUnsetMapFails", 258, 3], ["previousScopeLocalEmptyMapFails", 271, 3], ["previousScopeLocalSingletonMapFails", 284, 3], ["previousScopeLocalGlobalUnsetMap", 297, 3], ["previousScopeLocalGlobalEmptyMap", 304, 3], ["previousScopeLocalGlobalSingletonMap", 311, 3], ["previousScopeDeclareUnsetMapFails", 318, 3], ["previousScopeDeclareEmptyMapFails", 331, 3], ["previousScopeDeclareSingletonMapFails", 344, 3], ["previousScopeDeclareGlobalUnsetMap", 357, 3], ["previousScopeDeclareGlobalEmptyMap", 364, 3], ["previousScopeDeclareGlobalSingletonMap", 371, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -62,7 +18,7 @@ export default nix.lambda((args) => (() => {
   const shfmt = nix.thunk(() => nix.attr(testers, "shfmt"));
   const testBuildFailure$ = nix.thunk(() => nix.attr(testers, "testBuildFailure'"));
   const commonArgs = nix.thunk(() => ({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     __structuredAttrs: true,
     strictDeps: true,
     preferLocalBuild: true,
@@ -96,40 +52,40 @@ fi
     })(), formals$2);
   })());
   return nix.app(recurseIntoAttrs, nix.thunk(() => ({
-      [nix.POS]: pos$45,
+      [nix.POS]: $pos[44],
       shellcheck: nix.thunk(() => nix.app(shellcheck, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           name: "isDeclaredMap",
           src: nix.path(here, "./isDeclaredMap.bash"),
         })))),
       shfmt: nix.thunk(() => nix.app(shfmt, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           name: "isDeclaredMap",
           src: nix.path(here, "./isDeclaredMap.bash"),
         })))),
       undeclaredFails: nix.thunk(() => nix.app(testBuildFailure$, nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           name: "undeclaredFails",
           drv: nix.thunk(() => nix.app(runCommand, "undeclared", commonArgs, "set -eu\nif isDeclaredMap undeclared; then\n  nixLog \"test passed\"\n  touch \"$out\"\nelse\n  nixErrorLog \"test failed\"\n  exit 1\nfi\n")),
           expectedBuilderLogEntries: nix.thunk(() => ["test failed"]),
         })))),
       arrayFails: nix.thunk(() => nix.app(testBuildFailure$, nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           name: "arrayFails",
           drv: nix.thunk(() => nix.app(runCommand, "array", commonArgs, "set -eu\nlocal -a array\nif isDeclaredMap array; then\n  nixLog \"test passed\"\n  touch \"$out\"\nelse\n  nixErrorLog \"test failed\"\n  exit 1\nfi\n")),
           expectedBuilderLogEntries: nix.thunk(() => ["test failed"]),
         })))),
       emptyStringNamerefFails: nix.thunk(() => nix.app(testBuildFailure$, nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           name: "emptyStringNamerefFails",
           drv: nix.thunk(() => nix.app(runCommand, "emptyStringNameref", commonArgs, "set -eu\nif isDeclaredMap \"\"; then\n  nixLog \"test passed\"\n  touch \"$out\"\nelse\n  nixErrorLog \"test failed\"\n  exit 1\nfi\n")),
           expectedBuilderLogEntries: nix.thunk(() => ["local: `': not a valid identifier", "test failed"]),
         })))),
       namerefToEmptyStringFails: nix.thunk(() => nix.app(testBuildFailure$, nix.thunk(() => ({
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           name: "namerefToEmptyStringFails",
           drv: nix.thunk(() => nix.app(check, nix.thunk(() => ({
-              [nix.POS]: pos$7,
+              [nix.POS]: $pos[6],
               name: "namerefToEmptyString",
               scope: null,
               intro: "local -n",
@@ -138,10 +94,10 @@ fi
           expectedBuilderLogEntries: nix.thunk(() => ["local: `': not a valid identifier"]),
         })))),
       sameScopeEmptyStringFails: nix.thunk(() => nix.app(testBuildFailure$, nix.thunk(() => ({
-          [nix.POS]: pos$10,
+          [nix.POS]: $pos[9],
           name: "sameScopeEmptyStringFails",
           drv: nix.thunk(() => nix.app(check, nix.thunk(() => ({
-              [nix.POS]: pos$9,
+              [nix.POS]: $pos[8],
               name: "sameScopeEmptyString",
               scope: null,
               intro: null,
@@ -150,10 +106,10 @@ fi
           expectedBuilderLogEntries: nix.thunk(() => ["test failed"]),
         })))),
       sameScopeEmptyMapFails: nix.thunk(() => nix.app(testBuildFailure$, nix.thunk(() => ({
-          [nix.POS]: pos$12,
+          [nix.POS]: $pos[11],
           name: "sameScopeEmptyMapFails",
           drv: nix.thunk(() => nix.app(check, nix.thunk(() => ({
-              [nix.POS]: pos$11,
+              [nix.POS]: $pos[10],
               name: "sameScopeEmptyMap",
               scope: null,
               intro: null,
@@ -162,10 +118,10 @@ fi
           expectedBuilderLogEntries: nix.thunk(() => ["test failed"]),
         })))),
       sameScopeSingletonMapFails: nix.thunk(() => nix.app(testBuildFailure$, nix.thunk(() => ({
-          [nix.POS]: pos$14,
+          [nix.POS]: $pos[13],
           name: "sameScopeSingletonMapFails",
           drv: nix.thunk(() => nix.app(check, nix.thunk(() => ({
-              [nix.POS]: pos$13,
+              [nix.POS]: $pos[12],
               name: "sameScopeSingletonMap",
               scope: null,
               intro: null,
@@ -174,52 +130,52 @@ fi
           expectedBuilderLogEntries: nix.thunk(() => ["greeting: unbound variable"]),
         })))),
       sameScopeLocalUnsetMap: nix.thunk(() => nix.app(check, nix.thunk(() => ({
-          [nix.POS]: pos$15,
+          [nix.POS]: $pos[14],
           name: "sameScopeLocalUnsetMap",
           scope: null,
           intro: "local -A",
           values: null,
         })))),
       sameScopeLocalEmptyMap: nix.thunk(() => nix.app(check, nix.thunk(() => ({
-          [nix.POS]: pos$16,
+          [nix.POS]: $pos[15],
           name: "sameScopeLocalEmptyMap",
           scope: null,
           intro: "local -A",
           values: "()",
         })))),
       sameScopeLocalSingletonMap: nix.thunk(() => nix.app(check, nix.thunk(() => ({
-          [nix.POS]: pos$17,
+          [nix.POS]: $pos[16],
           name: "sameScopeLocalSingletonMap",
           scope: null,
           intro: "local -A",
           values: "([greeting]=\"hello!\")",
         })))),
       sameScopeDeclareUnsetMap: nix.thunk(() => nix.app(check, nix.thunk(() => ({
-          [nix.POS]: pos$18,
+          [nix.POS]: $pos[17],
           name: "sameScopeDeclareUnsetMap",
           scope: null,
           intro: "declare -A",
           values: null,
         })))),
       sameScopeDeclareEmptyMap: nix.thunk(() => nix.app(check, nix.thunk(() => ({
-          [nix.POS]: pos$19,
+          [nix.POS]: $pos[18],
           name: "sameScopeDeclareEmptyMap",
           scope: null,
           intro: "declare -A",
           values: "()",
         })))),
       sameScopeDeclareSingletonMap: nix.thunk(() => nix.app(check, nix.thunk(() => ({
-          [nix.POS]: pos$20,
+          [nix.POS]: $pos[19],
           name: "sameScopeDeclareSingletonMap",
           scope: null,
           intro: "declare -A",
           values: "([greeting]=\"hello!\")",
         })))),
       previousScopeEmptyStringFails: nix.thunk(() => nix.app(testBuildFailure$, nix.thunk(() => ({
-          [nix.POS]: pos$22,
+          [nix.POS]: $pos[21],
           name: "previousScopeEmptyStringFails",
           drv: nix.thunk(() => nix.app(check, nix.thunk(() => ({
-              [nix.POS]: pos$21,
+              [nix.POS]: $pos[20],
               name: "previousScopeEmptyString",
               scope: "function",
               intro: null,
@@ -228,10 +184,10 @@ fi
           expectedBuilderLogEntries: nix.thunk(() => ["test failed"]),
         })))),
       previousScopeEmptyMapFails: nix.thunk(() => nix.app(testBuildFailure$, nix.thunk(() => ({
-          [nix.POS]: pos$24,
+          [nix.POS]: $pos[23],
           name: "previousScopeEmptyMapFails",
           drv: nix.thunk(() => nix.app(check, nix.thunk(() => ({
-              [nix.POS]: pos$23,
+              [nix.POS]: $pos[22],
               name: "previousScopeEmptyMap",
               scope: "function",
               intro: null,
@@ -240,10 +196,10 @@ fi
           expectedBuilderLogEntries: nix.thunk(() => ["test failed"]),
         })))),
       previousScopeSingletonMapFails: nix.thunk(() => nix.app(testBuildFailure$, nix.thunk(() => ({
-          [nix.POS]: pos$26,
+          [nix.POS]: $pos[25],
           name: "previousScopeSingletonMapFails",
           drv: nix.thunk(() => nix.app(check, nix.thunk(() => ({
-              [nix.POS]: pos$25,
+              [nix.POS]: $pos[24],
               name: "previousScopeSingletonMap",
               scope: "function",
               intro: null,
@@ -252,10 +208,10 @@ fi
           expectedBuilderLogEntries: nix.thunk(() => ["greeting: unbound variable"]),
         })))),
       previousScopeLocalUnsetMapFails: nix.thunk(() => nix.app(testBuildFailure$, nix.thunk(() => ({
-          [nix.POS]: pos$28,
+          [nix.POS]: $pos[27],
           name: "previousScopeLocalUnsetMapFails",
           drv: nix.thunk(() => nix.app(check, nix.thunk(() => ({
-              [nix.POS]: pos$27,
+              [nix.POS]: $pos[26],
               name: "previousScopeLocalUnsetMap",
               scope: "function",
               intro: "local -A",
@@ -264,10 +220,10 @@ fi
           expectedBuilderLogEntries: nix.thunk(() => ["test failed"]),
         })))),
       previousScopeLocalEmptyMapFails: nix.thunk(() => nix.app(testBuildFailure$, nix.thunk(() => ({
-          [nix.POS]: pos$30,
+          [nix.POS]: $pos[29],
           name: "previousScopeLocalEmptyMapFails",
           drv: nix.thunk(() => nix.app(check, nix.thunk(() => ({
-              [nix.POS]: pos$29,
+              [nix.POS]: $pos[28],
               name: "previousScopeLocalEmptyMap",
               scope: "function",
               intro: "local -A",
@@ -276,10 +232,10 @@ fi
           expectedBuilderLogEntries: nix.thunk(() => ["test failed"]),
         })))),
       previousScopeLocalSingletonMapFails: nix.thunk(() => nix.app(testBuildFailure$, nix.thunk(() => ({
-          [nix.POS]: pos$32,
+          [nix.POS]: $pos[31],
           name: "previousScopeLocalSingletonMapFails",
           drv: nix.thunk(() => nix.app(check, nix.thunk(() => ({
-              [nix.POS]: pos$31,
+              [nix.POS]: $pos[30],
               name: "previousScopeLocalSingletonMap",
               scope: "function",
               intro: "local -A",
@@ -288,31 +244,31 @@ fi
           expectedBuilderLogEntries: nix.thunk(() => ["test failed"]),
         })))),
       previousScopeLocalGlobalUnsetMap: nix.thunk(() => nix.app(check, nix.thunk(() => ({
-          [nix.POS]: pos$33,
+          [nix.POS]: $pos[32],
           name: "previousScopeLocalGlobalUnsetMap",
           scope: "function",
           intro: "local -Ag",
           values: null,
         })))),
       previousScopeLocalGlobalEmptyMap: nix.thunk(() => nix.app(check, nix.thunk(() => ({
-          [nix.POS]: pos$34,
+          [nix.POS]: $pos[33],
           name: "previousScopeLocalGlobalEmptyMap",
           scope: "function",
           intro: "local -Ag",
           values: "()",
         })))),
       previousScopeLocalGlobalSingletonMap: nix.thunk(() => nix.app(check, nix.thunk(() => ({
-          [nix.POS]: pos$35,
+          [nix.POS]: $pos[34],
           name: "previousScopeLocalGlobalSingletonMap",
           scope: "function",
           intro: "local -Ag",
           values: "([greeting]=\"hello!\")",
         })))),
       previousScopeDeclareUnsetMapFails: nix.thunk(() => nix.app(testBuildFailure$, nix.thunk(() => ({
-          [nix.POS]: pos$37,
+          [nix.POS]: $pos[36],
           name: "previousScopeDeclareUnsetMapFails",
           drv: nix.thunk(() => nix.app(check, nix.thunk(() => ({
-              [nix.POS]: pos$36,
+              [nix.POS]: $pos[35],
               name: "previousScopeDeclareUnsetMap",
               scope: "function",
               intro: "declare -A",
@@ -321,10 +277,10 @@ fi
           expectedBuilderLogEntries: nix.thunk(() => ["test failed"]),
         })))),
       previousScopeDeclareEmptyMapFails: nix.thunk(() => nix.app(testBuildFailure$, nix.thunk(() => ({
-          [nix.POS]: pos$39,
+          [nix.POS]: $pos[38],
           name: "previousScopeDeclareEmptyMapFails",
           drv: nix.thunk(() => nix.app(check, nix.thunk(() => ({
-              [nix.POS]: pos$38,
+              [nix.POS]: $pos[37],
               name: "previousScopeDeclareEmptyMap",
               scope: "function",
               intro: "declare -A",
@@ -333,10 +289,10 @@ fi
           expectedBuilderLogEntries: nix.thunk(() => ["test failed"]),
         })))),
       previousScopeDeclareSingletonMapFails: nix.thunk(() => nix.app(testBuildFailure$, nix.thunk(() => ({
-          [nix.POS]: pos$41,
+          [nix.POS]: $pos[40],
           name: "previousScopeDeclareSingletonMapFails",
           drv: nix.thunk(() => nix.app(check, nix.thunk(() => ({
-              [nix.POS]: pos$40,
+              [nix.POS]: $pos[39],
               name: "previousScopeDeclareSingletonMap",
               scope: "function",
               intro: "declare -A",
@@ -345,21 +301,21 @@ fi
           expectedBuilderLogEntries: nix.thunk(() => ["test failed"]),
         })))),
       previousScopeDeclareGlobalUnsetMap: nix.thunk(() => nix.app(check, nix.thunk(() => ({
-          [nix.POS]: pos$42,
+          [nix.POS]: $pos[41],
           name: "previousScopeDeclareGlobalUnsetMap",
           scope: "function",
           intro: "declare -Ag",
           values: null,
         })))),
       previousScopeDeclareGlobalEmptyMap: nix.thunk(() => nix.app(check, nix.thunk(() => ({
-          [nix.POS]: pos$43,
+          [nix.POS]: $pos[42],
           name: "previousScopeDeclareGlobalEmptyMap",
           scope: "function",
           intro: "declare -Ag",
           values: "()",
         })))),
       previousScopeDeclareGlobalSingletonMap: nix.thunk(() => nix.app(check, nix.thunk(() => ({
-          [nix.POS]: pos$44,
+          [nix.POS]: $pos[43],
           name: "previousScopeDeclareGlobalSingletonMap",
           scope: "function",
           intro: "declare -Ag",

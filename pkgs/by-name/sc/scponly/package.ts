@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["sha256", 17, 5]], [["shellPath", 36, 12]], [["description", 39, 5], ["mainProgram", 40, 5], ["homepage", 41, 5], ["license", 42, 5], ["maintainers", 43, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["patches", 20, 3], ["strictDeps", 22, 3], ["configureFlags", 26, 3], ["postInstall", 32, 3], ["passthru", 36, 3], ["meta", 38, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, openssh: false, debugLevel: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["sha256", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["shellPath", 36, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 39, 5], ["mainProgram", 40, 5], ["homepage", 41, 5], ["license", 42, 5], ["maintainers", 43, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["patches", 20, 3], ["strictDeps", 22, 3], ["configureFlags", 26, 3], ["postInstall", 32, 3], ["passthru", 36, 3], ["meta", 38, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const openssh = nix.arg($, "openssh");
   const debugLevel = nix.argOr($, "debugLevel", () => 0n);
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "scponly",
       version: "4.8",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "scponly",
           repo: "scponly",
           rev: "d8ca58257b9905186aa5706f35813d5f80ea07c1",
@@ -35,9 +32,9 @@ export default nix.lambda((args) => (() => {
       ]),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.gt(debugLevel, 0n)), nix.thunk(() => nix.str`mkdir -p $out/etc/scponly && echo ${nix.builtins.toString(debugLevel)} > $out/etc/scponly/debuglevel
 `))),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, shellPath: "/bin/scponly" })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[1], shellPath: "/bin/scponly" })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Shell that only permits scp and sftp-server",
         mainProgram: "scponly",
         homepage: "https://github.com/scponly/scponly",

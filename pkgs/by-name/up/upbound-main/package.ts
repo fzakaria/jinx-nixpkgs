@@ -2,12 +2,12 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["version-channel", 5, 3]]]);
 const formals$1 = { args: { upbound: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["version-channel", 5, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const upbound = nix.arg($, "upbound");
-  return nix.app(nix.sel(upbound, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, "version-channel": "main" })));
+  return nix.app(nix.sel(upbound, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], "version-channel": "main" })));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

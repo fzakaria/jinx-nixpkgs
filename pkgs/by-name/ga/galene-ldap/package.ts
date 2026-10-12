@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]], [["rev-prefix", 33, 7]], [["name", 36, 7], ["runtimeInputs", 37, 7], ["text", 41, 7]], [["updateScriptSrc", 32, 5], ["updateScriptVendor", 35, 5], ["updateScript", 57, 5]], [["description", 64, 5], ["homepage", 65, 5], ["changelog", 66, 5], ["license", 67, 5], ["platforms", 68, 5], ["maintainers", 69, 27]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["vendorHash", 24, 3], ["ldflags", 26, 3], ["passthru", 31, 3], ["meta", 63, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitHub: false, gitUpdater: false, writeShellApplication: false, "_experimental-update-script-combinators": false, galene: false, nix: false, sd: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["rev-prefix", 33, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 36, 7], ["runtimeInputs", 37, 7], ["text", 41, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScriptSrc", 32, 5], ["updateScriptVendor", 35, 5], ["updateScript", 57, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 64, 5], ["homepage", 65, 5], ["changelog", 66, 5], ["license", 67, 5], ["platforms", 68, 5], ["maintainers", 69, 27]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["vendorHash", 24, 3], ["ldflags", 26, 3], ["passthru", 31, 3], ["meta", 63, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const nix$ = nix.arg($, "nix");
   const sd = nix.arg($, "sd");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "galene-ldap",
       version: "0.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "jech",
           repo: "galene-ldap",
           tag: nix.thunk(() => nix.str`galene-ldap-${nix.sel(finalAttrs, "version")}`),
@@ -35,10 +30,10 @@ export default nix.lambda((args) => (() => {
       vendorHash: "sha256-i/pWXgcd01PgH1Q+WEm0gP1leTFBhqGxVGnl6c+J1aQ=",
       ldflags: nix.thunk(() => ["-s", "-w"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        updateScriptSrc: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, "rev-prefix": "galene-ldap-" })))),
+        [nix.POS]: $pos[3],
+        updateScriptSrc: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[1], "rev-prefix": "galene-ldap-" })))),
         updateScriptVendor: nix.thunk(() => nix.app(writeShellApplication, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "update-galene-ldap-vendorHash",
             runtimeInputs: nix.thunk(() => [nix$, sd]),
             text: nix.thunk(() => nix.str`export UPDATE_NIX_ATTR_PATH="\${UPDATE_NIX_ATTR_PATH:-galene-ldap}"
@@ -64,7 +59,7 @@ ${nix.sel(sd, "meta", "mainProgram")} --string-mode "$oldhash" "$newhash" "$fnam
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(galene, "meta"));
         return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "LDAP support for the Galene videoconferencing server",
         homepage: "https://github.com/jech/galene-ldap",
         changelog: nix.thunk(() => nix.str`https://github.com/jech/galene-ldap/raw/${nix.sel(finalAttrs, "src", "rev")}/CHANGES`),

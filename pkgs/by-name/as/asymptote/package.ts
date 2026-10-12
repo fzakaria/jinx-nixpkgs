@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 50, 5], ["hash", 51, 5]], [["NIX_CFLAGS_COMPILE", 157, 7]], [["description", 205, 5], ["homepage", 206, 5], ["license", 207, 5], ["maintainers", 208, 5], ["platforms", 209, 5]], [["version", 38, 3], ["pname", 39, 3], ["outputs", 41, 3], ["src", 49, 3], ["texContainer", 55, 3], ["texdocContainer", 56, 3], ["nativeBuildInputs", 58, 3], ["buildInputs", 91, 3], ["propagatedBuildInputs", 121, 3], ["dontWrapQtApps", 131, 3], ["preConfigure", 136, 3], ["configureFlags", 155, 3], ["env", 157, 3], ["postInstall", 159, 3], ["preFixup", 174, 3], ["postFixup", 183, 3], ["dontUseCmakeConfigure", 196, 3], ["enableParallelBuilding", 198, 3], ["enableParallelInstalling", 202, 3], ["meta", 204, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, autoreconfHook: false, bison: false, glm: false, flex: false, cmake: false, "pkg-config": false, libglut: false, ghostscriptX: false, imagemagick: false, fftw: false, eigen: false, libsForQt5: false, libtirpc: false, boehmgc: false, libGLU: false, libGL: false, libglvnd: false, ncurses: false, readline: false, gsl: false, libsigsegv: false, python3: false, boost186: false, zlib: false, perl: false, curl: false, texinfo: false, texliveSmall: false, "vulkan-headers": false, glfw: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 50, 5], ["hash", 51, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 157, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 205, 5], ["homepage", 206, 5], ["license", 207, 5], ["maintainers", 208, 5], ["platforms", 209, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["version", 38, 3], ["pname", 39, 3], ["outputs", 41, 3], ["src", 49, 3], ["texContainer", 55, 3], ["texdocContainer", 56, 3], ["nativeBuildInputs", 58, 3], ["buildInputs", 91, 3], ["propagatedBuildInputs", 121, 3], ["dontWrapQtApps", 131, 3], ["preConfigure", 136, 3], ["configureFlags", 155, 3], ["env", 157, 3], ["postInstall", 159, 3], ["preFixup", 174, 3], ["postFixup", 183, 3], ["dontUseCmakeConfigure", 196, 3], ["enableParallelBuilding", 198, 3], ["enableParallelInstalling", 202, 3], ["meta", 204, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -44,12 +41,12 @@ export default nix.lambda((args) => (() => {
   const vulkan_headers = nix.arg($, "vulkan-headers");
   const glfw = nix.arg($, "glfw");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       version: "3.12",
       pname: "asymptote",
       outputs: nix.thunk(() => ["out", "man", "info", "doc", "tex"]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/asymptote/${nix.sel(finalAttrs, "version")}/asymptote-${nix.sel(finalAttrs, "version")}.src.tgz`),
           hash: "sha256-6uwel0Y+8hOjk8OI1GanNHiwgY+UA8liuRJAZZybjxs=",
         })))),
@@ -118,7 +115,7 @@ export default nix.lambda((args) => (() => {
       preConfigure: "HOME=$TMP\nsubstituteInPlace Makefile.in \\\n  --replace-fail ' install-texhash' ''\nif [[ -n $texContainer ]] ; then\n  sed -i Makefile.in -e '/(\\(latex\\|context\\)dir)/d'\n  substituteInPlace Makefile.in \\\n    --replace-fail 'asy sty' 'asy'\nelse\n  prependToVar configureFlags \"--with-latex=$tex/tex/latex\" \"--with-context=$tex/tex/context/third\"\nfi\nif [[ -n $texdocContainer ]] ; then\n  substituteInPlace Makefile.in \\\n    --replace-fail ' install-man' '' \\\n    --replace-fail 'docdir = $(DESTDIR)@docdir@' 'docdir = $(TMP)/doc'\nfi\n",
       configureFlags: nix.thunk(() => ["--enable-gc=system"]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.str`-I${nix.sel(boehmgc, "dev")}/include/gc`),
       })),
       postInstall: nix.thunk(() => nix.str`rm "$out"/bin/xasy
@@ -139,7 +136,7 @@ install -Dt $out/share/emacs/site-lisp/${nix.sel(finalAttrs, "pname")} $out/shar
       enableParallelBuilding: true,
       enableParallelInstalling: false,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Tool for programming graphics intended to replace Metapost",
         homepage: "https://asymptote.sourceforge.io/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

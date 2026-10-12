@@ -2,49 +2,41 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/monado.nix", [[["Type", 21, 11], ["RemainAfterExit", 22, 11]], [["wantedBy", 17, 9], ["requires", 18, 9], ["script", 19, 9], ["serviceConfig", 20, 9]], [["wantedBy", 27, 9], ["requires", 28, 9], ["script", 29, 9]], [["print-openxr-info", 16, 29], ["xrgears", 26, 29]], [["services", 16, 20]], [["user", 16, 15]], [["imports", 14, 7], ["systemd", 16, 7]], [["machine", 5, 9]], [["name", 3, 3], ["nodes", 5, 3], ["testScript", 33, 3]]]);
 const formals$1 = { args: {  }, ellipsis: true };
 const formals$2 = { args: { lib: false, pkgs: false, config: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/monado.nix", [["Type", 21, 11], ["RemainAfterExit", 22, 11]]);
-const pos$2 = nix.positions(here + "/monado.nix", [["wantedBy", 17, 9], ["requires", 18, 9], ["script", 19, 9], ["serviceConfig", 20, 9]]);
-const pos$3 = nix.positions(here + "/monado.nix", [["wantedBy", 27, 9], ["requires", 28, 9], ["script", 29, 9]]);
-const pos$4 = nix.positions(here + "/monado.nix", [["print-openxr-info", 16, 29], ["xrgears", 26, 29]]);
-const pos$5 = nix.positions(here + "/monado.nix", [["services", 16, 20]]);
-const pos$6 = nix.positions(here + "/monado.nix", [["user", 16, 15]]);
-const pos$7 = nix.positions(here + "/monado.nix", [["imports", 14, 7], ["systemd", 16, 7]]);
-const pos$8 = nix.positions(here + "/monado.nix", [["machine", 5, 9]]);
 const formals$3 = { args: { nodes: false }, ellipsis: true };
-const pos$9 = nix.positions(here + "/monado.nix", [["name", 3, 3], ["nodes", 5, 3], ["testScript", 33, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   return {
-    [nix.POS]: pos$9,
+    [nix.POS]: $pos[8],
     name: "monado",
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const lib = nix.arg($_1, "lib");
         const pkgs = nix.arg($_1, "pkgs");
         const config = nix.arg($_1, "config");
         return {
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           imports: nix.thunk(() => [nix.path(here, "./common/openxr.nix")]),
           systemd: nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             user: nix.thunk(() => ({
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               services: nix.thunk(() => ({
-                [nix.POS]: pos$4,
+                [nix.POS]: $pos[3],
                 "print-openxr-info": nix.thunk(() => ({
-                  [nix.POS]: pos$2,
+                  [nix.POS]: $pos[1],
                   wantedBy: nix.thunk(() => ["xdg-desktop-autostart.target"]),
                   requires: nix.thunk(() => ["monado.service"]),
                   script: nix.thunk(() => nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(pkgs, "openxr-loader")), "openxr_runtime_list")),
-                  serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$1, Type: "oneshot", RemainAfterExit: true })),
+                  serviceConfig: nix.thunk(() => ({ [nix.POS]: $pos[0], Type: "oneshot", RemainAfterExit: true })),
                 })),
                 xrgears: nix.thunk(() => ({
-                  [nix.POS]: pos$3,
+                  [nix.POS]: $pos[2],
                   wantedBy: nix.thunk(() => ["xdg-desktop-autostart.target"]),
                   requires: nix.thunk(() => ["monado.service"]),
                   script: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgs, "xrgears")))),

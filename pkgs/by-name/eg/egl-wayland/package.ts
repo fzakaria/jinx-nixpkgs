@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]], [["extraArgs", 66, 47]], [["updateScript", 66, 12]], [["description", 69, 5], ["homepage", 70, 5], ["license", 71, 5], ["platforms", 72, 5], ["maintainers", 73, 5]], [["pname", 18, 3], ["version", 19, 3], ["outputs", 21, 3], ["src", 26, 3], ["postPatch", 33, 3], ["depsBuildBuild", 39, 3], ["nativeBuildInputs", 43, 3], ["buildInputs", 50, 3], ["propagatedBuildInputs", 57, 3], ["absolutizeEglExternalPlatformIcdJson", 61, 3], ["strictDeps", 63, 3], ["__structuredAttrs", 64, 3], ["passthru", 66, 3], ["meta", 68, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, eglexternalplatform: false, "pkg-config": false, meson: false, ninja: false, "wayland-scanner": false, libGL: false, libdrm: false, wayland: false, "wayland-protocols": false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["extraArgs", 66, 47]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 66, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 69, 5], ["homepage", 70, 5], ["license", 71, 5], ["platforms", 72, 5], ["maintainers", 73, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["outputs", 21, 3], ["src", 26, 3], ["postPatch", 33, 3], ["depsBuildBuild", 39, 3], ["nativeBuildInputs", 43, 3], ["buildInputs", 50, 3], ["propagatedBuildInputs", 57, 3], ["absolutizeEglExternalPlatformIcdJson", 61, 3], ["strictDeps", 63, 3], ["__structuredAttrs", 64, 3], ["passthru", 66, 3], ["meta", 68, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const wayland_protocols = nix.arg($, "wayland-protocols");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "egl-wayland",
       version: "1.1.23",
       outputs: nix.thunk(() => ["out", "dev"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "NVIDIA",
           repo: "egl-wayland",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -45,11 +41,11 @@ export default nix.lambda((args) => (() => {
       strictDeps: true,
       __structuredAttrs: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$2, extraArgs: nix.thunk(() => ["--use-github-releases"]) })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: $pos[1], extraArgs: nix.thunk(() => ["--use-github-releases"]) })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "EGLStream-based Wayland external platform",
         homepage: "https://github.com/NVIDIA/egl-wayland/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

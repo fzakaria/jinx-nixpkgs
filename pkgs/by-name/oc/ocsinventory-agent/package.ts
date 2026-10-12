@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]], [["ocsinventory-agent", 97, 11]], [["tests", 97, 5], ["updateScript", 98, 5]], [["description", 102, 5], ["longDescription", 103, 5], ["homepage", 108, 5], ["changelog", 109, 5], ["downloadPage", 110, 5], ["license", 111, 5], ["mainProgram", 112, 5], ["maintainers", 113, 5], ["platforms", 117, 5]], [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["strictDeps", 35, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 39, 3], ["postInstall", 70, 3], ["nativeInstallCheckInputs", 93, 3], ["doInstallCheck", 94, 3], ["passthru", 96, 3], ["meta", 101, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, coreutils: false, dmidecode: false, fetchFromGitHub: false, findutils: false, inetutils: false, ipmitool: false, iproute2: false, lvm2: false, makeWrapper: false, "nix-update-script": false, nixosTests: false, nmap: false, pciutils: false, perlPackages: false, usbutils: false, "util-linux": false, versionCheckHook: false, which: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["ocsinventory-agent", 97, 11]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 97, 5], ["updateScript", 98, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 102, 5], ["longDescription", 103, 5], ["homepage", 108, 5], ["changelog", 109, 5], ["downloadPage", 110, 5], ["license", 111, 5], ["mainProgram", 112, 5], ["maintainers", 113, 5], ["platforms", 117, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["strictDeps", 35, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 39, 3], ["postInstall", 70, 3], ["nativeInstallCheckInputs", 93, 3], ["doInstallCheck", 94, 3], ["passthru", 96, 3], ["meta", 101, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -35,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const pname = "ocsinventory-agent";
       const version = "2.10.5";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "OCSInventory-NG",
           repo: "UnixAgent",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -76,15 +72,15 @@ export default nix.lambda((args) => (() => {
       const nativeInstallCheckInputs = nix.thunk(() => [versionCheckHook]);
       const doInstallCheck = true;
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           "ocsinventory-agent": nix.thunk(() => nix.sel(nixosTests, "ocsinventory-agent")),
         })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "OCS Inventory unified agent for Unix operating systems",
         longDescription: "Open Computers and Software Inventory (OCS) is an application designed\nto help a network or system administrator to keep track of the hardware and\nsoftware configurations of computers that are installed on the network.\n",
         homepage: "https://ocsinventory-ng.org",
@@ -102,7 +98,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         src,

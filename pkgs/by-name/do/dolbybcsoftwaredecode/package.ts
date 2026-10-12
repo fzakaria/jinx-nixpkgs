@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 14, 5], ["sha256", 15, 5]], [["description", 31, 5], ["homepage", 32, 5], ["maintainers", 33, 5], ["license", 38, 5], ["mainProgram", 39, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 18, 3], ["buildPhase", 22, 3], ["installPhase", 25, 3], ["meta", 30, 3]]]);
 const formals$1 = { args: { lib: false, fetchurl: false, stdenv: false, unzip: false, fpc: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 14, 5], ["sha256", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 31, 5], ["homepage", 32, 5], ["maintainers", 33, 5], ["license", 38, 5], ["mainProgram", 39, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 18, 3], ["buildPhase", 22, 3], ["installPhase", 25, 3], ["meta", 30, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const unzip = nix.arg($, "unzip");
   const fpc = nix.arg($, "fpc");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "dolbybcsoftwaredecode",
       version: "april-2018",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "mirror://sourceforge/dolbybcsoftwaredecode/April-2018/SourceCode.zip",
           sha256: "sha256-uLcsRIpwmJlstlGV8I4+/30+D9GDpUt7DOIP/GkXWp4=",
         })))),
@@ -27,7 +25,7 @@ export default nix.lambda((args) => (() => {
       buildPhase: "fpc DolbyBi64.PP\n",
       installPhase: "mkdir -p $out/bin\ncp DolbyBi64 $out/bin/\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Dolby B & C software decoder",
         homepage: "https://sourceforge.net/projects/dolbybcsoftwaredecode/",
         maintainers: nix.thunk(() => (() => {

@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 32, 5], ["repo", 33, 5], ["tag", 34, 5], ["hash", 35, 5]], [["name", 71, 7], ["comment", 72, 7], ["desktopName", 73, 7], ["genericName", 74, 7], ["exec", 75, 7], ["icon", 76, 7], ["categories", 77, 7], ["keywords", 81, 7], ["mimeTypes", 82, 7]], [["changelog", 100, 5], ["description", 101, 5], ["homepage", 102, 5], ["license", 103, 5], ["maintainers", 107, 5]], [["mainProgram", 113, 5]], [["mainProgram", 116, 5]], [["pname", 15, 3], ["version", 16, 3], ["__structuredAttrs", 17, 3], ["mvnParameters", 19, 3], ["src", 31, 3], ["patches", 38, 3], ["mvnHash", 40, 3], ["strictDeps", 42, 3], ["nativeBuildInputs", 44, 3], ["installPhase", 50, 3], ["desktopItems", 69, 3], ["doInstallCheck", 87, 3], ["nativeInstallCheckInputs", 89, 3], ["versionCheckProgram", 93, 3], ["preVersionCheck", 95, 3], ["meta", 99, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, maven: false, makeWrapper: false, stripJavaArchivesHook: false, makeDesktopItem: false, copyDesktopItems: false, jre: false, versionCheckHook: false, withCli: true, withGui: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 32, 5], ["repo", 33, 5], ["tag", 34, 5], ["hash", 35, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 71, 7], ["comment", 72, 7], ["desktopName", 73, 7], ["genericName", 74, 7], ["exec", 75, 7], ["icon", 76, 7], ["categories", 77, 7], ["keywords", 81, 7], ["mimeTypes", 82, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["changelog", 100, 5], ["description", 101, 5], ["homepage", 102, 5], ["license", 103, 5], ["maintainers", 107, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["mainProgram", 113, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["mainProgram", 116, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["__structuredAttrs", 17, 3], ["mvnParameters", 19, 3], ["src", 31, 3], ["patches", 38, 3], ["mvnHash", 40, 3], ["strictDeps", 42, 3], ["nativeBuildInputs", 44, 3], ["installPhase", 50, 3], ["desktopItems", 69, 3], ["doInstallCheck", 87, 3], ["nativeInstallCheckInputs", 89, 3], ["versionCheckProgram", 93, 3], ["preVersionCheck", 95, 3], ["meta", 99, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const __structuredAttrs = true;
       const mvnParameters = nix.thunk(() => nix.add("-pl '!installer' -Dverapdf.timestamp=1980-01-01T00:00:02Z -Dproject.build.outputTimestamp=1980-01-01T00:00:02Z ", nix.app(nix.sel(lib, "concatMapStringsSep"), " ", (id) => nix.str`-Dverapdf.${id}.version=${version}`, nix.thunk(() => ["library", "pdfbox.validation", "validation"]))));
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "veraPDF",
           repo: "veraPDF-apps",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -48,7 +43,7 @@ install -Dm644 gui/src/main/resources/org/verapdf/gui/images/icon.png $out/share
 `))), "runHook postInstall\n"));
       const desktopItems = nix.thunk(() => nix.app(nix.sel(lib, "optionals"), withGui, nix.thunk(() => [
           nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               name: "veraPDF",
               comment: nix.thunk(() => nix.sel(meta, "description")),
               desktopName: "veraPDF",
@@ -66,7 +61,7 @@ install -Dm644 gui/src/main/resources/org/verapdf/gui/images/icon.png $out/share
       const preVersionCheck = nix.thunk(() => nix.str`version=${nix.app(nix.sel(lib, "versions", "majorMinor"), version)}.0
 `);
       const meta = nix.thunk(() => nix.update({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         changelog: nix.thunk(() => nix.str`https://github.com/veraPDF/veraPDF-library/blob/${nix.sel(src, "tag")}/RELEASENOTES.md`),
         description: "Command line and GUI industry supported PDF/A and PDF/UA Validation",
         homepage: "https://github.com/veraPDF/veraPDF-apps",
@@ -78,9 +73,9 @@ install -Dm644 gui/src/main/resources/org/verapdf/gui/images/icon.png $out/share
           nix.thunk(() => nix.sel(lib, "maintainers", "mohe2015")),
           nix.thunk(() => nix.sel(lib, "maintainers", "kilianar")),
         ]),
-      }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(withCli) && nix.asBool(!nix.asBool(withGui)))), nix.thunk(() => ({ [nix.POS]: pos$4, mainProgram: "verapdf" }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(withGui) && nix.asBool(!nix.asBool(withCli)))), nix.thunk(() => ({ [nix.POS]: pos$5, mainProgram: "verapdf-gui" }))))));
+      }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(withCli) && nix.asBool(!nix.asBool(withGui)))), nix.thunk(() => ({ [nix.POS]: $pos[3], mainProgram: "verapdf" }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(withGui) && nix.asBool(!nix.asBool(withCli)))), nix.thunk(() => ({ [nix.POS]: $pos[4], mainProgram: "verapdf-gui" }))))));
       return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname,
         version,
         __structuredAttrs,

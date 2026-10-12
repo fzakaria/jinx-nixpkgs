@@ -2,14 +2,8 @@
 import * as nix from "../../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]], [["RUSTFLAGS", 35, 9]], [["pname", 20, 5], ["version", 21, 13], ["src", 21, 21], ["sourceRoot", 22, 5], ["cargoHash", 24, 5], ["preCheck", 26, 5], ["checkFlags", 30, 5], ["env", 35, 5]], [["extraArgs", 50, 7], ["attrPath", 51, 7]], [["updateScript", 49, 5], ["spectre_oxi", 55, 13]], [["homepage", 59, 5], ["license", 60, 5]], [["pname", 39, 3], ["version", 40, 11], ["src", 40, 19], ["dependencies", 42, 3], ["postInstall", 44, 3], ["passthru", 48, 3], ["meta", 58, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, "nix-update-script": false, rustPlatform: false, vimPlugins: false, vimUtils: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["RUSTFLAGS", 35, 9]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 20, 5], ["version", 21, 13], ["src", 21, 21], ["sourceRoot", 22, 5], ["cargoHash", 24, 5], ["preCheck", 26, 5], ["checkFlags", 30, 5], ["env", 35, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["extraArgs", 50, 7], ["attrPath", 51, 7]]);
-const pos$5 = nix.positions(here + "/default.nix", [["updateScript", 49, 5], ["spectre_oxi", 55, 13]]);
-const pos$6 = nix.positions(here + "/default.nix", [["homepage", 59, 5], ["license", 60, 5]]);
-const pos$7 = nix.positions(here + "/default.nix", [["pname", 39, 3], ["version", 40, 11], ["src", 40, 19], ["dependencies", 42, 3], ["postInstall", 44, 3], ["passthru", 48, 3], ["meta", 58, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,14 +16,14 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const version = "0-unstable-2025-05-13";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "nvim-pack",
       repo: "nvim-spectre",
       rev: "72f56f7585903cd7bf92c665351aa585e150af0f",
       hash: "sha256-WPEizIClDmseDEhomCasLx/zfAMT7lq7ZBnfc/a8CuA=",
     }))));
   const spectre_oxi = nix.thunk(() => nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "spectre_oxi",
       version: version,
       src: src,
@@ -38,12 +32,12 @@ export default nix.lambda((args) => (() => {
       preCheck: "mkdir tests/tmp/\n",
       checkFlags: nix.thunk(() => ["--skip=tests::test_replace_simple"]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         RUSTFLAGS: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "-C link-arg=-undefined -C link-arg=dynamic_lookup")),
       })),
     }))));
   return nix.app(nix.sel(vimUtils, "buildVimPlugin"), nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "nvim-spectre",
       version: version,
       src: src,
@@ -51,16 +45,16 @@ export default nix.lambda((args) => (() => {
       postInstall: nix.thunk(() => nix.str`ln -s ${spectre_oxi}/lib/libspectre_oxi.* $out/lua/spectre_oxi.so
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             extraArgs: nix.thunk(() => ["--version=branch"]),
             attrPath: "vimPlugins.nvim-spectre.spectre_oxi",
           })))),
         spectre_oxi: spectre_oxi,
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         homepage: "https://github.com/nvim-pack/nvim-spectre/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       })),

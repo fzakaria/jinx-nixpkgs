@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 15, 5], ["owner", 16, 5], ["repo", 17, 5], ["rev", 23, 5], ["sha256", 25, 5]], [["name", 32, 7], ["url", 33, 7], ["relative", 34, 7], ["hash", 35, 7]], [["description", 46, 5], ["homepage", 47, 5], ["license", 48, 5], ["maintainers", 49, 5], ["platforms", 50, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["sourceRoot", 28, 3], ["patches", 30, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 43, 3], ["meta", 45, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, fetchpatch: false, autoreconfHook: false, texinfo: false, mpfr: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 15, 5], ["owner", 16, 5], ["repo", 17, 5], ["rev", 23, 5], ["sha256", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 32, 7], ["url", 33, 7], ["relative", 34, 7], ["hash", 35, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 46, 5], ["homepage", 47, 5], ["license", 48, 5], ["maintainers", 49, 5], ["platforms", 50, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["sourceRoot", 28, 3], ["patches", 30, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 43, 3], ["meta", 45, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pname = "mpfi";
       const version = "1.5.4";
       const src = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "gitlab.inria.fr",
           owner: "mpfi",
           repo: "mpfi",
@@ -31,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const sourceRoot = nix.thunk(() => nix.str`${nix.sel(src, "name")}/mpfi`);
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "incorrect-types-corrected.patch",
             url: "https://gitlab.inria.fr/mpfi/mpfi/-/commit/a02e3f9cc10767cc4284a2ef6554f6df85e41982.patch",
             relative: "mpfi",
@@ -41,7 +38,7 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [autoreconfHook, texinfo]);
       const buildInputs = nix.thunk(() => [mpfr]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Multiple precision interval arithmetic library based on MPFR",
         homepage: "http://perso.ens-lyon.fr/nathalie.revol/software.html",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),
@@ -49,7 +46,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

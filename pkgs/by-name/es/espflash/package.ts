@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]], [["OPENSSL_NO_VENDOR", 29, 7]], [["updateScript", 47, 12]], [["description", 50, 5], ["homepage", 51, 5], ["changelog", 52, 5], ["mainProgram", 53, 5], ["license", 54, 5], ["maintainers", 58, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 23, 3], ["env", 29, 3], ["buildInputs", 31, 3], ["cargoHash", 33, 3], ["cargoBuildFlags", 35, 3], ["postInstall", 40, 3], ["passthru", 47, 3], ["meta", 49, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchFromGitHub: false, "pkg-config": false, installShellFiles: false, stdenv: false, "nix-update-script": false, openssl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["OPENSSL_NO_VENDOR", 29, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 47, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 50, 5], ["homepage", 51, 5], ["changelog", 52, 5], ["mainProgram", 53, 5], ["license", 54, 5], ["maintainers", 58, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 23, 3], ["env", 29, 3], ["buildInputs", 31, 3], ["cargoHash", 33, 3], ["cargoBuildFlags", 35, 3], ["postInstall", 40, 3], ["passthru", 47, 3], ["meta", 49, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,28 +16,28 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const openssl = nix.arg($, "openssl");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "espflash",
       version: "4.6.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "esp-rs",
           repo: "espflash",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-qAIpco5UOH5DT/OkaEXZNBEErPbPt8hTtudDLXvhNEU=",
         })))),
       nativeBuildInputs: nix.thunk(() => [pkg_config, installShellFiles]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, OPENSSL_NO_VENDOR: 1n })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], OPENSSL_NO_VENDOR: 1n })),
       buildInputs: nix.thunk(() => [openssl]),
       cargoHash: "sha256-1fyNa1/4Abf1gRizQWgleAywCqU38uAqGJYs3CDt21k=",
       cargoBuildFlags: nix.thunk(() => ["--exclude=xtask", "--workspace"]),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "installShellCompletion --cmd espflash \\\n  --bash <($out/bin/espflash completions bash) \\\n  --zsh <($out/bin/espflash completions zsh) \\\n  --fish <($out/bin/espflash completions fish)\n")),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Serial flasher utility for Espressif SoCs and modules based on esptool.py",
         homepage: "https://github.com/esp-rs/espflash",
         changelog: nix.thunk(() => nix.str`https://github.com/esp-rs/espflash/blob/v${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

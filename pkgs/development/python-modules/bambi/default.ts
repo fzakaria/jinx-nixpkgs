@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 37, 5], ["repo", 38, 5], ["tag", 39, 5], ["hash", 40, 5]], [["jax", 64, 5]], [["description", 154, 5], ["homepage", 155, 5], ["changelog", 156, 5], ["license", 157, 5], ["maintainers", 158, 5]], [["pname", 31, 3], ["version", 32, 3], ["pyproject", 33, 3], ["__structuredAttrs", 34, 3], ["src", 36, 3], ["build-system", 43, 3], ["pythonRelaxDeps", 48, 3], ["dependencies", 51, 3], ["optional-dependencies", 63, 3], ["nativeCheckInputs", 70, 3], ["disabledTests", 79, 3], ["disabledTestPaths", 146, 3], ["pythonImportsCheck", 151, 3], ["meta", 153, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, "setuptools-scm": false, "arviz-plots": false, formulae: false, graphviz: false, matplotlib: false, pandas: false, pymc: false, pytensor: false, seaborn: false, sparse: false, blackjax: false, numpyro: false, "pytest-mock": false, pytestCheckHook: false, writableTmpDirAsHomeHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 37, 5], ["repo", 38, 5], ["tag", 39, 5], ["hash", 40, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["jax", 64, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 154, 5], ["homepage", 155, 5], ["changelog", 156, 5], ["license", 157, 5], ["maintainers", 158, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 31, 3], ["version", 32, 3], ["pyproject", 33, 3], ["__structuredAttrs", 34, 3], ["src", 36, 3], ["build-system", 43, 3], ["pythonRelaxDeps", 48, 3], ["dependencies", 51, 3], ["optional-dependencies", 63, 3], ["nativeCheckInputs", 70, 3], ["disabledTests", 79, 3], ["disabledTestPaths", 146, 3], ["pythonImportsCheck", 151, 3], ["meta", 153, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,13 +28,13 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "bambi",
       version: "0.21.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "bambinos",
           repo: "bambi",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -56,7 +53,7 @@ export default nix.lambda((args) => (() => {
         seaborn,
         sparse,
       ]),
-      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$2, jax: [] })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: $pos[1], jax: [] })),
       nativeCheckInputs: nix.thunk(() => [blackjax, numpyro, pytest_mock, pytestCheckHook, writableTmpDirAsHomeHook]),
       disabledTests: nix.thunk(() => nix.concat([
         "test_nuts_parameter_forwarded_to_external_samplers",
@@ -112,7 +109,7 @@ export default nix.lambda((args) => (() => {
       disabledTestPaths: nix.thunk(() => ["tests/test_interpret_plots.py"]),
       pythonImportsCheck: nix.thunk(() => ["bambi"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "High-level Bayesian model-building interface",
         homepage: "https://bambinos.github.io/bambi",
         changelog: nix.thunk(() => nix.str`https://github.com/bambinos/bambi/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

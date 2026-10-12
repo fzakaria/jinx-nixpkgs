@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 40, 5], ["repo", 41, 5], ["tag", 42, 5], ["hash", 43, 5]], [["name", 50, 7], ["url", 51, 7], ["hash", 52, 7]], [["pymoo", 74, 5]], [["changelog", 130, 5], ["description", 131, 5], ["homepage", 132, 5], ["license", 133, 5], ["maintainers", 134, 5]], [["pname", 34, 3], ["version", 35, 3], ["pyproject", 36, 3], ["__structuredAttrs", 37, 3], ["src", 39, 3], ["patches", 46, 3], ["build-system", 56, 3], ["dependencies", 61, 3], ["optional-dependencies", 73, 3], ["nativeCheckInputs", 79, 3], ["disabledTestPaths", 85, 3], ["disabledTests", 90, 3], ["pythonImportsCheck", 124, 3], ["requiredSystemFeatures", 127, 3], ["meta", 129, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitHub: false, fetchpatch: false, setuptools: false, "setuptools-scm": false, gpytorch: false, "linear-operator": false, multipledispatch: false, ninja: false, "pyre-extensions": false, scipy: false, threadpoolctl: false, torch: false, "typing-extensions": false, pymoo: false, jax: false, numpyro: false, pytestCheckHook: false, pythonAtLeast: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 40, 5], ["repo", 41, 5], ["tag", 42, 5], ["hash", 43, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["name", 50, 7], ["url", 51, 7], ["hash", 52, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pymoo", 74, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["changelog", 130, 5], ["description", 131, 5], ["homepage", 132, 5], ["license", 133, 5], ["maintainers", 134, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 34, 3], ["version", 35, 3], ["pyproject", 36, 3], ["__structuredAttrs", 37, 3], ["src", 39, 3], ["patches", 46, 3], ["build-system", 56, 3], ["dependencies", 61, 3], ["optional-dependencies", 73, 3], ["nativeCheckInputs", 79, 3], ["disabledTestPaths", 85, 3], ["disabledTests", 90, 3], ["pythonImportsCheck", 124, 3], ["requiredSystemFeatures", 127, 3], ["meta", 129, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,13 +29,13 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const pythonAtLeast = nix.arg($, "pythonAtLeast");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "botorch",
       version: "0.18.1",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "meta-pytorch",
           repo: "botorch",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -47,7 +43,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "scipy-1.18.patch",
             url: "https://github.com/meta-pytorch/botorch/commit/611f14acc8c1b2f30ce2ae058568d90f96bbb2ec.patch",
             hash: "sha256-PiXq9GmPaWQXh+emY7aNI53Y+ufl8K5uOFa8GD0clP8=",
@@ -65,7 +61,7 @@ export default nix.lambda((args) => (() => {
         torch,
         typing_extensions,
       ]),
-      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$3, pymoo: nix.thunk(() => [pymoo]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: $pos[2], pymoo: nix.thunk(() => [pymoo]) })),
       nativeCheckInputs: nix.thunk(() => [jax, numpyro, pytestCheckHook]),
       disabledTestPaths: nix.thunk(() => ["test_community/models/test_prior_fitted_network.py"]),
       disabledTests: nix.thunk(() => nix.concat([
@@ -83,7 +79,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["botorch"]),
       requiredSystemFeatures: nix.thunk(() => ["big-parallel"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         changelog: nix.thunk(() => nix.str`https://github.com/meta-pytorch/botorch/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),
         description: "Bayesian Optimization in PyTorch",
         homepage: "https://botorch.org",

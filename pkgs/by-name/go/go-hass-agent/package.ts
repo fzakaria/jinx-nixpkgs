@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]], [["src", 24, 26], ["hash", 25, 5]], [["nativeBuildInputs", 29, 5], ["preBuild", 30, 5]], [["updateScript", 51, 12]], [["description", 54, 5], ["mainProgram", 55, 5], ["longDescription", 56, 5], ["license", 72, 5], ["homepage", 73, 5], ["changelog", 74, 5], ["maintainers", 75, 5], ["platforms", 79, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["vendorHash", 21, 3], ["npmDeps", 23, 3], ["overrideModAttrs", 28, 3], ["nativeBuildInputs", 33, 3], ["preBuild", 38, 3], ["ldflags", 43, 3], ["desktopItems", 49, 3], ["passthru", 51, 3], ["meta", 53, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, buildGo127Module: false, nodejs: false, npmHooks: false, fetchNpmDeps: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["src", 24, 26], ["hash", 25, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["nativeBuildInputs", 29, 5], ["preBuild", 30, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 51, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 54, 5], ["mainProgram", 55, 5], ["longDescription", 56, 5], ["license", 72, 5], ["homepage", 73, 5], ["changelog", 74, 5], ["maintainers", 75, 5], ["platforms", 79, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["vendorHash", 21, 3], ["npmDeps", 23, 3], ["overrideModAttrs", 28, 3], ["nativeBuildInputs", 33, 3], ["preBuild", 38, 3], ["ldflags", 43, 3], ["desktopItems", 49, 3], ["passthru", 51, 3], ["meta", 53, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const fetchNpmDeps = nix.arg($, "fetchNpmDeps");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(buildGo127Module, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "go-hass-agent",
       version: "14.17.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "joshuar",
           repo: "go-hass-agent",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -32,12 +27,12 @@ export default nix.lambda((args) => (() => {
         })))),
       vendorHash: "sha256-QhQur0aHZBXZ3FUDyJzWz7sTY2ucFOd8jy1ApSdw0NA=",
       npmDeps: nix.thunk(() => nix.app(fetchNpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           hash: "sha256-M0C+iSVIjbOnBW+OFtjwUa6npa3jJSWcMHphASqCuPs=",
         })))),
       overrideModAttrs: (oldAttrs) => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         nativeBuildInputs: nix.thunk(() => nix.app(nix.sel(lib, "filter"), (drv) => !nix.eq(drv, nix.sel(npmHooks, "npmConfigHook")), nix.thunk(() => nix.sel(oldAttrs, "nativeBuildInputs")))),
         preBuild: "",
       }),
@@ -50,11 +45,11 @@ export default nix.lambda((args) => (() => {
       ]),
       desktopItems: nix.thunk(() => ["assets/start-go-hass-agent.desktop"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Home Assistant native app for desktop/laptop devices",
         mainProgram: "go-hass-agent",
         longDescription: "Go Hass Agent is an application to expose sensors, controls, and events\nfrom a device to Home Assistant. You can think of it as something similar\nto the Home Assistant companion app for mobile devices, but for your\ndesktop, server, Raspberry Pi, Arduino, toaster, whatever. If it can run\nGo and Linux, it can run Go Hass Agent!\n\nOut of the box, Go Hass Agent will report lots of details about the system\nit is running on. You can extend it with additional sensors and controls\nby hooking it up to MQTT. You can extend it even further with your own\ncustom sensors and controls with scripts/programs.\n\nYou can then use these sensors, controls, or events in any automations and\ndashboards, just like the companion app or any other “thing” you've added\ninto Home Assistant.\n",

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]], [["description", 75, 5], ["homepage", 76, 5], ["changelog", 77, 5], ["license", 78, 5], ["maintainers", 79, 5], ["mainProgram", 83, 5]], [["pname", 12, 3], ["version", 13, 3], ["pyproject", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 23, 3], ["propagatedBuildInputs", 30, 3], ["nativeCheckInputs", 37, 3], ["disabledTestPaths", 42, 3], ["pythonImportsCheck", 48, 3], ["makeWrapperArgs", 62, 3], ["postInstall", 69, 3], ["meta", 74, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, python3Packages: false, installShellFiles: false, scdoc: false, ffmpeg: false, writableTmpDirAsHomeHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 75, 5], ["homepage", 76, 5], ["changelog", 77, 5], ["license", 78, 5], ["maintainers", 79, 5], ["mainProgram", 83, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["pyproject", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 23, 3], ["propagatedBuildInputs", 30, 3], ["nativeCheckInputs", 37, 3], ["disabledTestPaths", 42, 3], ["pythonImportsCheck", 48, 3], ["makeWrapperArgs", 62, 3], ["postInstall", 69, 3], ["meta", 74, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const ffmpeg = nix.arg($, "ffmpeg");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "twitch-dl",
       version: "3.3.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ihabunek",
           repo: "twitch-dl",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -69,7 +67,7 @@ export default nix.lambda((args) => (() => {
       ]),
       postInstall: "scdoc < twitch-dl.1.scd > twitch-dl.1\ninstallManPage twitch-dl.1\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "CLI tool for downloading videos from Twitch",
         homepage: "https://github.com/ihabunek/twitch-dl",
         changelog: nix.thunk(() => nix.str`https://github.com/ihabunek/twitch-dl/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

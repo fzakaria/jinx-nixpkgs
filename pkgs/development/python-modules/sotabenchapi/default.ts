@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 20, 13], ["version", 20, 19], ["hash", 21, 5]], [["description", 47, 5], ["homepage", 48, 5], ["license", 49, 5], ["maintainers", 50, 5]], [["pname", 16, 11], ["version", 16, 17], ["pyproject", 17, 3], ["src", 19, 3], ["postPatch", 25, 3], ["build-system", 29, 3], ["dependencies", 33, 3], ["pythonImportsCheck", 39, 3], ["doCheck", 44, 3], ["meta", 46, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, setuptools: false, click: false, requests: false, tabulate: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 20, 13], ["version", 20, 19], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 47, 5], ["homepage", 48, 5], ["license", 49, 5], ["maintainers", 50, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 16, 11], ["version", 16, 17], ["pyproject", 17, 3], ["src", 19, 3], ["postPatch", 25, 3], ["build-system", 29, 3], ["dependencies", 33, 3], ["pythonImportsCheck", 39, 3], ["doCheck", 44, 3], ["meta", 46, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const version = "0.0.16";
   const pname = "sotabenchapi";
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: pname,
       version: version,
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-thbVH4aLmEgi8K17PkmbUg4nHqGj+dEiXPDILjvQMzk=",
@@ -35,7 +33,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["sotabenchapi"]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Easily benchmark Machine Learning models on selected tasks and datasets",
         homepage: "https://pypi.org/project/sotabenchapi/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

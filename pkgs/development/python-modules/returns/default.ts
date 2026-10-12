@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]], [["description", 57, 5], ["homepage", 58, 5], ["changelog", 59, 5], ["license", 60, 5], ["maintainers", 61, 5]], [["pname", 22, 3], ["version", 23, 3], ["pyproject", 24, 3], ["src", 26, 3], ["nativeBuildInputs", 33, 3], ["propagatedBuildInputs", 35, 3], ["nativeCheckInputs", 37, 3], ["pythonImportsCheck", 52, 3], ["disabledTestPaths", 54, 3], ["meta", 56, 3]]]);
 const formals$1 = { args: { lib: false, anyio: false, buildPythonPackage: false, fetchFromGitHub: false, httpx: false, hypothesis: false, mypy: false, "poetry-core": false, "pytest-aio": false, "pytest-benchmark": false, "pytest-cov-stub": false, "pytest-mypy": false, "pytest-mypy-plugins": false, pytestCheckHook: false, setuptools: false, trio: false, "typing-extensions": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 57, 5], ["homepage", 58, 5], ["changelog", 59, 5], ["license", 60, 5], ["maintainers", 61, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 22, 3], ["version", 23, 3], ["pyproject", 24, 3], ["src", 26, 3], ["nativeBuildInputs", 33, 3], ["propagatedBuildInputs", 35, 3], ["nativeCheckInputs", 37, 3], ["pythonImportsCheck", 52, 3], ["disabledTestPaths", 54, 3], ["meta", 56, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.29.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "dry-python",
           repo: "returns",
           tag: version,
@@ -56,7 +54,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["returns"]);
       const disabledTestPaths = nix.thunk(() => ["typesafety"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Make your functions return something meaningful, typed, and safe",
         homepage: "https://github.com/dry-python/returns",
         changelog: nix.thunk(() => nix.str`https://github.com/dry-python/returns/blob/${nix.sel(src, "tag")}/CHANGELOG.md`),
@@ -67,7 +65,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

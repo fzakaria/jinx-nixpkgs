@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]], [["owner", 28, 5], ["repo", 29, 5], ["rev", 30, 5], ["hash", 31, 5]], [["updateScript", 45, 12]], [["description", 56, 5], ["homepage", 57, 5], ["license", 58, 5], ["maintainers", 59, 5], ["mainProgram", 60, 5]], [["pname", 23, 3], ["version", 25, 3], ["src", 27, 3], ["buildInputs", 34, 3], ["nativeBuildInputs", 39, 3], ["preBuild", 41, 3], ["passthru", 45, 3], ["postInstall", 48, 3], ["meta", 55, 3]]]);
 const formals$1 = { args: { stdenv: false, fetchFromGitHub: false, "alsa-lib": false, openssl: false, "pkg-config": false, lib: false, unstableGitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 28, 5], ["repo", 29, 5], ["rev", 30, 5], ["hash", 31, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 45, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 56, 5], ["homepage", 57, 5], ["license", 58, 5], ["maintainers", 59, 5], ["mainProgram", 60, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 23, 3], ["version", 25, 3], ["src", 27, 3], ["buildInputs", 34, 3], ["nativeBuildInputs", 39, 3], ["preBuild", 41, 3], ["passthru", 45, 3], ["postInstall", 48, 3], ["meta", 55, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,18 +15,18 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   const firmwareSrc = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "geoffreybennett",
       repo: "scarlett2-firmware",
       rev: "f628dfb4d2e874b2078dbb43e8c1d59dd6553dd1",
       hash: "sha256-s61eyS47SuIbK9KR59XxHpybvl9tHFWPLkpHmdqwO24=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "scarlett2",
       version: "0-unstable-2024-04-06",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "geoffreybennett",
           repo: "scarlett2",
           rev: "1c262bcac11bceb6da8334b8f5b56d3c9331bfc8",
@@ -40,7 +36,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       preBuild: "makeFlagsArray+=( PREFIX=$out )\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       postInstall: nix.thunk(() => nix.str`mkdir -p $out/share
@@ -49,7 +45,7 @@ ln -s $out/share/scarlett2 $out/bin/scarlett2
 ln -s ${firmwareSrc}/firmware $out/share/firmware
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Firmware Management Utility for Scarlett 2nd, 3rd, and 4th Gen, Clarett USB, and Clarett+ interfaces",
         homepage: "https://github.com/geoffreybennett/scarlett2",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

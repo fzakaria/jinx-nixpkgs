@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 12, 5], ["rev", 13, 5], ["sha256", 14, 5]], [["description", 29, 5], ["mainProgram", 30, 5], ["homepage", 31, 5], ["license", 32, 5], ["platforms", 33, 5], ["maintainers", 34, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["sourceRoot", 17, 3], ["postPatch", 19, 3], ["enableParallelBuilding", 24, 3], ["makeFlags", 26, 3], ["meta", 28, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchsvn: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 12, 5], ["rev", 13, 5], ["sha256", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 29, 5], ["mainProgram", 30, 5], ["homepage", 31, 5], ["license", 32, 5], ["platforms", 33, 5], ["maintainers", 34, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["sourceRoot", 17, 3], ["postPatch", 19, 3], ["enableParallelBuilding", 24, 3], ["makeFlags", 26, 3], ["meta", 28, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,11 +11,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchsvn = nix.arg($, "fetchsvn");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "acme",
       version: "0.97-unstable-2021-11-05",
       src: nix.thunk(() => nix.app(fetchsvn, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "svn://svn.code.sf.net/p/acme-crossass/code-0/trunk",
           rev: "323",
           sha256: "1dzvip90yf1wg0fhfghn96dwrhg289d06b624px9a2wwy3vp5ryg",
@@ -27,7 +25,7 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: true,
       makeFlags: nix.thunk(() => ["BINDIR=$(out)/bin"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Multi-platform cross assembler for 6502/6510/65816 CPUs",
         mainProgram: "acme",
         homepage: "https://sourceforge.net/projects/acme-crossass/",

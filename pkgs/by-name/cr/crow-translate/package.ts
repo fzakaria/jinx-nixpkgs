@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 20, 5], ["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5], ["fetchSubmodules", 25, 5]], [["package", 63, 50]], [["version", 63, 18]], [["tests", 63, 12]], [["description", 66, 5], ["homepage", 67, 5], ["license", 68, 5], ["maintainers", 69, 5], ["platforms", 70, 5], ["mainProgram", 71, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["postPatch", 28, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 40, 3], ["cmakeFlags", 52, 3], ["postInstall", 58, 3], ["passthru", 63, 3], ["meta", 65, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, cmake: false, leptonica: false, qt6: false, tesseract: false, testers: false, kdePackages: false, onnxruntime: false, withPiper: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 20, 5], ["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5], ["fetchSubmodules", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["package", 63, 50]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 63, 18]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 63, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 66, 5], ["homepage", 67, 5], ["license", 68, 5], ["maintainers", 69, 5], ["platforms", 70, 5], ["mainProgram", 71, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["postPatch", 28, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 40, 3], ["cmakeFlags", 52, 3], ["postInstall", 58, 3], ["passthru", 63, 3], ["meta", 65, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const onnxruntime = nix.arg($, "onnxruntime");
   const withPiper = nix.argOr($, "withPiper", () => true);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "crow-translate",
       version: "4.0.2",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "invent.kde.org",
           owner: "office",
           repo: "crow-translate",
@@ -60,17 +55,17 @@ export default nix.lambda((args) => (() => {
       ]),
       postInstall: "substituteInPlace $out/share/applications/org.kde.CrowTranslate.desktop \\\n  --replace-fail 'Exec=crow' \"Exec=$out/bin/crow\"\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Simple and lightweight translator that allows to translate and speak text using Google, Yandex and Bing",
         homepage: "https://invent.kde.org/office/crow-translate",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

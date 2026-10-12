@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 48, 5], ["repo", 49, 5], ["tag", 50, 5], ["hash", 51, 5]], [["CMAKE_PREFIX_PATH", 65, 7]], [["plots", 81, 5], ["others", 85, 5]], [["description", 161, 5], ["homepage", 162, 5], ["changelog", 163, 5], ["license", 164, 5], ["maintainers", 165, 5]], [["pname", 42, 3], ["version", 43, 3], ["pyproject", 44, 3], ["__structuredAttrs", 45, 3], ["src", 47, 3], ["build-system", 54, 3], ["dontUseCmakeConfigure", 63, 3], ["env", 65, 3], ["dependencies", 67, 3], ["optional-dependencies", 80, 3], ["preCheck", 88, 3], ["nativeCheckInputs", 124, 3], ["doCheck", 141, 3], ["disabledTestPaths", 143, 3], ["disabledTests", 149, 3], ["pythonImportsCheck", 158, 3], ["meta", 160, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, python: false, cmake: false, nanobind: false, ninja: false, numpy: false, packaging: false, "scikit-build-core": false, "setuptools-scm": false, cloudpickle: false, llvmlite: false, numba: false, pandas: false, "scikit-learn": false, scipy: false, slicer: false, tqdm: false, pytestCheckHook: false, writeText: false, catboost: false, ipython: false, lightgbm: false, lime: false, matplotlib: false, opencv4: false, pyspark: false, "pytest-mpl": false, sentencepiece: false, transformers: false, xgboost: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 48, 5], ["repo", 49, 5], ["tag", 50, 5], ["hash", 51, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["CMAKE_PREFIX_PATH", 65, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["plots", 81, 5], ["others", 85, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 161, 5], ["homepage", 162, 5], ["changelog", 163, 5], ["license", 164, 5], ["maintainers", 165, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 42, 3], ["version", 43, 3], ["pyproject", 44, 3], ["__structuredAttrs", 45, 3], ["src", 47, 3], ["build-system", 54, 3], ["dontUseCmakeConfigure", 63, 3], ["env", 65, 3], ["dependencies", 67, 3], ["optional-dependencies", 80, 3], ["preCheck", 88, 3], ["nativeCheckInputs", 124, 3], ["doCheck", 141, 3], ["disabledTestPaths", 143, 3], ["disabledTests", 149, 3], ["pythonImportsCheck", 158, 3], ["meta", 160, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -44,13 +40,13 @@ export default nix.lambda((args) => (() => {
   const transformers = nix.arg($, "transformers");
   const xgboost = nix.arg($, "xgboost");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "shap",
       version: "0.52.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "slundberg",
           repo: "shap",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -59,7 +55,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [cmake, nanobind, ninja, numpy, packaging, scikit_build_core, setuptools_scm]),
       dontUseCmakeConfigure: true,
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         CMAKE_PREFIX_PATH: nix.thunk(() => nix.str`${nanobind}/${nix.sel(python, "sitePackages")}/nanobind`),
       })),
       dependencies: nix.thunk(() => [
@@ -75,7 +71,7 @@ export default nix.lambda((args) => (() => {
         tqdm,
       ]),
       "optional-dependencies": nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         plots: nix.thunk(() => [matplotlib, ipython]),
         others: nix.thunk(() => [lime]),
       })),
@@ -114,7 +110,7 @@ cat ${conftestSkipNetworkErrors} >> tests/conftest.py
       ]),
       pythonImportsCheck: nix.thunk(() => ["shap"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Unified approach to explain the output of any machine learning model",
         homepage: "https://github.com/slundberg/shap",
         changelog: nix.thunk(() => nix.str`https://github.com/slundberg/shap/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]], [["all", 49, 5], ["configuration", 50, 5], ["malware_detection", 51, 5]], [["lasuite-docs", 74, 7], ["lasuite-meet", 75, 7]], [["tests", 72, 12]], [["description", 80, 5], ["homepage", 81, 5], ["changelog", 82, 5], ["license", 83, 5], ["maintainers", 84, 5], ["platforms", 85, 5]], [["pname", 24, 3], ["version", 25, 3], ["pyproject", 26, 3], ["src", 28, 3], ["build-system", 35, 3], ["dependencies", 37, 3], ["optional-dependencies", 48, 3], ["pythonRelaxDeps", 54, 3], ["nativeCheckInputs", 56, 3], ["preCheck", 65, 3], ["pythonImportsCheck", 70, 3], ["passthru", 72, 3], ["meta", 79, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, hatchling: false, django: false, "django-configurations": false, djangorestframework: false, joserfc: false, "mozilla-django-oidc": false, pyjwt: false, requests: false, "requests-toolbelt": false, "factory-boy": false, "pytest-django": false, responses: false, celery: false, freezegun: false, pytestCheckHook: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["all", 49, 5], ["configuration", 50, 5], ["malware_detection", 51, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["lasuite-docs", 74, 7], ["lasuite-meet", 75, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["tests", 72, 12]]);
-const pos$5 = nix.positions(here + "/default.nix", [["description", 80, 5], ["homepage", 81, 5], ["changelog", 82, 5], ["license", 83, 5], ["maintainers", 84, 5], ["platforms", 85, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 24, 3], ["version", 25, 3], ["pyproject", 26, 3], ["src", 28, 3], ["build-system", 35, 3], ["dependencies", 37, 3], ["optional-dependencies", 48, 3], ["pythonRelaxDeps", 54, 3], ["nativeCheckInputs", 56, 3], ["preCheck", 65, 3], ["pythonImportsCheck", 70, 3], ["passthru", 72, 3], ["meta", 79, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -36,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.0.29";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "suitenumerique",
           repo: "django-lasuite",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -54,7 +49,7 @@ export default nix.lambda((args) => (() => {
         requests_toolbelt,
       ]);
       const optional_dependencies = nix.thunk(() => nix.app(nix.sel(lib, "fix"), (self) => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           all: nix.thunk(() => (() => {
             const w = nix.withScope(self, null);
             return nix.concat(nix.lookup(w, "configuration"), nix.lookup(w, "malware_detection"));
@@ -67,15 +62,15 @@ export default nix.lambda((args) => (() => {
       const preCheck = "export PYTHONPATH=tests:$PYTHONPATH\nexport DJANGO_SETTINGS_MODULE=test_project.settings\n";
       const pythonImportsCheck = nix.thunk(() => ["lasuite"]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           "lasuite-docs": nix.thunk(() => nix.attr(nixosTests, "lasuite-docs")),
           "lasuite-meet": nix.thunk(() => nix.attr(nixosTests, "lasuite-meet")),
         })),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Common library for La Suite Django projects and Proconnected Django projects",
         homepage: "https://github.com/suitenumerique/django-lasuite",
         changelog: nix.thunk(() => nix.str`https://github.com/suitenumerique/django-lasuite/blob/${nix.sel(src, "tag")}/CHANGELOG.md`),
@@ -87,7 +82,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname,
         version,
         pyproject,

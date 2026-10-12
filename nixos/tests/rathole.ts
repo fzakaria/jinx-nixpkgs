@@ -2,94 +2,62 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/rathole.nix", [[["maintainers", 8, 8]], [["enable", 14, 18]], [["useNetworkd", 12, 9], ["useDHCP", 13, 9], ["firewall", 14, 9]], [["Address", 19, 23]], [["name", 18, 9], ["networkConfig", 19, 9]], [["01-eth1", 17, 32]], [["networks", 17, 23]], [["network", 17, 15]], [["bind_addr", 30, 17], ["token", 31, 17]], [["success-message", 29, 15]], [["bind_addr", 27, 13], ["services", 28, 13]], [["server", 26, 11]], [["enable", 23, 9], ["role", 24, 9], ["settings", 25, 9]], [["rathole", 22, 16]], [["networking", 11, 7], ["systemd", 17, 7], ["services", 22, 7]], [["useNetworkd", 43, 11], ["useDHCP", 44, 11]], [["Address", 49, 25]], [["name", 48, 11], ["networkConfig", 49, 11]], [["01-eth1", 47, 34]], [["networks", 47, 25]], [["network", 47, 17]], [["root", 55, 13]], [["127.0.0.1", 54, 24]], [["enable", 53, 11], ["virtualHosts", 54, 11]], [["local_addr", 70, 17]], [["success-message", 69, 24]], [["remote_addr", 68, 15], ["services", 69, 15]], [["client", 67, 13]], [["enable", 60, 11], ["role", 61, 11], ["credentialsFile", 62, 11], ["settings", 66, 11]], [["nginx", 52, 18], ["rathole", 59, 18]], [["networking", 42, 9], ["systemd", 47, 9], ["services", 52, 9]], [["server", 10, 5], ["client", 39, 5]], [["name", 7, 3], ["meta", 8, 3], ["nodes", 9, 3], ["testScript", 78, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/rathole.nix", [["maintainers", 8, 8]]);
-const pos$2 = nix.positions(here + "/rathole.nix", [["enable", 14, 18]]);
-const pos$3 = nix.positions(here + "/rathole.nix", [["useNetworkd", 12, 9], ["useDHCP", 13, 9], ["firewall", 14, 9]]);
-const pos$4 = nix.positions(here + "/rathole.nix", [["Address", 19, 23]]);
-const pos$5 = nix.positions(here + "/rathole.nix", [["name", 18, 9], ["networkConfig", 19, 9]]);
-const pos$6 = nix.positions(here + "/rathole.nix", [["01-eth1", 17, 32]]);
-const pos$7 = nix.positions(here + "/rathole.nix", [["networks", 17, 23]]);
-const pos$8 = nix.positions(here + "/rathole.nix", [["network", 17, 15]]);
-const pos$9 = nix.positions(here + "/rathole.nix", [["bind_addr", 30, 17], ["token", 31, 17]]);
-const pos$10 = nix.positions(here + "/rathole.nix", [["success-message", 29, 15]]);
-const pos$11 = nix.positions(here + "/rathole.nix", [["bind_addr", 27, 13], ["services", 28, 13]]);
-const pos$12 = nix.positions(here + "/rathole.nix", [["server", 26, 11]]);
-const pos$13 = nix.positions(here + "/rathole.nix", [["enable", 23, 9], ["role", 24, 9], ["settings", 25, 9]]);
-const pos$14 = nix.positions(here + "/rathole.nix", [["rathole", 22, 16]]);
-const pos$15 = nix.positions(here + "/rathole.nix", [["networking", 11, 7], ["systemd", 17, 7], ["services", 22, 7]]);
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$16 = nix.positions(here + "/rathole.nix", [["useNetworkd", 43, 11], ["useDHCP", 44, 11]]);
-const pos$17 = nix.positions(here + "/rathole.nix", [["Address", 49, 25]]);
-const pos$18 = nix.positions(here + "/rathole.nix", [["name", 48, 11], ["networkConfig", 49, 11]]);
-const pos$19 = nix.positions(here + "/rathole.nix", [["01-eth1", 47, 34]]);
-const pos$20 = nix.positions(here + "/rathole.nix", [["networks", 47, 25]]);
-const pos$21 = nix.positions(here + "/rathole.nix", [["network", 47, 17]]);
-const pos$22 = nix.positions(here + "/rathole.nix", [["root", 55, 13]]);
-const pos$23 = nix.positions(here + "/rathole.nix", [["127.0.0.1", 54, 24]]);
-const pos$24 = nix.positions(here + "/rathole.nix", [["enable", 53, 11], ["virtualHosts", 54, 11]]);
-const pos$25 = nix.positions(here + "/rathole.nix", [["local_addr", 70, 17]]);
-const pos$26 = nix.positions(here + "/rathole.nix", [["success-message", 69, 24]]);
-const pos$27 = nix.positions(here + "/rathole.nix", [["remote_addr", 68, 15], ["services", 69, 15]]);
-const pos$28 = nix.positions(here + "/rathole.nix", [["client", 67, 13]]);
-const pos$29 = nix.positions(here + "/rathole.nix", [["enable", 60, 11], ["role", 61, 11], ["credentialsFile", 62, 11], ["settings", 66, 11]]);
-const pos$30 = nix.positions(here + "/rathole.nix", [["nginx", 52, 18], ["rathole", 59, 18]]);
-const pos$31 = nix.positions(here + "/rathole.nix", [["networking", 42, 9], ["systemd", 47, 9], ["services", 52, 9]]);
-const pos$32 = nix.positions(here + "/rathole.nix", [["server", 10, 5], ["client", 39, 5]]);
-const pos$33 = nix.positions(here + "/rathole.nix", [["name", 7, 3], ["meta", 8, 3], ["nodes", 9, 3], ["testScript", 78, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const successMessage = "Success 3333115147933743662";
   return {
-    [nix.POS]: pos$33,
+    [nix.POS]: $pos[32],
     name: "rathole",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "xokdvium"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$32,
+      [nix.POS]: $pos[31],
       server: nix.thunk(() => ({
-        [nix.POS]: pos$15,
+        [nix.POS]: $pos[14],
         networking: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           useNetworkd: true,
           useDHCP: false,
-          firewall: nix.thunk(() => ({ [nix.POS]: pos$2, enable: false })),
+          firewall: nix.thunk(() => ({ [nix.POS]: $pos[1], enable: false })),
         })),
         systemd: nix.thunk(() => ({
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           network: nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             networks: nix.thunk(() => ({
-              [nix.POS]: pos$6,
+              [nix.POS]: $pos[5],
               "01-eth1": nix.thunk(() => ({
-                [nix.POS]: pos$5,
+                [nix.POS]: $pos[4],
                 name: "eth1",
-                networkConfig: nix.thunk(() => ({ [nix.POS]: pos$4, Address: "10.0.0.1/24" })),
+                networkConfig: nix.thunk(() => ({ [nix.POS]: $pos[3], Address: "10.0.0.1/24" })),
               })),
             })),
           })),
         })),
         services: nix.thunk(() => ({
-          [nix.POS]: pos$14,
+          [nix.POS]: $pos[13],
           rathole: nix.thunk(() => ({
-            [nix.POS]: pos$13,
+            [nix.POS]: $pos[12],
             enable: true,
             role: "server",
             settings: nix.thunk(() => ({
-              [nix.POS]: pos$12,
+              [nix.POS]: $pos[11],
               server: nix.thunk(() => ({
-                [nix.POS]: pos$11,
+                [nix.POS]: $pos[10],
                 bind_addr: "0.0.0.0:2333",
                 services: nix.thunk(() => ({
-                  [nix.POS]: pos$10,
-                  "success-message": nix.thunk(() => ({ [nix.POS]: pos$9, bind_addr: "0.0.0.0:80", token: "hunter2" })),
+                  [nix.POS]: $pos[9],
+                  "success-message": nix.thunk(() => ({ [nix.POS]: $pos[8], bind_addr: "0.0.0.0:80", token: "hunter2" })),
                 })),
               })),
             })),
@@ -100,48 +68,48 @@ export default nix.lambda((args) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$31,
-          networking: nix.thunk(() => ({ [nix.POS]: pos$16, useNetworkd: true, useDHCP: false })),
+          [nix.POS]: $pos[30],
+          networking: nix.thunk(() => ({ [nix.POS]: $pos[15], useNetworkd: true, useDHCP: false })),
           systemd: nix.thunk(() => ({
-            [nix.POS]: pos$21,
+            [nix.POS]: $pos[20],
             network: nix.thunk(() => ({
-              [nix.POS]: pos$20,
+              [nix.POS]: $pos[19],
               networks: nix.thunk(() => ({
-                [nix.POS]: pos$19,
+                [nix.POS]: $pos[18],
                 "01-eth1": nix.thunk(() => ({
-                  [nix.POS]: pos$18,
+                  [nix.POS]: $pos[17],
                   name: "eth1",
-                  networkConfig: nix.thunk(() => ({ [nix.POS]: pos$17, Address: "10.0.0.2/24" })),
+                  networkConfig: nix.thunk(() => ({ [nix.POS]: $pos[16], Address: "10.0.0.2/24" })),
                 })),
               })),
             })),
           })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$30,
+            [nix.POS]: $pos[29],
             nginx: nix.thunk(() => ({
-              [nix.POS]: pos$24,
+              [nix.POS]: $pos[23],
               enable: true,
               virtualHosts: nix.thunk(() => ({
-                [nix.POS]: pos$23,
+                [nix.POS]: $pos[22],
                 "127.0.0.1": nix.thunk(() => ({
-                  [nix.POS]: pos$22,
+                  [nix.POS]: $pos[21],
                   root: nix.thunk(() => nix.app(nix.sel(pkgs, "writeTextDir"), "success-message.txt", successMessage)),
                 })),
               })),
             })),
             rathole: nix.thunk(() => ({
-              [nix.POS]: pos$29,
+              [nix.POS]: $pos[28],
               enable: true,
               role: "client",
               credentialsFile: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "rathole-credentials.toml", "[client.services.success-message]\ntoken = \"hunter2\"\n")),
               settings: nix.thunk(() => ({
-                [nix.POS]: pos$28,
+                [nix.POS]: $pos[27],
                 client: nix.thunk(() => ({
-                  [nix.POS]: pos$27,
+                  [nix.POS]: $pos[26],
                   remote_addr: "10.0.0.1:2333",
                   services: nix.thunk(() => ({
-                    [nix.POS]: pos$26,
-                    "success-message": nix.thunk(() => ({ [nix.POS]: pos$25, local_addr: "127.0.0.1:80" })),
+                    [nix.POS]: $pos[25],
+                    "success-message": nix.thunk(() => ({ [nix.POS]: $pos[24], local_addr: "127.0.0.1:80" })),
                   })),
                 })),
               })),

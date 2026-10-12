@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/idp-web.nix", [[["pname", 19, 26], ["version", 19, 32], ["src", 19, 40], ["pnpm", 20, 5], ["sourceRoot", 21, 5], ["fetcherVersion", 22, 5], ["hash", 23, 5]], [["description", 49, 5], ["homepage", 50, 5], ["changelog", 51, 5], ["license", 52, 5], ["maintainers", 53, 5], ["platforms", 57, 5]], [["pname", 12, 3], ["src", 14, 23], ["version", 14, 27], ["pnpmRoot", 16, 3], ["pnpmDeps", 18, 3], ["nativeBuildInputs", 26, 3], ["postBuild", 33, 3], ["installPhase", 39, 3], ["meta", 48, 3]]]);
 const formals$1 = { args: { stdenvNoCC: false, lib: false, opencloud: false, pnpm_11: false, fetchPnpmDeps: false, pnpmConfigHook: false, pnpmBuildHook: false, nodejs: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/idp-web.nix", [["pname", 19, 26], ["version", 19, 32], ["src", 19, 40], ["pnpm", 20, 5], ["sourceRoot", 21, 5], ["fetcherVersion", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/idp-web.nix", [["description", 49, 5], ["homepage", 50, 5], ["changelog", 51, 5], ["license", 52, 5], ["maintainers", 53, 5], ["platforms", 57, 5]]);
-const pos$3 = nix.positions(here + "/idp-web.nix", [["pname", 12, 3], ["src", 14, 23], ["version", 14, 27], ["pnpmRoot", 16, 3], ["pnpmDeps", 18, 3], ["nativeBuildInputs", 26, 3], ["postBuild", 33, 3], ["installPhase", 39, 3], ["meta", 48, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,13 +16,13 @@ export default nix.lambda((args) => (() => {
   const pnpmBuildHook = nix.arg($, "pnpmBuildHook");
   const nodejs = nix.arg($, "nodejs");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "opencloud-idp-web",
       src: nix.thunk(() => nix.attr(opencloud, "src")),
       version: nix.thunk(() => nix.attr(opencloud, "version")),
       pnpmRoot: "services/idp",
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -37,7 +35,7 @@ export default nix.lambda((args) => (() => {
       postBuild: "mkdir -p services/idp/assets/identifier/static\ncp -v services/idp/src/images/favicon.svg services/idp/assets/identifier/static/favicon.svg\ncp -v services/idp/src/images/icon-lilac.svg services/idp/assets/identifier/static/icon-lilac.svg\n",
       installPhase: "runHook preInstall\n\nmkdir $out\ncp -r services/idp/assets $out\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "OpenCloud - IDP Web UI",
         homepage: "https://github.com/opencloud-eu/opencloud",
         changelog: nix.thunk(() => nix.str`https://github.com/opencloud-eu/opencloud/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

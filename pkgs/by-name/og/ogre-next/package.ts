@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 32, 5], ["repo", 33, 5], ["tag", 34, 5], ["hash", 35, 5]], [["url", 41, 7], ["hash", 42, 7]], [["package", 126, 5], ["versionCheck", 127, 5]], [["pkg-config", 125, 18]], [["tests", 125, 12]], [["description", 131, 5], ["homepage", 132, 5], ["maintainers", 133, 5], ["pkgConfigModules", 136, 5], ["platforms", 142, 5], ["license", 143, 5]], [["pname", 28, 3], ["version", 29, 3], ["src", 31, 3], ["patches", 38, 3], ["postPatch", 46, 3], ["nativeBuildInputs", 75, 3], ["buildInputs", 81, 3], ["cmakeFlags", 104, 3], ["passthru", 125, 3], ["meta", 130, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch2: false, testers: false, cmake: false, ninja: false, "pkg-config": false, SDL2: false, libxt: false, libxrandr: false, libxaw: false, libx11: false, libxcb: false, libGL: false, zlib: false, freetype: false, tinyxml: false, openvr: false, rapidjson: false, zziplib: false, "apple-sdk_15": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 32, 5], ["repo", 33, 5], ["tag", 34, 5], ["hash", 35, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 41, 7], ["hash", 42, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["package", 126, 5], ["versionCheck", 127, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pkg-config", 125, 18]]);
-const pos$5 = nix.positions(here + "/package.nix", [["tests", 125, 12]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 131, 5], ["homepage", 132, 5], ["maintainers", 133, 5], ["pkgConfigModules", 136, 5], ["platforms", 142, 5], ["license", 143, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 28, 3], ["version", 29, 3], ["src", 31, 3], ["patches", 38, 3], ["postPatch", 46, 3], ["nativeBuildInputs", 75, 3], ["buildInputs", 81, 3], ["cmakeFlags", 104, 3], ["passthru", 125, 3], ["meta", 130, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -36,11 +30,11 @@ export default nix.lambda((args) => (() => {
   const zziplib = nix.arg($, "zziplib");
   const apple_sdk_15 = nix.arg($, "apple-sdk_15");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "ogre-next",
       version: "3.0.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "OGRECave",
           repo: "ogre-next",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -48,7 +42,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/OGRECave/ogre-next/commit/c1dad50e8510dea9d75d97b0ace33a870993895c.patch?full_index=1",
             hash: "sha256-JYsksDxcLrkHqlgdP3KdHlFuvYxNazlchPGoTXE9LYQ=",
           })))),
@@ -68,18 +62,18 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "OGRE_SIMD_SSE2", false)),
         ]))))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "hasPkgConfigModules"), nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               versionCheck: true,
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "3D Object-Oriented Graphics Rendering Engine",
         homepage: "https://www.ogre3d.org/",
         maintainers: nix.thunk(() => (() => {

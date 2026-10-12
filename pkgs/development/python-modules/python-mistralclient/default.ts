@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 34, 5], ["repo", 35, 5], ["tag", 36, 5], ["hash", 37, 5]], [["url", 43, 7], ["hash", 44, 7]], [["PBR_VERSION", 48, 7]], [["description", 94, 5], ["homepage", 95, 5], ["license", 96, 5], ["mainProgram", 97, 5], ["teams", 98, 5]], [["pname", 29, 3], ["version", 30, 3], ["pyproject", 31, 3], ["src", 33, 3], ["patches", 40, 3], ["env", 48, 3], ["nativeBuildInputs", 50, 3], ["sphinxBuilders", 56, 3], ["build-system", 58, 3], ["dependencies", 63, 3], ["nativeCheckInputs", 76, 3], ["checkPhase", 85, 3], ["pythonImportsCheck", 91, 3], ["meta", 93, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, cliff: false, fetchFromGitHub: false, fetchpatch: false, keystoneauth1: false, openstackdocstheme: false, openstacksdk: false, "osc-lib": false, "oslo-i18n": false, "oslo-serialization": false, "oslo-utils": false, oslotest: false, osprofiler: false, pbr: false, pyyaml: false, "requests-mock": false, requests: false, setuptools: false, "sphinxcontrib-apidoc": false, sphinxHook: false, stestr: false, stevedore: false, tempest: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 34, 5], ["repo", 35, 5], ["tag", 36, 5], ["hash", 37, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["url", 43, 7], ["hash", 44, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["PBR_VERSION", 48, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 94, 5], ["homepage", 95, 5], ["license", 96, 5], ["mainProgram", 97, 5], ["teams", 98, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 29, 3], ["version", 30, 3], ["pyproject", 31, 3], ["src", 33, 3], ["patches", 40, 3], ["env", 48, 3], ["nativeBuildInputs", 50, 3], ["sphinxBuilders", 56, 3], ["build-system", 58, 3], ["dependencies", 63, 3], ["nativeCheckInputs", 76, 3], ["checkPhase", 85, 3], ["pythonImportsCheck", 91, 3], ["meta", 93, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -40,7 +36,7 @@ export default nix.lambda((args) => (() => {
       const version = "6.2.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "openstack",
           repo: "python-mistralclient",
           tag: version,
@@ -48,12 +44,12 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/openstack/python-mistralclient/commit/4cee2bb25a4d15e7dd1802f3e7e75520177446db.patch",
             hash: "sha256-H8JSvPFcHZJsnIWpV0WPvkqyvmg8SBbpsUzqcZeFBwA=",
           })))),
       ]);
-      const env = nix.thunk(() => ({ [nix.POS]: pos$3, PBR_VERSION: version }));
+      const env = nix.thunk(() => ({ [nix.POS]: $pos[2], PBR_VERSION: version }));
       const nativeBuildInputs = nix.thunk(() => [openstackdocstheme, sphinxHook, sphinxcontrib_apidoc]);
       const sphinxBuilders = nix.thunk(() => ["man"]);
       const build_system = nix.thunk(() => [setuptools, pbr]);
@@ -73,7 +69,7 @@ export default nix.lambda((args) => (() => {
       const checkPhase = "runHook preCheck\nstestr run\nrunHook postCheck\n";
       const pythonImportsCheck = nix.thunk(() => ["mistralclient"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "OpenStack Mistral Command-line Client",
         homepage: "https://github.com/openstack/python-mistralclient",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -81,7 +77,7 @@ export default nix.lambda((args) => (() => {
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "openstack"))]),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         pyproject,

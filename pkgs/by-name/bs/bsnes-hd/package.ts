@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 27, 5], ["repo", 28, 5], ["rev", 29, 5], ["hash", 30, 5]], [["updateScript", 94, 5]], [["homepage", 98, 5], ["description", 99, 5], ["license", 100, 5], ["mainProgram", 101, 5], ["maintainers", 102, 5], ["platforms", 105, 5]], [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["patches", 33, 3], ["nativeBuildInputs", 48, 3], ["buildInputs", 57, 3], ["makeFlags", 72, 3], ["enableParallelBuilding", 79, 3], ["postInstall", 81, 3], ["preFixup", 87, 3], ["passthru", 93, 3], ["meta", 97, 3]]]);
 const formals$1 = { args: { lib: false, SDL2: false, "alsa-lib": false, fetchFromGitHub: false, gtk3: false, gtksourceview3: false, libx11: false, libxv: false, libao: false, libicns: false, libpulseaudio: false, makeWrapper: false, openal: false, "pkg-config": false, stdenv: false, udev: false, unstableGitUpdater: false, wrapGAppsHook3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 27, 5], ["repo", 28, 5], ["rev", 29, 5], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 94, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 98, 5], ["description", 99, 5], ["license", 100, 5], ["mainProgram", 101, 5], ["maintainers", 102, 5], ["platforms", 105, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["patches", 33, 3], ["nativeBuildInputs", 48, 3], ["buildInputs", 57, 3], ["makeFlags", 72, 3], ["enableParallelBuilding", 79, 3], ["postInstall", 81, 3], ["preFixup", 87, 3], ["passthru", 93, 3], ["meta", 97, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "bsnes-hd",
       version: "10.6-unstable-2024-10-21",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "DerKoun",
           repo: "bsnes-hd",
           rev: "0bb7b8645e22ea2476cabd58f32e987b14686601",
@@ -50,11 +47,11 @@ export default nix.lambda((args) => (() => {
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "mkdir -p $out/bin\nmakeWrapper $out/{Applications/bsnes.app/Contents/MacOS,bin}/bsnes\n")),
       preFixup: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), "gappsWrapperArgs+=(\n  --prefix GDK_BACKEND : x11\n)\n")),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/DerKoun/bsnes-hd",
         description: "Fork of bsnes that adds HD video features",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

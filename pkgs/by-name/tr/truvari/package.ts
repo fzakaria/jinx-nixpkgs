@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 12, 5], ["repo", 13, 5], ["rev", 14, 5], ["hash", 15, 5]], [["owner", 24, 5], ["repo", 25, 5], ["rev", 26, 5], ["hash", 27, 5]], [["description", 84, 5], ["homepage", 85, 5], ["changelog", 86, 5], ["license", 87, 5], ["maintainers", 88, 5], ["longDescription", 91, 5]], [["pname", 19, 3], ["version", 20, 3], ["pyproject", 21, 3], ["src", 23, 3], ["postPatch", 30, 3], ["build-system", 36, 3], ["dependencies", 40, 3], ["makeWrapperArgs", 54, 3], ["pythonImportsCheck", 64, 3], ["nativeCheckInputs", 66, 3], ["checkPhase", 74, 3], ["meta", 83, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, python3Packages: false, runtimeShell: false, bcftools: false, htslib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 12, 5], ["repo", 13, 5], ["rev", 14, 5], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 24, 5], ["repo", 25, 5], ["rev", 26, 5], ["hash", 27, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 84, 5], ["homepage", 85, 5], ["changelog", 86, 5], ["license", 87, 5], ["maintainers", 88, 5], ["longDescription", 91, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["pyproject", 21, 3], ["src", 23, 3], ["postPatch", 30, 3], ["build-system", 36, 3], ["dependencies", 40, 3], ["makeWrapperArgs", 54, 3], ["pythonImportsCheck", 64, 3], ["nativeCheckInputs", 66, 3], ["checkPhase", 74, 3], ["meta", 83, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const bcftools = nix.arg($, "bcftools");
   const htslib = nix.arg($, "htslib");
   const ssshtest = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "ryanlayer",
       repo: "ssshtest",
       rev: "d21f7f928a167fca6e2eb31616673444d15e6fd0",
@@ -28,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const version = "4.2.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "ACEnglish",
           repo: "truvari",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -74,7 +71,7 @@ bash repo_utils/truvari_ssshtests.sh
 runHook postCheck
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Structural variant comparison tool for VCFs",
         homepage: "https://github.com/ACEnglish/truvari",
         changelog: nix.thunk(() => nix.str`https://github.com/ACEnglish/truvari/releases/tag/${nix.sel(src, "rev")}`),
@@ -86,7 +83,7 @@ runHook postCheck
         longDescription: "Truvari is a benchmarking tool for comparison sets of SVs.\nIt can calculate the recall, precision, and f-measure of a\nvcf from a given structural variant caller. The tool\nis created by Spiral Genetics.\n",
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

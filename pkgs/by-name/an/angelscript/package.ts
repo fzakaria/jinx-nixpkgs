@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 14, 5], ["sha256", 15, 5]], [["description", 36, 5], ["license", 37, 5], ["maintainers", 38, 5], ["platforms", 39, 5], ["downloadPage", 40, 5], ["homepage", 41, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 18, 3], ["preConfigure", 23, 3], ["cmakeFlags", 28, 3], ["postInstall", 30, 3], ["meta", 35, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, unzip: false, cmake: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 14, 5], ["sha256", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 36, 5], ["license", 37, 5], ["maintainers", 38, 5], ["platforms", 39, 5], ["downloadPage", 40, 5], ["homepage", 41, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 18, 3], ["preConfigure", 23, 3], ["cmakeFlags", 28, 3], ["postInstall", 30, 3], ["meta", 35, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const unzip = nix.arg($, "unzip");
   const cmake = nix.arg($, "cmake");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "angelscript",
       version: "2.38.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://www.angelcode.com/angelscript/sdk/files/angelscript_${nix.sel(finalAttrs, "version")}.zip`),
           sha256: "sha256-sztdvNoQMX72fWKDU9gyRphM5vysEC1Nwq7RIeulLm8=",
         })))),
@@ -28,7 +26,7 @@ export default nix.lambda((args) => (() => {
       cmakeFlags: nix.thunk(() => ["-DBUILD_SHARED_LIBS=ON"]),
       postInstall: "mkdir -p \"$out/share/docs/angelscript\"\ncp -r $ROOT/docs/* \"$out/share/docs/angelscript\"\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Light-weight scripting library",
         license: nix.thunk(() => nix.sel(lib, "licenses", "zlib")),
         maintainers: nix.thunk(() => (() => {

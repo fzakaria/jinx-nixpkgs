@@ -2,59 +2,49 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/cliproxyapi.nix", [[["maintainers", 5, 8]], [["host", 14, 13], ["port", 15, 13]], [["_secret", 17, 33]], [["api-keys", 17, 18]], [["server", 13, 11], ["access", 17, 11]], [["enable", 11, 9], ["settings", 12, 9]], [["cliproxyapi", 10, 16]], [["text", 21, 45]], [["cliproxyapi-api-key", 21, 23]], [["etc", 21, 19], ["systemPackages", 22, 19]], [["services", 10, 7], ["environment", 21, 7]], [["machine", 7, 14]], [["name", 3, 3], ["meta", 5, 3], ["containers", 7, 3], ["testScript", 25, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/cliproxyapi.nix", [["maintainers", 5, 8]]);
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/cliproxyapi.nix", [["host", 14, 13], ["port", 15, 13]]);
-const pos$3 = nix.positions(here + "/cliproxyapi.nix", [["_secret", 17, 33]]);
-const pos$4 = nix.positions(here + "/cliproxyapi.nix", [["api-keys", 17, 18]]);
-const pos$5 = nix.positions(here + "/cliproxyapi.nix", [["server", 13, 11], ["access", 17, 11]]);
-const pos$6 = nix.positions(here + "/cliproxyapi.nix", [["enable", 11, 9], ["settings", 12, 9]]);
-const pos$7 = nix.positions(here + "/cliproxyapi.nix", [["cliproxyapi", 10, 16]]);
-const pos$8 = nix.positions(here + "/cliproxyapi.nix", [["text", 21, 45]]);
-const pos$9 = nix.positions(here + "/cliproxyapi.nix", [["cliproxyapi-api-key", 21, 23]]);
-const pos$10 = nix.positions(here + "/cliproxyapi.nix", [["etc", 21, 19], ["systemPackages", 22, 19]]);
-const pos$11 = nix.positions(here + "/cliproxyapi.nix", [["services", 10, 7], ["environment", 21, 7]]);
-const pos$12 = nix.positions(here + "/cliproxyapi.nix", [["machine", 7, 14]]);
-const pos$13 = nix.positions(here + "/cliproxyapi.nix", [["name", 3, 3], ["meta", 5, 3], ["containers", 7, 3], ["testScript", 25, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$13,
+    [nix.POS]: $pos[12],
     name: "cliproxyapi",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "anish"))]),
     })),
     containers: nix.thunk(() => ({
-      [nix.POS]: pos$12,
+      [nix.POS]: $pos[11],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$11,
+          [nix.POS]: $pos[10],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             cliproxyapi: nix.thunk(() => ({
-              [nix.POS]: pos$6,
+              [nix.POS]: $pos[5],
               enable: true,
               settings: nix.thunk(() => ({
-                [nix.POS]: pos$5,
-                server: nix.thunk(() => ({ [nix.POS]: pos$2, host: "127.0.0.1", port: 8317n })),
+                [nix.POS]: $pos[4],
+                server: nix.thunk(() => ({ [nix.POS]: $pos[1], host: "127.0.0.1", port: 8317n })),
                 access: nix.thunk(() => ({
-                  [nix.POS]: pos$4,
-                  "api-keys": nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$3, _secret: "/etc/cliproxyapi-api-key" }))]),
+                  [nix.POS]: $pos[3],
+                  "api-keys": nix.thunk(() => [
+                    nix.thunk(() => ({ [nix.POS]: $pos[2], _secret: "/etc/cliproxyapi-api-key" })),
+                  ]),
                 })),
               })),
             })),
           })),
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$10,
+            [nix.POS]: $pos[9],
             etc: nix.thunk(() => ({
-              [nix.POS]: pos$9,
-              "cliproxyapi-api-key": nix.thunk(() => ({ [nix.POS]: pos$8, text: "test-key" })),
+              [nix.POS]: $pos[8],
+              "cliproxyapi-api-key": nix.thunk(() => ({ [nix.POS]: $pos[7], text: "test-key" })),
             })),
             systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "curl"))]),
           })),

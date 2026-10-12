@@ -2,27 +2,9 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/filesystems-overlayfs.nix", [[["maintainers", 25, 8]], [["enable", 30, 27]], [["systemd", 30, 19]], [["initrd", 30, 12]], [["lowerdir", 35, 13], ["upperdir", 36, 13], ["workdir", 37, 13]], [["overlay", 34, 11], ["neededForBoot", 39, 11]], [["lowerdir", 43, 13], ["upperdir", 44, 13], ["workdir", 45, 13], ["useStage1BaseDirectories", 46, 13]], [["overlay", 42, 11]], [["lowerdir", 51, 13], ["upperdir", 52, 13], ["workdir", 53, 13]], [["overlay", 50, 11]], [["lowerdir", 57, 19]], [["overlay", 57, 11], ["neededForBoot", 61, 11]], [["lowerdir", 64, 19]], [["overlay", 64, 11]], [["/initrd-overlay", 33, 9], ["/initrd-real-root-overlay", 41, 9], ["/userspace-overlay", 49, 9], ["/ro-initrd-overlay", 56, 9], ["/ro-userspace-overlay", 63, 9]], [["fileSystems", 32, 22]], [["boot", 30, 7], ["virtualisation", 32, 7]], [["machine", 27, 9]], [["name", 23, 3], ["meta", 25, 3], ["nodes", 27, 3], ["testScript", 72, 3]]]);
 const formals$1 = { args: { lib: false, pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/filesystems-overlayfs.nix", [["maintainers", 25, 8]]);
 const formals$2 = { args: { config: false, pkgs: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/filesystems-overlayfs.nix", [["enable", 30, 27]]);
-const pos$3 = nix.positions(here + "/filesystems-overlayfs.nix", [["systemd", 30, 19]]);
-const pos$4 = nix.positions(here + "/filesystems-overlayfs.nix", [["initrd", 30, 12]]);
-const pos$5 = nix.positions(here + "/filesystems-overlayfs.nix", [["lowerdir", 35, 13], ["upperdir", 36, 13], ["workdir", 37, 13]]);
-const pos$6 = nix.positions(here + "/filesystems-overlayfs.nix", [["overlay", 34, 11], ["neededForBoot", 39, 11]]);
-const pos$7 = nix.positions(here + "/filesystems-overlayfs.nix", [["lowerdir", 43, 13], ["upperdir", 44, 13], ["workdir", 45, 13], ["useStage1BaseDirectories", 46, 13]]);
-const pos$8 = nix.positions(here + "/filesystems-overlayfs.nix", [["overlay", 42, 11]]);
-const pos$9 = nix.positions(here + "/filesystems-overlayfs.nix", [["lowerdir", 51, 13], ["upperdir", 52, 13], ["workdir", 53, 13]]);
-const pos$10 = nix.positions(here + "/filesystems-overlayfs.nix", [["overlay", 50, 11]]);
-const pos$11 = nix.positions(here + "/filesystems-overlayfs.nix", [["lowerdir", 57, 19]]);
-const pos$12 = nix.positions(here + "/filesystems-overlayfs.nix", [["overlay", 57, 11], ["neededForBoot", 61, 11]]);
-const pos$13 = nix.positions(here + "/filesystems-overlayfs.nix", [["lowerdir", 64, 19]]);
-const pos$14 = nix.positions(here + "/filesystems-overlayfs.nix", [["overlay", 64, 11]]);
-const pos$15 = nix.positions(here + "/filesystems-overlayfs.nix", [["/initrd-overlay", 33, 9], ["/initrd-real-root-overlay", 41, 9], ["/userspace-overlay", 49, 9], ["/ro-initrd-overlay", 56, 9], ["/ro-userspace-overlay", 63, 9]]);
-const pos$16 = nix.positions(here + "/filesystems-overlayfs.nix", [["fileSystems", 32, 22]]);
-const pos$17 = nix.positions(here + "/filesystems-overlayfs.nix", [["boot", 30, 7], ["virtualisation", 32, 7]]);
-const pos$18 = nix.positions(here + "/filesystems-overlayfs.nix", [["machine", 27, 9]]);
-const pos$19 = nix.positions(here + "/filesystems-overlayfs.nix", [["name", 23, 3], ["meta", 25, 3], ["nodes", 27, 3], ["testScript", 72, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,38 +15,38 @@ export default nix.lambda((args) => (() => {
   const userspaceLowerdir = nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "userspace-lowerdir", nix.thunk(() => ({})), "mkdir -p $out\necho \"userspace\" > $out/userspace.txt\n"));
   const userspaceLowerdir2 = nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "userspace-lowerdir-2", nix.thunk(() => ({})), "mkdir -p $out\necho \"userspace2\" > $out/userspace2.txt\n"));
   return {
-    [nix.POS]: pos$19,
+    [nix.POS]: $pos[18],
     name: "writable-overlays",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "nikstur"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$18,
+      [nix.POS]: $pos[17],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config = nix.arg($_1, "config");
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$17,
+          [nix.POS]: $pos[16],
           boot: nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             initrd: nix.thunk(() => ({
-              [nix.POS]: pos$3,
-              systemd: nix.thunk(() => ({ [nix.POS]: pos$2, enable: true })),
+              [nix.POS]: $pos[2],
+              systemd: nix.thunk(() => ({ [nix.POS]: $pos[1], enable: true })),
             })),
           })),
           virtualisation: nix.thunk(() => ({
-            [nix.POS]: pos$16,
+            [nix.POS]: $pos[15],
             fileSystems: nix.thunk(() => ({
-              [nix.POS]: pos$15,
+              [nix.POS]: $pos[14],
               "/initrd-overlay": nix.thunk(() => ({
-                [nix.POS]: pos$6,
+                [nix.POS]: $pos[5],
                 overlay: nix.thunk(() => ({
-                  [nix.POS]: pos$5,
+                  [nix.POS]: $pos[4],
                   lowerdir: nix.thunk(() => [initrdLowerdir]),
                   upperdir: "/.rw-initrd-overlay/upper",
                   workdir: "/.rw-initrd-overlay/work",
@@ -72,9 +54,9 @@ export default nix.lambda((args) => (() => {
                 neededForBoot: true,
               })),
               "/initrd-real-root-overlay": nix.thunk(() => ({
-                [nix.POS]: pos$8,
+                [nix.POS]: $pos[7],
                 overlay: nix.thunk(() => ({
-                  [nix.POS]: pos$7,
+                  [nix.POS]: $pos[6],
                   lowerdir: nix.thunk(() => [userspaceLowerdir]),
                   upperdir: "/run/upper",
                   workdir: "/run/work",
@@ -82,26 +64,26 @@ export default nix.lambda((args) => (() => {
                 })),
               })),
               "/userspace-overlay": nix.thunk(() => ({
-                [nix.POS]: pos$10,
+                [nix.POS]: $pos[9],
                 overlay: nix.thunk(() => ({
-                  [nix.POS]: pos$9,
+                  [nix.POS]: $pos[8],
                   lowerdir: nix.thunk(() => [userspaceLowerdir]),
                   upperdir: "/.rw-userspace-overlay/upper",
                   workdir: "/.rw-userspace-overlay/work",
                 })),
               })),
               "/ro-initrd-overlay": nix.thunk(() => ({
-                [nix.POS]: pos$12,
+                [nix.POS]: $pos[11],
                 overlay: nix.thunk(() => ({
-                  [nix.POS]: pos$11,
+                  [nix.POS]: $pos[10],
                   lowerdir: nix.thunk(() => [initrdLowerdir, initrdLowerdir2]),
                 })),
                 neededForBoot: true,
               })),
               "/ro-userspace-overlay": nix.thunk(() => ({
-                [nix.POS]: pos$14,
+                [nix.POS]: $pos[13],
                 overlay: nix.thunk(() => ({
-                  [nix.POS]: pos$13,
+                  [nix.POS]: $pos[12],
                   lowerdir: nix.thunk(() => [userspaceLowerdir, userspaceLowerdir2]),
                 })),
               })),

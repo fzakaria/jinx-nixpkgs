@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 7], ["repo", 17, 7], ["rev", 18, 7], ["sha256", 19, 7]], [["NIX_CFLAGS_COMPILE", 24, 9]], [["pname", 12, 5], ["version", 13, 13], ["src", 15, 5], ["enableParallelBuilding", 22, 5], ["env", 24, 5], ["nativeBuildInputs", 26, 5], ["buildInputs", 28, 5], ["makeFlags", 30, 5]], [["owner", 38, 5], ["repo", 39, 5], ["rev", 40, 5], ["sha256", 41, 5]], [["NIX_CFLAGS_COMPILE", 46, 7]], [["homepage", 55, 5], ["description", 56, 5], ["license", 57, 5], ["maintainers", 58, 5], ["platforms", 59, 5], ["broken", 60, 5]], [["pname", 34, 3], ["version", 35, 11], ["src", 37, 3], ["enableParallelBuilding", 44, 3], ["env", 46, 3], ["nativeBuildInputs", 48, 3], ["buildInputs", 50, 3], ["makeFlags", 52, 3], ["meta", 54, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, libck: false, cctools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 7], ["repo", 17, 7], ["rev", 18, 7], ["sha256", 19, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 24, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 12, 5], ["version", 13, 13], ["src", 15, 5], ["enableParallelBuilding", 22, 5], ["env", 24, 5], ["nativeBuildInputs", 26, 5], ["buildInputs", 28, 5], ["makeFlags", 30, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["owner", 38, 5], ["repo", 39, 5], ["rev", 40, 5], ["sha256", 41, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 46, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["homepage", 55, 5], ["description", 56, 5], ["license", 57, 5], ["maintainers", 58, 5], ["platforms", 59, 5], ["broken", 60, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 34, 3], ["version", 35, 11], ["src", 37, 3], ["enableParallelBuilding", 44, 3], ["env", 46, 3], ["nativeBuildInputs", 48, 3], ["buildInputs", 50, 3], ["makeFlags", 52, 3], ["meta", 54, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,40 +14,40 @@ export default nix.lambda((args) => (() => {
   const cctools = nix.arg($, "cctools");
   const version = "0.36.0";
   const bootstrap = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "cyclone-bootstrap",
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "justinethier",
           repo: "cyclone-bootstrap",
           rev: nix.thunk(() => nix.str`v${version}`),
           sha256: "sha256-8WK4rsLK3gi9a6PKFaT3KRK256rEDTTO6QvqYrOtYDs=",
         })))),
       enableParallelBuilding: true,
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-std=gnu17" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], NIX_CFLAGS_COMPILE: "-std=gnu17" })),
       nativeBuildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [cctools]))),
       buildInputs: nix.thunk(() => [libck]),
       makeFlags: nix.thunk(() => [nix.thunk(() => nix.str`PREFIX=${nix.builtins.placeholder("out")}`)]),
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "cyclone",
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           owner: "justinethier",
           repo: "cyclone",
           rev: nix.thunk(() => nix.str`v${version}`),
           sha256: "sha256-5h8jZ8EBgiLLYH/j3p7CqsQGXHhjGtQfOnxPbFnT5WM=",
         })))),
       enableParallelBuilding: true,
-      env: nix.thunk(() => ({ [nix.POS]: pos$5, NIX_CFLAGS_COMPILE: "-std=gnu17" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[4], NIX_CFLAGS_COMPILE: "-std=gnu17" })),
       nativeBuildInputs: nix.thunk(() => nix.concat([bootstrap], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [cctools])))),
       buildInputs: nix.thunk(() => [libck]),
       makeFlags: nix.thunk(() => [nix.thunk(() => nix.str`PREFIX=${nix.builtins.placeholder("out")}`)]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         homepage: "https://justinethier.github.io/cyclone/",
         description: "Brand-new compiler that allows practical application development using R7RS Scheme",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

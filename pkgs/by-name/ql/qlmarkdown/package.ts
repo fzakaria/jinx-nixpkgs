@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 16, 5], ["hash", 17, 5], ["stripRoot", 18, 5]], [["updateScript", 34, 12]], [["description", 37, 5], ["homepage", 38, 5], ["changelog", 39, 5], ["license", 40, 5], ["maintainers", 41, 5], ["mainProgram", 42, 5], ["platforms", 43, 5], ["sourceProvenance", 44, 5]], [["pname", 9, 3], ["version", 10, 3], ["strictDeps", 12, 3], ["__structuredAttrs", 13, 3], ["src", 15, 3], ["installPhase", 21, 3], ["passthru", 34, 3], ["meta", 36, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchzip: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 16, 5], ["hash", 17, 5], ["stripRoot", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 34, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 37, 5], ["homepage", 38, 5], ["changelog", 39, 5], ["license", 40, 5], ["maintainers", 41, 5], ["mainProgram", 42, 5], ["platforms", 43, 5], ["sourceProvenance", 44, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["strictDeps", 12, 3], ["__structuredAttrs", 13, 3], ["src", 15, 3], ["installPhase", 21, 3], ["passthru", 34, 3], ["meta", 36, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,24 +12,24 @@ export default nix.lambda((args) => (() => {
   const fetchzip = nix.arg($, "fetchzip");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "qlmarkdown",
       version: "1.5.7",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/sbarex/QLMarkdown/releases/download/${nix.sel(finalAttrs, "version")}/QLMarkdown.zip`),
           hash: "sha256-SdKDN5PorVBXYJGGngM0pa1Huh49AnDeu4RzH/Rjv5k=",
           stripRoot: false,
         })))),
       installPhase: "runHook preInstall\n\nmkdir -p \"$out/Applications\" \"$out/bin\"\ncp -R \"QLMarkdown.app\" \"$out/Applications/\"\n\nln -s \\\n  \"$out/Applications/QLMarkdown.app/Contents/Resources/qlmarkdown_cli\" \\\n  \"$out/bin/qlmarkdown_cli\"\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Quick Look extension for Markdown previews on macOS",
         homepage: "https://github.com/sbarex/QLMarkdown",
         changelog: nix.thunk(() => nix.str`https://github.com/sbarex/QLMarkdown/releases/tag/${nix.sel(finalAttrs, "version")}`),

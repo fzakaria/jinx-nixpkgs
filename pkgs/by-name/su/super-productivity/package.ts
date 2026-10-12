@@ -2,16 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]], [["FORCE_EMPTY_CACHE", 55, 9], ["NPM_FETCHER_VERSION", 56, 9], ["SSL_CERT_FILE", 57, 9]], [["pname", 40, 7], ["version", 41, 28], ["src", 41, 36], ["nativeBuildInputs", 43, 7], ["__structuredAttrs", 48, 7], ["strictDeps", 49, 7], ["env", 51, 7], ["buildPhase", 60, 7], ["dontInstall", 74, 7], ["outputHashMode", 76, 7], ["hash", 77, 7]], [["pname", 87, 7], ["version", 88, 7], ["src", 89, 7], ["cargoRoot", 90, 7], ["hash", 92, 5]], [["ELECTRON_SKIP_BINARY_DOWNLOAD", 96, 5], ["CHROMEDRIVER_SKIP_DOWNLOAD", 97, 5]], [["name", 180, 7], ["desktopName", 181, 7], ["exec", 182, 7], ["terminal", 183, 7], ["type", 184, 7], ["icon", 185, 7], ["startupWMClass", 186, 7], ["categories", 187, 7], ["mimeTypes", 191, 7]], [["updateScript", 195, 12]], [["description", 198, 5], ["longDescription", 199, 5], ["homepage", 205, 5], ["license", 206, 5], ["platforms", 207, 5], ["maintainers", 208, 5], ["mainProgram", 212, 5]], [["pname", 22, 3], ["version", 23, 3], ["nodejs", 25, 11], ["src", 27, 3], ["npmDeps", 38, 3], ["makeCacheWritable", 81, 3], ["npmDepsFetcherVersion", 82, 3], ["cargoRoot", 84, 3], ["cargoDeps", 85, 3], ["env", 95, 3], ["nativeBuildInputs", 100, 3], ["postPatch", 106, 3], ["buildPhase", 123, 3], ["installPhase", 148, 3], ["desktopItems", 178, 3], ["passthru", 195, 3], ["meta", 197, 3]]]);
 const formals$1 = { args: { buildNpmPackage: false, copyDesktopItems: false, electron_43: false, fetchFromGitHub: false, lib: false, makeDesktopItem: false, "nix-update-script": false, "prefetch-npm-deps": false, rsync: false, stdenv: false, nodejs_22: false, rustPlatform: false, cacert: false, cargo: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["FORCE_EMPTY_CACHE", 55, 9], ["NPM_FETCHER_VERSION", 56, 9], ["SSL_CERT_FILE", 57, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 40, 7], ["version", 41, 28], ["src", 41, 36], ["nativeBuildInputs", 43, 7], ["__structuredAttrs", 48, 7], ["strictDeps", 49, 7], ["env", 51, 7], ["buildPhase", 60, 7], ["dontInstall", 74, 7], ["outputHashMode", 76, 7], ["hash", 77, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 87, 7], ["version", 88, 7], ["src", 89, 7], ["cargoRoot", 90, 7], ["hash", 92, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["ELECTRON_SKIP_BINARY_DOWNLOAD", 96, 5], ["CHROMEDRIVER_SKIP_DOWNLOAD", 97, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["name", 180, 7], ["desktopName", 181, 7], ["exec", 182, 7], ["terminal", 183, 7], ["type", 184, 7], ["icon", 185, 7], ["startupWMClass", 186, 7], ["categories", 187, 7], ["mimeTypes", 191, 7]]);
-const pos$7 = nix.positions(here + "/package.nix", [["updateScript", 195, 12]]);
-const pos$8 = nix.positions(here + "/package.nix", [["description", 198, 5], ["longDescription", 199, 5], ["homepage", 205, 5], ["license", 206, 5], ["platforms", 207, 5], ["maintainers", 208, 5], ["mainProgram", 212, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["pname", 22, 3], ["version", 23, 3], ["nodejs", 25, 11], ["src", 27, 3], ["npmDeps", 38, 3], ["makeCacheWritable", 81, 3], ["npmDepsFetcherVersion", 82, 3], ["cargoRoot", 84, 3], ["cargoDeps", 85, 3], ["env", 95, 3], ["nativeBuildInputs", 100, 3], ["postPatch", 106, 3], ["buildPhase", 123, 3], ["installPhase", 148, 3], ["desktopItems", 178, 3], ["passthru", 195, 3], ["meta", 197, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,19 +24,19 @@ export default nix.lambda((args) => (() => {
   const electron = electron_43;
   const nodejs = nodejs_22;
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       pname: "super-productivity",
       version: "19.1.0",
       nodejs: nodejs,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "super-productivity",
           repo: "super-productivity",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-iWiWVUGr3qGcfYqCJg9hkXSTM1eWarYZgWspj3+Bn0Q=",
         })))),
       npmDeps: nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => nix.app(nix.sel(lib, "fetchers", "normalizeHash"), nix.thunk(() => ({})), nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             pname: "super-productivity-deps",
             version: nix.thunk(() => nix.attr(finalAttrs, "version")),
             src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -52,7 +44,7 @@ export default nix.lambda((args) => (() => {
             __structuredAttrs: true,
             strictDeps: true,
             env: nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               FORCE_EMPTY_CACHE: true,
               NPM_FETCHER_VERSION: "2",
               SSL_CERT_FILE: nix.thunk(() => nix.str`${cacert}/etc/ssl/certs/ca-bundle.crt`),
@@ -66,7 +58,7 @@ export default nix.lambda((args) => (() => {
       npmDepsFetcherVersion: 2n,
       cargoRoot: "electron/wayland-idle-helper",
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -74,7 +66,7 @@ export default nix.lambda((args) => (() => {
           hash: "sha256-u/GjzX8zykIqJlMR/611ADX2EcD1cb4Qr94EkI2sdlA=",
         })))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         ELECTRON_SKIP_BINARY_DOWNLOAD: "1",
         CHROMEDRIVER_SKIP_DOWNLOAD: "true",
       })),
@@ -126,7 +118,7 @@ runHook postInstall
 `),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             name: "superproductivity",
             desktopName: "Super Productivity",
             exec: "superproductivity %U",
@@ -139,11 +131,11 @@ runHook postInstall
           })))),
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         description: "To Do List / Time Tracker with Jira Integration",
         longDescription: "Experience the best ToDo app for digital professionals and get more done!\nSuper Productivity comes with integrated time-boxing and time tracking capabilities\nand you can load your task from your calendars and from\nJira, Gitlab, GitHub, Open Project and others all into a single ToDo list.\n",
         homepage: "https://super-productivity.com",

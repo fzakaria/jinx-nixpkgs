@@ -2,53 +2,40 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/specialArgs-class.nix", [[["class", 7, 11], ["modules", 8, 11]], [["type", 6, 9], ["default", 12, 9]], [["class", 17, 11], ["modules", 18, 11]], [["type", 16, 9], ["default", 22, 9]], [["class", 27, 11], ["modules", 28, 11]], [["type", 26, 9], ["default", 32, 9]], [["nixos", 5, 7], ["conditionalImportAsNixos", 15, 7], ["conditionalImportAsDarwin", 25, 7]], [["sub", 4, 5]], [["freeformType", 37, 13]], [["class", 40, 7], ["modules", 41, 7]], [["class", 45, 7], ["modules", 46, 7]], [["class", 50, 7], ["modules", 51, 7]], [["_module", 37, 5], ["nixos", 39, 5], ["conditionalImportAsNixos", 44, 5], ["conditionalImportAsDarwin", 49, 5]], [["options", 3, 3], ["config", 36, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/specialArgs-class.nix", [["class", 7, 11], ["modules", 8, 11]]);
-const pos$2 = nix.positions(here + "/specialArgs-class.nix", [["type", 6, 9], ["default", 12, 9]]);
-const pos$3 = nix.positions(here + "/specialArgs-class.nix", [["class", 17, 11], ["modules", 18, 11]]);
-const pos$4 = nix.positions(here + "/specialArgs-class.nix", [["type", 16, 9], ["default", 22, 9]]);
-const pos$5 = nix.positions(here + "/specialArgs-class.nix", [["class", 27, 11], ["modules", 28, 11]]);
-const pos$6 = nix.positions(here + "/specialArgs-class.nix", [["type", 26, 9], ["default", 32, 9]]);
-const pos$7 = nix.positions(here + "/specialArgs-class.nix", [["nixos", 5, 7], ["conditionalImportAsNixos", 15, 7], ["conditionalImportAsDarwin", 25, 7]]);
-const pos$8 = nix.positions(here + "/specialArgs-class.nix", [["sub", 4, 5]]);
-const pos$9 = nix.positions(here + "/specialArgs-class.nix", [["freeformType", 37, 13]]);
-const pos$10 = nix.positions(here + "/specialArgs-class.nix", [["class", 40, 7], ["modules", 41, 7]]);
-const pos$11 = nix.positions(here + "/specialArgs-class.nix", [["class", 45, 7], ["modules", 46, 7]]);
-const pos$12 = nix.positions(here + "/specialArgs-class.nix", [["class", 50, 7], ["modules", 51, 7]]);
-const pos$13 = nix.positions(here + "/specialArgs-class.nix", [["_module", 37, 5], ["nixos", 39, 5], ["conditionalImportAsNixos", 44, 5], ["conditionalImportAsDarwin", 49, 5]]);
-const pos$14 = nix.positions(here + "/specialArgs-class.nix", [["options", 3, 3], ["config", 36, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$14,
+    [nix.POS]: $pos[13],
     options: nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       sub: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         nixos: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submoduleWith"), nix.thunk(() => ({
-                [nix.POS]: pos$1,
+                [nix.POS]: $pos[0],
                 class: "nixos",
                 modules: nix.thunk(() => [nix.path(here, "./expose-module-class.nix")]),
               })))),
             default: nix.thunk(() => ({})),
           })))),
         conditionalImportAsNixos: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submoduleWith"), nix.thunk(() => ({
-                [nix.POS]: pos$3,
+                [nix.POS]: $pos[2],
                 class: "nixos",
                 modules: nix.thunk(() => [nix.path(here, "./polymorphic-module.nix")]),
               })))),
             default: nix.thunk(() => ({})),
           })))),
         conditionalImportAsDarwin: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submoduleWith"), nix.thunk(() => ({
-                [nix.POS]: pos$5,
+                [nix.POS]: $pos[4],
                 class: "darwin",
                 modules: nix.thunk(() => [nix.path(here, "./polymorphic-module.nix")]),
               })))),
@@ -57,23 +44,23 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => ({
-      [nix.POS]: pos$13,
+      [nix.POS]: $pos[12],
       _module: nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         freeformType: nix.thunk(() => nix.sel(lib, "types", "anything")),
       })),
       nixos: nix.thunk(() => nix.app(nix.sel(lib, "evalModules"), nix.thunk(() => ({
-          [nix.POS]: pos$10,
+          [nix.POS]: $pos[9],
           class: "nixos",
           modules: nix.thunk(() => [nix.path(here, "./expose-module-class.nix")]),
         })))),
       conditionalImportAsNixos: nix.thunk(() => nix.app(nix.sel(lib, "evalModules"), nix.thunk(() => ({
-          [nix.POS]: pos$11,
+          [nix.POS]: $pos[10],
           class: "nixos",
           modules: nix.thunk(() => [nix.path(here, "./polymorphic-module.nix")]),
         })))),
       conditionalImportAsDarwin: nix.thunk(() => nix.app(nix.sel(lib, "evalModules"), nix.thunk(() => ({
-          [nix.POS]: pos$12,
+          [nix.POS]: $pos[11],
           class: "darwin",
           modules: nix.thunk(() => [nix.path(here, "./polymorphic-module.nix")]),
         })))),

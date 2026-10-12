@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 23, 5], ["sha256", 24, 5]], [["homepage", 42, 7], ["downloadPage", 43, 7], ["description", 44, 7], ["license", 45, 7], ["platforms", 46, 7], ["maintainers", 48, 5]], [["updateScript", 53, 12]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["nativeBuildInputs", 31, 3], ["dontInstall", 33, 3], ["unpackPhase", 35, 3], ["meta", 40, 3], ["passthru", 53, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, iosevka: false, unzip: false, variant: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 23, 5], ["sha256", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 42, 7], ["downloadPage", 43, 7], ["description", 44, 7], ["license", 45, 7], ["platforms", 46, 7], ["maintainers", 48, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 53, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["nativeBuildInputs", 31, 3], ["dontInstall", 33, 3], ["unpackPhase", 35, 3], ["meta", 40, 3], ["passthru", 53, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const variantHashes = nix.thunk(() => nix.builtins.import(nix.path(here, "./variants.nix")));
   const validVariants = nix.thunk(() => nix.builtins.map(nix.thunk(() => nix.app(nix.sel(lib, "removePrefix"), "Iosevka")), nix.thunk(() => nix.builtins.attrNames(nix.thunk(() => nix.builtins.removeAttrs(variantHashes, nix.thunk(() => ["Iosevka"])))))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: nix.thunk(() => nix.str`${name}-bin`),
       version: "34.9.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/be5invis/Iosevka/releases/download/v${nix.sel(finalAttrs, "version")}/PkgTTC-${name}-${nix.sel(finalAttrs, "version")}.zip`),
           sha256: nix.thunk(() => nix.selOr(variantHashes, () => nix.builtins.throw(nix.thunk(() => nix.str`No such variant "${variant}" for package iosevka-bin.
 Valid variants are: ${nix.app(nix.sel(lib, "concatStringsSep"), ", ", validVariants)}.
@@ -36,7 +33,7 @@ Valid variants are: ${nix.app(nix.sel(lib, "concatStringsSep"), ", ", validVaria
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(iosevka, "meta"));
         return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         downloadPage: nix.thunk(() => nix.attr(from, "downloadPage")),
         description: nix.thunk(() => nix.attr(from, "description")),
@@ -48,7 +45,7 @@ Valid variants are: ${nix.app(nix.sel(lib, "concatStringsSep"), ", ", validVaria
         })()),
       };
       })()),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$3, updateScript: nix.path(here, "./update-bin.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[2], updateScript: nix.path(here, "./update-bin.sh") })),
     }));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

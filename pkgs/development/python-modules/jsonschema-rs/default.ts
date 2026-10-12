@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["version", 20, 13], ["pname", 21, 5], ["hash", 22, 5]], [["pname", 26, 13], ["version", 26, 19], ["src", 26, 27], ["hash", 27, 5]], [["updateScript", 57, 12]], [["description", 60, 5], ["homepage", 61, 5], ["changelog", 62, 5], ["license", 63, 5], ["maintainers", 64, 5]], [["pname", 13, 3], ["version", 14, 3], ["pyproject", 16, 3], ["src", 19, 3], ["cargoDeps", 25, 3], ["nativeBuildInputs", 30, 3], ["nativeCheckInputs", 35, 3], ["preCheck", 40, 3], ["disabledTestPaths", 48, 3], ["pythonImportsCheck", 53, 3], ["__darwinAllowLocalNetworking", 55, 3], ["passthru", 57, 3], ["meta", 59, 3]]]);
 const formals$1 = { args: { buildPythonPackage: false, cacert: false, fetchPypi: false, hypothesis: false, lib: false, "nix-update-script": false, pytestCheckHook: false, rustPlatform: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["version", 20, 13], ["pname", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 26, 13], ["version", 26, 19], ["src", 26, 27], ["hash", 27, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["updateScript", 57, 12]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 60, 5], ["homepage", 61, 5], ["changelog", 62, 5], ["license", 63, 5], ["maintainers", 64, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 13, 3], ["version", 14, 3], ["pyproject", 16, 3], ["src", 19, 3], ["cargoDeps", 25, 3], ["nativeBuildInputs", 30, 3], ["nativeCheckInputs", 35, 3], ["preCheck", 40, 3], ["disabledTestPaths", 48, 3], ["pythonImportsCheck", 53, 3], ["__darwinAllowLocalNetworking", 55, 3], ["passthru", 57, 3], ["meta", 59, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,13 +20,13 @@ export default nix.lambda((args) => (() => {
       const version = "0.46.5";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           version: version,
           pname: "jsonschema_rs",
           hash: "sha256-hX434HWi2fbyPepYpVmlW2Y9OHmiUhcABLVpBz2rHvM=",
         }))));
       const cargoDeps = nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: pname,
           version: version,
           src: src,
@@ -55,11 +51,11 @@ export SSL_CERT_FILE="${cacert}/etc/ssl/certs/ca-bundle.crt"
       const pythonImportsCheck = nix.thunk(() => ["jsonschema_rs"]);
       const __darwinAllowLocalNetworking = true;
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "High-performance JSON Schema validator for Python",
         homepage: "https://github.com/Stranger6667/jsonschema/tree/master/crates/jsonschema-py",
         changelog: nix.thunk(() => nix.str`https://github.com/Stranger6667/jsonschema/blob/python-v${version}/crates/jsonschema-py/CHANGELOG.md`),
@@ -73,7 +69,7 @@ export SSL_CERT_FILE="${cacert}/etc/ssl/certs/ca-bundle.crt"
         })()),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         pyproject,

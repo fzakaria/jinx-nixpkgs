@@ -2,25 +2,23 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 8, 5], ["version", 9, 5], ["url", 10, 5], ["hash", 11, 5]], [["pname", 14, 5], ["version", 15, 5], ["url", 16, 5], ["hash", 17, 5]], [["xppen_3", 7, 3], ["xppen_4", 13, 3]]]);
 const formals$1 = { args: { callPackage: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 8, 5], ["version", 9, 5], ["url", 10, 5], ["hash", 11, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 14, 5], ["version", 15, 5], ["url", 16, 5], ["hash", 17, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["xppen_3", 7, 3], ["xppen_4", 13, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const callPackage = nix.arg($, "callPackage");
   return {
-    [nix.POS]: pos$3,
+    [nix.POS]: $pos[2],
     xppen_3: nix.thunk(() => nix.app(callPackage, nix.path(here, "./generic.nix"), nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         pname: "xppen_3",
         version: "3.4.9-240607",
         url: "https://www.xp-pen.com/download/file.html?id=2901&pid=819&ext=gz",
         hash: "sha256-ZXeTlDjhryXamb7x2LxDdOtf8R9rgKPyUsdx96XchWM=",
       })))),
     xppen_4: nix.thunk(() => nix.app(callPackage, nix.path(here, "./generic.nix"), nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         pname: "xppen_4",
         version: "4.0.7-250117",
         url: "https://www.xp-pen.com/download/file.html?id=3652&pid=1211&ext=gz",

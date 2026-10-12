@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/aarch64-linux.nix", [[["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["sha256", 19, 5]], [["url", 23, 5], ["hash", 24, 5]], [["pname", 11, 3], ["version", 12, 3], ["lacrosVersion", 13, 3], ["widevineInstaller", 15, 3], ["src", 22, 3], ["nativeBuildInputs", 27, 3], ["unpackPhase", 32, 3], ["postInstall", 40, 3], ["meta", 48, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, fetchFromGitHub: false, "squashfs-tools": false, python3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/aarch64-linux.nix", [["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["sha256", 19, 5]]);
-const pos$2 = nix.positions(here + "/aarch64-linux.nix", [["url", 23, 5], ["hash", 24, 5]]);
-const pos$3 = nix.positions(here + "/aarch64-linux.nix", [["pname", 11, 3], ["version", 12, 3], ["lacrosVersion", 13, 3], ["widevineInstaller", 15, 3], ["src", 22, 3], ["nativeBuildInputs", 27, 3], ["unpackPhase", 32, 3], ["postInstall", 40, 3], ["meta", 48, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,19 +14,19 @@ export default nix.lambda((args) => (() => {
   const squashfs_tools = nix.arg($, "squashfs-tools");
   const python3 = nix.arg($, "python3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "widevine-cdm",
       version: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "lacrosVersion")}-${nix.builtins.substring(0n, 7n, nix.thunk(() => nix.sel(finalAttrs, "widevineInstaller", "rev")))}`),
       lacrosVersion: "120.0.6098.0",
       widevineInstaller: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "AsahiLinux",
           repo: "widevine-installer",
           rev: "7a3928fe1342fb07d96f61c2b094e3287588958b",
           sha256: "sha256-XI1y4pVNpXS+jqFs0KyVMrxcULOJ5rADsgvwfLF6e0Y=",
         })))),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: nix.thunk(() => nix.str`https://commondatastorage.googleapis.com/chromeos-localmirror/distfiles/chromeos-lacros-arm64-squash-zstd-${nix.sel(finalAttrs, "lacrosVersion")}`),
           hash: "sha256-OKV8w5da9oZ1oSGbADVPCIkP9Y0MVLaQ3PXS3ZBLFXY=",
         })))),

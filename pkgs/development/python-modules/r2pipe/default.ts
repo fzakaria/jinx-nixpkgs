@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 32, 13], ["version", 32, 19], ["hash", 33, 5]], [["description", 48, 5], ["homepage", 49, 5], ["license", 50, 5], ["maintainers", 51, 5]], [["pname", 12, 3], ["version", 13, 3], ["format", 14, 3], ["postPatch", 16, 3], ["src", 31, 3], ["postCheck", 39, 3], ["meta", 47, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, python: false, buildPythonPackage: false, fetchPypi: false, radare2: false, coreutils: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 32, 13], ["version", 32, 19], ["hash", 33, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 48, 5], ["homepage", 49, 5], ["license", 50, 5], ["maintainers", 51, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 12, 3], ["version", 13, 3], ["format", 14, 3], ["postPatch", 16, 3], ["src", 31, 3], ["postCheck", 39, 3], ["meta", 47, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,7 +31,7 @@ substituteInPlace r2pipe/open_base.py --replace 'which("radare2")' "'${radare2}/
 `;
       })());
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-OAS3Yr1CmMMuhEP/tRO9YAdYZ3emib0huXl3/rjLLJk=",
@@ -45,7 +43,7 @@ r2.cmd('a')
 EOF
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Interact with radare2",
         homepage: "https://github.com/radare/radare2-r2pipe",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -54,7 +52,7 @@ EOF
           return [nix.thunk(() => nix.lookup(w, "timokau"))];
         })()),
       }));
-      return { [nix.POS]: pos$3, pname, version, format, postPatch, src, postCheck, meta };
+      return { [nix.POS]: $pos[2], pname, version, format, postPatch, src, postCheck, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

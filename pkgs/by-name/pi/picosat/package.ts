@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 12, 5], ["sha256", 13, 5]], [["description", 41, 5], ["homepage", 42, 5], ["license", 43, 5], ["platforms", 44, 5], ["maintainers", 45, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["prePatch", 16, 3], ["configurePhase", 24, 3], ["makeFlags", 26, 3], ["installPhase", 28, 3], ["meta", 40, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 12, 5], ["sha256", 13, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 41, 5], ["homepage", 42, 5], ["license", 43, 5], ["platforms", 44, 5], ["maintainers", 45, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["prePatch", 16, 3], ["configurePhase", 24, 3], ["makeFlags", 26, 3], ["installPhase", 28, 3], ["meta", 40, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,11 +11,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "picosat",
       version: "965",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://fmv.jku.at/picosat/picosat-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "0m578rpa5rdn08d10kr4lbsdwp4402hpavrz6n7n53xs517rn5hm",
         })))),
@@ -26,7 +24,7 @@ export default nix.lambda((args) => (() => {
       makeFlags: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "SONAME=-Wl,-install_name,$(out)/lib/libpicosat.so")),
       installPhase: "mkdir -p $out/bin $out/lib $out/share $out/include/picosat\ncp picomus picomcs picosat picogcnf \"$out\"/bin\n\ncp VERSION      \"$out\"/share/picosat.version\ncp picosat.o    \"$out\"/lib\ncp libpicosat.a \"$out\"/lib\ncp libpicosat.so \"$out\"/lib\n\ncp picosat.h \"$out\"/include/picosat\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "SAT solver with proof and core support",
         homepage: "https://fmv.jku.at/picosat/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

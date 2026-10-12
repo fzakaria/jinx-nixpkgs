@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["name", 14, 9], ["url", 15, 9], ["hash", 16, 9]], [["version", 10, 5], ["sourceSha256", 11, 5], ["patches", 12, 5]], [["name", 26, 9], ["url", 27, 9], ["hash", 28, 9]], [["version", 22, 5], ["sourceSha256", 23, 5], ["patches", 24, 5]], [["vtk_9_5", 9, 3], ["vtk_9_6", 21, 3]]]);
 const formals$1 = { args: { callPackage: false, fetchpatch: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["name", 14, 9], ["url", 15, 9], ["hash", 16, 9]]);
-const pos$2 = nix.positions(here + "/default.nix", [["version", 10, 5], ["sourceSha256", 11, 5], ["patches", 12, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["name", 26, 9], ["url", 27, 9], ["hash", 28, 9]]);
-const pos$4 = nix.positions(here + "/default.nix", [["version", 22, 5], ["sourceSha256", 23, 5], ["patches", 24, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["vtk_9_5", 9, 3], ["vtk_9_6", 21, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,14 +11,14 @@ export default nix.lambda((args) => (() => {
   const fetchpatch = nix.arg($, "fetchpatch");
   const mkVtk = (initArgs) => nix.app(callPackage, nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./generic.nix")), initArgs)), nix.thunk(() => ({})));
   return {
-    [nix.POS]: pos$5,
+    [nix.POS]: $pos[4],
     vtk_9_5: nix.thunk(() => nix.app(mkVtk, nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         version: "9.5.2",
         sourceSha256: "sha256-zuZLmNJw/3MC2vHvE0WN/11awey0XUdyODX399ViyYk=",
         patches: nix.thunk(() => [
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              [nix.POS]: pos$1,
+              [nix.POS]: $pos[0],
               name: "fix-gdal-3.13-const-conversion.patch",
               url: "https://github.com/Kitware/VTK/commit/2395603fdddc40c29efc64c632ae98225ca2a58e.patch",
               hash: "sha256-Gcnt1JXWPkhfNLhtk9SXYqx/0cLkjO4xiRfR8YiaY8I=",
@@ -30,12 +26,12 @@ export default nix.lambda((args) => (() => {
         ]),
       })))),
     vtk_9_6: nix.thunk(() => nix.app(mkVtk, nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         version: "9.6.2",
         sourceSha256: "sha256-rtEs7BKpYJF5v2YykHAmZifKZCRKEIVqRSsqF/+wSh0=",
         patches: nix.thunk(() => [
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               name: "fix-gdal-3.13-const-conversion.patch",
               url: "https://github.com/Kitware/VTK/commit/2395603fdddc40c29efc64c632ae98225ca2a58e.patch",
               hash: "sha256-Gcnt1JXWPkhfNLhtk9SXYqx/0cLkjO4xiRfR8YiaY8I=",

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 14, 5], ["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]], [["drupal", 26, 28]], [["tests", 25, 5], ["updateScript", 28, 5]], [["description", 41, 5], ["license", 42, 5], ["homepage", 43, 5], ["maintainers", 44, 5], ["platforms", 47, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["composerNoPlugins", 21, 3], ["vendorHash", 22, 3], ["passthru", 24, 3], ["meta", 40, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitLab: false, php: false, nixosTests: false, writeScript: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 14, 5], ["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["drupal", 26, 28]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 25, 5], ["updateScript", 28, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 41, 5], ["license", 42, 5], ["homepage", 43, 5], ["maintainers", 44, 5], ["platforms", 47, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["composerNoPlugins", 21, 3], ["vendorHash", 22, 3], ["passthru", 24, 3], ["meta", 40, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const writeScript = nix.arg($, "writeScript");
   return nix.app(nix.sel(php, "buildComposerProject2"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "drupal",
       version: "11.4.8",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "git.drupalcode.org",
           owner: "project",
           repo: "drupal",
@@ -31,12 +27,12 @@ export default nix.lambda((args) => (() => {
       composerNoPlugins: false,
       vendorHash: "sha256-YIEMBCe2WuQV1fxqLVsUUZ+5Go4EylNp/c2nBZUN1WI=",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$2, drupal: nix.thunk(() => nix.attr(nixosTests, "drupal")) })),
+        [nix.POS]: $pos[2],
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[1], drupal: nix.thunk(() => nix.attr(nixosTests, "drupal")) })),
         updateScript: nix.thunk(() => nix.app(writeScript, "update.sh", "#!/usr/bin/env nix-shell\n#!nix-shell -i bash -p nix-update xmlstarlet\n\nset -eu -o pipefail\n\nversion=$(curl -k --silent --globoff \"https://updates.drupal.org/release-history/drupal/current\" | xmlstarlet sel -t -v \"/project/releases/release/tag[not(contains(., 'alpha'))][not(contains(., 'beta'))][not(contains(., '-rc'))]\" | grep -m 1 '.')\n\nnix-update drupal --version $version\n")),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Drupal CMS",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         homepage: "https://drupal.org/",

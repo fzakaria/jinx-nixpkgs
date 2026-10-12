@@ -2,43 +2,11 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/sanoid.nix", [[["emptyDiskImages", 11, 22]], [["supportedFilesystems", 12, 12]], [["systemPackages", 13, 19]], [["virtualisation", 11, 7], ["boot", 12, 7], ["environment", 13, 7]], [["maintainers", 19, 5]], [["hostId", 27, 20]], [["extraConfig", 29, 22]], [["ssh", 29, 18]], [["hourly", 37, 13], ["daily", 38, 13], ["monthly", 39, 13], ["yearly", 40, 13], ["autosnap", 42, 13]], [["test", 36, 21]], [["use_template", 44, 34]], [["useTemplate", 45, 34]], [["pool/sanoid", 44, 20], ["pool/compat", 45, 20]], [["enable", 35, 11], ["templates", 36, 11], ["datasets", 44, 11], ["extraArgs", 46, 11]], [["target", 55, 15], ["extraArgs", 56, 15]], [["target", 62, 28]], [["target", 65, 20]], [["target", 69, 15], ["extraArgs", 70, 15]], [["pool/sanoid", 54, 13], ["pool/syncoid", 62, 13], ["pool", 65, 13], ["pool/compat", 68, 13]], [["enable", 50, 11], ["sshKey", 51, 11], ["commands", 52, 11]], [["sanoid", 34, 18], ["syncoid", 49, 18]], [["imports", 26, 9], ["networking", 27, 9], ["programs", 29, 9], ["services", 34, 9]], [["hostId", 79, 20]], [["enable", 81, 26]], [["openssh", 81, 18]], [["keys", 82, 49]], [["authorizedKeys", 82, 34]], [["openssh", 82, 26]], [["root", 82, 21]], [["users", 82, 15]], [["imports", 78, 9], ["networking", 79, 9], ["services", 81, 9], ["users", 82, 9]], [["source", 23, 5], ["target", 75, 5]], [["name", 17, 3], ["meta", 18, 3], ["nodes", 22, 3], ["testScript", 86, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/sanoid.nix", [["emptyDiskImages", 11, 22]]);
-const pos$2 = nix.positions(here + "/sanoid.nix", [["supportedFilesystems", 12, 12]]);
-const pos$3 = nix.positions(here + "/sanoid.nix", [["systemPackages", 13, 19]]);
-const pos$4 = nix.positions(here + "/sanoid.nix", [["virtualisation", 11, 7], ["boot", 12, 7], ["environment", 13, 7]]);
-const pos$5 = nix.positions(here + "/sanoid.nix", [["maintainers", 19, 5]]);
 const formals$3 = { args: {  }, ellipsis: true };
-const pos$6 = nix.positions(here + "/sanoid.nix", [["hostId", 27, 20]]);
-const pos$7 = nix.positions(here + "/sanoid.nix", [["extraConfig", 29, 22]]);
-const pos$8 = nix.positions(here + "/sanoid.nix", [["ssh", 29, 18]]);
-const pos$9 = nix.positions(here + "/sanoid.nix", [["hourly", 37, 13], ["daily", 38, 13], ["monthly", 39, 13], ["yearly", 40, 13], ["autosnap", 42, 13]]);
-const pos$10 = nix.positions(here + "/sanoid.nix", [["test", 36, 21]]);
-const pos$11 = nix.positions(here + "/sanoid.nix", [["use_template", 44, 34]]);
-const pos$12 = nix.positions(here + "/sanoid.nix", [["useTemplate", 45, 34]]);
-const pos$13 = nix.positions(here + "/sanoid.nix", [["pool/sanoid", 44, 20], ["pool/compat", 45, 20]]);
-const pos$14 = nix.positions(here + "/sanoid.nix", [["enable", 35, 11], ["templates", 36, 11], ["datasets", 44, 11], ["extraArgs", 46, 11]]);
-const pos$15 = nix.positions(here + "/sanoid.nix", [["target", 55, 15], ["extraArgs", 56, 15]]);
-const pos$16 = nix.positions(here + "/sanoid.nix", [["target", 62, 28]]);
-const pos$17 = nix.positions(here + "/sanoid.nix", [["target", 65, 20]]);
-const pos$18 = nix.positions(here + "/sanoid.nix", [["target", 69, 15], ["extraArgs", 70, 15]]);
-const pos$19 = nix.positions(here + "/sanoid.nix", [["pool/sanoid", 54, 13], ["pool/syncoid", 62, 13], ["pool", 65, 13], ["pool/compat", 68, 13]]);
-const pos$20 = nix.positions(here + "/sanoid.nix", [["enable", 50, 11], ["sshKey", 51, 11], ["commands", 52, 11]]);
-const pos$21 = nix.positions(here + "/sanoid.nix", [["sanoid", 34, 18], ["syncoid", 49, 18]]);
-const pos$22 = nix.positions(here + "/sanoid.nix", [["imports", 26, 9], ["networking", 27, 9], ["programs", 29, 9], ["services", 34, 9]]);
 const formals$4 = { args: {  }, ellipsis: true };
-const pos$23 = nix.positions(here + "/sanoid.nix", [["hostId", 79, 20]]);
-const pos$24 = nix.positions(here + "/sanoid.nix", [["enable", 81, 26]]);
-const pos$25 = nix.positions(here + "/sanoid.nix", [["openssh", 81, 18]]);
-const pos$26 = nix.positions(here + "/sanoid.nix", [["keys", 82, 49]]);
-const pos$27 = nix.positions(here + "/sanoid.nix", [["authorizedKeys", 82, 34]]);
-const pos$28 = nix.positions(here + "/sanoid.nix", [["openssh", 82, 26]]);
-const pos$29 = nix.positions(here + "/sanoid.nix", [["root", 82, 21]]);
-const pos$30 = nix.positions(here + "/sanoid.nix", [["users", 82, 15]]);
-const pos$31 = nix.positions(here + "/sanoid.nix", [["imports", 78, 9], ["networking", 79, 9], ["services", 81, 9], ["users", 82, 9]]);
-const pos$32 = nix.positions(here + "/sanoid.nix", [["source", 23, 5], ["target", 75, 5]]);
-const pos$33 = nix.positions(here + "/sanoid.nix", [["name", 17, 3], ["meta", 18, 3], ["nodes", 22, 3], ["testScript", 86, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -50,49 +18,49 @@ export default nix.lambda((args) => (() => {
     const $_1 = nix.formals(args_1, formals$2);
     const pkgs_1 = nix.arg($_1, "pkgs");
     return {
-      [nix.POS]: pos$4,
-      virtualisation: nix.thunk(() => ({ [nix.POS]: pos$1, emptyDiskImages: nix.thunk(() => [2048n]) })),
-      boot: nix.thunk(() => ({ [nix.POS]: pos$2, supportedFilesystems: nix.thunk(() => ["zfs"]) })),
+      [nix.POS]: $pos[3],
+      virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[0], emptyDiskImages: nix.thunk(() => [2048n]) })),
+      boot: nix.thunk(() => ({ [nix.POS]: $pos[1], supportedFilesystems: nix.thunk(() => ["zfs"]) })),
       environment: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs_1, "parted"))]),
       })),
     };
   })(), formals$2);
   return {
-    [nix.POS]: pos$33,
+    [nix.POS]: $pos[32],
     name: "sanoid",
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "lopsided98"))]),
       };
     })()),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$32,
+      [nix.POS]: $pos[31],
       source: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$3);
         return {
-          [nix.POS]: pos$22,
+          [nix.POS]: $pos[21],
           imports: nix.thunk(() => [commonConfig]),
-          networking: nix.thunk(() => ({ [nix.POS]: pos$6, hostId: "daa82e91" })),
+          networking: nix.thunk(() => ({ [nix.POS]: $pos[5], hostId: "daa82e91" })),
           programs: nix.thunk(() => ({
-            [nix.POS]: pos$8,
+            [nix.POS]: $pos[7],
             ssh: nix.thunk(() => ({
-              [nix.POS]: pos$7,
+              [nix.POS]: $pos[6],
               extraConfig: "UserKnownHostsFile=/dev/null\nStrictHostKeyChecking=no\n",
             })),
           })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$21,
+            [nix.POS]: $pos[20],
             sanoid: nix.thunk(() => ({
-              [nix.POS]: pos$14,
+              [nix.POS]: $pos[13],
               enable: true,
               templates: nix.thunk(() => ({
-                [nix.POS]: pos$10,
+                [nix.POS]: $pos[9],
                 test: nix.thunk(() => ({
-                  [nix.POS]: pos$9,
+                  [nix.POS]: $pos[8],
                   hourly: 12n,
                   daily: 1n,
                   monthly: 1n,
@@ -101,27 +69,27 @@ export default nix.lambda((args) => (() => {
                 })),
               })),
               datasets: nix.thunk(() => ({
-                [nix.POS]: pos$13,
-                "pool/sanoid": nix.thunk(() => ({ [nix.POS]: pos$11, use_template: nix.thunk(() => ["test"]) })),
-                "pool/compat": nix.thunk(() => ({ [nix.POS]: pos$12, useTemplate: nix.thunk(() => ["test"]) })),
+                [nix.POS]: $pos[12],
+                "pool/sanoid": nix.thunk(() => ({ [nix.POS]: $pos[10], use_template: nix.thunk(() => ["test"]) })),
+                "pool/compat": nix.thunk(() => ({ [nix.POS]: $pos[11], useTemplate: nix.thunk(() => ["test"]) })),
               })),
               extraArgs: nix.thunk(() => ["--verbose"]),
             })),
             syncoid: nix.thunk(() => ({
-              [nix.POS]: pos$20,
+              [nix.POS]: $pos[19],
               enable: true,
               sshKey: "/var/lib/syncoid/id_ecdsa",
               commands: nix.thunk(() => ({
-                [nix.POS]: pos$19,
+                [nix.POS]: $pos[18],
                 "pool/sanoid": nix.thunk(() => ({
-                  [nix.POS]: pos$15,
+                  [nix.POS]: $pos[14],
                   target: "root@target:pool/sanoid",
                   extraArgs: nix.thunk(() => ["--no-sync-snap", "--create-bookmark"]),
                 })),
-                "pool/syncoid": nix.thunk(() => ({ [nix.POS]: pos$16, target: "root@target:pool/syncoid" })),
-                pool: nix.thunk(() => ({ [nix.POS]: pos$17, target: "root@target:pool/full-pool" })),
+                "pool/syncoid": nix.thunk(() => ({ [nix.POS]: $pos[15], target: "root@target:pool/syncoid" })),
+                pool: nix.thunk(() => ({ [nix.POS]: $pos[16], target: "root@target:pool/full-pool" })),
                 "pool/compat": nix.thunk(() => ({
-                  [nix.POS]: pos$18,
+                  [nix.POS]: $pos[17],
                   target: "root@target:pool/compat",
                   extraArgs: nix.thunk(() => ["--no-sync-snap"]),
                 })),
@@ -133,22 +101,22 @@ export default nix.lambda((args) => (() => {
       target: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$4);
         return {
-          [nix.POS]: pos$31,
+          [nix.POS]: $pos[30],
           imports: nix.thunk(() => [commonConfig]),
-          networking: nix.thunk(() => ({ [nix.POS]: pos$23, hostId: "dcf39d36" })),
+          networking: nix.thunk(() => ({ [nix.POS]: $pos[22], hostId: "dcf39d36" })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$25,
-            openssh: nix.thunk(() => ({ [nix.POS]: pos$24, enable: true })),
+            [nix.POS]: $pos[24],
+            openssh: nix.thunk(() => ({ [nix.POS]: $pos[23], enable: true })),
           })),
           users: nix.thunk(() => ({
-            [nix.POS]: pos$30,
+            [nix.POS]: $pos[29],
             users: nix.thunk(() => ({
-              [nix.POS]: pos$29,
+              [nix.POS]: $pos[28],
               root: nix.thunk(() => ({
-                [nix.POS]: pos$28,
+                [nix.POS]: $pos[27],
                 openssh: nix.thunk(() => ({
-                  [nix.POS]: pos$27,
-                  authorizedKeys: nix.thunk(() => ({ [nix.POS]: pos$26, keys: nix.thunk(() => [snakeOilPublicKey]) })),
+                  [nix.POS]: $pos[26],
+                  authorizedKeys: nix.thunk(() => ({ [nix.POS]: $pos[25], keys: nix.thunk(() => [snakeOilPublicKey]) })),
                 })),
               })),
             })),

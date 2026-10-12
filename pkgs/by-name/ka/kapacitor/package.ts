@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 7], ["repo", 19, 7], ["tag", 20, 7], ["hash", 21, 7]], [["url", 39, 9], ["stripLen", 40, 9], ["extraPrefix", 41, 9], ["hash", 42, 9]], [["pname", 15, 5], ["version", 16, 5], ["src", 17, 5], ["patches", 23, 5], ["sourceRoot", 45, 5], ["cargoHash", 47, 5], ["nativeBuildInputs", 48, 5], ["buildInputs", 49, 5], ["pkgcfg", 50, 5], ["postInstall", 57, 5], ["__structuredAttrs", 68, 5]], [["owner", 76, 5], ["repo", 77, 5], ["tag", 78, 5], ["hash", 79, 5]], [["PKG_CONFIG_PATH", 86, 7]], [["description", 120, 5], ["homepage", 121, 5], ["downloadPage", 122, 5], ["license", 123, 5], ["changelog", 124, 5], ["maintainers", 125, 5]], [["pname", 72, 3], ["version", 73, 3], ["src", 75, 3], ["vendorHash", 82, 3], ["nativeBuildInputs", 84, 3], ["env", 86, 3], ["preBuild", 89, 3], ["preCheck", 98, 3], ["checkFlags", 103, 3], ["__darwinAllowLocalNetworking", 117, 3], ["meta", 119, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, rustPlatform: false, fetchFromGitHub: false, fetchpatch: false, libiconv: false, buildGoModule: false, "pkg-config": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 7], ["repo", 19, 7], ["tag", 20, 7], ["hash", 21, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 39, 9], ["stripLen", 40, 9], ["extraPrefix", 41, 9], ["hash", 42, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 15, 5], ["version", 16, 5], ["src", 17, 5], ["patches", 23, 5], ["sourceRoot", 45, 5], ["cargoHash", 47, 5], ["nativeBuildInputs", 48, 5], ["buildInputs", 49, 5], ["pkgcfg", 50, 5], ["postInstall", 57, 5], ["__structuredAttrs", 68, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["owner", 76, 5], ["repo", 77, 5], ["tag", 78, 5], ["hash", 79, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["PKG_CONFIG_PATH", 86, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 120, 5], ["homepage", 121, 5], ["downloadPage", 122, 5], ["license", 123, 5], ["changelog", 124, 5], ["maintainers", 125, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 72, 3], ["version", 73, 3], ["src", 75, 3], ["vendorHash", 82, 3], ["nativeBuildInputs", 84, 3], ["env", 86, 3], ["preBuild", 89, 3], ["preCheck", 98, 3], ["checkFlags", 103, 3], ["__darwinAllowLocalNetworking", 117, 3], ["meta", 119, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const pname = "libflux";
       const version = nix.thunk(() => nix.str`${libflux_version}`);
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "influxdata",
           repo: "flux",
           tag: nix.thunk(() => nix.str`v${libflux_version}`),
@@ -36,7 +30,7 @@ export default nix.lambda((args) => (() => {
         nix.path(here, "./fix-linting-error-on-unneeded-clone.patch"),
         nix.path(here, "./0001-fix-build.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/influxdata/flux/commit/20ca62138a0669f2760dd469ca41fc333e04b8f2.patch",
             stripLen: 2n,
             extraPrefix: "",
@@ -56,7 +50,7 @@ Libs: -L/out/lib -lflux -lpthread
       const postInstall = nix.thunk(() => nix.add("mkdir -p $out/include $out/pkgconfig\ncp -r $NIX_BUILD_TOP/source/libflux/include/influxdata $out/include\nprintf \"%s\" \"$pkgcfg\" > $out/pkgconfig/flux.pc\nsubstituteInPlace $out/pkgconfig/flux.pc \\\n  --replace-fail /out $out\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "install_name_tool -id $out/lib/libflux.dylib $out/lib/libflux.dylib\n")));
       const __structuredAttrs = true;
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,
@@ -74,7 +68,7 @@ Libs: -L/out/lib -lflux -lpthread
       const pname = "kapacitor";
       const version = "1.7.5";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           owner: "influxdata",
           repo: "kapacitor",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -83,7 +77,7 @@ Libs: -L/out/lib -lflux -lpthread
       const vendorHash = "sha256-myToEgta8R5R4v2/nZqtQQvNdy1kWgwklbQeFxzIdgs=";
       const nativeBuildInputs = nix.thunk(() => [pkg_config]);
       const env = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         PKG_CONFIG_PATH: nix.thunk(() => nix.str`${flux}/pkgconfig`),
       }));
       const preBuild = nix.thunk(() => nix.str`flux_ver=$(grep github.com/influxdata/flux go.mod | awk '{print $2}')
@@ -101,7 +95,7 @@ fi
       })());
       const __darwinAllowLocalNetworking = true;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Open source framework for processing, monitoring, and alerting on time series data",
         homepage: "https://influxdata.com/time-series-platform/kapacitor/",
         downloadPage: "https://github.com/influxdata/kapacitor/releases",
@@ -113,7 +107,7 @@ fi
         })()),
       }));
       return {
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         pname,
         version,
         src,

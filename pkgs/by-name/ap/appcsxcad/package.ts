@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["hash", 26, 5]], [["name", 32, 7], ["url", 33, 7], ["hash", 34, 7]], [["name", 37, 7], ["url", 38, 7], ["hash", 39, 7]], [["description", 66, 5], ["mainProgram", 67, 5], ["homepage", 68, 5], ["license", 69, 5], ["maintainers", 70, 5], ["platforms", 71, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["patches", 29, 3], ["nativeBuildInputs", 43, 3], ["buildInputs", 48, 3], ["postFixup", 61, 3], ["meta", 65, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch: false, cmake: false, csxcad: false, qcsxcad: false, hdf5: false, vtkWithQt6: false, qt6: false, fparser: false, tinyxml: false, cgal: false, boost: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 32, 7], ["url", 33, 7], ["hash", 34, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 37, 7], ["url", 38, 7], ["hash", 39, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 66, 5], ["mainProgram", 67, 5], ["homepage", 68, 5], ["license", 69, 5], ["maintainers", 70, 5], ["platforms", 71, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["patches", 29, 3], ["nativeBuildInputs", 43, 3], ["buildInputs", 48, 3], ["postFixup", 61, 3], ["meta", 65, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const cgal = nix.arg($, "cgal");
   const boost = nix.arg($, "boost");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "appcsxcad",
       version: "0.2.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "thliebig",
           repo: "AppCSXCAD",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,13 +34,13 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "update-minimum-cmake-required.patch",
             url: "https://github.com/thliebig/AppCSXCAD/commit/9585207eb08195c3f1c47dc9d6a80b563a3272e0.patch",
             hash: "sha256-2+C3cqQMU3UL12h0f7EdBZVqeJVSPhDVbMOcqbOY0gg=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "remove-cmp0020-policy.patch",
             url: "https://github.com/thliebig/AppCSXCAD/commit/688c07cd847f463a2a42f01d41751374b4f787c8.patch",
             hash: "sha256-pa6imzrUoVA3Ebc4UGPACJ6qjYiHOjB5aQ9FN/CUpVM=",
@@ -65,7 +61,7 @@ export default nix.lambda((args) => (() => {
       ]),
       postFixup: "rm $out/bin/AppCSXCAD.sh\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Minimal Application using the QCSXCAD library",
         mainProgram: "AppCSXCAD",
         homepage: "https://github.com/thliebig/AppCSXCAD",

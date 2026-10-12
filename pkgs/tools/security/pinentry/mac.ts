@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/mac.nix", [[["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["sha256", 26, 5]], [["binaryPath", 70, 5], ["updateScript", 71, 5]], [["description", 101, 5], ["license", 102, 5], ["homepage", 103, 5], ["platforms", 104, 5], ["mainProgram", 105, 5]], [["pname", 16, 3], ["version", 20, 3], ["src", 22, 3], ["patches", 29, 3], ["postPatch", 34, 3], ["strictDeps", 44, 3], ["nativeBuildInputs", 45, 3], ["configureFlags", 52, 3], ["installPhase", 59, 3], ["enableParallelBuilding", 67, 3], ["passthru", 69, 3], ["meta", 100, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, autoreconfHook: false, libassuan: false, "libgpg-error": false, makeBinaryWrapper: false, texinfo: false, "common-updater-scripts": false, writers: false, "re-plistbuddy": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/mac.nix", [["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["sha256", 26, 5]]);
-const pos$2 = nix.positions(here + "/mac.nix", [["binaryPath", 70, 5], ["updateScript", 71, 5]]);
-const pos$3 = nix.positions(here + "/mac.nix", [["description", 101, 5], ["license", 102, 5], ["homepage", 103, 5], ["platforms", 104, 5], ["mainProgram", 105, 5]]);
-const pos$4 = nix.positions(here + "/mac.nix", [["pname", 16, 3], ["version", 20, 3], ["src", 22, 3], ["patches", 29, 3], ["postPatch", 34, 3], ["strictDeps", 44, 3], ["nativeBuildInputs", 45, 3], ["configureFlags", 52, 3], ["installPhase", 59, 3], ["enableParallelBuilding", 67, 3], ["passthru", 69, 3], ["meta", 100, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const pname = "pinentry-mac";
       const version = "1.1.1.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "GPGTools",
           repo: "pinentry",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -51,7 +48,7 @@ substituteInPlace macosx/copyInfoPlist.sh \\
       const installPhase = "mkdir -p $out/Applications $out/bin\nmv macosx/pinentry-mac.app $out/Applications\n\n# Compatibility with `lib.getExe`\nmakeWrapper $out/Applications/pinentry-mac.app/Contents/MacOS/pinentry-mac $out/bin/pinentry-mac\n";
       const enableParallelBuilding = true;
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         binaryPath: "Applications/pinentry-mac.app/Contents/MacOS/pinentry-mac",
         updateScript: nix.thunk(() => nix.app(nix.sel(writers, "writeBash"), "update-pinentry-mac", nix.thunk(() => nix.str`set -euxo pipefail
 
@@ -81,7 +78,7 @@ main
 `))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Pinentry for GPG on Mac",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
         homepage: "https://github.com/GPGTools/pinentry",
@@ -89,7 +86,7 @@ main
         mainProgram: "pinentry-mac",
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

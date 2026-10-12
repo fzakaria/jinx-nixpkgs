@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 73, 5], ["repo", 74, 5], ["tag", 75, 5], ["hash", 76, 5]], [["description", 237, 5], ["homepage", 238, 5], ["downloadPage", 239, 5], ["changelog", 240, 5], ["license", 241, 5], ["maintainers", 242, 5], ["mainProgram", 243, 5]], [["pname", 66, 3], ["version", 67, 3], ["pyproject", 68, 3], ["disabled", 70, 3], ["src", 72, 3], ["build-system", 79, 3], ["dontUseCmakeConfigure", 86, 3], ["nativeBuildInputs", 88, 3], ["dependencies", 93, 3], ["pythonRelaxDeps", 132, 3], ["pythonImportsCheck", 138, 3], ["nativeCheckInputs", 140, 3], ["versionCheckProgramArg", 150, 3], ["preCheck", 152, 3], ["disabledTestPaths", 178, 3], ["disabledTests", 189, 3], ["disabledTestMarks", 222, 3], ["pytestFlags", 228, 3], ["doCheck", 234, 3], ["meta", 236, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, fetchpatch: false, cmake: false, ninja: false, hatchling: false, "scikit-build-core": false, "hatch-vcs": false, nanobind: false, "antlr4-python3-runtime": false, "atopile-easyeda2kicad": false, black: false, "case-converter": false, cookiecutter: false, "dataclasses-json": false, deprecated: false, "fastapi-github-oidc": false, "freetype-py": false, gitpython: false, "kicad-python": false, kicadcliwrapper: false, matplotlib: false, mcp: false, "more-itertools": false, natsort: false, numpy: false, "ordered-set": false, pathvalidate: false, pint: false, posthog: false, psutil: false, "pydantic-settings": false, pygls: false, questionary: false, requests: false, rich: false, "ruamel-yaml": false, ruff: false, semver: false, sexpdata: false, shapely: false, truststore: false, typer: false, urllib3: false, zstd: false, pythonOlder: false, pytestCheckHook: false, "pytest-benchmark": false, "pytest-timeout": false, "pytest-datafiles": false, "pytest-xdist": false, hypothesis: false, writableTmpDirAsHomeHook: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 73, 5], ["repo", 74, 5], ["tag", 75, 5], ["hash", 76, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 237, 5], ["homepage", 238, 5], ["downloadPage", 239, 5], ["changelog", 240, 5], ["license", 241, 5], ["maintainers", 242, 5], ["mainProgram", 243, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 66, 3], ["version", 67, 3], ["pyproject", 68, 3], ["disabled", 70, 3], ["src", 72, 3], ["build-system", 79, 3], ["dontUseCmakeConfigure", 86, 3], ["nativeBuildInputs", 88, 3], ["dependencies", 93, 3], ["pythonRelaxDeps", 132, 3], ["pythonImportsCheck", 138, 3], ["nativeCheckInputs", 140, 3], ["versionCheckProgramArg", 150, 3], ["preCheck", 152, 3], ["disabledTestPaths", 178, 3], ["disabledTests", 189, 3], ["disabledTestMarks", 222, 3], ["pytestFlags", 228, 3], ["doCheck", 234, 3], ["meta", 236, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -65,13 +63,13 @@ export default nix.lambda((args) => (() => {
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "atopile",
       version: "0.12.5",
       pyproject: true,
       disabled: nix.thunk(() => nix.app(pythonOlder, "3.13")),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "atopile",
           repo: "atopile",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -172,7 +170,7 @@ export default nix.lambda((args) => (() => {
       pytestFlags: nix.thunk(() => ["--timeout=10", "--benchmark-disable", "--tb=line"]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Design circuit boards with code",
         homepage: "https://atopile.io",
         downloadPage: "https://github.com/atopile/atopile",

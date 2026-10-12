@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["1.0.4", 17, 9], ["1.3.0", 18, 9], ["2.1.1", 19, 9]], [["url", 14, 5], ["hash", 15, 5]], [["homepage", 37, 5], ["description", 38, 5], ["license", 39, 5], ["platforms", 40, 26], ["maintainers", 41, 5]], [["pname", 10, 3], ["version", 11, 11], ["src", 13, 3], ["nativeBuildInputs", 24, 3], ["makeFlags", 26, 3], ["installTargets", 27, 3], ["installFlags", 28, 3], ["postInstall", 32, 3], ["meta", 36, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, ocaml: false, version: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["1.0.4", 17, 9], ["1.3.0", 18, 9], ["2.1.1", 19, 9]]);
-const pos$2 = nix.positions(here + "/default.nix", [["url", 14, 5], ["hash", 15, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["homepage", 37, 5], ["description", 38, 5], ["license", 39, 5], ["platforms", 40, 26], ["maintainers", 41, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 10, 3], ["version", 11, 11], ["src", 13, 3], ["nativeBuildInputs", 24, 3], ["makeFlags", 26, 3], ["installTargets", 27, 3], ["installFlags", 28, 3], ["postInstall", 32, 3], ["meta", 36, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,14 +13,14 @@ export default nix.lambda((args) => (() => {
   const ocaml = nix.arg($, "ocaml");
   const version = nix.argOr($, "version", () => "2.1.1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "cmdliner",
       version: version,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: nix.thunk(() => nix.str`https://erratique.ch/software/cmdliner/releases/cmdliner-${version}.tbz`),
           hash: nix.thunk(() => nix.sel({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             "1.0.4": "sha256-XCqT1Er4o4mWosD4D715cP5HUfEEvkcMr6BpNT/ABMA=",
             "1.3.0": "sha256-joGA9XO0QPanqMII2rLK5KgjhP7HMtInhNG7bmQWjLs=",
             "2.1.1": "sha256-Bbk40d709UxHgXjxmCgig0UQQx7ZjyrGfLTZCqEg1rY=",
@@ -41,7 +38,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(ocaml, "meta"));
         return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://erratique.ch/software/cmdliner",
         description: "OCaml module for the declarative definition of command line interfaces",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),

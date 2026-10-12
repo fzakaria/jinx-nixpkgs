@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 29, 5], ["repo", 30, 5], ["rev", 31, 5], ["sha256", 32, 5]], [["description", 58, 5], ["longDescription", 59, 5], ["homepage", 64, 5], ["license", 65, 5], ["platforms", 66, 5], ["maintainers", 67, 5]], [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["dontBuild", 35, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 38, 3], ["makeFlags", 44, 3], ["installFlags", 45, 3], ["installPhase", 47, 3], ["postFixup", 52, 3], ["meta", 57, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, makeWrapper: false, perlPackages: false, beancount: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 29, 5], ["repo", 30, 5], ["rev", 31, 5], ["sha256", 32, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 58, 5], ["longDescription", 59, 5], ["homepage", 64, 5], ["license", 65, 5], ["platforms", 66, 5], ["maintainers", 67, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["dontBuild", 35, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 38, 3], ["makeFlags", 44, 3], ["installFlags", 45, 3], ["installPhase", 47, 3], ["postFixup", 52, 3], ["meta", 57, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,11 +28,11 @@ export default nix.lambda((args) => (() => {
     ];
   })());
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "ledger2beancount",
       version: "2.7",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "beancount",
           repo: "ledger2beancount",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -50,7 +48,7 @@ export default nix.lambda((args) => (() => {
   --set PERL5LIB "${nix.app(nix.sel(perlPackages, "makeFullPerlPath"), perlDeps)}"
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Ledger to Beancount text-based converter",
         longDescription: "A script to automatically convert Ledger-based textual ledgers to Beancount ones.\n\nConversion is based on (concrete) syntax, so that information that is not meaningful for accounting reasons but still valuable (e.g., comments, formatting, etc.) can be preserved.\n",
         homepage: "https://github.com/beancount/ledger2beancount",

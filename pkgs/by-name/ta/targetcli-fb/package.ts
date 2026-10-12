@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]], [["iscsi-root", 46, 26]], [["tests", 45, 12]], [["description", 50, 5], ["homepage", 51, 5], ["changelog", 52, 5], ["license", 53, 5], ["maintainers", 54, 5], ["platforms", 55, 5], ["mainProgram", 56, 5]], [["pname", 12, 3], ["version", 13, 3], ["pyproject", 14, 3], ["src", 16, 3], ["build-system", 23, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 32, 3], ["dependencies", 34, 3], ["postInstall", 40, 3], ["passthru", 45, 3], ["meta", 49, 3]]]);
 const formals$1 = { args: { lib: false, python3Packages: false, fetchFromGitHub: false, nixosTests: false, wrapGAppsNoGuiHook: false, "gobject-introspection": false, glib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["iscsi-root", 46, 26]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 45, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 50, 5], ["homepage", 51, 5], ["changelog", 52, 5], ["license", 53, 5], ["maintainers", 54, 5], ["platforms", 55, 5], ["mainProgram", 56, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["pyproject", 14, 3], ["src", 16, 3], ["build-system", 23, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 32, 3], ["dependencies", 34, 3], ["postInstall", 40, 3], ["passthru", 45, 3], ["meta", 49, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const gobject_introspection = nix.arg($, "gobject-introspection");
   const glib = nix.arg($, "glib");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "targetcli-fb",
       version: "3.0.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "open-iscsi",
           repo: "targetcli-fb",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -49,14 +45,14 @@ export default nix.lambda((args) => (() => {
       })()),
       postInstall: "install -D targetcli.8 -t $out/share/man/man8/\ninstall -D targetclid.8 -t $out/share/man/man8/\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           "iscsi-root": nix.thunk(() => nix.attr(nixosTests, "iscsi-root")),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Command shell for managing the Linux LIO kernel target",
         homepage: "https://github.com/open-iscsi/targetcli-fb",
         changelog: nix.thunk(() => nix.str`https://github.com/open-iscsi/targetcli-fb/releases/tag/v${nix.sel(finalAttrs, "version")}`),

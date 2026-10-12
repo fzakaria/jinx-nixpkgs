@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]], [["updateScript", 100, 5], ["ui", 101, 5]], [["description", 105, 5], ["changelog", 106, 5], ["homepage", 107, 5], ["license", 108, 5], ["mainProgram", 109, 5], ["maintainers", 110, 5]], [["pname", 22, 3], ["version", 24, 3], ["src", 26, 3], ["dotnet-runtime", 33, 3], ["dotnet-sdk", 34, 3], ["nugetDeps", 36, 3], ["projectFile", 38, 3], ["testProjectFile", 42, 3], ["executable", 44, 3], ["installPath", 45, 3], ["enableParallelBuilding", 47, 3], ["useAppHost", 49, 3], ["dotnetFlags", 50, 3], ["dotnetBuildFlags", 55, 3], ["dotnetInstallFlags", 58, 3], ["runtimeDeps", 60, 3], ["doCheck", 67, 3], ["preInstall", 69, 3], ["postInstall", 79, 3], ["passthru", 98, 3], ["meta", 104, 3]]]);
 const formals$1 = { args: { lib: false, buildDotnetModule: false, fetchFromGitHub: false, dotnetCorePackages: false, libkrb5: false, zlib: false, openssl: false, stdenv: false, callPackage: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 100, 5], ["ui", 101, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 105, 5], ["changelog", 106, 5], ["homepage", 107, 5], ["license", 108, 5], ["mainProgram", 109, 5], ["maintainers", 110, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 22, 3], ["version", 24, 3], ["src", 26, 3], ["dotnet-runtime", 33, 3], ["dotnet-sdk", 34, 3], ["nugetDeps", 36, 3], ["projectFile", 38, 3], ["testProjectFile", 42, 3], ["executable", 44, 3], ["installPath", 45, 3], ["enableParallelBuilding", 47, 3], ["useAppHost", 49, 3], ["dotnetFlags", 50, 3], ["dotnetBuildFlags", 55, 3], ["dotnetInstallFlags", 58, 3], ["runtimeDeps", 60, 3], ["doCheck", 67, 3], ["preInstall", 69, 3], ["postInstall", 79, 3], ["passthru", 98, 3], ["meta", 104, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const pname = "archisteamfarm";
       const version = "6.3.10.3";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "JustArchiNET",
           repo: "ArchiSteamFarm",
           tag: version,
@@ -53,12 +50,12 @@ export default nix.lambda((args) => (() => {
       const postInstall = nix.thunk(() => nix.add(nix.add("buildPlugin() {\n  echo \"Publishing plugin $1\"\n  dotnet publish $1 -p:ContinuousIntegrationBuild=true -p:Deterministic=true \\\n    --output $out/lib/ArchiSteamFarm/plugins/$1 --configuration Release \\\n    --no-restore --no-build --runtime $dotnetRuntimeIds \\\n    $dotnetFlags $dotnetInstallFlags\n}\n\n", nix.app(nix.sel(lib, "concatMapStrings"), (p) => nix.str`buildPlugin ${p}
 `, plugins)), "\nchmod +x $out/lib/ArchiSteamFarm/ArchiSteamFarm.dll\nwrapDotnetProgram $out/lib/ArchiSteamFarm/ArchiSteamFarm.dll $out/bin/ArchiSteamFarm\nsubstituteInPlace $out/bin/ArchiSteamFarm \\\n  --replace-fail \"exec \" \"exec dotnet \"\n"));
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.path(here, "./update.sh"),
         ui: nix.thunk(() => nix.app(callPackage, nix.path(here, "./web-ui"), nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Application with primary purpose of idling Steam cards from multiple accounts simultaneously",
         changelog: nix.thunk(() => nix.str`https://github.com/JustArchiNET/ArchiSteamFarm/releases/tag/${nix.sel(src, "tag")}`),
         homepage: "https://github.com/JustArchiNET/ArchiSteamFarm",
@@ -70,7 +67,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

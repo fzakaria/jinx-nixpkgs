@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 26, 5], ["repo", 27, 5], ["rev", 28, 5], ["sha256", 29, 5]], [["license", 49, 5], ["maintainers", 50, 5], ["homepage", 51, 5], ["description", 52, 5], ["longDescription", 53, 5]], [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["propagatedBuildInputs", 32, 3], ["dontWrapQtApps", 38, 3], ["preInstall", 40, 3], ["postInstall", 42, 3], ["meta", 48, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, libsForQt5: false, themeConfig: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 26, 5], ["repo", 27, 5], ["rev", 28, 5], ["sha256", 29, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["license", 49, 5], ["maintainers", 50, 5], ["homepage", 51, 5], ["description", 52, 5], ["longDescription", 53, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["propagatedBuildInputs", 32, 3], ["dontWrapQtApps", 38, 3], ["preInstall", 40, 3], ["postInstall", 42, 3], ["meta", 48, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const configureTheme = nix.thunk(() => nix.add("cp theme.conf theme.conf.orig \n", nix.app(nix.sel(lib, "concatMapStringsSep"), "\n", (configLine) => nix.add(nix.str`grep -q '^${nix.sel(configLine, "name")}=' theme.conf || echo '${nix.sel(configLine, "name")}=' >> "$1"
 `, nix.str`sed -i -e 's/^${nix.sel(configLine, "name")}=.*$/${nix.sel(configLine, "name")}=${nix.app(nix.sel(lib, "escape"), nix.thunk(() => ["/", "&", "\\"]), nix.thunk(() => nix.app(customToString, nix.thunk(() => nix.sel(configLine, "value")))))}/' theme.conf`), configLines)));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "sddm-chili-theme",
       version: "0.1.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "MarianArlt",
           repo: "sddm-chili",
           rev: "6516d50176c3b34df29003726ef9708813d06271",
@@ -37,7 +35,7 @@ export default nix.lambda((args) => (() => {
       preInstall: configureTheme,
       postInstall: "mkdir -p $out/share/sddm/themes/chili\n\nmv * $out/share/sddm/themes/chili/\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);

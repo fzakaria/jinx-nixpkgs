@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/builder.nix", [[["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]], [["CGO_ENABLED", 22, 7]], [["updateScript", 34, 12]], [["description", 42, 5], ["homepage", 43, 5], ["changelog", 44, 5], ["license", 45, 5], ["maintainers", 46, 5], ["mainProgram", 47, 5]], [["pname", 7, 3], ["version", 10, 3], ["src", 12, 3], ["sourceRoot", 19, 3], ["vendorHash", 20, 3], ["env", 22, 3], ["ldflags", 23, 3], ["checkFlags", 30, 3], ["passthru", 34, 3], ["postInstall", 37, 3], ["meta", 41, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/builder.nix", [["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/builder.nix", [["CGO_ENABLED", 22, 7]]);
-const pos$3 = nix.positions(here + "/builder.nix", [["updateScript", 34, 12]]);
-const pos$4 = nix.positions(here + "/builder.nix", [["description", 42, 5], ["homepage", 43, 5], ["changelog", 44, 5], ["license", 45, 5], ["maintainers", 46, 5], ["mainProgram", 47, 5]]);
-const pos$5 = nix.positions(here + "/builder.nix", [["pname", 7, 3], ["version", 10, 3], ["src", 12, 3], ["sourceRoot", 19, 3], ["vendorHash", 20, 3], ["env", 22, 3], ["ldflags", 23, 3], ["checkFlags", 30, 3], ["passthru", 34, 3], ["postInstall", 37, 3], ["meta", 41, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,7 +14,7 @@ export default nix.lambda((args) => (() => {
       const pname = "ocb";
       const version = "0.155.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "open-telemetry",
           repo: "opentelemetry-collector",
           rev: nix.thunk(() => nix.str`cmd/builder/v${version}`),
@@ -26,7 +22,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const sourceRoot = nix.thunk(() => nix.str`${nix.sel(src, "name")}/cmd/builder`);
       const vendorHash = "sha256-SeLEg/xwSEr3uPZbjlLFny+OpfovcmKVD6BxCgoosz8=";
-      const env = nix.thunk(() => ({ [nix.POS]: pos$2, CGO_ENABLED: 0n }));
+      const env = nix.thunk(() => ({ [nix.POS]: $pos[1], CGO_ENABLED: 0n }));
       const ldflags = nix.thunk(() => [
         "-s",
         "-w",
@@ -35,10 +31,10 @@ export default nix.lambda((args) => (() => {
       const checkFlags = nix.thunk(() => [
         "-skip TestGenerateAndCompile|TestReplaceStatementsAreComplete|TestVersioning|TestRunInit",
       ]);
-      const passthru = nix.thunk(() => ({ [nix.POS]: pos$3, updateScript: nix.path(here, "./update.sh") }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: $pos[2], updateScript: nix.path(here, "./update.sh") }));
       const postInstall = "mv $out/bin/builder $out/bin/ocb\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "OpenTelemetry Collector",
         homepage: "https://github.com/open-telemetry/opentelemetry-collector.git",
         changelog: nix.thunk(() => nix.str`https://github.com/open-telemetry/opentelemetry-collector/blob/${nix.sel(src, "rev")}/CHANGELOG.md`),
@@ -50,7 +46,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "ocb",
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         src,

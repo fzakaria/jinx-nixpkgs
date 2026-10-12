@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 12, 5], ["repo", 13, 5], ["rev", 14, 5], ["hash", 15, 5]], [["changelog", 27, 5], ["description", 28, 5], ["homepage", 29, 5], ["license", 30, 5], ["longDescription", 31, 5], ["mainProgram", 34, 5], ["maintainers", 35, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["npmDepsHash", 18, 3], ["postPatch", 21, 3], ["meta", 26, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, buildNpmPackage: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 12, 5], ["repo", 13, 5], ["rev", 14, 5], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["changelog", 27, 5], ["description", 28, 5], ["homepage", 29, 5], ["license", 30, 5], ["longDescription", 31, 5], ["mainProgram", 34, 5], ["maintainers", 35, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["npmDepsHash", 18, 3], ["postPatch", 21, 3], ["meta", 26, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,7 +14,7 @@ export default nix.lambda((args) => (() => {
       const pname = "mw";
       const version = "0-unstable-2023-08-04";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "mark-when",
           repo: "mw",
           rev: "a8676da1c7812a051456fabcb980c52a72f6e75e",
@@ -25,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const npmDepsHash = "sha256-D1hTaoM4j81qrrLMoKJ7OxJTfRoht3/yqgJs95EFxY4=";
       const postPatch = "substituteInPlace src/index.ts  --replace \\\n'.usage(\"$0' '.usage(\"mw'\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         changelog: nix.thunk(() => nix.str`https://github.com/mark-when/mw/blob/${nix.sel(src, "rev")}/CHANGELOG.md`),
         description: "Markwhen CLI",
         homepage: "https://github.com/mark-when/mw",
@@ -34,7 +32,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "mw",
         maintainers: [],
       }));
-      return { [nix.POS]: pos$3, pname, version, src, npmDepsHash, postPatch, meta };
+      return { [nix.POS]: $pos[2], pname, version, src, npmDepsHash, postPatch, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/website.nix", [[["yarnLock", 18, 5], ["hash", 19, 5]], [["pname", 12, 3], ["version", 13, 11], ["src", 15, 3], ["yarnOfflineCache", 17, 3], ["nativeBuildInputs", 22, 3], ["installPhase", 28, 3]]]);
 const formals$1 = { args: { fetchYarnDeps: false, "nodejs-slim": false, src: false, stdenv: false, version: false, yarnBuildHook: false, yarnConfigHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/website.nix", [["yarnLock", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/website.nix", [["pname", 12, 3], ["version", 13, 11], ["src", 15, 3], ["yarnOfflineCache", 17, 3], ["nativeBuildInputs", 22, 3], ["installPhase", 28, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const yarnBuildHook = nix.arg($, "yarnBuildHook");
   const yarnConfigHook = nix.arg($, "yarnConfigHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "yopass-website",
       version: version,
       src: nix.thunk(() => nix.add(src, "/website")),
       yarnOfflineCache: nix.thunk(() => nix.app(fetchYarnDeps, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           yarnLock: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src")}/yarn.lock`),
           hash: "sha256-/SHl/U/iVdzF+PojOFdO3z/yX4uuts438DKQcycn8Ik=",
         })))),

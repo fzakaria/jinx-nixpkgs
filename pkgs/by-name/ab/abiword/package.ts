@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 31, 5], ["owner", 32, 5], ["repo", 33, 5], ["tag", 34, 5], ["hash", 35, 5]], [["rev-prefix", 74, 5]], [["updateScript", 73, 12]], [["description", 78, 5], ["mainProgram", 79, 5], ["homepage", 80, 5], ["license", 81, 5], ["platforms", 82, 5], ["maintainers", 83, 5]], [["pname", 27, 3], ["version", 28, 3], ["src", 30, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 46, 3], ["strictDeps", 62, 3], ["enableParallelBuilding", 63, 3], ["postPatch", 65, 3], ["preAutoreconf", 69, 3], ["passthru", 73, 3], ["meta", 77, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, autoreconfHook: false, "autoconf-archive": false, "pkg-config": false, gtk3: false, fribidi: false, libpng: false, popt: false, libgsf: false, enchant: false, wv: false, librsvg: false, bzip2: false, libjpeg: false, perl: false, boost: false, libxslt: false, goffice: false, wrapGAppsHook3: false, gitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 31, 5], ["owner", 32, 5], ["repo", 33, 5], ["tag", 34, 5], ["hash", 35, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["rev-prefix", 74, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 73, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 78, 5], ["mainProgram", 79, 5], ["homepage", 80, 5], ["license", 81, 5], ["platforms", 82, 5], ["maintainers", 83, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 27, 3], ["version", 28, 3], ["src", 30, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 46, 3], ["strictDeps", 62, 3], ["enableParallelBuilding", 63, 3], ["postPatch", 65, 3], ["preAutoreconf", 69, 3], ["passthru", 73, 3], ["meta", 77, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,11 +30,11 @@ export default nix.lambda((args) => (() => {
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "abiword",
       version: "3.0.8",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "gitlab.gnome.org",
           owner: "World",
           repo: "AbiWord",
@@ -66,11 +62,11 @@ export default nix.lambda((args) => (() => {
       postPatch: "patchShebangs ./tools/cdump/xp/cdump.pl ./po/ui-backport.pl\n",
       preAutoreconf: "./autogen-common.sh\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, "rev-prefix": "release-" })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[1], "rev-prefix": "release-" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Word processing program, similar to Microsoft Word",
         mainProgram: "abiword",
         homepage: "https://gitlab.gnome.org/World/AbiWord/",

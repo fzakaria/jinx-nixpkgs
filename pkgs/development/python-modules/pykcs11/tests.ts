@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/tests.nix", [[["pname", 10, 3], ["version", 11, 21], ["pyproject", 12, 3], ["src", 14, 3], ["dontBuild", 16, 3], ["dontInstall", 17, 3], ["nativeCheckInputs", 19, 3], ["preCheck", 25, 3]]]);
 const formals$1 = { args: { buildPythonPackage: false, asn1crypto: false, pykcs11: false, pytestCheckHook: false, softhsm: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/tests.nix", [["pname", 10, 3], ["version", 11, 21], ["pyproject", 12, 3], ["src", 14, 3], ["dontBuild", 16, 3], ["dontInstall", 17, 3], ["nativeCheckInputs", 19, 3], ["preCheck", 25, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const softhsm = nix.arg($, "softhsm");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       pname: "pykcs11-tests",
       version: nix.thunk(() => nix.attr(pykcs11, "version")),
       pyproject: false,

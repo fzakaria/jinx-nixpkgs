@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 13, 5], ["sha256", 14, 5]], [["description", 28, 5], ["homepage", 29, 5], ["license", 30, 5], ["platforms", 31, 5], ["maintainers", 32, 5], ["mainProgram", 33, 5]], [["version", 9, 3], ["pname", 10, 3], ["src", 12, 3], ["buildInputs", 17, 3], ["patchPhase", 21, 3], ["meta", 27, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, e2fsprogs: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 13, 5], ["sha256", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 28, 5], ["homepage", 29, 5], ["license", 30, 5], ["platforms", 31, 5], ["maintainers", 32, 5], ["mainProgram", 33, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 9, 3], ["pname", 10, 3], ["src", 12, 3], ["buildInputs", 17, 3], ["patchPhase", 21, 3], ["meta", 27, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,18 +12,18 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const e2fsprogs = nix.arg($, "e2fsprogs");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       version: "0.2.4",
       pname: "extundelete",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "mirror://sourceforge/extundelete/extundelete-0.2.4.tar.bz2",
           sha256: "1x0r7ylxlp9lbj3d7sqf6j2a222dwy2nfpff05jd6mkh4ihxvyd1",
         })))),
       buildInputs: nix.thunk(() => [e2fsprogs]),
       patchPhase: "substituteInPlace src/insertionops.cc \\\n  --replace \"Directory ACL:\" \"High 32 bits of size:\" \\\n  --replace \"inode.i_dir_acl\" \"inode.i_size_high\"\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Utility that can recover deleted files from an ext3 or ext4 partition",
         homepage: "https://extundelete.sourceforge.net/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

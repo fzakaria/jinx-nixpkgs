@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/tests.nix", [[["buildInputs", 15, 11], ["nativeBuildInputs", 16, 11]], [["__noChroot", 20, 11]], [["mlxTest", 11, 3]]]);
 const formals$1 = { args: { lib: false, mlx: false, python: false, runCommand: false, src: false, metalSupport: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/tests.nix", [["buildInputs", 15, 11], ["nativeBuildInputs", 16, 11]]);
-const pos$2 = nix.positions(here + "/tests.nix", [["__noChroot", 20, 11]]);
-const pos$3 = nix.positions(here + "/tests.nix", [["mlxTest", 11, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const src = nix.arg($, "src");
   const metalSupport = nix.argOr($, "metalSupport", () => false);
   return {
-    [nix.POS]: pos$3,
+    [nix.POS]: $pos[2],
     mlxTest: nix.thunk(() => nix.app(runCommand, nix.thunk(() => nix.str`run-mlx${nix.app(nix.sel(lib, "optionalString"), metalSupport, "-bin")}-examples`), nix.thunk(() => nix.update({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         buildInputs: nix.thunk(() => [mlx]),
         nativeBuildInputs: nix.thunk(() => [python]),
-      }, nix.app(nix.sel(lib, "optionalAttrs"), metalSupport, nix.thunk(() => ({ [nix.POS]: pos$2, __noChroot: true }))))), nix.thunk(() => nix.add(nix.app(nix.sel(lib, "optionalString"), metalSupport, nix.thunk(() => nix.str`${nix.sel(python, "interpreter")} -c 'import mlx.core as mx; assert mx.metal.is_available(), "Metal is unavailable"'
+      }, nix.app(nix.sel(lib, "optionalAttrs"), metalSupport, nix.thunk(() => ({ [nix.POS]: $pos[1], __noChroot: true }))))), nix.thunk(() => nix.add(nix.app(nix.sel(lib, "optionalString"), metalSupport, nix.thunk(() => nix.str`${nix.sel(python, "interpreter")} -c 'import mlx.core as mx; assert mx.metal.is_available(), "Metal is unavailable"'
 `)), nix.str`cp ${src}/examples/python/logistic_regression.py .
 ${nix.sel(python, "interpreter")} logistic_regression.py
 rm logistic_regression.py

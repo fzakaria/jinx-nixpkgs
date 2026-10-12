@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]], [["description", 54, 5], ["longDescription", 55, 5], ["homepage", 60, 5], ["changelog", 61, 5], ["license", 62, 5], ["maintainers", 63, 5], ["mainProgram", 64, 5]], [["pname", 18, 3], ["version", 19, 3], ["pyproject", 20, 3], ["src", 22, 3], ["patches", 29, 3], ["build-system", 34, 3], ["dependencies", 36, 3], ["nativeCheckInputs", 46, 3], ["pythonImportsCheck", 51, 3], ["meta", 53, 3]]]);
 const formals$1 = { args: { lib: false, aiofiles: false, aiohttp: false, "async-timeout": false, "async-generator": false, buildPythonPackage: false, fetchFromGitHub: false, pypubsub: false, pyserial: false, "pyserial-asyncio-fast": false, pytestCheckHook: false, setuptools: false, voluptuous: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 54, 5], ["longDescription", 55, 5], ["homepage", 60, 5], ["changelog", 61, 5], ["license", 62, 5], ["maintainers", 63, 5], ["mainProgram", 64, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 18, 3], ["version", 19, 3], ["pyproject", 20, 3], ["src", 22, 3], ["patches", 29, 3], ["build-system", 34, 3], ["dependencies", 36, 3], ["nativeCheckInputs", 46, 3], ["pythonImportsCheck", 51, 3], ["meta", 53, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.6.4";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "pyinsteon",
           repo: "pyinsteon",
           tag: version,
@@ -47,7 +45,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [async_generator, pytestCheckHook]);
       const pythonImportsCheck = nix.thunk(() => ["pyinsteon"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Python library to support Insteon home automation projects",
         longDescription: "This is a Python package to interface with an Insteon Modem. It has been\ntested to work with most USB or RS-232 serial based devices such as the\n2413U, 2412S, 2448A7 and Hub models 2242 and 2245.\n",
         homepage: "https://github.com/pyinsteon/pyinsteon",
@@ -60,7 +58,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "insteon_tools",
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

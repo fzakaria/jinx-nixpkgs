@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 68, 7], ["sha256", 69, 7]], [["url", 72, 7], ["sha256", 73, 7]], [["x86_64-linux", 67, 5], ["aarch64-linux", 71, 5]], [["sources", 202, 13], ["updateScript", 203, 5]], [["description", 227, 5], ["homepage", 228, 5], ["downloadPage", 229, 5], ["license", 230, 5], ["platforms", 231, 5], ["maintainers", 232, 5], ["mainProgram", 233, 5]], [["version", 136, 3], ["pname", 137, 3], ["src", 139, 3], ["nativeBuildInputs", 143, 3], ["buildInputs", 149, 3], ["dontUnpack", 166, 3], ["installPhase", 167, 3], ["passthru", 201, 3], ["meta", 226, 3]]]);
 const formals$1 = { args: { addDriverRunpath: false, "alsa-lib": false, "at-spi2-atk": false, "at-spi2-core": false, atk: false, autoPatchelfHook: false, cairo: false, cups: false, dbus: false, dpkg: false, expat: false, fetchurl: false, fontconfig: false, freetype: false, "gdk-pixbuf": false, glib: false, glibc: false, gnutls: false, gtk3: false, lib: false, libGL: false, libx11: false, libxscrnsaver: false, libxcomposite: false, libxcursor: false, libxdamage: false, libxext: false, libxfixes: false, libxi: false, libxrandr: false, libxrender: false, libxtst: false, libappindicator: false, libcxx: false, libdbusmenu: false, libdrm: false, libgcrypt: false, libglvnd: false, libnotify: false, libpulseaudio: false, libuuid: false, libxcb: false, libxkbcommon: false, libxkbfile: false, libxshmfence: false, makeShellWrapper: false, libgbm: false, nspr: false, nss: false, pango: false, pciutils: false, pipewire: false, pixman: false, stdenv: false, systemd: false, wayland: false, "xdg-utils": false, writeScript: false, commandLineArgs: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 68, 7], ["sha256", 69, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 72, 7], ["sha256", 73, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["x86_64-linux", 67, 5], ["aarch64-linux", 71, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["sources", 202, 13], ["updateScript", 203, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 227, 5], ["homepage", 228, 5], ["downloadPage", 229, 5], ["license", 230, 5], ["platforms", 231, 5], ["maintainers", 232, 5], ["mainProgram", 233, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["version", 136, 3], ["pname", 137, 3], ["src", 139, 3], ["nativeBuildInputs", 143, 3], ["buildInputs", 149, 3], ["dontUnpack", 166, 3], ["installPhase", 167, 3], ["passthru", 201, 3], ["meta", 226, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -72,14 +67,14 @@ export default nix.lambda((args) => (() => {
   const writeScript = nix.arg($, "writeScript");
   const commandLineArgs = nix.argOr($, "commandLineArgs", () => "");
   const sources = nix.thunk(() => ({
-    [nix.POS]: pos$3,
+    [nix.POS]: $pos[2],
     "x86_64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         url: "https://sf3-cn.feishucdn.com/obj/ee-appcenter/6e3610b5/Feishu-linux_x64-7.66.11.deb",
         sha256: "sha256-3E8NLC2zzIO7l1jPcePhMfCafgjuyWOzeNZgxTTM/TE=",
       })))),
     "aarch64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         url: "https://sf3-cn.feishucdn.com/obj/ee-appcenter/36c6e858/Feishu-linux_arm64-7.66.11.deb",
         sha256: "sha256-2nMHCuJy2dYiokwR3dFAkITeBgH8K9poJ9gkJNp42aQ=",
       })))),
@@ -138,7 +133,7 @@ export default nix.lambda((args) => (() => {
       xdg_utils,
     ])));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       version: "7.66.11",
       pname: "feishu",
       src: nix.thunk(() => nix.selOr(sources, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenv, "hostPlatform", "system")}`)), nix.key(nix.sel(stdenv, "hostPlatform", "system")))),
@@ -189,7 +184,7 @@ mkdir -p $out/bin
 ln -s $out/opt/bytedance/feishu/bytedance-feishu $out/bin/bytedance-feishu
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         sources: sources,
         updateScript: nix.thunk(() => nix.app(writeScript, "update-feishu.sh", nix.thunk(() => nix.str`#!/usr/bin/env nix-shell
 #!nix-shell -i bash -p curl jq common-updater-scripts
@@ -213,7 +208,7 @@ done
 `))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "All-in-one collaboration suite",
         homepage: "https://www.feishu.cn/en/",
         downloadPage: "https://www.feishu.cn/en/#en_home_download_block",

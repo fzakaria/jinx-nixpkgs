@@ -2,16 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 24, 5], ["hash", 25, 5]], [["url", 29, 5], ["hash", 30, 5]], [["nativeBuildInputs", 43, 51]], [["jre", 50, 25]], [["nativeBuildInputs", 69, 43]], [["example-c4-diagram", 68, 18]], [["tests", 68, 12]], [["description", 79, 5], ["mainProgram", 80, 5], ["homepage", 81, 5], ["license", 82, 5], ["maintainers", 83, 5], ["platforms", 87, 5]], [["pname", 54, 3], ["version", 55, 3], ["nativeBuildInputs", 57, 3], ["buildCommand", 59, 3], ["passthru", 68, 3], ["meta", 78, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchzip: false, jre: false, makeWrapper: false, "plantuml-c4": false, plantuml: false, runCommand: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 29, 5], ["hash", 30, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["nativeBuildInputs", 43, 51]]);
-const pos$4 = nix.positions(here + "/package.nix", [["jre", 50, 25]]);
-const pos$5 = nix.positions(here + "/package.nix", [["nativeBuildInputs", 69, 43]]);
-const pos$6 = nix.positions(here + "/package.nix", [["example-c4-diagram", 68, 18]]);
-const pos$7 = nix.positions(here + "/package.nix", [["tests", 68, 12]]);
-const pos$8 = nix.positions(here + "/package.nix", [["description", 79, 5], ["mainProgram", 80, 5], ["homepage", 81, 5], ["license", 82, 5], ["maintainers", 83, 5], ["platforms", 87, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["pname", 54, 3], ["version", 55, 3], ["nativeBuildInputs", 57, 3], ["buildCommand", 59, 3], ["passthru", 68, 3], ["meta", 78, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,27 +16,27 @@ export default nix.lambda((args) => (() => {
   const plantuml = nix.arg($, "plantuml");
   const runCommand = nix.arg($, "runCommand");
   const c4_lib = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: "https://github.com/plantuml-stdlib/C4-PlantUML/archive/refs/tags/v2.10.0.zip",
       hash: "sha256-p9Njb7VauXVf6yOBDQrO9mS+za9NntFUCK5tig0mH3U=",
     }))));
   const sprites = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       url: "https://github.com/tupadr3/plantuml-icon-font-sprites/archive/refs/tags/v3.0.0.zip",
       hash: "sha256-I/cR1VPR7aKyTZF9X/4GkgcxV9+sLgNpTZugvCy0Dvs=",
     }))));
   const plantumlWithExtraPath = nix.thunk(() => (() => {
     const plantumlIncludePath = nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), ":", nix.thunk(() => [c4_lib, sprites])));
     const includeFlag = nix.thunk(() => nix.str`-Dplantuml.include.path=${nix.app(nix.sel(lib, "escapeShellArg"), plantumlIncludePath)}`);
-    const postFixedJre = nix.thunk(() => nix.app(runCommand, "jre-postfixed", nix.thunk(() => ({ [nix.POS]: pos$3, nativeBuildInputs: nix.thunk(() => [makeWrapper]) })), nix.thunk(() => nix.str`mkdir -p $out/bin
+    const postFixedJre = nix.thunk(() => nix.app(runCommand, "jre-postfixed", nix.thunk(() => ({ [nix.POS]: $pos[2], nativeBuildInputs: nix.thunk(() => [makeWrapper]) })), nix.thunk(() => nix.str`mkdir -p $out/bin
 
 makeWrapper ${jre}/bin/java $out/bin/java \\
   --add-flags ${nix.app(nix.sel(lib, "escapeShellArg"), includeFlag)}
 `)));
-    return nix.app(nix.sel(plantuml, "override"), nix.thunk(() => ({ [nix.POS]: pos$4, jre: postFixedJre })));
+    return nix.app(nix.sel(plantuml, "override"), nix.thunk(() => ({ [nix.POS]: $pos[3], jre: postFixedJre })));
   })());
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       pname: "plantuml-c4",
       version: "2.10.0",
       nativeBuildInputs: nix.thunk(() => [makeWrapper]),
@@ -56,10 +48,10 @@ makeWrapper ${plantumlWithExtraPath}/bin/plantuml $out/bin/plantuml \\
 $out/bin/plantuml -help
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$6,
-          "example-c4-diagram": nix.thunk(() => nix.app(runCommand, "c4-plantuml-sample.png", nix.thunk(() => ({ [nix.POS]: pos$5, nativeBuildInputs: nix.thunk(() => [plantuml_c4]) })), nix.thunk(() => nix.str`sed 's/https:.*\\///' "${c4_lib}/samples/C4_Context Diagram Sample - enterprise.puml" > sample.puml
+          [nix.POS]: $pos[5],
+          "example-c4-diagram": nix.thunk(() => nix.app(runCommand, "c4-plantuml-sample.png", nix.thunk(() => ({ [nix.POS]: $pos[4], nativeBuildInputs: nix.thunk(() => [plantuml_c4]) })), nix.thunk(() => nix.str`sed 's/https:.*\\///' "${c4_lib}/samples/C4_Context Diagram Sample - enterprise.puml" > sample.puml
 plantuml sample.puml -o $out
 
 sed 's/!include ..\\//!include /' ${sprites}/examples/complex-example.puml > sprites.puml
@@ -68,7 +60,7 @@ plantuml sprites.puml -o $out
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         description: "PlantUML bundled with C4-Plantuml and plantuml sprites library",
         mainProgram: "plantuml",
         homepage: "https://github.com/plantuml-stdlib/C4-PlantUML",

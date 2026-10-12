@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]], [["hardcodeZeroVersion", 39, 48]], [["updateScript", 39, 12]], [["description", 42, 5], ["homepage", 43, 5], ["license", 44, 5], ["maintainers", 45, 5], ["platforms", 46, 5], ["mainProgram", 47, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 26, 3], ["installPhase", 33, 3], ["passthru", 39, 3], ["meta", 41, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, "pkg-config": false, imagemagick: false, fetchFromGitHub: false, SDL2: false, numactl: false, libvncserver: false, freetype: false, unstableGitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["hardcodeZeroVersion", 39, 48]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 39, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 42, 5], ["homepage", 43, 5], ["license", 44, 5], ["maintainers", 45, 5], ["platforms", 46, 5], ["mainProgram", 47, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 26, 3], ["installPhase", 33, 3], ["passthru", 39, 3], ["meta", 41, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const freetype = nix.arg($, "freetype");
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "shoreline",
       version: "0-unstable-2021-08-24",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "TobleMiner",
           repo: "shoreline",
           rev: "05a2bbfb4559090727c51673e1fb47d20eac5672",
@@ -36,11 +32,11 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [SDL2, numactl, libvncserver, freetype]),
       installPhase: "runHook preInstall\ninstall -m755 -D shoreline $out/bin/shoreline\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, hardcodeZeroVersion: true })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[1], hardcodeZeroVersion: true })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Very fast (200+ Gbit/s) pixelflut server written in C with full IPv6 support",
         homepage: "https://github.com/TobleMiner/shoreline",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

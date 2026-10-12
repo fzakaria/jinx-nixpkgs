@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 16, 7], ["sha256", 17, 7], ["stripRoot", 18, 7]], [["url", 24, 7], ["sha256", 25, 7], ["stripRoot", 26, 7]], [["homepage", 45, 5], ["description", 46, 5], ["maintainers", 47, 5], ["license", 48, 5], ["platforms", 49, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 14, 3], ["srcOtb", 22, 3], ["dontBuild", 30, 3], ["nativeBuildInputs", 32, 3], ["installPhase", 34, 3], ["meta", 44, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchzip: false, mkfontscale: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 16, 7], ["sha256", 17, 7], ["stripRoot", 18, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 24, 7], ["sha256", 25, 7], ["stripRoot", 26, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 45, 5], ["description", 46, 5], ["maintainers", 47, 5], ["license", 48, 5], ["platforms", 49, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 14, 3], ["srcOtb", 22, 3], ["dontBuild", 30, 3], ["nativeBuildInputs", 32, 3], ["installPhase", 34, 3], ["meta", 44, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,17 +12,17 @@ export default nix.lambda((args) => (() => {
   const fetchzip = nix.arg($, "fetchzip");
   const mkfontscale = nix.arg($, "mkfontscale");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "profont",
       version: "2019-11",
       src: nix.thunk(() => nix.add(nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://tobiasjung.name/downloadfile.php?file=profont-x11.zip",
           sha256: "12dbm87wvcpmn7nzgzwlk45cybp091diara8blqm6129ps27z6kb",
           stripRoot: false,
         }))), "/profont-x11")),
       srcOtb: nix.thunk(() => nix.add(nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: "https://tobiasjung.name/downloadfile.php?file=profont-otb.zip",
           sha256: "18rfhfqrsj3510by0w1a7ak5as6r2cxh8xv02xc1y30mfa6g24x6",
           stripRoot: false,
@@ -34,7 +31,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [mkfontscale]),
       installPhase: "mkdir -p \"$out/share/fonts/misc\"\nfor f in *.pcf; do\n  gzip -n -9 -c \"$f\" > \"$out/share/fonts/misc/$f.gz\"\ndone\ninstall -D -m 644 LICENSE -t \"$out/share/doc/$pname\"\ninstall -D -m 644 \"$srcOtb/profontn.otb\" -t $out/share/fonts/misc\nmkfontdir \"$out/share/fonts/misc\"\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://tobiasjung.name/profont/",
         description: "Monospaced font created to be a most readable font for programming",
         maintainers: nix.thunk(() => (() => {

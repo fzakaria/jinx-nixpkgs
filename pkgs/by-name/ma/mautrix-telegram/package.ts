@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 25, 7], ["repo", 26, 7], ["tag", 27, 7], ["hash", 28, 7]], [["pname", 21, 5], ["version", 22, 5], ["pyproject", 23, 5], ["src", 24, 5], ["postPatch", 30, 5], ["build-system", 34, 5], ["dependencies", 37, 5], ["dontUsePytestCheck", 41, 5]], [["owner", 50, 5], ["repo", 51, 5], ["tag", 52, 5], ["hash", 53, 5]], [["withOlm", 76, 27]], [["homepage", 108, 5], ["description", 109, 5], ["license", 110, 5], ["platforms", 111, 5], ["maintainers", 112, 5], ["mainProgram", 116, 5]], [["pname", 45, 3], ["version", 46, 3], ["pyproject", 47, 3], ["src", 49, 3], ["build-system", 56, 3], ["patches", 58, 3], ["pythonRelaxDeps", 63, 3], ["dependencies", 68, 3], ["doCheck", 105, 3], ["meta", 107, 3]]]);
 const formals$1 = { args: { lib: false, fetchPypi: false, fetchFromGitHub: false, python3: false, openssl: false, withE2BE: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 25, 7], ["repo", 26, 7], ["tag", 27, 7], ["hash", 28, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 21, 5], ["version", 22, 5], ["pyproject", 23, 5], ["src", 24, 5], ["postPatch", 30, 5], ["build-system", 34, 5], ["dependencies", 37, 5], ["dontUsePytestCheck", 41, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["owner", 50, 5], ["repo", 51, 5], ["tag", 52, 5], ["hash", 53, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["withOlm", 76, 27]]);
-const pos$5 = nix.positions(here + "/package.nix", [["homepage", 108, 5], ["description", 109, 5], ["license", 110, 5], ["platforms", 111, 5], ["maintainers", 112, 5], ["mainProgram", 116, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 45, 3], ["version", 46, 3], ["pyproject", 47, 3], ["src", 49, 3], ["build-system", 56, 3], ["patches", 58, 3], ["pythonRelaxDeps", 63, 3], ["dependencies", 68, 3], ["doCheck", 105, 3], ["meta", 107, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const openssl = nix.arg($, "openssl");
   const withE2BE = nix.argOr($, "withE2BE", () => true);
   const tulir_telethon = nix.thunk(() => nix.app(nix.sel(python3, "pkgs", "buildPythonPackage"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "tulir_telethon",
       version: "1.99.0a6",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "tulir",
           repo: "Telethon",
           tag: "v1.99.0a6",
@@ -44,12 +39,12 @@ export default nix.lambda((args) => (() => {
       dontUsePytestCheck: true,
     }))));
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "mautrix-telegram",
       version: "0.15.3",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           owner: "mautrix",
           repo: "telegram",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -72,7 +67,7 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.lookup(w_1, "commonmark")),
           nix.thunk(() => nix.lookup(w_1, "aiohttp")),
           nix.thunk(() => nix.lookup(w_1, "yarl")),
-          nix.thunk(() => nix.app(nix.sel(nix.lookup(w_1, "mautrix"), "override"), nix.thunk(() => ({ [nix.POS]: pos$4, withOlm: withE2BE })))),
+          nix.thunk(() => nix.app(nix.sel(nix.lookup(w_1, "mautrix"), "override"), nix.thunk(() => ({ [nix.POS]: $pos[3], withOlm: withE2BE })))),
           tulir_telethon,
           nix.thunk(() => nix.lookup(w_1, "asyncpg")),
           nix.thunk(() => nix.lookup(w_1, "mako")),
@@ -94,7 +89,7 @@ export default nix.lambda((args) => (() => {
       })()),
       doCheck: false,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "https://github.com/mautrix/telegram",
         description: "Matrix-Telegram hybrid puppeting/relaybot bridge",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Plus")),

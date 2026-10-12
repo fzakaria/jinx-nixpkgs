@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["hash", 19, 5], ["url", 20, 5]], [["description", 91, 5], ["license", 92, 5], ["maintainers", 93, 5], ["platforms", 97, 5], ["homepage", 98, 5], ["downloadPage", 99, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["buildInputs", 23, 3], ["nativeBuildInputs", 33, 3], ["enableParallelBuilding", 42, 3], ["setSourceRoot", 44, 3], ["postPatch", 48, 3], ["makeFlags", 63, 3], ["installPhase", 75, 3], ["meta", 90, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, wrapGAppsHook3: false, wxwidgets_3_2: false, python3: false, zlib: false, libGLU: false, libGL: false, libx11: false, SDL2: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["hash", 19, 5], ["url", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 91, 5], ["license", 92, 5], ["maintainers", 93, 5], ["platforms", 97, 5], ["homepage", 98, 5], ["downloadPage", 99, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["buildInputs", 23, 3], ["nativeBuildInputs", 33, 3], ["enableParallelBuilding", 42, 3], ["setSourceRoot", 44, 3], ["postPatch", 48, 3], ["makeFlags", 63, 3], ["installPhase", 75, 3], ["meta", 90, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const libx11 = nix.arg($, "libx11");
   const SDL2 = nix.arg($, "SDL2");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "golly",
       version: "5.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           hash: "sha256-WDXN5CgVP5uEC6lKQ1nlyybrMC56wBoJfNf1pcgwNhE=",
           url: nix.thunk(() => nix.str`mirror://sourceforge/project/golly/golly/golly-${nix.sel(finalAttrs, "version")}/golly-${nix.sel(finalAttrs, "version")}-src.tar.gz`),
         })))),
@@ -59,7 +57,7 @@ substituteInPlace ../cmdline/bgolly.cpp \\
       ]),
       installPhase: "runHook preInstall\n\nmkdir -p \"$out/bin\"\ncp ../golly ../bgolly \"$out/bin\"\n\nmkdir -p \"$out/share/doc/golly/\"\ncp ../docs/*  \"$out/share/doc/golly/\"\n\nmkdir -p \"$out/share/golly\"\ncp -r ../{Help,Patterns,Scripts,Rules} \"$out/share/golly\"\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Cellular automata simulation program",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
         maintainers: nix.thunk(() => (() => {

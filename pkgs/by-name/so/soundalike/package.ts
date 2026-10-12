@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]], [["owner", 39, 5], ["repo", 40, 5], ["tag", 41, 5], ["hash", 42, 5]], [["description", 64, 5], ["homepage", 65, 5], ["changelog", 66, 5], ["license", 67, 5], ["maintainers", 68, 5], ["mainProgram", 69, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["vendorHash", 21, 3], ["ldflags", 23, 3], ["nativeBuildInputs", 30, 3], ["doCheck", 35, 3], ["testDataVersion", 37, 3], ["testData", 38, 3], ["preCheck", 44, 3], ["nativeInstallCheckInputs", 52, 3], ["versionCheckProgramArg", 53, 3], ["doInstallCheck", 54, 3], ["postInstall", 58, 3], ["meta", 63, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromCodeberg: false, chromaprint: false, makeWrapper: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 39, 5], ["repo", 40, 5], ["tag", 41, 5], ["hash", 42, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 64, 5], ["homepage", 65, 5], ["changelog", 66, 5], ["license", 67, 5], ["maintainers", 68, 5], ["mainProgram", 69, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["vendorHash", 21, 3], ["ldflags", 23, 3], ["nativeBuildInputs", 30, 3], ["doCheck", 35, 3], ["testDataVersion", 37, 3], ["testData", 38, 3], ["preCheck", 44, 3], ["nativeInstallCheckInputs", 52, 3], ["versionCheckProgramArg", 53, 3], ["doInstallCheck", 54, 3], ["postInstall", 58, 3], ["meta", 63, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname = "soundalike";
       const version = "0.1.3";
       const src = nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "derat",
           repo: "soundalike",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -32,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const doCheck = true;
       const testDataVersion = "0.0.1";
       const testData = nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "derat",
           repo: "soundalike-testdata",
           tag: nix.thunk(() => nix.str`v${testDataVersion}`),
@@ -51,7 +48,7 @@ ln -sfv ${testData} ./testdata
   --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [chromaprint]))}
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Find duplicate audio files using acoustic fingerprints",
         homepage: "https://codeberg.org/derat/soundalike",
         changelog: nix.thunk(() => nix.str`https://codeberg.org/derat/soundalike/releases/tag/v${version}`),
@@ -63,7 +60,7 @@ ln -sfv ${testData} ./testdata
         mainProgram: "soundalike",
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/test-app.nix", [[["pname", 30, 7], ["version", 31, 7], ["src", 32, 7], ["pnpm", 34, 5], ["fetcherVersion", 36, 5], ["hash", 37, 5]], [["platforms", 103, 37]], [["pname", 18, 3], ["version", 19, 25], ["src", 19, 33], ["postPatch", 21, 3], ["cargoDeps", 26, 25], ["pnpmDeps", 28, 3], ["nativeBuildInputs", 40, 3], ["buildInputs", 52, 3], ["buildAndTestSubdir", 61, 3], ["preBuild", 64, 3], ["postBuild", 67, 3], ["buildType", 74, 3], ["doCheck", 75, 3], ["doInstallCheck", 76, 3], ["installCheckPhase", 77, 3], ["meta", 102, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, "cargo-tauri": false, "glib-networking": false, "libayatana-appindicator": false, nodejs: false, openssl: false, "pkg-config": false, pnpm_10: false, fetchPnpmDeps: false, pnpmConfigHook: false, rustPlatform: false, webkitgtk_4_1: false, wrapGAppsHook4: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/test-app.nix", [["pname", 30, 7], ["version", 31, 7], ["src", 32, 7], ["pnpm", 34, 5], ["fetcherVersion", 36, 5], ["hash", 37, 5]]);
-const pos$2 = nix.positions(here + "/test-app.nix", [["platforms", 103, 37]]);
-const pos$3 = nix.positions(here + "/test-app.nix", [["pname", 18, 3], ["version", 19, 25], ["src", 19, 33], ["postPatch", 21, 3], ["cargoDeps", 26, 25], ["pnpmDeps", 28, 3], ["nativeBuildInputs", 40, 3], ["buildInputs", 52, 3], ["buildAndTestSubdir", 61, 3], ["preBuild", 64, 3], ["postBuild", 67, 3], ["buildType", 74, 3], ["doCheck", 75, 3], ["doInstallCheck", 76, 3], ["installCheckPhase", 77, 3], ["meta", 102, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,7 +22,7 @@ export default nix.lambda((args) => (() => {
   const webkitgtk_4_1 = nix.arg($, "webkitgtk_4_1");
   const wrapGAppsHook4 = nix.arg($, "wrapGAppsHook4");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "test-app",
       version: nix.thunk(() => nix.attr(cargo_tauri, "version")),
       src: nix.thunk(() => nix.attr(cargo_tauri, "src")),
@@ -33,7 +31,7 @@ export default nix.lambda((args) => (() => {
 `))),
       cargoDeps: nix.thunk(() => nix.attr(cargo_tauri, "cargoDeps")),
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -64,7 +62,7 @@ touch "$bundleDir/test-visible-entry"
       installCheckPhase: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "runHook preInstallCheck\n\ntest -d \"$out/Applications\"\n\nshopt -s nullglob dotglob\nappBundles=(\"$out\"/Applications/*.app)\nnonAppEntries=(\"$out\"/Applications/*)\nshopt -u nullglob dotglob\n\ntest \"${#appBundles[@]}\" -gt 0\n\nfor entry in \"${nonAppEntries[@]}\"; do\n  case \"$entry\" in\n    *.app) ;;\n    *)\n      echo \"unexpected non-.app entry in Applications: $entry\" >&2\n      exit 1\n      ;;\n  esac\ndone\n\nrunHook postInstallCheck\n")),
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(cargo_tauri, "hook", "meta"));
-        return { [nix.POS]: pos$2, platforms: nix.thunk(() => nix.attr(from, "platforms")) };
+        return { [nix.POS]: $pos[1], platforms: nix.thunk(() => nix.attr(from, "platforms")) };
       })()),
     }));
 })(), formals$1);

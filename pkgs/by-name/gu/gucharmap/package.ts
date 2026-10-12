@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 41, 5], ["paths", 42, 5]], [["domain", 60, 5], ["owner", 61, 5], ["repo", 62, 5], ["rev", 63, 5], ["hash", 64, 5]], [["updateScript", 110, 5]], [["description", 115, 5], ["mainProgram", 116, 5], ["homepage", 117, 5], ["license", 118, 5], ["teams", 119, 5], ["platforms", 120, 5]], [["pname", 49, 3], ["version", 50, 3], ["outputs", 52, 3], ["src", 59, 3], ["strictDeps", 67, 3], ["nativeBuildInputs", 68, 3], ["buildInputs", 89, 3], ["mesonFlags", 96, 3], ["doCheck", 101, 3], ["postPatch", 103, 3], ["passthru", 109, 3], ["meta", 114, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, intltool: false, fetchFromGitLab: false, meson: false, mesonEmulatorHook: false, ninja: false, "pkg-config": false, python3: false, gtk3: false, pcre2: false, glib: false, "desktop-file-utils": false, "gtk-doc": false, wrapGAppsHook3: false, itstool: false, libxml2: false, "yelp-tools": false, docbook_xsl: false, docbook_xml_dtd_45: false, "gsettings-desktop-schemas": false, unzip: false, "unicode-character-database": false, "unihan-database": false, runCommand: false, symlinkJoin: false, "gobject-introspection": false, gitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 41, 5], ["paths", 42, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["domain", 60, 5], ["owner", 61, 5], ["repo", 62, 5], ["rev", 63, 5], ["hash", 64, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 110, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 115, 5], ["mainProgram", 116, 5], ["homepage", 117, 5], ["license", 118, 5], ["teams", 119, 5], ["platforms", 120, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 49, 3], ["version", 50, 3], ["outputs", 52, 3], ["src", 59, 3], ["strictDeps", 67, 3], ["nativeBuildInputs", 68, 3], ["buildInputs", 89, 3], ["mesonFlags", 96, 3], ["doCheck", 101, 3], ["postPatch", 103, 3], ["passthru", 109, 3], ["meta", 114, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -43,17 +39,17 @@ export default nix.lambda((args) => (() => {
 ln -s ${nix.sel(unihan_database, "src")} $out/share/unicode/Unihan.zip
 `)));
   const ucd = nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: "ucd+unihan",
       paths: nix.thunk(() => [unihanZip, unicode_character_database]),
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "gucharmap",
       version: "17.0.2",
       outputs: nix.thunk(() => ["out", "lib", "dev", "devdoc"]),
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           domain: "gitlab.gnome.org",
           owner: "GNOME",
           repo: "gucharmap",
@@ -83,11 +79,11 @@ ln -s ${nix.sel(unihan_database, "src")} $out/share/unicode/Unihan.zip
       doCheck: true,
       postPatch: "patchShebangs \\\n  data/meson_desktopfile.py \\\n  gucharmap/gen-guch-unicode-tables.pl\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "GNOME Character Map, based on the Unicode Character Database",
         mainProgram: "gucharmap",
         homepage: "https://gitlab.gnome.org/GNOME/gucharmap",

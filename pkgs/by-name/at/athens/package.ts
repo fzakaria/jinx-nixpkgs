@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 7], ["repo", 17, 7], ["tag", 18, 7], ["hash", 19, 7]], [["src", 15, 5], ["postPatch", 22, 5]], [["CGO_ENABLED", 29, 7]], [["updateScript", 44, 12]], [["description", 47, 5], ["homepage", 48, 5], ["changelog", 49, 5], ["license", 50, 5], ["mainProgram", 51, 5], ["maintainers", 52, 5], ["platforms", 56, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["vendorHash", 27, 3], ["env", 29, 3], ["ldflags", 30, 3], ["subPackages", 35, 3], ["postInstall", 37, 3], ["doInstallCheck", 41, 3], ["nativeInstallCheckInputs", 42, 3], ["passthru", 44, 3], ["meta", 46, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, buildGoModule: false, "nix-update-script": false, versionCheckHook: false, applyPatches: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 7], ["repo", 17, 7], ["tag", 18, 7], ["hash", 19, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["src", 15, 5], ["postPatch", 22, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["CGO_ENABLED", 29, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 44, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 47, 5], ["homepage", 48, 5], ["changelog", 49, 5], ["license", 50, 5], ["mainProgram", 51, 5], ["maintainers", 52, 5], ["platforms", 56, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["vendorHash", 27, 3], ["env", 29, 3], ["ldflags", 30, 3], ["subPackages", 35, 3], ["postInstall", 37, 3], ["doInstallCheck", 41, 3], ["nativeInstallCheckInputs", 42, 3], ["passthru", 44, 3], ["meta", 46, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,13 +14,13 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const applyPatches = nix.arg($, "applyPatches");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "athens",
       version: "0.19.2",
       src: nix.thunk(() => nix.app(applyPatches, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-              [nix.POS]: pos$1,
+              [nix.POS]: $pos[0],
               owner: "gomods",
               repo: "athens",
               tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,7 +29,7 @@ export default nix.lambda((args) => (() => {
           postPatch: "sed -i 's/go 1.26.2/go 1.26/' go.mod\n",
         })))),
       vendorHash: "sha256-v1uJXiOeU4OtVHPFUgI7Lhu/AQqRcrSAH1VYo1d6EIQ=",
-      env: nix.thunk(() => ({ [nix.POS]: pos$3, CGO_ENABLED: "0" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[2], CGO_ENABLED: "0" })),
       ldflags: nix.thunk(() => [
         "-s",
         nix.thunk(() => nix.str`-X github.com/gomods/athens/pkg/build.version=${nix.sel(finalAttrs, "version")}`),
@@ -44,11 +39,11 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Go module datastore and proxy",
         homepage: "https://github.com/gomods/athens",
         changelog: nix.thunk(() => nix.str`https://github.com/gomods/athens/releases/tag/v${nix.sel(finalAttrs, "version")}`),

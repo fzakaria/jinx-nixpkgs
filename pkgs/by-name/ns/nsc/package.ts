@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]], [["description", 57, 5], ["homepage", 58, 5], ["license", 59, 5], ["maintainers", 60, 5], ["mainProgram", 61, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["ldflags", 20, 3], ["vendorHash", 27, 3], ["nativeBuildInputs", 29, 3], ["postInstall", 31, 3], ["preInstall", 38, 3], ["preCheck", 43, 3], ["doCheck", 54, 3], ["meta", 56, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildGoModule: false, fetchFromGitHub: false, installShellFiles: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 57, 5], ["homepage", 58, 5], ["license", 59, 5], ["maintainers", 60, 5], ["mainProgram", 61, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["ldflags", 20, 3], ["vendorHash", 27, 3], ["nativeBuildInputs", 29, 3], ["postInstall", 31, 3], ["preInstall", 38, 3], ["preCheck", 43, 3], ["doCheck", 54, 3], ["meta", 56, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "nsc";
       const version = "2.15.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "nats-io",
           repo: "nsc",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -37,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const preCheck = preInstall;
       const doCheck = nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Tool for creating NATS account and user access configurations",
         homepage: "https://github.com/nats-io/nsc",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -48,7 +46,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "nsc",
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

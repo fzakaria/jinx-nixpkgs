@@ -2,13 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/binary.nix", [[["url", 22, 5], ["hash", 23, 5]], [["package", 32, 50]], [["version", 32, 18]], [["tests", 32, 12]], [["homepage", 35, 5], ["description", 36, 5], ["longDescription", 37, 5], ["sourceProvenance", 43, 5], ["license", 44, 5], ["maintainers", 45, 5], ["platforms", 48, 5], ["mainProgram", 49, 5]], [["pname", 18, 3], ["version", 19, 11], ["src", 21, 3], ["nativeBuildInputs", 26, 3], ["installPhase", 28, 3], ["passthru", 32, 3], ["meta", 34, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchzip: false, unzip: false, testers: false, chromedriver: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/binary.nix", [["url", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/binary.nix", [["package", 32, 50]]);
-const pos$3 = nix.positions(here + "/binary.nix", [["version", 32, 18]]);
-const pos$4 = nix.positions(here + "/binary.nix", [["tests", 32, 12]]);
-const pos$5 = nix.positions(here + "/binary.nix", [["homepage", 35, 5], ["description", 36, 5], ["longDescription", 37, 5], ["sourceProvenance", 43, 5], ["license", 44, 5], ["maintainers", 45, 5], ["platforms", 48, 5], ["mainProgram", 49, 5]]);
-const pos$6 = nix.positions(here + "/binary.nix", [["pname", 18, 3], ["version", 19, 11], ["src", 21, 3], ["nativeBuildInputs", 26, 3], ["installPhase", 28, 3], ["passthru", 32, 3], ["meta", 34, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,25 +16,25 @@ export default nix.lambda((args) => (() => {
   const upstream_info = nix.thunk(() => nix.sel(nix.app(nix.sel(lib, "importJSON"), nix.path(here, "../../../../applications/networking/browsers/chromium/info.json")), "chromium", "chromedriver"));
   const version = nix.thunk(() => nix.attr(upstream_info, "version"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "chromedriver",
       version: version,
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://storage.googleapis.com/chrome-for-testing-public/${version}/mac-arm64/chromedriver-mac-arm64.zip`),
           hash: nix.thunk(() => nix.sel(upstream_info, "hash_darwin_aarch64")),
         })))),
       nativeBuildInputs: nix.thunk(() => [unzip]),
       installPhase: "install -m555 -D \"chromedriver\" $out/bin/chromedriver\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$2, package: chromedriver })))),
+          [nix.POS]: $pos[2],
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: $pos[1], package: chromedriver })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "https://chromedriver.chromium.org/",
         description: "WebDriver server for running Selenium tests on Chrome",
         longDescription: "WebDriver is an open source tool for automated testing of webapps across\nmany browsers. It provides capabilities for navigating to web pages, user\ninput, JavaScript execution, and more. ChromeDriver is a standalone\nserver that implements the W3C WebDriver standard.\n",

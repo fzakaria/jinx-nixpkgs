@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 12, 5], ["hash", 13, 5]], [["homepage", 19, 5], ["description", 20, 5], ["license", 21, 5], ["platforms", 22, 5], ["maintainers", 23, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 11, 3], ["nativeBuildInputs", 16, 3], ["meta", 18, 3]]]);
 const formals$1 = { args: { stdenvNoCC: false, fetchurl: false, lib: false, installFonts: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 12, 5], ["hash", 13, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 19, 5], ["description", 20, 5], ["license", 21, 5], ["platforms", 22, 5], ["maintainers", 23, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 11, 3], ["nativeBuildInputs", 16, 3], ["meta", 18, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,13 +15,13 @@ export default nix.lambda((args) => (() => {
       const pname = "lxgw-wenkai-tc";
       const version = "1.522";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/lxgw/LxgwWenKaiTC/releases/download/v${version}/lxgw-wenkai-tc-v${version}.tar.gz`),
           hash: "sha256-E2Z13IOaWwdsAPnHFsYQ2B/d3dhXP4duvdaYO/4PCfg=",
         }))));
       const nativeBuildInputs = nix.thunk(() => [installFonts]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/lxgw/LxgwWenKaiTC",
         description: "Traditional Chinese Edition of LXGW WenKai",
         license: nix.thunk(() => nix.sel(lib, "licenses", "ofl")),
@@ -33,7 +31,7 @@ export default nix.lambda((args) => (() => {
           return [nix.thunk(() => nix.lookup(w, "lebensterben"))];
         })()),
       }));
-      return { [nix.POS]: pos$3, pname, version, src, nativeBuildInputs, meta };
+      return { [nix.POS]: $pos[2], pname, version, src, nativeBuildInputs, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]], [["cloudlog", 33, 28]], [["tests", 32, 5], ["updateScript", 35, 5]], [["description", 39, 5], ["license", 40, 5], ["homepage", 41, 5], ["platforms", 42, 5], ["maintainers", 43, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["postPatch", 21, 3], ["installPhase", 26, 3], ["passthru", 31, 3], ["meta", 38, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchFromGitHub: false, "nix-update-script": false, nixosTests: false, php: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["cloudlog", 33, 28]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 32, 5], ["updateScript", 35, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 39, 5], ["license", 40, 5], ["homepage", 41, 5], ["platforms", 42, 5], ["maintainers", 43, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["postPatch", 21, 3], ["installPhase", 26, 3], ["passthru", 31, 3], ["meta", 38, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname = "cloudlog";
       const version = "2.8.19";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "magicbug",
           repo: "Cloudlog",
           rev: version,
@@ -30,15 +26,15 @@ export default nix.lambda((args) => (() => {
       const postPatch = "substituteInPlace index.php \\\n  --replace \"define('ENVIRONMENT', 'development');\" \"define('ENVIRONMENT', 'production');\"\n";
       const installPhase = "mkdir $out/\ncp -R ./* $out\n";
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           cloudlog: nix.thunk(() => nix.attr(nixosTests, "cloudlog")),
         })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Web based amateur radio logging application built using PHP & MySQL",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         homepage: "https://www.magicbug.co.uk/cloudlog",
@@ -49,7 +45,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         src,

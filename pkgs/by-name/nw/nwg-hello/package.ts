@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]], [["homepage", 70, 5], ["changelog", 71, 5], ["description", 72, 5], ["license", 73, 5], ["platforms", 74, 5], ["maintainers", 75, 5], ["mainProgram", 76, 5]], [["pname", 12, 3], ["version", 13, 3], ["pyproject", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 23, 3], ["buildInputs", 28, 3], ["build-system", 33, 3], ["dependencies", 35, 3], ["postPatch", 39, 3], ["postInstall", 53, 3], ["dontWrapGApps", 59, 3], ["preFixup", 61, 3], ["doCheck", 66, 3], ["pythonImportsCheck", 67, 3], ["meta", 69, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, "gobject-introspection": false, "gtk-layer-shell": false, gtk3: false, python3Packages: false, wrapGAppsHook3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 70, 5], ["changelog", 71, 5], ["description", 72, 5], ["license", 73, 5], ["platforms", 74, 5], ["maintainers", 75, 5], ["mainProgram", 76, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["pyproject", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 23, 3], ["buildInputs", 28, 3], ["build-system", 33, 3], ["dependencies", 35, 3], ["postPatch", 39, 3], ["postInstall", 53, 3], ["dontWrapGApps", 59, 3], ["preFixup", 61, 3], ["doCheck", 66, 3], ["pythonImportsCheck", 67, 3], ["meta", 69, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const python3Packages = nix.arg($, "python3Packages");
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "nwg-hello",
       version: "0.4.5",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "nwg-piotr",
           repo: "nwg-hello",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -39,7 +37,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["nwg_hello"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/nwg-piotr/nwg-hello",
         changelog: nix.thunk(() => nix.str`https://github.com/nwg-piotr/nwg-hello/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         description: "GTK3-based greeter for the greetd daemon, written in python",

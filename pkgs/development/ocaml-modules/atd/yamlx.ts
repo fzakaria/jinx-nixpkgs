@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/yamlx.nix", [[["description", 17, 5]], [["pname", 8, 3], ["version", 9, 26], ["src", 9, 34], ["propagatedBuildInputs", 11, 3], ["meta", 16, 3]]]);
 const formals$1 = { args: { buildDunePackage: false, "atd-jsonlike": false, yamlx: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/yamlx.nix", [["description", 17, 5]]);
-const pos$2 = nix.positions(here + "/yamlx.nix", [["pname", 8, 3], ["version", 9, 26], ["src", 9, 34], ["propagatedBuildInputs", 11, 3], ["meta", 16, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -12,13 +11,13 @@ export default nix.lambda((args) => (() => {
   const atd_jsonlike = nix.arg($, "atd-jsonlike");
   const yamlx = nix.arg($, "yamlx");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "atd-yamlx",
       version: nix.thunk(() => nix.attr(atd_jsonlike, "version")),
       src: nix.thunk(() => nix.attr(atd_jsonlike, "src")),
       propagatedBuildInputs: nix.thunk(() => [atd_jsonlike, yamlx]),
       meta: nix.thunk(() => nix.update(nix.sel(atd_jsonlike, "meta"), {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "YAML-to-jsonlike bridge for use with ATD code generators",
       })),
     })));

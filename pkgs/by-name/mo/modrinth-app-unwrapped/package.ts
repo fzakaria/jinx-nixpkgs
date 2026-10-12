@@ -2,17 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["java", 28, 32]], [["owner", 37, 5], ["repo", 38, 5], ["tag", 39, 5], ["hash", 40, 5]], [["nativeBuildInputs", 52, 61]], [["gradle", 51, 7]], [["pname", 73, 26], ["data", 74, 5]], [["pname", 78, 26], ["version", 78, 32], ["src", 78, 40], ["pnpm", 79, 5], ["fetcherVersion", 80, 5], ["hash", 81, 5]], [["TURBO_BINARY_PATH", 119, 5], ["NIX_CFLAGS_COMPILE", 121, 5]], [["updateScript", 152, 5]], [["description", 156, 5], ["longDescription", 157, 5], ["homepage", 161, 5], ["license", 162, 5], ["maintainers", 166, 5], ["mainProgram", 171, 5], ["platforms", 172, 5], ["broken", 176, 5], ["sourceProvenance", 177, 5]], [["pname", 33, 3], ["version", 34, 3], ["src", 36, 3], ["patches", 43, 3], ["postPatch", 65, 3], ["cargoHash", 70, 3], ["mitmCache", 72, 3], ["pnpmDeps", 77, 3], ["nativeBuildInputs", 84, 3], ["buildInputs", 99, 3], ["gradleFlags", 101, 3], ["dontUseGradleBuild", 106, 3], ["dontUseGradleCheck", 107, 3], ["cargoTestFlags", 110, 3], ["__darwinAllowLocalNetworking", 116, 3], ["env", 118, 3], ["preGradleUpdate", 124, 3], ["preBuild", 129, 3], ["postInstall", 137, 3], ["passthru", 151, 3], ["meta", 155, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, cacert: false, "cargo-tauri": false, "desktop-file-utils": false, fetchFromGitHub: false, gradle_9: false, jdk17: false, makeBinaryWrapper: false, makeShellWrapper: false, "nix-update-script": false, nodejs: false, openssl: false, "pkg-config": false, pnpm_10: false, fetchPnpmDeps: false, pnpmConfigHook: false, replaceVars: false, runCommand: false, rustPlatform: false, turbo: false, webkitgtk_4_1: false, xcbuild: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["java", 28, 32]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 37, 5], ["repo", 38, 5], ["tag", 39, 5], ["hash", 40, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["nativeBuildInputs", 52, 61]]);
-const pos$4 = nix.positions(here + "/package.nix", [["gradle", 51, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 73, 26], ["data", 74, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 78, 26], ["version", 78, 32], ["src", 78, 40], ["pnpm", 79, 5], ["fetcherVersion", 80, 5], ["hash", 81, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["TURBO_BINARY_PATH", 119, 5], ["NIX_CFLAGS_COMPILE", 121, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["updateScript", 152, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["description", 156, 5], ["longDescription", 157, 5], ["homepage", 161, 5], ["license", 162, 5], ["maintainers", 166, 5], ["mainProgram", 171, 5], ["platforms", 172, 5], ["broken", 176, 5], ["sourceProvenance", 177, 5]]);
-const pos$10 = nix.positions(here + "/package.nix", [["pname", 33, 3], ["version", 34, 3], ["src", 36, 3], ["patches", 43, 3], ["postPatch", 65, 3], ["cargoHash", 70, 3], ["mitmCache", 72, 3], ["pnpmDeps", 77, 3], ["nativeBuildInputs", 84, 3], ["buildInputs", 99, 3], ["gradleFlags", 101, 3], ["dontUseGradleBuild", 106, 3], ["dontUseGradleCheck", 107, 3], ["cargoTestFlags", 110, 3], ["__darwinAllowLocalNetworking", 116, 3], ["env", 118, 3], ["preGradleUpdate", 124, 3], ["preBuild", 129, 3], ["postInstall", 137, 3], ["passthru", 151, 3], ["meta", 155, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -39,14 +30,14 @@ export default nix.lambda((args) => (() => {
   const turbo = nix.arg($, "turbo");
   const webkitgtk_4_1 = nix.arg($, "webkitgtk_4_1");
   const xcbuild = nix.arg($, "xcbuild");
-  const gradle = nix.thunk(() => nix.app(nix.sel(gradle_9, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, java: jdk }))));
+  const gradle = nix.thunk(() => nix.app(nix.sel(gradle_9, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], java: jdk }))));
   const jdk = jdk17;
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       pname: "modrinth-app-unwrapped",
       version: "0.21.6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "modrinth",
           repo: "code",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -54,8 +45,8 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./gradle-from-path.patch"), nix.thunk(() => ({
-            [nix.POS]: pos$4,
-            gradle: nix.thunk(() => nix.app(runCommand, nix.thunk(() => nix.str`gradle-exe-wrapper-${nix.sel(gradle, "version")}`), nix.thunk(() => ({ [nix.POS]: pos$3, nativeBuildInputs: nix.thunk(() => [makeShellWrapper]) })), nix.thunk(() => nix.str`makeShellWrapper ${nix.app(nix.sel(lib, "getExe"), gradle)} $out \\
+            [nix.POS]: $pos[3],
+            gradle: nix.thunk(() => nix.app(runCommand, nix.thunk(() => nix.str`gradle-exe-wrapper-${nix.sel(gradle, "version")}`), nix.thunk(() => ({ [nix.POS]: $pos[2], nativeBuildInputs: nix.thunk(() => [makeShellWrapper]) })), nix.thunk(() => nix.str`makeShellWrapper ${nix.app(nix.sel(lib, "getExe"), gradle)} $out \\
   --add-flags "\\\${NIX_GRADLEFLAGS_COMPILE:-}"
 `))),
           })))),
@@ -66,12 +57,12 @@ export default nix.lambda((args) => (() => {
 `),
       cargoHash: "sha256-YQz/DbTZVx1zpct0d4IMBB++RqFg26zmg2Px/xCPa8A=",
       mitmCache: nix.thunk(() => nix.app(nix.sel(gradle, "fetchDeps"), nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           data: nix.path(here, "./deps.json"),
         })))),
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -96,7 +87,7 @@ export default nix.lambda((args) => (() => {
       cargoTestFlags: nix.thunk(() => ["--package", "theseus_gui"]),
       __darwinAllowLocalNetworking: true,
       env: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         TURBO_BINARY_PATH: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), turbo)),
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "-mmacosx-version-min=10.15")),
       })),
@@ -104,11 +95,11 @@ export default nix.lambda((args) => (() => {
       preBuild: "local nixGradleFlags=()\nconcatTo nixGradleFlags gradleFlags gradleFlagsArray\nexport NIX_GRADLEFLAGS_COMPILE=\"${nixGradleFlags[@]}\"\n\ncp packages/app-lib/.env.prod packages/app-lib/.env\n",
       postInstall: nix.thunk(() => nix.add(nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "makeBinaryWrapper \"$out\"/Applications/Modrinth\\ App.app/Contents/MacOS/Modrinth\\ App \"$out\"/bin/ModrinthApp\n"), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), "desktop-file-edit \\\n  --set-comment \"Modrinth's game launcher\" \\\n  --set-key=\"StartupNotify\" --set-value=\"true\" \\\n  --set-key=\"Categories\" --set-value=\"Game;ActionGame;AdventureGame;Simulation;\" \\\n  --set-key=\"Keywords\" --set-value=\"game;minecraft;mc;\" \\\n  --set-key=\"StartupWMClass\" --set-value=\"ModrinthApp\" \\\n  $out/share/applications/Modrinth\\ App.desktop\n"))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         description: "Modrinth's game launcher",
         longDescription: "A unique, open source launcher that allows you to play your favorite mods,\nand keep them up to date, all in one neat little package\n",
         homepage: "https://modrinth.com",

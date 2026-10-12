@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 18, 5], ["hash", 19, 5]], [["url", 29, 7], ["hash", 30, 7]], [["name", 25, 5], ["type", 26, 5], ["exec", 27, 5], ["icon", 28, 5], ["comment", 32, 5], ["desktopName", 33, 5], ["genericName", 34, 5], ["categories", 35, 5]], [["updateScript", 53, 12]], [["description", 56, 5], ["homepage", 57, 5], ["changelog", 58, 5], ["sourceProvenance", 59, 5], ["license", 60, 5], ["platforms", 61, 5], ["maintainers", 62, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["dontUnpack", 22, 3], ["desktop", 24, 3], ["nativeBuildInputs", 38, 3], ["installPhase", 43, 3], ["desktopItems", 51, 3], ["passthru", 53, 3], ["meta", 55, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchurl: false, makeWrapper: false, openjdk11: false, makeDesktopItem: false, copyDesktopItems: false, libGL: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 29, 7], ["hash", 30, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 25, 5], ["type", 26, 5], ["exec", 27, 5], ["icon", 28, 5], ["comment", 32, 5], ["desktopName", 33, 5], ["genericName", 34, 5], ["categories", 35, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 53, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 56, 5], ["homepage", 57, 5], ["changelog", 58, 5], ["sourceProvenance", 59, 5], ["license", 60, 5], ["platforms", 61, 5], ["maintainers", 62, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["dontUnpack", 22, 3], ["desktop", 24, 3], ["nativeBuildInputs", 38, 3], ["installPhase", 43, 3], ["desktopItems", 51, 3], ["passthru", 53, 3], ["meta", 55, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,22 +16,22 @@ export default nix.lambda((args) => (() => {
   const copyDesktopItems = nix.arg($, "copyDesktopItems");
   const libGL = nix.arg($, "libGL");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "hdos",
       version: "8",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://cdn.hdos.dev/launcher/v${nix.sel(finalAttrs, "version")}/hdos-launcher.jar`),
           hash: "sha256-00ddeR+ov6Tjrn+pscXoao4C0ek/iP9Hdlgq946pL8A=",
         })))),
       dontUnpack: true,
       desktop: nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           name: "HDOS",
           type: "Application",
           exec: "hdos",
           icon: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               url: "https://raw.githubusercontent.com/flathub/dev.hdos.HDOS/8e17cbecb06548fde2c023032e89ddf30befeabc/dev.hdos.HDOS.png",
               hash: "sha256-pqLNJ0g7GCPotgEPfw2ZZOqapaCRAsJxB09INp6Y6gM=",
             })))),
@@ -53,9 +48,9 @@ makeWrapper ${nix.app(nix.sel(lib, "getExe"), openjdk11)} $out/bin/hdos \\
 runHook postInstall
 `),
       desktopItems: nix.thunk(() => [nix.thunk(() => nix.sel(finalAttrs, "desktop"))]),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$4, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[3], updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "High Detail Old School Runescape Client",
         homepage: "https://hdos.dev",
         changelog: "https://hdos.dev/changelog",

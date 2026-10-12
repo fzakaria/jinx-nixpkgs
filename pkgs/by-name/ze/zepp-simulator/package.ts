@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 44, 7], ["hash", 45, 7]], [["url", 48, 7], ["hash", 49, 7]], [["x86_64-linux", 43, 5], ["aarch64-linux", 47, 5]], [["description", 157, 5], ["homepage", 158, 5], ["license", 159, 5], ["sourceProvenance", 160, 5], ["platforms", 162, 5], ["maintainers", 166, 5], ["mainProgram", 167, 5]], [["pname", 56, 3], ["version", 57, 3], ["src", 59, 3], ["patches", 61, 3], ["nativeBuildInputs", 66, 3], ["buildInputs", 74, 3], ["dontBuild", 102, 3], ["installPhase", 104, 3], ["postFixup", 149, 3], ["meta", 156, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, makeWrapper: false, copyDesktopItems: false, autoPatchelfHook: false, electron: false, asar: false, dpkg: false, glib: false, libgcc: false, libcxx: false, zlib: false, libepoxy: false, libpng: false, libaio: false, libx11: false, libvterm: false, vte: false, gsasl: false, gtk3: false, cairo: false, "gdk-pixbuf": false, numactl: false, cyrus_sasl: false, SDL2: false, dtc: false, capstone_4: false, libjpeg8: false, libgbm: false, curlWithGnuTls: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 44, 7], ["hash", 45, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 48, 7], ["hash", 49, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["x86_64-linux", 43, 5], ["aarch64-linux", 47, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 157, 5], ["homepage", 158, 5], ["license", 159, 5], ["sourceProvenance", 160, 5], ["platforms", 162, 5], ["maintainers", 166, 5], ["mainProgram", 167, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 56, 3], ["version", 57, 3], ["src", 59, 3], ["patches", 61, 3], ["nativeBuildInputs", 66, 3], ["buildInputs", 74, 3], ["dontBuild", 102, 3], ["installPhase", 104, 3], ["postFixup", 149, 3], ["meta", 156, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -43,20 +39,20 @@ export default nix.lambda((args) => (() => {
   const libgbm = nix.arg($, "libgbm");
   const curlWithGnuTls = nix.arg($, "curlWithGnuTls");
   const srcs = nix.thunk(() => ({
-    [nix.POS]: pos$3,
+    [nix.POS]: $pos[2],
     "x86_64-linux": nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: "https://upload-cdn.zepp.com/zepp-applet-and-wechat-applet/20260717/simulator_2.1.2_linux_amd64.deb",
       hash: "sha256-q5s1wErlsBaWX+fQUVB7W1out7XA+FBZKUwQBNK+mqA=",
     })),
     "aarch64-linux": nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       url: "https://upload-cdn.zepp.com/zepp-applet-and-wechat-applet/20260717/simulator_2.1.2_arm64.deb",
       hash: "sha256-I7yklSKHwgHm4QNEVLX4O5eXaoS2+SxLMJJjA3aTFCM=",
     })),
   }));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "zepp-simulator",
       version: "2.1.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => nix.sel(srcs, nix.key(nix.sel(stdenv, "hostPlatform", "system")))))),
@@ -126,7 +122,7 @@ runHook postInstall
 `),
       postFixup: "patchelf \\\n  --replace-needed libsasl2.so.2 libsasl2.so.3 \\\n  $out/opt/simulator/resources/firmware/qemu_linux/qemu-system-arm\nchmod +x $out/opt/simulator/resources/firmware/qemu_linux/qemu-system-arm\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Zepp OS Simulator",
         homepage: "https://developer.zepp.com/os/home",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

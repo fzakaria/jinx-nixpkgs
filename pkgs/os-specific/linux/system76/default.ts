@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["moduleName", 16, 12]], [["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 13]], [["maintainers", 42, 5], ["license", 43, 5], ["platforms", 44, 5], ["description", 48, 5], ["homepage", 49, 5], ["longDescription", 50, 5]], [["name", 12, 3], ["pname", 13, 3], ["version", 14, 3], ["passthru", 16, 3], ["src", 18, 3], ["hardeningDisable", 25, 3], ["nativeBuildInputs", 27, 3], ["makeFlags", 29, 3], ["buildFlags", 31, 3], ["installPhase", 35, 3], ["meta", 41, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, kernel: false, kernelModuleMakeFlags: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["moduleName", 16, 12]]);
-const pos$2 = nix.positions(here + "/default.nix", [["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 13]]);
-const pos$3 = nix.positions(here + "/default.nix", [["maintainers", 42, 5], ["license", 43, 5], ["platforms", 44, 5], ["description", 48, 5], ["homepage", 49, 5], ["longDescription", 50, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["name", 12, 3], ["pname", 13, 3], ["version", 14, 3], ["passthru", 16, 3], ["src", 18, 3], ["hardeningDisable", 25, 3], ["nativeBuildInputs", 27, 3], ["makeFlags", 29, 3], ["buildFlags", 31, 3], ["installPhase", 35, 3], ["meta", 41, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,13 +14,13 @@ export default nix.lambda((args) => (() => {
   const kernelModuleMakeFlags = nix.arg($, "kernelModuleMakeFlags");
   const hash = "sha256-9/t+Mvfnq0KkPbe1mnrVy4mzNaK7vAgLuhUnOeEvBfI=";
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       name: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-${nix.sel(finalAttrs, "version")}-${nix.sel(kernel, "version")}`),
       pname: "system76-module",
       version: "1.0.17",
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$1, moduleName: "system76" })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[0], moduleName: "system76" })),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "pop-os",
           repo: "system76-dkms",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -40,7 +37,7 @@ mkdir -p $out/lib/udev/hwdb.d
 mv lib/udev/hwdb.d/* $out/lib/udev/hwdb.d
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
           return [nix.thunk(() => nix.lookup(w, "ahoneybun"))];

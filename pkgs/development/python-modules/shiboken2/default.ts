@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["CLANG_INSTALL_DIR", 32, 7]], [["description", 64, 5], ["mainProgram", 65, 5], ["license", 66, 5], ["homepage", 70, 5], ["maintainers", 71, 5], ["broken", 72, 5]], [["pname", 12, 3], ["version", 14, 21], ["src", 14, 29], ["patches", 14, 33], ["postPatch", 16, 3], ["env", 32, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 45, 3], ["cmakeFlags", 52, 3], ["dontWrapQtApps", 54, 3], ["postInstall", 56, 3], ["meta", 63, 3]]]);
 const formals$1 = { args: { python: false, lib: false, stdenv: false, pyside2: false, cmake: false, qt5: false, llvmPackages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["CLANG_INSTALL_DIR", 32, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 64, 5], ["mainProgram", 65, 5], ["license", 66, 5], ["homepage", 70, 5], ["maintainers", 71, 5], ["broken", 72, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 12, 3], ["version", 14, 21], ["src", 14, 29], ["patches", 14, 33], ["postPatch", 16, 3], ["env", 32, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 45, 3], ["cmakeFlags", 52, 3], ["dontWrapQtApps", 54, 3], ["postInstall", 56, 3], ["meta", 63, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,14 +15,14 @@ export default nix.lambda((args) => (() => {
   const qt5 = nix.arg($, "qt5");
   const llvmPackages = nix.arg($, "llvmPackages");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "shiboken2",
       version: nix.thunk(() => nix.attr(pyside2, "version")),
       src: nix.thunk(() => nix.attr(pyside2, "src")),
       patches: nix.thunk(() => nix.attr(pyside2, "patches")),
       postPatch: "cd sources/shiboken2\nsubstituteInPlace doc/CMakeLists.txt --replace-fail \\\n  \"cmake_minimum_required(VERSION 3.1)\" \\\n  \"cmake_minimum_required(VERSION 3.10)\"\nfor i in {.,ApiExtractor}/CMakeLists.txt; do\n  substituteInPlace $i --replace-fail \\\n    \"cmake_minimum_required(VERSION 3.1)\" \\\n    \"cmake_minimum_required(VERSION 3.10)\"\n  substituteInPlace $i --replace-fail \\\n    \"cmake_policy(VERSION 3.1)\" \\\n    \"cmake_policy(VERSION 3.10)\"\ndone\nhead CMakeLists.txt\n",
       env: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         CLANG_INSTALL_DIR: nix.thunk(() => nix.sel(llvmPackages, "libclang", "out")),
       })),
       nativeBuildInputs: nix.thunk(() => [
@@ -52,7 +50,7 @@ cp -r shiboken2.egg-info $out/${nix.sel(python, "sitePackages")}/
 rm $out/bin/shiboken_tool.py
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Generator for the PySide2 Qt bindings",
         mainProgram: "shiboken2",
         license: nix.thunk(() => (() => {

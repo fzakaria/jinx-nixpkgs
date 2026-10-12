@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 36, 5], ["repo", 37, 5], ["rev", 38, 5], ["sha256", 39, 5]], [["homepage", 62, 5], ["description", 63, 5], ["license", 64, 5], ["maintainers", 65, 5], ["platforms", 66, 5]], [["pname", 32, 3], ["version", 33, 3], ["src", 35, 3], ["nativeBuildInputs", 42, 3], ["buildInputs", 47, 3], ["preConfigure", 59, 3], ["meta", 61, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, boost: false, glog: false, leveldb: false, marisa: false, opencc: false, "yaml-cpp": false, gtest: false, capnproto: false, "pkg-config": false, "librime-lua": false, "librime-octagram": false, plugins: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 36, 5], ["repo", 37, 5], ["rev", 38, 5], ["sha256", 39, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 62, 5], ["description", 63, 5], ["license", 64, 5], ["maintainers", 65, 5], ["platforms", 66, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 32, 3], ["version", 33, 3], ["src", 35, 3], ["nativeBuildInputs", 42, 3], ["buildInputs", 47, 3], ["preConfigure", 59, 3], ["meta", 61, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,11 +29,11 @@ ${nix.app(nix.sel(lib, "concatMapStringsSep"), "\n", copySinglePlugin, plugins)}
 chmod +w -R plugins/*
 `);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "librime",
       version: "1.17.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "rime",
           repo: "librime",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -45,7 +43,7 @@ chmod +w -R plugins/*
       buildInputs: nix.thunk(() => nix.concat([boost, glog, leveldb, marisa, opencc, yaml_cpp, gtest, capnproto], plugins)),
       preConfigure: copyPlugins,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://rime.im/",
         description: "Rime Input Method Engine, the core library",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

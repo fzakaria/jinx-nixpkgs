@@ -2,10 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]], [["description", 28, 5], ["homepage", 29, 5], ["license", 30, 5], ["mainProgram", 31, 5], ["maintainers", 32, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["nativeBuildInputs", 19, 3], ["enableParallelBuilding", 21, 3], ["postInstall", 23, 3], ["meta", 27, 3]]]);
 const formals$1 = { args: { autoreconfHook: false, fetchFromGitHub: false, lib: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 28, 5], ["homepage", 29, 5], ["license", 30, 5], ["mainProgram", 31, 5], ["maintainers", 32, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["nativeBuildInputs", 19, 3], ["enableParallelBuilding", 21, 3], ["postInstall", 23, 3], ["meta", 27, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "check-uptime",
       version: "0-unstable-2016-11-12",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "madrisan",
           repo: "nagios-plugins-uptime",
           rev: "51822dacd1d404b3eabf3b4984c64b2475ed6f3b",
@@ -28,7 +26,7 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: true,
       postInstall: "ln -sr $out/libexec $out/bin\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Uptime check plugin for Sensu/Nagios/others",
         homepage: "https://github.com/madrisan/nagios-plugins-uptime",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 19, 5], ["hash", 20, 5]], [["homepage", 50, 5], ["description", 51, 5], ["longDescription", 52, 5], ["license", 57, 5], ["maintainers", 58, 40], ["platforms", 58, 52]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["patches", 23, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 31, 3], ["propagatedBuildInputs", 37, 3], ["makeFlags", 42, 3], ["enableParallelBuilding", 47, 3], ["meta", 49, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, fetchpatch: false, expat: false, "pkg-config": false, "netsurf-buildsystem": false, libparserutils: false, libwapcaplet: false, libhubbub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 50, 5], ["description", 51, 5], ["longDescription", 52, 5], ["license", 57, 5], ["maintainers", 58, 40], ["platforms", 58, 52]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["patches", 23, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 31, 3], ["propagatedBuildInputs", 37, 3], ["makeFlags", 42, 3], ["enableParallelBuilding", 47, 3], ["meta", 49, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const libwapcaplet = nix.arg($, "libwapcaplet");
   const libhubbub = nix.arg($, "libhubbub");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "libdom",
       version: "0.4.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://download.netsurf-browser.org/libs/releases/libdom-${nix.sel(finalAttrs, "version")}-src.tar.gz`),
           hash: "sha256-0F5FrxZUcBTCsKOuzzZw+hPUGfUFs/X8esihSR/DDzw=",
         })))),
@@ -40,7 +38,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(netsurf_buildsystem, "meta"));
         return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://www.netsurf-browser.org/projects/libdom/",
         description: "Document Object Model library for netsurf browser",
         longDescription: "LibDOM is an implementation of the W3C DOM, written in C. It is currently\nin development for use with NetSurf and is intended to be suitable for use\nin other projects under a more permissive license.\n",

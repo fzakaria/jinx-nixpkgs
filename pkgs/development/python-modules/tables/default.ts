@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 39, 5], ["repo", 40, 5], ["tag", 41, 5], ["hash", 42, 5], ["fetchSubmodules", 43, 5]], [["HDF5_DIR", 88, 5], ["LZO_DIR", 89, 5], ["BZIP2_DIR", 90, 5], ["BLOSC_DIR", 91, 5], ["BLOSC2_DIR", 92, 5]], [["description", 115, 5], ["homepage", 116, 5], ["changelog", 117, 5], ["license", 118, 5], ["maintainers", 119, 5]], [["pname", 33, 3], ["version", 34, 3], ["pyproject", 35, 3], ["__structuredAttrs", 36, 3], ["src", 38, 3], ["build-system", 46, 3], ["nativeBuildInputs", 52, 3], ["buildInputs", 56, 3], ["dependencies", 65, 3], ["postPatch", 76, 3], ["env", 87, 3], ["nativeCheckInputs", 95, 3], ["preCheck", 100, 3], ["checkPhase", 106, 3], ["pythonImportsCheck", 112, 3], ["meta", 114, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, buildPythonPackage: false, stdenv: false, cython: false, setuptools: false, sphinx: false, blosc2: false, bzip2: false, "c-blosc": false, hdf5: false, lzo: false, "pkg-config": false, numexpr: false, numpy: false, packaging: false, "py-cpuinfo": false, "typing-extensions": false, python: false, writableTmpDirAsHomeHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 39, 5], ["repo", 40, 5], ["tag", 41, 5], ["hash", 42, 5], ["fetchSubmodules", 43, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["HDF5_DIR", 88, 5], ["LZO_DIR", 89, 5], ["BZIP2_DIR", 90, 5], ["BLOSC_DIR", 91, 5], ["BLOSC2_DIR", 92, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 115, 5], ["homepage", 116, 5], ["changelog", 117, 5], ["license", 118, 5], ["maintainers", 119, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 33, 3], ["version", 34, 3], ["pyproject", 35, 3], ["__structuredAttrs", 36, 3], ["src", 38, 3], ["build-system", 46, 3], ["nativeBuildInputs", 52, 3], ["buildInputs", 56, 3], ["dependencies", 65, 3], ["postPatch", 76, 3], ["env", 87, 3], ["nativeCheckInputs", 95, 3], ["preCheck", 100, 3], ["checkPhase", 106, 3], ["pythonImportsCheck", 112, 3], ["meta", 114, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,13 +28,13 @@ export default nix.lambda((args) => (() => {
   const python = nix.arg($, "python");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "tables",
       version: "3.11.1",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "PyTables",
           repo: "PyTables",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -74,7 +71,7 @@ substituteInPlace tables/__init__.py \\
   "ctypes.CDLL('"${nix.app(nix.sel(lib, "getLib"), c_blosc)}/lib/libblosc${nix.sel(stdenv, "hostPlatform", "extensions", "sharedLibrary")}"')"
 `),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         HDF5_DIR: nix.thunk(() => nix.app(nix.sel(lib, "getDev"), hdf5)),
         LZO_DIR: nix.thunk(() => nix.app(nix.sel(lib, "getDev"), lzo)),
         BZIP2_DIR: nix.thunk(() => nix.app(nix.sel(lib, "getDev"), bzip2)),
@@ -89,7 +86,7 @@ runHook postCheck
 `),
       pythonImportsCheck: nix.thunk(() => ["tables"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Hierarchical datasets for Python",
         homepage: "https://www.pytables.org/",
         changelog: nix.thunk(() => nix.str`https://github.com/PyTables/PyTables/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

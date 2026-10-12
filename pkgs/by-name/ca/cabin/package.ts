@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 12, 5], ["repo", 13, 5], ["rev", 14, 5], ["hash", 15, 5]], [["description", 28, 5], ["longDescription", 29, 5], ["homepage", 41, 5], ["license", 42, 5], ["maintainers", 43, 5], ["platforms", 44, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["installPhase", 18, 3], ["meta", 27, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 12, 5], ["repo", 13, 5], ["rev", 14, 5], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 28, 5], ["longDescription", 29, 5], ["homepage", 41, 5], ["license", 42, 5], ["maintainers", 43, 5], ["platforms", 44, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["installPhase", 18, 3], ["meta", 27, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,7 +14,7 @@ export default nix.lambda((args) => (() => {
       const pname = "cabin";
       const version = "1.005";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "impallari",
           repo: "Cabin",
           rev: "982839c790e9dc57c343972aa34c51ed3b3677fd",
@@ -30,7 +28,7 @@ install -m444 -Dt $out/share/doc/${pname}-${version} README.md FONTLOG.txt
 runHook postInstall
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Humanist sans with 4 weights and true italics",
         longDescription: "The Cabin font family is a humanist sans with 4 weights and true italics,\ninspired by Edward Johnston’s and Eric Gill’s typefaces, with a touch of\nmodernism. Cabin incorporates modern proportions, optical adjustments, and\nsome elements of the geometric sans. It remains true to its roots, but has\nits own personality.\n\nThe weight distribution is almost monotone, although top and bottom curves\nare slightly thin. Counters of the b, g, p and q are rounded and optically\nadjusted. The curved stem endings have a 10 degree angle. E and F have\nshorter center arms. M is splashed.\n",
         homepage: "https://github.com/impallari/Cabin",
@@ -38,7 +36,7 @@ runHook postInstall
         maintainers: [],
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
-      return { [nix.POS]: pos$3, pname, version, src, installPhase, meta };
+      return { [nix.POS]: $pos[2], pname, version, src, installPhase, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

@@ -2,18 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["hostarch", 19, 7], ["efiPlatform", 20, 7]], [["hostarch", 23, 7], ["efiPlatform", 24, 7]], [["hostarch", 27, 7], ["efiPlatform", 28, 7]], [["x86_64-linux", 18, 5], ["i686-linux", 22, 5], ["aarch64-linux", 26, 5]], [["url", 46, 5], ["hash", 47, 5]], [["url", 64, 7], ["hash", 65, 7]], [["url", 68, 7], ["hash", 69, 7]], [["uefiCdrom", 176, 5], ["refind", 177, 26]], [["tests", 175, 12]], [["description", 181, 5], ["longDescription", 182, 5], ["homepage", 197, 5], ["maintainers", 198, 5], ["platforms", 202, 5], ["license", 207, 5]], [["pname", 42, 3], ["version", 43, 3], ["src", 45, 3], ["outputs", 50, 3], ["patches", 55, 3], ["nativeBuildInputs", 73, 3], ["buildInputs", 78, 3], ["hardeningDisable", 80, 3], ["makeFlags", 82, 3], ["buildFlags", 96, 3], ["installPhase", 101, 3], ["postInstall", 160, 3], ["passthru", 175, 3], ["meta", 180, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, fetchpatch: false, "gnu-efi": false, nixosTests: false, efibootmgr: false, openssl: false, withSbsigntool: true, sbsigntool: false, makeWrapper: false, installShellFiles: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["hostarch", 19, 7], ["efiPlatform", 20, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["hostarch", 23, 7], ["efiPlatform", 24, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["hostarch", 27, 7], ["efiPlatform", 28, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["x86_64-linux", 18, 5], ["i686-linux", 22, 5], ["aarch64-linux", 26, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["url", 46, 5], ["hash", 47, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["url", 64, 7], ["hash", 65, 7]]);
-const pos$7 = nix.positions(here + "/package.nix", [["url", 68, 7], ["hash", 69, 7]]);
-const pos$8 = nix.positions(here + "/package.nix", [["uefiCdrom", 176, 5], ["refind", 177, 26]]);
-const pos$9 = nix.positions(here + "/package.nix", [["tests", 175, 12]]);
-const pos$10 = nix.positions(here + "/package.nix", [["description", 181, 5], ["longDescription", 182, 5], ["homepage", 197, 5], ["maintainers", 198, 5], ["platforms", 202, 5], ["license", 207, 5]]);
-const pos$11 = nix.positions(here + "/package.nix", [["pname", 42, 3], ["version", 43, 3], ["src", 45, 3], ["outputs", 50, 3], ["patches", 55, 3], ["nativeBuildInputs", 73, 3], ["buildInputs", 78, 3], ["hardeningDisable", 80, 3], ["makeFlags", 82, 3], ["buildFlags", 96, 3], ["installPhase", 101, 3], ["postInstall", 160, 3], ["passthru", 175, 3], ["meta", 180, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,24 +20,24 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const installShellFiles = nix.arg($, "installShellFiles");
   const archids = nix.thunk(() => ({
-    [nix.POS]: pos$4,
-    "x86_64-linux": nix.thunk(() => ({ [nix.POS]: pos$1, hostarch: "x86_64", efiPlatform: "x64" })),
+    [nix.POS]: $pos[3],
+    "x86_64-linux": nix.thunk(() => ({ [nix.POS]: $pos[0], hostarch: "x86_64", efiPlatform: "x64" })),
     "i686-linux": nix.thunk(() => (() => {
       const hostarch_1 = "ia32";
       const efiPlatform_1 = hostarch_1;
-      return { [nix.POS]: pos$2, hostarch: hostarch_1, efiPlatform: efiPlatform_1 };
+      return { [nix.POS]: $pos[1], hostarch: hostarch_1, efiPlatform: efiPlatform_1 };
     })()),
-    "aarch64-linux": nix.thunk(() => ({ [nix.POS]: pos$3, hostarch: "aarch64", efiPlatform: "aa64" })),
+    "aarch64-linux": nix.thunk(() => ({ [nix.POS]: $pos[2], hostarch: "aarch64", efiPlatform: "aa64" })),
   }));
   const from = nix.thunk(() => nix.selOr(archids, () => nix.builtins.throw(nix.thunk(() => nix.str`unsupported system: ${nix.sel(stdenv, "hostPlatform", "system")}`)), nix.key(nix.sel(stdenv, "hostPlatform", "system"))));
   const hostarch = nix.thunk(() => nix.attr(from, "hostarch"));
   const efiPlatform = nix.thunk(() => nix.attr(from, "efiPlatform"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$11,
+      [nix.POS]: $pos[10],
       pname: "refind",
       version: "0.14.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           url: nix.thunk(() => nix.str`mirror://sourceforge/project/refind/${nix.sel(finalAttrs, "version")}/refind-src-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-99k86A2na4bFZygeoiW2qHkHzob/dyM8k1elIsEVyPA=",
         })))),
@@ -56,12 +46,12 @@ export default nix.lambda((args) => (() => {
         nix.path(here, "./0001-toolchain.patch"),
         nix.path(here, "./0002-preserve-dates.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             url: "https://gitlab.archlinux.org/archlinux/packaging/packages/refind/-/raw/0.14.2-2/fix-target-option.patch",
             hash: "sha256-8JxTlgbbgZnXxRrqbPMIBcuT5KEbwXQ8eURKZXeVLU0=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             url: "https://gitlab.archlinux.org/archlinux/packaging/packages/refind/-/raw/0.14.2-2/gnu-efi-4-compat.patch",
             hash: "sha256-F37fCfVhLJBQB8HnNYMN4lSA/+wfuRKUgkT8PBSdkOs=",
           })))),
@@ -142,15 +132,15 @@ wrapProgram $out/bin/refind-mvrefind \\
   --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [efibootmgr]))}
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           uefiCdrom: nix.thunk(() => nix.sel(nixosTests, "boot", "uefiCdrom")),
           refind: nix.thunk(() => nix.attr(nixosTests, "refind")),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         description: "Graphical {,U}EFI boot manager",
         longDescription: "rEFInd is a graphical boot manager for EFI- and UEFI-based\ncomputers, such as all Intel-based Macs and recent (most 2011\nand later) PCs. rEFInd presents a boot menu showing all the EFI\nboot loaders on the EFI-accessible partitions, and optionally\nBIOS-bootable partitions on Macs. EFI-compatible OSes, including\nLinux, provide boot loaders that rEFInd can detect and\nlaunch. rEFInd can launch Linux EFI boot loaders such as ELILO,\nGRUB Legacy, GRUB 2, and 3.3.0 and later kernels with EFI stub\nsupport. EFI filesystem drivers for ext2/3/4fs, ReiserFS, HFS+,\nand ISO-9660 enable rEFInd to read boot loaders from these\nfilesystems, too. rEFInd's ability to detect boot loaders at\nruntime makes it very easy to use, particularly when paired with\nLinux kernels that provide EFI stub support.\n",
         homepage: "http://refind.sourceforge.net/",

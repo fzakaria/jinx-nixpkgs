@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 16, 5], ["sha256", 17, 5]], [["description", 30, 5], ["longDescription", 32, 5], ["homepage", 45, 5], ["license", 46, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["nativeBuildInputs", 20, 3], ["buildInputs", 21, 3], ["doCheck", 27, 3], ["meta", 29, 3]]]);
 const formals$1 = { args: { fetchurl: false, lib: false, stdenv: false, makeWrapper: false, perl: false, openssh: false, rsync: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 16, 5], ["sha256", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 30, 5], ["longDescription", 32, 5], ["homepage", 45, 5], ["license", 46, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["nativeBuildInputs", 20, 3], ["buildInputs", 21, 3], ["doCheck", 27, 3], ["meta", 29, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const openssh = nix.arg($, "openssh");
   const rsync = nix.arg($, "rsync");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "autobuild",
       version: "5.3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://savannah/autobuild/autobuild-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "0gv7g61ja9q9zg1m30k4snqwwy1kq7b4df6sb7d2qra7kbdq8af1",
         })))),
@@ -29,7 +27,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [perl, openssh, rsync]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Continuous integration tool",
         longDescription: "Autobuild is a package that process output from building\nsoftware, primarily focused on packages using Autoconf and\nAutomake, and then generate a HTML summary file, containing\nlinks to each build log.\n\nAutobuild can also help you automate building your project on\nmany systems concurrently.  Users with accounts on the\nSourceForge compile farms will be able to invoke a parallel\nbuild of their Autoconf/Automake based software, and produce a\nsummary of the build status, after reading the manual.\n",
         homepage: "https://josefsson.org/autobuild/",

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/ui.nix", [[["yarnLock", 18, 5], ["hash", 19, 5]], [["NODE_OPTIONS", 28, 7]], [["pname", 12, 3], ["version", 13, 11], ["src", 15, 3], ["yarnOfflineCache", 17, 3], ["nativeBuildInputs", 22, 3], ["env", 28, 3], ["installPhase", 30, 3]]]);
 const formals$1 = { args: { src: false, version: false, stdenv: false, yarnConfigHook: false, yarnBuildHook: false, "nodejs-slim": false, fetchYarnDeps: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/ui.nix", [["yarnLock", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/ui.nix", [["NODE_OPTIONS", 28, 7]]);
-const pos$3 = nix.positions(here + "/ui.nix", [["pname", 12, 3], ["version", 13, 11], ["src", 15, 3], ["yarnOfflineCache", 17, 3], ["nativeBuildInputs", 22, 3], ["env", 28, 3], ["installPhase", 30, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,17 +15,17 @@ export default nix.lambda((args) => (() => {
   const nodejs_slim = nix.arg($, "nodejs-slim");
   const fetchYarnDeps = nix.arg($, "fetchYarnDeps");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "gotify-ui",
       version: version,
       src: nix.thunk(() => nix.add(src, "/ui")),
       yarnOfflineCache: nix.thunk(() => nix.app(fetchYarnDeps, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           yarnLock: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src")}/yarn.lock`),
           hash: "sha256-zyPNIrTw5YUOZnuYuD1UTw7Pjy8nDWQwbH5IZXICF0I=",
         })))),
       nativeBuildInputs: nix.thunk(() => [yarnConfigHook, yarnBuildHook, nodejs_slim]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, NODE_OPTIONS: "--openssl-legacy-provider" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], NODE_OPTIONS: "--openssl-legacy-provider" })),
       installPhase: "runHook preInstall\n\nmv build $out\n\nrunHook postInstall\n",
     }));
 })(), formals$1);

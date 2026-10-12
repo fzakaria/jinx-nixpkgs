@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 43, 5], ["repo", 44, 5], ["tag", 45, 5], ["hash", 46, 5], ["postFetch", 49, 5]], [["markdown", 86, 5]], [["LC_ALL", 106, 7]], [["description", 120, 5], ["homepage", 121, 5], ["changelog", 122, 5], ["license", 123, 5], ["maintainers", 124, 5]], [["pname", 38, 3], ["version", 39, 3], ["pyproject", 40, 3], ["src", 42, 3], ["postPatch", 54, 3], ["build-system", 59, 3], ["pythonRelaxDeps", 61, 3], ["buildInputs", 63, 3], ["dependencies", 71, 3], ["optional-dependencies", 85, 3], ["nativeCheckInputs", 89, 3], ["disabledTests", 99, 3], ["env", 106, 3], ["dontPatchShebangs", 111, 3], ["postFixup", 113, 3], ["pythonImportsCheck", 117, 3], ["meta", 119, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, "pdm-backend": false, glibcLocales: false, git: false, pandoc: false, typogrify: false, blinker: false, docutils: false, feedgenerator: false, jinja2: false, markdown: false, "ordered-set": false, pygments: false, "python-dateutil": false, rich: false, tzdata: false, unidecode: false, watchfiles: false, beautifulsoup4: false, lxml: false, mock: false, pytestCheckHook: false, "pytest-xdist": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 43, 5], ["repo", 44, 5], ["tag", 45, 5], ["hash", 46, 5], ["postFetch", 49, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["markdown", 86, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["LC_ALL", 106, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 120, 5], ["homepage", 121, 5], ["changelog", 122, 5], ["license", 123, 5], ["maintainers", 124, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 38, 3], ["version", 39, 3], ["pyproject", 40, 3], ["src", 42, 3], ["postPatch", 54, 3], ["build-system", 59, 3], ["pythonRelaxDeps", 61, 3], ["buildInputs", 63, 3], ["dependencies", 71, 3], ["optional-dependencies", 85, 3], ["nativeCheckInputs", 89, 3], ["disabledTests", 99, 3], ["env", 106, 3], ["dontPatchShebangs", 111, 3], ["postFixup", 113, 3], ["pythonImportsCheck", 117, 3], ["meta", 119, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -41,7 +37,7 @@ export default nix.lambda((args) => (() => {
       const version = "4.12.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "getpelican",
           repo: "pelican",
           tag: version,
@@ -67,19 +63,19 @@ export default nix.lambda((args) => (() => {
         unidecode,
         watchfiles,
       ]);
-      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, markdown: nix.thunk(() => [markdown]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: $pos[1], markdown: nix.thunk(() => [markdown]) }));
       const nativeCheckInputs = nix.thunk(() => [beautifulsoup4, git, lxml, mock, pandoc, pytest_xdist, pytestCheckHook]);
       const disabledTests = nix.thunk(() => [
         "test_basic_generation_works",
         "test_custom_generation_works",
         "test_custom_locale_generation_works",
       ]);
-      const env = nix.thunk(() => ({ [nix.POS]: pos$3, LC_ALL: "en_US.UTF-8" }));
+      const env = nix.thunk(() => ({ [nix.POS]: $pos[2], LC_ALL: "en_US.UTF-8" }));
       const dontPatchShebangs = true;
       const postFixup = "patchShebangs $out/bin\n";
       const pythonImportsCheck = nix.thunk(() => ["pelican"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Static site generator that requires no database or server-side logic",
         homepage: "https://getpelican.com/",
         changelog: nix.thunk(() => nix.str`https://github.com/getpelican/pelican/blob/${nix.sel(src, "tag")}/docs/changelog.rst`),
@@ -90,7 +86,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         pyproject,

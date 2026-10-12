@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 8, 3], ["version", 10, 33], ["src", 10, 41], ["meta", 10, 45], ["buildInputs", 12, 3]]]);
 const formals$1 = { args: { buildDunePackage: false, cmdliner: false, "ocamlformat-mlx-lib": false, re: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 8, 3], ["version", 10, 33], ["src", 10, 41], ["meta", 10, 45], ["buildInputs", 12, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const ocamlformat_mlx_lib = nix.arg($, "ocamlformat-mlx-lib");
   const re = nix.arg($, "re");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       pname: "ocamlformat-mlx",
       version: nix.thunk(() => nix.attr(ocamlformat_mlx_lib, "version")),
       src: nix.thunk(() => nix.attr(ocamlformat_mlx_lib, "src")),

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]], [["pname", 33, 5], ["pkg", 34, 5], ["data", 35, 5]], [["updateScript", 124, 12]], [["homepage", 127, 5], ["license", 128, 5], ["maintainers", 129, 5], ["description", 130, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["nativeBuildInputs", 25, 3], ["mitmCache", 32, 3], ["gradleBuildTask", 38, 3], ["doCheck", 40, 3], ["gradleCheckTask", 41, 3], ["outputs", 43, 3], ["installPhase", 50, 3], ["doInstallCheck", 100, 3], ["installCheckPhase", 101, 3], ["passthru", 124, 3], ["meta", 126, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, gradle: false, jre: false, runtimeShell: false, htmlq: false, html2text: false, txt2man: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 33, 5], ["pkg", 34, 5], ["data", 35, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 124, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 127, 5], ["license", 128, 5], ["maintainers", 129, 5], ["description", 130, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["nativeBuildInputs", 25, 3], ["mitmCache", 32, 3], ["gradleBuildTask", 38, 3], ["doCheck", 40, 3], ["gradleCheckTask", 41, 3], ["outputs", 43, 3], ["installPhase", 50, 3], ["doInstallCheck", 100, 3], ["installCheckPhase", 101, 3], ["passthru", 124, 3], ["meta", 126, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const html2text = nix.arg($, "html2text");
   const txt2man = nix.arg($, "txt2man");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "simple-binary-encoding",
       version: "1.39.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "aeron-io",
           repo: "simple-binary-encoding",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -33,7 +29,7 @@ export default nix.lambda((args) => (() => {
         })))),
       nativeBuildInputs: nix.thunk(() => [gradle, htmlq, html2text, txt2man]),
       mitmCache: nix.thunk(() => nix.app(nix.sel(gradle, "fetchDeps"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: "simple-binary-encoding",
           pkg: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
           data: nix.path(here, "./deps.json"),
@@ -92,9 +88,9 @@ runHook postInstall
 `),
       doInstallCheck: true,
       installCheckPhase: "# Check that we have some usage documentation\n\"$out\"/bin/sbetool --help 2>&1 | grep -q Usage\n\n# Check that the script can pass arguments to the underlying jar\ntmpdir=\"$(mktemp -d)\"\n\"$out\"/bin/sbetool \\\n  sbe-tool/src/test/resources/example-schema.xml \\\n  -Dsbe.target.language=golang \\\n  -Dsbe.output.dir=\"$tmpdir\"\nfind \"$tmpdir/baseline\" | grep -q '.*[.]go'\n\n# Check that -- passes as files\ntmpdir=\"$(mktemp -d)\"\ncp sbe-tool/src/test/resources/example-schema.xml -- -e.xml\n\"$out\"/bin/sbetool \\\n  -Dsbe.target.language=golang \\\n  -Dsbe.output.dir=\"$tmpdir\" \\\n  -- \\\n  -e.xml\nfind \"$tmpdir/baseline\" | grep -q '.*[.]go'\n",
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$3, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[2], updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://github.com/aeron-io/simple-binary-encoding",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
         maintainers: nix.thunk(() => (() => {

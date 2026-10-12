@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["stdenv", 16, 7], ["fetchurl", 17, 7], ["undmg", 18, 7], ["cpio", 19, 7], ["xar", 20, 7], ["lib", 21, 7]], [["url", 31, 5], ["sha256", 32, 5]], [["url", 48, 5], ["hash", 49, 5], ["stripLen", 50, 5], ["extraPrefix", 51, 5]], [["bootstrap", 99, 5]], [["description", 103, 5], ["homepage", 104, 5], ["maintainers", 105, 5], ["license", 106, 5], ["platforms", 110, 5], ["broken", 114, 5]], [["version", 27, 3], ["pname", 28, 3], ["src", 30, 3], ["buildInputs", 35, 3], ["glibc", 40, 3], ["patches", 43, 3], ["postPatch", 54, 3], ["preConfigure", 74, 3], ["makeFlags", 78, 3], ["installFlags", 83, 3], ["postInstall", 85, 3], ["passthru", 98, 3], ["meta", 102, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, gawk: false, fetchpatch: false, undmg: false, cpio: false, xar: false, libiconv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["stdenv", 16, 7], ["fetchurl", 17, 7], ["undmg", 18, 7], ["cpio", 19, 7], ["xar", 20, 7], ["lib", 21, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["url", 31, 5], ["sha256", 32, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["url", 48, 5], ["hash", 49, 5], ["stripLen", 50, 5], ["extraPrefix", 51, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["bootstrap", 99, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["description", 103, 5], ["homepage", 104, 5], ["maintainers", 105, 5], ["license", 106, 5], ["platforms", 110, 5], ["broken", 114, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["version", 27, 3], ["pname", 28, 3], ["src", 30, 3], ["buildInputs", 35, 3], ["glibc", 40, 3], ["patches", 43, 3], ["postPatch", 54, 3], ["preConfigure", 74, 3], ["makeFlags", 78, 3], ["installFlags", 83, 3], ["postInstall", 85, 3], ["passthru", 98, 3], ["meta", 102, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,7 +17,7 @@ export default nix.lambda((args) => (() => {
   const xar = nix.arg($, "xar");
   const libiconv = nix.arg($, "libiconv");
   const startFPC = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./binary.nix")), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       stdenv: stdenv,
       fetchurl: fetchurl,
       undmg: undmg,
@@ -34,14 +29,14 @@ export default nix.lambda((args) => (() => {
       const version = "3.2.2";
       const pname = "fpc";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: nix.thunk(() => nix.str`mirror://sourceforge/freepascal/fpcbuild-${version}.tar.gz`),
           sha256: "85ef993043bb83f999e2212f1bca766eb71f6f973d362e2290475dbaaf50161f",
         }))));
       const buildInputs = nix.thunk(() => [startFPC, gawk]);
       const glibc = nix.thunk(() => nix.sel(stdenv, "cc", "libc", "out"));
       const patches = nix.thunk(() => nix.concat([nix.path(here, "./mark-paths.patch")], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isAarch64")), nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: "https://gitlab.com/freepascal.org/fpc/source/-/commit/a20a7e3497bccf3415bf47ccc55f133eb9d6d6a0.patch",
             hash: "sha256-xKTBwuOxOwX9KCazQbBNLhMXCqkuJgIFvlXewHY63GM=",
             stripLen: 1n,
@@ -80,9 +75,9 @@ $out/lib/fpc/*/samplecfg $out/lib/fpc/${version} $out/lib/fpc/etc/
 mkdir -p $out/etc
 $out/lib/fpc/*/samplecfg $out/lib/fpc/${version} $out/etc
 `);
-      const passthru = nix.thunk(() => ({ [nix.POS]: pos$4, bootstrap: startFPC }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: $pos[3], bootstrap: startFPC }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Free Pascal Compiler from a source distribution",
         homepage: "https://www.freepascal.org",
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "raskin"))]),
@@ -97,7 +92,7 @@ $out/lib/fpc/*/samplecfg $out/lib/fpc/${version} $out/etc
         broken: nix.thunk(() => (nix.asBool(nix.sel(stdenv, "cc", "isClang")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isx86_64")))),
       }));
       return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         version,
         pname,
         src,

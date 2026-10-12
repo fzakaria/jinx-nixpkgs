@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["pname", 16, 13], ["version", 17, 31], ["meta", 17, 39], ["dontUnpack", 19, 5], ["nativeBuildInputs", 21, 5], ["installPhase", 23, 5]]]);
 const formals$1 = { args: { "cinny-unwrapped": false, jq: false, stdenvNoCC: false, writeText: false, conf: true, pname: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["pname", 16, 13], ["version", 17, 31], ["meta", 17, 39], ["dontUnpack", 19, 5], ["nativeBuildInputs", 21, 5], ["installPhase", 23, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const pname = nix.argOr($, "pname", () => "cinny");
   const configOverrides = nix.thunk(() => nix.app(writeText, nix.thunk(() => nix.str`${pname}-config-overrides.json`), nix.thunk(() => nix.builtins.toJSON(conf))));
   return (nix.asBool(nix.eq(conf, {})) ? nix.force(cinny_unwrapped) : nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       pname: pname,
       version: nix.thunk(() => nix.attr(cinny_unwrapped, "version")),
       meta: nix.thunk(() => nix.attr(cinny_unwrapped, "meta")),

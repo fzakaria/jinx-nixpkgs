@@ -2,11 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["name", 13, 5], ["publisher", 14, 5], ["version", 15, 5], ["arch", 20, 5], ["hash", 21, 5]], [["updateScript", 36, 12]], [["changelog", 39, 5], ["description", 40, 5], ["downloadPage", 41, 5], ["homepage", 42, 5], ["license", 43, 5], ["maintainers", 44, 5], ["platforms", 45, 5]], [["mktplcRef", 12, 3], ["nativeBuildInputs", 24, 3], ["postInstall", 29, 3], ["passthru", 36, 3], ["meta", 38, 3]]]);
 const formals$1 = { args: { lib: false, "vscode-utils": false, "vscode-extension-update-script": false, jq: false, harper: false, moreutils: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/default.nix", [["name", 13, 5], ["publisher", 14, 5], ["version", 15, 5], ["arch", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["updateScript", 36, 12]]);
-const pos$3 = nix.positions(here + "/default.nix", [["changelog", 39, 5], ["description", 40, 5], ["downloadPage", 41, 5], ["homepage", 42, 5], ["license", 43, 5], ["maintainers", 44, 5], ["platforms", 45, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["mktplcRef", 12, 3], ["nativeBuildInputs", 24, 3], ["postInstall", 29, 3], ["passthru", 36, 3], ["meta", 38, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,9 +14,9 @@ export default nix.lambda((args) => (() => {
   const harper = nix.arg($, "harper");
   const moreutils = nix.arg($, "moreutils");
   return nix.app(nix.sel(vscode_utils, "buildVscodeMarketplaceExtension"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       mktplcRef: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         name: "harper",
         publisher: "elijah-potter",
         version: nix.thunk(() => nix.sel(harper, "version")),
@@ -33,11 +30,11 @@ jq '.contributes.configuration.properties."harper.path".default = "${nix.app(nix
 rm ./bin/harper-ls
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(vscode_extension_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         changelog: nix.thunk(() => nix.str`https://github.com/Automattic/harper/releases/tag/v${nix.sel(harper, "version")}`),
         description: "The grammar checker for developers as a Visual Studio Code extension",
         downloadPage: "https://marketplace.visualstudio.com/items?itemName=elijah-potter.harper",

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["urls", 14, 5], ["hash", 18, 5]], [["homepage", 47, 5], ["description", 48, 5], ["license", 49, 5], ["platforms", 53, 5], ["teams", 54, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 21, 3], ["installPhase", 25, 3], ["meta", 46, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, glib: false, "nixos-artwork": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["urls", 14, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 47, 5], ["description", 48, 5], ["license", 49, 5], ["platforms", 53, 5], ["teams", 54, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 21, 3], ["installPhase", 25, 3], ["meta", 46, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const glib = nix.arg($, "glib");
   const nixos_artwork = nix.arg($, "nixos-artwork");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "mint-artwork",
       version: "1.9.4",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           urls: nix.thunk(() => [
             nix.thunk(() => nix.str`http://packages.linuxmint.com/pool/main/m/mint-artwork/mint-artwork_${nix.sel(finalAttrs, "version")}.tar.xz`),
             nix.thunk(() => nix.str`https://web.archive.org/web/20261007095334/http://packages.linuxmint.com/pool/main/m/mint-artwork/mint-artwork_${nix.sel(finalAttrs, "version")}.tar.xz`),
@@ -47,7 +45,7 @@ mv usr/share $out/share
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/linuxmint/mint-artwork",
         description: "Artwork for the cinnamon desktop",
         license: nix.thunk(() => (() => {

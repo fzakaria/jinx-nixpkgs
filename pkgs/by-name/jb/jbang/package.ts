@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 20, 5], ["sha256", 21, 5]], [["description", 52, 5], ["mainProgram", 53, 5], ["longDescription", 54, 5], ["homepage", 58, 5], ["sourceProvenance", 59, 5], ["license", 62, 5], ["platforms", 63, 5], ["maintainers", 64, 5]], [["version", 13, 3], ["pname", 14, 3], ["__structuredAttrs", 16, 3], ["strictDeps", 17, 3], ["src", 19, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 26, 3], ["installPhase", 30, 3], ["installCheckPhase", 47, 3], ["meta", 51, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchzip: false, jdk: false, makeWrapper: false, bashNonInteractive: false, coreutils: false, curl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 20, 5], ["sha256", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 52, 5], ["mainProgram", 53, 5], ["longDescription", 54, 5], ["homepage", 58, 5], ["sourceProvenance", 59, 5], ["license", 62, 5], ["platforms", 63, 5], ["maintainers", 64, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 13, 3], ["pname", 14, 3], ["__structuredAttrs", 16, 3], ["strictDeps", 17, 3], ["src", 19, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 26, 3], ["installPhase", 30, 3], ["installCheckPhase", 47, 3], ["meta", 51, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const __structuredAttrs = true;
       const strictDeps = true;
       const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/jbangdev/jbang/releases/download/v${version}/${pname}-${version}.tar`),
           sha256: "sha256-fw87WrmqdVH+NJ+rAnuMukz7qMTRg6CMgLVg/+JPahI=",
         }))));
@@ -40,7 +38,7 @@ runHook postInstall
       const installCheckPhase = nix.thunk(() => nix.str`$out/bin/jbang --version 2>&1 | grep -q "${version}"
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Run java as scripts anywhere",
         mainProgram: "jbang",
         longDescription: "jbang uses the java language to build scripts similar to groovy scripts. Dependencies are automatically\ndownloaded and the java code runs.\n",
@@ -57,7 +55,7 @@ runHook postInstall
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         version,
         pname,
         __structuredAttrs,

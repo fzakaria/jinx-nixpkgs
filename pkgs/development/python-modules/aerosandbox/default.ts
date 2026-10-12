@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 23, 5], ["version", 24, 26], ["format", 25, 5], ["python", 27, 5], ["dist", 28, 5], ["hash", 29, 5]], [["description", 56, 5], ["homepage", 57, 5], ["license", 58, 5], ["maintainers", 59, 5]], [["pname", 18, 3], ["version", 19, 3], ["format", 20, 3], ["src", 22, 3], ["build-system", 32, 3], ["dependencies", 33, 3], ["pythonImportsCheck", 45, 3], ["pythonRemoveDeps", 47, 3], ["meta", 55, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, setuptools: false, numpy: false, scipy: false, pandas: false, matplotlib: false, seaborn: false, tqdm: false, sortedcontainers: false, dill: false, casadi: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 23, 5], ["version", 24, 26], ["format", 25, 5], ["python", 27, 5], ["dist", 28, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 56, 5], ["homepage", 57, 5], ["license", 58, 5], ["maintainers", 59, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 18, 3], ["version", 19, 3], ["format", 20, 3], ["src", 22, 3], ["build-system", 32, 3], ["dependencies", 33, 3], ["pythonImportsCheck", 45, 3], ["pythonRemoveDeps", 47, 3], ["meta", 55, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const dill = nix.arg($, "dill");
   const casadi = nix.arg($, "casadi");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "aerosandbox",
       version: "4.2.8",
       format: "wheel",
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "AeroSandbox",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           format: "wheel",
@@ -51,7 +49,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["aerosandbox"]),
       pythonRemoveDeps: nix.thunk(() => ["neuralfoil", "casadi"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Aircraft design optimization made fast through modern automatic differentiation",
         homepage: "https://peterdsharpe.github.io/AeroSandbox",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

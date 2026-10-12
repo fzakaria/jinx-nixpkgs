@@ -2,18 +2,15 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/options-doc.nix", [[["modules", 6, 5], ["class", 7, 5]], [["url", 20, 7], ["name", 21, 7]], [["declarations", 27, 36]], [["options", 25, 21], ["documentType", 26, 3], ["transformOptions", 27, 3]]]);
 const formals$1 = { args: { lib: false, nixosOptionsDoc: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/options-doc.nix", [["modules", 6, 5], ["class", 7, 5]]);
-const pos$2 = nix.positions(here + "/options-doc.nix", [["url", 20, 7], ["name", 21, 7]]);
-const pos$3 = nix.positions(here + "/options-doc.nix", [["declarations", 27, 36]]);
-const pos$4 = nix.positions(here + "/options-doc.nix", [["options", 25, 21], ["documentType", 26, 3], ["transformOptions", 27, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const nixosOptionsDoc = nix.arg($, "nixosOptionsDoc");
   const modules = nix.thunk(() => nix.app(nix.sel(lib, "evalModules"), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       modules: nix.thunk(() => [nix.path(here, "../../pkgs/top-level/config.nix")]),
       class: "nixpkgsConfig",
     }))));
@@ -23,17 +20,17 @@ export default nix.lambda((args) => (() => {
     const subpath = nix.thunk(() => nix.app(nix.sel(lib, "removePrefix"), "/", nix.thunk(() => nix.app(nix.sel(lib, "removePrefix"), root, declStr))));
     nix.assert_(nix.app(nix.sel(lib, "hasPrefix"), root, declStr), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/doc/doc-support/options-doc.nix:18:5");
     return {
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       url: nix.thunk(() => nix.str`https://github.com/NixOS/nixpkgs/blob/master/${subpath}`),
       name: subpath,
     };
   })();
   return nix.app(nixosOptionsDoc, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       options: nix.thunk(() => nix.attr(modules, "options")),
       documentType: "none",
       transformOptions: (opt) => nix.update(opt, {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         declarations: nix.thunk(() => nix.builtins.map(transformDeclaration, nix.thunk(() => nix.sel(opt, "declarations")))),
       }),
     })));

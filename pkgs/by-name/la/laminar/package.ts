@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 17, 5], ["sha256", 18, 5]], [["url", 21, 5], ["hash", 22, 5]], [["url", 25, 5], ["hash", 26, 5]], [["vue", 16, 6], ["ansi_up", 20, 6], ["Chart", 24, 6]], [["owner", 37, 5], ["repo", 38, 5], ["rev", 39, 5], ["hash", 40, 5]], [["description", 78, 5], ["homepage", 79, 5], ["license", 80, 5], ["platforms", 81, 5], ["maintainers", 82, 5]], [["pname", 30, 3], ["version", 31, 3], ["outputs", 32, 3], ["src", 36, 3], ["patches", 42, 3], ["nativeBuildInputs", 45, 3], ["buildInputs", 51, 3], ["cmakeFlags", 58, 3], ["preBuild", 60, 3], ["postInstall", 67, 3], ["meta", 77, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, fetchFromGitHub: false, cmake: false, "pkg-config": false, capnproto: false, sqlite: false, boost: false, zlib: false, rapidjson: false, pandoc: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 17, 5], ["sha256", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 21, 5], ["hash", 22, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 25, 5], ["hash", 26, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["vue", 16, 6], ["ansi_up", 20, 6], ["Chart", 24, 6]]);
-const pos$5 = nix.positions(here + "/package.nix", [["owner", 37, 5], ["repo", 38, 5], ["rev", 39, 5], ["hash", 40, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 78, 5], ["homepage", 79, 5], ["license", 80, 5], ["platforms", 81, 5], ["maintainers", 82, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 30, 3], ["version", 31, 3], ["outputs", 32, 3], ["src", 36, 3], ["patches", 42, 3], ["nativeBuildInputs", 45, 3], ["buildInputs", 51, 3], ["cmakeFlags", 58, 3], ["preBuild", 60, 3], ["postInstall", 67, 3], ["meta", 77, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,30 +20,30 @@ export default nix.lambda((args) => (() => {
   const rapidjson = nix.arg($, "rapidjson");
   const pandoc = nix.arg($, "pandoc");
   const js = nix.thunk(() => ({
-    [nix.POS]: pos$4,
+    [nix.POS]: $pos[3],
     vue: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         url: "https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.12/vue.min.js",
         sha256: "1hm5kci2g6n5ikrvp1kpkkdzimjgylv1xicg2vnkbvd9rb56qa99",
       })))),
     ansi_up: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         url: "https://raw.githubusercontent.com/drudru/ansi_up/v5.2.1/ansi_up.js",
         hash: "sha256-n+tjM7z62ovMht6Zud3jfyQvgrO6cL9zdyEBakKuuRs=",
       })))),
     Chart: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         url: "https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js",
         hash: "sha256-+8RZJua0aEWg+QVVKg4LEzEEm/8RFez5Tb4JBNiV5xA=",
       })))),
   }));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "laminar",
       version: "1.4",
       outputs: nix.thunk(() => ["out", "doc"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           owner: "ohwgiles",
           repo: "laminar",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -68,7 +62,7 @@ cp  ${nix.sel(js, "Chart")}       js/Chart.min.js
 `),
       postInstall: "mv $out/usr/share/* $out/share/\nrmdir $out/usr/share $out/usr\n\nmkdir -p $out/share/doc/laminar\npandoc -s ../UserManual.md -o $out/share/doc/laminar/UserManual.html\nrm -rf $out/lib # remove upstream systemd units\nrm -rf $out/etc # remove upstream config file\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Lightweight and modular continuous integration service",
         homepage: "https://laminar.ohwg.net",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

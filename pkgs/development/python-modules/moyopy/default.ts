@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]], [["CARGO_TARGET_DIR", 39, 5]], [["pname", 44, 7], ["version", 45, 7], ["src", 46, 7], ["sourceRoot", 47, 7], ["cargoRoot", 48, 7], ["hash", 50, 5]], [["description", 75, 5], ["homepage", 76, 5], ["changelog", 77, 5], ["license", 78, 5], ["maintainers", 79, 5]], [["pname", 18, 3], ["version", 19, 3], ["pyproject", 20, 3], ["__structuredAttrs", 21, 3], ["src", 23, 3], ["sourceRoot", 30, 3], ["cargoRoot", 31, 3], ["nativeBuildInputs", 33, 3], ["env", 38, 3], ["cargoDeps", 42, 3], ["build-system", 53, 3], ["dependencies", 58, 3], ["pythonImportsCheck", 62, 3], ["nativeCheckInputs", 64, 3], ["disabledTestPaths", 69, 3], ["meta", 74, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, rustPlatform: false, "typing-extensions": false, numpy: false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["CARGO_TARGET_DIR", 39, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 44, 7], ["version", 45, 7], ["src", 46, 7], ["sourceRoot", 47, 7], ["cargoRoot", 48, 7], ["hash", 50, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 75, 5], ["homepage", 76, 5], ["changelog", 77, 5], ["license", 78, 5], ["maintainers", 79, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 18, 3], ["version", 19, 3], ["pyproject", 20, 3], ["__structuredAttrs", 21, 3], ["src", 23, 3], ["sourceRoot", 30, 3], ["cargoRoot", 31, 3], ["nativeBuildInputs", 33, 3], ["env", 38, 3], ["cargoDeps", 42, 3], ["build-system", 53, 3], ["dependencies", 58, 3], ["pythonImportsCheck", 62, 3], ["nativeCheckInputs", 64, 3], ["disabledTestPaths", 69, 3], ["meta", 74, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,13 +15,13 @@ export default nix.lambda((args) => (() => {
   const numpy = nix.arg($, "numpy");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "moyopy",
       version: "0.21.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "spglib",
           repo: "moyo",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -40,9 +36,9 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.lookup(w, "maturinBuildHook")),
         ];
       })()),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, CARGO_TARGET_DIR: "./target" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], CARGO_TARGET_DIR: "./target" })),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -59,7 +55,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [numpy, pytestCheckHook]),
       disabledTestPaths: nix.thunk(() => ["python/tests/test_interface.py"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Python interface of moyo, a fast and robust crystal symmetry finder",
         homepage: "https://spglib.github.io/moyo/python/",
         changelog: nix.thunk(() => nix.str`https://github.com/spglib/moyo/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

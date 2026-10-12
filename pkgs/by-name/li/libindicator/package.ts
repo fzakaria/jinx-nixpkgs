@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 16, 5], ["sha256", 17, 5]], [["description", 53, 5], ["homepage", 54, 5], ["license", 55, 5], ["platforms", 56, 5], ["maintainers", 57, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["strictDeps", 20, 3], ["nativeBuildInputs", 22, 3], ["buildInputs", 27, 3], ["postPatch", 29, 3], ["configureFlags", 38, 3], ["installFlags", 45, 3], ["doCheck", 50, 3], ["meta", 52, 3]]]);
 const formals$1 = { args: { stdenv: false, fetchurl: false, lib: false, file: false, "pkg-config": false, glib: false, gtk3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 16, 5], ["sha256", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 53, 5], ["homepage", 54, 5], ["license", 55, 5], ["platforms", 56, 5], ["maintainers", 57, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["strictDeps", 20, 3], ["nativeBuildInputs", 22, 3], ["buildInputs", 27, 3], ["postPatch", 29, 3], ["configureFlags", 38, 3], ["installFlags", 45, 3], ["doCheck", 50, 3], ["meta", 52, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const glib = nix.arg($, "glib");
   const gtk3 = nix.arg($, "gtk3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "libindicator",
       version: "12.10.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://launchpad.net/libindicator/${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/${nix.sel(finalAttrs, "version")}/+download/libindicator-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "b2d2e44c10313d5c9cd60db455d520f80b36dc39562df079a3f29495e8f9447f",
         })))),
@@ -44,7 +42,7 @@ done
       installFlags: nix.thunk(() => ["sysconfdir=${out}/etc", "localstatedir=${TMPDIR}"]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Set of symbols and convenience functions for Ayatana indicators",
         homepage: "https://launchpad.net/libindicator",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

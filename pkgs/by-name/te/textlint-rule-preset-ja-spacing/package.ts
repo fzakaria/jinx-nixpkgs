@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]], [["yarnLock", 25, 5], ["hash", 26, 5]], [["rule", 56, 5], ["testFile", 57, 5]], [["tests", 55, 12]], [["description", 61, 5], ["homepage", 62, 5], ["changelog", 63, 5], ["license", 64, 5], ["maintainers", 65, 5], ["platforms", 66, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["offlineCache", 24, 3], ["nativeBuildInputs", 29, 3], ["installPhase", 35, 3], ["passthru", 55, 3], ["meta", 60, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchYarnDeps: false, nodejs: false, yarnBuildHook: false, yarnConfigHook: false, textlint: false, "textlint-rule-preset-ja-spacing": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["yarnLock", 25, 5], ["hash", 26, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["rule", 56, 5], ["testFile", 57, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 55, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 61, 5], ["homepage", 62, 5], ["changelog", 63, 5], ["license", 64, 5], ["maintainers", 65, 5], ["platforms", 66, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["offlineCache", 24, 3], ["nativeBuildInputs", 29, 3], ["installPhase", 35, 3], ["passthru", 55, 3], ["meta", 60, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,33 +17,33 @@ export default nix.lambda((args) => (() => {
   const textlint = nix.arg($, "textlint");
   const textlint_rule_preset_ja_spacing = nix.arg($, "textlint-rule-preset-ja-spacing");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "textlint-rule-preset-ja-spacing",
       version: "2.4.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "textlint-ja",
           repo: "textlint-rule-preset-ja-spacing",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-M27qhjIHMcKbuPAh523Pi5IB5BD0VWawh84kUyLcKvg=",
         })))),
       offlineCache: nix.thunk(() => nix.app(fetchYarnDeps, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           yarnLock: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src")}/yarn.lock`),
           hash: "sha256-AfbYACqYBvfsKzhryQabXQQmera19N/UH67sR5kbihM=",
         })))),
       nativeBuildInputs: nix.thunk(() => [nodejs, yarnBuildHook, yarnConfigHook]),
       installPhase: "runHook preInstall\n\nyarn install \\\n  --force \\\n  --frozen-lockfile \\\n  --ignore-engines \\\n  --ignore-platform \\\n  --ignore-scripts \\\n  --no-progress \\\n  --non-interactive \\\n  --offline \\\n  --production=true\n\nmkdir -p $out/lib\ncp -r . $out/lib\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => nix.app(nix.sel(textlint, "testPackages"), nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             rule: textlint_rule_preset_ja_spacing,
             testFile: nix.path(here, "./test.md"),
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "スペース周りのスタイルを扱うtextlintルールプリセット",
         homepage: "https://github.com/textlint-ja/textlint-rule-preset-ja-spacing",
         changelog: nix.thunk(() => nix.str`https://github.com/textlint-ja/textlint-rule-preset-ja-spacing/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

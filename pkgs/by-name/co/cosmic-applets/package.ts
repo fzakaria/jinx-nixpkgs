@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]], [["cosmic", 79, 9], ["cosmic-autologin", 80, 9], ["cosmic-noxwayland", 81, 9], ["cosmic-autologin-noxwayland", 82, 9]], [["extraArgs", 87, 7]], [["tests", 77, 5], ["updateScript", 86, 5]], [["homepage", 95, 5], ["description", 96, 5], ["license", 97, 5], ["teams", 98, 5], ["platforms", 99, 5]], [["pname", 23, 3], ["version", 24, 3], ["src", 27, 3], ["cargoHash", 34, 3], ["separateDebugInfo", 36, 3], ["__structuredAttrs", 37, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 47, 3], ["dontUseJustBuild", 57, 3], ["dontUseJustCheck", 58, 3], ["justFlags", 60, 3], ["preFixup", 69, 3], ["passthru", 76, 3], ["meta", 94, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, rustPlatform: false, libcosmicAppHook: false, just: false, "pkg-config": false, "util-linuxMinimal": false, dbus: false, glib: false, libinput: false, pulseaudio: false, pipewire: false, udev: false, lsof: false, xkeyboard_config: false, "nix-update-script": false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["cosmic", 79, 9], ["cosmic-autologin", 80, 9], ["cosmic-noxwayland", 81, 9], ["cosmic-autologin-noxwayland", 82, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["extraArgs", 87, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 77, 5], ["updateScript", 86, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["homepage", 95, 5], ["description", 96, 5], ["license", 97, 5], ["teams", 98, 5], ["platforms", 99, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 23, 3], ["version", 24, 3], ["src", 27, 3], ["cargoHash", 34, 3], ["separateDebugInfo", 36, 3], ["__structuredAttrs", 37, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 47, 3], ["dontUseJustBuild", 57, 3], ["dontUseJustCheck", 58, 3], ["justFlags", 60, 3], ["preFixup", 69, 3], ["passthru", 76, 3], ["meta", 94, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "cosmic-applets",
       version: "1.9.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "pop-os",
           repo: "cosmic-applets",
           tag: nix.thunk(() => nix.str`epoch-${nix.sel(finalAttrs, "version")}`),
@@ -68,21 +63,21 @@ export default nix.lambda((args) => (() => {
 )
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           cosmic: nix.thunk(() => nix.attr(nixosTests, "cosmic")),
           "cosmic-autologin": nix.thunk(() => nix.attr(nixosTests, "cosmic-autologin")),
           "cosmic-noxwayland": nix.thunk(() => nix.attr(nixosTests, "cosmic-noxwayland")),
           "cosmic-autologin-noxwayland": nix.thunk(() => nix.attr(nixosTests, "cosmic-autologin-noxwayland")),
         })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             extraArgs: nix.thunk(() => ["--version-regex", "epoch-(.*)"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "https://github.com/pop-os/cosmic-applets",
         description: "Applets for the COSMIC Desktop Environment",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

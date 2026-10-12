@@ -2,31 +2,26 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/scanservjs.nix", [[["host", 12, 18], ["port", 13, 18]], [["enable", 11, 9], ["settings", 12, 9]], [["scanservjs", 10, 16]], [["services", 10, 7]], [["machine", 7, 9]], [["name", 5, 3], ["nodes", 7, 3], ["testScript", 17, 3]]]);
 const formals$1 = { args: {  }, ellipsis: true };
-const pos$1 = nix.positions(here + "/scanservjs.nix", [["host", 12, 18], ["port", 13, 18]]);
-const pos$2 = nix.positions(here + "/scanservjs.nix", [["enable", 11, 9], ["settings", 12, 9]]);
-const pos$3 = nix.positions(here + "/scanservjs.nix", [["scanservjs", 10, 16]]);
-const pos$4 = nix.positions(here + "/scanservjs.nix", [["services", 10, 7]]);
-const pos$5 = nix.positions(here + "/scanservjs.nix", [["machine", 7, 9]]);
-const pos$6 = nix.positions(here + "/scanservjs.nix", [["name", 5, 3], ["nodes", 7, 3], ["testScript", 17, 3]]);
 
 export default nix.thunk(() => (() => {
   const port = 1234n;
   return {
-    [nix.POS]: pos$6,
+    [nix.POS]: $pos[5],
     name: "scanservjs",
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       machine: nix.lambda((args) => (() => {
         const $ = nix.formals(args, formals$1);
         return {
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             scanservjs: nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               enable: true,
-              settings: nix.thunk(() => ({ [nix.POS]: pos$1, host: "0.0.0.0", port: port })),
+              settings: nix.thunk(() => ({ [nix.POS]: $pos[0], host: "0.0.0.0", port: port })),
             })),
           })),
         };

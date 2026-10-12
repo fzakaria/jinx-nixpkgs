@@ -2,46 +2,39 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/nginx.nix", [[["maintainers", 5, 10]], [["enabled_bridges", 13, 25]], [["system", 13, 18]], [["enable", 11, 11], ["webserver", 12, 11], ["config", 13, 11]], [["rss-bridge", 10, 18]], [["services", 10, 9]], [["machine", 7, 11]], [["name", 4, 5], ["meta", 5, 5], ["nodes", 7, 5], ["testScript", 17, 5]]]);
 const formals$1 = { args: { lib: false, pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/nginx.nix", [["maintainers", 5, 10]]);
 const formals$2 = { args: {  }, ellipsis: true };
-const pos$2 = nix.positions(here + "/nginx.nix", [["enabled_bridges", 13, 25]]);
-const pos$3 = nix.positions(here + "/nginx.nix", [["system", 13, 18]]);
-const pos$4 = nix.positions(here + "/nginx.nix", [["enable", 11, 11], ["webserver", 12, 11], ["config", 13, 11]]);
-const pos$5 = nix.positions(here + "/nginx.nix", [["rss-bridge", 10, 18]]);
-const pos$6 = nix.positions(here + "/nginx.nix", [["services", 10, 9]]);
-const pos$7 = nix.positions(here + "/nginx.nix", [["machine", 7, 11]]);
-const pos$8 = nix.positions(here + "/nginx.nix", [["name", 4, 5], ["meta", 5, 5], ["nodes", 7, 5], ["testScript", 17, 5]]);
 
 export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../make-test-python.nix")), nix.lambda((args) => (() => {
     const $ = nix.formals(args, formals$1);
     const lib = nix.arg($, "lib");
     const pkgs = nix.arg($, "pkgs");
     return {
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       name: "rss-bridge-nginx",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
           return [nix.thunk(() => nix.lookup(w, "mynacol"))];
         })()),
       })),
       nodes: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         machine: nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$2);
           return {
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             services: nix.thunk(() => ({
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               "rss-bridge": nix.thunk(() => ({
-                [nix.POS]: pos$4,
+                [nix.POS]: $pos[3],
                 enable: true,
                 webserver: "nginx",
                 config: nix.thunk(() => ({
-                  [nix.POS]: pos$3,
-                  system: nix.thunk(() => ({ [nix.POS]: pos$2, enabled_bridges: nix.thunk(() => ["DemoBridge"]) })),
+                  [nix.POS]: $pos[2],
+                  system: nix.thunk(() => ({ [nix.POS]: $pos[1], enabled_bridges: nix.thunk(() => ["DemoBridge"]) })),
                 })),
               })),
             })),

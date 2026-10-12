@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 17, 7], ["url", 18, 7], ["hash", 19, 7]], [["description", 31, 5], ["license", 32, 25], ["homepage", 32, 33], ["platforms", 33, 5]], [["pname", 10, 3], ["src", 11, 18], ["version", 11, 22], ["patches", 13, 3], ["patchFlags", 23, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 26, 3], ["sourceRoot", 28, 3], ["meta", 30, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, zlib: false, autoreconfHook: false, fetchpatch: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 17, 7], ["url", 18, 7], ["hash", 19, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 31, 5], ["license", 32, 25], ["homepage", 32, 33], ["platforms", 33, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["src", 11, 18], ["version", 11, 22], ["patches", 13, 3], ["patchFlags", 23, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 26, 3], ["sourceRoot", 28, 3], ["meta", 30, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,13 +13,13 @@ export default nix.lambda((args) => (() => {
   const autoreconfHook = nix.arg($, "autoreconfHook");
   const fetchpatch = nix.arg($, "fetchpatch");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "minizip",
       src: nix.thunk(() => nix.attr(zlib, "src")),
       version: nix.thunk(() => nix.attr(zlib, "version")),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             name: "add-int.h.patch",
             url: "https://github.com/madler/zlib/commit/cb14dc9ade3759352417a300e6c2ed73268f1d97.patch",
             hash: "sha256-eX06nYLRPqpkbBAOso1ynGDYs9dcRAI14cG89qXuUzo=",
@@ -34,7 +32,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(zlib, "meta"));
         return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Compression library implementing the deflate compression method found in gzip and PKZIP",
         license: nix.thunk(() => nix.attr(from, "license")),
         homepage: nix.thunk(() => nix.attr(from, "homepage")),

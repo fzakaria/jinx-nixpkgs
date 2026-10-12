@@ -2,11 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/configuration-ghcjs-9.x.nix", [[["libraryHaskellDepends", 28, 5], ["testHaskellDepends", 29, 5]], [["jsaddle-webkit2gtk", 43, 7]], [["url", 64, 5], ["sha256", 65, 5]], [["ghcjs-base", 12, 3], ["ghcjs-dom", 23, 3], ["ghcjs-dom-javascript", 24, 3], ["jsaddle", 25, 3], ["jsaddle-dom", 26, 3], ["jsaddle-warp", 27, 3], ["entropy", 32, 3], ["patch", 35, 3], ["reflex-dom-core", 36, 3], ["reflex-dom", 41, 3], ["reflex-localize-dom", 46, 3], ["trasa-reflex", 47, 3], ["miso-examples", 49, 3], ["splitmix", 63, 3], ["SHA", 69, 3]]]);
 const formals$1 = { args: { pkgs: false, haskellLib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/configuration-ghcjs-9.x.nix", [["libraryHaskellDepends", 28, 5], ["testHaskellDepends", 29, 5]]);
-const pos$2 = nix.positions(here + "/configuration-ghcjs-9.x.nix", [["jsaddle-webkit2gtk", 43, 7]]);
-const pos$3 = nix.positions(here + "/configuration-ghcjs-9.x.nix", [["url", 64, 5], ["sha256", 65, 5]]);
-const pos$4 = nix.positions(here + "/configuration-ghcjs-9.x.nix", [["ghcjs-base", 12, 3], ["ghcjs-dom", 23, 3], ["ghcjs-dom-javascript", 24, 3], ["jsaddle", 25, 3], ["jsaddle-dom", 26, 3], ["jsaddle-warp", 27, 3], ["entropy", 32, 3], ["patch", 35, 3], ["reflex-dom-core", 36, 3], ["reflex-dom", 41, 3], ["reflex-localize-dom", 46, 3], ["trasa-reflex", 47, 3], ["miso-examples", 49, 3], ["splitmix", 63, 3], ["SHA", 69, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const lib = nix.thunk(() => nix.attr(pkgs, "lib"));
   const w = nix.withScope(haskellLib, null);
   return (self) => (super$) => ({
-    [nix.POS]: pos$4,
+    [nix.POS]: $pos[3],
     "ghcjs-base": nix.thunk(() => nix.app(nix.lookup(w, "addBuildDepends"), nix.thunk(() => (() => {
         const w_1 = nix.withScope(self, w);
         return [
@@ -33,11 +30,11 @@ export default nix.lambda((args) => (() => {
     "ghcjs-dom-javascript": nix.thunk(() => nix.app(nix.lookup(w, "addBuildDepend"), nix.thunk(() => nix.sel(self, "ghcjs-base")), nix.thunk(() => nix.sel(super$, "ghcjs-dom-javascript")))),
     jsaddle: nix.thunk(() => nix.app(nix.lookup(w, "addBuildDepend"), nix.thunk(() => nix.sel(self, "ghcjs-base")), nix.thunk(() => nix.sel(super$, "jsaddle")))),
     "jsaddle-dom": nix.thunk(() => nix.app(nix.lookup(w, "addBuildDepend"), nix.thunk(() => nix.sel(self, "ghcjs-base")), nix.thunk(() => nix.sel(super$, "jsaddle-dom")))),
-    "jsaddle-warp": nix.thunk(() => nix.app(nix.lookup(w, "overrideCabal"), (drv) => ({ [nix.POS]: pos$1, libraryHaskellDepends: [], testHaskellDepends: [] }), nix.thunk(() => nix.sel(super$, "jsaddle-warp")))),
+    "jsaddle-warp": nix.thunk(() => nix.app(nix.lookup(w, "overrideCabal"), (drv) => ({ [nix.POS]: $pos[0], libraryHaskellDepends: [], testHaskellDepends: [] }), nix.thunk(() => nix.sel(super$, "jsaddle-warp")))),
     entropy: nix.thunk(() => nix.app(nix.lookup(w, "addBuildDepend"), nix.thunk(() => nix.sel(self, "ghcjs-dom")), nix.thunk(() => nix.sel(super$, "entropy")))),
     patch: nix.thunk(() => nix.app(nix.sel(haskellLib, "disableParallelBuilding"), nix.thunk(() => nix.sel(super$, "patch")))),
     "reflex-dom-core": nix.thunk(() => nix.app(nix.sel(haskellLib, "disableParallelBuilding"), nix.thunk(() => nix.sel(super$, "reflex-dom-core")))),
-    "reflex-dom": nix.thunk(() => nix.app(nix.lookup(w, "doDistribute"), nix.thunk(() => nix.app(nix.sel(super$, "reflex-dom", "override"), (drv) => ({ [nix.POS]: pos$2, "jsaddle-webkit2gtk": null }))))),
+    "reflex-dom": nix.thunk(() => nix.app(nix.lookup(w, "doDistribute"), nix.thunk(() => nix.app(nix.sel(super$, "reflex-dom", "override"), (drv) => ({ [nix.POS]: $pos[1], "jsaddle-webkit2gtk": null }))))),
     "reflex-localize-dom": nix.thunk(() => nix.app(nix.lookup(w, "doDistribute"), nix.thunk(() => nix.sel(super$, "reflex-localize-dom")))),
     "trasa-reflex": nix.thunk(() => nix.app(nix.lookup(w, "doDistribute"), nix.thunk(() => nix.sel(super$, "trasa-reflex")))),
     "miso-examples": nix.thunk(() => nix.app(nix.sel(pkgs, "lib", "pipe"), nix.thunk(() => nix.sel(super$, "miso-examples")), nix.thunk(() => [
@@ -53,7 +50,7 @@ export default nix.lambda((args) => (() => {
           })()))),
       ]))),
     splitmix: nix.thunk(() => nix.app(nix.lookup(w, "appendPatch"), nix.thunk(() => nix.app(nix.sel(pkgs, "fetchpatch"), nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           url: "https://github.com/haskellari/splitmix/commit/7ffb3158f577c48ab5de774abea47767921ef3e9.patch",
           sha256: "sha256-n2q4FGf/pPcI1bhb9srHjHLzaNVehkdN6kQgL0F4MMg=",
         })))), nix.thunk(() => nix.sel(super$, "splitmix")))),

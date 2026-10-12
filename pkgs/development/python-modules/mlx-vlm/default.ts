@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 36, 5], ["repo", 37, 5], ["tag", 38, 5], ["hash", 39, 5]], [["description", 94, 5], ["homepage", 95, 5], ["changelog", 96, 5], ["license", 97, 5], ["maintainers", 98, 5], ["broken", 99, 5]], [["pname", 31, 3], ["version", 32, 3], ["pyproject", 33, 3], ["src", 35, 3], ["build-system", 42, 3], ["dependencies", 46, 3], ["pythonImportsCheck", 61, 3], ["nativeCheckInputs", 63, 3], ["disabledTests", 70, 3], ["disabledTestPaths", 84, 3], ["meta", 93, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, datasets: false, fastapi: false, miniaudio: false, mlx: false, "mlx-lm": false, numpy: false, "opencv-python": false, pillow: false, requests: false, tqdm: false, transformers: false, uvicorn: false, psutil: false, pytestCheckHook: false, rich: false, sentencepiece: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 36, 5], ["repo", 37, 5], ["tag", 38, 5], ["hash", 39, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 94, 5], ["homepage", 95, 5], ["changelog", 96, 5], ["license", 97, 5], ["maintainers", 98, 5], ["broken", 99, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 31, 3], ["version", 32, 3], ["pyproject", 33, 3], ["src", 35, 3], ["build-system", 42, 3], ["dependencies", 46, 3], ["pythonImportsCheck", 61, 3], ["nativeCheckInputs", 63, 3], ["disabledTests", 70, 3], ["disabledTestPaths", 84, 3], ["meta", 93, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,12 +28,12 @@ export default nix.lambda((args) => (() => {
   const rich = nix.arg($, "rich");
   const sentencepiece = nix.arg($, "sentencepiece");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "mlx-vlm",
       version: "0.4.4",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Blaizzy",
           repo: "mlx-vlm",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -67,7 +65,7 @@ export default nix.lambda((args) => (() => {
       ]),
       disabledTestPaths: nix.thunk(() => ["mlx_vlm/tests/test_utils.py", "mlx_vlm/tests/test_smoke.py"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Inference and fine-tuning of Vision Language Models (VLMs) on your Mac using MLX",
         homepage: "https://github.com/Blaizzy/mlx-vlm",
         changelog: nix.thunk(() => nix.str`https://github.com/Blaizzy/mlx-vlm/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

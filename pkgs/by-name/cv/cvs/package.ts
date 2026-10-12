@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 21, 5], ["sha256", 22, 5]], [["url", 28, 7], ["sha256", 29, 7]], [["url", 34, 7], ["sha256", 35, 7]], [["NIX_CFLAGS_COMPILE", 51, 7]], [["homepage", 76, 5], ["description", 77, 5], ["license", 78, 5], ["platforms", 79, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["patches", 25, 3], ["hardeningDisable", 39, 3], ["nativeBuildInputs", 44, 3], ["env", 51, 3], ["configureFlags", 53, 3], ["makeFlags", 64, 3], ["doCheck", 73, 3], ["meta", 75, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, fetchpatch: false, texinfo: false, nano: false, autoreconfHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 21, 5], ["sha256", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 28, 7], ["sha256", 29, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 34, 7], ["sha256", 35, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 51, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["homepage", 76, 5], ["description", 77, 5], ["license", 78, 5], ["platforms", 79, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["patches", 25, 3], ["hardeningDisable", 39, 3], ["nativeBuildInputs", 44, 3], ["env", 51, 3], ["configureFlags", 53, 3], ["makeFlags", 64, 3], ["doCheck", 73, 3], ["meta", 75, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,30 +17,30 @@ export default nix.lambda((args) => (() => {
   const version = "1.12.13";
   const debianRevision = "real-30";
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "cvs",
       version: nix.thunk(() => nix.str`${version}+${debianRevision}`),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://savannah/cvs/source/feature/${version}/cvs-${version}.tar.bz2`),
           sha256: "0pjir8cwn0087mxszzbsi1gyfc6373vif96cw4q3m1x6p49kd1bq",
         })))),
       patches: nix.thunk(() => [
         nix.path(here, "./getcwd-chroot.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://raw.githubusercontent.com/Homebrew/formula-patches/24118ec737c7/cvs/vasnprintf-high-sierra-fix.diff",
             sha256: "1ql6aaia7xkfq3vqhlw5bd2z2ywka82zk01njs1b2szn699liymg",
           })))),
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: nix.thunk(() => nix.str`http://deb.debian.org/debian/pool/main/c/cvs/cvs_1.12.13+${debianRevision}.diff.gz`),
             sha256: "085124619dfdcd3e53c726e049235791b67dcb9f71619f1e27c5f1cbdef0063e",
           })))),
       ]),
       hardeningDisable: nix.thunk(() => ["fortify", "format"]),
       nativeBuildInputs: nix.thunk(() => [autoreconfHook, texinfo]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$4, NIX_CFLAGS_COMPILE: "-std=gnu17" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[3], NIX_CFLAGS_COMPILE: "-std=gnu17" })),
       configureFlags: nix.thunk(() => nix.concat([
         nix.thunk(() => nix.str`--with-editor=${nano}/bin/nano`),
         "cvs_cv_func_printf_ptr=yes",
@@ -53,7 +48,7 @@ export default nix.lambda((args) => (() => {
       makeFlags: nix.thunk(() => nix.concat([nix.thunk(() => nix.str`AR=${nix.sel(stdenv, "cc", "targetPrefix")}ar`)], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "cc", "bintools", "isGNU"))), nix.thunk(() => ["cvs_LDFLAGS="])))),
       doCheck: false,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "http://cvs.nongnu.org",
         description: "Concurrent Versions System - a source control system",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

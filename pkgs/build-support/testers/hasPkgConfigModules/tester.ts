@@ -2,11 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/tester.nix", [[["description", 23, 7]], [["available", 29, 7], ["broken", 30, 7], ["insecure", 31, 7], ["license", 32, 7], ["nonTeamMaintainers", 33, 7], ["teams", 34, 7], ["platforms", 35, 7], ["unfree", 36, 7], ["unsupported", 37, 7]], [["nativeBuildInputs", 19, 5], ["buildInputs", 20, 5], ["moduleNames", 21, 13], ["version", 21, 25], ["versionCheck", 21, 33], ["meta", 22, 5]]]);
 const formals$1 = { args: { lib: false, runCommand: false, "pkg-config": false }, ellipsis: false };
 const formals$2 = { args: { package: false, moduleNames: true, testName: true, version: true, versionCheck: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/tester.nix", [["description", 23, 7]]);
-const pos$2 = nix.positions(here + "/tester.nix", [["available", 29, 7], ["broken", 30, 7], ["insecure", 31, 7], ["license", 32, 7], ["nonTeamMaintainers", 33, 7], ["teams", 34, 7], ["platforms", 35, 7], ["unfree", 36, 7], ["unsupported", 37, 7]]);
-const pos$3 = nix.positions(here + "/tester.nix", [["nativeBuildInputs", 19, 5], ["buildInputs", 20, 5], ["moduleNames", 21, 13], ["version", 21, 25], ["versionCheck", 21, 33], ["meta", 22, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,17 +19,17 @@ export default nix.lambda((args) => (() => {
     const version = nix.argOr($_1, "version", () => nix.selOr(package$, () => null, "version"));
     const versionCheck = nix.argOr($_1, "versionCheck", () => false);
     return nix.app(runCommand, testName, nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         nativeBuildInputs: nix.thunk(() => [pkg_config]),
         buildInputs: nix.thunk(() => [package$]),
         moduleNames: moduleNames,
         version: version,
         versionCheck: versionCheck,
         meta: nix.thunk(() => nix.update({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           description: nix.thunk(() => nix.str`Test whether ${nix.sel(package$, "name")} exposes pkg-config modules ${nix.app(nix.sel(lib, "concatStringsSep"), ", ", moduleNames)}`),
         }, nix.builtins.intersectAttrs(nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             available: nix.thunk(() => nix.builtins.throw("unused")),
             broken: nix.thunk(() => nix.builtins.throw("unused")),
             insecure: nix.thunk(() => nix.builtins.throw("unused")),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["sha256", 22, 5]], [["description", 41, 5], ["mainProgram", 42, 5], ["homepage", 43, 5], ["license", 44, 5], ["platforms", 45, 5], ["maintainers", 46, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 18, 3], ["nativeBuildInputs", 24, 3], ["installPhase", 25, 3], ["meta", 40, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, makeWrapper: false, "bridge-utils": false, iproute2: false, lxc: false, openvswitch: false, docker: false, busybox: false, dhcpcd: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["sha256", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 41, 5], ["mainProgram", 42, 5], ["homepage", 43, 5], ["license", 44, 5], ["platforms", 45, 5], ["maintainers", 46, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 18, 3], ["nativeBuildInputs", 24, 3], ["installPhase", 25, 3], ["meta", 40, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const busybox = nix.arg($, "busybox");
   const dhcpcd = nix.arg($, "dhcpcd");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "pipework",
       version: "2017-08-22",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "jpetazzo",
           repo: "pipework",
           rev: "ae42f1b5fef82b3bc23fe93c95c345e7af65fef3",
@@ -37,7 +35,7 @@ wrapProgram $out/bin/pipework --prefix PATH : \\
   ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [bridge_utils, iproute2, lxc, openvswitch, docker, busybox, dhcpcd]))};
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Software-Defined Networking tools for LXC",
         mainProgram: "pipework",
         homepage: "https://github.com/jpetazzo/pipework",

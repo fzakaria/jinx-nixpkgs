@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]], [["ELECTRON_SKIP_BINARY_DOWNLOAD", 46, 7]], [["winboat", 51, 5]], [["extraArgs", 56, 7]], [["guest-server", 54, 5], ["updateScript", 55, 5]], [["name", 106, 7], ["desktopName", 107, 7], ["type", 108, 7], ["exec", 109, 7], ["terminal", 110, 7], ["icon", 111, 7], ["categories", 112, 7]], [["mainProgram", 117, 5], ["description", 118, 5], ["homepage", 119, 5], ["changelog", 120, 5], ["license", 121, 5], ["maintainers", 122, 5], ["platforms", 125, 5]], [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["postPatch", 33, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 44, 3], ["env", 46, 3], ["npmDepsHash", 47, 3], ["makeCacheWritable", 48, 3], ["guest-server", 50, 3], ["passthru", 53, 3], ["buildPhase", 63, 3], ["installPhase", 71, 3], ["desktopItems", 104, 3], ["meta", 116, 3]]]);
 const formals$1 = { args: { lib: false, electron_43: false, zip: false, makeWrapper: false, udev: false, usbutils: false, freerdp: false, "docker-compose": false, "podman-compose": false, pkgsCross: false, buildNpmPackage: false, fetchFromGitHub: false, makeDesktopItem: false, copyDesktopItems: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["ELECTRON_SKIP_BINARY_DOWNLOAD", 46, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["winboat", 51, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["extraArgs", 56, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["guest-server", 54, 5], ["updateScript", 55, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["name", 106, 7], ["desktopName", 107, 7], ["type", 108, 7], ["exec", 109, 7], ["terminal", 110, 7], ["icon", 111, 7], ["categories", 112, 7]]);
-const pos$7 = nix.positions(here + "/package.nix", [["mainProgram", 117, 5], ["description", 118, 5], ["homepage", 119, 5], ["changelog", 120, 5], ["license", 121, 5], ["maintainers", 122, 5], ["platforms", 125, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["postPatch", 33, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 44, 3], ["env", 46, 3], ["npmDepsHash", 47, 3], ["makeCacheWritable", 48, 3], ["guest-server", 50, 3], ["passthru", 53, 3], ["buildPhase", 63, 3], ["installPhase", 71, 3], ["desktopItems", 104, 3], ["meta", 116, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const electron = electron_43;
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "winboat",
       version: "0.9.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "TibixDev",
           repo: "winboat",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -44,18 +37,18 @@ export default nix.lambda((args) => (() => {
       postPatch: "substituteInPlace package.json \\\n  --replace-fail \"main/main.js\" \"src/main/main.ts\"\n",
       nativeBuildInputs: nix.thunk(() => [zip, makeWrapper, copyDesktopItems]),
       buildInputs: nix.thunk(() => [udev]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, ELECTRON_SKIP_BINARY_DOWNLOAD: 1n })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], ELECTRON_SKIP_BINARY_DOWNLOAD: 1n })),
       npmDepsHash: "sha256-38hDI0z3lrdSvMTUZAotIuT7Kt/NZcl8UdrYpum1i1M=",
       makeCacheWritable: true,
       "guest-server": nix.thunk(() => nix.app(nix.sel(pkgsCross, "mingwW64", "callPackage"), nix.path(here, "./guest-server.nix"), nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           winboat: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
         })))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         "guest-server": nix.thunk(() => nix.sel(finalAttrs, "guest-server")),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             extraArgs: nix.thunk(() => ["--subpackage", "guest-server"]),
           })))),
       })),
@@ -91,7 +84,7 @@ runHook postInstall
 `),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             name: "winboat",
             desktopName: "WinBoat",
             type: "Application",
@@ -102,7 +95,7 @@ runHook postInstall
           })))),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         mainProgram: "winboat",
         description: "Run Windows apps on Linux with seamless integration",
         homepage: "https://github.com/TibixDev/winboat",

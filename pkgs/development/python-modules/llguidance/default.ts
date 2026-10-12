@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 31, 5], ["repo", 32, 5], ["tag", 33, 5], ["hash", 34, 5]], [["src", 38, 26], ["pname", 38, 30], ["version", 38, 36], ["hash", 39, 5]], [["RUSTONIG_SYSTEM_LIBONIG", 56, 5]], [["description", 103, 5], ["homepage", 104, 5], ["changelog", 105, 5], ["license", 106, 5], ["maintainers", 107, 5]], [["pname", 25, 3], ["version", 26, 3], ["pyproject", 27, 3], ["__structuredAttrs", 28, 3], ["src", 30, 3], ["cargoDeps", 37, 3], ["nativeBuildInputs", 42, 3], ["buildInputs", 50, 3], ["env", 55, 3], ["pythonImportsCheck", 59, 3], ["nativeCheckInputs", 64, 3], ["preCheck", 71, 3], ["disabledTests", 75, 3], ["disabledTestPaths", 90, 3], ["meta", 102, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitHub: false, pythonAtLeast: false, cargo: false, "pkg-config": false, rustPlatform: false, rustc: false, oniguruma: false, openssl: false, pytestCheckHook: false, torch: false, transformers: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 31, 5], ["repo", 32, 5], ["tag", 33, 5], ["hash", 34, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["src", 38, 26], ["pname", 38, 30], ["version", 38, 36], ["hash", 39, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["RUSTONIG_SYSTEM_LIBONIG", 56, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 103, 5], ["homepage", 104, 5], ["changelog", 105, 5], ["license", 106, 5], ["maintainers", 107, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 25, 3], ["version", 26, 3], ["pyproject", 27, 3], ["__structuredAttrs", 28, 3], ["src", 30, 3], ["cargoDeps", 37, 3], ["nativeBuildInputs", 42, 3], ["buildInputs", 50, 3], ["env", 55, 3], ["pythonImportsCheck", 59, 3], ["nativeCheckInputs", 64, 3], ["preCheck", 71, 3], ["disabledTests", 75, 3], ["disabledTestPaths", 90, 3], ["meta", 102, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,20 +22,20 @@ export default nix.lambda((args) => (() => {
   const torch = nix.arg($, "torch");
   const transformers = nix.arg($, "transformers");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "llguidance",
       version: "1.8.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "guidance-ai",
           repo: "llguidance",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-/rHTefKTq5ch38NqbcLYTXBJwkW+WzG5OFvignDIie4=",
         })))),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
@@ -53,7 +49,7 @@ export default nix.lambda((args) => (() => {
         rustc,
       ]),
       buildInputs: nix.thunk(() => [oniguruma, openssl]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$3, RUSTONIG_SYSTEM_LIBONIG: true })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[2], RUSTONIG_SYSTEM_LIBONIG: true })),
       pythonImportsCheck: nix.thunk(() => ["llguidance", "llguidance._lib"]),
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook, torch, transformers]),
       preCheck: "rm -r python/llguidance\n",
@@ -72,7 +68,7 @@ export default nix.lambda((args) => (() => {
         "scripts/tokenizer_test.py",
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(pythonAtLeast, "3.14")), nix.thunk(() => ["python/torch_tests/test_bitmask.py"])))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Super-fast Structured Outputs",
         homepage: "https://github.com/guidance-ai/llguidance",
         changelog: nix.thunk(() => nix.str`https://github.com/guidance-ai/llguidance/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

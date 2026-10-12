@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 25, 13], ["version", 25, 19], ["hash", 26, 5]], [["GRPC_BUILD_WITH_BORING_SSL_ASM", 68, 5], ["GRPC_PYTHON_BUILD_SYSTEM_OPENSSL", 69, 5], ["GRPC_PYTHON_BUILD_SYSTEM_ZLIB", 70, 5], ["GRPC_PYTHON_BUILD_SYSTEM_CARES", 71, 5]], [["description", 82, 5], ["homepage", 83, 5], ["changelog", 84, 5], ["license", 85, 5], ["maintainers", 86, 5]], [["pname", 20, 3], ["version", 21, 3], ["pyproject", 22, 3], ["src", 24, 3], ["postPatch", 29, 3], ["outputs", 34, 3], ["build-system", 39, 3], ["nativeBuildInputs", 41, 3], ["buildInputs", 46, 3], ["dependencies", 52, 3], ["preBuild", 57, 3], ["env", 67, 3], ["doCheck", 75, 3], ["enableParallelBuilding", 77, 3], ["pythonImportsCheck", 79, 3], ["meta", 81, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, "c-ares": false, cython: false, fetchPypi: false, openssl: false, "pkg-config": false, protobuf: false, "typing-extensions": false, setuptools: false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 25, 13], ["version", 25, 19], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["GRPC_BUILD_WITH_BORING_SSL_ASM", 68, 5], ["GRPC_PYTHON_BUILD_SYSTEM_OPENSSL", 69, 5], ["GRPC_PYTHON_BUILD_SYSTEM_ZLIB", 70, 5], ["GRPC_PYTHON_BUILD_SYSTEM_CARES", 71, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 82, 5], ["homepage", 83, 5], ["changelog", 84, 5], ["license", 85, 5], ["maintainers", 86, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 20, 3], ["version", 21, 3], ["pyproject", 22, 3], ["src", 24, 3], ["postPatch", 29, 3], ["outputs", 34, 3], ["build-system", 39, 3], ["nativeBuildInputs", 41, 3], ["buildInputs", 46, 3], ["dependencies", 52, 3], ["preBuild", 57, 3], ["env", 67, 3], ["doCheck", 75, 3], ["enableParallelBuilding", 77, 3], ["pythonImportsCheck", 79, 3], ["meta", 81, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.83.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-nO5vy/LrV8S0lFF4e/qHvo78HKAqCzJ91LVNRFAuNis=",
@@ -40,7 +37,7 @@ export default nix.lambda((args) => (() => {
       const dependencies = nix.thunk(() => [protobuf, typing_extensions]);
       const preBuild = nix.thunk(() => nix.add("export GRPC_PYTHON_BUILD_EXT_COMPILER_JOBS=\"$NIX_BUILD_CORES\"\nif [ -z \"$enableParallelBuilding\" ]; then\n  GRPC_PYTHON_BUILD_EXT_COMPILER_JOBS=1\nfi\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "unset AR\n")));
       const env = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         GRPC_BUILD_WITH_BORING_SSL_ASM: "",
         GRPC_PYTHON_BUILD_SYSTEM_OPENSSL: 1n,
         GRPC_PYTHON_BUILD_SYSTEM_ZLIB: 1n,
@@ -50,7 +47,7 @@ export default nix.lambda((args) => (() => {
       const enableParallelBuilding = true;
       const pythonImportsCheck = nix.thunk(() => ["grpc"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "HTTP/2-based RPC framework",
         homepage: "https://grpc.io/grpc/python/",
         changelog: nix.thunk(() => nix.str`https://github.com/grpc/grpc/releases/tag/v${version}`),
@@ -58,7 +55,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 12, 5], ["sha256", 13, 5]], [["homepage", 43, 5], ["maintainers", 44, 5], ["platforms", 45, 5], ["description", 46, 5]], [["version", 9, 3], ["pname", 10, 3], ["src", 11, 3], ["nativeBuildInputs", 15, 3], ["dontWrapQtApps", 18, 3], ["preConfigure", 19, 3], ["installPhase", 22, 3], ["doCheck", 40, 3], ["meta", 42, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, qmake: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 12, 5], ["sha256", 13, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 43, 5], ["maintainers", 44, 5], ["platforms", 45, 5], ["description", 46, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["version", 9, 3], ["pname", 10, 3], ["src", 11, 3], ["nativeBuildInputs", 15, 3], ["dontWrapQtApps", 18, 3], ["preConfigure", 19, 3], ["installPhase", 22, 3], ["doCheck", 40, 3], ["meta", 42, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,7 +15,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.26.4";
       const pname = "dxflib";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://qcad.org/archives/dxflib/dxflib-${version}-src.tar.gz`),
           sha256: "0pwic33mj6bp4axai5jiyn4xqf31y0xmb1i0pcf55b2h9fav8zah",
         }))));
@@ -43,7 +41,7 @@ EOF
 `);
       const doCheck = true;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://qcad.org/en/90-dxflib",
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -53,7 +51,7 @@ EOF
         description: "DXF file format library",
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         version,
         pname,
         src,

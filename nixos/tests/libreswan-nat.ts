@@ -2,80 +2,34 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/libreswan-nat.nix", [[["allowedUDPPorts", 29, 25]], [["extraHosts", 22, 16], ["firewall", 29, 16]], [["networking", 22, 5]], [["enable", 34, 24]], [["libreswan", 34, 14]], [["text", 36, 7], ["mode", 37, 7]], [["ipsec.d/tunnel.secrets", 35, 21]], [["etc", 35, 17]], [["services", 34, 5], ["environment", 35, 5]], [["address", 45, 9], ["prefixLength", 46, 9]], [["addresses", 43, 41]], [["ipv4", 43, 36]], [["interfaces", 43, 16]], [["networking", 43, 5]], [["address", 53, 9], ["prefixLength", 54, 9]], [["addresses", 51, 41]], [["ipv6", 51, 36]], [["interfaces", 51, 16]], [["networking", 51, 5]], [["maintainers", 64, 5]], [["vlans", 74, 24]], [["systemPackages", 78, 21]], [["enable", 80, 11], ["externalInterface", 81, 11], ["internalInterfaces", 82, 11]], [["trustedInterfaces", 84, 29]], [["nat", 79, 20], ["firewall", 84, 20]], [["virtualisation", 74, 9], ["environment", 78, 9], ["networking", 79, 9]], [["vlans", 91, 22]], [["virtualisation", 91, 7]], [["vlans", 100, 22]], [["allowedUDPPorts", 104, 27], ["allowedTCPPorts", 108, 27], ["checkReversePath", 111, 27]], [["firewall", 104, 18]], [["net.ipv6.conf.all.forwarding", 115, 9], ["net.ipv4.conf.all.forwarding", 116, 9], ["net.ipv6.conf.all.proxy_ndp", 118, 9]], [["sysctl", 113, 19]], [["kernel", 113, 12]], [["tunnel", 122, 38]], [["configSetup", 121, 26], ["connections", 122, 26]], [["libreswan", 121, 16]], [["virtualisation", 100, 7], ["networking", 104, 7], ["boot", 113, 7], ["services", 121, 7]], [["vlans", 164, 22]], [["address", 166, 9], ["interface", 167, 9]], [["defaultGateway", 165, 18]], [["tunnel", 169, 38]], [["connections", 169, 26]], [["libreswan", 169, 16]], [["virtualisation", 164, 7], ["networking", 165, 7], ["services", 169, 7]], [["router", 67, 9], ["inner", 88, 9], ["server", 94, 9], ["client", 159, 9]], [["name", 62, 3], ["meta", 63, 3], ["nodes", 67, 3], ["testScript", 195, 3]]]);
 const formals$1 = { args: { lib: false, pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/libreswan-nat.nix", [["allowedUDPPorts", 29, 25]]);
-const pos$2 = nix.positions(here + "/libreswan-nat.nix", [["extraHosts", 22, 16], ["firewall", 29, 16]]);
-const pos$3 = nix.positions(here + "/libreswan-nat.nix", [["networking", 22, 5]]);
-const pos$4 = nix.positions(here + "/libreswan-nat.nix", [["enable", 34, 24]]);
-const pos$5 = nix.positions(here + "/libreswan-nat.nix", [["libreswan", 34, 14]]);
-const pos$6 = nix.positions(here + "/libreswan-nat.nix", [["text", 36, 7], ["mode", 37, 7]]);
-const pos$7 = nix.positions(here + "/libreswan-nat.nix", [["ipsec.d/tunnel.secrets", 35, 21]]);
-const pos$8 = nix.positions(here + "/libreswan-nat.nix", [["etc", 35, 17]]);
-const pos$9 = nix.positions(here + "/libreswan-nat.nix", [["services", 34, 5], ["environment", 35, 5]]);
-const pos$10 = nix.positions(here + "/libreswan-nat.nix", [["address", 45, 9], ["prefixLength", 46, 9]]);
-const pos$11 = nix.positions(here + "/libreswan-nat.nix", [["addresses", 43, 41]]);
-const pos$12 = nix.positions(here + "/libreswan-nat.nix", [["ipv4", 43, 36]]);
-const pos$13 = nix.positions(here + "/libreswan-nat.nix", [["interfaces", 43, 16]]);
-const pos$14 = nix.positions(here + "/libreswan-nat.nix", [["networking", 43, 5]]);
-const pos$15 = nix.positions(here + "/libreswan-nat.nix", [["address", 53, 9], ["prefixLength", 54, 9]]);
-const pos$16 = nix.positions(here + "/libreswan-nat.nix", [["addresses", 51, 41]]);
-const pos$17 = nix.positions(here + "/libreswan-nat.nix", [["ipv6", 51, 36]]);
-const pos$18 = nix.positions(here + "/libreswan-nat.nix", [["interfaces", 51, 16]]);
-const pos$19 = nix.positions(here + "/libreswan-nat.nix", [["networking", 51, 5]]);
-const pos$20 = nix.positions(here + "/libreswan-nat.nix", [["maintainers", 64, 5]]);
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$21 = nix.positions(here + "/libreswan-nat.nix", [["vlans", 74, 24]]);
-const pos$22 = nix.positions(here + "/libreswan-nat.nix", [["systemPackages", 78, 21]]);
-const pos$23 = nix.positions(here + "/libreswan-nat.nix", [["enable", 80, 11], ["externalInterface", 81, 11], ["internalInterfaces", 82, 11]]);
-const pos$24 = nix.positions(here + "/libreswan-nat.nix", [["trustedInterfaces", 84, 29]]);
-const pos$25 = nix.positions(here + "/libreswan-nat.nix", [["nat", 79, 20], ["firewall", 84, 20]]);
-const pos$26 = nix.positions(here + "/libreswan-nat.nix", [["virtualisation", 74, 9], ["environment", 78, 9], ["networking", 79, 9]]);
-const pos$27 = nix.positions(here + "/libreswan-nat.nix", [["vlans", 91, 22]]);
-const pos$28 = nix.positions(here + "/libreswan-nat.nix", [["virtualisation", 91, 7]]);
-const pos$29 = nix.positions(here + "/libreswan-nat.nix", [["vlans", 100, 22]]);
-const pos$30 = nix.positions(here + "/libreswan-nat.nix", [["allowedUDPPorts", 104, 27], ["allowedTCPPorts", 108, 27], ["checkReversePath", 111, 27]]);
-const pos$31 = nix.positions(here + "/libreswan-nat.nix", [["firewall", 104, 18]]);
-const pos$32 = nix.positions(here + "/libreswan-nat.nix", [["net.ipv6.conf.all.forwarding", 115, 9], ["net.ipv4.conf.all.forwarding", 116, 9], ["net.ipv6.conf.all.proxy_ndp", 118, 9]]);
-const pos$33 = nix.positions(here + "/libreswan-nat.nix", [["sysctl", 113, 19]]);
-const pos$34 = nix.positions(here + "/libreswan-nat.nix", [["kernel", 113, 12]]);
-const pos$35 = nix.positions(here + "/libreswan-nat.nix", [["tunnel", 122, 38]]);
-const pos$36 = nix.positions(here + "/libreswan-nat.nix", [["configSetup", 121, 26], ["connections", 122, 26]]);
-const pos$37 = nix.positions(here + "/libreswan-nat.nix", [["libreswan", 121, 16]]);
-const pos$38 = nix.positions(here + "/libreswan-nat.nix", [["virtualisation", 100, 7], ["networking", 104, 7], ["boot", 113, 7], ["services", 121, 7]]);
-const pos$39 = nix.positions(here + "/libreswan-nat.nix", [["vlans", 164, 22]]);
-const pos$40 = nix.positions(here + "/libreswan-nat.nix", [["address", 166, 9], ["interface", 167, 9]]);
-const pos$41 = nix.positions(here + "/libreswan-nat.nix", [["defaultGateway", 165, 18]]);
-const pos$42 = nix.positions(here + "/libreswan-nat.nix", [["tunnel", 169, 38]]);
-const pos$43 = nix.positions(here + "/libreswan-nat.nix", [["connections", 169, 26]]);
-const pos$44 = nix.positions(here + "/libreswan-nat.nix", [["libreswan", 169, 16]]);
-const pos$45 = nix.positions(here + "/libreswan-nat.nix", [["virtualisation", 164, 7], ["networking", 165, 7], ["services", 169, 7]]);
-const pos$46 = nix.positions(here + "/libreswan-nat.nix", [["router", 67, 9], ["inner", 88, 9], ["server", 94, 9], ["client", 159, 9]]);
-const pos$47 = nix.positions(here + "/libreswan-nat.nix", [["name", 62, 3], ["meta", 63, 3], ["nodes", 67, 3], ["testScript", 195, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   const baseNetwork = nix.thunk(() => ({
-    [nix.POS]: pos$3,
+    [nix.POS]: $pos[2],
     networking: nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       extraHosts: nix.thunk(() => nix.app(nix.sel(lib, "mkVMOverride"), "203.0.113.1 router\n203.0.113.2 server\n2001:db8::2 inner\n192.168.1.1 client\n")),
-      firewall: nix.thunk(() => ({ [nix.POS]: pos$1, allowedUDPPorts: nix.thunk(() => [1234n]) })),
+      firewall: nix.thunk(() => ({ [nix.POS]: $pos[0], allowedUDPPorts: nix.thunk(() => [1234n]) })),
     })),
   }));
   const baseTunnel = nix.thunk(() => ({
-    [nix.POS]: pos$9,
+    [nix.POS]: $pos[8],
     services: nix.thunk(() => ({
-      [nix.POS]: pos$5,
-      libreswan: nix.thunk(() => ({ [nix.POS]: pos$4, enable: true })),
+      [nix.POS]: $pos[4],
+      libreswan: nix.thunk(() => ({ [nix.POS]: $pos[3], enable: true })),
     })),
     environment: nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       etc: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         "ipsec.d/tunnel.secrets": nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           text: "@server %any : PSK \"j1JbIi9WY07rxwcNQ6nbyThKCf9DGxWOyokXIQcAQUnafsNTUJxfsxwk9WYK8fHj\"",
           mode: "600",
         })),
@@ -83,47 +37,47 @@ export default nix.lambda((args) => (() => {
     })),
   }));
   const setAddress4 = (iface) => (addr) => ({
-    [nix.POS]: pos$14,
+    [nix.POS]: $pos[13],
     networking: nix.thunk(() => ({
-      [nix.POS]: pos$13,
+      [nix.POS]: $pos[12],
       interfaces: nix.thunk(() => nix.attrsDyn({}, [
         [nix.force(iface), nix.thunk(() => ({
-          [nix.POS]: pos$12,
+          [nix.POS]: $pos[11],
           ipv4: nix.thunk(() => ({
-            [nix.POS]: pos$11,
-            addresses: nix.thunk(() => nix.app(nix.sel(lib, "mkVMOverride"), nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$10, address: addr, prefixLength: 24n }))]))),
+            [nix.POS]: $pos[10],
+            addresses: nix.thunk(() => nix.app(nix.sel(lib, "mkVMOverride"), nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: $pos[9], address: addr, prefixLength: 24n }))]))),
           })),
         }))],
       ])),
     })),
   });
   const setAddress6 = (iface) => (addr) => ({
-    [nix.POS]: pos$19,
+    [nix.POS]: $pos[18],
     networking: nix.thunk(() => ({
-      [nix.POS]: pos$18,
+      [nix.POS]: $pos[17],
       interfaces: nix.thunk(() => nix.attrsDyn({}, [
         [nix.force(iface), nix.thunk(() => ({
-          [nix.POS]: pos$17,
+          [nix.POS]: $pos[16],
           ipv6: nix.thunk(() => ({
-            [nix.POS]: pos$16,
-            addresses: nix.thunk(() => nix.app(nix.sel(lib, "mkVMOverride"), nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$15, address: addr, prefixLength: 64n }))]))),
+            [nix.POS]: $pos[15],
+            addresses: nix.thunk(() => nix.app(nix.sel(lib, "mkVMOverride"), nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: $pos[14], address: addr, prefixLength: 64n }))]))),
           })),
         }))],
       ])),
     })),
   });
   return {
-    [nix.POS]: pos$47,
+    [nix.POS]: $pos[46],
     name: "libreswan-nat",
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
       return {
-        [nix.POS]: pos$20,
+        [nix.POS]: $pos[19],
         maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "rnhmjoj"))]),
       };
     })()),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$46,
+      [nix.POS]: $pos[45],
       router: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs_1 = nix.arg($_1, "pkgs");
@@ -132,21 +86,21 @@ export default nix.lambda((args) => (() => {
             nix.thunk(() => nix.app(setAddress4, "eth1", "203.0.113.1")),
             nix.thunk(() => nix.app(setAddress4, "eth2", "192.168.1.1")),
             nix.thunk(() => ({
-              [nix.POS]: pos$26,
-              virtualisation: nix.thunk(() => ({ [nix.POS]: pos$21, vlans: nix.thunk(() => [1n, 2n]) })),
+              [nix.POS]: $pos[25],
+              virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[20], vlans: nix.thunk(() => [1n, 2n]) })),
               environment: nix.thunk(() => ({
-                [nix.POS]: pos$22,
+                [nix.POS]: $pos[21],
                 systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs_1, "tcpdump"))]),
               })),
               networking: nix.thunk(() => ({
-                [nix.POS]: pos$25,
+                [nix.POS]: $pos[24],
                 nat: nix.thunk(() => ({
-                  [nix.POS]: pos$23,
+                  [nix.POS]: $pos[22],
                   enable: true,
                   externalInterface: "eth1",
                   internalInterfaces: nix.thunk(() => ["eth2"]),
                 })),
-                firewall: nix.thunk(() => ({ [nix.POS]: pos$24, trustedInterfaces: nix.thunk(() => ["eth2"]) })),
+                firewall: nix.thunk(() => ({ [nix.POS]: $pos[23], trustedInterfaces: nix.thunk(() => ["eth2"]) })),
               })),
             })),
           ]));
@@ -155,8 +109,8 @@ export default nix.lambda((args) => (() => {
           baseNetwork,
           nix.thunk(() => nix.app(setAddress6, "eth1", "2001:db8::2")),
           nix.thunk(() => ({
-            [nix.POS]: pos$28,
-            virtualisation: nix.thunk(() => ({ [nix.POS]: pos$27, vlans: nix.thunk(() => [3n]) })),
+            [nix.POS]: $pos[27],
+            virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[26], vlans: nix.thunk(() => [3n]) })),
           })),
         ]))),
       server: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
@@ -165,23 +119,23 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.app(setAddress4, "eth1", "203.0.113.2")),
           nix.thunk(() => nix.app(setAddress6, "eth2", "2001:db8::1")),
           nix.thunk(() => ({
-            [nix.POS]: pos$38,
-            virtualisation: nix.thunk(() => ({ [nix.POS]: pos$29, vlans: nix.thunk(() => [1n, 3n]) })),
+            [nix.POS]: $pos[37],
+            virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[28], vlans: nix.thunk(() => [1n, 3n]) })),
             networking: nix.thunk(() => ({
-              [nix.POS]: pos$31,
+              [nix.POS]: $pos[30],
               firewall: nix.thunk(() => ({
-                [nix.POS]: pos$30,
+                [nix.POS]: $pos[29],
                 allowedUDPPorts: nix.thunk(() => [500n, 4500n]),
                 allowedTCPPorts: nix.thunk(() => [993n]),
                 checkReversePath: false,
               })),
             })),
             boot: nix.thunk(() => ({
-              [nix.POS]: pos$34,
+              [nix.POS]: $pos[33],
               kernel: nix.thunk(() => ({
-                [nix.POS]: pos$33,
+                [nix.POS]: $pos[32],
                 sysctl: nix.thunk(() => ({
-                  [nix.POS]: pos$32,
+                  [nix.POS]: $pos[31],
                   "net.ipv6.conf.all.forwarding": 1n,
                   "net.ipv4.conf.all.forwarding": 1n,
                   "net.ipv6.conf.all.proxy_ndp": 1n,
@@ -189,12 +143,12 @@ export default nix.lambda((args) => (() => {
               })),
             })),
             services: nix.thunk(() => ({
-              [nix.POS]: pos$37,
+              [nix.POS]: $pos[36],
               libreswan: nix.thunk(() => ({
-                [nix.POS]: pos$36,
+                [nix.POS]: $pos[35],
                 configSetup: "listen-tcp=yes",
                 connections: nix.thunk(() => ({
-                  [nix.POS]: pos$35,
+                  [nix.POS]: $pos[34],
                   tunnel: nix.thunk(() => nix.str`# server
 left=203.0.113.2
 leftid=@server
@@ -237,18 +191,18 @@ retransmit-timeout=10s
           baseTunnel,
           nix.thunk(() => nix.app(setAddress4, "eth1", "192.168.1.2")),
           nix.thunk(() => ({
-            [nix.POS]: pos$45,
-            virtualisation: nix.thunk(() => ({ [nix.POS]: pos$39, vlans: nix.thunk(() => [2n]) })),
+            [nix.POS]: $pos[44],
+            virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[38], vlans: nix.thunk(() => [2n]) })),
             networking: nix.thunk(() => ({
-              [nix.POS]: pos$41,
-              defaultGateway: nix.thunk(() => ({ [nix.POS]: pos$40, address: "192.168.1.1", interface: "eth1" })),
+              [nix.POS]: $pos[40],
+              defaultGateway: nix.thunk(() => ({ [nix.POS]: $pos[39], address: "192.168.1.1", interface: "eth1" })),
             })),
             services: nix.thunk(() => ({
-              [nix.POS]: pos$44,
+              [nix.POS]: $pos[43],
               libreswan: nix.thunk(() => ({
-                [nix.POS]: pos$43,
+                [nix.POS]: $pos[42],
                 connections: nix.thunk(() => ({
-                  [nix.POS]: pos$42,
+                  [nix.POS]: $pos[41],
                   tunnel: "# client\nleft=%defaultroute\nleftid=@client\nleftmodecfgclient=yes\nleftsubnet=::/0\n\n# server\nright=203.0.113.2\nrightid=@server\nrightsubnet=::/0\n\nauto=add\nnarrowing=yes\nrekey=yes\nfragmentation=yes\nauthby=secret\n\n# fallback when UDP is blocked\nenable-tcp=fallback\ntcp-remoteport=993\nretransmit-timeout=5s\n",
                 })),
               })),

@@ -2,17 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 76, 5], ["repo", 77, 5], ["tag", 78, 5], ["hash", 79, 5]], [["pname", 83, 26], ["version", 83, 32], ["src", 83, 40], ["hash", 84, 5]], [["url", 89, 5], ["hash", 90, 5]], [["dev", 172, 5]], [["ZSTD_SYS_USE_PKG_CONFIG", 197, 5], ["SWAGGER_UI_DOWNLOAD_URL", 198, 5]], [["chromadb", 281, 28]], [["extraArgs", 287, 7]], [["tests", 280, 5], ["updateScript", 284, 5]], [["description", 295, 5], ["homepage", 296, 5], ["changelog", 297, 5], ["license", 298, 5], ["maintainers", 299, 5], ["mainProgram", 303, 5]], [["pname", 70, 3], ["version", 71, 3], ["pyproject", 72, 3], ["__structuredAttrs", 73, 3], ["src", 75, 3], ["cargoDeps", 82, 3], ["swagger-ui", 88, 3], ["postPatch", 93, 3], ["pythonRemoveDeps", 115, 3], ["pythonRelaxDeps", 119, 3], ["build-system", 124, 3], ["nativeBuildInputs", 126, 3], ["buildInputs", 134, 3], ["dependencies", 139, 3], ["optional-dependencies", 171, 3], ["nativeCheckInputs", 175, 3], ["pythonImportsCheck", 191, 3], ["doCheck", 194, 3], ["env", 196, 3], ["pytestFlags", 201, 3], ["preCheck", 209, 3], ["enabledTestPaths", 214, 3], ["disabledTests", 218, 3], ["disabledTestPaths", 250, 3], ["__darwinAllowLocalNetworking", 277, 3], ["passthru", 279, 3], ["meta", 294, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitHub: false, fetchurl: false, cargo: false, openssl: false, "pkg-config": false, protobuf: false, rustc: false, rustPlatform: false, "zstd-c": false, bcrypt: false, build: false, fastapi: false, grpcio: false, httpx: false, "importlib-resources": false, jsonschema: false, kubernetes: false, mmh3: false, numpy: false, onnxruntime: false, "opentelemetry-api": false, "opentelemetry-exporter-otlp-proto-grpc": false, "opentelemetry-instrumentation-fastapi": false, "opentelemetry-sdk": false, orjson: false, overrides: false, posthog: false, pybase64: false, pydantic: false, "pydantic-settings": false, pypika: false, pyyaml: false, requests: false, tenacity: false, tokenizers: false, tqdm: false, typer: false, "typing-extensions": false, uvicorn: false, "chroma-hnswlib": false, hnswlib: false, hypothesis: false, pandas: false, psutil: false, "pytest-asyncio": false, "pytest-xdist": false, pytestCheckHook: false, sqlite: false, starlette: false, writableTmpDirAsHomeHook: false, nixosTests: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 76, 5], ["repo", 77, 5], ["tag", 78, 5], ["hash", 79, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 83, 26], ["version", 83, 32], ["src", 83, 40], ["hash", 84, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["url", 89, 5], ["hash", 90, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["dev", 172, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["ZSTD_SYS_USE_PKG_CONFIG", 197, 5], ["SWAGGER_UI_DOWNLOAD_URL", 198, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["chromadb", 281, 28]]);
-const pos$7 = nix.positions(here + "/default.nix", [["extraArgs", 287, 7]]);
-const pos$8 = nix.positions(here + "/default.nix", [["tests", 280, 5], ["updateScript", 284, 5]]);
-const pos$9 = nix.positions(here + "/default.nix", [["description", 295, 5], ["homepage", 296, 5], ["changelog", 297, 5], ["license", 298, 5], ["maintainers", 299, 5], ["mainProgram", 303, 5]]);
-const pos$10 = nix.positions(here + "/default.nix", [["pname", 70, 3], ["version", 71, 3], ["pyproject", 72, 3], ["__structuredAttrs", 73, 3], ["src", 75, 3], ["cargoDeps", 82, 3], ["swagger-ui", 88, 3], ["postPatch", 93, 3], ["pythonRemoveDeps", 115, 3], ["pythonRelaxDeps", 119, 3], ["build-system", 124, 3], ["nativeBuildInputs", 126, 3], ["buildInputs", 134, 3], ["dependencies", 139, 3], ["optional-dependencies", 171, 3], ["nativeCheckInputs", 175, 3], ["pythonImportsCheck", 191, 3], ["doCheck", 194, 3], ["env", 196, 3], ["pytestFlags", 201, 3], ["preCheck", 209, 3], ["enabledTestPaths", 214, 3], ["disabledTests", 218, 3], ["disabledTestPaths", 250, 3], ["__darwinAllowLocalNetworking", 277, 3], ["passthru", 279, 3], ["meta", 294, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -72,27 +63,27 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       pname: "chromadb",
       version: "1.5.9",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "chroma-core",
           repo: "chroma",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-qJixjywcmJwq1B8kYTIevBk6MMZ/YgOt92VBPag3kiw=",
         })))),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           hash: "sha256-b7YwZGsqPT58b8aArZMwJs1r7CRttjvn2wF/+yL6Ytg=",
         })))),
       "swagger-ui": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           url: "https://github.com/swagger-api/swagger-ui/archive/refs/tags/v5.22.0.zip",
           hash: "sha256-H+kXxA/6rKzYA19v7Zlx2HbIg/DGicD5FDIs0noVGSk=",
         })))),
@@ -141,7 +132,7 @@ export default nix.lambda((args) => (() => {
         typing_extensions,
         uvicorn,
       ]),
-      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$4, dev: nix.thunk(() => [chroma_hnswlib]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: $pos[3], dev: nix.thunk(() => [chroma_hnswlib]) })),
       nativeCheckInputs: nix.thunk(() => [
         chroma_hnswlib,
         hnswlib,
@@ -161,7 +152,7 @@ export default nix.lambda((args) => (() => {
         return !nix.asBool((nix.asBool(nix.lookup(w, "isAarch")) && nix.asBool(nix.lookup(w, "isLinux"))));
       })()),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         ZSTD_SYS_USE_PKG_CONFIG: true,
         SWAGGER_UI_DOWNLOAD_URL: nix.thunk(() => nix.str`file://${nix.sel(finalAttrs, "swagger-ui")}`),
       })),
@@ -202,18 +193,18 @@ export default nix.lambda((args) => (() => {
       ]),
       __darwinAllowLocalNetworking: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           chromadb: nix.thunk(() => nix.attr(nixosTests, "chromadb")),
         })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             extraArgs: nix.thunk(() => ["--version-regex", "([0-9].+)"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         description: "AI-native open-source embedding database",
         homepage: "https://github.com/chroma-core/chroma",
         changelog: nix.thunk(() => nix.str`https://github.com/chroma-core/chroma/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["x86_64-linux", 9, 5], ["aarch64-linux", 10, 5], ["aarch64-darwin", 11, 5], ["x86_64-windows", 12, 5], ["i686-windows", 13, 5]], [["url", 24, 5], ["hash", 25, 5]], [["description", 43, 5], ["homepage", 44, 5], ["changelog", 45, 5], ["sourceProvenance", 46, 5], ["license", 47, 5], ["maintainers", 48, 5], ["platforms", 49, 5], ["mainProgram", 50, 5]], [["version", 20, 3], ["pname", 21, 3], ["src", 23, 3], ["sourceRoot", 27, 3], ["dontConfigure", 29, 3], ["dontBuild", 30, 3], ["nativeBuildInputs", 32, 3], ["installPhase", 34, 3], ["meta", 42, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, unzip: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["x86_64-linux", 9, 5], ["aarch64-linux", 10, 5], ["aarch64-darwin", 11, 5], ["x86_64-windows", 12, 5], ["i686-windows", 13, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 24, 5], ["hash", 25, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 43, 5], ["homepage", 44, 5], ["changelog", 45, 5], ["sourceProvenance", 46, 5], ["license", 47, 5], ["maintainers", 48, 5], ["platforms", 49, 5], ["mainProgram", 50, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["version", 20, 3], ["pname", 21, 3], ["src", 23, 3], ["sourceRoot", 27, 3], ["dontConfigure", 29, 3], ["dontBuild", 30, 3], ["nativeBuildInputs", 32, 3], ["installPhase", 34, 3], ["meta", 42, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const unzip = nix.arg($, "unzip");
   const filenameMapping = nix.thunk(() => ({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     "x86_64-linux": "OoklaServer-linux-x86_64-static-musl.zip",
     "aarch64-linux": "OoklaServer-linux-aarch64-static-musl.zip",
     "aarch64-darwin": "OoklaServer-macosx.zip",
@@ -23,11 +20,11 @@ export default nix.lambda((args) => (() => {
     "i686-windows": "OoklaServer-windows32.zip",
   }));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       version: "2.11.1.2",
       pname: "ooklaserver",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: "https://web.archive.org/web/20240703022648/https://install.speedtest.net/ooklaserver/stable/OoklaServer.tgz",
           hash: "sha256-tctLtTGmrVHs+4pI1PRHrqY+a4ISs6TKvLRKlFdWw88=",
         })))),
@@ -42,7 +39,7 @@ install -Dm444 OoklaServer.properties.default "$out/etc/OoklaServer.properties.d
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Ookla TCP based server daemon that provides standalone testing",
         homepage: "https://www.speedtest.net",
         changelog: "https://support.ookla.com/hc/en-us/articles/234578608-Speedtest-Server-Release-Notes",

@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5], ["fetchSubmodules", 23, 5]], [["pname", 27, 26], ["version", 27, 32], ["src", 27, 40], ["hash", 28, 5]], [["rev-prefix", 43, 40]], [["updateScript", 43, 12]], [["description", 48, 5], ["homepage", 49, 5], ["license", 50, 5], ["maintainers", 51, 5]], [["pname", 12, 3], ["version", 13, 3], ["pyproject", 14, 3], ["__structuredAttrs", 16, 3], ["src", 18, 3], ["cargoDeps", 26, 3], ["buildAndTestSubdir", 31, 3], ["nativeBuildInputs", 33, 3], ["nativeCheckInputs", 38, 3], ["passthru", 43, 3], ["pythonImportsCheck", 45, 3], ["meta", 47, 3]]]);
 const formals$1 = { args: { buildPythonPackage: false, fetchFromGitHub: false, gitUpdater: false, lib: false, pytestCheckHook: false, pyyaml: false, rustPlatform: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5], ["fetchSubmodules", 23, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 27, 26], ["version", 27, 32], ["src", 27, 40], ["hash", 28, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["rev-prefix", 43, 40]]);
-const pos$4 = nix.positions(here + "/default.nix", [["updateScript", 43, 12]]);
-const pos$5 = nix.positions(here + "/default.nix", [["description", 48, 5], ["homepage", 49, 5], ["license", 50, 5], ["maintainers", 51, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 12, 3], ["version", 13, 3], ["pyproject", 14, 3], ["__structuredAttrs", 16, 3], ["src", 18, 3], ["cargoDeps", 26, 3], ["buildAndTestSubdir", 31, 3], ["nativeBuildInputs", 33, 3], ["nativeCheckInputs", 38, 3], ["passthru", 43, 3], ["pythonImportsCheck", 45, 3], ["meta", 47, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,13 +15,13 @@ export default nix.lambda((args) => (() => {
   const pyyaml = nix.arg($, "pyyaml");
   const rustPlatform = nix.arg($, "rustPlatform");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "ua-parser-rs",
       version: "0.1.4",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ua-parser",
           repo: "uap-rust",
           tag: nix.thunk(() => nix.str`ua-parser-rs-${nix.sel(finalAttrs, "version")}`),
@@ -34,7 +29,7 @@ export default nix.lambda((args) => (() => {
           fetchSubmodules: true,
         })))),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -47,12 +42,12 @@ export default nix.lambda((args) => (() => {
       ]),
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook, pyyaml]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$3, "rev-prefix": "ua-parser-rs-" })))),
+        [nix.POS]: $pos[3],
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[2], "rev-prefix": "ua-parser-rs-" })))),
       })),
       pythonImportsCheck: nix.thunk(() => ["ua_parser_rs"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Native accelerator for ua-parser",
         homepage: "https://github.com/ua-parser/uap-rust",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

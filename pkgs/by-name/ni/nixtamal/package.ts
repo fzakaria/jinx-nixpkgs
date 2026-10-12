@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 31, 5], ["mirrors", 32, 5], ["rev", 33, 5], ["hash", 34, 5]], [["withBrr", 72, 7], ["withBytesrw", 73, 7], ["withTypegist", 74, 7]], [["package", 150, 5], ["command", 151, 5]], [["version", 149, 18]], [["tests", 149, 12]], [["license", 155, 5], ["platforms", 156, 5], ["mainProgram", 157, 5], ["outputsToInstall", 158, 5], ["homepage", 164, 5], ["changelog", 165, 5], ["description", 166, 5], ["longDescription", 167, 5], ["maintainers", 180, 5], ["donationPage", 181, 5]], [["pname", 24, 3], ["version", 25, 3], ["release_year", 26, 3], ["minimalOCamlVersion", 28, 3], ["src", 30, 3], ["outputs", 37, 3], ["nativeBuildInputs", 46, 3], ["buildInputs", 60, 3], ["propagatedBuildInputs", 65, 3], ["nativeCheckInputs", 84, 3], ["checkInputs", 88, 3], ["postPatch", 96, 3], ["doCheck", 101, 3], ["installPhase", 103, 3], ["passthru", 149, 3], ["meta", 154, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchdarcs: false, python3Packages: false, ocamlPackages: false, darwin: false, makeBinaryWrapper: false, removeReferencesTo: false, installShellFiles: false, coreutils: false, curl: false, gawk: false, nix: false, "nix-prefetch-darcs": false, "nix-prefetch-fossil": false, "nix-prefetch-git": false, "nix-prefetch-pijul": false, testers: false, nixtamal: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 31, 5], ["mirrors", 32, 5], ["rev", 33, 5], ["hash", 34, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["withBrr", 72, 7], ["withBytesrw", 73, 7], ["withTypegist", 74, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["package", 150, 5], ["command", 151, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["version", 149, 18]]);
-const pos$5 = nix.positions(here + "/package.nix", [["tests", 149, 12]]);
-const pos$6 = nix.positions(here + "/package.nix", [["license", 155, 5], ["platforms", 156, 5], ["mainProgram", 157, 5], ["outputsToInstall", 158, 5], ["homepage", 164, 5], ["changelog", 165, 5], ["description", 166, 5], ["longDescription", 167, 5], ["maintainers", 180, 5], ["donationPage", 181, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 24, 3], ["version", 25, 3], ["release_year", 26, 3], ["minimalOCamlVersion", 28, 3], ["src", 30, 3], ["outputs", 37, 3], ["nativeBuildInputs", 46, 3], ["buildInputs", 60, 3], ["propagatedBuildInputs", 65, 3], ["nativeCheckInputs", 84, 3], ["checkInputs", 88, 3], ["postPatch", 96, 3], ["doCheck", 101, 3], ["installPhase", 103, 3], ["passthru", 149, 3], ["meta", 154, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,13 +27,13 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const nixtamal = nix.arg($, "nixtamal");
   return nix.app(nix.sel(ocamlPackages, "buildDunePackage"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "nixtamal",
       version: "2.1.0",
       release_year: 2026n,
       minimalOCamlVersion: "5.3",
       src: nix.thunk(() => nix.app(fetchdarcs, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://darcs.toastal.in.th/nixtamal/stable/",
           mirrors: nix.thunk(() => ["https://smeder.ee/~toastal/nixtamal.darcs"]),
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -70,7 +64,7 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.lookup(w_1, "eio_main")),
           nix.thunk(() => nix.lookup(w_1, "eio_posix")),
           nix.thunk(() => nix.lookup(w_1, "jingoo")),
-          nix.thunk(() => nix.app(nix.sel(nix.lookup(w_1, "jsont"), "override"), nix.thunk(() => ({ [nix.POS]: pos$2, withBrr: false, withBytesrw: true, withTypegist: false })))),
+          nix.thunk(() => nix.app(nix.sel(nix.lookup(w_1, "jsont"), "override"), nix.thunk(() => ({ [nix.POS]: $pos[1], withBrr: false, withBytesrw: true, withTypegist: false })))),
           nix.thunk(() => nix.lookup(w_1, "ppx_blob")),
           nix.thunk(() => nix.lookup(w_1, "kdl")),
           nix.thunk(() => nix.lookup(w_1, "logs")),
@@ -126,18 +120,18 @@ ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               package: nix.thunk(() => nix.sel(nixtamal, "bin")),
               command: nix.thunk(() => nix.str`${nix.sel(nixtamal, "meta", "mainProgram")} --version`),
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
         mainProgram: "nixtamal",

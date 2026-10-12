@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 21, 5], ["sha256", 22, 5]], [["homepage", 41, 5], ["description", 42, 5], ["license", 43, 5], ["platforms", 44, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 26, 3], ["configureFlags", 38, 3], ["meta", 40, 3]]]);
 const formals$1 = { args: { enableX11: true, lib: false, stdenv: false, fetchurl: false, "pkg-config": false, libxtst: false, libxi: false, libxfixes: false, libxext: false, libx11: false, python3: false, frame: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 21, 5], ["sha256", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 41, 5], ["description", 42, 5], ["license", 43, 5], ["platforms", 44, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 26, 3], ["configureFlags", 38, 3], ["meta", 40, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const frame = nix.arg($, "frame");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "grail",
       version: "3.1.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://launchpad.net/grail/trunk/${nix.sel(finalAttrs, "version")}/+download/grail-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           sha256: "1wwx5ibjdz5pyd0f5cd1n91y67r68dymxpm2lgd829041xjizvay",
         })))),
@@ -34,7 +32,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => nix.concat([python3, frame], nix.app(nix.sel(lib, "optionals"), enableX11, nix.thunk(() => [libx11, libxtst, libxext, libxi, libxfixes])))),
       configureFlags: nix.thunk(() => nix.app(nix.sel(lib, "optional"), enableX11, "--with-x11")),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://launchpad.net/canonical-multitouch/grail",
         description: "Gesture Recognition And Instantiation Library",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),

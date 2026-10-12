@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 25, 5], ["repo", 26, 5], ["rev", 27, 5], ["leaveDotGit", 28, 5], ["postFetch", 48, 5], ["hash", 53, 5]], [["licenseInfoIsUpToDate", 77, 11]], [["shallowClone", 100, 7], ["tagConverter", 120, 7]], [["tests", 77, 5], ["updateScript", 99, 5]], [["description", 133, 5], ["homepage", 134, 5], ["license", 135, 5], ["mainProgram", 142, 5], ["maintainers", 143, 5], ["platforms", 144, 5], ["badPlatforms", 145, 5]], [["pname", 18, 3], ["version", 23, 3], ["src", 24, 3], ["hardeningDisable", 56, 3], ["nativeBuildInputs", 57, 3], ["buildInputs", 58, 3], ["cmakeFlags", 66, 3], ["postInstall", 68, 3], ["passthru", 74, 3], ["meta", 132, 3]]]);
 const formals$1 = { args: { cmake: false, fetchFromGitHub: false, glm: false, httplib: false, lib: false, openssl: false, plog: false, runCommand: false, sdl3: false, stdenv: false, unstableGitUpdater: false, writeShellScript: false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 25, 5], ["repo", 26, 5], ["rev", 27, 5], ["leaveDotGit", 28, 5], ["postFetch", 48, 5], ["hash", 53, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["licenseInfoIsUpToDate", 77, 11]]);
-const pos$3 = nix.positions(here + "/package.nix", [["shallowClone", 100, 7], ["tagConverter", 120, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 77, 5], ["updateScript", 99, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 133, 5], ["homepage", 134, 5], ["license", 135, 5], ["mainProgram", 142, 5], ["maintainers", 143, 5], ["platforms", 144, 5], ["badPlatforms", 145, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 23, 3], ["src", 24, 3], ["hardeningDisable", 56, 3], ["nativeBuildInputs", 57, 3], ["buildInputs", 58, 3], ["cmakeFlags", 66, 3], ["postInstall", 68, 3], ["passthru", 74, 3], ["meta", 132, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const pname = "descent3-unwrapped";
       const version = "1.5.0-beta-unstable-2026-09-16";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "DescentDevelopers",
           repo: "Descent3",
           rev: "a3e82bc292dab95afd2bf3dc0988c065e041b3ef",
@@ -43,9 +38,9 @@ export default nix.lambda((args) => (() => {
       const cmakeFlags = nix.thunk(() => ["-DFORCE_PORTABLE_INSTALL=OFF"]);
       const postInstall = "cd \"$out\"\nmv lib/* share/\nrmdir lib\n";
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           licenseInfoIsUpToDate: nix.thunk(() => nix.app(runCommand, nix.thunk(() => nix.str`${pname}-license-info-is-up-to-date`), nix.thunk(() => ({})), nix.thunk(() => nix.str`function on_success {
   echo Test succeeded. > "$out"
 }
@@ -69,13 +64,13 @@ EOF
 `))),
         })),
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             shallowClone: false,
             tagConverter: nix.thunk(() => nix.app(writeShellScript, nix.thunk(() => nix.str`${pname}-tag-converter.sh`), "read -r input_tag\nif [ \"$input_tag\" = 0 ]\nthen\n  printf '%s' 1.5.0-beta\nelse\n  printf '%s' \"$input_tag\"\nfi\n")),
           })))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Game engine for a 6DOF first-person shooter",
         homepage: "https://github.com/DescentDevelopers/Descent3",
         license: nix.thunk(() => (() => {
@@ -94,7 +89,7 @@ EOF
         ], nix.sel(lib, "platforms", "darwin"))),
       }));
       return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname,
         version,
         src,

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 26, 5], ["tag", 27, 5], ["hash", 28, 5]], [["rev-prefix", 66, 5], ["allowedVersions", 67, 5]], [["updateScript", 65, 12]], [["homepage", 71, 5], ["description", 72, 5], ["changelog", 73, 5], ["license", 74, 5], ["maintainers", 75, 5], ["platforms", 80, 5], ["mainProgram", 81, 5]], [["pname", 19, 3], ["version", 20, 3], ["strictDeps", 22, 3], ["__structuredAttrs", 23, 3], ["src", 25, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 37, 3], ["postPatch", 51, 3], ["postInstall", 59, 3], ["doInstallCheck", 63, 3], ["passthru", 65, 3], ["meta", 70, 3]]]);
 const formals$1 = { args: { fetchgit: false, gitUpdater: false, lib: false, libftdi1: false, libgpiod: false, libjaylink: false, libusb1: false, meson: false, ninja: false, pciutils: false, "pkg-config": false, stdenv: false, withJlink: true, withGpio: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 26, 5], ["tag", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["rev-prefix", 66, 5], ["allowedVersions", 67, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 65, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 71, 5], ["description", 72, 5], ["changelog", 73, 5], ["license", 74, 5], ["maintainers", 75, 5], ["platforms", 80, 5], ["mainProgram", 81, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["strictDeps", 22, 3], ["__structuredAttrs", 23, 3], ["src", 25, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 37, 3], ["postPatch", 51, 3], ["postInstall", 59, 3], ["doInstallCheck", 63, 3], ["passthru", 65, 3], ["meta", 70, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,13 +22,13 @@ export default nix.lambda((args) => (() => {
   const withJlink = nix.argOr($, "withJlink", () => true);
   const withGpio = nix.argOr($, "withGpio", () => nix.sel(stdenv, "hostPlatform", "isLinux"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "flashprog",
       version: "1.6",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://review.sourcearcade.org/flashprog",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-Ih6cRUbmKIKRt8dIGNBbaLDomNvVdcl5P/lRBAzwwTI=",
@@ -43,11 +39,11 @@ export default nix.lambda((args) => (() => {
       postInstall: "install -Dm644 ../util/50-flashprog.rules \"$out/lib/udev/rules.d/50-flashprog.rules\"\n",
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, "rev-prefix": "v", allowedVersions: "^[0-9\\.]+$" })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[1], "rev-prefix": "v", allowedVersions: "^[0-9\\.]+$" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://flashprog.org",
         description: "Utility for reading, writing, erasing and verifying flash ROM chips",
         changelog: nix.thunk(() => nix.str`https://flashprog.org/wiki/Flashprog/v${nix.sel(finalAttrs, "version")}`),

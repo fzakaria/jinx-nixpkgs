@@ -2,42 +2,22 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/additional-files.nix", [[["maintainers", 4, 8], ["platforms", 7, 8]], [["useBootLoader", 13, 22], ["useEFIBoot", 14, 22]], [["enable", 15, 26], ["efiSupport", 16, 26]], [["limine", 15, 19], ["timeout", 17, 19]], [["loader", 15, 12]], [["efi/memtest86/memtest86.efi", 21, 11]], [["additionalFiles", 20, 28]], [["limine", 20, 21]], [["loader", 20, 14]], [["boot", 20, 9]], [["configuration", 19, 42]], [["efi/memtest86/memtest86.efi", 26, 11]], [["additionalFiles", 25, 28]], [["limine", 25, 21]], [["loader", 25, 14]], [["boot", 25, 9]], [["configuration", 24, 47]], [["withAdditionalFiles", 19, 22], ["withAdditionalFilesOther", 24, 22]], [["virtualisation", 13, 7], ["boot", 15, 7], ["specialisation", 19, 7]], [["machine", 10, 9]], [["name", 3, 3], ["meta", 4, 3], ["nodes", 10, 3], ["testScript", 31, 3]]]);
 const formals$1 = { args: { pkgs: false, lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/additional-files.nix", [["maintainers", 4, 8], ["platforms", 7, 8]]);
 const formals$2 = { args: {  }, ellipsis: true };
-const pos$2 = nix.positions(here + "/additional-files.nix", [["useBootLoader", 13, 22], ["useEFIBoot", 14, 22]]);
-const pos$3 = nix.positions(here + "/additional-files.nix", [["enable", 15, 26], ["efiSupport", 16, 26]]);
-const pos$4 = nix.positions(here + "/additional-files.nix", [["limine", 15, 19], ["timeout", 17, 19]]);
-const pos$5 = nix.positions(here + "/additional-files.nix", [["loader", 15, 12]]);
 const formals$3 = { args: {  }, ellipsis: true };
-const pos$6 = nix.positions(here + "/additional-files.nix", [["efi/memtest86/memtest86.efi", 21, 11]]);
-const pos$7 = nix.positions(here + "/additional-files.nix", [["additionalFiles", 20, 28]]);
-const pos$8 = nix.positions(here + "/additional-files.nix", [["limine", 20, 21]]);
-const pos$9 = nix.positions(here + "/additional-files.nix", [["loader", 20, 14]]);
-const pos$10 = nix.positions(here + "/additional-files.nix", [["boot", 20, 9]]);
-const pos$11 = nix.positions(here + "/additional-files.nix", [["configuration", 19, 42]]);
 const formals$4 = { args: {  }, ellipsis: true };
-const pos$12 = nix.positions(here + "/additional-files.nix", [["efi/memtest86/memtest86.efi", 26, 11]]);
-const pos$13 = nix.positions(here + "/additional-files.nix", [["additionalFiles", 25, 28]]);
-const pos$14 = nix.positions(here + "/additional-files.nix", [["limine", 25, 21]]);
-const pos$15 = nix.positions(here + "/additional-files.nix", [["loader", 25, 14]]);
-const pos$16 = nix.positions(here + "/additional-files.nix", [["boot", 25, 9]]);
-const pos$17 = nix.positions(here + "/additional-files.nix", [["configuration", 24, 47]]);
-const pos$18 = nix.positions(here + "/additional-files.nix", [["withAdditionalFiles", 19, 22], ["withAdditionalFilesOther", 24, 22]]);
-const pos$19 = nix.positions(here + "/additional-files.nix", [["virtualisation", 13, 7], ["boot", 15, 7], ["specialisation", 19, 7]]);
-const pos$20 = nix.positions(here + "/additional-files.nix", [["machine", 10, 9]]);
 const formals$5 = { args: { nodes: false }, ellipsis: true };
-const pos$21 = nix.positions(here + "/additional-files.nix", [["name", 3, 3], ["meta", 4, 3], ["nodes", 10, 3], ["testScript", 31, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$21,
+    [nix.POS]: $pos[20],
     name: "additionalFiles",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "flokli"))];
@@ -45,36 +25,36 @@ export default nix.lambda((args) => (() => {
       platforms: nix.thunk(() => ["x86_64-linux"]),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$20,
+      [nix.POS]: $pos[19],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          [nix.POS]: pos$19,
-          virtualisation: nix.thunk(() => ({ [nix.POS]: pos$2, useBootLoader: true, useEFIBoot: true })),
+          [nix.POS]: $pos[18],
+          virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[1], useBootLoader: true, useEFIBoot: true })),
           boot: nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             loader: nix.thunk(() => ({
-              [nix.POS]: pos$4,
-              limine: nix.thunk(() => ({ [nix.POS]: pos$3, enable: true, efiSupport: true })),
+              [nix.POS]: $pos[3],
+              limine: nix.thunk(() => ({ [nix.POS]: $pos[2], enable: true, efiSupport: true })),
               timeout: 0n,
             })),
           })),
           specialisation: nix.thunk(() => ({
-            [nix.POS]: pos$18,
+            [nix.POS]: $pos[17],
             withAdditionalFiles: nix.thunk(() => ({
-              [nix.POS]: pos$11,
+              [nix.POS]: $pos[10],
               configuration: nix.lambda((args_2) => (() => {
                 const $_2 = nix.formals(args_2, formals$3);
                 return {
-                  [nix.POS]: pos$10,
+                  [nix.POS]: $pos[9],
                   boot: nix.thunk(() => ({
-                    [nix.POS]: pos$9,
+                    [nix.POS]: $pos[8],
                     loader: nix.thunk(() => ({
-                      [nix.POS]: pos$8,
+                      [nix.POS]: $pos[7],
                       limine: nix.thunk(() => ({
-                        [nix.POS]: pos$7,
+                        [nix.POS]: $pos[6],
                         additionalFiles: nix.thunk(() => ({
-                          [nix.POS]: pos$6,
+                          [nix.POS]: $pos[5],
                           "efi/memtest86/memtest86.efi": nix.thunk(() => nix.str`${nix.sel(pkgs, "memtest86-efi")}/BOOTX64.efi`),
                         })),
                       })),
@@ -84,19 +64,19 @@ export default nix.lambda((args) => (() => {
               })(), formals$3),
             })),
             withAdditionalFilesOther: nix.thunk(() => ({
-              [nix.POS]: pos$17,
+              [nix.POS]: $pos[16],
               configuration: nix.lambda((args_2) => (() => {
                 const $_2 = nix.formals(args_2, formals$4);
                 return {
-                  [nix.POS]: pos$16,
+                  [nix.POS]: $pos[15],
                   boot: nix.thunk(() => ({
-                    [nix.POS]: pos$15,
+                    [nix.POS]: $pos[14],
                     loader: nix.thunk(() => ({
-                      [nix.POS]: pos$14,
+                      [nix.POS]: $pos[13],
                       limine: nix.thunk(() => ({
-                        [nix.POS]: pos$13,
+                        [nix.POS]: $pos[12],
                         additionalFiles: nix.thunk(() => ({
-                          [nix.POS]: pos$12,
+                          [nix.POS]: $pos[11],
                           "efi/memtest86/memtest86.efi": nix.thunk(() => nix.str`${nix.builtins.toFile("some-file", "some-content")}`),
                         })),
                       })),

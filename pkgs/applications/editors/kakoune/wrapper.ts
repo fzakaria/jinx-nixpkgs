@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/wrapper.nix", [[["priority", 45, 5]], [["name", 17, 3], ["nativeBuildInputs", 19, 3], ["paths", 21, 3], ["postBuild", 23, 3], ["meta", 44, 3]]]);
 const formals$1 = { args: { lib: false, symlinkJoin: false, makeWrapper: false, kakoune: false, plugins: true, configure: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/wrapper.nix", [["priority", 45, 5]]);
-const pos$2 = nix.positions(here + "/wrapper.nix", [["name", 17, 3], ["nativeBuildInputs", 19, 3], ["paths", 21, 3], ["postBuild", 23, 3], ["meta", 44, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const configure = nix.argOr($, "configure", () => ({}));
   const requestedPlugins = nix.thunk(() => nix.concat(plugins, nix.selOr(configure, () => [], "plugins")));
   return nix.app(symlinkJoin, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       name: nix.thunk(() => nix.str`kakoune-${nix.sel(kakoune, "version")}`),
       nativeBuildInputs: nix.thunk(() => [makeWrapper]),
       paths: nix.thunk(() => nix.concat([kakoune], requestedPlugins)),
@@ -40,7 +39,7 @@ cp -r --dereference "$out/DELETE_ME/doc" "$out/share/kak"
 rm -Rf "$out/DELETE_ME"
 `),
       meta: nix.thunk(() => nix.update(nix.sel(kakoune, "meta"), {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         priority: nix.thunk(() => nix.sub(nix.selOr(kakoune, () => nix.sel(lib, "meta", "defaultPriority"), "meta", "priority"), 1n)),
       })),
     })));

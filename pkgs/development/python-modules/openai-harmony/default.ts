@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["hash", 26, 5]], [["pname", 30, 13], ["version", 30, 19], ["src", 30, 27], ["hash", 31, 5]], [["demo", 44, 5]], [["description", 56, 5], ["homepage", 57, 5], ["license", 58, 5], ["maintainers", 59, 5]], [["pname", 18, 3], ["version", 19, 3], ["pyproject", 20, 3], ["src", 22, 3], ["cargoDeps", 29, 3], ["nativeBuildInputs", 34, 3], ["dependencies", 39, 3], ["optional-dependencies", 43, 3], ["pythonImportsCheck", 50, 3], ["doCheck", 53, 3], ["meta", 55, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, rustPlatform: false, pydantic: false, fastapi: false, uvicorn: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 30, 13], ["version", 30, 19], ["src", 30, 27], ["hash", 31, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["demo", 44, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 56, 5], ["homepage", 57, 5], ["license", 58, 5], ["maintainers", 59, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 18, 3], ["version", 19, 3], ["pyproject", 20, 3], ["src", 22, 3], ["cargoDeps", 29, 3], ["nativeBuildInputs", 34, 3], ["dependencies", 39, 3], ["optional-dependencies", 43, 3], ["pythonImportsCheck", 50, 3], ["doCheck", 53, 3], ["meta", 55, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,14 +19,14 @@ export default nix.lambda((args) => (() => {
       const version = "0.0.8";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "openai",
           repo: "harmony",
           rev: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-CaEldCrjBkjwsVeTzpiAFl/llAnUwJGTlU8Pt8YTV1E=",
         }))));
       const cargoDeps = nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: pname,
           version: version,
           src: src,
@@ -41,11 +37,11 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.sel(rustPlatform, "maturinBuildHook")),
       ]);
       const dependencies = nix.thunk(() => [pydantic]);
-      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$3, demo: nix.thunk(() => [fastapi, uvicorn]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: $pos[2], demo: nix.thunk(() => [fastapi, uvicorn]) }));
       const pythonImportsCheck = nix.thunk(() => ["openai_harmony"]);
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Renderer for the harmony response format to be used with gpt-oss",
         homepage: "https://github.com/openai/harmony",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -55,7 +51,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         pyproject,

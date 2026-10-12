@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["core", 36, 5], ["agent", 37, 5], ["cli-main", 38, 5], ["worker", 39, 5], ["logging", 40, 5], ["sessionworker", 41, 5]], [["owner", 49, 5], ["repo", 50, 5], ["tag", 51, 5], ["hash", 52, 5]], [["src", 69, 7], ["substitutions", 70, 7]], [["package", 166, 9], ["command", 167, 9]], [["amazon-ssm-agent", 164, 28], ["version", 165, 7]], [["tests", 163, 5], ["updateScript", 170, 5]], [["description", 176, 5], ["changelog", 177, 5], ["homepage", 178, 5], ["license", 179, 5], ["platforms", 180, 5], ["maintainers", 181, 5]], [["pname", 45, 3], ["version", 46, 3], ["src", 48, 3], ["vendorHash", 55, 3], ["patches", 57, 3], ["nativeBuildInputs", 78, 3], ["subPackages", 87, 3], ["ldflags", 96, 3], ["postPatch", 101, 3], ["preBuild", 122, 3], ["installPhase", 127, 3], ["doCheck", 155, 3], ["postFixup", 157, 3], ["passthru", 162, 3], ["__darwinAllowLocalNetworking", 173, 3], ["meta", 175, 3]]]);
 const formals$1 = { args: { lib: false, writeShellScriptBin: false, buildGoModule: false, makeWrapper: false, darwin: false, fetchFromGitHub: false, substitute: false, coreutils: false, unixtools: false, "util-linux": false, stdenv: false, dmidecode: false, bashInteractive: false, "nix-update-script": false, nixosTests: false, testers: false, "amazon-ssm-agent": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["core", 36, 5], ["agent", 37, 5], ["cli-main", 38, 5], ["worker", 39, 5], ["logging", 40, 5], ["sessionworker", 41, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 49, 5], ["repo", 50, 5], ["tag", 51, 5], ["hash", 52, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["src", 69, 7], ["substitutions", 70, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["package", 166, 9], ["command", 167, 9]]);
-const pos$5 = nix.positions(here + "/package.nix", [["amazon-ssm-agent", 164, 28], ["version", 165, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["tests", 163, 5], ["updateScript", 170, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["description", 176, 5], ["changelog", 177, 5], ["homepage", 178, 5], ["license", 179, 5], ["platforms", 180, 5], ["maintainers", 181, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 45, 3], ["version", 46, 3], ["src", 48, 3], ["vendorHash", 55, 3], ["patches", 57, 3], ["nativeBuildInputs", 78, 3], ["subPackages", 87, 3], ["ldflags", 96, 3], ["postPatch", 101, 3], ["preBuild", 122, 3], ["installPhase", 127, 3], ["doCheck", 155, 3], ["postFixup", 157, 3], ["passthru", 162, 3], ["__darwinAllowLocalNetworking", 173, 3], ["meta", 175, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,7 +26,7 @@ export default nix.lambda((args) => (() => {
   const amazon_ssm_agent = nix.arg($, "amazon-ssm-agent");
   const fake_lsb_release = nix.thunk(() => nix.app(writeShellScriptBin, "lsb_release", ". /etc/os-release || true\n\ncase \"$1\" in\n  -i) echo \"${NAME:-unknown}\";;\n  -r) echo \"${VERSION:-unknown}\";;\nesac\n"));
   const binaries = nix.thunk(() => ({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     core: "amazon-ssm-agent",
     agent: "ssm-agent-worker",
     "cli-main": "ssm-cli",
@@ -42,11 +35,11 @@ export default nix.lambda((args) => (() => {
     sessionworker: "ssm-session-worker",
   }));
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "amazon-ssm-agent",
       version: "3.3.5226.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "aws",
           repo: "amazon-ssm-agent",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -57,7 +50,7 @@ export default nix.lambda((args) => (() => {
         nix.path(here, "./0001-Disable-NIC-tests-that-fail-in-the-Nix-sandbox.patch"),
         nix.path(here, "./0002-version-gen-don-t-use-unnecessary-constants.patch"),
         nix.thunk(() => nix.app(substitute, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             src: nix.path(here, "./0001-makefile-don-t-use-tool-to-generate-version-file.patch"),
             substitutions: nix.thunk(() => ["--subst-var-by", "VERSION", nix.thunk(() => nix.sel(finalAttrs, "version"))]),
           })))),
@@ -117,12 +110,12 @@ runHook postInstall
   --prefix PATH : "${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [bashInteractive]))}"
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           "amazon-ssm-agent": nix.thunk(() => nix.attr(nixosTests, "amazon-ssm-agent")),
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               package: amazon_ssm_agent,
               command: "amazon-ssm-agent --version",
             })))),
@@ -131,7 +124,7 @@ runHook postInstall
       })),
       __darwinAllowLocalNetworking: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "Agent to enable remote management of your Amazon EC2 instance configuration",
         changelog: nix.thunk(() => nix.str`https://github.com/aws/amazon-ssm-agent/releases/tag/${nix.sel(finalAttrs, "version")}`),
         homepage: "https://github.com/aws/amazon-ssm-agent",

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]], [["description", 45, 5], ["homepage", 46, 5], ["license", 47, 5], ["maintainers", 48, 5]], [["pname", 13, 3], ["version", 14, 3], ["pyproject", 15, 3], ["postPatch", 17, 3], ["src", 24, 3], ["nativeBuildInputs", 31, 3], ["nativeCheckInputs", 39, 3], ["meta", 44, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, cmake: false, ninja: false, "scikit-build": false, pytest: false, numpy: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 45, 5], ["homepage", 46, 5], ["license", 47, 5], ["maintainers", 48, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 13, 3], ["version", 14, 3], ["pyproject", 15, 3], ["postPatch", 17, 3], ["src", 24, 3], ["nativeBuildInputs", 31, 3], ["nativeCheckInputs", 39, 3], ["meta", 44, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const pyproject = false;
       const postPatch = "# Fixing bug making one test fail in the python 3.10 build\nsubstituteInPlace python/segyio/open.py --replace \\\n\"cube_metrics = f.xfd.cube_metrics(iline, xline)\" \\\n\"cube_metrics = f.xfd.cube_metrics(int(iline), int(xline))\"\n";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "equinor",
           repo: "segyio",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -32,14 +30,14 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [cmake, ninja, scikit_build]);
       const nativeCheckInputs = nix.thunk(() => [pytest, numpy]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Fast Python library for SEGY files",
         homepage: "https://github.com/equinor/segyio",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3Only")),
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

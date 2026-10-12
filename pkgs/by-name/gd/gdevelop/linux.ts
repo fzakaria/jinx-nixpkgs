@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/linux.nix", [[["url", 15, 9], ["hash", 16, 9]], [["pname", 21, 13], ["version", 21, 19], ["src", 21, 27], ["postExtract", 22, 5]], [["pname", 29, 5], ["version", 30, 5], ["src", 31, 5], ["meta", 32, 5], ["passthru", 33, 5], ["extraInstallCommands", 36, 3]]]);
 const formals$1 = { args: { stdenv: false, fetchurl: false, appimageTools: false, version: false, pname: false, meta: false, passthru: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/linux.nix", [["url", 15, 9], ["hash", 16, 9]]);
-const pos$2 = nix.positions(here + "/linux.nix", [["pname", 21, 13], ["version", 21, 19], ["src", 21, 27], ["postExtract", 22, 5]]);
-const pos$3 = nix.positions(here + "/linux.nix", [["pname", 29, 5], ["version", 30, 5], ["src", 31, 5], ["meta", 32, 5], ["passthru", 33, 5], ["extraInstallCommands", 36, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,19 +15,19 @@ export default nix.lambda((args) => (() => {
   const meta = nix.arg($, "meta");
   const passthru = nix.arg($, "passthru");
   const src = nix.thunk(() => (nix.asBool(nix.eq(nix.sel(stdenv, "hostPlatform", "system"), "x86_64-linux")) ? nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: nix.thunk(() => nix.str`https://github.com/4ian/GDevelop/releases/download/v${version}/GDevelop-5-${version}.AppImage`),
       hash: "sha256-fvCh4GVWH37mn7tpnTXMs8J0/8o03bg1H1Zw2JtpK3k=",
     }))) : nix.builtins.throw(nix.thunk(() => nix.str`${pname}-${version} is not supported on ${nix.sel(stdenv, "hostPlatform", "system")}`))));
   const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: pname,
       version: version,
       src: src,
       postExtract: "substituteInPlace $out/gdevelop.desktop --replace-fail 'Exec=AppRun --no-sandbox %U' 'Exec=gdevelop'\n",
     }))));
   return nix.app(nix.sel(appimageTools, "wrapType2"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: pname,
       version: version,
       src: src,

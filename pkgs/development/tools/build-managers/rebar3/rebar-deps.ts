@@ -2,11 +2,9 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/rebar-deps.nix", [[["pkg", 19, 9], ["version", 20, 9], ["sha256", 21, 9]], [["name", 16, 7], ["version", 17, 7], ["src", 18, 7], ["beamDeps", 23, 7]], [["meck", 15, 5]]]);
 const formals$1 = { args: { src: false }, ellipsis: true };
 const formals$2 = { args: { builder: true, fetchHex: false, fetchgit: false, fetchFromGitHub: false, overrides: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/rebar-deps.nix", [["pkg", 19, 9], ["version", 20, 9], ["sha256", 21, 9]]);
-const pos$2 = nix.positions(here + "/rebar-deps.nix", [["name", 16, 7], ["version", 17, 7], ["src", 18, 7], ["beamDeps", 23, 7]]);
-const pos$3 = nix.positions(here + "/rebar-deps.nix", [["meck", 15, 5]]);
 
 export default nix.thunk(() => (() => {
   const fetchOnly = nix.lambda((args) => (() => {
@@ -23,13 +21,13 @@ export default nix.thunk(() => (() => {
     const overrides = nix.argOr($, "overrides", () => (x) => (y) => ({}));
     const self = nix.thunk(() => nix.update(packages, nix.app(overrides, self, packages)));
     const packages = nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       meck: nix.thunk(() => nix.app(builder, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           name: "meck",
           version: "0.8.13",
           src: nix.thunk(() => nix.app(fetchHex, nix.thunk(() => ({
-              [nix.POS]: pos$1,
+              [nix.POS]: $pos[0],
               pkg: "meck",
               version: "0.8.13",
               sha256: "sha256-008BPBVttRrVfMVWiRuXIOahwd9f4uFa+ZnITWzr6xo=",

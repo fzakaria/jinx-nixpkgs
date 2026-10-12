@@ -2,12 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 39, 5], ["repo", 40, 5], ["tag", 41, 5], ["hash", 42, 5]], [["pkg-config", 158, 11]], [["tests", 158, 5], ["updateScript", 159, 5]], [["description", 163, 5], ["longDescription", 164, 5], ["homepage", 169, 5], ["changelog", 170, 5], ["license", 173, 5], ["teams", 177, 5], ["platforms", 178, 5], ["pkgConfigModules", 179, 5]], [["pname", 35, 3], ["version", 36, 3], ["src", 38, 3], ["outputs", 45, 3], ["postPatch", 51, 3], ["strictDeps", 69, 3], ["nativeBuildInputs", 71, 3], ["buildInputs", 92, 3], ["nativeCheckInputs", 106, 3], ["cmakeFlags", 112, 3], ["doCheck", 123, 3], ["enableParallelChecking", 126, 3], ["dontWrapQtApps", 128, 3], ["preFixup", 130, 3], ["postFixup", 153, 3], ["passthru", 157, 3], ["meta", 162, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitLab: false, gitUpdater: false, testers: false, cmake: false, "cmake-extras": false, dbus: false, "dbus-test-runner": false, glib: false, gtest: false, intltool: false, "json-glib": false, libapparmor: false, libxkbcommon: false, "lomiri-app-launch": false, "lomiri-ui-toolkit": false, makeWrapper: false, "pkg-config": false, python3: false, qtbase: false, qtdeclarative: false, qtwayland: false, runtimeShell: false, sqlite: false, systemdLibs: false, wrapQtAppsHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 39, 5], ["repo", 40, 5], ["tag", 41, 5], ["hash", 42, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pkg-config", 158, 11]]);
-const pos$3 = nix.positions(here + "/default.nix", [["tests", 158, 5], ["updateScript", 159, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 163, 5], ["longDescription", 164, 5], ["homepage", 169, 5], ["changelog", 170, 5], ["license", 173, 5], ["teams", 177, 5], ["platforms", 178, 5], ["pkgConfigModules", 179, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 35, 3], ["version", 36, 3], ["src", 38, 3], ["outputs", 45, 3], ["postPatch", 51, 3], ["strictDeps", 69, 3], ["nativeBuildInputs", 71, 3], ["buildInputs", 92, 3], ["nativeCheckInputs", 106, 3], ["cmakeFlags", 112, 3], ["doCheck", 123, 3], ["enableParallelChecking", 126, 3], ["dontWrapQtApps", 128, 3], ["preFixup", 130, 3], ["postFixup", 153, 3], ["passthru", 157, 3], ["meta", 162, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -40,11 +36,11 @@ export default nix.lambda((args) => (() => {
   const wrapQtAppsHook = nix.arg($, "wrapQtAppsHook");
   const withQt6 = nix.thunk(() => nix.eq(nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(qtbase, "version"))), "6"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "lomiri-url-dispatcher",
       version: "0.1.5",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ubports",
           repo: "development/core/lomiri-url-dispatcher",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -121,15 +117,15 @@ wrapQtApp $out/bin/lomiri-url-dispatcher-gui
 `)))),
       postFixup: "moveToOutput share $out\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "testMetaPkgConfig"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
         })),
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Lomiri operating environment service for requesting URLs to be opened",
         longDescription: "Allows applications to request a URL to be opened and handled by another\nprocess without seeing the list of other applications on the system or\nstarting them inside its own Application Confinement.\n",
         homepage: "https://gitlab.com/ubports/development/core/lomiri-url-dispatcher",

@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/ui.nix", [[["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["fetchSubmodules", 27, 5], ["hash", 28, 5]], [["pname", 43, 26], ["version", 43, 32], ["src", 43, 40], ["pnpm", 44, 5], ["fetcherVersion", 45, 5], ["hash", 46, 5]], [["lemmy-ui", 79, 11]], [["updateScript", 78, 5], ["tests", 79, 5]], [["description", 83, 5], ["homepage", 84, 5], ["license", 85, 5], ["maintainers", 86, 5], ["teams", 92, 5], ["platforms", 93, 27]], [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 37, 3], ["pnpmDeps", 42, 3], ["buildPhase", 49, 3], ["preInstall", 63, 3], ["preFixup", 69, 3], ["passthru", 77, 3], ["meta", 82, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, libsass: false, nodejs: false, pnpm_11: false, fetchPnpmDeps: false, pnpmConfigHook: false, fetchFromGitHub: false, nixosTests: false, vips: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/ui.nix", [["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["fetchSubmodules", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/ui.nix", [["pname", 43, 26], ["version", 43, 32], ["src", 43, 40], ["pnpm", 44, 5], ["fetcherVersion", 45, 5], ["hash", 46, 5]]);
-const pos$3 = nix.positions(here + "/ui.nix", [["lemmy-ui", 79, 11]]);
-const pos$4 = nix.positions(here + "/ui.nix", [["updateScript", 78, 5], ["tests", 79, 5]]);
-const pos$5 = nix.positions(here + "/ui.nix", [["description", 83, 5], ["homepage", 84, 5], ["license", 85, 5], ["maintainers", 86, 5], ["teams", 92, 5], ["platforms", 93, 27]]);
-const pos$6 = nix.positions(here + "/ui.nix", [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 37, 3], ["pnpmDeps", 42, 3], ["buildPhase", 49, 3], ["preInstall", 63, 3], ["preFixup", 69, 3], ["passthru", 77, 3], ["meta", 82, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const vips = nix.arg($, "vips");
   const pinData = nix.thunk(() => nix.app(nix.sel(lib, "importJSON"), nix.path(here, "./pin.json")));
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "lemmy-ui",
       version: nix.thunk(() => nix.sel(pinData, "uiVersion")),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "LemmyNet",
           repo: "lemmy-ui",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -38,7 +33,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [nodejs, pnpmConfigHook, pnpm_11]),
       buildInputs: nix.thunk(() => [libsass, vips]),
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -66,14 +61,17 @@ runHook postBuild
 done
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.path(here, "./update.py"),
-        tests: nix.thunk(() => ({ [nix.POS]: pos$3, "lemmy-ui": nix.thunk(() => nix.sel(nixosTests, "lemmy")) })),
+        tests: nix.thunk(() => ({
+          [nix.POS]: $pos[2],
+          "lemmy-ui": nix.thunk(() => nix.sel(nixosTests, "lemmy")),
+        })),
       })),
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(nodejs, "meta"));
         return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Web frontend for a federated link aggregator",
         homepage: "https://join-lemmy.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),

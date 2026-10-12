@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["description", 30, 7], ["homepage", 31, 7], ["license", 32, 7], ["changelog", 33, 7], ["maintainers", 35, 5]], [["pname", 10, 3], ["version", 11, 23], ["src", 11, 31], ["pyproject", 12, 3], ["sourceRoot", 14, 3], ["postPatch", 16, 3], ["build-system", 22, 3], ["meta", 28, 3]]]);
 const formals$1 = { args: { buildPythonPackage: false, hatchling: false, pyyaml: false, "ua-parser": false, versioningit: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["description", 30, 7], ["homepage", 31, 7], ["license", 32, 7], ["changelog", 33, 7], ["maintainers", 35, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 10, 3], ["version", 11, 23], ["src", 11, 31], ["pyproject", 12, 3], ["sourceRoot", 14, 3], ["postPatch", 16, 3], ["build-system", 22, 3], ["meta", 28, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,7 +26,7 @@ substituteInPlace pyproject.toml \\
       const meta = nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(ua_parser, "meta"));
         return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: nix.thunk(() => nix.attr(from, "description")),
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         license: nix.thunk(() => nix.attr(from, "license")),
@@ -36,7 +35,7 @@ substituteInPlace pyproject.toml \\
       };
       })());
       return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         pname,
         version,
         src,

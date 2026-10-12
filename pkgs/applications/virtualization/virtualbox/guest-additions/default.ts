@@ -2,17 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["virtualboxVersion", 35, 7], ["virtualboxSubVersion", 36, 7], ["virtualboxSha256", 37, 7], ["platform", 38, 7]], [["name", 47, 7], ["pkg", 48, 7]], [["name", 51, 7], ["pkg", 52, 7]], [["name", 55, 7], ["pkg", 56, 7]], [["name", 59, 7], ["pkg", 60, 7]], [["name", 63, 7], ["pkg", 64, 7]], [["name", 67, 7], ["pkg", 68, 7]], [["NIX_CFLAGS_COMPILE", 82, 5], ["KERN_DIR", 87, 5], ["KERN_INCL", 88, 5]], [["description", 184, 5], ["longDescription", 185, 5], ["sourceProvenance", 190, 5], ["license", 191, 5], ["maintainers", 192, 5], ["platforms", 195, 5], ["broken", 200, 5]], [["pname", 73, 3], ["version", 74, 3], ["src", 76, 3], ["sourceRoot", 77, 3], ["hardeningDisable", 79, 3], ["env", 81, 3], ["nativeBuildInputs", 91, 3], ["postPatch", 100, 3], ["buildPhase", 108, 3], ["installPhase", 138, 3], ["dontStrip", 173, 3], ["postFixup", 176, 3], ["meta", 183, 3]]]);
 const formals$1 = { args: { stdenv: false, kernel: false, callPackage: false, lib: false, dbus: false, kmod: false, libxt: false, libxrandr: false, libxmu: false, libxfixes: false, libxext: false, libxcursor: false, zlib: false, patchelf: false, makeWrapper: false, wayland: false, libx11: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["virtualboxVersion", 35, 7], ["virtualboxSubVersion", 36, 7], ["virtualboxSha256", 37, 7], ["platform", 38, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["name", 47, 7], ["pkg", 48, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["name", 51, 7], ["pkg", 52, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["name", 55, 7], ["pkg", 56, 7]]);
-const pos$5 = nix.positions(here + "/default.nix", [["name", 59, 7], ["pkg", 60, 7]]);
-const pos$6 = nix.positions(here + "/default.nix", [["name", 63, 7], ["pkg", 64, 7]]);
-const pos$7 = nix.positions(here + "/default.nix", [["name", 67, 7], ["pkg", 68, 7]]);
-const pos$8 = nix.positions(here + "/default.nix", [["NIX_CFLAGS_COMPILE", 82, 5], ["KERN_DIR", 87, 5], ["KERN_INCL", 88, 5]]);
-const pos$9 = nix.positions(here + "/default.nix", [["description", 184, 5], ["longDescription", 185, 5], ["sourceProvenance", 190, 5], ["license", 191, 5], ["maintainers", 192, 5], ["platforms", 195, 5], ["broken", 200, 5]]);
-const pos$10 = nix.positions(here + "/default.nix", [["pname", 73, 3], ["version", 74, 3], ["src", 76, 3], ["sourceRoot", 77, 3], ["hardeningDisable", 79, 3], ["env", 81, 3], ["nativeBuildInputs", 91, 3], ["postPatch", 100, 3], ["buildPhase", 108, 3], ["installPhase", 138, 3], ["dontStrip", 173, 3], ["postFixup", 176, 3], ["meta", 183, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -38,29 +29,29 @@ export default nix.lambda((args) => (() => {
   const virtualboxSha256 = "5c2138213b72f36c129b92c2c267f2a40e9c98513f4c86a584327f09f9be706d";
   const platform = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")) ? "arm64" : (nix.asBool(nix.sel(stdenv, "hostPlatform", "is32bit")) ? "x86" : "amd64")));
   const virtualBoxNixGuestAdditionsBuilder = nix.thunk(() => nix.app(callPackage, nix.path(here, "./builder.nix"), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       virtualboxVersion: virtualboxVersion,
       virtualboxSubVersion: virtualboxSubVersion,
       virtualboxSha256: virtualboxSha256,
       platform: platform,
     }))));
   const dlopenLibs = nix.thunk(() => [
-    nix.thunk(() => ({ [nix.POS]: pos$2, name: "libdbus-1.so", pkg: dbus })),
-    nix.thunk(() => ({ [nix.POS]: pos$3, name: "libXfixes.so", pkg: libxfixes })),
-    nix.thunk(() => ({ [nix.POS]: pos$4, name: "libXrandr.so", pkg: libxrandr })),
-    nix.thunk(() => ({ [nix.POS]: pos$5, name: "libwayland-client.so", pkg: wayland })),
-    nix.thunk(() => ({ [nix.POS]: pos$6, name: "libX11.so", pkg: libx11 })),
-    nix.thunk(() => ({ [nix.POS]: pos$7, name: "libXt.so", pkg: libxt })),
+    nix.thunk(() => ({ [nix.POS]: $pos[1], name: "libdbus-1.so", pkg: dbus })),
+    nix.thunk(() => ({ [nix.POS]: $pos[2], name: "libXfixes.so", pkg: libxfixes })),
+    nix.thunk(() => ({ [nix.POS]: $pos[3], name: "libXrandr.so", pkg: libxrandr })),
+    nix.thunk(() => ({ [nix.POS]: $pos[4], name: "libwayland-client.so", pkg: wayland })),
+    nix.thunk(() => ({ [nix.POS]: $pos[5], name: "libX11.so", pkg: libx11 })),
+    nix.thunk(() => ({ [nix.POS]: $pos[6], name: "libXt.so", pkg: libxt })),
   ]);
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       pname: "VirtualBox-GuestAdditions",
       version: nix.thunk(() => nix.str`${virtualboxVersion}${virtualboxSubVersion}-${nix.sel(kernel, "version")}`),
       src: nix.thunk(() => nix.str`${virtualBoxNixGuestAdditionsBuilder}/VBoxGuestAdditions-${platform}.tar.bz2`),
       sourceRoot: ".",
       hardeningDisable: nix.thunk(() => ["pic"]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => [
             "-Wno-error=incompatible-pointer-types",
             "-Wno-error=implicit-function-declaration",
@@ -140,7 +131,7 @@ runHook postInstall
 done
 `, dlopenLibs)),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         description: "Guest additions for VirtualBox",
         longDescription: "Various add-ons which makes NixOS work better as guest OS inside VirtualBox.\nThis add-on provides support for dynamic resizing of the virtual display, shared\nhost/guest clipboard support.\n",
         sourceProvenance: nix.thunk(() => (() => {

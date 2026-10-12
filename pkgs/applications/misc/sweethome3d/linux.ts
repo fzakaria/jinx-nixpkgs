@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/linux.nix", [[["url", 42, 7], ["sha256", 43, 7]], [["url", 46, 7], ["sha256", 47, 7]], [["32x32", 41, 5], ["48x48", 45, 5]], [["name", 63, 7], ["desktopName", 64, 7], ["icon", 65, 7], ["comment", 66, 7], ["exec", 67, 7], ["genericName", 68, 7], ["categories", 69, 7]], [["ANT_ARGS", 103, 7]], [["pname", 54, 5], ["version", 55, 5], ["src", 56, 5], ["meta", 57, 5], ["patches", 58, 5], ["desktopItems", 61, 3], ["postPatch", 77, 3], ["nativeBuildInputs", 87, 3], ["buildInputs", 93, 3], ["env", 103, 3], ["buildPhase", 105, 3], ["installPhase", 116, 3], ["dontStrip", 139, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, makeWrapper: false, makeDesktopItem: false, jdk: false, ant: false, stripJavaArchivesHook: false, gtk3: false, "gsettings-desktop-schemas": false, p7zip: false, autoPatchelfHook: false, libxxf86vm: false, libGL: false, copyDesktopItems: false, pname: false, version: false, src: false, meta: false, patches: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/linux.nix", [["url", 42, 7], ["sha256", 43, 7]]);
-const pos$2 = nix.positions(here + "/linux.nix", [["url", 46, 7], ["sha256", 47, 7]]);
-const pos$3 = nix.positions(here + "/linux.nix", [["32x32", 41, 5], ["48x48", 45, 5]]);
-const pos$4 = nix.positions(here + "/linux.nix", [["name", 63, 7], ["desktopName", 64, 7], ["icon", 65, 7], ["comment", 66, 7], ["exec", 67, 7], ["genericName", 68, 7], ["categories", 69, 7]]);
-const pos$5 = nix.positions(here + "/linux.nix", [["ANT_ARGS", 103, 7]]);
-const pos$6 = nix.positions(here + "/linux.nix", [["pname", 54, 5], ["version", 55, 5], ["src", 56, 5], ["meta", 57, 5], ["patches", 58, 5], ["desktopItems", 61, 3], ["postPatch", 77, 3], ["nativeBuildInputs", 87, 3], ["buildInputs", 93, 3], ["env", 103, 3], ["buildPhase", 105, 3], ["installPhase", 116, 3], ["dontStrip", 139, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -37,20 +32,20 @@ export default nix.lambda((args) => (() => {
 ln -s -T "${iconFile}" "$out/share/icons/hicolor/${size}/apps/${iconName}.${nix.app(extensionOf, iconFile)}"
 `, icons_1)));
   const icons = nix.thunk(() => ({
-    [nix.POS]: pos$3,
+    [nix.POS]: $pos[2],
     "32x32": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         url: "http://sweethome3d.cvs.sourceforge.net/viewvc/sweethome3d/SweetHome3D/deploy/SweetHome3DIcon32x32.png",
         sha256: "1r2fhfg27mx00nfv0qj66rhf719s2g1vhdis7bdc9mqk9x0mb0ir",
       })))),
     "48x48": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         url: "http://sweethome3d.cvs.sourceforge.net/viewvc/sweethome3d/SweetHome3D/deploy/SweetHome3DIcon48x48.png",
         sha256: "1ap6d75dyqqvx21wddvn8vw2apq3v803vmbxdriwd0dw9rq3zn4g",
       })))),
   }));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: pname,
       version: version,
       src: src,
@@ -58,7 +53,7 @@ ln -s -T "${iconFile}" "$out/share/icons/hicolor/${size}/apps/${iconName}.${nix.
       patches: patches,
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             name: "sweethome3d",
             desktopName: "Sweet Home 3D",
             icon: "sweethome3d",
@@ -79,7 +74,7 @@ find . -name '*.so' | xargs strings | { grep '/nix/store' || :; } >> ./.jar-path
       nativeBuildInputs: nix.thunk(() => [makeWrapper, autoPatchelfHook, stripJavaArchivesHook, copyDesktopItems]),
       buildInputs: nix.thunk(() => [ant, jdk, p7zip, gtk3, gsettings_desktop_schemas, libxxf86vm]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         ANT_ARGS: "-DappletClassSource=8 -DappletClassTarget=8 -DclassSource=8 -DclassTarget=8",
       })),
       buildPhase: "runHook preBuild\n\nant furniture textures help\nmkdir -p $out/share/{java,applications}\nmv \"build/\"*.jar $out/share/java/.\nant\n\nrunHook postBuild\n",

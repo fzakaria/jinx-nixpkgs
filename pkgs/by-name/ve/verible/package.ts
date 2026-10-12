@@ -2,16 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["hash", 20, 5]], [["GIT_DATE", 32, 13], ["GIT_VERSION", 32, 22]], [["LIBTOOL", 37, 5]], [["owner", 46, 5], ["repo", 47, 5], ["tag", 48, 5], ["hash", 49, 5]], [["aarch64-linux", 68, 9], ["x86_64-linux", 69, 9], ["aarch64-darwin", 70, 9]], [["preInstall", 60, 5], ["hash", 66, 5]], [["installPhase", 104, 5]], [["description", 111, 5], ["homepage", 112, 5], ["license", 113, 5], ["maintainers", 114, 5]], [["pname", 26, 3], ["env", 28, 3], ["version", 41, 3], ["src", 45, 3], ["bazel", 52, 3], ["bazelFlags", 53, 3], ["fetchAttrs", 59, 3], ["nativeBuildInputs", 75, 3], ["postPatch", 82, 3], ["removeRulesCC", 95, 3], ["bazelTargets", 96, 3], ["bazelBuildFlags", 97, 3], ["doCheck", 99, 3], ["bazelTestTargets", 100, 3], ["bazelTestFlags", 101, 3], ["buildAttrs", 103, 3], ["meta", 110, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildBazelPackage: false, fetchFromGitHub: false, bazel_7: false, jdk: false, bison: false, flex: false, python3: false, cctools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["GIT_DATE", 32, 13], ["GIT_VERSION", 32, 22]]);
-const pos$3 = nix.positions(here + "/package.nix", [["LIBTOOL", 37, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["owner", 46, 5], ["repo", 47, 5], ["tag", 48, 5], ["hash", 49, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["aarch64-linux", 68, 9], ["x86_64-linux", 69, 9], ["aarch64-darwin", 70, 9]]);
-const pos$6 = nix.positions(here + "/package.nix", [["preInstall", 60, 5], ["hash", 66, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["installPhase", 104, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["description", 111, 5], ["homepage", 112, 5], ["license", 113, 5], ["maintainers", 114, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["pname", 26, 3], ["env", 28, 3], ["version", 41, 3], ["src", 45, 3], ["bazel", 52, 3], ["bazelFlags", 53, 3], ["fetchAttrs", 59, 3], ["nativeBuildInputs", 75, 3], ["postPatch", 82, 3], ["removeRulesCC", 95, 3], ["bazelTargets", 96, 3], ["bazelBuildFlags", 97, 3], ["doCheck", 99, 3], ["bazelTestTargets", 100, 3], ["bazelTestFlags", 101, 3], ["buildAttrs", 103, 3], ["meta", 110, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,7 +19,7 @@ export default nix.lambda((args) => (() => {
   const cctools = nix.arg($, "cctools");
   const system = nix.thunk(() => nix.sel(stdenv, "hostPlatform", "system"));
   const registry = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "bazelbuild",
       repo: "bazel-central-registry",
       rev: "6d7a78e3bb927a52e3e2a5087729f9136d35c084",
@@ -36,14 +28,17 @@ export default nix.lambda((args) => (() => {
   const GIT_DATE = "2026-08-16";
   const GIT_VERSION = "v0.0-4148-g1ea007ec";
   return nix.app(buildBazelPackage, nix.thunk(() => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       pname: "verible",
-      env: nix.thunk(() => nix.update(nix.attrsDyn({ [nix.POS]: pos$2, GIT_DATE: GIT_DATE, GIT_VERSION: GIT_VERSION }, [
+      env: nix.thunk(() => nix.update(nix.attrsDyn({ [nix.POS]: $pos[1], GIT_DATE: GIT_DATE, GIT_VERSION: GIT_VERSION }, [
         [(nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? "NIX_CFLAGS_COMPILE" : null), "-mmacos-version-min=10.15"],
-      ]), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({ [nix.POS]: pos$3, LIBTOOL: nix.thunk(() => nix.str`${cctools}/bin/libtool`) }))))),
+      ]), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({
+          [nix.POS]: $pos[2],
+          LIBTOOL: nix.thunk(() => nix.str`${cctools}/bin/libtool`),
+        }))))),
       version: nix.thunk(() => nix.builtins.concatStringsSep(".", nix.thunk(() => nix.app(nix.sel(lib, "take"), 3n, nix.thunk(() => nix.app(nix.sel(lib, "drop"), 1n, nix.thunk(() => nix.builtins.splitVersion(GIT_VERSION)))))))),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           owner: "chipsalliance",
           repo: "verible",
           tag: GIT_VERSION,
@@ -56,10 +51,10 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`file://${registry}`),
       ]),
       fetchAttrs: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         preInstall: nix.thunk(() => nix.add("rm -rf $bazelOut/external/rules_shell~~sh_configure~local_config_shell\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "find $bazelOut/external/abseil-cpp~ -type f -name BUILD.bazel -exec sed -i -e 's/\"layering_check\",//g' {} \\;\n"))),
         hash: nix.thunk(() => nix.selOr({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           "aarch64-linux": "sha256-1jEiJJycHZ2LybV13AUCXjUbUTY1ZhH09aG9oVzOEto=",
           "x86_64-linux": "sha256-RXji3oV9ccUfje8+i73w7dox9e4wZH3KADJ+YecFgL4=",
           "aarch64-darwin": "sha256-mQM82RlRIyLRZeo5vQh+Bm7W+1eCmwj9yEYRe9blJFg=",
@@ -74,11 +69,11 @@ export default nix.lambda((args) => (() => {
       bazelTestTargets: nix.thunk(() => ["//..."]),
       bazelTestFlags: nix.thunk(() => ["-c opt"]),
       buildAttrs: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         installPhase: "mkdir -p \"$out/bin\"\n.github/bin/simple-install.sh \"$out/bin\"\n",
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         description: "Suite of SystemVerilog developer tools. Including a style-linter, indexer, formatter, and language server",
         homepage: "https://github.com/chipsalliance/verible",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

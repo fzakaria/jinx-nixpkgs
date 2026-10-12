@@ -2,16 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["NEXT_TELEMETRY_DISABLED", 23, 5], ["FFMPEG_PATH", 24, 5], ["FFPROBE_PATH", 25, 5]], [["nodejs-slim", 28, 30]], [["owner", 36, 5], ["repo", 37, 5], ["tag", 38, 5], ["hash", 39, 5], ["leaveDotGit", 40, 5], ["postFetch", 41, 5]], [["pname", 48, 26], ["version", 48, 32], ["src", 48, 40], ["pnpm", 49, 5], ["fetcherVersion", 50, 5], ["hash", 51, 5]], [["DATABASE_URL", 71, 5], ["NODE_PATH", 72, 5]], [["zipline", 125, 36]], [["tests", 125, 5], ["updateScript", 126, 5]], [["description", 130, 5], ["homepage", 131, 5], ["downloadPage", 132, 5], ["changelog", 133, 5], ["license", 134, 5], ["maintainers", 135, 5], ["mainProgram", 136, 5], ["platforms", 137, 5]], [["pname", 32, 3], ["version", 33, 3], ["src", 35, 3], ["pnpmDeps", 47, 3], ["buildInputs", 54, 3], ["nativeBuildInputs", 59, 3], ["env", 70, 3], ["buildPhase", 75, 3], ["installPhase", 88, 3], ["nativeInstallCheckInputs", 119, 3], ["versionCheckProgram", 120, 3], ["versionCheckKeepEnvironment", 121, 3], ["doInstallCheck", 122, 3], ["passthru", 124, 3], ["meta", 129, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, pnpm_10: false, fetchPnpmDeps: false, pnpmConfigHook: false, nodejs_24: false, makeWrapper: false, ffmpeg: false, openssl: false, vips: false, versionCheckHook: false, "nix-update-script": false, nixosTests: false, "node-gyp": false, "pkg-config": false, python3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["NEXT_TELEMETRY_DISABLED", 23, 5], ["FFMPEG_PATH", 24, 5], ["FFPROBE_PATH", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["nodejs-slim", 28, 30]]);
-const pos$3 = nix.positions(here + "/package.nix", [["owner", 36, 5], ["repo", 37, 5], ["tag", 38, 5], ["hash", 39, 5], ["leaveDotGit", 40, 5], ["postFetch", 41, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 48, 26], ["version", 48, 32], ["src", 48, 40], ["pnpm", 49, 5], ["fetcherVersion", 50, 5], ["hash", 51, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["DATABASE_URL", 71, 5], ["NODE_PATH", 72, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["zipline", 125, 36]]);
-const pos$7 = nix.positions(here + "/package.nix", [["tests", 125, 5], ["updateScript", 126, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["description", 130, 5], ["homepage", 131, 5], ["downloadPage", 132, 5], ["changelog", 133, 5], ["license", 134, 5], ["maintainers", 135, 5], ["mainProgram", 136, 5], ["platforms", 137, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["pname", 32, 3], ["version", 33, 3], ["src", 35, 3], ["pnpmDeps", 47, 3], ["buildInputs", 54, 3], ["nativeBuildInputs", 59, 3], ["env", 70, 3], ["buildPhase", 75, 3], ["installPhase", 88, 3], ["nativeInstallCheckInputs", 119, 3], ["versionCheckProgram", 120, 3], ["versionCheckKeepEnvironment", 121, 3], ["doInstallCheck", 122, 3], ["passthru", 124, 3], ["meta", 129, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,18 +25,18 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const python3 = nix.arg($, "python3");
   const environment = nix.thunk(() => ({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     NEXT_TELEMETRY_DISABLED: "1",
     FFMPEG_PATH: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), ffmpeg)),
     FFPROBE_PATH: nix.thunk(() => nix.app(nix.sel(lib, "getExe'"), ffmpeg, "ffprobe")),
   }));
-  const pnpm$ = nix.thunk(() => nix.app(nix.sel(pnpm_10, "override"), nix.thunk(() => ({ [nix.POS]: pos$2, "nodejs-slim": nodejs_24 }))));
+  const pnpm$ = nix.thunk(() => nix.app(nix.sel(pnpm_10, "override"), nix.thunk(() => ({ [nix.POS]: $pos[1], "nodejs-slim": nodejs_24 }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       pname: "zipline",
       version: "4.8.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           owner: "diced",
           repo: "zipline",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -53,7 +45,7 @@ export default nix.lambda((args) => (() => {
           postFetch: "git -C $out rev-parse --short HEAD > $out/.git_head\nrm -rf $out/.git\n",
         })))),
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -64,7 +56,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [openssl, vips]),
       nativeBuildInputs: nix.thunk(() => [pnpmConfigHook, pnpm$, nodejs_24, makeWrapper, node_gyp, pkg_config, python3]),
       env: nix.thunk(() => nix.update(environment, {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         DATABASE_URL: "dummy",
         NODE_PATH: nix.thunk(() => nix.str`${node_gyp}/lib/node_modules`),
       })),
@@ -109,12 +101,15 @@ runHook postInstall
       versionCheckKeepEnvironment: nix.thunk(() => ["DATABASE_URL"]),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$7,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$6, zipline: nix.thunk(() => nix.attr(nixosTests, "zipline")) })),
+        [nix.POS]: $pos[6],
+        tests: nix.thunk(() => ({
+          [nix.POS]: $pos[5],
+          zipline: nix.thunk(() => nix.attr(nixosTests, "zipline")),
+        })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         description: "ShareX/file upload server that is easy to use, packed with features, and with an easy setup",
         homepage: "https://zipline.diced.sh/",
         downloadPage: "https://github.com/diced/zipline",

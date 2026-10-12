@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["tag", 15, 5], ["hash", 16, 5]], [["description", 41, 5], ["homepage", 42, 5], ["license", 43, 5], ["maintainers", 44, 5], ["mainProgram", 45, 5], ["platforms", 46, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["postPatch", 19, 3], ["nativeBuildInputs", 36, 3], ["meta", 40, 3]]]);
 const formals$1 = { args: { cmake: false, fetchFromGitHub: false, lib: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["tag", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 41, 5], ["homepage", 42, 5], ["license", 43, 5], ["maintainers", 44, 5], ["mainProgram", 45, 5], ["platforms", 46, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["postPatch", 19, 3], ["nativeBuildInputs", 36, 3], ["meta", 40, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "stl-to-obj",
       version: "0.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Neizvestnyj",
           repo: "stl-to-obj",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -27,7 +25,7 @@ export default nix.lambda((args) => (() => {
       postPatch: "# Add missing cstdint include\n# ref. https://github.com/Neizvestnyj/stl-to-obj/pull/12\nfor filename in \\\n  stl2obj/src/mode.cpp \\\n  stl2obj/src/obj_to_stl/StlWriter.cpp \\\n  stl2obj/src/stl_to_obj/importstl.cpp \\\n  stl2obj/src/stl_to_obj/kdtree.h\ndo\n  echo \"$(echo '#include <cstdint>'; cat $filename)\" > $filename\ndone\n\n# Install main executable\n# ref. https://github.com/Neizvestnyj/stl-to-obj/pull/13\necho \"install(TARGETS stl2obj DESTINATION $\"\"{CMAKE_INSTALL_BINDIR})\" >> CMakeLists.txt\n",
       nativeBuildInputs: nix.thunk(() => [cmake]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "C++ stl to obj file converter and vice versa",
         homepage: "https://github.com/Neizvestnyj/stl-to-obj",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

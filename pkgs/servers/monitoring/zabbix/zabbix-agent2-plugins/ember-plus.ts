@@ -2,11 +2,9 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/ember-plus.nix", [[["url", 14, 7], ["hash", 15, 7]], [["description", 21, 7], ["mainProgram", 22, 7], ["homepage", 23, 7], ["license", 24, 7], ["maintainers", 29, 7], ["platforms", 30, 7]], [["pname", 10, 5], ["version", 11, 13], ["src", 13, 5], ["vendorHash", 18, 5], ["meta", 20, 5]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchurl: false }, ellipsis: false };
 const formals$2 = { args: { version: false, emberPlusHash: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/ember-plus.nix", [["url", 14, 7], ["hash", 15, 7]]);
-const pos$2 = nix.positions(here + "/ember-plus.nix", [["description", 21, 7], ["mainProgram", 22, 7], ["homepage", 23, 7], ["license", 24, 7], ["maintainers", 29, 7], ["platforms", 30, 7]]);
-const pos$3 = nix.positions(here + "/ember-plus.nix", [["pname", 10, 5], ["version", 11, 13], ["src", 13, 5], ["vendorHash", 18, 5], ["meta", 20, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,17 +16,17 @@ export default nix.lambda((args) => (() => {
       const version = nix.arg($_1, "version");
       const emberPlusHash = nix.arg($_1, "emberPlusHash");
       return nix.app(buildGoModule, (finalAttrs) => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           pname: "zabbix-agent2-plugin-ember-plus",
           version: version,
           src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              [nix.POS]: pos$1,
+              [nix.POS]: $pos[0],
               url: nix.thunk(() => nix.str`https://cdn.zabbix.com/zabbix-agent2-plugins/sources/ember-plus/zabbix-agent2-plugin-ember-plus-${nix.sel(finalAttrs, "version")}.tar.gz`),
               hash: emberPlusHash,
             })))),
           vendorHash: null,
           meta: nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             description: "Zabbix agent2 plugin for monitoring Ember Plus",
             mainProgram: "ember-plus",
             homepage: "https://www.zabbix.com/documentation/current/en/manual/appendix/config/zabbix_agent2_plugins/ember_plus_plugin",

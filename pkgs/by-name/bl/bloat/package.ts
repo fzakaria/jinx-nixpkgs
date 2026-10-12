@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 13, 5], ["rev", 14, 5], ["hash", 15, 5]], [["updateScript", 30, 12]], [["description", 33, 5], ["longDescription", 34, 5], ["homepage", 38, 5], ["downloadPage", 39, 5], ["license", 40, 5], ["maintainers", 41, 5], ["mainProgram", 42, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["vendorHash", 18, 3], ["postInstall", 20, 3], ["passthru", 30, 3], ["meta", 32, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchgit: false, unstableGitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 13, 5], ["rev", 14, 5], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 30, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 33, 5], ["longDescription", 34, 5], ["homepage", 38, 5], ["downloadPage", 39, 5], ["license", 40, 5], ["maintainers", 41, 5], ["mainProgram", 42, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["vendorHash", 18, 3], ["postInstall", 20, 3], ["passthru", 30, 3], ["meta", 32, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchgit = nix.arg($, "fetchgit");
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   return nix.app(buildGoModule, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "bloat",
       version: "0-unstable-2024-12-27",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "git://git.freesoftwareextremist.com/bloat",
           rev: "d171b6c2d50500cdfd2f3308bf82a5f79e22cd8b",
           hash: "sha256-a9nL6NvZLQZLOuoqdDbZTH9dVtQ6guKopkAHughINcg=",
@@ -27,11 +24,11 @@ export default nix.lambda((args) => (() => {
       vendorHash: null,
       postInstall: "mkdir -p $out/share/bloat\ncp -r templates $out/share/bloat/templates\ncp -r static $out/share/bloat/static\nsed \\\n  -e \"s%=templates%=$out/share/bloat/templates%g\" \\\n  -e \"s%=static%=$out/share/bloat/static%g\"       \\\n  < bloat.conf > $out/share/bloat/bloat.conf.example\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Web client for Pleroma and Mastodon",
         longDescription: "A lightweight web client for Pleroma and Mastodon.\nDoes not require JavaScript to display text, images, audio and videos.\n",
         homepage: "https://bloat.freesoftwareextremist.com",

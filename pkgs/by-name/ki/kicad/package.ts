@@ -2,20 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["group", 98, 5], ["owner", 99, 5], ["repo", 100, 5], ["rev", 101, 5], ["sha256", 102, 5]], [["group", 108, 7], ["owner", 109, 7], ["repo", 110, 7], ["rev", 111, 7], ["sha256", 112, 7]], [["addonPath", 141, 49], ["python3", 141, 59]], [["addonsDrvs", 146, 17], ["nativeBuildInputs", 147, 9]], [["libSrc", 181, 63], ["compressStep", 181, 70]], [["addonPath", 182, 45], ["python3", 182, 55]], [["command", 330, 5], ["supportedFeatures", 334, 5]], [["libraries", 181, 12], ["callPackage", 182, 12], ["updateScript", 329, 12]], [["stable", 184, 13], ["testing", 184, 20], ["kicadSrc", 185, 13], ["kicadVersion", 185, 22], ["wxGTK", 186, 13], ["python", 186, 19], ["wxPython", 186, 26], ["withNgspice", 187, 13], ["withScripting", 187, 25], ["withI18n", 187, 39], ["debug", 188, 13], ["sanitizeAddress", 188, 19], ["sanitizeThreads", 188, 35]], [["name", 216, 5], ["paths", 217, 5]], [["name", 246, 9], ["paths", 247, 9]], [["description", 338, 5], ["homepage", 348, 5], ["longDescription", 349, 5], ["license", 353, 5], ["maintainers", 354, 5], ["platforms", 358, 5], ["broken", 359, 5], ["mainProgram", 360, 5]], [["passthru", 181, 3], ["base", 183, 3], ["pname", 191, 11], ["version", 192, 3], ["src", 194, 3], ["dontUnpack", 195, 3], ["dontConfigure", 196, 3], ["dontBuild", 197, 3], ["dontFixup", 198, 3], ["pythonPath", 200, 3], ["nativeBuildInputs", 208, 3], ["buildInputs", 210, 3], ["template_dir", 215, 3], ["baseWithTemplate", 232, 3], ["stockDataPath", 241, 3], ["makeWrapperArgs", 254, 3], ["installPhase", 282, 3], ["postInstall", 321, 3], ["meta", 337, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, runCommand: false, newScope: false, fetchFromGitLab: false, makeWrapper: false, symlinkJoin: false, callPackage: false, callPackages: false, "adwaita-icon-theme": false, dconf: false, gtk3: false, wxwidgets_3_2: false, librsvg: false, cups: false, "gsettings-desktop-schemas": false, "hicolor-icon-theme": false, unzip: false, jq: false, pname: true, stable: true, compressStep: true, testing: true, withNgspice: true, libngspice: false, withScripting: true, python3: false, withJava: true, jre: false, addons: true, debug: true, sanitizeAddress: true, sanitizeThreads: true, with3d: true, withI18n: true, srcs: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["group", 98, 5], ["owner", 99, 5], ["repo", 100, 5], ["rev", 101, 5], ["sha256", 102, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["group", 108, 7], ["owner", 109, 7], ["repo", 110, 7], ["rev", 111, 7], ["sha256", 112, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["addonPath", 141, 49], ["python3", 141, 59]]);
-const pos$4 = nix.positions(here + "/package.nix", [["addonsDrvs", 146, 17], ["nativeBuildInputs", 147, 9]]);
-const pos$5 = nix.positions(here + "/package.nix", [["libSrc", 181, 63], ["compressStep", 181, 70]]);
-const pos$6 = nix.positions(here + "/package.nix", [["addonPath", 182, 45], ["python3", 182, 55]]);
-const pos$7 = nix.positions(here + "/package.nix", [["command", 330, 5], ["supportedFeatures", 334, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["libraries", 181, 12], ["callPackage", 182, 12], ["updateScript", 329, 12]]);
-const pos$9 = nix.positions(here + "/package.nix", [["stable", 184, 13], ["testing", 184, 20], ["kicadSrc", 185, 13], ["kicadVersion", 185, 22], ["wxGTK", 186, 13], ["python", 186, 19], ["wxPython", 186, 26], ["withNgspice", 187, 13], ["withScripting", 187, 25], ["withI18n", 187, 39], ["debug", 188, 13], ["sanitizeAddress", 188, 19], ["sanitizeThreads", 188, 35]]);
-const pos$10 = nix.positions(here + "/package.nix", [["name", 216, 5], ["paths", 217, 5]]);
-const pos$11 = nix.positions(here + "/package.nix", [["name", 246, 9], ["paths", 247, 9]]);
-const pos$12 = nix.positions(here + "/package.nix", [["description", 338, 5], ["homepage", 348, 5], ["longDescription", 349, 5], ["license", 353, 5], ["maintainers", 354, 5], ["platforms", 358, 5], ["broken", 359, 5], ["mainProgram", 360, 5]]);
-const pos$13 = nix.positions(here + "/package.nix", [["passthru", 181, 3], ["base", 183, 3], ["pname", 191, 11], ["version", 192, 3], ["src", 194, 3], ["dontUnpack", 195, 3], ["dontConfigure", 196, 3], ["dontBuild", 197, 3], ["dontFixup", 198, 3], ["pythonPath", 200, 3], ["nativeBuildInputs", 208, 3], ["buildInputs", 210, 3], ["template_dir", 215, 3], ["baseWithTemplate", 232, 3], ["stockDataPath", 241, 3], ["makeWrapperArgs", 254, 3], ["installPhase", 282, 3], ["postInstall", 321, 3], ["meta", 337, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -58,7 +46,7 @@ export default nix.lambda((args) => (() => {
   const baseName = nix.thunk(() => (nix.asBool(testing) ? "kicad-testing" : (nix.asBool(stable) ? "kicad" : "kicad-unstable")));
   const versionsImport = nix.thunk(() => nix.builtins.import(nix.path(here, "./versions.nix")));
   const kicadSrcFetch = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       group: "kicad",
       owner: "code",
       repo: "kicad",
@@ -66,7 +54,7 @@ export default nix.lambda((args) => (() => {
       sha256: nix.thunk(() => nix.sel(versionsImport, nix.key(nix.force(baseName)), "kicadVersion", "src", "sha256")),
     }))));
   const libSrcFetch = (name) => nix.app(fetchFromGitLab, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       group: "kicad",
       owner: "libraries",
       repo: nix.thunk(() => nix.str`kicad-${name}`),
@@ -82,9 +70,9 @@ export default nix.lambda((args) => (() => {
   const python = python3;
   const wxPython = nix.thunk(() => nix.sel(python, "pkgs", "wxpython"));
   const addonPath = "addon.zip";
-  const addonsDrvs = nix.thunk(() => nix.builtins.map((pkg) => nix.app(nix.sel(pkg, "override"), nix.thunk(() => ({ [nix.POS]: pos$3, addonPath: addonPath, python3: python3 }))), addons));
+  const addonsDrvs = nix.thunk(() => nix.builtins.map((pkg) => nix.app(nix.sel(pkg, "override"), nix.thunk(() => ({ [nix.POS]: $pos[2], addonPath: addonPath, python3: python3 }))), addons));
   const addonsJoined = nix.thunk(() => nix.app(runCommand, "addonsJoined", nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       addonsDrvs: addonsDrvs,
       nativeBuildInputs: nix.thunk(() => [unzip, jq]),
     })), "mkdir $out\n\nfor pkg in $addonsDrvs; do\n  unzip $pkg/addon.zip -d unpacked\n\n  folder_name=$(jq .identifier unpacked/metadata.json --raw-output | tr . _)\n  for d in unpacked/*; do\n    if [ -d \"$d\" ]; then\n      dest=$out/share/kicad/scripting/$(basename $d)/$folder_name\n      mkdir -p $(dirname $dest)\n\n      mv $d $dest\n    fi\n  done\n  rm -r unpacked\ndone\n"));
@@ -94,17 +82,17 @@ export default nix.lambda((args) => (() => {
   const optionals = nix.thunk(() => nix.attr(lib, "optionals"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => (() => {
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$8,
-        libraries: nix.thunk(() => nix.app(callPackages, nix.path(here, "./libraries.nix"), nix.thunk(() => ({ [nix.POS]: pos$5, libSrc: libSrc, compressStep: compressStep })))),
-        callPackage: nix.thunk(() => nix.app(newScope, nix.thunk(() => ({ [nix.POS]: pos$6, addonPath: addonPath, python3: python3 })))),
+        [nix.POS]: $pos[7],
+        libraries: nix.thunk(() => nix.app(callPackages, nix.path(here, "./libraries.nix"), nix.thunk(() => ({ [nix.POS]: $pos[4], libSrc: libSrc, compressStep: compressStep })))),
+        callPackage: nix.thunk(() => nix.app(newScope, nix.thunk(() => ({ [nix.POS]: $pos[5], addonPath: addonPath, python3: python3 })))),
         updateScript: nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           command: nix.thunk(() => [nix.path(here, "./update.sh"), nix.thunk(() => nix.str`${pname_1}`)]),
           supportedFeatures: nix.thunk(() => ["commit"]),
         })),
       }));
       const base = nix.thunk(() => nix.app(callPackage, nix.path(here, "./base.nix"), nix.thunk(() => ({
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           stable: stable,
           testing: testing,
           kicadSrc: kicadSrc,
@@ -134,7 +122,7 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => nix.concat([makeWrapper], nix.app(optionals, withScripting, nix.thunk(() => [nix.thunk(() => nix.sel(python, "pkgs", "wrapPython"))]))));
       const buildInputs = nix.thunk(() => nix.app(optionals, withJava, nix.thunk(() => [jre])));
       const template_dir = nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({
-          [nix.POS]: pos$10,
+          [nix.POS]: $pos[9],
           name: "KiCad_template_dir",
           paths: nix.thunk(() => (() => {
             const w = nix.withScope(nix.thunk(() => nix.sel(passthru, "libraries")), null);
@@ -153,7 +141,7 @@ done
 ln -s ${template_dir} $out/template
 `)));
       const stockDataPath = nix.thunk(() => (nix.asBool(nix.eq(addons, [])) ? nix.force(baseWithTemplate) : nix.app(symlinkJoin, nix.thunk(() => ({
-          [nix.POS]: pos$11,
+          [nix.POS]: $pos[10],
           name: "kicad_stock_data_path",
           paths: nix.thunk(() => [baseWithTemplate, nix.thunk(() => nix.str`${addonsJoined}/share/kicad`)]),
         })))));
@@ -206,7 +194,7 @@ ln -s ${base}/share/mime $out/share/mime
 ln -s ${base}/share/metainfo $out/share/metainfo
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$12,
+        [nix.POS]: $pos[11],
         description: nix.thunk(() => nix.add((nix.asBool(stable) ? "Open Source Electronics Design Automation suite" : (nix.asBool(testing) ? "Open Source EDA suite, latest on stable branch" : "Open Source EDA suite, latest on master branch")), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(with3d)), ", without 3D models"))),
         homepage: "https://www.kicad.org/",
         longDescription: "KiCad is an open source software suite for Electronic Design Automation.\nThe Programs handle Schematic Capture, and PCB Layout with Gerber output.\n",
@@ -223,7 +211,7 @@ ln -s ${base}/share/metainfo $out/share/metainfo
         mainProgram: "kicad",
       }));
       return {
-        [nix.POS]: pos$13,
+        [nix.POS]: $pos[12],
         passthru,
         base,
         pname: pname_1,

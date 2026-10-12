@@ -2,13 +2,13 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/version-fastjar.nix", [[["package", 4, 3], ["command", 5, 3]]]);
 const formals$1 = { args: { fastjar: false, testers: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/version-fastjar.nix", [["package", 4, 3], ["command", 5, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const fastjar = nix.arg($, "fastjar");
   const testers = nix.arg($, "testers");
-  return nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$1, package: fastjar, command: "fastjar --version" })));
+  return nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: $pos[0], package: fastjar, command: "fastjar --version" })));
 })(), formals$1);
 //# sourceMappingURL=version-fastjar.ts.map

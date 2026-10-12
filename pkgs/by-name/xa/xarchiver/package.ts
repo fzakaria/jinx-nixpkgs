@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 31, 5], ["repo", 32, 5], ["rev", 33, 5], ["hash", 34, 5]], [["description", 73, 5], ["homepage", 74, 5], ["maintainers", 75, 5], ["license", 76, 5], ["platforms", 77, 5], ["mainProgram", 78, 5]], [["version", 27, 3], ["pname", 28, 3], ["src", 30, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 46, 3], ["postFixup", 51, 3], ["strictDeps", 70, 3], ["meta", 72, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, bash: false, fetchFromGitHub: false, gtk3: false, "pkg-config": false, intltool: false, libxslt: false, makeWrapper: false, coreutils: false, zip: false, unzip: false, p7zip: false, unar: false, gnutar: false, bzip2: false, gzip: false, lhasa: false, xz: false, zstd: false, wrapGAppsHook3: false, desktopToDarwinBundle: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 31, 5], ["repo", 32, 5], ["rev", 33, 5], ["hash", 34, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 73, 5], ["homepage", 74, 5], ["maintainers", 75, 5], ["license", 76, 5], ["platforms", 77, 5], ["mainProgram", 78, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 27, 3], ["pname", 28, 3], ["src", 30, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 46, 3], ["postFixup", 51, 3], ["strictDeps", 70, 3], ["meta", 72, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,11 +30,11 @@ export default nix.lambda((args) => (() => {
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   const desktopToDarwinBundle = nix.arg($, "desktopToDarwinBundle");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       version: "0.5.4.27",
       pname: "xarchiver",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ib",
           repo: "xarchiver",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -49,7 +47,7 @@ export default nix.lambda((args) => (() => {
 `),
       strictDeps: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "GTK frontend to 7z,zip,rar,tar,bzip2, gzip,arj, lha, rpm and deb (open and extract only)",
         homepage: "https://github.com/ib/xarchiver",
         maintainers: [],

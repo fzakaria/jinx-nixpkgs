@@ -2,17 +2,16 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/define-enable-with-top-level-mkIf.nix", [[["enable", 4, 32]], [["imports", 4, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/define-enable-with-top-level-mkIf.nix", [["enable", 4, 32]]);
-const pos$2 = nix.positions(here + "/define-enable-with-top-level-mkIf.nix", [["imports", 4, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$2,
+    [nix.POS]: $pos[1],
     imports: nix.thunk(() => [
-      nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), true, nix.thunk(() => ({ [nix.POS]: pos$1, enable: true })))),
+      nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), true, nix.thunk(() => ({ [nix.POS]: $pos[0], enable: true })))),
     ]),
   };
 })(), formals$1);

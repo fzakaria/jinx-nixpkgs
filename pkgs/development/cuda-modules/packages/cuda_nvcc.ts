@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/cuda_nvcc.nix", [[["message", 249, 7], ["assertion", 250, 7]], [["description", 255, 5], ["homepage", 256, 5], ["mainProgram", 257, 5]], [["redistName", 15, 3], ["pname", 16, 3], ["outputs", 20, 3], ["allowFHSReferences", 25, 3], ["nativeBuildInputs", 27, 3], ["propagatedBuildInputs", 32, 3], ["postInstall", 83, 3], ["brokenAssertions", 237, 3], ["meta", 254, 3]]]);
 const formals$1 = { args: { _cuda: false, backendStdenv: false, buildRedist: false, setupCudaHook: false, cudaAtLeast: false, cudaOlder: false, cccl: false, glibc: false, lib: false, libnvvm: false, makeBinaryWrapper: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/cuda_nvcc.nix", [["message", 249, 7], ["assertion", 250, 7]]);
-const pos$2 = nix.positions(here + "/cuda_nvcc.nix", [["description", 255, 5], ["homepage", 256, 5], ["mainProgram", 257, 5]]);
-const pos$3 = nix.positions(here + "/cuda_nvcc.nix", [["redistName", 15, 3], ["pname", 16, 3], ["outputs", 20, 3], ["allowFHSReferences", 25, 3], ["nativeBuildInputs", 27, 3], ["propagatedBuildInputs", 32, 3], ["postInstall", 83, 3], ["brokenAssertions", 237, 3], ["meta", 254, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,7 +19,7 @@ export default nix.lambda((args) => (() => {
   const libnvvm = nix.arg($, "libnvvm");
   const makeBinaryWrapper = nix.arg($, "makeBinaryWrapper");
   return nix.app(buildRedist, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       redistName: "cuda",
       pname: "cuda_nvcc",
       outputs: nix.thunk(() => ["out"]),
@@ -69,13 +67,13 @@ wrapProgramBinary \\
       })()),
       brokenAssertions: nix.thunk(() => [
         nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           message: "cannot use libc++ on x86_64-linux",
           assertion: nix.thunk(() => (!nix.asBool(nix.eq(nix.sel(backendStdenv, "hostNixSystem"), "x86_64-linux")) || nix.asBool(nix.eq(nix.sel(backendStdenv, "cc", "libcxx"), null)))),
         })),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "CUDA compiler driver",
         homepage: "https://docs.nvidia.com/cuda/cuda-compiler-driver-nvcc",
         mainProgram: "nvcc",

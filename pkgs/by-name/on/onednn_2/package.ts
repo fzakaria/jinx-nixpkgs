@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["sha256", 21, 5]], [["changelog", 53, 5], ["description", 54, 5], ["homepage", 55, 5], ["license", 56, 5], ["teams", 57, 5], ["platforms", 58, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["postPatch", 26, 3], ["outputs", 32, 3], ["nativeBuildInputs", 38, 3], ["doCheck", 41, 3], ["postInstall", 44, 3], ["meta", 52, 3]]]);
 const formals$1 = { args: { cmake: false, fetchFromGitHub: false, lib: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["sha256", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["changelog", 53, 5], ["description", 54, 5], ["homepage", 55, 5], ["license", 56, 5], ["teams", 57, 5], ["platforms", 58, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["postPatch", 26, 3], ["outputs", 32, 3], ["nativeBuildInputs", 38, 3], ["doCheck", 41, 3], ["postInstall", 44, 3], ["meta", 52, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "onednn",
       version: "2.7.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "uxlfoundation",
           repo: "oneDNN",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -30,7 +28,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       postInstall: "substituteInPlace $out/lib/cmake/dnnl/dnnl-config.cmake \\\n  --replace \"\\${PACKAGE_PREFIX_DIR}/\" \"\"\n\nsubstituteInPlace $out/lib/cmake/dnnl/dnnl-targets.cmake \\\n  --replace \"\\${_IMPORT_PREFIX}/\" \"\"\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         changelog: nix.thunk(() => nix.str`https://github.com/uxlfoundation/oneDNN/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "oneAPI Deep Neural Network Library (oneDNN)",
         homepage: "http://uxlfoundation.github.io/oneDNN",

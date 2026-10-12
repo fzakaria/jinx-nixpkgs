@@ -2,30 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/patch-shebangs.nix", [[["assertion", 33, 9]], [["name", 22, 7], ["strictDeps", 23, 7], ["dontUnpack", 24, 7], ["installPhase", 25, 7], ["passthru", 32, 7]], [["assertion", 49, 9]], [["name", 38, 7], ["strictDeps", 39, 7], ["dontUnpack", 40, 7], ["installPhase", 41, 7], ["passthru", 48, 7]], [["assertion", 66, 9]], [["name", 54, 7], ["strictDeps", 55, 7], ["dontUnpack", 56, 7], ["installPhase", 57, 7], ["passthru", 65, 7]], [["assertion", 82, 9]], [["name", 71, 7], ["strictDeps", 72, 7], ["dontUnpack", 73, 7], ["installPhase", 74, 7], ["passthru", 81, 7]], [["assertion", 97, 9]], [["name", 87, 7], ["strictDeps", 88, 7], ["dontUnpack", 89, 7], ["installPhase", 90, 7], ["passthru", 96, 7]], [["assertion", 112, 9]], [["name", 102, 7], ["strictDeps", 103, 7], ["dontUnpack", 104, 7], ["installPhase", 105, 7], ["passthru", 111, 7]], [["name", 118, 9], ["system", 119, 9], ["builder", 120, 9], ["initialPath", 121, 9], ["strictDeps", 128, 9], ["args", 129, 9], ["assertion", 142, 9]], [["meta", 145, 9]], [["name", 150, 9], ["system", 151, 9], ["builder", 152, 9], ["initialPath", 153, 9], ["strictDeps", 159, 9], ["args", 160, 9], ["assertion", 179, 9]], [["meta", 182, 9]], [["name", 188, 9], ["system", 189, 9], ["builder", 190, 9], ["initialPath", 191, 9], ["strictDeps", 198, 9], ["args", 199, 9], ["assertion", 220, 9]], [["meta", 223, 9]], [["name", 228, 9], ["system", 229, 9], ["builder", 230, 9], ["initialPath", 231, 9], ["strictDeps", 238, 9], ["args", 239, 9], ["assertion", 262, 9]], [["meta", 265, 9]], [["bad-shebang", 21, 5], ["ignores-nix-store", 37, 5], ["updates-nix-store", 53, 5], ["split-string", 70, 5], ["without-trailing-newline", 86, 5], ["dont-patch-builtins", 101, 5], ["read-only-script", 116, 5], ["preserves-read-only", 148, 5], ["preserves-timestamp", 186, 5], ["preserves-binary-data", 226, 5]], [["bad-shebang", 273, 7], ["ignores-nix-store", 274, 7], ["updates-nix-store", 275, 7], ["split-string", 276, 7], ["without-trailing-newline", 277, 7], ["dont-patch-builtins", 278, 7], ["read-only-script", 279, 7], ["preserves-read-only", 280, 7], ["preserves-timestamp", 281, 7], ["preserves-binary-data", 282, 7]], [["name", 270, 3], ["passthru", 271, 3], ["buildCommand", 285, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, pkgs: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/patch-shebangs.nix", [["assertion", 33, 9]]);
-const pos$2 = nix.positions(here + "/patch-shebangs.nix", [["name", 22, 7], ["strictDeps", 23, 7], ["dontUnpack", 24, 7], ["installPhase", 25, 7], ["passthru", 32, 7]]);
-const pos$3 = nix.positions(here + "/patch-shebangs.nix", [["assertion", 49, 9]]);
-const pos$4 = nix.positions(here + "/patch-shebangs.nix", [["name", 38, 7], ["strictDeps", 39, 7], ["dontUnpack", 40, 7], ["installPhase", 41, 7], ["passthru", 48, 7]]);
-const pos$5 = nix.positions(here + "/patch-shebangs.nix", [["assertion", 66, 9]]);
-const pos$6 = nix.positions(here + "/patch-shebangs.nix", [["name", 54, 7], ["strictDeps", 55, 7], ["dontUnpack", 56, 7], ["installPhase", 57, 7], ["passthru", 65, 7]]);
-const pos$7 = nix.positions(here + "/patch-shebangs.nix", [["assertion", 82, 9]]);
-const pos$8 = nix.positions(here + "/patch-shebangs.nix", [["name", 71, 7], ["strictDeps", 72, 7], ["dontUnpack", 73, 7], ["installPhase", 74, 7], ["passthru", 81, 7]]);
-const pos$9 = nix.positions(here + "/patch-shebangs.nix", [["assertion", 97, 9]]);
-const pos$10 = nix.positions(here + "/patch-shebangs.nix", [["name", 87, 7], ["strictDeps", 88, 7], ["dontUnpack", 89, 7], ["installPhase", 90, 7], ["passthru", 96, 7]]);
-const pos$11 = nix.positions(here + "/patch-shebangs.nix", [["assertion", 112, 9]]);
-const pos$12 = nix.positions(here + "/patch-shebangs.nix", [["name", 102, 7], ["strictDeps", 103, 7], ["dontUnpack", 104, 7], ["installPhase", 105, 7], ["passthru", 111, 7]]);
-const pos$13 = nix.positions(here + "/patch-shebangs.nix", [["name", 118, 9], ["system", 119, 9], ["builder", 120, 9], ["initialPath", 121, 9], ["strictDeps", 128, 9], ["args", 129, 9], ["assertion", 142, 9]]);
-const pos$14 = nix.positions(here + "/patch-shebangs.nix", [["meta", 145, 9]]);
-const pos$15 = nix.positions(here + "/patch-shebangs.nix", [["name", 150, 9], ["system", 151, 9], ["builder", 152, 9], ["initialPath", 153, 9], ["strictDeps", 159, 9], ["args", 160, 9], ["assertion", 179, 9]]);
-const pos$16 = nix.positions(here + "/patch-shebangs.nix", [["meta", 182, 9]]);
-const pos$17 = nix.positions(here + "/patch-shebangs.nix", [["name", 188, 9], ["system", 189, 9], ["builder", 190, 9], ["initialPath", 191, 9], ["strictDeps", 198, 9], ["args", 199, 9], ["assertion", 220, 9]]);
-const pos$18 = nix.positions(here + "/patch-shebangs.nix", [["meta", 223, 9]]);
-const pos$19 = nix.positions(here + "/patch-shebangs.nix", [["name", 228, 9], ["system", 229, 9], ["builder", 230, 9], ["initialPath", 231, 9], ["strictDeps", 238, 9], ["args", 239, 9], ["assertion", 262, 9]]);
-const pos$20 = nix.positions(here + "/patch-shebangs.nix", [["meta", 265, 9]]);
-const pos$21 = nix.positions(here + "/patch-shebangs.nix", [["bad-shebang", 21, 5], ["ignores-nix-store", 37, 5], ["updates-nix-store", 53, 5], ["split-string", 70, 5], ["without-trailing-newline", 86, 5], ["dont-patch-builtins", 101, 5], ["read-only-script", 116, 5], ["preserves-read-only", 148, 5], ["preserves-timestamp", 186, 5], ["preserves-binary-data", 226, 5]]);
-const pos$22 = nix.positions(here + "/patch-shebangs.nix", [["bad-shebang", 273, 7], ["ignores-nix-store", 274, 7], ["updates-nix-store", 275, 7], ["split-string", 276, 7], ["without-trailing-newline", 277, 7], ["dont-patch-builtins", 278, 7], ["read-only-script", 279, 7], ["preserves-read-only", 280, 7], ["preserves-timestamp", 281, 7], ["preserves-binary-data", 282, 7]]);
-const pos$23 = nix.positions(here + "/patch-shebangs.nix", [["name", 270, 3], ["passthru", 271, 3], ["buildCommand", 285, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -38,75 +16,75 @@ export default nix.lambda((args) => (() => {
   const earlyFindutils = nix.thunk(() => nix.selOr(stdenv, () => nix.sel(pkgs, "findutils"), "__bootPackages", "stdenv", "__bootPackages", "findutils"));
   const earlySed = nix.thunk(() => nix.selOr(stdenv, () => nix.sel(pkgs, "gnused"), "__bootPackages", "stdenv", "__bootPackages", "gnused"));
   const tests = nix.thunk(() => ({
-    [nix.POS]: pos$21,
+    [nix.POS]: $pos[20],
     "bad-shebang": nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         name: "bad-shebang",
         strictDeps: false,
         dontUnpack: true,
         installPhase: "mkdir -p $out/bin\necho \"#!/bin/bash\" > $out/bin/test\necho \"echo -n hello\" >> $out/bin/test\nchmod +x $out/bin/test\ndontPatchShebangs=\n",
         passthru: nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           assertion: nix.thunk(() => nix.str`grep '^#!${nix.sel(stdenv, "shell")}' $out/bin/test > /dev/null`),
         })),
       })))),
     "ignores-nix-store": nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         name: "ignores-nix-store",
         strictDeps: false,
         dontUnpack: true,
         installPhase: "mkdir -p $out/bin\necho \"#!$NIX_STORE/path/to/bash\" > $out/bin/test\necho \"echo -n hello\" >> $out/bin/test\nchmod +x $out/bin/test\ndontPatchShebangs=\n",
         passthru: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           assertion: "grep \"^#!$NIX_STORE/path/to/bash\" $out/bin/test > /dev/null",
         })),
       })))),
     "updates-nix-store": nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         name: "updates-nix-store",
         strictDeps: false,
         dontUnpack: true,
         installPhase: "mkdir -p $out/bin\necho \"#!$NIX_STORE/path/to/bash\" > $out/bin/test\necho \"echo -n hello\" >> $out/bin/test\nchmod +x $out/bin/test\npatchShebangs --update $out/bin/test\ndontPatchShebangs=1\n",
         passthru: nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           assertion: nix.thunk(() => nix.str`grep '^#!${nix.sel(stdenv, "shell")}' $out/bin/test > /dev/null`),
         })),
       })))),
     "split-string": nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         name: "split-string",
         strictDeps: false,
         dontUnpack: true,
         installPhase: "mkdir -p $out/bin\necho \"#!/usr/bin/env -S bash --posix\" > $out/bin/test\necho \"echo -n hello\" >> $out/bin/test\nchmod +x $out/bin/test\ndontPatchShebangs=\n",
         passthru: nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           assertion: nix.thunk(() => nix.str`grep -v '^#!${nix.sel(pkgs, "coreutils")}/bin/env -S ${nix.sel(stdenv, "shell")} --posix' $out/bin/test > /dev/null`),
         })),
       })))),
     "without-trailing-newline": nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         name: "without-trailing-newline",
         strictDeps: false,
         dontUnpack: true,
         installPhase: "mkdir -p $out/bin\nprintf \"#!/bin/bash\" > $out/bin/test\nchmod +x $out/bin/test\ndontPatchShebangs=\n",
         passthru: nix.thunk(() => ({
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           assertion: nix.thunk(() => nix.str`grep '^#!${nix.sel(stdenv, "shell")}' $out/bin/test > /dev/null`),
         })),
       })))),
     "dont-patch-builtins": nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-        [nix.POS]: pos$12,
+        [nix.POS]: $pos[11],
         name: "dont-patch-builtins",
         strictDeps: false,
         dontUnpack: true,
         installPhase: "mkdir -p $out/bin\necho \"#!/usr/bin/builtin\" > $out/bin/test\nchmod +x $out/bin/test\ndontPatchShebangs=\n",
         passthru: nix.thunk(() => ({
-          [nix.POS]: pos$11,
+          [nix.POS]: $pos[10],
           assertion: "grep '^#!/usr/bin/builtin' $out/bin/test > /dev/null",
         })),
       })))),
     "read-only-script": nix.thunk(() => nix.update(nix.app(nix.builtins.derivation, nix.thunk(() => ({
-        [nix.POS]: pos$13,
+        [nix.POS]: $pos[12],
         name: "read-only-script",
         system: nix.thunk(() => nix.sel(stdenv, "buildPlatform", "system")),
         builder: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), earlyBash)),
@@ -125,9 +103,9 @@ patchShebangs $out/bin/test
 `),
         ]),
         assertion: nix.thunk(() => nix.str`grep '^#!${nix.app(nix.sel(lib, "getExe"), earlyBash)}' $out/bin/test > /dev/null`),
-      }))), { [nix.POS]: pos$14, meta: nix.thunk(() => ({})) })),
+      }))), { [nix.POS]: $pos[13], meta: nix.thunk(() => ({})) })),
     "preserves-read-only": nix.thunk(() => nix.update(nix.app(nix.builtins.derivation, nix.thunk(() => ({
-        [nix.POS]: pos$15,
+        [nix.POS]: $pos[14],
         name: "preserves-read-only",
         system: nix.thunk(() => nix.sel(stdenv, "buildPlatform", "system")),
         builder: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), earlyBash)),
@@ -152,9 +130,9 @@ fi
 `),
         ]),
         assertion: nix.thunk(() => nix.str`grep '^#!${nix.app(nix.sel(lib, "getExe"), earlyBash)}' $out/bin/test > /dev/null`),
-      }))), { [nix.POS]: pos$16, meta: nix.thunk(() => ({})) })),
+      }))), { [nix.POS]: $pos[15], meta: nix.thunk(() => ({})) })),
     "preserves-timestamp": nix.thunk(() => nix.update(nix.app(nix.builtins.derivation, nix.thunk(() => ({
-        [nix.POS]: pos$17,
+        [nix.POS]: $pos[16],
         name: "preserves-timestamp",
         system: nix.thunk(() => nix.sel(stdenv, "buildPlatform", "system")),
         builder: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), earlyBash)),
@@ -181,9 +159,9 @@ fi
 `),
         ]),
         assertion: nix.thunk(() => nix.str`grep '^#!${nix.app(nix.sel(lib, "getExe"), earlyBash)}' $out/bin/test > /dev/null`),
-      }))), { [nix.POS]: pos$18, meta: nix.thunk(() => ({})) })),
+      }))), { [nix.POS]: $pos[17], meta: nix.thunk(() => ({})) })),
     "preserves-binary-data": nix.thunk(() => nix.update(nix.app(nix.builtins.derivation, nix.thunk(() => ({
-        [nix.POS]: pos$19,
+        [nix.POS]: $pos[18],
         name: "preserves-binary-data",
         system: nix.thunk(() => nix.sel(stdenv, "buildPlatform", "system")),
         builder: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), earlyBash)),
@@ -212,13 +190,13 @@ fi
 `),
         ]),
         assertion: nix.thunk(() => nix.str`grep '^#!${nix.app(nix.sel(lib, "getExe"), earlyBash)}' $out/bin/test > /dev/null`),
-      }))), { [nix.POS]: pos$20, meta: nix.thunk(() => ({})) })),
+      }))), { [nix.POS]: $pos[19], meta: nix.thunk(() => ({})) })),
   }));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$23,
+      [nix.POS]: $pos[22],
       name: "test-patch-shebangs",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$22,
+        [nix.POS]: $pos[21],
         "bad-shebang": nix.thunk(() => nix.attr(tests, "bad-shebang")),
         "ignores-nix-store": nix.thunk(() => nix.attr(tests, "ignores-nix-store")),
         "updates-nix-store": nix.thunk(() => nix.attr(tests, "updates-nix-store")),

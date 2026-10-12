@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["hash", 25, 5]], [["CGO_ENABLED", 38, 7]], [["gvisor", 65, 43]], [["tests", 65, 12]], [["description", 68, 5], ["homepage", 69, 5], ["license", 70, 5], ["maintainers", 71, 5], ["platforms", 72, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 21, 3], ["postPatch", 29, 3], ["vendorHash", 34, 3], ["nativeBuildInputs", 36, 3], ["env", 38, 3], ["ldflags", 40, 3], ["subPackages", 45, 3], ["postInstall", 50, 3], ["patches", 63, 3], ["passthru", 65, 3], ["meta", 67, 3]]]);
 const formals$1 = { args: { lib: false, nixosTests: false, buildGoModule: false, fetchFromGitHub: false, iproute2: false, iptables: false, makeWrapper: false, procps: false, glibc: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["CGO_ENABLED", 38, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["gvisor", 65, 43]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 65, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 68, 5], ["homepage", 69, 5], ["license", 70, 5], ["maintainers", 71, 5], ["platforms", 72, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 21, 3], ["postPatch", 29, 3], ["vendorHash", 34, 3], ["nativeBuildInputs", 36, 3], ["env", 38, 3], ["ldflags", 40, 3], ["subPackages", 45, 3], ["postInstall", 50, 3], ["patches", 63, 3], ["passthru", 65, 3], ["meta", 67, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const procps = nix.arg($, "procps");
   const glibc = nix.arg($, "glibc");
   return nix.app(buildGoModule, nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "gvisor",
       version: "20260406.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "google",
           repo: "gvisor",
           rev: "db8d2c9abca39156c61ee2769d52b8a11accbe16",
@@ -37,7 +32,7 @@ export default nix.lambda((args) => (() => {
 `),
       vendorHash: "sha256-8Zkgt5hegYEHnG1lF+wLgdru6t3l+Z/qKRvJHukZbPo=",
       nativeBuildInputs: nix.thunk(() => [makeWrapper]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, CGO_ENABLED: 0n })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], CGO_ENABLED: 0n })),
       ldflags: nix.thunk(() => ["-s", "-w"]),
       subPackages: nix.thunk(() => ["runsc", "shim"]),
       postInstall: nix.thunk(() => nix.str`# Needed for the 'runsc do' subcommand
@@ -47,11 +42,11 @@ mv $out/bin/shim $out/bin/containerd-shim-runsc-v1
 `),
       patches: nix.thunk(() => [nix.path(here, "./fix-go-mod-tidy.diff")]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$3, gvisor: nix.thunk(() => nix.attr(nixosTests, "gvisor")) })),
+        [nix.POS]: $pos[3],
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[2], gvisor: nix.thunk(() => nix.attr(nixosTests, "gvisor")) })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Application Kernel for Containers",
         homepage: "https://github.com/google/gvisor",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

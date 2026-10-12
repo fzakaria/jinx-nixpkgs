@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 23, 7], ["repo", 24, 7], ["tag", 25, 7], ["hash", 26, 7]], [["url", 84, 15], ["hash", 85, 15]], [["buildInputs", 90, 15]], [["image", 80, 9]], [["rev-prefix", 101, 35]], [["models", 78, 15], ["tests", 79, 7], ["updateScript", 101, 7]], [["mainProgram", 107, 7], ["description", 108, 7], ["homepage", 109, 7], ["downloadPage", 110, 7], ["license", 111, 7], ["maintainers", 112, 7]], [["pname", 14, 5], ["version", 15, 5], ["pyproject", 16, 5], ["build-system", 18, 5], ["src", 22, 5], ["models", 29, 5], ["postPatch", 36, 5], ["pythonRelaxDeps", 42, 5], ["dependencies", 48, 5], ["pythonImportsCheck", 75, 5], ["passthru", 77, 5], ["doCheck", 104, 5], ["meta", 106, 5]]]);
 const formals$1 = { args: { python3: false, lib: false, runCommand: false, fetchFromGitHub: false, fetchurl: false, gitUpdater: false, imagemagick: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 23, 7], ["repo", 24, 7], ["tag", 25, 7], ["hash", 26, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 84, 15], ["hash", 85, 15]]);
-const pos$3 = nix.positions(here + "/package.nix", [["buildInputs", 90, 15]]);
-const pos$4 = nix.positions(here + "/package.nix", [["image", 80, 9]]);
-const pos$5 = nix.positions(here + "/package.nix", [["rev-prefix", 101, 35]]);
-const pos$6 = nix.positions(here + "/package.nix", [["models", 78, 15], ["tests", 79, 7], ["updateScript", 101, 7]]);
-const pos$7 = nix.positions(here + "/package.nix", [["mainProgram", 107, 7], ["description", 108, 7], ["homepage", 109, 7], ["downloadPage", 110, 7], ["license", 111, 7], ["maintainers", 112, 7]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 14, 5], ["version", 15, 5], ["pyproject", 16, 5], ["build-system", 18, 5], ["src", 22, 5], ["models", 29, 5], ["postPatch", 36, 5], ["pythonRelaxDeps", 42, 5], ["dependencies", 48, 5], ["pythonImportsCheck", 75, 5], ["passthru", 77, 5], ["doCheck", 104, 5], ["meta", 106, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const pyproject = true;
       const build_system = nix.thunk(() => [nix.thunk(() => nix.sel(p, "setuptools"))]);
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "nadermx",
           repo: "backgroundremover",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -69,27 +62,27 @@ cp ${src}/models/u2netp.pth $out
       ]);
       const pythonImportsCheck = nix.thunk(() => ["backgroundremover"]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         models: models,
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           image: nix.thunk(() => (() => {
             const demoImage = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$2,
+                [nix.POS]: $pos[1],
                 url: "https://pics.craiyon.com/2023-07-16/38653769ac3b4e068181cb5ab1e542a1.webp",
                 hash: "sha256-Kvd06eZdibgDbabVVe0+cNTeS1rDnMXIZZpPlHIlfBo=",
               }))));
-            return nix.app(runCommand, "backgroundremover-image-test.png", nix.thunk(() => ({ [nix.POS]: pos$3, buildInputs: nix.thunk(() => [self, imagemagick]) })), nix.thunk(() => nix.str`convert ${demoImage} input.png
+            return nix.app(runCommand, "backgroundremover-image-test.png", nix.thunk(() => ({ [nix.POS]: $pos[2], buildInputs: nix.thunk(() => [self, imagemagick]) })), nix.thunk(() => nix.str`convert ${demoImage} input.png
 export NUMBA_CACHE_DIR=$(mktemp -d)
 backgroundremover -i input.png -o $out
 `));
           })()),
         })),
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$5, "rev-prefix": "v" })))),
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[4], "rev-prefix": "v" })))),
       }));
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         mainProgram: "backgroundremover",
         description: "Command line tool to remove background from image and video, made by nadermx to power",
         homepage: "https://BackgroundRemoverAI.com",
@@ -101,7 +94,7 @@ backgroundremover -i input.png -o $out
         })()),
       }));
       return {
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         pname,
         version,
         pyproject,

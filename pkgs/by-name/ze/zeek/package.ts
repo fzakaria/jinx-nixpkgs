@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 38, 5], ["hash", 39, 5]], [["broker", 115, 13]], [["description", 119, 5], ["homepage", 120, 5], ["changelog", 121, 5], ["license", 122, 5], ["mainProgram", 123, 5], ["maintainers", 124, 5], ["platforms", 128, 5]], [["pname", 34, 3], ["version", 35, 3], ["src", 37, 3], ["strictDeps", 42, 3], ["patches", 44, 3], ["nativeBuildInputs", 48, 3], ["buildInputs", 57, 3], ["postPatch", 77, 3], ["cmakeFlags", 88, 3], ["postInstall", 102, 3], ["passthru", 114, 3], ["meta", 118, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, callPackage: false, fetchurl: false, cmake: false, civetweb: false, flex: false, bison: false, openssl: false, libkqueue: false, libpcap: false, zlib: false, file: false, curl: false, libmaxminddb: false, gperftools: false, python3: false, swig: false, gettext: false, coreutils: false, ncurses: false, zeromq: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 38, 5], ["hash", 39, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["broker", 115, 13]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 119, 5], ["homepage", 120, 5], ["changelog", 121, 5], ["license", 122, 5], ["mainProgram", 123, 5], ["maintainers", 124, 5], ["platforms", 128, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 34, 3], ["version", 35, 3], ["src", 37, 3], ["strictDeps", 42, 3], ["patches", 44, 3], ["nativeBuildInputs", 48, 3], ["buildInputs", 57, 3], ["postPatch", 77, 3], ["cmakeFlags", 88, 3], ["postInstall", 102, 3], ["passthru", 114, 3], ["meta", 118, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -38,11 +35,11 @@ export default nix.lambda((args) => (() => {
       nix.thunk(() => nix.sel(p, "semantic-version")),
     ]));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "zeek",
       version: "8.2.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://download.zeek.org/zeek-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-o7bWDva+w+sSgY/jLK7HB/m21jBT6u7pQuTsmvZNhiw=",
         })))),
@@ -83,9 +80,9 @@ for file in $out/share/zeek/policy/misc/trim-trace-file.zeek $out/share/zeek/bas
   substituteInPlace $file --replace "/bin/rm" "${coreutils}/bin/rm"
 done
 `),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, broker: broker })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[1], broker: broker })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Network analysis framework much different from a typical IDS",
         homepage: "https://www.zeek.org",
         changelog: nix.thunk(() => nix.str`https://github.com/zeek/zeek/blob/v${nix.sel(finalAttrs, "version")}/CHANGES`),

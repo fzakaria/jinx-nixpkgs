@@ -2,22 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["version", 8, 5], ["hash", 9, 5], ["cargoHash", 10, 5]], [["name", 21, 9], ["url", 22, 9], ["hash", 23, 9]], [["name", 28, 9], ["url", 29, 9], ["hash", 30, 9]], [["name", 36, 9], ["url", 37, 9], ["hash", 38, 9]], [["name", 44, 9], ["url", 45, 9], ["hash", 46, 9]], [["name", 49, 9], ["url", 50, 9], ["hash", 51, 9]], [["name", 54, 9], ["url", 55, 9], ["hash", 56, 9]], [["name", 78, 9], ["url", 79, 9], ["includes", 80, 9], ["hash", 85, 9]], [["name", 88, 9], ["url", 89, 9], ["includes", 90, 9], ["hash", 99, 9]], [["name", 105, 9], ["url", 106, 9], ["includes", 107, 9], ["hash", 111, 9]], [["name", 117, 9], ["url", 118, 9], ["excludes", 119, 9], ["hash", 128, 9]], [["name", 135, 9], ["url", 136, 9], ["excludes", 137, 9], ["hash", 140, 9]], [["name", 145, 9], ["url", 146, 9], ["hash", 147, 9]], [["version", 14, 5], ["pinned", 15, 5], ["hash", 16, 5], ["patches", 17, 5]], [["mir", 7, 3], ["mir_2_15", 13, 3]]]);
 const formals$1 = { args: { callPackage: false, fetchpatch: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["version", 8, 5], ["hash", 9, 5], ["cargoHash", 10, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["name", 21, 9], ["url", 22, 9], ["hash", 23, 9]]);
-const pos$3 = nix.positions(here + "/default.nix", [["name", 28, 9], ["url", 29, 9], ["hash", 30, 9]]);
-const pos$4 = nix.positions(here + "/default.nix", [["name", 36, 9], ["url", 37, 9], ["hash", 38, 9]]);
-const pos$5 = nix.positions(here + "/default.nix", [["name", 44, 9], ["url", 45, 9], ["hash", 46, 9]]);
-const pos$6 = nix.positions(here + "/default.nix", [["name", 49, 9], ["url", 50, 9], ["hash", 51, 9]]);
-const pos$7 = nix.positions(here + "/default.nix", [["name", 54, 9], ["url", 55, 9], ["hash", 56, 9]]);
-const pos$8 = nix.positions(here + "/default.nix", [["name", 78, 9], ["url", 79, 9], ["includes", 80, 9], ["hash", 85, 9]]);
-const pos$9 = nix.positions(here + "/default.nix", [["name", 88, 9], ["url", 89, 9], ["includes", 90, 9], ["hash", 99, 9]]);
-const pos$10 = nix.positions(here + "/default.nix", [["name", 105, 9], ["url", 106, 9], ["includes", 107, 9], ["hash", 111, 9]]);
-const pos$11 = nix.positions(here + "/default.nix", [["name", 117, 9], ["url", 118, 9], ["excludes", 119, 9], ["hash", 128, 9]]);
-const pos$12 = nix.positions(here + "/default.nix", [["name", 135, 9], ["url", 136, 9], ["excludes", 137, 9], ["hash", 140, 9]]);
-const pos$13 = nix.positions(here + "/default.nix", [["name", 145, 9], ["url", 146, 9], ["hash", 147, 9]]);
-const pos$14 = nix.positions(here + "/default.nix", [["version", 14, 5], ["pinned", 15, 5], ["hash", 16, 5], ["patches", 17, 5]]);
-const pos$15 = nix.positions(here + "/default.nix", [["mir", 7, 3], ["mir_2_15", 13, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,51 +11,51 @@ export default nix.lambda((args) => (() => {
   const fetchpatch = nix.arg($, "fetchpatch");
   const common = nix.thunk(() => nix.app(callPackage, nix.path(here, "./common.nix"), nix.thunk(() => ({}))));
   return {
-    [nix.POS]: pos$15,
+    [nix.POS]: $pos[14],
     mir: nix.thunk(() => nix.app(common, nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         version: "2.29.0",
         hash: "sha256-jh8Qgr/5Ht0eioLH9ES4M+jZr3RLKHg2YJXX5XzzwEA=",
         cargoHash: "sha256-VQpLjoKlaoYaSfVVNjxDGJXSlIri4RwETaQJf8faqHQ=",
       })))),
     mir_2_15: nix.thunk(() => nix.app(common, nix.thunk(() => ({
-        [nix.POS]: pos$14,
+        [nix.POS]: $pos[13],
         version: "2.15.0",
         pinned: true,
         hash: "sha256-c1+gxzLEtNCjR/mx76O5QElQ8+AO4WsfcG7Wy1+nC6E=",
         patches: nix.thunk(() => [
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               name: "0001-mir-Fix-the-signature-of-drmModeCrtcSetGamma.patch",
               url: "https://github.com/canonical/mir/commit/98250e9c32c5b9b940da2fb0a32d8139bbc68157.patch",
               hash: "sha256-tTtOHGNue5rsppOIQSfkOH5sVfFSn/KPGHmubNlRtLI=",
             })))),
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               name: "0002-mir-Fix-cannot_start_X_Server_and_outdated_tests.patch",
               url: "https://github.com/canonical/mir/commit/0704026bd06372ea8286a46d8c939286dd8a8c68.patch",
               hash: "sha256-k+51piPQandbHdm+ioqpBrb+C7Aqi2kugchAehZ1aiU=",
             })))),
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               name: "0003-mir-cmake-always-require-epoxy.patch",
               url: "https://github.com/canonical/mir/commit/171c42ac3929f946a70505ee42be0ce8220f245a.patch",
               hash: "sha256-QuVZBcHSn/DK+xbjM36Y89+w22vk7NRV4MkbjgvS28A=",
             })))),
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               name: "0004-mir-exclude-tests-surfaces_with_exclusive_zone_set_to_negative_one_do_not_respect_other_exclusive_zones-1.patch",
               url: "https://github.com/canonical/mir/commit/967d872daab50d845adce389c0672edfd18b90c9.patch",
               hash: "sha256-XfTWQj+fmPpC1hIqt7ELGU6Yq2wJSO+FQ8bsikI5h0I=",
             })))),
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              [nix.POS]: pos$6,
+              [nix.POS]: $pos[5],
               name: "0005-mir-exclude-tests-surfaces_with_exclusive_zone_set_to_negative_one_do_not_respect_other_exclusive_zones-2.patch",
               url: "https://github.com/canonical/mir/commit/932d8744852bca9830668018474890bce0c5f6d6.patch",
               hash: "sha256-+udEt6pF5VLSBtRgo9r1YdVsinARWLAL4AeEG01DV68=",
             })))),
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              [nix.POS]: pos$7,
+              [nix.POS]: $pos[6],
               name: "0006-mir-exclude-tests-surfaces_with_exclusive_zone_set_to_negative_one_do_not_respect_other_exclusive_zones-3.patch",
               url: "https://github.com/canonical/mir/commit/fbad5e50be02992f6cf1f41f928950532f3f62c5.patch",
               hash: "sha256-J0YEhXf8sAWEHHxU7QKSJjOoHiXsYqotBfgGm79X6GA=",
@@ -78,7 +64,7 @@ export default nix.lambda((args) => (() => {
           nix.path(here, "./1002-mir-2_15-Add-missing-includes-for-algorithm.patch"),
           nix.path(here, "./1003-mir-2_15-calloc-args-in-right-order.patch"),
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              [nix.POS]: pos$8,
+              [nix.POS]: $pos[7],
               name: "0101-Drop-unused-dependency-on-gflags.patch",
               url: "https://github.com/canonical/mir/commit/15a40638e5e9c4b6a11b7fa446ad31e190f485e7.patch",
               includes: nix.thunk(() => [
@@ -89,7 +75,7 @@ export default nix.lambda((args) => (() => {
               hash: "sha256-qIsWCOs6Ap0jJ2cpgdO+xJHmSqC6zP+J3ALAfmlA6Vc=",
             })))),
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              [nix.POS]: pos$9,
+              [nix.POS]: $pos[8],
               name: "0102-Drop-the-glog-example.patch",
               url: "https://github.com/canonical/mir/commit/8407da28ddb9a535df2775f224bf5143e8770d52.patch",
               includes: nix.thunk(() => [
@@ -104,7 +90,7 @@ export default nix.lambda((args) => (() => {
               hash: "sha256-jVhVR7wZZZGRS40z+HPNoGBLHulvE1nHRKgYhQ6/g9M=",
             })))),
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              [nix.POS]: pos$10,
+              [nix.POS]: $pos[9],
               name: "0201-Fix-gtest-nodiscard-error.patch",
               url: "https://github.com/canonical/mir/commit/60dab2b197deb159087e44865e7314ad2865b79d.patch",
               includes: nix.thunk(() => [
@@ -114,7 +100,7 @@ export default nix.lambda((args) => (() => {
               hash: "sha256-gzLVQW9Z6y+s2D7pKtp0ondQrjkzZ5iUYhGDPqFXD5M=",
             })))),
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              [nix.POS]: pos$11,
+              [nix.POS]: $pos[10],
               name: "0301-mir-Disable-boost_system.patch",
               url: "https://github.com/canonical/mir/commit/0261aa6ce700311ee2b8723294451cdade1bc219.patch",
               excludes: nix.thunk(() => [
@@ -126,14 +112,14 @@ export default nix.lambda((args) => (() => {
               hash: "sha256-UqClQFHzA1th2P7NH67dMJtncw8n/ey9RlPD5Z3VPk0=",
             })))),
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              [nix.POS]: pos$12,
+              [nix.POS]: $pos[11],
               name: "0400-mir-Add-missing-headers-to-make-libcxx-happy.patch",
               url: "https://github.com/canonical/mir/commit/5c0894e932ae9173b6bb276047a6313795b62823.patch",
               excludes: nix.thunk(() => ["src/platforms/virtual/display.h"]),
               hash: "sha256-HwL0gteHapFe3y4ksAduAGEGlrfF4oPBvwkBlWs9GpY=",
             })))),
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              [nix.POS]: pos$13,
+              [nix.POS]: $pos[12],
               name: "0401-mir-Fix-discarded-qualifiers-error-in-xcursor.patch",
               url: "https://github.com/canonical/mir/commit/129063cb9f0a8c7d069be8be25a6f68460c2eace.patch",
               hash: "sha256-l4QXhgQjWqeDv2sV5Yy8dlIn7XNSZEvtXKX7bUIAiww=",

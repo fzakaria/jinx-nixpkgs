@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]], [["all", 38, 5], ["cli", 39, 5], ["ods", 40, 5], ["pandas", 41, 5], ["xls", 42, 5], ["xlsx", 43, 5], ["yaml", 44, 5]], [["description", 63, 5], ["homepage", 64, 5], ["changelog", 65, 5], ["license", 66, 5], ["maintainers", 67, 5]], [["pname", 16, 3], ["version", 17, 3], ["pyproject", 18, 3], ["src", 20, 3], ["pythonRelaxDeps", 27, 3], ["build-system", 29, 3], ["dependencies", 31, 3], ["optional-dependencies", 37, 3], ["nativeCheckInputs", 47, 3], ["checkPhase", 54, 3], ["pythonImportsCheck", 60, 3], ["meta", 62, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, chardet: false, "diff-match-patch": false, django: false, fetchFromGitHub: false, psycopg2: false, python: false, pytz: false, "setuptools-scm": false, tablib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["all", 38, 5], ["cli", 39, 5], ["ods", 40, 5], ["pandas", 41, 5], ["xls", 42, 5], ["xlsx", 43, 5], ["yaml", 44, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 63, 5], ["homepage", 64, 5], ["changelog", 65, 5], ["license", 66, 5], ["maintainers", 67, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 16, 3], ["version", 17, 3], ["pyproject", 18, 3], ["src", 20, 3], ["pythonRelaxDeps", 27, 3], ["build-system", 29, 3], ["dependencies", 31, 3], ["optional-dependencies", 37, 3], ["nativeCheckInputs", 47, 3], ["checkPhase", 54, 3], ["pythonImportsCheck", 60, 3], ["meta", 62, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = "4.4.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "django-import-export",
           repo: "django-import-export",
           tag: version,
@@ -36,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [setuptools_scm]);
       const dependencies = nix.thunk(() => [diff_match_patch, django, tablib]);
       const optional_dependencies = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         all: nix.thunk(() => nix.concat([tablib], nix.sel(tablib, "optional-dependencies", "all"))),
         cli: nix.thunk(() => nix.concat([tablib], nix.sel(tablib, "optional-dependencies", "cli"))),
         ods: nix.thunk(() => nix.concat([tablib], nix.sel(tablib, "optional-dependencies", "ods"))),
@@ -52,7 +49,7 @@ runHook postCheck
 `);
       const pythonImportsCheck = nix.thunk(() => ["import_export"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Django application and library for importing and exporting data with admin integration",
         homepage: "https://github.com/django-import-export/django-import-export",
         changelog: nix.thunk(() => nix.str`https://github.com/django-import-export/django-import-export/blob/${nix.sel(src, "tag")}/docs/changelog.rst`),
@@ -63,7 +60,7 @@ runHook postCheck
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

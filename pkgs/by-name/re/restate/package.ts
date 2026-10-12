@@ -2,17 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 32, 5], ["repo", 33, 5], ["tag", 34, 5], ["hash", 35, 5]], [["build", 51, 11], ["aarch64-unknown-linux-gnu", 57, 11], ["x86_64-unknown-linux-musl", 63, 11], ["aarch64-unknown-linux-musl", 68, 11]], [["PROTOC", 41, 5], ["PROTOC_INCLUDE", 42, 5], ["VERGEN_GIT_SHA", 44, 5], ["RUSTFLAGS", 47, 5], ["CARGO_FEATURE_DYNAMIC_LINKING", 79, 5], ["NIX_CFLAGS_COMPILE", 83, 5]], [["package", 129, 7], ["command", 130, 7]], [["package", 133, 7], ["command", 134, 7]], [["package", 137, 7], ["command", 138, 7]], [["restateCliVersion", 128, 11], ["restateServerVersion", 132, 11], ["restateCtlVersion", 136, 11]], [["tests", 128, 5], ["updateScript", 140, 5]], [["description", 144, 5], ["homepage", 145, 5], ["changelog", 146, 5], ["mainProgram", 147, 5], ["license", 148, 5], ["maintainers", 149, 5]], [["pname", 28, 3], ["version", 29, 3], ["src", 31, 3], ["cargoHash", 38, 3], ["env", 40, 3], ["nativeBuildInputs", 86, 3], ["buildInputs", 94, 3], ["nativeCheckInputs", 100, 3], ["useNextest", 104, 3], ["auditable", 106, 3], ["checkFlags", 108, 3], ["__darwinAllowLocalNetworking", 120, 3], ["nativeInstallCheckInputs", 122, 3], ["doInstallCheck", 125, 3], ["passthru", 127, 3], ["meta", 143, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, rustPlatform: false, fetchFromGitHub: false, protobuf: false, cmake: false, openssl: false, perl: false, "pkg-config": false, rdkafka: false, "rust-jemalloc-sys-unprefixed": false, cacert: false, versionCheckHook: false, testers: false, restate: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 32, 5], ["repo", 33, 5], ["tag", 34, 5], ["hash", 35, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["build", 51, 11], ["aarch64-unknown-linux-gnu", 57, 11], ["x86_64-unknown-linux-musl", 63, 11], ["aarch64-unknown-linux-musl", 68, 11]]);
-const pos$3 = nix.positions(here + "/package.nix", [["PROTOC", 41, 5], ["PROTOC_INCLUDE", 42, 5], ["VERGEN_GIT_SHA", 44, 5], ["RUSTFLAGS", 47, 5], ["CARGO_FEATURE_DYNAMIC_LINKING", 79, 5], ["NIX_CFLAGS_COMPILE", 83, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["package", 129, 7], ["command", 130, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["package", 133, 7], ["command", 134, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["package", 137, 7], ["command", 138, 7]]);
-const pos$7 = nix.positions(here + "/package.nix", [["restateCliVersion", 128, 11], ["restateServerVersion", 132, 11], ["restateCtlVersion", 136, 11]]);
-const pos$8 = nix.positions(here + "/package.nix", [["tests", 128, 5], ["updateScript", 140, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["description", 144, 5], ["homepage", 145, 5], ["changelog", 146, 5], ["mainProgram", 147, 5], ["license", 148, 5], ["maintainers", 149, 5]]);
-const pos$10 = nix.positions(here + "/package.nix", [["pname", 28, 3], ["version", 29, 3], ["src", 31, 3], ["cargoHash", 38, 3], ["env", 40, 3], ["nativeBuildInputs", 86, 3], ["buildInputs", 94, 3], ["nativeCheckInputs", 100, 3], ["useNextest", 104, 3], ["auditable", 106, 3], ["checkFlags", 108, 3], ["__darwinAllowLocalNetworking", 120, 3], ["nativeInstallCheckInputs", 122, 3], ["doInstallCheck", 125, 3], ["passthru", 127, 3], ["meta", 143, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const restate = nix.arg($, "restate");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       pname: "restate",
       version: "1.7.12",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "restatedev",
           repo: "restate",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -45,14 +36,14 @@ export default nix.lambda((args) => (() => {
         })))),
       cargoHash: "sha256-bKGJZ5gmp+sG3BuMoT0i62fDJFC1mNu9iOEQFEf7rRA=",
       env: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         PROTOC: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), protobuf)),
         PROTOC_INCLUDE: nix.thunk(() => nix.str`${protobuf}/include`),
         VERGEN_GIT_SHA: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
         RUSTFLAGS: nix.thunk(() => (() => {
           const target = nix.thunk(() => nix.sel(stdenv, "hostPlatform", "config"));
           const targetFlags = nix.thunk(() => nix.app(nix.sel(lib, "fix"), (self) => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               build: nix.thunk(() => ["-C force-unwind-tables", "--cfg uuid_unstable", "--cfg tokio_unstable"]),
               "aarch64-unknown-linux-gnu": nix.thunk(() => nix.concat(nix.sel(self, "build"), ["-C force-frame-pointers=yes", "--cfg tokio_taskdump"])),
               "x86_64-unknown-linux-musl": nix.thunk(() => nix.concat(nix.sel(self, "build"), ["-C link-self-contained=yes", "--cfg tokio_taskdump"])),
@@ -90,17 +81,17 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$7,
-          restateCliVersion: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$4, package: restate, command: "restate --version" })))),
-          restateServerVersion: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$5, package: restate, command: "restate-server --version" })))),
-          restateCtlVersion: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$6, package: restate, command: "restatectl --version" })))),
+          [nix.POS]: $pos[6],
+          restateCliVersion: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: $pos[3], package: restate, command: "restate --version" })))),
+          restateServerVersion: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: $pos[4], package: restate, command: "restate-server --version" })))),
+          restateCtlVersion: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: $pos[5], package: restate, command: "restatectl --version" })))),
         })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         description: "Platform for developing distributed fault-tolerant applications",
         homepage: "https://restate.dev",
         changelog: nix.thunk(() => nix.str`https://github.com/restatedev/restate/releases/tag/v${nix.sel(finalAttrs, "version")}`),

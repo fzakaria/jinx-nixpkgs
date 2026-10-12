@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 26, 5], ["repo", 27, 5], ["rev", 28, 5], ["sha256", 29, 5]], [["homepage", 35, 5], ["description", 36, 5], ["mainProgram", 37, 5], ["license", 38, 5], ["maintainers", 39, 5]], [["pname", 11, 3], ["version", 12, 3], ["nativeBuildInputs", 14, 3], ["postInstall", 16, 3], ["src", 25, 3], ["vendorHash", 32, 3], ["meta", 34, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitHub: false, tmux: false, which: false, makeWrapper: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 26, 5], ["repo", 27, 5], ["rev", 28, 5], ["sha256", 29, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 35, 5], ["description", 36, 5], ["mainProgram", 37, 5], ["license", 38, 5], ["maintainers", 39, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["nativeBuildInputs", 14, 3], ["postInstall", 16, 3], ["src", 25, 3], ["vendorHash", 32, 3], ["meta", 34, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,14 +14,14 @@ export default nix.lambda((args) => (() => {
   const which = nix.arg($, "which");
   const makeWrapper = nix.arg($, "makeWrapper");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "overmind",
       version: "2.5.1",
       nativeBuildInputs: nix.thunk(() => [makeWrapper]),
       postInstall: nix.thunk(() => nix.str`wrapProgram "$out/bin/overmind" --prefix PATH : "${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [tmux, which]))}"
 `),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "DarthSim",
           repo: "overmind",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -31,7 +29,7 @@ export default nix.lambda((args) => (() => {
         })))),
       vendorHash: "sha256-XhF4oizOZ6g0351Q71Wp9IA3aFpocC5xGovDefIoL78=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/DarthSim/overmind",
         description: "Process manager for Procfile-based applications and tmux",
         mainProgram: "overmind",

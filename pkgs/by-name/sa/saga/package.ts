@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 49, 5], ["hash", 50, 5]], [["description", 108, 5], ["homepage", 109, 5], ["changelog", 110, 5], ["license", 111, 5], ["maintainers", 112, 5], ["teams", 115, 5], ["platforms", 116, 5]], [["pname", 45, 3], ["version", 46, 3], ["src", 48, 3], ["sourceRoot", 53, 3], ["postPatch", 55, 3], ["nativeBuildInputs", 59, 3], ["buildInputs", 72, 3], ["cmakeFlags", 103, 3], ["meta", 107, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, config: false, fetchurl: false, cmake: false, dos2unix: false, "pkg-config": false, wrapGAppsHook3: false, cudaPackages: false, desktopToDarwinBundle: false, curl: false, fftw: false, gdal: false, giflib: false, hdf5: false, libharu: false, libiodbc: false, libpq: false, libsForQt5: false, libsvm: false, opencv: false, pdal: false, proj: false, qhull: false, vigra: false, wxwidgets_3_2: false, xz: false, netcdf: false, poppler: false, sqlite: false, unixodbc: false, cudaSupport: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 49, 5], ["hash", 50, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 108, 5], ["homepage", 109, 5], ["changelog", 110, 5], ["license", 111, 5], ["maintainers", 112, 5], ["teams", 115, 5], ["platforms", 116, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 45, 3], ["version", 46, 3], ["src", 48, 3], ["sourceRoot", 53, 3], ["postPatch", 55, 3], ["nativeBuildInputs", 59, 3], ["buildInputs", 72, 3], ["cmakeFlags", 103, 3], ["meta", 107, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -42,11 +40,11 @@ export default nix.lambda((args) => (() => {
   const unixodbc = nix.arg($, "unixodbc");
   const cudaSupport = nix.argOr($, "cudaSupport", () => nix.sel(config, "cudaSupport"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "saga",
       version: "9.13.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/saga-gis/saga-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-uXqtayum63RpYMHV7Y0sNDGEdhmCyZehrCUb5tnUfDY=",
         })))),
@@ -76,7 +74,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "OpenMP_SUPPORT", nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))))),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "System for Automated Geoscientific Analyses",
         homepage: "https://saga-gis.sourceforge.io",
         changelog: nix.thunk(() => nix.str`https://sourceforge.net/p/saga-gis/wiki/Changelog%20${nix.sel(finalAttrs, "version")}/`),

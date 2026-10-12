@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 23, 9], ["hash", 24, 9]], [["version", 21, 7], ["src", 22, 7], ["installTargets", 26, 7]], [["owner", 40, 5], ["repo", 41, 5], ["tag", 42, 5], ["hash", 43, 5]], [["name", 48, 7], ["url", 49, 7], ["hash", 50, 7]], [["extraArgs", 78, 5]], [["updateScript", 77, 12]], [["description", 85, 5], ["homepage", 86, 5], ["changelog", 87, 5], ["license", 88, 5], ["maintainers", 89, 5]], [["pname", 35, 3], ["version", 36, 3], ["pyproject", 37, 3], ["src", 39, 3], ["patches", 46, 3], ["preBuild", 54, 3], ["build-system", 60, 3], ["nativeBuildInputs", 65, 3], ["pythonImportsCheck", 69, 3], ["checkPhase", 71, 3], ["passthru", 77, 3], ["meta", 84, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, python: false, buildPythonPackage: false, "nix-update-script": false, fetchurl: false, fetchpatch: false, setuptools: false, cython: false, perl: false, pkgsStatic: false, gmpStatic: true, pari: false, pariStatic_2_15: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 23, 9], ["hash", 24, 9]]);
-const pos$2 = nix.positions(here + "/default.nix", [["version", 21, 7], ["src", 22, 7], ["installTargets", 26, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["owner", 40, 5], ["repo", 41, 5], ["tag", 42, 5], ["hash", 43, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["name", 48, 7], ["url", 49, 7], ["hash", 50, 7]]);
-const pos$5 = nix.positions(here + "/default.nix", [["extraArgs", 78, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["updateScript", 77, 12]]);
-const pos$7 = nix.positions(here + "/default.nix", [["description", 85, 5], ["homepage", 86, 5], ["changelog", 87, 5], ["license", 88, 5], ["maintainers", 89, 5]]);
-const pos$8 = nix.positions(here + "/default.nix", [["pname", 35, 3], ["version", 36, 3], ["pyproject", 37, 3], ["src", 39, 3], ["patches", 46, 3], ["preBuild", 54, 3], ["build-system", 60, 3], ["nativeBuildInputs", 65, 3], ["pythonImportsCheck", 69, 3], ["checkPhase", 71, 3], ["passthru", 77, 3], ["meta", 84, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,10 +21,10 @@ export default nix.lambda((args) => (() => {
   const gmpStatic = nix.argOr($, "gmpStatic", () => nix.sel(pkgsStatic, "gmp"));
   const pari = nix.arg($, "pari");
   const pariStatic_2_15 = nix.argOr($, "pariStatic_2_15", () => nix.app(nix.sel(pari, "overrideAttrs"), (finalAttrs) => (oldAttrs) => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       version: "2.15.4",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://pari.math.u-bordeaux.fr/pub/pari/OLD/${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/pari-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-w1Rb/uDG37QLd/tLurr5mdguYAabn20ovLbPAEyMXA8=",
         })))),
@@ -42,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.5.6";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           owner: "3-manifolds",
           repo: "CyPari",
           tag: nix.thunk(() => nix.str`${version}_as_released`),
@@ -50,7 +43,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             name: "fix-build-with-cython-3_1.patch",
             url: "https://github.com/3-manifolds/CyPari/compare/17bf39dc4508f2e46de75b95c65982c627652b60...d6cb914d2bdc74a51cc2a9136204ebf47b3e7369.diff",
             hash: "sha256-c8sq80mYSMMvgFh7RXYwKcqwI7iVRQsm/8yaIL0+PHQ=",
@@ -68,14 +61,14 @@ ${nix.sel(python, "interpreter")} -P -m cypari.test
 runHook postCheck
 `);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             extraArgs: nix.thunk(() => ["--version-regex", "(.*)_as_released"]),
           })))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "Sage's PARI extension, modified to stand alone",
         homepage: "https://github.com/3-manifolds/CyPari",
         changelog: nix.thunk(() => nix.str`https://github.com/3-manifolds/CyPari/releases/tag/${nix.sel(src, "tag")}`),
@@ -89,7 +82,7 @@ runHook postCheck
         })()),
       }));
       return {
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         pname,
         version,
         pyproject,

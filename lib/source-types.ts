@@ -2,18 +2,16 @@
 import * as nix from "../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/source-types.nix", [[["shortName", 5, 5], ["isSource", 6, 5]], [["isSource", 12, 5]], [["fromSource", 11, 3], ["binaryNativeCode", 15, 3], ["binaryBytecode", 17, 3], ["binaryFirmware", 19, 3], ["obfuscatedCode", 21, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/source-types.nix", [["shortName", 5, 5], ["isSource", 6, 5]]);
-const pos$2 = nix.positions(here + "/source-types.nix", [["isSource", 12, 5]]);
-const pos$3 = nix.positions(here + "/source-types.nix", [["fromSource", 11, 3], ["binaryNativeCode", 15, 3], ["binaryBytecode", 17, 3], ["binaryFirmware", 19, 3], ["obfuscatedCode", 21, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
-  const defaultSourceType = (tname) => ({ [nix.POS]: pos$1, shortName: tname, isSource: false });
+  const defaultSourceType = (tname) => ({ [nix.POS]: $pos[0], shortName: tname, isSource: false });
   return nix.app(nix.sel(lib, "mapAttrs"), (tname) => (tset) => nix.update(nix.app(defaultSourceType, tname), tset), nix.thunk(() => ({
-      [nix.POS]: pos$3,
-      fromSource: nix.thunk(() => ({ [nix.POS]: pos$2, isSource: true })),
+      [nix.POS]: $pos[2],
+      fromSource: nix.thunk(() => ({ [nix.POS]: $pos[1], isSource: true })),
       binaryNativeCode: nix.thunk(() => ({})),
       binaryBytecode: nix.thunk(() => ({})),
       binaryFirmware: nix.thunk(() => ({})),

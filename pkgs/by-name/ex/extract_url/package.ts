@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 25, 5], ["repo", 26, 5], ["rev", 27, 5], ["sha256", 28, 5]], [["homepage", 43, 5], ["description", 44, 5], ["mainProgram", 45, 5], ["license", 46, 5], ["maintainers", 47, 5], ["platforms", 48, 5]], [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 32, 3], ["makeFlags", 34, 3], ["installFlags", 35, 3], ["postFixup", 37, 3], ["meta", 42, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, makeWrapper: false, perlPackages: false, cursesSupport: true, uriFindSupport: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 25, 5], ["repo", 26, 5], ["rev", 27, 5], ["sha256", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 43, 5], ["description", 44, 5], ["mainProgram", 45, 5], ["license", 46, 5], ["maintainers", 47, 5], ["platforms", 48, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 32, 3], ["makeFlags", 34, 3], ["installFlags", 35, 3], ["postFixup", 37, 3], ["meta", 42, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +19,11 @@ export default nix.lambda((args) => (() => {
     nix.thunk(() => nix.sel(perlPackages, "HTMLParser")),
   ], nix.concat(nix.app(nix.sel(lib, "optional"), cursesSupport, nix.thunk(() => nix.sel(perlPackages, "CursesUI"))), nix.app(nix.sel(lib, "optional"), uriFindSupport, nix.thunk(() => nix.sel(perlPackages, "URIFind"))))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "extract_url",
       version: "1.6.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "m3m0ryh0l3",
           repo: "extracturl",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -39,7 +37,7 @@ export default nix.lambda((args) => (() => {
   --set PERL5LIB "${nix.app(nix.sel(perlPackages, "makeFullPerlPath"), perlDeps)}"
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://www.memoryhole.net/~kyle/extract_url/",
         description: "Extracts URLs from MIME messages or plain text",
         mainProgram: "extract_url",

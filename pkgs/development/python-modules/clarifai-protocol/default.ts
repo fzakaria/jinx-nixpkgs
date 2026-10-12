@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["aarch64-linux", 15, 5], ["x86_64-linux", 16, 5], ["aarch64-darwin", 17, 5]], [["39-x86_64-linux", 28, 7], ["310-x86_64-linux", 29, 7], ["311-x86_64-linux", 30, 7], ["312-x86_64-linux", 31, 7], ["313-x86_64-linux", 32, 7], ["314-x86_64-linux", 33, 7], ["39-aarch64-linux", 34, 7], ["310-aarch64-linux", 35, 7], ["311-aarch64-linux", 36, 7], ["312-aarch64-linux", 37, 7], ["313-aarch64-linux", 38, 7], ["314-aarch64-linux", 39, 7], ["39-darwin", 40, 7], ["310-darwin", 41, 7], ["311-darwin", 42, 7], ["312-darwin", 43, 7], ["313-darwin", 44, 7], ["314-darwin", 45, 7]], [["pname", 55, 5], ["version", 56, 13], ["format", 57, 5], ["python", 58, 5], ["abi", 59, 5], ["dist", 60, 5], ["platform", 61, 5], ["hash", 62, 13]], [["description", 79, 5], ["homepage", 80, 5], ["license", 81, 5], ["sourceProvenance", 82, 5], ["maintainers", 83, 5]], [["pname", 50, 3], ["version", 51, 3], ["pyproject", 52, 3], ["src", 54, 3], ["nativeBuildInputs", 65, 3], ["dependencies", 70, 3], ["dontUsePythonImportsCheck", 73, 3], ["doCheck", 76, 3], ["meta", 78, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchPypi: false, python: false, pypaInstallHook: false, wheelUnpackHook: false, grpcio: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["aarch64-linux", 15, 5], ["x86_64-linux", 16, 5], ["aarch64-darwin", 17, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["39-x86_64-linux", 28, 7], ["310-x86_64-linux", 29, 7], ["311-x86_64-linux", 30, 7], ["312-x86_64-linux", 31, 7], ["313-x86_64-linux", 32, 7], ["314-x86_64-linux", 33, 7], ["39-aarch64-linux", 34, 7], ["310-aarch64-linux", 35, 7], ["311-aarch64-linux", 36, 7], ["312-aarch64-linux", 37, 7], ["313-aarch64-linux", 38, 7], ["314-aarch64-linux", 39, 7], ["39-darwin", 40, 7], ["310-darwin", 41, 7], ["311-darwin", 42, 7], ["312-darwin", 43, 7], ["313-darwin", 44, 7], ["314-darwin", 45, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 55, 5], ["version", 56, 13], ["format", 57, 5], ["python", 58, 5], ["abi", 59, 5], ["dist", 60, 5], ["platform", 61, 5], ["hash", 62, 13]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 79, 5], ["homepage", 80, 5], ["license", 81, 5], ["sourceProvenance", 82, 5], ["maintainers", 83, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 50, 3], ["version", 51, 3], ["pyproject", 52, 3], ["src", 54, 3], ["nativeBuildInputs", 65, 3], ["dependencies", 70, 3], ["dontUsePythonImportsCheck", 73, 3], ["doCheck", 76, 3], ["meta", 78, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,14 +17,14 @@ export default nix.lambda((args) => (() => {
   const grpcio = nix.arg($, "grpcio");
   const pythonVersionNoDot = nix.thunk(() => nix.builtins.replaceStrings(nix.thunk(() => ["."]), nix.thunk(() => [""]), nix.thunk(() => nix.sel(python, "pythonVersion"))));
   const systemToPlatform = nix.thunk(() => ({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     "aarch64-linux": "manylinux_2_17_aarch64.manylinux2014_aarch64",
     "x86_64-linux": "manylinux_2_17_x86_64.manylinux2014_x86_64",
     "aarch64-darwin": "macosx_11_0_universal2",
   }));
   const key = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? nix.str`${pythonVersionNoDot}-darwin` : nix.str`${pythonVersionNoDot}-${nix.sel(stdenv, "hostPlatform", "system")}`));
   const hash = nix.thunk(() => nix.selOr({
-    [nix.POS]: pos$2,
+    [nix.POS]: $pos[1],
     "39-x86_64-linux": "sha256-uGbsxSHGfYVzRiy1YEkQMkJi2yPLdSj3fe3adp1WjP0=",
     "310-x86_64-linux": "sha256-1SO/1lpB3aRWisxFlt8K5lwFEOiDXjC4iQRai77L+8E=",
     "311-x86_64-linux": "sha256-99VdM1fAcuiblReWL5I8+H0psCKR00HYZr/wRGT7nd8=",
@@ -53,7 +49,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.0.14";
       const pyproject = false;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           pname: "clarifai_protocol",
           version: version,
           format: "wheel",
@@ -68,7 +64,7 @@ export default nix.lambda((args) => (() => {
       const dontUsePythonImportsCheck = true;
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Clarifai Python Runner Protocol",
         homepage: "https://pypi.org/project/clarifai-protocol",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -79,7 +75,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         pyproject,

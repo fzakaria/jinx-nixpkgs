@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/bin.nix", [[["cp310", 25, 7], ["cp311", 26, 7], ["abi3", 27, 7]], [["cp310", 30, 7], ["cp311", 31, 7], ["abi3", 32, 7]], [["aarch64-linux", 24, 5], ["x86_64-linux", 29, 5]], [["format", 43, 5], ["pname", 44, 5], ["version", 45, 26], ["dist", 46, 5], ["python", 47, 5], ["abi", 48, 5], ["platform", 49, 5], ["hash", 50, 5]], [["description", 64, 5], ["homepage", 65, 5], ["downloadPage", 66, 5], ["changelog", 67, 5], ["license", 68, 5], ["sourceProvenance", 69, 5], ["maintainers", 70, 5], ["platforms", 71, 5]], [["pname", 37, 3], ["version", 38, 3], ["pyproject", 39, 3], ["__structuredAttrs", 40, 3], ["src", 42, 3], ["nativeBuildInputs", 53, 3], ["buildInputs", 59, 3], ["pythonImportsCheck", 61, 3], ["meta", 63, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, python: false, pythonAtLeast: false, stdenv: false, autoPatchelfHook: false, pypaInstallHook: false, wheelUnpackHook: false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/bin.nix", [["cp310", 25, 7], ["cp311", 26, 7], ["abi3", 27, 7]]);
-const pos$2 = nix.positions(here + "/bin.nix", [["cp310", 30, 7], ["cp311", 31, 7], ["abi3", 32, 7]]);
-const pos$3 = nix.positions(here + "/bin.nix", [["aarch64-linux", 24, 5], ["x86_64-linux", 29, 5]]);
-const pos$4 = nix.positions(here + "/bin.nix", [["format", 43, 5], ["pname", 44, 5], ["version", 45, 26], ["dist", 46, 5], ["python", 47, 5], ["abi", 48, 5], ["platform", 49, 5], ["hash", 50, 5]]);
-const pos$5 = nix.positions(here + "/bin.nix", [["description", 64, 5], ["homepage", 65, 5], ["downloadPage", 66, 5], ["changelog", 67, 5], ["license", 68, 5], ["sourceProvenance", 69, 5], ["maintainers", 70, 5], ["platforms", 71, 5]]);
-const pos$6 = nix.positions(here + "/bin.nix", [["pname", 37, 3], ["version", 38, 3], ["pyproject", 39, 3], ["__structuredAttrs", 40, 3], ["src", 42, 3], ["nativeBuildInputs", 53, 3], ["buildInputs", 59, 3], ["pythonImportsCheck", 61, 3], ["meta", 63, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,28 +23,28 @@ export default nix.lambda((args) => (() => {
   const abiTag = nix.thunk(() => (nix.asBool(nix.app(pythonAtLeast, "3.12")) ? "abi3" : nix.force(pythonTag)));
   const pythonTag = nix.thunk(() => nix.str`cp${nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => [""]), pythonVersion)}`);
   const hashes = nix.thunk(() => ({
-    [nix.POS]: pos$3,
+    [nix.POS]: $pos[2],
     "aarch64-linux": nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       cp310: "sha256-fkYRq6wkAavw4BwOHOt8aybu+IfRLLvrD5oU6JFTHlw=",
       cp311: "sha256-tGfvQ4M7eOqfndLnC842WevPx6N1HjTzHI/+4g0S1+U=",
       abi3: "sha256-KZ9Ygd4Go0SNjk9L/s32/58UiWk7rxYwPehBa6gsFtY=",
     })),
     "x86_64-linux": nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       cp310: "sha256-vHTyzQZDGs5gt3dkBSaA3QGK5rDFpC0NPWk9dOTRmVw=",
       cp311: "sha256-9qMpxrtZSfKxTUdJ1ulwWUwxvTUniPtc7sjkmxffWbw=",
       abi3: "sha256-616ubE09sR4TtwWMibV+B1+n35BdQxac/bBm4WGIZCE=",
     })),
   }));
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "tokenspeed-triton",
       version: "3.8.10.post20260920",
       pyproject: false,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           format: "wheel",
           pname: "tokenspeed_triton",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
@@ -63,7 +58,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [zlib]),
       pythonImportsCheck: nix.thunk(() => ["tokenspeed_triton"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Language and compiler for custom Deep Learning operations",
         homepage: "https://github.com/lightseekorg/triton",
         downloadPage: "https://pypi.org/project/tokenspeed-triton/#files",

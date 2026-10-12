@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 35, 5], ["repo", 36, 5], ["rev", 37, 5], ["sha256", 38, 5]], [["url", 45, 7], ["sha256", 46, 7]], [["package", 116, 5], ["command", 117, 5]], [["version", 115, 18]], [["tests", 115, 12]], [["homepage", 121, 5], ["description", 122, 5], ["maintainers", 123, 5], ["license", 124, 5], ["platforms", 125, 5], ["mainProgram", 126, 5]], [["pname", 30, 3], ["version", 31, 3], ["pyproject", 32, 3], ["src", 34, 3], ["patches", 41, 3], ["nativeBuildInputs", 50, 3], ["build-system", 56, 3], ["propagatedBuildInputs", 61, 3], ["buildInputs", 72, 3], ["nativeCheckInputs", 77, 3], ["makeWrapperArgs", 85, 3], ["dontWrapGApps", 93, 3], ["outputs", 95, 3], ["postBuild", 99, 3], ["preCheck", 103, 3], ["postInstall", 111, 3], ["passthru", 115, 3], ["meta", 120, 3]]]);
 const formals$1 = { args: { lib: false, python3: false, fetchFromGitHub: false, fetchpatch: false, installShellFiles: false, wrapGAppsNoGuiHook: false, "gobject-introspection": false, "libcdio-paranoia": false, cdrdao: false, libsndfile: false, glib: false, flac: false, sox: false, "util-linux": false, testers: false, whipper: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 35, 5], ["repo", 36, 5], ["rev", 37, 5], ["sha256", 38, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 45, 7], ["sha256", 46, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["package", 116, 5], ["command", 117, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["version", 115, 18]]);
-const pos$5 = nix.positions(here + "/package.nix", [["tests", 115, 12]]);
-const pos$6 = nix.positions(here + "/package.nix", [["homepage", 121, 5], ["description", 122, 5], ["maintainers", 123, 5], ["license", 124, 5], ["platforms", 125, 5], ["mainProgram", 126, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 30, 3], ["version", 31, 3], ["pyproject", 32, 3], ["src", 34, 3], ["patches", 41, 3], ["nativeBuildInputs", 50, 3], ["build-system", 56, 3], ["propagatedBuildInputs", 61, 3], ["buildInputs", 72, 3], ["nativeCheckInputs", 77, 3], ["makeWrapperArgs", 85, 3], ["dontWrapGApps", 93, 3], ["outputs", 95, 3], ["postBuild", 99, 3], ["preCheck", 103, 3], ["postInstall", 111, 3], ["passthru", 115, 3], ["meta", 120, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,12 +25,12 @@ export default nix.lambda((args) => (() => {
   const whipper = nix.arg($, "whipper");
   const bins = nix.thunk(() => [libcdio_paranoia, cdrdao, flac, sox, util_linux]);
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "whipper",
       version: "0.10.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "whipper-team",
           repo: "whipper",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -44,7 +38,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/whipper-team/whipper/commit/3ce5964dfe8be1e625c3e3b091360dd0bc34a384.patch",
             sha256: "0n9dmib884y8syvypsg88j0h71iy42n1qsrh0am8pwna63sl15ah",
           })))),
@@ -91,18 +85,18 @@ export default nix.lambda((args) => (() => {
       preCheck: "# disable tests that require internet access\n# https://github.com/JoeLametta/whipper/issues/291\nsubstituteInPlace whipper/test/test_common_accurip.py \\\n  --replace \"test_AccurateRipResponse\" \"dont_test_AccurateRipResponse\"\nexport HOME=$TMPDIR\n",
       postInstall: "installManPage man/*.1\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               package: whipper,
               command: "HOME=$TMPDIR whipper --version",
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         homepage: "https://github.com/whipper-team/whipper",
         description: "CD ripper aiming for accuracy over speed",
         maintainers: nix.thunk(() => (() => {

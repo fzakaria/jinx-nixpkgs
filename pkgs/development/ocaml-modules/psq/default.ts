@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 18, 5], ["hash", 19, 5]], [["description", 28, 5], ["homepage", 29, 5], ["maintainers", 30, 5], ["license", 31, 5]], [["minimalOCamlVersion", 11, 3], ["pname", 12, 3], ["version", 13, 3], ["duneVersion", 15, 3], ["src", 17, 3], ["propagatedBuildInputs", 22, 3], ["doCheck", 24, 3], ["checkInputs", 25, 3], ["meta", 27, 3]]]);
 const formals$1 = { args: { lib: false, buildDunePackage: false, ocaml: false, fetchurl: false, seq: false, "qcheck-alcotest": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 28, 5], ["homepage", 29, 5], ["maintainers", 30, 5], ["license", 31, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["minimalOCamlVersion", 11, 3], ["pname", 12, 3], ["version", 13, 3], ["duneVersion", 15, 3], ["src", 17, 3], ["propagatedBuildInputs", 22, 3], ["doCheck", 24, 3], ["checkInputs", 25, 3], ["meta", 27, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,13 +14,13 @@ export default nix.lambda((args) => (() => {
   const seq = nix.arg($, "seq");
   const qcheck_alcotest = nix.arg($, "qcheck-alcotest");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       minimalOCamlVersion: "4.03",
       pname: "psq",
       version: "0.2.1",
       duneVersion: "3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/pqwy/psq/releases/download/v${nix.sel(finalAttrs, "version")}/psq-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-QgBfUz6r50sXme4yuJBWVM1moivtSvK9Jmso2EYs00Q=",
         })))),
@@ -30,7 +28,7 @@ export default nix.lambda((args) => (() => {
       doCheck: nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(ocaml, "version")), "4.08")),
       checkInputs: nix.thunk(() => [qcheck_alcotest]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Functional Priority Search Queues for OCaml",
         homepage: "https://github.com/pqwy/psq",
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "vbgl"))]),

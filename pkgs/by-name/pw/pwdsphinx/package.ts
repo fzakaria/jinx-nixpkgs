@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]], [["description", 69, 5], ["homepage", 70, 5], ["downloadPage", 71, 5], ["changelog", 72, 5], ["teams", 73, 5], ["license", 74, 5], ["mainProgram", 75, 5]], [["pname", 11, 3], ["version", 12, 3], ["pyproject", 13, 3], ["src", 15, 3], ["postPatch", 22, 3], ["build-system", 27, 3], ["dependencies", 29, 3], ["nativeBuildInputs", 40, 3], ["postInstall", 45, 3], ["nativeCheckInputs", 51, 3], ["preCheck", 56, 3], ["pythonImportsCheck", 66, 3], ["meta", 68, 3]]]);
 const formals$1 = { args: { lib: false, python3Packages: false, fetchFromGitHub: false, installShellFiles: false, pandoc: false, writableTmpDirAsHomeHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 69, 5], ["homepage", 70, 5], ["downloadPage", 71, 5], ["changelog", 72, 5], ["teams", 73, 5], ["license", 74, 5], ["mainProgram", 75, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["pyproject", 13, 3], ["src", 15, 3], ["postPatch", 22, 3], ["build-system", 27, 3], ["dependencies", 29, 3], ["nativeBuildInputs", 40, 3], ["postInstall", 45, 3], ["nativeCheckInputs", 51, 3], ["preCheck", 56, 3], ["pythonImportsCheck", 66, 3], ["meta", 68, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const pandoc = nix.arg($, "pandoc");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "pwdsphinx",
       version: "2.0.4",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "stef",
           repo: "pwdsphinx",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -57,7 +55,7 @@ $out/bin/sphinx init || true
 `),
       pythonImportsCheck: nix.thunk(() => ["pwdsphinx"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Native backend for web-extensions for Sphinx-based password storage",
         homepage: "https://www.ctrlc.hu/~stef/blog/posts/sphinx.html",
         downloadPage: "https://github.com/stef/pwdsphinx",

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]], [["updateScript", 89, 12]], [["description", 92, 5], ["homepage", 93, 5], ["license", 94, 5], ["maintainers", 95, 5], ["mainProgram", 99, 5], ["platforms", 100, 5]], [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["postPatch", 32, 3], ["dontBuild", 59, 3], ["installPhase", 61, 3], ["nativeCheckInputs", 72, 3], ["doCheck", 81, 3], ["checkPhase", 83, 3], ["passthru", 89, 3], ["meta", 91, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, bash: false, python3: false, yosys: false, yices: false, z3: false, aiger: false, btor2tools: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 89, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 92, 5], ["homepage", 93, 5], ["license", 94, 5], ["maintainers", 95, 5], ["mainProgram", 99, 5], ["platforms", 100, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["postPatch", 32, 3], ["dontBuild", 59, 3], ["installPhase", 61, 3], ["nativeCheckInputs", 72, 3], ["doCheck", 81, 3], ["checkPhase", 83, 3], ["passthru", 89, 3], ["meta", 91, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const pythonEnv = nix.thunk(() => nix.app(nix.sel(python3, "withPackages"), pythonDeps));
   const checkPythonEnv = nix.thunk(() => nix.app(nix.sel(python3, "withPackages"), (ps) => nix.concat(nix.app(pythonDeps, ps), [nix.thunk(() => nix.sel(ps, "xmlschema"))])));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "sby",
       version: "0.69",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "YosysHQ",
           repo: "sby",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -69,11 +66,11 @@ substituteInPlace sbysrc/sby_autotune.py \\
       doCheck: true,
       checkPhase: "runHook preCheck\nmake test\nrunHook postCheck\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "SymbiYosys, a front-end for Yosys-based formal verification flows",
         homepage: "https://symbiyosys.readthedocs.io/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),

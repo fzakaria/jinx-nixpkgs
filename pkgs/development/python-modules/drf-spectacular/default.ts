@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 38, 5], ["repo", 39, 5], ["tag", 40, 5], ["hash", 41, 5]], [["sidecar", 55, 25]], [["description", 94, 5], ["homepage", 95, 5], ["changelog", 96, 5], ["license", 97, 5], ["maintainers", 98, 5]], [["pname", 33, 3], ["version", 34, 3], ["pyproject", 35, 3], ["src", 37, 3], ["build-system", 44, 3], ["dependencies", 46, 3], ["optional-dependencies", 55, 3], ["nativeCheckInputs", 57, 3], ["disabledTestPaths", 79, 3], ["pythonImportsCheck", 91, 3], ["meta", 93, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, "dj-rest-auth": false, django: false, "django-allauth": false, "django-filter": false, "django-oauth-toolkit": false, "django-polymorphic": false, "django-rest-auth": false, "django-rest-knox": false, "django-rest-polymorphic": false, djangorestframework: false, "djangorestframework-camel-case": false, "djangorestframework-dataclasses": false, "djangorestframework-recursive": false, "djangorestframework-simplejwt": false, "drf-jwt": false, "drf-nested-routers": false, "drf-spectacular-sidecar": false, fetchFromGitHub: false, inflection: false, jsonschema: false, psycopg2: false, "pytest-django": false, pytestCheckHook: false, pyyaml: false, setuptools: false, uritemplate: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 38, 5], ["repo", 39, 5], ["tag", 40, 5], ["hash", 41, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["sidecar", 55, 25]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 94, 5], ["homepage", 95, 5], ["changelog", 96, 5], ["license", 97, 5], ["maintainers", 98, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 33, 3], ["version", 34, 3], ["pyproject", 35, 3], ["src", 37, 3], ["build-system", 44, 3], ["dependencies", 46, 3], ["optional-dependencies", 55, 3], ["nativeCheckInputs", 57, 3], ["disabledTestPaths", 79, 3], ["pythonImportsCheck", 91, 3], ["meta", 93, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -43,7 +40,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.30.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "tfranzel",
           repo: "drf-spectacular",
           tag: version,
@@ -51,7 +48,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const build_system = nix.thunk(() => [setuptools]);
       const dependencies = nix.thunk(() => [django, djangorestframework, inflection, jsonschema, pyyaml, uritemplate]);
-      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, sidecar: nix.thunk(() => [drf_spectacular_sidecar]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: $pos[1], sidecar: nix.thunk(() => [drf_spectacular_sidecar]) }));
       const nativeCheckInputs = nix.thunk(() => nix.concat([
         dj_rest_auth,
         django_allauth,
@@ -81,7 +78,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const pythonImportsCheck = nix.thunk(() => ["drf_spectacular"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Sane and flexible OpenAPI 3 schema generation for Django REST framework",
         homepage: "https://github.com/tfranzel/drf-spectacular",
         changelog: nix.thunk(() => nix.str`https://github.com/tfranzel/drf-spectacular/releases/tag/${version}`),
@@ -89,7 +86,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

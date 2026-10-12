@@ -2,11 +2,8 @@
 import * as nix from "../../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["sha256", 18, 5]], [["scripts", 42, 12]], [["description", 54, 5], ["homepage", 55, 5], ["maintainers", 56, 5], ["license", 57, 5], ["platforms", 58, 5], ["broken", 62, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 14, 3], ["patches", 21, 3], ["buildInputs", 25, 3], ["postPatch", 32, 3], ["passthru", 42, 3], ["installPhase", 44, 3], ["meta", 53, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, curl: false, fetchFromGitHub: false, cjson: false, olm: false, luaffi: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["sha256", 18, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["scripts", 42, 12]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 54, 5], ["homepage", 55, 5], ["maintainers", 56, 5], ["license", 57, 5], ["platforms", 58, 5], ["broken", 62, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 14, 3], ["patches", 21, 3], ["buildInputs", 25, 3], ["postPatch", 32, 3], ["passthru", 42, 3], ["installPhase", 44, 3], ["meta", 53, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const olm = nix.arg($, "olm");
   const luaffi = nix.arg($, "luaffi");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "weechat-matrix-bridge",
       version: "unstable-2018-11-19",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "torhve",
           repo: "weechat-matrix-protocol-script",
           rev: "8d32e90d864a8f3f09ecc2857cd5dd6e39a8c3f7",
@@ -38,7 +35,7 @@ export default nix.lambda((args) => (() => {
 substituteInPlace olm.lua \\
   --replace "__NIX_LIB_PATH__" "$out/lib/?.so"
 `),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, scripts: nix.thunk(() => ["matrix.lua"]) })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[1], scripts: nix.thunk(() => ["matrix.lua"]) })),
       installPhase: nix.thunk(() => nix.str`mkdir -p $out/{share,lib}
 
 cp {matrix.lua,olm.lua} $out/share
@@ -47,7 +44,7 @@ cp ${olm}/lib/libolm.so $out/lib/libolm.so
 cp ${luaffi}/lib/lua/${nix.sel(luaffi, "lua", "luaversion")}/ffi.so $out/lib/ffi.so
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "WeeChat script in Lua that implements the matrix.org chat protocol",
         homepage: "https://github.com/torhve/weechat-matrix-protocol-script",
         maintainers: [],

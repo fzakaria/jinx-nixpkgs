@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 27, 5], ["hash", 28, 5]], [["packageName", 55, 7], ["versionPolicy", 56, 7]], [["updateScript", 54, 5]], [["description", 63, 5], ["homepage", 64, 5], ["changelog", 65, 5], ["license", 66, 5], ["teams", 67, 5], ["platforms", 68, 5]], [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 38, 3], ["enableParallelBuilding", 51, 3], ["passthru", 53, 3], ["doCheck", 60, 3], ["meta", 62, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, gettext: false, glib: false, gnome: false, "gsettings-desktop-schemas": false, gtk3: false, libxres: false, libxpresent: false, libxdamage: false, libx11: false, "libcanberra-gtk3": false, libgtop: false, libstartup_notification: false, libxml2: false, "pkg-config": false, wrapGAppsHook3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["packageName", 55, 7], ["versionPolicy", 56, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 54, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 63, 5], ["homepage", 64, 5], ["changelog", 65, 5], ["license", 66, 5], ["teams", 67, 5], ["platforms", 68, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 38, 3], ["enableParallelBuilding", 51, 3], ["passthru", 53, 3], ["doCheck", 60, 3], ["meta", 62, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "metacity",
       version: "3.58.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnome/sources/metacity/${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/metacity-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-5DDIqSQJ7y+RpNq9UKcePTu8xHSj3sHK7DgTs4HX0bA=",
         })))),
@@ -53,12 +49,12 @@ export default nix.lambda((args) => (() => {
       ]),
       enableParallelBuilding: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$2, packageName: "metacity", versionPolicy: "odd-unstable" })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: $pos[1], packageName: "metacity", versionPolicy: "odd-unstable" })))),
       })),
       doCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Window manager used in Gnome Flashback",
         homepage: "https://gitlab.gnome.org/GNOME/metacity",
         changelog: nix.thunk(() => nix.str`https://gitlab.gnome.org/GNOME/metacity/-/blob/${nix.sel(finalAttrs, "version")}/NEWS?ref_type=tags`),

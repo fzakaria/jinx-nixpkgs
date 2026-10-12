@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]], [["_DEF_PR_AI_API_KEY", 24, 5], ["_DEF_PR_AI_URL", 25, 5], ["_DEF_PR_AI_MODEL", 26, 5]], [["description", 50, 5], ["homepage", 51, 5], ["changelog", 52, 5], ["license", 53, 5], ["maintainers", 54, 5], ["mainProgram", 59, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["cargoHash", 21, 3], ["env", 23, 3], ["cargoBuildFlags", 29, 3], ["cargoTestFlags", 34, 3], ["nativeBuildInputs", 40, 3], ["postInstall", 42, 3], ["nativeInstallCheckInputs", 46, 3], ["doInstallCheck", 47, 3], ["meta", 49, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromCodeberg: false, installShellFiles: false, rustPlatform: false, versionCheckHook: false, withRuntimeRules: true, withRequestAi: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["_DEF_PR_AI_API_KEY", 24, 5], ["_DEF_PR_AI_URL", 25, 5], ["_DEF_PR_AI_MODEL", 26, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 50, 5], ["homepage", 51, 5], ["changelog", 52, 5], ["license", 53, 5], ["maintainers", 54, 5], ["mainProgram", 59, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["cargoHash", 21, 3], ["env", 23, 3], ["cargoBuildFlags", 29, 3], ["cargoTestFlags", 34, 3], ["nativeBuildInputs", 40, 3], ["postInstall", 42, 3], ["nativeInstallCheckInputs", 46, 3], ["doInstallCheck", 47, 3], ["meta", 49, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const withRuntimeRules = nix.argOr($, "withRuntimeRules", () => true);
   const withRequestAi = nix.argOr($, "withRequestAi", () => true);
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "pay-respects",
       version: "0.8.8",
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "iff",
           repo: "pay-respects",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -30,7 +27,7 @@ export default nix.lambda((args) => (() => {
         })))),
       cargoHash: "sha256-d3RCjCxJXb5YLai1ZqWKifbb2nLG5j1psuvAorNgFGg=",
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         _DEF_PR_AI_API_KEY: "",
         _DEF_PR_AI_URL: "",
         _DEF_PR_AI_MODEL: "",
@@ -42,7 +39,7 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Terminal command correction, alternative to thefuck, written in Rust",
         homepage: "https://codeberg.org/iff/pay-respects",
         changelog: nix.thunk(() => nix.str`https://codeberg.org/iff/pay-respects/src/tag/v${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["case", 20, 35], ["out", 20, 40]], [["hash", 26, 19]], [["1.0.0", 26, 11]], [["description", 38, 5], ["license", 39, 5], ["maintainers", 40, 5]], [["pname", 12, 3], ["repo", 13, 3], ["opam-name", 14, 3], ["owner", 15, 3], ["version", 17, 11], ["defaultVersion", 18, 3], ["release", 26, 3], ["releaseRev", 27, 3], ["useDune", 29, 3], ["propagatedBuildInputs", 31, 3], ["meta", 37, 3]]]);
 const formals$1 = { args: { lib: false, mkCoqDerivation: false, coq: false, "metarocq-utils": false, stdlib: false, version: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["case", 20, 35], ["out", 20, 40]]);
-const pos$2 = nix.positions(here + "/default.nix", [["hash", 26, 19]]);
-const pos$3 = nix.positions(here + "/default.nix", [["1.0.0", 26, 11]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 38, 5], ["license", 39, 5], ["maintainers", 40, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 12, 3], ["repo", 13, 3], ["opam-name", 14, 3], ["owner", 15, 3], ["version", 17, 11], ["defaultVersion", 18, 3], ["release", 26, 3], ["releaseRev", 27, 3], ["useDune", 29, 3], ["propagatedBuildInputs", 31, 3], ["meta", 37, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,23 +14,23 @@ export default nix.lambda((args) => (() => {
   const stdlib = nix.arg($, "stdlib");
   const version = nix.argOr($, "version", () => null);
   return nix.app(mkCoqDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "ceres-bs",
       repo: "rocq-ceres-bytestring",
       "opam-name": "rocq-ceres-bytestring",
       owner: "peregrine-project",
       version: version,
       defaultVersion: nix.thunk(() => (() => {
-        const case$ = (case$_1) => (out) => ({ [nix.POS]: pos$1, case: case$_1, out: out });
+        const case$ = (case$_1) => (out) => ({ [nix.POS]: $pos[0], case: case$_1, out: out });
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "versions")), null);
         return nix.app(nix.sel(lib, "switch"), nix.thunk(() => nix.sel(coq, "version")), nix.thunk(() => [
             nix.thunk(() => nix.app(case$, nix.thunk(() => nix.app(nix.lookup(w, "range"), "9.0", "9.1")), "1.0.0")),
           ]), null);
       })()),
       release: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         "1.0.0": nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           hash: "sha256-aB/YWw4E1myIYDRlNs/dEXoI9HDKl1/lsPGMYzjyJsU=",
         })),
       })),
@@ -46,7 +42,7 @@ export default nix.lambda((args) => (() => {
         metarocq_utils,
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Library for serialization via S-expressions using bytestrings. Alternative to coq-ceres which uses String from standard library.",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: nix.thunk(() => (() => {

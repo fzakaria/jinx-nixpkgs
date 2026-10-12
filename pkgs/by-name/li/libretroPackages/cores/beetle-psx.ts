@@ -2,10 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/beetle-psx.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]], [["description", 32, 5], ["homepage", 35, 5], ["license", 36, 5]], [["core", 10, 3], ["version", 11, 3], ["src", 13, 3], ["extraBuildInputs", 20, 3], ["makefile", 25, 3], ["makeFlags", 26, 3], ["meta", 31, 3]]]);
 const formals$1 = { args: { lib: false, libGL: false, libGLU: false, fetchFromGitHub: false, mkLibretroCore: false, withHw: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/beetle-psx.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/beetle-psx.nix", [["description", 32, 5], ["homepage", 35, 5], ["license", 36, 5]]);
-const pos$3 = nix.positions(here + "/beetle-psx.nix", [["core", 10, 3], ["version", 11, 3], ["src", 13, 3], ["extraBuildInputs", 20, 3], ["makefile", 25, 3], ["makeFlags", 26, 3], ["meta", 31, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const mkLibretroCore = nix.arg($, "mkLibretroCore");
   const withHw = nix.argOr($, "withHw", () => false);
   return nix.app(mkLibretroCore, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       core: nix.thunk(() => nix.add("mednafen-psx", nix.app(nix.sel(lib, "optionalString"), withHw, "-hw"))),
       version: "0-unstable-2026-09-21",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "libretro",
           repo: "beetle-psx-libretro",
           rev: "5718ab9b829599687671503f11494ca6a0049c57",
@@ -33,7 +31,7 @@ export default nix.lambda((args) => (() => {
         "HAVE_LIGHTREC=1",
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: nix.thunk(() => nix.add("Port of Mednafen's PSX Engine core to libretro", nix.app(nix.sel(lib, "optionalString"), withHw, " (with hardware acceleration support)"))),
         homepage: "https://github.com/libretro/beetle-psx-libretro",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

@@ -2,20 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["dontDisableStatic", 27, 37]], [["name", 26, 18], ["paths", 27, 5], ["postBuild", 31, 5]], [["dontDisableStatic", 39, 49]], [["name", 36, 23], ["paths", 37, 5], ["postBuild", 45, 5]], [["dontDisableStatic", 56, 36]], [["name", 58, 23], ["paths", 59, 5], ["postBuild", 63, 5]], [["dontDisableStatic", 69, 5]], [["static", 73, 37]], [["name", 72, 23], ["paths", 73, 5]], [["domain", 87, 5], ["owner", 88, 5], ["repo", 89, 5], ["tag", 90, 5], ["hash", 91, 5], ["name", 92, 5]], [["NIX_CFLAGS_LINK", 108, 5], ["NIX_CFLAGS_COMPILE", 115, 5]], [["description", 134, 5], ["longDescription", 135, 5], ["homepage", 138, 5], ["license", 139, 5], ["maintainers", 140, 5], ["platforms", 142, 5]], [["pname", 80, 3], ["version", 81, 3], ["src", 86, 3], ["nativeBuildInputs", 95, 3], ["buildInputs", 99, 3], ["env", 107, 3], ["postPatch", 120, 3], ["configureFlags", 125, 3], ["meta", 133, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitLab: false, autoreconfHook: false, libpcap: false, db: false, glib: false, libnet: false, libnids: false, symlinkJoin: false, openssl: false, "rpcsvc-proto": false, libtirpc: false, libnsl: false, libnl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["dontDisableStatic", 27, 37]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 26, 18], ["paths", 27, 5], ["postBuild", 31, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["dontDisableStatic", 39, 49]]);
-const pos$4 = nix.positions(here + "/package.nix", [["name", 36, 23], ["paths", 37, 5], ["postBuild", 45, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["dontDisableStatic", 56, 36]]);
-const pos$6 = nix.positions(here + "/package.nix", [["name", 58, 23], ["paths", 59, 5], ["postBuild", 63, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["dontDisableStatic", 69, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["static", 73, 37]]);
-const pos$9 = nix.positions(here + "/package.nix", [["name", 72, 23], ["paths", 73, 5]]);
-const pos$10 = nix.positions(here + "/package.nix", [["domain", 87, 5], ["owner", 88, 5], ["repo", 89, 5], ["tag", 90, 5], ["hash", 91, 5], ["name", 92, 5]]);
-const pos$11 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_LINK", 108, 5], ["NIX_CFLAGS_COMPILE", 115, 5]]);
-const pos$12 = nix.positions(here + "/package.nix", [["description", 134, 5], ["longDescription", 135, 5], ["homepage", 138, 5], ["license", 139, 5], ["maintainers", 140, 5], ["platforms", 142, 5]]);
-const pos$13 = nix.positions(here + "/package.nix", [["pname", 80, 3], ["version", 81, 3], ["src", 86, 3], ["nativeBuildInputs", 95, 3], ["buildInputs", 99, 3], ["env", 107, 3], ["postPatch", 120, 3], ["configureFlags", 125, 3], ["meta", 133, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -35,19 +23,19 @@ export default nix.lambda((args) => (() => {
   const libnsl = nix.arg($, "libnsl");
   const libnl = nix.arg($, "libnl");
   const staticdb = nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       name: nix.thunk(() => nix.attr(db, "name")),
       paths: nix.thunk(() => (() => {
-        const w = nix.withScope(nix.thunk(() => nix.app(nix.sel(db, "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: pos$1, dontDisableStatic: true })))), null);
+        const w = nix.withScope(nix.thunk(() => nix.app(nix.sel(db, "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: $pos[0], dontDisableStatic: true })))), null);
         return [nix.thunk(() => nix.lookup(w, "out")), nix.thunk(() => nix.lookup(w, "dev"))];
       })()),
       postBuild: "rm $out/lib/*.so*\n",
     }))));
   const pcap = nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       name: nix.thunk(() => nix.attr(libpcap, "name")),
       paths: nix.thunk(() => (() => {
-        const staticlibpcap = nix.thunk(() => nix.app(nix.sel(libpcap, "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: pos$3, dontDisableStatic: true }))));
+        const staticlibpcap = nix.thunk(() => nix.app(nix.sel(libpcap, "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: $pos[2], dontDisableStatic: true }))));
         return [
           nix.thunk(() => nix.app(nix.sel(lib, "getInclude"), staticlibpcap)),
           nix.thunk(() => nix.app(nix.sel(lib, "getLib"), staticlibpcap)),
@@ -55,9 +43,9 @@ export default nix.lambda((args) => (() => {
       })()),
       postBuild: "cp -rs $out/include/pcap $out/include/net\n# check the presence of the files that ./configure expects\nfor i in $out/lib/libpcap.a $out/include/pcap.h $out/include/net/bpf.h; do\n  if ! test -f $i; then\n    echo $i is missing from output\n    exit 1\n  fi\ndone\n",
     }))));
-  const libnet$ = nix.thunk(() => nix.app(nix.sel(libnet, "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: pos$5, dontDisableStatic: true }))));
+  const libnet$ = nix.thunk(() => nix.app(nix.sel(libnet, "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: $pos[4], dontDisableStatic: true }))));
   const net = nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       name: nix.thunk(() => nix.attr(libnet$, "name")),
       paths: nix.thunk(() => [
         nix.thunk(() => nix.app(nix.sel(lib, "getLib"), libnet$)),
@@ -65,21 +53,21 @@ export default nix.lambda((args) => (() => {
       ]),
       postBuild: "# prevent dynamic linking, now that we have a static library\nrm $out/lib/*.so*\n",
     }))));
-  const nids = nix.thunk(() => nix.app(nix.sel(libnids, "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: pos$7, dontDisableStatic: true }))));
+  const nids = nix.thunk(() => nix.app(nix.sel(libnids, "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: $pos[6], dontDisableStatic: true }))));
   const ssl = nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       name: nix.thunk(() => nix.attr(openssl, "name")),
       paths: nix.thunk(() => (() => {
-        const w = nix.withScope(nix.thunk(() => nix.app(nix.sel(openssl, "override"), nix.thunk(() => ({ [nix.POS]: pos$8, static: true })))), null);
+        const w = nix.withScope(nix.thunk(() => nix.app(nix.sel(openssl, "override"), nix.thunk(() => ({ [nix.POS]: $pos[7], static: true })))), null);
         return [nix.thunk(() => nix.lookup(w, "out")), nix.thunk(() => nix.lookup(w, "dev"))];
       })()),
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$13,
+      [nix.POS]: $pos[12],
       pname: "dsniff",
       version: "2.4b1",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$10,
+          [nix.POS]: $pos[9],
           domain: "salsa.debian.org",
           owner: "pkg-security-team",
           repo: "dsniff",
@@ -90,7 +78,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [autoreconfHook, rpcsvc_proto]),
       buildInputs: nix.thunk(() => [glib, pcap, libtirpc, libnsl, libnl]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$11,
+        [nix.POS]: $pos[10],
         NIX_CFLAGS_LINK: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-lglib-2.0", "-lpthread", "-ltirpc", "-lnl-3", "-lnl-genl-3"]))),
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => [
             nix.thunk(() => nix.str`-I${nix.sel(libtirpc, "dev")}/include/tirpc`),
@@ -106,7 +94,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`--with-openssl=${ssl}`),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$12,
+        [nix.POS]: $pos[11],
         description: "Collection of tools for network auditing and penetration testing",
         longDescription: "dsniff, filesnarf, mailsnarf, msgsnarf, urlsnarf, and webspy passively monitor a network for interesting data (passwords, e-mail, files, etc.). arpspoof, dnsspoof, and macof facilitate the interception of network traffic normally unavailable to an attacker (e.g, due to layer-2 switching). sshmitm and webmitm implement active monkey-in-the-middle attacks against redirected SSH and HTTPS sessions by exploiting weak bindings in ad-hoc PKI.\n",
         homepage: "https://www.monkey.org/~dugsong/dsniff/",

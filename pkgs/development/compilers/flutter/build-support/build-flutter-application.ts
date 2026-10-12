@@ -2,23 +2,9 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/build-flutter-application.nix", [[["supportedTargetFlutterPlatforms", 25, 9]], [["dart", 31, 63]], [["multiShell", 41, 11]], [["passthru", 40, 9]], [["nativeBuildInputs", 91, 44]], [["packageRoot", 111, 57]], [["passthru", 111, 48]], [["packageRoot", 127, 54]], [["passthru", 127, 45]], [["flutter", 109, 11], ["dart", 125, 11]], [["flutterMode", 71, 9], ["flutterFlags", 72, 9], ["flutterBuildFlags", 73, 9], ["sdkSetupScript", 75, 9], ["pubGetScript", 103, 9], ["sdkSourceBuilders", 107, 9], ["extraPackageConfigSetup", 143, 9]], [["outputs", 164, 9], ["nativeBuildInputs", 166, 9], ["buildInputs", 178, 9], ["dontDartBuild", 180, 9], ["buildPhase", 181, 9], ["dontDartInstall", 192, 9], ["installPhase", 193, 9], ["dontWrapGApps", 226, 9], ["extraWrapProgramArgs", 227, 9]], [["dontDartBuild", 234, 9], ["buildPhase", 235, 9], ["dontDartInstall", 246, 9], ["installPhase", 247, 9]], [["universal", 161, 15], ["linux", 163, 7], ["web", 233, 7]], [["constructDrv", 18, 3], ["extendDrvArgs", 46, 3]]]);
 const formals$1 = { args: { lib: false, callPackage: false, runCommand: false, makeWrapper: false, wrapGAppsHook3: false, buildDartApplication: false, cacert: false, glib: false, flutter: false, "pkg-config": false, buildPackages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/build-flutter-application.nix", [["supportedTargetFlutterPlatforms", 25, 9]]);
-const pos$2 = nix.positions(here + "/build-flutter-application.nix", [["dart", 31, 63]]);
-const pos$3 = nix.positions(here + "/build-flutter-application.nix", [["multiShell", 41, 11]]);
-const pos$4 = nix.positions(here + "/build-flutter-application.nix", [["passthru", 40, 9]]);
 const formals$2 = { args: { pubGetScript: true, flutterBuildFlags: true, targetFlutterPlatform: true, extraWrapProgramArgs: true, flutterMode: true }, ellipsis: true };
-const pos$5 = nix.positions(here + "/build-flutter-application.nix", [["nativeBuildInputs", 91, 44]]);
-const pos$6 = nix.positions(here + "/build-flutter-application.nix", [["packageRoot", 111, 57]]);
-const pos$7 = nix.positions(here + "/build-flutter-application.nix", [["passthru", 111, 48]]);
-const pos$8 = nix.positions(here + "/build-flutter-application.nix", [["packageRoot", 127, 54]]);
-const pos$9 = nix.positions(here + "/build-flutter-application.nix", [["passthru", 127, 45]]);
-const pos$10 = nix.positions(here + "/build-flutter-application.nix", [["flutter", 109, 11], ["dart", 125, 11]]);
-const pos$11 = nix.positions(here + "/build-flutter-application.nix", [["flutterMode", 71, 9], ["flutterFlags", 72, 9], ["flutterBuildFlags", 73, 9], ["sdkSetupScript", 75, 9], ["pubGetScript", 103, 9], ["sdkSourceBuilders", 107, 9], ["extraPackageConfigSetup", 143, 9]]);
-const pos$12 = nix.positions(here + "/build-flutter-application.nix", [["outputs", 164, 9], ["nativeBuildInputs", 166, 9], ["buildInputs", 178, 9], ["dontDartBuild", 180, 9], ["buildPhase", 181, 9], ["dontDartInstall", 192, 9], ["installPhase", 193, 9], ["dontWrapGApps", 226, 9], ["extraWrapProgramArgs", 227, 9]]);
-const pos$13 = nix.positions(here + "/build-flutter-application.nix", [["dontDartBuild", 234, 9], ["buildPhase", 235, 9], ["dontDartInstall", 246, 9], ["installPhase", 247, 9]]);
-const pos$14 = nix.positions(here + "/build-flutter-application.nix", [["universal", 161, 15], ["linux", 163, 7], ["web", 233, 7]]);
-const pos$15 = nix.positions(here + "/build-flutter-application.nix", [["constructDrv", 18, 3], ["extendDrvArgs", 46, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,21 +20,21 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const buildPackages = nix.arg($, "buildPackages");
   return nix.app(nix.sel(lib, "extendMkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$15,
+      [nix.POS]: $pos[14],
       constructDrv: (argsFn) => (() => {
         const evalArgs = nix.thunk(() => nix.app(nix.sel(lib, "fix"), argsFn));
         const targetFlutterPlatform = nix.thunk(() => nix.selOr(evalArgs, () => "linux", "targetFlutterPlatform"));
         const minimalFlutter = nix.thunk(() => nix.app(nix.sel(flutter, "override"), nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             supportedTargetFlutterPlatforms: nix.thunk(() => ["universal", targetFlutterPlatform]),
           }))));
-        const buildAppWith = (flutter_1) => nix.app(nix.sel(buildDartApplication, "override"), nix.thunk(() => ({ [nix.POS]: pos$2, dart: flutter_1 })));
+        const buildAppWith = (flutter_1) => nix.app(nix.sel(buildDartApplication, "override"), nix.thunk(() => ({ [nix.POS]: $pos[1], dart: flutter_1 })));
         return nix.app(buildAppWith, minimalFlutter, (finalAttrs) => (() => {
             const args_1 = nix.thunk(() => nix.app(argsFn, finalAttrs));
             return nix.update(args_1, {
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               passthru: nix.thunk(() => nix.update(nix.selOr(args_1, () => ({}), "passthru"), {
-                [nix.POS]: pos$3,
+                [nix.POS]: $pos[2],
                 multiShell: nix.thunk(() => nix.app(buildAppWith, flutter, args_1)),
               })),
             });
@@ -67,7 +53,7 @@ export default nix.lambda((args) => (() => {
         const flutterFlags = nix.thunk(() => nix.app(nix.sel(lib, "optional"), hasEngine, nix.thunk(() => nix.str`--local-engine host_${flutterMode$}${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(nix.sel(flutter, "engine", "isOptimized"))), "_unopt")}`)));
         const flutterBuildFlags$ = nix.thunk(() => nix.concat([nix.thunk(() => nix.str`--${flutterMode$}`)], nix.concat(nix.selOr(args_2, () => [], "flutterBuildFlags"), flutterFlags)));
         const universal = nix.thunk(() => nix.update(args_2, {
-          [nix.POS]: pos$11,
+          [nix.POS]: $pos[10],
           flutterMode: flutterMode$,
           flutterFlags: flutterFlags,
           flutterBuildFlags: flutterBuildFlags$,
@@ -85,7 +71,7 @@ export default nix.lambda((args) => (() => {
 #
 # Instead, Flutter is patched to allow the path to the Dart binary used for
 # Pub commands to be overriden.
-export NIX_FLUTTER_PUB_DART="${nix.app(runCommand, "dart-with-certs", nix.thunk(() => ({ [nix.POS]: pos$5, nativeBuildInputs: nix.thunk(() => [makeWrapper]) })), nix.thunk(() => nix.str`mkdir -p "$out/bin"
+export NIX_FLUTTER_PUB_DART="${nix.app(runCommand, "dart-with-certs", nix.thunk(() => ({ [nix.POS]: $pos[4], nativeBuildInputs: nix.thunk(() => [makeWrapper]) })), nix.thunk(() => nix.str`mkdir -p "$out/bin"
 makeWrapper ${nix.sel(flutter, "dart")}/bin/dart "$out/bin/dart" \\
   --add-flags "--root-certs-file=${cacert}/etc/ssl/certs/ca-bundle.crt"
 `))}/bin/dart"
@@ -96,10 +82,10 @@ flutter config $flutterFlags --enable-linux-desktop >/dev/null
 `),
           pubGetScript: nix.thunk(() => nix.selOr(args_2, () => nix.str`flutter${nix.app(nix.sel(lib, "optionalString"), hasEngine, " --local-engine $flutterMode")} pub get`, "pubGetScript")),
           sdkSourceBuilders: nix.thunk(() => ({
-            [nix.POS]: pos$10,
+            [nix.POS]: $pos[9],
             flutter: (name) => nix.app(runCommand, nix.thunk(() => nix.str`flutter-sdk-${name}`), nix.thunk(() => ({
-                [nix.POS]: pos$7,
-                passthru: nix.thunk(() => ({ [nix.POS]: pos$6, packageRoot: "." })),
+                [nix.POS]: $pos[6],
+                passthru: nix.thunk(() => ({ [nix.POS]: $pos[5], packageRoot: "." })),
               })), nix.thunk(() => nix.str`for path in '${flutter}/packages/${name}' '${flutter}/bin/cache/pkg/${name}'; do
   if [ -d "$path" ]; then
     ln -s "$path" "$out"
@@ -113,8 +99,8 @@ if [ ! -e "$out" ]; then
 fi
 `)),
             dart: (name) => nix.app(runCommand, nix.thunk(() => nix.str`dart-sdk-${name}`), nix.thunk(() => ({
-                [nix.POS]: pos$9,
-                passthru: nix.thunk(() => ({ [nix.POS]: pos$8, packageRoot: "." })),
+                [nix.POS]: $pos[8],
+                passthru: nix.thunk(() => ({ [nix.POS]: $pos[7], packageRoot: "." })),
               })), nix.thunk(() => nix.str`for path in '${nix.sel(flutter, "dart")}/pkg/${name}'; do
   if [ -d "$path" ]; then
     ln -s "$path" "$out"
@@ -144,10 +130,10 @@ fi
 `))),
         }));
         return nix.selOr({
-          [nix.POS]: pos$14,
+          [nix.POS]: $pos[13],
           universal: universal,
           linux: nix.thunk(() => nix.update(universal, {
-            [nix.POS]: pos$12,
+            [nix.POS]: $pos[11],
             outputs: nix.thunk(() => nix.concat(nix.selOr(universal, () => [], "outputs"), ["debug"])),
             nativeBuildInputs: nix.thunk(() => nix.concat(nix.selOr(universal, () => [], "nativeBuildInputs"), [wrapGAppsHook3, pkg_config])),
             buildInputs: nix.thunk(() => nix.concat(nix.selOr(universal, () => [], "buildInputs"), [glib])),
@@ -161,7 +147,7 @@ ${extraWrapProgramArgs}
 `),
           })),
           web: nix.thunk(() => nix.update(universal, {
-            [nix.POS]: pos$13,
+            [nix.POS]: $pos[12],
             dontDartBuild: true,
             buildPhase: nix.thunk(() => nix.selOr(universal, () => "runHook preBuild\n\nmkdir -p build/flutter_assets/fonts\n\nflutter build web -v $flutterBuildFlags\n\nrunHook postBuild\n", "buildPhase")),
             dontDartInstall: true,

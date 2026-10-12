@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 26, 5], ["owner", 27, 5], ["repo", 28, 5], ["rev", 29, 5], ["hash", 30, 5]], [["description", 58, 5], ["mainProgram", 59, 5], ["homepage", 60, 5], ["license", 61, 5], ["platforms", 62, 5], ["maintainers", 63, 5]], [["pname", 20, 3], ["version", 21, 3], ["pyproject", 23, 3], ["src", 25, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 44, 3], ["propagatedBuildInputs", 51, 3], ["meta", 57, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitLab: false, python3: false, meson: false, ninja: false, "pkg-config": false, glib: false, gtk4: false, libadwaita: false, librsvg: false, "blueprint-compiler": false, "gobject-introspection": false, wrapGAppsHook4: false, "appstream-glib": false, "desktop-file-utils": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 26, 5], ["owner", 27, 5], ["repo", 28, 5], ["rev", 29, 5], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 58, 5], ["mainProgram", 59, 5], ["homepage", 60, 5], ["license", 61, 5], ["platforms", 62, 5], ["maintainers", 63, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["pyproject", 23, 3], ["src", 25, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 44, 3], ["propagatedBuildInputs", 51, 3], ["meta", 57, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,12 +23,12 @@ export default nix.lambda((args) => (() => {
   const appstream_glib = nix.arg($, "appstream-glib");
   const desktop_file_utils = nix.arg($, "desktop-file-utils");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "whatip",
       version: "1.2",
       pyproject: false,
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "gitlab.gnome.org",
           owner: "GabMus",
           repo: "whatip",
@@ -57,7 +55,7 @@ export default nix.lambda((args) => (() => {
         ];
       })()),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Info on your IP",
         mainProgram: "whatip",
         homepage: "https://gitlab.gnome.org/GabMus/whatip",

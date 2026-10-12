@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["hash", 33, 5]], [["ignoredVersions", 96, 7]], [["pytest", 99, 11]], [["updateScript", 95, 5], ["tests", 99, 5]], [["changelog", 103, 5], ["description", 104, 5], ["downloadPage", 105, 5], ["homepage", 106, 5], ["license", 107, 5], ["platforms", 108, 5], ["mainProgram", 109, 5], ["maintainers", 110, 5]], [["pname", 25, 3], ["version", 26, 3], ["pyproject", 27, 3], ["src", 29, 3], ["build-system", 36, 3], ["dependencies", 43, 3], ["nativeBuildInputs", 64, 3], ["buildInputs", 68, 3], ["pythonImportsCheck", 80, 3], ["nativeCheckInputs", 82, 3], ["postInstall", 86, 3], ["versionCheckProgram", 92, 3], ["passthru", 94, 3], ["meta", 102, 3]]]);
 const formals$1 = { args: { lib: false, python3Packages: false, fetchFromGitHub: false, gitUpdater: false, nixosTests: false, buildbox: false, fuse3: false, lzip: false, patch: false, installShellFiles: false, versionCheckHook: false, enableBuildstreamPlugins: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["hash", 33, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["ignoredVersions", 96, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pytest", 99, 11]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 95, 5], ["tests", 99, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["changelog", 103, 5], ["description", 104, 5], ["downloadPage", 105, 5], ["homepage", 106, 5], ["license", 107, 5], ["platforms", 108, 5], ["mainProgram", 109, 5], ["maintainers", 110, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 25, 3], ["version", 26, 3], ["pyproject", 27, 3], ["src", 29, 3], ["build-system", 36, 3], ["dependencies", 43, 3], ["nativeBuildInputs", 64, 3], ["buildInputs", 68, 3], ["pythonImportsCheck", 80, 3], ["nativeCheckInputs", 82, 3], ["postInstall", 86, 3], ["versionCheckProgram", 92, 3], ["passthru", 94, 3], ["meta", 102, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const enableBuildstreamPlugins = nix.argOr($, "enableBuildstreamPlugins", () => true);
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "buildstream",
       version: "2.8.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "apache",
           repo: "buildstream",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -69,15 +64,15 @@ export default nix.lambda((args) => (() => {
       postInstall: "installShellCompletion --cmd bst \\\n  --bash src/buildstream/data/bst \\\n  --zsh src/buildstream/data/zsh/_bst\n",
       versionCheckProgram: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/bin/bst`),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, ignoredVersions: "dev" })))),
+        [nix.POS]: $pos[3],
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[1], ignoredVersions: "dev" })))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           pytest: nix.thunk(() => nix.sel(nixosTests, "buildstream")),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         changelog: nix.thunk(() => nix.str`https://github.com/apache/buildstream/blob/${nix.sel(finalAttrs, "src", "tag")}/NEWS`),
         description: "Powerful software integration tool",
         downloadPage: "https://buildstream.build/install.html",

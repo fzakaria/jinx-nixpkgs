@@ -2,12 +2,9 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["maintainers", 8, 5]], [["imports", 14, 7]], [["machine", 11, 9]], [["name", 6, 3], ["meta", 7, 3], ["nodes", 11, 3], ["testScript", 17, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/default.nix", [["maintainers", 8, 5]]);
 const formals$2 = { args: { pkgs: false, lib: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/default.nix", [["imports", 14, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["machine", 11, 9]]);
-const pos$4 = nix.positions(here + "/default.nix", [["name", 6, 3], ["meta", 7, 3], ["nodes", 11, 3], ["testScript", 17, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,22 +12,22 @@ export default nix.lambda((args) => (() => {
   const from = nix.thunk(() => nix.builtins.import(nix.path(here, "./common.nix")));
   const baseConfig = nix.thunk(() => nix.attr(from, "baseConfig"));
   return {
-    [nix.POS]: pos$4,
+    [nix.POS]: $pos[3],
     name: "hydra",
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
       return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "lewo"))]),
       };
     })()),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs_1 = nix.arg($_1, "pkgs");
         const lib = nix.arg($_1, "lib");
-        return { [nix.POS]: pos$2, imports: nix.thunk(() => [baseConfig]) };
+        return { [nix.POS]: $pos[1], imports: nix.thunk(() => [baseConfig]) };
       })(), formals$2),
     })),
     testScript: "# let the system boot up\nmachine.wait_for_unit(\"multi-user.target\")\n# test whether the database is running\nmachine.wait_for_unit(\"postgresql.target\")\n# test whether the actual hydra daemons are running\nmachine.wait_for_unit(\"hydra-init.service\")\nmachine.wait_for_unit(\"hydra-queue-runner.service\")\nmachine.require_unit_state(\"hydra-evaluator.service\")\nmachine.require_unit_state(\"hydra-notify.service\")\nmachine.wait_for_open_port(50051)\nmachine.wait_for_unit(\"hydra-builder.service\")\nmachine.wait_for_unit(\"hydra-ws.service\")\n\nmachine.succeed(\"hydra-create-user admin --role admin --password admin\")\n\n# create a project with a trivial job\nmachine.wait_for_open_port(3000)\n\n# make sure the build as been successfully built\nmachine.succeed(\"create-trivial-project.sh\")\n\nmachine.wait_until_succeeds(\n    'curl -L -s http://localhost:3000/build/1 -H \"Accept: application/json\" |  jq .buildstatus | xargs test 0 -eq'\n)\n\n# The web interface reads the machine list from the queue runner's REST\n# endpoint, which it only knows about through `queue_runner_endpoint` in\n# hydra.conf.\nmachine.wait_until_succeeds(\n    'curl -L -s http://localhost:3000/machines -H \"Accept: application/json\" | jq -e \"length > 0\"'\n)\n\nmachine.wait_until_succeeds(\n    'journalctl -eu hydra-notify.service -o cat | grep -q \"sending mail notification for changed build status to hydra@localhost\"'\n)\n\n# Build a derivation through hydra-ad-hoc: the queue runner builds it as a\n# Hydra build of the hidden adhoc/adhoc jobset.\nmachine.wait_for_unit(\"hydra-ad-hoc.socket\")\ndrv = machine.succeed(\"nix-instantiate /etc/hydra-test/ad-hoc.nix\").strip()\nout = machine.succeed(\n    f\"nix-store --store unix:///run/hydra-ad-hoc/socket --realise {drv}\"\n).strip()\nmachine.succeed(f\"grep -q 'hello from hydra-ad-hoc' {out}\")\nmachine.succeed(\n    'curl -L -s http://localhost:3000/jobset/adhoc/adhoc -H \"Accept: application/json\" | jq -e .name'\n)\n",

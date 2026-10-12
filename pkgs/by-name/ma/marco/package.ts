@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 33, 5], ["repo", 34, 5], ["tag", 35, 5], ["hash", 36, 5]], [["NIX_CFLAGS_COMPILE", 69, 7], ["ZENITY", 70, 7]], [["odd-unstable", 75, 5], ["rev-prefix", 76, 5]], [["updateScript", 74, 12]], [["description", 80, 5], ["homepage", 81, 5], ["license", 82, 5], ["platforms", 83, 5], ["teams", 84, 5]], [["pname", 29, 3], ["version", 30, 3], ["src", 32, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 51, 3], ["postPatch", 64, 3], ["env", 69, 3], ["enableParallelBuilding", 72, 3], ["passthru", 74, 3], ["meta", 79, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, "autoconf-archive": false, autoreconfHook: false, "mate-common": false, "pkg-config": false, gettext: false, itstool: false, libxml2: false, "libcanberra-gtk3": false, libgtop: false, libxdamage: false, libxpresent: false, libxres: false, libstartup_notification: false, zenity: false, glib: false, gtk3: false, "mate-desktop": false, "mate-settings-daemon": false, wrapGAppsHook3: false, "yelp-tools": false, gitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 33, 5], ["repo", 34, 5], ["tag", 35, 5], ["hash", 36, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 69, 7], ["ZENITY", 70, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["odd-unstable", 75, 5], ["rev-prefix", 76, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 74, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 80, 5], ["homepage", 81, 5], ["license", 82, 5], ["platforms", 83, 5], ["teams", 84, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 29, 3], ["version", 30, 3], ["src", 32, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 51, 3], ["postPatch", 64, 3], ["env", 69, 3], ["enableParallelBuilding", 72, 3], ["passthru", 74, 3], ["meta", 79, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -37,11 +32,11 @@ export default nix.lambda((args) => (() => {
   const yelp_tools = nix.arg($, "yelp-tools");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "marco",
       version: "1.28.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "mate-desktop",
           repo: "marco",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -74,17 +69,17 @@ export default nix.lambda((args) => (() => {
   --replace-fail 'argvl[i++] = "zenity"' 'argvl[i++] = "${nix.app(nix.sel(lib, "getExe"), zenity)}"'
 `),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.str`-I${nix.sel(glib, "dev")}/include/gio-unix-2.0`),
         ZENITY: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), zenity)),
       })),
       enableParallelBuilding: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$3, "odd-unstable": true, "rev-prefix": "v" })))),
+        [nix.POS]: $pos[3],
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[2], "odd-unstable": true, "rev-prefix": "v" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "MATE default window manager",
         homepage: "https://github.com/mate-desktop/marco",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

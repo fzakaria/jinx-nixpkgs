@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 16, 5], ["exec", 17, 5], ["icon", 18, 5], ["comment", 19, 5], ["desktopName", 20, 5], ["genericName", 21, 5]], [["url", 28, 5], ["sha256", 29, 5]], [["description", 61, 5], ["mainProgram", 62, 5], ["longDescription", 63, 5], ["homepage", 68, 5], ["sourceProvenance", 69, 5], ["license", 70, 5], ["maintainers", 71, 5], ["platforms", 72, 5]], [["pname", 25, 11], ["version", 26, 3], ["src", 27, 3], ["postUnpack", 33, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 42, 3], ["installPhase", 47, 3], ["meta", 60, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, unzip: false, makeDesktopItem: false, nwjs: false, wrapGAppsHook3: false, "gsettings-desktop-schemas": false, gtk3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 16, 5], ["exec", 17, 5], ["icon", 18, 5], ["comment", 19, 5], ["desktopName", 20, 5], ["genericName", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 28, 5], ["sha256", 29, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 61, 5], ["mainProgram", 62, 5], ["longDescription", 63, 5], ["homepage", 68, 5], ["sourceProvenance", 69, 5], ["license", 70, 5], ["maintainers", 71, 5], ["platforms", 72, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 25, 11], ["version", 26, 3], ["src", 27, 3], ["postUnpack", 33, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 42, 3], ["installPhase", 47, 3], ["meta", 60, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,7 +18,7 @@ export default nix.lambda((args) => (() => {
   const gtk3 = nix.arg($, "gtk3");
   const pname = "betaflight-configurator";
   const desktopItem = nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: pname,
       exec: pname,
       icon: pname,
@@ -33,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const pname_1 = pname;
       const version = "10.10.0";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: nix.thunk(() => nix.str`https://github.com/betaflight/${pname_1}/releases/download/${version}/${pname_1}_${version}_linux64-portable.zip`),
           sha256: "sha256-UB5Vr5wyCUZbOaQNckJQ1tAXwh8VSLNI1IgTiJzxV08=",
         }))));
@@ -52,7 +49,7 @@ makeWrapper ${nwjs}/bin/nw $out/bin/${pname_1} --add-flags $out/opt/${pname_1}
 runHook postInstall
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Betaflight flight control system configuration tool",
         mainProgram: "betaflight-configurator",
         longDescription: "A crossplatform configuration tool for the Betaflight flight control system.\nVarious types of aircraft are supported by the tool and by Betaflight, e.g.\nquadcopters, hexacopters, octocopters and fixed-wing aircraft.\n",
@@ -69,7 +66,7 @@ runHook postInstall
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname: pname_1,
         version,
         src,

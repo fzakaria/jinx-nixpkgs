@@ -2,9 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/sample_named_dimensions.nix", [[["__structuredAttrs", 18, 11], ["strictDeps", 19, 11], ["nativeBuildInputs", 20, 11]], [["default", 39, 3]]]);
 const formals$1 = { args: { finalAttrs: false, mkTester: false, older: false, python3: false, runCommand: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/sample_named_dimensions.nix", [["__structuredAttrs", 18, 11], ["strictDeps", 19, 11], ["nativeBuildInputs", 20, 11]]);
-const pos$2 = nix.positions(here + "/sample_named_dimensions.nix", [["default", 39, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const runCommand = nix.arg($, "runCommand");
   const datadir = nix.thunk(() => (nix.asBool(nix.app(older, "11.0")) ? nix.add(nix.sel(finalAttrs, "src", "outPath"), "/samples/sampleNamedDimensions") : nix.app(runCommand, nix.thunk(() => nix.str`${nix.sel(finalAttrs, "name")}-sample_named_dimensions-data`), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       __structuredAttrs: true,
       strictDeps: true,
       nativeBuildInputs: nix.thunk(() => [
@@ -22,7 +21,7 @@ export default nix.lambda((args) => (() => {
       ]),
     })), "mkdir -p \"$out\"\ncd \"$out\"\npython3 - <<'EOF'\nimport onnx\nfrom onnx import TensorProto, helper\n\ninput0 = helper.make_tensor_value_info(\"input0\", TensorProto.FLOAT, [\"n_rows\", 8])\ninput1 = helper.make_tensor_value_info(\"input1\", TensorProto.FLOAT, [\"n_rows\", 8])\noutput = helper.make_tensor_value_info(\"output\", TensorProto.FLOAT, None)\nnode = helper.make_node(\"Concat\", [\"input0\", \"input1\"], [\"output\"], axis=0)\ngraph = helper.make_graph([node], \"concat_layer\", [input0, input1], [output])\nonnx.save(helper.make_model(graph), \"concat_layer.onnx\")\nEOF\n")));
   return {
-    [nix.POS]: pos$2,
+    [nix.POS]: $pos[1],
     default: nix.thunk(() => nix.app(mkTester, "sample_named_dimensions", nix.thunk(() => ["sample_named_dimensions", nix.thunk(() => nix.str`--datadir=${datadir}`)]))),
   };
 })(), formals$1);

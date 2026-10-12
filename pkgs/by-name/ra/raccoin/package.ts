@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 31, 5], ["repo", 32, 5], ["tag", 33, 5], ["hash", 34, 5]], [["updateScript", 85, 12]], [["description", 88, 5], ["longDescription", 89, 5], ["homepage", 95, 5], ["changelog", 96, 5], ["license", 97, 5], ["mainProgram", 98, 5], ["platforms", 99, 5], ["maintainers", 100, 5]], [["pname", 27, 3], ["version", 28, 3], ["src", 30, 3], ["cargoHash", 36, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 42, 3], ["doCheck", 64, 3], ["postFixup", 72, 3], ["passthru", 85, 3], ["meta", 87, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchFromGitHub: false, "pkg-config": false, makeWrapper: false, libxkbcommon: false, wayland: false, cairo: false, pango: false, harfbuzz: false, fontconfig: false, freetype: false, "alsa-lib": false, libGL: false, libxrandr: false, libxi: false, libxcursor: false, libx11: false, openssl: false, "nix-update-script": false, withWayland: true, withX11: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 31, 5], ["repo", 32, 5], ["tag", 33, 5], ["hash", 34, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 85, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 88, 5], ["longDescription", 89, 5], ["homepage", 95, 5], ["changelog", 96, 5], ["license", 97, 5], ["mainProgram", 98, 5], ["platforms", 99, 5], ["maintainers", 100, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 27, 3], ["version", 28, 3], ["src", 30, 3], ["cargoHash", 36, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 42, 3], ["doCheck", 64, 3], ["postFixup", 72, 3], ["passthru", 85, 3], ["meta", 87, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,11 +30,11 @@ export default nix.lambda((args) => (() => {
   const withWayland = nix.argOr($, "withWayland", () => true);
   const withX11 = nix.argOr($, "withX11", () => true);
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "raccoin",
       version: "0.2.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "bjorn",
           repo: "raccoin",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -61,11 +58,11 @@ export default nix.lambda((args) => (() => {
   $out/bin/raccoin
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Crypto portfolio & capital-gains reporting tool (Rust + Slint)",
         longDescription: "This GUI Tool enables accounting with the quite basic principle\n\"first in, first out\" (FIFO) in multiple wallets. It is for\ne.g. bitcoiners that actually use the currency and want\nreports on their holdings.\n",
         homepage: "https://raccoin.org",

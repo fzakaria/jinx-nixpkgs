@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]], [["finalAttrs", 60, 54]], [["updateScript", 60, 12]], [["description", 63, 5], ["homepage", 64, 5], ["license", 65, 5], ["teams", 66, 5], ["platforms", 67, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 35, 3], ["cmakeFlags", 42, 3], ["passthru", 60, 3], ["meta", 62, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, rocmUpdateScript: false, cmake: false, "rocm-cmake": false, "rocm-core": false, "rocm-runtime": false, clr: false, mpi: false, useMpi: true, useReverseOffload: true, buildExamples: true, gpuTargets: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["finalAttrs", 60, 54]]);
-const pos$3 = nix.positions(here + "/default.nix", [["updateScript", 60, 12]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 63, 5], ["homepage", 64, 5], ["license", 65, 5], ["teams", 66, 5], ["platforms", 67, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 35, 3], ["cmakeFlags", 42, 3], ["passthru", 60, 3], ["meta", 62, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const buildExamples = nix.argOr($, "buildExamples", () => false);
   const gpuTargets = nix.argOr($, "gpuTargets", () => nix.selOr(clr, () => [], "localGpuTargets"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: nix.thunk(() => nix.str`rocshmem${nix.sel(clr, "gpuArchSuffix")}`),
       version: "7.2.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ROCm",
           repo: "rocSHMEM",
           tag: nix.thunk(() => nix.str`rocm-${nix.sel(finalAttrs, "version")}`),
@@ -55,11 +51,11 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.app(nix.sel(lib, "cmakeFeature"), "GPU_TARGETS", nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), ";", gpuTargets)))),
         ])))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(rocmUpdateScript, nix.thunk(() => ({ [nix.POS]: pos$2, finalAttrs: finalAttrs })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(rocmUpdateScript, nix.thunk(() => ({ [nix.POS]: $pos[1], finalAttrs: finalAttrs })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "The ROCm OpenSHMEM (rocSHMEM) runtime",
         homepage: "https://github.com/ROCm/rocSHMEM",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

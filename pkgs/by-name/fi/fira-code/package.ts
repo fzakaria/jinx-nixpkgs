@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 14, 5], ["stripRoot", 15, 5], ["hash", 16, 5]], [["homepage", 25, 5], ["description", 26, 5], ["longDescription", 27, 5], ["license", 32, 5], ["maintainers", 33, 5], ["platforms", 34, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["preInstall", 20, 3], ["nativeBuildInputs", 22, 3], ["meta", 24, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchzip: false, installFonts: false, useVariableFont: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 14, 5], ["stripRoot", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 25, 5], ["description", 26, 5], ["longDescription", 27, 5], ["license", 32, 5], ["maintainers", 33, 5], ["platforms", 34, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["preInstall", 20, 3], ["nativeBuildInputs", 22, 3], ["meta", 24, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const installFonts = nix.arg($, "installFonts");
   const useVariableFont = nix.argOr($, "useVariableFont", () => true);
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "fira-code",
       version: "6.2",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/tonsky/FiraCode/releases/download/${nix.sel(finalAttrs, "version")}/Fira_Code_v${nix.sel(finalAttrs, "version")}.zip`),
           stripRoot: false,
           hash: "sha256-UHOwZL9WpCHk6vZaqI/XfkZogKgycs5lWg1p0XdQt0A=",
@@ -27,7 +25,7 @@ export default nix.lambda((args) => (() => {
       preInstall: nix.thunk(() => nix.str`cd ${nix.app(nix.sel(lib, "optionalString"), useVariableFont, "variable_")}ttf`),
       nativeBuildInputs: nix.thunk(() => [installFonts]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/tonsky/FiraCode",
         description: "Monospace font with programming ligatures",
         longDescription: "Fira Code is a monospace font extending the Fira Mono font with\na set of ligatures for common programming multi-character\ncombinations.\n",

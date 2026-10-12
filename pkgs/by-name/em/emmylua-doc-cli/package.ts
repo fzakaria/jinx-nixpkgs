@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["description", 22, 5], ["homepage", 23, 5], ["changelog", 24, 5], ["license", 25, 5], ["maintainers", 26, 5], ["platforms", 29, 5], ["mainProgram", 30, 5]], [["pname", 8, 3], ["version", 9, 24], ["src", 9, 32], ["cargoHash", 9, 36], ["__structuredAttrs", 11, 3], ["buildAndTestSubdir", 13, 3], ["nativeInstallCheckInputs", 15, 3], ["versionCheckProgram", 18, 3], ["doInstallCheck", 19, 3], ["meta", 21, 3]]]);
 const formals$1 = { args: { lib: false, "emmylua-ls": false, rustPlatform: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["description", 22, 5], ["homepage", 23, 5], ["changelog", 24, 5], ["license", 25, 5], ["maintainers", 26, 5], ["platforms", 29, 5], ["mainProgram", 30, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 24], ["src", 9, 32], ["cargoHash", 9, 36], ["__structuredAttrs", 11, 3], ["buildAndTestSubdir", 13, 3], ["nativeInstallCheckInputs", 15, 3], ["versionCheckProgram", 18, 3], ["doInstallCheck", 19, 3], ["meta", 21, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const rustPlatform = nix.arg($, "rustPlatform");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "emmylua_doc_cli",
       version: nix.thunk(() => nix.attr(emmylua_ls, "version")),
       src: nix.thunk(() => nix.attr(emmylua_ls, "src")),
@@ -24,7 +23,7 @@ export default nix.lambda((args) => (() => {
       versionCheckProgram: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/bin/emmylua_doc_cli`),
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Professional documentation generator creating beautiful, searchable API docs from your Lua code and annotations.",
         homepage: "https://github.com/EmmyLuaLs/emmylua-analyzer-rust",
         changelog: nix.thunk(() => nix.str`https://github.com/EmmyLuaLs/emmylua-analyzer-rust/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

@@ -2,21 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["tag", 26, 13], ["hash", 27, 13]], [["version", 24, 11], ["src", 25, 11]], [["version", 38, 21], ["hash", 39, 13]], [["url", 44, 15], ["relative", 45, 15], ["hash", 46, 15]], [["version", 34, 11], ["format", 35, 11], ["pyproject", 36, 11], ["src", 37, 11], ["patches", 41, 11], ["postPatch", 49, 11]], [["prompt-toolkit", 23, 9], ["python-dateutil", 33, 9]], [["pkgs", 20, 5]], [["owner", 62, 5], ["repo", 63, 5], ["tag", 64, 5], ["hash", 65, 5]], [["extraArgs", 190, 7]], [["package", 196, 7], ["command", 197, 7], ["version", 198, 15]], [["version", 195, 11]], [["python", 187, 5], ["updateScript", 188, 5], ["tests", 195, 5]], [["description", 203, 5], ["homepage", 204, 5], ["changelog", 205, 5], ["license", 206, 5], ["maintainers", 207, 5], ["mainProgram", 212, 5]], [["pname", 57, 3], ["version", 58, 3], ["pyproject", 59, 3], ["src", 61, 3], ["postPatch", 68, 3], ["nativeBuildInputs", 92, 3], ["build-system", 96, 3], ["dependencies", 100, 3], ["propagatedBuildInputs", 112, 3], ["makeWrapperArgs", 118, 3], ["nativeCheckInputs", 125, 3], ["postInstall", 133, 3], ["postFixup", 150, 3], ["__darwinAllowLocalNetworking", 155, 3], ["pytestFlags", 157, 3], ["disabledTestPaths", 161, 3], ["disabledTests", 173, 3], ["pythonImportsCheck", 182, 3], ["passthru", 186, 3], ["meta", 202, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, python3: false, groff: false, less: false, fetchFromGitHub: false, fetchpatch: false, installShellFiles: false, "nix-update-script": false, testers: false, awscli2: false, addBinToPathHook: false, writableTmpDirAsHomeHook: false, cacert: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["tag", 26, 13], ["hash", 27, 13]]);
-const pos$2 = nix.positions(here + "/package.nix", [["version", 24, 11], ["src", 25, 11]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 38, 21], ["hash", 39, 13]]);
-const pos$4 = nix.positions(here + "/package.nix", [["url", 44, 15], ["relative", 45, 15], ["hash", 46, 15]]);
-const pos$5 = nix.positions(here + "/package.nix", [["version", 34, 11], ["format", 35, 11], ["pyproject", 36, 11], ["src", 37, 11], ["patches", 41, 11], ["postPatch", 49, 11]]);
-const pos$6 = nix.positions(here + "/package.nix", [["prompt-toolkit", 23, 9], ["python-dateutil", 33, 9]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pkgs", 20, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["owner", 62, 5], ["repo", 63, 5], ["tag", 64, 5], ["hash", 65, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["extraArgs", 190, 7]]);
-const pos$10 = nix.positions(here + "/package.nix", [["package", 196, 7], ["command", 197, 7], ["version", 198, 15]]);
-const pos$11 = nix.positions(here + "/package.nix", [["version", 195, 11]]);
-const pos$12 = nix.positions(here + "/package.nix", [["python", 187, 5], ["updateScript", 188, 5], ["tests", 195, 5]]);
-const pos$13 = nix.positions(here + "/package.nix", [["description", 203, 5], ["homepage", 204, 5], ["changelog", 205, 5], ["license", 206, 5], ["maintainers", 207, 5], ["mainProgram", 212, 5]]);
-const pos$14 = nix.positions(here + "/package.nix", [["pname", 57, 3], ["version", 58, 3], ["pyproject", 59, 3], ["src", 61, 3], ["postPatch", 68, 3], ["nativeBuildInputs", 92, 3], ["build-system", 96, 3], ["dependencies", 100, 3], ["propagatedBuildInputs", 112, 3], ["makeWrapperArgs", 118, 3], ["nativeCheckInputs", 125, 3], ["postInstall", 133, 3], ["postFixup", 150, 3], ["__darwinAllowLocalNetworking", 155, 3], ["pytestFlags", 157, 3], ["disabledTestPaths", 161, 3], ["disabledTests", 173, 3], ["pythonImportsCheck", 182, 3], ["passthru", 186, 3], ["meta", 202, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -35,37 +22,37 @@ export default nix.lambda((args) => (() => {
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   const cacert = nix.arg($, "cacert");
   const py = nix.thunk(() => nix.update(python3, {
-    [nix.POS]: pos$7,
+    [nix.POS]: $pos[6],
     pkgs: nix.thunk(() => nix.app(nix.sel(python3, "pkgs", "overrideScope"), (final) => (prev) => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         "prompt-toolkit": nix.thunk(() => nix.app(nix.sel(prev, "prompt-toolkit", "overridePythonAttrs"), (prev_1) => (() => {
             const version = "3.0.51";
             const src = nix.thunk(() => nix.app(nix.sel(prev_1, "src", "override"), nix.thunk(() => ({
-                [nix.POS]: pos$1,
+                [nix.POS]: $pos[0],
                 tag: version,
                 hash: "sha256-pNYmjAgnP9nK40VS/qvPR3g+809Yra2ISASWJDdQKrU=",
               }))));
-            return { [nix.POS]: pos$2, version, src };
+            return { [nix.POS]: $pos[1], version, src };
           })())),
         "python-dateutil": nix.thunk(() => nix.app(nix.sel(prev, "python-dateutil", "overridePythonAttrs"), (prev_1) => (() => {
             const version = "2.8.2";
             const format = "setuptools";
             const pyproject = null;
             const src = nix.thunk(() => nix.app(nix.sel(prev_1, "src", "override"), nix.thunk(() => ({
-                [nix.POS]: pos$3,
+                [nix.POS]: $pos[2],
                 version: version,
                 hash: "sha256-ASPKzBYnrhnd88J6XeW9Z+5FhvvdZEDZdI+Ku0g9PoY=",
               }))));
             const patches = nix.thunk(() => [
               nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-                  [nix.POS]: pos$4,
+                  [nix.POS]: $pos[3],
                   url: "https://github.com/dateutil/dateutil/commit/f2293200747fb03d56c6c5997bfebeabe703576f.patch",
                   relative: "src",
                   hash: "sha256-BVEFGV/WGUz9H/8q+l62jnyN9VDnoSR71DdL+LIkb0o=",
                 })))),
             ]);
             const postPatch = null;
-            return { [nix.POS]: pos$5, version, format, pyproject, src, patches, postPatch };
+            return { [nix.POS]: $pos[4], version, format, pyproject, src, patches, postPatch };
           })())),
       }))),
   }));
@@ -74,7 +61,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.35.11";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           owner: "aws",
           repo: "aws-cli",
           tag: version,
@@ -151,16 +138,16 @@ ln -sf ${cacert}/etc/ssl/certs/ca-no-trust-rules-bundle.crt awscli/botocore/cace
       ]);
       const pythonImportsCheck = nix.thunk(() => ["awscli"]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$12,
+        [nix.POS]: $pos[11],
         python: py,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$9,
+            [nix.POS]: $pos[8],
             extraArgs: nix.thunk(() => ["--version-regex", "^(2\\.(.*))"]),
           })))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$11,
+          [nix.POS]: $pos[10],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$10,
+              [nix.POS]: $pos[9],
               package: awscli2,
               command: "aws --version",
               version: version,
@@ -168,7 +155,7 @@ ln -sf ${cacert}/etc/ssl/certs/ca-no-trust-rules-bundle.crt awscli/botocore/cace
         })),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$13,
+        [nix.POS]: $pos[12],
         description: "Unified tool to manage your AWS services",
         homepage: "https://aws.amazon.com/cli/",
         changelog: nix.thunk(() => nix.str`https://github.com/aws/aws-cli/blob/${version}/CHANGELOG.rst`),
@@ -184,7 +171,7 @@ ln -sf ${cacert}/etc/ssl/certs/ca-no-trust-rules-bundle.crt awscli/botocore/cace
         mainProgram: "aws",
       }));
       return {
-        [nix.POS]: pos$14,
+        [nix.POS]: $pos[13],
         pname,
         version,
         pyproject,

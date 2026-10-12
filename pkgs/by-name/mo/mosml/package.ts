@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["NIX_CFLAGS_COMPILE", 24, 7]], [["owner", 27, 5], ["repo", 28, 5], ["rev", 29, 5], ["sha256", 30, 5]], [["broken", 41, 5], ["description", 42, 5], ["longDescription", 43, 5], ["homepage", 47, 5], ["license", 48, 5], ["platforms", 49, 5], ["maintainers", 50, 5]], [["pname", 10, 3], ["version", 11, 3], ["buildInputs", 13, 3], ["makeFlags", 18, 3], ["env", 24, 3], ["src", 26, 3], ["setSourceRoot", 33, 3], ["dontPatchELF", 37, 3], ["meta", 39, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, gmp: false, perl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 24, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 27, 5], ["repo", 28, 5], ["rev", 29, 5], ["sha256", 30, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["broken", 41, 5], ["description", 42, 5], ["longDescription", 43, 5], ["homepage", 47, 5], ["license", 48, 5], ["platforms", 49, 5], ["maintainers", 50, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["buildInputs", 13, 3], ["makeFlags", 18, 3], ["env", 24, 3], ["src", 26, 3], ["setSourceRoot", 33, 3], ["dontPatchELF", 37, 3], ["meta", 39, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const gmp = nix.arg($, "gmp");
   const perl = nix.arg($, "perl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "mosml",
       version: "2.10.1",
       buildInputs: nix.thunk(() => [gmp, perl]),
@@ -24,9 +21,9 @@ export default nix.lambda((args) => (() => {
         "PREFIX=$(out)",
         nix.thunk(() => nix.str`CC=${nix.sel(stdenv, "cc", "targetPrefix")}cc`),
       ]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$1, NIX_CFLAGS_COMPILE: "-fpermissive -std=gnu17" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[0], NIX_CFLAGS_COMPILE: "-fpermissive -std=gnu17" })),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "kfl",
           repo: "mosml",
           rev: nix.thunk(() => nix.str`ver-${nix.sel(finalAttrs, "version")}`),
@@ -35,7 +32,7 @@ export default nix.lambda((args) => (() => {
       setSourceRoot: "export sourceRoot=\"$(echo */src)\"",
       dontPatchELF: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
         description: "Light-weight implementation of Standard ML",
         longDescription: "Moscow ML is a light-weight implementation of Standard ML (SML), a strict\nfunctional language used in teaching and research.\n",

@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 13, 7], ["sha256", 14, 7]], [["url", 18, 7], ["sha256", 19, 7]], [["url", 23, 7], ["sha256", 24, 7]], [["url", 28, 7], ["sha256", 29, 7]], [["url", 32, 7], ["sha256", 33, 7]], [["shortName", 65, 7], ["fullName", 66, 7], ["url", 67, 7]], [["description", 52, 5], ["longDescription", 53, 5], ["homepage", 59, 5], ["license", 64, 5], ["platforms", 69, 5], ["maintainers", 70, 5]], [["name", 9, 3], ["srcs", 11, 3], ["nativeBuildInputs", 37, 3], ["sourceRoot", 39, 3], ["installPhase", 41, 3], ["outputHashAlgo", 47, 3], ["outputHashMode", 48, 3], ["outputHash", 49, 3], ["meta", 51, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, unzip: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 13, 7], ["sha256", 14, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 18, 7], ["sha256", 19, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 23, 7], ["sha256", 24, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["url", 28, 7], ["sha256", 29, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["url", 32, 7], ["sha256", 33, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["shortName", 65, 7], ["fullName", 66, 7], ["url", 67, 7]]);
-const pos$7 = nix.positions(here + "/package.nix", [["description", 52, 5], ["longDescription", 53, 5], ["homepage", 59, 5], ["license", 64, 5], ["platforms", 69, 5], ["maintainers", 70, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["name", 9, 3], ["srcs", 11, 3], ["nativeBuildInputs", 37, 3], ["sourceRoot", 39, 3], ["installPhase", 41, 3], ["outputHashAlgo", 47, 3], ["outputHashMode", 48, 3], ["outputHash", 49, 3], ["meta", 51, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,31 +12,31 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const unzip = nix.arg($, "unzip");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       name: "nafees",
       srcs: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             url: "http://www.cle.org.pk/Downloads/localization/fonts/NafeesNastaleeq/Nafees_Nastaleeq_v1.02.zip",
             sha256: "1h1k5d74pg2gs782910v7i9rz2633wdacy34ds7ybxbpjiz6pqix",
           })))),
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "http://www.cle.org.pk/Downloads/localization/fonts/NafeesRiqa/Nafees_Riqa_v1.0.zip",
             sha256: "1liismsyaj69y40vs9a9db4l95n25n8vnjnx7sbk70nxppwngd8i",
           })))),
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: "http://www.cle.org.pk/Downloads/localization/fonts/NafeesNaskh/Nafees_Naskh_v2.01.zip",
             sha256: "1qbbj6w6bvrlymv7z6ld609yhp0l2f27z14180w5n8kzzl720vly",
           })))),
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             url: "http://www.cle.org.pk/Downloads/localization/fonts/NafeesTahreerNaskh/Nafees_Tahreer_Naskh_v1.0.zip",
             sha256: "006l87drbi4zh52kpvn8wl9wbwm9srfn406rzsnf4gv0spzhqrxl",
           })))),
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             url: "http://www.cle.org.pk/Downloads/localization/fonts/NafeesPakistaniNaskh/Nafees_Pakistani_Naskh_v2.01.zip",
             sha256: "1i5ip60gq1cgc9fc96kvlahdpia8dxdgcisglvbm2d212bz0s5nb",
           })))),
@@ -55,12 +48,12 @@ export default nix.lambda((args) => (() => {
       outputHashMode: "recursive",
       outputHash: "1wa0j65iz20ij37dazd1rjg8x625m6q1y8g5h7ia48pbc88sr01q",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "OpenType Urdu font from the Center for Research in Urdu Language Processing",
         longDescription: "The Nafees font family is developed according\nto calligraphic rules, following the style of Syed Nafees\nAl-Hussaini (Nafees Raqam) one of the finest calligraphers of\nPakistan\n",
         homepage: "http://www.cle.org.pk/software/localization.htm",
         license: nix.thunk(() => nix.app(nix.sel(lib, "licenses", "mkLicense"), nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             shortName: "nafees",
             fullName: "Nafees License Agreement",
             url: "https://www.cle.org.pk/software/license/Nafees_Pakistani_Naskh_License.html",

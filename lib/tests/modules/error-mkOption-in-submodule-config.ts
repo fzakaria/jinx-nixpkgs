@@ -2,24 +2,21 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/error-mkOption-in-submodule-config.nix", [[["wrong2", 8, 7]], [["type", 7, 5], ["default", 10, 5]], [["sub", 6, 11]], [["options", 6, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/error-mkOption-in-submodule-config.nix", [["wrong2", 8, 7]]);
-const pos$2 = nix.positions(here + "/error-mkOption-in-submodule-config.nix", [["type", 7, 5], ["default", 10, 5]]);
-const pos$3 = nix.positions(here + "/error-mkOption-in-submodule-config.nix", [["sub", 6, 11]]);
-const pos$4 = nix.positions(here + "/error-mkOption-in-submodule-config.nix", [["options", 6, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const mkOption = nix.thunk(() => nix.attr(lib, "mkOption"));
   return {
-    [nix.POS]: pos$4,
+    [nix.POS]: $pos[3],
     options: nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       sub: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-              [nix.POS]: pos$1,
+              [nix.POS]: $pos[0],
               wrong2: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({})))),
             })))),
           default: nix.thunk(() => ({})),

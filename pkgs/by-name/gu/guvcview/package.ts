@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 34, 5], ["hash", 35, 5]], [["description", 71, 5], ["mainProgram", 72, 5], ["homepage", 73, 5], ["maintainers", 74, 5], ["license", 75, 5], ["platforms", 76, 5]], [["pname", 30, 3], ["version", 31, 3], ["src", 33, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 46, 3], ["configureFlags", 64, 3], ["meta", 70, 3]]]);
 const formals$1 = { args: { config: false, lib: false, stdenv: false, fetchurl: false, cmake: false, intltool: false, "pkg-config": false, portaudio: false, SDL2: false, ffmpeg: false, udev: false, libusb1: false, libv4l: false, "alsa-lib": false, gsl: false, libpng: false, sfml_2: false, pulseaudioSupport: true, libpulseaudio: false, useQt: true, libsForQt5: false, useGtk: true, gtk3: false, wrapGAppsHook3: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 34, 5], ["hash", 35, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 71, 5], ["mainProgram", 72, 5], ["homepage", 73, 5], ["maintainers", 74, 5], ["license", 75, 5], ["platforms", 76, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 30, 3], ["version", 31, 3], ["src", 33, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 46, 3], ["configureFlags", 64, 3], ["meta", 70, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,11 +32,11 @@ export default nix.lambda((args) => (() => {
   const gtk3 = nix.arg($, "gtk3");
   const wrapGAppsHook3 = nix.argOr($, "wrapGAppsHook3", () => null);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "guvcview",
       version: "2.2.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/project/guvcview/source/guvcview-src-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           hash: "sha256-ahsTSLmeedqVeg2eI3OVpUdXoJ234MCAn2wwZotp2js=",
         })))),
@@ -57,7 +55,7 @@ export default nix.lambda((args) => (() => {
       ], nix.concat(nix.app(nix.sel(lib, "optionals"), pulseaudioSupport, nix.thunk(() => [libpulseaudio])), nix.concat(nix.app(nix.sel(lib, "optionals"), useGtk, nix.thunk(() => [gtk3])), nix.app(nix.sel(lib, "optionals"), useQt, nix.thunk(() => [nix.thunk(() => nix.sel(libsForQt5, "qtbase"))])))))),
       configureFlags: nix.thunk(() => nix.concat(["--enable-sfml"], nix.concat(nix.app(nix.sel(lib, "optionals"), useGtk, nix.thunk(() => ["--enable-gtk3"])), nix.app(nix.sel(lib, "optionals"), useQt, nix.thunk(() => ["--enable-qt5"]))))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Simple interface for devices supported by the linux UVC driver",
         mainProgram: "guvcview",
         homepage: "https://guvcview.sourceforge.net",

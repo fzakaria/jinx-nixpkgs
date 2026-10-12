@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["stdenv", 9, 46]], [["pname", 11, 5], ["version", 12, 5], ["src", 13, 5], ["nativeBuildInputs", 14, 5], ["buildInputs", 15, 5], ["cmakeFlags", 16, 5], ["passthru", 17, 5], ["meta", 18, 5], ["patches", 21, 3], ["pyproject", 23, 3], ["build-system", 24, 3], ["preConfigure", 30, 3], ["dontUseCmakeConfigure", 38, 3], ["nativeCheckInputs", 40, 3], ["doCheck", 44, 3]]]);
 const formals$1 = { args: { buildPythonPackage: false, cmake: false, dlib: false, pytestCheckHook: false, setuptools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["stdenv", 9, 46]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 11, 5], ["version", 12, 5], ["src", 13, 5], ["nativeBuildInputs", 14, 5], ["buildInputs", 15, 5], ["cmakeFlags", 16, 5], ["passthru", 17, 5], ["meta", 18, 5], ["patches", 21, 3], ["pyproject", 23, 3], ["build-system", 24, 3], ["preConfigure", 30, 3], ["dontUseCmakeConfigure", 38, 3], ["nativeCheckInputs", 40, 3], ["doCheck", 44, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,8 +12,8 @@ export default nix.lambda((args) => (() => {
   const dlib = nix.arg($, "dlib");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const setuptools = nix.arg($, "setuptools");
-  return nix.app(nix.sel(buildPythonPackage, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, stdenv: nix.thunk(() => nix.attr(dlib, "stdenv")) })), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+  return nix.app(nix.sel(buildPythonPackage, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], stdenv: nix.thunk(() => nix.attr(dlib, "stdenv")) })), nix.thunk(() => ({
+      [nix.POS]: $pos[1],
       pname: nix.thunk(() => nix.attr(dlib, "pname")),
       version: nix.thunk(() => nix.attr(dlib, "version")),
       src: nix.thunk(() => nix.attr(dlib, "src")),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 12, 5], ["sha256", 13, 5]], [["homepage", 17, 5], ["license", 18, 5], ["maintainers", 19, 5], ["description", 20, 5], ["longDescription", 21, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["meta", 16, 3]]]);
 const formals$1 = { args: { buildOctavePackage: false, lib: false, fetchurl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 12, 5], ["sha256", 13, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 17, 5], ["license", 18, 5], ["maintainers", 19, 5], ["description", 20, 5], ["longDescription", 21, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["meta", 16, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,12 +14,12 @@ export default nix.lambda((args) => (() => {
       const pname = "generate_html";
       const version = "0.3.3";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/octave/${pname}-${version}.tar.gz`),
           sha256: "sha256-CHJ0+90+SNXmslLrQc+8aetSnHK0m9PqEBipFuFjwHw=",
         }))));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://gnu-octave.github.io/packages/generate_html/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
         maintainers: nix.thunk(() => (() => {
@@ -31,7 +29,7 @@ export default nix.lambda((args) => (() => {
         description: "Provides functions for generating HTML pages that contain the help texts for a set of functions",
         longDescription: "This package provides functions for generating HTML pages that contain\nthe help texts for a set of functions. The package is designed to be as\ngeneral as possible, but also contains convenience functions for generating\na set of pages for entire packages.\n",
       }));
-      return { [nix.POS]: pos$3, pname, version, src, meta };
+      return { [nix.POS]: $pos[2], pname, version, src, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

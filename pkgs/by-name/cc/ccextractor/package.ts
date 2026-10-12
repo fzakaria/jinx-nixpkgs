@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 37, 5], ["repo", 38, 5], ["rev", 39, 5], ["hash", 40, 5]], [["src", 53, 26], ["cargoRoot", 53, 30], ["hash", 54, 5]], [["name", 119, 11], ["destination", 120, 11], ["text", 121, 11]], [["FFMPEG_INCLUDE_DIR", 96, 5], ["FFMPEG_DLL_PATH", 104, 5]], [["homepage", 135, 5], ["changelog", 136, 5], ["description", 137, 5], ["longDescription", 138, 5], ["platforms", 143, 5], ["sourceProvenance", 144, 5], ["license", 145, 5], ["maintainers", 146, 5], ["mainProgram", 147, 5]], [["pname", 33, 3], ["version", 34, 3], ["src", 36, 3], ["patches", 43, 3], ["cmakeDir", 48, 3], ["cargoRoot", 50, 3], ["cargoDeps", 52, 3], ["nativeBuildInputs", 57, 3], ["buildInputs", 68, 3], ["cmakeFlags", 85, 3], ["env", 95, 3], ["doCheck", 127, 3], ["postPatch", 129, 3], ["meta", 134, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch: false, writeTextFile: false, "pkg-config": false, cmake: false, ninja: false, cargo: false, rustc: false, corrosion: false, rustPlatform: false, gpac: false, protobufc: false, libpng: false, zlib: false, utf8proc: false, freetype: false, ffmpeg: false, libarchive: false, curl: false, libiconv: false, enableOcr: true, leptonica: false, tesseract: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 37, 5], ["repo", 38, 5], ["rev", 39, 5], ["hash", 40, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["src", 53, 26], ["cargoRoot", 53, 30], ["hash", 54, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 119, 11], ["destination", 120, 11], ["text", 121, 11]]);
-const pos$4 = nix.positions(here + "/package.nix", [["FFMPEG_INCLUDE_DIR", 96, 5], ["FFMPEG_DLL_PATH", 104, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["homepage", 135, 5], ["changelog", 136, 5], ["description", 137, 5], ["longDescription", 138, 5], ["platforms", 143, 5], ["sourceProvenance", 144, 5], ["license", 145, 5], ["maintainers", 146, 5], ["mainProgram", 147, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 33, 3], ["version", 34, 3], ["src", 36, 3], ["patches", 43, 3], ["cmakeDir", 48, 3], ["cargoRoot", 50, 3], ["cargoDeps", 52, 3], ["nativeBuildInputs", 57, 3], ["buildInputs", 68, 3], ["cmakeFlags", 85, 3], ["env", 95, 3], ["doCheck", 127, 3], ["postPatch", 129, 3], ["meta", 134, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -38,11 +33,11 @@ export default nix.lambda((args) => (() => {
   const leptonica = nix.arg($, "leptonica");
   const tesseract = nix.arg($, "tesseract");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "ccextractor",
       version: "0.96.6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "CCExtractor",
           repo: "ccextractor",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -52,7 +47,7 @@ export default nix.lambda((args) => (() => {
       cmakeDir: "../src",
       cargoRoot: "src/rust",
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           cargoRoot: nix.thunk(() => nix.attr(finalAttrs, "cargoRoot")),
           hash: "sha256-0FPxU3rUoT3/Xy3mQjjQGmxkNjs++sQxjCJ1/UuRQlc=",
@@ -86,7 +81,7 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "WITH_HARDSUBX", true)),
         ])))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         FFMPEG_INCLUDE_DIR: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getDev"), ffmpeg)}/include`),
         FFMPEG_DLL_PATH: nix.thunk(() => (() => {
           const ffmpegLibNames = nix.thunk(() => [
@@ -102,7 +97,7 @@ export default nix.lambda((args) => (() => {
           const ffmpegLibExt = nix.thunk(() => nix.sel(stdenv, "hostPlatform", "extensions", "library"));
           const ffmpegLibPath = (ffmpegLibName) => nix.str`${ffmpegLibDir}/lib${ffmpegLibName}.${ffmpegLibExt}`;
           const ffmpegLinkerScript = nix.thunk(() => nix.app(writeTextFile, nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               name: "ccextractor-ffmpeg-linker-script",
               destination: "/lib/ffmpeg.ld",
               text: nix.thunk(() => nix.str`INPUT(${nix.app(nix.sel(lib, "concatMapStringsSep"), " ", ffmpegLibPath, ffmpegLibNames)})`),
@@ -115,7 +110,7 @@ export default nix.lambda((args) => (() => {
   --replace-fail 'getenv("TESSDATA_PREFIX")' '"${tesseract}/share/"'
 `))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "https://www.ccextractor.org/",
         changelog: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "meta", "homepage")}/blob/${nix.sel(finalAttrs, "src", "rev")}/docs/CHANGES.TXT`),
         description: "Tool that produces subtitles from closed caption data in videos",

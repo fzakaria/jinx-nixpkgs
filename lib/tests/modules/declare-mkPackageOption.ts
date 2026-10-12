@@ -2,70 +2,55 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/declare-mkPackageOption.nix", [[["type", 4, 5], ["pname", 5, 5]], [["hello", 3, 8]], [["default", 13, 7]], [["default", 17, 7]], [["example", 23, 7]], [["example", 27, 7]], [["extraDescription", 31, 7]], [["default", 35, 7]], [["nullable", 39, 7], ["default", 40, 7]], [["nullable", 44, 7]], [["pkgsText", 48, 7]], [["pname", 55, 13]], [["hello", 54, 11]], [["hello", 63, 55]], [["with\"quote", 63, 22]], [["123", 63, 16]], [["example", 68, 7]], [["package", 10, 5], ["namedPackage", 12, 5], ["namedPackageSingletonDefault", 16, 5], ["pathPackage", 20, 5], ["packageWithExample", 22, 5], ["packageWithPathExample", 26, 5], ["packageWithExtraDescription", 30, 5], ["undefinedPackage", 34, 5], ["nullablePackage", 38, 5], ["nullablePackageWithDefault", 43, 5], ["packageWithPkgsText", 47, 5], ["packageFromOtherSet", 51, 5], ["packageInvalidIdentifier", 61, 5], ["packageInvalidIdentifierExample", 67, 5]], [["options", 9, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/declare-mkPackageOption.nix", [["type", 4, 5], ["pname", 5, 5]]);
-const pos$2 = nix.positions(here + "/declare-mkPackageOption.nix", [["hello", 3, 8]]);
-const pos$3 = nix.positions(here + "/declare-mkPackageOption.nix", [["default", 13, 7]]);
-const pos$4 = nix.positions(here + "/declare-mkPackageOption.nix", [["default", 17, 7]]);
-const pos$5 = nix.positions(here + "/declare-mkPackageOption.nix", [["example", 23, 7]]);
-const pos$6 = nix.positions(here + "/declare-mkPackageOption.nix", [["example", 27, 7]]);
-const pos$7 = nix.positions(here + "/declare-mkPackageOption.nix", [["extraDescription", 31, 7]]);
-const pos$8 = nix.positions(here + "/declare-mkPackageOption.nix", [["default", 35, 7]]);
-const pos$9 = nix.positions(here + "/declare-mkPackageOption.nix", [["nullable", 39, 7], ["default", 40, 7]]);
-const pos$10 = nix.positions(here + "/declare-mkPackageOption.nix", [["nullable", 44, 7]]);
-const pos$11 = nix.positions(here + "/declare-mkPackageOption.nix", [["pkgsText", 48, 7]]);
-const pos$12 = nix.positions(here + "/declare-mkPackageOption.nix", [["pname", 55, 13]]);
-const pos$13 = nix.positions(here + "/declare-mkPackageOption.nix", [["hello", 54, 11]]);
-const pos$14 = nix.positions(here + "/declare-mkPackageOption.nix", [["hello", 63, 55]]);
-const pos$15 = nix.positions(here + "/declare-mkPackageOption.nix", [["with\"quote", 63, 22]]);
-const pos$16 = nix.positions(here + "/declare-mkPackageOption.nix", [["123", 63, 16]]);
-const pos$17 = nix.positions(here + "/declare-mkPackageOption.nix", [["example", 68, 7]]);
-const pos$18 = nix.positions(here + "/declare-mkPackageOption.nix", [["package", 10, 5], ["namedPackage", 12, 5], ["namedPackageSingletonDefault", 16, 5], ["pathPackage", 20, 5], ["packageWithExample", 22, 5], ["packageWithPathExample", 26, 5], ["packageWithExtraDescription", 30, 5], ["undefinedPackage", 34, 5], ["nullablePackage", 38, 5], ["nullablePackageWithDefault", 43, 5], ["packageWithPkgsText", 47, 5], ["packageFromOtherSet", 51, 5], ["packageInvalidIdentifier", 61, 5], ["packageInvalidIdentifierExample", 67, 5]]);
-const pos$19 = nix.positions(here + "/declare-mkPackageOption.nix", [["options", 9, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const pkgs = nix.thunk(() => ({
-    [nix.POS]: pos$2,
-    hello: nix.thunk(() => ({ [nix.POS]: pos$1, type: "derivation", pname: "hello" })),
+    [nix.POS]: $pos[1],
+    hello: nix.thunk(() => ({ [nix.POS]: $pos[0], type: "derivation", pname: "hello" })),
   }));
   return {
-    [nix.POS]: pos$19,
+    [nix.POS]: $pos[18],
     options: nix.thunk(() => ({
-      [nix.POS]: pos$18,
+      [nix.POS]: $pos[17],
       package: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "hello", nix.thunk(() => ({})))),
-      namedPackage: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "Hello", nix.thunk(() => ({ [nix.POS]: pos$3, default: nix.thunk(() => ["hello"]) })))),
-      namedPackageSingletonDefault: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "Hello", nix.thunk(() => ({ [nix.POS]: pos$4, default: "hello" })))),
+      namedPackage: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "Hello", nix.thunk(() => ({ [nix.POS]: $pos[2], default: nix.thunk(() => ["hello"]) })))),
+      namedPackageSingletonDefault: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "Hello", nix.thunk(() => ({ [nix.POS]: $pos[3], default: "hello" })))),
       pathPackage: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, nix.thunk(() => ["hello"]), nix.thunk(() => ({})))),
       packageWithExample: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "hello", nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           example: "pkgs.hello.override { stdenv = pkgs.clangStdenv; }",
         })))),
-      packageWithPathExample: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "hello", nix.thunk(() => ({ [nix.POS]: pos$6, example: nix.thunk(() => ["hello"]) })))),
-      packageWithExtraDescription: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "hello", nix.thunk(() => ({ [nix.POS]: pos$7, extraDescription: "Example extra description." })))),
-      undefinedPackage: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "hello", nix.thunk(() => ({ [nix.POS]: pos$8, default: null })))),
-      nullablePackage: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "hello", nix.thunk(() => ({ [nix.POS]: pos$9, nullable: true, default: null })))),
-      nullablePackageWithDefault: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "hello", nix.thunk(() => ({ [nix.POS]: pos$10, nullable: true })))),
-      packageWithPkgsText: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "hello", nix.thunk(() => ({ [nix.POS]: pos$11, pkgsText: "myPkgs" })))),
+      packageWithPathExample: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "hello", nix.thunk(() => ({ [nix.POS]: $pos[5], example: nix.thunk(() => ["hello"]) })))),
+      packageWithExtraDescription: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "hello", nix.thunk(() => ({ [nix.POS]: $pos[6], extraDescription: "Example extra description." })))),
+      undefinedPackage: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "hello", nix.thunk(() => ({ [nix.POS]: $pos[7], default: null })))),
+      nullablePackage: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "hello", nix.thunk(() => ({ [nix.POS]: $pos[8], nullable: true, default: null })))),
+      nullablePackageWithDefault: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "hello", nix.thunk(() => ({ [nix.POS]: $pos[9], nullable: true })))),
+      packageWithPkgsText: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "hello", nix.thunk(() => ({ [nix.POS]: $pos[10], pkgsText: "myPkgs" })))),
       packageFromOtherSet: nix.thunk(() => (() => {
         const myPkgs = nix.thunk(() => ({
-          [nix.POS]: pos$13,
-          hello: nix.thunk(() => nix.update(nix.sel(pkgs, "hello"), { [nix.POS]: pos$12, pname: "hello-other" })),
+          [nix.POS]: $pos[12],
+          hello: nix.thunk(() => nix.update(nix.sel(pkgs, "hello"), { [nix.POS]: $pos[11], pname: "hello-other" })),
         }));
         return nix.app(nix.sel(lib, "mkPackageOption"), myPkgs, "hello", nix.thunk(() => ({})));
       })()),
       packageInvalidIdentifier: nix.thunk(() => (() => {
         const myPkgs = nix.thunk(() => ({
-          [nix.POS]: pos$16,
+          [nix.POS]: $pos[15],
           "123": nix.thunk(() => ({
-            [nix.POS]: pos$15,
-            "with\"quote": nix.thunk(() => ({ [nix.POS]: pos$14, hello: nix.thunk(() => nix.attr(pkgs, "hello")) })),
+            [nix.POS]: $pos[14],
+            "with\"quote": nix.thunk(() => ({ [nix.POS]: $pos[13], hello: nix.thunk(() => nix.attr(pkgs, "hello")) })),
           })),
         }));
         return nix.app(nix.sel(lib, "mkPackageOption"), myPkgs, nix.thunk(() => ["123", "with\"quote", "hello"]), nix.thunk(() => ({})));
       })()),
-      packageInvalidIdentifierExample: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "hello", nix.thunk(() => ({ [nix.POS]: pos$17, example: nix.thunk(() => ["123", "with\"quote", "hello"]) })))),
+      packageInvalidIdentifierExample: nix.thunk(() => nix.app(nix.sel(lib, "mkPackageOption"), pkgs, "hello", nix.thunk(() => ({
+          [nix.POS]: $pos[16],
+          example: nix.thunk(() => ["123", "with\"quote", "hello"]),
+        })))),
     })),
   };
 })(), formals$1);

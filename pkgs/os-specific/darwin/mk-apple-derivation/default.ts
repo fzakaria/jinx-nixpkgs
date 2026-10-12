@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["homepage", 48, 9], ["license", 49, 9], ["teams", 50, 9], ["platforms", 51, 9]], [["pname", 39, 7], ["version", 40, 28], ["src", 42, 7], ["strictDeps", 44, 7], ["__structuredAttrs", 45, 7], ["meta", 47, 7]], [["sourceRoot", 85, 17], ["xcodeProject", 86, 25], ["xcodeHash", 87, 32], ["nativeBuildInputs", 88, 17]], [["xcodeProjectHash", 82, 17]], [["tests", 82, 11]], [["postUnpack", 60, 9], ["xcodeProject", 70, 17], ["nativeBuildInputs", 72, 9], ["mesonBuildType", 78, 9], ["passthru", 81, 9]], [["constructDrv", 25, 3], ["extendDrvArgs", 26, 3]]]);
 const formals$1 = { args: { lib: false, bootstrapStdenv: false, meson: false, ninja: false, runCommand: false, sourceRelease: false, xcodeProjectCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["homepage", 48, 9], ["license", 49, 9], ["teams", 50, 9], ["platforms", 51, 9]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 39, 7], ["version", 40, 28], ["src", 42, 7], ["strictDeps", 44, 7], ["__structuredAttrs", 45, 7], ["meta", 47, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["sourceRoot", 85, 17], ["xcodeProject", 86, 25], ["xcodeHash", 87, 32], ["nativeBuildInputs", 88, 17]]);
-const pos$4 = nix.positions(here + "/default.nix", [["xcodeProjectHash", 82, 17]]);
-const pos$5 = nix.positions(here + "/default.nix", [["tests", 82, 11]]);
-const pos$6 = nix.positions(here + "/default.nix", [["postUnpack", 60, 9], ["xcodeProject", 70, 17], ["nativeBuildInputs", 72, 9], ["mesonBuildType", 78, 9], ["passthru", 81, 9]]);
-const pos$7 = nix.positions(here + "/default.nix", [["constructDrv", 25, 3], ["extendDrvArgs", 26, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,7 +20,7 @@ export default nix.lambda((args) => (() => {
   })();
   const hasBasenamePrefix = (prefix) => (file) => nix.app(nix.sel(lib, "hasPrefix"), prefix, nix.thunk(() => nix.builtins.baseNameOf(file)));
   return nix.app(nix.sel(lib, "extendMkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       constructDrv: nix.thunk(() => nix.sel(bootstrapStdenv, "mkDerivation")),
       extendDrvArgs: (finalAttrs) => (args_1) => (() => {
         nix.assert_(nix.has(args_1, "releaseName"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/os-specific/darwin/mk-apple-derivation/default.nix:28:5");
@@ -36,14 +30,14 @@ export default nix.lambda((args) => (() => {
         const mesonFiles = nix.thunk(() => nix.app(nix.sel(lib, "filter"), nix.thunk(() => nix.app(hasBasenamePrefix, "meson")), files));
         nix.assert_((!nix.asBool(nix.has(args_1, "xcodeHash")) || nix.asBool(nix.gt(nix.app(nix.sel(lib, "length"), mesonFiles), 0n))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/os-specific/darwin/mk-apple-derivation/default.nix:37:5");
         return nix.update({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.selOr(args_1, () => nix.force(releaseName), "pname")),
           version: nix.thunk(() => nix.attr(releaseSrc, "version")),
           src: nix.thunk(() => nix.selOr(args_1, () => nix.force(releaseSrc), "src")),
           strictDeps: true,
           __structuredAttrs: true,
           meta: nix.thunk(() => nix.update({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             homepage: "https://opensource.apple.com/releases/",
             license: nix.thunk(() => nix.sel(lib, "licenses", "apple-psl20")),
             teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "darwin"))]),
@@ -52,7 +46,7 @@ export default nix.lambda((args) => (() => {
         }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.has(args_1, "xcodeHash")), nix.thunk(() => (() => {
             const xcodeProject = nix.thunk(() => nix.selOr(args_1, () => nix.str`${releaseName}.xcodeproj`, "xcodeProject"));
             return {
-              [nix.POS]: pos$6,
+              [nix.POS]: $pos[5],
               postUnpack: nix.thunk(() => nix.add(nix.selOr(args_1, () => "", "postUnpack"), nix.app(nix.sel(lib, "concatMapStrings"), (file) => (nix.asBool(nix.eq(nix.builtins.baseNameOf(file), "meson.build.in")) ? nix.str`substitute ${nix.app(nix.sel(lib, "escapeShellArg"), nix.thunk(() => nix.str`${file}`))} "$sourceRoot/meson.build" --subst-var version
 ` : nix.str`cp ${nix.app(nix.sel(lib, "escapeShellArg"), nix.thunk(() => nix.str`${file}`))} "$sourceRoot/"${nix.app(nix.sel(lib, "escapeShellArg"), nix.thunk(() => nix.builtins.baseNameOf(file)))}
 `), mesonFiles))),
@@ -60,11 +54,11 @@ export default nix.lambda((args) => (() => {
               nativeBuildInputs: nix.thunk(() => nix.concat(nix.selOr(args_1, () => [], "nativeBuildInputs"), [meson, ninja, xcodeProjectCheckHook])),
               mesonBuildType: "release",
               passthru: nix.thunk(() => nix.app(nix.sel(lib, "recursiveUpdate"), nix.thunk(() => nix.selOr(args_1, () => ({}), "passthru")), nix.thunk(() => ({
-                  [nix.POS]: pos$5,
+                  [nix.POS]: $pos[4],
                   tests: nix.thunk(() => ({
-                    [nix.POS]: pos$4,
+                    [nix.POS]: $pos[3],
                     xcodeProjectHash: nix.thunk(() => nix.app(runCommand, nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-xcodeproject-hash-check`), nix.thunk(() => ({
-                        [nix.POS]: pos$3,
+                        [nix.POS]: $pos[2],
                         sourceRoot: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src")}`),
                         xcodeProject: xcodeProject,
                         xcodeHash: nix.thunk(() => nix.attr(args_1, "xcodeHash")),

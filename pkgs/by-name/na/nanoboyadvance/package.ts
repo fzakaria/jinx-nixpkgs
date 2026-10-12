@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5]], [["description", 76, 5], ["homepage", 77, 5], ["license", 78, 5], ["mainProgram", 79, 5], ["maintainers", 80, 5], ["platforms", 84, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["postPatch", 26, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 38, 3], ["preConfigure", 48, 3], ["cmakeFlags", 53, 3], ["postInstall", 62, 3], ["preFixup", 67, 3], ["meta", 75, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromCodeberg: false, cmake: false, python3Packages: false, SDL2: false, qt6: false, zlib: false, bzip2: false, xz: false, gtk3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 76, 5], ["homepage", 77, 5], ["license", 78, 5], ["mainProgram", 79, 5], ["maintainers", 80, 5], ["platforms", 84, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["postPatch", 26, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 38, 3], ["preConfigure", 48, 3], ["cmakeFlags", 53, 3], ["postInstall", 62, 3], ["preFixup", 67, 3], ["meta", 75, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const xz = nix.arg($, "xz");
   const gtk3 = nix.arg($, "gtk3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "nanoboyadvance",
       version: "1.8.3",
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "nba-emu",
           repo: "NanoBoyAdvance",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -59,7 +57,7 @@ export default nix.lambda((args) => (() => {
 )
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Cycle-accurate Nintendo Game Boy Advance emulator",
         homepage: "https://nanoboyadvance.eu/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

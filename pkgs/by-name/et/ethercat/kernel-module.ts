@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/kernel-module.nix", [[["description", 60, 5], ["homepage", 63, 7], ["changelog", 64, 7], ["license", 65, 7], ["maintainers", 66, 7], ["platforms", 67, 7]], [["pname", 22, 3], ["version", 23, 3], ["__structuredAttrs", 25, 3], ["enableParallelBuilding", 27, 3], ["src", 29, 22], ["nativeBuildInputs", 31, 3], ["configureFlags", 33, 3], ["makeFlags", 51, 3], ["buildFlags", 55, 3], ["installTargets", 57, 3], ["meta", 59, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, kernelModuleMakeFlags: false, kernel: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/kernel-module.nix", [["description", 60, 5], ["homepage", 63, 7], ["changelog", 64, 7], ["license", 65, 7], ["maintainers", 66, 7], ["platforms", 67, 7]]);
-const pos$2 = nix.positions(here + "/kernel-module.nix", [["pname", 22, 3], ["version", 23, 3], ["__structuredAttrs", 25, 3], ["enableParallelBuilding", 27, 3], ["src", 29, 22], ["nativeBuildInputs", 31, 3], ["configureFlags", 33, 3], ["makeFlags", 51, 3], ["buildFlags", 55, 3], ["installTargets", 57, 3], ["meta", 59, 3]]);
 
 export default (ethercat) => nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,7 +13,7 @@ export default (ethercat) => nix.lambda((args) => (() => {
   const kernel = nix.arg($, "kernel");
   const extraSupportedKernel = nix.thunk(() => nix.app(nix.sel(lib, "elem"), nix.thunk(() => nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(kernel, "version")))), nix.thunk(() => ["5.10", "5.14", "5.15", "6.1", "6.4", "6.12"])));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "ethercat",
       version: nix.thunk(() => nix.str`${nix.sel(kernel, "version")}-${nix.sel(ethercat, "version")}`),
       __structuredAttrs: true,
@@ -42,7 +41,7 @@ export default (ethercat) => nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(ethercat, "meta"));
         return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: nix.thunk(() => nix.add(nix.sel(ethercat, "meta", "description"), " - kernel modules")),
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         changelog: nix.thunk(() => nix.attr(from, "changelog")),

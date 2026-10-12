@@ -2,19 +2,17 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
-const pos$1 = nix.positions(here + "/15.nix", [["url", 7, 7], ["hash", 8, 7]]);
-const pos$2 = nix.positions(here + "/15.nix", [["dont-use-locale-a", 6, 5]]);
-const pos$3 = nix.positions(here + "/15.nix", [["version", 2, 3], ["rev", 3, 3], ["hash", 4, 3], ["muslPatches", 5, 3]]);
+const $pos = nix.positions(here + "/15.nix", [[["url", 7, 7], ["hash", 8, 7]], [["dont-use-locale-a", 6, 5]], [["version", 2, 3], ["rev", 3, 3], ["hash", 4, 3], ["muslPatches", 5, 3]]]);
 
 export default nix.thunk(() => ({
-  [nix.POS]: pos$3,
+  [nix.POS]: $pos[2],
   version: "15.19",
   rev: "refs/tags/REL_15_19",
   hash: "sha256-y5QarcJSMifu+ctjsQOdG/Njo9KvFvIgncBJBjCVG3Y=",
   muslPatches: nix.thunk(() => ({
-    [nix.POS]: pos$2,
+    [nix.POS]: $pos[1],
     "dont-use-locale-a": nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: "https://git.alpinelinux.org/aports/plain/main/postgresql15/dont-use-locale-a-on-musl.patch?id=f424e934e6d076c4ae065ce45e734aa283eecb9c",
       hash: "sha256-fk+y/SvyA4Tt8OIvDl7rje5dLs3Zw+Ln1oddyYzerOo=",
     })),

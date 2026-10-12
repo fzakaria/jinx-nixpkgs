@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]], [["description", 37, 5], ["license", 38, 5], ["maintainers", 39, 5], ["platforms", 40, 5], ["homepage", 41, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["nativeBuildInputs", 19, 3], ["doInstallCheck", 23, 3], ["dontConfigure", 26, 3], ["dontBuild", 27, 3], ["dontFixup", 28, 3], ["installPhase", 30, 3], ["meta", 36, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, udevCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 37, 5], ["license", 38, 5], ["maintainers", 39, 5], ["platforms", 40, 5], ["homepage", 41, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["nativeBuildInputs", 19, 3], ["doInstallCheck", 23, 3], ["dontConfigure", 26, 3], ["dontBuild", 27, 3], ["dontFixup", 28, 3], ["installPhase", 30, 3], ["meta", 36, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const udevCheckHook = nix.arg($, "udevCheckHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "zsa-udev-rules",
       version: "unstable-2023-11-30",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "zsa",
           repo: "wally",
           rev: "a6648f6b543b703e3902faf5c08e997e0d58c909",
@@ -31,7 +29,7 @@ export default nix.lambda((args) => (() => {
       dontFixup: true,
       installPhase: "mkdir -p $out/lib/udev/rules.d\ncp dist/linux64/50-oryx.rules $out/lib/udev/rules.d/\ncp dist/linux64/50-wally.rules $out/lib/udev/rules.d/\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "udev rules for ZSA devices",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: nix.thunk(() => (() => {

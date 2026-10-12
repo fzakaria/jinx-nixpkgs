@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]], [["updateScript", 75, 12]], [["description", 78, 5], ["homepage", 79, 5], ["changelog", 80, 5], ["license", 81, 5], ["maintainers", 82, 5], ["mainProgram", 83, 5], ["platforms", 84, 5]], [["pname", 23, 3], ["version", 24, 3], ["__structuredAttrs", 25, 3], ["strictDeps", 26, 3], ["src", 28, 3], ["postPatch", 35, 3], ["nativeBuildInputs", 46, 3], ["buildInputs", 54, 3], ["mesonFlags", 62, 3], ["doInstallCheck", 66, 3], ["versionCheckKeepEnvironment", 67, 3], ["nativeInstallCheckInputs", 71, 3], ["passthru", 75, 3], ["meta", 77, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, "man-db": false, groff: false, "xdg-utils": false, meson: false, ninja: false, "pkg-config": false, cmake: false, python3Packages: false, ncurses: false, zlib: false, bzip2: false, xz: false, cunit: false, "nix-update-script": false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 75, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 78, 5], ["homepage", 79, 5], ["changelog", 80, 5], ["license", 81, 5], ["maintainers", 82, 5], ["mainProgram", 83, 5], ["platforms", 84, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 23, 3], ["version", 24, 3], ["__structuredAttrs", 25, 3], ["strictDeps", 26, 3], ["src", 28, 3], ["postPatch", 35, 3], ["nativeBuildInputs", 46, 3], ["buildInputs", 54, 3], ["mesonFlags", 62, 3], ["doInstallCheck", 66, 3], ["versionCheckKeepEnvironment", 67, 3], ["nativeInstallCheckInputs", 71, 3], ["passthru", 75, 3], ["meta", 77, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,13 +26,13 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "qman",
       version: "1.5.1",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "plp13",
           repo: "qman",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -65,11 +62,11 @@ substituteInPlace src/config_def.py \\
       versionCheckKeepEnvironment: nix.thunk(() => ["TERM"]),
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "A more modern man page viewer for our terminals",
         homepage: "https://github.com/plp13/qman",
         changelog: nix.thunk(() => nix.str`https://github.com/plp13/qman/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

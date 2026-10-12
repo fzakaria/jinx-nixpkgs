@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]], [["lockFile", 27, 13]], [["zram-generator", 69, 28]], [["tests", 68, 5], ["updateScript", 71, 5]], [["homepage", 75, 5], ["license", 76, 5], ["description", 77, 5], ["maintainers", 78, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["cargoLock", 27, 3], ["postPatch", 29, 3], ["nativeBuildInputs", 40, 3], ["buildInputs", 45, 3], ["preBuild", 49, 3], ["doCheck", 56, 3], ["dontCargoInstall", 58, 3], ["installFlags", 60, 3], ["passthru", 67, 3], ["meta", 74, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, rustPlatform: false, "pkg-config": false, bash: false, ronn: false, systemd: false, kmod: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["lockFile", 27, 13]]);
-const pos$3 = nix.positions(here + "/package.nix", [["zram-generator", 69, 28]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 68, 5], ["updateScript", 71, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["homepage", 75, 5], ["license", 76, 5], ["description", 77, 5], ["maintainers", 78, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["cargoLock", 27, 3], ["postPatch", 29, 3], ["nativeBuildInputs", 40, 3], ["buildInputs", 45, 3], ["preBuild", 49, 3], ["doCheck", 56, 3], ["dontCargoInstall", 58, 3], ["installFlags", 60, 3], ["passthru", 67, 3], ["meta", 74, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,17 +18,17 @@ export default nix.lambda((args) => (() => {
   const kmod = nix.arg($, "kmod");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "zram-generator",
       version: "1.2.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "systemd",
           repo: "zram-generator",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-aGBvvjGKZ5biruwmJ0ITakqPhTWs9hspRIE9QirqstA=",
         })))),
-      cargoLock: nix.thunk(() => ({ [nix.POS]: pos$2, lockFile: nix.path(here, "./Cargo.lock") })),
+      cargoLock: nix.thunk(() => ({ [nix.POS]: $pos[1], lockFile: nix.path(here, "./Cargo.lock") })),
       postPatch: nix.thunk(() => nix.str`cp ${nix.path(here, "./Cargo.lock")} Cargo.lock
 substituteInPlace Makefile \\
   --replace-fail 'target/$(BUILDTYPE)' 'target/${nix.sel(stdenv, "hostPlatform", "rust", "rustcTargetSpec")}/$(BUILDTYPE)'
@@ -55,15 +50,15 @@ substituteInPlace src/config.rs \\
         "SYSTEMD_SYSTEM_GENERATOR_DIR=$(out)/lib/systemd/system-generators",
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           "zram-generator": nix.thunk(() => nix.attr(nixosTests, "zram-generator")),
         })),
         updateScript: nix.path(here, "./update.sh"),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "https://github.com/systemd/zram-generator",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         description: "Systemd unit generator for zram devices",

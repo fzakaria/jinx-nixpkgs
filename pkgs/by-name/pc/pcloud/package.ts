@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 49, 5], ["hash", 50, 5]], [["pname", 58, 13], ["version", 58, 19], ["src", 60, 5]], [["description", 130, 5], ["homepage", 131, 5], ["changelog", 132, 5], ["downloadPage", 133, 5], ["sourceProvenance", 134, 5], ["license", 135, 5], ["maintainers", 136, 5], ["platforms", 137, 5], ["mainProgram", 138, 5]], [["pname", 55, 11], ["version", 55, 17], ["src", 57, 3], ["dontConfigure", 63, 3], ["dontBuild", 64, 3], ["nativeBuildInputs", 66, 3], ["buildInputs", 71, 3], ["installPhase", 84, 3], ["meta", 129, 3]]]);
 const formals$1 = { args: { appimageTools: false, autoPatchelfHook: false, patchelfUnstable: false, fetchzip: false, lib: false, stdenv: false, bashInteractive: false, "alsa-lib": false, "dbus-glib": false, fuse: false, "gsettings-desktop-schemas": false, gtk3: false, "libdbusmenu-gtk3": false, libgbm: false, libxdamage: false, nss: false, udev: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 49, 5], ["hash", 50, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 58, 13], ["version", 58, 19], ["src", 60, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 130, 5], ["homepage", 131, 5], ["changelog", 132, 5], ["downloadPage", 133, 5], ["sourceProvenance", 134, 5], ["license", 135, 5], ["maintainers", 136, 5], ["platforms", 137, 5], ["mainProgram", 138, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 55, 11], ["version", 55, 17], ["src", 57, 3], ["dontConfigure", 63, 3], ["dontBuild", 64, 3], ["nativeBuildInputs", 66, 3], ["buildInputs", 71, 3], ["installPhase", 84, 3], ["meta", 129, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,16 +28,16 @@ export default nix.lambda((args) => (() => {
   const version = "2.3.0";
   const code = "XZrYdRJZLS6RF4kf6Jy6GFr4jqkc4S34Rlgy";
   const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: nix.thunk(() => nix.str`https://api.pcloud.com/getpubzip?code=${code}&filename=pcloud-${version}.zip`),
       hash: "sha256-aeZHTtqw7ml8k1GZt013WG3GFVXfIzGhEDdBKMkzpj4=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: pname,
       version: version,
       src: nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: pname,
           version: version,
           src: nix.thunk(() => nix.str`${src}/pCloud.AppImage`),
@@ -104,7 +101,7 @@ EOF
 chmod +x bin/pcloud
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Secure and simple to use cloud storage for your files; pCloud Drive, Electron Edition",
         homepage: "https://www.pcloud.com/",
         changelog: "https://www.pcloud.com/release-notes/linux.html",

@@ -2,21 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["license", 54, 8]], [["name", 66, 11], ["src", 68, 11], ["strictDeps", 70, 11], ["nativeBuildInputs", 71, 11], ["installFlags", 73, 11]], [["name", 81, 11], ["src", 83, 11], ["outputs", 85, 11], ["strictDeps", 90, 11], ["nativeBuildInputs", 91, 11], ["installFlags", 93, 11], ["postInstall", 98, 11]], [["name", 110, 11], ["src", 112, 11], ["outputs", 114, 11], ["strictDeps", 121, 11], ["nativeBuildInputs", 122, 11], ["installFlags", 124, 11], ["postInstall", 129, 11]], [["name", 139, 11], ["src", 141, 11], ["outputs", 143, 11], ["strictDeps", 149, 11], ["nativeBuildInputs", 150, 11], ["installFlags", 152, 11], ["wrapGAppsInOutputs", 157, 11], ["postInstall", 162, 11]], [["name", 173, 11], ["__structuredAttrs", 175, 11], ["src", 177, 11], ["outputs", 179, 11], ["strictDeps", 185, 11], ["nativeBuildInputs", 186, 11], ["installFlags", 188, 11], ["wrapGAppsInOutputs", 193, 11], ["postInstall", 198, 11]], [["name", 299, 11], ["src", 301, 11], ["strictDeps", 303, 11], ["installFlags", 305, 11]], [["name", 310, 11], ["src", 312, 11], ["strictDeps", 314, 11], ["nativeBuildInputs", 315, 11], ["buildInputs", 320, 11], ["installFlags", 324, 11]], [["name", 349, 11], ["outputs", 351, 11], ["src", 356, 11], ["strictDeps", 358, 11], ["makeFlags", 360, 11], ["installFlags", 364, 11]], [["name", 369, 11], ["src", 371, 11], ["strictDeps", 373, 11], ["nativeBuildInputs", 374, 11], ["buildInputs", 379, 11], ["installFlags", 383, 11]], [["name", 409, 11], ["src", 411, 11], ["strictDeps", 413, 11], ["nativeBuildInputs", 414, 11], ["installFlags", 419, 11]], [["basic", 65, 9], ["basic-multiple-outputs", 80, 9], ["basic-bin-output", 109, 9], ["basic-other-outputs", 138, 9], ["basic-other-outputs-structuredattrs", 172, 9], ["basic-contains-dconf", 209, 9], ["basic-multiple-outputs-contains-dconf", 225, 9], ["basic-bin-output-contains-dconf", 238, 9], ["basic-other-outputs-contains-dconf", 251, 9], ["basic-other-outputs-contains-dconf-structuredattrs", 267, 9], ["basic-contains-gdk-pixbuf", 282, 9], ["typelib-Mahjong", 298, 9], ["typelib-user", 309, 9], ["typelib-user-has-gi-typelib-path", 334, 9], ["typelib-Bechamel", 348, 9], ["typelib-multiout-user", 368, 9], ["typelib-multiout-user-has-gi-typelib-path", 394, 9], ["typelib-self-user", 408, 9], ["typelib-self-user-has-gi-typelib-path", 431, 9]], [["tests", 56, 5]], [["name", 18, 3], ["propagatedBuildInputs", 19, 3], ["depsTargetTargetPropagated", 32, 3], ["meta", 54, 3], ["passthru", 55, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, makeSetupHook: false, makeWrapper: false, "gobject-introspection": false, isGraphical: true, gtk3: false, librsvg: false, dconf: false, withDconf: true, callPackage: false, wrapGAppsHook3: false, targetPackages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["license", 54, 8]]);
-const pos$2 = nix.positions(here + "/default.nix", [["name", 66, 11], ["src", 68, 11], ["strictDeps", 70, 11], ["nativeBuildInputs", 71, 11], ["installFlags", 73, 11]]);
-const pos$3 = nix.positions(here + "/default.nix", [["name", 81, 11], ["src", 83, 11], ["outputs", 85, 11], ["strictDeps", 90, 11], ["nativeBuildInputs", 91, 11], ["installFlags", 93, 11], ["postInstall", 98, 11]]);
-const pos$4 = nix.positions(here + "/default.nix", [["name", 110, 11], ["src", 112, 11], ["outputs", 114, 11], ["strictDeps", 121, 11], ["nativeBuildInputs", 122, 11], ["installFlags", 124, 11], ["postInstall", 129, 11]]);
-const pos$5 = nix.positions(here + "/default.nix", [["name", 139, 11], ["src", 141, 11], ["outputs", 143, 11], ["strictDeps", 149, 11], ["nativeBuildInputs", 150, 11], ["installFlags", 152, 11], ["wrapGAppsInOutputs", 157, 11], ["postInstall", 162, 11]]);
-const pos$6 = nix.positions(here + "/default.nix", [["name", 173, 11], ["__structuredAttrs", 175, 11], ["src", 177, 11], ["outputs", 179, 11], ["strictDeps", 185, 11], ["nativeBuildInputs", 186, 11], ["installFlags", 188, 11], ["wrapGAppsInOutputs", 193, 11], ["postInstall", 198, 11]]);
-const pos$7 = nix.positions(here + "/default.nix", [["name", 299, 11], ["src", 301, 11], ["strictDeps", 303, 11], ["installFlags", 305, 11]]);
-const pos$8 = nix.positions(here + "/default.nix", [["name", 310, 11], ["src", 312, 11], ["strictDeps", 314, 11], ["nativeBuildInputs", 315, 11], ["buildInputs", 320, 11], ["installFlags", 324, 11]]);
-const pos$9 = nix.positions(here + "/default.nix", [["name", 349, 11], ["outputs", 351, 11], ["src", 356, 11], ["strictDeps", 358, 11], ["makeFlags", 360, 11], ["installFlags", 364, 11]]);
-const pos$10 = nix.positions(here + "/default.nix", [["name", 369, 11], ["src", 371, 11], ["strictDeps", 373, 11], ["nativeBuildInputs", 374, 11], ["buildInputs", 379, 11], ["installFlags", 383, 11]]);
-const pos$11 = nix.positions(here + "/default.nix", [["name", 409, 11], ["src", 411, 11], ["strictDeps", 413, 11], ["nativeBuildInputs", 414, 11], ["installFlags", 419, 11]]);
-const pos$12 = nix.positions(here + "/default.nix", [["basic", 65, 9], ["basic-multiple-outputs", 80, 9], ["basic-bin-output", 109, 9], ["basic-other-outputs", 138, 9], ["basic-other-outputs-structuredattrs", 172, 9], ["basic-contains-dconf", 209, 9], ["basic-multiple-outputs-contains-dconf", 225, 9], ["basic-bin-output-contains-dconf", 238, 9], ["basic-other-outputs-contains-dconf", 251, 9], ["basic-other-outputs-contains-dconf-structuredattrs", 267, 9], ["basic-contains-gdk-pixbuf", 282, 9], ["typelib-Mahjong", 298, 9], ["typelib-user", 309, 9], ["typelib-user-has-gi-typelib-path", 334, 9], ["typelib-Bechamel", 348, 9], ["typelib-multiout-user", 368, 9], ["typelib-multiout-user-has-gi-typelib-path", 394, 9], ["typelib-self-user", 408, 9], ["typelib-self-user-has-gi-typelib-path", 431, 9]]);
-const pos$13 = nix.positions(here + "/default.nix", [["tests", 56, 5]]);
-const pos$14 = nix.positions(here + "/default.nix", [["name", 18, 3], ["propagatedBuildInputs", 19, 3], ["depsTargetTargetPropagated", 32, 3], ["meta", 54, 3], ["passthru", 55, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,23 +21,26 @@ export default nix.lambda((args) => (() => {
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   const targetPackages = nix.arg($, "targetPackages");
   return nix.app(makeSetupHook, nix.thunk(() => ({
-      [nix.POS]: pos$14,
+      [nix.POS]: $pos[13],
       name: "wrap-gapps-hook",
       propagatedBuildInputs: nix.thunk(() => nix.concat([makeWrapper], nix.app(nix.sel(lib, "optionals"), isGraphical, nix.thunk(() => [gtk3, librsvg])))),
       depsTargetTargetPropagated: nix.thunk(() => (() => {
         nix.assert_((nix.asBool(!nix.asBool(nix.has(targetPackages, "raw"))) || nix.asBool(nix.builtins.throw("wrapGAppsHook3 must be in nativeBuildInputs"))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/build-support/setup-hooks/wrap-gapps-hook/default.nix:33:5");
         return nix.concat(nix.app(nix.sel(lib, "optionals"), isGraphical, nix.thunk(() => [librsvg, gtk3])), nix.app(nix.sel(lib, "optionals"), withDconf, nix.thunk(() => [nix.thunk(() => nix.sel(dconf, "lib"))])));
       })()),
-      meta: nix.thunk(() => ({ [nix.POS]: pos$1, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
+      meta: nix.thunk(() => ({
+        [nix.POS]: $pos[0],
+        license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
+      })),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$13,
+        [nix.POS]: $pos[12],
         tests: nix.thunk(() => (() => {
           const sample_project = nix.path(here, "./tests/sample-project");
           const testLib = nix.thunk(() => nix.app(callPackage, nix.path(here, "./tests/lib.nix"), nix.thunk(() => ({}))));
           const expectSomeLineContainingYInFileXToMentionZ = nix.thunk(() => nix.attr(testLib, "expectSomeLineContainingYInFileXToMentionZ"));
           return (() => {
             const basic = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-                [nix.POS]: pos$2,
+                [nix.POS]: $pos[1],
                 name: "basic",
                 src: sample_project,
                 strictDeps: true,
@@ -58,7 +48,7 @@ export default nix.lambda((args) => (() => {
                 installFlags: nix.thunk(() => ["bin-foo", "libexec-bar"]),
               }))));
             const basic_multiple_outputs = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-                [nix.POS]: pos$3,
+                [nix.POS]: $pos[2],
                 name: "basic-multiple-outputs",
                 src: sample_project,
                 outputs: nix.thunk(() => ["out", "lib"]),
@@ -68,7 +58,7 @@ export default nix.lambda((args) => (() => {
                 postInstall: "mkdir -p $lib\nmv $out/libexec $lib\n# Wrapper will want to append this to XDG_DATA_DIRS, but should not cause a cyclic dependency;\n# i.e. only \"out\" will be wrapped.\nmkdir -p $out/share\n",
               }))));
             const basic_bin_output = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-                [nix.POS]: pos$4,
+                [nix.POS]: $pos[3],
                 name: "basic-bin-output",
                 src: sample_project,
                 outputs: nix.thunk(() => ["bin", "dev", "lib", "out"]),
@@ -78,7 +68,7 @@ export default nix.lambda((args) => (() => {
                 postInstall: "mkdir -p $lib\nmv $out/libexec $lib\nmkdir -p $bin\nmv $out/bin $bin\n",
               }))));
             const basic_other_outputs = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-                [nix.POS]: pos$5,
+                [nix.POS]: $pos[4],
                 name: "basic-other-outputs",
                 src: sample_project,
                 outputs: nix.thunk(() => ["dev", "lib", "out"]),
@@ -89,7 +79,7 @@ export default nix.lambda((args) => (() => {
                 postInstall: "mkdir -p $lib\nmv $out/libexec $lib\nmkdir -p $dev\nmv $out/bin $dev\n",
               }))));
             const basic_other_outputs_structuredattrs = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-                [nix.POS]: pos$6,
+                [nix.POS]: $pos[5],
                 name: "basic-other-outputs-structuredAttrs",
                 __structuredAttrs: true,
                 src: sample_project,
@@ -135,14 +125,14 @@ ${nix.app(expectSomeLineContainingYInFileXToMentionZ, nix.thunk(() => nix.str`${
 `))));
             })());
             const typelib_Mahjong = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-                [nix.POS]: pos$7,
+                [nix.POS]: $pos[6],
                 name: "typelib-Mahjong",
                 src: sample_project,
                 strictDeps: true,
                 installFlags: nix.thunk(() => ["typelib-Mahjong"]),
               }))));
             const typelib_user = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-                [nix.POS]: pos$8,
+                [nix.POS]: $pos[7],
                 name: "typelib-user",
                 src: sample_project,
                 strictDeps: true,
@@ -157,7 +147,7 @@ ${nix.app(expectSomeLineContainingYInFileXToMentionZ, nix.thunk(() => nix.str`${
 `));
             })());
             const typelib_Bechamel = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-                [nix.POS]: pos$9,
+                [nix.POS]: $pos[8],
                 name: "typelib-Bechamel",
                 outputs: nix.thunk(() => ["out", "lib"]),
                 src: sample_project,
@@ -166,7 +156,7 @@ ${nix.app(expectSomeLineContainingYInFileXToMentionZ, nix.thunk(() => nix.str`${
                 installFlags: nix.thunk(() => ["typelib-Bechamel"]),
               }))));
             const typelib_multiout_user = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-                [nix.POS]: pos$10,
+                [nix.POS]: $pos[9],
                 name: "typelib-multiout-user",
                 src: sample_project,
                 strictDeps: true,
@@ -181,7 +171,7 @@ ${nix.app(expectSomeLineContainingYInFileXToMentionZ, nix.thunk(() => nix.str`${
 `));
             })());
             const typelib_self_user = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-                [nix.POS]: pos$11,
+                [nix.POS]: $pos[10],
                 name: "typelib-self-user",
                 src: sample_project,
                 strictDeps: true,
@@ -195,7 +185,7 @@ ${nix.app(expectSomeLineContainingYInFileXToMentionZ, nix.thunk(() => nix.str`${
 `));
             })());
             return {
-              [nix.POS]: pos$12,
+              [nix.POS]: $pos[11],
               basic,
               "basic-multiple-outputs": basic_multiple_outputs,
               "basic-bin-output": basic_bin_output,

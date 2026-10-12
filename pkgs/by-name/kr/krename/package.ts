@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 23, 5], ["owner", 24, 5], ["repo", 25, 5], ["rev", 27, 5], ["hash", 28, 5]], [["NIX_LDFLAGS", 49, 7]], [["description", 52, 5], ["mainProgram", 53, 5], ["homepage", 54, 5], ["license", 55, 5], ["maintainers", 60, 5], ["platforms", 64, 39]], [["pname", 13, 3], ["version", 14, 3], ["src", 22, 3], ["buildInputs", 31, 3], ["nativeBuildInputs", 42, 3], ["env", 49, 3], ["meta", 51, 3]]]);
 const formals$1 = { args: { stdenv: false, fetchFromGitLab: false, lib: false, cmake: false, kdePackages: false, taglib: false, exiv2: false, podofo0: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 23, 5], ["owner", 24, 5], ["repo", 25, 5], ["rev", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_LDFLAGS", 49, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 52, 5], ["mainProgram", 53, 5], ["homepage", 54, 5], ["license", 55, 5], ["maintainers", 60, 5], ["platforms", 64, 39]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 22, 3], ["buildInputs", 31, 3], ["nativeBuildInputs", 42, 3], ["env", 49, 3], ["meta", 51, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const exiv2 = nix.arg($, "exiv2");
   const podofo0 = nix.arg($, "podofo0");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "krename",
       version: "5.0.60-unstable-2025-09-02",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "invent.kde.org",
           owner: "utilities",
           repo: "krename",
@@ -49,11 +46,11 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.sel(kdePackages, "kdoctools")),
         nix.thunk(() => nix.sel(kdePackages, "wrapQtAppsHook")),
       ]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_LDFLAGS: "-ltag" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], NIX_LDFLAGS: "-ltag" })),
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(kdePackages, "qtbase", "meta"));
         return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Powerful batch renamer for KDE",
         mainProgram: "krename",
         homepage: "https://kde.org/applications/utilities/krename/",

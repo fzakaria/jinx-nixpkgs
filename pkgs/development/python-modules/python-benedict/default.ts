@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 34, 5], ["repo", 35, 5], ["tag", 36, 5], ["hash", 37, 5]], [["all", 56, 5], ["html", 70, 5], ["io", 74, 5], ["parse", 82, 5], ["s3", 88, 5], ["schema", 89, 5], ["toml", 90, 5], ["xls", 91, 5], ["xml", 95, 5], ["yaml", 96, 5]], [["description", 124, 5], ["homepage", 125, 5], ["changelog", 126, 5], ["license", 127, 5], ["maintainers", 128, 5]], [["pname", 29, 3], ["version", 30, 3], ["pyproject", 31, 3], ["src", 33, 3], ["pythonRelaxDeps", 40, 3], ["build-system", 45, 3], ["dependencies", 47, 3], ["optional-dependencies", 55, 3], ["nativeCheckInputs", 99, 3], ["disabledTests", 106, 3], ["pythonImportsCheck", 121, 3], ["meta", 123, 3]]]);
 const formals$1 = { args: { lib: false, boto3: false, buildPythonPackage: false, fetchFromGitHub: false, ftfy: false, mailchecker: false, openpyxl: false, orjson: false, phonenumbers: false, beautifulsoup4: false, pytestCheckHook: false, "python-dateutil": false, "python-decouple": false, "python-fsutil": false, "python-slugify": false, pyyaml: false, requests: false, pydantic: false, setuptools: false, "tomli-w": false, "typing-extensions": false, "useful-types": false, xlrd: false, xmltodict: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 34, 5], ["repo", 35, 5], ["tag", 36, 5], ["hash", 37, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["all", 56, 5], ["html", 70, 5], ["io", 74, 5], ["parse", 82, 5], ["s3", 88, 5], ["schema", 89, 5], ["toml", 90, 5], ["xls", 91, 5], ["xml", 95, 5], ["yaml", 96, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 124, 5], ["homepage", 125, 5], ["changelog", 126, 5], ["license", 127, 5], ["maintainers", 128, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 29, 3], ["version", 30, 3], ["pyproject", 31, 3], ["src", 33, 3], ["pythonRelaxDeps", 40, 3], ["build-system", 45, 3], ["dependencies", 47, 3], ["optional-dependencies", 55, 3], ["nativeCheckInputs", 99, 3], ["disabledTests", 106, 3], ["pythonImportsCheck", 121, 3], ["meta", 123, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -35,12 +32,12 @@ export default nix.lambda((args) => (() => {
   const xlrd = nix.arg($, "xlrd");
   const xmltodict = nix.arg($, "xmltodict");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "python-benedict",
       version: "0.39.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "fabiocaccamo",
           repo: "python-benedict",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -50,7 +47,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [setuptools]),
       dependencies: nix.thunk(() => [python_fsutil, python_slugify, requests, useful_types, typing_extensions]),
       "optional-dependencies": nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         all: nix.thunk(() => [
           beautifulsoup4,
           boto3,
@@ -91,7 +88,7 @@ export default nix.lambda((args) => (() => {
       ]),
       pythonImportsCheck: nix.thunk(() => ["benedict"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Module with keylist/keypath support",
         homepage: "https://github.com/fabiocaccamo/python-benedict",
         changelog: nix.thunk(() => nix.str`https://github.com/fabiocaccamo/python-benedict/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

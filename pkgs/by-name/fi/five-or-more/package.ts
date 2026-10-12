@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 25, 5], ["hash", 26, 5]], [["packageName", 54, 7]], [["updateScript", 53, 5]], [["homepage", 59, 5], ["description", 60, 5], ["mainProgram", 61, 5], ["teams", 62, 5], ["license", 63, 5], ["platforms", 64, 5]], [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 41, 3], ["postPatch", 47, 3], ["passthru", 52, 3], ["meta", 58, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, meson: false, ninja: false, "pkg-config": false, gnome: false, gtk3: false, wrapGAppsHook3: false, librsvg: false, "libgnome-games-support": false, gettext: false, itstool: false, libxml2: false, python3: false, vala: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["packageName", 54, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 53, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 59, 5], ["description", 60, 5], ["mainProgram", 61, 5], ["teams", 62, 5], ["license", 63, 5], ["platforms", 64, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 41, 3], ["postPatch", 47, 3], ["passthru", 52, 3], ["meta", 58, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const vala = nix.arg($, "vala");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "five-or-more",
       version: "48.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnome/sources/five-or-more/${nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/five-or-more-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-2UHOLjfqZsDYDx6BeX+8u+To72WnkLPMXla58QtepaM=",
         })))),
@@ -50,11 +46,11 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [gtk3, librsvg, libgnome_games_support]),
       postPatch: "chmod +x meson_post_install.py # patchShebangs requires executable file\npatchShebangs meson_post_install.py\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$2, packageName: "five-or-more" })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: $pos[1], packageName: "five-or-more" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://gitlab.gnome.org/GNOME/five-or-more",
         description: "Remove colored balls from the board by forming lines",
         mainProgram: "five-or-more",

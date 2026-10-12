@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 28, 5], ["repo", 29, 5], ["rev", 30, 5], ["hash", 31, 5], ["fetchSubmodules", 32, 5]], [["broken", 130, 5], ["homepage", 131, 5], ["description", 132, 5], ["maintainers", 133, 5], ["platforms", 134, 5], ["license", 135, 5]], [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 42, 3], ["nativeInstallCheckInputs", 60, 3], ["postPatch", 62, 3], ["configurePhase", 81, 3], ["buildPhase", 89, 3], ["installCheckPhase", 96, 3], ["doInstallCheck", 105, 3], ["installPhase", 107, 3], ["preFixup", 115, 3], ["meta", 129, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, python3: false, makeWrapper: false, eigen_3_4_0: false, fftw: false, libtiff: false, libpng: false, zlib: false, ants: false, bc: false, qt5: false, libGL: false, libGLU: false, libx11: false, libxext: false, less: false, withGui: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 28, 5], ["repo", 29, 5], ["rev", 30, 5], ["hash", 31, 5], ["fetchSubmodules", 32, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["broken", 130, 5], ["homepage", 131, 5], ["description", 132, 5], ["maintainers", 133, 5], ["platforms", 134, 5], ["license", 135, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 42, 3], ["nativeInstallCheckInputs", 60, 3], ["postPatch", 62, 3], ["configurePhase", 81, 3], ["buildPhase", 89, 3], ["installCheckPhase", 96, 3], ["doInstallCheck", 105, 3], ["installPhase", 107, 3], ["preFixup", 115, 3], ["meta", 129, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,11 +27,11 @@ export default nix.lambda((args) => (() => {
   const less = nix.arg($, "less");
   const withGui = nix.argOr($, "withGui", () => true);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "mrtrix",
       version: "3.0.8",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "MRtrix3",
           repo: "mrtrix3",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -69,7 +67,7 @@ runHook postConfigure
 done
 `)),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         broken: nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")))),
         homepage: "https://github.com/MRtrix3/mrtrix3",
         description: "Suite of tools for diffusion imaging",

@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["hash", 20, 5]], [["e2e", 71, 5]], [["PDFDING_OUT_DIR", 110, 7]], [["python", 184, 13], ["tests", 185, 5], ["frontend", 186, 5], ["updateScript", 187, 5]], [["changelog", 191, 5], ["description", 192, 5], ["downloadPage", 193, 5], ["homepage", 194, 5], ["license", 195, 5], ["mainProgram", 196, 5], ["platforms", 197, 5], ["teams", 198, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 16, 3], ["pyproject", 22, 3], ["__structuredAttrs", 24, 3], ["postPatch", 27, 3], ["dependencies", 31, 3], ["build-system", 63, 3], ["nativeBuildInputs", 65, 3], ["optional-dependencies", 70, 3], ["preBuild", 79, 3], ["env", 110, 3], ["makeWrapperArgs", 112, 3], ["postInstall", 123, 3], ["pythonRelaxDeps", 135, 3], ["checkInputs", 147, 3], ["nativeCheckInputs", 152, 3], ["pytestFlags", 157, 3], ["preCheck", 159, 3], ["postCheck", 169, 3], ["pythonImportsCheck", 179, 3], ["passthru", 183, 3], ["meta", 190, 3]]]);
 const formals$1 = { args: { lib: false, callPackage: false, fetchFromCodeberg: false, makeWrapper: false, nixosTests: false, python3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["e2e", 71, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["PDFDING_OUT_DIR", 110, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["python", 184, 13], ["tests", 185, 5], ["frontend", 186, 5], ["updateScript", 187, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["changelog", 191, 5], ["description", 192, 5], ["downloadPage", 193, 5], ["homepage", 194, 5], ["license", 195, 5], ["mainProgram", 196, 5], ["platforms", 197, 5], ["teams", 198, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 16, 3], ["pyproject", 22, 3], ["__structuredAttrs", 24, 3], ["postPatch", 27, 3], ["dependencies", 31, 3], ["build-system", 63, 3], ["nativeBuildInputs", 65, 3], ["optional-dependencies", 70, 3], ["preBuild", 79, 3], ["env", 110, 3], ["makeWrapperArgs", 112, 3], ["postInstall", 123, 3], ["pythonRelaxDeps", 135, 3], ["checkInputs", 147, 3], ["nativeCheckInputs", 152, 3], ["pytestFlags", 157, 3], ["preCheck", 159, 3], ["postCheck", 169, 3], ["pythonImportsCheck", 179, 3], ["passthru", 183, 3], ["meta", 190, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const python = python3;
   return nix.app(nix.sel(python, "pkgs", "buildPythonPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "pdfding",
       version: "1.14.0",
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "mrmn",
           repo: "PdfDing",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -69,7 +64,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.sel(python, "pkgs", "pyprojectVersionPatchHook")),
       ]),
       "optional-dependencies": nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         e2e: nix.thunk(() => (() => {
           const w_2 = nix.withScope(nix.thunk(() => nix.sel(python, "pkgs")), null);
           return [
@@ -110,7 +105,7 @@ done \\
 echo "VERSION = '${nix.sel(finalAttrs, "version")}'" > pdfding/core/settings/version.py;
 `),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         PDFDING_OUT_DIR: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/${nix.sel(python, "sitePackages")}/pdfding`),
       })),
       makeWrapperArgs: nix.thunk(() => [
@@ -158,14 +153,14 @@ makeWrapper ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(python, "p
       postCheck: "# come out of the pdfding directory\npopd\n\nunset DATA_DIR\n\n# remove dev.py\nrm $PDFDING_OUT_DIR/core/settings/dev.py\n",
       pythonImportsCheck: nix.thunk(() => ["pdfding"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         python: python,
         tests: nix.thunk(() => nix.sel(nixosTests, "pdfding")),
         frontend: nix.thunk(() => nix.app(callPackage, nix.path(here, "./frontend.nix"), nix.thunk(() => ({})))),
         updateScript: nix.path(here, "./update.sh"),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         changelog: nix.thunk(() => nix.str`https://codeberg.org/mrmn/PdfDing/src/commit/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG.md`),
         description: "Selfhosted PDF manager, viewer and editor offering a seamless user experience on multiple devices",
         downloadPage: "https://codeberg.org/mrmn/PdfDing",

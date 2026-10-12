@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 21, 26], ["version", 21, 32], ["hash", 22, 5]], [["name", 28, 7], ["url", 29, 7], ["hash", 30, 7], ["includes", 31, 7]], [["description", 47, 5], ["homepage", 48, 5], ["license", 49, 5], ["maintainers", 50, 5]], [["pname", 14, 3], ["version", 15, 3], ["pyproject", 16, 3], ["__structuredAttrs", 18, 3], ["src", 20, 3], ["patches", 25, 3], ["build-system", 35, 3], ["dependencies", 37, 3], ["doCheck", 44, 3], ["meta", 46, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchpatch: false, fetchPypi: false, setuptools: false, "async-timeout": false, "typing-extensions": false, hiredis: false, isPyPy: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 21, 26], ["version", 21, 32], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["name", 28, 7], ["url", 29, 7], ["hash", 30, 7], ["includes", 31, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 47, 5], ["homepage", 48, 5], ["license", 49, 5], ["maintainers", 50, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 14, 3], ["version", 15, 3], ["pyproject", 16, 3], ["__structuredAttrs", 18, 3], ["src", 20, 3], ["patches", 25, 3], ["build-system", 35, 3], ["dependencies", 37, 3], ["doCheck", 44, 3], ["meta", 46, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,20 +17,20 @@ export default nix.lambda((args) => (() => {
   const hiredis = nix.arg($, "hiredis");
   const isPyPy = nix.arg($, "isPyPy");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "aioredis",
       version: "2.0.1",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-6qUar5k/LXH1S3BSfEQEN7plNAWIr+t4bNh8Vcic2Y4=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "python-3.11-compatibility.patch",
             url: "https://github.com/aio-libs-abandoned/aioredis-py/commit/1b951502dc8f149fa66beafeea40c782f1c5c1d3.patch",
             hash: "sha256-EqkiYktxISg0Rv4ShXOksGvuUyljPxjJsfNOVaaax2o=",
@@ -44,7 +41,7 @@ export default nix.lambda((args) => (() => {
       dependencies: nix.thunk(() => nix.concat([async_timeout, typing_extensions], nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(isPyPy)), hiredis))),
       doCheck: false,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Asyncio (PEP 3156) Redis client library",
         homepage: "https://github.com/aio-libs-abandoned/aioredis-py",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

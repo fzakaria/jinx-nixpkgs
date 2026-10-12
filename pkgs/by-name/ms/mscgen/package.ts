@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 21, 5], ["sha256", 22, 5]], [["homepage", 49, 5], ["description", 50, 5], ["license", 51, 5], ["longDescription", 53, 5], ["platforms", 66, 5], ["mainProgram", 67, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 30, 3], ["doCheck", 38, 3], ["preCheck", 39, 3], ["outputs", 43, 3], ["meta", 48, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, bison: false, fetchurl: false, flex: false, gd: false, libjpeg: false, libpng: false, libwebp: false, "pkg-config": false, runtimeShell: false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 21, 5], ["sha256", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 49, 5], ["description", 50, 5], ["license", 51, 5], ["longDescription", 53, 5], ["platforms", 66, 5], ["mainProgram", 67, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 30, 3], ["doCheck", 38, 3], ["preCheck", 39, 3], ["outputs", 43, 3], ["meta", 48, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const runtimeShell = nix.arg($, "runtimeShell");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "mscgen",
       version: "0.20",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://www.mcternan.me.uk/mscgen/software/mscgen-src-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "3c3481ae0599e1c2d30b7ed54ab45249127533ab2f20e768a0ae58d8551ddc23",
         })))),
@@ -37,7 +35,7 @@ export default nix.lambda((args) => (() => {
 `),
       outputs: nix.thunk(() => ["out", "man"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "http://www.mcternan.me.uk/mscgen/",
         description: "Convert Message Sequence Chart descriptions into PNG, SVG, or EPS images",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

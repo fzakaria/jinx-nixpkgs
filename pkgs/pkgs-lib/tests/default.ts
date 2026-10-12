@@ -2,17 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pkgs", 24, 46]], [["jdk", 26, 66]], [["jdk", 27, 66]], [["jdk", 28, 64]], [["jdk11", 26, 7], ["jdk17", 27, 7], ["jdk", 28, 7]], [["pkgs", 31, 78]], [["pkgs", 33, 70]], [["formats", 24, 5], ["java-properties", 25, 5], ["libconfig", 31, 5], ["hocon", 33, 5]], [["name", 57, 7], ["path", 58, 7]], [["formats-tests", 55, 3]]]);
 const formals$1 = { args: { pkgs: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pkgs", 24, 46]]);
-const pos$2 = nix.positions(here + "/default.nix", [["jdk", 26, 66]]);
-const pos$3 = nix.positions(here + "/default.nix", [["jdk", 27, 66]]);
-const pos$4 = nix.positions(here + "/default.nix", [["jdk", 28, 64]]);
-const pos$5 = nix.positions(here + "/default.nix", [["jdk11", 26, 7], ["jdk17", 27, 7], ["jdk", 28, 7]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pkgs", 31, 78]]);
-const pos$7 = nix.positions(here + "/default.nix", [["pkgs", 33, 70]]);
-const pos$8 = nix.positions(here + "/default.nix", [["formats", 24, 5], ["java-properties", 25, 5], ["libconfig", 31, 5], ["hocon", 33, 5]]);
-const pos$9 = nix.positions(here + "/default.nix", [["name", 57, 7], ["path", 58, 7]]);
-const pos$10 = nix.positions(here + "/default.nix", [["formats-tests", 55, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,21 +17,21 @@ export default nix.lambda((args) => (() => {
   const attrValues = nix.thunk(() => nix.attr(from, "attrValues"));
   const recurseIntoAttrs = nix.thunk(() => nix.attr(from, "recurseIntoAttrs"));
   const structured = nix.thunk(() => ({
-    [nix.POS]: pos$8,
-    formats: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./formats.nix")), nix.thunk(() => ({ [nix.POS]: pos$1, pkgs: pkgs })))),
+    [nix.POS]: $pos[7],
+    formats: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./formats.nix")), nix.thunk(() => ({ [nix.POS]: $pos[0], pkgs: pkgs })))),
     "java-properties": nix.thunk(() => nix.app(recurseIntoAttrs, nix.thunk(() => ({
-        [nix.POS]: pos$5,
-        jdk11: nix.thunk(() => nix.app(nix.sel(pkgs, "callPackage"), nix.path(here, "../formats/java-properties/test"), nix.thunk(() => ({ [nix.POS]: pos$2, jdk: nix.thunk(() => nix.sel(pkgs, "jdk11_headless")) })))),
-        jdk17: nix.thunk(() => nix.app(nix.sel(pkgs, "callPackage"), nix.path(here, "../formats/java-properties/test"), nix.thunk(() => ({ [nix.POS]: pos$3, jdk: nix.thunk(() => nix.sel(pkgs, "jdk17_headless")) })))),
-        jdk: nix.thunk(() => nix.app(nix.sel(pkgs, "callPackage"), nix.path(here, "../formats/java-properties/test"), nix.thunk(() => ({ [nix.POS]: pos$4, jdk: nix.thunk(() => nix.sel(pkgs, "jdk_headless")) })))),
+        [nix.POS]: $pos[4],
+        jdk11: nix.thunk(() => nix.app(nix.sel(pkgs, "callPackage"), nix.path(here, "../formats/java-properties/test"), nix.thunk(() => ({ [nix.POS]: $pos[1], jdk: nix.thunk(() => nix.sel(pkgs, "jdk11_headless")) })))),
+        jdk17: nix.thunk(() => nix.app(nix.sel(pkgs, "callPackage"), nix.path(here, "../formats/java-properties/test"), nix.thunk(() => ({ [nix.POS]: $pos[2], jdk: nix.thunk(() => nix.sel(pkgs, "jdk17_headless")) })))),
+        jdk: nix.thunk(() => nix.app(nix.sel(pkgs, "callPackage"), nix.path(here, "../formats/java-properties/test"), nix.thunk(() => ({ [nix.POS]: $pos[3], jdk: nix.thunk(() => nix.sel(pkgs, "jdk_headless")) })))),
       })))),
-    libconfig: nix.thunk(() => nix.app(recurseIntoAttrs, nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../formats/libconfig/test")), nix.thunk(() => ({ [nix.POS]: pos$6, pkgs: pkgs })))))),
-    hocon: nix.thunk(() => nix.app(recurseIntoAttrs, nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../formats/hocon/test")), nix.thunk(() => ({ [nix.POS]: pos$7, pkgs: pkgs })))))),
+    libconfig: nix.thunk(() => nix.app(recurseIntoAttrs, nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../formats/libconfig/test")), nix.thunk(() => ({ [nix.POS]: $pos[5], pkgs: pkgs })))))),
+    hocon: nix.thunk(() => nix.app(recurseIntoAttrs, nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../formats/hocon/test")), nix.thunk(() => ({ [nix.POS]: $pos[6], pkgs: pkgs })))))),
   }));
   const flatten = (prefix) => (as) => nix.app(foldl$, mergeAttrs, nix.thunk(() => ({})), nix.thunk(() => nix.app(attrValues, nix.thunk(() => nix.app(mapAttrs, (k) => (v) => (nix.asBool(nix.app(isDerivation, v)) ? nix.attrsDyn({}, [[nix.str`${prefix}${k}`, v]]) : (nix.asBool(nix.has(v, "recurseForDerivations")) ? nix.app(flatten, nix.thunk(() => nix.str`${prefix}${k}-`), nix.thunk(() => nix.builtins.removeAttrs(v, nix.thunk(() => ["recurseForDerivations"])))) : nix.app(nix.builtins.trace(v, nix.builtins.throw), "expected derivation or recurseIntoAttrs"))), as)))));
   return nix.update({
-    [nix.POS]: pos$10,
-    "formats-tests": nix.thunk(() => nix.app(nix.sel(pkgs, "linkFarm"), "pkgs-lib-formats-tests", nix.thunk(() => nix.app(mapAttrsToList, (k) => (v) => ({ [nix.POS]: pos$9, name: k, path: v }), nix.thunk(() => nix.app(flatten, "", structured)))))),
+    [nix.POS]: $pos[9],
+    "formats-tests": nix.thunk(() => nix.app(nix.sel(pkgs, "linkFarm"), "pkgs-lib-formats-tests", nix.thunk(() => nix.app(mapAttrsToList, (k) => (v) => ({ [nix.POS]: $pos[8], name: k, path: v }), nix.thunk(() => nix.app(flatten, "", structured)))))),
   }, structured);
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

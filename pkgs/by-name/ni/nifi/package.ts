@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 15, 5], ["hash", 16, 5]], [["nifi", 38, 11]], [["tests", 38, 5]], [["description", 42, 5], ["longDescription", 43, 5], ["license", 47, 5], ["homepage", 48, 5], ["platforms", 49, 5], ["sourceProvenance", 50, 5], ["maintainers", 51, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 19, 3], ["buildInputs", 20, 3], ["installPhase", 22, 3], ["passthru", 37, 3], ["meta", 41, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchzip: false, makeWrapper: false, jdk11: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["nifi", 38, 11]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 38, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 42, 5], ["longDescription", 43, 5], ["license", 47, 5], ["homepage", 48, 5], ["platforms", 49, 5], ["sourceProvenance", 50, 5], ["maintainers", 51, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 19, 3], ["buildInputs", 20, 3], ["installPhase", 22, 3], ["passthru", 37, 3], ["meta", 41, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const jdk11 = nix.arg($, "jdk11");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "nifi",
       version: "1.28.1",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://apache/nifi/${nix.sel(finalAttrs, "version")}/nifi-${nix.sel(finalAttrs, "version")}-bin.zip`),
           hash: "sha256-YFQIV2/B+8/fBmrWPs7Q3FkqaIxBqNBP0BIkIm4M7Zo=",
         })))),
@@ -42,11 +38,11 @@ substituteInPlace $out/bin/nifi-env.sh \\
   --replace-fail "#export JAVA_HOME=/usr/java/jdk1.8.0/" "export JAVA_HOME=${jdk11}"
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$2, nifi: nix.thunk(() => nix.sel(nixosTests, "nifi")) })),
+        [nix.POS]: $pos[2],
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[1], nifi: nix.thunk(() => nix.sel(nixosTests, "nifi")) })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Easy to use, powerful, and reliable system to process and distribute data",
         longDescription: "Apache NiFi supports powerful and scalable directed graphs of data routing,\ntransformation, and system mediation logic.\n",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

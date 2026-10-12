@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5], ["leaveDotGit", 32, 5], ["postFetch", 33, 5]], [["description", 94, 5], ["changelog", 95, 5], ["homepage", 96, 5], ["license", 97, 5], ["maintainers", 98, 5], ["mainProgram", 99, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["vendorHash", 41, 3], ["ldflags", 43, 3], ["preBuild", 50, 3], ["nativeBuildInputs", 57, 3], ["postInstall", 61, 3], ["doCheck", 69, 3], ["doInstallCheck", 70, 3], ["installCheckInputs", 71, 3], ["installCheckPhase", 76, 3], ["subPackages", 91, 3], ["meta", 93, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, stdenv: false, fetchFromGitHub: false, writableTmpDirAsHomeHook: false, installShellFiles: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5], ["leaveDotGit", 32, 5], ["postFetch", 33, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 94, 5], ["changelog", 95, 5], ["homepage", 96, 5], ["license", 97, 5], ["maintainers", 98, 5], ["mainProgram", 99, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["vendorHash", 41, 3], ["ldflags", 43, 3], ["preBuild", 50, 3], ["nativeBuildInputs", 57, 3], ["postInstall", 61, 3], ["doCheck", 69, 3], ["doInstallCheck", 70, 3], ["installCheckInputs", 71, 3], ["installCheckPhase", 76, 3], ["subPackages", 91, 3], ["meta", 93, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   const installShellFiles = nix.arg($, "installShellFiles");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "pdfcpu",
       version: "0.16.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "pdfcpu",
           repo: "pdfcpu",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -53,7 +51,7 @@ done
 `),
       subPackages: nix.thunk(() => ["cmd/pdfcpu"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "PDF processor written in Go",
         changelog: "https://pdfcpu.io/changelog/",
         homepage: "https://pdfcpu.io",

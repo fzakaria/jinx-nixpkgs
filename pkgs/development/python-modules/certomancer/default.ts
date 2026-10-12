@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 39, 5], ["repo", 40, 5], ["tag", 41, 5], ["hash", 42, 5]], [["requests-mocker", 60, 5], ["web-api", 61, 5], ["pkcs11", 65, 5]], [["description", 81, 5], ["mainProgram", 82, 5], ["homepage", 83, 5], ["license", 84, 5], ["maintainers", 85, 5]], [["pname", 34, 3], ["version", 35, 3], ["pyproject", 36, 3], ["src", 38, 3], ["build-system", 45, 3], ["dependencies", 50, 3], ["optional-dependencies", 59, 3], ["nativeCheckInputs", 68, 3], ["pythonImportsCheck", 78, 3], ["meta", 80, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, "setuptools-scm": false, asn1crypto: false, click: false, cryptography: false, "python-dateutil": false, pyyaml: false, tzlocal: false, "requests-mock": false, jinja2: false, werkzeug: false, "python-pkcs11": false, freezegun: false, "pyhanko-certvalidator": false, "pytest-aiohttp": false, pytestCheckHook: false, pytz: false, requests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 39, 5], ["repo", 40, 5], ["tag", 41, 5], ["hash", 42, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["requests-mocker", 60, 5], ["web-api", 61, 5], ["pkcs11", 65, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 81, 5], ["mainProgram", 82, 5], ["homepage", 83, 5], ["license", 84, 5], ["maintainers", 85, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 34, 3], ["version", 35, 3], ["pyproject", 36, 3], ["src", 38, 3], ["build-system", 45, 3], ["dependencies", 50, 3], ["optional-dependencies", 59, 3], ["nativeCheckInputs", 68, 3], ["pythonImportsCheck", 78, 3], ["meta", 80, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -36,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.14.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "MatthiasValvekens",
           repo: "certomancer",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -45,7 +42,7 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [setuptools, setuptools_scm]);
       const dependencies = nix.thunk(() => [asn1crypto, click, cryptography, python_dateutil, pyyaml, tzlocal]);
       const optional_dependencies = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         "requests-mocker": nix.thunk(() => [requests_mock]),
         "web-api": nix.thunk(() => [jinja2, werkzeug]),
         pkcs11: nix.thunk(() => [python_pkcs11]),
@@ -60,7 +57,7 @@ export default nix.lambda((args) => (() => {
       ], nix.app(nix.sel(lib, "concatAttrValues"), optional_dependencies)));
       const pythonImportsCheck = nix.thunk(() => ["certomancer"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Quickly construct, mock & deploy PKI test configurations using simple declarative configuration",
         mainProgram: "certomancer",
         homepage: "https://github.com/MatthiasValvekens/certomancer",
@@ -68,7 +65,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

@@ -2,47 +2,36 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
-const pos$1 = nix.positions(here + "/patches.nix", [["after", 8, 7], ["path", 9, 7]]);
-const pos$2 = nix.positions(here + "/patches.nix", [["after", 12, 7], ["path", 13, 7]]);
-const pos$3 = nix.positions(here + "/patches.nix", [["after", 21, 7], ["path", 22, 7]]);
-const pos$4 = nix.positions(here + "/patches.nix", [["after", 29, 7], ["path", 30, 7]]);
-const pos$5 = nix.positions(here + "/patches.nix", [["after", 38, 7], ["path", 39, 7]]);
-const pos$6 = nix.positions(here + "/patches.nix", [["after", 42, 7], ["path", 43, 7]]);
-const pos$7 = nix.positions(here + "/patches.nix", [["after", 50, 7], ["path", 51, 7]]);
-const pos$8 = nix.positions(here + "/patches.nix", [["after", 57, 7], ["path", 58, 7]]);
-const pos$9 = nix.positions(here + "/patches.nix", [["after", 64, 7], ["path", 65, 7]]);
-const pos$10 = nix.positions(here + "/patches.nix", [["after", 73, 7], ["path", 74, 7]]);
-const pos$11 = nix.positions(here + "/patches.nix", [["after", 77, 7], ["path", 78, 7]]);
-const pos$12 = nix.positions(here + "/patches.nix", [["gcc/fix-collect2-paths.diff", 3, 3], ["libatomic/no-gcc-objdir-install.patch", 19, 3], ["libgomp/uid-buffer-size.patch", 27, 3], ["libgcc/darwin-detection.patch", 36, 3], ["libgcc/force-regular-dirs.patch", 48, 3], ["libssp/force-regular-dirs.patch", 55, 3], ["libstdcxx/force-regular-dirs.patch", 62, 3], ["libgfortran/force-regular-dirs.patch", 69, 3]]);
+const $pos = nix.positions(here + "/patches.nix", [[["after", 8, 7], ["path", 9, 7]], [["after", 12, 7], ["path", 13, 7]], [["after", 21, 7], ["path", 22, 7]], [["after", 29, 7], ["path", 30, 7]], [["after", 38, 7], ["path", 39, 7]], [["after", 42, 7], ["path", 43, 7]], [["after", 50, 7], ["path", 51, 7]], [["after", 57, 7], ["path", 58, 7]], [["after", 64, 7], ["path", 65, 7]], [["after", 73, 7], ["path", 74, 7]], [["after", 77, 7], ["path", 78, 7]], [["gcc/fix-collect2-paths.diff", 3, 3], ["libatomic/no-gcc-objdir-install.patch", 19, 3], ["libgomp/uid-buffer-size.patch", 27, 3], ["libgcc/darwin-detection.patch", 36, 3], ["libgcc/force-regular-dirs.patch", 48, 3], ["libssp/force-regular-dirs.patch", 55, 3], ["libstdcxx/force-regular-dirs.patch", 62, 3], ["libgfortran/force-regular-dirs.patch", 69, 3]]]);
 
 export default nix.thunk(() => ({
-  [nix.POS]: pos$12,
+  [nix.POS]: $pos[11],
   "gcc/fix-collect2-paths.diff": nix.thunk(() => [
-    nix.thunk(() => ({ [nix.POS]: pos$1, after: "16", path: nix.path(here, "../16") })),
-    nix.thunk(() => ({ [nix.POS]: pos$2, after: "15", path: nix.path(here, "../15") })),
+    nix.thunk(() => ({ [nix.POS]: $pos[0], after: "16", path: nix.path(here, "../16") })),
+    nix.thunk(() => ({ [nix.POS]: $pos[1], after: "15", path: nix.path(here, "../15") })),
   ]),
   "libatomic/no-gcc-objdir-install.patch": nix.thunk(() => [
-    nix.thunk(() => ({ [nix.POS]: pos$3, after: "16", path: nix.path(here, "../16") })),
+    nix.thunk(() => ({ [nix.POS]: $pos[2], after: "16", path: nix.path(here, "../16") })),
   ]),
   "libgomp/uid-buffer-size.patch": nix.thunk(() => [
-    nix.thunk(() => ({ [nix.POS]: pos$4, after: "16", path: nix.path(here, "../16") })),
+    nix.thunk(() => ({ [nix.POS]: $pos[3], after: "16", path: nix.path(here, "../16") })),
   ]),
   "libgcc/darwin-detection.patch": nix.thunk(() => [
-    nix.thunk(() => ({ [nix.POS]: pos$5, after: "16", path: nix.path(here, "../16") })),
-    nix.thunk(() => ({ [nix.POS]: pos$6, after: "15", path: nix.path(here, "../15") })),
+    nix.thunk(() => ({ [nix.POS]: $pos[4], after: "16", path: nix.path(here, "../16") })),
+    nix.thunk(() => ({ [nix.POS]: $pos[5], after: "15", path: nix.path(here, "../15") })),
   ]),
   "libgcc/force-regular-dirs.patch": nix.thunk(() => [
-    nix.thunk(() => ({ [nix.POS]: pos$7, after: "15", path: nix.path(here, "../15") })),
+    nix.thunk(() => ({ [nix.POS]: $pos[6], after: "15", path: nix.path(here, "../15") })),
   ]),
   "libssp/force-regular-dirs.patch": nix.thunk(() => [
-    nix.thunk(() => ({ [nix.POS]: pos$8, after: "15", path: nix.path(here, "../15") })),
+    nix.thunk(() => ({ [nix.POS]: $pos[7], after: "15", path: nix.path(here, "../15") })),
   ]),
   "libstdcxx/force-regular-dirs.patch": nix.thunk(() => [
-    nix.thunk(() => ({ [nix.POS]: pos$9, after: "15", path: nix.path(here, "../15") })),
+    nix.thunk(() => ({ [nix.POS]: $pos[8], after: "15", path: nix.path(here, "../15") })),
   ]),
   "libgfortran/force-regular-dirs.patch": nix.thunk(() => [
-    nix.thunk(() => ({ [nix.POS]: pos$10, after: "16", path: nix.path(here, "../16") })),
-    nix.thunk(() => ({ [nix.POS]: pos$11, after: "15", path: nix.path(here, "../15") })),
+    nix.thunk(() => ({ [nix.POS]: $pos[9], after: "16", path: nix.path(here, "../16") })),
+    nix.thunk(() => ({ [nix.POS]: $pos[10], after: "15", path: nix.path(here, "../15") })),
   ]),
 }));
 //# sourceMappingURL=patches.ts.map

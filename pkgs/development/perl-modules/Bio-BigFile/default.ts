@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 19, 5], ["sha256", 20, 5]], [["owner", 32, 7], ["repo", 33, 7], ["rev", 34, 7], ["sha256", 35, 7]], [["pname", 28, 5], ["version", 29, 5], ["src", 31, 5], ["patches", 38, 5]], [["KENT_SRC", 27, 7]], [["homepage", 58, 5], ["description", 59, 5], ["license", 60, 5], ["maintainers", 61, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["env", 27, 3], ["buildInputs", 46, 3], ["hardeningDisable", 55, 3], ["meta", 57, 3]]]);
 const formals$1 = { args: { BioPerl: false, IOString: false, buildPerlModule: false, fetchFromGitHub: false, fetchurl: false, kent: false, lib: false, libmysqlclient: false, libpng: false, openssl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 19, 5], ["sha256", 20, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["owner", 32, 7], ["repo", 33, 7], ["rev", 34, 7], ["sha256", 35, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 28, 5], ["version", 29, 5], ["src", 31, 5], ["patches", 38, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["KENT_SRC", 27, 7]]);
-const pos$5 = nix.positions(here + "/default.nix", [["homepage", 58, 5], ["description", 59, 5], ["license", 60, 5], ["maintainers", 61, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["env", 27, 3], ["buildInputs", 46, 3], ["hardeningDisable", 55, 3], ["meta", 57, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,17 +21,17 @@ export default nix.lambda((args) => (() => {
       const pname = "Bio-BigFile";
       const version = "1.07";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://cpan/authors/id/L/LD/LDS/Bio-BigFile-${version}.tar.gz`),
           sha256: "277b66ce8acbdd52399e2c5a0cf4e3bd5c74c12b94877cd383d0c4c97740d16d",
         }))));
       const env = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         KENT_SRC: nix.thunk(() => nix.app(nix.sel(kent, "overrideAttrs"), (old) => (() => {
             const pname_1 = "kent";
             const version_1 = "335";
             const src_1 = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                [nix.POS]: pos$2,
+                [nix.POS]: $pos[1],
                 owner: "ucscGenomeBrowser",
                 repo: "kent",
                 rev: nix.thunk(() => nix.str`v${version_1}_base`),
@@ -46,13 +41,13 @@ export default nix.lambda((args) => (() => {
               nix.path(here, "./kent-utils.patch"),
               nix.path(here, "./kent-316e4fd40f53c96850128fd65097a42623d1e736.patch"),
             ]);
-            return { [nix.POS]: pos$3, pname: pname_1, version: version_1, src: src_1, patches };
+            return { [nix.POS]: $pos[2], pname: pname_1, version: version_1, src: src_1, patches };
           })())),
       }));
       const buildInputs = nix.thunk(() => [BioPerl, IOString, libpng, libmysqlclient, openssl]);
       const hardeningDisable = nix.thunk(() => ["format"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "https://metacpan.org/dist/Bio-BigFile",
         description: "Manipulate Jim Kent's BigWig and BigBed index files for genomic features",
         license: nix.thunk(() => nix.sel(lib, "licenses", "artistic2")),
@@ -62,7 +57,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname,
         version,
         src,

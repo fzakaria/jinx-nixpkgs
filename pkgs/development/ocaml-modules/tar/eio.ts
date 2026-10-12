@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/eio.nix", [[["description", 26, 5]], [["pname", 10, 3], ["version", 11, 17], ["src", 11, 25], ["doCheck", 11, 29], ["minimalOCamlVersion", 13, 3], ["propagatedBuildInputs", 15, 3], ["checkInputs", 20, 3], ["meta", 25, 3]]]);
 const formals$1 = { args: { buildDunePackage: false, tar: false, eio: false, alcotest: false, eio_main: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/eio.nix", [["description", 26, 5]]);
-const pos$2 = nix.positions(here + "/eio.nix", [["pname", 10, 3], ["version", 11, 17], ["src", 11, 25], ["doCheck", 11, 29], ["minimalOCamlVersion", 13, 3], ["propagatedBuildInputs", 15, 3], ["checkInputs", 20, 3], ["meta", 25, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const alcotest = nix.arg($, "alcotest");
   const eio_main = nix.arg($, "eio_main");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "tar-eio",
       version: nix.thunk(() => nix.attr(tar, "version")),
       src: nix.thunk(() => nix.attr(tar, "src")),
@@ -23,7 +22,7 @@ export default nix.lambda((args) => (() => {
       propagatedBuildInputs: nix.thunk(() => [tar, eio]),
       checkInputs: nix.thunk(() => [alcotest, eio_main]),
       meta: nix.thunk(() => nix.update(nix.sel(tar, "meta"), {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Decode and encode tar format files using Eio",
       })),
     })));

@@ -2,16 +2,15 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/resource-monitor.nix", [[["description", 15, 5], ["homepage", 17, 7], ["changelog", 18, 7], ["license", 19, 7], ["maintainers", 20, 7], ["platforms", 21, 7], ["mainProgram", 23, 5]], [["pname", 7, 3], ["version", 8, 30], ["src", 8, 38], ["sourceRoot", 10, 3], ["cargoHash", 12, 3], ["meta", 14, 3]]]);
 const formals$1 = { args: { rustPlatform: false, "t3code-unwrapped": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/resource-monitor.nix", [["description", 15, 5], ["homepage", 17, 7], ["changelog", 18, 7], ["license", 19, 7], ["maintainers", 20, 7], ["platforms", 21, 7], ["mainProgram", 23, 5]]);
-const pos$2 = nix.positions(here + "/resource-monitor.nix", [["pname", 7, 3], ["version", 8, 30], ["src", 8, 38], ["sourceRoot", 10, 3], ["cargoHash", 12, 3], ["meta", 14, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const rustPlatform = nix.arg($, "rustPlatform");
   const t3code_unwrapped = nix.arg($, "t3code-unwrapped");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "t3code-resource-monitor",
       version: nix.thunk(() => nix.attr(t3code_unwrapped, "version")),
       src: nix.thunk(() => nix.attr(t3code_unwrapped, "src")),
@@ -20,7 +19,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(t3code_unwrapped, "meta"));
         return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Native resource diagnostics sidecar for T3 Code",
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         changelog: nix.thunk(() => nix.attr(from, "changelog")),

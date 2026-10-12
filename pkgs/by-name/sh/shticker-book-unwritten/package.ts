@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["description", 27, 5], ["mainProgram", 28, 5], ["homepage", 29, 5], ["license", 30, 5], ["maintainers", 31, 5], ["platforms", 32, 5]], [["pname", 12, 3], ["version", 13, 47], ["targetPkgs", 14, 3], ["runScript", 24, 3], ["meta", 26, 3]]]);
 const formals$1 = { args: { buildFHSEnv: false, callPackage: false, lib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["description", 27, 5], ["mainProgram", 28, 5], ["homepage", 29, 5], ["license", 30, 5], ["maintainers", 31, 5], ["platforms", 32, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 47], ["targetPkgs", 14, 3], ["runScript", 24, 3], ["meta", 26, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const shticker_book_unwritten_unwrapped = nix.thunk(() => nix.app(callPackage, nix.path(here, "./unwrapped.nix"), nix.thunk(() => ({}))));
   return nix.app(buildFHSEnv, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "shticker_book_unwritten",
       version: nix.thunk(() => nix.attr(shticker_book_unwritten_unwrapped, "version")),
       targetPkgs: (pkgs) => (() => {
@@ -30,7 +29,7 @@ export default nix.lambda((args) => (() => {
       })(),
       runScript: "shticker_book_unwritten",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Minimal CLI launcher for the Toontown Rewritten MMORPG",
         mainProgram: "shticker_book_unwritten",
         homepage: "https://github.com/JonathanHelianthicusDoe/shticker_book_unwritten",

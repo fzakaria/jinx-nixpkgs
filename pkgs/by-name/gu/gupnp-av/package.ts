@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 27, 5], ["sha256", 28, 5]], [["packageName", 64, 7], ["versionPolicy", 65, 7]], [["updateScript", 63, 5]], [["homepage", 70, 5], ["description", 71, 5], ["license", 72, 5], ["platforms", 73, 5]], [["pname", 17, 3], ["version", 18, 3], ["outputs", 20, 3], ["src", 26, 3], ["strictDeps", 31, 3], ["depsBuildBuild", 33, 3], ["nativeBuildInputs", 37, 3], ["propagatedBuildInputs", 46, 3], ["mesonFlags", 51, 3], ["doCheck", 55, 3], ["postFixup", 57, 3], ["passthru", 62, 3], ["meta", 69, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, meson: false, ninja: false, "pkg-config": false, "gi-docgen": false, "gobject-introspection": false, vala: false, glib: false, libxml2: false, gnome: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 27, 5], ["sha256", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["packageName", 64, 7], ["versionPolicy", 65, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 63, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 70, 5], ["description", 71, 5], ["license", 72, 5], ["platforms", 73, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["outputs", 20, 3], ["src", 26, 3], ["strictDeps", 31, 3], ["depsBuildBuild", 33, 3], ["nativeBuildInputs", 37, 3], ["propagatedBuildInputs", 46, 3], ["mesonFlags", 51, 3], ["doCheck", 55, 3], ["postFixup", 57, 3], ["passthru", 62, 3], ["meta", 69, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const libxml2 = nix.arg($, "libxml2");
   const gnome = nix.arg($, "gnome");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "gupnp-av",
       version: "0.14.5",
       outputs: nix.thunk(() => ["out", "dev", "devdoc"]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnome/sources/gupnp-av/${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/gupnp-av-${nix.sel(finalAttrs, "version")}.tar.xz`),
           sha256: "k5GPz1r1Kf2ls9LZ/Dt3zZPfiAZJObgvJJ9Vd9jeHAI=",
         })))),
@@ -41,11 +37,11 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       postFixup: "# Cannot be in postInstall, otherwise _multioutDocs hook in preFixup will move right back.\nmoveToOutput \"share/doc/gupnp-av-1.0\" \"$devdoc\"\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$2, packageName: "gupnp-av", versionPolicy: "odd-unstable" })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: $pos[1], packageName: "gupnp-av", versionPolicy: "odd-unstable" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "http://gupnp.org/",
         description: "Collection of helpers for building AV (audio/video) applications using GUPnP",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl2Plus")),

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]], [["updateScript", 39, 12]], [["description", 42, 5], ["longDescription", 43, 5], ["homepage", 48, 5], ["changelog", 49, 5], ["license", 50, 5], ["sourceProvenance", 54, 5], ["mainProgram", 58, 5], ["maintainers", 59, 5], ["platforms", 63, 32]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["mvnHash", 20, 3], ["nativeBuildInputs", 22, 3], ["postPatch", 24, 3], ["installPhase", 29, 3], ["passthru", 39, 3], ["meta", 41, 3]]]);
 const formals$1 = { args: { maven: false, lib: false, fetchFromGitHub: false, jre_minimal: false, makeWrapper: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 39, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 42, 5], ["longDescription", 43, 5], ["homepage", 48, 5], ["changelog", 49, 5], ["license", 50, 5], ["sourceProvenance", 54, 5], ["mainProgram", 58, 5], ["maintainers", 59, 5], ["platforms", 63, 32]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["mvnHash", 20, 3], ["nativeBuildInputs", 22, 3], ["postPatch", 24, 3], ["installPhase", 29, 3], ["passthru", 39, 3], ["meta", 41, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(maven, "buildMavenPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "jol",
       version: "0.17",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "OpenJDK",
           repo: "jol",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -39,13 +36,13 @@ makeWrapper ${nix.app(nix.sel(lib, "getExe'"), jre_minimal, "java")} $out/bin/jo
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(jre_minimal, "meta"));
         return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Java Object Layout (JOL)",
         longDescription: "JOL (Java Object Layout) is the tiny toolbox to analyze object layout in JVMs.\nThese tools are using Unsafe, JVMTI, and Serviceability Agent (SA) heavily to decode the actual object layout, footprint, and references.\nThis makes JOL much more accurate than other tools relying on heap dumps, specification assumptions, etc.\n",
         homepage: "https://openjdk.org/projects/code-tools/jol/",

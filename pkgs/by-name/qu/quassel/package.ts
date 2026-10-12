@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 42, 5], ["repo", 43, 5], ["rev", 44, 5], ["sha256", 45, 5], ["fetchSubmodules", 47, 5]], [["NIX_CFLAGS_COMPILE", 51, 7]], [["homepage", 108, 5], ["description", 109, 5], ["longDescription", 110, 5], ["license", 117, 5], ["maintainers", 118, 5], ["mainProgram", 119, 5], ["platforms", 126, 31]], [["pname", 38, 3], ["version", 39, 3], ["src", 41, 3], ["env", 51, 3], ["nativeBuildInputs", 53, 3], ["buildInputs", 62, 3], ["cmakeFlags", 86, 3], ["dontWrapQtApps", 96, 3], ["postFixup", 98, 3], ["meta", 107, 3]]]);
 const formals$1 = { args: { monolithic: true, enableDaemon: true, client: true, tag: true, static: true, withKDE: true, lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, makeWrapper: false, dconf: false, boost: false, zlib: false, openldap: false, qt6: false, qt6Packages: false, kdePackages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 42, 5], ["repo", 43, 5], ["rev", 44, 5], ["sha256", 45, 5], ["fetchSubmodules", 47, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 51, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 108, 5], ["description", 109, 5], ["longDescription", 110, 5], ["license", 117, 5], ["maintainers", 118, 5], ["mainProgram", 119, 5], ["platforms", 126, 31]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 38, 3], ["version", 39, 3], ["src", 41, 3], ["env", 51, 3], ["nativeBuildInputs", 53, 3], ["buildInputs", 62, 3], ["cmakeFlags", 86, 3], ["dontWrapQtApps", 96, 3], ["postFixup", 98, 3], ["meta", 107, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -37,18 +34,18 @@ export default nix.lambda((args) => (() => {
     nix.thunk(() => nix.add(nix.add("-D", feature), (nix.asBool(flag) ? "=ON" : "=OFF"))),
   ];
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: nix.thunk(() => nix.str`quassel${tag}`),
       version: "0.14.0-unstable-2026-08-09",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "quassel",
           repo: "quassel",
           rev: "15e764d9bb836f13283be80c8135936f6a1cac72",
           sha256: "sha256-Ogf2zv6SKnn+UwQ2meDYTk7axYkWTdnKqUhbJVMUBbo=",
           fetchSubmodules: true,
         })))),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-DQT_NO_VERSION_TAGGING=1" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], NIX_CFLAGS_COMPILE: "-DQT_NO_VERSION_TAGGING=1" })),
       nativeBuildInputs: nix.thunk(() => nix.concat([cmake, makeWrapper], nix.app(nix.sel(lib, "optionals"), buildClient, nix.thunk(() => [
           nix.thunk(() => nix.sel(qt6, "qttools")),
           nix.thunk(() => nix.sel(qt6, "wrapQtAppsHook")),
@@ -79,7 +76,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(qt6, "qtbase", "meta"));
         return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://quassel-irc.org/",
         description: "Qt/KDE distributed IRC client supporting a remote daemon",
         longDescription: "Quassel IRC is a cross-platform, distributed IRC client,\nmeaning that one (or multiple) client(s) can attach to\nand detach from a central core -- much like the popular\ncombination of screen and a text-based IRC client such\nas WeeChat, but graphical (based on Qt/KF).\n",

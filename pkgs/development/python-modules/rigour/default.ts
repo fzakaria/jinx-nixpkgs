@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]], [["description", 66, 5], ["homepage", 67, 5], ["license", 68, 5], ["maintainers", 69, 5]], [["pname", 23, 3], ["version", 24, 3], ["pyproject", 25, 3], ["src", 27, 3], ["build-system", 34, 3], ["dependencies", 38, 3], ["nativeCheckInputs", 54, 3], ["pythonImportsCheck", 56, 3], ["meta", 65, 3]]]);
 const formals$1 = { args: { lib: false, "ahocorasick-rs": false, babel: false, banal: false, buildPythonPackage: false, fetchFromGitHub: false, fingerprints: false, hatchling: false, jellyfish: false, jinja2: false, normality: false, orjson: false, pytestCheckHook: false, "python-stdnum": false, pytz: false, pyyaml: false, rapidfuzz: false, "typing-extensions": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 66, 5], ["homepage", 67, 5], ["license", 68, 5], ["maintainers", 69, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 23, 3], ["version", 24, 3], ["pyproject", 25, 3], ["src", 27, 3], ["build-system", 34, 3], ["dependencies", 38, 3], ["nativeCheckInputs", 54, 3], ["pythonImportsCheck", 56, 3], ["meta", 65, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.8.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "opensanctions",
           repo: "rigour",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -64,7 +62,7 @@ export default nix.lambda((args) => (() => {
         "rigour.addresses",
       ]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Data cleaning and validation functions for names, languages, identifiers, etc",
         homepage: "https://opensanctions.github.io/rigour",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -74,7 +72,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

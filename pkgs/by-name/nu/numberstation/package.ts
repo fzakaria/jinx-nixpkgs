@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]], [["url", 33, 7], ["hash", 34, 7]], [["changelog", 72, 5], ["description", 73, 5], ["mainProgram", 74, 5], ["homepage", 75, 5], ["license", 76, 5], ["maintainers", 77, 5]], [["pname", 19, 3], ["version", 20, 3], ["pyproject", 22, 3], ["src", 24, 3], ["patches", 31, 3], ["postPatch", 38, 3], ["nativeBuildInputs", 42, 3], ["buildInputs", 53, 3], ["propagatedBuildInputs", 59, 3], ["dontWrapGApps", 65, 3], ["preFixup", 67, 3], ["meta", 71, 3]]]);
 const formals$1 = { args: { lib: false, python3: false, fetchFromSourcehut: false, fetchurl: false, "desktop-file-utils": false, glib: false, "gobject-introspection": false, gtk3: false, libhandy: false, librsvg: false, meson: false, ninja: false, "pkg-config": false, wrapGAppsHook3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 33, 7], ["hash", 34, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["changelog", 72, 5], ["description", 73, 5], ["mainProgram", 74, 5], ["homepage", 75, 5], ["license", 76, 5], ["maintainers", 77, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["pyproject", 22, 3], ["src", 24, 3], ["patches", 31, 3], ["postPatch", 38, 3], ["nativeBuildInputs", 42, 3], ["buildInputs", 53, 3], ["propagatedBuildInputs", 59, 3], ["dontWrapGApps", 65, 3], ["preFixup", 67, 3], ["meta", 71, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,12 +22,12 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "numberstation",
       version: "1.5.0",
       pyproject: false,
       src: nix.thunk(() => nix.app(fetchFromSourcehut, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "~martijnbraam",
           repo: "numberstation",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -38,7 +35,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://src.fedoraproject.org/rpms/numberstation/raw/05cb9e58d879cd9d224862bb72c373374de63943/f/0001-Fix-if-statement-after-b32decode-removal.patch",
             hash: "sha256-grTSKdXl1WIK+n4rOe/g4lczc8eIuCU1ZqHI1VNkJ8w=",
           })))),
@@ -66,7 +63,7 @@ export default nix.lambda((args) => (() => {
       dontWrapGApps: true,
       preFixup: "makeWrapperArgs+=(\"${gappsWrapperArgs[@]}\")\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         changelog: nix.thunk(() => nix.str`https://git.sr.ht/~martijnbraam/numberstation/refs/${nix.sel(finalAttrs, "version")}`),
         description: "TOTP Authentication application for mobile",
         mainProgram: "numberstation",

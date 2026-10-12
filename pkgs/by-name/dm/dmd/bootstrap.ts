@@ -2,18 +2,17 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/bootstrap.nix", [[["osx", 6, 5], ["linux", 7, 5]], [["version", 3, 3], ["hashes", 4, 3]]]);
 const formals$1 = { args: { callPackage: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/bootstrap.nix", [["osx", 6, 5], ["linux", 7, 5]]);
-const pos$2 = nix.positions(here + "/bootstrap.nix", [["version", 3, 3], ["hashes", 4, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const callPackage = nix.arg($, "callPackage");
   return nix.app(callPackage, nix.path(here, "./binary.nix"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       version: "2.090.1",
       hashes: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         osx: "sha256-9HwGVO/8jfZ6aTiDIUi8w4C4Ukry0uUS8ACP3Ig8dmU=",
         linux: "sha256-ByCrIA4Nt7i9YT0L19VXIL1IqIp+iObcZux407amZu4=",
       })),

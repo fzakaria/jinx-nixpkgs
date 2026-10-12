@@ -2,20 +2,18 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/expose-module-class.nix", [[["default", 5, 7]], [["foo", 4, 5]], [["options", 3, 3]]]);
 const formals$1 = { args: { _class: false, lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/expose-module-class.nix", [["default", 5, 7]]);
-const pos$2 = nix.positions(here + "/expose-module-class.nix", [["foo", 4, 5]]);
-const pos$3 = nix.positions(here + "/expose-module-class.nix", [["options", 3, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const _class = nix.arg($, "_class");
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$3,
+    [nix.POS]: $pos[2],
     options: nix.thunk(() => ({
-      [nix.POS]: pos$2,
-      foo: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({ [nix.POS]: pos$1, default: _class })))),
+      [nix.POS]: $pos[1],
+      foo: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({ [nix.POS]: $pos[0], default: _class })))),
     })),
   };
 })(), formals$1);

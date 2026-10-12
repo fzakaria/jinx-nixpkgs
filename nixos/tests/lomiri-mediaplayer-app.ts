@@ -2,21 +2,9 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/lomiri-mediaplayer-app.nix", [[["maintainers", 8, 8]], [["enable", 15, 24]], [["xserver", 15, 16]], [["ghostscriptSupport", 24, 41]], [["nativeBuildInputs", 22, 15]], [["source", 19, 28]], [["UITK_ICON_THEME", 36, 11]], [["etc", 19, 9], ["systemPackages", 31, 9], ["variables", 35, 9]], [["supportedLocales", 40, 12]], [["packages", 43, 9]], [["imports", 13, 7], ["services", 15, 7], ["environment", 17, 7], ["i18n", 40, 7], ["fonts", 42, 7]], [["machine", 10, 9]], [["name", 7, 3], ["meta", 8, 3], ["nodes", 10, 3], ["enableOCR", 50, 3], ["testScript", 52, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/lomiri-mediaplayer-app.nix", [["maintainers", 8, 8]]);
 const formals$2 = { args: { config: false, pkgs: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/lomiri-mediaplayer-app.nix", [["enable", 15, 24]]);
-const pos$3 = nix.positions(here + "/lomiri-mediaplayer-app.nix", [["xserver", 15, 16]]);
-const pos$4 = nix.positions(here + "/lomiri-mediaplayer-app.nix", [["ghostscriptSupport", 24, 41]]);
-const pos$5 = nix.positions(here + "/lomiri-mediaplayer-app.nix", [["nativeBuildInputs", 22, 15]]);
-const pos$6 = nix.positions(here + "/lomiri-mediaplayer-app.nix", [["source", 19, 28]]);
-const pos$7 = nix.positions(here + "/lomiri-mediaplayer-app.nix", [["UITK_ICON_THEME", 36, 11]]);
-const pos$8 = nix.positions(here + "/lomiri-mediaplayer-app.nix", [["etc", 19, 9], ["systemPackages", 31, 9], ["variables", 35, 9]]);
-const pos$9 = nix.positions(here + "/lomiri-mediaplayer-app.nix", [["supportedLocales", 40, 12]]);
-const pos$10 = nix.positions(here + "/lomiri-mediaplayer-app.nix", [["packages", 43, 9]]);
-const pos$11 = nix.positions(here + "/lomiri-mediaplayer-app.nix", [["imports", 13, 7], ["services", 15, 7], ["environment", 17, 7], ["i18n", 40, 7], ["fonts", 42, 7]]);
-const pos$12 = nix.positions(here + "/lomiri-mediaplayer-app.nix", [["machine", 10, 9]]);
-const pos$13 = nix.positions(here + "/lomiri-mediaplayer-app.nix", [["name", 7, 3], ["meta", 8, 3], ["nodes", 10, 3], ["enableOCR", 50, 3], ["testScript", 52, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,37 +12,37 @@ export default nix.lambda((args) => (() => {
   const ocrContent = "Feed";
   const videoFile = "test.webm";
   return {
-    [nix.POS]: pos$13,
+    [nix.POS]: $pos[12],
     name: "lomiri-mediaplayer-app-standalone",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => nix.sel(lib, "teams", "lomiri", "members")),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$12,
+      [nix.POS]: $pos[11],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config = nix.arg($_1, "config");
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$11,
+          [nix.POS]: $pos[10],
           imports: nix.thunk(() => [nix.path(here, "./common/x11.nix")]),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$3,
-            xserver: nix.thunk(() => ({ [nix.POS]: pos$2, enable: true })),
+            [nix.POS]: $pos[2],
+            xserver: nix.thunk(() => ({ [nix.POS]: $pos[1], enable: true })),
           })),
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$8,
+            [nix.POS]: $pos[7],
             etc: nix.thunk(() => nix.attrsDyn({}, [
               [nix.str`${videoFile}`, nix.thunk(() => ({
-                [nix.POS]: pos$6,
+                [nix.POS]: $pos[5],
                 source: nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), videoFile, nix.thunk(() => ({
-                    [nix.POS]: pos$5,
+                    [nix.POS]: $pos[4],
                     nativeBuildInputs: nix.thunk(() => (() => {
                       const w = nix.withScope(pkgs, null);
                       return [
                         nix.thunk(() => nix.lookup(w, "ffmpeg")),
-                        nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "imagemagick"), "override"), nix.thunk(() => ({ [nix.POS]: pos$4, ghostscriptSupport: true })))),
+                        nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "imagemagick"), "override"), nix.thunk(() => ({ [nix.POS]: $pos[3], ghostscriptSupport: true })))),
                       ];
                     })()),
                   })), nix.thunk(() => nix.str`magick -size 600x600 canvas:black -pointsize 32 -fill white -annotate +100+100 '${ocrContent}' output.png
@@ -69,11 +57,11 @@ ffmpeg -re -loop 1 -i output.png -c:v libvpx -b:v 200K -t 120 $out -loglevel fat
                 nix.thunk(() => nix.lookup(w, "lomiri-mediaplayer-app")),
               ];
             })()),
-            variables: nix.thunk(() => ({ [nix.POS]: pos$7, UITK_ICON_THEME: "suru" })),
+            variables: nix.thunk(() => ({ [nix.POS]: $pos[6], UITK_ICON_THEME: "suru" })),
           })),
-          i18n: nix.thunk(() => ({ [nix.POS]: pos$9, supportedLocales: nix.thunk(() => ["all"]) })),
+          i18n: nix.thunk(() => ({ [nix.POS]: $pos[8], supportedLocales: nix.thunk(() => ["all"]) })),
           fonts: nix.thunk(() => ({
-            [nix.POS]: pos$10,
+            [nix.POS]: $pos[9],
             packages: nix.thunk(() => (() => {
               const w = nix.withScope(pkgs, null);
               return [nix.thunk(() => nix.lookup(w, "ubuntu-classic"))];

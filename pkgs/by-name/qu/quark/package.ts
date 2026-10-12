@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 13, 5], ["rev", 14, 5], ["sha256", 15, 5]], [["description", 25, 5], ["mainProgram", 26, 5], ["homepage", 27, 5], ["license", 28, 5], ["maintainers", 29, 5], ["platforms", 30, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["patches", 18, 11], ["makeFlags", 20, 3], ["installFlags", 22, 3], ["meta", 24, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchgit: false, patches: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 13, 5], ["rev", 14, 5], ["sha256", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 25, 5], ["mainProgram", 26, 5], ["homepage", 27, 5], ["license", 28, 5], ["maintainers", 29, 5], ["platforms", 30, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["patches", 18, 11], ["makeFlags", 20, 3], ["installFlags", 22, 3], ["meta", 24, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchgit = nix.arg($, "fetchgit");
   const patches = nix.argOr($, "patches", () => null);
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "quark",
       version: "0-unstable-2021-02-22",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "git://git.suckless.org/quark",
           rev: "68b4f733b2755762e43df90f73db5a6ec8d14104",
           sha256: "sha256-Jtu5zJfHd+6Oq572nVem5msMDCOjdqDNH4SQck8/O5A=",
@@ -27,7 +25,7 @@ export default nix.lambda((args) => (() => {
       makeFlags: nix.thunk(() => ["CC:=$(CC)"]),
       installFlags: nix.thunk(() => ["PREFIX=$(out)"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Extremely small and simple HTTP GET/HEAD-only web server for static content",
         mainProgram: "quark",
         homepage: "http://tools.suckless.org/quark",

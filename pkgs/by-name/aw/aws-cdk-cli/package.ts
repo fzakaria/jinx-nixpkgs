@@ -2,16 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]], [["src", 31, 26], ["missingHashes", 31, 30], ["hash", 32, 5]], [["NX_DISABLE_REMOTE_CACHE", 48, 5], ["NX_TASKS_RUNNER_DYNAMIC_OUTPUT", 49, 5], ["NX_VERBOSE_LOGGING", 50, 5], ["CODEBUILD_RESOLVED_SOURCE_VERSION", 52, 5]], [["version", 61, 30]], [["package", 122, 43]], [["version", 122, 11]], [["tests", 122, 5], ["updateScript", 123, 5]], [["description", 127, 5], ["homepage", 128, 5], ["license", 129, 5], ["maintainers", 130, 5], ["mainProgram", 131, 5], ["platforms", 132, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["missingHashes", 29, 3], ["offlineCache", 30, 3], ["nativeBuildInputs", 35, 3], ["env", 47, 3], ["yarnBuildScript", 56, 3], ["postPatch", 58, 3], ["preBuild", 68, 3], ["buildPhase", 80, 3], ["installPhase", 88, 3], ["postInstall", 97, 3], ["dontFixup", 119, 3], ["passthru", 121, 3], ["meta", 126, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, nodejs: false, "yarn-berry_4": false, diffutils: false, zip: false, jq: false, python3: false, unzip: false, testers: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["src", 31, 26], ["missingHashes", 31, 30], ["hash", 32, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["NX_DISABLE_REMOTE_CACHE", 48, 5], ["NX_TASKS_RUNNER_DYNAMIC_OUTPUT", 49, 5], ["NX_VERBOSE_LOGGING", 50, 5], ["CODEBUILD_RESOLVED_SOURCE_VERSION", 52, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["version", 61, 30]]);
-const pos$5 = nix.positions(here + "/package.nix", [["package", 122, 43]]);
-const pos$6 = nix.positions(here + "/package.nix", [["version", 122, 11]]);
-const pos$7 = nix.positions(here + "/package.nix", [["tests", 122, 5], ["updateScript", 123, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["description", 127, 5], ["homepage", 128, 5], ["license", 129, 5], ["maintainers", 130, 5], ["mainProgram", 131, 5], ["platforms", 132, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["missingHashes", 29, 3], ["offlineCache", 30, 3], ["nativeBuildInputs", 35, 3], ["env", 47, 3], ["yarnBuildScript", 56, 3], ["postPatch", 58, 3], ["preBuild", 68, 3], ["buildPhase", 80, 3], ["installPhase", 88, 3], ["postInstall", 97, 3], ["dontFixup", 119, 3], ["passthru", 121, 3], ["meta", 126, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const yarn_berry = yarn_berry_4;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       pname: "aws-cdk-cli",
       version: "2.1142.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "aws",
           repo: "aws-cdk-cli",
           tag: nix.thunk(() => nix.str`cdk@v${nix.sel(finalAttrs, "version")}`),
@@ -40,7 +32,7 @@ export default nix.lambda((args) => (() => {
         })))),
       missingHashes: nix.path(here, "./missing-hashes.json"),
       offlineCache: nix.thunk(() => nix.app(nix.sel(yarn_berry, "fetchYarnBerryDeps"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           missingHashes: nix.thunk(() => nix.attr(finalAttrs, "missingHashes")),
           hash: "sha256-lTT7hO0dZxrUlmah7d9UQEIAt/STLoH0xZ3oxx2Vh5I=",
@@ -56,7 +48,7 @@ export default nix.lambda((args) => (() => {
         unzip,
       ]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         NX_DISABLE_REMOTE_CACHE: "true",
         NX_TASKS_RUNNER_DYNAMIC_OUTPUT: "false",
         NX_VERBOSE_LOGGING: "true",
@@ -64,7 +56,10 @@ export default nix.lambda((args) => (() => {
       })),
       yarnBuildScript: "compile",
       postPatch: nix.thunk(() => (() => {
-        const cliVersionJson = nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => ({ [nix.POS]: pos$4, version: nix.thunk(() => nix.attr(finalAttrs, "version")) }))));
+        const cliVersionJson = nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => ({
+            [nix.POS]: $pos[3],
+            version: nix.thunk(() => nix.attr(finalAttrs, "version")),
+          }))));
         return nix.str`echo '${cliVersionJson}' > packages/@aws-cdk/cloud-assembly-schema/cli-version.json
 `;
       })()),
@@ -92,18 +87,18 @@ popd
 `),
       dontFixup: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         })),
         updateScript: nix.path(here, "./update.sh"),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         description: "AWS CDK Toolkit",
         homepage: "https://docs.aws.amazon.com/cdk/v2/guide/cli.html",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

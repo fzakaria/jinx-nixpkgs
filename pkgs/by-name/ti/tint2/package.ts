@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 33, 5], ["repo", 34, 5], ["tag", 35, 5], ["hash", 36, 5]], [["url", 44, 7], ["hash", 45, 7]], [["NIX_CFLAGS_COMPILE", 52, 7]], [["mainProgram", 97, 5], ["homepage", 98, 5], ["description", 99, 5], ["license", 100, 5], ["platforms", 101, 5], ["maintainers", 102, 5]], [["pname", 29, 3], ["version", 30, 3], ["src", 32, 3], ["patches", 39, 3], ["env", 52, 3], ["nativeBuildInputs", 54, 3], ["buildInputs", 61, 3], ["cmakeFlags", 79, 3], ["postPatch", 83, 3], ["nativeInstallCheckInputs", 93, 3], ["doInstallCheck", 94, 3], ["meta", 96, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, fetchpatch: false, "pkg-config": false, cmake: false, gettext: false, cairo: false, pango: false, glib: false, imlib2: false, gtk3: false, libxinerama: false, libxrender: false, libxcomposite: false, libxdamage: false, libx11: false, libxrandr: false, librsvg: false, "libpthread-stubs": false, libxdmcp: false, libstartup_notification: false, wrapGAppsHook3: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 33, 5], ["repo", 34, 5], ["tag", 35, 5], ["hash", 36, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 44, 7], ["hash", 45, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 52, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["mainProgram", 97, 5], ["homepage", 98, 5], ["description", 99, 5], ["license", 100, 5], ["platforms", 101, 5], ["maintainers", 102, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 29, 3], ["version", 30, 3], ["src", 32, 3], ["patches", 39, 3], ["env", 52, 3], ["nativeBuildInputs", 54, 3], ["buildInputs", 61, 3], ["cmakeFlags", 79, 3], ["postPatch", 83, 3], ["nativeInstallCheckInputs", 93, 3], ["doInstallCheck", 94, 3], ["meta", 96, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -39,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const pname = "tint2";
       const version = "17.1.3";
       const src = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "nick87720z",
           repo: "tint2",
           tag: version,
@@ -47,14 +43,14 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://gitlab.com/nick87720z/tint2/uploads/7de4501a4fa4fffa5ba8bb0fa3d19f78/glib.patch",
             hash: "sha256-K547KYlRkVl1s2THi3ZCRuM447EFJwTqUEBjKQnV8Sc=",
           })))),
         nix.path(here, "./fix-cmake-version.patch"),
       ]);
       const env = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "cc", "isGNU")), "-Wno-error=incompatible-pointer-types")),
       }));
       const nativeBuildInputs = nix.thunk(() => [pkg_config, cmake, gettext, wrapGAppsHook3]);
@@ -80,7 +76,7 @@ export default nix.lambda((args) => (() => {
       const nativeInstallCheckInputs = nix.thunk(() => [versionCheckHook]);
       const doInstallCheck = true;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         mainProgram: "tint2",
         homepage: "https://gitlab.com/nick87720z/tint2",
         description: "Simple panel/taskbar unintrusive and light (memory, cpu, aestetic)",
@@ -89,7 +85,7 @@ export default nix.lambda((args) => (() => {
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "romildo"))]),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         src,

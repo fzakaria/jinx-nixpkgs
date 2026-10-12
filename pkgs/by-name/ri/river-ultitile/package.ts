@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["hash", 25, 5]], [["description", 48, 5], ["longDescription", 49, 5], ["changelog", 62, 5], ["homepage", 63, 5], ["license", 64, 5], ["mainProgram", 65, 5], ["maintainers", 66, 5], ["platforms", 67, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 35, 3], ["deps", 40, 3], ["zigBuildFlags", 42, 3], ["meta", 47, 3]]]);
 const formals$1 = { args: { callPackage: false, fetchFromSourcehut: false, lib: false, pandoc: false, "pkg-config": false, stdenv: false, wayland: false, "wayland-protocols": false, "wayland-scanner": false, zig_0_14: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 48, 5], ["longDescription", 49, 5], ["changelog", 62, 5], ["homepage", 63, 5], ["license", 64, 5], ["mainProgram", 65, 5], ["maintainers", 66, 5], ["platforms", 67, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 35, 3], ["deps", 40, 3], ["zigBuildFlags", 42, 3], ["meta", 47, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const zig_0_14 = nix.arg($, "zig_0_14");
   const zig = zig_0_14;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "river-ultitile",
       version: "1.3.0",
       src: nix.thunk(() => nix.app(fetchFromSourcehut, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "~midgard",
           repo: "river-ultitile",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,7 +34,7 @@ export default nix.lambda((args) => (() => {
       deps: nix.thunk(() => nix.app(callPackage, nix.path(here, "./build.zig.zon.nix"), nix.thunk(() => ({})))),
       zigBuildFlags: nix.thunk(() => ["--system", nix.thunk(() => nix.str`${nix.sel(finalAttrs, "deps")}`)]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Configurable layout generator for the River compositor",
         longDescription: "A layout generator for **river**. Features include:\n- **configurable** layouts employing nested tiles (no juggling with coordinates),\n- **widescreen** support by default,\n- default layouts, switchable at run time with a command or key binding:\n    - dwm-like main/stack layout,\n        - main on the left on normal screens,\n        - **main in the center and stacks on both sides** on widescreens,\n    - a vertical stack,\n    - a horizontal stack, and\n    - a monocle layout,\n- optional per-tag-per-output state.\n",
         changelog: nix.thunk(() => nix.str`https://git.sr.ht/~midgard/river-ultitile/tree/v${nix.sel(finalAttrs, "version")}/item/CHANGELOG.md`),

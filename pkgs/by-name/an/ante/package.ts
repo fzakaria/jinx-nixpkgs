@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["fetchSubmodules", 21, 5], ["hash", 22, 5]], [["homepage", 66, 5], ["description", 67, 5], ["mainProgram", 68, 5], ["license", 69, 5], ["maintainers", 70, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 17, 3], ["cargoHash", 25, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 28, 3], ["preBuild", 35, 3], ["preCheck", 59, 3], ["meta", 65, 3]]]);
 const formals$1 = { args: { stdenv: false, fetchFromGitHub: false, lib: false, zlib: false, libffi: false, libxml2: false, llvmPackages_21: false, ncurses: false, darwin: false, rustPlatform: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["fetchSubmodules", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 66, 5], ["description", 67, 5], ["mainProgram", 68, 5], ["license", 69, 5], ["maintainers", 70, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 17, 3], ["cargoHash", 25, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 28, 3], ["preBuild", 35, 3], ["preCheck", 59, 3], ["meta", 65, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const darwin = nix.arg($, "darwin");
   const rustPlatform = nix.arg($, "rustPlatform");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "ante",
       version: "0-unstable-2026-08-11",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "jfecher",
           repo: "ante",
           rev: "626094eaa9e94654b0511194a0ecccfd962116cc",
@@ -55,7 +53,7 @@ cp -r $src/stdlib/* $ANTE_STDLIB_DIR
 )
 `))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://antelang.org/",
         description: "Low-level functional language for exploring refinement types, lifetime inference, and algebraic effects",
         mainProgram: "ante",

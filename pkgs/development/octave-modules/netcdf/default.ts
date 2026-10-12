@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["sha256", 19, 5]], [["homepage", 47, 5], ["license", 48, 5], ["maintainers", 49, 5], ["description", 50, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["nativeBuildInputs", 22, 3], ["propagatedBuildInputs", 27, 3], ["preAutoreconf", 35, 3], ["postAutoreconf", 42, 3], ["meta", 46, 3]]]);
 const formals$1 = { args: { buildOctavePackage: false, lib: false, fetchFromGitHub: false, netcdf: false, "nix-update-script": false, "pkg-config": false, autoreconfHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["sha256", 19, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 47, 5], ["license", 48, 5], ["maintainers", 49, 5], ["description", 50, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["nativeBuildInputs", 22, 3], ["propagatedBuildInputs", 27, 3], ["preAutoreconf", 35, 3], ["postAutoreconf", 42, 3], ["meta", 46, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pname = "netcdf";
       const version = "1.0.21";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "gnu-octave",
           repo: "octave-netcdf",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -31,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const preAutoreconf = "pushd src\n# Upstream's bootstrap script uses wget to fetch config.guess & config.sub\n# and has them committed to the repository. We must remove them so autoreconf\n# actually fires for our environment.\nrm config.*\n";
       const postAutoreconf = "popd\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://gnu-octave.github.io/packages/netcdf/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
         maintainers: nix.thunk(() => (() => {
@@ -41,7 +39,7 @@ export default nix.lambda((args) => (() => {
         description: "NetCDF interface for Octave",
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

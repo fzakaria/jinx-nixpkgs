@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 17, 5], ["hash", 18, 5]], [["description", 76, 5], ["license", 77, 5], ["homepage", 78, 5], ["platforms", 79, 5], ["maintainers", 80, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["patches", 21, 3], ["postPatch", 37, 3], ["nativeBuildInputs", 44, 3], ["buildInputs", 47, 3], ["preConfigure", 54, 3], ["enableParallelBuilding", 66, 3], ["postInstall", 69, 3], ["meta", 75, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, gfortran: false, hoppet: false, lhapdf: false, root: false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 76, 5], ["license", 77, 5], ["homepage", 78, 5], ["platforms", 79, 5], ["maintainers", 80, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["patches", 21, 3], ["postPatch", 37, 3], ["nativeBuildInputs", 44, 3], ["buildInputs", 47, 3], ["preConfigure", 54, 3], ["enableParallelBuilding", 66, 3], ["postInstall", 69, 3], ["meta", 75, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const root = nix.arg($, "root");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "applgrid",
       version: "1.6.27",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://www.hepforge.org/archive/applgrid/applgrid-${nix.sel(finalAttrs, "version")}.tgz`),
           hash: "sha256-h+ZNGj33FIwg4fOCyfGJrUKM2vDDQl76JcLhtboAOtc=",
         })))),
@@ -43,7 +41,7 @@ sed -i appl_grid/serialise_base.h -e '1i#include <cstdint>'
       enableParallelBuilding: false,
       postInstall: "for header in src/*.h; do\n  install -Dm644 \"$header\" \"$out\"/include/appl_grid/\"`basename $header`\"\ndone\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Fast and flexible way to reproduce the results of full NLO calculations with any input parton distribution set in only a few milliseconds rather than the weeks normally required to gain adequate statistics",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),
         homepage: "http://applgrid.hepforge.org",

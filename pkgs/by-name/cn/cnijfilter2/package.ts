@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 23, 5], ["hash", 24, 5]], [["url", 35, 7], ["hash", 36, 7]], [["NIX_CFLAGS_COMPILE", 119, 5], ["NIX_LDFLAGS", 120, 5]], [["description", 124, 5], ["longDescription", 125, 5], ["downloadPage", 147, 5], ["license", 148, 5], ["sourceProvenance", 149, 5], ["maintainers", 153, 5], ["platforms", 154, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["patches", 27, 3], ["nativeBuildInputs", 40, 3], ["buildInputs", 48, 3], ["postPatch", 54, 3], ["preConfigure", 59, 3], ["configurePhase", 67, 3], ["buildPhase", 91, 3], ["installPhase", 101, 3], ["postInstall", 111, 3], ["runtimeDependencies", 116, 3], ["env", 118, 3], ["meta", 123, 3]]]);
 const formals$1 = { args: { autoconf: false, automake: false, autoPatchelfHook: false, cups: false, fetchpatch2: false, fetchzip: false, glib: false, lib: false, libtool: false, libusb1: false, libxml2: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 35, 7], ["hash", 36, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 119, 5], ["NIX_LDFLAGS", 120, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 124, 5], ["longDescription", 125, 5], ["downloadPage", 147, 5], ["license", 148, 5], ["sourceProvenance", 149, 5], ["maintainers", 153, 5], ["platforms", 154, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["patches", 27, 3], ["nativeBuildInputs", 40, 3], ["buildInputs", 48, 3], ["postPatch", 54, 3], ["preConfigure", 59, 3], ["configurePhase", 67, 3], ["buildPhase", 91, 3], ["installPhase", 101, 3], ["postInstall", 111, 3], ["runtimeDependencies", 116, 3], ["env", 118, 3], ["meta", 123, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const blobDir = nix.thunk(() => nix.str`com/libs_bin_${nix.sel(stdenv, "hostPlatform", "uname", "processor")}`);
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "cnijfilter2",
       version: "6.90-1",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://gdlp01.c-wss.com/gds/9/0100012819/01/cnijfilter2-source-6.90-1.tar.gz",
           hash: "sha256-kvMEC2IR448JAM8unoLzF01GDlWhTSk/gi6giHI0u0E=",
         })))),
@@ -37,7 +33,7 @@ export default nix.lambda((args) => (() => {
         nix.path(here, "./stdlib.patch"),
         nix.path(here, "./bool.patch"),
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://gitweb.gentoo.org/repo/gentoo.git/plain/net-print/cnijfilter2/files/cnijfilter2-5.80-fno-common.patch?id=24688d64544b43f2c14be54531ad8764419dde09",
             hash: "sha256-ygAfS68100ducWsxeA2Q2eoE8cBFMVO7KiXn/RGIHFw=",
           })))),
@@ -77,12 +73,12 @@ install -Dm644 -t $out/share/cups/model ppd/*.ppd
 `),
       runtimeDependencies: nix.thunk(() => [nix.thunk(() => nix.builtins.placeholder("out"))]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.str`-I${nix.app(nix.sel(lib, "getDev"), libxml2)}/include/libxml2`),
         NIX_LDFLAGS: nix.thunk(() => nix.str`-L../../${blobDir}`),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Canon InkJet printer drivers for many Pixma series printers",
         longDescription: "Canon InkJet printer drivers for series BX110, E200, E300, E460, E470,\nE480, E3100, E3300, E3400, E3600, E4200, E4500, G500, G600, G1020, G1030,\nG2020, G2030, G2060, G2070, G3000, G3010, G3020, G3030, G3060, G3070,\nG3080, G3090, G4000, G4010, G4070, G4080, G4090, G5000, G5080, G6000,\nG6080, G7000, G7080, GM2000, GM2080, GM4000, GM4080, GX1000, GX2000,\nGX3000, GX4000, GX4000i, GX5000, GX5100, GX5500, GX6000, GX6100, GX6500,\nGX7000, GX7100, GX7100i, iB4000, iB4100, iP110, MB2000, MB2100, MB2300,\nMB2700, MB5000, MB5100, MB5300, MB5400, MG2900, MG3000, MG3600, MG5600,\nMG5700, MG6600, MG6800, MG6900, MG7500, MG7700, MX490, TR150, TR160,\nTR703, TR4500, TR4600, TR4700, TR7000, TR7100, TR7500, TR7530, TR7600,\nTR7800, TR8500, TR8530, TR8580, TR8600, TR8630, TR9530, TS200, TS300,\nTS700, TS708, TS2400, TS2600, TS3100, TS3300, TS3400, TS3500, TS3600,\nTS3700, TS4000, TS4100i, TS4300, TS5000, TS5100, TS5300, TS5350i, TS5380,\nTS5400, TS5500, TS5630, TS6000, TS6100, TS6130, TS6180, TS6200, TS6230,\nTS6280, TS6300, TS6330, TS6380, TS6400, TS6500, TS6500i, TS6630, TS6730,\nTS7330, TS7400, TS7430, TS7450i, TS7500i, TS7530, TS7600i, TS7630, TS7700,\nTS7700A, TS7700i, TS8000, TS8100, TS8130, TS8180, TS8200, TS8230, TS8280,\nTS8300, TS8330, TS8380, TS8430, TS8530, TS8630, TS8700, TS8800, TS8930,\nTS9000, TS9100, TS9180, TS9500, TS9580, XK50, XK60, XK70, XK80, XK90,\nXK100, XK110, XK120, XK130, XK140, XK500, XK510.\n",
         downloadPage: "https://hk.canon/en/support/0101281901",

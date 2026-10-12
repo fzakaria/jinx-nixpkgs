@@ -2,52 +2,43 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/sogo.nix", [[["maintainers", 5, 5]], [["enable", 12, 24]], [["sogo.*", 22, 17]], [["name", 20, 15], ["ensurePermissions", 21, 15]], [["enable", 15, 11], ["package", 16, 11], ["ensureDatabases", 17, 11], ["ensureUsers", 18, 11]], [["enable", 29, 11], ["timezone", 30, 11], ["extraConfig", 31, 11]], [["nginx", 12, 18], ["mysql", 14, 18], ["sogo", 28, 18]], [["services", 12, 9]], [["sogo", 9, 5]], [["name", 3, 3], ["meta", 4, 3], ["nodes", 8, 3], ["testScript", 56, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/sogo.nix", [["maintainers", 5, 5]]);
 const formals$2 = { args: { config: false, pkgs: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/sogo.nix", [["enable", 12, 24]]);
-const pos$3 = nix.positions(here + "/sogo.nix", [["sogo.*", 22, 17]]);
-const pos$4 = nix.positions(here + "/sogo.nix", [["name", 20, 15], ["ensurePermissions", 21, 15]]);
-const pos$5 = nix.positions(here + "/sogo.nix", [["enable", 15, 11], ["package", 16, 11], ["ensureDatabases", 17, 11], ["ensureUsers", 18, 11]]);
-const pos$6 = nix.positions(here + "/sogo.nix", [["enable", 29, 11], ["timezone", 30, 11], ["extraConfig", 31, 11]]);
-const pos$7 = nix.positions(here + "/sogo.nix", [["nginx", 12, 18], ["mysql", 14, 18], ["sogo", 28, 18]]);
-const pos$8 = nix.positions(here + "/sogo.nix", [["services", 12, 9]]);
-const pos$9 = nix.positions(here + "/sogo.nix", [["sogo", 9, 5]]);
-const pos$10 = nix.positions(here + "/sogo.nix", [["name", 3, 3], ["meta", 4, 3], ["nodes", 8, 3], ["testScript", 56, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   return {
-    [nix.POS]: pos$10,
+    [nix.POS]: $pos[9],
     name: "sogo",
-    meta: nix.thunk(() => ({ [nix.POS]: pos$1, maintainers: [] })),
+    meta: nix.thunk(() => ({ [nix.POS]: $pos[0], maintainers: [] })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       sogo: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config = nix.arg($_1, "config");
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$7,
-            nginx: nix.thunk(() => ({ [nix.POS]: pos$2, enable: true })),
+            [nix.POS]: $pos[6],
+            nginx: nix.thunk(() => ({ [nix.POS]: $pos[1], enable: true })),
             mysql: nix.thunk(() => ({
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               enable: true,
               package: nix.thunk(() => nix.sel(pkgs_1, "mariadb")),
               ensureDatabases: nix.thunk(() => ["sogo"]),
               ensureUsers: nix.thunk(() => [
                 nix.thunk(() => ({
-                  [nix.POS]: pos$4,
+                  [nix.POS]: $pos[3],
                   name: "sogo",
-                  ensurePermissions: nix.thunk(() => ({ [nix.POS]: pos$3, "sogo.*": "ALL PRIVILEGES" })),
+                  ensurePermissions: nix.thunk(() => ({ [nix.POS]: $pos[2], "sogo.*": "ALL PRIVILEGES" })),
                 })),
               ]),
             })),
             sogo: nix.thunk(() => ({
-              [nix.POS]: pos$6,
+              [nix.POS]: $pos[5],
               enable: true,
               timezone: "Europe/Berlin",
               extraConfig: "WOWorkersCount = 1;\n\nSOGoUserSources = (\n  {\n    type = sql;\n    userPasswordAlgorithm = md5;\n    viewURL = \"mysql://sogo@%2Frun%2Fmysqld%2Fmysqld.sock/sogo/sogo_users\";\n    canAuthenticate = YES;\n    id = users;\n  }\n);\n\nSOGoProfileURL = \"mysql://sogo@%2Frun%2Fmysqld%2Fmysqld.sock/sogo/sogo_user_profile\";\nOCSFolderInfoURL = \"mysql://sogo@%2Frun%2Fmysqld%2Fmysqld.sock/sogo/sogo_folder_info\";\nOCSSessionsFolderURL = \"mysql://sogo@%2Frun%2Fmysqld%2Fmysqld.sock/sogo/sogo_sessions_folder\";\nOCSEMailAlarmsFolderURL = \"mysql://sogo@%2Frun%2Fmysqld%2Fmysqld.sock/sogo/sogo_alarms_folder\";\nOCSStoreURL = \"mysql://sogo@%2Frun%2Fmysqld%2Fmysqld.sock/sogo/sogo_store\";\nOCSAclURL = \"mysql://sogo@%2Frun%2Fmysqld%2Fmysqld.sock/sogo/sogo_acl\";\nOCSCacheFolderURL = \"mysql://sogo@%2Frun%2Fmysqld%2Fmysqld.sock/sogo/sogo_cache_folder\";\n",

@@ -2,23 +2,12 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 42, 5], ["hash", 43, 5]], [["tecla", 48, 7]], [["PKG_CONFIG_LIBGNOME_PANEL_LAYOUTSDIR", 101, 5], ["PKG_CONFIG_LIBGNOME_PANEL_MODULESDIR", 102, 5]], [["packageName", 107, 7], ["versionPolicy", 108, 7]], [["name", 118, 9], ["destination", 119, 9], ["text", 120, 9]], [["name", 140, 9], ["destination", 141, 9], ["text", 142, 9]], [["name", 155, 9], ["destination", 156, 9], ["text", 157, 9]], [["providedSessions", 168, 9]], [["gnome-flashback", 207, 28]], [["updateScript", 106, 5], ["mkWmApplication", 111, 5], ["mkGnomeSession", 134, 5], ["mkSessionForWm", 148, 5], ["mkSystemdTargetForWm", 171, 5], ["tests", 206, 5]], [["description", 212, 5], ["mainProgram", 213, 5], ["homepage", 214, 5], ["changelog", 215, 5], ["license", 216, 5], ["teams", 217, 5], ["platforms", 218, 5]], [["pname", 38, 3], ["version", 39, 3], ["src", 41, 3], ["patches", 46, 3], ["postPatch", 53, 3], ["postInstall", 62, 3], ["nativeBuildInputs", 68, 3], ["buildInputs", 76, 3], ["doCheck", 96, 3], ["enableParallelBuilding", 98, 3], ["env", 100, 3], ["passthru", 105, 3], ["meta", 211, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, autoreconfHook: false, fetchurl: false, gettext: false, glib: false, "gnome-bluetooth": false, "gnome-desktop": false, "gnome-panel": false, "gnome-session": false, gnome: false, "gsettings-desktop-schemas": false, gtk3: false, ibus: false, "libcanberra-gtk3": false, libpulseaudio: false, libxkbfile: false, libxml2: false, metacity: false, "pkg-config": false, polkit: false, gdm: false, replaceVars: false, systemd: false, tecla: false, upower: false, pam: false, wrapGAppsHook3: false, writeTextFile: false, xkeyboard_config: false, libxxf86vm: false, nixosTests: false, runCommand: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 42, 5], ["hash", 43, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["tecla", 48, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["PKG_CONFIG_LIBGNOME_PANEL_LAYOUTSDIR", 101, 5], ["PKG_CONFIG_LIBGNOME_PANEL_MODULESDIR", 102, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["packageName", 107, 7], ["versionPolicy", 108, 7]]);
 const formals$2 = { args: { wmName: false, wmLabel: false, wmCommand: false }, ellipsis: false };
-const pos$5 = nix.positions(here + "/package.nix", [["name", 118, 9], ["destination", 119, 9], ["text", 120, 9]]);
 const formals$3 = { args: { wmName: false, wmLabel: false }, ellipsis: false };
-const pos$6 = nix.positions(here + "/package.nix", [["name", 140, 9], ["destination", 141, 9], ["text", 142, 9]]);
 const formals$4 = { args: { wmName: false, wmLabel: false, wmCommand: false }, ellipsis: false };
-const pos$7 = nix.positions(here + "/package.nix", [["name", 155, 9], ["destination", 156, 9], ["text", 157, 9]]);
-const pos$8 = nix.positions(here + "/package.nix", [["providedSessions", 168, 9]]);
 const formals$5 = { args: { wmName: false, wmLabel: false, wmCommand: false, enableGnomePanel: false }, ellipsis: false };
-const pos$9 = nix.positions(here + "/package.nix", [["gnome-flashback", 207, 28]]);
-const pos$10 = nix.positions(here + "/package.nix", [["updateScript", 106, 5], ["mkWmApplication", 111, 5], ["mkGnomeSession", 134, 5], ["mkSessionForWm", 148, 5], ["mkSystemdTargetForWm", 171, 5], ["tests", 206, 5]]);
-const pos$11 = nix.positions(here + "/package.nix", [["description", 212, 5], ["mainProgram", 213, 5], ["homepage", 214, 5], ["changelog", 215, 5], ["license", 216, 5], ["teams", 217, 5], ["platforms", 218, 5]]);
-const pos$12 = nix.positions(here + "/package.nix", [["pname", 38, 3], ["version", 39, 3], ["src", 41, 3], ["patches", 46, 3], ["postPatch", 53, 3], ["postInstall", 62, 3], ["nativeBuildInputs", 68, 3], ["buildInputs", 76, 3], ["doCheck", 96, 3], ["enableParallelBuilding", 98, 3], ["env", 100, 3], ["passthru", 105, 3], ["meta", 211, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -56,17 +45,17 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const runCommand = nix.arg($, "runCommand");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$12,
+      [nix.POS]: $pos[11],
       pname: "gnome-flashback",
       version: "3.58.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnome/sources/gnome-flashback/${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/gnome-flashback-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-qqI+cEJHfnQfJCebRoudIK9OwZXuQ7PTEs2q+E2YwyE=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix-paths.patch"), nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             tecla: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), tecla)),
           })))),
       ]),
@@ -95,14 +84,14 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       enableParallelBuilding: true,
       env: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         PKG_CONFIG_LIBGNOME_PANEL_LAYOUTSDIR: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/share/gnome-panel/layouts`),
         PKG_CONFIG_LIBGNOME_PANEL_MODULESDIR: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/lib/gnome-panel/modules`),
       })),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             packageName: "gnome-flashback",
             versionPolicy: "odd-unstable",
           })))),
@@ -112,7 +101,7 @@ export default nix.lambda((args) => (() => {
           const wmLabel = nix.arg($_1, "wmLabel");
           const wmCommand = nix.arg($_1, "wmCommand");
           return nix.app(writeTextFile, nix.thunk(() => ({
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               name: nix.thunk(() => nix.str`gnome-flashback-${wmName}-wm`),
               destination: nix.thunk(() => nix.str`/share/applications/${wmName}.desktop`),
               text: nix.thunk(() => nix.str`[Desktop Entry]
@@ -133,7 +122,7 @@ X-GNOME-Autostart-Notify=false
           const wmName = nix.arg($_1, "wmName");
           const wmLabel = nix.arg($_1, "wmLabel");
           return nix.app(writeTextFile, nix.thunk(() => ({
-              [nix.POS]: pos$6,
+              [nix.POS]: $pos[5],
               name: nix.thunk(() => nix.str`gnome-flashback-${wmName}-gnome-session`),
               destination: nix.thunk(() => nix.str`/share/gnome-session/sessions/gnome-flashback-${wmName}.session`),
               text: nix.thunk(() => nix.str`[GNOME Session]
@@ -147,7 +136,7 @@ Name=GNOME Flashback (${wmLabel})
           const wmLabel = nix.arg($_1, "wmLabel");
           const wmCommand = nix.arg($_1, "wmCommand");
           return nix.update(nix.app(writeTextFile, nix.thunk(() => ({
-              [nix.POS]: pos$7,
+              [nix.POS]: $pos[6],
               name: nix.thunk(() => nix.str`gnome-flashback-${wmName}-xsession`),
               destination: nix.thunk(() => nix.str`/share/xsessions/gnome-flashback-${wmName}.desktop`),
               text: nix.thunk(() => nix.str`[Desktop Entry]
@@ -159,7 +148,7 @@ Type=Application
 DesktopNames=GNOME-Flashback;GNOME;
 `),
             }))), {
-            [nix.POS]: pos$8,
+            [nix.POS]: $pos[7],
             providedSessions: nix.thunk(() => [nix.thunk(() => nix.str`gnome-flashback-${wmName}`)]),
           });
         })(), formals$4),
@@ -193,12 +182,12 @@ substitute ${metacity}/lib/systemd/user/metacity.service \\
 `)))));
         })(), formals$5),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           "gnome-flashback": nix.thunk(() => nix.attr(nixosTests, "gnome-flashback")),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$11,
+        [nix.POS]: $pos[10],
         description: "GNOME 2.x-like session for GNOME 3",
         mainProgram: "gnome-flashback",
         homepage: "https://gitlab.gnome.org/GNOME/gnome-flashback",

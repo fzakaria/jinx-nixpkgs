@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]], [["description", 66, 5], ["homepage", 67, 5], ["changelog", 68, 5], ["license", 69, 5], ["maintainers", 70, 5]], [["pname", 14, 3], ["version", 15, 3], ["pyproject", 16, 3], ["src", 18, 3], ["patches", 25, 3], ["postPatch", 30, 3], ["build-system", 35, 3], ["dependencies", 37, 3], ["nativeCheckInputs", 43, 3], ["disabledTests", 48, 3], ["disabledTestPaths", 58, 3], ["pythonImportsCheck", 63, 3], ["meta", 65, 3]]]);
 const formals$1 = { args: { lib: false, asttokens: false, buildPythonPackage: false, executing: false, hatchling: false, fetchFromGitHub: false, pygments: false, "pytest-mock": false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 66, 5], ["homepage", 67, 5], ["changelog", 68, 5], ["license", 69, 5], ["maintainers", 70, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 14, 3], ["version", 15, 3], ["pyproject", 16, 3], ["src", 18, 3], ["patches", 25, 3], ["postPatch", 30, 3], ["build-system", 35, 3], ["dependencies", 37, 3], ["nativeCheckInputs", 43, 3], ["disabledTests", 48, 3], ["disabledTestPaths", 58, 3], ["pythonImportsCheck", 63, 3], ["meta", 65, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.12.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "samuelcolvin",
           repo: nix.thunk(() => nix.str`python-${pname}`),
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -43,7 +41,7 @@ export default nix.lambda((args) => (() => {
       const disabledTestPaths = nix.thunk(() => ["tests/test_insert_assert.py"]);
       const pythonImportsCheck = nix.thunk(() => ["devtools"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Python's missing debug print command and other development tools",
         homepage: "https://python-devtools.helpmanual.io/",
         changelog: nix.thunk(() => nix.str`https://github.com/samuelcolvin/python-devtools/releases/tag/${nix.sel(src, "tag")}`),
@@ -54,7 +52,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

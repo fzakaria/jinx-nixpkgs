@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 37, 5], ["repo", 38, 5], ["tag", 39, 5], ["hash", 40, 5]], [["azureai", 63, 5], ["openai", 67, 5]], [["description", 108, 5], ["homepage", 109, 5], ["changelog", 110, 5], ["license", 111, 5], ["maintainers", 112, 5]], [["pname", 32, 3], ["version", 33, 3], ["pyproject", 34, 3], ["src", 36, 3], ["build-system", 43, 3], ["pythonRelaxDeps", 48, 3], ["dependencies", 52, 3], ["optional-dependencies", 62, 3], ["nativeCheckInputs", 70, 3], ["enabledTestPaths", 79, 3], ["disabledTests", 81, 3], ["preCheck", 99, 3], ["pythonImportsCheck", 103, 3], ["__darwinAllowLocalNetworking", 105, 3], ["meta", 107, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, pybind11: false, setuptools: false, "guidance-stitch": false, jinja2: false, llguidance: false, numpy: false, psutil: false, pydantic: false, requests: false, openai: false, "huggingface-hub": false, jsonschema: false, pytestCheckHook: false, tokenizers: false, torch: false, writableTmpDirAsHomeHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 37, 5], ["repo", 38, 5], ["tag", 39, 5], ["hash", 40, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["azureai", 63, 5], ["openai", 67, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 108, 5], ["homepage", 109, 5], ["changelog", 110, 5], ["license", 111, 5], ["maintainers", 112, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 32, 3], ["version", 33, 3], ["pyproject", 34, 3], ["src", 36, 3], ["build-system", 43, 3], ["pythonRelaxDeps", 48, 3], ["dependencies", 52, 3], ["optional-dependencies", 62, 3], ["nativeCheckInputs", 70, 3], ["enabledTestPaths", 79, 3], ["disabledTests", 81, 3], ["preCheck", 99, 3], ["pythonImportsCheck", 103, 3], ["__darwinAllowLocalNetworking", 105, 3], ["meta", 107, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,12 +27,12 @@ export default nix.lambda((args) => (() => {
   const torch = nix.arg($, "torch");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "guidance",
       version: "0.3.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "guidance-ai",
           repo: "guidance",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -45,7 +42,7 @@ export default nix.lambda((args) => (() => {
       pythonRelaxDeps: nix.thunk(() => ["llguidance"]),
       dependencies: nix.thunk(() => [guidance_stitch, jinja2, llguidance, numpy, psutil, pydantic, requests]),
       "optional-dependencies": nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         azureai: nix.thunk(() => [openai]),
         openai: nix.thunk(() => [openai]),
       })),
@@ -76,7 +73,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["guidance"]),
       __darwinAllowLocalNetworking: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Guidance language for controlling large language models",
         homepage: "https://github.com/guidance-ai/guidance",
         changelog: nix.thunk(() => nix.str`https://github.com/guidance-ai/guidance/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["packageOverrides", 10, 5]], [["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]], [["searxng", 105, 7]], [["hardcodeZeroVersion", 107, 41]], [["tests", 104, 5], ["updateScript", 107, 5]], [["homepage", 111, 5], ["description", 112, 5], ["license", 113, 5], ["mainProgram", 114, 5], ["maintainers", 115, 5]], [["pname", 14, 3], ["version", 15, 3], ["pyproject", 16, 3], ["src", 18, 3], ["postPatch", 25, 3], ["nativeBuildInputs", 39, 3], ["pythonRelaxDeps", 41, 3], ["preBuild", 43, 3], ["build-system", 64, 3], ["dependencies", 66, 3], ["doCheck", 88, 3], ["postInstall", 90, 3], ["passthru", 103, 3], ["meta", 110, 3]]]);
 const formals$1 = { args: { lib: false, python3: false, fetchFromGitHub: false, nixosTests: false, unstableGitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["packageOverrides", 10, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["searxng", 105, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["hardcodeZeroVersion", 107, 41]]);
-const pos$5 = nix.positions(here + "/package.nix", [["tests", 104, 5], ["updateScript", 107, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["homepage", 111, 5], ["description", 112, 5], ["license", 113, 5], ["mainProgram", 114, 5], ["maintainers", 115, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["pyproject", 16, 3], ["src", 18, 3], ["postPatch", 25, 3], ["nativeBuildInputs", 39, 3], ["pythonRelaxDeps", 41, 3], ["preBuild", 43, 3], ["build-system", 64, 3], ["dependencies", 66, 3], ["doCheck", 88, 3], ["postInstall", 90, 3], ["passthru", 103, 3], ["meta", 110, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,14 +12,14 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const nixosTests = nix.arg($, "nixosTests");
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
-  const python = nix.thunk(() => nix.app(nix.sel(python3, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, packageOverrides: (final) => (prev) => ({}) }))));
+  const python = nix.thunk(() => nix.app(nix.sel(python3, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], packageOverrides: (final) => (prev) => ({}) }))));
   return nix.app(nix.sel(python, "pkgs", "buildPythonPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "searxng",
       version: "0-unstable-2026-10-02",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "searxng",
           repo: "searxng",
           rev: "19ffbcd30686e4008392e93de164200510dfb9d8",
@@ -89,12 +83,12 @@ ln -s ../${nix.sel(python, "sitePackages")}/searx/static $out/share/
 cp searx/limiter.toml $out/${nix.sel(python, "sitePackages")}/searx/limiter.toml
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$3, searxng: nix.thunk(() => nix.sel(nixosTests, "searx")) })),
-        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: pos$4, hardcodeZeroVersion: true })))),
+        [nix.POS]: $pos[4],
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[2], searxng: nix.thunk(() => nix.sel(nixosTests, "searx")) })),
+        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[3], hardcodeZeroVersion: true })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         homepage: "https://github.com/searxng/searxng",
         description: "Fork of Searx, a privacy-respecting, hackable metasearch engine",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Plus")),

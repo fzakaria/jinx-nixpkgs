@@ -2,46 +2,39 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/mailpit.nix", [[["maintainers", 4, 8]], [["default", 12, 34]], [["instances", 12, 24]], [["mailpit", 12, 16]], [["systemPackages", 14, 19]], [["services", 12, 7], ["environment", 14, 7]], [["machine", 9, 9]], [["name", 3, 3], ["meta", 4, 3], ["nodes", 9, 3], ["testScript", 17, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/mailpit.nix", [["maintainers", 4, 8]]);
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/mailpit.nix", [["default", 12, 34]]);
-const pos$3 = nix.positions(here + "/mailpit.nix", [["instances", 12, 24]]);
-const pos$4 = nix.positions(here + "/mailpit.nix", [["mailpit", 12, 16]]);
-const pos$5 = nix.positions(here + "/mailpit.nix", [["systemPackages", 14, 19]]);
-const pos$6 = nix.positions(here + "/mailpit.nix", [["services", 12, 7], ["environment", 14, 7]]);
-const pos$7 = nix.positions(here + "/mailpit.nix", [["machine", 9, 9]]);
-const pos$8 = nix.positions(here + "/mailpit.nix", [["name", 3, 3], ["meta", 4, 3], ["nodes", 9, 3], ["testScript", 17, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$8,
+    [nix.POS]: $pos[7],
     name: "mailpit",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => [
         nix.thunk(() => nix.sel(lib, "maintainers", "leona")),
         nix.thunk(() => nix.sel(lib, "maintainers", "osnyx")),
       ]),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             mailpit: nix.thunk(() => ({
-              [nix.POS]: pos$3,
-              instances: nix.thunk(() => ({ [nix.POS]: pos$2, default: nix.thunk(() => ({})) })),
+              [nix.POS]: $pos[2],
+              instances: nix.thunk(() => ({ [nix.POS]: $pos[1], default: nix.thunk(() => ({})) })),
             })),
           })),
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             systemPackages: nix.thunk(() => (() => {
               const w = nix.withScope(pkgs, null);
               return [nix.thunk(() => nix.lookup(w, "swaks"))];

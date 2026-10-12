@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["homepage", 28, 5], ["license", 29, 5], ["maintainers", 30, 5], ["platforms", 31, 5]], [["name", 9, 3], ["pname", 10, 3], ["version", 11, 3], ["src", 12, 3], ["sourceRoot", 13, 3], ["nativeBuildInputs", 15, 3], ["makeFlags", 16, 3], ["installPhase", 20, 3], ["meta", 27, 3]]]);
 const formals$1 = { args: { kernel: false, kernelModuleMakeFlags: false, stdenv: false, basiliskii: false, lib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["homepage", 28, 5], ["license", 29, 5], ["maintainers", 30, 5], ["platforms", 31, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["name", 9, 3], ["pname", 10, 3], ["version", 11, 3], ["src", 12, 3], ["sourceRoot", 13, 3], ["nativeBuildInputs", 15, 3], ["makeFlags", 16, 3], ["installPhase", 20, 3], ["meta", 27, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const basiliskii = nix.arg($, "basiliskii");
   const lib = nix.arg($, "lib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       name: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-${nix.sel(finalAttrs, "version")}-${nix.sel(kernel, "version")}`),
       pname: "sheep_net",
       version: nix.thunk(() => nix.sel(basiliskii, "version")),
@@ -30,7 +29,7 @@ install -Dm444 sheep_net.ko $out/lib/modules/${nix.sel(kernel, "modDirVersion")}
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         homepage: "https://github.com/kanjitalk755/macemu",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),
         maintainers: nix.thunk(() => (() => {

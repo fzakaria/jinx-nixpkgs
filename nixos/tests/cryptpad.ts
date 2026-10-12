@@ -2,34 +2,20 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/cryptpad.nix", [[["buildInputs", 3, 55]], [["libraries", 18, 9]], [["maintainers", 61, 5]], [["systemPackages", 65, 17]], [["httpUnsafeOrigin", 72, 9], ["httpSafeOrigin", 73, 9]], [["enable", 69, 7], ["configureNginx", 70, 7], ["settings", 71, 7]], [["enableACME", 78, 9], ["sslCertificate", 79, 9], ["sslCertificateKey", 80, 9]], [["cryptpad.localhost", 77, 20]], [["virtualHosts", 77, 7]], [["cryptpad", 68, 14], ["nginx", 76, 14]], [["certificateFiles", 84, 11]], [["pki", 84, 7]], [["environment", 65, 5], ["services", 68, 5], ["security", 83, 5]], [["machine", 64, 9]], [["name", 59, 3], ["meta", 60, 3], ["nodes", 64, 3], ["testScript", 88, 3]]]);
 const formals$1 = { args: { lib: false, pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/cryptpad.nix", [["buildInputs", 3, 55]]);
-const pos$2 = nix.positions(here + "/cryptpad.nix", [["libraries", 18, 9]]);
-const pos$3 = nix.positions(here + "/cryptpad.nix", [["maintainers", 61, 5]]);
-const pos$4 = nix.positions(here + "/cryptpad.nix", [["systemPackages", 65, 17]]);
-const pos$5 = nix.positions(here + "/cryptpad.nix", [["httpUnsafeOrigin", 72, 9], ["httpSafeOrigin", 73, 9]]);
-const pos$6 = nix.positions(here + "/cryptpad.nix", [["enable", 69, 7], ["configureNginx", 70, 7], ["settings", 71, 7]]);
-const pos$7 = nix.positions(here + "/cryptpad.nix", [["enableACME", 78, 9], ["sslCertificate", 79, 9], ["sslCertificateKey", 80, 9]]);
-const pos$8 = nix.positions(here + "/cryptpad.nix", [["cryptpad.localhost", 77, 20]]);
-const pos$9 = nix.positions(here + "/cryptpad.nix", [["virtualHosts", 77, 7]]);
-const pos$10 = nix.positions(here + "/cryptpad.nix", [["cryptpad", 68, 14], ["nginx", 76, 14]]);
-const pos$11 = nix.positions(here + "/cryptpad.nix", [["certificateFiles", 84, 11]]);
-const pos$12 = nix.positions(here + "/cryptpad.nix", [["pki", 84, 7]]);
-const pos$13 = nix.positions(here + "/cryptpad.nix", [["environment", 65, 5], ["services", 68, 5], ["security", 83, 5]]);
-const pos$14 = nix.positions(here + "/cryptpad.nix", [["machine", 64, 9]]);
-const pos$15 = nix.positions(here + "/cryptpad.nix", [["name", 59, 3], ["meta", 60, 3], ["nodes", 64, 3], ["testScript", 88, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   const certs = nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "cryptpadSelfSignedCerts", nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       buildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "openssl"))]),
     })), "mkdir -p $out\ncd $out\nopenssl req -x509 -newkey rsa:4096 \\\n  -keyout key.pem -out cert.pem -nodes -days 3650 \\\n  -subj '/CN=cryptpad.localhost' \\\n  -addext 'subjectAltName = DNS.1:cryptpad.localhost, DNS.2:cryptpad-sandbox.localhost'\n"));
   const test_write_data = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "cryptpadTestData", "{\"command\":\"WRITE_BLOCK\",\"content\":{\"publicKey\":\"O2onvM62pC1io6jQKm8Nc2UyFXcd4kOmOsBIoYtZ2ik=\",\"signature\":\"aXcM9SMO59lwA7q7HbYB+AnzymmxSyy/KhkG/cXIBVzl8v+kkPWXmFuWhcuKfRF8yt3Zc3ktIsHoFyuyDSAwAA==\",\"ciphertext\":\"AFwCIfBHKdFzDKjMg4cu66qlJLpP+6Yxogbl3o9neiQou5P8h8yJB8qgnQ==\"},\"publicKey\":\"O2onvM62pC1io6jQKm8Nc2UyFXcd4kOmOsBIoYtZ2ik=\",\"nonce\":\"bitSbJMNSzOsg98nEzN80a231PCkBQeH\"}\n"));
   const seleniumScript = nix.thunk(() => nix.app(nix.sel(pkgs, "writers", "writePython3Bin"), "selenium-script", nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       libraries: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "python3Packages")), null);
         return [nix.thunk(() => nix.lookup(w, "selenium"))];
@@ -71,41 +57,41 @@ print(f"Sheets done loading in {time() - start}", file=stderr)
 driver.close()
 `)));
   return {
-    [nix.POS]: pos$15,
+    [nix.POS]: $pos[14],
     name: "cryptpad",
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "martinetd"))]),
       };
     })()),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$14,
+      [nix.POS]: $pos[13],
       machine: nix.thunk(() => ({
-        [nix.POS]: pos$13,
+        [nix.POS]: $pos[12],
         environment: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "firefox-unwrapped"))]),
         })),
         services: nix.thunk(() => ({
-          [nix.POS]: pos$10,
+          [nix.POS]: $pos[9],
           cryptpad: nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             enable: true,
             configureNginx: true,
             settings: nix.thunk(() => ({
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               httpUnsafeOrigin: "https://cryptpad.localhost",
               httpSafeOrigin: "https://cryptpad-sandbox.localhost",
             })),
           })),
           nginx: nix.thunk(() => ({
-            [nix.POS]: pos$9,
+            [nix.POS]: $pos[8],
             virtualHosts: nix.thunk(() => ({
-              [nix.POS]: pos$8,
+              [nix.POS]: $pos[7],
               "cryptpad.localhost": nix.thunk(() => ({
-                [nix.POS]: pos$7,
+                [nix.POS]: $pos[6],
                 enableACME: false,
                 sslCertificate: nix.thunk(() => nix.str`${certs}/cert.pem`),
                 sslCertificateKey: nix.thunk(() => nix.str`${certs}/key.pem`),
@@ -114,9 +100,9 @@ driver.close()
           })),
         })),
         security: nix.thunk(() => ({
-          [nix.POS]: pos$12,
+          [nix.POS]: $pos[11],
           pki: nix.thunk(() => ({
-            [nix.POS]: pos$11,
+            [nix.POS]: $pos[10],
             certificateFiles: nix.thunk(() => [nix.thunk(() => nix.str`${certs}/cert.pem`)]),
           })),
         })),

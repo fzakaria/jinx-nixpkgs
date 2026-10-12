@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]], [["owner", 38, 9], ["repo", 39, 9], ["tag", 40, 9], ["hash", 41, 9]], [["owner", 45, 9], ["repo", 46, 9], ["tag", 47, 9], ["hash", 48, 9]], [["owner", 52, 9], ["repo", 53, 9], ["tag", 54, 9], ["hash", 55, 9]], [["slangSrc", 37, 7], ["fmtSrc", 44, 7], ["mimallocSrc", 51, 7]], [["description", 84, 5], ["homepage", 85, 5], ["changelog", 86, 5], ["license", 87, 5], ["maintainers", 91, 5], ["mainProgram", 92, 5], ["platforms", 93, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["cargoHash", 26, 3], ["patches", 28, 3], ["nativeBuildInputs", 60, 3], ["preCheck", 68, 3], ["nativeCheckInputs", 70, 3], ["postCheck", 71, 3], ["postInstall", 76, 3], ["meta", 83, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, rustPlatform: false, fetchFromGitHub: false, replaceVars: false, gitMinimal: false, cmake: false, installShellFiles: false, python3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 38, 9], ["repo", 39, 9], ["tag", 40, 9], ["hash", 41, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["owner", 45, 9], ["repo", 46, 9], ["tag", 47, 9], ["hash", 48, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["owner", 52, 9], ["repo", 53, 9], ["tag", 54, 9], ["hash", 55, 9]]);
-const pos$5 = nix.positions(here + "/package.nix", [["slangSrc", 37, 7], ["fmtSrc", 44, 7], ["mimallocSrc", 51, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 84, 5], ["homepage", 85, 5], ["changelog", 86, 5], ["license", 87, 5], ["maintainers", 91, 5], ["mainProgram", 92, 5], ["platforms", 93, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["cargoHash", 26, 3], ["patches", 28, 3], ["nativeBuildInputs", 60, 3], ["preCheck", 68, 3], ["nativeCheckInputs", 70, 3], ["postCheck", 71, 3], ["postInstall", 76, 3], ["meta", 83, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const target = nix.thunk(() => nix.sel(stdenv, "hostPlatform", "rust", "cargoShortTarget"));
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "bender",
       version: "0.32.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "pulp-platform",
           repo: "bender",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -37,23 +31,23 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-1exuDZPsmtorOeRWPb+UMX7U/Uc+0U0Rs0bG9L+/ipc=",
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./build-rs.patch"), nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             slangSrc: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                [nix.POS]: pos$2,
+                [nix.POS]: $pos[1],
                 owner: "MikePopoloski",
                 repo: "slang",
                 tag: "v11.0",
                 hash: "sha256-popHzwX0qwv2POAl7/qX3e//OwJRXGtSl9xogpSn2LI=",
               })))),
             fmtSrc: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                [nix.POS]: pos$3,
+                [nix.POS]: $pos[2],
                 owner: "fmtlib",
                 repo: "fmt",
                 tag: "12.1.0",
                 hash: "sha256-ZmI1Dv0ZabPlxa02OpERI47jp7zFfjpeWCy1WyuPYZ0=",
               })))),
             mimallocSrc: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                [nix.POS]: pos$4,
+                [nix.POS]: $pos[3],
                 owner: "microsoft",
                 repo: "mimalloc",
                 tag: "v3.3.2",
@@ -69,7 +63,7 @@ BENDER="$PWD/target/${target}/$cargoBuildType/bender" tests/run_all.sh
 `),
       postInstall: "installShellCompletion --cmd bender \\\n  --bash <($out/bin/bender completion bash) \\\n  --fish <($out/bin/bender completion fish) \\\n  --zsh <($out/bin/bender completion zsh)\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Dependency management tool for hardware projects",
         homepage: "https://github.com/pulp-platform/bender",
         changelog: nix.thunk(() => nix.str`https://github.com/pulp-platform/bender/releases/tag/${nix.sel(finalAttrs, "src", "rev")}`),

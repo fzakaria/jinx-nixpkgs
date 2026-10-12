@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 59, 5], ["repo", 60, 5], ["tag", 61, 5], ["hash", 62, 5]], [["homepage", 103, 5], ["description", 104, 5], ["longDescription", 105, 5], ["license", 108, 5], ["maintainers", 109, 5]], [["version", 55, 3], ["pname", 56, 3], ["src", 58, 3], ["nativeBuildInputs", 65, 3], ["buildInputs", 69, 3], ["propagatedBuildInputs", 75, 3], ["dontAddPrefix", 86, 3], ["dontAddStaticConfigureFlags", 87, 3], ["configurePlatforms", 88, 3], ["postInstall", 90, 3], ["postFixup", 94, 3], ["dontPatchShebangs", 100, 3], ["meta", 102, 3]]]);
 const formals$1 = { args: { lib: false, buildDunePackage: false, fetchFromGitHub: false, which: false, ocaml: false, lwt_react: false, ssl: false, lwt_ssl: false, findlib: false, bigstringaf: false, lwt: false, cstruct: false, "mirage-crypto": false, zarith: false, "mirage-crypto-ec": false, ptime: false, "mirage-crypto-rng": false, mtime: false, "ca-certs": false, cohttp: false, "cohttp-lwt-unix": false, re: false, "logs-syslog": false, cryptokit: false, "xml-light": false, ipaddr: false, camlzip: false, makeWrapper: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 59, 5], ["repo", 60, 5], ["tag", 61, 5], ["hash", 62, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 103, 5], ["description", 104, 5], ["longDescription", 105, 5], ["license", 108, 5], ["maintainers", 109, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["version", 55, 3], ["pname", 56, 3], ["src", 58, 3], ["nativeBuildInputs", 65, 3], ["buildInputs", 69, 3], ["propagatedBuildInputs", 75, 3], ["dontAddPrefix", 86, 3], ["dontAddStaticConfigureFlags", 87, 3], ["configurePlatforms", 88, 3], ["postInstall", 90, 3], ["postFixup", 94, 3], ["dontPatchShebangs", 100, 3], ["meta", 102, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -54,11 +52,11 @@ export default nix.lambda((args) => (() => {
       re,
     ])));
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       version: "7.0.0",
       pname: "ocsigenserver",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ocsigen",
           repo: "ocsigenserver",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -86,7 +84,7 @@ wrapProgram $out/bin/ocsigenserver \\
 `),
       dontPatchShebangs: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "http://ocsigen.org/ocsigenserver/",
         description: "Full featured Web server",
         longDescription: "A full featured Web server. It implements most features of the HTTP protocol, and has a very powerful extension mechanism that make very easy to plug your own OCaml modules for generating pages.\n",

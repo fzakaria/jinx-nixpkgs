@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/jit.nix", [[["pname", 12, 5], ["version", 13, 5], ["url", 14, 5], ["sha256", 15, 5], ["additionalBuildInputs", 17, 5], ["description", 23, 5]]]);
 const formals$1 = { args: { callPackage: false, lv2: false, fontconfig: false, "libvterm-neovim": false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/jit.nix", [["pname", 12, 5], ["version", 13, 5], ["url", 14, 5], ["sha256", 15, 5], ["additionalBuildInputs", 17, 5], ["description", 23, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const additionalBuildInputs = nix.thunk(() => [lv2, fontconfig, libvterm_neovim]);
       const description = "Just-in-Time C/Rust compiler embedded in an LV2 plugin";
       return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         pname,
         version,
         url,

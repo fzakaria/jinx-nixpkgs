@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 34, 5], ["sha256", 35, 5]], [["attrPath", 83, 7], ["packageName", 84, 7], ["versionPolicy", 85, 7], ["freeze", 86, 7]], [["updateScript", 82, 5]], [["homepage", 91, 5], ["description", 92, 5], ["license", 93, 5], ["platforms", 94, 5], ["teams", 95, 5]], [["pname", 21, 3], ["version", 22, 3], ["__structuredAttrs", 24, 3], ["strictDeps", 25, 3], ["outputs", 27, 3], ["src", 33, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 53, 3], ["propagatedBuildInputs", 57, 3], ["mesonFlags", 61, 3], ["doCheck", 66, 3], ["preCheck", 68, 3], ["passthru", 81, 3], ["meta", 90, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, meson: false, mesonEmulatorHook: false, ninja: false, "pkg-config": false, exiv2: false, glib: false, gnome: false, "gobject-introspection": false, vala: false, "gtk-doc": false, "docbook-xsl-nons": false, docbook_xml_dtd_43: false, python3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 34, 5], ["sha256", 35, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["attrPath", 83, 7], ["packageName", 84, 7], ["versionPolicy", 85, 7], ["freeze", 86, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 82, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 91, 5], ["description", 92, 5], ["license", 93, 5], ["platforms", 94, 5], ["teams", 95, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 3], ["__structuredAttrs", 24, 3], ["strictDeps", 25, 3], ["outputs", 27, 3], ["src", 33, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 53, 3], ["propagatedBuildInputs", 57, 3], ["mesonFlags", 61, 3], ["doCheck", 66, 3], ["preCheck", 68, 3], ["passthru", 81, 3], ["meta", 90, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const strictDeps = true;
       const outputs = nix.thunk(() => ["out", "dev", "devdoc"]);
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnome/sources/gexiv2/${nix.app(nix.sel(lib, "versions", "majorMinor"), version)}/gexiv2-${version}.tar.xz`),
           sha256: "YGwoqq57Hz71yOq+Xn3/18WhyGbSW3Zx+4R/4oenK4s=",
         }))));
@@ -64,9 +60,9 @@ ln -s $PWD/gexiv2/libgexiv2.${libSuffix} $out/lib/libgexiv2.${libSuffix}
 `;
       })());
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             attrPath: "gexiv2_0_10",
             packageName: pname,
             versionPolicy: "odd-unstable",
@@ -74,7 +70,7 @@ ln -s $PWD/gexiv2/libgexiv2.${libSuffix} $out/lib/libgexiv2.${libSuffix}
           })))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://gitlab.gnome.org/GNOME/gexiv2",
         description: "GObject wrapper around the Exiv2 photo metadata library",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
@@ -82,7 +78,7 @@ ln -s $PWD/gexiv2/libgexiv2.${libSuffix} $out/lib/libgexiv2.${libSuffix}
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "gnome"))]),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         __structuredAttrs,

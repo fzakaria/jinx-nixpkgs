@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 20, 5], ["sha256", 21, 5]], [["description", 34, 5], ["homepage", 35, 5], ["sourceProvenance", 36, 5], ["license", 37, 5], ["maintainers", 38, 5], ["mainProgram", 39, 5]], [["version", 10, 3], ["pname", 11, 3], ["jarfilename", 13, 3], ["nativeBuildInputs", 15, 3], ["src", 19, 3], ["dontUnpack", 24, 3], ["installPhase", 26, 3], ["meta", 33, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, jre: false, makeWrapper: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 20, 5], ["sha256", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 34, 5], ["homepage", 35, 5], ["sourceProvenance", 36, 5], ["license", 37, 5], ["maintainers", 38, 5], ["mainProgram", 39, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 10, 3], ["pname", 11, 3], ["jarfilename", 13, 3], ["nativeBuildInputs", 15, 3], ["src", 19, 3], ["dontUnpack", 24, 3], ["installPhase", 26, 3], ["meta", 33, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const jarfilename = nix.thunk(() => nix.str`${pname}-cli-${version}.jar`);
       const nativeBuildInputs = nix.thunk(() => [makeWrapper]);
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://maven/io/swagger/${pname}-cli/${version}/${jarfilename}`),
           sha256: "sha256-8MwqDGP6A2V2B0kGOTVpf66yOGzUCe1bFOO/l+GBrmY=",
         }))));
@@ -31,7 +29,7 @@ makeWrapper ${jre}/bin/java $out/bin/${pname} \\
   --add-flags "-jar $out/share/java/${jarfilename}"
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Allows generation of API client libraries (SDK generation), server stubs and documentation automatically given an OpenAPI Spec",
         homepage: "https://github.com/swagger-api/swagger-codegen",
         sourceProvenance: nix.thunk(() => (() => {
@@ -43,7 +41,7 @@ makeWrapper ${jre}/bin/java $out/bin/${pname} \\
         mainProgram: "swagger-codegen",
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         version,
         pname,
         jarfilename,

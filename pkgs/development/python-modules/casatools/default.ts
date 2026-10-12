@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 33, 5], ["rev", 34, 5], ["hash", 35, 5], ["fetchSubmodules", 36, 5]], [["url", 73, 5], ["hash", 74, 5]], [["updateScript", 87, 12]], [["description", 107, 5], ["homepage", 108, 5], ["license", 109, 5], ["platforms", 110, 5], ["maintainers", 111, 5]], [["pname", 29, 3], ["version", 30, 3], ["src", 32, 3], ["sourceRoot", 39, 3], ["format", 41, 3], ["nativeBuildInputs", 43, 3], ["dontConfigure", 57, 3], ["buildInputs", 59, 3], ["propagatedBuildInputs", 65, 3], ["jarName", 70, 3], ["xml_jar", 72, 3], ["postPatch", 77, 3], ["doCheck", 85, 3], ["passthru", 87, 3], ["meta", 106, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchgit: false, fetchurl: false, "common-updater-scripts": false, curl: false, gnugrep: false, gnused: false, writeShellScript: false, cmake: false, "pkg-config": false, swig: false, flex: false, bison: false, gfortran: false, jdk: false, setuptools: false, wheel: false, build: false, numpy: false, casaconfig: false, casacpp: false, xercesc: false, grpc: false, readline: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 33, 5], ["rev", 34, 5], ["hash", 35, 5], ["fetchSubmodules", 36, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["url", 73, 5], ["hash", 74, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["updateScript", 87, 12]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 107, 5], ["homepage", 108, 5], ["license", 109, 5], ["platforms", 110, 5], ["maintainers", 111, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 29, 3], ["version", 30, 3], ["src", 32, 3], ["sourceRoot", 39, 3], ["format", 41, 3], ["nativeBuildInputs", 43, 3], ["dontConfigure", 57, 3], ["buildInputs", 59, 3], ["propagatedBuildInputs", 65, 3], ["jarName", 70, 3], ["xml_jar", 72, 3], ["postPatch", 77, 3], ["doCheck", 85, 3], ["passthru", 87, 3], ["meta", 106, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -37,11 +33,11 @@ export default nix.lambda((args) => (() => {
   const grpc = nix.arg($, "grpc");
   const readline = nix.arg($, "readline");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "casatools",
       version: "6.7.5.18",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://open-bitbucket.nrao.edu/scm/casa/casa6.git",
           rev: nix.thunk(() => nix.str`refs/tags/${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-75oIlaNAyu70KWSjz38LoYAvV7RJgzH/X9uBnGpriF4=",
@@ -67,7 +63,7 @@ export default nix.lambda((args) => (() => {
       propagatedBuildInputs: nix.thunk(() => [numpy, casaconfig]),
       jarName: "xml-casa-assembly-1.88.jar",
       xml_jar: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: nix.thunk(() => nix.str`http://casa.nrao.edu/download/devel/xml-casa/java/${nix.sel(finalAttrs, "jarName")}`),
           hash: "sha256-UJCiXLXAe7Prm1qGXJ9jbuZcgKhPTSrU8qnf4C5Goxs=",
         })))),
@@ -78,7 +74,7 @@ sed -i 's/def compute_version():/def compute_version():\\n    return "${nix.sel(
 `),
       doCheck: false,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(writeShellScript, "update-casatools", nix.thunk(() => nix.str`set -euo pipefail
 version=$(${nix.app(nix.sel(lib, "getExe"), curl)} -s https://pypi.org/pypi/casatools/json | ${nix.app(nix.sel(lib, "getExe"), gnugrep)} -oP '"version"\\s*:\\s*"\\K[^"]+' | head -1)
 ${nix.app(nix.sel(lib, "getExe'"), common_updater_scripts, "update-source-version")} python3Packages.casatools "$version"
@@ -98,7 +94,7 @@ ${nix.app(nix.sel(lib, "getExe"), gnused)} -i \\
 `))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Python interface to core radio astronomy data processing routines",
         homepage: "https://casa.nrao.edu/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

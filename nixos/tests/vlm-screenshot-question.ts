@@ -2,10 +2,8 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/vlm-screenshot-question.nix", [[["url", 22, 7], ["hash", 23, 7]], [["url", 28, 7], ["hash", 29, 7]], [["flakeIgnore", 40, 45]]]);
 const formals$1 = { args: { lib: false, writers: false, fetchurl: false, "llama-cpp": false, runCommand: false, model: true, mmproj: true, name: false, screenshot: false, question: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/vlm-screenshot-question.nix", [["url", 22, 7], ["hash", 23, 7]]);
-const pos$2 = nix.positions(here + "/vlm-screenshot-question.nix", [["url", 28, 7], ["hash", 29, 7]]);
-const pos$3 = nix.positions(here + "/vlm-screenshot-question.nix", [["flakeIgnore", 40, 45]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,19 +13,19 @@ export default nix.lambda((args) => (() => {
   const llama_cpp = nix.arg($, "llama-cpp");
   const runCommand = nix.arg($, "runCommand");
   const model = nix.argOr($, "model", () => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: "https://huggingface.co/unsloth/gemma-4-E2B-it-GGUF/resolve/90f9618340396838ee7ff5b0ba2da27da62953d3/gemma-4-E2B-it-Q4_0.gguf",
       hash: "sha256-nEwdSKRi9/iDsomErE9C02bJxXNDTqtoVT4POL9+tQw=",
     }))));
   const mmproj = nix.argOr($, "mmproj", () => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       url: "https://huggingface.co/unsloth/gemma-4-E2B-it-GGUF/resolve/90f9618340396838ee7ff5b0ba2da27da62953d3/mmproj-F16.gguf",
       hash: "sha256-FAvo14SXQfiMUHV9UpuENz7o4nBSzCI2hVtTf0qCFfo=",
     }))));
   const name = nix.arg($, "name");
   const screenshot = nix.arg($, "screenshot");
   const question = nix.arg($, "question");
-  const analysisScript = nix.thunk(() => nix.app(nix.sel(writers, "writePython3"), nix.thunk(() => nix.str`${name}-script`), nix.thunk(() => ({ [nix.POS]: pos$3, flakeIgnore: nix.thunk(() => ["E501"]) })), nix.thunk(() => nix.str`import os
+  const analysisScript = nix.thunk(() => nix.app(nix.sel(writers, "writePython3"), nix.thunk(() => nix.str`${name}-script`), nix.thunk(() => ({ [nix.POS]: $pos[2], flakeIgnore: nix.thunk(() => ["E501"]) })), nix.thunk(() => nix.str`import os
 import re
 import subprocess
 import time

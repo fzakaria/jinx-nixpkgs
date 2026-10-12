@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 35, 5], ["repo", 36, 5], ["rev", 37, 5], ["hash", 38, 5]], [["description", 93, 5], ["mainProgram", 94, 5], ["longDescription", 95, 5], ["homepage", 101, 5], ["license", 104, 5], ["platforms", 105, 5], ["maintainers", 106, 5]], [["pname", 31, 3], ["version", 32, 3], ["src", 34, 3], ["nativeBuildInputs", 41, 3], ["buildInputs", 49, 3], ["cmakeFlags", 72, 3], ["dontWrapGApps", 87, 3], ["preFixup", 88, 3], ["meta", 92, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, cmake: false, desktopToDarwinBundle: false, "pkg-config": false, qt6Packages: false, gnuradioMinimal: false, thrift: false, mpir: false, fftwFloat: false, "alsa-lib": false, libjack2: false, wrapGAppsHook3: false, "rtl-sdr": false, hackrf: false, stdenv: false, pulseaudioSupport: true, libpulseaudio: false, portaudioSupport: true, portaudio: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 35, 5], ["repo", 36, 5], ["rev", 37, 5], ["hash", 38, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 93, 5], ["mainProgram", 94, 5], ["longDescription", 95, 5], ["homepage", 101, 5], ["license", 104, 5], ["platforms", 105, 5], ["maintainers", 106, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 31, 3], ["version", 32, 3], ["src", 34, 3], ["nativeBuildInputs", 41, 3], ["buildInputs", 49, 3], ["cmakeFlags", 72, 3], ["dontWrapGApps", 87, 3], ["preFixup", 88, 3], ["meta", 92, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -36,7 +34,7 @@ export default nix.lambda((args) => (() => {
       const pname = "gqrx";
       const version = "2.17.7";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "gqrx-sdr",
           repo: "gqrx",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -72,7 +70,7 @@ export default nix.lambda((args) => (() => {
       const dontWrapGApps = true;
       const preFixup = "qtWrapperArgs+=(\"${gappsWrapperArgs[@]}\")\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Software defined radio (SDR) receiver",
         mainProgram: "gqrx",
         longDescription: "Gqrx is a software defined radio receiver powered by GNU Radio and the Qt\nGUI toolkit. It can process I/Q data from many types of input devices,\nincluding Funcube Dongle Pro/Pro+, rtl-sdr, HackRF, and Universal\nSoftware Radio Peripheral (USRP) devices.\n",
@@ -88,7 +86,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

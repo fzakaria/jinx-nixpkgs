@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["description", 19, 5], ["homepage", 20, 5], ["license", 21, 5], ["teams", 22, 5], ["broken", 23, 5]], [["pname", 7, 3], ["version", 8, 3], ["sha256", 9, 3], ["configureFlags", 11, 3], ["makeFlags", 12, 3], ["outputs", 13, 3], ["meta", 18, 3]]]);
 const formals$1 = { args: { buildPecl: false, lib: false, php: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["description", 19, 5], ["homepage", 20, 5], ["license", 21, 5], ["teams", 22, 5], ["broken", 23, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 7, 3], ["version", 8, 3], ["sha256", 9, 3], ["configureFlags", 11, 3], ["makeFlags", 12, 3], ["outputs", 13, 3], ["meta", 18, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -12,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const php = nix.arg($, "php");
   return nix.app(buildPecl, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "igbinary",
       version: "3.2.14",
       sha256: "sha256-YzcUek+4iAclZmdIN72pko7gbufwEUtDOLhsgWIykl0=",
@@ -20,7 +19,7 @@ export default nix.lambda((args) => (() => {
       makeFlags: nix.thunk(() => ["phpincludedir=$(dev)/include"]),
       outputs: nix.thunk(() => ["out", "dev"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Binary serialization for PHP",
         homepage: "https://github.com/igbinary/igbinary/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

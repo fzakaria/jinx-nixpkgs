@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]], [["PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION", 34, 5]], [["description", 62, 5], ["homepage", 63, 5], ["license", 64, 5], ["maintainers", 65, 5]], [["pname", 18, 3], ["version", 19, 3], ["pyproject", 20, 3], ["src", 22, 3], ["build-system", 29, 3], ["env", 31, 3], ["dependencies", 37, 3], ["doCheck", 45, 3], ["nativeCheckInputs", 47, 3], ["preCheck", 55, 3], ["pythonImportsCheck", 59, 3], ["meta", 61, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, etcd: false, fetchFromGitHub: false, grpcio: false, hypothesis: false, mock: false, pifpaf: false, protobuf: false, pytestCheckHook: false, six: false, tenacity: false, setuptools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION", 34, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 62, 5], ["homepage", 63, 5], ["license", 64, 5], ["maintainers", 65, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 18, 3], ["version", 19, 3], ["pyproject", 20, 3], ["src", 22, 3], ["build-system", 29, 3], ["env", 31, 3], ["dependencies", 37, 3], ["doCheck", 45, 3], ["nativeCheckInputs", 47, 3], ["preCheck", 55, 3], ["pythonImportsCheck", 59, 3], ["meta", 61, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,26 +21,26 @@ export default nix.lambda((args) => (() => {
   const tenacity = nix.arg($, "tenacity");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "etcd3",
       version: "0.12.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "kragniz",
           repo: "python-etcd3",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-YM72+fkCDYXl6DORJa/O0sqXqHDWQcFLv2ifQ9kEHBo=",
         })))),
       "build-system": nix.thunk(() => [setuptools]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION: "python" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION: "python" })),
       dependencies: nix.thunk(() => [grpcio, protobuf, six, tenacity]),
       doCheck: false,
       nativeCheckInputs: nix.thunk(() => [etcd, hypothesis, mock, pifpaf, pytestCheckHook]),
       preCheck: "pifpaf -e PYTHON run etcd --cluster\n",
       pythonImportsCheck: nix.thunk(() => ["etcd3"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Python client for the etcd API v3",
         homepage: "https://github.com/kragniz/python-etcd3",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/sqlite_fdw.nix", [[["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]], [["broken", 28, 5], ["description", 31, 5], ["homepage", 32, 5], ["changelog", 33, 5], ["maintainers", 34, 5], ["platforms", 35, 5], ["license", 36, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["buildInputs", 20, 3], ["makeFlags", 22, 3], ["meta", 24, 3]]]);
 const formals$1 = { args: { fetchFromGitHub: false, lib: false, postgresql: false, postgresqlBuildExtension: false, sqlite: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/sqlite_fdw.nix", [["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/sqlite_fdw.nix", [["broken", 28, 5], ["description", 31, 5], ["homepage", 32, 5], ["changelog", 33, 5], ["maintainers", 34, 5], ["platforms", 35, 5], ["license", 36, 5]]);
-const pos$3 = nix.positions(here + "/sqlite_fdw.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["buildInputs", 20, 3], ["makeFlags", 22, 3], ["meta", 24, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const postgresqlBuildExtension = nix.arg($, "postgresqlBuildExtension");
   const sqlite = nix.arg($, "sqlite");
   return nix.app(postgresqlBuildExtension, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "sqlite_fdw",
       version: "2.5.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "pgspider",
           repo: "sqlite_fdw",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -28,7 +26,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [sqlite]),
       makeFlags: nix.thunk(() => ["USE_PGXS=1"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         broken: nix.thunk(() => nix.app(nix.sel(lib, "warnIf"), nix.thunk(() => !nix.eq(nix.sel(finalAttrs, "version"), "2.5.0")), "Is postgresql18Packages.sqlite_fdw still broken?", nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(postgresql, "version")), "18")))),
         description: "SQLite Foreign Data Wrapper for PostgreSQL",
         homepage: "https://github.com/pgspider/sqlite_fdw",

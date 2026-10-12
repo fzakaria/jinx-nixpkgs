@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["fetchSubmodules", 28, 5], ["hash", 29, 5]], [["description", 54, 5], ["homepage", 55, 5], ["changelog", 56, 5], ["license", 57, 5], ["maintainers", 58, 5]], [["pname", 17, 3], ["version", 18, 3], ["pyproject", 19, 3], ["__structuredAttrs", 20, 3], ["src", 22, 3], ["build-system", 32, 3], ["dontUseCmakeConfigure", 38, 3], ["buildInputs", 40, 3], ["dependencies", 44, 3], ["pythonImportsCheck", 48, 3], ["doCheck", 51, 3], ["meta", 53, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, cmake: false, ninja: false, numpy: false, "scikit-build-core": false, blas: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["fetchSubmodules", 28, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 54, 5], ["homepage", 55, 5], ["changelog", 56, 5], ["license", 57, 5], ["maintainers", 58, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 17, 3], ["version", 18, 3], ["pyproject", 19, 3], ["__structuredAttrs", 20, 3], ["src", 22, 3], ["build-system", 32, 3], ["dontUseCmakeConfigure", 38, 3], ["buildInputs", 40, 3], ["dependencies", 44, 3], ["pythonImportsCheck", 48, 3], ["doCheck", 51, 3], ["meta", 53, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,13 +16,13 @@ export default nix.lambda((args) => (() => {
   const scikit_build_core = nix.arg($, "scikit-build-core");
   const blas = nix.arg($, "blas");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "sparsediffpy",
       version: "0.6.1",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "SparseDifferentiation",
           repo: "SparseDiffPy",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,7 +36,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["sparsediffpy"]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Python bindings for SparseDiffEngine, a C library for computing sparse Jacobians and Hessians",
         homepage: "https://github.com/SparseDifferentiation/SparseDiffPy",
         changelog: nix.thunk(() => nix.str`https://github.com/SparseDifferentiation/SparseDiffPy/blob/${nix.sel(finalAttrs, "src", "tag")}/RELEASES.md`),

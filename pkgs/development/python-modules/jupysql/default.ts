@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 46, 5], ["repo", 47, 5], ["tag", 48, 5], ["hash", 49, 5]], [["dev", 68, 25]], [["skipBulkUpdate", 136, 12]], [["description", 139, 5], ["homepage", 140, 5], ["changelog", 141, 5], ["license", 142, 5], ["maintainers", 143, 5]], [["pname", 40, 3], ["version", 41, 3], ["pyproject", 42, 3], ["__structuredAttrs", 43, 3], ["src", 45, 3], ["pythonRelaxDeps", 52, 3], ["build-system", 54, 3], ["dependencies", 56, 3], ["optional-dependencies", 68, 3], ["nativeCheckInputs", 82, 3], ["disabledTests", 89, 3], ["disabledTestPaths", 118, 3], ["pythonImportsCheck", 133, 3], ["passthru", 136, 3], ["meta", 138, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, "ipython-genutils": false, jinja2: false, "jupysql-plugin": false, "ploomber-core": false, prettytable: false, sqlalchemy: false, sqlglot: false, sqlparse: false, duckdb: false, "duckdb-engine": false, grpcio: false, ipython: false, ipywidgets: false, matplotlib: false, numpy: false, pandas: false, polars: false, pyarrow: false, pyspark: false, pytestCheckHook: false, psutil: false, writableTmpDirAsHomeHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 46, 5], ["repo", 47, 5], ["tag", 48, 5], ["hash", 49, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["dev", 68, 25]]);
-const pos$3 = nix.positions(here + "/default.nix", [["skipBulkUpdate", 136, 12]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 139, 5], ["homepage", 140, 5], ["changelog", 141, 5], ["license", 142, 5], ["maintainers", 143, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 40, 3], ["version", 41, 3], ["pyproject", 42, 3], ["__structuredAttrs", 43, 3], ["src", 45, 3], ["pythonRelaxDeps", 52, 3], ["build-system", 54, 3], ["dependencies", 56, 3], ["optional-dependencies", 68, 3], ["nativeCheckInputs", 82, 3], ["disabledTests", 89, 3], ["disabledTestPaths", 118, 3], ["pythonImportsCheck", 133, 3], ["passthru", 136, 3], ["meta", 138, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -39,13 +35,13 @@ export default nix.lambda((args) => (() => {
   const psutil = nix.arg($, "psutil");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "jupysql",
       version: "0.11.1",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ploomber",
           repo: "jupysql",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -64,7 +60,7 @@ export default nix.lambda((args) => (() => {
         sqlparse,
       ], nix.sel(pyspark, "optional-dependencies", "connect"))),
       "optional-dependencies": nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         dev: nix.thunk(() => [
           duckdb,
           duckdb_engine,
@@ -106,9 +102,9 @@ export default nix.lambda((args) => (() => {
         "src/tests/test_widget.py",
       ]),
       pythonImportsCheck: nix.thunk(() => ["sql"]),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$3, skipBulkUpdate: true })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[2], skipBulkUpdate: true })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Better SQL in Jupyter",
         homepage: "https://github.com/ploomber/jupysql",
         changelog: nix.thunk(() => nix.str`https://github.com/ploomber/jupysql/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG.md`),

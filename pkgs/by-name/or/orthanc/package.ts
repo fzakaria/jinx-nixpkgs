@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 34, 5], ["rev", 35, 5], ["hash", 36, 5]], [["NIX_CFLAGS_COMPILE", 102, 7]], [["orthanc", 119, 28]], [["framework", 117, 5], ["tests", 118, 5]], [["description", 124, 5], ["homepage", 125, 5], ["license", 126, 5], ["mainProgram", 127, 5], ["maintainers", 128, 5], ["platforms", 129, 5]], [["pname", 30, 3], ["version", 31, 3], ["src", 33, 3], ["outputs", 39, 3], ["sourceRoot", 45, 3], ["nativeBuildInputs", 47, 3], ["buildInputs", 54, 3], ["strictDeps", 73, 3], ["enableParallelBuilding", 75, 3], ["cmakeFlags", 77, 3], ["env", 102, 3], ["postInstall", 104, 3], ["nativeInstallCheckInputs", 110, 3], ["versionCheckProgram", 113, 3], ["doInstallCheck", 114, 3], ["passthru", 116, 3], ["meta", 123, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchhg: false, boost: false, charls: false, civetweb: false, cmake: false, curl: false, dcmtk: false, gtest: false, jsoncpp: false, libjpeg: false, libpng: false, libuuid: false, log4cplus: false, lua: false, openssl: false, protobuf: false, pugixml: false, python3: false, sqlite: false, unzip: false, versionCheckHook: false, nixosTests: false, "orthanc-framework": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 34, 5], ["rev", 35, 5], ["hash", 36, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 102, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["orthanc", 119, 28]]);
-const pos$4 = nix.positions(here + "/package.nix", [["framework", 117, 5], ["tests", 118, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 124, 5], ["homepage", 125, 5], ["license", 126, 5], ["mainProgram", 127, 5], ["maintainers", 128, 5], ["platforms", 129, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 30, 3], ["version", 31, 3], ["src", 33, 3], ["outputs", 39, 3], ["sourceRoot", 45, 3], ["nativeBuildInputs", 47, 3], ["buildInputs", 54, 3], ["strictDeps", 73, 3], ["enableParallelBuilding", 75, 3], ["cmakeFlags", 77, 3], ["env", 102, 3], ["postInstall", 104, 3], ["nativeInstallCheckInputs", 110, 3], ["versionCheckProgram", 113, 3], ["doInstallCheck", 114, 3], ["passthru", 116, 3], ["meta", 123, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -38,11 +33,11 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const orthanc_framework = nix.arg($, "orthanc-framework");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "orthanc",
       version: "1.12.11",
       src: nix.thunk(() => nix.app(fetchhg, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://orthanc.uclouvain.be/hg/orthanc/",
           rev: nix.thunk(() => nix.str`Orthanc-${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-EoohVYrnGN3dJUlXAd+10glcKA0AdZSyQ3wy2luycMQ=",
@@ -92,18 +87,21 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "USE_SYSTEM_UUID", true)),
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "USE_SYSTEM_ZLIB", true)),
       ]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-Wno-builtin-macro-redefined" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], NIX_CFLAGS_COMPILE: "-Wno-builtin-macro-redefined" })),
       postInstall: "mkdir -p $doc/share/doc/orthanc\ncp -r $src/OrthancServer/Resources/Samples $doc/share/doc/orthanc/Samples\ncp -r $src/OrthancServer/Plugins/Samples $doc/share/doc/orthanc/OrthancPluginSamples\n",
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       versionCheckProgram: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/bin/${nix.sel(finalAttrs, "meta", "mainProgram")}`),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         framework: orthanc_framework,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$3, orthanc: nix.thunk(() => nix.attr(nixosTests, "orthanc")) })),
+        tests: nix.thunk(() => ({
+          [nix.POS]: $pos[2],
+          orthanc: nix.thunk(() => nix.attr(nixosTests, "orthanc")),
+        })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Lightweight, RESTful DICOM server for healthcare and medical research",
         homepage: "https://www.orthanc-server.com/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

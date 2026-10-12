@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 12, 5], ["sha256", 13, 5]], [["url", 17, 5], ["sha256", 18, 5]], [["homepage", 33, 5], ["description", 34, 5], ["license", 38, 5]], [["pname", 9, 3], ["version", 10, 3], ["srcAmr", 11, 3], ["src", 16, 3], ["nativeBuildInputs", 21, 3], ["configureFlags", 23, 3], ["postConfigure", 28, 3], ["meta", 32, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, unzip: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 12, 5], ["sha256", 13, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 17, 5], ["sha256", 18, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 33, 5], ["description", 34, 5], ["license", 38, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["srcAmr", 11, 3], ["src", 16, 3], ["nativeBuildInputs", 21, 3], ["configureFlags", 23, 3], ["postConfigure", 28, 3], ["meta", 32, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,16 +12,16 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const unzip = nix.arg($, "unzip");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "amrnb",
       version: "11.0.0.0",
       srcAmr: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://www.3gpp.org/ftp/Specs/latest/Rel-11/26_series/26104-b00.zip",
           sha256: "1wf8ih0hk7w20vdlnw7jb7w73v15hbxgbvmq4wq7h2ghn0j8ppr3",
         })))),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: "http://www.penguin.cz/~utx/ftp/amr/amrnb-11.0.0.0.tar.bz2",
           sha256: "1qgiw02n2a6r32pimnd97v2jkvnw449xrqmaxiivjy2jcr5h141q",
         })))),
@@ -32,7 +29,7 @@ export default nix.lambda((args) => (() => {
       configureFlags: nix.thunk(() => ["--cache-file=config.cache", "--with-downloader=true"]),
       postConfigure: "cp $srcAmr 26104-b00.zip\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "http://www.penguin.cz/~utx/amr",
         description: "AMR Narrow-Band Codec",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["wolfram", 11, 7]], [["definitions", 10, 5]]]);
 const formals$1 = { args: { stdenv: false, writeScriptBin: false, jupyter: false, "wolfram-for-jupyter-kernel": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["wolfram", 11, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["definitions", 10, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,9 +12,9 @@ export default nix.lambda((args) => (() => {
   const jupyter = nix.arg($, "jupyter");
   const wolfram_for_jupyter_kernel = nix.arg($, "wolfram-for-jupyter-kernel");
   const wolfram_jupyter = nix.thunk(() => nix.app(nix.sel(jupyter, "override"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       definitions: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         wolfram: nix.thunk(() => nix.sel(wolfram_for_jupyter_kernel, "definition")),
       })),
     }))));

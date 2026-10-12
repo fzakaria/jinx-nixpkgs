@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 33, 5], ["repo", 34, 5], ["rev", 35, 5], ["fetchSubmodules", 40, 5], ["hash", 41, 5]], [["description", 101, 5], ["longDescription", 102, 5], ["homepage", 117, 5], ["license", 118, 5], ["platforms", 119, 5], ["mainProgram", 120, 5], ["maintainers", 121, 5]], [["pname", 29, 3], ["version", 30, 3], ["src", 32, 3], ["postPatch", 46, 3], ["preBuild", 53, 3], ["cmakeFlags", 57, 3], ["postInstall", 71, 3], ["nativeBuildInputs", 80, 3], ["buildInputs", 87, 3], ["meta", 100, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, cmake: false, "pkg-config": false, python3: false, rake: false, curl: false, fetchFromGitHub: false, kubazip: false, libGL: false, libGLU: false, libx11: false, giflib: false, libpng: false, janet: false, lua5_3_compat: false, quickjs: false, SDL2: false, withPro: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 33, 5], ["repo", 34, 5], ["rev", 35, 5], ["fetchSubmodules", 40, 5], ["hash", 41, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 101, 5], ["longDescription", 102, 5], ["homepage", 117, 5], ["license", 118, 5], ["platforms", 119, 5], ["mainProgram", 120, 5], ["maintainers", 121, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 29, 3], ["version", 30, 3], ["src", 32, 3], ["postPatch", 46, 3], ["preBuild", 53, 3], ["cmakeFlags", 57, 3], ["postInstall", 71, 3], ["nativeBuildInputs", 80, 3], ["buildInputs", 87, 3], ["meta", 100, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,11 +28,11 @@ export default nix.lambda((args) => (() => {
   const withPro = nix.argOr($, "withPro", () => false);
   const year = "2026";
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "tic-80",
       version: "1.2.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "nesbox",
           repo: "TIC-80",
           rev: "v1.2.0",
@@ -64,7 +62,7 @@ export default nix.lambda((args) => (() => {
         SDL2,
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Free and open source fantasy computer for making, playing and sharing tiny games",
         longDescription: "TIC-80 is a free and open source fantasy computer for making, playing and\nsharing tiny games.\n\nThere are built-in tools for development: code, sprites, maps, sound\neditors and the command line, which is enough to create a mini retro\ngame. At the exit you will get a cartridge file, which can be stored and\nplayed on the website.\n\nAlso, the game can be packed into a player that works on all popular\nplatforms and distribute as you wish. To make a retro styled game the\nwhole process of creation takes place under some technical limitations:\n240x136 pixels display, 16 color palette, 256 8x8 color sprites, 4\nchannel sound and etc.\n",
         homepage: "https://github.com/nesbox/TIC-80",

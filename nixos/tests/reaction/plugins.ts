@@ -2,62 +2,41 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/plugins.nix", [[["enable", 11, 7], ["stopForFirewall", 12, 7], ["runAsRoot", 13, 7], ["settings", 14, 7]], [["enable", 43, 22]], [["reaction", 10, 14], ["openssh", 43, 14]], [["CapabilityBoundingSet", 32, 7], ["AmbientCapabilities", 37, 7]], [["serviceConfig", 31, 31]], [["reaction", 31, 22]], [["services", 31, 13]], [["isNormalUser", 45, 23]], [["nixos", 45, 17]], [["users", 45, 11]], [["services", 10, 5], ["systemd", 31, 5], ["users", 45, 5]], [["systemPackages", 49, 17]], [["environment", 49, 5]], [["server", 9, 9], ["client", 48, 9]], [["enable", 101, 27]], [["memorySize", 107, 22], ["graphics", 108, 22]], [["systemPackages", 109, 19]], [["virtualisation", 107, 7], ["environment", 109, 7]], [["server", 103, 21]], [["sshBackdoor", 101, 15], ["nodes", 103, 15]], [["maintainers", 117, 8]], [["name", 7, 3], ["nodes", 9, 3], ["testScript", 55, 3], ["interactive", 101, 3], ["meta", 117, 3]]]);
 const formals$1 = { args: { lib: false, pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/plugins.nix", [["enable", 11, 7], ["stopForFirewall", 12, 7], ["runAsRoot", 13, 7], ["settings", 14, 7]]);
-const pos$2 = nix.positions(here + "/plugins.nix", [["enable", 43, 22]]);
-const pos$3 = nix.positions(here + "/plugins.nix", [["reaction", 10, 14], ["openssh", 43, 14]]);
-const pos$4 = nix.positions(here + "/plugins.nix", [["CapabilityBoundingSet", 32, 7], ["AmbientCapabilities", 37, 7]]);
-const pos$5 = nix.positions(here + "/plugins.nix", [["serviceConfig", 31, 31]]);
-const pos$6 = nix.positions(here + "/plugins.nix", [["reaction", 31, 22]]);
-const pos$7 = nix.positions(here + "/plugins.nix", [["services", 31, 13]]);
-const pos$8 = nix.positions(here + "/plugins.nix", [["isNormalUser", 45, 23]]);
-const pos$9 = nix.positions(here + "/plugins.nix", [["nixos", 45, 17]]);
-const pos$10 = nix.positions(here + "/plugins.nix", [["users", 45, 11]]);
-const pos$11 = nix.positions(here + "/plugins.nix", [["services", 10, 5], ["systemd", 31, 5], ["users", 45, 5]]);
-const pos$12 = nix.positions(here + "/plugins.nix", [["systemPackages", 49, 17]]);
-const pos$13 = nix.positions(here + "/plugins.nix", [["environment", 49, 5]]);
-const pos$14 = nix.positions(here + "/plugins.nix", [["server", 9, 9], ["client", 48, 9]]);
 const formals$2 = { args: { nodes: false }, ellipsis: true };
-const pos$15 = nix.positions(here + "/plugins.nix", [["enable", 101, 27]]);
 const formals$3 = { args: { config: false }, ellipsis: true };
-const pos$16 = nix.positions(here + "/plugins.nix", [["memorySize", 107, 22], ["graphics", 108, 22]]);
-const pos$17 = nix.positions(here + "/plugins.nix", [["systemPackages", 109, 19]]);
-const pos$18 = nix.positions(here + "/plugins.nix", [["virtualisation", 107, 7], ["environment", 109, 7]]);
-const pos$19 = nix.positions(here + "/plugins.nix", [["server", 103, 21]]);
-const pos$20 = nix.positions(here + "/plugins.nix", [["sshBackdoor", 101, 15], ["nodes", 103, 15]]);
-const pos$21 = nix.positions(here + "/plugins.nix", [["maintainers", 117, 8]]);
-const pos$22 = nix.positions(here + "/plugins.nix", [["name", 7, 3], ["nodes", 9, 3], ["testScript", 55, 3], ["interactive", 101, 3], ["meta", 117, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   return {
-    [nix.POS]: pos$22,
+    [nix.POS]: $pos[21],
     name: "reaction-core-plugins",
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$14,
+      [nix.POS]: $pos[13],
       server: (args_1) => ({
-        [nix.POS]: pos$11,
+        [nix.POS]: $pos[10],
         services: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           reaction: nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             enable: true,
             stopForFirewall: false,
             runAsRoot: false,
             settings: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./settings.nix")), args_1)),
           })),
-          openssh: nix.thunk(() => ({ [nix.POS]: pos$2, enable: true })),
+          openssh: nix.thunk(() => ({ [nix.POS]: $pos[1], enable: true })),
         })),
         systemd: nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             reaction: nix.thunk(() => ({
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               serviceConfig: nix.thunk(() => ({
-                [nix.POS]: pos$4,
+                [nix.POS]: $pos[3],
                 CapabilityBoundingSet: nix.thunk(() => ["CAP_NET_ADMIN", "CAP_NET_RAW", "CAP_DAC_READ_SEARCH"]),
                 AmbientCapabilities: nix.thunk(() => ["CAP_NET_ADMIN", "CAP_NET_RAW", "CAP_DAC_READ_SEARCH"]),
               })),
@@ -65,17 +44,17 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         users: nix.thunk(() => ({
-          [nix.POS]: pos$10,
+          [nix.POS]: $pos[9],
           users: nix.thunk(() => ({
-            [nix.POS]: pos$9,
-            nixos: nix.thunk(() => ({ [nix.POS]: pos$8, isNormalUser: true })),
+            [nix.POS]: $pos[8],
+            nixos: nix.thunk(() => ({ [nix.POS]: $pos[7], isNormalUser: true })),
           })),
         })),
       }),
       client: (_) => ({
-        [nix.POS]: pos$13,
+        [nix.POS]: $pos[12],
         environment: nix.thunk(() => ({
-          [nix.POS]: pos$12,
+          [nix.POS]: $pos[11],
           systemPackages: nix.thunk(() => [
             nix.thunk(() => nix.sel(pkgs, "sshpass")),
             nix.thunk(() => nix.sel(pkgs, "libressl", "nc")),
@@ -127,18 +106,18 @@ client.succeed(f"nc -w3 -z {server_addr} 22")
 `;
     })(), formals$2),
     interactive: nix.thunk(() => ({
-      [nix.POS]: pos$20,
-      sshBackdoor: nix.thunk(() => ({ [nix.POS]: pos$15, enable: true })),
+      [nix.POS]: $pos[19],
+      sshBackdoor: nix.thunk(() => ({ [nix.POS]: $pos[14], enable: true })),
       nodes: nix.thunk(() => ({
-        [nix.POS]: pos$19,
+        [nix.POS]: $pos[18],
         server: nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$3);
           const config = nix.arg($_1, "config");
           return {
-            [nix.POS]: pos$18,
-            virtualisation: nix.thunk(() => ({ [nix.POS]: pos$16, memorySize: 4096n, graphics: false })),
+            [nix.POS]: $pos[17],
+            virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[15], memorySize: 4096n, graphics: false })),
             environment: nix.thunk(() => ({
-              [nix.POS]: pos$17,
+              [nix.POS]: $pos[16],
               systemPackages: nix.thunk(() => (() => {
                 const w = nix.withScope(pkgs, null);
                 return [
@@ -154,7 +133,7 @@ client.succeed(f"nc -w3 -z {server_addr} 22")
       })),
     })),
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$21,
+      [nix.POS]: $pos[20],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return nix.concat([nix.thunk(() => nix.lookup(w, "ppom"))], nix.sel(lib, "teams", "ngi", "members"));

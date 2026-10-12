@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["postInstall", 30, 7]], [["ghc-paths", 46, 29]]]);
 const formals$1 = { args: { lib: false, stdenv: false, haskellPackages: false, haskell: false, pluginSupport: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["postInstall", 30, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["ghc-paths", 46, 29]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,7 +19,7 @@ export default nix.lambda((args) => (() => {
   const overrideCabal = nix.thunk(() => nix.attr(from, "overrideCabal"));
   const base = nix.thunk(() => nix.app((nix.asBool(pluginSupport) ? nix.force(enableCabalFlag) : nix.force(disableCabalFlag)), "plugins", nix.thunk(() => nix.sel(haskellPackages, "gitit"))));
   const aarch64DarwinFix = nix.thunk(() => nix.app(overrideCabal, (drv) => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")))), nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         postInstall: nix.thunk(() => nix.str`${nix.selOr(drv, () => "", "postInstall")}
 remove-references-to -t ${nix.sel(haskellPackages, "HTTP")} "$out/bin/gitit"
 remove-references-to -t ${nix.sel(haskellPackages, "HTTP")} "$out/bin/expireGititCache"
@@ -30,6 +29,6 @@ remove-references-to -t ${nix.sel(haskellPackages, "pandoc")} "$out/bin/gitit"
 remove-references-to -t ${nix.sel(haskellPackages, "pandoc-types")} "$out/bin/gitit"
 `),
       })))));
-  return (nix.asBool(pluginSupport) ? nix.force(base) : nix.app(nix.sel(lib, "pipe"), nix.thunk(() => nix.app(nix.sel(base, "override"), nix.thunk(() => ({ [nix.POS]: pos$2, "ghc-paths": null })))), nix.thunk(() => [justStaticExecutables, aarch64DarwinFix])));
+  return (nix.asBool(pluginSupport) ? nix.force(base) : nix.app(nix.sel(lib, "pipe"), nix.thunk(() => nix.app(nix.sel(base, "override"), nix.thunk(() => ({ [nix.POS]: $pos[1], "ghc-paths": null })))), nix.thunk(() => [justStaticExecutables, aarch64DarwinFix])));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

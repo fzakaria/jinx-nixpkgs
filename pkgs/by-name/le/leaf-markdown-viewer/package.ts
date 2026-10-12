@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]], [["updateScript", 59, 12]], [["description", 62, 5], ["homepage", 63, 5], ["changelog", 64, 5], ["license", 65, 5], ["maintainers", 66, 5], ["mainProgram", 67, 5], ["platforms", 68, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["__structuredAttrs", 21, 3], ["cargoHash", 23, 3], ["nativeBuildInputs", 25, 3], ["dontUseCargoParallelTests", 29, 3], ["postPatch", 34, 3], ["postInstall", 42, 3], ["doInstallCheck", 55, 3], ["nativeInstallCheckInputs", 56, 3], ["versionCheckProgramArg", 57, 3], ["passthru", 59, 3], ["meta", 61, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, installShellFiles: false, "nix-update-script": false, rustPlatform: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 59, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 62, 5], ["homepage", 63, 5], ["changelog", 64, 5], ["license", 65, 5], ["maintainers", 66, 5], ["mainProgram", 67, 5], ["platforms", 68, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["__structuredAttrs", 21, 3], ["cargoHash", 23, 3], ["nativeBuildInputs", 25, 3], ["dontUseCargoParallelTests", 29, 3], ["postPatch", 34, 3], ["postInstall", 42, 3], ["doInstallCheck", 55, 3], ["nativeInstallCheckInputs", 56, 3], ["versionCheckProgramArg", 57, 3], ["passthru", 59, 3], ["meta", 61, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const rustPlatform = nix.arg($, "rustPlatform");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "leaf-markdown-viewer",
       version: "1.28.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "RivoLink",
           repo: "leaf",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -37,11 +34,11 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       versionCheckProgramArg: "--version",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Terminal Markdown previewer with a GUI-like experience",
         homepage: "https://leaf.rivolink.mg",
         changelog: nix.thunk(() => nix.str`https://github.com/RivoLink/leaf/blob/${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

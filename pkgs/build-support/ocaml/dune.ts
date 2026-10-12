@@ -2,12 +2,9 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/dune.nix", [[["1", 33, 11], ["2", 34, 11], ["3", 35, 11]], [["platforms", 87, 11]], [["name", 44, 9], ["strictDeps", 46, 9], ["enableParallelBuilding", 48, 17], ["dontAddStaticConfigureFlags", 49, 9], ["configurePlatforms", 50, 9], ["nativeBuildInputs", 52, 9], ["buildPhase", 59, 9], ["installPhase", 66, 9], ["checkPhase", 79, 9], ["meta", 86, 9]], [["constructDrv", 11, 3], ["excludeDrvArgNames", 12, 3], ["extendDrvArgs", 16, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, ocaml: false, findlib: false, dune_2: false, dune_3: false }, ellipsis: false };
 const formals$2 = { args: { pname: false, version: false, dunePackages: true, nativeBuildInputs: true, enableParallelBuilding: true }, ellipsis: true };
-const pos$1 = nix.positions(here + "/dune.nix", [["1", 33, 11], ["2", 34, 11], ["3", 35, 11]]);
-const pos$2 = nix.positions(here + "/dune.nix", [["platforms", 87, 11]]);
-const pos$3 = nix.positions(here + "/dune.nix", [["name", 44, 9], ["strictDeps", 46, 9], ["enableParallelBuilding", 48, 17], ["dontAddStaticConfigureFlags", 49, 9], ["configurePlatforms", 50, 9], ["nativeBuildInputs", 52, 9], ["buildPhase", 59, 9], ["installPhase", 66, 9], ["checkPhase", 79, 9], ["meta", 86, 9]]);
-const pos$4 = nix.positions(here + "/dune.nix", [["constructDrv", 11, 3], ["excludeDrvArgNames", 12, 3], ["extendDrvArgs", 16, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const dune_2 = nix.arg($, "dune_2");
   const dune_3 = nix.arg($, "dune_3");
   return nix.app(nix.sel(lib, "extendMkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       constructDrv: nix.thunk(() => nix.sel(stdenv, "mkDerivation")),
       excludeDrvArgNames: nix.thunk(() => ["minimalOCamlVersion", "duneVersion"]),
       extendDrvArgs: (finalAttrs) => nix.lambda((args_1) => (() => {
@@ -32,14 +29,14 @@ export default nix.lambda((args) => (() => {
         const Dune = nix.thunk(() => (() => {
           const dune_version = nix.thunk(() => nix.selOr(args_2, () => "3", "duneVersion"));
           return nix.sel({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             "1": nix.thunk(() => nix.builtins.throw("Support for dune version 1 has been removed")),
             "2": dune_2,
             "3": dune_3,
           }, nix.key(nix.str`${dune_version}`));
         })());
         return (nix.asBool((nix.asBool(nix.has(args_2, "minimalOCamlVersion")) && nix.asBool(nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(ocaml, "version")), nix.thunk(() => nix.sel(args_2, "minimalOCamlVersion")))))) ? nix.builtins.throw(nix.thunk(() => nix.str`${pname}-${version} is not available for OCaml ${nix.sel(ocaml, "version")}`)) : {
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           name: nix.thunk(() => nix.str`ocaml${nix.sel(ocaml, "version")}-${pname}-${nix.sel(finalAttrs, "version")}`),
           strictDeps: true,
           enableParallelBuilding: enableParallelBuilding,
@@ -60,7 +57,7 @@ dune runtest -p ${nix.app(nix.sel(lib, "concatStringsSep"), ",", dunePackages)} 
 runHook postCheck
 `, "checkPhase")),
           meta: nix.thunk(() => nix.update(nix.selOr(args_2, () => ({}), "meta"), {
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             platforms: nix.thunk(() => nix.selOr(args_2, () => nix.sel(ocaml, "meta", "platforms"), "meta", "platforms")),
           })),
         });

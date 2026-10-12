@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["extraArgs", 62, 5]], [["updateScript", 61, 12]], [["description", 69, 5], ["homepage", 70, 5], ["changelog", 71, 5], ["mainProgram", 72, 5], ["license", 73, 5], ["platforms", 75, 5], ["maintainers", 76, 5]], [["src", 27, 38], ["version", 27, 42], ["pname", 28, 3], ["sourceRoot", 30, 3], ["npmDepsFetcherVersion", 32, 3], ["npmDepsHash", 33, 3], ["strictDeps", 35, 3], ["nativeBuildInputs", 36, 3], ["buildPhase", 40, 3], ["postInstall", 49, 3], ["nativeInstallCheckInputs", 56, 3], ["doInstallCheck", 59, 3], ["passthru", 61, 3], ["meta", 68, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildNpmPackage: false, fetchFromGitHub: false, esbuild: false, "nix-update-script": false, versionCheckHook: false, "vscode-extensions": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["extraArgs", 62, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 61, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 69, 5], ["homepage", 70, 5], ["changelog", 71, 5], ["mainProgram", 72, 5], ["license", 73, 5], ["platforms", 75, 5], ["maintainers", 76, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["src", 27, 38], ["version", 27, 42], ["pname", 28, 3], ["sourceRoot", 30, 3], ["npmDepsFetcherVersion", 32, 3], ["npmDepsHash", 33, 3], ["strictDeps", 35, 3], ["nativeBuildInputs", 36, 3], ["buildPhase", 40, 3], ["postInstall", 49, 3], ["nativeInstallCheckInputs", 56, 3], ["doInstallCheck", 59, 3], ["passthru", 61, 3], ["meta", 68, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,7 +19,7 @@ export default nix.lambda((args) => (() => {
   const rescript_editor_analysis = nix.thunk(() => nix.attr(from, "rescript-editor-analysis"));
   const platformDir = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) ? "linux" : (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? "darwin" : (nix.asBool(nix.sel(stdenv, "hostPlatform", "isFreeBSD")) ? "freebsd" : (nix.asBool(nix.sel(stdenv, "hostPlatform", "isWindows")) ? "win32" : nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenv, "system")}`)))))));
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       src: nix.thunk(() => nix.attr(rescript_editor_analysis, "src")),
       version: nix.thunk(() => nix.attr(rescript_editor_analysis, "version")),
       pname: "rescript-language-server",
@@ -40,14 +37,14 @@ ln -s ${nix.app(nix.sel(lib, "getExe"), rescript_editor_analysis)} "$DIR"/rescri
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             extraArgs: nix.thunk(() => ["--version-regex", "([0-9]+\\.[0-9]+\\.[0-9]+)"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "ReScript Language Server",
         homepage: nix.thunk(() => nix.str`https://github.com/rescript-lang/rescript-vscode/tree/${nix.sel(finalAttrs, "version")}/server`),
         changelog: nix.thunk(() => nix.str`https://github.com/rescript-lang/rescript-vscode/releases/tag/${nix.sel(finalAttrs, "version")}`),

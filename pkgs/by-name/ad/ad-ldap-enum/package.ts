@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 12, 5], ["repo", 13, 5], ["rev", 14, 5], ["hash", 15, 5]], [["description", 45, 5], ["homepage", 46, 5], ["license", 47, 5], ["maintainers", 48, 5], ["platforms", 49, 5], ["mainProgram", 50, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 11, 3], ["buildInputs", 18, 3], ["installPhase", 28, 3], ["fixupPhase", 36, 3], ["meta", 44, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchFromGitHub: false, python3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 12, 5], ["repo", 13, 5], ["rev", 14, 5], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 45, 5], ["homepage", 46, 5], ["license", 47, 5], ["maintainers", 48, 5], ["platforms", 49, 5], ["mainProgram", 50, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 11, 3], ["buildInputs", 18, 3], ["installPhase", 28, 3], ["fixupPhase", 36, 3], ["meta", 44, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const python3 = nix.arg($, "python3");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "ad-ldap-enum",
       version: "0-unstable-2023-02-10",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "CroweCybersecurity",
           repo: "ad-ldap-enum",
           rev: "60bc5bb111e2708d4bc2157f9ae3d5e0d06ece75",
@@ -37,7 +35,7 @@ export default nix.lambda((args) => (() => {
       installPhase: "runHook preInstall\n\ninstall -Dm555 ad-ldap-enum.py $out/bin/ad-ldap-enum\n\nrunHook postInstall\n",
       fixupPhase: "runHook preFixup\n\npatchShebangs $out/bin/ad-ldap-enum\n\nrunHook postFixup\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "LDAP based Active Directory user and group enumeration tool",
         homepage: "https://github.com/CroweCybersecurity/ad-ldap-enum",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

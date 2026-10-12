@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 29, 5], ["version", 30, 26], ["hash", 31, 5]], [["description", 64, 5], ["mainProgram", 65, 5], ["homepage", 66, 5], ["changelog", 67, 5], ["license", 68, 5], ["maintainers", 69, 5]], [["pname", 22, 3], ["version", 23, 3], ["pyproject", 24, 3], ["__structuredAttrs", 26, 3], ["src", 28, 3], ["build-system", 34, 3], ["preBuild", 39, 3], ["dependencies", 43, 3], ["doCheck", 59, 3], ["pythonImportsCheck", 61, 3], ["meta", 63, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, "debian-inspector": false, docker: false, "dockerfile-parse": false, fetchPypi: false, setuptools: false, gitpython: false, idna: false, "license-expression": false, "packageurl-python": false, pbr: false, prettytable: false, pyyaml: false, regex: false, requests: false, stevedore: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 29, 5], ["version", 30, 26], ["hash", 31, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 64, 5], ["mainProgram", 65, 5], ["homepage", 66, 5], ["changelog", 67, 5], ["license", 68, 5], ["maintainers", 69, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 22, 3], ["version", 23, 3], ["pyproject", 24, 3], ["__structuredAttrs", 26, 3], ["src", 28, 3], ["build-system", 34, 3], ["preBuild", 39, 3], ["dependencies", 43, 3], ["doCheck", 59, 3], ["pythonImportsCheck", 61, 3], ["meta", 63, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,13 +25,13 @@ export default nix.lambda((args) => (() => {
   const requests = nix.arg($, "requests");
   const stevedore = nix.arg($, "stevedore");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "tern",
       version: "2.12.1",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "tern",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-yMIvFiliEHrbZMqvX3ZAROWcqii5VmB54QEYHGRJocA=",
@@ -57,7 +55,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["tern"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Software composition analysis tool and Python library that generates a Software Bill of Materials for container images and Dockerfiles",
         mainProgram: "tern",
         homepage: "https://github.com/tern-tools/tern",

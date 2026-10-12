@@ -2,90 +2,71 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/actual.nix", [[["maintainers", 4, 8]], [["enable", 9, 23]], [["actual", 9, 16]], [["services", 9, 7]], [["port", 20, 11], ["dataDir", 21, 11]], [["enable", 16, 9], ["user", 17, 9], ["group", 18, 9], ["settings", 19, 9]], [["actual", 15, 16]], [["group", 26, 9], ["home", 27, 9], ["isSystemUser", 28, 9]], [["actual", 25, 19]], [["actual", 31, 20]], [["users", 25, 13], ["groups", 31, 13]], [["group", 37, 15], ["mode", 38, 15], ["user", 39, 15]], [["d", 36, 13]], [["/var/lib/actual-test", 35, 11]], [["10-actualdir", 34, 9]], [["settings", 33, 24]], [["tmpfiles", 33, 15]], [["services", 15, 7], ["users", 25, 7], ["systemd", 33, 7]], [["machine", 6, 14], ["machine2", 12, 14]], [["name", 3, 3], ["meta", 4, 3], ["containers", 6, 3], ["testScript", 46, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/actual.nix", [["maintainers", 4, 8]]);
 const formals$2 = { args: {  }, ellipsis: true };
-const pos$2 = nix.positions(here + "/actual.nix", [["enable", 9, 23]]);
-const pos$3 = nix.positions(here + "/actual.nix", [["actual", 9, 16]]);
-const pos$4 = nix.positions(here + "/actual.nix", [["services", 9, 7]]);
 const formals$3 = { args: {  }, ellipsis: true };
-const pos$5 = nix.positions(here + "/actual.nix", [["port", 20, 11], ["dataDir", 21, 11]]);
-const pos$6 = nix.positions(here + "/actual.nix", [["enable", 16, 9], ["user", 17, 9], ["group", 18, 9], ["settings", 19, 9]]);
-const pos$7 = nix.positions(here + "/actual.nix", [["actual", 15, 16]]);
-const pos$8 = nix.positions(here + "/actual.nix", [["group", 26, 9], ["home", 27, 9], ["isSystemUser", 28, 9]]);
-const pos$9 = nix.positions(here + "/actual.nix", [["actual", 25, 19]]);
-const pos$10 = nix.positions(here + "/actual.nix", [["actual", 31, 20]]);
-const pos$11 = nix.positions(here + "/actual.nix", [["users", 25, 13], ["groups", 31, 13]]);
-const pos$12 = nix.positions(here + "/actual.nix", [["group", 37, 15], ["mode", 38, 15], ["user", 39, 15]]);
-const pos$13 = nix.positions(here + "/actual.nix", [["d", 36, 13]]);
-const pos$14 = nix.positions(here + "/actual.nix", [["/var/lib/actual-test", 35, 11]]);
-const pos$15 = nix.positions(here + "/actual.nix", [["10-actualdir", 34, 9]]);
-const pos$16 = nix.positions(here + "/actual.nix", [["settings", 33, 24]]);
-const pos$17 = nix.positions(here + "/actual.nix", [["tmpfiles", 33, 15]]);
-const pos$18 = nix.positions(here + "/actual.nix", [["services", 15, 7], ["users", 25, 7], ["systemd", 33, 7]]);
-const pos$19 = nix.positions(here + "/actual.nix", [["machine", 6, 14], ["machine2", 12, 14]]);
-const pos$20 = nix.positions(here + "/actual.nix", [["name", 3, 3], ["meta", 4, 3], ["containers", 6, 3], ["testScript", 46, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$20,
+    [nix.POS]: $pos[19],
     name: "actual",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "oddlama"))]),
     })),
     containers: nix.thunk(() => ({
-      [nix.POS]: pos$19,
+      [nix.POS]: $pos[18],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$3,
-            actual: nix.thunk(() => ({ [nix.POS]: pos$2, enable: true })),
+            [nix.POS]: $pos[2],
+            actual: nix.thunk(() => ({ [nix.POS]: $pos[1], enable: true })),
           })),
         };
       })(), formals$2),
       machine2: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$3);
         return {
-          [nix.POS]: pos$18,
+          [nix.POS]: $pos[17],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             actual: nix.thunk(() => ({
-              [nix.POS]: pos$6,
+              [nix.POS]: $pos[5],
               enable: true,
               user: "actual",
               group: "actual",
-              settings: nix.thunk(() => ({ [nix.POS]: pos$5, port: 7000n, dataDir: "/var/lib/actual-test" })),
+              settings: nix.thunk(() => ({ [nix.POS]: $pos[4], port: 7000n, dataDir: "/var/lib/actual-test" })),
             })),
           })),
           users: nix.thunk(() => ({
-            [nix.POS]: pos$11,
+            [nix.POS]: $pos[10],
             users: nix.thunk(() => ({
-              [nix.POS]: pos$9,
+              [nix.POS]: $pos[8],
               actual: nix.thunk(() => ({
-                [nix.POS]: pos$8,
+                [nix.POS]: $pos[7],
                 group: "actual",
                 home: "/var/lib/actual-test",
                 isSystemUser: true,
               })),
             })),
-            groups: nix.thunk(() => ({ [nix.POS]: pos$10, actual: nix.thunk(() => ({})) })),
+            groups: nix.thunk(() => ({ [nix.POS]: $pos[9], actual: nix.thunk(() => ({})) })),
           })),
           systemd: nix.thunk(() => ({
-            [nix.POS]: pos$17,
+            [nix.POS]: $pos[16],
             tmpfiles: nix.thunk(() => ({
-              [nix.POS]: pos$16,
+              [nix.POS]: $pos[15],
               settings: nix.thunk(() => ({
-                [nix.POS]: pos$15,
+                [nix.POS]: $pos[14],
                 "10-actualdir": nix.thunk(() => ({
-                  [nix.POS]: pos$14,
+                  [nix.POS]: $pos[13],
                   "/var/lib/actual-test": nix.thunk(() => ({
-                    [nix.POS]: pos$13,
-                    d: nix.thunk(() => ({ [nix.POS]: pos$12, group: "actual", mode: "0755", user: "actual" })),
+                    [nix.POS]: $pos[12],
+                    d: nix.thunk(() => ({ [nix.POS]: $pos[11], group: "actual", mode: "0755", user: "actual" })),
                   })),
                 })),
               })),

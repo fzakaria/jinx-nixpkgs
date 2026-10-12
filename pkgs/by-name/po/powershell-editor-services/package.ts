@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 13, 5], ["hash", 14, 5], ["stripRoot", 15, 5]], [["description", 29, 5], ["homepage", 30, 5], ["changelog", 31, 5], ["platforms", 32, 5], ["license", 33, 5], ["maintainers", 34, 5], ["mainProgram", 35, 5], ["sourceProvenance", 36, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["installPhase", 18, 3], ["meta", 28, 3]]]);
 const formals$1 = { args: { stdenvNoCC: false, fetchzip: false, lib: false, powershell: false, runtimeShell: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 13, 5], ["hash", 14, 5], ["stripRoot", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 29, 5], ["homepage", 30, 5], ["changelog", 31, 5], ["platforms", 32, 5], ["license", 33, 5], ["maintainers", 34, 5], ["mainProgram", 35, 5], ["sourceProvenance", 36, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["installPhase", 18, 3], ["meta", 28, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "powershell-editor-services";
       const version = "4.7.0";
       const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/PowerShell/PowerShellEditorServices/releases/download/v${version}/PowerShellEditorServices.zip`),
           hash: "sha256-dODDDR42VONL3nf5Pg08yfPWHMswCCsgiUMNGSlUz9o=",
           stripRoot: false,
@@ -32,7 +30,7 @@ EOF
 chmod +x $out/bin/powershell-editor-services
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Common platform for PowerShell development support in any editor or application",
         homepage: "https://github.com/PowerShell/PowerShellEditorServices",
         changelog: nix.thunk(() => nix.str`https://github.com/PowerShell/PowerShellEditorServices/releases/tag/v${version}`),
@@ -48,7 +46,7 @@ chmod +x $out/bin/powershell-editor-services
           return [nix.thunk(() => nix.lookup(w_1, "binaryBytecode"))];
         })()),
       }));
-      return { [nix.POS]: pos$3, pname, version, src, installPhase, meta };
+      return { [nix.POS]: $pos[2], pname, version, src, installPhase, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

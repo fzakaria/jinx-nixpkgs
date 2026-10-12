@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]], [["name", 40, 7], ["exec", 41, 7], ["desktopName", 42, 7], ["icon", 43, 7], ["comment", 44, 7], ["terminal", 45, 7], ["type", 46, 7], ["categories", 47, 7]], [["description", 154, 5], ["mainProgram", 155, 5], ["license", 156, 5], ["homepage", 157, 5], ["changelog", 158, 5], ["maintainers", 159, 5]], [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["src", 19, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 32, 3], ["desktopItems", 38, 3], ["dependencies", 54, 3], ["nativeCheckInputs", 89, 3], ["outputs", 98, 3], ["installPhase", 103, 3], ["checkPhase", 129, 3], ["doCheck", 140, 3], ["dontWrapQtApps", 142, 3], ["preFixup", 143, 3], ["meta", 153, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, python3Packages: false, fetchFromGitHub: false, qt6: false, copyDesktopItems: false, makeDesktopItem: false, writableTmpDirAsHomeHook: false, ffmpeg: false, miniupnpc: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 40, 7], ["exec", 41, 7], ["desktopName", 42, 7], ["icon", 43, 7], ["comment", 44, 7], ["terminal", 45, 7], ["type", 46, 7], ["categories", 47, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 154, 5], ["mainProgram", 155, 5], ["license", 156, 5], ["homepage", 157, 5], ["changelog", 158, 5], ["maintainers", 159, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["src", 19, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 32, 3], ["desktopItems", 38, 3], ["dependencies", 54, 3], ["nativeCheckInputs", 89, 3], ["outputs", 98, 3], ["installPhase", 103, 3], ["checkPhase", 129, 3], ["doCheck", 140, 3], ["dontWrapQtApps", 142, 3], ["preFixup", 143, 3], ["meta", 153, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const ffmpeg = nix.arg($, "ffmpeg");
   const miniupnpc = nix.arg($, "miniupnpc");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "hydrus",
       version: "689",
       pyproject: false,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "hydrusnetwork",
           repo: "hydrus",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -44,7 +41,7 @@ export default nix.lambda((args) => (() => {
       ]),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "hydrus-client",
             exec: "hydrus-client",
             desktopName: "Hydrus Client",
@@ -127,7 +124,7 @@ runHook postInstall
 makeWrapperArgs+=(--prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [ffmpeg, miniupnpc]))})
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Danbooru-like image tagging and searching system for the desktop",
         mainProgram: "hydrus-client",
         license: nix.thunk(() => nix.sel(lib, "licenses", "wtfpl")),

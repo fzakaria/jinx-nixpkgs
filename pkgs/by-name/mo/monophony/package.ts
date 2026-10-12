@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]], [["updateScript", 68, 12]], [["description", 71, 5], ["longDescription", 72, 5], ["homepage", 73, 5], ["license", 74, 5], ["platforms", 75, 5], ["maintainers", 76, 5], ["mainProgram", 79, 5]], [["pname", 14, 3], ["version", 15, 3], ["pyproject", 16, 3], ["src", 18, 3], ["sourceRoot", 25, 3], ["dependencies", 27, 3], ["build-system", 34, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 44, 3], ["postInstall", 55, 3], ["dontWrapGApps", 59, 3], ["preFixup", 61, 3], ["passthru", 68, 3], ["meta", 70, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitLab: false, python3Packages: false, wrapGAppsHook4: false, "gobject-introspection": false, "yt-dlp": false, gst_all_1: false, libadwaita: false, "glib-networking": false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 68, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 71, 5], ["longDescription", 72, 5], ["homepage", 73, 5], ["license", 74, 5], ["platforms", 75, 5], ["maintainers", 76, 5], ["mainProgram", 79, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["pyproject", 16, 3], ["src", 18, 3], ["sourceRoot", 25, 3], ["dependencies", 27, 3], ["build-system", 34, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 44, 3], ["postInstall", 55, 3], ["dontWrapGApps", 59, 3], ["preFixup", 61, 3], ["passthru", 68, 3], ["meta", 70, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const glib_networking = nix.arg($, "glib-networking");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "monophony",
       version: "4.4.6",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "zehkira",
           repo: "monophony",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -66,11 +63,11 @@ export default nix.lambda((args) => (() => {
 )
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Linux app for streaming music from YouTube",
         longDescription: "Monophony allows you to stream and download music from YouTube Music without ads, as well as create and import playlists without signing in.",
         homepage: "https://gitlab.com/zehkira/monophony",

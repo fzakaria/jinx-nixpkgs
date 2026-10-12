@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 27, 5], ["repo", 28, 5], ["rev", 29, 5], ["hash", 30, 5]], [["LIBCLANG_PATH", 57, 7]], [["description", 97, 5], ["homepage", 98, 5], ["license", 99, 5], ["maintainers", 100, 5], ["platforms", 101, 5], ["mainProgram", 102, 5]], [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["cargoHash", 33, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 41, 3], ["env", 57, 3], ["cargoBuildFlags", 60, 3], ["cargoTestFlags", 61, 3], ["doCheck", 64, 3], ["postInstall", 67, 3], ["postFixup", 79, 3], ["meta", 96, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchFromGitHub: false, "pkg-config": false, clang: false, libclang: false, makeWrapper: false, lua5_4: false, dbus: false, wayland: false, "wayland-protocols": false, pipewire: false, "vulkan-loader": false, libxkbcommon: false, libGL: false, sqlite: false, fontconfig: false, freetype: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 27, 5], ["repo", 28, 5], ["rev", 29, 5], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["LIBCLANG_PATH", 57, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 97, 5], ["homepage", 98, 5], ["license", 99, 5], ["maintainers", 100, 5], ["platforms", 101, 5], ["mainProgram", 102, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["cargoHash", 33, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 41, 3], ["env", 57, 3], ["cargoBuildFlags", 60, 3], ["cargoTestFlags", 61, 3], ["doCheck", 64, 3], ["postInstall", 67, 3], ["postFixup", 79, 3], ["meta", 96, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const fontconfig = nix.arg($, "fontconfig");
   const freetype = nix.arg($, "freetype");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "moxnotify",
       version: "0.1.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "mox-desktop",
           repo: "moxnotify",
           rev: "6726af08621072e0c95a147cf4ae63ea66c7e857",
@@ -56,7 +53,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.sel(libclang, "lib")),
       ]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         LIBCLANG_PATH: nix.thunk(() => nix.str`${nix.sel(libclang, "lib")}/lib`),
       })),
       cargoBuildFlags: nix.thunk(() => ["--workspace"]),
@@ -77,7 +74,7 @@ wrapProgram $out/bin/moxctl \\
   --prefix LD_LIBRARY_PATH : ${nix.app(nix.sel(lib, "makeLibraryPath"), nix.thunk(() => [vulkan_loader, libGL]))}
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Feature-rich hardware-accelerated keyboard driven Wayland notification daemon",
         homepage: "https://github.com/mox-desktop/moxnotify",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

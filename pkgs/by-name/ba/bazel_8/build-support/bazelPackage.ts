@@ -2,16 +2,9 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/bazelPackage.nix", [[["outputHash", 22, 5], ["outputHashAlgo", 23, 5]], [["outputHash", 26, 5], ["outputHashAlgo", 27, 5]], [["name", 45, 9], ["outputHash", 46, 37], ["outputHashAlgo", 46, 48], ["src", 48, 11], ["version", 49, 11], ["sourceRoot", 50, 11], ["env", 51, 11], ["buildInputs", 52, 11], ["nativeBuildInputs", 53, 11], ["registry", 55, 17], ["bazel", 57, 11], ["targets", 58, 11], ["startupArgs", 59, 11], ["serverJavabase", 60, 11], ["command", 62, 9], ["outputHashMode", 63, 9], ["commandArgs", 64, 9], ["bazelPreBuild", 65, 9], ["installPhase", 68, 9]], [["name", 88, 13], ["outputHash", 89, 42], ["outputHashAlgo", 89, 53], ["src", 91, 15], ["version", 92, 15], ["sourceRoot", 93, 15], ["env", 94, 15], ["buildInputs", 95, 15], ["nativeBuildInputs", 96, 15], ["registry", 98, 21], ["bazel", 100, 15], ["targets", 101, 15], ["startupArgs", 102, 15], ["serverJavabase", 103, 15], ["dontFixup", 105, 13], ["command", 106, 13], ["outputHashMode", 107, 13], ["commandArgs", 108, 13], ["bazelPreBuild", 109, 13], ["bazelPostBuild", 112, 13], ["installPhase", 124, 13]], [["name", 132, 11], ["buildInputs", 133, 11], ["autoPatchelfIgnoreMissingDeps", 134, 19], ["src", 135, 11], ["installPhase", 136, 11]], [["name", 144, 7], ["src", 145, 7], ["version", 146, 7], ["sourceRoot", 147, 7], ["env", 148, 7], ["buildInputs", 149, 7], ["nativeBuildInputs", 150, 7], ["registry", 152, 13], ["bazelRepoCache", 152, 22], ["bazelVendorDeps", 152, 37], ["bazel", 154, 7], ["targets", 155, 7], ["startupArgs", 156, 7], ["serverJavabase", 157, 7], ["commandArgs", 158, 7], ["installPhase", 160, 13], ["command", 161, 5]], [["bazelRepoCache", 164, 35], ["bazelVendorDeps", 164, 50]], [["passthru", 164, 14]]]);
 const formals$1 = { args: { callPackage: false, gnugrep: false, lib: false, autoPatchelfHook: false, stdenv: false }, ellipsis: false };
 const formals$2 = { args: { name: false, src: false, sourceRoot: true, version: true, targets: false, bazel: false, startupArgs: true, commandArgs: true, env: true, serverJavabase: true, registry: true, bazelRepoCacheFOD: true, bazelVendorDepsFOD: true, installPhase: false, buildInputs: true, nativeBuildInputs: true, autoPatchelfIgnoreMissingDeps: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/bazelPackage.nix", [["outputHash", 22, 5], ["outputHashAlgo", 23, 5]]);
-const pos$2 = nix.positions(here + "/bazelPackage.nix", [["outputHash", 26, 5], ["outputHashAlgo", 27, 5]]);
-const pos$3 = nix.positions(here + "/bazelPackage.nix", [["name", 45, 9], ["outputHash", 46, 37], ["outputHashAlgo", 46, 48], ["src", 48, 11], ["version", 49, 11], ["sourceRoot", 50, 11], ["env", 51, 11], ["buildInputs", 52, 11], ["nativeBuildInputs", 53, 11], ["registry", 55, 17], ["bazel", 57, 11], ["targets", 58, 11], ["startupArgs", 59, 11], ["serverJavabase", 60, 11], ["command", 62, 9], ["outputHashMode", 63, 9], ["commandArgs", 64, 9], ["bazelPreBuild", 65, 9], ["installPhase", 68, 9]]);
-const pos$4 = nix.positions(here + "/bazelPackage.nix", [["name", 88, 13], ["outputHash", 89, 42], ["outputHashAlgo", 89, 53], ["src", 91, 15], ["version", 92, 15], ["sourceRoot", 93, 15], ["env", 94, 15], ["buildInputs", 95, 15], ["nativeBuildInputs", 96, 15], ["registry", 98, 21], ["bazel", 100, 15], ["targets", 101, 15], ["startupArgs", 102, 15], ["serverJavabase", 103, 15], ["dontFixup", 105, 13], ["command", 106, 13], ["outputHashMode", 107, 13], ["commandArgs", 108, 13], ["bazelPreBuild", 109, 13], ["bazelPostBuild", 112, 13], ["installPhase", 124, 13]]);
-const pos$5 = nix.positions(here + "/bazelPackage.nix", [["name", 132, 11], ["buildInputs", 133, 11], ["autoPatchelfIgnoreMissingDeps", 134, 19], ["src", 135, 11], ["installPhase", 136, 11]]);
-const pos$6 = nix.positions(here + "/bazelPackage.nix", [["name", 144, 7], ["src", 145, 7], ["version", 146, 7], ["sourceRoot", 147, 7], ["env", 148, 7], ["buildInputs", 149, 7], ["nativeBuildInputs", 150, 7], ["registry", 152, 13], ["bazelRepoCache", 152, 22], ["bazelVendorDeps", 152, 37], ["bazel", 154, 7], ["targets", 155, 7], ["startupArgs", 156, 7], ["serverJavabase", 157, 7], ["commandArgs", 158, 7], ["installPhase", 160, 13], ["command", 161, 5]]);
-const pos$7 = nix.positions(here + "/bazelPackage.nix", [["bazelRepoCache", 164, 35], ["bazelVendorDeps", 164, 50]]);
-const pos$8 = nix.positions(here + "/bazelPackage.nix", [["passthru", 164, 14]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,14 +26,14 @@ export default nix.lambda((args) => (() => {
     const env = nix.argOr($_1, "env", () => ({}));
     const serverJavabase = nix.argOr($_1, "serverJavabase", () => null);
     const registry = nix.argOr($_1, "registry", () => null);
-    const bazelRepoCacheFOD = nix.argOr($_1, "bazelRepoCacheFOD", () => ({ [nix.POS]: pos$1, outputHash: null, outputHashAlgo: "sha256" }));
-    const bazelVendorDepsFOD = nix.argOr($_1, "bazelVendorDepsFOD", () => ({ [nix.POS]: pos$2, outputHash: null, outputHashAlgo: "sha256" }));
+    const bazelRepoCacheFOD = nix.argOr($_1, "bazelRepoCacheFOD", () => ({ [nix.POS]: $pos[0], outputHash: null, outputHashAlgo: "sha256" }));
+    const bazelVendorDepsFOD = nix.argOr($_1, "bazelVendorDepsFOD", () => ({ [nix.POS]: $pos[1], outputHash: null, outputHashAlgo: "sha256" }));
     const installPhase = nix.arg($_1, "installPhase");
     const buildInputs = nix.argOr($_1, "buildInputs", () => []);
     const nativeBuildInputs = nix.argOr($_1, "nativeBuildInputs", () => []);
     const autoPatchelfIgnoreMissingDeps = nix.argOr($_1, "autoPatchelfIgnoreMissingDeps", () => null);
     const bazelRepoCache = nix.thunk(() => (nix.asBool(nix.eq(nix.sel(bazelRepoCacheFOD, "outputHash"), null)) ? null : nix.app(callPackage, nix.path(here, "./bazelDerivation.nix"), nix.thunk(() => ({})), nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         name: "bazelRepoCache",
         outputHash: nix.thunk(() => nix.attr(bazelRepoCacheFOD, "outputHash")),
         outputHashAlgo: nix.thunk(() => nix.attr(bazelRepoCacheFOD, "outputHashAlgo")),
@@ -63,7 +56,7 @@ export default nix.lambda((args) => (() => {
       })))));
     const bazelVendorDeps = nix.thunk(() => (nix.asBool(nix.eq(nix.sel(bazelVendorDepsFOD, "outputHash"), null)) ? null : (() => {
       const stage1 = nix.thunk(() => nix.app(callPackage, nix.path(here, "./bazelDerivation.nix"), nix.thunk(() => ({})), nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           name: "bazelVendorDepsStage1",
           outputHash: nix.thunk(() => nix.attr(bazelVendorDepsFOD, "outputHash")),
           outputHashAlgo: nix.thunk(() => nix.attr(bazelVendorDepsFOD, "outputHashAlgo")),
@@ -97,7 +90,7 @@ find vendor_dir -xtype l -exec rm '{}' \\;
           installPhase: "mkdir -p $out/vendor_dir\ncp -r --reflink=auto vendor_dir/* $out/vendor_dir\n",
         }))));
       return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           name: "bazelVendorDeps",
           buildInputs: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), autoPatchelfHook), buildInputs)),
           autoPatchelfIgnoreMissingDeps: autoPatchelfIgnoreMissingDeps,
@@ -106,7 +99,7 @@ find vendor_dir -xtype l -exec rm '{}' \\;
         })));
     })()));
     const package$ = nix.thunk(() => nix.app(callPackage, nix.path(here, "./bazelDerivation.nix"), nix.thunk(() => ({})), nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         name: name,
         src: src,
         version: version,
@@ -126,9 +119,9 @@ find vendor_dir -xtype l -exec rm '{}' \\;
         command: "build",
       }))));
     return nix.update(package$, {
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         bazelRepoCache: bazelRepoCache,
         bazelVendorDeps: bazelVendorDeps,
       })),

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]], [["anthropic", 71, 5], ["bedrock", 74, 5], ["chinese", 77, 5], ["commonlisp", 80, 5], ["leiden", 83, 5], ["mcp", 86, 5], ["neo4j", 90, 5], ["office", 93, 5], ["openai", 97, 5], ["pdf", 101, 5], ["postgres", 105, 5], ["svg", 108, 5], ["video", 111, 5], ["watch", 115, 5]], [["description", 131, 5], ["homepage", 132, 5], ["changelog", 133, 5], ["license", 134, 5], ["maintainers", 138, 5], ["mainProgram", 139, 5]], [["__structuredAttrs", 9, 3], ["pname", 10, 3], ["version", 11, 3], ["pyproject", 12, 3], ["src", 14, 3], ["build-system", 21, 3], ["pythonRelaxDeps", 27, 3], ["dependencies", 34, 3], ["optional-dependencies", 70, 3], ["pythonImportsCheck", 120, 3], ["dontCheckPythonMetadata", 128, 3], ["meta", 130, 3]]]);
 const formals$1 = { args: { lib: false, python3Packages: false, fetchFromGitHub: false, python3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["anthropic", 71, 5], ["bedrock", 74, 5], ["chinese", 77, 5], ["commonlisp", 80, 5], ["leiden", 83, 5], ["mcp", 86, 5], ["neo4j", 90, 5], ["office", 93, 5], ["openai", 97, 5], ["pdf", 101, 5], ["postgres", 105, 5], ["svg", 108, 5], ["video", 111, 5], ["watch", 115, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 131, 5], ["homepage", 132, 5], ["changelog", 133, 5], ["license", 134, 5], ["maintainers", 138, 5], ["mainProgram", 139, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["__structuredAttrs", 9, 3], ["pname", 10, 3], ["version", 11, 3], ["pyproject", 12, 3], ["src", 14, 3], ["build-system", 21, 3], ["pythonRelaxDeps", 27, 3], ["dependencies", 34, 3], ["optional-dependencies", 70, 3], ["pythonImportsCheck", 120, 3], ["dontCheckPythonMetadata", 128, 3], ["meta", 130, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.9.74";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Graphify-Labs",
           repo: "graphify",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -74,7 +71,7 @@ export default nix.lambda((args) => (() => {
       const optional_dependencies = nix.thunk(() => (() => {
         const w_1 = nix.withScope(nix.thunk(() => nix.sel(python3, "pkgs")), null);
         return {
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           anthropic: nix.thunk(() => [nix.thunk(() => nix.lookup(w_1, "anthropic"))]),
           bedrock: nix.thunk(() => [nix.thunk(() => nix.lookup(w_1, "boto3"))]),
           chinese: nix.thunk(() => [nix.thunk(() => nix.lookup(w_1, "jieba"))]),
@@ -111,7 +108,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["graphify"]);
       const dontCheckPythonMetadata = true;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "AI coding assistant skill. Turn any folder of code, docs, papers, images, or videos into a queryable knowledge graph.",
         homepage: "https://github.com/Graphify-Labs/graphify",
         changelog: nix.thunk(() => nix.str`https://github.com/Graphify-Labs/graphify/blob/${nix.sel(src, "tag")}/CHANGELOG.md`),
@@ -129,7 +126,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "graphify",
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         __structuredAttrs,
         pname,
         version,

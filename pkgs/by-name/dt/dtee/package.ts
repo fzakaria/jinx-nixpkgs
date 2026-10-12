@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]], [["updateScript", 35, 12]], [["description", 69, 5], ["longDescription", 70, 5], ["homepage", 80, 5], ["downloadPage", 81, 5], ["changelog", 82, 5], ["license", 84, 5], ["sourceProvenance", 85, 5], ["maintainers", 86, 5], ["mainProgram", 87, 5], ["platforms", 89, 5]], [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["passthru", 35, 3], ["postPatch", 38, 3], ["nativeBuildInputs", 40, 3], ["buildInputs", 49, 3], ["nativeCheckInputs", 51, 3], ["preBuild", 60, 3], ["mesonFlags", 65, 3], ["doCheck", 66, 3], ["meta", 68, 3]]]);
 const formals$1 = { args: { fetchFromGitHub: false, lib: false, "nix-update-script": false, pkgs: false, stdenv: false, gettext: false, meson: false, ninja: false, "pkg-config": false, python3: false, sphinx: false, boost: false, bash: false, coreutils: false, diffutils: false, findutils: false, glibcLocales: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 35, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 69, 5], ["longDescription", 70, 5], ["homepage", 80, 5], ["downloadPage", 81, 5], ["changelog", 82, 5], ["license", 84, 5], ["sourceProvenance", 85, 5], ["maintainers", 86, 5], ["mainProgram", 87, 5], ["platforms", 89, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["passthru", 35, 3], ["postPatch", 38, 3], ["nativeBuildInputs", 40, 3], ["buildInputs", 49, 3], ["nativeCheckInputs", 51, 3], ["preBuild", 60, 3], ["mesonFlags", 65, 3], ["doCheck", 66, 3], ["meta", 68, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,18 +25,18 @@ export default nix.lambda((args) => (() => {
   const findutils = nix.arg($, "findutils");
   const glibcLocales = nix.arg($, "glibcLocales");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "dtee",
       version: "1.1.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "nomis",
           repo: "dtee",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-trREhITO3cY4j75mpudWhOA3GXI0Q8GkUxNq2s6154w=",
         })))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       postPatch: "patchShebangs tests",
@@ -52,7 +49,7 @@ export SOURCE_DATE_EPOCH
       mesonFlags: nix.thunk(() => ["--unity on"]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Run a program with standard output and standard error copied to files",
         longDescription: "Run a program with standard output and standard error copied to files\nwhile maintaining the original standard output and standard error in\nthe original order. When invoked as \"cronty\", allows programs to be run\nfrom cron, suppressing all output unless the process outputs an error\nmessage or has a non-zero exit status whereupon the original output\nwill be written as normal and the exit code will be appended to standard\nerror.\n",
         homepage: "https://dtee.readthedocs.io/",

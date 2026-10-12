@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]], [["url", 28, 5], ["hash", 29, 5]], [["CGO_ENABLED", 45, 7]], [["updateScript", 72, 5]], [["description", 76, 5], ["homepage", 77, 5], ["changelog", 78, 5], ["license", 79, 5], ["maintainers", 80, 5], ["mainProgram", 81, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["vendorHash", 24, 3], ["webUIVersion", 26, 3], ["webUI", 27, 3], ["subPackages", 32, 3], ["tags", 34, 3], ["ldflags", 40, 3], ["env", 45, 3], ["nativeBuildInputs", 47, 3], ["buildInputs", 51, 3], ["postPatch", 56, 3], ["postInstall", 61, 3], ["nativeInstallCheckInputs", 65, 3], ["doInstallCheck", 69, 3], ["passthru", 71, 3], ["meta", 75, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitHub: false, fetchurl: false, versionCheckHook: false, "nix-update-script": false, "pkg-config": false, libusb1: false, libnfc: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 28, 5], ["hash", 29, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["CGO_ENABLED", 45, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 72, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 76, 5], ["homepage", 77, 5], ["changelog", 78, 5], ["license", 79, 5], ["maintainers", 80, 5], ["mainProgram", 81, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["vendorHash", 24, 3], ["webUIVersion", 26, 3], ["webUI", 27, 3], ["subPackages", 32, 3], ["tags", 34, 3], ["ldflags", 40, 3], ["env", 45, 3], ["nativeBuildInputs", 47, 3], ["buildInputs", 51, 3], ["postPatch", 56, 3], ["postInstall", 61, 3], ["nativeInstallCheckInputs", 65, 3], ["doInstallCheck", 69, 3], ["passthru", 71, 3], ["meta", 75, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const libusb1 = nix.arg($, "libusb1");
   const libnfc = nix.arg($, "libnfc");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "zaparoo",
       version: "2.5.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ZaparooProject",
           repo: "zaparoo-core",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,7 +30,7 @@ export default nix.lambda((args) => (() => {
       vendorHash: "sha256-UTMYZ8la4VsxIVjcRg8l1yGy52CRjv/6WZQgHJ+oFdE=",
       webUIVersion: "1.8.0",
       webUI: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: nix.thunk(() => nix.str`https://github.com/ZaparooProject/zaparoo-app/releases/download/v${nix.sel(finalAttrs, "webUIVersion")}/zaparoo_app-web-${nix.sel(finalAttrs, "webUIVersion")}.tar.gz`),
           hash: "sha256-77QyMFbx73vaKIRDCnhdqDXBb8MfQSsCWghe3XEL0tk=",
         })))),
@@ -45,7 +40,7 @@ export default nix.lambda((args) => (() => {
         "-s",
         nix.thunk(() => nix.str`-X github.com/ZaparooProject/zaparoo-core/pkg/config.AppVersion=${nix.sel(finalAttrs, "version")}`),
       ]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$3, CGO_ENABLED: 1n })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[2], CGO_ENABLED: 1n })),
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [libusb1, libnfc]),
       postPatch: nix.thunk(() => nix.str`mkdir -p pkg/assets/_app/dist
@@ -55,11 +50,11 @@ tar xf ${nix.sel(finalAttrs, "webUI")} -C pkg/assets/_app/dist/
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Launch games and cores on your MiSTer, emulators and handhelds using NFC tags or cards",
         homepage: "https://zaparoo.org/",
         changelog: nix.thunk(() => nix.str`https://github.com/ZaparooProject/zaparoo-core/releases/tag/v${nix.sel(finalAttrs, "version")}`),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]], [["changelog", 39, 5], ["description", 40, 5], ["homepage", 41, 5], ["license", 42, 5], ["maintainers", 43, 5]], [["pname", 12, 3], ["version", 13, 3], ["pyproject", 14, 3], ["src", 16, 3], ["sourceRoot", 23, 3], ["build-system", 25, 3], ["dependencies", 27, 3], ["pythonImportsCheck", 32, 3], ["nativeCheckInputs", 34, 3], ["meta", 38, 3]]]);
 const formals$1 = { args: { buildPythonPackage: false, fetchFromGitHub: false, "googleapis-common-protos": false, lib: false, protobuf: false, pytestCheckHook: false, setuptools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["changelog", 39, 5], ["description", 40, 5], ["homepage", 41, 5], ["license", 42, 5], ["maintainers", 43, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 12, 3], ["version", 13, 3], ["pyproject", 14, 3], ["src", 16, 3], ["sourceRoot", 23, 3], ["build-system", 25, 3], ["dependencies", 27, 3], ["pythonImportsCheck", 32, 3], ["nativeCheckInputs", 34, 3], ["meta", 38, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "tesla-protocol",
       version: "3.0.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Teslemetry",
           repo: "tesla-protocol",
           tag: nix.thunk(() => nix.str`@teslemetry/tesla-protocol@${nix.sel(finalAttrs, "version")}`),
@@ -34,7 +32,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["tesla_protocol"]),
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         changelog: nix.thunk(() => nix.str`https://github.com/Teslemetry/tesla-protocol/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         description: "Tesla vehicle-command, fleet-telemetry and energy protobuf bindings for Python",
         homepage: "https://github.com/Teslemetry/tesla-protocol",

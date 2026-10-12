@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]], [["GOEXPERIMENT", 34, 7]], [["description", 53, 5], ["homepage", 54, 5], ["changelog", 55, 5], ["longDescription", 56, 5], ["mainProgram", 63, 5], ["license", 64, 5], ["maintainers", 65, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["proxyVendor", 23, 3], ["vendorHash", 25, 3], ["subPackages", 27, 3], ["ldflags", 29, 3], ["env", 34, 3], ["nativeBuildInputs", 36, 3], ["nativeInstallCheckInputs", 38, 3], ["doCheck", 41, 3], ["postInstall", 43, 3], ["doInstallCheck", 50, 3], ["meta", 52, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPackages: false, buildGoModule: false, fetchFromGitHub: false, installShellFiles: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["GOEXPERIMENT", 34, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 53, 5], ["homepage", 54, 5], ["changelog", 55, 5], ["longDescription", 56, 5], ["mainProgram", 63, 5], ["license", 64, 5], ["maintainers", 65, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["proxyVendor", 23, 3], ["vendorHash", 25, 3], ["subPackages", 27, 3], ["ldflags", 29, 3], ["env", 34, 3], ["nativeBuildInputs", 36, 3], ["nativeInstallCheckInputs", 38, 3], ["doCheck", 41, 3], ["postInstall", 43, 3], ["doInstallCheck", 50, 3], ["meta", 52, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const installShellFiles = nix.arg($, "installShellFiles");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "trivy",
       version: "0.74.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "aquasecurity",
           repo: "trivy",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,14 +32,14 @@ export default nix.lambda((args) => (() => {
         "-s",
         nix.thunk(() => nix.str`-X=github.com/aquasecurity/trivy/pkg/version/app.ver=${nix.sel(finalAttrs, "version")}`),
       ]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, GOEXPERIMENT: "jsonv2" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], GOEXPERIMENT: "jsonv2" })),
       nativeBuildInputs: nix.thunk(() => [installShellFiles]),
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doCheck: false,
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "installShellCompletion --cmd trivy \\\n  --bash <($out/bin/trivy completion bash) \\\n  --fish <($out/bin/trivy completion fish) \\\n  --zsh <($out/bin/trivy completion zsh)\n")),
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Simple and comprehensive vulnerability scanner for containers, suitable for CI",
         homepage: "https://github.com/aquasecurity/trivy",
         changelog: nix.thunk(() => nix.str`https://github.com/aquasecurity/trivy/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

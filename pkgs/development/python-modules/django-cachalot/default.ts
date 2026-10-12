@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]], [["description", 78, 5], ["homepage", 79, 5], ["changelog", 80, 5], ["license", 81, 5], ["maintainers", 82, 5]], [["pname", 21, 3], ["version", 22, 3], ["format", 23, 3], ["src", 25, 3], ["patches", 32, 3], ["build-system", 38, 3], ["dependencies", 40, 3], ["nativeCheckInputs", 42, 3], ["pythonImportsCheck", 54, 3], ["doCheck", 57, 3], ["preCheck", 59, 3], ["pytestFlags", 63, 3], ["disabledTests", 70, 3], ["meta", 77, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, django: false, "django-debug-toolbar": false, psycopg2: false, jinja2: false, beautifulsoup4: false, "pytest-django": false, pytestCheckHook: false, python: false, pytz: false, redis: false, redisTestHook: false, setuptools: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 78, 5], ["homepage", 79, 5], ["changelog", 80, 5], ["license", 81, 5], ["maintainers", 82, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 21, 3], ["version", 22, 3], ["format", 23, 3], ["src", 25, 3], ["patches", 32, 3], ["build-system", 38, 3], ["dependencies", 40, 3], ["nativeCheckInputs", 42, 3], ["pythonImportsCheck", 54, 3], ["doCheck", 57, 3], ["preCheck", 59, 3], ["pytestFlags", 63, 3], ["disabledTests", 70, 3], ["meta", 77, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.9.1";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "noripyt",
           repo: "django-cachalot",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -61,7 +59,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const disabledTests = nix.thunk(() => ["test_explain", "test_rendering"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "No effort, no worry, maximum performance",
         homepage: "https://github.com/noripyt/django-cachalot",
         changelog: nix.thunk(() => nix.str`https://github.com/noripyt/django-cachalot/blob/${nix.sel(src, "tag")}/CHANGELOG.rst`),
@@ -72,7 +70,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         format,

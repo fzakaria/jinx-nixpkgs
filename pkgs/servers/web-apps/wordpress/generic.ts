@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/generic.nix", [[["url", 19, 5], ["hash", 20, 13]], [["wordpress", 42, 26]], [["tests", 41, 12], ["updateScript", 45, 12]], [["homepage", 54, 5], ["description", 55, 5], ["license", 56, 5], ["maintainers", 57, 5], ["platforms", 61, 5]], [["pname", 12, 3], ["version", 13, 11], ["__structuredAttrs", 15, 3], ["strictDeps", 16, 3], ["src", 18, 3], ["installPhase", 23, 3], ["passthru", 41, 3], ["meta", 53, 3]]]);
 const formals$1 = { args: { lib: false, version: false, hash: false, stdenv: false, fetchurl: false, nixosTests: false, writeScript: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/generic.nix", [["url", 19, 5], ["hash", 20, 13]]);
-const pos$2 = nix.positions(here + "/generic.nix", [["wordpress", 42, 26]]);
-const pos$3 = nix.positions(here + "/generic.nix", [["tests", 41, 12], ["updateScript", 45, 12]]);
-const pos$4 = nix.positions(here + "/generic.nix", [["homepage", 54, 5], ["description", 55, 5], ["license", 56, 5], ["maintainers", 57, 5], ["platforms", 61, 5]]);
-const pos$5 = nix.positions(here + "/generic.nix", [["pname", 12, 3], ["version", 13, 11], ["__structuredAttrs", 15, 3], ["strictDeps", 16, 3], ["src", 18, 3], ["installPhase", 23, 3], ["passthru", 41, 3], ["meta", 53, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,27 +15,27 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const writeScript = nix.arg($, "writeScript");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "wordpress",
       version: version,
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://wordpress.org/wordpress-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: hash,
         })))),
       installPhase: "runHook preInstall\n\n# remove non-essential plugins and themes\nrm -r wp-content/{plugins,themes}\nmkdir wp-content/plugins\ncat << EOF > wp-content/plugins/index.php\n<?php\n// Silence is golden.\nEOF\ncp -a wp-content/{plugins,themes}\n\nmkdir -p $out/share/wordpress\ncp -r . $out/share/wordpress\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           wordpress: nix.thunk(() => nix.attr(nixosTests, "wordpress")),
         })),
         updateScript: nix.thunk(() => nix.app(writeScript, "update.sh", "#!/usr/bin/env nix-shell\n#!nix-shell -i bash -p common-updater-scripts jq\nset -eu -o pipefail\nversion=$(curl --globoff \"https://api.wordpress.org/core/version-check/1.7/\" | jq -r '.offers[0].version')\nupdate-source-version wordpress $version --file=./pkgs/servers/web-apps/wordpress/default.nix\n")),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://wordpress.org",
         description: "Open source software you can use to create a beautiful website, blog, or app",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

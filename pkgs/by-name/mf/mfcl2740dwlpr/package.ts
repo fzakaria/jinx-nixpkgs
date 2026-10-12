@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 21, 5], ["hash", 22, 5]], [["description", 59, 5], ["homepage", 60, 5], ["sourceProvenance", 61, 5], ["license", 62, 5], ["platforms", 63, 5], ["maintainers", 67, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["nativeBuildInputs", 25, 3], ["unpackPhase", 30, 3], ["installPhase", 32, 3], ["meta", 58, 3]]]);
 const formals$1 = { args: { pkgsi686Linux: false, lib: false, stdenv: false, fetchurl: false, dpkg: false, makeWrapper: false, coreutils: false, ghostscript: false, gnugrep: false, gnused: false, which: false, perl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 59, 5], ["homepage", 60, 5], ["sourceProvenance", 61, 5], ["license", 62, 5], ["platforms", 63, 5], ["maintainers", 67, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["nativeBuildInputs", 25, 3], ["unpackPhase", 30, 3], ["installPhase", 32, 3], ["meta", 58, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const which = nix.arg($, "which");
   const perl = nix.arg($, "perl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "mfcl2740dwlpr",
       version: "3.2.0-1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://download.brother.com/welcome/dlf101727/mfcl2740dwlpr-${nix.sel(finalAttrs, "version")}.i386.deb`),
           hash: "sha256-EKK8ZyvVTnGLR486/H5H1FFVf31VExZ9OtNJo9AL/68=",
         })))),
@@ -49,7 +47,7 @@ patchelf --set-interpreter "$interpreter" $dir/lpd/brprintconflsr3
 patchelf --set-interpreter "$interpreter" $dir/lpd/rawtobr3
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Brother MFC-L2740DW lpr driver",
         homepage: "http://www.brother.com/",
         sourceProvenance: nix.thunk(() => (() => {

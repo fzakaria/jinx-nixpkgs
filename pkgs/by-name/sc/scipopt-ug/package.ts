@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 21, 5], ["hash", 22, 5]], [["maintainers", 39, 5], ["changelog", 40, 5], ["description", 41, 5], ["license", 42, 5], ["homepage", 43, 5]], [["pname", 13, 3], ["version", 14, 3], ["scipVersion", 17, 3], ["src", 20, 3], ["sourceRoot", 25, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 31, 3], ["meta", 38, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchzip: false, cmake: false, "scipopt-scip": false, zlib: false, mpi: false, gmp: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["maintainers", 39, 5], ["changelog", 40, 5], ["description", 41, 5], ["license", 42, 5], ["homepage", 43, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["scipVersion", 17, 3], ["src", 20, 3], ["sourceRoot", 25, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 31, 3], ["meta", 38, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.0.1";
       const scipVersion = "10.0.1";
       const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/scipopt/scip/releases/download/v${scipVersion}/scipoptsuite-${scipVersion}.tgz`),
           hash: "sha256-U5tbgGCzUkDL/22RwQLQmvCjSAhxehJe0P5rwNupW6Q=",
         }))));
@@ -30,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [cmake]);
       const buildInputs = nix.thunk(() => [scipopt_scip, mpi, zlib, gmp]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
           return [nix.thunk(() => nix.lookup(w, "pmeinhold"))];
@@ -41,7 +39,7 @@ export default nix.lambda((args) => (() => {
         homepage: "https://ug.zib.de",
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         scipVersion,

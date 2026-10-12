@@ -2,8 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/qtvirtualkeyboard.nix", [[["pname", 11, 3], ["propagatedBuildInputs", 12, 3], ["nativeBuildInputs", 18, 3]]]);
 const formals$1 = { args: { qtModule: false, qtbase: false, qtdeclarative: false, qtsvg: false, hunspell: false, "pkg-config": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/qtvirtualkeyboard.nix", [["pname", 11, 3], ["propagatedBuildInputs", 12, 3], ["nativeBuildInputs", 18, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const hunspell = nix.arg($, "hunspell");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(qtModule, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       pname: "qtvirtualkeyboard",
       propagatedBuildInputs: nix.thunk(() => [qtbase, qtdeclarative, qtsvg, hunspell]),
       nativeBuildInputs: nix.thunk(() => [pkg_config]),

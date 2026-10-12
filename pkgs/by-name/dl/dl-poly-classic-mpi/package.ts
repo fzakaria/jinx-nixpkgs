@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 14, 5], ["sha256", 15, 5]], [["NIX_CFLAGS_COMPILE", 32, 7]], [["homepage", 44, 5], ["description", 45, 5], ["mainProgram", 46, 5], ["license", 47, 5], ["platforms", 48, 5], ["maintainers", 49, 5]], [["version", 10, 3], ["pname", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 18, 3], ["buildInputs", 20, 3], ["configurePhase", 22, 3], ["env", 32, 3], ["buildPhase", 34, 3], ["installPhase", 38, 3], ["meta", 43, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, gfortran: false, mpi: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 14, 5], ["sha256", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 32, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 44, 5], ["description", 45, 5], ["mainProgram", 46, 5], ["license", 47, 5], ["platforms", 48, 5], ["maintainers", 49, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["version", 10, 3], ["pname", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 18, 3], ["buildInputs", 20, 3], ["configurePhase", 22, 3], ["env", 32, 3], ["buildPhase", 34, 3], ["installPhase", 38, 3], ["meta", 43, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,22 +13,22 @@ export default nix.lambda((args) => (() => {
   const gfortran = nix.arg($, "gfortran");
   const mpi = nix.arg($, "mpi");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       version: "1.10",
       pname: "DL_POLY_Classic",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://ccpforge.cse.rl.ac.uk/gf/download/frsrelease/574/8924/dl_class_1.10.tar.gz",
           sha256: "1r76zvln3bwycxlmqday0sqzv5j260y7mdh66as2aqny6jzd5ld7",
         })))),
       nativeBuildInputs: nix.thunk(() => [gfortran]),
       buildInputs: nix.thunk(() => [mpi]),
       configurePhase: "runHook preConfigure\n\ncd source\ncp -v ../build/MakePAR Makefile\n\nrunHook postConfigure\n",
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-fallow-argument-mismatch" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], NIX_CFLAGS_COMPILE: "-fallow-argument-mismatch" })),
       buildPhase: "make dlpoly\n",
       installPhase: "mkdir -p $out/bin\ncp -v ../execute/DLPOLY.X $out/bin\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://www.ccp5.ac.uk/DL_POLY_C",
         description: "DL_POLY Classic is a general purpose molecular dynamics simulation package",
         mainProgram: "DLPOLY.X",

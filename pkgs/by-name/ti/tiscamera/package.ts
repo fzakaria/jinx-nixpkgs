@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 39, 5], ["repo", 40, 5], ["rev", 41, 5], ["hash", 42, 5]], [["GI_TYPELIB_PATH", 121, 5], ["GST_PLUGIN_SYSTEM_PATH_1_0", 122, 5], ["QT_PLUGIN_PATH", 124, 5], ["CXXFLAGS", 126, 5]], [["description", 141, 5], ["homepage", 142, 5], ["license", 143, 5], ["platforms", 144, 5], ["maintainers", 145, 5]], [["pname", 35, 3], ["version", 36, 3], ["src", 38, 3], ["postPatch", 45, 3], ["nativeBuildInputs", 54, 3], ["buildInputs", 71, 3], ["hardeningDisable", 95, 3], ["cmakeFlags", 97, 3], ["doCheck", 113, 3], ["checkPhase", 116, 3], ["env", 118, 3], ["dontWrapQtApps", 132, 3], ["doInstallCheck", 134, 3], ["preFixup", 136, 3], ["meta", 140, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, "pkg-config": false, runtimeShell: false, catch2: false, elfutils: false, libselinux: false, libsepol: false, libunwind: false, libusb1: false, libuuid: false, libzip: false, orc: false, zstd: false, glib: false, "gobject-introspection": false, gst_all_1: false, wrapGAppsHook3: false, withDoc: true, sphinx: false, graphviz: false, withAravis: true, aravis: false, meson: false, withAravisUsbVision: true, withGui: true, qt5: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 39, 5], ["repo", 40, 5], ["rev", 41, 5], ["hash", 42, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["GI_TYPELIB_PATH", 121, 5], ["GST_PLUGIN_SYSTEM_PATH_1_0", 122, 5], ["QT_PLUGIN_PATH", 124, 5], ["CXXFLAGS", 126, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 141, 5], ["homepage", 142, 5], ["license", 143, 5], ["platforms", 144, 5], ["maintainers", 145, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 35, 3], ["version", 36, 3], ["src", 38, 3], ["postPatch", 45, 3], ["nativeBuildInputs", 54, 3], ["buildInputs", 71, 3], ["hardeningDisable", 95, 3], ["cmakeFlags", 97, 3], ["doCheck", 113, 3], ["checkPhase", 116, 3], ["env", 118, 3], ["dontWrapQtApps", 132, 3], ["doInstallCheck", 134, 3], ["preFixup", 136, 3], ["meta", 140, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -40,11 +37,11 @@ export default nix.lambda((args) => (() => {
   const withGui = nix.argOr($, "withGui", () => true);
   const qt5 = nix.arg($, "qt5");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "tiscamera",
       version: "1.1.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "TheImagingSource",
           repo: "tiscamera",
           rev: nix.thunk(() => nix.str`v-tiscamera-${nix.sel(finalAttrs, "version")}`),
@@ -94,7 +91,7 @@ substituteInPlace ./data/udev/80-theimagingsource-cameras.rules.in \\
       doCheck: true,
       checkPhase: "ctest --force-new-ctest-process -E gstreamer",
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         GI_TYPELIB_PATH: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/lib/girepository-1.0`),
         GST_PLUGIN_SYSTEM_PATH_1_0: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/lib/gstreamer-1.0`),
         QT_PLUGIN_PATH: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), withGui, nix.thunk(() => nix.str`${nix.sel(qt5, "qtbase", "bin")}/${nix.sel(qt5, "qtbase", "qtPluginPrefix")}`))),
@@ -104,7 +101,7 @@ substituteInPlace ./data/udev/80-theimagingsource-cameras.rules.in \\
       doInstallCheck: true,
       preFixup: "gappsWrapperArgs+=(\"${qtWrapperArgs[@]}\")\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Linux sources and UVC firmwares for The Imaging Source cameras",
         homepage: "https://github.com/TheImagingSource/tiscamera",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

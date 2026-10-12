@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 30, 5], ["repo", 31, 5], ["rev", 32, 5], ["sha256", 33, 5]], [["PKG_CONFIG_LIBXFCE4PANEL_1_0_LIBDIR", 66, 7]], [["homepage", 69, 5], ["license", 70, 5], ["broken", 71, 5], ["description", 72, 5], ["platforms", 73, 5], ["maintainers", 74, 5]], [["version", 22, 3], ["pname", 23, 3], ["name", 24, 3], ["strictDeps", 26, 3], ["__structuredAttrs", 27, 3], ["src", 29, 3], ["buildInputs", 36, 3], ["nativeBuildInputs", 55, 3], ["configureFlags", 60, 3], ["patches", 62, 3], ["env", 66, 3], ["meta", 68, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, "pkg-config": false, autoreconfHook: false, glib: false, "dbus-glib": false, desktopSupport: true, "libxcb-wm": false, gtk2: false, gtk3: false, "gnome-panel": false, "mate-panel": false, libxfce4util: false, "xfce4-panel": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 30, 5], ["repo", 31, 5], ["rev", 32, 5], ["sha256", 33, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["PKG_CONFIG_LIBXFCE4PANEL_1_0_LIBDIR", 66, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 69, 5], ["license", 70, 5], ["broken", 71, 5], ["description", 72, 5], ["platforms", 73, 5], ["maintainers", 74, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["version", 22, 3], ["pname", 23, 3], ["name", 24, 3], ["strictDeps", 26, 3], ["__structuredAttrs", 27, 3], ["src", 29, 3], ["buildInputs", 36, 3], ["nativeBuildInputs", 55, 3], ["configureFlags", 60, 3], ["patches", 62, 3], ["env", 66, 3], ["meta", 68, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,14 +24,14 @@ export default nix.lambda((args) => (() => {
   const xfce4_panel = nix.arg($, "xfce4-panel");
   nix.assert_((nix.asBool((nix.asBool(nix.eq(desktopSupport, "gnomeflashback")) || nix.asBool(nix.eq(desktopSupport, "mate")))) || nix.asBool(nix.eq(desktopSupport, "xfce4"))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/xm/xmonad-log-applet/package.nix:19:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       version: "2.1.0-unstable-2017-09-15",
       pname: "xmonad-log-applet",
       name: nix.thunk(() => nix.str`xmonad-log-applet-${desktopSupport}-${nix.sel(finalAttrs, "version")}`),
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "kalj",
           repo: "xmonad-log-applet",
           rev: "a1b294cad2f266e4f18d9de34167fa96a0ffdba8",
@@ -44,9 +41,9 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [autoreconfHook, pkg_config]),
       configureFlags: nix.thunk(() => [nix.thunk(() => nix.str`--with-panel=${desktopSupport}`)]),
       patches: nix.thunk(() => [nix.path(here, "./fix-paths.patch")]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, PKG_CONFIG_LIBXFCE4PANEL_1_0_LIBDIR: "$(out)/lib" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], PKG_CONFIG_LIBXFCE4PANEL_1_0_LIBDIR: "$(out)/lib" })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/kalj/xmonad-log-applet",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
         broken: nix.thunk(() => (nix.asBool(nix.eq(desktopSupport, "gnomeflashback")) || nix.asBool(nix.eq(desktopSupport, "xfce4")))),

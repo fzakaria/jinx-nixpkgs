@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 26, 7], ["rev", 28, 7], ["hash", 29, 7]], [["GIT_CONFIG_COUNT", 33, 11], ["GIT_CONFIG_KEY_0", 34, 11], ["GIT_CONFIG_VALUE_0", 35, 11]], [["env", 32, 9]], [["description", 93, 5], ["homepage", 94, 5], ["changelog", 95, 5], ["license", 96, 5], ["maintainers", 97, 5], ["platforms", 98, 5], ["mainProgram", 99, 5]], [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 41, 3], ["makeFlags", 55, 3], ["postPatch", 62, 3], ["preBuild", 86, 3], ["meta", 92, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchgit: false, goocanvas_2: false, "pkg-config": false, gtk3: false, libxml2: false, curl: false, libmicrohttpd: false, libzip: false, libusb1: false, qrencode: false, "json-glib": false, php: false, libwebsockets: false, openssl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 26, 7], ["rev", 28, 7], ["hash", 29, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["GIT_CONFIG_COUNT", 33, 11], ["GIT_CONFIG_KEY_0", 34, 11], ["GIT_CONFIG_VALUE_0", 35, 11]]);
-const pos$3 = nix.positions(here + "/package.nix", [["env", 32, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 93, 5], ["homepage", 94, 5], ["changelog", 95, 5], ["license", 96, 5], ["maintainers", 97, 5], ["platforms", 98, 5], ["mainProgram", 99, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 41, 3], ["makeFlags", 55, 3], ["postPatch", 62, 3], ["preBuild", 86, 3], ["meta", 92, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,18 +24,18 @@ export default nix.lambda((args) => (() => {
   const libwebsockets = nix.arg($, "libwebsockets");
   const openssl = nix.arg($, "openssl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "bellepoule",
       version: "5.7",
       src: nix.thunk(() => nix.app(nix.sel(nix.app(fetchgit, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://git.launchpad.net/bellepoule",
           rev: "06516d698fde9662d95cf6a8758eb1fbcc89e983",
           hash: "sha256-9bbFzi9JPryJK2zv4O1TUDaeoB9GVV7LRNn6Xl8lajg=",
         }))), "overrideAttrs"), (oldAttrs) => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           env: nix.thunk(() => nix.update(nix.selOr(oldAttrs, () => ({}), "env"), {
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             GIT_CONFIG_COUNT: 1n,
             GIT_CONFIG_KEY_0: "url.https://github.com/.insteadOf",
             GIT_CONFIG_VALUE_0: "git@github.com:",
@@ -86,7 +82,7 @@ make HOME=$(pwd) DISTRIB=nixos V=1 package
 cd ./Perso/PPA/${nix.sel(finalAttrs, "pname")}/${nix.sel(finalAttrs, "pname")}_${nix.sel(finalAttrs, "version")}
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Fencing tournaments management software",
         homepage: "http://betton.escrime.free.fr",
         changelog: nix.thunk(() => nix.str`https://git.launchpad.net/bellepoule/log/?h=${nix.sel(finalAttrs, "version")}`),

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 28, 7], ["repo", 29, 7], ["rev", 30, 7], ["hash", 31, 7]], [["hardcodeZeroVersion", 55, 7]], [["updateScript", 54, 14]], [["description", 59, 7], ["homepage", 60, 7], ["maintainers", 61, 7], ["platforms", 62, 7], ["license", 63, 7]], [["pname", 24, 13], ["version", 25, 5], ["src", 27, 5], ["propagatedBuildInputs", 34, 5], ["dontDropIconThemeCache", 40, 5], ["dontWrapQtApps", 41, 5], ["installPhase", 43, 5], ["dontFixup", 52, 5], ["passthru", 54, 5], ["meta", 58, 5]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchFromGitLab: false, "hicolor-icon-theme": false, kdePackages: false, "papirus-icon-theme": false, unstableGitUpdater: false, colorVariants: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 28, 7], ["repo", 29, 7], ["rev", 30, 7], ["hash", 31, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["hardcodeZeroVersion", 55, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 54, 14]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 59, 7], ["homepage", 60, 7], ["maintainers", 61, 7], ["platforms", 62, 7], ["license", 63, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 24, 13], ["version", 25, 5], ["src", 27, 5], ["propagatedBuildInputs", 34, 5], ["dontDropIconThemeCache", 40, 5], ["dontWrapQtApps", 41, 5], ["installPhase", 43, 5], ["dontFixup", 52, 5], ["passthru", 54, 5], ["meta", 58, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const pname = "fairywren";
   const colorVariantList = nix.thunk(() => ["FairyWren_Dark", "FairyWren_Light"]);
   return nix.app(nix.sel(lib, "checkListOfEnum"), nix.thunk(() => nix.str`${pname}: colorVariants`), colorVariantList, colorVariants, nix.thunk(() => nix.sel(stdenvNoCC, "mkDerivation")), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: pname,
       version: "0-unstable-2026-09-28",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "FreshDoctor",
           repo: "FairyWren-Icons",
           rev: "fb00858cb2eae522952286f5df9888afe74ccdf5",
@@ -46,11 +42,11 @@ runHook postInstall
 `),
       dontFixup: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, hardcodeZeroVersion: true })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[1], hardcodeZeroVersion: true })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "FairyWren Icon Set",
         homepage: "https://gitlab.com/FreshDoctor/FairyWren-Icons",
         maintainers: nix.thunk(() => (() => {

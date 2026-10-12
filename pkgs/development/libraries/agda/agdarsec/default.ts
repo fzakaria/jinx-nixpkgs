@@ -2,10 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["sha256", 16, 5]], [["homepage", 26, 5], ["description", 27, 5], ["license", 28, 5], ["platforms", 29, 5], ["maintainers", 30, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["postPatch", 19, 3], ["buildInputs", 23, 3], ["meta", 25, 3]]]);
 const formals$1 = { args: { lib: false, mkDerivation: false, fetchFromGitHub: false, "standard-library": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["sha256", 16, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 26, 5], ["description", 27, 5], ["license", 28, 5], ["platforms", 29, 5], ["maintainers", 30, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["postPatch", 19, 3], ["buildInputs", 23, 3], ["meta", 25, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const standard_library = nix.arg($, "standard-library");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "agdarsec",
       version: "0.5.0-unstable-2025-08-05",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "gallais",
           repo: "agdarsec",
           rev: "28c5233e905474f3b02cb97fe410beb60364ba80",
@@ -27,7 +25,7 @@ export default nix.lambda((args) => (() => {
       postPatch: "sed -Ei 's/standard-library-[0-9.]+/standard-library/' agdarsec.agda-lib\n",
       buildInputs: nix.thunk(() => [standard_library]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://gallais.github.io/agdarsec/",
         description: "Total Parser Combinators in Agda",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

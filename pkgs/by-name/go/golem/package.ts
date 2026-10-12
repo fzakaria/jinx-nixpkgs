@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]], [["updateScript", 71, 5]], [["description", 75, 5], ["changelog", 76, 5], ["homepage", 77, 5], ["license", 78, 5], ["maintainers", 79, 5], ["mainProgram", 80, 5]], [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["postPatch", 32, 3], ["gitStub", 39, 3], ["nativeBuildInputs", 46, 3], ["buildInputs", 53, 3], ["cargoHash", 58, 3], ["doCheck", 61, 3], ["checkInputs", 62, 3], ["nativeInstallCheckInputs", 64, 3], ["versionCheckProgram", 67, 3], ["doInstallCheck", 68, 3], ["passthru", 70, 3], ["meta", 74, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, rustPlatform: false, writeShellScriptBin: false, "pkg-config": false, protobuf: false, fontconfig: false, openssl: false, redis: false, versionCheckHook: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 71, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 75, 5], ["changelog", 76, 5], ["homepage", 77, 5], ["license", 78, 5], ["maintainers", 79, 5], ["mainProgram", 80, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["postPatch", 32, 3], ["gitStub", 39, 3], ["nativeBuildInputs", 46, 3], ["buildInputs", 53, 3], ["cargoHash", 58, 3], ["doCheck", 61, 3], ["checkInputs", 62, 3], ["nativeInstallCheckInputs", 64, 3], ["versionCheckProgram", 67, 3], ["doInstallCheck", 68, 3], ["passthru", 70, 3], ["meta", 74, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const pname = "golem";
       const version = "1.5.10";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "golemcloud",
           repo: "golem",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -53,11 +50,11 @@ exec /bin/git "$@"
       const versionCheckProgram = nix.thunk(() => [nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/bin/golem-cli`)]);
       const doInstallCheck = true;
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Open source durable computing platform that makes it easy to build and deploy highly reliable distributed systems",
         changelog: nix.thunk(() => nix.str`https://github.com/golemcloud/golem/releases/tag/${nix.sel(src, "tag")}`),
         homepage: "https://www.golem.cloud/",
@@ -69,7 +66,7 @@ exec /bin/git "$@"
         mainProgram: "golem-cli",
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

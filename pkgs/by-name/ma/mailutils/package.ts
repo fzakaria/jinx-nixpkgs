@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 38, 5], ["hash", 39, 5]], [["url", 85, 7], ["hash", 86, 7]], [["name", 94, 7], ["url", 95, 7], ["hash", 96, 7]], [["name", 100, 7], ["url", 101, 7], ["hash", 102, 7]], [["description", 129, 5], ["longDescription", 131, 5], ["license", 150, 5], ["maintainers", 155, 5], ["homepage", 157, 5], ["changelog", 158, 5], ["platforms", 161, 5]], [["pname", 34, 3], ["version", 35, 3], ["src", 37, 3], ["separateDebugInfo", 42, 3], ["postPatch", 44, 3], ["nativeBuildInputs", 51, 3], ["buildInputs", 59, 3], ["patches", 76, 3], ["enableParallelBuilding", 106, 3], ["strictDeps", 107, 3], ["configureFlags", 109, 3], ["nativeCheckInputs", 121, 3], ["doCheck", 126, 3], ["meta", 128, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, fetchpatch: false, autoreconfHook: false, dejagnu: false, gettext: false, gnum4: false, "pkg-config": false, texinfo: false, fribidi: false, gdbm: false, gnutls: false, gss: false, guile: false, libmysqlclient: false, mailcap: false, "net-tools": false, pam: false, readline: false, ncurses: false, python3: false, gsasl: false, "system-sendmail": false, libxcrypt: false, mkpasswd: false, pythonSupport: true, guileSupport: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 38, 5], ["hash", 39, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 85, 7], ["hash", 86, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 94, 7], ["url", 95, 7], ["hash", 96, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["name", 100, 7], ["url", 101, 7], ["hash", 102, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 129, 5], ["longDescription", 131, 5], ["license", 150, 5], ["maintainers", 155, 5], ["homepage", 157, 5], ["changelog", 158, 5], ["platforms", 161, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 34, 3], ["version", 35, 3], ["src", 37, 3], ["separateDebugInfo", 42, 3], ["postPatch", 44, 3], ["nativeBuildInputs", 51, 3], ["buildInputs", 59, 3], ["patches", 76, 3], ["enableParallelBuilding", 106, 3], ["strictDeps", 107, 3], ["configureFlags", 109, 3], ["nativeCheckInputs", 121, 3], ["doCheck", 126, 3], ["meta", 128, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -41,11 +36,11 @@ export default nix.lambda((args) => (() => {
   const pythonSupport = nix.argOr($, "pythonSupport", () => true);
   const guileSupport = nix.argOr($, "guileSupport", () => true);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "mailutils",
       version: "3.21",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnu/mailutils/mailutils-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-5Hwe3GmbjWZ1/bx32zqEroN/GOHyCU/inUi7WKl+9ek=",
         })))),
@@ -74,19 +69,19 @@ sed -i 's:/usr/lib/mysql:${libmysqlclient}/lib/mysql:' configure.ac
         nix.path(here, "./fix-linking-with-libtool-2.6.2.patch"),
         nix.path(here, "./path-to-cat.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://lists.gnu.org/archive/html/bug-mailutils/2020-11/txtiNjqcNpqOk.txt",
             hash: "sha256-2rhuopBANngq/PRCboIr+ewdawr8472cYwiLjtHCHz4=",
           })))),
         nix.path(here, "./don-t-use-descrypt-password-in-the-test-suite.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "mailutils-fix-sighandler-incompatible-pointer-types-gcc15.patch",
             url: "https://gitlab.archlinux.org/archlinux/packaging/packages/mailutils/-/raw/87c3614083260f52dd1222e872a1836f0ff9abe1/fix-build.patch",
             hash: "sha256-RN62l5mYqtViEjXpAlQKWhFez1TPynRMj/1nvZkq5Gs=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             name: "portability.patch",
             url: "https://cgit.git.savannah.gnu.org/cgit/mailutils.git/patch/?id=6e038f04d575731cf90a44cf0114e485a9827a26",
             hash: "sha256-kamIiQty+/PEB9gC4tPsEMzz1GMGuZAe+DXqjdTeg70=",
@@ -106,7 +101,7 @@ sed -i 's:/usr/lib/mysql:${libmysqlclient}/lib/mysql:' configure.ac
       nativeCheckInputs: nix.thunk(() => [dejagnu, mkpasswd]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Rich and powerful protocol-independent mail framework",
         longDescription: "GNU Mailutils is a rich and powerful protocol-independent mail\nframework.  It contains a series of useful mail libraries, clients, and\nservers.  These are the primary mail utilities for the GNU system.  The\ncentral library is capable of handling electronic mail in various\nmailbox formats and protocols, both local and remote.  Specifically,\nthis project contains a POP3 server, an IMAP4 server, and a Sieve mail\nfilter.  It also provides a POSIX `mailx' client, and a collection of\nother handy tools.\n\nThe GNU Mailutils libraries supply an ample set of primitives for\nhandling electronic mail in programs written in C, C++, Python or\nScheme.\n\nThe utilities provided by Mailutils include imap4d and pop3d mail\nservers, mail reporting utility comsatd, mail filtering program sieve,\nand an implementation of MH message handling system.\n",
         license: nix.thunk(() => (() => {

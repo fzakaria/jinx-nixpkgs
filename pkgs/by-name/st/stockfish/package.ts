@@ -2,16 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 37, 5], ["url", 38, 5], ["hash", 39, 5]], [["name", 44, 5], ["url", 45, 5], ["hash", 46, 5]], [["owner", 55, 5], ["repo", 56, 5], ["tag", 57, 5], ["hash", 58, 5]], [["extraArgs", 87, 9]], [["PNAME", 96, 11], ["PKG_FILE", 97, 11], ["NNUE_BIG_FILE", 98, 11], ["NNUE_BIG_HASH", 99, 11], ["NNUE_SMALL_FILE", 100, 11], ["NNUE_SMALL_HASH", 101, 11]], [["name", 90, 9], ["runtimeInputs", 91, 9], ["runtimeEnv", 95, 9], ["text", 103, 9]], [["updateScript", 85, 5]], [["homepage", 109, 5], ["description", 110, 5], ["mainProgram", 111, 5], ["longDescription", 112, 5], ["maintainers", 116, 5], ["platforms", 121, 5], ["license", 128, 5]], [["pname", 51, 3], ["version", 52, 3], ["src", 54, 3], ["postUnpack", 61, 3], ["makeFlags", 67, 3], ["buildFlags", 73, 3], ["enableParallelBuilding", 75, 3], ["nativeInstallCheckInputs", 77, 3], ["doInstallCheck", 80, 3], ["versionCheckProgram", 81, 3], ["versionCheckProgramArg", 82, 3], ["passthru", 84, 3], ["meta", 108, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, fetchFromGitHub: false, versionCheckHook: false, "_experimental-update-script-combinators": false, "nix-update-script": false, writeShellApplication: false, nix: false, gnugrep: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 37, 5], ["url", 38, 5], ["hash", 39, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 44, 5], ["url", 45, 5], ["hash", 46, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["owner", 55, 5], ["repo", 56, 5], ["tag", 57, 5], ["hash", 58, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["extraArgs", 87, 9]]);
-const pos$5 = nix.positions(here + "/package.nix", [["PNAME", 96, 11], ["PKG_FILE", 97, 11], ["NNUE_BIG_FILE", 98, 11], ["NNUE_BIG_HASH", 99, 11], ["NNUE_SMALL_FILE", 100, 11], ["NNUE_SMALL_HASH", 101, 11]]);
-const pos$6 = nix.positions(here + "/package.nix", [["name", 90, 9], ["runtimeInputs", 91, 9], ["runtimeEnv", 95, 9], ["text", 103, 9]]);
-const pos$7 = nix.positions(here + "/package.nix", [["updateScript", 85, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["homepage", 109, 5], ["description", 110, 5], ["mainProgram", 111, 5], ["longDescription", 112, 5], ["maintainers", 116, 5], ["platforms", 121, 5], ["license", 128, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["pname", 51, 3], ["version", 52, 3], ["src", 54, 3], ["postUnpack", 61, 3], ["makeFlags", 67, 3], ["buildFlags", 73, 3], ["enableParallelBuilding", 75, 3], ["nativeInstallCheckInputs", 77, 3], ["doInstallCheck", 80, 3], ["versionCheckProgram", 81, 3], ["versionCheckProgramArg", 82, 3], ["passthru", 84, 3], ["meta", 108, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,7 +22,7 @@ export default nix.lambda((args) => (() => {
   const nnueBigFile = "nn-c288c895ea92.nnue";
   const nnueBigHash = "sha256-wojIleqSRCnqkJLj82srPB8A8qOkx1n/flfnnjtD5Kc=";
   const nnueBig = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: nnueBigFile,
       url: nix.thunk(() => nix.str`https://tests.stockfishchess.org/api/nn/${nnueBigFile}`),
       hash: nnueBigHash,
@@ -38,7 +30,7 @@ export default nix.lambda((args) => (() => {
   const nnueSmallFile = "nn-37f18f62d772.nnue";
   const nnueSmallHash = "sha256-N/GPYtdy8xB+HWqso4mMEww8hvKrY+ZVX7vKIGNaiZ0=";
   const nnueSmall = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       name: nnueSmallFile,
       url: nix.thunk(() => nix.str`https://tests.stockfishchess.org/api/nn/${nnueSmallFile}`),
       hash: nnueSmallHash,
@@ -47,7 +39,7 @@ export default nix.lambda((args) => (() => {
       const pname = "stockfish";
       const version = "18";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           owner: "official-stockfish",
           repo: "Stockfish",
           tag: nix.thunk(() => nix.str`sf_${version}`),
@@ -70,18 +62,18 @@ cp "${nnueSmall}" "$sourceRoot/${nnueSmallFile}"
       const versionCheckProgram = nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/bin/stockfish`);
       const versionCheckProgramArg = "--help";
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         updateScript: nix.thunk(() => nix.app(nix.sel(_experimental_update_script_combinators, "sequence"), nix.thunk(() => [
             nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-                [nix.POS]: pos$4,
+                [nix.POS]: $pos[3],
                 extraArgs: nix.thunk(() => ["--version-regex=^sf_([\\d.]+)$"]),
               })))),
             nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.app(writeShellApplication, nix.thunk(() => ({
-                  [nix.POS]: pos$6,
+                  [nix.POS]: $pos[5],
                   name: nix.thunk(() => nix.str`${pname}-nnue-updater`),
                   runtimeInputs: nix.thunk(() => [nix$, gnugrep]),
                   runtimeEnv: nix.thunk(() => ({
-                    [nix.POS]: pos$5,
+                    [nix.POS]: $pos[4],
                     PNAME: pname,
                     PKG_FILE: nix.thunk(() => nix.builtins.toString(nix.path(here, "./package.nix"))),
                     NNUE_BIG_FILE: nnueBigFile,
@@ -94,7 +86,7 @@ cp "${nnueSmall}" "$sourceRoot/${nnueSmallFile}"
           ]))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         homepage: "https://stockfishchess.org/",
         description: "Strong open source chess engine",
         mainProgram: "stockfish",
@@ -117,7 +109,7 @@ cp "${nnueSmall}" "$sourceRoot/${nnueSmallFile}"
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),
       }));
       return {
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         pname,
         version,
         src,

@@ -2,10 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["pname", 36, 35], ["version", 36, 41], ["signingKey", 37, 5], ["certificate", 38, 5], ["peFile", 39, 5]], [["description", 57, 5], ["homepage", 59, 7], ["license", 60, 7], ["platforms", 61, 7], ["badPlatforms", 62, 7], ["identifiers", 63, 7], ["teams", 65, 5]], [["pname", 13, 3], ["version", 14, 33], ["dontUnpack", 16, 3], ["dontBuild", 17, 3], ["nativeBuildInputs", 19, 3], ["authenticodeCertificate", 24, 3], ["authenticodeCheckExclude", 26, 3], ["unsigned", 31, 3], ["pePath", 33, 3], ["signedPe", 35, 3], ["installPhase", 42, 3], ["strictDeps", 52, 3], ["__structuredAttrs", 54, 3], ["meta", 56, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, autopen: false, lndir: false, authenticodeCheckHook: false, systemd: false, uefiSigningKey: false, uefiCertificate: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["pname", 36, 35], ["version", 36, 41], ["signingKey", 37, 5], ["certificate", 38, 5], ["peFile", 39, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 57, 5], ["homepage", 59, 7], ["license", 60, 7], ["platforms", 61, 7], ["badPlatforms", 62, 7], ["identifiers", 63, 7], ["teams", 65, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 33], ["dontUnpack", 16, 3], ["dontBuild", 17, 3], ["nativeBuildInputs", 19, 3], ["authenticodeCertificate", 24, 3], ["authenticodeCheckExclude", 26, 3], ["unsigned", 31, 3], ["pePath", 33, 3], ["signedPe", 35, 3], ["installPhase", 42, 3], ["strictDeps", 52, 3], ["__structuredAttrs", 54, 3], ["meta", 56, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,7 +18,7 @@ export default nix.lambda((args) => (() => {
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => (() => {
       const from = nix.thunk(() => nix.sel(finalAttrs, "unsigned"));
       return {
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "systemd-boot-signed",
       version: nix.thunk(() => nix.attr(from, "version")),
       dontUnpack: true,
@@ -33,7 +31,7 @@ export default nix.lambda((args) => (() => {
       signedPe: nix.thunk(() => nix.app(nix.sel(autopen, "authenticode", "mkSignedPe"), nix.thunk(() => (() => {
           const from_1 = nix.thunk(() => nix.sel(finalAttrs, "unsigned"));
           return {
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: nix.thunk(() => nix.attr(from_1, "pname")),
           version: nix.thunk(() => nix.attr(from_1, "version")),
           signingKey: uefiSigningKey,
@@ -47,7 +45,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from_1 = nix.thunk(() => nix.sel(systemd, "meta"));
         return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "A simple UEFI boot manager (signed)",
         homepage: nix.thunk(() => nix.attr(from_1, "homepage")),
         license: nix.thunk(() => nix.attr(from_1, "license")),

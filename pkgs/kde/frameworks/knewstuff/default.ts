@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["mainProgram", 22, 8]], [["pname", 8, 3], ["patches", 12, 3], ["extraBuildInputs", 14, 3], ["extraPropagatedBuildInputs", 18, 3], ["dontQmlLint", 20, 3], ["meta", 22, 3]]]);
 const formals$1 = { args: { mkKdeDerivation: false, qtdeclarative: false, qttools: false, kcmutils: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["mainProgram", 22, 8]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 8, 3], ["patches", 12, 3], ["extraBuildInputs", 14, 3], ["extraPropagatedBuildInputs", 18, 3], ["dontQmlLint", 20, 3], ["meta", 22, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,13 +12,13 @@ export default nix.lambda((args) => (() => {
   const qttools = nix.arg($, "qttools");
   const kcmutils = nix.arg($, "kcmutils");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "knewstuff",
       patches: nix.thunk(() => [nix.path(here, "./delay-resolving-knsrcdir.patch")]),
       extraBuildInputs: nix.thunk(() => [qtdeclarative, qttools]),
       extraPropagatedBuildInputs: nix.thunk(() => [kcmutils]),
       dontQmlLint: true,
-      meta: nix.thunk(() => ({ [nix.POS]: pos$1, mainProgram: "knewstuff-dialog6" })),
+      meta: nix.thunk(() => ({ [nix.POS]: $pos[0], mainProgram: "knewstuff-dialog6" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

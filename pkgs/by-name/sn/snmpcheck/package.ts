@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 15, 5], ["sha256", 16, 5], ["executable", 17, 5]], [["description", 30, 5], ["homepage", 31, 5], ["license", 32, 5], ["mainProgram", 33, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 14, 3], ["dontUnpack", 20, 3], ["buildInputs", 22, 3], ["installPhase", 24, 3], ["meta", 29, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, ruby: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 15, 5], ["sha256", 16, 5], ["executable", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 30, 5], ["homepage", 31, 5], ["license", 32, 5], ["mainProgram", 33, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 14, 3], ["dontUnpack", 20, 3], ["buildInputs", 22, 3], ["installPhase", 24, 3], ["meta", 29, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const ruby = nix.arg($, "ruby");
   const rubyEnv = nix.thunk(() => nix.app(nix.sel(ruby, "withPackages"), (ps) => [nix.thunk(() => nix.sel(ps, "snmp"))]));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "snmpcheck",
       version: "1.9",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://www.nothink.org/codes/snmpcheck/snmpcheck-${nix.sel(finalAttrs, "version")}.rb`),
           sha256: "sha256-9xkLqbgxU1uykx+M9QsbPAH8OI/Cqn9uw6ALe23Lbq0=",
           executable: true,
@@ -28,7 +26,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(rubyEnv, "wrappedRuby"))]),
       installPhase: "mkdir -p $out/bin\ncp $src $out/bin/snmp-check\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "SNMP enumerator",
         homepage: "http://www.nothink.org/codes/snmpcheck/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

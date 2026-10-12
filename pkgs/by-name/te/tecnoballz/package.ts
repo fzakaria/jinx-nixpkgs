@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 19, 5], ["sha256", 20, 5]], [["homepage", 55, 5], ["downloadPage", 56, 5], ["description", 57, 5], ["mainProgram", 58, 5], ["longDescription", 59, 5], ["license", 66, 5], ["maintainers", 67, 5], ["platforms", 68, 5], ["broken", 69, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["nativeBuildInputs", 23, 3], ["buildInputs", 28, 3], ["postPatch", 37, 3], ["preConfigure", 42, 3], ["installFlags", 46, 3], ["meta", 54, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, autoconf: false, automake: false, SDL: false, SDL_mixer: false, SDL_image: false, libmikmod: false, tinyxml: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 19, 5], ["sha256", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 55, 5], ["downloadPage", 56, 5], ["description", 57, 5], ["mainProgram", 58, 5], ["longDescription", 59, 5], ["license", 66, 5], ["maintainers", 67, 5], ["platforms", 68, 5], ["broken", 69, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["nativeBuildInputs", 23, 3], ["buildInputs", 28, 3], ["postPatch", 37, 3], ["preConfigure", 42, 3], ["installFlags", 46, 3], ["meta", 54, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const libmikmod = nix.arg($, "libmikmod");
   const tinyxml = nix.arg($, "tinyxml");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "tecnoballz",
       version: "0.93.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://linux.tlk.fr/games/TecnoballZ/download/tecnoballz-${nix.sel(finalAttrs, "version")}.tgz`),
           sha256: "sha256-WRW76e+/eXE/KwuyOjzTPFQnKwNznbIrUrz14fnvgug=",
         })))),
@@ -34,7 +32,7 @@ export default nix.lambda((args) => (() => {
       preConfigure: "./bootstrap\n",
       installFlags: nix.thunk(() => ["gamesdir=$(out)/bin", "scoredir=$(TMPDIR)"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://linux.tlk.fr/games/TecnoballZ/",
         downloadPage: "https://linux.tlk.fr/games/TecnoballZ/download/",
         description: "Brick breaker game with a sophisticated system of weapons and bonuses",

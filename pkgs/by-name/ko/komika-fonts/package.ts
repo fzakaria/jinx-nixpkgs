@@ -2,17 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 23, 15], ["hash", 23, 19], ["curlOptsList", 23, 24], ["name", 24, 7], ["stripRoot", 25, 7]], [["url", 29, 7], ["hash", 30, 7]], [["url", 33, 7], ["hash", 34, 7]], [["url", 37, 7], ["hash", 38, 7], ["curlOptsList", 39, 7]], [["url", 45, 7], ["hash", 46, 7]], [["url", 49, 7], ["hash", 50, 7], ["curlOptsList", 51, 7]], [["display", 28, 5], ["hand", 32, 5], ["poster", 36, 5], ["text", 44, 5], ["title", 48, 5]], [["homepage", 82, 5], ["description", 83, 5], ["longDescription", 84, 5], ["license", 87, 5], ["maintainers", 88, 5], ["platforms", 89, 5]], [["pname", 73, 3], ["version", 74, 3], ["sourceRoot", 75, 3], ["srcs", 77, 3], ["nativeBuildInputs", 79, 3], ["meta", 81, 3]]]);
 const formals$1 = { args: { stdenvNoCC: false, lib: false, fetchzip: false, installFonts: false, variants: true }, ellipsis: false };
 const formals$2 = { args: { url: false, hash: false, curlOptsList: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 23, 15], ["hash", 23, 19], ["curlOptsList", 23, 24], ["name", 24, 7], ["stripRoot", 25, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 29, 7], ["hash", 30, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 33, 7], ["hash", 34, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["url", 37, 7], ["hash", 38, 7], ["curlOptsList", 39, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["url", 45, 7], ["hash", 46, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["url", 49, 7], ["hash", 50, 7], ["curlOptsList", 51, 7]]);
-const pos$7 = nix.positions(here + "/package.nix", [["display", 28, 5], ["hand", 32, 5], ["poster", 36, 5], ["text", 44, 5], ["title", 48, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["homepage", 82, 5], ["description", 83, 5], ["longDescription", 84, 5], ["license", 87, 5], ["maintainers", 88, 5], ["platforms", 89, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["pname", 73, 3], ["version", 74, 3], ["sourceRoot", 75, 3], ["srcs", 77, 3], ["nativeBuildInputs", 79, 3], ["meta", 81, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,7 +19,7 @@ export default nix.lambda((args) => (() => {
     const hash = nix.arg($_1, "hash");
     const curlOptsList = nix.argOr($_1, "curlOptsList", () => []);
     return nix.app(fetchzip, nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         url: url,
         hash: hash,
         curlOptsList: curlOptsList,
@@ -36,30 +28,30 @@ export default nix.lambda((args) => (() => {
       })));
   })(), formals$2);
   const fontMap = nix.thunk(() => ({
-    [nix.POS]: pos$7,
+    [nix.POS]: $pos[6],
     display: nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       url: "https://www.1001fonts.com/download/komika-display.zip",
       hash: "sha256-6oNKuaoV+a/cFCKFXRV8gtWqvFtPGtrqg+vt8hQREMI=",
     })),
     hand: nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       url: "https://www.1001fonts.com/download/komika.zip",
       hash: "sha256-yb5SWQj7BRCLYHL31m25bhCOuo8qAvkRzGH6UIo3Bbs=",
     })),
     poster: nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       url: "https://www.1001freefonts.com/d/5010/komika-poster.zip",
       hash: "sha256-k1uUfHSh9kymCJrfuPtKHejFeZGl2PxL4C/3hpoPIc4=",
       curlOptsList: nix.thunk(() => ["-H", "Referer: https://www.1001freefonts.com/komika-poster.font"]),
     })),
     text: nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       url: "https://www.1001fonts.com/download/komika-text.zip",
       hash: "sha256-FdeFGw6MlYVTiYdvbfjSlQYq+UlKZTJ79HAdEEjMPQs=",
     })),
     title: nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       url: "https://www.1001freefonts.com/d/5011/komika-title.zip",
       hash: "sha256-M/1NgsHjLR/w/ZxWEb5cebqEI1VKgPvtk75bhAPaw20=",
       curlOptsList: nix.thunk(() => ["-H", "Referer: https://www.1001freefonts.com/komika-title.font"]),
@@ -71,14 +63,14 @@ export default nix.lambda((args) => (() => {
     return (nix.asBool(!nix.eq(unknown, [])) ? nix.builtins.throw(nix.thunk(() => nix.str`Unknown variant(s): ${nix.app(nix.sel(lib, "concatStringsSep"), " ", unknown)}`)) : nix.force(variants));
   })()));
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       pname: "komika-fonts",
       version: "0-unstable-2001-06-16",
       sourceRoot: ".",
       srcs: nix.thunk(() => nix.builtins.map((variant) => nix.app(fetchFont, nix.thunk(() => nix.sel(fontMap, nix.key(nix.force(variant))))), selectedFonts)),
       nativeBuildInputs: nix.thunk(() => [installFonts]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         homepage: "https://pedroreina.net/apostrophiclab/",
         description: "First ever comic lettering super family",
         longDescription: "50 fonts, covering everything the comic artist needs when it comes to lettering. 10 text faces, 10 display faces, 10 tiling faces, 10 hand variations, 9 poster faces, and 20 balloons in a font.\n",

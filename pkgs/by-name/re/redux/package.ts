@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["urls", 28, 9], ["sha256", 36, 9]], [["updateScript", 60, 12]], [["description", 77, 5], ["homepage", 78, 5], ["sourceProvenance", 79, 5], ["license", 80, 5], ["maintainers", 81, 5], ["platforms", 82, 5]], [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 43, 3], ["installPhase", 50, 3], ["passthru", 60, 3], ["meta", 76, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, writeScript: false, libx11: false, libxext: false, "alsa-lib": false, autoPatchelfHook: false, releasePath: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["urls", 28, 9], ["sha256", 36, 9]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 60, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 77, 5], ["homepage", 78, 5], ["sourceProvenance", 79, 5], ["license", 80, 5], ["maintainers", 81, 5], ["platforms", 82, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 43, 3], ["installPhase", 50, 3], ["passthru", 60, 3], ["meta", 76, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const pname = "redux";
       const version = "1.4.1";
       const src = nix.thunk(() => (nix.asBool(!nix.eq(releasePath, null)) ? nix.force(releasePath) : nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           urls: nix.thunk(() => [
             nix.thunk(() => nix.str`https://files.renoise.com/demo/Renoise_Redux_${nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => ["_"]), version)}_Demo_Linux_x86_64.tar.gz`),
             nix.thunk(() => nix.str`https://files.renoise.com/demo/archive/Renoise_Redux_${nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => ["_"]), version)}_Demo_Linux_x86_64.tar.gz`),
@@ -39,11 +36,11 @@ export default nix.lambda((args) => (() => {
       ]);
       const installPhase = "runHook preInstall\n\nOUTDIR=$out/lib/vst2/RenoiseRedux.vst2\nmkdir -p $OUTDIR\ncp -r ./renoise_redux_x86_64/* $OUTDIR\n\nrunHook postInstall\n";
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(writeScript, "update-redux", "#!/usr/bin/env nix-shell\n#!nix-shell -I nixpkgs=./. -i bash -p curl htmlq common-updater-scripts\nset -euo pipefail\n\nnew_version=\"$(\n  curl 'https://files.renoise.com/demo/' \\\n    | htmlq a --text \\\n    | grep -E '^Renoise_Redux_([0-9]+_?)+_Demo_Linux_x86_64\\.tar\\.gz$' \\\n    | grep -Eo '[0-9]+(_[0-9]+)*' \\\n    | head -n1 \\\n    | tr _ .\n)\"\nupdate-source-version redux \"$new_version\" --system=\"x86_64-linux\"\n")),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Sample-based instrument, with a powerful phrase sequencer",
         homepage: "https://www.renoise.com/products/redux",
         sourceProvenance: nix.thunk(() => (() => {
@@ -58,7 +55,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => ["x86_64-linux"]),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

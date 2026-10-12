@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]], [["tagPrefix", 32, 7]], [["updateScript", 31, 5]], [["homepage", 37, 5], ["description", 38, 5], ["mainProgram", 39, 5], ["license", 40, 5], ["maintainers", 41, 5], ["platforms", 43, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["preBuild", 19, 3], ["installPhase", 25, 3], ["passthru", 30, 3], ["meta", 36, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, unstableGitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["tagPrefix", 32, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 31, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 37, 5], ["description", 38, 5], ["mainProgram", 39, 5], ["license", 40, 5], ["maintainers", 41, 5], ["platforms", 43, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["preBuild", 19, 3], ["installPhase", 25, 3], ["passthru", 30, 3], ["meta", 36, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "bakelite",
       version: "0.4.2-unstable-2024-08-02",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "richfelker",
           repo: "bakelite",
           rev: "bc79a16b4414702c579143154d94a86666e99b78",
@@ -29,11 +25,11 @@ export default nix.lambda((args) => (() => {
       preBuild: "# pipe2() is only exposed with _GNU_SOURCE\n# Upstream makefile explicitly uses -O3 to improve SHA-3 performance\nmakeFlagsArray+=( CFLAGS=\"-D_GNU_SOURCE -g -O3\" )\n",
       installPhase: "mkdir -p $out/bin\ncp bakelite $out/bin\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, tagPrefix: "v" })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[1], tagPrefix: "v" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://github.com/richfelker/bakelite",
         description: "Incremental backup with strong cryptographic confidentality",
         mainProgram: "bakelite",

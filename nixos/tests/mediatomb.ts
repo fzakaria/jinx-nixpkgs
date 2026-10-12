@@ -2,41 +2,33 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
-const pos$1 = nix.positions(here + "/mediatomb.nix", [["path", 13, 13], ["recursive", 14, 13], ["hidden-files", 15, 13]]);
-const pos$2 = nix.positions(here + "/mediatomb.nix", [["path", 18, 13], ["recursive", 19, 13], ["hidden-files", 20, 13]]);
-const pos$3 = nix.positions(here + "/mediatomb.nix", [["enable", 7, 9], ["serverName", 8, 9], ["interface", 9, 9], ["openFirewall", 10, 9], ["mediaDirectories", 11, 9]]);
-const pos$4 = nix.positions(here + "/mediatomb.nix", [["mediatomb", 6, 16]]);
-const pos$5 = nix.positions(here + "/mediatomb.nix", [["rules", 24, 24]]);
-const pos$6 = nix.positions(here + "/mediatomb.nix", [["tmpfiles", 24, 15]]);
-const pos$7 = nix.positions(here + "/mediatomb.nix", [["services", 6, 7], ["systemd", 24, 7]]);
-const pos$8 = nix.positions(here + "/mediatomb.nix", [["server", 5, 5], ["client", 30, 5]]);
+const $pos = nix.positions(here + "/mediatomb.nix", [[["path", 13, 13], ["recursive", 14, 13], ["hidden-files", 15, 13]], [["path", 18, 13], ["recursive", 19, 13], ["hidden-files", 20, 13]], [["enable", 7, 9], ["serverName", 8, 9], ["interface", 9, 9], ["openFirewall", 10, 9], ["mediaDirectories", 11, 9]], [["mediatomb", 6, 16]], [["rules", 24, 24]], [["tmpfiles", 24, 15]], [["services", 6, 7], ["systemd", 24, 7]], [["server", 5, 5], ["client", 30, 5]], [["name", 2, 3], ["nodes", 4, 3], ["testScript", 33, 3]]]);
 const formals$1 = { args: { nodes: false }, ellipsis: true };
-const pos$9 = nix.positions(here + "/mediatomb.nix", [["name", 2, 3], ["nodes", 4, 3], ["testScript", 33, 3]]);
 
 export default nix.thunk(() => ({
-  [nix.POS]: pos$9,
+  [nix.POS]: $pos[8],
   name: "mediatomb",
   nodes: nix.thunk(() => ({
-    [nix.POS]: pos$8,
+    [nix.POS]: $pos[7],
     server: nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       services: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         mediatomb: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           enable: true,
           serverName: "Gerbera",
           interface: "eth1",
           openFirewall: true,
           mediaDirectories: nix.thunk(() => [
             nix.thunk(() => ({
-              [nix.POS]: pos$1,
+              [nix.POS]: $pos[0],
               path: "/var/lib/gerbera/pictures",
               recursive: false,
               "hidden-files": false,
             })),
             nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               path: "/var/lib/gerbera/audio",
               recursive: true,
               "hidden-files": false,
@@ -45,9 +37,9 @@ export default nix.thunk(() => ({
         })),
       })),
       systemd: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         tmpfiles: nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           rules: nix.thunk(() => [
             "d /var/lib/gerbera/pictures 0770 mediatomb mediatomb",
             "d /var/lib/gerbera/audio 0770 mediatomb mediatomb",

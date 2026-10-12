@@ -2,10 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/expect-version.nix", [[["version", 18, 26]], [["timeout", 25, 8]], [["pname", 8, 3], ["version", 9, 20], ["nativeBuildInputs", 11, 3], ["dontInstall", 13, 3], ["buildCommand", 15, 3], ["meta", 25, 3]]]);
 const formals$1 = { args: { stdenv: false, elvish: false, replaceVars: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/expect-version.nix", [["version", 18, 26]]);
-const pos$2 = nix.positions(here + "/expect-version.nix", [["timeout", 25, 8]]);
-const pos$3 = nix.positions(here + "/expect-version.nix", [["pname", 8, 3], ["version", 9, 20], ["nativeBuildInputs", 11, 3], ["dontInstall", 13, 3], ["buildCommand", 15, 3], ["meta", 25, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,16 +11,16 @@ export default nix.lambda((args) => (() => {
   const elvish = nix.arg($, "elvish");
   const replaceVars = nix.arg($, "replaceVars");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "elvish-simple-test",
       version: nix.thunk(() => nix.attr(elvish, "version")),
       nativeBuildInputs: nix.thunk(() => [elvish]),
       dontInstall: true,
-      buildCommand: nix.thunk(() => nix.str`elvish ${nix.app(replaceVars, nix.path(here, "./expect-version.elv"), nix.thunk(() => ({ [nix.POS]: pos$1, version: nix.thunk(() => nix.attr(elvish, "version")) })))}
+      buildCommand: nix.thunk(() => nix.str`elvish ${nix.app(replaceVars, nix.path(here, "./expect-version.elv"), nix.thunk(() => ({ [nix.POS]: $pos[0], version: nix.thunk(() => nix.attr(elvish, "version")) })))}
 
 touch $out
 `),
-      meta: nix.thunk(() => ({ [nix.POS]: pos$2, timeout: 10n })),
+      meta: nix.thunk(() => ({ [nix.POS]: $pos[1], timeout: 10n })),
     })));
 })(), formals$1);
 //# sourceMappingURL=expect-version.ts.map

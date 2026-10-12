@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]], [["description", 64, 5], ["homepage", 65, 5], ["changelog", 66, 5], ["license", 67, 5], ["maintainers", 68, 5]], [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["src", 19, 3], ["postPatch", 26, 3], ["build-system", 31, 3], ["dependencies", 36, 3], ["pythonRelaxDeps", 43, 3], ["buildInputs", 47, 3], ["pypaBuildFlags", 51, 3], ["nativeCheckInputs", 55, 3], ["pythonImportsCheck", 59, 3], ["meta", 63, 3]]]);
 const formals$1 = { args: { "backports-zstd": false, buildPythonPackage: false, fetchFromGitHub: false, lib: false, hatchling: false, "hatch-vcs": false, pytestCheckHook: false, pythonOlder: false, "typing-extensions": false, "zstd-c": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 64, 5], ["homepage", 65, 5], ["changelog", 66, 5], ["license", 67, 5], ["maintainers", 68, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["src", 19, 3], ["postPatch", 26, 3], ["build-system", 31, 3], ["dependencies", 36, 3], ["pythonRelaxDeps", 43, 3], ["buildInputs", 47, 3], ["pypaBuildFlags", 51, 3], ["nativeCheckInputs", 55, 3], ["pythonImportsCheck", 59, 3], ["meta", 63, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.19.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Rogdham",
           repo: "pyzstd",
           tag: version,
@@ -41,7 +39,7 @@ ln -s ${nix.sel(zstd_c, "src")}/LICENSE zstd
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const pythonImportsCheck = nix.thunk(() => ["pyzstd"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Python bindings to Zstandard (zstd) compression library",
         homepage: "https://pyzstd.readthedocs.io",
         changelog: nix.thunk(() => nix.str`https://github.com/Rogdham/pyzstd/blob/${nix.sel(src, "tag")}/CHANGELOG.md`),
@@ -56,7 +54,7 @@ ln -s ${nix.sel(zstd_c, "src")}/LICENSE zstd
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

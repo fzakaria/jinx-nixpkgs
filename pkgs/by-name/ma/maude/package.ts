@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]], [["tamarin-prover", 87, 13]], [["tests", 85, 12]], [["homepage", 93, 5], ["description", 94, 5], ["mainProgram", 95, 5], ["license", 96, 5], ["longDescription", 97, 5], ["platforms", 106, 5], ["maintainers", 107, 5]], [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["postPatch", 32, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 43, 3], ["hardeningDisable", 53, 3], ["__darwinAllowLocalNetworking", 61, 3], ["configureScript", 63, 3], ["configureFlags", 65, 3], ["makeFlags", 72, 3], ["preConfigure", 74, 3], ["doCheck", 79, 3], ["postInstall", 81, 3], ["passthru", 85, 3], ["enableParallelBuilding", 90, 3], ["meta", 92, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, autoreconfHook: false, bison: false, flex: false, makeWrapper: false, buddy: false, cln: false, cvc4: false, gmpxx: false, libsigsegv: false, tecla: false, yices: false, "tamarin-prover": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["tamarin-prover", 87, 13]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 85, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 93, 5], ["description", 94, 5], ["mainProgram", 95, 5], ["license", 96, 5], ["longDescription", 97, 5], ["platforms", 106, 5], ["maintainers", 107, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["postPatch", 32, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 43, 3], ["hardeningDisable", 53, 3], ["__darwinAllowLocalNetworking", 61, 3], ["configureScript", 63, 3], ["configureFlags", 65, 3], ["makeFlags", 72, 3], ["preConfigure", 74, 3], ["doCheck", 79, 3], ["postInstall", 81, 3], ["passthru", 85, 3], ["enableParallelBuilding", 90, 3], ["meta", 92, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const yices = nix.arg($, "yices");
   const tamarin_prover = nix.arg($, "tamarin-prover");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "maude",
       version: "3.5.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "maude-lang",
           repo: "Maude",
           tag: nix.thunk(() => nix.str`Maude${nix.sel(finalAttrs, "version")}`),
@@ -54,12 +50,12 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       postInstall: "for n in \"$out/bin/\"*; do wrapProgram \"$n\" --suffix MAUDE_LIB ':' \"$out/share/maude\"; done\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$2, "tamarin-prover": tamarin_prover })),
+        [nix.POS]: $pos[2],
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[1], "tamarin-prover": tamarin_prover })),
       })),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://maude.cs.illinois.edu/",
         description: "High-level specification language",
         mainProgram: "maude",

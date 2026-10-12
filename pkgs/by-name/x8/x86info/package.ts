@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]], [["description", 45, 5], ["longDescription", 46, 5], ["platforms", 52, 5], ["license", 56, 5], ["homepage", 57, 5], ["maintainers", 58, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 21, 3], ["buildInputs", 26, 3], ["hardeningDisable", 31, 3], ["postBuild", 33, 3], ["installPhase", 38, 3], ["meta", 44, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, pciutils: false, "pkg-config": false, python3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 45, 5], ["longDescription", 46, 5], ["platforms", 52, 5], ["license", 56, 5], ["homepage", 57, 5], ["maintainers", 58, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 21, 3], ["buildInputs", 26, 3], ["hardeningDisable", 31, 3], ["postBuild", 33, 3], ["installPhase", 38, 3], ["meta", 44, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const python3 = nix.arg($, "python3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "x86info",
       version: "0-unstable-2021-08-07",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "kernelslacker",
           repo: "x86info",
           rev: "061ea35ecb0697761b6260998fa2045b8bb0be68",
@@ -32,7 +30,7 @@ export default nix.lambda((args) => (() => {
       postBuild: "patchShebangs lsmsr/createheader.py\nmake -C lsmsr\n",
       installPhase: "mkdir -p $out/bin\ncp x86info $out/bin\ncp lsmsr/lsmsr $out/bin\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Identification utility for the x86 series of processors",
         longDescription: "x86info will identify all Intel/AMD/Centaur/Cyrix/VIA CPUs. It leverages\nthe cpuid kernel module where possible.  it supports parsing model specific\nregisters (MSRs) via the msr kernel module.  it will approximate processor\nfrequency, and identify the cache sizes and layout.\n",
         platforms: nix.thunk(() => ["i686-linux", "x86_64-linux"]),

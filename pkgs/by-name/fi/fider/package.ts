@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]], [["pname", 38, 7], ["version", 39, 7], ["src", 40, 7], ["vendorHash", 41, 7]], [["pname", 46, 7], ["version", 47, 7], ["src", 48, 7], ["npmDepsHash", 49, 7]], [["fider", 67, 28]], [["tests", 66, 5], ["updateScript", 69, 5]], [["description", 73, 5], ["homepage", 74, 5], ["changelog", 75, 5], ["license", 76, 5], ["mainProgram", 77, 5], ["maintainers", 78, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["dontConfigure", 21, 3], ["dontBuild", 22, 3], ["vendorHash", 33, 3], ["npmDepsHash", 34, 3], ["server", 36, 3], ["frontend", 44, 3], ["installPhase", 53, 3], ["passthru", 65, 3], ["meta", 72, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchFromGitHub: false, callPackage: false, nixosTests: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 38, 7], ["version", 39, 7], ["src", 40, 7], ["vendorHash", 41, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 46, 7], ["version", 47, 7], ["src", 48, 7], ["npmDepsHash", 49, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["fider", 67, 28]]);
-const pos$5 = nix.positions(here + "/package.nix", [["tests", 66, 5], ["updateScript", 69, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 73, 5], ["homepage", 74, 5], ["changelog", 75, 5], ["license", 76, 5], ["mainProgram", 77, 5], ["maintainers", 78, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["dontConfigure", 21, 3], ["dontBuild", 22, 3], ["vendorHash", 33, 3], ["npmDepsHash", 34, 3], ["server", 36, 3], ["frontend", 44, 3], ["installPhase", 53, 3], ["passthru", 65, 3], ["meta", 72, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "fider",
       version: "0.27.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "getfider",
           repo: "fider",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,14 +29,14 @@ export default nix.lambda((args) => (() => {
       vendorHash: "sha256-4ilOdUblpwteY0ZInitSuzuB8mU1ltYgRJjla6LiziU=",
       npmDepsHash: "sha256-c8CFMMmFcLZkJL50bfLlk2HP9B/rexNZ2WWJkV0x4Rk=",
       server: nix.thunk(() => nix.app(callPackage, nix.path(here, "./server.nix"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           vendorHash: nix.thunk(() => nix.attr(finalAttrs, "vendorHash")),
         })))),
       frontend: nix.thunk(() => nix.app(callPackage, nix.path(here, "./frontend.nix"), nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -59,12 +53,12 @@ ln -s ${nix.sel(finalAttrs, "frontend")}/* $out/
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$4, fider: nix.thunk(() => nix.attr(nixosTests, "fider")) })),
+        [nix.POS]: $pos[4],
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[3], fider: nix.thunk(() => nix.attr(nixosTests, "fider")) })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Open platform to collect and prioritize feedback",
         homepage: "https://github.com/getfider/fider",
         changelog: nix.thunk(() => nix.str`https://github.com/getfider/fider/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

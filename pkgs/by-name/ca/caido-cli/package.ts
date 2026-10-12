@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 17, 9], ["hash", 18, 9]], [["url", 21, 9], ["hash", 22, 9]], [["url", 25, 9], ["hash", 26, 9]], [["x86_64-linux", 16, 7], ["aarch64-linux", 20, 7], ["aarch64-darwin", 24, 7]], [["description", 48, 5], ["homepage", 49, 5], ["changelog", 50, 5], ["license", 51, 5], ["mainProgram", 52, 5], ["maintainers", 53, 5], ["platforms", 58, 5], ["sourceProvenance", 63, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 37, 3], ["sourceRoot", 39, 3], ["installPhase", 41, 3], ["meta", 47, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, autoPatchelfHook: false, unzip: false, libgcc: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 17, 9], ["hash", 18, 9]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 21, 9], ["hash", 22, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 25, 9], ["hash", 26, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["x86_64-linux", 16, 7], ["aarch64-linux", 20, 7], ["aarch64-darwin", 24, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 48, 5], ["homepage", 49, 5], ["changelog", 50, 5], ["license", 51, 5], ["mainProgram", 52, 5], ["maintainers", 53, 5], ["platforms", 58, 5], ["sourceProvenance", 63, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 37, 3], ["sourceRoot", 39, 3], ["installPhase", 41, 3], ["meta", 47, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,23 +14,23 @@ export default nix.lambda((args) => (() => {
   const unzip = nix.arg($, "unzip");
   const libgcc = nix.arg($, "libgcc");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "caido-cli",
       version: "0.57.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => nix.selOr({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           "x86_64-linux": nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             url: nix.thunk(() => nix.str`https://caido.download/releases/v${nix.sel(finalAttrs, "version")}/caido-cli-v${nix.sel(finalAttrs, "version")}-linux-x86_64.tar.gz`),
             hash: "sha256-ujpGYERNceUPartkgx4o38xUfPwWvnmiEnjkvmEbybA=",
           })),
           "aarch64-linux": nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: nix.thunk(() => nix.str`https://caido.download/releases/v${nix.sel(finalAttrs, "version")}/caido-cli-v${nix.sel(finalAttrs, "version")}-linux-aarch64.tar.gz`),
             hash: "sha256-d1xzF0N6emShCQpotFiQEj1wV3hdt1DK7R+6Smlxrmg=",
           })),
           "aarch64-darwin": nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: nix.thunk(() => nix.str`https://caido.download/releases/v${nix.sel(finalAttrs, "version")}/caido-cli-v${nix.sel(finalAttrs, "version")}-mac-aarch64.zip`),
             hash: "sha256-FwbKLEwjiFzZWdBS6RgsDtc/EkI9AT2CBGwdmgEdDnw=",
           })),
@@ -45,7 +40,7 @@ export default nix.lambda((args) => (() => {
       sourceRoot: ".",
       installPhase: "runHook preInstall\ninstall -m 755 -D caido-cli $out/bin/caido-cli\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Caido CLI — lightweight web security auditing toolkit",
         homepage: "https://caido.io/",
         changelog: nix.thunk(() => nix.str`https://github.com/caido/caido/releases/tag/v${nix.sel(finalAttrs, "version")}`),

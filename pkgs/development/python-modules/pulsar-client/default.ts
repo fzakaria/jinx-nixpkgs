@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 38, 5], ["repo", 39, 5], ["tag", 40, 5], ["hash", 41, 5]], [["functions", 72, 5], ["avro", 79, 5]], [["description", 97, 5], ["homepage", 98, 5], ["changelog", 99, 5], ["license", 100, 5], ["maintainers", 101, 5], ["broken", 103, 5]], [["pname", 33, 3], ["version", 34, 3], ["pyproject", 35, 3], ["src", 37, 3], ["patches", 44, 3], ["build-system", 49, 3], ["nativeBuildInputs", 53, 3], ["buildInputs", 58, 3], ["preBuild", 63, 3], ["dependencies", 69, 3], ["optional-dependencies", 71, 3], ["nativeCheckInputs", 82, 3], ["unittestFlagsArray", 87, 3], ["pythonImportsCheck", 92, 3], ["__darwinAllowLocalNetworking", 94, 3], ["meta", 96, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, cmake: false, "pkg-config": false, libpulsar: false, pybind11: false, certifi: false, fastavro: false, grpcio: false, "prometheus-client": false, protobuf: false, ratelimit: false, unittestCheckHook: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 38, 5], ["repo", 39, 5], ["tag", 40, 5], ["hash", 41, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["functions", 72, 5], ["avro", 79, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 97, 5], ["homepage", 98, 5], ["changelog", 99, 5], ["license", 100, 5], ["maintainers", 101, 5], ["broken", 103, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 33, 3], ["version", 34, 3], ["pyproject", 35, 3], ["src", 37, 3], ["patches", 44, 3], ["build-system", 49, 3], ["nativeBuildInputs", 53, 3], ["buildInputs", 58, 3], ["preBuild", 63, 3], ["dependencies", 69, 3], ["optional-dependencies", 71, 3], ["nativeCheckInputs", 82, 3], ["unittestFlagsArray", 87, 3], ["pythonImportsCheck", 92, 3], ["__darwinAllowLocalNetworking", 94, 3], ["meta", 96, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,12 +24,12 @@ export default nix.lambda((args) => (() => {
   const unittestCheckHook = nix.arg($, "unittestCheckHook");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "pulsar-client",
       version: "3.10.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "apache",
           repo: "pulsar-client-python",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -45,7 +42,7 @@ export default nix.lambda((args) => (() => {
       preBuild: "make -j$NIX_BUILD_CORES\nmake install\ncd ..\n",
       dependencies: nix.thunk(() => [certifi]),
       "optional-dependencies": nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         functions: nix.thunk(() => [grpcio, prometheus_client, protobuf, ratelimit]),
         avro: nix.thunk(() => [fastavro]),
       })),
@@ -54,7 +51,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["pulsar"]),
       __darwinAllowLocalNetworking: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Apache Pulsar Python client library",
         homepage: "https://pulsar.apache.org/docs/next/client-libraries-python/",
         changelog: nix.thunk(() => nix.str`https://github.com/apache/pulsar-client-python/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

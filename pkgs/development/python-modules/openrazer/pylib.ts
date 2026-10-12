@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/pylib.nix", [[["lib", 12, 42], ["fetchFromGitHub", 12, 46]], [["description", 33, 7]], [["pname", 17, 5], ["sourceRoot", 19, 5], ["nativeBuildInputs", 21, 5], ["dependencies", 23, 5], ["doCheck", 30, 5], ["meta", 32, 5]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, "dbus-python": false, fetchFromGitHub: false, numpy: false, "openrazer-daemon": false, setuptools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/pylib.nix", [["lib", 12, 42], ["fetchFromGitHub", 12, 46]]);
-const pos$2 = nix.positions(here + "/pylib.nix", [["description", 33, 7]]);
-const pos$3 = nix.positions(here + "/pylib.nix", [["pname", 17, 5], ["sourceRoot", 19, 5], ["nativeBuildInputs", 21, 5], ["dependencies", 23, 5], ["doCheck", 30, 5], ["meta", 32, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,16 +14,16 @@ export default nix.lambda((args) => (() => {
   const numpy = nix.arg($, "numpy");
   const openrazer_daemon = nix.arg($, "openrazer-daemon");
   const setuptools = nix.arg($, "setuptools");
-  const common = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./common.nix")), nix.thunk(() => ({ [nix.POS]: pos$1, lib: lib, fetchFromGitHub: fetchFromGitHub }))));
+  const common = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./common.nix")), nix.thunk(() => ({ [nix.POS]: $pos[0], lib: lib, fetchFromGitHub: fetchFromGitHub }))));
   return nix.app(buildPythonPackage, nix.thunk(() => nix.update(common, {
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "openrazer",
       sourceRoot: nix.thunk(() => nix.str`${nix.sel(common, "src", "name")}/pylib`),
       nativeBuildInputs: nix.thunk(() => [setuptools]),
       dependencies: nix.thunk(() => [dbus_python, numpy, openrazer_daemon]),
       doCheck: false,
       meta: nix.thunk(() => nix.update(nix.sel(common, "meta"), {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Entirely open source Python library that allows you to manage your Razer peripherals on GNU/Linux",
       })),
     })));

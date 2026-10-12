@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]], [["name", 64, 7], ["exec", 65, 7], ["icon", 66, 7], ["desktopName", 67, 7]], [["updateScript", 80, 12]], [["description", 83, 5], ["homepage", 84, 5], ["mainProgram", 85, 5], ["license", 86, 5], ["maintainers", 87, 5], ["platforms", 88, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["cargoHash", 29, 3], ["sourceRoot", 31, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 39, 3], ["checkFlags", 47, 3], ["desktopItems", 62, 3], ["postInstall", 71, 3], ["postFixup", 76, 3], ["passthru", 80, 3], ["meta", 82, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchFromGitHub: false, copyDesktopItems: false, "pkg-config": false, glib: false, gtk3: false, openssl: false, wayland: false, xdotool: false, makeDesktopItem: false, "libayatana-appindicator": false, imagemagick: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 64, 7], ["exec", 65, 7], ["icon", 66, 7], ["desktopName", 67, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 80, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 83, 5], ["homepage", 84, 5], ["mainProgram", 85, 5], ["license", 86, 5], ["maintainers", 87, 5], ["platforms", 88, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["cargoHash", 29, 3], ["sourceRoot", 31, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 39, 3], ["checkFlags", 47, 3], ["desktopItems", 62, 3], ["postInstall", 71, 3], ["postFixup", 76, 3], ["passthru", 80, 3], ["meta", 82, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const imagemagick = nix.arg($, "imagemagick");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "windsend-rs",
       version: "1.7.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "doraemonkeys",
           repo: "WindSend",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -55,7 +51,7 @@ export default nix.lambda((args) => (() => {
       ]),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "windsend-rs",
             exec: "wind_send",
             icon: "windsend-rs",
@@ -66,11 +62,11 @@ export default nix.lambda((args) => (() => {
       postFixup: nix.thunk(() => nix.str`patchelf --add-rpath ${nix.app(nix.sel(lib, "makeLibraryPath"), nix.thunk(() => [libayatana_appindicator]))} $out/bin/wind_send
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Quickly and securely sync clipboard, transfer files and directories between devices",
         homepage: "https://github.com/doraemonkeys/WindSend",
         mainProgram: "wind_send",

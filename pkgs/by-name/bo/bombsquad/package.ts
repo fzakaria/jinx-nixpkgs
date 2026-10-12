@@ -2,18 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 27, 9], ["hash", 28, 9]], [["name", 31, 9], ["hash", 32, 9]], [["x86_64-linux", 26, 7], ["aarch64-linux", 30, 7]], [["url", 38, 5], ["hash", 39, 5]], [["url", 51, 5], ["hash", 52, 23]], [["name", 75, 7], ["genericName", 76, 7], ["desktopName", 77, 7], ["icon", 79, 7], ["exec", 80, 7], ["comment", 81, 7], ["categories", 82, 7]], [["name", 109, 7], ["runtimeInputs", 110, 7], ["text", 115, 7]], [["versionLister", 108, 5]], [["updateScript", 107, 12]], [["description", 124, 5], ["homepage", 125, 5], ["changelog", 126, 5], ["license", 127, 5], ["maintainers", 131, 5], ["mainProgram", 135, 5], ["platforms", 136, 5]], [["pname", 44, 3], ["version", 48, 3], ["src", 50, 3], ["sourceRoot", 55, 3], ["buildInputs", 57, 3], ["nativeBuildInputs", 67, 3], ["desktopItems", 73, 3], ["installPhase", 86, 3], ["passthru", 107, 3], ["meta", 123, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, python313: false, SDL2: false, cairo: false, pango: false, libvorbis: false, openal: false, curl: false, gnugrep: false, gnused: false, libgcc: false, makeBinaryWrapper: false, makeDesktopItem: false, autoPatchelfHook: false, copyDesktopItems: false, writeShellApplication: false, commandLineArgs: true, genericUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 27, 9], ["hash", 28, 9]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 31, 9], ["hash", 32, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["x86_64-linux", 26, 7], ["aarch64-linux", 30, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["url", 38, 5], ["hash", 39, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["url", 51, 5], ["hash", 52, 23]]);
-const pos$6 = nix.positions(here + "/package.nix", [["name", 75, 7], ["genericName", 76, 7], ["desktopName", 77, 7], ["icon", 79, 7], ["exec", 80, 7], ["comment", 81, 7], ["categories", 82, 7]]);
-const pos$7 = nix.positions(here + "/package.nix", [["name", 109, 7], ["runtimeInputs", 110, 7], ["text", 115, 7]]);
-const pos$8 = nix.positions(here + "/package.nix", [["versionLister", 108, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["updateScript", 107, 12]]);
-const pos$10 = nix.positions(here + "/package.nix", [["description", 124, 5], ["homepage", 125, 5], ["changelog", 126, 5], ["license", 127, 5], ["maintainers", 131, 5], ["mainProgram", 135, 5], ["platforms", 136, 5]]);
-const pos$11 = nix.positions(here + "/package.nix", [["pname", 44, 3], ["version", 48, 3], ["src", 50, 3], ["sourceRoot", 55, 3], ["buildInputs", 57, 3], ["nativeBuildInputs", 67, 3], ["desktopItems", 73, 3], ["installPhase", 86, 3], ["passthru", 107, 3], ["meta", 123, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -38,29 +28,29 @@ export default nix.lambda((args) => (() => {
   const commandLineArgs = nix.argOr($, "commandLineArgs", () => "");
   const genericUpdater = nix.arg($, "genericUpdater");
   const archive = nix.thunk(() => nix.selOr({
-    [nix.POS]: pos$3,
+    [nix.POS]: $pos[2],
     "x86_64-linux": nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: "BombSquad_Linux_x86_64",
       hash: "sha256-zKZpRsyBCTYDJbTwjaP/HFXfYvD9zBhetUGzriB9754=",
     })),
     "aarch64-linux": nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       name: "BombSquad_Linux_Arm64",
       hash: "sha256-Q87KbQqwEOaMiJ4uSgZ3eD8AYKQCoJWPzq7rt9Nu9Co=",
     })),
   }, () => nix.builtins.throw(nix.thunk(() => nix.str`${nix.sel(stdenv, "targetPlatform", "system")} is unsupported.`)), nix.key(nix.sel(stdenv, "targetPlatform", "system"))));
   const bombsquadIcon = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       url: "https://files.ballistica.net/bombsquad/promo/BombSquadIcon.png",
       hash: "sha256-MfOvjVmjhLejrJmdLo/goAM9DTGubnYGhlN6uF2GugA=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$11,
+      [nix.POS]: $pos[10],
       pname: "bombsquad",
       version: "1.7.63",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           url: nix.thunk(() => nix.str`https://files.ballistica.net/bombsquad/builds/old/${nix.sel(archive, "name")}_${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: nix.thunk(() => nix.attr(archive, "hash")),
         })))),
@@ -69,7 +59,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [autoPatchelfHook, copyDesktopItems, makeBinaryWrapper]),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             name: "bombsquad",
             genericName: "bombsquad",
             desktopName: "BombSquad",
@@ -99,11 +89,11 @@ install -Dm444 ${bombsquadIcon} $out/share/icons/bombsquad.png
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         updateScript: nix.thunk(() => nix.app(genericUpdater, nix.thunk(() => ({
-            [nix.POS]: pos$8,
+            [nix.POS]: $pos[7],
             versionLister: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.app(writeShellApplication, nix.thunk(() => ({
-                  [nix.POS]: pos$7,
+                  [nix.POS]: $pos[6],
                   name: "bombsquad-versionLister",
                   runtimeInputs: nix.thunk(() => [curl, gnugrep, gnused]),
                   text: "curl -sL \"https://files.ballistica.net/bombsquad/builds/CHANGELOG.md\" \\\n    | grep -oP '^### \\K\\d+\\.\\d+\\.\\d+' \\\n    | sed -n 2p\n",
@@ -111,7 +101,7 @@ runHook postInstall
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         description: "Free, multiplayer, arcade-style game for up to eight players that combines elements of fighting games and first-person shooters (FPS)",
         homepage: "https://ballistica.net",
         changelog: "https://ballistica.net/downloads?display=changelog",

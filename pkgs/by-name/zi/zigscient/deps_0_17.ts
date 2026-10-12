@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/deps_0_17.nix", [[["url", 9, 7], ["hash", 10, 7]], [["name", 7, 5], ["path", 8, 5]], [["url", 16, 7], ["hash", 17, 7]], [["name", 14, 5], ["path", 15, 5]], [["url", 23, 7], ["hash", 24, 7]], [["name", 21, 5], ["path", 22, 5]], [["url", 30, 7], ["hash", 31, 7]], [["name", 28, 5], ["path", 29, 5]]]);
 const formals$1 = { args: { linkFarm: false, fetchzip: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/deps_0_17.nix", [["url", 9, 7], ["hash", 10, 7]]);
-const pos$2 = nix.positions(here + "/deps_0_17.nix", [["name", 7, 5], ["path", 8, 5]]);
-const pos$3 = nix.positions(here + "/deps_0_17.nix", [["url", 16, 7], ["hash", 17, 7]]);
-const pos$4 = nix.positions(here + "/deps_0_17.nix", [["name", 14, 5], ["path", 15, 5]]);
-const pos$5 = nix.positions(here + "/deps_0_17.nix", [["url", 23, 7], ["hash", 24, 7]]);
-const pos$6 = nix.positions(here + "/deps_0_17.nix", [["name", 21, 5], ["path", 22, 5]]);
-const pos$7 = nix.positions(here + "/deps_0_17.nix", [["url", 30, 7], ["hash", 31, 7]]);
-const pos$8 = nix.positions(here + "/deps_0_17.nix", [["name", 28, 5], ["path", 29, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,37 +11,37 @@ export default nix.lambda((args) => (() => {
   const fetchzip = nix.arg($, "fetchzip");
   return nix.app(linkFarm, "zig-packages", nix.thunk(() => [
       nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         name: "known_folders-0.0.0-Fy-PJiDLAAB98m3uYUzatrTb2mO2fpvwx2zpSroEtfbO",
         path: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             url: "https://github.com/LamplightWorks/known-folders/archive/6da0d0c41b78b9ed2d34fa364fcb81b5ebece6c4.tar.gz",
             hash: "sha256-F17Ivvsyyla2CBIh+kImc1O3AtD2yTDAGamzMVbVzuw=",
           })))),
       })),
       nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         name: "diffz-0.0.1-G2tlISvOAQDORzPTSxDgiKwlHuADKeJMdJrw4kRfLufj",
         path: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: "https://github.com/LamplightWorks/diffz/archive/aac8aa99c436ab8277b0711922aad062c0167b12.tar.gz",
             hash: "sha256-GQ4iCZSSpVvdDQteoi02keLSqSoDOSQPH8eihum++Z0=",
           })))),
       })),
       nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         name: "lsp_kit-0.1.0-bi_PLwc2DACoR7VTz_qKFXUvtx7veHvWcTQvP9pDFLpk",
         path: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             url: "https://github.com/LamplightWorks/lsp-kit/archive/d148676ace1eaecf3c703ce7d350d0e94e502ed7.tar.gz",
             hash: "sha256-O4LSGT/0/2gFbXcOt0Panj4a26J5gA1NkmO0+7PfkJg=",
           })))),
       })),
       nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         name: "extended_zccs-0.17.0-dev-zEaUNtFwDgBMEtl0u8RdgZxFVSZ7PG8iYSF4zl6CD292",
         path: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             url: "https://github.com/llogick/extended-zccs/archive/02bccbf4d4d4be11221a291b5d129d759a1b7b9d.tar.gz",
             hash: "sha256-NBCO2nFttodiDX10heC4+xwyCamMmKTWpgosHX5bFCk=",
           })))),

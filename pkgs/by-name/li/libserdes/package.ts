@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5]], [["updateScript", 85, 12]], [["description", 88, 5], ["homepage", 89, 5], ["license", 90, 5], ["maintainers", 91, 5], ["platforms", 92, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["outputs", 26, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 36, 3], ["configureFlags", 44, 3], ["makeFlags", 54, 3], ["postPatch", 58, 3], ["setOutputFlags", 67, 3], ["preConfigure", 69, 3], ["preInstall", 76, 3], ["postInstall", 81, 3], ["passthru", 85, 3], ["meta", 87, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, perl: false, which: false, rdkafka: false, jansson: false, curl: false, "avro-c": false, "avro-cpp": false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 85, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 88, 5], ["homepage", 89, 5], ["license", 90, 5], ["maintainers", 91, 5], ["platforms", 92, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["outputs", 26, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 36, 3], ["configureFlags", 44, 3], ["makeFlags", 54, 3], ["postPatch", 58, 3], ["setOutputFlags", 67, 3], ["preConfigure", 69, 3], ["preInstall", 76, 3], ["postInstall", 81, 3], ["passthru", 85, 3], ["meta", 87, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const avro_cpp = nix.arg($, "avro-cpp");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "libserdes",
       version: "8.1.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "confluentinc",
           repo: "libserdes",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -45,11 +42,11 @@ export default nix.lambda((args) => (() => {
       preInstall: "installFlagsArray+=(\"pkgconfigdir=${!outputDev}/lib/pkgconfig\")\n",
       postInstall: "chmod -x ${!outputInclude}/include/libserdes/*.h\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Schema-based serializer/deserializer C/C++ library with support for Avro and the Confluent Platform Schema Registry",
         homepage: "https://github.com/confluentinc/libserdes",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

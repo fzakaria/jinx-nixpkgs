@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 28, 5], ["owner", 29, 5], ["repo", 30, 5], ["rev", 31, 5], ["hash", 32, 5]], [["pname", 36, 26], ["version", 36, 32], ["src", 36, 40], ["hash", 37, 5]], [["updateScript", 68, 5]], [["homepage", 72, 5], ["description", 73, 5], ["mainProgram", 74, 5], ["maintainers", 75, 5], ["teams", 76, 5], ["license", 77, 5], ["platforms", 78, 5]], [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["cargoDeps", 35, 3], ["nativeBuildInputs", 40, 3], ["buildInputs", 56, 3], ["passthru", 67, 3], ["meta", 71, 3]]]);
 const formals$1 = { args: { "appstream-glib": false, cargo: false, dbus: false, "desktop-file-utils": false, fetchFromGitLab: false, git: false, glib: false, gst_all_1: false, gtk4: false, lib: false, libadwaita: false, meson: false, ninja: false, "nix-update-script": false, "pkg-config": false, python3: false, rustPlatform: false, rustc: false, stdenv: false, wrapGAppsHook4: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 28, 5], ["owner", 29, 5], ["repo", 30, 5], ["rev", 31, 5], ["hash", 32, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 36, 26], ["version", 36, 32], ["src", 36, 40], ["hash", 37, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 68, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 72, 5], ["description", 73, 5], ["mainProgram", 74, 5], ["maintainers", 75, 5], ["teams", 76, 5], ["license", 77, 5], ["platforms", 78, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["cargoDeps", 35, 3], ["nativeBuildInputs", 40, 3], ["buildInputs", 56, 3], ["passthru", 67, 3], ["meta", 71, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,11 +28,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const wrapGAppsHook4 = nix.arg($, "wrapGAppsHook4");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "audio-sharing",
       version: "0.2.4",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "gitlab.gnome.org",
           owner: "World",
           repo: "AudioSharing",
@@ -44,7 +40,7 @@ export default nix.lambda((args) => (() => {
           hash: "sha256-yUMiy5DaCPfCmBIGCXpqtvSSmQl5wo6vsLdW7Tt/Wfo=",
         })))),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -76,11 +72,11 @@ export default nix.lambda((args) => (() => {
         dbus,
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://gitlab.gnome.org/World/AudioSharing",
         description: "Automatically share the current audio playback in the form of an RTSP stream",
         mainProgram: "audio-sharing",

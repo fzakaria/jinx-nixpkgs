@@ -2,9 +2,9 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["name", 15, 5], ["builder", 17, 5], ["nativeBuildInputs", 18, 5], ["strictDeps", 20, 5], ["__structuredAttrs", 21, 5], ["outputHash", 23, 13], ["outputHashAlgo", 23, 24], ["outputHashMode", 24, 5], ["url", 26, 13], ["rev", 26, 17]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, breezy: false }, ellipsis: false };
 const formals$2 = { args: { url: false, rev: false, outputHash: false, outputHashAlgo: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["name", 15, 5], ["builder", 17, 5], ["nativeBuildInputs", 18, 5], ["strictDeps", 20, 5], ["__structuredAttrs", 21, 5], ["outputHash", 23, 13], ["outputHashAlgo", 23, 24], ["outputHashMode", 24, 5], ["url", 26, 13], ["rev", 26, 17]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const outputHash = nix.arg($_1, "outputHash");
       const outputHashAlgo = nix.arg($_1, "outputHashAlgo");
       return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           name: "bzr-export",
           builder: nix.path(here, "./builder.sh"),
           nativeBuildInputs: nix.thunk(() => [breezy]),

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 71, 5], ["repo", 72, 5], ["fetchSubmodules", 73, 5], ["tag", 74, 5], ["hash", 75, 5]], [["useSwift", 80, 44]], [["description", 157, 5], ["mainProgram", 158, 5], ["homepage", 159, 5], ["downloadPage", 160, 5], ["license", 161, 5], ["platforms", 162, 5], ["maintainers", 166, 5]], [["pname", 67, 3], ["version", 68, 3], ["src", 70, 3], ["buildInputs", 78, 3], ["nativeBuildInputs", 146, 3], ["enableParallelBuilding", 154, 3], ["meta", 156, 3]]]);
 const formals$1 = { args: { lib: false, config: false, clangStdenv: false, fetchFromGitHub: false, autoreconfHook: false, libtool: false, intltool: false, "pkg-config": false, jansson: false, "swift-corelibs-libdispatch": false, gtk3: false, "gsettings-desktop-schemas": false, wrapGAppsHook3: false, vorbisSupport: true, libvorbis: false, mp123Support: true, libmad: false, flacSupport: true, flac: false, wavSupport: true, libsndfile: false, cdaSupport: true, libcdio: false, libcddb: false, aacSupport: true, faad2: false, opusSupport: true, opusfile: false, wavpackSupport: true, wavpack: false, ffmpegSupport: true, ffmpeg: false, apeSupport: true, yasm: false, zipSupport: true, libzip: false, artworkSupport: true, imlib2: false, hotkeysSupport: true, libx11: false, osdSupport: true, dbus: false, alsaSupport: true, "alsa-lib": false, pulseSupport: true, libpulseaudio: false, pipewireSupport: true, pipewire: false, resamplerSupport: true, libsamplerate: false, overloadSupport: true, zlib: false, remoteSupport: true, curl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 71, 5], ["repo", 72, 5], ["fetchSubmodules", 73, 5], ["tag", 74, 5], ["hash", 75, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["useSwift", 80, 44]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 157, 5], ["mainProgram", 158, 5], ["homepage", 159, 5], ["downloadPage", 160, 5], ["license", 161, 5], ["platforms", 162, 5], ["maintainers", 166, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 67, 3], ["version", 68, 3], ["src", 70, 3], ["buildInputs", 78, 3], ["nativeBuildInputs", 146, 3], ["enableParallelBuilding", 154, 3], ["meta", 156, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -66,11 +63,11 @@ export default nix.lambda((args) => (() => {
   const curl = nix.arg($, "curl");
   const optionals = nix.thunk(() => nix.attr(lib, "optionals"));
   return nix.app(nix.sel(clangStdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "deadbeef",
       version: "1.10.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "DeaDBeeF-Player",
           repo: "deadbeef",
           fetchSubmodules: true,
@@ -79,14 +76,14 @@ export default nix.lambda((args) => (() => {
         })))),
       buildInputs: nix.thunk(() => nix.concat([
         jansson,
-        nix.thunk(() => nix.app(nix.sel(swift_corelibs_libdispatch, "override"), nix.thunk(() => ({ [nix.POS]: pos$2, useSwift: false })))),
+        nix.thunk(() => nix.app(nix.sel(swift_corelibs_libdispatch, "override"), nix.thunk(() => ({ [nix.POS]: $pos[1], useSwift: false })))),
         gtk3,
         gsettings_desktop_schemas,
       ], nix.concat(nix.app(optionals, vorbisSupport, nix.thunk(() => [libvorbis])), nix.concat(nix.app(optionals, mp123Support, nix.thunk(() => [libmad])), nix.concat(nix.app(optionals, flacSupport, nix.thunk(() => [flac])), nix.concat(nix.app(optionals, wavSupport, nix.thunk(() => [libsndfile])), nix.concat(nix.app(optionals, cdaSupport, nix.thunk(() => [libcdio, libcddb])), nix.concat(nix.app(optionals, aacSupport, nix.thunk(() => [faad2])), nix.concat(nix.app(optionals, opusSupport, nix.thunk(() => [opusfile])), nix.concat(nix.app(optionals, zipSupport, nix.thunk(() => [libzip])), nix.concat(nix.app(optionals, ffmpegSupport, nix.thunk(() => [ffmpeg])), nix.concat(nix.app(optionals, apeSupport, nix.thunk(() => [yasm])), nix.concat(nix.app(optionals, artworkSupport, nix.thunk(() => [imlib2])), nix.concat(nix.app(optionals, hotkeysSupport, nix.thunk(() => [libx11])), nix.concat(nix.app(optionals, osdSupport, nix.thunk(() => [dbus])), nix.concat(nix.app(optionals, alsaSupport, nix.thunk(() => [alsa_lib])), nix.concat(nix.app(optionals, pulseSupport, nix.thunk(() => [libpulseaudio])), nix.concat(nix.app(optionals, pipewireSupport, nix.thunk(() => [pipewire])), nix.concat(nix.app(optionals, resamplerSupport, nix.thunk(() => [libsamplerate])), nix.concat(nix.app(optionals, overloadSupport, nix.thunk(() => [zlib])), nix.concat(nix.app(optionals, wavpackSupport, nix.thunk(() => [wavpack])), nix.app(optionals, remoteSupport, nix.thunk(() => [curl]))))))))))))))))))))))),
       nativeBuildInputs: nix.thunk(() => [autoreconfHook, intltool, libtool, pkg_config, wrapGAppsHook3]),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Ultimate Music Player for GNU/Linux",
         mainProgram: "deadbeef",
         homepage: "http://deadbeef.sourceforge.net/",

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["hash", 20, 5]], [["description", 58, 5], ["homepage", 59, 5], ["license", 60, 5], ["platforms", 61, 5], ["maintainers", 62, 5]], [["name", 12, 3], ["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 23, 3], ["hardeningDisable", 29, 3], ["prePatch", 34, 3], ["makeFlags", 40, 3], ["preInstall", 49, 3], ["postInstall", 53, 3], ["meta", 57, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, kernel: false, kernelModuleMakeFlags: false, bc: false, nukeReferences: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 58, 5], ["homepage", 59, 5], ["license", 60, 5], ["platforms", 61, 5], ["maintainers", 62, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["name", 12, 3], ["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 23, 3], ["hardeningDisable", 29, 3], ["prePatch", 34, 3], ["makeFlags", 40, 3], ["preInstall", 49, 3], ["postInstall", 53, 3], ["meta", 57, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = "rtl8189es";
       const version = "2025-09-26";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "jwrdegoede",
           repo: "rtl8189ES_linux",
           rev: "0a5d04114fac3c9f48a343cb905fbb6a3f9f5df5",
@@ -42,7 +40,7 @@ substituteInPlace ./Makefile --replace '$(MODDESTDIR)' "$out/lib/modules/${nix.s
 `);
       const postInstall = "nuke-refs $out/lib/modules/*/kernel/net/wireless/*.ko\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Driver for Realtek rtl8189es",
         homepage: "https://github.com/jwrdegoede/rtl8189ES_linux",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),
@@ -53,7 +51,7 @@ substituteInPlace ./Makefile --replace '$(MODDESTDIR)' "$out/lib/modules/${nix.s
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         name,
         pname,
         version,

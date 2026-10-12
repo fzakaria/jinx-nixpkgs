@@ -2,10 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/cli.nix", [[["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]], [["description", 56, 5], ["mainProgram", 57, 5], ["homepage", 58, 5], ["changelog", 59, 5], ["license", 60, 5], ["teams", 61, 5]], [["pname", 10, 3], ["version", 11, 3], ["pyproject", 12, 3], ["src", 14, 3], ["pythonRelaxDeps", 21, 3], ["build-system", 23, 3], ["dependencies", 25, 3], ["postInstall", 39, 3], ["nativeBuildInputs", 46, 3], ["nativeCheckInputs", 48, 3], ["pythonImportsCheck", 53, 3], ["meta", 55, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, python3: false, installShellFiles: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/cli.nix", [["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/cli.nix", [["description", 56, 5], ["mainProgram", 57, 5], ["homepage", 58, 5], ["changelog", 59, 5], ["license", 60, 5], ["teams", 61, 5]]);
-const pos$3 = nix.positions(here + "/cli.nix", [["pname", 10, 3], ["version", 11, 3], ["pyproject", 12, 3], ["src", 14, 3], ["pythonRelaxDeps", 21, 3], ["build-system", 23, 3], ["dependencies", 25, 3], ["postInstall", 39, 3], ["nativeBuildInputs", 46, 3], ["nativeCheckInputs", 48, 3], ["pythonImportsCheck", 53, 3], ["meta", 55, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const installShellFiles = nix.arg($, "installShellFiles");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "homeassistant-cli",
       version: "1.0.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "home-assistant-ecosystem",
           repo: "home-assistant-cli",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -58,7 +56,7 @@ export default nix.lambda((args) => (() => {
       })()),
       pythonImportsCheck: nix.thunk(() => ["homeassistant_cli"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Command-line tool for Home Assistant",
         mainProgram: "hass-cli",
         homepage: "https://github.com/home-assistant-ecosystem/home-assistant-cli",

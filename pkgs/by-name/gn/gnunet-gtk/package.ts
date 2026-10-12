@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 21, 5], ["hash", 22, 5]], [["description", 52, 5], ["homepage", 53, 5], ["broken", 55, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["strictDeps", 25, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 32, 3], ["configureFlags", 43, 3], ["postPatch", 45, 3], ["postInstall", 47, 3], ["meta", 51, 3]]]);
 const formals$1 = { args: { stdenv: false, fetchurl: false, glade: false, gnunet: false, gnutls: false, gtk3: false, libextractor: false, libgcrypt: false, libsodium: false, libxml2: false, "pkg-config": false, wrapGAppsHook3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 52, 5], ["homepage", 53, 5], ["broken", 55, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["strictDeps", 25, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 32, 3], ["configureFlags", 43, 3], ["postPatch", 45, 3], ["postInstall", 47, 3], ["meta", 51, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "gnunet-gtk",
       version: "0.24.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnu/gnunet/gnunet-gtk-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-rsQzMvOoQEuushd0jBGQt9j6zXj2G1SMax8d4QoDV6s=",
         })))),
@@ -37,7 +35,7 @@ export default nix.lambda((args) => (() => {
       postPatch: "patchShebangs pixmaps/icon-theme-installer",
       postInstall: "ln -s $out/share/gnunet-gtk/gnunet_logo.png $out/share/gnunet/gnunet-logo-color.png\n",
       meta: nix.thunk(() => nix.update(nix.sel(gnunet, "meta"), {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "GNUnet GTK User Interface",
         homepage: "https://git-www.taler.net/gnunet-gtk.git",
         broken: true,

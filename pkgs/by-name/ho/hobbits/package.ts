@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]], [["NIX_CFLAGS_COMPILE", 49, 7]], [["description", 62, 5], ["homepage", 63, 5], ["license", 64, 5], ["maintainers", 65, 5], ["platforms", 66, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["postPatch", 25, 3], ["buildInputs", 34, 3], ["nativeBuildInputs", 41, 3], ["cmakeFlags", 47, 3], ["env", 49, 3], ["postInstall", 51, 3], ["meta", 61, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, "pkg-config": false, pffft: false, libpcap: false, libusb1: false, python3: false, qt5: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 49, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 62, 5], ["homepage", 63, 5], ["license", 64, 5], ["maintainers", 65, 5], ["platforms", 66, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["postPatch", 25, 3], ["buildInputs", 34, 3], ["nativeBuildInputs", 41, 3], ["cmakeFlags", 47, 3], ["env", 49, 3], ["postInstall", 51, 3], ["meta", 61, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const qt5 = nix.arg($, "qt5");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "hobbits",
       version: "0.55.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Mahlet-Inc",
           repo: "hobbits",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -44,12 +41,12 @@ substituteInPlace CMakeLists.txt \\
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "USE_SYSTEM_PFFFT", true)),
       ]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isAarch64")), "-Wno-error=narrowing")),
       })),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "mkdir -p $out/{Applications,bin}\nmv $out/hobbits.app $out/Applications\nwrapProgram $out/Applications/hobbits.app/Contents/MacOS/hobbits \\\n  --prefix DYLD_LIBRARY_PATH : $out/Applications/hobbits.app/Contents/Frameworks\nln -s $out/Applications/hobbits.app/Contents/MacOS/hobbits $out/bin/hobbits\n# Prevent wrapping\nfind $out/Applications -type f -name \"*.dylib\" -exec chmod -x {} \\;\n")),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Multi-platform GUI for bit-based analysis, processing, and visualization",
         homepage: "https://github.com/Mahlet-Inc/hobbits",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

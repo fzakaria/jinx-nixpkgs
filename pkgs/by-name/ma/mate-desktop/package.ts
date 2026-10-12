@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 26, 5], ["sha256", 27, 5]], [["url", 49, 5], ["odd-unstable", 50, 5], ["rev-prefix", 51, 5]], [["updateScript", 48, 12]], [["description", 55, 5], ["homepage", 56, 5], ["license", 57, 5], ["platforms", 58, 5], ["teams", 59, 5]], [["pname", 16, 3], ["version", 17, 3], ["outputs", 19, 3], ["src", 25, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 36, 3], ["propagatedBuildInputs", 41, 3], ["enableParallelBuilding", 46, 3], ["passthru", 48, 3], ["meta", 54, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, "pkg-config": false, gettext: false, isocodes: false, libstartup_notification: false, gtk3: false, dconf: false, wrapGAppsHook3: false, gitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 26, 5], ["sha256", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 49, 5], ["odd-unstable", 50, 5], ["rev-prefix", 51, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 48, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 55, 5], ["homepage", 56, 5], ["license", 57, 5], ["platforms", 58, 5], ["teams", 59, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["outputs", 19, 3], ["src", 25, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 36, 3], ["propagatedBuildInputs", 41, 3], ["enableParallelBuilding", 46, 3], ["passthru", 48, 3], ["meta", 54, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "mate-desktop",
       version: "1.28.2",
       outputs: nix.thunk(() => ["out", "dev", "man"]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://pub.mate-desktop.org/releases/${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/mate-desktop-${nix.sel(finalAttrs, "version")}.tar.xz`),
           sha256: "MrtLeSAUs5HB4biunBioK01EdlCYS0y6fSjpVWSWSqI=",
         })))),
@@ -37,16 +33,16 @@ export default nix.lambda((args) => (() => {
       propagatedBuildInputs: nix.thunk(() => [gtk3, libstartup_notification]),
       enableParallelBuilding: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://git.mate-desktop.org/mate-desktop",
             "odd-unstable": true,
             "rev-prefix": "v",
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Library with common API for various MATE modules",
         homepage: "https://mate-desktop.org",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

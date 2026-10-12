@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]], [["name", 29, 7], ["type", 30, 7], ["exec", 31, 7], ["icon", 32, 7], ["comment", 33, 7], ["desktopName", 34, 7], ["genericName", 35, 7], ["categories", 36, 7], ["startupWMClass", 37, 7]], [["pname", 48, 26], ["data", 49, 5]], [["updateScript", 77, 12]], [["description", 80, 5], ["homepage", 81, 5], ["sourceProvenance", 82, 5], ["license", 86, 5], ["maintainers", 87, 5], ["platforms", 92, 5], ["mainProgram", 93, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["desktopItems", 27, 3], ["nativeBuildInputs", 41, 3], ["mitmCache", 47, 3], ["gradleFlags", 52, 3], ["gradleBuildTask", 54, 3], ["installPhase", 56, 3], ["passthru", 77, 3], ["meta", 79, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, copyDesktopItems: false, makeDesktopItem: false, makeWrapper: false, gradle: false, jdk17: false, jre: false, libxxf86vm: false, libGL: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 29, 7], ["type", 30, 7], ["exec", 31, 7], ["icon", 32, 7], ["comment", 33, 7], ["desktopName", 34, 7], ["genericName", 35, 7], ["categories", 36, 7], ["startupWMClass", 37, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 48, 26], ["data", 49, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 77, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 80, 5], ["homepage", 81, 5], ["sourceProvenance", 82, 5], ["license", 86, 5], ["maintainers", 87, 5], ["platforms", 92, 5], ["mainProgram", 93, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["desktopItems", 27, 3], ["nativeBuildInputs", 41, 3], ["mitmCache", 47, 3], ["gradleFlags", 52, 3], ["gradleBuildTask", 54, 3], ["installPhase", 56, 3], ["passthru", 77, 3], ["meta", 79, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const libGL = nix.arg($, "libGL");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "runelite",
       version: "2.8.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "runelite",
           repo: "launcher",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -37,7 +32,7 @@ export default nix.lambda((args) => (() => {
         })))),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "RuneLite",
             type: "Application",
             exec: "runelite",
@@ -51,7 +46,7 @@ export default nix.lambda((args) => (() => {
       ]),
       nativeBuildInputs: nix.thunk(() => [gradle, makeWrapper, copyDesktopItems]),
       mitmCache: nix.thunk(() => nix.app(nix.sel(gradle, "fetchDeps"), nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           data: nix.path(here, "./deps.json"),
         })))),
@@ -72,11 +67,11 @@ makeWrapper ${jre}/bin/java $out/bin/runelite \\
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Open source Old School RuneScape client",
         homepage: "https://runelite.net/",
         sourceProvenance: nix.thunk(() => (() => {

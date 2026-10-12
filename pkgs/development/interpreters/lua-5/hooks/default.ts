@@ -2,16 +2,10 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["license", 23, 12]], [["name", 19, 7], ["propagatedBuildInputs", 20, 7], ["meta", 23, 7]], [["license", 32, 12]], [["name", 30, 7], ["propagatedBuildInputs", 31, 7], ["meta", 32, 7]], [["license", 40, 10]], [["name", 39, 5], ["meta", 40, 5]], [["bustedCheckHook", 16, 3], ["luarocksCheckHook", 27, 3], ["luarocksMoveDataFolder", 38, 3]]]);
 const formals$1 = { args: { lib: false, lua: false, makeSetupHook: false }, ellipsis: false };
 const formals$2 = { args: { busted: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["license", 23, 12]]);
-const pos$2 = nix.positions(here + "/default.nix", [["name", 19, 7], ["propagatedBuildInputs", 20, 7], ["meta", 23, 7]]);
 const formals$3 = { args: { luarocks: false }, ellipsis: false };
-const pos$3 = nix.positions(here + "/default.nix", [["license", 32, 12]]);
-const pos$4 = nix.positions(here + "/default.nix", [["name", 30, 7], ["propagatedBuildInputs", 31, 7], ["meta", 32, 7]]);
-const pos$5 = nix.positions(here + "/default.nix", [["license", 40, 10]]);
-const pos$6 = nix.positions(here + "/default.nix", [["name", 39, 5], ["meta", 40, 5]]);
-const pos$7 = nix.positions(here + "/default.nix", [["bustedCheckHook", 16, 3], ["luarocksCheckHook", 27, 3], ["luarocksMoveDataFolder", 38, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,31 +14,40 @@ export default nix.lambda((args) => (() => {
   const makeSetupHook = nix.arg($, "makeSetupHook");
   const callPackage = nix.thunk(() => nix.sel(lua, "pkgs", "callPackage"));
   return {
-    [nix.POS]: pos$7,
+    [nix.POS]: $pos[6],
     bustedCheckHook: nix.thunk(() => nix.app(callPackage, nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const busted = nix.arg($_1, "busted");
         return nix.app(makeSetupHook, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "busted-check-hook",
             propagatedBuildInputs: nix.thunk(() => [busted]),
-            meta: nix.thunk(() => ({ [nix.POS]: pos$1, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
+            meta: nix.thunk(() => ({
+              [nix.POS]: $pos[0],
+              license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
+            })),
           })), nix.path(here, "./busted-check-hook.sh"));
       })(), formals$2), nix.thunk(() => ({})))),
     luarocksCheckHook: nix.thunk(() => nix.app(callPackage, nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$3);
         const luarocks = nix.arg($_1, "luarocks");
         return nix.app(makeSetupHook, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             name: "luarocks-check-hook",
             propagatedBuildInputs: nix.thunk(() => [luarocks]),
-            meta: nix.thunk(() => ({ [nix.POS]: pos$3, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
+            meta: nix.thunk(() => ({
+              [nix.POS]: $pos[2],
+              license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
+            })),
           })), nix.path(here, "./luarocks-check-hook.sh"));
       })(), formals$3), nix.thunk(() => ({})))),
     luarocksMoveDataFolder: nix.thunk(() => nix.app(makeSetupHook, nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         name: "luarocks-move-rock",
-        meta: nix.thunk(() => ({ [nix.POS]: pos$5, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
+        meta: nix.thunk(() => ({
+          [nix.POS]: $pos[4],
+          license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
+        })),
       })), nix.path(here, "./luarocks-move-data.sh"))),
   };
 })(), formals$1);

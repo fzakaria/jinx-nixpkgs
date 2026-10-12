@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]], [["rev-prefix", 37, 7]], [["withSvtav1", 40, 34]], [["ffmpeg", 40, 7]], [["updateScript", 36, 5], ["tests", 39, 5]], [["homepage", 45, 5], ["description", 46, 5], ["longDescription", 48, 5], ["changelog", 57, 5], ["license", 58, 5], ["mainProgram", 62, 5], ["platforms", 63, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 24, 3], ["cmakeFlags", 31, 3], ["passthru", 35, 3], ["meta", 44, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, gitUpdater: false, cmake: false, nasm: false, ffmpeg: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["rev-prefix", 37, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["withSvtav1", 40, 34]]);
-const pos$4 = nix.positions(here + "/package.nix", [["ffmpeg", 40, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["updateScript", 36, 5], ["tests", 39, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["homepage", 45, 5], ["description", 46, 5], ["longDescription", 48, 5], ["changelog", 57, 5], ["license", 58, 5], ["mainProgram", 62, 5], ["platforms", 63, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 24, 3], ["cmakeFlags", 31, 3], ["passthru", 35, 3], ["meta", 44, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const nasm = nix.arg($, "nasm");
   const ffmpeg = nix.arg($, "ffmpeg");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "svt-av1",
       version: "4.1.0",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "AOMediaCodec",
           repo: "SVT-AV1",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,15 +28,15 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => nix.concat([cmake], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isx86_64")), nix.thunk(() => [nasm])))),
       cmakeFlags: nix.thunk(() => ["-DSVT_AV1_LTO=ON"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, "rev-prefix": "v" })))),
+        [nix.POS]: $pos[4],
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[1], "rev-prefix": "v" })))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
-          ffmpeg: nix.thunk(() => nix.app(nix.sel(ffmpeg, "override"), nix.thunk(() => ({ [nix.POS]: pos$3, withSvtav1: true })))),
+          [nix.POS]: $pos[3],
+          ffmpeg: nix.thunk(() => nix.app(nix.sel(ffmpeg, "override"), nix.thunk(() => ({ [nix.POS]: $pos[2], withSvtav1: true })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         homepage: "https://gitlab.com/AOMediaCodec/SVT-AV1",
         description: "AV1-compliant encoder/decoder library core",
         longDescription: "The Scalable Video Technology for AV1 (SVT-AV1 Encoder and Decoder) is an\nAV1-compliant encoder/decoder library core. The SVT-AV1 encoder\ndevelopment is a work-in-progress targeting performance levels applicable\nto both VOD and Live encoding / transcoding video applications. The\nSVT-AV1 decoder implementation is targeting future codec research\nactivities.\n",

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 44, 5], ["repo", 45, 5], ["tag", 46, 5], ["hash", 47, 5]], [["homepage", 102, 5], ["changelog", 103, 5], ["description", 104, 5], ["mainProgram", 105, 5], ["license", 106, 5], ["maintainers", 107, 5], ["platforms", 108, 5]], [["version", 39, 3], ["pname", 41, 3], ["src", 43, 3], ["buildInputs", 50, 3], ["nativeBuildInputs", 55, 3], ["dontUseCmakeConfigure", 70, 3], ["propagatedBuildInputs", 72, 3], ["mesonFlags", 78, 3], ["preFixup", 84, 3], ["postInstall", 90, 3], ["doInstallCheck", 97, 3], ["patches", 99, 3], ["meta", 101, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, "pkg-config": false, gettext: false, python3: false, python3Packages: false, meson: false, ninja: false, udev: false, appstream: false, "appstream-glib": false, "desktop-file-utils": false, gtk3: false, wrapGAppsHook3: false, "gobject-introspection": false, bash: false, linuxConsoleTools: false, udevCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 44, 5], ["repo", 45, 5], ["tag", 46, 5], ["hash", 47, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 102, 5], ["changelog", 103, 5], ["description", 104, 5], ["mainProgram", 105, 5], ["license", 106, 5], ["maintainers", 107, 5], ["platforms", 108, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 39, 3], ["pname", 41, 3], ["src", 43, 3], ["buildInputs", 50, 3], ["nativeBuildInputs", 55, 3], ["dontUseCmakeConfigure", 70, 3], ["propagatedBuildInputs", 72, 3], ["mesonFlags", 78, 3], ["preFixup", 84, 3], ["postInstall", 90, 3], ["doInstallCheck", 97, 3], ["patches", 99, 3], ["meta", 101, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -42,11 +40,11 @@ export default nix.lambda((args) => (() => {
       ];
     })()));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       version: "0.8.3",
       pname: "oversteer",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "berarma",
           repo: "oversteer",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -86,7 +84,7 @@ substituteInPlace $out/lib/udev/rules.d/99-fanatec-wheel-perms.rules \\
       doInstallCheck: true,
       patches: [],
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/berarma/oversteer",
         changelog: nix.thunk(() => nix.str`https://github.com/berarma/oversteer/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         description: "Steering Wheel Manager for Linux",

@@ -2,31 +2,8 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/rocq-packages.nix", [[["lib", 15, 69]], [["__attrsFailEvaluation", 26, 9], ["recurseForDerivations", 27, 9]], [["lib", 32, 11], ["stdenv", 33, 11], ["fetchzip", 34, 11], ["fetchurl", 35, 11]], [["ocamlPackages_4_09", 41, 9], ["ocamlPackages_4_10", 42, 9], ["ocamlPackages_4_12", 43, 9], ["ocamlPackages_4_14", 44, 17], ["ocamlPackages_5_5", 44, 36], ["version", 45, 29]], [["useCoq", 52, 13], ["namePrefix", 53, 13]], [["coq", 63, 15]], [["withPackages", 60, 11]], [["passthru", 59, 9]], [["fetchpatch", 89, 11], ["makeWrapper", 90, 11], ["coq2html", 91, 11], ["lib", 92, 11], ["stdenv", 93, 11]], [["version", 107, 45]], [["bignums", 107, 11]], [["version", 247, 47]], [["interval", 247, 11]], [["case", 263, 19], ["out", 264, 19]], [["case", 267, 19], ["out", 268, 19]], [["case", 271, 19], ["out", 272, 19]], [["version", 259, 13]], [["compcert", 258, 11]], [["version", 280, 41]], [["version", 279, 13], ["paco", 280, 13]], [["ITree", 278, 11]], [["lib", 24, 15], ["rocqPackages", 25, 7], ["metaFetch", 30, 7], ["mkRocqDerivation", 38, 7], ["coq", 40, 7], ["mkCoqDerivation", 48, 7], ["rocq-core", 58, 7], ["contribs", 69, 7], ["aac-tactics", 71, 7], ["addition-chains", 72, 7], ["async-test", 73, 7], ["atbr", 74, 7], ["autosubst", 75, 7], ["autosubst-ocaml", 76, 7], ["bbv", 77, 7], ["bignums", 78, 7], ["CakeMLExtraction", 79, 7], ["category-theory", 80, 7], ["ceres", 81, 7], ["ceres-bs", 82, 7], ["CertiRocq", 83, 7], ["Cheerios", 84, 7], ["coinduction", 85, 7], ["CoLoR", 86, 7], ["compcert", 87, 7], ["ConCert", 96, 7], ["coq-bits", 97, 7], ["coq-hammer", 98, 7], ["coq-hammer-tactics", 99, 7], ["CoqMatrix", 100, 7], ["coq-haskell", 101, 7], ["coq-lsp", 102, 7], ["coq-record-update", 103, 7], ["coq-tactical", 104, 7], ["coqeal", 105, 7], ["coqhammer", 110, 7], ["coqide", 111, 7], ["coqprime", 112, 7], ["coqtail-math", 113, 7], ["coquelicot", 114, 7], ["coqutil", 115, 7], ["coqfmt", 116, 7], ["corn", 117, 7], ["deriving", 118, 7], ["dpdgraph", 119, 7], ["ElmExtraction", 120, 7], ["equations", 121, 7], ["ExtLib", 122, 7], ["extructures", 123, 7], ["fcsl-pcm", 124, 7], ["flocq", 125, 7], ["fourcolor", 126, 7], ["gaia", 127, 7], ["gaia-hydras", 128, 7], ["gappalib", 129, 7], ["goedel", 130, 7], ["graph-theory", 131, 7], ["heq", 132, 7], ["hierarchy-builder", 133, 7], ["high-school-geometry", 134, 7], ["HoTT", 135, 7], ["http", 136, 7], ["hydra-battles", 137, 7], ["interval", 138, 7], ["InfSeqExt", 139, 7], ["iris", 140, 7], ["iris-named-props", 141, 7], ["itauto", 142, 7], ["ITree", 143, 7], ["itree-io", 144, 7], ["jasmin", 145, 7], ["json", 146, 7], ["lemma-overloading", 147, 7], ["LibHyps", 148, 7], ["libvalidsdp", 149, 7], ["ltac2", 150, 7], ["math-classes", 151, 7], ["mathcomp", 152, 7], ["ssreflect", 153, 7], ["mathcomp-boot", 154, 7], ["mathcomp-order", 155, 7], ["mathcomp-ssreflect", 156, 7], ["mathcomp-finite-group", 157, 7], ["mathcomp-fingroup", 158, 7], ["mathcomp-algebra", 159, 7], ["mathcomp-solvable", 160, 7], ["mathcomp-field", 161, 7], ["mathcomp-group-representation", 162, 7], ["mathcomp-character", 163, 7], ["mathcomp-abel", 164, 7], ["mathcomp-algebra-tactics", 165, 7], ["mathcomp-analysis", 166, 7], ["mathcomp-analysis-stdlib", 167, 7], ["mathcomp-apery", 168, 7], ["mathcomp-bigenough", 169, 7], ["mathcomp-classical", 170, 7], ["mathcomp-experimental-reals", 171, 7], ["mathcomp-finmap", 172, 7], ["mathcomp-infotheo", 173, 7], ["mathcomp-real-closed", 174, 7], ["mathcomp-reals", 175, 7], ["mathcomp-reals-stdlib", 176, 7], ["mathcomp-tarjan", 177, 7], ["mathcomp-word", 178, 7], ["mathcomp-zify", 179, 7], ["MenhirLib", 180, 7], ["metacoq", 181, 7], ["metacoq-utils", 182, 7], ["metacoq-common", 183, 7], ["metacoq-template-coq", 184, 7], ["metacoq-pcuic", 185, 7], ["metacoq-safechecker", 186, 7], ["metacoq-template-pcuic", 187, 7], ["metacoq-erasure", 188, 7], ["metacoq-quotation", 189, 7], ["metacoq-safechecker-plugin", 190, 7], ["metacoq-erasure-plugin", 191, 7], ["metacoq-translations", 192, 7], ["metalib", 193, 7], ["metarocq", 194, 7], ["metarocq-utils", 195, 7], ["metarocq-common", 196, 7], ["metarocq-template-rocq", 197, 7], ["metarocq-pcuic", 198, 7], ["metarocq-safechecker", 199, 7], ["metarocq-template-pcuic", 200, 7], ["metarocq-erasure", 201, 7], ["metarocq-quotation", 202, 7], ["metarocq-safechecker-plugin", 203, 7], ["metarocq-erasure-plugin", 204, 7], ["metarocq-translations", 205, 7], ["micromega-plugin", 206, 7], ["mtac2", 207, 7], ["multinomials", 208, 7], ["odd-order", 209, 7], ["Ordinal", 210, 7], ["paco", 211, 7], ["paramcoq", 212, 7], ["parsec", 213, 7], ["parseque", 214, 7], ["pocklington", 215, 7], ["QuickChick", 216, 7], ["reglang", 217, 7], ["relation-algebra", 218, 7], ["rewriter", 219, 7], ["rocq-elpi", 220, 7], ["coq-elpi", 221, 7], ["rocqnavi", 222, 7], ["RustExtraction", 223, 7], ["semantics", 224, 7], ["serapi", 225, 7], ["simple-io", 226, 7], ["smpl", 227, 7], ["smtcoq", 228, 7], ["ssprove", 229, 7], ["stalmarck-tactic", 230, 7], ["stalmarck", 231, 7], ["stdlib", 232, 7], ["stdpp", 233, 7], ["StructTact", 234, 7], ["tlc", 235, 7], ["topology", 236, 7], ["trakt", 237, 7], ["TypedExtraction", 238, 7], ["TypedExtraction-common", 239, 7], ["TypedExtraction-elm", 240, 7], ["TypedExtraction-rust", 241, 7], ["TypedExtraction-plugin", 242, 7], ["unicoq", 243, 7], ["validsdp", 244, 7], ["vcfloat", 245, 7], ["Velisarios", 250, 7], ["Verdi", 251, 7], ["verified-extraction", 252, 7], ["Vpl", 253, 7], ["VplTactic", 254, 7], ["vsrocq-language-server", 255, 7], ["VST", 256, 7], ["wasmcert", 284, 7], ["waterproof", 285, 7], ["zorns-lemma", 286, 7], ["filterPackages", 288, 7]], [["version", 310, 9], ["ocamlPackages_4_14", 311, 9], ["ocamlPackages_5_5", 312, 9]], [["mkRocqPackages", 327, 3], ["rocq-core_9_0", 334, 3], ["rocq-core_9_1", 335, 3], ["rocq-core_9_2", 336, 3], ["rocq-core_9_3", 337, 3], ["rocqPackages_9_0", 339, 3], ["rocqPackages_9_1", 340, 3], ["rocqPackages_9_2", 341, 3], ["rocqPackages_9_3", 342, 3], ["rocqPackages", 344, 3], ["rocq-core", 345, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, fetchzip: false, callPackage: false, newScope: false, ocamlPackages_4_14: false, ocamlPackages_5_5: false, fetchpatch: false, makeWrapper: false, coq2html: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/rocq-packages.nix", [["lib", 15, 69]]);
-const pos$2 = nix.positions(here + "/rocq-packages.nix", [["__attrsFailEvaluation", 26, 9], ["recurseForDerivations", 27, 9]]);
-const pos$3 = nix.positions(here + "/rocq-packages.nix", [["lib", 32, 11], ["stdenv", 33, 11], ["fetchzip", 34, 11], ["fetchurl", 35, 11]]);
-const pos$4 = nix.positions(here + "/rocq-packages.nix", [["ocamlPackages_4_09", 41, 9], ["ocamlPackages_4_10", 42, 9], ["ocamlPackages_4_12", 43, 9], ["ocamlPackages_4_14", 44, 17], ["ocamlPackages_5_5", 44, 36], ["version", 45, 29]]);
-const pos$5 = nix.positions(here + "/rocq-packages.nix", [["useCoq", 52, 13], ["namePrefix", 53, 13]]);
-const pos$6 = nix.positions(here + "/rocq-packages.nix", [["coq", 63, 15]]);
-const pos$7 = nix.positions(here + "/rocq-packages.nix", [["withPackages", 60, 11]]);
-const pos$8 = nix.positions(here + "/rocq-packages.nix", [["passthru", 59, 9]]);
-const pos$9 = nix.positions(here + "/rocq-packages.nix", [["fetchpatch", 89, 11], ["makeWrapper", 90, 11], ["coq2html", 91, 11], ["lib", 92, 11], ["stdenv", 93, 11]]);
-const pos$10 = nix.positions(here + "/rocq-packages.nix", [["version", 107, 45]]);
-const pos$11 = nix.positions(here + "/rocq-packages.nix", [["bignums", 107, 11]]);
-const pos$12 = nix.positions(here + "/rocq-packages.nix", [["version", 247, 47]]);
-const pos$13 = nix.positions(here + "/rocq-packages.nix", [["interval", 247, 11]]);
-const pos$14 = nix.positions(here + "/rocq-packages.nix", [["case", 263, 19], ["out", 264, 19]]);
-const pos$15 = nix.positions(here + "/rocq-packages.nix", [["case", 267, 19], ["out", 268, 19]]);
-const pos$16 = nix.positions(here + "/rocq-packages.nix", [["case", 271, 19], ["out", 272, 19]]);
-const pos$17 = nix.positions(here + "/rocq-packages.nix", [["version", 259, 13]]);
-const pos$18 = nix.positions(here + "/rocq-packages.nix", [["compcert", 258, 11]]);
-const pos$19 = nix.positions(here + "/rocq-packages.nix", [["version", 280, 41]]);
-const pos$20 = nix.positions(here + "/rocq-packages.nix", [["version", 279, 13], ["paco", 280, 13]]);
-const pos$21 = nix.positions(here + "/rocq-packages.nix", [["ITree", 278, 11]]);
-const pos$22 = nix.positions(here + "/rocq-packages.nix", [["lib", 24, 15], ["rocqPackages", 25, 7], ["metaFetch", 30, 7], ["mkRocqDerivation", 38, 7], ["coq", 40, 7], ["mkCoqDerivation", 48, 7], ["rocq-core", 58, 7], ["contribs", 69, 7], ["aac-tactics", 71, 7], ["addition-chains", 72, 7], ["async-test", 73, 7], ["atbr", 74, 7], ["autosubst", 75, 7], ["autosubst-ocaml", 76, 7], ["bbv", 77, 7], ["bignums", 78, 7], ["CakeMLExtraction", 79, 7], ["category-theory", 80, 7], ["ceres", 81, 7], ["ceres-bs", 82, 7], ["CertiRocq", 83, 7], ["Cheerios", 84, 7], ["coinduction", 85, 7], ["CoLoR", 86, 7], ["compcert", 87, 7], ["ConCert", 96, 7], ["coq-bits", 97, 7], ["coq-hammer", 98, 7], ["coq-hammer-tactics", 99, 7], ["CoqMatrix", 100, 7], ["coq-haskell", 101, 7], ["coq-lsp", 102, 7], ["coq-record-update", 103, 7], ["coq-tactical", 104, 7], ["coqeal", 105, 7], ["coqhammer", 110, 7], ["coqide", 111, 7], ["coqprime", 112, 7], ["coqtail-math", 113, 7], ["coquelicot", 114, 7], ["coqutil", 115, 7], ["coqfmt", 116, 7], ["corn", 117, 7], ["deriving", 118, 7], ["dpdgraph", 119, 7], ["ElmExtraction", 120, 7], ["equations", 121, 7], ["ExtLib", 122, 7], ["extructures", 123, 7], ["fcsl-pcm", 124, 7], ["flocq", 125, 7], ["fourcolor", 126, 7], ["gaia", 127, 7], ["gaia-hydras", 128, 7], ["gappalib", 129, 7], ["goedel", 130, 7], ["graph-theory", 131, 7], ["heq", 132, 7], ["hierarchy-builder", 133, 7], ["high-school-geometry", 134, 7], ["HoTT", 135, 7], ["http", 136, 7], ["hydra-battles", 137, 7], ["interval", 138, 7], ["InfSeqExt", 139, 7], ["iris", 140, 7], ["iris-named-props", 141, 7], ["itauto", 142, 7], ["ITree", 143, 7], ["itree-io", 144, 7], ["jasmin", 145, 7], ["json", 146, 7], ["lemma-overloading", 147, 7], ["LibHyps", 148, 7], ["libvalidsdp", 149, 7], ["ltac2", 150, 7], ["math-classes", 151, 7], ["mathcomp", 152, 7], ["ssreflect", 153, 7], ["mathcomp-boot", 154, 7], ["mathcomp-order", 155, 7], ["mathcomp-ssreflect", 156, 7], ["mathcomp-finite-group", 157, 7], ["mathcomp-fingroup", 158, 7], ["mathcomp-algebra", 159, 7], ["mathcomp-solvable", 160, 7], ["mathcomp-field", 161, 7], ["mathcomp-group-representation", 162, 7], ["mathcomp-character", 163, 7], ["mathcomp-abel", 164, 7], ["mathcomp-algebra-tactics", 165, 7], ["mathcomp-analysis", 166, 7], ["mathcomp-analysis-stdlib", 167, 7], ["mathcomp-apery", 168, 7], ["mathcomp-bigenough", 169, 7], ["mathcomp-classical", 170, 7], ["mathcomp-experimental-reals", 171, 7], ["mathcomp-finmap", 172, 7], ["mathcomp-infotheo", 173, 7], ["mathcomp-real-closed", 174, 7], ["mathcomp-reals", 175, 7], ["mathcomp-reals-stdlib", 176, 7], ["mathcomp-tarjan", 177, 7], ["mathcomp-word", 178, 7], ["mathcomp-zify", 179, 7], ["MenhirLib", 180, 7], ["metacoq", 181, 7], ["metacoq-utils", 182, 7], ["metacoq-common", 183, 7], ["metacoq-template-coq", 184, 7], ["metacoq-pcuic", 185, 7], ["metacoq-safechecker", 186, 7], ["metacoq-template-pcuic", 187, 7], ["metacoq-erasure", 188, 7], ["metacoq-quotation", 189, 7], ["metacoq-safechecker-plugin", 190, 7], ["metacoq-erasure-plugin", 191, 7], ["metacoq-translations", 192, 7], ["metalib", 193, 7], ["metarocq", 194, 7], ["metarocq-utils", 195, 7], ["metarocq-common", 196, 7], ["metarocq-template-rocq", 197, 7], ["metarocq-pcuic", 198, 7], ["metarocq-safechecker", 199, 7], ["metarocq-template-pcuic", 200, 7], ["metarocq-erasure", 201, 7], ["metarocq-quotation", 202, 7], ["metarocq-safechecker-plugin", 203, 7], ["metarocq-erasure-plugin", 204, 7], ["metarocq-translations", 205, 7], ["micromega-plugin", 206, 7], ["mtac2", 207, 7], ["multinomials", 208, 7], ["odd-order", 209, 7], ["Ordinal", 210, 7], ["paco", 211, 7], ["paramcoq", 212, 7], ["parsec", 213, 7], ["parseque", 214, 7], ["pocklington", 215, 7], ["QuickChick", 216, 7], ["reglang", 217, 7], ["relation-algebra", 218, 7], ["rewriter", 219, 7], ["rocq-elpi", 220, 7], ["coq-elpi", 221, 7], ["rocqnavi", 222, 7], ["RustExtraction", 223, 7], ["semantics", 224, 7], ["serapi", 225, 7], ["simple-io", 226, 7], ["smpl", 227, 7], ["smtcoq", 228, 7], ["ssprove", 229, 7], ["stalmarck-tactic", 230, 7], ["stalmarck", 231, 7], ["stdlib", 232, 7], ["stdpp", 233, 7], ["StructTact", 234, 7], ["tlc", 235, 7], ["topology", 236, 7], ["trakt", 237, 7], ["TypedExtraction", 238, 7], ["TypedExtraction-common", 239, 7], ["TypedExtraction-elm", 240, 7], ["TypedExtraction-rust", 241, 7], ["TypedExtraction-plugin", 242, 7], ["unicoq", 243, 7], ["validsdp", 244, 7], ["vcfloat", 245, 7], ["Velisarios", 250, 7], ["Verdi", 251, 7], ["verified-extraction", 252, 7], ["Vpl", 253, 7], ["VplTactic", 254, 7], ["vsrocq-language-server", 255, 7], ["VST", 256, 7], ["wasmcert", 284, 7], ["waterproof", 285, 7], ["zorns-lemma", 286, 7], ["filterPackages", 288, 7]]);
-const pos$23 = nix.positions(here + "/rocq-packages.nix", [["version", 310, 9], ["ocamlPackages_4_14", 311, 9], ["ocamlPackages_5_5", 312, 9]]);
-const pos$24 = nix.positions(here + "/rocq-packages.nix", [["mkRocqPackages", 327, 3], ["rocq-core_9_0", 334, 3], ["rocq-core_9_1", 335, 3], ["rocq-core_9_2", 336, 3], ["rocq-core_9_3", 337, 3], ["rocqPackages_9_0", 339, 3], ["rocqPackages_9_1", 340, 3], ["rocqPackages_9_2", 341, 3], ["rocqPackages_9_3", 342, 3], ["rocqPackages", 344, 3], ["rocq-core", 345, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -42,15 +19,19 @@ export default nix.lambda((args) => (() => {
   const fetchpatch = nix.arg($, "fetchpatch");
   const makeWrapper = nix.arg($, "makeWrapper");
   const coq2html = nix.arg($, "coq2html");
-  const lib_1 = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../build-support/rocq/extra-lib.nix")), nix.thunk(() => ({ [nix.POS]: pos$1, lib: nix.thunk(() => nix.attr(args_1, "lib")) }))));
+  const lib_1 = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../build-support/rocq/extra-lib.nix")), nix.thunk(() => ({ [nix.POS]: $pos[0], lib: nix.thunk(() => nix.attr(args_1, "lib")) }))));
   const mkRocqPackages$ = (self) => (rocq_core) => (() => {
     const callPackage_1 = nix.thunk(() => nix.sel(self, "callPackage"));
     return {
-      [nix.POS]: pos$22,
+      [nix.POS]: $pos[21],
       lib: lib_1,
-      rocqPackages: nix.thunk(() => nix.update(self, { [nix.POS]: pos$2, __attrsFailEvaluation: true, recurseForDerivations: false })),
+      rocqPackages: nix.thunk(() => nix.update(self, {
+        [nix.POS]: $pos[1],
+        __attrsFailEvaluation: true,
+        recurseForDerivations: false,
+      })),
       metaFetch: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../build-support/rocq/meta-fetch/default.nix")), nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           lib: lib_1,
           stdenv: stdenv,
           fetchzip: fetchzip,
@@ -58,7 +39,7 @@ export default nix.lambda((args) => (() => {
         })))),
       mkRocqDerivation: nix.thunk(() => nix.app(nix.sel(lib_1, "makeOverridable"), nix.thunk(() => nix.app(callPackage_1, nix.path(here, "../build-support/rocq"), nix.thunk(() => ({})))))),
       coq: nix.thunk(() => nix.app(callPackage_1, nix.path(here, "../applications/science/logic/coq"), nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           ocamlPackages_4_09: null,
           ocamlPackages_4_10: null,
           ocamlPackages_4_12: null,
@@ -66,12 +47,12 @@ export default nix.lambda((args) => (() => {
           ocamlPackages_5_5: ocamlPackages_5_5,
           version: nix.thunk(() => nix.attr(rocq_core, "version")),
         })))),
-      mkCoqDerivation: (args_2) => nix.app(nix.sel(self, "mkRocqDerivation"), nix.thunk(() => nix.update({ [nix.POS]: pos$5, useCoq: true, namePrefix: nix.thunk(() => ["coq"]) }, args_2))),
+      mkCoqDerivation: (args_2) => nix.app(nix.sel(self, "mkRocqDerivation"), nix.thunk(() => nix.update({ [nix.POS]: $pos[4], useCoq: true, namePrefix: nix.thunk(() => ["coq"]) }, args_2))),
       "rocq-core": nix.thunk(() => nix.app(nix.sel(rocq_core, "overrideAttrs"), (oldAttrs) => ({
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           passthru: nix.thunk(() => nix.update(nix.selOr(oldAttrs, () => ({}), "passthru"), {
-            [nix.POS]: pos$7,
-            withPackages: (f) => nix.app(callPackage_1, nix.path(here, "../applications/science/logic/coq/with-packages.nix"), nix.thunk(() => ({ [nix.POS]: pos$6, coq: rocq_core })), nix.thunk(() => nix.app(f, self))),
+            [nix.POS]: $pos[6],
+            withPackages: (f) => nix.app(callPackage_1, nix.path(here, "../applications/science/logic/coq/with-packages.nix"), nix.thunk(() => ({ [nix.POS]: $pos[5], coq: rocq_core })), nix.thunk(() => nix.app(f, self))),
           })),
         }))),
       contribs: nix.thunk(() => nix.app(nix.sel(lib_1, "recurseIntoAttrs"), nix.thunk(() => nix.app(callPackage_1, nix.path(here, "../development/rocq-modules/contribs"), nix.thunk(() => ({})))))),
@@ -92,7 +73,7 @@ export default nix.lambda((args) => (() => {
       coinduction: nix.thunk(() => nix.app(callPackage_1, nix.path(here, "../development/rocq-modules/coinduction"), nix.thunk(() => ({})))),
       CoLoR: nix.thunk(() => nix.app(callPackage_1, nix.path(here, "../development/rocq-modules/CoLoR"), nix.thunk(() => ({})))),
       compcert: nix.thunk(() => nix.app(callPackage_1, nix.path(here, "../development/rocq-modules/compcert"), nix.thunk(() => ({
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           fetchpatch: fetchpatch,
           makeWrapper: makeWrapper,
           coq2html: coq2html,
@@ -109,9 +90,9 @@ export default nix.lambda((args) => (() => {
       "coq-record-update": nix.thunk(() => nix.app(callPackage_1, nix.path(here, "../development/rocq-modules/coq-record-update"), nix.thunk(() => ({})))),
       "coq-tactical": nix.thunk(() => nix.app(callPackage_1, nix.path(here, "../development/rocq-modules/coq-tactical"), nix.thunk(() => ({})))),
       coqeal: nix.thunk(() => nix.app(callPackage_1, nix.path(here, "../development/rocq-modules/coqeal"), nix.thunk(() => nix.app(nix.sel(lib_1, "optionalAttrs"), nix.thunk(() => nix.app(nix.sel(lib_1, "versions", "range"), "8.13", "8.14", nix.thunk(() => nix.sel(self, "coq", "coq-version")))), nix.thunk(() => ({
-            [nix.POS]: pos$11,
+            [nix.POS]: $pos[10],
             bignums: nix.thunk(() => nix.app(nix.sel(self, "bignums", "override"), nix.thunk(() => ({
-                [nix.POS]: pos$10,
+                [nix.POS]: $pos[9],
                 version: nix.thunk(() => nix.str`${nix.sel(self, "coq", "coq-version")}.0`),
               })))),
           })))))),
@@ -251,8 +232,8 @@ export default nix.lambda((args) => (() => {
       unicoq: nix.thunk(() => nix.app(callPackage_1, nix.path(here, "../development/rocq-modules/unicoq"), nix.thunk(() => ({})))),
       validsdp: nix.thunk(() => nix.app(callPackage_1, nix.path(here, "../development/rocq-modules/validsdp"), nix.thunk(() => ({})))),
       vcfloat: nix.thunk(() => nix.app(callPackage_1, nix.path(here, "../development/rocq-modules/vcfloat"), nix.thunk(() => nix.app(nix.sel(lib_1, "optionalAttrs"), nix.thunk(() => nix.app(nix.sel(lib_1, "versions", "range"), "8.16", "8.18", nix.thunk(() => nix.sel(self, "coq", "version")))), nix.thunk(() => ({
-            [nix.POS]: pos$13,
-            interval: nix.thunk(() => nix.app(nix.sel(self, "interval", "override"), nix.thunk(() => ({ [nix.POS]: pos$12, version: "4.9.0" })))),
+            [nix.POS]: $pos[12],
+            interval: nix.thunk(() => nix.app(nix.sel(self, "interval", "override"), nix.thunk(() => ({ [nix.POS]: $pos[11], version: "4.9.0" })))),
           })))))),
       Velisarios: nix.thunk(() => nix.app(callPackage_1, nix.path(here, "../development/rocq-modules/Velisarios"), nix.thunk(() => ({})))),
       Verdi: nix.thunk(() => nix.app(callPackage_1, nix.path(here, "../development/rocq-modules/Verdi"), nix.thunk(() => ({})))),
@@ -261,24 +242,24 @@ export default nix.lambda((args) => (() => {
       VplTactic: nix.thunk(() => nix.app(callPackage_1, nix.path(here, "../development/rocq-modules/VplTactic"), nix.thunk(() => ({})))),
       "vsrocq-language-server": nix.thunk(() => nix.app(callPackage_1, nix.path(here, "../development/rocq-modules/vsrocq-language-server"), nix.thunk(() => ({})))),
       VST: nix.thunk(() => nix.app(callPackage_1, nix.path(here, "../development/rocq-modules/VST"), nix.thunk(() => nix.update(nix.app(nix.sel(lib_1, "optionalAttrs"), nix.thunk(() => nix.app(nix.sel(lib_1, "versionAtLeast"), nix.thunk(() => nix.sel(self, "coq", "version")), "8.14")), nix.thunk(() => ({
-            [nix.POS]: pos$18,
+            [nix.POS]: $pos[17],
             compcert: nix.thunk(() => nix.app(nix.sel(self, "compcert", "override"), nix.thunk(() => ({
-                [nix.POS]: pos$17,
+                [nix.POS]: $pos[16],
                 version: nix.thunk(() => (() => {
                   const w = nix.withScope(nix.thunk(() => nix.sel(lib_1, "versions")), null);
                   return nix.app(nix.sel(lib_1, "switch"), nix.thunk(() => nix.sel(self, "coq", "version")), nix.thunk(() => [
                       nix.thunk(() => ({
-                        [nix.POS]: pos$14,
+                        [nix.POS]: $pos[13],
                         case: nix.thunk(() => nix.app(nix.lookup(w, "range"), "8.19", "9.0")),
                         out: "3.17",
                       })),
                       nix.thunk(() => ({
-                        [nix.POS]: pos$15,
+                        [nix.POS]: $pos[14],
                         case: nix.thunk(() => nix.app(nix.lookup(w, "range"), "8.15", "8.18")),
                         out: "3.13.1",
                       })),
                       nix.thunk(() => ({
-                        [nix.POS]: pos$16,
+                        [nix.POS]: $pos[15],
                         case: nix.thunk(() => nix.app(nix.lookup(w, "isEq"), "8.14")),
                         out: "3.11",
                       })),
@@ -286,11 +267,11 @@ export default nix.lambda((args) => (() => {
                 })()),
               })))),
           }))), nix.app(nix.sel(lib_1, "optionalAttrs"), nix.thunk(() => nix.app(nix.sel(lib_1, "versions", "isEq"), nix.thunk(() => nix.sel(self, "coq", "coq-version")), "8.13")), nix.thunk(() => ({
-            [nix.POS]: pos$21,
+            [nix.POS]: $pos[20],
             ITree: nix.thunk(() => nix.app(nix.sel(self, "ITree", "override"), nix.thunk(() => ({
-                [nix.POS]: pos$20,
+                [nix.POS]: $pos[19],
                 version: "4.0.0",
-                paco: nix.thunk(() => nix.app(nix.sel(self, "paco", "override"), nix.thunk(() => ({ [nix.POS]: pos$19, version: "4.1.2" })))),
+                paco: nix.thunk(() => nix.app(nix.sel(self, "paco", "override"), nix.thunk(() => ({ [nix.POS]: $pos[18], version: "4.1.2" })))),
               })))),
           }))))))),
       wasmcert: nix.thunk(() => nix.app(callPackage_1, nix.path(here, "../development/rocq-modules/wasmcert"), nix.thunk(() => ({})))),
@@ -304,7 +285,7 @@ export default nix.lambda((args) => (() => {
         return nix.app(nix.sel(lib_1, "optional"), nix.thunk(() => !nix.asBool(nix.selOr(v, () => false, "meta", "rocqFilter"))), nix.thunk(() => nix.app(nix.sel(lib_1, "nameValuePair"), name, nix.thunk(() => (nix.asBool((nix.asBool(nix.app(nix.sel(lib_1, "isAttrs"), v)) && nix.asBool(nix.selOr(v, () => false, "recurseForDerivations")))) ? nix.app(filterRocqPackages, v) : nix.force(v))))));
       })(), nix.thunk(() => nix.app(nix.sel(lib_1, "attrNames"), set)))));
   const mkRocq = (version) => nix.app(callPackage, nix.path(here, "../applications/science/logic/rocq-core"), nix.thunk(() => ({
-      [nix.POS]: pos$23,
+      [nix.POS]: $pos[22],
       version: version,
       ocamlPackages_4_14: ocamlPackages_4_14,
       ocamlPackages_5_5: ocamlPackages_5_5,
@@ -325,7 +306,7 @@ export default nix.lambda((args) => (() => {
     const rocqPackages = nix.thunk(() => nix.app(nix.sel(lib_1, "recurseIntoAttrs"), rocqPackages_9_1));
     const rocq_core = nix.thunk(() => nix.sel(rocqPackages, "rocq-core"));
     return {
-      [nix.POS]: pos$24,
+      [nix.POS]: $pos[23],
       mkRocqPackages,
       "rocq-core_9_0": rocq_core_9_0,
       "rocq-core_9_1": rocq_core_9_1,

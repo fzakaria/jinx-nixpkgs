@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 121, 5], ["repo", 122, 5], ["tag", 123, 5], ["hash", 124, 5]], [["description", 166, 5], ["mainProgram", 167, 5], ["homepage", 168, 5], ["changelog", 169, 5], ["license", 170, 5], ["maintainers", 171, 5], ["platforms", 172, 5]], [["pname", 117, 3], ["version", 118, 3], ["src", 120, 3], ["strictDeps", 127, 3], ["nativeBuildInputs", 128, 3], ["postPatch", 136, 3], ["postInstall", 152, 3], ["installPhase", 157, 3], ["meta", 165, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, makeWrapper: false, "aircrack-ng": false, bash: false, "coreutils-full": false, gawk: false, gnugrep: false, gnused: false, iproute2: false, iw: false, pciutils: false, procps: false, tmux: false, xterm: false, xset: false, xdpyinfo: false, usbutils: false, wget: false, ethtool: false, "util-linux": false, ccze: false, asleap: false, bettercap: false, bully: false, crunch: false, dnsmasq: false, ettercap: false, hashcat: false, hcxdumptool: false, hcxtools: false, hostapd: false, john: false, lighttpd: false, mdk4: false, nftables: false, openssl: false, pixiewps: false, "reaverwps-t6x": false, "wireshark-cli": false, "apparmor-bin-utils": false, curl: false, glibc: false, ncurses: false, networkmanager: false, systemd: false, supportWpaWps: true, supportHashCracking: true, supportEvilTwin: true, supportX11: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 121, 5], ["repo", 122, 5], ["tag", 123, 5], ["hash", 124, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 166, 5], ["mainProgram", 167, 5], ["homepage", 168, 5], ["changelog", 169, 5], ["license", 170, 5], ["maintainers", 171, 5], ["platforms", 172, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 117, 3], ["version", 118, 3], ["src", 120, 3], ["strictDeps", 127, 3], ["nativeBuildInputs", 128, 3], ["postPatch", 136, 3], ["postInstall", 152, 3], ["installPhase", 157, 3], ["meta", 165, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -94,11 +92,11 @@ export default nix.lambda((args) => (() => {
       apparmor_bin_utils,
     ])), nix.app(nix.sel(lib, "optionals"), supportX11, nix.thunk(() => [xterm, xset, xdpyinfo])))))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "airgeddon",
       version: "11.52",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "v1s1t0r1sh3r3",
           repo: "airgeddon",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -123,7 +121,7 @@ sed -Ei '
 `),
       installPhase: "runHook preInstall\ninstall -Dm 755 airgeddon.sh \"$out/bin/airgeddon\"\ninstall -dm 755 \"$out/share/airgeddon\"\ncp -dr .airgeddonrc known_pins.db language_strings.sh plugins/ \"$out/share/airgeddon/\"\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Multi-use TUI to audit wireless networks",
         mainProgram: "airgeddon",
         homepage: "https://github.com/v1s1t0r1sh3r3/airgeddon",

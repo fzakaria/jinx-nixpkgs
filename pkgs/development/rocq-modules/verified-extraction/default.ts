@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["cases", 22, 9], ["out", 26, 17]], [["hash", 39, 17]], [["1.0.0-9.1", 39, 5]], [["homepage", 59, 5], ["description", 60, 5], ["maintainers", 61, 5]], [["pname", 13, 3], ["owner", 14, 3], ["repo", 15, 3], ["opam-name", 16, 3], ["version", 18, 11], ["defaultVersion", 19, 3], ["release", 38, 3], ["releaseRev", 41, 3], ["mlPlugin", 43, 3], ["buildInputs", 45, 3], ["propagatedBuildInputs", 46, 3], ["prePatch", 54, 3], ["meta", 58, 3]]]);
 const formals$1 = { args: { lib: false, mkCoqDerivation: false, coq: false, dune: false, "ceres-bs": false, equations: false, "metarocq-erasure-plugin": false, version: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["cases", 22, 9], ["out", 26, 17]]);
-const pos$2 = nix.positions(here + "/default.nix", [["hash", 39, 17]]);
-const pos$3 = nix.positions(here + "/default.nix", [["1.0.0-9.1", 39, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["homepage", 59, 5], ["description", 60, 5], ["maintainers", 61, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 13, 3], ["owner", 14, 3], ["repo", 15, 3], ["opam-name", 16, 3], ["version", 18, 11], ["defaultVersion", 19, 3], ["release", 38, 3], ["releaseRev", 41, 3], ["mlPlugin", 43, 3], ["buildInputs", 45, 3], ["propagatedBuildInputs", 46, 3], ["prePatch", 54, 3], ["meta", 58, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,23 +16,23 @@ export default nix.lambda((args) => (() => {
   const metarocq_erasure_plugin = nix.arg($, "metarocq-erasure-plugin");
   const version = nix.argOr($, "version", () => null);
   return nix.app(mkCoqDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "verified-extraction",
       owner: "MetaRocq",
       repo: "rocq-verified-extraction",
       "opam-name": "rocq-verified-extraction",
       version: version,
       defaultVersion: nix.thunk(() => (() => {
-        const case$ = (coq_1) => (mr) => (out) => ({ [nix.POS]: pos$1, cases: nix.thunk(() => [coq_1, mr]), out: out });
+        const case$ = (coq_1) => (mr) => (out) => ({ [nix.POS]: $pos[0], cases: nix.thunk(() => [coq_1, mr]), out: out });
         return nix.app(nix.sel(lib, "switch"), nix.thunk(() => [
             nix.thunk(() => nix.sel(coq, "coq-version")),
             nix.thunk(() => nix.sel(metarocq_erasure_plugin, "version")),
           ]), nix.thunk(() => [nix.thunk(() => nix.app(case$, "9.1", "1.5.1-9.1", "1.0.0-9.1"))]), null);
       })()),
       release: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         "1.0.0-9.1": nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           hash: "sha256-0eKpchQtnPI12rcsb9+qN1pdNX9KY8VryZP0oqHuYeU=",
         })),
       })),
@@ -54,7 +50,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const w = nix.withScope(lib, null);
         return {
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           homepage: "https://metarocq.github.io/",
           description: "Verified Extraction from Rocq to OCaml. Including a bootstrapped extraction plugin",
           maintainers: nix.thunk(() => (() => {

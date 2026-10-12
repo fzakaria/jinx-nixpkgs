@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["sha256", 18, 5]], [["description", 36, 5], ["homepage", 37, 5], ["license", 38, 5], ["platforms", 39, 5], ["maintainers", 43, 5], ["broken", 44, 5]], [["name", 9, 3], ["pname", 10, 3], ["version", 11, 3], ["src", 14, 3], ["hardeningDisable", 21, 3], ["nativeBuildInputs", 23, 3], ["preConfigure", 25, 3], ["makeFlags", 29, 3], ["meta", 35, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, kernel: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["sha256", 18, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 36, 5], ["homepage", 37, 5], ["license", 38, 5], ["platforms", 39, 5], ["maintainers", 43, 5], ["broken", 44, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["name", 9, 3], ["pname", 10, 3], ["version", 11, 3], ["src", 14, 3], ["hardeningDisable", 21, 3], ["nativeBuildInputs", 23, 3], ["preConfigure", 25, 3], ["makeFlags", 29, 3], ["meta", 35, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "nvidiabl";
       const version = "2020-10-01";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "yorickvP",
           repo: "nvidiabl",
           rev: "9e21bdcb7efedf29450373a2e9ff2913d1b5e3ab",
@@ -33,7 +31,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`KVER=${nix.sel(kernel, "modDirVersion")}`),
       ]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Linux driver for setting the backlight brightness on laptops using NVIDIA GPU",
         homepage: "https://github.com/yorickvP/nvidiabl",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
@@ -45,7 +43,7 @@ export default nix.lambda((args) => (() => {
         broken: nix.thunk(() => nix.app(nix.sel(kernel, "kernelAtLeast"), "5.18")),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         name,
         pname,
         version,

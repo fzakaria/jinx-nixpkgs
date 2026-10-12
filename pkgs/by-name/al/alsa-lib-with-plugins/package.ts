@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 12, 5], ["paths", 13, 5]], [["description", 20, 7], ["mainProgram", 21, 7], ["platforms", 22, 7]], [["pname", 18, 24], ["version", 18, 30], ["meta", 19, 5], ["outputs", 24, 5]]]);
 const formals$1 = { args: { lib: false, pkgs: false, "alsa-lib": false, plugins: true, lndir: false, symlinkJoin: false, runCommand: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 12, 5], ["paths", 13, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 20, 7], ["mainProgram", 21, 7], ["platforms", 22, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 18, 24], ["version", 18, 30], ["meta", 19, 5], ["outputs", 24, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,13 +14,13 @@ export default nix.lambda((args) => (() => {
   const lndir = nix.arg($, "lndir");
   const symlinkJoin = nix.arg($, "symlinkJoin");
   const runCommand = nix.arg($, "runCommand");
-  const merged = nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({ [nix.POS]: pos$1, name: "alsa-plugins-merged", paths: plugins }))));
+  const merged = nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({ [nix.POS]: $pos[0], name: "alsa-plugins-merged", paths: plugins }))));
   return nix.app(runCommand, nix.thunk(() => nix.str`${nix.sel(alsa_lib, "pname")}-${nix.sel(alsa_lib, "version")}`), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: nix.thunk(() => nix.attr(alsa_lib, "pname")),
       version: nix.thunk(() => nix.attr(alsa_lib, "version")),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Wrapper to ease access to ALSA plugins",
         mainProgram: "aserver",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),

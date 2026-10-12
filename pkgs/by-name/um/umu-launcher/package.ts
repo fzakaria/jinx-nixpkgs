@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["pname", 11, 3], ["version", 12, 36], ["meta", 12, 44], ["extraPkgs", 14, 3], ["extraLibraries", 16, 5], ["extraProfile", 17, 5], ["extraEnv", 18, 5], ["executableName", 21, 3], ["runScript", 22, 3], ["dieWithParent", 27, 3], ["extraInstallCommands", 29, 3]]]);
 const formals$1 = { args: { lib: false, steam: false, "umu-launcher-unwrapped": false, extraPkgs: true, extraLibraries: true, extraProfile: true, extraEnv: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 36], ["meta", 12, 44], ["extraPkgs", 14, 3], ["extraLibraries", 16, 5], ["extraProfile", 17, 5], ["extraEnv", 18, 5], ["executableName", 21, 3], ["runScript", 22, 3], ["dieWithParent", 27, 3], ["extraInstallCommands", 29, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const extraProfile = nix.argOr($, "extraProfile", () => "");
   const extraEnv = nix.argOr($, "extraEnv", () => ({}));
   return nix.app(nix.sel(steam, "buildRuntimeEnv"), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       pname: "umu-launcher",
       version: nix.thunk(() => nix.attr(umu_launcher_unwrapped, "version")),
       meta: nix.thunk(() => nix.attr(umu_launcher_unwrapped, "meta")),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 13, 5], ["url", 14, 5], ["hash", 15, 5]], [["description", 21, 5], ["homepage", 22, 5], ["license", 23, 5]], [["pname", 8, 3], ["version", 9, 3], ["desktopName", 10, 3], ["zip", 12, 3], ["sourceRoot", 18, 3], ["meta", 20, 3]]]);
 const formals$1 = { args: { lib: false, alephone: false, requireFile: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 13, 5], ["url", 14, 5], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 21, 5], ["homepage", 22, 5], ["license", 23, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["desktopName", 10, 3], ["zip", 12, 3], ["sourceRoot", 18, 3], ["meta", 20, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,19 +11,19 @@ export default nix.lambda((args) => (() => {
   const alephone = nix.arg($, "alephone");
   const requireFile = nix.arg($, "requireFile");
   return nix.app(nix.sel(alephone, "makeWrapper"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "apotheosis-x",
       version: "1.1",
       desktopName: "Marathon-Apotheosis-X",
       zip: nix.thunk(() => nix.app(requireFile, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           name: "Apotheosis_X_1.1.zip",
           url: "https://www.moddb.com/mods/apotheosis-x/downloads",
           hash: "sha256-4Y/RQQeN4VTpig8ZyxUpVHwzN8W8ciTBCkSzND8SMbs=",
         })))),
       sourceRoot: "Apotheosis X 1.1",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Total conversion for Marathon Infinity running on the Aleph One engine",
         homepage: "https://simplici7y.com/items/apotheosis-x-5",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

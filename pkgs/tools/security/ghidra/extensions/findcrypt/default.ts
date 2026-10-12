@@ -2,10 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 11, 5], ["repo", 12, 5], ["rev", 13, 5], ["hash", 14, 5]], [["description", 18, 5], ["homepage", 19, 5], ["downloadPage", 20, 5], ["changelog", 21, 5], ["license", 22, 5], ["maintainers", 23, 5]], [["pname", 7, 3], ["version", 8, 3], ["src", 10, 3], ["meta", 17, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, buildGhidraExtension: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 11, 5], ["repo", 12, 5], ["rev", 13, 5], ["hash", 14, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 18, 5], ["homepage", 19, 5], ["downloadPage", 20, 5], ["changelog", 21, 5], ["license", 22, 5], ["maintainers", 23, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 7, 3], ["version", 8, 3], ["src", 10, 3], ["meta", 17, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,18 +11,18 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const buildGhidraExtension = nix.arg($, "buildGhidraExtension");
   return nix.app(buildGhidraExtension, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "findcrypt",
       version: "3.1.10",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "antoniovazquezblanco",
           repo: "GhidraFindcrypt",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-TWC6C4uxlYw9D5iHrFOuR0FmjMo5jhCg0A5y8hPv/to=",
         })))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Ghidra analysis plugin to locate cryptographic constants",
         homepage: "https://github.com/antoniovazquezblanco/GhidraFindcrypt",
         downloadPage: nix.thunk(() => nix.str`https://github.com/antoniovazquezblanco/GhidraFindcrypt/releases/tag/v${nix.sel(finalAttrs, "version")}`),

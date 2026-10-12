@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]], [["retry", 39, 25]], [["description", 53, 5], ["homepage", 54, 5], ["changelog", 55, 5], ["license", 56, 5], ["maintainers", 57, 5]], [["pname", 18, 3], ["version", 19, 3], ["pyproject", 20, 3], ["src", 22, 3], ["build-system", 29, 3], ["dependencies", 34, 3], ["optional-dependencies", 39, 3], ["nativeCheckInputs", 41, 3], ["pythonImportsCheck", 50, 3], ["meta", 52, 3]]]);
 const formals$1 = { args: { lib: false, aiohttp: false, buildPythonPackage: false, fetchFromGitHub: false, freezegun: false, metar: false, "pytest-aiohttp": false, "pytest-asyncio": false, "pytest-cov-stub": false, pytestCheckHook: false, setuptools: false, "setuptools-scm": false, tenacity: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["retry", 39, 25]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 53, 5], ["homepage", 54, 5], ["changelog", 55, 5], ["license", 56, 5], ["maintainers", 57, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 18, 3], ["version", 19, 3], ["pyproject", 20, 3], ["src", 22, 3], ["build-system", 29, 3], ["dependencies", 34, 3], ["optional-dependencies", 39, 3], ["nativeCheckInputs", 41, 3], ["pythonImportsCheck", 50, 3], ["meta", 52, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.1.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "MatthewFlamm",
           repo: "pynws",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -36,11 +33,11 @@ export default nix.lambda((args) => (() => {
         }))));
       const build_system = nix.thunk(() => [setuptools, setuptools_scm]);
       const dependencies = nix.thunk(() => [aiohttp, metar]);
-      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, retry: nix.thunk(() => [tenacity]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: $pos[1], retry: nix.thunk(() => [tenacity]) }));
       const nativeCheckInputs = nix.thunk(() => nix.concat([freezegun, pytest_aiohttp, pytest_asyncio, pytest_cov_stub, pytestCheckHook], nix.app(nix.sel(lib, "concatAttrValues"), optional_dependencies)));
       const pythonImportsCheck = nix.thunk(() => ["pynws"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Python library to retrieve data from NWS/NOAA",
         homepage: "https://github.com/MatthewFlamm/pynws",
         changelog: nix.thunk(() => nix.str`https://github.com/MatthewFlamm/pynws/releases/tag/v${version}`),
@@ -51,7 +48,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

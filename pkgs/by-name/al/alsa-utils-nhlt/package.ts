@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["description", 51, 5], ["homepage", 52, 5], ["license", 53, 5], ["maintainers", 54, 5], ["mainProgram", 55, 5], ["platforms", 56, 5]], [["pname", 9, 3], ["version", 10, 24], ["src", 10, 32], ["outputs", 12, 3], ["nativeBuildInputs", 17, 3], ["dontConfigure", 23, 3], ["postPatch", 25, 3], ["buildPhase", 32, 3], ["installPhase", 41, 3], ["meta", 50, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, "alsa-utils": false, installShellFiles: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["description", 51, 5], ["homepage", 52, 5], ["license", 53, 5], ["maintainers", 54, 5], ["mainProgram", 55, 5], ["platforms", 56, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 24], ["src", 10, 32], ["outputs", 12, 3], ["nativeBuildInputs", 17, 3], ["dontConfigure", 23, 3], ["postPatch", 25, 3], ["buildPhase", 32, 3], ["installPhase", 41, 3], ["meta", 50, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const alsa_utils = nix.arg($, "alsa-utils");
   const installShellFiles = nix.arg($, "installShellFiles");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "alsa-utils-nhlt",
       version: nix.thunk(() => nix.attr(alsa_utils, "version")),
       src: nix.thunk(() => nix.attr(alsa_utils, "src")),
@@ -24,7 +23,7 @@ export default nix.lambda((args) => (() => {
       buildPhase: "runHook preBuild\n\n# Compile flags -g -O2 mirroring configure script.\n$CC -g -O2 -o nhlt-dmic-info nhlt/nhlt-dmic-info.c\n\nrunHook postBuild\n",
       installPhase: "runHook preInstall\n\ninstallBin nhlt-dmic-info\ninstallManPage nhlt/nhlt-dmic-info.1\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Tool to extract microphone array information from ACPI NHLT table",
         homepage: "http://www.alsa-project.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

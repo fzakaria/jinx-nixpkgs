@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 27, 5], ["owner", 28, 5], ["repo", 29, 5], ["rev", 30, 5], ["hash", 31, 5]], [["homepage", 66, 5], ["description", 67, 5], ["license", 68, 5], ["maintainers", 69, 5], ["platforms", 70, 5], ["mainProgram", 71, 5]], [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["prePatch", 34, 3], ["configureFlags", 39, 3], ["nativeBuildInputs", 41, 3], ["buildInputs", 52, 3], ["enableParallelBuilding", 63, 3], ["meta", 65, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitLab: false, autoreconfHook: false, "pkg-config": false, wrapGAppsHook3: false, glib: false, gtk3: false, expat: false, itstool: false, "gnome-doc-utils": false, which: false, "at-spi2-core": false, dbus: false, libxslt: false, libxml2: false, speechSupport: true, "speechd-minimal": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 27, 5], ["owner", 28, 5], ["repo", 29, 5], ["rev", 30, 5], ["hash", 31, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 66, 5], ["description", 67, 5], ["license", 68, 5], ["maintainers", 69, 5], ["platforms", 70, 5], ["mainProgram", 71, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["prePatch", 34, 3], ["configureFlags", 39, 3], ["nativeBuildInputs", 41, 3], ["buildInputs", 52, 3], ["enableParallelBuilding", 63, 3], ["meta", 65, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const speechSupport = nix.argOr($, "speechSupport", () => true);
   const speechd_minimal = nix.arg($, "speechd-minimal");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "dasher",
       version: "5.0-beta-unstable-2021-04-25",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "gitlab.gnome.org",
           owner: "GNOME",
           repo: "dasher",
@@ -53,7 +51,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => nix.concat([glib, gtk3, expat, itstool, at_spi2_core, dbus], nix.app(nix.sel(lib, "optional"), speechSupport, speechd_minimal))),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://www.inference.org.uk/dasher/",
         description: "Information-efficient text-entry interface, driven by natural continuous pointing gestures",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

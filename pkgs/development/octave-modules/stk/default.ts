@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 12, 5], ["sha256", 13, 5]], [["homepage", 17, 5], ["license", 18, 5], ["maintainers", 19, 5], ["description", 20, 5], ["longDescription", 21, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["meta", 16, 3]]]);
 const formals$1 = { args: { buildOctavePackage: false, lib: false, fetchurl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 12, 5], ["sha256", 13, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 17, 5], ["license", 18, 5], ["maintainers", 19, 5], ["description", 20, 5], ["longDescription", 21, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["meta", 16, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,12 +14,12 @@ export default nix.lambda((args) => (() => {
       const pname = "stk";
       const version = "2.8.1";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/stk-kriging/stk/releases/download/${version}/${pname}-${version}-octpkg.tar.gz`),
           sha256: "sha256-wTjM9LUcC8BEj3TNxAz877LqJvuoxWUse9PIZoWGnIU=",
         }))));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://gnu-octave.github.io/packages/stk/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
         maintainers: nix.thunk(() => (() => {
@@ -31,7 +29,7 @@ export default nix.lambda((args) => (() => {
         description: "STK is a (not so) Small Toolbox for Kriging",
         longDescription: "The STK is a (not so) Small Toolbox for Kriging. Its primary focus is on\nthe interpolation/regression technique known as kriging, which is very\nclosely related to Splines and Radial Basis Functions, and can be\ninterpreted as a non-parametric Bayesian method using a Gaussian Process\n(GP) prior. The STK also provides tools for the sequential and non-sequential\ndesign of experiments. Even though it is, currently, mostly geared towards\nthe Design and Analysis of Computer Experiments (DACE), the STK can be\nuseful for other applications areas (such as Geostatistics, Machine\nLearning, Non-parametric Regression, etc.).\n",
       }));
-      return { [nix.POS]: pos$3, pname, version, src, meta };
+      return { [nix.POS]: $pos[2], pname, version, src, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

@@ -2,9 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["description", 51, 5], ["license", 52, 5]], [["path", 10, 3], ["pname", 12, 3], ["version", 13, 3], ["src", 17, 3], ["outputs", 19, 3], ["extraNativeBuildInputs", 24, 3], ["env", 26, 3], ["SYSDIR", 27, 3], ["KERN_DEBUGDIR", 28, 3], ["KERN_DEBUGDIR_KODIR", 29, 3], ["KERN_DEBUGDIR_KMODDIR", 30, 3], ["KMODDIR", 31, 3], ["LINUX_FIRMWARE", 33, 3], ["hardeningDisable", 36, 3], ["makeFlags", 40, 3], ["preConfigure", 46, 3], ["meta", 50, 3]]]);
 const formals$1 = { args: { lib: false, mkDerivation: false, sys: false, buildFreebsd: false, "linux-firmware": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["description", 51, 5], ["license", 52, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["path", 10, 3], ["pname", 12, 3], ["version", 13, 3], ["src", 17, 3], ["outputs", 19, 3], ["extraNativeBuildInputs", 24, 3], ["env", 26, 3], ["SYSDIR", 27, 3], ["KERN_DEBUGDIR", 28, 3], ["KERN_DEBUGDIR_KODIR", 29, 3], ["KERN_DEBUGDIR_KMODDIR", 30, 3], ["KMODDIR", 31, 3], ["LINUX_FIRMWARE", 33, 3], ["hardeningDisable", 36, 3], ["makeFlags", 40, 3], ["preConfigure", 46, 3], ["meta", 50, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,12 +30,12 @@ export default nix.lambda((args) => (() => {
       const makeFlags = nix.thunk(() => ["DEBUG_FLAGS=-g", "XARGS_J=xargs-j", "NO_XREF=1"]);
       const preConfigure = "bash gen-makefiles\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Intel Wifi Firmware for FreeBSD",
         license: nix.thunk(() => nix.sel(linux_firmware, "meta", "license")),
       }));
       return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         path,
         pname,
         version,

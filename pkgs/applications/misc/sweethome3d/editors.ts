@@ -2,17 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/editors.nix", [[["exec", 42, 17], ["desktopName", 42, 22], ["name", 43, 9], ["comment", 44, 9], ["genericName", 45, 9], ["categories", 46, 9]], [["ANT_ARGS", 65, 11]], [["homepage", 93, 9], ["description", 94, 17], ["license", 95, 17], ["maintainers", 96, 9], ["platforms", 97, 9], ["mainProgram", 98, 9]], [["application", 32, 7], ["pname", 34, 9], ["module", 35, 9], ["version", 36, 9], ["src", 37, 9], ["description", 38, 9], ["exec", 40, 7], ["editorItem", 41, 7], ["nativeBuildInputs", 53, 7], ["buildInputs", 57, 7], ["env", 65, 7], ["postPatch", 67, 7], ["buildPhase", 72, 7], ["installPhase", 80, 7], ["dontStrip", 90, 7], ["meta", 92, 7]], [["url", 115, 7], ["hash", 116, 7]], [["version", 109, 5], ["module", 110, 5], ["pname", 111, 5], ["description", 112, 5], ["license", 113, 5], ["src", 114, 5], ["desktopName", 118, 5]], [["url", 128, 7], ["hash", 129, 7]], [["version", 122, 5], ["module", 123, 5], ["pname", 124, 5], ["description", 125, 5], ["license", 126, 5], ["src", 127, 5], ["desktopName", 131, 5]], [["textures-editor", 108, 3], ["furniture-editor", 121, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchzip: false, makeWrapper: false, makeDesktopItem: false, jdk: false, ant: false, stripJavaArchivesHook: false, gtk3: false, "gsettings-desktop-schemas": false, sweethome3dApp: false, unzip: false }, ellipsis: false };
 const formals$2 = { args: { pname: false, module: false, version: false, src: false, license: false, description: false, desktopName: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/editors.nix", [["exec", 42, 17], ["desktopName", 42, 22], ["name", 43, 9], ["comment", 44, 9], ["genericName", 45, 9], ["categories", 46, 9]]);
-const pos$2 = nix.positions(here + "/editors.nix", [["ANT_ARGS", 65, 11]]);
-const pos$3 = nix.positions(here + "/editors.nix", [["homepage", 93, 9], ["description", 94, 17], ["license", 95, 17], ["maintainers", 96, 9], ["platforms", 97, 9], ["mainProgram", 98, 9]]);
-const pos$4 = nix.positions(here + "/editors.nix", [["application", 32, 7], ["pname", 34, 9], ["module", 35, 9], ["version", 36, 9], ["src", 37, 9], ["description", 38, 9], ["exec", 40, 7], ["editorItem", 41, 7], ["nativeBuildInputs", 53, 7], ["buildInputs", 57, 7], ["env", 65, 7], ["postPatch", 67, 7], ["buildPhase", 72, 7], ["installPhase", 80, 7], ["dontStrip", 90, 7], ["meta", 92, 7]]);
-const pos$5 = nix.positions(here + "/editors.nix", [["url", 115, 7], ["hash", 116, 7]]);
-const pos$6 = nix.positions(here + "/editors.nix", [["version", 109, 5], ["module", 110, 5], ["pname", 111, 5], ["description", 112, 5], ["license", 113, 5], ["src", 114, 5], ["desktopName", 118, 5]]);
-const pos$7 = nix.positions(here + "/editors.nix", [["url", 128, 7], ["hash", 129, 7]]);
-const pos$8 = nix.positions(here + "/editors.nix", [["version", 122, 5], ["module", 123, 5], ["pname", 124, 5], ["description", 125, 5], ["license", 126, 5], ["src", 127, 5], ["desktopName", 131, 5]]);
-const pos$9 = nix.positions(here + "/editors.nix", [["textures-editor", 108, 3], ["furniture-editor", 121, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -47,7 +39,7 @@ export default nix.lambda((args) => (() => {
         const description_1 = description;
         const exec = nix.thunk(() => nix.app(sweetExec, module_1));
         const editorItem = nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             exec: exec,
             desktopName: desktopName,
             name: pname_1,
@@ -58,7 +50,7 @@ export default nix.lambda((args) => (() => {
         const nativeBuildInputs = nix.thunk(() => [makeWrapper, stripJavaArchivesHook]);
         const buildInputs = nix.thunk(() => [ant, jdk, gtk3, gsettings_desktop_schemas]);
         const env = nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           ANT_ARGS: "-DappletClassSource=8 -DappletClassTarget=8 -DclassSource=8 -DclassTarget=8",
         }));
         const postPatch = nix.thunk(() => nix.str`sed -i -e 's,../SweetHome3D,${nix.sel(sweethome3dApp, "src")},g' build.xml
@@ -80,7 +72,7 @@ makeWrapper ${jdk}/bin/java $out/bin/$exec \\
 `);
         const dontStrip = true;
         const meta = nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           homepage: "http://www.sweethome3d.com/index.jsp",
           description: description_1,
           license: license,
@@ -89,7 +81,7 @@ makeWrapper ${jdk}/bin/java $out/bin/$exec \\
           mainProgram: exec,
         }));
         return {
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           application,
           pname: pname_1,
           module: module_1,
@@ -111,7 +103,7 @@ makeWrapper ${jdk}/bin/java $out/bin/$exec \\
   })(), formals$2);
   const d2u = nix.thunk(() => nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => ["_"])));
   return {
-    [nix.POS]: pos$9,
+    [nix.POS]: $pos[8],
     "textures-editor": nix.thunk(() => nix.app(mkEditorProject, nix.thunk(() => (() => {
         const version = "1.7";
         const module = "TexturesLibraryEditor";
@@ -119,13 +111,13 @@ makeWrapper ${jdk}/bin/java $out/bin/$exec \\
         const description = "Easily create SH3T files and edit the properties of the texture images it contain";
         const license = nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus"));
         const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             url: nix.thunk(() => nix.str`mirror://sourceforge/sweethome3d/${module}-${version}-src.zip`),
             hash: "sha256-v8hMEUujTgWvFnBTF8Dnd1iWgoIXBzGMUxBgmjdxx+g=",
           }))));
         const desktopName = "Sweet Home 3D - Textures Library Editor";
         return {
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           version,
           module,
           pname,
@@ -142,13 +134,13 @@ makeWrapper ${jdk}/bin/java $out/bin/$exec \\
         const description = "Quickly create SH3F files and edit the properties of the 3D models it contain";
         const license = nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus"));
         const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             url: nix.thunk(() => nix.str`mirror://sourceforge/sweethome3d/${module}-${version}-src.zip`),
             hash: "sha256-pqsSxQPzsyx4PS98fgU6UFhPWhpQoepGm0uJtkvV46c=",
           }))));
         const desktopName = "Sweet Home 3D - Furniture Library Editor";
         return {
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           version,
           module,
           pname,

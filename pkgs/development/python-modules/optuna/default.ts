@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 52, 5], ["repo", 53, 5], ["tag", 54, 5], ["hash", 55, 5]], [["url", 61, 7], ["hash", 62, 7]], [["optional", 81, 5]], [["description", 170, 5], ["homepage", 171, 5], ["changelog", 172, 5], ["license", 173, 5], ["maintainers", 174, 5], ["mainProgram", 175, 5]], [["pname", 46, 3], ["version", 47, 3], ["pyproject", 48, 3], ["__structuredAttrs", 49, 3], ["src", 51, 3], ["patches", 58, 3], ["build-system", 66, 3], ["dependencies", 70, 3], ["optional-dependencies", 80, 3], ["preCheck", 97, 3], ["nativeCheckInputs", 107, 3], ["disabledTests", 120, 3], ["disabledTestPaths", 153, 3], ["__darwinAllowLocalNetworking", 165, 3], ["pythonImportsCheck", 167, 3], ["meta", 169, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitHub: false, fetchpatch: false, setuptools: false, alembic: false, colorlog: false, numpy: false, packaging: false, sqlalchemy: false, tqdm: false, pyyaml: false, boto3: false, cmaes: false, fvcore: false, "google-cloud-storage": false, grpcio: false, matplotlib: false, pandas: false, plotly: false, protobuf: false, redis: false, "scikit-learn": false, scipy: false, addBinToPathHook: false, fakeredis: false, kaleido: false, moto: false, "pytest-xdist": false, pytestCheckHook: false, torch: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 52, 5], ["repo", 53, 5], ["tag", 54, 5], ["hash", 55, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["url", 61, 7], ["hash", 62, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["optional", 81, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 170, 5], ["homepage", 171, 5], ["changelog", 172, 5], ["license", 173, 5], ["maintainers", 174, 5], ["mainProgram", 175, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 46, 3], ["version", 47, 3], ["pyproject", 48, 3], ["__structuredAttrs", 49, 3], ["src", 51, 3], ["patches", 58, 3], ["build-system", 66, 3], ["dependencies", 70, 3], ["optional-dependencies", 80, 3], ["preCheck", 97, 3], ["nativeCheckInputs", 107, 3], ["disabledTests", 120, 3], ["disabledTestPaths", 153, 3], ["__darwinAllowLocalNetworking", 165, 3], ["pythonImportsCheck", 167, 3], ["meta", 169, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -45,13 +41,13 @@ export default nix.lambda((args) => (() => {
   const torch = nix.arg($, "torch");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "optuna",
       version: "4.9.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "optuna",
           repo: "optuna",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -59,7 +55,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/optuna/optuna/commit/ba57cff4a1990f3943cf250edc32d34e6ddd436d.patch",
             hash: "sha256-SGsZcl+F62JN7LEAfmyanswl/tUZfZv4doh3lS5JSkQ=",
           })))),
@@ -67,7 +63,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [setuptools]),
       dependencies: nix.thunk(() => [alembic, colorlog, numpy, packaging, sqlalchemy, tqdm, pyyaml]),
       "optional-dependencies": nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         optional: nix.thunk(() => [
           boto3,
           cmaes,
@@ -130,7 +126,7 @@ export default nix.lambda((args) => (() => {
       __darwinAllowLocalNetworking: true,
       pythonImportsCheck: nix.thunk(() => ["optuna"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Hyperparameter optimization framework",
         homepage: "https://optuna.org/",
         changelog: nix.thunk(() => nix.str`https://github.com/optuna/optuna/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

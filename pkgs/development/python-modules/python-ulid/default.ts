@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]], [["pydantic", 32, 5]], [["description", 44, 5], ["mainProgram", 45, 5], ["homepage", 46, 5], ["changelog", 47, 5], ["license", 48, 5], ["maintainers", 49, 5]], [["pname", 14, 3], ["version", 15, 3], ["pyproject", 16, 3], ["src", 18, 3], ["build-system", 25, 3], ["optional-dependencies", 31, 3], ["nativeCheckInputs", 35, 3], ["pythonImportsCheck", 41, 3], ["meta", 43, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, "hatch-fancy-pypi-readme": false, "hatch-vcs": false, hatchling: false, pydantic: false, freezegun: false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pydantic", 32, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 44, 5], ["mainProgram", 45, 5], ["homepage", 46, 5], ["changelog", 47, 5], ["license", 48, 5], ["maintainers", 49, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 14, 3], ["version", 15, 3], ["pyproject", 16, 3], ["src", 18, 3], ["build-system", 25, 3], ["optional-dependencies", 31, 3], ["nativeCheckInputs", 35, 3], ["pythonImportsCheck", 41, 3], ["meta", 43, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,18 +21,18 @@ export default nix.lambda((args) => (() => {
       const version = "3.1.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "mdomke",
           repo: "python-ulid",
           tag: version,
           hash: "sha256-13yGd6vYnwzTi+KGJgoQ/z6Cy67FKVC4popaj2uPOlQ=",
         }))));
       const build_system = nix.thunk(() => [hatch_fancy_pypi_readme, hatch_vcs, hatchling]);
-      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, pydantic: nix.thunk(() => [pydantic]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: $pos[1], pydantic: nix.thunk(() => [pydantic]) }));
       const nativeCheckInputs = nix.thunk(() => nix.concat([freezegun, pytestCheckHook], nix.sel(optional_dependencies, "pydantic")));
       const pythonImportsCheck = nix.thunk(() => ["ulid"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "ULID implementation for Python",
         mainProgram: "ulid",
         homepage: "https://github.com/mdomke/python-ulid",
@@ -47,7 +44,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

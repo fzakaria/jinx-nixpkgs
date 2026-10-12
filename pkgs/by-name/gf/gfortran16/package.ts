@@ -2,15 +2,15 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 4, 5], ["langFortran", 5, 5], ["langCC", 6, 5], ["langC", 7, 5], ["profiledCompiler", 8, 5]]]);
 const formals$1 = { args: { wrapCC: false, gcc16: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 4, 5], ["langFortran", 5, 5], ["langCC", 6, 5], ["langC", 7, 5], ["profiledCompiler", 8, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const wrapCC = nix.arg($, "wrapCC");
   const gcc16 = nix.arg($, "gcc16");
   return nix.app(wrapCC, nix.thunk(() => nix.app(nix.sel(gcc16, "cc", "override"), nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         name: "gfortran",
         langFortran: true,
         langCC: false,

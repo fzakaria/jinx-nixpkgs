@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 14, 7], ["hash", 15, 7]], [["url", 18, 7], ["hash", 19, 7]], [["x86_64-linux", 13, 5], ["aarch64-darwin", 17, 5]], [["name", 36, 5], ["url", 37, 5], ["hash", 38, 5]], [["description", 66, 5], ["homepage", 67, 5], ["license", 68, 5], ["sourceProvenance", 69, 5], ["maintainers", 70, 5], ["teams", 71, 5], ["platforms", 72, 5], ["mainProgram", 76, 5]], [["pname", 29, 3], ["version", 30, 11], ["strictDeps", 32, 3], ["__structuredAttrs", 33, 3], ["src", 35, 3], ["dontUnpack", 41, 3], ["nativeBuildInputs", 43, 3], ["dontConfigure", 47, 3], ["dontBuild", 48, 3], ["installPhase", 50, 3], ["nativeInstallCheckInputs", 56, 3], ["doInstallCheck", 61, 3], ["versionCheckKeepEnvironment", 63, 3], ["meta", 65, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, autoPatchelfHook: false, writableTmpDirAsHomeHook: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 14, 7], ["hash", 15, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 18, 7], ["hash", 19, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["x86_64-linux", 13, 5], ["aarch64-darwin", 17, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["name", 36, 5], ["url", 37, 5], ["hash", 38, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 66, 5], ["homepage", 67, 5], ["license", 68, 5], ["sourceProvenance", 69, 5], ["maintainers", 70, 5], ["teams", 71, 5], ["platforms", 72, 5], ["mainProgram", 76, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 29, 3], ["version", 30, 11], ["strictDeps", 32, 3], ["__structuredAttrs", 33, 3], ["src", 35, 3], ["dontUnpack", 41, 3], ["nativeBuildInputs", 43, 3], ["dontConfigure", 47, 3], ["dontBuild", 48, 3], ["installPhase", 50, 3], ["nativeInstallCheckInputs", 56, 3], ["doInstallCheck", 61, 3], ["versionCheckKeepEnvironment", 63, 3], ["meta", 65, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,27 +15,27 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const version = "1.0.15498356";
   const platformData = nix.thunk(() => ({
-    [nix.POS]: pos$3,
+    [nix.POS]: $pos[2],
     "x86_64-linux": nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: nix.thunk(() => nix.str`https://dl.google.com/android/cli/${version}/linux_x86_64/android-cli`),
       hash: "sha256-TmwLwLKqnMCxWwtX8m50KflmisfeG3PjZsBs7z9vccU=",
     })),
     "aarch64-darwin": nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       url: nix.thunk(() => nix.str`https://dl.google.com/android/cli/${version}/darwin_arm64/android-cli`),
       hash: "sha256-E3PC0Ivf6MoYRQu56dSD/49LI8DJZhXL27/o6daH0Sg=",
     })),
   }));
   const systemData = nix.thunk(() => nix.selOr(platformData, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenv, "hostPlatform", "system")}`)), nix.key(nix.sel(stdenv, "hostPlatform", "system"))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "android-cli",
       version: version,
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           name: "android-cli",
           url: nix.thunk(() => nix.sel(systemData, "url")),
           hash: nix.thunk(() => nix.sel(systemData, "hash")),
@@ -56,7 +51,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const w = nix.withScope(lib, null);
         return {
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           description: "Android Command-Line Tool (CLI) by Google",
           homepage: "https://developer.android.com/tools/agents/android-cli",
           license: nix.thunk(() => nix.sel(nix.lookup(w, "licenses"), "unfree")),

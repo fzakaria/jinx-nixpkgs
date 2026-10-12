@@ -2,53 +2,43 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/pdns-recursor.nix", [[["maintainers", 5, 8]], [["enable", 9, 32]], [["api_key", 11, 48]], [["webservice", 11, 37]], [["enable", 8, 28], ["api", 9, 28], ["exportHosts", 10, 28], ["settings", 11, 28]], [["pdns-recursor", 8, 14]], [["192.0.2.1", 12, 22]], [["hosts", 12, 16]], [["services", 8, 5], ["networking", 12, 5]], [["server", 7, 9]], [["name", 4, 3], ["meta", 5, 3], ["nodes", 7, 3], ["testScript", 15, 3]]]);
 const formals$1 = { args: { lib: false, pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/pdns-recursor.nix", [["maintainers", 5, 8]]);
-const pos$2 = nix.positions(here + "/pdns-recursor.nix", [["enable", 9, 32]]);
-const pos$3 = nix.positions(here + "/pdns-recursor.nix", [["api_key", 11, 48]]);
-const pos$4 = nix.positions(here + "/pdns-recursor.nix", [["webservice", 11, 37]]);
-const pos$5 = nix.positions(here + "/pdns-recursor.nix", [["enable", 8, 28], ["api", 9, 28], ["exportHosts", 10, 28], ["settings", 11, 28]]);
-const pos$6 = nix.positions(here + "/pdns-recursor.nix", [["pdns-recursor", 8, 14]]);
-const pos$7 = nix.positions(here + "/pdns-recursor.nix", [["192.0.2.1", 12, 22]]);
-const pos$8 = nix.positions(here + "/pdns-recursor.nix", [["hosts", 12, 16]]);
-const pos$9 = nix.positions(here + "/pdns-recursor.nix", [["services", 8, 5], ["networking", 12, 5]]);
-const pos$10 = nix.positions(here + "/pdns-recursor.nix", [["server", 7, 9]]);
-const pos$11 = nix.positions(here + "/pdns-recursor.nix", [["name", 4, 3], ["meta", 5, 3], ["nodes", 7, 3], ["testScript", 15, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   return {
-    [nix.POS]: pos$11,
+    [nix.POS]: $pos[10],
     name: "powerdns-recursor",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "rnhmjoj"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       server: nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         services: nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           "pdns-recursor": nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             enable: true,
-            api: nix.thunk(() => ({ [nix.POS]: pos$2, enable: true })),
+            api: nix.thunk(() => ({ [nix.POS]: $pos[1], enable: true })),
             exportHosts: true,
             settings: nix.thunk(() => ({
-              [nix.POS]: pos$4,
-              webservice: nix.thunk(() => ({ [nix.POS]: pos$3, api_key: "supersecret" })),
+              [nix.POS]: $pos[3],
+              webservice: nix.thunk(() => ({ [nix.POS]: $pos[2], api_key: "supersecret" })),
             })),
           })),
         })),
         networking: nix.thunk(() => ({
-          [nix.POS]: pos$8,
-          hosts: nix.thunk(() => ({ [nix.POS]: pos$7, "192.0.2.1": nix.thunk(() => ["example.com"]) })),
+          [nix.POS]: $pos[7],
+          hosts: nix.thunk(() => ({ [nix.POS]: $pos[6], "192.0.2.1": nix.thunk(() => ["example.com"]) })),
         })),
       })),
     })),

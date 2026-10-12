@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]], [["dep-scan", 73, 43]], [["tests", 73, 12]], [["description", 76, 5], ["homepage", 77, 5], ["changelog", 78, 5], ["license", 79, 5], ["maintainers", 80, 5], ["teams", 81, 5], ["mainProgram", 82, 5]], [["pname", 11, 3], ["version", 12, 3], ["pyproject", 13, 3], ["src", 15, 3], ["build-system", 22, 3], ["dependencies", 24, 3], ["nativeCheckInputs", 44, 3], ["pythonImportsCheck", 52, 3], ["disabledTests", 54, 3], ["makeWrapperArgs", 65, 3], ["passthru", 73, 3], ["meta", 75, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, python3Packages: false, writableTmpDirAsHomeHook: false, cdxgen: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["dep-scan", 73, 43]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 73, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 76, 5], ["homepage", 77, 5], ["changelog", 78, 5], ["license", 79, 5], ["maintainers", 80, 5], ["teams", 81, 5], ["mainProgram", 82, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["pyproject", 13, 3], ["src", 15, 3], ["build-system", 22, 3], ["dependencies", 24, 3], ["nativeCheckInputs", 44, 3], ["pythonImportsCheck", 52, 3], ["disabledTests", 54, 3], ["makeWrapperArgs", 65, 3], ["passthru", 73, 3], ["meta", 75, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const cdxgen = nix.arg($, "cdxgen");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "dep-scan",
       version: "6.3.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "owasp-dep-scan",
           repo: "dep-scan",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -71,14 +67,14 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`--prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [cdxgen]))}`),
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           "dep-scan": nix.thunk(() => nix.attr(nixosTests, "dep-scan")),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Security and risk audit tool based on known vulnerabilities, advisories, and license limitations for project dependencies",
         homepage: "https://github.com/owasp-dep-scan/dep-scan",
         changelog: nix.thunk(() => nix.str`https://github.com/owasp-dep-scan/dep-scan/releases/tag/v${nix.sel(finalAttrs, "version")}`),

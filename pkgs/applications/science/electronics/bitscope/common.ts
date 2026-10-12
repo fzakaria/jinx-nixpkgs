@@ -2,12 +2,9 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/common.nix", [[["homepage", 35, 9], ["sourceProvenance", 36, 9], ["license", 37, 9], ["platforms", 38, 9]], [["version", 28, 21], ["src", 28, 29], ["name", 30, 5], ["meta", 32, 5], ["nativeBuildInputs", 42, 5], ["libs", 47, 5], ["dontBuild", 58, 5], ["unpackPhase", 60, 5], ["installPhase", 65, 5]], [["pname", 74, 3], ["version", 75, 19], ["runScript", 76, 3]], [["meta", 79, 17], ["name", 79, 22]]]);
 const formals$1 = { args: { atk: false, buildFHSEnv: false, cairo: false, dpkg: false, "gdk-pixbuf": false, glib: false, "gtk2-x11": false, makeWrapper: false, pango: false, lib: false, stdenv: false, libx11: false }, ellipsis: false };
 const formals$2 = { args: { src: false, toolName: false, version: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/common.nix", [["homepage", 35, 9], ["sourceProvenance", 36, 9], ["license", 37, 9], ["platforms", 38, 9]]);
-const pos$2 = nix.positions(here + "/common.nix", [["version", 28, 21], ["src", 28, 29], ["name", 30, 5], ["meta", 32, 5], ["nativeBuildInputs", 42, 5], ["libs", 47, 5], ["dontBuild", 58, 5], ["unpackPhase", 60, 5], ["installPhase", 65, 5]]);
-const pos$3 = nix.positions(here + "/common.nix", [["pname", 74, 3], ["version", 75, 19], ["runScript", 76, 3]]);
-const pos$4 = nix.positions(here + "/common.nix", [["meta", 79, 17], ["name", 79, 22]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -37,7 +34,7 @@ export default nix.lambda((args) => (() => {
         const src_1 = nix.thunk(() => nix.attr(attrs, "src"));
         const name = nix.thunk(() => nix.str`${toolName}-${version_1}`);
         const meta = nix.thunk(() => nix.update({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           homepage: "http://bitscope.com/software/",
           sourceProvenance: nix.thunk(() => (() => {
             const w = nix.withScope(nix.thunk(() => nix.sel(lib, "sourceTypes")), null);
@@ -56,7 +53,7 @@ cp -a usr/* "$out/"
 ${nix.app(wrapBinary, libs, nix.thunk(() => nix.sel(attrs, "toolName")))}
 `, "installPhase"));
         return {
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           version: version_1,
           src: src_1,
           name,
@@ -69,12 +66,12 @@ ${nix.app(wrapBinary, libs, nix.thunk(() => nix.sel(attrs, "toolName")))}
         };
       })())));
     return nix.update(nix.app(buildFHSEnv, nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname: nix.thunk(() => nix.sel(attrs, "toolName")),
         version: nix.thunk(() => nix.attr(attrs, "version")),
         runScript: nix.thunk(() => nix.str`${nix.sel(pkg, "outPath")}/bin/${nix.sel(attrs, "toolName")}`),
       }))), {
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       meta: nix.thunk(() => nix.attr(pkg, "meta")),
       name: nix.thunk(() => nix.attr(pkg, "name")),
     });

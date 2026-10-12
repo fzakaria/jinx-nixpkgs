@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]], [["extraArgs", 46, 47]], [["updateScript", 46, 12]], [["description", 49, 5], ["license", 50, 5], ["homepage", 51, 5], ["maintainers", 52, 5], ["platforms", 53, 5], ["mainProgram", 54, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["patches", 26, 3], ["strictDeps", 28, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 30, 3], ["installPhase", 37, 3], ["passthru", 46, 3], ["meta", 48, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, libGL: false, libiconv: false, libx11: false, openal: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["extraArgs", 46, 47]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 46, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 49, 5], ["license", 50, 5], ["homepage", 51, 5], ["maintainers", 52, 5], ["platforms", 53, 5], ["mainProgram", 54, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["patches", 26, 3], ["strictDeps", 28, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 30, 3], ["installPhase", 37, 3], ["passthru", 46, 3], ["meta", 48, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const openal = nix.arg($, "openal");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "cen64",
       version: "0.3-unstable-2025-10-26",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "n64dev",
           repo: "cen64",
           rev: "e0641c8452a3ae8edcd2bf4e46794bb4eaafc076",
@@ -43,11 +39,11 @@ install -D ${nix.sel(finalAttrs, "meta", "mainProgram")} \\
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$2, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: $pos[1], extraArgs: nix.thunk(() => ["--version=branch"]) })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Cycle-Accurate Nintendo 64 Emulator",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
         homepage: "https://github.com/n64dev/cen64",

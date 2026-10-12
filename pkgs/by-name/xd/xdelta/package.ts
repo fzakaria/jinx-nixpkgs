@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["sha256", 20, 5], ["rev", 21, 5], ["repo", 22, 5], ["owner", 23, 5]], [["description", 54, 5], ["longDescription", 55, 5], ["homepage", 61, 5], ["license", 62, 5], ["mainProgram", 63, 5], ["platforms", 64, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 27, 3], ["postPatch", 29, 3], ["configureFlags", 33, 3], ["enableParallelBuilding", 37, 3], ["doCheck", 39, 3], ["checkPhase", 40, 3], ["installPhase", 48, 3], ["meta", 53, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, autoreconfHook: false, lzmaSupport: true, xz: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["sha256", 20, 5], ["rev", 21, 5], ["repo", 22, 5], ["owner", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 54, 5], ["longDescription", 55, 5], ["homepage", 61, 5], ["license", 62, 5], ["mainProgram", 63, 5], ["platforms", 64, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 27, 3], ["postPatch", 29, 3], ["configureFlags", 33, 3], ["enableParallelBuilding", 37, 3], ["doCheck", 39, 3], ["checkPhase", 40, 3], ["installPhase", 48, 3], ["meta", 53, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +16,11 @@ export default nix.lambda((args) => (() => {
   nix.assert_((!nix.asBool(lzmaSupport) || nix.asBool(!nix.eq(xz, null))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/xd/xdelta/package.nix:10:1");
   const mkWith = (flag) => (name) => (nix.asBool(flag) ? nix.str`--with-${name}` : nix.str`--without-${name}`);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "xdelta",
       version: "3.1.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           sha256: "09mmsalc7dwlvgrda56s2k927rpl3a5dzfa88aslkqcjnr790wjy",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           repo: "xdelta-gpl",
@@ -37,7 +35,7 @@ export default nix.lambda((args) => (() => {
       checkPhase: "mkdir $PWD/tmp\nfor i in testing/file.h xdelta3-test.h; do\n  substituteInPlace $i --replace /tmp $PWD/tmp\ndone\n./xdelta3regtest\n",
       installPhase: "install -D -m755 xdelta3 $out/bin/xdelta3\ninstall -D -m644 xdelta3.1 $out/share/man/man1/xdelta3.1\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Binary differential compression in VCDIFF (RFC 3284) format",
         longDescription: "xdelta is a command line program for delta encoding, which generates two\nfile differences. This is similar to diff and patch, but it is targeted\nfor binary files and does not generate human readable output.\n",
         homepage: "https://github.com/jmacd/xdelta",

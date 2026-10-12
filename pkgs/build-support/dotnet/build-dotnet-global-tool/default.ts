@@ -2,11 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 34, 9], ["version", 35, 17], ["sha256", 36, 9], ["hash", 37, 9], ["installable", 38, 9]], [["updateScript", 73, 9], ["nupkg", 74, 9]], [["pname", 44, 9], ["version", 45, 9], ["dotnet-runtime", 46, 9], ["executables", 47, 9], ["src", 50, 7], ["buildInputs", 52, 7], ["dotnetGlobalTool", 54, 7], ["useDotnetFromEnv", 56, 7], ["dontBuild", 58, 7], ["installPhase", 60, 7], ["passthru", 72, 7]]]);
 const formals$1 = { args: { buildDotnetModule: false, emptyDirectory: false, fetchNupkg: false, "dotnet-sdk": false, lib: false }, ellipsis: false };
 const formals$2 = { args: { pname: false, version: false, nugetName: true, nugetHash: true, nugetSha256: true, nugetDeps: true, executables: true, "dotnet-runtime": true }, ellipsis: true };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 34, 9], ["version", 35, 17], ["sha256", 36, 9], ["hash", 37, 9], ["installable", 38, 9]]);
-const pos$2 = nix.positions(here + "/default.nix", [["updateScript", 73, 9], ["nupkg", 74, 9]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 44, 9], ["version", 45, 9], ["dotnet-runtime", 46, 9], ["executables", 47, 9], ["src", 50, 7], ["buildInputs", 52, 7], ["dotnetGlobalTool", 54, 7], ["useDotnetFromEnv", 56, 7], ["dontBuild", 58, 7], ["installPhase", 60, 7], ["passthru", 72, 7]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const executables = nix.argOr($_1, "executables", () => nix.force(pname));
       const dotnet_runtime = nix.argOr($_1, "dotnet-runtime", () => nix.force(dotnet_sdk));
       const nupkg = nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: nugetName,
           version: version,
           sha256: nugetSha256,
@@ -35,7 +33,7 @@ export default nix.lambda((args) => (() => {
           installable: true,
         }))));
       return nix.update(args_2, {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname: pname,
         version: version,
         "dotnet-runtime": dotnet_runtime,
@@ -55,7 +53,11 @@ find $out -name '.nupkg.metadata' -delete
 
 runHook postInstall
 `),
-        passthru: nix.thunk(() => nix.update({ [nix.POS]: pos$2, updateScript: nix.path(here, "./update.sh"), nupkg: nupkg }, nix.selOr(args_2, () => ({}), "passthru"))),
+        passthru: nix.thunk(() => nix.update({
+          [nix.POS]: $pos[1],
+          updateScript: nix.path(here, "./update.sh"),
+          nupkg: nupkg,
+        }, nix.selOr(args_2, () => ({}), "passthru"))),
       });
     })(), formals$2), nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "isFunction"), fnOrAttrs)) ? nix.app(fnOrAttrs, finalAttrs) : nix.force(fnOrAttrs)))));
 })(), formals$1);

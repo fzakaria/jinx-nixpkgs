@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 16, 5], ["rev", 17, 5], ["hash", 18, 5]], [["homepage", 45, 5], ["description", 46, 5], ["license", 47, 5], ["platforms", 48, 5], ["mainProgram", 49, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["patches", 21, 3], ["postPatch", 27, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 37, 3], ["configureFlags", 42, 3], ["meta", 44, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchgit: false, autoreconfHook: false, "pkg-config": false, ncurses: false, readline: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 16, 5], ["rev", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 45, 5], ["description", 46, 5], ["license", 47, 5], ["platforms", 48, 5], ["mainProgram", 49, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["patches", 21, 3], ["postPatch", 27, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 37, 3], ["configureFlags", 42, 3], ["meta", 44, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const ncurses = nix.arg($, "ncurses");
   const readline = nix.arg($, "readline");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "abook",
       version: "0.6.2",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://git.code.sf.net/p/abook/git",
           rev: nix.thunk(() => nix.str`ver_${nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => ["_"]), nix.thunk(() => nix.sel(finalAttrs, "version")))}`),
           hash: "sha256-aV57Ob6KN6/eNPrxxmNOy/qfhG687uVy5WY0cd4daCU=",
@@ -32,7 +30,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [ncurses, readline]),
       configureFlags: nix.thunk(() => ["CFLAGS=-std=gnu17"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "http://abook.sourceforge.net/",
         description: "Text-based addressbook program designed to use with mutt mail client",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

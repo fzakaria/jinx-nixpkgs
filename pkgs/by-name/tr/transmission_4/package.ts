@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 50, 46]], [["owner", 71, 5], ["repo", 72, 5], ["tag", 73, 5], ["hash", 74, 5], ["fetchSubmodules", 75, 5]], [["CLANG_MODULE_CACHE_PATH", 95, 7]], [["apparmor", 218, 5], ["smoke-test", 219, 5]], [["tests", 217, 12]], [["description", 223, 5], ["mainProgram", 224, 5], ["longDescription", 233, 5], ["homepage", 244, 5], ["maintainers", 245, 5], ["license", 246, 5], ["platforms", 250, 5]], [["pname", 67, 3], ["version", 68, 3], ["src", 70, 3], ["strictDeps", 78, 3], ["__structuredAttrs", 79, 3], ["doCheck", 80, 3], ["patches", 82, 3], ["outputs", 86, 3], ["env", 95, 3], ["cmakeFlags", 97, 3], ["postPatch", 115, 3], ["nativeBuildInputs", 142, 3], ["buildInputs", 155, 3], ["postInstall", 189, 3], ["passthru", 217, 3], ["meta", 222, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, cmake: false, "pkg-config": false, python3: false, openssl: false, curl: false, libevent: false, "inotify-tools": false, systemdLibs: false, zlib: false, rapidjson: false, small: false, libb64: false, libutp_3_4: false, libdeflate: false, utf8cpp: false, "fast-float": false, fmt: false, libpsl: false, miniupnpc: false, dht: false, libnatpmp: false, enableGTK: true, gtkmm4: false, "libpthread-stubs": false, "libayatana-appindicator": false, wrapGAppsHook4: false, enableQt: true, enableMac: true, qt6Packages: false, nixosTests: false, enableSystemd: true, enableDaemon: true, enableCli: true, installLib: true, apparmorRulesFromClosure: false, ibtool: false, actool: false, coreutils: false, makeWrapper: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 50, 46]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 71, 5], ["repo", 72, 5], ["tag", 73, 5], ["hash", 74, 5], ["fetchSubmodules", 75, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["CLANG_MODULE_CACHE_PATH", 95, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["apparmor", 218, 5], ["smoke-test", 219, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["tests", 217, 12]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 223, 5], ["mainProgram", 224, 5], ["longDescription", 233, 5], ["homepage", 244, 5], ["maintainers", 245, 5], ["license", 246, 5], ["platforms", 250, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 67, 3], ["version", 68, 3], ["src", 70, 3], ["strictDeps", 78, 3], ["__structuredAttrs", 79, 3], ["doCheck", 80, 3], ["patches", 82, 3], ["outputs", 86, 3], ["env", 95, 3], ["cmakeFlags", 97, 3], ["postPatch", 115, 3], ["nativeBuildInputs", 142, 3], ["buildInputs", 155, 3], ["postInstall", 189, 3], ["passthru", 217, 3], ["meta", 222, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -58,13 +52,13 @@ export default nix.lambda((args) => (() => {
   const cmakeBool = nix.thunk(() => nix.attr(lib, "cmakeBool"));
   const optionals = nix.thunk(() => nix.attr(lib, "optionals"));
   const optionalString = nix.thunk(() => nix.attr(lib, "optionalString"));
-  const apparmorRules = nix.thunk(() => nix.app(apparmorRulesFromClosure, nix.thunk(() => ({ [nix.POS]: pos$1, name: "transmission-daemon" })), nix.thunk(() => nix.concat([curl, libdeflate, libevent, libnatpmp, libpsl, miniupnpc, openssl, zlib], nix.concat(nix.app(optionals, enableSystemd, nix.thunk(() => [systemdLibs])), nix.app(optionals, nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [inotify_tools])))))));
+  const apparmorRules = nix.thunk(() => nix.app(apparmorRulesFromClosure, nix.thunk(() => ({ [nix.POS]: $pos[0], name: "transmission-daemon" })), nix.thunk(() => nix.concat([curl, libdeflate, libevent, libnatpmp, libpsl, miniupnpc, openssl, zlib], nix.concat(nix.app(optionals, enableSystemd, nix.thunk(() => [systemdLibs])), nix.app(optionals, nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [inotify_tools])))))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "transmission",
       version: "4.1.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "transmission",
           repo: "transmission",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -76,7 +70,7 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       patches: nix.thunk(() => [nix.path(here, "./0001-Skip-bundle-fixup.patch")]),
       outputs: nix.thunk(() => nix.concat(["out"], nix.app(optionals, nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => ["apparmor"])))),
-      env: nix.thunk(() => ({ [nix.POS]: pos$3, CLANG_MODULE_CACHE_PATH: "/tmp/clang_module_cache" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[2], CLANG_MODULE_CACHE_PATH: "/tmp/clang_module_cache" })),
       cmakeFlags: nix.thunk(() => nix.concat([
         nix.thunk(() => nix.app(cmakeBool, "ENABLE_CLI", enableCli)),
         nix.thunk(() => nix.app(cmakeBool, "ENABLE_DAEMON", enableDaemon)),
@@ -141,15 +135,15 @@ EOF
 install -Dm0444 -t $out/share/icons ../icons/hicolor_apps_scalable_transmission.svg
 `)), nix.app(optionalString, enableMac, "makeWrapper $out/Applications/Transmission.app/Contents/MacOS/Transmission $out/bin/transmission-mac\n"))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           apparmor: nix.thunk(() => nix.sel(nixosTests, "transmission_4")),
           "smoke-test": nix.thunk(() => nix.sel(nixosTests, "bittorrent")),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Fast, easy and free BitTorrent client",
         mainProgram: nix.thunk(() => (nix.asBool(enableQt) ? "transmission-qt" : (nix.asBool(enableGTK) ? "transmission-gtk" : (nix.asBool(enableMac) ? "transmission-mac" : "transmission-cli")))),
         longDescription: "Transmission is a BitTorrent client which features a simple interface\non top of a cross-platform back-end.\nFeature spotlight:\n  * Uses fewer resources than other clients\n  * Native Mac, GTK and Qt GUI clients\n  * Daemon ideal for servers, embedded systems, and headless use\n  * All these can be remote controlled by Web and Terminal clients\n  * Bluetack (PeerGuardian) blocklists with automatic updates\n  * Full encryption, DHT, and PEX support\n",

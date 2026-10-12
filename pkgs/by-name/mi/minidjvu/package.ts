@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 14, 5], ["sha256", 15, 5]], [["homepage", 32, 5], ["description", 33, 5], ["license", 34, 5], ["maintainers", 35, 5], ["platforms", 36, 5], ["mainProgram", 37, 5], ["knownVulnerabilities", 38, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["patchPhase", 18, 3], ["buildInputs", 22, 3], ["preInstall", 27, 3], ["meta", 31, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, libtiff: false, gettext: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 14, 5], ["sha256", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 32, 5], ["description", 33, 5], ["license", 34, 5], ["maintainers", 35, 5], ["platforms", 36, 5], ["mainProgram", 37, 5], ["knownVulnerabilities", 38, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["patchPhase", 18, 3], ["buildInputs", 22, 3], ["preInstall", 27, 3], ["meta", 31, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "minidjvu";
       const version = "0.8";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/minidjvu/minidjvu-${version}.tar.gz`),
           sha256: "0jmpvy4g68k6xgplj9zsl6brg6vi81mx3nx2x9hfbr1f4zh95j79",
         }))));
@@ -26,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const buildInputs = nix.thunk(() => [libtiff, gettext]);
       const preInstall = "mkdir -p $out/lib\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://djvu.sourceforge.net/djview4.html",
         description: "Black-and-white djvu page encoder and decoder that use interpage information",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
@@ -38,7 +36,7 @@ export default nix.lambda((args) => (() => {
         ]),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

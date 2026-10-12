@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 16, 5], ["hash", 17, 5]], [["license", 25, 8]], [["pname", 9, 3], ["version", 10, 3], ["outputs", 13, 3], ["src", 15, 3], ["extraNativeBuildInputs", 20, 3], ["meta", 25, 3]]]);
 const formals$1 = { args: { lib: false, mkKdeDerivation: false, fetchurl: false, bison: false, flex: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["license", 25, 8]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 9, 3], ["version", 10, 3], ["outputs", 13, 3], ["src", 15, 3], ["extraNativeBuildInputs", 20, 3], ["meta", 25, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,13 +17,13 @@ export default nix.lambda((args) => (() => {
       const version = "2.4.0";
       const outputs = nix.thunk(() => ["out"]);
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://kde/stable/kdevelop-pg-qt/${version}/src/kdevelop-pg-qt-${version}.tar.xz`),
           hash: "sha256-rL62HIL116ot3PoY477l4lWRBpcL1tFG1GyV+NAnu4Y=",
         }))));
       const extraNativeBuildInputs = nix.thunk(() => [bison, flex]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         license: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "licenses")), null);
           return [
@@ -38,7 +36,15 @@ export default nix.lambda((args) => (() => {
           ];
         })()),
       }));
-      return { [nix.POS]: pos$3, pname, version, outputs, src, extraNativeBuildInputs, meta };
+      return {
+        [nix.POS]: $pos[2],
+        pname,
+        version,
+        outputs,
+        src,
+        extraNativeBuildInputs,
+        meta,
+      };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

@@ -2,12 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/mpvacious.nix", [[["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["sha256", 19, 5]], [["rev-prefix", 21, 40]], [["updateScript", 21, 12], ["scriptName", 38, 12]], [["description", 41, 5], ["homepage", 42, 5], ["license", 43, 5], ["maintainers", 44, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["passthru", 21, 3], ["postPatch", 23, 3], ["installPhase", 32, 3], ["meta", 40, 3]]]);
 const formals$1 = { args: { lib: false, buildLua: false, fetchFromGitHub: false, gitUpdater: false, curl: false, "wl-clipboard": false, xclip: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/mpvacious.nix", [["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["sha256", 19, 5]]);
-const pos$2 = nix.positions(here + "/mpvacious.nix", [["rev-prefix", 21, 40]]);
-const pos$3 = nix.positions(here + "/mpvacious.nix", [["updateScript", 21, 12], ["scriptName", 38, 12]]);
-const pos$4 = nix.positions(here + "/mpvacious.nix", [["description", 41, 5], ["homepage", 42, 5], ["license", 43, 5], ["maintainers", 44, 5]]);
-const pos$5 = nix.positions(here + "/mpvacious.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["passthru", 21, 3], ["postPatch", 23, 3], ["installPhase", 32, 3], ["meta", 40, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,15 +18,15 @@ export default nix.lambda((args) => (() => {
       const pname = "mpvacious";
       const version = "26.1.26.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Ajatt-Tools",
           repo: "mpvacious",
           rev: nix.thunk(() => nix.str`v${version}`),
           sha256: "sha256-I0h9tf1pwCkWPn/6t2mxhe4MPx6GsPR+F5F29NAgdXI=",
         }))));
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, "rev-prefix": "v" })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[1], "rev-prefix": "v" })))),
         scriptName: "mpvacious",
       }));
       const postPatch = nix.thunk(() => nix.str`substituteInPlace utils/forvo.lua \\
@@ -42,7 +38,7 @@ substituteInPlace platform/nix.lua \\
 `);
       const installPhase = "runHook preInstall\nmake PREFIX=$out/share/mpv install\nrunHook postInstall\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Adds mpv keybindings to create Anki cards from movies and TV shows",
         homepage: "https://github.com/Ajatt-Tools/mpvacious",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
@@ -52,7 +48,7 @@ substituteInPlace platform/nix.lua \\
         })()),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         src,

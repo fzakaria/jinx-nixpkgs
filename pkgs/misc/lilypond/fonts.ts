@@ -2,27 +2,9 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/fonts.nix", [[["rev", 23, 17], ["sha256", 23, 21], ["owner", 24, 9], ["repo", 25, 9]], [["homepage", 47, 33], ["platforms", 47, 42], ["description", 48, 9], ["license", 49, 9], ["maintainers", 50, 9]], [["version", 19, 15], ["pname", 20, 7], ["src", 22, 7], ["installPhase", 28, 7], ["meta", 46, 7]], [["fontName", 58, 5], ["rev", 59, 5], ["sha256", 60, 5]], [["fontName", 63, 5], ["rev", 64, 5], ["sha256", 65, 5]], [["fontName", 68, 5], ["rev", 69, 5], ["sha256", 70, 5]], [["fontName", 73, 5], ["rev", 74, 5], ["sha256", 75, 5]], [["fontName", 78, 5], ["rev", 79, 5], ["sha256", 80, 5]], [["fontName", 83, 5], ["rev", 84, 5], ["sha256", 85, 5]], [["fontName", 88, 5], ["rev", 89, 5], ["sha256", 90, 5]], [["fontName", 93, 5], ["rev", 94, 5], ["sha256", 95, 5]], [["fontName", 98, 5], ["rev", 99, 5], ["sha256", 100, 5]], [["fontName", 103, 5], ["rev", 104, 5], ["sha256", 105, 5]], [["fontName", 108, 5], ["rev", 109, 5], ["sha256", 110, 5]], [["fontName", 113, 5], ["rev", 114, 5], ["sha256", 115, 5]], [["fontName", 118, 5], ["rev", 119, 5], ["sha256", 120, 5]], [["fontName", 123, 5], ["rev", 124, 5], ["sha256", 125, 5]], [["fontName", 128, 5], ["rev", 129, 5], ["sha256", 130, 5]], [["beethoven", 57, 3], ["bravura", 62, 3], ["cadence", 67, 3], ["gonville", 72, 3], ["gutenberg1939", 77, 3], ["haydn", 82, 3], ["improviso", 87, 3], ["lilyboulez", 92, 3], ["lilyjazz", 97, 3], ["lv-goldenage", 102, 3], ["paganini", 107, 3], ["profondo", 112, 3], ["ross", 117, 3], ["scorlatti", 122, 3], ["sebastiano", 127, 3], ["all", 133, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, lilypond: false }, ellipsis: false };
 const formals$2 = { args: { fontName: false, rev: false, sha256: false, version: true }, ellipsis: true };
-const pos$1 = nix.positions(here + "/fonts.nix", [["rev", 23, 17], ["sha256", 23, 21], ["owner", 24, 9], ["repo", 25, 9]]);
-const pos$2 = nix.positions(here + "/fonts.nix", [["homepage", 47, 33], ["platforms", 47, 42], ["description", 48, 9], ["license", 49, 9], ["maintainers", 50, 9]]);
-const pos$3 = nix.positions(here + "/fonts.nix", [["version", 19, 15], ["pname", 20, 7], ["src", 22, 7], ["installPhase", 28, 7], ["meta", 46, 7]]);
-const pos$4 = nix.positions(here + "/fonts.nix", [["fontName", 58, 5], ["rev", 59, 5], ["sha256", 60, 5]]);
-const pos$5 = nix.positions(here + "/fonts.nix", [["fontName", 63, 5], ["rev", 64, 5], ["sha256", 65, 5]]);
-const pos$6 = nix.positions(here + "/fonts.nix", [["fontName", 68, 5], ["rev", 69, 5], ["sha256", 70, 5]]);
-const pos$7 = nix.positions(here + "/fonts.nix", [["fontName", 73, 5], ["rev", 74, 5], ["sha256", 75, 5]]);
-const pos$8 = nix.positions(here + "/fonts.nix", [["fontName", 78, 5], ["rev", 79, 5], ["sha256", 80, 5]]);
-const pos$9 = nix.positions(here + "/fonts.nix", [["fontName", 83, 5], ["rev", 84, 5], ["sha256", 85, 5]]);
-const pos$10 = nix.positions(here + "/fonts.nix", [["fontName", 88, 5], ["rev", 89, 5], ["sha256", 90, 5]]);
-const pos$11 = nix.positions(here + "/fonts.nix", [["fontName", 93, 5], ["rev", 94, 5], ["sha256", 95, 5]]);
-const pos$12 = nix.positions(here + "/fonts.nix", [["fontName", 98, 5], ["rev", 99, 5], ["sha256", 100, 5]]);
-const pos$13 = nix.positions(here + "/fonts.nix", [["fontName", 103, 5], ["rev", 104, 5], ["sha256", 105, 5]]);
-const pos$14 = nix.positions(here + "/fonts.nix", [["fontName", 108, 5], ["rev", 109, 5], ["sha256", 110, 5]]);
-const pos$15 = nix.positions(here + "/fonts.nix", [["fontName", 113, 5], ["rev", 114, 5], ["sha256", 115, 5]]);
-const pos$16 = nix.positions(here + "/fonts.nix", [["fontName", 118, 5], ["rev", 119, 5], ["sha256", 120, 5]]);
-const pos$17 = nix.positions(here + "/fonts.nix", [["fontName", 123, 5], ["rev", 124, 5], ["sha256", 125, 5]]);
-const pos$18 = nix.positions(here + "/fonts.nix", [["fontName", 128, 5], ["rev", 129, 5], ["sha256", 130, 5]]);
-const pos$19 = nix.positions(here + "/fonts.nix", [["beethoven", 57, 3], ["bravura", 62, 3], ["cadence", 67, 3], ["gonville", 72, 3], ["gutenberg1939", 77, 3], ["haydn", 82, 3], ["improviso", 87, 3], ["lilyboulez", 92, 3], ["lilyjazz", 97, 3], ["lv-goldenage", 102, 3], ["paganini", 107, 3], ["profondo", 112, 3], ["ross", 117, 3], ["scorlatti", 122, 3], ["sebastiano", 127, 3], ["all", 133, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -37,11 +19,11 @@ export default nix.lambda((args) => (() => {
     const sha256 = nix.arg($_1, "sha256");
     const version = nix.argOr($_1, "version", () => nix.force(rev));
     return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         version: version,
         pname: nix.thunk(() => nix.str`openlilypond-font-${fontName}`),
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             rev: rev,
             sha256: sha256,
             owner: "OpenLilyPondFonts",
@@ -66,7 +48,7 @@ done
         meta: nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(lilypond, "meta"));
           return {
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           homepage: nix.thunk(() => nix.attr(from, "homepage")),
           platforms: nix.thunk(() => nix.attr(from, "platforms")),
           description: nix.thunk(() => nix.str`${fontName} font for LilyPond`),
@@ -81,91 +63,91 @@ done
   })(), formals$2);
   return (() => {
     const beethoven = nix.thunk(() => nix.app(olpFont, nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         fontName: "beethoven",
         rev: "669f400",
         sha256: "17wdklg5shmqwnb7b81qavfg52v32wx5yf15c6al0hbvv1nqqj2i",
       }))));
     const bravura = nix.thunk(() => nix.app(olpFont, nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         fontName: "bravura",
         rev: "53c7744",
         sha256: "1p27w1c3bzxlnm6rzq8n7dbfjwbxqjy4r0fhkmk9jbm8awmzw214",
       }))));
     const cadence = nix.thunk(() => nix.app(olpFont, nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         fontName: "cadence",
         rev: "1cc0fb7",
         sha256: "1zxb3m8glh8iwj8mzcgyaxhlq0bji0rwniw702m70h9kpifiim1j",
       }))));
     const gonville = nix.thunk(() => nix.app(olpFont, nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         fontName: "gonville",
         rev: "a638bc9",
         sha256: "15khy9677crgd6bpajn7l1drysgxy49wiym3b248khgpavidwyy9",
       }))));
     const gutenberg1939 = nix.thunk(() => nix.app(olpFont, nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         fontName: "gutenberg1939",
         rev: "2316a35",
         sha256: "1lkhivmrx92z37zfrb5mkhzhwggyaga9cm0wl89r0n2f2kayyc7q",
       }))));
     const haydn = nix.thunk(() => nix.app(olpFont, nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         fontName: "haydn",
         rev: "9e7de8b",
         sha256: "1jmbhb2jm887sdc498l2jilpivq1d8lmmgdb8lp59lv8d9fx105z",
       }))));
     const improviso = nix.thunk(() => nix.app(olpFont, nix.thunk(() => ({
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         fontName: "improviso",
         rev: "0753f5a",
         sha256: "1clin9c74gjhhira12mwxynxn4b1ixij5bg04mvk828lbr740mfm",
       }))));
     const lilyboulez = nix.thunk(() => nix.app(olpFont, nix.thunk(() => ({
-        [nix.POS]: pos$11,
+        [nix.POS]: $pos[10],
         fontName: "lilyboulez",
         rev: "e8455fc",
         sha256: "0mq92x0rbgfb6s7ipgg2zcxika2si30w3ay89rp7m6vwca01649y",
       }))));
     const lilyjazz = nix.thunk(() => nix.app(olpFont, nix.thunk(() => ({
-        [nix.POS]: pos$12,
+        [nix.POS]: $pos[11],
         fontName: "lilyjazz",
         rev: "8fa7d554",
         sha256: "1z7px7k2sn7snnj7yfjv0p9axwbn452vn9ww9icmb1249b0d1qry",
       }))));
     const lv_goldenage = nix.thunk(() => nix.app(olpFont, nix.thunk(() => ({
-        [nix.POS]: pos$13,
+        [nix.POS]: $pos[12],
         fontName: "lv-goldenage",
         rev: "8a92fd3",
         sha256: "03nbd1vmlaj7wkhsnl2lq09nafv7zj1k518zs966vclzah94qghp",
       }))));
     const paganini = nix.thunk(() => nix.app(olpFont, nix.thunk(() => ({
-        [nix.POS]: pos$14,
+        [nix.POS]: $pos[13],
         fontName: "paganini",
         rev: "8e4e55a",
         sha256: "0gw9wr4hfn205j40rpgnfddhzhn9x4pwfinamj5b7607880nvx29",
       }))));
     const profondo = nix.thunk(() => nix.app(olpFont, nix.thunk(() => ({
-        [nix.POS]: pos$15,
+        [nix.POS]: $pos[14],
         fontName: "profondo",
         rev: "8cfb668",
         sha256: "0armwbg9y0l935949b7klngws6fq42fi944lws61qvjl61780br8",
       }))));
     const ross = nix.thunk(() => nix.app(olpFont, nix.thunk(() => ({
-        [nix.POS]: pos$16,
+        [nix.POS]: $pos[15],
         fontName: "ross",
         rev: "aa8127f",
         sha256: "1w2x3pd1d1z4x0107dpq95v7m547cj4nkkzxgqpmzfqa0074idqd",
       }))));
     const scorlatti = nix.thunk(() => nix.app(olpFont, nix.thunk(() => ({
-        [nix.POS]: pos$17,
+        [nix.POS]: $pos[16],
         fontName: "scorlatti",
         rev: "1db87da",
         sha256: "07jam5hwdy6bydrm98cdla6p6rl8lmy8zzsfq46i55l64l3w956h",
       }))));
     const sebastiano = nix.thunk(() => nix.app(olpFont, nix.thunk(() => ({
-        [nix.POS]: pos$18,
+        [nix.POS]: $pos[17],
         fontName: "sebastiano",
         rev: "44bf262",
         sha256: "09i8p3p4z6vz69j187cpxvikkgc4pk6gxippahy0k7i7bh0d4qaj",
@@ -188,7 +170,7 @@ done
       sebastiano,
     ]);
     return {
-      [nix.POS]: pos$19,
+      [nix.POS]: $pos[18],
       beethoven,
       bravura,
       cadence,

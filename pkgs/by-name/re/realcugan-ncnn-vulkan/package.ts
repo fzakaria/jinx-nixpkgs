@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]], [["url", 26, 5], ["sha256", 27, 5]], [["description", 64, 5], ["homepage", 65, 5], ["license", 66, 5], ["maintainers", 67, 5], ["mainProgram", 68, 5], ["platforms", 69, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["sourceRoot", 23, 3], ["models", 25, 3], ["patches", 30, 3], ["cmakeFlags", 35, 3], ["nativeBuildInputs", 41, 3], ["buildInputs", 42, 3], ["postPatch", 50, 3], ["installPhase", 54, 3], ["meta", 63, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchzip: false, fetchFromGitHub: false, cmake: false, "vulkan-headers": false, "vulkan-loader": false, glslang: false, libwebp: false, ncnn: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 26, 5], ["sha256", 27, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 64, 5], ["homepage", 65, 5], ["license", 66, 5], ["maintainers", 67, 5], ["mainProgram", 68, 5], ["platforms", 69, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["sourceRoot", 23, 3], ["models", 25, 3], ["patches", 30, 3], ["cmakeFlags", 35, 3], ["nativeBuildInputs", 41, 3], ["buildInputs", 42, 3], ["postPatch", 50, 3], ["installPhase", 54, 3], ["meta", 63, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const pname = "realcugan-ncnn-vulkan";
       const version = "20220728";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "nihui",
           repo: "realcugan-ncnn-vulkan",
           rev: version,
@@ -32,7 +29,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const sourceRoot = nix.thunk(() => nix.str`${nix.sel(src, "name")}/src`);
       const models = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: "https://github.com/nihui/realcugan-ncnn-vulkan/releases/download/20220728/realcugan-ncnn-vulkan-20220728-ubuntu.zip",
           sha256: "sha256-71C6taL2Zr1exG5HEXOLy1j9ZMKgkMJjTgNi2hiA7xk=",
         }))));
@@ -53,7 +50,7 @@ cp -r ${models}/models-{nose,pro,se} $out/share
 runHook postInstall
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Real-cugan converter ncnn version, runs fast on intel / amd / nvidia / apple-silicon GPU with vulkan",
         homepage: "https://github.com/nihui/realcugan-ncnn-vulkan",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -65,7 +62,7 @@ runHook postInstall
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

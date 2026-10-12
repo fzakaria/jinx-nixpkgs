@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 61, 5], ["repo", 62, 5], ["tag", 63, 5], ["hash", 64, 5]], [["avro", 72, 5], ["json-fast", 77, 5], ["json", 80, 5], ["oauthbearer-aws", 85, 5], ["protobuf", 88, 5], ["rules", 92, 5], ["schema-registry", 107, 5]], [["extraArgs", 154, 7]], [["updateScript", 153, 5]], [["description", 159, 5], ["homepage", 160, 5], ["changelog", 161, 5], ["license", 162, 5], ["maintainers", 163, 5]], [["pname", 55, 3], ["version", 56, 3], ["pyproject", 57, 3], ["__structuredAttrs", 58, 3], ["src", 60, 3], ["buildInputs", 67, 3], ["build-system", 69, 3], ["optional-dependencies", 71, 3], ["__darwinAllowLocalNetworking", 117, 3], ["nativeCheckInputs", 119, 3], ["pythonImportsCheck", 130, 3], ["disabledTestPaths", 132, 3], ["passthru", 152, 3], ["meta", 158, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, rdkafka: false, setuptools: false, avro: false, fastavro: false, requests: false, orjson: false, jsonschema: false, pyrsistent: false, boto3: false, protobuf: false, "azure-identity": false, "azure-keyvault-keys": false, "cel-python": false, "google-auth": false, "google-api-core": false, "google-cloud-kms": false, "google-re2": false, hvac: false, pyyaml: false, attrs: false, authlib: false, cachetools: false, certifi: false, httpx: false, pyflakes: false, "pytest-asyncio": false, pytestCheckHook: false, "requests-mock": false, respx: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 61, 5], ["repo", 62, 5], ["tag", 63, 5], ["hash", 64, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["avro", 72, 5], ["json-fast", 77, 5], ["json", 80, 5], ["oauthbearer-aws", 85, 5], ["protobuf", 88, 5], ["rules", 92, 5], ["schema-registry", 107, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["extraArgs", 154, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["updateScript", 153, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["description", 159, 5], ["homepage", 160, 5], ["changelog", 161, 5], ["license", 162, 5], ["maintainers", 163, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 55, 3], ["version", 56, 3], ["pyproject", 57, 3], ["__structuredAttrs", 58, 3], ["src", 60, 3], ["buildInputs", 67, 3], ["build-system", 69, 3], ["optional-dependencies", 71, 3], ["__darwinAllowLocalNetworking", 117, 3], ["nativeCheckInputs", 119, 3], ["pythonImportsCheck", 130, 3], ["disabledTestPaths", 132, 3], ["passthru", 152, 3], ["meta", 158, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -46,13 +41,13 @@ export default nix.lambda((args) => (() => {
   const respx = nix.arg($, "respx");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "confluent-kafka",
       version: "2.15.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "confluentinc",
           repo: "confluent-kafka-python",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -61,7 +56,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [rdkafka]),
       "build-system": nix.thunk(() => [setuptools]),
       "optional-dependencies": nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         avro: nix.thunk(() => [avro, fastavro, requests]),
         "json-fast": nix.thunk(() => [orjson]),
         json: nix.thunk(() => [jsonschema, pyrsistent, requests]),
@@ -109,14 +104,14 @@ export default nix.lambda((args) => (() => {
         "tests/test_Consumer.py::test_callback_exception_no_system_error",
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             extraArgs: nix.thunk(() => ["--version-regex=^v([0-9.]+)$"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Confluent's Apache Kafka client for Python",
         homepage: "https://github.com/confluentinc/confluent-kafka-python",
         changelog: nix.thunk(() => nix.str`https://github.com/confluentinc/confluent-kafka-python/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

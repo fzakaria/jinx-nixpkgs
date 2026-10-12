@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 52, 5], ["repo", 53, 5], ["tag", 54, 5], ["hash", 55, 5]], [["CFLAGS", 104, 5], ["NIX_CFLAGS_COMPILE", 105, 5]], [["description", 117, 5], ["mainProgram", 118, 5], ["homepage", 119, 5], ["license", 120, 5], ["maintainers", 121, 5], ["platforms", 122, 5]], [["pname", 48, 3], ["version", 49, 3], ["src", 51, 3], ["nativeBuildInputs", 58, 3], ["buildInputs", 67, 3], ["env", 103, 3], ["postInstall", 108, 3], ["meta", 116, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, intltool: false, installShellFiles: false, "pkg-config": false, fetchFromGitHub: false, "dbus-glib": false, "desktop-file-utils": false, "hicolor-icon-theme": false, sqlite: false, taglib: false, zlib: false, gtk3: false, libpeas: false, libcddb: false, libcdio: false, gst_all_1: false, libsForQt5: false, withGstPlugins: true, glyr: false, withGlyr: true, "liblastfm-vambrose": false, withLastfm: true, "libcdio-paranoia": false, withCD: true, keybinder3: false, withKeybinder: true, libnotify: false, withLibnotify: true, libgudev: false, withGudev: true, libmtp: false, withMtp: true, libxfce4ui: false, "xfce4-dev-tools": false, withXfce4ui: true, "totem-pl-parser": false, withTotemPlParser: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 52, 5], ["repo", 53, 5], ["tag", 54, 5], ["hash", 55, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["CFLAGS", 104, 5], ["NIX_CFLAGS_COMPILE", 105, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 117, 5], ["mainProgram", 118, 5], ["homepage", 119, 5], ["license", 120, 5], ["maintainers", 121, 5], ["platforms", 122, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 48, 3], ["version", 49, 3], ["src", 51, 3], ["nativeBuildInputs", 58, 3], ["buildInputs", 67, 3], ["env", 103, 3], ["postInstall", 108, 3], ["meta", 116, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -51,11 +48,11 @@ export default nix.lambda((args) => (() => {
   nix.assert_((!nix.asBool(withGlyr) || nix.asBool(withLastfm)), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/pr/pragha/package.nix:44:1");
   nix.assert_((!nix.asBool(withLastfm) || nix.asBool(withCD)), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/pr/pragha/package.nix:45:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "pragha",
       version: "1.3.99.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "pragha-music-player",
           repo: "pragha",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -89,13 +86,13 @@ export default nix.lambda((args) => (() => {
           ])), nix.concat(nix.app(nix.sel(lib, "optionals"), withCD, nix.thunk(() => [libcddb, libcdio, libcdio_paranoia])), nix.concat(nix.app(nix.sel(lib, "optional"), withGudev, libgudev), nix.concat(nix.app(nix.sel(lib, "optional"), withKeybinder, keybinder3), nix.concat(nix.app(nix.sel(lib, "optional"), withLibnotify, libnotify), nix.concat(nix.app(nix.sel(lib, "optional"), withLastfm, liblastfm_vambrose), nix.concat(nix.app(nix.sel(lib, "optional"), withGlyr, glyr), nix.concat(nix.app(nix.sel(lib, "optional"), withMtp, libmtp), nix.concat(nix.app(nix.sel(lib, "optional"), withXfce4ui, libxfce4ui), nix.app(nix.sel(lib, "optional"), withTotemPlParser, totem_pl_parser)))))))))));
       })()),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         CFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-DHAVE_PARANOIA_NEW_INCLUDES"]))),
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.str`-I${nix.app(nix.sel(lib, "getDev"), nix.thunk(() => nix.sel(gst_all_1, "gst-plugins-base")))}/include/gstreamer-1.0`),
       })),
       postInstall: "qtWrapperArgs+=(--prefix GST_PLUGIN_SYSTEM_PATH_1_0 : \"$GST_PLUGIN_SYSTEM_PATH_1_0\")\n\ninstall -m 444 data/pragha.desktop $out/share/applications\ninstall -d $out/share/pixmaps\ninstallManPage data/pragha.1\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Lightweight GTK+ music manager - fork of Consonance Music Manager",
         mainProgram: "pragha",
         homepage: "https://pragha-music-player.github.io/",

@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 18, 5], ["exec", 19, 5], ["comment", 20, 5], ["desktopName", 21, 5], ["icon", 22, 5], ["categories", 23, 5]], [["url", 27, 5], ["hash", 28, 5]], [["url", 44, 5], ["hash", 45, 5]], [["updateScript", 70, 12]], [["description", 73, 5], ["mainProgram", 74, 5], ["homepage", 75, 5], ["maintainers", 76, 5], ["sourceProvenance", 77, 5], ["license", 78, 5], ["platforms", 79, 5]], [["pname", 40, 3], ["version", 41, 11], ["src", 43, 3], ["dontUnpack", 48, 3], ["nativeBuildInputs", 50, 3], ["installPhase", 55, 3], ["desktopItems", 68, 3], ["passthru", 70, 3], ["meta", 72, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, copyDesktopItems: false, makeDesktopItem: false, makeWrapper: false, jre: false, libGL: false, libpulseaudio: false, libxxf86vm: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 18, 5], ["exec", 19, 5], ["comment", 20, 5], ["desktopName", 21, 5], ["icon", 22, 5], ["categories", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 27, 5], ["hash", 28, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 44, 5], ["hash", 45, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 70, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 73, 5], ["mainProgram", 74, 5], ["homepage", 75, 5], ["maintainers", 76, 5], ["sourceProvenance", 77, 5], ["license", 78, 5], ["platforms", 79, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 40, 3], ["version", 41, 11], ["src", 43, 3], ["dontUnpack", 48, 3], ["nativeBuildInputs", 50, 3], ["installPhase", 55, 3], ["desktopItems", 68, 3], ["passthru", 70, 3], ["meta", 72, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,7 +20,7 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const version = "4.22.5";
   const desktopItem = nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: "unciv",
       exec: "unciv",
       comment: "An open-source Android/Desktop remake of Civ V",
@@ -34,7 +29,7 @@ export default nix.lambda((args) => (() => {
       categories: nix.thunk(() => ["Game"]),
     }))));
   const desktopIcon = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       url: nix.thunk(() => nix.str`https://github.com/yairm210/Unciv/blob/${version}/extraImages/Icons/Unciv%20icon%20v6.png?raw=true`),
       hash: "sha256-Zuz+HGfxjGviGBKTiHdIFXF8UMRLEIfM8f+LIB/xonk=",
     }))));
@@ -43,7 +38,7 @@ export default nix.lambda((args) => (() => {
       const pname = "unciv";
       const version_1 = version;
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           url: nix.thunk(() => nix.str`https://github.com/yairm210/Unciv/releases/download/${version_1}/Unciv.jar`),
           hash: "sha256-fIdv48YxqcKlBNhflhwUkhBkBs9q7pbc8PQ3bwqRXYg=",
         }))));
@@ -62,11 +57,11 @@ runHook postInstall
 `);
       const desktopItems = nix.thunk(() => [desktopItem]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Open-source Android/Desktop remake of Civ V",
         mainProgram: "unciv",
         homepage: "https://github.com/yairm210/Unciv",
@@ -82,7 +77,7 @@ runHook postInstall
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
       return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname,
         version: version_1,
         src,

@@ -2,19 +2,17 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["composeXcodeWrapper", 6, 52]], [["composeXcodeWrapper", 8, 58]], [["composeXcodeWrapper", 4, 3], ["buildApp", 6, 3], ["simulateApp", 8, 3]]]);
 const formals$1 = { args: { callPackage: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["composeXcodeWrapper", 6, 52]]);
-const pos$2 = nix.positions(here + "/default.nix", [["composeXcodeWrapper", 8, 58]]);
-const pos$3 = nix.positions(here + "/default.nix", [["composeXcodeWrapper", 4, 3], ["buildApp", 6, 3], ["simulateApp", 8, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const callPackage = nix.arg($, "callPackage");
   return (() => {
     const composeXcodeWrapper = nix.thunk(() => nix.app(callPackage, nix.path(here, "./compose-xcodewrapper.nix"), nix.thunk(() => ({}))));
-    const buildApp = nix.thunk(() => nix.app(callPackage, nix.path(here, "./build-app.nix"), nix.thunk(() => ({ [nix.POS]: pos$1, composeXcodeWrapper: composeXcodeWrapper }))));
-    const simulateApp = nix.thunk(() => nix.app(callPackage, nix.path(here, "./simulate-app.nix"), nix.thunk(() => ({ [nix.POS]: pos$2, composeXcodeWrapper: composeXcodeWrapper }))));
-    return { [nix.POS]: pos$3, composeXcodeWrapper, buildApp, simulateApp };
+    const buildApp = nix.thunk(() => nix.app(callPackage, nix.path(here, "./build-app.nix"), nix.thunk(() => ({ [nix.POS]: $pos[0], composeXcodeWrapper: composeXcodeWrapper }))));
+    const simulateApp = nix.thunk(() => nix.app(callPackage, nix.path(here, "./simulate-app.nix"), nix.thunk(() => ({ [nix.POS]: $pos[1], composeXcodeWrapper: composeXcodeWrapper }))));
+    return { [nix.POS]: $pos[2], composeXcodeWrapper, buildApp, simulateApp };
   })();
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

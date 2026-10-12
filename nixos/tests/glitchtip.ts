@@ -2,34 +2,10 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/glitchtip.nix", [[["maintainers", 10, 8]], [["createLocally", 20, 15], ["domain", 21, 15]], [["GLITCHTIP_DOMAIN", 22, 18], ["CSRF_TRUSTED_ORIGINS", 23, 18]], [["enable", 19, 9], ["nginx", 20, 9], ["settings", 22, 9], ["environmentFiles", 24, 9]], [["forceSSL", 31, 45]], [["virtualHosts", 31, 22]], [["glitchtip", 18, 16], ["nginx", 31, 16]], [["systemPackages", 33, 19]], [["127.0.0.1", 35, 24]], [["hosts", 35, 18]], [["services", 18, 7], ["environment", 33, 7], ["networking", 35, 7]], [["machine", 15, 9]], [["enable", 38, 27]], [["graphics", 39, 39]], [["virtualisation", 39, 24]], [["allowedTCPPorts", 42, 25]], [["firewall", 42, 16]], [["port", 46, 14]], [["port", 47, 15]], [["from", 45, 9], ["host", 46, 9], ["guest", 47, 9]], [["forwardPorts", 43, 20]], [["networking", 42, 5], ["virtualisation", 43, 5]], [["machine", 41, 21]], [["sshBackdoor", 38, 15], ["defaults", 39, 15], ["nodes", 41, 15]], [["name", 9, 3], ["meta", 10, 3], ["nodes", 15, 3], ["interactive", 38, 3], ["testScript", 52, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/glitchtip.nix", [["maintainers", 10, 8]]);
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/glitchtip.nix", [["createLocally", 20, 15], ["domain", 21, 15]]);
-const pos$3 = nix.positions(here + "/glitchtip.nix", [["GLITCHTIP_DOMAIN", 22, 18], ["CSRF_TRUSTED_ORIGINS", 23, 18]]);
-const pos$4 = nix.positions(here + "/glitchtip.nix", [["enable", 19, 9], ["nginx", 20, 9], ["settings", 22, 9], ["environmentFiles", 24, 9]]);
-const pos$5 = nix.positions(here + "/glitchtip.nix", [["forceSSL", 31, 45]]);
-const pos$6 = nix.positions(here + "/glitchtip.nix", [["virtualHosts", 31, 22]]);
-const pos$7 = nix.positions(here + "/glitchtip.nix", [["glitchtip", 18, 16], ["nginx", 31, 16]]);
-const pos$8 = nix.positions(here + "/glitchtip.nix", [["systemPackages", 33, 19]]);
-const pos$9 = nix.positions(here + "/glitchtip.nix", [["127.0.0.1", 35, 24]]);
-const pos$10 = nix.positions(here + "/glitchtip.nix", [["hosts", 35, 18]]);
-const pos$11 = nix.positions(here + "/glitchtip.nix", [["services", 18, 7], ["environment", 33, 7], ["networking", 35, 7]]);
-const pos$12 = nix.positions(here + "/glitchtip.nix", [["machine", 15, 9]]);
-const pos$13 = nix.positions(here + "/glitchtip.nix", [["enable", 38, 27]]);
-const pos$14 = nix.positions(here + "/glitchtip.nix", [["graphics", 39, 39]]);
-const pos$15 = nix.positions(here + "/glitchtip.nix", [["virtualisation", 39, 24]]);
-const pos$16 = nix.positions(here + "/glitchtip.nix", [["allowedTCPPorts", 42, 25]]);
-const pos$17 = nix.positions(here + "/glitchtip.nix", [["firewall", 42, 16]]);
-const pos$18 = nix.positions(here + "/glitchtip.nix", [["port", 46, 14]]);
-const pos$19 = nix.positions(here + "/glitchtip.nix", [["port", 47, 15]]);
-const pos$20 = nix.positions(here + "/glitchtip.nix", [["from", 45, 9], ["host", 46, 9], ["guest", 47, 9]]);
-const pos$21 = nix.positions(here + "/glitchtip.nix", [["forwardPorts", 43, 20]]);
-const pos$22 = nix.positions(here + "/glitchtip.nix", [["networking", 42, 5], ["virtualisation", 43, 5]]);
-const pos$23 = nix.positions(here + "/glitchtip.nix", [["machine", 41, 21]]);
-const pos$24 = nix.positions(here + "/glitchtip.nix", [["sshBackdoor", 38, 15], ["defaults", 39, 15], ["nodes", 41, 15]]);
 const formals$3 = { args: { nodes: false }, ellipsis: true };
-const pos$25 = nix.positions(here + "/glitchtip.nix", [["name", 9, 3], ["meta", 10, 3], ["nodes", 15, 3], ["interactive", 38, 3], ["testScript", 52, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -37,10 +13,10 @@ export default nix.lambda((args) => (() => {
   const domain = "glitchtip.local";
   const url = nix.thunk(() => nix.str`http://${domain}`);
   return {
-    [nix.POS]: pos$25,
+    [nix.POS]: $pos[24],
     name: "glitchtip",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [
@@ -50,20 +26,20 @@ export default nix.lambda((args) => (() => {
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$12,
+      [nix.POS]: $pos[11],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$11,
+          [nix.POS]: $pos[10],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             glitchtip: nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               enable: true,
-              nginx: nix.thunk(() => ({ [nix.POS]: pos$2, createLocally: true, domain: domain })),
+              nginx: nix.thunk(() => ({ [nix.POS]: $pos[1], createLocally: true, domain: domain })),
               settings: nix.thunk(() => ({
-                [nix.POS]: pos$3,
+                [nix.POS]: $pos[2],
                 GLITCHTIP_DOMAIN: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), url)),
                 CSRF_TRUSTED_ORIGINS: nix.thunk(() => nix.str`${url},http://localhost:8000`),
               })),
@@ -72,44 +48,44 @@ export default nix.lambda((args) => (() => {
               ]),
             })),
             nginx: nix.thunk(() => ({
-              [nix.POS]: pos$6,
-              virtualHosts: nix.thunk(() => nix.attrsDyn({}, [[domain, nix.thunk(() => ({ [nix.POS]: pos$5, forceSSL: false }))]])),
+              [nix.POS]: $pos[5],
+              virtualHosts: nix.thunk(() => nix.attrsDyn({}, [[domain, nix.thunk(() => ({ [nix.POS]: $pos[4], forceSSL: false }))]])),
             })),
           })),
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$8,
+            [nix.POS]: $pos[7],
             systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "sentry-cli"))]),
           })),
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$10,
-            hosts: nix.thunk(() => ({ [nix.POS]: pos$9, "127.0.0.1": nix.thunk(() => [domain]) })),
+            [nix.POS]: $pos[9],
+            hosts: nix.thunk(() => ({ [nix.POS]: $pos[8], "127.0.0.1": nix.thunk(() => [domain]) })),
           })),
         };
       })(), formals$2),
     })),
     interactive: nix.thunk(() => ({
-      [nix.POS]: pos$24,
-      sshBackdoor: nix.thunk(() => ({ [nix.POS]: pos$13, enable: true })),
+      [nix.POS]: $pos[23],
+      sshBackdoor: nix.thunk(() => ({ [nix.POS]: $pos[12], enable: true })),
       defaults: nix.thunk(() => ({
-        [nix.POS]: pos$15,
-        virtualisation: nix.thunk(() => ({ [nix.POS]: pos$14, graphics: false })),
+        [nix.POS]: $pos[14],
+        virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[13], graphics: false })),
       })),
       nodes: nix.thunk(() => ({
-        [nix.POS]: pos$23,
+        [nix.POS]: $pos[22],
         machine: nix.thunk(() => ({
-          [nix.POS]: pos$22,
+          [nix.POS]: $pos[21],
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$17,
-            firewall: nix.thunk(() => ({ [nix.POS]: pos$16, allowedTCPPorts: nix.thunk(() => [80n]) })),
+            [nix.POS]: $pos[16],
+            firewall: nix.thunk(() => ({ [nix.POS]: $pos[15], allowedTCPPorts: nix.thunk(() => [80n]) })),
           })),
           virtualisation: nix.thunk(() => ({
-            [nix.POS]: pos$21,
+            [nix.POS]: $pos[20],
             forwardPorts: nix.thunk(() => [
               nix.thunk(() => ({
-                [nix.POS]: pos$20,
+                [nix.POS]: $pos[19],
                 from: "host",
-                host: nix.thunk(() => ({ [nix.POS]: pos$18, port: 8000n })),
-                guest: nix.thunk(() => ({ [nix.POS]: pos$19, port: 80n })),
+                host: nix.thunk(() => ({ [nix.POS]: $pos[17], port: 8000n })),
+                guest: nix.thunk(() => ({ [nix.POS]: $pos[18], port: 80n })),
               })),
             ]),
           })),

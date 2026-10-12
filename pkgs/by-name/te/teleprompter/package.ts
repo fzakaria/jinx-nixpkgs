@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]], [["updateScript", 52, 12]], [["description", 55, 5], ["homepage", 56, 5], ["changelog", 57, 5], ["license", 58, 5], ["mainProgram", 59, 5], ["maintainers", 60, 5]], [["pname", 21, 3], ["version", 22, 11], ["pyproject", 23, 3], ["src", 25, 3], ["nativeBuildInputs", 32, 3], ["pythonPath", 44, 3], ["buildInputs", 46, 3], ["dontWrapGApps", 48, 3], ["makeWrapperArgs", 50, 3], ["passthru", 52, 3], ["meta", 54, 3]]]);
 const formals$1 = { args: { lib: false, python3Packages: false, fetchFromGitHub: false, meson: false, ninja: false, "pkg-config": false, wrapGAppsHook4: false, gettext: false, glib: false, "desktop-file-utils": false, "appstream-glib": false, "gobject-introspection": false, libadwaita: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 52, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 55, 5], ["homepage", 56, 5], ["changelog", 57, 5], ["license", 58, 5], ["mainProgram", 59, 5], ["maintainers", 60, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 11], ["pyproject", 23, 3], ["src", 25, 3], ["nativeBuildInputs", 32, 3], ["pythonPath", 44, 3], ["buildInputs", 46, 3], ["dontWrapGApps", 48, 3], ["makeWrapperArgs", 50, 3], ["passthru", 52, 3], ["meta", 54, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,12 +23,12 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const version = "1.0.1";
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "teleprompter",
       version: version,
       pyproject: false,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Nokse22",
           repo: "teleprompter",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -53,11 +50,11 @@ export default nix.lambda((args) => (() => {
       dontWrapGApps: true,
       makeWrapperArgs: nix.thunk(() => ["${gappsWrapperArgs[@]}"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Stay on track during speeches",
         homepage: "https://github.com/Nokse22/teleprompter",
         changelog: nix.thunk(() => nix.str`https://github.com/Nokse22/teleprompter/releases/tag/v${version}`),

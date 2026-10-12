@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 28, 5], ["hash", 29, 5]], [["package", 48, 7], ["versionCheck", 49, 7]], [["pkg-config", 47, 5]], [["tests", 46, 12]], [["homepage", 54, 5], ["description", 55, 5], ["license", 56, 5], ["maintainers", 57, 5], ["pkgConfigModules", 58, 5]], [["pname", 21, 3], ["version", 22, 3], ["__structuredAttrs", 23, 3], ["src", 25, 3], ["strictDeps", 32, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 40, 3], ["passthru", 46, 3], ["meta", 53, 3]]]);
 const formals$1 = { args: { fetchurl: false, lib: false, libargon2: false, libfilezilla: false, meson: false, nettle: false, ninja: false, "pkg-config": false, stdenv: false, testers: false, autoreconfHook: false, gettext: false, gnutls: false, libiconv: false, libxcrypt: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 28, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["package", 48, 7], ["versionCheck", 49, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pkg-config", 47, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 46, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["homepage", 54, 5], ["description", 55, 5], ["license", 56, 5], ["maintainers", 57, 5], ["pkgConfigModules", 58, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 3], ["__structuredAttrs", 23, 3], ["src", 25, 3], ["strictDeps", 32, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 40, 3], ["passthru", 46, 3], ["meta", 53, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,12 +23,12 @@ export default nix.lambda((args) => (() => {
   const libiconv = nix.arg($, "libiconv");
   const libxcrypt = nix.arg($, "libxcrypt");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "fzssh",
       version: "1.4.0",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://sources.archlinux.org/other/packages/fzssh/fzssh-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-DFMXgpg2RATh/kzj1QJnzxI45StBSmpTNWvEOzeBEzg=",
         })))),
@@ -41,18 +36,18 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [meson, ninja, pkg_config]),
       buildInputs: nix.thunk(() => [libargon2, libfilezilla, nettle]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "hasPkgConfigModules"), nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               versionCheck: true,
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "https://lib.filezilla-project.org/",
         description: "SSH/SFTP library based on libfilezilla",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

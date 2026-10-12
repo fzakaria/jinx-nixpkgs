@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5]], [["homepage", 66, 5], ["description", 67, 5], ["mainProgram", 68, 5], ["maintainers", 69, 5], ["license", 73, 5], ["platforms", 74, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["postPatch", 27, 3], ["nativeBuildInputs", 31, 3], ["installPhase", 38, 3], ["doInstallCheck", 56, 3], ["nativeInstallCheckInputs", 57, 3], ["preVersionCheck", 60, 3], ["versionCheckProgramArg", 63, 3], ["meta", 65, 3]]]);
 const formals$1 = { args: { stdenv: false, autoreconfHook: false, lib: false, fetchFromGitHub: false, "util-linux": false, mergerfs: false, attr: false, makeWrapper: false, pandoc: false, coreutils: false, installShellFiles: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 66, 5], ["description", 67, 5], ["mainProgram", 68, 5], ["maintainers", 69, 5], ["license", 73, 5], ["platforms", 74, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["postPatch", 27, 3], ["nativeBuildInputs", 31, 3], ["installPhase", 38, 3], ["doInstallCheck", 56, 3], ["nativeInstallCheckInputs", 57, 3], ["preVersionCheck", 60, 3], ["versionCheckProgramArg", 63, 3], ["meta", 65, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const installShellFiles = nix.arg($, "installShellFiles");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "try",
       version: "0.2.0-unstable-2025-02-25",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "binpash",
           repo: "try",
           rev: "67052d8f20725f3cdc22ffaec33f7b7c14f1eb6b",
@@ -48,7 +46,7 @@ runHook postInstall
       preVersionCheck: "export version=0.2.0\n",
       versionCheckProgramArg: "-v",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/binpash/try",
         description: "Lets you run a command and inspect its effects before changing your live system",
         mainProgram: "try",

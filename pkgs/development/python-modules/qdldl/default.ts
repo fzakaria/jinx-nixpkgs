@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]], [["qdldl", 30, 15]], [["description", 56, 5], ["homepage", 57, 5], ["changelog", 58, 5], ["license", 59, 5], ["maintainers", 60, 5]], [["pname", 16, 3], ["version", 17, 3], ["pyproject", 18, 3], ["src", 20, 3], ["patches", 28, 3], ["dontUseCmakeConfigure", 34, 3], ["build-system", 36, 3], ["dependencies", 43, 3], ["propagatedBuildInputs", 48, 3], ["pythonImportsCheck", 52, 3], ["nativeCheckInputs", 53, 3], ["meta", 55, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, replaceVars: false, cmake: false, numpy: false, pybind11: false, setuptools: false, scipy: false, pytestCheckHook: false, qdldl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["qdldl", 30, 15]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 56, 5], ["homepage", 57, 5], ["changelog", 58, 5], ["license", 59, 5], ["maintainers", 60, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 16, 3], ["version", 17, 3], ["pyproject", 18, 3], ["src", 20, 3], ["patches", 28, 3], ["dontUseCmakeConfigure", 34, 3], ["build-system", 36, 3], ["dependencies", 43, 3], ["propagatedBuildInputs", 48, 3], ["pythonImportsCheck", 52, 3], ["nativeCheckInputs", 53, 3], ["meta", 55, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,14 +23,14 @@ export default nix.lambda((args) => (() => {
       const version = "0.1.7.post5";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "osqp",
           repo: "qdldl-python",
           tag: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-XHdvYWORHDYy/EIqmlmFQZwv+vK3I+rPIrvcEW1JyIw=",
         }))));
       const patches = nix.thunk(() => [
-        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./use-qdldl.patch"), nix.thunk(() => ({ [nix.POS]: pos$2, qdldl: qdldl })))),
+        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./use-qdldl.patch"), nix.thunk(() => ({ [nix.POS]: $pos[1], qdldl: qdldl })))),
       ]);
       const dontUseCmakeConfigure = true;
       const build_system = nix.thunk(() => [cmake, numpy, pybind11, setuptools]);
@@ -42,7 +39,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["qdldl"]);
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Python interface to the QDLDL",
         homepage: "https://github.com/osqp/qdldl-python",
         changelog: nix.thunk(() => nix.str`https://github.com/osqp/qdldl-python/releases/tag/${nix.sel(src, "tag")}`),
@@ -50,7 +47,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

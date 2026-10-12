@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 26, 5], ["hash", 27, 5]], [["NIX_CFLAGS_COMPILE", 52, 7]], [["description", 66, 5], ["longDescription", 68, 5], ["homepage", 76, 5], ["license", 78, 5], ["maintainers", 80, 5], ["platforms", 81, 5], ["broken", 83, 5]], [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 36, 3], ["qtWrapperArgs", 50, 3], ["env", 52, 3], ["doCheck", 63, 3], ["meta", 65, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, libxml2: false, freetype: false, libGLU: false, libGL: false, glew: false, qt5: false, autoPatchelfHook: false, python312: false, cmake: false, libjpeg: false, llvmPackages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 52, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 66, 5], ["longDescription", 68, 5], ["homepage", 76, 5], ["license", 78, 5], ["maintainers", 80, 5], ["platforms", 81, 5], ["broken", 83, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 36, 3], ["qtWrapperArgs", 50, 3], ["env", 52, 3], ["doCheck", 63, 3], ["meta", 65, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const pname = "tulip";
       const version = "5.7.4";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/auber/tulip-${version}_src.tar.gz`),
           hash: "sha256-7z21WkPi1v2AGishDmXZPAedMjgXPRnpUiHTzEnc5LY=",
         }))));
@@ -46,7 +43,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`--prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [python3]))}`),
       ]);
       const env = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.add("-fpermissive ", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => nix.builtins.toString(nix.thunk(() => [
               nix.thunk(() => nix.str`-I${python3}/include/${nix.sel(python3, "libPrefix")}`),
               "-Wno-format-security",
@@ -54,7 +51,7 @@ export default nix.lambda((args) => (() => {
       }));
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Visualization framework for the analysis and visualization of relational data",
         longDescription: "Tulip is an information visualization framework dedicated to the\nanalysis and visualization of relational data.  Tulip aims to\nprovide the developer with a complete library, supporting the design\nof interactive information visualization applications for relational\ndata that can be tailored to the problems he or she is addressing.\n",
         homepage: "http://tulip.labri.fr/",
@@ -64,7 +61,7 @@ export default nix.lambda((args) => (() => {
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

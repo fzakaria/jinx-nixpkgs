@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["description", 57, 5]], [["pname", 17, 3], ["version", 18, 21], ["src", 18, 29], ["format", 19, 3], ["dontBuild", 20, 3], ["__structuredAttrs", 21, 3], ["dependencies", 23, 3], ["installPhase", 31, 3], ["pythonImportsCheck", 46, 3], ["nativeCheckInputs", 48, 3], ["preCheck", 52, 3], ["meta", 56, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, finufft: false, python: false, numpy: false, packaging: false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["description", 57, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 17, 3], ["version", 18, 21], ["src", 18, 29], ["format", 19, 3], ["dontBuild", 20, 3], ["__structuredAttrs", 21, 3], ["dependencies", 23, 3], ["installPhase", 31, 3], ["pythonImportsCheck", 46, 3], ["nativeCheckInputs", 48, 3], ["preCheck", 52, 3], ["meta", 56, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const packaging = nix.arg($, "packaging");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "finufft",
       version: nix.thunk(() => nix.attr(finufft, "version")),
       src: nix.thunk(() => nix.attr(finufft, "src")),
@@ -40,7 +39,7 @@ runHook postInstall
       pythonImportsCheck: nix.thunk(() => ["finufft"]),
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
       preCheck: "cd python/finufft/test\n",
-      meta: nix.thunk(() => nix.update(nix.sel(finufft, "meta"), { [nix.POS]: pos$1, description: "Python interface to FINUFFT" })),
+      meta: nix.thunk(() => nix.update(nix.sel(finufft, "meta"), { [nix.POS]: $pos[0], description: "Python interface to FINUFFT" })),
     }));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

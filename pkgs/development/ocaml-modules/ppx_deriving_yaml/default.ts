@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["version", 17, 9], ["hash", 18, 9]], [["version", 22, 9], ["hash", 23, 9]], [["NIX_CFLAGS_COMPILE", 36, 9]], [["url", 40, 5], ["hash", 41, 21]], [["description", 58, 5], ["homepage", 59, 5], ["license", 60, 5], ["maintainers", 61, 5]], [["pname", 28, 3], ["version", 29, 19], ["env", 31, 3], ["src", 39, 3], ["propagatedBuildInputs", 44, 3], ["doCheck", 50, 3], ["checkInputs", 51, 3], ["nativeCheckInputs", 55, 3], ["meta", 57, 3]]]);
 const formals$1 = { args: { lib: false, buildDunePackage: false, ocaml: false, fetchurl: false, ppxlib: false, alcotest: false, mdx: false, ppx_deriving: false, yaml: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["version", 17, 9], ["hash", 18, 9]]);
-const pos$2 = nix.positions(here + "/default.nix", [["version", 22, 9], ["hash", 23, 9]]);
-const pos$3 = nix.positions(here + "/default.nix", [["NIX_CFLAGS_COMPILE", 36, 9]]);
-const pos$4 = nix.positions(here + "/default.nix", [["url", 40, 5], ["hash", 41, 21]]);
-const pos$5 = nix.positions(here + "/default.nix", [["description", 58, 5], ["homepage", 59, 5], ["license", 60, 5], ["maintainers", 61, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 28, 3], ["version", 29, 19], ["env", 31, 3], ["src", 39, 3], ["propagatedBuildInputs", 44, 3], ["doCheck", 50, 3], ["checkInputs", 51, 3], ["nativeCheckInputs", 55, 3], ["meta", 57, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,21 +17,21 @@ export default nix.lambda((args) => (() => {
   const ppx_deriving = nix.arg($, "ppx_deriving");
   const yaml = nix.arg($, "yaml");
   const param = nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(ppxlib, "version")), "0.36")) ? {
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     version: "0.4.1",
     hash: "sha256-3CvvMEOq/3I3WJ6X5EyopiaMjshZoEMPk2K4Lx0ldSo=",
   } : {
-    [nix.POS]: pos$2,
+    [nix.POS]: $pos[1],
     version: "0.4.0",
     hash: "sha256-MVwCFAZY9Ui1gOckfbbj882w2aloHCGmJhpL1BDUEAg=",
   }));
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "ppx_deriving_yaml",
       version: nix.thunk(() => nix.attr(param, "version")),
-      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(nix.eq(nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(ocaml, "version"))), "4.13")) || nix.asBool(nix.eq(nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(ocaml, "version"))), "5.0")))), nix.thunk(() => ({ [nix.POS]: pos$3, NIX_CFLAGS_COMPILE: "-std=gnu11" })))),
+      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(nix.eq(nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(ocaml, "version"))), "4.13")) || nix.asBool(nix.eq(nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(ocaml, "version"))), "5.0")))), nix.thunk(() => ({ [nix.POS]: $pos[2], NIX_CFLAGS_COMPILE: "-std=gnu11" })))),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           url: nix.thunk(() => nix.str`https://github.com/patricoferris/ppx_deriving_yaml/releases/download/v${nix.sel(finalAttrs, "version")}/ppx_deriving_yaml-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: nix.thunk(() => nix.attr(param, "hash")),
         })))),
@@ -45,7 +40,7 @@ export default nix.lambda((args) => (() => {
       checkInputs: nix.thunk(() => [alcotest, mdx]),
       nativeCheckInputs: nix.thunk(() => [nix.thunk(() => nix.sel(mdx, "bin"))]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "YAML codec generator for OCaml",
         homepage: "https://github.com/patricoferris/ppx_deriving_yaml",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),

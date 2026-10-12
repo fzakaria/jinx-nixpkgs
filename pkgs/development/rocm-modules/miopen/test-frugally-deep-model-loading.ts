@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/test-frugally-deep-model-loading.nix", [[["description", 45, 5], ["teams", 46, 5], ["platforms", 47, 5]], [["pname", 13, 3], ["version", 14, 11], ["src", 14, 19], ["dontConfigure", 16, 3], ["dontInstall", 17, 3], ["doCheck", 18, 3], ["buildPhase", 20, 3], ["checkPhase", 34, 3], ["meta", 44, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, eigen: false, "frugally-deep": false, functionalplus: false, nlohmann_json: false, src: false, version: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/test-frugally-deep-model-loading.nix", [["description", 45, 5], ["teams", 46, 5], ["platforms", 47, 5]]);
-const pos$2 = nix.positions(here + "/test-frugally-deep-model-loading.nix", [["pname", 13, 3], ["version", 14, 11], ["src", 14, 19], ["dontConfigure", 16, 3], ["dontInstall", 17, 3], ["doCheck", 18, 3], ["buildPhase", 20, 3], ["checkPhase", 34, 3], ["meta", 44, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const src = nix.arg($, "src");
   const version = nix.arg($, "version");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "miopen-frugally-deep-model-test",
       version: version,
       src: src,
@@ -45,7 +44,7 @@ mkdir -p $out
 runHook postCheck
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Test that frugally-deep can load MIOpen model files",
         teams: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "teams")), null);

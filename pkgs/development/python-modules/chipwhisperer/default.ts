@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 38, 5], ["repo", 39, 5], ["tag", 40, 5], ["hash", 41, 5]], [["description", 104, 5], ["homepage", 105, 5], ["changelog", 106, 5], ["license", 107, 5], ["maintainers", 108, 5], ["broken", 109, 5]], [["pname", 34, 3], ["version", 35, 3], ["src", 37, 3], ["pyproject", 44, 3], ["build-system", 46, 3], ["nativeBuildInputs", 51, 3], ["pythonRelaxDeps", 55, 3], ["dependencies", 59, 3], ["nativeInstallCheckInputs", 69, 3], ["postInstall", 73, 3], ["pythonImportsCheck", 87, 3], ["nativeCheckInputs", 89, 3], ["enabledTestPaths", 94, 3], ["disabledTests", 101, 3], ["meta", 103, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, "setuptools-scm": false, cython: false, colorama: false, configobj: false, ecpy: false, fastdtw: false, libusb1: false, pyserial: false, tqdm: false, udevCheckHook: false, writableTmpDirAsHomeHook: false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 38, 5], ["repo", 39, 5], ["tag", 40, 5], ["hash", 41, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 104, 5], ["homepage", 105, 5], ["changelog", 106, 5], ["license", 107, 5], ["maintainers", 108, 5], ["broken", 109, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 34, 3], ["version", 35, 3], ["src", 37, 3], ["pyproject", 44, 3], ["build-system", 46, 3], ["nativeBuildInputs", 51, 3], ["pythonRelaxDeps", 55, 3], ["dependencies", 59, 3], ["nativeInstallCheckInputs", 69, 3], ["postInstall", 73, 3], ["pythonImportsCheck", 87, 3], ["nativeCheckInputs", 89, 3], ["enabledTestPaths", 94, 3], ["disabledTests", 101, 3], ["meta", 103, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const pname = "chipwhisperer";
       const version = "5.7.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "newaetech",
           repo: "chipwhisperer",
           tag: version,
@@ -47,7 +45,7 @@ export default nix.lambda((args) => (() => {
       const enabledTestPaths = nix.thunk(() => ["tests/test_api.py"]);
       const disabledTests = nix.thunk(() => ["TestCPA"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Toolchain for side-channel power analysis and glitching attacks",
         homepage: "https://github.com/newaetech/chipwhisperer",
         changelog: nix.thunk(() => nix.str`https://github.com/newaetech/chipwhisperer/releases/tag/${version}`),
@@ -56,7 +54,7 @@ export default nix.lambda((args) => (() => {
         broken: true,
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

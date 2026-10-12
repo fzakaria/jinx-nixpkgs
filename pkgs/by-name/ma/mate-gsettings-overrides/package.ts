@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["preferLocalBuild", 15, 41]]]);
 const formals$1 = { args: { lib: false, runCommand: false, "gsettings-desktop-schemas": false, "mate-wayland-session": false, glib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["preferLocalBuild", 15, 41]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const mate_wayland_session = nix.arg($, "mate-wayland-session");
   const glib = nix.arg($, "glib");
   const gsettingsOverridePackages = nix.thunk(() => [gsettings_desktop_schemas, mate_wayland_session]);
-  return nix.app(runCommand, "mate-gsettings-overrides", nix.thunk(() => ({ [nix.POS]: pos$1, preferLocalBuild: true })), nix.thunk(() => nix.str`data_dir="$out/share/gsettings-schemas/nixos-gsettings-overrides"
+  return nix.app(runCommand, "mate-gsettings-overrides", nix.thunk(() => ({ [nix.POS]: $pos[0], preferLocalBuild: true })), nix.thunk(() => nix.str`data_dir="$out/share/gsettings-schemas/nixos-gsettings-overrides"
 schema_dir="$data_dir/glib-2.0/schemas"
 mkdir -p "$schema_dir"
 

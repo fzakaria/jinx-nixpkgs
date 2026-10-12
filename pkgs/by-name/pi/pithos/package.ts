@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]], [["broken", 70, 5], ["description", 71, 5], ["mainProgram", 72, 5], ["homepage", 73, 5], ["license", 74, 5], ["maintainers", 75, 5]], [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["pyproject", 31, 3], ["postPatch", 33, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 47, 3], ["propagatedBuildInputs", 61, 3], ["meta", 69, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, meson: false, ninja: false, "pkg-config": false, "appstream-glib": false, glib: false, wrapGAppsHook3: false, python3Packages: false, gtk3: false, "adwaita-icon-theme": false, "gobject-introspection": false, libnotify: false, libsecret: false, gst_all_1: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["broken", 70, 5], ["description", 71, 5], ["mainProgram", 72, 5], ["homepage", 73, 5], ["license", 74, 5], ["maintainers", 75, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["pyproject", 31, 3], ["postPatch", 33, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 47, 3], ["propagatedBuildInputs", 61, 3], ["meta", 69, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const libsecret = nix.arg($, "libsecret");
   const gst_all_1 = nix.arg($, "gst_all_1");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "pithos",
       version: "1.6.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "pithos",
           repo: "pithos",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -64,7 +62,7 @@ export default nix.lambda((args) => (() => {
         ];
       })())),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
         description: "Pandora Internet Radio player for GNOME",
         mainProgram: "pithos",

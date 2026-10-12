@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 25, 5], ["repo", 26, 5], ["rev", 27, 5], ["hash", 28, 5]], [["extraArgs", 53, 47]], [["example", 55, 18]], [["updateScript", 53, 12], ["tests", 55, 12]], [["description", 72, 5], ["mainProgram", 73, 5], ["homepage", 74, 5], ["license", 75, 5], ["maintainers", 76, 5], ["teams", 77, 5], ["platforms", 78, 5]], [["pname", 15, 3], ["version", 16, 3], ["outputs", 18, 3], ["src", 24, 3], ["strictDeps", 31, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 38, 3], ["cmakeFlags", 44, 3], ["doCheck", 51, 3], ["passthru", 53, 3], ["meta", 71, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, ninja: false, sdl3: false, "spirv-cross": false, "directx-shader-compiler": false, "nix-update-script": false, runCommand: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 25, 5], ["repo", 26, 5], ["rev", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["extraArgs", 53, 47]]);
-const pos$3 = nix.positions(here + "/package.nix", [["example", 55, 18]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 53, 12], ["tests", 55, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 72, 5], ["mainProgram", 73, 5], ["homepage", 74, 5], ["license", 75, 5], ["maintainers", 76, 5], ["teams", 77, 5], ["platforms", 78, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["outputs", 18, 3], ["src", 24, 3], ["strictDeps", 31, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 38, 3], ["cmakeFlags", 44, 3], ["doCheck", 51, 3], ["passthru", 53, 3], ["meta", 71, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const runCommand = nix.arg($, "runCommand");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "sdl3-shadercross",
       version: "0-unstable-2026-09-03",
       outputs: nix.thunk(() => ["out", "lib", "dev"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "libsdl-org",
           repo: "SDL_shadercross",
           rev: "1ff05bec573988a98ef9e0260b4da44f512b8367",
@@ -45,10 +40,10 @@ export default nix.lambda((args) => (() => {
       ]),
       doCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$2, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
+        [nix.POS]: $pos[3],
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: $pos[1], extraArgs: nix.thunk(() => ["--version=branch"]) })))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           example: nix.thunk(() => nix.app(runCommand, "compile-spv-example", nix.thunk(() => ({})), nix.thunk(() => nix.str`cat > example.vert.hlsl << EOF
 struct Input
 {
@@ -66,7 +61,7 @@ touch $out
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Shader translation library",
         mainProgram: "shadercross",
         homepage: "https://github.com/libsdl-org/SDL_shadercross",

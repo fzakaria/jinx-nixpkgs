@@ -2,13 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 13, 5], ["repo", 14, 5], ["tag", 15, 5], ["hash", 16, 5]], [["LLVM_CONFIG", 31, 7]], [["src", 43, 5], ["options", 44, 5]], [["crystalline", 42, 19]], [["description", 61, 5], ["mainProgram", 62, 5], ["homepage", 63, 5], ["license", 64, 5], ["maintainers", 65, 5]], [["pname", 20, 3], ["version", 21, 11], ["src", 21, 19], ["format", 23, 3], ["shardsFile", 24, 3], ["nativeBuildInputs", 26, 3], ["env", 31, 3], ["preConfigure", 33, 3], ["doCheck", 39, 3], ["doInstallCheck", 40, 3], ["crystalBinaries", 42, 3], ["postInstall", 52, 3], ["meta", 60, 3]]]);
 const formals$1 = { args: { lib: false, crystal: false, fetchFromGitHub: false, llvmPackages: false, openssl: false, makeWrapper: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 13, 5], ["repo", 14, 5], ["tag", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["LLVM_CONFIG", 31, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["src", 43, 5], ["options", 44, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["crystalline", 42, 19]]);
-const pos$5 = nix.positions(here + "/default.nix", [["description", 61, 5], ["mainProgram", 62, 5], ["homepage", 63, 5], ["license", 64, 5], ["maintainers", 65, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 20, 3], ["version", 21, 11], ["src", 21, 19], ["format", 23, 3], ["shardsFile", 24, 3], ["nativeBuildInputs", 26, 3], ["env", 31, 3], ["preConfigure", 33, 3], ["doCheck", 39, 3], ["doInstallCheck", 40, 3], ["crystalBinaries", 42, 3], ["postInstall", 52, 3], ["meta", 60, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,14 +15,14 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const version = "0.18.0";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "elbywan",
       repo: "crystalline",
       tag: nix.thunk(() => nix.str`v${version}`),
       hash: "sha256-Z5qVm1ovhMUccS9KSp8i7UowxxgEr9OvnJRYREaNmnM=",
     }))));
   return nix.app(nix.sel(crystal, "buildCrystalPackage"), nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "crystalline",
       version: version,
       src: src,
@@ -35,7 +30,7 @@ export default nix.lambda((args) => (() => {
       shardsFile: nix.path(here, "./shards.nix"),
       nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(llvmPackages, "llvm")), openssl, makeWrapper]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         LLVM_CONFIG: nix.thunk(() => nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.app(nix.sel(lib, "getDev"), nix.thunk(() => nix.sel(llvmPackages, "llvm")))), "llvm-config")),
       })),
       preConfigure: nix.thunk(() => nix.str`substituteInPlace "./src/crystalline/main.cr" \\
@@ -45,9 +40,9 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       doInstallCheck: false,
       crystalBinaries: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         crystalline: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           src: "src/crystalline.cr",
           options: nix.thunk(() => ["--release", "--no-debug", "--progress", "-Dpreview_mt"]),
         })),
@@ -57,7 +52,7 @@ export default nix.lambda((args) => (() => {
         ]))}'
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Language Server Protocol implementation for Crystal",
         mainProgram: "crystalline",
         homepage: "https://github.com/elbywan/crystalline",

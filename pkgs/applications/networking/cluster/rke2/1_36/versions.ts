@@ -2,10 +2,10 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
-const pos$1 = nix.positions(here + "/versions.nix", [["rke2Version", 2, 3], ["rke2Commit", 3, 3], ["rke2TarballHash", 4, 3], ["rke2VendorHash", 5, 3], ["k8sImageTag", 6, 3], ["etcdVersion", 7, 3], ["pauseVersion", 8, 3], ["ccmVersion", 9, 3], ["dockerizedVersion", 10, 3], ["helmJobVersion", 11, 3], ["imagesVersions", 12, 3]]);
+const $pos = nix.positions(here + "/versions.nix", [[["rke2Version", 2, 3], ["rke2Commit", 3, 3], ["rke2TarballHash", 4, 3], ["rke2VendorHash", 5, 3], ["k8sImageTag", 6, 3], ["etcdVersion", 7, 3], ["pauseVersion", 8, 3], ["ccmVersion", 9, 3], ["dockerizedVersion", 10, 3], ["helmJobVersion", 11, 3], ["imagesVersions", 12, 3]]]);
 
 export default nix.thunk(() => ({
-  [nix.POS]: pos$1,
+  [nix.POS]: $pos[0],
   rke2Version: "1.36.4+rke2r1",
   rke2Commit: "7479a59cdd2c8ce0b8871699a24daa4b7c28cc64",
   rke2TarballHash: "sha256-VO7epe6yWZ1RMN/mhJ3ZkERigHW1gEcRw+K/kmtEpA4=",

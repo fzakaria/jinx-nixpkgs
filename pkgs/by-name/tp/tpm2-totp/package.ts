@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5]], [["description", 44, 5], ["homepage", 45, 5], ["changelog", 46, 5], ["license", 47, 5], ["mainProgram", 48, 5], ["platforms", 49, 5], ["maintainers", 50, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["preConfigure", 26, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 37, 3], ["meta", 43, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, "tpm2-tss": false, autoreconfHook: false, "autoconf-archive": false, pandoc: false, "pkg-config": false, withPlymouth: true, plymouth: false, qrencode: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 44, 5], ["homepage", 45, 5], ["changelog", 46, 5], ["license", 47, 5], ["mainProgram", 48, 5], ["platforms", 49, 5], ["maintainers", 50, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["preConfigure", 26, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 37, 3], ["meta", 43, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const plymouth = nix.arg($, "plymouth");
   const qrencode = nix.arg($, "qrencode");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "tpm2-totp",
       version: "0.3.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "tpm2-software",
           repo: "tpm2-totp",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,7 +33,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [autoreconfHook, autoconf_archive, pandoc, pkg_config]),
       buildInputs: nix.thunk(() => nix.concat([tpm2_tss, qrencode], nix.app(nix.sel(lib, "optional"), withPlymouth, plymouth))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Attest the trustworthiness of a device against a human using time-based one-time passwords",
         homepage: "https://github.com/tpm2-software/tpm2-totp",
         changelog: nix.thunk(() => nix.str`https://github.com/tpm2-software/tpm2-totp/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG.md`),

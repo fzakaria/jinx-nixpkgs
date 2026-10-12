@@ -2,26 +2,18 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["description", 25, 11], ["maintainers", 26, 42]], [["nativeBuildInputs", 17, 9], ["meta", 24, 9]], [["description", 151, 11], ["maintainers", 152, 41]], [["nativeBuildInputs", 146, 9], ["meta", 150, 9]], [["description", 229, 11], ["maintainers", 230, 42]], [["nativeBuildInputs", 224, 9], ["meta", 228, 9]], [["description", 316, 11], ["maintainers", 317, 43]], [["nativeBuildInputs", 308, 9], ["meta", 315, 9]], [["test-bash", 4, 3], ["test-csh", 135, 3], ["test-fish", 214, 3], ["test-posix", 294, 3]]]);
 const formals$1 = { args: { callPackage: false }, ellipsis: false };
 const formals$2 = { args: { lib: false, runCommandLocal: false, bash: false, hello: false, ksh: false, patchRcPathBash: false, shellcheck: false, zsh: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["description", 25, 11], ["maintainers", 26, 42]]);
-const pos$2 = nix.positions(here + "/default.nix", [["nativeBuildInputs", 17, 9], ["meta", 24, 9]]);
 const formals$3 = { args: { lib: false, runCommandLocal: false, gnused: false, hello: false, patchRcPathCsh: false, tcsh: false }, ellipsis: false };
-const pos$3 = nix.positions(here + "/default.nix", [["description", 151, 11], ["maintainers", 152, 41]]);
-const pos$4 = nix.positions(here + "/default.nix", [["nativeBuildInputs", 146, 9], ["meta", 150, 9]]);
 const formals$4 = { args: { lib: false, runCommandLocal: false, fish: false, hello: false, patchRcPathFish: false }, ellipsis: false };
-const pos$5 = nix.positions(here + "/default.nix", [["description", 229, 11], ["maintainers", 230, 42]]);
-const pos$6 = nix.positions(here + "/default.nix", [["nativeBuildInputs", 224, 9], ["meta", 228, 9]]);
 const formals$5 = { args: { lib: false, runCommandLocal: false, bash: false, dash: false, gnused: false, hello: false, ksh: false, patchRcPathPosix: false, shellcheck: false }, ellipsis: false };
-const pos$7 = nix.positions(here + "/default.nix", [["description", 316, 11], ["maintainers", 317, 43]]);
-const pos$8 = nix.positions(here + "/default.nix", [["nativeBuildInputs", 308, 9], ["meta", 315, 9]]);
-const pos$9 = nix.positions(here + "/default.nix", [["test-bash", 4, 3], ["test-csh", 135, 3], ["test-fish", 214, 3], ["test-posix", 294, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const callPackage = nix.arg($, "callPackage");
   return {
-    [nix.POS]: pos$9,
+    [nix.POS]: $pos[8],
     "test-bash": nix.thunk(() => nix.app(callPackage, nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const lib = nix.arg($_1, "lib");
@@ -33,12 +25,12 @@ export default nix.lambda((args) => (() => {
         const shellcheck = nix.arg($_1, "shellcheck");
         const zsh = nix.arg($_1, "zsh");
         return nix.app(runCommandLocal, "patch-rc-path-bash-test", nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             nativeBuildInputs: nix.thunk(() => [bash, ksh, patchRcPathBash, shellcheck, zsh]),
             meta: nix.thunk(() => (() => {
               const from = nix.thunk(() => nix.sel(patchRcPathBash, "meta"));
               return {
-              [nix.POS]: pos$1,
+              [nix.POS]: $pos[0],
               description: "Package test of patchActivateBash",
               maintainers: nix.thunk(() => nix.attr(from, "maintainers")),
             };
@@ -156,12 +148,12 @@ touch "$out"
         const patchRcPathCsh = nix.arg($_1, "patchRcPathCsh");
         const tcsh = nix.arg($_1, "tcsh");
         return nix.app(runCommandLocal, "patch-rc-path-csh-test", nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             nativeBuildInputs: nix.thunk(() => [patchRcPathCsh, tcsh]),
             meta: nix.thunk(() => (() => {
               const from = nix.thunk(() => nix.sel(patchRcPathCsh, "meta"));
               return {
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               description: "Package test of patchActivateCsh",
               maintainers: nix.thunk(() => nix.attr(from, "maintainers")),
             };
@@ -231,12 +223,12 @@ touch "$out"
         const hello = nix.arg($_1, "hello");
         const patchRcPathFish = nix.arg($_1, "patchRcPathFish");
         return nix.app(runCommandLocal, "patch-rc-path-fish-test", nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             nativeBuildInputs: nix.thunk(() => [fish, patchRcPathFish]),
             meta: nix.thunk(() => (() => {
               const from = nix.thunk(() => nix.sel(patchRcPathFish, "meta"));
               return {
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               description: "Package test of patchActivateFish",
               maintainers: nix.thunk(() => nix.attr(from, "maintainers")),
             };
@@ -312,12 +304,12 @@ touch "$out"
         const patchRcPathPosix = nix.arg($_1, "patchRcPathPosix");
         const shellcheck = nix.arg($_1, "shellcheck");
         return nix.app(runCommandLocal, "patch-rc-path-posix-test", nix.thunk(() => ({
-            [nix.POS]: pos$8,
+            [nix.POS]: $pos[7],
             nativeBuildInputs: nix.thunk(() => [bash, dash, ksh, patchRcPathPosix, shellcheck]),
             meta: nix.thunk(() => (() => {
               const from = nix.thunk(() => nix.sel(patchRcPathPosix, "meta"));
               return {
-              [nix.POS]: pos$7,
+              [nix.POS]: $pos[6],
               description: "Package test of patchActivatePosix",
               maintainers: nix.thunk(() => nix.attr(from, "maintainers")),
             };

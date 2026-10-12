@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 12, 7], ["url", 13, 7], ["hash", 14, 7]], [["name", 17, 7], ["url", 18, 7], ["hash", 19, 7]], [["description", 34, 5], ["homepage", 35, 5], ["changelog", 36, 5], ["license", 37, 5], ["maintainers", 38, 5], ["platforms", 39, 5]], [["pname", 7, 3], ["version", 8, 3], ["srcs", 10, 3], ["dontUnpack", 23, 3], ["__structuredAttrs", 24, 3], ["installPhase", 26, 3], ["meta", 33, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchurl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 12, 7], ["url", 13, 7], ["hash", 14, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 17, 7], ["url", 18, 7], ["hash", 19, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 34, 5], ["homepage", 35, 5], ["changelog", 36, 5], ["license", 37, 5], ["maintainers", 38, 5], ["platforms", 39, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 7, 3], ["version", 8, 3], ["srcs", 10, 3], ["dontUnpack", 23, 3], ["__structuredAttrs", 24, 3], ["installPhase", 26, 3], ["meta", 33, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,13 +15,13 @@ export default nix.lambda((args) => (() => {
       const version = "3.1.8";
       const srcs = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             name: "zpix-pixel-font.bdf",
             url: nix.thunk(() => nix.str`https://github.com/SolidZORO/zpix-pixel-font/releases/download/v${version}/zpix.bdf`),
             hash: "sha256-qE6YPKuk1FRRrTvmy4YIDuxRfslma264piUDj1FWtk4=",
           })))),
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "zpix-pixel-font.ttf",
             url: nix.thunk(() => nix.str`https://github.com/SolidZORO/zpix-pixel-font/releases/download/v${version}/zpix.ttf`),
             hash: "sha256-UIgLGsVTbyhYMKfTYiA+MZmV4dFT9HX3sxTdrcc4vE0=",
@@ -34,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const __structuredAttrs = true;
       const installPhase = "runHook preInstall\ninstall -Dm444 ${srcs[0]} $out/share/fonts/misc/zpix.bdf\ninstall -Dm444 ${srcs[1]} $out/share/fonts/truetype/zpix.ttf\nrunHook postInstall\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Pixel font supporting multiple languages like English, Chinese and Japanese",
         homepage: "https://github.com/SolidZORO/zpix-pixel-font/",
         changelog: "https://github.com/SolidZORO/zpix-pixel-font/blob/master/CHANGELOG.md",
@@ -43,7 +40,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         srcs,

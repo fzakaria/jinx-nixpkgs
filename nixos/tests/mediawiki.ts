@@ -2,48 +2,10 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/mediawiki.nix", [[["hostName", 10, 11], ["adminAddr", 11, 11]], [["virtualHost", 9, 15]], [["ParserFunctions", 15, 11]], [["enable", 8, 9], ["httpd", 9, 9], ["passwordFile", 13, 9], ["extensions", 14, 9]], [["mediawiki", 7, 16]], [["services", 7, 7]], [["imports", 24, 30]], [["machine", 24, 22]], [["containers", 24, 11]], [["imports", 23, 7]], [["type", 33, 35]], [["database", 33, 26]], [["mediawiki", 33, 16]], [["services", 33, 7]], [["machine", 32, 16]], [["name", 31, 5], ["containers", 32, 5], ["testScript", 35, 5]], [["type", 48, 35]], [["database", 48, 26]], [["mediawiki", 48, 16]], [["services", 48, 7]], [["machine", 47, 16]], [["name", 46, 5], ["containers", 47, 5], ["testScript", 50, 5]], [["type", 63, 35]], [["database", 63, 26]], [["mediawiki", 63, 16]], [["services", 63, 7]], [["machine", 62, 16]], [["name", 61, 5], ["containers", 62, 5], ["testScript", 65, 5]], [["webserver", 78, 26]], [["mediawiki", 78, 16]], [["services", 78, 7]], [["machine", 77, 16]], [["name", 76, 5], ["containers", 77, 5], ["testScript", 80, 5]], [["webserver", 100, 26]], [["mediawiki", 100, 16]], [["services", 100, 7]], [["machine", 99, 16]], [["name", 98, 5], ["containers", 99, 5], ["testScript", 102, 5]], [["mysql", 30, 3], ["postgresql", 45, 3], ["sqlite", 60, 3], ["nohttpd", 75, 3], ["nginx", 97, 3]]]);
 const formals$1 = { args: { lib: false, runTest: false }, ellipsis: false };
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/mediawiki.nix", [["hostName", 10, 11], ["adminAddr", 11, 11]]);
-const pos$2 = nix.positions(here + "/mediawiki.nix", [["virtualHost", 9, 15]]);
-const pos$3 = nix.positions(here + "/mediawiki.nix", [["ParserFunctions", 15, 11]]);
-const pos$4 = nix.positions(here + "/mediawiki.nix", [["enable", 8, 9], ["httpd", 9, 9], ["passwordFile", 13, 9], ["extensions", 14, 9]]);
-const pos$5 = nix.positions(here + "/mediawiki.nix", [["mediawiki", 7, 16]]);
-const pos$6 = nix.positions(here + "/mediawiki.nix", [["services", 7, 7]]);
-const pos$7 = nix.positions(here + "/mediawiki.nix", [["imports", 24, 30]]);
-const pos$8 = nix.positions(here + "/mediawiki.nix", [["machine", 24, 22]]);
-const pos$9 = nix.positions(here + "/mediawiki.nix", [["containers", 24, 11]]);
-const pos$10 = nix.positions(here + "/mediawiki.nix", [["imports", 23, 7]]);
-const pos$11 = nix.positions(here + "/mediawiki.nix", [["type", 33, 35]]);
-const pos$12 = nix.positions(here + "/mediawiki.nix", [["database", 33, 26]]);
-const pos$13 = nix.positions(here + "/mediawiki.nix", [["mediawiki", 33, 16]]);
-const pos$14 = nix.positions(here + "/mediawiki.nix", [["services", 33, 7]]);
-const pos$15 = nix.positions(here + "/mediawiki.nix", [["machine", 32, 16]]);
-const pos$16 = nix.positions(here + "/mediawiki.nix", [["name", 31, 5], ["containers", 32, 5], ["testScript", 35, 5]]);
-const pos$17 = nix.positions(here + "/mediawiki.nix", [["type", 48, 35]]);
-const pos$18 = nix.positions(here + "/mediawiki.nix", [["database", 48, 26]]);
-const pos$19 = nix.positions(here + "/mediawiki.nix", [["mediawiki", 48, 16]]);
-const pos$20 = nix.positions(here + "/mediawiki.nix", [["services", 48, 7]]);
-const pos$21 = nix.positions(here + "/mediawiki.nix", [["machine", 47, 16]]);
-const pos$22 = nix.positions(here + "/mediawiki.nix", [["name", 46, 5], ["containers", 47, 5], ["testScript", 50, 5]]);
-const pos$23 = nix.positions(here + "/mediawiki.nix", [["type", 63, 35]]);
-const pos$24 = nix.positions(here + "/mediawiki.nix", [["database", 63, 26]]);
-const pos$25 = nix.positions(here + "/mediawiki.nix", [["mediawiki", 63, 16]]);
-const pos$26 = nix.positions(here + "/mediawiki.nix", [["services", 63, 7]]);
-const pos$27 = nix.positions(here + "/mediawiki.nix", [["machine", 62, 16]]);
-const pos$28 = nix.positions(here + "/mediawiki.nix", [["name", 61, 5], ["containers", 62, 5], ["testScript", 65, 5]]);
-const pos$29 = nix.positions(here + "/mediawiki.nix", [["webserver", 78, 26]]);
-const pos$30 = nix.positions(here + "/mediawiki.nix", [["mediawiki", 78, 16]]);
-const pos$31 = nix.positions(here + "/mediawiki.nix", [["services", 78, 7]]);
-const pos$32 = nix.positions(here + "/mediawiki.nix", [["machine", 77, 16]]);
 const formals$3 = { args: { containers: false }, ellipsis: true };
-const pos$33 = nix.positions(here + "/mediawiki.nix", [["name", 76, 5], ["containers", 77, 5], ["testScript", 80, 5]]);
-const pos$34 = nix.positions(here + "/mediawiki.nix", [["webserver", 100, 26]]);
-const pos$35 = nix.positions(here + "/mediawiki.nix", [["mediawiki", 100, 16]]);
-const pos$36 = nix.positions(here + "/mediawiki.nix", [["services", 100, 7]]);
-const pos$37 = nix.positions(here + "/mediawiki.nix", [["machine", 99, 16]]);
-const pos$38 = nix.positions(here + "/mediawiki.nix", [["name", 98, 5], ["containers", 99, 5], ["testScript", 102, 5]]);
-const pos$39 = nix.positions(here + "/mediawiki.nix", [["mysql", 30, 3], ["postgresql", 45, 3], ["sqlite", 60, 3], ["nohttpd", 75, 3], ["nginx", 97, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -53,49 +15,49 @@ export default nix.lambda((args) => (() => {
     const $_1 = nix.formals(args_1, formals$2);
     const pkgs = nix.arg($_1, "pkgs");
     return {
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       services: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         mediawiki: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           enable: true,
           httpd: nix.thunk(() => ({
-            [nix.POS]: pos$2,
-            virtualHost: nix.thunk(() => ({ [nix.POS]: pos$1, hostName: "localhost", adminAddr: "root@example.com" })),
+            [nix.POS]: $pos[1],
+            virtualHost: nix.thunk(() => ({ [nix.POS]: $pos[0], hostName: "localhost", adminAddr: "root@example.com" })),
           })),
           passwordFile: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "password", "correcthorsebatterystaple")),
-          extensions: nix.thunk(() => ({ [nix.POS]: pos$3, ParserFunctions: null })),
+          extensions: nix.thunk(() => ({ [nix.POS]: $pos[2], ParserFunctions: null })),
         })),
       })),
     };
   })(), formals$2);
   const makeTest = (t) => nix.app(runTest, nix.thunk(() => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       imports: nix.thunk(() => [
         nix.thunk(() => ({
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           containers: nix.thunk(() => ({
-            [nix.POS]: pos$8,
-            machine: nix.thunk(() => ({ [nix.POS]: pos$7, imports: nix.thunk(() => [shared]) })),
+            [nix.POS]: $pos[7],
+            machine: nix.thunk(() => ({ [nix.POS]: $pos[6], imports: nix.thunk(() => [shared]) })),
           })),
         })),
         t,
       ]),
     })));
   return {
-    [nix.POS]: pos$39,
+    [nix.POS]: $pos[38],
     mysql: nix.thunk(() => nix.app(makeTest, nix.thunk(() => ({
-        [nix.POS]: pos$16,
+        [nix.POS]: $pos[15],
         name: "mediawiki-mysql",
         containers: nix.thunk(() => ({
-          [nix.POS]: pos$15,
+          [nix.POS]: $pos[14],
           machine: nix.thunk(() => ({
-            [nix.POS]: pos$14,
+            [nix.POS]: $pos[13],
             services: nix.thunk(() => ({
-              [nix.POS]: pos$13,
+              [nix.POS]: $pos[12],
               mediawiki: nix.thunk(() => ({
-                [nix.POS]: pos$12,
-                database: nix.thunk(() => ({ [nix.POS]: pos$11, type: "mysql" })),
+                [nix.POS]: $pos[11],
+                database: nix.thunk(() => ({ [nix.POS]: $pos[10], type: "mysql" })),
               })),
             })),
           })),
@@ -103,17 +65,17 @@ export default nix.lambda((args) => (() => {
         testScript: "start_all()\n\nmachine.wait_for_unit(\"phpfpm-mediawiki.service\")\n\npage = machine.succeed(\"curl -fL http://localhost/\")\nassert \"MediaWiki has been installed\" in page\n",
       })))),
     postgresql: nix.thunk(() => nix.app(makeTest, nix.thunk(() => ({
-        [nix.POS]: pos$22,
+        [nix.POS]: $pos[21],
         name: "mediawiki-postgres",
         containers: nix.thunk(() => ({
-          [nix.POS]: pos$21,
+          [nix.POS]: $pos[20],
           machine: nix.thunk(() => ({
-            [nix.POS]: pos$20,
+            [nix.POS]: $pos[19],
             services: nix.thunk(() => ({
-              [nix.POS]: pos$19,
+              [nix.POS]: $pos[18],
               mediawiki: nix.thunk(() => ({
-                [nix.POS]: pos$18,
-                database: nix.thunk(() => ({ [nix.POS]: pos$17, type: "postgres" })),
+                [nix.POS]: $pos[17],
+                database: nix.thunk(() => ({ [nix.POS]: $pos[16], type: "postgres" })),
               })),
             })),
           })),
@@ -121,17 +83,17 @@ export default nix.lambda((args) => (() => {
         testScript: "start_all()\n\nmachine.wait_for_unit(\"phpfpm-mediawiki.service\")\n\npage = machine.succeed(\"curl -fL http://localhost/\")\nassert \"MediaWiki has been installed\" in page\n",
       })))),
     sqlite: nix.thunk(() => nix.app(makeTest, nix.thunk(() => ({
-        [nix.POS]: pos$28,
+        [nix.POS]: $pos[27],
         name: "mediawiki-sqlite",
         containers: nix.thunk(() => ({
-          [nix.POS]: pos$27,
+          [nix.POS]: $pos[26],
           machine: nix.thunk(() => ({
-            [nix.POS]: pos$26,
+            [nix.POS]: $pos[25],
             services: nix.thunk(() => ({
-              [nix.POS]: pos$25,
+              [nix.POS]: $pos[24],
               mediawiki: nix.thunk(() => ({
-                [nix.POS]: pos$24,
-                database: nix.thunk(() => ({ [nix.POS]: pos$23, type: "sqlite" })),
+                [nix.POS]: $pos[23],
+                database: nix.thunk(() => ({ [nix.POS]: $pos[22], type: "sqlite" })),
               })),
             })),
           })),
@@ -139,15 +101,15 @@ export default nix.lambda((args) => (() => {
         testScript: "start_all()\n\nmachine.wait_for_unit(\"phpfpm-mediawiki.service\")\n\npage = machine.succeed(\"curl -fL http://localhost/\")\nassert \"MediaWiki has been installed\" in page\n",
       })))),
     nohttpd: nix.thunk(() => nix.app(makeTest, nix.thunk(() => ({
-        [nix.POS]: pos$33,
+        [nix.POS]: $pos[32],
         name: "mediawiki-nohttpd",
         containers: nix.thunk(() => ({
-          [nix.POS]: pos$32,
+          [nix.POS]: $pos[31],
           machine: nix.thunk(() => ({
-            [nix.POS]: pos$31,
+            [nix.POS]: $pos[30],
             services: nix.thunk(() => ({
-              [nix.POS]: pos$30,
-              mediawiki: nix.thunk(() => ({ [nix.POS]: pos$29, webserver: "none" })),
+              [nix.POS]: $pos[29],
+              mediawiki: nix.thunk(() => ({ [nix.POS]: $pos[28], webserver: "none" })),
             })),
           })),
         })),
@@ -169,15 +131,15 @@ assert "MediaWiki has been installed" in page, f"no 'MediaWiki has been installe
         })(), formals$3),
       })))),
     nginx: nix.thunk(() => nix.app(makeTest, nix.thunk(() => ({
-        [nix.POS]: pos$38,
+        [nix.POS]: $pos[37],
         name: "mediawiki-nginx",
         containers: nix.thunk(() => ({
-          [nix.POS]: pos$37,
+          [nix.POS]: $pos[36],
           machine: nix.thunk(() => ({
-            [nix.POS]: pos$36,
+            [nix.POS]: $pos[35],
             services: nix.thunk(() => ({
-              [nix.POS]: pos$35,
-              mediawiki: nix.thunk(() => ({ [nix.POS]: pos$34, webserver: "nginx" })),
+              [nix.POS]: $pos[34],
+              mediawiki: nix.thunk(() => ({ [nix.POS]: $pos[33], webserver: "nginx" })),
             })),
           })),
         })),

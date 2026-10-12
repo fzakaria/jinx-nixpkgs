@@ -2,11 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/make-initrd.nix", [[["out", 78, 27]], [["rootPaths", 99, 48]], [["compressorExecutableFunction", 106, 5], ["compressorArgs", 107, 5]], [["__structuredAttrs", 74, 3], ["unsafeDiscardReferences", 78, 3], ["name", 81, 5], ["extension", 82, 5], ["prepend", 83, 5], ["builder", 86, 3], ["nativeBuildInputs", 88, 3], ["compress", 92, 3], ["objects", 95, 3], ["symlinks", 96, 3], ["suffices", 97, 3], ["closureInfo", 99, 3], ["passthru", 105, 3]]]);
 const formals$1 = { args: { stdenvNoCC: false, cpio: false, lib: false, pkgsBuildHost: false, name: true, compressor: true, _compressorFunction: true, _compressorExecutable: true, _compressorName: true, _compressorMeta: true, compressorArgs: true, _compressorArgsReal: true, extension: true, contents: false, prepend: true, makeUInitrd: true, uInitrdArch: true, uInitrdCompression: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/make-initrd.nix", [["out", 78, 27]]);
-const pos$2 = nix.positions(here + "/make-initrd.nix", [["rootPaths", 99, 48]]);
-const pos$3 = nix.positions(here + "/make-initrd.nix", [["compressorExecutableFunction", 106, 5], ["compressorArgs", 107, 5]]);
-const pos$4 = nix.positions(here + "/make-initrd.nix", [["__structuredAttrs", 74, 3], ["unsafeDiscardReferences", 78, 3], ["name", 81, 5], ["extension", 82, 5], ["prepend", 83, 5], ["builder", 86, 3], ["nativeBuildInputs", 88, 3], ["compress", 92, 3], ["objects", 95, 3], ["symlinks", 96, 3], ["suffices", 97, 3], ["closureInfo", 99, 3], ["passthru", 105, 3]]);
 
 export default nix.thunk(() => (() => {
   const compressors = nix.thunk(() => nix.builtins.import(nix.path(here, "./initrd-compressor-meta.nix")));
@@ -33,9 +30,9 @@ export default nix.thunk(() => (() => {
     const uInitrdCompression = nix.argOr($, "uInitrdCompression", () => null);
     nix.assert_(nix.app(nix.sel(lib, "assertMsg"), nix.thunk(() => (nix.asBool((nix.asBool(nix.eq(makeUInitrd, null)) && nix.asBool(nix.eq(uInitrdArch, null)))) && nix.asBool(nix.eq(uInitrdCompression, null)))), "makeInitrd: U‐Boot legacy image support has been removed as it is deprecated upstream and ARMv5 kernels no longer default to uImage"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/build-support/kernel/make-initrd.nix:71:1");
     return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         __structuredAttrs: true,
-        unsafeDiscardReferences: nix.thunk(() => ({ [nix.POS]: pos$1, out: true })),
+        unsafeDiscardReferences: nix.thunk(() => ({ [nix.POS]: $pos[0], out: true })),
         name: name,
         extension: extension,
         prepend: prepend,
@@ -45,9 +42,12 @@ export default nix.thunk(() => (() => {
         objects: nix.thunk(() => nix.builtins.map((x) => nix.sel(x, "object"), contents)),
         symlinks: nix.thunk(() => nix.builtins.map((x) => nix.sel(x, "symlink"), contents)),
         suffices: nix.thunk(() => nix.builtins.map((x) => (nix.asBool(nix.has(x, "suffix")) ? nix.sel(x, "suffix") : "none"), contents)),
-        closureInfo: nix.thunk(() => nix.str`${nix.app(nix.sel(pkgsBuildHost, "closureInfo"), nix.thunk(() => ({ [nix.POS]: pos$2, rootPaths: nix.thunk(() => nix.sel(finalAttrs, "objects")) })))}`),
+        closureInfo: nix.thunk(() => nix.str`${nix.app(nix.sel(pkgsBuildHost, "closureInfo"), nix.thunk(() => ({
+            [nix.POS]: $pos[1],
+            rootPaths: nix.thunk(() => nix.sel(finalAttrs, "objects")),
+          })))}`),
         passthru: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           compressorExecutableFunction: _compressorFunction,
           compressorArgs: _compressorArgsReal,
         })),

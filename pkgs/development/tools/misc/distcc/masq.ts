@@ -2,9 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/masq.nix", [[["platforms", 48, 5]], [["name", 9, 3], ["dontUnpack", 11, 3], ["installPhase", 13, 3], ["meta", 47, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, gccRaw: false, binutils: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/masq.nix", [["platforms", 48, 5]]);
-const pos$2 = nix.positions(here + "/masq.nix", [["name", 9, 3], ["dontUnpack", 11, 3], ["installPhase", 13, 3], ["meta", 47, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const gccRaw = nix.arg($, "gccRaw");
   const binutils = nix.arg($, "binutils");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       name: nix.thunk(() => nix.str`distcc-masq-${nix.sel(gccRaw, "name")}`),
       dontUnpack: true,
       installPhase: nix.thunk(() => nix.str`mkdir -p $out/bin
@@ -49,7 +48,7 @@ else
 fi
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       })),
     })));

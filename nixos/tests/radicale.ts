@@ -2,28 +2,9 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/radicale.nix", [[["maintainers", 13, 8]], [["type", 22, 13], ["htpasswd_filename", 23, 13], ["htpasswd_encryption", 24, 13]], [["filesystem_folder", 27, 21], ["hook", 28, 13]], [["level", 30, 19]], [["auth", 21, 11], ["storage", 26, 11], ["logging", 30, 11]], [["user", 34, 13], ["collection", 35, 13], ["permissions", 36, 13]], [["user", 39, 13], ["collection", 40, 13], ["permissions", 41, 13]], [["principal", 33, 11], ["calendars", 38, 11]], [["enable", 19, 9], ["settings", 20, 9], ["rights", 32, 9]], [["radicale", 18, 16]], [["path", 45, 33]], [["radicale", 45, 24]], [["rules", 47, 24]], [["services", 45, 15], ["tmpfiles", 47, 15]], [["source", 50, 40]], [["radicale/users", 50, 23]], [["systemPackages", 46, 19], ["etc", 50, 19]], [["services", 18, 7], ["systemd", 45, 7], ["environment", 46, 7]], [["machine", 15, 9]], [["name", 12, 3], ["meta", 13, 3], ["nodes", 15, 3], ["testScript", 54, 3]]]);
 const formals$1 = { args: { lib: false, pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/radicale.nix", [["maintainers", 13, 8]]);
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/radicale.nix", [["type", 22, 13], ["htpasswd_filename", 23, 13], ["htpasswd_encryption", 24, 13]]);
-const pos$3 = nix.positions(here + "/radicale.nix", [["filesystem_folder", 27, 21], ["hook", 28, 13]]);
-const pos$4 = nix.positions(here + "/radicale.nix", [["level", 30, 19]]);
-const pos$5 = nix.positions(here + "/radicale.nix", [["auth", 21, 11], ["storage", 26, 11], ["logging", 30, 11]]);
-const pos$6 = nix.positions(here + "/radicale.nix", [["user", 34, 13], ["collection", 35, 13], ["permissions", 36, 13]]);
-const pos$7 = nix.positions(here + "/radicale.nix", [["user", 39, 13], ["collection", 40, 13], ["permissions", 41, 13]]);
-const pos$8 = nix.positions(here + "/radicale.nix", [["principal", 33, 11], ["calendars", 38, 11]]);
-const pos$9 = nix.positions(here + "/radicale.nix", [["enable", 19, 9], ["settings", 20, 9], ["rights", 32, 9]]);
-const pos$10 = nix.positions(here + "/radicale.nix", [["radicale", 18, 16]]);
-const pos$11 = nix.positions(here + "/radicale.nix", [["path", 45, 33]]);
-const pos$12 = nix.positions(here + "/radicale.nix", [["radicale", 45, 24]]);
-const pos$13 = nix.positions(here + "/radicale.nix", [["rules", 47, 24]]);
-const pos$14 = nix.positions(here + "/radicale.nix", [["services", 45, 15], ["tmpfiles", 47, 15]]);
-const pos$15 = nix.positions(here + "/radicale.nix", [["source", 50, 40]]);
-const pos$16 = nix.positions(here + "/radicale.nix", [["radicale/users", 50, 23]]);
-const pos$17 = nix.positions(here + "/radicale.nix", [["systemPackages", 46, 19], ["etc", 50, 19]]);
-const pos$18 = nix.positions(here + "/radicale.nix", [["services", 18, 7], ["systemd", 45, 7], ["environment", 46, 7]]);
-const pos$19 = nix.positions(here + "/radicale.nix", [["machine", 15, 9]]);
-const pos$20 = nix.positions(here + "/radicale.nix", [["name", 12, 3], ["meta", 13, 3], ["nodes", 15, 3], ["testScript", 54, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -35,70 +16,75 @@ export default nix.lambda((args) => (() => {
   const filesystem_folder = "/data/radicale";
   const cli = nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgs, "calendar-cli")))} --caldav-user ${user} --caldav-pass ${password}`);
   return {
-    [nix.POS]: pos$20,
+    [nix.POS]: $pos[19],
     name: "radicale3",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "dotlambda"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$19,
+      [nix.POS]: $pos[18],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$18,
+          [nix.POS]: $pos[17],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$10,
+            [nix.POS]: $pos[9],
             radicale: nix.thunk(() => ({
-              [nix.POS]: pos$9,
+              [nix.POS]: $pos[8],
               enable: true,
               settings: nix.thunk(() => ({
-                [nix.POS]: pos$5,
+                [nix.POS]: $pos[4],
                 auth: nix.thunk(() => ({
-                  [nix.POS]: pos$2,
+                  [nix.POS]: $pos[1],
                   type: "htpasswd",
                   htpasswd_filename: "/etc/radicale/users",
                   htpasswd_encryption: "bcrypt",
                 })),
                 storage: nix.thunk(() => ({
-                  [nix.POS]: pos$3,
+                  [nix.POS]: $pos[2],
                   filesystem_folder: filesystem_folder,
                   hook: "git add -A && (git diff --cached --quiet || git commit -m 'Changes by '%(user)s)",
                 })),
-                logging: nix.thunk(() => ({ [nix.POS]: pos$4, level: "info" })),
+                logging: nix.thunk(() => ({ [nix.POS]: $pos[3], level: "info" })),
               })),
               rights: nix.thunk(() => ({
-                [nix.POS]: pos$8,
-                principal: nix.thunk(() => ({ [nix.POS]: pos$6, user: ".+", collection: "{user}", permissions: "RW" })),
-                calendars: nix.thunk(() => ({ [nix.POS]: pos$7, user: ".+", collection: "{user}/[^/]+", permissions: "rw" })),
+                [nix.POS]: $pos[7],
+                principal: nix.thunk(() => ({ [nix.POS]: $pos[5], user: ".+", collection: "{user}", permissions: "RW" })),
+                calendars: nix.thunk(() => ({
+                  [nix.POS]: $pos[6],
+                  user: ".+",
+                  collection: "{user}/[^/]+",
+                  permissions: "rw",
+                })),
               })),
             })),
           })),
           systemd: nix.thunk(() => ({
-            [nix.POS]: pos$14,
+            [nix.POS]: $pos[13],
             services: nix.thunk(() => ({
-              [nix.POS]: pos$12,
+              [nix.POS]: $pos[11],
               radicale: nix.thunk(() => ({
-                [nix.POS]: pos$11,
+                [nix.POS]: $pos[10],
                 path: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs_1, "git"))]),
               })),
             })),
             tmpfiles: nix.thunk(() => ({
-              [nix.POS]: pos$13,
+              [nix.POS]: $pos[12],
               rules: nix.thunk(() => [nix.thunk(() => nix.str`d ${filesystem_folder} 0750 radicale radicale -`)]),
             })),
           })),
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$17,
+            [nix.POS]: $pos[16],
             systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs_1, "git"))]),
             etc: nix.thunk(() => ({
-              [nix.POS]: pos$16,
+              [nix.POS]: $pos[15],
               "radicale/users": nix.thunk(() => ({
-                [nix.POS]: pos$15,
+                [nix.POS]: $pos[14],
                 source: nix.thunk(() => nix.app(nix.sel(pkgs_1, "runCommand"), "htpasswd", nix.thunk(() => ({})), nix.thunk(() => nix.str`${nix.sel(pkgs_1, "apacheHttpd")}/bin/htpasswd -bcB "$out" ${user} ${password}
 `))),
               })),

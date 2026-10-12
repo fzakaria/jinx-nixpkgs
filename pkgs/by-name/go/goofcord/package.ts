@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]], [["nodejs", 48, 51]], [["ELECTRON_SKIP_BINARY_DOWNLOAD", 51, 5], ["GOOFCORD_PATCHCORD_PATH", 52, 5], ["GOOFCORD_VENBIND_PATH", 53, 5]], [["name", 114, 7], ["genericName", 115, 7], ["desktopName", 116, 7], ["exec", 117, 7], ["icon", 118, 7], ["comment", 119, 7], ["keywords", 120, 7], ["categories", 126, 7], ["startupWMClass", 131, 7], ["terminal", 132, 7]], [["updateScript", 137, 5]], [["description", 141, 5], ["homepage", 142, 5], ["downloadPage", 143, 5], ["license", 144, 5], ["maintainers", 145, 5], ["platforms", 150, 5], ["mainProgram", 151, 5]], [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 40, 3], ["node-modules", 48, 3], ["env", 50, 3], ["configurePhase", 56, 3], ["buildPhase", 67, 3], ["installPhase", 84, 3], ["desktopItems", 112, 3], ["passthru", 136, 3], ["meta", 140, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, callPackage: false, fetchFromGitHub: false, bun: false, nodejs_24: false, electron: false, "nix-update-script": false, libxkbcommon: false, libx11: false, libxcb: false, libxtst: false, makeShellWrapper: false, makeDesktopItem: false, copyDesktopItems: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["nodejs", 48, 51]]);
-const pos$3 = nix.positions(here + "/package.nix", [["ELECTRON_SKIP_BINARY_DOWNLOAD", 51, 5], ["GOOFCORD_PATCHCORD_PATH", 52, 5], ["GOOFCORD_VENBIND_PATH", 53, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["name", 114, 7], ["genericName", 115, 7], ["desktopName", 116, 7], ["exec", 117, 7], ["icon", 118, 7], ["comment", 119, 7], ["keywords", 120, 7], ["categories", 126, 7], ["startupWMClass", 131, 7], ["terminal", 132, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["updateScript", 137, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 141, 5], ["homepage", 142, 5], ["downloadPage", 143, 5], ["license", 144, 5], ["maintainers", 145, 5], ["platforms", 150, 5], ["mainProgram", 151, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 40, 3], ["node-modules", 48, 3], ["env", 50, 3], ["configurePhase", 56, 3], ["buildPhase", 67, 3], ["installPhase", 84, 3], ["desktopItems", 112, 3], ["passthru", 136, 3], ["meta", 140, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const patchcordAddon = nix.thunk(() => nix.app(callPackage, nix.path(here, "./patchcord-addon.nix"), nix.thunk(() => ({}))));
   const goofbindAddon = nix.thunk(() => nix.app(callPackage, nix.path(here, "./goofbind-addon.nix"), nix.thunk(() => ({}))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "goofcord",
       version: "2.3.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Milkshiift",
           repo: "GoofCord",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -49,9 +43,9 @@ export default nix.lambda((args) => (() => {
           libxtst,
           nix.thunk(() => nix.app(nix.sel(lib, "getLib"), nix.thunk(() => nix.sel(stdenv, "cc", "cc")))),
         ]))),
-      "node-modules": nix.thunk(() => nix.app(callPackage, nix.path(here, "./node-modules.nix"), nix.thunk(() => ({ [nix.POS]: pos$2, nodejs: nodejs_24 })))),
+      "node-modules": nix.thunk(() => nix.app(callPackage, nix.path(here, "./node-modules.nix"), nix.thunk(() => ({ [nix.POS]: $pos[1], nodejs: nodejs_24 })))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         ELECTRON_SKIP_BINARY_DOWNLOAD: 1n,
         GOOFCORD_PATCHCORD_PATH: nix.thunk(() => nix.str`${patchcordAddon}/bin/patchcord`),
         GOOFCORD_VENBIND_PATH: nix.thunk(() => nix.str`${goofbindAddon}/lib/libvenbind.so`),
@@ -101,7 +95,7 @@ runHook postInstall
 `),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             name: "goofcord",
             genericName: "Internet Messenger",
             desktopName: "GoofCord",
@@ -115,11 +109,11 @@ runHook postInstall
           })))),
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Highly configurable and privacy-focused Discord client",
         homepage: "https://github.com/Milkshiift/GoofCord",
         downloadPage: "https://github.com/Milkshiift/GoofCord",

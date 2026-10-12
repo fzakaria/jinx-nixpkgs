@@ -2,42 +2,36 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/monica.nix", [[["nativeBuildInputs", 3, 46]], [["forceSSL", 21, 13], ["sslCertificate", 22, 13], ["sslCertificateKey", 23, 13]], [["enable", 17, 11], ["hostname", 18, 11], ["appKeyFile", 19, 11], ["nginx", 20, 11]], [["monica", 16, 18]], [["services", 16, 9]], [["machine", 13, 5]], [["name", 10, 3], ["nodes", 12, 3], ["testScript", 29, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/monica.nix", [["nativeBuildInputs", 3, 46]]);
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/monica.nix", [["forceSSL", 21, 13], ["sslCertificate", 22, 13], ["sslCertificateKey", 23, 13]]);
-const pos$3 = nix.positions(here + "/monica.nix", [["enable", 17, 11], ["hostname", 18, 11], ["appKeyFile", 19, 11], ["nginx", 20, 11]]);
-const pos$4 = nix.positions(here + "/monica.nix", [["monica", 16, 18]]);
-const pos$5 = nix.positions(here + "/monica.nix", [["services", 16, 9]]);
-const pos$6 = nix.positions(here + "/monica.nix", [["machine", 13, 5]]);
-const pos$7 = nix.positions(here + "/monica.nix", [["name", 10, 3], ["nodes", 12, 3], ["testScript", 29, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   const cert = nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "selfSignedCerts", nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "openssl"))]),
     })), "openssl req -x509 -newkey rsa:4096 -keyout key.pem -out cert.pem -nodes -subj '/CN=localhost' -days 36500\nmkdir -p $out\ncp key.pem cert.pem $out\n"));
   return {
-    [nix.POS]: pos$7,
+    [nix.POS]: $pos[6],
     name: "monica",
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             monica: nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               enable: true,
               hostname: "localhost",
               appKeyFile: nix.thunk(() => nix.str`${nix.app(nix.sel(pkgs_1, "writeText"), "keyfile", "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")}`),
               nginx: nix.thunk(() => ({
-                [nix.POS]: pos$2,
+                [nix.POS]: $pos[1],
                 forceSSL: true,
                 sslCertificate: nix.thunk(() => nix.str`${cert}/cert.pem`),
                 sslCertificateKey: nix.thunk(() => nix.str`${cert}/key.pem`),

@@ -2,16 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 65, 7], ["hash", 66, 7]], [["url", 70, 7], ["hash", 71, 7]], [["x86_64-linux", 64, 5], ["aarch64-darwin", 69, 5]], [["homepage", 78, 5], ["description", 79, 5], ["sourceProvenance", 80, 5], ["license", 81, 5], ["platforms", 82, 5], ["maintainers", 83, 5], ["mainProgram", 88, 5]], [["updateScript", 91, 12]], [["name", 153, 9], ["exec", 154, 9], ["icon", 155, 9], ["desktopName", 156, 9], ["genericName", 157, 9], ["startupWMClass", 158, 9], ["categories", 159, 9], ["comment", 160, 9]], [["makeWrapper", 168, 48]], [["pname", 95, 7], ["version", 96, 7], ["src", 97, 7], ["meta", 98, 7], ["passthru", 99, 7], ["dontBuild", 102, 5], ["dontConfigure", 103, 5], ["libPath", 105, 5], ["desktopItems", 151, 5], ["nativeBuildInputs", 164, 5], ["buildInputs", 170, 5], ["dontWrapGApps", 176, 5], ["installPhase", 178, 5], ["preFixup", 189, 5], ["postFixup", 193, 5]], [["pname", 225, 7], ["version", 226, 7], ["src", 227, 7], ["meta", 228, 7], ["passthru", 229, 7], ["nativeBuildInputs", 232, 5], ["installPhase", 237, 5], ["dontFixup", 248, 5]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPackages: false, copyDesktopItems: false, fetchzip: false, makeDesktopItem: false, makeWrapper: false, "adwaita-icon-theme": false, "alsa-lib": false, "at-spi2-atk": false, "at-spi2-core": false, atk: false, cacert: false, cairo: false, cups: false, curlWithGnuTls: false, dbus: false, e2fsprogs: false, expat: false, fontconfig: false, freetype: false, "gdk-pixbuf": false, git: false, glib: false, gtk3: false, krb5: false, libGL: false, libx11: false, libxscrnsaver: false, libxcomposite: false, libxcursor: false, libxdamage: false, libxext: false, libxfixes: false, libxi: false, libxrandr: false, libxrender: false, libxtst: false, libdrm: false, libgbm: false, "libgnome-keyring": false, libuuid: false, libxcb: false, libxkbcommon: false, libxkbfile: false, libxshmfence: false, nspr: false, nss: false, openssl: false, pango: false, udev: false, unzip: false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 65, 7], ["hash", 66, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 70, 7], ["hash", 71, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["x86_64-linux", 64, 5], ["aarch64-darwin", 69, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 78, 5], ["description", 79, 5], ["sourceProvenance", 80, 5], ["license", 81, 5], ["platforms", 82, 5], ["maintainers", 83, 5], ["mainProgram", 88, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["updateScript", 91, 12]]);
-const pos$6 = nix.positions(here + "/package.nix", [["name", 153, 9], ["exec", 154, 9], ["icon", 155, 9], ["desktopName", 156, 9], ["genericName", 157, 9], ["startupWMClass", 158, 9], ["categories", 159, 9], ["comment", 160, 9]]);
-const pos$7 = nix.positions(here + "/package.nix", [["makeWrapper", 168, 48]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 95, 7], ["version", 96, 7], ["src", 97, 7], ["meta", 98, 7], ["passthru", 99, 7], ["dontBuild", 102, 5], ["dontConfigure", 103, 5], ["libPath", 105, 5], ["desktopItems", 151, 5], ["nativeBuildInputs", 164, 5], ["buildInputs", 170, 5], ["dontWrapGApps", 176, 5], ["installPhase", 178, 5], ["preFixup", 189, 5], ["postFixup", 193, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["pname", 225, 7], ["version", 226, 7], ["src", 227, 7], ["meta", 228, 7], ["passthru", 229, 7], ["nativeBuildInputs", 232, 5], ["installPhase", 237, 5], ["dontFixup", 248, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -72,21 +64,21 @@ export default nix.lambda((args) => (() => {
   const version = "12.4.1";
   const throwSystem = nix.thunk(() => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenv, "hostPlatform", "system")}`)));
   const srcs = nix.thunk(() => ({
-    [nix.POS]: pos$3,
+    [nix.POS]: $pos[2],
     "x86_64-linux": nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         url: nix.thunk(() => nix.str`https://api.gitkraken.dev/releases/production/linux/x64/${version}/gitkraken-amd64.tar.gz`),
         hash: "sha256-vudaXmTqCdRzkVzw3MyzfGSGGM9xfDO0Wims0vxM4yw=",
       })))),
     "aarch64-darwin": nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         url: nix.thunk(() => nix.str`https://api.gitkraken.dev/releases/production/darwin/arm64/${version}/GitKraken-v${version}.zip`),
         hash: "sha256-T2AlXHW1eQvlJ7zFndg0sy4X4fITdPhTePk27utYAe0=",
       })))),
   }));
   const src = nix.thunk(() => nix.selOr(srcs, () => nix.force(throwSystem), nix.key(nix.sel(stdenv, "hostPlatform", "system"))));
   const meta = nix.thunk(() => ({
-    [nix.POS]: pos$4,
+    [nix.POS]: $pos[3],
     homepage: "https://www.gitkraken.com/git-client",
     description: "Simplifying Git for any OS",
     sourceProvenance: nix.thunk(() => (() => {
@@ -105,7 +97,7 @@ export default nix.lambda((args) => (() => {
     })()),
     mainProgram: "gitkraken",
   }));
-  const passthru = nix.thunk(() => ({ [nix.POS]: pos$5, updateScript: nix.path(here, "./update.sh") }));
+  const passthru = nix.thunk(() => ({ [nix.POS]: $pos[4], updateScript: nix.path(here, "./update.sh") }));
   const linux = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => (() => {
       const pname_1 = pname;
       const version_1 = version;
@@ -161,7 +153,7 @@ export default nix.lambda((args) => (() => {
         ])));
       const desktopItems = nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             name: "gitkraken",
             exec: "gitkraken",
             icon: "gitkraken",
@@ -175,7 +167,7 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [
         copyDesktopItems,
         nix.thunk(() => nix.app(nix.sel(buildPackages, "wrapGAppsHook3", "override"), nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             makeWrapper: nix.thunk(() => nix.sel(buildPackages, "makeShellWrapper")),
           })))),
       ]);
@@ -219,7 +211,7 @@ makeWrapper $out/share/${pname_1}/gitkraken $out/bin/gitkraken \\
   "\${gappsWrapperArgs[@]}"
 `);
       return {
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         pname: pname_1,
         version: version_1,
         src: src_1,
@@ -238,7 +230,7 @@ makeWrapper $out/share/${pname_1}/gitkraken $out/bin/gitkraken \\
       };
     })())));
   const darwin = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       pname: pname,
       version: version,
       src: src,

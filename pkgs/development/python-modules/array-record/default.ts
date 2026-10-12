@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["cp311", 32, 11], ["cp312", 33, 11], ["cp313", 34, 11], ["cp314", 35, 11]], [["version", 23, 15], ["format", 24, 7], ["pname", 25, 7], ["dist", 26, 7], ["python", 27, 7], ["abi", 28, 7], ["platform", 29, 7], ["hash", 30, 7]], [["description", 49, 5], ["homepage", 50, 5], ["license", 51, 5], ["maintainers", 52, 5], ["platforms", 53, 5]], [["pname", 12, 3], ["version", 13, 3], ["format", 14, 3], ["disabled", 16, 3], ["src", 18, 3], ["dependencies", 40, 3], ["pythonImportsCheck", 46, 3], ["meta", 48, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, pythonAtLeast: false, python: false, fetchPypi: false, "absl-py": false, etils: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["cp311", 32, 11], ["cp312", 33, 11], ["cp313", 34, 11], ["cp314", 35, 11]]);
-const pos$2 = nix.positions(here + "/default.nix", [["version", 23, 15], ["format", 24, 7], ["pname", 25, 7], ["dist", 26, 7], ["python", 27, 7], ["abi", 28, 7], ["platform", 29, 7], ["hash", 30, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 49, 5], ["homepage", 50, 5], ["license", 51, 5], ["maintainers", 52, 5], ["platforms", 53, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 12, 3], ["version", 13, 3], ["format", 14, 3], ["disabled", 16, 3], ["src", 18, 3], ["dependencies", 40, 3], ["pythonImportsCheck", 46, 3], ["meta", 48, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const src = nix.thunk(() => (() => {
         const pyShortVersion = nix.thunk(() => nix.str`cp${nix.builtins.replaceStrings(nix.thunk(() => ["."]), nix.thunk(() => [""]), nix.thunk(() => nix.sel(python, "pythonVersion")))}`);
         return nix.app(fetchPypi, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             version: version,
             format: "wheel",
             pname: "array_record",
@@ -34,7 +31,7 @@ export default nix.lambda((args) => (() => {
             abi: pyShortVersion,
             platform: "manylinux2014_x86_64.manylinux_2_17_x86_64",
             hash: nix.thunk(() => nix.selOr({
-              [nix.POS]: pos$1,
+              [nix.POS]: $pos[0],
               cp311: "sha256-9ABPzOt5YaLMAJACjmij7rkdP1s4wA1gtTP3AE0dP3s=",
               cp312: "sha256-RY9mWN6GyTabI//mTcsxOTqRm5GuLxUUfuK+sgELEio=",
               cp313: "sha256-E98a7Js4r+mJc79f489SP4PKkEsEI9hTGZMIdxRbjyg=",
@@ -45,7 +42,7 @@ export default nix.lambda((args) => (() => {
       const dependencies = nix.thunk(() => nix.concat([absl_py, etils], nix.sel(etils, "optional-dependencies", "epath")));
       const pythonImportsCheck = nix.thunk(() => ["array_record"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "New file format derived from Riegeli, achieving a new frontier of IO efficiency",
         homepage: "https://github.com/google/array_record",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -56,7 +53,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => ["x86_64-linux"]),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         format,

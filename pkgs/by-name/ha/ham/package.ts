@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]], [["description", 49, 5], ["homepage", 50, 5], ["license", 51, 5], ["maintainers", 52, 5], ["mainProgram", 53, 5], ["platforms", 54, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["outputs", 20, 3], ["nativeBuildInputs", 22, 3], ["buildInputs", 25, 3], ["propagatedBuildInputs", 30, 3], ["preConfigure", 34, 3], ["installPhase", 40, 3], ["meta", 48, 3]]]);
 const formals$1 = { args: { lib: false, perlPackages: false, fetchFromGitHub: false, makeWrapper: false, openssh: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 49, 5], ["homepage", 50, 5], ["license", 51, 5], ["maintainers", 52, 5], ["mainProgram", 53, 5], ["platforms", 54, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["outputs", 20, 3], ["nativeBuildInputs", 22, 3], ["buildInputs", 25, 3], ["propagatedBuildInputs", 30, 3], ["preConfigure", 34, 3], ["installPhase", 40, 3], ["meta", 48, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const openssh = nix.arg($, "openssh");
   return nix.app(nix.sel(perlPackages, "buildPerlPackage"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "ham-unstable",
       version: "2025-11-12",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "kernkonzept",
           repo: "ham",
           rev: "11c8b146f8b11e7f284050fe205ae8afb1715541",
@@ -44,7 +42,7 @@ makeWrapper $out/lib/ham/ham $out/bin/ham --argv0 ham \\
   --prefix PATH : ${openssh}/bin
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Tool to manage big projects consisting of multiple loosely-coupled git repositories",
         homepage: "https://github.com/kernkonzept/ham",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

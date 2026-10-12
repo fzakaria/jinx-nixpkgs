@@ -2,13 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 33, 5], ["repo", 34, 5], ["rev", 35, 5], ["hash", 36, 5]], [["indilib", 94, 7]], [["indi-full", 93, 5]], [["tests", 91, 12]], [["homepage", 99, 5], ["description", 100, 5], ["changelog", 101, 5], ["license", 102, 5], ["mainProgram", 103, 5], ["maintainers", 104, 5], ["platforms", 108, 5]], [["pname", 29, 3], ["version", 30, 3], ["src", 32, 3], ["nativeBuildInputs", 39, 3], ["nativeInstallCheckInputs", 44, 3], ["buildInputs", 48, 3], ["cmakeFlags", 64, 3], ["checkInputs", 74, 3], ["doCheck", 77, 3], ["doInstallCheck", 78, 3], ["enableParallelChecking", 81, 3], ["postFixup", 83, 3], ["passthru", 91, 3], ["meta", 98, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, bash: false, cmake: false, "pkg-config": false, cfitsio: false, curl: false, libusb1: false, kmod: false, zlib: false, boost: false, libev: false, libnova: false, libtheora: false, libxisf: false, libjpeg: false, gsl: false, fftw: false, "rtl-sdr-librtlsdr": false, gtest: false, udevCheckHook: false, versionCheckHook: false, "indi-full": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 33, 5], ["repo", 34, 5], ["rev", 35, 5], ["hash", 36, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["indilib", 94, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["indi-full", 93, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["tests", 91, 12]]);
-const pos$5 = nix.positions(here + "/default.nix", [["homepage", 99, 5], ["description", 100, 5], ["changelog", 101, 5], ["license", 102, 5], ["mainProgram", 103, 5], ["maintainers", 104, 5], ["platforms", 108, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 29, 3], ["version", 30, 3], ["src", 32, 3], ["nativeBuildInputs", 39, 3], ["nativeInstallCheckInputs", 44, 3], ["buildInputs", 48, 3], ["cmakeFlags", 64, 3], ["checkInputs", 74, 3], ["doCheck", 77, 3], ["doInstallCheck", 78, 3], ["enableParallelChecking", 81, 3], ["postFixup", 83, 3], ["passthru", 91, 3], ["meta", 98, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -37,11 +32,11 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const indi_full = nix.arg($, "indi-full");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "indilib",
       version: "2.2.4.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "indilib",
           repo: "indi",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -80,17 +75,17 @@ do
 done
 `))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           "indi-full": nix.thunk(() => nix.app(nix.sel(indi_full, "override"), nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               indilib: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "https://www.indilib.org/",
         description: "Implementation of the INDI protocol for POSIX operating systems",
         changelog: nix.thunk(() => nix.str`https://github.com/indilib/indi/releases/tag/v${nix.sel(finalAttrs, "version")}`),

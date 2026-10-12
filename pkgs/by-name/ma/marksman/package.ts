@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]], [["updateScript", 49, 5]], [["description", 56, 5], ["longDescription", 57, 5], ["homepage", 65, 5], ["license", 66, 5], ["maintainers", 67, 5], ["platforms", 71, 5], ["mainProgram", 72, 5]], [["pname", 16, 11], ["dotnet-sdk", 16, 17], ["version", 17, 3], ["src", 19, 3], ["projectFile", 26, 3], ["dotnetBuildFlags", 27, 3], ["__darwinAllowLocalNetworking", 29, 3], ["doCheck", 31, 3], ["testProjectFile", 32, 3], ["dotnetTestFlags", 35, 3], ["nugetDeps", 40, 3], ["dotnet-runtime", 42, 3], ["postInstall", 44, 3], ["passthru", 48, 3], ["nativeInstallCheckInputs", 52, 3], ["doInstallCheck", 53, 3], ["meta", 55, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, buildDotnetModule: false, dotnetCorePackages: false, "nix-update-script": false, stdenv: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 49, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 56, 5], ["longDescription", 57, 5], ["homepage", 65, 5], ["license", 66, 5], ["maintainers", 67, 5], ["platforms", 71, 5], ["mainProgram", 72, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 16, 11], ["dotnet-sdk", 16, 17], ["version", 17, 3], ["src", 19, 3], ["projectFile", 26, 3], ["dotnetBuildFlags", 27, 3], ["__darwinAllowLocalNetworking", 29, 3], ["doCheck", 31, 3], ["testProjectFile", 32, 3], ["dotnetTestFlags", 35, 3], ["nugetDeps", 40, 3], ["dotnet-runtime", 42, 3], ["postInstall", 44, 3], ["passthru", 48, 3], ["nativeInstallCheckInputs", 52, 3], ["doInstallCheck", 53, 3], ["meta", 55, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const pname = "marksman";
   const dotnet_sdk = nix.thunk(() => nix.sel(dotnetCorePackages, "sdk_9_0_1xx-bin"));
   return nix.app(buildDotnetModule, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: pname,
       "dotnet-sdk": dotnet_sdk,
       version: "2026-02-08",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "artempyanykh",
           repo: "marksman",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -42,13 +39,13 @@ export default nix.lambda((args) => (() => {
       postInstall: nix.thunk(() => nix.str`install -m 644 -D -t "$out/share/doc/${pname}" LICENSE
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Language Server for Markdown",
         longDescription: "Marksman is a program that integrates with your editor\nto assist you in writing and maintaining your Markdown documents.\nUsing LSP protocol it provides completion, goto definition,\nfind references, rename refactoring, diagnostics, and more.\nIn addition to regular Markdown, it also supports wiki-link-style\nreferences that enable Zettelkasten-like note taking.\n",
         homepage: "https://github.com/artempyanykh/marksman",

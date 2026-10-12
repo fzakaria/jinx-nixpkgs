@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["hash", 26, 5]], [["description", 57, 5], ["longDescription", 58, 5], ["homepage", 71, 5], ["changelog", 72, 5], ["license", 73, 5], ["maintainers", 74, 5], ["mainProgram", 75, 5], ["platforms", 76, 5], ["broken", 77, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["vendorHash", 28, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 31, 3], ["tags", 43, 3], ["ldflags", 44, 3], ["postInstall", 46, 3], ["doCheck", 54, 3], ["meta", 56, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildGoModule: false, fetchFromSourcehut: false, "pkg-config": false, "vulkan-headers": false, libxkbcommon: false, wayland: false, libxfixes: false, libxcursor: false, libx11: false, libxcb: false, libGL: false, sqlite: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 57, 5], ["longDescription", 58, 5], ["homepage", 71, 5], ["changelog", 72, 5], ["license", 73, 5], ["maintainers", 74, 5], ["mainProgram", 75, 5], ["platforms", 76, 5], ["broken", 77, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["vendorHash", 28, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 31, 3], ["tags", 43, 3], ["ldflags", 44, 3], ["postInstall", 46, 3], ["doCheck", 54, 3], ["meta", 56, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const libGL = nix.arg($, "libGL");
   const sqlite = nix.arg($, "sqlite");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "transito",
       version: "0.10.0",
       src: nix.thunk(() => nix.app(fetchFromSourcehut, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "~mil",
           repo: "transito",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -54,7 +52,7 @@ export default nix.lambda((args) => (() => {
       postInstall: "install -Dm644 -t $out/share/applications assets/transito.desktop\nfor icon in assets/transito_*.png; do\n  name=$(basename $icon .png)\n  install -Dm644 $icon $out/share/icons/hicolor/${name#transito_}/apps/transito.png\ndone\n",
       doCheck: false,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Data-provider-agnostic (GTFS) public transportation app",
         longDescription: "Transito is a data-provider-agnostic public transportation app\nthat let's you route between locations using openly available\npublic GTFS feeds.  Utilizing the Mobroute library,\nthe Transito app lets you performs routing calculations offline\n(no network calls once data is initially fetched).\n\nOverall, Transito aims to be an opensource alternative\nto proprietary routing apps to get users from point A to point B\nvia public transit without comprising privacy or user freedoms.\nIt works in many well-connected metros which have publicly available\nGTFS data, to name a few: Lisbon, NYC, Brussels, Krakow, and Bourges.\n",
         homepage: "https://git.sr.ht/~mil/transito",

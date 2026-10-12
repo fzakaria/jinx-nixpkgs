@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/tests.nix", [[["__structuredAttrs", 22, 5], ["strictDeps", 23, 5], ["nativeBuildInputs", 25, 5], ["ignoredTests", 37, 5], ["runAccuracyTests", 60, 13], ["accuracyTestNames", 62, 5], ["runPerformanceTests", 80, 13], ["performanceTestNames", 82, 5], ["testRunner", 95, 5], ["requiredSystemFeatures", 97, 5]]]);
 const formals$1 = { args: { enableGStreamer: false, enableGtk3: false, gst_all_1: false, lib: false, opencv4: false, runAccuracyTests: false, runCommand: false, runPerformanceTests: false, stdenv: false, testDataSrc: false, writableTmpDirAsHomeHook: false, "xvfb-run": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/tests.nix", [["__structuredAttrs", 22, 5], ["strictDeps", 23, 5], ["nativeBuildInputs", 25, 5], ["ignoredTests", 37, 5], ["runAccuracyTests", 60, 13], ["accuracyTestNames", 62, 5], ["runPerformanceTests", 80, 13], ["performanceTestNames", 82, 5], ["testRunner", 95, 5], ["requiredSystemFeatures", 97, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,7 +28,7 @@ export default nix.lambda((args) => (() => {
   const isAarch64 = nix.thunk(() => nix.attr(from_1, "isAarch64"));
   const isDarwin = nix.thunk(() => nix.attr(from_1, "isDarwin"));
   return nix.app(runCommand, "opencv4-tests", nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       __structuredAttrs: true,
       strictDeps: true,
       nativeBuildInputs: nix.thunk(() => nix.concat([writableTmpDirAsHomeHook], nix.app(optionals, enableGStreamer, nix.thunk(() => (() => {

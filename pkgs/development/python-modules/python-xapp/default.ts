@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["hash", 26, 5]], [["ignoredVersions", 56, 33]], [["updateScript", 56, 5], ["skipBulkUpdate", 57, 5]], [["homepage", 61, 5], ["description", 62, 5], ["license", 63, 5], ["platforms", 64, 5], ["teams", 65, 5]], [["pname", 17, 3], ["version", 18, 3], ["pyproject", 20, 3], ["src", 22, 3], ["nativeBuildInputs", 29, 3], ["propagatedBuildInputs", 34, 3], ["postPatch", 43, 3], ["doCheck", 52, 3], ["pythonImportsCheck", 53, 3], ["passthru", 55, 3], ["meta", 60, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, buildPythonPackage: false, meson: false, ninja: false, psutil: false, pygobject3: false, gtk3: false, "gobject-introspection": false, xapp: false, polkit: false, gitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["ignoredVersions", 56, 33]]);
-const pos$3 = nix.positions(here + "/default.nix", [["updateScript", 56, 5], ["skipBulkUpdate", 57, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["homepage", 61, 5], ["description", 62, 5], ["license", 63, 5], ["platforms", 64, 5], ["teams", 65, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 17, 3], ["version", 18, 3], ["pyproject", 20, 3], ["src", 22, 3], ["nativeBuildInputs", 29, 3], ["propagatedBuildInputs", 34, 3], ["postPatch", 43, 3], ["doCheck", 52, 3], ["pythonImportsCheck", 53, 3], ["passthru", 55, 3], ["meta", 60, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.0.3";
       const pyproject = false;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "linuxmint",
           repo: "python-xapp",
           rev: version,
@@ -46,12 +42,12 @@ substituteInPlace "xapp/util/__init__.py" \\
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["xapp"]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, ignoredVersions: "^master.*" })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[1], ignoredVersions: "^master.*" })))),
         skipBulkUpdate: true,
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://github.com/linuxmint/python-xapp",
         description: "Cross-desktop libraries and common resources for python",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl2Plus")),
@@ -59,7 +55,7 @@ substituteInPlace "xapp/util/__init__.py" \\
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "cinnamon"))]),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         pyproject,

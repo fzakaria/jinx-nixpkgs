@@ -2,20 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/plugins.nix", [[["homepage", 23, 9]], [["pname", 16, 7], ["src", 17, 21], ["version", 17, 25], ["buildInputs", 19, 7], ["preConfigure", 20, 7], ["installFlags", 21, 7], ["meta", 22, 7]], [["buildInputs", 42, 5]], [["repo", 54, 7], ["owner", 55, 7], ["rev", 56, 7], ["sha256", 57, 7]], [["homepage", 61, 26], ["description", 62, 7], ["maintainers", 63, 7], ["license", 64, 7], ["platforms", 65, 26]], [["pname", 46, 5], ["version", 47, 5], ["buildInputs", 49, 5], ["installFlags", 51, 5], ["src", 53, 5], ["meta", 60, 5]], [["repo", 75, 7], ["owner", 76, 7], ["rev", 77, 7], ["sha256", 78, 7]], [["homepage", 101, 26], ["description", 102, 7], ["maintainers", 103, 7], ["license", 104, 7], ["platforms", 105, 26]], [["pname", 71, 5], ["version", 72, 5], ["src", 74, 5], ["buildInputs", 81, 5], ["buildFlags", 86, 5], ["preBuild", 94, 5], ["dontInstall", 98, 5], ["meta", 100, 5]], [["owner", 114, 7], ["repo", 115, 7], ["rev", 116, 7], ["hash", 117, 7], ["fetchSubmodules", 118, 7]], [["homepage", 130, 26], ["description", 131, 7], ["maintainers", 132, 7], ["license", 133, 7], ["platforms", 134, 26]], [["pname", 110, 5], ["version", 111, 5], ["src", 113, 5], ["buildInputs", 121, 5], ["installFlags", 127, 5], ["meta", 129, 5]], [["epgsearch", 29, 3], ["markad", 31, 3], ["nopacity", 33, 3], ["softhddevice", 35, 3], ["streamdev", 37, 3], ["xineliboutput", 39, 3], ["skincurses", 41, 3], ["vnsiserver", 45, 3], ["text2skin", 70, 3], ["fritzbox", 109, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, vdr: false, fetchFromGitHub: false, graphicsmagick: false, boost: false, libgcrypt: false, ncurses: false, callPackage: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/plugins.nix", [["homepage", 23, 9]]);
-const pos$2 = nix.positions(here + "/plugins.nix", [["pname", 16, 7], ["src", 17, 21], ["version", 17, 25], ["buildInputs", 19, 7], ["preConfigure", 20, 7], ["installFlags", 21, 7], ["meta", 22, 7]]);
-const pos$3 = nix.positions(here + "/plugins.nix", [["buildInputs", 42, 5]]);
-const pos$4 = nix.positions(here + "/plugins.nix", [["repo", 54, 7], ["owner", 55, 7], ["rev", 56, 7], ["sha256", 57, 7]]);
-const pos$5 = nix.positions(here + "/plugins.nix", [["homepage", 61, 26], ["description", 62, 7], ["maintainers", 63, 7], ["license", 64, 7], ["platforms", 65, 26]]);
-const pos$6 = nix.positions(here + "/plugins.nix", [["pname", 46, 5], ["version", 47, 5], ["buildInputs", 49, 5], ["installFlags", 51, 5], ["src", 53, 5], ["meta", 60, 5]]);
-const pos$7 = nix.positions(here + "/plugins.nix", [["repo", 75, 7], ["owner", 76, 7], ["rev", 77, 7], ["sha256", 78, 7]]);
-const pos$8 = nix.positions(here + "/plugins.nix", [["homepage", 101, 26], ["description", 102, 7], ["maintainers", 103, 7], ["license", 104, 7], ["platforms", 105, 26]]);
-const pos$9 = nix.positions(here + "/plugins.nix", [["pname", 71, 5], ["version", 72, 5], ["src", 74, 5], ["buildInputs", 81, 5], ["buildFlags", 86, 5], ["preBuild", 94, 5], ["dontInstall", 98, 5], ["meta", 100, 5]]);
-const pos$10 = nix.positions(here + "/plugins.nix", [["owner", 114, 7], ["repo", 115, 7], ["rev", 116, 7], ["hash", 117, 7], ["fetchSubmodules", 118, 7]]);
-const pos$11 = nix.positions(here + "/plugins.nix", [["homepage", 130, 26], ["description", 131, 7], ["maintainers", 132, 7], ["license", 133, 7], ["platforms", 134, 26]]);
-const pos$12 = nix.positions(here + "/plugins.nix", [["pname", 110, 5], ["version", 111, 5], ["src", 113, 5], ["buildInputs", 121, 5], ["installFlags", 127, 5], ["meta", 129, 5]]);
-const pos$13 = nix.positions(here + "/plugins.nix", [["epgsearch", 29, 3], ["markad", 31, 3], ["nopacity", 33, 3], ["softhddevice", 35, 3], ["streamdev", 37, 3], ["xineliboutput", 39, 3], ["skincurses", 41, 3], ["vnsiserver", 45, 3], ["text2skin", 70, 3], ["fritzbox", 109, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,17 +17,17 @@ export default nix.lambda((args) => (() => {
   const ncurses = nix.arg($, "ncurses");
   const callPackage = nix.arg($, "callPackage");
   const mkPlugin = (name) => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: name,
       src: nix.thunk(() => nix.attr(vdr, "src")),
       version: nix.thunk(() => nix.attr(vdr, "version")),
       buildInputs: nix.thunk(() => [vdr]),
       preConfigure: nix.thunk(() => nix.str`cd PLUGINS/src/${name}`),
       installFlags: nix.thunk(() => ["DESTDIR=$(out)"]),
-      meta: nix.thunk(() => ({ [nix.POS]: pos$1, homepage: "https://git.tvdr.de/?p=vdr.git" })),
+      meta: nix.thunk(() => ({ [nix.POS]: $pos[0], homepage: "https://git.tvdr.de/?p=vdr.git" })),
     })));
   return nix.update({
-    [nix.POS]: pos$13,
+    [nix.POS]: $pos[12],
     epgsearch: nix.thunk(() => nix.app(callPackage, nix.path(here, "./epgsearch"), nix.thunk(() => ({})))),
     markad: nix.thunk(() => nix.app(callPackage, nix.path(here, "./markad"), nix.thunk(() => ({})))),
     nopacity: nix.thunk(() => nix.app(callPackage, nix.path(here, "./nopacity"), nix.thunk(() => ({})))),
@@ -47,7 +35,7 @@ export default nix.lambda((args) => (() => {
     streamdev: nix.thunk(() => nix.app(callPackage, nix.path(here, "./streamdev"), nix.thunk(() => ({})))),
     xineliboutput: nix.thunk(() => nix.app(callPackage, nix.path(here, "./xineliboutput"), nix.thunk(() => ({})))),
     skincurses: nix.thunk(() => nix.app(nix.sel(nix.app(mkPlugin, "skincurses"), "overrideAttrs"), (oldAttr) => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         buildInputs: nix.thunk(() => nix.concat(nix.sel(oldAttr, "buildInputs"), [ncurses])),
       }))),
     vnsiserver: nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => (() => {
@@ -56,7 +44,7 @@ export default nix.lambda((args) => (() => {
         const buildInputs = nix.thunk(() => [vdr]);
         const installFlags = nix.thunk(() => ["DESTDIR=$(out)"]);
         const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             repo: "vdr-plugin-vnsiserver",
             owner: "vdr-projects",
             rev: version,
@@ -66,7 +54,7 @@ export default nix.lambda((args) => (() => {
           const from = nix.thunk(() => nix.sel(src, "meta"));
           const from_1 = nix.thunk(() => nix.sel(vdr, "meta"));
           return {
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           homepage: nix.thunk(() => nix.attr(from, "homepage")),
           description: "VDR plugin to handle KODI clients",
           maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "ck3d"))]),
@@ -74,13 +62,13 @@ export default nix.lambda((args) => (() => {
           platforms: nix.thunk(() => nix.attr(from_1, "platforms")),
         };
         })());
-        return { [nix.POS]: pos$6, pname, version, buildInputs, installFlags, src, meta };
+        return { [nix.POS]: $pos[5], pname, version, buildInputs, installFlags, src, meta };
       })()))),
     text2skin: nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => (() => {
         const pname = "vdr-text2skin";
         const version = "1.3.4-20170702";
         const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             repo: "vdr-plugin-text2skin",
             owner: "vdr-projects",
             rev: "8f7954da2488ced734c30e7c2704b92a44e6e1ad",
@@ -100,7 +88,7 @@ export default nix.lambda((args) => (() => {
           const from = nix.thunk(() => nix.sel(src, "meta"));
           const from_1 = nix.thunk(() => nix.sel(vdr, "meta"));
           return {
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           homepage: nix.thunk(() => nix.attr(from, "homepage")),
           description: "VDR Text2Skin Plugin",
           maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "ck3d"))]),
@@ -109,7 +97,7 @@ export default nix.lambda((args) => (() => {
         };
         })());
         return {
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           pname,
           version,
           src,
@@ -124,7 +112,7 @@ export default nix.lambda((args) => (() => {
         const pname = "vdr-fritzbox";
         const version = "1.5.8";
         const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$10,
+            [nix.POS]: $pos[9],
             owner: "jowi24",
             repo: "vdr-fritz",
             rev: version,
@@ -137,7 +125,7 @@ export default nix.lambda((args) => (() => {
           const from = nix.thunk(() => nix.sel(src, "meta"));
           const from_1 = nix.thunk(() => nix.sel(vdr, "meta"));
           return {
-          [nix.POS]: pos$11,
+          [nix.POS]: $pos[10],
           homepage: nix.thunk(() => nix.attr(from, "homepage")),
           description: "Plugin for VDR to access AVMs Fritz Box routers",
           maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "ck3d"))]),
@@ -145,7 +133,7 @@ export default nix.lambda((args) => (() => {
           platforms: nix.thunk(() => nix.attr(from_1, "platforms")),
         };
         })());
-        return { [nix.POS]: pos$12, pname, version, src, buildInputs, installFlags, meta };
+        return { [nix.POS]: $pos[11], pname, version, src, buildInputs, installFlags, meta };
       })()))),
   }, nix.app(nix.sel(lib, "genAttrs"), nix.thunk(() => [
       "epgtableid0",

@@ -2,17 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["description", 20, 5], ["homepage", 21, 5], ["downloadPage", 22, 5], ["mainProgram", 23, 5], ["license", 24, 5], ["maintainers", 25, 5], ["platforms", 33, 5]], [["url", 42, 7], ["hash", 43, 7]], [["url", 47, 7], ["hash", 48, 7]], [["url", 52, 7], ["hash", 53, 7]], [["x86_64-linux", 41, 5], ["aarch64-linux", 46, 5], ["aarch64-darwin", 51, 5]], [["url", 61, 5], ["hash", 62, 5]], [["name", 66, 5], ["desktopName", 67, 5], ["startupWMClass", 68, 5], ["comment", 69, 5], ["icon", 70, 5], ["exec", 71, 5], ["categories", 72, 5], ["mimeTypes", 73, 5]], [["srcs", 120, 15], ["updateScript", 121, 7]], [["pname", 78, 7], ["version", 79, 7], ["src", 80, 7], ["desktopItem", 81, 7], ["icon", 82, 7], ["meta", 83, 7], ["nativeBuildInputs", 85, 5], ["installPhase", 91, 5], ["passthru", 119, 5]], [["pname", 135, 7], ["version", 136, 7], ["src", 137, 7], ["appname", 138, 7], ["meta", 139, 7], ["nativeBuildInputs", 141, 5], ["installPhase", 145, 5]]]);
 const formals$1 = { args: { stdenv: false, fetchurl: false, lib: false, makeWrapper: false, electron: false, makeDesktopItem: false, imagemagick: false, asar: false, autoPatchelfHook: false, writeScript: false, _7zz: false, commandLineArgs: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["description", 20, 5], ["homepage", 21, 5], ["downloadPage", 22, 5], ["mainProgram", 23, 5], ["license", 24, 5], ["maintainers", 25, 5], ["platforms", 33, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 42, 7], ["hash", 43, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 47, 7], ["hash", 48, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["url", 52, 7], ["hash", 53, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["x86_64-linux", 41, 5], ["aarch64-linux", 46, 5], ["aarch64-darwin", 51, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["url", 61, 5], ["hash", 62, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["name", 66, 5], ["desktopName", 67, 5], ["startupWMClass", 68, 5], ["comment", 69, 5], ["icon", 70, 5], ["exec", 71, 5], ["categories", 72, 5], ["mimeTypes", 73, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["srcs", 120, 15], ["updateScript", 121, 7]]);
-const pos$9 = nix.positions(here + "/package.nix", [["pname", 78, 7], ["version", 79, 7], ["src", 80, 7], ["desktopItem", 81, 7], ["icon", 82, 7], ["meta", 83, 7], ["nativeBuildInputs", 85, 5], ["installPhase", 91, 5], ["passthru", 119, 5]]);
-const pos$10 = nix.positions(here + "/package.nix", [["pname", 135, 7], ["version", 136, 7], ["src", 137, 7], ["appname", 138, 7], ["meta", 139, 7], ["nativeBuildInputs", 141, 5], ["installPhase", 145, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,7 +23,7 @@ export default nix.lambda((args) => (() => {
   const version = "1.14.4";
   const appname = "Obsidian";
   const meta = nix.thunk(() => ({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     description: "Powerful knowledge base that works on top of a local folder of plain text Markdown files",
     homepage: "https://obsidian.md",
     downloadPage: "https://github.com/obsidianmd/obsidian-releases/releases",
@@ -51,31 +42,31 @@ export default nix.lambda((args) => (() => {
     platforms: nix.thunk(() => ["x86_64-linux", "aarch64-linux", "aarch64-darwin"]),
   }));
   const srcs = nix.thunk(() => ({
-    [nix.POS]: pos$5,
+    [nix.POS]: $pos[4],
     "x86_64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         url: nix.thunk(() => nix.str`https://github.com/obsidianmd/obsidian-releases/releases/download/v${version}/obsidian-${version}.tar.gz`),
         hash: "sha256-5wt81jeH5/eYqE/sRT9cRGuRh3vT9hLo+5jpt2zIESA=",
       })))),
     "aarch64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         url: nix.thunk(() => nix.str`https://github.com/obsidianmd/obsidian-releases/releases/download/v${version}/obsidian-${version}-arm64.tar.gz`),
         hash: "sha256-/CEoBFFXE+2F/l71vEsAmHK8wBhHxL5PzBSXHe7ipC0=",
       })))),
     "aarch64-darwin": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         url: nix.thunk(() => nix.str`https://github.com/obsidianmd/obsidian-releases/releases/download/v${version}/Obsidian-${version}.dmg`),
         hash: "sha256-3PgY3SDuXZ3T54Lu4MDExHzCJTg7BRwvya99V3L1n3A=",
       })))),
   }));
   const src = nix.thunk(() => nix.selOr(srcs, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenv, "hostPlatform", "system")}`)), nix.key(nix.sel(stdenv, "hostPlatform", "system"))));
   const icon = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       url: "https://obsidian.md/images/obsidian-logo-gradient.svg",
       hash: "sha256-EZsBuWyZ9zYJh0LDKfRAMTtnY70q6iLK/ggXlplDEoA=",
     }))));
   const desktopItem = nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       name: "md.obsidian.Obsidian",
       desktopName: "Obsidian",
       startupWMClass: "md.obsidian.Obsidian",
@@ -86,7 +77,7 @@ export default nix.lambda((args) => (() => {
       mimeTypes: nix.thunk(() => ["x-scheme-handler/obsidian"]),
     }))));
   const linux = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       pname: pname,
       version: version,
       src: src,
@@ -121,7 +112,7 @@ done
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         srcs: srcs,
         updateScript: nix.thunk(() => nix.app(writeScript, "updater", nix.thunk(() => nix.str`#!/usr/bin/env nix-shell
 #!nix-shell -i bash -p curl jq common-updater-scripts
@@ -134,7 +125,7 @@ done
       })),
     }))));
   const darwin = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       pname: pname,
       version: version,
       src: src,

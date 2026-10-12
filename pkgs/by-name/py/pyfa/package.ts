@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]], [["name", 32, 7], ["exec", 33, 7], ["icon", 34, 7], ["desktopName", 35, 7], ["genericName", 36, 7], ["categories", 37, 7]], [["description", 137, 5], ["homepage", 138, 5], ["license", 139, 5], ["maintainers", 140, 5], ["mainProgram", 145, 5], ["platforms", 146, 5]], [["version", 17, 11], ["pname", 18, 3], ["pyproject", 19, 3], ["src", 21, 3], ["patches", 28, 3], ["desktopItems", 30, 3], ["build-system", 41, 3], ["dependencies", 42, 3], ["buildInputs", 61, 3], ["dontWrapGApps", 67, 3], ["nativeBuildInputs", 68, 3], ["postPatch", 78, 3], ["configurePhase", 90, 3], ["buildPhase", 98, 3], ["installPhase", 112, 3], ["fixupPhase", 125, 3], ["doCheck", 134, 3], ["meta", 136, 3]]]);
 const formals$1 = { args: { lib: false, python3Packages: false, fetchFromGitHub: false, "gsettings-desktop-schemas": false, "adwaita-icon-theme": false, wrapGAppsHook3: false, "gobject-introspection": false, "gdk-pixbuf": false, makeDesktopItem: false, copyDesktopItems: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 32, 7], ["exec", 33, 7], ["icon", 34, 7], ["desktopName", 35, 7], ["genericName", 36, 7], ["categories", 37, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 137, 5], ["homepage", 138, 5], ["license", 139, 5], ["maintainers", 140, 5], ["mainProgram", 145, 5], ["platforms", 146, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["version", 17, 11], ["pname", 18, 3], ["pyproject", 19, 3], ["src", 21, 3], ["patches", 28, 3], ["desktopItems", 30, 3], ["build-system", 41, 3], ["dependencies", 42, 3], ["buildInputs", 61, 3], ["dontWrapGApps", 67, 3], ["nativeBuildInputs", 68, 3], ["postPatch", 78, 3], ["configurePhase", 90, 3], ["buildPhase", 98, 3], ["installPhase", 112, 3], ["fixupPhase", 125, 3], ["doCheck", 134, 3], ["meta", 136, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const pname = "pyfa";
       const pyproject = false;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "pyfa-org",
           repo: "Pyfa",
           tag: nix.thunk(() => nix.str`v${version_1}`),
@@ -35,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const patches = nix.thunk(() => [nix.path(here, "./dark-theme-wxpython-4.2-compat.patch")]);
       const desktopItems = nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "pyfa",
             exec: "pyfa %U",
             icon: "pyfa",
@@ -90,7 +87,7 @@ EOF
       const fixupPhase = "runHook preFixup\n\nwrapProgramShell $out/share/pyfa/pyfa \\\n  ${gappsWrapperArgs[@]} \\\n\nrunHook postFixup\n";
       const doCheck = true;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Python fitting assistant, cross-platform fitting tool for EVE Online",
         homepage: "https://github.com/pyfa-org/Pyfa",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
@@ -106,7 +103,7 @@ EOF
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         version: version_1,
         pname,
         pyproject,

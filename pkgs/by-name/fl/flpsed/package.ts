@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 14, 5], ["sha256", 15, 5]], [["description", 33, 5], ["homepage", 34, 5], ["license", 35, 5], ["platforms", 36, 5], ["maintainers", 37, 5], ["mainProgram", 38, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["buildInputs", 18, 3], ["postPatch", 20, 3], ["configureFlags", 26, 3], ["meta", 32, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, fltk_1_3: false, ghostscript: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 14, 5], ["sha256", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 33, 5], ["homepage", 34, 5], ["license", 35, 5], ["platforms", 36, 5], ["maintainers", 37, 5], ["mainProgram", 38, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["buildInputs", 18, 3], ["postPatch", 20, 3], ["configureFlags", 26, 3], ["meta", 32, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const fltk_1_3 = nix.arg($, "fltk_1_3");
   const ghostscript = nix.arg($, "ghostscript");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "flpsed",
       version: "0.7.3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://www.flpsed.org/flpsed-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "0vngqxanykicabhfdznisv82k5ypkxwg0s93ms9ribvhpm8vf2xp",
         })))),
@@ -34,7 +32,7 @@ sed -e '/exec_gs/ {n; s|"gs"|"${nix.app(nix.sel(lib, "getBin"), ghostscript)}/bi
         nix.thunk(() => nix.str`FLTKCONFIG=${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.app(nix.sel(lib, "getDev"), fltk_1_3)), "fltk-config")}`),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "WYSIWYG PostScript annotator",
         homepage: "https://flpsed.org/flpsed.html",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

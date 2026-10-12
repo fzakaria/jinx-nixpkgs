@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 23, 5], ["rev", 24, 5], ["hash", 25, 5]], [["rev-prefix", 48, 19]], [["extraArgs", 49, 26]], [["updateScript", 47, 12]], [["description", 69, 5], ["homepage", 70, 5], ["changelog", 71, 5], ["license", 72, 5], ["mainProgram", 73, 5], ["maintainers", 74, 5]], [["__structuredAttrs", 17, 3], ["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["vendorHash", 28, 3], ["subPackages", 30, 3], ["preCheck", 32, 3], ["ldflags", 37, 3], ["nativeBuildInputs", 45, 3], ["passthru", 47, 3], ["postFixup", 52, 3], ["nativeInstallCheckInputs", 59, 3], ["versionCheckProgramArg", 64, 3], ["versionCheckKeepEnvironment", 65, 3], ["doInstallCheck", 66, 3], ["meta", 68, 3]]]);
 const formals$1 = { args: { "_experimental-update-script-combinators": false, lib: false, stdenv: false, buildGoModule: false, fetchgit: false, gitMinimal: false, gitUpdater: false, "nix-update-script": false, makeWrapper: false, versionCheckHook: false, writableTmpDirAsHomeHook: false, "xdg-utils": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 23, 5], ["rev", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["rev-prefix", 48, 19]]);
-const pos$3 = nix.positions(here + "/package.nix", [["extraArgs", 49, 26]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 47, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 69, 5], ["homepage", 70, 5], ["changelog", 71, 5], ["license", 72, 5], ["mainProgram", 73, 5], ["maintainers", 74, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["__structuredAttrs", 17, 3], ["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["vendorHash", 28, 3], ["subPackages", 30, 3], ["preCheck", 32, 3], ["ldflags", 37, 3], ["nativeBuildInputs", 45, 3], ["passthru", 47, 3], ["postFixup", 52, 3], ["nativeInstallCheckInputs", 59, 3], ["versionCheckProgramArg", 64, 3], ["versionCheckKeepEnvironment", 65, 3], ["doInstallCheck", 66, 3], ["meta", 68, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   const xdg_utils = nix.arg($, "xdg-utils");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       __structuredAttrs: true,
       pname: "atomgit-cli",
       version: "0.7.3",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://atomgit.com/hust-open-atom-club/atomgit-cli.git",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-Yvv65+tNO9JJ4aW0KGDbjYzXAEWp9QFzCrrYMwdSl8M=",
@@ -47,10 +42,10 @@ export default nix.lambda((args) => (() => {
       ]),
       nativeBuildInputs: nix.thunk(() => [makeWrapper]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix.sel(_experimental_update_script_combinators, "sequence"), nix.thunk(() => [
-            nix.thunk(() => nix.sel(nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, "rev-prefix": "v" }))), "command")),
-            nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$3, extraArgs: nix.thunk(() => ["--version=skip"]) })))),
+            nix.thunk(() => nix.sel(nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[1], "rev-prefix": "v" }))), "command")),
+            nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: $pos[2], extraArgs: nix.thunk(() => ["--version=skip"]) })))),
           ]))),
       })),
       postFixup: nix.thunk(() => nix.str`wrapProgram $out/bin/ag \\
@@ -61,7 +56,7 @@ export default nix.lambda((args) => (() => {
       versionCheckKeepEnvironment: nix.thunk(() => ["HOME"]),
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Command-line interface for AtomGit",
         homepage: "https://atomgit.com/hust-open-atom-club/atomgit-cli",
         changelog: nix.thunk(() => nix.str`https://atomgit.com/hust-open-atom-club/atomgit-cli/tags/v${nix.sel(finalAttrs, "version")}`),

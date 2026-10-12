@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 14, 7], ["path", 15, 7]], [["url", 24, 5], ["hash", 25, 5]], [["tests", 46, 5], ["updateScript", 47, 5]], [["description", 51, 5], ["homepage", 52, 5], ["sourceProvenance", 53, 5], ["license", 54, 5], ["maintainers", 55, 5], ["platforms", 59, 33], ["mainProgram", 60, 5]], [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["dontUnpack", 28, 3], ["nativeBuildInputs", 30, 3], ["installPhase", 32, 3], ["passthru", 45, 3], ["meta", 50, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, jre_headless: false, linkFarm: false, makeWrapper: false, nixosTests: false, plugins: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 14, 7], ["path", 15, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 24, 5], ["hash", 25, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 46, 5], ["updateScript", 47, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 51, 5], ["homepage", 52, 5], ["sourceProvenance", 53, 5], ["license", 54, 5], ["maintainers", 55, 5], ["platforms", 59, 33], ["mainProgram", 60, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["dontUnpack", 28, 3], ["nativeBuildInputs", 30, 3], ["installPhase", 32, 3], ["passthru", 45, 3], ["meta", 50, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,16 +16,16 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const plugins = nix.argOr($, "plugins", () => []);
   const pluginsDir = nix.thunk(() => nix.app(linkFarm, "reposilite-plugins", nix.thunk(() => nix.builtins.map((p) => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         name: nix.thunk(() => nix.add(nix.sel(nix.builtins.parseDrvName(nix.thunk(() => nix.sel(p, "name"))), "name"), ".jar")),
         path: nix.thunk(() => nix.selOr(p, () => nix.force(p), "outPath")),
       }), plugins))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "Reposilite",
       version: "3.6.3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: nix.thunk(() => nix.str`https://maven.reposilite.com/releases/com/reposilite/reposilite/${nix.sel(finalAttrs, "version")}/reposilite-${nix.sel(finalAttrs, "version")}-all.jar`),
           hash: "sha256-fJc8Et98svDcVtibcGSoVeJaLJl1qb1eO+2OxfeVqA8=",
         })))),
@@ -45,14 +41,14 @@ makeWrapper ${jre_headless}/bin/java $out/bin/reposilite \\
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => nix.sel(nixosTests, "reposilite")),
         updateScript: nix.path(here, "./update.sh"),
       })),
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(jre_headless, "meta"));
         return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Lightweight and easy-to-use repository management software dedicated for the Maven based artifacts in the JVM ecosystem",
         homepage: "https://github.com/dzikoysk/reposilite",
         sourceProvenance: nix.thunk(() => (() => {

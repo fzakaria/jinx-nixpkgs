@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 15, 5], ["sha256", 16, 5]], [["homepage", 33, 5], ["description", 34, 5], ["mainProgram", 35, 5], ["license", 36, 5], ["platforms", 37, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 14, 3], ["buildInputs", 19, 3], ["prePatch", 26, 3], ["patches", 30, 3], ["meta", 32, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, SDL: false, SDL_image: false, libGLU: false, libGL: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 15, 5], ["sha256", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 33, 5], ["description", 34, 5], ["mainProgram", 35, 5], ["license", 36, 5], ["platforms", 37, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 14, 3], ["buildInputs", 19, 3], ["prePatch", 26, 3], ["patches", 30, 3], ["meta", 32, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const libGLU = nix.arg($, "libGLU");
   const libGL = nix.arg($, "libGL");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "kobodeluxe",
       version: "0.5.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://olofson.net/kobodl/download/KoboDeluxe-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           sha256: "0f7b910a399d985437564af8c5d81d6dcf22b96b26b01488d72baa6a6fdb5c2c",
         })))),
@@ -29,7 +27,7 @@ export default nix.lambda((args) => (() => {
       prePatch: "sed -e 's/char \\*tok/const char \\*tok/' -i graphics/window.cpp\n",
       patches: nix.thunk(() => [nix.path(here, "./glibc29.patch")]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://olofson.net/kobodl/",
         description: "Enhanced version of Akira Higuchi's game XKobo  for Un*x systems with X11",
         mainProgram: "kobodl",

@@ -2,13 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 17, 5], ["sha256", 18, 5]], [["name", 38, 7], ["paths", 39, 7]], [["roundcube", 47, 43]], [["withPlugins", 35, 12], ["tests", 47, 12]], [["description", 50, 5], ["maintainers", 51, 5], ["license", 55, 5], ["platforms", 56, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["patches", 21, 3], ["dontBuild", 23, 3], ["dontCheckForBrokenSymlinks", 26, 3], ["installPhase", 28, 3], ["passthru", 35, 3], ["meta", 49, 3]]]);
 const formals$1 = { args: { fetchurl: false, lib: false, stdenv: false, buildEnv: false, roundcube: false, roundcubePlugins: false, nixosTests: false, runCommand: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 17, 5], ["sha256", 18, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["name", 38, 7], ["paths", 39, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["roundcube", 47, 43]]);
-const pos$4 = nix.positions(here + "/default.nix", [["withPlugins", 35, 12], ["tests", 47, 12]]);
-const pos$5 = nix.positions(here + "/default.nix", [["description", 50, 5], ["maintainers", 51, 5], ["license", 55, 5], ["platforms", 56, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["patches", 21, 3], ["dontBuild", 23, 3], ["dontCheckForBrokenSymlinks", 26, 3], ["installPhase", 28, 3], ["passthru", 35, 3], ["meta", 49, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = "roundcube";
       const version = "1.7.4";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/roundcube/roundcubemail/releases/download/${version}/roundcubemail-${version}-complete.tar.gz`),
           sha256: "sha256-LGyHjwCT8b9/tghngdLdkmnWUsAWuGk5wVfF8XKROaI=",
         }))));
@@ -35,9 +30,9 @@ export default nix.lambda((args) => (() => {
       const dontCheckForBrokenSymlinks = true;
       const installPhase = "mkdir $out\ncp -r * $out/\nln -sf /etc/roundcube/config.inc.php $out/config/config.inc.php\nrm -rf $out/installer\n";
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         withPlugins: (f) => nix.app(buildEnv, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: nix.thunk(() => nix.str`${nix.sel(roundcube, "name")}-with-plugins`),
             paths: nix.thunk(() => nix.concat(nix.app(f, roundcubePlugins), [
               roundcube,
@@ -45,12 +40,12 @@ export default nix.lambda((args) => (() => {
             ])),
           }))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           roundcube: nix.thunk(() => nix.attr(nixosTests, "roundcube")),
         })),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Open Source Webmail Software",
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -63,7 +58,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
       return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname,
         version,
         src,

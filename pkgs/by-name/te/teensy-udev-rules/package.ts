@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["homepage", 25, 5], ["description", 26, 5], ["longDescription", 27, 5], ["platforms", 35, 5], ["license", 36, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 12, 3], ["dontUnpack", 14, 3], ["runtimeDeps", 16, 3], ["installPhase", 18, 3], ["meta", 24, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, coreutils: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["homepage", 25, 5], ["description", 26, 5], ["longDescription", 27, 5], ["platforms", 35, 5], ["license", 36, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 12, 3], ["dontUnpack", 14, 3], ["runtimeDeps", 16, 3], ["installPhase", 18, 3], ["meta", 24, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -12,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const coreutils = nix.arg($, "coreutils");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "teensy-udev-rules",
       version: "2022-05-15",
       src: nix.path(here, "./teensy.rules"),
@@ -23,7 +22,7 @@ substituteInPlace $out/etc/udev/rules.d/70-teensy.rules \\
   --replace "/bin/stty" "${coreutils}/bin/stty"
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         homepage: "https://www.pjrc.com/teensy/00-teensy.rules",
         description: "udev rules for the Teensy microcontrollers",
         longDescription: "udev rules that give non-root users permission to communicate with the\nTeensy family of microcontrollers.\n\nModemManager (part of NetworkManager) can interfere with USB Serial\ndevices, which includes the Teensy.  See comments in the .rules file (or\nthis package's homepage) for possible workarounds.\n",

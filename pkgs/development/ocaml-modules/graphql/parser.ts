@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/parser.nix", [[["url", 19, 5], ["sha256", 20, 5]], [["homepage", 34, 5], ["description", 35, 5], ["license", 36, 5], ["maintainers", 37, 5]], [["pname", 12, 3], ["version", 13, 3], ["minimalOCamlVersion", 15, 3], ["duneVersion", 16, 3], ["src", 18, 3], ["nativeBuildInputs", 23, 3], ["propagatedBuildInputs", 24, 3], ["checkInputs", 29, 3], ["doCheck", 31, 3], ["meta", 33, 3]]]);
 const formals$1 = { args: { lib: false, buildDunePackage: false, fetchurl: false, alcotest: false, fmt: false, menhir: false, re: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/parser.nix", [["url", 19, 5], ["sha256", 20, 5]]);
-const pos$2 = nix.positions(here + "/parser.nix", [["homepage", 34, 5], ["description", 35, 5], ["license", 36, 5], ["maintainers", 37, 5]]);
-const pos$3 = nix.positions(here + "/parser.nix", [["pname", 12, 3], ["version", 13, 3], ["minimalOCamlVersion", 15, 3], ["duneVersion", 16, 3], ["src", 18, 3], ["nativeBuildInputs", 23, 3], ["propagatedBuildInputs", 24, 3], ["checkInputs", 29, 3], ["doCheck", 31, 3], ["meta", 33, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,13 +15,13 @@ export default nix.lambda((args) => (() => {
   const menhir = nix.arg($, "menhir");
   const re = nix.arg($, "re");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "graphql_parser",
       version: "0.14.0",
       minimalOCamlVersion: "4.08",
       duneVersion: "3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/andreas/ocaml-graphql-server/releases/download/${nix.sel(finalAttrs, "version")}/graphql-${nix.sel(finalAttrs, "version")}.tbz`),
           sha256: "sha256-v4v1ueF+NV7LvYIVinaf4rE450Z1P9OiMAito6/NHAY=",
         })))),
@@ -32,7 +30,7 @@ export default nix.lambda((args) => (() => {
       checkInputs: nix.thunk(() => [alcotest]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/andreas/ocaml-graphql-server",
         description: "Library for parsing GraphQL queries",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -2,18 +2,17 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
-const pos$1 = nix.positions(here + "/4.12.nix", [["url", 8, 7], ["sha256", 9, 7]]);
-const pos$2 = nix.positions(here + "/4.12.nix", [["major_version", 2, 3], ["minor_version", 3, 3], ["patch_version", 4, 3], ["sha256", 5, 3], ["patches", 6, 3]]);
+const $pos = nix.positions(here + "/4.12.nix", [[["url", 8, 7], ["sha256", 9, 7]], [["major_version", 2, 3], ["minor_version", 3, 3], ["patch_version", 4, 3], ["sha256", 5, 3], ["patches", 6, 3]]]);
 
 export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./generic.nix")), nix.thunk(() => ({
-    [nix.POS]: pos$2,
+    [nix.POS]: $pos[1],
     major_version: "4",
     minor_version: "12",
     patch_version: "1",
     sha256: "1jbjjnmqq6ymsy81x188i256bz4z5jrz1pws8g1qf59c32ganjkf",
     patches: nix.thunk(() => [
       nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         url: "https://src.fedoraproject.org/rpms/ocaml/raw/129153b85109944bf0b2922949f77ef8f32b39a1/f/0004-Dynamically-allocate-the-alternate-signal-stack-1026.patch",
         sha256: "sha256-FdQ1HkMKHU9QvgLPUBvMdPiEa7w7IL3+1F3SLv63Gog=",
       })),

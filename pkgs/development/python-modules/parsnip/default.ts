@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 32, 5], ["repo", 33, 5], ["tag", 34, 5], ["hash", 35, 5]], [["url", 41, 7], ["includes", 42, 7], ["hash", 46, 7]], [["description", 79, 5], ["homepage", 80, 5], ["changelog", 81, 5], ["license", 82, 5], ["maintainers", 83, 5]], [["pname", 25, 3], ["version", 26, 3], ["pyproject", 27, 3], ["__structuredAttrs", 29, 3], ["src", 31, 3], ["patches", 38, 3], ["build-system", 50, 3], ["dependencies", 54, 3], ["nativeCheckInputs", 59, 3], ["pythonImportsCheck", 69, 3], ["disabledTestPaths", 73, 3], ["meta", 78, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, fetchpatch: false, setuptools: false, "more-itertools": false, numpy: false, ase: false, gemmi: false, gsd: false, pycifrw: false, "pytest-doctestplus": false, pytestCheckHook: false, sympy: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 32, 5], ["repo", 33, 5], ["tag", 34, 5], ["hash", 35, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["url", 41, 7], ["includes", 42, 7], ["hash", 46, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 79, 5], ["homepage", 80, 5], ["changelog", 81, 5], ["license", 82, 5], ["maintainers", 83, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 25, 3], ["version", 26, 3], ["pyproject", 27, 3], ["__structuredAttrs", 29, 3], ["src", 31, 3], ["patches", 38, 3], ["build-system", 50, 3], ["dependencies", 54, 3], ["nativeCheckInputs", 59, 3], ["pythonImportsCheck", 69, 3], ["disabledTestPaths", 73, 3], ["meta", 78, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,13 +22,13 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const sympy = nix.arg($, "sympy");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "parsnip",
       version: "1.0.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "glotzerlab",
           repo: "parsnip",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -39,7 +36,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/glotzerlab/parsnip/commit/41a6bd6e42ea212203d5ce5864c687927b834586.patch",
             includes: nix.thunk(() => ["parsnip/parsnip.py"]),
             hash: "sha256-Y91fITsPkmcct2tDsaHtNB8ct41IMtw1A+QnRwChc7k=",
@@ -51,7 +48,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["parsnip"]),
       disabledTestPaths: nix.thunk(() => ["doc/source/"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Lightweight, performant library for parsing CIF files in Python",
         homepage: "https://github.com/glotzerlab/parsnip",
         changelog: nix.thunk(() => nix.str`https://github.com/glotzerlab/parsnip/blob/${nix.sel(finalAttrs, "src", "tag")}/changelog.rst`),

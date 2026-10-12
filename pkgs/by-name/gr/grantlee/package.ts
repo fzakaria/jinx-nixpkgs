@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["sha256", 19, 5]], [["description", 58, 5], ["longDescription", 59, 5], ["homepage", 68, 5], ["maintainers", 69, 5], ["license", 70, 5], ["platforms", 71, 31]], [["pname", 11, 3], ["version", 12, 3], ["grantleePluginPrefix", 13, 3], ["src", 15, 3], ["buildInputs", 22, 3], ["nativeBuildInputs", 26, 3], ["patches", 31, 3], ["outputs", 38, 3], ["postFixup", 42, 3], ["setupHook", 53, 3], ["doCheck", 55, 3], ["meta", 57, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch: false, qt5: false, cmake: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["sha256", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 58, 5], ["longDescription", 59, 5], ["homepage", 68, 5], ["maintainers", 69, 5], ["license", 70, 5], ["platforms", 71, 31]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["grantleePluginPrefix", 13, 3], ["src", 15, 3], ["buildInputs", 22, 3], ["nativeBuildInputs", 26, 3], ["patches", 31, 3], ["outputs", 38, 3], ["postFixup", 42, 3], ["setupHook", 53, 3], ["doCheck", 55, 3], ["meta", 57, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const version = "5.3.1";
       const grantleePluginPrefix = nix.thunk(() => nix.str`lib/grantlee/${nix.app(nix.sel(lib, "versions", "majorMinor"), version)}`);
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "steveire",
           repo: "grantlee",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -43,7 +41,7 @@ export default nix.lambda((args) => (() => {
       const meta = nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(qt5, "qtbase", "meta"));
         return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Qt5 port of Django template system",
         longDescription: "Grantlee is a plugin based String Template system written using the Qt\nframework. The goals of the project are to make it easier for application\ndevelopers to separate the structure of documents from the data they\ncontain, opening the door for theming.\n\nThe syntax is intended to follow the syntax of the Django template system,\nand the design of Django is reused in Grantlee.",
         homepage: "https://github.com/steveire/grantlee",
@@ -53,7 +51,7 @@ export default nix.lambda((args) => (() => {
       };
       })());
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         grantleePluginPrefix,

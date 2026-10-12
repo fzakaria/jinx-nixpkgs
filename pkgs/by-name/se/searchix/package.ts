@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 12, 5], ["repo", 13, 5], ["rev", 14, 5], ["hash", 15, 5]], [["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]], [["postBuild", 34, 5]], [["updateScript", 64, 5]], [["description", 68, 5], ["homepage", 69, 5], ["downloadPage", 70, 5], ["changelog", 71, 5], ["license", 72, 5], ["maintainers", 73, 5], ["mainProgram", 77, 5]], [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["vendorHash", 30, 3], ["overrideModAttrs", 32, 3], ["subPackages", 39, 3], ["tags", 41, 3], ["ldflags", 43, 3], ["preBuild", 48, 3], ["postInstall", 53, 3], ["nativeInstallCheckInputs", 57, 3], ["versionCheckProgramArg", 60, 3], ["doInstallCheck", 61, 3], ["passthru", 63, 3], ["meta", 67, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromCodeberg: false, fetchFromGitHub: false, versionCheckHook: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 12, 5], ["repo", 13, 5], ["rev", 14, 5], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["postBuild", 34, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 64, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 68, 5], ["homepage", 69, 5], ["downloadPage", 70, 5], ["changelog", 71, 5], ["license", 72, 5], ["maintainers", 73, 5], ["mainProgram", 77, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["vendorHash", 30, 3], ["overrideModAttrs", 32, 3], ["subPackages", 39, 3], ["tags", 41, 3], ["ldflags", 43, 3], ["preBuild", 48, 3], ["postInstall", 53, 3], ["nativeInstallCheckInputs", 57, 3], ["versionCheckProgramArg", 60, 3], ["doInstallCheck", 61, 3], ["passthru", 63, 3], ["meta", 67, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,18 +14,18 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const nix_update_script = nix.arg($, "nix-update-script");
   const simpleCss = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "kevquirk",
       repo: "simple.css",
       rev: "ba4af949057d489331759e0118de596222e0f5b7",
       hash: "sha256-rihjNW1gf0k7DI8x+vaFUR4ehI3gXDV9zWV3DGSg4y8=",
     }))));
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "searchix",
       version: "0.4.10",
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "alinnow",
           repo: "searchix",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,7 +33,7 @@ export default nix.lambda((args) => (() => {
         })))),
       vendorHash: "sha256-TveAe1aUYLUQuZQXCBYYFx0d0+Ql+IxFn9C9cFNsRAw=",
       overrideModAttrs: (old) => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         postBuild: nix.thunk(() => nix.str`patch -p0 < ${nix.path(here, "./darwin-sandbox-fix.patch")}
 `),
       }),
@@ -56,11 +51,11 @@ cp ${simpleCss}/simple.css frontend/static/base.css
       versionCheckProgramArg: "version",
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Search tool for options and packages in the NixOS ecosystem",
         homepage: "https://searchix.ovh/",
         downloadPage: "https://codeberg.org/alinnow/searchix",

@@ -2,14 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/pglite_fusion.nix", [[["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]], [["query", 52, 9], ["expected", 59, 9], ["description", 60, 9]], [["finalPackage", 32, 26], ["sql", 33, 5], ["asserts", 50, 5]], [["extension", 31, 18]], [["updateScript", 29, 12], ["tests", 31, 12]], [["description", 66, 5], ["homepage", 67, 5], ["license", 68, 5], ["maintainers", 69, 5], ["platforms", 70, 5]], [["postgresql", 11, 11], ["cargo-pgrx", 12, 3], ["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["cargoHash", 24, 3], ["doCheck", 27, 3], ["passthru", 29, 3], ["meta", 65, 3]]]);
 const formals$1 = { args: { buildPgrxExtension: false, "cargo-pgrx_0_18_0": false, fetchFromGitHub: false, lib: false, "nix-update-script": false, postgresql: false, postgresqlTestExtension: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/pglite_fusion.nix", [["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/pglite_fusion.nix", [["query", 52, 9], ["expected", 59, 9], ["description", 60, 9]]);
-const pos$3 = nix.positions(here + "/pglite_fusion.nix", [["finalPackage", 32, 26], ["sql", 33, 5], ["asserts", 50, 5]]);
-const pos$4 = nix.positions(here + "/pglite_fusion.nix", [["extension", 31, 18]]);
-const pos$5 = nix.positions(here + "/pglite_fusion.nix", [["updateScript", 29, 12], ["tests", 31, 12]]);
-const pos$6 = nix.positions(here + "/pglite_fusion.nix", [["description", 66, 5], ["homepage", 67, 5], ["license", 68, 5], ["maintainers", 69, 5], ["platforms", 70, 5]]);
-const pos$7 = nix.positions(here + "/pglite_fusion.nix", [["postgresql", 11, 11], ["cargo-pgrx", 12, 3], ["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["cargoHash", 24, 3], ["doCheck", 27, 3], ["passthru", 29, 3], ["meta", 65, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,13 +15,13 @@ export default nix.lambda((args) => (() => {
   const postgresql = nix.arg($, "postgresql");
   const postgresqlTestExtension = nix.arg($, "postgresqlTestExtension");
   return nix.app(buildPgrxExtension, (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       postgresql: postgresql,
       "cargo-pgrx": cargo_pgrx_0_18_0,
       pname: "pglite_fusion",
       version: "0.0.7",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "frectonz",
           repo: "pglite-fusion",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -36,17 +30,17 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-954nNwdMDE9tVOvql/fMR8J1pIq64AdKiKlBjl0yqRI=",
       doCheck: false,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           extension: nix.thunk(() => nix.app(postgresqlTestExtension, nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               finalPackage: nix.thunk(() => nix.attr(finalAttrs, "finalPackage")),
               sql: "CREATE EXTENSION pglite_fusion;\n\nCREATE TABLE people (\n  name     TEXT NOT NULL,\n  database SQLITE DEFAULT init_sqlite($sqlite$CREATE TABLE todos (task TEXT)$sqlite$)\n);\n\nINSERT INTO people VALUES ('frectonz');\n\nUPDATE people\nSET database = execute_sqlite(\n  database,\n  $sqlite$INSERT INTO todos VALUES ('solve multitenancy')$sqlite$\n)\nWHERE name = 'frectonz';\n",
               asserts: nix.thunk(() => [
                 nix.thunk(() => ({
-                  [nix.POS]: pos$2,
+                  [nix.POS]: $pos[1],
                   query: "SELECT get_sqlite_text(sqlite_row, 0)\nFROM query_sqlite(\n  (SELECT database FROM people WHERE name = 'frectonz'),\n  'SELECT * FROM todos'\n)\n",
                   expected: "'solve multitenancy'",
                   description: "todo stored in the embedded SQLite database can be read back",
@@ -56,7 +50,7 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "PostgreSQL extension for embedding an SQLite database in a column",
         homepage: "https://github.com/frectonz/pglite-fusion",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 26, 5], ["url", 27, 5], ["hash", 28, 5]], [["owner", 36, 5], ["repo", 37, 5], ["rev", 38, 5], ["hash", 39, 5]], [["description", 76, 5], ["homepage", 77, 5], ["license", 78, 5], ["platforms", 79, 5], ["maintainers", 80, 5]], [["pname", 32, 3], ["version", 33, 3], ["src", 35, 3], ["nativeBuildInputs", 42, 3], ["patches", 47, 3], ["dontConfigure", 49, 3], ["postPatch", 51, 3], ["buildPhase", 55, 3], ["installPhase", 66, 3], ["meta", 75, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, inkscape: false, xcursorgen: false, fetchFromGitHub: false, fetchpatch2: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 26, 5], ["url", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 36, 5], ["repo", 37, 5], ["rev", 38, 5], ["hash", 39, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 76, 5], ["homepage", 77, 5], ["license", 78, 5], ["platforms", 79, 5], ["maintainers", 80, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 32, 3], ["version", 33, 3], ["src", 35, 3], ["nativeBuildInputs", 42, 3], ["patches", 47, 3], ["dontConfigure", 49, 3], ["postPatch", 51, 3], ["buildPhase", 55, 3], ["installPhase", 66, 3], ["meta", 75, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,17 +25,17 @@ export default nix.lambda((args) => (() => {
     "LyraY",
   ]);
   const buildScriptPatch = nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: "use-more-flexible-build-script.patch",
       url: "https://github.com/KiranWells/Lyra-Cursors/commit/2735acb37a51792388497c666cc28370660217cb.patch?full_index=1",
       hash: "sha256-KCT4zNdep1TB7Oa4qrPw374ahT30o9/QrNTEgobp8zM=",
     }))));
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "lyra-cursors",
       version: "0-unstable-2021-12-04",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "yeyushengfan258",
           repo: "Lyra-Cursors",
           rev: "c096c54034f95bd35699b3226250e5c5ec015d9a",
@@ -59,7 +56,7 @@ runHook postBuild
 `),
       installPhase: "runHook preInstall\n\nmkdir -p $out/share/icons\nmv dist/*-cursors $out/share/icons\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Cursor theme inspired by macOS and based on capitaine-cursors",
         homepage: "https://github.com/yeyushengfan258/Lyra-Cursors",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

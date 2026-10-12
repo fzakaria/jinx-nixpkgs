@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]], [["url", 36, 7], ["hash", 37, 7]], [["SGML_CATALOG_FILES", 76, 7]], [["test", 82, 5]], [["tests", 81, 12]], [["homepage", 86, 5], ["description", 87, 5], ["license", 88, 5], ["platforms", 89, 5], ["maintainers", 90, 5]], [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["patches", 33, 3], ["postPatch", 41, 3], ["nativeBuildInputs", 48, 3], ["buildInputs", 57, 3], ["nativeCheckInputs", 66, 3], ["configureFlags", 70, 3], ["doCheck", 74, 3], ["env", 76, 3], ["passthru", 81, 3], ["meta", 85, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch: false, autoreconfHook: false, "autoconf-archive": false, "pkg-config": false, glib: false, which: false, bison: false, flex: false, docbook2x: false, docbook_sgml_dtd_41: false, docbook_sgml_dtd_45: false, nixosTests: false, libnl: false, linuxHeaders: false, gnutls: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 36, 7], ["hash", 37, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["SGML_CATALOG_FILES", 76, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["test", 82, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["tests", 81, 12]]);
-const pos$6 = nix.positions(here + "/package.nix", [["homepage", 86, 5], ["description", 87, 5], ["license", 88, 5], ["platforms", 89, 5], ["maintainers", 90, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["patches", 33, 3], ["postPatch", 41, 3], ["nativeBuildInputs", 48, 3], ["buildInputs", 57, 3], ["nativeCheckInputs", 66, 3], ["configureFlags", 70, 3], ["doCheck", 74, 3], ["env", 76, 3], ["passthru", 81, 3], ["meta", 85, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const linuxHeaders = nix.arg($, "linuxHeaders");
   const gnutls = nix.arg($, "gnutls");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "nbd",
       version: "3.27.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "NetworkBlockDevice",
           repo: "nbd",
           tag: nix.thunk(() => nix.str`nbd-${nix.sel(finalAttrs, "version")}`),
@@ -44,7 +38,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/NetworkBlockDevice/nbd/commit/a80304e10e9709d4100c935bc4cdc9086e86d5ff.patch",
             hash: "sha256-PMgVz2a8cwv1tO8ac5Wrf8ZFvOmCq+mC5bysJJGhpGc=",
           })))),
@@ -60,18 +54,18 @@ substituteInPlace man/Makefile.am \\
       configureFlags: nix.thunk(() => ["--sysconfdir=/etc"]),
       doCheck: nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         SGML_CATALOG_FILES: nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), ":", nix.thunk(() => [
             nix.thunk(() => nix.str`${docbook_sgml_dtd_41}/sgml/dtd/docbook-4.1/docbook.cat`),
             nix.thunk(() => nix.str`${docbook_sgml_dtd_45}/sgml/dtd/docbook-4.5/docbook.cat`),
           ]))),
       })),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$4, test: nix.thunk(() => nix.sel(nixosTests, "nbd")) })),
+        [nix.POS]: $pos[4],
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[3], test: nix.thunk(() => nix.sel(nixosTests, "nbd")) })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         homepage: "https://nbd.sourceforge.io/",
         description: "Map arbitrary files as block devices over the network",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/raptor2.nix", [[["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["sha256", 26, 5]], [["name", 38, 7], ["url", 39, 7], ["hash", 40, 7]], [["description", 68, 5], ["mainProgram", 69, 5], ["homepage", 70, 5], ["license", 71, 5], ["maintainers", 75, 5], ["platforms", 76, 5]], [["pname", 18, 3], ["version", 19, 3], ["underscoredVersion", 20, 3], ["src", 22, 3], ["cmakeFlags", 29, 3], ["patches", 34, 3], ["nativeBuildInputs", 44, 3], ["buildInputs", 51, 3], ["postPatch", 60, 3], ["meta", 67, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, libxml2: false, curl: false, libxslt: false, "pkg-config": false, cmake: false, fetchFromGitHub: false, perl: false, bison: false, flex: false, fetchpatch: false, static: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/raptor2.nix", [["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["sha256", 26, 5]]);
-const pos$2 = nix.positions(here + "/raptor2.nix", [["name", 38, 7], ["url", 39, 7], ["hash", 40, 7]]);
-const pos$3 = nix.positions(here + "/raptor2.nix", [["description", 68, 5], ["mainProgram", 69, 5], ["homepage", 70, 5], ["license", 71, 5], ["maintainers", 75, 5], ["platforms", 76, 5]]);
-const pos$4 = nix.positions(here + "/raptor2.nix", [["pname", 18, 3], ["version", 19, 3], ["underscoredVersion", 20, 3], ["src", 22, 3], ["cmakeFlags", 29, 3], ["patches", 34, 3], ["nativeBuildInputs", 44, 3], ["buildInputs", 51, 3], ["postPatch", 60, 3], ["meta", 67, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.0.16";
       const underscoredVersion = nix.thunk(() => nix.app(nix.sel(lib, "strings", "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => ["_"]), version));
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "dajobe",
           repo: "raptor",
           rev: nix.thunk(() => nix.str`${pname}_${underscoredVersion}`),
@@ -39,7 +36,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "libxml2-2.11.patch",
             url: "https://github.com/dajobe/raptor/commit/4dbc4c1da2a033c497d84a1291c46f416a9cac51.patch",
             hash: "sha256-fHfvncGymzMtxjwtakCNSr/Lem12UPIHAAcAac648w4=",
@@ -49,7 +46,7 @@ export default nix.lambda((args) => (() => {
       const buildInputs = nix.thunk(() => [curl, libxml2, libxslt]);
       const postPatch = "substituteInPlace CMakeLists.txt \\\n  --replace-fail \\\n    'CMAKE_MINIMUM_REQUIRED(VERSION 2.8.7)' \\\n    'CMAKE_MINIMUM_REQUIRED(VERSION 3.10)'\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "RDF Parser Toolkit",
         mainProgram: "rapper",
         homepage: "https://librdf.org/raptor",
@@ -64,7 +61,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         underscoredVersion,

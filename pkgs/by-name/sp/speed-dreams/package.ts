@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 83, 5], ["rev", 84, 5], ["sha256", 85, 5], ["fetchSubmodules", 86, 5]], [["NIX_CFLAGS_COMPILE", 89, 7]], [["description", 171, 5], ["homepage", 172, 5], ["license", 173, 5], ["maintainers", 174, 5], ["platforms", 178, 5], ["mainProgram", 179, 5]], [["version", 79, 3], ["pname", 80, 3], ["src", 82, 3], ["env", 89, 3], ["patches", 97, 3], ["postInstall", 101, 3], ["postFixup", 114, 3], ["cmakeFlags", 124, 3], ["nativeBuildInputs", 128, 3], ["buildInputs", 135, 3], ["meta", 170, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, libGLU: false, libGL: false, libglut: false, libx11: false, plib: false, openal: false, freealut: false, libxrandr: false, xorgproto: false, libxext: false, libsm: false, libice: false, libxi: false, libxt: false, libxrender: false, libxxf86vm: false, openscenegraph: false, expat: false, libpng12: false, zlib: false, bash: false, SDL2: false, SDL2_mixer: false, enet: false, libjpeg: false, cmake: false, "pkg-config": false, libvorbis: false, curl: false, fetchgit: false, cjson: false, minizip: false, rhash: false, copyDesktopItems: false, makeWrapper: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 83, 5], ["rev", 84, 5], ["sha256", 85, 5], ["fetchSubmodules", 86, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 89, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 171, 5], ["homepage", 172, 5], ["license", 173, 5], ["maintainers", 174, 5], ["platforms", 178, 5], ["mainProgram", 179, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["version", 79, 3], ["pname", 80, 3], ["src", 82, 3], ["env", 89, 3], ["patches", 97, 3], ["postInstall", 101, 3], ["postFixup", 114, 3], ["cmakeFlags", 124, 3], ["nativeBuildInputs", 128, 3], ["buildInputs", 135, 3], ["meta", 170, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -79,18 +76,18 @@ export default nix.lambda((args) => (() => {
   const runtimeLibPath = nix.thunk(() => nix.app(nix.sel(lib, "makeLibraryPath"), runtimeLibs));
   const libPathVar = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? "DYLD_LIBRARY_PATH" : "LD_LIBRARY_PATH"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       version: "2.4.2",
       pname: "speed-dreams",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://forge.a-lec.org/speed-dreams/speed-dreams-code.git",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           sha256: "sha256-ZY/0tf0wFbepEUNqpaBA4qgkWDij/joqPtbiF/48oN4=",
           fetchSubmodules: true,
         })))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => [
             nix.thunk(() => nix.str`-I${nix.sel(finalAttrs, "src")}/src/libs/tgf`),
             nix.thunk(() => nix.str`-I${nix.sel(finalAttrs, "src")}/src/libs/tgfdata`),
@@ -143,7 +140,7 @@ makeWrapper "$out/games/speed-dreams-2" "$out/bin/speed-dreams" "\${makeWrapperA
         rhash,
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [libGL, libGLU, libglut])))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Car racing game - TORCS fork with more experimental approach",
         homepage: "https://www.speed-dreams.net/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]], [["url", 26, 7], ["hash", 27, 7]], [["changelog", 38, 5], ["description", 39, 5], ["homepage", 40, 5], ["maintainers", 41, 5], ["license", 42, 5]], [["pname", 12, 3], ["version", 13, 3], ["pyproject", 14, 3], ["src", 16, 3], ["patches", 23, 3], ["build-system", 31, 3], ["dependencies", 33, 3], ["nativeCheckInputs", 35, 3], ["meta", 37, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, fetchpatch2: false, "setuptools-scm": false, flake8: false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["url", 26, 7], ["hash", 27, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["changelog", 38, 5], ["description", 39, 5], ["homepage", 40, 5], ["maintainers", 41, 5], ["license", 42, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 12, 3], ["version", 13, 3], ["pyproject", 14, 3], ["src", 16, 3], ["patches", 23, 3], ["build-system", 31, 3], ["dependencies", 33, 3], ["nativeCheckInputs", 35, 3], ["meta", 37, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.3.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "coherent-oss",
           repo: "pytest-flake8",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -30,7 +27,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://raw.githubusercontent.com/OpenIndiana/oi-userland/0d06abedf17256d1f2c89086acc05cfa53dbc647/components/python/pytest-flake8/patches/02-deprecated-path.patch",
             hash: "sha256-mHGRKaMmDTJdj6ajWS0Dts1ZTbT1bNLMjOOZAP156Jg=",
           })))),
@@ -39,7 +36,7 @@ export default nix.lambda((args) => (() => {
       const dependencies = nix.thunk(() => [flake8]);
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         changelog: nix.thunk(() => nix.str`https://github.com/coherent-oss/pytest-flake8/blob/${nix.sel(src, "rev")}/NEWS.rst`),
         description: "py.test plugin for efficiently checking PEP8 compliance",
         homepage: "https://github.com/coherent-oss/pytest-flake8",
@@ -50,7 +47,7 @@ export default nix.lambda((args) => (() => {
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

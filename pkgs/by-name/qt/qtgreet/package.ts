@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["hash", 26, 5]], [["NIX_LDFLAGS", 50, 7]], [["description", 53, 5], ["homepage", 54, 5], ["changelog", 55, 5], ["license", 56, 5], ["maintainers", 57, 5], ["mainProgram", 58, 5], ["platforms", 59, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 36, 3], ["mesonFlags", 46, 3], ["env", 50, 3], ["meta", 52, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, meson: false, ninja: false, "pkg-config": false, kdePackages: false, qt6: false, "dfl-ipc": false, "dfl-utils": false, "dfl-applications": false, "dfl-login1": false, mpvSupport: true, mpv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_LDFLAGS", 50, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 53, 5], ["homepage", 54, 5], ["changelog", 55, 5], ["license", 56, 5], ["maintainers", 57, 5], ["mainProgram", 58, 5], ["platforms", 59, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 36, 3], ["mesonFlags", 46, 3], ["env", 50, 3], ["meta", 52, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const mpvSupport = nix.argOr($, "mpvSupport", () => true);
   const mpv = nix.arg($, "mpv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "qtgreet",
       version: "2.0.4",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "marcusbritanicus",
           repo: "QtGreet",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -47,9 +44,9 @@ export default nix.lambda((args) => (() => {
       mesonFlags: nix.thunk(() => [
         nix.thunk(() => nix.app(nix.sel(lib, "mesonOption"), "dynpath", nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/var/lib/qtgreet`))),
       ]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_LDFLAGS: "-lwayqt-utils-qt6" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], NIX_LDFLAGS: "-lwayqt-utils-qt6" })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Qt based greeter for greetd, to be run under wayfire or similar wlr-based compositors",
         homepage: "https://gitlab.com/marcusbritanicus/QtGreet",
         changelog: nix.thunk(() => nix.str`https://gitlab.com/marcusbritanicus/QtGreet/-/blob/${nix.sel(finalAttrs, "src", "rev")}/Changelog`),

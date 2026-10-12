@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 17, 5], ["rev", 18, 5], ["sha256", 19, 5]], [["description", 46, 5], ["homepage", 47, 5], ["license", 48, 5], ["maintainers", 49, 5], ["platforms", 53, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["postPatch", 22, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 33, 3], ["mesonFlags", 39, 3], ["meta", 45, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchgit: false, "pkg-config": false, meson: false, ninja: false, systemd: false, liburing: false, zstd: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 17, 5], ["rev", 18, 5], ["sha256", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 46, 5], ["homepage", 47, 5], ["license", 48, 5], ["maintainers", 49, 5], ["platforms", 53, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["postPatch", 22, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 33, 3], ["mesonFlags", 39, 3], ["meta", 45, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const liburing = nix.arg($, "liburing");
   const zstd = nix.arg($, "zstd");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "plocate",
       version: "1.1.25",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://git.sesse.net/plocate",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
           sha256: "sha256-EXlmisJObF3WVDI1KxlFeFDmaUqwsHWZSwUAXH1CITs=",
@@ -37,7 +35,7 @@ export default nix.lambda((args) => (() => {
         "-Ddbpath=locatedb",
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Much faster locate",
         homepage: "https://plocate.sesse.net/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

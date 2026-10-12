@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 38, 5], ["repo", 39, 5], ["tag", 40, 5], ["hash", 41, 5]], [["description", 107, 5], ["homepage", 108, 5], ["changelog", 109, 5], ["license", 110, 5], ["maintainers", 111, 5]], [["pname", 32, 3], ["version", 33, 3], ["pyproject", 34, 3], ["src", 37, 3], ["build-system", 44, 3], ["dependencies", 46, 3], ["nativeCheckInputs", 55, 3], ["pytestFlags", 67, 3], ["disabledTestPaths", 70, 3], ["disabledTests", 79, 3], ["pythonImportsCheck", 104, 3], ["meta", 106, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitHub: false, pythonAtLeast: false, setuptools: false, aniso8601: false, flask: false, "importlib-resources": false, jsonschema: false, pytz: false, werkzeug: false, blinker: false, faker: false, mock: false, py: false, "pytest-benchmark": false, "pytest-flask": false, "pytest-mock": false, "pytest-vcr": false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 38, 5], ["repo", 39, 5], ["tag", 40, 5], ["hash", 41, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 107, 5], ["homepage", 108, 5], ["changelog", 109, 5], ["license", 110, 5], ["maintainers", 111, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 32, 3], ["version", 33, 3], ["pyproject", 34, 3], ["src", 37, 3], ["build-system", 44, 3], ["dependencies", 46, 3], ["nativeCheckInputs", 55, 3], ["pytestFlags", 67, 3], ["disabledTestPaths", 70, 3], ["disabledTests", 79, 3], ["pythonImportsCheck", 104, 3], ["meta", 106, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,12 +29,12 @@ export default nix.lambda((args) => (() => {
   const pytest_vcr = nix.arg($, "pytest-vcr");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "flask-restx",
       version: "1.3.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "python-restx",
           repo: "flask-restx",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -80,7 +78,7 @@ export default nix.lambda((args) => (() => {
         ])))),
       pythonImportsCheck: nix.thunk(() => ["flask_restx"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Fully featured framework for fast, easy and documented API development with Flask",
         homepage: "https://github.com/python-restx/flask-restx",
         changelog: nix.thunk(() => nix.str`https://github.com/python-restx/flask-restx/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.rst`),

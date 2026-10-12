@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/async.nix", [[["description", 23, 5]], [["pname", 10, 3], ["version", 11, 19], ["src", 11, 27], ["minimalOCamlVersion", 13, 3], ["propagatedBuildInputs", 15, 3], ["meta", 22, 3]]]);
 const formals$1 = { args: { buildDunePackage: false, async_kernel: false, async_unix: false, caqti: false, core_kernel: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/async.nix", [["description", 23, 5]]);
-const pos$2 = nix.positions(here + "/async.nix", [["pname", 10, 3], ["version", 11, 19], ["src", 11, 27], ["minimalOCamlVersion", 13, 3], ["propagatedBuildInputs", 15, 3], ["meta", 22, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,13 +13,13 @@ export default nix.lambda((args) => (() => {
   const caqti = nix.arg($, "caqti");
   const core_kernel = nix.arg($, "core_kernel");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "caqti-async",
       version: nix.thunk(() => nix.attr(caqti, "version")),
       src: nix.thunk(() => nix.attr(caqti, "src")),
       minimalOCamlVersion: "5.1",
       propagatedBuildInputs: nix.thunk(() => [async_kernel, async_unix, caqti, core_kernel]),
-      meta: nix.thunk(() => nix.update(nix.sel(caqti, "meta"), { [nix.POS]: pos$1, description: "Async support for Caqti" })),
+      meta: nix.thunk(() => nix.update(nix.sel(caqti, "meta"), { [nix.POS]: $pos[0], description: "Async support for Caqti" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=async.ts.map

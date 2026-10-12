@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 34, 5], ["repo", 35, 5], ["rev", 36, 5], ["sha256", 37, 5]], [["name", 68, 7], ["exec", 69, 7], ["icon", 70, 7], ["desktopName", 71, 7], ["comment", 72, 7], ["genericName", 73, 7], ["categories", 74, 7]], [["homepage", 129, 5], ["description", 130, 5], ["mainProgram", 131, 5], ["license", 132, 5], ["platforms", 133, 5], ["maintainers", 134, 5]], [["pname", 30, 3], ["version", 31, 3], ["src", 33, 3], ["nativeBuildInputs", 40, 3], ["buildInputs", 46, 3], ["desktopItems", 66, 3], ["postPatch", 81, 3], ["buildPhase", 85, 3], ["installPhase", 103, 3], ["runtimeDependencies", 122, 3], ["meta", 128, 3]]]);
 const formals$1 = { args: { lib: false, autoPatchelfHook: false, copyDesktopItems: false, fetchFromGitHub: false, makeDesktopItem: false, stdenv: false, "alsa-lib": false, "gcc-unwrapped": false, git: false, "godot3-export-templates": false, "godot3-headless": false, libGLU: false, libx11: false, libxcursor: false, libxext: false, libxfixes: false, libxi: false, libxinerama: false, libxrandr: false, libxrender: false, libglvnd: false, libpulseaudio: false, perl: false, zlib: false, udev: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 34, 5], ["repo", 35, 5], ["rev", 36, 5], ["sha256", 37, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 68, 7], ["exec", 69, 7], ["icon", 70, 7], ["desktopName", 71, 7], ["comment", 72, 7], ["genericName", 73, 7], ["categories", 74, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 129, 5], ["description", 130, 5], ["mainProgram", 131, 5], ["license", 132, 5], ["platforms", 133, 5], ["maintainers", 134, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 30, 3], ["version", 31, 3], ["src", 33, 3], ["nativeBuildInputs", 40, 3], ["buildInputs", 46, 3], ["desktopItems", 66, 3], ["postPatch", 81, 3], ["buildPhase", 85, 3], ["installPhase", 103, 3], ["runtimeDependencies", 122, 3], ["meta", 128, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -39,7 +36,7 @@ export default nix.lambda((args) => (() => {
       const pname = "oh-my-git";
       const version = "0.6.5";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "git-learning-game",
           repo: "oh-my-git",
           rev: version,
@@ -67,7 +64,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const desktopItems = nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "oh-my-git",
             exec: "oh-my-git",
             icon: "oh-my-git",
@@ -113,7 +110,7 @@ runHook postInstall
 `);
       const runtimeDependencies = nix.thunk(() => nix.builtins.map(nix.thunk(() => nix.sel(lib, "getLib")), nix.thunk(() => [alsa_lib, libpulseaudio, udev])));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://ohmygit.org/",
         description: "Interactive Git learning game",
         mainProgram: "oh-my-git",
@@ -125,7 +122,7 @@ runHook postInstall
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

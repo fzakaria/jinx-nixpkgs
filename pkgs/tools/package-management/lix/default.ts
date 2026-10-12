@@ -2,41 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["name", 38, 5], ["url", 39, 5], ["hash", 40, 5]], [["version", 48, 49], ["src", 48, 57]], [["enableLargeConfig", 69, 13], ["initialMarkStackSize", 70, 13]], [["apis", 75, 15], ["customMemoryManagement", 79, 15]], [["requiredSystemFeatures", 83, 17]], [["ncurses", 87, 21], ["enableTermcap", 88, 13]], [["stdenv", 99, 13]], [["nix", 103, 13]], [["nix", 107, 13]], [["nixpkgs-review", 115, 13]], [["nix", 119, 13]], [["nix", 123, 13]], [["nix", 127, 13]], [["stdenv", 131, 13]], [["nix-eval-jobs", 135, 28]], [["nix", 138, 60]], [["broken", 142, 15]], [["nix", 147, 13]], [["nix-eval-jobs", 151, 28]], [["nix", 155, 13], ["nixpkgs-review", 156, 28]], [["nix", 160, 13], ["nurl", 161, 28]], [["nix", 165, 13]], [["storeDir", 63, 13], ["stateDir", 64, 13], ["confDir", 65, 13], ["boehmgc", 68, 11], ["aws-sdk-cpp", 73, 11], ["editline", 86, 11], ["lix", 98, 11], ["nixos-anywhere", 102, 11], ["nixpkgs-review", 106, 11], ["nixpkgs-reviewFull", 114, 11], ["nil", 118, 11], ["nix-direnv", 122, 11], ["nix-du", 126, 11], ["nix-eval-jobs", 130, 11], ["nix-fast-build", 134, 11], ["nix-serve-ng", 138, 11], ["nixos-rebuild-ng", 146, 11], ["colmena", 150, 11], ["nix-update", 154, 11], ["nix-init", 159, 11], ["nurl", 164, 11]], [["otherSplices", 55, 7], ["f", 59, 7]], [["fetchFromGitea", 184, 47], ["rustPlatform", 184, 62], ["nix-update-script", 184, 75]], [["patches", 185, 9]], [["attrName", 182, 7], ["lix-args", 184, 7]], [["fetchFromGitea", 194, 45], ["rustPlatform", 194, 60]], [["attrName", 192, 7], ["lix-args", 194, 7]], [["stable", 213, 9], ["latest", 214, 9]], [["lix_2_90", 218, 9], ["lix_2_91", 219, 9]], [["makeLixScope", 179, 13], ["lix_2_95", 181, 5], ["git", 191, 5], ["latest", 197, 5], ["stable", 199, 5], ["renamedDeprecatedLixVersions", 204, 5]], [["lix_2_90", 225, 5], ["lix_2_91", 226, 5], ["lix_2_92", 227, 5], ["lix_2_93", 228, 5], ["lix_2_94", 229, 5]]]);
 const formals$1 = { args: { lib: false, config: false, stdenv: false, "makeScopeWithSplicing'": false, generateSplicesForMkScope: false, "aws-sdk-cpp": false, boehmgc: false, callPackage: false, fetchFromGitea: false, fetchpatch: false, rustPlatform: false, editline: false, ncurses: false, clangStdenv: false, "nixos-anywhere": false, "nixpkgs-review": false, "nixpkgs-reviewFull": false, nil: false, "nix-direnv": false, "nix-du": false, "nix-fast-build": false, haskell: false, "nix-serve-ng": false, "nixos-rebuild-ng": false, colmena: false, "nix-update": false, "nix-update-script": false, "nix-init": false, nurl: false, storeDir: true, stateDir: true, confDir: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["name", 38, 5], ["url", 39, 5], ["hash", 40, 5]]);
 const formals$2 = { args: { attrName: false, "lix-args": false, "nix-eval-jobs-args": true }, ellipsis: false };
-const pos$2 = nix.positions(here + "/default.nix", [["version", 48, 49], ["src", 48, 57]]);
-const pos$3 = nix.positions(here + "/default.nix", [["enableLargeConfig", 69, 13], ["initialMarkStackSize", 70, 13]]);
-const pos$4 = nix.positions(here + "/default.nix", [["apis", 75, 15], ["customMemoryManagement", 79, 15]]);
-const pos$5 = nix.positions(here + "/default.nix", [["requiredSystemFeatures", 83, 17]]);
-const pos$6 = nix.positions(here + "/default.nix", [["ncurses", 87, 21], ["enableTermcap", 88, 13]]);
-const pos$7 = nix.positions(here + "/default.nix", [["stdenv", 99, 13]]);
-const pos$8 = nix.positions(here + "/default.nix", [["nix", 103, 13]]);
-const pos$9 = nix.positions(here + "/default.nix", [["nix", 107, 13]]);
-const pos$10 = nix.positions(here + "/default.nix", [["nixpkgs-review", 115, 13]]);
-const pos$11 = nix.positions(here + "/default.nix", [["nix", 119, 13]]);
-const pos$12 = nix.positions(here + "/default.nix", [["nix", 123, 13]]);
-const pos$13 = nix.positions(here + "/default.nix", [["nix", 127, 13]]);
-const pos$14 = nix.positions(here + "/default.nix", [["stdenv", 131, 13]]);
-const pos$15 = nix.positions(here + "/default.nix", [["nix-eval-jobs", 135, 28]]);
-const pos$16 = nix.positions(here + "/default.nix", [["nix", 138, 60]]);
-const pos$17 = nix.positions(here + "/default.nix", [["broken", 142, 15]]);
-const pos$18 = nix.positions(here + "/default.nix", [["nix", 147, 13]]);
-const pos$19 = nix.positions(here + "/default.nix", [["nix-eval-jobs", 151, 28]]);
-const pos$20 = nix.positions(here + "/default.nix", [["nix", 155, 13], ["nixpkgs-review", 156, 28]]);
-const pos$21 = nix.positions(here + "/default.nix", [["nix", 160, 13], ["nurl", 161, 28]]);
-const pos$22 = nix.positions(here + "/default.nix", [["nix", 165, 13]]);
-const pos$23 = nix.positions(here + "/default.nix", [["storeDir", 63, 13], ["stateDir", 64, 13], ["confDir", 65, 13], ["boehmgc", 68, 11], ["aws-sdk-cpp", 73, 11], ["editline", 86, 11], ["lix", 98, 11], ["nixos-anywhere", 102, 11], ["nixpkgs-review", 106, 11], ["nixpkgs-reviewFull", 114, 11], ["nil", 118, 11], ["nix-direnv", 122, 11], ["nix-du", 126, 11], ["nix-eval-jobs", 130, 11], ["nix-fast-build", 134, 11], ["nix-serve-ng", 138, 11], ["nixos-rebuild-ng", 146, 11], ["colmena", 150, 11], ["nix-update", 154, 11], ["nix-init", 159, 11], ["nurl", 164, 11]]);
-const pos$24 = nix.positions(here + "/default.nix", [["otherSplices", 55, 7], ["f", 59, 7]]);
-const pos$25 = nix.positions(here + "/default.nix", [["fetchFromGitea", 184, 47], ["rustPlatform", 184, 62], ["nix-update-script", 184, 75]]);
-const pos$26 = nix.positions(here + "/default.nix", [["patches", 185, 9]]);
-const pos$27 = nix.positions(here + "/default.nix", [["attrName", 182, 7], ["lix-args", 184, 7]]);
-const pos$28 = nix.positions(here + "/default.nix", [["fetchFromGitea", 194, 45], ["rustPlatform", 194, 60]]);
-const pos$29 = nix.positions(here + "/default.nix", [["attrName", 192, 7], ["lix-args", 194, 7]]);
-const pos$30 = nix.positions(here + "/default.nix", [["stable", 213, 9], ["latest", 214, 9]]);
-const pos$31 = nix.positions(here + "/default.nix", [["lix_2_90", 218, 9], ["lix_2_91", 219, 9]]);
-const pos$32 = nix.positions(here + "/default.nix", [["makeLixScope", 179, 13], ["lix_2_95", 181, 5], ["git", 191, 5], ["latest", 197, 5], ["stable", 199, 5], ["renamedDeprecatedLixVersions", 204, 5]]);
-const pos$33 = nix.positions(here + "/default.nix", [["lix_2_90", 225, 5], ["lix_2_91", 226, 5], ["lix_2_92", 227, 5], ["lix_2_93", 228, 5], ["lix_2_94", 229, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -73,7 +41,7 @@ export default nix.lambda((args) => (() => {
   const stateDir = nix.argOr($, "stateDir", () => "/nix/var");
   const confDir = nix.argOr($, "confDir", () => "/etc");
   const lixFunctional2TimeoutPatch = nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: "lix-f2-increase-timeouts-and-max-worker-count.patch",
       url: "https://git.lix.systems/lix-project/lix/commit/c6d22874d6dffc9646279601ad546c1d78d9a409.patch",
       hash: "sha256-V6Q9XFsdla/OPwGPvAkb8mBisdfQbkaNKqpCfL3Tk4U=",
@@ -83,61 +51,61 @@ export default nix.lambda((args) => (() => {
     const attrName = nix.arg($_1, "attrName");
     const lix_args = nix.arg($_1, "lix-args");
     const nix_eval_jobs_args = nix.argOr($_1, "nix-eval-jobs-args", () => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       version: nix.thunk(() => nix.attr(lix_args, "version")),
       src: nix.thunk(() => nix.attr(lix_args, "src")),
     }));
     const lixStdenv = nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(lix_args, "version")), "2.92")) ? nix.force(clangStdenv) : nix.force(stdenv)));
     return nix.app(makeScopeWithSplicing$, nix.thunk(() => ({
-        [nix.POS]: pos$24,
+        [nix.POS]: $pos[23],
         otherSplices: nix.thunk(() => nix.app(generateSplicesForMkScope, nix.thunk(() => ["lixPackageSets", attrName]))),
         f: (self) => nix.app(nix.sel(lib, "recurseIntoAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$23,
+            [nix.POS]: $pos[22],
             storeDir: storeDir,
             stateDir: stateDir,
             confDir: confDir,
-            boehmgc: nix.thunk(() => nix.app(nix.sel(boehmgc, "override"), nix.thunk(() => ({ [nix.POS]: pos$3, enableLargeConfig: true, initialMarkStackSize: 1048576n })))),
+            boehmgc: nix.thunk(() => nix.app(nix.sel(boehmgc, "override"), nix.thunk(() => ({ [nix.POS]: $pos[2], enableLargeConfig: true, initialMarkStackSize: 1048576n })))),
             "aws-sdk-cpp": nix.thunk(() => nix.app(nix.sel(nix.app(nix.sel(aws_sdk_cpp, "override"), nix.thunk(() => ({
-                [nix.POS]: pos$4,
+                [nix.POS]: $pos[3],
                 apis: nix.thunk(() => ["s3", "transfer"]),
                 customMemoryManagement: false,
-              }))), "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: pos$5, requiredSystemFeatures: [] })))),
-            editline: nix.thunk(() => nix.app(nix.sel(editline, "override"), nix.thunk(() => ({ [nix.POS]: pos$6, ncurses: ncurses, enableTermcap: true })))),
-            lix: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.thunk(() => nix.app(callPackage, nix.path(here, "./common-lix.nix"), lix_args)), nix.thunk(() => ({ [nix.POS]: pos$7, stdenv: lixStdenv })))),
-            "nixos-anywhere": nix.thunk(() => nix.app(nix.sel(nixos_anywhere, "override"), nix.thunk(() => ({ [nix.POS]: pos$8, nix: nix.thunk(() => nix.sel(self, "lix")) })))),
-            "nixpkgs-review": nix.thunk(() => nix.app(nix.sel(nixpkgs_review, "override"), nix.thunk(() => ({ [nix.POS]: pos$9, nix: nix.thunk(() => nix.sel(self, "lix")) })))),
+              }))), "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: $pos[4], requiredSystemFeatures: [] })))),
+            editline: nix.thunk(() => nix.app(nix.sel(editline, "override"), nix.thunk(() => ({ [nix.POS]: $pos[5], ncurses: ncurses, enableTermcap: true })))),
+            lix: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.thunk(() => nix.app(callPackage, nix.path(here, "./common-lix.nix"), lix_args)), nix.thunk(() => ({ [nix.POS]: $pos[6], stdenv: lixStdenv })))),
+            "nixos-anywhere": nix.thunk(() => nix.app(nix.sel(nixos_anywhere, "override"), nix.thunk(() => ({ [nix.POS]: $pos[7], nix: nix.thunk(() => nix.sel(self, "lix")) })))),
+            "nixpkgs-review": nix.thunk(() => nix.app(nix.sel(nixpkgs_review, "override"), nix.thunk(() => ({ [nix.POS]: $pos[8], nix: nix.thunk(() => nix.sel(self, "lix")) })))),
             "nixpkgs-reviewFull": nix.thunk(() => nix.app(nix.sel(nixpkgs_reviewFull, "override"), nix.thunk(() => ({
-                [nix.POS]: pos$10,
+                [nix.POS]: $pos[9],
                 "nixpkgs-review": nix.thunk(() => nix.sel(self, "nixpkgs-review")),
               })))),
-            nil: nix.thunk(() => nix.app(nix.sel(nil, "override"), nix.thunk(() => ({ [nix.POS]: pos$11, nix: nix.thunk(() => nix.sel(self, "lix")) })))),
-            "nix-direnv": nix.thunk(() => nix.app(nix.sel(nix_direnv, "override"), nix.thunk(() => ({ [nix.POS]: pos$12, nix: nix.thunk(() => nix.sel(self, "lix")) })))),
-            "nix-du": nix.thunk(() => nix.app(nix.sel(nix_du, "override"), nix.thunk(() => ({ [nix.POS]: pos$13, nix: nix.thunk(() => nix.sel(self, "lix")) })))),
-            "nix-eval-jobs": nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.thunk(() => nix.app(callPackage, nix.path(here, "./common-nix-eval-jobs.nix"), nix_eval_jobs_args)), nix.thunk(() => ({ [nix.POS]: pos$14, stdenv: lixStdenv })))),
+            nil: nix.thunk(() => nix.app(nix.sel(nil, "override"), nix.thunk(() => ({ [nix.POS]: $pos[10], nix: nix.thunk(() => nix.sel(self, "lix")) })))),
+            "nix-direnv": nix.thunk(() => nix.app(nix.sel(nix_direnv, "override"), nix.thunk(() => ({ [nix.POS]: $pos[11], nix: nix.thunk(() => nix.sel(self, "lix")) })))),
+            "nix-du": nix.thunk(() => nix.app(nix.sel(nix_du, "override"), nix.thunk(() => ({ [nix.POS]: $pos[12], nix: nix.thunk(() => nix.sel(self, "lix")) })))),
+            "nix-eval-jobs": nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.thunk(() => nix.app(callPackage, nix.path(here, "./common-nix-eval-jobs.nix"), nix_eval_jobs_args)), nix.thunk(() => ({ [nix.POS]: $pos[13], stdenv: lixStdenv })))),
             "nix-fast-build": nix.thunk(() => nix.app(nix.sel(nix_fast_build, "override"), nix.thunk(() => ({
-                [nix.POS]: pos$15,
+                [nix.POS]: $pos[14],
                 "nix-eval-jobs": nix.thunk(() => nix.attr(self, "nix-eval-jobs")),
               })))),
-            "nix-serve-ng": nix.thunk(() => nix.app(nix.sel(lib, "pipe"), nix.thunk(() => nix.app(nix.sel(nix_serve_ng, "override"), nix.thunk(() => ({ [nix.POS]: pos$16, nix: nix.thunk(() => nix.sel(self, "lix")) })))), nix.thunk(() => [
+            "nix-serve-ng": nix.thunk(() => nix.app(nix.sel(lib, "pipe"), nix.thunk(() => nix.app(nix.sel(nix_serve_ng, "override"), nix.thunk(() => ({ [nix.POS]: $pos[15], nix: nix.thunk(() => nix.sel(self, "lix")) })))), nix.thunk(() => [
                 nix.thunk(() => nix.app(nix.sel(haskell, "lib", "compose", "enableCabalFlag"), "lix")),
-                nix.thunk(() => nix.app(nix.sel(haskell, "lib", "compose", "overrideCabal"), (drv) => ({ [nix.POS]: pos$17, broken: false }))),
+                nix.thunk(() => nix.app(nix.sel(haskell, "lib", "compose", "overrideCabal"), (drv) => ({ [nix.POS]: $pos[16], broken: false }))),
               ]))),
-            "nixos-rebuild-ng": nix.thunk(() => nix.app(nix.sel(nixos_rebuild_ng, "override"), nix.thunk(() => ({ [nix.POS]: pos$18, nix: nix.thunk(() => nix.sel(self, "lix")) })))),
+            "nixos-rebuild-ng": nix.thunk(() => nix.app(nix.sel(nixos_rebuild_ng, "override"), nix.thunk(() => ({ [nix.POS]: $pos[17], nix: nix.thunk(() => nix.sel(self, "lix")) })))),
             colmena: nix.thunk(() => nix.app(nix.sel(colmena, "override"), nix.thunk(() => ({
-                [nix.POS]: pos$19,
+                [nix.POS]: $pos[18],
                 "nix-eval-jobs": nix.thunk(() => nix.attr(self, "nix-eval-jobs")),
               })))),
             "nix-update": nix.thunk(() => nix.app(nix.sel(nix_update, "override"), nix.thunk(() => ({
-                [nix.POS]: pos$20,
+                [nix.POS]: $pos[19],
                 nix: nix.thunk(() => nix.sel(self, "lix")),
                 "nixpkgs-review": nix.thunk(() => nix.attr(self, "nixpkgs-review")),
               })))),
             "nix-init": nix.thunk(() => nix.app(nix.sel(nix_init, "override"), nix.thunk(() => ({
-                [nix.POS]: pos$21,
+                [nix.POS]: $pos[20],
                 nix: nix.thunk(() => nix.sel(self, "lix")),
                 nurl: nix.thunk(() => nix.attr(self, "nurl")),
               })))),
-            nurl: nix.thunk(() => nix.app(nix.sel(nurl, "override"), nix.thunk(() => ({ [nix.POS]: pos$22, nix: nix.thunk(() => nix.sel(self, "lix")) })))),
+            nurl: nix.thunk(() => nix.app(nix.sel(nurl, "override"), nix.thunk(() => ({ [nix.POS]: $pos[21], nix: nix.thunk(() => nix.sel(self, "lix")) })))),
           }))),
       })));
   })(), formals$2);
@@ -146,23 +114,23 @@ export default nix.lambda((args) => (() => {
       If you notice a problem while upgrading disrupting your workflows which did not occur in version ${version}, please reach out to the Lix team.
 `;
   return nix.app(nix.sel(lib, "makeExtensible"), (self) => nix.update({
-      [nix.POS]: pos$32,
+      [nix.POS]: $pos[31],
       makeLixScope: makeLixScope,
       lix_2_95: nix.thunk(() => nix.app(nix.sel(self, "makeLixScope"), nix.thunk(() => ({
-          [nix.POS]: pos$27,
+          [nix.POS]: $pos[26],
           attrName: "lix_2_95",
           "lix-args": nix.thunk(() => nix.update(nix.app(nix.builtins.import(nix.path(here, "./2.95.nix")), nix.thunk(() => ({
-              [nix.POS]: pos$25,
+              [nix.POS]: $pos[24],
               fetchFromGitea: fetchFromGitea,
               rustPlatform: rustPlatform,
               "nix-update-script": nix_update_script,
-            }))), { [nix.POS]: pos$26, patches: nix.thunk(() => [lixFunctional2TimeoutPatch]) })),
+            }))), { [nix.POS]: $pos[25], patches: nix.thunk(() => [lixFunctional2TimeoutPatch]) })),
         })))),
       git: nix.thunk(() => nix.app(nix.sel(self, "makeLixScope"), nix.thunk(() => ({
-          [nix.POS]: pos$29,
+          [nix.POS]: $pos[28],
           attrName: "git",
           "lix-args": nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./git.nix")), nix.thunk(() => ({
-              [nix.POS]: pos$28,
+              [nix.POS]: $pos[27],
               fetchFromGitea: fetchFromGitea,
               rustPlatform: rustPlatform,
             })))),
@@ -172,17 +140,17 @@ export default nix.lambda((args) => (() => {
       renamedDeprecatedLixVersions: nix.thunk(() => (() => {
         const mkAlias = (version) => nix.app(nix.sel(lib, "warnOnInstantiate"), nix.thunk(() => nix.str`'lixVersions.${version}' has been renamed to 'lixPackageSets.${version}.lix'`), nix.thunk(() => nix.sel(self, nix.key(nix.force(version)), "lix")));
         return nix.update(nix.app(nix.sel(lib, "dontRecurseIntoAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$30,
+            [nix.POS]: $pos[29],
             stable: nix.thunk(() => nix.app(mkAlias, "stable")),
             latest: nix.thunk(() => nix.app(mkAlias, "latest")),
           }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(config, "allowAliases")), nix.thunk(() => ({
-            [nix.POS]: pos$31,
+            [nix.POS]: $pos[30],
             lix_2_90: nix.thunk(() => nix.app(mkAlias, "lix_2_90")),
             lix_2_91: nix.thunk(() => nix.app(mkAlias, "lix_2_91")),
           }))));
       })()),
     }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(config, "allowAliases")), nix.thunk(() => ({
-        [nix.POS]: pos$33,
+        [nix.POS]: $pos[32],
         lix_2_90: nix.thunk(() => nix.builtins.throw(nix.thunk(() => nix.app(removedMessage, "2.90")))),
         lix_2_91: nix.thunk(() => nix.builtins.throw(nix.thunk(() => nix.app(removedMessage, "2.91")))),
         lix_2_92: nix.thunk(() => nix.builtins.throw(nix.thunk(() => nix.app(removedMessage, "2.92")))),

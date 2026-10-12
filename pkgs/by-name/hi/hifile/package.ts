@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 13, 5], ["hash", 14, 13]], [["pname", 18, 13], ["version", 18, 19], ["src", 18, 27]], [["updateScript", 33, 12]], [["description", 36, 5], ["longDescription", 37, 5], ["homepage", 40, 5], ["downloadPage", 41, 5], ["changelog", 42, 5], ["license", 43, 5], ["sourceProvenance", 44, 5], ["maintainers", 45, 5], ["mainProgram", 46, 5], ["platforms", 47, 5]], [["pname", 23, 11], ["version", 23, 17], ["src", 23, 25], ["extraInstallCommands", 25, 3], ["passthru", 33, 3], ["meta", 35, 3]]]);
 const formals$1 = { args: { lib: false, appimageTools: false, fetchurl: false, version: true, hash: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 13, 5], ["hash", 14, 13]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 18, 13], ["version", 18, 19], ["src", 18, 27]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 33, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 36, 5], ["longDescription", 37, 5], ["homepage", 40, 5], ["downloadPage", 41, 5], ["changelog", 42, 5], ["license", 43, 5], ["sourceProvenance", 44, 5], ["maintainers", 45, 5], ["mainProgram", 46, 5], ["platforms", 47, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 23, 11], ["version", 23, 17], ["src", 23, 25], ["extraInstallCommands", 25, 3], ["passthru", 33, 3], ["meta", 35, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,13 +14,13 @@ export default nix.lambda((args) => (() => {
   const hash = nix.argOr($, "hash", () => "sha256-2DV+glvSDw6ZY1gJ0BKs0SLpIwx1bgPlloc7RQWTVKs=");
   const pname = "hifile";
   const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: nix.thunk(() => nix.str`https://www.hifile.app/files/HiFile-${version}.AppImage`),
       hash: hash,
     }))));
-  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: pos$2, pname: pname, version: version, src: src }))));
+  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: $pos[1], pname: pname, version: version, src: src }))));
   return nix.app(nix.sel(appimageTools, "wrapType2"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: pname,
       version: version,
       src: src,
@@ -34,9 +30,9 @@ substituteInPlace $out/share/applications/HiFile.desktop \\
   --replace-fail 'Exec=HiFile' 'Exec=hifile'
 echo "StartupWMClass=app.hifile.www.HiFile" >> $out/share/applications/HiFile.desktop
 `),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$3, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[2], updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Dual-pane graphical file manager for Windows, macOS and Linux",
         longDescription: "HiFile is the next evolution of file managers. Its mission is to increase your productivity whenever you work with files or folders. It aims to be better in every way - more convenient, more versatile, more efficient, more elegant, more customizable, and more fun.\n",
         homepage: "https://www.hifile.app/",

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 26, 5], ["repo", 27, 5], ["rev", 28, 5], ["hash", 29, 5]], [["description", 56, 5], ["mainProgram", 57, 5], ["homepage", 58, 35], ["license", 59, 5], ["platforms", 60, 5], ["maintainers", 61, 5]], [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["postPatch", 32, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 43, 3], ["meta", 55, 3]]]);
 const formals$1 = { args: { lib: false, SDL2: false, SDL2_image: false, SDL2_ttf: false, "alsa-lib": false, fetchFromGitHub: false, glibmm_2_4: false, gtk3: false, libGL: false, libGLU: false, meson: false, ninja: false, "pkg-config": false, python3: false, sqlite: false, stdenv: false, wrapGAppsHook3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 26, 5], ["repo", 27, 5], ["rev", 28, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 56, 5], ["mainProgram", 57, 5], ["homepage", 58, 35], ["license", 59, 5], ["platforms", 60, 5], ["maintainers", 61, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["postPatch", 32, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 43, 3], ["meta", 55, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "linthesia",
       version: "unstable-2023-05-23",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "linthesia",
           repo: "linthesia",
           rev: "1f2701241f8865c2f5c14a97b81ae64884cf0396",
@@ -53,7 +51,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(finalAttrs, "src", "meta"));
         return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Game of playing music using a MIDI keyboard following a MIDI file",
         mainProgram: "linthesia",
         homepage: nix.thunk(() => nix.attr(from, "homepage")),

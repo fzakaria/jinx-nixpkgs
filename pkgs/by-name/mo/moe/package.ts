@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 13, 5], ["hash", 14, 5]], [["homepage", 28, 5], ["description", 29, 5], ["longDescription", 30, 5], ["license", 39, 5], ["maintainers", 40, 5], ["platforms", 41, 5], ["mainProgram", 42, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["nativeBuildInputs", 17, 3], ["buildInputs", 21, 3], ["strictDeps", 25, 3], ["meta", 27, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, lzip: false, ncurses: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 13, 5], ["hash", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 28, 5], ["description", 29, 5], ["longDescription", 30, 5], ["license", 39, 5], ["maintainers", 40, 5], ["platforms", 41, 5], ["mainProgram", 42, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["nativeBuildInputs", 17, 3], ["buildInputs", 21, 3], ["strictDeps", 25, 3], ["meta", 27, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const lzip = nix.arg($, "lzip");
   const ncurses = nix.arg($, "ncurses");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "moe",
       version: "1.16",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnu/moe/moe-${nix.sel(finalAttrs, "version")}.tar.lz`),
           hash: "sha256-TCXNeJGScq6+wKf4wSYBG7Wktdh0IoB6NCMhbwoXqGg=",
         })))),
@@ -27,7 +25,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [ncurses]),
       strictDeps: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://www.gnu.org/software/moe/",
         description: "Small, 8-bit clean editor",
         longDescription: "GNU moe is a powerful, 8-bit clean, console text editor for ISO-8859 and\nASCII character encodings. It has a modeless, user-friendly interface,\nonline help, multiple windows, unlimited undo/redo capability, unlimited\nline length, unlimited buffers, global search/replace (on all buffers at\nonce), block operations, automatic indentation, word wrapping, file name\ncompletion, directory browser, duplicate removal from prompt histories,\ndelimiter matching, text conversion from/to UTF-8, romanization, etc.\n",

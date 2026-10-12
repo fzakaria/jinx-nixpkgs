@@ -2,20 +2,19 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/cuda_cuobjdump.nix", [[["description", 8, 5], ["longDescription", 9, 5], ["homepage", 15, 5], ["mainProgram", 16, 5]], [["redistName", 3, 3], ["pname", 4, 3], ["outputs", 5, 3], ["meta", 7, 3]]]);
 const formals$1 = { args: { buildRedist: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/cuda_cuobjdump.nix", [["description", 8, 5], ["longDescription", 9, 5], ["homepage", 15, 5], ["mainProgram", 16, 5]]);
-const pos$2 = nix.positions(here + "/cuda_cuobjdump.nix", [["redistName", 3, 3], ["pname", 4, 3], ["outputs", 5, 3], ["meta", 7, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const buildRedist = nix.arg($, "buildRedist");
   return nix.app(buildRedist, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       redistName: "cuda",
       pname: "cuda_cuobjdump",
       outputs: nix.thunk(() => ["out"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Extracts information from CUDA binary files (both standalone and those embedded in host binaries) and presents them in human readable format",
         longDescription: "`cuobjdump` extracts information from CUDA binary files (both standalone and those embedded in host binaries)\nand presents them in human readable format. The output of cuobjdump includes CUDA assembly code for each kernel,\nCUDA ELF section headers, string tables, relocators and other CUDA specific sections. It also extracts embedded\nptx text from host binaries.\n",
         homepage: "https://docs.nvidia.com/cuda/cuda-binary-utilities#cuobjdump",

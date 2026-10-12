@@ -2,11 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/worker.nix", [[["smoke-test", 55, 5]], [["tests", 54, 12]], [["homepage", 59, 5], ["description", 60, 5], ["teams", 61, 5], ["license", 62, 5]], [["pname", 27, 3], ["src", 28, 22], ["version", 28, 26], ["pyproject", 29, 3], ["postPatch", 31, 3], ["build-system", 38, 3], ["dependencies", 40, 3], ["nativeCheckInputs", 46, 3], ["dontCheckPythonMetadata", 52, 3], ["passthru", 54, 3], ["meta", 58, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, buildbot: false, stdenv: false, coreutils: false, setuptools: false, autobahn: false, msgpack: false, twisted: false, parameterized: false, psutil: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/worker.nix", [["smoke-test", 55, 5]]);
-const pos$2 = nix.positions(here + "/worker.nix", [["tests", 54, 12]]);
-const pos$3 = nix.positions(here + "/worker.nix", [["homepage", 59, 5], ["description", 60, 5], ["teams", 61, 5], ["license", 62, 5]]);
-const pos$4 = nix.positions(here + "/worker.nix", [["pname", 27, 3], ["src", 28, 22], ["version", 28, 26], ["pyproject", 29, 3], ["postPatch", 31, 3], ["build-system", 38, 3], ["dependencies", 40, 3], ["nativeCheckInputs", 46, 3], ["dontCheckPythonMetadata", 52, 3], ["passthru", 54, 3], ["meta", 58, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,7 +20,7 @@ export default nix.lambda((args) => (() => {
   const psutil = nix.arg($, "psutil");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "buildbot_worker",
       src: nix.thunk(() => nix.attr(buildbot, "src")),
       version: nix.thunk(() => nix.attr(buildbot, "version")),
@@ -38,14 +35,14 @@ substituteInPlace buildbot_worker/scripts/logwatcher.py \\
       nativeCheckInputs: nix.thunk(() => [parameterized, psutil]),
       dontCheckPythonMetadata: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           "smoke-test": nix.thunk(() => nix.sel(nixosTests, "buildbot")),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://buildbot.net/",
         description: "Buildbot Worker Daemon",
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "buildbot"))]),

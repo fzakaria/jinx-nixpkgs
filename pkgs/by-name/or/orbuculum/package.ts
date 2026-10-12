@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 18, 5], ["hash", 19, 5]], [["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]], [["NIX_CFLAGS_COMPILE", 44, 7]], [["description", 70, 5], ["homepage", 71, 5], ["changelog", 72, 5], ["license", 73, 5], ["maintainers", 74, 5], ["platforms", 75, 5]], [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["postPatch", 33, 3], ["env", 44, 3], ["nativeBuildInputs", 46, 3], ["buildInputs", 52, 3], ["doInstallCheck", 60, 3], ["installFlags", 62, 3], ["postInstall", 64, 3], ["meta", 69, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchzip: false, meson: false, ninja: false, "pkg-config": false, czmq: false, libusb1: false, ncurses: false, SDL2: false, libelf: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 44, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 70, 5], ["homepage", 71, 5], ["changelog", 72, 5], ["license", 73, 5], ["maintainers", 74, 5], ["platforms", 75, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["postPatch", 33, 3], ["env", 44, 3], ["nativeBuildInputs", 46, 3], ["buildInputs", 52, 3], ["doInstallCheck", 60, 3], ["installFlags", 62, 3], ["postInstall", 64, 3], ["meta", 69, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,16 +20,16 @@ export default nix.lambda((args) => (() => {
   const SDL2 = nix.arg($, "SDL2");
   const libelf = nix.arg($, "libelf");
   const libdwarf = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: "https://www.prevanders.net/libdwarf-0.7.0.tar.xz",
       hash: "sha256-YTTbBJkDu2BSAVpvucqtg7/hFxXrxLnNAlvAL7rmkdE=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "orbuculum",
       version: "2.2.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "orbcode",
           repo: "orbuculum",
           tag: nix.thunk(() => nix.str`V${nix.sel(finalAttrs, "version")}`),
@@ -47,7 +43,7 @@ patch -p1 < ../packagefiles/libdwarf/0003-Fixed-calloc-arguments-order.patch
 popd
 `),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         NIX_CFLAGS_COMPILE: "-Wno-error=discarded-qualifiers -Wno-error=unused-but-set-variable",
       })),
       nativeBuildInputs: nix.thunk(() => [meson, ninja, pkg_config]),
@@ -56,7 +52,7 @@ popd
       installFlags: nix.thunk(() => ["INSTALL_ROOT=$(out)/"]),
       postInstall: "mkdir -p $out/etc/udev/rules.d/\ncp $src/Support/60-orbcode.rules $out/etc/udev/rules.d/\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Cortex M SWO SWV Demux and Postprocess for the ORBTrace",
         homepage: "https://orbcode.org",
         changelog: nix.thunk(() => nix.str`https://github.com/orbcode/orbuculum/blob/V${nix.sel(finalAttrs, "version")}/CHANGES.md`),

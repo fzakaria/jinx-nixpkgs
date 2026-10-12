@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 21, 26], ["version", 21, 32], ["hash", 22, 5]], [["pname", 30, 26], ["version", 30, 32], ["src", 30, 40], ["hash", 31, 5]], [["updateScript", 53, 12]], [["description", 56, 5], ["homepage", 57, 5], ["license", 58, 5], ["maintainers", 59, 5]], [["pname", 14, 3], ["version", 15, 3], ["pyproject", 16, 3], ["__structuredAttrs", 18, 3], ["src", 20, 3], ["postUnpack", 25, 3], ["cargoDeps", 29, 3], ["build-system", 34, 3], ["nativeCheckInputs", 42, 3], ["preCheck", 44, 3], ["pytestFlags", 49, 3], ["pythonImportsCheck", 51, 3], ["passthru", 53, 3], ["meta", 55, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, cargo: false, fetchPypi: false, "nix-update-script": false, "poetry-core": false, pytestCheckHook: false, rustc: false, rustPlatform: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 21, 26], ["version", 21, 32], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 30, 26], ["version", 30, 32], ["src", 30, 40], ["hash", 31, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["updateScript", 53, 12]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 56, 5], ["homepage", 57, 5], ["license", 58, 5], ["maintainers", 59, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 14, 3], ["version", 15, 3], ["pyproject", 16, 3], ["__structuredAttrs", 18, 3], ["src", 20, 3], ["postUnpack", 25, 3], ["cargoDeps", 29, 3], ["build-system", 34, 3], ["nativeCheckInputs", 42, 3], ["preCheck", 44, 3], ["pytestFlags", 49, 3], ["pythonImportsCheck", 51, 3], ["passthru", 53, 3], ["meta", 55, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,20 +17,20 @@ export default nix.lambda((args) => (() => {
   const rustc = nix.arg($, "rustc");
   const rustPlatform = nix.arg($, "rustPlatform");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "radixtarget",
       version: "4.2.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-xroXgy7e7XXWPOYFMnt5ou2bJKSl6unBsUGa29v6+Dk=",
         })))),
       postUnpack: "rm -f \"$sourceRoot/dist/\"*.whl\n",
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -52,11 +48,11 @@ export default nix.lambda((args) => (() => {
       pytestFlags: nix.thunk(() => ["test"]),
       pythonImportsCheck: nix.thunk(() => ["radixtarget"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Fast radix tree for IP addresses and DNS names",
         homepage: "https://pypi.org/project/radixtarget",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

@@ -2,14 +2,14 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["withAwk", 5, 3], ["withEsh", 6, 3], ["withGpg", 7, 3], ["withOpenssl", 8, 3]]]);
 const formals$1 = { args: { yadm: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["withAwk", 5, 3], ["withEsh", 6, 3], ["withGpg", 7, 3], ["withOpenssl", 8, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const yadm = nix.arg($, "yadm");
   return nix.app(nix.sel(yadm, "override"), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       withAwk: false,
       withEsh: false,
       withGpg: false,

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 28, 5], ["rev", 29, 5], ["hash", 30, 5]], [["description", 78, 5], ["mainProgram", 79, 5], ["longDescription", 80, 5], ["homepage", 86, 5], ["license", 87, 5], ["platforms", 88, 5], ["maintainers", 89, 5]], [["pname", 23, 3], ["version", 24, 3], ["src", 27, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 37, 3], ["patches", 54, 11], ["makeFlags", 56, 3], ["preFixup", 60, 3], ["meta", 77, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchgit: false, "pkg-config": false, wrapGAppsHook3: false, glib: false, gcr_3: false, "glib-networking": false, "gsettings-desktop-schemas": false, gtk3: false, libsoup_3: false, webkitgtk_4_1: false, xprop: false, dmenu: false, findutils: false, gnused: false, coreutils: false, gst_all_1: false, patches: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 28, 5], ["rev", 29, 5], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 78, 5], ["mainProgram", 79, 5], ["longDescription", 80, 5], ["homepage", 86, 5], ["license", 87, 5], ["platforms", 88, 5], ["maintainers", 89, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 23, 3], ["version", 24, 3], ["src", 27, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 37, 3], ["patches", 54, 11], ["makeFlags", 56, 3], ["preFixup", 60, 3], ["meta", 77, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,11 +27,11 @@ export default nix.lambda((args) => (() => {
   const gst_all_1 = nix.arg($, "gst_all_1");
   const patches = nix.argOr($, "patches", () => null);
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "surf",
       version: "2.1-unstable-2025-04-19",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "git://git.suckless.org/surf",
           rev: "48517e586cdc98bc1af7115674b554cc70c8bc2e",
           hash: "sha256-+qg1mF5X/hYxCy7N3CxIEM2yHi1jmUGiK/vaQBjKy1I=",
@@ -67,7 +65,7 @@ export default nix.lambda((args) => (() => {
 `;
       })()),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Simple web browser based on WebKitGTK",
         mainProgram: "surf",
         longDescription: "surf is a simple web browser based on WebKitGTK. It is able to display\nwebsites and follow links. It supports the XEmbed protocol which makes it\npossible to embed it in another application. Furthermore, one can point\nsurf to another URI by setting its XProperties.\n",

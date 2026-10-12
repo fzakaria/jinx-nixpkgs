@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]], [["all", 41, 5], ["cron", 52, 5], ["phonenumbers", 53, 5], ["pycountry", 54, 5], ["semver", 55, 5], ["python_ulid", 56, 5], ["pendulum", 57, 5]], [["changelog", 77, 5], ["description", 78, 5], ["homepage", 79, 5], ["license", 80, 5], ["maintainers", 81, 5]], [["pname", 22, 3], ["version", 23, 3], ["pyproject", 24, 3], ["src", 26, 3], ["build-system", 33, 3], ["dependencies", 35, 3], ["optional-dependencies", 40, 3], ["pytestFlags", 60, 3], ["disabledTests", 64, 3], ["pythonImportsCheck", 69, 3], ["nativeCheckInputs", 71, 3], ["disabledTestPaths", 74, 3], ["meta", 76, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitHub: false, hatchling: false, pydantic: false, "typing-extensions": false, "cron-converter": false, semver: false, pendulum: false, phonenumbers: false, pycountry: false, pymongo: false, "python-ulid": false, pytz: false, tzdata: false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["all", 41, 5], ["cron", 52, 5], ["phonenumbers", 53, 5], ["pycountry", 54, 5], ["semver", 55, 5], ["python_ulid", 56, 5], ["pendulum", 57, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["changelog", 77, 5], ["description", 78, 5], ["homepage", 79, 5], ["license", 80, 5], ["maintainers", 81, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 22, 3], ["version", 23, 3], ["pyproject", 24, 3], ["src", 26, 3], ["build-system", 33, 3], ["dependencies", 35, 3], ["optional-dependencies", 40, 3], ["pytestFlags", 60, 3], ["disabledTests", 64, 3], ["pythonImportsCheck", 69, 3], ["nativeCheckInputs", 71, 3], ["disabledTestPaths", 74, 3], ["meta", 76, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.11.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "pydantic",
           repo: "pydantic-extra-types",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -41,7 +38,7 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [hatchling]);
       const dependencies = nix.thunk(() => [pydantic, typing_extensions]);
       const optional_dependencies = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         all: nix.thunk(() => [
           cron_converter,
           pendulum,
@@ -66,7 +63,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => nix.concat([pytestCheckHook], nix.sel(optional_dependencies, "all")));
       const disabledTestPaths = nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["tests/test_pendulum_dt.py"])));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         changelog: nix.thunk(() => nix.str`https://github.com/pydantic/pydantic-extra-types/blob/${nix.sel(src, "tag")}/HISTORY.md`),
         description: "Extra Pydantic types",
         homepage: "https://github.com/pydantic/pydantic-extra-types",
@@ -74,7 +71,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

@@ -2,9 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["homepage", 92, 5]], [["pname", 40, 3], ["nativeBuildInputs", 41, 3], ["buildInputs", 46, 3], ["propagatedBuildInputs", 67, 3], ["outputs", 83, 3], ["separateDebugInfo", 87, 3], ["patches", 88, 3], ["meta", 91, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, mkDerivation: false, cmake: false, "extra-cmake-modules": false, kdoctools: false, qttools: false, acl: false, attr: false, libkrb5: false, "util-linux": false, karchive: false, kbookmarks: false, kcompletion: false, kconfig: false, kconfigwidgets: false, kcoreaddons: false, kdbusaddons: false, ki18n: false, kiconthemes: false, kitemviews: false, kjobwidgets: false, knotifications: false, kservice: false, ktextwidgets: false, kwallet: false, kwidgetsaddons: false, kwindowsystem: false, kxmlgui: false, qtbase: false, qtscript: false, qtx11extras: false, solid: false, kcrash: false, kded: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["homepage", 92, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 40, 3], ["nativeBuildInputs", 41, 3], ["buildInputs", 46, 3], ["propagatedBuildInputs", 67, 3], ["outputs", 83, 3], ["separateDebugInfo", 87, 3], ["patches", 88, 3], ["meta", 91, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -44,7 +43,7 @@ export default nix.lambda((args) => (() => {
   const kcrash = nix.arg($, "kcrash");
   const kded = nix.arg($, "kded");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "kio",
       nativeBuildInputs: nix.thunk(() => [cmake, extra_cmake_modules, kdoctools]),
       buildInputs: nix.thunk(() => nix.concat([
@@ -79,7 +78,7 @@ export default nix.lambda((args) => (() => {
       outputs: nix.thunk(() => ["out", "dev"]),
       separateDebugInfo: true,
       patches: nix.thunk(() => [nix.path(here, "./0001-Remove-impure-smbd-search-path.patch")]),
-      meta: nix.thunk(() => ({ [nix.POS]: pos$1, homepage: "https://api.kde.org/frameworks/kio/html/" })),
+      meta: nix.thunk(() => ({ [nix.POS]: $pos[0], homepage: "https://api.kde.org/frameworks/kio/html/" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

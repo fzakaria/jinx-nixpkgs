@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 72, 5], ["repo", 73, 5], ["tag", 74, 5], ["hash", 75, 5]], [["dask", 128, 5], ["dask-ml", 132, 5], ["leiden", 138, 5], ["paga", 149, 5], ["scrublet", 160, 5], ["skmisc", 163, 5]], [["description", 259, 5], ["homepage", 260, 5], ["changelog", 261, 5], ["license", 262, 5], ["maintainers", 263, 5], ["mainProgram", 264, 5]], [["pname", 66, 3], ["version", 67, 3], ["pyproject", 68, 3], ["__structuredAttrs", 69, 3], ["src", 71, 3], ["postPatch", 80, 3], ["build-system", 87, 3], ["dependencies", 92, 3], ["optional-dependencies", 123, 3], ["nativeCheckInputs", 168, 3], ["preCheck", 182, 3], ["pytestFlags", 186, 3], ["disabledTestPaths", 192, 3], ["disabledTests", 208, 3], ["pythonImportsCheck", 256, 3], ["meta", 258, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, pythonOlder: false, "hatch-vcs": false, hatchling: false, anndata: false, certifi: false, "fast-array-utils": false, h5py: false, joblib: false, "legacy-api-wrap": false, matplotlib: false, natsort: false, networkx: false, numba: false, numpy: false, packaging: false, pandas: false, patsy: false, pynndescent: false, "scikit-learn": false, scipy: false, "scverse-misc": false, seaborn: false, "session-info2": false, statsmodels: false, tqdm: false, "umap-learn": false, "typing-extensions": false, dask: false, "dask-ml": false, igraph: false, leidenalg: false, "scikit-image": false, "scikit-misc": false, "dependency-groups": false, jinja2: false, "pytest-cov-stub": false, "pytest-mock": false, "pytest-randomly": false, "pytest-rerunfailures": false, "pytest-xdist": false, pytestCheckHook: false, tuna: false, writableTmpDirAsHomeHook: false, zarr: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 72, 5], ["repo", 73, 5], ["tag", 74, 5], ["hash", 75, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["dask", 128, 5], ["dask-ml", 132, 5], ["leiden", 138, 5], ["paga", 149, 5], ["scrublet", 160, 5], ["skmisc", 163, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 259, 5], ["homepage", 260, 5], ["changelog", 261, 5], ["license", 262, 5], ["maintainers", 263, 5], ["mainProgram", 264, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 66, 3], ["version", 67, 3], ["pyproject", 68, 3], ["__structuredAttrs", 69, 3], ["src", 71, 3], ["postPatch", 80, 3], ["build-system", 87, 3], ["dependencies", 92, 3], ["optional-dependencies", 123, 3], ["nativeCheckInputs", 168, 3], ["preCheck", 182, 3], ["pytestFlags", 186, 3], ["disabledTestPaths", 192, 3], ["disabledTests", 208, 3], ["pythonImportsCheck", 256, 3], ["meta", 258, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -58,13 +55,13 @@ export default nix.lambda((args) => (() => {
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   const zarr = nix.arg($, "zarr");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "scanpy",
       version: "1.12.4",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "scverse",
           repo: "scanpy",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -98,7 +95,7 @@ export default nix.lambda((args) => (() => {
         umap_learn,
       ], nix.concat(nix.sel(fast_array_utils, "optional-dependencies", "accel"), nix.concat(nix.sel(fast_array_utils, "optional-dependencies", "sparse"), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(pythonOlder, "3.13")), nix.thunk(() => [typing_extensions])))))),
       "optional-dependencies": nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         dask: nix.thunk(() => [anndata, dask]),
         "dask-ml": nix.thunk(() => [dask_ml]),
         leiden: nix.thunk(() => [igraph, leidenalg]),
@@ -161,7 +158,7 @@ export default nix.lambda((args) => (() => {
       ]),
       pythonImportsCheck: nix.thunk(() => ["scanpy"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Single-cell analysis in Python which scales to >100M cells",
         homepage: "https://scanpy.readthedocs.io",
         changelog: nix.thunk(() => nix.str`https://github.com/scverse/scanpy/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]], [["RUSTFLAGS", 33, 7]], [["nativeBuildInputs", 39, 54]], [["sanity", 39, 18]], [["tests", 39, 12]], [["description", 44, 5], ["license", 45, 5], ["maintainers", 46, 5], ["platforms", 47, 5], ["homepage", 48, 5], ["mainProgram", 49, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["nativeBuildInputs", 22, 3], ["buildInputs", 26, 3], ["cargoHash", 31, 3], ["env", 33, 3], ["preFixup", 35, 3], ["passthru", 39, 3], ["meta", 43, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchFromGitHub: false, "pkg-config": false, libxkbcommon: false, python3: false, runCommand: false, wprs: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["RUSTFLAGS", 33, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["nativeBuildInputs", 39, 54]]);
-const pos$4 = nix.positions(here + "/package.nix", [["sanity", 39, 18]]);
-const pos$5 = nix.positions(here + "/package.nix", [["tests", 39, 12]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 44, 5], ["license", 45, 5], ["maintainers", 46, 5], ["platforms", 47, 5], ["homepage", 48, 5], ["mainProgram", 49, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["nativeBuildInputs", 22, 3], ["buildInputs", 26, 3], ["cargoHash", 31, 3], ["env", 33, 3], ["preFixup", 35, 3], ["passthru", 39, 3], ["meta", 43, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const runCommand = nix.arg($, "runCommand");
   const wprs = nix.arg($, "wprs");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "wprs",
       version: "0-unstable-2026-08-31",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "wayland-transpositor",
           repo: "wprs",
           rev: "12b864dc5b308e63edede4714f664afa88507fce",
@@ -41,18 +35,18 @@ export default nix.lambda((args) => (() => {
           })())),
       ]),
       cargoHash: "sha256-khU7SfEfEIlRqI0bFxP57cVUxoIBRso7o0Rw+i2MtSc=",
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, RUSTFLAGS: "-C target-feature=+avx2" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], RUSTFLAGS: "-C target-feature=+avx2" })),
       preFixup: "cp  wprs \"$out/bin/wprs\"\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
-          sanity: nix.thunk(() => nix.app(runCommand, "wprs-sanity", nix.thunk(() => ({ [nix.POS]: pos$3, nativeBuildInputs: nix.thunk(() => [wprs]) })), nix.thunk(() => nix.str`${wprs}/bin/wprs -h > /dev/null && touch $out
+          [nix.POS]: $pos[3],
+          sanity: nix.thunk(() => nix.app(runCommand, "wprs-sanity", nix.thunk(() => ({ [nix.POS]: $pos[2], nativeBuildInputs: nix.thunk(() => [wprs]) })), nix.thunk(() => nix.str`${wprs}/bin/wprs -h > /dev/null && touch $out
 `))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Rootless remote desktop access for remote Wayland",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
         maintainers: nix.thunk(() => (() => {

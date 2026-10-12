@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 36, 5], ["repo", 37, 5], ["tag", 38, 5], ["hash", 39, 5]], [["ffmpeg", 44, 7]], [["changelog", 80, 5], ["description", 81, 5], ["mainProgram", 82, 5], ["homepage", 83, 5], ["license", 84, 5], ["maintainers", 85, 5]], [["pname", 30, 3], ["version", 31, 3], ["pyproject", 32, 3], ["__structuredAttrs", 33, 3], ["src", 35, 3], ["patches", 42, 3], ["build-system", 48, 3], ["dependencies", 50, 3], ["nativeCheckInputs", 60, 3], ["disabledTests", 66, 3], ["meta", 79, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, buildPythonPackage: false, replaceVars: false, setuptools: false, "ffmpeg-headless": false, "more-itertools": false, numba: false, numpy: false, triton: false, tiktoken: false, torch: false, tqdm: false, pytestCheckHook: false, scipy: false, writableTmpDirAsHomeHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 36, 5], ["repo", 37, 5], ["tag", 38, 5], ["hash", 39, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["ffmpeg", 44, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["changelog", 80, 5], ["description", 81, 5], ["mainProgram", 82, 5], ["homepage", 83, 5], ["license", 84, 5], ["maintainers", 85, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 30, 3], ["version", 31, 3], ["pyproject", 32, 3], ["__structuredAttrs", 33, 3], ["src", 35, 3], ["patches", 42, 3], ["build-system", 48, 3], ["dependencies", 50, 3], ["nativeCheckInputs", 60, 3], ["disabledTests", 66, 3], ["meta", 79, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,20 +25,20 @@ export default nix.lambda((args) => (() => {
   const scipy = nix.arg($, "scipy");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "openai-whisper",
       version: "20250625",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "openai",
           repo: "whisper",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-Zn2HUCor1eCJBP7q0vpffqhw5SNguz8zCGoPgdt6P+c=",
         })))),
       patches: nix.thunk(() => [
-        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./ffmpeg-path.patch"), nix.thunk(() => ({ [nix.POS]: pos$2, ffmpeg: ffmpeg_headless })))),
+        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./ffmpeg-path.patch"), nix.thunk(() => ({ [nix.POS]: $pos[1], ffmpeg: ffmpeg_headless })))),
       ]),
       "build-system": nix.thunk(() => [setuptools]),
       dependencies: nix.thunk(() => nix.concat([more_itertools, numba, numpy, tiktoken, torch, tqdm], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(nix.sel(lib, "meta", "availableOn"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")), triton)), nix.thunk(() => [triton])))),
@@ -52,7 +49,7 @@ export default nix.lambda((args) => (() => {
         "test_median_filter_equivalence",
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")))), nix.thunk(() => ["test_dtw"])))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         changelog: nix.thunk(() => nix.str`https://github.com/openai/whisper/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),
         description: "General-purpose speech recognition model",
         mainProgram: "whisper",

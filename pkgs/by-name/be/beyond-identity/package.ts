@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["description", 31, 5], ["homepage", 32, 5], ["downloadPage", 33, 5], ["sourceProvenance", 34, 5], ["license", 35, 5], ["maintainers", 36, 5], ["platforms", 40, 5]], [["url", 47, 7], ["hash", 48, 7]], [["pname", 44, 13], ["version", 44, 19], ["meta", 44, 27], ["src", 46, 5], ["nativeBuildInputs", 51, 5], ["unpackPhase", 55, 5], ["installPhase", 59, 5], ["postFixup", 70, 5]], [["pname", 95, 11], ["version", 95, 17], ["meta", 95, 25], ["targetPkgs", 97, 3], ["extraInstallCommands", 109, 3], ["runScript", 113, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, dpkg: false, buildFHSEnv: false, glibc: false, glib: false, openssl: false, "tpm2-tss": false, gtk3: false, "gnome-keyring": false, polkit: false, polkit_gnome: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["description", 31, 5], ["homepage", 32, 5], ["downloadPage", 33, 5], ["sourceProvenance", 34, 5], ["license", 35, 5], ["maintainers", 36, 5], ["platforms", 40, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 47, 7], ["hash", 48, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 44, 13], ["version", 44, 19], ["meta", 44, 27], ["src", 46, 5], ["nativeBuildInputs", 51, 5], ["unpackPhase", 55, 5], ["installPhase", 59, 5], ["postFixup", 70, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 95, 11], ["version", 95, 17], ["meta", 95, 25], ["targetPkgs", 97, 3], ["extraInstallCommands", 109, 3], ["runScript", 113, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,7 +24,7 @@ export default nix.lambda((args) => (() => {
   const version = "2.97.0-0";
   const libPath = nix.thunk(() => nix.app(nix.sel(lib, "makeLibraryPath"), nix.thunk(() => [glib, glibc, openssl, tpm2_tss, gtk3, gnome_keyring, polkit, polkit_gnome])));
   const meta = nix.thunk(() => ({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     description: "Passwordless MFA identities for workforces, customers, and developers",
     homepage: "https://www.beyondidentity.com",
     downloadPage: "https://app.byndid.com/downloads",
@@ -46,12 +43,12 @@ export default nix.lambda((args) => (() => {
     platforms: nix.thunk(() => ["x86_64-linux"]),
   }));
   const beyond_identity = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: pname,
       version: version,
       meta: meta,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: nix.thunk(() => nix.str`https://packages.beyondidentity.com/public/linux-authenticator/deb/ubuntu/pool/focal/main/b/be/${pname}_${version}/${pname}_${version}_amd64.deb`),
           hash: "sha512-aOQi0hG7AZ3lIAPCDgGAjqVmNCuqFC62CjI9XPLBpvbxBgr2yi7alP952i31MufzzruzVweoQb8SWgNIHq/zIw==",
         })))),
@@ -80,7 +77,7 @@ patchelf \\
 `),
     }))));
   return nix.app(buildFHSEnv, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: pname,
       version: version,
       meta: meta,

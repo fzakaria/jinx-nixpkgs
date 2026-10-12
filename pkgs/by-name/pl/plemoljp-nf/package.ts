@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 15, 5], ["hash", 16, 5]], [["description", 29, 5]], [["pname", 8, 3], ["version", 12, 22], ["src", 14, 3], ["installPhase", 19, 3], ["meta", 28, 3]]]);
 const formals$1 = { args: { stdenvNoCC: false, fetchzip: false, plemoljp: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 29, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 12, 22], ["src", 14, 3], ["installPhase", 19, 3], ["meta", 28, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,17 +11,17 @@ export default nix.lambda((args) => (() => {
   const fetchzip = nix.arg($, "fetchzip");
   const plemoljp = nix.arg($, "plemoljp");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "plemoljp-nf",
       version: nix.thunk(() => nix.attr(plemoljp, "version")),
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/yuru7/PlemolJP/releases/download/v${nix.sel(finalAttrs, "version")}/PlemolJP_NF_v${nix.sel(finalAttrs, "version")}.zip`),
           hash: "sha256-7DVWDxciW5pEuaIdIinibwPi7QjNsQBPFq/wtP+fTeg=",
         })))),
       installPhase: "runHook preInstall\n\ninstall -Dm444 PlemolJPConsole_NF/*.ttf -t $out/share/fonts/truetype/plemoljp-nf-console\ninstall -Dm444 PlemolJP35Console_NF/*.ttf -t $out/share/fonts/truetype/plemoljp-nf-35console\n\nrunHook postInstall\n",
       meta: nix.thunk(() => nix.update(nix.sel(plemoljp, "meta"), {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Composite font of IBM Plex Mono, IBM Plex Sans JP and nerd-fonts",
       })),
     }));

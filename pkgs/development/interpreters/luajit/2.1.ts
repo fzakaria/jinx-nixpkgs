@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/2.1.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]], [["version", 11, 3], ["src", 13, 3], ["self", 20, 11], ["passthruFun", 20, 16]]]);
 const formals$1 = { args: { self: false, callPackage: false, fetchFromGitHub: false, passthruFun: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/2.1.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/2.1.nix", [["version", 11, 3], ["src", 13, 3], ["self", 20, 11], ["passthruFun", 20, 16]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,10 +12,10 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const passthruFun = nix.arg($, "passthruFun");
   return nix.app(callPackage, nix.path(here, "./default.nix"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       version: "2.1.1785763465",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "LuaJIT",
           repo: "LuaJIT",
           rev: "1edc3e52b67eaf6ce5f809be8e17d6862594b8bc",

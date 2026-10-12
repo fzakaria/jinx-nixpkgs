@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 25, 15], ["repo", 26, 15], ["tag", 27, 15], ["hash", 28, 15]], [["version", 23, 21], ["src", 24, 13], ["vendorHash", 30, 13]], [["buildGoModule", 14, 5]], [["owner", 41, 5], ["repo", 42, 5], ["tag", 43, 5], ["hash", 44, 5]], [["ESBUILD_BINARY_PATH", 55, 7]], [["updateScript", 61, 12]], [["description", 64, 5], ["homepage", 65, 5], ["changelog", 66, 5], ["license", 67, 5], ["maintainers", 68, 5], ["mainProgram", 69, 5]], [["pname", 37, 3], ["version", 38, 3], ["src", 40, 3], ["npmDepsHash", 47, 3], ["nodejs", 49, 3], ["makeCacheWritable", 51, 3], ["npmFlags", 53, 3], ["env", 55, 3], ["doInstallCheck", 57, 3], ["nativeInstallCheckInputs", 59, 3], ["passthru", 61, 3], ["meta", 63, 3]]]);
 const formals$1 = { args: { lib: false, buildNpmPackage: false, buildGoModule: false, fetchFromGitHub: false, esbuild: false, nodejs_22: false, versionCheckHook: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 25, 15], ["repo", 26, 15], ["tag", 27, 15], ["hash", 28, 15]]);
-const pos$2 = nix.positions(here + "/package.nix", [["version", 23, 21], ["src", 24, 13], ["vendorHash", 30, 13]]);
-const pos$3 = nix.positions(here + "/package.nix", [["buildGoModule", 14, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["owner", 41, 5], ["repo", 42, 5], ["tag", 43, 5], ["hash", 44, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["ESBUILD_BINARY_PATH", 55, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["updateScript", 61, 12]]);
-const pos$7 = nix.positions(here + "/package.nix", [["description", 64, 5], ["homepage", 65, 5], ["changelog", 66, 5], ["license", 67, 5], ["maintainers", 68, 5], ["mainProgram", 69, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 37, 3], ["version", 38, 3], ["src", 40, 3], ["npmDepsHash", 47, 3], ["nodejs", 49, 3], ["makeCacheWritable", 51, 3], ["npmFlags", 53, 3], ["env", 55, 3], ["doInstallCheck", 57, 3], ["nativeInstallCheckInputs", 59, 3], ["passthru", 61, 3], ["meta", 63, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,14 +16,14 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const nix_update_script = nix.arg($, "nix-update-script");
   const esbuild$ = nix.thunk(() => nix.app(nix.sel(esbuild, "override"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       buildGoModule: (args_1) => nix.app(buildGoModule, nix.thunk(() => nix.update(args_1, (() => {
           const version = "0.25.10";
           return {
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             version: version,
             src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                [nix.POS]: pos$1,
+                [nix.POS]: $pos[0],
                 owner: "evanw",
                 repo: "esbuild",
                 tag: nix.thunk(() => nix.str`v${version}`),
@@ -41,11 +34,11 @@ export default nix.lambda((args) => (() => {
         })()))),
     }))));
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "zx",
       version: "8.8.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           owner: "google",
           repo: "zx",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -56,17 +49,17 @@ export default nix.lambda((args) => (() => {
       makeCacheWritable: true,
       npmFlags: nix.thunk(() => ["--legacy-peer-deps"]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         ESBUILD_BINARY_PATH: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), esbuild$)),
       })),
       doInstallCheck: true,
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "Tool for writing scripts using JavaScript",
         homepage: "https://github.com/google/zx",
         changelog: nix.thunk(() => nix.str`https://github.com/google/zx/releases/tag/${nix.sel(finalAttrs, "version")}`),

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["hash", 33, 5]], [["all", 42, 5]], [["description", 88, 5], ["homepage", 89, 5], ["changelog", 90, 5], ["license", 91, 5], ["maintainers", 92, 5]], [["pname", 25, 3], ["version", 26, 3], ["pyproject", 27, 3], ["src", 29, 3], ["build-system", 36, 3], ["optional-dependencies", 41, 3], ["pytestFlags", 53, 3], ["nativeCheckInputs", 58, 3], ["disabledTestPaths", 68, 3], ["__darwinAllowLocalNetworking", 83, 3], ["pythonImportsCheck", 85, 3], ["meta", 87, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, hatchling: false, "uv-dynamic-versioning": false, filelock: false, psycopg: false, "psycopg-pool": false, redis: false, aiohttp: false, pytestCheckHook: false, "pytest-asyncio": false, "pytest-xdist": false, redisTestHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["hash", 33, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["all", 42, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 88, 5], ["homepage", 89, 5], ["changelog", 90, 5], ["license", 91, 5], ["maintainers", 92, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 25, 3], ["version", 26, 3], ["pyproject", 27, 3], ["src", 29, 3], ["build-system", 36, 3], ["optional-dependencies", 41, 3], ["pytestFlags", 53, 3], ["nativeCheckInputs", 58, 3], ["disabledTestPaths", 68, 3], ["__darwinAllowLocalNetworking", 83, 3], ["pythonImportsCheck", 85, 3], ["meta", 87, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,12 +22,12 @@ export default nix.lambda((args) => (() => {
   const pytest_xdist = nix.arg($, "pytest-xdist");
   const redisTestHook = nix.arg($, "redisTestHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "pyrate-limiter",
       version: "4.5.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "vutran1710",
           repo: "PyrateLimiter",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,7 +35,7 @@ export default nix.lambda((args) => (() => {
         })))),
       "build-system": nix.thunk(() => [hatchling, uv_dynamic_versioning]),
       "optional-dependencies": nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         all: nix.thunk(() => [filelock, redis, psycopg, psycopg_pool]),
       })),
       pytestFlags: nix.thunk(() => ["--durations=10", "-vv"]),
@@ -62,7 +59,7 @@ export default nix.lambda((args) => (() => {
       __darwinAllowLocalNetworking: true,
       pythonImportsCheck: nix.thunk(() => ["pyrate_limiter"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Python Rate-Limiter using Leaky-Bucket Algorimth Family",
         homepage: "https://github.com/vutran1710/PyrateLimiter",
         changelog: nix.thunk(() => nix.str`https://github.com/vutran1710/PyrateLimiter/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/wrapper.nix", [[["name", 74, 11], ["nativeBuildInputs", 75, 11], ["buildCommand", 77, 11]], [["interpreter", 69, 9], ["lua", 70, 17], ["luaPath", 71, 9], ["luaCpath", 72, 9], ["env", 73, 9]], [["name", 22, 7], ["paths", 24, 15], ["ignoreCollisions", 25, 15], ["extraOutputsToInstall", 26, 7], ["nativeBuildInputs", 28, 7], ["postBuild", 33, 7], ["meta", 66, 21], ["passthru", 68, 7]]]);
 const formals$1 = { args: { lib: false, stdenv: false, lua: false, buildEnv: false, makeWrapper: false, extraLibs: true, extraOutputsToInstall: true, postBuild: true, ignoreCollisions: true, requiredLuaModules: false, makeWrapperArgs: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/wrapper.nix", [["name", 74, 11], ["nativeBuildInputs", 75, 11], ["buildCommand", 77, 11]]);
-const pos$2 = nix.positions(here + "/wrapper.nix", [["interpreter", 69, 9], ["lua", 70, 17], ["luaPath", 71, 9], ["luaCpath", 72, 9], ["env", 73, 9]]);
-const pos$3 = nix.positions(here + "/wrapper.nix", [["name", 22, 7], ["paths", 24, 15], ["ignoreCollisions", 25, 15], ["extraOutputsToInstall", 26, 7], ["nativeBuildInputs", 28, 7], ["postBuild", 33, 7], ["meta", 66, 21], ["passthru", 68, 7]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,7 +21,7 @@ export default nix.lambda((args) => (() => {
   const env = nix.thunk(() => (() => {
     const paths = nix.thunk(() => nix.concat([lua], nix.app(requiredLuaModules, extraLibs)));
     return nix.app(buildEnv, nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         name: nix.thunk(() => nix.str`${nix.sel(lua, "name")}-env`),
         paths: paths,
         ignoreCollisions: ignoreCollisions,
@@ -61,13 +59,13 @@ done
 `, postBuild)),
         meta: nix.thunk(() => nix.attr(lua, "meta")),
         passthru: nix.thunk(() => nix.update(nix.sel(lua, "passthru"), {
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           interpreter: nix.thunk(() => nix.str`${env}/bin/lua`),
           lua: lua,
           luaPath: nix.thunk(() => nix.app(nix.sel(lua, "pkgs", "luaLib", "genLuaPathAbsStr"), env)),
           luaCpath: nix.thunk(() => nix.app(nix.sel(lua, "pkgs", "luaLib", "genLuaCPathAbsStr"), env)),
           env: nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-              [nix.POS]: pos$1,
+              [nix.POS]: $pos[0],
               name: nix.thunk(() => nix.str`interactive-${nix.sel(lua, "name")}-environment`),
               nativeBuildInputs: nix.thunk(() => [env]),
               buildCommand: "echo >&2 \"\"\necho >&2 \"*** lua 'env' attributes are intended for interactive nix-shell sessions, not for building! ***\"\necho >&2 \"\"\nexit 1\n",

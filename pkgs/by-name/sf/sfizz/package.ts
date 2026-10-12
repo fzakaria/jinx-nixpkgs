@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 36, 5], ["repo", 37, 5], ["tag", 38, 5], ["hash", 39, 5], ["fetchSubmodules", 40, 5]], [["homepage", 79, 5], ["description", 80, 5], ["license", 81, 5], ["maintainers", 82, 5], ["platforms", 83, 5]], [["pname", 32, 3], ["version", 33, 3], ["src", 35, 3], ["buildInputs", 43, 3], ["nativeBuildInputs", 67, 3], ["cmakeFlags", 72, 3], ["doCheck", 76, 3], ["meta", 78, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, libjack2: false, libsndfile: false, "libxcb-util": false, "libxcb-render-util": false, "libxcb-keysyms": false, "libxcb-image": false, "libxcb-cursor": false, libxdmcp: false, libxau: false, libx11: false, libxcb: false, freetype: false, libxkbcommon: false, cairo: false, glib: false, zenity: false, flac: false, libogg: false, libvorbis: false, libopus: false, cmake: false, pango: false, "pkg-config": false, catch2: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 36, 5], ["repo", 37, 5], ["tag", 38, 5], ["hash", 39, 5], ["fetchSubmodules", 40, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 79, 5], ["description", 80, 5], ["license", 81, 5], ["maintainers", 82, 5], ["platforms", 83, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 32, 3], ["version", 33, 3], ["src", 35, 3], ["buildInputs", 43, 3], ["nativeBuildInputs", 67, 3], ["cmakeFlags", 72, 3], ["doCheck", 76, 3], ["meta", 78, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -37,11 +35,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const catch2 = nix.arg($, "catch2");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "sfizz",
       version: "1.2.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "sfztools",
           repo: "sfizz",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -75,7 +73,7 @@ export default nix.lambda((args) => (() => {
       cmakeFlags: nix.thunk(() => [nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "SFIZZ_TESTS", true))]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/sfztools/sfizz",
         description: "SFZ jack client and LV2 plugin",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

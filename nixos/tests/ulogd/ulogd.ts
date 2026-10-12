@@ -2,76 +2,62 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/ulogd.nix", [[["maintainers", 5, 8]], [["enable", 10, 27]], [["enable", 11, 27], ["ruleset", 12, 27]], [["firewall", 10, 18], ["nftables", 11, 18]], [["logfile", 34, 13], ["stack", 35, 13]], [["group", 41, 16]], [["sync", 44, 13], ["file", 45, 13]], [["sync", 49, 13], ["file", 50, 13]], [["global", 33, 11], ["log1", 41, 11], ["pcap1", 43, 11], ["emu1", 48, 11]], [["enable", 31, 9], ["settings", 32, 9]], [["ulogd", 30, 16]], [["systemPackages", 55, 19]], [["networking", 10, 7], ["services", 30, 7], ["environment", 55, 7]], [["machine", 7, 9]], [["name", 3, 3], ["meta", 5, 3], ["nodes", 7, 3], ["testScript", 58, 3]]]);
 const formals$1 = { args: { pkgs: false, lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/ulogd.nix", [["maintainers", 5, 8]]);
 const formals$2 = { args: {  }, ellipsis: true };
-const pos$2 = nix.positions(here + "/ulogd.nix", [["enable", 10, 27]]);
-const pos$3 = nix.positions(here + "/ulogd.nix", [["enable", 11, 27], ["ruleset", 12, 27]]);
-const pos$4 = nix.positions(here + "/ulogd.nix", [["firewall", 10, 18], ["nftables", 11, 18]]);
-const pos$5 = nix.positions(here + "/ulogd.nix", [["logfile", 34, 13], ["stack", 35, 13]]);
-const pos$6 = nix.positions(here + "/ulogd.nix", [["group", 41, 16]]);
-const pos$7 = nix.positions(here + "/ulogd.nix", [["sync", 44, 13], ["file", 45, 13]]);
-const pos$8 = nix.positions(here + "/ulogd.nix", [["sync", 49, 13], ["file", 50, 13]]);
-const pos$9 = nix.positions(here + "/ulogd.nix", [["global", 33, 11], ["log1", 41, 11], ["pcap1", 43, 11], ["emu1", 48, 11]]);
-const pos$10 = nix.positions(here + "/ulogd.nix", [["enable", 31, 9], ["settings", 32, 9]]);
-const pos$11 = nix.positions(here + "/ulogd.nix", [["ulogd", 30, 16]]);
-const pos$12 = nix.positions(here + "/ulogd.nix", [["systemPackages", 55, 19]]);
-const pos$13 = nix.positions(here + "/ulogd.nix", [["networking", 10, 7], ["services", 30, 7], ["environment", 55, 7]]);
-const pos$14 = nix.positions(here + "/ulogd.nix", [["machine", 7, 9]]);
-const pos$15 = nix.positions(here + "/ulogd.nix", [["name", 3, 3], ["meta", 5, 3], ["nodes", 7, 3], ["testScript", 58, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$15,
+    [nix.POS]: $pos[14],
     name: "ulogd",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "p-h"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$14,
+      [nix.POS]: $pos[13],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          [nix.POS]: pos$13,
+          [nix.POS]: $pos[12],
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$4,
-            firewall: nix.thunk(() => ({ [nix.POS]: pos$2, enable: false })),
+            [nix.POS]: $pos[3],
+            firewall: nix.thunk(() => ({ [nix.POS]: $pos[1], enable: false })),
             nftables: nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               enable: true,
               ruleset: "table inet filter {\n  chain input {\n    type filter hook input priority 0;\n    icmp type { echo-request, echo-reply } log group 2 accept\n  }\n\n  chain output {\n    type filter hook output priority 0; policy accept;\n    icmp type { echo-request, echo-reply } log group 2 accept\n  }\n\n  chain forward {\n    type filter hook forward priority 0; policy drop;\n  }\n\n}\n",
             })),
           })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$11,
+            [nix.POS]: $pos[10],
             ulogd: nix.thunk(() => ({
-              [nix.POS]: pos$10,
+              [nix.POS]: $pos[9],
               enable: true,
               settings: nix.thunk(() => ({
-                [nix.POS]: pos$9,
+                [nix.POS]: $pos[8],
                 global: nix.thunk(() => ({
-                  [nix.POS]: pos$5,
+                  [nix.POS]: $pos[4],
                   logfile: "/var/log/ulogd.log",
                   stack: nix.thunk(() => [
                     "log1:NFLOG,base1:BASE,ifi1:IFINDEX,ip2str1:IP2STR,print1:PRINTPKT,emu1:LOGEMU",
                     "log1:NFLOG,base1:BASE,pcap1:PCAP",
                   ]),
                 })),
-                log1: nix.thunk(() => ({ [nix.POS]: pos$6, group: 2n })),
-                pcap1: nix.thunk(() => ({ [nix.POS]: pos$7, sync: 1n, file: "/var/log/ulogd.pcap" })),
-                emu1: nix.thunk(() => ({ [nix.POS]: pos$8, sync: 1n, file: "/var/log/ulogd_pkts.log" })),
+                log1: nix.thunk(() => ({ [nix.POS]: $pos[5], group: 2n })),
+                pcap1: nix.thunk(() => ({ [nix.POS]: $pos[6], sync: 1n, file: "/var/log/ulogd.pcap" })),
+                emu1: nix.thunk(() => ({ [nix.POS]: $pos[7], sync: 1n, file: "/var/log/ulogd_pkts.log" })),
               })),
             })),
           })),
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$12,
+            [nix.POS]: $pos[11],
             systemPackages: nix.thunk(() => (() => {
               const w = nix.withScope(pkgs, null);
               return [nix.thunk(() => nix.lookup(w, "tcpdump"))];

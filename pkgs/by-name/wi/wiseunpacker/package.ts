@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]], [["homepage", 34, 5], ["description", 35, 5], ["maintainers", 36, 5], ["license", 37, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["dotnet-sdk", 19, 3], ["dotnet-runtime", 20, 3], ["dotnetFlags", 22, 3], ["postFixup", 25, 3], ["nugetDeps", 29, 3], ["projectFile", 31, 3], ["meta", 33, 3]]]);
 const formals$1 = { args: { fetchFromGitHub: false, buildDotnetModule: false, dotnetCorePackages: false, lib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 34, 5], ["description", 35, 5], ["maintainers", 36, 5], ["license", 37, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["dotnet-sdk", 19, 3], ["dotnet-runtime", 20, 3], ["dotnetFlags", 22, 3], ["postFixup", 25, 3], ["nugetDeps", 29, 3], ["projectFile", 31, 3], ["meta", 33, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const dotnetCorePackages = nix.arg($, "dotnetCorePackages");
   const lib = nix.arg($, "lib");
   return nix.app(buildDotnetModule, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "WiseUnpacker",
       version: "1.3.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "mnadareski",
           repo: "WiseUnpacker",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -31,7 +29,7 @@ export default nix.lambda((args) => (() => {
       nugetDeps: nix.path(here, "./deps.json"),
       projectFile: "Test/Test.csproj",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/mnadareski/WiseUnpacker/",
         description: "C# Wise installer unpacker based on HWUN and E_WISE ",
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "gigahawk"))]),

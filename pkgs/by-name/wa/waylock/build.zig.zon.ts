@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/build.zig.zon.nix", [[["url", 13, 7], ["hash", 14, 7]], [["name", 11, 5], ["path", 12, 5]], [["url", 20, 7], ["hash", 21, 7]], [["name", 18, 5], ["path", 19, 5]]]);
 const formals$1 = { args: { linkFarm: false, fetchzip: false, fetchgit: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/build.zig.zon.nix", [["url", 13, 7], ["hash", 14, 7]]);
-const pos$2 = nix.positions(here + "/build.zig.zon.nix", [["name", 11, 5], ["path", 12, 5]]);
-const pos$3 = nix.positions(here + "/build.zig.zon.nix", [["url", 20, 7], ["hash", 21, 7]]);
-const pos$4 = nix.positions(here + "/build.zig.zon.nix", [["name", 18, 5], ["path", 19, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,19 +12,19 @@ export default nix.lambda((args) => (() => {
   const fetchgit = nix.arg($, "fetchgit");
   return nix.app(linkFarm, "zig-packages", nix.thunk(() => [
       nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         name: "wayland-0.6.0-lQa1kqz8AQADQmdNJsNhLoNHcnEGEUjrOaPV-dtEnEmX",
         path: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             url: "https://codeberg.org/ifreund/zig-wayland/archive/v0.6.0.tar.gz",
             hash: "sha256-3m/ITNhZUJ/5uD/Tqm+0uZSktGoYgWF5oldOqOCUkIE=",
           })))),
       })),
       nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         name: "xkbcommon-0.3.0-VDqIe3K9AQB2fG5ZeRcMC9i7kfrp5m2rWgLrmdNn9azr",
         path: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: "https://codeberg.org/ifreund/zig-xkbcommon/archive/v0.3.0.tar.gz",
             hash: "sha256-e5bPEfxl4SQf0cqccLt/py1KOW1+Q1+kWZUEXBbh9oQ=",
           })))),

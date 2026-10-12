@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]], [["NODE_PATH", 34, 7]], [["nativeBuildInputs", 65, 5], ["preBuild", 67, 5]], [["src", 71, 5], ["hash", 72, 5]], [["readeck", 78, 36]], [["tests", 78, 5], ["updateScript", 79, 5]], [["description", 83, 5], ["mainProgram", 84, 5], ["homepage", 85, 5], ["changelog", 86, 5], ["license", 87, 5], ["maintainers", 88, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["nativeBuildInputs", 25, 3], ["npmRoot", 32, 3], ["env", 34, 3], ["postPatch", 36, 3], ["preBuild", 40, 3], ["subPackages", 44, 3], ["tags", 46, 3], ["ldflags", 56, 3], ["overrideModAttrs", 63, 3], ["npmDeps", 70, 3], ["vendorHash", 75, 3], ["passthru", 77, 3], ["meta", 82, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromCodeberg: false, fetchNpmDeps: false, buildGoModule: false, nodejs_22: false, npmHooks: false, python3: false, templ: false, "nix-update-script": false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NODE_PATH", 34, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["nativeBuildInputs", 65, 5], ["preBuild", 67, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["src", 71, 5], ["hash", 72, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["readeck", 78, 36]]);
-const pos$6 = nix.positions(here + "/package.nix", [["tests", 78, 5], ["updateScript", 79, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["description", 83, 5], ["mainProgram", 84, 5], ["homepage", 85, 5], ["changelog", 86, 5], ["license", 87, 5], ["maintainers", 88, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["nativeBuildInputs", 25, 3], ["npmRoot", 32, 3], ["env", 34, 3], ["postPatch", 36, 3], ["preBuild", 40, 3], ["subPackages", 44, 3], ["tags", 46, 3], ["ldflags", 56, 3], ["overrideModAttrs", 63, 3], ["npmDeps", 70, 3], ["vendorHash", 75, 3], ["passthru", 77, 3], ["meta", 82, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "readeck",
       version: "0.23.4",
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "readeck",
           repo: "readeck",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -45,7 +38,7 @@ export default nix.lambda((args) => (() => {
         templ,
       ]),
       npmRoot: "web",
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, NODE_PATH: "$npmDeps" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], NODE_PATH: "$npmDeps" })),
       postPatch: "templ generate\n",
       preBuild: "make TEMPL=templ generate\n",
       subPackages: nix.thunk(() => ["."]),
@@ -65,23 +58,26 @@ export default nix.lambda((args) => (() => {
         "codeberg.org/readeck/readeck/configs.buildTimeStr=1970-01-01T08:00:00Z",
       ]),
       overrideModAttrs: (oldAttrs) => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         nativeBuildInputs: nix.thunk(() => nix.app(nix.sel(lib, "remove"), nix.thunk(() => nix.sel(npmHooks, "npmConfigHook")), nix.thunk(() => nix.sel(oldAttrs, "nativeBuildInputs")))),
         preBuild: null,
       }),
       npmDeps: nix.thunk(() => nix.app(fetchNpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           src: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src")}/web`),
           hash: "sha256-H8l9cpGYbLhbaU4PsU6KBhr8QZGh5sihE+3XdFwQRTg=",
         })))),
       vendorHash: "sha256-9BTNWePXmmKUMWM1evhgIMYipHX+pxozONZCbcCt8lo=",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$5, readeck: nix.thunk(() => nix.attr(nixosTests, "readeck")) })),
+        [nix.POS]: $pos[5],
+        tests: nix.thunk(() => ({
+          [nix.POS]: $pos[4],
+          readeck: nix.thunk(() => nix.attr(nixosTests, "readeck")),
+        })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "Web application that lets you save the readable content of web pages you want to keep forever",
         mainProgram: "readeck",
         homepage: "https://readeck.org/",

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]], [["name", 47, 7], ["url", 48, 7], ["hash", 49, 7]], [["gtk3", 54, 13]], [["homepage", 58, 5], ["license", 59, 5], ["platforms", 60, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["nativeBuildInputs", 26, 3], ["mesonFlags", 32, 3], ["buildInputs", 36, 3], ["dontStrip", 43, 3], ["patches", 45, 3], ["passthru", 53, 3], ["meta", 57, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch: false, meson: false, ninja: false, "pkg-config": false, mono: false, glib: false, pango: false, gtk3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 47, 7], ["url", 48, 7], ["hash", 49, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["gtk3", 54, 13]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 58, 5], ["license", 59, 5], ["platforms", 60, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["nativeBuildInputs", 26, 3], ["mesonFlags", 32, 3], ["buildInputs", 36, 3], ["dontStrip", 43, 3], ["patches", 45, 3], ["passthru", 53, 3], ["meta", 57, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const pango = nix.arg($, "pango");
   const gtk3 = nix.arg($, "gtk3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "gtk-sharp",
       version: "3.22.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "GLibSharp",
           repo: "GtkSharp",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -39,15 +35,15 @@ export default nix.lambda((args) => (() => {
       dontStrip: true,
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "fix-unknown-variable-gdk_api_includes.patch",
             url: "https://github.com/GLibSharp/GtkSharp/commit/a1ffef907e06303bbd2787ced5c82a8bf6a7eef1.patch",
             hash: "sha256-w3BbnEU6ye9WsNBNiELbbGOkXYsE3SACopRF0Dbfr3k=",
           })))),
       ]),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$3, gtk3: gtk3 })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[2], gtk3: gtk3 })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://github.com/GLibSharp/GtkSharp",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl2Only")),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),

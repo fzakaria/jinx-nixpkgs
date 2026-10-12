@@ -2,25 +2,10 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/tls-ghostunnel.nix", [[["maintainers", 41, 7]], [["enable", 49, 46]], [["cert", 54, 17], ["key", 55, 17], ["cacert", 56, 17]], [["enable", 51, 13], ["openFirewall", 52, 13], ["server", 53, 13], ["tls", 54, 13]], [["enable", 48, 33], ["dockerSocket", 49, 33], ["networkSocket", 50, 33]], [["podman", 48, 26]], [["systemPackages", 59, 23]], [["isNormalUser", 64, 13], ["home", 65, 13], ["description", 66, 13], ["extraGroups", 67, 13]], [["alice", 63, 23]], [["users", 63, 17]], [["virtualisation", 48, 11], ["environment", 59, 11], ["users", 63, 11]], [["DOCKER_HOST", 80, 33], ["DOCKER_TLS_VERIFY", 81, 33]], [["systemPackages", 75, 23], ["variables", 80, 23]], [["environment", 75, 11]], [["podman", 45, 7], ["client", 72, 7]], [["name", 39, 5], ["meta", 40, 5], ["nodes", 44, 5], ["testScript", 85, 5]]]);
 const formals$1 = { args: { pkgs: false, lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/tls-ghostunnel.nix", [["maintainers", 41, 7]]);
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/tls-ghostunnel.nix", [["enable", 49, 46]]);
-const pos$3 = nix.positions(here + "/tls-ghostunnel.nix", [["cert", 54, 17], ["key", 55, 17], ["cacert", 56, 17]]);
-const pos$4 = nix.positions(here + "/tls-ghostunnel.nix", [["enable", 51, 13], ["openFirewall", 52, 13], ["server", 53, 13], ["tls", 54, 13]]);
-const pos$5 = nix.positions(here + "/tls-ghostunnel.nix", [["enable", 48, 33], ["dockerSocket", 49, 33], ["networkSocket", 50, 33]]);
-const pos$6 = nix.positions(here + "/tls-ghostunnel.nix", [["podman", 48, 26]]);
-const pos$7 = nix.positions(here + "/tls-ghostunnel.nix", [["systemPackages", 59, 23]]);
-const pos$8 = nix.positions(here + "/tls-ghostunnel.nix", [["isNormalUser", 64, 13], ["home", 65, 13], ["description", 66, 13], ["extraGroups", 67, 13]]);
-const pos$9 = nix.positions(here + "/tls-ghostunnel.nix", [["alice", 63, 23]]);
-const pos$10 = nix.positions(here + "/tls-ghostunnel.nix", [["users", 63, 17]]);
-const pos$11 = nix.positions(here + "/tls-ghostunnel.nix", [["virtualisation", 48, 11], ["environment", 59, 11], ["users", 63, 11]]);
 const formals$3 = { args: {  }, ellipsis: true };
-const pos$12 = nix.positions(here + "/tls-ghostunnel.nix", [["DOCKER_HOST", 80, 33], ["DOCKER_TLS_VERIFY", 81, 33]]);
-const pos$13 = nix.positions(here + "/tls-ghostunnel.nix", [["systemPackages", 75, 23], ["variables", 80, 23]]);
-const pos$14 = nix.positions(here + "/tls-ghostunnel.nix", [["environment", 75, 11]]);
-const pos$15 = nix.positions(here + "/tls-ghostunnel.nix", [["podman", 45, 7], ["client", 72, 7]]);
-const pos$16 = nix.positions(here + "/tls-ghostunnel.nix", [["name", 39, 5], ["meta", 40, 5], ["nodes", 44, 5], ["testScript", 85, 5]]);
 
 export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../make-test-python.nix")), nix.lambda((args) => (() => {
     const $ = nix.formals(args, formals$1);
@@ -57,32 +42,32 @@ openssl x509 -req -days 365 -sha256 -in client-2.csr -CA ca-2.pem -CAkey ca-2-ke
 
 `)));
     return {
-      [nix.POS]: pos$16,
+      [nix.POS]: $pos[15],
       name: "podman-tls-ghostunnel",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         maintainers: nix.thunk(() => nix.concat(nix.sel(lib, "teams", "podman", "members"), [nix.thunk(() => nix.sel(lib, "maintainers", "roberth"))])),
       })),
       nodes: nix.thunk(() => ({
-        [nix.POS]: pos$15,
+        [nix.POS]: $pos[14],
         podman: nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$2);
           const pkgs_1 = nix.arg($_1, "pkgs");
           return {
-            [nix.POS]: pos$11,
+            [nix.POS]: $pos[10],
             virtualisation: nix.thunk(() => ({
-              [nix.POS]: pos$6,
+              [nix.POS]: $pos[5],
               podman: nix.thunk(() => ({
-                [nix.POS]: pos$5,
+                [nix.POS]: $pos[4],
                 enable: true,
-                dockerSocket: nix.thunk(() => ({ [nix.POS]: pos$2, enable: true })),
+                dockerSocket: nix.thunk(() => ({ [nix.POS]: $pos[1], enable: true })),
                 networkSocket: nix.thunk(() => ({
-                  [nix.POS]: pos$4,
+                  [nix.POS]: $pos[3],
                   enable: true,
                   openFirewall: true,
                   server: "ghostunnel",
                   tls: nix.thunk(() => ({
-                    [nix.POS]: pos$3,
+                    [nix.POS]: $pos[2],
                     cert: "/root/podman-cert.pem",
                     key: "/root/podman-key.pem",
                     cacert: "/root/ca.pem",
@@ -91,15 +76,15 @@ openssl x509 -req -days 365 -sha256 -in client-2.csr -CA ca-2.pem -CAkey ca-2-ke
               })),
             })),
             environment: nix.thunk(() => ({
-              [nix.POS]: pos$7,
+              [nix.POS]: $pos[6],
               systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs_1, "docker-client"))]),
             })),
             users: nix.thunk(() => ({
-              [nix.POS]: pos$10,
+              [nix.POS]: $pos[9],
               users: nix.thunk(() => ({
-                [nix.POS]: pos$9,
+                [nix.POS]: $pos[8],
                 alice: nix.thunk(() => ({
-                  [nix.POS]: pos$8,
+                  [nix.POS]: $pos[7],
                   isNormalUser: true,
                   home: "/home/alice",
                   description: "Alice Foobar",
@@ -112,11 +97,11 @@ openssl x509 -req -days 365 -sha256 -in client-2.csr -CA ca-2.pem -CAkey ca-2-ke
         client: nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$3);
           return {
-            [nix.POS]: pos$14,
+            [nix.POS]: $pos[13],
             environment: nix.thunk(() => ({
-              [nix.POS]: pos$13,
+              [nix.POS]: $pos[12],
               systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "docker-client"))]),
-              variables: nix.thunk(() => ({ [nix.POS]: pos$12, DOCKER_HOST: "podman:2376", DOCKER_TLS_VERIFY: "1" })),
+              variables: nix.thunk(() => ({ [nix.POS]: $pos[11], DOCKER_HOST: "podman:2376", DOCKER_TLS_VERIFY: "1" })),
             })),
           };
         })(), formals$3),

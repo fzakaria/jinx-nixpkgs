@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["hash", 24, 5]], [["NIX_CFLAGS_COMPILE", 43, 7]], [["description", 85, 5], ["homepage", 86, 5], ["license", 87, 5], ["platforms", 88, 5], ["maintainers", 89, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 33, 3], ["makeFlags", 38, 3], ["env", 43, 3], ["hardeningDisable", 48, 3], ["installFlags", 53, 3], ["preConfigure", 57, 3], ["postInstall", 64, 3], ["enableParallelBuilding", 82, 3], ["meta", 84, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, libxslt: false, libaio: false, systemdLibs: false, perl: false, docbook_xsl: false, coreutils: false, lsof: false, makeWrapper: false, sg3_utils: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 43, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 85, 5], ["homepage", 86, 5], ["license", 87, 5], ["platforms", 88, 5], ["maintainers", 89, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 33, 3], ["makeFlags", 38, 3], ["env", 43, 3], ["hardeningDisable", 48, 3], ["installFlags", 53, 3], ["preConfigure", 57, 3], ["postInstall", 64, 3], ["enableParallelBuilding", 82, 3], ["meta", 84, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const sg3_utils = nix.arg($, "sg3_utils");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "tgt",
       version: "1.0.95",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "fujita",
           repo: "tgt",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -40,7 +37,7 @@ export default nix.lambda((args) => (() => {
         "SD_NOTIFY=1",
       ]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-Wno-error=maybe-uninitialized"]))),
       })),
       hardeningDisable: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isAarch64")), nix.thunk(() => ["fortify3"]))),
@@ -64,7 +61,7 @@ sed -i '/ExecStart=/a ExecStartPost=${coreutils}/bin/sleep 5' $out/etc/systemd/s
 `),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "iSCSI Target daemon with RDMA support",
         homepage: "https://github.com/fujita/tgt",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

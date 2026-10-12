@@ -2,15 +2,10 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]], [["preBuild", 37, 5], ["postBuild", 86, 5]], [["coredns-external-plugins", 135, 5], ["kubernetes-single-node", 136, 5], ["kubernetes-multi-node", 137, 5]], [["tests", 134, 12]], [["homepage", 141, 5], ["description", 142, 5], ["mainProgram", 143, 5], ["license", 144, 5], ["maintainers", 145, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["vendorHash", 26, 11], ["nativeBuildInputs", 28, 3], ["outputs", 30, 3], ["overrideModAttrs", 35, 3], ["preBuild", 91, 3], ["postPatch", 98, 3], ["__darwinAllowLocalNetworking", 128, 3], ["postInstall", 130, 3], ["passthru", 134, 3], ["meta", 140, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildGoModule: false, fetchFromGitHub: false, installShellFiles: false, nixosTests: false, externalPlugins: true, vendorHash: true }, ellipsis: false };
 const formals$2 = { args: { repo: false, version: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]]);
 const formals$3 = { args: { name: false, repo: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/package.nix", [["preBuild", 37, 5], ["postBuild", 86, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["coredns-external-plugins", 135, 5], ["kubernetes-single-node", 136, 5], ["kubernetes-multi-node", 137, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 134, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["homepage", 141, 5], ["description", 142, 5], ["mainProgram", 143, 5], ["license", 144, 5], ["maintainers", 145, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["vendorHash", 26, 11], ["nativeBuildInputs", 28, 3], ["outputs", 30, 3], ["overrideModAttrs", 35, 3], ["preBuild", 91, 3], ["postPatch", 98, 3], ["__darwinAllowLocalNetworking", 128, 3], ["postInstall", 130, 3], ["passthru", 134, 3], ["meta", 140, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,11 +24,11 @@ export default nix.lambda((args) => (() => {
       return nix.str`${repo}@${version}`;
     })(), formals$2), attrs);
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "coredns",
       version: "1.14.7",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "coredns",
           repo: "coredns",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -43,7 +38,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [installShellFiles]),
       outputs: nix.thunk(() => ["out", "man"]),
       overrideModAttrs: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         preBuild: nix.thunk(() => nix.str`cp plugin.cfg plugin.cfg.orig
 ${nix.app(nix.sel(lib, "concatMapStringsSep"), "\n", (plugin) => (() => {
             const position = nix.thunk(() => nix.selOr(plugin, () => "end-of-file", "position"));
@@ -84,16 +79,16 @@ go mod tidy
       __darwinAllowLocalNetworking: true,
       postInstall: "installManPage man/*\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           "coredns-external-plugins": nix.thunk(() => nix.sel(nixosTests, "coredns")),
           "kubernetes-single-node": nix.thunk(() => nix.sel(nixosTests, "kubernetes", "dns-single-node")),
           "kubernetes-multi-node": nix.thunk(() => nix.sel(nixosTests, "kubernetes", "dns-multi-node")),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "https://coredns.io",
         description: "DNS server that runs middleware",
         mainProgram: "coredns",

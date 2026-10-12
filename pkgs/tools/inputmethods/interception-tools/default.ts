@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]], [["name", 29, 7], ["url", 30, 7], ["hash", 31, 7]], [["description", 47, 5], ["homepage", 48, 5], ["changelog", 49, 5], ["license", 50, 5], ["maintainers", 51, 5], ["platforms", 52, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 17, 3], ["patches", 24, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 39, 3], ["meta", 46, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, fetchpatch: false, "pkg-config": false, cmake: false, "yaml-cpp": false, libevdev: false, udev: false, boost: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["name", 29, 7], ["url", 30, 7], ["hash", 31, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 47, 5], ["homepage", 48, 5], ["changelog", 49, 5], ["license", 50, 5], ["maintainers", 51, 5], ["platforms", 52, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 17, 3], ["patches", 24, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 39, 3], ["meta", 46, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const pname = "interception-tools";
       const version = "0.6.8";
       const src = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "interception/linux",
           repo: "tools",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -33,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const patches = nix.thunk(() => [
         nix.path(here, "./interception-tools-udevmon-path-fix.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "Bump-CMake-minimum-version-to-3.10",
             url: "https://gitlab.com/interception/linux/tools/-/commit/110c9b39b54eae9acd16fa6d64539ce9886b5684.patch",
             hash: "sha256-vLm7LvXh/pGA12gUpt9vt2XTWFqkdjQFOyRzaDRghHI=",
@@ -42,7 +39,7 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [cmake, pkg_config]);
       const buildInputs = nix.thunk(() => [libevdev, udev, yaml_cpp, boost]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Minimal composable infrastructure on top of libudev and libevdev",
         homepage: "https://gitlab.com/interception/linux/tools",
         changelog: nix.thunk(() => nix.str`https://gitlab.com/interception/linux/tools/-/tags/v${version}`),
@@ -51,7 +48,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

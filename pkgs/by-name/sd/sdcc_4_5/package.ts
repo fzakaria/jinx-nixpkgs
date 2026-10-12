@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 18, 7], ["hash", 19, 7]], [["name", 39, 9], ["url", 40, 9], ["hash", 41, 9]], [["__structuredAttrs", 13, 5], ["version", 15, 5], ["src", 17, 5], ["outputs", 22, 5], ["nativeBuildInputs", 30, 5], ["patches", 35, 5], ["postPatch", 45, 5]]]);
 const formals$1 = { args: { lib: false, stdenv: false, sdcc: false, fetchurl: false, fetchpatch: false, autoconf: false, texinfo: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 18, 7], ["hash", 19, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 39, 9], ["url", 40, 9], ["hash", 41, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["__structuredAttrs", 13, 5], ["version", 15, 5], ["src", 17, 5], ["outputs", 22, 5], ["nativeBuildInputs", 30, 5], ["patches", 35, 5], ["postPatch", 45, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const autoconf = nix.arg($, "autoconf");
   const texinfo = nix.arg($, "texinfo");
   return nix.app(nix.sel(sdcc, "overrideAttrs"), (finalAttrs) => (prevAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       __structuredAttrs: true,
       version: "4.5.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/sdcc/sdcc-src-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           hash: "sha256-1QMEN/tDa7HZOo29v7RrqqYGEzGPT7P1hx1ygV0e7YA=",
         })))),
@@ -29,7 +27,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => nix.concat(nix.sel(prevAttrs, "nativeBuildInputs"), [autoconf, texinfo])),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "sdcc-fix-aslink-elf-signature.patch",
             url: "https://src.fedoraproject.org/rpms/sdcc/raw/4a7c2a7e32369461eb451fc6f4d678a010135afc/f/sdcc-4.4.0-aslink.patch",
             hash: "sha256-xGilNetecPBj2VV3ebmln5BKqs3OoWFf6y2S3TBTHMQ=",

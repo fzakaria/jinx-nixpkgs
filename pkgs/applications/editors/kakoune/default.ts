@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["repo", 11, 5], ["owner", 12, 5], ["rev", 13, 5], ["hash", 14, 5]], [["homepage", 46, 5], ["description", 47, 5], ["license", 48, 5], ["mainProgram", 49, 5], ["maintainers", 50, 5], ["platforms", 51, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 10, 3], ["makeFlags", 17, 3], ["postPatch", 22, 3], ["enableParallelBuilding", 26, 3], ["preBuild", 27, 3], ["doInstallCheck", 31, 3], ["installCheckPhase", 32, 3], ["postInstall", 36, 3], ["meta", 45, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["repo", 11, 5], ["owner", 12, 5], ["rev", 13, 5], ["hash", 14, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 46, 5], ["description", 47, 5], ["license", 48, 5], ["mainProgram", 49, 5], ["maintainers", 50, 5], ["platforms", 51, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 10, 3], ["makeFlags", 17, 3], ["postPatch", 22, 3], ["enableParallelBuilding", 26, 3], ["preBuild", 27, 3], ["doInstallCheck", 31, 3], ["installCheckPhase", 32, 3], ["postInstall", 36, 3], ["meta", 45, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,11 +11,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "kakoune-unwrapped",
       version: "2026.05.21",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           repo: "kakoune",
           owner: "mawww",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,7 +33,7 @@ export default nix.lambda((args) => (() => {
       installCheckPhase: "$out/bin/kak -ui json -e \"kill 0\"\n",
       postInstall: "# make share/kak/autoload a directory, so we can use symlinkJoin with plugins\ncd \"$out/share/kak\"\nautoload_target=$(readlink autoload)\nrm autoload\nmkdir autoload\nln -s --relative \"$autoload_target\" autoload\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "http://kakoune.org/",
         description: "Vim inspired text editor",
         license: nix.thunk(() => nix.sel(lib, "licenses", "publicDomain")),

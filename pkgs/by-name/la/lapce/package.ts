@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 45, 5], ["repo", 46, 5], ["tag", 47, 5], ["sha256", 48, 5]], [["OPENSSL_NO_VENDOR", 55, 5], ["RELEASE_TAG_NAME", 58, 5]], [["updateScript", 104, 12]], [["description", 107, 5], ["homepage", 108, 5], ["changelog", 109, 5], ["license", 110, 5], ["mainProgram", 111, 5]], [["pname", 41, 3], ["version", 42, 3], ["src", 44, 3], ["cargoHash", 51, 3], ["env", 53, 3], ["postPatch", 61, 3], ["nativeBuildInputs", 65, 3], ["buildInputs", 74, 3], ["postInstall", 85, 3], ["dontPatchELF", 102, 3], ["passthru", 104, 3], ["meta", 106, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, "nix-update-script": false, rustPlatform: false, cmake: false, "pkg-config": false, perl: false, python3: false, fontconfig: false, glib: false, gtk3: false, openssl: false, libGL: false, libxkbcommon: false, wrapGAppsHook3: false, wayland: false, "gobject-introspection": false, libxxf86vm: false, libxrandr: false, libxi: false, libxcursor: false, libx11: false, libxcb: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 45, 5], ["repo", 46, 5], ["tag", 47, 5], ["sha256", 48, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["OPENSSL_NO_VENDOR", 55, 5], ["RELEASE_TAG_NAME", 58, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 104, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 107, 5], ["homepage", 108, 5], ["changelog", 109, 5], ["license", 110, 5], ["mainProgram", 111, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 41, 3], ["version", 42, 3], ["src", 44, 3], ["cargoHash", 51, 3], ["env", 53, 3], ["postPatch", 61, 3], ["nativeBuildInputs", 65, 3], ["buildInputs", 74, 3], ["postInstall", 85, 3], ["dontPatchELF", 102, 3], ["passthru", 104, 3], ["meta", 106, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -47,11 +43,11 @@ export default nix.lambda((args) => (() => {
       wayland,
     ])));
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "lapce",
       version: "0.4.6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "lapce",
           repo: "lapce",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -59,7 +55,7 @@ export default nix.lambda((args) => (() => {
         })))),
       cargoHash: "sha256-BFaR8jWdET2nInBkKZhnoqLCB1dnXH3pywkD1Cv5SuE=",
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         OPENSSL_NO_VENDOR: 1n,
         RELEASE_TAG_NAME: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
       })),
@@ -75,11 +71,11 @@ patchelf --add-rpath "${nix.app(nix.sel(lib, "makeLibraryPath"), rpathLibs)}" $o
 ` : "mkdir $out/Applications\ncp -r extra/macos/Lapce.app $out/Applications\nln -s $out/bin $out/Applications/Lapce.app/Contents/MacOS\n")),
       dontPatchELF: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Lightning-fast and Powerful Code Editor written in Rust",
         homepage: "https://github.com/lapce/lapce",
         changelog: nix.thunk(() => nix.str`https://github.com/lapce/lapce/releases/tag/v${nix.sel(finalAttrs, "version")}`),

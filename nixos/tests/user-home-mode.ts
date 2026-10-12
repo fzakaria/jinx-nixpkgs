@@ -2,47 +2,39 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/user-home-mode.nix", [[["maintainers", 5, 5]], [["initialPassword", 10, 7], ["isNormalUser", 11, 7]], [["initialPassword", 14, 7], ["isNormalUser", 15, 7], ["homeMode", 16, 7]], [["initialPassword", 19, 7], ["isNormalUser", 20, 7], ["createHome", 21, 7], ["home", 22, 7]], [["alice", 9, 17], ["bob", 13, 17], ["carol", 18, 17]], [["users", 9, 11]], [["users", 9, 5]], [["machine", 8, 9]], [["name", 3, 3], ["meta", 4, 3], ["nodes", 8, 3], ["testScript", 26, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/user-home-mode.nix", [["maintainers", 5, 5]]);
-const pos$2 = nix.positions(here + "/user-home-mode.nix", [["initialPassword", 10, 7], ["isNormalUser", 11, 7]]);
-const pos$3 = nix.positions(here + "/user-home-mode.nix", [["initialPassword", 14, 7], ["isNormalUser", 15, 7], ["homeMode", 16, 7]]);
-const pos$4 = nix.positions(here + "/user-home-mode.nix", [["initialPassword", 19, 7], ["isNormalUser", 20, 7], ["createHome", 21, 7], ["home", 22, 7]]);
-const pos$5 = nix.positions(here + "/user-home-mode.nix", [["alice", 9, 17], ["bob", 13, 17], ["carol", 18, 17]]);
-const pos$6 = nix.positions(here + "/user-home-mode.nix", [["users", 9, 11]]);
-const pos$7 = nix.positions(here + "/user-home-mode.nix", [["users", 9, 5]]);
-const pos$8 = nix.positions(here + "/user-home-mode.nix", [["machine", 8, 9]]);
-const pos$9 = nix.positions(here + "/user-home-mode.nix", [["name", 3, 3], ["meta", 4, 3], ["nodes", 8, 3], ["testScript", 26, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$9,
+    [nix.POS]: $pos[8],
     name: "user-home-mode",
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
       return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "fbeffa"))]),
       };
     })()),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       machine: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         users: nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           users: nix.thunk(() => ({
-            [nix.POS]: pos$5,
-            alice: nix.thunk(() => ({ [nix.POS]: pos$2, initialPassword: "pass1", isNormalUser: true })),
+            [nix.POS]: $pos[4],
+            alice: nix.thunk(() => ({ [nix.POS]: $pos[1], initialPassword: "pass1", isNormalUser: true })),
             bob: nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               initialPassword: "pass2",
               isNormalUser: true,
               homeMode: "750",
             })),
             carol: nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               initialPassword: "pass3",
               isNormalUser: true,
               createHome: true,

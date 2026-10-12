@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 13, 5], ["hash", 14, 5], ["rev", 15, 5]], [["NIX_CFLAGS_COMPILE", 22, 7]], [["description", 34, 5], ["maintainers", 35, 5], ["platforms", 36, 5], ["license", 37, 5], ["homepage", 38, 5]], [["downloadPage", 43, 7]], [["updateInfo", 42, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 12, 3], ["env", 22, 3], ["preConfigure", 24, 3], ["nativeBuildInputs", 28, 3], ["meta", 33, 3], ["passthru", 41, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchgit: false, autoconf: false, automake: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 13, 5], ["hash", 14, 5], ["rev", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 22, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 34, 5], ["maintainers", 35, 5], ["platforms", 36, 5], ["license", 37, 5], ["homepage", 38, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["downloadPage", 43, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["updateInfo", 42, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 12, 3], ["env", 22, 3], ["preConfigure", 24, 3], ["nativeBuildInputs", 28, 3], ["meta", 33, 3], ["passthru", 41, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,20 +13,20 @@ export default nix.lambda((args) => (() => {
   const autoconf = nix.arg($, "autoconf");
   const automake = nix.arg($, "automake");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "tftp-hpa",
       version: "5.2-unstable-2024-06-10",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "git://git.kernel.org/pub/scm/network/tftp/tftp-hpa.git",
           hash: "sha256-lTMldYO/cZdLj0UjOPPBHfYf2GBG0O+5lhP9ikqn3tY=",
           rev: "2c86ff58dcc003107b47f2d35aa0fdc4a3fd95e1",
         })))),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-fcommon" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], NIX_CFLAGS_COMPILE: "-fcommon" })),
       preConfigure: "./autogen.sh\n",
       nativeBuildInputs: nix.thunk(() => [autoconf, automake]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "TFTP tools - a lot of fixes on top of BSD TFTP",
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -42,9 +37,9 @@ export default nix.lambda((args) => (() => {
         homepage: "https://www.kernel.org/pub/software/network/tftp/",
       })),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         updateInfo: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           downloadPage: "https://www.kernel.org/pub/software/network/tftp/",
         })),
       })),

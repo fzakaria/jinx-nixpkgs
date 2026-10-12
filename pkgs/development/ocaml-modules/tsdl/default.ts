@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 27, 5], ["hash", 28, 5]], [["homepage", 59, 5], ["description", 60, 5], ["license", 61, 5], ["platforms", 62, 26], ["broken", 63, 5]], [["pname", 23, 3], ["version", 24, 11], ["src", 26, 3], ["strictDeps", 31, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 40, 3], ["propagatedBuildInputs", 41, 3], ["preConfigure", 47, 3], ["buildPhase", 56, 19], ["installPhase", 56, 30], ["meta", 58, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, ocaml: false, findlib: false, ocamlbuild: false, topkg: false, ctypes: false, "ctypes-foreign": false, result: false, SDL2: false, "pkg-config": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 59, 5], ["description", 60, 5], ["license", 61, 5], ["platforms", 62, 26], ["broken", 63, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 23, 3], ["version", 24, 11], ["src", 26, 3], ["strictDeps", 31, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 40, 3], ["propagatedBuildInputs", 41, 3], ["preConfigure", 47, 3], ["buildPhase", 56, 19], ["installPhase", 56, 30], ["meta", 58, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const version = "1.2.0";
   const webpage = nix.thunk(() => nix.str`https://erratique.ch/software/${pname}`);
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: nix.thunk(() => nix.str`ocaml${nix.sel(ocaml, "version")}-${pname}`),
       version: version,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`${webpage}/releases/${pname}-${version}.tbz`),
           hash: "sha256-IhB/qCh6KVfTQNFoTdxmSRRd6uMq/9OpdGvx6uqliAY=",
         })))),
@@ -43,7 +41,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(ocaml, "meta"));
         return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: webpage,
         description: "Thin bindings to the cross-platform SDL library",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),

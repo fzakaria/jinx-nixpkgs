@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["sha256", 18, 5]], [["systemd", 31, 64]], [["tests", 31, 12]], [["description", 34, 5], ["mainProgram", 35, 5], ["homepage", 36, 5], ["license", 37, 5], ["maintainers", 38, 5]], [["pname", 9, 3], ["version", 10, 3], ["vendorHash", 12, 3], ["src", 14, 3], ["ldflags", 21, 3], ["passthru", 31, 3], ["meta", 33, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitHub: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["sha256", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["systemd", 31, 64]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 31, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 34, 5], ["mainProgram", 35, 5], ["homepage", 36, 5], ["license", 37, 5], ["maintainers", 38, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["vendorHash", 12, 3], ["src", 14, 3], ["ldflags", 21, 3], ["passthru", 31, 3], ["meta", 33, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.7.0";
       const vendorHash = "sha256-4hsQ1417jLNOAqGkfCkzrmEtYR4YLLW2j0CiJtPg6GI=";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "prometheus-community",
           repo: "systemd_exporter",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -36,14 +32,14 @@ export default nix.lambda((args) => (() => {
         "-X github.com/prometheus/common/version.BuildDate=unknown",
       ]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(nixosTests, "prometheus-exporters"));
-          return { [nix.POS]: pos$2, systemd: nix.thunk(() => nix.attr(from, "systemd")) };
+          return { [nix.POS]: $pos[1], systemd: nix.thunk(() => nix.attr(from, "systemd")) };
         })()),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Exporter for systemd unit metrics",
         mainProgram: "systemd_exporter",
         homepage: "https://github.com/prometheus-community/systemd_exporter",
@@ -53,7 +49,7 @@ export default nix.lambda((args) => (() => {
           return [nix.thunk(() => nix.lookup(w, "chkno"))];
         })()),
       }));
-      return { [nix.POS]: pos$5, pname, version, vendorHash, src, ldflags, passthru, meta };
+      return { [nix.POS]: $pos[4], pname, version, vendorHash, src, ldflags, passthru, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

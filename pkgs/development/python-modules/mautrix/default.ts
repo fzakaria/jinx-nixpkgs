@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 32, 5], ["repo", 33, 5], ["tag", 34, 5], ["hash", 35, 5]], [["detect_mimetype", 48, 5], ["encryption", 49, 5]], [["description", 70, 5], ["homepage", 71, 5], ["changelog", 72, 5], ["license", 73, 5], ["maintainers", 74, 5]], [["pname", 27, 3], ["version", 28, 3], ["pyproject", 29, 3], ["src", 31, 3], ["build-system", 38, 3], ["dependencies", 40, 3], ["optional-dependencies", 47, 3], ["nativeCheckInputs", 57, 3], ["disabledTestPaths", 65, 3], ["pythonImportsCheck", 67, 3], ["meta", 69, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, aiohttp: false, attrs: false, yarl: false, base58: false, "python-magic": false, "python-olm": false, unpaddedbase64: false, pycryptodome: false, pytestCheckHook: false, "pytest-asyncio": false, aiosqlite: false, asyncpg: false, "ruamel-yaml": false, withOlm: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 32, 5], ["repo", 33, 5], ["tag", 34, 5], ["hash", 35, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["detect_mimetype", 48, 5], ["encryption", 49, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 70, 5], ["homepage", 71, 5], ["changelog", 72, 5], ["license", 73, 5], ["maintainers", 74, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 27, 3], ["version", 28, 3], ["pyproject", 29, 3], ["src", 31, 3], ["build-system", 38, 3], ["dependencies", 40, 3], ["optional-dependencies", 47, 3], ["nativeCheckInputs", 57, 3], ["disabledTestPaths", 65, 3], ["pythonImportsCheck", 67, 3], ["meta", 69, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.21.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "mautrix",
           repo: "python",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -42,7 +39,7 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [setuptools]);
       const dependencies = nix.thunk(() => nix.concat([aiohttp, attrs, yarl], nix.app(nix.sel(lib, "optionals"), withOlm, nix.thunk(() => nix.sel(optional_dependencies, "encryption")))));
       const optional_dependencies = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         detect_mimetype: nix.thunk(() => [python_magic]),
         encryption: nix.thunk(() => [base58, python_olm, unpaddedbase64, pycryptodome]),
       }));
@@ -50,7 +47,7 @@ export default nix.lambda((args) => (() => {
       const disabledTestPaths = nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(withOlm)), nix.thunk(() => ["mautrix/crypto/"])));
       const pythonImportsCheck = nix.thunk(() => ["mautrix"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Asyncio Matrix framework",
         homepage: "https://github.com/tulir/mautrix-python",
         changelog: nix.thunk(() => nix.str`https://github.com/mautrix/python/releases/tag/${nix.sel(src, "tag")}`),
@@ -65,7 +62,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

@@ -2,21 +2,11 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/fetch-deps.nix", [[["artifactId", 56, 9], ["baseVer", 57, 9], ["filename", 58, 9], ["extension", 59, 9], ["isSnapshot", 61, 7], ["version", 62, 7], ["classifier", 67, 7], ["timestamp", 69, 7], ["buildNum", 70, 7]], [["vMeta", 82, 9], ["baseVer", 83, 9], ["artifactId", 84, 9]], [["vMeta", 88, 9], ["baseVer", 89, 9], ["artifactId", 90, 9]], [["artifactId", 103, 15], ["version", 103, 26], ["isSnapshot", 103, 34], ["baseVer", 104, 7], ["classifier", 109, 7], ["clsSuf", 110, 7]], [["hash", 151, 15]], [["i", 174, 51], ["x", 174, 53]], [["text", 154, 15]], [["!version", 262, 5]], [["pkg", 267, 9], ["pname", 268, 9], ["attrPath", 269, 9], ["bwrapFlags", 270, 9], ["data", 271, 9], ["silent", 272, 9], ["useBwrap", 273, 9]], [["updateScript", 265, 5]], [["name", 260, 3], ["data", 261, 3], ["passthru", 264, 3]]]);
 const formals$1 = { args: { "mitm-cache": false, lib: false, pkgs: false, stdenv: false, callPackage: false }, ellipsis: false };
 const formals$2 = { args: { pkg: true, pname: true, attrPath: true, bwrapFlags: true, data: false, silent: true, useBwrap: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/fetch-deps.nix", [["artifactId", 56, 9], ["baseVer", 57, 9], ["filename", 58, 9], ["extension", 59, 9], ["isSnapshot", 61, 7], ["version", 62, 7], ["classifier", 67, 7], ["timestamp", 69, 7], ["buildNum", 70, 7]]);
-const pos$2 = nix.positions(here + "/fetch-deps.nix", [["vMeta", 82, 9], ["baseVer", 83, 9], ["artifactId", 84, 9]]);
-const pos$3 = nix.positions(here + "/fetch-deps.nix", [["vMeta", 88, 9], ["baseVer", 89, 9], ["artifactId", 90, 9]]);
-const pos$4 = nix.positions(here + "/fetch-deps.nix", [["artifactId", 103, 15], ["version", 103, 26], ["isSnapshot", 103, 34], ["baseVer", 104, 7], ["classifier", 109, 7], ["clsSuf", 110, 7]]);
-const pos$5 = nix.positions(here + "/fetch-deps.nix", [["hash", 151, 15]]);
 const formals$3 = { args: { i: false, x: false }, ellipsis: false };
 const formals$4 = { args: { i: false, x: false }, ellipsis: false };
-const pos$6 = nix.positions(here + "/fetch-deps.nix", [["i", 174, 51], ["x", 174, 53]]);
-const pos$7 = nix.positions(here + "/fetch-deps.nix", [["text", 154, 15]]);
-const pos$8 = nix.positions(here + "/fetch-deps.nix", [["!version", 262, 5]]);
-const pos$9 = nix.positions(here + "/fetch-deps.nix", [["pkg", 267, 9], ["pname", 268, 9], ["attrPath", 269, 9], ["bwrapFlags", 270, 9], ["data", 271, 9], ["silent", 272, 9], ["useBwrap", 273, 9]]);
-const pos$10 = nix.positions(here + "/fetch-deps.nix", [["updateScript", 265, 5]]);
-const pos$11 = nix.positions(here + "/fetch-deps.nix", [["name", 260, 3], ["data", 261, 3], ["passthru", 264, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -56,7 +46,7 @@ export default nix.lambda((args) => (() => {
         const timestamp = nix.thunk(() => nix.builtins.elemAt(nix.thunk(() => nix.app(nix.sel(lib, "splitString"), "-", version)), 1n));
         const buildNum = nix.thunk(() => nix.builtins.elemAt(nix.thunk(() => nix.app(nix.sel(lib, "splitString"), "-", version)), 2n));
         return {
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           artifactId: artifactId_1,
           baseVer: baseVer_1,
           filename: filename_1,
@@ -74,12 +64,12 @@ export default nix.lambda((args) => (() => {
       const vMeta = nix.thunk(() => nix.app(nix.sel(lib, "hasSuffix"), "-SNAPSHOT", xmlBase));
       const splitBase = nix.thunk(() => nix.app(nix.sel(lib, "splitString"), "/", xmlBase));
       return (nix.asBool(vMeta) ? {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         vMeta: true,
         baseVer: nix.thunk(() => nix.builtins.elemAt(splitBase, nix.thunk(() => nix.sub(nix.builtins.length(splitBase), 1n)))),
         artifactId: nix.thunk(() => nix.builtins.elemAt(splitBase, nix.thunk(() => nix.sub(nix.builtins.length(splitBase), 2n)))),
       } : {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         vMeta: false,
         baseVer: null,
         artifactId: nix.thunk(() => nix.builtins.elemAt(splitBase, nix.thunk(() => nix.sub(nix.builtins.length(splitBase), 1n)))),
@@ -99,7 +89,7 @@ export default nix.lambda((args) => (() => {
         const classifier = nix.thunk(() => (nix.asBool(nix.eq(cls, null)) ? null : nix.app(nix.sel(lib, "removePrefix"), "/", cls)));
         const clsSuf = nix.thunk(() => (nix.asBool(nix.eq(classifier, null)) ? "" : nix.str`-${classifier}`));
         return {
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           artifactId: artifactId_1,
           version: version_1,
           isSnapshot: isSnapshot_1,
@@ -122,8 +112,8 @@ export default nix.lambda((args) => (() => {
     const visit = (parent2) => (parent1) => (prefix) => (k) => (v) => (nix.asBool((nix.asBool(nix.builtins.isAttrs(v)) && nix.asBool(!nix.asBool(nix.has(v, "groupId"))))) ? nix.app(visitAttrs, parent1, nix.thunk(() => nix.concat(prefix, [k])), v) : (() => {
       const url = nix.thunk(() => nix.str`${nix.app(decompressNameVer, prefix)}.${k}`);
       return nix.attrsDyn({}, [
-        [nix.force(url), nix.thunk(() => (nix.asBool(nix.builtins.isString(v)) ? { [nix.POS]: pos$5, hash: v } : {
-          [nix.POS]: pos$7,
+        [nix.force(url), nix.thunk(() => (nix.asBool(nix.builtins.isString(v)) ? { [nix.POS]: $pos[4], hash: v } : {
+          [nix.POS]: $pos[6],
           text: nix.thunk(() => (() => {
             const xmlBase = nix.thunk(() => nix.app(nix.sel(lib, "removeSuffix"), "/maven-metadata.xml", url));
             const meta = nix.thunk(() => nix.update(nix.app(parseMetadataUrl, url), v));
@@ -145,7 +135,7 @@ export default nix.lambda((args) => (() => {
                   const i = nix.arg($_2, "i");
                   const x = nix.arg($_2, "x");
                   return (nix.asBool(nix.eq(i, 0n)) || nix.asBool(!nix.eq(nix.sel(nix.builtins.elemAt(sortedJarPomList, nix.thunk(() => nix.sub(i, 1n))), "version"), nix.sel(x, "version"))));
-                })(), formals$4), nix.thunk(() => nix.app(nix.sel(lib, "imap0"), (i) => (x) => ({ [nix.POS]: pos$6, i: i, x: x }), sortedJarPomList))))));
+                })(), formals$4), nix.thunk(() => nix.app(nix.sel(lib, "imap0"), (i) => (x) => ({ [nix.POS]: $pos[5], i: i, x: x }), sortedJarPomList))))));
             const uniqueVersions$ = nix.thunk(() => nix.builtins.map((x) => nix.sel(x, "version"), uniqueVersionFiles));
             const releaseVersions = nix.thunk(() => nix.builtins.map((x) => nix.sel(x, "version"), nix.thunk(() => nix.builtins.filter((x) => !nix.asBool(nix.sel(x, "isSnapshot")), uniqueVersionFiles))));
             const latestVer = nix.thunk(() => nix.selOr(v, () => nix.selOr(v, () => nix.app(nix.sel(lib, "last"), uniqueVersions$), "release"), "latest"));
@@ -205,13 +195,13 @@ ${nix.builtins.concatStringsSep("\n", nix.thunk(() => nix.builtins.map((x) => ni
     })());
     const finalData = nix.thunk(() => nix.app(visitAttrs, nix.thunk(() => ({})), [], data$));
     return nix.app(nix.sel(mitm_cache, "fetch"), nix.thunk(() => ({
-        [nix.POS]: pos$11,
+        [nix.POS]: $pos[10],
         name: nix.thunk(() => nix.str`${nix.selOr(pkg, () => nix.sel(pkg, "name"), "pname")}-deps`),
-        data: nix.thunk(() => nix.update(finalData, { [nix.POS]: pos$8, "!version": 1n })),
+        data: nix.thunk(() => nix.update(finalData, { [nix.POS]: $pos[7], "!version": 1n })),
         passthru: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.asBool(nix.builtins.isAttrs(data))), nix.thunk(() => ({
-            [nix.POS]: pos$10,
+            [nix.POS]: $pos[9],
             updateScript: nix.thunk(() => nix.app(callPackage, nix.path(here, "./update-deps.nix"), nix.thunk(() => ({})), nix.thunk(() => ({
-                [nix.POS]: pos$9,
+                [nix.POS]: $pos[8],
                 pkg: pkg,
                 pname: pname,
                 attrPath: attrPath,

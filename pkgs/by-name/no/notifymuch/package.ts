@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["rev", 20, 5], ["sha256", 21, 5]], [["description", 47, 5], ["mainProgram", 48, 5], ["homepage", 49, 5], ["maintainers", 50, 5], ["license", 51, 5]], [["pname", 12, 3], ["version", 13, 3], ["format", 14, 3], ["src", 16, 3], ["propagatedBuildInputs", 24, 3], ["nativeBuildInputs", 33, 3], ["dontWrapGApps", 38, 3], ["preFixup", 40, 3], ["strictDeps", 44, 3], ["meta", 46, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, "gobject-introspection": false, libnotify: false, wrapGAppsHook3: false, gtk3: false, python3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["rev", 20, 5], ["sha256", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 47, 5], ["mainProgram", 48, 5], ["homepage", 49, 5], ["maintainers", 50, 5], ["license", 51, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["format", 14, 3], ["src", 16, 3], ["propagatedBuildInputs", 24, 3], ["nativeBuildInputs", 33, 3], ["dontWrapGApps", 38, 3], ["preFixup", 40, 3], ["strictDeps", 44, 3], ["meta", 46, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const gtk3 = nix.arg($, "gtk3");
   const python3 = nix.arg($, "python3");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "notifymuch",
       version: "0.1",
       format: "setuptools",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "kspi",
           repo: "notifymuch",
           rev: "9d4aaf54599282ce80643b38195ff501120807f0",
@@ -40,7 +38,7 @@ export default nix.lambda((args) => (() => {
       preFixup: "makeWrapperArgs+=(\"${gappsWrapperArgs[@]}\")\n",
       strictDeps: false,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Display desktop notifications for unread mail in a notmuch database",
         mainProgram: "notifymuch",
         homepage: "https://github.com/kspi/notifymuch",

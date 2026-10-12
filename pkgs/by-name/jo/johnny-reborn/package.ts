@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 12, 5], ["repo", 13, 5], ["rev", 14, 5], ["hash", 15, 5]], [["name", 19, 5], ["url", 20, 5], ["hash", 21, 5], ["stripRoot", 22, 5]], [["description", 59, 5], ["license", 60, 5], ["maintainers", 61, 5], ["homepage", 62, 41], ["platforms", 62, 50], ["mainProgram", 62, 60]], [["pname", 27, 3], ["version", 28, 34], ["srcs", 30, 3], ["nativeBuildInputs", 35, 3], ["sourceRoot", 37, 3], ["dontConfigure", 39, 3], ["dontBuild", 40, 3], ["installPhase", 42, 3], ["meta", 58, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchFromGitHub: false, fetchzip: false, "johnny-reborn-engine": false, makeWrapper: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 12, 5], ["repo", 13, 5], ["rev", 14, 5], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 19, 5], ["url", 20, 5], ["hash", 21, 5], ["stripRoot", 22, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 59, 5], ["license", 60, 5], ["maintainers", 61, 5], ["homepage", 62, 41], ["platforms", 62, 50], ["mainProgram", 62, 60]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 27, 3], ["version", 28, 34], ["srcs", 30, 3], ["nativeBuildInputs", 35, 3], ["sourceRoot", 37, 3], ["dontConfigure", 39, 3], ["dontBuild", 40, 3], ["installPhase", 42, 3], ["meta", 58, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,21 +14,21 @@ export default nix.lambda((args) => (() => {
   const johnny_reborn_engine = nix.arg($, "johnny-reborn-engine");
   const makeWrapper = nix.arg($, "makeWrapper");
   const sounds = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "nivs1978",
       repo: "Johnny-Castaway-Open-Source",
       rev: "be6afefd43a3334acc66fc9d777c162c8bfb9558",
       hash: "sha256-rtZVCn4KbEBVwaSQ4HZhMoDEI5Q9IPj9SZywgAx0MPY=",
     }))));
   const resources = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       name: "scrantic-source",
       url: "https://archive.org/download/johnny-castaway-screensaver/scrantic-run.zip",
       hash: "sha256-Q9chCYReOQEmkTyIkYo+D+OXYUqxPNOOEEmiFh8yaw4=",
       stripRoot: false,
     }))));
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "johnny-reborn",
       version: nix.thunk(() => nix.attr(johnny_reborn_engine, "version")),
       srcs: nix.thunk(() => [sounds, resources]),
@@ -56,7 +53,7 @@ runHook postInstall
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(johnny_reborn_engine, "meta"));
         return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Open-source engine for the classic \"Johnny Castaway\" screensaver (ready to use, with resources)",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
         maintainers: nix.thunk(() => (() => {

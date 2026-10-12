@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 25, 5], ["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]], [["pname", 33, 26], ["version", 33, 32], ["src", 33, 40], ["hash", 34, 5]], [["GETTEXT_BIN_DIR", 40, 5], ["GETTEXT_INCLUDE_DIR", 41, 5], ["GETTEXT_LIB_DIR", 42, 5]], [["description", 64, 5], ["homepage", 65, 5], ["license", 66, 5], ["maintainers", 67, 5], ["teams", 70, 5], ["mainProgram", 71, 5], ["platforms", 72, 5]], [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["cargoDeps", 32, 3], ["env", 37, 3], ["nativeBuildInputs", 45, 3], ["buildInputs", 57, 3], ["meta", 63, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, buildPackages: false, cargo: false, meson: false, ninja: false, "pkg-config": false, "desktop-file-utils": false, rustPlatform: false, rustc: false, wrapGAppsHook4: false, gettext: false, glib: false, gtk4: false, libadwaita: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 25, 5], ["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 33, 26], ["version", 33, 32], ["src", 33, 40], ["hash", 34, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["GETTEXT_BIN_DIR", 40, 5], ["GETTEXT_INCLUDE_DIR", 41, 5], ["GETTEXT_LIB_DIR", 42, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 64, 5], ["homepage", 65, 5], ["license", 66, 5], ["maintainers", 67, 5], ["teams", 70, 5], ["mainProgram", 71, 5], ["platforms", 72, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["cargoDeps", 32, 3], ["env", 37, 3], ["nativeBuildInputs", 45, 3], ["buildInputs", 57, 3], ["meta", 63, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const gtk4 = nix.arg($, "gtk4");
   const libadwaita = nix.arg($, "libadwaita");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "bustle",
       version: "0.13.0",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "gitlab.gnome.org",
           owner: "World",
           repo: "bustle",
@@ -40,14 +36,14 @@ export default nix.lambda((args) => (() => {
           hash: "sha256-+Pl4ze1nrC27NIfJ4FNc3iqYWBtCBpHp2zZNAxAPbJk=",
         })))),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           hash: "sha256-el1zVFE8hsmIisHO+btvnA0WVN9bN8iuVPaSF02ovCI=",
         })))),
       env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           GETTEXT_BIN_DIR: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getBin"), nix.thunk(() => nix.sel(buildPackages, "gettext")))}/bin`),
           GETTEXT_INCLUDE_DIR: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getDev"), gettext)}/include`),
           GETTEXT_LIB_DIR: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getLib"), gettext)}/lib`),
@@ -65,7 +61,7 @@ export default nix.lambda((args) => (() => {
       ]),
       buildInputs: nix.thunk(() => [glib, gtk4, libadwaita]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Graphical D-Bus message analyser and profiler",
         homepage: "https://gitlab.gnome.org/World/bustle",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),

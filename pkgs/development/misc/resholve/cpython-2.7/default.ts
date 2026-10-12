@@ -2,18 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["self", 78, 15], ["sourceVersion", 78, 20], ["packageOverrides", 78, 34], ["implementation", 79, 7], ["libPrefix", 80, 7], ["executable", 81, 7], ["pythonVersion", 82, 7], ["sitePackages", 83, 7], ["hasDistutilsCxxPatch", 84, 15], ["pythonAttr", 84, 36], ["pythonOnBuildForBuild", 85, 7], ["pythonOnBuildForHost", 86, 7], ["pythonOnBuildForTarget", 87, 7], ["pythonOnHostForHost", 88, 7], ["pythonOnTargetForTarget", 89, 7], ["pythonABITags", 90, 7]], [["ucsEncoding", 96, 15]], [["owner", 104, 5], ["repo", 105, 5], ["rev", 106, 5], ["hash", 107, 13]], [["name", 130, 7], ["url", 131, 7], ["sha256", 132, 7]], [["url", 153, 7], ["revert", 154, 7], ["hash", 155, 7]], [["C_INCLUDE_PATH", 293, 5], ["LIBRARY_PATH", 294, 5]], [["_PYTHON_HOST_PLATFORM", 299, 9]], [["env", 299, 5]], [["LDFLAGS", 322, 7], ["C_INCLUDE_PATH", 323, 37], ["LIBRARY_PATH", 323, 52], ["NIX_CFLAGS_COMPILE", 324, 7], ["DETERMINISTIC_BUILD", 328, 7]], [["homepage", 405, 7], ["description", 406, 7], ["longDescription", 407, 7], ["license", 416, 7], ["platforms", 417, 7], ["knownVulnerabilities", 418, 7]], [["pname", 309, 5], ["version", 310, 13], ["src", 313, 7], ["patches", 314, 7], ["buildInputs", 315, 7], ["nativeBuildInputs", 316, 7], ["preConfigure", 317, 7], ["configureFlags", 318, 7], ["env", 321, 5], ["setupHook", 331, 5], ["postPatch", 333, 5], ["postInstall", 337, 5], ["passthru", 377, 13], ["postFixup", 379, 5], ["enableParallelBuilding", 398, 5], ["doCheck", 400, 5], ["__structuredAttrs", 402, 5], ["meta", 404, 5]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch: false, bzip2: false, expat: false, libffi: false, gdbm: false, db: false, ncurses: false, openssl: false, readline: false, sqlite: false, tcl: true, tk: true, tclPackages: false, libx11: true, x11Support: true, zlib: false, self: false, coreutils: false, autoreconfHook: false, "python-setup-hook": false, ucsEncoding: true, packageOverrides: true, pkgsBuildBuild: false, pkgsBuildHost: false, pkgsBuildTarget: false, pkgsHostHost: false, pkgsTargetTarget: false, sourceVersion: false, hash: false, passthruFun: false, static: true, stripBytecode: true, rebuildBytecode: true, reproducibleBuild: true, enableOptimizations: true, strip2to3: true, stripConfig: true, stripIdlelib: true, stripTests: true, pythonAttr: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["self", 78, 15], ["sourceVersion", 78, 20], ["packageOverrides", 78, 34], ["implementation", 79, 7], ["libPrefix", 80, 7], ["executable", 81, 7], ["pythonVersion", 82, 7], ["sitePackages", 83, 7], ["hasDistutilsCxxPatch", 84, 15], ["pythonAttr", 84, 36], ["pythonOnBuildForBuild", 85, 7], ["pythonOnBuildForHost", 86, 7], ["pythonOnBuildForTarget", 87, 7], ["pythonOnHostForHost", 88, 7], ["pythonOnTargetForTarget", 89, 7], ["pythonABITags", 90, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["ucsEncoding", 96, 15]]);
-const pos$3 = nix.positions(here + "/default.nix", [["owner", 104, 5], ["repo", 105, 5], ["rev", 106, 5], ["hash", 107, 13]]);
-const pos$4 = nix.positions(here + "/default.nix", [["name", 130, 7], ["url", 131, 7], ["sha256", 132, 7]]);
-const pos$5 = nix.positions(here + "/default.nix", [["url", 153, 7], ["revert", 154, 7], ["hash", 155, 7]]);
-const pos$6 = nix.positions(here + "/default.nix", [["C_INCLUDE_PATH", 293, 5], ["LIBRARY_PATH", 294, 5]]);
-const pos$7 = nix.positions(here + "/default.nix", [["_PYTHON_HOST_PLATFORM", 299, 9]]);
-const pos$8 = nix.positions(here + "/default.nix", [["env", 299, 5]]);
-const pos$9 = nix.positions(here + "/default.nix", [["LDFLAGS", 322, 7], ["C_INCLUDE_PATH", 323, 37], ["LIBRARY_PATH", 323, 52], ["NIX_CFLAGS_COMPILE", 324, 7], ["DETERMINISTIC_BUILD", 328, 7]]);
-const pos$10 = nix.positions(here + "/default.nix", [["homepage", 405, 7], ["description", 406, 7], ["longDescription", 407, 7], ["license", 416, 7], ["platforms", 417, 7], ["knownVulnerabilities", 418, 7]]);
-const pos$11 = nix.positions(here + "/default.nix", [["pname", 309, 5], ["version", 310, 13], ["src", 313, 7], ["patches", 314, 7], ["buildInputs", 315, 7], ["nativeBuildInputs", 316, 7], ["preConfigure", 317, 7], ["configureFlags", 318, 7], ["env", 321, 5], ["setupHook", 331, 5], ["postPatch", 333, 5], ["postInstall", 337, 5], ["passthru", 377, 13], ["postFixup", 379, 5], ["enableParallelBuilding", 398, 5], ["doCheck", 400, 5], ["__structuredAttrs", 402, 5], ["meta", 404, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -92,7 +82,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`cp${nix.sel(sourceVersion_1, "major")}${nix.sel(sourceVersion_1, "minor")}`),
       ]);
       return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         self: self_1,
         sourceVersion: sourceVersion_1,
         packageOverrides: packageOverrides_1,
@@ -110,13 +100,13 @@ export default nix.lambda((args) => (() => {
         pythonOnTargetForTarget,
         pythonABITags,
       };
-    })())), { [nix.POS]: pos$2, ucsEncoding: ucsEncoding }));
+    })())), { [nix.POS]: $pos[1], ucsEncoding: ucsEncoding }));
   const version = nix.thunk(() => (() => {
     const w = nix.withScope(sourceVersion, null);
     return nix.str`${nix.lookup(w, "major")}.${nix.lookup(w, "minor")}.${nix.lookup(w, "patch")}${nix.lookup(w, "suffix")}`;
   })());
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       owner: "ActiveState",
       repo: "cpython",
       rev: nix.thunk(() => nix.str`v${version}`),
@@ -128,7 +118,7 @@ export default nix.lambda((args) => (() => {
     nix.path(here, "./nix-store-mtime.patch"),
     nix.path(here, "./deterministic-build.patch"),
     nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         name: "re_match_index.patch",
         url: "https://bugs.python.org/file43084/re_match_index.patch",
         sha256: "0l9rw6r5r90iybdkp3hhl2pf0h0s1izc68h5d3ywrm92pq32wz57",
@@ -137,7 +127,7 @@ export default nix.lambda((args) => (() => {
     nix.path(here, "./profile-task.patch"),
     nix.path(here, "./no-win64-workaround.patch"),
     nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         url: "https://github.com/ActiveState/cpython/pull/35/commits/20ea5b46aaf1e7bdf9d6905ba8bece2cc73b05b0.patch",
         revert: true,
         hash: "sha256-Lp5fGlcfJJ6p6vKmcLckJiAA2AZz4prjFE0aMEJxotw=",
@@ -197,20 +187,20 @@ substituteInPlace Lib/multiprocessing/__init__.py \\
       nix.thunk(() => nix.sel(buildPackages, "python27")),
     ]))));
   const mkPaths = (paths) => ({
-    [nix.POS]: pos$6,
+    [nix.POS]: $pos[5],
     C_INCLUDE_PATH: nix.thunk(() => nix.app(nix.sel(lib, "makeSearchPathOutput"), "dev", "include", paths)),
     LIBRARY_PATH: nix.thunk(() => nix.app(nix.sel(lib, "makeLibraryPath"), paths)),
   });
   const crossCompileEnv = nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(stdenv, "hostPlatform"), nix.sel(stdenv, "buildPlatform"))), nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       env: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         _PYTHON_HOST_PLATFORM: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "config")),
       })),
     }))));
   const w_1 = nix.withScope(passthru, null);
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => nix.update({
-      [nix.POS]: pos$11,
+      [nix.POS]: $pos[10],
       pname: "python",
       version: version,
       src: src,
@@ -222,7 +212,7 @@ substituteInPlace Lib/multiprocessing/__init__.py \\
       env: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.app(mkPaths, buildInputs));
         return {
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         LDFLAGS: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), "-lgcc_s")),
         C_INCLUDE_PATH: nix.thunk(() => nix.attr(from, "C_INCLUDE_PATH")),
         LIBRARY_PATH: nix.thunk(() => nix.attr(from, "LIBRARY_PATH")),
@@ -269,7 +259,7 @@ cp ${nix.path(here, "../../../interpreters/python/sitecustomize.py")} $out/${nix
       doCheck: false,
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         homepage: "http://python.org",
         description: "High-level dynamically-typed programming language",
         longDescription: "Python is a remarkably powerful dynamic programming language that\nis used in a wide variety of application domains. Some of its key\ndistinguishing features include: clear, readable syntax; strong\nintrospection capabilities; intuitive object orientation; natural\nexpression of procedural code; full modularity, supporting\nhierarchical packages; exception-based error handling; and very\nhigh level dynamic data types.\n",

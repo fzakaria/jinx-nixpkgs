@@ -2,14 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 25, 5], ["hash", 26, 5]], [["doc", 55, 5], ["tests", 56, 5]], [["odd-unstable", 69, 46]], [["updateScript", 69, 5]], [["cpeParts", 78, 17]], [["description", 73, 5], ["homepage", 74, 5], ["license", 75, 5], ["platforms", 76, 5], ["maintainers", 77, 5], ["identifiers", 78, 5]], [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["separateDebugInfo", 29, 3], ["__structuredAttrs", 31, 3], ["strictDeps", 32, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 45, 3], ["mesonFlags", 54, 3], ["postPatch", 59, 3], ["preFixup", 64, 3], ["passthru", 68, 3], ["meta", 72, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, meson: false, ninja: false, "pkg-config": false, python3: false, gstreamer: false, "gst-plugins-base": false, gettext: false, "ffmpeg-headless": false, enableDocumentation: true, hotdoc: false, directoryListingUpdater: false, "apple-sdk_gstreamer": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["doc", 55, 5], ["tests", 56, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["odd-unstable", 69, 46]]);
-const pos$4 = nix.positions(here + "/default.nix", [["updateScript", 69, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["cpeParts", 78, 17]]);
-const pos$6 = nix.positions(here + "/default.nix", [["description", 73, 5], ["homepage", 74, 5], ["license", 75, 5], ["platforms", 76, 5], ["maintainers", 77, 5], ["identifiers", 78, 5]]);
-const pos$7 = nix.positions(here + "/default.nix", [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["separateDebugInfo", 29, 3], ["__structuredAttrs", 31, 3], ["strictDeps", 32, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 45, 3], ["mesonFlags", 54, 3], ["postPatch", 59, 3], ["preFixup", 64, 3], ["passthru", 68, 3], ["meta", 72, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const directoryListingUpdater = nix.arg($, "directoryListingUpdater");
   const apple_sdk_gstreamer = nix.arg($, "apple-sdk_gstreamer");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "gst-libav",
       version: "1.28.7",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://gstreamer.freedesktop.org/src/gst-libav/gst-libav-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-WNpR3Tns8c9vqt40zGQSABvi4uFFvKiuD0Uzb2CjarI=",
         })))),
@@ -43,18 +37,18 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => nix.concat([meson, ninja, gettext, pkg_config, python3], nix.app(nix.sel(lib, "optionals"), enableDocumentation, nix.thunk(() => [hotdoc])))),
       buildInputs: nix.thunk(() => nix.concat([gstreamer, gst_plugins_base, ffmpeg_headless], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [apple_sdk_gstreamer])))),
       mesonFlags: nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), nix.thunk(() => nix.sel(lib, "mesonEnable")), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           doc: enableDocumentation,
           tests: nix.thunk(() => nix.sel(finalAttrs, "finalPackage", "doCheck")),
         })))),
       postPatch: "patchShebangs \\\n  scripts/extract-release-date-from-doap-file.py\n",
       preFixup: "moveToOutput \"lib/gstreamer-1.0/pkgconfig\" \"$dev\"\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        updateScript: nix.thunk(() => nix.app(directoryListingUpdater, nix.thunk(() => ({ [nix.POS]: pos$3, "odd-unstable": true })))),
+        [nix.POS]: $pos[3],
+        updateScript: nix.thunk(() => nix.app(directoryListingUpdater, nix.thunk(() => ({ [nix.POS]: $pos[2], "odd-unstable": true })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "FFmpeg plugin for GStreamer",
         homepage: "https://gstreamer.freedesktop.org",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl2Plus")),
@@ -64,7 +58,7 @@ export default nix.lambda((args) => (() => {
           return [nix.thunk(() => nix.lookup(w, "tmarkus"))];
         })()),
         identifiers: nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           cpeParts: nix.thunk(() => nix.app(nix.sel(gstreamer, "passthru", "gstreamerCpeParts"), nix.thunk(() => nix.sel(finalAttrs, "version")))),
         })),
       })),

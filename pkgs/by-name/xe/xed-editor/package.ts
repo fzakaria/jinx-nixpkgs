@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 29, 5], ["repo", 30, 5], ["rev", 31, 5], ["hash", 32, 5]], [["description", 73, 5], ["homepage", 74, 5], ["license", 75, 5], ["platforms", 76, 5], ["maintainers", 77, 5], ["mainProgram", 81, 5]], [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["patches", 35, 3], ["nativeBuildInputs", 41, 3], ["buildInputs", 52, 3], ["preFixup", 63, 3], ["doInstallCheck", 69, 3], ["versionCheckProgram", 70, 3], ["meta", 72, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, libxml2: false, libpeas: false, glib: false, gtk3: false, gtksourceview4: false, gspell: false, xapp: false, "xapp-symbolic-icons": false, "pkg-config": false, python3: false, python3Packages: false, meson: false, ninja: false, versionCheckHook: false, wrapGAppsHook3: false, intltool: false, itstool: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 29, 5], ["repo", 30, 5], ["rev", 31, 5], ["hash", 32, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 73, 5], ["homepage", 74, 5], ["license", 75, 5], ["platforms", 76, 5], ["maintainers", 77, 5], ["mainProgram", 81, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["patches", 35, 3], ["nativeBuildInputs", 41, 3], ["buildInputs", 52, 3], ["preFixup", 63, 3], ["doInstallCheck", 69, 3], ["versionCheckProgram", 70, 3], ["meta", 72, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,11 +28,11 @@ export default nix.lambda((args) => (() => {
   const intltool = nix.arg($, "intltool");
   const itstool = nix.arg($, "itstool");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "xed-editor",
       version: "3.9.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "linuxmint",
           repo: "xed",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -68,7 +66,7 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       versionCheckProgram: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/bin/xed`),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Light weight text editor from Linux Mint",
         homepage: "https://github.com/linuxmint/xed",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 16, 5], ["hash", 17, 5]], [["extraArgs", 95, 7]], [["matomo", 103, 28]], [["updateScript", 94, 5], ["tests", 102, 5]], [["description", 108, 5], ["mainProgram", 109, 5], ["license", 110, 5], ["homepage", 111, 5], ["changelog", 112, 5], ["platforms", 113, 5], ["maintainers", 114, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["nativeBuildInputs", 20, 3], ["patches", 22, 3], ["postPatch", 38, 3], ["installPhase", 46, 3], ["filesToFix", 63, 3], ["postFixup", 79, 3], ["passthru", 93, 3], ["meta", 107, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, makeWrapper: false, php: false, nixosTests: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["extraArgs", 95, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["matomo", 103, 28]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 94, 5], ["tests", 102, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 108, 5], ["mainProgram", 109, 5], ["license", 110, 5], ["homepage", 111, 5], ["changelog", 112, 5], ["platforms", 113, 5], ["maintainers", 114, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["nativeBuildInputs", 20, 3], ["patches", 22, 3], ["postPatch", 38, 3], ["installPhase", 46, 3], ["filesToFix", 63, 3], ["postFixup", 79, 3], ["passthru", 93, 3], ["meta", 107, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "matomo",
       version: "5.13.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://builds.matomo.org/matomo-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-KHf4zk2pPrjSAvEN9f0m3jmlekgc8KnZGvXY49vziPs=",
         })))),
@@ -63,9 +58,9 @@ runHook postInstall
       ]),
       postFixup: "pushd $out/share > /dev/null\nfor f in $filesToFix; do\n  if [ -f \"$f\" ]; then\n    length=\"$(wc -c \"$f\" | cut -d' ' -f1)\"\n    hash=\"$(sha256sum \"$f\" | cut -d' ' -f1)\"\n    sed -i \"s:\\\\(\\\"$f\\\"[^(]*(\\\\).*:\\\\1\\\"$length\\\", \\\"$hash\\\"),:g\" config/manifest.inc.php\n  else\n    echo \"INFO(files-to-fix): $f does not exist in this version\"\n  fi\ndone\npopd > /dev/null\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             extraArgs: nix.thunk(() => [
               "--url",
               "https://github.com/matomo-org/matomo",
@@ -73,10 +68,10 @@ runHook postInstall
               "^(\\d+\\.\\d+\\.\\d+)$",
             ]),
           })))),
-        tests: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => ({ [nix.POS]: pos$3, matomo: nix.thunk(() => nix.attr(nixosTests, "matomo")) })))),
+        tests: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => ({ [nix.POS]: $pos[2], matomo: nix.thunk(() => nix.attr(nixosTests, "matomo")) })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Real-time web analytics application",
         mainProgram: "matomo-console",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

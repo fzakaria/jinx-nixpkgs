@@ -2,16 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 49, 5], ["owner", 50, 5], ["repo", 51, 5], ["rev", 52, 5], ["hash", 53, 5]], [["NIX_LDFLAGS", 93, 7]], [["nativeBuildInputs", 111, 47]], [["pname", 168, 7], ["doCheck", 169, 7], ["buildPhase", 170, 7], ["installPhase", 171, 7], ["postCheck", 172, 7], ["checkPhase", 173, 7]], [["pname", 183, 7], ["doCheck", 184, 7], ["nativeBuildInputs", 185, 7], ["buildPhase", 186, 7], ["installPhase", 187, 7], ["postCheck", 188, 7], ["checkPhase", 189, 7], ["preCheck", 200, 7], ["patches", 203, 7]], [["basicEndToEnd", 110, 5], ["packageTests-unit", 167, 5], ["packageTests-func", 182, 5]], [["tests", 109, 12]], [["description", 213, 5], ["homepage", 214, 5], ["maintainers", 215, 5], ["platforms", 216, 5], ["license", 217, 5]], [["pname", 33, 3], ["version", 34, 3], ["strictDeps", 36, 3], ["__structuredAttrs", 37, 3], ["enableParallelBuilding", 39, 3], ["src", 48, 3], ["patches", 56, 3], ["postPatch", 63, 3], ["nativeBuildInputs", 73, 3], ["buildInputs", 78, 3], ["env", 93, 3], ["postInstall", 95, 3], ["passthru", 109, 3], ["meta", 212, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromForgejo: false, botan3: false, boost: false, zlib: false, libidn: false, lua: false, pcre2: false, sqlite: false, perl: false, "pkg-config": false, expect: false, less: false, bzip2: false, gmp: false, openssl: false, autoreconfHook: false, texinfo: false, fetchpatch: false, callPackage: false, runCommand: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 49, 5], ["owner", 50, 5], ["repo", 51, 5], ["rev", 52, 5], ["hash", 53, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_LDFLAGS", 93, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["nativeBuildInputs", 111, 47]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 168, 7], ["doCheck", 169, 7], ["buildPhase", 170, 7], ["installPhase", 171, 7], ["postCheck", 172, 7], ["checkPhase", 173, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 183, 7], ["doCheck", 184, 7], ["nativeBuildInputs", 185, 7], ["buildPhase", 186, 7], ["installPhase", 187, 7], ["postCheck", 188, 7], ["checkPhase", 189, 7], ["preCheck", 200, 7], ["patches", 203, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["basicEndToEnd", 110, 5], ["packageTests-unit", 167, 5], ["packageTests-func", 182, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["tests", 109, 12]]);
-const pos$8 = nix.positions(here + "/package.nix", [["description", 213, 5], ["homepage", 214, 5], ["maintainers", 215, 5], ["platforms", 216, 5], ["license", 217, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["pname", 33, 3], ["version", 34, 3], ["strictDeps", 36, 3], ["__structuredAttrs", 37, 3], ["enableParallelBuilding", 39, 3], ["src", 48, 3], ["patches", 56, 3], ["postPatch", 63, 3], ["nativeBuildInputs", 73, 3], ["buildInputs", 78, 3], ["env", 93, 3], ["postInstall", 95, 3], ["passthru", 109, 3], ["meta", 212, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -40,14 +32,14 @@ export default nix.lambda((args) => (() => {
   const perlVersion = nix.thunk(() => nix.app(nix.sel(lib, "getVersion"), perl));
   nix.assert_(!nix.eq(perlVersion, ""), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/mo/monotone/package.nix:30:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       pname: "monotone",
       version: "1.1-unstable-2025-12-11",
       strictDeps: true,
       __structuredAttrs: true,
       enableParallelBuilding: true,
       src: nix.thunk(() => nix.app(fetchFromForgejo, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "git.lapo.it",
           owner: "lapo",
           repo: "monotone",
@@ -77,7 +69,7 @@ export default nix.lambda((args) => (() => {
         bzip2,
         perl,
       ]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_LDFLAGS: " -lpcre2-8 " })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], NIX_LDFLAGS: " -lpcre2-8 " })),
       postInstall: nix.thunk(() => nix.str`mkdir -p $out/share/monotone-${nix.sel(finalAttrs, "version")}
 cp -rv contrib/ $out/share/monotone-${nix.sel(finalAttrs, "version")}/contrib
 mkdir -p $out/${nix.sel(perl, "libPrefix")}/${perlVersion}
@@ -89,15 +81,15 @@ patchShebangs "$out/share/monotone-${nix.sel(finalAttrs, "version")}"
 find "$out"/share/{doc/monotone,monotone-${nix.sel(finalAttrs, "version")}}/contrib/ -type f | xargs sed -e 's@! */usr/bin/@!/usr/bin/env @; s@! */bin/bash@!/usr/bin/env bash@' -i
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           basicEndToEnd: nix.thunk(() => nix.app(runCommand, "monotone-test-end-to-end", nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(finalAttrs, "finalPackage"))]),
             })), "mkdir -p \"$out/share/monotone-test/log/\"\ntarget=\"$out/share/monotone-test/log/monotone-test-end-to-end.log\"\n\n(\n  export HOME=\"$PWD\"\n  set -x\n\n  mtn genkey test@localhost\n\n  mkdir a b c\n\n  mtn -d :test1 db init\n  mtn -d :test2 db init\n\n  (\n    cd a\n    mtn -d :test1 -b test setup\n    echo 123 > aaa\n    mtn add aaa\n    mtn ci -m 'add aaa'\n    mtn log\n  )\n\n  (\n    cd b\n    mtn -d :test2 sync file:///$HOME/.monotone/databases/test1.mtn'?*'\n    mtn -d :test2 co -r h:test -b test .\n    mtn up\n    echo 456 > bbb\n    mtn add bbb\n    mtn ci -m 'add bbb'\n    mtn log\n  )\n\n  (\n    cd a\n    echo 789 > ccc\n    mtn add ccc\n    mtn ci -m 'add ccc'\n    mtn log\n  )\n\n  (\n    cd c\n    mtn -d :test1 sync file:///$HOME/.monotone/databases/test2.mtn'?*'\n    mtn -d :test1 merge -b test\n    mtn -d :test1 co -r h:test -b test .\n    mtn up\n    mtn log\n    cat aaa bbb ccc | xargs | grep '123 456 789'\n  )\n\n) 2>&1 | tee \"$target\"\n")),
           "packageTests-unit": nix.thunk(() => nix.app(nix.sel(finalAttrs, "finalPackage", "overrideAttrs"), nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               pname: "monotone-test",
               doCheck: true,
               buildPhase: nix.thunk(() => nix.str` cp -iv ${nix.sel(finalAttrs, "finalPackage")}/bin/* . `),
@@ -106,7 +98,7 @@ find "$out"/share/{doc/monotone,monotone-${nix.sel(finalAttrs, "version")}}/cont
               checkPhase: "runHook preCheck\n\nmake test/unit.status -j $NIX_CORES\n\nrunHook postCheck\ngrep '^0$' test/unit.status\n",
             })))),
           "packageTests-func": nix.thunk(() => nix.app(nix.sel(finalAttrs, "finalPackage", "overrideAttrs"), nix.thunk(() => ({
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               pname: "monotone-test",
               doCheck: true,
               nativeBuildInputs: nix.thunk(() => nix.concat(nix.sel(finalAttrs, "nativeBuildInputs"), [nix.thunk(() => nix.sel(finalAttrs, "finalPackage"))])),
@@ -125,7 +117,7 @@ find "$out"/share/{doc/monotone,monotone-${nix.sel(finalAttrs, "version")}}/cont
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         description: "Free distributed version control system",
         homepage: "https://git.lapo.it/lapo/monotone",
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "raskin"))]),

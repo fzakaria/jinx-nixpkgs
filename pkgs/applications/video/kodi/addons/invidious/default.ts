@@ -2,12 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 19, 5], ["sha256", 20, 5]], [["attrPath", 33, 7]], [["pythonPath", 31, 5], ["updateScript", 32, 5]], [["homepage", 38, 5], ["description", 39, 5], ["license", 40, 5], ["teams", 41, 5]], [["pname", 14, 3], ["namespace", 15, 3], ["version", 16, 3], ["src", 18, 3], ["propagatedBuildInputs", 23, 3], ["passthru", 30, 3], ["meta", 37, 3]]]);
 const formals$1 = { args: { lib: false, rel: false, buildKodiAddon: false, fetchzip: false, addonUpdateScript: false, infotagger: false, requests: false, "inputstream-adaptive": false, inputstreamhelper: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 19, 5], ["sha256", 20, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["attrPath", 33, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pythonPath", 31, 5], ["updateScript", 32, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["homepage", 38, 5], ["description", 39, 5], ["license", 40, 5], ["teams", 41, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 14, 3], ["namespace", 15, 3], ["version", 16, 3], ["src", 18, 3], ["propagatedBuildInputs", 23, 3], ["passthru", 30, 3], ["meta", 37, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,25 +21,25 @@ export default nix.lambda((args) => (() => {
       const namespace = "plugin.video.invidious";
       const version = "0.2.6";
       const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://mirrors.kodi.tv/addons/${nix.app(nix.sel(lib, "toLower"), rel)}/plugin.video.invidious/plugin.video.invidious-${version}+nexus.0.zip`),
           sha256: "sha256-XnlnhvtHMh4uQTupW/SSOmaEV8xZrL61/6GoRpyKR0o=",
         }))));
       const propagatedBuildInputs = nix.thunk(() => [infotagger, requests, inputstream_adaptive, inputstreamhelper]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pythonPath: "resources/lib",
-        updateScript: nix.thunk(() => nix.app(addonUpdateScript, nix.thunk(() => ({ [nix.POS]: pos$2, attrPath: "kodi.packages.invidious" })))),
+        updateScript: nix.thunk(() => nix.app(addonUpdateScript, nix.thunk(() => ({ [nix.POS]: $pos[1], attrPath: "kodi.packages.invidious" })))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://github.com/petterreinholdtsen/kodi-invidious-plugin",
         description: "Privacy-friendly way of watching YouTube content",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "kodi"))]),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         namespace,
         version,

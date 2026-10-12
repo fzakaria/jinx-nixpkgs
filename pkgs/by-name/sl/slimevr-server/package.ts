@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["pname", 43, 26], ["data", 44, 5]], [["version", 50, 28]], [["java", 86, 13], ["javaOptions", 86, 18]], [["homepage", 91, 5], ["description", 92, 5], ["license", 93, 5], ["maintainers", 97, 5], ["platforms", 101, 5], ["broken", 102, 5], ["mainProgram", 103, 5]], [["pname", 35, 3], ["src", 38, 5], ["version", 39, 5], ["mitmCache", 42, 3], ["patches", 47, 3], ["postPatch", 54, 3], ["nativeBuildInputs", 60, 3], ["__darwinAllowLocalNetworking", 66, 3], ["gradleFlags", 68, 3], ["gradleBuildTask", 70, 3], ["doCheck", 72, 3], ["installPhase", 74, 3], ["passthru", 85, 3], ["meta", 90, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, runCommand: false, replaceVars: false, slimevr: false, jdk17: false, gradle: false, hidapi: false, makeWrapper: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["pname", 43, 26], ["data", 44, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["version", 50, 28]]);
-const pos$3 = nix.positions(here + "/package.nix", [["java", 86, 13], ["javaOptions", 86, 18]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 91, 5], ["description", 92, 5], ["license", 93, 5], ["maintainers", 97, 5], ["platforms", 101, 5], ["broken", 102, 5], ["mainProgram", 103, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 35, 3], ["src", 38, 5], ["version", 39, 5], ["mitmCache", 42, 3], ["patches", 47, 3], ["postPatch", 54, 3], ["nativeBuildInputs", 60, 3], ["__darwinAllowLocalNetworking", 66, 3], ["gradleFlags", 68, 3], ["gradleBuildTask", 70, 3], ["doCheck", 72, 3], ["installPhase", 74, 3], ["passthru", 85, 3], ["meta", 90, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,17 +24,20 @@ ln -s ${hidapi}/lib/libhidapi-hidraw.so $out/lib/libhidapi.so
     return nix.str`-Djna.library.path='${nix.app(nix.sel(lib, "makeLibraryPath"), nix.thunk(() => [hidapi, libhidapi]))}'`;
   })());
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "slimevr-server",
       src: nix.thunk(() => nix.attr(slimevr, "src")),
       version: nix.thunk(() => nix.attr(slimevr, "version")),
       mitmCache: nix.thunk(() => nix.app(nix.sel(gradle, "fetchDeps"), nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           data: nix.path(here, "./deps.json"),
         })))),
       patches: nix.thunk(() => [
-        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./no-grgit.patch"), nix.thunk(() => ({ [nix.POS]: pos$2, version: nix.thunk(() => nix.attr(finalAttrs, "version")) })))),
+        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./no-grgit.patch"), nix.thunk(() => ({
+            [nix.POS]: $pos[1],
+            version: nix.thunk(() => nix.attr(finalAttrs, "version")),
+          })))),
       ]),
       postPatch: "# Disable Android, so its files don't have to be patched.\nsubstituteInPlace settings.gradle.kts \\\n  --replace-fail 'include(\":server:android\")' \"\"\n",
       nativeBuildInputs: nix.thunk(() => [gradle, makeWrapper]),
@@ -55,9 +54,9 @@ makeWrapper ${java}/bin/java $out/bin/slimevr-server \\
 
 runHook postInstall
 `),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$3, java: java, javaOptions: javaOptions })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[2], java: java, javaOptions: javaOptions })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://docs.slimevr.dev/",
         description: "App for facilitating full-body tracking in virtual reality",
         license: nix.thunk(() => (() => {

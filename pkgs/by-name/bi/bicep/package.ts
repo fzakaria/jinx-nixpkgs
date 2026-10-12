@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]], [["updateScript", 43, 12]], [["description", 46, 5], ["homepage", 47, 5], ["changelog", 48, 5], ["license", 49, 5], ["maintainers", 50, 5], ["mainProgram", 51, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["postPatch", 19, 3], ["projectFile", 23, 3], ["nugetDeps", 28, 3], ["dotnet-sdk", 30, 3], ["dotnet-runtime", 32, 3], ["dotnetInstallFlags", 35, 3], ["doCheck", 37, 3], ["dotnetTestFlags", 39, 3], ["testProjectFile", 41, 3], ["passthru", 43, 3], ["meta", 45, 3]]]);
 const formals$1 = { args: { lib: false, buildDotnetModule: false, fetchFromGitHub: false, dotnetCorePackages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 43, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 46, 5], ["homepage", 47, 5], ["changelog", 48, 5], ["license", 49, 5], ["maintainers", 50, 5], ["mainProgram", 51, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["postPatch", 19, 3], ["projectFile", 23, 3], ["nugetDeps", 28, 3], ["dotnet-sdk", 30, 3], ["dotnet-runtime", 32, 3], ["dotnetInstallFlags", 35, 3], ["doCheck", 37, 3], ["dotnetTestFlags", 39, 3], ["testProjectFile", 41, 3], ["passthru", 43, 3], ["meta", 45, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,7 +15,7 @@ export default nix.lambda((args) => (() => {
       const pname = "bicep";
       const version = "0.47.16";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Azure",
           repo: "bicep",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -36,9 +33,9 @@ export default nix.lambda((args) => (() => {
       const doCheck = true;
       const dotnetTestFlags = "-p:UseAppHost=false";
       const testProjectFile = "src/Bicep.Cli.UnitTests/Bicep.Cli.UnitTests.csproj";
-      const passthru = nix.thunk(() => ({ [nix.POS]: pos$2, updateScript: nix.path(here, "./updater.sh") }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: $pos[1], updateScript: nix.path(here, "./updater.sh") }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Domain Specific Language (DSL) for deploying Azure resources declaratively",
         homepage: "https://github.com/Azure/bicep/",
         changelog: nix.thunk(() => nix.str`https://github.com/Azure/bicep/releases/tag/v${version}`),
@@ -47,7 +44,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "bicep",
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

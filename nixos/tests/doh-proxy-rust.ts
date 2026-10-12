@@ -2,55 +2,48 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/doh-proxy-rust.nix", [[["maintainers", 4, 8]], [["name", 14, 13], ["master", 15, 13], ["file", 16, 13]], [["enable", 11, 11], ["extraOptions", 12, 11], ["zones", 13, 11]], [["enable", 25, 11], ["flags", 26, 11]], [["bind", 10, 18], ["doh-proxy-rust", 24, 18]], [["services", 10, 9]], [["machine", 7, 5]], [["name", 3, 3], ["meta", 4, 3], ["nodes", 6, 3], ["testScript", 33, 3]]]);
 const formals$1 = { args: { lib: false, pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/doh-proxy-rust.nix", [["maintainers", 4, 8]]);
 const formals$2 = { args: { pkgs: false, lib: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/doh-proxy-rust.nix", [["name", 14, 13], ["master", 15, 13], ["file", 16, 13]]);
-const pos$3 = nix.positions(here + "/doh-proxy-rust.nix", [["enable", 11, 11], ["extraOptions", 12, 11], ["zones", 13, 11]]);
-const pos$4 = nix.positions(here + "/doh-proxy-rust.nix", [["enable", 25, 11], ["flags", 26, 11]]);
-const pos$5 = nix.positions(here + "/doh-proxy-rust.nix", [["bind", 10, 18], ["doh-proxy-rust", 24, 18]]);
-const pos$6 = nix.positions(here + "/doh-proxy-rust.nix", [["services", 10, 9]]);
-const pos$7 = nix.positions(here + "/doh-proxy-rust.nix", [["machine", 7, 5]]);
 const formals$3 = { args: { nodes: false }, ellipsis: true };
-const pos$8 = nix.positions(here + "/doh-proxy-rust.nix", [["name", 3, 3], ["meta", 4, 3], ["nodes", 6, 3], ["testScript", 33, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   return {
-    [nix.POS]: pos$8,
+    [nix.POS]: $pos[7],
     name: "doh-proxy-rust",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "stephank"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs_1 = nix.arg($_1, "pkgs");
         const lib_1 = nix.arg($_1, "lib");
         return {
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             bind: nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               enable: true,
               extraOptions: "empty-zones-enable no;",
               zones: nix.thunk(() => nix.app(nix.sel(lib_1, "singleton"), nix.thunk(() => ({
-                  [nix.POS]: pos$2,
+                  [nix.POS]: $pos[1],
                   name: ".",
                   master: true,
                   file: nix.thunk(() => nix.app(nix.sel(pkgs_1, "writeText"), "root.zone", "$TTL 3600\n. IN SOA ns.example.org. admin.example.org. ( 1 3h 1h 1w 1d )\n. IN NS ns.example.org.\nns.example.org. IN A    192.168.0.1\n")),
                 })))),
             })),
             "doh-proxy-rust": nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               enable: true,
               flags: nix.thunk(() => ["--server-address=127.0.0.1:53"]),
             })),

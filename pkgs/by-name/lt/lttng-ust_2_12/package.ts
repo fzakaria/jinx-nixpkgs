@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 27, 5], ["sha256", 28, 5]], [["description", 57, 5], ["mainProgram", 58, 5], ["homepage", 59, 5], ["license", 60, 5], ["platforms", 65, 5], ["maintainers", 66, 5]], [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["outputs", 31, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 39, 3], ["preConfigure", 44, 3], ["hardeningDisable", 48, 3], ["configureFlags", 50, 3], ["propagatedBuildInputs", 52, 3], ["enableParallelBuilding", 54, 3], ["meta", 56, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, "pkg-config": false, liburcu: false, numactl: false, python3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 27, 5], ["sha256", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 57, 5], ["mainProgram", 58, 5], ["homepage", 59, 5], ["license", 60, 5], ["platforms", 65, 5], ["maintainers", 66, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["outputs", 31, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 39, 3], ["preConfigure", 44, 3], ["hardeningDisable", 48, 3], ["configureFlags", 50, 3], ["propagatedBuildInputs", 52, 3], ["enableParallelBuilding", 54, 3], ["meta", 56, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const numactl = nix.arg($, "numactl");
   const python3 = nix.arg($, "python3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "lttng-ust",
       version: "2.12.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://lttng.org/files/lttng-ust/lttng-ust-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           sha256: "sha256-vNDwZLbKiMcthOdg6sNHKuXIKEEcY0Q1kivun841n8c=",
         })))),
@@ -34,7 +32,7 @@ export default nix.lambda((args) => (() => {
       propagatedBuildInputs: nix.thunk(() => [liburcu]),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "LTTng Userspace Tracer libraries",
         mainProgram: "lttng-gen-tp",
         homepage: "https://lttng.org/",

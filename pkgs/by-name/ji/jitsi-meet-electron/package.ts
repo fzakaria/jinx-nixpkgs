@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 31, 5], ["repo", 32, 5], ["rev", 33, 5], ["hash", 34, 5]], [["ELECTRON_SKIP_BINARY_DOWNLOAD", 61, 5], ["NIX_CFLAGS_COMPILE", 62, 5]], [["name", 119, 7], ["exec", 120, 7], ["icon", 121, 7], ["desktopName", 122, 7], ["comment", 123, 7], ["categories", 124, 7], ["mimeTypes", 131, 7], ["terminal", 132, 7]], [["updateScript", 136, 12]], [["changelog", 139, 5], ["description", 140, 5], ["homepage", 141, 5], ["license", 142, 5], ["mainProgram", 143, 5], ["maintainers", 144, 5], ["teams", 145, 5], ["platforms", 146, 29]], [["pname", 27, 3], ["version", 28, 3], ["src", 30, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 48, 3], ["npmDepsHash", 56, 3], ["makeCacheWritable", 58, 3], ["env", 60, 3], ["preBuild", 65, 3], ["postBuild", 75, 3], ["installPhase", 92, 3], ["desktopItems", 117, 3], ["passthru", 136, 3], ["meta", 138, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildNpmPackage: false, fetchFromGitHub: false, makeDesktopItem: false, copyDesktopItems: false, makeWrapper: false, xcbuild: false, libpng: false, libx11: false, libxi: false, libxtst: false, zlib: false, electron_41: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 31, 5], ["repo", 32, 5], ["rev", 33, 5], ["hash", 34, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["ELECTRON_SKIP_BINARY_DOWNLOAD", 61, 5], ["NIX_CFLAGS_COMPILE", 62, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 119, 7], ["exec", 120, 7], ["icon", 121, 7], ["desktopName", 122, 7], ["comment", 123, 7], ["categories", 124, 7], ["mimeTypes", 131, 7], ["terminal", 132, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 136, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["changelog", 139, 5], ["description", 140, 5], ["homepage", 141, 5], ["license", 142, 5], ["mainProgram", 143, 5], ["maintainers", 144, 5], ["teams", 145, 5], ["platforms", 146, 29]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 27, 3], ["version", 28, 3], ["src", 30, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 48, 3], ["npmDepsHash", 56, 3], ["makeCacheWritable", 58, 3], ["env", 60, 3], ["preBuild", 65, 3], ["postBuild", 75, 3], ["installPhase", 92, 3], ["desktopItems", 117, 3], ["passthru", 136, 3], ["meta", 138, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const pname = "jitsi-meet-electron";
       const version = "2026.7.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "jitsi",
           repo: "jitsi-meet-electron",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -43,7 +38,7 @@ export default nix.lambda((args) => (() => {
       const npmDepsHash = "sha256-m2+knAWSSraNGNGjMFoMC9+MlOhs+XyXs90GcMx9ulw=";
       const makeCacheWritable = true;
       const env = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         ELECTRON_SKIP_BINARY_DOWNLOAD: 1n,
         NIX_CFLAGS_COMPILE: "-Wno-implicit-function-declaration",
       }));
@@ -83,7 +78,7 @@ runHook postInstall
 `);
       const desktopItems = nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "jitsi-meet-electron",
             exec: "jitsi-meet-electron %U",
             icon: "jitsi-meet-electron",
@@ -95,13 +90,13 @@ runHook postInstall
           })))),
       ]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(electron, "meta"));
         return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         changelog: nix.thunk(() => nix.str`https://github.com/jitsi/jitsi-meet-electron/releases/tag/${nix.sel(src, "rev")}`),
         description: "Jitsi Meet desktop application powered by Electron",
         homepage: "https://github.com/jitsi/jitsi-meet-electron",
@@ -113,7 +108,7 @@ runHook postInstall
       };
       })());
       return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname,
         version,
         src,

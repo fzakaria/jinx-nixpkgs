@@ -2,81 +2,11 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/matrix-authentication-service.nix", [[["nativeBuildInputs", 11, 9]], [["type", 28, 17]], [["https", 30, 11], ["tlsCert", 31, 11], ["tlsKey", 32, 11]], [["skipApprovalScreen", 34, 16]], [["username", 41, 15], ["password", 42, 15]], [["type", 37, 13], ["id", 38, 13], ["name", 39, 13], ["config", 40, 13]], [["issuer", 27, 9], ["storage", 28, 9], ["web", 29, 9], ["oauth2", 34, 9], ["connectors", 35, 9]], [["enable", 25, 7], ["settings", 26, 7]], [["teams", 70, 5]], [["allowedTCPPorts", 89, 20]], [["hostName", 87, 11], ["domain", 88, 11], ["firewall", 89, 11], ["extraHosts", 176, 20]], [["names", 111, 21], ["compress", 114, 21]], [["names", 117, 21], ["compress", 120, 21]], [["port", 102, 17], ["bind_addresses", 103, 17], ["type", 106, 17], ["tls", 107, 17], ["x_forwarded", 108, 17], ["resources", 109, 17]], [["password", 128, 20]], [["name", 127, 15], ["args", 128, 15]], [["enabled", 131, 15], ["host", 132, 15], ["port", 133, 15]], [["enabled", 141, 15], ["endpoint", 142, 15], ["force_http2", 143, 15], ["secret", 144, 15]], [["listeners", 100, 13], ["database", 126, 13], ["redis", 130, 13], ["tls_certificate_path", 135, 13], ["tls_private_key_path", 136, 13], ["public_baseurl", 137, 13], ["matrix_authentication_service", 140, 13]], [["enable", 97, 11], ["extras", 98, 11], ["settings", 99, 11]], [["enable", 149, 11], ["authentication", 150, 11], ["initialScript", 161, 11]], [["enable", 170, 11], ["port", 171, 11]], [["matrix-synapse", 169, 32]], [["servers", 169, 24]], [["matrix-synapse", 96, 18], ["postgresql", 148, 18], ["redis", 169, 18]], [["certificateFiles", 173, 22]], [["pki", 173, 18]], [["systemPackages", 182, 21]], [["networking", 86, 9], ["services", 96, 9], ["security", 173, 9], ["environment", 182, 9]], [["kid", 199, 19], ["key_file", 200, 19]], [["encryption_file", 196, 15], ["keys", 197, 15]], [["secrets", 195, 13]], [["certificate_file", 216, 17], ["key_file", 217, 17]], [["address", 222, 31]], [["name", 224, 23]], [["name", 225, 23]], [["name", 226, 23]], [["certificate_file", 229, 21], ["key_file", 230, 21]], [["name", 221, 19], ["binds", 222, 19], ["resources", 223, 19], ["tls", 228, 19]], [["public_base", 214, 15], ["tls", 215, 15], ["listeners", 219, 15]], [["homeserver", 236, 15], ["endpoint", 237, 15], ["secret_file", 238, 15]], [["uri", 240, 22]], [["allow_insecure_uris", 242, 45]], [["client_registration", 242, 25]], [["data", 242, 20]], [["id", 245, 17], ["client_id", 246, 17], ["client_secret_file", 247, 17], ["issuer", 248, 17], ["scope", 249, 17], ["token_endpoint_auth_method", 250, 17]], [["providers", 243, 29]], [["http", 213, 13], ["matrix", 235, 13], ["database", 240, 13], ["policy", 242, 13], ["upstream_oauth2", 243, 13]], [["oidc_client_secret", 254, 23]], [["enable", 209, 11], ["createDatabase", 210, 11], ["extraConfigFiles", 211, 11], ["settings", 212, 11], ["credentials", 254, 11]], [["authentication", 256, 29]], [["matrix-authentication-service", 208, 18], ["postgresql", 256, 18]], [["preStart", 261, 56]], [["matrix-authentication-service", 261, 26]], [["services", 261, 17]], [["certificateFiles", 266, 22]], [["pki", 266, 18]], [["allowedTCPPorts", 271, 29]], [["extraHosts", 267, 20], ["firewall", 271, 20]], [["services", 208, 9], ["systemd", 261, 9], ["security", 266, 9], ["networking", 267, 9]], [["id", 290, 17], ["name", 291, 17], ["redirectURIs", 292, 17], ["secret", 293, 17]], [["staticClients", 288, 22]], [["settings", 288, 13]], [["dex", 285, 18]], [["certificateFiles", 298, 22]], [["pki", 298, 18]], [["allowedTCPPorts", 304, 29]], [["extraHosts", 299, 20], ["firewall", 304, 20]], [["services", 285, 9], ["security", 298, 9], ["networking", 299, 9]], [["hs1", 74, 5], ["mas1", 188, 5], ["dex1", 277, 5]], [["name", 68, 3], ["meta", 69, 3], ["nodes", 73, 3], ["testScript", 308, 3]]]);
 const formals$1 = { args: { pkgs: false, lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/matrix-authentication-service.nix", [["nativeBuildInputs", 11, 9]]);
-const pos$2 = nix.positions(here + "/matrix-authentication-service.nix", [["type", 28, 17]]);
-const pos$3 = nix.positions(here + "/matrix-authentication-service.nix", [["https", 30, 11], ["tlsCert", 31, 11], ["tlsKey", 32, 11]]);
-const pos$4 = nix.positions(here + "/matrix-authentication-service.nix", [["skipApprovalScreen", 34, 16]]);
-const pos$5 = nix.positions(here + "/matrix-authentication-service.nix", [["username", 41, 15], ["password", 42, 15]]);
-const pos$6 = nix.positions(here + "/matrix-authentication-service.nix", [["type", 37, 13], ["id", 38, 13], ["name", 39, 13], ["config", 40, 13]]);
-const pos$7 = nix.positions(here + "/matrix-authentication-service.nix", [["issuer", 27, 9], ["storage", 28, 9], ["web", 29, 9], ["oauth2", 34, 9], ["connectors", 35, 9]]);
-const pos$8 = nix.positions(here + "/matrix-authentication-service.nix", [["enable", 25, 7], ["settings", 26, 7]]);
-const pos$9 = nix.positions(here + "/matrix-authentication-service.nix", [["teams", 70, 5]]);
 const formals$2 = { args: { lib: false, config: false, pkgs: false, nodes: false }, ellipsis: true };
-const pos$10 = nix.positions(here + "/matrix-authentication-service.nix", [["allowedTCPPorts", 89, 20]]);
-const pos$11 = nix.positions(here + "/matrix-authentication-service.nix", [["hostName", 87, 11], ["domain", 88, 11], ["firewall", 89, 11], ["extraHosts", 176, 20]]);
-const pos$12 = nix.positions(here + "/matrix-authentication-service.nix", [["names", 111, 21], ["compress", 114, 21]]);
-const pos$13 = nix.positions(here + "/matrix-authentication-service.nix", [["names", 117, 21], ["compress", 120, 21]]);
-const pos$14 = nix.positions(here + "/matrix-authentication-service.nix", [["port", 102, 17], ["bind_addresses", 103, 17], ["type", 106, 17], ["tls", 107, 17], ["x_forwarded", 108, 17], ["resources", 109, 17]]);
-const pos$15 = nix.positions(here + "/matrix-authentication-service.nix", [["password", 128, 20]]);
-const pos$16 = nix.positions(here + "/matrix-authentication-service.nix", [["name", 127, 15], ["args", 128, 15]]);
-const pos$17 = nix.positions(here + "/matrix-authentication-service.nix", [["enabled", 131, 15], ["host", 132, 15], ["port", 133, 15]]);
-const pos$18 = nix.positions(here + "/matrix-authentication-service.nix", [["enabled", 141, 15], ["endpoint", 142, 15], ["force_http2", 143, 15], ["secret", 144, 15]]);
-const pos$19 = nix.positions(here + "/matrix-authentication-service.nix", [["listeners", 100, 13], ["database", 126, 13], ["redis", 130, 13], ["tls_certificate_path", 135, 13], ["tls_private_key_path", 136, 13], ["public_baseurl", 137, 13], ["matrix_authentication_service", 140, 13]]);
-const pos$20 = nix.positions(here + "/matrix-authentication-service.nix", [["enable", 97, 11], ["extras", 98, 11], ["settings", 99, 11]]);
-const pos$21 = nix.positions(here + "/matrix-authentication-service.nix", [["enable", 149, 11], ["authentication", 150, 11], ["initialScript", 161, 11]]);
-const pos$22 = nix.positions(here + "/matrix-authentication-service.nix", [["enable", 170, 11], ["port", 171, 11]]);
-const pos$23 = nix.positions(here + "/matrix-authentication-service.nix", [["matrix-synapse", 169, 32]]);
-const pos$24 = nix.positions(here + "/matrix-authentication-service.nix", [["servers", 169, 24]]);
-const pos$25 = nix.positions(here + "/matrix-authentication-service.nix", [["matrix-synapse", 96, 18], ["postgresql", 148, 18], ["redis", 169, 18]]);
-const pos$26 = nix.positions(here + "/matrix-authentication-service.nix", [["certificateFiles", 173, 22]]);
-const pos$27 = nix.positions(here + "/matrix-authentication-service.nix", [["pki", 173, 18]]);
-const pos$28 = nix.positions(here + "/matrix-authentication-service.nix", [["systemPackages", 182, 21]]);
-const pos$29 = nix.positions(here + "/matrix-authentication-service.nix", [["networking", 86, 9], ["services", 96, 9], ["security", 173, 9], ["environment", 182, 9]]);
 const formals$3 = { args: { nodes: false }, ellipsis: true };
-const pos$30 = nix.positions(here + "/matrix-authentication-service.nix", [["kid", 199, 19], ["key_file", 200, 19]]);
-const pos$31 = nix.positions(here + "/matrix-authentication-service.nix", [["encryption_file", 196, 15], ["keys", 197, 15]]);
-const pos$32 = nix.positions(here + "/matrix-authentication-service.nix", [["secrets", 195, 13]]);
-const pos$33 = nix.positions(here + "/matrix-authentication-service.nix", [["certificate_file", 216, 17], ["key_file", 217, 17]]);
-const pos$34 = nix.positions(here + "/matrix-authentication-service.nix", [["address", 222, 31]]);
-const pos$35 = nix.positions(here + "/matrix-authentication-service.nix", [["name", 224, 23]]);
-const pos$36 = nix.positions(here + "/matrix-authentication-service.nix", [["name", 225, 23]]);
-const pos$37 = nix.positions(here + "/matrix-authentication-service.nix", [["name", 226, 23]]);
-const pos$38 = nix.positions(here + "/matrix-authentication-service.nix", [["certificate_file", 229, 21], ["key_file", 230, 21]]);
-const pos$39 = nix.positions(here + "/matrix-authentication-service.nix", [["name", 221, 19], ["binds", 222, 19], ["resources", 223, 19], ["tls", 228, 19]]);
-const pos$40 = nix.positions(here + "/matrix-authentication-service.nix", [["public_base", 214, 15], ["tls", 215, 15], ["listeners", 219, 15]]);
-const pos$41 = nix.positions(here + "/matrix-authentication-service.nix", [["homeserver", 236, 15], ["endpoint", 237, 15], ["secret_file", 238, 15]]);
-const pos$42 = nix.positions(here + "/matrix-authentication-service.nix", [["uri", 240, 22]]);
-const pos$43 = nix.positions(here + "/matrix-authentication-service.nix", [["allow_insecure_uris", 242, 45]]);
-const pos$44 = nix.positions(here + "/matrix-authentication-service.nix", [["client_registration", 242, 25]]);
-const pos$45 = nix.positions(here + "/matrix-authentication-service.nix", [["data", 242, 20]]);
-const pos$46 = nix.positions(here + "/matrix-authentication-service.nix", [["id", 245, 17], ["client_id", 246, 17], ["client_secret_file", 247, 17], ["issuer", 248, 17], ["scope", 249, 17], ["token_endpoint_auth_method", 250, 17]]);
-const pos$47 = nix.positions(here + "/matrix-authentication-service.nix", [["providers", 243, 29]]);
-const pos$48 = nix.positions(here + "/matrix-authentication-service.nix", [["http", 213, 13], ["matrix", 235, 13], ["database", 240, 13], ["policy", 242, 13], ["upstream_oauth2", 243, 13]]);
-const pos$49 = nix.positions(here + "/matrix-authentication-service.nix", [["oidc_client_secret", 254, 23]]);
-const pos$50 = nix.positions(here + "/matrix-authentication-service.nix", [["enable", 209, 11], ["createDatabase", 210, 11], ["extraConfigFiles", 211, 11], ["settings", 212, 11], ["credentials", 254, 11]]);
-const pos$51 = nix.positions(here + "/matrix-authentication-service.nix", [["authentication", 256, 29]]);
-const pos$52 = nix.positions(here + "/matrix-authentication-service.nix", [["matrix-authentication-service", 208, 18], ["postgresql", 256, 18]]);
-const pos$53 = nix.positions(here + "/matrix-authentication-service.nix", [["preStart", 261, 56]]);
-const pos$54 = nix.positions(here + "/matrix-authentication-service.nix", [["matrix-authentication-service", 261, 26]]);
-const pos$55 = nix.positions(here + "/matrix-authentication-service.nix", [["services", 261, 17]]);
-const pos$56 = nix.positions(here + "/matrix-authentication-service.nix", [["certificateFiles", 266, 22]]);
-const pos$57 = nix.positions(here + "/matrix-authentication-service.nix", [["pki", 266, 18]]);
-const pos$58 = nix.positions(here + "/matrix-authentication-service.nix", [["allowedTCPPorts", 271, 29]]);
-const pos$59 = nix.positions(here + "/matrix-authentication-service.nix", [["extraHosts", 267, 20], ["firewall", 271, 20]]);
-const pos$60 = nix.positions(here + "/matrix-authentication-service.nix", [["services", 208, 9], ["systemd", 261, 9], ["security", 266, 9], ["networking", 267, 9]]);
 const formals$4 = { args: { lib: false, config: false, nodes: false }, ellipsis: true };
-const pos$61 = nix.positions(here + "/matrix-authentication-service.nix", [["id", 290, 17], ["name", 291, 17], ["redirectURIs", 292, 17], ["secret", 293, 17]]);
-const pos$62 = nix.positions(here + "/matrix-authentication-service.nix", [["staticClients", 288, 22]]);
-const pos$63 = nix.positions(here + "/matrix-authentication-service.nix", [["settings", 288, 13]]);
-const pos$64 = nix.positions(here + "/matrix-authentication-service.nix", [["dex", 285, 18]]);
-const pos$65 = nix.positions(here + "/matrix-authentication-service.nix", [["certificateFiles", 298, 22]]);
-const pos$66 = nix.positions(here + "/matrix-authentication-service.nix", [["pki", 298, 18]]);
-const pos$67 = nix.positions(here + "/matrix-authentication-service.nix", [["allowedTCPPorts", 304, 29]]);
-const pos$68 = nix.positions(here + "/matrix-authentication-service.nix", [["extraHosts", 299, 20], ["firewall", 304, 20]]);
-const pos$69 = nix.positions(here + "/matrix-authentication-service.nix", [["services", 285, 9], ["security", 298, 9], ["networking", 299, 9]]);
-const pos$70 = nix.positions(here + "/matrix-authentication-service.nix", [["hs1", 74, 5], ["mas1", 188, 5], ["dex1", 277, 5]]);
-const pos$71 = nix.positions(here + "/matrix-authentication-service.nix", [["name", 68, 3], ["meta", 69, 3], ["nodes", 73, 3], ["testScript", 308, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -86,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const ca_key = nix.thunk(() => nix.sel(mailerCerts, "ca", "key"));
   const ca_pem = nix.thunk(() => nix.sel(mailerCerts, "ca", "cert"));
   const mkBundle = (domain) => nix.app(nix.sel(pkgs, "runCommand"), nix.thunk(() => nix.str`bundle-${domain}`), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "minica"))]),
     })), nix.thunk(() => nix.str`minica -ca-cert ${ca_pem} -ca-key ${ca_key} \\
   -domains ${domain}
@@ -95,27 +25,27 @@ install -Dm444 -t $out ${domain}/{key,cert}.pem
   const mkDexConfig = (domain) => (primaryIP) => (() => {
     const bundle = nix.thunk(() => nix.app(mkBundle, domain));
     return {
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       enable: true,
       settings: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         issuer: nix.thunk(() => nix.str`https://${dexDomain}:5556`),
-        storage: nix.thunk(() => ({ [nix.POS]: pos$2, type: "sqlite3" })),
+        storage: nix.thunk(() => ({ [nix.POS]: $pos[1], type: "sqlite3" })),
         web: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           https: nix.thunk(() => nix.str`${primaryIP}:5556`),
           tlsCert: nix.thunk(() => nix.str`${bundle}/cert.pem`),
           tlsKey: nix.thunk(() => nix.str`${bundle}/key.pem`),
         })),
-        oauth2: nix.thunk(() => ({ [nix.POS]: pos$4, skipApprovalScreen: true })),
+        oauth2: nix.thunk(() => ({ [nix.POS]: $pos[3], skipApprovalScreen: true })),
         connectors: nix.thunk(() => [
           nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             type: "mockPassword",
             id: "mock",
             name: "Example",
             config: nix.thunk(() => ({
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               username: nix.thunk(() => nix.str`${testUser}`),
               password: nix.thunk(() => nix.str`${testPassword}`),
             })),
@@ -136,14 +66,14 @@ install -Dm444 -t $out ${domain}/{key,cert}.pem
   const loginCodeVerifier = "5kaYTTNVVehUrtJ8xi72ogdfwX8vxHMb3jEUBjyWcXQ";
   const loginCodeChallenge = "FbNLCROaJHe4LJQ7FEm7XjqDoWazb3emTE89x6Nx0Ng";
   return {
-    [nix.POS]: pos$71,
+    [nix.POS]: $pos[70],
     name: "matrix-authentication-service-upstream",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "matrix"))]),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$70,
+      [nix.POS]: $pos[69],
       hs1: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const lib_1 = nix.arg($_1, "lib");
@@ -152,46 +82,46 @@ install -Dm444 -t $out ${domain}/{key,cert}.pem
         const nodes = nix.arg($_1, "nodes");
         const bundle = nix.thunk(() => nix.app(mkBundle, synapseDomain));
         return {
-          [nix.POS]: pos$29,
+          [nix.POS]: $pos[28],
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$11,
+            [nix.POS]: $pos[10],
             hostName: nix.thunk(() => nix.app(nix.sel(lib_1, "head"), nix.thunk(() => nix.app(nix.sel(lib_1, "strings", "splitString"), ".", synapseDomain)))),
             domain: nix.thunk(() => nix.app(nix.sel(lib_1, "last"), nix.thunk(() => nix.app(nix.sel(lib_1, "strings", "splitString"), ".", synapseDomain)))),
-            firewall: nix.thunk(() => ({ [nix.POS]: pos$10, allowedTCPPorts: nix.thunk(() => [80n, 443n, 8448n]) })),
+            firewall: nix.thunk(() => ({ [nix.POS]: $pos[9], allowedTCPPorts: nix.thunk(() => [80n, 443n, 8448n]) })),
             extraHosts: nix.thunk(() => nix.str`${nix.sel(nodes, "mas1", "networking", "primaryIPAddress")} ${masDomain}
 ${nix.sel(nodes, "dex1", "networking", "primaryIPAddress")} ${dexDomain}
 ${nix.sel(nodes, "hs1", "networking", "primaryIPAddress")} ${synapseDomain}
 `),
           })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$25,
+            [nix.POS]: $pos[24],
             "matrix-synapse": nix.thunk(() => ({
-              [nix.POS]: pos$20,
+              [nix.POS]: $pos[19],
               enable: true,
               extras: nix.thunk(() => ["oidc"]),
               settings: nix.thunk(() => ({
-                [nix.POS]: pos$19,
+                [nix.POS]: $pos[18],
                 listeners: nix.thunk(() => [
                   nix.thunk(() => ({
-                    [nix.POS]: pos$14,
+                    [nix.POS]: $pos[13],
                     port: 8448n,
                     bind_addresses: nix.thunk(() => [nix.thunk(() => nix.sel(config, "networking", "primaryIPAddress"))]),
                     type: "http",
                     tls: true,
                     x_forwarded: false,
                     resources: nix.thunk(() => [
-                      nix.thunk(() => ({ [nix.POS]: pos$12, names: nix.thunk(() => ["client"]), compress: true })),
-                      nix.thunk(() => ({ [nix.POS]: pos$13, names: nix.thunk(() => ["federation"]), compress: false })),
+                      nix.thunk(() => ({ [nix.POS]: $pos[11], names: nix.thunk(() => ["client"]), compress: true })),
+                      nix.thunk(() => ({ [nix.POS]: $pos[12], names: nix.thunk(() => ["federation"]), compress: false })),
                     ]),
                   })),
                 ]),
                 database: nix.thunk(() => ({
-                  [nix.POS]: pos$16,
+                  [nix.POS]: $pos[15],
                   name: "psycopg2",
-                  args: nix.thunk(() => ({ [nix.POS]: pos$15, password: "synapse" })),
+                  args: nix.thunk(() => ({ [nix.POS]: $pos[14], password: "synapse" })),
                 })),
                 redis: nix.thunk(() => ({
-                  [nix.POS]: pos$17,
+                  [nix.POS]: $pos[16],
                   enabled: true,
                   host: "localhost",
                   port: nix.thunk(() => nix.sel(config, "services", "redis", "servers", "matrix-synapse", "port")),
@@ -200,7 +130,7 @@ ${nix.sel(nodes, "hs1", "networking", "primaryIPAddress")} ${synapseDomain}
                 tls_private_key_path: nix.thunk(() => nix.str`${bundle}/key.pem`),
                 public_baseurl: nix.thunk(() => nix.str`https://${synapseDomain}:8448`),
                 matrix_authentication_service: nix.thunk(() => ({
-                  [nix.POS]: pos$18,
+                  [nix.POS]: $pos[17],
                   enabled: true,
                   endpoint: nix.thunk(() => nix.str`https://${masDomain}:8080`),
                   force_http2: true,
@@ -209,25 +139,25 @@ ${nix.sel(nodes, "hs1", "networking", "primaryIPAddress")} ${synapseDomain}
               })),
             })),
             postgresql: nix.thunk(() => ({
-              [nix.POS]: pos$21,
+              [nix.POS]: $pos[20],
               enable: true,
               authentication: nix.thunk(() => nix.app(nix.sel(pkgs_1, "lib", "mkOverride"), 10n, "local all all trust\nhost all all 127.0.0.1/32 trust\nhost all all ::1/128 trust\n")),
               initialScript: nix.thunk(() => nix.app(nix.sel(pkgs_1, "writeText"), "synapse-init.sql", "CREATE ROLE \"matrix-synapse\" WITH LOGIN PASSWORD 'synapse';\nCREATE DATABASE \"matrix-synapse\" WITH OWNER \"matrix-synapse\"\n  TEMPLATE template0\n  LC_COLLATE = \"C\"\n  LC_CTYPE = \"C\";\n")),
             })),
             redis: nix.thunk(() => ({
-              [nix.POS]: pos$24,
+              [nix.POS]: $pos[23],
               servers: nix.thunk(() => ({
-                [nix.POS]: pos$23,
-                "matrix-synapse": nix.thunk(() => ({ [nix.POS]: pos$22, enable: true, port: 6379n })),
+                [nix.POS]: $pos[22],
+                "matrix-synapse": nix.thunk(() => ({ [nix.POS]: $pos[21], enable: true, port: 6379n })),
               })),
             })),
           })),
           security: nix.thunk(() => ({
-            [nix.POS]: pos$27,
-            pki: nix.thunk(() => ({ [nix.POS]: pos$26, certificateFiles: nix.thunk(() => [ca_pem]) })),
+            [nix.POS]: $pos[26],
+            pki: nix.thunk(() => ({ [nix.POS]: $pos[25], certificateFiles: nix.thunk(() => [ca_pem]) })),
           })),
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$28,
+            [nix.POS]: $pos[27],
             systemPackages: nix.thunk(() => [
               nix.thunk(() => nix.sel(pkgs_1, "matrix-synapse")),
               nix.thunk(() => nix.sel(pkgs_1, "matrix-authentication-service")),
@@ -240,13 +170,13 @@ ${nix.sel(nodes, "hs1", "networking", "primaryIPAddress")} ${synapseDomain}
         const nodes = nix.arg($_1, "nodes");
         const bundle = nix.thunk(() => nix.app(mkBundle, masDomain));
         const extraConfig = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "masExtraConfig.yml", nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => ({
-              [nix.POS]: pos$32,
+              [nix.POS]: $pos[31],
               secrets: nix.thunk(() => ({
-                [nix.POS]: pos$31,
+                [nix.POS]: $pos[30],
                 encryption_file: "/var/lib/matrix-authentication-service/encryption",
                 keys: nix.thunk(() => [
                   nix.thunk(() => ({
-                    [nix.POS]: pos$30,
+                    [nix.POS]: $pos[29],
                     kid: "rsa-4096",
                     key_file: "/var/lib/matrix-authentication-service/key_rsa_4096",
                   })),
@@ -254,36 +184,36 @@ ${nix.sel(nodes, "hs1", "networking", "primaryIPAddress")} ${synapseDomain}
               })),
             }))))));
         return {
-          [nix.POS]: pos$60,
+          [nix.POS]: $pos[59],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$52,
+            [nix.POS]: $pos[51],
             "matrix-authentication-service": nix.thunk(() => ({
-              [nix.POS]: pos$50,
+              [nix.POS]: $pos[49],
               enable: true,
               createDatabase: true,
               extraConfigFiles: nix.thunk(() => [nix.thunk(() => nix.builtins.toString(extraConfig))]),
               settings: nix.thunk(() => ({
-                [nix.POS]: pos$48,
+                [nix.POS]: $pos[47],
                 http: nix.thunk(() => ({
-                  [nix.POS]: pos$40,
+                  [nix.POS]: $pos[39],
                   public_base: nix.thunk(() => nix.str`https://${masDomain}:8080/`),
                   tls: nix.thunk(() => ({
-                    [nix.POS]: pos$33,
+                    [nix.POS]: $pos[32],
                     certificate_file: nix.thunk(() => nix.str`${bundle}/cert.pem`),
                     key_file: nix.thunk(() => nix.str`${bundle}/key.pem`),
                   })),
                   listeners: nix.thunk(() => [
                     nix.thunk(() => ({
-                      [nix.POS]: pos$39,
+                      [nix.POS]: $pos[38],
                       name: "web",
-                      binds: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$34, address: "0.0.0.0:8080" }))]),
+                      binds: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: $pos[33], address: "0.0.0.0:8080" }))]),
                       resources: nix.thunk(() => [
-                        nix.thunk(() => ({ [nix.POS]: pos$35, name: "discovery" })),
-                        nix.thunk(() => ({ [nix.POS]: pos$36, name: "human" })),
-                        nix.thunk(() => ({ [nix.POS]: pos$37, name: "oauth" })),
+                        nix.thunk(() => ({ [nix.POS]: $pos[34], name: "discovery" })),
+                        nix.thunk(() => ({ [nix.POS]: $pos[35], name: "human" })),
+                        nix.thunk(() => ({ [nix.POS]: $pos[36], name: "oauth" })),
                       ]),
                       tls: nix.thunk(() => ({
-                        [nix.POS]: pos$38,
+                        [nix.POS]: $pos[37],
                         certificate_file: nix.thunk(() => nix.str`${bundle}/cert.pem`),
                         key_file: nix.thunk(() => nix.str`${bundle}/key.pem`),
                       })),
@@ -291,27 +221,27 @@ ${nix.sel(nodes, "hs1", "networking", "primaryIPAddress")} ${synapseDomain}
                   ]),
                 })),
                 matrix: nix.thunk(() => ({
-                  [nix.POS]: pos$41,
+                  [nix.POS]: $pos[40],
                   homeserver: "hs1",
                   endpoint: nix.thunk(() => nix.str`https://${synapseDomain}:8448/`),
                   secret_file: "/var/lib/matrix-authentication-service/matrix_secret",
                 })),
                 database: nix.thunk(() => ({
-                  [nix.POS]: pos$42,
+                  [nix.POS]: $pos[41],
                   uri: "postgresql:///matrix-authentication-service?host=/run/postgresql&user=matrix-authentication-service",
                 })),
                 policy: nix.thunk(() => ({
-                  [nix.POS]: pos$45,
+                  [nix.POS]: $pos[44],
                   data: nix.thunk(() => ({
-                    [nix.POS]: pos$44,
-                    client_registration: nix.thunk(() => ({ [nix.POS]: pos$43, allow_insecure_uris: true })),
+                    [nix.POS]: $pos[43],
+                    client_registration: nix.thunk(() => ({ [nix.POS]: $pos[42], allow_insecure_uris: true })),
                   })),
                 })),
                 upstream_oauth2: nix.thunk(() => ({
-                  [nix.POS]: pos$47,
+                  [nix.POS]: $pos[46],
                   providers: nix.thunk(() => [
                     nix.thunk(() => ({
-                      [nix.POS]: pos$46,
+                      [nix.POS]: $pos[45],
                       id: masULID,
                       client_id: oidcClientID,
                       client_secret_file: "${CREDENTIALS_DIRECTORY}/oidc_client_secret",
@@ -323,21 +253,21 @@ ${nix.sel(nodes, "hs1", "networking", "primaryIPAddress")} ${synapseDomain}
                 })),
               })),
               credentials: nix.thunk(() => ({
-                [nix.POS]: pos$49,
+                [nix.POS]: $pos[48],
                 oidc_client_secret: nix.thunk(() => nix.str`${nix.app(nix.sel(pkgs, "writeText"), "oidc-client-secret", oidcClientSecret)}`),
               })),
             })),
             postgresql: nix.thunk(() => ({
-              [nix.POS]: pos$51,
+              [nix.POS]: $pos[50],
               authentication: nix.thunk(() => nix.app(nix.sel(pkgs, "lib", "mkOverride"), 10n, "local all all trust\nhost  all all 127.0.0.1/32 trust\nhost  all all ::1/128 trust\n")),
             })),
           })),
           systemd: nix.thunk(() => ({
-            [nix.POS]: pos$55,
+            [nix.POS]: $pos[54],
             services: nix.thunk(() => ({
-              [nix.POS]: pos$54,
+              [nix.POS]: $pos[53],
               "matrix-authentication-service": nix.thunk(() => ({
-                [nix.POS]: pos$53,
+                [nix.POS]: $pos[52],
                 preStart: nix.thunk(() => nix.str`echo -n '${matrixSecret}' > /var/lib/matrix-authentication-service/matrix_secret
 echo -n '0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef' > /var/lib/matrix-authentication-service/encryption
 ${nix.sel(pkgs, "openssl")}/bin/openssl genrsa -out /var/lib/matrix-authentication-service/key_rsa_4096 4096
@@ -346,15 +276,15 @@ ${nix.sel(pkgs, "openssl")}/bin/openssl genrsa -out /var/lib/matrix-authenticati
             })),
           })),
           security: nix.thunk(() => ({
-            [nix.POS]: pos$57,
-            pki: nix.thunk(() => ({ [nix.POS]: pos$56, certificateFiles: nix.thunk(() => [ca_pem]) })),
+            [nix.POS]: $pos[56],
+            pki: nix.thunk(() => ({ [nix.POS]: $pos[55], certificateFiles: nix.thunk(() => [ca_pem]) })),
           })),
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$59,
+            [nix.POS]: $pos[58],
             extraHosts: nix.thunk(() => nix.str`${nix.sel(nodes, "hs1", "networking", "primaryIPAddress")} ${synapseDomain}
 ${nix.sel(nodes, "dex1", "networking", "primaryIPAddress")} ${dexDomain}
 `),
-            firewall: nix.thunk(() => ({ [nix.POS]: pos$58, allowedTCPPorts: nix.thunk(() => [8080n, 8081n]) })),
+            firewall: nix.thunk(() => ({ [nix.POS]: $pos[57], allowedTCPPorts: nix.thunk(() => [8080n, 8081n]) })),
           })),
         };
       })(), formals$3),
@@ -364,18 +294,18 @@ ${nix.sel(nodes, "dex1", "networking", "primaryIPAddress")} ${dexDomain}
         const config = nix.arg($_1, "config");
         const nodes = nix.arg($_1, "nodes");
         return {
-          [nix.POS]: pos$69,
+          [nix.POS]: $pos[68],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$64,
+            [nix.POS]: $pos[63],
             dex: nix.thunk(() => nix.app(nix.sel(lib_1, "mkMerge"), nix.thunk(() => [
                 nix.thunk(() => nix.app(mkDexConfig, dexDomain, nix.thunk(() => nix.sel(config, "networking", "primaryIPAddress")))),
                 nix.thunk(() => ({
-                  [nix.POS]: pos$63,
+                  [nix.POS]: $pos[62],
                   settings: nix.thunk(() => ({
-                    [nix.POS]: pos$62,
+                    [nix.POS]: $pos[61],
                     staticClients: nix.thunk(() => [
                       nix.thunk(() => ({
-                        [nix.POS]: pos$61,
+                        [nix.POS]: $pos[60],
                         id: oidcClientID,
                         name: "Matrix",
                         redirectURIs: nix.thunk(() => [
@@ -389,16 +319,16 @@ ${nix.sel(nodes, "dex1", "networking", "primaryIPAddress")} ${dexDomain}
               ]))),
           })),
           security: nix.thunk(() => ({
-            [nix.POS]: pos$66,
-            pki: nix.thunk(() => ({ [nix.POS]: pos$65, certificateFiles: nix.thunk(() => [ca_pem]) })),
+            [nix.POS]: $pos[65],
+            pki: nix.thunk(() => ({ [nix.POS]: $pos[64], certificateFiles: nix.thunk(() => [ca_pem]) })),
           })),
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$68,
+            [nix.POS]: $pos[67],
             extraHosts: nix.thunk(() => nix.str`${nix.sel(nodes, "hs1", "networking", "primaryIPAddress")} ${synapseDomain}
 ${nix.sel(nodes, "mas1", "networking", "primaryIPAddress")} ${masDomain}
 ${nix.sel(nodes, "dex1", "networking", "primaryIPAddress")} ${dexDomain}
 `),
-            firewall: nix.thunk(() => ({ [nix.POS]: pos$67, allowedTCPPorts: nix.thunk(() => [5556n]) })),
+            firewall: nix.thunk(() => ({ [nix.POS]: $pos[66], allowedTCPPorts: nix.thunk(() => [5556n]) })),
           })),
         };
       })(), formals$4),

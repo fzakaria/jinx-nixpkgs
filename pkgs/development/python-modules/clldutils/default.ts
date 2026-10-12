@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]], [["broken", 57, 5], ["changelog", 58, 5], ["description", 59, 5], ["homepage", 60, 5], ["license", 61, 5]], [["pname", 23, 3], ["version", 24, 3], ["pyproject", 25, 3], ["src", 27, 3], ["build-system", 34, 3], ["dependencies", 36, 3], ["nativeCheckInputs", 48, 3], ["meta", 56, 3]]]);
 const formals$1 = { args: { lib: false, attrs: false, buildPythonPackage: false, colorlog: false, fetchFromGitHub: false, bibtexparser: false, git: false, lxml: false, markdown: false, markupsafe: false, postgresql: false, pylatexenc: false, "pytest-cov-stub": false, "pytest-mock": false, pytestCheckHook: false, "python-dateutil": false, setuptools: false, tabulate: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["broken", 57, 5], ["changelog", 58, 5], ["description", 59, 5], ["homepage", 60, 5], ["license", 61, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 23, 3], ["version", 24, 3], ["pyproject", 25, 3], ["src", 27, 3], ["build-system", 34, 3], ["dependencies", 36, 3], ["nativeCheckInputs", 48, 3], ["meta", 56, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.24.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "clld",
           repo: "clldutils",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -52,7 +50,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const nativeCheckInputs = nix.thunk(() => [postgresql, pytest_cov_stub, pytest_mock, pytestCheckHook, git]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         broken: nix.thunk(() => nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(bibtexparser, "version")), "2")),
         changelog: nix.thunk(() => nix.str`https://github.com/clld/clldutils/blob/${nix.sel(src, "tag")}/CHANGES.md`),
         description: "Utilities for clld apps without the overhead of requiring pyramid, rdflib et al",
@@ -60,7 +58,7 @@ export default nix.lambda((args) => (() => {
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

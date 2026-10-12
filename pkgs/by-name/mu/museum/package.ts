@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["sparseCheckout", 18, 5], ["tag", 19, 5], ["hash", 20, 5]], [["ente", 47, 11]], [["extraArgs", 49, 7]], [["tests", 47, 5], ["updateScript", 48, 5]], [["description", 57, 5], ["homepage", 58, 5], ["changelog", 59, 5], ["license", 60, 5], ["maintainers", 61, 5], ["mainProgram", 66, 5], ["platforms", 67, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["vendorHash", 23, 3], ["sourceRoot", 25, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 30, 3], ["doCheck", 35, 3], ["postInstall", 37, 3], ["passthru", 46, 3], ["meta", 56, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, "pkg-config": false, libsodium: false, buildGoModule: false, "nix-update-script": false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["sparseCheckout", 18, 5], ["tag", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["ente", 47, 11]]);
-const pos$3 = nix.positions(here + "/package.nix", [["extraArgs", 49, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 47, 5], ["updateScript", 48, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 57, 5], ["homepage", 58, 5], ["changelog", 59, 5], ["license", 60, 5], ["maintainers", 61, 5], ["mainProgram", 66, 5], ["platforms", 67, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["vendorHash", 23, 3], ["sourceRoot", 25, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 30, 3], ["doCheck", 35, 3], ["postInstall", 37, 3], ["passthru", 46, 3], ["meta", 56, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "museum",
       version: "1.3.64",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ente",
           repo: "ente",
           sparseCheckout: nix.thunk(() => ["server"]),
@@ -38,15 +33,15 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       postInstall: "mkdir -p $out/share/museum\ncp -R configurations \\\n  migrations \\\n  mail-templates \\\n  web-templates \\\n  $out/share/museum\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$2, ente: nix.thunk(() => nix.sel(nixosTests, "ente")) })),
+        [nix.POS]: $pos[3],
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[1], ente: nix.thunk(() => nix.sel(nixosTests, "ente")) })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             extraArgs: nix.thunk(() => ["--version-regex", "photos-v(.*)"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "API server for ente.io",
         homepage: "https://github.com/ente/ente/tree/main/server",
         changelog: nix.thunk(() => nix.str`https://github.com/ente/ente/releases/tag/photos-v${nix.sel(finalAttrs, "version")}`),

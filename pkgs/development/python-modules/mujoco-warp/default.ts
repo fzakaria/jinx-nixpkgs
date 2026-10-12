@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 31, 5], ["repo", 32, 5], ["tag", 33, 5], ["hash", 34, 5]], [["cpu", 50, 5], ["cuda", 53, 5]], [["description", 66, 5], ["homepage", 67, 5], ["changelog", 68, 5], ["license", 69, 5], ["maintainers", 70, 5]], [["pname", 25, 3], ["version", 26, 20], ["pyproject", 27, 3], ["__structuredAttrs", 28, 3], ["src", 30, 3], ["build-system", 37, 3], ["dependencies", 41, 3], ["optional-dependencies", 49, 3], ["nativeCheckInputs", 58, 3], ["pythonImportsCheck", 63, 3], ["meta", 65, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, mujoco: false, fetchFromGitHub: false, setuptools: false, "absl-py": false, etils: false, numpy: false, "warp-lang": false, jax: false, pytestCheckHook: false, writableTmpDirAsHomeHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 31, 5], ["repo", 32, 5], ["tag", 33, 5], ["hash", 34, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["cpu", 50, 5], ["cuda", 53, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 66, 5], ["homepage", 67, 5], ["changelog", 68, 5], ["license", 69, 5], ["maintainers", 70, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 25, 3], ["version", 26, 20], ["pyproject", 27, 3], ["__structuredAttrs", 28, 3], ["src", 30, 3], ["build-system", 37, 3], ["dependencies", 41, 3], ["optional-dependencies", 49, 3], ["nativeCheckInputs", 58, 3], ["pythonImportsCheck", 63, 3], ["meta", 65, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,13 +20,13 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "mujoco-warp",
       version: nix.thunk(() => nix.attr(mujoco, "version")),
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "google-deepmind",
           repo: "mujoco_warp",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -37,11 +34,15 @@ export default nix.lambda((args) => (() => {
         })))),
       "build-system": nix.thunk(() => [setuptools]),
       dependencies: nix.thunk(() => [absl_py, etils, mujoco, numpy, warp_lang]),
-      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$2, cpu: nix.thunk(() => [jax]), cuda: nix.thunk(() => [jax]) })),
+      "optional-dependencies": nix.thunk(() => ({
+        [nix.POS]: $pos[1],
+        cpu: nix.thunk(() => [jax]),
+        cuda: nix.thunk(() => [jax]),
+      })),
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook, writableTmpDirAsHomeHook]),
       pythonImportsCheck: nix.thunk(() => ["mujoco_warp"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "GPU-optimized version of the MuJoCo physics simulator, designed for NVIDIA hardware",
         homepage: "https://github.com/google-deepmind/mujoco_warp",
         changelog: nix.thunk(() => nix.str`https://github.com/google-deepmind/mujoco_warp/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["ELECTRON_SKIP_BINARY_DOWNLOAD", 22, 7]], [["name", 37, 7], ["desktopName", 38, 7], ["comment", 39, 7], ["exec", 40, 7], ["icon", 41, 7], ["categories", 42, 7], ["startupWMClass", 46, 7]], [["frontend", 112, 5]], [["mainProgram", 116, 5]], [["pname", 12, 3], ["version", 13, 29], ["src", 13, 37], ["strictDeps", 15, 3], ["__structuredAttrs", 16, 3], ["sourceRoot", 18, 3], ["npmDepsHash", 20, 3], ["env", 22, 3], ["postPatch", 24, 3], ["npmBuildScript", 28, 3], ["nativeBuildInputs", 30, 3], ["desktopItems", 35, 3], ["installPhase", 50, 3], ["passthru", 111, 3], ["meta", 115, 3]]]);
 const formals$1 = { args: { buildNpmPackage: false, "headlamp-server": false, "headlamp-frontend": false, electron: false, makeWrapper: false, makeDesktopItem: false, copyDesktopItems: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["ELECTRON_SKIP_BINARY_DOWNLOAD", 22, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 37, 7], ["desktopName", 38, 7], ["comment", 39, 7], ["exec", 40, 7], ["icon", 41, 7], ["categories", 42, 7], ["startupWMClass", 46, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["frontend", 112, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["mainProgram", 116, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 29], ["src", 13, 37], ["strictDeps", 15, 3], ["__structuredAttrs", 16, 3], ["sourceRoot", 18, 3], ["npmDepsHash", 20, 3], ["env", 22, 3], ["postPatch", 24, 3], ["npmBuildScript", 28, 3], ["nativeBuildInputs", 30, 3], ["desktopItems", 35, 3], ["installPhase", 50, 3], ["passthru", 111, 3], ["meta", 115, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const makeDesktopItem = nix.arg($, "makeDesktopItem");
   const copyDesktopItems = nix.arg($, "copyDesktopItems");
   return nix.app(buildNpmPackage, nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "headlamp",
       version: nix.thunk(() => nix.attr(headlamp_server, "version")),
       src: nix.thunk(() => nix.attr(headlamp_server, "src")),
@@ -27,13 +23,13 @@ export default nix.lambda((args) => (() => {
       __structuredAttrs: true,
       sourceRoot: nix.thunk(() => nix.str`${nix.sel(headlamp_server, "src", "name")}/app`),
       npmDepsHash: "sha256-gZr+ni3dmrjqHDwoFxgGM0/Kf3R1Qy2SZetLtGtDY+0=",
-      env: nix.thunk(() => ({ [nix.POS]: pos$1, ELECTRON_SKIP_BINARY_DOWNLOAD: "1" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[0], ELECTRON_SKIP_BINARY_DOWNLOAD: "1" })),
       postPatch: "chmod u+w ..\n",
       npmBuildScript: "compile-electron",
       nativeBuildInputs: nix.thunk(() => [makeWrapper, copyDesktopItems]),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "headlamp",
             desktopName: "Headlamp",
             comment: "An easy-to-use and extensible Kubernetes web UI",
@@ -102,8 +98,8 @@ makeWrapper ${electron}/bin/electron $out/bin/headlamp \\
 
 runHook postInstall
 `),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$3, frontend: headlamp_frontend })),
-      meta: nix.thunk(() => nix.update(nix.sel(headlamp_server, "meta"), { [nix.POS]: pos$4, mainProgram: "headlamp" })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[2], frontend: headlamp_frontend })),
+      meta: nix.thunk(() => nix.update(nix.sel(headlamp_server, "meta"), { [nix.POS]: $pos[3], mainProgram: "headlamp" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

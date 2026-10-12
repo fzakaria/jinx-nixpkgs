@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["hash", 26, 5]], [["description", 56, 5], ["homepage", 57, 5], ["teams", 58, 5], ["platforms", 59, 5], ["license", 60, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 36, 3], ["mesonFlags", 46, 3], ["preFixup", 50, 3], ["meta", 55, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, meson: false, ninja: false, "pkg-config": false, wrapGAppsNoGuiHook: false, "cinnamon-desktop": false, glib: false, gtk3: false, "gsettings-desktop-schemas": false, "mate-desktop": false, xapp: false, "xdg-desktop-portal": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 56, 5], ["homepage", 57, 5], ["teams", 58, 5], ["platforms", 59, 5], ["license", 60, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 36, 3], ["mesonFlags", 46, 3], ["preFixup", 50, 3], ["meta", 55, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const xapp = nix.arg($, "xapp");
   const xdg_desktop_portal = nix.arg($, "xdg-desktop-portal");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "xdg-desktop-portal-xapp",
       version: "1.1.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "linuxmint",
           repo: "xdg-desktop-portal-xapp",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -51,7 +49,7 @@ export default nix.lambda((args) => (() => {
 gappsWrapperArgs+=(--prefix PATH : "${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [xapp]))}")
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Backend implementation for xdg-desktop-portal for Cinnamon, MATE, Xfce",
         homepage: "https://github.com/linuxmint/xdg-desktop-portal-xapp",
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "cinnamon"))]),

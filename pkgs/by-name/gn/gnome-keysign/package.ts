@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 19, 5], ["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5]], [["url", 29, 7], ["hash", 30, 7]], [["gtkSupport", 49, 44]], [["enableZbar", 50, 43]], [["description", 68, 5], ["homepage", 69, 5], ["license", 70, 5], ["teams", 71, 5], ["platforms", 72, 5]], [["pname", 14, 3], ["version", 15, 3], ["format", 16, 3], ["src", 18, 3], ["patches", 26, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 43, 3], ["propagatedBuildInputs", 53, 3], ["doCheck", 65, 3], ["meta", 67, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitLab: false, fetchpatch: false, python3: false, wrapGAppsHook3: false, "gobject-introspection": false, gtk3: false, glib: false, gst_all_1: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 19, 5], ["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 29, 7], ["hash", 30, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["gtkSupport", 49, 44]]);
-const pos$4 = nix.positions(here + "/package.nix", [["enableZbar", 50, 43]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 68, 5], ["homepage", 69, 5], ["license", 70, 5], ["teams", 71, 5], ["platforms", 72, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["format", 16, 3], ["src", 18, 3], ["patches", 26, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 43, 3], ["propagatedBuildInputs", 53, 3], ["doCheck", 65, 3], ["meta", 67, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const glib = nix.arg($, "glib");
   const gst_all_1 = nix.arg($, "gst_all_1");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "gnome-keysign",
       version: "1.3.0",
       format: "setuptools",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "gitlab.gnome.org",
           owner: "GNOME",
           repo: "gnome-keysign",
@@ -36,7 +31,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://gitlab.gnome.org/GNOME/gnome-keysign/-/commit/ea197254baf70a499a371678369eda85aff7a4c5.patch",
             hash: "sha256-Msd0NzNAkoAAxZ/WNiM3xV382lnx+xT6gyQiNGDEMM8=",
           })))),
@@ -53,8 +48,8 @@ export default nix.lambda((args) => (() => {
         glib,
         nix.thunk(() => nix.sel(gst_all_1, "gstreamer")),
         nix.thunk(() => nix.sel(gst_all_1, "gst-plugins-base")),
-        nix.thunk(() => nix.app(nix.sel(gst_all_1, "gst-plugins-good", "override"), nix.thunk(() => ({ [nix.POS]: pos$3, gtkSupport: true })))),
-        nix.thunk(() => nix.app(nix.sel(gst_all_1, "gst-plugins-bad", "override"), nix.thunk(() => ({ [nix.POS]: pos$4, enableZbar: true })))),
+        nix.thunk(() => nix.app(nix.sel(gst_all_1, "gst-plugins-good", "override"), nix.thunk(() => ({ [nix.POS]: $pos[2], gtkSupport: true })))),
+        nix.thunk(() => nix.app(nix.sel(gst_all_1, "gst-plugins-bad", "override"), nix.thunk(() => ({ [nix.POS]: $pos[3], enableZbar: true })))),
       ]),
       propagatedBuildInputs: nix.thunk(() => (() => {
         const w_1 = nix.withScope(nix.thunk(() => nix.sel(python3, "pkgs")), null);
@@ -71,7 +66,7 @@ export default nix.lambda((args) => (() => {
       })()),
       doCheck: false,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "GTK/GNOME application to use GnuPG for signing other peoples’ keys",
         homepage: "https://gitlab.gnome.org/GNOME/gnome-keysign",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

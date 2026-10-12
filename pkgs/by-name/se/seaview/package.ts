@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 15, 5], ["sha256", 16, 5]], [["description", 28, 5], ["mainProgram", 29, 5], ["longDescription", 30, 5], ["homepage", 47, 5], ["license", 48, 5], ["maintainers", 49, 5], ["platforms", 50, 5]], [["version", 11, 3], ["pname", 12, 3], ["src", 14, 3], ["buildInputs", 19, 3], ["patchPhase", 24, 3], ["installPhase", 25, 3], ["meta", 27, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, coreutils: false, fltk: false, libjpeg: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 15, 5], ["sha256", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 28, 5], ["mainProgram", 29, 5], ["longDescription", 30, 5], ["homepage", 47, 5], ["license", 48, 5], ["maintainers", 49, 5], ["platforms", 50, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 11, 3], ["pname", 12, 3], ["src", 14, 3], ["buildInputs", 19, 3], ["patchPhase", 24, 3], ["installPhase", 25, 3], ["meta", 27, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fltk = nix.arg($, "fltk");
   const libjpeg = nix.arg($, "libjpeg");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       version: "5.1",
       pname: "seaview",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`ftp://pbil.univ-lyon1.fr/pub/mol_phylogeny/seaview/archive/seaview_${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "sha256-tL9YQB4wgUOCyCWxOkw+6oyinDFO1cSh9DRZt47W+Ys=",
         })))),
@@ -28,7 +26,7 @@ export default nix.lambda((args) => (() => {
       patchPhase: nix.thunk(() => nix.str`sed -i 's#PATH=/bin:/usr/bin rm#'${coreutils}/bin/rm'#' seaview.cxx`),
       installPhase: "mkdir -p $out/bin; cp seaview $out/bin",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "GUI for molecular phylogeny",
         mainProgram: "seaview",
         longDescription: "SeaView is a multiplatform, graphical user interface for multiple sequence alignment and molecular phylogeny.\n  - SeaView reads and writes various file formats (NEXUS, MSF, CLUSTAL, FASTA, PHYLIP, MASE, Newick) of DNA and protein sequences and of phylogenetic trees.\n  - SeaView drives programs muscle or Clustal Omega for multiple sequence alignment, and also allows to use any external alignment algorithm able to read and write FASTA-formatted files.\n  - Seaview drives the Gblocks program to select blocks of evolutionarily conserved sites.\n  - SeaView computes phylogenetic trees by\n    + parsimony, using PHYLIP's dnapars/protpars algorithm,\n    + distance, with NJ or BioNJ algorithms on a variety of evolutionary distances,\n    + maximum likelihood, driving program PhyML 3.1.\n  - Seaview can use the Transfer Bootstrap Expectation method to compute the bootstrap support of PhyML and distance trees.\n  - SeaView prints and draws phylogenetic trees on screen, SVG, PDF or PostScript files.\n  - SeaView allows to download sequences from EMBL/GenBank/UniProt using the Internet.\n\nSeaview is published in:\n\n    Gouy M., Guindon S. & Gascuel O. (2010) SeaView version 4 : a multiplatform graphical user interface for sequence alignment and phylogenetic tree building. Molecular Biology and Evolution 27(2):221-224.\n",

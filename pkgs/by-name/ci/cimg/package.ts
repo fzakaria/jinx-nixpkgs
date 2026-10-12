@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]], [["gmic", 39, 13], ["gmic-qt", 39, 18]], [["tests", 37, 12]], [["homepage", 43, 5], ["description", 44, 5], ["longDescription", 45, 5], ["license", 51, 5], ["maintainers", 52, 5], ["platforms", 53, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["outputs", 20, 3], ["installPhase", 25, 3], ["passthru", 37, 3], ["meta", 42, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, gmic: false, "gmic-qt": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["gmic", 39, 13], ["gmic-qt", 39, 18]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 37, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 43, 5], ["description", 44, 5], ["longDescription", 45, 5], ["license", 51, 5], ["maintainers", 52, 5], ["platforms", 53, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["outputs", 20, 3], ["installPhase", 25, 3], ["passthru", 37, 3], ["meta", 42, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const gmic = nix.arg($, "gmic");
   const gmic_qt = nix.arg($, "gmic-qt");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "cimg",
       version: "3.7.6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "GreycLab",
           repo: "CImg",
           tag: nix.thunk(() => nix.str`v.${nix.sel(finalAttrs, "version")}`),
@@ -30,11 +26,11 @@ export default nix.lambda((args) => (() => {
       outputs: nix.thunk(() => ["out", "doc"]),
       installPhase: "runHook preInstall\n\ninstall -dm 755 $out/include/CImg/plugins $doc/share/doc/cimg/examples\ninstall -m 644 CImg.h $out/include/\ncp -dr --no-preserve=ownership plugins/* $out/include/CImg/plugins/\ncp -dr --no-preserve=ownership examples/* $doc/share/doc/cimg/examples/\ncp README.txt $doc/share/doc/cimg/\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$2, gmic: gmic, "gmic-qt": gmic_qt })),
+        [nix.POS]: $pos[2],
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[1], gmic: gmic, "gmic-qt": gmic_qt })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "http://cimg.eu/",
         description: "Small, open source, C++ toolkit for image processing",
         longDescription: "CImg stands for Cool Image. It is easy to use, efficient and is intended\nto be a very pleasant toolbox to design image processing algorithms in\nC++. Due to its generic conception, it can cover a wide range of image\nprocessing applications.\n",

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 40, 13], ["version", 40, 19], ["hash", 41, 5]], [["description", 102, 5], ["homepage", 103, 5], ["changelog", 104, 5], ["license", 105, 5], ["maintainers", 106, 5]], [["pname", 35, 3], ["version", 36, 3], ["pyproject", 37, 3], ["src", 39, 3], ["postPatch", 44, 3], ["nativeBuildInputs", 54, 3], ["build-system", 56, 3], ["pythonRemoveDeps", 58, 3], ["propagatedBuildInputs", 63, 3], ["doCheck", 86, 3], ["postInstall", 88, 3], ["postFixup", 94, 3], ["pythonImportsCheck", 99, 3], ["meta", 101, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, debugger: false, fetchPypi: false, capstone: false, "colored-traceback": false, intervaltree: false, mako: false, packaging: false, paramiko: false, psutil: false, pyelftools: false, pygments: false, pyserial: false, pysocks: false, "python-dateutil": false, requests: false, ropgadget: false, rpyc: false, setuptools: false, six: false, sortedcontainers: false, unicorn: false, "unix-ar": false, zstandard: false, installShellFiles: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 40, 13], ["version", 40, 19], ["hash", 41, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 102, 5], ["homepage", 103, 5], ["changelog", 104, 5], ["license", 105, 5], ["maintainers", 106, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 35, 3], ["version", 36, 3], ["pyproject", 37, 3], ["src", 39, 3], ["postPatch", 44, 3], ["nativeBuildInputs", 54, 3], ["build-system", 56, 3], ["pythonRemoveDeps", 58, 3], ["propagatedBuildInputs", 63, 3], ["doCheck", 86, 3], ["postInstall", 88, 3], ["postFixup", 94, 3], ["pythonImportsCheck", 99, 3], ["meta", 101, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -42,7 +40,7 @@ export default nix.lambda((args) => (() => {
       const version = "4.15.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-2ZqRcpjBynJBtRu6mtIhLyr0Qe9mSIBZskJlCOmip3Y=",
@@ -87,7 +85,7 @@ makeWrapper "${debugger$}/bin/${debuggerName}" "$out/bin/pwntools-gdb"
 `)));
       const pythonImportsCheck = nix.thunk(() => ["pwn"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "CTF framework and exploit development library",
         homepage: "https://pwntools.com",
         changelog: nix.thunk(() => nix.str`https://github.com/Gallopsled/pwntools/releases/tag/${version}`),
@@ -102,7 +100,7 @@ makeWrapper "${debugger$}/bin/${debuggerName}" "$out/bin/pwntools-gdb"
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

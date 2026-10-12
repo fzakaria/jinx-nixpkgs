@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["sha256", 26, 5]], [["description", 52, 5], ["homepage", 53, 5], ["license", 54, 5], ["maintainers", 55, 5], ["platforms", 56, 5], ["badPlatforms", 57, 5], ["mainProgram", 58, 5]], [["pname", 16, 3], ["version", 17, 3], ["doCheck", 19, 3], ["src", 21, 3], ["cargoHash", 29, 3], ["buildInputs", 31, 3], ["nativeBuildInputs", 37, 3], ["buildNoDefaultFeatures", 43, 3], ["buildFeatures", 44, 3], ["postFixup", 46, 3], ["meta", 51, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, rustPlatform: false, fetchFromGitLab: false, python3: false, libxscrnsaver: false, libx11: false, libxcb: false, libpulseaudio: false, "pkg-config": false, patchelf: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["sha256", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 52, 5], ["homepage", 53, 5], ["license", 54, 5], ["maintainers", 55, 5], ["platforms", 56, 5], ["badPlatforms", 57, 5], ["mainProgram", 58, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["doCheck", 19, 3], ["src", 21, 3], ["cargoHash", 29, 3], ["buildInputs", 31, 3], ["nativeBuildInputs", 37, 3], ["buildNoDefaultFeatures", 43, 3], ["buildFeatures", 44, 3], ["postFixup", 46, 3], ["meta", 51, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const patchelf = nix.arg($, "patchelf");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "xidlehook",
       version: "0.10.0",
       doCheck: false,
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "jD91mZM2",
           repo: "xidlehook",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -41,7 +39,7 @@ export default nix.lambda((args) => (() => {
 patchelf --set-rpath "$RPATH:${libpulseaudio}/lib" $out/bin/xidlehook
 `))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "xautolock rewrite in Rust, with a few extra features",
         homepage: "https://github.com/jD91mZM2/xidlehook",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

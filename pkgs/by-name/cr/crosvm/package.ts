@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 27, 5], ["rev", 28, 5], ["hash", 29, 5], ["fetchSubmodules", 30, 5]], [["CROSVM_USE_SYSTEM_MINIGBM", 60, 5], ["CROSVM_USE_SYSTEM_VIRGLRENDERER", 61, 5]], [["url", 70, 9], ["hardcodeZeroVersion", 71, 9]], [["musl", 77, 7]], [["updateScript", 67, 5], ["tests", 76, 5]], [["description", 82, 5], ["homepage", 83, 5], ["mainProgram", 84, 5], ["maintainers", 85, 5], ["license", 86, 5], ["platforms", 87, 5]], [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["separateDebugInfo", 33, 3], ["cargoHash", 35, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 45, 3], ["preConfigure", 55, 3], ["env", 59, 3], ["buildFeatures", 64, 3], ["passthru", 66, 3], ["meta", 81, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchgit: false, "pkg-config": false, protobuf: false, python3: false, "wayland-scanner": false, libcap: false, libdrm: false, libepoxy: false, minijail: false, virglrenderer: false, wayland: false, "wayland-protocols": false, writeShellScript: false, unstableGitUpdater: false, "nix-update": false, pkgsCross: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 27, 5], ["rev", 28, 5], ["hash", 29, 5], ["fetchSubmodules", 30, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["CROSVM_USE_SYSTEM_MINIGBM", 60, 5], ["CROSVM_USE_SYSTEM_VIRGLRENDERER", 61, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 70, 9], ["hardcodeZeroVersion", 71, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["musl", 77, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["updateScript", 67, 5], ["tests", 76, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 82, 5], ["homepage", 83, 5], ["mainProgram", 84, 5], ["maintainers", 85, 5], ["license", 86, 5], ["platforms", 87, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["separateDebugInfo", 33, 3], ["cargoHash", 35, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 45, 3], ["preConfigure", 55, 3], ["env", 59, 3], ["buildFeatures", 64, 3], ["passthru", 66, 3], ["meta", 81, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const nix_update = nix.arg($, "nix-update");
   const pkgsCross = nix.arg($, "pkgsCross");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "crosvm",
       version: "0-unstable-2026-08-03",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://chromium.googlesource.com/chromiumos/platform/crosvm",
           rev: "b4a952843aea56f36b1cdccea3cc3b92edc078b8",
           hash: "sha256-yQZ+Sf/pRScIGERyA8J4V9ukCwD0bjbi2QIhIzUHQwA=",
@@ -62,28 +56,28 @@ export default nix.lambda((args) => (() => {
       ]),
       preConfigure: "patchShebangs third_party/minijail/tools/*.py\n",
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         CROSVM_USE_SYSTEM_MINIGBM: true,
         CROSVM_USE_SYSTEM_VIRGLRENDERER: true,
       })),
       buildFeatures: nix.thunk(() => ["virgl_renderer"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         updateScript: nix.thunk(() => nix.app(writeShellScript, "update-crosvm.sh", nix.thunk(() => nix.str`set -ue
 ${nix.app(nix.sel(lib, "escapeShellArgs"), nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({
-                [nix.POS]: pos$3,
+                [nix.POS]: $pos[2],
                 url: "https://chromium.googlesource.com/crosvm/crosvm.git",
                 hardcodeZeroVersion: true,
               })))))}
 exec ${nix.app(nix.sel(lib, "getExe"), nix_update)} --version=skip
 `))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           musl: nix.thunk(() => nix.sel(pkgsCross, "musl64", "crosvm")),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Secure virtual machine monitor for KVM",
         homepage: "https://crosvm.dev/",
         mainProgram: "crosvm",

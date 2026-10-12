@@ -2,79 +2,61 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/go-httpbin.nix", [[["maintainers", 5, 8]], [["PORT", 10, 16]], [["enable", 9, 7], ["settings", 10, 7]], [["go-httpbin", 8, 14]], [["services", 8, 5]], [["machine", 7, 9]], [["HOST", 15, 34]], [["settings", 15, 25]], [["go-httpbin", 15, 14]], [["allowedTCPPorts", 16, 25]], [["firewall", 16, 16]], [["port", 20, 14]], [["port", 21, 15]], [["from", 19, 9], ["host", 20, 9], ["guest", 21, 9]], [["forwardPorts", 17, 20]], [["services", 15, 5], ["networking", 16, 5], ["virtualisation", 17, 5]], [["machine", 14, 21]], [["nodes", 14, 15]], [["name", 4, 3], ["meta", 5, 3], ["nodes", 7, 3], ["interactive", 14, 3], ["testScript", 26, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/go-httpbin.nix", [["maintainers", 5, 8]]);
-const pos$2 = nix.positions(here + "/go-httpbin.nix", [["PORT", 10, 16]]);
-const pos$3 = nix.positions(here + "/go-httpbin.nix", [["enable", 9, 7], ["settings", 10, 7]]);
-const pos$4 = nix.positions(here + "/go-httpbin.nix", [["go-httpbin", 8, 14]]);
-const pos$5 = nix.positions(here + "/go-httpbin.nix", [["services", 8, 5]]);
-const pos$6 = nix.positions(here + "/go-httpbin.nix", [["machine", 7, 9]]);
-const pos$7 = nix.positions(here + "/go-httpbin.nix", [["HOST", 15, 34]]);
-const pos$8 = nix.positions(here + "/go-httpbin.nix", [["settings", 15, 25]]);
-const pos$9 = nix.positions(here + "/go-httpbin.nix", [["go-httpbin", 15, 14]]);
-const pos$10 = nix.positions(here + "/go-httpbin.nix", [["allowedTCPPorts", 16, 25]]);
-const pos$11 = nix.positions(here + "/go-httpbin.nix", [["firewall", 16, 16]]);
-const pos$12 = nix.positions(here + "/go-httpbin.nix", [["port", 20, 14]]);
-const pos$13 = nix.positions(here + "/go-httpbin.nix", [["port", 21, 15]]);
-const pos$14 = nix.positions(here + "/go-httpbin.nix", [["from", 19, 9], ["host", 20, 9], ["guest", 21, 9]]);
-const pos$15 = nix.positions(here + "/go-httpbin.nix", [["forwardPorts", 17, 20]]);
-const pos$16 = nix.positions(here + "/go-httpbin.nix", [["services", 15, 5], ["networking", 16, 5], ["virtualisation", 17, 5]]);
-const pos$17 = nix.positions(here + "/go-httpbin.nix", [["machine", 14, 21]]);
-const pos$18 = nix.positions(here + "/go-httpbin.nix", [["nodes", 14, 15]]);
-const pos$19 = nix.positions(here + "/go-httpbin.nix", [["name", 4, 3], ["meta", 5, 3], ["nodes", 7, 3], ["interactive", 14, 3], ["testScript", 26, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$19,
+    [nix.POS]: $pos[18],
     name: "go-httpbin",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "defelo"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       machine: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         services: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           "go-httpbin": nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             enable: true,
-            settings: nix.thunk(() => ({ [nix.POS]: pos$2, PORT: 8000n })),
+            settings: nix.thunk(() => ({ [nix.POS]: $pos[1], PORT: 8000n })),
           })),
         })),
       })),
     })),
     interactive: nix.thunk(() => ({
-      [nix.POS]: pos$18,
+      [nix.POS]: $pos[17],
       nodes: nix.thunk(() => ({
-        [nix.POS]: pos$17,
+        [nix.POS]: $pos[16],
         machine: nix.thunk(() => ({
-          [nix.POS]: pos$16,
+          [nix.POS]: $pos[15],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$9,
+            [nix.POS]: $pos[8],
             "go-httpbin": nix.thunk(() => ({
-              [nix.POS]: pos$8,
-              settings: nix.thunk(() => ({ [nix.POS]: pos$7, HOST: "0.0.0.0" })),
+              [nix.POS]: $pos[7],
+              settings: nix.thunk(() => ({ [nix.POS]: $pos[6], HOST: "0.0.0.0" })),
             })),
           })),
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$11,
-            firewall: nix.thunk(() => ({ [nix.POS]: pos$10, allowedTCPPorts: nix.thunk(() => [8000n]) })),
+            [nix.POS]: $pos[10],
+            firewall: nix.thunk(() => ({ [nix.POS]: $pos[9], allowedTCPPorts: nix.thunk(() => [8000n]) })),
           })),
           virtualisation: nix.thunk(() => ({
-            [nix.POS]: pos$15,
+            [nix.POS]: $pos[14],
             forwardPorts: nix.thunk(() => [
               nix.thunk(() => ({
-                [nix.POS]: pos$14,
+                [nix.POS]: $pos[13],
                 from: "host",
-                host: nix.thunk(() => ({ [nix.POS]: pos$12, port: 8000n })),
-                guest: nix.thunk(() => ({ [nix.POS]: pos$13, port: 8000n })),
+                host: nix.thunk(() => ({ [nix.POS]: $pos[11], port: 8000n })),
+                guest: nix.thunk(() => ({ [nix.POS]: $pos[12], port: 8000n })),
               })),
             ]),
           })),

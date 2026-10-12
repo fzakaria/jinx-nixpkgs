@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["sha256", 24, 5]], [["DATADIR", 56, 7]], [["description", 59, 5], ["homepage", 60, 5], ["changelog", 61, 5], ["license", 62, 5], ["maintainers", 63, 5], ["platforms", 64, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["postPatch", 27, 3], ["buildInputs", 42, 3], ["enableParallelBuilding", 54, 3], ["env", 56, 3], ["meta", 58, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, zlib: false, openssl: false, ncurses: false, libidn: false, pcre2: false, libssh: false, libmysqlclient: false, libpq: false, samba: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["sha256", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["DATADIR", 56, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 59, 5], ["homepage", 60, 5], ["changelog", 61, 5], ["license", 62, 5], ["maintainers", 63, 5], ["platforms", 64, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["postPatch", 27, 3], ["buildInputs", 42, 3], ["enableParallelBuilding", 54, 3], ["env", 56, 3], ["meta", 58, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const pname = "thc-hydra";
       const version = "9.7";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "vanhauser-thc",
           repo: "thc-hydra",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -44,9 +41,9 @@ export default nix.lambda((args) => (() => {
       })());
       const buildInputs = nix.thunk(() => [zlib, openssl, ncurses, libidn, pcre2, libssh, libmysqlclient, libpq, samba]);
       const enableParallelBuilding = true;
-      const env = nix.thunk(() => ({ [nix.POS]: pos$2, DATADIR: nix.thunk(() => nix.str`/share/${pname}`) }));
+      const env = nix.thunk(() => ({ [nix.POS]: $pos[1], DATADIR: nix.thunk(() => nix.str`/share/${pname}`) }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Very fast network logon cracker which support many different services",
         homepage: "https://github.com/vanhauser-thc/thc-hydra",
         changelog: nix.thunk(() => nix.str`https://github.com/vanhauser-thc/thc-hydra/raw/v${version}/CHANGES`),
@@ -55,7 +52,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

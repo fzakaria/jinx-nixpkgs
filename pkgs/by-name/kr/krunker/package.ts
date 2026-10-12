@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["updateScript", 15, 7]], [["description", 24, 7], ["homepage", 25, 7], ["license", 26, 7], ["maintainers", 27, 7], ["mainProgram", 28, 7], ["platforms", 29, 7], ["sourceProvenance", 30, 7]], [["passthru", 14, 5], ["pos", 21, 5], ["meta", 23, 5]]]);
 const formals$1 = { args: { lib: false, stdenv: false, callPackage: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["updateScript", 15, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 24, 7], ["homepage", 25, 7], ["license", 26, 7], ["maintainers", 27, 7], ["mainProgram", 28, 7], ["platforms", 29, 7], ["sourceProvenance", 30, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["passthru", 14, 5], ["pos", 21, 5], ["meta", 23, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const callPackage = nix.arg($, "callPackage");
   const package$ = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? nix.app(callPackage, nix.path(here, "./darwin.nix"), nix.thunk(() => ({}))) : nix.app(callPackage, nix.path(here, "./linux.nix"), nix.thunk(() => ({})))));
   return nix.app(nix.sel(package$, "overrideAttrs"), (finalAttrs) => (oldAttrs) => ({
-      [nix.POS]: pos$3,
-      passthru: nix.thunk(() => nix.update({ [nix.POS]: pos$1, updateScript: nix.path(here, "./update.sh") }, nix.selOr(oldAttrs, () => ({}), "passthru"))),
+      [nix.POS]: $pos[2],
+      passthru: nix.thunk(() => nix.update({ [nix.POS]: $pos[0], updateScript: nix.path(here, "./update.sh") }, nix.selOr(oldAttrs, () => ({}), "passthru"))),
       pos: nix.thunk(() => nix.builtins.unsafeGetAttrPos("pname", finalAttrs)),
       meta: nix.thunk(() => nix.update({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Easy to get into fully moddable First Person Shooter with advanced movement mechanics",
         homepage: "https://krunker.io",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

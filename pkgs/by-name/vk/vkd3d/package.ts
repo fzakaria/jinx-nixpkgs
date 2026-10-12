@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 21, 5], ["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]], [["homepage", 53, 5], ["description", 54, 5], ["longDescription", 55, 5], ["license", 65, 5], ["mainProgram", 66, 5], ["maintainers", 67, 5], ["platforms", 68, 25]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["outputs", 28, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 44, 3], ["strictDeps", 50, 3], ["meta", 52, 3]]]);
 const formals$1 = { args: { lib: false, autoreconfHook: false, bison: false, fetchFromGitLab: false, flex: false, perlPackages: false, "pkg-config": false, "spirv-headers": false, stdenv: false, "vulkan-headers": false, "vulkan-loader": false, wine: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 21, 5], ["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 53, 5], ["description", 54, 5], ["longDescription", 55, 5], ["license", 65, 5], ["mainProgram", 66, 5], ["maintainers", 67, 5], ["platforms", 68, 25]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["outputs", 28, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 44, 3], ["strictDeps", 50, 3], ["meta", 52, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const vulkan_loader = nix.arg($, "vulkan-loader");
   const wine = nix.arg($, "wine");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "vkd3d",
       version: "2.1",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "gitlab.winehq.org",
           owner: "wine",
           repo: "vkd3d",
@@ -48,7 +46,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(wine, "meta"));
         return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://gitlab.winehq.org/wine/vkd3d",
         description: "Direct3D to Vulkan translation library",
         longDescription: "Vkd3d is a 3D graphics library built on top of Vulkan. It has an API very\nsimilar, but not identical, to Direct3D 12.\n\nVkd3d can be used by projects that target Direct3D 12 as a drop-in\nreplacement at build-time with some modest source modifications.\n\nIf vkd3d is available when building Wine, then Wine will use it to support\nDirect3D 12 applications.\n",

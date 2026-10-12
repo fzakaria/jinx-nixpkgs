@@ -2,57 +2,48 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/make-bootstrap-tools.nix", [[["system", 5, 5]], [["crossSystem", 12, 49]], [["bootstrapFiles", 21, 15]], [["stdenvStages", 17, 9]], [["localSystem", 29, 37]], [["bootstrapTools", 34, 36], ["unpack", 34, 51]], [["bootstrapTools", 37, 64]], [["bootstrapFiles", 50, 27]], [["localSystem", 44, 5], ["stdenvStages", 46, 5]], [["build", 58, 5], ["bootstrapTools", 59, 5], ["test", 60, 5], ["test-pkgs", 61, 5], ["bootstrapFiles", 64, 19]]]);
 const formals$1 = { args: { pkgspath: true, "test-pkgspath": true, localSystem: true, crossSystem: true, bootstrapFiles: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/make-bootstrap-tools.nix", [["system", 5, 5]]);
-const pos$2 = nix.positions(here + "/make-bootstrap-tools.nix", [["crossSystem", 12, 49]]);
-const pos$3 = nix.positions(here + "/make-bootstrap-tools.nix", [["bootstrapFiles", 21, 15]]);
-const pos$4 = nix.positions(here + "/make-bootstrap-tools.nix", [["stdenvStages", 17, 9]]);
-const pos$5 = nix.positions(here + "/make-bootstrap-tools.nix", [["localSystem", 29, 37]]);
-const pos$6 = nix.positions(here + "/make-bootstrap-tools.nix", [["bootstrapTools", 34, 36], ["unpack", 34, 51]]);
-const pos$7 = nix.positions(here + "/make-bootstrap-tools.nix", [["bootstrapTools", 37, 64]]);
-const pos$8 = nix.positions(here + "/make-bootstrap-tools.nix", [["bootstrapFiles", 50, 27]]);
-const pos$9 = nix.positions(here + "/make-bootstrap-tools.nix", [["localSystem", 44, 5], ["stdenvStages", 46, 5]]);
-const pos$10 = nix.positions(here + "/make-bootstrap-tools.nix", [["build", 58, 5], ["bootstrapTools", 59, 5], ["test", 60, 5], ["test-pkgs", 61, 5], ["bootstrapFiles", 64, 19]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgspath = nix.argOr($, "pkgspath", () => nix.path(here, "../../.."));
   const test_pkgspath = nix.argOr($, "test-pkgspath", () => nix.force(pkgspath));
-  const localSystem = nix.argOr($, "localSystem", () => ({ [nix.POS]: pos$1, system: nix.thunk(() => nix.builtins.currentSystem) }));
+  const localSystem = nix.argOr($, "localSystem", () => ({ [nix.POS]: $pos[0], system: nix.thunk(() => nix.builtins.currentSystem) }));
   const crossSystem = nix.argOr($, "crossSystem", () => null);
   const bootstrapFiles = nix.argOr($, "bootstrapFiles", () => null);
-  const cross = nix.thunk(() => (nix.asBool(!nix.eq(crossSystem, null)) ? { [nix.POS]: pos$2, crossSystem: crossSystem } : {}));
+  const cross = nix.thunk(() => (nix.asBool(!nix.eq(crossSystem, null)) ? { [nix.POS]: $pos[1], crossSystem: crossSystem } : {}));
   const custom_bootstrap = nix.thunk(() => (nix.asBool(!nix.eq(bootstrapFiles, null)) ? {
-    [nix.POS]: pos$4,
+    [nix.POS]: $pos[3],
     stdenvStages: (args_1) => (() => {
-      const args$ = nix.thunk(() => nix.update(args_1, { [nix.POS]: pos$3, bootstrapFiles: bootstrapFiles }));
+      const args$ = nix.thunk(() => nix.update(args_1, { [nix.POS]: $pos[2], bootstrapFiles: bootstrapFiles }));
       return nix.app(nix.builtins.import(nix.thunk(() => nix.str`${pkgspath}/pkgs/stdenv/darwin`)), args$);
     })(),
   } : {}));
-  const pkgs = nix.thunk(() => nix.app(nix.builtins.import(pkgspath), nix.thunk(() => nix.update({ [nix.POS]: pos$5, localSystem: localSystem }, nix.update(cross, custom_bootstrap)))));
+  const pkgs = nix.thunk(() => nix.app(nix.builtins.import(pkgspath), nix.thunk(() => nix.update({ [nix.POS]: $pos[4], localSystem: localSystem }, nix.update(cross, custom_bootstrap)))));
   const build = nix.thunk(() => nix.app(nix.sel(pkgs, "callPackage"), nix.path(here, "./stdenv-bootstrap-tools.nix"), nix.thunk(() => ({}))));
   const bootstrapTools = nix.thunk(() => nix.app(nix.sel(pkgs, "callPackage"), nix.path(here, "./bootstrap-tools.nix"), nix.thunk(() => (() => {
       const from = nix.thunk(() => nix.sel(build, "bootstrapFiles"));
       return {
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       bootstrapTools: nix.thunk(() => nix.attr(from, "bootstrapTools")),
       unpack: nix.thunk(() => nix.attr(from, "unpack")),
     };
     })())));
-  const test = nix.thunk(() => nix.app(nix.sel(pkgs, "callPackage"), nix.path(here, "./test-bootstrap-tools.nix"), nix.thunk(() => ({ [nix.POS]: pos$7, bootstrapTools: bootstrapTools }))));
+  const test = nix.thunk(() => nix.app(nix.sel(pkgs, "callPackage"), nix.path(here, "./test-bootstrap-tools.nix"), nix.thunk(() => ({ [nix.POS]: $pos[6], bootstrapTools: bootstrapTools }))));
   const test_pkgs = nix.thunk(() => nix.app(nix.builtins.import(test_pkgspath), nix.thunk(() => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       localSystem: nix.thunk(() => (nix.asBool(!nix.eq(crossSystem, null)) ? nix.force(crossSystem) : nix.force(localSystem))),
       stdenvStages: (args_1) => (() => {
         const args$ = nix.thunk(() => nix.update(args_1, {
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           bootstrapFiles: nix.thunk(() => nix.attr(build, "bootstrapFiles")),
         }));
         return nix.app(nix.builtins.import(nix.thunk(() => nix.add(test_pkgspath, "/pkgs/stdenv/darwin"))), args$);
       })(),
     }))));
   return {
-    [nix.POS]: pos$10,
+    [nix.POS]: $pos[9],
     build: build,
     bootstrapTools: bootstrapTools,
     test: test,

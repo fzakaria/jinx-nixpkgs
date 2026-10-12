@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]], [["General", 31, 44]], [["description", 44, 5], ["homepage", 45, 5], ["license", 46, 5], ["platforms", 47, 5], ["maintainers", 48, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["dontWrapQtApps", 21, 3], ["propagatedBuildInputs", 23, 3], ["installPhase", 28, 3], ["meta", 43, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchFromGitHub: false, formats: false, libsForQt5: false, themeConfig: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["General", 31, 44]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 44, 5], ["homepage", 45, 5], ["license", 46, 5], ["platforms", 47, 5], ["maintainers", 48, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["dontWrapQtApps", 21, 3], ["propagatedBuildInputs", 23, 3], ["installPhase", 28, 3], ["meta", 43, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const libsForQt5 = nix.arg($, "libsForQt5");
   const themeConfig = nix.argOr($, "themeConfig", () => null);
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "sddm-sugar-dark",
       version: "1.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "MarianArlt",
           repo: "sddm-sugar-dark",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -31,7 +28,7 @@ export default nix.lambda((args) => (() => {
       propagatedBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(libsForQt5, "qtgraphicaleffects", "out"))]),
       installPhase: nix.thunk(() => (() => {
         const iniFormat = nix.thunk(() => nix.app(nix.sel(formats, "ini"), nix.thunk(() => ({}))));
-        const configFile = nix.thunk(() => nix.app(nix.sel(iniFormat, "generate"), "", nix.thunk(() => ({ [nix.POS]: pos$2, General: themeConfig }))));
+        const configFile = nix.thunk(() => nix.app(nix.sel(iniFormat, "generate"), "", nix.thunk(() => ({ [nix.POS]: $pos[1], General: themeConfig }))));
         const basePath = "$out/share/sddm/themes/sugar-dark";
         return nix.add(nix.str`mkdir -p ${basePath}
 cp -r $src/* ${basePath}
@@ -39,7 +36,7 @@ cp -r $src/* ${basePath}
 `)));
       })()),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Dark SDDM theme from the sugar family",
         homepage: "https://github.com/MarianArlt/sddm-sugar-dark",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

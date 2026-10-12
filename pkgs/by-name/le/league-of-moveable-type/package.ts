@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["description", 48, 5], ["longDescription", 50, 5], ["homepage", 57, 5], ["license", 59, 5], ["platforms", 61, 5], ["maintainers", 62, 5]], [["name", 25, 3], ["paths", 27, 3], ["meta", 47, 3]]]);
 const formals$1 = { args: { lib: false, symlinkJoin: false, "the-neue-black": false, blackout: false, chunk: false, fanwood: false, "goudy-bookletter-1911": false, "junction-font": false, knewave: false, "league-gothic": false, "league-mono": false, "league-script-number-one": false, "league-spartan": false, "linden-hill": false, orbitron: false, "ostrich-sans": false, prociono: false, raleway: false, sniglet: false, "sorts-mill-goudy": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["description", 48, 5], ["longDescription", 50, 5], ["homepage", 57, 5], ["license", 59, 5], ["platforms", 61, 5], ["maintainers", 62, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 25, 3], ["paths", 27, 3], ["meta", 47, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,7 +28,7 @@ export default nix.lambda((args) => (() => {
   const sniglet = nix.arg($, "sniglet");
   const sorts_mill_goudy = nix.arg($, "sorts-mill-goudy");
   return nix.app(symlinkJoin, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       name: "league-of-moveable-type",
       paths: nix.thunk(() => [
         the_neue_black,
@@ -51,7 +50,7 @@ export default nix.lambda((args) => (() => {
         sorts_mill_goudy,
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Font Collection by The League of Moveable Type",
         longDescription: "We're done with the tired old fontstacks of yesteryear. The web\nis no longer limited, and now it's time to raise our standards.\nSince 2009, The League has given only the most well-made, free &\nopen-source, @font-face ready fonts.\n",
         homepage: "https://www.theleagueofmoveabletype.com/",

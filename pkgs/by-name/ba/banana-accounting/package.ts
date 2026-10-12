@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 21, 5], ["hash", 22, 5]], [["description", 60, 5], ["homepage", 61, 5], ["license", 62, 5], ["platforms", 63, 5], ["maintainers", 64, 5], ["sourceProvenance", 65, 5]], [["pname", 17, 3], ["version", 18, 3], ["srcs", 20, 3], ["sourceRoot", 25, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 32, 3], ["dontConfigure", 43, 3], ["dontBuild", 45, 3], ["installPhase", 47, 3], ["meta", 59, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, autoPatchelfHook: false, wrapGAppsHook3: false, cairo: false, e2fsprogs: false, gmp: false, gtk3: false, libGL: false, libx11: false, libgcrypt: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 60, 5], ["homepage", 61, 5], ["license", 62, 5], ["platforms", 63, 5], ["maintainers", 64, 5], ["sourceProvenance", 65, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["srcs", 20, 3], ["sourceRoot", 25, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 32, 3], ["dontConfigure", 43, 3], ["dontBuild", 45, 3], ["installPhase", 47, 3], ["meta", 59, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const libx11 = nix.arg($, "libx11");
   const libgcrypt = nix.arg($, "libgcrypt");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "banana-accounting",
       version: "10.1.24",
       srcs: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://web.archive.org/web/20250416013207/https://www.banana.ch/accounting/files/bananaplus/exe/bananaplus.tgz",
           hash: "sha256-5GewPGOCyeS6faL8aMUZ/JDUUn2PGuur0ws/7nlNX6M=",
         })))),
@@ -46,7 +44,7 @@ export default nix.lambda((args) => (() => {
       dontBuild: true,
       installPhase: "runHook preInstall\n\nmkdir -p $out/opt $out/bin $out/share\ncp -r . $out/opt/banana-accounting\nln -s $out/opt/banana-accounting/usr/bin/bananaplus $out/bin/bananaplus\nln -s $out/opt/banana-accounting/usr/share/applications $out/share/applications\nln -s $out/opt/banana-accounting/usr/share/icons $out/share/icons\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Accounting Software for small companies, associations and individuals",
         homepage: "https://www.banana.ch",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

@@ -2,47 +2,10 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/systemd-stage-1.nix", [[["raid", 11, 7], ["thinpool", 16, 7], ["vdo", 22, 7]], [["kernelModules", 32, 21]], [["initrd", 32, 14]], [["boot", 32, 9]], [["enable", 40, 21]], [["thin", 40, 16]], [["enable", 41, 20]], [["boot", 40, 11], ["dmeventd", 41, 11]], [["lvm", 39, 18]], [["services", 39, 9]], [["enable", 47, 20]], [["vdo", 47, 16]], [["enable", 48, 20]], [["boot", 47, 11], ["dmeventd", 48, 11]], [["lvm", 46, 18]], [["services", 46, 9]], [["raid", 31, 7], ["thinpool", 38, 7], ["vdo", 45, 7]], [["raid", 56, 7], ["thinpool", 60, 7], ["vdo", 64, 7]], [["maintainers", 73, 8]], [["emptyDiskImages", 84, 9], ["useBootLoader", 88, 9], ["useEFIBoot", 89, 9], ["mountHostNixStore", 91, 9]], [["enable", 93, 32]], [["canTouchEfiVariables", 94, 23]], [["systemd-boot", 93, 19], ["efi", 94, 19]], [["enable", 99, 11], ["emergencyAccess", 100, 11]], [["enable", 102, 29]], [["lvm", 102, 25]], [["systemd", 98, 16], ["services", 102, 16]], [["loader", 93, 12], ["initrd", 98, 9], ["kernelPackages", 103, 9]], [["systemPackages", 96, 19]], [["device", 110, 13], ["fsType", 111, 13]], [["/", 109, 11]], [["useDefaultFilesystems", 107, 9], ["fileSystems", 108, 9], ["rootDevice", 115, 9]], [["virtualisation", 106, 45]], [["configuration", 106, 31]], [["boot-lvm", 106, 22]], [["imports", 81, 7], ["virtualisation", 83, 7], ["boot", 93, 7], ["environment", 96, 7], ["specialisation", 106, 7]], [["machine", 78, 9]], [["name", 72, 3], ["meta", 73, 3], ["nodes", 78, 3], ["testScript", 119, 3]]]);
 const formals$1 = { args: { lib: false, kernelPackages: true, flavour: false, mkXfsFlags: true }, ellipsis: true };
-const pos$1 = nix.positions(here + "/systemd-stage-1.nix", [["raid", 11, 7], ["thinpool", 16, 7], ["vdo", 22, 7]]);
-const pos$2 = nix.positions(here + "/systemd-stage-1.nix", [["kernelModules", 32, 21]]);
-const pos$3 = nix.positions(here + "/systemd-stage-1.nix", [["initrd", 32, 14]]);
-const pos$4 = nix.positions(here + "/systemd-stage-1.nix", [["boot", 32, 9]]);
-const pos$5 = nix.positions(here + "/systemd-stage-1.nix", [["enable", 40, 21]]);
-const pos$6 = nix.positions(here + "/systemd-stage-1.nix", [["thin", 40, 16]]);
-const pos$7 = nix.positions(here + "/systemd-stage-1.nix", [["enable", 41, 20]]);
-const pos$8 = nix.positions(here + "/systemd-stage-1.nix", [["boot", 40, 11], ["dmeventd", 41, 11]]);
-const pos$9 = nix.positions(here + "/systemd-stage-1.nix", [["lvm", 39, 18]]);
-const pos$10 = nix.positions(here + "/systemd-stage-1.nix", [["services", 39, 9]]);
-const pos$11 = nix.positions(here + "/systemd-stage-1.nix", [["enable", 47, 20]]);
-const pos$12 = nix.positions(here + "/systemd-stage-1.nix", [["vdo", 47, 16]]);
-const pos$13 = nix.positions(here + "/systemd-stage-1.nix", [["enable", 48, 20]]);
-const pos$14 = nix.positions(here + "/systemd-stage-1.nix", [["boot", 47, 11], ["dmeventd", 48, 11]]);
-const pos$15 = nix.positions(here + "/systemd-stage-1.nix", [["lvm", 46, 18]]);
-const pos$16 = nix.positions(here + "/systemd-stage-1.nix", [["services", 46, 9]]);
-const pos$17 = nix.positions(here + "/systemd-stage-1.nix", [["raid", 31, 7], ["thinpool", 38, 7], ["vdo", 45, 7]]);
-const pos$18 = nix.positions(here + "/systemd-stage-1.nix", [["raid", 56, 7], ["thinpool", 60, 7], ["vdo", 64, 7]]);
-const pos$19 = nix.positions(here + "/systemd-stage-1.nix", [["maintainers", 73, 8]]);
 const formals$2 = { args: { pkgs: false, lib: false }, ellipsis: true };
-const pos$20 = nix.positions(here + "/systemd-stage-1.nix", [["emptyDiskImages", 84, 9], ["useBootLoader", 88, 9], ["useEFIBoot", 89, 9], ["mountHostNixStore", 91, 9]]);
-const pos$21 = nix.positions(here + "/systemd-stage-1.nix", [["enable", 93, 32]]);
-const pos$22 = nix.positions(here + "/systemd-stage-1.nix", [["canTouchEfiVariables", 94, 23]]);
-const pos$23 = nix.positions(here + "/systemd-stage-1.nix", [["systemd-boot", 93, 19], ["efi", 94, 19]]);
-const pos$24 = nix.positions(here + "/systemd-stage-1.nix", [["enable", 99, 11], ["emergencyAccess", 100, 11]]);
-const pos$25 = nix.positions(here + "/systemd-stage-1.nix", [["enable", 102, 29]]);
-const pos$26 = nix.positions(here + "/systemd-stage-1.nix", [["lvm", 102, 25]]);
-const pos$27 = nix.positions(here + "/systemd-stage-1.nix", [["systemd", 98, 16], ["services", 102, 16]]);
-const pos$28 = nix.positions(here + "/systemd-stage-1.nix", [["loader", 93, 12], ["initrd", 98, 9], ["kernelPackages", 103, 9]]);
-const pos$29 = nix.positions(here + "/systemd-stage-1.nix", [["systemPackages", 96, 19]]);
-const pos$30 = nix.positions(here + "/systemd-stage-1.nix", [["device", 110, 13], ["fsType", 111, 13]]);
-const pos$31 = nix.positions(here + "/systemd-stage-1.nix", [["/", 109, 11]]);
-const pos$32 = nix.positions(here + "/systemd-stage-1.nix", [["useDefaultFilesystems", 107, 9], ["fileSystems", 108, 9], ["rootDevice", 115, 9]]);
-const pos$33 = nix.positions(here + "/systemd-stage-1.nix", [["virtualisation", 106, 45]]);
-const pos$34 = nix.positions(here + "/systemd-stage-1.nix", [["configuration", 106, 31]]);
-const pos$35 = nix.positions(here + "/systemd-stage-1.nix", [["boot-lvm", 106, 22]]);
-const pos$36 = nix.positions(here + "/systemd-stage-1.nix", [["imports", 81, 7], ["virtualisation", 83, 7], ["boot", 93, 7], ["environment", 96, 7], ["specialisation", 106, 7]]);
-const pos$37 = nix.positions(here + "/systemd-stage-1.nix", [["machine", 78, 9]]);
 const formals$3 = { args: { nodes: false }, ellipsis: true };
-const pos$38 = nix.positions(here + "/systemd-stage-1.nix", [["name", 72, 3], ["meta", 73, 3], ["nodes", 78, 3], ["testScript", 119, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -51,60 +14,60 @@ export default nix.lambda((args) => (() => {
   const flavour = nix.arg($, "flavour");
   const mkXfsFlags = nix.argOr($, "mkXfsFlags", () => "");
   const preparationCode = nix.thunk(() => nix.sel({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     raid: "machine.succeed(\"vgcreate test_vg /dev/vdb /dev/vdc\")\nmachine.succeed(\"lvcreate -L 512M --type raid0 test_vg -n test_lv\")\n",
     thinpool: "machine.succeed(\"vgcreate test_vg /dev/vdb\")\nmachine.succeed(\"lvcreate -L 512M -T test_vg/test_thin_pool\")\nmachine.succeed(\"lvcreate -n test_lv -V 16G --thinpool test_thin_pool test_vg\")\n",
     vdo: "machine.succeed(\"vgcreate test_vg /dev/vdb\")\nmachine.succeed(\"lvcreate --type vdo -n test_lv -L 6G -V 12G test_vg/vdo_pool_lv\")\n",
   }, nix.key(nix.force(flavour))));
   const extraConfig = nix.thunk(() => nix.sel({
-    [nix.POS]: pos$17,
+    [nix.POS]: $pos[16],
     raid: nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       boot: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        initrd: nix.thunk(() => ({ [nix.POS]: pos$2, kernelModules: nix.thunk(() => ["dm-raid", "raid0"]) })),
+        [nix.POS]: $pos[2],
+        initrd: nix.thunk(() => ({ [nix.POS]: $pos[1], kernelModules: nix.thunk(() => ["dm-raid", "raid0"]) })),
       })),
     })),
     thinpool: nix.thunk(() => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       services: nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         lvm: nix.thunk(() => ({
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           boot: nix.thunk(() => ({
-            [nix.POS]: pos$6,
-            thin: nix.thunk(() => ({ [nix.POS]: pos$5, enable: true })),
+            [nix.POS]: $pos[5],
+            thin: nix.thunk(() => ({ [nix.POS]: $pos[4], enable: true })),
           })),
-          dmeventd: nix.thunk(() => ({ [nix.POS]: pos$7, enable: true })),
+          dmeventd: nix.thunk(() => ({ [nix.POS]: $pos[6], enable: true })),
         })),
       })),
     })),
     vdo: nix.thunk(() => ({
-      [nix.POS]: pos$16,
+      [nix.POS]: $pos[15],
       services: nix.thunk(() => ({
-        [nix.POS]: pos$15,
+        [nix.POS]: $pos[14],
         lvm: nix.thunk(() => ({
-          [nix.POS]: pos$14,
+          [nix.POS]: $pos[13],
           boot: nix.thunk(() => ({
-            [nix.POS]: pos$12,
-            vdo: nix.thunk(() => ({ [nix.POS]: pos$11, enable: true })),
+            [nix.POS]: $pos[11],
+            vdo: nix.thunk(() => ({ [nix.POS]: $pos[10], enable: true })),
           })),
-          dmeventd: nix.thunk(() => ({ [nix.POS]: pos$13, enable: true })),
+          dmeventd: nix.thunk(() => ({ [nix.POS]: $pos[12], enable: true })),
         })),
       })),
     })),
   }, nix.key(nix.force(flavour))));
   const extraCheck = nix.thunk(() => nix.sel({
-    [nix.POS]: pos$18,
+    [nix.POS]: $pos[17],
     raid: "\"test_lv\" in machine.succeed(\"lvs --select segtype=raid0\")\n",
     thinpool: "\"test_lv\" in machine.succeed(\"lvs --select segtype=thin-pool\")\n",
     vdo: "\"test_lv\" in machine.succeed(\"lvs --select segtype=vdo\")\n",
   }, nix.key(nix.force(flavour))));
   return {
-    [nix.POS]: pos$38,
+    [nix.POS]: $pos[37],
     name: nix.thunk(() => nix.str`lvm2-${flavour}-systemd-stage-1`),
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$19,
+      [nix.POS]: $pos[18],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [
@@ -114,57 +77,57 @@ export default nix.lambda((args) => (() => {
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$37,
+      [nix.POS]: $pos[36],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs = nix.arg($_1, "pkgs");
         const lib_1 = nix.arg($_1, "lib");
         return {
-          [nix.POS]: pos$36,
+          [nix.POS]: $pos[35],
           imports: nix.thunk(() => [extraConfig]),
           virtualisation: nix.thunk(() => ({
-            [nix.POS]: pos$20,
+            [nix.POS]: $pos[19],
             emptyDiskImages: nix.thunk(() => [8192n, 8192n]),
             useBootLoader: true,
             useEFIBoot: true,
             mountHostNixStore: true,
           })),
           boot: nix.thunk(() => ({
-            [nix.POS]: pos$28,
+            [nix.POS]: $pos[27],
             loader: nix.thunk(() => ({
-              [nix.POS]: pos$23,
-              "systemd-boot": nix.thunk(() => ({ [nix.POS]: pos$21, enable: true })),
-              efi: nix.thunk(() => ({ [nix.POS]: pos$22, canTouchEfiVariables: true })),
+              [nix.POS]: $pos[22],
+              "systemd-boot": nix.thunk(() => ({ [nix.POS]: $pos[20], enable: true })),
+              efi: nix.thunk(() => ({ [nix.POS]: $pos[21], canTouchEfiVariables: true })),
             })),
             initrd: nix.thunk(() => ({
-              [nix.POS]: pos$27,
-              systemd: nix.thunk(() => ({ [nix.POS]: pos$24, enable: true, emergencyAccess: true })),
+              [nix.POS]: $pos[26],
+              systemd: nix.thunk(() => ({ [nix.POS]: $pos[23], enable: true, emergencyAccess: true })),
               services: nix.thunk(() => ({
-                [nix.POS]: pos$26,
-                lvm: nix.thunk(() => ({ [nix.POS]: pos$25, enable: true })),
+                [nix.POS]: $pos[25],
+                lvm: nix.thunk(() => ({ [nix.POS]: $pos[24], enable: true })),
               })),
             })),
             kernelPackages: nix.thunk(() => nix.app(nix.sel(lib_1, "mkIf"), nix.thunk(() => !nix.eq(kernelPackages, null)), kernelPackages)),
           })),
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$29,
+            [nix.POS]: $pos[28],
             systemPackages: nix.thunk(() => (() => {
               const w = nix.withScope(pkgs, null);
               return [nix.thunk(() => nix.lookup(w, "xfsprogs"))];
             })()),
           })),
           specialisation: nix.thunk(() => ({
-            [nix.POS]: pos$35,
+            [nix.POS]: $pos[34],
             "boot-lvm": nix.thunk(() => ({
-              [nix.POS]: pos$34,
+              [nix.POS]: $pos[33],
               configuration: nix.thunk(() => ({
-                [nix.POS]: pos$33,
+                [nix.POS]: $pos[32],
                 virtualisation: nix.thunk(() => ({
-                  [nix.POS]: pos$32,
+                  [nix.POS]: $pos[31],
                   useDefaultFilesystems: false,
                   fileSystems: nix.thunk(() => ({
-                    [nix.POS]: pos$31,
-                    "/": nix.thunk(() => ({ [nix.POS]: pos$30, device: "/dev/test_vg/test_lv", fsType: "xfs" })),
+                    [nix.POS]: $pos[30],
+                    "/": nix.thunk(() => ({ [nix.POS]: $pos[29], device: "/dev/test_vg/test_lv", fsType: "xfs" })),
                   })),
                   rootDevice: "/dev/test_vg/test_lv",
                 })),

@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["version", 21, 5], ["rev", 22, 5], ["hash", 23, 5]], [["name", 38, 7], ["owner", 39, 7], ["repo", 40, 7], ["tag", 41, 7], ["hash", 42, 7]], [["name", 47, 7], ["owner", 48, 7], ["repo", 49, 7], ["rev", 50, 27], ["hash", 50, 31]], [["url", 63, 7], ["hash", 64, 7]], [["description", 167, 5], ["homepage", 168, 5], ["license", 169, 5], ["mainProgram", 170, 5], ["maintainers", 171, 5], ["platforms", 174, 5]], [["pname", 27, 3], ["version", 28, 3], ["outputs", 30, 3], ["srcs", 36, 3], ["patches", 54, 3], ["postPatch", 68, 3], ["preUnpack", 99, 3], ["sourceRoot", 103, 3], ["postUnpack", 105, 3], ["strictDeps", 111, 3], ["buildInputs", 113, 3], ["nativeBuildInputs", 115, 3], ["cmakeDir", 121, 3], ["cmakeFlags", 123, 3], ["ninjaFlags", 147, 3], ["installTargets", 153, 3], ["postInstall", 161, 3], ["meta", 166, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch2: false, cmake: false, ninja: false, python3: false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["version", 21, 5], ["rev", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 38, 7], ["owner", 39, 7], ["repo", 40, 7], ["tag", 41, 7], ["hash", 42, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 47, 7], ["owner", 48, 7], ["repo", 49, 7], ["rev", 50, 27], ["hash", 50, 31]]);
-const pos$4 = nix.positions(here + "/package.nix", [["url", 63, 7], ["hash", 64, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 167, 5], ["homepage", 168, 5], ["license", 169, 5], ["mainProgram", 170, 5], ["maintainers", 171, 5], ["platforms", 174, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 27, 3], ["version", 28, 3], ["outputs", 30, 3], ["srcs", 36, 3], ["patches", 54, 3], ["postPatch", 68, 3], ["preUnpack", 99, 3], ["sourceRoot", 103, 3], ["postUnpack", 105, 3], ["strictDeps", 111, 3], ["buildInputs", 113, 3], ["nativeBuildInputs", 115, 3], ["cmakeDir", 121, 3], ["cmakeFlags", 123, 3], ["ninjaFlags", 147, 3], ["installTargets", 153, 3], ["postInstall", 161, 3], ["meta", 166, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,19 +16,19 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const zlib = nix.arg($, "zlib");
   const appleLlvm = nix.thunk(() => ({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     version: "16.0.0",
     rev: "3602748d4ec9947f0d1493511a8c34410909506e",
     hash: "sha256-7o/JY/tcu4AeXCa7xhfjbuuV3/Cbf89AdoZOKrciJk0=",
   }));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "libtapi",
       version: "1600.0.11.8",
       outputs: nix.thunk(() => ["out", "bin", "dev"]),
       srcs: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "tapi-src",
             owner: "apple-oss-distributions",
             repo: "tapi",
@@ -41,7 +36,7 @@ export default nix.lambda((args) => (() => {
             hash: "sha256-87AQZrCmZHv3lbfUnw0j17H4cP+GN5g0D6zhdT4P56Y=",
           })))),
         nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "apple-llvm-src",
             owner: "apple",
             repo: "llvm-project",
@@ -53,7 +48,7 @@ export default nix.lambda((args) => (() => {
         nix.path(here, "./0001-Check-for-no_exported_symbols-linker-support.patch"),
         nix.path(here, "./0003-Match-designator-order-with-declaration-order.patch"),
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             url: "https://github.com/llvm/llvm-project/commit/e2f25af711425fb238317582441f4bda56131891.patch?full_index=1",
             hash: "sha256-zJwl4aeX71UR7a8XHpKl4atbw+hEGCHOQmiFLIJirTY=",
           })))),
@@ -91,7 +86,7 @@ export default nix.lambda((args) => (() => {
       ]),
       postInstall: "# The man page is installed for these, but they’re not included in the source release.\nrm $bin/share/man/man1/tapi-analyze.1 $bin/share/man/man1/tapi-api-verify.1\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Replaces the Mach-O Dynamic Library Stub files in Apple's SDKs to reduce the size",
         homepage: "https://github.com/apple-oss-distributions/tapi/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "ncsa")),

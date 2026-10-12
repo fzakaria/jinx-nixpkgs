@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 37, 5], ["owner", 38, 5], ["repo", 39, 5], ["rev", 40, 5], ["hash", 41, 5]], [["pname", 45, 13], ["version", 45, 19], ["src", 45, 27], ["hash", 46, 5]], [["updateScript", 86, 5]], [["homepage", 90, 5], ["description", 91, 5], ["mainProgram", 92, 5], ["maintainers", 93, 5], ["teams", 94, 5], ["license", 95, 5], ["platforms", 96, 5]], [["pname", 33, 3], ["version", 34, 3], ["src", 36, 3], ["cargoDeps", 44, 3], ["nativeBuildInputs", 49, 3], ["buildInputs", 63, 3], ["passthru", 85, 3], ["meta", 89, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitLab: false, cargo: false, dbus: false, "desktop-file-utils": false, "gdk-pixbuf": false, gettext: false, gitMinimal: false, glib: false, "glib-networking": false, gst_all_1: false, gtk4: false, libadwaita: false, meson: false, ninja: false, openssl: false, "pkg-config": false, rustPlatform: false, rustc: false, sqlite: false, wrapGAppsHook4: false, "libglycin-gtk4": false, libshumate: false, libseccomp: false, libxml2: false, lcms2: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 37, 5], ["owner", 38, 5], ["repo", 39, 5], ["rev", 40, 5], ["hash", 41, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 45, 13], ["version", 45, 19], ["src", 45, 27], ["hash", 46, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 86, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 90, 5], ["description", 91, 5], ["mainProgram", 92, 5], ["maintainers", 93, 5], ["teams", 94, 5], ["license", 95, 5], ["platforms", 96, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 33, 3], ["version", 34, 3], ["src", 36, 3], ["cargoDeps", 44, 3], ["nativeBuildInputs", 49, 3], ["buildInputs", 63, 3], ["passthru", 85, 3], ["meta", 89, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -43,7 +39,7 @@ export default nix.lambda((args) => (() => {
       const pname = "shortwave";
       const version = "5.1.0";
       const src = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "gitlab.gnome.org",
           owner: "World",
           repo: "Shortwave",
@@ -51,7 +47,7 @@ export default nix.lambda((args) => (() => {
           hash: "sha256-MiaozChp5QF/Q0fCTCgnyGJLyIftTkMAbmfRQ/73QP8=",
         }))));
       const cargoDeps = nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: pname,
           version: version,
           src: src,
@@ -94,11 +90,11 @@ export default nix.lambda((args) => (() => {
         ];
       })()));
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://gitlab.gnome.org/World/Shortwave",
         description: "Find and listen to internet radio stations",
         mainProgram: "shortwave",
@@ -111,7 +107,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         src,

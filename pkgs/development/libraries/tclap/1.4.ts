@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/1.4.nix", [[["url", 17, 5], ["rev", 18, 5], ["hash", 19, 5]], [["description", 43, 5], ["homepage", 44, 5], ["license", 45, 5], ["platforms", 46, 5]], [["pname", 10, 3], ["version", 14, 3], ["src", 16, 3], ["postPatch", 22, 3], ["nativeBuildInputs", 29, 3], ["preInstall", 36, 3], ["doCheck", 40, 3], ["meta", 42, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchgit: false, cmake: false, doxygen: false, python3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/1.4.nix", [["url", 17, 5], ["rev", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/1.4.nix", [["description", 43, 5], ["homepage", 44, 5], ["license", 45, 5], ["platforms", 46, 5]]);
-const pos$3 = nix.positions(here + "/1.4.nix", [["pname", 10, 3], ["version", 14, 3], ["src", 16, 3], ["postPatch", 22, 3], ["nativeBuildInputs", 29, 3], ["preInstall", 36, 3], ["doCheck", 40, 3], ["meta", 42, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const doxygen = nix.arg($, "doxygen");
   const python3 = nix.arg($, "python3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "tclap",
       version: "1.4-3feeb7b",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "git://git.code.sf.net/p/tclap/code",
           rev: "3feeb7b2499b37d9cb80890cadaf7c905a9a50c6",
           hash: "sha256-byLianB6Vf+I9ABMmsmuoGU2o5RO9c5sMckWW0F+GDM=",
@@ -30,7 +28,7 @@ export default nix.lambda((args) => (() => {
       preInstall: "touch docs/manual.html\n",
       doCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Templatized C++ Command Line Parser Library (v1.4)",
         homepage: "https://tclap.sourceforge.net/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

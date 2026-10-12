@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 37, 5], ["repo", 38, 5], ["tag", 39, 5], ["hash", 40, 5]], [["django", 49, 5], ["flask", 50, 5], ["sanic", 54, 5], ["fastapi", 55, 5]], [["changelog", 102, 5], ["description", 103, 5], ["homepage", 104, 5], ["license", 105, 5]], [["pname", 32, 3], ["version", 33, 3], ["pyproject", 34, 3], ["src", 36, 3], ["build-system", 43, 3], ["optional-dependencies", 48, 3], ["nativeCheckInputs", 61, 3], ["disabledTests", 79, 3], ["disabledTestPaths", 86, 3], ["preCheck", 93, 3], ["pythonImportsCheck", 97, 3], ["meta", 101, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, "setuptools-scm": false, asgiref: false, blinker: false, django: false, fastapi: false, flask: false, sanic: false, "django-redis": false, "pytest-django": false, httpx: false, fakeredis: false, jsonschema: false, pytestCheckHook: false, "pytest-cov-stub": false, "pytest-mock": false, redis: false, redisTestHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 37, 5], ["repo", 38, 5], ["tag", 39, 5], ["hash", 40, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["django", 49, 5], ["flask", 50, 5], ["sanic", 54, 5], ["fastapi", 55, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["changelog", 102, 5], ["description", 103, 5], ["homepage", 104, 5], ["license", 105, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 32, 3], ["version", 33, 3], ["pyproject", 34, 3], ["src", 36, 3], ["build-system", 43, 3], ["optional-dependencies", 48, 3], ["nativeCheckInputs", 61, 3], ["disabledTests", 79, 3], ["disabledTestPaths", 86, 3], ["preCheck", 93, 3], ["pythonImportsCheck", 97, 3], ["meta", 101, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -36,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const version = "2026.03.04";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "mozilla-services",
           repo: "python-dockerflow",
           tag: version,
@@ -44,7 +41,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const build_system = nix.thunk(() => [setuptools, setuptools_scm]);
       const optional_dependencies = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         django: nix.thunk(() => [django]),
         flask: nix.thunk(() => [blinker, flask]),
         sanic: nix.thunk(() => [sanic]),
@@ -70,14 +67,14 @@ export default nix.lambda((args) => (() => {
       const preCheck = "export DJANGO_SETTINGS_MODULE=tests.django.settings\n";
       const pythonImportsCheck = nix.thunk(() => ["dockerflow"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         changelog: nix.thunk(() => nix.str`https://github.com/mozilla-services/python-dockerflow/releases/tag/${nix.sel(src, "tag")}`),
         description: "Python package to implement tools and helpers for Mozilla Dockerflow",
         homepage: "https://github.com/mozilla-services/python-dockerflow",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mpl20")),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

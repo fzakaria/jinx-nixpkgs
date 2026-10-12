@@ -2,39 +2,10 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["vlans", 20, 26]], [["enable", 25, 22]], [["useNetworkd", 23, 13], ["useDHCP", 24, 13], ["firewall", 25, 13]], [["Address", 30, 27]], [["name", 29, 13], ["networkConfig", 30, 13]], [["01-eth1", 28, 36]], [["networks", 28, 27]], [["network", 28, 19]], [["autologinUser", 33, 26]], [["certificate", 38, 15], ["key", 39, 15], ["password", 40, 15], ["switch-keys", 41, 15]], [["enable", 36, 13], ["settings", 37, 13]], [["server", 35, 25]], [["getty", 33, 20], ["rkvm", 35, 20]], [["imports", 18, 11], ["virtualisation", 20, 11], ["networking", 22, 11], ["systemd", 28, 11], ["services", 33, 11]], [["vlans", 54, 26]], [["enable", 59, 22]], [["useNetworkd", 57, 13], ["useDHCP", 58, 13], ["firewall", 59, 13]], [["Address", 64, 27]], [["name", 63, 13], ["networkConfig", 64, 13]], [["01-eth1", 62, 36]], [["networks", 62, 27]], [["network", 62, 19]], [["autologinUser", 67, 26]], [["server", 72, 15], ["certificate", 73, 15], ["key", 74, 15], ["password", 75, 15]], [["enable", 70, 13], ["settings", 71, 13]], [["client", 69, 25]], [["getty", 67, 20], ["rkvm", 69, 20]], [["imports", 52, 11], ["virtualisation", 54, 11], ["networking", 56, 11], ["systemd", 62, 11], ["services", 67, 11]], [["server", 15, 7], ["client", 49, 7]], [["name", 12, 5], ["nodes", 14, 5], ["testScript", 81, 5]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/default.nix", [["vlans", 20, 26]]);
-const pos$2 = nix.positions(here + "/default.nix", [["enable", 25, 22]]);
-const pos$3 = nix.positions(here + "/default.nix", [["useNetworkd", 23, 13], ["useDHCP", 24, 13], ["firewall", 25, 13]]);
-const pos$4 = nix.positions(here + "/default.nix", [["Address", 30, 27]]);
-const pos$5 = nix.positions(here + "/default.nix", [["name", 29, 13], ["networkConfig", 30, 13]]);
-const pos$6 = nix.positions(here + "/default.nix", [["01-eth1", 28, 36]]);
-const pos$7 = nix.positions(here + "/default.nix", [["networks", 28, 27]]);
-const pos$8 = nix.positions(here + "/default.nix", [["network", 28, 19]]);
-const pos$9 = nix.positions(here + "/default.nix", [["autologinUser", 33, 26]]);
-const pos$10 = nix.positions(here + "/default.nix", [["certificate", 38, 15], ["key", 39, 15], ["password", 40, 15], ["switch-keys", 41, 15]]);
-const pos$11 = nix.positions(here + "/default.nix", [["enable", 36, 13], ["settings", 37, 13]]);
-const pos$12 = nix.positions(here + "/default.nix", [["server", 35, 25]]);
-const pos$13 = nix.positions(here + "/default.nix", [["getty", 33, 20], ["rkvm", 35, 20]]);
-const pos$14 = nix.positions(here + "/default.nix", [["imports", 18, 11], ["virtualisation", 20, 11], ["networking", 22, 11], ["systemd", 28, 11], ["services", 33, 11]]);
 const formals$3 = { args: { pkgs: false }, ellipsis: true };
-const pos$15 = nix.positions(here + "/default.nix", [["vlans", 54, 26]]);
-const pos$16 = nix.positions(here + "/default.nix", [["enable", 59, 22]]);
-const pos$17 = nix.positions(here + "/default.nix", [["useNetworkd", 57, 13], ["useDHCP", 58, 13], ["firewall", 59, 13]]);
-const pos$18 = nix.positions(here + "/default.nix", [["Address", 64, 27]]);
-const pos$19 = nix.positions(here + "/default.nix", [["name", 63, 13], ["networkConfig", 64, 13]]);
-const pos$20 = nix.positions(here + "/default.nix", [["01-eth1", 62, 36]]);
-const pos$21 = nix.positions(here + "/default.nix", [["networks", 62, 27]]);
-const pos$22 = nix.positions(here + "/default.nix", [["network", 62, 19]]);
-const pos$23 = nix.positions(here + "/default.nix", [["autologinUser", 67, 26]]);
-const pos$24 = nix.positions(here + "/default.nix", [["server", 72, 15], ["certificate", 73, 15], ["key", 74, 15], ["password", 75, 15]]);
-const pos$25 = nix.positions(here + "/default.nix", [["enable", 70, 13], ["settings", 71, 13]]);
-const pos$26 = nix.positions(here + "/default.nix", [["client", 69, 25]]);
-const pos$27 = nix.positions(here + "/default.nix", [["getty", 67, 20], ["rkvm", 69, 20]]);
-const pos$28 = nix.positions(here + "/default.nix", [["imports", 52, 11], ["virtualisation", 54, 11], ["networking", 56, 11], ["systemd", 62, 11], ["services", 67, 11]]);
-const pos$29 = nix.positions(here + "/default.nix", [["server", 15, 7], ["client", 49, 7]]);
-const pos$30 = nix.positions(here + "/default.nix", [["name", 12, 5], ["nodes", 14, 5], ["testScript", 81, 5]]);
 
 export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../make-test-python.nix")), nix.lambda((args) => (() => {
     const $ = nix.formals(args, formals$1);
@@ -42,47 +13,47 @@ export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../ma
     const snakeoil_cert = nix.path(here, "./cert.pem");
     const snakeoil_key = nix.path(here, "./key.pem");
     return {
-      [nix.POS]: pos$30,
+      [nix.POS]: $pos[29],
       name: "rkvm",
       nodes: nix.thunk(() => ({
-        [nix.POS]: pos$29,
+        [nix.POS]: $pos[28],
         server: nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$2);
           const pkgs_1 = nix.arg($_1, "pkgs");
           return {
-            [nix.POS]: pos$14,
+            [nix.POS]: $pos[13],
             imports: nix.thunk(() => [nix.path(here, "../common/user-account.nix")]),
-            virtualisation: nix.thunk(() => ({ [nix.POS]: pos$1, vlans: nix.thunk(() => [1n]) })),
+            virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[0], vlans: nix.thunk(() => [1n]) })),
             networking: nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               useNetworkd: true,
               useDHCP: false,
-              firewall: nix.thunk(() => ({ [nix.POS]: pos$2, enable: false })),
+              firewall: nix.thunk(() => ({ [nix.POS]: $pos[1], enable: false })),
             })),
             systemd: nix.thunk(() => ({
-              [nix.POS]: pos$8,
+              [nix.POS]: $pos[7],
               network: nix.thunk(() => ({
-                [nix.POS]: pos$7,
+                [nix.POS]: $pos[6],
                 networks: nix.thunk(() => ({
-                  [nix.POS]: pos$6,
+                  [nix.POS]: $pos[5],
                   "01-eth1": nix.thunk(() => ({
-                    [nix.POS]: pos$5,
+                    [nix.POS]: $pos[4],
                     name: "eth1",
-                    networkConfig: nix.thunk(() => ({ [nix.POS]: pos$4, Address: "10.0.0.1/24" })),
+                    networkConfig: nix.thunk(() => ({ [nix.POS]: $pos[3], Address: "10.0.0.1/24" })),
                   })),
                 })),
               })),
             })),
             services: nix.thunk(() => ({
-              [nix.POS]: pos$13,
-              getty: nix.thunk(() => ({ [nix.POS]: pos$9, autologinUser: "alice" })),
+              [nix.POS]: $pos[12],
+              getty: nix.thunk(() => ({ [nix.POS]: $pos[8], autologinUser: "alice" })),
               rkvm: nix.thunk(() => ({
-                [nix.POS]: pos$12,
+                [nix.POS]: $pos[11],
                 server: nix.thunk(() => ({
-                  [nix.POS]: pos$11,
+                  [nix.POS]: $pos[10],
                   enable: true,
                   settings: nix.thunk(() => ({
-                    [nix.POS]: pos$10,
+                    [nix.POS]: $pos[9],
                     certificate: snakeoil_cert,
                     key: snakeoil_key,
                     password: "snakeoil",
@@ -97,39 +68,39 @@ export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../ma
           const $_1 = nix.formals(args_1, formals$3);
           const pkgs_1 = nix.arg($_1, "pkgs");
           return {
-            [nix.POS]: pos$28,
+            [nix.POS]: $pos[27],
             imports: nix.thunk(() => [nix.path(here, "../common/user-account.nix")]),
-            virtualisation: nix.thunk(() => ({ [nix.POS]: pos$15, vlans: nix.thunk(() => [1n]) })),
+            virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[14], vlans: nix.thunk(() => [1n]) })),
             networking: nix.thunk(() => ({
-              [nix.POS]: pos$17,
+              [nix.POS]: $pos[16],
               useNetworkd: true,
               useDHCP: false,
-              firewall: nix.thunk(() => ({ [nix.POS]: pos$16, enable: false })),
+              firewall: nix.thunk(() => ({ [nix.POS]: $pos[15], enable: false })),
             })),
             systemd: nix.thunk(() => ({
-              [nix.POS]: pos$22,
+              [nix.POS]: $pos[21],
               network: nix.thunk(() => ({
-                [nix.POS]: pos$21,
+                [nix.POS]: $pos[20],
                 networks: nix.thunk(() => ({
-                  [nix.POS]: pos$20,
+                  [nix.POS]: $pos[19],
                   "01-eth1": nix.thunk(() => ({
-                    [nix.POS]: pos$19,
+                    [nix.POS]: $pos[18],
                     name: "eth1",
-                    networkConfig: nix.thunk(() => ({ [nix.POS]: pos$18, Address: "10.0.0.2/24" })),
+                    networkConfig: nix.thunk(() => ({ [nix.POS]: $pos[17], Address: "10.0.0.2/24" })),
                   })),
                 })),
               })),
             })),
             services: nix.thunk(() => ({
-              [nix.POS]: pos$27,
-              getty: nix.thunk(() => ({ [nix.POS]: pos$23, autologinUser: "alice" })),
+              [nix.POS]: $pos[26],
+              getty: nix.thunk(() => ({ [nix.POS]: $pos[22], autologinUser: "alice" })),
               rkvm: nix.thunk(() => ({
-                [nix.POS]: pos$26,
+                [nix.POS]: $pos[25],
                 client: nix.thunk(() => ({
-                  [nix.POS]: pos$25,
+                  [nix.POS]: $pos[24],
                   enable: true,
                   settings: nix.thunk(() => ({
-                    [nix.POS]: pos$24,
+                    [nix.POS]: $pos[23],
                     server: "10.0.0.1:5258",
                     certificate: snakeoil_cert,
                     key: snakeoil_key,

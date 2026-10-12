@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 34, 5], ["repo", 35, 5], ["tag", 36, 5], ["hash", 37, 5]], [["withSound", 77, 36]], [["withSound", 77, 7]], [["tests", 76, 5], ["updateScript", 79, 5]], [["description", 83, 5], ["mainProgram", 84, 5], ["homepage", 85, 5], ["changelog", 86, 5], ["license", 87, 5], ["maintainers", 88, 5]], [["pname", 29, 3], ["version", 30, 3], ["__structuredAttrs", 31, 3], ["src", 33, 3], ["cargoHash", 40, 3], ["buildFeatures", 42, 3], ["nativeBuildInputs", 46, 3], ["buildInputs", 53, 3], ["checkFlags", 55, 3], ["nativeInstallCheckInputs", 61, 3], ["doInstallCheck", 62, 3], ["postInstall", 64, 3], ["passthru", 75, 3], ["meta", 82, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, rustPlatform: false, fetchFromGitHub: false, installShellFiles: false, "pkg-config": false, "alsa-lib": false, versionCheckHook: false, bacon: false, buildPackages: false, "nix-update-script": false, withSound: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 34, 5], ["repo", 35, 5], ["tag", 36, 5], ["hash", 37, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["withSound", 77, 36]]);
-const pos$3 = nix.positions(here + "/package.nix", [["withSound", 77, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 76, 5], ["updateScript", 79, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 83, 5], ["mainProgram", 84, 5], ["homepage", 85, 5], ["changelog", 86, 5], ["license", 87, 5], ["maintainers", 88, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 29, 3], ["version", 30, 3], ["__structuredAttrs", 31, 3], ["src", 33, 3], ["cargoHash", 40, 3], ["buildFeatures", 42, 3], ["nativeBuildInputs", 46, 3], ["buildInputs", 53, 3], ["checkFlags", 55, 3], ["nativeInstallCheckInputs", 61, 3], ["doInstallCheck", 62, 3], ["postInstall", 64, 3], ["passthru", 75, 3], ["meta", 82, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const withSound = nix.argOr($, "withSound", () => false);
   const soundDependencies = nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [alsa_lib])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [nix.thunk(() => nix.sel(rustPlatform, "bindgenHook"))]))));
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "bacon",
       version: "3.26.0",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Canop",
           repo: "bacon",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -56,15 +51,15 @@ export default nix.lambda((args) => (() => {
 `));
       })()),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
-          withSound: nix.thunk(() => nix.app(nix.sel(bacon, "override"), nix.thunk(() => ({ [nix.POS]: pos$2, withSound: true })))),
+          [nix.POS]: $pos[2],
+          withSound: nix.thunk(() => nix.app(nix.sel(bacon, "override"), nix.thunk(() => ({ [nix.POS]: $pos[1], withSound: true })))),
         })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Background rust code checker",
         mainProgram: "bacon",
         homepage: "https://github.com/Canop/bacon",

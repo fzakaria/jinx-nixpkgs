@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["homepage", 27, 5], ["description", 28, 5]], [["version", 10, 31], ["src", 10, 39], ["pname", 11, 3], ["pyproject", 12, 3], ["sourceRoot", 14, 3], ["pythonRelaxDeps", 16, 3], ["build-system", 18, 3], ["dependencies", 20, 3], ["nativeCheckInputs", 22, 3], ["pythonImportsCheck", 24, 3], ["meta", 26, 3]]]);
 const formals$1 = { args: { buildPythonPackage: false, hatchling: false, "opentelemetry-api": false, protobuf: false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["homepage", 27, 5], ["description", 28, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["version", 10, 31], ["src", 10, 39], ["pname", 11, 3], ["pyproject", 12, 3], ["sourceRoot", 14, 3], ["pythonRelaxDeps", 16, 3], ["build-system", 18, 3], ["dependencies", 20, 3], ["nativeCheckInputs", 22, 3], ["pythonImportsCheck", 24, 3], ["meta", 26, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const protobuf = nix.arg($, "protobuf");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       version: nix.thunk(() => nix.attr(opentelemetry_api, "version")),
       src: nix.thunk(() => nix.attr(opentelemetry_api, "src")),
       pname: "opentelemetry-proto",
@@ -26,7 +25,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["opentelemetry.proto"]),
       meta: nix.thunk(() => nix.update(nix.sel(opentelemetry_api, "meta"), {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         homepage: "https://github.com/open-telemetry/opentelemetry-python/tree/main/opentelemetry-proto",
         description: "OpenTelemetry Python Proto",
       })),

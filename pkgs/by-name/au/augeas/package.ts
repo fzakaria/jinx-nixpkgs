@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["fetchSubmodules", 22, 5], ["hash", 23, 5]], [["description", 67, 5], ["license", 68, 5], ["homepage", 69, 5], ["changelog", 70, 5], ["mainProgram", 71, 5], ["maintainers", 72, 5], ["platforms", 73, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["patches", 26, 3], ["postPatch", 31, 3], ["configureFlags", 35, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 44, 3], ["enableParallelBuilding", 50, 3], ["doCheck", 52, 3], ["checkPhase", 54, 3], ["outputs", 61, 3], ["meta", 66, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, autoreconfHook: false, bison: false, flex: false, perl: false, "pkg-config": false, readline: false, libxml2: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["fetchSubmodules", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 67, 5], ["license", 68, 5], ["homepage", 69, 5], ["changelog", 70, 5], ["mainProgram", 71, 5], ["maintainers", 72, 5], ["platforms", 73, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["patches", 26, 3], ["postPatch", 31, 3], ["configureFlags", 35, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 44, 3], ["enableParallelBuilding", 50, 3], ["doCheck", 52, 3], ["checkPhase", 54, 3], ["outputs", 61, 3], ["meta", 66, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const readline = nix.arg($, "readline");
   const libxml2 = nix.arg($, "libxml2");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "augeas",
       version: "1.15.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "hercules-team",
           repo: "augeas",
           tag: nix.thunk(() => nix.str`release-${nix.sel(finalAttrs, "version")}`),
@@ -41,7 +39,7 @@ export default nix.lambda((args) => (() => {
       checkPhase: "runHook preCheck\npatchShebangs --build gnulib/tests tests\nmake -j $NIX_BUILD_CORES check\nrunHook postCheck\n",
       outputs: nix.thunk(() => ["out", "dev"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Configuration editing tool",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Only")),
         homepage: "https://augeas.net/",

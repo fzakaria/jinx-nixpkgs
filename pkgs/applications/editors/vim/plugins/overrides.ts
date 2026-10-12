@@ -2,1217 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/overrides.nix", [[["license", 170, 7]], [["meta", 169, 5]], [["checkInputs", 175, 5], ["dependencies", 180, 5], ["nvimSkipModules", 185, 5]], [["checkInputs", 196, 5], ["nvimSkipModules", 201, 5]], [["dependencies", 209, 5]], [["runtimeDeps", 216, 5]], [["dependencies", 222, 5]], [["license", 227, 7]], [["meta", 226, 5]], [["license", 233, 7]], [["meta", 232, 5]], [["dependencies", 238, 5]], [["dependencies", 245, 5]], [["checkInputs", 250, 5]], [["nvimSkipModules", 254, 5]], [["checkInputs", 261, 5]], [["runtimeDeps", 265, 5], ["checkInputs", 269, 5]], [["license", 277, 7]], [["meta", 276, 5]], [["license", 286, 7]], [["meta", 285, 5]], [["license", 293, 7]], [["meta", 291, 5]], [["checkInputs", 299, 5]], [["dependencies", 303, 5]], [["runtimeDeps", 307, 5]], [["license", 326, 7]], [["checkInputs", 314, 5], ["nvimSkipModules", 318, 5], ["meta", 325, 5]], [["license", 340, 7]], [["checkInputs", 332, 5], ["nvimSkipModules", 337, 5], ["meta", 339, 5]], [["description", 350, 7], ["homepage", 351, 7], ["license", 352, 7], ["maintainers", 353, 7]], [["dependencies", 345, 5], ["meta", 349, 5]], [["license", 359, 7]], [["meta", 358, 5]], [["license", 366, 7]], [["dependencies", 364, 5], ["meta", 365, 5]], [["license", 372, 7]], [["meta", 371, 5]], [["dependencies", 377, 5]], [["dependencies", 381, 5]], [["dependencies", 385, 5]], [["dependencies", 389, 5]], [["dependencies", 393, 5]], [["dependencies", 397, 5]], [["dependencies", 401, 5]], [["dependencies", 405, 5]], [["nvimSkipModules", 409, 5]], [["license", 419, 7], ["description", 420, 7], ["maintainers", 421, 7]], [["dependencies", 415, 5], ["meta", 416, 5]], [["license", 428, 7]], [["dependencies", 426, 5], ["meta", 427, 5]], [["dependencies", 433, 5]], [["dependencies", 437, 5]], [["dependencies", 441, 5]], [["nvimSkipModules", 446, 5]], [["license", 451, 7]], [["meta", 450, 5]], [["license", 457, 7]], [["meta", 456, 5]], [["license", 463, 7]], [["meta", 462, 5]], [["license", 469, 7]], [["meta", 468, 5]], [["nvimSkipModules", 474, 5]], [["license", 485, 7]], [["meta", 484, 5]], [["nvimSkipModules", 492, 5]], [["python3Dependencies", 502, 7]], [["doCheck", 497, 5], ["buildInputs", 498, 5], ["passthru", 501, 5], ["patches", 510, 5]], [["dependencies", 514, 5]], [["dependencies", 522, 5]], [["license", 530, 7]], [["meta", 529, 5]], [["checkInputs", 535, 5]], [["license", 559, 7]], [["preFixup", 547, 5], ["meta", 557, 5]], [["license", 568, 7]], [["meta", 567, 5]], [["dependencies", 573, 5]], [["license", 583, 7]], [["dependencies", 579, 5], ["meta", 582, 5]], [["license", 599, 7]], [["dependencies", 588, 5], ["preInstall", 595, 5], ["meta", 598, 5]], [["license", 605, 7]], [["meta", 604, 5]], [["preFixup", 610, 5]], [["postPatch", 617, 5]], [["license", 624, 7]], [["meta", 623, 5]], [["dependencies", 629, 5]], [["nvimRequireCheck", 635, 5]], [["checkInputs", 641, 5], ["dependencies", 642, 5]], [["license", 650, 7]], [["checkInputs", 648, 5], ["meta", 649, 5]], [["checkInputs", 655, 5]], [["checkInputs", 659, 5]], [["checkInputs", 663, 5]], [["checkInputs", 667, 5], ["dependencies", 668, 5]], [["checkInputs", 674, 5]], [["checkInputs", 678, 5]], [["checkInputs", 682, 5], ["dependencies", 683, 5]], [["checkInputs", 687, 5], ["dependencies", 688, 5]], [["checkInputs", 692, 5]], [["checkInputs", 696, 5], ["dependencies", 697, 5]], [["checkInputs", 701, 5]], [["checkInputs", 705, 5]], [["checkInputs", 709, 5]], [["checkInputs", 713, 5]], [["checkInputs", 717, 5]], [["checkInputs", 721, 5], ["dependencies", 722, 5]], [["checkInputs", 726, 5], ["dependencies", 727, 5]], [["checkInputs", 731, 5], ["dependencies", 732, 5]], [["checkInputs", 736, 5]], [["checkInputs", 740, 5]], [["checkInputs", 744, 5]], [["checkInputs", 748, 5], ["dependencies", 749, 5]], [["nativeCheckInputs", 753, 5], ["checkInputs", 754, 5]], [["checkInputs", 758, 5], ["dependencies", 759, 5]], [["checkInputs", 763, 5]], [["checkInputs", 767, 5]], [["checkInputs", 771, 5]], [["checkInputs", 775, 5]], [["checkInputs", 779, 5]], [["checkInputs", 783, 5]], [["checkInputs", 787, 5], ["dependencies", 788, 5]], [["checkInputs", 792, 5]], [["checkInputs", 796, 5]], [["checkInputs", 800, 5]], [["checkInputs", 804, 5], ["dependencies", 805, 5]], [["checkInputs", 809, 5]], [["checkInputs", 813, 5]], [["checkInputs", 817, 5], ["dependencies", 818, 5]], [["checkInputs", 822, 5]], [["checkInputs", 826, 5], ["dependencies", 827, 5]], [["checkInputs", 831, 5]], [["checkInputs", 835, 5], ["dependencies", 836, 5]], [["checkInputs", 840, 5]], [["checkInputs", 844, 5], ["dependencies", 845, 5]], [["checkInputs", 849, 5], ["dependencies", 850, 5]], [["checkInputs", 854, 5]], [["dependencies", 858, 5], ["nvimSkipModules", 860, 5]], [["license", 873, 7]], [["meta", 872, 5]], [["license", 879, 7]], [["meta", 878, 5]], [["license", 885, 7]], [["meta", 884, 5]], [["license", 891, 7]], [["meta", 890, 5]], [["license", 897, 7]], [["meta", 896, 5]], [["license", 903, 7]], [["meta", 902, 5]], [["dependencies", 908, 5]], [["checkInputs", 917, 5], ["dependencies", 927, 5], ["nvimSkipModules", 928, 5]], [["nvimSkipModules", 936, 5]], [["dependencies", 940, 5]], [["nvimSkipModules", 945, 5]], [["license", 954, 7]], [["meta", 953, 5]], [["license", 960, 7]], [["meta", 959, 5]], [["nativeBuildInputs", 965, 5], ["buildPhase", 968, 5]], [["dependencies", 977, 5]], [["dependencies", 981, 5]], [["dependencies", 985, 5]], [["dependencies", 989, 5]], [["license", 994, 7]], [["meta", 993, 5]], [["dependencies", 999, 5], ["nvimSkipModules", 1000, 5]], [["nvimSkipModules", 1008, 5]], [["license", 1013, 7]], [["meta", 1012, 5]], [["name", 1021, 9], ["url", 1022, 9], ["sha256", 1023, 9]], [["dependencies", 1018, 5], ["patches", 1019, 5]], [["postPatch", 1030, 5], ["runtimeDeps", 1036, 5]], [["dependencies", 1043, 5], ["doInstallCheck", 1047, 5]], [["license", 1058, 7]], [["postInstall", 1051, 5], ["meta", 1057, 5]], [["checkInputs", 1063, 5], ["dependencies", 1069, 5]], [["license", 1077, 7]], [["meta", 1076, 5]], [["python3Dependencies", 1083, 7]], [["passthru", 1082, 5], ["patches", 1092, 5], ["nvimRequireCheck", 1094, 5]], [["dependencies", 1101, 5], ["opt", 1102, 5], ["patches", 1104, 5], ["postInstall", 1105, 5]], [["nativeBuildInputs", 1112, 5], ["buildInputs", 1113, 5], ["buildPhase", 1119, 5]], [["checkInputs", 1131, 5], ["dependencies", 1135, 5]], [["dependencies", 1139, 5]], [["name", 1150, 9], ["url", 1151, 9], ["sha256", 1152, 9]], [["name", 1155, 9], ["url", 1156, 9], ["sha256", 1157, 9]], [["patches", 1148, 5], ["buildInputs", 1160, 5], ["buildPhase", 1164, 5]], [["license", 1172, 7]], [["meta", 1171, 5]], [["license", 1178, 7]], [["meta", 1177, 5]], [["checkInputs", 1185, 5]], [["runtimeDeps", 1192, 5]], [["dependencies", 1198, 5]], [["dependencies", 1202, 5]], [["dependencies", 1206, 5]], [["license", 1212, 7]], [["dependencies", 1210, 5], ["meta", 1211, 5]], [["dependencies", 1217, 5]], [["dependencies", 1221, 5]], [["license", 1227, 7]], [["dependencies", 1225, 5], ["meta", 1226, 5]], [["dependencies", 1232, 5]], [["dependencies", 1236, 5]], [["dependencies", 1243, 5]], [["dependencies", 1247, 5]], [["dependencies", 1251, 5]], [["description", 1260, 7], ["license", 1261, 7], ["maintainers", 1262, 7]], [["dependencies", 1255, 5], ["meta", 1259, 5]], [["license", 1268, 7]], [["meta", 1267, 5]], [["postPatch", 1273, 5]], [["dependencies", 1280, 5]], [["nativeBuildInputs", 1287, 5], ["buildPhase", 1288, 5]], [["license", 1298, 7]], [["meta", 1297, 5]], [["python3Dependencies", 1305, 7]], [["description", 1308, 7], ["homepage", 1309, 7], ["license", 1310, 7], ["maintainers", 1311, 7]], [["dependencies", 1303, 5], ["passthru", 1304, 5], ["meta", 1307, 5]], [["license", 1317, 7]], [["meta", 1316, 5]], [["license", 1323, 7]], [["meta", 1322, 5]], [["license", 1329, 7]], [["meta", 1328, 5]], [["nvimSkipModules", 1334, 5], ["runtimeDeps", 1338, 5]], [["license", 1348, 7]], [["meta", 1346, 5]], [["dependencies", 1353, 5]], [["license", 1361, 7]], [["dependencies", 1357, 5], ["doInstallCheck", 1359, 5], ["meta", 1360, 5]], [["license", 1369, 7], ["description", 1370, 7]], [["dependencies", 1366, 5], ["doInstallCheck", 1367, 5], ["meta", 1368, 5]], [["preFixup", 1375, 5]], [["runtimeDeps", 1383, 5]], [["dependencies", 1387, 5]], [["nvimSkipModules", 1395, 5]], [["dependencies", 1399, 5], ["checkInputs", 1402, 5]], [["license", 1412, 7]], [["meta", 1411, 5]], [["nvimSkipModules", 1417, 5]], [["license", 1424, 7]], [["meta", 1423, 5]], [["dependencies", 1429, 5]], [["description", 1434, 7], ["maintainers", 1435, 7]], [["meta", 1433, 5]], [["dependencies", 1440, 5], ["fixupPhase", 1441, 5]], [["license", 1454, 7]], [["nvimSkipModules", 1448, 5], ["meta", 1452, 5]], [["dependencies", 1462, 5]], [["nvimSkipModules", 1466, 5]], [["license", 1475, 7]], [["meta", 1473, 5]], [["dependencies", 1480, 5], ["nvimSkipModules", 1484, 5]], [["python3Dependencies", 1492, 7]], [["description", 1495, 7], ["license", 1496, 7]], [["passthru", 1491, 5], ["meta", 1494, 5]], [["license", 1502, 7]], [["meta", 1501, 5]], [["nvimSkipModules", 1509, 5]], [["dependencies", 1513, 5]], [["dependencies", 1517, 5]], [["nvimSkipModules", 1521, 5]], [["checkInputs", 1529, 5], ["dependencies", 1530, 5]], [["dependencies", 1534, 5]], [["runtimeDeps", 1538, 5]], [["checkInputs", 1543, 5], ["dependencies", 1546, 5], ["postPatch", 1552, 5]], [["checkInputs", 1572, 5], ["dependencies", 1576, 5], ["nvimSkipModules", 1577, 5]], [["nvimSkipModules", 1584, 5]], [["prePatch", 1598, 5]], [["initLua", 1613, 7]], [["propagatedBuildInputs", 1607, 5], ["dependencies", 1611, 5], ["passthru", 1612, 5]], [["dependencies", 1618, 5]], [["runtimeDeps", 1622, 5], ["nvimSkipModules", 1623, 5]], [["dependencies", 1631, 5]], [["runtimeDeps", 1635, 5]], [["license", 1640, 7]], [["meta", 1639, 5]], [["dependencies", 1645, 5]], [["license", 1651, 7]], [["configurePhase", 1649, 5], ["meta", 1650, 5]], [["license", 1657, 7]], [["meta", 1656, 5]], [["owner", 1666, 7], ["repo", 1667, 7], ["tag", 1668, 7], ["hash", 1669, 7]], [["version", 1664, 5], ["src", 1665, 5]], [["dependencies", 1674, 5]], [["license", 1679, 7]], [["meta", 1678, 5]], [["dependencies", 1684, 5]], [["license", 1689, 7]], [["meta", 1688, 5]], [["runtimeDeps", 1694, 5]], [["dependencies", 1698, 5], ["checkInputs", 1702, 5], ["nvimSkipModules", 1707, 5]], [["dependencies", 1719, 5]], [["license", 1727, 7]], [["meta", 1726, 5]], [["dependencies", 1732, 5]], [["dependencies", 1736, 5], ["buildPhase", 1738, 5], ["nvimSkipModules", 1748, 5]], [["license", 1758, 7]], [["meta", 1757, 5]], [["license", 1764, 7]], [["meta", 1763, 5]], [["runtimeDeps", 1769, 5], ["nvimRequireCheck", 1773, 5]], [["license", 1793, 7]], [["checkInputs", 1777, 5], ["dependencies", 1784, 5], ["nvimSkipModules", 1788, 5], ["meta", 1792, 5]], [["license", 1799, 7]], [["meta", 1798, 5]], [["dependencies", 1804, 5]], [["dependencies", 1808, 5]], [["dependencies", 1815, 5]], [["dependencies", 1819, 5]], [["dependencies", 1823, 5]], [["checkInputs", 1828, 5]], [["nvimRequireCheck", 1832, 5]], [["runtimeDeps", 1836, 5]], [["runtimeDeps", 1842, 5]], [["buildInputs", 1846, 5], ["checkInputs", 1848, 5], ["nvimSkipModules", 1852, 5]], [["license", 1861, 7]], [["meta", 1860, 5]], [["license", 1867, 7]], [["meta", 1866, 5]], [["doCheck", 1873, 5]], [["license", 1879, 7]], [["meta", 1877, 5]], [["dependencies", 1884, 5]], [["dependencies", 1888, 5], ["runtimeDeps", 1894, 5], ["nvimSkipModules", 1898, 5]], [["dependencies", 1906, 5], ["doInstallCheck", 1911, 5]], [["license", 1916, 7]], [["meta", 1915, 5]], [["license", 1922, 7]], [["meta", 1921, 5]], [["nvimSkipModules", 1928, 5]], [["checkInputs", 1932, 5], ["dependencies", 1936, 5]], [["nvimSkipModules", 1944, 5]], [["dependencies", 1953, 5]], [["license", 1958, 7]], [["meta", 1957, 5]], [["license", 1964, 7]], [["meta", 1963, 5]], [["dependencies", 1969, 5]], [["license", 1974, 7]], [["meta", 1973, 5]], [["dependencies", 1979, 5]], [["description", 1986, 7], ["license", 1987, 7]], [["buildInputs", 1984, 5], ["meta", 1985, 5]], [["dependencies", 1992, 5]], [["license", 1997, 7]], [["meta", 1996, 5]], [["license", 2003, 7]], [["meta", 2002, 5]], [["postPatch", 2009, 5]], [["license", 2016, 7]], [["meta", 2015, 5]], [["license", 2023, 7], ["maintainers", 2027, 7]], [["meta", 2021, 5]], [["license", 2035, 7]], [["meta", 2034, 5]], [["python3Dependencies", 2049, 7]], [["postPatch", 2044, 5], ["passthru", 2048, 5]], [["checkInputs", 2054, 5], ["dependencies", 2059, 5]], [["language", 2069, 11], ["version", 2070, 57], ["src", 2070, 65], ["meta", 2070, 69], ["generate", 2071, 11]], [["dependencies", 2076, 7], ["postPatch", 2078, 7], ["nvimSkipModules", 2083, 7]], [["license", 2099, 7]], [["meta", 2098, 5]], [["license", 2105, 7]], [["meta", 2104, 5]], [["dependencies", 2110, 5]], [["patches", 2114, 5], ["nvimSkipModules", 2115, 5]], [["runtimeDeps", 2127, 5]], [["dependencies", 2133, 5], ["runtimeDeps", 2134, 5]], [["dependencies", 2141, 5], ["nvimSkipModules", 2142, 5]], [["nativeBuildInputs", 2166, 5], ["buildInputs", 2167, 5], ["buildPhase", 2170, 5], ["stripDebugList", 2175, 5]], [["dependencies", 2179, 5]], [["dependencies", 2185, 5]], [["license", 2193, 7]], [["meta", 2192, 5]], [["checkInputs", 2198, 5], ["dependencies", 2203, 5], ["doInstallCheck", 2208, 5], ["nvimSkipModules", 2209, 5]], [["dependencies", 2246, 5], ["nvimSkipModules", 2247, 5]], [["license", 2261, 7]], [["patches", 2257, 5], ["meta", 2260, 5]], [["license", 2267, 7]], [["meta", 2266, 5]], [["license", 2273, 7]], [["meta", 2272, 5]], [["dependencies", 2278, 5]], [["license", 2284, 7]], [["dependencies", 2282, 5], ["meta", 2283, 5]], [["license", 2290, 7]], [["meta", 2289, 5]], [["license", 2296, 7]], [["meta", 2295, 5]], [["checkInputs", 2302, 5]], [["license", 2307, 7]], [["meta", 2306, 5]], [["dependencies", 2312, 5]], [["license", 2317, 7]], [["meta", 2316, 5]], [["dependencies", 2322, 5]], [["dependencies", 2326, 5]], [["license", 2337, 7]], [["dependencies", 2335, 5], ["meta", 2336, 5]], [["license", 2344, 7]], [["dependencies", 2342, 5], ["meta", 2343, 5]], [["license", 2350, 7]], [["meta", 2349, 5]], [["license", 2357, 7]], [["dependencies", 2355, 5], ["meta", 2356, 5]], [["license", 2370, 7]], [["checkInputs", 2362, 5], ["meta", 2369, 5]], [["postPatch", 2377, 5]], [["runtimeDeps", 2386, 5]], [["dependencies", 2390, 5]], [["license", 2395, 7]], [["meta", 2394, 5]], [["license", 2401, 7]], [["meta", 2400, 5]], [["dependencies", 2406, 5]], [["license", 2411, 7]], [["meta", 2410, 5]], [["dependencies", 2416, 5]], [["license", 2421, 7]], [["meta", 2420, 5]], [["nvimRequireCheck", 2427, 5]], [["nvimRequireCheck", 2432, 5]], [["dependencies", 2436, 5]], [["dependencies", 2440, 5]], [["dependencies", 2444, 5], ["nvimSkipModules", 2447, 5]], [["checkInputs", 2453, 5]], [["dependencies", 2457, 5], ["runtimeDeps", 2458, 5]], [["python3Dependencies", 2463, 7]], [["passthru", 2462, 5]], [["dependencies", 2479, 5]], [["license", 2484, 7]], [["meta", 2483, 5]], [["dependencies", 2489, 5]], [["yarnLock", 2505, 11], ["hash", 2506, 11]], [["pname", 2500, 47], ["version", 2500, 53], ["src", 2500, 61], ["nativeBuildInputs", 2501, 9], ["yarnOfflineCache", 2504, 9], ["installPhase", 2508, 9]], [["runtimeDeps", 2514, 7], ["postInstall", 2517, 7], ["nativeBuildInputs", 2521, 7], ["doInstallCheck", 2522, 7], ["installCheckPhase", 2523, 7]], [["dependencies", 2529, 5]], [["dependencies", 2533, 5]], [["dependencies", 2540, 5]], [["nvimSkipModules", 2548, 5]], [["dependencies", 2557, 5]], [["dependencies", 2564, 5]], [["checkInputs", 2569, 5]], [["license", 2574, 7]], [["meta", 2573, 5]], [["dependencies", 2579, 5], ["checkInputs", 2580, 5], ["nvimSkipModules", 2585, 5]], [["license", 2593, 7]], [["meta", 2592, 5]], [["dependencies", 2598, 5]], [["postInstall", 2608, 5]], [["preFixup", 2614, 5], ["doInstallCheck", 2621, 5], ["vimCommandCheck", 2622, 5]], [["checkInputs", 2626, 5], ["dependencies", 2631, 5], ["nvimSkipModules", 2632, 5]], [["dependencies", 2644, 5], ["nvimRequireCheck", 2646, 5]], [["nvimSkipModules", 2651, 5]], [["license", 2656, 7]], [["meta", 2655, 5]], [["checkInputs", 2662, 5]], [["license", 2671, 7]], [["meta", 2670, 5]], [["license", 2677, 7]], [["meta", 2676, 5]], [["dependencies", 2682, 5]], [["license", 2690, 7]], [["dependencies", 2688, 5], ["meta", 2689, 5]], [["dependencies", 2695, 5]], [["license", 2700, 7]], [["meta", 2699, 5]], [["python3Dependencies", 2710, 7]], [["dependencies", 2705, 5], ["passthru", 2709, 5]], [["dependencies", 2715, 5]], [["dependencies", 2719, 5]], [["dependencies", 2723, 5]], [["license", 2729, 7]], [["dependencies", 2727, 5], ["meta", 2728, 5]], [["license", 2735, 7]], [["meta", 2734, 5]], [["license", 2741, 7]], [["meta", 2740, 5]], [["license", 2747, 7]], [["meta", 2746, 5]], [["dependencies", 2752, 5], ["checkInputs", 2753, 5]], [["checkInputs", 2760, 5], ["dependencies", 2761, 5], ["nvimSkipModules", 2765, 5]], [["license", 2772, 7]], [["meta", 2771, 5]], [["dependencies", 2777, 5], ["doInstallCheck", 2779, 5]], [["checkInputs", 2784, 5], ["dependencies", 2785, 5], ["nvimSkipModules", 2786, 5]], [["license", 2795, 7]], [["meta", 2794, 5]], [["license", 2801, 7]], [["meta", 2800, 5]], [["nvimSkipModules", 2806, 5]], [["dependencies", 2815, 5]], [["buildInputs", 2822, 5], ["dependencies", 2823, 5]], [["license", 2832, 7]], [["meta", 2831, 5]], [["license", 2838, 7]], [["meta", 2837, 5]], [["license", 2844, 7]], [["meta", 2843, 5]], [["dependencies", 2849, 5]], [["dependencies", 2856, 5]], [["dependencies", 2863, 5], ["nvimRequireCheck", 2868, 5]], [["dependencies", 2872, 5]], [["dependencies", 2880, 5]], [["dependencies", 2888, 5]], [["dependencies", 2896, 5]], [["dependencies", 2904, 5]], [["license", 2918, 7]], [["dependencies", 2912, 5], ["meta", 2917, 5]], [["dependencies", 2926, 5]], [["dependencies", 2934, 5]], [["dependencies", 2944, 5]], [["dependencies", 2952, 5]], [["dependencies", 2961, 5]], [["dependencies", 2968, 5]], [["dependencies", 2976, 5], ["nvimSkipModules", 2981, 5]], [["dependencies", 2985, 5]], [["license", 2999, 7]], [["dependencies", 2993, 5], ["meta", 2998, 5]], [["dependencies", 3004, 5]], [["dependencies", 3012, 5]], [["checkInputs", 3020, 5], ["dependencies", 3024, 5], ["nvimSkipModules", 3030, 5]], [["dependencies", 3034, 5]], [["dependencies", 3042, 5]], [["dependencies", 3050, 5]], [["dependencies", 3058, 5]], [["dependencies", 3066, 5]], [["license", 3080, 7]], [["dependencies", 3074, 5], ["meta", 3079, 5]], [["dependencies", 3085, 5], ["nvimSkipModules", 3091, 5]], [["dependencies", 3095, 5]], [["runtimeDeps", 3103, 5]], [["dependencies", 3110, 5]], [["license", 3118, 7]], [["meta", 3117, 5]], [["dependencies", 3123, 5]], [["dependencies", 3129, 5]], [["dependencies", 3135, 5]], [["license", 3143, 7]], [["meta", 3142, 5]], [["checkInputs", 3149, 5]], [["license", 3160, 7]], [["meta", 3159, 5]], [["license", 3166, 7]], [["meta", 3165, 5]], [["dependencies", 3171, 5]], [["dependencies", 3175, 5]], [["dependencies", 3179, 5]], [["dependencies", 3183, 5]], [["dependencies", 3187, 5]], [["license", 3192, 7]], [["meta", 3191, 5]], [["license", 3220, 7]], [["checkInputs", 3197, 5], ["runtimeDeps", 3203, 5], ["postPatch", 3208, 5], ["meta", 3219, 5]], [["license", 3226, 7]], [["meta", 3225, 5]], [["dependencies", 3231, 5]], [["dependencies", 3236, 5], ["nvimSkipModules", 3246, 5]], [["dependencies", 3257, 5], ["nvimSkipModules", 3258, 5]], [["checkInputs", 3273, 5], ["nvimSkipModules", 3276, 5]], [["dependencies", 3283, 5]], [["dependencies", 3290, 5]], [["license", 3295, 7]], [["meta", 3294, 5]], [["dependencies", 3300, 5], ["nvimSkipModules", 3304, 5]], [["license", 3312, 7]], [["meta", 3311, 5]], [["dependencies", 3317, 5]], [["license", 3323, 7]], [["dependencies", 3321, 5], ["meta", 3322, 5]], [["dependencies", 3328, 5]], [["license", 3334, 7]], [["dependencies", 3332, 5], ["meta", 3333, 5]], [["dependencies", 3339, 5]], [["dependencies", 3343, 5]], [["dependencies", 3347, 5], ["doInstallCheck", 3352, 5]], [["dependencies", 3356, 5]], [["dependencies", 3360, 5]], [["dependencies", 3364, 5]], [["license", 3370, 7]], [["dependencies", 3368, 5], ["meta", 3369, 5]], [["dependencies", 3375, 5], ["nvimSkipModules", 3377, 5]], [["dependencies", 3381, 5], ["doInstallCheck", 3383, 5]], [["license", 3388, 7]], [["meta", 3387, 5]], [["dependencies", 3393, 5]], [["dependencies", 3407, 5]], [["dependencies", 3414, 5]], [["dependencies", 3418, 5], ["nvimSkipModules", 3419, 5]], [["dependencies", 3428, 5]], [["license", 3434, 7]], [["runtimeDeps", 3432, 5], ["meta", 3433, 5]], [["runtimeDeps", 3439, 5]], [["license", 3447, 7]], [["meta", 3446, 5]], [["dependencies", 3452, 5]], [["nvimSkipModules", 3459, 5]], [["license", 3469, 7]], [["meta", 3468, 5]], [["dependencies", 3474, 5]], [["dependencies", 3478, 5]], [["dependencies", 3482, 5], ["dontBuild", 3483, 5]], [["nvimSkipModules", 3488, 5]], [["dependencies", 3492, 5]], [["dependencies", 3500, 5]], [["license", 3510, 7]], [["checkInputs", 3505, 5], ["meta", 3509, 5]], [["checkInputs", 3516, 5]], [["checkInputs", 3521, 5], ["nvimSkipModules", 3525, 5]], [["dependencies", 3533, 5]], [["license", 3542, 7]], [["meta", 3541, 5]], [["license", 3548, 7]], [["meta", 3547, 5]], [["buildInputs", 3553, 5]], [["checkInputs", 3557, 5]], [["checkInputs", 3566, 5]], [["runtimeDeps", 3573, 5]], [["postPatch", 3577, 5], ["vimCommandCheck", 3581, 5]], [["checkInputs", 3586, 5], ["dependencies", 3587, 5]], [["checkInputs", 3602, 5]], [["license", 3611, 7]], [["meta", 3610, 5]], [["dependencies", 3632, 5]], [["dependencies", 3636, 5]], [["dependencies", 3640, 5]], [["dependencies", 3644, 5]], [["dependencies", 3648, 5]], [["dependencies", 3652, 5]], [["dependencies", 3656, 5]], [["dependencies", 3660, 5]], [["nvimSkipModules", 3665, 5]], [["runtimeDeps", 3675, 5], ["dependencies", 3676, 5]], [["license", 3681, 7]], [["meta", 3680, 5]], [["pname", 3687, 5], ["checkInputs", 3688, 5], ["dependencies", 3697, 5]], [["pname", 3702, 5], ["dependencies", 3703, 5]], [["pname", 3708, 5], ["dependencies", 3709, 5]], [["pname", 3714, 5]], [["checkInputs", 3718, 5], ["nvimSkipModules", 3725, 5]], [["license", 3736, 7]], [["meta", 3735, 5]], [["checkInputs", 3741, 5], ["dependencies", 3747, 5]], [["license", 3755, 7]], [["dependencies", 3753, 5], ["meta", 3754, 5]], [["dependencies", 3760, 5]], [["dependencies", 3764, 5]], [["dependencies", 3768, 5]], [["nvimSkipModules", 3773, 5]], [["license", 3778, 7]], [["meta", 3777, 5]], [["broken", 3786, 7]], [["meta", 3785, 5]], [["nvimSkipModules", 3791, 5]], [["configurePhase", 3801, 5]], [["license", 3806, 7]], [["meta", 3805, 5]], [["runtimeDeps", 3811, 5]], [["runtimeDeps", 3821, 5], ["nvimSkipModules", 3826, 5]], [["dependencies", 3833, 5], ["nvimSkipModules", 3837, 5]], [["dependencies", 3844, 5]], [["dependencies", 3848, 5]], [["nvimSkipModules", 3853, 5]], [["checkInputs", 3857, 5], ["checkPhase", 3864, 5]], [["dependencies", 3878, 5]], [["runtimeDeps", 3882, 5]], [["dependencies", 3886, 5]], [["license", 3909, 7]], [["runtimeDeps", 3893, 5], ["dependencies", 3897, 5], ["checkInputs", 3901, 5], ["meta", 3908, 5]], [["runtimeDeps", 3914, 5], ["patches", 3918, 5]], [["checkInputs", 3926, 5]], [["dependencies", 3932, 5]], [["license", 3939, 7]], [["meta", 3938, 5]], [["dependencies", 3944, 5]], [["nvimSkipModules", 3949, 5]], [["dependencies", 3953, 5]], [["license", 3958, 7]], [["meta", 3957, 5]], [["runtimeDeps", 3963, 5]], [["checkInputs", 3969, 5]], [["license", 3977, 7]], [["meta", 3976, 5]], [["postPatch", 3985, 5]], [["nvimSkipModules", 4010, 5]], [["license", 4015, 7]], [["meta", 4014, 5]], [["dependencies", 4020, 5]], [["license", 4034, 7]], [["checkInputs", 4024, 5], ["dependencies", 4028, 5], ["meta", 4032, 5]], [["license", 4040, 7]], [["meta", 4039, 5]], [["license", 4052, 7]], [["nvimSkipModules", 4045, 5], ["meta", 4051, 5]], [["runtimeDeps", 4057, 5]], [["license", 4064, 7]], [["meta", 4063, 5]], [["license", 4070, 7]], [["meta", 4069, 5]], [["license", 4076, 7]], [["meta", 4075, 5]], [["dependencies", 4081, 5]], [["dontPatchShebangs", 4087, 5], ["dependencies", 4088, 5], ["nvimSkipModules", 4092, 5]], [["dependencies", 4096, 5], ["runtimeDeps", 4100, 5]], [["license", 4108, 7]], [["meta", 4107, 5]], [["dependencies", 4113, 5]], [["dependencies", 4117, 5]], [["license", 4122, 7]], [["meta", 4121, 5]], [["initLua", 4128, 7]], [["passthru", 4127, 5]], [["license", 4139, 7]], [["meta", 4137, 5]], [["license", 4155, 7]], [["dependencies", 4144, 5], ["checkInputs", 4148, 5], ["meta", 4154, 5]], [["checkInputs", 4160, 5]], [["dependencies", 4167, 5]], [["license", 4172, 7]], [["meta", 4171, 5]], [["dependencies", 4177, 5]], [["dependencies", 4181, 5]], [["description", 4186, 7], ["license", 4187, 7], ["maintainers", 4188, 7]], [["meta", 4185, 5]], [["runtimeDeps", 4196, 5]], [["dependencies", 4203, 5]], [["license", 4208, 7]], [["meta", 4207, 5]], [["runtimeDeps", 4213, 5], ["nvimSkipModules", 4217, 5]], [["license", 4225, 7]], [["dependencies", 4223, 5], ["meta", 4224, 5]], [["runtimeDeps", 4230, 5], ["dependencies", 4234, 5]], [["nvimSkipModules", 4238, 5]], [["dependencies", 4252, 5], ["nvimSkipModules", 4257, 5]], [["nvimSkipModules", 4264, 5]], [["license", 4271, 7]], [["meta", 4270, 5]], [["checkInputs", 4277, 5], ["nvimSkipModules", 4278, 5]], [["nvimSkipModules", 4285, 5]], [["checkInputs", 4297, 5], ["nvimSkipModules", 4299, 5]], [["license", 4307, 7], ["maintainers", 4308, 7]], [["meta", 4306, 5]], [["nvimSkipModules", 4316, 5]], [["initLua", 4331, 9]], [["postPatch", 4325, 7], ["passthru", 4330, 7], ["nvimSkipModules", 4334, 7]], [["license", 4345, 7]], [["meta", 4344, 5]], [["license", 4351, 7]], [["meta", 4350, 5]], [["dependencies", 4356, 5]], [["postPatch", 4360, 5]], [["license", 4369, 7]], [["meta", 4368, 5]], [["doCheck", 4375, 5]], [["license", 4381, 7]], [["meta", 4379, 5]], [["name", 4389, 9], ["src", 4390, 30], ["nativeBuildInputs", 4391, 9], ["buildInputs", 4395, 9], ["preferLocalBuild", 4405, 9], ["installPhase", 4406, 9]], [["description", 4428, 9]], [["preferLocalBuild", 4422, 7], ["postPatch", 4423, 7], ["meta", 4427, 7]], [["dependencies", 4433, 5]], [["license", 4441, 7]], [["meta", 4440, 5]], [["license", 4447, 7]], [["meta", 4446, 5]], [["license", 4453, 7]], [["meta", 4452, 5]], [["license", 4459, 7]], [["meta", 4458, 5]], [["maintainers", 4466, 7]], [["dependencies", 4464, 5], ["meta", 4465, 5]], [["license", 4472, 7]], [["meta", 4471, 5]], [["dependencies", 4477, 5]], [["dependencies", 4484, 5]], [["dependencies", 4491, 5]], [["dependencies", 4499, 5]], [["dependencies", 4506, 5]], [["dependencies", 4514, 5]], [["dependencies", 4518, 5], ["nvimSkipModules", 4524, 5]], [["platforms", 4531, 7]], [["dependencies", 4528, 5], ["buildPhase", 4529, 5], ["meta", 4530, 5]], [["dependencies", 4536, 5]], [["name", 4548, 11], ["src", 4549, 11], ["preBuild", 4551, 11], ["installPhase", 4552, 11]], [["platforms", 4564, 7]], [["dependencies", 4543, 5], ["preFixup", 4544, 5], ["meta", 4563, 5]], [["dependencies", 4569, 5]], [["dependencies", 4576, 5]], [["dependencies", 4583, 5]], [["dependencies", 4587, 5]], [["license", 4599, 7]], [["dependencies", 4594, 5], ["meta", 4598, 5]], [["dependencies", 4604, 5]], [["runtimeDeps", 4611, 5]], [["dependencies", 4615, 5]], [["dependencies", 4623, 5]], [["dependencies", 4627, 5]], [["dependencies", 4634, 5]], [["dependencies", 4638, 5]], [["dependencies", 4642, 5]], [["dependencies", 4649, 5]], [["dependencies", 4656, 5]], [["dependencies", 4663, 5]], [["dependencies", 4670, 5]], [["dependencies", 4674, 5], ["buildInputs", 4676, 5], ["postPatch", 4678, 5]], [["nvimSkipModules", 4685, 5]], [["dependencies", 4692, 5]], [["license", 4697, 7]], [["meta", 4696, 5]], [["license", 4703, 7]], [["meta", 4702, 5]], [["nvimSkipModules", 4708, 5]], [["nvimSkipModules", 4716, 5]], [["checkInputs", 4720, 5], ["dependencies", 4724, 5], ["nvimSkipModules", 4725, 5]], [["license", 4734, 7]], [["meta", 4733, 5]], [["checkInputs", 4739, 5], ["nvimSkipModules", 4740, 5]], [["dependencies", 4747, 5]], [["dependencies", 4751, 5]], [["nvimSkipModules", 4756, 5]], [["license", 4763, 7]], [["meta", 4760, 5]], [["postPatch", 4768, 5], ["nvimSkipModules", 4775, 5]], [["license", 4780, 7]], [["meta", 4779, 5]], [["license", 4786, 7]], [["meta", 4785, 5]], [["license", 4793, 7]], [["meta", 4791, 5]], [["runtimeDeps", 4798, 5]], [["dependencies", 4802, 5], ["runtimeDeps", 4806, 5]], [["postPatch", 4812, 5]], [["url", 4822, 9], ["sha256", 4823, 9]], [["initLua", 4835, 9]], [["license", 4838, 9]], [["buildPhase", 4828, 7], ["passthru", 4834, 7], ["meta", 4837, 7]], [["license", 4846, 7]], [["postPatch", 4844, 5], ["meta", 4845, 5]], [["license", 4852, 7]], [["meta", 4851, 5]], [["runtimeDeps", 4857, 5]], [["license", 4862, 7]], [["meta", 4861, 5]], [["description", 4870, 7], ["license", 4871, 7]], [["propagatedBuildInputs", 4868, 5], ["meta", 4869, 5]], [["license", 4877, 7]], [["meta", 4876, 5]], [["license", 4883, 7]], [["meta", 4882, 5]], [["dependencies", 4888, 5]], [["license", 4897, 7]], [["dependencies", 4895, 5], ["meta", 4896, 5]], [["dependencies", 4902, 5]], [["license", 4907, 7]], [["meta", 4906, 5]], [["dependencies", 4912, 5]], [["dependencies", 4916, 5]], [["license", 4921, 7]], [["meta", 4920, 5]], [["dependencies", 4926, 5]], [["dependencies", 4933, 5]], [["dependencies", 4944, 5]], [["dependencies", 4952, 5]], [["dependencies", 4959, 5]], [["dependencies", 4966, 5]], [["license", 4976, 7]], [["meta", 4975, 5]], [["preFixup", 4981, 5]], [["license", 4989, 7]], [["meta", 4988, 5]], [["license", 4995, 7]], [["meta", 4994, 5]], [["nvimSkipModules", 5000, 5]], [["dependencies", 5004, 5]], [["license", 5009, 7]], [["meta", 5008, 5]], [["python3Dependencies", 5015, 7]], [["license", 5018, 7]], [["passthru", 5014, 5], ["meta", 5017, 5]], [["license", 5024, 7]], [["meta", 5023, 5]], [["license", 5030, 7]], [["meta", 5029, 5]], [["license", 5036, 7]], [["meta", 5035, 5]], [["license", 5042, 7]], [["meta", 5041, 5]], [["license", 5048, 7]], [["meta", 5047, 5]], [["license", 5054, 7]], [["meta", 5053, 5]], [["license", 5060, 7]], [["meta", 5059, 5]], [["dependencies", 5065, 5]], [["license", 5072, 7]], [["meta", 5071, 5]], [["license", 5081, 7]], [["meta", 5080, 5]], [["license", 5088, 7]], [["meta", 5086, 5]], [["postFetch", 5094, 7]], [["src", 5093, 5]], [["license", 5104, 7]], [["meta", 5103, 5]], [["license", 5111, 7]], [["meta", 5109, 5]], [["license", 5117, 7]], [["meta", 5116, 5]], [["dependencies", 5122, 5], ["doInstallCheck", 5124, 5], ["vimCommandCheck", 5125, 5]], [["license", 5134, 7]], [["preFixup", 5129, 5], ["meta", 5133, 5]], [["license", 5140, 7]], [["meta", 5139, 5]], [["license", 5146, 7]], [["meta", 5145, 5]], [["license", 5152, 7]], [["meta", 5151, 5]], [["license", 5158, 7]], [["meta", 5157, 5]], [["license", 5164, 7]], [["meta", 5163, 5]], [["license", 5170, 7]], [["meta", 5169, 5]], [["license", 5176, 7]], [["meta", 5175, 5]], [["license", 5182, 7]], [["meta", 5181, 5]], [["url", 5191, 9], ["sha256", 5192, 9]], [["license", 5196, 7]], [["dependencies", 5187, 5], ["patches", 5188, 5], ["meta", 5195, 5]], [["license", 5202, 7]], [["meta", 5201, 5]], [["license", 5208, 7]], [["meta", 5207, 5]], [["license", 5214, 7]], [["meta", 5213, 5]], [["license", 5220, 7]], [["meta", 5219, 5]], [["license", 5226, 7]], [["meta", 5225, 5]], [["license", 5232, 7]], [["meta", 5231, 5]], [["license", 5238, 7]], [["meta", 5237, 5]], [["license", 5244, 7]], [["meta", 5243, 5]], [["license", 5250, 7]], [["meta", 5249, 5]], [["license", 5256, 7]], [["meta", 5255, 5]], [["license", 5262, 7]], [["meta", 5261, 5]], [["license", 5270, 7]], [["nvimSkipModules", 5268, 5], ["meta", 5269, 5]], [["license", 5276, 7]], [["meta", 5275, 5]], [["license", 5282, 7]], [["meta", 5281, 5]], [["license", 5288, 7]], [["meta", 5287, 5]], [["dependencies", 5293, 5]], [["license", 5300, 7]], [["dependencies", 5297, 5], ["meta", 5298, 5]], [["license", 5309, 7]], [["meta", 5308, 5]], [["license", 5315, 7]], [["meta", 5314, 5]], [["license", 5347, 9]], [["postPatch", 5343, 7], ["meta", 5346, 7]], [["languagetool", 5358, 17]], [["license", 5363, 7]], [["patches", 5356, 5], ["meta", 5361, 5]], [["license", 5370, 7]], [["meta", 5368, 5]], [["license", 5376, 7]], [["meta", 5375, 5]], [["license", 5382, 7]], [["meta", 5381, 5]], [["license", 5388, 7]], [["meta", 5387, 5]], [["name", 5396, 11], ["src", 5397, 11], ["vendorHash", 5398, 11]], [["license", 5406, 7], ["platforms", 5407, 7]], [["preFixup", 5393, 5], ["meta", 5405, 5]], [["buildInputs", 5412, 5]], [["license", 5417, 7]], [["meta", 5416, 5]], [["runtimeDeps", 5422, 5]], [["license", 5427, 7]], [["meta", 5426, 5]], [["postPatch", 5432, 5]], [["license", 5440, 7]], [["meta", 5439, 5]], [["license", 5446, 7]], [["meta", 5445, 5]], [["license", 5452, 7]], [["meta", 5451, 5]], [["license", 5458, 7]], [["meta", 5457, 5]], [["license", 5464, 7]], [["meta", 5463, 5]], [["license", 5471, 7]], [["meta", 5469, 5]], [["license", 5477, 7]], [["meta", 5476, 5]], [["license", 5483, 7]], [["meta", 5482, 5]], [["license", 5489, 7]], [["meta", 5488, 5]], [["license", 5495, 7]], [["meta", 5494, 5]], [["python3Dependencies", 5501, 7]], [["passthru", 5500, 5]], [["license", 5507, 7]], [["meta", 5506, 5]], [["preInstall", 5512, 5]], [["license", 5517, 7]], [["meta", 5516, 5]], [["license", 5523, 7]], [["meta", 5522, 5]], [["license", 5529, 7]], [["meta", 5528, 5]], [["license", 5535, 7]], [["meta", 5534, 5]], [["license", 5541, 7]], [["meta", 5540, 5]], [["license", 5547, 7]], [["meta", 5546, 5]], [["license", 5553, 7]], [["meta", 5552, 5]], [["license", 5559, 7]], [["meta", 5558, 5]], [["license", 5566, 7]], [["meta", 5564, 5]], [["license", 5575, 7]], [["meta", 5574, 5]], [["license", 5581, 7]], [["meta", 5580, 5]], [["license", 5587, 7]], [["meta", 5586, 5]], [["dependencies", 5592, 5]], [["license", 5597, 7]], [["meta", 5596, 5]], [["license", 5603, 7]], [["meta", 5602, 5]], [["license", 5609, 7]], [["meta", 5608, 5]], [["license", 5615, 7]], [["meta", 5614, 5]], [["license", 5621, 7]], [["meta", 5620, 5]], [["license", 5627, 7]], [["meta", 5626, 5]], [["license", 5633, 7]], [["meta", 5632, 5]], [["license", 5639, 7]], [["meta", 5638, 5]], [["license", 5645, 7]], [["meta", 5644, 5]], [["license", 5651, 7]], [["meta", 5650, 5]], [["license", 5657, 7]], [["meta", 5656, 5]], [["license", 5663, 7]], [["meta", 5662, 5]], [["license", 5669, 7]], [["meta", 5668, 5]], [["license", 5675, 7]], [["meta", 5674, 5]], [["license", 5681, 7]], [["meta", 5680, 5]], [["license", 5688, 7]], [["patches", 5686, 5], ["meta", 5687, 5]], [["license", 5695, 7]], [["meta", 5693, 5]], [["license", 5703, 11]], [["meta", 5702, 9]], [["license", 5709, 7]], [["meta", 5708, 5]], [["license", 5719, 7]], [["meta", 5718, 5]], [["license", 5725, 7]], [["meta", 5724, 5]], [["license", 5735, 7]], [["dependencies", 5730, 5], ["meta", 5734, 5]], [["license", 5742, 7]], [["dependencies", 5740, 5], ["meta", 5741, 5]], [["license", 5748, 7]], [["meta", 5747, 5]], [["postPatch", 5753, 5]], [["license", 5763, 7]], [["dependencies", 5761, 5], ["meta", 5762, 5]], [["license", 5769, 7]], [["meta", 5768, 5]], [["license", 5775, 7]], [["meta", 5774, 5]], [["license", 5784, 7]], [["meta", 5783, 5]], [["license", 5790, 7]], [["meta", 5789, 5]], [["license", 5796, 7]], [["meta", 5795, 5]], [["license", 5802, 7]], [["meta", 5801, 5]], [["maintainers", 5809, 7], ["license", 5810, 7]], [["dependencies", 5807, 5], ["meta", 5808, 5]], [["license", 5816, 7]], [["meta", 5815, 5]], [["maintainers", 5823, 7], ["license", 5824, 7]], [["dependencies", 5821, 5], ["meta", 5822, 5]], [["license", 5831, 7]], [["dependencies", 5829, 5], ["meta", 5830, 5]], [["license", 5837, 7]], [["meta", 5836, 5]], [["license", 5844, 7]], [["meta", 5842, 5]], [["nvimSkipModules", 5853, 5]], [["license", 5858, 7]], [["meta", 5857, 5]], [["nvimSkipModules", 5865, 5]], [["license", 5871, 7]], [["dependencies", 5869, 5], ["meta", 5870, 5]], [["license", 5877, 7]], [["meta", 5876, 5]], [["license", 5883, 7]], [["meta", 5882, 5]], [["license", 5889, 7]], [["meta", 5888, 5]], [["license", 5896, 7]], [["meta", 5894, 5]], [["buildInputs", 5901, 5], ["patchPhase", 5902, 5]], [["license", 5914, 7]], [["meta", 5912, 5]], [["license", 5920, 7]], [["meta", 5919, 5]], [["license", 5927, 7]], [["postInstall", 5925, 5], ["meta", 5926, 5]], [["buildInputs", 5932, 5]], [["license", 5941, 7]], [["buildPhase", 5936, 5], ["meta", 5940, 5]], [["dependencies", 5946, 5]], [["license", 5954, 7]], [["meta", 5953, 5]], [["checkInputs", 5959, 5]], [["license", 5969, 7]], [["meta", 5968, 5]], [["license", 5975, 7]], [["meta", 5974, 5]], [["license", 5981, 7]], [["meta", 5980, 5]], [["license", 5987, 7]], [["meta", 5986, 5]], [["license", 5993, 7]], [["meta", 5992, 5]], [["license", 6010, 7]], [["buildInputs", 5998, 5], ["buildPhase", 6001, 5], ["meta", 6009, 5]], [["description", 6016, 7], ["homepage", 6017, 7], ["maintainers", 6018, 7]], [["meta", 6015, 5]], [["license", 6025, 7]], [["dependencies", 6023, 5], ["meta", 6024, 5]], [["checkInputs", 6030, 5]], [["license", 6039, 7]], [["meta", 6038, 5]], [["nvimSkipModules", 6045, 5]], [["license", 6050, 7]], [["meta", 6049, 5]], [["license", 6056, 7]], [["meta", 6055, 5]], [["license", 6062, 7]], [["meta", 6061, 5]], [["checkInputs", 6067, 5], ["dependencies", 6071, 5]], [["license", 6078, 7]], [["meta", 6077, 5]], [["nvimSkipModules", 6083, 5]], [["checkInputs", 6087, 5]], [["license", 6095, 7]], [["meta", 6094, 5]], [["checkInputs", 6100, 5]], [["dependencies", 6108, 5], ["nvimSkipModules", 6112, 5]], [["dependencies", 6120, 5]], [["license", 6128, 7]], [["meta", 6127, 5]], [["nvimSkipModules", 6133, 5]], [["license", 6144, 7]], [["meta", 6142, 5]], [["dependencies", 6149, 5]], [["dependencies", 6156, 5]], [["license", 6164, 7]], [["meta", 6163, 5]], [["checkInputs", 6169, 5]], [["dependencies", 6176, 5], ["nvimSkipModules", 6177, 5]], [["description", 6194, 7], ["homepage", 6195, 7], ["license", 6196, 7], ["maintainers", 6197, 7], ["platforms", 6200, 7]], [["buildPhase", 6184, 5], ["meta", 6193, 5]], [["license", 6206, 7]], [["meta", 6205, 5]], [["checkInputs", 6211, 5], ["nvimSkipModules", 6215, 5]], [["license", 6240, 7]], [["meta", 6239, 5]], [["license", 6246, 7]], [["meta", 6245, 5]], [["checkInputs", 6251, 5], ["nvimSkipModules", 6258, 5]], [["license", 6267, 7]], [["meta", 6266, 5]], [["dependencies", 6272, 5]], [["buildInputs", 6279, 5], ["postPatch", 6281, 5]], [["ack-vim", 168, 3], ["advanced-git-search-nvim", 174, 3], ["aerial-nvim", 194, 3], ["agitator-nvim", 208, 3], ["aider-nvim", 215, 3], ["animation-nvim", 221, 3], ["argtextobj-vim", 225, 3], ["arrow-nvim", 231, 3], ["arshlib-nvim", 237, 3], ["astrocore", 244, 3], ["astroui", 248, 3], ["async-nvim", 253, 3], ["asyncrun-vim", 259, 3], ["atlas-nvim", 264, 3], ["augment-vim", 275, 3], ["auto-git-diff", 284, 3], ["auto-pairs", 290, 3], ["auto-session", 297, 3], ["autosave-nvim", 302, 3], ["aw-watcher-vim", 306, 3], ["bamboo-nvim", 312, 3], ["barbar-nvim", 330, 3], ["barbecue-nvim", 344, 3], ["base16-vim", 357, 3], ["base46", 363, 3], ["bclose-vim", 370, 3], ["blink-calc", 376, 3], ["blink-cmp-conventional-commits", 380, 3], ["blink-cmp-copilot", 384, 3], ["blink-cmp-dictionary", 388, 3], ["blink-cmp-env", 392, 3], ["blink-cmp-git", 396, 3], ["blink-cmp-latex", 400, 3], ["blink-cmp-nixpkgs-maintainers", 404, 3], ["blink-cmp-npm-nvim", 408, 3], ["blink-cmp-words", 414, 3], ["blink-cmp-yanky", 425, 3], ["blink-emoji-nvim", 432, 3], ["blink-nerdfont-nvim", 436, 3], ["bluloco-nvim", 440, 3], ["bufferline-nvim", 444, 3], ["BufOnly-vim", 449, 3], ["bufresize-nvim", 455, 3], ["bullets-vim", 461, 3], ["camelcasemotion", 467, 3], ["catppuccin-nvim", 473, 3], ["caw-vim", 483, 3], ["ccc-nvim", 489, 3], ["chadtree", 495, 3], ["ChatGPT-nvim", 513, 3], ["cheatsheet-nvim", 521, 3], ["CheckAttach", 528, 3], ["checkmate-nvim", 534, 3], ["clang_complete", 541, 3], ["clangd_extensions-nvim", 566, 3], ["claude-code-nvim", 572, 3], ["claude-fzf-history-nvim", 578, 3], ["claude-fzf-nvim", 587, 3], ["clever-f-vim", 603, 3], ["clighter8", 609, 3], ["clipboard-image-nvim", 616, 3], ["close-buffers-vim", 622, 3], ["cmake-tools-nvim", 628, 3], ["cmd-parser-nvim", 632, 3], ["cmp-ai", 638, 3], ["cmp-async-path", 647, 3], ["cmp-beancount", 654, 3], ["cmp-buffer", 658, 3], ["cmp-calc", 662, 3], ["cmp-clippy", 666, 3], ["cmp-cmdline", 673, 3], ["cmp-cmdline-history", 677, 3], ["cmp-conjure", 681, 3], ["cmp-copilot", 686, 3], ["cmp-ctags", 691, 3], ["cmp-dap", 695, 3], ["cmp-dictionary", 700, 3], ["cmp-digraphs", 704, 3], ["cmp-dotenv", 708, 3], ["cmp-emoji", 712, 3], ["cmp-fish", 716, 3], ["cmp-fuzzy-buffer", 720, 3], ["cmp-fuzzy-path", 725, 3], ["cmp-git", 730, 3], ["cmp-greek", 735, 3], ["cmp-latex-symbols", 739, 3], ["cmp-look", 743, 3], ["cmp-neosnippet", 747, 3], ["cmp-nixpkgs-maintainers", 752, 3], ["cmp-npm", 757, 3], ["cmp-nvim-lsp-document-symbol", 762, 3], ["cmp-nvim-lsp-signature-help", 766, 3], ["cmp-nvim-lua", 770, 3], ["cmp-nvim-tags", 774, 3], ["cmp-nvim-ultisnips", 778, 3], ["cmp-omni", 782, 3], ["cmp-pandoc-nvim", 786, 3], ["cmp-pandoc-references", 791, 3], ["cmp-path", 795, 3], ["cmp-rg", 799, 3], ["cmp-snippy", 803, 3], ["cmp-spell", 808, 3], ["cmp-tabby", 812, 3], ["cmp-tmux", 816, 3], ["cmp-treesitter", 821, 3], ["cmp-vim-lsp", 825, 3], ["cmp-vimtex", 830, 3], ["cmp-vimwiki-tags", 834, 3], ["cmp-vsnip", 839, 3], ["cmp-zsh", 843, 3], ["cmp_luasnip", 848, 3], ["cmp_yanky", 853, 3], ["cobalt2-nvim", 857, 3], ["coc-clap", 871, 3], ["coc-denite", 877, 3], ["coc-fzf", 883, 3], ["coc-neco", 889, 3], ["coc-nvim", 895, 3], ["cocci-syntax", 901, 3], ["codecompanion-history-nvim", 907, 3], ["codecompanion-nvim", 916, 3], ["codesettings-nvim", 934, 3], ["codewindow-nvim", 939, 3], ["colorful-menu-nvim", 943, 3], ["colorizer", 952, 3], ["Colour-Sampler-Pack", 958, 3], ["command-t", 964, 3], ["competitest-nvim", 976, 3], ["compiler-explorer-nvim", 980, 3], ["compiler-nvim", 984, 3], ["completion-buffers", 988, 3], ["conflict-marker-vim", 992, 3], ["conjure", 998, 3], ["context-vim", 1006, 3], ["context_filetype-vim", 1011, 3], ["copilot-cmp", 1017, 3], ["copilot-lua", 1028, 3], ["copilot-lualine", 1042, 3], ["copilot-vim", 1050, 3], ["CopilotChat-nvim", 1062, 3], ["coq-vim", 1075, 3], ["coq_nvim", 1081, 3], ["cornelis", 1100, 3], ["cpsm", 1111, 3], ["crates-nvim", 1130, 3], ["cspell-nvim", 1138, 3], ["ctrlp-cmatcher", 1145, 3], ["ctrlp-vim", 1170, 3], ["ctrlp-z", 1176, 3], ["dadbod-grip-nvim", 1182, 3], ["dailies-nvim", 1191, 3], ["darkearth-nvim", 1197, 3], ["ddc-filter-matcher_head", 1201, 3], ["ddc-filter-sorter_rank", 1205, 3], ["ddc-fuzzy", 1209, 3], ["ddc-source-around", 1216, 3], ["ddc-source-file", 1220, 3], ["ddc-source-lsp", 1224, 3], ["ddc-ui-native", 1231, 3], ["ddc-ui-pum", 1235, 3], ["ddc-vim", 1242, 3], ["debugmaster-nvim", 1246, 3], ["defx-nvim", 1250, 3], ["demicolon-nvim", 1254, 3], ["denite-nvim", 1266, 3], ["denops-vim", 1272, 3], ["deoplete-fish", 1279, 3], ["deoplete-go", 1286, 3], ["deoplete-julia", 1296, 3], ["deoplete-khard", 1302, 3], ["deoplete-lsp", 1315, 3], ["deoplete-nvim", 1321, 3], ["deoplete-zsh", 1327, 3], ["devdocs-nvim", 1333, 3], ["devdocs-vim", 1345, 3], ["diagram-nvim", 1352, 3], ["diffview-nvim", 1356, 3], ["diffview-plus-nvim", 1365, 3], ["direnv-vim", 1374, 3], ["distant-nvim", 1382, 3], ["dotnet-nvim", 1386, 3], ["dropbar-nvim", 1393, 3], ["easy-dotnet-nvim", 1398, 3], ["echodoc-vim", 1410, 3], ["ecolog-nvim", 1416, 3], ["editorconfig-vim", 1422, 3], ["efmls-configs-nvim", 1428, 3], ["eldritch-nvim", 1432, 3], ["elixir-tools-nvim", 1439, 3], ["evergarden-nvim", 1446, 3], ["executor-nvim", 1461, 3], ["faster-nvim", 1465, 3], ["fastfold", 1472, 3], ["faust-nvim", 1479, 3], ["fcitx-vim", 1490, 3], ["file-line", 1500, 3], ["flash-nvim", 1506, 3], ["flit-nvim", 1512, 3], ["floaterm", 1516, 3], ["flow-nvim", 1520, 3], ["flutter-tools-nvim", 1527, 3], ["forms", 1533, 3], ["freeze-nvim", 1537, 3], ["fugit2-nvim", 1541, 3], ["fuzzy-nvim", 1571, 3], ["fyler-nvim", 1583, 3], ["fzf-checkout-vim", 1595, 3], ["fzf-hoogle-vim", 1603, 3], ["fzf-lsp-nvim", 1617, 3], ["fzf-lua", 1621, 3], ["fzf-vim", 1630, 3], ["gen-nvim", 1634, 3], ["gentoo-syntax", 1638, 3], ["gh-nvim", 1644, 3], ["ghcid", 1648, 3], ["ghcmod-vim", 1655, 3], ["git-conflict-nvim", 1661, 3], ["git-worktree-nvim", 1673, 3], ["gitlab-vim", 1677, 3], ["gitlinker-nvim", 1683, 3], ["gitv", 1687, 3], ["glow-nvim", 1693, 3], ["go-nvim", 1697, 3], ["GPTModels-nvim", 1718, 3], ["gruvbox", 1725, 3], ["guard-collection", 1731, 3], ["guihua-lua", 1735, 3], ["gundo-vim", 1756, 3], ["gv-vim", 1762, 3], ["gx-nvim", 1768, 3], ["hardhat-nvim", 1776, 3], ["hare-vim", 1797, 3], ["harpoon", 1803, 3], ["harpoon-lualine", 1807, 3], ["harpoon2", 1814, 3], ["haskell-scope-highlighting-nvim", 1818, 3], ["haskell-snippets-nvim", 1822, 3], ["haskell-tools-nvim", 1826, 3], ["heirline-components-nvim", 1831, 3], ["helm-ls-nvim", 1835, 3], ["hex-nvim", 1841, 3], ["himalaya-vim9", 1845, 3], ["hoon-vim", 1859, 3], ["hop-nvim", 1865, 3], ["hotpot-nvim", 1871, 3], ["html5-vim", 1876, 3], ["hunk-nvim", 1883, 3], ["hurl-nvim", 1887, 3], ["idris2-nvim", 1905, 3], ["Improved-AnsiEsc", 1914, 3], ["incsearch-easymotion-vim", 1920, 3], ["indent-blankline-nvim", 1926, 3], ["indent-tools-nvim", 1931, 3], ["instant-nvim", 1943, 3], ["intellitab-nvim", 1952, 3], ["intero-neovim", 1956, 3], ["iosvkem", 1962, 3], ["iswap-nvim", 1968, 3], ["jdaddy-vim", 1972, 3], ["jdd-nvim", 1978, 3], ["jedi-vim", 1982, 3], ["jellybeans-nvim", 1991, 3], ["jellybeans-vim", 1995, 3], ["jinja-vim", 2001, 3], ["jj-nvim", 2007, 3], ["jq-vim", 2014, 3], ["jsonfly-nvim", 2020, 3], ["julia-vim", 2033, 3], ["jupytext-nvim", 2039, 3], ["just-nvim", 2053, 3], ["kulala-nvim", 2064, 3], ["LanguageTool-nvim", 2097, 3], ["last256", 2103, 3], ["lazy-lsp-nvim", 2109, 3], ["lazy-nvim", 2113, 3], ["lazydocker-nvim", 2126, 3], ["lazyjj-nvim", 2132, 3], ["LazyVim", 2139, 3], ["LeaderF", 2165, 3], ["lean-nvim", 2178, 3], ["leap-ast-nvim", 2184, 3], ["leap-nvim", 2191, 3], ["leetcode-nvim", 2197, 3], ["legendary-nvim", 2245, 3], ["lens-vim", 2253, 3], ["lessspace-vim", 2265, 3], ["lexima-vim", 2271, 3], ["lf-nvim", 2277, 3], ["lf-vim", 2281, 3], ["lh-brackets", 2288, 3], ["lh-vim-lib", 2294, 3], ["lightline-bufferline", 2300, 3], ["lightline-lsp", 2305, 3], ["lightswitch-nvim", 2311, 3], ["lingua-franca-vim", 2315, 3], ["lir-nvim", 2321, 3], ["lispdocs-nvim", 2325, 3], ["litee-calltree-nvim", 2334, 3], ["litee-filetree-nvim", 2341, 3], ["litee-nvim", 2348, 3], ["litee-symboltree-nvim", 2354, 3], ["live-preview-nvim", 2361, 3], ["live-share-nvim", 2374, 3], ["llm-nvim", 2385, 3], ["lsp-format-modifications-nvim", 2389, 3], ["lsp-format-nvim", 2393, 3], ["lsp-rooter-nvim", 2399, 3], ["lsp_extensions-nvim", 2405, 3], ["lsp_lines-nvim", 2409, 3], ["lspcontainers-nvim", 2415, 3], ["lspecho-nvim", 2419, 3], ["lspsaga-nvim", 2425, 3], ["ltex_extra-nvim", 2430, 3], ["lualine-lsp-progress", 2435, 3], ["lualine-so-fancy-nvim", 2439, 3], ["luasnip-latex-snippets-nvim", 2443, 3], ["LuaSnip-snippets-nvim", 2452, 3], ["luau-lsp-nvim", 2456, 3], ["magma-nvim", 2461, 3], ["maple-nvim", 2478, 3], ["mark-radar-nvim", 2482, 3], ["markdoc-nvim", 2488, 3], ["markdown-preview-nvim", 2496, 3], ["markid", 2528, 3], ["mason-lspconfig-nvim", 2532, 3], ["mason-null-ls-nvim", 2539, 3], ["mason-nvim", 2547, 3], ["mason-nvim-dap-nvim", 2556, 3], ["mason-tool-installer-nvim", 2563, 3], ["material-vim", 2567, 3], ["mattn-calendar-vim", 2572, 3], ["mcphub-nvim", 2578, 3], ["mediawiki-vim", 2591, 3], ["mesone-nvim", 2597, 3], ["mini-nvim", 2606, 3], ["minimap-vim", 2613, 3], ["minuet-ai-nvim", 2625, 3], ["mkdnflow-nvim", 2643, 3], ["modicator-nvim", 2649, 3], ["molokai", 2654, 3], ["molten-nvim", 2660, 3], ["moonscript-vim", 2669, 3], ["mru", 2675, 3], ["multicursors-nvim", 2681, 3], ["muren-nvim", 2687, 3], ["ncm2", 2694, 3], ["ncm2-dictionary", 2698, 3], ["ncm2-jedi", 2704, 3], ["ncm2-neoinclude", 2714, 3], ["ncm2-neosnippet", 2718, 3], ["ncm2-syntax", 2722, 3], ["ncm2-ultisnips", 2726, 3], ["neco-ghc", 2733, 3], ["neco-look", 2739, 3], ["neco-syntax", 2745, 3], ["neo-tree-diagnostics-nvim", 2751, 3], ["neo-tree-nvim", 2759, 3], ["neocomplete-vim", 2770, 3], ["neoconf-nvim", 2776, 3], ["neogit", 2782, 3], ["neoinclude-vim", 2793, 3], ["neomru-vim", 2799, 3], ["neorepl-nvim", 2805, 3], ["neorg", 2814, 3], ["neorg-telescope", 2821, 3], ["neosnippet-snippets", 2830, 3], ["neosnippet-vim", 2836, 3], ["neoterm", 2842, 3], ["neotest-bash", 2848, 3], ["neotest-bun", 2855, 3], ["neotest-busted", 2862, 3], ["neotest-ctest", 2871, 3], ["neotest-dart", 2879, 3], ["neotest-deno", 2887, 3], ["neotest-dotnet", 2895, 3], ["neotest-elixir", 2903, 3], ["neotest-foundry", 2911, 3], ["neotest-go", 2925, 3], ["neotest-golang", 2933, 3], ["neotest-gradle", 2943, 3], ["neotest-gtest", 2951, 3], ["neotest-haskell", 2960, 3], ["neotest-java", 2967, 3], ["neotest-jest", 2975, 3], ["neotest-minitest", 2984, 3], ["neotest-mocha", 2992, 3], ["neotest-pest", 3003, 3], ["neotest-phpunit", 3011, 3], ["neotest-playwright", 3019, 3], ["neotest-plenary", 3033, 3], ["neotest-python", 3041, 3], ["neotest-rspec", 3049, 3], ["neotest-rust", 3057, 3], ["neotest-scala", 3065, 3], ["neotest-testthat", 3073, 3], ["neotest-vitest", 3084, 3], ["neotest-zig", 3094, 3], ["neovim-fuzzy", 3102, 3], ["neovim-project", 3109, 3], ["neovim-sensible", 3116, 3], ["neovim-session-manager", 3122, 3], ["neovim-tips", 3128, 3], ["neovim-trunk", 3134, 3], ["neoyank-vim", 3141, 3], ["netman-nvim", 3147, 3], ["nginx-vim", 3158, 3], ["nidhogg-nvim", 3164, 3], ["nlsp-settings-nvim", 3170, 3], ["noctis-nvim", 3174, 3], ["noice-nvim", 3178, 3], ["none-ls-extras-nvim", 3182, 3], ["none-ls-nvim", 3186, 3], ["NotebookNavigator-nvim", 3190, 3], ["notmuch-nvim", 3196, 3], ["NrrwRgn", 3224, 3], ["nterm-nvim", 3230, 3], ["nvchad", 3234, 3], ["nvchad-ui", 3256, 3], ["nvim-autopairs", 3271, 3], ["nvim-biscuits", 3282, 3], ["nvim-cokeline", 3289, 3], ["nvim-colorizer-lua", 3293, 3], ["nvim-coverage", 3299, 3], ["nvim-dap", 3310, 3], ["nvim-dap-cortex-debug", 3316, 3], ["nvim-dap-disasm", 3320, 3], ["nvim-dap-lldb", 3327, 3], ["nvim-dap-python", 3331, 3], ["nvim-dap-rego", 3338, 3], ["nvim-dap-rr", 3342, 3], ["nvim-dap-ui", 3346, 3], ["nvim-dap-view", 3355, 3], ["nvim-dap-virtual-text", 3359, 3], ["nvim-dap-vscode-js", 3363, 3], ["nvim-FeMaco-lua", 3367, 3], ["nvim-fzf-commands", 3374, 3], ["nvim-genghis", 3380, 3], ["nvim-highlite", 3386, 3], ["nvim-java", 3392, 3], ["nvim-java-core", 3406, 3], ["nvim-java-dap", 3413, 3], ["nvim-java-refactor", 3417, 3], ["nvim-java-test", 3427, 3], ["nvim-jdtls", 3431, 3], ["nvim-jqx", 3438, 3], ["nvim-julia-autotest", 3445, 3], ["nvim-k8s-crd", 3451, 3], ["nvim-lilypond-suite", 3458, 3], ["nvim-lint", 3467, 3], ["nvim-lsp-file-operations", 3473, 3], ["nvim-lsputils", 3477, 3], ["nvim-metals", 3481, 3], ["nvim-moonwalk", 3486, 3], ["nvim-navbuddy", 3491, 3], ["nvim-navic", 3499, 3], ["nvim-neoclip-lua", 3503, 3], ["nvim-nonicons", 3514, 3], ["nvim-notify", 3519, 3], ["nvim-nu", 3532, 3], ["nvim-parinfer", 3540, 3], ["nvim-remote-containers", 3546, 3], ["nvim-rip-substitute", 3552, 3], ["nvim-scissors", 3556, 3], ["nvim-snippets", 3565, 3], ["nvim-sops", 3572, 3], ["nvim-teal-maker", 3576, 3], ["nvim-test", 3584, 3], ["nvim-tinygit", 3601, 3], ["nvim-tree-lua", 3609, 3], ["nvim-treesitter", 3615, 3], ["nvim-treesitter-legacy", 3620, 3], ["nvim-treesitter-pairs", 3631, 3], ["nvim-treesitter-pyfold", 3635, 3], ["nvim-treesitter-refactor", 3639, 3], ["nvim-treesitter-sexp", 3643, 3], ["nvim-treesitter-textobjects", 3647, 3], ["nvim-treesitter-textobjects-legacy", 3651, 3], ["nvim-treesitter-textsubjects", 3655, 3], ["nvim-ufo", 3659, 3], ["nvim-unception", 3663, 3], ["nvim-vtsls", 3674, 3], ["nvim-whichkey-setup-lua", 3679, 3], ["nvzone-menu", 3685, 3], ["nvzone-minty", 3700, 3], ["nvzone-typr", 3706, 3], ["nvzone-volt", 3712, 3], ["obsidian-nvim", 3717, 3], ["oceanic-next", 3734, 3], ["octo-nvim", 3740, 3], ["oil-git-nvim", 3752, 3], ["oil-git-status-nvim", 3759, 3], ["oil-lsp-diagnostics-nvim", 3763, 3], ["ollama-nvim", 3767, 3], ["omni-vim", 3771, 3], ["omnisharp-extended-lsp-nvim", 3776, 3], ["one-nvim", 3782, 3], ["onedark-nvim", 3790, 3], ["onehalf", 3800, 3], ["open-browser-vim", 3804, 3], ["opencode-nvim", 3810, 3], ["openscad-nvim", 3820, 3], ["org-notebook-nvim", 3832, 3], ["org-roam-nvim", 3843, 3], ["otter-nvim", 3847, 3], ["outline-nvim", 3851, 3], ["overseer-nvim", 3856, 3], ["package-info-nvim", 3877, 3], ["pantran-nvim", 3881, 3], ["parpar-nvim", 3885, 3], ["parrot-nvim", 3892, 3], ["peek-nvim", 3913, 3], ["perfanno-nvim", 3925, 3], ["persistent-breakpoints-nvim", 3931, 3], ["pgsql-vim", 3937, 3], ["plantuml-nvim", 3943, 3], ["poimandres-nvim", 3947, 3], ["popup-nvim", 3952, 3], ["PreserveNoEOL", 3956, 3], ["Preview-nvim", 3962, 3], ["project-nvim", 3968, 3], ["psc-ide-vim", 3975, 3], ["python-mode", 3984, 3], ["pywal-nvim", 4008, 3], ["QFEnter", 4013, 3], ["qmk-nvim", 4019, 3], ["quarto-nvim", 4023, 3], ["quickfixstatus", 4038, 3], ["rainbow-delimiters-nvim", 4044, 3], ["ranger-nvim", 4056, 3], ["rcshell-vim", 4062, 3], ["readline-vim", 4068, 3], ["Recover-vim", 4074, 3], ["refactoring-nvim", 4080, 3], ["remote-nvim-nvim", 4086, 3], ["remote-sshfs-nvim", 4095, 3], ["Rename", 4106, 3], ["renamer-nvim", 4112, 3], ["repolink-nvim", 4116, 3], ["riv-vim", 4120, 3], ["rocks-nvim", 4126, 3], ["rtorrent-syntax-file", 4136, 3], ["run-nvim", 4143, 3], ["rustaceanvim", 4159, 3], ["rzls-nvim", 4166, 3], ["salt-vim", 4170, 3], ["samodostal-image-nvim", 4176, 3], ["schema-companion-nvim", 4180, 3], ["screensaver-nvim", 4184, 3], ["scretch-nvim", 4192, 3], ["search-and-replace-nvim", 4195, 3], ["searchbox-nvim", 4202, 3], ["seoul256-vim", 4206, 3], ["sidekick-nvim", 4212, 3], ["skim-vim", 4222, 3], ["slang-server-nvim", 4229, 3], ["slimline-nvim", 4237, 3], ["smart-open-nvim", 4251, 3], ["smart-splits-nvim", 4263, 3], ["smartpairs-vim", 4269, 3], ["snacks-nvim", 4275, 3], ["snap", 4284, 3], ["solarized-osaka-nvim", 4296, 3], ["sonarlint-nvim", 4305, 3], ["spaceman-nvim", 4314, 3], ["sqlite-lua", 4319, 3], ["srcery-vim", 4343, 3], ["starrynight", 4349, 3], ["startup-nvim", 4355, 3], ["stylish-nvim", 4359, 3], ["SudoEdit-vim", 4367, 3], ["supermaven-nvim", 4373, 3], ["supertab", 4378, 3], ["sved", 4385, 3], ["switcher-nvim", 4432, 3], ["tabmerge", 4439, 3], ["tabpagebuffer-vim", 4445, 3], ["tabular", 4451, 3], ["tagbar", 4457, 3], ["tardis-nvim", 4463, 3], ["taskwiki", 4470, 3], ["telekasten-nvim", 4476, 3], ["telescope-asynctasks-nvim", 4483, 3], ["telescope-cheat-nvim", 4490, 3], ["telescope-coc-nvim", 4498, 3], ["telescope-dap-nvim", 4505, 3], ["telescope-emoji-nvim", 4513, 3], ["telescope-frecency-nvim", 4517, 3], ["telescope-fzf-native-nvim", 4527, 3], ["telescope-fzf-writer-nvim", 4535, 3], ["telescope-fzy-native-nvim", 4542, 3], ["telescope-git-conflicts-nvim", 4568, 3], ["telescope-github-nvim", 4575, 3], ["telescope-glyph-nvim", 4582, 3], ["telescope-hierarchy-nvim", 4586, 3], ["telescope-live-grep-args-nvim", 4593, 3], ["telescope-lsp-handlers-nvim", 4603, 3], ["telescope-manix", 4610, 3], ["telescope-media-files-nvim", 4614, 3], ["telescope-project-nvim", 4622, 3], ["telescope-smart-history-nvim", 4626, 3], ["telescope-symbols-nvim", 4633, 3], ["telescope-ui-select-nvim", 4637, 3], ["telescope-ultisnips-nvim", 4641, 3], ["telescope-undo-nvim", 4648, 3], ["telescope-vim-bookmarks-nvim", 4655, 3], ["telescope-z-nvim", 4662, 3], ["telescope-zf-native-nvim", 4669, 3], ["telescope-zoxide", 4673, 3], ["text-case-nvim", 4684, 3], ["timerly", 4691, 3], ["timestamp-vim", 4695, 3], ["tinted-vim", 4701, 3], ["tiny-code-action-nvim", 4707, 3], ["tmux-complete-vim", 4714, 3], ["todo-comments-nvim", 4719, 3], ["todo-txt-vim", 4732, 3], ["tokyonight-nvim", 4738, 3], ["treesitter-modules-nvim", 4746, 3], ["triptych-nvim", 4750, 3], ["trouble-nvim", 4754, 3], ["trust-vim", 4759, 3], ["tsc-nvim", 4767, 3], ["tslime-vim", 4778, 3], ["tsuquyomi", 4784, 3], ["tuis-nvim", 4790, 3], ["tv-nvim", 4797, 3], ["typescript-tools-nvim", 4801, 3], ["typst-preview-nvim", 4811, 3], ["unicode-vim", 4819, 3], ["unison", 4842, 3], ["unite-vim", 4850, 3], ["uv-nvim", 4856, 3], ["vader-vim", 4860, 3], ["vCoolor-vim", 4866, 3], ["verilog_systemverilog-vim", 4875, 3], ["vim-abolish", 4881, 3], ["vim-addon-actions", 4887, 3], ["vim-addon-async", 4894, 3], ["vim-addon-background-cmd", 4901, 3], ["vim-addon-commenting", 4905, 3], ["vim-addon-completion", 4911, 3], ["vim-addon-goto-thing-at-cursor", 4915, 3], ["vim-addon-manager", 4919, 3], ["vim-addon-mru", 4925, 3], ["vim-addon-nix", 4932, 3], ["vim-addon-sql", 4943, 3], ["vim-addon-syntax-checker", 4951, 3], ["vim-addon-toggle-buffer", 4958, 3], ["vim-addon-xdebug", 4965, 3], ["vim-advanced-sorters", 4974, 3], ["vim-agda", 4980, 3], ["vim-angry", 4987, 3], ["vim-apathy", 4993, 3], ["vim-apm", 4999, 3], ["vim-bazel", 5003, 3], ["vim-bbye", 5007, 3], ["vim-beancount", 5013, 3], ["vim-bepoptimist", 5022, 3], ["vim-capslock", 5028, 3], ["vim-characterize", 5034, 3], ["vim-clang-format", 5040, 3], ["vim-classpath", 5046, 3], ["vim-clojure-static", 5052, 3], ["vim-cmake", 5058, 3], ["vim-codefmt", 5064, 3], ["vim-coffee-script", 5070, 3], ["vim-colors-paramount", 5079, 3], ["vim-colors-solarized", 5085, 3], ["vim-colorschemes", 5092, 3], ["vim-commentary", 5102, 3], ["vim-CtrlXA", 5108, 3], ["vim-dadbod", 5115, 3], ["vim-dadbod-ui", 5121, 3], ["vim-dasht", 5128, 3], ["vim-DetectSpellLang", 5138, 3], ["vim-diminactive", 5144, 3], ["vim-dirdiff", 5150, 3], ["vim-dirvish", 5156, 3], ["vim-dispatch", 5162, 3], ["vim-dotenv", 5168, 3], ["vim-easy-align", 5174, 3], ["vim-easymotion", 5180, 3], ["vim-easytags", 5186, 3], ["vim-elixir", 5200, 3], ["vim-emoji", 5206, 3], ["vim-endwise", 5212, 3], ["vim-erlang-compiler", 5218, 3], ["vim-erlang-omnicomplete", 5224, 3], ["vim-erlang-runtime", 5230, 3], ["vim-erlang-tags", 5236, 3], ["vim-eunuch", 5242, 3], ["vim-figlet", 5248, 3], ["vim-fireplace", 5254, 3], ["vim-flagship", 5260, 3], ["vim-flog", 5266, 3], ["vim-fold-cycle", 5274, 3], ["vim-ft-diff_fold", 5280, 3], ["vim-fugitive", 5286, 3], ["vim-fzf-coauthorship", 5292, 3], ["vim-gist", 5296, 3], ["vim-github-dashboard", 5307, 3], ["vim-gnupg", 5313, 3], ["vim-go", 5319, 3], ["vim-grammarous", 5351, 3], ["vim-gruvbox8", 5367, 3], ["vim-habamax", 5374, 3], ["vim-hcl", 5380, 3], ["vim-helm", 5386, 3], ["vim-hexokinase", 5392, 3], ["vim-hier", 5411, 3], ["vim-hybrid", 5415, 3], ["vim-hypr-nav", 5421, 3], ["vim-indentwise", 5425, 3], ["vim-isort", 5431, 3], ["vim-javascript", 5438, 3], ["vim-jdaddy", 5444, 3], ["vim-jsbeautify", 5450, 3], ["vim-json", 5456, 3], ["vim-LanguageTool", 5462, 3], ["vim-ledger", 5468, 3], ["vim-lexical", 5475, 3], ["vim-lion", 5481, 3], ["vim-llvm", 5487, 3], ["vim-markdown", 5493, 3], ["vim-mediawiki-editor", 5499, 3], ["vim-merginal", 5505, 3], ["vim-metamath", 5511, 3], ["vim-misc", 5515, 3], ["vim-niceblock", 5521, 3], ["vim-obsession", 5527, 3], ["vim-opencl", 5533, 3], ["vim-openscad", 5539, 3], ["vim-operator-replace", 5545, 3], ["vim-operator-surround", 5551, 3], ["vim-operator-user", 5557, 3], ["vim-orgmode", 5563, 3], ["vim-peekaboo", 5573, 3], ["vim-pencil", 5579, 3], ["vim-pico8-syntax", 5585, 3], ["vim-pluto", 5591, 3], ["vim-pony", 5595, 3], ["vim-prettyprint", 5601, 3], ["vim-printer", 5607, 3], ["vim-projectionist", 5613, 3], ["vim-prosession", 5619, 3], ["vim-protobuf", 5625, 3], ["vim-ps1", 5631, 3], ["vim-ragtag", 5637, 3], ["vim-rails", 5643, 3], ["vim-repeat", 5649, 3], ["vim-ReplaceWithRegister", 5655, 3], ["vim-ReplaceWithSameIndentRegister", 5661, 3], ["vim-rsi", 5667, 3], ["vim-salve", 5673, 3], ["vim-scriptease", 5679, 3], ["vim-sensible", 5685, 3], ["vim-sentence-chopper", 5692, 3], ["vim-sexp-mappings-for-regular-people", 5699, 3], ["vim-sile", 5707, 3], ["vim-sleuth", 5717, 3], ["vim-smalls", 5723, 3], ["vim-snipmate", 5729, 3], ["vim-speeddating", 5739, 3], ["vim-stationeers-ic10-syntax", 5746, 3], ["vim-stylish-haskell", 5752, 3], ["vim-surround", 5760, 3], ["vim-syntax-shakespeare", 5767, 3], ["vim-SyntaxRange", 5773, 3], ["vim-tabby", 5779, 3], ["vim-table-mode", 5782, 3], ["vim-tabpagecd", 5788, 3], ["vim-tbone", 5794, 3], ["vim-textobj-comment", 5800, 3], ["vim-textobj-entire", 5806, 3], ["vim-textobj-function", 5814, 3], ["vim-textobj-line", 5820, 3], ["vim-textobj-quote", 5828, 3], ["vim-textobj-user", 5835, 3], ["vim-tmux", 5841, 3], ["vim-tpipeline", 5851, 3], ["vim-twiggy", 5856, 3], ["vim-ultest", 5862, 3], ["vim-unimpaired", 5868, 3], ["vim-vinegar", 5875, 3], ["vim-visual-increment", 5881, 3], ["vim-visualstar", 5887, 3], ["vim-waikiki", 5893, 3], ["vim-wakatime", 5900, 3], ["vim-watchdogs", 5911, 3], ["vim-wordy", 5918, 3], ["vim-xdebug", 5924, 3], ["vim-xkbswitch", 5931, 3], ["vim-yapf", 5935, 3], ["vim-zettel", 5945, 3], ["vim-zscript", 5952, 3], ["vimade", 5958, 3], ["vimagit", 5967, 3], ["VimCompletesMe", 5973, 3], ["vimfiler-vim", 5979, 3], ["VimOrganizer", 5985, 3], ["vimoutliner", 5991, 3], ["vimproc-vim", 5997, 3], ["vimsence", 6014, 3], ["vimshell-vim", 6022, 3], ["vimtex", 6029, 3], ["vimwiki", 6037, 3], ["virt-column-nvim", 6043, 3], ["vis", 6048, 3], ["vissort-vim", 6054, 3], ["vivify-vim", 6060, 3], ["vs-tasks-nvim", 6066, 3], ["webapi-vim", 6076, 3], ["which-key-nvim", 6082, 3], ["whichpy-nvim", 6086, 3], ["whitespace-nvim", 6093, 3], ["wiki-vim", 6099, 3], ["windows-nvim", 6107, 3], ["wtf-nvim", 6119, 3], ["xeno-nvim", 6126, 3], ["xmake-nvim", 6132, 3], ["xterm-color-table-vim", 6141, 3], ["yaml-companion-nvim", 6148, 3], ["yaml-schema-detect-nvim", 6155, 3], ["yank-path-nvim", 6162, 3], ["yanky-nvim", 6168, 3], ["yazi-nvim", 6175, 3], ["YouCompleteMe", 6183, 3], ["zeavim-vim", 6204, 3], ["zenbones-nvim", 6210, 3], ["zenburn", 6238, 3], ["zig-vim", 6244, 3], ["zk-nvim", 6250, 3], ["zoomwintab-vim", 6265, 3], ["zotcite", 6271, 3], ["zoxide-vim", 6278, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, config: false, buildGoModule: false, callPackage: false, fetchFromGitHub: false, fetchpatch: false, fetchurl: false, replaceVars: false, fetchYarnDeps: false, yarnConfigHook: false, python3: false, notmuch: false, file: false, "charm-freeze": false, "code-minimap": false, dailies: false, dasht: false, deno: false, distant: false, direnv: false, fzf: false, fzy: false, gawk: false, git: false, gh: false, glow: false, "helm-ls": false, himalaya: false, htop: false, jq: false, khard: false, "kulala-core": false, languagetool: false, "llm-ls": false, libgit2: false, manix: false, llvmPackages: false, "neovim-unwrapped": false, nix: false, nodejs: false, openscad: false, openssh: false, openssl: false, ranger: false, ripgrep: false, "slang-server": false, sqlite: false, sshfs: false, sops: false, "stylish-haskell": false, tmux: false, typescript_7: false, "typescript-language-server": false, vim: false, which: false, "xdg-utils": false, xdotool: false, "xkb-switch": false, xwininfo: false, xxd: false, ycmd: false, yq: false, zenity: false, zoxide: false, zsh: false, codeium: false, getconf: false, cornelis: false, boost: false, cmake: false, icu: false, ncurses: false, pandoc: false, gitMinimal: false, opencode: false, lsof: false, "md-tui": false, "copilot-language-server": false, glib: false, "gobject-introspection": false, wrapGAppsHook3: false, writeText: false, curl: false, agda: false, asmfmt: false, delve: false, errcheck: false, "go-motion": false, "go-tools": false, "gocode-gomod": false, godef: false, gogetdoc: false, "golangci-lint": false, golint: false, gomodifytags: false, gopls: false, gotags: false, gotools: false, iferr: false, impl: false, reftools: false, revive: false, "tree-sitter-grammars": false, neovimUtils: false, hurl: false, "aider-chat": false, tinymist: false, websocat: false, lazydocker: false, lazyjj: false, "luau-lsp": false, uv: false, vtsls: false, fd: false, sad: false, television: false, "tree-sitter": false, gpgme: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/overrides.nix", [["license", 170, 7]]);
-const pos$2 = nix.positions(here + "/overrides.nix", [["meta", 169, 5]]);
-const pos$3 = nix.positions(here + "/overrides.nix", [["checkInputs", 175, 5], ["dependencies", 180, 5], ["nvimSkipModules", 185, 5]]);
-const pos$4 = nix.positions(here + "/overrides.nix", [["checkInputs", 196, 5], ["nvimSkipModules", 201, 5]]);
-const pos$5 = nix.positions(here + "/overrides.nix", [["dependencies", 209, 5]]);
-const pos$6 = nix.positions(here + "/overrides.nix", [["runtimeDeps", 216, 5]]);
-const pos$7 = nix.positions(here + "/overrides.nix", [["dependencies", 222, 5]]);
-const pos$8 = nix.positions(here + "/overrides.nix", [["license", 227, 7]]);
-const pos$9 = nix.positions(here + "/overrides.nix", [["meta", 226, 5]]);
-const pos$10 = nix.positions(here + "/overrides.nix", [["license", 233, 7]]);
-const pos$11 = nix.positions(here + "/overrides.nix", [["meta", 232, 5]]);
-const pos$12 = nix.positions(here + "/overrides.nix", [["dependencies", 238, 5]]);
-const pos$13 = nix.positions(here + "/overrides.nix", [["dependencies", 245, 5]]);
-const pos$14 = nix.positions(here + "/overrides.nix", [["checkInputs", 250, 5]]);
-const pos$15 = nix.positions(here + "/overrides.nix", [["nvimSkipModules", 254, 5]]);
-const pos$16 = nix.positions(here + "/overrides.nix", [["checkInputs", 261, 5]]);
-const pos$17 = nix.positions(here + "/overrides.nix", [["runtimeDeps", 265, 5], ["checkInputs", 269, 5]]);
-const pos$18 = nix.positions(here + "/overrides.nix", [["license", 277, 7]]);
-const pos$19 = nix.positions(here + "/overrides.nix", [["meta", 276, 5]]);
-const pos$20 = nix.positions(here + "/overrides.nix", [["license", 286, 7]]);
-const pos$21 = nix.positions(here + "/overrides.nix", [["meta", 285, 5]]);
-const pos$22 = nix.positions(here + "/overrides.nix", [["license", 293, 7]]);
-const pos$23 = nix.positions(here + "/overrides.nix", [["meta", 291, 5]]);
-const pos$24 = nix.positions(here + "/overrides.nix", [["checkInputs", 299, 5]]);
-const pos$25 = nix.positions(here + "/overrides.nix", [["dependencies", 303, 5]]);
-const pos$26 = nix.positions(here + "/overrides.nix", [["runtimeDeps", 307, 5]]);
-const pos$27 = nix.positions(here + "/overrides.nix", [["license", 326, 7]]);
-const pos$28 = nix.positions(here + "/overrides.nix", [["checkInputs", 314, 5], ["nvimSkipModules", 318, 5], ["meta", 325, 5]]);
-const pos$29 = nix.positions(here + "/overrides.nix", [["license", 340, 7]]);
-const pos$30 = nix.positions(here + "/overrides.nix", [["checkInputs", 332, 5], ["nvimSkipModules", 337, 5], ["meta", 339, 5]]);
-const pos$31 = nix.positions(here + "/overrides.nix", [["description", 350, 7], ["homepage", 351, 7], ["license", 352, 7], ["maintainers", 353, 7]]);
-const pos$32 = nix.positions(here + "/overrides.nix", [["dependencies", 345, 5], ["meta", 349, 5]]);
-const pos$33 = nix.positions(here + "/overrides.nix", [["license", 359, 7]]);
-const pos$34 = nix.positions(here + "/overrides.nix", [["meta", 358, 5]]);
-const pos$35 = nix.positions(here + "/overrides.nix", [["license", 366, 7]]);
-const pos$36 = nix.positions(here + "/overrides.nix", [["dependencies", 364, 5], ["meta", 365, 5]]);
-const pos$37 = nix.positions(here + "/overrides.nix", [["license", 372, 7]]);
-const pos$38 = nix.positions(here + "/overrides.nix", [["meta", 371, 5]]);
-const pos$39 = nix.positions(here + "/overrides.nix", [["dependencies", 377, 5]]);
-const pos$40 = nix.positions(here + "/overrides.nix", [["dependencies", 381, 5]]);
-const pos$41 = nix.positions(here + "/overrides.nix", [["dependencies", 385, 5]]);
-const pos$42 = nix.positions(here + "/overrides.nix", [["dependencies", 389, 5]]);
-const pos$43 = nix.positions(here + "/overrides.nix", [["dependencies", 393, 5]]);
-const pos$44 = nix.positions(here + "/overrides.nix", [["dependencies", 397, 5]]);
-const pos$45 = nix.positions(here + "/overrides.nix", [["dependencies", 401, 5]]);
-const pos$46 = nix.positions(here + "/overrides.nix", [["dependencies", 405, 5]]);
-const pos$47 = nix.positions(here + "/overrides.nix", [["nvimSkipModules", 409, 5]]);
-const pos$48 = nix.positions(here + "/overrides.nix", [["license", 419, 7], ["description", 420, 7], ["maintainers", 421, 7]]);
-const pos$49 = nix.positions(here + "/overrides.nix", [["dependencies", 415, 5], ["meta", 416, 5]]);
-const pos$50 = nix.positions(here + "/overrides.nix", [["license", 428, 7]]);
-const pos$51 = nix.positions(here + "/overrides.nix", [["dependencies", 426, 5], ["meta", 427, 5]]);
-const pos$52 = nix.positions(here + "/overrides.nix", [["dependencies", 433, 5]]);
-const pos$53 = nix.positions(here + "/overrides.nix", [["dependencies", 437, 5]]);
-const pos$54 = nix.positions(here + "/overrides.nix", [["dependencies", 441, 5]]);
-const pos$55 = nix.positions(here + "/overrides.nix", [["nvimSkipModules", 446, 5]]);
-const pos$56 = nix.positions(here + "/overrides.nix", [["license", 451, 7]]);
-const pos$57 = nix.positions(here + "/overrides.nix", [["meta", 450, 5]]);
-const pos$58 = nix.positions(here + "/overrides.nix", [["license", 457, 7]]);
-const pos$59 = nix.positions(here + "/overrides.nix", [["meta", 456, 5]]);
-const pos$60 = nix.positions(here + "/overrides.nix", [["license", 463, 7]]);
-const pos$61 = nix.positions(here + "/overrides.nix", [["meta", 462, 5]]);
-const pos$62 = nix.positions(here + "/overrides.nix", [["license", 469, 7]]);
-const pos$63 = nix.positions(here + "/overrides.nix", [["meta", 468, 5]]);
-const pos$64 = nix.positions(here + "/overrides.nix", [["nvimSkipModules", 474, 5]]);
-const pos$65 = nix.positions(here + "/overrides.nix", [["license", 485, 7]]);
-const pos$66 = nix.positions(here + "/overrides.nix", [["meta", 484, 5]]);
-const pos$67 = nix.positions(here + "/overrides.nix", [["nvimSkipModules", 492, 5]]);
-const pos$68 = nix.positions(here + "/overrides.nix", [["python3Dependencies", 502, 7]]);
-const pos$69 = nix.positions(here + "/overrides.nix", [["doCheck", 497, 5], ["buildInputs", 498, 5], ["passthru", 501, 5], ["patches", 510, 5]]);
-const pos$70 = nix.positions(here + "/overrides.nix", [["dependencies", 514, 5]]);
-const pos$71 = nix.positions(here + "/overrides.nix", [["dependencies", 522, 5]]);
-const pos$72 = nix.positions(here + "/overrides.nix", [["license", 530, 7]]);
-const pos$73 = nix.positions(here + "/overrides.nix", [["meta", 529, 5]]);
-const pos$74 = nix.positions(here + "/overrides.nix", [["checkInputs", 535, 5]]);
-const pos$75 = nix.positions(here + "/overrides.nix", [["license", 559, 7]]);
-const pos$76 = nix.positions(here + "/overrides.nix", [["preFixup", 547, 5], ["meta", 557, 5]]);
-const pos$77 = nix.positions(here + "/overrides.nix", [["license", 568, 7]]);
-const pos$78 = nix.positions(here + "/overrides.nix", [["meta", 567, 5]]);
-const pos$79 = nix.positions(here + "/overrides.nix", [["dependencies", 573, 5]]);
-const pos$80 = nix.positions(here + "/overrides.nix", [["license", 583, 7]]);
-const pos$81 = nix.positions(here + "/overrides.nix", [["dependencies", 579, 5], ["meta", 582, 5]]);
-const pos$82 = nix.positions(here + "/overrides.nix", [["license", 599, 7]]);
-const pos$83 = nix.positions(here + "/overrides.nix", [["dependencies", 588, 5], ["preInstall", 595, 5], ["meta", 598, 5]]);
-const pos$84 = nix.positions(here + "/overrides.nix", [["license", 605, 7]]);
-const pos$85 = nix.positions(here + "/overrides.nix", [["meta", 604, 5]]);
-const pos$86 = nix.positions(here + "/overrides.nix", [["preFixup", 610, 5]]);
-const pos$87 = nix.positions(here + "/overrides.nix", [["postPatch", 617, 5]]);
-const pos$88 = nix.positions(here + "/overrides.nix", [["license", 624, 7]]);
-const pos$89 = nix.positions(here + "/overrides.nix", [["meta", 623, 5]]);
-const pos$90 = nix.positions(here + "/overrides.nix", [["dependencies", 629, 5]]);
-const pos$91 = nix.positions(here + "/overrides.nix", [["nvimRequireCheck", 635, 5]]);
-const pos$92 = nix.positions(here + "/overrides.nix", [["checkInputs", 641, 5], ["dependencies", 642, 5]]);
-const pos$93 = nix.positions(here + "/overrides.nix", [["license", 650, 7]]);
-const pos$94 = nix.positions(here + "/overrides.nix", [["checkInputs", 648, 5], ["meta", 649, 5]]);
-const pos$95 = nix.positions(here + "/overrides.nix", [["checkInputs", 655, 5]]);
-const pos$96 = nix.positions(here + "/overrides.nix", [["checkInputs", 659, 5]]);
-const pos$97 = nix.positions(here + "/overrides.nix", [["checkInputs", 663, 5]]);
-const pos$98 = nix.positions(here + "/overrides.nix", [["checkInputs", 667, 5], ["dependencies", 668, 5]]);
-const pos$99 = nix.positions(here + "/overrides.nix", [["checkInputs", 674, 5]]);
-const pos$100 = nix.positions(here + "/overrides.nix", [["checkInputs", 678, 5]]);
-const pos$101 = nix.positions(here + "/overrides.nix", [["checkInputs", 682, 5], ["dependencies", 683, 5]]);
-const pos$102 = nix.positions(here + "/overrides.nix", [["checkInputs", 687, 5], ["dependencies", 688, 5]]);
-const pos$103 = nix.positions(here + "/overrides.nix", [["checkInputs", 692, 5]]);
-const pos$104 = nix.positions(here + "/overrides.nix", [["checkInputs", 696, 5], ["dependencies", 697, 5]]);
-const pos$105 = nix.positions(here + "/overrides.nix", [["checkInputs", 701, 5]]);
-const pos$106 = nix.positions(here + "/overrides.nix", [["checkInputs", 705, 5]]);
-const pos$107 = nix.positions(here + "/overrides.nix", [["checkInputs", 709, 5]]);
-const pos$108 = nix.positions(here + "/overrides.nix", [["checkInputs", 713, 5]]);
-const pos$109 = nix.positions(here + "/overrides.nix", [["checkInputs", 717, 5]]);
-const pos$110 = nix.positions(here + "/overrides.nix", [["checkInputs", 721, 5], ["dependencies", 722, 5]]);
-const pos$111 = nix.positions(here + "/overrides.nix", [["checkInputs", 726, 5], ["dependencies", 727, 5]]);
-const pos$112 = nix.positions(here + "/overrides.nix", [["checkInputs", 731, 5], ["dependencies", 732, 5]]);
-const pos$113 = nix.positions(here + "/overrides.nix", [["checkInputs", 736, 5]]);
-const pos$114 = nix.positions(here + "/overrides.nix", [["checkInputs", 740, 5]]);
-const pos$115 = nix.positions(here + "/overrides.nix", [["checkInputs", 744, 5]]);
-const pos$116 = nix.positions(here + "/overrides.nix", [["checkInputs", 748, 5], ["dependencies", 749, 5]]);
-const pos$117 = nix.positions(here + "/overrides.nix", [["nativeCheckInputs", 753, 5], ["checkInputs", 754, 5]]);
-const pos$118 = nix.positions(here + "/overrides.nix", [["checkInputs", 758, 5], ["dependencies", 759, 5]]);
-const pos$119 = nix.positions(here + "/overrides.nix", [["checkInputs", 763, 5]]);
-const pos$120 = nix.positions(here + "/overrides.nix", [["checkInputs", 767, 5]]);
-const pos$121 = nix.positions(here + "/overrides.nix", [["checkInputs", 771, 5]]);
-const pos$122 = nix.positions(here + "/overrides.nix", [["checkInputs", 775, 5]]);
-const pos$123 = nix.positions(here + "/overrides.nix", [["checkInputs", 779, 5]]);
-const pos$124 = nix.positions(here + "/overrides.nix", [["checkInputs", 783, 5]]);
-const pos$125 = nix.positions(here + "/overrides.nix", [["checkInputs", 787, 5], ["dependencies", 788, 5]]);
-const pos$126 = nix.positions(here + "/overrides.nix", [["checkInputs", 792, 5]]);
-const pos$127 = nix.positions(here + "/overrides.nix", [["checkInputs", 796, 5]]);
-const pos$128 = nix.positions(here + "/overrides.nix", [["checkInputs", 800, 5]]);
-const pos$129 = nix.positions(here + "/overrides.nix", [["checkInputs", 804, 5], ["dependencies", 805, 5]]);
-const pos$130 = nix.positions(here + "/overrides.nix", [["checkInputs", 809, 5]]);
-const pos$131 = nix.positions(here + "/overrides.nix", [["checkInputs", 813, 5]]);
-const pos$132 = nix.positions(here + "/overrides.nix", [["checkInputs", 817, 5], ["dependencies", 818, 5]]);
-const pos$133 = nix.positions(here + "/overrides.nix", [["checkInputs", 822, 5]]);
-const pos$134 = nix.positions(here + "/overrides.nix", [["checkInputs", 826, 5], ["dependencies", 827, 5]]);
-const pos$135 = nix.positions(here + "/overrides.nix", [["checkInputs", 831, 5]]);
-const pos$136 = nix.positions(here + "/overrides.nix", [["checkInputs", 835, 5], ["dependencies", 836, 5]]);
-const pos$137 = nix.positions(here + "/overrides.nix", [["checkInputs", 840, 5]]);
-const pos$138 = nix.positions(here + "/overrides.nix", [["checkInputs", 844, 5], ["dependencies", 845, 5]]);
-const pos$139 = nix.positions(here + "/overrides.nix", [["checkInputs", 849, 5], ["dependencies", 850, 5]]);
-const pos$140 = nix.positions(here + "/overrides.nix", [["checkInputs", 854, 5]]);
-const pos$141 = nix.positions(here + "/overrides.nix", [["dependencies", 858, 5], ["nvimSkipModules", 860, 5]]);
-const pos$142 = nix.positions(here + "/overrides.nix", [["license", 873, 7]]);
-const pos$143 = nix.positions(here + "/overrides.nix", [["meta", 872, 5]]);
-const pos$144 = nix.positions(here + "/overrides.nix", [["license", 879, 7]]);
-const pos$145 = nix.positions(here + "/overrides.nix", [["meta", 878, 5]]);
-const pos$146 = nix.positions(here + "/overrides.nix", [["license", 885, 7]]);
-const pos$147 = nix.positions(here + "/overrides.nix", [["meta", 884, 5]]);
-const pos$148 = nix.positions(here + "/overrides.nix", [["license", 891, 7]]);
-const pos$149 = nix.positions(here + "/overrides.nix", [["meta", 890, 5]]);
-const pos$150 = nix.positions(here + "/overrides.nix", [["license", 897, 7]]);
-const pos$151 = nix.positions(here + "/overrides.nix", [["meta", 896, 5]]);
-const pos$152 = nix.positions(here + "/overrides.nix", [["license", 903, 7]]);
-const pos$153 = nix.positions(here + "/overrides.nix", [["meta", 902, 5]]);
-const pos$154 = nix.positions(here + "/overrides.nix", [["dependencies", 908, 5]]);
-const pos$155 = nix.positions(here + "/overrides.nix", [["checkInputs", 917, 5], ["dependencies", 927, 5], ["nvimSkipModules", 928, 5]]);
-const pos$156 = nix.positions(here + "/overrides.nix", [["nvimSkipModules", 936, 5]]);
-const pos$157 = nix.positions(here + "/overrides.nix", [["dependencies", 940, 5]]);
-const pos$158 = nix.positions(here + "/overrides.nix", [["nvimSkipModules", 945, 5]]);
-const pos$159 = nix.positions(here + "/overrides.nix", [["license", 954, 7]]);
-const pos$160 = nix.positions(here + "/overrides.nix", [["meta", 953, 5]]);
-const pos$161 = nix.positions(here + "/overrides.nix", [["license", 960, 7]]);
-const pos$162 = nix.positions(here + "/overrides.nix", [["meta", 959, 5]]);
-const pos$163 = nix.positions(here + "/overrides.nix", [["nativeBuildInputs", 965, 5], ["buildPhase", 968, 5]]);
-const pos$164 = nix.positions(here + "/overrides.nix", [["dependencies", 977, 5]]);
-const pos$165 = nix.positions(here + "/overrides.nix", [["dependencies", 981, 5]]);
-const pos$166 = nix.positions(here + "/overrides.nix", [["dependencies", 985, 5]]);
-const pos$167 = nix.positions(here + "/overrides.nix", [["dependencies", 989, 5]]);
-const pos$168 = nix.positions(here + "/overrides.nix", [["license", 994, 7]]);
-const pos$169 = nix.positions(here + "/overrides.nix", [["meta", 993, 5]]);
-const pos$170 = nix.positions(here + "/overrides.nix", [["dependencies", 999, 5], ["nvimSkipModules", 1000, 5]]);
-const pos$171 = nix.positions(here + "/overrides.nix", [["nvimSkipModules", 1008, 5]]);
-const pos$172 = nix.positions(here + "/overrides.nix", [["license", 1013, 7]]);
-const pos$173 = nix.positions(here + "/overrides.nix", [["meta", 1012, 5]]);
-const pos$174 = nix.positions(here + "/overrides.nix", [["name", 1021, 9], ["url", 1022, 9], ["sha256", 1023, 9]]);
-const pos$175 = nix.positions(here + "/overrides.nix", [["dependencies", 1018, 5], ["patches", 1019, 5]]);
-const pos$176 = nix.positions(here + "/overrides.nix", [["postPatch", 1030, 5], ["runtimeDeps", 1036, 5]]);
-const pos$177 = nix.positions(here + "/overrides.nix", [["dependencies", 1043, 5], ["doInstallCheck", 1047, 5]]);
-const pos$178 = nix.positions(here + "/overrides.nix", [["license", 1058, 7]]);
-const pos$179 = nix.positions(here + "/overrides.nix", [["postInstall", 1051, 5], ["meta", 1057, 5]]);
-const pos$180 = nix.positions(here + "/overrides.nix", [["checkInputs", 1063, 5], ["dependencies", 1069, 5]]);
-const pos$181 = nix.positions(here + "/overrides.nix", [["license", 1077, 7]]);
-const pos$182 = nix.positions(here + "/overrides.nix", [["meta", 1076, 5]]);
-const pos$183 = nix.positions(here + "/overrides.nix", [["python3Dependencies", 1083, 7]]);
-const pos$184 = nix.positions(here + "/overrides.nix", [["passthru", 1082, 5], ["patches", 1092, 5], ["nvimRequireCheck", 1094, 5]]);
-const pos$185 = nix.positions(here + "/overrides.nix", [["dependencies", 1101, 5], ["opt", 1102, 5], ["patches", 1104, 5], ["postInstall", 1105, 5]]);
-const pos$186 = nix.positions(here + "/overrides.nix", [["nativeBuildInputs", 1112, 5], ["buildInputs", 1113, 5], ["buildPhase", 1119, 5]]);
-const pos$187 = nix.positions(here + "/overrides.nix", [["checkInputs", 1131, 5], ["dependencies", 1135, 5]]);
-const pos$188 = nix.positions(here + "/overrides.nix", [["dependencies", 1139, 5]]);
-const pos$189 = nix.positions(here + "/overrides.nix", [["name", 1150, 9], ["url", 1151, 9], ["sha256", 1152, 9]]);
-const pos$190 = nix.positions(here + "/overrides.nix", [["name", 1155, 9], ["url", 1156, 9], ["sha256", 1157, 9]]);
-const pos$191 = nix.positions(here + "/overrides.nix", [["patches", 1148, 5], ["buildInputs", 1160, 5], ["buildPhase", 1164, 5]]);
-const pos$192 = nix.positions(here + "/overrides.nix", [["license", 1172, 7]]);
-const pos$193 = nix.positions(here + "/overrides.nix", [["meta", 1171, 5]]);
-const pos$194 = nix.positions(here + "/overrides.nix", [["license", 1178, 7]]);
-const pos$195 = nix.positions(here + "/overrides.nix", [["meta", 1177, 5]]);
-const pos$196 = nix.positions(here + "/overrides.nix", [["checkInputs", 1185, 5]]);
-const pos$197 = nix.positions(here + "/overrides.nix", [["runtimeDeps", 1192, 5]]);
-const pos$198 = nix.positions(here + "/overrides.nix", [["dependencies", 1198, 5]]);
-const pos$199 = nix.positions(here + "/overrides.nix", [["dependencies", 1202, 5]]);
-const pos$200 = nix.positions(here + "/overrides.nix", [["dependencies", 1206, 5]]);
-const pos$201 = nix.positions(here + "/overrides.nix", [["license", 1212, 7]]);
-const pos$202 = nix.positions(here + "/overrides.nix", [["dependencies", 1210, 5], ["meta", 1211, 5]]);
-const pos$203 = nix.positions(here + "/overrides.nix", [["dependencies", 1217, 5]]);
-const pos$204 = nix.positions(here + "/overrides.nix", [["dependencies", 1221, 5]]);
-const pos$205 = nix.positions(here + "/overrides.nix", [["license", 1227, 7]]);
-const pos$206 = nix.positions(here + "/overrides.nix", [["dependencies", 1225, 5], ["meta", 1226, 5]]);
-const pos$207 = nix.positions(here + "/overrides.nix", [["dependencies", 1232, 5]]);
-const pos$208 = nix.positions(here + "/overrides.nix", [["dependencies", 1236, 5]]);
-const pos$209 = nix.positions(here + "/overrides.nix", [["dependencies", 1243, 5]]);
-const pos$210 = nix.positions(here + "/overrides.nix", [["dependencies", 1247, 5]]);
-const pos$211 = nix.positions(here + "/overrides.nix", [["dependencies", 1251, 5]]);
-const pos$212 = nix.positions(here + "/overrides.nix", [["description", 1260, 7], ["license", 1261, 7], ["maintainers", 1262, 7]]);
-const pos$213 = nix.positions(here + "/overrides.nix", [["dependencies", 1255, 5], ["meta", 1259, 5]]);
-const pos$214 = nix.positions(here + "/overrides.nix", [["license", 1268, 7]]);
-const pos$215 = nix.positions(here + "/overrides.nix", [["meta", 1267, 5]]);
-const pos$216 = nix.positions(here + "/overrides.nix", [["postPatch", 1273, 5]]);
-const pos$217 = nix.positions(here + "/overrides.nix", [["dependencies", 1280, 5]]);
-const pos$218 = nix.positions(here + "/overrides.nix", [["nativeBuildInputs", 1287, 5], ["buildPhase", 1288, 5]]);
-const pos$219 = nix.positions(here + "/overrides.nix", [["license", 1298, 7]]);
-const pos$220 = nix.positions(here + "/overrides.nix", [["meta", 1297, 5]]);
-const pos$221 = nix.positions(here + "/overrides.nix", [["python3Dependencies", 1305, 7]]);
-const pos$222 = nix.positions(here + "/overrides.nix", [["description", 1308, 7], ["homepage", 1309, 7], ["license", 1310, 7], ["maintainers", 1311, 7]]);
-const pos$223 = nix.positions(here + "/overrides.nix", [["dependencies", 1303, 5], ["passthru", 1304, 5], ["meta", 1307, 5]]);
-const pos$224 = nix.positions(here + "/overrides.nix", [["license", 1317, 7]]);
-const pos$225 = nix.positions(here + "/overrides.nix", [["meta", 1316, 5]]);
-const pos$226 = nix.positions(here + "/overrides.nix", [["license", 1323, 7]]);
-const pos$227 = nix.positions(here + "/overrides.nix", [["meta", 1322, 5]]);
-const pos$228 = nix.positions(here + "/overrides.nix", [["license", 1329, 7]]);
-const pos$229 = nix.positions(here + "/overrides.nix", [["meta", 1328, 5]]);
-const pos$230 = nix.positions(here + "/overrides.nix", [["nvimSkipModules", 1334, 5], ["runtimeDeps", 1338, 5]]);
-const pos$231 = nix.positions(here + "/overrides.nix", [["license", 1348, 7]]);
-const pos$232 = nix.positions(here + "/overrides.nix", [["meta", 1346, 5]]);
-const pos$233 = nix.positions(here + "/overrides.nix", [["dependencies", 1353, 5]]);
-const pos$234 = nix.positions(here + "/overrides.nix", [["license", 1361, 7]]);
-const pos$235 = nix.positions(here + "/overrides.nix", [["dependencies", 1357, 5], ["doInstallCheck", 1359, 5], ["meta", 1360, 5]]);
-const pos$236 = nix.positions(here + "/overrides.nix", [["license", 1369, 7], ["description", 1370, 7]]);
-const pos$237 = nix.positions(here + "/overrides.nix", [["dependencies", 1366, 5], ["doInstallCheck", 1367, 5], ["meta", 1368, 5]]);
-const pos$238 = nix.positions(here + "/overrides.nix", [["preFixup", 1375, 5]]);
-const pos$239 = nix.positions(here + "/overrides.nix", [["runtimeDeps", 1383, 5]]);
-const pos$240 = nix.positions(here + "/overrides.nix", [["dependencies", 1387, 5]]);
-const pos$241 = nix.positions(here + "/overrides.nix", [["nvimSkipModules", 1395, 5]]);
-const pos$242 = nix.positions(here + "/overrides.nix", [["dependencies", 1399, 5], ["checkInputs", 1402, 5]]);
-const pos$243 = nix.positions(here + "/overrides.nix", [["license", 1412, 7]]);
-const pos$244 = nix.positions(here + "/overrides.nix", [["meta", 1411, 5]]);
-const pos$245 = nix.positions(here + "/overrides.nix", [["nvimSkipModules", 1417, 5]]);
-const pos$246 = nix.positions(here + "/overrides.nix", [["license", 1424, 7]]);
-const pos$247 = nix.positions(here + "/overrides.nix", [["meta", 1423, 5]]);
-const pos$248 = nix.positions(here + "/overrides.nix", [["dependencies", 1429, 5]]);
-const pos$249 = nix.positions(here + "/overrides.nix", [["description", 1434, 7], ["maintainers", 1435, 7]]);
-const pos$250 = nix.positions(here + "/overrides.nix", [["meta", 1433, 5]]);
-const pos$251 = nix.positions(here + "/overrides.nix", [["dependencies", 1440, 5], ["fixupPhase", 1441, 5]]);
-const pos$252 = nix.positions(here + "/overrides.nix", [["license", 1454, 7]]);
-const pos$253 = nix.positions(here + "/overrides.nix", [["nvimSkipModules", 1448, 5], ["meta", 1452, 5]]);
-const pos$254 = nix.positions(here + "/overrides.nix", [["dependencies", 1462, 5]]);
-const pos$255 = nix.positions(here + "/overrides.nix", [["nvimSkipModules", 1466, 5]]);
-const pos$256 = nix.positions(here + "/overrides.nix", [["license", 1475, 7]]);
-const pos$257 = nix.positions(here + "/overrides.nix", [["meta", 1473, 5]]);
-const pos$258 = nix.positions(here + "/overrides.nix", [["dependencies", 1480, 5], ["nvimSkipModules", 1484, 5]]);
-const pos$259 = nix.positions(here + "/overrides.nix", [["python3Dependencies", 1492, 7]]);
-const pos$260 = nix.positions(here + "/overrides.nix", [["description", 1495, 7], ["license", 1496, 7]]);
-const pos$261 = nix.positions(here + "/overrides.nix", [["passthru", 1491, 5], ["meta", 1494, 5]]);
-const pos$262 = nix.positions(here + "/overrides.nix", [["license", 1502, 7]]);
-const pos$263 = nix.positions(here + "/overrides.nix", [["meta", 1501, 5]]);
-const pos$264 = nix.positions(here + "/overrides.nix", [["nvimSkipModules", 1509, 5]]);
-const pos$265 = nix.positions(here + "/overrides.nix", [["dependencies", 1513, 5]]);
-const pos$266 = nix.positions(here + "/overrides.nix", [["dependencies", 1517, 5]]);
-const pos$267 = nix.positions(here + "/overrides.nix", [["nvimSkipModules", 1521, 5]]);
-const pos$268 = nix.positions(here + "/overrides.nix", [["checkInputs", 1529, 5], ["dependencies", 1530, 5]]);
-const pos$269 = nix.positions(here + "/overrides.nix", [["dependencies", 1534, 5]]);
-const pos$270 = nix.positions(here + "/overrides.nix", [["runtimeDeps", 1538, 5]]);
-const pos$271 = nix.positions(here + "/overrides.nix", [["checkInputs", 1543, 5], ["dependencies", 1546, 5], ["postPatch", 1552, 5]]);
-const pos$272 = nix.positions(here + "/overrides.nix", [["checkInputs", 1572, 5], ["dependencies", 1576, 5], ["nvimSkipModules", 1577, 5]]);
-const pos$273 = nix.positions(here + "/overrides.nix", [["nvimSkipModules", 1584, 5]]);
-const pos$274 = nix.positions(here + "/overrides.nix", [["prePatch", 1598, 5]]);
-const pos$275 = nix.positions(here + "/overrides.nix", [["initLua", 1613, 7]]);
-const pos$276 = nix.positions(here + "/overrides.nix", [["propagatedBuildInputs", 1607, 5], ["dependencies", 1611, 5], ["passthru", 1612, 5]]);
-const pos$277 = nix.positions(here + "/overrides.nix", [["dependencies", 1618, 5]]);
-const pos$278 = nix.positions(here + "/overrides.nix", [["runtimeDeps", 1622, 5], ["nvimSkipModules", 1623, 5]]);
-const pos$279 = nix.positions(here + "/overrides.nix", [["dependencies", 1631, 5]]);
-const pos$280 = nix.positions(here + "/overrides.nix", [["runtimeDeps", 1635, 5]]);
-const pos$281 = nix.positions(here + "/overrides.nix", [["license", 1640, 7]]);
-const pos$282 = nix.positions(here + "/overrides.nix", [["meta", 1639, 5]]);
-const pos$283 = nix.positions(here + "/overrides.nix", [["dependencies", 1645, 5]]);
-const pos$284 = nix.positions(here + "/overrides.nix", [["license", 1651, 7]]);
-const pos$285 = nix.positions(here + "/overrides.nix", [["configurePhase", 1649, 5], ["meta", 1650, 5]]);
-const pos$286 = nix.positions(here + "/overrides.nix", [["license", 1657, 7]]);
-const pos$287 = nix.positions(here + "/overrides.nix", [["meta", 1656, 5]]);
-const pos$288 = nix.positions(here + "/overrides.nix", [["owner", 1666, 7], ["repo", 1667, 7], ["tag", 1668, 7], ["hash", 1669, 7]]);
-const pos$289 = nix.positions(here + "/overrides.nix", [["version", 1664, 5], ["src", 1665, 5]]);
-const pos$290 = nix.positions(here + "/overrides.nix", [["dependencies", 1674, 5]]);
-const pos$291 = nix.positions(here + "/overrides.nix", [["license", 1679, 7]]);
-const pos$292 = nix.positions(here + "/overrides.nix", [["meta", 1678, 5]]);
-const pos$293 = nix.positions(here + "/overrides.nix", [["dependencies", 1684, 5]]);
-const pos$294 = nix.positions(here + "/overrides.nix", [["license", 1689, 7]]);
-const pos$295 = nix.positions(here + "/overrides.nix", [["meta", 1688, 5]]);
-const pos$296 = nix.positions(here + "/overrides.nix", [["runtimeDeps", 1694, 5]]);
-const pos$297 = nix.positions(here + "/overrides.nix", [["dependencies", 1698, 5], ["checkInputs", 1702, 5], ["nvimSkipModules", 1707, 5]]);
-const pos$298 = nix.positions(here + "/overrides.nix", [["dependencies", 1719, 5]]);
-const pos$299 = nix.positions(here + "/overrides.nix", [["license", 1727, 7]]);
-const pos$300 = nix.positions(here + "/overrides.nix", [["meta", 1726, 5]]);
-const pos$301 = nix.positions(here + "/overrides.nix", [["dependencies", 1732, 5]]);
-const pos$302 = nix.positions(here + "/overrides.nix", [["dependencies", 1736, 5], ["buildPhase", 1738, 5], ["nvimSkipModules", 1748, 5]]);
-const pos$303 = nix.positions(here + "/overrides.nix", [["license", 1758, 7]]);
-const pos$304 = nix.positions(here + "/overrides.nix", [["meta", 1757, 5]]);
-const pos$305 = nix.positions(here + "/overrides.nix", [["license", 1764, 7]]);
-const pos$306 = nix.positions(here + "/overrides.nix", [["meta", 1763, 5]]);
-const pos$307 = nix.positions(here + "/overrides.nix", [["runtimeDeps", 1769, 5], ["nvimRequireCheck", 1773, 5]]);
-const pos$308 = nix.positions(here + "/overrides.nix", [["license", 1793, 7]]);
-const pos$309 = nix.positions(here + "/overrides.nix", [["checkInputs", 1777, 5], ["dependencies", 1784, 5], ["nvimSkipModules", 1788, 5], ["meta", 1792, 5]]);
-const pos$310 = nix.positions(here + "/overrides.nix", [["license", 1799, 7]]);
-const pos$311 = nix.positions(here + "/overrides.nix", [["meta", 1798, 5]]);
-const pos$312 = nix.positions(here + "/overrides.nix", [["dependencies", 1804, 5]]);
-const pos$313 = nix.positions(here + "/overrides.nix", [["dependencies", 1808, 5]]);
-const pos$314 = nix.positions(here + "/overrides.nix", [["dependencies", 1815, 5]]);
-const pos$315 = nix.positions(here + "/overrides.nix", [["dependencies", 1819, 5]]);
-const pos$316 = nix.positions(here + "/overrides.nix", [["dependencies", 1823, 5]]);
-const pos$317 = nix.positions(here + "/overrides.nix", [["checkInputs", 1828, 5]]);
-const pos$318 = nix.positions(here + "/overrides.nix", [["nvimRequireCheck", 1832, 5]]);
-const pos$319 = nix.positions(here + "/overrides.nix", [["runtimeDeps", 1836, 5]]);
-const pos$320 = nix.positions(here + "/overrides.nix", [["runtimeDeps", 1842, 5]]);
-const pos$321 = nix.positions(here + "/overrides.nix", [["buildInputs", 1846, 5], ["checkInputs", 1848, 5], ["nvimSkipModules", 1852, 5]]);
-const pos$322 = nix.positions(here + "/overrides.nix", [["license", 1861, 7]]);
-const pos$323 = nix.positions(here + "/overrides.nix", [["meta", 1860, 5]]);
-const pos$324 = nix.positions(here + "/overrides.nix", [["license", 1867, 7]]);
-const pos$325 = nix.positions(here + "/overrides.nix", [["meta", 1866, 5]]);
-const pos$326 = nix.positions(here + "/overrides.nix", [["doCheck", 1873, 5]]);
-const pos$327 = nix.positions(here + "/overrides.nix", [["license", 1879, 7]]);
-const pos$328 = nix.positions(here + "/overrides.nix", [["meta", 1877, 5]]);
-const pos$329 = nix.positions(here + "/overrides.nix", [["dependencies", 1884, 5]]);
-const pos$330 = nix.positions(here + "/overrides.nix", [["dependencies", 1888, 5], ["runtimeDeps", 1894, 5], ["nvimSkipModules", 1898, 5]]);
-const pos$331 = nix.positions(here + "/overrides.nix", [["dependencies", 1906, 5], ["doInstallCheck", 1911, 5]]);
-const pos$332 = nix.positions(here + "/overrides.nix", [["license", 1916, 7]]);
-const pos$333 = nix.positions(here + "/overrides.nix", [["meta", 1915, 5]]);
-const pos$334 = nix.positions(here + "/overrides.nix", [["license", 1922, 7]]);
-const pos$335 = nix.positions(here + "/overrides.nix", [["meta", 1921, 5]]);
-const pos$336 = nix.positions(here + "/overrides.nix", [["nvimSkipModules", 1928, 5]]);
-const pos$337 = nix.positions(here + "/overrides.nix", [["checkInputs", 1932, 5], ["dependencies", 1936, 5]]);
-const pos$338 = nix.positions(here + "/overrides.nix", [["nvimSkipModules", 1944, 5]]);
-const pos$339 = nix.positions(here + "/overrides.nix", [["dependencies", 1953, 5]]);
-const pos$340 = nix.positions(here + "/overrides.nix", [["license", 1958, 7]]);
-const pos$341 = nix.positions(here + "/overrides.nix", [["meta", 1957, 5]]);
-const pos$342 = nix.positions(here + "/overrides.nix", [["license", 1964, 7]]);
-const pos$343 = nix.positions(here + "/overrides.nix", [["meta", 1963, 5]]);
-const pos$344 = nix.positions(here + "/overrides.nix", [["dependencies", 1969, 5]]);
-const pos$345 = nix.positions(here + "/overrides.nix", [["license", 1974, 7]]);
-const pos$346 = nix.positions(here + "/overrides.nix", [["meta", 1973, 5]]);
-const pos$347 = nix.positions(here + "/overrides.nix", [["dependencies", 1979, 5]]);
-const pos$348 = nix.positions(here + "/overrides.nix", [["description", 1986, 7], ["license", 1987, 7]]);
-const pos$349 = nix.positions(here + "/overrides.nix", [["buildInputs", 1984, 5], ["meta", 1985, 5]]);
-const pos$350 = nix.positions(here + "/overrides.nix", [["dependencies", 1992, 5]]);
-const pos$351 = nix.positions(here + "/overrides.nix", [["license", 1997, 7]]);
-const pos$352 = nix.positions(here + "/overrides.nix", [["meta", 1996, 5]]);
-const pos$353 = nix.positions(here + "/overrides.nix", [["license", 2003, 7]]);
-const pos$354 = nix.positions(here + "/overrides.nix", [["meta", 2002, 5]]);
-const pos$355 = nix.positions(here + "/overrides.nix", [["postPatch", 2009, 5]]);
-const pos$356 = nix.positions(here + "/overrides.nix", [["license", 2016, 7]]);
-const pos$357 = nix.positions(here + "/overrides.nix", [["meta", 2015, 5]]);
-const pos$358 = nix.positions(here + "/overrides.nix", [["license", 2023, 7], ["maintainers", 2027, 7]]);
-const pos$359 = nix.positions(here + "/overrides.nix", [["meta", 2021, 5]]);
-const pos$360 = nix.positions(here + "/overrides.nix", [["license", 2035, 7]]);
-const pos$361 = nix.positions(here + "/overrides.nix", [["meta", 2034, 5]]);
-const pos$362 = nix.positions(here + "/overrides.nix", [["python3Dependencies", 2049, 7]]);
-const pos$363 = nix.positions(here + "/overrides.nix", [["postPatch", 2044, 5], ["passthru", 2048, 5]]);
-const pos$364 = nix.positions(here + "/overrides.nix", [["checkInputs", 2054, 5], ["dependencies", 2059, 5]]);
-const pos$365 = nix.positions(here + "/overrides.nix", [["language", 2069, 11], ["version", 2070, 57], ["src", 2070, 65], ["meta", 2070, 69], ["generate", 2071, 11]]);
-const pos$366 = nix.positions(here + "/overrides.nix", [["dependencies", 2076, 7], ["postPatch", 2078, 7], ["nvimSkipModules", 2083, 7]]);
-const pos$367 = nix.positions(here + "/overrides.nix", [["license", 2099, 7]]);
-const pos$368 = nix.positions(here + "/overrides.nix", [["meta", 2098, 5]]);
-const pos$369 = nix.positions(here + "/overrides.nix", [["license", 2105, 7]]);
-const pos$370 = nix.positions(here + "/overrides.nix", [["meta", 2104, 5]]);
-const pos$371 = nix.positions(here + "/overrides.nix", [["dependencies", 2110, 5]]);
-const pos$372 = nix.positions(here + "/overrides.nix", [["patches", 2114, 5], ["nvimSkipModules", 2115, 5]]);
-const pos$373 = nix.positions(here + "/overrides.nix", [["runtimeDeps", 2127, 5]]);
-const pos$374 = nix.positions(here + "/overrides.nix", [["dependencies", 2133, 5], ["runtimeDeps", 2134, 5]]);
-const pos$375 = nix.positions(here + "/overrides.nix", [["dependencies", 2141, 5], ["nvimSkipModules", 2142, 5]]);
-const pos$376 = nix.positions(here + "/overrides.nix", [["nativeBuildInputs", 2166, 5], ["buildInputs", 2167, 5], ["buildPhase", 2170, 5], ["stripDebugList", 2175, 5]]);
-const pos$377 = nix.positions(here + "/overrides.nix", [["dependencies", 2179, 5]]);
-const pos$378 = nix.positions(here + "/overrides.nix", [["dependencies", 2185, 5]]);
-const pos$379 = nix.positions(here + "/overrides.nix", [["license", 2193, 7]]);
-const pos$380 = nix.positions(here + "/overrides.nix", [["meta", 2192, 5]]);
-const pos$381 = nix.positions(here + "/overrides.nix", [["checkInputs", 2198, 5], ["dependencies", 2203, 5], ["doInstallCheck", 2208, 5], ["nvimSkipModules", 2209, 5]]);
-const pos$382 = nix.positions(here + "/overrides.nix", [["dependencies", 2246, 5], ["nvimSkipModules", 2247, 5]]);
-const pos$383 = nix.positions(here + "/overrides.nix", [["license", 2261, 7]]);
-const pos$384 = nix.positions(here + "/overrides.nix", [["patches", 2257, 5], ["meta", 2260, 5]]);
-const pos$385 = nix.positions(here + "/overrides.nix", [["license", 2267, 7]]);
-const pos$386 = nix.positions(here + "/overrides.nix", [["meta", 2266, 5]]);
-const pos$387 = nix.positions(here + "/overrides.nix", [["license", 2273, 7]]);
-const pos$388 = nix.positions(here + "/overrides.nix", [["meta", 2272, 5]]);
-const pos$389 = nix.positions(here + "/overrides.nix", [["dependencies", 2278, 5]]);
-const pos$390 = nix.positions(here + "/overrides.nix", [["license", 2284, 7]]);
-const pos$391 = nix.positions(here + "/overrides.nix", [["dependencies", 2282, 5], ["meta", 2283, 5]]);
-const pos$392 = nix.positions(here + "/overrides.nix", [["license", 2290, 7]]);
-const pos$393 = nix.positions(here + "/overrides.nix", [["meta", 2289, 5]]);
-const pos$394 = nix.positions(here + "/overrides.nix", [["license", 2296, 7]]);
-const pos$395 = nix.positions(here + "/overrides.nix", [["meta", 2295, 5]]);
-const pos$396 = nix.positions(here + "/overrides.nix", [["checkInputs", 2302, 5]]);
-const pos$397 = nix.positions(here + "/overrides.nix", [["license", 2307, 7]]);
-const pos$398 = nix.positions(here + "/overrides.nix", [["meta", 2306, 5]]);
-const pos$399 = nix.positions(here + "/overrides.nix", [["dependencies", 2312, 5]]);
-const pos$400 = nix.positions(here + "/overrides.nix", [["license", 2317, 7]]);
-const pos$401 = nix.positions(here + "/overrides.nix", [["meta", 2316, 5]]);
-const pos$402 = nix.positions(here + "/overrides.nix", [["dependencies", 2322, 5]]);
-const pos$403 = nix.positions(here + "/overrides.nix", [["dependencies", 2326, 5]]);
-const pos$404 = nix.positions(here + "/overrides.nix", [["license", 2337, 7]]);
-const pos$405 = nix.positions(here + "/overrides.nix", [["dependencies", 2335, 5], ["meta", 2336, 5]]);
-const pos$406 = nix.positions(here + "/overrides.nix", [["license", 2344, 7]]);
-const pos$407 = nix.positions(here + "/overrides.nix", [["dependencies", 2342, 5], ["meta", 2343, 5]]);
-const pos$408 = nix.positions(here + "/overrides.nix", [["license", 2350, 7]]);
-const pos$409 = nix.positions(here + "/overrides.nix", [["meta", 2349, 5]]);
-const pos$410 = nix.positions(here + "/overrides.nix", [["license", 2357, 7]]);
-const pos$411 = nix.positions(here + "/overrides.nix", [["dependencies", 2355, 5], ["meta", 2356, 5]]);
-const pos$412 = nix.positions(here + "/overrides.nix", [["license", 2370, 7]]);
-const pos$413 = nix.positions(here + "/overrides.nix", [["checkInputs", 2362, 5], ["meta", 2369, 5]]);
-const pos$414 = nix.positions(here + "/overrides.nix", [["postPatch", 2377, 5]]);
-const pos$415 = nix.positions(here + "/overrides.nix", [["runtimeDeps", 2386, 5]]);
-const pos$416 = nix.positions(here + "/overrides.nix", [["dependencies", 2390, 5]]);
-const pos$417 = nix.positions(here + "/overrides.nix", [["license", 2395, 7]]);
-const pos$418 = nix.positions(here + "/overrides.nix", [["meta", 2394, 5]]);
-const pos$419 = nix.positions(here + "/overrides.nix", [["license", 2401, 7]]);
-const pos$420 = nix.positions(here + "/overrides.nix", [["meta", 2400, 5]]);
-const pos$421 = nix.positions(here + "/overrides.nix", [["dependencies", 2406, 5]]);
-const pos$422 = nix.positions(here + "/overrides.nix", [["license", 2411, 7]]);
-const pos$423 = nix.positions(here + "/overrides.nix", [["meta", 2410, 5]]);
-const pos$424 = nix.positions(here + "/overrides.nix", [["dependencies", 2416, 5]]);
-const pos$425 = nix.positions(here + "/overrides.nix", [["license", 2421, 7]]);
-const pos$426 = nix.positions(here + "/overrides.nix", [["meta", 2420, 5]]);
-const pos$427 = nix.positions(here + "/overrides.nix", [["nvimRequireCheck", 2427, 5]]);
-const pos$428 = nix.positions(here + "/overrides.nix", [["nvimRequireCheck", 2432, 5]]);
-const pos$429 = nix.positions(here + "/overrides.nix", [["dependencies", 2436, 5]]);
-const pos$430 = nix.positions(here + "/overrides.nix", [["dependencies", 2440, 5]]);
-const pos$431 = nix.positions(here + "/overrides.nix", [["dependencies", 2444, 5], ["nvimSkipModules", 2447, 5]]);
-const pos$432 = nix.positions(here + "/overrides.nix", [["checkInputs", 2453, 5]]);
-const pos$433 = nix.positions(here + "/overrides.nix", [["dependencies", 2457, 5], ["runtimeDeps", 2458, 5]]);
-const pos$434 = nix.positions(here + "/overrides.nix", [["python3Dependencies", 2463, 7]]);
-const pos$435 = nix.positions(here + "/overrides.nix", [["passthru", 2462, 5]]);
-const pos$436 = nix.positions(here + "/overrides.nix", [["dependencies", 2479, 5]]);
-const pos$437 = nix.positions(here + "/overrides.nix", [["license", 2484, 7]]);
-const pos$438 = nix.positions(here + "/overrides.nix", [["meta", 2483, 5]]);
-const pos$439 = nix.positions(here + "/overrides.nix", [["dependencies", 2489, 5]]);
-const pos$440 = nix.positions(here + "/overrides.nix", [["yarnLock", 2505, 11], ["hash", 2506, 11]]);
-const pos$441 = nix.positions(here + "/overrides.nix", [["pname", 2500, 47], ["version", 2500, 53], ["src", 2500, 61], ["nativeBuildInputs", 2501, 9], ["yarnOfflineCache", 2504, 9], ["installPhase", 2508, 9]]);
-const pos$442 = nix.positions(here + "/overrides.nix", [["runtimeDeps", 2514, 7], ["postInstall", 2517, 7], ["nativeBuildInputs", 2521, 7], ["doInstallCheck", 2522, 7], ["installCheckPhase", 2523, 7]]);
-const pos$443 = nix.positions(here + "/overrides.nix", [["dependencies", 2529, 5]]);
-const pos$444 = nix.positions(here + "/overrides.nix", [["dependencies", 2533, 5]]);
-const pos$445 = nix.positions(here + "/overrides.nix", [["dependencies", 2540, 5]]);
-const pos$446 = nix.positions(here + "/overrides.nix", [["nvimSkipModules", 2548, 5]]);
-const pos$447 = nix.positions(here + "/overrides.nix", [["dependencies", 2557, 5]]);
-const pos$448 = nix.positions(here + "/overrides.nix", [["dependencies", 2564, 5]]);
-const pos$449 = nix.positions(here + "/overrides.nix", [["checkInputs", 2569, 5]]);
-const pos$450 = nix.positions(here + "/overrides.nix", [["license", 2574, 7]]);
-const pos$451 = nix.positions(here + "/overrides.nix", [["meta", 2573, 5]]);
-const pos$452 = nix.positions(here + "/overrides.nix", [["dependencies", 2579, 5], ["checkInputs", 2580, 5], ["nvimSkipModules", 2585, 5]]);
-const pos$453 = nix.positions(here + "/overrides.nix", [["license", 2593, 7]]);
-const pos$454 = nix.positions(here + "/overrides.nix", [["meta", 2592, 5]]);
-const pos$455 = nix.positions(here + "/overrides.nix", [["dependencies", 2598, 5]]);
-const pos$456 = nix.positions(here + "/overrides.nix", [["postInstall", 2608, 5]]);
-const pos$457 = nix.positions(here + "/overrides.nix", [["preFixup", 2614, 5], ["doInstallCheck", 2621, 5], ["vimCommandCheck", 2622, 5]]);
-const pos$458 = nix.positions(here + "/overrides.nix", [["checkInputs", 2626, 5], ["dependencies", 2631, 5], ["nvimSkipModules", 2632, 5]]);
-const pos$459 = nix.positions(here + "/overrides.nix", [["dependencies", 2644, 5], ["nvimRequireCheck", 2646, 5]]);
-const pos$460 = nix.positions(here + "/overrides.nix", [["nvimSkipModules", 2651, 5]]);
-const pos$461 = nix.positions(here + "/overrides.nix", [["license", 2656, 7]]);
-const pos$462 = nix.positions(here + "/overrides.nix", [["meta", 2655, 5]]);
-const pos$463 = nix.positions(here + "/overrides.nix", [["checkInputs", 2662, 5]]);
-const pos$464 = nix.positions(here + "/overrides.nix", [["license", 2671, 7]]);
-const pos$465 = nix.positions(here + "/overrides.nix", [["meta", 2670, 5]]);
-const pos$466 = nix.positions(here + "/overrides.nix", [["license", 2677, 7]]);
-const pos$467 = nix.positions(here + "/overrides.nix", [["meta", 2676, 5]]);
-const pos$468 = nix.positions(here + "/overrides.nix", [["dependencies", 2682, 5]]);
-const pos$469 = nix.positions(here + "/overrides.nix", [["license", 2690, 7]]);
-const pos$470 = nix.positions(here + "/overrides.nix", [["dependencies", 2688, 5], ["meta", 2689, 5]]);
-const pos$471 = nix.positions(here + "/overrides.nix", [["dependencies", 2695, 5]]);
-const pos$472 = nix.positions(here + "/overrides.nix", [["license", 2700, 7]]);
-const pos$473 = nix.positions(here + "/overrides.nix", [["meta", 2699, 5]]);
-const pos$474 = nix.positions(here + "/overrides.nix", [["python3Dependencies", 2710, 7]]);
-const pos$475 = nix.positions(here + "/overrides.nix", [["dependencies", 2705, 5], ["passthru", 2709, 5]]);
-const pos$476 = nix.positions(here + "/overrides.nix", [["dependencies", 2715, 5]]);
-const pos$477 = nix.positions(here + "/overrides.nix", [["dependencies", 2719, 5]]);
-const pos$478 = nix.positions(here + "/overrides.nix", [["dependencies", 2723, 5]]);
-const pos$479 = nix.positions(here + "/overrides.nix", [["license", 2729, 7]]);
-const pos$480 = nix.positions(here + "/overrides.nix", [["dependencies", 2727, 5], ["meta", 2728, 5]]);
-const pos$481 = nix.positions(here + "/overrides.nix", [["license", 2735, 7]]);
-const pos$482 = nix.positions(here + "/overrides.nix", [["meta", 2734, 5]]);
-const pos$483 = nix.positions(here + "/overrides.nix", [["license", 2741, 7]]);
-const pos$484 = nix.positions(here + "/overrides.nix", [["meta", 2740, 5]]);
-const pos$485 = nix.positions(here + "/overrides.nix", [["license", 2747, 7]]);
-const pos$486 = nix.positions(here + "/overrides.nix", [["meta", 2746, 5]]);
-const pos$487 = nix.positions(here + "/overrides.nix", [["dependencies", 2752, 5], ["checkInputs", 2753, 5]]);
-const pos$488 = nix.positions(here + "/overrides.nix", [["checkInputs", 2760, 5], ["dependencies", 2761, 5], ["nvimSkipModules", 2765, 5]]);
-const pos$489 = nix.positions(here + "/overrides.nix", [["license", 2772, 7]]);
-const pos$490 = nix.positions(here + "/overrides.nix", [["meta", 2771, 5]]);
-const pos$491 = nix.positions(here + "/overrides.nix", [["dependencies", 2777, 5], ["doInstallCheck", 2779, 5]]);
-const pos$492 = nix.positions(here + "/overrides.nix", [["checkInputs", 2784, 5], ["dependencies", 2785, 5], ["nvimSkipModules", 2786, 5]]);
-const pos$493 = nix.positions(here + "/overrides.nix", [["license", 2795, 7]]);
-const pos$494 = nix.positions(here + "/overrides.nix", [["meta", 2794, 5]]);
-const pos$495 = nix.positions(here + "/overrides.nix", [["license", 2801, 7]]);
-const pos$496 = nix.positions(here + "/overrides.nix", [["meta", 2800, 5]]);
-const pos$497 = nix.positions(here + "/overrides.nix", [["nvimSkipModules", 2806, 5]]);
-const pos$498 = nix.positions(here + "/overrides.nix", [["dependencies", 2815, 5]]);
-const pos$499 = nix.positions(here + "/overrides.nix", [["buildInputs", 2822, 5], ["dependencies", 2823, 5]]);
-const pos$500 = nix.positions(here + "/overrides.nix", [["license", 2832, 7]]);
-const pos$501 = nix.positions(here + "/overrides.nix", [["meta", 2831, 5]]);
-const pos$502 = nix.positions(here + "/overrides.nix", [["license", 2838, 7]]);
-const pos$503 = nix.positions(here + "/overrides.nix", [["meta", 2837, 5]]);
-const pos$504 = nix.positions(here + "/overrides.nix", [["license", 2844, 7]]);
-const pos$505 = nix.positions(here + "/overrides.nix", [["meta", 2843, 5]]);
-const pos$506 = nix.positions(here + "/overrides.nix", [["dependencies", 2849, 5]]);
-const pos$507 = nix.positions(here + "/overrides.nix", [["dependencies", 2856, 5]]);
-const pos$508 = nix.positions(here + "/overrides.nix", [["dependencies", 2863, 5], ["nvimRequireCheck", 2868, 5]]);
-const pos$509 = nix.positions(here + "/overrides.nix", [["dependencies", 2872, 5]]);
-const pos$510 = nix.positions(here + "/overrides.nix", [["dependencies", 2880, 5]]);
-const pos$511 = nix.positions(here + "/overrides.nix", [["dependencies", 2888, 5]]);
-const pos$512 = nix.positions(here + "/overrides.nix", [["dependencies", 2896, 5]]);
-const pos$513 = nix.positions(here + "/overrides.nix", [["dependencies", 2904, 5]]);
-const pos$514 = nix.positions(here + "/overrides.nix", [["license", 2918, 7]]);
-const pos$515 = nix.positions(here + "/overrides.nix", [["dependencies", 2912, 5], ["meta", 2917, 5]]);
-const pos$516 = nix.positions(here + "/overrides.nix", [["dependencies", 2926, 5]]);
-const pos$517 = nix.positions(here + "/overrides.nix", [["dependencies", 2934, 5]]);
-const pos$518 = nix.positions(here + "/overrides.nix", [["dependencies", 2944, 5]]);
-const pos$519 = nix.positions(here + "/overrides.nix", [["dependencies", 2952, 5]]);
-const pos$520 = nix.positions(here + "/overrides.nix", [["dependencies", 2961, 5]]);
-const pos$521 = nix.positions(here + "/overrides.nix", [["dependencies", 2968, 5]]);
-const pos$522 = nix.positions(here + "/overrides.nix", [["dependencies", 2976, 5], ["nvimSkipModules", 2981, 5]]);
-const pos$523 = nix.positions(here + "/overrides.nix", [["dependencies", 2985, 5]]);
-const pos$524 = nix.positions(here + "/overrides.nix", [["license", 2999, 7]]);
-const pos$525 = nix.positions(here + "/overrides.nix", [["dependencies", 2993, 5], ["meta", 2998, 5]]);
-const pos$526 = nix.positions(here + "/overrides.nix", [["dependencies", 3004, 5]]);
-const pos$527 = nix.positions(here + "/overrides.nix", [["dependencies", 3012, 5]]);
-const pos$528 = nix.positions(here + "/overrides.nix", [["checkInputs", 3020, 5], ["dependencies", 3024, 5], ["nvimSkipModules", 3030, 5]]);
-const pos$529 = nix.positions(here + "/overrides.nix", [["dependencies", 3034, 5]]);
-const pos$530 = nix.positions(here + "/overrides.nix", [["dependencies", 3042, 5]]);
-const pos$531 = nix.positions(here + "/overrides.nix", [["dependencies", 3050, 5]]);
-const pos$532 = nix.positions(here + "/overrides.nix", [["dependencies", 3058, 5]]);
-const pos$533 = nix.positions(here + "/overrides.nix", [["dependencies", 3066, 5]]);
-const pos$534 = nix.positions(here + "/overrides.nix", [["license", 3080, 7]]);
-const pos$535 = nix.positions(here + "/overrides.nix", [["dependencies", 3074, 5], ["meta", 3079, 5]]);
-const pos$536 = nix.positions(here + "/overrides.nix", [["dependencies", 3085, 5], ["nvimSkipModules", 3091, 5]]);
-const pos$537 = nix.positions(here + "/overrides.nix", [["dependencies", 3095, 5]]);
-const pos$538 = nix.positions(here + "/overrides.nix", [["runtimeDeps", 3103, 5]]);
-const pos$539 = nix.positions(here + "/overrides.nix", [["dependencies", 3110, 5]]);
-const pos$540 = nix.positions(here + "/overrides.nix", [["license", 3118, 7]]);
-const pos$541 = nix.positions(here + "/overrides.nix", [["meta", 3117, 5]]);
-const pos$542 = nix.positions(here + "/overrides.nix", [["dependencies", 3123, 5]]);
-const pos$543 = nix.positions(here + "/overrides.nix", [["dependencies", 3129, 5]]);
-const pos$544 = nix.positions(here + "/overrides.nix", [["dependencies", 3135, 5]]);
-const pos$545 = nix.positions(here + "/overrides.nix", [["license", 3143, 7]]);
-const pos$546 = nix.positions(here + "/overrides.nix", [["meta", 3142, 5]]);
-const pos$547 = nix.positions(here + "/overrides.nix", [["checkInputs", 3149, 5]]);
-const pos$548 = nix.positions(here + "/overrides.nix", [["license", 3160, 7]]);
-const pos$549 = nix.positions(here + "/overrides.nix", [["meta", 3159, 5]]);
-const pos$550 = nix.positions(here + "/overrides.nix", [["license", 3166, 7]]);
-const pos$551 = nix.positions(here + "/overrides.nix", [["meta", 3165, 5]]);
-const pos$552 = nix.positions(here + "/overrides.nix", [["dependencies", 3171, 5]]);
-const pos$553 = nix.positions(here + "/overrides.nix", [["dependencies", 3175, 5]]);
-const pos$554 = nix.positions(here + "/overrides.nix", [["dependencies", 3179, 5]]);
-const pos$555 = nix.positions(here + "/overrides.nix", [["dependencies", 3183, 5]]);
-const pos$556 = nix.positions(here + "/overrides.nix", [["dependencies", 3187, 5]]);
-const pos$557 = nix.positions(here + "/overrides.nix", [["license", 3192, 7]]);
-const pos$558 = nix.positions(here + "/overrides.nix", [["meta", 3191, 5]]);
-const pos$559 = nix.positions(here + "/overrides.nix", [["license", 3220, 7]]);
-const pos$560 = nix.positions(here + "/overrides.nix", [["checkInputs", 3197, 5], ["runtimeDeps", 3203, 5], ["postPatch", 3208, 5], ["meta", 3219, 5]]);
-const pos$561 = nix.positions(here + "/overrides.nix", [["license", 3226, 7]]);
-const pos$562 = nix.positions(here + "/overrides.nix", [["meta", 3225, 5]]);
-const pos$563 = nix.positions(here + "/overrides.nix", [["dependencies", 3231, 5]]);
-const pos$564 = nix.positions(here + "/overrides.nix", [["dependencies", 3236, 5], ["nvimSkipModules", 3246, 5]]);
-const pos$565 = nix.positions(here + "/overrides.nix", [["dependencies", 3257, 5], ["nvimSkipModules", 3258, 5]]);
-const pos$566 = nix.positions(here + "/overrides.nix", [["checkInputs", 3273, 5], ["nvimSkipModules", 3276, 5]]);
-const pos$567 = nix.positions(here + "/overrides.nix", [["dependencies", 3283, 5]]);
-const pos$568 = nix.positions(here + "/overrides.nix", [["dependencies", 3290, 5]]);
-const pos$569 = nix.positions(here + "/overrides.nix", [["license", 3295, 7]]);
-const pos$570 = nix.positions(here + "/overrides.nix", [["meta", 3294, 5]]);
-const pos$571 = nix.positions(here + "/overrides.nix", [["dependencies", 3300, 5], ["nvimSkipModules", 3304, 5]]);
-const pos$572 = nix.positions(here + "/overrides.nix", [["license", 3312, 7]]);
-const pos$573 = nix.positions(here + "/overrides.nix", [["meta", 3311, 5]]);
-const pos$574 = nix.positions(here + "/overrides.nix", [["dependencies", 3317, 5]]);
-const pos$575 = nix.positions(here + "/overrides.nix", [["license", 3323, 7]]);
-const pos$576 = nix.positions(here + "/overrides.nix", [["dependencies", 3321, 5], ["meta", 3322, 5]]);
-const pos$577 = nix.positions(here + "/overrides.nix", [["dependencies", 3328, 5]]);
-const pos$578 = nix.positions(here + "/overrides.nix", [["license", 3334, 7]]);
-const pos$579 = nix.positions(here + "/overrides.nix", [["dependencies", 3332, 5], ["meta", 3333, 5]]);
-const pos$580 = nix.positions(here + "/overrides.nix", [["dependencies", 3339, 5]]);
-const pos$581 = nix.positions(here + "/overrides.nix", [["dependencies", 3343, 5]]);
-const pos$582 = nix.positions(here + "/overrides.nix", [["dependencies", 3347, 5], ["doInstallCheck", 3352, 5]]);
-const pos$583 = nix.positions(here + "/overrides.nix", [["dependencies", 3356, 5]]);
-const pos$584 = nix.positions(here + "/overrides.nix", [["dependencies", 3360, 5]]);
-const pos$585 = nix.positions(here + "/overrides.nix", [["dependencies", 3364, 5]]);
-const pos$586 = nix.positions(here + "/overrides.nix", [["license", 3370, 7]]);
-const pos$587 = nix.positions(here + "/overrides.nix", [["dependencies", 3368, 5], ["meta", 3369, 5]]);
-const pos$588 = nix.positions(here + "/overrides.nix", [["dependencies", 3375, 5], ["nvimSkipModules", 3377, 5]]);
-const pos$589 = nix.positions(here + "/overrides.nix", [["dependencies", 3381, 5], ["doInstallCheck", 3383, 5]]);
-const pos$590 = nix.positions(here + "/overrides.nix", [["license", 3388, 7]]);
-const pos$591 = nix.positions(here + "/overrides.nix", [["meta", 3387, 5]]);
-const pos$592 = nix.positions(here + "/overrides.nix", [["dependencies", 3393, 5]]);
-const pos$593 = nix.positions(here + "/overrides.nix", [["dependencies", 3407, 5]]);
-const pos$594 = nix.positions(here + "/overrides.nix", [["dependencies", 3414, 5]]);
-const pos$595 = nix.positions(here + "/overrides.nix", [["dependencies", 3418, 5], ["nvimSkipModules", 3419, 5]]);
-const pos$596 = nix.positions(here + "/overrides.nix", [["dependencies", 3428, 5]]);
-const pos$597 = nix.positions(here + "/overrides.nix", [["license", 3434, 7]]);
-const pos$598 = nix.positions(here + "/overrides.nix", [["runtimeDeps", 3432, 5], ["meta", 3433, 5]]);
-const pos$599 = nix.positions(here + "/overrides.nix", [["runtimeDeps", 3439, 5]]);
-const pos$600 = nix.positions(here + "/overrides.nix", [["license", 3447, 7]]);
-const pos$601 = nix.positions(here + "/overrides.nix", [["meta", 3446, 5]]);
-const pos$602 = nix.positions(here + "/overrides.nix", [["dependencies", 3452, 5]]);
-const pos$603 = nix.positions(here + "/overrides.nix", [["nvimSkipModules", 3459, 5]]);
-const pos$604 = nix.positions(here + "/overrides.nix", [["license", 3469, 7]]);
-const pos$605 = nix.positions(here + "/overrides.nix", [["meta", 3468, 5]]);
-const pos$606 = nix.positions(here + "/overrides.nix", [["dependencies", 3474, 5]]);
-const pos$607 = nix.positions(here + "/overrides.nix", [["dependencies", 3478, 5]]);
-const pos$608 = nix.positions(here + "/overrides.nix", [["dependencies", 3482, 5], ["dontBuild", 3483, 5]]);
-const pos$609 = nix.positions(here + "/overrides.nix", [["nvimSkipModules", 3488, 5]]);
-const pos$610 = nix.positions(here + "/overrides.nix", [["dependencies", 3492, 5]]);
-const pos$611 = nix.positions(here + "/overrides.nix", [["dependencies", 3500, 5]]);
-const pos$612 = nix.positions(here + "/overrides.nix", [["license", 3510, 7]]);
-const pos$613 = nix.positions(here + "/overrides.nix", [["checkInputs", 3505, 5], ["meta", 3509, 5]]);
-const pos$614 = nix.positions(here + "/overrides.nix", [["checkInputs", 3516, 5]]);
-const pos$615 = nix.positions(here + "/overrides.nix", [["checkInputs", 3521, 5], ["nvimSkipModules", 3525, 5]]);
-const pos$616 = nix.positions(here + "/overrides.nix", [["dependencies", 3533, 5]]);
-const pos$617 = nix.positions(here + "/overrides.nix", [["license", 3542, 7]]);
-const pos$618 = nix.positions(here + "/overrides.nix", [["meta", 3541, 5]]);
-const pos$619 = nix.positions(here + "/overrides.nix", [["license", 3548, 7]]);
-const pos$620 = nix.positions(here + "/overrides.nix", [["meta", 3547, 5]]);
-const pos$621 = nix.positions(here + "/overrides.nix", [["buildInputs", 3553, 5]]);
-const pos$622 = nix.positions(here + "/overrides.nix", [["checkInputs", 3557, 5]]);
-const pos$623 = nix.positions(here + "/overrides.nix", [["checkInputs", 3566, 5]]);
-const pos$624 = nix.positions(here + "/overrides.nix", [["runtimeDeps", 3573, 5]]);
-const pos$625 = nix.positions(here + "/overrides.nix", [["postPatch", 3577, 5], ["vimCommandCheck", 3581, 5]]);
-const pos$626 = nix.positions(here + "/overrides.nix", [["checkInputs", 3586, 5], ["dependencies", 3587, 5]]);
-const pos$627 = nix.positions(here + "/overrides.nix", [["checkInputs", 3602, 5]]);
-const pos$628 = nix.positions(here + "/overrides.nix", [["license", 3611, 7]]);
-const pos$629 = nix.positions(here + "/overrides.nix", [["meta", 3610, 5]]);
-const pos$630 = nix.positions(here + "/overrides.nix", [["dependencies", 3632, 5]]);
-const pos$631 = nix.positions(here + "/overrides.nix", [["dependencies", 3636, 5]]);
-const pos$632 = nix.positions(here + "/overrides.nix", [["dependencies", 3640, 5]]);
-const pos$633 = nix.positions(here + "/overrides.nix", [["dependencies", 3644, 5]]);
-const pos$634 = nix.positions(here + "/overrides.nix", [["dependencies", 3648, 5]]);
-const pos$635 = nix.positions(here + "/overrides.nix", [["dependencies", 3652, 5]]);
-const pos$636 = nix.positions(here + "/overrides.nix", [["dependencies", 3656, 5]]);
-const pos$637 = nix.positions(here + "/overrides.nix", [["dependencies", 3660, 5]]);
-const pos$638 = nix.positions(here + "/overrides.nix", [["nvimSkipModules", 3665, 5]]);
-const pos$639 = nix.positions(here + "/overrides.nix", [["runtimeDeps", 3675, 5], ["dependencies", 3676, 5]]);
-const pos$640 = nix.positions(here + "/overrides.nix", [["license", 3681, 7]]);
-const pos$641 = nix.positions(here + "/overrides.nix", [["meta", 3680, 5]]);
-const pos$642 = nix.positions(here + "/overrides.nix", [["pname", 3687, 5], ["checkInputs", 3688, 5], ["dependencies", 3697, 5]]);
-const pos$643 = nix.positions(here + "/overrides.nix", [["pname", 3702, 5], ["dependencies", 3703, 5]]);
-const pos$644 = nix.positions(here + "/overrides.nix", [["pname", 3708, 5], ["dependencies", 3709, 5]]);
-const pos$645 = nix.positions(here + "/overrides.nix", [["pname", 3714, 5]]);
-const pos$646 = nix.positions(here + "/overrides.nix", [["checkInputs", 3718, 5], ["nvimSkipModules", 3725, 5]]);
-const pos$647 = nix.positions(here + "/overrides.nix", [["license", 3736, 7]]);
-const pos$648 = nix.positions(here + "/overrides.nix", [["meta", 3735, 5]]);
-const pos$649 = nix.positions(here + "/overrides.nix", [["checkInputs", 3741, 5], ["dependencies", 3747, 5]]);
-const pos$650 = nix.positions(here + "/overrides.nix", [["license", 3755, 7]]);
-const pos$651 = nix.positions(here + "/overrides.nix", [["dependencies", 3753, 5], ["meta", 3754, 5]]);
-const pos$652 = nix.positions(here + "/overrides.nix", [["dependencies", 3760, 5]]);
-const pos$653 = nix.positions(here + "/overrides.nix", [["dependencies", 3764, 5]]);
-const pos$654 = nix.positions(here + "/overrides.nix", [["dependencies", 3768, 5]]);
-const pos$655 = nix.positions(here + "/overrides.nix", [["nvimSkipModules", 3773, 5]]);
-const pos$656 = nix.positions(here + "/overrides.nix", [["license", 3778, 7]]);
-const pos$657 = nix.positions(here + "/overrides.nix", [["meta", 3777, 5]]);
-const pos$658 = nix.positions(here + "/overrides.nix", [["broken", 3786, 7]]);
-const pos$659 = nix.positions(here + "/overrides.nix", [["meta", 3785, 5]]);
-const pos$660 = nix.positions(here + "/overrides.nix", [["nvimSkipModules", 3791, 5]]);
-const pos$661 = nix.positions(here + "/overrides.nix", [["configurePhase", 3801, 5]]);
-const pos$662 = nix.positions(here + "/overrides.nix", [["license", 3806, 7]]);
-const pos$663 = nix.positions(here + "/overrides.nix", [["meta", 3805, 5]]);
-const pos$664 = nix.positions(here + "/overrides.nix", [["runtimeDeps", 3811, 5]]);
-const pos$665 = nix.positions(here + "/overrides.nix", [["runtimeDeps", 3821, 5], ["nvimSkipModules", 3826, 5]]);
-const pos$666 = nix.positions(here + "/overrides.nix", [["dependencies", 3833, 5], ["nvimSkipModules", 3837, 5]]);
-const pos$667 = nix.positions(here + "/overrides.nix", [["dependencies", 3844, 5]]);
-const pos$668 = nix.positions(here + "/overrides.nix", [["dependencies", 3848, 5]]);
-const pos$669 = nix.positions(here + "/overrides.nix", [["nvimSkipModules", 3853, 5]]);
-const pos$670 = nix.positions(here + "/overrides.nix", [["checkInputs", 3857, 5], ["checkPhase", 3864, 5]]);
-const pos$671 = nix.positions(here + "/overrides.nix", [["dependencies", 3878, 5]]);
-const pos$672 = nix.positions(here + "/overrides.nix", [["runtimeDeps", 3882, 5]]);
-const pos$673 = nix.positions(here + "/overrides.nix", [["dependencies", 3886, 5]]);
-const pos$674 = nix.positions(here + "/overrides.nix", [["license", 3909, 7]]);
-const pos$675 = nix.positions(here + "/overrides.nix", [["runtimeDeps", 3893, 5], ["dependencies", 3897, 5], ["checkInputs", 3901, 5], ["meta", 3908, 5]]);
-const pos$676 = nix.positions(here + "/overrides.nix", [["runtimeDeps", 3914, 5], ["patches", 3918, 5]]);
-const pos$677 = nix.positions(here + "/overrides.nix", [["checkInputs", 3926, 5]]);
-const pos$678 = nix.positions(here + "/overrides.nix", [["dependencies", 3932, 5]]);
-const pos$679 = nix.positions(here + "/overrides.nix", [["license", 3939, 7]]);
-const pos$680 = nix.positions(here + "/overrides.nix", [["meta", 3938, 5]]);
-const pos$681 = nix.positions(here + "/overrides.nix", [["dependencies", 3944, 5]]);
-const pos$682 = nix.positions(here + "/overrides.nix", [["nvimSkipModules", 3949, 5]]);
-const pos$683 = nix.positions(here + "/overrides.nix", [["dependencies", 3953, 5]]);
-const pos$684 = nix.positions(here + "/overrides.nix", [["license", 3958, 7]]);
-const pos$685 = nix.positions(here + "/overrides.nix", [["meta", 3957, 5]]);
-const pos$686 = nix.positions(here + "/overrides.nix", [["runtimeDeps", 3963, 5]]);
-const pos$687 = nix.positions(here + "/overrides.nix", [["checkInputs", 3969, 5]]);
-const pos$688 = nix.positions(here + "/overrides.nix", [["license", 3977, 7]]);
-const pos$689 = nix.positions(here + "/overrides.nix", [["meta", 3976, 5]]);
-const pos$690 = nix.positions(here + "/overrides.nix", [["postPatch", 3985, 5]]);
-const pos$691 = nix.positions(here + "/overrides.nix", [["nvimSkipModules", 4010, 5]]);
-const pos$692 = nix.positions(here + "/overrides.nix", [["license", 4015, 7]]);
-const pos$693 = nix.positions(here + "/overrides.nix", [["meta", 4014, 5]]);
-const pos$694 = nix.positions(here + "/overrides.nix", [["dependencies", 4020, 5]]);
-const pos$695 = nix.positions(here + "/overrides.nix", [["license", 4034, 7]]);
-const pos$696 = nix.positions(here + "/overrides.nix", [["checkInputs", 4024, 5], ["dependencies", 4028, 5], ["meta", 4032, 5]]);
-const pos$697 = nix.positions(here + "/overrides.nix", [["license", 4040, 7]]);
-const pos$698 = nix.positions(here + "/overrides.nix", [["meta", 4039, 5]]);
-const pos$699 = nix.positions(here + "/overrides.nix", [["license", 4052, 7]]);
-const pos$700 = nix.positions(here + "/overrides.nix", [["nvimSkipModules", 4045, 5], ["meta", 4051, 5]]);
-const pos$701 = nix.positions(here + "/overrides.nix", [["runtimeDeps", 4057, 5]]);
-const pos$702 = nix.positions(here + "/overrides.nix", [["license", 4064, 7]]);
-const pos$703 = nix.positions(here + "/overrides.nix", [["meta", 4063, 5]]);
-const pos$704 = nix.positions(here + "/overrides.nix", [["license", 4070, 7]]);
-const pos$705 = nix.positions(here + "/overrides.nix", [["meta", 4069, 5]]);
-const pos$706 = nix.positions(here + "/overrides.nix", [["license", 4076, 7]]);
-const pos$707 = nix.positions(here + "/overrides.nix", [["meta", 4075, 5]]);
-const pos$708 = nix.positions(here + "/overrides.nix", [["dependencies", 4081, 5]]);
-const pos$709 = nix.positions(here + "/overrides.nix", [["dontPatchShebangs", 4087, 5], ["dependencies", 4088, 5], ["nvimSkipModules", 4092, 5]]);
-const pos$710 = nix.positions(here + "/overrides.nix", [["dependencies", 4096, 5], ["runtimeDeps", 4100, 5]]);
-const pos$711 = nix.positions(here + "/overrides.nix", [["license", 4108, 7]]);
-const pos$712 = nix.positions(here + "/overrides.nix", [["meta", 4107, 5]]);
-const pos$713 = nix.positions(here + "/overrides.nix", [["dependencies", 4113, 5]]);
-const pos$714 = nix.positions(here + "/overrides.nix", [["dependencies", 4117, 5]]);
-const pos$715 = nix.positions(here + "/overrides.nix", [["license", 4122, 7]]);
-const pos$716 = nix.positions(here + "/overrides.nix", [["meta", 4121, 5]]);
-const pos$717 = nix.positions(here + "/overrides.nix", [["initLua", 4128, 7]]);
-const pos$718 = nix.positions(here + "/overrides.nix", [["passthru", 4127, 5]]);
-const pos$719 = nix.positions(here + "/overrides.nix", [["license", 4139, 7]]);
-const pos$720 = nix.positions(here + "/overrides.nix", [["meta", 4137, 5]]);
-const pos$721 = nix.positions(here + "/overrides.nix", [["license", 4155, 7]]);
-const pos$722 = nix.positions(here + "/overrides.nix", [["dependencies", 4144, 5], ["checkInputs", 4148, 5], ["meta", 4154, 5]]);
-const pos$723 = nix.positions(here + "/overrides.nix", [["checkInputs", 4160, 5]]);
-const pos$724 = nix.positions(here + "/overrides.nix", [["dependencies", 4167, 5]]);
-const pos$725 = nix.positions(here + "/overrides.nix", [["license", 4172, 7]]);
-const pos$726 = nix.positions(here + "/overrides.nix", [["meta", 4171, 5]]);
-const pos$727 = nix.positions(here + "/overrides.nix", [["dependencies", 4177, 5]]);
-const pos$728 = nix.positions(here + "/overrides.nix", [["dependencies", 4181, 5]]);
-const pos$729 = nix.positions(here + "/overrides.nix", [["description", 4186, 7], ["license", 4187, 7], ["maintainers", 4188, 7]]);
-const pos$730 = nix.positions(here + "/overrides.nix", [["meta", 4185, 5]]);
-const pos$731 = nix.positions(here + "/overrides.nix", [["runtimeDeps", 4196, 5]]);
-const pos$732 = nix.positions(here + "/overrides.nix", [["dependencies", 4203, 5]]);
-const pos$733 = nix.positions(here + "/overrides.nix", [["license", 4208, 7]]);
-const pos$734 = nix.positions(here + "/overrides.nix", [["meta", 4207, 5]]);
-const pos$735 = nix.positions(here + "/overrides.nix", [["runtimeDeps", 4213, 5], ["nvimSkipModules", 4217, 5]]);
-const pos$736 = nix.positions(here + "/overrides.nix", [["license", 4225, 7]]);
-const pos$737 = nix.positions(here + "/overrides.nix", [["dependencies", 4223, 5], ["meta", 4224, 5]]);
-const pos$738 = nix.positions(here + "/overrides.nix", [["runtimeDeps", 4230, 5], ["dependencies", 4234, 5]]);
-const pos$739 = nix.positions(here + "/overrides.nix", [["nvimSkipModules", 4238, 5]]);
-const pos$740 = nix.positions(here + "/overrides.nix", [["dependencies", 4252, 5], ["nvimSkipModules", 4257, 5]]);
-const pos$741 = nix.positions(here + "/overrides.nix", [["nvimSkipModules", 4264, 5]]);
-const pos$742 = nix.positions(here + "/overrides.nix", [["license", 4271, 7]]);
-const pos$743 = nix.positions(here + "/overrides.nix", [["meta", 4270, 5]]);
-const pos$744 = nix.positions(here + "/overrides.nix", [["checkInputs", 4277, 5], ["nvimSkipModules", 4278, 5]]);
-const pos$745 = nix.positions(here + "/overrides.nix", [["nvimSkipModules", 4285, 5]]);
-const pos$746 = nix.positions(here + "/overrides.nix", [["checkInputs", 4297, 5], ["nvimSkipModules", 4299, 5]]);
-const pos$747 = nix.positions(here + "/overrides.nix", [["license", 4307, 7], ["maintainers", 4308, 7]]);
-const pos$748 = nix.positions(here + "/overrides.nix", [["meta", 4306, 5]]);
-const pos$749 = nix.positions(here + "/overrides.nix", [["nvimSkipModules", 4316, 5]]);
-const pos$750 = nix.positions(here + "/overrides.nix", [["initLua", 4331, 9]]);
-const pos$751 = nix.positions(here + "/overrides.nix", [["postPatch", 4325, 7], ["passthru", 4330, 7], ["nvimSkipModules", 4334, 7]]);
-const pos$752 = nix.positions(here + "/overrides.nix", [["license", 4345, 7]]);
-const pos$753 = nix.positions(here + "/overrides.nix", [["meta", 4344, 5]]);
-const pos$754 = nix.positions(here + "/overrides.nix", [["license", 4351, 7]]);
-const pos$755 = nix.positions(here + "/overrides.nix", [["meta", 4350, 5]]);
-const pos$756 = nix.positions(here + "/overrides.nix", [["dependencies", 4356, 5]]);
-const pos$757 = nix.positions(here + "/overrides.nix", [["postPatch", 4360, 5]]);
-const pos$758 = nix.positions(here + "/overrides.nix", [["license", 4369, 7]]);
-const pos$759 = nix.positions(here + "/overrides.nix", [["meta", 4368, 5]]);
-const pos$760 = nix.positions(here + "/overrides.nix", [["doCheck", 4375, 5]]);
-const pos$761 = nix.positions(here + "/overrides.nix", [["license", 4381, 7]]);
-const pos$762 = nix.positions(here + "/overrides.nix", [["meta", 4379, 5]]);
-const pos$763 = nix.positions(here + "/overrides.nix", [["name", 4389, 9], ["src", 4390, 30], ["nativeBuildInputs", 4391, 9], ["buildInputs", 4395, 9], ["preferLocalBuild", 4405, 9], ["installPhase", 4406, 9]]);
-const pos$764 = nix.positions(here + "/overrides.nix", [["description", 4428, 9]]);
-const pos$765 = nix.positions(here + "/overrides.nix", [["preferLocalBuild", 4422, 7], ["postPatch", 4423, 7], ["meta", 4427, 7]]);
-const pos$766 = nix.positions(here + "/overrides.nix", [["dependencies", 4433, 5]]);
-const pos$767 = nix.positions(here + "/overrides.nix", [["license", 4441, 7]]);
-const pos$768 = nix.positions(here + "/overrides.nix", [["meta", 4440, 5]]);
-const pos$769 = nix.positions(here + "/overrides.nix", [["license", 4447, 7]]);
-const pos$770 = nix.positions(here + "/overrides.nix", [["meta", 4446, 5]]);
-const pos$771 = nix.positions(here + "/overrides.nix", [["license", 4453, 7]]);
-const pos$772 = nix.positions(here + "/overrides.nix", [["meta", 4452, 5]]);
-const pos$773 = nix.positions(here + "/overrides.nix", [["license", 4459, 7]]);
-const pos$774 = nix.positions(here + "/overrides.nix", [["meta", 4458, 5]]);
-const pos$775 = nix.positions(here + "/overrides.nix", [["maintainers", 4466, 7]]);
-const pos$776 = nix.positions(here + "/overrides.nix", [["dependencies", 4464, 5], ["meta", 4465, 5]]);
-const pos$777 = nix.positions(here + "/overrides.nix", [["license", 4472, 7]]);
-const pos$778 = nix.positions(here + "/overrides.nix", [["meta", 4471, 5]]);
-const pos$779 = nix.positions(here + "/overrides.nix", [["dependencies", 4477, 5]]);
-const pos$780 = nix.positions(here + "/overrides.nix", [["dependencies", 4484, 5]]);
-const pos$781 = nix.positions(here + "/overrides.nix", [["dependencies", 4491, 5]]);
-const pos$782 = nix.positions(here + "/overrides.nix", [["dependencies", 4499, 5]]);
-const pos$783 = nix.positions(here + "/overrides.nix", [["dependencies", 4506, 5]]);
-const pos$784 = nix.positions(here + "/overrides.nix", [["dependencies", 4514, 5]]);
-const pos$785 = nix.positions(here + "/overrides.nix", [["dependencies", 4518, 5], ["nvimSkipModules", 4524, 5]]);
-const pos$786 = nix.positions(here + "/overrides.nix", [["platforms", 4531, 7]]);
-const pos$787 = nix.positions(here + "/overrides.nix", [["dependencies", 4528, 5], ["buildPhase", 4529, 5], ["meta", 4530, 5]]);
-const pos$788 = nix.positions(here + "/overrides.nix", [["dependencies", 4536, 5]]);
-const pos$789 = nix.positions(here + "/overrides.nix", [["name", 4548, 11], ["src", 4549, 11], ["preBuild", 4551, 11], ["installPhase", 4552, 11]]);
-const pos$790 = nix.positions(here + "/overrides.nix", [["platforms", 4564, 7]]);
-const pos$791 = nix.positions(here + "/overrides.nix", [["dependencies", 4543, 5], ["preFixup", 4544, 5], ["meta", 4563, 5]]);
-const pos$792 = nix.positions(here + "/overrides.nix", [["dependencies", 4569, 5]]);
-const pos$793 = nix.positions(here + "/overrides.nix", [["dependencies", 4576, 5]]);
-const pos$794 = nix.positions(here + "/overrides.nix", [["dependencies", 4583, 5]]);
-const pos$795 = nix.positions(here + "/overrides.nix", [["dependencies", 4587, 5]]);
-const pos$796 = nix.positions(here + "/overrides.nix", [["license", 4599, 7]]);
-const pos$797 = nix.positions(here + "/overrides.nix", [["dependencies", 4594, 5], ["meta", 4598, 5]]);
-const pos$798 = nix.positions(here + "/overrides.nix", [["dependencies", 4604, 5]]);
-const pos$799 = nix.positions(here + "/overrides.nix", [["runtimeDeps", 4611, 5]]);
-const pos$800 = nix.positions(here + "/overrides.nix", [["dependencies", 4615, 5]]);
-const pos$801 = nix.positions(here + "/overrides.nix", [["dependencies", 4623, 5]]);
-const pos$802 = nix.positions(here + "/overrides.nix", [["dependencies", 4627, 5]]);
-const pos$803 = nix.positions(here + "/overrides.nix", [["dependencies", 4634, 5]]);
-const pos$804 = nix.positions(here + "/overrides.nix", [["dependencies", 4638, 5]]);
-const pos$805 = nix.positions(here + "/overrides.nix", [["dependencies", 4642, 5]]);
-const pos$806 = nix.positions(here + "/overrides.nix", [["dependencies", 4649, 5]]);
-const pos$807 = nix.positions(here + "/overrides.nix", [["dependencies", 4656, 5]]);
-const pos$808 = nix.positions(here + "/overrides.nix", [["dependencies", 4663, 5]]);
-const pos$809 = nix.positions(here + "/overrides.nix", [["dependencies", 4670, 5]]);
-const pos$810 = nix.positions(here + "/overrides.nix", [["dependencies", 4674, 5], ["buildInputs", 4676, 5], ["postPatch", 4678, 5]]);
-const pos$811 = nix.positions(here + "/overrides.nix", [["nvimSkipModules", 4685, 5]]);
-const pos$812 = nix.positions(here + "/overrides.nix", [["dependencies", 4692, 5]]);
-const pos$813 = nix.positions(here + "/overrides.nix", [["license", 4697, 7]]);
-const pos$814 = nix.positions(here + "/overrides.nix", [["meta", 4696, 5]]);
-const pos$815 = nix.positions(here + "/overrides.nix", [["license", 4703, 7]]);
-const pos$816 = nix.positions(here + "/overrides.nix", [["meta", 4702, 5]]);
-const pos$817 = nix.positions(here + "/overrides.nix", [["nvimSkipModules", 4708, 5]]);
-const pos$818 = nix.positions(here + "/overrides.nix", [["nvimSkipModules", 4716, 5]]);
-const pos$819 = nix.positions(here + "/overrides.nix", [["checkInputs", 4720, 5], ["dependencies", 4724, 5], ["nvimSkipModules", 4725, 5]]);
-const pos$820 = nix.positions(here + "/overrides.nix", [["license", 4734, 7]]);
-const pos$821 = nix.positions(here + "/overrides.nix", [["meta", 4733, 5]]);
-const pos$822 = nix.positions(here + "/overrides.nix", [["checkInputs", 4739, 5], ["nvimSkipModules", 4740, 5]]);
-const pos$823 = nix.positions(here + "/overrides.nix", [["dependencies", 4747, 5]]);
-const pos$824 = nix.positions(here + "/overrides.nix", [["dependencies", 4751, 5]]);
-const pos$825 = nix.positions(here + "/overrides.nix", [["nvimSkipModules", 4756, 5]]);
-const pos$826 = nix.positions(here + "/overrides.nix", [["license", 4763, 7]]);
-const pos$827 = nix.positions(here + "/overrides.nix", [["meta", 4760, 5]]);
-const pos$828 = nix.positions(here + "/overrides.nix", [["postPatch", 4768, 5], ["nvimSkipModules", 4775, 5]]);
-const pos$829 = nix.positions(here + "/overrides.nix", [["license", 4780, 7]]);
-const pos$830 = nix.positions(here + "/overrides.nix", [["meta", 4779, 5]]);
-const pos$831 = nix.positions(here + "/overrides.nix", [["license", 4786, 7]]);
-const pos$832 = nix.positions(here + "/overrides.nix", [["meta", 4785, 5]]);
-const pos$833 = nix.positions(here + "/overrides.nix", [["license", 4793, 7]]);
-const pos$834 = nix.positions(here + "/overrides.nix", [["meta", 4791, 5]]);
-const pos$835 = nix.positions(here + "/overrides.nix", [["runtimeDeps", 4798, 5]]);
-const pos$836 = nix.positions(here + "/overrides.nix", [["dependencies", 4802, 5], ["runtimeDeps", 4806, 5]]);
-const pos$837 = nix.positions(here + "/overrides.nix", [["postPatch", 4812, 5]]);
-const pos$838 = nix.positions(here + "/overrides.nix", [["url", 4822, 9], ["sha256", 4823, 9]]);
-const pos$839 = nix.positions(here + "/overrides.nix", [["initLua", 4835, 9]]);
-const pos$840 = nix.positions(here + "/overrides.nix", [["license", 4838, 9]]);
-const pos$841 = nix.positions(here + "/overrides.nix", [["buildPhase", 4828, 7], ["passthru", 4834, 7], ["meta", 4837, 7]]);
-const pos$842 = nix.positions(here + "/overrides.nix", [["license", 4846, 7]]);
-const pos$843 = nix.positions(here + "/overrides.nix", [["postPatch", 4844, 5], ["meta", 4845, 5]]);
-const pos$844 = nix.positions(here + "/overrides.nix", [["license", 4852, 7]]);
-const pos$845 = nix.positions(here + "/overrides.nix", [["meta", 4851, 5]]);
-const pos$846 = nix.positions(here + "/overrides.nix", [["runtimeDeps", 4857, 5]]);
-const pos$847 = nix.positions(here + "/overrides.nix", [["license", 4862, 7]]);
-const pos$848 = nix.positions(here + "/overrides.nix", [["meta", 4861, 5]]);
-const pos$849 = nix.positions(here + "/overrides.nix", [["description", 4870, 7], ["license", 4871, 7]]);
-const pos$850 = nix.positions(here + "/overrides.nix", [["propagatedBuildInputs", 4868, 5], ["meta", 4869, 5]]);
-const pos$851 = nix.positions(here + "/overrides.nix", [["license", 4877, 7]]);
-const pos$852 = nix.positions(here + "/overrides.nix", [["meta", 4876, 5]]);
-const pos$853 = nix.positions(here + "/overrides.nix", [["license", 4883, 7]]);
-const pos$854 = nix.positions(here + "/overrides.nix", [["meta", 4882, 5]]);
-const pos$855 = nix.positions(here + "/overrides.nix", [["dependencies", 4888, 5]]);
-const pos$856 = nix.positions(here + "/overrides.nix", [["license", 4897, 7]]);
-const pos$857 = nix.positions(here + "/overrides.nix", [["dependencies", 4895, 5], ["meta", 4896, 5]]);
-const pos$858 = nix.positions(here + "/overrides.nix", [["dependencies", 4902, 5]]);
-const pos$859 = nix.positions(here + "/overrides.nix", [["license", 4907, 7]]);
-const pos$860 = nix.positions(here + "/overrides.nix", [["meta", 4906, 5]]);
-const pos$861 = nix.positions(here + "/overrides.nix", [["dependencies", 4912, 5]]);
-const pos$862 = nix.positions(here + "/overrides.nix", [["dependencies", 4916, 5]]);
-const pos$863 = nix.positions(here + "/overrides.nix", [["license", 4921, 7]]);
-const pos$864 = nix.positions(here + "/overrides.nix", [["meta", 4920, 5]]);
-const pos$865 = nix.positions(here + "/overrides.nix", [["dependencies", 4926, 5]]);
-const pos$866 = nix.positions(here + "/overrides.nix", [["dependencies", 4933, 5]]);
-const pos$867 = nix.positions(here + "/overrides.nix", [["dependencies", 4944, 5]]);
-const pos$868 = nix.positions(here + "/overrides.nix", [["dependencies", 4952, 5]]);
-const pos$869 = nix.positions(here + "/overrides.nix", [["dependencies", 4959, 5]]);
-const pos$870 = nix.positions(here + "/overrides.nix", [["dependencies", 4966, 5]]);
-const pos$871 = nix.positions(here + "/overrides.nix", [["license", 4976, 7]]);
-const pos$872 = nix.positions(here + "/overrides.nix", [["meta", 4975, 5]]);
-const pos$873 = nix.positions(here + "/overrides.nix", [["preFixup", 4981, 5]]);
-const pos$874 = nix.positions(here + "/overrides.nix", [["license", 4989, 7]]);
-const pos$875 = nix.positions(here + "/overrides.nix", [["meta", 4988, 5]]);
-const pos$876 = nix.positions(here + "/overrides.nix", [["license", 4995, 7]]);
-const pos$877 = nix.positions(here + "/overrides.nix", [["meta", 4994, 5]]);
-const pos$878 = nix.positions(here + "/overrides.nix", [["nvimSkipModules", 5000, 5]]);
-const pos$879 = nix.positions(here + "/overrides.nix", [["dependencies", 5004, 5]]);
-const pos$880 = nix.positions(here + "/overrides.nix", [["license", 5009, 7]]);
-const pos$881 = nix.positions(here + "/overrides.nix", [["meta", 5008, 5]]);
-const pos$882 = nix.positions(here + "/overrides.nix", [["python3Dependencies", 5015, 7]]);
-const pos$883 = nix.positions(here + "/overrides.nix", [["license", 5018, 7]]);
-const pos$884 = nix.positions(here + "/overrides.nix", [["passthru", 5014, 5], ["meta", 5017, 5]]);
-const pos$885 = nix.positions(here + "/overrides.nix", [["license", 5024, 7]]);
-const pos$886 = nix.positions(here + "/overrides.nix", [["meta", 5023, 5]]);
-const pos$887 = nix.positions(here + "/overrides.nix", [["license", 5030, 7]]);
-const pos$888 = nix.positions(here + "/overrides.nix", [["meta", 5029, 5]]);
-const pos$889 = nix.positions(here + "/overrides.nix", [["license", 5036, 7]]);
-const pos$890 = nix.positions(here + "/overrides.nix", [["meta", 5035, 5]]);
-const pos$891 = nix.positions(here + "/overrides.nix", [["license", 5042, 7]]);
-const pos$892 = nix.positions(here + "/overrides.nix", [["meta", 5041, 5]]);
-const pos$893 = nix.positions(here + "/overrides.nix", [["license", 5048, 7]]);
-const pos$894 = nix.positions(here + "/overrides.nix", [["meta", 5047, 5]]);
-const pos$895 = nix.positions(here + "/overrides.nix", [["license", 5054, 7]]);
-const pos$896 = nix.positions(here + "/overrides.nix", [["meta", 5053, 5]]);
-const pos$897 = nix.positions(here + "/overrides.nix", [["license", 5060, 7]]);
-const pos$898 = nix.positions(here + "/overrides.nix", [["meta", 5059, 5]]);
-const pos$899 = nix.positions(here + "/overrides.nix", [["dependencies", 5065, 5]]);
-const pos$900 = nix.positions(here + "/overrides.nix", [["license", 5072, 7]]);
-const pos$901 = nix.positions(here + "/overrides.nix", [["meta", 5071, 5]]);
-const pos$902 = nix.positions(here + "/overrides.nix", [["license", 5081, 7]]);
-const pos$903 = nix.positions(here + "/overrides.nix", [["meta", 5080, 5]]);
-const pos$904 = nix.positions(here + "/overrides.nix", [["license", 5088, 7]]);
-const pos$905 = nix.positions(here + "/overrides.nix", [["meta", 5086, 5]]);
-const pos$906 = nix.positions(here + "/overrides.nix", [["postFetch", 5094, 7]]);
-const pos$907 = nix.positions(here + "/overrides.nix", [["src", 5093, 5]]);
-const pos$908 = nix.positions(here + "/overrides.nix", [["license", 5104, 7]]);
-const pos$909 = nix.positions(here + "/overrides.nix", [["meta", 5103, 5]]);
-const pos$910 = nix.positions(here + "/overrides.nix", [["license", 5111, 7]]);
-const pos$911 = nix.positions(here + "/overrides.nix", [["meta", 5109, 5]]);
-const pos$912 = nix.positions(here + "/overrides.nix", [["license", 5117, 7]]);
-const pos$913 = nix.positions(here + "/overrides.nix", [["meta", 5116, 5]]);
-const pos$914 = nix.positions(here + "/overrides.nix", [["dependencies", 5122, 5], ["doInstallCheck", 5124, 5], ["vimCommandCheck", 5125, 5]]);
-const pos$915 = nix.positions(here + "/overrides.nix", [["license", 5134, 7]]);
-const pos$916 = nix.positions(here + "/overrides.nix", [["preFixup", 5129, 5], ["meta", 5133, 5]]);
-const pos$917 = nix.positions(here + "/overrides.nix", [["license", 5140, 7]]);
-const pos$918 = nix.positions(here + "/overrides.nix", [["meta", 5139, 5]]);
-const pos$919 = nix.positions(here + "/overrides.nix", [["license", 5146, 7]]);
-const pos$920 = nix.positions(here + "/overrides.nix", [["meta", 5145, 5]]);
-const pos$921 = nix.positions(here + "/overrides.nix", [["license", 5152, 7]]);
-const pos$922 = nix.positions(here + "/overrides.nix", [["meta", 5151, 5]]);
-const pos$923 = nix.positions(here + "/overrides.nix", [["license", 5158, 7]]);
-const pos$924 = nix.positions(here + "/overrides.nix", [["meta", 5157, 5]]);
-const pos$925 = nix.positions(here + "/overrides.nix", [["license", 5164, 7]]);
-const pos$926 = nix.positions(here + "/overrides.nix", [["meta", 5163, 5]]);
-const pos$927 = nix.positions(here + "/overrides.nix", [["license", 5170, 7]]);
-const pos$928 = nix.positions(here + "/overrides.nix", [["meta", 5169, 5]]);
-const pos$929 = nix.positions(here + "/overrides.nix", [["license", 5176, 7]]);
-const pos$930 = nix.positions(here + "/overrides.nix", [["meta", 5175, 5]]);
-const pos$931 = nix.positions(here + "/overrides.nix", [["license", 5182, 7]]);
-const pos$932 = nix.positions(here + "/overrides.nix", [["meta", 5181, 5]]);
-const pos$933 = nix.positions(here + "/overrides.nix", [["url", 5191, 9], ["sha256", 5192, 9]]);
-const pos$934 = nix.positions(here + "/overrides.nix", [["license", 5196, 7]]);
-const pos$935 = nix.positions(here + "/overrides.nix", [["dependencies", 5187, 5], ["patches", 5188, 5], ["meta", 5195, 5]]);
-const pos$936 = nix.positions(here + "/overrides.nix", [["license", 5202, 7]]);
-const pos$937 = nix.positions(here + "/overrides.nix", [["meta", 5201, 5]]);
-const pos$938 = nix.positions(here + "/overrides.nix", [["license", 5208, 7]]);
-const pos$939 = nix.positions(here + "/overrides.nix", [["meta", 5207, 5]]);
-const pos$940 = nix.positions(here + "/overrides.nix", [["license", 5214, 7]]);
-const pos$941 = nix.positions(here + "/overrides.nix", [["meta", 5213, 5]]);
-const pos$942 = nix.positions(here + "/overrides.nix", [["license", 5220, 7]]);
-const pos$943 = nix.positions(here + "/overrides.nix", [["meta", 5219, 5]]);
-const pos$944 = nix.positions(here + "/overrides.nix", [["license", 5226, 7]]);
-const pos$945 = nix.positions(here + "/overrides.nix", [["meta", 5225, 5]]);
-const pos$946 = nix.positions(here + "/overrides.nix", [["license", 5232, 7]]);
-const pos$947 = nix.positions(here + "/overrides.nix", [["meta", 5231, 5]]);
-const pos$948 = nix.positions(here + "/overrides.nix", [["license", 5238, 7]]);
-const pos$949 = nix.positions(here + "/overrides.nix", [["meta", 5237, 5]]);
-const pos$950 = nix.positions(here + "/overrides.nix", [["license", 5244, 7]]);
-const pos$951 = nix.positions(here + "/overrides.nix", [["meta", 5243, 5]]);
-const pos$952 = nix.positions(here + "/overrides.nix", [["license", 5250, 7]]);
-const pos$953 = nix.positions(here + "/overrides.nix", [["meta", 5249, 5]]);
-const pos$954 = nix.positions(here + "/overrides.nix", [["license", 5256, 7]]);
-const pos$955 = nix.positions(here + "/overrides.nix", [["meta", 5255, 5]]);
-const pos$956 = nix.positions(here + "/overrides.nix", [["license", 5262, 7]]);
-const pos$957 = nix.positions(here + "/overrides.nix", [["meta", 5261, 5]]);
-const pos$958 = nix.positions(here + "/overrides.nix", [["license", 5270, 7]]);
-const pos$959 = nix.positions(here + "/overrides.nix", [["nvimSkipModules", 5268, 5], ["meta", 5269, 5]]);
-const pos$960 = nix.positions(here + "/overrides.nix", [["license", 5276, 7]]);
-const pos$961 = nix.positions(here + "/overrides.nix", [["meta", 5275, 5]]);
-const pos$962 = nix.positions(here + "/overrides.nix", [["license", 5282, 7]]);
-const pos$963 = nix.positions(here + "/overrides.nix", [["meta", 5281, 5]]);
-const pos$964 = nix.positions(here + "/overrides.nix", [["license", 5288, 7]]);
-const pos$965 = nix.positions(here + "/overrides.nix", [["meta", 5287, 5]]);
-const pos$966 = nix.positions(here + "/overrides.nix", [["dependencies", 5293, 5]]);
-const pos$967 = nix.positions(here + "/overrides.nix", [["license", 5300, 7]]);
-const pos$968 = nix.positions(here + "/overrides.nix", [["dependencies", 5297, 5], ["meta", 5298, 5]]);
-const pos$969 = nix.positions(here + "/overrides.nix", [["license", 5309, 7]]);
-const pos$970 = nix.positions(here + "/overrides.nix", [["meta", 5308, 5]]);
-const pos$971 = nix.positions(here + "/overrides.nix", [["license", 5315, 7]]);
-const pos$972 = nix.positions(here + "/overrides.nix", [["meta", 5314, 5]]);
-const pos$973 = nix.positions(here + "/overrides.nix", [["license", 5347, 9]]);
-const pos$974 = nix.positions(here + "/overrides.nix", [["postPatch", 5343, 7], ["meta", 5346, 7]]);
-const pos$975 = nix.positions(here + "/overrides.nix", [["languagetool", 5358, 17]]);
-const pos$976 = nix.positions(here + "/overrides.nix", [["license", 5363, 7]]);
-const pos$977 = nix.positions(here + "/overrides.nix", [["patches", 5356, 5], ["meta", 5361, 5]]);
-const pos$978 = nix.positions(here + "/overrides.nix", [["license", 5370, 7]]);
-const pos$979 = nix.positions(here + "/overrides.nix", [["meta", 5368, 5]]);
-const pos$980 = nix.positions(here + "/overrides.nix", [["license", 5376, 7]]);
-const pos$981 = nix.positions(here + "/overrides.nix", [["meta", 5375, 5]]);
-const pos$982 = nix.positions(here + "/overrides.nix", [["license", 5382, 7]]);
-const pos$983 = nix.positions(here + "/overrides.nix", [["meta", 5381, 5]]);
-const pos$984 = nix.positions(here + "/overrides.nix", [["license", 5388, 7]]);
-const pos$985 = nix.positions(here + "/overrides.nix", [["meta", 5387, 5]]);
-const pos$986 = nix.positions(here + "/overrides.nix", [["name", 5396, 11], ["src", 5397, 11], ["vendorHash", 5398, 11]]);
-const pos$987 = nix.positions(here + "/overrides.nix", [["license", 5406, 7], ["platforms", 5407, 7]]);
-const pos$988 = nix.positions(here + "/overrides.nix", [["preFixup", 5393, 5], ["meta", 5405, 5]]);
-const pos$989 = nix.positions(here + "/overrides.nix", [["buildInputs", 5412, 5]]);
-const pos$990 = nix.positions(here + "/overrides.nix", [["license", 5417, 7]]);
-const pos$991 = nix.positions(here + "/overrides.nix", [["meta", 5416, 5]]);
-const pos$992 = nix.positions(here + "/overrides.nix", [["runtimeDeps", 5422, 5]]);
-const pos$993 = nix.positions(here + "/overrides.nix", [["license", 5427, 7]]);
-const pos$994 = nix.positions(here + "/overrides.nix", [["meta", 5426, 5]]);
-const pos$995 = nix.positions(here + "/overrides.nix", [["postPatch", 5432, 5]]);
-const pos$996 = nix.positions(here + "/overrides.nix", [["license", 5440, 7]]);
-const pos$997 = nix.positions(here + "/overrides.nix", [["meta", 5439, 5]]);
-const pos$998 = nix.positions(here + "/overrides.nix", [["license", 5446, 7]]);
-const pos$999 = nix.positions(here + "/overrides.nix", [["meta", 5445, 5]]);
-const pos$1000 = nix.positions(here + "/overrides.nix", [["license", 5452, 7]]);
-const pos$1001 = nix.positions(here + "/overrides.nix", [["meta", 5451, 5]]);
-const pos$1002 = nix.positions(here + "/overrides.nix", [["license", 5458, 7]]);
-const pos$1003 = nix.positions(here + "/overrides.nix", [["meta", 5457, 5]]);
-const pos$1004 = nix.positions(here + "/overrides.nix", [["license", 5464, 7]]);
-const pos$1005 = nix.positions(here + "/overrides.nix", [["meta", 5463, 5]]);
-const pos$1006 = nix.positions(here + "/overrides.nix", [["license", 5471, 7]]);
-const pos$1007 = nix.positions(here + "/overrides.nix", [["meta", 5469, 5]]);
-const pos$1008 = nix.positions(here + "/overrides.nix", [["license", 5477, 7]]);
-const pos$1009 = nix.positions(here + "/overrides.nix", [["meta", 5476, 5]]);
-const pos$1010 = nix.positions(here + "/overrides.nix", [["license", 5483, 7]]);
-const pos$1011 = nix.positions(here + "/overrides.nix", [["meta", 5482, 5]]);
-const pos$1012 = nix.positions(here + "/overrides.nix", [["license", 5489, 7]]);
-const pos$1013 = nix.positions(here + "/overrides.nix", [["meta", 5488, 5]]);
-const pos$1014 = nix.positions(here + "/overrides.nix", [["license", 5495, 7]]);
-const pos$1015 = nix.positions(here + "/overrides.nix", [["meta", 5494, 5]]);
-const pos$1016 = nix.positions(here + "/overrides.nix", [["python3Dependencies", 5501, 7]]);
-const pos$1017 = nix.positions(here + "/overrides.nix", [["passthru", 5500, 5]]);
-const pos$1018 = nix.positions(here + "/overrides.nix", [["license", 5507, 7]]);
-const pos$1019 = nix.positions(here + "/overrides.nix", [["meta", 5506, 5]]);
-const pos$1020 = nix.positions(here + "/overrides.nix", [["preInstall", 5512, 5]]);
-const pos$1021 = nix.positions(here + "/overrides.nix", [["license", 5517, 7]]);
-const pos$1022 = nix.positions(here + "/overrides.nix", [["meta", 5516, 5]]);
-const pos$1023 = nix.positions(here + "/overrides.nix", [["license", 5523, 7]]);
-const pos$1024 = nix.positions(here + "/overrides.nix", [["meta", 5522, 5]]);
-const pos$1025 = nix.positions(here + "/overrides.nix", [["license", 5529, 7]]);
-const pos$1026 = nix.positions(here + "/overrides.nix", [["meta", 5528, 5]]);
-const pos$1027 = nix.positions(here + "/overrides.nix", [["license", 5535, 7]]);
-const pos$1028 = nix.positions(here + "/overrides.nix", [["meta", 5534, 5]]);
-const pos$1029 = nix.positions(here + "/overrides.nix", [["license", 5541, 7]]);
-const pos$1030 = nix.positions(here + "/overrides.nix", [["meta", 5540, 5]]);
-const pos$1031 = nix.positions(here + "/overrides.nix", [["license", 5547, 7]]);
-const pos$1032 = nix.positions(here + "/overrides.nix", [["meta", 5546, 5]]);
-const pos$1033 = nix.positions(here + "/overrides.nix", [["license", 5553, 7]]);
-const pos$1034 = nix.positions(here + "/overrides.nix", [["meta", 5552, 5]]);
-const pos$1035 = nix.positions(here + "/overrides.nix", [["license", 5559, 7]]);
-const pos$1036 = nix.positions(here + "/overrides.nix", [["meta", 5558, 5]]);
-const pos$1037 = nix.positions(here + "/overrides.nix", [["license", 5566, 7]]);
-const pos$1038 = nix.positions(here + "/overrides.nix", [["meta", 5564, 5]]);
-const pos$1039 = nix.positions(here + "/overrides.nix", [["license", 5575, 7]]);
-const pos$1040 = nix.positions(here + "/overrides.nix", [["meta", 5574, 5]]);
-const pos$1041 = nix.positions(here + "/overrides.nix", [["license", 5581, 7]]);
-const pos$1042 = nix.positions(here + "/overrides.nix", [["meta", 5580, 5]]);
-const pos$1043 = nix.positions(here + "/overrides.nix", [["license", 5587, 7]]);
-const pos$1044 = nix.positions(here + "/overrides.nix", [["meta", 5586, 5]]);
-const pos$1045 = nix.positions(here + "/overrides.nix", [["dependencies", 5592, 5]]);
-const pos$1046 = nix.positions(here + "/overrides.nix", [["license", 5597, 7]]);
-const pos$1047 = nix.positions(here + "/overrides.nix", [["meta", 5596, 5]]);
-const pos$1048 = nix.positions(here + "/overrides.nix", [["license", 5603, 7]]);
-const pos$1049 = nix.positions(here + "/overrides.nix", [["meta", 5602, 5]]);
-const pos$1050 = nix.positions(here + "/overrides.nix", [["license", 5609, 7]]);
-const pos$1051 = nix.positions(here + "/overrides.nix", [["meta", 5608, 5]]);
-const pos$1052 = nix.positions(here + "/overrides.nix", [["license", 5615, 7]]);
-const pos$1053 = nix.positions(here + "/overrides.nix", [["meta", 5614, 5]]);
-const pos$1054 = nix.positions(here + "/overrides.nix", [["license", 5621, 7]]);
-const pos$1055 = nix.positions(here + "/overrides.nix", [["meta", 5620, 5]]);
-const pos$1056 = nix.positions(here + "/overrides.nix", [["license", 5627, 7]]);
-const pos$1057 = nix.positions(here + "/overrides.nix", [["meta", 5626, 5]]);
-const pos$1058 = nix.positions(here + "/overrides.nix", [["license", 5633, 7]]);
-const pos$1059 = nix.positions(here + "/overrides.nix", [["meta", 5632, 5]]);
-const pos$1060 = nix.positions(here + "/overrides.nix", [["license", 5639, 7]]);
-const pos$1061 = nix.positions(here + "/overrides.nix", [["meta", 5638, 5]]);
-const pos$1062 = nix.positions(here + "/overrides.nix", [["license", 5645, 7]]);
-const pos$1063 = nix.positions(here + "/overrides.nix", [["meta", 5644, 5]]);
-const pos$1064 = nix.positions(here + "/overrides.nix", [["license", 5651, 7]]);
-const pos$1065 = nix.positions(here + "/overrides.nix", [["meta", 5650, 5]]);
-const pos$1066 = nix.positions(here + "/overrides.nix", [["license", 5657, 7]]);
-const pos$1067 = nix.positions(here + "/overrides.nix", [["meta", 5656, 5]]);
-const pos$1068 = nix.positions(here + "/overrides.nix", [["license", 5663, 7]]);
-const pos$1069 = nix.positions(here + "/overrides.nix", [["meta", 5662, 5]]);
-const pos$1070 = nix.positions(here + "/overrides.nix", [["license", 5669, 7]]);
-const pos$1071 = nix.positions(here + "/overrides.nix", [["meta", 5668, 5]]);
-const pos$1072 = nix.positions(here + "/overrides.nix", [["license", 5675, 7]]);
-const pos$1073 = nix.positions(here + "/overrides.nix", [["meta", 5674, 5]]);
-const pos$1074 = nix.positions(here + "/overrides.nix", [["license", 5681, 7]]);
-const pos$1075 = nix.positions(here + "/overrides.nix", [["meta", 5680, 5]]);
-const pos$1076 = nix.positions(here + "/overrides.nix", [["license", 5688, 7]]);
-const pos$1077 = nix.positions(here + "/overrides.nix", [["patches", 5686, 5], ["meta", 5687, 5]]);
-const pos$1078 = nix.positions(here + "/overrides.nix", [["license", 5695, 7]]);
-const pos$1079 = nix.positions(here + "/overrides.nix", [["meta", 5693, 5]]);
-const pos$1080 = nix.positions(here + "/overrides.nix", [["license", 5703, 11]]);
-const pos$1081 = nix.positions(here + "/overrides.nix", [["meta", 5702, 9]]);
-const pos$1082 = nix.positions(here + "/overrides.nix", [["license", 5709, 7]]);
-const pos$1083 = nix.positions(here + "/overrides.nix", [["meta", 5708, 5]]);
-const pos$1084 = nix.positions(here + "/overrides.nix", [["license", 5719, 7]]);
-const pos$1085 = nix.positions(here + "/overrides.nix", [["meta", 5718, 5]]);
-const pos$1086 = nix.positions(here + "/overrides.nix", [["license", 5725, 7]]);
-const pos$1087 = nix.positions(here + "/overrides.nix", [["meta", 5724, 5]]);
-const pos$1088 = nix.positions(here + "/overrides.nix", [["license", 5735, 7]]);
-const pos$1089 = nix.positions(here + "/overrides.nix", [["dependencies", 5730, 5], ["meta", 5734, 5]]);
-const pos$1090 = nix.positions(here + "/overrides.nix", [["license", 5742, 7]]);
-const pos$1091 = nix.positions(here + "/overrides.nix", [["dependencies", 5740, 5], ["meta", 5741, 5]]);
-const pos$1092 = nix.positions(here + "/overrides.nix", [["license", 5748, 7]]);
-const pos$1093 = nix.positions(here + "/overrides.nix", [["meta", 5747, 5]]);
-const pos$1094 = nix.positions(here + "/overrides.nix", [["postPatch", 5753, 5]]);
-const pos$1095 = nix.positions(here + "/overrides.nix", [["license", 5763, 7]]);
-const pos$1096 = nix.positions(here + "/overrides.nix", [["dependencies", 5761, 5], ["meta", 5762, 5]]);
-const pos$1097 = nix.positions(here + "/overrides.nix", [["license", 5769, 7]]);
-const pos$1098 = nix.positions(here + "/overrides.nix", [["meta", 5768, 5]]);
-const pos$1099 = nix.positions(here + "/overrides.nix", [["license", 5775, 7]]);
-const pos$1100 = nix.positions(here + "/overrides.nix", [["meta", 5774, 5]]);
-const pos$1101 = nix.positions(here + "/overrides.nix", [["license", 5784, 7]]);
-const pos$1102 = nix.positions(here + "/overrides.nix", [["meta", 5783, 5]]);
-const pos$1103 = nix.positions(here + "/overrides.nix", [["license", 5790, 7]]);
-const pos$1104 = nix.positions(here + "/overrides.nix", [["meta", 5789, 5]]);
-const pos$1105 = nix.positions(here + "/overrides.nix", [["license", 5796, 7]]);
-const pos$1106 = nix.positions(here + "/overrides.nix", [["meta", 5795, 5]]);
-const pos$1107 = nix.positions(here + "/overrides.nix", [["license", 5802, 7]]);
-const pos$1108 = nix.positions(here + "/overrides.nix", [["meta", 5801, 5]]);
-const pos$1109 = nix.positions(here + "/overrides.nix", [["maintainers", 5809, 7], ["license", 5810, 7]]);
-const pos$1110 = nix.positions(here + "/overrides.nix", [["dependencies", 5807, 5], ["meta", 5808, 5]]);
-const pos$1111 = nix.positions(here + "/overrides.nix", [["license", 5816, 7]]);
-const pos$1112 = nix.positions(here + "/overrides.nix", [["meta", 5815, 5]]);
-const pos$1113 = nix.positions(here + "/overrides.nix", [["maintainers", 5823, 7], ["license", 5824, 7]]);
-const pos$1114 = nix.positions(here + "/overrides.nix", [["dependencies", 5821, 5], ["meta", 5822, 5]]);
-const pos$1115 = nix.positions(here + "/overrides.nix", [["license", 5831, 7]]);
-const pos$1116 = nix.positions(here + "/overrides.nix", [["dependencies", 5829, 5], ["meta", 5830, 5]]);
-const pos$1117 = nix.positions(here + "/overrides.nix", [["license", 5837, 7]]);
-const pos$1118 = nix.positions(here + "/overrides.nix", [["meta", 5836, 5]]);
-const pos$1119 = nix.positions(here + "/overrides.nix", [["license", 5844, 7]]);
-const pos$1120 = nix.positions(here + "/overrides.nix", [["meta", 5842, 5]]);
-const pos$1121 = nix.positions(here + "/overrides.nix", [["nvimSkipModules", 5853, 5]]);
-const pos$1122 = nix.positions(here + "/overrides.nix", [["license", 5858, 7]]);
-const pos$1123 = nix.positions(here + "/overrides.nix", [["meta", 5857, 5]]);
-const pos$1124 = nix.positions(here + "/overrides.nix", [["nvimSkipModules", 5865, 5]]);
-const pos$1125 = nix.positions(here + "/overrides.nix", [["license", 5871, 7]]);
-const pos$1126 = nix.positions(here + "/overrides.nix", [["dependencies", 5869, 5], ["meta", 5870, 5]]);
-const pos$1127 = nix.positions(here + "/overrides.nix", [["license", 5877, 7]]);
-const pos$1128 = nix.positions(here + "/overrides.nix", [["meta", 5876, 5]]);
-const pos$1129 = nix.positions(here + "/overrides.nix", [["license", 5883, 7]]);
-const pos$1130 = nix.positions(here + "/overrides.nix", [["meta", 5882, 5]]);
-const pos$1131 = nix.positions(here + "/overrides.nix", [["license", 5889, 7]]);
-const pos$1132 = nix.positions(here + "/overrides.nix", [["meta", 5888, 5]]);
-const pos$1133 = nix.positions(here + "/overrides.nix", [["license", 5896, 7]]);
-const pos$1134 = nix.positions(here + "/overrides.nix", [["meta", 5894, 5]]);
-const pos$1135 = nix.positions(here + "/overrides.nix", [["buildInputs", 5901, 5], ["patchPhase", 5902, 5]]);
-const pos$1136 = nix.positions(here + "/overrides.nix", [["license", 5914, 7]]);
-const pos$1137 = nix.positions(here + "/overrides.nix", [["meta", 5912, 5]]);
-const pos$1138 = nix.positions(here + "/overrides.nix", [["license", 5920, 7]]);
-const pos$1139 = nix.positions(here + "/overrides.nix", [["meta", 5919, 5]]);
-const pos$1140 = nix.positions(here + "/overrides.nix", [["license", 5927, 7]]);
-const pos$1141 = nix.positions(here + "/overrides.nix", [["postInstall", 5925, 5], ["meta", 5926, 5]]);
-const pos$1142 = nix.positions(here + "/overrides.nix", [["buildInputs", 5932, 5]]);
-const pos$1143 = nix.positions(here + "/overrides.nix", [["license", 5941, 7]]);
-const pos$1144 = nix.positions(here + "/overrides.nix", [["buildPhase", 5936, 5], ["meta", 5940, 5]]);
-const pos$1145 = nix.positions(here + "/overrides.nix", [["dependencies", 5946, 5]]);
-const pos$1146 = nix.positions(here + "/overrides.nix", [["license", 5954, 7]]);
-const pos$1147 = nix.positions(here + "/overrides.nix", [["meta", 5953, 5]]);
-const pos$1148 = nix.positions(here + "/overrides.nix", [["checkInputs", 5959, 5]]);
-const pos$1149 = nix.positions(here + "/overrides.nix", [["license", 5969, 7]]);
-const pos$1150 = nix.positions(here + "/overrides.nix", [["meta", 5968, 5]]);
-const pos$1151 = nix.positions(here + "/overrides.nix", [["license", 5975, 7]]);
-const pos$1152 = nix.positions(here + "/overrides.nix", [["meta", 5974, 5]]);
-const pos$1153 = nix.positions(here + "/overrides.nix", [["license", 5981, 7]]);
-const pos$1154 = nix.positions(here + "/overrides.nix", [["meta", 5980, 5]]);
-const pos$1155 = nix.positions(here + "/overrides.nix", [["license", 5987, 7]]);
-const pos$1156 = nix.positions(here + "/overrides.nix", [["meta", 5986, 5]]);
-const pos$1157 = nix.positions(here + "/overrides.nix", [["license", 5993, 7]]);
-const pos$1158 = nix.positions(here + "/overrides.nix", [["meta", 5992, 5]]);
-const pos$1159 = nix.positions(here + "/overrides.nix", [["license", 6010, 7]]);
-const pos$1160 = nix.positions(here + "/overrides.nix", [["buildInputs", 5998, 5], ["buildPhase", 6001, 5], ["meta", 6009, 5]]);
-const pos$1161 = nix.positions(here + "/overrides.nix", [["description", 6016, 7], ["homepage", 6017, 7], ["maintainers", 6018, 7]]);
-const pos$1162 = nix.positions(here + "/overrides.nix", [["meta", 6015, 5]]);
-const pos$1163 = nix.positions(here + "/overrides.nix", [["license", 6025, 7]]);
-const pos$1164 = nix.positions(here + "/overrides.nix", [["dependencies", 6023, 5], ["meta", 6024, 5]]);
-const pos$1165 = nix.positions(here + "/overrides.nix", [["checkInputs", 6030, 5]]);
-const pos$1166 = nix.positions(here + "/overrides.nix", [["license", 6039, 7]]);
-const pos$1167 = nix.positions(here + "/overrides.nix", [["meta", 6038, 5]]);
-const pos$1168 = nix.positions(here + "/overrides.nix", [["nvimSkipModules", 6045, 5]]);
-const pos$1169 = nix.positions(here + "/overrides.nix", [["license", 6050, 7]]);
-const pos$1170 = nix.positions(here + "/overrides.nix", [["meta", 6049, 5]]);
-const pos$1171 = nix.positions(here + "/overrides.nix", [["license", 6056, 7]]);
-const pos$1172 = nix.positions(here + "/overrides.nix", [["meta", 6055, 5]]);
-const pos$1173 = nix.positions(here + "/overrides.nix", [["license", 6062, 7]]);
-const pos$1174 = nix.positions(here + "/overrides.nix", [["meta", 6061, 5]]);
-const pos$1175 = nix.positions(here + "/overrides.nix", [["checkInputs", 6067, 5], ["dependencies", 6071, 5]]);
-const pos$1176 = nix.positions(here + "/overrides.nix", [["license", 6078, 7]]);
-const pos$1177 = nix.positions(here + "/overrides.nix", [["meta", 6077, 5]]);
-const pos$1178 = nix.positions(here + "/overrides.nix", [["nvimSkipModules", 6083, 5]]);
-const pos$1179 = nix.positions(here + "/overrides.nix", [["checkInputs", 6087, 5]]);
-const pos$1180 = nix.positions(here + "/overrides.nix", [["license", 6095, 7]]);
-const pos$1181 = nix.positions(here + "/overrides.nix", [["meta", 6094, 5]]);
-const pos$1182 = nix.positions(here + "/overrides.nix", [["checkInputs", 6100, 5]]);
-const pos$1183 = nix.positions(here + "/overrides.nix", [["dependencies", 6108, 5], ["nvimSkipModules", 6112, 5]]);
-const pos$1184 = nix.positions(here + "/overrides.nix", [["dependencies", 6120, 5]]);
-const pos$1185 = nix.positions(here + "/overrides.nix", [["license", 6128, 7]]);
-const pos$1186 = nix.positions(here + "/overrides.nix", [["meta", 6127, 5]]);
-const pos$1187 = nix.positions(here + "/overrides.nix", [["nvimSkipModules", 6133, 5]]);
-const pos$1188 = nix.positions(here + "/overrides.nix", [["license", 6144, 7]]);
-const pos$1189 = nix.positions(here + "/overrides.nix", [["meta", 6142, 5]]);
-const pos$1190 = nix.positions(here + "/overrides.nix", [["dependencies", 6149, 5]]);
-const pos$1191 = nix.positions(here + "/overrides.nix", [["dependencies", 6156, 5]]);
-const pos$1192 = nix.positions(here + "/overrides.nix", [["license", 6164, 7]]);
-const pos$1193 = nix.positions(here + "/overrides.nix", [["meta", 6163, 5]]);
-const pos$1194 = nix.positions(here + "/overrides.nix", [["checkInputs", 6169, 5]]);
-const pos$1195 = nix.positions(here + "/overrides.nix", [["dependencies", 6176, 5], ["nvimSkipModules", 6177, 5]]);
-const pos$1196 = nix.positions(here + "/overrides.nix", [["description", 6194, 7], ["homepage", 6195, 7], ["license", 6196, 7], ["maintainers", 6197, 7], ["platforms", 6200, 7]]);
-const pos$1197 = nix.positions(here + "/overrides.nix", [["buildPhase", 6184, 5], ["meta", 6193, 5]]);
-const pos$1198 = nix.positions(here + "/overrides.nix", [["license", 6206, 7]]);
-const pos$1199 = nix.positions(here + "/overrides.nix", [["meta", 6205, 5]]);
-const pos$1200 = nix.positions(here + "/overrides.nix", [["checkInputs", 6211, 5], ["nvimSkipModules", 6215, 5]]);
-const pos$1201 = nix.positions(here + "/overrides.nix", [["license", 6240, 7]]);
-const pos$1202 = nix.positions(here + "/overrides.nix", [["meta", 6239, 5]]);
-const pos$1203 = nix.positions(here + "/overrides.nix", [["license", 6246, 7]]);
-const pos$1204 = nix.positions(here + "/overrides.nix", [["meta", 6245, 5]]);
-const pos$1205 = nix.positions(here + "/overrides.nix", [["checkInputs", 6251, 5], ["nvimSkipModules", 6258, 5]]);
-const pos$1206 = nix.positions(here + "/overrides.nix", [["license", 6267, 7]]);
-const pos$1207 = nix.positions(here + "/overrides.nix", [["meta", 6266, 5]]);
-const pos$1208 = nix.positions(here + "/overrides.nix", [["dependencies", 6272, 5]]);
-const pos$1209 = nix.positions(here + "/overrides.nix", [["buildInputs", 6279, 5], ["postPatch", 6281, 5]]);
-const pos$1210 = nix.positions(here + "/overrides.nix", [["ack-vim", 168, 3], ["advanced-git-search-nvim", 174, 3], ["aerial-nvim", 194, 3], ["agitator-nvim", 208, 3], ["aider-nvim", 215, 3], ["animation-nvim", 221, 3], ["argtextobj-vim", 225, 3], ["arrow-nvim", 231, 3], ["arshlib-nvim", 237, 3], ["astrocore", 244, 3], ["astroui", 248, 3], ["async-nvim", 253, 3], ["asyncrun-vim", 259, 3], ["atlas-nvim", 264, 3], ["augment-vim", 275, 3], ["auto-git-diff", 284, 3], ["auto-pairs", 290, 3], ["auto-session", 297, 3], ["autosave-nvim", 302, 3], ["aw-watcher-vim", 306, 3], ["bamboo-nvim", 312, 3], ["barbar-nvim", 330, 3], ["barbecue-nvim", 344, 3], ["base16-vim", 357, 3], ["base46", 363, 3], ["bclose-vim", 370, 3], ["blink-calc", 376, 3], ["blink-cmp-conventional-commits", 380, 3], ["blink-cmp-copilot", 384, 3], ["blink-cmp-dictionary", 388, 3], ["blink-cmp-env", 392, 3], ["blink-cmp-git", 396, 3], ["blink-cmp-latex", 400, 3], ["blink-cmp-nixpkgs-maintainers", 404, 3], ["blink-cmp-npm-nvim", 408, 3], ["blink-cmp-words", 414, 3], ["blink-cmp-yanky", 425, 3], ["blink-emoji-nvim", 432, 3], ["blink-nerdfont-nvim", 436, 3], ["bluloco-nvim", 440, 3], ["bufferline-nvim", 444, 3], ["BufOnly-vim", 449, 3], ["bufresize-nvim", 455, 3], ["bullets-vim", 461, 3], ["camelcasemotion", 467, 3], ["catppuccin-nvim", 473, 3], ["caw-vim", 483, 3], ["ccc-nvim", 489, 3], ["chadtree", 495, 3], ["ChatGPT-nvim", 513, 3], ["cheatsheet-nvim", 521, 3], ["CheckAttach", 528, 3], ["checkmate-nvim", 534, 3], ["clang_complete", 541, 3], ["clangd_extensions-nvim", 566, 3], ["claude-code-nvim", 572, 3], ["claude-fzf-history-nvim", 578, 3], ["claude-fzf-nvim", 587, 3], ["clever-f-vim", 603, 3], ["clighter8", 609, 3], ["clipboard-image-nvim", 616, 3], ["close-buffers-vim", 622, 3], ["cmake-tools-nvim", 628, 3], ["cmd-parser-nvim", 632, 3], ["cmp-ai", 638, 3], ["cmp-async-path", 647, 3], ["cmp-beancount", 654, 3], ["cmp-buffer", 658, 3], ["cmp-calc", 662, 3], ["cmp-clippy", 666, 3], ["cmp-cmdline", 673, 3], ["cmp-cmdline-history", 677, 3], ["cmp-conjure", 681, 3], ["cmp-copilot", 686, 3], ["cmp-ctags", 691, 3], ["cmp-dap", 695, 3], ["cmp-dictionary", 700, 3], ["cmp-digraphs", 704, 3], ["cmp-dotenv", 708, 3], ["cmp-emoji", 712, 3], ["cmp-fish", 716, 3], ["cmp-fuzzy-buffer", 720, 3], ["cmp-fuzzy-path", 725, 3], ["cmp-git", 730, 3], ["cmp-greek", 735, 3], ["cmp-latex-symbols", 739, 3], ["cmp-look", 743, 3], ["cmp-neosnippet", 747, 3], ["cmp-nixpkgs-maintainers", 752, 3], ["cmp-npm", 757, 3], ["cmp-nvim-lsp-document-symbol", 762, 3], ["cmp-nvim-lsp-signature-help", 766, 3], ["cmp-nvim-lua", 770, 3], ["cmp-nvim-tags", 774, 3], ["cmp-nvim-ultisnips", 778, 3], ["cmp-omni", 782, 3], ["cmp-pandoc-nvim", 786, 3], ["cmp-pandoc-references", 791, 3], ["cmp-path", 795, 3], ["cmp-rg", 799, 3], ["cmp-snippy", 803, 3], ["cmp-spell", 808, 3], ["cmp-tabby", 812, 3], ["cmp-tmux", 816, 3], ["cmp-treesitter", 821, 3], ["cmp-vim-lsp", 825, 3], ["cmp-vimtex", 830, 3], ["cmp-vimwiki-tags", 834, 3], ["cmp-vsnip", 839, 3], ["cmp-zsh", 843, 3], ["cmp_luasnip", 848, 3], ["cmp_yanky", 853, 3], ["cobalt2-nvim", 857, 3], ["coc-clap", 871, 3], ["coc-denite", 877, 3], ["coc-fzf", 883, 3], ["coc-neco", 889, 3], ["coc-nvim", 895, 3], ["cocci-syntax", 901, 3], ["codecompanion-history-nvim", 907, 3], ["codecompanion-nvim", 916, 3], ["codesettings-nvim", 934, 3], ["codewindow-nvim", 939, 3], ["colorful-menu-nvim", 943, 3], ["colorizer", 952, 3], ["Colour-Sampler-Pack", 958, 3], ["command-t", 964, 3], ["competitest-nvim", 976, 3], ["compiler-explorer-nvim", 980, 3], ["compiler-nvim", 984, 3], ["completion-buffers", 988, 3], ["conflict-marker-vim", 992, 3], ["conjure", 998, 3], ["context-vim", 1006, 3], ["context_filetype-vim", 1011, 3], ["copilot-cmp", 1017, 3], ["copilot-lua", 1028, 3], ["copilot-lualine", 1042, 3], ["copilot-vim", 1050, 3], ["CopilotChat-nvim", 1062, 3], ["coq-vim", 1075, 3], ["coq_nvim", 1081, 3], ["cornelis", 1100, 3], ["cpsm", 1111, 3], ["crates-nvim", 1130, 3], ["cspell-nvim", 1138, 3], ["ctrlp-cmatcher", 1145, 3], ["ctrlp-vim", 1170, 3], ["ctrlp-z", 1176, 3], ["dadbod-grip-nvim", 1182, 3], ["dailies-nvim", 1191, 3], ["darkearth-nvim", 1197, 3], ["ddc-filter-matcher_head", 1201, 3], ["ddc-filter-sorter_rank", 1205, 3], ["ddc-fuzzy", 1209, 3], ["ddc-source-around", 1216, 3], ["ddc-source-file", 1220, 3], ["ddc-source-lsp", 1224, 3], ["ddc-ui-native", 1231, 3], ["ddc-ui-pum", 1235, 3], ["ddc-vim", 1242, 3], ["debugmaster-nvim", 1246, 3], ["defx-nvim", 1250, 3], ["demicolon-nvim", 1254, 3], ["denite-nvim", 1266, 3], ["denops-vim", 1272, 3], ["deoplete-fish", 1279, 3], ["deoplete-go", 1286, 3], ["deoplete-julia", 1296, 3], ["deoplete-khard", 1302, 3], ["deoplete-lsp", 1315, 3], ["deoplete-nvim", 1321, 3], ["deoplete-zsh", 1327, 3], ["devdocs-nvim", 1333, 3], ["devdocs-vim", 1345, 3], ["diagram-nvim", 1352, 3], ["diffview-nvim", 1356, 3], ["diffview-plus-nvim", 1365, 3], ["direnv-vim", 1374, 3], ["distant-nvim", 1382, 3], ["dotnet-nvim", 1386, 3], ["dropbar-nvim", 1393, 3], ["easy-dotnet-nvim", 1398, 3], ["echodoc-vim", 1410, 3], ["ecolog-nvim", 1416, 3], ["editorconfig-vim", 1422, 3], ["efmls-configs-nvim", 1428, 3], ["eldritch-nvim", 1432, 3], ["elixir-tools-nvim", 1439, 3], ["evergarden-nvim", 1446, 3], ["executor-nvim", 1461, 3], ["faster-nvim", 1465, 3], ["fastfold", 1472, 3], ["faust-nvim", 1479, 3], ["fcitx-vim", 1490, 3], ["file-line", 1500, 3], ["flash-nvim", 1506, 3], ["flit-nvim", 1512, 3], ["floaterm", 1516, 3], ["flow-nvim", 1520, 3], ["flutter-tools-nvim", 1527, 3], ["forms", 1533, 3], ["freeze-nvim", 1537, 3], ["fugit2-nvim", 1541, 3], ["fuzzy-nvim", 1571, 3], ["fyler-nvim", 1583, 3], ["fzf-checkout-vim", 1595, 3], ["fzf-hoogle-vim", 1603, 3], ["fzf-lsp-nvim", 1617, 3], ["fzf-lua", 1621, 3], ["fzf-vim", 1630, 3], ["gen-nvim", 1634, 3], ["gentoo-syntax", 1638, 3], ["gh-nvim", 1644, 3], ["ghcid", 1648, 3], ["ghcmod-vim", 1655, 3], ["git-conflict-nvim", 1661, 3], ["git-worktree-nvim", 1673, 3], ["gitlab-vim", 1677, 3], ["gitlinker-nvim", 1683, 3], ["gitv", 1687, 3], ["glow-nvim", 1693, 3], ["go-nvim", 1697, 3], ["GPTModels-nvim", 1718, 3], ["gruvbox", 1725, 3], ["guard-collection", 1731, 3], ["guihua-lua", 1735, 3], ["gundo-vim", 1756, 3], ["gv-vim", 1762, 3], ["gx-nvim", 1768, 3], ["hardhat-nvim", 1776, 3], ["hare-vim", 1797, 3], ["harpoon", 1803, 3], ["harpoon-lualine", 1807, 3], ["harpoon2", 1814, 3], ["haskell-scope-highlighting-nvim", 1818, 3], ["haskell-snippets-nvim", 1822, 3], ["haskell-tools-nvim", 1826, 3], ["heirline-components-nvim", 1831, 3], ["helm-ls-nvim", 1835, 3], ["hex-nvim", 1841, 3], ["himalaya-vim9", 1845, 3], ["hoon-vim", 1859, 3], ["hop-nvim", 1865, 3], ["hotpot-nvim", 1871, 3], ["html5-vim", 1876, 3], ["hunk-nvim", 1883, 3], ["hurl-nvim", 1887, 3], ["idris2-nvim", 1905, 3], ["Improved-AnsiEsc", 1914, 3], ["incsearch-easymotion-vim", 1920, 3], ["indent-blankline-nvim", 1926, 3], ["indent-tools-nvim", 1931, 3], ["instant-nvim", 1943, 3], ["intellitab-nvim", 1952, 3], ["intero-neovim", 1956, 3], ["iosvkem", 1962, 3], ["iswap-nvim", 1968, 3], ["jdaddy-vim", 1972, 3], ["jdd-nvim", 1978, 3], ["jedi-vim", 1982, 3], ["jellybeans-nvim", 1991, 3], ["jellybeans-vim", 1995, 3], ["jinja-vim", 2001, 3], ["jj-nvim", 2007, 3], ["jq-vim", 2014, 3], ["jsonfly-nvim", 2020, 3], ["julia-vim", 2033, 3], ["jupytext-nvim", 2039, 3], ["just-nvim", 2053, 3], ["kulala-nvim", 2064, 3], ["LanguageTool-nvim", 2097, 3], ["last256", 2103, 3], ["lazy-lsp-nvim", 2109, 3], ["lazy-nvim", 2113, 3], ["lazydocker-nvim", 2126, 3], ["lazyjj-nvim", 2132, 3], ["LazyVim", 2139, 3], ["LeaderF", 2165, 3], ["lean-nvim", 2178, 3], ["leap-ast-nvim", 2184, 3], ["leap-nvim", 2191, 3], ["leetcode-nvim", 2197, 3], ["legendary-nvim", 2245, 3], ["lens-vim", 2253, 3], ["lessspace-vim", 2265, 3], ["lexima-vim", 2271, 3], ["lf-nvim", 2277, 3], ["lf-vim", 2281, 3], ["lh-brackets", 2288, 3], ["lh-vim-lib", 2294, 3], ["lightline-bufferline", 2300, 3], ["lightline-lsp", 2305, 3], ["lightswitch-nvim", 2311, 3], ["lingua-franca-vim", 2315, 3], ["lir-nvim", 2321, 3], ["lispdocs-nvim", 2325, 3], ["litee-calltree-nvim", 2334, 3], ["litee-filetree-nvim", 2341, 3], ["litee-nvim", 2348, 3], ["litee-symboltree-nvim", 2354, 3], ["live-preview-nvim", 2361, 3], ["live-share-nvim", 2374, 3], ["llm-nvim", 2385, 3], ["lsp-format-modifications-nvim", 2389, 3], ["lsp-format-nvim", 2393, 3], ["lsp-rooter-nvim", 2399, 3], ["lsp_extensions-nvim", 2405, 3], ["lsp_lines-nvim", 2409, 3], ["lspcontainers-nvim", 2415, 3], ["lspecho-nvim", 2419, 3], ["lspsaga-nvim", 2425, 3], ["ltex_extra-nvim", 2430, 3], ["lualine-lsp-progress", 2435, 3], ["lualine-so-fancy-nvim", 2439, 3], ["luasnip-latex-snippets-nvim", 2443, 3], ["LuaSnip-snippets-nvim", 2452, 3], ["luau-lsp-nvim", 2456, 3], ["magma-nvim", 2461, 3], ["maple-nvim", 2478, 3], ["mark-radar-nvim", 2482, 3], ["markdoc-nvim", 2488, 3], ["markdown-preview-nvim", 2496, 3], ["markid", 2528, 3], ["mason-lspconfig-nvim", 2532, 3], ["mason-null-ls-nvim", 2539, 3], ["mason-nvim", 2547, 3], ["mason-nvim-dap-nvim", 2556, 3], ["mason-tool-installer-nvim", 2563, 3], ["material-vim", 2567, 3], ["mattn-calendar-vim", 2572, 3], ["mcphub-nvim", 2578, 3], ["mediawiki-vim", 2591, 3], ["mesone-nvim", 2597, 3], ["mini-nvim", 2606, 3], ["minimap-vim", 2613, 3], ["minuet-ai-nvim", 2625, 3], ["mkdnflow-nvim", 2643, 3], ["modicator-nvim", 2649, 3], ["molokai", 2654, 3], ["molten-nvim", 2660, 3], ["moonscript-vim", 2669, 3], ["mru", 2675, 3], ["multicursors-nvim", 2681, 3], ["muren-nvim", 2687, 3], ["ncm2", 2694, 3], ["ncm2-dictionary", 2698, 3], ["ncm2-jedi", 2704, 3], ["ncm2-neoinclude", 2714, 3], ["ncm2-neosnippet", 2718, 3], ["ncm2-syntax", 2722, 3], ["ncm2-ultisnips", 2726, 3], ["neco-ghc", 2733, 3], ["neco-look", 2739, 3], ["neco-syntax", 2745, 3], ["neo-tree-diagnostics-nvim", 2751, 3], ["neo-tree-nvim", 2759, 3], ["neocomplete-vim", 2770, 3], ["neoconf-nvim", 2776, 3], ["neogit", 2782, 3], ["neoinclude-vim", 2793, 3], ["neomru-vim", 2799, 3], ["neorepl-nvim", 2805, 3], ["neorg", 2814, 3], ["neorg-telescope", 2821, 3], ["neosnippet-snippets", 2830, 3], ["neosnippet-vim", 2836, 3], ["neoterm", 2842, 3], ["neotest-bash", 2848, 3], ["neotest-bun", 2855, 3], ["neotest-busted", 2862, 3], ["neotest-ctest", 2871, 3], ["neotest-dart", 2879, 3], ["neotest-deno", 2887, 3], ["neotest-dotnet", 2895, 3], ["neotest-elixir", 2903, 3], ["neotest-foundry", 2911, 3], ["neotest-go", 2925, 3], ["neotest-golang", 2933, 3], ["neotest-gradle", 2943, 3], ["neotest-gtest", 2951, 3], ["neotest-haskell", 2960, 3], ["neotest-java", 2967, 3], ["neotest-jest", 2975, 3], ["neotest-minitest", 2984, 3], ["neotest-mocha", 2992, 3], ["neotest-pest", 3003, 3], ["neotest-phpunit", 3011, 3], ["neotest-playwright", 3019, 3], ["neotest-plenary", 3033, 3], ["neotest-python", 3041, 3], ["neotest-rspec", 3049, 3], ["neotest-rust", 3057, 3], ["neotest-scala", 3065, 3], ["neotest-testthat", 3073, 3], ["neotest-vitest", 3084, 3], ["neotest-zig", 3094, 3], ["neovim-fuzzy", 3102, 3], ["neovim-project", 3109, 3], ["neovim-sensible", 3116, 3], ["neovim-session-manager", 3122, 3], ["neovim-tips", 3128, 3], ["neovim-trunk", 3134, 3], ["neoyank-vim", 3141, 3], ["netman-nvim", 3147, 3], ["nginx-vim", 3158, 3], ["nidhogg-nvim", 3164, 3], ["nlsp-settings-nvim", 3170, 3], ["noctis-nvim", 3174, 3], ["noice-nvim", 3178, 3], ["none-ls-extras-nvim", 3182, 3], ["none-ls-nvim", 3186, 3], ["NotebookNavigator-nvim", 3190, 3], ["notmuch-nvim", 3196, 3], ["NrrwRgn", 3224, 3], ["nterm-nvim", 3230, 3], ["nvchad", 3234, 3], ["nvchad-ui", 3256, 3], ["nvim-autopairs", 3271, 3], ["nvim-biscuits", 3282, 3], ["nvim-cokeline", 3289, 3], ["nvim-colorizer-lua", 3293, 3], ["nvim-coverage", 3299, 3], ["nvim-dap", 3310, 3], ["nvim-dap-cortex-debug", 3316, 3], ["nvim-dap-disasm", 3320, 3], ["nvim-dap-lldb", 3327, 3], ["nvim-dap-python", 3331, 3], ["nvim-dap-rego", 3338, 3], ["nvim-dap-rr", 3342, 3], ["nvim-dap-ui", 3346, 3], ["nvim-dap-view", 3355, 3], ["nvim-dap-virtual-text", 3359, 3], ["nvim-dap-vscode-js", 3363, 3], ["nvim-FeMaco-lua", 3367, 3], ["nvim-fzf-commands", 3374, 3], ["nvim-genghis", 3380, 3], ["nvim-highlite", 3386, 3], ["nvim-java", 3392, 3], ["nvim-java-core", 3406, 3], ["nvim-java-dap", 3413, 3], ["nvim-java-refactor", 3417, 3], ["nvim-java-test", 3427, 3], ["nvim-jdtls", 3431, 3], ["nvim-jqx", 3438, 3], ["nvim-julia-autotest", 3445, 3], ["nvim-k8s-crd", 3451, 3], ["nvim-lilypond-suite", 3458, 3], ["nvim-lint", 3467, 3], ["nvim-lsp-file-operations", 3473, 3], ["nvim-lsputils", 3477, 3], ["nvim-metals", 3481, 3], ["nvim-moonwalk", 3486, 3], ["nvim-navbuddy", 3491, 3], ["nvim-navic", 3499, 3], ["nvim-neoclip-lua", 3503, 3], ["nvim-nonicons", 3514, 3], ["nvim-notify", 3519, 3], ["nvim-nu", 3532, 3], ["nvim-parinfer", 3540, 3], ["nvim-remote-containers", 3546, 3], ["nvim-rip-substitute", 3552, 3], ["nvim-scissors", 3556, 3], ["nvim-snippets", 3565, 3], ["nvim-sops", 3572, 3], ["nvim-teal-maker", 3576, 3], ["nvim-test", 3584, 3], ["nvim-tinygit", 3601, 3], ["nvim-tree-lua", 3609, 3], ["nvim-treesitter", 3615, 3], ["nvim-treesitter-legacy", 3620, 3], ["nvim-treesitter-pairs", 3631, 3], ["nvim-treesitter-pyfold", 3635, 3], ["nvim-treesitter-refactor", 3639, 3], ["nvim-treesitter-sexp", 3643, 3], ["nvim-treesitter-textobjects", 3647, 3], ["nvim-treesitter-textobjects-legacy", 3651, 3], ["nvim-treesitter-textsubjects", 3655, 3], ["nvim-ufo", 3659, 3], ["nvim-unception", 3663, 3], ["nvim-vtsls", 3674, 3], ["nvim-whichkey-setup-lua", 3679, 3], ["nvzone-menu", 3685, 3], ["nvzone-minty", 3700, 3], ["nvzone-typr", 3706, 3], ["nvzone-volt", 3712, 3], ["obsidian-nvim", 3717, 3], ["oceanic-next", 3734, 3], ["octo-nvim", 3740, 3], ["oil-git-nvim", 3752, 3], ["oil-git-status-nvim", 3759, 3], ["oil-lsp-diagnostics-nvim", 3763, 3], ["ollama-nvim", 3767, 3], ["omni-vim", 3771, 3], ["omnisharp-extended-lsp-nvim", 3776, 3], ["one-nvim", 3782, 3], ["onedark-nvim", 3790, 3], ["onehalf", 3800, 3], ["open-browser-vim", 3804, 3], ["opencode-nvim", 3810, 3], ["openscad-nvim", 3820, 3], ["org-notebook-nvim", 3832, 3], ["org-roam-nvim", 3843, 3], ["otter-nvim", 3847, 3], ["outline-nvim", 3851, 3], ["overseer-nvim", 3856, 3], ["package-info-nvim", 3877, 3], ["pantran-nvim", 3881, 3], ["parpar-nvim", 3885, 3], ["parrot-nvim", 3892, 3], ["peek-nvim", 3913, 3], ["perfanno-nvim", 3925, 3], ["persistent-breakpoints-nvim", 3931, 3], ["pgsql-vim", 3937, 3], ["plantuml-nvim", 3943, 3], ["poimandres-nvim", 3947, 3], ["popup-nvim", 3952, 3], ["PreserveNoEOL", 3956, 3], ["Preview-nvim", 3962, 3], ["project-nvim", 3968, 3], ["psc-ide-vim", 3975, 3], ["python-mode", 3984, 3], ["pywal-nvim", 4008, 3], ["QFEnter", 4013, 3], ["qmk-nvim", 4019, 3], ["quarto-nvim", 4023, 3], ["quickfixstatus", 4038, 3], ["rainbow-delimiters-nvim", 4044, 3], ["ranger-nvim", 4056, 3], ["rcshell-vim", 4062, 3], ["readline-vim", 4068, 3], ["Recover-vim", 4074, 3], ["refactoring-nvim", 4080, 3], ["remote-nvim-nvim", 4086, 3], ["remote-sshfs-nvim", 4095, 3], ["Rename", 4106, 3], ["renamer-nvim", 4112, 3], ["repolink-nvim", 4116, 3], ["riv-vim", 4120, 3], ["rocks-nvim", 4126, 3], ["rtorrent-syntax-file", 4136, 3], ["run-nvim", 4143, 3], ["rustaceanvim", 4159, 3], ["rzls-nvim", 4166, 3], ["salt-vim", 4170, 3], ["samodostal-image-nvim", 4176, 3], ["schema-companion-nvim", 4180, 3], ["screensaver-nvim", 4184, 3], ["scretch-nvim", 4192, 3], ["search-and-replace-nvim", 4195, 3], ["searchbox-nvim", 4202, 3], ["seoul256-vim", 4206, 3], ["sidekick-nvim", 4212, 3], ["skim-vim", 4222, 3], ["slang-server-nvim", 4229, 3], ["slimline-nvim", 4237, 3], ["smart-open-nvim", 4251, 3], ["smart-splits-nvim", 4263, 3], ["smartpairs-vim", 4269, 3], ["snacks-nvim", 4275, 3], ["snap", 4284, 3], ["solarized-osaka-nvim", 4296, 3], ["sonarlint-nvim", 4305, 3], ["spaceman-nvim", 4314, 3], ["sqlite-lua", 4319, 3], ["srcery-vim", 4343, 3], ["starrynight", 4349, 3], ["startup-nvim", 4355, 3], ["stylish-nvim", 4359, 3], ["SudoEdit-vim", 4367, 3], ["supermaven-nvim", 4373, 3], ["supertab", 4378, 3], ["sved", 4385, 3], ["switcher-nvim", 4432, 3], ["tabmerge", 4439, 3], ["tabpagebuffer-vim", 4445, 3], ["tabular", 4451, 3], ["tagbar", 4457, 3], ["tardis-nvim", 4463, 3], ["taskwiki", 4470, 3], ["telekasten-nvim", 4476, 3], ["telescope-asynctasks-nvim", 4483, 3], ["telescope-cheat-nvim", 4490, 3], ["telescope-coc-nvim", 4498, 3], ["telescope-dap-nvim", 4505, 3], ["telescope-emoji-nvim", 4513, 3], ["telescope-frecency-nvim", 4517, 3], ["telescope-fzf-native-nvim", 4527, 3], ["telescope-fzf-writer-nvim", 4535, 3], ["telescope-fzy-native-nvim", 4542, 3], ["telescope-git-conflicts-nvim", 4568, 3], ["telescope-github-nvim", 4575, 3], ["telescope-glyph-nvim", 4582, 3], ["telescope-hierarchy-nvim", 4586, 3], ["telescope-live-grep-args-nvim", 4593, 3], ["telescope-lsp-handlers-nvim", 4603, 3], ["telescope-manix", 4610, 3], ["telescope-media-files-nvim", 4614, 3], ["telescope-project-nvim", 4622, 3], ["telescope-smart-history-nvim", 4626, 3], ["telescope-symbols-nvim", 4633, 3], ["telescope-ui-select-nvim", 4637, 3], ["telescope-ultisnips-nvim", 4641, 3], ["telescope-undo-nvim", 4648, 3], ["telescope-vim-bookmarks-nvim", 4655, 3], ["telescope-z-nvim", 4662, 3], ["telescope-zf-native-nvim", 4669, 3], ["telescope-zoxide", 4673, 3], ["text-case-nvim", 4684, 3], ["timerly", 4691, 3], ["timestamp-vim", 4695, 3], ["tinted-vim", 4701, 3], ["tiny-code-action-nvim", 4707, 3], ["tmux-complete-vim", 4714, 3], ["todo-comments-nvim", 4719, 3], ["todo-txt-vim", 4732, 3], ["tokyonight-nvim", 4738, 3], ["treesitter-modules-nvim", 4746, 3], ["triptych-nvim", 4750, 3], ["trouble-nvim", 4754, 3], ["trust-vim", 4759, 3], ["tsc-nvim", 4767, 3], ["tslime-vim", 4778, 3], ["tsuquyomi", 4784, 3], ["tuis-nvim", 4790, 3], ["tv-nvim", 4797, 3], ["typescript-tools-nvim", 4801, 3], ["typst-preview-nvim", 4811, 3], ["unicode-vim", 4819, 3], ["unison", 4842, 3], ["unite-vim", 4850, 3], ["uv-nvim", 4856, 3], ["vader-vim", 4860, 3], ["vCoolor-vim", 4866, 3], ["verilog_systemverilog-vim", 4875, 3], ["vim-abolish", 4881, 3], ["vim-addon-actions", 4887, 3], ["vim-addon-async", 4894, 3], ["vim-addon-background-cmd", 4901, 3], ["vim-addon-commenting", 4905, 3], ["vim-addon-completion", 4911, 3], ["vim-addon-goto-thing-at-cursor", 4915, 3], ["vim-addon-manager", 4919, 3], ["vim-addon-mru", 4925, 3], ["vim-addon-nix", 4932, 3], ["vim-addon-sql", 4943, 3], ["vim-addon-syntax-checker", 4951, 3], ["vim-addon-toggle-buffer", 4958, 3], ["vim-addon-xdebug", 4965, 3], ["vim-advanced-sorters", 4974, 3], ["vim-agda", 4980, 3], ["vim-angry", 4987, 3], ["vim-apathy", 4993, 3], ["vim-apm", 4999, 3], ["vim-bazel", 5003, 3], ["vim-bbye", 5007, 3], ["vim-beancount", 5013, 3], ["vim-bepoptimist", 5022, 3], ["vim-capslock", 5028, 3], ["vim-characterize", 5034, 3], ["vim-clang-format", 5040, 3], ["vim-classpath", 5046, 3], ["vim-clojure-static", 5052, 3], ["vim-cmake", 5058, 3], ["vim-codefmt", 5064, 3], ["vim-coffee-script", 5070, 3], ["vim-colors-paramount", 5079, 3], ["vim-colors-solarized", 5085, 3], ["vim-colorschemes", 5092, 3], ["vim-commentary", 5102, 3], ["vim-CtrlXA", 5108, 3], ["vim-dadbod", 5115, 3], ["vim-dadbod-ui", 5121, 3], ["vim-dasht", 5128, 3], ["vim-DetectSpellLang", 5138, 3], ["vim-diminactive", 5144, 3], ["vim-dirdiff", 5150, 3], ["vim-dirvish", 5156, 3], ["vim-dispatch", 5162, 3], ["vim-dotenv", 5168, 3], ["vim-easy-align", 5174, 3], ["vim-easymotion", 5180, 3], ["vim-easytags", 5186, 3], ["vim-elixir", 5200, 3], ["vim-emoji", 5206, 3], ["vim-endwise", 5212, 3], ["vim-erlang-compiler", 5218, 3], ["vim-erlang-omnicomplete", 5224, 3], ["vim-erlang-runtime", 5230, 3], ["vim-erlang-tags", 5236, 3], ["vim-eunuch", 5242, 3], ["vim-figlet", 5248, 3], ["vim-fireplace", 5254, 3], ["vim-flagship", 5260, 3], ["vim-flog", 5266, 3], ["vim-fold-cycle", 5274, 3], ["vim-ft-diff_fold", 5280, 3], ["vim-fugitive", 5286, 3], ["vim-fzf-coauthorship", 5292, 3], ["vim-gist", 5296, 3], ["vim-github-dashboard", 5307, 3], ["vim-gnupg", 5313, 3], ["vim-go", 5319, 3], ["vim-grammarous", 5351, 3], ["vim-gruvbox8", 5367, 3], ["vim-habamax", 5374, 3], ["vim-hcl", 5380, 3], ["vim-helm", 5386, 3], ["vim-hexokinase", 5392, 3], ["vim-hier", 5411, 3], ["vim-hybrid", 5415, 3], ["vim-hypr-nav", 5421, 3], ["vim-indentwise", 5425, 3], ["vim-isort", 5431, 3], ["vim-javascript", 5438, 3], ["vim-jdaddy", 5444, 3], ["vim-jsbeautify", 5450, 3], ["vim-json", 5456, 3], ["vim-LanguageTool", 5462, 3], ["vim-ledger", 5468, 3], ["vim-lexical", 5475, 3], ["vim-lion", 5481, 3], ["vim-llvm", 5487, 3], ["vim-markdown", 5493, 3], ["vim-mediawiki-editor", 5499, 3], ["vim-merginal", 5505, 3], ["vim-metamath", 5511, 3], ["vim-misc", 5515, 3], ["vim-niceblock", 5521, 3], ["vim-obsession", 5527, 3], ["vim-opencl", 5533, 3], ["vim-openscad", 5539, 3], ["vim-operator-replace", 5545, 3], ["vim-operator-surround", 5551, 3], ["vim-operator-user", 5557, 3], ["vim-orgmode", 5563, 3], ["vim-peekaboo", 5573, 3], ["vim-pencil", 5579, 3], ["vim-pico8-syntax", 5585, 3], ["vim-pluto", 5591, 3], ["vim-pony", 5595, 3], ["vim-prettyprint", 5601, 3], ["vim-printer", 5607, 3], ["vim-projectionist", 5613, 3], ["vim-prosession", 5619, 3], ["vim-protobuf", 5625, 3], ["vim-ps1", 5631, 3], ["vim-ragtag", 5637, 3], ["vim-rails", 5643, 3], ["vim-repeat", 5649, 3], ["vim-ReplaceWithRegister", 5655, 3], ["vim-ReplaceWithSameIndentRegister", 5661, 3], ["vim-rsi", 5667, 3], ["vim-salve", 5673, 3], ["vim-scriptease", 5679, 3], ["vim-sensible", 5685, 3], ["vim-sentence-chopper", 5692, 3], ["vim-sexp-mappings-for-regular-people", 5699, 3], ["vim-sile", 5707, 3], ["vim-sleuth", 5717, 3], ["vim-smalls", 5723, 3], ["vim-snipmate", 5729, 3], ["vim-speeddating", 5739, 3], ["vim-stationeers-ic10-syntax", 5746, 3], ["vim-stylish-haskell", 5752, 3], ["vim-surround", 5760, 3], ["vim-syntax-shakespeare", 5767, 3], ["vim-SyntaxRange", 5773, 3], ["vim-tabby", 5779, 3], ["vim-table-mode", 5782, 3], ["vim-tabpagecd", 5788, 3], ["vim-tbone", 5794, 3], ["vim-textobj-comment", 5800, 3], ["vim-textobj-entire", 5806, 3], ["vim-textobj-function", 5814, 3], ["vim-textobj-line", 5820, 3], ["vim-textobj-quote", 5828, 3], ["vim-textobj-user", 5835, 3], ["vim-tmux", 5841, 3], ["vim-tpipeline", 5851, 3], ["vim-twiggy", 5856, 3], ["vim-ultest", 5862, 3], ["vim-unimpaired", 5868, 3], ["vim-vinegar", 5875, 3], ["vim-visual-increment", 5881, 3], ["vim-visualstar", 5887, 3], ["vim-waikiki", 5893, 3], ["vim-wakatime", 5900, 3], ["vim-watchdogs", 5911, 3], ["vim-wordy", 5918, 3], ["vim-xdebug", 5924, 3], ["vim-xkbswitch", 5931, 3], ["vim-yapf", 5935, 3], ["vim-zettel", 5945, 3], ["vim-zscript", 5952, 3], ["vimade", 5958, 3], ["vimagit", 5967, 3], ["VimCompletesMe", 5973, 3], ["vimfiler-vim", 5979, 3], ["VimOrganizer", 5985, 3], ["vimoutliner", 5991, 3], ["vimproc-vim", 5997, 3], ["vimsence", 6014, 3], ["vimshell-vim", 6022, 3], ["vimtex", 6029, 3], ["vimwiki", 6037, 3], ["virt-column-nvim", 6043, 3], ["vis", 6048, 3], ["vissort-vim", 6054, 3], ["vivify-vim", 6060, 3], ["vs-tasks-nvim", 6066, 3], ["webapi-vim", 6076, 3], ["which-key-nvim", 6082, 3], ["whichpy-nvim", 6086, 3], ["whitespace-nvim", 6093, 3], ["wiki-vim", 6099, 3], ["windows-nvim", 6107, 3], ["wtf-nvim", 6119, 3], ["xeno-nvim", 6126, 3], ["xmake-nvim", 6132, 3], ["xterm-color-table-vim", 6141, 3], ["yaml-companion-nvim", 6148, 3], ["yaml-schema-detect-nvim", 6155, 3], ["yank-path-nvim", 6162, 3], ["yanky-nvim", 6168, 3], ["yazi-nvim", 6175, 3], ["YouCompleteMe", 6183, 3], ["zeavim-vim", 6204, 3], ["zenbones-nvim", 6210, 3], ["zenburn", 6238, 3], ["zig-vim", 6244, 3], ["zk-nvim", 6250, 3], ["zoomwintab-vim", 6265, 3], ["zotcite", 6271, 3], ["zoxide-vim", 6278, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -1345,13 +136,16 @@ export default nix.lambda((args) => (() => {
 - ${name}`, addedNames)}`), overrides);
     })();
     return nix.app(assertNoAdditions, nix.thunk(() => ({
-        [nix.POS]: pos$1210,
+        [nix.POS]: $pos[1209],
         "ack-vim": nix.thunk(() => nix.app(nix.sel(super$, "ack-vim", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$2,
-            meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), { [nix.POS]: pos$1, license: nix.thunk(() => nix.sel(lib, "licenses", "vim")) })),
+            [nix.POS]: $pos[1],
+            meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
+              [nix.POS]: $pos[0],
+              license: nix.thunk(() => nix.sel(lib, "licenses", "vim")),
+            })),
           }))),
         "advanced-git-search-nvim": nix.thunk(() => nix.app(nix.sel(super$, "advanced-git-search-nvim", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             checkInputs: nix.thunk(() => (() => {
               const w = nix.withScope(self, null);
               return [
@@ -1375,7 +169,7 @@ export default nix.lambda((args) => (() => {
             ]),
           })))),
         "aerial-nvim": nix.thunk(() => nix.app(nix.sel(super$, "aerial-nvim", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             checkInputs: nix.thunk(() => (() => {
               const w = nix.withScope(self, null);
               return [
@@ -1387,7 +181,7 @@ export default nix.lambda((args) => (() => {
             nvimSkipModules: nix.thunk(() => ["aerial.fzf-lua"]),
           })))),
         "agitator-nvim": nix.thunk(() => nix.app(nix.sel(super$, "agitator-nvim", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             dependencies: nix.thunk(() => (() => {
               const w = nix.withScope(self, null);
               return [
@@ -1396,24 +190,27 @@ export default nix.lambda((args) => (() => {
               ];
             })()),
           })))),
-        "aider-nvim": nix.thunk(() => nix.app(nix.sel(super$, "aider-nvim", "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: pos$6, runtimeDeps: nix.thunk(() => [aider_chat]) })))),
+        "aider-nvim": nix.thunk(() => nix.app(nix.sel(super$, "aider-nvim", "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: $pos[5], runtimeDeps: nix.thunk(() => [aider_chat]) })))),
         "animation-nvim": nix.thunk(() => nix.app(nix.sel(super$, "animation-nvim", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             dependencies: nix.thunk(() => [nix.thunk(() => nix.sel(self, "middleclass"))]),
           })))),
         "argtextobj-vim": nix.thunk(() => nix.app(nix.sel(super$, "argtextobj-vim", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$9,
-            meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), { [nix.POS]: pos$8, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
+            [nix.POS]: $pos[8],
+            meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
+              [nix.POS]: $pos[7],
+              license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
+            })),
           }))),
         "arrow-nvim": nix.thunk(() => nix.app(nix.sel(super$, "arrow-nvim", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$11,
+            [nix.POS]: $pos[10],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$10,
+              [nix.POS]: $pos[9],
               license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
             })),
           }))),
         "arshlib-nvim": nix.thunk(() => nix.app(nix.sel(super$, "arshlib-nvim", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$12,
+            [nix.POS]: $pos[11],
             dependencies: nix.thunk(() => (() => {
               const w = nix.withScope(self, null);
               return [
@@ -1423,20 +220,20 @@ export default nix.lambda((args) => (() => {
             })()),
           })))),
         astrocore: nix.thunk(() => nix.app(nix.sel(super$, "astrocore", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$13,
+            [nix.POS]: $pos[12],
             dependencies: nix.thunk(() => [nix.thunk(() => nix.sel(self, "lazy-nvim"))]),
           })))),
         astroui: nix.thunk(() => nix.app(nix.sel(super$, "astroui", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$14,
+            [nix.POS]: $pos[13],
             checkInputs: nix.thunk(() => [nix.thunk(() => nix.sel(self, "astrocore"))]),
           })))),
-        "async-nvim": nix.thunk(() => nix.app(nix.sel(super$, "async-nvim", "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: pos$15, nvimSkipModules: nix.thunk(() => ["docgen"]) })))),
+        "async-nvim": nix.thunk(() => nix.app(nix.sel(super$, "async-nvim", "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: $pos[14], nvimSkipModules: nix.thunk(() => ["docgen"]) })))),
         "asyncrun-vim": nix.thunk(() => nix.app(nix.sel(super$, "asyncrun-vim", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$16,
+            [nix.POS]: $pos[15],
             checkInputs: nix.thunk(() => [nix.thunk(() => nix.sel(self, "toggleterm-nvim"))]),
           })))),
         "atlas-nvim": nix.thunk(() => nix.app(nix.sel(super$, "atlas-nvim", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$17,
+            [nix.POS]: $pos[16],
             runtimeDeps: nix.thunk(() => [curl, gitMinimal]),
             checkInputs: nix.thunk(() => (() => {
               const w = nix.withScope(self, null);
@@ -1447,9 +244,9 @@ export default nix.lambda((args) => (() => {
             })()),
           })))),
         "augment-vim": nix.thunk(() => nix.app(nix.sel(super$, "augment-vim", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$19,
+            [nix.POS]: $pos[18],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$18,
+              [nix.POS]: $pos[17],
               license: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "licenses")), null);
                 return [
@@ -1460,24 +257,30 @@ export default nix.lambda((args) => (() => {
             })),
           }))),
         "auto-git-diff": nix.thunk(() => nix.app(nix.sel(super$, "auto-git-diff", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$21,
-            meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), { [nix.POS]: pos$20, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
+            [nix.POS]: $pos[20],
+            meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
+              [nix.POS]: $pos[19],
+              license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
+            })),
           }))),
         "auto-pairs": nix.thunk(() => nix.app(nix.sel(super$, "auto-pairs", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$23,
-            meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), { [nix.POS]: pos$22, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
+            [nix.POS]: $pos[22],
+            meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
+              [nix.POS]: $pos[21],
+              license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
+            })),
           }))),
         "auto-session": nix.thunk(() => nix.app(nix.sel(super$, "auto-session", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$24,
+            [nix.POS]: $pos[23],
             checkInputs: nix.thunk(() => [nix.thunk(() => nix.sel(self, "telescope-nvim"))]),
           })))),
         "autosave-nvim": nix.thunk(() => nix.app(nix.sel(super$, "autosave-nvim", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$25,
+            [nix.POS]: $pos[24],
             dependencies: nix.thunk(() => [nix.thunk(() => nix.sel(self, "plenary-nvim"))]),
           })))),
-        "aw-watcher-vim": nix.thunk(() => nix.app(nix.sel(super$, "aw-watcher-vim", "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: pos$26, runtimeDeps: nix.thunk(() => [curl]) })))),
+        "aw-watcher-vim": nix.thunk(() => nix.app(nix.sel(super$, "aw-watcher-vim", "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: $pos[25], runtimeDeps: nix.thunk(() => [curl]) })))),
         "bamboo-nvim": nix.thunk(() => nix.app(nix.sel(super$, "bamboo-nvim", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$28,
+            [nix.POS]: $pos[27],
             checkInputs: nix.thunk(() => (() => {
               const w = nix.withScope(self, null);
               return [
@@ -1491,10 +294,13 @@ export default nix.lambda((args) => (() => {
               "bamboo.highlights",
               "barbecue.theme.bamboo",
             ]),
-            meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), { [nix.POS]: pos$27, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
+            meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
+              [nix.POS]: $pos[26],
+              license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
+            })),
           }))),
         "barbar-nvim": nix.thunk(() => nix.app(nix.sel(super$, "barbar-nvim", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$30,
+            [nix.POS]: $pos[29],
             checkInputs: nix.thunk(() => (() => {
               const w = nix.withScope(self, null);
               return [
@@ -1504,12 +310,12 @@ export default nix.lambda((args) => (() => {
             })()),
             nvimSkipModules: nix.thunk(() => ["bufferline.utils"]),
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$29,
+              [nix.POS]: $pos[28],
               license: nix.thunk(() => nix.sel(lib, "licenses", "json")),
             })),
           }))),
         "barbecue-nvim": nix.thunk(() => nix.app(nix.sel(super$, "barbecue-nvim", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$32,
+            [nix.POS]: $pos[31],
             dependencies: nix.thunk(() => (() => {
               const w = nix.withScope(self, null);
               return [
@@ -1518,7 +324,7 @@ export default nix.lambda((args) => (() => {
               ];
             })()),
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$31,
+              [nix.POS]: $pos[30],
               description: "VS Code like winbar for Neovim",
               homepage: "https://github.com/utilyre/barbecue.nvim",
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -1529,59 +335,65 @@ export default nix.lambda((args) => (() => {
             })),
           }))),
         "base16-vim": nix.thunk(() => nix.app(nix.sel(super$, "base16-vim", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$34,
-            meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), { [nix.POS]: pos$33, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
+            [nix.POS]: $pos[33],
+            meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
+              [nix.POS]: $pos[32],
+              license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
+            })),
           }))),
         base46: nix.thunk(() => nix.app(nix.sel(super$, "base46", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$36,
+            [nix.POS]: $pos[35],
             dependencies: nix.thunk(() => [nix.thunk(() => nix.sel(self, "nvchad-ui"))]),
-            meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), { [nix.POS]: pos$35, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
+            meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
+              [nix.POS]: $pos[34],
+              license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
+            })),
           }))),
         "bclose-vim": nix.thunk(() => nix.app(nix.sel(super$, "bclose-vim", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$38,
+            [nix.POS]: $pos[37],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$37,
+              [nix.POS]: $pos[36],
               license: nix.thunk(() => nix.sel(lib, "licenses", "cc-by-sa-30")),
             })),
           }))),
         "blink-calc": nix.thunk(() => nix.app(nix.sel(super$, "blink-calc", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$39,
+            [nix.POS]: $pos[38],
             dependencies: nix.thunk(() => [nix.thunk(() => nix.sel(self, "blink-cmp"))]),
           })))),
         "blink-cmp-conventional-commits": nix.thunk(() => nix.app(nix.sel(super$, "blink-cmp-conventional-commits", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$40,
+            [nix.POS]: $pos[39],
             dependencies: nix.thunk(() => [nix.thunk(() => nix.sel(self, "blink-cmp"))]),
           })))),
         "blink-cmp-copilot": nix.thunk(() => nix.app(nix.sel(super$, "blink-cmp-copilot", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$41,
+            [nix.POS]: $pos[40],
             dependencies: nix.thunk(() => [nix.thunk(() => nix.sel(self, "copilot-lua"))]),
           })))),
         "blink-cmp-dictionary": nix.thunk(() => nix.app(nix.sel(super$, "blink-cmp-dictionary", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$42,
+            [nix.POS]: $pos[41],
             dependencies: nix.thunk(() => [nix.thunk(() => nix.sel(self, "plenary-nvim"))]),
           })))),
         "blink-cmp-env": nix.thunk(() => nix.app(nix.sel(super$, "blink-cmp-env", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$43,
+            [nix.POS]: $pos[42],
             dependencies: nix.thunk(() => [nix.thunk(() => nix.sel(self, "blink-cmp"))]),
           })))),
         "blink-cmp-git": nix.thunk(() => nix.app(nix.sel(super$, "blink-cmp-git", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$44,
+            [nix.POS]: $pos[43],
             dependencies: nix.thunk(() => [nix.thunk(() => nix.sel(self, "plenary-nvim"))]),
           })))),
         "blink-cmp-latex": nix.thunk(() => nix.app(nix.sel(super$, "blink-cmp-latex", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$45,
+            [nix.POS]: $pos[44],
             dependencies: nix.thunk(() => [nix.thunk(() => nix.sel(self, "blink-cmp"))]),
           })))),
         "blink-cmp-nixpkgs-maintainers": nix.thunk(() => nix.app(nix.sel(super$, "blink-cmp-nixpkgs-maintainers", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$46,
+            [nix.POS]: $pos[45],
             dependencies: nix.thunk(() => [nix.thunk(() => nix.sel(self, "blink-cmp"))]),
           })))),
-        "blink-cmp-npm-nvim": nix.thunk(() => nix.app(nix.sel(super$, "blink-cmp-npm-nvim", "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: pos$47, nvimSkipModules: nix.thunk(() => ["minit"]) })))),
+        "blink-cmp-npm-nvim": nix.thunk(() => nix.app(nix.sel(super$, "blink-cmp-npm-nvim", "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: $pos[46], nvimSkipModules: nix.thunk(() => ["minit"]) })))),
         "blink-cmp-words": nix.thunk(() => nix.app(nix.sel(super$, "blink-cmp-words", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$49,
+            [nix.POS]: $pos[48],
             dependencies: nix.thunk(() => [nix.thunk(() => nix.sel(self, "blink-cmp"))]),
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$48,
+              [nix.POS]: $pos[47],
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
               description: "Offline word and synonym completion provider for Neovim",
               maintainers: nix.thunk(() => (() => {
@@ -1591,60 +403,78 @@ export default nix.lambda((args) => (() => {
             })),
           }))),
         "blink-cmp-yanky": nix.thunk(() => nix.app(nix.sel(super$, "blink-cmp-yanky", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$51,
+            [nix.POS]: $pos[50],
             dependencies: nix.thunk(() => [nix.thunk(() => nix.sel(self, "blink-cmp"))]),
-            meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), { [nix.POS]: pos$50, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
+            meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
+              [nix.POS]: $pos[49],
+              license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
+            })),
           }))),
         "blink-emoji-nvim": nix.thunk(() => nix.app(nix.sel(super$, "blink-emoji-nvim", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$52,
+            [nix.POS]: $pos[51],
             dependencies: nix.thunk(() => [nix.thunk(() => nix.sel(self, "blink-cmp"))]),
           })))),
         "blink-nerdfont-nvim": nix.thunk(() => nix.app(nix.sel(super$, "blink-nerdfont-nvim", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$53,
+            [nix.POS]: $pos[52],
             dependencies: nix.thunk(() => [nix.thunk(() => nix.sel(self, "blink-cmp"))]),
           })))),
         "bluloco-nvim": nix.thunk(() => nix.app(nix.sel(super$, "bluloco-nvim", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$54,
+            [nix.POS]: $pos[53],
             dependencies: nix.thunk(() => [nix.thunk(() => nix.sel(self, "lush-nvim"))]),
           })))),
-        "bufferline-nvim": nix.thunk(() => nix.app(nix.sel(super$, "bufferline-nvim", "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: pos$55, nvimSkipModules: nix.thunk(() => ["bufferline.commands"]) })))),
+        "bufferline-nvim": nix.thunk(() => nix.app(nix.sel(super$, "bufferline-nvim", "overrideAttrs"), nix.thunk(() => ({
+            [nix.POS]: $pos[54],
+            nvimSkipModules: nix.thunk(() => ["bufferline.commands"]),
+          })))),
         "BufOnly-vim": nix.thunk(() => nix.app(nix.sel(super$, "BufOnly-vim", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$57,
-            meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), { [nix.POS]: pos$56, license: nix.thunk(() => nix.sel(lib, "licenses", "vim")) })),
+            [nix.POS]: $pos[56],
+            meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
+              [nix.POS]: $pos[55],
+              license: nix.thunk(() => nix.sel(lib, "licenses", "vim")),
+            })),
           }))),
         "bufresize-nvim": nix.thunk(() => nix.app(nix.sel(super$, "bufresize-nvim", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$59,
-            meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), { [nix.POS]: pos$58, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
+            [nix.POS]: $pos[58],
+            meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
+              [nix.POS]: $pos[57],
+              license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
+            })),
           }))),
         "bullets-vim": nix.thunk(() => nix.app(nix.sel(super$, "bullets-vim", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$61,
-            meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), { [nix.POS]: pos$60, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
+            [nix.POS]: $pos[60],
+            meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
+              [nix.POS]: $pos[59],
+              license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
+            })),
           }))),
         camelcasemotion: nix.thunk(() => nix.app(nix.sel(super$, "camelcasemotion", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$63,
-            meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), { [nix.POS]: pos$62, license: nix.thunk(() => nix.sel(lib, "licenses", "vim")) })),
+            [nix.POS]: $pos[62],
+            meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
+              [nix.POS]: $pos[61],
+              license: nix.thunk(() => nix.sel(lib, "licenses", "vim")),
+            })),
           }))),
         "catppuccin-nvim": nix.thunk(() => nix.app(nix.sel(super$, "catppuccin-nvim", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$64,
+            [nix.POS]: $pos[63],
             nvimSkipModules: nix.thunk(() => ["catppuccin.groups.integrations.noice", "catppuccin.lib.detect_integrations"]),
           })))),
         "caw-vim": nix.thunk(() => nix.app(nix.sel(super$, "caw-vim", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$66,
+            [nix.POS]: $pos[65],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$65,
+              [nix.POS]: $pos[64],
               license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
             })),
           }))),
         "ccc-nvim": nix.thunk(() => nix.app(nix.sel(super$, "ccc-nvim", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$67,
+            [nix.POS]: $pos[66],
             nvimSkipModules: nix.thunk(() => ["ccc.kit.Thread.Server._bootstrap"]),
           })))),
         chadtree: nix.thunk(() => nix.app(nix.sel(super$, "chadtree", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$69,
+            [nix.POS]: $pos[68],
             doCheck: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")),
             buildInputs: nix.thunk(() => [python3]),
             passthru: nix.thunk(() => nix.update(nix.sel(old, "passthru"), {
-              [nix.POS]: pos$68,
+              [nix.POS]: $pos[67],
               python3Dependencies: (ps) => (() => {
                 const w = nix.withScope(ps, null);
                 return [
@@ -1657,7 +487,7 @@ export default nix.lambda((args) => (() => {
             patches: nix.thunk(() => [nix.path(here, "./patches/chadtree/emulate-venv.patch")]),
           }))),
         "ChatGPT-nvim": nix.thunk(() => nix.app(nix.sel(super$, "ChatGPT-nvim", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$70,
+            [nix.POS]: $pos[69],
             dependencies: nix.thunk(() => (() => {
               const w = nix.withScope(self, null);
               return [
@@ -1668,7 +498,7 @@ export default nix.lambda((args) => (() => {
             })()),
           })))),
         "cheatsheet-nvim": nix.thunk(() => nix.app(nix.sel(super$, "cheatsheet-nvim", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$71,
+            [nix.POS]: $pos[70],
             dependencies: nix.thunk(() => (() => {
               const w = nix.withScope(self, null);
               return [
@@ -1678,25 +508,28 @@ export default nix.lambda((args) => (() => {
             })()),
           })))),
         CheckAttach: nix.thunk(() => nix.app(nix.sel(super$, "CheckAttach", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$73,
-            meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), { [nix.POS]: pos$72, license: nix.thunk(() => nix.sel(lib, "licenses", "vim")) })),
+            [nix.POS]: $pos[72],
+            meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
+              [nix.POS]: $pos[71],
+              license: nix.thunk(() => nix.sel(lib, "licenses", "vim")),
+            })),
           }))),
         "checkmate-nvim": nix.thunk(() => nix.app(nix.sel(super$, "checkmate-nvim", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$74,
+            [nix.POS]: $pos[73],
             checkInputs: nix.thunk(() => (() => {
               const w = nix.withScope(self, null);
               return [nix.thunk(() => nix.lookup(w, "luasnip"))];
             })()),
           })))),
         clang_complete: nix.thunk(() => nix.app(nix.sel(super$, "clang_complete", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$76,
+            [nix.POS]: $pos[75],
             preFixup: nix.thunk(() => nix.add(nix.add("substituteInPlace \"$out\"/plugin/clang_complete.vim \\\n  --replace-fail \"let g:clang_library_path = ", "''"), nix.str`" "let g:clang_library_path='${nix.app(nix.sel(lib, "getLib"), nix.thunk(() => nix.sel(llvmPackages, "libclang")))}/lib/libclang.so'"
 
       substituteInPlace "$out"/plugin/libclang.py \\
         --replace-fail "/usr/lib/clang" "${nix.sel(llvmPackages, "clang", "cc")}/lib/clang"
 `)),
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$75,
+              [nix.POS]: $pos[74],
               license: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "licenses")), null);
                 return [
@@ -1707,26 +540,32 @@ export default nix.lambda((args) => (() => {
             })),
           }))),
         "clangd_extensions-nvim": nix.thunk(() => nix.app(nix.sel(super$, "clangd_extensions-nvim", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$78,
-            meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), { [nix.POS]: pos$77, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
+            [nix.POS]: $pos[77],
+            meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
+              [nix.POS]: $pos[76],
+              license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
+            })),
           }))),
         "claude-code-nvim": nix.thunk(() => nix.app(nix.sel(super$, "claude-code-nvim", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$79,
+            [nix.POS]: $pos[78],
             dependencies: nix.thunk(() => (() => {
               const w = nix.withScope(self, null);
               return [nix.thunk(() => nix.lookup(w, "plenary-nvim"))];
             })()),
           })))),
         "claude-fzf-history-nvim": nix.thunk(() => nix.app(nix.sel(super$, "claude-fzf-history-nvim", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$81,
+            [nix.POS]: $pos[80],
             dependencies: nix.thunk(() => (() => {
               const w = nix.withScope(self, null);
               return [nix.thunk(() => nix.lookup(w, "fzf-lua"))];
             })()),
-            meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), { [nix.POS]: pos$80, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
+            meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
+              [nix.POS]: $pos[79],
+              license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
+            })),
           }))),
         "claude-fzf-nvim": nix.thunk(() => nix.app(nix.sel(super$, "claude-fzf-nvim", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$83,
+            [nix.POS]: $pos[82],
             dependencies: nix.thunk(() => (() => {
               const w = nix.withScope(self, null);
               return [
@@ -1735,33 +574,42 @@ export default nix.lambda((args) => (() => {
               ];
             })()),
             preInstall: "rm -r doc\n",
-            meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), { [nix.POS]: pos$82, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
+            meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
+              [nix.POS]: $pos[81],
+              license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
+            })),
           }))),
         "clever-f-vim": nix.thunk(() => nix.app(nix.sel(super$, "clever-f-vim", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$85,
-            meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), { [nix.POS]: pos$84, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
+            [nix.POS]: $pos[84],
+            meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
+              [nix.POS]: $pos[83],
+              license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
+            })),
           }))),
         clighter8: nix.thunk(() => nix.app(nix.sel(super$, "clighter8", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$86,
+            [nix.POS]: $pos[85],
             preFixup: nix.thunk(() => nix.str`sed "/^let g:clighter8_libclang_path/s|')$|${nix.app(nix.sel(lib, "getLib"), nix.thunk(() => nix.sel(llvmPackages, "clang", "cc")))}/lib/libclang.so')|" \\
   -i "$out"/plugin/clighter8.vim
 `),
           })))),
         "clipboard-image-nvim": nix.thunk(() => nix.app(nix.sel(super$, "clipboard-image-nvim", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$87,
+            [nix.POS]: $pos[86],
             postPatch: "sed -i -e 's/require \"health\"/vim.health/' lua/clipboard-image/health.lua\n",
           })))),
         "close-buffers-vim": nix.thunk(() => nix.app(nix.sel(super$, "close-buffers-vim", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$89,
-            meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), { [nix.POS]: pos$88, license: nix.thunk(() => nix.sel(lib, "licenses", "vim")) })),
+            [nix.POS]: $pos[88],
+            meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
+              [nix.POS]: $pos[87],
+              license: nix.thunk(() => nix.sel(lib, "licenses", "vim")),
+            })),
           }))),
         "cmake-tools-nvim": nix.thunk(() => nix.app(nix.sel(super$, "cmake-tools-nvim", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$90,
+            [nix.POS]: $pos[89],
             dependencies: nix.thunk(() => [nix.thunk(() => nix.sel(self, "plenary-nvim"))]),
           })))),
-        "cmd-parser-nvim": nix.thunk(() => nix.app(nix.sel(super$, "cmd-parser-nvim", "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: pos$91, nvimRequireCheck: "cmd-parser" })))),
+        "cmd-parser-nvim": nix.thunk(() => nix.app(nix.sel(super$, "cmd-parser-nvim", "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: $pos[90], nvimRequireCheck: "cmd-parser" })))),
         "cmp-ai": nix.thunk(() => nix.app(nix.sel(super$, "cmp-ai", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$92,
+            [nix.POS]: $pos[91],
             checkInputs: nix.thunk(() => [nix.thunk(() => nix.sel(self, "nvim-cmp"))]),
             dependencies: nix.thunk(() => (() => {
               const w = nix.withScope(self, null);
@@ -1769,24 +617,27 @@ export default nix.lambda((args) => (() => {
             })()),
           })))),
         "cmp-async-path": nix.thunk(() => nix.app(nix.sel(super$, "cmp-async-path", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$94,
+            [nix.POS]: $pos[93],
             checkInputs: nix.thunk(() => [nix.thunk(() => nix.sel(self, "nvim-cmp"))]),
-            meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), { [nix.POS]: pos$93, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
+            meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
+              [nix.POS]: $pos[92],
+              license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
+            })),
           }))),
         "cmp-beancount": nix.thunk(() => nix.app(nix.sel(super$, "cmp-beancount", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$95,
+            [nix.POS]: $pos[94],
             checkInputs: nix.thunk(() => [nix.thunk(() => nix.sel(self, "nvim-cmp"))]),
           })))),
         "cmp-buffer": nix.thunk(() => nix.app(nix.sel(super$, "cmp-buffer", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$96,
+            [nix.POS]: $pos[95],
             checkInputs: nix.thunk(() => [nix.thunk(() => nix.sel(self, "nvim-cmp"))]),
           })))),
         "cmp-calc": nix.thunk(() => nix.app(nix.sel(super$, "cmp-calc", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$97,
+            [nix.POS]: $pos[96],
             checkInputs: nix.thunk(() => [nix.thunk(() => nix.sel(self, "nvim-cmp"))]),
           })))),
         "cmp-clippy": nix.thunk(() => nix.app(nix.sel(super$, "cmp-clippy", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$98,
+            [nix.POS]: $pos[97],
             checkInputs: nix.thunk(() => [nix.thunk(() => nix.sel(self, "nvim-cmp"))]),
             dependencies: nix.thunk(() => (() => {
               const w = nix.withScope(self, null);
@@ -1794,64 +645,64 @@ export default nix.lambda((args) => (() => {
             })()),
           })))),
         "cmp-cmdline": nix.thunk(() => nix.app(nix.sel(super$, "cmp-cmdline", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$99,
+            [nix.POS]: $pos[98],
             checkInputs: nix.thunk(() => [nix.thunk(() => nix.sel(self, "nvim-cmp"))]),
           })))),
         "cmp-cmdline-history": nix.thunk(() => nix.app(nix.sel(super$, "cmp-cmdline-history", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$100,
+            [nix.POS]: $pos[99],
             checkInputs: nix.thunk(() => [nix.thunk(() => nix.sel(self, "nvim-cmp"))]),
           })))),
         "cmp-conjure": nix.thunk(() => nix.app(nix.sel(super$, "cmp-conjure", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$101,
+            [nix.POS]: $pos[100],
             checkInputs: nix.thunk(() => [nix.thunk(() => nix.sel(self, "nvim-cmp"))]),
             dependencies: nix.thunk(() => [nix.thunk(() => nix.sel(self, "conjure"))]),
           })))),
         "cmp-copilot": nix.thunk(() => nix.app(nix.sel(super$, "cmp-copilot", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$102,
+            [nix.POS]: $pos[101],
             checkInputs: nix.thunk(() => [nix.thunk(() => nix.sel(self, "nvim-cmp"))]),
             dependencies: nix.thunk(() => [nix.thunk(() => nix.sel(self, "copilot-vim"))]),
           })))),
         "cmp-ctags": nix.thunk(() => nix.app(nix.sel(super$, "cmp-ctags", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$103,
+            [nix.POS]: $pos[102],
             checkInputs: nix.thunk(() => [nix.thunk(() => nix.sel(self, "nvim-cmp"))]),
           })))),
         "cmp-dap": nix.thunk(() => nix.app(nix.sel(super$, "cmp-dap", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$104,
+            [nix.POS]: $pos[103],
             checkInputs: nix.thunk(() => [nix.thunk(() => nix.sel(self, "nvim-cmp"))]),
             dependencies: nix.thunk(() => [nix.thunk(() => nix.sel(self, "nvim-dap"))]),
           })))),
         "cmp-dictionary": nix.thunk(() => nix.app(nix.sel(super$, "cmp-dictionary", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$105,
+            [nix.POS]: $pos[104],
             checkInputs: nix.thunk(() => [nix.thunk(() => nix.sel(self, "nvim-cmp"))]),
           })))),
         "cmp-digraphs": nix.thunk(() => nix.app(nix.sel(super$, "cmp-digraphs", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$106,
+            [nix.POS]: $pos[105],
             checkInputs: nix.thunk(() => [nix.thunk(() => nix.sel(self, "nvim-cmp"))]),
           })))),
         "cmp-dotenv": nix.thunk(() => nix.app(nix.sel(super$, "cmp-dotenv", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$107,
+            [nix.POS]: $pos[106],
             checkInputs: nix.thunk(() => [nix.thunk(() => nix.sel(self, "nvim-cmp"))]),
           })))),
         "cmp-emoji": nix.thunk(() => nix.app(nix.sel(super$, "cmp-emoji", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$108,
+            [nix.POS]: $pos[107],
             checkInputs: nix.thunk(() => [nix.thunk(() => nix.sel(self, "nvim-cmp"))]),
           })))),
         "cmp-fish": nix.thunk(() => nix.app(nix.sel(super$, "cmp-fish", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$109,
+            [nix.POS]: $pos[108],
             checkInputs: nix.thunk(() => [nix.thunk(() => nix.sel(self, "nvim-cmp"))]),
           })))),
         "cmp-fuzzy-buffer": nix.thunk(() => nix.app(nix.sel(super$, "cmp-fuzzy-buffer", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$110,
+            [nix.POS]: $pos[109],
             checkInputs: nix.thunk(() => [nix.thunk(() => nix.sel(self, "nvim-cmp"))]),
             dependencies: nix.thunk(() => [nix.thunk(() => nix.sel(self, "fuzzy-nvim"))]),
           })))),
         "cmp-fuzzy-path": nix.thunk(() => nix.app(nix.sel(super$, "cmp-fuzzy-path", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$111,
+            [nix.POS]: $pos[110],
             checkInputs: nix.thunk(() => [nix.thunk(() => nix.sel(self, "nvim-cmp"))]),
             dependencies: nix.thunk(() => [nix.thunk(() => nix.sel(self, "fuzzy-nvim"))]),
           })))),
         "cmp-git": nix.thunk(() => nix.app(nix.sel(super$, "cmp-git", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$112,
+            [nix.POS]: $pos[111],
             checkInputs: nix.thunk(() => [nix.thunk(() => nix.sel(self, "nvim-cmp"))]),
             dependencies: nix.thunk(() => (() => {
               const w = nix.withScope(self, null);
@@ -1859,129 +710,129 @@ export default nix.lambda((args) => (() => {
             })()),
           })))),
         "cmp-greek": nix.thunk(() => nix.app(nix.sel(super$, "cmp-greek", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$113,
+            [nix.POS]: $pos[112],
             checkInputs: nix.thunk(() => [nix.thunk(() => nix.sel(self, "nvim-cmp"))]),
           })))),
         "cmp-latex-symbols": nix.thunk(() => nix.app(nix.sel(super$, "cmp-latex-symbols", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$114,
+            [nix.POS]: $pos[113],
             checkInputs: nix.thunk(() => [nix.thunk(() => nix.sel(self, "nvim-cmp"))]),
           })))),
         "cmp-look": nix.thunk(() => nix.app(nix.sel(super$, "cmp-look", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$115,
+            [nix.POS]: $pos[114],
             checkInputs: nix.thunk(() => [nix.thunk(() => nix.sel(self, "nvim-cmp"))]),
           })))),
         "cmp-neosnippet": nix.thunk(() => nix.app(nix.sel(super$, "cmp-neosnippet", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$116,
+            [nix.POS]: $pos[115],
             checkInputs: nix.thunk(() => [nix.thunk(() => nix.sel(self, "nvim-cmp"))]),
             dependencies: nix.thunk(() => [nix.thunk(() => nix.sel(self, "neosnippet-vim"))]),
           })))),
         "cmp-nixpkgs-maintainers": nix.thunk(() => nix.app(nix.sel(super$, "cmp-nixpkgs-maintainers", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$117,
+            [nix.POS]: $pos[116],
             nativeCheckInputs: nix.thunk(() => [nix$]),
             checkInputs: nix.thunk(() => [nix.thunk(() => nix.sel(self, "nvim-cmp"))]),
           })))),
         "cmp-npm": nix.thunk(() => nix.app(nix.sel(super$, "cmp-npm", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$118,
+            [nix.POS]: $pos[117],
             checkInputs: nix.thunk(() => [nix.thunk(() => nix.sel(self, "nvim-cmp"))]),
             dependencies: nix.thunk(() => [nix.thunk(() => nix.sel(self, "plenary-nvim"))]),
           })))),
         "cmp-nvim-lsp-document-symbol": nix.thunk(() => nix.app(nix.sel(super$, "cmp-nvim-lsp-document-symbol", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$119,
+            [nix.POS]: $pos[118],
             checkInputs: nix.thunk(() => [nix.thunk(() => nix.sel(self, "nvim-cmp"))]),
           })))),
         "cmp-nvim-lsp-signature-help": nix.thunk(() => nix.app(nix.sel(super$, "cmp-nvim-lsp-signature-help", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$120,
+            [nix.POS]: $pos[119],
             checkInputs: nix.thunk(() => [nix.thunk(() => nix.sel(self, "nvim-cmp"))]),
           })))),
         "cmp-nvim-lua": nix.thunk(() => nix.app(nix.sel(super$, "cmp-nvim-lua", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$121,
+            [nix.POS]: $pos[120],
             checkInputs: nix.thunk(() => [nix.thunk(() => nix.sel(self, "nvim-cmp"))]),
           })))),
         "cmp-nvim-tags": nix.thunk(() => nix.app(nix.sel(super$, "cmp-nvim-tags", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$122,
+            [nix.POS]: $pos[121],
             checkInputs: nix.thunk(() => [nix.thunk(() => nix.sel(self, "nvim-cmp"))]),
           })))),
         "cmp-nvim-ultisnips": nix.thunk(() => nix.app(nix.sel(super$, "cmp-nvim-ultisnips", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$123,
+            [nix.POS]: $pos[122],
             checkInputs: nix.thunk(() => [nix.thunk(() => nix.sel(self, "nvim-cmp"))]),
           })))),
         "cmp-omni": nix.thunk(() => nix.app(nix.sel(super$, "cmp-omni", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$124,
+            [nix.POS]: $pos[123],
             checkInputs: nix.thunk(() => [nix.thunk(() => nix.sel(self, "nvim-cmp"))]),
           })))),
         "cmp-pandoc-nvim": nix.thunk(() => nix.app(nix.sel(super$, "cmp-pandoc-nvim", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$125,
+            [nix.POS]: $pos[124],
             checkInputs: nix.thunk(() => [nix.thunk(() => nix.sel(self, "nvim-cmp"))]),
             dependencies: nix.thunk(() => [nix.thunk(() => nix.sel(self, "plenary-nvim"))]),
           })))),
         "cmp-pandoc-references": nix.thunk(() => nix.app(nix.sel(super$, "cmp-pandoc-references", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$126,
+            [nix.POS]: $pos[125],
             checkInputs: nix.thunk(() => [nix.thunk(() => nix.sel(self, "nvim-cmp"))]),
           })))),
         "cmp-path": nix.thunk(() => nix.app(nix.sel(super$, "cmp-path", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$127,
+            [nix.POS]: $pos[126],
             checkInputs: nix.thunk(() => [nix.thunk(() => nix.sel(self, "nvim-cmp"))]),
           })))),
         "cmp-rg": nix.thunk(() => nix.app(nix.sel(super$, "cmp-rg", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$128,
+            [nix.POS]: $pos[127],
             checkInputs: nix.thunk(() => [nix.thunk(() => nix.sel(self, "nvim-cmp"))]),
           })))),
         "cmp-snippy": nix.thunk(() => nix.app(nix.sel(super$, "cmp-snippy", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$129,
+            [nix.POS]: $pos[128],
             checkInputs: nix.thunk(() => [nix.thunk(() => nix.sel(self, "nvim-cmp"))]),
             dependencies: nix.thunk(() => [nix.thunk(() => nix.sel(self, "nvim-snippy"))]),
           })))),
         "cmp-spell": nix.thunk(() => nix.app(nix.sel(super$, "cmp-spell", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$130,
+            [nix.POS]: $pos[129],
             checkInputs: nix.thunk(() => [nix.thunk(() => nix.sel(self, "nvim-cmp"))]),
           })))),
         "cmp-tabby": nix.thunk(() => nix.app(nix.sel(super$, "cmp-tabby", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$131,
+            [nix.POS]: $pos[130],
             checkInputs: nix.thunk(() => [nix.thunk(() => nix.sel(self, "nvim-cmp"))]),
           })))),
         "cmp-tmux": nix.thunk(() => nix.app(nix.sel(super$, "cmp-tmux", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$132,
+            [nix.POS]: $pos[131],
             checkInputs: nix.thunk(() => [nix.thunk(() => nix.sel(self, "nvim-cmp"))]),
             dependencies: nix.thunk(() => [tmux]),
           })))),
         "cmp-treesitter": nix.thunk(() => nix.app(nix.sel(super$, "cmp-treesitter", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$133,
+            [nix.POS]: $pos[132],
             checkInputs: nix.thunk(() => [nix.thunk(() => nix.sel(self, "nvim-cmp"))]),
           })))),
         "cmp-vim-lsp": nix.thunk(() => nix.app(nix.sel(super$, "cmp-vim-lsp", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$134,
+            [nix.POS]: $pos[133],
             checkInputs: nix.thunk(() => [nix.thunk(() => nix.sel(self, "nvim-cmp"))]),
             dependencies: nix.thunk(() => [nix.thunk(() => nix.sel(self, "vim-lsp"))]),
           })))),
         "cmp-vimtex": nix.thunk(() => nix.app(nix.sel(super$, "cmp-vimtex", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$135,
+            [nix.POS]: $pos[134],
             checkInputs: nix.thunk(() => [nix.thunk(() => nix.sel(self, "nvim-cmp"))]),
           })))),
         "cmp-vimwiki-tags": nix.thunk(() => nix.app(nix.sel(super$, "cmp-vimwiki-tags", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$136,
+            [nix.POS]: $pos[135],
             checkInputs: nix.thunk(() => [nix.thunk(() => nix.sel(self, "nvim-cmp"))]),
             dependencies: nix.thunk(() => [nix.thunk(() => nix.sel(self, "vimwiki"))]),
           })))),
         "cmp-vsnip": nix.thunk(() => nix.app(nix.sel(super$, "cmp-vsnip", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$137,
+            [nix.POS]: $pos[136],
             checkInputs: nix.thunk(() => [nix.thunk(() => nix.sel(self, "nvim-cmp"))]),
           })))),
         "cmp-zsh": nix.thunk(() => nix.app(nix.sel(super$, "cmp-zsh", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$138,
+            [nix.POS]: $pos[137],
             checkInputs: nix.thunk(() => [nix.thunk(() => nix.sel(self, "nvim-cmp"))]),
             dependencies: nix.thunk(() => [zsh]),
           })))),
         cmp_luasnip: nix.thunk(() => nix.app(nix.sel(super$, "cmp_luasnip", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$139,
+            [nix.POS]: $pos[138],
             checkInputs: nix.thunk(() => [nix.thunk(() => nix.sel(self, "nvim-cmp"))]),
             dependencies: nix.thunk(() => [nix.thunk(() => nix.sel(self, "luasnip"))]),
           })))),
         cmp_yanky: nix.thunk(() => nix.app(nix.sel(super$, "cmp_yanky", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$140,
+            [nix.POS]: $pos[139],
             checkInputs: nix.thunk(() => [nix.thunk(() => nix.sel(self, "nvim-cmp"))]),
           })))),
         "cobalt2-nvim": nix.thunk(() => nix.app(nix.sel(super$, "cobalt2-nvim", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$141,
+            [nix.POS]: $pos[140],
             dependencies: nix.thunk(() => (() => {
               const w = nix.withScope(self, null);
               return [nix.thunk(() => nix.lookup(w, "colorbuddy-nvim"))];
@@ -1997,49 +848,49 @@ export default nix.lambda((args) => (() => {
             ]),
           })))),
         "coc-clap": nix.thunk(() => nix.app(nix.sel(super$, "coc-clap", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$143,
+            [nix.POS]: $pos[142],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$142,
+              [nix.POS]: $pos[141],
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
             })),
           }))),
         "coc-denite": nix.thunk(() => nix.app(nix.sel(super$, "coc-denite", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$145,
+            [nix.POS]: $pos[144],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$144,
+              [nix.POS]: $pos[143],
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
             })),
           }))),
         "coc-fzf": nix.thunk(() => nix.app(nix.sel(super$, "coc-fzf", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$147,
+            [nix.POS]: $pos[146],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$146,
+              [nix.POS]: $pos[145],
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
             })),
           }))),
         "coc-neco": nix.thunk(() => nix.app(nix.sel(super$, "coc-neco", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$149,
+            [nix.POS]: $pos[148],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$148,
+              [nix.POS]: $pos[147],
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
             })),
           }))),
         "coc-nvim": nix.thunk(() => nix.app(nix.sel(super$, "coc-nvim", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$151,
+            [nix.POS]: $pos[150],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$150,
+              [nix.POS]: $pos[149],
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
             })),
           }))),
         "cocci-syntax": nix.thunk(() => nix.app(nix.sel(super$, "cocci-syntax", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$153,
+            [nix.POS]: $pos[152],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$152,
+              [nix.POS]: $pos[151],
               license: nix.thunk(() => nix.sel(lib, "licenses", "vim")),
             })),
           }))),
         "codecompanion-history-nvim": nix.thunk(() => nix.app(nix.sel(super$, "codecompanion-history-nvim", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$154,
+            [nix.POS]: $pos[153],
             dependencies: nix.thunk(() => (() => {
               const w = nix.withScope(self, null);
               return [
@@ -2049,7 +900,7 @@ export default nix.lambda((args) => (() => {
             })()),
           })))),
         "codecompanion-nvim": nix.thunk(() => nix.app(nix.sel(super$, "codecompanion-nvim", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$155,
+            [nix.POS]: $pos[154],
             checkInputs: nix.thunk(() => (() => {
               const w = nix.withScope(self, null);
               return [
@@ -2065,78 +916,81 @@ export default nix.lambda((args) => (() => {
             nvimSkipModules: nix.thunk(() => ["minimal"]),
           })))),
         "codesettings-nvim": nix.thunk(() => nix.app(nix.sel(super$, "codesettings-nvim", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$156,
+            [nix.POS]: $pos[155],
             nvimSkipModules: nix.thunk(() => ["codesettings.build.cli"]),
           })))),
         "codewindow-nvim": nix.thunk(() => nix.app(nix.sel(super$, "codewindow-nvim", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$157,
+            [nix.POS]: $pos[156],
             dependencies: nix.thunk(() => [nix.thunk(() => nix.sel(self, "nvim-treesitter-legacy"))]),
           })))),
         "colorful-menu-nvim": nix.thunk(() => nix.app(nix.sel(super$, "colorful-menu-nvim", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$158,
+            [nix.POS]: $pos[157],
             nvimSkipModules: nix.thunk(() => ["repro_blink", "repro_cmp", "repro_native_completion"]),
           })))),
         colorizer: nix.thunk(() => nix.app(nix.sel(super$, "colorizer", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$160,
+            [nix.POS]: $pos[159],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$159,
+              [nix.POS]: $pos[158],
               license: nix.thunk(() => nix.sel(lib, "licenses", "vim")),
             })),
           }))),
         "Colour-Sampler-Pack": nix.thunk(() => nix.app(nix.sel(super$, "Colour-Sampler-Pack", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$162,
+            [nix.POS]: $pos[161],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$161,
+              [nix.POS]: $pos[160],
               license: nix.thunk(() => nix.sel(lib, "licenses", "publicDomain")),
             })),
           }))),
         "command-t": nix.thunk(() => nix.app(nix.sel(super$, "command-t", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$163,
+            [nix.POS]: $pos[162],
             nativeBuildInputs: nix.thunk(() => [getconf]),
             buildPhase: "substituteInPlace lua/wincent/commandt/lib/Makefile \\\n  --replace-fail '/bin/bash' 'bash' \\\n  --replace-fail xcrun \"\"\nmake build\n",
           })))),
         "competitest-nvim": nix.thunk(() => nix.app(nix.sel(super$, "competitest-nvim", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$164,
+            [nix.POS]: $pos[163],
             dependencies: nix.thunk(() => [nix.thunk(() => nix.sel(self, "nui-nvim"))]),
           })))),
         "compiler-explorer-nvim": nix.thunk(() => nix.app(nix.sel(super$, "compiler-explorer-nvim", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$165,
+            [nix.POS]: $pos[164],
             dependencies: nix.thunk(() => [nix.thunk(() => nix.sel(self, "plenary-nvim"))]),
           })))),
         "compiler-nvim": nix.thunk(() => nix.app(nix.sel(super$, "compiler-nvim", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$166,
+            [nix.POS]: $pos[165],
             dependencies: nix.thunk(() => [nix.thunk(() => nix.sel(self, "overseer-nvim"))]),
           })))),
         "completion-buffers": nix.thunk(() => nix.app(nix.sel(super$, "completion-buffers", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$167,
+            [nix.POS]: $pos[166],
             dependencies: nix.thunk(() => [nix.thunk(() => nix.sel(self, "completion-nvim"))]),
           })))),
         "conflict-marker-vim": nix.thunk(() => nix.app(nix.sel(super$, "conflict-marker-vim", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$169,
+            [nix.POS]: $pos[168],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$168,
+              [nix.POS]: $pos[167],
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
             })),
           }))),
         conjure: nix.thunk(() => nix.app(nix.sel(super$, "conjure", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$170,
+            [nix.POS]: $pos[169],
             dependencies: nix.thunk(() => [nix.thunk(() => nix.sel(self, "plenary-nvim"))]),
             nvimSkipModules: nix.thunk(() => ["conjure.client.fennel.def-str-util"]),
           })))),
-        "context-vim": nix.thunk(() => nix.app(nix.sel(super$, "context-vim", "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: pos$171, nvimSkipModules: nix.thunk(() => ["context.highlight"]) })))),
+        "context-vim": nix.thunk(() => nix.app(nix.sel(super$, "context-vim", "overrideAttrs"), nix.thunk(() => ({
+            [nix.POS]: $pos[170],
+            nvimSkipModules: nix.thunk(() => ["context.highlight"]),
+          })))),
         "context_filetype-vim": nix.thunk(() => nix.app(nix.sel(super$, "context_filetype-vim", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$173,
+            [nix.POS]: $pos[172],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$172,
+              [nix.POS]: $pos[171],
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
             })),
           }))),
         "copilot-cmp": nix.thunk(() => nix.app(nix.sel(super$, "copilot-cmp", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$175,
+            [nix.POS]: $pos[174],
             dependencies: nix.thunk(() => [nix.thunk(() => nix.sel(self, "copilot-lua"))]),
             patches: nix.thunk(() => [
               nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-                  [nix.POS]: pos$174,
+                  [nix.POS]: $pos[173],
                   name: "fix-deprecated-function-call.patch",
                   url: "https://github.com/zbirenbaum/copilot-cmp/commit/06430ebf99834ebc5d86c63816e409f4cb51fe79.patch",
                   sha256: "sha256-YOJPFC+qbyURFU58tAiAqbamQLmi7ovnJGkOeOTUPH0=",
@@ -2144,7 +998,7 @@ export default nix.lambda((args) => (() => {
             ]),
           })))),
         "copilot-lua": nix.thunk(() => nix.app(nix.sel(super$, "copilot-lua", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$176,
+            [nix.POS]: $pos[175],
             postPatch: nix.thunk(() => nix.str`substituteInPlace lua/copilot/config/server.lua \\
   --replace-fail 'custom_server_filepath = nil,' \\
   'custom_server_filepath = "${nix.app(nix.sel(lib, "getExe"), copilot_language_server)}",'
@@ -2152,7 +1006,7 @@ export default nix.lambda((args) => (() => {
             runtimeDeps: nix.thunk(() => [copilot_language_server, nodejs]),
           })))),
         "copilot-lualine": nix.thunk(() => nix.app(nix.sel(super$, "copilot-lualine", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$177,
+            [nix.POS]: $pos[176],
             dependencies: nix.thunk(() => (() => {
               const w = nix.withScope(self, null);
               return [
@@ -2163,18 +1017,18 @@ export default nix.lambda((args) => (() => {
             doInstallCheck: true,
           })))),
         "copilot-vim": nix.thunk(() => nix.app(nix.sel(super$, "copilot-vim", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$179,
+            [nix.POS]: $pos[178],
             postInstall: nix.thunk(() => nix.str`substituteInPlace $out/autoload/copilot/client.vim \\
   --replace-fail "let node = s:GetCommand('copilot_node_command', ['node'])" \\
                  "let node = s:GetCommand('copilot_node_command', ['${nodejs}/bin/node'])"
 `),
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$178,
+              [nix.POS]: $pos[177],
               license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
             })),
           }))),
         "CopilotChat-nvim": nix.thunk(() => nix.app(nix.sel(super$, "CopilotChat-nvim", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$180,
+            [nix.POS]: $pos[179],
             checkInputs: nix.thunk(() => (() => {
               const w = nix.withScope(self, null);
               return [
@@ -2192,16 +1046,16 @@ export default nix.lambda((args) => (() => {
             })()),
           })))),
         "coq-vim": nix.thunk(() => nix.app(nix.sel(super$, "coq-vim", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$182,
+            [nix.POS]: $pos[181],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$181,
+              [nix.POS]: $pos[180],
               license: nix.thunk(() => nix.sel(lib, "licenses", "publicDomain")),
             })),
           }))),
         coq_nvim: nix.thunk(() => nix.app(nix.sel(super$, "coq_nvim", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$184,
+            [nix.POS]: $pos[183],
             passthru: nix.thunk(() => nix.update(nix.sel(old, "passthru"), {
-              [nix.POS]: pos$183,
+              [nix.POS]: $pos[182],
               python3Dependencies: (ps) => (() => {
                 const w = nix.withScope(ps, null);
                 return [
@@ -2215,7 +1069,7 @@ export default nix.lambda((args) => (() => {
             nvimRequireCheck: nix.thunk(() => ["coq"]),
           }))),
         cornelis: nix.thunk(() => nix.app(nix.sel(super$, "cornelis", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$185,
+            [nix.POS]: $pos[184],
             dependencies: nix.thunk(() => [nix.thunk(() => nix.sel(self, "vim-textobj-user"))]),
             opt: nix.thunk(() => [nix.thunk(() => nix.sel(self, "vim-which-key"))]),
             patches: nix.thunk(() => [
@@ -2226,18 +1080,18 @@ export default nix.lambda((args) => (() => {
 `),
           })))),
         cpsm: nix.thunk(() => nix.app(nix.sel(super$, "cpsm", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$186,
+            [nix.POS]: $pos[185],
             nativeBuildInputs: nix.thunk(() => [cmake]),
             buildInputs: nix.thunk(() => [python3, boost, icu, ncurses]),
             buildPhase: "runHook preBuild\n\npatchShebangs .\nexport PY3=ON\n./install.sh\n\nrunHook postBuild\n",
           }))),
         "crates-nvim": nix.thunk(() => nix.app(nix.sel(super$, "crates-nvim", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$187,
+            [nix.POS]: $pos[186],
             checkInputs: nix.thunk(() => [nix.thunk(() => nix.sel(self, "none-ls-nvim"))]),
             dependencies: nix.thunk(() => [nix.thunk(() => nix.sel(self, "plenary-nvim"))]),
           })))),
         "cspell-nvim": nix.thunk(() => nix.app(nix.sel(super$, "cspell-nvim", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$188,
+            [nix.POS]: $pos[187],
             dependencies: nix.thunk(() => (() => {
               const w = nix.withScope(self, null);
               return [
@@ -2247,16 +1101,16 @@ export default nix.lambda((args) => (() => {
             })()),
           })))),
         "ctrlp-cmatcher": nix.thunk(() => nix.app(nix.sel(super$, "ctrlp-cmatcher", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$191,
+            [nix.POS]: $pos[190],
             patches: nix.thunk(() => [
               nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-                  [nix.POS]: pos$189,
+                  [nix.POS]: $pos[188],
                   name: "drop_python2_pt1.patch",
                   url: "https://github.com/JazzCore/ctrlp-cmatcher/commit/3abad6ea155a7f6e138e1de3ac5428177bfb0254.patch",
                   sha256: "sha256-fn2puqYeJdPTdlTT4JjwVz7b3A+Xcuj/xtP6TETlB1U=",
                 })))),
               nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-                  [nix.POS]: pos$190,
+                  [nix.POS]: $pos[189],
                   name: "drop_python2_pt2.patch",
                   url: "https://github.com/JazzCore/ctrlp-cmatcher/commit/385c8d02398dbb328b1a943a94e7109fe6473a08.patch",
                   sha256: "sha256-yXKCq8sqO0Db/sZREuSeqKwKO71cmTsAvWftoOQehZo=",
@@ -2269,21 +1123,21 @@ export default nix.lambda((args) => (() => {
             buildPhase: "patchShebangs .\n./install.sh\n",
           })))),
         "ctrlp-vim": nix.thunk(() => nix.app(nix.sel(super$, "ctrlp-vim", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$193,
+            [nix.POS]: $pos[192],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$192,
+              [nix.POS]: $pos[191],
               license: nix.thunk(() => nix.sel(lib, "licenses", "vim")),
             })),
           }))),
         "ctrlp-z": nix.thunk(() => nix.app(nix.sel(super$, "ctrlp-z", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$195,
+            [nix.POS]: $pos[194],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$194,
+              [nix.POS]: $pos[193],
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
             })),
           }))),
         "dadbod-grip-nvim": nix.thunk(() => nix.app(nix.sel(super$, "dadbod-grip-nvim", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$196,
+            [nix.POS]: $pos[195],
             checkInputs: nix.thunk(() => (() => {
               const w = nix.withScope(self, null);
               return [
@@ -2292,49 +1146,49 @@ export default nix.lambda((args) => (() => {
               ];
             })()),
           })))),
-        "dailies-nvim": nix.thunk(() => nix.app(nix.sel(super$, "dailies-nvim", "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: pos$197, runtimeDeps: nix.thunk(() => [dailies]) })))),
+        "dailies-nvim": nix.thunk(() => nix.app(nix.sel(super$, "dailies-nvim", "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: $pos[196], runtimeDeps: nix.thunk(() => [dailies]) })))),
         "darkearth-nvim": nix.thunk(() => nix.app(nix.sel(super$, "darkearth-nvim", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$198,
+            [nix.POS]: $pos[197],
             dependencies: nix.thunk(() => [nix.thunk(() => nix.sel(self, "lush-nvim"))]),
           })))),
         "ddc-filter-matcher_head": nix.thunk(() => nix.app(nix.sel(super$, "ddc-filter-matcher_head", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$199,
+            [nix.POS]: $pos[198],
             dependencies: nix.thunk(() => [nix.thunk(() => nix.sel(self, "ddc-vim"))]),
           })))),
         "ddc-filter-sorter_rank": nix.thunk(() => nix.app(nix.sel(super$, "ddc-filter-sorter_rank", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$200,
+            [nix.POS]: $pos[199],
             dependencies: nix.thunk(() => [nix.thunk(() => nix.sel(self, "ddc-vim"))]),
           })))),
         "ddc-fuzzy": nix.thunk(() => nix.app(nix.sel(super$, "ddc-fuzzy", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$202,
+            [nix.POS]: $pos[201],
             dependencies: nix.thunk(() => [nix.thunk(() => nix.sel(self, "ddc-vim"))]),
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$201,
+              [nix.POS]: $pos[200],
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
             })),
           }))),
         "ddc-source-around": nix.thunk(() => nix.app(nix.sel(super$, "ddc-source-around", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$203,
+            [nix.POS]: $pos[202],
             dependencies: nix.thunk(() => [nix.thunk(() => nix.sel(self, "ddc-vim"))]),
           })))),
         "ddc-source-file": nix.thunk(() => nix.app(nix.sel(super$, "ddc-source-file", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$204,
+            [nix.POS]: $pos[203],
             dependencies: nix.thunk(() => [nix.thunk(() => nix.sel(self, "ddc-vim"))]),
           })))),
         "ddc-source-lsp": nix.thunk(() => nix.app(nix.sel(super$, "ddc-source-lsp", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$206,
+            [nix.POS]: $pos[205],
             dependencies: nix.thunk(() => [nix.thunk(() => nix.sel(self, "ddc-vim"))]),
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$205,
+              [nix.POS]: $pos[204],
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
             })),
           }))),
         "ddc-ui-native": nix.thunk(() => nix.app(nix.sel(super$, "ddc-ui-native", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$207,
+            [nix.POS]: $pos[206],
             dependencies: nix.thunk(() => [nix.thunk(() => nix.sel(self, "ddc-vim"))]),
           })))),
         "ddc-ui-pum": nix.thunk(() => nix.app(nix.sel(super$, "ddc-ui-pum", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$208,
+            [nix.POS]: $pos[207],
             dependencies: nix.thunk(() => (() => {
               const w = nix.withScope(self, null);
               return [
@@ -2344,19 +1198,19 @@ export default nix.lambda((args) => (() => {
             })()),
           })))),
         "ddc-vim": nix.thunk(() => nix.app(nix.sel(super$, "ddc-vim", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$209,
+            [nix.POS]: $pos[208],
             dependencies: nix.thunk(() => [nix.thunk(() => nix.sel(self, "denops-vim"))]),
           })))),
         "debugmaster-nvim": nix.thunk(() => nix.app(nix.sel(super$, "debugmaster-nvim", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$210,
+            [nix.POS]: $pos[209],
             dependencies: nix.thunk(() => [nix.thunk(() => nix.sel(self, "nvim-dap"))]),
           })))),
         "defx-nvim": nix.thunk(() => nix.app(nix.sel(super$, "defx-nvim", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$211,
+            [nix.POS]: $pos[210],
             dependencies: nix.thunk(() => [nix.thunk(() => nix.sel(self, "nvim-yarp"))]),
           })))),
         "demicolon-nvim": nix.thunk(() => nix.app(nix.sel(super$, "demicolon-nvim", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$213,
+            [nix.POS]: $pos[212],
             dependencies: nix.thunk(() => (() => {
               const w = nix.withScope(self, null);
               return [
@@ -2365,7 +1219,7 @@ export default nix.lambda((args) => (() => {
               ];
             })()),
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$212,
+              [nix.POS]: $pos[211],
               description: "Overloaded ; and , keys in Neovim",
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
               maintainers: nix.thunk(() => (() => {
@@ -2375,20 +1229,20 @@ export default nix.lambda((args) => (() => {
             })),
           }))),
         "denite-nvim": nix.thunk(() => nix.app(nix.sel(super$, "denite-nvim", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$215,
+            [nix.POS]: $pos[214],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$214,
+              [nix.POS]: $pos[213],
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
             })),
           }))),
         "denops-vim": nix.thunk(() => nix.app(nix.sel(super$, "denops-vim", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$216,
+            [nix.POS]: $pos[215],
             postPatch: nix.thunk(() => nix.str`# Use Nix's Deno instead of an arbitrary install
 substituteInPlace ./autoload/denops.vim --replace-fail "call denops#_internal#conf#define('denops#deno', 'deno')" "call denops#_internal#conf#define('denops#deno', '${deno}/bin/deno')"
 `),
           })))),
         "deoplete-fish": nix.thunk(() => nix.app(nix.sel(super$, "deoplete-fish", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$217,
+            [nix.POS]: $pos[216],
             dependencies: nix.thunk(() => (() => {
               const w = nix.withScope(self, null);
               return [
@@ -2398,7 +1252,7 @@ substituteInPlace ./autoload/denops.vim --replace-fail "call denops#_internal#co
             })()),
           })))),
         "deoplete-go": nix.thunk(() => nix.app(nix.sel(super$, "deoplete-go", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$218,
+            [nix.POS]: $pos[217],
             nativeBuildInputs: nix.thunk(() => [
               nix.thunk(() => nix.app(nix.sel(python3, "withPackages"), (ps) => (() => {
                   const w = nix.withScope(ps, null);
@@ -2408,21 +1262,21 @@ substituteInPlace ./autoload/denops.vim --replace-fail "call denops#_internal#co
             buildPhase: "pushd ./rplugin/python3/deoplete/ujson\npython3 setup.py build --build-base=$PWD/build --build-lib=$PWD/build\npopd\nfind ./rplugin/ -name \"ujson*.so\" -exec mv -v {} ./rplugin/python3/ \\;\n",
           })))),
         "deoplete-julia": nix.thunk(() => nix.app(nix.sel(super$, "deoplete-julia", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$220,
+            [nix.POS]: $pos[219],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$219,
+              [nix.POS]: $pos[218],
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
             })),
           }))),
         "deoplete-khard": nix.thunk(() => nix.app(nix.sel(super$, "deoplete-khard", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$223,
+            [nix.POS]: $pos[222],
             dependencies: nix.thunk(() => [nix.thunk(() => nix.sel(self, "deoplete-nvim"))]),
             passthru: nix.thunk(() => nix.update(nix.sel(old, "passthru"), {
-              [nix.POS]: pos$221,
+              [nix.POS]: $pos[220],
               python3Dependencies: (ps) => [nix.thunk(() => nix.app(nix.sel(ps, "toPythonModule"), khard))],
             })),
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$222,
+              [nix.POS]: $pos[221],
               description: "Address-completion for khard via deoplete",
               homepage: "https://github.com/nicoe/deoplete-khard",
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -2433,71 +1287,71 @@ substituteInPlace ./autoload/denops.vim --replace-fail "call denops#_internal#co
             })),
           }))),
         "deoplete-lsp": nix.thunk(() => nix.app(nix.sel(super$, "deoplete-lsp", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$225,
+            [nix.POS]: $pos[224],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$224,
+              [nix.POS]: $pos[223],
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
             })),
           }))),
         "deoplete-nvim": nix.thunk(() => nix.app(nix.sel(super$, "deoplete-nvim", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$227,
+            [nix.POS]: $pos[226],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$226,
+              [nix.POS]: $pos[225],
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
             })),
           }))),
         "deoplete-zsh": nix.thunk(() => nix.app(nix.sel(super$, "deoplete-zsh", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$229,
+            [nix.POS]: $pos[228],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$228,
+              [nix.POS]: $pos[227],
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
             })),
           }))),
         "devdocs-nvim": nix.thunk(() => nix.app(nix.sel(super$, "devdocs-nvim", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$230,
+            [nix.POS]: $pos[229],
             nvimSkipModules: nix.thunk(() => ["devdocs.state"]),
             runtimeDeps: nix.thunk(() => [curl, jq, pandoc]),
           })))),
         "devdocs-vim": nix.thunk(() => nix.app(nix.sel(super$, "devdocs-vim", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$232,
+            [nix.POS]: $pos[231],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$231,
+              [nix.POS]: $pos[230],
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
             })),
           }))),
         "diagram-nvim": nix.thunk(() => nix.app(nix.sel(super$, "diagram-nvim", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$233,
+            [nix.POS]: $pos[232],
             dependencies: nix.thunk(() => [nix.thunk(() => nix.sel(self, "image-nvim"))]),
           })))),
         "diffview-nvim": nix.thunk(() => nix.app(nix.sel(super$, "diffview-nvim", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$235,
+            [nix.POS]: $pos[234],
             dependencies: nix.thunk(() => [nix.thunk(() => nix.sel(self, "plenary-nvim"))]),
             doInstallCheck: true,
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$234,
+              [nix.POS]: $pos[233],
               license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
             })),
           }))),
         "diffview-plus-nvim": nix.thunk(() => nix.app(nix.sel(super$, "diffview-plus-nvim", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$237,
+            [nix.POS]: $pos[236],
             dependencies: nix.thunk(() => [nix.thunk(() => nix.sel(self, "plenary-nvim"))]),
             doInstallCheck: true,
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$236,
+              [nix.POS]: $pos[235],
               license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
               description: "Cycle through diffs for all modified files for any git rev (dlyongemallo's active fork)",
             })),
           }))),
         "direnv-vim": nix.thunk(() => nix.app(nix.sel(super$, "direnv-vim", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$238,
+            [nix.POS]: $pos[237],
             preFixup: nix.thunk(() => nix.add(nix.selOr(old, () => "", "preFixup"), nix.str`substituteInPlace $out/autoload/direnv.vim \\
   --replace-fail "let s:direnv_cmd = get(g:, 'direnv_cmd', 'direnv')" \\
     "let s:direnv_cmd = get(g:, 'direnv_cmd', '${nix.app(nix.sel(lib, "getBin"), direnv)}/bin/direnv')"
 `)),
           }))),
-        "distant-nvim": nix.thunk(() => nix.app(nix.sel(super$, "distant-nvim", "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: pos$239, runtimeDeps: nix.thunk(() => [distant]) })))),
+        "distant-nvim": nix.thunk(() => nix.app(nix.sel(super$, "distant-nvim", "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: $pos[238], runtimeDeps: nix.thunk(() => [distant]) })))),
         "dotnet-nvim": nix.thunk(() => nix.app(nix.sel(super$, "dotnet-nvim", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$240,
+            [nix.POS]: $pos[239],
             dependencies: nix.thunk(() => (() => {
               const w = nix.withScope(self, null);
               return [
@@ -2506,9 +1360,9 @@ substituteInPlace ./autoload/denops.vim --replace-fail "call denops#_internal#co
               ];
             })()),
           })))),
-        "dropbar-nvim": nix.thunk(() => nix.app(nix.sel(super$, "dropbar-nvim", "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: pos$241, nvimSkipModules: nix.thunk(() => ["dropbar.menu"]) })))),
+        "dropbar-nvim": nix.thunk(() => nix.app(nix.sel(super$, "dropbar-nvim", "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: $pos[240], nvimSkipModules: nix.thunk(() => ["dropbar.menu"]) })))),
         "easy-dotnet-nvim": nix.thunk(() => nix.app(nix.sel(super$, "easy-dotnet-nvim", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$242,
+            [nix.POS]: $pos[241],
             dependencies: nix.thunk(() => (() => {
               const w = nix.withScope(self, null);
               return [nix.thunk(() => nix.lookup(w, "plenary-nvim"))];
@@ -2523,28 +1377,28 @@ substituteInPlace ./autoload/denops.vim --replace-fail "call denops#_internal#co
             })()),
           })))),
         "echodoc-vim": nix.thunk(() => nix.app(nix.sel(super$, "echodoc-vim", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$244,
+            [nix.POS]: $pos[243],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$243,
+              [nix.POS]: $pos[242],
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
             })),
           }))),
-        "ecolog-nvim": nix.thunk(() => nix.app(nix.sel(super$, "ecolog-nvim", "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: pos$245, nvimSkipModules: nix.thunk(() => ["repro"]) })))),
+        "ecolog-nvim": nix.thunk(() => nix.app(nix.sel(super$, "ecolog-nvim", "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: $pos[244], nvimSkipModules: nix.thunk(() => ["repro"]) })))),
         "editorconfig-vim": nix.thunk(() => nix.app(nix.sel(super$, "editorconfig-vim", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$247,
+            [nix.POS]: $pos[246],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$246,
+              [nix.POS]: $pos[245],
               license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),
             })),
           }))),
         "efmls-configs-nvim": nix.thunk(() => nix.app(nix.sel(super$, "efmls-configs-nvim", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$248,
+            [nix.POS]: $pos[247],
             dependencies: nix.thunk(() => [nix.thunk(() => nix.sel(self, "nvim-lspconfig"))]),
           })))),
         "eldritch-nvim": nix.thunk(() => nix.app(nix.sel(super$, "eldritch-nvim", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$250,
+            [nix.POS]: $pos[249],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$249,
+              [nix.POS]: $pos[248],
               description: "A theme for the Ancient Ones! (NVIM)",
               maintainers: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -2553,15 +1407,15 @@ substituteInPlace ./autoload/denops.vim --replace-fail "call denops#_internal#co
             })),
           }))),
         "elixir-tools-nvim": nix.thunk(() => nix.app(nix.sel(super$, "elixir-tools-nvim", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$251,
+            [nix.POS]: $pos[250],
             dependencies: nix.thunk(() => [nix.thunk(() => nix.sel(self, "plenary-nvim"))]),
             fixupPhase: "patchShebangs $(find $out/bin/ -type f -not -name credo-language-server)\n",
           })))),
         "evergarden-nvim": nix.thunk(() => nix.app(nix.sel(super$, "evergarden-nvim", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$253,
+            [nix.POS]: $pos[252],
             nvimSkipModules: nix.thunk(() => ["evergarden.extras", "minidoc"]),
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$252,
+              [nix.POS]: $pos[251],
               license: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "licenses")), null);
                 return [
@@ -2572,19 +1426,19 @@ substituteInPlace ./autoload/denops.vim --replace-fail "call denops#_internal#co
             })),
           }))),
         "executor-nvim": nix.thunk(() => nix.app(nix.sel(super$, "executor-nvim", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$254,
+            [nix.POS]: $pos[253],
             dependencies: nix.thunk(() => [nix.thunk(() => nix.sel(self, "nui-nvim"))]),
           })))),
-        "faster-nvim": nix.thunk(() => nix.app(nix.sel(super$, "faster-nvim", "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: pos$255, nvimSkipModules: nix.thunk(() => ["faster.commands"]) })))),
+        "faster-nvim": nix.thunk(() => nix.app(nix.sel(super$, "faster-nvim", "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: $pos[254], nvimSkipModules: nix.thunk(() => ["faster.commands"]) })))),
         fastfold: nix.thunk(() => nix.app(nix.sel(super$, "fastfold", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$257,
+            [nix.POS]: $pos[256],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$256,
+              [nix.POS]: $pos[255],
               license: nix.thunk(() => nix.sel(lib, "licenses", "wtfpl")),
             })),
           }))),
         "faust-nvim": nix.thunk(() => nix.app(nix.sel(super$, "faust-nvim", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$258,
+            [nix.POS]: $pos[257],
             dependencies: nix.thunk(() => (() => {
               const w = nix.withScope(self, null);
               return [
@@ -2595,52 +1449,52 @@ substituteInPlace ./autoload/denops.vim --replace-fail "call denops#_internal#co
             nvimSkipModules: nix.thunk(() => ["faust-nvim.autosnippets"]),
           })))),
         "fcitx-vim": nix.thunk(() => nix.app(nix.sel(super$, "fcitx-vim", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$261,
+            [nix.POS]: $pos[260],
             passthru: nix.thunk(() => nix.update(nix.sel(old, "passthru"), {
-              [nix.POS]: pos$259,
+              [nix.POS]: $pos[258],
               python3Dependencies: (ps) => (() => {
                 const w = nix.withScope(ps, null);
                 return [nix.thunk(() => nix.lookup(w, "dbus-python"))];
               })(),
             })),
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$260,
+              [nix.POS]: $pos[259],
               description: "Keep and restore fcitx state when leaving/re-entering insert mode or search mode",
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
             })),
           }))),
         "file-line": nix.thunk(() => nix.app(nix.sel(super$, "file-line", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$263,
+            [nix.POS]: $pos[262],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$262,
+              [nix.POS]: $pos[261],
               license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),
             })),
           }))),
-        "flash-nvim": nix.thunk(() => nix.app(nix.sel(super$, "flash-nvim", "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: pos$264, nvimSkipModules: nix.thunk(() => ["flash.docs"]) })))),
+        "flash-nvim": nix.thunk(() => nix.app(nix.sel(super$, "flash-nvim", "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: $pos[263], nvimSkipModules: nix.thunk(() => ["flash.docs"]) })))),
         "flit-nvim": nix.thunk(() => nix.app(nix.sel(super$, "flit-nvim", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$265,
+            [nix.POS]: $pos[264],
             dependencies: nix.thunk(() => [nix.thunk(() => nix.sel(self, "leap-nvim"))]),
           })))),
         floaterm: nix.thunk(() => nix.app(nix.sel(super$, "floaterm", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$266,
+            [nix.POS]: $pos[265],
             dependencies: nix.thunk(() => [nix.thunk(() => nix.sel(self, "nvzone-volt"))]),
           })))),
         "flow-nvim": nix.thunk(() => nix.app(nix.sel(super$, "flow-nvim", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$267,
+            [nix.POS]: $pos[266],
             nvimSkipModules: nix.thunk(() => ["barbecue.theme.flow"]),
           })))),
         "flutter-tools-nvim": nix.thunk(() => nix.app(nix.sel(super$, "flutter-tools-nvim", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$268,
+            [nix.POS]: $pos[267],
             checkInputs: nix.thunk(() => [nix.thunk(() => nix.sel(self, "nvim-dap"))]),
             dependencies: nix.thunk(() => [nix.thunk(() => nix.sel(self, "plenary-nvim"))]),
           })))),
         forms: nix.thunk(() => nix.app(nix.sel(super$, "forms", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$269,
+            [nix.POS]: $pos[268],
             dependencies: nix.thunk(() => [nix.thunk(() => nix.sel(self, "self"))]),
           })))),
-        "freeze-nvim": nix.thunk(() => nix.app(nix.sel(super$, "freeze-nvim", "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: pos$270, runtimeDeps: nix.thunk(() => [charm_freeze]) })))),
+        "freeze-nvim": nix.thunk(() => nix.app(nix.sel(super$, "freeze-nvim", "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: $pos[269], runtimeDeps: nix.thunk(() => [charm_freeze]) })))),
         "fugit2-nvim": nix.thunk(() => nix.app(nix.sel(super$, "fugit2-nvim", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$271,
+            [nix.POS]: $pos[270],
             checkInputs: nix.thunk(() => [nix.thunk(() => nix.sel(self, "nvim-web-devicons"))]),
             dependencies: nix.thunk(() => (() => {
               const w = nix.withScope(self, null);
@@ -2667,7 +1521,7 @@ substituteInPlace lua/fugit2/view/git_blame_file.lua \\
 `),
           })))),
         "fuzzy-nvim": nix.thunk(() => nix.app(nix.sel(super$, "fuzzy-nvim", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$272,
+            [nix.POS]: $pos[271],
             checkInputs: nix.thunk(() => (() => {
               const w = nix.withScope(self, null);
               return [nix.thunk(() => nix.lookup(w, "telescope-zf-native-nvim"))];
@@ -2676,7 +1530,7 @@ substituteInPlace lua/fugit2/view/git_blame_file.lua \\
             nvimSkipModules: nix.thunk(() => ["fuzzy_nvim.fzy_matcher"]),
           })))),
         "fyler-nvim": nix.thunk(() => nix.app(nix.sel(super$, "fyler-nvim", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$273,
+            [nix.POS]: $pos[272],
             nvimSkipModules: nix.thunk(() => [
               "fyler.extensions.trash",
               "fyler.finder",
@@ -2686,61 +1540,61 @@ substituteInPlace lua/fugit2/view/git_blame_file.lua \\
               "fyler.state",
             ]),
           })))),
-        "fzf-checkout-vim": nix.thunk(() => nix.app(nix.sel(super$, "fzf-checkout-vim", "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: pos$274, prePatch: "rm Makefile\n" })))),
+        "fzf-checkout-vim": nix.thunk(() => nix.app(nix.sel(super$, "fzf-checkout-vim", "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: $pos[273], prePatch: "rm Makefile\n" })))),
         "fzf-hoogle-vim": nix.thunk(() => nix.app(nix.sel(super$, "fzf-hoogle-vim", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$276,
+            [nix.POS]: $pos[275],
             propagatedBuildInputs: nix.thunk(() => [jq, gawk]),
             dependencies: nix.thunk(() => [nix.thunk(() => nix.sel(self, "fzf-vim"))]),
             passthru: nix.thunk(() => nix.update(nix.sel(old, "passthru"), {
-              [nix.POS]: pos$275,
+              [nix.POS]: $pos[274],
               initLua: "vim.g.hoogle_fzf_cache_file = vim.fn.stdpath('cache')..'/hoogle_cache.json",
             })),
           }))),
         "fzf-lsp-nvim": nix.thunk(() => nix.app(nix.sel(super$, "fzf-lsp-nvim", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$277,
+            [nix.POS]: $pos[276],
             dependencies: nix.thunk(() => [nix.thunk(() => nix.sel(self, "plenary-nvim"))]),
           })))),
         "fzf-lua": nix.thunk(() => nix.app(nix.sel(super$, "fzf-lua", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$278,
+            [nix.POS]: $pos[277],
             runtimeDeps: nix.thunk(() => [fzf]),
             nvimSkipModules: nix.thunk(() => ["fzf-lua.spawn", "fzf-lua.rpc", "fzf-lua.types"]),
           })))),
         "fzf-vim": nix.thunk(() => nix.app(nix.sel(super$, "fzf-vim", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$279,
+            [nix.POS]: $pos[278],
             dependencies: nix.thunk(() => [nix.thunk(() => nix.sel(self, "fzf-wrapper"))]),
           })))),
-        "gen-nvim": nix.thunk(() => nix.app(nix.sel(super$, "gen-nvim", "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: pos$280, runtimeDeps: nix.thunk(() => [curl]) })))),
+        "gen-nvim": nix.thunk(() => nix.app(nix.sel(super$, "gen-nvim", "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: $pos[279], runtimeDeps: nix.thunk(() => [curl]) })))),
         "gentoo-syntax": nix.thunk(() => nix.app(nix.sel(super$, "gentoo-syntax", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$282,
+            [nix.POS]: $pos[281],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$281,
+              [nix.POS]: $pos[280],
               license: nix.thunk(() => nix.sel(lib, "licenses", "vim")),
             })),
           }))),
         "gh-nvim": nix.thunk(() => nix.app(nix.sel(super$, "gh-nvim", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$283,
+            [nix.POS]: $pos[282],
             dependencies: nix.thunk(() => [nix.thunk(() => nix.sel(self, "litee-nvim"))]),
           })))),
         ghcid: nix.thunk(() => nix.app(nix.sel(super$, "ghcid", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$285,
+            [nix.POS]: $pos[284],
             configurePhase: "cd plugins/nvim",
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$284,
+              [nix.POS]: $pos[283],
               license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
             })),
           }))),
         "ghcmod-vim": nix.thunk(() => nix.app(nix.sel(super$, "ghcmod-vim", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$287,
+            [nix.POS]: $pos[286],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$286,
+              [nix.POS]: $pos[285],
               license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
             })),
           }))),
         "git-conflict-nvim": nix.thunk(() => nix.app(nix.sel(super$, "git-conflict-nvim", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$289,
+            [nix.POS]: $pos[288],
             version: "2.1.0",
             src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                [nix.POS]: pos$288,
+                [nix.POS]: $pos[287],
                 owner: "akinsho",
                 repo: "git-conflict.nvim",
                 tag: "v2.1.0",
@@ -2748,30 +1602,30 @@ substituteInPlace lua/fugit2/view/git_blame_file.lua \\
               })))),
           })))),
         "git-worktree-nvim": nix.thunk(() => nix.app(nix.sel(super$, "git-worktree-nvim", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$290,
+            [nix.POS]: $pos[289],
             dependencies: nix.thunk(() => [nix.thunk(() => nix.sel(self, "plenary-nvim"))]),
           })))),
         "gitlab-vim": nix.thunk(() => nix.app(nix.sel(super$, "gitlab-vim", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$292,
+            [nix.POS]: $pos[291],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$291,
+              [nix.POS]: $pos[290],
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
             })),
           }))),
         "gitlinker-nvim": nix.thunk(() => nix.app(nix.sel(super$, "gitlinker-nvim", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$293,
+            [nix.POS]: $pos[292],
             dependencies: nix.thunk(() => [nix.thunk(() => nix.sel(self, "plenary-nvim"))]),
           })))),
         gitv: nix.thunk(() => nix.app(nix.sel(super$, "gitv", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$295,
+            [nix.POS]: $pos[294],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$294,
+              [nix.POS]: $pos[293],
               license: nix.thunk(() => nix.sel(lib, "licenses", "vim")),
             })),
           }))),
-        "glow-nvim": nix.thunk(() => nix.app(nix.sel(super$, "glow-nvim", "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: pos$296, runtimeDeps: nix.thunk(() => [glow]) })))),
+        "glow-nvim": nix.thunk(() => nix.app(nix.sel(super$, "glow-nvim", "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: $pos[295], runtimeDeps: nix.thunk(() => [glow]) })))),
         "go-nvim": nix.thunk(() => nix.app(nix.sel(super$, "go-nvim", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$297,
+            [nix.POS]: $pos[296],
             dependencies: nix.thunk(() => (() => {
               const w = nix.withScope(self, null);
               return [
@@ -2790,7 +1644,7 @@ substituteInPlace lua/fugit2/view/git_blame_file.lua \\
             nvimSkipModules: nix.thunk(() => ["init", "go.ai.init", "go.comment", "go.format", "go.gotests", "go.project"]),
           })))),
         "GPTModels-nvim": nix.thunk(() => nix.app(nix.sel(super$, "GPTModels-nvim", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$298,
+            [nix.POS]: $pos[297],
             dependencies: nix.thunk(() => (() => {
               const w = nix.withScope(self, null);
               return [
@@ -2800,43 +1654,43 @@ substituteInPlace lua/fugit2/view/git_blame_file.lua \\
             })()),
           })))),
         gruvbox: nix.thunk(() => nix.app(nix.sel(super$, "gruvbox", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$300,
+            [nix.POS]: $pos[299],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$299,
+              [nix.POS]: $pos[298],
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
             })),
           }))),
         "guard-collection": nix.thunk(() => nix.app(nix.sel(super$, "guard-collection", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$301,
+            [nix.POS]: $pos[300],
             dependencies: nix.thunk(() => [nix.thunk(() => nix.sel(self, "guard-nvim"))]),
           })))),
         "guihua-lua": nix.thunk(() => nix.app(nix.sel(super$, "guihua-lua", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$302,
+            [nix.POS]: $pos[301],
             dependencies: nix.thunk(() => [nix.thunk(() => nix.sel(self, "nvim-treesitter"))]),
             buildPhase: "runHook preBuild\n\npushd lua/fzy\nmake\npopd\n\nrunHook postBuild\n",
             nvimSkipModules: nix.thunk(() => ["fzy.fzy-lua-native", "guihua.ts_obsolete.highlight"]),
           })))),
         "gundo-vim": nix.thunk(() => nix.app(nix.sel(super$, "gundo-vim", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$304,
+            [nix.POS]: $pos[303],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$303,
+              [nix.POS]: $pos[302],
               license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
             })),
           }))),
         "gv-vim": nix.thunk(() => nix.app(nix.sel(super$, "gv-vim", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$306,
+            [nix.POS]: $pos[305],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$305,
+              [nix.POS]: $pos[304],
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
             })),
           }))),
         "gx-nvim": nix.thunk(() => nix.app(nix.sel(super$, "gx-nvim", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$307,
+            [nix.POS]: $pos[306],
             runtimeDeps: nix.thunk(() => [xdg_utils]),
             nvimRequireCheck: "gx",
           })))),
         "hardhat-nvim": nix.thunk(() => nix.app(nix.sel(super$, "hardhat-nvim", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$309,
+            [nix.POS]: $pos[308],
             checkInputs: nix.thunk(() => (() => {
               const w = nix.withScope(self, null);
               return [
@@ -2851,49 +1705,49 @@ substituteInPlace lua/fugit2/view/git_blame_file.lua \\
             })()),
             nvimSkipModules: nix.thunk(() => ["overseer.component.hardhat.refresh_gas_extmarks"]),
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$308,
+              [nix.POS]: $pos[307],
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
             })),
           }))),
         "hare-vim": nix.thunk(() => nix.app(nix.sel(super$, "hare-vim", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$311,
+            [nix.POS]: $pos[310],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$310,
+              [nix.POS]: $pos[309],
               license: nix.thunk(() => nix.sel(lib, "licenses", "vim")),
             })),
           }))),
         harpoon: nix.thunk(() => nix.app(nix.sel(super$, "harpoon", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$312,
+            [nix.POS]: $pos[311],
             dependencies: nix.thunk(() => [nix.thunk(() => nix.sel(self, "plenary-nvim"))]),
           })))),
         "harpoon-lualine": nix.thunk(() => nix.app(nix.sel(super$, "harpoon-lualine", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$313,
+            [nix.POS]: $pos[312],
             dependencies: nix.thunk(() => [
               nix.thunk(() => nix.sel(self, "lualine-nvim")),
               nix.thunk(() => nix.sel(self, "harpoon2")),
             ]),
           })))),
         harpoon2: nix.thunk(() => nix.app(nix.sel(super$, "harpoon2", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$314,
+            [nix.POS]: $pos[313],
             dependencies: nix.thunk(() => [nix.thunk(() => nix.sel(self, "plenary-nvim"))]),
           })))),
         "haskell-scope-highlighting-nvim": nix.thunk(() => nix.app(nix.sel(super$, "haskell-scope-highlighting-nvim", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$315,
+            [nix.POS]: $pos[314],
             dependencies: nix.thunk(() => [nix.thunk(() => nix.sel(self, "nvim-treesitter-parsers", "haskell"))]),
           })))),
         "haskell-snippets-nvim": nix.thunk(() => nix.app(nix.sel(super$, "haskell-snippets-nvim", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$316,
+            [nix.POS]: $pos[315],
             dependencies: nix.thunk(() => [nix.thunk(() => nix.sel(self, "luasnip"))]),
           })))),
         "haskell-tools-nvim": nix.thunk(() => nix.app(nix.sel(super$, "haskell-tools-nvim", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$317,
+            [nix.POS]: $pos[316],
             checkInputs: nix.thunk(() => [nix.thunk(() => nix.sel(self, "telescope-nvim"))]),
           })))),
-        "heirline-components-nvim": nix.thunk(() => nix.app(nix.sel(super$, "heirline-components-nvim", "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: pos$318, nvimRequireCheck: "heirline-components.all" })))),
-        "helm-ls-nvim": nix.thunk(() => nix.app(nix.sel(super$, "helm-ls-nvim", "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: pos$319, runtimeDeps: nix.thunk(() => [helm_ls]) })))),
-        "hex-nvim": nix.thunk(() => nix.app(nix.sel(super$, "hex-nvim", "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: pos$320, runtimeDeps: nix.thunk(() => [xxd]) })))),
+        "heirline-components-nvim": nix.thunk(() => nix.app(nix.sel(super$, "heirline-components-nvim", "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: $pos[317], nvimRequireCheck: "heirline-components.all" })))),
+        "helm-ls-nvim": nix.thunk(() => nix.app(nix.sel(super$, "helm-ls-nvim", "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: $pos[318], runtimeDeps: nix.thunk(() => [helm_ls]) })))),
+        "hex-nvim": nix.thunk(() => nix.app(nix.sel(super$, "hex-nvim", "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: $pos[319], runtimeDeps: nix.thunk(() => [xxd]) })))),
         "himalaya-vim9": nix.thunk(() => nix.app(nix.sel(super$, "himalaya-vim9", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$321,
+            [nix.POS]: $pos[320],
             buildInputs: nix.thunk(() => [himalaya]),
             checkInputs: nix.thunk(() => (() => {
               const w = nix.withScope(self, null);
@@ -2905,33 +1759,33 @@ substituteInPlace lua/fugit2/view/git_blame_file.lua \\
             nvimSkipModules: nix.thunk(() => ["himalaya.folder.pickers.fzflua"]),
           })))),
         "hoon-vim": nix.thunk(() => nix.app(nix.sel(super$, "hoon-vim", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$323,
+            [nix.POS]: $pos[322],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$322,
+              [nix.POS]: $pos[321],
               license: nix.thunk(() => nix.sel(lib, "licenses", "publicDomain")),
             })),
           }))),
         "hop-nvim": nix.thunk(() => nix.app(nix.sel(super$, "hop-nvim", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$325,
+            [nix.POS]: $pos[324],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$324,
+              [nix.POS]: $pos[323],
               license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
             })),
           }))),
-        "hotpot-nvim": nix.thunk(() => nix.app(nix.sel(super$, "hotpot-nvim", "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: pos$326, doCheck: false })))),
+        "hotpot-nvim": nix.thunk(() => nix.app(nix.sel(super$, "hotpot-nvim", "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: $pos[325], doCheck: false })))),
         "html5-vim": nix.thunk(() => nix.app(nix.sel(super$, "html5-vim", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$328,
+            [nix.POS]: $pos[327],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$327,
+              [nix.POS]: $pos[326],
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
             })),
           }))),
         "hunk-nvim": nix.thunk(() => nix.app(nix.sel(super$, "hunk-nvim", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$329,
+            [nix.POS]: $pos[328],
             dependencies: nix.thunk(() => [nix.thunk(() => nix.sel(self, "nui-nvim"))]),
           })))),
         "hurl-nvim": nix.thunk(() => nix.app(nix.sel(super$, "hurl-nvim", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$330,
+            [nix.POS]: $pos[329],
             dependencies: nix.thunk(() => (() => {
               const w = nix.withScope(self, null);
               return [
@@ -2944,7 +1798,7 @@ substituteInPlace lua/fugit2/view/git_blame_file.lua \\
             nvimSkipModules: nix.thunk(() => ["hurl.popup", "hurl.split"]),
           })))),
         "idris2-nvim": nix.thunk(() => nix.app(nix.sel(super$, "idris2-nvim", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$331,
+            [nix.POS]: $pos[330],
             dependencies: nix.thunk(() => (() => {
               const w = nix.withScope(self, null);
               return [
@@ -2955,22 +1809,22 @@ substituteInPlace lua/fugit2/view/git_blame_file.lua \\
             doInstallCheck: true,
           })))),
         "Improved-AnsiEsc": nix.thunk(() => nix.app(nix.sel(super$, "Improved-AnsiEsc", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$333,
+            [nix.POS]: $pos[332],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$332,
+              [nix.POS]: $pos[331],
               license: nix.thunk(() => nix.sel(lib, "licenses", "vim")),
             })),
           }))),
         "incsearch-easymotion-vim": nix.thunk(() => nix.app(nix.sel(super$, "incsearch-easymotion-vim", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$335,
+            [nix.POS]: $pos[334],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$334,
+              [nix.POS]: $pos[333],
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
             })),
           }))),
-        "indent-blankline-nvim": nix.thunk(() => nix.app(nix.sel(super$, "indent-blankline-nvim", "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: pos$336, nvimSkipModules: nix.thunk(() => ["ibl.config.types"]) })))),
+        "indent-blankline-nvim": nix.thunk(() => nix.app(nix.sel(super$, "indent-blankline-nvim", "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: $pos[335], nvimSkipModules: nix.thunk(() => ["ibl.config.types"]) })))),
         "indent-tools-nvim": nix.thunk(() => nix.app(nix.sel(super$, "indent-tools-nvim", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$337,
+            [nix.POS]: $pos[336],
             checkInputs: nix.thunk(() => [nix.thunk(() => nix.sel(self, "nvim-treesitter"))]),
             dependencies: nix.thunk(() => (() => {
               const w = nix.withScope(self, null);
@@ -2981,81 +1835,81 @@ substituteInPlace lua/fugit2/view/git_blame_file.lua \\
             })()),
           })))),
         "instant-nvim": nix.thunk(() => nix.app(nix.sel(super$, "instant-nvim", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$338,
+            [nix.POS]: $pos[337],
             nvimSkipModules: nix.thunk(() => ["instant", "instant.log"]),
           })))),
         "intellitab-nvim": nix.thunk(() => nix.app(nix.sel(super$, "intellitab-nvim", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$339,
+            [nix.POS]: $pos[338],
             dependencies: nix.thunk(() => [nix.thunk(() => nix.sel(self, "nvim-treesitter"))]),
           })))),
         "intero-neovim": nix.thunk(() => nix.app(nix.sel(super$, "intero-neovim", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$341,
+            [nix.POS]: $pos[340],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$340,
+              [nix.POS]: $pos[339],
               license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
             })),
           }))),
         iosvkem: nix.thunk(() => nix.app(nix.sel(super$, "iosvkem", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$343,
+            [nix.POS]: $pos[342],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$342,
+              [nix.POS]: $pos[341],
               license: nix.thunk(() => nix.sel(lib, "licenses", "publicDomain")),
             })),
           }))),
         "iswap-nvim": nix.thunk(() => nix.app(nix.sel(super$, "iswap-nvim", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$344,
+            [nix.POS]: $pos[343],
             dependencies: nix.thunk(() => [nix.thunk(() => nix.sel(self, "nvim-treesitter-legacy"))]),
           })))),
         "jdaddy-vim": nix.thunk(() => nix.app(nix.sel(super$, "jdaddy-vim", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$346,
+            [nix.POS]: $pos[345],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$345,
+              [nix.POS]: $pos[344],
               license: nix.thunk(() => nix.sel(lib, "licenses", "vim")),
             })),
           }))),
         "jdd-nvim": nix.thunk(() => nix.app(nix.sel(super$, "jdd-nvim", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$347,
+            [nix.POS]: $pos[346],
             dependencies: nix.thunk(() => [nix.thunk(() => nix.sel(self, "plenary-nvim"))]),
           })))),
         "jedi-vim": nix.thunk(() => nix.app(nix.sel(super$, "jedi-vim", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$349,
+            [nix.POS]: $pos[348],
             buildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(python3, "pkgs", "jedi"))]),
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$348,
+              [nix.POS]: $pos[347],
               description: "code-completion for python using python-jedi",
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
             })),
           }))),
         "jellybeans-nvim": nix.thunk(() => nix.app(nix.sel(super$, "jellybeans-nvim", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$350,
+            [nix.POS]: $pos[349],
             dependencies: nix.thunk(() => [nix.thunk(() => nix.sel(self, "lush-nvim"))]),
           })))),
         "jellybeans-vim": nix.thunk(() => nix.app(nix.sel(super$, "jellybeans-vim", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$352,
+            [nix.POS]: $pos[351],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$351,
+              [nix.POS]: $pos[350],
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
             })),
           }))),
         "jinja-vim": nix.thunk(() => nix.app(nix.sel(super$, "jinja-vim", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$354,
+            [nix.POS]: $pos[353],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$353,
+              [nix.POS]: $pos[352],
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
             })),
           }))),
-        "jj-nvim": nix.thunk(() => nix.app(nix.sel(super$, "jj-nvim", "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: pos$355, postPatch: "rm -rf assets/\n" })))),
+        "jj-nvim": nix.thunk(() => nix.app(nix.sel(super$, "jj-nvim", "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: $pos[354], postPatch: "rm -rf assets/\n" })))),
         "jq-vim": nix.thunk(() => nix.app(nix.sel(super$, "jq-vim", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$357,
+            [nix.POS]: $pos[356],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$356,
+              [nix.POS]: $pos[355],
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
             })),
           }))),
         "jsonfly-nvim": nix.thunk(() => nix.app(nix.sel(super$, "jsonfly-nvim", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$359,
+            [nix.POS]: $pos[358],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$358,
+              [nix.POS]: $pos[357],
               license: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "licenses")), null);
                 return [
@@ -3067,22 +1921,22 @@ substituteInPlace lua/fugit2/view/git_blame_file.lua \\
             })),
           }))),
         "julia-vim": nix.thunk(() => nix.app(nix.sel(super$, "julia-vim", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$361,
+            [nix.POS]: $pos[360],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$360,
+              [nix.POS]: $pos[359],
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
             })),
           }))),
         "jupytext-nvim": nix.thunk(() => nix.app(nix.sel(super$, "jupytext-nvim", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$363,
+            [nix.POS]: $pos[362],
             postPatch: "substituteInPlace lua/jupytext/health.lua \\\n  --replace-fail \"vim.health.report_\" \"vim.health.\"\n",
             passthru: nix.thunk(() => nix.update(nix.sel(old, "passthru"), {
-              [nix.POS]: pos$362,
+              [nix.POS]: $pos[361],
               python3Dependencies: (ps) => [nix.thunk(() => nix.sel(ps, "jupytext"))],
             })),
           }))),
         "just-nvim": nix.thunk(() => nix.app(nix.sel(super$, "just-nvim", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$364,
+            [nix.POS]: $pos[363],
             checkInputs: nix.thunk(() => (() => {
               const w = nix.withScope(self, null);
               return [
@@ -3100,7 +1954,7 @@ substituteInPlace lua/fugit2/view/git_blame_file.lua \\
             const kulala_http_grammar = nix.thunk(() => nix.app(nix.sel(neovimUtils, "grammarToPlugin"), nix.thunk(() => nix.app(nix.sel(tree_sitter, "buildGrammar"), nix.thunk(() => (() => {
                   const from = nix.thunk(() => nix.sel(luaPackages, "tree-sitter-kulala_http"));
                   return {
-                  [nix.POS]: pos$365,
+                  [nix.POS]: $pos[364],
                   language: "kulala_http",
                   version: nix.thunk(() => nix.attr(from, "version")),
                   src: nix.thunk(() => nix.attr(from, "src")),
@@ -3109,7 +1963,7 @@ substituteInPlace lua/fugit2/view/git_blame_file.lua \\
                 };
                 })())))));
             return {
-              [nix.POS]: pos$366,
+              [nix.POS]: $pos[365],
               dependencies: nix.thunk(() => [kulala_http_grammar]),
               postPatch: nix.thunk(() => nix.str`substituteInPlace lua/kulala/config/defaults.lua \\
   --replace-fail 'path = nil' 'path = "${nix.app(nix.sel(lib, "getExe"), kulala_core)}"'
@@ -3125,25 +1979,25 @@ substituteInPlace lua/fugit2/view/git_blame_file.lua \\
             };
           })())),
         "LanguageTool-nvim": nix.thunk(() => nix.app(nix.sel(super$, "LanguageTool-nvim", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$368,
+            [nix.POS]: $pos[367],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$367,
+              [nix.POS]: $pos[366],
               license: nix.thunk(() => nix.sel(lib, "licenses", "vim")),
             })),
           }))),
         last256: nix.thunk(() => nix.app(nix.sel(super$, "last256", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$370,
+            [nix.POS]: $pos[369],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$369,
+              [nix.POS]: $pos[368],
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
             })),
           }))),
         "lazy-lsp-nvim": nix.thunk(() => nix.app(nix.sel(super$, "lazy-lsp-nvim", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$371,
+            [nix.POS]: $pos[370],
             dependencies: nix.thunk(() => [nix.thunk(() => nix.sel(self, "nvim-lspconfig"))]),
           })))),
         "lazy-nvim": nix.thunk(() => nix.app(nix.sel(super$, "lazy-nvim", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$372,
+            [nix.POS]: $pos[371],
             patches: nix.thunk(() => [nix.path(here, "./patches/lazy-nvim/no-helptags.patch")]),
             nvimSkipModules: nix.thunk(() => [
               "lazy.manage.task.init",
@@ -3154,14 +2008,14 @@ substituteInPlace lua/fugit2/view/git_blame_file.lua \\
               "lazy.build",
             ]),
           })))),
-        "lazydocker-nvim": nix.thunk(() => nix.app(nix.sel(super$, "lazydocker-nvim", "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: pos$373, runtimeDeps: nix.thunk(() => [lazydocker]) })))),
+        "lazydocker-nvim": nix.thunk(() => nix.app(nix.sel(super$, "lazydocker-nvim", "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: $pos[372], runtimeDeps: nix.thunk(() => [lazydocker]) })))),
         "lazyjj-nvim": nix.thunk(() => nix.app(nix.sel(super$, "lazyjj-nvim", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$374,
+            [nix.POS]: $pos[373],
             dependencies: nix.thunk(() => [nix.thunk(() => nix.sel(self, "plenary-nvim"))]),
             runtimeDeps: nix.thunk(() => [lazyjj]),
           })))),
         LazyVim: nix.thunk(() => nix.app(nix.sel(super$, "LazyVim", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$375,
+            [nix.POS]: $pos[374],
             dependencies: nix.thunk(() => [nix.thunk(() => nix.sel(self, "lazy-nvim"))]),
             nvimSkipModules: nix.thunk(() => [
               "lazyvim.config.keymaps",
@@ -3185,21 +2039,21 @@ substituteInPlace lua/fugit2/view/git_blame_file.lua \\
             ]),
           })))),
         LeaderF: nix.thunk(() => nix.app(nix.sel(super$, "LeaderF", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$376,
+            [nix.POS]: $pos[375],
             nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(python3, "pkgs", "setuptools"))]),
             buildInputs: nix.thunk(() => [python3]),
             buildPhase: "patchShebangs .\n./install.sh\nrm autoload/leaderf/fuzzyMatch_C/build/ -r\n",
             stripDebugList: nix.thunk(() => ["autoload/leaderf/python"]),
           })))),
         "lean-nvim": nix.thunk(() => nix.app(nix.sel(super$, "lean-nvim", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$377,
+            [nix.POS]: $pos[376],
             dependencies: nix.thunk(() => (() => {
               const w = nix.withScope(self, null);
               return [nix.thunk(() => nix.lookup(w, "plenary-nvim"))];
             })()),
           })))),
         "leap-ast-nvim": nix.thunk(() => nix.app(nix.sel(super$, "leap-ast-nvim", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$378,
+            [nix.POS]: $pos[377],
             dependencies: nix.thunk(() => (() => {
               const w = nix.withScope(self, null);
               return [
@@ -3209,14 +2063,14 @@ substituteInPlace lua/fugit2/view/git_blame_file.lua \\
             })()),
           })))),
         "leap-nvim": nix.thunk(() => nix.app(nix.sel(super$, "leap-nvim", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$380,
+            [nix.POS]: $pos[379],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$379,
+              [nix.POS]: $pos[378],
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
             })),
           }))),
         "leetcode-nvim": nix.thunk(() => nix.app(nix.sel(super$, "leetcode-nvim", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$381,
+            [nix.POS]: $pos[380],
             checkInputs: nix.thunk(() => (() => {
               const w = nix.withScope(self, null);
               return [
@@ -3268,86 +2122,86 @@ substituteInPlace lua/fugit2/view/git_blame_file.lua \\
             ]),
           })))),
         "legendary-nvim": nix.thunk(() => nix.app(nix.sel(super$, "legendary-nvim", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$382,
+            [nix.POS]: $pos[381],
             dependencies: nix.thunk(() => [nix.thunk(() => nix.sel(self, "sqlite-lua"))]),
             nvimSkipModules: nix.thunk(() => ["vimdoc-gen", "vimdocrc"]),
           })))),
         "lens-vim": nix.thunk(() => nix.app(nix.sel(super$, "lens-vim", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$384,
+            [nix.POS]: $pos[383],
             patches: nix.thunk(() => [nix.path(here, "./patches/lens-vim/remove_duplicate_g_lens_animate.patch")]),
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$383,
+              [nix.POS]: $pos[382],
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
             })),
           }))),
         "lessspace-vim": nix.thunk(() => nix.app(nix.sel(super$, "lessspace-vim", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$386,
+            [nix.POS]: $pos[385],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$385,
+              [nix.POS]: $pos[384],
               license: nix.thunk(() => nix.sel(lib, "licenses", "vim")),
             })),
           }))),
         "lexima-vim": nix.thunk(() => nix.app(nix.sel(super$, "lexima-vim", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$388,
+            [nix.POS]: $pos[387],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$387,
+              [nix.POS]: $pos[386],
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
             })),
           }))),
         "lf-nvim": nix.thunk(() => nix.app(nix.sel(super$, "lf-nvim", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$389,
+            [nix.POS]: $pos[388],
             dependencies: nix.thunk(() => [nix.thunk(() => nix.sel(self, "toggleterm-nvim"))]),
           })))),
         "lf-vim": nix.thunk(() => nix.app(nix.sel(super$, "lf-vim", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$391,
+            [nix.POS]: $pos[390],
             dependencies: nix.thunk(() => [nix.thunk(() => nix.sel(self, "vim-floaterm"))]),
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$390,
+              [nix.POS]: $pos[389],
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
             })),
           }))),
         "lh-brackets": nix.thunk(() => nix.app(nix.sel(super$, "lh-brackets", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$393,
+            [nix.POS]: $pos[392],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$392,
+              [nix.POS]: $pos[391],
               license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),
             })),
           }))),
         "lh-vim-lib": nix.thunk(() => nix.app(nix.sel(super$, "lh-vim-lib", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$395,
+            [nix.POS]: $pos[394],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$394,
+              [nix.POS]: $pos[393],
               license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),
             })),
           }))),
         "lightline-bufferline": nix.thunk(() => nix.app(nix.sel(super$, "lightline-bufferline", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$396,
+            [nix.POS]: $pos[395],
             checkInputs: nix.thunk(() => [nix.thunk(() => nix.sel(self, "nvim-web-devicons"))]),
           })))),
         "lightline-lsp": nix.thunk(() => nix.app(nix.sel(super$, "lightline-lsp", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$398,
+            [nix.POS]: $pos[397],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$397,
+              [nix.POS]: $pos[396],
               license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),
             })),
           }))),
         "lightswitch-nvim": nix.thunk(() => nix.app(nix.sel(super$, "lightswitch-nvim", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$399,
+            [nix.POS]: $pos[398],
             dependencies: nix.thunk(() => [nix.thunk(() => nix.sel(self, "nui-nvim"))]),
           })))),
         "lingua-franca-vim": nix.thunk(() => nix.app(nix.sel(super$, "lingua-franca-vim", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$401,
+            [nix.POS]: $pos[400],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$400,
+              [nix.POS]: $pos[399],
               license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),
             })),
           }))),
         "lir-nvim": nix.thunk(() => nix.app(nix.sel(super$, "lir-nvim", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$402,
+            [nix.POS]: $pos[401],
             dependencies: nix.thunk(() => [nix.thunk(() => nix.sel(self, "plenary-nvim"))]),
           })))),
         "lispdocs-nvim": nix.thunk(() => nix.app(nix.sel(super$, "lispdocs-nvim", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$403,
+            [nix.POS]: $pos[402],
             dependencies: nix.thunk(() => (() => {
               const w = nix.withScope(self, null);
               return [
@@ -3359,38 +2213,38 @@ substituteInPlace lua/fugit2/view/git_blame_file.lua \\
             })()),
           })))),
         "litee-calltree-nvim": nix.thunk(() => nix.app(nix.sel(super$, "litee-calltree-nvim", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$405,
+            [nix.POS]: $pos[404],
             dependencies: nix.thunk(() => [nix.thunk(() => nix.sel(self, "litee-nvim"))]),
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$404,
+              [nix.POS]: $pos[403],
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
             })),
           }))),
         "litee-filetree-nvim": nix.thunk(() => nix.app(nix.sel(super$, "litee-filetree-nvim", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$407,
+            [nix.POS]: $pos[406],
             dependencies: nix.thunk(() => [nix.thunk(() => nix.sel(self, "litee-nvim"))]),
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$406,
+              [nix.POS]: $pos[405],
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
             })),
           }))),
         "litee-nvim": nix.thunk(() => nix.app(nix.sel(super$, "litee-nvim", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$409,
+            [nix.POS]: $pos[408],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$408,
+              [nix.POS]: $pos[407],
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
             })),
           }))),
         "litee-symboltree-nvim": nix.thunk(() => nix.app(nix.sel(super$, "litee-symboltree-nvim", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$411,
+            [nix.POS]: $pos[410],
             dependencies: nix.thunk(() => [nix.thunk(() => nix.sel(self, "litee-nvim"))]),
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$410,
+              [nix.POS]: $pos[409],
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
             })),
           }))),
         "live-preview-nvim": nix.thunk(() => nix.app(nix.sel(super$, "live-preview-nvim", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$413,
+            [nix.POS]: $pos[412],
             checkInputs: nix.thunk(() => (() => {
               const w = nix.withScope(self, null);
               return [
@@ -3401,87 +2255,87 @@ substituteInPlace lua/fugit2/view/git_blame_file.lua \\
               ];
             })()),
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$412,
+              [nix.POS]: $pos[411],
               license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),
             })),
           }))),
         "live-share-nvim": nix.thunk(() => nix.app(nix.sel(super$, "live-share-nvim", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$414,
+            [nix.POS]: $pos[413],
             postPatch: nix.thunk(() => nix.str`substituteInPlace lua/live-share/collab/crypto.lua \\
   --replace-fail \\
   '"crypto",' \\
   '"${nix.app(nix.sel(lib, "getLib"), openssl)}/lib/libcrypto${nix.sel(stdenv, "hostPlatform", "extensions", "sharedLibrary")}",'
 `),
           })))),
-        "llm-nvim": nix.thunk(() => nix.app(nix.sel(super$, "llm-nvim", "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: pos$415, runtimeDeps: nix.thunk(() => [llm_ls]) })))),
+        "llm-nvim": nix.thunk(() => nix.app(nix.sel(super$, "llm-nvim", "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: $pos[414], runtimeDeps: nix.thunk(() => [llm_ls]) })))),
         "lsp-format-modifications-nvim": nix.thunk(() => nix.app(nix.sel(super$, "lsp-format-modifications-nvim", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$416,
+            [nix.POS]: $pos[415],
             dependencies: nix.thunk(() => [nix.thunk(() => nix.sel(self, "plenary-nvim"))]),
           })))),
         "lsp-format-nvim": nix.thunk(() => nix.app(nix.sel(super$, "lsp-format-nvim", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$418,
+            [nix.POS]: $pos[417],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$417,
+              [nix.POS]: $pos[416],
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
             })),
           }))),
         "lsp-rooter-nvim": nix.thunk(() => nix.app(nix.sel(super$, "lsp-rooter-nvim", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$420,
+            [nix.POS]: $pos[419],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$419,
+              [nix.POS]: $pos[418],
               license: nix.thunk(() => nix.sel(lib, "licenses", "wtfpl")),
             })),
           }))),
         "lsp_extensions-nvim": nix.thunk(() => nix.app(nix.sel(super$, "lsp_extensions-nvim", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$421,
+            [nix.POS]: $pos[420],
             dependencies: nix.thunk(() => [nix.thunk(() => nix.sel(self, "plenary-nvim"))]),
           })))),
         "lsp_lines-nvim": nix.thunk(() => nix.app(nix.sel(super$, "lsp_lines-nvim", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$423,
+            [nix.POS]: $pos[422],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$422,
+              [nix.POS]: $pos[421],
               license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),
             })),
           }))),
         "lspcontainers-nvim": nix.thunk(() => nix.app(nix.sel(super$, "lspcontainers-nvim", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$424,
+            [nix.POS]: $pos[423],
             dependencies: nix.thunk(() => [nix.thunk(() => nix.sel(self, "nvim-lspconfig"))]),
           })))),
         "lspecho-nvim": nix.thunk(() => nix.app(nix.sel(super$, "lspecho-nvim", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$426,
+            [nix.POS]: $pos[425],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$425,
+              [nix.POS]: $pos[424],
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
             })),
           }))),
-        "lspsaga-nvim": nix.thunk(() => nix.app(nix.sel(super$, "lspsaga-nvim", "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: pos$427, nvimRequireCheck: "lspsaga" })))),
-        "ltex_extra-nvim": nix.thunk(() => nix.app(nix.sel(super$, "ltex_extra-nvim", "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: pos$428, nvimRequireCheck: "ltex_extra" })))),
+        "lspsaga-nvim": nix.thunk(() => nix.app(nix.sel(super$, "lspsaga-nvim", "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: $pos[426], nvimRequireCheck: "lspsaga" })))),
+        "ltex_extra-nvim": nix.thunk(() => nix.app(nix.sel(super$, "ltex_extra-nvim", "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: $pos[427], nvimRequireCheck: "ltex_extra" })))),
         "lualine-lsp-progress": nix.thunk(() => nix.app(nix.sel(super$, "lualine-lsp-progress", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$429,
+            [nix.POS]: $pos[428],
             dependencies: nix.thunk(() => [nix.thunk(() => nix.sel(self, "lualine-nvim"))]),
           })))),
         "lualine-so-fancy-nvim": nix.thunk(() => nix.app(nix.sel(super$, "lualine-so-fancy-nvim", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$430,
+            [nix.POS]: $pos[429],
             dependencies: nix.thunk(() => [nix.thunk(() => nix.sel(self, "lualine-nvim"))]),
           })))),
         "luasnip-latex-snippets-nvim": nix.thunk(() => nix.app(nix.sel(super$, "luasnip-latex-snippets-nvim", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$431,
+            [nix.POS]: $pos[430],
             dependencies: nix.thunk(() => [nix.thunk(() => nix.sel(self, "luasnip"))]),
             nvimSkipModules: nix.thunk(() => ["luasnip-latex-snippets.luasnippets.tex.utils.init"]),
           })))),
         "LuaSnip-snippets-nvim": nix.thunk(() => nix.app(nix.sel(super$, "LuaSnip-snippets-nvim", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$432,
+            [nix.POS]: $pos[431],
             checkInputs: nix.thunk(() => [nix.thunk(() => nix.sel(self, "luasnip"))]),
           })))),
         "luau-lsp-nvim": nix.thunk(() => nix.app(nix.sel(super$, "luau-lsp-nvim", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$433,
+            [nix.POS]: $pos[432],
             dependencies: nix.thunk(() => [nix.thunk(() => nix.sel(self, "plenary-nvim"))]),
             runtimeDeps: nix.thunk(() => [luau_lsp]),
           })))),
         "magma-nvim": nix.thunk(() => nix.app(nix.sel(super$, "magma-nvim", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$435,
+            [nix.POS]: $pos[434],
             passthru: nix.thunk(() => nix.update(nix.sel(old, "passthru"), {
-              [nix.POS]: pos$434,
+              [nix.POS]: $pos[433],
               python3Dependencies: (ps) => (() => {
                 const w = nix.withScope(ps, null);
                 return [
@@ -3499,18 +2353,18 @@ substituteInPlace lua/fugit2/view/git_blame_file.lua \\
             })),
           }))),
         "maple-nvim": nix.thunk(() => nix.app(nix.sel(super$, "maple-nvim", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$436,
+            [nix.POS]: $pos[435],
             dependencies: nix.thunk(() => [nix.thunk(() => nix.sel(self, "plenary-nvim"))]),
           })))),
         "mark-radar-nvim": nix.thunk(() => nix.app(nix.sel(super$, "mark-radar-nvim", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$438,
+            [nix.POS]: $pos[437],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$437,
+              [nix.POS]: $pos[436],
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
             })),
           }))),
         "markdoc-nvim": nix.thunk(() => nix.app(nix.sel(super$, "markdoc-nvim", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$439,
+            [nix.POS]: $pos[438],
             dependencies: nix.thunk(() => (() => {
               const w = nix.withScope(self, null);
               return [
@@ -3524,13 +2378,13 @@ substituteInPlace lua/fugit2/view/git_blame_file.lua \\
           const nodeDep = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => (() => {
               const from = nix.thunk(() => nix.sel(super$, "markdown-preview-nvim"));
               return {
-              [nix.POS]: pos$441,
+              [nix.POS]: $pos[440],
               pname: nix.thunk(() => nix.attr(from, "pname")),
               version: nix.thunk(() => nix.attr(from, "version")),
               src: nix.thunk(() => nix.attr(from, "src")),
               nativeBuildInputs: nix.thunk(() => [yarnConfigHook]),
               yarnOfflineCache: nix.thunk(() => nix.app(fetchYarnDeps, nix.thunk(() => ({
-                  [nix.POS]: pos$440,
+                  [nix.POS]: $pos[439],
                   yarnLock: nix.thunk(() => nix.str`${nix.sel(super$, "markdown-preview-nvim", "src")}/yarn.lock`),
                   hash: "sha256-kzc9jm6d9PJ07yiWfIOwqxOTAAydTpaLXVK6sEWM8gg=",
                 })))),
@@ -3538,7 +2392,7 @@ substituteInPlace lua/fugit2/view/git_blame_file.lua \\
             };
             })())));
           return nix.app(nix.sel(super$, "markdown-preview-nvim", "overrideAttrs"), nix.thunk(() => ({
-              [nix.POS]: pos$442,
+              [nix.POS]: $pos[441],
               runtimeDeps: nix.thunk(() => [nodejs]),
               postInstall: nix.thunk(() => nix.str`cp -r ${nodeDep} $out/app/node_modules
 `),
@@ -3548,11 +2402,11 @@ substituteInPlace lua/fugit2/view/git_blame_file.lua \\
             })));
         })()),
         markid: nix.thunk(() => nix.app(nix.sel(super$, "markid", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$443,
+            [nix.POS]: $pos[442],
             dependencies: nix.thunk(() => [nix.thunk(() => nix.sel(self, "nvim-treesitter-legacy"))]),
           })))),
         "mason-lspconfig-nvim": nix.thunk(() => nix.app(nix.sel(super$, "mason-lspconfig-nvim", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$444,
+            [nix.POS]: $pos[443],
             dependencies: nix.thunk(() => (() => {
               const w = nix.withScope(self, null);
               return [
@@ -3562,7 +2416,7 @@ substituteInPlace lua/fugit2/view/git_blame_file.lua \\
             })()),
           })))),
         "mason-null-ls-nvim": nix.thunk(() => nix.app(nix.sel(super$, "mason-null-ls-nvim", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$445,
+            [nix.POS]: $pos[444],
             dependencies: nix.thunk(() => (() => {
               const w = nix.withScope(self, null);
               return [
@@ -3573,11 +2427,11 @@ substituteInPlace lua/fugit2/view/git_blame_file.lua \\
             })()),
           })))),
         "mason-nvim": nix.thunk(() => nix.app(nix.sel(super$, "mason-nvim", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$446,
+            [nix.POS]: $pos[445],
             nvimSkipModules: nix.thunk(() => ["mason-vendor.zzlib.inflate-bwo", "mason-test.helpers"]),
           })))),
         "mason-nvim-dap-nvim": nix.thunk(() => nix.app(nix.sel(super$, "mason-nvim-dap-nvim", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$447,
+            [nix.POS]: $pos[446],
             dependencies: nix.thunk(() => (() => {
               const w = nix.withScope(self, null);
               return [
@@ -3587,35 +2441,35 @@ substituteInPlace lua/fugit2/view/git_blame_file.lua \\
             })()),
           })))),
         "mason-tool-installer-nvim": nix.thunk(() => nix.app(nix.sel(super$, "mason-tool-installer-nvim", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$448,
+            [nix.POS]: $pos[447],
             dependencies: nix.thunk(() => [nix.thunk(() => nix.sel(self, "mason-nvim"))]),
           })))),
         "material-vim": nix.thunk(() => nix.app(nix.sel(super$, "material-vim", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$449,
+            [nix.POS]: $pos[448],
             checkInputs: nix.thunk(() => [nix.thunk(() => nix.sel(self, "lualine-nvim"))]),
           })))),
         "mattn-calendar-vim": nix.thunk(() => nix.app(nix.sel(super$, "mattn-calendar-vim", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$451,
+            [nix.POS]: $pos[450],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$450,
+              [nix.POS]: $pos[449],
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
             })),
           }))),
         "mcphub-nvim": nix.thunk(() => nix.app(nix.sel(super$, "mcphub-nvim", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$452,
+            [nix.POS]: $pos[451],
             dependencies: nix.thunk(() => [nix.thunk(() => nix.sel(self, "plenary-nvim"))]),
             checkInputs: nix.thunk(() => [nix.thunk(() => nix.sel(self, "lualine-nvim"))]),
             nvimSkipModules: nix.thunk(() => ["bundled_build"]),
           })))),
         "mediawiki-vim": nix.thunk(() => nix.app(nix.sel(super$, "mediawiki-vim", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$454,
+            [nix.POS]: $pos[453],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$453,
+              [nix.POS]: $pos[452],
               license: nix.thunk(() => nix.sel(lib, "licenses", "publicDomain")),
             })),
           }))),
         "mesone-nvim": nix.thunk(() => nix.app(nix.sel(super$, "mesone-nvim", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$455,
+            [nix.POS]: $pos[454],
             dependencies: nix.thunk(() => (() => {
               const w = nix.withScope(self, null);
               return [
@@ -3627,11 +2481,11 @@ substituteInPlace lua/fugit2/view/git_blame_file.lua \\
             })()),
           })))),
         "mini-nvim": nix.thunk(() => nix.app(nix.sel(super$, "mini-nvim", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$456,
+            [nix.POS]: $pos[455],
             postInstall: "rm -rf $out/{Makefile,benchmarks,readmes,tests,scripts}\n",
           })))),
         "minimap-vim": nix.thunk(() => nix.app(nix.sel(super$, "minimap-vim", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$457,
+            [nix.POS]: $pos[456],
             preFixup: nix.thunk(() => nix.str`substituteInPlace $out/plugin/minimap.vim \\
   --replace-fail "code-minimap" "${code_minimap}/bin/code-minimap"
 substituteInPlace $out/bin/minimap_generator.sh \\
@@ -3641,7 +2495,7 @@ substituteInPlace $out/bin/minimap_generator.sh \\
             vimCommandCheck: "MinimapToggle",
           })))),
         "minuet-ai-nvim": nix.thunk(() => nix.app(nix.sel(super$, "minuet-ai-nvim", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$458,
+            [nix.POS]: $pos[457],
             checkInputs: nix.thunk(() => [
               nix.thunk(() => nix.sel(self, "nvim-cmp")),
               nix.thunk(() => nix.sel(self, "lualine-nvim")),
@@ -3660,23 +2514,23 @@ substituteInPlace $out/bin/minimap_generator.sh \\
             ]),
           })))),
         "mkdnflow-nvim": nix.thunk(() => nix.app(nix.sel(super$, "mkdnflow-nvim", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$459,
+            [nix.POS]: $pos[458],
             dependencies: nix.thunk(() => [nix.thunk(() => nix.sel(self, "plenary-nvim"))]),
             nvimRequireCheck: "mkdnflow",
           })))),
         "modicator-nvim": nix.thunk(() => nix.app(nix.sel(super$, "modicator-nvim", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$460,
+            [nix.POS]: $pos[459],
             nvimSkipModules: nix.thunk(() => ["modicator.integration.lualine.init"]),
           })))),
         molokai: nix.thunk(() => nix.app(nix.sel(super$, "molokai", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$462,
+            [nix.POS]: $pos[461],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$461,
+              [nix.POS]: $pos[460],
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
             })),
           }))),
         "molten-nvim": nix.thunk(() => nix.app(nix.sel(super$, "molten-nvim", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$463,
+            [nix.POS]: $pos[462],
             checkInputs: nix.thunk(() => (() => {
               const w = nix.withScope(self, null);
               return [
@@ -3687,47 +2541,47 @@ substituteInPlace $out/bin/minimap_generator.sh \\
             })()),
           })))),
         "moonscript-vim": nix.thunk(() => nix.app(nix.sel(super$, "moonscript-vim", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$465,
+            [nix.POS]: $pos[464],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$464,
+              [nix.POS]: $pos[463],
               license: nix.thunk(() => nix.sel(lib, "licenses", "wtfpl")),
             })),
           }))),
         mru: nix.thunk(() => nix.app(nix.sel(super$, "mru", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$467,
+            [nix.POS]: $pos[466],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$466,
+              [nix.POS]: $pos[465],
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
             })),
           }))),
         "multicursors-nvim": nix.thunk(() => nix.app(nix.sel(super$, "multicursors-nvim", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$468,
+            [nix.POS]: $pos[467],
             dependencies: nix.thunk(() => (() => {
               const w = nix.withScope(self, null);
               return [nix.thunk(() => nix.lookup(w, "hydra-nvim"))];
             })()),
           })))),
         "muren-nvim": nix.thunk(() => nix.app(nix.sel(super$, "muren-nvim", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$470,
+            [nix.POS]: $pos[469],
             dependencies: nix.thunk(() => [nix.thunk(() => nix.sel(self, "plenary-nvim"))]),
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$469,
+              [nix.POS]: $pos[468],
               license: nix.thunk(() => nix.sel(lib, "licenses", "vim")),
             })),
           }))),
         ncm2: nix.thunk(() => nix.app(nix.sel(super$, "ncm2", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$471,
+            [nix.POS]: $pos[470],
             dependencies: nix.thunk(() => [nix.thunk(() => nix.sel(self, "nvim-yarp"))]),
           })))),
         "ncm2-dictionary": nix.thunk(() => nix.app(nix.sel(super$, "ncm2-dictionary", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$473,
+            [nix.POS]: $pos[472],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$472,
+              [nix.POS]: $pos[471],
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
             })),
           }))),
         "ncm2-jedi": nix.thunk(() => nix.app(nix.sel(super$, "ncm2-jedi", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$475,
+            [nix.POS]: $pos[474],
             dependencies: nix.thunk(() => (() => {
               const w = nix.withScope(self, null);
               return [
@@ -3736,7 +2590,7 @@ substituteInPlace $out/bin/minimap_generator.sh \\
               ];
             })()),
             passthru: nix.thunk(() => nix.update(nix.sel(old, "passthru"), {
-              [nix.POS]: pos$474,
+              [nix.POS]: $pos[473],
               python3Dependencies: (ps) => (() => {
                 const w_1 = nix.withScope(ps, null);
                 return [nix.thunk(() => nix.lookup(w_1, "jedi"))];
@@ -3744,48 +2598,48 @@ substituteInPlace $out/bin/minimap_generator.sh \\
             })),
           }))),
         "ncm2-neoinclude": nix.thunk(() => nix.app(nix.sel(super$, "ncm2-neoinclude", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$476,
+            [nix.POS]: $pos[475],
             dependencies: nix.thunk(() => [nix.thunk(() => nix.sel(self, "neoinclude-vim"))]),
           })))),
         "ncm2-neosnippet": nix.thunk(() => nix.app(nix.sel(super$, "ncm2-neosnippet", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$477,
+            [nix.POS]: $pos[476],
             dependencies: nix.thunk(() => [nix.thunk(() => nix.sel(self, "neosnippet-vim"))]),
           })))),
         "ncm2-syntax": nix.thunk(() => nix.app(nix.sel(super$, "ncm2-syntax", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$478,
+            [nix.POS]: $pos[477],
             dependencies: nix.thunk(() => [nix.thunk(() => nix.sel(self, "neco-syntax"))]),
           })))),
         "ncm2-ultisnips": nix.thunk(() => nix.app(nix.sel(super$, "ncm2-ultisnips", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$480,
+            [nix.POS]: $pos[479],
             dependencies: nix.thunk(() => [nix.thunk(() => nix.sel(self, "ultisnips"))]),
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$479,
+              [nix.POS]: $pos[478],
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
             })),
           }))),
         "neco-ghc": nix.thunk(() => nix.app(nix.sel(super$, "neco-ghc", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$482,
+            [nix.POS]: $pos[481],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$481,
+              [nix.POS]: $pos[480],
               license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
             })),
           }))),
         "neco-look": nix.thunk(() => nix.app(nix.sel(super$, "neco-look", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$484,
+            [nix.POS]: $pos[483],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$483,
+              [nix.POS]: $pos[482],
               license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
             })),
           }))),
         "neco-syntax": nix.thunk(() => nix.app(nix.sel(super$, "neco-syntax", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$486,
+            [nix.POS]: $pos[485],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$485,
+              [nix.POS]: $pos[484],
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
             })),
           }))),
         "neo-tree-diagnostics-nvim": nix.thunk(() => nix.app(nix.sel(super$, "neo-tree-diagnostics-nvim", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$487,
+            [nix.POS]: $pos[486],
             dependencies: nix.thunk(() => (() => {
               const w = nix.withScope(self, null);
               return [nix.thunk(() => nix.lookup(w, "neo-tree-nvim"))];
@@ -3799,7 +2653,7 @@ substituteInPlace $out/bin/minimap_generator.sh \\
             })()),
           })))),
         "neo-tree-nvim": nix.thunk(() => nix.app(nix.sel(super$, "neo-tree-nvim", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$488,
+            [nix.POS]: $pos[487],
             checkInputs: nix.thunk(() => [git]),
             dependencies: nix.thunk(() => (() => {
               const w = nix.withScope(self, null);
@@ -3811,50 +2665,50 @@ substituteInPlace $out/bin/minimap_generator.sh \\
             nvimSkipModules: nix.thunk(() => ["neo-tree.types.fixes.compat-0.10"]),
           })))),
         "neocomplete-vim": nix.thunk(() => nix.app(nix.sel(super$, "neocomplete-vim", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$490,
+            [nix.POS]: $pos[489],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$489,
+              [nix.POS]: $pos[488],
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
             })),
           }))),
         "neoconf-nvim": nix.thunk(() => nix.app(nix.sel(super$, "neoconf-nvim", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$491,
+            [nix.POS]: $pos[490],
             dependencies: nix.thunk(() => [nix.thunk(() => nix.sel(self, "nvim-lspconfig"))]),
             doInstallCheck: true,
           })))),
         neogit: nix.thunk(() => nix.app(nix.sel(super$, "neogit", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$492,
+            [nix.POS]: $pos[491],
             checkInputs: nix.thunk(() => [nix.thunk(() => nix.sel(self, "diffview-nvim"))]),
             dependencies: nix.thunk(() => [nix.thunk(() => nix.sel(self, "plenary-nvim"))]),
             nvimSkipModules: nix.thunk(() => ["neogit.integrations.diffview"]),
           })))),
         "neoinclude-vim": nix.thunk(() => nix.app(nix.sel(super$, "neoinclude-vim", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$494,
+            [nix.POS]: $pos[493],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$493,
+              [nix.POS]: $pos[492],
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
             })),
           }))),
         "neomru-vim": nix.thunk(() => nix.app(nix.sel(super$, "neomru-vim", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$496,
+            [nix.POS]: $pos[495],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$495,
+              [nix.POS]: $pos[494],
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
             })),
           }))),
         "neorepl-nvim": nix.thunk(() => nix.app(nix.sel(super$, "neorepl-nvim", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$497,
+            [nix.POS]: $pos[496],
             nvimSkipModules: nix.thunk(() => ["neorepl.bufs", "neorepl.map", "neorepl.repl"]),
           })))),
         neorg: nix.thunk(() => nix.app(nix.sel(super$, "neorg", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$498,
+            [nix.POS]: $pos[497],
             dependencies: nix.thunk(() => [
               nix.thunk(() => nix.app(nix.sel(neovimUtils, "grammarToPlugin"), nix.thunk(() => nix.sel(tree_sitter_grammars, "tree-sitter-norg")))),
               nix.thunk(() => nix.app(nix.sel(neovimUtils, "grammarToPlugin"), nix.thunk(() => nix.sel(tree_sitter_grammars, "tree-sitter-norg-meta")))),
             ]),
           })))),
         "neorg-telescope": nix.thunk(() => nix.app(nix.sel(super$, "neorg-telescope", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$499,
+            [nix.POS]: $pos[498],
             buildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(luaPackages, "lua-utils-nvim"))]),
             dependencies: nix.thunk(() => (() => {
               const w = nix.withScope(self, null);
@@ -3866,28 +2720,28 @@ substituteInPlace $out/bin/minimap_generator.sh \\
             })()),
           })))),
         "neosnippet-snippets": nix.thunk(() => nix.app(nix.sel(super$, "neosnippet-snippets", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$501,
+            [nix.POS]: $pos[500],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$500,
+              [nix.POS]: $pos[499],
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
             })),
           }))),
         "neosnippet-vim": nix.thunk(() => nix.app(nix.sel(super$, "neosnippet-vim", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$503,
+            [nix.POS]: $pos[502],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$502,
+              [nix.POS]: $pos[501],
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
             })),
           }))),
         neoterm: nix.thunk(() => nix.app(nix.sel(super$, "neoterm", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$505,
+            [nix.POS]: $pos[504],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$504,
+              [nix.POS]: $pos[503],
               license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
             })),
           }))),
         "neotest-bash": nix.thunk(() => nix.app(nix.sel(super$, "neotest-bash", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$506,
+            [nix.POS]: $pos[505],
             dependencies: nix.thunk(() => (() => {
               const w = nix.withScope(self, null);
               return [
@@ -3897,7 +2751,7 @@ substituteInPlace $out/bin/minimap_generator.sh \\
             })()),
           })))),
         "neotest-bun": nix.thunk(() => nix.app(nix.sel(super$, "neotest-bun", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$507,
+            [nix.POS]: $pos[506],
             dependencies: nix.thunk(() => (() => {
               const w = nix.withScope(self, null);
               return [
@@ -3907,7 +2761,7 @@ substituteInPlace $out/bin/minimap_generator.sh \\
             })()),
           })))),
         "neotest-busted": nix.thunk(() => nix.app(nix.sel(super$, "neotest-busted", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$508,
+            [nix.POS]: $pos[507],
             dependencies: nix.thunk(() => (() => {
               const w = nix.withScope(self, null);
               return [
@@ -3918,7 +2772,7 @@ substituteInPlace $out/bin/minimap_generator.sh \\
             nvimRequireCheck: "neotest-busted",
           })))),
         "neotest-ctest": nix.thunk(() => nix.app(nix.sel(super$, "neotest-ctest", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$509,
+            [nix.POS]: $pos[508],
             dependencies: nix.thunk(() => (() => {
               const w = nix.withScope(self, null);
               return [
@@ -3929,7 +2783,7 @@ substituteInPlace $out/bin/minimap_generator.sh \\
             })()),
           })))),
         "neotest-dart": nix.thunk(() => nix.app(nix.sel(super$, "neotest-dart", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$510,
+            [nix.POS]: $pos[509],
             dependencies: nix.thunk(() => (() => {
               const w = nix.withScope(self, null);
               return [
@@ -3940,7 +2794,7 @@ substituteInPlace $out/bin/minimap_generator.sh \\
             })()),
           })))),
         "neotest-deno": nix.thunk(() => nix.app(nix.sel(super$, "neotest-deno", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$511,
+            [nix.POS]: $pos[510],
             dependencies: nix.thunk(() => (() => {
               const w = nix.withScope(self, null);
               return [
@@ -3951,7 +2805,7 @@ substituteInPlace $out/bin/minimap_generator.sh \\
             })()),
           })))),
         "neotest-dotnet": nix.thunk(() => nix.app(nix.sel(super$, "neotest-dotnet", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$512,
+            [nix.POS]: $pos[511],
             dependencies: nix.thunk(() => (() => {
               const w = nix.withScope(self, null);
               return [
@@ -3962,7 +2816,7 @@ substituteInPlace $out/bin/minimap_generator.sh \\
             })()),
           })))),
         "neotest-elixir": nix.thunk(() => nix.app(nix.sel(super$, "neotest-elixir", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$513,
+            [nix.POS]: $pos[512],
             dependencies: nix.thunk(() => (() => {
               const w = nix.withScope(self, null);
               return [
@@ -3973,7 +2827,7 @@ substituteInPlace $out/bin/minimap_generator.sh \\
             })()),
           })))),
         "neotest-foundry": nix.thunk(() => nix.app(nix.sel(super$, "neotest-foundry", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$515,
+            [nix.POS]: $pos[514],
             dependencies: nix.thunk(() => (() => {
               const w = nix.withScope(self, null);
               return [
@@ -3983,7 +2837,7 @@ substituteInPlace $out/bin/minimap_generator.sh \\
               ];
             })()),
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$514,
+              [nix.POS]: $pos[513],
               license: nix.thunk(() => (() => {
                 const w_1 = nix.withScope(nix.thunk(() => nix.sel(lib, "licenses")), null);
                 return [
@@ -3994,7 +2848,7 @@ substituteInPlace $out/bin/minimap_generator.sh \\
             })),
           }))),
         "neotest-go": nix.thunk(() => nix.app(nix.sel(super$, "neotest-go", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$516,
+            [nix.POS]: $pos[515],
             dependencies: nix.thunk(() => (() => {
               const w = nix.withScope(self, null);
               return [
@@ -4005,7 +2859,7 @@ substituteInPlace $out/bin/minimap_generator.sh \\
             })()),
           })))),
         "neotest-golang": nix.thunk(() => nix.app(nix.sel(super$, "neotest-golang", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$517,
+            [nix.POS]: $pos[516],
             dependencies: nix.thunk(() => (() => {
               const w = nix.withScope(self, null);
               return [
@@ -4018,7 +2872,7 @@ substituteInPlace $out/bin/minimap_generator.sh \\
             })()),
           })))),
         "neotest-gradle": nix.thunk(() => nix.app(nix.sel(super$, "neotest-gradle", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$518,
+            [nix.POS]: $pos[517],
             dependencies: nix.thunk(() => (() => {
               const w = nix.withScope(self, null);
               return [
@@ -4029,7 +2883,7 @@ substituteInPlace $out/bin/minimap_generator.sh \\
             })()),
           })))),
         "neotest-gtest": nix.thunk(() => nix.app(nix.sel(super$, "neotest-gtest", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$519,
+            [nix.POS]: $pos[518],
             dependencies: nix.thunk(() => (() => {
               const w = nix.withScope(self, null);
               return [
@@ -4041,7 +2895,7 @@ substituteInPlace $out/bin/minimap_generator.sh \\
             })()),
           })))),
         "neotest-haskell": nix.thunk(() => nix.app(nix.sel(super$, "neotest-haskell", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$520,
+            [nix.POS]: $pos[519],
             dependencies: nix.thunk(() => (() => {
               const w = nix.withScope(self, null);
               return [
@@ -4051,7 +2905,7 @@ substituteInPlace $out/bin/minimap_generator.sh \\
             })()),
           })))),
         "neotest-java": nix.thunk(() => nix.app(nix.sel(super$, "neotest-java", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$521,
+            [nix.POS]: $pos[520],
             dependencies: nix.thunk(() => (() => {
               const w = nix.withScope(self, null);
               return [
@@ -4062,7 +2916,7 @@ substituteInPlace $out/bin/minimap_generator.sh \\
             })()),
           })))),
         "neotest-jest": nix.thunk(() => nix.app(nix.sel(super$, "neotest-jest", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$522,
+            [nix.POS]: $pos[521],
             dependencies: nix.thunk(() => (() => {
               const w = nix.withScope(self, null);
               return [
@@ -4073,7 +2927,7 @@ substituteInPlace $out/bin/minimap_generator.sh \\
             nvimSkipModules: nix.thunk(() => ["neotest-jest-assertions"]),
           })))),
         "neotest-minitest": nix.thunk(() => nix.app(nix.sel(super$, "neotest-minitest", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$523,
+            [nix.POS]: $pos[522],
             dependencies: nix.thunk(() => (() => {
               const w = nix.withScope(self, null);
               return [
@@ -4084,7 +2938,7 @@ substituteInPlace $out/bin/minimap_generator.sh \\
             })()),
           })))),
         "neotest-mocha": nix.thunk(() => nix.app(nix.sel(super$, "neotest-mocha", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$525,
+            [nix.POS]: $pos[524],
             dependencies: nix.thunk(() => (() => {
               const w = nix.withScope(self, null);
               return [
@@ -4094,12 +2948,12 @@ substituteInPlace $out/bin/minimap_generator.sh \\
               ];
             })()),
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$524,
+              [nix.POS]: $pos[523],
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
             })),
           }))),
         "neotest-pest": nix.thunk(() => nix.app(nix.sel(super$, "neotest-pest", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$526,
+            [nix.POS]: $pos[525],
             dependencies: nix.thunk(() => (() => {
               const w = nix.withScope(self, null);
               return [
@@ -4110,7 +2964,7 @@ substituteInPlace $out/bin/minimap_generator.sh \\
             })()),
           })))),
         "neotest-phpunit": nix.thunk(() => nix.app(nix.sel(super$, "neotest-phpunit", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$527,
+            [nix.POS]: $pos[526],
             dependencies: nix.thunk(() => (() => {
               const w = nix.withScope(self, null);
               return [
@@ -4121,7 +2975,7 @@ substituteInPlace $out/bin/minimap_generator.sh \\
             })()),
           })))),
         "neotest-playwright": nix.thunk(() => nix.app(nix.sel(super$, "neotest-playwright", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$528,
+            [nix.POS]: $pos[527],
             checkInputs: nix.thunk(() => (() => {
               const w = nix.withScope(self, null);
               return [nix.thunk(() => nix.lookup(w, "telescope-nvim"))];
@@ -4137,7 +2991,7 @@ substituteInPlace $out/bin/minimap_generator.sh \\
             nvimSkipModules: nix.thunk(() => ["neotest-playwright-assertions"]),
           })))),
         "neotest-plenary": nix.thunk(() => nix.app(nix.sel(super$, "neotest-plenary", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$529,
+            [nix.POS]: $pos[528],
             dependencies: nix.thunk(() => (() => {
               const w = nix.withScope(self, null);
               return [
@@ -4148,7 +3002,7 @@ substituteInPlace $out/bin/minimap_generator.sh \\
             })()),
           })))),
         "neotest-python": nix.thunk(() => nix.app(nix.sel(super$, "neotest-python", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$530,
+            [nix.POS]: $pos[529],
             dependencies: nix.thunk(() => (() => {
               const w = nix.withScope(self, null);
               return [
@@ -4159,7 +3013,7 @@ substituteInPlace $out/bin/minimap_generator.sh \\
             })()),
           })))),
         "neotest-rspec": nix.thunk(() => nix.app(nix.sel(super$, "neotest-rspec", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$531,
+            [nix.POS]: $pos[530],
             dependencies: nix.thunk(() => (() => {
               const w = nix.withScope(self, null);
               return [
@@ -4170,7 +3024,7 @@ substituteInPlace $out/bin/minimap_generator.sh \\
             })()),
           })))),
         "neotest-rust": nix.thunk(() => nix.app(nix.sel(super$, "neotest-rust", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$532,
+            [nix.POS]: $pos[531],
             dependencies: nix.thunk(() => (() => {
               const w = nix.withScope(self, null);
               return [
@@ -4181,7 +3035,7 @@ substituteInPlace $out/bin/minimap_generator.sh \\
             })()),
           })))),
         "neotest-scala": nix.thunk(() => nix.app(nix.sel(super$, "neotest-scala", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$533,
+            [nix.POS]: $pos[532],
             dependencies: nix.thunk(() => (() => {
               const w = nix.withScope(self, null);
               return [
@@ -4192,7 +3046,7 @@ substituteInPlace $out/bin/minimap_generator.sh \\
             })()),
           })))),
         "neotest-testthat": nix.thunk(() => nix.app(nix.sel(super$, "neotest-testthat", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$535,
+            [nix.POS]: $pos[534],
             dependencies: nix.thunk(() => (() => {
               const w = nix.withScope(self, null);
               return [
@@ -4202,12 +3056,12 @@ substituteInPlace $out/bin/minimap_generator.sh \\
               ];
             })()),
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$534,
+              [nix.POS]: $pos[533],
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
             })),
           }))),
         "neotest-vitest": nix.thunk(() => nix.app(nix.sel(super$, "neotest-vitest", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$536,
+            [nix.POS]: $pos[535],
             dependencies: nix.thunk(() => (() => {
               const w = nix.withScope(self, null);
               return [
@@ -4219,7 +3073,7 @@ substituteInPlace $out/bin/minimap_generator.sh \\
             nvimSkipModules: nix.thunk(() => ["neotest-vitest-assertions"]),
           })))),
         "neotest-zig": nix.thunk(() => nix.app(nix.sel(super$, "neotest-zig", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$537,
+            [nix.POS]: $pos[536],
             dependencies: nix.thunk(() => (() => {
               const w = nix.withScope(self, null);
               return [
@@ -4229,9 +3083,9 @@ substituteInPlace $out/bin/minimap_generator.sh \\
               ];
             })()),
           })))),
-        "neovim-fuzzy": nix.thunk(() => nix.app(nix.sel(super$, "neovim-fuzzy", "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: pos$538, runtimeDeps: nix.thunk(() => [fzy, ripgrep]) })))),
+        "neovim-fuzzy": nix.thunk(() => nix.app(nix.sel(super$, "neovim-fuzzy", "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: $pos[537], runtimeDeps: nix.thunk(() => [fzy, ripgrep]) })))),
         "neovim-project": nix.thunk(() => nix.app(nix.sel(super$, "neovim-project", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$539,
+            [nix.POS]: $pos[538],
             dependencies: nix.thunk(() => (() => {
               const w = nix.withScope(self, null);
               return [
@@ -4241,25 +3095,25 @@ substituteInPlace $out/bin/minimap_generator.sh \\
             })()),
           })))),
         "neovim-sensible": nix.thunk(() => nix.app(nix.sel(super$, "neovim-sensible", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$541,
+            [nix.POS]: $pos[540],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$540,
+              [nix.POS]: $pos[539],
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
             })),
           }))),
         "neovim-session-manager": nix.thunk(() => nix.app(nix.sel(super$, "neovim-session-manager", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$542,
+            [nix.POS]: $pos[541],
             dependencies: nix.thunk(() => (() => {
               const w = nix.withScope(self, null);
               return [nix.thunk(() => nix.lookup(w, "plenary-nvim"))];
             })()),
           })))),
         "neovim-tips": nix.thunk(() => nix.app(nix.sel(super$, "neovim-tips", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$543,
+            [nix.POS]: $pos[542],
             dependencies: nix.thunk(() => [nix.thunk(() => nix.sel(self, "nui-nvim"))]),
           })))),
         "neovim-trunk": nix.thunk(() => nix.app(nix.sel(super$, "neovim-trunk", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$544,
+            [nix.POS]: $pos[543],
             dependencies: nix.thunk(() => (() => {
               const w = nix.withScope(self, null);
               return [
@@ -4269,14 +3123,14 @@ substituteInPlace $out/bin/minimap_generator.sh \\
             })()),
           })))),
         "neoyank-vim": nix.thunk(() => nix.app(nix.sel(super$, "neoyank-vim", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$546,
+            [nix.POS]: $pos[545],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$545,
+              [nix.POS]: $pos[544],
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
             })),
           }))),
         "netman-nvim": nix.thunk(() => nix.app(nix.sel(super$, "netman-nvim", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$547,
+            [nix.POS]: $pos[546],
             checkInputs: nix.thunk(() => (() => {
               const w = nix.withScope(self, null);
               return [
@@ -4288,48 +3142,48 @@ substituteInPlace $out/bin/minimap_generator.sh \\
             })()),
           })))),
         "nginx-vim": nix.thunk(() => nix.app(nix.sel(super$, "nginx-vim", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$549,
+            [nix.POS]: $pos[548],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$548,
+              [nix.POS]: $pos[547],
               license: nix.thunk(() => nix.sel(lib, "licenses", "vim")),
             })),
           }))),
         "nidhogg-nvim": nix.thunk(() => nix.app(nix.sel(super$, "nidhogg-nvim", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$551,
+            [nix.POS]: $pos[550],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$550,
+              [nix.POS]: $pos[549],
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
             })),
           }))),
         "nlsp-settings-nvim": nix.thunk(() => nix.app(nix.sel(super$, "nlsp-settings-nvim", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$552,
+            [nix.POS]: $pos[551],
             dependencies: nix.thunk(() => [nix.thunk(() => nix.sel(self, "nvim-lspconfig"))]),
           })))),
         "noctis-nvim": nix.thunk(() => nix.app(nix.sel(super$, "noctis-nvim", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$553,
+            [nix.POS]: $pos[552],
             dependencies: nix.thunk(() => [nix.thunk(() => nix.sel(self, "lush-nvim"))]),
           })))),
         "noice-nvim": nix.thunk(() => nix.app(nix.sel(super$, "noice-nvim", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$554,
+            [nix.POS]: $pos[553],
             dependencies: nix.thunk(() => [nix.thunk(() => nix.sel(self, "nui-nvim"))]),
           })))),
         "none-ls-extras-nvim": nix.thunk(() => nix.app(nix.sel(super$, "none-ls-extras-nvim", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$555,
+            [nix.POS]: $pos[554],
             dependencies: nix.thunk(() => [nix.thunk(() => nix.sel(self, "none-ls-nvim"))]),
           })))),
         "none-ls-nvim": nix.thunk(() => nix.app(nix.sel(super$, "none-ls-nvim", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$556,
+            [nix.POS]: $pos[555],
             dependencies: nix.thunk(() => [nix.thunk(() => nix.sel(self, "plenary-nvim"))]),
           })))),
         "NotebookNavigator-nvim": nix.thunk(() => nix.app(nix.sel(super$, "NotebookNavigator-nvim", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$558,
+            [nix.POS]: $pos[557],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$557,
+              [nix.POS]: $pos[556],
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
             })),
           }))),
         "notmuch-nvim": nix.thunk(() => nix.app(nix.sel(super$, "notmuch-nvim", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$560,
+            [nix.POS]: $pos[559],
             checkInputs: nix.thunk(() => [notmuch]),
             runtimeDeps: nix.thunk(() => [file, notmuch]),
             postPatch: nix.thunk(() => (() => {
@@ -4340,23 +3194,23 @@ substituteInPlace $out/bin/minimap_generator.sh \\
 `;
             })()),
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$559,
+              [nix.POS]: $pos[558],
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
             })),
           }))),
         NrrwRgn: nix.thunk(() => nix.app(nix.sel(super$, "NrrwRgn", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$562,
+            [nix.POS]: $pos[561],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$561,
+              [nix.POS]: $pos[560],
               license: nix.thunk(() => nix.sel(lib, "licenses", "vim")),
             })),
           }))),
         "nterm-nvim": nix.thunk(() => nix.app(nix.sel(super$, "nterm-nvim", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$563,
+            [nix.POS]: $pos[562],
             dependencies: nix.thunk(() => [nix.thunk(() => nix.sel(self, "aniseed"))]),
           })))),
         nvchad: nix.thunk(() => nix.app(nix.sel(super$, "nvchad", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$564,
+            [nix.POS]: $pos[563],
             dependencies: nix.thunk(() => (() => {
               const w = nix.withScope(self, null);
               return [
@@ -4379,7 +3233,7 @@ substituteInPlace $out/bin/minimap_generator.sh \\
             ]),
           })))),
         "nvchad-ui": nix.thunk(() => nix.app(nix.sel(super$, "nvchad-ui", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$565,
+            [nix.POS]: $pos[564],
             dependencies: nix.thunk(() => [nix.thunk(() => nix.sel(self, "nvzone-volt"))]),
             nvimSkipModules: nix.thunk(() => [
               "nvchad.term.init",
@@ -4392,7 +3246,7 @@ substituteInPlace $out/bin/minimap_generator.sh \\
             ]),
           })))),
         "nvim-autopairs": nix.thunk(() => nix.app(nix.sel(super$, "nvim-autopairs", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$566,
+            [nix.POS]: $pos[565],
             checkInputs: nix.thunk(() => (() => {
               const w = nix.withScope(self, null);
               return [nix.thunk(() => nix.lookup(w, "nvim-cmp"))];
@@ -4400,7 +3254,7 @@ substituteInPlace $out/bin/minimap_generator.sh \\
             nvimSkipModules: nix.thunk(() => ["nvim-autopairs.completion.compe"]),
           })))),
         "nvim-biscuits": nix.thunk(() => nix.app(nix.sel(super$, "nvim-biscuits", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$567,
+            [nix.POS]: $pos[566],
             dependencies: nix.thunk(() => (() => {
               const w = nix.withScope(self, null);
               return [
@@ -4410,18 +3264,18 @@ substituteInPlace $out/bin/minimap_generator.sh \\
             })()),
           })))),
         "nvim-cokeline": nix.thunk(() => nix.app(nix.sel(super$, "nvim-cokeline", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$568,
+            [nix.POS]: $pos[567],
             dependencies: nix.thunk(() => [nix.thunk(() => nix.sel(self, "plenary-nvim"))]),
           })))),
         "nvim-colorizer-lua": nix.thunk(() => nix.app(nix.sel(super$, "nvim-colorizer-lua", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$570,
+            [nix.POS]: $pos[569],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$569,
+              [nix.POS]: $pos[568],
               license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
             })),
           }))),
         "nvim-coverage": nix.thunk(() => nix.app(nix.sel(super$, "nvim-coverage", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$571,
+            [nix.POS]: $pos[570],
             dependencies: nix.thunk(() => (() => {
               const w = nix.withScope(self, null);
               return [
@@ -4432,46 +3286,46 @@ substituteInPlace $out/bin/minimap_generator.sh \\
             nvimSkipModules: nix.thunk(() => ["coverage.parsers.corbertura"]),
           })))),
         "nvim-dap": nix.thunk(() => nix.app(nix.sel(super$, "nvim-dap", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$573,
+            [nix.POS]: $pos[572],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$572,
+              [nix.POS]: $pos[571],
               license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),
             })),
           }))),
         "nvim-dap-cortex-debug": nix.thunk(() => nix.app(nix.sel(super$, "nvim-dap-cortex-debug", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$574,
+            [nix.POS]: $pos[573],
             dependencies: nix.thunk(() => [nix.thunk(() => nix.sel(self, "nvim-dap"))]),
           })))),
         "nvim-dap-disasm": nix.thunk(() => nix.app(nix.sel(super$, "nvim-dap-disasm", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$576,
+            [nix.POS]: $pos[575],
             dependencies: nix.thunk(() => [nix.thunk(() => nix.sel(self, "nvim-dap"))]),
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$575,
+              [nix.POS]: $pos[574],
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
             })),
           }))),
         "nvim-dap-lldb": nix.thunk(() => nix.app(nix.sel(super$, "nvim-dap-lldb", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$577,
+            [nix.POS]: $pos[576],
             dependencies: nix.thunk(() => [nix.thunk(() => nix.sel(self, "nvim-dap"))]),
           })))),
         "nvim-dap-python": nix.thunk(() => nix.app(nix.sel(super$, "nvim-dap-python", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$579,
+            [nix.POS]: $pos[578],
             dependencies: nix.thunk(() => [nix.thunk(() => nix.sel(self, "nvim-dap"))]),
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$578,
+              [nix.POS]: $pos[577],
               license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),
             })),
           }))),
         "nvim-dap-rego": nix.thunk(() => nix.app(nix.sel(super$, "nvim-dap-rego", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$580,
+            [nix.POS]: $pos[579],
             dependencies: nix.thunk(() => [nix.thunk(() => nix.sel(self, "nvim-dap"))]),
           })))),
         "nvim-dap-rr": nix.thunk(() => nix.app(nix.sel(super$, "nvim-dap-rr", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$581,
+            [nix.POS]: $pos[580],
             dependencies: nix.thunk(() => [nix.thunk(() => nix.sel(self, "nvim-dap"))]),
           })))),
         "nvim-dap-ui": nix.thunk(() => nix.app(nix.sel(super$, "nvim-dap-ui", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$582,
+            [nix.POS]: $pos[581],
             dependencies: nix.thunk(() => (() => {
               const w = nix.withScope(self, null);
               return [
@@ -4482,44 +3336,44 @@ substituteInPlace $out/bin/minimap_generator.sh \\
             doInstallCheck: true,
           })))),
         "nvim-dap-view": nix.thunk(() => nix.app(nix.sel(super$, "nvim-dap-view", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$583,
+            [nix.POS]: $pos[582],
             dependencies: nix.thunk(() => [nix.thunk(() => nix.sel(self, "nvim-dap"))]),
           })))),
         "nvim-dap-virtual-text": nix.thunk(() => nix.app(nix.sel(super$, "nvim-dap-virtual-text", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$584,
+            [nix.POS]: $pos[583],
             dependencies: nix.thunk(() => [nix.thunk(() => nix.sel(self, "nvim-dap"))]),
           })))),
         "nvim-dap-vscode-js": nix.thunk(() => nix.app(nix.sel(super$, "nvim-dap-vscode-js", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$585,
+            [nix.POS]: $pos[584],
             dependencies: nix.thunk(() => [nix.thunk(() => nix.sel(self, "nvim-dap"))]),
           })))),
         "nvim-FeMaco-lua": nix.thunk(() => nix.app(nix.sel(super$, "nvim-FeMaco-lua", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$587,
+            [nix.POS]: $pos[586],
             dependencies: nix.thunk(() => [nix.thunk(() => nix.sel(self, "nvim-treesitter-legacy"))]),
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$586,
+              [nix.POS]: $pos[585],
               license: nix.thunk(() => nix.sel(lib, "licenses", "vim")),
             })),
           }))),
         "nvim-fzf-commands": nix.thunk(() => nix.app(nix.sel(super$, "nvim-fzf-commands", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$588,
+            [nix.POS]: $pos[587],
             dependencies: nix.thunk(() => [nix.thunk(() => nix.sel(self, "nvim-fzf"))]),
             nvimSkipModules: nix.thunk(() => ["fzf-commands.rg"]),
           })))),
         "nvim-genghis": nix.thunk(() => nix.app(nix.sel(super$, "nvim-genghis", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$589,
+            [nix.POS]: $pos[588],
             dependencies: nix.thunk(() => [nix.thunk(() => nix.sel(self, "dressing-nvim"))]),
             doInstallCheck: true,
           })))),
         "nvim-highlite": nix.thunk(() => nix.app(nix.sel(super$, "nvim-highlite", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$591,
+            [nix.POS]: $pos[590],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$590,
+              [nix.POS]: $pos[589],
               license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
             })),
           }))),
         "nvim-java": nix.thunk(() => nix.app(nix.sel(super$, "nvim-java", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$592,
+            [nix.POS]: $pos[591],
             dependencies: nix.thunk(() => (() => {
               const w = nix.withScope(self, null);
               return [
@@ -4536,7 +3390,7 @@ substituteInPlace $out/bin/minimap_generator.sh \\
             })()),
           })))),
         "nvim-java-core": nix.thunk(() => nix.app(nix.sel(super$, "nvim-java-core", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$593,
+            [nix.POS]: $pos[592],
             dependencies: nix.thunk(() => (() => {
               const w = nix.withScope(self, null);
               return [
@@ -4546,36 +3400,36 @@ substituteInPlace $out/bin/minimap_generator.sh \\
             })()),
           })))),
         "nvim-java-dap": nix.thunk(() => nix.app(nix.sel(super$, "nvim-java-dap", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$594,
+            [nix.POS]: $pos[593],
             dependencies: nix.thunk(() => [nix.thunk(() => nix.sel(self, "nvim-java-core"))]),
           })))),
         "nvim-java-refactor": nix.thunk(() => nix.app(nix.sel(super$, "nvim-java-refactor", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$595,
+            [nix.POS]: $pos[594],
             dependencies: nix.thunk(() => [nix.thunk(() => nix.sel(self, "nvim-java-core"))]),
             nvimSkipModules: nix.thunk(() => ["java-refactor.action", "java-refactor.refactor"]),
           })))),
         "nvim-java-test": nix.thunk(() => nix.app(nix.sel(super$, "nvim-java-test", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$596,
+            [nix.POS]: $pos[595],
             dependencies: nix.thunk(() => [nix.thunk(() => nix.sel(self, "nvim-java-core"))]),
           })))),
         "nvim-jdtls": nix.thunk(() => nix.app(nix.sel(super$, "nvim-jdtls", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$598,
+            [nix.POS]: $pos[597],
             runtimeDeps: nix.thunk(() => [python3]),
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$597,
+              [nix.POS]: $pos[596],
               license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),
             })),
           }))),
-        "nvim-jqx": nix.thunk(() => nix.app(nix.sel(super$, "nvim-jqx", "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: pos$599, runtimeDeps: nix.thunk(() => [jq, yq]) })))),
+        "nvim-jqx": nix.thunk(() => nix.app(nix.sel(super$, "nvim-jqx", "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: $pos[598], runtimeDeps: nix.thunk(() => [jq, yq]) })))),
         "nvim-julia-autotest": nix.thunk(() => nix.app(nix.sel(super$, "nvim-julia-autotest", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$601,
+            [nix.POS]: $pos[600],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$600,
+              [nix.POS]: $pos[599],
               license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),
             })),
           }))),
         "nvim-k8s-crd": nix.thunk(() => nix.app(nix.sel(super$, "nvim-k8s-crd", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$602,
+            [nix.POS]: $pos[601],
             dependencies: nix.thunk(() => (() => {
               const w = nix.withScope(self, null);
               return [
@@ -4585,32 +3439,32 @@ substituteInPlace $out/bin/minimap_generator.sh \\
             })()),
           })))),
         "nvim-lilypond-suite": nix.thunk(() => nix.app(nix.sel(super$, "nvim-lilypond-suite", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$603,
+            [nix.POS]: $pos[602],
             nvimSkipModules: nix.thunk(() => ["nvls.errors.lilypond-book", "nvls.tex", "nvls.texinfo"]),
           })))),
         "nvim-lint": nix.thunk(() => nix.app(nix.sel(super$, "nvim-lint", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$605,
+            [nix.POS]: $pos[604],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$604,
+              [nix.POS]: $pos[603],
               license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),
             })),
           }))),
         "nvim-lsp-file-operations": nix.thunk(() => nix.app(nix.sel(super$, "nvim-lsp-file-operations", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$606,
+            [nix.POS]: $pos[605],
             dependencies: nix.thunk(() => [nix.thunk(() => nix.sel(self, "plenary-nvim"))]),
           })))),
         "nvim-lsputils": nix.thunk(() => nix.app(nix.sel(super$, "nvim-lsputils", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$607,
+            [nix.POS]: $pos[606],
             dependencies: nix.thunk(() => [nix.thunk(() => nix.sel(self, "popfix"))]),
           })))),
         "nvim-metals": nix.thunk(() => nix.app(nix.sel(super$, "nvim-metals", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$608,
+            [nix.POS]: $pos[607],
             dependencies: nix.thunk(() => [nix.thunk(() => nix.sel(self, "plenary-nvim"))]),
             dontBuild: true,
           })))),
-        "nvim-moonwalk": nix.thunk(() => nix.app(nix.sel(super$, "nvim-moonwalk", "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: pos$609, nvimSkipModules: nix.thunk(() => ["moonwalk"]) })))),
+        "nvim-moonwalk": nix.thunk(() => nix.app(nix.sel(super$, "nvim-moonwalk", "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: $pos[608], nvimSkipModules: nix.thunk(() => ["moonwalk"]) })))),
         "nvim-navbuddy": nix.thunk(() => nix.app(nix.sel(super$, "nvim-navbuddy", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$610,
+            [nix.POS]: $pos[609],
             dependencies: nix.thunk(() => (() => {
               const w = nix.withScope(self, null);
               return [
@@ -4621,11 +3475,11 @@ substituteInPlace $out/bin/minimap_generator.sh \\
             })()),
           })))),
         "nvim-navic": nix.thunk(() => nix.app(nix.sel(super$, "nvim-navic", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$611,
+            [nix.POS]: $pos[610],
             dependencies: nix.thunk(() => [nix.thunk(() => nix.sel(self, "nvim-lspconfig"))]),
           })))),
         "nvim-neoclip-lua": nix.thunk(() => nix.app(nix.sel(super$, "nvim-neoclip-lua", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$613,
+            [nix.POS]: $pos[612],
             checkInputs: nix.thunk(() => (() => {
               const w = nix.withScope(self, null);
               return [
@@ -4634,21 +3488,21 @@ substituteInPlace $out/bin/minimap_generator.sh \\
               ];
             })()),
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$612,
+              [nix.POS]: $pos[611],
               license: nix.thunk(() => nix.sel(lib, "licenses", "vim")),
             })),
           }))),
         "nvim-nonicons": nix.thunk(() => nix.app(nix.sel(super$, "nvim-nonicons", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$614,
+            [nix.POS]: $pos[613],
             checkInputs: nix.thunk(() => [nix.thunk(() => nix.sel(self, "nvim-web-devicons"))]),
           })))),
         "nvim-notify": nix.thunk(() => nix.app(nix.sel(super$, "nvim-notify", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$615,
+            [nix.POS]: $pos[614],
             checkInputs: nix.thunk(() => [nix.thunk(() => nix.sel(self, "fzf-lua"))]),
             nvimSkipModules: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["notify.integrations.fzf"]))),
           })))),
         "nvim-nu": nix.thunk(() => nix.app(nix.sel(super$, "nvim-nu", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$616,
+            [nix.POS]: $pos[615],
             dependencies: nix.thunk(() => (() => {
               const w = nix.withScope(self, null);
               return [
@@ -4659,41 +3513,41 @@ substituteInPlace $out/bin/minimap_generator.sh \\
             })()),
           })))),
         "nvim-parinfer": nix.thunk(() => nix.app(nix.sel(super$, "nvim-parinfer", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$618,
+            [nix.POS]: $pos[617],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$617,
+              [nix.POS]: $pos[616],
               license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),
             })),
           }))),
         "nvim-remote-containers": nix.thunk(() => nix.app(nix.sel(super$, "nvim-remote-containers", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$620,
+            [nix.POS]: $pos[619],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$619,
+              [nix.POS]: $pos[618],
               license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
             })),
           }))),
-        "nvim-rip-substitute": nix.thunk(() => nix.app(nix.sel(super$, "nvim-rip-substitute", "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: pos$621, buildInputs: nix.thunk(() => [ripgrep]) })))),
+        "nvim-rip-substitute": nix.thunk(() => nix.app(nix.sel(super$, "nvim-rip-substitute", "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: $pos[620], buildInputs: nix.thunk(() => [ripgrep]) })))),
         "nvim-scissors": nix.thunk(() => nix.app(nix.sel(super$, "nvim-scissors", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$622,
+            [nix.POS]: $pos[621],
             checkInputs: nix.thunk(() => [
               nix.thunk(() => nix.sel(self, "telescope-nvim")),
               nix.thunk(() => nix.sel(self, "fzf-lua")),
             ]),
           })))),
         "nvim-snippets": nix.thunk(() => nix.app(nix.sel(super$, "nvim-snippets", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$623,
+            [nix.POS]: $pos[622],
             checkInputs: nix.thunk(() => [nix.thunk(() => nix.sel(self, "nvim-cmp"))]),
           })))),
-        "nvim-sops": nix.thunk(() => nix.app(nix.sel(super$, "nvim-sops", "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: pos$624, runtimeDeps: nix.thunk(() => [sops]) })))),
+        "nvim-sops": nix.thunk(() => nix.app(nix.sel(super$, "nvim-sops", "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: $pos[623], runtimeDeps: nix.thunk(() => [sops]) })))),
         "nvim-teal-maker": nix.thunk(() => nix.app(nix.sel(super$, "nvim-teal-maker", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$625,
+            [nix.POS]: $pos[624],
             postPatch: nix.thunk(() => nix.str`substituteInPlace lua/tealmaker/init.lua \\
   --replace-fail cyan ${nix.sel(luaPackages, "cyan")}/bin/cyan
 `),
             vimCommandCheck: "TealBuild",
           })))),
         "nvim-test": nix.thunk(() => nix.app(nix.sel(super$, "nvim-test", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$626,
+            [nix.POS]: $pos[625],
             checkInputs: nix.thunk(() => [nix.thunk(() => nix.sel(self, "toggleterm-nvim"))]),
             dependencies: nix.thunk(() => (() => {
               const w = nix.withScope(self, null);
@@ -4712,13 +3566,13 @@ substituteInPlace $out/bin/minimap_generator.sh \\
             })()),
           })))),
         "nvim-tinygit": nix.thunk(() => nix.app(nix.sel(super$, "nvim-tinygit", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$627,
+            [nix.POS]: $pos[626],
             checkInputs: nix.thunk(() => [gitMinimal, nix.thunk(() => nix.sel(self, "telescope-nvim"))]),
           })))),
         "nvim-tree-lua": nix.thunk(() => nix.app(nix.sel(super$, "nvim-tree-lua", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$629,
+            [nix.POS]: $pos[628],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$628,
+              [nix.POS]: $pos[627],
               license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
             })),
           }))),
@@ -4728,55 +3582,55 @@ substituteInPlace $out/bin/minimap_generator.sh \\
           return (nix.asBool(nix.sel(config, "allowAliases")) ? nix.app(nix.sel(lib, "warnOnInstantiate"), "nvim-treesitter-legacy is deprecated, please migrate to the new version. This will become an error in 26.11", drv) : nix.force(drv));
         })()),
         "nvim-treesitter-pairs": nix.thunk(() => nix.app(nix.sel(super$, "nvim-treesitter-pairs", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$630,
+            [nix.POS]: $pos[629],
             dependencies: nix.thunk(() => [nix.thunk(() => nix.sel(self, "nvim-treesitter-legacy"))]),
           })))),
         "nvim-treesitter-pyfold": nix.thunk(() => nix.app(nix.sel(super$, "nvim-treesitter-pyfold", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$631,
+            [nix.POS]: $pos[630],
             dependencies: nix.thunk(() => [nix.thunk(() => nix.sel(self, "nvim-treesitter-legacy"))]),
           })))),
         "nvim-treesitter-refactor": nix.thunk(() => nix.app(nix.sel(super$, "nvim-treesitter-refactor", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$632,
+            [nix.POS]: $pos[631],
             dependencies: nix.thunk(() => [nix.thunk(() => nix.sel(self, "nvim-treesitter-legacy"))]),
           })))),
         "nvim-treesitter-sexp": nix.thunk(() => nix.app(nix.sel(super$, "nvim-treesitter-sexp", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$633,
+            [nix.POS]: $pos[632],
             dependencies: nix.thunk(() => [nix.thunk(() => nix.sel(self, "nvim-treesitter-legacy"))]),
           })))),
         "nvim-treesitter-textobjects": nix.thunk(() => nix.app(nix.sel(super$, "nvim-treesitter-textobjects", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$634,
+            [nix.POS]: $pos[633],
             dependencies: nix.thunk(() => [nix.thunk(() => nix.sel(self, "nvim-treesitter"))]),
           })))),
         "nvim-treesitter-textobjects-legacy": nix.thunk(() => nix.app(nix.sel(super$, "nvim-treesitter-textobjects-legacy", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$635,
+            [nix.POS]: $pos[634],
             dependencies: nix.thunk(() => [nix.thunk(() => nix.sel(self, "nvim-treesitter-legacy"))]),
           })))),
         "nvim-treesitter-textsubjects": nix.thunk(() => nix.app(nix.sel(super$, "nvim-treesitter-textsubjects", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$636,
+            [nix.POS]: $pos[635],
             dependencies: nix.thunk(() => [nix.thunk(() => nix.sel(self, "nvim-treesitter-legacy"))]),
           })))),
         "nvim-ufo": nix.thunk(() => nix.app(nix.sel(super$, "nvim-ufo", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$637,
+            [nix.POS]: $pos[636],
             dependencies: nix.thunk(() => [nix.thunk(() => nix.sel(self, "promise-async"))]),
           })))),
         "nvim-unception": nix.thunk(() => nix.app(nix.sel(super$, "nvim-unception", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$638,
+            [nix.POS]: $pos[637],
             nvimSkipModules: nix.thunk(() => nix.concat(["client.client"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["server.server", "unception"])))),
           })))),
         "nvim-vtsls": nix.thunk(() => nix.app(nix.sel(super$, "nvim-vtsls", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$639,
+            [nix.POS]: $pos[638],
             runtimeDeps: nix.thunk(() => [vtsls]),
             dependencies: nix.thunk(() => [nix.thunk(() => nix.sel(self, "nvim-lspconfig"))]),
           })))),
         "nvim-whichkey-setup-lua": nix.thunk(() => nix.app(nix.sel(super$, "nvim-whichkey-setup-lua", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$641,
+            [nix.POS]: $pos[640],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$640,
+              [nix.POS]: $pos[639],
               license: nix.thunk(() => nix.sel(lib, "licenses", "vim")),
             })),
           }))),
         "nvzone-menu": nix.thunk(() => nix.app(nix.sel(super$, "nvzone-menu", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$642,
+            [nix.POS]: $pos[641],
             pname: "menu",
             checkInputs: nix.thunk(() => (() => {
               const w = nix.withScope(self, null);
@@ -4791,18 +3645,18 @@ substituteInPlace $out/bin/minimap_generator.sh \\
             dependencies: nix.thunk(() => [nix.thunk(() => nix.sel(self, "nvzone-volt"))]),
           })))),
         "nvzone-minty": nix.thunk(() => nix.app(nix.sel(super$, "nvzone-minty", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$643,
+            [nix.POS]: $pos[642],
             pname: "minty",
             dependencies: nix.thunk(() => [nix.thunk(() => nix.sel(self, "nvzone-volt"))]),
           })))),
         "nvzone-typr": nix.thunk(() => nix.app(nix.sel(super$, "nvzone-typr", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$644,
+            [nix.POS]: $pos[643],
             pname: "typr",
             dependencies: nix.thunk(() => [nix.thunk(() => nix.sel(self, "nvzone-volt"))]),
           })))),
-        "nvzone-volt": nix.thunk(() => nix.app(nix.sel(super$, "nvzone-volt", "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: pos$645, pname: "volt" })))),
+        "nvzone-volt": nix.thunk(() => nix.app(nix.sel(super$, "nvzone-volt", "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: $pos[644], pname: "volt" })))),
         "obsidian-nvim": nix.thunk(() => nix.app(nix.sel(super$, "obsidian-nvim", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$646,
+            [nix.POS]: $pos[645],
             checkInputs: nix.thunk(() => (() => {
               const w = nix.withScope(self, null);
               return [
@@ -4815,14 +3669,14 @@ substituteInPlace $out/bin/minimap_generator.sh \\
             nvimSkipModules: nix.thunk(() => ["minimal", "obsidian.picker._fzf"]),
           })))),
         "oceanic-next": nix.thunk(() => nix.app(nix.sel(super$, "oceanic-next", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$648,
+            [nix.POS]: $pos[647],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$647,
+              [nix.POS]: $pos[646],
               license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
             })),
           }))),
         "octo-nvim": nix.thunk(() => nix.app(nix.sel(super$, "octo-nvim", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$649,
+            [nix.POS]: $pos[648],
             checkInputs: nix.thunk(() => (() => {
               const w = nix.withScope(self, null);
               return [
@@ -4837,39 +3691,39 @@ substituteInPlace $out/bin/minimap_generator.sh \\
             })()),
           })))),
         "oil-git-nvim": nix.thunk(() => nix.app(nix.sel(super$, "oil-git-nvim", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$651,
+            [nix.POS]: $pos[650],
             dependencies: nix.thunk(() => [nix.thunk(() => nix.sel(self, "oil-nvim"))]),
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$650,
+              [nix.POS]: $pos[649],
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
             })),
           }))),
         "oil-git-status-nvim": nix.thunk(() => nix.app(nix.sel(super$, "oil-git-status-nvim", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$652,
+            [nix.POS]: $pos[651],
             dependencies: nix.thunk(() => [nix.thunk(() => nix.sel(self, "oil-nvim"))]),
           })))),
         "oil-lsp-diagnostics-nvim": nix.thunk(() => nix.app(nix.sel(super$, "oil-lsp-diagnostics-nvim", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$653,
+            [nix.POS]: $pos[652],
             dependencies: nix.thunk(() => [nix.thunk(() => nix.sel(self, "oil-nvim"))]),
           })))),
         "ollama-nvim": nix.thunk(() => nix.app(nix.sel(super$, "ollama-nvim", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$654,
+            [nix.POS]: $pos[653],
             dependencies: nix.thunk(() => [nix.thunk(() => nix.sel(self, "plenary-nvim"))]),
           })))),
-        "omni-vim": nix.thunk(() => nix.app(nix.sel(super$, "omni-vim", "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: pos$655, nvimSkipModules: nix.thunk(() => ["omni-lightline"]) })))),
+        "omni-vim": nix.thunk(() => nix.app(nix.sel(super$, "omni-vim", "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: $pos[654], nvimSkipModules: nix.thunk(() => ["omni-lightline"]) })))),
         "omnisharp-extended-lsp-nvim": nix.thunk(() => nix.app(nix.sel(super$, "omnisharp-extended-lsp-nvim", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$657,
+            [nix.POS]: $pos[656],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$656,
+              [nix.POS]: $pos[655],
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
             })),
           }))),
         "one-nvim": nix.thunk(() => nix.app(nix.sel(super$, "one-nvim", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$659,
-            meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), { [nix.POS]: pos$658, broken: true })),
+            [nix.POS]: $pos[658],
+            meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), { [nix.POS]: $pos[657], broken: true })),
           }))),
         "onedark-nvim": nix.thunk(() => nix.app(nix.sel(super$, "onedark-nvim", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$660,
+            [nix.POS]: $pos[659],
             nvimSkipModules: nix.thunk(() => [
               "barbecue.theme.onedark",
               "onedark.highlights",
@@ -4877,22 +3731,22 @@ substituteInPlace $out/bin/minimap_generator.sh \\
               "onedark.terminal",
             ]),
           })))),
-        onehalf: nix.thunk(() => nix.app(nix.sel(super$, "onehalf", "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: pos$661, configurePhase: "cd vim" })))),
+        onehalf: nix.thunk(() => nix.app(nix.sel(super$, "onehalf", "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: $pos[660], configurePhase: "cd vim" })))),
         "open-browser-vim": nix.thunk(() => nix.app(nix.sel(super$, "open-browser-vim", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$663,
+            [nix.POS]: $pos[662],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$662,
+              [nix.POS]: $pos[661],
               license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
             })),
           }))),
-        "opencode-nvim": nix.thunk(() => nix.app(nix.sel(super$, "opencode-nvim", "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: pos$664, runtimeDeps: nix.thunk(() => [curl, opencode, lsof]) })))),
+        "opencode-nvim": nix.thunk(() => nix.app(nix.sel(super$, "opencode-nvim", "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: $pos[663], runtimeDeps: nix.thunk(() => [curl, opencode, lsof]) })))),
         "openscad-nvim": nix.thunk(() => nix.app(nix.sel(super$, "openscad-nvim", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$665,
+            [nix.POS]: $pos[664],
             runtimeDeps: nix.thunk(() => [openscad]),
             nvimSkipModules: nix.thunk(() => ["openscad", "openscad.utilities"]),
           })))),
         "org-notebook-nvim": nix.thunk(() => nix.app(nix.sel(super$, "org-notebook-nvim", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$666,
+            [nix.POS]: $pos[665],
             dependencies: nix.thunk(() => [
               nix.thunk(() => nix.sel(self, "orgmode")),
               nix.thunk(() => nix.sel(self, "jupyter-api-nvim")),
@@ -4900,19 +3754,19 @@ substituteInPlace $out/bin/minimap_generator.sh \\
             nvimSkipModules: nix.thunk(() => ["org-notebook.test"]),
           })))),
         "org-roam-nvim": nix.thunk(() => nix.app(nix.sel(super$, "org-roam-nvim", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$667,
+            [nix.POS]: $pos[666],
             dependencies: nix.thunk(() => [nix.thunk(() => nix.sel(self, "orgmode"))]),
           })))),
         "otter-nvim": nix.thunk(() => nix.app(nix.sel(super$, "otter-nvim", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$668,
+            [nix.POS]: $pos[667],
             dependencies: nix.thunk(() => [nix.thunk(() => nix.sel(self, "nvim-lspconfig"))]),
           })))),
         "outline-nvim": nix.thunk(() => nix.app(nix.sel(super$, "outline-nvim", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$669,
+            [nix.POS]: $pos[668],
             nvimSkipModules: nix.thunk(() => ["outline.providers.norg"]),
           })))),
         "overseer-nvim": nix.thunk(() => nix.app(nix.sel(super$, "overseer-nvim", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$670,
+            [nix.POS]: $pos[669],
             checkInputs: nix.thunk(() => (() => {
               const w = nix.withScope(self, null);
               return [
@@ -4934,12 +3788,12 @@ runHook postCheck
 `),
           })))),
         "package-info-nvim": nix.thunk(() => nix.app(nix.sel(super$, "package-info-nvim", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$671,
+            [nix.POS]: $pos[670],
             dependencies: nix.thunk(() => [nix.thunk(() => nix.sel(self, "nui-nvim"))]),
           })))),
-        "pantran-nvim": nix.thunk(() => nix.app(nix.sel(super$, "pantran-nvim", "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: pos$672, runtimeDeps: nix.thunk(() => [curl]) })))),
+        "pantran-nvim": nix.thunk(() => nix.app(nix.sel(super$, "pantran-nvim", "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: $pos[671], runtimeDeps: nix.thunk(() => [curl]) })))),
         "parpar-nvim": nix.thunk(() => nix.app(nix.sel(super$, "parpar-nvim", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$673,
+            [nix.POS]: $pos[672],
             dependencies: nix.thunk(() => (() => {
               const w = nix.withScope(self, null);
               return [
@@ -4949,7 +3803,7 @@ runHook postCheck
             })()),
           })))),
         "parrot-nvim": nix.thunk(() => nix.app(nix.sel(super$, "parrot-nvim", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$675,
+            [nix.POS]: $pos[674],
             runtimeDeps: nix.thunk(() => [curl]),
             dependencies: nix.thunk(() => (() => {
               const w = nix.withScope(self, null);
@@ -4962,64 +3816,64 @@ runHook postCheck
               nix.thunk(() => nix.sel(self, "nvim-cmp")),
             ]),
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$674,
+              [nix.POS]: $pos[673],
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
             })),
           }))),
         "peek-nvim": nix.thunk(() => nix.app(nix.sel(super$, "peek-nvim", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$676,
+            [nix.POS]: $pos[675],
             runtimeDeps: nix.thunk(() => [deno]),
             patches: nix.thunk(() => [nix.path(here, "./patches/peek-nvim/cmd.patch")]),
           }))),
         "perfanno-nvim": nix.thunk(() => nix.app(nix.sel(super$, "perfanno-nvim", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$677,
+            [nix.POS]: $pos[676],
             checkInputs: nix.thunk(() => (() => {
               const w = nix.withScope(self, null);
               return [nix.thunk(() => nix.lookup(w, "fzf-lua"))];
             })()),
           })))),
         "persistent-breakpoints-nvim": nix.thunk(() => nix.app(nix.sel(super$, "persistent-breakpoints-nvim", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$678,
+            [nix.POS]: $pos[677],
             dependencies: nix.thunk(() => (() => {
               const w = nix.withScope(self, null);
               return [nix.thunk(() => nix.lookup(w, "nvim-dap"))];
             })()),
           })))),
         "pgsql-vim": nix.thunk(() => nix.app(nix.sel(super$, "pgsql-vim", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$680,
+            [nix.POS]: $pos[679],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$679,
+              [nix.POS]: $pos[678],
               license: nix.thunk(() => nix.sel(lib, "licenses", "vim")),
             })),
           }))),
         "plantuml-nvim": nix.thunk(() => nix.app(nix.sel(super$, "plantuml-nvim", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$681,
+            [nix.POS]: $pos[680],
             dependencies: nix.thunk(() => [nix.thunk(() => nix.sel(self, "LibDeflate-nvim"))]),
           })))),
         "poimandres-nvim": nix.thunk(() => nix.app(nix.sel(super$, "poimandres-nvim", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$682,
+            [nix.POS]: $pos[681],
             nvimSkipModules: nix.thunk(() => ["poimandres.highlights"]),
           })))),
         "popup-nvim": nix.thunk(() => nix.app(nix.sel(super$, "popup-nvim", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$683,
+            [nix.POS]: $pos[682],
             dependencies: nix.thunk(() => [nix.thunk(() => nix.sel(self, "plenary-nvim"))]),
           })))),
         PreserveNoEOL: nix.thunk(() => nix.app(nix.sel(super$, "PreserveNoEOL", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$685,
+            [nix.POS]: $pos[684],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$684,
+              [nix.POS]: $pos[683],
               license: nix.thunk(() => nix.sel(lib, "licenses", "vim")),
             })),
           }))),
-        "Preview-nvim": nix.thunk(() => nix.app(nix.sel(super$, "Preview-nvim", "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: pos$686, runtimeDeps: nix.thunk(() => [md_tui]) })))),
+        "Preview-nvim": nix.thunk(() => nix.app(nix.sel(super$, "Preview-nvim", "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: $pos[685], runtimeDeps: nix.thunk(() => [md_tui]) })))),
         "project-nvim": nix.thunk(() => nix.app(nix.sel(super$, "project-nvim", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$687,
+            [nix.POS]: $pos[686],
             checkInputs: nix.thunk(() => [nix.thunk(() => nix.sel(self, "telescope-nvim"))]),
           })))),
         "psc-ide-vim": nix.thunk(() => nix.app(nix.sel(super$, "psc-ide-vim", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$689,
+            [nix.POS]: $pos[688],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$688,
+              [nix.POS]: $pos[687],
               license: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "licenses")), null);
                 return [
@@ -5030,23 +3884,23 @@ runHook postCheck
             })),
           }))),
         "python-mode": nix.thunk(() => nix.app(nix.sel(super$, "python-mode", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$690,
+            [nix.POS]: $pos[689],
             postPatch: nix.thunk(() => nix.add(nix.selOr(old, () => "", "postPatch"), "# NOTE: Fix broken symlink - the pytoolconfig directory was moved to src/\n# https://github.com/python-mode/python-mode/pull/1189#issuecomment-3109528360\nrm -f pymode/libs/pytoolconfig\nln -sf ../../submodules/pytoolconfig/src/pytoolconfig pymode/libs/pytoolconfig\n\n# The current source tarball only ships a subset of the historical\n# submodules, so drop the now-dangling vendored linter symlinks.\nrm -f \\\n  pymode/libs/appdirs.py \\\n  pymode/libs/astroid \\\n  pymode/libs/mccabe.py \\\n  pymode/libs/pycodestyle.py \\\n  pymode/libs/pydocstyle \\\n  pymode/libs/pyflakes \\\n  pymode/libs/pylama \\\n  pymode/libs/pylint \\\n  pymode/libs/snowballstemmer \\\n  pymode/libs/toml \\\n  pymode/autopep8.py\n")),
           }))),
-        "pywal-nvim": nix.thunk(() => nix.app(nix.sel(super$, "pywal-nvim", "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: pos$691, nvimSkipModules: nix.thunk(() => ["pywal.feline"]) })))),
+        "pywal-nvim": nix.thunk(() => nix.app(nix.sel(super$, "pywal-nvim", "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: $pos[690], nvimSkipModules: nix.thunk(() => ["pywal.feline"]) })))),
         QFEnter: nix.thunk(() => nix.app(nix.sel(super$, "QFEnter", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$693,
+            [nix.POS]: $pos[692],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$692,
+              [nix.POS]: $pos[691],
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
             })),
           }))),
         "qmk-nvim": nix.thunk(() => nix.app(nix.sel(super$, "qmk-nvim", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$694,
+            [nix.POS]: $pos[693],
             dependencies: nix.thunk(() => [nix.thunk(() => nix.sel(self, "plenary-nvim"))]),
           })))),
         "quarto-nvim": nix.thunk(() => nix.app(nix.sel(super$, "quarto-nvim", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$696,
+            [nix.POS]: $pos[695],
             checkInputs: nix.thunk(() => [nix.thunk(() => nix.sel(self, "iron-nvim"))]),
             dependencies: nix.thunk(() => (() => {
               const w = nix.withScope(self, null);
@@ -5056,56 +3910,56 @@ runHook postCheck
               ];
             })()),
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$695,
+              [nix.POS]: $pos[694],
               license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
             })),
           }))),
         quickfixstatus: nix.thunk(() => nix.app(nix.sel(super$, "quickfixstatus", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$698,
+            [nix.POS]: $pos[697],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$697,
+              [nix.POS]: $pos[696],
               license: nix.thunk(() => nix.sel(lib, "licenses", "vim")),
             })),
           }))),
         "rainbow-delimiters-nvim": nix.thunk(() => nix.app(nix.sel(super$, "rainbow-delimiters-nvim", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$700,
+            [nix.POS]: $pos[699],
             nvimSkipModules: nix.thunk(() => ["rainbow-delimiters.types", "rainbow-delimiters._test.highlight"]),
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$699,
+              [nix.POS]: $pos[698],
               license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
             })),
           }))),
-        "ranger-nvim": nix.thunk(() => nix.app(nix.sel(super$, "ranger-nvim", "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: pos$701, runtimeDeps: nix.thunk(() => [ranger]) })))),
+        "ranger-nvim": nix.thunk(() => nix.app(nix.sel(super$, "ranger-nvim", "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: $pos[700], runtimeDeps: nix.thunk(() => [ranger]) })))),
         "rcshell-vim": nix.thunk(() => nix.app(nix.sel(super$, "rcshell-vim", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$703,
+            [nix.POS]: $pos[702],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$702,
+              [nix.POS]: $pos[701],
               license: nix.thunk(() => nix.sel(lib, "licenses", "publicDomain")),
             })),
           }))),
         "readline-vim": nix.thunk(() => nix.app(nix.sel(super$, "readline-vim", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$705,
+            [nix.POS]: $pos[704],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$704,
+              [nix.POS]: $pos[703],
               license: nix.thunk(() => nix.sel(lib, "licenses", "vim")),
             })),
           }))),
         "Recover-vim": nix.thunk(() => nix.app(nix.sel(super$, "Recover-vim", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$707,
+            [nix.POS]: $pos[706],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$706,
+              [nix.POS]: $pos[705],
               license: nix.thunk(() => nix.sel(lib, "licenses", "vim")),
             })),
           }))),
         "refactoring-nvim": nix.thunk(() => nix.app(nix.sel(super$, "refactoring-nvim", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$708,
+            [nix.POS]: $pos[707],
             dependencies: nix.thunk(() => (() => {
               const w = nix.withScope(self, null);
               return [nix.thunk(() => nix.lookup(w, "async-nvim"))];
             })()),
           })))),
         "remote-nvim-nvim": nix.thunk(() => nix.app(nix.sel(super$, "remote-nvim-nvim", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$709,
+            [nix.POS]: $pos[708],
             dontPatchShebangs: true,
             dependencies: nix.thunk(() => (() => {
               const w = nix.withScope(self, null);
@@ -5117,7 +3971,7 @@ runHook postCheck
             nvimSkipModules: nix.thunk(() => ["repro"]),
           })))),
         "remote-sshfs-nvim": nix.thunk(() => nix.app(nix.sel(super$, "remote-sshfs-nvim", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$710,
+            [nix.POS]: $pos[709],
             dependencies: nix.thunk(() => (() => {
               const w = nix.withScope(self, null);
               return [
@@ -5128,31 +3982,31 @@ runHook postCheck
             runtimeDeps: nix.thunk(() => [openssh, sshfs]),
           })))),
         Rename: nix.thunk(() => nix.app(nix.sel(super$, "Rename", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$712,
+            [nix.POS]: $pos[711],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$711,
+              [nix.POS]: $pos[710],
               license: nix.thunk(() => nix.sel(lib, "licenses", "vim")),
             })),
           }))),
         "renamer-nvim": nix.thunk(() => nix.app(nix.sel(super$, "renamer-nvim", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$713,
+            [nix.POS]: $pos[712],
             dependencies: nix.thunk(() => [nix.thunk(() => nix.sel(self, "plenary-nvim"))]),
           })))),
         "repolink-nvim": nix.thunk(() => nix.app(nix.sel(super$, "repolink-nvim", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$714,
+            [nix.POS]: $pos[713],
             dependencies: nix.thunk(() => [nix.thunk(() => nix.sel(self, "plenary-nvim"))]),
           })))),
         "riv-vim": nix.thunk(() => nix.app(nix.sel(super$, "riv-vim", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$716,
+            [nix.POS]: $pos[715],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$715,
+              [nix.POS]: $pos[714],
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
             })),
           }))),
         "rocks-nvim": nix.thunk(() => nix.app(nix.sel(super$, "rocks-nvim", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$718,
+            [nix.POS]: $pos[717],
             passthru: nix.thunk(() => nix.update(nix.sel(old, "passthru"), {
-              [nix.POS]: pos$717,
+              [nix.POS]: $pos[716],
               initLua: nix.thunk(() => nix.str`vim.g.rocks_nvim = {
   luarocks_binary = "${nix.sel(neovim_unwrapped, "lua", "pkgs", "luarocks_bootstrap")}/bin/luarocks"
   }
@@ -5160,48 +4014,48 @@ runHook postCheck
             })),
           }))),
         "rtorrent-syntax-file": nix.thunk(() => nix.app(nix.sel(super$, "rtorrent-syntax-file", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$720,
+            [nix.POS]: $pos[719],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$719,
+              [nix.POS]: $pos[718],
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
             })),
           }))),
         "run-nvim": nix.thunk(() => nix.app(nix.sel(super$, "run-nvim", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$722,
+            [nix.POS]: $pos[721],
             dependencies: nix.thunk(() => [nix.thunk(() => nix.sel(self, "telescope-nvim"))]),
             checkInputs: nix.thunk(() => [nix.thunk(() => nix.sel(self, "plenary-nvim"))]),
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$721,
+              [nix.POS]: $pos[720],
               license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),
             })),
           }))),
         rustaceanvim: nix.thunk(() => nix.app(nix.sel(super$, "rustaceanvim", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$723,
+            [nix.POS]: $pos[722],
             checkInputs: nix.thunk(() => [nix.thunk(() => nix.sel(self, "neotest"))]),
           })))),
         "rzls-nvim": nix.thunk(() => nix.app(nix.sel(super$, "rzls-nvim", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$724,
+            [nix.POS]: $pos[723],
             dependencies: nix.thunk(() => [nix.thunk(() => nix.sel(self, "roslyn-nvim"))]),
           })))),
         "salt-vim": nix.thunk(() => nix.app(nix.sel(super$, "salt-vim", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$726,
+            [nix.POS]: $pos[725],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$725,
+              [nix.POS]: $pos[724],
               license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
             })),
           }))),
         "samodostal-image-nvim": nix.thunk(() => nix.app(nix.sel(super$, "samodostal-image-nvim", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$727,
+            [nix.POS]: $pos[726],
             dependencies: nix.thunk(() => [nix.thunk(() => nix.sel(self, "plenary-nvim"))]),
           })))),
         "schema-companion-nvim": nix.thunk(() => nix.app(nix.sel(super$, "schema-companion-nvim", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$728,
+            [nix.POS]: $pos[727],
             dependencies: nix.thunk(() => [nix.thunk(() => nix.sel(self, "plenary-nvim"))]),
           })))),
         "screensaver-nvim": nix.thunk(() => nix.app(nix.sel(super$, "screensaver-nvim", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$730,
+            [nix.POS]: $pos[729],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$729,
+              [nix.POS]: $pos[728],
               description: "Screensaver plugin for Neovim",
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
               maintainers: nix.thunk(() => (() => {
@@ -5211,38 +4065,38 @@ runHook postCheck
             })),
           }))),
         "scretch-nvim": nix.thunk(() => nix.app(nix.sel(super$, "scretch-nvim", "overrideAttrs"), nix.thunk(() => ({})))),
-        "search-and-replace-nvim": nix.thunk(() => nix.app(nix.sel(super$, "search-and-replace-nvim", "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: pos$731, runtimeDeps: nix.thunk(() => [fd, sad]) })))),
+        "search-and-replace-nvim": nix.thunk(() => nix.app(nix.sel(super$, "search-and-replace-nvim", "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: $pos[730], runtimeDeps: nix.thunk(() => [fd, sad]) })))),
         "searchbox-nvim": nix.thunk(() => nix.app(nix.sel(super$, "searchbox-nvim", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$732,
+            [nix.POS]: $pos[731],
             dependencies: nix.thunk(() => [nix.thunk(() => nix.sel(self, "nui-nvim"))]),
           })))),
         "seoul256-vim": nix.thunk(() => nix.app(nix.sel(super$, "seoul256-vim", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$734,
+            [nix.POS]: $pos[733],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$733,
+              [nix.POS]: $pos[732],
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
             })),
           }))),
         "sidekick-nvim": nix.thunk(() => nix.app(nix.sel(super$, "sidekick-nvim", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$735,
+            [nix.POS]: $pos[734],
             runtimeDeps: nix.thunk(() => [copilot_language_server]),
             nvimSkipModules: nix.thunk(() => ["sidekick.docs"]),
           })))),
         "skim-vim": nix.thunk(() => nix.app(nix.sel(super$, "skim-vim", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$737,
+            [nix.POS]: $pos[736],
             dependencies: nix.thunk(() => [nix.thunk(() => nix.sel(self, "skim"))]),
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$736,
+              [nix.POS]: $pos[735],
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
             })),
           }))),
         "slang-server-nvim": nix.thunk(() => nix.app(nix.sel(super$, "slang-server-nvim", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$738,
+            [nix.POS]: $pos[737],
             runtimeDeps: nix.thunk(() => [slang_server]),
             dependencies: nix.thunk(() => [nix.thunk(() => nix.sel(self, "nui-nvim"))]),
           })))),
         "slimline-nvim": nix.thunk(() => nix.app(nix.sel(super$, "slimline-nvim", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$739,
+            [nix.POS]: $pos[738],
             nvimSkipModules: nix.thunk(() => [
               "slimline.components.diagnostics",
               "slimline.components.filetype_lsp",
@@ -5255,7 +4109,7 @@ runHook postCheck
             ]),
           })))),
         "smart-open-nvim": nix.thunk(() => nix.app(nix.sel(super$, "smart-open-nvim", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$740,
+            [nix.POS]: $pos[739],
             dependencies: nix.thunk(() => (() => {
               const w = nix.withScope(self, null);
               return [
@@ -5266,21 +4120,21 @@ runHook postCheck
             })()),
             nvimSkipModules: nix.thunk(() => ["smart-open.matching.algorithms.fzf_implementation"]),
           })))),
-        "smart-splits-nvim": nix.thunk(() => nix.app(nix.sel(super$, "smart-splits-nvim", "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: pos$741, nvimSkipModules: nix.thunk(() => ["vimdoc-gen"]) })))),
+        "smart-splits-nvim": nix.thunk(() => nix.app(nix.sel(super$, "smart-splits-nvim", "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: $pos[740], nvimSkipModules: nix.thunk(() => ["vimdoc-gen"]) })))),
         "smartpairs-vim": nix.thunk(() => nix.app(nix.sel(super$, "smartpairs-vim", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$743,
+            [nix.POS]: $pos[742],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$742,
+              [nix.POS]: $pos[741],
               license: nix.thunk(() => nix.sel(lib, "licenses", "wtfpl")),
             })),
           }))),
         "snacks-nvim": nix.thunk(() => nix.app(nix.sel(super$, "snacks-nvim", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$744,
+            [nix.POS]: $pos[743],
             checkInputs: nix.thunk(() => [nix.thunk(() => nix.sel(self, "trouble-nvim"))]),
             nvimSkipModules: nix.thunk(() => ["snacks.picker.util.db"]),
           })))),
         snap: nix.thunk(() => nix.app(nix.sel(super$, "snap", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$745,
+            [nix.POS]: $pos[744],
             nvimSkipModules: nix.thunk(() => [
               "snap.consumer.fzy.all",
               "snap.consumer.fzy.filter",
@@ -5291,73 +4145,73 @@ runHook postCheck
             ]),
           })))),
         "solarized-osaka-nvim": nix.thunk(() => nix.app(nix.sel(super$, "solarized-osaka-nvim", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$746,
+            [nix.POS]: $pos[745],
             checkInputs: nix.thunk(() => [nix.thunk(() => nix.sel(self, "fzf-lua"))]),
             nvimSkipModules: nix.thunk(() => ["solarized-osaka.extra.fzf"]),
           })))),
         "sonarlint-nvim": nix.thunk(() => nix.app(nix.sel(super$, "sonarlint-nvim", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$748,
+            [nix.POS]: $pos[747],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$747,
+              [nix.POS]: $pos[746],
               license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),
               maintainers: nix.thunk(() => nix.concat(nix.selOr(old, () => [], "meta", "maintainers"), [nix.thunk(() => nix.sel(lib, "maintainers", "sinics"))])),
             })),
           }))),
         "spaceman-nvim": nix.thunk(() => nix.app(nix.sel(super$, "spaceman-nvim", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$749,
+            [nix.POS]: $pos[748],
             nvimSkipModules: nix.thunk(() => ["spaceman.adapters.telescope"]),
           })))),
         "sqlite-lua": nix.thunk(() => nix.app(nix.sel(super$, "sqlite-lua", "overrideAttrs"), (old) => (() => {
             const libsqlite = nix.thunk(() => nix.str`${nix.sel(sqlite, "out")}/lib/libsqlite3${nix.sel(stdenv, "hostPlatform", "extensions", "sharedLibrary")}`);
             return {
-              [nix.POS]: pos$751,
+              [nix.POS]: $pos[750],
               postPatch: nix.thunk(() => nix.str`substituteInPlace lua/sqlite/defs.lua \\
   --replace-fail "path = vim.g.sqlite_clib_path" "path = vim.g.sqlite_clib_path or '${nix.app(nix.sel(lib, "escapeShellArg"), libsqlite)}'"
 `),
               passthru: nix.thunk(() => nix.update(nix.sel(old, "passthru"), {
-                [nix.POS]: pos$750,
+                [nix.POS]: $pos[749],
                 initLua: nix.thunk(() => nix.str`vim.g.sqlite_clib_path = "${libsqlite}"`),
               })),
               nvimSkipModules: nix.thunk(() => ["sqlite.examples.bookmarks", "sqlite.tbl.cache"]),
             };
           })())),
         "srcery-vim": nix.thunk(() => nix.app(nix.sel(super$, "srcery-vim", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$753,
+            [nix.POS]: $pos[752],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$752,
+              [nix.POS]: $pos[751],
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
             })),
           }))),
         starrynight: nix.thunk(() => nix.app(nix.sel(super$, "starrynight", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$755,
+            [nix.POS]: $pos[754],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$754,
+              [nix.POS]: $pos[753],
               license: nix.thunk(() => nix.sel(lib, "licenses", "vim")),
             })),
           }))),
         "startup-nvim": nix.thunk(() => nix.app(nix.sel(super$, "startup-nvim", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$756,
+            [nix.POS]: $pos[755],
             dependencies: nix.thunk(() => [nix.thunk(() => nix.sel(self, "plenary-nvim"))]),
           })))),
         "stylish-nvim": nix.thunk(() => nix.app(nix.sel(super$, "stylish-nvim", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$757,
+            [nix.POS]: $pos[756],
             postPatch: nix.thunk(() => nix.str`substituteInPlace lua/stylish/common/mouse_hover_handler.lua --replace-fail xdotool ${xdotool}/bin/xdotool
 substituteInPlace lua/stylish/components/menu.lua --replace-fail xdotool ${xdotool}/bin/xdotool
 substituteInPlace lua/stylish/components/menu.lua --replace-fail xwininfo ${xwininfo}/bin/xwininfo
 `),
           })))),
         "SudoEdit-vim": nix.thunk(() => nix.app(nix.sel(super$, "SudoEdit-vim", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$759,
+            [nix.POS]: $pos[758],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$758,
+              [nix.POS]: $pos[757],
               license: nix.thunk(() => nix.sel(lib, "licenses", "vim")),
             })),
           }))),
-        "supermaven-nvim": nix.thunk(() => nix.app(nix.sel(super$, "supermaven-nvim", "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: pos$760, doCheck: false })))),
+        "supermaven-nvim": nix.thunk(() => nix.app(nix.sel(super$, "supermaven-nvim", "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: $pos[759], doCheck: false })))),
         supertab: nix.thunk(() => nix.app(nix.sel(super$, "supertab", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$762,
+            [nix.POS]: $pos[761],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$761,
+              [nix.POS]: $pos[760],
               license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
             })),
           }))),
@@ -5365,7 +4219,7 @@ substituteInPlace lua/stylish/components/menu.lua --replace-fail xwininfo ${xwin
           const svedbackend = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => (() => {
               const from = nix.thunk(() => nix.sel(super$, "sved"));
               return {
-              [nix.POS]: pos$763,
+              [nix.POS]: $pos[762],
               name: nix.thunk(() => nix.str`svedbackend-${nix.sel(super$, "sved", "name")}`),
               src: nix.thunk(() => nix.attr(from, "src")),
               nativeBuildInputs: nix.thunk(() => [wrapGAppsHook3, gobject_introspection]),
@@ -5390,19 +4244,19 @@ import sys
 os.execv("${svedbackend}/bin/evinceSync.py", sys.argv)
 `)));
           return nix.app(nix.sel(super$, "sved", "overrideAttrs"), (old) => ({
-              [nix.POS]: pos$765,
+              [nix.POS]: $pos[764],
               preferLocalBuild: true,
               postPatch: nix.thunk(() => nix.str`rm ftplugin/evinceSync.py
 install -m 544 ${pythonWrapper} ftplugin/evinceSync.py
 `),
               meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-                [nix.POS]: pos$764,
+                [nix.POS]: $pos[763],
                 description: "synctex support between vim/neovim and evince",
               })),
             }));
         })()),
         "switcher-nvim": nix.thunk(() => nix.app(nix.sel(super$, "switcher-nvim", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$766,
+            [nix.POS]: $pos[765],
             dependencies: nix.thunk(() => (() => {
               const w = nix.withScope(self, null);
               return [
@@ -5412,38 +4266,38 @@ install -m 544 ${pythonWrapper} ftplugin/evinceSync.py
             })()),
           })))),
         tabmerge: nix.thunk(() => nix.app(nix.sel(super$, "tabmerge", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$768,
+            [nix.POS]: $pos[767],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$767,
+              [nix.POS]: $pos[766],
               license: nix.thunk(() => nix.sel(lib, "licenses", "vim")),
             })),
           }))),
         "tabpagebuffer-vim": nix.thunk(() => nix.app(nix.sel(super$, "tabpagebuffer-vim", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$770,
+            [nix.POS]: $pos[769],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$769,
+              [nix.POS]: $pos[768],
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
             })),
           }))),
         tabular: nix.thunk(() => nix.app(nix.sel(super$, "tabular", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$772,
+            [nix.POS]: $pos[771],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$771,
+              [nix.POS]: $pos[770],
               license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
             })),
           }))),
         tagbar: nix.thunk(() => nix.app(nix.sel(super$, "tagbar", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$774,
+            [nix.POS]: $pos[773],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$773,
+              [nix.POS]: $pos[772],
               license: nix.thunk(() => nix.sel(lib, "licenses", "vim")),
             })),
           }))),
         "tardis-nvim": nix.thunk(() => nix.app(nix.sel(super$, "tardis-nvim", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$776,
+            [nix.POS]: $pos[775],
             dependencies: nix.thunk(() => [nix.thunk(() => nix.sel(self, "plenary-nvim"))]),
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$775,
+              [nix.POS]: $pos[774],
               maintainers: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
                 return [nix.thunk(() => nix.lookup(w, "fredeb"))];
@@ -5451,14 +4305,14 @@ install -m 544 ${pythonWrapper} ftplugin/evinceSync.py
             })),
           }))),
         taskwiki: nix.thunk(() => nix.app(nix.sel(super$, "taskwiki", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$778,
+            [nix.POS]: $pos[777],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$777,
+              [nix.POS]: $pos[776],
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
             })),
           }))),
         "telekasten-nvim": nix.thunk(() => nix.app(nix.sel(super$, "telekasten-nvim", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$779,
+            [nix.POS]: $pos[778],
             dependencies: nix.thunk(() => (() => {
               const w = nix.withScope(self, null);
               return [
@@ -5468,7 +4322,7 @@ install -m 544 ${pythonWrapper} ftplugin/evinceSync.py
             })()),
           })))),
         "telescope-asynctasks-nvim": nix.thunk(() => nix.app(nix.sel(super$, "telescope-asynctasks-nvim", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$780,
+            [nix.POS]: $pos[779],
             dependencies: nix.thunk(() => (() => {
               const w = nix.withScope(self, null);
               return [
@@ -5478,7 +4332,7 @@ install -m 544 ${pythonWrapper} ftplugin/evinceSync.py
             })()),
           })))),
         "telescope-cheat-nvim": nix.thunk(() => nix.app(nix.sel(super$, "telescope-cheat-nvim", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$781,
+            [nix.POS]: $pos[780],
             dependencies: nix.thunk(() => (() => {
               const w = nix.withScope(self, null);
               return [
@@ -5489,7 +4343,7 @@ install -m 544 ${pythonWrapper} ftplugin/evinceSync.py
             })()),
           })))),
         "telescope-coc-nvim": nix.thunk(() => nix.app(nix.sel(super$, "telescope-coc-nvim", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$782,
+            [nix.POS]: $pos[781],
             dependencies: nix.thunk(() => (() => {
               const w = nix.withScope(self, null);
               return [
@@ -5499,7 +4353,7 @@ install -m 544 ${pythonWrapper} ftplugin/evinceSync.py
             })()),
           })))),
         "telescope-dap-nvim": nix.thunk(() => nix.app(nix.sel(super$, "telescope-dap-nvim", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$783,
+            [nix.POS]: $pos[782],
             dependencies: nix.thunk(() => (() => {
               const w = nix.withScope(self, null);
               return [
@@ -5510,11 +4364,11 @@ install -m 544 ${pythonWrapper} ftplugin/evinceSync.py
             })()),
           })))),
         "telescope-emoji-nvim": nix.thunk(() => nix.app(nix.sel(super$, "telescope-emoji-nvim", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$784,
+            [nix.POS]: $pos[783],
             dependencies: nix.thunk(() => [nix.thunk(() => nix.sel(self, "telescope-nvim"))]),
           })))),
         "telescope-frecency-nvim": nix.thunk(() => nix.app(nix.sel(super$, "telescope-frecency-nvim", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$785,
+            [nix.POS]: $pos[784],
             dependencies: nix.thunk(() => (() => {
               const w = nix.withScope(self, null);
               return [
@@ -5526,16 +4380,16 @@ install -m 544 ${pythonWrapper} ftplugin/evinceSync.py
             nvimSkipModules: nix.thunk(() => ["frecency.types"]),
           })))),
         "telescope-fzf-native-nvim": nix.thunk(() => nix.app(nix.sel(super$, "telescope-fzf-native-nvim", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$787,
+            [nix.POS]: $pos[786],
             dependencies: nix.thunk(() => [nix.thunk(() => nix.sel(self, "telescope-nvim"))]),
             buildPhase: "make",
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$786,
+              [nix.POS]: $pos[785],
               platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
             })),
           }))),
         "telescope-fzf-writer-nvim": nix.thunk(() => nix.app(nix.sel(super$, "telescope-fzf-writer-nvim", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$788,
+            [nix.POS]: $pos[787],
             dependencies: nix.thunk(() => (() => {
               const w = nix.withScope(self, null);
               return [
@@ -5545,12 +4399,12 @@ install -m 544 ${pythonWrapper} ftplugin/evinceSync.py
             })()),
           })))),
         "telescope-fzy-native-nvim": nix.thunk(() => nix.app(nix.sel(super$, "telescope-fzy-native-nvim", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$791,
+            [nix.POS]: $pos[790],
             dependencies: nix.thunk(() => [nix.thunk(() => nix.sel(self, "telescope-nvim"))]),
             preFixup: nix.thunk(() => (() => {
               const fzy_lua_native_path = "deps/fzy-lua-native";
               const fzy_lua_native = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-                  [nix.POS]: pos$789,
+                  [nix.POS]: $pos[788],
                   name: "fzy-lua-native",
                   src: nix.thunk(() => nix.str`${nix.sel(old, "src")}/${fzy_lua_native_path}`),
                   preBuild: "rm -rf static/*",
@@ -5562,12 +4416,12 @@ ln -s ${fzy_lua_native}/lua $target/${fzy_lua_native_path}/lua
 `;
             })()),
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$790,
+              [nix.POS]: $pos[789],
               platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
             })),
           }))),
         "telescope-git-conflicts-nvim": nix.thunk(() => nix.app(nix.sel(super$, "telescope-git-conflicts-nvim", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$792,
+            [nix.POS]: $pos[791],
             dependencies: nix.thunk(() => (() => {
               const w = nix.withScope(self, null);
               return [
@@ -5577,7 +4431,7 @@ ln -s ${fzy_lua_native}/lua $target/${fzy_lua_native_path}/lua
             })()),
           })))),
         "telescope-github-nvim": nix.thunk(() => nix.app(nix.sel(super$, "telescope-github-nvim", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$793,
+            [nix.POS]: $pos[792],
             dependencies: nix.thunk(() => (() => {
               const w = nix.withScope(self, null);
               return [
@@ -5587,11 +4441,11 @@ ln -s ${fzy_lua_native}/lua $target/${fzy_lua_native_path}/lua
             })()),
           })))),
         "telescope-glyph-nvim": nix.thunk(() => nix.app(nix.sel(super$, "telescope-github-nvim", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$794,
+            [nix.POS]: $pos[793],
             dependencies: nix.thunk(() => [nix.thunk(() => nix.sel(self, "telescope-nvim"))]),
           })))),
         "telescope-hierarchy-nvim": nix.thunk(() => nix.app(nix.sel(super$, "telescope-hierarchy-nvim", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$795,
+            [nix.POS]: $pos[794],
             dependencies: nix.thunk(() => (() => {
               const w = nix.withScope(self, null);
               return [
@@ -5601,7 +4455,7 @@ ln -s ${fzy_lua_native}/lua $target/${fzy_lua_native_path}/lua
             })()),
           })))),
         "telescope-live-grep-args-nvim": nix.thunk(() => nix.app(nix.sel(super$, "telescope-live-grep-args-nvim", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$797,
+            [nix.POS]: $pos[796],
             dependencies: nix.thunk(() => (() => {
               const w = nix.withScope(self, null);
               return [
@@ -5610,12 +4464,12 @@ ln -s ${fzy_lua_native}/lua $target/${fzy_lua_native_path}/lua
               ];
             })()),
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$796,
+              [nix.POS]: $pos[795],
               license: nix.thunk(() => nix.sel(lib, "licenses", "cc0")),
             })),
           }))),
         "telescope-lsp-handlers-nvim": nix.thunk(() => nix.app(nix.sel(super$, "telescope-lsp-handlers-nvim", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$798,
+            [nix.POS]: $pos[797],
             dependencies: nix.thunk(() => (() => {
               const w = nix.withScope(self, null);
               return [
@@ -5624,9 +4478,9 @@ ln -s ${fzy_lua_native}/lua $target/${fzy_lua_native_path}/lua
               ];
             })()),
           })))),
-        "telescope-manix": nix.thunk(() => nix.app(nix.sel(super$, "telescope-manix", "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: pos$799, runtimeDeps: nix.thunk(() => [manix]) })))),
+        "telescope-manix": nix.thunk(() => nix.app(nix.sel(super$, "telescope-manix", "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: $pos[798], runtimeDeps: nix.thunk(() => [manix]) })))),
         "telescope-media-files-nvim": nix.thunk(() => nix.app(nix.sel(super$, "telescope-media-files-nvim", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$800,
+            [nix.POS]: $pos[799],
             dependencies: nix.thunk(() => (() => {
               const w = nix.withScope(self, null);
               return [
@@ -5637,11 +4491,11 @@ ln -s ${fzy_lua_native}/lua $target/${fzy_lua_native_path}/lua
             })()),
           })))),
         "telescope-project-nvim": nix.thunk(() => nix.app(nix.sel(super$, "telescope-project-nvim", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$801,
+            [nix.POS]: $pos[800],
             dependencies: nix.thunk(() => [nix.thunk(() => nix.sel(self, "plenary-nvim"))]),
           })))),
         "telescope-smart-history-nvim": nix.thunk(() => nix.app(nix.sel(super$, "telescope-smart-history-nvim", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$802,
+            [nix.POS]: $pos[801],
             dependencies: nix.thunk(() => (() => {
               const w = nix.withScope(self, null);
               return [
@@ -5651,15 +4505,15 @@ ln -s ${fzy_lua_native}/lua $target/${fzy_lua_native_path}/lua
             })()),
           })))),
         "telescope-symbols-nvim": nix.thunk(() => nix.app(nix.sel(super$, "telescope-symbols-nvim", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$803,
+            [nix.POS]: $pos[802],
             dependencies: nix.thunk(() => [nix.thunk(() => nix.sel(self, "telescope-nvim"))]),
           })))),
         "telescope-ui-select-nvim": nix.thunk(() => nix.app(nix.sel(super$, "telescope-ui-select-nvim", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$804,
+            [nix.POS]: $pos[803],
             dependencies: nix.thunk(() => [nix.thunk(() => nix.sel(self, "telescope-nvim"))]),
           })))),
         "telescope-ultisnips-nvim": nix.thunk(() => nix.app(nix.sel(super$, "telescope-ultisnips-nvim", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$805,
+            [nix.POS]: $pos[804],
             dependencies: nix.thunk(() => (() => {
               const w = nix.withScope(self, null);
               return [
@@ -5669,7 +4523,7 @@ ln -s ${fzy_lua_native}/lua $target/${fzy_lua_native_path}/lua
             })()),
           })))),
         "telescope-undo-nvim": nix.thunk(() => nix.app(nix.sel(super$, "telescope-undo-nvim", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$806,
+            [nix.POS]: $pos[805],
             dependencies: nix.thunk(() => (() => {
               const w = nix.withScope(self, null);
               return [
@@ -5679,7 +4533,7 @@ ln -s ${fzy_lua_native}/lua $target/${fzy_lua_native_path}/lua
             })()),
           })))),
         "telescope-vim-bookmarks-nvim": nix.thunk(() => nix.app(nix.sel(super$, "telescope-vim-bookmarks-nvim", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$807,
+            [nix.POS]: $pos[806],
             dependencies: nix.thunk(() => (() => {
               const w = nix.withScope(self, null);
               return [
@@ -5689,7 +4543,7 @@ ln -s ${fzy_lua_native}/lua $target/${fzy_lua_native_path}/lua
             })()),
           })))),
         "telescope-z-nvim": nix.thunk(() => nix.app(nix.sel(super$, "telescope-z-nvim", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$808,
+            [nix.POS]: $pos[807],
             dependencies: nix.thunk(() => (() => {
               const w = nix.withScope(self, null);
               return [
@@ -5699,14 +4553,14 @@ ln -s ${fzy_lua_native}/lua $target/${fzy_lua_native_path}/lua
             })()),
           })))),
         "telescope-zf-native-nvim": nix.thunk(() => nix.app(nix.sel(super$, "telescope-zf-native-nvim", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$809,
+            [nix.POS]: $pos[808],
             dependencies: nix.thunk(() => (() => {
               const w = nix.withScope(self, null);
               return [nix.thunk(() => nix.lookup(w, "telescope-nvim"))];
             })()),
           })))),
         "telescope-zoxide": nix.thunk(() => nix.app(nix.sel(super$, "telescope-zoxide", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$810,
+            [nix.POS]: $pos[809],
             dependencies: nix.thunk(() => (() => {
               const w = nix.withScope(self, null);
               return [nix.thunk(() => nix.lookup(w, "telescope-nvim"))];
@@ -5717,34 +4571,34 @@ ln -s ${fzy_lua_native}/lua $target/${fzy_lua_native_path}/lua
 `),
           })))),
         "text-case-nvim": nix.thunk(() => nix.app(nix.sel(super$, "text-case-nvim", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$811,
+            [nix.POS]: $pos[810],
             nvimSkipModules: nix.thunk(() => ["textcase.plugin.range"]),
           })))),
         timerly: nix.thunk(() => nix.app(nix.sel(super$, "timerly", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$812,
+            [nix.POS]: $pos[811],
             dependencies: nix.thunk(() => [nix.thunk(() => nix.sel(self, "nvzone-volt"))]),
           })))),
         "timestamp-vim": nix.thunk(() => nix.app(nix.sel(super$, "timestamp-vim", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$814,
+            [nix.POS]: $pos[813],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$813,
+              [nix.POS]: $pos[812],
               license: nix.thunk(() => nix.sel(lib, "licenses", "publicDomain")),
             })),
           }))),
         "tinted-vim": nix.thunk(() => nix.app(nix.sel(super$, "tinted-vim", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$816,
+            [nix.POS]: $pos[815],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$815,
+              [nix.POS]: $pos[814],
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
             })),
           }))),
         "tiny-code-action-nvim": nix.thunk(() => nix.app(nix.sel(super$, "tiny-code-action-nvim", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$817,
+            [nix.POS]: $pos[816],
             nvimSkipModules: nix.thunk(() => ["tiny-code-action.previewers.snacks"]),
           })))),
-        "tmux-complete-vim": nix.thunk(() => nix.app(nix.sel(super$, "tmux-complete-vim", "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: pos$818, nvimSkipModules: nix.thunk(() => ["compe_tmux"]) })))),
+        "tmux-complete-vim": nix.thunk(() => nix.app(nix.sel(super$, "tmux-complete-vim", "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: $pos[817], nvimSkipModules: nix.thunk(() => ["compe_tmux"]) })))),
         "todo-comments-nvim": nix.thunk(() => nix.app(nix.sel(super$, "todo-comments-nvim", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$819,
+            [nix.POS]: $pos[818],
             checkInputs: nix.thunk(() => (() => {
               const w = nix.withScope(self, null);
               return [nix.thunk(() => nix.lookup(w, "trouble-nvim"))];
@@ -5753,35 +4607,35 @@ ln -s ${fzy_lua_native}/lua $target/${fzy_lua_native_path}/lua
             nvimSkipModules: nix.thunk(() => ["todo-comments.fzf"]),
           })))),
         "todo-txt-vim": nix.thunk(() => nix.app(nix.sel(super$, "todo-txt-vim", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$821,
+            [nix.POS]: $pos[820],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$820,
+              [nix.POS]: $pos[819],
               license: nix.thunk(() => nix.sel(lib, "licenses", "vim")),
             })),
           }))),
         "tokyonight-nvim": nix.thunk(() => nix.app(nix.sel(super$, "tokyonight-nvim", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$822,
+            [nix.POS]: $pos[821],
             checkInputs: nix.thunk(() => [nix.thunk(() => nix.sel(self, "fzf-lua"))]),
             nvimSkipModules: nix.thunk(() => ["tokyonight.docs"]),
           })))),
         "treesitter-modules-nvim": nix.thunk(() => nix.app(nix.sel(super$, "treesitter-modules-nvim", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$823,
+            [nix.POS]: $pos[822],
             dependencies: nix.thunk(() => [nix.thunk(() => nix.sel(self, "nvim-treesitter"))]),
           })))),
         "triptych-nvim": nix.thunk(() => nix.app(nix.sel(super$, "triptych-nvim", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$824,
+            [nix.POS]: $pos[823],
             dependencies: nix.thunk(() => [nix.thunk(() => nix.sel(self, "plenary-nvim"))]),
           })))),
-        "trouble-nvim": nix.thunk(() => nix.app(nix.sel(super$, "trouble-nvim", "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: pos$825, nvimSkipModules: nix.thunk(() => ["trouble.docs"]) })))),
+        "trouble-nvim": nix.thunk(() => nix.app(nix.sel(super$, "trouble-nvim", "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: $pos[824], nvimSkipModules: nix.thunk(() => ["trouble.docs"]) })))),
         "trust-vim": nix.thunk(() => nix.app(nix.sel(super$, "trust-vim", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$827,
+            [nix.POS]: $pos[826],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$826,
+              [nix.POS]: $pos[825],
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
             })),
           }))),
         "tsc-nvim": nix.thunk(() => nix.app(nix.sel(super$, "tsc-nvim", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$828,
+            [nix.POS]: $pos[827],
             postPatch: nix.thunk(() => nix.str`substituteInPlace lua/tsc/utils.lua --replace-fail \\
 'bin_name = bin_name or "tsc"' \\
 'bin_name = bin_name or "${typescript_7}/bin/tsc"'
@@ -5789,29 +4643,29 @@ ln -s ${fzy_lua_native}/lua $target/${fzy_lua_native_path}/lua
             nvimSkipModules: nix.thunk(() => ["tsc.better-messages-test"]),
           })))),
         "tslime-vim": nix.thunk(() => nix.app(nix.sel(super$, "tslime-vim", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$830,
+            [nix.POS]: $pos[829],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$829,
+              [nix.POS]: $pos[828],
               license: nix.thunk(() => nix.sel(lib, "licenses", "wtfpl")),
             })),
           }))),
         tsuquyomi: nix.thunk(() => nix.app(nix.sel(super$, "tsuquyomi", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$832,
+            [nix.POS]: $pos[831],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$831,
+              [nix.POS]: $pos[830],
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
             })),
           }))),
         "tuis-nvim": nix.thunk(() => nix.app(nix.sel(super$, "tuis-nvim", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$834,
+            [nix.POS]: $pos[833],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$833,
+              [nix.POS]: $pos[832],
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
             })),
           }))),
-        "tv-nvim": nix.thunk(() => nix.app(nix.sel(super$, "tv-nvim", "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: pos$835, runtimeDeps: nix.thunk(() => [television]) })))),
+        "tv-nvim": nix.thunk(() => nix.app(nix.sel(super$, "tv-nvim", "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: $pos[834], runtimeDeps: nix.thunk(() => [television]) })))),
         "typescript-tools-nvim": nix.thunk(() => nix.app(nix.sel(super$, "typescript-tools-nvim", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$836,
+            [nix.POS]: $pos[835],
             dependencies: nix.thunk(() => (() => {
               const w = nix.withScope(self, null);
               return [
@@ -5822,7 +4676,7 @@ ln -s ${fzy_lua_native}/lua $target/${fzy_lua_native_path}/lua
             runtimeDeps: nix.thunk(() => [typescript_language_server]),
           })))),
         "typst-preview-nvim": nix.thunk(() => nix.app(nix.sel(super$, "typst-preview-nvim", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$837,
+            [nix.POS]: $pos[836],
             postPatch: nix.thunk(() => nix.str`substituteInPlace lua/typst-preview/config.lua \\
  --replace-fail "['tinymist'] = nil," "tinymist = '${nix.app(nix.sel(lib, "getExe"), tinymist)}'," \\
  --replace-fail "['websocat'] = nil," "websocat = '${nix.app(nix.sel(lib, "getExe"), websocat)}',"
@@ -5830,74 +4684,74 @@ ln -s ${fzy_lua_native}/lua $target/${fzy_lua_native_path}/lua
           })))),
         "unicode-vim": nix.thunk(() => (() => {
           const unicode_data = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              [nix.POS]: pos$838,
+              [nix.POS]: $pos[837],
               url: "http://www.unicode.org/Public/UNIDATA/UnicodeData.txt",
               sha256: "16b0jzvvzarnlxdvs2izd5ia0ipbd87md143dc6lv6xpdqcs75s9",
             }))));
           return nix.app(nix.sel(super$, "unicode-vim", "overrideAttrs"), (old) => ({
-              [nix.POS]: pos$841,
+              [nix.POS]: $pos[840],
               buildPhase: nix.thunk(() => nix.str`cp "${unicode_data}" autoload/unicode/UnicodeData.txt
 echo "Building unicode cache"
 ${vim}/bin/vim --cmd ":set rtp^=$PWD" -c 'ru plugin/unicode.vim' -c 'UnicodeCache' -c ':echohl Normal' -c ':q' > /dev/null
 `),
               passthru: nix.thunk(() => nix.update(nix.sel(old, "passthru"), {
-                [nix.POS]: pos$839,
+                [nix.POS]: $pos[838],
                 initLua: nix.thunk(() => nix.str`vim.g.Unicode_data_directory="${nix.sel(self, "unicode-vim")}/autoload/unicode"`),
               })),
               meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-                [nix.POS]: pos$840,
+                [nix.POS]: $pos[839],
                 license: nix.thunk(() => nix.sel(lib, "licenses", "vim")),
               })),
             }));
         })()),
         unison: nix.thunk(() => nix.app(nix.sel(super$, "unison", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$843,
+            [nix.POS]: $pos[842],
             postPatch: "cd editor-support/vim",
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$842,
+              [nix.POS]: $pos[841],
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
             })),
           }))),
         "unite-vim": nix.thunk(() => nix.app(nix.sel(super$, "unite-vim", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$845,
+            [nix.POS]: $pos[844],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$844,
+              [nix.POS]: $pos[843],
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
             })),
           }))),
-        "uv-nvim": nix.thunk(() => nix.app(nix.sel(super$, "uv-nvim", "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: pos$846, runtimeDeps: nix.thunk(() => [uv]) })))),
+        "uv-nvim": nix.thunk(() => nix.app(nix.sel(super$, "uv-nvim", "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: $pos[845], runtimeDeps: nix.thunk(() => [uv]) })))),
         "vader-vim": nix.thunk(() => nix.app(nix.sel(super$, "vader-vim", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$848,
+            [nix.POS]: $pos[847],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$847,
+              [nix.POS]: $pos[846],
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
             })),
           }))),
         "vCoolor-vim": nix.thunk(() => nix.app(nix.sel(super$, "vCoolor-vim", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$850,
+            [nix.POS]: $pos[849],
             propagatedBuildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [zenity]))),
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$849,
+              [nix.POS]: $pos[848],
               description: "Simple color selector/picker plugin",
               license: nix.thunk(() => nix.sel(lib, "licenses", "publicDomain")),
             })),
           }))),
         "verilog_systemverilog-vim": nix.thunk(() => nix.app(nix.sel(super$, "verilog_systemverilog-vim", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$852,
+            [nix.POS]: $pos[851],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$851,
+              [nix.POS]: $pos[850],
               license: nix.thunk(() => nix.sel(lib, "licenses", "vim")),
             })),
           }))),
         "vim-abolish": nix.thunk(() => nix.app(nix.sel(super$, "vim-abolish", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$854,
+            [nix.POS]: $pos[853],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$853,
+              [nix.POS]: $pos[852],
               license: nix.thunk(() => nix.sel(lib, "licenses", "vim")),
             })),
           }))),
         "vim-addon-actions": nix.thunk(() => nix.app(nix.sel(super$, "vim-addon-actions", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$855,
+            [nix.POS]: $pos[854],
             dependencies: nix.thunk(() => (() => {
               const w = nix.withScope(self, null);
               return [
@@ -5907,41 +4761,41 @@ ${vim}/bin/vim --cmd ":set rtp^=$PWD" -c 'ru plugin/unicode.vim' -c 'UnicodeCach
             })()),
           })))),
         "vim-addon-async": nix.thunk(() => nix.app(nix.sel(super$, "vim-addon-async", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$857,
+            [nix.POS]: $pos[856],
             dependencies: nix.thunk(() => [nix.thunk(() => nix.sel(self, "vim-addon-signs"))]),
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$856,
+              [nix.POS]: $pos[855],
               license: nix.thunk(() => nix.sel(lib, "licenses", "vim")),
             })),
           }))),
         "vim-addon-background-cmd": nix.thunk(() => nix.app(nix.sel(super$, "vim-addon-background-cmd", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$858,
+            [nix.POS]: $pos[857],
             dependencies: nix.thunk(() => [nix.thunk(() => nix.sel(self, "vim-addon-mw-utils"))]),
           })))),
         "vim-addon-commenting": nix.thunk(() => nix.app(nix.sel(super$, "vim-addon-commenting", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$860,
+            [nix.POS]: $pos[859],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$859,
+              [nix.POS]: $pos[858],
               license: nix.thunk(() => nix.sel(lib, "licenses", "vim")),
             })),
           }))),
         "vim-addon-completion": nix.thunk(() => nix.app(nix.sel(super$, "vim-addon-completion", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$861,
+            [nix.POS]: $pos[860],
             dependencies: nix.thunk(() => [nix.thunk(() => nix.sel(self, "tlib_vim"))]),
           })))),
         "vim-addon-goto-thing-at-cursor": nix.thunk(() => nix.app(nix.sel(super$, "vim-addon-goto-thing-at-cursor", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$862,
+            [nix.POS]: $pos[861],
             dependencies: nix.thunk(() => [nix.thunk(() => nix.sel(self, "tlib_vim"))]),
           })))),
         "vim-addon-manager": nix.thunk(() => nix.app(nix.sel(super$, "vim-addon-manager", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$864,
+            [nix.POS]: $pos[863],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$863,
+              [nix.POS]: $pos[862],
               license: nix.thunk(() => nix.sel(lib, "licenses", "vim")),
             })),
           }))),
         "vim-addon-mru": nix.thunk(() => nix.app(nix.sel(super$, "vim-addon-mru", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$865,
+            [nix.POS]: $pos[864],
             dependencies: nix.thunk(() => (() => {
               const w = nix.withScope(self, null);
               return [
@@ -5951,7 +4805,7 @@ ${vim}/bin/vim --cmd ":set rtp^=$PWD" -c 'ru plugin/unicode.vim' -c 'UnicodeCach
             })()),
           })))),
         "vim-addon-nix": nix.thunk(() => nix.app(nix.sel(super$, "vim-addon-nix", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$866,
+            [nix.POS]: $pos[865],
             dependencies: nix.thunk(() => (() => {
               const w = nix.withScope(self, null);
               return [
@@ -5965,7 +4819,7 @@ ${vim}/bin/vim --cmd ":set rtp^=$PWD" -c 'ru plugin/unicode.vim' -c 'UnicodeCach
             })()),
           })))),
         "vim-addon-sql": nix.thunk(() => nix.app(nix.sel(super$, "vim-addon-sql", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$867,
+            [nix.POS]: $pos[866],
             dependencies: nix.thunk(() => (() => {
               const w = nix.withScope(self, null);
               return [
@@ -5976,7 +4830,7 @@ ${vim}/bin/vim --cmd ":set rtp^=$PWD" -c 'ru plugin/unicode.vim' -c 'UnicodeCach
             })()),
           })))),
         "vim-addon-syntax-checker": nix.thunk(() => nix.app(nix.sel(super$, "vim-addon-syntax-checker", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$868,
+            [nix.POS]: $pos[867],
             dependencies: nix.thunk(() => (() => {
               const w = nix.withScope(self, null);
               return [
@@ -5986,7 +4840,7 @@ ${vim}/bin/vim --cmd ":set rtp^=$PWD" -c 'ru plugin/unicode.vim' -c 'UnicodeCach
             })()),
           })))),
         "vim-addon-toggle-buffer": nix.thunk(() => nix.app(nix.sel(super$, "vim-addon-toggle-buffer", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$869,
+            [nix.POS]: $pos[868],
             dependencies: nix.thunk(() => (() => {
               const w = nix.withScope(self, null);
               return [
@@ -5996,7 +4850,7 @@ ${vim}/bin/vim --cmd ":set rtp^=$PWD" -c 'ru plugin/unicode.vim' -c 'UnicodeCach
             })()),
           })))),
         "vim-addon-xdebug": nix.thunk(() => nix.app(nix.sel(super$, "vim-addon-xdebug", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$870,
+            [nix.POS]: $pos[869],
             dependencies: nix.thunk(() => (() => {
               const w = nix.withScope(self, null);
               return [
@@ -6008,115 +4862,115 @@ ${vim}/bin/vim --cmd ":set rtp^=$PWD" -c 'ru plugin/unicode.vim' -c 'UnicodeCach
             })()),
           })))),
         "vim-advanced-sorters": nix.thunk(() => nix.app(nix.sel(super$, "vim-advanced-sorters", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$872,
+            [nix.POS]: $pos[871],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$871,
+              [nix.POS]: $pos[870],
               license: nix.thunk(() => nix.sel(lib, "licenses", "vim")),
             })),
           }))),
         "vim-agda": nix.thunk(() => nix.app(nix.sel(super$, "vim-agda", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$873,
+            [nix.POS]: $pos[872],
             preFixup: nix.thunk(() => nix.str`substituteInPlace "$out"/ftplugin/agda.vim \\
   --replace-fail "let g:agda_executable = 'agda'" "let g:agda_executable = '${agda}/bin/agda'"
 `),
           })))),
         "vim-angry": nix.thunk(() => nix.app(nix.sel(super$, "vim-angry", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$875,
+            [nix.POS]: $pos[874],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$874,
+              [nix.POS]: $pos[873],
               license: nix.thunk(() => nix.sel(lib, "licenses", "vim")),
             })),
           }))),
         "vim-apathy": nix.thunk(() => nix.app(nix.sel(super$, "vim-apathy", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$877,
+            [nix.POS]: $pos[876],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$876,
+              [nix.POS]: $pos[875],
               license: nix.thunk(() => nix.sel(lib, "licenses", "vim")),
             })),
           }))),
-        "vim-apm": nix.thunk(() => nix.app(nix.sel(super$, "vim-apm", "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: pos$878, nvimSkipModules: nix.thunk(() => ["run"]) })))),
+        "vim-apm": nix.thunk(() => nix.app(nix.sel(super$, "vim-apm", "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: $pos[877], nvimSkipModules: nix.thunk(() => ["run"]) })))),
         "vim-bazel": nix.thunk(() => nix.app(nix.sel(super$, "vim-bazel", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$879,
+            [nix.POS]: $pos[878],
             dependencies: nix.thunk(() => [nix.thunk(() => nix.sel(self, "vim-maktaba"))]),
           })))),
         "vim-bbye": nix.thunk(() => nix.app(nix.sel(super$, "vim-bbye", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$881,
+            [nix.POS]: $pos[880],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$880,
+              [nix.POS]: $pos[879],
               license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Plus")),
             })),
           }))),
         "vim-beancount": nix.thunk(() => nix.app(nix.sel(super$, "vim-beancount", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$884,
+            [nix.POS]: $pos[883],
             passthru: nix.thunk(() => nix.update(nix.sel(old, "passthru"), {
-              [nix.POS]: pos$882,
+              [nix.POS]: $pos[881],
               python3Dependencies: (ps) => (() => {
                 const w = nix.withScope(ps, null);
                 return [nix.thunk(() => nix.lookup(w, "beancount"))];
               })(),
             })),
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$883,
+              [nix.POS]: $pos[882],
               license: nix.thunk(() => nix.sel(lib, "licenses", "vim")),
             })),
           }))),
         "vim-bepoptimist": nix.thunk(() => nix.app(nix.sel(super$, "vim-bepoptimist", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$886,
+            [nix.POS]: $pos[885],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$885,
+              [nix.POS]: $pos[884],
               license: nix.thunk(() => nix.sel(lib, "licenses", "vim")),
             })),
           }))),
         "vim-capslock": nix.thunk(() => nix.app(nix.sel(super$, "vim-capslock", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$888,
+            [nix.POS]: $pos[887],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$887,
+              [nix.POS]: $pos[886],
               license: nix.thunk(() => nix.sel(lib, "licenses", "vim")),
             })),
           }))),
         "vim-characterize": nix.thunk(() => nix.app(nix.sel(super$, "vim-characterize", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$890,
+            [nix.POS]: $pos[889],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$889,
+              [nix.POS]: $pos[888],
               license: nix.thunk(() => nix.sel(lib, "licenses", "vim")),
             })),
           }))),
         "vim-clang-format": nix.thunk(() => nix.app(nix.sel(super$, "vim-clang-format", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$892,
+            [nix.POS]: $pos[891],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$891,
+              [nix.POS]: $pos[890],
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
             })),
           }))),
         "vim-classpath": nix.thunk(() => nix.app(nix.sel(super$, "vim-classpath", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$894,
+            [nix.POS]: $pos[893],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$893,
+              [nix.POS]: $pos[892],
               license: nix.thunk(() => nix.sel(lib, "licenses", "vim")),
             })),
           }))),
         "vim-clojure-static": nix.thunk(() => nix.app(nix.sel(super$, "vim-clojure-static", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$896,
+            [nix.POS]: $pos[895],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$895,
+              [nix.POS]: $pos[894],
               license: nix.thunk(() => nix.sel(lib, "licenses", "vim")),
             })),
           }))),
         "vim-cmake": nix.thunk(() => nix.app(nix.sel(super$, "vim-cmake", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$898,
+            [nix.POS]: $pos[897],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$897,
+              [nix.POS]: $pos[896],
               license: nix.thunk(() => nix.sel(lib, "licenses", "vim")),
             })),
           }))),
         "vim-codefmt": nix.thunk(() => nix.app(nix.sel(super$, "vim-codefmt", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$899,
+            [nix.POS]: $pos[898],
             dependencies: nix.thunk(() => [nix.thunk(() => nix.sel(self, "vim-maktaba"))]),
           })))),
         "vim-coffee-script": nix.thunk(() => nix.app(nix.sel(super$, "vim-coffee-script", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$901,
+            [nix.POS]: $pos[900],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$900,
+              [nix.POS]: $pos[899],
               license: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "licenses")), null);
                 return [
@@ -6127,266 +4981,266 @@ ${vim}/bin/vim --cmd ":set rtp^=$PWD" -c 'ru plugin/unicode.vim' -c 'UnicodeCach
             })),
           }))),
         "vim-colors-paramount": nix.thunk(() => nix.app(nix.sel(super$, "vim-colors-paramount", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$903,
+            [nix.POS]: $pos[902],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$902,
+              [nix.POS]: $pos[901],
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
             })),
           }))),
         "vim-colors-solarized": nix.thunk(() => nix.app(nix.sel(super$, "vim-colors-solarized", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$905,
+            [nix.POS]: $pos[904],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$904,
+              [nix.POS]: $pos[903],
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
             })),
           }))),
         "vim-colorschemes": nix.thunk(() => nix.app(nix.sel(super$, "vim-colorschemes", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$907,
+            [nix.POS]: $pos[906],
             src: nix.thunk(() => nix.app(nix.sel(old, "src", "overrideAttrs"), (srcOld) => ({
-                [nix.POS]: pos$906,
+                [nix.POS]: $pos[905],
                 postFetch: nix.thunk(() => nix.add(nix.selOr(srcOld, () => "", "postFetch"), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), "rm $out/colors/darkBlue.vim\n"))),
               }))),
           }))),
         "vim-commentary": nix.thunk(() => nix.app(nix.sel(super$, "vim-commentary", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$909,
+            [nix.POS]: $pos[908],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$908,
+              [nix.POS]: $pos[907],
               license: nix.thunk(() => nix.sel(lib, "licenses", "vim")),
             })),
           }))),
         "vim-CtrlXA": nix.thunk(() => nix.app(nix.sel(super$, "vim-CtrlXA", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$911,
+            [nix.POS]: $pos[910],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$910,
+              [nix.POS]: $pos[909],
               license: nix.thunk(() => nix.sel(lib, "licenses", "wtfpl")),
             })),
           }))),
         "vim-dadbod": nix.thunk(() => nix.app(nix.sel(super$, "vim-dadbod", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$913,
+            [nix.POS]: $pos[912],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$912,
+              [nix.POS]: $pos[911],
               license: nix.thunk(() => nix.sel(lib, "licenses", "vim")),
             })),
           }))),
         "vim-dadbod-ui": nix.thunk(() => nix.app(nix.sel(super$, "vim-dadbod-ui", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$914,
+            [nix.POS]: $pos[913],
             dependencies: nix.thunk(() => [nix.thunk(() => nix.sel(self, "vim-dadbod"))]),
             doInstallCheck: true,
             vimCommandCheck: "DBUI",
           })))),
         "vim-dasht": nix.thunk(() => nix.app(nix.sel(super$, "vim-dasht", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$916,
+            [nix.POS]: $pos[915],
             preFixup: nix.thunk(() => nix.str`substituteInPlace $out/autoload/dasht.vim \\
   --replace-fail "['dasht']" "['${dasht}/bin/dasht']"
 `),
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$915,
+              [nix.POS]: $pos[914],
               license: nix.thunk(() => nix.sel(lib, "licenses", "vim")),
             })),
           }))),
         "vim-DetectSpellLang": nix.thunk(() => nix.app(nix.sel(super$, "vim-DetectSpellLang", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$918,
+            [nix.POS]: $pos[917],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$917,
+              [nix.POS]: $pos[916],
               license: nix.thunk(() => nix.sel(lib, "licenses", "unlicense")),
             })),
           }))),
         "vim-diminactive": nix.thunk(() => nix.app(nix.sel(super$, "vim-diminactive", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$920,
+            [nix.POS]: $pos[919],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$919,
+              [nix.POS]: $pos[918],
               license: nix.thunk(() => nix.sel(lib, "licenses", "publicDomain")),
             })),
           }))),
         "vim-dirdiff": nix.thunk(() => nix.app(nix.sel(super$, "vim-dirdiff", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$922,
+            [nix.POS]: $pos[921],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$921,
+              [nix.POS]: $pos[920],
               license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
             })),
           }))),
         "vim-dirvish": nix.thunk(() => nix.app(nix.sel(super$, "vim-dirvish", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$924,
+            [nix.POS]: $pos[923],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$923,
+              [nix.POS]: $pos[922],
               license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
             })),
           }))),
         "vim-dispatch": nix.thunk(() => nix.app(nix.sel(super$, "vim-dispatch", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$926,
+            [nix.POS]: $pos[925],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$925,
+              [nix.POS]: $pos[924],
               license: nix.thunk(() => nix.sel(lib, "licenses", "vim")),
             })),
           }))),
         "vim-dotenv": nix.thunk(() => nix.app(nix.sel(super$, "vim-dotenv", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$928,
+            [nix.POS]: $pos[927],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$927,
+              [nix.POS]: $pos[926],
               license: nix.thunk(() => nix.sel(lib, "licenses", "vim")),
             })),
           }))),
         "vim-easy-align": nix.thunk(() => nix.app(nix.sel(super$, "vim-easy-align", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$930,
+            [nix.POS]: $pos[929],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$929,
+              [nix.POS]: $pos[928],
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
             })),
           }))),
         "vim-easymotion": nix.thunk(() => nix.app(nix.sel(super$, "vim-easymotion", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$932,
+            [nix.POS]: $pos[931],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$931,
+              [nix.POS]: $pos[930],
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
             })),
           }))),
         "vim-easytags": nix.thunk(() => nix.app(nix.sel(super$, "vim-easytags", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$935,
+            [nix.POS]: $pos[934],
             dependencies: nix.thunk(() => [nix.thunk(() => nix.sel(self, "vim-misc"))]),
             patches: nix.thunk(() => [
               nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-                  [nix.POS]: pos$933,
+                  [nix.POS]: $pos[932],
                   url: "https://github.com/xolox/vim-easytags/commit/46e4709500ba3b8e6cf3e90aeb95736b19e49be9.patch",
                   sha256: "0x0xabb56xkgdqrg1mpvhbi3yw4d829n73lsnnyj5yrxjffy4ax4",
                 })))),
             ]),
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$934,
+              [nix.POS]: $pos[933],
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
             })),
           }))),
         "vim-elixir": nix.thunk(() => nix.app(nix.sel(super$, "vim-elixir", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$937,
+            [nix.POS]: $pos[936],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$936,
+              [nix.POS]: $pos[935],
               license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
             })),
           }))),
         "vim-emoji": nix.thunk(() => nix.app(nix.sel(super$, "vim-emoji", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$939,
+            [nix.POS]: $pos[938],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$938,
+              [nix.POS]: $pos[937],
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
             })),
           }))),
         "vim-endwise": nix.thunk(() => nix.app(nix.sel(super$, "vim-endwise", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$941,
+            [nix.POS]: $pos[940],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$940,
+              [nix.POS]: $pos[939],
               license: nix.thunk(() => nix.sel(lib, "licenses", "vim")),
             })),
           }))),
         "vim-erlang-compiler": nix.thunk(() => nix.app(nix.sel(super$, "vim-erlang-compiler", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$943,
+            [nix.POS]: $pos[942],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$942,
+              [nix.POS]: $pos[941],
               license: nix.thunk(() => nix.sel(lib, "licenses", "vim")),
             })),
           }))),
         "vim-erlang-omnicomplete": nix.thunk(() => nix.app(nix.sel(super$, "vim-erlang-omnicomplete", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$945,
+            [nix.POS]: $pos[944],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$944,
+              [nix.POS]: $pos[943],
               license: nix.thunk(() => nix.sel(lib, "licenses", "vim")),
             })),
           }))),
         "vim-erlang-runtime": nix.thunk(() => nix.app(nix.sel(super$, "vim-erlang-runtime", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$947,
+            [nix.POS]: $pos[946],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$946,
+              [nix.POS]: $pos[945],
               license: nix.thunk(() => nix.sel(lib, "licenses", "vim")),
             })),
           }))),
         "vim-erlang-tags": nix.thunk(() => nix.app(nix.sel(super$, "vim-erlang-tags", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$949,
+            [nix.POS]: $pos[948],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$948,
+              [nix.POS]: $pos[947],
               license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
             })),
           }))),
         "vim-eunuch": nix.thunk(() => nix.app(nix.sel(super$, "vim-eunuch", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$951,
+            [nix.POS]: $pos[950],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$950,
+              [nix.POS]: $pos[949],
               license: nix.thunk(() => nix.sel(lib, "licenses", "vim")),
             })),
           }))),
         "vim-figlet": nix.thunk(() => nix.app(nix.sel(super$, "vim-figlet", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$953,
+            [nix.POS]: $pos[952],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$952,
+              [nix.POS]: $pos[951],
               license: nix.thunk(() => nix.sel(lib, "licenses", "vim")),
             })),
           }))),
         "vim-fireplace": nix.thunk(() => nix.app(nix.sel(super$, "vim-fireplace", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$955,
+            [nix.POS]: $pos[954],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$954,
+              [nix.POS]: $pos[953],
               license: nix.thunk(() => nix.sel(lib, "licenses", "vim")),
             })),
           }))),
         "vim-flagship": nix.thunk(() => nix.app(nix.sel(super$, "vim-flagship", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$957,
+            [nix.POS]: $pos[956],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$956,
+              [nix.POS]: $pos[955],
               license: nix.thunk(() => nix.sel(lib, "licenses", "vim")),
             })),
           }))),
         "vim-flog": nix.thunk(() => nix.app(nix.sel(super$, "vim-flog", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$959,
+            [nix.POS]: $pos[958],
             nvimSkipModules: nix.thunk(() => ["flog.graph_bin"]),
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$958,
+              [nix.POS]: $pos[957],
               license: nix.thunk(() => nix.sel(lib, "licenses", "vim")),
             })),
           }))),
         "vim-fold-cycle": nix.thunk(() => nix.app(nix.sel(super$, "vim-fold-cycle", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$961,
+            [nix.POS]: $pos[960],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$960,
+              [nix.POS]: $pos[959],
               license: nix.thunk(() => nix.sel(lib, "licenses", "wtfpl")),
             })),
           }))),
         "vim-ft-diff_fold": nix.thunk(() => nix.app(nix.sel(super$, "vim-ft-diff_fold", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$963,
+            [nix.POS]: $pos[962],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$962,
+              [nix.POS]: $pos[961],
               license: nix.thunk(() => nix.sel(lib, "licenses", "zlib")),
             })),
           }))),
         "vim-fugitive": nix.thunk(() => nix.app(nix.sel(super$, "vim-fugitive", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$965,
+            [nix.POS]: $pos[964],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$964,
+              [nix.POS]: $pos[963],
               license: nix.thunk(() => nix.sel(lib, "licenses", "vim")),
             })),
           }))),
         "vim-fzf-coauthorship": nix.thunk(() => nix.app(nix.sel(super$, "vim-fzf-coauthorship", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$966,
+            [nix.POS]: $pos[965],
             dependencies: nix.thunk(() => (() => {
               const w = nix.withScope(self, null);
               return [nix.thunk(() => nix.lookup(w, "fzf-vim"))];
             })()),
           })))),
         "vim-gist": nix.thunk(() => nix.app(nix.sel(super$, "vim-gist", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$968,
+            [nix.POS]: $pos[967],
             dependencies: nix.thunk(() => [nix.thunk(() => nix.sel(self, "webapi-vim"))]),
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$967,
+              [nix.POS]: $pos[966],
               license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),
             })),
           }))),
         "vim-github-dashboard": nix.thunk(() => nix.app(nix.sel(super$, "vim-github-dashboard", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$970,
+            [nix.POS]: $pos[969],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$969,
+              [nix.POS]: $pos[968],
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
             })),
           }))),
         "vim-gnupg": nix.thunk(() => nix.app(nix.sel(super$, "vim-gnupg", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$972,
+            [nix.POS]: $pos[971],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$971,
+              [nix.POS]: $pos[970],
               license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
             })),
           }))),
@@ -6412,58 +5266,58 @@ ${vim}/bin/vim --cmd ":set rtp^=$PWD" -c 'ru plugin/unicode.vim' -c 'UnicodeCach
               revive,
             ])));
           return nix.app(nix.sel(super$, "vim-go", "overrideAttrs"), (old) => ({
-              [nix.POS]: pos$974,
+              [nix.POS]: $pos[973],
               postPatch: nix.thunk(() => nix.str`sed -i autoload/go/config.vim -Ee 's@"go_bin_path", ""@"go_bin_path", "${binPath}"@g'
 `),
               meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-                [nix.POS]: pos$973,
+                [nix.POS]: $pos[972],
                 license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
               })),
             }));
         })()),
         "vim-grammarous": nix.thunk(() => nix.app(nix.sel(super$, "vim-grammarous", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$977,
+            [nix.POS]: $pos[976],
             patches: nix.thunk(() => [
-              nix.thunk(() => nix.app(replaceVars, nix.path(here, "./patches/vim-grammarous/set_default_languagetool.patch"), nix.thunk(() => ({ [nix.POS]: pos$975, languagetool: languagetool })))),
+              nix.thunk(() => nix.app(replaceVars, nix.path(here, "./patches/vim-grammarous/set_default_languagetool.patch"), nix.thunk(() => ({ [nix.POS]: $pos[974], languagetool: languagetool })))),
             ]),
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$976,
+              [nix.POS]: $pos[975],
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
             })),
           }))),
         "vim-gruvbox8": nix.thunk(() => nix.app(nix.sel(super$, "vim-gruvbox8", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$979,
+            [nix.POS]: $pos[978],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$978,
+              [nix.POS]: $pos[977],
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
             })),
           }))),
         "vim-habamax": nix.thunk(() => nix.app(nix.sel(super$, "vim-habamax", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$981,
+            [nix.POS]: $pos[980],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$980,
+              [nix.POS]: $pos[979],
               license: nix.thunk(() => nix.sel(lib, "licenses", "vim")),
             })),
           }))),
         "vim-hcl": nix.thunk(() => nix.app(nix.sel(super$, "vim-hcl", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$983,
+            [nix.POS]: $pos[982],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$982,
+              [nix.POS]: $pos[981],
               license: nix.thunk(() => nix.sel(lib, "licenses", "vim")),
             })),
           }))),
         "vim-helm": nix.thunk(() => nix.app(nix.sel(super$, "vim-helm", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$985,
+            [nix.POS]: $pos[984],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$984,
+              [nix.POS]: $pos[983],
               license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
             })),
           }))),
         "vim-hexokinase": nix.thunk(() => nix.app(nix.sel(super$, "vim-hexokinase", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$988,
+            [nix.POS]: $pos[987],
             preFixup: nix.thunk(() => (() => {
               const hexokinase = nix.thunk(() => nix.app(buildGoModule, nix.thunk(() => ({
-                  [nix.POS]: pos$986,
+                  [nix.POS]: $pos[985],
                   name: "hexokinase",
                   src: nix.thunk(() => nix.add(nix.sel(old, "src"), "/hexokinase")),
                   vendorHash: null,
@@ -6472,178 +5326,178 @@ ${vim}/bin/vim --cmd ":set rtp^=$PWD" -c 'ru plugin/unicode.vim' -c 'UnicodeCach
 `;
             })()),
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$987,
+              [nix.POS]: $pos[986],
               license: nix.thunk(() => nix.sel(lib, "licenses", "vim")),
               platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
             })),
           }))),
-        "vim-hier": nix.thunk(() => nix.app(nix.sel(super$, "vim-hier", "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: pos$989, buildInputs: nix.thunk(() => [vim]) })))),
+        "vim-hier": nix.thunk(() => nix.app(nix.sel(super$, "vim-hier", "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: $pos[988], buildInputs: nix.thunk(() => [vim]) })))),
         "vim-hybrid": nix.thunk(() => nix.app(nix.sel(super$, "vim-hybrid", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$991,
+            [nix.POS]: $pos[990],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$990,
+              [nix.POS]: $pos[989],
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
             })),
           }))),
-        "vim-hypr-nav": nix.thunk(() => nix.app(nix.sel(super$, "vim-hypr-nav", "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: pos$992, runtimeDeps: nix.thunk(() => [jq]) })))),
+        "vim-hypr-nav": nix.thunk(() => nix.app(nix.sel(super$, "vim-hypr-nav", "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: $pos[991], runtimeDeps: nix.thunk(() => [jq]) })))),
         "vim-indentwise": nix.thunk(() => nix.app(nix.sel(super$, "vim-indentwise", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$994,
+            [nix.POS]: $pos[993],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$993,
+              [nix.POS]: $pos[992],
               license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
             })),
           }))),
         "vim-isort": nix.thunk(() => nix.app(nix.sel(super$, "vim-isort", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$995,
+            [nix.POS]: $pos[994],
             postPatch: nix.thunk(() => nix.str`substituteInPlace autoload/vimisort.vim \\
   --replace-fail 'import vim' 'import vim; import sys; sys.path.append("${nix.sel(python3, "pkgs", "isort")}/${nix.sel(python3, "sitePackages")}")'
 `),
           })))),
         "vim-javascript": nix.thunk(() => nix.app(nix.sel(super$, "vim-javascript", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$997,
+            [nix.POS]: $pos[996],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$996,
+              [nix.POS]: $pos[995],
               license: nix.thunk(() => nix.sel(lib, "licenses", "vim")),
             })),
           }))),
         "vim-jdaddy": nix.thunk(() => nix.app(nix.sel(super$, "vim-jdaddy", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$999,
+            [nix.POS]: $pos[998],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$998,
+              [nix.POS]: $pos[997],
               license: nix.thunk(() => nix.sel(lib, "licenses", "vim")),
             })),
           }))),
         "vim-jsbeautify": nix.thunk(() => nix.app(nix.sel(super$, "vim-jsbeautify", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$1001,
+            [nix.POS]: $pos[1000],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$1000,
+              [nix.POS]: $pos[999],
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
             })),
           }))),
         "vim-json": nix.thunk(() => nix.app(nix.sel(super$, "vim-json", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$1003,
+            [nix.POS]: $pos[1002],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$1002,
+              [nix.POS]: $pos[1001],
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
             })),
           }))),
         "vim-LanguageTool": nix.thunk(() => nix.app(nix.sel(super$, "vim-LanguageTool", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$1005,
+            [nix.POS]: $pos[1004],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$1004,
+              [nix.POS]: $pos[1003],
               license: nix.thunk(() => nix.sel(lib, "licenses", "vim")),
             })),
           }))),
         "vim-ledger": nix.thunk(() => nix.app(nix.sel(super$, "vim-ledger", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$1007,
+            [nix.POS]: $pos[1006],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$1006,
+              [nix.POS]: $pos[1005],
               license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
             })),
           }))),
         "vim-lexical": nix.thunk(() => nix.app(nix.sel(super$, "vim-lexical", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$1009,
+            [nix.POS]: $pos[1008],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$1008,
+              [nix.POS]: $pos[1007],
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
             })),
           }))),
         "vim-lion": nix.thunk(() => nix.app(nix.sel(super$, "vim-lion", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$1011,
+            [nix.POS]: $pos[1010],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$1010,
+              [nix.POS]: $pos[1009],
               license: nix.thunk(() => nix.sel(lib, "licenses", "vim")),
             })),
           }))),
         "vim-llvm": nix.thunk(() => nix.app(nix.sel(super$, "vim-llvm", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$1013,
+            [nix.POS]: $pos[1012],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$1012,
+              [nix.POS]: $pos[1011],
               license: nix.thunk(() => nix.app(nix.sel(lib, "licenses", "WITH"), nix.thunk(() => nix.sel(lib, "licenses", "asl20")), nix.thunk(() => nix.sel(lib, "licenses", "llvm-exception")))),
             })),
           }))),
         "vim-markdown": nix.thunk(() => nix.app(nix.sel(super$, "vim-markdown", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$1015,
+            [nix.POS]: $pos[1014],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$1014,
+              [nix.POS]: $pos[1013],
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
             })),
           }))),
         "vim-mediawiki-editor": nix.thunk(() => nix.app(nix.sel(super$, "vim-mediawiki-editor", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$1017,
+            [nix.POS]: $pos[1016],
             passthru: nix.thunk(() => nix.update(nix.sel(old, "passthru"), {
-              [nix.POS]: pos$1016,
+              [nix.POS]: $pos[1015],
               python3Dependencies: (ps) => [nix.thunk(() => nix.sel(ps, "mwclient"))],
             })),
           }))),
         "vim-merginal": nix.thunk(() => nix.app(nix.sel(super$, "vim-merginal", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$1019,
+            [nix.POS]: $pos[1018],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$1018,
+              [nix.POS]: $pos[1017],
               license: nix.thunk(() => nix.sel(lib, "licenses", "vim")),
             })),
           }))),
-        "vim-metamath": nix.thunk(() => nix.app(nix.sel(super$, "vim-metamath", "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: pos$1020, preInstall: "cd vim" })))),
+        "vim-metamath": nix.thunk(() => nix.app(nix.sel(super$, "vim-metamath", "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: $pos[1019], preInstall: "cd vim" })))),
         "vim-misc": nix.thunk(() => nix.app(nix.sel(super$, "vim-misc", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$1022,
+            [nix.POS]: $pos[1021],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$1021,
+              [nix.POS]: $pos[1020],
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
             })),
           }))),
         "vim-niceblock": nix.thunk(() => nix.app(nix.sel(super$, "vim-niceblock", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$1024,
+            [nix.POS]: $pos[1023],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$1023,
+              [nix.POS]: $pos[1022],
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
             })),
           }))),
         "vim-obsession": nix.thunk(() => nix.app(nix.sel(super$, "vim-obsession", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$1026,
+            [nix.POS]: $pos[1025],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$1025,
+              [nix.POS]: $pos[1024],
               license: nix.thunk(() => nix.sel(lib, "licenses", "vim")),
             })),
           }))),
         "vim-opencl": nix.thunk(() => nix.app(nix.sel(super$, "vim-opencl", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$1028,
+            [nix.POS]: $pos[1027],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$1027,
+              [nix.POS]: $pos[1026],
               license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),
             })),
           }))),
         "vim-openscad": nix.thunk(() => nix.app(nix.sel(super$, "vim-openscad", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$1030,
+            [nix.POS]: $pos[1029],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$1029,
+              [nix.POS]: $pos[1028],
               license: nix.thunk(() => nix.sel(lib, "licenses", "publicDomain")),
             })),
           }))),
         "vim-operator-replace": nix.thunk(() => nix.app(nix.sel(super$, "vim-operator-replace", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$1032,
+            [nix.POS]: $pos[1031],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$1031,
+              [nix.POS]: $pos[1030],
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
             })),
           }))),
         "vim-operator-surround": nix.thunk(() => nix.app(nix.sel(super$, "vim-operator-surround", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$1034,
+            [nix.POS]: $pos[1033],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$1033,
+              [nix.POS]: $pos[1032],
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
             })),
           }))),
         "vim-operator-user": nix.thunk(() => nix.app(nix.sel(super$, "vim-operator-user", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$1036,
+            [nix.POS]: $pos[1035],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$1035,
+              [nix.POS]: $pos[1034],
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
             })),
           }))),
         "vim-orgmode": nix.thunk(() => nix.app(nix.sel(super$, "vim-orgmode", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$1038,
+            [nix.POS]: $pos[1037],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$1037,
+              [nix.POS]: $pos[1036],
               license: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "licenses")), null);
                 return [
@@ -6654,161 +5508,161 @@ ${vim}/bin/vim --cmd ":set rtp^=$PWD" -c 'ru plugin/unicode.vim' -c 'UnicodeCach
             })),
           }))),
         "vim-peekaboo": nix.thunk(() => nix.app(nix.sel(super$, "vim-peekaboo", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$1040,
+            [nix.POS]: $pos[1039],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$1039,
+              [nix.POS]: $pos[1038],
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
             })),
           }))),
         "vim-pencil": nix.thunk(() => nix.app(nix.sel(super$, "vim-pencil", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$1042,
+            [nix.POS]: $pos[1041],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$1041,
+              [nix.POS]: $pos[1040],
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
             })),
           }))),
         "vim-pico8-syntax": nix.thunk(() => nix.app(nix.sel(super$, "vim-pico8-syntax", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$1044,
+            [nix.POS]: $pos[1043],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$1043,
+              [nix.POS]: $pos[1042],
               license: nix.thunk(() => nix.sel(lib, "licenses", "vim")),
             })),
           }))),
         "vim-pluto": nix.thunk(() => nix.app(nix.sel(super$, "vim-pluto", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$1045,
+            [nix.POS]: $pos[1044],
             dependencies: nix.thunk(() => [nix.thunk(() => nix.sel(self, "denops-vim"))]),
           })))),
         "vim-pony": nix.thunk(() => nix.app(nix.sel(super$, "vim-pony", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$1047,
+            [nix.POS]: $pos[1046],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$1046,
+              [nix.POS]: $pos[1045],
               license: nix.thunk(() => nix.sel(lib, "licenses", "vim")),
             })),
           }))),
         "vim-prettyprint": nix.thunk(() => nix.app(nix.sel(super$, "vim-prettyprint", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$1049,
+            [nix.POS]: $pos[1048],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$1048,
+              [nix.POS]: $pos[1047],
               license: nix.thunk(() => nix.sel(lib, "licenses", "zlib")),
             })),
           }))),
         "vim-printer": nix.thunk(() => nix.app(nix.sel(super$, "vim-printer", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$1051,
+            [nix.POS]: $pos[1050],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$1050,
+              [nix.POS]: $pos[1049],
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
             })),
           }))),
         "vim-projectionist": nix.thunk(() => nix.app(nix.sel(super$, "vim-projectionist", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$1053,
+            [nix.POS]: $pos[1052],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$1052,
+              [nix.POS]: $pos[1051],
               license: nix.thunk(() => nix.sel(lib, "licenses", "vim")),
             })),
           }))),
         "vim-prosession": nix.thunk(() => nix.app(nix.sel(super$, "vim-prosession", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$1055,
+            [nix.POS]: $pos[1054],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$1054,
+              [nix.POS]: $pos[1053],
               license: nix.thunk(() => nix.sel(lib, "licenses", "vim")),
             })),
           }))),
         "vim-protobuf": nix.thunk(() => nix.app(nix.sel(super$, "vim-protobuf", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$1057,
+            [nix.POS]: $pos[1056],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$1056,
+              [nix.POS]: $pos[1055],
               license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
             })),
           }))),
         "vim-ps1": nix.thunk(() => nix.app(nix.sel(super$, "vim-ps1", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$1059,
+            [nix.POS]: $pos[1058],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$1058,
+              [nix.POS]: $pos[1057],
               license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
             })),
           }))),
         "vim-ragtag": nix.thunk(() => nix.app(nix.sel(super$, "vim-ragtag", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$1061,
+            [nix.POS]: $pos[1060],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$1060,
+              [nix.POS]: $pos[1059],
               license: nix.thunk(() => nix.sel(lib, "licenses", "vim")),
             })),
           }))),
         "vim-rails": nix.thunk(() => nix.app(nix.sel(super$, "vim-rails", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$1063,
+            [nix.POS]: $pos[1062],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$1062,
+              [nix.POS]: $pos[1061],
               license: nix.thunk(() => nix.sel(lib, "licenses", "vim")),
             })),
           }))),
         "vim-repeat": nix.thunk(() => nix.app(nix.sel(super$, "vim-repeat", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$1065,
+            [nix.POS]: $pos[1064],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$1064,
+              [nix.POS]: $pos[1063],
               license: nix.thunk(() => nix.sel(lib, "licenses", "vim")),
             })),
           }))),
         "vim-ReplaceWithRegister": nix.thunk(() => nix.app(nix.sel(super$, "vim-ReplaceWithRegister", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$1067,
+            [nix.POS]: $pos[1066],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$1066,
+              [nix.POS]: $pos[1065],
               license: nix.thunk(() => nix.sel(lib, "licenses", "vim")),
             })),
           }))),
         "vim-ReplaceWithSameIndentRegister": nix.thunk(() => nix.app(nix.sel(super$, "vim-ReplaceWithSameIndentRegister", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$1069,
+            [nix.POS]: $pos[1068],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$1068,
+              [nix.POS]: $pos[1067],
               license: nix.thunk(() => nix.sel(lib, "licenses", "vim")),
             })),
           }))),
         "vim-rsi": nix.thunk(() => nix.app(nix.sel(super$, "vim-rsi", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$1071,
+            [nix.POS]: $pos[1070],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$1070,
+              [nix.POS]: $pos[1069],
               license: nix.thunk(() => nix.sel(lib, "licenses", "vim")),
             })),
           }))),
         "vim-salve": nix.thunk(() => nix.app(nix.sel(super$, "vim-salve", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$1073,
+            [nix.POS]: $pos[1072],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$1072,
+              [nix.POS]: $pos[1071],
               license: nix.thunk(() => nix.sel(lib, "licenses", "vim")),
             })),
           }))),
         "vim-scriptease": nix.thunk(() => nix.app(nix.sel(super$, "vim-scriptease", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$1075,
+            [nix.POS]: $pos[1074],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$1074,
+              [nix.POS]: $pos[1073],
               license: nix.thunk(() => nix.sel(lib, "licenses", "vim")),
             })),
           }))),
         "vim-sensible": nix.thunk(() => nix.app(nix.sel(super$, "vim-sensible", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$1077,
+            [nix.POS]: $pos[1076],
             patches: nix.thunk(() => [nix.path(here, "./patches/vim-sensible/fix-nix-store-path-regex.patch")]),
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$1076,
+              [nix.POS]: $pos[1075],
               license: nix.thunk(() => nix.sel(lib, "licenses", "vim")),
             })),
           }))),
         "vim-sentence-chopper": nix.thunk(() => nix.app(nix.sel(super$, "vim-sentence-chopper", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$1079,
+            [nix.POS]: $pos[1078],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$1078,
+              [nix.POS]: $pos[1077],
               license: nix.thunk(() => nix.sel(lib, "licenses", "wtfpl")),
             })),
           }))),
         "vim-sexp-mappings-for-regular-people": nix.thunk(() => nix.app(nix.sel(super$, "vim-sexp-mappings-for-regular-people", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$1081,
+            [nix.POS]: $pos[1080],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$1080,
+              [nix.POS]: $pos[1079],
               license: nix.thunk(() => nix.sel(lib, "licenses", "vim")),
             })),
           }))),
         "vim-sile": nix.thunk(() => nix.app(nix.sel(super$, "vim-sile", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$1083,
+            [nix.POS]: $pos[1082],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$1082,
+              [nix.POS]: $pos[1081],
               license: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "licenses")), null);
                 return [
@@ -6820,21 +5674,21 @@ ${vim}/bin/vim --cmd ":set rtp^=$PWD" -c 'ru plugin/unicode.vim' -c 'UnicodeCach
             })),
           }))),
         "vim-sleuth": nix.thunk(() => nix.app(nix.sel(super$, "vim-sleuth", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$1085,
+            [nix.POS]: $pos[1084],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$1084,
+              [nix.POS]: $pos[1083],
               license: nix.thunk(() => nix.sel(lib, "licenses", "vim")),
             })),
           }))),
         "vim-smalls": nix.thunk(() => nix.app(nix.sel(super$, "vim-smalls", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$1087,
+            [nix.POS]: $pos[1086],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$1086,
+              [nix.POS]: $pos[1085],
               license: nix.thunk(() => nix.sel(lib, "licenses", "cc-by-30")),
             })),
           }))),
         "vim-snipmate": nix.thunk(() => nix.app(nix.sel(super$, "vim-snipmate", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$1089,
+            [nix.POS]: $pos[1088],
             dependencies: nix.thunk(() => (() => {
               const w = nix.withScope(self, null);
               return [
@@ -6843,88 +5697,88 @@ ${vim}/bin/vim --cmd ":set rtp^=$PWD" -c 'ru plugin/unicode.vim' -c 'UnicodeCach
               ];
             })()),
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$1088,
+              [nix.POS]: $pos[1087],
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
             })),
           }))),
         "vim-speeddating": nix.thunk(() => nix.app(nix.sel(super$, "vim-speeddating", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$1091,
+            [nix.POS]: $pos[1090],
             dependencies: nix.thunk(() => [nix.thunk(() => nix.sel(self, "vim-repeat"))]),
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$1090,
+              [nix.POS]: $pos[1089],
               license: nix.thunk(() => nix.sel(lib, "licenses", "vim")),
             })),
           }))),
         "vim-stationeers-ic10-syntax": nix.thunk(() => nix.app(nix.sel(super$, "vim-stationeers-ic10-syntax", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$1093,
+            [nix.POS]: $pos[1092],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$1092,
+              [nix.POS]: $pos[1091],
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
             })),
           }))),
         "vim-stylish-haskell": nix.thunk(() => nix.app(nix.sel(super$, "vim-stylish-haskell", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$1094,
+            [nix.POS]: $pos[1093],
             postPatch: nix.thunk(() => nix.add(nix.selOr(old, () => "", "postPatch"), nix.str`substituteInPlace ftplugin/haskell/stylish-haskell.vim --replace-fail \\
   'g:stylish_haskell_command = "stylish-haskell"' \\
   'g:stylish_haskell_command = "${stylish_haskell}/bin/stylish-haskell"'
 `)),
           }))),
         "vim-surround": nix.thunk(() => nix.app(nix.sel(super$, "vim-surround", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$1096,
+            [nix.POS]: $pos[1095],
             dependencies: nix.thunk(() => [nix.thunk(() => nix.sel(self, "vim-repeat"))]),
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$1095,
+              [nix.POS]: $pos[1094],
               license: nix.thunk(() => nix.sel(lib, "licenses", "vim")),
             })),
           }))),
         "vim-syntax-shakespeare": nix.thunk(() => nix.app(nix.sel(super$, "vim-syntax-shakespeare", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$1098,
+            [nix.POS]: $pos[1097],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$1097,
+              [nix.POS]: $pos[1096],
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
             })),
           }))),
         "vim-SyntaxRange": nix.thunk(() => nix.app(nix.sel(super$, "vim-SyntaxRange", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$1100,
+            [nix.POS]: $pos[1099],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$1099,
+              [nix.POS]: $pos[1098],
               license: nix.thunk(() => nix.sel(lib, "licenses", "vim")),
             })),
           }))),
         "vim-tabby": nix.thunk(() => nix.app(nix.sel(super$, "vim-tabby", "overrideAttrs"), nix.thunk(() => ({})))),
         "vim-table-mode": nix.thunk(() => nix.app(nix.sel(super$, "vim-table-mode", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$1102,
+            [nix.POS]: $pos[1101],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$1101,
+              [nix.POS]: $pos[1100],
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
             })),
           }))),
         "vim-tabpagecd": nix.thunk(() => nix.app(nix.sel(super$, "vim-tabpagecd", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$1104,
+            [nix.POS]: $pos[1103],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$1103,
+              [nix.POS]: $pos[1102],
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
             })),
           }))),
         "vim-tbone": nix.thunk(() => nix.app(nix.sel(super$, "vim-tbone", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$1106,
+            [nix.POS]: $pos[1105],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$1105,
+              [nix.POS]: $pos[1104],
               license: nix.thunk(() => nix.sel(lib, "licenses", "vim")),
             })),
           }))),
         "vim-textobj-comment": nix.thunk(() => nix.app(nix.sel(super$, "vim-textobj-comment", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$1108,
+            [nix.POS]: $pos[1107],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$1107,
+              [nix.POS]: $pos[1106],
               license: nix.thunk(() => nix.sel(lib, "licenses", "vim")),
             })),
           }))),
         "vim-textobj-entire": nix.thunk(() => nix.app(nix.sel(super$, "vim-textobj-entire", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$1110,
+            [nix.POS]: $pos[1109],
             dependencies: nix.thunk(() => [nix.thunk(() => nix.sel(self, "vim-textobj-user"))]),
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$1109,
+              [nix.POS]: $pos[1108],
               maintainers: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
                 return [nix.thunk(() => nix.lookup(w, "workflow"))];
@@ -6933,17 +5787,17 @@ ${vim}/bin/vim --cmd ":set rtp^=$PWD" -c 'ru plugin/unicode.vim' -c 'UnicodeCach
             })),
           }))),
         "vim-textobj-function": nix.thunk(() => nix.app(nix.sel(super$, "vim-textobj-function", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$1112,
+            [nix.POS]: $pos[1111],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$1111,
+              [nix.POS]: $pos[1110],
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
             })),
           }))),
         "vim-textobj-line": nix.thunk(() => nix.app(nix.sel(super$, "vim-textobj-line", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$1114,
+            [nix.POS]: $pos[1113],
             dependencies: nix.thunk(() => [nix.thunk(() => nix.sel(self, "vim-textobj-user"))]),
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$1113,
+              [nix.POS]: $pos[1112],
               maintainers: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
                 return [nix.thunk(() => nix.lookup(w, "llakala"))];
@@ -6952,24 +5806,24 @@ ${vim}/bin/vim --cmd ":set rtp^=$PWD" -c 'ru plugin/unicode.vim' -c 'UnicodeCach
             })),
           }))),
         "vim-textobj-quote": nix.thunk(() => nix.app(nix.sel(super$, "vim-textobj-quote", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$1116,
+            [nix.POS]: $pos[1115],
             dependencies: nix.thunk(() => [nix.thunk(() => nix.sel(self, "vim-textobj-user"))]),
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$1115,
+              [nix.POS]: $pos[1114],
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
             })),
           }))),
         "vim-textobj-user": nix.thunk(() => nix.app(nix.sel(super$, "vim-textobj-user", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$1118,
+            [nix.POS]: $pos[1117],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$1117,
+              [nix.POS]: $pos[1116],
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
             })),
           }))),
         "vim-tmux": nix.thunk(() => nix.app(nix.sel(super$, "vim-tmux", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$1120,
+            [nix.POS]: $pos[1119],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$1119,
+              [nix.POS]: $pos[1118],
               license: nix.thunk(() => (() => {
                 const w = nix.withScope(nix.thunk(() => nix.sel(lib, "licenses")), null);
                 return [
@@ -6979,91 +5833,91 @@ ${vim}/bin/vim --cmd ":set rtp^=$PWD" -c 'ru plugin/unicode.vim' -c 'UnicodeCach
               })()),
             })),
           }))),
-        "vim-tpipeline": nix.thunk(() => nix.app(nix.sel(super$, "vim-tpipeline", "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: pos$1121, nvimSkipModules: nix.thunk(() => ["tpipeline.main"]) })))),
+        "vim-tpipeline": nix.thunk(() => nix.app(nix.sel(super$, "vim-tpipeline", "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: $pos[1120], nvimSkipModules: nix.thunk(() => ["tpipeline.main"]) })))),
         "vim-twiggy": nix.thunk(() => nix.app(nix.sel(super$, "vim-twiggy", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$1123,
+            [nix.POS]: $pos[1122],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$1122,
+              [nix.POS]: $pos[1121],
               license: nix.thunk(() => nix.sel(lib, "licenses", "vim")),
             })),
           }))),
-        "vim-ultest": nix.thunk(() => nix.app(nix.sel(super$, "vim-ultest", "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: pos$1124, nvimSkipModules: nix.thunk(() => ["ultest"]) })))),
+        "vim-ultest": nix.thunk(() => nix.app(nix.sel(super$, "vim-ultest", "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: $pos[1123], nvimSkipModules: nix.thunk(() => ["ultest"]) })))),
         "vim-unimpaired": nix.thunk(() => nix.app(nix.sel(super$, "vim-unimpaired", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$1126,
+            [nix.POS]: $pos[1125],
             dependencies: nix.thunk(() => [nix.thunk(() => nix.sel(self, "vim-repeat"))]),
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$1125,
+              [nix.POS]: $pos[1124],
               license: nix.thunk(() => nix.sel(lib, "licenses", "vim")),
             })),
           }))),
         "vim-vinegar": nix.thunk(() => nix.app(nix.sel(super$, "vim-vinegar", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$1128,
+            [nix.POS]: $pos[1127],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$1127,
+              [nix.POS]: $pos[1126],
               license: nix.thunk(() => nix.sel(lib, "licenses", "vim")),
             })),
           }))),
         "vim-visual-increment": nix.thunk(() => nix.app(nix.sel(super$, "vim-visual-increment", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$1130,
+            [nix.POS]: $pos[1129],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$1129,
+              [nix.POS]: $pos[1128],
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
             })),
           }))),
         "vim-visualstar": nix.thunk(() => nix.app(nix.sel(super$, "vim-visualstar", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$1132,
+            [nix.POS]: $pos[1131],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$1131,
+              [nix.POS]: $pos[1130],
               license: nix.thunk(() => nix.sel(lib, "licenses", "zlib")),
             })),
           }))),
         "vim-waikiki": nix.thunk(() => nix.app(nix.sel(super$, "vim-waikiki", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$1134,
+            [nix.POS]: $pos[1133],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$1133,
+              [nix.POS]: $pos[1132],
               license: nix.thunk(() => nix.sel(lib, "licenses", "cc-by-sa-40")),
             })),
           }))),
         "vim-wakatime": nix.thunk(() => nix.app(nix.sel(super$, "vim-wakatime", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$1135,
+            [nix.POS]: $pos[1134],
             buildInputs: nix.thunk(() => [python3]),
             patchPhase: "substituteInPlace plugin/wakatime.vim \\\n  --replace-fail 'autocmd BufEnter,VimEnter' \\\n                 'autocmd VimEnter' \\\n  --replace-fail 'autocmd CursorHold,CursorHoldI' \\\n                 'autocmd CursorHold,CursorHoldI,BufEnter'\n",
           })))),
         "vim-watchdogs": nix.thunk(() => nix.app(nix.sel(super$, "vim-watchdogs", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$1137,
+            [nix.POS]: $pos[1136],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$1136,
+              [nix.POS]: $pos[1135],
               license: nix.thunk(() => nix.sel(lib, "licenses", "artistic1")),
             })),
           }))),
         "vim-wordy": nix.thunk(() => nix.app(nix.sel(super$, "vim-wordy", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$1139,
+            [nix.POS]: $pos[1138],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$1138,
+              [nix.POS]: $pos[1137],
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
             })),
           }))),
         "vim-xdebug": nix.thunk(() => nix.app(nix.sel(super$, "vim-xdebug", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$1141,
+            [nix.POS]: $pos[1140],
             postInstall: null,
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$1140,
+              [nix.POS]: $pos[1139],
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
             })),
           }))),
-        "vim-xkbswitch": nix.thunk(() => nix.app(nix.sel(super$, "vim-xkbswitch", "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: pos$1142, buildInputs: nix.thunk(() => [xkb_switch]) })))),
+        "vim-xkbswitch": nix.thunk(() => nix.app(nix.sel(super$, "vim-xkbswitch", "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: $pos[1141], buildInputs: nix.thunk(() => [xkb_switch]) })))),
         "vim-yapf": nix.thunk(() => nix.app(nix.sel(super$, "vim-yapf", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$1144,
+            [nix.POS]: $pos[1143],
             buildPhase: nix.thunk(() => nix.str`substituteInPlace ftplugin/python_yapf.vim \\
   --replace-fail '"yapf"' '"${nix.sel(python3, "pkgs", "yapf")}/bin/yapf"'
 `),
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$1143,
+              [nix.POS]: $pos[1142],
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
             })),
           }))),
         "vim-zettel": nix.thunk(() => nix.app(nix.sel(super$, "vim-zettel", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$1145,
+            [nix.POS]: $pos[1144],
             dependencies: nix.thunk(() => (() => {
               const w = nix.withScope(self, null);
               return [
@@ -7073,14 +5927,14 @@ ${vim}/bin/vim --cmd ":set rtp^=$PWD" -c 'ru plugin/unicode.vim' -c 'UnicodeCach
             })()),
           })))),
         "vim-zscript": nix.thunk(() => nix.app(nix.sel(super$, "vim-zscript", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$1147,
+            [nix.POS]: $pos[1146],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$1146,
+              [nix.POS]: $pos[1145],
               license: nix.thunk(() => nix.sel(lib, "licenses", "cc0")),
             })),
           }))),
         vimade: nix.thunk(() => nix.app(nix.sel(super$, "vimade", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$1148,
+            [nix.POS]: $pos[1147],
             checkInputs: nix.thunk(() => (() => {
               const w = nix.withScope(self, null);
               return [
@@ -7091,53 +5945,53 @@ ${vim}/bin/vim --cmd ":set rtp^=$PWD" -c 'ru plugin/unicode.vim' -c 'UnicodeCach
             })()),
           })))),
         vimagit: nix.thunk(() => nix.app(nix.sel(super$, "vimagit", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$1150,
+            [nix.POS]: $pos[1149],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$1149,
+              [nix.POS]: $pos[1148],
               license: nix.thunk(() => nix.sel(lib, "licenses", "vim")),
             })),
           }))),
         VimCompletesMe: nix.thunk(() => nix.app(nix.sel(super$, "VimCompletesMe", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$1152,
+            [nix.POS]: $pos[1151],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$1151,
+              [nix.POS]: $pos[1150],
               license: nix.thunk(() => nix.sel(lib, "licenses", "vim")),
             })),
           }))),
         "vimfiler-vim": nix.thunk(() => nix.app(nix.sel(super$, "vimfiler-vim", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$1154,
+            [nix.POS]: $pos[1153],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$1153,
+              [nix.POS]: $pos[1152],
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
             })),
           }))),
         VimOrganizer: nix.thunk(() => nix.app(nix.sel(super$, "VimOrganizer", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$1156,
+            [nix.POS]: $pos[1155],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$1155,
+              [nix.POS]: $pos[1154],
               license: nix.thunk(() => nix.sel(lib, "licenses", "vim")),
             })),
           }))),
         vimoutliner: nix.thunk(() => nix.app(nix.sel(super$, "vimoutliner", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$1158,
+            [nix.POS]: $pos[1157],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$1157,
+              [nix.POS]: $pos[1156],
               license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),
             })),
           }))),
         "vimproc-vim": nix.thunk(() => nix.app(nix.sel(super$, "vimproc-vim", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$1160,
+            [nix.POS]: $pos[1159],
             buildInputs: nix.thunk(() => [which]),
             buildPhase: "substituteInPlace autoload/vimproc.vim \\\n  --replace-fail vimproc_mac.so vimproc_unix.so \\\n  --replace-fail vimproc_linux64.so vimproc_unix.so \\\n  --replace-fail vimproc_linux32.so vimproc_unix.so\nmake -f make_unix.mak\n",
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$1159,
+              [nix.POS]: $pos[1158],
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
             })),
           }))),
         vimsence: nix.thunk(() => nix.app(nix.sel(super$, "vimsence", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$1162,
+            [nix.POS]: $pos[1161],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$1161,
+              [nix.POS]: $pos[1160],
               description: "Discord rich presence for Vim",
               homepage: "https://github.com/hugolgst/vimsence",
               maintainers: nix.thunk(() => (() => {
@@ -7147,15 +6001,15 @@ ${vim}/bin/vim --cmd ":set rtp^=$PWD" -c 'ru plugin/unicode.vim' -c 'UnicodeCach
             })),
           }))),
         "vimshell-vim": nix.thunk(() => nix.app(nix.sel(super$, "vimshell-vim", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$1164,
+            [nix.POS]: $pos[1163],
             dependencies: nix.thunk(() => [nix.thunk(() => nix.sel(self, "vimproc-vim"))]),
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$1163,
+              [nix.POS]: $pos[1162],
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
             })),
           }))),
         vimtex: nix.thunk(() => nix.app(nix.sel(super$, "vimtex", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$1165,
+            [nix.POS]: $pos[1164],
             checkInputs: nix.thunk(() => (() => {
               const w = nix.withScope(self, null);
               return [
@@ -7165,70 +6019,70 @@ ${vim}/bin/vim --cmd ":set rtp^=$PWD" -c 'ru plugin/unicode.vim' -c 'UnicodeCach
             })()),
           })))),
         vimwiki: nix.thunk(() => nix.app(nix.sel(super$, "vimwiki", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$1167,
+            [nix.POS]: $pos[1166],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$1166,
+              [nix.POS]: $pos[1165],
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
             })),
           }))),
         "virt-column-nvim": nix.thunk(() => nix.app(nix.sel(super$, "virt-column-nvim", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$1168,
+            [nix.POS]: $pos[1167],
             nvimSkipModules: nix.thunk(() => ["virt-column.config.types"]),
           })))),
         vis: nix.thunk(() => nix.app(nix.sel(super$, "vis", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$1170,
+            [nix.POS]: $pos[1169],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$1169,
+              [nix.POS]: $pos[1168],
               license: nix.thunk(() => nix.sel(lib, "licenses", "vim")),
             })),
           }))),
         "vissort-vim": nix.thunk(() => nix.app(nix.sel(super$, "vissort-vim", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$1172,
+            [nix.POS]: $pos[1171],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$1171,
+              [nix.POS]: $pos[1170],
               license: nix.thunk(() => nix.sel(lib, "licenses", "vim")),
             })),
           }))),
         "vivify-vim": nix.thunk(() => nix.app(nix.sel(super$, "vivify-vim", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$1174,
+            [nix.POS]: $pos[1173],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$1173,
+              [nix.POS]: $pos[1172],
               license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),
             })),
           }))),
         "vs-tasks-nvim": nix.thunk(() => nix.app(nix.sel(super$, "vs-tasks-nvim", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$1175,
+            [nix.POS]: $pos[1174],
             checkInputs: nix.thunk(() => [nix.thunk(() => nix.sel(self, "telescope-nvim"))]),
             dependencies: nix.thunk(() => [nix.thunk(() => nix.sel(self, "plenary-nvim"))]),
           })))),
         "webapi-vim": nix.thunk(() => nix.app(nix.sel(super$, "webapi-vim", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$1177,
+            [nix.POS]: $pos[1176],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$1176,
+              [nix.POS]: $pos[1175],
               license: nix.thunk(() => nix.sel(lib, "licenses", "publicDomain")),
             })),
           }))),
-        "which-key-nvim": nix.thunk(() => nix.app(nix.sel(super$, "which-key-nvim", "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: pos$1178, nvimSkipModules: nix.thunk(() => ["which-key.docs"]) })))),
+        "which-key-nvim": nix.thunk(() => nix.app(nix.sel(super$, "which-key-nvim", "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: $pos[1177], nvimSkipModules: nix.thunk(() => ["which-key.docs"]) })))),
         "whichpy-nvim": nix.thunk(() => nix.app(nix.sel(super$, "whichpy-nvim", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$1179,
+            [nix.POS]: $pos[1178],
             checkInputs: nix.thunk(() => [nix.thunk(() => nix.sel(self, "telescope-nvim"))]),
           })))),
         "whitespace-nvim": nix.thunk(() => nix.app(nix.sel(super$, "whitespace-nvim", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$1181,
+            [nix.POS]: $pos[1180],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$1180,
+              [nix.POS]: $pos[1179],
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
             })),
           }))),
         "wiki-vim": nix.thunk(() => nix.app(nix.sel(super$, "wiki-vim", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$1182,
+            [nix.POS]: $pos[1181],
             checkInputs: nix.thunk(() => [
               nix.thunk(() => nix.sel(self, "telescope-nvim")),
               nix.thunk(() => nix.sel(self, "fzf-lua")),
             ]),
           })))),
         "windows-nvim": nix.thunk(() => nix.app(nix.sel(super$, "windows-nvim", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$1183,
+            [nix.POS]: $pos[1182],
             dependencies: nix.thunk(() => (() => {
               const w = nix.withScope(self, null);
               return [
@@ -7239,7 +6093,7 @@ ${vim}/bin/vim --cmd ":set rtp^=$PWD" -c 'ru plugin/unicode.vim' -c 'UnicodeCach
             nvimSkipModules: nix.thunk(() => ["windows.autowidth", "windows.commands"]),
           })))),
         "wtf-nvim": nix.thunk(() => nix.app(nix.sel(super$, "wtf-nvim", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$1184,
+            [nix.POS]: $pos[1183],
             dependencies: nix.thunk(() => (() => {
               const w = nix.withScope(self, null);
               return [
@@ -7249,32 +6103,32 @@ ${vim}/bin/vim --cmd ":set rtp^=$PWD" -c 'ru plugin/unicode.vim' -c 'UnicodeCach
             })()),
           })))),
         "xeno-nvim": nix.thunk(() => nix.app(nix.sel(super$, "xeno-nvim", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$1186,
+            [nix.POS]: $pos[1185],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$1185,
+              [nix.POS]: $pos[1184],
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
             })),
           }))),
         "xmake-nvim": nix.thunk(() => nix.app(nix.sel(super$, "xmake-nvim", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$1187,
+            [nix.POS]: $pos[1186],
             nvimSkipModules: nix.thunk(() => ["xmake.action", "xmake.command", "xmake.runner_wrapper"]),
           })))),
         "xterm-color-table-vim": nix.thunk(() => nix.app(nix.sel(super$, "xterm-color-table-vim", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$1189,
+            [nix.POS]: $pos[1188],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$1188,
+              [nix.POS]: $pos[1187],
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
             })),
           }))),
         "yaml-companion-nvim": nix.thunk(() => nix.app(nix.sel(super$, "yaml-companion-nvim", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$1190,
+            [nix.POS]: $pos[1189],
             dependencies: nix.thunk(() => [
               nix.thunk(() => nix.sel(self, "nvim-lspconfig")),
               nix.thunk(() => nix.sel(self, "plenary-nvim")),
             ]),
           })))),
         "yaml-schema-detect-nvim": nix.thunk(() => nix.app(nix.sel(super$, "yaml-schema-detect-nvim", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$1191,
+            [nix.POS]: $pos[1190],
             dependencies: nix.thunk(() => (() => {
               const w = nix.withScope(self, null);
               return [
@@ -7284,26 +6138,26 @@ ${vim}/bin/vim --cmd ":set rtp^=$PWD" -c 'ru plugin/unicode.vim' -c 'UnicodeCach
             })()),
           })))),
         "yank-path-nvim": nix.thunk(() => nix.app(nix.sel(super$, "yank-path-nvim", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$1193,
+            [nix.POS]: $pos[1192],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$1192,
+              [nix.POS]: $pos[1191],
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
             })),
           }))),
         "yanky-nvim": nix.thunk(() => nix.app(nix.sel(super$, "yanky-nvim", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$1194,
+            [nix.POS]: $pos[1193],
             checkInputs: nix.thunk(() => (() => {
               const w = nix.withScope(self, null);
               return [nix.thunk(() => nix.lookup(w, "telescope-nvim"))];
             })()),
           })))),
         "yazi-nvim": nix.thunk(() => nix.app(nix.sel(super$, "yazi-nvim", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$1195,
+            [nix.POS]: $pos[1194],
             dependencies: nix.thunk(() => [nix.thunk(() => nix.sel(self, "plenary-nvim"))]),
             nvimSkipModules: nix.thunk(() => ["repro"]),
           })))),
         YouCompleteMe: nix.thunk(() => nix.app(nix.sel(super$, "YouCompleteMe", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$1197,
+            [nix.POS]: $pos[1196],
             buildPhase: nix.thunk(() => nix.str`substituteInPlace plugin/youcompleteme.vim \\
   --replace-fail "'ycm_path_to_python_interpreter', ''" \\
   "'ycm_path_to_python_interpreter', '${python3}/bin/python3'"
@@ -7312,7 +6166,7 @@ rm -r third_party/ycmd
 ln -s ${ycmd}/lib/ycmd third_party
 `),
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$1196,
+              [nix.POS]: $pos[1195],
               description: "Code-completion engine for Vim",
               homepage: "https://github.com/Valloric/YouCompleteMe",
               license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),
@@ -7324,14 +6178,14 @@ ln -s ${ycmd}/lib/ycmd third_party
             })),
           }))),
         "zeavim-vim": nix.thunk(() => nix.app(nix.sel(super$, "zeavim-vim", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$1199,
+            [nix.POS]: $pos[1198],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$1198,
+              [nix.POS]: $pos[1197],
               license: nix.thunk(() => nix.sel(lib, "licenses", "publicDomain")),
             })),
           }))),
         "zenbones-nvim": nix.thunk(() => nix.app(nix.sel(super$, "zenbones-nvim", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$1200,
+            [nix.POS]: $pos[1199],
             checkInputs: nix.thunk(() => (() => {
               const w = nix.withScope(self, null);
               return [nix.thunk(() => nix.lookup(w, "lush-nvim"))];
@@ -7357,21 +6211,21 @@ ln -s ${ycmd}/lib/ycmd third_party
             ]),
           })))),
         zenburn: nix.thunk(() => nix.app(nix.sel(super$, "zenburn", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$1202,
+            [nix.POS]: $pos[1201],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$1201,
+              [nix.POS]: $pos[1200],
               license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),
             })),
           }))),
         "zig-vim": nix.thunk(() => nix.app(nix.sel(super$, "zig-vim", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$1204,
+            [nix.POS]: $pos[1203],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$1203,
+              [nix.POS]: $pos[1202],
               license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
             })),
           }))),
         "zk-nvim": nix.thunk(() => nix.app(nix.sel(super$, "zk-nvim", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$1205,
+            [nix.POS]: $pos[1204],
             checkInputs: nix.thunk(() => (() => {
               const w = nix.withScope(self, null);
               return [
@@ -7384,14 +6238,14 @@ ln -s ${ycmd}/lib/ycmd third_party
             nvimSkipModules: nix.thunk(() => ["zk.pickers.fzf_lua"]),
           })))),
         "zoomwintab-vim": nix.thunk(() => nix.app(nix.sel(super$, "zoomwintab-vim", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$1207,
+            [nix.POS]: $pos[1206],
             meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-              [nix.POS]: pos$1206,
+              [nix.POS]: $pos[1205],
               license: nix.thunk(() => nix.sel(lib, "licenses", "vim")),
             })),
           }))),
         zotcite: nix.thunk(() => nix.app(nix.sel(super$, "zotcite", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$1208,
+            [nix.POS]: $pos[1207],
             dependencies: nix.thunk(() => (() => {
               const w = nix.withScope(self, null);
               return [
@@ -7401,7 +6255,7 @@ ln -s ${ycmd}/lib/ycmd third_party
             })()),
           })))),
         "zoxide-vim": nix.thunk(() => nix.app(nix.sel(super$, "zoxide-vim", "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$1209,
+            [nix.POS]: $pos[1208],
             buildInputs: nix.thunk(() => [zoxide]),
             postPatch: nix.thunk(() => nix.str`substituteInPlace autoload/zoxide.vim \\
   --replace-fail "'zoxide_executable', 'zoxide'" "'zoxide_executable', '${zoxide}/bin/zoxide'"

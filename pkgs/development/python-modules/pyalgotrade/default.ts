@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 24, 5], ["version", 25, 13], ["sha256", 26, 5]], [["description", 47, 5], ["homepage", 48, 5], ["license", 49, 5]], [["pname", 19, 3], ["version", 20, 3], ["format", 21, 3], ["src", 23, 3], ["propagatedBuildInputs", 29, 3], ["doCheck", 44, 3], ["meta", 46, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, matplotlib: false, numpy: false, "python-dateutil": false, pytz: false, requests: false, retrying: false, scipy: false, six: false, tornado: false, tweepy: false, ws4py: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 24, 5], ["version", 25, 13], ["sha256", 26, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 47, 5], ["homepage", 48, 5], ["license", 49, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 19, 3], ["version", 20, 3], ["format", 21, 3], ["src", 23, 3], ["propagatedBuildInputs", 29, 3], ["doCheck", 44, 3], ["meta", 46, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.20";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "PyAlgoTrade",
           version: version,
           sha256: "7927c87af202869155280a93ff6ee934bb5b46cdb1f20b70f7407337f8541cbd",
@@ -48,13 +46,13 @@ export default nix.lambda((args) => (() => {
       ]);
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Python Algorithmic Trading",
         homepage: "http://gbeced.github.io/pyalgotrade/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         format,

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/toolchain-bin.nix", [[["url", 13, 7], ["hash", 14, 7]], [["url", 17, 7], ["hash", 18, 7]], [["x86_64-linux", 12, 5], ["aarch64-linux", 16, 5]], [["description", 40, 5], ["homepage", 41, 5], ["platforms", 42, 5], ["sourceProvenance", 46, 5], ["license", 47, 5], ["maintainers", 51, 5]], [["name", 26, 3], ["version", 28, 11], ["src", 30, 3], ["nativeBuildInputs", 32, 3], ["installPhase", 34, 3], ["meta", 39, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchzip: false, autoPatchelfHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/toolchain-bin.nix", [["url", 13, 7], ["hash", 14, 7]]);
-const pos$2 = nix.positions(here + "/toolchain-bin.nix", [["url", 17, 7], ["hash", 18, 7]]);
-const pos$3 = nix.positions(here + "/toolchain-bin.nix", [["x86_64-linux", 12, 5], ["aarch64-linux", 16, 5]]);
-const pos$4 = nix.positions(here + "/toolchain-bin.nix", [["description", 40, 5], ["homepage", 41, 5], ["platforms", 42, 5], ["sourceProvenance", 46, 5], ["license", 47, 5], ["maintainers", 51, 5]]);
-const pos$5 = nix.positions(here + "/toolchain-bin.nix", [["name", 26, 3], ["version", 28, 11], ["src", 30, 3], ["nativeBuildInputs", 32, 3], ["installPhase", 34, 3], ["meta", 39, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,27 +13,27 @@ export default nix.lambda((args) => (() => {
   const autoPatchelfHook = nix.arg($, "autoPatchelfHook");
   const version = "1.1.0";
   const dist = nix.thunk(() => ({
-    [nix.POS]: pos$3,
+    [nix.POS]: $pos[2],
     "x86_64-linux": nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: nix.thunk(() => nix.str`https://github.com/osquery/osquery-toolchain/releases/download/${version}/osquery-toolchain-${version}-x86_64.tar.xz`),
       hash: "sha256-irekR8a0d+T64+ZObgblsLoc4kVBmb6Gv0Qf8dLDCMk=",
     })),
     "aarch64-linux": nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       url: nix.thunk(() => nix.str`https://github.com/osquery/osquery-toolchain/releases/download/${version}/osquery-toolchain-${version}-aarch64.tar.xz`),
       hash: "sha256-cQlx9AtO6ggIQqHowa+42wQ4YCMCN4Gb+0qqVl2JElw=",
     })),
   }));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       name: "osquery-toolchain-bin",
       version: version,
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => nix.sel(dist, nix.key(nix.sel(stdenv, "hostPlatform", "system")))))),
       nativeBuildInputs: nix.thunk(() => [autoPatchelfHook]),
       installPhase: "mkdir $out\ncp -r * $out\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "LLVM-based toolchain for Linux designed to build a portable osquery",
         homepage: "https://github.com/osquery/osquery-toolchain",
         platforms: nix.thunk(() => ["x86_64-linux", "aarch64-linux"]),

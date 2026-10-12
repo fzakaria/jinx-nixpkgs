@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["sha256", 19, 5]], [["description", 46, 5], ["homepage", 47, 5], ["mainProgram", 48, 5], ["maintainers", 49, 5], ["platforms", 50, 5], ["license", 51, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["nativeBuildInputs", 22, 3], ["buildInputs", 28, 3], ["postPatch", 35, 3], ["postInstall", 40, 3], ["meta", 45, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, "pkg-config": false, opencv: false, spdlog: false, onnxruntime: false, libsForQt5: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["sha256", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 46, 5], ["homepage", 47, 5], ["mainProgram", 48, 5], ["maintainers", 49, 5], ["platforms", 50, 5], ["license", 51, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["nativeBuildInputs", 22, 3], ["buildInputs", 28, 3], ["postPatch", 35, 3], ["postInstall", 40, 3], ["meta", 45, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const onnxruntime = nix.arg($, "onnxruntime");
   const libsForQt5 = nix.arg($, "libsForQt5");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "aitrack",
       version: "0.6.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "mdk97",
           repo: "aitrack-linux",
           rev: "00bcca9b685abf3a19e4eab653198ca2b1895ae4",
@@ -42,7 +40,7 @@ export default nix.lambda((args) => (() => {
       postPatch: "substituteInPlace Client/src/Main.cpp \\\n  --replace \"/usr/share/\" \"$out/share/\"\n",
       postInstall: "install -Dt $out/bin aitrack\ninstall -Dt $out/share/aitrack/models models/*\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "6DoF Head tracking software",
         homepage: "https://github.com/mdk97/aitrack-linux",
         mainProgram: "aitrack",

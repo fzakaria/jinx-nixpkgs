@@ -2,15 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 42, 5], ["repo", 43, 5], ["tag", 44, 5], ["hash", 45, 5]], [["pkg-config", 135, 7]], [["startup", 138, 7], ["lomiri", 139, 7]], [["tests", 134, 5], ["updateScript", 141, 5]], [["lomiri-indicator-network", 145, 7]], [["ayatana-indicators", 144, 5]], [["description", 150, 5], ["homepage", 151, 5], ["changelog", 152, 5], ["license", 155, 5], ["teams", 156, 5], ["platforms", 157, 5], ["pkgConfigModules", 158, 5]], [["pname", 38, 3], ["version", 39, 3], ["src", 41, 3], ["outputs", 48, 3], ["postPatch", 56, 3], ["strictDeps", 63, 3], ["nativeBuildInputs", 65, 3], ["buildInputs", 78, 3], ["nativeCheckInputs", 96, 3], ["checkInputs", 98, 3], ["dontWrapQtApps", 105, 3], ["cmakeFlags", 107, 3], ["doCheck", 120, 3], ["enableParallelChecking", 126, 3], ["postInstall", 128, 3], ["passthru", 133, 3], ["meta", 149, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitLab: false, gitUpdater: false, nixosTests: false, testers: false, cmake: false, "cmake-extras": false, coreutils: false, dbus: false, doxygen: false, gettext: false, glib: false, gmenuharness: true, gtest: false, intltool: false, libsecret: false, libqofono: true, libqtdbusmock: false, libqtdbustest: false, "lomiri-api": false, "lomiri-url-dispatcher": false, networkmanager: false, ofono: false, "pkg-config": false, python3: false, qtbase: false, qtdeclarative: false, qttools: false, validatePkgConfig: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 42, 5], ["repo", 43, 5], ["tag", 44, 5], ["hash", 45, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pkg-config", 135, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["startup", 138, 7], ["lomiri", 139, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["tests", 134, 5], ["updateScript", 141, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["lomiri-indicator-network", 145, 7]]);
-const pos$6 = nix.positions(here + "/default.nix", [["ayatana-indicators", 144, 5]]);
-const pos$7 = nix.positions(here + "/default.nix", [["description", 150, 5], ["homepage", 151, 5], ["changelog", 152, 5], ["license", 155, 5], ["teams", 156, 5], ["platforms", 157, 5], ["pkgConfigModules", 158, 5]]);
-const pos$8 = nix.positions(here + "/default.nix", [["pname", 38, 3], ["version", 39, 3], ["src", 41, 3], ["outputs", 48, 3], ["postPatch", 56, 3], ["strictDeps", 63, 3], ["nativeBuildInputs", 65, 3], ["buildInputs", 78, 3], ["nativeCheckInputs", 96, 3], ["checkInputs", 98, 3], ["dontWrapQtApps", 105, 3], ["cmakeFlags", 107, 3], ["doCheck", 120, 3], ["enableParallelChecking", 126, 3], ["postInstall", 128, 3], ["passthru", 133, 3], ["meta", 149, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -46,11 +39,11 @@ export default nix.lambda((args) => (() => {
   const validatePkgConfig = nix.arg($, "validatePkgConfig");
   const withQt6 = nix.thunk(() => nix.app(nix.sel(lib, "strings", "versionAtLeast"), nix.thunk(() => nix.sel(qtbase, "version")), "6"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "lomiri-indicator-network",
       version: "1.2.0",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ubports",
           repo: "development/core/lomiri-indicator-network",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -94,22 +87,22 @@ export default nix.lambda((args) => (() => {
   --replace-fail '/bin/false' '${nix.app(nix.sel(lib, "getExe'"), coreutils, "false")}'
 `))),
       passthru: nix.thunk(() => nix.update({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => nix.update({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "testMetaPkgConfig"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
         }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.asBool(withQt6)), nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             startup: nix.thunk(() => nix.sel(nixosTests, "ayatana-indicators")),
             lomiri: nix.thunk(() => nix.sel(nixosTests, "lomiri", "desktop-ayatana-indicator-network")),
           }))))),
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.asBool(withQt6)), nix.thunk(() => ({
-          [nix.POS]: pos$6,
-          "ayatana-indicators": nix.thunk(() => ({ [nix.POS]: pos$5, "lomiri-indicator-network": nix.thunk(() => ["lomiri"]) })),
+          [nix.POS]: $pos[5],
+          "ayatana-indicators": nix.thunk(() => ({ [nix.POS]: $pos[4], "lomiri-indicator-network": nix.thunk(() => ["lomiri"]) })),
         }))))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "Ayatana indiator exporting the network settings menu through D-Bus",
         homepage: "https://gitlab.com/ubports/development/core/lomiri-indicator-network",
         changelog: nix.thunk(() => nix.str`https://gitlab.com/ubports/development/core/lomiri-indicator-network/-/blob/${(nix.asBool(!nix.asBool(nix.builtins.isNull(nix.thunk(() => nix.sel(finalAttrs, "src", "tag"))))) ? nix.sel(finalAttrs, "src", "tag") : nix.sel(finalAttrs, "src", "rev"))}/ChangeLog`),

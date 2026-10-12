@@ -2,17 +2,10 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/whisparr.nix", [[["maintainers", 13, 8]], [["apikey", 19, 21]], [["auth", 19, 16]], [["enable", 17, 7], ["package", 18, 7], ["settings", 19, 7]], [["whisparr", 16, 14]], [["services", 16, 5]], [["machine", 15, 9]], [["name", 12, 3], ["meta", 13, 3], ["nodes", 15, 3], ["testScript", 23, 3]]]);
 const formals$1 = { args: { config: false, getPackage: false, lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/whisparr.nix", [["maintainers", 13, 8]]);
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/whisparr.nix", [["apikey", 19, 21]]);
-const pos$3 = nix.positions(here + "/whisparr.nix", [["auth", 19, 16]]);
-const pos$4 = nix.positions(here + "/whisparr.nix", [["enable", 17, 7], ["package", 18, 7], ["settings", 19, 7]]);
-const pos$5 = nix.positions(here + "/whisparr.nix", [["whisparr", 16, 14]]);
-const pos$6 = nix.positions(here + "/whisparr.nix", [["services", 16, 5]]);
-const pos$7 = nix.positions(here + "/whisparr.nix", [["machine", 15, 9]]);
 const formals$3 = { args: { nodes: false }, ellipsis: true };
-const pos$8 = nix.positions(here + "/whisparr.nix", [["name", 12, 3], ["meta", 13, 3], ["nodes", 15, 3], ["testScript", 23, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,32 +15,32 @@ export default nix.lambda((args) => (() => {
   const package$ = nix.thunk(() => nix.app(getPackage, nix.thunk(() => nix.sel(config, "node", "pkgs"))));
   const isV2 = nix.thunk(() => nix.eq(nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(package$, "version"))), "2"));
   return {
-    [nix.POS]: pos$8,
+    [nix.POS]: $pos[7],
     name: nix.thunk(() => nix.str`whisparr_${nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(package$, "version")))}`),
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "connor-grady"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             whisparr: nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               enable: true,
               package: nix.thunk(() => nix.app(getPackage, pkgs)),
               settings: nix.thunk(() => ({
-                [nix.POS]: pos$3,
+                [nix.POS]: $pos[2],
                 auth: nix.thunk(() => ({
-                  [nix.POS]: pos$2,
+                  [nix.POS]: $pos[1],
                   apikey: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.asBool(isV2)), "0123456789abcdef0123456789abcdef")),
                 })),
               })),

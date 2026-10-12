@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]], [["pname", 52, 28], ["version", 52, 34], ["src", 52, 42], ["sourceRoot", 53, 7], ["pnpm", 54, 7], ["fetcherVersion", 55, 7], ["hash", 56, 7]], [["pnpmDeps", 51, 5], ["pnpmRoot", 58, 5]], [["preBuild", 62, 5]], [["name", 95, 7], ["desktopName", 96, 7], ["exec", 97, 7], ["icon", 98, 7], ["terminal", 99, 7], ["categories", 100, 7]], [["description", 105, 5], ["homepage", 106, 5], ["changelog", 107, 5], ["license", 108, 5], ["platforms", 109, 5], ["mainProgram", 110, 5], ["maintainers", 111, 5]], [["pname", 20, 3], ["version", 21, 3], ["__structuredAttrs", 22, 3], ["src", 24, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 40, 3], ["dontWrapGApps", 44, 3], ["proxyVendor", 46, 3], ["makeWrapperArgs", 48, 3], ["env", 50, 3], ["overrideModAttrs", 61, 3], ["buildPhase", 67, 3], ["installPhase", 75, 3], ["vendorHash", 91, 3], ["desktopItems", 93, 3], ["meta", 104, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitHub: false, fetchPnpmDeps: false, pnpm_10: false, "ffmpeg-headless": false, wails: false, "glib-networking": false, "gsettings-desktop-schemas": false, gtk3: false, pnpmConfigHook: false, makeDesktopItem: false, copyDesktopItems: false, makeWrapper: false, wrapGAppsHook3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 52, 28], ["version", 52, 34], ["src", 52, 42], ["sourceRoot", 53, 7], ["pnpm", 54, 7], ["fetcherVersion", 55, 7], ["hash", 56, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pnpmDeps", 51, 5], ["pnpmRoot", 58, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["preBuild", 62, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["name", 95, 7], ["desktopName", 96, 7], ["exec", 97, 7], ["icon", 98, 7], ["terminal", 99, 7], ["categories", 100, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 105, 5], ["homepage", 106, 5], ["changelog", 107, 5], ["license", 108, 5], ["platforms", 109, 5], ["mainProgram", 110, 5], ["maintainers", 111, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["__structuredAttrs", 22, 3], ["src", 24, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 40, 3], ["dontWrapGApps", 44, 3], ["proxyVendor", 46, 3], ["makeWrapperArgs", 48, 3], ["env", 50, 3], ["overrideModAttrs", 61, 3], ["buildPhase", 67, 3], ["installPhase", 75, 3], ["vendorHash", 91, 3], ["desktopItems", 93, 3], ["meta", 104, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,12 +23,12 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "spotiflac",
       version: "7.2.2",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "spotbye",
           repo: "SpotiFLAC",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -53,9 +47,9 @@ export default nix.lambda((args) => (() => {
       proxyVendor: true,
       makeWrapperArgs: nix.thunk(() => ["${gappsWrapperArgs[@]}"]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
             version: nix.thunk(() => nix.attr(finalAttrs, "version")),
             src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -66,7 +60,7 @@ export default nix.lambda((args) => (() => {
           })))),
         pnpmRoot: "frontend",
       })),
-      overrideModAttrs: nix.thunk(() => ({ [nix.POS]: pos$4, preBuild: "wails build -tags webkit2_41 -o spotiflac\n" })),
+      overrideModAttrs: nix.thunk(() => ({ [nix.POS]: $pos[3], preBuild: "wails build -tags webkit2_41 -o spotiflac\n" })),
       buildPhase: "runHook preBuild\n\nwails build -tags webkit2_41 -devtools -o spotiflac\n\nrunHook postBuild\n",
       installPhase: nix.thunk(() => nix.str`runHook preInstall;
 
@@ -85,7 +79,7 @@ runHook postInstall;
       vendorHash: "sha256-B8FgP4w08imhrERyAbmLjvBIyb+5I05hhY2rF+uJoV4=",
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             name: "spotiflac",
             desktopName: "SpotiFLAC",
             exec: "spotiflac %u",
@@ -95,7 +89,7 @@ runHook postInstall;
           })))),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Get Spotify tracks in true FLAC from Tidal, Qobuz & Amazon Music — no account required",
         homepage: "https://github.com/spotbye/SpotiFLAC/",
         changelog: nix.thunk(() => nix.str`https://github.com/spotbye/SpotiFLAC/releases/tag/v${nix.sel(finalAttrs, "version")}`),

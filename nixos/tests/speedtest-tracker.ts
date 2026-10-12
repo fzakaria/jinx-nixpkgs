@@ -2,17 +2,8 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/speedtest-tracker.nix", [[["maintainers", 9, 5], ["platforms", 10, 5]], [["text", 14, 48]], [["speedtest-tracker-appkey", 14, 21]], [["etc", 14, 17]], [["APP_KEY_FILE", 19, 9]], [["enable", 16, 7], ["enableNginx", 17, 7], ["settings", 18, 7]], [["speedtest-tracker", 15, 14]], [["environment", 14, 5], ["services", 15, 5]], [["sqlite", 13, 9]], [["name", 7, 3], ["meta", 8, 3], ["nodes", 13, 3], ["testScript", 24, 3]]]);
 const formals$1 = { args: { lib: false, pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/speedtest-tracker.nix", [["maintainers", 9, 5], ["platforms", 10, 5]]);
-const pos$2 = nix.positions(here + "/speedtest-tracker.nix", [["text", 14, 48]]);
-const pos$3 = nix.positions(here + "/speedtest-tracker.nix", [["speedtest-tracker-appkey", 14, 21]]);
-const pos$4 = nix.positions(here + "/speedtest-tracker.nix", [["etc", 14, 17]]);
-const pos$5 = nix.positions(here + "/speedtest-tracker.nix", [["APP_KEY_FILE", 19, 9]]);
-const pos$6 = nix.positions(here + "/speedtest-tracker.nix", [["enable", 16, 7], ["enableNginx", 17, 7], ["settings", 18, 7]]);
-const pos$7 = nix.positions(here + "/speedtest-tracker.nix", [["speedtest-tracker", 15, 14]]);
-const pos$8 = nix.positions(here + "/speedtest-tracker.nix", [["environment", 14, 5], ["services", 15, 5]]);
-const pos$9 = nix.positions(here + "/speedtest-tracker.nix", [["sqlite", 13, 9]]);
-const pos$10 = nix.positions(here + "/speedtest-tracker.nix", [["name", 7, 3], ["meta", 8, 3], ["nodes", 13, 3], ["testScript", 24, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,31 +11,31 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const app_key = "base64:VGVzdFRlc3RUZXN0VGVzdFRlc3RUZXN0VGVzdFRlc3Q=";
   return {
-    [nix.POS]: pos$10,
+    [nix.POS]: $pos[9],
     name: "speedtest-tracker",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => nix.sel(pkgs, "speedtest-tracker", "meta", "maintainers")),
       platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       sqlite: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         environment: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           etc: nix.thunk(() => ({
-            [nix.POS]: pos$3,
-            "speedtest-tracker-appkey": nix.thunk(() => ({ [nix.POS]: pos$2, text: app_key })),
+            [nix.POS]: $pos[2],
+            "speedtest-tracker-appkey": nix.thunk(() => ({ [nix.POS]: $pos[1], text: app_key })),
           })),
         })),
         services: nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           "speedtest-tracker": nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             enable: true,
             enableNginx: true,
-            settings: nix.thunk(() => ({ [nix.POS]: pos$5, APP_KEY_FILE: "/etc/speedtest-tracker-appkey" })),
+            settings: nix.thunk(() => ({ [nix.POS]: $pos[4], APP_KEY_FILE: "/etc/speedtest-tracker-appkey" })),
           })),
         })),
       })),

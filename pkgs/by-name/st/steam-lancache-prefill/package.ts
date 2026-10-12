@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5], ["fetchSubmodules", 20, 5]], [["description", 44, 5], ["homepage", 45, 5], ["changelog", 46, 5], ["license", 47, 5], ["maintainers", 48, 5], ["mainProgram", 49, 5], ["platforms", 50, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["projectFile", 23, 3], ["nugetDeps", 24, 3], ["dotnet-sdk", 26, 3], ["dotnet-runtime", 27, 3], ["executables", 29, 3], ["patches", 31, 3], ["nativeBuildInputs", 33, 3], ["postInstall", 39, 3], ["meta", 43, 3]]]);
 const formals$1 = { args: { lib: false, buildDotnetModule: false, dotnetCorePackages: false, fetchFromGitHub: false, curl: false, jq: false, unzip: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5], ["fetchSubmodules", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 44, 5], ["homepage", 45, 5], ["changelog", 46, 5], ["license", 47, 5], ["maintainers", 48, 5], ["mainProgram", 49, 5], ["platforms", 50, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["projectFile", 23, 3], ["nugetDeps", 24, 3], ["dotnet-sdk", 26, 3], ["dotnet-runtime", 27, 3], ["executables", 29, 3], ["patches", 31, 3], ["nativeBuildInputs", 33, 3], ["postInstall", 39, 3], ["meta", 43, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const jq = nix.arg($, "jq");
   const unzip = nix.arg($, "unzip");
   return nix.app(buildDotnetModule, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "steam-lancache-prefill",
       version: "3.6.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "tpill90",
           repo: "steam-lancache-prefill",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -37,7 +35,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [curl, jq, unzip]),
       postInstall: "rm -rf $out/lib/steam-lancache-prefill/update.sh\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Automatically fills a Lancache with games from Steam",
         homepage: "https://github.com/tpill90/steam-lancache-prefill",
         changelog: nix.thunk(() => nix.str`https://github.com/tpill90/steam-lancache-prefill/releases/tag/v${nix.sel(finalAttrs, "version")}`),

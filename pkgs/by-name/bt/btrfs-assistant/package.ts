@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["hash", 26, 5]], [["url", 33, 7], ["hash", 34, 7]], [["updateScript", 77, 12]], [["description", 80, 5], ["homepage", 81, 5], ["changelog", 82, 5], ["license", 83, 5], ["mainProgram", 84, 5], ["maintainers", 85, 5], ["platforms", 86, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["patches", 29, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 46, 3], ["postPatch", 56, 3], ["passthru", 77, 3], ["meta", 79, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, "btrfs-progs": false, cmake: false, coreutils: false, git: false, "pkg-config": false, qt6: false, snapper: false, "util-linux": false, enableSnapper: true, "nix-update-script": false, fetchpatch: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 33, 7], ["hash", 34, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 77, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 80, 5], ["homepage", 81, 5], ["changelog", 82, 5], ["license", 83, 5], ["mainProgram", 84, 5], ["maintainers", 85, 5], ["platforms", 86, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["patches", 29, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 46, 3], ["postPatch", 56, 3], ["passthru", 77, 3], ["meta", 79, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const fetchpatch = nix.arg($, "fetchpatch");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "btrfs-assistant",
       version: "2.3.1",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "btrfs-assistant",
           repo: "btrfs-assistant",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -38,7 +34,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://gitlab.com/btrfs-assistant/btrfs-assistant/-/commit/5fb306c7871e5be63a8adf6fbce31c50fce7512b.diff",
             hash: "sha256-JU9l611OoSOqKMI1cGRoFY9rnf1MC58DeMnI5vmAhKo=",
           })))),
@@ -65,11 +61,11 @@ substituteInPlace src/btrfs-assistant.conf \\
   --replace-fail '/usr/bin/snapper' "${nix.app(nix.sel(lib, "getExe"), snapper)}"
 `)))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "GUI management tool to make managing a Btrfs filesystem easier",
         homepage: "https://gitlab.com/btrfs-assistant/btrfs-assistant",
         changelog: nix.thunk(() => nix.str`https://gitlab.com/btrfs-assistant/btrfs-assistant/-/blob/${nix.sel(finalAttrs, "version")}/changelog`),

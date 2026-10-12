@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]], [["geth", 55, 43]], [["tests", 55, 12]], [["homepage", 58, 5], ["description", 59, 5], ["license", 60, 5], ["maintainers", 64, 5], ["mainProgram", 68, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["proxyVendor", 24, 3], ["vendorHash", 25, 3], ["doCheck", 27, 3], ["outputs", 29, 3], ["postInstall", 32, 3], ["subPackages", 39, 3], ["tags", 53, 3], ["passthru", 55, 3], ["meta", 57, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitHub: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["geth", 55, 43]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 55, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 58, 5], ["description", 59, 5], ["license", 60, 5], ["maintainers", 64, 5], ["mainProgram", 68, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["proxyVendor", 24, 3], ["vendorHash", 25, 3], ["doCheck", 27, 3], ["outputs", 29, 3], ["postInstall", 32, 3], ["subPackages", 39, 3], ["tags", 53, 3], ["passthru", 55, 3], ["meta", 57, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const bins = nix.thunk(() => ["geth"]);
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "go-ethereum",
       version: "1.17.7",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ethereum",
           repo: "go-ethereum",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -46,11 +42,11 @@ export default nix.lambda((args) => (() => {
       ]),
       tags: nix.thunk(() => ["urfave_cli_no_docs"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$2, geth: nix.thunk(() => nix.attr(nixosTests, "geth")) })),
+        [nix.POS]: $pos[2],
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[1], geth: nix.thunk(() => nix.attr(nixosTests, "geth")) })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://geth.ethereum.org/",
         description: "Official golang implementation of the Ethereum protocol",
         license: nix.thunk(() => (() => {

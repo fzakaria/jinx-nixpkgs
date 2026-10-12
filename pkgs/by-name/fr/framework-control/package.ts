@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]], [["name", 35, 5], ["src", 36, 5], ["hash", 37, 5]], [["name", 48, 7], ["desktopName", 49, 7], ["comment", 50, 7], ["exec", 51, 7], ["icon", 52, 7], ["terminal", 53, 7], ["categories", 54, 7], ["startupNotify", 58, 7]], [["FRAMEWORK_CONTROL_PORT", 62, 7]], [["updateScript", 79, 12]], [["description", 82, 5], ["homepage", 83, 5], ["license", 84, 5], ["maintainers", 85, 5], ["platforms", 86, 5], ["mainProgram", 87, 5]], [["pname", 15, 3], ["version", 16, 3], ["__structuredAttrs", 18, 3], ["src", 20, 3], ["cargoHash", 27, 3], ["cargoRoot", 29, 3], ["buildAndTestSubdir", 30, 3], ["npmRoot", 32, 3], ["npmDeps", 34, 3], ["nativeBuildInputs", 40, 3], ["desktopItems", 46, 3], ["env", 62, 3], ["preBuild", 64, 3], ["buildFeatures", 70, 3], ["postInstall", 72, 3], ["passthru", 79, 3], ["meta", 81, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, nodejs: false, npmHooks: false, fetchFromGitHub: false, fetchNpmDeps: false, makeDesktopItem: false, copyDesktopItems: false, "nix-update-script": false, controlPort: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 35, 5], ["src", 36, 5], ["hash", 37, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 48, 7], ["desktopName", 49, 7], ["comment", 50, 7], ["exec", 51, 7], ["icon", 52, 7], ["terminal", 53, 7], ["categories", 54, 7], ["startupNotify", 58, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["FRAMEWORK_CONTROL_PORT", 62, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["updateScript", 79, 12]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 82, 5], ["homepage", 83, 5], ["license", 84, 5], ["maintainers", 85, 5], ["platforms", 86, 5], ["mainProgram", 87, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["__structuredAttrs", 18, 3], ["src", 20, 3], ["cargoHash", 27, 3], ["cargoRoot", 29, 3], ["buildAndTestSubdir", 30, 3], ["npmRoot", 32, 3], ["npmDeps", 34, 3], ["nativeBuildInputs", 40, 3], ["desktopItems", 46, 3], ["env", 62, 3], ["preBuild", 64, 3], ["buildFeatures", 70, 3], ["postInstall", 72, 3], ["passthru", 79, 3], ["meta", 81, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const controlPort = nix.argOr($, "controlPort", () => 30912n);
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "framework-control",
       version: "0.5.4",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ozturkkl",
           repo: "framework-control",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -40,7 +34,7 @@ export default nix.lambda((args) => (() => {
       buildAndTestSubdir: "service",
       npmRoot: "web",
       npmDeps: nix.thunk(() => nix.app(fetchNpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           name: "framework-control-npm-deps",
           src: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src")}/web`),
           hash: "sha256-zRKUAaqOiGsd5igrb7By43KsxLXhBY/HmhD8qVB6VlU=",
@@ -52,7 +46,7 @@ export default nix.lambda((args) => (() => {
       ]),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "framework-control",
             desktopName: "Framework Control",
             comment: "Lightweight control surface for Framework laptops",
@@ -63,16 +57,16 @@ export default nix.lambda((args) => (() => {
             startupNotify: true,
           })))),
       ]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$4, FRAMEWORK_CONTROL_PORT: controlPort })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[3], FRAMEWORK_CONTROL_PORT: controlPort })),
       preBuild: "pushd web\nnpm run build\npopd\n",
       buildFeatures: nix.thunk(() => ["embed-ui"]),
       postInstall: "mv $out/bin/framework-control-service $out/bin/framework-control\n\ninstall -Dm644 web/public/assets/logo.png \\\n  $out/share/icons/hicolor/256x256/apps/framework-control.png\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Lightweight control surface for Framework laptops",
         homepage: "https://github.com/ozturkkl/framework-control",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

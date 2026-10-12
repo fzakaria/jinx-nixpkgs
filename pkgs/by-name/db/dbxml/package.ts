@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 15, 5], ["sha256", 16, 5]], [["homepage", 52, 5], ["description", 53, 5], ["license", 54, 5], ["maintainers", 55, 5], ["platforms", 56, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["outputs", 19, 3], ["patches", 25, 3], ["buildInputs", 30, 3], ["propagatedBuildInputs", 35, 3], ["configureFlags", 39, 3], ["preConfigure", 47, 3], ["meta", 51, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, db62: false, xercesc: false, xqilla: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 15, 5], ["sha256", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 52, 5], ["description", 53, 5], ["license", 54, 5], ["maintainers", 55, 5], ["platforms", 56, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["outputs", 19, 3], ["patches", 25, 3], ["buildInputs", 30, 3], ["propagatedBuildInputs", 35, 3], ["configureFlags", 39, 3], ["preConfigure", 47, 3], ["meta", 51, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const xercesc = nix.arg($, "xercesc");
   const xqilla = nix.arg($, "xqilla");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "dbxml",
       version: "6.1.4",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://download.oracle.com/berkeley-db/dbxml-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "a8fc8f5e0c3b6e42741fa4dfc3b878c982ff8f5e5f14843f6a7e20d22e64251a",
         })))),
@@ -39,7 +37,7 @@ export default nix.lambda((args) => (() => {
       ]),
       preConfigure: "cd dbxml\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://www.oracle.com/database/berkeley-db/xml.html",
         description: "Embeddable XML database based on Berkeley DB",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),

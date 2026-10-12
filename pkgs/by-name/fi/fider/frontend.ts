@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/frontend.nix", [[["PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD", 35, 5]], [["version", 11, 11], ["src", 11, 19], ["npmDepsHash", 11, 23], ["pname", 12, 3], ["buildPhase", 14, 3], ["installPhase", 25, 3], ["env", 34, 3]]]);
 const formals$1 = { args: { buildNpmPackage: false, pname: false, version: false, src: false, npmDepsHash: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/frontend.nix", [["PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD", 35, 5]]);
-const pos$2 = nix.positions(here + "/frontend.nix", [["version", 11, 11], ["src", 11, 19], ["npmDepsHash", 11, 23], ["pname", 12, 3], ["buildPhase", 14, 3], ["installPhase", 25, 3], ["env", 34, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,14 +13,14 @@ export default nix.lambda((args) => (() => {
   const src = nix.arg($, "src");
   const npmDepsHash = nix.arg($, "npmDepsHash");
   return nix.app(buildNpmPackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       version: version,
       src: src,
       npmDepsHash: npmDepsHash,
       pname: nix.thunk(() => nix.str`${pname}-frontend`),
       buildPhase: "runHook preBuild\n\nnpx lingui extract public/\nnpx lingui compile\nNODE_ENV=production node esbuild.config.js\nNODE_ENV=production npx webpack-cli\n\nrunHook postBuild\n",
       installPhase: "runHook preInstall\n\nmkdir -p $out\ncp -r dist ssr.js favicon.png robots.txt $out/\n\nrunHook postInstall\n",
-      env: nix.thunk(() => ({ [nix.POS]: pos$1, PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: 1n })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[0], PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: 1n })),
     })));
 })(), formals$1);
 //# sourceMappingURL=frontend.ts.map

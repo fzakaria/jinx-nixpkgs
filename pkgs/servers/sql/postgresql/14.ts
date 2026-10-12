@@ -2,25 +2,22 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
-const pos$1 = nix.positions(here + "/14.nix", [["url", 7, 7], ["hash", 8, 7]]);
-const pos$2 = nix.positions(here + "/14.nix", [["url", 11, 7], ["hash", 12, 7]]);
-const pos$3 = nix.positions(here + "/14.nix", [["disable-test-collate-icu-utf8", 6, 5], ["dont-use-locale-a", 10, 5]]);
-const pos$4 = nix.positions(here + "/14.nix", [["version", 2, 3], ["rev", 3, 3], ["hash", 4, 3], ["muslPatches", 5, 3]]);
+const $pos = nix.positions(here + "/14.nix", [[["url", 7, 7], ["hash", 8, 7]], [["url", 11, 7], ["hash", 12, 7]], [["disable-test-collate-icu-utf8", 6, 5], ["dont-use-locale-a", 10, 5]], [["version", 2, 3], ["rev", 3, 3], ["hash", 4, 3], ["muslPatches", 5, 3]]]);
 
 export default nix.thunk(() => ({
-  [nix.POS]: pos$4,
+  [nix.POS]: $pos[3],
   version: "14.24",
   rev: "refs/tags/REL_14_24",
   hash: "sha256-yfZJFXk10vJ4QEhbUXe1gtz8rBS2YOEcD3unEjSHzjk=",
   muslPatches: nix.thunk(() => ({
-    [nix.POS]: pos$3,
+    [nix.POS]: $pos[2],
     "disable-test-collate-icu-utf8": nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: "https://git.alpinelinux.org/aports/plain/main/postgresql14/disable-test-collate.icu.utf8.patch?id=56999e6d0265ceff5c5239f85fdd33e146f06cb7",
       hash: "sha256-jXe23AxnFjEl+TZQm4R7rStk2Leo08ctxMNmu1xr5zM=",
     })),
     "dont-use-locale-a": nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       url: "https://git.alpinelinux.org/aports/plain/main/postgresql14/dont-use-locale-a-on-musl.patch?id=56999e6d0265ceff5c5239f85fdd33e146f06cb7",
       hash: "sha256-fk+y/SvyA4Tt8OIvDl7rje5dLs3Zw+Ln1oddyYzerOo=",
     })),

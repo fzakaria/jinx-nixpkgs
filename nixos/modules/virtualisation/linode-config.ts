@@ -2,22 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/linode-config.nix", [[["PermitRootLogin", 14, 14], ["PasswordAuthentication", 15, 14]], [["enable", 12, 5], ["settings", 14, 5]], [["openssh", 11, 12]], [["useDHCP", 22, 7], ["tempAddress", 26, 7]], [["eth0", 21, 16]], [["usePredictableInterfaceNames", 19, 5], ["useDHCP", 20, 5], ["interfaces", 21, 5]], [["systemPackages", 31, 15]], [["fsType", 38, 5], ["device", 39, 5], ["autoResize", 40, 5]], [["/", 37, 15]], [["device", 43, 31]], [["availableKernelModules", 49, 12]], [["enable", 66, 9], ["forceInstall", 67, 9], ["device", 68, 9], ["extraConfig", 71, 9]], [["timeout", 63, 7], ["grub", 65, 7]], [["initrd", 49, 5], ["kernelParams", 57, 5], ["kernelModules", 58, 5], ["loader", 60, 5]], [["imports", 9, 3], ["services", 11, 3], ["networking", 18, 3], ["environment", 31, 3], ["fileSystems", 37, 3], ["swapDevices", 43, 3], ["boot", 46, 3]]]);
 const formals$1 = { args: { config: false, lib: false, pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/linode-config.nix", [["PermitRootLogin", 14, 14], ["PasswordAuthentication", 15, 14]]);
-const pos$2 = nix.positions(here + "/linode-config.nix", [["enable", 12, 5], ["settings", 14, 5]]);
-const pos$3 = nix.positions(here + "/linode-config.nix", [["openssh", 11, 12]]);
-const pos$4 = nix.positions(here + "/linode-config.nix", [["useDHCP", 22, 7], ["tempAddress", 26, 7]]);
-const pos$5 = nix.positions(here + "/linode-config.nix", [["eth0", 21, 16]]);
-const pos$6 = nix.positions(here + "/linode-config.nix", [["usePredictableInterfaceNames", 19, 5], ["useDHCP", 20, 5], ["interfaces", 21, 5]]);
-const pos$7 = nix.positions(here + "/linode-config.nix", [["systemPackages", 31, 15]]);
-const pos$8 = nix.positions(here + "/linode-config.nix", [["fsType", 38, 5], ["device", 39, 5], ["autoResize", 40, 5]]);
-const pos$9 = nix.positions(here + "/linode-config.nix", [["/", 37, 15]]);
-const pos$10 = nix.positions(here + "/linode-config.nix", [["device", 43, 31]]);
-const pos$11 = nix.positions(here + "/linode-config.nix", [["availableKernelModules", 49, 12]]);
-const pos$12 = nix.positions(here + "/linode-config.nix", [["enable", 66, 9], ["forceInstall", 67, 9], ["device", 68, 9], ["extraConfig", 71, 9]]);
-const pos$13 = nix.positions(here + "/linode-config.nix", [["timeout", 63, 7], ["grub", 65, 7]]);
-const pos$14 = nix.positions(here + "/linode-config.nix", [["initrd", 49, 5], ["kernelParams", 57, 5], ["kernelModules", 58, 5], ["loader", 60, 5]]);
-const pos$15 = nix.positions(here + "/linode-config.nix", [["imports", 9, 3], ["services", 11, 3], ["networking", 18, 3], ["environment", 31, 3], ["fileSystems", 37, 3], ["swapDevices", 43, 3], ["boot", 46, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,31 +12,31 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const w = nix.withScope(lib, null);
   return {
-    [nix.POS]: pos$15,
+    [nix.POS]: $pos[14],
     imports: nix.thunk(() => [nix.path(here, "../profiles/qemu-guest.nix")]),
     services: nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       openssh: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         enable: true,
         settings: nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           PermitRootLogin: "prohibit-password",
           PasswordAuthentication: nix.thunk(() => nix.app(nix.lookup(w, "mkDefault"), false)),
         })),
       })),
     })),
     networking: nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       usePredictableInterfaceNames: false,
       useDHCP: false,
       interfaces: nix.thunk(() => ({
-        [nix.POS]: pos$5,
-        eth0: nix.thunk(() => ({ [nix.POS]: pos$4, useDHCP: true, tempAddress: "disabled" })),
+        [nix.POS]: $pos[4],
+        eth0: nix.thunk(() => ({ [nix.POS]: $pos[3], useDHCP: true, tempAddress: "disabled" })),
       })),
     })),
     environment: nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       systemPackages: nix.thunk(() => (() => {
         const w_1 = nix.withScope(pkgs, w);
         return [
@@ -61,23 +47,23 @@ export default nix.lambda((args) => (() => {
       })()),
     })),
     fileSystems: nix.thunk(() => ({
-      [nix.POS]: pos$9,
-      "/": nix.thunk(() => ({ [nix.POS]: pos$8, fsType: "ext4", device: "/dev/sda", autoResize: true })),
+      [nix.POS]: $pos[8],
+      "/": nix.thunk(() => ({ [nix.POS]: $pos[7], fsType: "ext4", device: "/dev/sda", autoResize: true })),
     })),
-    swapDevices: nix.thunk(() => nix.app(nix.lookup(w, "mkDefault"), nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$10, device: "/dev/sdb" }))]))),
+    swapDevices: nix.thunk(() => nix.app(nix.lookup(w, "mkDefault"), nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: $pos[9], device: "/dev/sdb" }))]))),
     boot: nix.thunk(() => ({
-      [nix.POS]: pos$14,
+      [nix.POS]: $pos[13],
       initrd: nix.thunk(() => ({
-        [nix.POS]: pos$11,
+        [nix.POS]: $pos[10],
         availableKernelModules: nix.thunk(() => ["virtio_pci", "virtio_scsi", "ahci", "sd_mod"]),
       })),
       kernelParams: nix.thunk(() => ["console=ttyS0,19200n8"]),
       kernelModules: nix.thunk(() => ["virtio_net"]),
       loader: nix.thunk(() => ({
-        [nix.POS]: pos$13,
+        [nix.POS]: $pos[12],
         timeout: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), 10n)),
         grub: nix.thunk(() => ({
-          [nix.POS]: pos$12,
+          [nix.POS]: $pos[11],
           enable: true,
           forceInstall: true,
           device: "nodev",

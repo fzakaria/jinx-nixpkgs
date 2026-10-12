@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/rocksdb.nix", [[["enableJemalloc", 10, 3], ["jemalloc", 11, 3]], [["domain", 17, 9], ["owner", 18, 9], ["repo", 19, 9], ["rev", 20, 9], ["hash", 21, 9]], [["version", 15, 7], ["src", 16, 7], ["patches", 24, 7]]]);
 const formals$1 = { args: { stdenv: false, fetchFromGitea: false, rocksdb: false, "rust-jemalloc-sys-unprefixed": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/rocksdb.nix", [["enableJemalloc", 10, 3], ["jemalloc", 11, 3]]);
-const pos$2 = nix.positions(here + "/rocksdb.nix", [["domain", 17, 9], ["owner", 18, 9], ["repo", 19, 9], ["rev", 20, 9], ["hash", 21, 9]]);
-const pos$3 = nix.positions(here + "/rocksdb.nix", [["version", 15, 7], ["src", 16, 7], ["patches", 24, 7]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,14 +12,14 @@ export default nix.lambda((args) => (() => {
   const rocksdb = nix.arg($, "rocksdb");
   const rust_jemalloc_sys_unprefixed = nix.arg($, "rust-jemalloc-sys-unprefixed");
   return nix.app(nix.sel(nix.app(nix.sel(rocksdb, "override"), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       enableJemalloc: nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))),
       jemalloc: rust_jemalloc_sys_unprefixed,
     }))), "overrideAttrs"), (final) => (old) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       version: "11.1.1",
       src: nix.thunk(() => nix.app(fetchFromGitea, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           domain: "forgejo.ellis.link",
           owner: "continuwuation",
           repo: "rocksdb",

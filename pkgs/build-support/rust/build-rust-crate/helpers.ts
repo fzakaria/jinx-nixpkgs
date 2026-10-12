@@ -2,21 +2,20 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/helpers.nix", [[["features", 11, 43]], [["kernel", 3, 3], ["abi", 4, 3], ["cpu", 5, 3], ["updateFeatures", 6, 3], ["mapFeatures", 11, 3], ["mkFeatures", 12, 3], ["include", 18, 3], ["exclude", 30, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/helpers.nix", [["features", 11, 43]]);
-const pos$2 = nix.positions(here + "/helpers.nix", [["kernel", 3, 3], ["abi", 4, 3], ["cpu", 5, 3], ["updateFeatures", 6, 3], ["mapFeatures", 11, 3], ["mkFeatures", 12, 3], ["include", 18, 3], ["exclude", 30, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const stdenv = nix.arg($, "stdenv");
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$2,
+    [nix.POS]: $pos[1],
     kernel: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "parsed", "kernel", "name")),
     abi: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "parsed", "abi", "name")),
     cpu: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "parsed", "cpu", "name")),
     updateFeatures: (f) => (up) => (functions) => nix.app(nix.sel(lib, "deepSeq"), f, nix.thunk(() => nix.app(nix.sel(lib, "foldl'"), (features) => (fun) => nix.app(fun, features), nix.thunk(() => nix.app(nix.sel(lib, "attrsets", "recursiveUpdate"), f, up)), functions))),
-    mapFeatures: (features) => nix.app(nix.builtins.map, (fun) => nix.app(fun, nix.thunk(() => ({ [nix.POS]: pos$1, features: features })))),
+    mapFeatures: (features) => nix.app(nix.builtins.map, (fun) => nix.app(fun, nix.thunk(() => ({ [nix.POS]: $pos[0], features: features })))),
     mkFeatures: (feat) => nix.app(nix.sel(lib, "foldl"), (features) => (featureName) => (nix.asBool(nix.selOr(feat, () => false, nix.key(nix.force(featureName)))) ? nix.concat([featureName], features) : nix.force(features)), [], nix.thunk(() => nix.app(nix.sel(lib, "attrNames"), feat))),
     include: (includedFiles) => (src) => nix.builtins.filterSource((path) => (type) => nix.app(nix.sel(lib, "any"), (f) => (() => {
           const p = nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.add(src, nix.add("/", f)))));

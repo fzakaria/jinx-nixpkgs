@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["sha256", 18, 5]], [["homepage", 38, 5], ["changelog", 39, 5]], [["pname", 10, 3], ["version", 12, 22], ["postPatch", 12, 30], ["src", 14, 3], ["nativeBuildInputs", 21, 3], ["buildInputs", 22, 3], ["postFixup", 27, 3], ["doCheck", 35, 3], ["meta", 37, 3]]]);
 const formals$1 = { args: { stdenv: false, fetchFromGitHub: false, cmake: false, "bpp-core": false, "bpp-seq": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["sha256", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 38, 5], ["changelog", 39, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 12, 22], ["postPatch", 12, 30], ["src", 14, 3], ["nativeBuildInputs", 21, 3], ["buildInputs", 22, 3], ["postFixup", 27, 3], ["doCheck", 35, 3], ["meta", 37, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const bpp_core = nix.arg($, "bpp-core");
   const bpp_seq = nix.arg($, "bpp-seq");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "bpp-popgen",
       version: nix.thunk(() => nix.attr(bpp_core, "version")),
       postPatch: nix.thunk(() => nix.attr(bpp_core, "postPatch")),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "BioPP",
           repo: "bpp-popgen",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -31,7 +29,7 @@ export default nix.lambda((args) => (() => {
       postFixup: "substituteInPlace $out/lib/cmake/bpp-popgen/bpp-popgen-targets.cmake  \\\n  --replace 'set(_IMPORT_PREFIX' '#set(_IMPORT_PREFIX'\n",
       doCheck: nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))),
       meta: nix.thunk(() => nix.update(nix.sel(bpp_core, "meta"), {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/BioPP/bpp-popgen",
         changelog: "https://github.com/BioPP/bpp-popgen/blob/master/ChangeLog",
       })),

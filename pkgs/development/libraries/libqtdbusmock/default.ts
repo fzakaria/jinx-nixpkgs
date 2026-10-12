@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 27, 5], ["repo", 28, 5], ["rev", 29, 5], ["hash", 30, 5]], [["pkg-config", 89, 18]], [["tests", 89, 12]], [["description", 92, 5], ["homepage", 93, 5], ["changelog", 94, 5], ["license", 97, 5], ["platforms", 98, 5], ["teams", 99, 5], ["pkgConfigModules", 100, 5]], [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["postPatch", 33, 3], ["strictDeps", 42, 3], ["nativeBuildInputs", 44, 3], ["buildInputs", 49, 3], ["nativeCheckInputs", 56, 3], ["checkInputs", 67, 3], ["dontWrapQtApps", 71, 3], ["cmakeFlags", 73, 3], ["doCheck", 77, 3], ["enableParallelChecking", 79, 3], ["checkPhase", 81, 3], ["passthru", 89, 3], ["meta", 91, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitLab: false, testers: false, cmake: false, "cmake-extras": false, dbus: false, "dbus-test-runner": false, gtest: false, libqtdbustest: false, networkmanager: false, "pkg-config": false, procps: false, python3: false, qtbase: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 27, 5], ["repo", 28, 5], ["rev", 29, 5], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pkg-config", 89, 18]]);
-const pos$3 = nix.positions(here + "/default.nix", [["tests", 89, 12]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 92, 5], ["homepage", 93, 5], ["changelog", 94, 5], ["license", 97, 5], ["platforms", 98, 5], ["teams", 99, 5], ["pkgConfigModules", 100, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["postPatch", 33, 3], ["strictDeps", 42, 3], ["nativeBuildInputs", 44, 3], ["buildInputs", 49, 3], ["nativeCheckInputs", 56, 3], ["checkInputs", 67, 3], ["dontWrapQtApps", 71, 3], ["cmakeFlags", 73, 3], ["doCheck", 77, 3], ["enableParallelChecking", 79, 3], ["checkPhase", 81, 3], ["passthru", 89, 3], ["meta", 91, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const qtbase = nix.arg($, "qtbase");
   const withQt6 = nix.thunk(() => nix.app(nix.sel(lib, "strings", "versionAtLeast"), nix.thunk(() => nix.sel(qtbase, "version")), "6"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "libqtdbusmock",
       version: "0.10.0",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ubports",
           repo: "development/core/libqtdbusmock",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -58,14 +54,14 @@ export default nix.lambda((args) => (() => {
       enableParallelChecking: false,
       checkPhase: "runHook preCheck\n\ndbus-test-runner -t make -p test -p \"${enableParallelChecking:+-j $NIX_BUILD_CORES}\"\n\nrunHook postCheck\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "testMetaPkgConfig"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Library for mocking DBus interactions using Qt",
         homepage: "https://gitlab.com/ubports/development/core/libqtdbusmock",
         changelog: nix.thunk(() => nix.str`https://gitlab.com/ubports/development/core/libqtdbusmock/-/blob/${(nix.asBool(!nix.asBool(nix.builtins.isNull(nix.thunk(() => nix.sel(finalAttrs, "src", "tag"))))) ? nix.sel(finalAttrs, "src", "tag") : nix.sel(finalAttrs, "src", "rev"))}/ChangeLog`),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]], [["description", 58, 5], ["homepage", 59, 5], ["changelog", 60, 5], ["license", 61, 5], ["maintainers", 62, 5], ["platforms", 63, 5]], [["pname", 10, 3], ["version", 11, 11], ["pyproject", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 21, 3], ["propagatedBuildInputs", 23, 3], ["nativeCheckInputs", 35, 3], ["dependencies", 36, 3], ["disabledTestPaths", 46, 3], ["pythonImportsCheck", 56, 3], ["meta", 57, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, python3Packages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 58, 5], ["homepage", 59, 5], ["changelog", 60, 5], ["license", 61, 5], ["maintainers", 62, 5], ["platforms", 63, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 11], ["pyproject", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 21, 3], ["propagatedBuildInputs", 23, 3], ["nativeCheckInputs", 35, 3], ["dependencies", 36, 3], ["disabledTestPaths", 46, 3], ["pythonImportsCheck", 56, 3], ["meta", 57, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,12 +12,12 @@ export default nix.lambda((args) => (() => {
   const python3Packages = nix.arg($, "python3Packages");
   const version = "0.2.0";
   return nix.app(nix.sel(python3Packages, "buildPythonPackage"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "datatrove",
       version: version,
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "huggingface",
           repo: "datatrove",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -70,7 +68,7 @@ export default nix.lambda((args) => (() => {
       ]),
       pythonImportsCheck: nix.thunk(() => ["datatrove"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Set of platform-agnostic customizable pipeline processing blocks for data processing",
         homepage: "https://github.com/huggingface/datatrove",
         changelog: nix.thunk(() => nix.str`https://github.com/huggingface/datatrove/releases/tag/v${version}`),

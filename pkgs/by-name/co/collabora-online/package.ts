@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["hash", 33, 5]], [["unpackPhase", 86, 5], ["postPatch", 89, 5], ["hash", 92, 5]], [["libreoffice", 98, 5]], [["description", 102, 5], ["license", 103, 5], ["maintainers", 104, 5], ["homepage", 105, 5], ["platforms", 106, 5]], [["pname", 26, 3], ["version", 27, 3], ["src", 29, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 47, 3], ["enableParallelBuilding", 59, 3], ["configureFlags", 61, 3], ["patches", 69, 3], ["postPatch", 73, 3], ["postInstall", 81, 3], ["npmDeps", 85, 3], ["npmRoot", 95, 3], ["passthru", 97, 3], ["meta", 101, 3]]]);
 const formals$1 = { args: { autoreconfHook: false, cairo: false, cppunit: false, fetchFromGitHub: false, fetchpatch: false, fetchNpmDeps: false, lib: false, libcap: false, libpng: false, "libreoffice-collabora": false, nodejs: false, npmHooks: false, pam: false, pango: false, pixman: false, "pkg-config": false, poco: false, python3: false, rsync: false, stdenv: false, zstd: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["hash", 33, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["unpackPhase", 86, 5], ["postPatch", 89, 5], ["hash", 92, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["libreoffice", 98, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 102, 5], ["license", 103, 5], ["maintainers", 104, 5], ["homepage", 105, 5], ["platforms", 106, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 26, 3], ["version", 27, 3], ["src", 29, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 47, 3], ["enableParallelBuilding", 59, 3], ["configureFlags", 61, 3], ["patches", 69, 3], ["postPatch", 73, 3], ["postInstall", 81, 3], ["npmDeps", 85, 3], ["npmRoot", 95, 3], ["passthru", 97, 3], ["meta", 101, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,11 +29,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const zstd = nix.arg($, "zstd");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "collabora-online",
       version: "25.04.12-4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "CollaboraOnline",
           repo: "online.mirror",
           tag: nix.thunk(() => nix.str`cp-${nix.sel(finalAttrs, "version")}`),
@@ -70,16 +66,16 @@ substituteInPlace configure.ac --replace-fail '/usr/bin/env python3' python3
 `),
       postInstall: "cp etc/ca-chain.cert.pem etc/cert.pem etc/key.pem $out/etc/coolwsd\n",
       npmDeps: nix.thunk(() => nix.app(fetchNpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           unpackPhase: "true",
           postPatch: nix.thunk(() => nix.str`cp ${nix.path(here, "./package-lock.json")} package-lock.json
 `),
           hash: "sha256-7lOmv5NOYCf9lF9+To+ha9oIgbX3haTd/zo1iArQBBs=",
         })))),
       npmRoot: "browser",
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$3, libreoffice: libreoffice_collabora })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[2], libreoffice: libreoffice_collabora })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Collaborative online office suite based on LibreOffice technology",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mpl20")),
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "xzfc"))]),

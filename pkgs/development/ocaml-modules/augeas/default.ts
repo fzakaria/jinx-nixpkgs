@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 20, 5], ["sha256", 21, 5]], [["url", 26, 7], ["hash", 27, 7]], [["url", 30, 7], ["hash", 31, 7]], [["homepage", 51, 5], ["description", 52, 5], ["license", 53, 5], ["platforms", 54, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["patches", 24, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 41, 3], ["createFindlibDestdir", 48, 3], ["meta", 50, 3]]]);
 const formals$1 = { args: { stdenv: false, fetchurl: false, fetchpatch: false, autoreconfHook: false, makeWrapper: false, "pkg-config": false, ocaml: false, findlib: false, libxml2: false, augeas: false, lib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 20, 5], ["sha256", 21, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["url", 26, 7], ["hash", 27, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["url", 30, 7], ["hash", 31, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["homepage", 51, 5], ["description", 52, 5], ["license", 53, 5], ["platforms", 54, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["patches", 24, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 41, 3], ["createFindlibDestdir", 48, 3], ["meta", 50, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,22 +19,22 @@ export default nix.lambda((args) => (() => {
   const augeas = nix.arg($, "augeas");
   const lib = nix.arg($, "lib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "ocaml-augeas",
       version: "0.6",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://people.redhat.com/~rjones/augeas/files/ocaml-augeas-0.6.tar.gz",
           sha256: "04bn62hqdka0658fgz0p0fil2fyic61i78plxvmni1yhmkfrkfla",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://salsa.debian.org/debian/ocaml-augeas/-/raw/07c2408a7e5a06cefe5d53a89fecaa8556a39b06/debian/patches/0001-Use-ocamlopt-g-option.patch",
             hash: "sha256-EMd/EfWO2ni0AMonfS7G5FENpVVq0+q3gUPd4My+Upg=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: "https://salsa.debian.org/debian/ocaml-augeas/-/raw/07c2408a7e5a06cefe5d53a89fecaa8556a39b06/debian/patches/0002-caml_named_value-returns-const-value-pointer-in-OCam.patch",
             hash: "sha256-Y53UHwrTVeV3hnsvABmWxlPi2Fanm0Iy1OR8Zql5Ub8=",
           })))),
@@ -47,7 +43,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [ocaml, findlib, augeas, libxml2]),
       createFindlibDestdir: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://people.redhat.com/~rjones/augeas/",
         description: "OCaml bindings for Augeas",
         license: nix.thunk(() => (() => {

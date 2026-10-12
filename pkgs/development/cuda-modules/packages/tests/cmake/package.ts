@@ -2,20 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 31, 9], ["url", 32, 9], ["hash", 33, 9]], [["name", 37, 9], ["url", 38, 9], ["hash", 39, 9]], [["patches", 27, 5]], [["broken", 46, 7]], [["meta", 45, 5]], [["name", 51, 5], ["src", 52, 21], ["version", 52, 25], ["stdenv", 53, 5]], [["cuda_std_11", 85, 11], ["cxx_std_11", 86, 11], ["set(CMAKE_CUDA_STANDARD 11)", 87, 11], ["set(CMAKE_CXX_STANDARD 11)", 88, 11]], [["description", 126, 11], ["license", 127, 11], ["maintainers", 128, 11], ["platforms", 129, 11]], [["__structuredAttrs", 59, 9], ["strictDeps", 60, 9], ["testSuiteName", 62, 9], ["testName", 63, 9], ["name", 65, 9], ["pname", 66, 9], ["version", 67, 28], ["src", 69, 9], ["setSourceRoot", 71, 9], ["nativeBuildInputs", 75, 9], ["requireCxxStandard14", 82, 9], ["cmakeListsReplacements", 84, 9], ["prePatch", 91, 9], ["buildInputs", 100, 9], ["cmakeFlags", 104, 9], ["doCheck", 114, 9], ["installPhase", 116, 9], ["dontFixup", 123, 9], ["meta", 125, 9]], [["testSuiteName", 138, 48], ["testName", 138, 62]], [["Complex", 146, 7], ["CXXStandardSetTwice", 147, 7], ["IncludePathNoToolkit", 148, 7], ["MixedStandardLevels1", 149, 7], ["MixedStandardLevels2", 150, 7], ["MixedStandardLevels3", 151, 7], ["MixedStandardLevels4", 152, 7], ["MixedStandardLevels5", 153, 7], ["NotEnabled", 154, 7], ["ObjectLibrary", 155, 7], ["ProperDeviceLibraries", 156, 7], ["ProperLinkFlags", 161, 7], ["SeparableCompCXXOnly", 162, 7], ["SharedRuntimePlusToolkit", 163, 7], ["StaticRuntimePlusToolkit", 164, 7], ["StubRPATH", 165, 7], ["Toolkit", 166, 7], ["ToolkitBeforeLang", 167, 7], ["WithC", 168, 7]], [["Architecture", 173, 7], ["ArchSpecial", 174, 7], ["CircularLinkLine", 175, 7], ["CompileFlags", 176, 7], ["CUBIN", 177, 7], ["DeviceLTO", 178, 7], ["DontResolveDeviceSymbols", 179, 7], ["EnableStandard", 180, 7], ["ExportPTX", 181, 7], ["Fatbin", 182, 7], ["GPUDebugFlag", 183, 7], ["OptixIR", 184, 7], ["PDB", 185, 7], ["ResolveDeviceSymbols", 186, 7], ["RuntimeControls", 187, 7], ["SeparateCompilation", 188, 7], ["SeparateCompilationPTX", 189, 7], ["SeparateCompilationTargetObjects", 190, 7], ["SharedRuntimePlusToolkit", 191, 7], ["SharedRuntimeViaCUDAFlags", 192, 7], ["Standard98", 193, 7], ["StaticRuntimePlusToolkit", 194, 7], ["Toolkit", 195, 7], ["ToolkitBeforeLang", 196, 7], ["ToolkitMultipleDirs", 197, 7], ["TryCompileTargetStatic", 198, 7], ["Unity", 199, 7], ["WithDefs", 200, 7]], [["Cuda", 145, 5], ["CudaOnly", 172, 5]]]);
 const formals$1 = { args: { backendStdenv: false, cmake: false, cuda_cudart: false, cuda_nvcc: false, cudaNamePrefix: false, fetchpatch2: false, flags: false, lib: false, srcOnly: false, stdenv: false, stdenvNoCC: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 31, 9], ["url", 32, 9], ["hash", 33, 9]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 37, 9], ["url", 38, 9], ["hash", 39, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["patches", 27, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["broken", 46, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["meta", 45, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["name", 51, 5], ["src", 52, 21], ["version", 52, 25], ["stdenv", 53, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["cuda_std_11", 85, 11], ["cxx_std_11", 86, 11], ["set(CMAKE_CUDA_STANDARD 11)", 87, 11], ["set(CMAKE_CXX_STANDARD 11)", 88, 11]]);
-const pos$8 = nix.positions(here + "/package.nix", [["description", 126, 11], ["license", 127, 11], ["maintainers", 128, 11], ["platforms", 129, 11]]);
-const pos$9 = nix.positions(here + "/package.nix", [["__structuredAttrs", 59, 9], ["strictDeps", 60, 9], ["testSuiteName", 62, 9], ["testName", 63, 9], ["name", 65, 9], ["pname", 66, 9], ["version", 67, 28], ["src", 69, 9], ["setSourceRoot", 71, 9], ["nativeBuildInputs", 75, 9], ["requireCxxStandard14", 82, 9], ["cmakeListsReplacements", 84, 9], ["prePatch", 91, 9], ["buildInputs", 100, 9], ["cmakeFlags", 104, 9], ["doCheck", 114, 9], ["installPhase", 116, 9], ["dontFixup", 123, 9], ["meta", 125, 9]]);
-const pos$10 = nix.positions(here + "/package.nix", [["testSuiteName", 138, 48], ["testName", 138, 62]]);
-const pos$11 = nix.positions(here + "/package.nix", [["Complex", 146, 7], ["CXXStandardSetTwice", 147, 7], ["IncludePathNoToolkit", 148, 7], ["MixedStandardLevels1", 149, 7], ["MixedStandardLevels2", 150, 7], ["MixedStandardLevels3", 151, 7], ["MixedStandardLevels4", 152, 7], ["MixedStandardLevels5", 153, 7], ["NotEnabled", 154, 7], ["ObjectLibrary", 155, 7], ["ProperDeviceLibraries", 156, 7], ["ProperLinkFlags", 161, 7], ["SeparableCompCXXOnly", 162, 7], ["SharedRuntimePlusToolkit", 163, 7], ["StaticRuntimePlusToolkit", 164, 7], ["StubRPATH", 165, 7], ["Toolkit", 166, 7], ["ToolkitBeforeLang", 167, 7], ["WithC", 168, 7]]);
-const pos$12 = nix.positions(here + "/package.nix", [["Architecture", 173, 7], ["ArchSpecial", 174, 7], ["CircularLinkLine", 175, 7], ["CompileFlags", 176, 7], ["CUBIN", 177, 7], ["DeviceLTO", 178, 7], ["DontResolveDeviceSymbols", 179, 7], ["EnableStandard", 180, 7], ["ExportPTX", 181, 7], ["Fatbin", 182, 7], ["GPUDebugFlag", 183, 7], ["OptixIR", 184, 7], ["PDB", 185, 7], ["ResolveDeviceSymbols", 186, 7], ["RuntimeControls", 187, 7], ["SeparateCompilation", 188, 7], ["SeparateCompilationPTX", 189, 7], ["SeparateCompilationTargetObjects", 190, 7], ["SharedRuntimePlusToolkit", 191, 7], ["SharedRuntimeViaCUDAFlags", 192, 7], ["Standard98", 193, 7], ["StaticRuntimePlusToolkit", 194, 7], ["Toolkit", 195, 7], ["ToolkitBeforeLang", 196, 7], ["ToolkitMultipleDirs", 197, 7], ["TryCompileTargetStatic", 198, 7], ["Unity", 199, 7], ["WithDefs", 200, 7]]);
-const pos$13 = nix.positions(here + "/package.nix", [["Cuda", 145, 5], ["CudaOnly", 172, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -46,16 +34,16 @@ export default nix.lambda((args) => (() => {
   const optionalString = nix.thunk(() => nix.attr(from_3, "optionalString"));
   const versionAtLeast = nix.thunk(() => nix.attr(from_3, "versionAtLeast"));
   const cmake$ = nix.thunk(() => nix.app(nix.sel(cmake, "overrideAttrs"), (prevAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       patches: nix.thunk(() => nix.concat(nix.selOr(prevAttrs, () => [], "patches"), [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             name: "find-cuda-toolkit-check-for-language-enablement.patch",
             url: "https://gitlab.kitware.com/cmake/cmake/-/commit/c5d81a246852e1ad81a3d55fcaff7e6feb779db7.patch",
             hash: "sha256-oGxzbp+x88+79V+Cyx0l7+nMxX+n3ixzAFKPK26NMI8=",
           })))),
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "update-arch-supported-by-cuda-12_8.patch",
             url: "https://gitlab.kitware.com/cmake/cmake/-/commit/a745b6869ee3681e39544d96d936c95c196c7398.patch",
             hash: "sha256-B6ny6AZFIcyFhsEnzNk7+vJTb36HeguM53sk/LCnjS4=",
@@ -63,11 +51,11 @@ export default nix.lambda((args) => (() => {
       ])),
     })));
   const isBroken = (_) => (prevAttrs) => ({
-    [nix.POS]: pos$5,
-    meta: nix.thunk(() => nix.update(nix.selOr(prevAttrs, () => ({}), "meta"), { [nix.POS]: pos$4, broken: true })),
+    [nix.POS]: $pos[4],
+    meta: nix.thunk(() => nix.update(nix.selOr(prevAttrs, () => ({}), "meta"), { [nix.POS]: $pos[3], broken: true })),
   });
   const cmakeSrc = nix.thunk(() => nix.app(srcOnly, nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       name: "cmake-unpacked",
       src: nix.thunk(() => nix.attr(cmake, "src")),
       version: nix.thunk(() => nix.attr(cmake, "version")),
@@ -75,7 +63,7 @@ export default nix.lambda((args) => (() => {
     }))));
   const mkTest = nix.thunk(() => (() => {
     const generic = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         __structuredAttrs: true,
         strictDeps: true,
         testSuiteName: nix.thunk(() => nix.builtins.throw("testSuiteName must be set")),
@@ -89,7 +77,7 @@ export default nix.lambda((args) => (() => {
         nativeBuildInputs: nix.thunk(() => [cmake$, cuda_nvcc]),
         requireCxxStandard14: nix.thunk(() => (nix.asBool(nix.sel(cc, "isGNU")) && nix.asBool(nix.app(versionAtLeast, nix.thunk(() => nix.sel(cc, "version")), "14")))),
         cmakeListsReplacements: nix.thunk(() => nix.app(optionalAttrs, nix.thunk(() => nix.sel(finalAttrs, "requireCxxStandard14")), nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             cuda_std_11: "cuda_std_14",
             cxx_std_11: "cxx_std_14",
             "set(CMAKE_CUDA_STANDARD 11)": "set(CMAKE_CUDA_STANDARD 14)",
@@ -108,19 +96,19 @@ export default nix.lambda((args) => (() => {
         installPhase: "runHook preInstall\ntouch \"$out\"\nrunHook postInstall\n",
         dontFixup: true,
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           description: "Generic builder for running CMake tests",
           license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
           maintainers: nix.thunk(() => nix.sel(lib, "teams", "cuda", "members")),
           platforms: nix.thunk(() => ["aarch64-linux", "x86_64-linux"]),
         })),
       })));
-    return (testSuiteName) => (testName) => (overrideAttrsArg) => nix.app(nix.sel(generic, "overrideAttrs"), nix.thunk(() => nix.app(composeExtensions, nix.thunk(() => nix.app(toExtension, nix.thunk(() => ({ [nix.POS]: pos$10, testSuiteName: testSuiteName, testName: testName })))), nix.thunk(() => nix.app(toExtension, overrideAttrsArg)))));
+    return (testSuiteName) => (testName) => (overrideAttrsArg) => nix.app(nix.sel(generic, "overrideAttrs"), nix.thunk(() => nix.app(composeExtensions, nix.thunk(() => nix.app(toExtension, nix.thunk(() => ({ [nix.POS]: $pos[9], testSuiteName: testSuiteName, testName: testName })))), nix.thunk(() => nix.app(toExtension, overrideAttrsArg)))));
   })());
   return nix.app(recurseIntoAttrs, nix.thunk(() => nix.app(mapAttrs, (testSuiteName) => (testSuite) => nix.app(recurseIntoAttrs, nix.thunk(() => nix.app(mapAttrs, nix.thunk(() => nix.app(mkTest, testSuiteName)), testSuite))), nix.thunk(() => ({
-        [nix.POS]: pos$13,
+        [nix.POS]: $pos[12],
         Cuda: nix.thunk(() => ({
-          [nix.POS]: pos$11,
+          [nix.POS]: $pos[10],
           Complex: nix.thunk(() => ({})),
           CXXStandardSetTwice: nix.thunk(() => ({})),
           IncludePathNoToolkit: nix.thunk(() => ({})),
@@ -142,7 +130,7 @@ export default nix.lambda((args) => (() => {
           WithC: nix.thunk(() => ({})),
         })),
         CudaOnly: nix.thunk(() => ({
-          [nix.POS]: pos$12,
+          [nix.POS]: $pos[11],
           Architecture: nix.thunk(() => ({})),
           ArchSpecial: isBroken,
           CircularLinkLine: nix.thunk(() => ({})),

@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["license", 24, 7], ["sourceProvenance", 25, 7]], [["name", 19, 5], ["url", 20, 5], ["hash", 21, 5], ["stripRoot", 22, 5], ["meta", 23, 5]], [["owner", 34, 5], ["repo", 35, 5], ["tag", 36, 5], ["hash", 37, 5]], [["objectbox_flutter_libs", 42, 24]], [["desktop_drop", 45, 5], ["desktop_webview_auth", 46, 5], ["disable_battery_optimization", 47, 5], ["ffmpeg_kit_flutter_new_min", 48, 5], ["firebase_dart", 49, 5], ["flat_buffers", 50, 5], ["flutter_local_notifications_windows", 51, 5], ["flutter_map", 52, 5], ["gesture_x_detector", 53, 5], ["permission_handler_windows", 54, 5]], [["FFMPEGKIT_LOCAL_DIR", 60, 5]], [["description", 87, 5], ["homepage", 88, 5], ["mainProgram", 89, 5], ["license", 90, 5], ["sourceProvenance", 95, 5], ["platforms", 99, 5], ["maintainers", 103, 5]], [["pname", 30, 3], ["version", 31, 3], ["src", 33, 3], ["pubspecLock", 40, 3], ["customSourceBuilders", 42, 3], ["gitHashes", 44, 3], ["nativeBuildInputs", 57, 3], ["env", 59, 3], ["buildInputs", 63, 3], ["preBuild", 71, 3], ["postInstall", 75, 3], ["extraWrapProgramArgs", 82, 3], ["meta", 86, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, callPackage: false, flutter344: false, fetchFromGitHub: false, fetchzip: false, autoPatchelfHook: false, webkitgtk_4_1: false, "libayatana-appindicator": false, jdk: false, mpv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["license", 24, 7], ["sourceProvenance", 25, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 19, 5], ["url", 20, 5], ["hash", 21, 5], ["stripRoot", 22, 5], ["meta", 23, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["owner", 34, 5], ["repo", 35, 5], ["tag", 36, 5], ["hash", 37, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["objectbox_flutter_libs", 42, 24]]);
-const pos$5 = nix.positions(here + "/package.nix", [["desktop_drop", 45, 5], ["desktop_webview_auth", 46, 5], ["disable_battery_optimization", 47, 5], ["ffmpeg_kit_flutter_new_min", 48, 5], ["firebase_dart", 49, 5], ["flat_buffers", 50, 5], ["flutter_local_notifications_windows", 51, 5], ["flutter_map", 52, 5], ["gesture_x_detector", 53, 5], ["permission_handler_windows", 54, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["FFMPEGKIT_LOCAL_DIR", 60, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["description", 87, 5], ["homepage", 88, 5], ["mainProgram", 89, 5], ["license", 90, 5], ["sourceProvenance", 95, 5], ["platforms", 99, 5], ["maintainers", 103, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 30, 3], ["version", 31, 3], ["src", 33, 3], ["pubspecLock", 40, 3], ["customSourceBuilders", 42, 3], ["gitHashes", 44, 3], ["nativeBuildInputs", 57, 3], ["env", 59, 3], ["buildInputs", 63, 3], ["preBuild", 71, 3], ["postInstall", 75, 3], ["extraWrapProgramArgs", 82, 3], ["meta", 86, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,13 +19,13 @@ export default nix.lambda((args) => (() => {
   const jdk = nix.arg($, "jdk");
   const mpv = nix.arg($, "mpv");
   const ffmpeg_kit = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       name: "ffmpeg-kit-linux-x86_64-min-8.1.2",
       url: "https://github.com/sk3llo/ffmpeg_kit_flutter/releases/download/8.1.2-min/ffmpeg-kit-linux-x86_64-min-8.1.2.tar.gz",
       hash: "sha256-5N6CCntUT0UwMt5+Hsdm+R/DhHG7FysRhGoHqrnVnfU=",
       stripRoot: false,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3Only")),
         sourceProvenance: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "sourceTypes")), null);
@@ -44,7 +37,7 @@ export default nix.lambda((args) => (() => {
       const pname = "bluebubbles";
       const version = "2.1.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           owner: "BlueBubblesApp",
           repo: "bluebubbles-app",
           tag: nix.thunk(() => nix.str`v${version}+91`),
@@ -52,11 +45,11 @@ export default nix.lambda((args) => (() => {
         }))));
       const pubspecLock = nix.thunk(() => nix.app(nix.sel(lib, "importJSON"), nix.path(here, "./pubspec.lock.json")));
       const customSourceBuilders = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         objectbox_flutter_libs: nix.thunk(() => nix.app(callPackage, nix.path(here, "./objectbox_flutter_libs.nix"), nix.thunk(() => ({})))),
       }));
       const gitHashes = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         desktop_drop: "sha256-ZvSTnZMCrA0WF+bERalxukeTnaeQiVU4g8geNeZoy3Y=",
         desktop_webview_auth: "sha256-G6xrC6Jz3kYAysHI6w/8ahzXTvX7k6QW3GB3b8Uh+RQ=",
         disable_battery_optimization: "sha256-IsfclmbdLvju+0VWElFz9brdVntRESFB+PF8UPJBL2E=",
@@ -70,7 +63,7 @@ export default nix.lambda((args) => (() => {
       }));
       const nativeBuildInputs = nix.thunk(() => [autoPatchelfHook]);
       const env = nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isx86_64")), nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           FFMPEGKIT_LOCAL_DIR: nix.thunk(() => nix.str`${ffmpeg_kit}/ffmpeg-kit`),
         }))));
       const buildInputs = nix.thunk(() => [webkitgtk_4_1, libayatana_appindicator, jdk, mpv]);
@@ -78,7 +71,7 @@ export default nix.lambda((args) => (() => {
       const postInstall = "sed -i 's#Icon=.*/bluebubbles.png#Icon=bluebubbles#g' snap/gui/bluebubbles.desktop\ninstall -Dm0644 snap/gui/bluebubbles.desktop $out/share/applications/bluebubbles.desktop\ninstall -Dm0644 snap/gui/bluebubbles.png -t $out/share/icons/hicolor/1024x1024/apps\ninstall -Dm0644 flatpak/icon/128x128.png $out/share/icons/hicolor/128x128/apps/bluebubbles.png\n";
       const extraWrapProgramArgs = "--prefix LD_LIBRARY_PATH : $out/app/bluebubbles/lib\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "Cross-platform iMessage client",
         homepage: "https://github.com/BlueBubblesApp/bluebubbles-app",
         mainProgram: "bluebubbles",
@@ -104,7 +97,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         pname,
         version,
         src,

@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5], ["fetchSubmodules", 32, 5]], [["postBuild", 84, 7]], [["aaaaxy", 126, 5]], [["tests", 125, 12]], [["description", 130, 5], ["mainProgram", 131, 5], ["homepage", 132, 5], ["license", 133, 5], ["maintainers", 134, 5], ["platforms", 135, 5]], [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["vendorHash", 35, 3], ["buildInputs", 37, 3], ["nativeBuildInputs", 49, 3], ["outputs", 58, 3], ["postPatch", 63, 3], ["overrideModAttrs", 78, 3], ["makeFlags", 99, 3], ["buildPhase", 103, 3], ["postInstall", 109, 3], ["passthru", 125, 3], ["meta", 129, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, buildGoModule: false, "alsa-lib": false, libGL: false, libx11: false, libxcursor: false, libxext: false, libxi: false, libxinerama: false, libxrandr: false, libxxf86vm: false, "go-licenses": false, "pkg-config": false, zip: false, advancecomp: false, makeWrapper: false, nixosTests: false, "strip-nondeterminism": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5], ["fetchSubmodules", 32, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["postBuild", 84, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["aaaaxy", 126, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 125, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 130, 5], ["mainProgram", 131, 5], ["homepage", 132, 5], ["license", 133, 5], ["maintainers", 134, 5], ["platforms", 135, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["vendorHash", 35, 3], ["buildInputs", 37, 3], ["nativeBuildInputs", 49, 3], ["outputs", 58, 3], ["postPatch", 63, 3], ["overrideModAttrs", 78, 3], ["makeFlags", 99, 3], ["buildPhase", 103, 3], ["postInstall", 109, 3], ["passthru", 125, 3], ["meta", 129, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,11 +27,11 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const strip_nondeterminism = nix.arg($, "strip-nondeterminism");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "aaaaxy",
       version: "1.6.301",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "divVerent",
           repo: "aaaaxy",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -71,7 +66,7 @@ substituteInPlace Makefile --replace-fail \\
   'CPPFLAGS ?= -DNDEBUG -D_GLFW_GLX_LIBRARY=\\"${nix.app(nix.sel(lib, "getLib"), libGL)}/lib/libGL.so\\" -D_GLFW_EGL_LIBRARY=\\"${nix.app(nix.sel(lib, "getLib"), libGL)}/lib/libEGL.so\\"'
 `),
       overrideModAttrs: (_) => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         postBuild: "substituteInPlace 'vendor/github.com/hajimehoshi/ebiten/v2/internal/graphicsdriver/opengl/gl/procaddr_linbsd.go' \\\n  --replace-fail \\\n  'import (' \\\n  'import (\"os\"' \\\n  --replace-fail \\\n  '{\"libGL.so\", \"libGL.so.2\", \"libGL.so.1\", \"libGL.so.0\"}' \\\n  '{os.Getenv(\"EBITENGINE_LIBGL\")}' \\\n  --replace-fail \\\n  '{\"libGLESv2.so\", \"libGLESv2.so.2\", \"libGLESv2.so.1\", \"libGLESv2.so.0\"}' \\\n  '{os.Getenv(\"EBITENGINE_LIBGLESv2\")}'\n",
       }),
       makeFlags: nix.thunk(() => ["BUILDTYPE=release"]),
@@ -91,11 +86,11 @@ install -Dm755 'scripts/regression-test-demo.sh' -t "$testing_infra/scripts/"
 install -Dm644 'assets/demos/benchmark.dem' -t "$testing_infra/assets/demos/"
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$3, aaaaxy: nix.thunk(() => nix.sel(nixosTests, "aaaaxy")) })),
+        [nix.POS]: $pos[3],
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[2], aaaaxy: nix.thunk(() => nix.sel(nixosTests, "aaaaxy")) })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Nonlinear 2D puzzle platformer taking place in impossible spaces",
         mainProgram: "aaaaxy",
         homepage: "https://divverent.github.io/aaaaxy/",

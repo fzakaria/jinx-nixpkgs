@@ -2,104 +2,83 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/containers-hosts.nix", [[["maintainers", 5, 5]], [["vlans", 11, 22]], [["interfaces", 13, 30]], [["br0", 13, 26]], [["address", 16, 11], ["prefixLength", 17, 11]], [["addresses", 14, 38]], [["ipv4", 14, 33]], [["br0", 14, 29]], [["bridges", 13, 18], ["interfaces", 14, 18]], [["text", 22, 39]], [["nsswitch.conf", 22, 23]], [["etc", 22, 19]], [["enable", 33, 15]], [["nix", 33, 11]], [["autoStart", 27, 9], ["privateNetwork", 28, 9], ["localAddress", 29, 9], ["hostAddress", 30, 9], ["config", 32, 9]], [["enable", 44, 15]], [["nix", 44, 11]], [["autoStart", 38, 9], ["privateNetwork", 39, 9], ["hostBridge", 40, 9], ["localAddress", 41, 9], ["config", 43, 9]], [["simple", 26, 18], ["netmask", 37, 18]], [["virtualisation", 11, 7], ["networking", 13, 7], ["environment", 22, 7], ["containers", 26, 7]], [["machine", 8, 9]], [["name", 3, 3], ["meta", 4, 3], ["nodes", 8, 3], ["testScript", 49, 3]]]);
 const formals$1 = { args: { pkgs: false, lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/containers-hosts.nix", [["maintainers", 5, 5]]);
 const formals$2 = { args: { lib: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/containers-hosts.nix", [["vlans", 11, 22]]);
-const pos$3 = nix.positions(here + "/containers-hosts.nix", [["interfaces", 13, 30]]);
-const pos$4 = nix.positions(here + "/containers-hosts.nix", [["br0", 13, 26]]);
-const pos$5 = nix.positions(here + "/containers-hosts.nix", [["address", 16, 11], ["prefixLength", 17, 11]]);
-const pos$6 = nix.positions(here + "/containers-hosts.nix", [["addresses", 14, 38]]);
-const pos$7 = nix.positions(here + "/containers-hosts.nix", [["ipv4", 14, 33]]);
-const pos$8 = nix.positions(here + "/containers-hosts.nix", [["br0", 14, 29]]);
-const pos$9 = nix.positions(here + "/containers-hosts.nix", [["bridges", 13, 18], ["interfaces", 14, 18]]);
-const pos$10 = nix.positions(here + "/containers-hosts.nix", [["text", 22, 39]]);
-const pos$11 = nix.positions(here + "/containers-hosts.nix", [["nsswitch.conf", 22, 23]]);
-const pos$12 = nix.positions(here + "/containers-hosts.nix", [["etc", 22, 19]]);
-const pos$13 = nix.positions(here + "/containers-hosts.nix", [["enable", 33, 15]]);
-const pos$14 = nix.positions(here + "/containers-hosts.nix", [["nix", 33, 11]]);
-const pos$15 = nix.positions(here + "/containers-hosts.nix", [["autoStart", 27, 9], ["privateNetwork", 28, 9], ["localAddress", 29, 9], ["hostAddress", 30, 9], ["config", 32, 9]]);
-const pos$16 = nix.positions(here + "/containers-hosts.nix", [["enable", 44, 15]]);
-const pos$17 = nix.positions(here + "/containers-hosts.nix", [["nix", 44, 11]]);
-const pos$18 = nix.positions(here + "/containers-hosts.nix", [["autoStart", 38, 9], ["privateNetwork", 39, 9], ["hostBridge", 40, 9], ["localAddress", 41, 9], ["config", 43, 9]]);
-const pos$19 = nix.positions(here + "/containers-hosts.nix", [["simple", 26, 18], ["netmask", 37, 18]]);
-const pos$20 = nix.positions(here + "/containers-hosts.nix", [["virtualisation", 11, 7], ["networking", 13, 7], ["environment", 22, 7], ["containers", 26, 7]]);
-const pos$21 = nix.positions(here + "/containers-hosts.nix", [["machine", 8, 9]]);
-const pos$22 = nix.positions(here + "/containers-hosts.nix", [["name", 3, 3], ["meta", 4, 3], ["nodes", 8, 3], ["testScript", 49, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$22,
+    [nix.POS]: $pos[21],
     name: "containers-hosts",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "montag451"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$21,
+      [nix.POS]: $pos[20],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const lib_1 = nix.arg($_1, "lib");
         return {
-          [nix.POS]: pos$20,
-          virtualisation: nix.thunk(() => ({ [nix.POS]: pos$2, vlans: [] })),
+          [nix.POS]: $pos[19],
+          virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[1], vlans: [] })),
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$9,
+            [nix.POS]: $pos[8],
             bridges: nix.thunk(() => ({
-              [nix.POS]: pos$4,
-              br0: nix.thunk(() => ({ [nix.POS]: pos$3, interfaces: [] })),
+              [nix.POS]: $pos[3],
+              br0: nix.thunk(() => ({ [nix.POS]: $pos[2], interfaces: [] })),
             })),
             interfaces: nix.thunk(() => ({
-              [nix.POS]: pos$8,
+              [nix.POS]: $pos[7],
               br0: nix.thunk(() => ({
-                [nix.POS]: pos$7,
+                [nix.POS]: $pos[6],
                 ipv4: nix.thunk(() => ({
-                  [nix.POS]: pos$6,
+                  [nix.POS]: $pos[5],
                   addresses: nix.thunk(() => [
-                    nix.thunk(() => ({ [nix.POS]: pos$5, address: "10.11.0.254", prefixLength: 24n })),
+                    nix.thunk(() => ({ [nix.POS]: $pos[4], address: "10.11.0.254", prefixLength: 24n })),
                   ]),
                 })),
               })),
             })),
           })),
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$12,
+            [nix.POS]: $pos[11],
             etc: nix.thunk(() => ({
-              [nix.POS]: pos$11,
+              [nix.POS]: $pos[10],
               "nsswitch.conf": nix.thunk(() => ({
-                [nix.POS]: pos$10,
+                [nix.POS]: $pos[9],
                 text: nix.thunk(() => nix.app(nix.sel(lib_1, "mkForce"), "hosts: files\n")),
               })),
             })),
           })),
           containers: nix.thunk(() => ({
-            [nix.POS]: pos$19,
+            [nix.POS]: $pos[18],
             simple: nix.thunk(() => ({
-              [nix.POS]: pos$15,
+              [nix.POS]: $pos[14],
               autoStart: true,
               privateNetwork: true,
               localAddress: "10.10.0.1",
               hostAddress: "10.10.0.254",
               config: nix.thunk(() => ({
-                [nix.POS]: pos$14,
-                nix: nix.thunk(() => ({ [nix.POS]: pos$13, enable: false })),
+                [nix.POS]: $pos[13],
+                nix: nix.thunk(() => ({ [nix.POS]: $pos[12], enable: false })),
               })),
             })),
             netmask: nix.thunk(() => ({
-              [nix.POS]: pos$18,
+              [nix.POS]: $pos[17],
               autoStart: true,
               privateNetwork: true,
               hostBridge: "br0",
               localAddress: "10.11.0.1/24",
               config: nix.thunk(() => ({
-                [nix.POS]: pos$17,
-                nix: nix.thunk(() => ({ [nix.POS]: pos$16, enable: false })),
+                [nix.POS]: $pos[16],
+                nix: nix.thunk(() => ({ [nix.POS]: $pos[15], enable: false })),
               })),
             })),
           })),

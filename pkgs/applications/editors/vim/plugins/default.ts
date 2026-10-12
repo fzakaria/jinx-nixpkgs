@@ -2,12 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["vim", 14, 40]], [["buildVimPlugin", 23, 13]], [["buildNeovimPlugin", 27, 27]], [["buildVimPlugin", 43, 13]], [["llvmPackages", 55, 13]]]);
 const formals$1 = { args: { callPackage: false, config: false, lib: false, vimUtils: false, vim: false, llvmPackages: false, neovimUtils: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["vim", 14, 40]]);
-const pos$2 = nix.positions(here + "/default.nix", [["buildVimPlugin", 23, 13]]);
-const pos$3 = nix.positions(here + "/default.nix", [["buildNeovimPlugin", 27, 27]]);
-const pos$4 = nix.positions(here + "/default.nix", [["buildVimPlugin", 43, 13]]);
-const pos$5 = nix.positions(here + "/default.nix", [["llvmPackages", 55, 13]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,13 +14,13 @@ export default nix.lambda((args) => (() => {
   const vim = nix.arg($, "vim");
   const llvmPackages = nix.arg($, "llvmPackages");
   const neovimUtils = nix.arg($, "neovimUtils");
-  const from = nix.thunk(() => nix.app(nix.sel(vimUtils, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, vim: vim }))));
+  const from = nix.thunk(() => nix.app(nix.sel(vimUtils, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], vim: vim }))));
   const buildVimPlugin = nix.thunk(() => nix.attr(from, "buildVimPlugin"));
   const extends$ = nix.thunk(() => nix.attr(lib, "extends"));
   const initialPackages = (self) => ({});
-  const cocPlugins = nix.thunk(() => nix.app(callPackage, nix.path(here, "./cocPlugins.nix"), nix.thunk(() => ({ [nix.POS]: pos$2, buildVimPlugin: buildVimPlugin }))));
+  const cocPlugins = nix.thunk(() => nix.app(callPackage, nix.path(here, "./cocPlugins.nix"), nix.thunk(() => ({ [nix.POS]: $pos[1], buildVimPlugin: buildVimPlugin }))));
   const luaPackagePlugins = nix.thunk(() => nix.app(callPackage, nix.path(here, "./luaPackagePlugins.nix"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       buildNeovimPlugin: nix.thunk(() => nix.attr(neovimUtils, "buildNeovimPlugin")),
     }))));
   const nonGeneratedPlugins = (self) => (super$) => (() => {
@@ -36,9 +32,9 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.builtins.mapAttrs, (name) => (_) => nix.app(call, name))),
       ]));
   })();
-  const plugins = nix.thunk(() => nix.app(callPackage, nix.path(here, "./generated.nix"), nix.thunk(() => ({ [nix.POS]: pos$4, buildVimPlugin: buildVimPlugin }))));
+  const plugins = nix.thunk(() => nix.app(callPackage, nix.path(here, "./generated.nix"), nix.thunk(() => ({ [nix.POS]: $pos[3], buildVimPlugin: buildVimPlugin }))));
   const corePlugins = nix.thunk(() => nix.app(callPackage, nix.path(here, "./corePlugins.nix"), nix.thunk(() => ({}))));
-  const overrides = nix.thunk(() => nix.app(callPackage, nix.path(here, "./overrides.nix"), nix.thunk(() => ({ [nix.POS]: pos$5, llvmPackages: llvmPackages }))));
+  const overrides = nix.thunk(() => nix.app(callPackage, nix.path(here, "./overrides.nix"), nix.thunk(() => ({ [nix.POS]: $pos[4], llvmPackages: llvmPackages }))));
   const aliases = (final) => (prev) => (() => {
     const defined = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./aliases.nix")), lib, final, prev));
     const shadowed = nix.thunk(() => nix.builtins.attrNames(nix.thunk(() => nix.builtins.intersectAttrs(prev, defined))));

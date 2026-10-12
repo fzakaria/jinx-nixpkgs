@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 12, 5], ["repo", 13, 5], ["rev", 14, 5], ["sha256", 15, 5]], [["description", 29, 5], ["maintainers", 30, 5], ["platforms", 31, 5], ["homepage", 32, 5], ["license", 33, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["installPhase", 18, 3], ["meta", 28, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 12, 5], ["repo", 13, 5], ["rev", 14, 5], ["sha256", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 29, 5], ["maintainers", 30, 5], ["platforms", 31, 5], ["homepage", 32, 5], ["license", 33, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["installPhase", 18, 3], ["meta", 28, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,7 +14,7 @@ export default nix.lambda((args) => (() => {
       const pname = "gtk-mac-bundler";
       const version = "0.7.4";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "GNOME",
           repo: "gtk-mac-bundler",
           rev: nix.thunk(() => nix.str`bundler-${version}`),
@@ -24,14 +22,14 @@ export default nix.lambda((args) => (() => {
         }))));
       const installPhase = "mkdir -p $out/bin\nsubstitute gtk-mac-bundler.in $out/bin/gtk-mac-bundler \\\n  --subst-var-by PATH $out/share\nchmod a+x $out/bin/gtk-mac-bundler\n\nmkdir -p $out/share\ncp -r bundler $out/share\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Helper script that creates application bundles form GTK executables for macOS",
         maintainers: [],
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "darwin")),
         homepage: "https://gitlab.gnome.org/GNOME/gtk-mac-bundler",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),
       }));
-      return { [nix.POS]: pos$3, pname, version, src, installPhase, meta };
+      return { [nix.POS]: $pos[2], pname, version, src, installPhase, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

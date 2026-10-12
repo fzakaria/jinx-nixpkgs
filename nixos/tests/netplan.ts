@@ -2,59 +2,31 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/netplan.nix", [[["static", 7, 5], ["dynamic", 8, 5]], [["name", 21, 17], ["getter-cmd", 22, 17]], [["name", 23, 19], ["getter-cmd", 24, 19], ["address", 25, 19]], [["vrf", 21, 13], ["dummy", 23, 13]], [["links", 21, 7], ["cfgs", 26, 7]], [["filename", 50, 7], ["src", 51, 7]], [["maintainers", 58, 8]], [["enable", 67, 26], ["configFiles", 68, 26]], [["useNetworkd", 64, 18], ["useDHCP", 66, 18], ["netplan", 67, 18]], [["enable", 65, 23]], [["user", 72, 9], ["group", 73, 9], ["mode", 74, 9]], [["d", 71, 58]], [["/run/netplan", 71, 43]], [["netplan", 71, 33]], [["settings", 71, 24]], [["network", 65, 15], ["tmpfiles", 71, 15]], [["networking", 64, 7], ["systemd", 65, 7]], [["enable", 78, 33]], [["enable", 79, 26], ["configFiles", 80, 26]], [["networkmanager", 78, 18], ["netplan", 79, 18]], [["user", 85, 9], ["group", 86, 9], ["mode", 87, 9]], [["d", 84, 58]], [["/run/netplan", 84, 43]], [["netplan", 84, 33]], [["settings", 84, 24]], [["tmpfiles", 84, 15]], [["networking", 78, 7], ["systemd", 84, 7]], [["networkd", 63, 5], ["networkmanager", 77, 5]], [["name", 57, 3], ["meta", 58, 3], ["nodes", 62, 3], ["testScript", 92, 3]]]);
 const formals$1 = { args: { pkgs: false, lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/netplan.nix", [["static", 7, 5], ["dynamic", 8, 5]]);
-const pos$2 = nix.positions(here + "/netplan.nix", [["name", 21, 17], ["getter-cmd", 22, 17]]);
-const pos$3 = nix.positions(here + "/netplan.nix", [["name", 23, 19], ["getter-cmd", 24, 19], ["address", 25, 19]]);
-const pos$4 = nix.positions(here + "/netplan.nix", [["vrf", 21, 13], ["dummy", 23, 13]]);
-const pos$5 = nix.positions(here + "/netplan.nix", [["links", 21, 7], ["cfgs", 26, 7]]);
-const pos$6 = nix.positions(here + "/netplan.nix", [["filename", 50, 7], ["src", 51, 7]]);
-const pos$7 = nix.positions(here + "/netplan.nix", [["maintainers", 58, 8]]);
-const pos$8 = nix.positions(here + "/netplan.nix", [["enable", 67, 26], ["configFiles", 68, 26]]);
-const pos$9 = nix.positions(here + "/netplan.nix", [["useNetworkd", 64, 18], ["useDHCP", 66, 18], ["netplan", 67, 18]]);
-const pos$10 = nix.positions(here + "/netplan.nix", [["enable", 65, 23]]);
-const pos$11 = nix.positions(here + "/netplan.nix", [["user", 72, 9], ["group", 73, 9], ["mode", 74, 9]]);
-const pos$12 = nix.positions(here + "/netplan.nix", [["d", 71, 58]]);
-const pos$13 = nix.positions(here + "/netplan.nix", [["/run/netplan", 71, 43]]);
-const pos$14 = nix.positions(here + "/netplan.nix", [["netplan", 71, 33]]);
-const pos$15 = nix.positions(here + "/netplan.nix", [["settings", 71, 24]]);
-const pos$16 = nix.positions(here + "/netplan.nix", [["network", 65, 15], ["tmpfiles", 71, 15]]);
-const pos$17 = nix.positions(here + "/netplan.nix", [["networking", 64, 7], ["systemd", 65, 7]]);
-const pos$18 = nix.positions(here + "/netplan.nix", [["enable", 78, 33]]);
-const pos$19 = nix.positions(here + "/netplan.nix", [["enable", 79, 26], ["configFiles", 80, 26]]);
-const pos$20 = nix.positions(here + "/netplan.nix", [["networkmanager", 78, 18], ["netplan", 79, 18]]);
-const pos$21 = nix.positions(here + "/netplan.nix", [["user", 85, 9], ["group", 86, 9], ["mode", 87, 9]]);
-const pos$22 = nix.positions(here + "/netplan.nix", [["d", 84, 58]]);
-const pos$23 = nix.positions(here + "/netplan.nix", [["/run/netplan", 84, 43]]);
-const pos$24 = nix.positions(here + "/netplan.nix", [["netplan", 84, 33]]);
-const pos$25 = nix.positions(here + "/netplan.nix", [["settings", 84, 24]]);
-const pos$26 = nix.positions(here + "/netplan.nix", [["tmpfiles", 84, 15]]);
-const pos$27 = nix.positions(here + "/netplan.nix", [["networking", 78, 7], ["systemd", 84, 7]]);
-const pos$28 = nix.positions(here + "/netplan.nix", [["networkd", 63, 5], ["networkmanager", 77, 5]]);
-const pos$29 = nix.positions(here + "/netplan.nix", [["name", 57, 3], ["meta", 58, 3], ["nodes", 62, 3], ["testScript", 92, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   const lib = nix.arg($, "lib");
   const test_groups = nix.thunk(() => ({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     static: "fd00::feed:cafe/32",
     dynamic: "fd00::dead:beef/32",
   }));
   const fixtures = nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (group) => (address) => (() => {
       const vrf_name = nix.thunk(() => nix.str`np${group}`);
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         links: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           vrf: nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: nix.thunk(() => nix.str`${vrf_name}`),
             "getter-cmd": nix.thunk(() => nix.str`ip -o link show dev ${vrf_name} type vrf`),
           })),
           dummy: nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: nix.thunk(() => nix.str`${vrf_name}-lo`),
             "getter-cmd": nix.thunk(() => nix.str`ip -o link show dev ${vrf_name}-lo type dummy master ${vrf_name}`),
             address: address,
@@ -78,31 +50,31 @@ network:
       interfaces: [${nix.sel(links, "dummy", "name")}]
 `);
     return {
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       filename: nix.thunk(() => nix.str`10-test-${group}-${renderer}.yaml`),
       src: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), nix.thunk(() => nix.str`netplan-test-${group}-${renderer}`), content)),
     };
   })();
   return {
-    [nix.POS]: pos$29,
+    [nix.POS]: $pos[28],
     name: "netplan",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "mkg20001"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$28,
+      [nix.POS]: $pos[27],
       networkd: nix.thunk(() => ({
-        [nix.POS]: pos$17,
+        [nix.POS]: $pos[16],
         networking: nix.thunk(() => ({
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           useNetworkd: true,
           useDHCP: false,
           netplan: nix.thunk(() => ({
-            [nix.POS]: pos$8,
+            [nix.POS]: $pos[7],
             enable: true,
             configFiles: nix.thunk(() => nix.attrsDyn({}, [
               [nix.sel(fixtures, "static", "cfgs", "networkd", "filename"), nix.thunk(() => nix.builtins.readFile(nix.thunk(() => nix.sel(fixtures, "static", "cfgs", "networkd", "src"))))],
@@ -110,17 +82,17 @@ network:
           })),
         })),
         systemd: nix.thunk(() => ({
-          [nix.POS]: pos$16,
-          network: nix.thunk(() => ({ [nix.POS]: pos$10, enable: true })),
+          [nix.POS]: $pos[15],
+          network: nix.thunk(() => ({ [nix.POS]: $pos[9], enable: true })),
           tmpfiles: nix.thunk(() => ({
-            [nix.POS]: pos$15,
+            [nix.POS]: $pos[14],
             settings: nix.thunk(() => ({
-              [nix.POS]: pos$14,
+              [nix.POS]: $pos[13],
               netplan: nix.thunk(() => ({
-                [nix.POS]: pos$13,
+                [nix.POS]: $pos[12],
                 "/run/netplan": nix.thunk(() => ({
-                  [nix.POS]: pos$12,
-                  d: nix.thunk(() => ({ [nix.POS]: pos$11, user: "root", group: "root", mode: "0700" })),
+                  [nix.POS]: $pos[11],
+                  d: nix.thunk(() => ({ [nix.POS]: $pos[10], user: "root", group: "root", mode: "0700" })),
                 })),
               })),
             })),
@@ -128,12 +100,12 @@ network:
         })),
       })),
       networkmanager: nix.thunk(() => ({
-        [nix.POS]: pos$27,
+        [nix.POS]: $pos[26],
         networking: nix.thunk(() => ({
-          [nix.POS]: pos$20,
-          networkmanager: nix.thunk(() => ({ [nix.POS]: pos$18, enable: true })),
+          [nix.POS]: $pos[19],
+          networkmanager: nix.thunk(() => ({ [nix.POS]: $pos[17], enable: true })),
           netplan: nix.thunk(() => ({
-            [nix.POS]: pos$19,
+            [nix.POS]: $pos[18],
             enable: true,
             configFiles: nix.thunk(() => nix.attrsDyn({}, [
               [nix.sel(fixtures, "static", "cfgs", "NetworkManager", "filename"), nix.thunk(() => nix.builtins.readFile(nix.thunk(() => nix.sel(fixtures, "static", "cfgs", "NetworkManager", "src"))))],
@@ -141,16 +113,16 @@ network:
           })),
         })),
         systemd: nix.thunk(() => ({
-          [nix.POS]: pos$26,
+          [nix.POS]: $pos[25],
           tmpfiles: nix.thunk(() => ({
-            [nix.POS]: pos$25,
+            [nix.POS]: $pos[24],
             settings: nix.thunk(() => ({
-              [nix.POS]: pos$24,
+              [nix.POS]: $pos[23],
               netplan: nix.thunk(() => ({
-                [nix.POS]: pos$23,
+                [nix.POS]: $pos[22],
                 "/run/netplan": nix.thunk(() => ({
-                  [nix.POS]: pos$22,
-                  d: nix.thunk(() => ({ [nix.POS]: pos$21, user: "root", group: "root", mode: "0700" })),
+                  [nix.POS]: $pos[21],
+                  d: nix.thunk(() => ({ [nix.POS]: $pos[20], user: "root", group: "root", mode: "0700" })),
                 })),
               })),
             })),

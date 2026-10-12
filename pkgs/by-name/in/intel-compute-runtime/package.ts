@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]], [["extraArgs", 71, 40]], [["updateScript", 71, 5]], [["description", 75, 5], ["mainProgram", 76, 5], ["homepage", 77, 5], ["changelog", 78, 5], ["license", 79, 5], ["platforms", 80, 5], ["maintainers", 84, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 30, 3], ["cmakeFlags", 37, 3], ["hardeningDisable", 51, 3], ["postInstall", 53, 3], ["postFixup", 58, 3], ["passthru", 70, 3], ["meta", 74, 3]]]);
 const formals$1 = { args: { lib: false, cmake: false, fetchFromGitHub: false, "intel-gmmlib": false, "intel-graphics-compiler": false, "level-zero": false, libva: false, "nix-update-script": false, "pkg-config": false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["extraArgs", 71, 40]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 71, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 75, 5], ["mainProgram", 76, 5], ["homepage", 77, 5], ["changelog", 78, 5], ["license", 79, 5], ["platforms", 80, 5], ["maintainers", 84, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 30, 3], ["cmakeFlags", 37, 3], ["hardeningDisable", 51, 3], ["postInstall", 53, 3], ["postFixup", 58, 3], ["passthru", 70, 3], ["meta", 74, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "intel-compute-runtime",
       version: "26.31.39395.13",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "intel",
           repo: "compute-runtime",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -53,11 +49,11 @@ export default nix.lambda((args) => (() => {
   $out/lib/intel-opencl/libigdrcl.so
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$2, extraArgs: nix.thunk(() => ["--use-github-releases"]) })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: $pos[1], extraArgs: nix.thunk(() => ["--use-github-releases"]) })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Intel Graphics Compute Runtime oneAPI Level Zero and OpenCL, supporting 12th Gen and newer",
         mainProgram: "ocloc",
         homepage: "https://github.com/intel/compute-runtime",

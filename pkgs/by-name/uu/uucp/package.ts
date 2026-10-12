@@ -2,16 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 15, 5], ["sha256", 16, 5]], [["pname", 31, 28], ["version", 31, 34], ["debianRevision", 32, 7], ["patch", 33, 7], ["hash", 34, 7]], [["pname", 37, 28], ["version", 37, 34], ["debianRevision", 38, 7], ["patch", 39, 7], ["hash", 40, 7]], [["pname", 43, 28], ["version", 43, 34], ["debianRevision", 44, 7], ["patch", 45, 7], ["hash", 46, 7]], [["package", 57, 5]], [["version", 56, 18]], [["tests", 56, 12]], [["description", 61, 5], ["mainProgram", 62, 5], ["longDescription", 64, 5], ["homepage", 71, 5], ["license", 73, 5], ["platforms", 75, 5], ["maintainers", 76, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["hardeningDisable", 19, 3], ["prePatch", 21, 3], ["patches", 28, 3], ["nativeBuildInputs", 52, 3], ["makeFlags", 54, 3], ["passthru", 56, 3], ["meta", 60, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, fetchDebianPatch: false, autoreconfHook: false, testers: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 15, 5], ["sha256", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 31, 28], ["version", 31, 34], ["debianRevision", 32, 7], ["patch", 33, 7], ["hash", 34, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 37, 28], ["version", 37, 34], ["debianRevision", 38, 7], ["patch", 39, 7], ["hash", 40, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 43, 28], ["version", 43, 34], ["debianRevision", 44, 7], ["patch", 45, 7], ["hash", 46, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["package", 57, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["version", 56, 18]]);
-const pos$7 = nix.positions(here + "/package.nix", [["tests", 56, 12]]);
-const pos$8 = nix.positions(here + "/package.nix", [["description", 61, 5], ["mainProgram", 62, 5], ["longDescription", 64, 5], ["homepage", 71, 5], ["license", 73, 5], ["platforms", 75, 5], ["maintainers", 76, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["hardeningDisable", 19, 3], ["prePatch", 21, 3], ["patches", 28, 3], ["nativeBuildInputs", 52, 3], ["makeFlags", 54, 3], ["passthru", 56, 3], ["meta", 60, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const autoreconfHook = nix.arg($, "autoreconfHook");
   const testers = nix.arg($, "testers");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       pname: "uucp",
       version: "1.07",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnu/uucp/uucp-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "0b5nhl9vvif1w3wdipjsk8ckw49jj1w85xw1mmqi3zbcpazia306",
         })))),
@@ -35,7 +27,7 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [
         nix.path(here, "./socklen_t.patch"),
         nix.thunk(() => nix.app(fetchDebianPatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
             version: nix.thunk(() => nix.attr(finalAttrs, "version")),
             debianRevision: "31",
@@ -43,7 +35,7 @@ export default nix.lambda((args) => (() => {
             hash: "sha256-6Aqghz6P+bWULHOXCQIdQLRuaE+Lci7t5ojQXJOyeA0=",
           })))),
         nix.thunk(() => nix.app(fetchDebianPatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
             version: nix.thunk(() => nix.attr(finalAttrs, "version")),
             debianRevision: "31",
@@ -51,7 +43,7 @@ export default nix.lambda((args) => (() => {
             hash: "sha256-EsJqZCV4x7ggzpoa4OaibCLvF8L8FGGnLlBtr4Cee18=",
           })))),
         nix.thunk(() => nix.app(fetchDebianPatch, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
             version: nix.thunk(() => nix.attr(finalAttrs, "version")),
             debianRevision: "31",
@@ -62,17 +54,17 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [autoreconfHook]),
       makeFlags: nix.thunk(() => ["AR:=$(AR)"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         description: "Unix-unix cp over serial line, also includes cu program",
         mainProgram: "uucp",
         longDescription: "Taylor UUCP is a free implementation of UUCP and is the standard\nUUCP used on the GNU system.  If you don't know what UUCP is chances\nare, nowadays, that you won't need it.  If you do need it, you've\njust found one of the finest UUCP implementations available.\n",

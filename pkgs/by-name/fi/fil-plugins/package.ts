@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 13, 5], ["hash", 14, 5]], [["description", 30, 5], ["longDescription", 31, 5], ["homepage", 38, 5], ["license", 39, 5], ["maintainers", 40, 5], ["platforms", 41, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["buildInputs", 17, 3], ["postPatch", 19, 3], ["preInstall", 25, 3], ["meta", 29, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, "ladspa-header": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 13, 5], ["hash", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 30, 5], ["longDescription", 31, 5], ["homepage", 38, 5], ["license", 39, 5], ["maintainers", 40, 5], ["platforms", 41, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["buildInputs", 17, 3], ["postPatch", 19, 3], ["preInstall", 25, 3], ["meta", 29, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const ladspa_header = nix.arg($, "ladspa-header");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "fil-plugins",
       version: "0.3.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://kokkinizita.linuxaudio.org/linuxaudio/downloads/FIL-plugins-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           hash: "sha256-HAvycSEZZfZwoVp3g7QWcwfbdyZKwWJKBuVmeWTajuk=",
         })))),
@@ -26,7 +24,7 @@ export default nix.lambda((args) => (() => {
       postPatch: "substituteInPlace Makefile \\\n  --replace /usr/lib/ladspa \"$out/lib/ladspa\" \\\n  --replace g++             \"$CXX\"\n",
       preInstall: "mkdir -p \"$out/lib/ladspa\"\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Four-band parametric equaliser, which has the nice property of being stable even while parameters are being changed",
         longDescription: "Each section has an active/bypass switch, frequency, bandwidth and gain controls.\nThere is also a global bypass switch and gain control.\nThe 2nd order resonant filters are implemented using a Mitra-Regalia style lattice filter.\nAll switches and controls are internally smoothed, so they can be used 'live' without any clicks or zipper noises.\nThis should make this plugin a good candidate for use in systems that allow automation of plugin control ports, such as Ardour, or for stage use.\n",
         homepage: "http://kokkinizita.linuxaudio.org/linuxaudio/ladspa/index.html",

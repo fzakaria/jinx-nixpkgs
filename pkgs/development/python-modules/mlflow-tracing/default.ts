@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]], [["description", 61, 5], ["homepage", 62, 5], ["license", 63, 27], ["maintainers", 64, 5]], [["pname", 21, 3], ["version", 22, 20], ["pyproject", 23, 3], ["__structuredAttrs", 24, 3], ["src", 26, 3], ["postPatch", 33, 3], ["sourceRoot", 40, 3], ["build-system", 42, 3], ["dependencies", 44, 3], ["pythonImportsCheck", 55, 3], ["doCheck", 58, 3], ["meta", 60, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, mlflow: false, setuptools: false, cachetools: false, "databricks-sdk": false, "opentelemetry-api": false, "opentelemetry-proto": false, "opentelemetry-sdk": false, packaging: false, protobuf: false, pydantic: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 61, 5], ["homepage", 62, 5], ["license", 63, 27], ["maintainers", 64, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 21, 3], ["version", 22, 20], ["pyproject", 23, 3], ["__structuredAttrs", 24, 3], ["src", 26, 3], ["postPatch", 33, 3], ["sourceRoot", 40, 3], ["build-system", 42, 3], ["dependencies", 44, 3], ["pythonImportsCheck", 55, 3], ["doCheck", 58, 3], ["meta", 60, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,13 +21,13 @@ export default nix.lambda((args) => (() => {
   const protobuf = nix.arg($, "protobuf");
   const pydantic = nix.arg($, "pydantic");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "mlflow-tracing",
       version: nix.thunk(() => nix.attr(mlflow, "version")),
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "mlflow",
           repo: "mlflow",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -53,7 +51,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(mlflow, "meta"));
         return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Open-Source SDK for observability and monitoring GenAI applications",
         homepage: "https://github.com/mlflow/mlflow/tree/master/libs/tracing",
         license: nix.thunk(() => nix.attr(from, "license")),

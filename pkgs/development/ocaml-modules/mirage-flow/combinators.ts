@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/combinators.nix", [[["description", 24, 5]], [["pname", 11, 3], ["version", 13, 25], ["src", 13, 33], ["propagatedBuildInputs", 15, 3], ["meta", 23, 3]]]);
 const formals$1 = { args: { buildDunePackage: false, "mirage-flow": false, lwt: false, logs: false, cstruct: false, "mirage-mtime": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/combinators.nix", [["description", 24, 5]]);
-const pos$2 = nix.positions(here + "/combinators.nix", [["pname", 11, 3], ["version", 13, 25], ["src", 13, 33], ["propagatedBuildInputs", 15, 3], ["meta", 23, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,13 +14,13 @@ export default nix.lambda((args) => (() => {
   const cstruct = nix.arg($, "cstruct");
   const mirage_mtime = nix.arg($, "mirage-mtime");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "mirage-flow-combinators",
       version: nix.thunk(() => nix.attr(mirage_flow, "version")),
       src: nix.thunk(() => nix.attr(mirage_flow, "src")),
       propagatedBuildInputs: nix.thunk(() => [lwt, logs, cstruct, mirage_mtime, mirage_flow]),
       meta: nix.thunk(() => nix.update(nix.sel(mirage_flow, "meta"), {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Flow implementations and combinators for MirageOS specialized to lwt",
       })),
     })));

@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]], [["lockFile", 28, 46]], [["extraArgs", 45, 47]], [["updateScript", 45, 12]], [["description", 48, 5], ["homepage", 49, 5], ["changelog", 50, 5], ["license", 51, 5], ["maintainers", 52, 5]], [["pname", 13, 3], ["version", 14, 3], ["pyproject", 15, 3], ["src", 17, 3], ["postPatch", 24, 3], ["cargoDeps", 28, 3], ["buildAndTestSubdir", 30, 3], ["nativeBuildInputs", 32, 3], ["build-system", 34, 3], ["buildInputs", 36, 3], ["pythonImportsCheck", 38, 3], ["nativeCheckInputs", 40, 3], ["passthru", 45, 3], ["meta", 47, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, rustPlatform: false, fetchFromGitHub: false, libiconv: false, "dirty-equals": false, pytestCheckHook: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["lockFile", 28, 46]]);
-const pos$3 = nix.positions(here + "/default.nix", [["extraArgs", 45, 47]]);
-const pos$4 = nix.positions(here + "/default.nix", [["updateScript", 45, 12]]);
-const pos$5 = nix.positions(here + "/default.nix", [["description", 48, 5], ["homepage", 49, 5], ["changelog", 50, 5], ["license", 51, 5], ["maintainers", 52, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 13, 3], ["version", 14, 3], ["pyproject", 15, 3], ["src", 17, 3], ["postPatch", 24, 3], ["cargoDeps", 28, 3], ["buildAndTestSubdir", 30, 3], ["nativeBuildInputs", 32, 3], ["build-system", 34, 3], ["buildInputs", 36, 3], ["pythonImportsCheck", 38, 3], ["nativeCheckInputs", 40, 3], ["passthru", 45, 3], ["meta", 47, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.12.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "pydantic",
           repo: "jiter",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -33,7 +28,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const postPatch = nix.thunk(() => nix.str`cp ${nix.path(here, "./Cargo.lock")} Cargo.lock
 `);
-      const cargoDeps = nix.thunk(() => nix.app(nix.sel(rustPlatform, "importCargoLock"), nix.thunk(() => ({ [nix.POS]: pos$2, lockFile: nix.path(here, "./Cargo.lock") }))));
+      const cargoDeps = nix.thunk(() => nix.app(nix.sel(rustPlatform, "importCargoLock"), nix.thunk(() => ({ [nix.POS]: $pos[1], lockFile: nix.path(here, "./Cargo.lock") }))));
       const buildAndTestSubdir = "crates/jiter-python";
       const nativeBuildInputs = nix.thunk(() => [nix.thunk(() => nix.sel(rustPlatform, "cargoSetupHook"))]);
       const build_system = nix.thunk(() => [nix.thunk(() => nix.sel(rustPlatform, "maturinBuildHook"))]);
@@ -41,11 +36,11 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["jiter"]);
       const nativeCheckInputs = nix.thunk(() => [dirty_equals, pytestCheckHook]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$3, extraArgs: nix.thunk(() => ["--generate-lockfile"]) })))),
+        [nix.POS]: $pos[3],
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: $pos[2], extraArgs: nix.thunk(() => ["--generate-lockfile"]) })))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Fast iterable JSON parser",
         homepage: "https://github.com/pydantic/jiter/",
         changelog: nix.thunk(() => nix.str`https://github.com/pydantic/jiter/releases/tag/v${version}`),
@@ -56,7 +51,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname,
         version,
         pyproject,

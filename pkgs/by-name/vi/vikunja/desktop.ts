@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/desktop.nix", [[["pname", 31, 7], ["version", 32, 7], ["src", 33, 7], ["sourceRoot", 34, 7], ["pnpm", 36, 5], ["fetcherVersion", 37, 5], ["hash", 38, 5]], [["ELECTRON_SKIP_BINARY_DOWNLOAD", 42, 5]], [["updateScript", 119, 12]], [["name", 123, 7], ["exec", 124, 7], ["icon", 125, 7], ["terminal", 126, 7], ["desktopName", 127, 7], ["genericName", 128, 7], ["comment", 129, 7], ["categories", 130, 7], ["mimeTypes", 134, 7]], [["description", 141, 5], ["license", 142, 5], ["mainProgram", 143, 5], ["platforms", 144, 29]], [["name", 23, 3], ["pname", 24, 3], ["version", 25, 11], ["src", 25, 19], ["sourceRoot", 27, 3], ["pnpmDeps", 29, 3], ["env", 41, 3], ["nativeBuildInputs", 45, 3], ["buildPhase", 58, 3], ["doCheck", 86, 3], ["installPhase", 88, 3], ["passthru", 119, 3], ["desktopItems", 121, 3], ["meta", 140, 3]]]);
 const formals$1 = { args: { frontend: false, meta: false, src: false, version: false, lib: false, stdenv: false, makeWrapper: false, makeDesktopItem: false, copyDesktopItems: false, darwin: false, pnpm_10: false, pnpmConfigHook: false, nodejs: false, perl: false, electron: false, "nix-update-script": false, fetchPnpmDeps: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/desktop.nix", [["pname", 31, 7], ["version", 32, 7], ["src", 33, 7], ["sourceRoot", 34, 7], ["pnpm", 36, 5], ["fetcherVersion", 37, 5], ["hash", 38, 5]]);
-const pos$2 = nix.positions(here + "/desktop.nix", [["ELECTRON_SKIP_BINARY_DOWNLOAD", 42, 5]]);
-const pos$3 = nix.positions(here + "/desktop.nix", [["updateScript", 119, 12]]);
-const pos$4 = nix.positions(here + "/desktop.nix", [["name", 123, 7], ["exec", 124, 7], ["icon", 125, 7], ["terminal", 126, 7], ["desktopName", 127, 7], ["genericName", 128, 7], ["comment", 129, 7], ["categories", 130, 7], ["mimeTypes", 134, 7]]);
-const pos$5 = nix.positions(here + "/desktop.nix", [["description", 141, 5], ["license", 142, 5], ["mainProgram", 143, 5], ["platforms", 144, 29]]);
-const pos$6 = nix.positions(here + "/desktop.nix", [["name", 23, 3], ["pname", 24, 3], ["version", 25, 11], ["src", 25, 19], ["sourceRoot", 27, 3], ["pnpmDeps", 29, 3], ["env", 41, 3], ["nativeBuildInputs", 45, 3], ["buildPhase", 58, 3], ["doCheck", 86, 3], ["installPhase", 88, 3], ["passthru", 119, 3], ["desktopItems", 121, 3], ["meta", 140, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,14 +25,14 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const fetchPnpmDeps = nix.arg($, "fetchPnpmDeps");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       name: nix.thunk(() => nix.str`vikunja-desktop-${version}`),
       pname: nix.thunk(() => nix.sel(finalAttrs, "name")),
       version: version,
       src: src,
       sourceRoot: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "name")}/desktop`),
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -46,7 +41,7 @@ export default nix.lambda((args) => (() => {
           fetcherVersion: 4n,
           hash: "sha256-Th37DOkG/vQcyrzKDMplruiMhH4AlGF6UdXtGJTC96c=",
         })))),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, ELECTRON_SKIP_BINARY_DOWNLOAD: 1n })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], ELECTRON_SKIP_BINARY_DOWNLOAD: 1n })),
       nativeBuildInputs: nix.thunk(() => nix.concat([makeWrapper, nodejs, perl, pnpm_10, pnpmConfigHook, frontend], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [copyDesktopItems])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [nix.thunk(() => nix.sel(darwin, "autoSignDarwinBinariesHook"))]))))),
       buildPhase: nix.thunk(() => nix.str`runHook preBuild
 
@@ -97,12 +92,12 @@ ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostP
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             name: "vikunja-desktop",
             exec: "vikunja-desktop %U",
             icon: "vikunja-desktop",
@@ -117,7 +112,7 @@ runHook postInstall
       meta: nix.thunk(() => nix.update(meta, (() => {
         const from = nix.thunk(() => nix.sel(electron, "meta"));
         return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Desktop App of the Vikunja to-do list app",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
         mainProgram: "vikunja-desktop",

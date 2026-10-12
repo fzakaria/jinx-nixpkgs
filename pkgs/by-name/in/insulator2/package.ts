@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["src", 43, 11], ["substitutions", 44, 11]], [["owner", 32, 5], ["repo", 33, 5], ["rev", 34, 5], ["hash", 35, 5], ["postFetch", 39, 5]], [["src", 56, 26], ["missingHashes", 56, 30], ["hash", 57, 5]], [["pname", 61, 26], ["version", 61, 32], ["src", 61, 40], ["sourceRoot", 62, 5], ["hash", 63, 5]], [["OPENSSL_NO_VENDOR", 94, 7]], [["updateScript", 96, 12]], [["description", 99, 5], ["homepage", 100, 5], ["license", 101, 5], ["maintainers", 102, 5], ["mainProgram", 103, 5]], [["pname", 28, 3], ["version", 29, 3], ["src", 31, 3], ["missingHashes", 54, 3], ["offlineCache", 55, 3], ["cargoDeps", 60, 3], ["cargoRoot", 66, 3], ["buildAndTestSubdir", 67, 3], ["strictDeps", 69, 3], ["dontUseCmakeConfigure", 71, 3], ["nativeBuildInputs", 73, 3], ["buildInputs", 85, 3], ["env", 94, 3], ["passthru", 96, 3], ["meta", 98, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, substitute: false, "yarn-berry_4": false, cargo: false, "cargo-tauri": false, cmake: false, "nodejs-slim": false, "pkg-config": false, rustc: false, rustPlatform: false, webkitgtk_4_1: false, cyrus_sasl: false, freetype: false, libsoup_3: false, openssl: false, curl: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["src", 43, 11], ["substitutions", 44, 11]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 32, 5], ["repo", 33, 5], ["rev", 34, 5], ["hash", 35, 5], ["postFetch", 39, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["src", 56, 26], ["missingHashes", 56, 30], ["hash", 57, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 61, 26], ["version", 61, 32], ["src", 61, 40], ["sourceRoot", 62, 5], ["hash", 63, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["OPENSSL_NO_VENDOR", 94, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["updateScript", 96, 12]]);
-const pos$7 = nix.positions(here + "/package.nix", [["description", 99, 5], ["homepage", 100, 5], ["license", 101, 5], ["maintainers", 102, 5], ["mainProgram", 103, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 28, 3], ["version", 29, 3], ["src", 31, 3], ["missingHashes", 54, 3], ["offlineCache", 55, 3], ["cargoDeps", 60, 3], ["cargoRoot", 66, 3], ["buildAndTestSubdir", 67, 3], ["strictDeps", 69, 3], ["dontUseCmakeConfigure", 71, 3], ["nativeBuildInputs", 73, 3], ["buildInputs", 85, 3], ["env", 94, 3], ["passthru", 96, 3], ["meta", 98, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,18 +27,18 @@ export default nix.lambda((args) => (() => {
   const curl = nix.arg($, "curl");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "insulator2",
       version: "2.14.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "andrewinci",
           repo: "insulator2",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-QCoDiFEgVuF/+MqgzcMTXqjC/nDA+A2v3l01kZyviDs=",
           postFetch: nix.thunk(() => nix.str`cd $out
 patch -p1 < ${nix.app(substitute, nix.thunk(() => ({
-              [nix.POS]: pos$1,
+              [nix.POS]: $pos[0],
               src: nix.path(here, "./yarn-fix.patch"),
               substitutions: nix.thunk(() => [
                 "--replace-fail",
@@ -57,13 +50,13 @@ patch -p1 < ${nix.app(substitute, nix.thunk(() => ({
         })))),
       missingHashes: nix.path(here, "./missing-hashes.json"),
       offlineCache: nix.thunk(() => nix.app(nix.sel(yarn_berry_4, "fetchYarnBerryDeps"), nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           missingHashes: nix.thunk(() => nix.attr(finalAttrs, "missingHashes")),
           hash: "sha256-2w1fMVwQFClyrpNmJrjJoDqbU2nxRZh9NkBIcMUEjec=",
         })))),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -86,13 +79,13 @@ patch -p1 < ${nix.app(substitute, nix.thunk(() => ({
         nix.thunk(() => nix.sel(yarn_berry_4, "yarnBerryConfigHook")),
       ]),
       buildInputs: nix.thunk(() => [cyrus_sasl, freetype, libsoup_3, openssl, webkitgtk_4_1, curl]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$5, OPENSSL_NO_VENDOR: 1n })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[4], OPENSSL_NO_VENDOR: 1n })),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "Client UI to inspect Kafka topics, consume, produce and much more",
         homepage: "https://github.com/andrewinci/insulator2",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

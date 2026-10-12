@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 24, 5], ["repo", 25, 5], ["rev", 26, 5], ["hash", 27, 5]], [["name", 36, 5], ["url", 37, 5], ["hash", 38, 5], ["stripRoot", 39, 5]], [["NIX_CFLAGS_COMPILE", 59, 7]], [["name", 70, 7], ["exec", 71, 7], ["icon", 72, 7], ["comment", 73, 7], ["desktopName", 74, 7], ["genericName", 75, 7], ["startupWMClass", 76, 7], ["categories", 77, 7]], [["description", 94, 5], ["homepage", 95, 5], ["platforms", 96, 5], ["license", 97, 5], ["maintainers", 98, 5], ["mainProgram", 99, 5]], [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["postPatch", 30, 3], ["assets", 35, 3], ["nativeBuildInputs", 42, 3], ["buildInputs", 49, 3], ["env", 59, 3], ["cmakeFlags", 61, 3], ["desktopItems", 68, 3], ["installPhase", 81, 3], ["meta", 93, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchzip: false, fetchFromGitHub: false, cmake: false, curl: false, nasm: false, "game-music-emu": false, libpng: false, SDL2: false, SDL2_mixer: false, zlib: false, makeWrapper: false, makeDesktopItem: false, copyDesktopItems: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 24, 5], ["repo", 25, 5], ["rev", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 36, 5], ["url", 37, 5], ["hash", 38, 5], ["stripRoot", 39, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 59, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["name", 70, 7], ["exec", 71, 7], ["icon", 72, 7], ["comment", 73, 7], ["desktopName", 74, 7], ["genericName", 75, 7], ["startupWMClass", 76, 7], ["categories", 77, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 94, 5], ["homepage", 95, 5], ["platforms", 96, 5], ["license", 97, 5], ["maintainers", 98, 5], ["mainProgram", 99, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["postPatch", 30, 3], ["assets", 35, 3], ["nativeBuildInputs", 42, 3], ["buildInputs", 49, 3], ["env", 59, 3], ["cmakeFlags", 61, 3], ["desktopItems", 68, 3], ["installPhase", 81, 3], ["meta", 93, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const makeDesktopItem = nix.arg($, "makeDesktopItem");
   const copyDesktopItems = nix.arg($, "copyDesktopItems");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "srb2kart",
       version: "1.6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "STJr",
           repo: "Kart-Public",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -40,7 +35,7 @@ export default nix.lambda((args) => (() => {
         })))),
       postPatch: "substituteInPlace CMakeLists.txt \\\n  --replace-fail \"cmake_minimum_required(VERSION 3.0)\" \"cmake_minimum_required(VERSION 3.10)\"\n",
       assets: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           name: "srb2kart-data",
           url: nix.thunk(() => nix.str`https://github.com/STJr/Kart-Public/releases/download/v${nix.sel(finalAttrs, "version")}/AssetsLinuxOnly.zip`),
           hash: "sha256-yaVdsQUnyobjSbmemeBEyu35GeZCX1ylTRcjcbDuIu4=",
@@ -48,7 +43,7 @@ export default nix.lambda((args) => (() => {
         })))),
       nativeBuildInputs: nix.thunk(() => [cmake, nasm, makeWrapper, copyDesktopItems]),
       buildInputs: nix.thunk(() => [curl, game_music_emu, libpng, SDL2, SDL2_mixer, zlib]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$3, NIX_CFLAGS_COMPILE: "-std=gnu17" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[2], NIX_CFLAGS_COMPILE: "-std=gnu17" })),
       cmakeFlags: nix.thunk(() => [
         nix.thunk(() => nix.str`-DSRB2_ASSET_DIRECTORY=${nix.sel(finalAttrs, "assets")}`),
         nix.thunk(() => nix.str`-DGME_INCLUDE_DIR=${game_music_emu}/include`),
@@ -66,7 +61,7 @@ export default nix.lambda((args) => (() => {
             const startupWMClass = ".srb2kart-wrapped";
             const categories = nix.thunk(() => ["Game"]);
             return {
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               name,
               exec,
               icon,
@@ -89,7 +84,7 @@ wrapProgram $out/bin/srb2kart \\
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Classic styled kart racer",
         homepage: "https://mb.srb2.org/threads/srb2kart.25868/",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),

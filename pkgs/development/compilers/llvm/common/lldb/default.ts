@@ -2,14 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["name", 33, 5], ["version", 34, 5], ["uniqueId", 35, 5]], [["passthru", 50, 35], ["strictDeps", 51, 13], ["__structuredAttrs", 52, 13]], [["monorepoSrc", 216, 15], ["vscodeExtName", 217, 7], ["vscodeExtPublisher", 218, 7], ["vscodeExtUniqueId", 219, 7]], [["homepage", 225, 7], ["description", 226, 7], ["longDescription", 227, 7], ["mainProgram", 233, 7]], [["pname", 43, 5], ["version", 44, 13], ["src", 46, 5], ["outputs", 80, 5], ["sourceRoot", 85, 5], ["patches", 87, 5], ["nativeBuildInputs", 100, 5], ["buildInputs", 115, 5], ["strictDeps", 132, 5], ["hardeningDisable", 134, 5], ["cmakeFlags", 136, 5], ["doCheck", 171, 5], ["doInstallCheck", 172, 5], ["nativeInstallCheckInputs", 174, 5], ["preVersionCheck", 176, 5], ["installCheckPhase", 180, 5], ["postInstall", 195, 5], ["passthru", 215, 5], ["__structuredAttrs", 222, 5], ["meta", 224, 5]], [["description", 256, 7], ["homepage", 257, 7]], [["pname", 237, 5], ["ninjaFlags", 239, 5], ["installPhase", 242, 5], ["postInstall", 251, 5], ["outputs", 253, 5], ["meta", 255, 5]]]);
 const formals$1 = { args: { lib: false, stdenv: false, llvm_meta: false, release_version: false, getVersionFile: false, cmake: false, zlib: false, ncurses: false, swig: false, which: false, libedit: false, libxml2: false, libllvm: false, libclang: false, python3: false, version: false, darwin: false, lit: false, makeWrapper: false, lua5_3: false, ninja: false, runCommand: false, src: true, monorepoSrc: true, enableManpages: true, devExtraCmakeFlags: true, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["name", 33, 5], ["version", 34, 5], ["uniqueId", 35, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["passthru", 50, 35], ["strictDeps", 51, 13], ["__structuredAttrs", 52, 13]]);
-const pos$3 = nix.positions(here + "/default.nix", [["monorepoSrc", 216, 15], ["vscodeExtName", 217, 7], ["vscodeExtPublisher", 218, 7], ["vscodeExtUniqueId", 219, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["homepage", 225, 7], ["description", 226, 7], ["longDescription", 227, 7], ["mainProgram", 233, 7]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 43, 5], ["version", 44, 13], ["src", 46, 5], ["outputs", 80, 5], ["sourceRoot", 85, 5], ["patches", 87, 5], ["nativeBuildInputs", 100, 5], ["buildInputs", 115, 5], ["strictDeps", 132, 5], ["hardeningDisable", 134, 5], ["cmakeFlags", 136, 5], ["doCheck", 171, 5], ["doInstallCheck", 172, 5], ["nativeInstallCheckInputs", 174, 5], ["preVersionCheck", 176, 5], ["installCheckPhase", 180, 5], ["postInstall", 195, 5], ["passthru", 215, 5], ["__structuredAttrs", 222, 5], ["meta", 224, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["description", 256, 7], ["homepage", 257, 7]]);
-const pos$7 = nix.positions(here + "/default.nix", [["pname", 237, 5], ["ninjaFlags", 239, 5], ["installPhase", 242, 5], ["postInstall", 251, 5], ["outputs", 253, 5], ["meta", 255, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -44,15 +38,15 @@ export default nix.lambda((args) => (() => {
     const name = "lldb-dap";
     const version_1 = "0.2.0";
     const uniqueId = nix.thunk(() => nix.str`llvm-org.${name}-${version_1}`);
-    return { [nix.POS]: pos$1, name, version: version_1, uniqueId };
+    return { [nix.POS]: $pos[0], name, version: version_1, uniqueId };
   })());
   const canRunLldb = nix.thunk(() => (nix.asBool(!nix.asBool(enableManpages)) && nix.asBool(nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform"))))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => nix.update({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "lldb",
       version: version,
       src: nix.thunk(() => (nix.asBool(!nix.eq(monorepoSrc, null)) ? nix.app(runCommand, nix.thunk(() => nix.str`lldb-src-${version}`), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           passthru: nix.thunk(() => nix.attr(monorepoSrc, "passthru")),
           strictDeps: true,
           __structuredAttrs: true,
@@ -130,7 +124,7 @@ ln -s $out/bin/*${nix.sel(vscodeExt, "name")} "$vscodeExtDir/bin"
 `;
       })()),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         monorepoSrc: monorepoSrc,
         vscodeExtName: nix.thunk(() => nix.sel(vscodeExt, "name")),
         vscodeExtPublisher: "llvm",
@@ -138,21 +132,21 @@ ln -s $out/bin/*${nix.sel(vscodeExt, "name")} "$vscodeExtDir/bin"
       })),
       __structuredAttrs: true,
       meta: nix.thunk(() => nix.update(llvm_meta, {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://lldb.llvm.org/",
         description: "Next-generation high-performance debugger",
         longDescription: "LLDB is a next generation, high-performance debugger. It is built as a set\nof reusable components which highly leverage existing libraries in the\nlarger LLVM Project, such as the Clang expression parser and LLVM\ndisassembler.\n",
         mainProgram: "lldb",
       })),
     }, nix.app(nix.sel(lib, "optionalAttrs"), enableManpages, nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         pname: "lldb-manpages",
         ninjaFlags: nix.thunk(() => ["docs-lldb-man"]),
         installPhase: "runHook preInstall\n\nmkdir -p $out/share/man/man1\ninstall docs/man/lldb.1 -t $out/share/man/man1/\n\nrunHook postInstall\n",
         postInstall: null,
         outputs: nix.thunk(() => ["out"]),
         meta: nix.thunk(() => nix.update(llvm_meta, {
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           description: nix.thunk(() => nix.str`man pages for LLDB ${version}`),
           homepage: "https://github.com/llvm/llvm-project",
         })),

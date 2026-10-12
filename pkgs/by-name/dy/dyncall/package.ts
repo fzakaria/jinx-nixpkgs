@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 12, 5], ["sha256", 14, 5]], [["description", 35, 5], ["homepage", 36, 5], ["license", 37, 5], ["maintainers", 38, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["doCheck", 18, 3], ["postInstall", 21, 3], ["meta", 34, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 12, 5], ["sha256", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 35, 5], ["homepage", 36, 5], ["license", 37, 5], ["maintainers", 38, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["doCheck", 18, 3], ["postInstall", 21, 3], ["meta", 34, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,18 +11,18 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "dyncall",
       version: "1.4",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://www.dyncall.org/r${nix.sel(finalAttrs, "version")}/dyncall-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "sha256-FEN9u+87bckkg/ZQfq+CWrl5ZKie7K6Ms0emvsnDKq4=",
         })))),
       doCheck: false,
       postInstall: "# install cmake modules to make using dyncall easier\n# This is essentially what -DINSTALL_CMAKE_MODULES=ON if using cmake build\n# We don't use the cmake-based build since it installs different set of headers\n# (mostly fewer headers, but installs dyncall_alloc_wx.h \"instead\" dyncall_alloc.h)\n# and we'd have to patch the cmake module installation to not use CMAKE_ROOT anyway :).\ninstall -D -t $out/lib/cmake ./buildsys/cmake/Modules/Find*.cmake\n\n# manpages are nice, install them\n# doing this is in the project's \"ToDo\", so check this when updating!\ninstall -D -t $out/share/man/man3 ./*/*.3\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Highly dynamic multi-platform foreign function call interface library",
         homepage: "https://www.dyncall.org",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),

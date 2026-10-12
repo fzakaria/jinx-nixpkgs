@@ -2,12 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["repo", 13, 5], ["owner", 14, 5], ["rev", 15, 5], ["hash", 16, 5]], [["agda", 19, 43]], [["tests", 19, 12]], [["homepage", 21, 5], ["description", 22, 5], ["license", 23, 5], ["platforms", 24, 5], ["maintainers", 25, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["passthru", 19, 3], ["meta", 20, 3]]]);
 const formals$1 = { args: { lib: false, mkDerivation: false, fetchFromGitHub: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["repo", 13, 5], ["owner", 14, 5], ["rev", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["agda", 19, 43]]);
-const pos$3 = nix.positions(here + "/default.nix", [["tests", 19, 12]]);
-const pos$4 = nix.positions(here + "/default.nix", [["homepage", 21, 5], ["description", 22, 5], ["license", 23, 5], ["platforms", 24, 5], ["maintainers", 25, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["passthru", 19, 3], ["meta", 20, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,18 +15,18 @@ export default nix.lambda((args) => (() => {
       const pname = "standard-library";
       const version = "2.3";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           repo: "agda-stdlib",
           owner: "agda",
           rev: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-JOeoek6OfyIk9vwTj5QUJU6LnRzwfiG0e0ysW6zbhZ8=",
         }))));
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$2, agda: nix.thunk(() => nix.attr(nixosTests, "agda")) })),
+        [nix.POS]: $pos[2],
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[1], agda: nix.thunk(() => nix.attr(nixosTests, "agda")) })),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://wiki.portal.chalmers.se/agda/pmwiki.php?n=Libraries.StandardLibrary",
         description: "Standard library for use with the Agda compiler",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -45,7 +41,7 @@ export default nix.lambda((args) => (() => {
           ];
         })()),
       }));
-      return { [nix.POS]: pos$5, pname, version, src, passthru, meta };
+      return { [nix.POS]: $pos[4], pname, version, src, passthru, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

@@ -2,10 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 43, 5], ["sha256", 44, 5]], [["description", 117, 5], ["downloadPage", 118, 5], ["homepage", 119, 5], ["sourceProvenance", 120, 5], ["license", 121, 5], ["maintainers", 122, 5], ["platforms", 123, 5]], [["pname", 39, 3], ["version", 40, 3], ["src", 42, 3], ["nativeBuildInputs", 47, 3], ["buildInputs", 48, 3], ["dontUnpack", 55, 3], ["brprintconf_mfcj6510dw_script", 57, 3], ["installPhase", 66, 3], ["meta", 116, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, pkgsi686Linux: false, dpkg: false, makeWrapper: false, coreutils: false, gnused: false, gawk: false, file: false, cups: false, "util-linux": false, xxd: false, runtimeShell: false, ghostscript: false, a2ps: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 43, 5], ["sha256", 44, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 117, 5], ["downloadPage", 118, 5], ["homepage", 119, 5], ["sourceProvenance", 120, 5], ["license", 121, 5], ["maintainers", 122, 5], ["platforms", 123, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 39, 3], ["version", 40, 3], ["src", 42, 3], ["nativeBuildInputs", 47, 3], ["buildInputs", 48, 3], ["dontUnpack", 55, 3], ["brprintconf_mfcj6510dw_script", 57, 3], ["installPhase", 66, 3], ["meta", 116, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const pname = "mfcj6510dwlpr";
       const version = "3.0.0-1";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://download.brother.com/welcome/dlf006614/mfcj6510dwlpr-${version}.i386.deb`),
           sha256: "1ccvx393pqavsgzd8igrzlin5jrsf01d3acyvwqd1d0yz5jgqy6d",
         }))));
@@ -78,7 +76,7 @@ wrapProgram $out/opt/brother/Printers/mfcj6510dw/lpd/filtermfcj6510dw \\
   --prefix PATH ":" ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [coreutils, gnused, file, ghostscript, a2ps]))}
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Brother MFC-J6510DW LPR driver",
         downloadPage: "http://support.brother.com/g/b/downloadlist.aspx?c=us&lang=en&prod=mfcj6510dw_all&os=128",
         homepage: "http://www.brother.com/",
@@ -100,7 +98,7 @@ wrapProgram $out/opt/brother/Printers/mfcj6510dw/lpd/filtermfcj6510dw \\
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

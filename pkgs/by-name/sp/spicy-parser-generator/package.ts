@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5], ["fetchSubmodules", 24, 5]], [["homepage", 60, 5], ["description", 61, 5], ["longDescription", 62, 5], ["license", 71, 5], ["maintainers", 72, 5], ["platforms", 73, 5]], [["pname", 14, 3], ["version", 15, 3], ["strictDeps", 17, 3], ["src", 19, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 35, 3], ["postPatch", 40, 3], ["cmakeFlags", 44, 3], ["preFixup", 48, 3], ["meta", 59, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, makeWrapper: false, python3: false, bison: false, flex: false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5], ["fetchSubmodules", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 60, 5], ["description", 61, 5], ["longDescription", 62, 5], ["license", 71, 5], ["maintainers", 72, 5], ["platforms", 73, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["strictDeps", 17, 3], ["src", 19, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 35, 3], ["postPatch", 40, 3], ["cmakeFlags", 44, 3], ["preFixup", 48, 3], ["meta", 59, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const flex = nix.arg($, "flex");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "spicy",
       version: "1.16.1",
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "zeek",
           repo: "spicy",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -40,7 +38,7 @@ export default nix.lambda((args) => (() => {
 done
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/zeek/spicy",
         description: "C++ parser generator for dissecting protocols & files",
         longDescription: "Spicy is a parser generator that makes it easy to create robust C++\nparsers for network protocols, file formats, and more. Spicy is a bit\nlike a \"yacc for protocols\", but it's much more than that: It's an\nall-in-one system enabling developers to write attributed grammars that\ndescribe both syntax and semantics of an input format using a single,\nunified language. Think of Spicy as a domain-specific scripting language\nfor all your parsing needs.\n",

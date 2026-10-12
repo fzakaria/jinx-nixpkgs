@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["sha256", 24, 5]], [["url", 31, 7], ["sha256", 32, 7]], [["cmdliner", 45, 34]], [["rev-prefix", 48, 40]], [["updateScript", 48, 12]], [["description", 51, 5], ["homepage", 52, 5], ["license", 53, 5], ["maintainers", 54, 5], ["broken", 55, 5]], [["pname", 15, 3], ["version", 16, 3], ["minimalOCamlVersion", 18, 3], ["src", 20, 3], ["patches", 27, 3], ["propagatedBuildInputs", 36, 3], ["doCheck", 43, 3], ["checkInputs", 44, 3], ["passthru", 48, 3], ["meta", 50, 3]]]);
 const formals$1 = { args: { lib: false, buildDunePackage: false, fetchFromGitHub: false, fetchpatch: false, alcotest: false, cmdliner: false, ppx_deriving: false, ppxlib: false, result: false, gitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["sha256", 24, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["url", 31, 7], ["sha256", 32, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["cmdliner", 45, 34]]);
-const pos$4 = nix.positions(here + "/default.nix", [["rev-prefix", 48, 40]]);
-const pos$5 = nix.positions(here + "/default.nix", [["updateScript", 48, 12]]);
-const pos$6 = nix.positions(here + "/default.nix", [["description", 51, 5], ["homepage", 52, 5], ["license", 53, 5], ["maintainers", 54, 5], ["broken", 55, 5]]);
-const pos$7 = nix.positions(here + "/default.nix", [["pname", 15, 3], ["version", 16, 3], ["minimalOCamlVersion", 18, 3], ["src", 20, 3], ["patches", 27, 3], ["propagatedBuildInputs", 36, 3], ["doCheck", 43, 3], ["checkInputs", 44, 3], ["passthru", 48, 3], ["meta", 50, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const result = nix.arg($, "result");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "ppx_deriving_cmdliner",
       version: "0.6.1",
       minimalOCamlVersion: "4.11",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "hammerlab",
           repo: "ppx_deriving_cmdliner",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -37,7 +31,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://patch-diff.githubusercontent.com/raw/hammerlab/ppx_deriving_cmdliner/pull/50.patch",
             sha256: "sha256-FfUfEAsyobwZ99+s5sFAaCE6Xgx7jLr/q79OxDbGcvQ=",
           })))),
@@ -45,14 +39,14 @@ export default nix.lambda((args) => (() => {
       propagatedBuildInputs: nix.thunk(() => [cmdliner, ppx_deriving, ppxlib, result]),
       doCheck: true,
       checkInputs: nix.thunk(() => [
-        nix.thunk(() => nix.app(nix.sel(alcotest, "override"), nix.thunk(() => ({ [nix.POS]: pos$3, cmdliner: cmdliner })))),
+        nix.thunk(() => nix.app(nix.sel(alcotest, "override"), nix.thunk(() => ({ [nix.POS]: $pos[2], cmdliner: cmdliner })))),
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$4, "rev-prefix": "v" })))),
+        [nix.POS]: $pos[4],
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[3], "rev-prefix": "v" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Ppx_deriving plugin for generating command line interfaces from types for OCaml",
         homepage: "https://github.com/hammerlab/ppx_deriving_cmdliner",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

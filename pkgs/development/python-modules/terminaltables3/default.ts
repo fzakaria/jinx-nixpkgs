@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 20, 5], ["repo", 21, 5], ["rev", 23, 5], ["hash", 24, 5]], [["description", 49, 5], ["homepage", 50, 5], ["changelog", 51, 5], ["license", 52, 5], ["maintainers", 53, 5]], [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["src", 19, 3], ["build-system", 27, 3], ["nativeCheckInputs", 29, 3], ["pythonImportsCheck", 38, 3], ["disabledTests", 40, 3], ["meta", 48, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, colorama: false, colorclass: false, fetchFromGitHub: false, "poetry-core": false, "pytest-cov-stub": false, "pytest-xdist": false, pytestCheckHook: false, termcolor: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 20, 5], ["repo", 21, 5], ["rev", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 49, 5], ["homepage", 50, 5], ["changelog", 51, 5], ["license", 52, 5], ["maintainers", 53, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["src", 19, 3], ["build-system", 27, 3], ["nativeCheckInputs", 29, 3], ["pythonImportsCheck", 38, 3], ["disabledTests", 40, 3], ["meta", 48, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "4.0.0-unstable-2024-07-21";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "matthewdeanmartin",
           repo: "terminaltables3",
           rev: "f1c465b36eb9b91a984d8864b21376e7c37075b8",
@@ -42,7 +40,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["terminaltables3"]);
       const disabledTests = nix.thunk(() => ["test_color", "test_colors", "test_height", "test_width"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Generate simple tables in terminals from a nested list of strings",
         homepage: "https://github.com/matthewdeanmartin/terminaltables3",
         changelog: nix.thunk(() => nix.str`https://github.com/matthewdeanmartin/terminaltables3/blob/${nix.sel(src, "rev")}/CHANGELOG.md`),
@@ -53,7 +51,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

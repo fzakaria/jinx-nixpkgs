@@ -2,22 +2,20 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/passthru-tests.nix", [[["libraries", 10, 7], ["doCheck", 11, 7]], [["buildCommand", 21, 9]], [["basic_shapes", 16, 3], ["cffi_binding", 18, 3]]]);
 const formals$1 = { args: { raylib: false, writers: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/passthru-tests.nix", [["libraries", 10, 7], ["doCheck", 11, 7]]);
-const pos$2 = nix.positions(here + "/passthru-tests.nix", [["buildCommand", 21, 9]]);
-const pos$3 = nix.positions(here + "/passthru-tests.nix", [["basic_shapes", 16, 3], ["cffi_binding", 18, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const raylib = nix.arg($, "raylib");
   const writers = nix.arg($, "writers");
   const src = nix.thunk(() => nix.sel(raylib, "src"));
-  const writeTest = (name) => (path) => nix.app(nix.sel(writers, "writePython3Bin"), name, nix.thunk(() => ({ [nix.POS]: pos$1, libraries: nix.thunk(() => [raylib]), doCheck: false })), nix.thunk(() => nix.builtins.readFile(nix.thunk(() => nix.add(src, path)))));
+  const writeTest = (name) => (path) => nix.app(nix.sel(writers, "writePython3Bin"), name, nix.thunk(() => ({ [nix.POS]: $pos[0], libraries: nix.thunk(() => [raylib]), doCheck: false })), nix.thunk(() => nix.builtins.readFile(nix.thunk(() => nix.add(src, path)))));
   return {
-    [nix.POS]: pos$3,
+    [nix.POS]: $pos[2],
     basic_shapes: nix.thunk(() => nix.app(writeTest, "basic_shapes", "/examples/shapes/shapes_basic_shapes.py")),
     cffi_binding: nix.thunk(() => nix.app(nix.sel(nix.app(writeTest, "cffi_binding", "/tests/test_static_with_only_api_from_dynamic.py"), "overrideAttrs"), (prev) => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         buildCommand: nix.thunk(() => nix.add(nix.sel(prev, "buildCommand"), nix.str`substituteInPlace $out/bin/cffi_binding \\
   --replace-fail "examples/models/resources/heightmap.png" \\
     "${src}/examples/models/resources/heightmap.png"

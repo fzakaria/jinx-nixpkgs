@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 49, 5], ["repo", 50, 5], ["tag", 51, 5], ["hash", 52, 5]], [["url", 61, 7], ["hash", 62, 7]], [["url", 67, 7], ["hash", 68, 7]], [["url", 73, 7], ["hash", 74, 7]], [["IMGUI_BUILD_OPENGL2_BINDING", 113, 23]], [["NIX_CFLAGS_COMPILE", 141, 7]], [["description", 157, 5], ["homepage", 158, 5], ["changelog", 159, 5], ["license", 160, 5], ["maintainers", 161, 5], ["platforms", 162, 5]], [["pname", 45, 3], ["version", 46, 3], ["src", 48, 3], ["patches", 55, 3], ["postPatch", 79, 3], ["buildFlags", 84, 3], ["nativeBuildInputs", 92, 3], ["propagatedBuildInputs", 102, 3], ["checkInputs", 131, 3], ["nativeCheckInputs", 136, 3], ["env", 141, 3], ["doCheck", 143, 3], ["pythonImportsCheck", 145, 3], ["cmakeFlags", 147, 3], ["meta", 156, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch: false, pythonSupport: true, python3Packages: false, cmake: false, doxygen: false, "pkg-config": false, assimp: false, blas: false, boost: false, bullet: false, eigen: false, fcl: false, flann: false, fmt: false, libglut: false, imgui: false, ipopt: false, lapack: false, libGL: false, libGLU: false, libccd: false, nlopt: false, ode: false, openscenegraph: false, pagmo2: false, "tinyxml-2": false, urdfdom: false, "urdfdom-headers": false, gbenchmark: false, gtest: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 49, 5], ["repo", 50, 5], ["tag", 51, 5], ["hash", 52, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 61, 7], ["hash", 62, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 67, 7], ["hash", 68, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["url", 73, 7], ["hash", 74, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["IMGUI_BUILD_OPENGL2_BINDING", 113, 23]]);
-const pos$6 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 141, 7]]);
-const pos$7 = nix.positions(here + "/package.nix", [["description", 157, 5], ["homepage", 158, 5], ["changelog", 159, 5], ["license", 160, 5], ["maintainers", 161, 5], ["platforms", 162, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 45, 3], ["version", 46, 3], ["src", 48, 3], ["patches", 55, 3], ["postPatch", 79, 3], ["buildFlags", 84, 3], ["nativeBuildInputs", 92, 3], ["propagatedBuildInputs", 102, 3], ["checkInputs", 131, 3], ["nativeCheckInputs", 136, 3], ["env", 141, 3], ["doCheck", 143, 3], ["pythonImportsCheck", 145, 3], ["cmakeFlags", 147, 3], ["meta", 156, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -48,11 +41,11 @@ export default nix.lambda((args) => (() => {
   const gbenchmark = nix.arg($, "gbenchmark");
   const gtest = nix.arg($, "gtest");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "dartsim",
       version: "6.15.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "dartsim",
           repo: "dart",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -61,17 +54,17 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [
         nix.path(here, "./disable-failing-tests.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/dartsim/dart/commit/c18c48a1b0beff6660b9923e8a6f8f09a86a6039.patch",
             hash: "sha256-i8Ga0FGVQ3OMprEoGEwVy0j139wjnmR6ABxr/3syhzw=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: "https://github.com/dartsim/dart/commit/940c425c19e50a9ded2629422db54785802143af.patch",
             hash: "sha256-T3992uD0Z36tTxlcFaikVaLt08N9EP4gOHP0Y2AFBzQ=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             url: "https://github.com/dartsim/dart/commit/6f3d6086780a311ef6e1928697f56a4d845ae028.patch",
             hash: "sha256-sfbTm9C74fl7lVnGPZ1h3cvKXILHhkeNYxd/BpSQvg8=",
           })))),
@@ -94,7 +87,7 @@ export default nix.lambda((args) => (() => {
         flann,
         fmt,
         libglut,
-        nix.thunk(() => nix.app(nix.sel(imgui, "override"), nix.thunk(() => ({ [nix.POS]: pos$5, IMGUI_BUILD_OPENGL2_BINDING: true })))),
+        nix.thunk(() => nix.app(nix.sel(imgui, "override"), nix.thunk(() => ({ [nix.POS]: $pos[4], IMGUI_BUILD_OPENGL2_BINDING: true })))),
         ipopt,
         lapack,
         libGL,
@@ -114,7 +107,7 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.sel(python3Packages, "pythonImportsCheckHook")),
         ]))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), "-Wno-error=deprecated-literal-operator")),
       })),
       doCheck: true,
@@ -128,7 +121,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "DART_USE_SYSTEM_PYBIND11", true)),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "DART: Dynamic Animation and Robotics Toolkit",
         homepage: "https://github.com/dartsim/dart",
         changelog: nix.thunk(() => nix.str`https://github.com/dartsim/dart/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

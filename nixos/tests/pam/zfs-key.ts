@@ -2,52 +2,43 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/zfs-key.nix", [[["forceImportRoot", 14, 16]], [["supportedFilesystems", 13, 12], ["zfs", 14, 12]], [["hostId", 16, 18]], [["enable", 18, 24]], [["zfs", 18, 20]], [["pam", 18, 16]], [["isNormalUser", 22, 11], ["password", 23, 11]], [["isNormalUser", 26, 11], ["password", 27, 11]], [["alice", 21, 9], ["bob", 25, 9]], [["users", 20, 13]], [["boot", 13, 7], ["networking", 16, 7], ["security", 18, 7], ["users", 20, 7]], [["machine", 10, 9]], [["name", 8, 3], ["nodes", 10, 3], ["testScript", 32, 3]]]);
 const formals$1 = { args: {  }, ellipsis: true };
 const formals$2 = { args: {  }, ellipsis: true };
-const pos$1 = nix.positions(here + "/zfs-key.nix", [["forceImportRoot", 14, 16]]);
-const pos$2 = nix.positions(here + "/zfs-key.nix", [["supportedFilesystems", 13, 12], ["zfs", 14, 12]]);
-const pos$3 = nix.positions(here + "/zfs-key.nix", [["hostId", 16, 18]]);
-const pos$4 = nix.positions(here + "/zfs-key.nix", [["enable", 18, 24]]);
-const pos$5 = nix.positions(here + "/zfs-key.nix", [["zfs", 18, 20]]);
-const pos$6 = nix.positions(here + "/zfs-key.nix", [["pam", 18, 16]]);
-const pos$7 = nix.positions(here + "/zfs-key.nix", [["isNormalUser", 22, 11], ["password", 23, 11]]);
-const pos$8 = nix.positions(here + "/zfs-key.nix", [["isNormalUser", 26, 11], ["password", 27, 11]]);
-const pos$9 = nix.positions(here + "/zfs-key.nix", [["alice", 21, 9], ["bob", 25, 9]]);
-const pos$10 = nix.positions(here + "/zfs-key.nix", [["users", 20, 13]]);
-const pos$11 = nix.positions(here + "/zfs-key.nix", [["boot", 13, 7], ["networking", 16, 7], ["security", 18, 7], ["users", 20, 7]]);
-const pos$12 = nix.positions(here + "/zfs-key.nix", [["machine", 10, 9]]);
 const formals$3 = { args: { nodes: false }, ellipsis: true };
-const pos$13 = nix.positions(here + "/zfs-key.nix", [["name", 8, 3], ["nodes", 10, 3], ["testScript", 32, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const userPassword = "password";
   const mismatchPass = "mismatch";
   return {
-    [nix.POS]: pos$13,
+    [nix.POS]: $pos[12],
     name: "pam-zfs-key",
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$12,
+      [nix.POS]: $pos[11],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          [nix.POS]: pos$11,
+          [nix.POS]: $pos[10],
           boot: nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             supportedFilesystems: nix.thunk(() => ["zfs"]),
-            zfs: nix.thunk(() => ({ [nix.POS]: pos$1, forceImportRoot: false })),
+            zfs: nix.thunk(() => ({ [nix.POS]: $pos[0], forceImportRoot: false })),
           })),
-          networking: nix.thunk(() => ({ [nix.POS]: pos$3, hostId: "12345678" })),
+          networking: nix.thunk(() => ({ [nix.POS]: $pos[2], hostId: "12345678" })),
           security: nix.thunk(() => ({
-            [nix.POS]: pos$6,
-            pam: nix.thunk(() => ({ [nix.POS]: pos$5, zfs: nix.thunk(() => ({ [nix.POS]: pos$4, enable: true })) })),
+            [nix.POS]: $pos[5],
+            pam: nix.thunk(() => ({
+              [nix.POS]: $pos[4],
+              zfs: nix.thunk(() => ({ [nix.POS]: $pos[3], enable: true })),
+            })),
           })),
           users: nix.thunk(() => ({
-            [nix.POS]: pos$10,
+            [nix.POS]: $pos[9],
             users: nix.thunk(() => ({
-              [nix.POS]: pos$9,
-              alice: nix.thunk(() => ({ [nix.POS]: pos$7, isNormalUser: true, password: userPassword })),
-              bob: nix.thunk(() => ({ [nix.POS]: pos$8, isNormalUser: true, password: userPassword })),
+              [nix.POS]: $pos[8],
+              alice: nix.thunk(() => ({ [nix.POS]: $pos[6], isNormalUser: true, password: userPassword })),
+              bob: nix.thunk(() => ({ [nix.POS]: $pos[7], isNormalUser: true, password: userPassword })),
             })),
           })),
         };

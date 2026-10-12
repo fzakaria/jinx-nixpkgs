@@ -2,13 +2,13 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/configuration-ghc-9.0.x.nix", [[["array", 5, 3], ["base", 6, 3], ["binary", 7, 3], ["bytestring", 8, 3], ["Cabal", 9, 3], ["containers", 10, 3], ["deepseq", 11, 3], ["directory", 12, 3], ["exceptions", 13, 3], ["filepath", 14, 3], ["ghc-bignum", 15, 3], ["ghc-boot", 16, 3], ["ghc-boot-th", 17, 3], ["ghc-compact", 18, 3], ["ghc-heap", 19, 3], ["ghc-prim", 20, 3], ["ghci", 21, 3], ["haskeline", 22, 3], ["hpc", 23, 3], ["integer-gmp", 24, 3], ["libiserv", 25, 3], ["mtl", 26, 3], ["parsec", 27, 3], ["pretty", 28, 3], ["process", 29, 3], ["rts", 30, 3], ["stm", 31, 3], ["template-haskell", 32, 3], ["terminfo", 33, 3], ["text", 34, 3], ["time", 35, 3], ["transformers", 36, 3], ["unix", 37, 3], ["xhtml", 38, 3], ["Win32", 39, 3]]]);
 const formals$1 = { args: {  }, ellipsis: false };
-const pos$1 = nix.positions(here + "/configuration-ghc-9.0.x.nix", [["array", 5, 3], ["base", 6, 3], ["binary", 7, 3], ["bytestring", 8, 3], ["Cabal", 9, 3], ["containers", 10, 3], ["deepseq", 11, 3], ["directory", 12, 3], ["exceptions", 13, 3], ["filepath", 14, 3], ["ghc-bignum", 15, 3], ["ghc-boot", 16, 3], ["ghc-boot-th", 17, 3], ["ghc-compact", 18, 3], ["ghc-heap", 19, 3], ["ghc-prim", 20, 3], ["ghci", 21, 3], ["haskeline", 22, 3], ["hpc", 23, 3], ["integer-gmp", 24, 3], ["libiserv", 25, 3], ["mtl", 26, 3], ["parsec", 27, 3], ["pretty", 28, 3], ["process", 29, 3], ["rts", 30, 3], ["stm", 31, 3], ["template-haskell", 32, 3], ["terminfo", 33, 3], ["text", 34, 3], ["time", 35, 3], ["transformers", 36, 3], ["unix", 37, 3], ["xhtml", 38, 3], ["Win32", 39, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   return (self) => (super$) => ({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     array: null,
     base: null,
     binary: null,

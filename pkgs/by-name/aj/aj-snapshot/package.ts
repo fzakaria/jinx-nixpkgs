@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 16, 5], ["sha256", 17, 5]], [["description", 30, 5], ["longDescription", 31, 5], ["homepage", 38, 5], ["license", 39, 5], ["maintainers", 40, 5], ["platforms", 41, 5], ["mainProgram", 42, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["doCheck", 20, 3], ["nativeBuildInputs", 22, 3], ["buildInputs", 23, 3], ["meta", 29, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, "alsa-lib": false, jack2: false, minixml: false, "pkg-config": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 16, 5], ["sha256", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 30, 5], ["longDescription", 31, 5], ["homepage", 38, 5], ["license", 39, 5], ["maintainers", 40, 5], ["platforms", 41, 5], ["mainProgram", 42, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["doCheck", 20, 3], ["nativeBuildInputs", 22, 3], ["buildInputs", 23, 3], ["meta", 29, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const minixml = nix.arg($, "minixml");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "aj-snapshot",
       version: "0.9.9",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/aj-snapshot/aj-snapshot-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           sha256: "0z8wd5yvxdmw1h1rj6km9h01xd4xmp4d86gczlix7hsc7zrf0wil",
         })))),
@@ -29,7 +27,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [alsa_lib, minixml, jack2]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Tool for storing/restoring JACK and/or ALSA connections to/from cml files",
         longDescription: "Aj-snapshot is a small program that can be used to make snapshots of the connections made between JACK and/or ALSA clients.\nBecause JACK can provide both audio and MIDI support to programs, aj-snapshot can store both types of connections for JACK.\nALSA, on the other hand, only provides routing facilities for MIDI clients.\nYou can also run aj-snapshot in daemon mode if you want to have your connections continually restored.\n",
         homepage: "http://aj-snapshot.sourceforge.net/",

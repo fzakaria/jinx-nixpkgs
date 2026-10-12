@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]], [["pname", 28, 26], ["version", 28, 32], ["src", 28, 40], ["pnpm", 29, 5], ["fetcherVersion", 30, 5], ["hash", 31, 5]], [["rule", 60, 7], ["testFile", 61, 7]], [["tests", 59, 5], ["updateScript", 63, 5]], [["description", 67, 5], ["homepage", 68, 5], ["changelog", 69, 5], ["license", 70, 5], ["maintainers", 71, 5], ["platforms", 72, 5]], [["pname", 15, 3], ["version", 16, 3], ["__structuredAttrs", 17, 3], ["strictDeps", 18, 3], ["src", 20, 3], ["pnpmDeps", 27, 3], ["nativeBuildInputs", 34, 3], ["buildPhase", 40, 3], ["installPhase", 48, 3], ["passthru", 58, 3], ["meta", 66, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchPnpmDeps: false, pnpmConfigHook: false, pnpm_10: false, nodejs: false, textlint: false, "textlint-rule-preset-ai-words-ja": false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 28, 26], ["version", 28, 32], ["src", 28, 40], ["pnpm", 29, 5], ["fetcherVersion", 30, 5], ["hash", 31, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["rule", 60, 7], ["testFile", 61, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 59, 5], ["updateScript", 63, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 67, 5], ["homepage", 68, 5], ["changelog", 69, 5], ["license", 70, 5], ["maintainers", 71, 5], ["platforms", 72, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["__structuredAttrs", 17, 3], ["strictDeps", 18, 3], ["src", 20, 3], ["pnpmDeps", 27, 3], ["nativeBuildInputs", 34, 3], ["buildPhase", 40, 3], ["installPhase", 48, 3], ["passthru", 58, 3], ["meta", 66, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,20 +18,20 @@ export default nix.lambda((args) => (() => {
   const textlint_rule_preset_ai_words_ja = nix.arg($, "textlint-rule-preset-ai-words-ja");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "textlint-rule-preset-ai-words-ja",
       version: "1.2.2",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "p1ass",
           repo: "textlint-rule-preset-ai-words-ja",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-uQmcThe2eSFi8iOstUaA58PX/rvcLKyGGLXHwI/9gfc=",
         })))),
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -48,16 +43,16 @@ export default nix.lambda((args) => (() => {
       buildPhase: "runHook preBuild\n\npnpm build\n\nrunHook postBuild\n",
       installPhase: "runHook preInstall\n\npnpm install --offline --frozen-lockfile --ignore-scripts --prod\nmkdir -p $out/lib/node_modules/textlint-rule-preset-ai-words-ja\ncp -r lib node_modules package.json $out/lib/node_modules/textlint-rule-preset-ai-words-ja\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => nix.app(nix.sel(textlint, "testPackages"), nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             rule: textlint_rule_preset_ai_words_ja,
             testFile: nix.path(here, "./test.md"),
           })))),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Textlint preset that detects words and phrases commonly found in AI-generated Japanese",
         homepage: "https://github.com/p1ass/textlint-rule-preset-ai-words-ja",
         changelog: nix.thunk(() => nix.str`https://github.com/p1ass/textlint-rule-preset-ai-words-ja/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

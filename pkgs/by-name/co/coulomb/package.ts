@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]], [["pname", 61, 26], ["data", 62, 5]], [["updateScript", 92, 12]], [["description", 95, 5], ["homepage", 96, 5], ["license", 97, 5], ["maintainers", 98, 5], ["platforms", 102, 5], ["mainProgram", 103, 5]], [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["postPatch", 34, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 48, 3], ["mitmCache", 60, 3], ["gradleFlags", 65, 3], ["dontWrapGApps", 67, 3], ["doCheck", 69, 3], ["installPhase", 71, 3], ["postFixup", 84, 3], ["passthru", 92, 3], ["meta", 94, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, gradle: false, jdk21_headless: false, fetchFromGitHub: false, stripJavaArchivesHook: false, wrapGAppsHook4: false, "nix-update-script": false, makeWrapper: false, "pkg-config": false, gtk4: false, libadwaita: false, glib: false, pango: false, "gdk-pixbuf": false, atk: false, cairo: false, "adwaita-icon-theme": false, librsvg: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 61, 26], ["data", 62, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 92, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 95, 5], ["homepage", 96, 5], ["license", 97, 5], ["maintainers", 98, 5], ["platforms", 102, 5], ["mainProgram", 103, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["postPatch", 34, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 48, 3], ["mitmCache", 60, 3], ["gradleFlags", 65, 3], ["dontWrapGApps", 67, 3], ["doCheck", 69, 3], ["installPhase", 71, 3], ["postFixup", 84, 3], ["passthru", 92, 3], ["meta", 94, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,11 +27,11 @@ export default nix.lambda((args) => (() => {
   const adwaita_icon_theme = nix.arg($, "adwaita-icon-theme");
   const librsvg = nix.arg($, "librsvg");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "coulomb",
       version: "0.6.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "hamza-algohary",
           repo: "Coulomb",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -62,7 +58,7 @@ export default nix.lambda((args) => (() => {
         librsvg,
       ]),
       mitmCache: nix.thunk(() => nix.app(nix.sel(gradle, "fetchDeps"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           data: nix.path(here, "./deps.json"),
         })))),
@@ -77,11 +73,11 @@ export default nix.lambda((args) => (() => {
 \${gappsWrapperArgs[@]}
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Simple and beautiful circuit simulator app",
         homepage: "https://github.com/hamza-algohary/Coulomb",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

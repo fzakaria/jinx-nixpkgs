@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["sha256", 18, 5]], [["updateScript", 51, 12]], [["description", 54, 5], ["homepage", 55, 5], ["license", 56, 5], ["maintainers", 57, 5], ["mainProgram", 58, 5], ["platforms", 59, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["postPatch", 20, 3], ["buildInputs", 27, 3], ["projectFile", 29, 3], ["executables", 30, 3], ["nugetDeps", 34, 3], ["dotnetFlags", 36, 3], ["dotnet-sdk", 37, 3], ["dotnet-runtime", 38, 3], ["makeWrapperArgs", 41, 3], ["passthru", 51, 3], ["meta", 53, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, dotnetCorePackages: false, buildDotnetModule: false, ffmpeg: false, which: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["sha256", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 51, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 54, 5], ["homepage", 55, 5], ["license", 56, 5], ["maintainers", 57, 5], ["mainProgram", 58, 5], ["platforms", 59, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["postPatch", 20, 3], ["buildInputs", 27, 3], ["projectFile", 29, 3], ["executables", 30, 3], ["nugetDeps", 34, 3], ["dotnetFlags", 36, 3], ["dotnet-sdk", 37, 3], ["dotnet-runtime", 38, 3], ["makeWrapperArgs", 41, 3], ["passthru", 51, 3], ["meta", 53, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname = "ersatztv";
       const version = "26.9.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ErsatzTV",
           repo: "legacy",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -40,9 +37,9 @@ export default nix.lambda((args) => (() => {
         ":",
         nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [ffmpeg, which]))}`),
       ]);
-      const passthru = nix.thunk(() => ({ [nix.POS]: pos$2, updateScript: nix.path(here, "./update.sh") }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: $pos[1], updateScript: nix.path(here, "./update.sh") }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Stream custom live channels using your own media",
         homepage: "https://ersatztv.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "zlib")),
@@ -54,7 +51,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(dotnet_runtime, "meta", "platforms")),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

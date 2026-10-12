@@ -2,11 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 14, 7], ["repo", 15, 7], ["tag", 16, 7], ["hash", 17, 7]], [["description", 28, 7], ["homepage", 29, 7], ["license", 30, 7], ["longDescription", 31, 7], ["mainProgram", 35, 7], ["maintainers", 36, 7], ["teams", 37, 7]], [["pname", 10, 5], ["version", 11, 5], ["src", 13, 5], ["vendorHash", 20, 5], ["composerStrictValidation", 22, 5], ["doInstallCheck", 23, 5], ["nativeInstallCheckInputs", 24, 5], ["versionCheckProgramArg", 25, 5], ["meta", 27, 5]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, php: false, versionCheckHook: false }, ellipsis: false };
 const formals$2 = { args: { enabled: false, all: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 14, 7], ["repo", 15, 7], ["tag", 16, 7], ["hash", 17, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 28, 7], ["homepage", 29, 7], ["license", 30, 7], ["longDescription", 31, 7], ["mainProgram", 35, 7], ["maintainers", 36, 7], ["teams", 37, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 10, 5], ["version", 11, 5], ["src", 13, 5], ["vendorHash", 20, 5], ["composerStrictValidation", 22, 5], ["doInstallCheck", 23, 5], ["nativeInstallCheckInputs", 24, 5], ["versionCheckProgramArg", 25, 5], ["meta", 27, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +21,11 @@ export default nix.lambda((args) => (() => {
         return [nix.thunk(() => nix.lookup(w, "ast"))];
       })());
     })(), formals$2)), "buildComposerProject2"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "phan",
       version: "6.0.7",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "phan",
           repo: "phan",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -39,7 +37,7 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       versionCheckProgramArg: "--version",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Static analyzer for PHP",
         homepage: "https://github.com/phan/phan",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

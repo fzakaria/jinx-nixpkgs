@@ -2,14 +2,8 @@
 import * as nix from "../../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5]], [["name", 27, 5], ["src", 28, 26], ["hash", 29, 5]], [["npmDeps", 26, 7]], [["extraArgs", 56, 40]], [["updateScript", 56, 5], ["eafPythonDeps", 57, 5]], [["description", 61, 5], ["homepage", 62, 5], ["license", 63, 5], ["maintainers", 64, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["env", 26, 3], ["nativeBuildInputs", 32, 3], ["postBuild", 37, 3], ["files", 41, 3], ["postInstall", 48, 3], ["passthru", 55, 3], ["meta", 60, 3]]]);
 const formals$1 = { args: { lib: false, melpaBuild: false, fetchFromGitHub: false, nodejs: false, fetchNpmDeps: false, npmHooks: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 27, 5], ["src", 28, 26], ["hash", 29, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["npmDeps", 26, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["extraArgs", 56, 40]]);
-const pos$5 = nix.positions(here + "/package.nix", [["updateScript", 56, 5], ["eafPythonDeps", 57, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 61, 5], ["homepage", 62, 5], ["license", 63, 5], ["maintainers", 64, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["env", 26, 3], ["nativeBuildInputs", 32, 3], ["postBuild", 37, 3], ["files", 41, 3], ["postInstall", 48, 3], ["passthru", 55, 3], ["meta", 60, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,20 +15,20 @@ export default nix.lambda((args) => (() => {
   const npmHooks = nix.arg($, "npmHooks");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(melpaBuild, (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "eaf-js-video-player",
       version: "0-unstable-2025-07-26",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "emacs-eaf",
           repo: "eaf-js-video-player",
           rev: "6e4e938c42b265e108a0474a22813322ff2db124",
           hash: "sha256-tyovHnVX1kkom8W56GI/+PfaQSoCiB4OJj535Dbzah0=",
         })))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         npmDeps: nix.thunk(() => nix.app(fetchNpmDeps, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-npm-deps`),
             src: nix.thunk(() => nix.attr(finalAttrs, "src")),
             hash: "sha256-grLuq11Sgx6jYCDjWch1AYuL8d/NCsr9BmAPvEgrfG8=",
@@ -49,12 +43,12 @@ cp -r node_modules $LISPDIR/
 cp -r dist $LISPDIR/
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$4, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
+        [nix.POS]: $pos[4],
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: $pos[3], extraArgs: nix.thunk(() => ["--version=branch"]) })))),
         eafPythonDeps: (ps) => [],
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "EAF Video Player (JS) application",
         homepage: "https://github.com/emacs-eaf/eaf-js-video-player",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

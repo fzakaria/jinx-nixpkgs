@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["info", 10, 63]], [["electron-unwrapped", 12, 41]]]);
 const formals$1 = { args: { lib: false, callPackage: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["info", 10, 63]]);
-const pos$2 = nix.positions(here + "/default.nix", [["electron-unwrapped", 12, 41]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -12,8 +11,8 @@ export default nix.lambda((args) => (() => {
   const callPackage = nix.arg($, "callPackage");
   const versions = nix.thunk(() => nix.app(nix.sel(lib, "importJSON"), nix.path(here, "./info.json")));
   return nix.app(nix.sel(lib, "mapAttrs'"), (version) => (info) => nix.app(nix.sel(lib, "nameValuePair"), nix.thunk(() => nix.str`electron_${version}`), nix.thunk(() => (() => {
-        const electron_unwrapped = nix.thunk(() => nix.app(callPackage, nix.path(here, "./common.nix"), nix.thunk(() => ({ [nix.POS]: pos$1, info: info }))));
-        return nix.app(callPackage, nix.path(here, "./wrapper.nix"), nix.thunk(() => ({ [nix.POS]: pos$2, "electron-unwrapped": electron_unwrapped })));
+        const electron_unwrapped = nix.thunk(() => nix.app(callPackage, nix.path(here, "./common.nix"), nix.thunk(() => ({ [nix.POS]: $pos[0], info: info }))));
+        return nix.app(callPackage, nix.path(here, "./wrapper.nix"), nix.thunk(() => ({ [nix.POS]: $pos[1], "electron-unwrapped": electron_unwrapped })));
       })())), versions);
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 20, 5], ["sha256", 21, 5]], [["name", 27, 7], ["url", 28, 7], ["sha256", 29, 7]], [["homepage", 50, 5], ["description", 51, 5], ["mainProgram", 52, 5], ["license", 53, 5], ["platforms", 54, 5], ["maintainers", 55, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 19, 3], ["patches", 24, 3], ["strictDeps", 33, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 42, 3], ["meta", 49, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, fetchpatch: false, "pkg-config": false, json_c: false, openssl: false, check: false, file: false, help2man: false, which: false, gengetopt: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 20, 5], ["sha256", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 27, 7], ["url", 28, 7], ["sha256", 29, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 50, 5], ["description", 51, 5], ["mainProgram", 52, 5], ["license", 53, 5], ["platforms", 54, 5], ["maintainers", 55, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 19, 3], ["patches", 24, 3], ["strictDeps", 33, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 42, 3], ["meta", 49, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,17 +20,17 @@ export default nix.lambda((args) => (() => {
   const which = nix.arg($, "which");
   const gengetopt = nix.arg($, "gengetopt");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "libu2f-server",
       version: "1.1.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://developers.yubico.com/libu2f-server/Releases/libu2f-server-${nix.sel(finalAttrs, "version")}.tar.xz`),
           sha256: "0xx296nmmqa57w0v5p2kasl5zr1ms2gh6qi4lhv6xvzbmjp3rkcd",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "json-c-0.14-support.patch",
             url: "https://github.com/Yubico/libu2f-server/commit/f7c4983b31909299c47bf9b2627c84b6bfe225de.patch",
             sha256: "10q66w3paii1yhfdmjskpip078fk9p3sjllbqx1yx71qbjki55b0",
@@ -43,7 +40,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [gengetopt, help2man, pkg_config, which]),
       buildInputs: nix.thunk(() => [json_c, openssl, check, file]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://developers.yubico.com/libu2f-server/",
         description: "C library that implements the server-side of the U2F protocol",
         mainProgram: "u2f-server",

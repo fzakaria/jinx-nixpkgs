@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 18, 5], ["tag", 19, 5], ["hash", 20, 5]], [["verilog", 40, 7]], [["pname", 63, 9], ["version", 64, 30], ["propagatedBuildInputs", 66, 9], ["dontUnpack", 68, 9], ["installPhase", 70, 9], ["meta", 75, 30]], [["tests", 39, 5], ["plugins", 48, 5], ["withPlugins", 49, 5]], [["description", 80, 5], ["longDescription", 81, 5], ["homepage", 85, 5], ["changelog", 86, 5], ["license", 87, 5], ["platforms", 88, 5], ["broken", 89, 5], ["maintainers", 90, 5], ["mainProgram", 91, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 23, 3], ["buildInputs", 27, 3], ["doCheck", 32, 3], ["postInstall", 34, 3], ["passthru", 38, 3], ["meta", 79, 3]]]);
 const formals$1 = { args: { callPackage: false, fetchgit: false, installShellFiles: false, lib: false, readline: false, runCommand: false, stdenv: false, termcap: false, writeScript: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 18, 5], ["tag", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["verilog", 40, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 63, 9], ["version", 64, 30], ["propagatedBuildInputs", 66, 9], ["dontUnpack", 68, 9], ["installPhase", 70, 9], ["meta", 75, 30]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 39, 5], ["plugins", 48, 5], ["withPlugins", 49, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 80, 5], ["longDescription", 81, 5], ["homepage", 85, 5], ["changelog", 86, 5], ["license", 87, 5], ["platforms", 88, 5], ["broken", 89, 5], ["maintainers", 90, 5], ["mainProgram", 91, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 23, 3], ["buildInputs", 27, 3], ["doCheck", 32, 3], ["postInstall", 34, 3], ["passthru", 38, 3], ["meta", 79, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const termcap = nix.arg($, "termcap");
   const writeScript = nix.arg($, "writeScript");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "gnucap",
       version: "20260729",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://https.git.savannah.gnu.org/git/gnucap.git",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-l9FA/7Kl8MgbrbWMQPplo5ohvKcNeriJEgLzZrUTEw8=",
@@ -36,9 +31,9 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       postInstall: "installManPage man/*\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           verilog: nix.thunk(() => nix.app(runCommand, "gnucap-verilog-test", nix.thunk(() => ({})), nix.thunk(() => nix.str`echo "attach mgsim" | ${nix.app(nix.sel(finalAttrs, "finalPackage", "withPlugins"), (p) => [nix.thunk(() => nix.sel(p, "verilog"))])}/bin/gnucap -a msgsim > $out
 cat $out | grep "verilog: already installed"
 `))),
@@ -54,7 +49,7 @@ done
 ${nix.app(nix.sel(lib, "getExe"), gnucap)}
 `)));
           return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               pname: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-with-plugins`),
               version: nix.thunk(() => nix.attr(finalAttrs, "version")),
               propagatedBuildInputs: selectedPlugins,
@@ -67,7 +62,7 @@ cp ${wrapper} $out/bin/gnucap
         })(),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Gnu Circuit Analysis Package",
         longDescription: "Gnucap is a modern general purpose circuit simulator with several advantages over Spice derivatives.\nIt performs nonlinear dc and transient analyses, fourier analysis, and ac analysis.\n",
         homepage: "http://www.gnucap.org/",

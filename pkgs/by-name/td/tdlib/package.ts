@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 20, 5], ["runtimeInputs", 22, 5], ["text", 27, 5]], [["owner", 44, 5], ["repo", 45, 5], ["rev", 50, 5], ["hash", 51, 5]], [["updateScript", 95, 12]], [["description", 98, 5], ["homepage", 99, 5], ["license", 100, 5], ["platforms", 101, 5], ["maintainers", 102, 5]], [["pname", 40, 3], ["version", 41, 3], ["src", 43, 3], ["buildInputs", 54, 3], ["nativeBuildInputs", 60, 3], ["depsBuildBuild", 65, 3], ["preConfigure", 67, 3], ["cmakeFlags", 78, 3], ["postPatch", 83, 3], ["passthru", 95, 3], ["meta", 97, 3]]]);
 const formals$1 = { args: { fetchFromGitHub: false, gperf: false, openssl: false, readline: false, zlib: false, cmake: false, lib: false, stdenv: false, writeShellApplication: false, "common-updater-scripts": false, jq: false, buildPackages: false, tde2eOnly: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 20, 5], ["runtimeInputs", 22, 5], ["text", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 44, 5], ["repo", 45, 5], ["rev", 50, 5], ["hash", 51, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 95, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 98, 5], ["homepage", 99, 5], ["license", 100, 5], ["platforms", 101, 5], ["maintainers", 102, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 40, 3], ["version", 41, 3], ["src", 43, 3], ["buildInputs", 54, 3], ["nativeBuildInputs", 60, 3], ["depsBuildBuild", 65, 3], ["preConfigure", 67, 3], ["cmakeFlags", 78, 3], ["postPatch", 83, 3], ["passthru", 95, 3], ["meta", 97, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,17 +21,17 @@ export default nix.lambda((args) => (() => {
   const buildPackages = nix.arg($, "buildPackages");
   const tde2eOnly = nix.argOr($, "tde2eOnly", () => false);
   const updateScript = nix.thunk(() => nix.app(writeShellApplication, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: "update-tdlib",
       runtimeInputs: nix.thunk(() => [jq, common_updater_scripts]),
       text: "commit_msg=\"^Update version to (?<v>\\\\\\\\d+.\\\\\\\\d+.\\\\\\\\d+)\\\\\\\\.$\"\ncommit=$(curl -s \"https://api.github.com/repos/tdlib/td/commits?path=CMakeLists.txt\" | jq -c \"map(select(.commit.message | test(\\\"${commit_msg}\\\"))) | first\")\n\nrev=$(echo \"$commit\" | jq -r \".sha\")\nversion=$(echo \"$commit\" | jq -r \".commit.message | capture(\\\"${commit_msg}\\\") | .v\")\n\nupdate-source-version tdlib \"$version\" --rev=\"$rev\"\n",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: nix.thunk(() => (nix.asBool(tde2eOnly) ? "tde2e" : "tdlib")),
       version: "1.8.67",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "tdlib",
           repo: "td",
           rev: "bc9c263e2bfee06aaab41e82db51a103376030bc",
@@ -50,11 +46,11 @@ export default nix.lambda((args) => (() => {
       ]),
       postPatch: nix.thunk(() => nix.add("substituteInPlace CMake/GeneratePkgConfig.cmake \\\n  --replace 'function(generate_pkgconfig' \\\n            'include(GNUInstallDirs)\n             function(generate_pkgconfig' \\\n  --replace '\\$'{prefix}/'$'{CMAKE_INSTALL_LIBDIR} '$'{CMAKE_INSTALL_FULL_LIBDIR} \\\n  --replace '\\$'{prefix}/'$'{CMAKE_INSTALL_INCLUDEDIR} '$'{CMAKE_INSTALL_FULL_INCLUDEDIR}\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")))), "sed -i \"/vptr/d\" test/CMakeLists.txt\n"))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), updateScript)),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Cross-platform library for building Telegram clients",
         homepage: "https://core.telegram.org/tdlib/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "boost")),

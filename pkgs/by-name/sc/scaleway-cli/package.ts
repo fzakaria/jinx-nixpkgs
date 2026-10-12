@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]], [["CGO_ENABLED", 24, 7]], [["description", 70, 5], ["homepage", 71, 5], ["license", 72, 5], ["maintainers", 73, 5], ["mainProgram", 78, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["vendorHash", 22, 3], ["env", 24, 3], ["ldflags", 26, 3], ["subPackages", 35, 3], ["nativeBuildInputs", 42, 3], ["nativeInstallCheckInputs", 43, 3], ["nativeCheckInputs", 44, 3], ["checkFlags", 46, 3], ["postInstall", 56, 3], ["doInstallCheck", 64, 3], ["versionCheckProgramArg", 65, 3], ["__darwinAllowLocalNetworking", 67, 3], ["meta", 69, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, buildGo126Module: false, installShellFiles: false, versionCheckHook: false, writableTmpDirAsHomeHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["CGO_ENABLED", 24, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 70, 5], ["homepage", 71, 5], ["license", 72, 5], ["maintainers", 73, 5], ["mainProgram", 78, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["vendorHash", 22, 3], ["env", 24, 3], ["ldflags", 26, 3], ["subPackages", 35, 3], ["nativeBuildInputs", 42, 3], ["nativeInstallCheckInputs", 43, 3], ["nativeCheckInputs", 44, 3], ["checkFlags", 46, 3], ["postInstall", 56, 3], ["doInstallCheck", 64, 3], ["versionCheckProgramArg", 65, 3], ["__darwinAllowLocalNetworking", 67, 3], ["meta", 69, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,18 +15,18 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(buildGo126Module, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "scaleway-cli",
       version: "2.62.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "scaleway",
           repo: "scaleway-cli",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-1EKLPGTNmoDKDN/Wjw3i9bOLECWboZtxb0RRniB1PEQ=",
         })))),
       vendorHash: "sha256-0hEewera4emTUUqPVEvgHq931Ubcw9GSjgCFTVS3QJo=",
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, CGO_ENABLED: 0n })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], CGO_ENABLED: 0n })),
       ldflags: nix.thunk(() => [
         "-s",
         "-w",
@@ -48,7 +45,7 @@ export default nix.lambda((args) => (() => {
       versionCheckProgramArg: "version",
       __darwinAllowLocalNetworking: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Command Line Interface for Scaleway",
         homepage: "https://github.com/scaleway/scaleway-cli",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

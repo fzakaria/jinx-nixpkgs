@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]], [["simple", 49, 5]], [["tests", 48, 12]], [["description", 58, 5], ["homepage", 59, 5], ["changelog", 60, 5], ["mainProgram", 61, 5], ["license", 62, 5], ["platforms", 63, 5], ["longDescription", 64, 5], ["maintainers", 72, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["buildInputs", 26, 3], ["makeFlags", 35, 3], ["installPhase", 40, 3], ["passthru", 48, 3], ["meta", 57, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, boost: false, bzip2: false, htslib: false, llvmPackages: false, xz: false, zlib: false, delly: false, runCommand: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["simple", 49, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 48, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 58, 5], ["homepage", 59, 5], ["changelog", 60, 5], ["mainProgram", 61, 5], ["license", 62, 5], ["platforms", 63, 5], ["longDescription", 64, 5], ["maintainers", 72, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["buildInputs", 26, 3], ["makeFlags", 35, 3], ["installPhase", 40, 3], ["passthru", 48, 3], ["meta", 57, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const delly = nix.arg($, "delly");
   const runCommand = nix.arg($, "runCommand");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "delly",
       version: "2.7.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "dellytools",
           repo: "delly",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -37,9 +33,9 @@ export default nix.lambda((args) => (() => {
       makeFlags: nix.thunk(() => [nix.thunk(() => nix.str`EBROOTHTSLIB=${htslib}`), "PARALLEL=1"]),
       installPhase: "runHook preInstall\n\ninstall -Dm555 src/delly $out/bin/delly\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           simple: nix.thunk(() => nix.app(runCommand, nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-test`), nix.thunk(() => ({})), nix.thunk(() => nix.str`mkdir $out
 ${nix.app(nix.sel(lib, "getExe"), delly)} sr -g ${nix.sel(delly, "src")}/example/ref.fa ${nix.sel(delly, "src")}/example/sr.bam > $out/sr.vcf
 ${nix.app(nix.sel(lib, "getExe"), delly)} lr -g ${nix.sel(delly, "src")}/example/ref.fa ${nix.sel(delly, "src")}/example/lr.bam > $out/lr.vcf
@@ -48,7 +44,7 @@ ${nix.app(nix.sel(lib, "getExe"), delly)} cnv -g ${nix.sel(delly, "src")}/exampl
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Structural variant discovery by integrated paired-end and split-read analysis",
         homepage: "https://github.com/dellytools/delly",
         changelog: nix.thunk(() => nix.str`https://github.com/dellytools/delly/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

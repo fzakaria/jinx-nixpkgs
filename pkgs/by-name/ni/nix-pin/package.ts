@@ -2,14 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 7], ["repo", 18, 7], ["rev", 19, 7], ["sha256", 20, 7]], [["pkgs", 45, 65], ["pinConfig", 45, 70]], [["augmentedPkgs", 48, 28], ["pins", 48, 42], ["callPackage", 48, 47]], [["api", 40, 9], ["updateScript", 50, 9]], [["homepage", 67, 7], ["description", 68, 7], ["license", 69, 7], ["maintainers", 70, 7], ["platforms", 71, 7], ["mainProgram", 72, 7]], [["pname", 14, 5], ["version", 15, 5], ["src", 16, 5], ["nativeBuildInputs", 22, 5], ["buildInputs", 23, 5], ["installPhase", 24, 5], ["passthru", 35, 5], ["meta", 66, 5]]]);
 const formals$1 = { args: { lib: false, pkgs: false, stdenv: false, fetchFromGitHub: false, python3: false, nix: false, git: false, makeWrapper: false, runtimeShell: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 7], ["repo", 18, 7], ["rev", 19, 7], ["sha256", 20, 7]]);
 const formals$2 = { args: { pinConfig: true }, ellipsis: false };
-const pos$2 = nix.positions(here + "/package.nix", [["pkgs", 45, 65], ["pinConfig", 45, 70]]);
-const pos$3 = nix.positions(here + "/package.nix", [["augmentedPkgs", 48, 28], ["pins", 48, 42], ["callPackage", 48, 47]]);
-const pos$4 = nix.positions(here + "/package.nix", [["api", 40, 9], ["updateScript", 50, 9]]);
-const pos$5 = nix.positions(here + "/package.nix", [["homepage", 67, 7], ["description", 68, 7], ["license", 69, 7], ["maintainers", 70, 7], ["platforms", 71, 7], ["mainProgram", 72, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 14, 5], ["version", 15, 5], ["src", 16, 5], ["nativeBuildInputs", 22, 5], ["buildInputs", 23, 5], ["installPhase", 24, 5], ["passthru", 35, 5], ["meta", 66, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const pname = "nix-pin";
       const version = "0.4.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "timbertson",
           repo: "nix-pin",
           rev: nix.thunk(() => nix.str`version-${version}`),
@@ -42,13 +37,13 @@ wrapProgram $out/bin/nix-pin \\
       const passthru = nix.thunk(() => (() => {
         const defaults = nix.thunk(() => nix.builtins.import(nix.thunk(() => nix.str`${self}/share/nix/defaults.nix`)));
         return {
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           api: nix.lambda((args_1) => (() => {
             const $_1 = nix.formals(args_1, formals$2);
             const pinConfig = nix.argOr($_1, "pinConfig", () => nix.sel(defaults, "pinConfig"));
-            const impl = nix.thunk(() => nix.app(nix.builtins.import(nix.thunk(() => nix.str`${self}/share/nix/api.nix`)), nix.thunk(() => ({ [nix.POS]: pos$2, pkgs: pkgs, pinConfig: pinConfig }))));
+            const impl = nix.thunk(() => nix.app(nix.builtins.import(nix.thunk(() => nix.str`${self}/share/nix/api.nix`)), nix.thunk(() => ({ [nix.POS]: $pos[1], pkgs: pkgs, pinConfig: pinConfig }))));
             return {
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               augmentedPkgs: nix.thunk(() => nix.attr(impl, "augmentedPkgs")),
               pins: nix.thunk(() => nix.attr(impl, "pins")),
               callPackage: nix.thunk(() => nix.attr(impl, "callPackage")),
@@ -71,7 +66,7 @@ ${nix.sel(pkgs, "nix-update-source")}/bin/nix-update-source \\
         };
       })());
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "https://github.com/timbertson/nix-pin",
         description: "Nixpkgs development utility",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -80,7 +75,7 @@ ${nix.sel(pkgs, "nix-update-source")}/bin/nix-update-source \\
         mainProgram: "nix-pin",
       }));
       return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname,
         version,
         src,

@@ -2,8 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["lumina", 7, 7], ["lumina-calculator", 8, 7], ["lumina-pdf", 9, 7], ["preRequisitePackages", 11, 7], ["corePackages", 19, 7]]]);
 const formals$1 = { args: { pkgs: false, libsForQt5: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["lumina", 7, 7], ["lumina-calculator", 8, 7], ["lumina-pdf", 9, 7], ["preRequisitePackages", 11, 7], ["corePackages", 19, 7]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const packages = (self) => (() => {
     const w = nix.withScope(self, null);
     return {
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       lumina: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "./lumina"), nix.thunk(() => ({})))),
       "lumina-calculator": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "./lumina-calculator"), nix.thunk(() => ({})))),
       "lumina-pdf": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "./lumina-pdf"), nix.thunk(() => ({})))),

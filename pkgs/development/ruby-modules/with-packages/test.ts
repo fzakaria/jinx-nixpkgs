@@ -2,9 +2,7 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
-const pos$1 = nix.positions(here + "/test.nix", [["name", 19, 7], ["buildInputs", 20, 7], ["buildCommand", 21, 7]]);
-const pos$2 = nix.positions(here + "/test.nix", [["name", 51, 9], ["buildInputs", 52, 9], ["buildCommand", 53, 9]]);
-const pos$3 = nix.positions(here + "/test.nix", [["name", 61, 3], ["buildInputs", 62, 3], ["buildCommand", 65, 3]]);
+const $pos = nix.positions(here + "/test.nix", [[["name", 19, 7], ["buildInputs", 20, 7], ["buildCommand", 21, 7]], [["name", 51, 9], ["buildInputs", 52, 9], ["buildCommand", 53, 9]], [["name", 61, 3], ["buildInputs", 62, 3], ["buildCommand", 65, 3]]]);
 
 export default nix.thunk(() => (() => {
   const pkgs = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../../..")), nix.thunk(() => ({}))));
@@ -13,7 +11,7 @@ export default nix.thunk(() => (() => {
   const rubyVersions = [];
   const gemTests = nix.thunk(() => nix.update(nix.app(nix.sel(lib, "mapAttrs"), (name) => (gem) => [name], nix.thunk(() => nix.sel(pkgs, "ruby", "gems"))), nix.builtins.import(nix.path(here, "./require_exceptions.nix"))));
   const testWrapper = (ruby) => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: nix.thunk(() => nix.str`test-wrappedRuby-${nix.sel(ruby, "name")}`),
       buildInputs: nix.thunk(() => [
         nix.thunk(() => nix.sel(nix.app(nix.sel(ruby, "withPackages"), (ps) => []), "wrappedRuby")),
@@ -35,7 +33,7 @@ ${nix.app(nix.sel(lib, "concatStringsSep"), "\n", nix.thunk(() => nix.builtins.m
 `)) : nix.app(nix.sel(pkgs, "writeText"), nix.thunk(() => nix.str`${name}.rb`), nix.thunk(() => nix.sel(gemTests, nix.key(nix.force(name)))))));
       const deps = nix.thunk(() => nix.app(nix.sel(ruby, "withPackages"), (g) => [nix.thunk(() => nix.sel(g, nix.key(nix.force(name))))]));
       return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           name: nix.thunk(() => nix.str`test-gem-${nix.sel(ruby, "name")}-${name}`),
           buildInputs: nix.thunk(() => [deps]),
           buildCommand: nix.thunk(() => nix.str`INLINEDIR=$PWD ruby ${test}
@@ -44,7 +42,7 @@ touch $out
         })));
     })(), nix.thunk(() => nix.sel(ruby, "gems")));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       name: "test-all-ruby-gems",
       buildInputs: nix.thunk(() => nix.builtins["foldl'"]((sum) => (ruby) => nix.concat(sum, nix.concat([nix.thunk(() => nix.app(testWrapper, ruby))], nix.builtins.attrValues(nix.thunk(() => nix.app(tests, ruby))))), [], rubyVersions)),
       buildCommand: "touch $out\n",

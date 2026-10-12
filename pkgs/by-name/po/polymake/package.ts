@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 35, 5], ["sha256", 36, 5]], [["description", 84, 5], ["homepage", 85, 5], ["changelog", 86, 5], ["license", 87, 5], ["teams", 88, 5], ["platforms", 89, 5]], [["pname", 29, 3], ["version", 30, 3], ["src", 32, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 46, 3], ["configureFlags", 68, 3], ["ninjaFlags", 72, 3], ["postInstall", 77, 3], ["meta", 83, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, gmp: false, mpfr: false, flint: false, boost: false, bliss: false, ppl: false, singular: false, cddlib: false, lrs: false, nauty: false, ninja: false, ant: false, openjdk: false, mongoc: false, perl: false, perlPackages: false, makeWrapper: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 35, 5], ["sha256", 36, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 84, 5], ["homepage", 85, 5], ["changelog", 86, 5], ["license", 87, 5], ["teams", 88, 5], ["platforms", 89, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 29, 3], ["version", 30, 3], ["src", 32, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 46, 3], ["configureFlags", 68, 3], ["ninjaFlags", 72, 3], ["postInstall", 77, 3], ["meta", 83, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,11 +28,11 @@ export default nix.lambda((args) => (() => {
   const perlPackages = nix.arg($, "perlPackages");
   const makeWrapper = nix.arg($, "makeWrapper");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "polymake",
       version: "4.15",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://polymake.org/lib/exe/fetch.php/download/polymake-${nix.sel(finalAttrs, "version")}-minimal.tar.bz2`),
           sha256: "sha256-MOCo+JATz3qaRO2Q2y9pxJvxgQUGZMfmvbhhxhCxvbk=",
         })))),
@@ -66,7 +64,7 @@ export default nix.lambda((args) => (() => {
       ninjaFlags: nix.thunk(() => ["-C", "build/Opt"]),
       postInstall: "for i in \"$out\"/bin/*; do\n  wrapProgram \"$i\" --prefix PERL5LIB : \"$PERL5LIB\"\ndone\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Software for research in polyhedral geometry",
         homepage: "https://www.polymake.org/doku.php",
         changelog: nix.thunk(() => nix.str`https://github.com/polymake/polymake/blob/V${nix.sel(finalAttrs, "version")}/ChangeLog`),

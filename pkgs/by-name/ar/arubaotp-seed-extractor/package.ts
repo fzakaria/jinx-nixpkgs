@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 12, 5], ["repo", 13, 5], ["rev", 14, 5], ["hash", 15, 5]], [["homepage", 42, 5], ["description", 43, 5], ["mainProgram", 44, 5], ["license", 45, 5], ["maintainers", 46, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["pyproject", 18, 3], ["nativeBuildInputs", 20, 3], ["pythonPath", 24, 3], ["installPhase", 31, 3], ["meta", 41, 3]]]);
 const formals$1 = { args: { lib: false, python3Packages: false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 12, 5], ["repo", 13, 5], ["rev", 14, 5], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 42, 5], ["description", 43, 5], ["mainProgram", 44, 5], ["license", 45, 5], ["maintainers", 46, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["pyproject", 18, 3], ["nativeBuildInputs", 20, 3], ["pythonPath", 24, 3], ["installPhase", 31, 3], ["meta", 41, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,11 +11,11 @@ export default nix.lambda((args) => (() => {
   const python3Packages = nix.arg($, "python3Packages");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "arubaotp-seed-extractor",
       version: "0-unstable-2022-12-22",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "andry08",
           repo: "ArubaOTP-seed-extractor",
           rev: "534f78bb71594d5806fd2d7a8eade109b0e1d402",
@@ -43,7 +41,7 @@ mkdir -p $out/bin
 ln -s "$libdir/main.py" $out/bin/arubaotp-seed-extractor
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/andry08/ArubaOTP-seed-extractor",
         description: "Extract TOTP seed instead of using ArubaOTP app",
         mainProgram: "arubaotp-seed-extractor",

@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]], [["pname", 48, 7], ["version", 49, 7], ["src", 50, 7], ["pnpm", 52, 5], ["fetcherVersion", 53, 5], ["hash", 54, 5]], [["pnpmDeps", 46, 7]], [["updateScript", 84, 12]], [["description", 87, 5], ["homepage", 88, 5], ["license", 89, 5], ["maintainers", 90, 5], ["mainProgram", 91, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["outputs", 23, 3], ["nativeBuildInputs", 28, 3], ["postPatch", 34, 3], ["env", 46, 3], ["vendorHash", 57, 3], ["ldflags", 59, 3], ["subPackages", 67, 3], ["preBuild", 72, 3], ["postInstall", 80, 3], ["passthru", 84, 3], ["meta", 86, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitHub: false, "nix-update-script": false, nodejs: false, pnpm_11: false, fetchPnpmDeps: false, pnpmConfigHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 48, 7], ["version", 49, 7], ["src", 50, 7], ["pnpm", 52, 5], ["fetcherVersion", 53, 5], ["hash", 54, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pnpmDeps", 46, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 84, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 87, 5], ["homepage", 88, 5], ["license", 89, 5], ["maintainers", 90, 5], ["mainProgram", 91, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["outputs", 23, 3], ["nativeBuildInputs", 28, 3], ["postPatch", 34, 3], ["env", 46, 3], ["vendorHash", 57, 3], ["ldflags", 59, 3], ["subPackages", 67, 3], ["preBuild", 72, 3], ["postInstall", 80, 3], ["passthru", 84, 3], ["meta", 86, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const fetchPnpmDeps = nix.arg($, "fetchPnpmDeps");
   const pnpmConfigHook = nix.arg($, "pnpmConfigHook");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "pgrok",
       version: "1.7.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "pgrok",
           repo: "pgrok",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,9 +30,9 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [nodejs, pnpmConfigHook, pnpm_11]),
       postPatch: "# Rename directories to avoid binary naming conflicts (both would be named \"cli\")\nmv pgrok/cli pgrok/pgrok\nmv pgrokd/cli pgrokd/pgrokd\n\n# Update references in Go code and web app package.json to match renamed directory\nsubstituteInPlace pgrokd/pgrokd/main.go \\\n  --replace-fail \"github.com/pgrok/pgrok/pgrokd/cli/internal/web\" \"github.com/pgrok/pgrok/pgrokd/pgrokd/internal/web\"\nsubstituteInPlace pgrokd/web/package.json \\\n  --replace-fail \"../cli/internal/web/dist\" \"../pgrokd/internal/web/dist\"\n",
       env: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
             version: nix.thunk(() => nix.attr(finalAttrs, "version")),
             src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -58,11 +53,11 @@ export default nix.lambda((args) => (() => {
       preBuild: "pushd pgrokd/web\n\npnpm run build\n\npopd\n",
       postInstall: "moveToOutput bin/pgrokd $server\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Selfhosted TCP/HTTP tunnel, ngrok alternative, written in Go",
         homepage: "https://github.com/pgrok/pgrok",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 28, 7], ["hash", 29, 7]], [["version", 26, 5], ["src", 27, 5]], [["owner", 39, 5], ["repo", 40, 5], ["tag", 41, 5], ["hash", 42, 5]], [["CGAL_PYTHON_MODULE_VERSION", 45, 7]], [["description", 100, 5], ["homepage", 101, 5], ["license", 102, 5], ["maintainers", 103, 5]], [["pname", 34, 3], ["version", 35, 3], ["pyproject", 36, 3], ["src", 38, 3], ["env", 45, 3], ["dontUseCmakeConfigure", 47, 3], ["build-system", 49, 3], ["buildInputs", 55, 3], ["dependencies", 68, 3], ["pythonImportsCheck", 72, 3], ["postFixup", 74, 3], ["preCheck", 81, 3], ["checkPhase", 87, 3], ["meta", 99, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, python: false, buildPythonPackage: false, fetchFromGitHub: false, fetchurl: false, setuptools: false, boost: false, cgal: false, cmake: false, gmp: false, onetbb: false, lastools: false, eigen: false, mpfr: false, numpy: false, swig: false, zlib: false, withLAS: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 28, 7], ["hash", 29, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["version", 26, 5], ["src", 27, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["owner", 39, 5], ["repo", 40, 5], ["tag", 41, 5], ["hash", 42, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["CGAL_PYTHON_MODULE_VERSION", 45, 7]]);
-const pos$5 = nix.positions(here + "/default.nix", [["description", 100, 5], ["homepage", 101, 5], ["license", 102, 5], ["maintainers", 103, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 34, 3], ["version", 35, 3], ["pyproject", 36, 3], ["src", 38, 3], ["env", 45, 3], ["dontUseCmakeConfigure", 47, 3], ["build-system", 49, 3], ["buildInputs", 55, 3], ["dependencies", 68, 3], ["pythonImportsCheck", 72, 3], ["postFixup", 74, 3], ["preCheck", 81, 3], ["checkPhase", 87, 3], ["meta", 99, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,10 +27,10 @@ export default nix.lambda((args) => (() => {
   const zlib = nix.arg($, "zlib");
   const withLAS = nix.argOr($, "withLAS", () => false);
   const cgal_6_0_1 = nix.thunk(() => nix.app(nix.sel(cgal, "overrideAttrs"), (oldAttrs) => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       version: "6.0.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://github.com/CGAL/cgal/releases/download/v6.0.1/CGAL-6.0.1.tar.xz",
           hash: "sha256-Cs378xfFVmMN1SbzJTeA8ptuyXE+6SkD6Btck8D1m38=",
         })))),
@@ -45,13 +40,13 @@ export default nix.lambda((args) => (() => {
       const version = "6.0.1.post202410241521";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           owner: "CGAL",
           repo: "cgal-swig-bindings",
           tag: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-MnUsl4ozMamKcQ13TV6mtoG7VKq8BuiDSIVq1RPn2rs=",
         }))));
-      const env = nix.thunk(() => ({ [nix.POS]: pos$4, CGAL_PYTHON_MODULE_VERSION: version }));
+      const env = nix.thunk(() => ({ [nix.POS]: $pos[3], CGAL_PYTHON_MODULE_VERSION: version }));
       const dontUseCmakeConfigure = true;
       const build_system = nix.thunk(() => [setuptools, cmake, swig]);
       const buildInputs = nix.thunk(() => nix.concat([cgal_6_0_1, gmp, mpfr, boost, zlib, onetbb, eigen], nix.app(nix.sel(lib, "optionals"), withLAS, nix.thunk(() => [lastools]))));
@@ -65,7 +60,7 @@ done
       const preCheck = "# CGAL_Alpha_wrap_3.alpha_wrap_3(...) fails with a segmentation fault\n# https://github.com/CGAL/cgal-swig-bindings/issues/306\nrm examples/python/test_aw3.py\n";
       const checkPhase = "runHook preCheck\n(cd examples/python/\n  bash ./test.sh\n  cat error.txt\n  if grep -qi ' run error$' <error.txt; then\n    false\n  fi\n)\nrunHook postCheck\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "CGAL bindings using SWIG",
         homepage: "https://github.com/CGAL/cgal-swig-bindings",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
@@ -75,7 +70,7 @@ done
         })()),
       }));
       return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname,
         version,
         pyproject,

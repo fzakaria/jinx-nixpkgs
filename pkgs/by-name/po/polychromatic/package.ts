@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]], [["homepage", 77, 5], ["description", 78, 5], ["longDescription", 79, 5], ["changelog", 83, 5], ["license", 84, 5], ["platforms", 85, 5], ["maintainers", 86, 5], ["mainProgram", 90, 5]], [["pname", 19, 3], ["version", 20, 3], ["pyproject", 21, 3], ["src", 23, 3], ["postPatch", 30, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 46, 3], ["propagatedBuildInputs", 48, 3], ["dontWrapGApps", 68, 3], ["dontWrapQtApps", 69, 3], ["makeWrapperArgs", 71, 3], ["meta", 76, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, gettext: false, ninja: false, meson: false, python3Packages: false, "gobject-introspection": false, wrapGAppsHook3: false, "libayatana-appindicator": false, libxcb: false, qt6: false, ibus: false, usbutils: false, psmisc: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 77, 5], ["description", 78, 5], ["longDescription", 79, 5], ["changelog", 83, 5], ["license", 84, 5], ["platforms", 85, 5], ["maintainers", 86, 5], ["mainProgram", 90, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["pyproject", 21, 3], ["src", 23, 3], ["postPatch", 30, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 46, 3], ["propagatedBuildInputs", 48, 3], ["dontWrapGApps", 68, 3], ["dontWrapQtApps", 69, 3], ["makeWrapperArgs", 71, 3], ["meta", 76, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,12 +22,12 @@ export default nix.lambda((args) => (() => {
   const usbutils = nix.arg($, "usbutils");
   const psmisc = nix.arg($, "psmisc");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "polychromatic",
       version: "0.9.8",
       pyproject: false,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "polychromatic",
           repo: "polychromatic",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -66,7 +64,7 @@ export default nix.lambda((args) => (() => {
       dontWrapQtApps: true,
       makeWrapperArgs: nix.thunk(() => ["${gappsWrapperArgs[@]}", "${qtWrapperArgs[@]}"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://polychromatic.app/",
         description: "Graphical front-end and tray applet for configuring Razer peripherals on GNU/Linux",
         longDescription: "Polychromatic is a frontend for OpenRazer that enables Razer devices\nto control lighting effects and more on GNU/Linux.\n",

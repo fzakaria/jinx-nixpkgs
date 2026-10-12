@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 15, 5], ["sha256", 16, 5]], [["NIX_CFLAGS_COMPILE", 19, 7]], [["homepage", 40, 5], ["description", 41, 5], ["platforms", 42, 5], ["maintainers", 43, 5], ["license", 44, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["env", 19, 3], ["nativeBuildInputs", 21, 3], ["buildInputs", 22, 3], ["makeFlags", 27, 3], ["postInstall", 35, 3], ["meta", 39, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, makeWrapper: false, fetchurl: false, numactl: false, python3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 15, 5], ["sha256", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 19, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 40, 5], ["description", 41, 5], ["platforms", 42, 5], ["maintainers", 43, 5], ["license", 44, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["env", 19, 3], ["nativeBuildInputs", 21, 3], ["buildInputs", 22, 3], ["makeFlags", 27, 3], ["postInstall", 35, 3], ["meta", 39, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,15 +14,15 @@ export default nix.lambda((args) => (() => {
   const numactl = nix.arg($, "numactl");
   const python3 = nix.arg($, "python3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "rt-tests",
       version: "2.11",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://git.kernel.org/pub/scm/utils/rt-tests/rt-tests.git/snapshot/rt-tests-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "sha256-AXQt8UueTZ86SN0I/owVhgx6siAFV13ph+ZJww9kXVU=",
         })))),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-Wno-error=format-overflow" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], NIX_CFLAGS_COMPILE: "-Wno-error=format-overflow" })),
       nativeBuildInputs: nix.thunk(() => [makeWrapper]),
       buildInputs: nix.thunk(() => [numactl, python3]),
       makeFlags: nix.thunk(() => [
@@ -37,7 +34,7 @@ export default nix.lambda((args) => (() => {
       ]),
       postInstall: "wrapProgram \"$out/bin/determine_maximum_mpps.sh\" --prefix PATH : $out/bin\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://git.kernel.org/pub/scm/utils/rt-tests/rt-tests.git",
         description: "Suite of real-time tests - cyclictest, hwlatdetect, pip_stress, pi_stress, pmqtest, ptsematest, rt-migrate-test, sendme, signaltest, sigwaittest, svsematest",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),

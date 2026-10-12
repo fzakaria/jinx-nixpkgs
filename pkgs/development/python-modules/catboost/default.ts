@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 24, 5], ["version", 25, 5], ["src", 26, 5], ["pyproject", 28, 3], ["sourceRoot", 30, 3], ["build-system", 32, 3], ["dependencies", 38, 3], ["postPatch", 48, 3], ["dontConfigure", 55, 3], ["buildPhase", 57, 3], ["doCheck", 67, 3], ["pythonImportsCheck", 69, 3], ["meta", 71, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, catboost: false, python: false, cmake: false, cython: false, setuptools: false, graphviz: false, matplotlib: false, numpy: false, pandas: false, plotly: false, scipy: false, six: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 24, 5], ["version", 25, 5], ["src", 26, 5], ["pyproject", 28, 3], ["sourceRoot", 30, 3], ["build-system", 32, 3], ["dependencies", 38, 3], ["postPatch", 48, 3], ["dontConfigure", 55, 3], ["buildPhase", 57, 3], ["doCheck", 67, 3], ["pythonImportsCheck", 69, 3], ["meta", 71, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -42,7 +42,7 @@ runHook postBuild
       const pythonImportsCheck = nix.thunk(() => ["catboost"]);
       const meta = nix.thunk(() => nix.sel(catboost, "meta"));
       return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         pname,
         version,
         src,

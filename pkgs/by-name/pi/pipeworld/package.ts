@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 12, 5], ["repo", 13, 5], ["rev", 14, 5], ["hash", 15, 5]], [["homepage", 32, 5], ["description", 33, 5], ["longDescription", 34, 5], ["license", 47, 5], ["maintainers", 48, 5], ["platforms", 49, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["dontConfigure", 18, 3], ["dontBuild", 20, 3], ["installPhase", 22, 3], ["meta", 31, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 12, 5], ["repo", 13, 5], ["rev", 14, 5], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 32, 5], ["description", 33, 5], ["longDescription", 34, 5], ["license", 47, 5], ["maintainers", 48, 5], ["platforms", 49, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["dontConfigure", 18, 3], ["dontBuild", 20, 3], ["installPhase", 22, 3], ["meta", 31, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,11 +11,11 @@ export default nix.lambda((args) => (() => {
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "pipeworld",
       version: "0-unstable-2023-02-05",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "letoram",
           repo: "pipeworld",
           rev: "edc3821404b3a1274b8a50d2fb1c6b523fbd4a1c",
@@ -33,7 +31,7 @@ cp -a ./pipeworld ${nix.builtins.placeholder("out")}/share/arcan/appl/
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/letoram/pipeworld",
         description: "Dataflow 'spreadsheet' desktop environment",
         longDescription: "Pipeworld is a zooming dataflow tool and desktop heavily inspired by\nuserland. It is built using the arcan desktop engine.\n\nIt combines the programmable processing of shell scripts and pipes, the\ninteractive visual addressing/programming model of spread sheets, the\nscenegraph- and interactive controls-, IPC- and client processing- of\ndisplay servers into one model with zoomable tiling window management.\n\nIt can be used as a standalone desktop of its own, or as a normal\napplication within another desktop as a 'substitute' for your normal\nterminal emulator.\n",

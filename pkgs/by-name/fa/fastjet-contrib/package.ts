@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 13, 5], ["sha256", 14, 5]], [["description", 52, 5], ["homepage", 53, 5], ["changelog", 54, 5], ["license", 55, 5], ["maintainers", 56, 5], ["platforms", 57, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["buildInputs", 17, 3], ["postPatch", 19, 3], ["configurePlatforms", 33, 3], ["configureFlags", 35, 3], ["enableParallelBuilding", 39, 3], ["doCheck", 41, 3], ["postBuild", 43, 3], ["postInstall", 47, 3], ["meta", 51, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, fastjet: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 13, 5], ["sha256", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 52, 5], ["homepage", 53, 5], ["changelog", 54, 5], ["license", 55, 5], ["maintainers", 56, 5], ["platforms", 57, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["buildInputs", 17, 3], ["postPatch", 19, 3], ["configurePlatforms", 33, 3], ["configureFlags", 35, 3], ["enableParallelBuilding", 39, 3], ["doCheck", 41, 3], ["postBuild", 43, 3], ["postInstall", 47, 3], ["meta", 51, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const fastjet = nix.arg($, "fastjet");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "fastjet-contrib",
       version: "1.101",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://fastjet.hepforge.org/contrib/downloads/fjcontrib-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "sha256-2+itIZn3LWTdKfYhj29T793I+z5d2cXRDy/R4j1uRPY=",
         })))),
@@ -41,7 +39,7 @@ substituteInPlace configure \\
       postBuild: "make fragile-shared\n",
       postInstall: "make fragile-shared-install\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Third party extensions for FastJet",
         homepage: "http://fastjet.fr/",
         changelog: nix.thunk(() => nix.str`https://phab.hepforge.org/source/fastjetsvn/browse/contrib/tags/${nix.sel(finalAttrs, "version")}/NEWS?as=source&blame=off`),

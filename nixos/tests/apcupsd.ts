@@ -2,18 +2,8 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/apcupsd.nix", [[["maintainers", 8, 8]], [["enable", 13, 9], ["configText", 14, 9]], [["apcupsd", 12, 16]], [["address", 25, 13], ["prefixLength", 26, 13]], [["addresses", 23, 14]], [["ipv4", 23, 9]], [["eth1", 22, 29]], [["interfaces", 22, 18]], [["services", 12, 7], ["networking", 22, 7]], [["machine", 11, 5]], [["name", 7, 3], ["meta", 8, 3], ["nodes", 10, 3], ["testScript", 35, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/apcupsd.nix", [["maintainers", 8, 8]]);
-const pos$2 = nix.positions(here + "/apcupsd.nix", [["enable", 13, 9], ["configText", 14, 9]]);
-const pos$3 = nix.positions(here + "/apcupsd.nix", [["apcupsd", 12, 16]]);
-const pos$4 = nix.positions(here + "/apcupsd.nix", [["address", 25, 13], ["prefixLength", 26, 13]]);
-const pos$5 = nix.positions(here + "/apcupsd.nix", [["addresses", 23, 14]]);
-const pos$6 = nix.positions(here + "/apcupsd.nix", [["ipv4", 23, 9]]);
-const pos$7 = nix.positions(here + "/apcupsd.nix", [["eth1", 22, 29]]);
-const pos$8 = nix.positions(here + "/apcupsd.nix", [["interfaces", 22, 18]]);
-const pos$9 = nix.positions(here + "/apcupsd.nix", [["services", 12, 7], ["networking", 22, 7]]);
-const pos$10 = nix.positions(here + "/apcupsd.nix", [["machine", 11, 5]]);
-const pos$11 = nix.positions(here + "/apcupsd.nix", [["name", 7, 3], ["meta", 8, 3], ["nodes", 10, 3], ["testScript", 35, 3]]);
 
 export default nix.thunk(() => (() => {
   const ipAddr = "192.168.42.42";
@@ -21,23 +11,23 @@ export default nix.thunk(() => (() => {
     const $ = nix.formals(args, formals$1);
     const lib = nix.arg($, "lib");
     return {
-      [nix.POS]: pos$11,
+      [nix.POS]: $pos[10],
       name: "apcupsd",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
           return [nix.thunk(() => nix.lookup(w, "bjornfor"))];
         })()),
       })),
       nodes: nix.thunk(() => ({
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         machine: nix.thunk(() => ({
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             apcupsd: nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               enable: true,
               configText: nix.thunk(() => nix.str`UPSTYPE usb
 BATTERYLEVEL 42
@@ -48,14 +38,16 @@ NISIP ${ipAddr}
             })),
           })),
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$8,
+            [nix.POS]: $pos[7],
             interfaces: nix.thunk(() => ({
-              [nix.POS]: pos$7,
+              [nix.POS]: $pos[6],
               eth1: nix.thunk(() => ({
-                [nix.POS]: pos$6,
+                [nix.POS]: $pos[5],
                 ipv4: nix.thunk(() => ({
-                  [nix.POS]: pos$5,
-                  addresses: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$4, address: ipAddr, prefixLength: 24n }))]),
+                  [nix.POS]: $pos[4],
+                  addresses: nix.thunk(() => [
+                    nix.thunk(() => ({ [nix.POS]: $pos[3], address: ipAddr, prefixLength: 24n })),
+                  ]),
                 })),
               })),
             })),

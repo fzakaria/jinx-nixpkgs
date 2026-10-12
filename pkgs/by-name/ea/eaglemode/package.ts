@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 40, 5], ["hash", 41, 5]], [["name", 123, 7], ["exec", 124, 7], ["icon", 125, 7], ["desktopName", 126, 7], ["genericName", 127, 7], ["categories", 128, 7]], [["url", 138, 5], ["extraRegex", 139, 5]], [["updateScript", 137, 12]], [["homepage", 143, 5], ["description", 144, 5], ["changelog", 145, 5], ["license", 146, 5], ["maintainers", 147, 5], ["platforms", 150, 5]], [["pname", 36, 3], ["version", 37, 3], ["src", 39, 3], ["postPatch", 45, 3], ["nativeBuildInputs", 53, 3], ["buildInputs", 58, 3], ["buildPhase", 78, 3], ["dontPatchELF", 85, 3], ["forceShare", 87, 3], ["installPhase", 92, 3], ["desktopItems", 121, 3], ["passthru", 137, 3], ["meta", 142, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, perl: false, libx11: false, libxinerama: false, libjpeg: false, libpng: false, libtiff: false, libwebp: false, "pkg-config": false, librsvg: false, glib: false, gtk3: false, libxext: false, libxxf86vm: false, poppler: false, vlc: false, ghostscript: false, makeWrapper: false, tzdata: false, makeDesktopItem: false, copyDesktopItems: false, directoryListingUpdater: false, htmldoc: false, binutils: false, gzip: false, p7zip: false, xz: false, zip: false, extraRuntimeDeps: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 40, 5], ["hash", 41, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 123, 7], ["exec", 124, 7], ["icon", 125, 7], ["desktopName", 126, 7], ["genericName", 127, 7], ["categories", 128, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 138, 5], ["extraRegex", 139, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 137, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["homepage", 143, 5], ["description", 144, 5], ["changelog", 145, 5], ["license", 146, 5], ["maintainers", 147, 5], ["platforms", 150, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 36, 3], ["version", 37, 3], ["src", 39, 3], ["postPatch", 45, 3], ["nativeBuildInputs", 53, 3], ["buildInputs", 58, 3], ["buildPhase", 78, 3], ["dontPatchELF", 85, 3], ["forceShare", 87, 3], ["installPhase", 92, 3], ["desktopItems", 121, 3], ["passthru", 137, 3], ["meta", 142, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -44,11 +39,11 @@ export default nix.lambda((args) => (() => {
   const zip = nix.arg($, "zip");
   const extraRuntimeDeps = nix.argOr($, "extraRuntimeDeps", () => []);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "eaglemode",
       version: "0.96.3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/eaglemode/eaglemode-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           hash: "sha256-AHeupgEnyQylRWFDrPeo4b0mNONqG+6QwWnRpYknqOQ=",
         })))),
@@ -93,7 +88,7 @@ runHook postInstall
       })()),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "eaglemode",
             exec: "eaglemode",
             icon: "eaglemode",
@@ -103,15 +98,15 @@ runHook postInstall
           })))),
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(directoryListingUpdater, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: "https://eaglemode.sourceforge.net/download.html",
             extraRegex: "(?!.*(x86_64|setup64|livecd|amd64)).*",
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "https://eaglemode.sourceforge.net",
         description: "Zoomable User Interface",
         changelog: "https://eaglemode.sourceforge.net/ChangeLog.html",

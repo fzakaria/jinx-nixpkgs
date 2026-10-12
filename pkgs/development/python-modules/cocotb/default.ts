@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["hash", 33, 5]], [["changelog", 85, 5], ["description", 86, 5], ["mainProgram", 87, 5], ["homepage", 88, 5], ["license", 89, 5], ["broken", 90, 5], ["maintainers", 91, 5]], [["pname", 19, 3], ["version", 20, 3], ["format", 21, 3], ["disabled", 26, 3], ["src", 29, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 38, 3], ["propagatedBuildInputs", 39, 3], ["postPatch", 41, 3], ["preFixup", 58, 3], ["disabledTests", 64, 3], ["nativeCheckInputs", 70, 3], ["preCheck", 78, 3], ["pythonImportsCheck", 82, 3], ["meta", 84, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, pythonAtLeast: false, fetchFromGitHub: false, setuptools: false, "setuptools-scm": false, python: false, "cocotb-bus": false, "find-libpython": false, pytestCheckHook: false, swig: false, iverilog: false, ghdl: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["hash", 33, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["changelog", 85, 5], ["description", 86, 5], ["mainProgram", 87, 5], ["homepage", 88, 5], ["license", 89, 5], ["broken", 90, 5], ["maintainers", 91, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 19, 3], ["version", 20, 3], ["format", 21, 3], ["disabled", 26, 3], ["src", 29, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 38, 3], ["propagatedBuildInputs", 39, 3], ["postPatch", 41, 3], ["preFixup", 58, 3], ["disabledTests", 64, 3], ["nativeCheckInputs", 70, 3], ["preCheck", 78, 3], ["pythonImportsCheck", 82, 3], ["meta", 84, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const format = "setuptools";
       const disabled = nix.thunk(() => nix.app(pythonAtLeast, "3.14"));
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "cocotb",
           repo: "cocotb",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -48,7 +46,7 @@ done
       const preCheck = "export PATH=$out/bin:$PATH\n";
       const pythonImportsCheck = nix.thunk(() => ["cocotb"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         changelog: nix.thunk(() => nix.str`https://github.com/cocotb/cocotb/releases/tag/v${version}`),
         description: "Coroutine based cosimulation library for writing VHDL and Verilog testbenches in Python",
         mainProgram: "cocotb-config",
@@ -64,7 +62,7 @@ done
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         format,

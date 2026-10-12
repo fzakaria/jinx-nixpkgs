@@ -2,20 +2,19 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/libnpp.nix", [[["description", 16, 5], ["longDescription", 17, 5], ["homepage", 21, 5]], [["redistName", 3, 3], ["pname", 4, 3], ["outputs", 6, 3], ["meta", 15, 3]]]);
 const formals$1 = { args: { buildRedist: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/libnpp.nix", [["description", 16, 5], ["longDescription", 17, 5], ["homepage", 21, 5]]);
-const pos$2 = nix.positions(here + "/libnpp.nix", [["redistName", 3, 3], ["pname", 4, 3], ["outputs", 6, 3], ["meta", 15, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const buildRedist = nix.arg($, "buildRedist");
   return nix.app(buildRedist, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       redistName: "cuda",
       pname: "libnpp",
       outputs: nix.thunk(() => ["out", "dev", "include", "lib", "static", "stubs"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Library of primitives for image and signal processing",
         longDescription: "NPP is a library of over 5,000 primitives for image and signal processing that lets you easily perform tasks\nsuch as color conversion, image compression, filtering, thresholding, and image manipulation.\n",
         homepage: "https://developer.nvidia.com/npp",

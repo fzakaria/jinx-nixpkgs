@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]], [["ELECTRON_SKIP_BINARY_DOWNLOAD", 26, 5]], [["description", 68, 5], ["homepage", 69, 5], ["mainProgram", 70, 5], ["license", 71, 5], ["maintainers", 72, 5], ["broken", 74, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["npmDepsHash", 22, 3], ["makeCacheWritable", 23, 3], ["env", 25, 3], ["nativeBuildInputs", 29, 3], ["buildPhase", 34, 3], ["installPhase", 44, 3], ["meta", 67, 3]]]);
 const formals$1 = { args: { stdenv: false, buildNpmPackage: false, fetchFromGitHub: false, lib: false, electron: false, makeWrapper: false, writableTmpDirAsHomeHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["ELECTRON_SKIP_BINARY_DOWNLOAD", 26, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 68, 5], ["homepage", 69, 5], ["mainProgram", 70, 5], ["license", 71, 5], ["maintainers", 72, 5], ["broken", 74, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["npmDepsHash", 22, 3], ["makeCacheWritable", 23, 3], ["env", 25, 3], ["nativeBuildInputs", 29, 3], ["buildPhase", 34, 3], ["installPhase", 44, 3], ["meta", 67, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pname = "vacuum-tube";
       const version = "1.8.2";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "shy1132",
           repo: "VacuumTube",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -29,7 +26,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const npmDepsHash = "sha256-Wtyft343sSs018v5bagCvvta5z+yzU9IgkJ4LH+HQzs=";
       const makeCacheWritable = true;
-      const env = nix.thunk(() => ({ [nix.POS]: pos$2, ELECTRON_SKIP_BINARY_DOWNLOAD: true }));
+      const env = nix.thunk(() => ({ [nix.POS]: $pos[1], ELECTRON_SKIP_BINARY_DOWNLOAD: true }));
       const nativeBuildInputs = nix.thunk(() => [makeWrapper, writableTmpDirAsHomeHook]);
       const buildPhase = nix.thunk(() => nix.str`runHook preBuild
 
@@ -61,7 +58,7 @@ makeWrapper "${electron}/bin/electron" "$out/bin/VacuumTube" \\
 runHook postInstall
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "YouTube Leanback on the desktop, with enhancements",
         homepage: "https://github.com/shy1132/VacuumTube",
         mainProgram: "VacuumTube",
@@ -73,7 +70,7 @@ runHook postInstall
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

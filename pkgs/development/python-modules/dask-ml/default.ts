@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 34, 5], ["repo", 35, 5], ["tag", 36, 5], ["hash", 37, 5]], [["description", 143, 5], ["homepage", 144, 5], ["license", 145, 5], ["maintainers", 146, 5]], [["pname", 28, 3], ["version", 29, 3], ["pyproject", 30, 3], ["__structuredAttrs", 31, 3], ["src", 33, 3], ["postPatch", 40, 3], ["build-system", 47, 3], ["dependencies", 52, 3], ["pythonImportsCheck", 66, 3], ["nativeCheckInputs", 73, 3], ["pytestFlags", 78, 3], ["disabledTestPaths", 90, 3], ["disabledTests", 103, 3], ["__darwinAllowLocalNetworking", 140, 3], ["meta", 142, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, "hatch-vcs": false, hatchling: false, "dask-glm": false, distributed: false, multipledispatch: false, numba: false, numpy: false, packaging: false, pandas: false, "scikit-learn": false, scipy: false, dask: false, "pytest-mock": false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 34, 5], ["repo", 35, 5], ["tag", 36, 5], ["hash", 37, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 143, 5], ["homepage", 144, 5], ["license", 145, 5], ["maintainers", 146, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 28, 3], ["version", 29, 3], ["pyproject", 30, 3], ["__structuredAttrs", 31, 3], ["src", 33, 3], ["postPatch", 40, 3], ["build-system", 47, 3], ["dependencies", 52, 3], ["pythonImportsCheck", 66, 3], ["nativeCheckInputs", 73, 3], ["pytestFlags", 78, 3], ["disabledTestPaths", 90, 3], ["disabledTests", 103, 3], ["__darwinAllowLocalNetworking", 140, 3], ["meta", 142, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,13 +25,13 @@ export default nix.lambda((args) => (() => {
   const pytest_mock = nix.arg($, "pytest-mock");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "dask-ml",
       version: "2025.1.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "dask",
           repo: "dask-ml",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -94,7 +92,7 @@ export default nix.lambda((args) => (() => {
       ]),
       __darwinAllowLocalNetworking: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Scalable Machine Learn with Dask",
         homepage: "https://github.com/dask/dask-ml",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

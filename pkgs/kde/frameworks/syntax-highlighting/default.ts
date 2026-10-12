@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["mainProgram", 17, 5], ["platforms", 18, 5]], [["pname", 9, 3], ["extraBuildInputs", 11, 3], ["extraNativeBuildInputs", 12, 3], ["meta", 16, 3]]]);
 const formals$1 = { args: { lib: false, mkKdeDerivation: false, qtdeclarative: false, qttools: false, perl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["mainProgram", 17, 5], ["platforms", 18, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 9, 3], ["extraBuildInputs", 11, 3], ["extraNativeBuildInputs", 12, 3], ["meta", 16, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const qttools = nix.arg($, "qttools");
   const perl = nix.arg($, "perl");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "syntax-highlighting",
       extraBuildInputs: nix.thunk(() => [qtdeclarative]),
       extraNativeBuildInputs: nix.thunk(() => [qttools, perl]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         mainProgram: "ksyntaxhighlighter6",
         platforms: nix.thunk(() => nix.concat(nix.sel(lib, "platforms", "linux"), nix.concat(nix.sel(lib, "platforms", "freebsd"), nix.sel(lib, "platforms", "darwin")))),
       })),

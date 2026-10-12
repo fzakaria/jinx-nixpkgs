@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["patches", 15, 5]], [["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["sha256", 31, 5]], [["description", 49, 5], ["homepage", 50, 5], ["maintainers", 51, 5], ["license", 56, 5]], [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["vendorHash", 34, 3], ["nativeBuildInputs", 36, 3], ["postFixup", 38, 3], ["meta", 48, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitHub: false, nix: false, "virt-viewer": false, makeWrapper: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["patches", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["sha256", 31, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 49, 5], ["homepage", 50, 5], ["maintainers", 51, 5], ["license", 56, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["vendorHash", 34, 3], ["nativeBuildInputs", 36, 3], ["postFixup", 38, 3], ["meta", 48, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const virt_viewer = nix.arg($, "virt-viewer");
   const makeWrapper = nix.arg($, "makeWrapper");
   const virt_manager_without_menu = nix.thunk(() => nix.app(nix.sel(virt_viewer, "overrideAttrs"), (oldAttrs) => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       patches: nix.thunk(() => nix.concat(nix.sel(oldAttrs, "patches"), [
         nix.path(here, "./0001-Remove-menu-bar.patch"),
         nix.path(here, "./0002-Do-not-grab-keyboard-mouse.patch"),
@@ -26,11 +23,11 @@ export default nix.lambda((args) => (() => {
       ])),
     })));
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "appvm",
       version: "0.6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "jollheef",
           repo: "appvm",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -42,7 +39,7 @@ export default nix.lambda((args) => (() => {
   --prefix PATH : "${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [nix$, virt_manager_without_menu]))}"
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Nix-based app VMs",
         homepage: "https://code.dumpstack.io/tools/appvm",
         maintainers: nix.thunk(() => (() => {

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 26, 5], ["owner", 27, 5], ["repo", 28, 5], ["rev", 29, 5], ["sha256", 30, 5]], [["updateScript", 60, 12]], [["homepage", 63, 5], ["description", 64, 5], ["mainProgram", 65, 5], ["platforms", 66, 5], ["license", 67, 5], ["maintainers", 68, 5]], [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 42, 3], ["fixupPhase", 50, 3], ["passthru", 60, 3], ["meta", 62, 3]]]);
 const formals$1 = { args: { SDL2: false, fetchFromGitLab: false, glib: false, glm: false, glslang: false, lib: false, libGL: false, makeWrapper: false, meson: false, ninja: false, "openxr-loader": false, "pkg-config": false, stdenv: false, unstableGitUpdater: false, "vulkan-headers": false, "vulkan-loader": false, xxd: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 26, 5], ["owner", 27, 5], ["repo", 28, 5], ["rev", 29, 5], ["sha256", 30, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 60, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 63, 5], ["description", 64, 5], ["mainProgram", 65, 5], ["platforms", 66, 5], ["license", 67, 5], ["maintainers", 68, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 42, 3], ["fixupPhase", 50, 3], ["passthru", 60, 3], ["meta", 62, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const vulkan_loader = nix.arg($, "vulkan-loader");
   const xxd = nix.arg($, "xxd");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "xrgears",
       version: "1.0.1-unstable-2026-09-06",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "gitlab.freedesktop.org",
           owner: "monado",
           repo: "demos/xrgears",
@@ -45,11 +42,11 @@ export default nix.lambda((args) => (() => {
   --prefix LD_LIBRARY_PATH : ${nix.app(nix.sel(lib, "makeLibraryPath"), nix.thunk(() => [SDL2, libGL]))}
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://gitlab.freedesktop.org/monado/demos/xrgears",
         description: "OpenXR example using Vulkan for rendering",
         mainProgram: "xrgears",

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 24, 5], ["repo", 25, 5], ["name", 26, 5], ["tag", 27, 5], ["hash", 28, 5]], [["owner", 32, 5], ["repo", 33, 5], ["name", 34, 5], ["tag", 35, 5], ["hash", 36, 5]], [["owner", 48, 5], ["repo", 49, 5], ["tag", 50, 5], ["hash", 51, 5]], [["description", 131, 5], ["homepage", 132, 5], ["changelog", 133, 5], ["mainProgram", 134, 5], ["license", 135, 5], ["maintainers", 136, 5], ["badPlatforms", 137, 5]], [["pname", 43, 3], ["version", 44, 3], ["pyproject", 45, 3], ["src", 47, 3], ["patches", 54, 3], ["prePatch", 58, 3], ["postPatch", 68, 3], ["build-system", 77, 3], ["dependencies", 83, 3], ["pythonRemoveDeps", 94, 3], ["__darwinAllowLocalNetworking", 99, 3], ["nativeCheckInputs", 101, 3], ["checkInputs", 103, 3], ["disabledTests", 108, 3], ["disabledTestPaths", 115, 3], ["preCheck", 124, 3], ["pythonImportsCheck", 128, 3], ["meta", 130, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitHub: false, cloudpickle: false, cython: false, hypothesis: false, jinja2: false, numpy: false, "nvidia-ml-py": false, psutil: false, pydantic: false, pytestCheckHook: false, python: false, pyyaml: false, rich: false, "setuptools-scm": false, setuptools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 24, 5], ["repo", 25, 5], ["name", 26, 5], ["tag", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["owner", 32, 5], ["repo", 33, 5], ["name", 34, 5], ["tag", 35, 5], ["hash", 36, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["owner", 48, 5], ["repo", 49, 5], ["tag", 50, 5], ["hash", 51, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 131, 5], ["homepage", 132, 5], ["changelog", 133, 5], ["mainProgram", 134, 5], ["license", 135, 5], ["maintainers", 136, 5], ["badPlatforms", 137, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 43, 3], ["version", 44, 3], ["pyproject", 45, 3], ["src", 47, 3], ["patches", 54, 3], ["prePatch", 58, 3], ["postPatch", 68, 3], ["build-system", 77, 3], ["dependencies", 83, 3], ["pythonRemoveDeps", 94, 3], ["__darwinAllowLocalNetworking", 99, 3], ["nativeCheckInputs", 101, 3], ["checkInputs", 103, 3], ["disabledTests", 108, 3], ["disabledTestPaths", 115, 3], ["preCheck", 124, 3], ["pythonImportsCheck", 128, 3], ["meta", 130, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,7 +26,7 @@ export default nix.lambda((args) => (() => {
   const setuptools_scm = nix.arg($, "setuptools-scm");
   const setuptools = nix.arg($, "setuptools");
   const heap_layers_src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "emeryberger",
       repo: "heap-layers",
       name: "Heap-Layers",
@@ -38,7 +34,7 @@ export default nix.lambda((args) => (() => {
       hash: "sha256-p+8aUC124Digv3c9fZ7lLHg6H8FXoAcAQxlYzf9TYbM=",
     }))));
   const printf_src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       owner: "mpaland",
       repo: "printf",
       name: "printf",
@@ -47,12 +43,12 @@ export default nix.lambda((args) => (() => {
     }))));
   const pythonPath = nix.thunk(() => nix.app(nix.sel(lib, "getExe"), python));
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "scalene",
       version: "2.2.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           owner: "plasma-umass",
           repo: "scalene",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -89,7 +85,7 @@ substituteInPlace tests/test_{multiprocessing_pool_spawn,on_off_windows}.py \\
       preCheck: "rm -rf scalene\n",
       pythonImportsCheck: nix.thunk(() => ["scalene"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "High-resolution, low-overhead CPU, GPU, and memory profiler for Python with AI-powered optimization suggestions",
         homepage: "https://github.com/plasma-umass/scalene",
         changelog: nix.thunk(() => nix.str`https://github.com/plasma-umass/scalene/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

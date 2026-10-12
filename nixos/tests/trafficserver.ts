@@ -2,55 +2,28 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/trafficserver.nix", [[["maintainers", 26, 5]], [["server_ports", 48, 29], ["push_method_enabled", 51, 29], ["wait_for_cache", 54, 29]], [["path", 49, 41]], [["host_file", 49, 31]], [["max_space_mb_headroom", 50, 28]], [["http", 48, 24], ["hostdb", 49, 24], ["log", 50, 24]], [["config", 48, 17]], [["proxy", 48, 11]], [["path", 59, 13], ["arg", 60, 13]], [["path", 62, 13]], [["enable", 45, 32], ["records", 47, 32], ["plugins", 57, 32], ["remap", 65, 32], ["storage", 75, 32]], [["extraRules", 81, 23]], [["trafficserver", 45, 18], ["udev", 81, 18]], [["allowedTCPPorts", 79, 29]], [["firewall", 79, 20]], [["emptyDiskImages", 80, 24]], [["services", 45, 9], ["networking", 79, 9], ["virtualisation", 80, 9]], [["ExecStart", 103, 13]], [["enable", 99, 11], ["after", 100, 11], ["wantedBy", 101, 11], ["serviceConfig", 102, 11]], [["httpbin", 98, 26]], [["services", 98, 17]], [["allowedTCPPorts", 107, 29]], [["firewall", 107, 20]], [["systemd", 98, 9], ["networking", 107, 9]], [["systemPackages", 113, 21]], [["environment", 113, 9]], [["ats", 30, 5], ["httpbin", 86, 5], ["client", 110, 5]], [["name", 24, 3], ["meta", 25, 3], ["nodes", 29, 3], ["testScript", 117, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/trafficserver.nix", [["maintainers", 26, 5]]);
 const formals$2 = { args: { pkgs: false, lib: false, config: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/trafficserver.nix", [["server_ports", 48, 29], ["push_method_enabled", 51, 29], ["wait_for_cache", 54, 29]]);
-const pos$3 = nix.positions(here + "/trafficserver.nix", [["path", 49, 41]]);
-const pos$4 = nix.positions(here + "/trafficserver.nix", [["host_file", 49, 31]]);
-const pos$5 = nix.positions(here + "/trafficserver.nix", [["max_space_mb_headroom", 50, 28]]);
-const pos$6 = nix.positions(here + "/trafficserver.nix", [["http", 48, 24], ["hostdb", 49, 24], ["log", 50, 24]]);
-const pos$7 = nix.positions(here + "/trafficserver.nix", [["config", 48, 17]]);
-const pos$8 = nix.positions(here + "/trafficserver.nix", [["proxy", 48, 11]]);
-const pos$9 = nix.positions(here + "/trafficserver.nix", [["path", 59, 13], ["arg", 60, 13]]);
-const pos$10 = nix.positions(here + "/trafficserver.nix", [["path", 62, 13]]);
-const pos$11 = nix.positions(here + "/trafficserver.nix", [["enable", 45, 32], ["records", 47, 32], ["plugins", 57, 32], ["remap", 65, 32], ["storage", 75, 32]]);
-const pos$12 = nix.positions(here + "/trafficserver.nix", [["extraRules", 81, 23]]);
-const pos$13 = nix.positions(here + "/trafficserver.nix", [["trafficserver", 45, 18], ["udev", 81, 18]]);
-const pos$14 = nix.positions(here + "/trafficserver.nix", [["allowedTCPPorts", 79, 29]]);
-const pos$15 = nix.positions(here + "/trafficserver.nix", [["firewall", 79, 20]]);
-const pos$16 = nix.positions(here + "/trafficserver.nix", [["emptyDiskImages", 80, 24]]);
-const pos$17 = nix.positions(here + "/trafficserver.nix", [["services", 45, 9], ["networking", 79, 9], ["virtualisation", 80, 9]]);
 const formals$3 = { args: { pkgs: false, lib: false }, ellipsis: true };
-const pos$18 = nix.positions(here + "/trafficserver.nix", [["ExecStart", 103, 13]]);
-const pos$19 = nix.positions(here + "/trafficserver.nix", [["enable", 99, 11], ["after", 100, 11], ["wantedBy", 101, 11], ["serviceConfig", 102, 11]]);
-const pos$20 = nix.positions(here + "/trafficserver.nix", [["httpbin", 98, 26]]);
-const pos$21 = nix.positions(here + "/trafficserver.nix", [["services", 98, 17]]);
-const pos$22 = nix.positions(here + "/trafficserver.nix", [["allowedTCPPorts", 107, 29]]);
-const pos$23 = nix.positions(here + "/trafficserver.nix", [["firewall", 107, 20]]);
-const pos$24 = nix.positions(here + "/trafficserver.nix", [["systemd", 98, 9], ["networking", 107, 9]]);
 const formals$4 = { args: { pkgs: false, lib: false }, ellipsis: true };
-const pos$25 = nix.positions(here + "/trafficserver.nix", [["systemPackages", 113, 21]]);
-const pos$26 = nix.positions(here + "/trafficserver.nix", [["environment", 113, 9]]);
-const pos$27 = nix.positions(here + "/trafficserver.nix", [["ats", 30, 5], ["httpbin", 86, 5], ["client", 110, 5]]);
 const formals$5 = { args: { nodes: false }, ellipsis: true };
-const pos$28 = nix.positions(here + "/trafficserver.nix", [["name", 24, 3], ["meta", 25, 3], ["nodes", 29, 3], ["testScript", 117, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   return {
-    [nix.POS]: pos$28,
+    [nix.POS]: $pos[27],
     name: "trafficserver",
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
       return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "midchildan"))]),
       };
     })()),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$27,
+      [nix.POS]: $pos[26],
       ats: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs_1 = nix.arg($_1, "pkgs");
@@ -60,54 +33,54 @@ export default nix.lambda((args) => (() => {
         const group = nix.thunk(() => nix.sel(config, "users", "groups", "trafficserver", "name"));
         const healthchecks = nix.thunk(() => nix.app(nix.sel(pkgs_1, "writeText"), "healthchecks.conf", "/status /tmp/ats.status text/plain 200 500\n"));
         return {
-          [nix.POS]: pos$17,
+          [nix.POS]: $pos[16],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$13,
+            [nix.POS]: $pos[12],
             trafficserver: nix.thunk(() => ({
-              [nix.POS]: pos$11,
+              [nix.POS]: $pos[10],
               enable: true,
               records: nix.thunk(() => ({
-                [nix.POS]: pos$8,
+                [nix.POS]: $pos[7],
                 proxy: nix.thunk(() => ({
-                  [nix.POS]: pos$7,
+                  [nix.POS]: $pos[6],
                   config: nix.thunk(() => ({
-                    [nix.POS]: pos$6,
+                    [nix.POS]: $pos[5],
                     http: nix.thunk(() => ({
-                      [nix.POS]: pos$2,
+                      [nix.POS]: $pos[1],
                       server_ports: "80 80:ipv6",
                       push_method_enabled: 1n,
                       wait_for_cache: 2n,
                     })),
                     hostdb: nix.thunk(() => ({
-                      [nix.POS]: pos$4,
-                      host_file: nix.thunk(() => ({ [nix.POS]: pos$3, path: "/etc/hosts" })),
+                      [nix.POS]: $pos[3],
+                      host_file: nix.thunk(() => ({ [nix.POS]: $pos[2], path: "/etc/hosts" })),
                     })),
-                    log: nix.thunk(() => ({ [nix.POS]: pos$5, max_space_mb_headroom: 0n })),
+                    log: nix.thunk(() => ({ [nix.POS]: $pos[4], max_space_mb_headroom: 0n })),
                   })),
                 })),
               })),
               plugins: nix.thunk(() => [
                 nix.thunk(() => ({
-                  [nix.POS]: pos$9,
+                  [nix.POS]: $pos[8],
                   path: "healthchecks.so",
                   arg: nix.thunk(() => nix.builtins.toString(healthchecks)),
                 })),
-                nix.thunk(() => ({ [nix.POS]: pos$10, path: "xdebug.so" })),
+                nix.thunk(() => ({ [nix.POS]: $pos[9], path: "xdebug.so" })),
               ]),
               remap: "map http://httpbin.test http://httpbin\nmap http://pristine-host-hdr.test http://httpbin \\\n  @plugin=conf_remap.so \\\n  @pparam=proxy.config.url_remap.pristine_host_hdr=1\nmap http://ats/tspush http://httpbin/cache \\\n  @plugin=conf_remap.so \\\n  @pparam=proxy.config.http.cache.required_headers=0\n",
               storage: "/dev/vdb volume=1\n",
             })),
             udev: nix.thunk(() => ({
-              [nix.POS]: pos$12,
+              [nix.POS]: $pos[11],
               extraRules: nix.thunk(() => nix.str`KERNEL=="vdb", OWNER="${user}", GROUP="${group}"
 `),
             })),
           })),
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$15,
-            firewall: nix.thunk(() => ({ [nix.POS]: pos$14, allowedTCPPorts: nix.thunk(() => [80n]) })),
+            [nix.POS]: $pos[14],
+            firewall: nix.thunk(() => ({ [nix.POS]: $pos[13], allowedTCPPorts: nix.thunk(() => [80n]) })),
           })),
-          virtualisation: nix.thunk(() => ({ [nix.POS]: pos$16, emptyDiskImages: nix.thunk(() => [256n]) })),
+          virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[15], emptyDiskImages: nix.thunk(() => [256n]) })),
         };
       })(), formals$2),
       httpbin: nix.lambda((args_1) => (() => {
@@ -123,26 +96,26 @@ export default nix.lambda((args) => (() => {
             ];
           })()));
         return {
-          [nix.POS]: pos$24,
+          [nix.POS]: $pos[23],
           systemd: nix.thunk(() => ({
-            [nix.POS]: pos$21,
+            [nix.POS]: $pos[20],
             services: nix.thunk(() => ({
-              [nix.POS]: pos$20,
+              [nix.POS]: $pos[19],
               httpbin: nix.thunk(() => ({
-                [nix.POS]: pos$19,
+                [nix.POS]: $pos[18],
                 enable: true,
                 after: nix.thunk(() => ["network.target"]),
                 wantedBy: nix.thunk(() => ["multi-user.target"]),
                 serviceConfig: nix.thunk(() => ({
-                  [nix.POS]: pos$18,
+                  [nix.POS]: $pos[17],
                   ExecStart: nix.thunk(() => nix.str`${python}/bin/gunicorn -b 0.0.0.0:80 httpbin:app -k gevent`),
                 })),
               })),
             })),
           })),
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$23,
-            firewall: nix.thunk(() => ({ [nix.POS]: pos$22, allowedTCPPorts: nix.thunk(() => [80n]) })),
+            [nix.POS]: $pos[22],
+            firewall: nix.thunk(() => ({ [nix.POS]: $pos[21], allowedTCPPorts: nix.thunk(() => [80n]) })),
           })),
         };
       })(), formals$3),
@@ -151,9 +124,9 @@ export default nix.lambda((args) => (() => {
         const pkgs_1 = nix.arg($_1, "pkgs");
         const lib = nix.arg($_1, "lib");
         return {
-          [nix.POS]: pos$26,
+          [nix.POS]: $pos[25],
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$25,
+            [nix.POS]: $pos[24],
             systemPackages: nix.thunk(() => (() => {
               const w_1 = nix.withScope(pkgs_1, null);
               return [nix.thunk(() => nix.lookup(w_1, "curl"))];

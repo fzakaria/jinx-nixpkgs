@@ -2,12 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 16, 5], ["sha256", 17, 5]], [["url", 42, 7]], [["updateScript", 41, 5], ["tests", 44, 5]], [["description", 50, 5], ["homepage", 51, 5], ["changelog", 52, 5], ["license", 53, 5], ["mainProgram", 54, 5], ["maintainers", 55, 5], ["platforms", 56, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["buildInputs", 20, 3], ["buildPhase", 25, 3], ["installPhase", 31, 3], ["passthru", 40, 3], ["__darwinAllowLocalNetworking", 47, 3], ["meta", 49, 3]]]);
 const formals$1 = { args: { apacheHttpd: false, directoryListingUpdater: false, fetchurl: false, lib: false, nixosTests: false, perl: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 16, 5], ["sha256", 17, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["url", 42, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["updateScript", 41, 5], ["tests", 44, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 50, 5], ["homepage", 51, 5], ["changelog", 52, 5], ["license", 53, 5], ["mainProgram", 54, 5], ["maintainers", 55, 5], ["platforms", 56, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["buildInputs", 20, 3], ["buildPhase", 25, 3], ["installPhase", 31, 3], ["passthru", 40, 3], ["__darwinAllowLocalNetworking", 47, 3], ["meta", 49, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pname = "mod_perl";
       const version = "2.0.13";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://apache/perl/${pname}-${version}.tar.gz`),
           sha256: "sha256-reO+McRHuESIaf7N/KziWNbVh7jGx3PF8ic19w2C1to=",
         }))));
@@ -39,13 +35,13 @@ mv $out${perl}/* $out
 rm $out/nix -rf
 `);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(directoryListingUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, url: "https://archive.apache.org/dist/perl/" })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(directoryListingUpdater, nix.thunk(() => ({ [nix.POS]: $pos[1], url: "https://archive.apache.org/dist/perl/" })))),
         tests: nix.thunk(() => nix.sel(nixosTests, "mod_perl")),
       }));
       const __darwinAllowLocalNetworking = true;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Integration of perl with the Apache2 web server",
         homepage: "https://perl.apache.org/download/index.html",
         changelog: "https://github.com/apache/mod_perl/blob/trunk/Changes",
@@ -55,7 +51,7 @@ rm $out/nix -rf
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         src,

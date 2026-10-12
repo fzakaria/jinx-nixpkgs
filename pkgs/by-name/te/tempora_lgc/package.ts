@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 9, 7], ["sha256", 10, 7]], [["url", 13, 7], ["sha256", 14, 7]], [["url", 17, 7], ["sha256", 18, 7]], [["url", 21, 7], ["sha256", 22, 7]], [["description", 41, 5], ["license", 42, 5], ["maintainers", 43, 5]], [["name", 29, 3], ["nativeBuildInputs", 30, 11], ["srcs", 31, 11], ["installPhase", 32, 3], ["outputHashAlgo", 36, 3], ["outputHashMode", 37, 3], ["outputHash", 38, 3], ["meta", 40, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 9, 7], ["sha256", 10, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 13, 7], ["sha256", 14, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 17, 7], ["sha256", 18, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["url", 21, 7], ["sha256", 22, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 41, 5], ["license", 42, 5], ["maintainers", 43, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["name", 29, 3], ["nativeBuildInputs", 30, 11], ["srcs", 31, 11], ["installPhase", 32, 3], ["outputHashAlgo", 36, 3], ["outputHashMode", 37, 3], ["outputHash", 38, 3], ["meta", 40, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,29 +12,29 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const srcs = nix.thunk(() => [
     nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         url: "http://www.ttfotf.com/download-font/tempora-lgc-unicode-bold-italic.otf",
         sha256: "1yfbi62j6gjmzglxz29m6x6lxqpxghcqjjh916qn8in74ba5v0gq",
       })))),
     nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         url: "http://www.ttfotf.com/download-font/tempora-lgc-unicode-bold.otf",
         sha256: "0bfbl1h9h1022km2rg1zwl9lpabhnwdsvzdp0bwmf0wbm62550cp",
       })))),
     nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         url: "http://www.ttfotf.com/download-font/tempora-lgc-unicode-italic.otf",
         sha256: "10m9j4bvr6c4zp691wxm4hvzhph2zlfsxk1nmbsb9vn1i6vfgz04",
       })))),
     nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         url: "http://www.ttfotf.com/download-font/tempora-lgc-unicode.otf",
         sha256: "0iwa8wyydcpjss6d1jy4jibqxpvzph4vmaxwwmndpsqy1fz64y9i",
       })))),
   ]);
   const nativeBuildInputs = [];
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       name: "tempora-lgc",
       nativeBuildInputs: nativeBuildInputs,
       srcs: srcs,
@@ -50,7 +45,7 @@ cp ${nix.builtins.toString(srcs)} "$out/share/fonts/opentype/public"
       outputHashMode: "recursive",
       outputHash: "1kwj31cjgdirqvh6bxs4fnvvr1ppaz6z8w40kvhkivgs69jglmzw",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Tempora font",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "raskin"))]),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/citra.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5], ["fetchSubmodules", 19, 5]], [["description", 62, 5], ["homepage", 63, 5], ["license", 64, 5]], [["core", 11, 3], ["version", 12, 3], ["src", 14, 3], ["patches", 22, 3], ["makefile", 27, 3], ["extraBuildInputs", 29, 3], ["extraNativeBuildInputs", 35, 3], ["cmakeFlags", 38, 3], ["meta", 61, 3]]]);
 const formals$1 = { args: { lib: false, cmake: false, fetchFromGitHub: false, libGL: false, libGLU: false, libx11: false, mkLibretroCore: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/citra.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5], ["fetchSubmodules", 19, 5]]);
-const pos$2 = nix.positions(here + "/citra.nix", [["description", 62, 5], ["homepage", 63, 5], ["license", 64, 5]]);
-const pos$3 = nix.positions(here + "/citra.nix", [["core", 11, 3], ["version", 12, 3], ["src", 14, 3], ["patches", 22, 3], ["makefile", 27, 3], ["extraBuildInputs", 29, 3], ["extraNativeBuildInputs", 35, 3], ["cmakeFlags", 38, 3], ["meta", 61, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const libx11 = nix.arg($, "libx11");
   const mkLibretroCore = nix.arg($, "mkLibretroCore");
   return nix.app(mkLibretroCore, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       core: "citra",
       version: "0-unstable-2026-09-04",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "libretro",
           repo: "citra",
           rev: "e4cbe379bfa8990af706977d699e16a618523778",
@@ -49,7 +47,7 @@ export default nix.lambda((args) => (() => {
         ];
       })()),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Port of Citra to libretro",
         homepage: "https://github.com/libretro/citra",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

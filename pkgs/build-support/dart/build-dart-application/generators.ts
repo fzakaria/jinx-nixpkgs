@@ -2,11 +2,10 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/generators.nix", [[["name", 59, 9], ["nativeBuildInputs", 61, 9], ["dontBuild", 69, 9], ["installPhase", 71, 9]], [["linkPackageConfig", 97, 5]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, dart: false, dartHooks: false, jq: false, yq: false, cacert: false }, ellipsis: false };
 const formals$2 = { args: { buildDrvArgs: true }, ellipsis: true };
 const formals$3 = { args: { pubspecLock: false, packageConfig: false, extraSetupCommands: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/generators.nix", [["name", 59, 9], ["nativeBuildInputs", 61, 9], ["dontBuild", 69, 9], ["installPhase", 71, 9]]);
-const pos$2 = nix.positions(here + "/generators.nix", [["linkPackageConfig", 97, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -49,7 +48,7 @@ export default nix.lambda((args) => (() => {
       const packageConfig = nix.arg($_2, "packageConfig");
       const extraSetupCommands = nix.argOr($_2, "extraSetupCommands", () => "");
       return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => nix.update(drvArgs, {
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           name: nix.thunk(() => nix.str`${name}-package-config-with-root.json`),
           nativeBuildInputs: nix.thunk(() => nix.concat(nix.selOr(drvArgs, () => [], "nativeBuildInputs"), nix.concat(nix.selOr(args_2, () => [], "nativeBuildInputs"), [jq, yq]))),
           dontBuild: true,
@@ -67,7 +66,7 @@ runHook postInstall
           })()),
         })));
     })(), formals$3);
-    return { [nix.POS]: pos$2, linkPackageConfig: linkPackageConfig };
+    return { [nix.POS]: $pos[1], linkPackageConfig: linkPackageConfig };
   })(), formals$2);
 })(), formals$1);
 //# sourceMappingURL=generators.ts.map

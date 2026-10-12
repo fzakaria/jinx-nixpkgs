@@ -2,12 +2,9 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["homepage", 25, 16]], [["gitRepoUrl", 26, 20]], [["name", 19, 19], ["url", 20, 11], ["meta", 25, 11], ["passthru", 26, 11]], [["rev", 34, 17]]]);
 const formals$1 = { args: { lib: false, repoRevToNameMaybe: false, fetchzip: false }, ellipsis: false };
 const formals$2 = { args: { repo: false, rev: false, name: true }, ellipsis: true };
-const pos$1 = nix.positions(here + "/default.nix", [["homepage", 25, 16]]);
-const pos$2 = nix.positions(here + "/default.nix", [["gitRepoUrl", 26, 20]]);
-const pos$3 = nix.positions(here + "/default.nix", [["name", 19, 19], ["url", 20, 11], ["meta", 25, 11], ["passthru", 26, 11]]);
-const pos$4 = nix.positions(here + "/default.nix", [["rev", 34, 17]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,21 +18,21 @@ export default nix.lambda((args) => (() => {
       const rev = nix.arg($_1, "rev");
       const name = nix.argOr($_1, "name", () => nix.app(repoRevToNameMaybe, repo, rev, "savannah"));
       const result = nix.thunk(() => nix.update(nix.app(fetchzip, nix.thunk(() => nix.update({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           name: name,
           url: nix.thunk(() => (() => {
             const repo$ = nix.thunk(() => nix.app(nix.sel(lib, "last"), nix.thunk(() => nix.app(nix.sel(lib, "strings", "splitString"), "/", repo))));
             return nix.str`https://cgit.git.savannah.gnu.org/cgit/${repo}.git/snapshot/${repo$}-${rev}.tar.gz`;
           })()),
           meta: nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             homepage: nix.thunk(() => nix.str`https://cgit.git.savannah.gnu.org/cgit/${repo}.git/`),
           })),
           passthru: nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             gitRepoUrl: nix.thunk(() => nix.str`https://cgit.git.savannah.gnu.org/git/${repo}.git`),
           })),
-        }, nix.builtins.removeAttrs(args_2, nix.thunk(() => ["repo", "rev"]))))), { [nix.POS]: pos$4, rev: rev }));
+        }, nix.builtins.removeAttrs(args_2, nix.thunk(() => ["repo", "rev"]))))), { [nix.POS]: $pos[3], rev: rev }));
       return nix.app(nix.sel(lib, "warnOnInstantiate"), "`fetchFromSavannah` is deprecated and will be removed in a future release.", result);
     })(), formals$2));
 })(), formals$1);

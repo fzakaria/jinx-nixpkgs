@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/yojson.nix", [[["description", 19, 5]], [["pname", 9, 3], ["version", 10, 18], ["src", 10, 26], ["propagatedBuildInputs", 12, 3], ["meta", 18, 3]]]);
 const formals$1 = { args: { buildDunePackage: false, pbrt: false, base64: false, yojson: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/yojson.nix", [["description", 19, 5]]);
-const pos$2 = nix.positions(here + "/yojson.nix", [["pname", 9, 3], ["version", 10, 18], ["src", 10, 26], ["propagatedBuildInputs", 12, 3], ["meta", 18, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,13 +12,13 @@ export default nix.lambda((args) => (() => {
   const base64 = nix.arg($, "base64");
   const yojson = nix.arg($, "yojson");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "pbrt_yojson",
       version: nix.thunk(() => nix.attr(pbrt, "version")),
       src: nix.thunk(() => nix.attr(pbrt, "src")),
       propagatedBuildInputs: nix.thunk(() => [pbrt, base64, yojson]),
       meta: nix.thunk(() => nix.update(nix.sel(pbrt, "meta"), {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Runtime library for ocaml-protoc to support JSON encoding/decoding",
       })),
     })));

@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 20, 7], ["repo", 21, 7], ["tag", 22, 7], ["hash", 23, 7]], [["pname", 44, 9], ["pyproject", 45, 9], ["postPatch", 47, 9], ["doBuild", 49, 9], ["doInstall", 50, 9], ["doCheck", 52, 9], ["nativeCheckInputs", 53, 9]], [["pytest", 43, 13]], [["tests", 43, 7]], [["description", 61, 7], ["homepage", 62, 7], ["changelog", 63, 7], ["license", 64, 7], ["maintainers", 65, 7]], [["pname", 15, 5], ["version", 16, 5], ["pyproject", 17, 5], ["src", 19, 5], ["build-system", 26, 5], ["dependencies", 32, 5], ["pythonImportsCheck", 38, 5], ["doCheck", 40, 5], ["passthru", 42, 5], ["meta", 60, 5]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, cython: false, numpy: false, scipy: false, "scikit-learn": false, pytestCheckHook: false, setuptools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 20, 7], ["repo", 21, 7], ["tag", 22, 7], ["hash", 23, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 44, 9], ["pyproject", 45, 9], ["postPatch", 47, 9], ["doBuild", 49, 9], ["doInstall", 50, 9], ["doCheck", 52, 9], ["nativeCheckInputs", 53, 9]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pytest", 43, 13]]);
-const pos$4 = nix.positions(here + "/default.nix", [["tests", 43, 7]]);
-const pos$5 = nix.positions(here + "/default.nix", [["description", 61, 7], ["homepage", 62, 7], ["changelog", 63, 7], ["license", 64, 7], ["maintainers", 65, 7]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 15, 5], ["version", 16, 5], ["pyproject", 17, 5], ["src", 19, 5], ["build-system", 26, 5], ["dependencies", 32, 5], ["pythonImportsCheck", 38, 5], ["doCheck", 40, 5], ["passthru", 42, 5], ["meta", 60, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.0.4";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "pavlin-policar",
           repo: "openTSNE",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -37,11 +32,11 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["openTSNE"]);
       const doCheck = false;
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           pytest: nix.thunk(() => nix.app(nix.sel(self, "overridePythonAttrs"), (old) => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               pname: nix.thunk(() => nix.str`${nix.sel(old, "pname")}-tests`),
               pyproject: false,
               postPatch: "rm openTSNE -rf",
@@ -53,7 +48,7 @@ export default nix.lambda((args) => (() => {
         })),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Modular Python implementation of t-Distributed Stochasitc Neighbor Embedding",
         homepage: "https://github.com/pavlin-policar/openTSNE",
         changelog: nix.thunk(() => nix.str`https://github.com/pavlin-policar/openTSNE/releases/tag/v${version}`),
@@ -61,7 +56,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname,
         version,
         pyproject,

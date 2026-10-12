@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/cuda_compat.nix", [[["kind", 36, 9], ["message", 37, 9]], [["cuda-compat-disabled", 35, 7]], [["description", 32, 5], ["homepage", 33, 5], ["problems", 34, 5]], [["redistName", 9, 3], ["pname", 10, 3], ["outputs", 14, 3], ["buildInputs", 17, 3], ["autoPatchelfIgnoreMissingDeps", 21, 3], ["meta", 31, 3]]]);
 const formals$1 = { args: { buildRedist: false, config: false, lib: false, openssl: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/cuda_compat.nix", [["kind", 36, 9], ["message", 37, 9]]);
-const pos$2 = nix.positions(here + "/cuda_compat.nix", [["cuda-compat-disabled", 35, 7]]);
-const pos$3 = nix.positions(here + "/cuda_compat.nix", [["description", 32, 5], ["homepage", 33, 5], ["problems", 34, 5]]);
-const pos$4 = nix.positions(here + "/cuda_compat.nix", [["redistName", 9, 3], ["pname", 10, 3], ["outputs", 14, 3], ["buildInputs", 17, 3], ["autoPatchelfIgnoreMissingDeps", 21, 3], ["meta", 31, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,20 +13,20 @@ export default nix.lambda((args) => (() => {
   const openssl = nix.arg($, "openssl");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(buildRedist, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       redistName: "cuda",
       pname: "cuda_compat",
       outputs: nix.thunk(() => ["out"]),
       buildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isx86_64")), nix.thunk(() => [openssl]))),
       autoPatchelfIgnoreMissingDeps: nix.thunk(() => nix.concat(["libnvdla_runtime.so", "libnvrm_gpu.so", "libnvrm_mem.so"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isx86_64")), nix.thunk(() => ["libcrypto.so.1.1"])))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Provides minor version forward compatibility for the CUDA runtime",
         homepage: "https://docs.nvidia.com/deploy/cuda-compatibility",
         problems: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.asBool(nix.sel(config, "enableCudaDriverCompat"))), nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             "cuda-compat-disabled": nix.thunk(() => ({
-              [nix.POS]: pos$1,
+              [nix.POS]: $pos[0],
               kind: "broken",
               message: "cuda_compat must be explicitly enabled using config.enableCudaDriverCompat.",
             })),

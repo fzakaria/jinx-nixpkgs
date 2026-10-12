@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["tag", 15, 5], ["hash", 16, 5]], [["homepage", 24, 5], ["changelog", 25, 5], ["description", 26, 5], ["mainProgram", 27, 5], ["license", 28, 5], ["maintainers", 29, 5], ["platforms", 32, 5]], [["pname", 8, 3], ["version", 9, 3], ["pyproject", 10, 3], ["src", 12, 3], ["dependencies", 19, 3], ["build-system", 21, 3], ["meta", 23, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, python3Packages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["tag", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 24, 5], ["changelog", 25, 5], ["description", 26, 5], ["mainProgram", 27, 5], ["license", 28, 5], ["maintainers", 29, 5], ["platforms", 32, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["pyproject", 10, 3], ["src", 12, 3], ["dependencies", 19, 3], ["build-system", 21, 3], ["meta", 23, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,12 +11,12 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const python3Packages = nix.arg($, "python3Packages");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "contact",
       version: "1.7.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "pdxlocations",
           repo: "contact",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -27,7 +25,7 @@ export default nix.lambda((args) => (() => {
       dependencies: nix.thunk(() => [nix.thunk(() => nix.sel(python3Packages, "meshtastic"))]),
       "build-system": nix.thunk(() => [nix.thunk(() => nix.sel(python3Packages, "poetry-core"))]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/pdxlocations/contact",
         changelog: nix.thunk(() => nix.str`https://github.com/pdxlocations/contact/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         description: "Console UI for Meshtastic",

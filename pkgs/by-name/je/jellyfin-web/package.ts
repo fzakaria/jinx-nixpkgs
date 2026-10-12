@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 7], ["repo", 22, 7], ["tag", 23, 7], ["hash", 24, 7]], [["updateScript", 61, 12]], [["description", 64, 5], ["homepage", 65, 5], ["license", 66, 5], ["maintainers", 67, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["nodejs", 27, 3], ["postPatch", 29, 3], ["npmDepsHash", 34, 3], ["preBuild", 36, 3], ["npmBuildScript", 41, 3], ["nativeBuildInputs", 43, 3], ["buildInputs", 45, 3], ["installPhase", 52, 3], ["passthru", 61, 3], ["meta", 63, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, buildNpmPackage: false, nodejs_24: false, "nix-update-script": false, "pkg-config": false, xcbuild: false, pango: false, giflib: false, jellyfin: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 7], ["repo", 22, 7], ["tag", 23, 7], ["hash", 24, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 61, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 64, 5], ["homepage", 65, 5], ["license", 66, 5], ["maintainers", 67, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["nodejs", 27, 3], ["postPatch", 29, 3], ["npmDepsHash", 34, 3], ["preBuild", 36, 3], ["npmBuildScript", 41, 3], ["nativeBuildInputs", 43, 3], ["buildInputs", 45, 3], ["installPhase", 52, 3], ["passthru", 61, 3], ["meta", 63, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,13 +19,13 @@ export default nix.lambda((args) => (() => {
   const giflib = nix.arg($, "giflib");
   const jellyfin = nix.arg($, "jellyfin");
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "jellyfin-web",
       version: "12.2",
       src: nix.thunk(() => (() => {
         nix.assert_(nix.eq(nix.sel(finalAttrs, "version"), nix.sel(jellyfin, "version")), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/je/jellyfin-web/package.nix:19:5");
         return nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             owner: "jellyfin",
             repo: "jellyfin-web",
             tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -46,11 +43,11 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => nix.concat([pango], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [giflib])))),
       installPhase: "runHook preInstall\n\nmkdir -p $out/share\ncp -a dist $out/share/jellyfin-web\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Web Client for Jellyfin",
         homepage: "https://jellyfin.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 41, 5], ["hash", 42, 5]], [["homepage", 85, 5], ["description", 86, 5], ["license", 90, 5], ["platforms", 91, 5], ["maintainers", 92, 5]], [["basic-functionality-and-dovecot-interaction", 98, 5], ["rspamd-integration", 99, 5]], [["tests", 97, 12]], [["pname", 21, 3], ["version", 22, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 31, 3], ["src", 40, 3], ["patches", 45, 3], ["postPatch", 50, 3], ["configureFlags", 63, 3], ["installFlags", 79, 3], ["meta", 84, 3], ["passthru", 97, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, autoreconfHook: false, "autoconf-archive": false, pkgconf: false, libtool: false, bison: false, libevent: false, zlib: false, libressl: false, db: false, pam: false, libxcrypt: false, nixosTests: false, binPath: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 41, 5], ["hash", 42, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 85, 5], ["description", 86, 5], ["license", 90, 5], ["platforms", 91, 5], ["maintainers", 92, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["basic-functionality-and-dovecot-interaction", 98, 5], ["rspamd-integration", 99, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 97, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 31, 3], ["src", 40, 3], ["patches", 45, 3], ["postPatch", 50, 3], ["configureFlags", 63, 3], ["installFlags", 79, 3], ["meta", 84, 3], ["passthru", 97, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,13 +24,13 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const binPath = nix.argOr($, "binPath", () => "/run/wrappers/bin");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "opensmtpd",
       version: "7.8.0p0",
       nativeBuildInputs: nix.thunk(() => [autoreconfHook, autoconf_archive, pkgconf, libtool, bison]),
       buildInputs: nix.thunk(() => [libevent, zlib, libressl, db, pam, libxcrypt]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://www.opensmtpd.org/archives/opensmtpd-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-QDTeLpLGH6g+7a2x2Ni9/mXlfrUM6WeeAUCVDjTKSrc=",
         })))),
@@ -67,7 +63,7 @@ substituteInPlace usr.sbin/smtpd/smtpd.c \\
       ]),
       installFlags: nix.thunk(() => ["sysconfdir=${out}/etc", "localstatedir=${TMPDIR}"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://www.opensmtpd.org/",
         description: "A free implementation of the server-side SMTP protocol as defined by\nRFC 5321, with some additional standard extensions\n",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),
@@ -81,9 +77,9 @@ substituteInPlace usr.sbin/smtpd/smtpd.c \\
         })()),
       })),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           "basic-functionality-and-dovecot-interaction": nix.thunk(() => nix.sel(nixosTests, "opensmtpd")),
           "rspamd-integration": nix.thunk(() => nix.sel(nixosTests, "opensmtpd-rspamd")),
         })),

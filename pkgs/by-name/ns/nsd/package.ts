@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 39, 5], ["hash", 40, 5]], [["nsd", 96, 26]], [["tests", 95, 12]], [["homepage", 100, 5], ["description", 101, 5], ["license", 102, 5], ["platforms", 103, 5], ["maintainers", 104, 5]], [["pname", 35, 3], ["version", 36, 3], ["src", 38, 3], ["nativeBuildInputs", 43, 3], ["buildInputs", 49, 3], ["enableParallelBuilding", 60, 3], ["postPatch", 63, 3], ["configureFlags", 67, 3], ["postFixup", 91, 3], ["passthru", 95, 3], ["meta", 99, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, removeReferencesTo: false, fstrm: false, libevent: false, openssl: false, "pkg-config": false, protobuf: false, protobufc: false, systemdMinimal: false, nixosTests: false, config: false, bind8Stats: true, checking: true, ipv6: true, minimalResponses: true, mmap: true, nsec3: true, ratelimit: true, recvmmsg: true, rootServer: true, rrtypes: true, zoneStats: true, withDnstap: true, withSystemd: true, configFile: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 39, 5], ["hash", 40, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["nsd", 96, 26]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 95, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 100, 5], ["description", 101, 5], ["license", 102, 5], ["platforms", 103, 5], ["maintainers", 104, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 35, 3], ["version", 36, 3], ["src", 38, 3], ["nativeBuildInputs", 43, 3], ["buildInputs", 49, 3], ["enableParallelBuilding", 60, 3], ["postPatch", 63, 3], ["configureFlags", 67, 3], ["postFixup", 91, 3], ["passthru", 95, 3], ["meta", 99, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -39,11 +35,11 @@ export default nix.lambda((args) => (() => {
   const withSystemd = nix.argOr($, "withSystemd", () => nix.selOr(config, () => nix.app(nix.sel(lib, "meta", "availableOn"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")), systemdMinimal), "nsd", "withSystemd"));
   const configFile = nix.argOr($, "configFile", () => nix.selOr(config, () => "/etc/nsd/nsd.conf", "nsd", "configFile"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "nsd",
       version: "4.15.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://www.nlnetlabs.nl/downloads/nsd/nsd-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-u01XdTwswqZByS2rECEBbSX7S5cpIL9PC7uMQMGpzOI=",
         })))),
@@ -63,11 +59,11 @@ export default nix.lambda((args) => (() => {
       postFixup: nix.thunk(() => nix.str`find "$out" -type f -exec remove-references-to -t ${nix.sel(openssl, "dev")} -t ${nix.sel(libevent, "dev")} '{}' +
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$2, nsd: nix.thunk(() => nix.attr(nixosTests, "nsd")) })),
+        [nix.POS]: $pos[2],
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[1], nsd: nix.thunk(() => nix.attr(nixosTests, "nsd")) })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://www.nlnetlabs.nl",
         description: "Authoritative only, high performance, simple and open source name server",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 12, 5], ["owner", 13, 5], ["repo", 14, 5], ["tag", 15, 5], ["hash", 16, 5]], [["homepage", 29, 5], ["changelog", 30, 5], ["description", 31, 5], ["license", 32, 5], ["maintainers", 37, 5], ["platforms", 38, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 11, 3], ["nativeBuildInputs", 19, 3], ["cmakeFlags", 24, 3], ["meta", 28, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, cmake: false, gfortran: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 12, 5], ["owner", 13, 5], ["repo", 14, 5], ["tag", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 29, 5], ["changelog", 30, 5], ["description", 31, 5], ["license", 32, 5], ["maintainers", 37, 5], ["platforms", 38, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 11, 3], ["nativeBuildInputs", 19, 3], ["cmakeFlags", 24, 3], ["meta", 28, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const cmake = nix.arg($, "cmake");
   const gfortran = nix.arg($, "gfortran");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "calceph",
       version: "5.0.1",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "gitlab.obspm.fr",
           owner: "imcce_calceph",
           repo: "calceph",
@@ -31,7 +29,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "BUILD_SHARED_LIBS", nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isStatic"))))),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://www.imcce.fr/inpop/calceph/",
         changelog: nix.thunk(() => nix.str`https://gitlab.obspm.fr/imcce_calceph/calceph/-/blob/${nix.sel(finalAttrs, "src", "rev")}/NEWS`),
         description: "C library for interacting with binary planetary ephemeris files, such INPOPxx, JPL DExxx and SPICE",

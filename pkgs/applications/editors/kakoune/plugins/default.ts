@@ -2,9 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["buildKakounePluginFrom2Nix", 13, 13], ["overrides", 13, 40]], [["buildKakounePluginFrom2Nix", 23, 13]]]);
 const formals$1 = { args: { callPackage: false, config: false, kakouneUtils: false, lib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["buildKakounePluginFrom2Nix", 13, 13], ["overrides", 13, 40]]);
-const pos$2 = nix.positions(here + "/default.nix", [["buildKakounePluginFrom2Nix", 23, 13]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const from = nix.thunk(() => nix.app(nix.sel(kakouneUtils, "override"), nix.thunk(() => ({}))));
   const buildKakounePluginFrom2Nix = nix.thunk(() => nix.attr(from, "buildKakounePluginFrom2Nix"));
   const plugins = nix.thunk(() => nix.app(callPackage, nix.path(here, "./generated.nix"), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       buildKakounePluginFrom2Nix: buildKakounePluginFrom2Nix,
       overrides: overrides,
     }))));
-  const overrides = nix.thunk(() => nix.app(callPackage, nix.path(here, "./overrides.nix"), nix.thunk(() => ({ [nix.POS]: pos$2, buildKakounePluginFrom2Nix: buildKakounePluginFrom2Nix }))));
+  const overrides = nix.thunk(() => nix.app(callPackage, nix.path(here, "./overrides.nix"), nix.thunk(() => ({ [nix.POS]: $pos[1], buildKakounePluginFrom2Nix: buildKakounePluginFrom2Nix }))));
   const aliases = nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(config, "allowAliases")), nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./aliases.nix")), lib, plugins))));
   return nix.update(plugins, aliases);
 })(), formals$1);

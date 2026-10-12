@@ -2,10 +2,8 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 9, 5], ["repo", 10, 5], ["rev", 11, 5], ["hash", 12, 5]], [["name", 17, 7], ["url", 18, 7], ["hash", 19, 7]], [["name", 7, 3], ["src", 8, 3], ["patches", 14, 3], ["postPatch", 29, 3], ["vendorHash", 30, 3]]]);
 const formals$1 = { args: { buildGoModule: false, fetchFromGitHub: false, fetchpatch: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 9, 5], ["repo", 10, 5], ["rev", 11, 5], ["hash", 12, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["name", 17, 7], ["url", 18, 7], ["hash", 19, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["name", 7, 3], ["src", 8, 3], ["patches", 14, 3], ["postPatch", 29, 3], ["vendorHash", 30, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,10 +11,10 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const fetchpatch = nix.arg($, "fetchpatch");
   return nix.app(buildGoModule, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       name: "codeowners-validator",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "mszostok",
           repo: "codeowners-validator",
           rev: "f3651e3810802a37bd965e6a9a7210728179d076",
@@ -24,7 +22,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "user-write-access-check",
             url: "https://github.com/mszostok/codeowners-validator/compare/f3651e3810802a37bd965e6a9a7210728179d076...840eeb88b4da92bda3e13c838f67f6540b9e8529.patch",
             hash: "sha256-t3Dtt8SP9nbO3gBrM0nRE7+G6N/ZIaczDyVHYAG/6mU=",

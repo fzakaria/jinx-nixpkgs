@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]], [["amazon-cloudwatch-agent", 53, 28]], [["tests", 52, 5], ["updateScript", 56, 5]], [["description", 60, 5], ["homepage", 61, 5], ["license", 62, 5], ["mainProgram", 63, 5], ["maintainers", 64, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["proxyVendor", 23, 3], ["vendorHash", 24, 3], ["subPackages", 27, 3], ["postInstall", 39, 3], ["doInstallCheck", 43, 3], ["nativeInstallCheckInputs", 45, 3], ["versionCheckProgram", 47, 3], ["versionCheckProgramArg", 49, 3], ["passthru", 51, 3], ["meta", 59, 3]]]);
 const formals$1 = { args: { lib: false, "amazon-cloudwatch-agent": false, buildGoModule: false, fetchFromGitHub: false, "nix-update-script": false, nixosTests: false, stdenv: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["amazon-cloudwatch-agent", 53, 28]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 52, 5], ["updateScript", 56, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 60, 5], ["homepage", 61, 5], ["license", 62, 5], ["mainProgram", 63, 5], ["maintainers", 64, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["proxyVendor", 23, 3], ["vendorHash", 24, 3], ["subPackages", 27, 3], ["postInstall", 39, 3], ["doInstallCheck", 43, 3], ["nativeInstallCheckInputs", 45, 3], ["versionCheckProgram", 47, 3], ["versionCheckProgramArg", 49, 3], ["passthru", 51, 3], ["meta", 59, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "amazon-cloudwatch-agent",
       version: "1.300071.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "aws",
           repo: "amazon-cloudwatch-agent",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -45,15 +41,15 @@ export default nix.lambda((args) => (() => {
       versionCheckProgram: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/bin/amazon-cloudwatch-agent`),
       versionCheckProgramArg: "-version",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             "amazon-cloudwatch-agent": nix.thunk(() => nix.attr(nixosTests, "amazon-cloudwatch-agent")),
           })))),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "CloudWatch Agent enables you to collect and export host-level metrics and logs on instances running Linux or Windows server",
         homepage: "https://github.com/aws/amazon-cloudwatch-agent",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -2,11 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/play.nix", [[["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5], ["fetchSubmodules", 24, 5]], [["CXXFLAGS", 46, 7]], [["description", 49, 5], ["homepage", 50, 5], ["license", 51, 5]], [["core", 16, 3], ["version", 17, 3], ["src", 19, 3], ["extraBuildInputs", 27, 3], ["extraNativeBuildInputs", 37, 3], ["makefile", 38, 3], ["cmakeFlags", 39, 3], ["postBuild", 43, 3], ["env", 46, 3], ["meta", 48, 3]]]);
 const formals$1 = { args: { lib: false, boost: false, bzip2: false, cmake: false, curl: false, fetchFromGitHub: false, icu: false, libGL: false, libGLU: false, mkLibretroCore: false, openssl: false, libx11: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/play.nix", [["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5], ["fetchSubmodules", 24, 5]]);
-const pos$2 = nix.positions(here + "/play.nix", [["CXXFLAGS", 46, 7]]);
-const pos$3 = nix.positions(here + "/play.nix", [["description", 49, 5], ["homepage", 50, 5], ["license", 51, 5]]);
-const pos$4 = nix.positions(here + "/play.nix", [["core", 16, 3], ["version", 17, 3], ["src", 19, 3], ["extraBuildInputs", 27, 3], ["extraNativeBuildInputs", 37, 3], ["makefile", 38, 3], ["cmakeFlags", 39, 3], ["postBuild", 43, 3], ["env", 46, 3], ["meta", 48, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const openssl = nix.arg($, "openssl");
   const libx11 = nix.arg($, "libx11");
   return nix.app(mkLibretroCore, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       core: "play",
       version: "0-unstable-2026-09-03",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "jpd002",
           repo: "Play-",
           rev: "83700b2c31e593bc94e845b4b31b797be84dda59",
@@ -39,9 +36,9 @@ export default nix.lambda((args) => (() => {
       makefile: "Makefile",
       cmakeFlags: nix.thunk(() => ["-DBUILD_PLAY=OFF", "-DBUILD_LIBRETRO_CORE=ON"]),
       postBuild: "cd Source/ui_libretro",
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, CXXFLAGS: "-include cstdio" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], CXXFLAGS: "-include cstdio" })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Port of Play! to libretro",
         homepage: "https://github.com/jpd002/Play-",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

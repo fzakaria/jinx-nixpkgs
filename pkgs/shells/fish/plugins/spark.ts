@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/spark.nix", [[["owner", 12, 7], ["repo", 13, 7], ["tag", 14, 7], ["hash", 15, 7]], [["description", 19, 7], ["homepage", 20, 7], ["license", 21, 7], ["maintainers", 22, 7]], [["pname", 8, 5], ["version", 9, 5], ["src", 11, 5], ["meta", 18, 5]]]);
 const formals$1 = { args: { lib: false, buildFishPlugin: false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/spark.nix", [["owner", 12, 7], ["repo", 13, 7], ["tag", 14, 7], ["hash", 15, 7]]);
-const pos$2 = nix.positions(here + "/spark.nix", [["description", 19, 7], ["homepage", 20, 7], ["license", 21, 7], ["maintainers", 22, 7]]);
-const pos$3 = nix.positions(here + "/spark.nix", [["pname", 8, 5], ["version", 9, 5], ["src", 11, 5], ["meta", 18, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,18 +11,18 @@ export default nix.lambda((args) => (() => {
   const buildFishPlugin = nix.arg($, "buildFishPlugin");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const self = nix.thunk(() => nix.app(buildFishPlugin, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "spark",
       version: "1.2.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "jorgebucaran",
           repo: "spark.fish",
           tag: nix.thunk(() => nix.sel(self, "version")),
           hash: "sha256-AIFj7lz+QnqXGMBCfLucVwoBR3dcT0sLNPrQxA5qTuU=",
         })))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Sparklines for Fish",
         homepage: "https://github.com/jorgebucaran/spark.fish",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

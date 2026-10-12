@@ -2,75 +2,8 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/buildenv.nix", [[["success", 13, 7], ["value", 14, 7]], [["expr", 11, 5], ["expected", 12, 5]], [["name", 22, 11], ["paths", 23, 11]], [["expr", 20, 7], ["expected", 25, 7]], [["pname", 31, 11], ["version", 32, 11], ["paths", 33, 11]], [["expr", 29, 7], ["expected", 35, 7]], [["testNameFromNameArg", 19, 5], ["testNameFromPnameVersion", 28, 5]], [["name", 44, 13], ["paths", 45, 13]], [["expr", 41, 7], ["expected", 49, 7]], [["name", 56, 13], ["paths", 57, 13]], [["paths", 60, 22]], [["passthru", 60, 13]], [["expr", 53, 7], ["expected", 64, 7]], [["testPathsInPassthru", 40, 5], ["testPassthruPathsOverridable", 52, 5]], [["description", 75, 22]], [["name", 73, 13], ["paths", 74, 13], ["passthru", 75, 13]], [["expr", 70, 7], ["expected", 79, 7]], [["testFinalAttrsSelfReference", 69, 5]], [["custom", 88, 18]], [["name", 86, 9], ["paths", 87, 9], ["passthru", 88, 9]], [["custom", 93, 13]], [["passthru", 92, 11]], [["expr", 100, 9], ["expected", 101, 9]], [["expr", 105, 9], ["expected", 106, 9]], [["postBuild", 112, 50]], [["expr", 110, 9], ["expected", 115, 9]], [["testOverrideAttrsChangesPassthru", 99, 7], ["testOverrideAttrsPreservesName", 104, 7], ["testOverrideAttrsAffectsDrv", 109, 7]], [["fromDerivationArgs", 124, 33]], [["passthru", 124, 24]], [["fromPassthru", 125, 18]], [["name", 122, 9], ["paths", 123, 9], ["derivationArgs", 124, 9], ["passthru", 125, 9]], [["expr", 130, 9], ["expected", 131, 9]], [["expr", 135, 9], ["expected", 136, 9]], [["expr", 140, 9], ["expected", 141, 9]], [["key", 151, 39]], [["passthru", 151, 30]], [["key", 152, 24]], [["name", 149, 15], ["paths", 150, 15], ["derivationArgs", 151, 15], ["passthru", 152, 15]], [["expr", 146, 9], ["expected", 156, 9]], [["testPassthruMergingAutoPathsPresent", 129, 7], ["testPassthruMergingDerivationArgs", 134, 7], ["testPassthruMergingDirectPassthru", 139, 7], ["testPassthruMergingPrecedence", 145, 7]], [["allowSubstitutes", 165, 24]], [["name", 163, 9], ["paths", 164, 9], ["derivationArgs", 165, 9]], [["expr", 171, 9], ["expected", 172, 9]], [["name", 180, 15], ["paths", 181, 15], ["nativeBuildInputs", 182, 15]], [["expr", 177, 9], ["expected", 186, 9]], [["testDerivationArgsForwarded", 170, 7], ["testCompatNativeBuildInputs", 176, 7]], [["name", 197, 13], ["paths", 198, 13]], [["testEnv", 196, 11]], [["name", 223, 13], ["paths", 224, 13], ["pathsToLink", 225, 13]], [["testEnv", 222, 11]], [["name", 242, 13], ["paths", 243, 13], ["extraPrefix", 244, 13]], [["testEnv", 241, 11]], [["name", 262, 13], ["paths", 263, 13], ["postBuild", 264, 13]], [["testEnv", 261, 11]], [["__structuredAttrs", 287, 28]], [["name", 285, 13], ["paths", 286, 13], ["derivationArgs", 287, 13]], [["testEnv", 284, 11]], [["name", 300, 13], ["paths", 301, 13], ["ignoreCollisions", 305, 13]], [["testEnv", 299, 11]], [["basic-symlinking", 193, 5], ["pathsToLink", 219, 5], ["extraPrefix", 238, 5], ["postBuild", 258, 5], ["structuredAttrs-overridden", 281, 5], ["ignoreCollisions", 295, 5]], [["name", 323, 11], ["paths", 324, 11]], [["expr", 321, 7], ["expected", 326, 7]], [["__structuredAttrs", 334, 26]], [["name", 332, 11], ["paths", 333, 11], ["derivationArgs", 334, 11]], [["expr", 330, 7], ["expected", 336, 7]], [["testStructuredAttrsExplicitlyFalse", 320, 5], ["testStructuredAttrsCantBeOverriddenViaDerivationArgs", 329, 5]], [["tests", 354, 13], ["buildTests", 354, 19], ["failures", 355, 5]], [["__structuredAttrs", 351, 3], ["name", 352, 3], ["passthru", 353, 3], ["testResults", 357, 3], ["buildCommand", 358, 3]]]);
 const formals$1 = { args: { lib: false, pkgs: false, stdenvNoCC: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/buildenv.nix", [["success", 13, 7], ["value", 14, 7]]);
-const pos$2 = nix.positions(here + "/buildenv.nix", [["expr", 11, 5], ["expected", 12, 5]]);
-const pos$3 = nix.positions(here + "/buildenv.nix", [["name", 22, 11], ["paths", 23, 11]]);
-const pos$4 = nix.positions(here + "/buildenv.nix", [["expr", 20, 7], ["expected", 25, 7]]);
-const pos$5 = nix.positions(here + "/buildenv.nix", [["pname", 31, 11], ["version", 32, 11], ["paths", 33, 11]]);
-const pos$6 = nix.positions(here + "/buildenv.nix", [["expr", 29, 7], ["expected", 35, 7]]);
-const pos$7 = nix.positions(here + "/buildenv.nix", [["testNameFromNameArg", 19, 5], ["testNameFromPnameVersion", 28, 5]]);
-const pos$8 = nix.positions(here + "/buildenv.nix", [["name", 44, 13], ["paths", 45, 13]]);
-const pos$9 = nix.positions(here + "/buildenv.nix", [["expr", 41, 7], ["expected", 49, 7]]);
-const pos$10 = nix.positions(here + "/buildenv.nix", [["name", 56, 13], ["paths", 57, 13]]);
-const pos$11 = nix.positions(here + "/buildenv.nix", [["paths", 60, 22]]);
-const pos$12 = nix.positions(here + "/buildenv.nix", [["passthru", 60, 13]]);
-const pos$13 = nix.positions(here + "/buildenv.nix", [["expr", 53, 7], ["expected", 64, 7]]);
-const pos$14 = nix.positions(here + "/buildenv.nix", [["testPathsInPassthru", 40, 5], ["testPassthruPathsOverridable", 52, 5]]);
-const pos$15 = nix.positions(here + "/buildenv.nix", [["description", 75, 22]]);
-const pos$16 = nix.positions(here + "/buildenv.nix", [["name", 73, 13], ["paths", 74, 13], ["passthru", 75, 13]]);
-const pos$17 = nix.positions(here + "/buildenv.nix", [["expr", 70, 7], ["expected", 79, 7]]);
-const pos$18 = nix.positions(here + "/buildenv.nix", [["testFinalAttrsSelfReference", 69, 5]]);
-const pos$19 = nix.positions(here + "/buildenv.nix", [["custom", 88, 18]]);
-const pos$20 = nix.positions(here + "/buildenv.nix", [["name", 86, 9], ["paths", 87, 9], ["passthru", 88, 9]]);
-const pos$21 = nix.positions(here + "/buildenv.nix", [["custom", 93, 13]]);
-const pos$22 = nix.positions(here + "/buildenv.nix", [["passthru", 92, 11]]);
-const pos$23 = nix.positions(here + "/buildenv.nix", [["expr", 100, 9], ["expected", 101, 9]]);
-const pos$24 = nix.positions(here + "/buildenv.nix", [["expr", 105, 9], ["expected", 106, 9]]);
-const pos$25 = nix.positions(here + "/buildenv.nix", [["postBuild", 112, 50]]);
-const pos$26 = nix.positions(here + "/buildenv.nix", [["expr", 110, 9], ["expected", 115, 9]]);
-const pos$27 = nix.positions(here + "/buildenv.nix", [["testOverrideAttrsChangesPassthru", 99, 7], ["testOverrideAttrsPreservesName", 104, 7], ["testOverrideAttrsAffectsDrv", 109, 7]]);
-const pos$28 = nix.positions(here + "/buildenv.nix", [["fromDerivationArgs", 124, 33]]);
-const pos$29 = nix.positions(here + "/buildenv.nix", [["passthru", 124, 24]]);
-const pos$30 = nix.positions(here + "/buildenv.nix", [["fromPassthru", 125, 18]]);
-const pos$31 = nix.positions(here + "/buildenv.nix", [["name", 122, 9], ["paths", 123, 9], ["derivationArgs", 124, 9], ["passthru", 125, 9]]);
-const pos$32 = nix.positions(here + "/buildenv.nix", [["expr", 130, 9], ["expected", 131, 9]]);
-const pos$33 = nix.positions(here + "/buildenv.nix", [["expr", 135, 9], ["expected", 136, 9]]);
-const pos$34 = nix.positions(here + "/buildenv.nix", [["expr", 140, 9], ["expected", 141, 9]]);
-const pos$35 = nix.positions(here + "/buildenv.nix", [["key", 151, 39]]);
-const pos$36 = nix.positions(here + "/buildenv.nix", [["passthru", 151, 30]]);
-const pos$37 = nix.positions(here + "/buildenv.nix", [["key", 152, 24]]);
-const pos$38 = nix.positions(here + "/buildenv.nix", [["name", 149, 15], ["paths", 150, 15], ["derivationArgs", 151, 15], ["passthru", 152, 15]]);
-const pos$39 = nix.positions(here + "/buildenv.nix", [["expr", 146, 9], ["expected", 156, 9]]);
-const pos$40 = nix.positions(here + "/buildenv.nix", [["testPassthruMergingAutoPathsPresent", 129, 7], ["testPassthruMergingDerivationArgs", 134, 7], ["testPassthruMergingDirectPassthru", 139, 7], ["testPassthruMergingPrecedence", 145, 7]]);
-const pos$41 = nix.positions(here + "/buildenv.nix", [["allowSubstitutes", 165, 24]]);
-const pos$42 = nix.positions(here + "/buildenv.nix", [["name", 163, 9], ["paths", 164, 9], ["derivationArgs", 165, 9]]);
-const pos$43 = nix.positions(here + "/buildenv.nix", [["expr", 171, 9], ["expected", 172, 9]]);
-const pos$44 = nix.positions(here + "/buildenv.nix", [["name", 180, 15], ["paths", 181, 15], ["nativeBuildInputs", 182, 15]]);
-const pos$45 = nix.positions(here + "/buildenv.nix", [["expr", 177, 9], ["expected", 186, 9]]);
-const pos$46 = nix.positions(here + "/buildenv.nix", [["testDerivationArgsForwarded", 170, 7], ["testCompatNativeBuildInputs", 176, 7]]);
-const pos$47 = nix.positions(here + "/buildenv.nix", [["name", 197, 13], ["paths", 198, 13]]);
-const pos$48 = nix.positions(here + "/buildenv.nix", [["testEnv", 196, 11]]);
-const pos$49 = nix.positions(here + "/buildenv.nix", [["name", 223, 13], ["paths", 224, 13], ["pathsToLink", 225, 13]]);
-const pos$50 = nix.positions(here + "/buildenv.nix", [["testEnv", 222, 11]]);
-const pos$51 = nix.positions(here + "/buildenv.nix", [["name", 242, 13], ["paths", 243, 13], ["extraPrefix", 244, 13]]);
-const pos$52 = nix.positions(here + "/buildenv.nix", [["testEnv", 241, 11]]);
-const pos$53 = nix.positions(here + "/buildenv.nix", [["name", 262, 13], ["paths", 263, 13], ["postBuild", 264, 13]]);
-const pos$54 = nix.positions(here + "/buildenv.nix", [["testEnv", 261, 11]]);
-const pos$55 = nix.positions(here + "/buildenv.nix", [["__structuredAttrs", 287, 28]]);
-const pos$56 = nix.positions(here + "/buildenv.nix", [["name", 285, 13], ["paths", 286, 13], ["derivationArgs", 287, 13]]);
-const pos$57 = nix.positions(here + "/buildenv.nix", [["testEnv", 284, 11]]);
-const pos$58 = nix.positions(here + "/buildenv.nix", [["name", 300, 13], ["paths", 301, 13], ["ignoreCollisions", 305, 13]]);
-const pos$59 = nix.positions(here + "/buildenv.nix", [["testEnv", 299, 11]]);
-const pos$60 = nix.positions(here + "/buildenv.nix", [["basic-symlinking", 193, 5], ["pathsToLink", 219, 5], ["extraPrefix", 238, 5], ["postBuild", 258, 5], ["structuredAttrs-overridden", 281, 5], ["ignoreCollisions", 295, 5]]);
-const pos$61 = nix.positions(here + "/buildenv.nix", [["name", 323, 11], ["paths", 324, 11]]);
-const pos$62 = nix.positions(here + "/buildenv.nix", [["expr", 321, 7], ["expected", 326, 7]]);
-const pos$63 = nix.positions(here + "/buildenv.nix", [["__structuredAttrs", 334, 26]]);
-const pos$64 = nix.positions(here + "/buildenv.nix", [["name", 332, 11], ["paths", 333, 11], ["derivationArgs", 334, 11]]);
-const pos$65 = nix.positions(here + "/buildenv.nix", [["expr", 330, 7], ["expected", 336, 7]]);
-const pos$66 = nix.positions(here + "/buildenv.nix", [["testStructuredAttrsExplicitlyFalse", 320, 5], ["testStructuredAttrsCantBeOverriddenViaDerivationArgs", 329, 5]]);
-const pos$67 = nix.positions(here + "/buildenv.nix", [["tests", 354, 13], ["buildTests", 354, 19], ["failures", 355, 5]]);
-const pos$68 = nix.positions(here + "/buildenv.nix", [["__structuredAttrs", 351, 3], ["name", 352, 3], ["passthru", 353, 3], ["testResults", 357, 3], ["buildCommand", 358, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -79,30 +12,30 @@ export default nix.lambda((args) => (() => {
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   const buildEnv = nix.thunk(() => nix.attr(pkgs, "buildEnv"));
   const testingThrow = (expr) => ({
-    [nix.POS]: pos$2,
+    [nix.POS]: $pos[1],
     expr: nix.thunk(() => nix.builtins.tryEval(nix.thunk(() => nix.builtins.seq(expr, "didn't throw")))),
-    expected: nix.thunk(() => ({ [nix.POS]: pos$1, success: false, value: false })),
+    expected: nix.thunk(() => ({ [nix.POS]: $pos[0], success: false, value: false })),
   });
   const tests_name = nix.thunk(() => ({
-    [nix.POS]: pos$7,
+    [nix.POS]: $pos[6],
     testNameFromNameArg: nix.thunk(() => ({
-      [nix.POS]: pos$4,
-      expr: nix.thunk(() => nix.sel(nix.app(buildEnv, nix.thunk(() => ({ [nix.POS]: pos$3, name: "test-env", paths: [] }))), "name")),
+      [nix.POS]: $pos[3],
+      expr: nix.thunk(() => nix.sel(nix.app(buildEnv, nix.thunk(() => ({ [nix.POS]: $pos[2], name: "test-env", paths: [] }))), "name")),
       expected: "test-env",
     })),
     testNameFromPnameVersion: nix.thunk(() => ({
-      [nix.POS]: pos$6,
-      expr: nix.thunk(() => nix.sel(nix.app(buildEnv, nix.thunk(() => ({ [nix.POS]: pos$5, pname: "test-env", version: "1.0", paths: [] }))), "name")),
+      [nix.POS]: $pos[5],
+      expr: nix.thunk(() => nix.sel(nix.app(buildEnv, nix.thunk(() => ({ [nix.POS]: $pos[4], pname: "test-env", version: "1.0", paths: [] }))), "name")),
       expected: "test-env-1.0",
     })),
   }));
   const tests_passthru_paths = nix.thunk(() => ({
-    [nix.POS]: pos$14,
+    [nix.POS]: $pos[13],
     testPathsInPassthru: nix.thunk(() => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       expr: nix.thunk(() => (() => {
         const env = nix.thunk(() => nix.app(buildEnv, nix.thunk(() => ({
-            [nix.POS]: pos$8,
+            [nix.POS]: $pos[7],
             name: "test-env",
             paths: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "hello"))]),
           }))));
@@ -111,17 +44,17 @@ export default nix.lambda((args) => (() => {
       expected: true,
     })),
     testPassthruPathsOverridable: nix.thunk(() => ({
-      [nix.POS]: pos$13,
+      [nix.POS]: $pos[12],
       expr: nix.thunk(() => (() => {
         const env = nix.thunk(() => nix.app(buildEnv, nix.thunk(() => ({
-            [nix.POS]: pos$10,
+            [nix.POS]: $pos[9],
             name: "test-env",
             paths: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "hello"))]),
           }))));
         const overridden = nix.thunk(() => nix.app(nix.sel(env, "overrideAttrs"), nix.thunk(() => ({
-            [nix.POS]: pos$12,
+            [nix.POS]: $pos[11],
             passthru: nix.thunk(() => ({
-              [nix.POS]: pos$11,
+              [nix.POS]: $pos[10],
               paths: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "figlet"))]),
             })),
           }))));
@@ -131,16 +64,16 @@ export default nix.lambda((args) => (() => {
     })),
   }));
   const tests_finalAttrs = nix.thunk(() => ({
-    [nix.POS]: pos$18,
+    [nix.POS]: $pos[17],
     testFinalAttrsSelfReference: nix.thunk(() => ({
-      [nix.POS]: pos$17,
+      [nix.POS]: $pos[16],
       expr: nix.thunk(() => (() => {
         const env = nix.thunk(() => nix.app(buildEnv, (finalAttrs) => ({
-            [nix.POS]: pos$16,
+            [nix.POS]: $pos[15],
             name: "test-env",
             paths: [],
             passthru: nix.thunk(() => ({
-              [nix.POS]: pos$15,
+              [nix.POS]: $pos[14],
               description: nix.thunk(() => nix.str`An env named ${nix.sel(finalAttrs, "name")}`),
             })),
           })));
@@ -151,31 +84,31 @@ export default nix.lambda((args) => (() => {
   }));
   const tests_overrideAttrs = nix.thunk(() => (() => {
     const base = nix.thunk(() => nix.app(buildEnv, nix.thunk(() => ({
-        [nix.POS]: pos$20,
+        [nix.POS]: $pos[19],
         name: "test-env",
         paths: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "hello"))]),
-        passthru: nix.thunk(() => ({ [nix.POS]: pos$19, custom: "original" })),
+        passthru: nix.thunk(() => ({ [nix.POS]: $pos[18], custom: "original" })),
       }))));
     const overridden = nix.thunk(() => nix.app(nix.sel(base, "overrideAttrs"), (finalAttrs) => (prev) => ({
-        [nix.POS]: pos$22,
-        passthru: nix.thunk(() => nix.update(nix.sel(prev, "passthru"), { [nix.POS]: pos$21, custom: "modified" })),
+        [nix.POS]: $pos[21],
+        passthru: nix.thunk(() => nix.update(nix.sel(prev, "passthru"), { [nix.POS]: $pos[20], custom: "modified" })),
       })));
     return {
-      [nix.POS]: pos$27,
+      [nix.POS]: $pos[26],
       testOverrideAttrsChangesPassthru: nix.thunk(() => ({
-        [nix.POS]: pos$23,
+        [nix.POS]: $pos[22],
         expr: nix.thunk(() => nix.sel(overridden, "custom")),
         expected: "modified",
       })),
       testOverrideAttrsPreservesName: nix.thunk(() => ({
-        [nix.POS]: pos$24,
+        [nix.POS]: $pos[23],
         expr: nix.thunk(() => nix.sel(overridden, "name")),
         expected: "test-env",
       })),
       testOverrideAttrsAffectsDrv: nix.thunk(() => ({
-        [nix.POS]: pos$26,
+        [nix.POS]: $pos[25],
         expr: nix.thunk(() => (() => {
-          const withPostBuild = nix.thunk(() => nix.app(nix.sel(base, "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: pos$25, postBuild: "echo overridden" }))));
+          const withPostBuild = nix.thunk(() => nix.app(nix.sel(base, "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: $pos[24], postBuild: "echo overridden" }))));
           return !nix.eq(nix.sel(base, "drvPath"), nix.sel(withPostBuild, "drvPath"));
         })()),
         expected: true,
@@ -184,44 +117,44 @@ export default nix.lambda((args) => (() => {
   })());
   const tests_passthru_merging = nix.thunk(() => (() => {
     const env = nix.thunk(() => nix.app(buildEnv, nix.thunk(() => ({
-        [nix.POS]: pos$31,
+        [nix.POS]: $pos[30],
         name: "test-env",
         paths: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "hello"))]),
         derivationArgs: nix.thunk(() => ({
-          [nix.POS]: pos$29,
-          passthru: nix.thunk(() => ({ [nix.POS]: pos$28, fromDerivationArgs: "a" })),
+          [nix.POS]: $pos[28],
+          passthru: nix.thunk(() => ({ [nix.POS]: $pos[27], fromDerivationArgs: "a" })),
         })),
-        passthru: nix.thunk(() => ({ [nix.POS]: pos$30, fromPassthru: "b" })),
+        passthru: nix.thunk(() => ({ [nix.POS]: $pos[29], fromPassthru: "b" })),
       }))));
     return {
-      [nix.POS]: pos$40,
+      [nix.POS]: $pos[39],
       testPassthruMergingAutoPathsPresent: nix.thunk(() => ({
-        [nix.POS]: pos$32,
+        [nix.POS]: $pos[31],
         expr: nix.thunk(() => nix.has(env, "paths")),
         expected: true,
       })),
       testPassthruMergingDerivationArgs: nix.thunk(() => ({
-        [nix.POS]: pos$33,
+        [nix.POS]: $pos[32],
         expr: nix.thunk(() => nix.sel(env, "fromDerivationArgs")),
         expected: "a",
       })),
       testPassthruMergingDirectPassthru: nix.thunk(() => ({
-        [nix.POS]: pos$34,
+        [nix.POS]: $pos[33],
         expr: nix.thunk(() => nix.sel(env, "fromPassthru")),
         expected: "b",
       })),
       testPassthruMergingPrecedence: nix.thunk(() => ({
-        [nix.POS]: pos$39,
+        [nix.POS]: $pos[38],
         expr: nix.thunk(() => (() => {
           const env$ = nix.thunk(() => nix.app(buildEnv, nix.thunk(() => ({
-              [nix.POS]: pos$38,
+              [nix.POS]: $pos[37],
               name: "test-env",
               paths: [],
               derivationArgs: nix.thunk(() => ({
-                [nix.POS]: pos$36,
-                passthru: nix.thunk(() => ({ [nix.POS]: pos$35, key: "from-derivationArgs" })),
+                [nix.POS]: $pos[35],
+                passthru: nix.thunk(() => ({ [nix.POS]: $pos[34], key: "from-derivationArgs" })),
               })),
-              passthru: nix.thunk(() => ({ [nix.POS]: pos$37, key: "from-passthru" })),
+              passthru: nix.thunk(() => ({ [nix.POS]: $pos[36], key: "from-passthru" })),
             }))));
           return nix.sel(env$, "key");
         })()),
@@ -231,23 +164,23 @@ export default nix.lambda((args) => (() => {
   })());
   const tests_derivationArgs = nix.thunk(() => (() => {
     const env = nix.thunk(() => nix.app(buildEnv, nix.thunk(() => ({
-        [nix.POS]: pos$42,
+        [nix.POS]: $pos[41],
         name: "test-env",
         paths: [],
-        derivationArgs: nix.thunk(() => ({ [nix.POS]: pos$41, allowSubstitutes: true })),
+        derivationArgs: nix.thunk(() => ({ [nix.POS]: $pos[40], allowSubstitutes: true })),
       }))));
     return {
-      [nix.POS]: pos$46,
+      [nix.POS]: $pos[45],
       testDerivationArgsForwarded: nix.thunk(() => ({
-        [nix.POS]: pos$43,
+        [nix.POS]: $pos[42],
         expr: nix.thunk(() => nix.sel(env, "allowSubstitutes")),
         expected: true,
       })),
       testCompatNativeBuildInputs: nix.thunk(() => ({
-        [nix.POS]: pos$45,
+        [nix.POS]: $pos[44],
         expr: nix.thunk(() => (() => {
           const env$ = nix.thunk(() => nix.app(buildEnv, nix.thunk(() => ({
-              [nix.POS]: pos$44,
+              [nix.POS]: $pos[43],
               name: "test-env",
               paths: [],
               nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "hello"))]),
@@ -259,55 +192,55 @@ export default nix.lambda((args) => (() => {
     };
   })());
   const buildTests = nix.thunk(() => ({
-    [nix.POS]: pos$60,
+    [nix.POS]: $pos[59],
     "basic-symlinking": nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "test-buildenv-basic-symlinking", nix.thunk(() => ({
-        [nix.POS]: pos$48,
+        [nix.POS]: $pos[47],
         testEnv: nix.thunk(() => nix.app(buildEnv, nix.thunk(() => ({
-            [nix.POS]: pos$47,
+            [nix.POS]: $pos[46],
             name: "test-env",
             paths: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "hello"))]),
           })))),
       })), "# With a single package, buildEnv symlinks the directory itself\ntest -L \"$testEnv/bin\" || { echo \"FAIL: $testEnv/bin is not a symlink\"; exit 1; }\n\n# The symlink should point into the store\ntarget=$(readlink \"$testEnv/bin\")\ncase \"$target\" in\n  /nix/store/*) ;;\n  *) echo \"FAIL: symlink target '$target' is not a store path\"; exit 1 ;;\nesac\n\n# The binary should be accessible and executable through the symlink\ntest -x \"$testEnv/bin/hello\" || { echo \"FAIL: hello binary not executable\"; exit 1; }\n\"$testEnv/bin/hello\" > /dev/null || { echo \"FAIL: hello binary did not run\"; exit 1; }\n\ntouch $out\n")),
     pathsToLink: nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "test-buildenv-pathsToLink", nix.thunk(() => ({
-        [nix.POS]: pos$50,
+        [nix.POS]: $pos[49],
         testEnv: nix.thunk(() => nix.app(buildEnv, nix.thunk(() => ({
-            [nix.POS]: pos$49,
+            [nix.POS]: $pos[48],
             name: "test-env",
             paths: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "hello"))]),
             pathsToLink: nix.thunk(() => ["/bin"]),
           })))),
       })), "# /bin should exist\ntest -d \"$testEnv/bin\" || { echo \"FAIL: $testEnv/bin missing\"; exit 1; }\n\n# Other directories from hello (like /share) should NOT exist\ntest ! -e \"$testEnv/share\" || { echo \"FAIL: $testEnv/share should not exist with pathsToLink = [\\\"/bin\\\"]\"; exit 1; }\n\ntouch $out\n")),
     extraPrefix: nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "test-buildenv-extraPrefix", nix.thunk(() => ({
-        [nix.POS]: pos$52,
+        [nix.POS]: $pos[51],
         testEnv: nix.thunk(() => nix.app(buildEnv, nix.thunk(() => ({
-            [nix.POS]: pos$51,
+            [nix.POS]: $pos[50],
             name: "test-env",
             paths: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "hello"))]),
             extraPrefix: "/myprefix",
           })))),
       })), "# Content should be under the extra prefix\ntest -e \"$testEnv/myprefix/bin/hello\" || { echo \"FAIL: $testEnv/myprefix/bin/hello missing\"; exit 1; }\ntest -x \"$testEnv/myprefix/bin/hello\" || { echo \"FAIL: $testEnv/myprefix/bin/hello not executable\"; exit 1; }\n\n# Content should NOT be at the top level\ntest ! -e \"$testEnv/bin\" || { echo \"FAIL: $testEnv/bin should not exist at top level with extraPrefix\"; exit 1; }\n\ntouch $out\n")),
     postBuild: nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "test-buildenv-postBuild", nix.thunk(() => ({
-        [nix.POS]: pos$54,
+        [nix.POS]: $pos[53],
         testEnv: nix.thunk(() => nix.app(buildEnv, nix.thunk(() => ({
-            [nix.POS]: pos$53,
+            [nix.POS]: $pos[52],
             name: "test-env",
             paths: [],
             postBuild: "echo \"postBuild was here\" > $out/marker\n",
           })))),
       })), "# postBuild should have created the marker file\ntest -f \"$testEnv/marker\" || { echo \"FAIL: $testEnv/marker missing; postBuild did not run\"; exit 1; }\ncontent=$(cat \"$testEnv/marker\")\ntest \"$content\" = \"postBuild was here\" || { echo \"FAIL: marker content wrong: $content\"; exit 1; }\n\ntouch $out\n")),
     "structuredAttrs-overridden": nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "test-buildenv-structuredAttrs-overridden", nix.thunk(() => ({
-        [nix.POS]: pos$57,
+        [nix.POS]: $pos[56],
         testEnv: nix.thunk(() => nix.app(buildEnv, nix.thunk(() => ({
-            [nix.POS]: pos$56,
+            [nix.POS]: $pos[55],
             name: "test-env-structuredAttrs",
             paths: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "hello"))]),
-            derivationArgs: nix.thunk(() => ({ [nix.POS]: pos$55, __structuredAttrs: false })),
+            derivationArgs: nix.thunk(() => ({ [nix.POS]: $pos[54], __structuredAttrs: false })),
           })))),
       })), "test -x \"$testEnv/bin/hello\" || { echo \"FAIL: hello not present after structuredAttrs override\"; exit 1; }\ntouch $out\n")),
     ignoreCollisions: nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "test-buildenv-ignoreCollisions", nix.thunk(() => ({
-        [nix.POS]: pos$59,
+        [nix.POS]: $pos[58],
         testEnv: nix.thunk(() => nix.app(buildEnv, nix.thunk(() => ({
-            [nix.POS]: pos$58,
+            [nix.POS]: $pos[57],
             name: "test-env-ignore",
             paths: nix.thunk(() => [
               nix.thunk(() => nix.sel(pkgs, "hello")),
@@ -318,30 +251,30 @@ export default nix.lambda((args) => (() => {
       })), "# Should succeed because ignoreCollisions = true\ntest -x \"$testEnv/bin/hello\" || { echo \"FAIL: hello not present with ignoreCollisions\"; exit 1; }\n\ntouch $out\n")),
   }));
   const tests_structuredAttrs = nix.thunk(() => ({
-    [nix.POS]: pos$66,
+    [nix.POS]: $pos[65],
     testStructuredAttrsExplicitlyFalse: nix.thunk(() => ({
-      [nix.POS]: pos$62,
-      expr: nix.thunk(() => nix.sel(nix.app(buildEnv, nix.thunk(() => ({ [nix.POS]: pos$61, name: "test-env", paths: [] }))), "__structuredAttrs")),
+      [nix.POS]: $pos[61],
+      expr: nix.thunk(() => nix.sel(nix.app(buildEnv, nix.thunk(() => ({ [nix.POS]: $pos[60], name: "test-env", paths: [] }))), "__structuredAttrs")),
       expected: true,
     })),
     testStructuredAttrsCantBeOverriddenViaDerivationArgs: nix.thunk(() => ({
-      [nix.POS]: pos$65,
+      [nix.POS]: $pos[64],
       expr: nix.thunk(() => nix.sel(nix.app(buildEnv, nix.thunk(() => ({
-          [nix.POS]: pos$64,
+          [nix.POS]: $pos[63],
           name: "test-env",
           paths: [],
-          derivationArgs: nix.thunk(() => ({ [nix.POS]: pos$63, __structuredAttrs: false })),
+          derivationArgs: nix.thunk(() => ({ [nix.POS]: $pos[62], __structuredAttrs: false })),
         }))), "__structuredAttrs")),
       expected: true,
     })),
   }));
   const tests = nix.thunk(() => nix.update(tests_name, nix.update(tests_passthru_paths, nix.update(tests_finalAttrs, nix.update(tests_overrideAttrs, nix.update(tests_passthru_merging, nix.update(tests_derivationArgs, tests_structuredAttrs)))))));
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$68,
+      [nix.POS]: $pos[67],
       __structuredAttrs: true,
       name: "test-buildenv",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$67,
+        [nix.POS]: $pos[66],
         tests: tests,
         buildTests: buildTests,
         failures: nix.thunk(() => nix.app(nix.sel(lib, "runTests"), nix.thunk(() => nix.sel(finalAttrs, "passthru", "tests")))),

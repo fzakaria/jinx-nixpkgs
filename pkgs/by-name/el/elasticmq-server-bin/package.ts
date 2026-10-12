@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 21, 5], ["sha256", 22, 5]], [["runCommand", 41, 13], ["python3Packages", 41, 24], ["writeText", 41, 40], ["elasticmq-server", 42, 5]], [["elasticmqTest", 40, 18]], [["tests", 40, 12]], [["description", 46, 5], ["homepage", 47, 5], ["changelog", 48, 5], ["sourceProvenance", 49, 5], ["license", 50, 5], ["platforms", 51, 5], ["mainProgram", 52, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["unpackPhase", 26, 3], ["nativeBuildInputs", 28, 3], ["installPhase", 30, 3], ["passthru", 40, 3], ["meta", 45, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, jdk8: false, jre8: false, makeBinaryWrapper: false, runCommand: false, python3Packages: false, writeText: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 21, 5], ["sha256", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["runCommand", 41, 13], ["python3Packages", 41, 24], ["writeText", 41, 40], ["elasticmq-server", 42, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["elasticmqTest", 40, 18]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 40, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 46, 5], ["homepage", 47, 5], ["changelog", 48, 5], ["sourceProvenance", 49, 5], ["license", 50, 5], ["platforms", 51, 5], ["mainProgram", 52, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["unpackPhase", 26, 3], ["nativeBuildInputs", 28, 3], ["installPhase", 30, 3], ["passthru", 40, 3], ["meta", 45, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const jre = jre8;
   const jdk = jdk8;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "elasticmq-server",
       version: "1.7.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://s3-eu-west-1.amazonaws.com/softwaremill-public/elasticmq-server-${nix.sel(finalAttrs, "version")}.jar`),
           sha256: "sha256-pA39A/2OLxdBjzxhpGDB2uqQIRkUW9zpfQmoHwOqBCg=",
         })))),
@@ -43,11 +38,11 @@ makeWrapper ${jre}/bin/java $out/bin/elasticmq-server \\
   --add-flags "-jar $out/share/elasticmq-server/elasticmq-server.jar"
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           elasticmqTest: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./elasticmq-test.nix")), nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               runCommand: runCommand,
               python3Packages: python3Packages,
               writeText: writeText,
@@ -56,7 +51,7 @@ makeWrapper ${jre}/bin/java $out/bin/elasticmq-server \\
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Message queueing system with Java, Scala and Amazon SQS-compatible interfaces",
         homepage: "https://github.com/softwaremill/elasticmq",
         changelog: nix.thunk(() => nix.str`https://github.com/softwaremill/elasticmq/releases/tag/v${nix.sel(finalAttrs, "version")}`),

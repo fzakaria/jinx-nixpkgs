@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]], [["homepage", 38, 5], ["description", 39, 5], ["license", 40, 5], ["platforms", 41, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["pyproject", 19, 3], ["dontConfigure", 21, 3], ["dontBuild", 22, 3], ["doCheck", 23, 3], ["postPatch", 25, 3], ["installPhase", 31, 3], ["meta", 37, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, python3Packages: false, xpdf: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 38, 5], ["description", 39, 5], ["license", 40, 5], ["platforms", 41, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["pyproject", 19, 3], ["dontConfigure", 21, 3], ["dontBuild", 22, 3], ["doCheck", 23, 3], ["postPatch", 25, 3], ["installPhase", 31, 3], ["meta", 37, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,7 +15,7 @@ export default nix.lambda((args) => (() => {
       const pname = "pdfdiff";
       const version = "0.93";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "cascremers",
           repo: "pdfdiff",
           rev: version,
@@ -33,14 +31,14 @@ export default nix.lambda((args) => (() => {
 `);
       const installPhase = "mkdir -p $out/bin\ncp pdfdiff.py $out/bin/pdfdiff\nchmod +x $out/bin/pdfdiff\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/cascremers/pdfdiff",
         description: "Tool to view the difference between two PDF or PS files",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

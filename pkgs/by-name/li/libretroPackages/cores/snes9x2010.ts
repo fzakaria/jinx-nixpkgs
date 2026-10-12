@@ -2,10 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/snes9x2010.nix", [[["owner", 11, 5], ["repo", 12, 5], ["rev", 13, 5], ["hash", 14, 5]], [["description", 20, 5], ["homepage", 21, 5], ["license", 22, 5]], [["core", 7, 3], ["version", 8, 3], ["src", 10, 3], ["makeFlags", 17, 3], ["meta", 19, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, mkLibretroCore: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/snes9x2010.nix", [["owner", 11, 5], ["repo", 12, 5], ["rev", 13, 5], ["hash", 14, 5]]);
-const pos$2 = nix.positions(here + "/snes9x2010.nix", [["description", 20, 5], ["homepage", 21, 5], ["license", 22, 5]]);
-const pos$3 = nix.positions(here + "/snes9x2010.nix", [["core", 7, 3], ["version", 8, 3], ["src", 10, 3], ["makeFlags", 17, 3], ["meta", 19, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,7 +14,7 @@ export default nix.lambda((args) => (() => {
       const core = "snes9x2010";
       const version = "0-unstable-2026-09-21";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "libretro",
           repo: "snes9x2010",
           rev: "fe690dd321fa5a46b5234a2bde089d2518c62b0e",
@@ -26,12 +24,12 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`GIT_VERSION=${nix.builtins.substring(0n, 7n, nix.thunk(() => nix.sel(src, "rev")))}`),
       ]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Optimized port/rewrite of SNES9x 1.52+ to Libretro",
         homepage: "https://github.com/libretro/snes9x2010",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfreeRedistributable")),
       }));
-      return { [nix.POS]: pos$3, core, version, src, makeFlags, meta };
+      return { [nix.POS]: $pos[2], core, version, src, makeFlags, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=snes9x2010.ts.map

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]], [["type", 59, 7], ["name", 60, 7], ["desktopName", 61, 7], ["comment", 62, 7], ["exec", 63, 7], ["icon", 64, 7], ["categories", 65, 7], ["mimeTypes", 69, 7], ["terminal", 70, 7], ["keywords", 71, 7]], [["homepage", 80, 5], ["description", 81, 5], ["changelog", 82, 5], ["mainProgram", 83, 5], ["license", 84, 5], ["platforms", 85, 5], ["maintainers", 86, 5]], [["pname", 12, 3], ["version", 13, 3], ["__structuredAttrs", 15, 3], ["src", 17, 3], ["mvnParameters", 29, 3], ["mvnHash", 30, 3], ["nativeBuildInputs", 32, 3], ["installPhase", 37, 3], ["desktopItems", 57, 3], ["meta", 79, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, makeDesktopItem: false, copyDesktopItems: false, makeWrapper: false, jre: false, maven: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["type", 59, 7], ["name", 60, 7], ["desktopName", 61, 7], ["comment", 62, 7], ["exec", 63, 7], ["icon", 64, 7], ["categories", 65, 7], ["mimeTypes", 69, 7], ["terminal", 70, 7], ["keywords", 71, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 80, 5], ["description", 81, 5], ["changelog", 82, 5], ["mainProgram", 83, 5], ["license", 84, 5], ["platforms", 85, 5], ["maintainers", 86, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["__structuredAttrs", 15, 3], ["src", 17, 3], ["mvnParameters", 29, 3], ["mvnHash", 30, 3], ["nativeBuildInputs", 32, 3], ["installPhase", 37, 3], ["desktopItems", 57, 3], ["meta", 79, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const jre = nix.arg($, "jre");
   const maven = nix.arg($, "maven");
   return nix.app(nix.sel(maven, "buildMavenPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "digital",
       version: "0.31",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "hneemann",
           repo: "Digital",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -52,7 +49,7 @@ runHook postInstall
 `),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             type: "Application",
             name: "digital",
             desktopName: "Digital",
@@ -66,7 +63,7 @@ runHook postInstall
           })))),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/hneemann/Digital",
         description: "Digital logic designer and circuit simulator",
         changelog: nix.thunk(() => nix.str`https://github.com/hneemann/Digital/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

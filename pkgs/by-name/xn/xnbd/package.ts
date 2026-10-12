@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 16, 5], ["sha256", 17, 5]], [["homepage", 42, 5], ["description", 43, 5], ["license", 44, 5], ["maintainers", 45, 5], ["platforms", 46, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["sourceRoot", 20, 3], ["patches", 22, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 29, 3], ["prePatch", 35, 3], ["meta", 41, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, "pkg-config": false, autoreconfHook: false, glib: false, jansson: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 16, 5], ["sha256", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 42, 5], ["description", 43, 5], ["license", 44, 5], ["maintainers", 45, 5], ["platforms", 46, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["sourceRoot", 20, 3], ["patches", 22, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 29, 3], ["prePatch", 35, 3], ["meta", 41, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const glib = nix.arg($, "glib");
   const jansson = nix.arg($, "jansson");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "xnbd",
       version: "0.4.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://bitbucket.org/hirofuchi/xnbd/downloads/xnbd-${nix.sel(finalAttrs, "version")}.tgz`),
           sha256: "00wkvsa0yaq4mabczcbfpj6rjvp02yahw8vdrq8hgb3wpm80x913",
         })))),
@@ -31,7 +29,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [glib, jansson]),
       prePatch: "rm -rf doc\nsubstituteInPlace configure.ac --replace \"doc/Makefile\" \"\"\nsubstituteInPlace Makefile.am --replace \"lib doc .\" \"lib .\"\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://bitbucket.org/hirofuchi/xnbd",
         description: "Yet another NBD (Network Block Device) server program",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

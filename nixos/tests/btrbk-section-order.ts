@@ -2,81 +2,63 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/btrbk-section-order.nix", [[["maintainers", 12, 8]], [["ssh_user", 21, 41]], [["ssh://global-target/", 21, 18]], [["ssh_user", 24, 43]], [["ssh://volume-target/", 24, 20]], [["ssh_user", 27, 48]], [["ssh://subvolume-target/", 27, 22]], [["snapshot_dir", 26, 15], ["target", 27, 15]], [["@subvolume", 25, 23]], [["snapshot_dir", 23, 13], ["target", 24, 13], ["subvolume", 25, 13]], [["/btrfs", 22, 18]], [["timestamp_format", 20, 11], ["target", 21, 11], ["volume", 22, 11]], [["onCalendar", 18, 9], ["settings", 19, 9]], [["local", 17, 32]], [["instances", 17, 22]], [["btrbk", 17, 16]], [["services", 17, 7]], [["machine", 14, 9]], [["name", 11, 3], ["meta", 12, 3], ["nodes", 14, 3], ["testScript", 34, 3]]]);
 const formals$1 = { args: { lib: false, pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/btrbk-section-order.nix", [["maintainers", 12, 8]]);
 const formals$2 = { args: {  }, ellipsis: true };
-const pos$2 = nix.positions(here + "/btrbk-section-order.nix", [["ssh_user", 21, 41]]);
-const pos$3 = nix.positions(here + "/btrbk-section-order.nix", [["ssh://global-target/", 21, 18]]);
-const pos$4 = nix.positions(here + "/btrbk-section-order.nix", [["ssh_user", 24, 43]]);
-const pos$5 = nix.positions(here + "/btrbk-section-order.nix", [["ssh://volume-target/", 24, 20]]);
-const pos$6 = nix.positions(here + "/btrbk-section-order.nix", [["ssh_user", 27, 48]]);
-const pos$7 = nix.positions(here + "/btrbk-section-order.nix", [["ssh://subvolume-target/", 27, 22]]);
-const pos$8 = nix.positions(here + "/btrbk-section-order.nix", [["snapshot_dir", 26, 15], ["target", 27, 15]]);
-const pos$9 = nix.positions(here + "/btrbk-section-order.nix", [["@subvolume", 25, 23]]);
-const pos$10 = nix.positions(here + "/btrbk-section-order.nix", [["snapshot_dir", 23, 13], ["target", 24, 13], ["subvolume", 25, 13]]);
-const pos$11 = nix.positions(here + "/btrbk-section-order.nix", [["/btrfs", 22, 18]]);
-const pos$12 = nix.positions(here + "/btrbk-section-order.nix", [["timestamp_format", 20, 11], ["target", 21, 11], ["volume", 22, 11]]);
-const pos$13 = nix.positions(here + "/btrbk-section-order.nix", [["onCalendar", 18, 9], ["settings", 19, 9]]);
-const pos$14 = nix.positions(here + "/btrbk-section-order.nix", [["local", 17, 32]]);
-const pos$15 = nix.positions(here + "/btrbk-section-order.nix", [["instances", 17, 22]]);
-const pos$16 = nix.positions(here + "/btrbk-section-order.nix", [["btrbk", 17, 16]]);
-const pos$17 = nix.positions(here + "/btrbk-section-order.nix", [["services", 17, 7]]);
-const pos$18 = nix.positions(here + "/btrbk-section-order.nix", [["machine", 14, 9]]);
-const pos$19 = nix.positions(here + "/btrbk-section-order.nix", [["name", 11, 3], ["meta", 12, 3], ["nodes", 14, 3], ["testScript", 34, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   return {
-    [nix.POS]: pos$19,
+    [nix.POS]: $pos[18],
     name: "btrbk-section-order",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "oxalica"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$18,
+      [nix.POS]: $pos[17],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          [nix.POS]: pos$17,
+          [nix.POS]: $pos[16],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$16,
+            [nix.POS]: $pos[15],
             btrbk: nix.thunk(() => ({
-              [nix.POS]: pos$15,
+              [nix.POS]: $pos[14],
               instances: nix.thunk(() => ({
-                [nix.POS]: pos$14,
+                [nix.POS]: $pos[13],
                 local: nix.thunk(() => ({
-                  [nix.POS]: pos$13,
+                  [nix.POS]: $pos[12],
                   onCalendar: null,
                   settings: nix.thunk(() => ({
-                    [nix.POS]: pos$12,
+                    [nix.POS]: $pos[11],
                     timestamp_format: "long",
                     target: nix.thunk(() => ({
-                      [nix.POS]: pos$3,
-                      "ssh://global-target/": nix.thunk(() => ({ [nix.POS]: pos$2, ssh_user: "root" })),
+                      [nix.POS]: $pos[2],
+                      "ssh://global-target/": nix.thunk(() => ({ [nix.POS]: $pos[1], ssh_user: "root" })),
                     })),
                     volume: nix.thunk(() => ({
-                      [nix.POS]: pos$11,
+                      [nix.POS]: $pos[10],
                       "/btrfs": nix.thunk(() => ({
-                        [nix.POS]: pos$10,
+                        [nix.POS]: $pos[9],
                         snapshot_dir: "/volume-snapshots",
                         target: nix.thunk(() => ({
-                          [nix.POS]: pos$5,
-                          "ssh://volume-target/": nix.thunk(() => ({ [nix.POS]: pos$4, ssh_user: "root" })),
+                          [nix.POS]: $pos[4],
+                          "ssh://volume-target/": nix.thunk(() => ({ [nix.POS]: $pos[3], ssh_user: "root" })),
                         })),
                         subvolume: nix.thunk(() => ({
-                          [nix.POS]: pos$9,
+                          [nix.POS]: $pos[8],
                           "@subvolume": nix.thunk(() => ({
-                            [nix.POS]: pos$8,
+                            [nix.POS]: $pos[7],
                             snapshot_dir: "/subvolume-snapshots",
                             target: nix.thunk(() => ({
-                              [nix.POS]: pos$7,
-                              "ssh://subvolume-target/": nix.thunk(() => ({ [nix.POS]: pos$6, ssh_user: "root" })),
+                              [nix.POS]: $pos[6],
+                              "ssh://subvolume-target/": nix.thunk(() => ({ [nix.POS]: $pos[5], ssh_user: "root" })),
                             })),
                           })),
                         })),

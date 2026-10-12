@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["sha256", 24, 5]], [["description", 61, 5], ["homepage", 62, 5], ["license", 63, 5], ["platforms", 64, 5], ["teams", 65, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["postPatch", 29, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 40, 3], ["cmakeFlags", 47, 3], ["outputs", 54, 3], ["meta", 60, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, "pkg-config": false, pythonSupport: true, python3: false, swig: false, udev: false, libcec_platform: false, withLibraspberrypi: true, libraspberrypi: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["sha256", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 61, 5], ["homepage", 62, 5], ["license", 63, 5], ["platforms", 64, 5], ["teams", 65, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["postPatch", 29, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 40, 3], ["cmakeFlags", 47, 3], ["outputs", 54, 3], ["meta", 60, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const withLibraspberrypi = nix.argOr($, "withLibraspberrypi", () => false);
   const libraspberrypi = nix.arg($, "libraspberrypi");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "libcec",
       version: "8.1.7",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Pulse-Eight",
           repo: "libcec",
           rev: nix.thunk(() => nix.str`libcec-${nix.sel(finalAttrs, "version")}`),
@@ -38,7 +36,7 @@ export default nix.lambda((args) => (() => {
       cmakeFlags: nix.thunk(() => nix.concat(["-DBUILD_SHARED_LIBS=1"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => ["-DHAVE_LINUX_API=1"])))),
       outputs: nix.thunk(() => ["out", "dev", "lib"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Allows you (with the right hardware) to control your device with your TV remote control using existing HDMI cabling",
         homepage: "http://libcec.pulse-eight.com",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

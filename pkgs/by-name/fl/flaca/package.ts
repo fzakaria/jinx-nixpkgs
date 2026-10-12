@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 13, 5], ["hash", 14, 5]], [["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]], [["description", 33, 5], ["longDescription", 34, 5], ["homepage", 35, 5], ["changelog", 36, 5], ["maintainers", 37, 5], ["platforms", 38, 5], ["license", 39, 5], ["mainProgram", 40, 5]], [["pname", 9, 3], ["version", 10, 3], ["lockFile", 12, 3], ["src", 17, 3], ["postUnpack", 24, 3], ["nativeBuildInputs", 28, 3], ["cargoHash", 30, 3], ["meta", 32, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, rustPlatform: false, fetchurl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 13, 5], ["hash", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 33, 5], ["longDescription", 34, 5], ["homepage", 35, 5], ["changelog", 36, 5], ["maintainers", 37, 5], ["platforms", 38, 5], ["license", 39, 5], ["mainProgram", 40, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["lockFile", 12, 3], ["src", 17, 3], ["postUnpack", 24, 3], ["nativeBuildInputs", 28, 3], ["cargoHash", 30, 3], ["meta", 32, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,16 +12,16 @@ export default nix.lambda((args) => (() => {
   const rustPlatform = nix.arg($, "rustPlatform");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "flaca",
       version: "3.6.1",
       lockFile: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/Blobfolio/flaca/releases/download/v${nix.sel(finalAttrs, "version")}/Cargo.lock`),
           hash: "sha256-GNpL51rx3na+ECHUl0JAUQJBRQQ12Ubg4RIhNfXxMRQ=",
         })))),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "Blobfolio",
           repo: "flaca",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,7 +32,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(rustPlatform, "bindgenHook"))]),
       cargoHash: "sha256-73O/h7Cuh+to9MpQ97daPFKI4ACtT0aer3h0EmKKcoA=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "CLI tool to losslessly compress JPEG and PNG images",
         longDescription: "A CLI tool for x86-64 Linux machines that simplifies the task of maximally, losslessly compressing JPEG and PNG images for use in production web environments",
         homepage: "https://github.com/Blobfolio/flaca",

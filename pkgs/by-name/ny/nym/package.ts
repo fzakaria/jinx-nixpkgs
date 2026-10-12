@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]], [["url", 26, 5], ["hash", 27, 5]], [["SWAGGER_UI_DOWNLOAD_URL", 33, 5], ["OPENSSL_NO_VENDOR", 34, 5], ["VERGEN_BUILD_TIMESTAMP", 35, 5], ["VERGEN_BUILD_SEMVER", 36, 5], ["VERGEN_GIT_COMMIT_TIMESTAMP", 37, 5], ["VERGEN_GIT_BRANCH", 38, 5], ["VERGEN_RUSTC_SEMVER", 39, 5], ["VERGEN_RUSTC_CHANNEL", 40, 5], ["VERGEN_CARGO_PROFILE", 41, 5]], [["rev-prefix", 55, 5]], [["updateScript", 54, 12]], [["description", 67, 5], ["longDescription", 68, 5], ["changelog", 72, 5], ["homepage", 73, 5], ["license", 74, 5], ["platforms", 75, 5], ["maintainers", 76, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["swagger-ui", 25, 3], ["cargoHash", 30, 3], ["env", 32, 3], ["nativeBuildInputs", 44, 3], ["buildInputs", 48, 3], ["checkType", 52, 3], ["passthru", 54, 3], ["checkFlags", 58, 3], ["meta", 66, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, rustPlatform: false, fetchFromGitHub: false, "pkg-config": false, openssl: false, darwin: false, gitUpdater: false, rustc: false, fetchurl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 26, 5], ["hash", 27, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["SWAGGER_UI_DOWNLOAD_URL", 33, 5], ["OPENSSL_NO_VENDOR", 34, 5], ["VERGEN_BUILD_TIMESTAMP", 35, 5], ["VERGEN_BUILD_SEMVER", 36, 5], ["VERGEN_GIT_COMMIT_TIMESTAMP", 37, 5], ["VERGEN_GIT_BRANCH", 38, 5], ["VERGEN_RUSTC_SEMVER", 39, 5], ["VERGEN_RUSTC_CHANNEL", 40, 5], ["VERGEN_CARGO_PROFILE", 41, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["rev-prefix", 55, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["updateScript", 54, 12]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 67, 5], ["longDescription", 68, 5], ["changelog", 72, 5], ["homepage", 73, 5], ["license", 74, 5], ["platforms", 75, 5], ["maintainers", 76, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["swagger-ui", 25, 3], ["cargoHash", 30, 3], ["env", 32, 3], ["nativeBuildInputs", 44, 3], ["buildInputs", 48, 3], ["checkType", 52, 3], ["passthru", 54, 3], ["checkFlags", 58, 3], ["meta", 66, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,20 +21,20 @@ export default nix.lambda((args) => (() => {
       const pname = "nym";
       const version = "2026.9-venaco";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "nymtech",
           repo: "nym",
           tag: nix.thunk(() => nix.str`nym-binaries-v${version}`),
           hash: "sha256-s3I4yfJfewJpMSqzHXmMFzvsfQAsVNZKzIroatpnfpA=",
         }))));
       const swagger_ui = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: "https://github.com/swagger-api/swagger-ui/archive/refs/tags/v5.17.14.zip",
           hash: "sha256-SBJE0IEgl7Efuu73n3HZQrFxYX+cn5UU5jrL4T5xzNw=",
         }))));
       const cargoHash = "sha256-ifdz+jZK9Hgezx4/Q9bDsOZOFynqE4GEFfIwXISuxp8=";
       const env = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         SWAGGER_UI_DOWNLOAD_URL: nix.thunk(() => nix.str`file://${swagger_ui}`),
         OPENSSL_NO_VENDOR: true,
         VERGEN_BUILD_TIMESTAMP: "0",
@@ -55,8 +49,8 @@ export default nix.lambda((args) => (() => {
       const buildInputs = nix.thunk(() => [openssl]);
       const checkType = "debug";
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$5,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$4, "rev-prefix": "nym-binaries-v" })))),
+        [nix.POS]: $pos[4],
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[3], "rev-prefix": "nym-binaries-v" })))),
       }));
       const checkFlags = nix.thunk(() => [
         "--skip=ping::http::tests::resolve_host_with_valid_hostname_returns_some",
@@ -66,7 +60,7 @@ export default nix.lambda((args) => (() => {
         "--skip=ecash::tests::issued_ticketbooks::issued_ticketbooks_challenge_commitment",
       ]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Mixnet providing IP-level privacy",
         longDescription: "Nym routes IP packets through other participating nodes to hide their source and destination.\nIn contrast with Tor, it prevents timing attacks at the cost of latency.\n",
         changelog: nix.thunk(() => nix.str`https://github.com/nymtech/nym/releases/tag/nym-binaries-v${version}`),
@@ -79,7 +73,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         pname,
         version,
         src,

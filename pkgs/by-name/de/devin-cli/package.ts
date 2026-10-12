@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 16, 7], ["hash", 17, 7]], [["url", 21, 7], ["hash", 22, 7]], [["url", 26, 7], ["hash", 27, 7]], [["x86_64-linux", 15, 5], ["aarch64-linux", 20, 5], ["aarch64-darwin", 25, 5]], [["updateScript", 70, 12]], [["description", 73, 5], ["homepage", 74, 5], ["license", 75, 5], ["sourceProvenance", 76, 5], ["maintainers", 77, 5], ["mainProgram", 81, 5]], [["pname", 33, 3], ["version", 34, 11], ["outputs", 36, 3], ["strictDeps", 42, 3], ["__structuredAttrs", 43, 3], ["src", 45, 3], ["sourceRoot", 47, 3], ["nativeBuildInputs", 49, 3], ["dontConfigure", 51, 3], ["dontBuild", 52, 3], ["installPhase", 54, 3], ["nativeInstallCheckInputs", 67, 3], ["doInstallCheck", 68, 3], ["passthru", 70, 3], ["meta", 72, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchurl: false, installShellFiles: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 16, 7], ["hash", 17, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 21, 7], ["hash", 22, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 26, 7], ["hash", 27, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["x86_64-linux", 15, 5], ["aarch64-linux", 20, 5], ["aarch64-darwin", 25, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["updateScript", 70, 12]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 73, 5], ["homepage", 74, 5], ["license", 75, 5], ["sourceProvenance", 76, 5], ["maintainers", 77, 5], ["mainProgram", 81, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 33, 3], ["version", 34, 11], ["outputs", 36, 3], ["strictDeps", 42, 3], ["__structuredAttrs", 43, 3], ["src", 45, 3], ["sourceRoot", 47, 3], ["nativeBuildInputs", 49, 3], ["dontConfigure", 51, 3], ["dontBuild", 52, 3], ["installPhase", 54, 3], ["nativeInstallCheckInputs", 67, 3], ["doInstallCheck", 68, 3], ["passthru", 70, 3], ["meta", 72, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,25 +15,25 @@ export default nix.lambda((args) => (() => {
   const version = "3000.11.3";
   const throwSystem = nix.thunk(() => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenvNoCC, "hostPlatform", "system")}`)));
   const srcs = nix.thunk(() => ({
-    [nix.POS]: pos$4,
+    [nix.POS]: $pos[3],
     "x86_64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         url: nix.thunk(() => nix.str`https://static.devin.ai/cli/${version}/devin-${version}-x86_64-unknown-linux.tar.gz`),
         hash: "sha256-g7OxE8Ab8qPp4QDbCNd+awhoBqd1TwkeIIMb3+IVFX4=",
       })))),
     "aarch64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         url: nix.thunk(() => nix.str`https://static.devin.ai/cli/${version}/devin-${version}-aarch64-unknown-linux.tar.gz`),
         hash: "sha256-IaLXqN6meYcGfN5+s/5xk6SNqo+MPVDUFMYDxKK2fxU=",
       })))),
     "aarch64-darwin": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         url: nix.thunk(() => nix.str`https://static.devin.ai/cli/${version}/devin-${version}-aarch64-apple-darwin.tar.gz`),
         hash: "sha256-wIzD81B9EDJGuMYBpYT8xxn9d/bMEPJsyQ6fQYZkDfI=",
       })))),
   }));
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "devin-cli",
       version: version,
       outputs: nix.thunk(() => ["out", "man", "doc"]),
@@ -53,9 +47,9 @@ export default nix.lambda((args) => (() => {
       installPhase: "runHook preInstall\n\ninstallBin ./bin/devin\ninstallManPage ./share/man/man1/*.1\n\nmkdir -p $out/share/doc\n\nmv ./share/devin/docs/* $out/share/doc\n\nrunHook postInstall\n",
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$5, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[4], updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Cognition's Devin Agent CLI",
         homepage: "https://devin.ai/cli",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

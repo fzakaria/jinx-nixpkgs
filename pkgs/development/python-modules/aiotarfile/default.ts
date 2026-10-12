@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]], [["pname", 26, 13], ["version", 26, 19], ["src", 26, 27], ["hash", 27, 5]], [["description", 56, 5], ["homepage", 57, 5], ["changelog", 58, 5], ["license", 59, 5], ["maintainers", 60, 5]], [["pname", 14, 3], ["version", 15, 3], ["pyproject", 16, 3], ["src", 18, 3], ["cargoDeps", 25, 3], ["postPatch", 30, 3], ["build-system", 35, 3], ["nativeBuildInputs", 39, 3], ["nativeCheckInputs", 46, 3], ["unittestFlagsArray", 48, 3], ["doCheck", 51, 3], ["pythonImportsCheck", 53, 3], ["meta", 55, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, buildPythonPackage: false, pythonOlder: false, unittestCheckHook: false, cargo: false, rustc: false, rustPlatform: false, semver: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 26, 13], ["version", 26, 19], ["src", 26, 27], ["hash", 27, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 56, 5], ["homepage", 57, 5], ["changelog", 58, 5], ["license", 59, 5], ["maintainers", 60, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 14, 3], ["version", 15, 3], ["pyproject", 16, 3], ["src", 18, 3], ["cargoDeps", 25, 3], ["postPatch", 30, 3], ["build-system", 35, 3], ["nativeBuildInputs", 39, 3], ["nativeCheckInputs", 46, 3], ["unittestFlagsArray", 48, 3], ["doCheck", 51, 3], ["pythonImportsCheck", 53, 3], ["meta", 55, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,14 +21,14 @@ export default nix.lambda((args) => (() => {
       const version = "0.5.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "rhelmot",
           repo: "aiotarfile",
           tag: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-V88cvVw6ss7iiojhlqDd2frG/gCEH0YKTP0IpgeFASw=",
         }))));
       const cargoDeps = nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: pname,
           version: version,
           src: src,
@@ -50,7 +47,7 @@ export default nix.lambda((args) => (() => {
       const doCheck = nix.thunk(() => nix.app(pythonOlder, "3.14"));
       const pythonImportsCheck = nix.thunk(() => ["aiotarfile"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Stream-based, asynchronous tarball processing",
         homepage: "https://github.com/rhelmot/aiotarfile",
         changelog: nix.thunk(() => nix.str`https://github.com/rhelmot/aiotarfile/commits/${nix.sel(src, "tag")}`),
@@ -61,7 +58,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

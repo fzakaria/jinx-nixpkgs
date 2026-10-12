@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]], [["name", 74, 7], ["runtimeInputs", 76, 7], ["text", 80, 7]], [["rev-prefix", 93, 7]], [["name", 98, 7], ["runtimeInputs", 100, 7], ["text", 104, 7]], [["unfixVersionScript", 73, 5], ["updateTagScript", 92, 5], ["fixVersionScript", 97, 5], ["updateScript", 116, 5]], [["homepage", 124, 5], ["description", 125, 5], ["mainProgram", 126, 5], ["longDescription", 127, 5], ["license", 132, 5], ["maintainers", 133, 5], ["platforms", 134, 5]], [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["postPatch", 31, 3], ["nativeBuildInputs", 40, 3], ["buildInputs", 46, 3], ["cmakeFlags", 58, 3], ["postInstall", 65, 3], ["passthru", 71, 3], ["meta", 123, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, gitUpdater: false, nix: false, writeShellApplication: false, "_experimental-update-script-combinators": false, "alsa-lib": false, cmake: false, libpulseaudio: false, libmt32emu: false, "pkg-config": false, portaudio: false, withJack: true, libjack2: false, qt6Packages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 74, 7], ["runtimeInputs", 76, 7], ["text", 80, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["rev-prefix", 93, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["name", 98, 7], ["runtimeInputs", 100, 7], ["text", 104, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["unfixVersionScript", 73, 5], ["updateTagScript", 92, 5], ["fixVersionScript", 97, 5], ["updateScript", 116, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["homepage", 124, 5], ["description", 125, 5], ["mainProgram", 126, 5], ["longDescription", 127, 5], ["license", 132, 5], ["maintainers", 133, 5], ["platforms", 134, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["postPatch", 31, 3], ["nativeBuildInputs", 40, 3], ["buildInputs", 46, 3], ["cmakeFlags", 58, 3], ["postInstall", 65, 3], ["passthru", 71, 3], ["meta", 123, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const libjack2 = nix.arg($, "libjack2");
   const qt6Packages = nix.arg($, "qt6Packages");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "mt32emu-qt",
       version: "1.12.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "munt",
           repo: "munt",
           tag: nix.thunk(() => nix.str`mt32emu_qt_${nix.app(nix.sel(lib, "replaceString"), ".", "_", nix.thunk(() => nix.sel(finalAttrs, "version")))}`),
@@ -56,16 +50,16 @@ export default nix.lambda((args) => (() => {
       ]),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "mkdir $out/Applications\nmv $out/bin/mt32emu-qt.app $out/Applications/\nln -s $out/{Applications/mt32emu-qt.app/Contents/MacOS,bin}/mt32emu-qt\n")),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         unfixVersionScript: nix.thunk(() => nix.app(writeShellApplication, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "unfix-mt32emu-qt-version",
             runtimeInputs: nix.thunk(() => [nix$]),
             text: "export UPDATE_NIX_ATTR_PATH=\"${UPDATE_NIX_ATTR_PATH:-mt32emu-qt}\"\n\npreUpdateScriptVersion=\"$(nix-instantiate . --eval --strict -A \"$UPDATE_NIX_ATTR_PATH.version\" | cut -d'\"' -f2)\"\nunfixedVersion=\"${preUpdateScriptVersion//\\./_}\"\n\npkgFile=\"$(nix-instantiate --eval -E \"with import ./. {}; (builtins.unsafeGetAttrPos \\\"version\\\" $UPDATE_NIX_ATTR_PATH).file\" | cut -d'\"' -f2)\"\n\nsed -i -e \"s/version = \\\"$preUpdateScriptVersion\\\"/version = \\\"$unfixedVersion\\\"/g\" \"$pkgFile\"\n",
           })))),
-        updateTagScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$3, "rev-prefix": "mt32emu_qt_" })))),
+        updateTagScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[2], "rev-prefix": "mt32emu_qt_" })))),
         fixVersionScript: nix.thunk(() => nix.app(writeShellApplication, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             name: "fix-mt32emu-qt-version",
             runtimeInputs: nix.thunk(() => [nix$]),
             text: "export UPDATE_NIX_ATTR_PATH=\"${UPDATE_NIX_ATTR_PATH:-mt32emu-qt}\"\n\npostUpdateScriptVersion=\"$(nix-instantiate . --eval --strict -A \"$UPDATE_NIX_ATTR_PATH.version\" | cut -d'\"' -f2)\"\nfixedVersion=\"${postUpdateScriptVersion//_/.}\"\n\npkgFile=\"$(nix-instantiate --eval -E \"with import ./. {}; (builtins.unsafeGetAttrPos \\\"version\\\" $UPDATE_NIX_ATTR_PATH).file\" | cut -d'\"' -f2)\"\n\nsed -i -e \"s/version = \\\"$postUpdateScriptVersion\\\"/version = \\\"$fixedVersion\\\"/g\" \"$pkgFile\"\n",
@@ -77,7 +71,7 @@ export default nix.lambda((args) => (() => {
           ]))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         homepage: "https://munt.sourceforge.net/",
         description: "Synthesizer application built on Qt and libmt32emu",
         mainProgram: "mt32emu-qt",

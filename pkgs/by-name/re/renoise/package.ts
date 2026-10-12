@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["archSuffix", 27, 7], ["hash", 28, 7]], [["archSuffix", 31, 7], ["hash", 32, 7]], [["x86_64-linux", 26, 5], ["aarch64-linux", 30, 5]], [["urls", 50, 9], ["hash", 54, 9]], [["updateScript", 113, 12]], [["description", 135, 5], ["homepage", 136, 5], ["sourceProvenance", 137, 5], ["license", 138, 5], ["maintainers", 139, 5], ["platforms", 140, 5], ["mainProgram", 141, 5]], [["pname", 38, 3], ["version", 39, 3], ["src", 41, 3], ["buildInputs", 57, 3], ["installPhase", 69, 3], ["postFixup", 96, 3], ["passthru", 113, 3], ["meta", 134, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, writeScript: false, "alsa-lib": false, fetchurl: false, libjack2: false, libx11: false, libxcursor: false, libxext: false, libxinerama: false, libxrandr: false, libxtst: false, mpg123: false, pipewire: false, releasePath: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["archSuffix", 27, 7], ["hash", 28, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["archSuffix", 31, 7], ["hash", 32, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["x86_64-linux", 26, 5], ["aarch64-linux", 30, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["urls", 50, 9], ["hash", 54, 9]]);
-const pos$5 = nix.positions(here + "/package.nix", [["updateScript", 113, 12]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 135, 5], ["homepage", 136, 5], ["sourceProvenance", 137, 5], ["license", 138, 5], ["maintainers", 139, 5], ["platforms", 140, 5], ["mainProgram", 141, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 38, 3], ["version", 39, 3], ["src", 41, 3], ["buildInputs", 57, 3], ["installPhase", 69, 3], ["postFixup", 96, 3], ["passthru", 113, 3], ["meta", 134, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,14 +23,14 @@ export default nix.lambda((args) => (() => {
   const pipewire = nix.arg($, "pipewire");
   const releasePath = nix.argOr($, "releasePath", () => null);
   const platforms = nix.thunk(() => ({
-    [nix.POS]: pos$3,
+    [nix.POS]: $pos[2],
     "x86_64-linux": nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       archSuffix: "x86_64",
       hash: "sha256-RfOhcllmwX3Cy6ywIYjIC+kUX6rXkd+PM9wKj+fCuts=",
     })),
     "aarch64-linux": nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       archSuffix: "arm64",
       hash: "sha256-1bo7/srdQ5M5mzXpL76Bkt1Gt9EhbW8ktLLPvOcFu5U=",
     })),
@@ -48,7 +42,7 @@ export default nix.lambda((args) => (() => {
         const platform = nix.thunk(() => nix.selOr(platforms, () => nix.builtins.throw(nix.thunk(() => nix.str`unsupported system ${nix.sel(stdenv, "hostPlatform", "system")}`)), nix.key(nix.sel(stdenv, "system"))));
         const urlVersion = nix.thunk(() => nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => ["_"]), version));
         return nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             urls: nix.thunk(() => [
               nix.thunk(() => nix.str`https://files.renoise.com/demo/Renoise_${urlVersion}_Demo_Linux_${nix.sel(platform, "archSuffix")}.tar.gz`),
               nix.thunk(() => nix.str`https://files.renoise.com/demo/archive/Renoise_${urlVersion}_Demo_Linux_${nix.sel(platform, "archSuffix")}.tar.gz`),
@@ -108,11 +102,11 @@ substituteInPlace $out/share/applications/renoise.desktop \\
   --replace Exec=renoise Exec=$out/bin/renoise
 `);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         updateScript: nix.thunk(() => nix.app(writeScript, "update-renoise", "#!/usr/bin/env nix-shell\n#!nix-shell -I nixpkgs=./. -i bash -p curl htmlq common-updater-scripts\nset -euo pipefail\n\nnew_version=\"$(\n  curl 'https://files.renoise.com/demo/' \\\n    | htmlq a --text \\\n    | grep -E '^Renoise_([0-9]+_?)+_Demo_Linux_x86_64\\.tar\\.gz$' \\\n    | grep -Eo '[0-9]+(_[0-9]+)*' \\\n    | head -n1 \\\n    | tr _ .\n)\"\nhash_x86_64=\"$(nix-prefetch-url \"https://files.renoise.com/demo/Renoise_$(echo \"$new_version\" | tr . _)_Demo_Linux_x86_64.tar.gz\")\"\nhash_arm64=\"$( nix-prefetch-url \"https://files.renoise.com/demo/Renoise_$(echo \"$new_version\" | tr . _)_Demo_Linux_arm64.tar.gz\")\"\nsri_x86_64=\"$(nix --extra-experimental-features nix-command hash to-sri --type sha256 \"$hash_x86_64\")\"\nsri_arm64=\"$( nix --extra-experimental-features nix-command hash to-sri --type sha256 \"$hash_arm64\")\"\nupdate-source-version renoise \"$new_version\" \"$sri_x86_64\" --system=\"x86_64-linux\"  --ignore-same-version\nupdate-source-version renoise \"$new_version\" \"$sri_arm64\"  --system=\"aarch64-linux\" --ignore-same-version\n")),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Modern tracker-based DAW",
         homepage: "https://www.renoise.com/",
         sourceProvenance: nix.thunk(() => (() => {
@@ -128,7 +122,7 @@ substituteInPlace $out/share/applications/renoise.desktop \\
         mainProgram: "renoise",
       }));
       return {
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         pname,
         version,
         src,

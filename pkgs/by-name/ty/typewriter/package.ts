@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 25, 5], ["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]], [["pname", 33, 26], ["version", 33, 32], ["src", 33, 40], ["hash", 34, 5]], [["mainProgram", 60, 5], ["description", 61, 5], ["homepage", 62, 5], ["changelog", 63, 5], ["platforms", 64, 5], ["license", 65, 5], ["maintainers", 66, 5]], [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["cargoDeps", 32, 3], ["strictDeps", 37, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 52, 3], ["meta", 59, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, rustPlatform: false, meson: false, ninja: false, "pkg-config": false, rustc: false, cargo: false, wrapGAppsHook4: false, "blueprint-compiler": false, "desktop-file-utils": false, "appstream-glib": false, openssl: false, libadwaita: false, libpanel: false, gtksourceview5: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 25, 5], ["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 33, 26], ["version", 33, 32], ["src", 33, 40], ["hash", 34, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["mainProgram", 60, 5], ["description", 61, 5], ["homepage", 62, 5], ["changelog", 63, 5], ["platforms", 64, 5], ["license", 65, 5], ["maintainers", 66, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["cargoDeps", 32, 3], ["strictDeps", 37, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 52, 3], ["meta", 59, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const libpanel = nix.arg($, "libpanel");
   const gtksourceview5 = nix.arg($, "gtksourceview5");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "typewriter",
       version: "0.1.0",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "gitlab.gnome.org",
           owner: "JanGernert",
           repo: "typewriter",
@@ -40,7 +37,7 @@ export default nix.lambda((args) => (() => {
           hash: "sha256-c4wh59RNYMyK1rwoxzjhDCtnGnAxGABAu5cugV3P0zU=",
         })))),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -61,7 +58,7 @@ export default nix.lambda((args) => (() => {
       ]),
       buildInputs: nix.thunk(() => [openssl, libadwaita, libpanel, gtksourceview5]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         mainProgram: "typewriter",
         description: "Create documents with typst",
         homepage: "https://gitlab.gnome.org/JanGernert/typewriter",

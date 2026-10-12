@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/ffmpeg-ome-minimal.nix", [[["description", 90, 5], ["homepage", 91, 5], ["license", 92, 5], ["platforms", 93, 5], ["maintainers", 94, 5]], [["pname", 26, 3], ["version", 27, 3], ["src", 29, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 36, 3], ["configureFlags", 48, 3], ["enableParallelBuilding", 87, 3], ["meta", 89, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, ffmpeg_6: false, "pkg-config": false, nasm: false, zlib: false, openssl: false, libvpx: false, libaom: false, libopus: false, openh264: false, libwebp: false, srt: false, x264: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/ffmpeg-ome-minimal.nix", [["description", 90, 5], ["homepage", 91, 5], ["license", 92, 5], ["platforms", 93, 5], ["maintainers", 94, 5]]);
-const pos$2 = nix.positions(here + "/ffmpeg-ome-minimal.nix", [["pname", 26, 3], ["version", 27, 3], ["src", 29, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 36, 3], ["configureFlags", 48, 3], ["enableParallelBuilding", 87, 3], ["meta", 89, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,7 +22,7 @@ export default nix.lambda((args) => (() => {
   const srt = nix.arg($, "srt");
   const x264 = nix.arg($, "x264");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "ffmpeg-ome-minimal",
       version: nix.thunk(() => nix.sel(ffmpeg_6, "version")),
       src: nix.thunk(() => nix.sel(ffmpeg_6, "src")),
@@ -69,7 +68,7 @@ export default nix.lambda((args) => (() => {
       ]),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Minimal FFmpeg build for OvenMediaEngine, replicating its upstream InstallPrerequisites.cmake configuration",
         homepage: "https://ffmpeg.org",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

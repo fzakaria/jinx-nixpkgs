@@ -2,13 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/generic.nix", [[["owner", 43, 5], ["repo", 44, 5], ["tag", 45, 5], ["fetchSubmodules", 46, 5], ["name", 47, 5], ["hash", 48, 13], ["nativeBuildInputs", 49, 5], ["postFetch", 50, 5]], [["CARGO_HOME", 203, 5], ["NIX_CFLAGS_COMPILE", 204, 5]], [["tests", 248, 5], ["updateScript", 250, 5]], [["homepage", 258, 5], ["description", 259, 5], ["license", 260, 5], ["changelog", 261, 5], ["mainProgram", 263, 5], ["platforms", 266, 5], ["broken", 269, 5], ["maintainers", 271, 5]], [["pname", 38, 3], ["version", 39, 11], ["rev", 40, 11], ["src", 42, 3], ["strictDeps", 99, 3], ["nativeBuildInputs", 100, 3], ["buildInputs", 127, 3], ["dontCargoSetupPostUnpack", 129, 3], ["postPatch", 131, 3], ["preConfigure", 156, 3], ["cmakeFlags", 191, 3], ["env", 202, 3], ["hardeningDisable", 215, 3], ["nativeInstallCheckInputs", 220, 3], ["doInstallCheck", 221, 3], ["preVersionCheck", 222, 3], ["postInstall", 226, 3], ["disallowedReferences", 236, 3], ["doCheck", 239, 3], ["checkPhase", 240, 3], ["requiredSystemFeatures", 245, 3], ["passthru", 247, 3], ["meta", 257, 3]]]);
 const formals$1 = { args: { lts: true, version: false, rev: false, hash: false }, ellipsis: false };
 const formals$2 = { args: { lib: false, stdenv: false, llvmPackages_22: false, fetchFromGitHub: false, fetchpatch: false, cmake: false, ninja: false, python3: false, perl: false, nasm: false, yasm: false, nixosTests: false, darwin: false, findutils: false, libiconv: false, removeReferencesTo: false, zstd: false, rustSupport: true, rustc: false, cargo: false, rustPlatform: false, "nix-update-script": false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/generic.nix", [["owner", 43, 5], ["repo", 44, 5], ["tag", 45, 5], ["fetchSubmodules", 46, 5], ["name", 47, 5], ["hash", 48, 13], ["nativeBuildInputs", 49, 5], ["postFetch", 50, 5]]);
-const pos$2 = nix.positions(here + "/generic.nix", [["CARGO_HOME", 203, 5], ["NIX_CFLAGS_COMPILE", 204, 5]]);
-const pos$3 = nix.positions(here + "/generic.nix", [["tests", 248, 5], ["updateScript", 250, 5]]);
-const pos$4 = nix.positions(here + "/generic.nix", [["homepage", 258, 5], ["description", 259, 5], ["license", 260, 5], ["changelog", 261, 5], ["mainProgram", 263, 5], ["platforms", 266, 5], ["broken", 269, 5], ["maintainers", 271, 5]]);
-const pos$5 = nix.positions(here + "/generic.nix", [["pname", 38, 3], ["version", 39, 11], ["rev", 40, 11], ["src", 42, 3], ["strictDeps", 99, 3], ["nativeBuildInputs", 100, 3], ["buildInputs", 127, 3], ["dontCargoSetupPostUnpack", 129, 3], ["postPatch", 131, 3], ["preConfigure", 156, 3], ["cmakeFlags", 191, 3], ["env", 202, 3], ["hardeningDisable", 215, 3], ["nativeInstallCheckInputs", 220, 3], ["doInstallCheck", 221, 3], ["preVersionCheck", 222, 3], ["postInstall", 226, 3], ["disallowedReferences", 236, 3], ["doCheck", 239, 3], ["checkPhase", 240, 3], ["requiredSystemFeatures", 245, 3], ["passthru", 247, 3], ["meta", 257, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -44,7 +40,7 @@ export default nix.lambda((args) => (() => {
     const llvmPackages = llvmPackages_22;
     const llvmStdenv = nix.thunk(() => nix.sel(llvmPackages, "stdenv"));
     return nix.app(nix.sel(llvmStdenv, "mkDerivation"), (finalAttrs) => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname: "clickhouse",
         version: version,
         rev: rev,
@@ -58,7 +54,7 @@ export default nix.lambda((args) => (() => {
             const nativeBuildInputs = nix.thunk(() => [zstd]);
             const postFetch = "# Delete files that make the source too big\nrm -rf $out/contrib/arrow/docs/\nrm -rf $out/contrib/arrow/testing/\nrm -rf $out/contrib/aws/generated/protocol-tests/\nrm -rf $out/contrib/aws/generated/smoke-tests/\nrm -rf $out/contrib/aws/generated/tests/\nrm -rf $out/contrib/aws/tools/\nrm -rf $out/contrib/cld2/internal/test_shuffle_1000_48_666.utf8.gz\nrm -rf $out/contrib/croaring/benchmarks/\nrm -rf $out/contrib/boost/doc/\nrm -rf $out/contrib/boost/libs/*/bench/\nrm -rf $out/contrib/boost/libs/*/example/\nrm -rf $out/contrib/boost/libs/*/doc/\nrm -rf $out/contrib/boost/libs/*/test/\nrm -rf $out/contrib/google-cloud-cpp/ci/abi-dumps/\nrm -rf $out/contrib/icu/icu4c/source/test/\nrm -rf $out/contrib/icu/icu4j/main/core/src/test/\nrm -rf $out/contrib/icu/icu4j/perf-tests/\nrm -rf $out/contrib/llvm-project/*/docs/\nrm -rf $out/contrib/llvm-project/*/test/\nrm -rf $out/contrib/llvm-project/*/unittests/\nrm -rf $out/contrib/postgres/doc/\n\n# As long as we're not running tests, remove test files\nrm -rf $out/tests/\n\n# fix case insensitivity on macos https://github.com/NixOS/nixpkgs/issues/39308\nrm -rf $out/contrib/sysroot/linux-*\nrm -rf $out/contrib/liburing/man\n\n# Compress to not exceed the 2GB output limit\necho \"Creating deterministic source tarball...\"\n\ntar -I 'zstd --no-progress' \\\n  --sort=name \\\n  --mtime=1970-01-01 \\\n  --owner=0 --group=0 \\\n  --numeric-owner --mode=go=rX,u+rw,a-s \\\n  --transform='s@^@source/@S' \\\n  -cf temp  -C \"$out\" .\n\necho \"Finished creating deterministic source tarball!\"\n\nrm -r \"$out\"\nmv temp \"$out\"\n";
             return {
-              [nix.POS]: pos$1,
+              [nix.POS]: $pos[0],
               owner,
               repo,
               tag,
@@ -119,7 +115,7 @@ EOF
           "-DCOMPILER_CACHE=disabled",
         ], nix.app(nix.sel(lib, "optional"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")))), "-DNO_ARMV81_OR_HIGHER=1"))),
         env: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           CARGO_HOME: "$PWD/../.cargo/",
           NIX_CFLAGS_COMPILE: nix.thunk(() => nix.add(nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isx86_64")), " -mcx16"), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), " -Wno-implicit-const-int-float-conversion -Wno-unneeded-internal-declaration"))),
         })),
@@ -140,7 +136,7 @@ remove-references-to -t ${nix.sel(llvmStdenv, "cc")} $out/bin/clickhouse
         checkPhase: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "$NIX_BUILD_TOP/$sourceRoot/build/programs/clickhouse local --query 'SELECT 1' | grep 1\n")),
         requiredSystemFeatures: nix.thunk(() => ["big-parallel"]),
         passthru: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           tests: nix.thunk(() => (nix.asBool(lts) ? nix.sel(nixosTests, "clickhouse-lts") : nix.sel(nixosTests, "clickhouse"))),
           updateScript: nix.thunk(() => [
             nix.path(here, "./update.sh"),
@@ -148,7 +144,7 @@ remove-references-to -t ${nix.sel(llvmStdenv, "cc")} $out/bin/clickhouse
           ]),
         })),
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           homepage: "https://clickhouse.com",
           description: "Column-oriented database management system",
           license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

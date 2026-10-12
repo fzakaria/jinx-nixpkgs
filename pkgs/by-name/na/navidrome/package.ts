@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 26, 5], ["repo", 27, 5], ["rev", 28, 5], ["hash", 29, 5]], [["src", 42, 26], ["sourceRoot", 43, 5], ["hash", 44, 5]], [["nativeBuildInputs", 57, 5], ["preBuild", 58, 5]], [["CGO_CFLAGS", 76, 5]], [["navidrome", 112, 11]], [["plugins", 111, 13], ["tests", 112, 5], ["updateScript", 113, 5]], [["description", 117, 5], ["mainProgram", 118, 5], ["homepage", 119, 5], ["license", 120, 5], ["sourceProvenance", 121, 5], ["maintainers", 122, 5], ["broken", 128, 5]], [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["patches", 32, 3], ["vendorHash", 37, 3], ["npmRoot", 39, 3], ["npmDeps", 41, 3], ["nativeBuildInputs", 47, 3], ["runtimeInputs", 54, 3], ["overrideModAttrs", 56, 3], ["buildInputs", 61, 3], ["excludedPackages", 66, 3], ["ldflags", 70, 3], ["env", 75, 3], ["postPatch", 79, 3], ["preBuild", 83, 3], ["postInstall", 87, 3], ["tags", 97, 3], ["nativeInstallCheckInputs", 102, 3], ["doInstallCheck", 103, 3], ["postFixup", 105, 3], ["passthru", 110, 3], ["meta", 116, 3]]]);
 const formals$1 = { args: { buildGo127Module: false, buildPackages: false, fetchFromGitHub: false, fetchNpmDeps: false, lib: false, nodejs_24: false, npmHooks: false, "pkg-config": false, stdenv: false, "ffmpeg-headless": false, taglib: false, zlib: false, nixosTests: false, "nix-update-script": false, ffmpegSupport: true, versionCheckHook: false, plugins: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 26, 5], ["repo", 27, 5], ["rev", 28, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["src", 42, 26], ["sourceRoot", 43, 5], ["hash", 44, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["nativeBuildInputs", 57, 5], ["preBuild", 58, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["CGO_CFLAGS", 76, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["navidrome", 112, 11]]);
-const pos$6 = nix.positions(here + "/package.nix", [["plugins", 111, 13], ["tests", 112, 5], ["updateScript", 113, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["description", 117, 5], ["mainProgram", 118, 5], ["homepage", 119, 5], ["license", 120, 5], ["sourceProvenance", 121, 5], ["maintainers", 122, 5], ["broken", 128, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["patches", 32, 3], ["vendorHash", 37, 3], ["npmRoot", 39, 3], ["npmDeps", 41, 3], ["nativeBuildInputs", 47, 3], ["runtimeInputs", 54, 3], ["overrideModAttrs", 56, 3], ["buildInputs", 61, 3], ["excludedPackages", 66, 3], ["ldflags", 70, 3], ["env", 75, 3], ["postPatch", 79, 3], ["preBuild", 83, 3], ["postInstall", 87, 3], ["tags", 97, 3], ["nativeInstallCheckInputs", 102, 3], ["doInstallCheck", 103, 3], ["postFixup", 105, 3], ["passthru", 110, 3], ["meta", 116, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const plugins = nix.argOr($, "plugins", () => []);
   return nix.app(buildGo127Module, (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "navidrome",
       version: "0.64.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "navidrome",
           repo: "navidrome",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -46,7 +39,7 @@ export default nix.lambda((args) => (() => {
       vendorHash: "sha256-/3NhF/OHDxWrciN5GdROiO1yhjjdm5F5ntW7h6tzFGc=",
       npmRoot: "ui",
       npmDeps: nix.thunk(() => nix.app(fetchNpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           sourceRoot: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "name")}/ui`),
           hash: "sha256-uRF9cf6HZE0gyCvGTEZ520d2gMsxmccEYLJBgc47pMg=",
@@ -59,7 +52,7 @@ export default nix.lambda((args) => (() => {
       ]),
       runtimeInputs: plugins,
       overrideModAttrs: (oldAttrs) => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         nativeBuildInputs: nix.thunk(() => nix.app(nix.sel(lib, "filter"), (drv) => !nix.eq(drv, nix.sel(npmHooks, "npmConfigHook")), nix.thunk(() => nix.sel(oldAttrs, "nativeBuildInputs")))),
         preBuild: null,
       }),
@@ -70,7 +63,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`-X github.com/navidrome/navidrome/consts.gitTag=v${nix.sel(finalAttrs, "version")}`),
       ]),
       env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "cc", "isGNU")), nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           CGO_CFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-Wno-return-local-addr"]))),
         })))),
       postPatch: "patchShebangs ui/bin/update-workbox.sh\n",
@@ -89,16 +82,16 @@ ${nix.app(nix.sel(lib, "concatMapStringsSep"), "\n", (plugin) => nix.str`find ${
   --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [ffmpeg_headless]))}
 `))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         plugins: plugins,
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           navidrome: nix.thunk(() => nix.sel(nixosTests, "navidrome")),
         })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "Music Server and Streamer compatible with Subsonic/Airsonic",
         mainProgram: "navidrome",
         homepage: "https://www.navidrome.org/",

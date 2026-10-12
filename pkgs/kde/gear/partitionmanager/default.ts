@@ -2,21 +2,19 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["kpmcore", 11, 13]], [["mainProgram", 14, 8]], [["pname", 6, 3], ["propagatedUserEnvPkgs", 8, 3], ["passthru", 10, 3], ["meta", 14, 3]]]);
 const formals$1 = { args: { mkKdeDerivation: false, kpmcore: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["kpmcore", 11, 13]]);
-const pos$2 = nix.positions(here + "/default.nix", [["mainProgram", 14, 8]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 6, 3], ["propagatedUserEnvPkgs", 8, 3], ["passthru", 10, 3], ["meta", 14, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const mkKdeDerivation = nix.arg($, "mkKdeDerivation");
   const kpmcore = nix.arg($, "kpmcore");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "partitionmanager",
       propagatedUserEnvPkgs: nix.thunk(() => [kpmcore]),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$1, kpmcore: kpmcore })),
-      meta: nix.thunk(() => ({ [nix.POS]: pos$2, mainProgram: "partitionmanager" })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[0], kpmcore: kpmcore })),
+      meta: nix.thunk(() => ({ [nix.POS]: $pos[1], mainProgram: "partitionmanager" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

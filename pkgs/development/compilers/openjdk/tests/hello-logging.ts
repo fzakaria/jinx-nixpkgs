@@ -2,8 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/hello-logging.nix", [[["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["buildPhase", 28, 3], ["installPhase", 33, 3]]]);
 const formals$1 = { args: { jdk: false, jre: false, pkgs: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/hello-logging.nix", [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["buildPhase", 28, 3], ["installPhase", 33, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const source = nix.thunk(() => nix.app(nix.sel(pkgs, "writeTextDir"), "src/Hello.java", "import java.util.logging.Logger;\nimport java.util.logging.Level;\n\nclass Hello {\n  static Logger logger = Logger.getLogger(Hello.class.getName());\n\n  public static void main(String[] args) {\n    logger.log(Level.INFO, \"Hello, world!\");\n  }\n}\n"));
   return nix.app(nix.sel(pkgs, "stdenv", "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       pname: "hello",
       version: "1.0.0",
       src: source,

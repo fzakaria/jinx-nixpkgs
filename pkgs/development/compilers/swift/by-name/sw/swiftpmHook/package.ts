@@ -2,10 +2,8 @@
 import * as nix from "../../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["pname", 16, 5], ["version", 17, 5], ["buildCommand", 19, 5]], [["sharedLibrary", 38, 50], ["swiftPlatform", 39, 5], ["install_name_tool", 40, 5], ["jq", 41, 5]], [["name", 27, 3], ["propagatedBuildInputs", 28, 3], ["substitutions", 37, 3]]]);
 const formals$1 = { args: { lib: false, cctools: false, jq: false, llvmPackages_upstream: false, llvm_libtool: false, makeSetupHook: false, stdenv: false, stdenvNoCC: false, swiftpm: false, swiftpmUnpackHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["pname", 16, 5], ["version", 17, 5], ["buildCommand", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["sharedLibrary", 38, 50], ["swiftPlatform", 39, 5], ["install_name_tool", 40, 5], ["jq", 41, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 27, 3], ["propagatedBuildInputs", 28, 3], ["substitutions", 37, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,7 +18,7 @@ export default nix.lambda((args) => (() => {
   const swiftpm = nix.arg($, "swiftpm");
   const swiftpmUnpackHook = nix.arg($, "swiftpmUnpackHook");
   const vtool = nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       pname: "cctools-vtool",
       version: nix.thunk(() => nix.app(nix.sel(lib, "getVersion"), cctools)),
       buildCommand: nix.thunk(() => nix.str`mkdir -p "$out/bin"
@@ -28,13 +26,13 @@ ln -s ${nix.app(nix.sel(lib, "getExe'"), cctools, "vtool")} "$out/bin/vtool"
 `),
     }))));
   return nix.app(makeSetupHook, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       name: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getName"), swiftpm)}-hook-${nix.app(nix.sel(lib, "getVersion"), swiftpm)}`),
       propagatedBuildInputs: nix.thunk(() => nix.concat([swiftpmUnpackHook], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenvNoCC, "hostPlatform", "isDarwin")), nix.thunk(() => [llvm_libtool, vtool])))),
       substitutions: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(stdenvNoCC, "hostPlatform", "extensions"));
         return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         sharedLibrary: nix.thunk(() => nix.attr(from, "sharedLibrary")),
         swiftPlatform: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "swift", "platform")),
         install_name_tool: nix.thunk(() => nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(llvmPackages_upstream, "llvm")), "llvm-install-name-tool")),

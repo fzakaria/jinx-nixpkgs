@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 9], ["repo", 19, 9], ["tag", 20, 9], ["hash", 21, 9], ["fetchSubmodules", 22, 9]], [["updateScript", 25, 16]], [["mainProgram", 28, 9], ["description", 29, 9], ["longDescription", 30, 9], ["homepage", 34, 9], ["changelog", 35, 9], ["maintainers", 36, 9]], [["pname", 14, 7], ["version", 15, 7], ["src", 17, 7], ["passthru", 25, 7], ["meta", 27, 7]], [["pname", 10, 3], ["withWebkit", 11, 11], ["unwrapped", 12, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, "nix-update-script": false, "telegram-desktop": false, withWebkit: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 9], ["repo", 19, 9], ["tag", 20, 9], ["hash", 21, 9], ["fetchSubmodules", 22, 9]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 25, 16]]);
-const pos$3 = nix.positions(here + "/package.nix", [["mainProgram", 28, 9], ["description", 29, 9], ["longDescription", 30, 9], ["homepage", 34, 9], ["changelog", 35, 9], ["maintainers", 36, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 14, 7], ["version", 15, 7], ["src", 17, 7], ["passthru", 25, 7], ["meta", 27, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["withWebkit", 11, 11], ["unwrapped", 12, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,15 +13,15 @@ export default nix.lambda((args) => (() => {
   const telegram_desktop = nix.arg($, "telegram-desktop");
   const withWebkit = nix.argOr($, "withWebkit", () => true);
   return nix.app(nix.sel(telegram_desktop, "override"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "ayugram-desktop",
       withWebkit: withWebkit,
       unwrapped: nix.thunk(() => nix.app(nix.sel(telegram_desktop, "unwrapped", "overrideAttrs"), (finalAttrs) => (previousAttrs) => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           pname: "ayugram-desktop-unwrapped",
           version: "7.2.9",
           src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-              [nix.POS]: pos$1,
+              [nix.POS]: $pos[0],
               owner: "AyuGram",
               repo: "AyuGramDesktop",
               tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -33,11 +29,11 @@ export default nix.lambda((args) => (() => {
               fetchSubmodules: true,
             })))),
           passthru: nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
           })),
           meta: nix.thunk(() => nix.update(nix.sel(previousAttrs, "meta"), {
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             mainProgram: "AyuGram",
             description: "Desktop Telegram client with good customization and Ghost mode",
             longDescription: "The best that could be in the world of Telegram clients.\nAyuGram is a Telegram client with a very pleasant features.\n",

@@ -2,38 +2,33 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/livebook-service.nix", [[["LIVEBOOK_PORT", 16, 13]], [["enableUserService", 14, 11], ["environment", 15, 11], ["environmentFile", 18, 11]], [["livebook", 13, 18]], [["imports", 9, 9], ["services", 13, 9]], [["machine", 6, 5]], [["name", 3, 3], ["nodes", 5, 3], ["testScript", 25, 3]]]);
 const formals$1 = { args: { lib: false, pkgs: false }, ellipsis: true };
 const formals$2 = { args: { config: false, pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/livebook-service.nix", [["LIVEBOOK_PORT", 16, 13]]);
-const pos$2 = nix.positions(here + "/livebook-service.nix", [["enableUserService", 14, 11], ["environment", 15, 11], ["environmentFile", 18, 11]]);
-const pos$3 = nix.positions(here + "/livebook-service.nix", [["livebook", 13, 18]]);
-const pos$4 = nix.positions(here + "/livebook-service.nix", [["imports", 9, 9], ["services", 13, 9]]);
-const pos$5 = nix.positions(here + "/livebook-service.nix", [["machine", 6, 5]]);
 const formals$3 = { args: { nodes: false }, ellipsis: true };
-const pos$6 = nix.positions(here + "/livebook-service.nix", [["name", 3, 3], ["nodes", 5, 3], ["testScript", 25, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   return {
-    [nix.POS]: pos$6,
+    [nix.POS]: $pos[5],
     name: "livebook-service",
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config = nix.arg($_1, "config");
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           imports: nix.thunk(() => [nix.path(here, "./common/user-account.nix")]),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             livebook: nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               enableUserService: true,
-              environment: nix.thunk(() => ({ [nix.POS]: pos$1, LIVEBOOK_PORT: 20123n })),
+              environment: nix.thunk(() => ({ [nix.POS]: $pos[0], LIVEBOOK_PORT: 20123n })),
               environmentFile: nix.thunk(() => nix.app(nix.sel(pkgs_1, "writeText"), "livebook.env", "LIVEBOOK_PASSWORD = \"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\"\n")),
             })),
           })),

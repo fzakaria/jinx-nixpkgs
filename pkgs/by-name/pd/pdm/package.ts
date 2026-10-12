@@ -2,17 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["enableTk", 16, 48]], [["doCheck", 19, 9]], [["matplotlib", 16, 7], ["moto", 18, 7]], [["self", 13, 5], ["packageOverrides", 14, 5]], [["owner", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["hash", 33, 5]], [["package", 129, 50]], [["version", 129, 18]], [["tests", 129, 12]], [["homepage", 132, 5], ["changelog", 133, 5], ["description", 134, 5], ["license", 135, 5], ["maintainers", 136, 5], ["mainProgram", 141, 5]], [["pname", 25, 3], ["version", 26, 3], ["pyproject", 27, 3], ["src", 29, 3], ["pythonRelaxDeps", 36, 3], ["nativeBuildInputs", 38, 3], ["build-system", 40, 3], ["dependencies", 45, 3], ["makeWrapperArgs", 72, 3], ["preInstall", 76, 3], ["postInstall", 80, 3], ["nativeCheckInputs", 89, 3], ["disabledTestMarks", 97, 3], ["preCheck", 99, 3], ["disabledTests", 105, 3], ["__darwinAllowLocalNetworking", 127, 3], ["passthru", 129, 3], ["meta", 131, 3]]]);
 const formals$1 = { args: { lib: false, python3: false, fetchFromGitHub: false, runtimeShell: false, installShellFiles: false, testers: false, pdm: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["enableTk", 16, 48]]);
-const pos$2 = nix.positions(here + "/package.nix", [["doCheck", 19, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["matplotlib", 16, 7], ["moto", 18, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["self", 13, 5], ["packageOverrides", 14, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["owner", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["hash", 33, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["package", 129, 50]]);
-const pos$7 = nix.positions(here + "/package.nix", [["version", 129, 18]]);
-const pos$8 = nix.positions(here + "/package.nix", [["tests", 129, 12]]);
-const pos$9 = nix.positions(here + "/package.nix", [["homepage", 132, 5], ["changelog", 133, 5], ["description", 134, 5], ["license", 135, 5], ["maintainers", 136, 5], ["mainProgram", 141, 5]]);
-const pos$10 = nix.positions(here + "/package.nix", [["pname", 25, 3], ["version", 26, 3], ["pyproject", 27, 3], ["src", 29, 3], ["pythonRelaxDeps", 36, 3], ["nativeBuildInputs", 38, 3], ["build-system", 40, 3], ["dependencies", 45, 3], ["makeWrapperArgs", 72, 3], ["preInstall", 76, 3], ["postInstall", 80, 3], ["nativeCheckInputs", 89, 3], ["disabledTestMarks", 97, 3], ["preCheck", 99, 3], ["disabledTests", 105, 3], ["__darwinAllowLocalNetworking", 127, 3], ["passthru", 129, 3], ["meta", 131, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const pdm = nix.arg($, "pdm");
   const python = nix.thunk(() => nix.app(nix.sel(python3, "override"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       self: python,
       packageOverrides: (_) => (super$) => ({
-        [nix.POS]: pos$3,
-        matplotlib: nix.thunk(() => nix.app(nix.sel(super$, "matplotlib", "override"), nix.thunk(() => ({ [nix.POS]: pos$1, enableTk: false })))),
-        moto: nix.thunk(() => nix.app(nix.sel(super$, "moto", "overridePythonAttrs"), (old) => ({ [nix.POS]: pos$2, doCheck: false }))),
+        [nix.POS]: $pos[2],
+        matplotlib: nix.thunk(() => nix.app(nix.sel(super$, "matplotlib", "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], enableTk: false })))),
+        moto: nix.thunk(() => nix.app(nix.sel(super$, "moto", "overridePythonAttrs"), (old) => ({ [nix.POS]: $pos[1], doCheck: false }))),
       }),
     }))));
   return nix.app(nix.sel(python, "pkgs", "buildPythonApplication"), nix.thunk(() => (() => {
@@ -37,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.27.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           owner: "pdm-project",
           repo: "pdm",
           tag: version,
@@ -113,14 +104,14 @@ substituteInPlace tests/cli/test_run.py \\
       ]);
       const __darwinAllowLocalNetworking = true;
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$7,
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$6, package: pdm })))),
+          [nix.POS]: $pos[6],
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: $pos[5], package: pdm })))),
         })),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         homepage: "https://pdm-project.org",
         changelog: nix.thunk(() => nix.str`https://github.com/pdm-project/pdm/releases/tag/${version}`),
         description: "Modern Python package and dependency manager supporting the latest PEP standards",
@@ -136,7 +127,7 @@ substituteInPlace tests/cli/test_run.py \\
         mainProgram: "pdm",
       }));
       return {
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         pname,
         version,
         pyproject,

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 24, 5], ["rev", 25, 5], ["sha256", 26, 5]], [["NIX_CFLAGS_COMPILE", 69, 5]], [["description", 78, 5], ["mainProgram", 79, 5], ["homepage", 80, 5], ["license", 81, 5], ["maintainers", 82, 5], ["platforms", 83, 5]], [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["outputs", 29, 3], ["strictDeps", 36, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 46, 3], ["configureFlags", 54, 3], ["preConfigure", 58, 3], ["makeFlags", 63, 3], ["env", 68, 3], ["doCheck", 75, 3], ["meta", 77, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchgit: false, autoreconfHook: false, "pkg-config": false, gettext: false, python3: false, ncurses: false, swig: false, glib: false, "util-linux": false, cryptsetup: false, nss: false, gpgme: false, buildPackages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 24, 5], ["rev", 25, 5], ["sha256", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 69, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 78, 5], ["mainProgram", 79, 5], ["homepage", 80, 5], ["license", 81, 5], ["maintainers", 82, 5], ["platforms", 83, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["outputs", 29, 3], ["strictDeps", 36, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 46, 3], ["configureFlags", 54, 3], ["preConfigure", 58, 3], ["makeFlags", 63, 3], ["env", 68, 3], ["doCheck", 75, 3], ["meta", 77, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const gpgme = nix.arg($, "gpgme");
   const buildPackages = nix.arg($, "buildPackages");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "volume_key",
       version: "0.3.11",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://pagure.io/volume_key.git",
           rev: nix.thunk(() => nix.str`volume_key-${nix.sel(finalAttrs, "version")}`),
           sha256: "1sqdbcih1c39bjiv4mm1m7acc3lfh2i2hf2r9i7rk8adfzq8awma",
@@ -48,12 +45,12 @@ export PYTHON3_CONFIG="${python3}/bin/python3-config"
         nix.thunk(() => nix.str`pythondir=$(py)/${nix.sel(python3, "sitePackages")}`),
       ]),
       env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "cc", "isGNU")), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-Wno-error=implicit-function-declaration", "-Wno-error=int-conversion"]))),
         })))),
       doCheck: false,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Library for manipulating storage volume encryption keys and storing them separately from volumes to handle forgotten passphrases, and the associated command-line tool",
         mainProgram: "volume_key",
         homepage: "https://pagure.io/volume_key/",

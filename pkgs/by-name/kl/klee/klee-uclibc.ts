@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/klee-uclibc.nix", [[["url", 19, 5], ["sha256", 20, 5]], [["UCLIBC_DOWNLOAD_PREGENERATED_LOCALE_DATA", 25, 7], ["RUNTIME_PREFIX", 26, 7], ["DEVEL_PREFIX", 27, 7]], [["owner", 35, 5], ["repo", 36, 5], ["rev", 37, 5], ["hash", 38, 5]], [["extraArgs", 100, 5]], [["updateScript", 99, 12]], [["description", 107, 5], ["longDescription", 108, 5], ["homepage", 112, 5], ["license", 113, 5], ["maintainers", 114, 5]], [["pname", 32, 3], ["version", 33, 3], ["src", 34, 3], ["nativeBuildInputs", 41, 3], ["UCLIBC_KERNEL_HEADERS", 50, 3], ["KLEE_CFLAGS", 54, 3], ["prePatch", 56, 3], ["configurePhase", 62, 3], ["preBuild", 91, 3], ["makeFlags", 95, 3], ["enableParallelBuilding", 97, 3], ["passthru", 99, 3], ["meta", 106, 3]]]);
 const formals$1 = { args: { lib: false, llvmPackages: false, fetchurl: false, fetchFromGitHub: false, linuxHeaders: false, python3: false, curl: false, which: false, "nix-update-script": false, debugRuntime: true, runtimeAsserts: true, extraKleeuClibcConfig: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/klee-uclibc.nix", [["url", 19, 5], ["sha256", 20, 5]]);
-const pos$2 = nix.positions(here + "/klee-uclibc.nix", [["UCLIBC_DOWNLOAD_PREGENERATED_LOCALE_DATA", 25, 7], ["RUNTIME_PREFIX", 26, 7], ["DEVEL_PREFIX", 27, 7]]);
-const pos$3 = nix.positions(here + "/klee-uclibc.nix", [["owner", 35, 5], ["repo", 36, 5], ["rev", 37, 5], ["hash", 38, 5]]);
-const pos$4 = nix.positions(here + "/klee-uclibc.nix", [["extraArgs", 100, 5]]);
-const pos$5 = nix.positions(here + "/klee-uclibc.nix", [["updateScript", 99, 12]]);
-const pos$6 = nix.positions(here + "/klee-uclibc.nix", [["description", 107, 5], ["longDescription", 108, 5], ["homepage", 112, 5], ["license", 113, 5], ["maintainers", 114, 5]]);
-const pos$7 = nix.positions(here + "/klee-uclibc.nix", [["pname", 32, 3], ["version", 33, 3], ["src", 34, 3], ["nativeBuildInputs", 41, 3], ["UCLIBC_KERNEL_HEADERS", 50, 3], ["KLEE_CFLAGS", 54, 3], ["prePatch", 56, 3], ["configurePhase", 62, 3], ["preBuild", 91, 3], ["makeFlags", 95, 3], ["enableParallelBuilding", 97, 3], ["passthru", 99, 3], ["meta", 106, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,22 +21,22 @@ export default nix.lambda((args) => (() => {
   const extraKleeuClibcConfig = nix.argOr($, "extraKleeuClibcConfig", () => ({}));
   const localeSrcBase = "uClibc-locale-030818.tgz";
   const localeSrc = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: nix.thunk(() => nix.str`http://www.uclibc.org/downloads/${localeSrcBase}`),
       sha256: "xDYr4xijjxjZjcz0YtItlbq5LwVUi7k/ZSmP6a+uvVc=",
     }))));
   const resolvedExtraKleeuClibcConfig = nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (name) => (value) => nix.str`${name}=${value}`, nix.thunk(() => nix.update(extraKleeuClibcConfig, {
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       UCLIBC_DOWNLOAD_PREGENERATED_LOCALE_DATA: "n",
       RUNTIME_PREFIX: "/",
       DEVEL_PREFIX: "/",
     }))));
   return nix.app(nix.sel(llvmPackages, "stdenv", "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "klee-uclibc",
       version: "1.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           owner: "klee",
           repo: "klee-uclibc",
           rev: nix.thunk(() => nix.str`klee_uclibc_v${nix.sel(finalAttrs, "version")}`),
@@ -83,14 +77,14 @@ done
       makeFlags: nix.thunk(() => ["HAVE_DOT_CONFIG=y"]),
       enableParallelBuilding: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             extraArgs: nix.thunk(() => ["--version-regex", "v(\\d\\.\\d)"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Modified version of uClibc for KLEE",
         longDescription: "klee-uclibc is a bitcode build of uClibc meant for compatibility with the\nKLEE symbolic virtual machine.\n",
         homepage: "https://github.com/klee/klee-uclibc",

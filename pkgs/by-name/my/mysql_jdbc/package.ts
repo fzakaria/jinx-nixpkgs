@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 15, 5], ["hash", 16, 5]], [["url", 29, 5]], [["updateScript", 28, 12]], [["description", 33, 5], ["homepage", 34, 5], ["changelog", 35, 5], ["maintainers", 36, 5], ["platforms", 37, 5], ["license", 38, 5], ["sourceProvenance", 39, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["installPhase", 19, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 26, 3], ["passthru", 28, 3], ["meta", 32, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, ant: false, unzip: false, gitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 29, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 28, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 33, 5], ["homepage", 34, 5], ["changelog", 35, 5], ["maintainers", 36, 5], ["platforms", 37, 5], ["license", 38, 5], ["sourceProvenance", 39, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["installPhase", 19, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 26, 3], ["passthru", 28, 3], ["meta", 32, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const unzip = nix.arg($, "unzip");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "mysql-connector-java",
       version: "9.7.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://dev.mysql.com/get/Downloads/Connector-J/mysql-connector-j-${nix.sel(finalAttrs, "version")}.zip`),
           hash: "sha256-RsiF8d7hqq96RLp5+bYvuJ0cZUoz23SE9GVwvC9LPaM=",
         })))),
@@ -30,11 +26,11 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [unzip]),
       buildInputs: nix.thunk(() => [ant]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, url: "https://github.com/mysql/mysql-connector-j.git" })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[1], url: "https://github.com/mysql/mysql-connector-j.git" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "MySQL Connector/J",
         homepage: "https://dev.mysql.com/doc/connector-j/en/",
         changelog: "https://dev.mysql.com/doc/relnotes/connector-j/en/",

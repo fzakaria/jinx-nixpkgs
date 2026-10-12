@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["sha256", 21, 5]], [["description", 48, 5], ["homepage", 49, 5], ["license", 50, 5], ["maintainers", 51, 5], ["platforms", 52, 26], ["broken", 53, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["propagatedBuildInputs", 24, 3], ["nativeBuildInputs", 26, 3], ["strictDeps", 34, 3], ["buildFlags", 36, 3], ["installTargets", 41, 3], ["preInstall", 42, 3], ["meta", 47, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, libvirt: false, autoreconfHook: false, "pkg-config": false, ocaml: false, findlib: false, perl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["sha256", 21, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 48, 5], ["homepage", 49, 5], ["license", 50, 5], ["maintainers", 51, 5], ["platforms", 52, 26], ["broken", 53, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["propagatedBuildInputs", 24, 3], ["nativeBuildInputs", 26, 3], ["strictDeps", 34, 3], ["buildFlags", 36, 3], ["installTargets", 41, 3], ["preInstall", 42, 3], ["meta", 47, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const pname = "ocaml-libvirt";
       const version = "0.6.1.5";
       const src = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "libvirt",
           repo: "libvirt-ocaml",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -37,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const meta = nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(ocaml, "meta"));
         return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "OCaml bindings for libvirt",
         homepage: "https://libvirt.org/ocaml/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),
@@ -47,7 +45,7 @@ export default nix.lambda((args) => (() => {
       };
       })());
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

@@ -2,12 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]], [["bc", 36, 7]], [["updateScript", 73, 5]], [["description", 77, 5], ["homepage", 78, 5], ["license", 79, 5], ["platforms", 80, 5], ["teams", 81, 5]], [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["patches", 34, 3], ["nativeBuildInputs", 40, 3], ["buildInputs", 48, 3], ["mesonFlags", 66, 3], ["doCheck", 70, 3], ["passthru", 72, 3], ["meta", 76, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, "nix-update-script": false, replaceVars: false, meson: false, ninja: false, "pkg-config": false, vala: false, granite: false, libgee: false, gettext: false, gtk3: false, "json-glib": false, "switchboard-with-plugs": false, wingpanel: false, zeitgeist: false, bc: false, libhandy: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["bc", 36, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["updateScript", 73, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 77, 5], ["homepage", 78, 5], ["license", 79, 5], ["platforms", 80, 5], ["teams", 81, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["patches", 34, 3], ["nativeBuildInputs", 40, 3], ["buildInputs", 48, 3], ["mesonFlags", 66, 3], ["doCheck", 70, 3], ["passthru", 72, 3], ["meta", 76, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,14 +30,14 @@ export default nix.lambda((args) => (() => {
       const pname = "wingpanel-applications-menu";
       const version = "8.0.4";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "elementary",
           repo: "applications-menu",
           tag: version,
           hash: "sha256-wHPdZnHDa9DirjGEfKyAa1jKjYD6aj8QwMZ9KxqLPkM=",
         }))));
       const patches = nix.thunk(() => [
-        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix-paths.patch"), nix.thunk(() => ({ [nix.POS]: pos$2, bc: nix.thunk(() => nix.str`${bc}/bin/bc`) })))),
+        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix-paths.patch"), nix.thunk(() => ({ [nix.POS]: $pos[1], bc: nix.thunk(() => nix.str`${bc}/bin/bc`) })))),
       ]);
       const nativeBuildInputs = nix.thunk(() => [gettext, meson, ninja, pkg_config, vala]);
       const buildInputs = nix.thunk(() => nix.concat([
@@ -59,11 +55,11 @@ export default nix.lambda((args) => (() => {
       ]);
       const doCheck = true;
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Lightweight and stylish app launcher for Pantheon",
         homepage: "https://github.com/elementary/applications-menu",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
@@ -71,7 +67,7 @@ export default nix.lambda((args) => (() => {
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "pantheon"))]),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         src,

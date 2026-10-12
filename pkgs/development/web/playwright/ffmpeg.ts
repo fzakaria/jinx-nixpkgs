@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/ffmpeg.nix", [[["name", 10, 7], ["revision", 11, 15]], [["x86_64-linux", 18, 7], ["aarch64-linux", 19, 7], ["aarch64-darwin", 20, 7]], [["url", 15, 22], ["stripRoot", 15, 26], ["hash", 16, 3]]]);
 const formals$1 = { args: { fetchzip: false, revision: false, system: false, throwSystem: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/ffmpeg.nix", [["name", 10, 7], ["revision", 11, 15]]);
-const pos$2 = nix.positions(here + "/ffmpeg.nix", [["x86_64-linux", 18, 7], ["aarch64-linux", 19, 7], ["aarch64-darwin", 20, 7]]);
-const pos$3 = nix.positions(here + "/ffmpeg.nix", [["url", 15, 22], ["stripRoot", 15, 26], ["hash", 16, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,13 +11,13 @@ export default nix.lambda((args) => (() => {
   const revision = nix.arg($, "revision");
   const system = nix.arg($, "system");
   const throwSystem = nix.arg($, "throwSystem");
-  const download = nix.thunk(() => nix.selOr(nix.app(nix.builtins.import(nix.path(here, "./browser-downloads.nix")), nix.thunk(() => ({ [nix.POS]: pos$1, name: "ffmpeg", revision: revision }))), () => nix.force(throwSystem), nix.key(nix.force(system))));
+  const download = nix.thunk(() => nix.selOr(nix.app(nix.builtins.import(nix.path(here, "./browser-downloads.nix")), nix.thunk(() => ({ [nix.POS]: $pos[0], name: "ffmpeg", revision: revision }))), () => nix.force(throwSystem), nix.key(nix.force(system))));
   return nix.app(fetchzip, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       url: nix.thunk(() => nix.attr(download, "url")),
       stripRoot: nix.thunk(() => nix.attr(download, "stripRoot")),
       hash: nix.thunk(() => nix.selOr({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         "x86_64-linux": "sha256-AWTiui+ccKHxsIaQSgc5gWCJT5gYwIWzAEqSuKgVqZU=",
         "aarch64-linux": "sha256-1mOKO2lcnlwLsC6ob//xKnKrCOp94pw8X14uBxCdj0Q=",
         "aarch64-darwin": "sha256-ky10UQj+XPVGpaWAPvKd51C5brml0y9xQ6iKcrxAMRc=",

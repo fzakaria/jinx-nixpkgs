@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 7], ["repo", 16, 7], ["tag", 17, 7], ["hash", 18, 7]], [["description", 24, 7], ["homepage", 25, 7], ["license", 26, 7], ["maintainers", 27, 7]], [["pname", 11, 5], ["version", 12, 5], ["src", 14, 5], ["vendorHash", 21, 5], ["meta", 23, 5]], [["generator", 56, 12]], [["license", 59, 38]], [["pname", 33, 23], ["src", 33, 29], ["version", 34, 31], ["nativeBuildInputs", 36, 3], ["buildPhase", 38, 3], ["installPhase", 48, 3], ["passthru", 56, 3], ["meta", 58, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchFromGitHub: false, pkgsBuildBuild: false, "dbip-country-lite": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 7], ["repo", 16, 7], ["tag", 17, 7], ["hash", 18, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 24, 7], ["homepage", 25, 7], ["license", 26, 7], ["maintainers", 27, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 11, 5], ["version", 12, 5], ["src", 14, 5], ["vendorHash", 21, 5], ["meta", 23, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["generator", 56, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["license", 59, 38]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 33, 23], ["src", 33, 29], ["version", 34, 31], ["nativeBuildInputs", 36, 3], ["buildPhase", 38, 3], ["installPhase", 48, 3], ["passthru", 56, 3], ["meta", 58, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "v2ray-geoip";
       const version = "202501190004";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "v2fly",
           repo: "geoip",
           tag: version,
@@ -29,7 +24,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const vendorHash = "sha256-nvJsifXF6u3eWqd9X0kGZxASEs/LX2dQraZAwgnw060=";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "GeoIP for V2Ray",
         homepage: "https://github.com/v2fly/geoip",
         license: nix.thunk(() => nix.sel(lib, "licenses", "cc-by-sa-40")),
@@ -38,10 +33,10 @@ export default nix.lambda((args) => (() => {
           return [nix.thunk(() => nix.lookup(w, "nickcao"))];
         })()),
       }));
-      return { [nix.POS]: pos$3, pname, version, src, vendorHash, meta };
+      return { [nix.POS]: $pos[2], pname, version, src, vendorHash, meta };
     })())));
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: nix.thunk(() => nix.attr(generator, "pname")),
       src: nix.thunk(() => nix.attr(generator, "src")),
       version: nix.thunk(() => nix.attr(dbip_country_lite, "version")),
@@ -55,10 +50,10 @@ geoip
 runHook postBuild
 `),
       installPhase: "runHook preInstall\n\ninstall -Dm444 -t \"$out/share/v2ray\" output/{cn,geoip-only-cn-private,geoip,private}.dat\n\nrunHook postInstall\n",
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$4, generator: generator })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[3], generator: generator })),
       meta: nix.thunk(() => nix.update(nix.sel(generator, "meta"), (() => {
         const from = nix.thunk(() => nix.sel(dbip_country_lite, "meta"));
-        return { [nix.POS]: pos$5, license: nix.thunk(() => nix.attr(from, "license")) };
+        return { [nix.POS]: $pos[4], license: nix.thunk(() => nix.attr(from, "license")) };
       })())),
     })));
 })(), formals$1);

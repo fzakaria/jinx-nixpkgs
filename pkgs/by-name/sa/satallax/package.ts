@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 32, 5], ["sha256", 33, 5]], [["NIX_CFLAGS_COMPILE", 72, 7]], [["description", 107, 5], ["mainProgram", 108, 5], ["license", 109, 5], ["maintainers", 110, 5], ["platforms", 111, 5], ["downloadPage", 112, 5], ["homepage", 113, 5]], [["pname", 17, 3], ["version", 18, 3], ["strictDeps", 20, 3], ["nativeBuildInputs", 22, 3], ["buildInputs", 29, 3], ["src", 31, 3], ["patches", 36, 3], ["prePatch", 41, 3], ["preConfigure", 45, 3], ["env", 72, 3], ["installPhase", 74, 3], ["doCheck", 95, 3], ["checkPhase", 97, 3], ["meta", 106, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, "ocaml-ng": false, zlib: false, which: false, eprover: false, makeWrapper: false, coq: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 32, 5], ["sha256", 33, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 72, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 107, 5], ["mainProgram", 108, 5], ["license", 109, 5], ["maintainers", 110, 5], ["platforms", 111, 5], ["downloadPage", 112, 5], ["homepage", 113, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["strictDeps", 20, 3], ["nativeBuildInputs", 22, 3], ["buildInputs", 29, 3], ["src", 31, 3], ["patches", 36, 3], ["prePatch", 41, 3], ["preConfigure", 45, 3], ["env", 72, 3], ["installPhase", 74, 3], ["doCheck", 95, 3], ["checkPhase", 97, 3], ["meta", 106, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,14 +19,14 @@ export default nix.lambda((args) => (() => {
   const from = nix.thunk(() => nix.sel(ocaml_ng, "ocamlPackages_4_14"));
   const ocaml = nix.thunk(() => nix.attr(from, "ocaml"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "satallax",
       version: "2.7",
       strictDeps: true,
       nativeBuildInputs: nix.thunk(() => [makeWrapper, ocaml, which, eprover, coq]),
       buildInputs: nix.thunk(() => [zlib]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://www.ps.uni-saarland.de/~cebrown/satallax/downloads/satallax-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "1kvxn8mc35igk4vigi5cp7w3wpxk2z3bgwllfm4n3h2jfs0vkpib",
         })))),
@@ -38,7 +35,7 @@ export default nix.lambda((args) => (() => {
 `),
       preConfigure: "mkdir fake-tools\necho \"echo 'Nix-build-host.localdomain'\" > fake-tools/hostname\nchmod a+x fake-tools/hostname\nexport PATH=\"$PATH:$PWD/fake-tools\"\n\n(\n  cd picosat-*\n  ./configure\n  make\n)\nexport PATH=\"$PATH:$PWD/libexec/satallax\"\n\nmkdir -p \"$out/libexec/satallax\"\ncp picosat-*/picosat picosat-*/picomus \"$out/libexec/satallax\"\n\n(\n  cd minisat\n  export MROOT=$PWD\n  cd core\n  make\n  cd ../simp\n  make\n)\n",
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "-Wno-reserved-user-defined-literal")),
       })),
       installPhase: nix.thunk(() => nix.str`mkdir -p "$out/share/doc/satallax" "$out/bin" "$out/lib" "$out/lib/satallax"
@@ -58,7 +55,7 @@ cp -r coq* "$out/lib/satallax/"
       doCheck: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")),
       checkPhase: "runHook preCheck\nif bash ./test | grep ERROR; then\n  echo \"Tests failed\"\n  exit 1\nfi\nrunHook postCheck\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Automated theorem prover for higher-order logic",
         mainProgram: "satallax",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

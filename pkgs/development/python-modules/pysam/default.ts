@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]], [["updateScript", 83, 12]], [["description", 86, 5], ["downloadPage", 87, 5], ["changelog", 88, 5], ["homepage", 89, 5], ["maintainers", 90, 5], ["license", 91, 5], ["platforms", 92, 5]], [["pname", 20, 3], ["version", 21, 3], ["pyproject", 22, 3], ["src", 27, 3], ["build-system", 34, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 43, 3], ["preBuild", 54, 3], ["nativeCheckInputs", 60, 3], ["preCheck", 66, 3], ["pythonImportsCheck", 74, 3], ["passthru", 83, 3], ["meta", 85, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, bzip2: false, bcftools: false, curl: false, cython: false, htslib: false, libdeflate: false, xz: false, pytestCheckHook: false, setuptools: false, samtools: false, zlib: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["updateScript", 83, 12]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 86, 5], ["downloadPage", 87, 5], ["changelog", 88, 5], ["homepage", 89, 5], ["maintainers", 90, 5], ["license", 91, 5], ["platforms", 92, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 20, 3], ["version", 21, 3], ["pyproject", 22, 3], ["src", 27, 3], ["build-system", 34, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 43, 3], ["preBuild", 54, 3], ["nativeCheckInputs", 60, 3], ["preCheck", 66, 3], ["pythonImportsCheck", 74, 3], ["passthru", 83, 3], ["meta", 85, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.23.3";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "pysam-developers",
           repo: "pysam",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -54,11 +51,11 @@ export HTSLIB_INCLUDE_DIR=${htslib}/include
         "pysam.libcsamtools",
       ]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Python module for reading, manipulating and writing genome data sets",
         downloadPage: "https://github.com/pysam-developers/pysam",
         changelog: nix.thunk(() => nix.str`https://github.com/pysam-developers/pysam/releases/tag/${nix.sel(src, "tag")}`),
@@ -71,7 +68,7 @@ export HTSLIB_INCLUDE_DIR=${htslib}/include
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

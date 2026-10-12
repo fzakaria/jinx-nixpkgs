@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 33, 5], ["repo", 34, 5], ["rev", 35, 5], ["hash", 36, 5]], [["integrations", 48, 5]], [["DJANGO_SETTINGS_MODULE", 84, 7]], [["description", 87, 5], ["homepage", 88, 5], ["changelog", 89, 5], ["license", 90, 5], ["maintainers", 91, 5]], [["pname", 28, 3], ["version", 29, 3], ["pyproject", 30, 3], ["src", 32, 3], ["nativeBuildInputs", 39, 3], ["build-system", 43, 3], ["dependencies", 45, 3], ["optional-dependencies", 47, 3], ["nativeCheckInputs", 66, 3], ["pytestFlags", 73, 3], ["pythonImportsCheck", 78, 3], ["preCheck", 80, 3], ["env", 84, 3], ["meta", 86, 3]]]);
 const formals$1 = { args: { lib: false, aiohttp: false, buildPythonPackage: false, chalice: false, django: false, fastapi: false, fetchFromGitHub: false, flask: false, hatchling: false, httpx: false, litestar: false, pyprojectVersionPatchHook: false, "pytest-asyncio": false, "pytest-django": false, pytestCheckHook: false, "python-multipart": false, quart: false, "sanic-testing": false, sanic: false, starlette: false, "typing-extensions": false, werkzeug: false, yarl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 33, 5], ["repo", 34, 5], ["rev", 35, 5], ["hash", 36, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["integrations", 48, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["DJANGO_SETTINGS_MODULE", 84, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 87, 5], ["homepage", 88, 5], ["changelog", 89, 5], ["license", 90, 5], ["maintainers", 91, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 28, 3], ["version", 29, 3], ["pyproject", 30, 3], ["src", 32, 3], ["nativeBuildInputs", 39, 3], ["build-system", 43, 3], ["dependencies", 45, 3], ["optional-dependencies", 47, 3], ["nativeCheckInputs", 66, 3], ["pytestFlags", 73, 3], ["pythonImportsCheck", 78, 3], ["preCheck", 80, 3], ["env", 84, 3], ["meta", 86, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -35,12 +31,12 @@ export default nix.lambda((args) => (() => {
   const werkzeug = nix.arg($, "werkzeug");
   const yarl = nix.arg($, "yarl");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "cross-web",
       version: "0.7.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "usecross",
           repo: "cross-web",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -50,7 +46,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [hatchling]),
       dependencies: nix.thunk(() => [typing_extensions]),
       "optional-dependencies": nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         integrations: nix.thunk(() => [
           fastapi,
           httpx,
@@ -72,9 +68,9 @@ export default nix.lambda((args) => (() => {
       pytestFlags: nix.thunk(() => ["-Wignore::starlette.exceptions.StarletteDeprecationWarning"]),
       pythonImportsCheck: nix.thunk(() => ["cross_web"]),
       preCheck: "export PYTHONPATH=\"$PYTHONPATH:$PWD/tests\"\n",
-      env: nix.thunk(() => ({ [nix.POS]: pos$3, DJANGO_SETTINGS_MODULE: "testing._django_settings" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[2], DJANGO_SETTINGS_MODULE: "testing._django_settings" })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Universal web framework adapter for Python",
         homepage: "https://github.com/usecross/cross-web",
         changelog: nix.thunk(() => nix.str`https://github.com/usecross/cross-web/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG.md`),

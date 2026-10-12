@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["gtkWidgets", 22, 5], ["avahiSupport", 23, 13]], [["owner", 31, 5], ["repo", 32, 5], ["rev", 33, 5], ["sha256", 34, 5]], [["homepage", 57, 5], ["description", 58, 5], ["mainProgram", 59, 5], ["license", 60, 5], ["maintainers", 61, 5], ["platforms", 62, 5]], [["pname", 27, 3], ["version", 28, 3], ["src", 30, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 46, 3], ["preConfigure", 54, 3], ["meta", 56, 3]]]);
 const formals$1 = { args: { avahiSupport: true, lib: false, stdenv: false, fetchFromGitHub: false, autoconf: false, automake: false, "pkg-config": false, wrapGAppsHook3: false, "yelp-tools": false, gtkmm3: false, gsasl: false, gtksourceview3: false, libxmlxx: false, libinfinity: false, intltool: false, itstool: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["gtkWidgets", 22, 5], ["avahiSupport", 23, 13]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 31, 5], ["repo", 32, 5], ["rev", 33, 5], ["sha256", 34, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 57, 5], ["description", 58, 5], ["mainProgram", 59, 5], ["license", 60, 5], ["maintainers", 61, 5], ["platforms", 62, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 27, 3], ["version", 28, 3], ["src", 30, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 46, 3], ["preConfigure", 54, 3], ["meta", 56, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,13 +23,13 @@ export default nix.lambda((args) => (() => {
   const libinfinity = nix.arg($, "libinfinity");
   const intltool = nix.arg($, "intltool");
   const itstool = nix.arg($, "itstool");
-  const libinf = nix.thunk(() => nix.app(nix.sel(libinfinity, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, gtkWidgets: true, avahiSupport: avahiSupport }))));
+  const libinf = nix.thunk(() => nix.app(nix.sel(libinfinity, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], gtkWidgets: true, avahiSupport: avahiSupport }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "gobby",
       version: "0.6.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "gobby",
           repo: "gobby",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -50,7 +47,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [gtkmm3, gsasl, gtksourceview3, libxmlxx, libinf]),
       preConfigure: "./autogen.sh",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/gobby/gobby",
         description: "GTK-based collaborative editor supporting multiple documents in one session and a multi-user chat",
         mainProgram: "gobby-0.5",

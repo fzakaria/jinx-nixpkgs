@@ -2,16 +2,15 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["mainProgram", 6, 20]], [["withServer", 8, 5], ["withVmAlert", 9, 5], ["withVmAuth", 10, 5], ["withBackupTools", 11, 5], ["withVmctl", 12, 5], ["withVmAgent", 13, 5]]]);
 const formals$1 = { args: { lib: false, victoriametrics: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["mainProgram", 6, 20]]);
-const pos$2 = nix.positions(here + "/package.nix", [["withServer", 8, 5], ["withVmAlert", 9, 5], ["withVmAuth", 10, 5], ["withBackupTools", 11, 5], ["withVmctl", 12, 5], ["withVmAgent", 13, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const victoriametrics = nix.arg($, "victoriametrics");
-  return nix.app(nix.sel(lib, "addMetaAttrs"), nix.thunk(() => ({ [nix.POS]: pos$1, mainProgram: "vmagent" })), nix.thunk(() => nix.app(nix.sel(victoriametrics, "override"), nix.thunk(() => ({
-        [nix.POS]: pos$2,
+  return nix.app(nix.sel(lib, "addMetaAttrs"), nix.thunk(() => ({ [nix.POS]: $pos[0], mainProgram: "vmagent" })), nix.thunk(() => nix.app(nix.sel(victoriametrics, "override"), nix.thunk(() => ({
+        [nix.POS]: $pos[1],
         withServer: false,
         withVmAlert: false,
         withVmAuth: false,

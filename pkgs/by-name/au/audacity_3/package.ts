@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 66, 5], ["repo", 67, 5], ["rev", 68, 5], ["hash", 69, 5]], [["description", 202, 5], ["mainProgram", 203, 5], ["homepage", 204, 5], ["changelog", 205, 5], ["license", 206, 5], ["maintainers", 215, 5], ["platforms", 218, 5]], [["pname", 62, 3], ["version", 63, 3], ["src", 65, 3], ["patches", 72, 3], ["postPatch", 77, 3], ["nativeBuildInputs", 87, 3], ["buildInputs", 100, 3], ["cmakeFlags", 151, 3], ["preBuild", 171, 3], ["doCheck", 175, 3], ["dontWrapGApps", 177, 3], ["strictDeps", 179, 3], ["__structuredAttrs", 180, 3], ["postFixup", 186, 3], ["meta", 201, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, cmake: false, makeWrapper: false, wrapGAppsHook3: false, "pkg-config": false, python3: false, gettext: false, file: false, libvorbis: false, libmad: false, libjack2: false, lv2: false, lilv: false, mpg123: false, opusfile: false, rapidjson: false, serd: false, sord: false, sqlite: false, sratom: false, suil: false, libsndfile: false, soxr: false, flac: false, lame: false, twolame: false, expat: false, libid3tag: false, libopus: false, libuuid: false, ffmpeg: false, soundtouch: false, portaudio: false, portmidi: false, linuxHeaders: false, "alsa-lib": false, "at-spi2-core": false, dbus: false, libepoxy: false, libxdmcp: false, libxtst: false, "libpthread-stubs": false, libsbsms_2_3_0: false, libselinux: false, libsepol: false, libxkbcommon: false, "util-linux": false, wavpack: false, wxwidgets_3_2: false, gtk3: false, libpng: false, libjpeg: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 66, 5], ["repo", 67, 5], ["rev", 68, 5], ["hash", 69, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 202, 5], ["mainProgram", 203, 5], ["homepage", 204, 5], ["changelog", 205, 5], ["license", 206, 5], ["maintainers", 215, 5], ["platforms", 218, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 62, 3], ["version", 63, 3], ["src", 65, 3], ["patches", 72, 3], ["postPatch", 77, 3], ["nativeBuildInputs", 87, 3], ["buildInputs", 100, 3], ["cmakeFlags", 151, 3], ["preBuild", 171, 3], ["doCheck", 175, 3], ["dontWrapGApps", 177, 3], ["strictDeps", 179, 3], ["__structuredAttrs", 180, 3], ["postFixup", 186, 3], ["meta", 201, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -64,11 +62,11 @@ export default nix.lambda((args) => (() => {
   const libpng = nix.arg($, "libpng");
   const libjpeg = nix.arg($, "libjpeg");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "audacity",
       version: "3.7.9",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "audacity",
           repo: "audacity",
           rev: nix.thunk(() => nix.str`Audacity-${nix.sel(finalAttrs, "version")}`),
@@ -160,7 +158,7 @@ substituteInPlace scripts/build/macOS/fix_bundle.py \\
   --set-default GDK_BACKEND x11
 `)), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "mkdir -p $out/{Applications,bin}\nmv $out/Audacity.app $out/Applications/\nmakeWrapper $out/Applications/Audacity.app/Contents/MacOS/Audacity $out/bin/audacity\n"))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Sound editor with graphical UI",
         mainProgram: "audacity",
         homepage: "https://www.audacityteam.org",

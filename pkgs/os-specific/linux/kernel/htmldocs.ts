@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/htmldocs.nix", [[["fontDirectories", 27, 5]], [["FONTCONFIG_FILE", 26, 7]], [["description", 53, 5], ["homepage", 54, 5], ["platforms", 55, 5], ["license", 56, 33], ["maintainers", 57, 5]], [["pname", 14, 3], ["version", 16, 26], ["src", 16, 34], ["postPatch", 18, 3], ["env", 26, 3], ["nativeBuildInputs", 30, 3], ["preBuild", 40, 3], ["makeFlags", 44, 3], ["installPhase", 46, 3], ["meta", 52, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, graphviz: false, imagemagick: false, linux_latest: false, makeFontsConf: false, perl: false, python3: false, which: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/htmldocs.nix", [["fontDirectories", 27, 5]]);
-const pos$2 = nix.positions(here + "/htmldocs.nix", [["FONTCONFIG_FILE", 26, 7]]);
-const pos$3 = nix.positions(here + "/htmldocs.nix", [["description", 53, 5], ["homepage", 54, 5], ["platforms", 55, 5], ["license", 56, 33], ["maintainers", 57, 5]]);
-const pos$4 = nix.positions(here + "/htmldocs.nix", [["pname", 14, 3], ["version", 16, 26], ["src", 16, 34], ["postPatch", 18, 3], ["env", 26, 3], ["nativeBuildInputs", 30, 3], ["preBuild", 40, 3], ["makeFlags", 44, 3], ["installPhase", 46, 3], ["meta", 52, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,14 +17,14 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const which = nix.arg($, "which");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "linux-kernel-latest-htmldocs",
       version: nix.thunk(() => nix.attr(linux_latest, "version")),
       src: nix.thunk(() => nix.attr(linux_latest, "src")),
       postPatch: "patchShebangs \\\n  Documentation/sphinx/parse-headers.pl \\\n  scripts/{get_abi.pl,get_feat.pl,kernel-doc,sphinx-pre-install} \\\n  tools/docs/sphinx-pre-install \\\n  tools/net/ynl/pyynl/ynl_gen_rst.py\n",
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
-        FONTCONFIG_FILE: nix.thunk(() => nix.app(makeFontsConf, nix.thunk(() => ({ [nix.POS]: pos$1, fontDirectories: [] })))),
+        [nix.POS]: $pos[1],
+        FONTCONFIG_FILE: nix.thunk(() => nix.app(makeFontsConf, nix.thunk(() => ({ [nix.POS]: $pos[0], fontDirectories: [] })))),
       })),
       nativeBuildInputs: nix.thunk(() => [
         graphviz,
@@ -44,7 +41,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(linux_latest, "meta"));
         return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Linux kernel html documentation",
         homepage: "https://www.kernel.org/doc/htmldocs/",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),

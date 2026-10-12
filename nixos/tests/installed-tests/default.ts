@@ -2,28 +2,19 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["system", 7, 36], ["config", 7, 43]], [["system", 10, 52], ["pkgs", 10, 59]], [["makeInstalledTest", 15, 47]], [["maintainers", 45, 13]], [["TESTED_PACKAGE_INSTALLED_TESTS", 63, 37]], [["systemPackages", 56, 27], ["variables", 63, 27]], [["imports", 51, 15], ["environment", 56, 15]], [["machine", 48, 17]], [["name", 42, 11], ["meta", 44, 11], ["nodes", 48, 11], ["testScript", 66, 11]], [["appstream", 94, 3], ["appstream-qt", 95, 3], ["colord", 96, 3], ["flatpak", 97, 3], ["flatpak-builder", 98, 3], ["fwupd", 99, 3], ["gcab", 100, 3], ["gdk-pixbuf", 101, 3], ["geocode-glib", 102, 3], ["gjs", 103, 3], ["glib-networking", 104, 3], ["graphene", 105, 3], ["gsconnect", 106, 3], ["json-glib", 107, 3], ["ibus", 108, 3], ["glib-testing", 109, 3], ["libjcat", 110, 3], ["libxmlb", 111, 3], ["malcontent", 112, 3], ["ostree", 113, 3], ["pipewire", 114, 3], ["upower", 115, 3], ["xdg-desktop-portal", 116, 3]]]);
 const formals$1 = { args: { system: true, config: true, pkgs: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["system", 7, 36], ["config", 7, 43]]);
-const pos$2 = nix.positions(here + "/default.nix", [["system", 10, 52], ["pkgs", 10, 59]]);
-const pos$3 = nix.positions(here + "/default.nix", [["makeInstalledTest", 15, 47]]);
 const formals$2 = { args: { tested: false, testConfig: true, preTestScript: true, withX11: true, testRunnerFlags: true }, ellipsis: true };
-const pos$4 = nix.positions(here + "/default.nix", [["maintainers", 45, 13]]);
 const formals$3 = { args: {  }, ellipsis: true };
-const pos$5 = nix.positions(here + "/default.nix", [["TESTED_PACKAGE_INSTALLED_TESTS", 63, 37]]);
-const pos$6 = nix.positions(here + "/default.nix", [["systemPackages", 56, 27], ["variables", 63, 27]]);
-const pos$7 = nix.positions(here + "/default.nix", [["imports", 51, 15], ["environment", 56, 15]]);
-const pos$8 = nix.positions(here + "/default.nix", [["machine", 48, 17]]);
-const pos$9 = nix.positions(here + "/default.nix", [["name", 42, 11], ["meta", 44, 11], ["nodes", 48, 11], ["testScript", 66, 11]]);
-const pos$10 = nix.positions(here + "/default.nix", [["appstream", 94, 3], ["appstream-qt", 95, 3], ["colord", 96, 3], ["flatpak", 97, 3], ["flatpak-builder", 98, 3], ["fwupd", 99, 3], ["gcab", 100, 3], ["gdk-pixbuf", 101, 3], ["geocode-glib", 102, 3], ["gjs", 103, 3], ["glib-networking", 104, 3], ["graphene", 105, 3], ["gsconnect", 106, 3], ["json-glib", 107, 3], ["ibus", 108, 3], ["glib-testing", 109, 3], ["libjcat", 110, 3], ["libxmlb", 111, 3], ["malcontent", 112, 3], ["ostree", 113, 3], ["pipewire", 114, 3], ["upower", 115, 3], ["xdg-desktop-portal", 116, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const system = nix.argOr($, "system", () => nix.builtins.currentSystem);
   const config = nix.argOr($, "config", () => ({}));
-  const pkgs = nix.argOr($, "pkgs", () => nix.app(nix.builtins.import(nix.path(here, "../../..")), nix.thunk(() => ({ [nix.POS]: pos$1, system: system, config: config }))));
-  const w = nix.withScope(nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../lib/testing-python.nix")), nix.thunk(() => ({ [nix.POS]: pos$2, system: system, pkgs: pkgs })))), null);
+  const pkgs = nix.argOr($, "pkgs", () => nix.app(nix.builtins.import(nix.path(here, "../../..")), nix.thunk(() => ({ [nix.POS]: $pos[0], system: system, config: config }))));
+  const w = nix.withScope(nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../lib/testing-python.nix")), nix.thunk(() => ({ [nix.POS]: $pos[1], system: system, pkgs: pkgs })))), null);
   const w_1 = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib")), w);
-  const callInstalledTest = nix.thunk(() => nix.app(nix.sel(pkgs, "newScope"), nix.thunk(() => ({ [nix.POS]: pos$3, makeInstalledTest: makeInstalledTest }))));
+  const callInstalledTest = nix.thunk(() => nix.app(nix.sel(pkgs, "newScope"), nix.thunk(() => ({ [nix.POS]: $pos[2], makeInstalledTest: makeInstalledTest }))));
   const makeInstalledTest = nix.lambda((args_1) => (() => {
     const $_1 = nix.formals(args_1, formals$2);
     const args_2 = args_1;
@@ -33,27 +24,27 @@ export default nix.lambda((args) => (() => {
     const withX11 = nix.argOr($_1, "withX11", () => false);
     const testRunnerFlags = nix.argOr($_1, "testRunnerFlags", () => []);
     return nix.app(nix.lookup(w_1, "makeTest"), nix.thunk(() => nix.app(nix.lookup(w_1, "recursiveUpdate"), nix.thunk(() => ({
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           name: nix.thunk(() => nix.sel(tested, "name")),
           meta: nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             maintainers: nix.thunk(() => nix.selOr(tested, () => [], "meta", "maintainers")),
           })),
           nodes: nix.thunk(() => ({
-            [nix.POS]: pos$8,
+            [nix.POS]: $pos[7],
             machine: nix.lambda((args_3) => (() => {
               const $_2 = nix.formals(args_3, formals$3);
               return {
-                [nix.POS]: pos$7,
+                [nix.POS]: $pos[6],
                 imports: nix.thunk(() => nix.concat([testConfig], nix.app(nix.lookup(w_1, "optional"), withX11, nix.path(here, "../common/x11.nix")))),
                 environment: nix.thunk(() => ({
-                  [nix.POS]: pos$6,
+                  [nix.POS]: $pos[5],
                   systemPackages: nix.thunk(() => (() => {
                     const w_2 = nix.withScope(pkgs, w_1);
                     return [nix.thunk(() => nix.lookup(w_2, "gnome-desktop-testing"))];
                   })()),
                   variables: nix.thunk(() => ({
-                    [nix.POS]: pos$5,
+                    [nix.POS]: $pos[4],
                     TESTED_PACKAGE_INSTALLED_TESTS: nix.thunk(() => nix.str`${nix.sel(tested, "installedTests")}/share`),
                   })),
                 })),
@@ -68,7 +59,7 @@ export default nix.lambda((args) => (() => {
         })), nix.thunk(() => nix.app(nix.builtins.removeAttrs, args_2, nix.thunk(() => ["tested", "testConfig", "preTestScript", "withX11", "testRunnerFlags"]))))));
   })(), formals$2);
   return {
-    [nix.POS]: pos$10,
+    [nix.POS]: $pos[9],
     appstream: nix.thunk(() => nix.app(callInstalledTest, nix.path(here, "./appstream.nix"), nix.thunk(() => ({})))),
     "appstream-qt": nix.thunk(() => nix.app(callInstalledTest, nix.path(here, "./appstream-qt.nix"), nix.thunk(() => ({})))),
     colord: nix.thunk(() => nix.app(callInstalledTest, nix.path(here, "./colord.nix"), nix.thunk(() => ({})))),

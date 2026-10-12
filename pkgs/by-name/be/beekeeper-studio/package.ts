@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["x86_64-linux", 49, 9], ["aarch64-linux", 50, 9], ["aarch64-darwin", 51, 9]], [["x86_64-linux", 57, 9], ["aarch64-linux", 58, 9], ["aarch64-darwin", 59, 9]], [["url", 55, 7], ["hash", 56, 7]], [["updateScript", 143, 12]], [["description", 146, 5], ["homepage", 147, 5], ["changelog", 148, 5], ["license", 149, 5], ["sourceProvenance", 150, 5], ["mainProgram", 151, 5], ["maintainers", 152, 5], ["platforms", 157, 5], ["knownVulnerabilities", 162, 5]], [["pname", 42, 3], ["version", 43, 3], ["src", 45, 3], ["nativeBuildInputs", 63, 3], ["buildInputs", 71, 3], ["runtimeDependencies", 103, 3], ["installPhase", 105, 3], ["dontFixup", 131, 3], ["preFixup", 133, 3], ["passthru", 143, 3], ["meta", 145, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, dpkg: false, unzip: false, autoPatchelfHook: false, makeWrapper: false, runtimeShell: false, glibc: false, gcc: false, glib: false, gtk3: false, pango: false, cairo: false, dbus: false, "at-spi2-atk": false, cups: false, libdrm: false, "gdk-pixbuf": false, nss: false, nspr: false, libxrandr: false, libxfixes: false, libxext: false, libxdamage: false, libxcomposite: false, libx11: false, libxcb: false, "alsa-lib": false, expat: false, libxkbcommon: false, libgbm: false, "vulkan-loader": false, systemd: false, libGL: false, krb5: false, unixodbc: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["x86_64-linux", 49, 9], ["aarch64-linux", 50, 9], ["aarch64-darwin", 51, 9]]);
-const pos$2 = nix.positions(here + "/package.nix", [["x86_64-linux", 57, 9], ["aarch64-linux", 58, 9], ["aarch64-darwin", 59, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 55, 7], ["hash", 56, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 143, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 146, 5], ["homepage", 147, 5], ["changelog", 148, 5], ["license", 149, 5], ["sourceProvenance", 150, 5], ["mainProgram", 151, 5], ["maintainers", 152, 5], ["platforms", 157, 5], ["knownVulnerabilities", 162, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 42, 3], ["version", 43, 3], ["src", 45, 3], ["nativeBuildInputs", 63, 3], ["buildInputs", 71, 3], ["runtimeDependencies", 103, 3], ["installPhase", 105, 3], ["dontFixup", 131, 3], ["preFixup", 133, 3], ["passthru", 143, 3], ["meta", 145, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -50,22 +45,22 @@ export default nix.lambda((args) => (() => {
   const krb5 = nix.arg($, "krb5");
   const unixodbc = nix.arg($, "unixodbc");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "beekeeper-studio",
       version: "6.1.4",
       src: nix.thunk(() => (() => {
         const selectSystem = (attrs) => nix.sel(attrs, nix.key(nix.sel(stdenv, "hostPlatform", "system")));
         const asset = nix.thunk(() => nix.app(selectSystem, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             "x86_64-linux": nix.thunk(() => nix.str`beekeeper-studio_${nix.sel(finalAttrs, "version")}_amd64.deb`),
             "aarch64-linux": nix.thunk(() => nix.str`beekeeper-studio_${nix.sel(finalAttrs, "version")}_arm64.deb`),
             "aarch64-darwin": nix.thunk(() => nix.str`Beekeeper-Studio-${nix.sel(finalAttrs, "version")}-arm64-mac.zip`),
           }))));
         return nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: nix.thunk(() => nix.str`https://github.com/beekeeper-studio/beekeeper-studio/releases/download/v${nix.sel(finalAttrs, "version")}/${asset}`),
             hash: nix.thunk(() => nix.app(selectSystem, nix.thunk(() => ({
-                [nix.POS]: pos$2,
+                [nix.POS]: $pos[1],
                 "x86_64-linux": "sha256-8RWqYHAG2OkUPQjNwhSRfxsEbXjxsh0xA/EuUQxg/b4=",
                 "aarch64-linux": "sha256-ivXtgZjlhoQ0hBIbdUx3VZJY/QUloh8War0OlN2gOfM=",
                 "aarch64-darwin": "sha256-jPnGw4iDvfCMlim8ASAv5IdbpNsF6jaW2HsnqLvrCwY=",
@@ -119,9 +114,9 @@ chmod +x "$out/bin/beekeeper-studio"
   --add-needed libEGL.so.1 \\
   --add-rpath ${nix.app(nix.sel(lib, "makeLibraryPath"), nix.thunk(() => [libGL]))} $out/opt/beekeeper-studio/beekeeper-studio-bin
 `))),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$4, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[3], updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Modern and easy to use SQL client for MySQL, Postgres, SQLite, SQL Server, and more",
         homepage: "https://www.beekeeperstudio.io",
         changelog: nix.thunk(() => nix.str`https://github.com/beekeeper-studio/beekeeper-studio/releases/tag/v${nix.sel(finalAttrs, "version")}`),

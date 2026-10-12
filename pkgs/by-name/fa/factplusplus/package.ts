@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["sha256", 16, 5]], [["description", 40, 5], ["homepage", 41, 5], ["maintainers", 42, 5], ["license", 43, 5], ["platforms", 44, 5], ["broken", 45, 5], ["mainProgram", 46, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["buildInputs", 19, 3], ["configurePhase", 21, 3], ["installPhase", 30, 3], ["meta", 39, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromBitbucket: false, jdk: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["sha256", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 40, 5], ["homepage", 41, 5], ["maintainers", 42, 5], ["license", 43, 5], ["platforms", 44, 5], ["broken", 45, 5], ["mainProgram", 46, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["buildInputs", 19, 3], ["configurePhase", 21, 3], ["installPhase", 30, 3], ["meta", 39, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromBitbucket = nix.arg($, "fetchFromBitbucket");
   const jdk = nix.arg($, "jdk");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "factplusplus",
       version: "1.6.5",
       src: nix.thunk(() => nix.app(fetchFromBitbucket, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "dtsarkov",
           repo: "factplusplus",
           rev: nix.thunk(() => nix.str`Release-${nix.sel(finalAttrs, "version")}`),
@@ -28,7 +26,7 @@ export default nix.lambda((args) => (() => {
       configurePhase: "runHook preConfigure\n\nsed -i 's/OS = MACOSX/OS = LINUX/g' Makefile.include\nprintf '%s\\n%s\\n' '#include <iostream>' \"$(cat Kernel/AtomicDecomposer.cpp)\" > Kernel/AtomicDecomposer.cpp\n\nrunHook postConfigure\n",
       installPhase: "runHook preInstall\n\ninstall -Dm755 FaCT++.{C,JNI,KE,Kernel}/obj/*.{so,o} -t $out/lib/\ninstall -Dm755 FaCT++/obj/FaCT++ -t $out/bin\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Tableaux-based reasoner for expressive Description Logics (DL)",
         homepage: "http://owl.cs.manchester.ac.uk/tools/fact/",
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "mgttlinger"))]),

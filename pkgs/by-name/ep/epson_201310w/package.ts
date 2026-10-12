@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 14, 5], ["hash", 15, 5]], [["homepage", 53, 5], ["description", 54, 5], ["longDescription", 55, 5], ["license", 66, 5], ["sourceProvenance", 70, 5], ["maintainers", 71, 5], ["platforms", 72, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 18, 3], ["buildInputs", 20, 3], ["unpackPhase", 25, 3], ["preConfigure", 33, 3], ["postInstall", 37, 3], ["postFixup", 46, 3], ["meta", 52, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, rpmextract: false, libjpeg: false, cups: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 14, 5], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 53, 5], ["description", 54, 5], ["longDescription", 55, 5], ["license", 66, 5], ["sourceProvenance", 70, 5], ["maintainers", 71, 5], ["platforms", 72, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 18, 3], ["buildInputs", 20, 3], ["unpackPhase", 25, 3], ["preConfigure", 33, 3], ["postInstall", 37, 3], ["postFixup", 46, 3], ["meta", 52, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const libjpeg = nix.arg($, "libjpeg");
   const cups = nix.arg($, "cups");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "epson_201310w",
       version: "1.0.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://download3.ebz.epson.net/dsc/f/03/00/15/64/77/6f825c323a9f4b8429e3f9f0f4e9c50b1b15f583/epson-inkjet-printer-201310w-${nix.sel(finalAttrs, "version")}-1.src.rpm`),
           hash: "sha256-596qMon5KmMHe7mh+ykdpWeazJOCGA6HmmtvdGheRmA=",
         })))),
@@ -31,7 +29,7 @@ export default nix.lambda((args) => (() => {
       postInstall: "cd ../epson-inkjet-printer-201310w-1.0.1\ncp -a lib64 resource watermark $out\ninstall --mode=0644 -Dt $out/share/cups/model ppds/EPSON_L120.ppd\nmkdir -p $out/doc\ncp -a Manual.txt $out/doc\ncp -a README $out/doc/README.driver\n",
       postFixup: "substituteInPlace $out/share/cups/model/EPSON_L120.ppd \\\n  --replace-fail \"/home/epson/projects/PrinterDriver/P2/_rpmbuild/SOURCES/epson-inkjet-printer-201310w-1.0.1/watermark\" \"$out/watermark\" \\\n  --replace-fail \"Epson_201310w.1.data\" \"$out/resource/Epson_201310w.1.data\"\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://www.epson.eu/en_EU/support/sc/epson-l120/s/s1346",
         description: "Epson printer driver for L120 series inkjet printers",
         longDescription: "This software is a filter program used with the Common UNIX Printing\nSystem (CUPS) under Linux. It supplies high quality printing with\nSeiko Epson L120 series printers.\n\nTo use the driver adjust your configuration.nix file:\n  services.printing = {\n    enable = true;\n    drivers = [ pkgs.epson_201310w ];\n  };\n",

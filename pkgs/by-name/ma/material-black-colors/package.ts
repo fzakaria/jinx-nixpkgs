@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 46, 7], ["repo", 47, 7], ["rev", 48, 7], ["hash", 49, 7]], [["description", 64, 7], ["homepage", 65, 7], ["maintainers", 66, 7], ["platforms", 67, 7], ["license", 68, 7]], [["pname", 42, 13], ["version", 43, 5], ["src", 45, 5], ["installPhase", 52, 5], ["dontFixup", 61, 5], ["meta", 63, 5]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchFromGitHub: false, colorVariants: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 46, 7], ["repo", 47, 7], ["rev", 48, 7], ["hash", 49, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 64, 7], ["homepage", 65, 7], ["maintainers", 66, 7], ["platforms", 67, 7], ["license", 68, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 42, 13], ["version", 43, 5], ["src", 45, 5], ["installPhase", 52, 5], ["dontFixup", 61, 5], ["meta", 63, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -41,11 +39,11 @@ export default nix.lambda((args) => (() => {
     "Material-Black-Plum-Suru",
   ]);
   return nix.app(nix.sel(lib, "checkListOfEnum"), nix.thunk(() => nix.str`${pname}: color variants`), colorVariantList, colorVariants, nix.thunk(() => nix.sel(stdenvNoCC, "mkDerivation")), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: pname,
       version: "0-unstable-2020-12-17",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "rtlewis88",
           repo: "rtl88-Themes",
           rev: "3864d851aac7f4e76cf23717aee104de234aef74",
@@ -58,7 +56,7 @@ runHook postInstall
 `),
       dontFixup: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Material Black Colors icons",
         homepage: "https://github.com/rtlewis88/rtl88-Themes/tree/material-black-COLORS",
         maintainers: [],

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 22, 5], ["sha256", 23, 5]], [["url", 30, 7], ["hash", 31, 7]], [["url", 35, 7], ["hash", 36, 7], ["excludes", 37, 7]], [["description", 77, 5], ["homepage", 78, 5], ["license", 79, 5], ["platforms", 80, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["patches", 26, 3], ["outputs", 48, 3], ["configureFlags", 54, 3], ["nativeBuildInputs", 58, 3], ["buildInputs", 66, 3], ["propagatedBuildInputs", 72, 3], ["meta", 76, 3]]]);
 const formals$1 = { args: { cairo: false, fetchpatch2: false, fetchzip: false, glib: false, libsoup_3: false, "gnome-common": false, gtk3: false, "gobject-introspection": false, autoreconfHook: false, "gtk-doc": false, "pkg-config": false, lib: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 22, 5], ["sha256", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 30, 7], ["hash", 31, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 35, 7], ["hash", 36, 7], ["excludes", 37, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 77, 5], ["homepage", 78, 5], ["license", 79, 5], ["platforms", 80, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["patches", 26, 3], ["outputs", 48, 3], ["configureFlags", 54, 3], ["nativeBuildInputs", 58, 3], ["buildInputs", 66, 3], ["propagatedBuildInputs", 72, 3], ["meta", 76, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,22 +21,22 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "osm-gps-map",
       version: "1.2.0",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/nzjrs/osm-gps-map/releases/download/${nix.sel(finalAttrs, "version")}/osm-gps-map-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "sha256-ciw28YXhR+GC6B2VPC+ZxjyhadOk3zYGuOssSgqjwH0=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://salsa.debian.org/debian-gis-team/osm-gps-map/-/raw/debian/1.2.0-4/debian/patches/0001-Drop-support-for-libsoup-older-than-2.42.patch",
             hash: "sha256-9KSqXV1ZO21nERlhp0/nZkMuGuMpsr1RfszKkTjyvSo=",
           })))),
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: "https://salsa.debian.org/debian-gis-team/osm-gps-map/-/raw/debian/1.2.0-4/debian/patches/0001-Port-to-libsoup3.patch",
             hash: "sha256-/Ss/rGm08UXmSpDMNGlS79eQ35sOyU8vAMC9eEBOgKg=",
             excludes: nix.thunk(() => [".github/*"]),
@@ -54,7 +50,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [cairo, glib, libsoup_3]),
       propagatedBuildInputs: nix.thunk(() => [gtk3]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "GTK widget for displaying OpenStreetMap tiles",
         homepage: "https://nzjrs.github.io/osm-gps-map",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

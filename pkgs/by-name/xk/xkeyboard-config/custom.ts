@@ -2,9 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/custom.nix", [[["nativeBuildInputs", 59, 3], ["postPatch", 63, 3]]]);
 const formals$1 = { args: { lib: false, "xkeyboard-config": false, automake: false, ed: false }, ellipsis: false };
 const formals$2 = { args: { layouts: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/custom.nix", [["nativeBuildInputs", 59, 3], ["postPatch", 63, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -60,7 +60,7 @@ w
 EOF
 `;
     return nix.app(nix.sel(xkeyboard_config, "overrideAttrs"), (old) => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         nativeBuildInputs: nix.thunk(() => nix.concat(nix.sel(old, "nativeBuildInputs"), [automake, ed])),
         postPatch: nix.thunk(() => nix.app(nix.sel(lib, "concatStrings"), nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), patchIn, layouts)))),
       }));

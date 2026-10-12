@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 31, 5], ["repo", 32, 5], ["tag", 33, 5], ["hash", 34, 5], ["fetchSubmodules", 35, 5]], [["description", 68, 5], ["homepage", 69, 5], ["license", 70, 5], ["maintainers", 71, 5], ["mainProgram", 72, 5], ["platforms", 73, 5]], [["pname", 27, 3], ["version", 28, 3], ["src", 30, 3], ["outputs", 38, 3], ["nativeBuildInputs", 43, 3], ["buildInputs", 48, 3], ["meta", 67, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, perl: false, "alsa-lib": false, libevdev: false, libopus: false, udev: false, SDL2: false, ffmpeg: false, "pkg-config": false, "libpthread-stubs": false, libxcb: false, libvdpau: false, libpulseaudio: false, libcec: false, curl: false, expat: false, avahi: false, libuuid: false, libva: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 31, 5], ["repo", 32, 5], ["tag", 33, 5], ["hash", 34, 5], ["fetchSubmodules", 35, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 68, 5], ["homepage", 69, 5], ["license", 70, 5], ["maintainers", 71, 5], ["mainProgram", 72, 5], ["platforms", 73, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 27, 3], ["version", 28, 3], ["src", 30, 3], ["outputs", 38, 3], ["nativeBuildInputs", 43, 3], ["buildInputs", 48, 3], ["meta", 67, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,11 +30,11 @@ export default nix.lambda((args) => (() => {
   const libuuid = nix.arg($, "libuuid");
   const libva = nix.arg($, "libva");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "moonlight-embedded",
       version: "2.7.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "moonlight-stream",
           repo: "moonlight-embedded",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -64,7 +62,7 @@ export default nix.lambda((args) => (() => {
         libva,
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Open source implementation of NVIDIA's GameStream",
         homepage: "https://github.com/moonlight-stream/moonlight-embedded",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

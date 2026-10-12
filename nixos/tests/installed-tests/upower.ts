@@ -2,24 +2,21 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/upower.nix", [[["enable", 7, 21]], [["upower", 7, 14]], [["services", 7, 5]], [["tested", 4, 3], ["testConfig", 6, 3]]]);
 const formals$1 = { args: { pkgs: false, makeInstalledTest: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/upower.nix", [["enable", 7, 21]]);
-const pos$2 = nix.positions(here + "/upower.nix", [["upower", 7, 14]]);
-const pos$3 = nix.positions(here + "/upower.nix", [["services", 7, 5]]);
-const pos$4 = nix.positions(here + "/upower.nix", [["tested", 4, 3], ["testConfig", 6, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   const makeInstalledTest = nix.arg($, "makeInstalledTest");
   return nix.app(makeInstalledTest, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       tested: nix.thunk(() => nix.sel(pkgs, "upower")),
       testConfig: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         services: nix.thunk(() => ({
-          [nix.POS]: pos$2,
-          upower: nix.thunk(() => ({ [nix.POS]: pos$1, enable: true })),
+          [nix.POS]: $pos[1],
+          upower: nix.thunk(() => ({ [nix.POS]: $pos[0], enable: true })),
         })),
       })),
     })));

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 15, 5], ["hash", 16, 5]], [["changelog", 51, 5], ["description", 52, 5], ["longDescription", 53, 5], ["homepage", 65, 5], ["license", 66, 5], ["mainProgram", 67, 5], ["maintainers", 68, 5], ["platforms", 72, 5], ["sourceProvenance", 73, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["patches", 19, 3], ["mvnHash", 21, 3], ["buildOffline", 23, 3], ["doCheck", 24, 3], ["nativeBuildInputs", 26, 3], ["installPhase", 31, 3], ["meta", 50, 3]]]);
 const formals$1 = { args: { lib: false, fetchurl: false, maven: false, jre: false, makeWrapper: false, stripJavaArchivesHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["changelog", 51, 5], ["description", 52, 5], ["longDescription", 53, 5], ["homepage", 65, 5], ["license", 66, 5], ["mainProgram", 67, 5], ["maintainers", 68, 5], ["platforms", 72, 5], ["sourceProvenance", 73, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["patches", 19, 3], ["mvnHash", 21, 3], ["buildOffline", 23, 3], ["doCheck", 24, 3], ["nativeBuildInputs", 26, 3], ["installPhase", 31, 3], ["meta", 50, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const stripJavaArchivesHook = nix.arg($, "stripJavaArchivesHook");
   return nix.app(nix.sel(maven, "buildMavenPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "fop",
       version: "2.11",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://dlcdn.apache.org/xmlgraphics/fop/source/fop-${nix.sel(finalAttrs, "version")}-src.tar.gz`),
           hash: "sha256-uY6cUjmyuenfK3jAWvugsYa5qg8rbnvRZZ6qA/g2fZM=",
         })))),
@@ -47,7 +45,7 @@ makeWrapper ${nix.app(nix.sel(lib, "getExe"), jre)} "$out/bin/fop" \\
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         changelog: "https://xmlgraphics.apache.org/fop/changes.html",
         description: "XML formatter driven by XSL Formatting Objects (XSL-FO)",
         longDescription: "FOP is a Java application that reads a formatting object tree and then\nturns it into a wide variety of output presentations (including AFP, PCL,\nPDF, PNG, PostScript, RTF, TIFF, and plain text), or displays the result\non-screen.\n\nThe formatting object tree can be in the form of an XML document (output\nby an XSLT engine like xalan) or can be passed in memory as a DOM\nDocument or (in the case of xalan) SAX events.\n\nThis package contains the fop command line tool.\n",

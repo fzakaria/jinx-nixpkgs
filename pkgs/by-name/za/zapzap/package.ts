@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 21, 7], ["path", 22, 7]], [["owner", 32, 5], ["repo", 33, 5], ["tag", 34, 5], ["hash", 35, 5]], [["description", 81, 5], ["homepage", 82, 5], ["mainProgram", 83, 5], ["license", 84, 5], ["changelog", 85, 5], ["maintainers", 86, 5]], [["pname", 27, 3], ["version", 28, 3], ["pyproject", 29, 3], ["src", 31, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 42, 3], ["preBuild", 47, 3], ["build-system", 51, 3], ["dependencies", 53, 3], ["postInstall", 60, 3], ["dontWrapQtApps", 65, 3], ["preFixup", 66, 3], ["doCheck", 76, 3], ["pythonImportsCheck", 78, 3], ["meta", 80, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, fetchpatch: false, python3Packages: false, qt6: false, linkFarm: false, hunspellDictsChromium: false, dictionaries: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 21, 7], ["path", 22, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 32, 5], ["repo", 33, 5], ["tag", 34, 5], ["hash", 35, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 81, 5], ["homepage", 82, 5], ["mainProgram", 83, 5], ["license", 84, 5], ["changelog", 85, 5], ["maintainers", 86, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 27, 3], ["version", 28, 3], ["pyproject", 29, 3], ["src", 31, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 42, 3], ["preBuild", 47, 3], ["build-system", 51, 3], ["dependencies", 53, 3], ["postInstall", 60, 3], ["dontWrapQtApps", 65, 3], ["preFixup", 66, 3], ["doCheck", 76, 3], ["pythonImportsCheck", 78, 3], ["meta", 80, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,14 +21,18 @@ export default nix.lambda((args) => (() => {
     nix.thunk(() => nix.sel(hunspellDictsChromium, "fr-fr")),
     nix.thunk(() => nix.sel(hunspellDictsChromium, "sv-se")),
   ]);
-  const qtwebengineDictionaries = nix.thunk(() => nix.app(linkFarm, "zapzap-qtwebengine-dictionaries", nix.thunk(() => nix.builtins.map((d) => ({ [nix.POS]: pos$1, name: nix.thunk(() => nix.sel(d, "dictFileName")), path: d }), dictionaries))));
+  const qtwebengineDictionaries = nix.thunk(() => nix.app(linkFarm, "zapzap-qtwebengine-dictionaries", nix.thunk(() => nix.builtins.map((d) => ({
+        [nix.POS]: $pos[0],
+        name: nix.thunk(() => nix.sel(d, "dictFileName")),
+        path: d,
+      }), dictionaries))));
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "zapzap",
       version: "7.4.5",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "rafatosta",
           repo: "zapzap",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -67,7 +68,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["zapzap"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "WhatsApp desktop application written in Pyqt6 + PyQt6-WebEngine",
         homepage: "https://rtosta.com/zapzap/",
         mainProgram: "zapzap",

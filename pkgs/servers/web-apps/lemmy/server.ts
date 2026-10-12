@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/server.nix", [[["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5], ["fetchSubmodules", 26, 5]], [["OPENSSL_LIB_DIR", 47, 5], ["OPENSSL_INCLUDE_DIR", 48, 5], ["PROTOC", 50, 5], ["PROTOC_INCLUDE", 51, 5], ["RUSTFLAGS", 54, 5]], [["lemmy-server", 78, 11]], [["updateScript", 77, 5], ["tests", 78, 5]], [["description", 82, 5], ["homepage", 83, 5], ["license", 84, 5], ["maintainers", 85, 5], ["teams", 91, 5], ["mainProgram", 92, 5]], [["version", 18, 11], ["pname", 19, 3], ["src", 21, 3], ["preConfigure", 29, 3], ["cargoHash", 33, 3], ["buildInputs", 35, 3], ["env", 42, 3], ["nativeBuildInputs", 56, 3], ["checkFlags", 61, 3], ["postInstall", 72, 3], ["passthru", 76, 3], ["meta", 81, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, rustPlatform: false, fetchFromGitHub: false, openssl: false, libpq: false, libiconv: false, protobuf: false, rustfmt: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/server.nix", [["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5], ["fetchSubmodules", 26, 5]]);
-const pos$2 = nix.positions(here + "/server.nix", [["OPENSSL_LIB_DIR", 47, 5], ["OPENSSL_INCLUDE_DIR", 48, 5], ["PROTOC", 50, 5], ["PROTOC_INCLUDE", 51, 5], ["RUSTFLAGS", 54, 5]]);
-const pos$3 = nix.positions(here + "/server.nix", [["lemmy-server", 78, 11]]);
-const pos$4 = nix.positions(here + "/server.nix", [["updateScript", 77, 5], ["tests", 78, 5]]);
-const pos$5 = nix.positions(here + "/server.nix", [["description", 82, 5], ["homepage", 83, 5], ["license", 84, 5], ["maintainers", 85, 5], ["teams", 91, 5], ["mainProgram", 92, 5]]);
-const pos$6 = nix.positions(here + "/server.nix", [["version", 18, 11], ["pname", 19, 3], ["src", 21, 3], ["preConfigure", 29, 3], ["cargoHash", 33, 3], ["buildInputs", 35, 3], ["env", 42, 3], ["nativeBuildInputs", 56, 3], ["checkFlags", 61, 3], ["postInstall", 72, 3], ["passthru", 76, 3], ["meta", 81, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const pinData = nix.thunk(() => nix.app(nix.sel(lib, "importJSON"), nix.path(here, "./pin.json")));
   const version = nix.thunk(() => nix.sel(pinData, "serverVersion"));
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       version: version,
       pname: "lemmy-server",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "LemmyNet",
           repo: "lemmy",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -41,7 +36,7 @@ export default nix.lambda((args) => (() => {
       cargoHash: nix.thunk(() => nix.sel(pinData, "serverCargoHash")),
       buildInputs: nix.thunk(() => nix.concat([libpq], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [libiconv])))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         OPENSSL_LIB_DIR: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getLib"), openssl)}/lib`),
         OPENSSL_INCLUDE_DIR: nix.thunk(() => nix.str`${nix.sel(openssl, "dev")}/include`),
         PROTOC: nix.thunk(() => nix.str`${protobuf}/bin/protoc`),
@@ -56,15 +51,15 @@ export default nix.lambda((args) => (() => {
       ]),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), "rm $out/lib/libhtml2md.so\n")),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.path(here, "./update.py"),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           "lemmy-server": nix.thunk(() => nix.sel(nixosTests, "lemmy")),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Federated link aggregator and forum",
         homepage: "https://join-lemmy.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 23, 5], ["hash", 24, 5]], [["homepage", 80, 5], ["license", 81, 5], ["maintainers", 82, 5], ["description", 83, 5], ["longDescription", 84, 5], ["platforms", 90, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["configurePhase", 29, 3], ["nativeBuildInputs", 46, 3], ["buildInputs", 48, 3], ["installFlags", 55, 3], ["postFixup", 57, 3], ["meta", 79, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, "libcdio-paranoia": false, cddiscid: false, wget: false, which: false, "vorbis-tools": false, id3v2: false, python3Packages: false, lame: false, flac: false, glyr: false, perlPackages: false, makeWrapper: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 80, 5], ["license", 81, 5], ["maintainers", 82, 5], ["description", 83, 5], ["longDescription", 84, 5], ["platforms", 90, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["configurePhase", 29, 3], ["nativeBuildInputs", 46, 3], ["buildInputs", 48, 3], ["installFlags", 55, 3], ["postFixup", 57, 3], ["meta", 79, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const perlPackages = nix.arg($, "perlPackages");
   const makeWrapper = nix.arg($, "makeWrapper");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "abcde",
       version: "2.9.3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://abcde.einval.com/download/abcde-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-BGzQu6eN1LvcvPgv5iWGXGDfNaAFSC3hOmaZxaO4MSQ=",
         })))),
@@ -78,7 +76,7 @@ runHook postConfigure
 done
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "http://abcde.einval.com/wiki/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
         maintainers: [],

@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 26, 9], ["repo", 27, 9], ["rev", 28, 9], ["hash", 29, 9]], [["description", 35, 9], ["longDescription", 36, 9], ["homepage", 42, 9], ["license", 43, 9], ["maintainers", 44, 9], ["platforms", 48, 9], ["sourceProvenance", 52, 9]], [["mainProgram", 55, 9]], [["darwin-arm64", 62, 13], ["darwin-x64", 63, 13], ["linux-x64", 64, 13]], [["url", 70, 11], ["sha512", 71, 11]], [["version", 24, 7], ["githubSourceCode", 25, 7], ["productName", 31, 7], ["binName", 32, 7], ["pname", 33, 7], ["meta", 34, 7], ["src", 58, 7], ["nativeBuildInputs", 75, 7], ["installPhase", 83, 7]], [["name", 121, 13], ["desktopName", 122, 13], ["comment", 123, 13], ["exec", 124, 13], ["terminal", 125, 13], ["icon", 126, 13], ["startupWMClass", 127, 13], ["categories", 128, 13], ["mimeTypes", 129, 13]], [["desktopItems", 115, 7]]]);
 const formals$1 = { args: { copyDesktopItems: false, electron: false, fetchFromGitHub: false, fetchurl: false, lib: false, makeDesktopItem: false, makeWrapper: false, stdenvNoCC: false, unzip: false, buildType: true, commandLineArgs: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 26, 9], ["repo", 27, 9], ["rev", 28, 9], ["hash", 29, 9]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 35, 9], ["longDescription", 36, 9], ["homepage", 42, 9], ["license", 43, 9], ["maintainers", 44, 9], ["platforms", 48, 9], ["sourceProvenance", 52, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["mainProgram", 55, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["darwin-arm64", 62, 13], ["darwin-x64", 63, 13], ["linux-x64", 64, 13]]);
-const pos$5 = nix.positions(here + "/package.nix", [["url", 70, 11], ["sha512", 71, 11]]);
-const pos$6 = nix.positions(here + "/package.nix", [["version", 24, 7], ["githubSourceCode", 25, 7], ["productName", 31, 7], ["binName", 32, 7], ["pname", 33, 7], ["meta", 34, 7], ["src", 58, 7], ["nativeBuildInputs", 75, 7], ["installPhase", 83, 7]]);
-const pos$7 = nix.positions(here + "/package.nix", [["name", 121, 13], ["desktopName", 122, 13], ["comment", 123, 13], ["exec", 124, 13], ["terminal", 125, 13], ["icon", 126, 13], ["startupWMClass", 127, 13], ["categories", 128, 13], ["mimeTypes", 129, 13]]);
-const pos$8 = nix.positions(here + "/package.nix", [["desktopItems", 115, 7]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,10 +22,10 @@ export default nix.lambda((args) => (() => {
   const nodePlatform = nix.thunk(() => nix.sel(hostPlatform, "node", "platform"));
   const nodeArch = nix.thunk(() => nix.sel(hostPlatform, "node", "arch"));
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => nix.update({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       version: "0.18.1",
       githubSourceCode: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "toeverything",
           repo: "AFFiNE",
           rev: "8b066a4b398aace25a20508a8e3c1a381721971f",
@@ -42,7 +35,7 @@ export default nix.lambda((args) => (() => {
       binName: nix.thunk(() => nix.app(nix.sel(lib, "toLower"), nix.thunk(() => nix.sel(finalAttrs, "productName")))),
       pname: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "binName")}-bin`),
       meta: nix.thunk(() => nix.update({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Workspace with fully merged docs, whiteboards and databases",
         longDescription: "AFFiNE is an open-source, all-in-one workspace and an operating\nsystem for all the building blocks that assemble your knowledge\nbase and much more -- wiki, knowledge management, presentation\nand digital assets\n",
         homepage: "https://affine.pro/",
@@ -57,20 +50,20 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => ["aarch64-darwin", "x86_64-linux"]),
         sourceProvenance: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "sourceTypes", "binaryBytecode"))]),
       }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(hostPlatform, "isLinux")), nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           mainProgram: nix.thunk(() => nix.sel(finalAttrs, "binName")),
         }))))),
       src: nix.thunk(() => (() => {
         const version = nix.thunk(() => nix.attr(finalAttrs, "version"));
         const affinePrebuiltBinariesHashes = nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           "darwin-arm64": "I8lOO97MNLkha0utWPAP4EKv9HiPMWpLi2ibvXjzjhdl7abgSPmMKbv1dGHxMzgMzGbDzhzKqzhYtJI+0Asfzw==",
           "darwin-x64": "LZdd7yHJx9Hx0Po8NQgeDp0BhIyXGr0QsbF6bWP5pS08c4fdtE9UzNPfJGfzz/snTkWfKMQZop0Ea4fYGosr1Q==",
           "linux-x64": "+impaFLuvcfpj4QjHwjZ06+fUpsxxRlk4eWO6+E4xkBMrV43gwZGeSeAw2pMgXogRGb/Oy6XUoA7o8tTQt9J6A==",
         }));
         const platform = nix.thunk(() => (nix.asBool(nix.sel(hostPlatform, "isLinux")) ? "linux" : "macos"));
         return nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             url: nix.thunk(() => nix.str`https://github.com/toeverything/AFFiNE/releases/download/v${version}/affine-${version}-${buildType}-${platform}-${nodeArch}.zip`),
             sha512: nix.thunk(() => nix.sel(affinePrebuiltBinariesHashes, nix.key(nix.str`${nodePlatform}-${nodeArch}`))),
           })));
@@ -102,13 +95,13 @@ runHook postInstall
 `);
       })()),
     }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(hostPlatform, "isLinux")), nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         desktopItems: nix.thunk(() => (() => {
           const binName = nix.thunk(() => nix.attr(finalAttrs, "binName"));
           const productName = nix.thunk(() => nix.attr(finalAttrs, "productName"));
           return [
             nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-                [nix.POS]: pos$7,
+                [nix.POS]: $pos[6],
                 name: binName,
                 desktopName: productName,
                 comment: "AFFiNE Desktop App",

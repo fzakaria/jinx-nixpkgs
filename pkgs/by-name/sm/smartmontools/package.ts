@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["hash", 33, 5]], [["src", 75, 7], ["pname", 76, 7], ["version", 77, 7]], [["owner", 64, 5], ["repo", 65, 5], ["rev", 66, 5], ["hash", 67, 5], ["postFetch", 68, 5], ["passthru", 73, 5]], [["updateScript", 81, 12]], [["description", 96, 5], ["homepage", 97, 5], ["license", 98, 5], ["maintainers", 99, 5], ["platforms", 103, 5], ["mainProgram", 104, 5]], [["pname", 26, 3], ["version", 27, 3], ["src", 29, 3], ["prePatch", 36, 3], ["patches", 39, 3], ["postPatch", 43, 3], ["configureFlags", 47, 3], ["outputs", 53, 3], ["nativeBuildInputs", 59, 3], ["buildInputs", 60, 3], ["enableParallelBuilding", 61, 3], ["drivedb", 63, 3], ["passthru", 81, 3], ["meta", 95, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, autoreconfHook: false, enableMail: true, gnused: false, hostname: false, mailutils: false, systemdLibs: false, writeShellScript: false, "nix-update": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["hash", 33, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["src", 75, 7], ["pname", 76, 7], ["version", 77, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["owner", 64, 5], ["repo", 65, 5], ["rev", 66, 5], ["hash", 67, 5], ["postFetch", 68, 5], ["passthru", 73, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 81, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 96, 5], ["homepage", 97, 5], ["license", 98, 5], ["maintainers", 99, 5], ["platforms", 103, 5], ["mainProgram", 104, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 26, 3], ["version", 27, 3], ["src", 29, 3], ["prePatch", 36, 3], ["patches", 39, 3], ["postPatch", 43, 3], ["configureFlags", 47, 3], ["outputs", 53, 3], ["nativeBuildInputs", 59, 3], ["buildInputs", 60, 3], ["enableParallelBuilding", 61, 3], ["drivedb", 63, 3], ["passthru", 81, 3], ["meta", 95, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const nix_update = nix.arg($, "nix-update");
   const scriptPath = nix.thunk(() => nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => nix.concat([gnused, hostname], nix.app(nix.sel(lib, "optionals"), enableMail, nix.thunk(() => [mailutils]))))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "smartmontools",
       version: "7.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "smartmontools",
           repo: "smartmontools",
           tag: nix.thunk(() => nix.str`RELEASE_${nix.app(nix.sel(lib, "replaceString"), ".", "_", nix.thunk(() => nix.sel(finalAttrs, "version")))}`),
@@ -47,21 +42,21 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(nix.sel(lib, "meta", "availableOn"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")), systemdLibs)), nix.thunk(() => [systemdLibs]))),
       enableParallelBuilding: true,
       drivedb: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           owner: "smartmontools",
           repo: "smartmontools",
           rev: "794fa5069ee298c82f93ff0a7f7ef6a5fdd10e5e",
           hash: "sha256-WBed5elI+WsIiIJ1YVkdVGJ4XMrGRFIFWqk6ffVl0bU=",
           postFetch: "mv \"$out/smartmontools/drivedb.h\" \"$TMPDIR/drivedb.h\"\nrm -rf \"$out\"\nmv \"$TMPDIR/drivedb.h\" \"$out\"\n",
           passthru: nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             src: nix.thunk(() => nix.sel(finalAttrs, "drivedb")),
             pname: "smartmontools-drivedb",
             version: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "version")}-drivedb-unstable`),
           })),
         })))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(writeShellScript, "update-smartmontools", nix.thunk(() => nix.str`# Set a default attribute path
 # When running maintainers/scripts/update.nix this is set automatically,
 # but this allows running this update script directly.
@@ -76,7 +71,7 @@ ${nix.app(nix.sel(lib, "getExe"), nix_update)} "$UPDATE_NIX_ATTR_PATH.drivedb" "
 `))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Tools for monitoring the health of hard drives",
         homepage: "https://www.smartmontools.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

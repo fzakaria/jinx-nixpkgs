@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["appliance", 28, 13]]]);
 const formals$1 = { args: { lib: false, libguestfs: false, "libguestfs-appliance": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["appliance", 28, 13]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -12,6 +12,6 @@ export default nix.lambda((args) => (() => {
   const libguestfs_appliance = nix.arg($, "libguestfs-appliance");
   const appliance = libguestfs_appliance;
   const libguestfsCompatible = nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "hasAttr"), "libguestfsCompatible", appliance)) ? nix.app(nix.sel(appliance, "libguestfsCompatible"), libguestfs) : false));
-  return nix.app(nix.sel(lib, "warnIf"), nix.thunk(() => (nix.asBool(nix.gt(nix.builtins.compareVersions(nix.thunk(() => nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(libguestfs, "version")))), nix.thunk(() => nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(appliance, "version"))))), 0n)) && nix.asBool(!nix.asBool(libguestfsCompatible)))), nix.thunk(() => nix.str`libguestfs has a different version than ${nix.sel(appliance, "pname")} (${nix.sel(libguestfs, "version")} > ${nix.sel(appliance, "version")}), runtime errors may occur!`), nix.thunk(() => nix.sel(libguestfs, "override")), nix.thunk(() => ({ [nix.POS]: pos$1, appliance: appliance })));
+  return nix.app(nix.sel(lib, "warnIf"), nix.thunk(() => (nix.asBool(nix.gt(nix.builtins.compareVersions(nix.thunk(() => nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(libguestfs, "version")))), nix.thunk(() => nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(appliance, "version"))))), 0n)) && nix.asBool(!nix.asBool(libguestfsCompatible)))), nix.thunk(() => nix.str`libguestfs has a different version than ${nix.sel(appliance, "pname")} (${nix.sel(libguestfs, "version")} > ${nix.sel(appliance, "version")}), runtime errors may occur!`), nix.thunk(() => nix.sel(libguestfs, "override")), nix.thunk(() => ({ [nix.POS]: $pos[0], appliance: appliance })));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

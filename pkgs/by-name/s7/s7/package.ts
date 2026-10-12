@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 32, 5], ["owner", 33, 5], ["repo", 34, 5], ["rev", 35, 5], ["hash", 36, 5]], [["NIX_CFLAGS_COMPILE", 55, 7], ["NIX_LDFLAGS", 65, 7]], [["branch", 224, 5], ["tagConverter", 225, 5]], [["updateScript", 223, 12]], [["description", 237, 5], ["longDescription", 238, 5], ["homepage", 253, 5], ["license", 254, 5], ["maintainers", 255, 5], ["mainProgram", 259, 5], ["platforms", 260, 5]], [["pname", 28, 3], ["version", 29, 3], ["src", 31, 3], ["buildInputs", 39, 3], ["postPatch", 51, 3], ["env", 55, 3], ["buildPhase", 86, 3], ["installPhase", 136, 3], ["doInstallCheck", 182, 3], ["nativeInstallCheckInputs", 184, 3], ["installCheckInputs", 190, 3], ["installCheckPhase", 198, 3], ["passthru", 223, 3], ["meta", 236, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitLab: false, stdenv: false, flint: false, gmp: false, libmpc: false, mpfr: false, notcurses: false, windows: false, gsl: false, man: false, "pkg-config": false, writableTmpDirAsHomeHook: false, unstableGitUpdater: false, writeScript: false, static: true, withGMP: true, withArb: true, withNrepl: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 32, 5], ["owner", 33, 5], ["repo", 34, 5], ["rev", 35, 5], ["hash", 36, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 55, 7], ["NIX_LDFLAGS", 65, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["branch", 224, 5], ["tagConverter", 225, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 223, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 237, 5], ["longDescription", 238, 5], ["homepage", 253, 5], ["license", 254, 5], ["maintainers", 255, 5], ["mainProgram", 259, 5], ["platforms", 260, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 28, 3], ["version", 29, 3], ["src", 31, 3], ["buildInputs", 39, 3], ["postPatch", 51, 3], ["env", 55, 3], ["buildPhase", 86, 3], ["installPhase", 136, 3], ["doInstallCheck", 182, 3], ["nativeInstallCheckInputs", 184, 3], ["installCheckInputs", 190, 3], ["installCheckPhase", 198, 3], ["passthru", 223, 3], ["meta", 236, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,11 +27,11 @@ export default nix.lambda((args) => (() => {
   const withArb = nix.argOr($, "withArb", () => !nix.asBool(static$));
   const withNrepl = nix.argOr($, "withNrepl", () => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isMinGW")) ? false : true));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "s7",
       version: "11.9-unstable-2026-08-19",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "cm-gitlab.stanford.edu",
           owner: "bil",
           repo: "s7",
@@ -46,7 +41,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optional"), withArb, flint), nix.concat(nix.app(nix.sel(lib, "optionals"), withGMP, nix.thunk(() => [gmp, mpfr, libmpc])), nix.concat(nix.app(nix.sel(lib, "optional"), withNrepl, notcurses), nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isMinGW")), nix.thunk(() => nix.sel(windows, "pthreads"))))))),
       postPatch: "substituteInPlace s7.c \\\n    --replace-fail libc_s7.so $out/lib/libc_s7.so\n",
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.concat(["-I.", "-O2"], nix.concat(nix.app(nix.sel(lib, "optionals"), withGMP, nix.thunk(() => ["-DWITH_GMP"])), nix.app(nix.sel(lib, "optional"), static$, "-static")))))),
         NIX_LDFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.concat(["-lm"], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => ["-ldl", "--export-dynamic"])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isMinGW")), nix.thunk(() => ["-lpthread", "--export-all-symbols"])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(!nix.asBool(static$)) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isMinGW")))), nix.thunk(() => ["--out-implib,libs7dll.a"])), nix.concat(nix.app(nix.sel(lib, "optional"), withArb, "-lflint"), nix.app(nix.sel(lib, "optionals"), withGMP, nix.thunk(() => ["-lgmp", "-lmpfr", "-lmpc"])))))))))),
       })),
@@ -124,7 +119,7 @@ rm $dst_bin/ffitest
 runHook postInstallCheck
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => (() => {
             const branch = "master";
             const tagConverter = nix.thunk(() => nix.app(writeScript, "update-s7-version-number", nix.thunk(() => nix.str`#! /usr/bin/env nix-shell
@@ -135,11 +130,11 @@ curl -sS https://cm-gitlab.stanford.edu/bil/s7/-/raw/${branch}/s7.h \\
     | grep '#define S7_VERSION' \\
     | awk -F \\" '{print $2}'
 `)));
-            return { [nix.POS]: pos$3, branch, tagConverter };
+            return { [nix.POS]: $pos[2], branch, tagConverter };
           })()))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Scheme interpreter intended as an extension language for other applications",
         longDescription: "s7 is a Scheme interpreter intended as an extension language for other\napplications.\n\nAlthough it is a descendant of tinyScheme, s7 is closest as a Scheme\ndialect to Guile 1.8. It is expected to be compatible with r5rs and r7rs.\nIt has continuations, ratios, complex numbers, macros, keywords,\nhash-tables, multiprecision arithmetic, generalized `set!`, unicode, and so\non. It does not have `syntax-rules` or any of its friends, and it thinks\nthere is no such thing as an inexact integer.\n\ns7 is an extension language of Snd and sndlib, Rick Taube's Common Music\n(commonmusic at sourceforge), Kjetil Matheussen's Radium music editor, and\nIain Duncan's Scheme for Max (or Pd).\n",
         homepage: "https://ccrma.stanford.edu/software/s7/",

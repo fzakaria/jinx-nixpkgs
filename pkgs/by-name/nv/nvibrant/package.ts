@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 30, 9], ["repo", 31, 9], ["name", 32, 9], ["tag", 33, 9], ["hash", 34, 9]], [["owner", 37, 9], ["repo", 38, 9], ["name", 39, 9], ["tag", 40, 9], ["hash", 41, 9], ["fetchTags", 46, 9], ["postCheckout", 47, 9]], [["nvibrant", 29, 7], ["open-gpu", 36, 7]], [["nvibrantVersion", 17, 5], ["oldestDriverVersion", 19, 5], ["latestDriverVersion", 20, 5], ["_version", 22, 5], ["srcAttrs", 28, 5], ["updateScript", 79, 5]], [["description", 143, 5], ["homepage", 144, 5], ["mainProgram", 145, 5], ["license", 146, 5], ["platforms", 147, 5], ["maintainers", 148, 5]], [["pname", 12, 3], ["version", 13, 3], ["pyproject", 14, 3], ["passthru", 16, 3], ["srcs", 115, 3], ["sourceRoot", 116, 3], ["postUnpack", 118, 3], ["patches", 124, 3], ["configurePhase", 126, 3], ["nativeBuildInputs", 130, 3], ["build-system", 132, 3], ["dependencies", 138, 3], ["meta", 142, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, python3Packages: false, writeShellScript: false, "common-updater-scripts": false, coreutils: false, gitMinimal: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 30, 9], ["repo", 31, 9], ["name", 32, 9], ["tag", 33, 9], ["hash", 34, 9]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 37, 9], ["repo", 38, 9], ["name", 39, 9], ["tag", 40, 9], ["hash", 41, 9], ["fetchTags", 46, 9], ["postCheckout", 47, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["nvibrant", 29, 7], ["open-gpu", 36, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["nvibrantVersion", 17, 5], ["oldestDriverVersion", 19, 5], ["latestDriverVersion", 20, 5], ["_version", 22, 5], ["srcAttrs", 28, 5], ["updateScript", 79, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 143, 5], ["homepage", 144, 5], ["mainProgram", 145, 5], ["license", 146, 5], ["platforms", 147, 5], ["maintainers", 148, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["pyproject", 14, 3], ["passthru", 16, 3], ["srcs", 115, 3], ["sourceRoot", 116, 3], ["postUnpack", 118, 3], ["patches", 124, 3], ["configurePhase", 126, 3], ["nativeBuildInputs", 130, 3], ["build-system", 132, 3], ["dependencies", 138, 3], ["meta", 142, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const coreutils = nix.arg($, "coreutils");
   const gitMinimal = nix.arg($, "gitMinimal");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "nvibrant",
       version: nix.thunk(() => nix.sel(finalAttrs, "passthru", "_version")),
       pyproject: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         nvibrantVersion: "1.2.1",
         oldestDriverVersion: "515.43.04",
         latestDriverVersion: "610.43.02",
@@ -35,9 +30,9 @@ export default nix.lambda((args) => (() => {
             nix.thunk(() => nix.sel(finalAttrs, "passthru", "latestDriverVersion")),
           ]))),
         srcAttrs: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           nvibrant: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-              [nix.POS]: pos$1,
+              [nix.POS]: $pos[0],
               owner: "tremeschin",
               repo: "nvibrant",
               name: "nvibrant",
@@ -45,7 +40,7 @@ export default nix.lambda((args) => (() => {
               hash: "sha256-M83WSQiJwzFZl8ECkZjKigvLTlMkzRa6o2hqPOt1378=",
             })))),
           "open-gpu": nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               owner: "nvidia",
               repo: "open-gpu-kernel-modules",
               name: "open-gpu",
@@ -130,7 +125,7 @@ update-source-version nvibrant "\${open_gpu_tags[-1]}" \\
         return [nix.thunk(() => nix.lookup(w_1, "packaging"))];
       })()),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Configure NVIDIA's Digital Vibrance on Wayland",
         homepage: "https://github.com/Tremeschin/nvibrant",
         mainProgram: "nvibrant",

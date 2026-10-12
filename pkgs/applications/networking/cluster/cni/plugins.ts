@@ -2,12 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/plugins.nix", [[["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]], [["cri-o", 48, 43]], [["tests", 48, 12]], [["changelog", 51, 5], ["description", 52, 5], ["homepage", 53, 5], ["license", 54, 5], ["platforms", 55, 5], ["teams", 56, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["vendorHash", 19, 3], ["doCheck", 21, 3], ["ldflags", 23, 3], ["subPackages", 27, 3], ["passthru", 48, 3], ["meta", 50, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, buildGoModule: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/plugins.nix", [["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/plugins.nix", [["cri-o", 48, 43]]);
-const pos$3 = nix.positions(here + "/plugins.nix", [["tests", 48, 12]]);
-const pos$4 = nix.positions(here + "/plugins.nix", [["changelog", 51, 5], ["description", 52, 5], ["homepage", 53, 5], ["license", 54, 5], ["platforms", 55, 5], ["teams", 56, 5]]);
-const pos$5 = nix.positions(here + "/plugins.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["vendorHash", 19, 3], ["doCheck", 21, 3], ["ldflags", 23, 3], ["subPackages", 27, 3], ["passthru", 48, 3], ["meta", 50, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,7 +15,7 @@ export default nix.lambda((args) => (() => {
       const pname = "cni-plugins";
       const version = "1.9.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "containernetworking",
           repo: "plugins",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -51,11 +47,11 @@ export default nix.lambda((args) => (() => {
         "plugins/meta/vrf",
       ]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$2, "cri-o": nix.thunk(() => nix.attr(nixosTests, "cri-o")) })),
+        [nix.POS]: $pos[2],
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[1], "cri-o": nix.thunk(() => nix.attr(nixosTests, "cri-o")) })),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         changelog: nix.thunk(() => nix.str`https://github.com/containernetworking/plugins/releases/tag/${nix.sel(src, "rev")}`),
         description: "Some standard networking plugins, maintained by the CNI team",
         homepage: "https://www.cni.dev/plugins/",
@@ -64,7 +60,7 @@ export default nix.lambda((args) => (() => {
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "podman"))]),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         src,

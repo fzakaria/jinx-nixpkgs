@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 43, 5], ["repo", 44, 5], ["tag", 45, 5], ["hash", 46, 5]], [["ZAPFAST_TEST_RTL_FONT", 70, 7]], [["updateScript", 105, 12]], [["description", 110, 5], ["homepage", 111, 5], ["changelog", 112, 5], ["license", 113, 5], ["maintainers", 114, 5], ["mainProgram", 115, 5], ["platforms", 116, 5]], [["pname", 37, 3], ["version", 38, 3], ["__structuredAttrs", 40, 3], ["src", 42, 3], ["cargoHash", 49, 3], ["nativeBuildInputs", 51, 3], ["buildInputs", 62, 3], ["env", 70, 3], ["cargoTestFlags", 72, 3], ["postFixup", 79, 3], ["postInstall", 88, 3], ["passthru", 105, 3], ["__darwinAllowLocalNetworking", 107, 3], ["meta", 109, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, rustPlatform: false, fetchFromGitHub: false, "pkg-config": false, cmake: false, perl: false, makeWrapper: false, icnsify: false, "nix-update-script": false, rcodesign: false, "alsa-lib": false, libGL: false, libx11: false, libxkbcommon: false, wayland: false, libxcursor: false, libxi: false, libxrandr: false, liberation_ttf: false, "apple-sdk_15": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 43, 5], ["repo", 44, 5], ["tag", 45, 5], ["hash", 46, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["ZAPFAST_TEST_RTL_FONT", 70, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 105, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 110, 5], ["homepage", 111, 5], ["changelog", 112, 5], ["license", 113, 5], ["maintainers", 114, 5], ["mainProgram", 115, 5], ["platforms", 116, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 37, 3], ["version", 38, 3], ["__structuredAttrs", 40, 3], ["src", 42, 3], ["cargoHash", 49, 3], ["nativeBuildInputs", 51, 3], ["buildInputs", 62, 3], ["env", 70, 3], ["cargoTestFlags", 72, 3], ["postFixup", 79, 3], ["postInstall", 88, 3], ["passthru", 105, 3], ["__darwinAllowLocalNetworking", 107, 3], ["meta", 109, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -38,7 +34,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.19.0";
       const __structuredAttrs = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "crmne",
           repo: "zapfast",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -48,7 +44,7 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => nix.concat([pkg_config, cmake, perl], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [makeWrapper])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [rcodesign, icnsify])))));
       const buildInputs = nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [alsa_lib, libGL, libx11])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [apple_sdk_15]))));
       const env = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         ZAPFAST_TEST_RTL_FONT: nix.thunk(() => nix.str`${liberation_ttf}/share/fonts/truetype/LiberationSans-Regular.ttf`),
       }));
       const cargoTestFlags = nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["--lib", "--bin", "zapfast"])));
@@ -63,12 +59,12 @@ substitute packaging/macos/Info.plist "$app/Info.plist" \\
   --replace-fail __VERSION__ "${version}"
 `))));
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const __darwinAllowLocalNetworking = true;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Fast native WhatsApp client",
         homepage: "https://zapfast.rocks",
         changelog: nix.thunk(() => nix.str`https://github.com/crmne/zapfast/releases/tag/v${version}`),
@@ -81,7 +77,7 @@ substitute packaging/macos/Info.plist "$app/Info.plist" \\
         platforms: nix.thunk(() => nix.concat(nix.sel(lib, "platforms", "linux"), nix.sel(lib, "platforms", "darwin"))),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         __structuredAttrs,

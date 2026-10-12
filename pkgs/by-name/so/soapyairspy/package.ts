@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["sha256", 19, 5]], [["url", 30, 7], ["hash", 31, 7]], [["url", 35, 7], ["hash", 36, 7]], [["homepage", 43, 5], ["description", 44, 5], ["license", 45, 5], ["maintainers", 46, 5], ["platforms", 47, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["nativeBuildInputs", 22, 3], ["buildInputs", 23, 3], ["patches", 28, 3], ["cmakeFlags", 40, 3], ["meta", 42, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch: false, cmake: false, airspy: false, soapysdr: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["sha256", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 30, 7], ["hash", 31, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 35, 7], ["hash", 36, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 43, 5], ["description", 44, 5], ["license", 45, 5], ["maintainers", 46, 5], ["platforms", 47, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["nativeBuildInputs", 22, 3], ["buildInputs", 23, 3], ["patches", 28, 3], ["cmakeFlags", 40, 3], ["meta", 42, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const airspy = nix.arg($, "airspy");
   const soapysdr = nix.arg($, "soapysdr");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "soapyairspy",
       version: "0.2.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "pothosware",
           repo: "SoapyAirspy",
           rev: nix.thunk(() => nix.str`soapy-airspy-${nix.sel(finalAttrs, "version")}`),
@@ -33,19 +29,19 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [airspy, soapysdr]),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/pothosware/SoapyAirspy/commit/1be30c33b394fc4d2aeea4287e8df8701adad5a0.patch",
             hash: "sha256-ZEIyyd2tOK1diPh8BsEqALHGgdVCV6tZP9xeQNeeXl8=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: "https://github.com/pothosware/SoapyAirspy/pull/31/commits/0ee4a5e8edff9f2bbea60dd069d2cc958e314a3e.patch",
             hash: "sha256-TQs4rDw+kRmxnuUwhhq9ioCsbKKniwuspSk/c7wazMM=",
           })))),
       ]),
       cmakeFlags: nix.thunk(() => [nix.thunk(() => nix.str`-DSoapySDR_DIR=${soapysdr}/share/cmake/SoapySDR/`)]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://github.com/pothosware/SoapyAirspy",
         description: "SoapySDR plugin for Airspy devices",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

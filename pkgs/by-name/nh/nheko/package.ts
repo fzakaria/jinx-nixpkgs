@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 33, 5], ["repo", 34, 5], ["rev", 35, 5], ["hash", 36, 5]], [["url", 42, 7], ["hash", 43, 7]], [["url", 48, 7], ["hash", 49, 7]], [["qt6Support", 89, 44]], [["description", 113, 5], ["homepage", 114, 5], ["license", 115, 5], ["mainProgram", 116, 5], ["maintainers", 117, 5], ["platforms", 122, 5]], [["pname", 29, 3], ["version", 30, 3], ["src", 32, 3], ["patches", 39, 3], ["nativeBuildInputs", 53, 3], ["buildInputs", 61, 3], ["cmakeFlags", 94, 3], ["preFixup", 98, 3], ["postFixup", 108, 3], ["meta", 112, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, asciidoc: false, "pkg-config": false, cmark: false, coeurl: false, curl: false, kdsingleapplication: false, libevent: false, libsecret: false, lmdb: false, lmdbxx: false, mtxclient: false, nlohmann_json: false, olm: false, re2: false, spdlog: false, gst_all_1: false, libnice: false, qt6Packages: false, fetchpatch: false, withVoipSupport: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 33, 5], ["repo", 34, 5], ["rev", 35, 5], ["hash", 36, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 42, 7], ["hash", 43, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 48, 7], ["hash", 49, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["qt6Support", 89, 44]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 113, 5], ["homepage", 114, 5], ["license", 115, 5], ["mainProgram", 116, 5], ["maintainers", 117, 5], ["platforms", 122, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 29, 3], ["version", 30, 3], ["src", 32, 3], ["patches", 39, 3], ["nativeBuildInputs", 53, 3], ["buildInputs", 61, 3], ["cmakeFlags", 94, 3], ["preFixup", 98, 3], ["postFixup", 108, 3], ["meta", 112, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -37,11 +32,11 @@ export default nix.lambda((args) => (() => {
   const fetchpatch = nix.arg($, "fetchpatch");
   const withVoipSupport = nix.argOr($, "withVoipSupport", () => nix.sel(stdenv, "hostPlatform", "isLinux"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "nheko",
       version: "0.12.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Nheko-Reborn",
           repo: "nheko",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -49,13 +44,13 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/Nheko-Reborn/nheko/commit/2769642d3c7bd3c0d830b2f18ef6b3bf6a710bf4.patch",
             hash: "sha256-y8aiS6h5CSJYBdsAH4jYhAyrFug7aH2H8L6rBfULnQQ=",
           })))),
         nix.path(here, "./fix-darwin-build.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: "https://github.com/Nheko-Reborn/nheko/commit/af2ca72030deb14a920a888e807dc732d93e3714.patch",
             hash: "sha256-tlYrfEoUkdJoVzvfF34IhXdn1AxLO0MOlp9rzuFivws=",
           })))),
@@ -91,7 +86,7 @@ export default nix.lambda((args) => (() => {
       ], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [nix.thunk(() => nix.sel(qt6Packages, "qtwayland"))])), nix.app(nix.sel(lib, "optionals"), withVoipSupport, nix.thunk(() => [
           nix.thunk(() => nix.sel(gst_all_1, "gstreamer")),
           nix.thunk(() => nix.sel(gst_all_1, "gst-plugins-base")),
-          nix.thunk(() => nix.app(nix.sel(gst_all_1, "gst-plugins-good", "override"), nix.thunk(() => ({ [nix.POS]: pos$4, qt6Support: true })))),
+          nix.thunk(() => nix.app(nix.sel(gst_all_1, "gst-plugins-good", "override"), nix.thunk(() => ({ [nix.POS]: $pos[3], qt6Support: true })))),
           nix.thunk(() => nix.sel(gst_all_1, "gst-plugins-bad")),
           libnice,
         ]))))),
@@ -99,7 +94,7 @@ export default nix.lambda((args) => (() => {
       preFixup: nix.thunk(() => nix.add("# unset QT_STYLE_OVERRIDE to avoid showing a blank window when started\n# https://github.com/NixOS/nixpkgs/issues/333009\nqtWrapperArgs+=(--unset QT_STYLE_OVERRIDE)\n", nix.app(nix.sel(lib, "optionalString"), withVoipSupport, "# add gstreamer plugins path to the wrapper\nqtWrapperArgs+=(--prefix GST_PLUGIN_SYSTEM_PATH_1_0 : \"$GST_PLUGIN_SYSTEM_PATH_1_0\")\n"))),
       postFixup: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "makeWrapper \"$out/Applications/nheko.app/Contents/MacOS/nheko\" \"$out/bin/nheko\"\n")),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Desktop client for the Matrix protocol",
         homepage: "https://github.com/Nheko-Reborn/nheko",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

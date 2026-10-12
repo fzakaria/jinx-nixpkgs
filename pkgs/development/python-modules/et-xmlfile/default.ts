@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["domain", 17, 5], ["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]], [["url", 27, 7], ["hash", 28, 7]], [["description", 42, 5], ["longDescription", 43, 5], ["homepage", 51, 5], ["license", 52, 5], ["maintainers", 53, 5]], [["pname", 12, 3], ["version", 13, 3], ["pyproject", 14, 3], ["src", 16, 3], ["patches", 24, 3], ["build-system", 32, 3], ["nativeCheckInputs", 34, 3], ["pythonImportsCheck", 39, 3], ["meta", 41, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitLab: false, fetchpatch: false, lxml: false, pytestCheckHook: false, setuptools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["domain", 17, 5], ["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["url", 27, 7], ["hash", 28, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 42, 5], ["longDescription", 43, 5], ["homepage", 51, 5], ["license", 52, 5], ["maintainers", 53, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 12, 3], ["version", 13, 3], ["pyproject", 14, 3], ["src", 16, 3], ["patches", 24, 3], ["build-system", 32, 3], ["nativeCheckInputs", 34, 3], ["pythonImportsCheck", 39, 3], ["meta", 41, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.0.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "foss.heptapod.net",
           owner: "openpyxl",
           repo: "et_xmlfile",
@@ -31,7 +28,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://foss.heptapod.net/openpyxl/et_xmlfile/-/commit/73172a7ce6d819ce13e6706f9a1c6d50f1646dde.patch",
             hash: "sha256-PMtzIGtXJ/vp0VRmBodvyaG/Ptn2DwrTTC1EyLSChHU=",
           })))),
@@ -40,7 +37,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [lxml, pytestCheckHook]);
       const pythonImportsCheck = nix.thunk(() => ["et_xmlfile"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Implementation of lxml.xmlfile for the standard library",
         longDescription: "et_xmlfile is a low memory library for creating large XML files.\n\nIt is based upon the xmlfile module from lxml with the aim of\nallowing code to be developed that will work with both\nlibraries. It was developed initially for the openpyxl project\nbut is now a standalone module.\n",
         homepage: "https://foss.heptapod.net/openpyxl/et_xmlfile",
@@ -48,7 +45,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

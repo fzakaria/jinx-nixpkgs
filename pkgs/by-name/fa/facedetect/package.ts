@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["sha256", 17, 5]], [["name", 22, 7], ["url", 23, 7], ["sha256", 24, 7]], [["homepage", 51, 5], ["description", 52, 5], ["license", 53, 5], ["platforms", 54, 5], ["maintainers", 55, 5], ["mainProgram", 56, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["patches", 20, 3], ["buildInputs", 28, 3], ["pythonPath", 32, 3], ["dontConfigure", 37, 3], ["postPatch", 39, 3], ["installPhase", 44, 3], ["meta", 50, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch: false, python3Packages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["sha256", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 22, 7], ["url", 23, 7], ["sha256", 24, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 51, 5], ["description", 52, 5], ["license", 53, 5], ["platforms", 54, 5], ["maintainers", 55, 5], ["mainProgram", 56, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["patches", 20, 3], ["buildInputs", 28, 3], ["pythonPath", 32, 3], ["dontConfigure", 37, 3], ["postPatch", 39, 3], ["installPhase", 44, 3], ["meta", 50, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "facedetect";
       const version = "0.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "wavexx",
           repo: "facedetect",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -27,7 +24,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "python3-support.patch",
             url: "https://gitlab.com/wavexx/facedetect/-/commit/8037d4406eb76dd5c106819f72c3562f8b255b5b.patch",
             sha256: "1752k37pbkigiwglx99ba9360ahzzrrb65a8d77k3xs4c3bcmk2p",
@@ -50,7 +47,7 @@ install -v -m755 -D facedetect $out/bin/facedetect
 wrapPythonPrograms
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://www.thregr.org/~wavexx/software/facedetect/",
         description: "Simple face detector for batch processing",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
@@ -59,7 +56,7 @@ wrapPythonPrograms
         mainProgram: "facedetect",
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

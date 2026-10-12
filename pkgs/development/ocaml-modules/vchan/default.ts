@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 21, 5], ["hash", 22, 5]], [["description", 40, 5], ["homepage", 41, 5], ["license", 42, 5], ["maintainers", 43, 5], ["teams", 44, 5]], [["pname", 15, 3], ["version", 16, 3], ["minimalOCamlVersion", 18, 3], ["src", 20, 3], ["propagatedBuildInputs", 25, 3], ["doCheck", 34, 3], ["checkInputs", 35, 3], ["meta", 39, 3]]]);
 const formals$1 = { args: { lib: false, buildDunePackage: false, fetchurl: false, ounit2: false, lwt: false, cstruct: false, "io-page": false, "mirage-flow": false, xenstore: false, xenstore_transport: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 40, 5], ["homepage", 41, 5], ["license", 42, 5], ["maintainers", 43, 5], ["teams", 44, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 15, 3], ["version", 16, 3], ["minimalOCamlVersion", 18, 3], ["src", 20, 3], ["propagatedBuildInputs", 25, 3], ["doCheck", 34, 3], ["checkInputs", 35, 3], ["meta", 39, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "6.0.2";
       const minimalOCamlVersion = "4.08";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/mirage/ocaml-vchan/releases/download/v${version}/vchan-${version}.tbz`),
           hash: "sha256-fki12lrWuIweGX/vSD2gbMX9qaM4KthiDZLeJYWcX+U=",
         }))));
@@ -32,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const doCheck = true;
       const checkInputs = nix.thunk(() => [ounit2]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Xen Vchan implementation",
         homepage: "https://github.com/mirage/ocaml-vchan",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),
@@ -40,7 +38,7 @@ export default nix.lambda((args) => (() => {
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "xen"))]),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         minimalOCamlVersion,

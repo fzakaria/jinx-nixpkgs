@@ -2,16 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 103, 5], ["owner", 104, 5], ["repo", 105, 5], ["tag", 106, 5], ["hash", 107, 5]], [["name", 117, 7], ["url", 118, 7], ["hash", 119, 7]], [["fontDirectories", 265, 41]], [["FONTCONFIG_FILE", 265, 7]], [["package", 286, 7]], [["installed-tests", 284, 5], ["pkg-config", 285, 5]], [["tests", 283, 12]], [["description", 291, 5], ["changelog", 292, 5], ["homepage", 293, 5], ["license", 294, 5], ["platforms", 295, 5], ["maintainers", 296, 5], ["pkgConfigModules", 300, 5]], [["pname", 90, 3], ["version", 91, 3], ["outputs", 93, 3], ["src", 102, 3], ["patches", 110, 3], ["strictDeps", 123, 3], ["__structuredAttrs", 124, 3], ["separateDebugInfo", 125, 3], ["depsBuildBuild", 127, 3], ["nativeBuildInputs", 128, 3], ["buildInputs", 139, 3], ["nativeCheckInputs", 206, 3], ["mesonFlags", 208, 3], ["env", 265, 3], ["doCheck", 267, 3], ["doInstallCheck", 268, 3], ["postPatch", 270, 3], ["postInstall", 279, 3], ["passthru", 283, 3], ["meta", 290, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, testers: false, buildPackages: false, fetchFromGitLab: false, fetchpatch: false, python3: false, meson: false, ninja: false, freebsd: false, elogind: false, "libinotify-kqueue": false, "epoll-shim": false, systemdLibs: false, enableSystemd: true, "pkg-config": false, docutils: false, doxygen: false, graphviz: false, glib: false, dbus: false, "alsa-lib": false, libjack2: false, libusb1: false, udev: false, libsndfile: false, vulkanSupport: true, "vulkan-headers": false, "vulkan-loader": false, "webrtc-audio-processing": false, ncurses: false, readline: false, lilv: false, makeFontsConf: false, nixosTests: false, valgrind: false, libcamera: false, libdrm: false, gst_all_1: false, "ffmpeg-headless": false, fftwFloat: false, bluezSupport: true, bluez: false, sbc: false, libfreeaptx: false, liblc3: false, fdk_aac: false, libopus: false, ldacbt: false, spandsp: false, modemmanager: false, libpulseaudio: false, onnxruntimeSupport: true, onnxruntime: false, zeroconfSupport: true, avahi: false, raopSupport: true, openssl: false, rocSupport: true, "roc-toolkit": false, x11Support: true, libcanberra: false, libxfixes: false, libx11: false, libxcb: false, libmysofa: false, ffadoSupport: true, ffado: false, libselinux: false, libebur128: false, bashNonInteractive: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 103, 5], ["owner", 104, 5], ["repo", 105, 5], ["tag", 106, 5], ["hash", 107, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 117, 7], ["url", 118, 7], ["hash", 119, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["fontDirectories", 265, 41]]);
-const pos$4 = nix.positions(here + "/package.nix", [["FONTCONFIG_FILE", 265, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["package", 286, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["installed-tests", 284, 5], ["pkg-config", 285, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["tests", 283, 12]]);
-const pos$8 = nix.positions(here + "/package.nix", [["description", 291, 5], ["changelog", 292, 5], ["homepage", 293, 5], ["license", 294, 5], ["platforms", 295, 5], ["maintainers", 296, 5], ["pkgConfigModules", 300, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["pname", 90, 3], ["version", 91, 3], ["outputs", 93, 3], ["src", 102, 3], ["patches", 110, 3], ["strictDeps", 123, 3], ["__structuredAttrs", 124, 3], ["separateDebugInfo", 125, 3], ["depsBuildBuild", 127, 3], ["nativeBuildInputs", 128, 3], ["buildInputs", 139, 3], ["nativeCheckInputs", 206, 3], ["mesonFlags", 208, 3], ["env", 265, 3], ["doCheck", 267, 3], ["doInstallCheck", 268, 3], ["postPatch", 270, 3], ["postInstall", 279, 3], ["passthru", 283, 3], ["meta", 290, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -91,12 +83,12 @@ export default nix.lambda((args) => (() => {
   const ldacbtSupport = nix.thunk(() => nix.app(nix.sel(lib, "meta", "availableOn"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")), ldacbt));
   const webrtcAudioProcessingSupport = nix.thunk(() => nix.app(nix.sel(lib, "meta", "availableOn"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")), webrtc_audio_processing));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       pname: "pipewire",
       version: "1.6.9",
       outputs: nix.thunk(() => ["out", "jack", "dev", "doc", "man", "installedTests"]),
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "gitlab.freedesktop.org",
           owner: "pipewire",
           repo: "pipewire",
@@ -107,7 +99,7 @@ export default nix.lambda((args) => (() => {
         nix.path(here, "./0060-libjack-path.patch"),
         nix.path(here, "./0070-installed-tests-path.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "musl.patch",
             url: "https://gitlab.freedesktop.org/pipewire/pipewire/-/commit/49ce385c44f4c2882ef0aeac0312e6ae9bc85f8a.patch",
             hash: "sha256-u8DLe6smodalVn3GwhI9RaDZTw4qZs8+Ylg9lxunMF0=",
@@ -197,26 +189,26 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "mesonEnable"), "onnxruntime", onnxruntimeSupport)),
       ]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        FONTCONFIG_FILE: nix.thunk(() => nix.app(makeFontsConf, nix.thunk(() => ({ [nix.POS]: pos$3, fontDirectories: [] })))),
+        [nix.POS]: $pos[3],
+        FONTCONFIG_FILE: nix.thunk(() => nix.app(makeFontsConf, nix.thunk(() => ({ [nix.POS]: $pos[2], fontDirectories: [] })))),
       })),
       doCheck: true,
       doInstallCheck: true,
       postPatch: "patchShebangs doc/*.py\npatchShebangs doc/input-filter-h.sh\n\n# Remove problematic installed-tests\nsed -i -e \"/test-pipewire-alsa-stress/d\" pipewire-alsa/tests/meson.build\nsed -i -e \"/benchmark-aec/d\" spa/tests/meson.build\n",
       postInstall: "moveToOutput \"bin/pw-jack\" \"$jack\"\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           "installed-tests": nix.thunk(() => nix.sel(nixosTests, "installed-tests", "pipewire")),
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "hasPkgConfigModules"), nix.thunk(() => ({
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         description: "Server and user space API to deal with multimedia pipelines",
         changelog: nix.thunk(() => nix.str`https://gitlab.freedesktop.org/pipewire/pipewire/-/releases/${nix.sel(finalAttrs, "version")}`),
         homepage: "https://pipewire.org/",

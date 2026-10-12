@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 87, 5], ["repo", 88, 5], ["rev", 89, 5], ["hash", 90, 5]], [["description", 229, 5], ["homepage", 230, 5], ["changelog", 231, 5], ["license", 232, 5], ["maintainers", 233, 5], ["platforms", 236, 5]], [["pname", 70, 3], ["version", 71, 3], ["__structuredAttrs", 73, 3], ["outputs", 75, 3], ["src", 86, 3], ["nativeBuildInputs", 93, 3], ["buildInputs", 106, 3], ["propagatedBuildInputs", 115, 3], ["preConfigure", 120, 3], ["cmakeFlags", 124, 3], ["postPatch", 184, 3], ["postInstall", 214, 3], ["doCheck", 221, 3], ["nativeCheckInputs", 223, 3], ["checkTarget", 225, 3], ["requiredSystemFeatures", 226, 3], ["meta", 228, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, pkgsBuildBuild: false, "pkg-config": false, cmake: false, ninja: false, libxml2: false, libxcrypt: false, libedit: false, libffi: false, libpfm: false, lit: false, mpfr: false, zlib: false, ncurses: false, doxygen: false, sphinx: false, which: false, sysctl: false, python3Packages: false, buildDocs: true, buildMan: true, buildTests: true, llvmTargetsToBuild: true, llvmProjectsToBuild: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 87, 5], ["repo", 88, 5], ["rev", 89, 5], ["hash", 90, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 229, 5], ["homepage", 230, 5], ["changelog", 231, 5], ["license", 232, 5], ["maintainers", 233, 5], ["platforms", 236, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 70, 3], ["version", 71, 3], ["__structuredAttrs", 73, 3], ["outputs", 75, 3], ["src", 86, 3], ["nativeBuildInputs", 93, 3], ["buildInputs", 106, 3], ["propagatedBuildInputs", 115, 3], ["preConfigure", 120, 3], ["cmakeFlags", 124, 3], ["postPatch", 184, 3], ["postInstall", 214, 3], ["doCheck", 221, 3], ["nativeCheckInputs", 223, 3], ["checkTarget", 225, 3], ["requiredSystemFeatures", 226, 3], ["meta", 228, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -48,13 +46,13 @@ export default nix.lambda((args) => (() => {
     })()) : nix.sel(python3Packages, "python")));
   const isNative = nix.thunk(() => nix.eq(nix.sel(stdenv, "hostPlatform"), nix.sel(stdenv, "buildPlatform")));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "triton-llvm",
       version: "23.0.0-unstable-2026-06-16",
       __structuredAttrs: true,
       outputs: nix.thunk(() => nix.concat(["out"], nix.concat(nix.app(nix.sel(lib, "optionals"), buildDocs, nix.thunk(() => ["doc"])), nix.app(nix.sel(lib, "optionals"), buildMan, nix.thunk(() => ["man"]))))),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "llvm",
           repo: "llvm-project",
           rev: "1f126a6dea50d185c0781743a667390037ae88bd",
@@ -119,7 +117,7 @@ export default nix.lambda((args) => (() => {
       checkTarget: "check-all",
       requiredSystemFeatures: nix.thunk(() => ["big-parallel"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Collection of modular and reusable compiler and toolchain technologies",
         homepage: "https://github.com/llvm/llvm-project",
         changelog: nix.thunk(() => nix.str`https://github.com/llvm/llvm-project/releases/tag/llvmorg-${nix.sel(finalAttrs, "version")}`),

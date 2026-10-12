@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]], [["pkg-config", 63, 18]], [["tests", 63, 12]], [["description", 66, 5], ["longDescription", 67, 5], ["homepage", 72, 5], ["downloadPage", 73, 5], ["pkgConfigModules", 74, 5], ["license", 75, 5], ["maintainers", 76, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["strictDeps", 29, 3], ["postPatch", 31, 3], ["nativeBuildInputs", 35, 3], ["propagatedBuildInputs", 41, 3], ["configureFlags", 46, 3], ["__darwinAllowLocalNetworking", 55, 3], ["nativeCheckInputs", 57, 3], ["doCheck", 61, 3], ["passthru", 63, 3], ["meta", 65, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, autoreconfHook: false, "pkg-config": false, mpi: false, zlib: false, jansson: false, mpiCheckPhaseHook: false, debug: true, mpiSupport: true, testers: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pkg-config", 63, 18]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 63, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 66, 5], ["longDescription", 67, 5], ["homepage", 72, 5], ["downloadPage", 73, 5], ["pkgConfigModules", 74, 5], ["license", 75, 5], ["maintainers", 76, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["strictDeps", 29, 3], ["postPatch", 31, 3], ["nativeBuildInputs", 35, 3], ["propagatedBuildInputs", 41, 3], ["configureFlags", 46, 3], ["__darwinAllowLocalNetworking", 55, 3], ["nativeCheckInputs", 57, 3], ["doCheck", 61, 3], ["passthru", 63, 3], ["meta", 65, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const mpiSupport = nix.argOr($, "mpiSupport", () => true);
   const testers = nix.arg($, "testers");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "p4est-sc",
       version: "2.8.7",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "cburstedde",
           repo: "libsc",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -43,14 +39,14 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), mpiSupport, nix.thunk(() => [mpiCheckPhaseHook]))),
       doCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "testMetaPkgConfig"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Support for parallel scientific applications",
         longDescription: "The SC library provides support for parallel scientific applications.\nIts main purpose is to support the p4est software library, hence\nthis package is called p4est-sc, but it works standalone, too.\n",
         homepage: "https://www.p4est.org/",

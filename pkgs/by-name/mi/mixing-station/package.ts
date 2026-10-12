@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 28, 5], ["name", 29, 5], ["extension", 30, 5], ["hash", 31, 5], ["stripRoot", 32, 5]], [["description", 76, 5], ["homepage", 77, 5], ["sourceProvenance", 78, 5], ["platforms", 79, 5], ["mainProgram", 83, 5], ["license", 84, 5], ["maintainers", 85, 5]], [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["nativeBuildInputs", 35, 3], ["dontBuild", 39, 3], ["installPhase", 41, 3], ["meta", 75, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchzip: false, makeWrapper: false, unzip: false, jre: false, libGL: false, libglvnd: false, libx11: false, libxext: false, libxcursor: false, libxrandr: false, libxi: false, libxxf86vm: false, libxinerama: false, libpulseaudio: false, udev: false, zenity: false, yad: false, which: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 28, 5], ["name", 29, 5], ["extension", 30, 5], ["hash", 31, 5], ["stripRoot", 32, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 76, 5], ["homepage", 77, 5], ["sourceProvenance", 78, 5], ["platforms", 79, 5], ["mainProgram", 83, 5], ["license", 84, 5], ["maintainers", 85, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["nativeBuildInputs", 35, 3], ["dontBuild", 39, 3], ["installPhase", 41, 3], ["meta", 75, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,11 +28,11 @@ export default nix.lambda((args) => (() => {
   const yad = nix.arg($, "yad");
   const which = nix.arg($, "which");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "mixing-station",
       version: "3.1.3",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://mixingstation.app/backend/api/web/download/archive/mixing-station-pc/update/${nix.sel(finalAttrs, "version")}`),
           name: nix.thunk(() => nix.str`mixing-station-${nix.sel(finalAttrs, "version")}.zip`),
           extension: "zip",
@@ -71,7 +69,7 @@ runHook postInstall
 `;
       })()),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Remote control app for digital audio mixers (XAir, X32, dLive, etc.)",
         homepage: "https://mixingstation.app",
         sourceProvenance: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "sourceTypes", "binaryBytecode"))]),

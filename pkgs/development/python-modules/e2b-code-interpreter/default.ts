@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]], [["description", 65, 5], ["homepage", 66, 5], ["changelog", 67, 5], ["license", 68, 5], ["maintainers", 69, 5]], [["pname", 21, 3], ["version", 22, 3], ["pyproject", 23, 3], ["__structuredAttrs", 24, 3], ["src", 26, 3], ["sourceRoot", 33, 3], ["build-system", 35, 3], ["dependencies", 39, 3], ["pythonImportsCheck", 46, 3], ["nativeCheckInputs", 48, 3], ["enabledTestPaths", 57, 3], ["preCheck", 60, 3], ["meta", 64, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, "poetry-core": false, attrs: false, e2b: false, httpx: false, "pytest-asyncio": false, "pytest-xdist": false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 65, 5], ["homepage", 66, 5], ["changelog", 67, 5], ["license", 68, 5], ["maintainers", 69, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 21, 3], ["version", 22, 3], ["pyproject", 23, 3], ["__structuredAttrs", 24, 3], ["src", 26, 3], ["sourceRoot", 33, 3], ["build-system", 35, 3], ["dependencies", 39, 3], ["pythonImportsCheck", 46, 3], ["nativeCheckInputs", 48, 3], ["enabledTestPaths", 57, 3], ["preCheck", 60, 3], ["meta", 64, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,13 +18,13 @@ export default nix.lambda((args) => (() => {
   const pytest_xdist = nix.arg($, "pytest-xdist");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "e2b-code-interpreter",
       version: "2.9.1",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "e2b-dev",
           repo: "code-interpreter",
           tag: nix.thunk(() => nix.str`@e2b/code-interpreter-python@${nix.sel(finalAttrs, "version")}`),
@@ -40,7 +38,7 @@ export default nix.lambda((args) => (() => {
       enabledTestPaths: nix.thunk(() => ["tests/test_sandbox_url.py"]),
       preCheck: "rm -r e2b_code_interpreter\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Stateful code execution in cloud sandboxes",
         homepage: "https://github.com/e2b-dev/code-interpreter/tree/main/python",
         changelog: nix.thunk(() => nix.str`https://github.com/e2b-dev/code-interpreter/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

@@ -2,44 +2,35 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/starship.nix", [[["maintainers", 4, 8]], [["enable", 8, 12]], [["enable", 9, 11]], [["format", 13, 18]], [["enable", 12, 9], ["settings", 13, 9]], [["fish", 8, 7], ["zsh", 9, 7], ["starship", 11, 7]], [["systemPackages", 17, 17]], [["programs", 7, 5], ["environment", 17, 5]], [["machine", 6, 9]], [["name", 3, 3], ["meta", 4, 3], ["nodes", 6, 3], ["testScript", 43, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/starship.nix", [["maintainers", 4, 8]]);
-const pos$2 = nix.positions(here + "/starship.nix", [["enable", 8, 12]]);
-const pos$3 = nix.positions(here + "/starship.nix", [["enable", 9, 11]]);
-const pos$4 = nix.positions(here + "/starship.nix", [["format", 13, 18]]);
-const pos$5 = nix.positions(here + "/starship.nix", [["enable", 12, 9], ["settings", 13, 9]]);
-const pos$6 = nix.positions(here + "/starship.nix", [["fish", 8, 7], ["zsh", 9, 7], ["starship", 11, 7]]);
-const pos$7 = nix.positions(here + "/starship.nix", [["systemPackages", 17, 17]]);
-const pos$8 = nix.positions(here + "/starship.nix", [["programs", 7, 5], ["environment", 17, 5]]);
-const pos$9 = nix.positions(here + "/starship.nix", [["machine", 6, 9]]);
-const pos$10 = nix.positions(here + "/starship.nix", [["name", 3, 3], ["meta", 4, 3], ["nodes", 6, 3], ["testScript", 43, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   return {
-    [nix.POS]: pos$10,
+    [nix.POS]: $pos[9],
     name: "starship",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => nix.sel(pkgs, "starship", "meta", "maintainers")),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       machine: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         programs: nix.thunk(() => ({
-          [nix.POS]: pos$6,
-          fish: nix.thunk(() => ({ [nix.POS]: pos$2, enable: true })),
-          zsh: nix.thunk(() => ({ [nix.POS]: pos$3, enable: true })),
+          [nix.POS]: $pos[5],
+          fish: nix.thunk(() => ({ [nix.POS]: $pos[1], enable: true })),
+          zsh: nix.thunk(() => ({ [nix.POS]: $pos[2], enable: true })),
           starship: nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             enable: true,
-            settings: nix.thunk(() => ({ [nix.POS]: pos$4, format: "<starship>" })),
+            settings: nix.thunk(() => ({ [nix.POS]: $pos[3], format: "<starship>" })),
           })),
         })),
         environment: nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           systemPackages: nix.thunk(() => nix.builtins.map((shell) => nix.app(nix.sel(pkgs, "writeScriptBin"), nix.thunk(() => nix.str`expect-${shell}`), nix.thunk(() => nix.str`#!${nix.sel(pkgs, "expect")}/bin/expect -f
 
 spawn env TERM=xterm ${shell} -i

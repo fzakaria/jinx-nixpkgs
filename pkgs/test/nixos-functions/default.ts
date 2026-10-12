@@ -2,42 +2,34 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["revision", 19, 5], ["versionSuffix", 20, 5], ["label", 21, 5]], [["nixos", 28, 16], ["stateVersion", 34, 16]], [["enable", 29, 26]], [["grub", 29, 21]], [["loader", 29, 14]], [["device", 31, 11], ["fsType", 32, 11]], [["/", 30, 21]], [["system", 28, 9], ["boot", 29, 9], ["fileSystems", 30, 9]], [["nixos-test", 26, 5]]]);
 const formals$1 = { args: { pkgs: false, lib: false, stdenv: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/default.nix", [["revision", 19, 5], ["versionSuffix", 20, 5], ["label", 21, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["nixos", 28, 16], ["stateVersion", 34, 16]]);
-const pos$3 = nix.positions(here + "/default.nix", [["enable", 29, 26]]);
-const pos$4 = nix.positions(here + "/default.nix", [["grub", 29, 21]]);
-const pos$5 = nix.positions(here + "/default.nix", [["loader", 29, 14]]);
-const pos$6 = nix.positions(here + "/default.nix", [["device", 31, 11], ["fsType", 32, 11]]);
-const pos$7 = nix.positions(here + "/default.nix", [["/", 30, 21]]);
-const pos$8 = nix.positions(here + "/default.nix", [["system", 28, 9], ["boot", 29, 9], ["fileSystems", 30, 9]]);
-const pos$9 = nix.positions(here + "/default.nix", [["nixos-test", 26, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   const lib = nix.arg($, "lib");
   const stdenv = nix.arg($, "stdenv");
-  const dummyVersioning = nix.thunk(() => ({ [nix.POS]: pos$1, revision: "test", versionSuffix: "test", label: "test" }));
+  const dummyVersioning = nix.thunk(() => ({ [nix.POS]: $pos[0], revision: "test", versionSuffix: "test", label: "test" }));
   return nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => nix.app(nix.sel(lib, "recurseIntoAttrs"), nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         "nixos-test": nix.thunk(() => nix.sel(nix.app(nix.sel(pkgs, "nixos"), nix.thunk(() => ({
-            [nix.POS]: pos$8,
+            [nix.POS]: $pos[7],
             system: nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               nixos: dummyVersioning,
               stateVersion: nix.thunk(() => nix.sel(lib, "trivial", "release")),
             })),
             boot: nix.thunk(() => ({
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               loader: nix.thunk(() => ({
-                [nix.POS]: pos$4,
-                grub: nix.thunk(() => ({ [nix.POS]: pos$3, enable: false })),
+                [nix.POS]: $pos[3],
+                grub: nix.thunk(() => ({ [nix.POS]: $pos[2], enable: false })),
               })),
             })),
             fileSystems: nix.thunk(() => ({
-              [nix.POS]: pos$7,
-              "/": nix.thunk(() => ({ [nix.POS]: pos$6, device: "/dev/null", fsType: "none" })),
+              [nix.POS]: $pos[6],
+              "/": nix.thunk(() => ({ [nix.POS]: $pos[5], device: "/dev/null", fsType: "none" })),
             })),
           }))), "toplevel")),
       })))));

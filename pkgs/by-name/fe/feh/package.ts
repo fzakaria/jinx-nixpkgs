@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 24, 5], ["repo", 25, 5], ["rev", 26, 5], ["hash", 27, 5]], [["description", 72, 5], ["homepage", 73, 5], ["license", 76, 5], ["maintainers", 77, 5], ["platforms", 80, 5], ["mainProgram", 81, 5]], [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["outputs", 30, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 38, 3], ["makeFlags", 49, 3], ["installTargets", 57, 3], ["postInstall", 58, 3], ["nativeCheckInputs", 68, 3], ["doCheck", 69, 3], ["meta", 71, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, makeWrapper: false, libxt: false, libxinerama: false, libx11: false, imlib2Full: false, libjpeg: false, libpng: false, curl: false, libexif: false, jpegexiforient: false, perl: false, enableAutoreload: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 24, 5], ["repo", 25, 5], ["rev", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 72, 5], ["homepage", 73, 5], ["license", 76, 5], ["maintainers", 77, 5], ["platforms", 80, 5], ["mainProgram", 81, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["outputs", 30, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 38, 3], ["makeFlags", 49, 3], ["installTargets", 57, 3], ["postInstall", 58, 3], ["nativeCheckInputs", 68, 3], ["doCheck", 69, 3], ["meta", 71, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const perl = nix.arg($, "perl");
   const enableAutoreload = nix.argOr($, "enableAutoreload", () => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "feh",
       version: "3.13.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "derf",
           repo: "feh",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -50,7 +48,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => nix.app(nix.sel(lib, "singleton"), nix.thunk(() => nix.app(nix.sel(perl, "withPackages"), (p) => [nix.thunk(() => nix.sel(p, "TestCommand"))])))),
       doCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Light-weight image viewer",
         homepage: "https://feh.finalrewind.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit-feh")),

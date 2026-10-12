@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 25, 5], ["hash", 26, 5]], [["description", 87, 5], ["homepage", 88, 5], ["changelog", 89, 5], ["license", 90, 5], ["maintainers", 91, 5], ["mainProgram", 92, 5], ["broken", 93, 5]], [["pname", 20, 3], ["version", 21, 3], ["pyproject", 22, 3], ["src", 24, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 34, 3], ["build-system", 39, 3], ["dependencies", 41, 3], ["doCheck", 48, 3], ["nativeCheckInputs", 50, 3], ["checkPhase", 55, 3], ["postInstall", 63, 3], ["dontWrapGApps", 77, 3], ["preFixup", 79, 3], ["meta", 86, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, python3Packages: false, gtk3: false, "gobject-introspection": false, wrapGAppsHook3: false, "adwaita-icon-theme": false, writableTmpDirAsHomeHook: false, "xvfb-run": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 87, 5], ["homepage", 88, 5], ["changelog", 89, 5], ["license", 90, 5], ["maintainers", 91, 5], ["mainProgram", 92, 5], ["broken", 93, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["pyproject", 22, 3], ["src", 24, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 34, 3], ["build-system", 39, 3], ["dependencies", 41, 3], ["doCheck", 48, 3], ["nativeCheckInputs", 50, 3], ["checkPhase", 55, 3], ["postInstall", 63, 3], ["dontWrapGApps", 77, 3], ["preFixup", 79, 3], ["meta", 86, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   const xvfb_run = nix.arg($, "xvfb-run");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "zim",
       version: "0.76.3",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://zim-wiki.org/downloads/zim-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-St8J6z8HcTj+Vb8m8T5sTZk2Fv5CSnmdG6a+CYzk6wU=",
         })))),
@@ -58,7 +56,7 @@ makeWrapperArgs+=(--argv0 $out/bin/.zim-wrapped)
 makeWrapperArgs+=("\${gappsWrapperArgs[@]}")
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Desktop wiki",
         homepage: "https://zim-wiki.org/",
         changelog: nix.thunk(() => nix.str`https://github.com/zim-desktop-wiki/zim-desktop-wiki/blob/${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 34, 5], ["repo", 35, 5], ["tag", 36, 5], ["hash", 37, 5]], [["rev-prefix", 104, 7], ["ignoredVersions", 105, 7]], [["skipBulkUpdate", 102, 5], ["updateScript", 103, 5]], [["description", 110, 5], ["homepage", 111, 5], ["changelog", 112, 5], ["license", 113, 5], ["maintainers", 114, 5]], [["pname", 28, 3], ["version", 29, 3], ["pyproject", 30, 3], ["__structuredAttrs", 31, 3], ["src", 33, 3], ["postgresqlTestSetupPost", 40, 3], ["sourceRoot", 46, 3], ["build-system", 48, 3], ["dependencies", 50, 3], ["pythonRelaxDeps", 57, 3], ["doCheck", 62, 3], ["nativeCheckInputs", 64, 3], ["preCheck", 71, 3], ["disabledTests", 75, 3], ["disabledTestPaths", 93, 3], ["pythonImportsCheck", 98, 3], ["passthru", 100, 3], ["meta", 109, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, stdenvNoCC: false, hatchling: false, "langgraph-checkpoint": false, ormsgpack: false, psycopg: false, "psycopg-pool": false, pgvector: false, postgresql: false, postgresqlTestHook: false, pytestCheckHook: false, "pytest-asyncio": false, gitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 34, 5], ["repo", 35, 5], ["tag", 36, 5], ["hash", 37, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["rev-prefix", 104, 7], ["ignoredVersions", 105, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["skipBulkUpdate", 102, 5], ["updateScript", 103, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 110, 5], ["homepage", 111, 5], ["changelog", 112, 5], ["license", 113, 5], ["maintainers", 114, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 28, 3], ["version", 29, 3], ["pyproject", 30, 3], ["__structuredAttrs", 31, 3], ["src", 33, 3], ["postgresqlTestSetupPost", 40, 3], ["sourceRoot", 46, 3], ["build-system", 48, 3], ["dependencies", 50, 3], ["pythonRelaxDeps", 57, 3], ["doCheck", 62, 3], ["nativeCheckInputs", 64, 3], ["preCheck", 71, 3], ["disabledTests", 75, 3], ["disabledTestPaths", 93, 3], ["pythonImportsCheck", 98, 3], ["passthru", 100, 3], ["meta", 109, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,13 +23,13 @@ export default nix.lambda((args) => (() => {
   const pytest_asyncio = nix.arg($, "pytest-asyncio");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "langgraph-checkpoint-postgres",
       version: "3.1.2",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "langchain-ai",
           repo: "langgraph",
           tag: nix.thunk(() => nix.str`checkpointpostgres==${nix.sel(finalAttrs, "version")}`),
@@ -69,16 +65,16 @@ export default nix.lambda((args) => (() => {
       disabledTestPaths: nix.thunk(() => ["tests/test_conformance_delta.py"]),
       pythonImportsCheck: nix.thunk(() => ["langgraph.checkpoint.postgres"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         skipBulkUpdate: true,
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             "rev-prefix": "checkpointpostgres==",
             ignoredVersions: "a|b|dev|rc",
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Library with a Postgres implementation of LangGraph checkpoint saver",
         homepage: "https://github.com/langchain-ai/langgraph/tree/main/libs/checkpoint-postgres",
         changelog: nix.thunk(() => nix.str`https://github.com/langchain-ai/langgraph/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

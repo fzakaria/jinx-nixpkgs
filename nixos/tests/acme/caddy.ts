@@ -2,35 +2,11 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/caddy.nix", [[["maintainers", 14, 5], ["timeout", 16, 5]], [["imports", 24, 9]], [["allowedTCPPorts", 35, 29]], [["127.0.0.1", 41, 26]], [["domain", 34, 20], ["firewall", 35, 20], ["hosts", 41, 20]], [["systemPackages", 46, 21]], [["listenHTTP", 49, 11], ["reloadServices", 50, 11]], [["certs", 48, 23]], [["acme", 48, 18]], [["extraGroups", 53, 53]], [["users", 53, 15]], [["extraConfig", 66, 30]], [["useACMEHost", 64, 13]], [[":80", 66, 24]], [["enable", 56, 11], ["enableReload", 59, 11], ["globalConfig", 60, 11], ["virtualHosts", 63, 11]], [["caddy", 55, 18]], [["extraDomainNames", 72, 39]], [["certs", 72, 25]], [["acme", 72, 20]], [["security", 72, 11]], [["configuration", 71, 35]], [["add_domain", 71, 24]], [["imports", 33, 9], ["networking", 34, 9], ["environment", 46, 9], ["security", 48, 9], ["users", 53, 9], ["services", 55, 9], ["specialisation", 71, 9]], [["acme", 21, 5], ["caddy", 27, 5]], [["name", 12, 3], ["meta", 13, 3], ["nodes", 19, 3], ["testScript", 79, 3]]]);
 const formals$1 = { args: { config: false, lib: false, pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/caddy.nix", [["maintainers", 14, 5], ["timeout", 16, 5]]);
 const formals$2 = { args: { nodes: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/caddy.nix", [["imports", 24, 9]]);
 const formals$3 = { args: { nodes: false, config: false }, ellipsis: true };
-const pos$3 = nix.positions(here + "/caddy.nix", [["allowedTCPPorts", 35, 29]]);
-const pos$4 = nix.positions(here + "/caddy.nix", [["127.0.0.1", 41, 26]]);
-const pos$5 = nix.positions(here + "/caddy.nix", [["domain", 34, 20], ["firewall", 35, 20], ["hosts", 41, 20]]);
-const pos$6 = nix.positions(here + "/caddy.nix", [["systemPackages", 46, 21]]);
-const pos$7 = nix.positions(here + "/caddy.nix", [["listenHTTP", 49, 11], ["reloadServices", 50, 11]]);
-const pos$8 = nix.positions(here + "/caddy.nix", [["certs", 48, 23]]);
-const pos$9 = nix.positions(here + "/caddy.nix", [["acme", 48, 18]]);
-const pos$10 = nix.positions(here + "/caddy.nix", [["extraGroups", 53, 53]]);
-const pos$11 = nix.positions(here + "/caddy.nix", [["users", 53, 15]]);
-const pos$12 = nix.positions(here + "/caddy.nix", [["extraConfig", 66, 30]]);
-const pos$13 = nix.positions(here + "/caddy.nix", [["useACMEHost", 64, 13]]);
-const pos$14 = nix.positions(here + "/caddy.nix", [[":80", 66, 24]]);
-const pos$15 = nix.positions(here + "/caddy.nix", [["enable", 56, 11], ["enableReload", 59, 11], ["globalConfig", 60, 11], ["virtualHosts", 63, 11]]);
-const pos$16 = nix.positions(here + "/caddy.nix", [["caddy", 55, 18]]);
-const pos$17 = nix.positions(here + "/caddy.nix", [["extraDomainNames", 72, 39]]);
-const pos$18 = nix.positions(here + "/caddy.nix", [["certs", 72, 25]]);
-const pos$19 = nix.positions(here + "/caddy.nix", [["acme", 72, 20]]);
-const pos$20 = nix.positions(here + "/caddy.nix", [["security", 72, 11]]);
-const pos$21 = nix.positions(here + "/caddy.nix", [["configuration", 71, 35]]);
-const pos$22 = nix.positions(here + "/caddy.nix", [["add_domain", 71, 24]]);
-const pos$23 = nix.positions(here + "/caddy.nix", [["imports", 33, 9], ["networking", 34, 9], ["environment", 46, 9], ["security", 48, 9], ["users", 53, 9], ["services", 55, 9], ["specialisation", 71, 9]]);
-const pos$24 = nix.positions(here + "/caddy.nix", [["acme", 21, 5], ["caddy", 27, 5]]);
 const formals$4 = { args: { nodes: false }, ellipsis: true };
-const pos$25 = nix.positions(here + "/caddy.nix", [["name", 12, 3], ["meta", 13, 3], ["nodes", 19, 3], ["testScript", 79, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -39,20 +15,20 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const domain = "example.test";
   return {
-    [nix.POS]: pos$25,
+    [nix.POS]: $pos[24],
     name: "caddy",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => nix.sel(lib, "teams", "acme", "members")),
       timeout: 180n,
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$24,
+      [nix.POS]: $pos[23],
       acme: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const nodes = nix.arg($_1, "nodes");
         return {
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           imports: nix.thunk(() => [nix.path(here, "../common/acme/server")]),
         };
       })(), formals$2),
@@ -62,28 +38,28 @@ export default nix.lambda((args) => (() => {
         const config_1 = nix.arg($_1, "config");
         const fqdn = nix.thunk(() => nix.sel(config_1, "networking", "fqdn"));
         return {
-          [nix.POS]: pos$23,
+          [nix.POS]: $pos[22],
           imports: nix.thunk(() => [nix.path(here, "../common/acme/client")]),
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             domain: domain,
-            firewall: nix.thunk(() => ({ [nix.POS]: pos$3, allowedTCPPorts: nix.thunk(() => [80n, 443n]) })),
+            firewall: nix.thunk(() => ({ [nix.POS]: $pos[2], allowedTCPPorts: nix.thunk(() => [80n, 443n]) })),
             hosts: nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               "127.0.0.1": nix.thunk(() => [nix.thunk(() => nix.str`caddy-alt.${domain}`)]),
             })),
           })),
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "openssl"))]),
           })),
           security: nix.thunk(() => ({
-            [nix.POS]: pos$9,
+            [nix.POS]: $pos[8],
             acme: nix.thunk(() => ({
-              [nix.POS]: pos$8,
+              [nix.POS]: $pos[7],
               certs: nix.thunk(() => nix.attrsDyn({}, [
                 [nix.str`${fqdn}`, nix.thunk(() => ({
-                  [nix.POS]: pos$7,
+                  [nix.POS]: $pos[6],
                   listenHTTP: ":8080",
                   reloadServices: nix.thunk(() => ["caddy.service"]),
                 }))],
@@ -91,39 +67,39 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           users: nix.thunk(() => ({
-            [nix.POS]: pos$11,
+            [nix.POS]: $pos[10],
             users: nix.thunk(() => nix.attrsDyn({}, [
-              [nix.str`${nix.sel(config_1, "services", "caddy", "user")}`, nix.thunk(() => ({ [nix.POS]: pos$10, extraGroups: nix.thunk(() => ["acme"]) }))],
+              [nix.str`${nix.sel(config_1, "services", "caddy", "user")}`, nix.thunk(() => ({ [nix.POS]: $pos[9], extraGroups: nix.thunk(() => ["acme"]) }))],
             ])),
           })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$16,
+            [nix.POS]: $pos[15],
             caddy: nix.thunk(() => ({
-              [nix.POS]: pos$15,
+              [nix.POS]: $pos[14],
               enable: true,
               enableReload: false,
               globalConfig: "auto_https off\n",
               virtualHosts: nix.thunk(() => nix.attrsDyn({
-                [nix.POS]: pos$14,
-                ":80": nix.thunk(() => ({ [nix.POS]: pos$12, extraConfig: "reverse_proxy localhost:8080\n" })),
+                [nix.POS]: $pos[13],
+                ":80": nix.thunk(() => ({ [nix.POS]: $pos[11], extraConfig: "reverse_proxy localhost:8080\n" })),
               }, [
-                [nix.str`${fqdn}:443`, nix.thunk(() => ({ [nix.POS]: pos$13, useACMEHost: fqdn }))],
+                [nix.str`${fqdn}:443`, nix.thunk(() => ({ [nix.POS]: $pos[12], useACMEHost: fqdn }))],
               ])),
             })),
           })),
           specialisation: nix.thunk(() => ({
-            [nix.POS]: pos$22,
+            [nix.POS]: $pos[21],
             add_domain: nix.thunk(() => ({
-              [nix.POS]: pos$21,
+              [nix.POS]: $pos[20],
               configuration: nix.thunk(() => ({
-                [nix.POS]: pos$20,
+                [nix.POS]: $pos[19],
                 security: nix.thunk(() => ({
-                  [nix.POS]: pos$19,
+                  [nix.POS]: $pos[18],
                   acme: nix.thunk(() => ({
-                    [nix.POS]: pos$18,
+                    [nix.POS]: $pos[17],
                     certs: nix.thunk(() => nix.attrsDyn({}, [
                       [nix.force(fqdn), nix.thunk(() => ({
-                        [nix.POS]: pos$17,
+                        [nix.POS]: $pos[16],
                         extraDomainNames: nix.thunk(() => [nix.thunk(() => nix.str`caddy-alt.${domain}`)]),
                       }))],
                     ])),

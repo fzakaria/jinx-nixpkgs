@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/cc.nix", [[["isZig", 21, 7], ["targetPrefix", 22, 15]], [["mainProgram", 28, 7]], [["pname", 15, 5], ["version", 16, 19], ["nativeBuildInputs", 18, 5], ["passthru", 20, 5], ["zig", 25, 13], ["meta", 27, 5]]]);
 const formals$1 = { args: { lib: false, runCommand: false, zig: false, stdenv: false, makeWrapper: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/cc.nix", [["isZig", 21, 7], ["targetPrefix", 22, 15]]);
-const pos$2 = nix.positions(here + "/cc.nix", [["mainProgram", 28, 7]]);
-const pos$3 = nix.positions(here + "/cc.nix", [["pname", 15, 5], ["version", 16, 19], ["nativeBuildInputs", 18, 5], ["passthru", 20, 5], ["zig", 25, 13], ["meta", 27, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,14 +14,14 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const targetPrefix = nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(stdenv, "hostPlatform"), nix.sel(stdenv, "targetPlatform"))), nix.thunk(() => nix.str`${nix.sel(stdenv, "targetPlatform", "config")}-`)));
   return nix.app(runCommand, nix.thunk(() => nix.str`zig-cc-${nix.sel(zig, "version")}`), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "zig-cc",
       version: nix.thunk(() => nix.attr(zig, "version")),
       nativeBuildInputs: nix.thunk(() => [makeWrapper]),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$1, isZig: true, targetPrefix: targetPrefix })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[0], isZig: true, targetPrefix: targetPrefix })),
       zig: zig,
       meta: nix.thunk(() => nix.update(nix.sel(zig, "meta"), {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         mainProgram: nix.thunk(() => nix.str`${targetPrefix}clang`),
       })),
     })), "mkdir -p $out/bin\nfor tool in cc c++ ld.lld; do\n  makeWrapper \"$zig/bin/zig\" \"$out/bin/$tool\" \\\n    --add-flags \"$tool\" \\\n    --run \"export ZIG_GLOBAL_CACHE_DIR=\\$TMPDIR/zig-cache\"\ndone\n\nln -s $out/bin/c++ $out/bin/clang++\nln -s $out/bin/cc $out/bin/clang\nln -s $out/bin/ld.lld $out/bin/ld\n");

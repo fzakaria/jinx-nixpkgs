@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["hash", 20, 5]], [["PUPPETEER_SKIP_DOWNLOAD", 30, 5]], [["updateScript", 38, 5]], [["description", 42, 5], ["homepage", 43, 5], ["license", 44, 5], ["mainProgram", 45, 5], ["maintainers", 46, 5], ["platforms", 47, 5]], [["pname", 13, 3], ["version", 14, 11], ["src", 16, 3], ["patches", 23, 3], ["npmDepsHash", 27, 3], ["env", 29, 3], ["npmBuildScript", 33, 3], ["makeWrapperArgs", 35, 3], ["passthru", 37, 3], ["meta", 41, 3]]]);
 const formals$1 = { args: { buildNpmPackage: false, lib: false, stdenv: false, fetchFromGitHub: false, chromium: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["PUPPETEER_SKIP_DOWNLOAD", 30, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 38, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 42, 5], ["homepage", 43, 5], ["license", 44, 5], ["mainProgram", 45, 5], ["maintainers", 46, 5], ["platforms", 47, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 11], ["src", 16, 3], ["patches", 23, 3], ["npmDepsHash", 27, 3], ["env", 29, 3], ["npmBuildScript", 33, 3], ["makeWrapperArgs", 35, 3], ["passthru", 37, 3], ["meta", 41, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const version = "11.17.0";
   return nix.app(buildNpmPackage, nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "mermaid-cli",
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "mermaid-js",
           repo: "mermaid-cli",
           rev: version,
@@ -31,15 +27,15 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [nix.path(here, "./remove-puppeteer-from-dev-deps.patch")]),
       npmDepsHash: "sha256-6s1q+d6V/5hyjXZaAOzoLMFmQ1flKDH+YH5oOYTaoCo=",
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, PUPPETEER_SKIP_DOWNLOAD: true })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], PUPPETEER_SKIP_DOWNLOAD: true })),
       npmBuildScript: "prepare",
       makeWrapperArgs: nix.thunk(() => nix.app(nix.sel(lib, "lists", "optional"), nix.thunk(() => nix.app(nix.sel(lib, "meta", "availableOn"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")), chromium)), nix.thunk(() => nix.str`--set PUPPETEER_EXECUTABLE_PATH '${nix.app(nix.sel(lib, "getExe"), chromium)}'`))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Generation of diagrams from text in a similar manner as markdown",
         homepage: "https://github.com/mermaid-js/mermaid-cli",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

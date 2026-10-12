@@ -2,25 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 7], ["repo", 22, 7], ["rev", 23, 7], ["hash", 24, 7]], [["owner", 27, 7], ["repo", 28, 7], ["rev", 29, 7], ["hash", 30, 7]], [["owner", 33, 7], ["repo", 34, 7], ["rev", 35, 7], ["hash", 36, 7]], [["owner", 39, 7], ["repo", 40, 7], ["rev", 41, 7], ["hash", 42, 7]], [["owner", 45, 7], ["repo", 46, 7], ["rev", 47, 7], ["hash", 48, 7]], [["owner", 51, 7], ["repo", 52, 7], ["rev", 53, 7], ["hash", 54, 7]], [["owner", 57, 7], ["repo", 58, 7], ["rev", 59, 7], ["hash", 60, 7]], [["owner", 63, 7], ["repo", 64, 7], ["rev", 65, 7], ["hash", 66, 7]], [["owner", 69, 7], ["repo", 70, 7], ["rev", 71, 7], ["hash", 72, 7]], [["owner", 75, 7], ["repo", 76, 7], ["rev", 77, 7], ["hash", 78, 7]], [["owner", 83, 7], ["repo", 84, 7], ["rev", 85, 7], ["hash", 86, 7]], [["abseil-cpp", 20, 5], ["benchmark", 26, 5], ["ccd", 32, 5], ["eigen3", 38, 5], ["googletest", 44, 5], ["miniz", 50, 5], ["qhull", 56, 5], ["tinyobjloader", 62, 5], ["tinyxml2", 68, 5], ["marchingcubecpp", 74, 5], ["lodepng", 82, 5]], [["owner", 101, 5], ["repo", 102, 5], ["tag", 103, 5], ["hash", 104, 5]], [["lodepng", 190, 21], ["eigen3", 190, 29], ["abseil-cpp", 190, 36]], [["pythonMujoco", 193, 7], ["pythonMujocoMjx", 194, 7]], [["pin", 189, 5], ["tests", 192, 5]], [["description", 199, 5], ["homepage", 200, 5], ["changelog", 201, 5], ["license", 202, 5], ["maintainers", 203, 5], ["broken", 208, 5]], [["pname", 92, 3], ["version", 93, 3], ["__structuredAttrs", 95, 3], ["strictDeps", 96, 3], ["src", 100, 3], ["patches", 107, 3], ["postPatch", 113, 3], ["nativeBuildInputs", 123, 3], ["buildInputs", 129, 3], ["propagatedBuildInputs", 138, 3], ["cmakeFlags", 143, 3], ["preConfigure", 149, 3], ["passthru", 188, 3], ["meta", 198, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, gitMinimal: false, fetchFromGitLab: false, glfw: false, libGL: false, glm: false, spdlog: false, cereal: false, python3Packages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 7], ["repo", 22, 7], ["rev", 23, 7], ["hash", 24, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 27, 7], ["repo", 28, 7], ["rev", 29, 7], ["hash", 30, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["owner", 33, 7], ["repo", 34, 7], ["rev", 35, 7], ["hash", 36, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["owner", 39, 7], ["repo", 40, 7], ["rev", 41, 7], ["hash", 42, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["owner", 45, 7], ["repo", 46, 7], ["rev", 47, 7], ["hash", 48, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["owner", 51, 7], ["repo", 52, 7], ["rev", 53, 7], ["hash", 54, 7]]);
-const pos$7 = nix.positions(here + "/package.nix", [["owner", 57, 7], ["repo", 58, 7], ["rev", 59, 7], ["hash", 60, 7]]);
-const pos$8 = nix.positions(here + "/package.nix", [["owner", 63, 7], ["repo", 64, 7], ["rev", 65, 7], ["hash", 66, 7]]);
-const pos$9 = nix.positions(here + "/package.nix", [["owner", 69, 7], ["repo", 70, 7], ["rev", 71, 7], ["hash", 72, 7]]);
-const pos$10 = nix.positions(here + "/package.nix", [["owner", 75, 7], ["repo", 76, 7], ["rev", 77, 7], ["hash", 78, 7]]);
-const pos$11 = nix.positions(here + "/package.nix", [["owner", 83, 7], ["repo", 84, 7], ["rev", 85, 7], ["hash", 86, 7]]);
-const pos$12 = nix.positions(here + "/package.nix", [["abseil-cpp", 20, 5], ["benchmark", 26, 5], ["ccd", 32, 5], ["eigen3", 38, 5], ["googletest", 44, 5], ["miniz", 50, 5], ["qhull", 56, 5], ["tinyobjloader", 62, 5], ["tinyxml2", 68, 5], ["marchingcubecpp", 74, 5], ["lodepng", 82, 5]]);
-const pos$13 = nix.positions(here + "/package.nix", [["owner", 101, 5], ["repo", 102, 5], ["tag", 103, 5], ["hash", 104, 5]]);
-const pos$14 = nix.positions(here + "/package.nix", [["lodepng", 190, 21], ["eigen3", 190, 29], ["abseil-cpp", 190, 36]]);
-const pos$15 = nix.positions(here + "/package.nix", [["pythonMujoco", 193, 7], ["pythonMujocoMjx", 194, 7]]);
-const pos$16 = nix.positions(here + "/package.nix", [["pin", 189, 5], ["tests", 192, 5]]);
-const pos$17 = nix.positions(here + "/package.nix", [["description", 199, 5], ["homepage", 200, 5], ["changelog", 201, 5], ["license", 202, 5], ["maintainers", 203, 5], ["broken", 208, 5]]);
-const pos$18 = nix.positions(here + "/package.nix", [["pname", 92, 3], ["version", 93, 3], ["__structuredAttrs", 95, 3], ["strictDeps", 96, 3], ["src", 100, 3], ["patches", 107, 3], ["postPatch", 113, 3], ["nativeBuildInputs", 123, 3], ["buildInputs", 129, 3], ["propagatedBuildInputs", 138, 3], ["cmakeFlags", 143, 3], ["preConfigure", 149, 3], ["passthru", 188, 3], ["meta", 198, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -37,79 +20,79 @@ export default nix.lambda((args) => (() => {
   const cereal = nix.arg($, "cereal");
   const python3Packages = nix.arg($, "python3Packages");
   const pin = nix.thunk(() => ({
-    [nix.POS]: pos$12,
+    [nix.POS]: $pos[11],
     "abseil-cpp": nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         owner: "abseil",
         repo: "abseil-cpp",
         rev: "2065f4ded0558c6f89fee67c8e5228feb4eb960e",
         hash: "sha256-CEtLO4il9/jk+bFDDV0rXeX1OkirA0u6nxrSiWq0NPM=",
       })))),
     benchmark: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         owner: "google",
         repo: "benchmark",
         rev: "834a61fc65e8b7885fcf177f1230ae4b897118fa",
         hash: "sha256-V5pVCG5QdFlgBIVKMv4jyTTB22BWfTHD3HolVPDFpgQ=",
       })))),
     ccd: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         owner: "danfis",
         repo: "libccd",
         rev: "7931e764a19ef6b21b443376c699bbc9c6d4fba8",
         hash: "sha256-TIZkmqQXa0+bSWpqffIgaBela0/INNsX9LPM026x1Wk=",
       })))),
     eigen3: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         owner: "libeigen",
         repo: "eigen",
         rev: "087757ad50159b5bd86ab73e4df34e6b4ea74258",
         hash: "sha256-TkL3tRL+hw7zHO3NUviaKDNUsrZQJJ+LqeQWaFl5TpU=",
       })))),
     googletest: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         owner: "google",
         repo: "googletest",
         rev: "063de7e9578f82b369302001269680b4b1553359",
         hash: "sha256-rXsn2L0xeWvfxTjMAoWEu0UFZ7xOSfYmhbKgRF5J9co=",
       })))),
     miniz: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         owner: "richgel999",
         repo: "miniz",
         rev: "d10b03cc73475af673df40f06e5cefd1d5f940d9",
         hash: "sha256-hRB/0TVVQjr4VwjozfRnYKUJfeqO+1PNfdvP/rrOCR4=",
       })))),
     qhull: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         owner: "qhull",
         repo: "qhull",
         rev: "d1c2fc0caa5f644f3a0f220290d4a868c68ed4f6",
         hash: "sha256-enwzl4td3lgYwQ4PXfcONKQrxChnJcvf8ehnJ6vf0yg=",
       })))),
     tinyobjloader: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         owner: "tinyobjloader",
         repo: "tinyobjloader",
         rev: "2945a967c5303b2c8c14174117c45f3302591150",
         hash: "sha256-eEgy43IzhovTjEgLz3qNsRnOkp0bcvQdWve7jOidHX4=",
       })))),
     tinyxml2: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         owner: "leethomason",
         repo: "tinyxml2",
         rev: "e6caeae85799003f4ca74ff26ee16a789bc2af48",
         hash: "sha256-GpFFWl7/1XF1vTOxUrEo27T4Kc6oaUMvhGp9xLQfmWg=",
       })))),
     marchingcubecpp: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         owner: "aparis69",
         repo: "MarchingCubeCpp",
         rev: "f03a1b3ec29b1d7d865691ca8aea4f1eb2c2873d",
         hash: "sha256-90ei0lpJA8XuVGI0rGb3md0Qtq8/bdkU7dUCHpp88Bw=",
       })))),
     lodepng: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        [nix.POS]: pos$11,
+        [nix.POS]: $pos[10],
         owner: "lvandeve",
         repo: "lodepng",
         rev: "22561883dd63fd1850f18e1f6adac321e4f609b0",
@@ -117,13 +100,13 @@ export default nix.lambda((args) => (() => {
       })))),
   }));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$18,
+      [nix.POS]: $pos[17],
       pname: "mujoco",
       version: "3.15.0",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$13,
+          [nix.POS]: $pos[12],
           owner: "google-deepmind",
           repo: "mujoco",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -156,21 +139,21 @@ ln -s ${nix.sel(pin, "tinyxml2")} build/_deps/tinyxml2-src
 ln -s ${nix.sel(pin, "marchingcubecpp")} build/_deps/marchingcubecpp-src
 `)),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$16,
+        [nix.POS]: $pos[15],
         pin: nix.thunk(() => ({
-          [nix.POS]: pos$14,
+          [nix.POS]: $pos[13],
           lodepng: nix.thunk(() => nix.attr(pin, "lodepng")),
           eigen3: nix.thunk(() => nix.attr(pin, "eigen3")),
           "abseil-cpp": nix.thunk(() => nix.attr(pin, "abseil-cpp")),
         })),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$15,
+          [nix.POS]: $pos[14],
           pythonMujoco: nix.thunk(() => nix.sel(python3Packages, "mujoco")),
           pythonMujocoMjx: nix.thunk(() => nix.sel(python3Packages, "mujoco-mjx")),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$17,
+        [nix.POS]: $pos[16],
         description: "Multi-Joint dynamics with Contact. A general purpose physics simulator",
         homepage: "https://mujoco.org/",
         changelog: nix.thunk(() => nix.str`https://mujoco.readthedocs.io/en/${nix.sel(finalAttrs, "version")}/changelog.html`),

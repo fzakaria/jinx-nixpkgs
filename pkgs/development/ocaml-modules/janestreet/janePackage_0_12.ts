@@ -2,11 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/janePackage_0_12.nix", [[["owner", 24, 7], ["repo", 25, 7], ["rev", 26, 7], ["sha256", 27, 7]], [["license", 31, 7], ["homepage", 32, 7]], [["version", 19, 13], ["duneVersion", 19, 21], ["minimalOCamlVersion", 21, 5], ["src", 23, 5], ["meta", 30, 5]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, buildDunePackage: false, defaultVersion: true }, ellipsis: false };
 const formals$2 = { args: { pname: false, version: true, duneVersion: true, hash: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/janePackage_0_12.nix", [["owner", 24, 7], ["repo", 25, 7], ["rev", 26, 7], ["sha256", 27, 7]]);
-const pos$2 = nix.positions(here + "/janePackage_0_12.nix", [["license", 31, 7], ["homepage", 32, 7]]);
-const pos$3 = nix.positions(here + "/janePackage_0_12.nix", [["version", 19, 13], ["duneVersion", 19, 21], ["minimalOCamlVersion", 21, 5], ["src", 23, 5], ["meta", 30, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,19 +20,19 @@ export default nix.lambda((args) => (() => {
     const duneVersion = nix.argOr($_1, "duneVersion", () => "3");
     const hash = nix.arg($_1, "hash");
     return nix.app(buildDunePackage, nix.thunk(() => nix.update(args_2, {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         version: version,
         duneVersion: duneVersion,
         minimalOCamlVersion: "4.07",
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             owner: "janestreet",
             repo: pname,
             rev: nix.thunk(() => nix.str`v${version}`),
             sha256: hash,
           })))),
         meta: nix.thunk(() => nix.update({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
           homepage: nix.thunk(() => nix.str`https://github.com/janestreet/${pname}`),
         }, nix.sel(args_2, "meta"))),

@@ -2,17 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 34, 5], ["repo", 35, 5], ["tag", 36, 5], ["hash", 37, 5]], [["PYTHON", 59, 9]], [["pname", 41, 5], ["version", 42, 13], ["src", 42, 21], ["outputs", 46, 5], ["sourceRoot", 51, 5], ["npmDepsHash", 52, 5], ["nativeBuildInputs", 54, 5], ["env", 59, 5], ["postPatch", 61, 5], ["postBuild", 66, 5], ["installPhase", 70, 5], ["dontFixup", 81, 5]], [["pname", 85, 5], ["version", 86, 13], ["src", 86, 21], ["cargoHash", 88, 5], ["cargoRoot", 89, 5], ["buildAndTestSubdir", 90, 5], ["postPatch", 92, 5], ["nativeBuildInputs", 101, 5], ["buildInputs", 107, 5], ["preBuild", 114, 5], ["tauriBuildFlags", 121, 5], ["installPhase", 123, 5], ["doCheck", 134, 5], ["dontWrapGApps", 138, 5]], [["name", 174, 7], ["desktopName", 175, 7], ["genericName", 176, 7], ["exec", 177, 7], ["icon", 178, 7], ["comment", 179, 7], ["categories", 180, 7], ["startupWMClass", 181, 7], ["terminal", 182, 7]], [["portmaster", 271, 36]], [["extraArgs", 274, 7]], [["portmasterDesktop", 269, 13], ["portmasterUI", 269, 31], ["tests", 271, 5], ["updateScript", 273, 5]], [["description", 284, 5], ["homepage", 285, 5], ["changelog", 286, 5], ["license", 287, 5], ["platforms", 288, 5], ["maintainers", 289, 5], ["mainProgram", 293, 5]], [["pname", 142, 3], ["version", 143, 11], ["src", 143, 19], ["__structuredAttrs", 145, 3], ["patches", 147, 3], ["vendorHash", 156, 3], ["nativeBuildInputs", 158, 3], ["buildInputs", 165, 3], ["desktopItems", 172, 3], ["ldflags", 186, 3], ["subPackages", 193, 3], ["installPhase", 195, 3], ["preFixup", 229, 3], ["dontWrapGApps", 247, 3], ["doInstallCheck", 249, 3], ["nativeInstallCheckInputs", 250, 3], ["installCheckPhase", 251, 3], ["passthru", 268, 3], ["meta", 283, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, buildNpmPackage: false, buildPackages: false, "cargo-tauri": false, copyDesktopItems: false, fetchFromGitHub: false, "glib-networking": false, iproute2: false, iptables: false, "libayatana-appindicator": false, makeBinaryWrapper: false, makeDesktopItem: false, nftables: false, "nix-update-script": false, nixosTests: false, openssl: false, "pkg-config": false, rustPlatform: false, stdenv: false, unzip: false, webkitgtk_4_1: false, wrapGAppsHook4: false, zip: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 34, 5], ["repo", 35, 5], ["tag", 36, 5], ["hash", 37, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["PYTHON", 59, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 41, 5], ["version", 42, 13], ["src", 42, 21], ["outputs", 46, 5], ["sourceRoot", 51, 5], ["npmDepsHash", 52, 5], ["nativeBuildInputs", 54, 5], ["env", 59, 5], ["postPatch", 61, 5], ["postBuild", 66, 5], ["installPhase", 70, 5], ["dontFixup", 81, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 85, 5], ["version", 86, 13], ["src", 86, 21], ["cargoHash", 88, 5], ["cargoRoot", 89, 5], ["buildAndTestSubdir", 90, 5], ["postPatch", 92, 5], ["nativeBuildInputs", 101, 5], ["buildInputs", 107, 5], ["preBuild", 114, 5], ["tauriBuildFlags", 121, 5], ["installPhase", 123, 5], ["doCheck", 134, 5], ["dontWrapGApps", 138, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["name", 174, 7], ["desktopName", 175, 7], ["genericName", 176, 7], ["exec", 177, 7], ["icon", 178, 7], ["comment", 179, 7], ["categories", 180, 7], ["startupWMClass", 181, 7], ["terminal", 182, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["portmaster", 271, 36]]);
-const pos$7 = nix.positions(here + "/package.nix", [["extraArgs", 274, 7]]);
-const pos$8 = nix.positions(here + "/package.nix", [["portmasterDesktop", 269, 13], ["portmasterUI", 269, 31], ["tests", 271, 5], ["updateScript", 273, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["description", 284, 5], ["homepage", 285, 5], ["changelog", 286, 5], ["license", 287, 5], ["platforms", 288, 5], ["maintainers", 289, 5], ["mainProgram", 293, 5]]);
-const pos$10 = nix.positions(here + "/package.nix", [["pname", 142, 3], ["version", 143, 11], ["src", 143, 19], ["__structuredAttrs", 145, 3], ["patches", 147, 3], ["vendorHash", 156, 3], ["nativeBuildInputs", 158, 3], ["buildInputs", 165, 3], ["desktopItems", 172, 3], ["ldflags", 186, 3], ["subPackages", 193, 3], ["installPhase", 195, 3], ["preFixup", 229, 3], ["dontWrapGApps", 247, 3], ["doInstallCheck", 249, 3], ["nativeInstallCheckInputs", 250, 3], ["installCheckPhase", 251, 3], ["passthru", 268, 3], ["meta", 283, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -43,14 +34,14 @@ export default nix.lambda((args) => (() => {
   const version = "2.2.3";
   const nodejsPython = nix.thunk(() => nix.app(nix.sel(buildPackages, "nodejs", "python", "withPackages"), (ps) => [nix.thunk(() => nix.sel(ps, "setuptools"))]));
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "safing",
       repo: "portmaster",
       tag: nix.thunk(() => nix.str`v${version}`),
       hash: "sha256-MVcynhN8svv83TDOx54dZ/zFyl4lDfUT1bIgHcmeKYE=",
     }))));
   const portmasterUI = nix.thunk(() => nix.app(buildNpmPackage, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "portmaster-ui",
       version: version,
       src: src,
@@ -59,7 +50,7 @@ export default nix.lambda((args) => (() => {
       npmDepsHash: "sha256-TvH3dIrSFmkfuHoJfUjEfPoOJcIzximFQ8vkwQHJXac=",
       nativeBuildInputs: nix.thunk(() => [nodejsPython]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         PYTHON: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nodejsPython)),
       })),
       postPatch: "# Assets are provided by the separate assets.zip module.\nrm assets\n",
@@ -68,7 +59,7 @@ export default nix.lambda((args) => (() => {
       dontFixup: true,
     }))));
   const portmasterDesktop = nix.thunk(() => nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "portmaster-desktop",
       version: version,
       src: src,
@@ -100,7 +91,7 @@ runHook postInstall
       dontWrapGApps: true,
     })));
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       pname: "portmaster",
       version: version,
       src: src,
@@ -114,7 +105,7 @@ runHook postInstall
       buildInputs: nix.thunk(() => [glib_networking, libayatana_appindicator, openssl, webkitgtk_4_1]),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             name: "portmaster",
             desktopName: "Portmaster",
             genericName: "Application Firewall",
@@ -193,20 +184,20 @@ grep -aF \\
 runHook postInstallCheck
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         portmasterDesktop: portmasterDesktop,
         portmasterUI: portmasterUI,
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           portmaster: nix.thunk(() => nix.attr(nixosTests, "portmaster")),
         })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             extraArgs: nix.thunk(() => ["--subpackage", "portmasterUI", "--subpackage", "portmasterDesktop"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         description: "Free and open-source application firewall",
         homepage: "https://safing.io/portmaster/",
         changelog: nix.thunk(() => nix.str`https://github.com/safing/portmaster/releases/tag/v${version}`),

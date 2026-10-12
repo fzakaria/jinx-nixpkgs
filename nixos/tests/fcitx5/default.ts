@@ -2,92 +2,63 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["maintainers", 4, 8]], [["systemPackages", 13, 19]], [["enable", 19, 9], ["user", 20, 9]], [["autoLogin", 18, 31]], [["enable", 25, 32]], [["lightdm", 25, 24]], [["enable", 26, 29]], [["xfce", 26, 24]], [["enable", 24, 9], ["displayManager", 25, 9], ["desktopManager", 26, 9]], [["displayManager", 18, 16], ["xserver", 23, 16]], [["EnumerateSkipFirst", 40, 22]], [["0", 41, 34]], [["0", 42, 43]], [["0", 43, 44]], [["Hotkey", 40, 13], ["Hotkey/TriggerKeys", 41, 13], ["Hotkey/EnumerateForwardKeys", 42, 13], ["Hotkey/EnumerateBackwardKeys", 43, 13]], [["0", 47, 15]], [["Default Layout", 50, 15], ["DefaultIM", 51, 15], ["Name", 52, 15]], [["Name", 55, 15]], [["Layout", 58, 15], ["Name", 59, 15]], [["Layout", 62, 15], ["Name", 63, 15]], [["Layout", 66, 15], ["Name", 67, 15]], [["Layout", 70, 15], ["Name", 71, 15]], [["GroupOrder", 46, 13], ["Groups/0", 49, 13], ["Groups/0/Items/0", 54, 13], ["Groups/0/Items/1", 57, 13], ["Groups/0/Items/2", 61, 13], ["Groups/0/Items/3", 65, 13], ["Groups/0/Items/4", 69, 13]], [["globalOptions", 39, 11], ["inputMethod", 45, 11]], [["addons", 32, 16], ["settings", 38, 16]], [["enable", 30, 9], ["type", 31, 9], ["fcitx5", 32, 9]], [["inputMethod", 29, 12]], [["imports", 9, 7], ["environment", 13, 7], ["services", 18, 7], ["i18n", 29, 7]], [["machine", 6, 9]], [["name", 3, 3], ["meta", 4, 3], ["nodes", 6, 3], ["testScript", 78, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/default.nix", [["maintainers", 4, 8]]);
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/default.nix", [["systemPackages", 13, 19]]);
-const pos$3 = nix.positions(here + "/default.nix", [["enable", 19, 9], ["user", 20, 9]]);
-const pos$4 = nix.positions(here + "/default.nix", [["autoLogin", 18, 31]]);
-const pos$5 = nix.positions(here + "/default.nix", [["enable", 25, 32]]);
-const pos$6 = nix.positions(here + "/default.nix", [["lightdm", 25, 24]]);
-const pos$7 = nix.positions(here + "/default.nix", [["enable", 26, 29]]);
-const pos$8 = nix.positions(here + "/default.nix", [["xfce", 26, 24]]);
-const pos$9 = nix.positions(here + "/default.nix", [["enable", 24, 9], ["displayManager", 25, 9], ["desktopManager", 26, 9]]);
-const pos$10 = nix.positions(here + "/default.nix", [["displayManager", 18, 16], ["xserver", 23, 16]]);
-const pos$11 = nix.positions(here + "/default.nix", [["EnumerateSkipFirst", 40, 22]]);
-const pos$12 = nix.positions(here + "/default.nix", [["0", 41, 34]]);
-const pos$13 = nix.positions(here + "/default.nix", [["0", 42, 43]]);
-const pos$14 = nix.positions(here + "/default.nix", [["0", 43, 44]]);
-const pos$15 = nix.positions(here + "/default.nix", [["Hotkey", 40, 13], ["Hotkey/TriggerKeys", 41, 13], ["Hotkey/EnumerateForwardKeys", 42, 13], ["Hotkey/EnumerateBackwardKeys", 43, 13]]);
-const pos$16 = nix.positions(here + "/default.nix", [["0", 47, 15]]);
-const pos$17 = nix.positions(here + "/default.nix", [["Default Layout", 50, 15], ["DefaultIM", 51, 15], ["Name", 52, 15]]);
-const pos$18 = nix.positions(here + "/default.nix", [["Name", 55, 15]]);
-const pos$19 = nix.positions(here + "/default.nix", [["Layout", 58, 15], ["Name", 59, 15]]);
-const pos$20 = nix.positions(here + "/default.nix", [["Layout", 62, 15], ["Name", 63, 15]]);
-const pos$21 = nix.positions(here + "/default.nix", [["Layout", 66, 15], ["Name", 67, 15]]);
-const pos$22 = nix.positions(here + "/default.nix", [["Layout", 70, 15], ["Name", 71, 15]]);
-const pos$23 = nix.positions(here + "/default.nix", [["GroupOrder", 46, 13], ["Groups/0", 49, 13], ["Groups/0/Items/0", 54, 13], ["Groups/0/Items/1", 57, 13], ["Groups/0/Items/2", 61, 13], ["Groups/0/Items/3", 65, 13], ["Groups/0/Items/4", 69, 13]]);
-const pos$24 = nix.positions(here + "/default.nix", [["globalOptions", 39, 11], ["inputMethod", 45, 11]]);
-const pos$25 = nix.positions(here + "/default.nix", [["addons", 32, 16], ["settings", 38, 16]]);
-const pos$26 = nix.positions(here + "/default.nix", [["enable", 30, 9], ["type", 31, 9], ["fcitx5", 32, 9]]);
-const pos$27 = nix.positions(here + "/default.nix", [["inputMethod", 29, 12]]);
-const pos$28 = nix.positions(here + "/default.nix", [["imports", 9, 7], ["environment", 13, 7], ["services", 18, 7], ["i18n", 29, 7]]);
-const pos$29 = nix.positions(here + "/default.nix", [["machine", 6, 9]]);
 const formals$3 = { args: { nodes: false }, ellipsis: true };
-const pos$30 = nix.positions(here + "/default.nix", [["name", 3, 3], ["meta", 4, 3], ["nodes", 6, 3], ["testScript", 78, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$30,
+    [nix.POS]: $pos[29],
     name: "fcitx5",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "nevivurn"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$29,
+      [nix.POS]: $pos[28],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$28,
+          [nix.POS]: $pos[27],
           imports: nix.thunk(() => [nix.path(here, "../common/user-account.nix")]),
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "alacritty"))]),
           })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$10,
+            [nix.POS]: $pos[9],
             displayManager: nix.thunk(() => ({
-              [nix.POS]: pos$4,
-              autoLogin: nix.thunk(() => ({ [nix.POS]: pos$3, enable: true, user: "alice" })),
+              [nix.POS]: $pos[3],
+              autoLogin: nix.thunk(() => ({ [nix.POS]: $pos[2], enable: true, user: "alice" })),
             })),
             xserver: nix.thunk(() => ({
-              [nix.POS]: pos$9,
+              [nix.POS]: $pos[8],
               enable: true,
               displayManager: nix.thunk(() => ({
-                [nix.POS]: pos$6,
-                lightdm: nix.thunk(() => ({ [nix.POS]: pos$5, enable: true })),
+                [nix.POS]: $pos[5],
+                lightdm: nix.thunk(() => ({ [nix.POS]: $pos[4], enable: true })),
               })),
               desktopManager: nix.thunk(() => ({
-                [nix.POS]: pos$8,
-                xfce: nix.thunk(() => ({ [nix.POS]: pos$7, enable: true })),
+                [nix.POS]: $pos[7],
+                xfce: nix.thunk(() => ({ [nix.POS]: $pos[6], enable: true })),
               })),
             })),
           })),
           i18n: nix.thunk(() => ({
-            [nix.POS]: pos$27,
+            [nix.POS]: $pos[26],
             inputMethod: nix.thunk(() => ({
-              [nix.POS]: pos$26,
+              [nix.POS]: $pos[25],
               enable: true,
               type: "fcitx5",
               fcitx5: nix.thunk(() => ({
-                [nix.POS]: pos$25,
+                [nix.POS]: $pos[24],
                 addons: nix.thunk(() => [
                   nix.thunk(() => nix.sel(pkgs, "qt6Packages", "fcitx5-chinese-addons")),
                   nix.thunk(() => nix.sel(pkgs, "fcitx5-hangul")),
@@ -95,28 +66,28 @@ export default nix.lambda((args) => (() => {
                   nix.thunk(() => nix.sel(pkgs, "fcitx5-mozc")),
                 ]),
                 settings: nix.thunk(() => ({
-                  [nix.POS]: pos$24,
+                  [nix.POS]: $pos[23],
                   globalOptions: nix.thunk(() => ({
-                    [nix.POS]: pos$15,
-                    Hotkey: nix.thunk(() => ({ [nix.POS]: pos$11, EnumerateSkipFirst: false })),
-                    "Hotkey/TriggerKeys": nix.thunk(() => ({ [nix.POS]: pos$12, "0": "Control+space" })),
-                    "Hotkey/EnumerateForwardKeys": nix.thunk(() => ({ [nix.POS]: pos$13, "0": "Alt+Shift_L" })),
-                    "Hotkey/EnumerateBackwardKeys": nix.thunk(() => ({ [nix.POS]: pos$14, "0": "Alt+Shift_R" })),
+                    [nix.POS]: $pos[14],
+                    Hotkey: nix.thunk(() => ({ [nix.POS]: $pos[10], EnumerateSkipFirst: false })),
+                    "Hotkey/TriggerKeys": nix.thunk(() => ({ [nix.POS]: $pos[11], "0": "Control+space" })),
+                    "Hotkey/EnumerateForwardKeys": nix.thunk(() => ({ [nix.POS]: $pos[12], "0": "Alt+Shift_L" })),
+                    "Hotkey/EnumerateBackwardKeys": nix.thunk(() => ({ [nix.POS]: $pos[13], "0": "Alt+Shift_R" })),
                   })),
                   inputMethod: nix.thunk(() => ({
-                    [nix.POS]: pos$23,
-                    GroupOrder: nix.thunk(() => ({ [nix.POS]: pos$16, "0": "NixOS_test" })),
+                    [nix.POS]: $pos[22],
+                    GroupOrder: nix.thunk(() => ({ [nix.POS]: $pos[15], "0": "NixOS_test" })),
                     "Groups/0": nix.thunk(() => ({
-                      [nix.POS]: pos$17,
+                      [nix.POS]: $pos[16],
                       "Default Layout": "us",
                       DefaultIM: "wbx",
                       Name: "NixOS_test",
                     })),
-                    "Groups/0/Items/0": nix.thunk(() => ({ [nix.POS]: pos$18, Name: "keyboard-us" })),
-                    "Groups/0/Items/1": nix.thunk(() => ({ [nix.POS]: pos$19, Layout: "us", Name: "wbx" })),
-                    "Groups/0/Items/2": nix.thunk(() => ({ [nix.POS]: pos$20, Layout: "us", Name: "hangul" })),
-                    "Groups/0/Items/3": nix.thunk(() => ({ [nix.POS]: pos$21, Layout: "us", Name: "m17n_sa_harvard-kyoto" })),
-                    "Groups/0/Items/4": nix.thunk(() => ({ [nix.POS]: pos$22, Layout: "us", Name: "mozc" })),
+                    "Groups/0/Items/0": nix.thunk(() => ({ [nix.POS]: $pos[17], Name: "keyboard-us" })),
+                    "Groups/0/Items/1": nix.thunk(() => ({ [nix.POS]: $pos[18], Layout: "us", Name: "wbx" })),
+                    "Groups/0/Items/2": nix.thunk(() => ({ [nix.POS]: $pos[19], Layout: "us", Name: "hangul" })),
+                    "Groups/0/Items/3": nix.thunk(() => ({ [nix.POS]: $pos[20], Layout: "us", Name: "m17n_sa_harvard-kyoto" })),
+                    "Groups/0/Items/4": nix.thunk(() => ({ [nix.POS]: $pos[21], Layout: "us", Name: "mozc" })),
                   })),
                 })),
               })),

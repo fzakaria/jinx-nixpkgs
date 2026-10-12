@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["sha256", 20, 5]], [["description", 49, 5], ["longDescription", 50, 5], ["homepage", 60, 5], ["license", 62, 5], ["platforms", 63, 5], ["maintainers", 64, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["buildInputs", 23, 3], ["nativeBuildInputs", 29, 3], ["configurePhase", 31, 3], ["postInstall", 42, 3], ["meta", 48, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, makeWrapper: false, ghostscript: false, netpbm: false, perl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["sha256", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 49, 5], ["longDescription", 50, 5], ["homepage", 60, 5], ["license", 62, 5], ["platforms", 63, 5], ["maintainers", 64, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["buildInputs", 23, 3], ["nativeBuildInputs", 29, 3], ["configurePhase", 31, 3], ["postInstall", 42, 3], ["meta", 48, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const netpbm = nix.arg($, "netpbm");
   const perl = nix.arg($, "perl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "latex2html",
       version: "2025",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "latex2html",
           repo: "latex2html",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -32,7 +30,7 @@ export default nix.lambda((args) => (() => {
       configurePhase: "runHook preConfigure\n\n./configure \\\n  --prefix=\"$out\" \\\n  --without-mktexlsr \\\n  --with-texpath=$out/share/texmf/tex/latex/html\n\nrunHook postConfigure\n",
       postInstall: "for p in $out/bin/{latex2html,pstoimg}; do \\\n  wrapProgram $p --add-flags '--tmp=\"${TMPDIR:-/tmp}\"'\ndone\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "LaTeX-to-HTML translator",
         longDescription: "A Perl program that translates LaTeX into HTML (HyperText Markup\nLanguage), optionally creating separate HTML files corresponding to each\nunit (e.g., section) of the document. LaTeX2HTML proceeds by interpreting\nLaTeX (to the best of its abilities). It contains definitions from a wide\nvariety of classes and packages, and users may add further definitions by\nwriting Perl scripts that provide information about class/package\ncommands.\n",
         homepage: "https://www.ctan.org/pkg/latex2html",

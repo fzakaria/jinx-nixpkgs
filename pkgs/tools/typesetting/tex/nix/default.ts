@@ -2,43 +2,19 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["scheme-basic", 23, 37]], [["rootFile", 48, 21]], [["name", 27, 7], ["builder", 29, 7], ["copyIncludes", 30, 7], ["rootFile", 33, 9], ["generatePDF", 34, 9], ["generatePS", 35, 9], ["extraFiles", 36, 9], ["compressBlanksInIndex", 37, 9], ["copySources", 38, 9], ["includes", 41, 7], ["buildInputs", 51, 7]], [["key", 68, 22]], [["rootFile", 82, 15], ["src", 83, 15]], [["key", 112, 36]], [["startSet", 68, 7], ["operator", 70, 7]], [["key", 125, 22]], [["src", 134, 15]], [["key", 139, 74]], [["startSet", 125, 7], ["operator", 127, 7]], [["name", 150, 7], ["builder", 151, 7], ["dotGraph", 152, 15], ["fontsConf", 152, 24], ["buildInputs", 153, 7]], [["name", 165, 7], ["builder", 166, 7], ["dotGraph", 167, 15], ["buildInputs", 168, 7]], [["rootFile", 196, 13]], [["name", 181, 7], ["builder", 182, 7], ["source", 183, 15], ["flags", 183, 22], ["buildInputs", 184, 7], ["copyIncludes", 188, 7], ["includes", 189, 7]], [["name", 203, 7], ["builder", 204, 7], ["dotGraph", 205, 15], ["nrFrames", 205, 24]], [["name", 218, 15], ["preamble", 218, 20], ["body", 218, 29], ["buildCommand", 219, 7]], [["name", 238, 7], ["postscript", 239, 15], ["buildInputs", 241, 7], ["buildCommand", 246, 7]], [["body", 278, 19], ["preamble", 278, 24]], [["rootFile", 277, 9], ["packages", 280, 17], ["generatePDF", 281, 9], ["generatePS", 282, 9]], [["postscript", 276, 7]], [["body", 296, 17], ["preamble", 296, 22]], [["rootFile", 295, 7], ["packages", 298, 15]], [["fontDirectories", 305, 5]], [["runLaTeX", 5, 3], ["findLaTeXIncludes", 62, 3], ["findLhs2TeXIncludes", 118, 3], ["dot2pdf", 144, 3], ["dot2ps", 159, 3], ["lhs2tex", 175, 3], ["animateDot", 200, 3], ["wrapSimpleTeX", 210, 3], ["postscriptToPNG", 232, 3], ["simpleTeXToPNG", 268, 3], ["simpleTeXToPDF", 287, 3], ["fontsConf", 304, 3]]]);
 const formals$1 = { args: { rootFile: false, generatePDF: true, generatePS: true, extraFiles: true, compressBlanksInIndex: true, packages: true, texPackages: true, copySources: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["scheme-basic", 23, 37]]);
-const pos$2 = nix.positions(here + "/default.nix", [["rootFile", 48, 21]]);
-const pos$3 = nix.positions(here + "/default.nix", [["name", 27, 7], ["builder", 29, 7], ["copyIncludes", 30, 7], ["rootFile", 33, 9], ["generatePDF", 34, 9], ["generatePS", 35, 9], ["extraFiles", 36, 9], ["compressBlanksInIndex", 37, 9], ["copySources", 38, 9], ["includes", 41, 7], ["buildInputs", 51, 7]]);
 const formals$2 = { args: { rootFile: false }, ellipsis: false };
-const pos$4 = nix.positions(here + "/default.nix", [["key", 68, 22]]);
 const formals$3 = { args: { key: false }, ellipsis: true };
-const pos$5 = nix.positions(here + "/default.nix", [["rootFile", 82, 15], ["src", 83, 15]]);
-const pos$6 = nix.positions(here + "/default.nix", [["key", 112, 36]]);
-const pos$7 = nix.positions(here + "/default.nix", [["startSet", 68, 7], ["operator", 70, 7]]);
 const formals$4 = { args: { lib: false, rootFile: false }, ellipsis: false };
-const pos$8 = nix.positions(here + "/default.nix", [["key", 125, 22]]);
 const formals$5 = { args: { key: false }, ellipsis: true };
-const pos$9 = nix.positions(here + "/default.nix", [["src", 134, 15]]);
-const pos$10 = nix.positions(here + "/default.nix", [["key", 139, 74]]);
-const pos$11 = nix.positions(here + "/default.nix", [["startSet", 125, 7], ["operator", 127, 7]]);
 const formals$6 = { args: { dotGraph: false }, ellipsis: false };
-const pos$12 = nix.positions(here + "/default.nix", [["name", 150, 7], ["builder", 151, 7], ["dotGraph", 152, 15], ["fontsConf", 152, 24], ["buildInputs", 153, 7]]);
 const formals$7 = { args: { dotGraph: false }, ellipsis: false };
-const pos$13 = nix.positions(here + "/default.nix", [["name", 165, 7], ["builder", 166, 7], ["dotGraph", 167, 15], ["buildInputs", 168, 7]]);
 const formals$8 = { args: { source: false, flags: true }, ellipsis: false };
-const pos$14 = nix.positions(here + "/default.nix", [["rootFile", 196, 13]]);
-const pos$15 = nix.positions(here + "/default.nix", [["name", 181, 7], ["builder", 182, 7], ["source", 183, 15], ["flags", 183, 22], ["buildInputs", 184, 7], ["copyIncludes", 188, 7], ["includes", 189, 7]]);
-const pos$16 = nix.positions(here + "/default.nix", [["name", 203, 7], ["builder", 204, 7], ["dotGraph", 205, 15], ["nrFrames", 205, 24]]);
 const formals$9 = { args: { preamble: true, body: false, name: true }, ellipsis: false };
-const pos$17 = nix.positions(here + "/default.nix", [["name", 218, 15], ["preamble", 218, 20], ["body", 218, 29], ["buildCommand", 219, 7]]);
 const formals$10 = { args: { postscript: false }, ellipsis: false };
-const pos$18 = nix.positions(here + "/default.nix", [["name", 238, 7], ["postscript", 239, 15], ["buildInputs", 241, 7], ["buildCommand", 246, 7]]);
 const formals$11 = { args: { preamble: true, body: false, packages: true }, ellipsis: false };
-const pos$19 = nix.positions(here + "/default.nix", [["body", 278, 19], ["preamble", 278, 24]]);
-const pos$20 = nix.positions(here + "/default.nix", [["rootFile", 277, 9], ["packages", 280, 17], ["generatePDF", 281, 9], ["generatePS", 282, 9]]);
-const pos$21 = nix.positions(here + "/default.nix", [["postscript", 276, 7]]);
 const formals$12 = { args: { preamble: true, body: false, packages: true }, ellipsis: false };
-const pos$22 = nix.positions(here + "/default.nix", [["body", 296, 17], ["preamble", 296, 22]]);
-const pos$23 = nix.positions(here + "/default.nix", [["rootFile", 295, 7], ["packages", 298, 15]]);
-const pos$24 = nix.positions(here + "/default.nix", [["fontDirectories", 305, 5]]);
-const pos$25 = nix.positions(here + "/default.nix", [["runLaTeX", 5, 3], ["findLaTeXIncludes", 62, 3], ["findLhs2TeXIncludes", 118, 3], ["dot2pdf", 144, 3], ["dot2ps", 159, 3], ["lhs2tex", 175, 3], ["animateDot", 200, 3], ["wrapSimpleTeX", 210, 3], ["postscriptToPNG", 232, 3], ["simpleTeXToPNG", 268, 3], ["simpleTeXToPDF", 287, 3], ["fontsConf", 304, 3]]);
 
 export default (pkgs) => (() => {
   const runLaTeX = nix.lambda((args) => (() => {
@@ -55,12 +31,12 @@ export default (pkgs) => (() => {
     const tex = nix.thunk(() => nix.app(nix.sel(pkgs, "texlive", "combine"), nix.thunk(() => nix.update((() => {
         const from = nix.thunk(() => nix.sel(pkgs, "texlive"));
         return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         "scheme-basic": nix.thunk(() => nix.attr(from, "scheme-basic")),
       };
       })(), texPackages))));
     return nix.app(nix.sel(pkgs, "stdenv", "mkDerivation"), nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         name: "doc",
         builder: nix.path(here, "./run-latex.sh"),
         copyIncludes: nix.path(here, "./copy-includes.pl"),
@@ -73,7 +49,7 @@ export default (pkgs) => (() => {
         includes: nix.thunk(() => nix.builtins.map((x) => [
             nix.thunk(() => nix.sel(x, "key")),
             nix.thunk(() => nix.builtins.baseNameOf(nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.sel(x, "key")))))),
-          ], nix.thunk(() => nix.app(findLaTeXIncludes, nix.thunk(() => ({ [nix.POS]: pos$2, rootFile: rootFile })))))),
+          ], nix.thunk(() => nix.app(findLaTeXIncludes, nix.thunk(() => ({ [nix.POS]: $pos[1], rootFile: rootFile })))))),
         buildInputs: nix.thunk(() => nix.concat([tex, nix.thunk(() => nix.sel(pkgs, "perl"))], packages)),
       })));
   })(), formals$1);
@@ -81,20 +57,20 @@ export default (pkgs) => (() => {
     const $ = nix.formals(args, formals$2);
     const rootFile = nix.arg($, "rootFile");
     return nix.builtins.genericClosure(nix.thunk(() => ({
-        [nix.POS]: pos$7,
-        startSet: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$4, key: rootFile }))]),
+        [nix.POS]: $pos[6],
+        startSet: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: $pos[3], key: rootFile }))]),
         operator: nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$3);
           const key = nix.arg($_1, "key");
           const deps = nix.thunk(() => nix.builtins.import(nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "latex-includes", nix.thunk(() => ({
-                [nix.POS]: pos$5,
+                [nix.POS]: $pos[4],
                 rootFile: nix.thunk(() => nix.builtins.baseNameOf(nix.thunk(() => nix.builtins.toString(rootFile)))),
                 src: key,
               })), nix.thunk(() => nix.str`${nix.sel(pkgs, "perl")}/bin/perl ${nix.path(here, "./find-includes.pl")}`)))));
           const foundDeps = (dep) => (xs) => (() => {
             const exts = nix.thunk(() => (nix.asBool(nix.eq(nix.sel(dep, "type"), "img")) ? [".pdf", ".png", ".ps", ".jpg"] : (nix.asBool(nix.eq(nix.sel(dep, "type"), "tex")) ? [".tex", ""] : [""])));
             const fn = nix.thunk(() => nix.app(nix.sel(pkgs, "lib", "findFirst"), (fn_1) => nix.builtins.pathExists(fn_1), null, nix.thunk(() => nix.builtins.map((ext) => nix.add(nix.builtins.dirOf(key), nix.add(nix.add("/", nix.sel(dep, "name")), ext)), exts))));
-            return (nix.asBool(!nix.eq(fn, null)) ? nix.concat([nix.thunk(() => ({ [nix.POS]: pos$6, key: fn }))], xs) : nix.force(xs));
+            return (nix.asBool(!nix.eq(fn, null)) ? nix.concat([nix.thunk(() => ({ [nix.POS]: $pos[5], key: fn }))], xs) : nix.force(xs));
           })();
           return nix.app(nix.sel(pkgs, "lib", "foldr"), foundDeps, [], deps);
         })(), formals$3),
@@ -105,13 +81,13 @@ export default (pkgs) => (() => {
     const lib = nix.arg($, "lib");
     const rootFile = nix.arg($, "rootFile");
     return nix.builtins.genericClosure(nix.thunk(() => ({
-        [nix.POS]: pos$11,
-        startSet: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$8, key: rootFile }))]),
+        [nix.POS]: $pos[10],
+        startSet: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: $pos[7], key: rootFile }))]),
         operator: nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$5);
           const key = nix.arg($_1, "key");
-          const deps = nix.thunk(() => nix.builtins.import(nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "lhs2tex-includes", nix.thunk(() => ({ [nix.POS]: pos$9, src: key })), nix.thunk(() => nix.str`${nix.sel(pkgs, "stdenv", "bash")}/bin/bash ${nix.path(here, "./find-lhs2tex-includes.sh")}`)))));
-          return nix.app(nix.sel(pkgs, "lib", "concatMap"), (x) => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.builtins.pathExists(x)), nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$10, key: x }))])), nix.thunk(() => nix.builtins.map((x) => nix.add(nix.builtins.dirOf(key), nix.add("/", x)), deps)));
+          const deps = nix.thunk(() => nix.builtins.import(nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "lhs2tex-includes", nix.thunk(() => ({ [nix.POS]: $pos[8], src: key })), nix.thunk(() => nix.str`${nix.sel(pkgs, "stdenv", "bash")}/bin/bash ${nix.path(here, "./find-lhs2tex-includes.sh")}`)))));
+          return nix.app(nix.sel(pkgs, "lib", "concatMap"), (x) => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.builtins.pathExists(x)), nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: $pos[9], key: x }))])), nix.thunk(() => nix.builtins.map((x) => nix.add(nix.builtins.dirOf(key), nix.add("/", x)), deps)));
         })(), formals$5),
       })));
   })(), formals$4);
@@ -119,7 +95,7 @@ export default (pkgs) => (() => {
     const $ = nix.formals(args, formals$6);
     const dotGraph = nix.arg($, "dotGraph");
     return nix.app(nix.sel(pkgs, "stdenv", "mkDerivation"), nix.thunk(() => ({
-        [nix.POS]: pos$12,
+        [nix.POS]: $pos[11],
         name: "pdf",
         builder: nix.path(here, "./dot2pdf.sh"),
         dotGraph: dotGraph,
@@ -134,7 +110,7 @@ export default (pkgs) => (() => {
     const $ = nix.formals(args, formals$7);
     const dotGraph = nix.arg($, "dotGraph");
     return nix.app(nix.sel(pkgs, "stdenv", "mkDerivation"), nix.thunk(() => ({
-        [nix.POS]: pos$13,
+        [nix.POS]: $pos[12],
         name: "ps",
         builder: nix.path(here, "./dot2ps.sh"),
         dotGraph: dotGraph,
@@ -150,7 +126,7 @@ export default (pkgs) => (() => {
     const source = nix.arg($, "source");
     const flags = nix.argOr($, "flags", () => null);
     return nix.app(nix.sel(pkgs, "stdenv", "mkDerivation"), nix.thunk(() => ({
-        [nix.POS]: pos$15,
+        [nix.POS]: $pos[14],
         name: "tex",
         builder: nix.path(here, "./lhs2tex.sh"),
         source: source,
@@ -163,11 +139,11 @@ export default (pkgs) => (() => {
         includes: nix.thunk(() => nix.builtins.map((x) => [
             nix.thunk(() => nix.sel(x, "key")),
             nix.thunk(() => nix.builtins.baseNameOf(nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.sel(x, "key")))))),
-          ], nix.thunk(() => nix.app(findLhs2TeXIncludes, nix.thunk(() => ({ [nix.POS]: pos$14, rootFile: source })))))),
+          ], nix.thunk(() => nix.app(findLhs2TeXIncludes, nix.thunk(() => ({ [nix.POS]: $pos[13], rootFile: source })))))),
       })));
   })(), formals$8);
   const animateDot = (dotGraph) => (nrFrames) => nix.app(nix.sel(pkgs, "stdenv", "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$16,
+      [nix.POS]: $pos[15],
       name: "dot-frames",
       builder: nix.path(here, "./animatedot.sh"),
       dotGraph: dotGraph,
@@ -179,7 +155,7 @@ export default (pkgs) => (() => {
     const body = nix.arg($, "body");
     const name = nix.argOr($, "name", () => nix.builtins.baseNameOf(nix.thunk(() => nix.builtins.toString(body))));
     return nix.app(nix.sel(pkgs, "stdenv", "mkDerivation"), nix.thunk(() => ({
-        [nix.POS]: pos$17,
+        [nix.POS]: $pos[16],
         name: name,
         preamble: preamble,
         body: body,
@@ -190,7 +166,7 @@ export default (pkgs) => (() => {
     const $ = nix.formals(args, formals$10);
     const postscript = nix.arg($, "postscript");
     return nix.app(nix.sel(pkgs, "stdenv", "mkDerivation"), nix.thunk(() => ({
-        [nix.POS]: pos$18,
+        [nix.POS]: $pos[17],
         name: "png",
         postscript: postscript,
         buildInputs: nix.thunk(() => [
@@ -206,10 +182,10 @@ export default (pkgs) => (() => {
     const body = nix.arg($, "body");
     const packages = nix.argOr($, "packages", () => []);
     return nix.app(postscriptToPNG, nix.thunk(() => ({
-        [nix.POS]: pos$21,
+        [nix.POS]: $pos[20],
         postscript: nix.thunk(() => nix.app(runLaTeX, nix.thunk(() => ({
-            [nix.POS]: pos$20,
-            rootFile: nix.thunk(() => nix.app(wrapSimpleTeX, nix.thunk(() => ({ [nix.POS]: pos$19, body: body, preamble: preamble })))),
+            [nix.POS]: $pos[19],
+            rootFile: nix.thunk(() => nix.app(wrapSimpleTeX, nix.thunk(() => ({ [nix.POS]: $pos[18], body: body, preamble: preamble })))),
             packages: packages,
             generatePDF: false,
             generatePS: true,
@@ -222,19 +198,19 @@ export default (pkgs) => (() => {
     const body = nix.arg($, "body");
     const packages = nix.argOr($, "packages", () => []);
     return nix.app(runLaTeX, nix.thunk(() => ({
-        [nix.POS]: pos$23,
-        rootFile: nix.thunk(() => nix.app(wrapSimpleTeX, nix.thunk(() => ({ [nix.POS]: pos$22, body: body, preamble: preamble })))),
+        [nix.POS]: $pos[22],
+        rootFile: nix.thunk(() => nix.app(wrapSimpleTeX, nix.thunk(() => ({ [nix.POS]: $pos[21], body: body, preamble: preamble })))),
         packages: packages,
       })));
   })(), formals$12);
   const fontsConf = nix.thunk(() => nix.app(nix.sel(pkgs, "makeFontsConf"), nix.thunk(() => ({
-      [nix.POS]: pos$24,
+      [nix.POS]: $pos[23],
       fontDirectories: nix.thunk(() => [
         nix.thunk(() => nix.str`${nix.sel(pkgs, "ghostscript", "fonts")}/share/fonts`),
       ]),
     }))));
   return {
-    [nix.POS]: pos$25,
+    [nix.POS]: $pos[24],
     runLaTeX,
     findLaTeXIncludes,
     findLhs2TeXIncludes,

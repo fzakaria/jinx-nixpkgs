@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]], [["CGO_ENABLED", 29, 7]], [["extraArgs", 53, 7]], [["updateScript", 52, 5]], [["mainProgram", 70, 13], ["description", 71, 5], ["homepage", 72, 5], ["changelog", 73, 5], ["license", 74, 5], ["maintainers", 75, 5]], [["pname", 16, 3], ["version", 17, 3], ["__structuredAttrs", 18, 3], ["src", 20, 3], ["vendorHash", 27, 3], ["env", 29, 3], ["doCheck", 31, 3], ["nativeBuildInputs", 33, 3], ["postInstall", 37, 3], ["nativeInstallCheckInputs", 44, 3], ["doInstallCheck", 47, 3], ["versionCheckProgram", 48, 3], ["versionCheckProgramArg", 49, 3], ["passthru", 51, 3], ["ldflags", 59, 3], ["subPackages", 65, 3], ["meta", 69, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, buildGo127Module: false, installShellFiles: false, versionCheckHook: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["CGO_ENABLED", 29, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["extraArgs", 53, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 52, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["mainProgram", 70, 13], ["description", 71, 5], ["homepage", 72, 5], ["changelog", 73, 5], ["license", 74, 5], ["maintainers", 75, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["__structuredAttrs", 18, 3], ["src", 20, 3], ["vendorHash", 27, 3], ["env", 29, 3], ["doCheck", 31, 3], ["nativeBuildInputs", 33, 3], ["postInstall", 37, 3], ["nativeInstallCheckInputs", 44, 3], ["doInstallCheck", 47, 3], ["versionCheckProgram", 48, 3], ["versionCheckProgramArg", 49, 3], ["passthru", 51, 3], ["ldflags", 59, 3], ["subPackages", 65, 3], ["meta", 69, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,19 +16,19 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const mainProgram = "pinact";
   return nix.app(buildGo127Module, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "pinact",
       version: "5.0.0",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "suzuki-shunsuke",
           repo: "pinact",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-VmLQmZDFBweh8O6VHcDQsAc6Ojcriw0oQymO6SkAVpU=",
         })))),
       vendorHash: "sha256-mAlwYacDZruLw9hMr77z6MYNPME+iPntJROK6Yd84uI=",
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, CGO_ENABLED: 0n })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], CGO_ENABLED: 0n })),
       doCheck: true,
       nativeBuildInputs: nix.thunk(() => [installShellFiles]),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), nix.thunk(() => nix.str`installShellCompletion --cmd '${mainProgram}' \\
@@ -46,9 +41,9 @@ export default nix.lambda((args) => (() => {
       versionCheckProgram: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/bin/${mainProgram}`),
       versionCheckProgramArg: "version",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             extraArgs: nix.thunk(() => ["--version-regex=^v([\\d\\.]+)$"]),
           })))),
       })),
@@ -59,7 +54,7 @@ export default nix.lambda((args) => (() => {
       ]),
       subPackages: nix.thunk(() => ["cmd/pinact"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         mainProgram: mainProgram,
         description: "Pin GitHub Actions versions",
         homepage: "https://github.com/suzuki-shunsuke/pinact",

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]], [["description", 80, 5], ["mainProgram", 81, 5], ["homepage", 82, 5], ["changelog", 83, 5], ["license", 84, 5], ["teams", 85, 5]], [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["outputs", 30, 3], ["vendorHash", 35, 3], ["doCheck", 37, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 45, 3], ["buildPhase", 56, 3], ["installPhase", 64, 3], ["doInstallCheck", 72, 3], ["nativeInstallCheckInputs", 73, 3], ["versionCheckKeepEnvironment", 77, 3], ["meta", 79, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildGoModule: false, fetchFromGitHub: false, "go-md2man": false, installShellFiles: false, "pkg-config": false, gpgme: false, lvm2: false, "btrfs-progs": false, libapparmor: false, libselinux: false, libseccomp: false, writableTmpDirAsHomeHook: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 80, 5], ["mainProgram", 81, 5], ["homepage", 82, 5], ["changelog", 83, 5], ["license", 84, 5], ["teams", 85, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["outputs", 30, 3], ["vendorHash", 35, 3], ["doCheck", 37, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 45, 3], ["buildPhase", 56, 3], ["installPhase", 64, 3], ["doInstallCheck", 72, 3], ["nativeInstallCheckInputs", 73, 3], ["versionCheckKeepEnvironment", 77, 3], ["meta", 79, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "buildah",
       version: "1.45.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "podman-container-tools",
           repo: "buildah",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -46,7 +44,7 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [writableTmpDirAsHomeHook, versionCheckHook]),
       versionCheckKeepEnvironment: nix.thunk(() => ["HOME"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Tool which facilitates building OCI images",
         mainProgram: "buildah",
         homepage: "https://buildah.io/",

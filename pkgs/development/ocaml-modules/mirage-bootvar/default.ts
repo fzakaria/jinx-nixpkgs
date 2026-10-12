@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 13, 5], ["hash", 14, 5]], [["description", 21, 5], ["homepage", 22, 5], ["changelog", 23, 5], ["license", 24, 5], ["maintainers", 25, 5], ["teams", 26, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["doCheck", 17, 3], ["checkInputs", 18, 3], ["meta", 20, 3]]]);
 const formals$1 = { args: { lib: false, fetchurl: false, buildDunePackage: false, ounit2: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 13, 5], ["hash", 14, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 21, 5], ["homepage", 22, 5], ["changelog", 23, 5], ["license", 24, 5], ["maintainers", 25, 5], ["teams", 26, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["doCheck", 17, 3], ["checkInputs", 18, 3], ["meta", 20, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,18 +12,18 @@ export default nix.lambda((args) => (() => {
   const buildDunePackage = nix.arg($, "buildDunePackage");
   const ounit2 = nix.arg($, "ounit2");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "mirage-bootvar",
       version: "1.0.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/mirage/mirage-bootvar/releases/download/v${nix.sel(finalAttrs, "version")}/mirage-bootvar-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-EuXvtt2nap3B7jY7nYMenOqamLTQruyFJ8K2tRZ4Bq0=",
         })))),
       doCheck: true,
       checkInputs: nix.thunk(() => [ounit2]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Boot time arguments for MirageOS",
         homepage: "https://github.com/mirage/mirage-bootvar",
         changelog: nix.thunk(() => nix.str`https://raw.githubusercontent.com/mirage/mirage-bootvar/v${nix.sel(finalAttrs, "version")}/CHANGES.md`),

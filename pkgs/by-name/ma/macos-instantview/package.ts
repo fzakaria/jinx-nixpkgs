@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 13, 5], ["hash", 14, 5]], [["platforms", 37, 5], ["description", 38, 5], ["homepage", 39, 5], ["license", 40, 5], ["sourceProvenance", 41, 5], ["maintainers", 42, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["nativeBuildInputs", 17, 3], ["dontUnpack", 19, 3], ["dontConfigure", 20, 3], ["dontBuild", 21, 3], ["dontFixup", 22, 3], ["installPhase", 24, 3], ["meta", 36, 3]]]);
 const formals$1 = { args: { stdenvNoCC: false, fetchurl: false, lib: false, _7zz: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 13, 5], ["hash", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["platforms", 37, 5], ["description", 38, 5], ["homepage", 39, 5], ["license", 40, 5], ["sourceProvenance", 41, 5], ["maintainers", 42, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["nativeBuildInputs", 17, 3], ["dontUnpack", 19, 3], ["dontConfigure", 20, 3], ["dontBuild", 21, 3], ["dontFixup", 22, 3], ["installPhase", 24, 3], ["meta", 36, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const _7zz = nix.arg($, "_7zz");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "instantview",
       version: "3.24R0004",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://www.siliconmotion.com/downloads/macOS_InstantView_V${nix.sel(finalAttrs, "version")}.dmg`),
           hash: "sha256-lozVykKK1edUQlwxNKy/GyMKjsQaXeR9XVoau72Bwhg=",
         })))),
@@ -29,7 +27,7 @@ export default nix.lambda((args) => (() => {
       dontFixup: true,
       installPhase: "runHook preInstall\nmkdir -p \"$out/Applications\"\n\n# Extract the DMG using 7zip\n7zz x \"$src\" -oextracted -y\n\ncp -r extracted/*.app \"$out/Applications/\"\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "darwin")),
         description: "USB Docking Station plugin-and-display support with SM76x driver",
         homepage: "https://www.siliconmotion.com/events/instantview/",

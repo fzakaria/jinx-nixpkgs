@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["sha256", 21, 5], ["leaveDotGit", 24, 5]], [["pname", 29, 7], ["src", 30, 15], ["version", 30, 19], ["vendorHash", 32, 7]], [["description", 66, 5], ["homepage", 67, 5], ["changelog", 68, 5], ["license", 69, 5], ["maintainers", 70, 5]], [["pname", 36, 3], ["src", 38, 11], ["version", 38, 15], ["outputs", 40, 3], ["nativeBuildInputs", 42, 3], ["buildInputs", 46, 3], ["postPatch", 54, 3], ["preBuild", 61, 3], ["meta", 65, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, buildPerlPackage: false, DBDmysql: false, DBI: false, IOSocketSSL: false, TermReadKey: false, go: false, buildGoModule: false, git: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["sha256", 21, 5], ["leaveDotGit", 24, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 29, 7], ["src", 30, 15], ["version", 30, 19], ["vendorHash", 32, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 66, 5], ["homepage", 67, 5], ["changelog", 68, 5], ["license", 69, 5], ["maintainers", 70, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 36, 3], ["src", 38, 11], ["version", 38, 15], ["outputs", 40, 3], ["nativeBuildInputs", 42, 3], ["buildInputs", 46, 3], ["postPatch", 54, 3], ["preBuild", 61, 3], ["meta", 65, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,7 +19,7 @@ export default nix.lambda((args) => (() => {
   const git = nix.arg($, "git");
   const version = "3.7.1-4";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "percona",
       repo: "percona-toolkit",
       rev: nix.thunk(() => nix.str`v${version}`),
@@ -30,14 +27,14 @@ export default nix.lambda((args) => (() => {
       leaveDotGit: true,
     }))));
   const goDeps = nix.thunk(() => nix.sel(nix.app(buildGoModule, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "Percona-Toolkit go-bindings",
       src: src,
       version: version,
       vendorHash: "sha256-LdUWZdoKVsYcL6DO0U18pHMmF4D+5PwMdlJf416H4hA=",
     }))), "goModules"));
   return nix.app(buildPerlPackage, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "Percona-Toolkit",
       src: src,
       version: version,
@@ -51,7 +48,7 @@ substituteInPlace src/go/Makefile \\
 `),
       preBuild: "export HOME=$TMPDIR\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Collection of advanced command-line tools to perform a variety of MySQL and system tasks",
         homepage: "https://www.percona.com/software/database-tools/percona-toolkit",
         changelog: "https://docs.percona.com/percona-toolkit/release_notes.html",

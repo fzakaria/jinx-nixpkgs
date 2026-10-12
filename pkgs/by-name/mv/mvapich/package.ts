@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 51, 5], ["hash", 52, 5]], [["LDFLAGS", 128, 7]], [["package", 165, 9]], [["pkg-config", 164, 7]], [["cudaSupport", 162, 13], ["rocmSupport", 162, 25], ["tests", 163, 5]], [["description", 171, 5], ["homepage", 172, 5], ["license", 173, 5], ["pkgConfigModules", 174, 5], ["maintainers", 175, 5], ["platforms", 176, 5]], [["pname", 44, 3], ["version", 45, 3], ["strictDeps", 47, 3], ["__structuredAttrs", 48, 3], ["src", 50, 3], ["outputs", 55, 3], ["nativeBuildInputs", 61, 3], ["buildInputs", 75, 3], ["configureFlags", 104, 3], ["env", 128, 3], ["doCheck", 130, 3], ["postInstall", 132, 3], ["preFixup", 142, 3], ["postFixup", 149, 3], ["enableParallelBuilding", 159, 3], ["passthru", 161, 3], ["meta", 170, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, "pkg-config": false, removeReferencesTo: false, bison: false, "rdma-core": false, libxml2: false, perl: false, gfortran: false, slurm: false, testers: false, openssh: false, hwloc: false, zlib: false, makeWrapper: false, python3: false, config: false, autoAddDriverRunpath: false, ucx: false, libfabric: false, cudaSupport: true, cudaPackages: false, rocmSupport: true, rocmPackages: false, useSlurm: true, network: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 51, 5], ["hash", 52, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["LDFLAGS", 128, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["package", 165, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pkg-config", 164, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["cudaSupport", 162, 13], ["rocmSupport", 162, 25], ["tests", 163, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 171, 5], ["homepage", 172, 5], ["license", 173, 5], ["pkgConfigModules", 174, 5], ["maintainers", 175, 5], ["platforms", 176, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 44, 3], ["version", 45, 3], ["strictDeps", 47, 3], ["__structuredAttrs", 48, 3], ["src", 50, 3], ["outputs", 55, 3], ["nativeBuildInputs", 61, 3], ["buildInputs", 75, 3], ["configureFlags", 104, 3], ["env", 128, 3], ["doCheck", 130, 3], ["postInstall", 132, 3], ["preFixup", 142, 3], ["postFixup", 149, 3], ["enableParallelBuilding", 159, 3], ["passthru", 161, 3], ["meta", 170, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -43,13 +37,13 @@ export default nix.lambda((args) => (() => {
   nix.assert_(nix.builtins.elem(network, nix.thunk(() => ["ucx", "ofi"])), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/mv/mvapich/package.nix:37:1");
   nix.assert_((!nix.asBool(cudaSupport) || nix.asBool(!nix.asBool(rocmSupport))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/mv/mvapich/package.nix:41:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "mvapich",
       version: "4.1",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://mvapich.cse.ohio-state.edu/download/mvapich/mv2/mvapich-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-JaU9NyW2aeLGSBWPt8n8WxOIlT86L5SXSFhsRH0OQ+4=",
         })))),
@@ -80,7 +74,7 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.str`--with-cuda-lib=${nix.app(nix.sel(lib, "getLib"), nix.thunk(() => nix.sel(cudaPackages, "cuda_cudart")))}/lib`),
         ])), nix.app(nix.sel(lib, "optionals"), rocmSupport, nix.thunk(() => [nix.thunk(() => nix.str`--with-hip=${nix.sel(rocmPackages, "clr")}`)]))))))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         LDFLAGS: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), cudaSupport, nix.thunk(() => nix.str`-L${nix.app(nix.sel(lib, "getOutput"), "stubs", nix.thunk(() => nix.sel(cudaPackages, "cuda_cudart")))}/lib/stubs`))),
       })),
       doCheck: false,
@@ -100,19 +94,19 @@ fi
 `),
       enableParallelBuilding: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         cudaSupport: cudaSupport,
         rocmSupport: rocmSupport,
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "hasPkgConfigModules"), nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "MPI-3.1 implementation optimized for Infiband and OmniPath transport",
         homepage: "https://mvapich.cse.ohio-state.edu",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

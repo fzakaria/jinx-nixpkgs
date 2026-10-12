@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["sparseCheckout", 26, 5], ["hash", 30, 5]], [["url", 37, 7], ["hash", 38, 7], ["relative", 39, 7]], [["url", 43, 7], ["hash", 44, 7], ["relative", 45, 7]], [["url", 51, 7], ["hash", 52, 7], ["relative", 53, 7]], [["finalAttrs", 88, 54]], [["updateScript", 88, 12]], [["description", 91, 5], ["homepage", 92, 5], ["license", 93, 5], ["teams", 94, 5], ["platforms", 95, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["sourceRoot", 32, 3], ["patches", 34, 3], ["nativeBuildInputs", 57, 3], ["buildInputs", 62, 3], ["cmakeFlags", 76, 3], ["passthru", 88, 3], ["meta", 90, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, numactl: false, libpciaccess: false, libxml2: false, elfutils: false, glog: false, fmt: false, fetchFromGitHub: false, rocmUpdateScript: false, cmake: false, clang: false, python3Packages: false, fetchpatch: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["sparseCheckout", 26, 5], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["url", 37, 7], ["hash", 38, 7], ["relative", 39, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["url", 43, 7], ["hash", 44, 7], ["relative", 45, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["url", 51, 7], ["hash", 52, 7], ["relative", 53, 7]]);
-const pos$5 = nix.positions(here + "/default.nix", [["finalAttrs", 88, 54]]);
-const pos$6 = nix.positions(here + "/default.nix", [["updateScript", 88, 12]]);
-const pos$7 = nix.positions(here + "/default.nix", [["description", 91, 5], ["homepage", 92, 5], ["license", 93, 5], ["teams", 94, 5], ["platforms", 95, 5]]);
-const pos$8 = nix.positions(here + "/default.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["sourceRoot", 32, 3], ["patches", 34, 3], ["nativeBuildInputs", 57, 3], ["buildInputs", 62, 3], ["cmakeFlags", 76, 3], ["passthru", 88, 3], ["meta", 90, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const python3Packages = nix.arg($, "python3Packages");
   const fetchpatch = nix.arg($, "fetchpatch");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "rocprofiler-register",
       version: "7.2.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ROCm",
           repo: "rocm-systems",
           tag: nix.thunk(() => nix.str`rocm-${nix.sel(finalAttrs, "version")}`),
@@ -43,19 +36,19 @@ export default nix.lambda((args) => (() => {
       sourceRoot: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "name")}/projects/rocprofiler-register`),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/ROCm/rocm-systems/commit/ef7253365c420ca486f074b9e9119a222e30fea0.patch",
             hash: "sha256-dwqvZ4AaTcOk2mSnxgHp/NbhjlD8W6KVz1H5ZF4i/Tw=",
             relative: "projects/rocprofiler-register",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: "https://github.com/ROCm/rocm-systems/commit/c8ad2522083c6e00539ce5c1c22df766c20084fb.patch",
             hash: "sha256-VloRKV6kUzIfIInltx/bV1EM0FUfeQZrVAx6qgdsLyg=",
             relative: "projects/rocprofiler-register",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             url: "https://github.com/ROCm/rocm-systems/commit/e2f588592ecfb0653ed5b3078753186325adf70a.patch",
             hash: "sha256-ip/s7tmUptcXMen3fyQJYKiZKwoe3SH0XqTVb0YBA7k=",
             relative: "projects/rocprofiler-register",
@@ -85,11 +78,11 @@ export default nix.lambda((args) => (() => {
         "-DCMAKE_INSTALL_INCLUDEDIR=include",
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
-        updateScript: nix.thunk(() => nix.app(rocmUpdateScript, nix.thunk(() => ({ [nix.POS]: pos$5, finalAttrs: finalAttrs })))),
+        [nix.POS]: $pos[5],
+        updateScript: nix.thunk(() => nix.app(rocmUpdateScript, nix.thunk(() => ({ [nix.POS]: $pos[4], finalAttrs: finalAttrs })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "Profiling with perf-counters and derived metrics",
         homepage: "https://github.com/ROCm/rocm-systems/tree/develop/projects/rocprofiler-register",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

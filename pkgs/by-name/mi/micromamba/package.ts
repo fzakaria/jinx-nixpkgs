@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["package", 30, 7], ["command", 31, 7]], [["nativeBuildInputs", 41, 11]], [["version", 29, 5], ["shell-init", 38, 5]], [["tests", 27, 12]], [["maintainers", 62, 5], ["mainProgram", 63, 5]], [["pname", 10, 3], ["version", 11, 3], ["dontUnpack", 13, 3], ["dontBuild", 14, 3], ["dontConfigure", 15, 3], ["installPhase", 17, 3], ["passthru", 27, 3], ["meta", 61, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, "mamba-cpp": false, testers: false, runCommand: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["package", 30, 7], ["command", 31, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["nativeBuildInputs", 41, 11]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 29, 5], ["shell-init", 38, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 27, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["maintainers", 62, 5], ["mainProgram", 63, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["dontUnpack", 13, 3], ["dontBuild", 14, 3], ["dontConfigure", 15, 3], ["installPhase", 17, 3], ["passthru", 27, 3], ["meta", 61, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const runCommand = nix.arg($, "runCommand");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "micromamba",
       version: nix.thunk(() => nix.sel(mamba_cpp, "version")),
       dontUnpack: true,
@@ -33,22 +28,22 @@ export default nix.lambda((args) => (() => {
 cp ${mamba_cpp}/bin/mamba $out/bin/micromamba
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$1,
+              [nix.POS]: $pos[0],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               command: "micromamba --version",
             })))),
           "shell-init": nix.thunk(() => nix.app(runCommand, "test-micromamba-shell-hook", nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(finalAttrs, "finalPackage"))]),
             })), "# The shell hook includes 'complete' commands for bash completion,\n# which fail in non-interactive bash. We temporarily ignore errors\n# during eval since we only care about the function definition.\nset +e\neval \"$(micromamba shell hook --shell bash)\" 2>/dev/null\nset -e\n\n# Test that the micromamba function works (not mamba).\n# If shell initialization fails above, then we expect to see an\n# error beginning with something like:\n#     'mamba' is running as a subprocess and can't modify the parent shell.\nmicromamba activate\n\ntouch $out\n")),
         })),
       })),
       meta: nix.thunk(() => nix.update(nix.sel(mamba_cpp, "meta"), {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
           return [nix.thunk(() => nix.lookup(w, "mausch"))];

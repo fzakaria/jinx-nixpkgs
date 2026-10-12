@@ -2,13 +2,12 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
-const pos$1 = nix.positions(here + "/top-julia-packages.nix", [["name", 5, 5], ["__impure", 7, 5], ["buildInputs", 9, 5], ["buildCommand", 15, 5]]);
-const pos$2 = nix.positions(here + "/top-julia-packages.nix", [["__impure", 28, 5], ["nativeBuildInputs", 29, 5]]);
+const $pos = nix.positions(here + "/top-julia-packages.nix", [[["name", 5, 5], ["__impure", 7, 5], ["buildInputs", 9, 5], ["buildCommand", 15, 5]], [["__impure", 28, 5], ["nativeBuildInputs", 29, 5]]]);
 
 export default nix.thunk(() => (() => {
   const w = nix.withScope(nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../../../.")), nix.thunk(() => ({})))), null);
   const package_requests = nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "stdenv"), "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: "julia-package-requests.csv",
       __impure: true,
       buildInputs: nix.thunk(() => [
@@ -20,7 +19,7 @@ export default nix.thunk(() => (() => {
     }))));
   const registry = nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "../registry.nix"), nix.thunk(() => ({}))));
   return nix.app(nix.lookup(w, "runCommand"), "top-julia-packages.yaml", nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       __impure: true,
       nativeBuildInputs: nix.thunk(() => [
         nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "python3"), "withPackages"), (ps) => (() => {

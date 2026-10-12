@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["sha256", 20, 5]], [["name", 26, 7], ["url", 27, 7], ["sha256", 28, 7]], [["fontDirectories", 37, 41]], [["FONTCONFIG_FILE", 37, 7]], [["description", 59, 5], ["homepage", 60, 5], ["license", 61, 5], ["platforms", 62, 5], ["maintainers", 63, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["patches", 23, 3], ["postPatch", 32, 3], ["env", 37, 3], ["buildInputs", 39, 3], ["buildPhase", 45, 3], ["installPhase", 52, 3], ["meta", 58, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchFromGitHub: false, fetchpatch: false, makeFontsConf: false, inkscape: false, xcursorgen: false, bc: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["sha256", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 26, 7], ["url", 27, 7], ["sha256", 28, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["fontDirectories", 37, 41]]);
-const pos$4 = nix.positions(here + "/package.nix", [["FONTCONFIG_FILE", 37, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 59, 5], ["homepage", 60, 5], ["license", 61, 5], ["platforms", 62, 5], ["maintainers", 63, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["patches", 23, 3], ["postPatch", 32, 3], ["env", 37, 3], ["buildInputs", 39, 3], ["buildPhase", 45, 3], ["installPhase", 52, 3], ["meta", 58, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = "capitaine-cursors";
       const version = "4";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "keeferrourke",
           repo: "capitaine-cursors",
           rev: nix.thunk(() => nix.str`r${version}`),
@@ -32,7 +27,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "inkscape-1.0-compat",
             url: "https://github.com/keeferrourke/capitaine-cursors/commit/9da0b53e6098ed023c5c24c6ef6bfb1f68a79924.patch",
             sha256: "0lx5i60ahy6a2pir4zzlqn5lqsv6claqg8mv17l1a028h9aha3cv",
@@ -40,14 +35,14 @@ export default nix.lambda((args) => (() => {
       ]);
       const postPatch = "patchShebangs .\n";
       const env = nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        FONTCONFIG_FILE: nix.thunk(() => nix.app(makeFontsConf, nix.thunk(() => ({ [nix.POS]: pos$3, fontDirectories: [] })))),
+        [nix.POS]: $pos[3],
+        FONTCONFIG_FILE: nix.thunk(() => nix.app(makeFontsConf, nix.thunk(() => ({ [nix.POS]: $pos[2], fontDirectories: [] })))),
       }));
       const buildInputs = nix.thunk(() => [inkscape, xcursorgen, bc]);
       const buildPhase = "for variant in dark light ; do\n# https://github.com/NixOS/nixpkgs/blob/master/pkgs/data/fonts/emojione/default.nix#L16\n  HOME=\"$NIX_BUILD_ROOT\" ./build.sh --max-dpi xhd --type $variant\ndone\n";
       const installPhase = "install -dm 0755 $out/share/icons\ncp -pr dist/dark $out/share/icons/capitaine-cursors\ncp -pr dist/light $out/share/icons/capitaine-cursors-white\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "X-cursor theme inspired by macOS and based on KDE Breeze",
         homepage: "https://github.com/keeferrourke/capitaine-cursors",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3")),
@@ -58,7 +53,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname,
         version,
         src,

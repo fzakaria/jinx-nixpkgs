@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["iptables", 28, 9], ["nftables", 39, 9]], [["url", 54, 5], ["sha256", 55, 5]], [["iptables", 101, 7], ["nftables", 107, 7]], [["bittorrent-integration", 117, 5], ["upnp", 118, 26]], [["tests", 116, 12]], [["homepage", 122, 5], ["description", 123, 5], ["platforms", 124, 5], ["license", 125, 5], ["mainProgram", 126, 5]], [["pname", 50, 3], ["version", 51, 3], ["src", 53, 3], ["buildInputs", 58, 3], ["nativeBuildInputs", 67, 3], ["dontAddPrefix", 74, 3], ["configurePlatforms", 76, 3], ["configureFlags", 77, 3], ["installFlags", 92, 3], ["postFixup", 97, 3], ["passthru", 116, 3], ["meta", 121, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, "iptables-legacy": false, libuuid: false, linuxHeaders: false, openssl: false, "pkg-config": false, which: false, iproute2: false, gnused: false, coreutils: false, gnugrep: false, gawk: false, makeWrapper: false, nixosTests: false, firewall: true, nftables: false, libmnl: false, libnftnl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["iptables", 28, 9], ["nftables", 39, 9]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 54, 5], ["sha256", 55, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["iptables", 101, 7], ["nftables", 107, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["bittorrent-integration", 117, 5], ["upnp", 118, 26]]);
-const pos$5 = nix.positions(here + "/package.nix", [["tests", 116, 12]]);
-const pos$6 = nix.positions(here + "/package.nix", [["homepage", 122, 5], ["description", 123, 5], ["platforms", 124, 5], ["license", 125, 5], ["mainProgram", 126, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 50, 3], ["version", 51, 3], ["src", 53, 3], ["buildInputs", 58, 3], ["nativeBuildInputs", 67, 3], ["dontAddPrefix", 74, 3], ["configurePlatforms", 76, 3], ["configureFlags", 77, 3], ["installFlags", 92, 3], ["postFixup", 97, 3], ["passthru", 116, 3], ["meta", 121, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,7 +28,7 @@ export default nix.lambda((args) => (() => {
   const libmnl = nix.arg($, "libmnl");
   const libnftnl = nix.arg($, "libnftnl");
   const scriptBinEnv = nix.thunk(() => nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => nix.sel({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       iptables: nix.thunk(() => [coreutils, which, iproute2, iptables_legacy, gnused, gnugrep, gawk]),
       nftables: nix.thunk(() => [coreutils, which, nftables]),
     }, nix.key(nix.force(firewall))))));
@@ -42,7 +36,7 @@ export default nix.lambda((args) => (() => {
       const pname = "miniupnpd";
       const version = "2.3.10";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: nix.thunk(() => nix.str`https://miniupnp.tuxfamily.org/files/miniupnpd-${version}.tar.gz`),
           sha256: "sha256-+cNO02MvtgzSSN1Yl72YR5oQOnVoiwVsovBp5oqzKYc=",
         }))));
@@ -64,7 +58,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const installFlags = nix.thunk(() => ["PREFIX=$(out)", "INSTALLPREFIX=$(out)"]);
       const postFixup = nix.thunk(() => nix.sel({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         iptables: nix.thunk(() => nix.str`for script in $out/etc/miniupnpd/ip{,6}tables_{init,removeall}.sh
 do
   wrapProgram $script --prefix PATH : '${scriptBinEnv}:$PATH'
@@ -77,15 +71,15 @@ done
 `),
       }, nix.key(nix.force(firewall))));
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           "bittorrent-integration": nix.thunk(() => nix.sel(nixosTests, "bittorrent")),
           upnp: nix.thunk(() => nix.attr(nixosTests, "upnp")),
         })),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         homepage: "https://miniupnp.tuxfamily.org/",
         description: "Daemon that implements the UPnP Internet Gateway Device (IGD) specification",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
@@ -93,7 +87,7 @@ done
         mainProgram: "miniupnpd",
       }));
       return {
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         pname,
         version,
         src,

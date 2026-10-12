@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["pname", 18, 26], ["version", 18, 32], ["hash", 19, 5]], [["description", 26, 5], ["homepage", 27, 5], ["license", 28, 5], ["maintainers", 29, 5]], [["pname", 10, 3], ["version", 11, 3], ["nativeBuildInputs", 13, 3], ["buildInputs", 15, 3], ["src", 17, 3], ["cargoHash", 22, 3], ["cargoDepsName", 23, 3], ["meta", 25, 3]]]);
 const formals$1 = { args: { lib: false, fetchCrate: false, rustPlatform: false, openssl: false, "pkg-config": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["pname", 18, 26], ["version", 18, 32], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 26, 5], ["homepage", 27, 5], ["license", 28, 5], ["maintainers", 29, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["nativeBuildInputs", 13, 3], ["buildInputs", 15, 3], ["src", 17, 3], ["cargoHash", 22, 3], ["cargoDepsName", 23, 3], ["meta", 25, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,13 +13,13 @@ export default nix.lambda((args) => (() => {
   const openssl = nix.arg($, "openssl");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "geoclock",
       version: "1.0.0",
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [openssl]),
       src: nix.thunk(() => nix.app(fetchCrate, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-s23e9shdEnCnyr/LI0MioTW3vkoDZPIwWwJhyFUO7o4=",
@@ -29,7 +27,7 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-7mApZj3Ksy8Av0W+0+UZQCkH281bSBd4xo8/7JowmHs=",
       cargoDepsName: "geoclock",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Displays time as calculated by your longitude",
         homepage: "https://github.com/FGRCL/geoclock",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

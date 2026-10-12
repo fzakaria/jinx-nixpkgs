@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]], [["arrays", 43, 25]], [["description", 77, 5], ["homepage", 78, 5], ["changelog", 79, 5], ["license", 80, 5], ["maintainers", 81, 5]], [["pname", 22, 3], ["version", 23, 3], ["pyproject", 24, 3], ["src", 26, 3], ["build-system", 33, 3], ["postPatch", 38, 3], ["optional-dependencies", 43, 3], ["pythonImportsCheck", 45, 3], ["preCheck", 48, 3], ["nativeCheckInputs", 64, 3], ["pytestFlags", 72, 3], ["meta", 76, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, python: false, cython: false, setuptools: false, numpy: false, hypothesis: false, "pytest-cov-stub": false, pytestCheckHook: false, sympy: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["arrays", 43, 25]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 77, 5], ["homepage", 78, 5], ["changelog", 79, 5], ["license", 80, 5], ["maintainers", 81, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 22, 3], ["version", 23, 3], ["pyproject", 24, 3], ["src", 26, 3], ["build-system", 33, 3], ["postPatch", 38, 3], ["optional-dependencies", 43, 3], ["pythonImportsCheck", 45, 3], ["preCheck", 48, 3], ["nativeCheckInputs", 64, 3], ["pytestFlags", 72, 3], ["meta", 76, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.10.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Quansight-Labs",
           repo: "ndindex",
           tag: version,
@@ -34,7 +31,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const build_system = nix.thunk(() => [cython, setuptools]);
       const postPatch = "substituteInPlace pytest.ini \\\n  --replace-fail \"--flakes\" \"\"\n";
-      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, arrays: nix.thunk(() => [numpy]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: $pos[1], arrays: nix.thunk(() => [numpy]) }));
       const pythonImportsCheck = nix.thunk(() => ["ndindex"]);
       const preCheck = nix.thunk(() => nix.str`cd $out
 
@@ -53,7 +50,7 @@ EOF
       const nativeCheckInputs = nix.thunk(() => nix.concat([hypothesis, pytest_cov_stub, pytestCheckHook, sympy], nix.sel(optional_dependencies, "arrays")));
       const pytestFlags = nix.thunk(() => ["--hypothesis-profile=ci"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Python library for manipulating indices of ndarrays",
         homepage: "https://github.com/Quansight-Labs/ndindex",
         changelog: nix.thunk(() => nix.str`https://github.com/Quansight-Labs/ndindex/releases/tag/${nix.sel(src, "tag")}`),
@@ -61,7 +58,7 @@ EOF
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

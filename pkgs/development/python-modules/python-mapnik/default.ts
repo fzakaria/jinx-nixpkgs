@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 37, 5], ["repo", 38, 5], ["rev", 39, 5], ["hash", 40, 5], ["fetchSubmodules", 42, 5]], [["libmapnik", 49, 7]], [["description", 128, 5], ["homepage", 129, 5], ["license", 130, 5], ["teams", 131, 5], ["broken", 132, 5]], [["pname", 32, 3], ["version", 33, 3], ["pyproject", 34, 3], ["src", 36, 3], ["patches", 45, 3], ["build-system", 53, 3], ["nativeBuildInputs", 55, 3], ["dependencies", 61, 3], ["propagatedBuildInputs", 78, 3], ["configureFlags", 83, 3], ["disabled", 85, 3], ["preBuild", 87, 3], ["nativeCheckInputs", 95, 3], ["preCheck", 97, 3], ["disabledTests", 107, 3], ["pythonImportsCheck", 125, 3], ["meta", 127, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, replaceVars: false, isPyPy: false, python: false, stdenv: false, setuptools: false, pillow: false, pycairo: false, "pkg-config": false, boost: false, cairo: false, harfbuzz: false, icu: false, libjpeg: false, libpng: false, libtiff: false, libwebp: false, mapnik: false, proj: false, zlib: false, libxml2: false, sqlite: false, pytestCheckHook: false, sparsehash: false, pybind11: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 37, 5], ["repo", 38, 5], ["rev", 39, 5], ["hash", 40, 5], ["fetchSubmodules", 42, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["libmapnik", 49, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 128, 5], ["homepage", 129, 5], ["license", 130, 5], ["teams", 131, 5], ["broken", 132, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 32, 3], ["version", 33, 3], ["pyproject", 34, 3], ["src", 36, 3], ["patches", 45, 3], ["build-system", 53, 3], ["nativeBuildInputs", 55, 3], ["dependencies", 61, 3], ["propagatedBuildInputs", 78, 3], ["configureFlags", 83, 3], ["disabled", 85, 3], ["preBuild", 87, 3], ["nativeCheckInputs", 95, 3], ["preCheck", 97, 3], ["disabledTests", 107, 3], ["pythonImportsCheck", 125, 3], ["meta", 127, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -38,12 +35,12 @@ export default nix.lambda((args) => (() => {
   const sparsehash = nix.arg($, "sparsehash");
   const pybind11 = nix.arg($, "pybind11");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "python-mapnik",
       version: "4.1.3.unstable-2025-09-25",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "mapnik",
           repo: "python-mapnik",
           rev: "4b51d57911dc6a1a9f35c62c681fbdeb56fc69d4",
@@ -51,7 +48,7 @@ export default nix.lambda((args) => (() => {
           fetchSubmodules: true,
         })))),
       patches: nix.thunk(() => [
-        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./find-libmapnik.patch"), nix.thunk(() => ({ [nix.POS]: pos$2, libmapnik: nix.thunk(() => nix.str`${mapnik}/lib`) })))),
+        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./find-libmapnik.patch"), nix.thunk(() => ({ [nix.POS]: $pos[1], libmapnik: nix.thunk(() => nix.str`${mapnik}/lib`) })))),
       ]),
       "build-system": nix.thunk(() => [setuptools]),
       nativeBuildInputs: nix.thunk(() => [mapnik, pkg_config, pybind11]),
@@ -100,7 +97,7 @@ export XMLPARSER=libxml2
         ])))),
       pythonImportsCheck: nix.thunk(() => ["mapnik"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Python bindings for Mapnik",
         homepage: "https://mapnik.org",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),

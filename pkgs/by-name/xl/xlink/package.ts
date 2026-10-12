@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]], [["url", 32, 7], ["hash", 33, 7]], [["description", 84, 5], ["homepage", 85, 5], ["license", 86, 5], ["platforms", 87, 5], ["maintainers", 88, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["outputs", 22, 3], ["patches", 28, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 42, 3], ["cmakeFlags", 46, 3], ["postInstall", 53, 3], ["meta", 83, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch: false, cmake: false, "pkg-config": false, libusb1: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 32, 7], ["hash", 33, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 84, 5], ["homepage", 85, 5], ["license", 86, 5], ["platforms", 87, 5], ["maintainers", 88, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["outputs", 22, 3], ["patches", 28, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 42, 3], ["cmakeFlags", 46, 3], ["postInstall", 53, 3], ["meta", 83, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const libusb1 = nix.arg($, "libusb1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "xlink",
       version: "0-unstable-2025-14-03",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "luxonis",
           repo: "XLink",
           rev: "fe8b5450f545a2ebf26dbc093e98c0265d7f4029",
@@ -32,7 +29,7 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [
         nix.path(here, "./001-remove-hunter.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/luxonis/XLink/commit/160c6c918c07e28a6a8c5c080a257f7619223304.patch?full_index=1",
             hash: "sha256-1VMCteJf/an20fI3UTT/X9cH96dCxPRQolfN+e+6jnU=",
           })))),
@@ -47,7 +44,7 @@ export default nix.lambda((args) => (() => {
       ]),
       postInstall: "mkdir -p $out/include\nmkdir -p $share/examples\nmkdir -p $share/tests\n\ncp -r $src/include/* $out/include/\n\nexamples=(\n  \"boot_firmware\"\n  \"list_devices\"\n  \"boot_bootloader\"\n  \"search_devices\"\n  \"Makefile\"\n  \"device_connect_reset\"\n)\n\ntests=(\n  \"multiple_open_stream\"\n  \"multithreading_search_test\"\n)\n\nfind $buildDir\nfor file in \"${examples[@]}\"; do\n  cp examples/$file $share/examples/$file\ndone\nfor file in \"${tests[@]}\"; do\n  cp tests/$file $share/tests/$file\ndone\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Library for communication with Myriad VPUs",
         homepage: "https://github.com/luxonis/XLink",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

@@ -2,29 +2,9 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/dnscrypt-proxy.nix", [[["maintainers", 8, 8]], [["listen_addresses", 21, 46]], [["settings", 21, 37]], [["dnscrypt-proxy", 21, 22]], [["services", 21, 13]], [["listen_addresses", 24, 46]], [["settings", 24, 37]], [["dnscrypt-proxy", 24, 22]], [["services", 24, 13]], [["enable", 28, 27]], [["apparmor", 28, 18]], [["urls", 32, 13], ["cache_file", 33, 13], ["minisign_key", 34, 13], ["refresh_delay", 35, 13]], [["public-resolvers", 31, 19]], [["sources", 31, 11]], [["enable", 29, 33], ["settings", 30, 33]], [["server", 40, 35]], [["enable", 39, 26], ["settings", 40, 26]], [["dnscrypt-proxy", 29, 18], ["dnsmasq", 39, 18]], [["imports", 16, 9], ["security", 28, 9], ["services", 29, 9]], [["client", 13, 5]], [["name", 7, 3], ["meta", 8, 3], ["nodes", 10, 3], ["testScript", 47, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/dnscrypt-proxy.nix", [["maintainers", 8, 8]]);
 const formals$2 = { args: {  }, ellipsis: true };
-const pos$2 = nix.positions(here + "/dnscrypt-proxy.nix", [["listen_addresses", 21, 46]]);
-const pos$3 = nix.positions(here + "/dnscrypt-proxy.nix", [["settings", 21, 37]]);
-const pos$4 = nix.positions(here + "/dnscrypt-proxy.nix", [["dnscrypt-proxy", 21, 22]]);
-const pos$5 = nix.positions(here + "/dnscrypt-proxy.nix", [["services", 21, 13]]);
-const pos$6 = nix.positions(here + "/dnscrypt-proxy.nix", [["listen_addresses", 24, 46]]);
-const pos$7 = nix.positions(here + "/dnscrypt-proxy.nix", [["settings", 24, 37]]);
-const pos$8 = nix.positions(here + "/dnscrypt-proxy.nix", [["dnscrypt-proxy", 24, 22]]);
-const pos$9 = nix.positions(here + "/dnscrypt-proxy.nix", [["services", 24, 13]]);
-const pos$10 = nix.positions(here + "/dnscrypt-proxy.nix", [["enable", 28, 27]]);
-const pos$11 = nix.positions(here + "/dnscrypt-proxy.nix", [["apparmor", 28, 18]]);
-const pos$12 = nix.positions(here + "/dnscrypt-proxy.nix", [["urls", 32, 13], ["cache_file", 33, 13], ["minisign_key", 34, 13], ["refresh_delay", 35, 13]]);
-const pos$13 = nix.positions(here + "/dnscrypt-proxy.nix", [["public-resolvers", 31, 19]]);
-const pos$14 = nix.positions(here + "/dnscrypt-proxy.nix", [["sources", 31, 11]]);
-const pos$15 = nix.positions(here + "/dnscrypt-proxy.nix", [["enable", 29, 33], ["settings", 30, 33]]);
-const pos$16 = nix.positions(here + "/dnscrypt-proxy.nix", [["server", 40, 35]]);
-const pos$17 = nix.positions(here + "/dnscrypt-proxy.nix", [["enable", 39, 26], ["settings", 40, 26]]);
-const pos$18 = nix.positions(here + "/dnscrypt-proxy.nix", [["dnscrypt-proxy", 29, 18], ["dnsmasq", 39, 18]]);
-const pos$19 = nix.positions(here + "/dnscrypt-proxy.nix", [["imports", 16, 9], ["security", 28, 9], ["services", 29, 9]]);
-const pos$20 = nix.positions(here + "/dnscrypt-proxy.nix", [["client", 13, 5]]);
-const pos$21 = nix.positions(here + "/dnscrypt-proxy.nix", [["name", 7, 3], ["meta", 8, 3], ["nodes", 10, 3], ["testScript", 47, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,37 +12,37 @@ export default nix.lambda((args) => (() => {
   const localProxyPort = 43n;
   const localProxyExtraPort = 44n;
   return {
-    [nix.POS]: pos$21,
+    [nix.POS]: $pos[20],
     name: "dnscrypt-proxy",
-    meta: nix.thunk(() => ({ [nix.POS]: pos$1, maintainers: [] })),
+    meta: nix.thunk(() => ({ [nix.POS]: $pos[0], maintainers: [] })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$20,
+      [nix.POS]: $pos[19],
       client: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          [nix.POS]: pos$19,
+          [nix.POS]: $pos[18],
           imports: nix.thunk(() => [
             nix.thunk(() => ({
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               services: nix.thunk(() => ({
-                [nix.POS]: pos$4,
+                [nix.POS]: $pos[3],
                 "dnscrypt-proxy": nix.thunk(() => ({
-                  [nix.POS]: pos$3,
+                  [nix.POS]: $pos[2],
                   settings: nix.thunk(() => ({
-                    [nix.POS]: pos$2,
+                    [nix.POS]: $pos[1],
                     listen_addresses: nix.thunk(() => [nix.thunk(() => nix.str`127.0.0.1:${nix.builtins.toString(localProxyPort)}`)]),
                   })),
                 })),
               })),
             })),
             nix.thunk(() => ({
-              [nix.POS]: pos$9,
+              [nix.POS]: $pos[8],
               services: nix.thunk(() => ({
-                [nix.POS]: pos$8,
+                [nix.POS]: $pos[7],
                 "dnscrypt-proxy": nix.thunk(() => ({
-                  [nix.POS]: pos$7,
+                  [nix.POS]: $pos[6],
                   settings: nix.thunk(() => ({
-                    [nix.POS]: pos$6,
+                    [nix.POS]: $pos[5],
                     listen_addresses: nix.thunk(() => [
                       nix.thunk(() => nix.str`127.0.0.1:${nix.builtins.toString(localProxyExtraPort)}`),
                     ]),
@@ -72,20 +52,20 @@ export default nix.lambda((args) => (() => {
             })),
           ]),
           security: nix.thunk(() => ({
-            [nix.POS]: pos$11,
-            apparmor: nix.thunk(() => ({ [nix.POS]: pos$10, enable: true })),
+            [nix.POS]: $pos[10],
+            apparmor: nix.thunk(() => ({ [nix.POS]: $pos[9], enable: true })),
           })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$18,
+            [nix.POS]: $pos[17],
             "dnscrypt-proxy": nix.thunk(() => ({
-              [nix.POS]: pos$15,
+              [nix.POS]: $pos[14],
               enable: true,
               settings: nix.thunk(() => ({
-                [nix.POS]: pos$14,
+                [nix.POS]: $pos[13],
                 sources: nix.thunk(() => ({
-                  [nix.POS]: pos$13,
+                  [nix.POS]: $pos[12],
                   "public-resolvers": nix.thunk(() => ({
-                    [nix.POS]: pos$12,
+                    [nix.POS]: $pos[11],
                     urls: nix.thunk(() => ["https://download.dnscrypt.info/resolvers-list/v2/public-resolvers.md"]),
                     cache_file: "public-resolvers.md",
                     minisign_key: "RWQf6LRCGA9i53mlYecO4IzT51TGPpvWucNSCh1CBM0QTaLn73Y7GFO3",
@@ -95,10 +75,10 @@ export default nix.lambda((args) => (() => {
               })),
             })),
             dnsmasq: nix.thunk(() => ({
-              [nix.POS]: pos$17,
+              [nix.POS]: $pos[16],
               enable: true,
               settings: nix.thunk(() => ({
-                [nix.POS]: pos$16,
+                [nix.POS]: $pos[15],
                 server: nix.thunk(() => [
                   nix.thunk(() => nix.str`127.0.0.1#${nix.builtins.toString(localProxyPort)}`),
                   nix.thunk(() => nix.str`127.0.0.1#${nix.builtins.toString(localProxyExtraPort)}`),

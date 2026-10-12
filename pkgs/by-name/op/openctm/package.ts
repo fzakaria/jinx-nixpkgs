@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 16, 5], ["hash", 17, 5]], [["description", 68, 5], ["homepage", 69, 5], ["license", 70, 5], ["maintainers", 71, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["outputs", 20, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 29, 3], ["postPatch", 35, 3], ["makeFlags", 56, 3], ["makefile", 63, 3], ["preInstall", 65, 3], ["meta", 67, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, "pkg-config": false, libglut: false, libGLU: false, libx11: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 68, 5], ["homepage", 69, 5], ["license", 70, 5], ["maintainers", 71, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["outputs", 20, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 29, 3], ["postPatch", 35, 3], ["makeFlags", 56, 3], ["makefile", 63, 3], ["preInstall", 65, 3], ["meta", 67, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const libGLU = nix.arg($, "libGLU");
   const libx11 = nix.arg($, "libx11");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "openctm",
       version: "1.0.3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/project/openctm/OpenCTM-${nix.sel(finalAttrs, "version")}/OpenCTM-${nix.sel(finalAttrs, "version")}-src.tar.bz2`),
           hash: "sha256-So0mCNlzZPfuxWt8Y3xWuTCK6YKGs+kNu3QTyQ6UPx0=",
         })))),
@@ -45,7 +43,7 @@ substituteInPlace "lib/Makefile.macosx" "tools/Makefile.macosx" "tools/tinyxml/M
       makefile: nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? "Makefile.macosx" : "Makefile.linux")),
       preInstall: "mkdir -p $bin/bin $dev/include $out/lib $man/share/man/man1",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "File format, software library and a tool set for compression of 3D triangle meshes",
         homepage: "https://sourceforge.net/projects/openctm/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "zlib")),

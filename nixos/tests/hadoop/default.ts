@@ -2,23 +2,19 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["package", 5, 13]], [["package", 8, 13]], [["package", 11, 13]], [["package", 14, 13]], [["all", 4, 3], ["hdfs", 7, 3], ["yarn", 10, 3], ["hbase", 13, 3]]]);
 const formals$1 = { args: { handleTestOn: false, package: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["package", 5, 13]]);
-const pos$2 = nix.positions(here + "/default.nix", [["package", 8, 13]]);
-const pos$3 = nix.positions(here + "/default.nix", [["package", 11, 13]]);
-const pos$4 = nix.positions(here + "/default.nix", [["package", 14, 13]]);
-const pos$5 = nix.positions(here + "/default.nix", [["all", 4, 3], ["hdfs", 7, 3], ["yarn", 10, 3], ["hbase", 13, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const handleTestOn = nix.arg($, "handleTestOn");
   const package$ = nix.arg($, "package");
   return {
-    [nix.POS]: pos$5,
-    all: nix.thunk(() => nix.app(handleTestOn, nix.thunk(() => ["x86_64-linux", "aarch64-linux"]), nix.path(here, "./hadoop.nix"), nix.thunk(() => ({ [nix.POS]: pos$1, package: package$ })))),
-    hdfs: nix.thunk(() => nix.app(handleTestOn, nix.thunk(() => ["x86_64-linux", "aarch64-linux"]), nix.path(here, "./hdfs.nix"), nix.thunk(() => ({ [nix.POS]: pos$2, package: package$ })))),
-    yarn: nix.thunk(() => nix.app(handleTestOn, nix.thunk(() => ["x86_64-linux", "aarch64-linux"]), nix.path(here, "./yarn.nix"), nix.thunk(() => ({ [nix.POS]: pos$3, package: package$ })))),
-    hbase: nix.thunk(() => nix.app(handleTestOn, nix.thunk(() => ["x86_64-linux", "aarch64-linux"]), nix.path(here, "./hbase.nix"), nix.thunk(() => ({ [nix.POS]: pos$4, package: package$ })))),
+    [nix.POS]: $pos[4],
+    all: nix.thunk(() => nix.app(handleTestOn, nix.thunk(() => ["x86_64-linux", "aarch64-linux"]), nix.path(here, "./hadoop.nix"), nix.thunk(() => ({ [nix.POS]: $pos[0], package: package$ })))),
+    hdfs: nix.thunk(() => nix.app(handleTestOn, nix.thunk(() => ["x86_64-linux", "aarch64-linux"]), nix.path(here, "./hdfs.nix"), nix.thunk(() => ({ [nix.POS]: $pos[1], package: package$ })))),
+    yarn: nix.thunk(() => nix.app(handleTestOn, nix.thunk(() => ["x86_64-linux", "aarch64-linux"]), nix.path(here, "./yarn.nix"), nix.thunk(() => ({ [nix.POS]: $pos[2], package: package$ })))),
+    hbase: nix.thunk(() => nix.app(handleTestOn, nix.thunk(() => ["x86_64-linux", "aarch64-linux"]), nix.path(here, "./hbase.nix"), nix.thunk(() => ({ [nix.POS]: $pos[3], package: package$ })))),
   };
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

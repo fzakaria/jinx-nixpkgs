@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 35, 5], ["hash", 36, 5]], [["udevadm", 48, 7]], [["withGudev", 116, 11]], [["passthru", 115, 9]], [["withGudev", 114, 7]], [["withGudev", 111, 5], ["tests", 113, 5]], [["homepage", 123, 5], ["changelog", 124, 5], ["description", 125, 5], ["license", 126, 5], ["maintainers", 127, 5], ["platforms", 128, 5]], [["pname", 24, 3], ["version", 25, 3], ["outputs", 27, 3], ["src", 34, 3], ["patches", 39, 3], ["nativeBuildInputs", 52, 3], ["buildInputs", 65, 3], ["checkInputs", 71, 3], ["nativeCheckInputs", 75, 3], ["strictDeps", 81, 3], ["mesonFlags", 83, 3], ["doCheck", 88, 3], ["postPatch", 90, 3], ["preCheck", 100, 3], ["passthru", 109, 3], ["meta", 122, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, "docbook-xsl-nons": false, fetchurl: false, glib: false, "gobject-introspection": false, "gtk-doc": false, libgudev: false, libpcap: false, meson: false, mesonEmulatorHook: false, ninja: false, "pkg-config": false, python3: false, replaceVars: false, systemdMinimal: false, usbutils: false, vala: false, which: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 35, 5], ["hash", 36, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["udevadm", 48, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["withGudev", 116, 11]]);
-const pos$4 = nix.positions(here + "/package.nix", [["passthru", 115, 9]]);
-const pos$5 = nix.positions(here + "/package.nix", [["withGudev", 114, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["withGudev", 111, 5], ["tests", 113, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["homepage", 123, 5], ["changelog", 124, 5], ["description", 125, 5], ["license", 126, 5], ["maintainers", 127, 5], ["platforms", 128, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 24, 3], ["version", 25, 3], ["outputs", 27, 3], ["src", 34, 3], ["patches", 39, 3], ["nativeBuildInputs", 52, 3], ["buildInputs", 65, 3], ["checkInputs", 71, 3], ["nativeCheckInputs", 75, 3], ["strictDeps", 81, 3], ["mesonFlags", 83, 3], ["doCheck", 88, 3], ["postPatch", 90, 3], ["preCheck", 100, 3], ["passthru", 109, 3], ["meta", 122, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,19 +27,19 @@ export default nix.lambda((args) => (() => {
   const vala = nix.arg($, "vala");
   const which = nix.arg($, "which");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "umockdev",
       version: "0.19.3",
       outputs: nix.thunk(() => ["bin", "out", "dev", "devdoc"]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/martinpitt/umockdev/releases/download/${nix.sel(finalAttrs, "version")}/umockdev-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-RuReq29la/wJJDjX4OXfTF9R0Y46gzYMK+aAsgehoLc=",
         })))),
       patches: nix.thunk(() => [
         nix.path(here, "./hardcode-paths.patch"),
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./substitute-udevadm.patch"), nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             udevadm: nix.thunk(() => nix.str`${systemdMinimal}/bin/udevadm`),
           })))),
       ]),
@@ -68,18 +61,18 @@ export default nix.lambda((args) => (() => {
       postPatch: nix.thunk(() => nix.add("# Substitute the path to this derivation in the patch we apply.\nsubstituteInPlace src/umockdev-wrapper \\\n  --subst-var-by 'LIBDIR' \"${!outputLib}/lib\"\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isMusl")), "substituteInPlace src/libumockdev-preload.c \\\n  --replace-fail libc.so.6 libc.so\n"))),
       preCheck: "# Our patch makes the path to the `LD_PRELOAD`ed library absolute.\n# When running tests, the library is not yet installed, though,\n# so we need to replace the absolute path with a local one during build.\n# We are using a symlink that will be overridden during installation.\nmkdir -p \"$out/lib\"\nln -s \"$PWD/libumockdev-preload.so.0\" \"$out/lib/libumockdev-preload.so.0\"\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         withGudev: false,
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           withGudev: nix.thunk(() => nix.app(nix.sel(finalAttrs, "finalPackage", "overrideAttrs"), (attrs) => ({
-              [nix.POS]: pos$4,
-              passthru: nix.thunk(() => nix.update(nix.sel(attrs, "passthru"), { [nix.POS]: pos$3, withGudev: true })),
+              [nix.POS]: $pos[3],
+              passthru: nix.thunk(() => nix.update(nix.sel(attrs, "passthru"), { [nix.POS]: $pos[2], withGudev: true })),
             }))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         homepage: "https://github.com/martinpitt/umockdev",
         changelog: nix.thunk(() => nix.str`https://github.com/martinpitt/umockdev/releases/tag/${nix.sel(finalAttrs, "version")}`),
         description: "Mock hardware devices for creating unit tests",

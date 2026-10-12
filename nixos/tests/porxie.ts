@@ -2,35 +2,29 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/porxie.nix", [[["PORXIE_SERVER_ADDRESS", 11, 11]], [["enable", 9, 9], ["settings", 10, 9]], [["porxie", 8, 16]], [["services", 8, 7]], [["machine", 5, 9]], [["maintainers", 22, 8]], [["name", 3, 3], ["nodes", 5, 3], ["testScript", 16, 3], ["meta", 22, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/porxie.nix", [["PORXIE_SERVER_ADDRESS", 11, 11]]);
-const pos$2 = nix.positions(here + "/porxie.nix", [["enable", 9, 9], ["settings", 10, 9]]);
-const pos$3 = nix.positions(here + "/porxie.nix", [["porxie", 8, 16]]);
-const pos$4 = nix.positions(here + "/porxie.nix", [["services", 8, 7]]);
-const pos$5 = nix.positions(here + "/porxie.nix", [["machine", 5, 9]]);
-const pos$6 = nix.positions(here + "/porxie.nix", [["maintainers", 22, 8]]);
-const pos$7 = nix.positions(here + "/porxie.nix", [["name", 3, 3], ["nodes", 5, 3], ["testScript", 16, 3], ["meta", 22, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$7,
+    [nix.POS]: $pos[6],
     name: "porxie",
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             porxie: nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               enable: true,
-              settings: nix.thunk(() => ({ [nix.POS]: pos$1, PORXIE_SERVER_ADDRESS: "ip:127.0.0.1:6453" })),
+              settings: nix.thunk(() => ({ [nix.POS]: $pos[0], PORXIE_SERVER_ADDRESS: "ip:127.0.0.1:6453" })),
             })),
           })),
         };
@@ -38,7 +32,7 @@ export default nix.lambda((args) => (() => {
     })),
     testScript: "machine.wait_for_unit(\"porxie.service\")\nmachine.wait_for_open_port(6453)\nmachine.succeed(\"curl --fail http://localhost:6453\")\n",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "blooym"))]),
     })),
   };

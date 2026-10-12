@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]], [["description", 72, 5], ["homepage", 73, 5], ["changelog", 74, 5], ["license", 75, 5], ["maintainers", 76, 5], ["platforms", 80, 5], ["mainProgram", 81, 5]], [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["makeFlags", 33, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 40, 3], ["installPhase", 56, 3], ["meta", 71, 3]]]);
 const formals$1 = { args: { stdenv: false, fetchFromGitHub: false, lib: false, "pkg-config": false, libxt: false, libxrandr: false, libxi: false, libxinerama: false, libxfixes: false, libxext: false, libx11: false, xorgproto: false, cairo: false, pango: false, wayland: false, "wayland-protocols": false, "wayland-scanner": false, libconfig: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 72, 5], ["homepage", 73, 5], ["changelog", 74, 5], ["license", 75, 5], ["maintainers", 76, 5], ["platforms", 80, 5], ["mainProgram", 81, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["makeFlags", 33, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 40, 3], ["installPhase", 56, 3], ["meta", 71, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const wayland_scanner = nix.arg($, "wayland-scanner");
   const libconfig = nix.arg($, "libconfig");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "activate-linux",
       version: "1.2.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "MrGlockenspiel",
           repo: "activate-linux",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -57,7 +55,7 @@ export default nix.lambda((args) => (() => {
       ]),
       installPhase: "runHook preInstall\n\nmkdir -p $out/bin\nmkdir -p $out/share/man/man1\n\ncp activate-linux $out/bin\ncp activate-linux.1 $out/share/man/man1\n\ninstall -Dm444 res/activate-linux.png $out/share/icons/hicolor/128x128/apps/activate-linux.png\ninstall -Dm444 res/activate-linux.desktop -t $out/share/applications\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "\"Activate Windows\" watermark ported to Linux",
         homepage: "https://github.com/MrGlockenspiel/activate-linux",
         changelog: nix.thunk(() => nix.str`https://github.com/MrGlockenspiel/activate-linux/releases/tag/v${nix.sel(finalAttrs, "version")}`),

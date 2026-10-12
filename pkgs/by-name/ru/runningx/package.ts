@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 14, 5], ["sha256", 15, 5]], [["homepage", 34, 5], ["description", 35, 5], ["license", 36, 5], ["platforms", 37, 5], ["maintainers", 38, 5], ["mainProgram", 39, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 18, 3], ["buildInputs", 20, 3], ["dontUnpack", 22, 3], ["buildPhase", 24, 3], ["installPhase", 28, 3], ["meta", 33, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, "pkg-config": false, libx11: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 14, 5], ["sha256", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 34, 5], ["description", 35, 5], ["license", 36, 5], ["platforms", 37, 5], ["maintainers", 38, 5], ["mainProgram", 39, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 18, 3], ["buildInputs", 20, 3], ["dontUnpack", 22, 3], ["buildPhase", 24, 3], ["installPhase", 28, 3], ["meta", 33, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const libx11 = nix.arg($, "libx11");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "runningx",
       version: "1.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "http://www.fiction.net/blong/programs/mutt/autoview/RunningX.c",
           sha256: "1mikkhrx6jsx716041qdy3nwjac08pxxvxyq2yablm8zg9hrip0d",
         })))),
@@ -29,7 +27,7 @@ export default nix.lambda((args) => (() => {
       buildPhase: "cc -O2 -o RunningX $(pkg-config --cflags --libs x11) $src\n",
       installPhase: "mkdir -p \"$out\"/bin\ncp -vai RunningX \"$out/bin\"\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "http://www.fiction.net/blong/programs/mutt/",
         description: "Program for testing if X is running",
         license: nix.thunk(() => nix.sel(lib, "licenses", "free")),

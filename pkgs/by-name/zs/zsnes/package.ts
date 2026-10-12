@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 9, 5], ["exec", 10, 5], ["icon", 11, 5], ["comment", 12, 5], ["desktopName", 13, 5], ["genericName", 14, 5], ["categories", 15, 5]], [["owner", 24, 5], ["repo", 25, 5], ["rev", 26, 5], ["sha256", 27, 5]], [["NIX_CFLAGS_COMPILE", 56, 7]], [["description", 83, 5], ["license", 84, 5], ["homepage", 85, 5], ["platforms", 86, 5], ["mainProgram", 87, 5]], [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["patches", 30, 3], ["buildInputs", 35, 3], ["prePatch", 45, 3], ["env", 56, 3], ["preConfigure", 58, 3], ["configureFlags", 64, 3], ["enableParallelBuilding", 66, 3], ["postInstall", 68, 3], ["meta", 82, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, pkgsi686Linux: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 9, 5], ["exec", 10, 5], ["icon", 11, 5], ["comment", 12, 5], ["desktopName", 13, 5], ["genericName", 14, 5], ["categories", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 24, 5], ["repo", 25, 5], ["rev", 26, 5], ["sha256", 27, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 56, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 83, 5], ["license", 84, 5], ["homepage", 85, 5], ["platforms", 86, 5], ["mainProgram", 87, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["patches", 30, 3], ["buildInputs", 35, 3], ["prePatch", 45, 3], ["env", 56, 3], ["preConfigure", 58, 3], ["configureFlags", 64, 3], ["enableParallelBuilding", 66, 3], ["postInstall", 68, 3], ["meta", 82, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const pkgsi686Linux = nix.arg($, "pkgsi686Linux");
   const desktopItem = nix.thunk(() => nix.app(nix.sel(pkgsi686Linux, "makeDesktopItem"), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: "zsnes",
       exec: "zsnes",
       icon: "zsnes",
@@ -25,11 +21,11 @@ export default nix.lambda((args) => (() => {
       categories: nix.thunk(() => ["Game"]),
     }))));
   return nix.app(nix.sel(pkgsi686Linux, "stdenv", "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "zsnes",
       version: "1.51",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "emillon",
           repo: "zsnes",
           rev: "fc160b2538738995f600f8405d23a66b070dac02",
@@ -46,7 +42,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.sel(pkgsi686Linux, "libGL")),
       ]),
       prePatch: "for i in $(cat debian/patches/series); do\n  echo \"applying $i\"\n  patch -p1 < \"debian/patches/$i\"\ndone\n",
-      env: nix.thunk(() => ({ [nix.POS]: pos$3, NIX_CFLAGS_COMPILE: "-fcommon -std=c++14 -std=gnu17" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[2], NIX_CFLAGS_COMPILE: "-fcommon -std=c++14 -std=gnu17" })),
       preConfigure: "cd src\nsed -i \"/^STRIP/d\" configure\nsed -i \"/\\$STRIP/d\" configure\n",
       configureFlags: nix.thunk(() => ["--enable-release"]),
       enableParallelBuilding: true,
@@ -63,7 +59,7 @@ mkdir -p $out/share/applications
 ln -s ${desktopItem}/share/applications/* $out/share/applications/
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Super Nintendo Entertainment System Emulator",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
         homepage: "https://www.zsnes.com",

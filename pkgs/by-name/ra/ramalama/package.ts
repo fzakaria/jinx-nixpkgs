@@ -2,17 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]], [["ramalama", 91, 9]], [["withPodman", 95, 9]], [["nocontainer", 90, 7], ["withoutPodman", 94, 7]], [["podman", 105, 11]], [["ramalama", 109, 9]], [["mlx", 108, 7]], [["updateScript", 87, 5], ["tests", 89, 5]], [["description", 115, 5], ["longDescription", 116, 5], ["homepage", 121, 5], ["license", 122, 5], ["maintainers", 123, 5], ["mainProgram", 124, 5]], [["pname", 19, 3], ["version", 20, 3], ["pyproject", 21, 3], ["src", 23, 3], ["build-system", 30, 3], ["dependencies", 35, 3], ["nativeBuildInputs", 42, 3], ["postPatch", 46, 3], ["preBuild", 51, 3], ["postInstall", 55, 3], ["pythonImportsCheck", 69, 3], ["nativeCheckInputs", 73, 3], ["__darwinAllowLocalNetworking", 80, 3], ["preCheck", 82, 3], ["passthru", 86, 3], ["meta", 114, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, callPackage: false, python3Packages: false, fetchFromGitHub: false, "go-md2man": false, "llama-cpp-vulkan": false, podman: false, withPodman: true, writableTmpDirAsHomeHook: false, ramalama: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["ramalama", 91, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["withPodman", 95, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["nocontainer", 90, 7], ["withoutPodman", 94, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["podman", 105, 11]]);
-const pos$6 = nix.positions(here + "/package.nix", [["ramalama", 109, 9]]);
-const pos$7 = nix.positions(here + "/package.nix", [["mlx", 108, 7]]);
-const pos$8 = nix.positions(here + "/package.nix", [["updateScript", 87, 5], ["tests", 89, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["description", 115, 5], ["longDescription", 116, 5], ["homepage", 121, 5], ["license", 122, 5], ["maintainers", 123, 5], ["mainProgram", 124, 5]]);
-const pos$10 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["pyproject", 21, 3], ["src", 23, 3], ["build-system", 30, 3], ["dependencies", 35, 3], ["nativeBuildInputs", 42, 3], ["postPatch", 46, 3], ["preBuild", 51, 3], ["postInstall", 55, 3], ["pythonImportsCheck", 69, 3], ["nativeCheckInputs", 73, 3], ["__darwinAllowLocalNetworking", 80, 3], ["preCheck", 82, 3], ["passthru", 86, 3], ["meta", 114, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   const ramalama = nix.arg($, "ramalama");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       pname: "ramalama",
       version: "0.25.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "containers",
           repo: "ramalama",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -77,28 +68,28 @@ export default nix.lambda((args) => (() => {
       __darwinAllowLocalNetworking: true,
       preCheck: "export PATH=\"$out/bin:$PATH\"\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         updateScript: nix.path(here, "./update.sh"),
         tests: nix.thunk(() => nix.update({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           nocontainer: nix.thunk(() => nix.app(callPackage, nix.path(here, "./tests/nocontainer.nix"), nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               ramalama: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
-          withoutPodman: nix.thunk(() => nix.app(nix.sel(ramalama, "override"), nix.thunk(() => ({ [nix.POS]: pos$3, withPodman: false })))),
+          withoutPodman: nix.thunk(() => nix.app(nix.sel(ramalama, "override"), nix.thunk(() => ({ [nix.POS]: $pos[2], withPodman: false })))),
         }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) || nix.asBool((nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) && nix.asBool((nix.asBool(nix.sel(stdenv, "hostPlatform", "isx86_64")) || nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")))))))), nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             podman: nix.thunk(() => nix.app(callPackage, nix.path(here, "./tests/podman.nix"), nix.thunk(() => ({})))),
           }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             mlx: nix.thunk(() => nix.app(callPackage, nix.path(here, "./tests/mlx.nix"), nix.thunk(() => ({
-                [nix.POS]: pos$6,
+                [nix.POS]: $pos[5],
                 ramalama: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               })))),
           })))))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         description: "Serving AI models locally using familiar container workflows",
         longDescription: "Ramalama is an open-source developer tool that simplifies the local\nserving of AI models from any source and facilitates their use for\ninference in production, all through the familiar language of containers\n",
         homepage: "https://ramalama.ai/",

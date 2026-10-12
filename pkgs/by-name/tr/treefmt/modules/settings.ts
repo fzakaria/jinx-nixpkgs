@@ -2,14 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/settings.nix", [[["modulesPath", 14, 31]], [["freeformType", 16, 11]], [["specialArgs", 14, 7], ["modules", 15, 7]], [["type", 13, 5], ["default", 19, 5], ["description", 20, 5]], [["settings", 12, 11]], [["configFile", 25, 10]], [["options", 12, 3], ["config", 25, 3]]]);
 const formals$1 = { args: { lib: false, pkgs: false, config: false, modulesPath: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/settings.nix", [["modulesPath", 14, 31]]);
-const pos$2 = nix.positions(here + "/settings.nix", [["freeformType", 16, 11]]);
-const pos$3 = nix.positions(here + "/settings.nix", [["specialArgs", 14, 7], ["modules", 15, 7]]);
-const pos$4 = nix.positions(here + "/settings.nix", [["type", 13, 5], ["default", 19, 5], ["description", 20, 5]]);
-const pos$5 = nix.positions(here + "/settings.nix", [["settings", 12, 11]]);
-const pos$6 = nix.positions(here + "/settings.nix", [["configFile", 25, 10]]);
-const pos$7 = nix.positions(here + "/settings.nix", [["options", 12, 3], ["config", 25, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,17 +13,17 @@ export default nix.lambda((args) => (() => {
   const modulesPath = nix.arg($, "modulesPath");
   const settingsFormat = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "toml"), nix.thunk(() => ({}))));
   return {
-    [nix.POS]: pos$7,
+    [nix.POS]: $pos[6],
     options: nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       settings: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submoduleWith"), nix.thunk(() => ({
-              [nix.POS]: pos$3,
-              specialArgs: nix.thunk(() => ({ [nix.POS]: pos$1, modulesPath: modulesPath })),
+              [nix.POS]: $pos[2],
+              specialArgs: nix.thunk(() => ({ [nix.POS]: $pos[0], modulesPath: modulesPath })),
               modules: nix.thunk(() => [
                 nix.thunk(() => ({
-                  [nix.POS]: pos$2,
+                  [nix.POS]: $pos[1],
                   freeformType: nix.thunk(() => nix.sel(settingsFormat, "type")),
                 })),
               ]),
@@ -39,7 +33,7 @@ export default nix.lambda((args) => (() => {
         })))),
     })),
     config: nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       configFile: nix.thunk(() => nix.app(nix.sel(lib, "mkOptionDefault"), nix.thunk(() => nix.app(nix.sel(settingsFormat, "generate"), "treefmt.toml", nix.thunk(() => nix.sel(config, "settings")))))),
     })),
   };

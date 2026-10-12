@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 35, 5], ["repo", 36, 5], ["rev", 37, 5], ["hash", 38, 5]], [["nativeBuildInputs", 41, 38]], [["description", 96, 5], ["longDescription", 97, 5], ["homepage", 103, 5], ["license", 104, 5], ["maintainers", 105, 5], ["mainProgram", 106, 5]], [["pname", 52, 3], ["version", 53, 11], ["src", 53, 19], ["buildInputs", 55, 3], ["nativeBuildInputs", 70, 3], ["cmakeFlags", 76, 3], ["postInstall", 88, 3], ["doCheck", 93, 3], ["meta", 95, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, runCommand: false, fetchFromGitHub: false, cmake: false, "pkg-config": false, imagemagick: false, gtest: false, SDL2: false, SDL2_mixer: false, freetype: false, libGL: false, libiconv: false, libpng: false, libvlc: false, libvorbis: false, libx11: false, openal: false, python3: false, zlib: false, backend: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 35, 5], ["repo", 36, 5], ["rev", 37, 5], ["hash", 38, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["nativeBuildInputs", 41, 38]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 96, 5], ["longDescription", 97, 5], ["homepage", 103, 5], ["license", 104, 5], ["maintainers", 105, 5], ["mainProgram", 106, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 52, 3], ["version", 53, 11], ["src", 53, 19], ["buildInputs", 55, 3], ["nativeBuildInputs", 70, 3], ["cmakeFlags", 76, 3], ["postInstall", 88, 3], ["doCheck", 93, 3], ["meta", 95, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,13 +30,13 @@ export default nix.lambda((args) => (() => {
   const backend = nix.argOr($, "backend", () => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isx86")) ? "OpenGL" : "GLES"));
   const version = "0.9.5";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "gemrb",
       repo: "gemrb",
       rev: nix.thunk(() => nix.str`v${version}`),
       hash: "sha256-gPtmJb3GhBrvP1vy933wPPy+n3BwBIbJ2o8VV674Mso=",
     }))));
-  const icons = nix.thunk(() => nix.app(runCommand, "gemrb-icons", nix.thunk(() => ({ [nix.POS]: pos$2, nativeBuildInputs: nix.thunk(() => [imagemagick]) })), nix.thunk(() => nix.str`for s in 48 64 96 128 256 512 1024; do
+  const icons = nix.thunk(() => nix.app(runCommand, "gemrb-icons", nix.thunk(() => ({ [nix.POS]: $pos[1], nativeBuildInputs: nix.thunk(() => [imagemagick]) })), nix.thunk(() => nix.str`for s in 48 64 96 128 256 512 1024; do
   size=\${s}x\${s}
   dir=$out/share/icons/hicolor/$size
   mkdir -p $dir
@@ -47,7 +44,7 @@ export default nix.lambda((args) => (() => {
 done
 `)));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "gemrb",
       version: version,
       src: src,
@@ -80,7 +77,7 @@ done
 `),
       doCheck: false,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Reimplementation of the Infinity Engine, used by games such as Baldur's Gate",
         longDescription: "GemRB (Game engine made with pre-Rendered Background) is a portable\nopen-source implementation of Bioware's Infinity Engine. It was written to\nsupport pseudo-3D role playing games based on the Dungeons & Dragons\nruleset (Baldur's Gate and Icewind Dale series, Planescape: Torment).\n",
         homepage: "https://gemrb.org/",

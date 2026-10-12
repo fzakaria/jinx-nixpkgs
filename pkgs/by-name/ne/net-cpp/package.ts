@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 36, 5], ["repo", 37, 5], ["tag", 38, 5], ["hash", 39, 5]], [["fontDirectories", 80, 41]], [["FONTCONFIG_FILE", 80, 7]], [["package", 89, 7], ["versionCheck", 90, 7]], [["pkg-config", 88, 11]], [["tests", 88, 5], ["updateScript", 92, 5]], [["description", 96, 5], ["homepage", 97, 5], ["changelog", 98, 5], ["license", 99, 5], ["teams", 100, 5], ["platforms", 101, 5], ["pkgConfigModules", 102, 5]], [["pname", 32, 3], ["version", 33, 3], ["src", 35, 3], ["outputs", 42, 3], ["strictDeps", 48, 3], ["nativeBuildInputs", 50, 3], ["buildInputs", 58, 3], ["nativeCheckInputs", 63, 3], ["checkInputs", 68, 3], ["cmakeFlags", 76, 3], ["env", 80, 3], ["doCheck", 82, 3], ["enableParallelChecking", 85, 3], ["passthru", 87, 3], ["meta", 95, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitLab: false, gitUpdater: false, makeFontsConf: false, testers: false, boost: false, cmake: false, curl: false, doxygen: false, graphviz: false, gtest: false, jsoncpp: false, lomiri: false, "pkg-config": false, "process-cpp": false, "properties-cpp": false, python3: false, validatePkgConfig: false, writableTmpDirAsHomeHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 36, 5], ["repo", 37, 5], ["tag", 38, 5], ["hash", 39, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["fontDirectories", 80, 41]]);
-const pos$3 = nix.positions(here + "/package.nix", [["FONTCONFIG_FILE", 80, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["package", 89, 7], ["versionCheck", 90, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pkg-config", 88, 11]]);
-const pos$6 = nix.positions(here + "/package.nix", [["tests", 88, 5], ["updateScript", 92, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["description", 96, 5], ["homepage", 97, 5], ["changelog", 98, 5], ["license", 99, 5], ["teams", 100, 5], ["platforms", 101, 5], ["pkgConfigModules", 102, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 32, 3], ["version", 33, 3], ["src", 35, 3], ["outputs", 42, 3], ["strictDeps", 48, 3], ["nativeBuildInputs", 50, 3], ["buildInputs", 58, 3], ["nativeCheckInputs", 63, 3], ["checkInputs", 68, 3], ["cmakeFlags", 76, 3], ["env", 80, 3], ["doCheck", 82, 3], ["enableParallelChecking", 85, 3], ["passthru", 87, 3], ["meta", 95, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -39,11 +32,11 @@ export default nix.lambda((args) => (() => {
       return [nix.thunk(() => nix.lookup(w, "httpbin"))];
     })()));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "net-cpp",
       version: "3.2.2",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ubports",
           repo: "development/core/lib-cpp/net-cpp",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -63,17 +56,17 @@ export default nix.lambda((args) => (() => {
       ]),
       cmakeFlags: nix.thunk(() => [nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "ENABLE_WERROR", true))]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        FONTCONFIG_FILE: nix.thunk(() => nix.app(makeFontsConf, nix.thunk(() => ({ [nix.POS]: pos$2, fontDirectories: [] })))),
+        [nix.POS]: $pos[2],
+        FONTCONFIG_FILE: nix.thunk(() => nix.app(makeFontsConf, nix.thunk(() => ({ [nix.POS]: $pos[1], fontDirectories: [] })))),
       })),
       doCheck: nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))),
       enableParallelChecking: false,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "hasPkgConfigModules"), nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               versionCheck: true,
             })))),
@@ -81,7 +74,7 @@ export default nix.lambda((args) => (() => {
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "Simple yet beautiful networking API for C++11",
         homepage: "https://gitlab.com/ubports/development/core/lib-cpp/net-cpp",
         changelog: nix.thunk(() => nix.str`https://gitlab.com/ubports/development/core/lib-cpp/net-cpp/-/blob/${nix.sel(finalAttrs, "version")}/ChangeLog`),

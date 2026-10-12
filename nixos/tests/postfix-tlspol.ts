@@ -2,51 +2,41 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/postfix-tlspol.nix", [[["maintainers", 8, 8]], [["enable", 11, 22]], [["metrics-address", 14, 23]], [["server", 14, 16]], [["enable", 13, 7], ["settings", 14, 7]], [["selfmx", 19, 16]], [["enable", 18, 7], ["settings", 19, 7]], [["postfix", 11, 14], ["postfix-tlspol", 12, 14], ["dnsmasq", 17, 14]], [["services", 11, 5]], [["machine", 10, 14]], [["name", 6, 3], ["meta", 8, 3], ["containers", 10, 3], ["testScript", 23, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/postfix-tlspol.nix", [["maintainers", 8, 8]]);
-const pos$2 = nix.positions(here + "/postfix-tlspol.nix", [["enable", 11, 22]]);
-const pos$3 = nix.positions(here + "/postfix-tlspol.nix", [["metrics-address", 14, 23]]);
-const pos$4 = nix.positions(here + "/postfix-tlspol.nix", [["server", 14, 16]]);
-const pos$5 = nix.positions(here + "/postfix-tlspol.nix", [["enable", 13, 7], ["settings", 14, 7]]);
-const pos$6 = nix.positions(here + "/postfix-tlspol.nix", [["selfmx", 19, 16]]);
-const pos$7 = nix.positions(here + "/postfix-tlspol.nix", [["enable", 18, 7], ["settings", 19, 7]]);
-const pos$8 = nix.positions(here + "/postfix-tlspol.nix", [["postfix", 11, 14], ["postfix-tlspol", 12, 14], ["dnsmasq", 17, 14]]);
-const pos$9 = nix.positions(here + "/postfix-tlspol.nix", [["services", 11, 5]]);
-const pos$10 = nix.positions(here + "/postfix-tlspol.nix", [["machine", 10, 14]]);
-const pos$11 = nix.positions(here + "/postfix-tlspol.nix", [["name", 6, 3], ["meta", 8, 3], ["containers", 10, 3], ["testScript", 23, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$11,
+    [nix.POS]: $pos[10],
     name: "postfix-tlspol",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "hexa"))];
       })()),
     })),
     containers: nix.thunk(() => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       machine: nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         services: nix.thunk(() => ({
-          [nix.POS]: pos$8,
-          postfix: nix.thunk(() => ({ [nix.POS]: pos$2, enable: true })),
+          [nix.POS]: $pos[7],
+          postfix: nix.thunk(() => ({ [nix.POS]: $pos[1], enable: true })),
           "postfix-tlspol": nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             enable: true,
             settings: nix.thunk(() => ({
-              [nix.POS]: pos$4,
-              server: nix.thunk(() => ({ [nix.POS]: pos$3, "metrics-address": "127.0.0.1:8642" })),
+              [nix.POS]: $pos[3],
+              server: nix.thunk(() => ({ [nix.POS]: $pos[2], "metrics-address": "127.0.0.1:8642" })),
             })),
           })),
           dnsmasq: nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             enable: true,
-            settings: nix.thunk(() => ({ [nix.POS]: pos$6, selfmx: true })),
+            settings: nix.thunk(() => ({ [nix.POS]: $pos[5], selfmx: true })),
           })),
         })),
       })),

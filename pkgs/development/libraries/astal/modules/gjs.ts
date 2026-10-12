@@ -2,10 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/gjs.nix", [[["description", 13, 8]], [["name", 11, 3], ["sourceRoot", 12, 3], ["meta", 13, 3]], [["nativeBuildInputs", 17, 5], ["buildInputs", 22, 5], ["propagatedBuildInputs", 26, 5]]]);
 const formals$1 = { args: { buildAstalModule: false, astal3: false, io: false, meson: false, ninja: false, "pkg-config": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/gjs.nix", [["description", 13, 8]]);
-const pos$2 = nix.positions(here + "/gjs.nix", [["name", 11, 3], ["sourceRoot", 12, 3], ["meta", 13, 3]]);
-const pos$3 = nix.positions(here + "/gjs.nix", [["nativeBuildInputs", 17, 5], ["buildInputs", 22, 5], ["propagatedBuildInputs", 26, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const ninja = nix.arg($, "ninja");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(nix.app(buildAstalModule, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       name: "gjs",
       sourceRoot: "lang/gjs",
-      meta: nix.thunk(() => ({ [nix.POS]: pos$1, description: "Astal module for GJS" })),
+      meta: nix.thunk(() => ({ [nix.POS]: $pos[0], description: "Astal module for GJS" })),
     }))), "overrideAttrs"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       nativeBuildInputs: nix.thunk(() => [meson, ninja, pkg_config]),
       buildInputs: nix.thunk(() => [astal3, io]),
       propagatedBuildInputs: [],

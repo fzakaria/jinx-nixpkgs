@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 36, 5], ["repo", 37, 5], ["tag", 38, 5], ["hash", 39, 5]], [["url", 46, 7], ["hash", 47, 7]], [["changelog", 73, 5], ["description", 74, 5], ["longDescription", 75, 5], ["license", 80, 5], ["maintainers", 81, 5], ["teams", 82, 5], ["homepage", 83, 5]], [["pname", 26, 3], ["version", 27, 3], ["pyproject", 28, 3], ["outputs", 30, 3], ["src", 35, 3], ["patches", 42, 3], ["nativeBuildInputs", 51, 3], ["build-system", 56, 3], ["dependencies", 58, 3], ["pythonImportsCheck", 65, 3], ["checkInputs", 67, 3], ["meta", 72, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, fetchpatch: false, "poetry-core": false, furo: false, sphinxHook: false, babel: false, flask: false, jinja2: false, pytz: false, "pytest-mock": false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 36, 5], ["repo", 37, 5], ["tag", 38, 5], ["hash", 39, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["url", 46, 7], ["hash", 47, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["changelog", 73, 5], ["description", 74, 5], ["longDescription", 75, 5], ["license", 80, 5], ["maintainers", 81, 5], ["teams", 82, 5], ["homepage", 83, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 26, 3], ["version", 27, 3], ["pyproject", 28, 3], ["outputs", 30, 3], ["src", 35, 3], ["patches", 42, 3], ["nativeBuildInputs", 51, 3], ["build-system", 56, 3], ["dependencies", 58, 3], ["pythonImportsCheck", 65, 3], ["checkInputs", 67, 3], ["meta", 72, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const pyproject = true;
       const outputs = nix.thunk(() => ["out", "doc"]);
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "python-babel",
           repo: "flask-babel",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -37,7 +34,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/python-babel/flask-babel/pull/242/commits/999735d825ee2f94701da29bcf819ad70ee03499.patch",
             hash: "sha256-vhP/aSWaWpy1sVOJAcrLHJN/yrB+McWO9pkXDI9GeQ4=",
           })))),
@@ -48,7 +45,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["flask_babel"]);
       const checkInputs = nix.thunk(() => [pytest_mock, pytestCheckHook]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         changelog: nix.thunk(() => nix.str`https://github.com/python-babel/flask-babel/releases/tag/v${version}`),
         description: "Adds i18n/l10n support to Flask applications",
         longDescription: "Implements i18n and l10n support for Flask.\nThis is based on the Python babel module as well as pytz both of which are\ninstalled automatically for you if you install this library.\n",
@@ -61,7 +58,7 @@ export default nix.lambda((args) => (() => {
         homepage: "https://github.com/python-babel/flask-babel",
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

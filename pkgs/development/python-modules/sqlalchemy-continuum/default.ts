@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 22, 5], ["version", 23, 13], ["hash", 24, 5]], [["flask", 34, 5], ["flask-login", 35, 5], ["flask-sqlalchemy", 36, 5]], [["description", 57, 5], ["homepage", 58, 5], ["changelog", 59, 5], ["license", 60, 5], ["maintainers", 61, 5]], [["pname", 17, 3], ["version", 18, 3], ["pyproject", 19, 3], ["src", 21, 3], ["build-system", 27, 3], ["dependencies", 29, 3], ["optional-dependencies", 33, 3], ["nativeCheckInputs", 39, 3], ["preCheck", 49, 3], ["pythonImportsCheck", 54, 3], ["meta", 56, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, setuptools: false, flask: false, "flask-login": false, "flask-sqlalchemy": false, packaging: false, psycopg2: false, pymysql: false, pytestCheckHook: false, sqlalchemy: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 22, 5], ["version", 23, 13], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["flask", 34, 5], ["flask-login", 35, 5], ["flask-sqlalchemy", 36, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 57, 5], ["homepage", 58, 5], ["changelog", 59, 5], ["license", 60, 5], ["maintainers", 61, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 17, 3], ["version", 18, 3], ["pyproject", 19, 3], ["src", 21, 3], ["build-system", 27, 3], ["dependencies", 29, 3], ["optional-dependencies", 33, 3], ["nativeCheckInputs", 39, 3], ["preCheck", 49, 3], ["pythonImportsCheck", 54, 3], ["meta", 56, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.8.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "sqlalchemy_continuum",
           version: version,
           hash: "sha256-+O0k2+YI352j//YwcKtk4heWmBhujHparqkQWqer9a4=",
@@ -35,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [setuptools]);
       const dependencies = nix.thunk(() => [sqlalchemy]);
       const optional_dependencies = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         flask: nix.thunk(() => [flask]),
         "flask-login": nix.thunk(() => [flask_login]),
         "flask-sqlalchemy": nix.thunk(() => [flask_sqlalchemy]),
@@ -44,7 +41,7 @@ export default nix.lambda((args) => (() => {
       const preCheck = "# Indicate tests that we don't have a database server at hand\nexport DB=sqlite\n";
       const pythonImportsCheck = nix.thunk(() => ["sqlalchemy_continuum"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Versioning and auditing extension for SQLAlchemy",
         homepage: "https://github.com/kvesteri/sqlalchemy-continuum/",
         changelog: nix.thunk(() => nix.str`https://github.com/kvesteri/sqlalchemy-continuum/blob/${version}/CHANGES.rst`),
@@ -52,7 +49,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

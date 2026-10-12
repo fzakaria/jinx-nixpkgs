@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 13, 7], ["hash", 14, 7]], [["url", 18, 7], ["hash", 19, 7]], [["x86_64-linux", 12, 5], ["aarch64-darwin", 17, 5], ["aarch64-linux", 22, 5]], [["platforms", 48, 13], ["description", 50, 5], ["longDescription", 51, 5], ["homepage", 56, 5], ["sourceProvenance", 57, 5], ["license", 58, 5], ["maintainers", 59, 5], ["mainProgram", 64, 5]], [["pname", 32, 3], ["version", 33, 11], ["src", 35, 3], ["meta", 47, 3]]]);
 const formals$1 = { args: { callPackage: false, fetchurl: false, stdenv: false, lib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 13, 7], ["hash", 14, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 18, 7], ["hash", 19, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["x86_64-linux", 12, 5], ["aarch64-darwin", 17, 5], ["aarch64-linux", 22, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["platforms", 48, 13], ["description", 50, 5], ["longDescription", 51, 5], ["homepage", 56, 5], ["sourceProvenance", 57, 5], ["license", 58, 5], ["maintainers", 59, 5], ["mainProgram", 64, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 32, 3], ["version", 33, 11], ["src", 35, 3], ["meta", 47, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,18 +14,18 @@ export default nix.lambda((args) => (() => {
   const version = "3.15.1";
   const sources = nix.thunk(() => (() => {
     const x86_64_linux = nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: nix.thunk(() => nix.str`https://www.sdrplay.com/software/SDRplay_RSP_API-Linux-${version}.run`),
       hash: "sha256-CTcyv10Xz9G2LqHh4qOW9tKBEcB+rztE2R7xJIU4QBQ=",
     }));
     const aarch64_darwin = nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       url: "https://www.sdrplay.com/software/SDRplayAPI-macos-installer-universal-3.15.1.pkg",
       hash: "sha256-XRSM7aH653XS0t9bP89G3uJ7YiLiU1xMBjwvLqL3rMM=",
     }));
     const aarch64_linux = x86_64_linux;
     return {
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       "x86_64-linux": x86_64_linux,
       "aarch64-darwin": aarch64_darwin,
       "aarch64-linux": aarch64_linux,
@@ -38,7 +34,7 @@ export default nix.lambda((args) => (() => {
   const platforms = nix.thunk(() => nix.app(nix.sel(lib, "attrNames"), sources));
   const package$ = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) ? nix.path(here, "./linux.nix") : nix.path(here, "./darwin.nix")));
   return nix.app(callPackage, package$, nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "sdrplay",
       version: version,
       src: nix.thunk(() => (() => {
@@ -48,7 +44,7 @@ export default nix.lambda((args) => (() => {
         return nix.app(fetchurl, source);
       })()),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         platforms: platforms,
         description: "SDRplay API",
         longDescription: nix.thunk(() => nix.str`Proprietary library and api service for working with SDRplay devices. For documentation and licensing details see

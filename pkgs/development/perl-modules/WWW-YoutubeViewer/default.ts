@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["sha256", 21, 5]], [["updateScript", 31, 12]], [["description", 34, 5], ["homepage", 35, 5], ["license", 36, 5], ["maintainers", 37, 5], ["mainProgram", 38, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["propagatedBuildInputs", 24, 3], ["passthru", 31, 3], ["meta", 33, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, buildPerlPackage: false, LWP: false, LWPProtocolHttps: false, DataDump: false, JSON: false, gitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["sha256", 21, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["updateScript", 31, 12]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 34, 5], ["homepage", 35, 5], ["license", 36, 5], ["maintainers", 37, 5], ["mainProgram", 38, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["propagatedBuildInputs", 24, 3], ["passthru", 31, 3], ["meta", 33, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const pname = "WWW-YoutubeViewer";
       const version = "3.11.2";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "trizen",
           repo: "youtube-viewer",
           rev: version,
@@ -31,11 +28,11 @@ export default nix.lambda((args) => (() => {
         }))));
       const propagatedBuildInputs = nix.thunk(() => [LWP, LWPProtocolHttps, DataDump, JSON]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Lightweight application for searching and streaming videos from YouTube",
         homepage: "https://github.com/trizen/youtube-viewer",
         license: nix.thunk(() => nix.sel(lib, "licenses", "artistic2")),
@@ -45,7 +42,15 @@ export default nix.lambda((args) => (() => {
         })()),
         mainProgram: "youtube-viewer",
       }));
-      return { [nix.POS]: pos$4, pname, version, src, propagatedBuildInputs, passthru, meta };
+      return {
+        [nix.POS]: $pos[3],
+        pname,
+        version,
+        src,
+        propagatedBuildInputs,
+        passthru,
+        meta,
+      };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

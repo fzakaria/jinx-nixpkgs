@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["platforms", 43, 5], ["license", 44, 33]], [["pname", 13, 3], ["version", 14, 3], ["paths", 16, 3], ["nativeBuildInputs", 17, 3], ["buildCommand", 19, 3], ["meta", 42, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, virtualglLib: false, pkgsi686Linux: false, makeWrapper: false, "vulkan-loader": false, addDriverRunpath: false, usei686VirtualglLib: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["platforms", 43, 5], ["license", 44, 33]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["paths", 16, 3], ["nativeBuildInputs", 17, 3], ["buildCommand", 19, 3], ["meta", 42, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const addDriverRunpath = nix.arg($, "addDriverRunpath");
   const usei686VirtualglLib = nix.argOr($, "usei686VirtualglLib", () => nix.eq(nix.sel(stdenv, "hostPlatform", "system"), "x86_64-linux"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "virtualgl",
       version: nix.thunk(() => nix.app(nix.sel(lib, "getVersion"), virtualglLib)),
       paths: nix.thunk(() => [virtualglLib]),
@@ -39,7 +38,7 @@ wrapProgram $out/bin/vglrun \\
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(virtualglLib, "meta"));
         return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
         license: nix.thunk(() => nix.attr(from, "license")),
       };

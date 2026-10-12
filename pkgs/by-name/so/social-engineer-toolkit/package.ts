@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["sha256", 18, 5]], [["description", 65, 5], ["longDescription", 66, 5], ["homepage", 71, 5], ["mainProgram", 72, 5], ["license", 73, 5], ["maintainers", 74, 5]], [["pname", 10, 3], ["version", 11, 3], ["pyproject", 12, 3], ["src", 14, 3], ["postPatch", 21, 3], ["nativeBuildInputs", 29, 3], ["propagatedBuildInputs", 33, 3], ["installPhase", 46, 3], ["makeWrapperArgs", 56, 3], ["doCheck", 62, 3], ["meta", 64, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, python3Packages: false, makeWrapper: false, metasploit: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["sha256", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 65, 5], ["longDescription", 66, 5], ["homepage", 71, 5], ["mainProgram", 72, 5], ["license", 73, 5], ["maintainers", 74, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["pyproject", 12, 3], ["src", 14, 3], ["postPatch", 21, 3], ["nativeBuildInputs", 29, 3], ["propagatedBuildInputs", 33, 3], ["installPhase", 46, 3], ["makeWrapperArgs", 56, 3], ["doCheck", 62, 3], ["meta", 64, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const version = "8.0.3";
       const pyproject = false;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "trustedsec",
           repo: "social-engineer-toolkit",
           rev: version,
@@ -52,7 +50,7 @@ substituteInPlace src/core/setcore.py \\
       ]);
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Open-source penetration testing framework designed for social engineering",
         longDescription: "The Social-Engineer Toolkit is an open-source penetration testing framework\ndesigned for social engineering. SET has a number of custom attack vectors\nthat allow you to make a believable attack quickly.\n",
         homepage: "https://github.com/trustedsec/social-engineer-toolkit",
@@ -64,7 +62,7 @@ substituteInPlace src/core/setcore.py \\
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

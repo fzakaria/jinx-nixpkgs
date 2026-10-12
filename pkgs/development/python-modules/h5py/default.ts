@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 28, 13], ["version", 28, 19], ["hash", 29, 5]], [["HDF5_DIR", 35, 5], ["HDF5_MPI", 36, 5], ["H5PY_SETUP_REQUIRES", 38, 5]], [["hdf5", 84, 13]], [["changelog", 88, 5], ["description", 89, 5], ["homepage", 90, 5], ["license", 91, 5], ["maintainers", 92, 5]], [["version", 23, 3], ["pname", 24, 3], ["pyproject", 25, 3], ["src", 27, 3], ["pythonRelaxDeps", 32, 3], ["env", 34, 3], ["postConfigure", 41, 3], ["preBuild", 47, 3], ["build-system", 49, 3], ["buildInputs", 56, 3], ["dependencies", 58, 3], ["nativeCheckInputs", 66, 3], ["preCheck", 72, 3], ["disabledTests", 78, 3], ["pythonImportsCheck", 80, 3], ["passthru", 82, 3], ["meta", 87, 3]]]);
 const formals$1 = { args: { lib: false, fetchPypi: false, buildPythonPackage: false, setuptools: false, numpy: false, hdf5: false, cython: false, pkgconfig: false, mpi4py: true, openssh: false, pytestCheckHook: false, "pytest-mpi": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 28, 13], ["version", 28, 19], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["HDF5_DIR", 35, 5], ["HDF5_MPI", 36, 5], ["H5PY_SETUP_REQUIRES", 38, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["hdf5", 84, 13]]);
-const pos$4 = nix.positions(here + "/default.nix", [["changelog", 88, 5], ["description", 89, 5], ["homepage", 90, 5], ["license", 91, 5], ["maintainers", 92, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["version", 23, 3], ["pname", 24, 3], ["pyproject", 25, 3], ["src", 27, 3], ["pythonRelaxDeps", 32, 3], ["env", 34, 3], ["postConfigure", 41, 3], ["preBuild", 47, 3], ["build-system", 49, 3], ["buildInputs", 56, 3], ["dependencies", 58, 3], ["nativeCheckInputs", 66, 3], ["preCheck", 72, 3], ["disabledTests", 78, 3], ["pythonImportsCheck", 80, 3], ["passthru", 82, 3], ["meta", 87, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,14 +27,14 @@ export default nix.lambda((args) => (() => {
       const pname = "h5py";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-oNuq15aEDMqmekwUSg0MgIAHPDTHbVppQdaBhnjvJzg=",
         }))));
       const pythonRelaxDeps = nix.thunk(() => ["mpi4py"]);
       const env = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         HDF5_DIR: nix.thunk(() => nix.str`${hdf5}`),
         HDF5_MPI: nix.thunk(() => (nix.asBool(mpiSupport) ? "ON" : "OFF")),
         H5PY_SETUP_REQUIRES: 0n,
@@ -55,9 +51,9 @@ ${nix.app(nix.sel(lib, "optionalString"), mpiSupport, "export OMPI_MCA_rmaps_bas
       const preCheck = "cd $out\n";
       const disabledTests = nix.thunk(() => nix.app(nix.sel(lib, "optionals"), mpiSupport, nix.thunk(() => ["TestPageBuffering"])));
       const pythonImportsCheck = nix.thunk(() => ["h5py"]);
-      const passthru = nix.thunk(() => ({ [nix.POS]: pos$3, hdf5: hdf5 }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: $pos[2], hdf5: hdf5 }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         changelog: nix.thunk(() => nix.str`https://github.com/h5py/h5py/blob/${version}/docs/whatsnew/${nix.app(nix.sel(lib, "versions", "majorMinor"), version)}.rst`),
         description: "Pythonic interface to the HDF5 binary data format",
         homepage: "http://www.h5py.org/",
@@ -68,7 +64,7 @@ ${nix.app(nix.sel(lib, "optionalString"), mpiSupport, "export OMPI_MCA_rmaps_bas
         })()),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         version,
         pname,
         pyproject,

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 19, 5], ["hash", 20, 5]], [["updateScript", 45, 12]], [["description", 48, 5], ["homepage", 49, 5], ["changelog", 50, 5], ["license", 51, 5], ["maintainers", 52, 5], ["mainProgram", 53, 5], ["platforms", 54, 5], ["sourceProvenance", 55, 5]], [["pname", 12, 3], ["version", 13, 3], ["strictDeps", 15, 3], ["__structuredAttrs", 16, 3], ["src", 18, 3], ["dontPatch", 23, 3], ["dontConfigure", 24, 3], ["dontBuild", 25, 3], ["dontFixup", 26, 3], ["installPhase", 28, 3], ["nativeInstallCheckInputs", 38, 3], ["versionCheckProgram", 39, 3], ["versionCheckProgramArg", 42, 3], ["doInstallCheck", 43, 3], ["passthru", 45, 3], ["meta", 47, 3]]]);
 const formals$1 = { args: { fetchzip: false, lib: false, "nix-update-script": false, "re-plistbuddy": false, stdenvNoCC: false, versionCheckHook: false, writeShellScript: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 45, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 48, 5], ["homepage", 49, 5], ["changelog", 50, 5], ["license", 51, 5], ["maintainers", 52, 5], ["mainProgram", 53, 5], ["platforms", 54, 5], ["sourceProvenance", 55, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["strictDeps", 15, 3], ["__structuredAttrs", 16, 3], ["src", 18, 3], ["dontPatch", 23, 3], ["dontConfigure", 24, 3], ["dontBuild", 25, 3], ["dontFixup", 26, 3], ["installPhase", 28, 3], ["nativeInstallCheckInputs", 38, 3], ["versionCheckProgram", 39, 3], ["versionCheckProgramArg", 42, 3], ["doInstallCheck", 43, 3], ["passthru", 45, 3], ["meta", 47, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,13 +15,13 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const writeShellScript = nix.arg($, "writeShellScript");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "whatcable",
       version: "1.2.1",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/darrylmorley/whatcable/releases/download/v${nix.sel(finalAttrs, "version")}/WhatCable.zip`),
           hash: "sha256-znu0y7rj7HYxTs3Kr9hR44461NoROMKGX0KHsaNfAes=",
         })))),
@@ -41,11 +38,11 @@ export default nix.lambda((args) => (() => {
       ]),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "macOS menu bar app that explains USB-C cable capabilities",
         homepage: "https://whatcable.uk",
         changelog: nix.thunk(() => nix.str`https://github.com/darrylmorley/whatcable/releases/tag/v${nix.sel(finalAttrs, "version")}`),

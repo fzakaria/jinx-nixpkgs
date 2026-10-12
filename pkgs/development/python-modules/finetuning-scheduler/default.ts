@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]], [["PACKAGE_NAME", 44, 7]], [["description", 67, 5], ["homepage", 68, 5], ["changelog", 69, 5], ["license", 70, 5], ["maintainers", 71, 5]], [["pname", 20, 3], ["version", 21, 3], ["pyproject", 22, 3], ["__structuredAttrs", 23, 3], ["src", 25, 3], ["build-system", 32, 3], ["pythonRelaxDeps", 34, 3], ["dependencies", 38, 3], ["env", 44, 3], ["nativeCheckInputs", 46, 3], ["enabledTestPaths", 47, 3], ["disabledTests", 48, 3], ["pythonImportsCheck", 62, 3], ["__darwinAllowLocalNetworking", 64, 3], ["meta", 66, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, "pytorch-lightning": false, torch: false, pytestCheckHook: false, pythonAtLeast: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["PACKAGE_NAME", 44, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 67, 5], ["homepage", 68, 5], ["changelog", 69, 5], ["license", 70, 5], ["maintainers", 71, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 20, 3], ["version", 21, 3], ["pyproject", 22, 3], ["__structuredAttrs", 23, 3], ["src", 25, 3], ["build-system", 32, 3], ["pythonRelaxDeps", 34, 3], ["dependencies", 38, 3], ["env", 44, 3], ["nativeCheckInputs", 46, 3], ["enabledTestPaths", 47, 3], ["disabledTests", 48, 3], ["pythonImportsCheck", 62, 3], ["__darwinAllowLocalNetworking", 64, 3], ["meta", 66, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,13 +17,13 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const pythonAtLeast = nix.arg($, "pythonAtLeast");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "finetuning-scheduler",
       version: "2.13.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "speediedan",
           repo: "finetuning-scheduler",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,14 +32,14 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [setuptools]),
       pythonRelaxDeps: nix.thunk(() => ["pytorch-lightning"]),
       dependencies: nix.thunk(() => [pytorch_lightning, torch]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, PACKAGE_NAME: "pytorch" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], PACKAGE_NAME: "pytorch" })),
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
       enabledTestPaths: nix.thunk(() => ["tests"]),
       disabledTests: nix.thunk(() => nix.concat(["test_get_lightning_requirement"], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(pythonAtLeast, "3.14")), nix.thunk(() => ["test_fts_dynamo_enforce_p0", "test_fts_dynamo_resume"])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")))), nix.thunk(() => ["test_fts_frozen_bn_track_running_stats"]))))),
       pythonImportsCheck: nix.thunk(() => ["finetuning_scheduler"]),
       __darwinAllowLocalNetworking: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "PyTorch Lightning extension for foundation model experimentation with flexible fine-tuning schedules",
         homepage: "https://finetuning-scheduler.readthedocs.io",
         changelog: nix.thunk(() => nix.str`https://github.com/speediedan/finetuning-scheduler/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

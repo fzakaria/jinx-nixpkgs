@@ -2,11 +2,9 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["Config", 40, 9], ["Layers", 41, 9], ["RepoTags", 42, 9]], [["image", 79, 13]], [["builder", 60, 3], ["buildInputs", 61, 3], ["preferLocalBuild", 62, 3], ["name", 65, 5], ["imageName", 66, 5], ["repository", 67, 5], ["tag", 68, 5], ["bash", 71, 5], ["gnutar", 72, 5], ["manifest", 73, 5], ["repositories", 74, 5], ["imageFileStorePaths", 76, 11], ["passthru", 78, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, coreutils: false, bash: false, gnutar: false, writeText: false }, ellipsis: false };
 const formals$2 = { args: { name: false, registry: true, repository: true, imageName: false, tag: false, imageLayers: false, imageConfig: false, image: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["Config", 40, 9], ["Layers", 41, 9], ["RepoTags", 42, 9]]);
-const pos$2 = nix.positions(here + "/default.nix", [["image", 79, 13]]);
-const pos$3 = nix.positions(here + "/default.nix", [["builder", 60, 3], ["buildInputs", 61, 3], ["preferLocalBuild", 62, 3], ["name", 65, 5], ["imageName", 66, 5], ["repository", 67, 5], ["tag", 68, 5], ["bash", 71, 5], ["gnutar", 72, 5], ["manifest", 73, 5], ["repositories", 74, 5], ["imageFileStorePaths", 76, 11], ["passthru", 78, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -35,7 +33,7 @@ export default nix.lambda((args) => (() => {
     const layers = nix.thunk(() => nix.builtins.map(stripNixStore, imageLayers));
     const manifest = nix.thunk(() => nix.app(writeText, "manifest.json", nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => [
           nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             Config: nix.thunk(() => nix.app(stripNixStore, imageConfig)),
             Layers: layers,
             RepoTags: nix.thunk(() => [nix.thunk(() => nix.str`${repoTag1}:${tag}`)]),
@@ -46,7 +44,7 @@ export default nix.lambda((args) => (() => {
         ]))))));
     const imageFileStorePaths = nix.thunk(() => nix.app(writeText, "imageFileStorePaths.txt", nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), "\n", nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "unique"), imageLayers), [imageConfig]))))));
     return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         builder: nix.path(here, "./fetchdocker-builder.sh"),
         buildInputs: nix.thunk(() => [coreutils]),
         preferLocalBuild: true,
@@ -59,7 +57,7 @@ export default nix.lambda((args) => (() => {
         manifest: manifest,
         repositories: repositories,
         imageFileStorePaths: imageFileStorePaths,
-        passthru: nix.thunk(() => ({ [nix.POS]: pos$2, image: image })),
+        passthru: nix.thunk(() => ({ [nix.POS]: $pos[1], image: image })),
       })));
   })(), formals$2);
 })(), formals$1);

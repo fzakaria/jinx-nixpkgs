@@ -2,36 +2,8 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/angrr.nix", [[["path-regex", 19, 15], ["period", 20, 15]], [["path-regex", 23, 15], ["period", 24, 15]], [["result", 18, 13], ["direnv", 22, 13]], [["profile-paths", 29, 15], ["keep-since", 30, 15], ["keep-latest-n", 31, 15], ["keep-current-system", 32, 15], ["keep-booted-system", 33, 15]], [["profile-paths", 36, 15], ["keep-latest-n", 41, 15]], [["system", 28, 13], ["user", 35, 13]], [["project-globs", 45, 13]], [["temporary-root-policies", 17, 11], ["profile-policies", 27, 11], ["touch", 44, 11]], [["enable", 15, 9], ["settings", 16, 9]], [["angrr", 14, 16]], [["automatic", 52, 14]], [["experimental-features", 58, 20]], [["gc", 52, 11], ["settings", 58, 11]], [["isNormalUser", 55, 26]], [["normal", 55, 19]], [["users", 55, 13]], [["enable", 61, 23]], [["direnv", 61, 16]], [["ANGRR_DIRENV_LOG", 63, 29]], [["text", 66, 39]], [["drvs-for-test", 66, 23]], [["variables", 63, 19], ["etc", 66, 19]], [["StartLimitBurst", 79, 41]], [["unitConfig", 79, 30]], [["angrr", 79, 24]], [["services", 79, 15]], [["services", 14, 7], ["nix", 52, 7], ["users", 55, 7], ["programs", 61, 7], ["environment", 63, 7], ["systemd", 79, 7]], [["machine", 13, 5]], [["name", 11, 3], ["nodes", 12, 3], ["testScript", 83, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/angrr.nix", [["path-regex", 19, 15], ["period", 20, 15]]);
-const pos$2 = nix.positions(here + "/angrr.nix", [["path-regex", 23, 15], ["period", 24, 15]]);
-const pos$3 = nix.positions(here + "/angrr.nix", [["result", 18, 13], ["direnv", 22, 13]]);
-const pos$4 = nix.positions(here + "/angrr.nix", [["profile-paths", 29, 15], ["keep-since", 30, 15], ["keep-latest-n", 31, 15], ["keep-current-system", 32, 15], ["keep-booted-system", 33, 15]]);
-const pos$5 = nix.positions(here + "/angrr.nix", [["profile-paths", 36, 15], ["keep-latest-n", 41, 15]]);
-const pos$6 = nix.positions(here + "/angrr.nix", [["system", 28, 13], ["user", 35, 13]]);
-const pos$7 = nix.positions(here + "/angrr.nix", [["project-globs", 45, 13]]);
-const pos$8 = nix.positions(here + "/angrr.nix", [["temporary-root-policies", 17, 11], ["profile-policies", 27, 11], ["touch", 44, 11]]);
-const pos$9 = nix.positions(here + "/angrr.nix", [["enable", 15, 9], ["settings", 16, 9]]);
-const pos$10 = nix.positions(here + "/angrr.nix", [["angrr", 14, 16]]);
-const pos$11 = nix.positions(here + "/angrr.nix", [["automatic", 52, 14]]);
-const pos$12 = nix.positions(here + "/angrr.nix", [["experimental-features", 58, 20]]);
-const pos$13 = nix.positions(here + "/angrr.nix", [["gc", 52, 11], ["settings", 58, 11]]);
-const pos$14 = nix.positions(here + "/angrr.nix", [["isNormalUser", 55, 26]]);
-const pos$15 = nix.positions(here + "/angrr.nix", [["normal", 55, 19]]);
-const pos$16 = nix.positions(here + "/angrr.nix", [["users", 55, 13]]);
-const pos$17 = nix.positions(here + "/angrr.nix", [["enable", 61, 23]]);
-const pos$18 = nix.positions(here + "/angrr.nix", [["direnv", 61, 16]]);
-const pos$19 = nix.positions(here + "/angrr.nix", [["ANGRR_DIRENV_LOG", 63, 29]]);
-const pos$20 = nix.positions(here + "/angrr.nix", [["text", 66, 39]]);
-const pos$21 = nix.positions(here + "/angrr.nix", [["drvs-for-test", 66, 23]]);
-const pos$22 = nix.positions(here + "/angrr.nix", [["variables", 63, 19], ["etc", 66, 19]]);
-const pos$23 = nix.positions(here + "/angrr.nix", [["StartLimitBurst", 79, 41]]);
-const pos$24 = nix.positions(here + "/angrr.nix", [["unitConfig", 79, 30]]);
-const pos$25 = nix.positions(here + "/angrr.nix", [["angrr", 79, 24]]);
-const pos$26 = nix.positions(here + "/angrr.nix", [["services", 79, 15]]);
-const pos$27 = nix.positions(here + "/angrr.nix", [["services", 14, 7], ["nix", 52, 7], ["users", 55, 7], ["programs", 61, 7], ["environment", 63, 7], ["systemd", 79, 7]]);
-const pos$28 = nix.positions(here + "/angrr.nix", [["machine", 13, 5]]);
-const pos$29 = nix.positions(here + "/angrr.nix", [["name", 11, 3], ["nodes", 12, 3], ["testScript", 83, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -40,28 +12,28 @@ export default nix.lambda((args) => (() => {
 echo "${name}" >"$out/${name}"
 `));
   return {
-    [nix.POS]: pos$29,
+    [nix.POS]: $pos[28],
     name: "angrr",
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$28,
+      [nix.POS]: $pos[27],
       machine: nix.thunk(() => ({
-        [nix.POS]: pos$27,
+        [nix.POS]: $pos[26],
         services: nix.thunk(() => ({
-          [nix.POS]: pos$10,
+          [nix.POS]: $pos[9],
           angrr: nix.thunk(() => ({
-            [nix.POS]: pos$9,
+            [nix.POS]: $pos[8],
             enable: true,
             settings: nix.thunk(() => ({
-              [nix.POS]: pos$8,
+              [nix.POS]: $pos[7],
               "temporary-root-policies": nix.thunk(() => ({
-                [nix.POS]: pos$3,
-                result: nix.thunk(() => ({ [nix.POS]: pos$1, "path-regex": "/result[^/]*$", period: "7d" })),
-                direnv: nix.thunk(() => ({ [nix.POS]: pos$2, "path-regex": "/\\.direnv/", period: "14d" })),
+                [nix.POS]: $pos[2],
+                result: nix.thunk(() => ({ [nix.POS]: $pos[0], "path-regex": "/result[^/]*$", period: "7d" })),
+                direnv: nix.thunk(() => ({ [nix.POS]: $pos[1], "path-regex": "/\\.direnv/", period: "14d" })),
               })),
               "profile-policies": nix.thunk(() => ({
-                [nix.POS]: pos$6,
+                [nix.POS]: $pos[5],
                 system: nix.thunk(() => ({
-                  [nix.POS]: pos$4,
+                  [nix.POS]: $pos[3],
                   "profile-paths": nix.thunk(() => ["/nix/var/nix/profiles/system"]),
                   "keep-since": "7d",
                   "keep-latest-n": 2n,
@@ -69,7 +41,7 @@ echo "${name}" >"$out/${name}"
                   "keep-booted-system": true,
                 })),
                 user: nix.thunk(() => ({
-                  [nix.POS]: pos$5,
+                  [nix.POS]: $pos[4],
                   "profile-paths": nix.thunk(() => [
                     "~/.local/state/nix/profiles/profile",
                     "/nix/var/nix/profiles/per-user/root/profile",
@@ -77,33 +49,39 @@ echo "${name}" >"$out/${name}"
                   "keep-latest-n": 2n,
                 })),
               })),
-              touch: nix.thunk(() => ({ [nix.POS]: pos$7, "project-globs": nix.thunk(() => ["!result-glob-ignored"]) })),
+              touch: nix.thunk(() => ({
+                [nix.POS]: $pos[6],
+                "project-globs": nix.thunk(() => ["!result-glob-ignored"]),
+              })),
             })),
           })),
         })),
         nix: nix.thunk(() => ({
-          [nix.POS]: pos$13,
-          gc: nix.thunk(() => ({ [nix.POS]: pos$11, automatic: true })),
-          settings: nix.thunk(() => ({ [nix.POS]: pos$12, "experimental-features": nix.thunk(() => ["nix-command"]) })),
+          [nix.POS]: $pos[12],
+          gc: nix.thunk(() => ({ [nix.POS]: $pos[10], automatic: true })),
+          settings: nix.thunk(() => ({
+            [nix.POS]: $pos[11],
+            "experimental-features": nix.thunk(() => ["nix-command"]),
+          })),
         })),
         users: nix.thunk(() => ({
-          [nix.POS]: pos$16,
+          [nix.POS]: $pos[15],
           users: nix.thunk(() => ({
-            [nix.POS]: pos$15,
-            normal: nix.thunk(() => ({ [nix.POS]: pos$14, isNormalUser: true })),
+            [nix.POS]: $pos[14],
+            normal: nix.thunk(() => ({ [nix.POS]: $pos[13], isNormalUser: true })),
           })),
         })),
         programs: nix.thunk(() => ({
-          [nix.POS]: pos$18,
-          direnv: nix.thunk(() => ({ [nix.POS]: pos$17, enable: true })),
+          [nix.POS]: $pos[17],
+          direnv: nix.thunk(() => ({ [nix.POS]: $pos[16], enable: true })),
         })),
         environment: nix.thunk(() => ({
-          [nix.POS]: pos$22,
-          variables: nix.thunk(() => ({ [nix.POS]: pos$19, ANGRR_DIRENV_LOG: "debug" })),
+          [nix.POS]: $pos[21],
+          variables: nix.thunk(() => ({ [nix.POS]: $pos[18], ANGRR_DIRENV_LOG: "debug" })),
           etc: nix.thunk(() => ({
-            [nix.POS]: pos$21,
+            [nix.POS]: $pos[20],
             "drvs-for-test": nix.thunk(() => ({
-              [nix.POS]: pos$20,
+              [nix.POS]: $pos[19],
               text: nix.thunk(() => nix.str`${nix.app(drvForTest, "drv1")}
 ${nix.app(drvForTest, "drv2")}
 ${nix.app(drvForTest, "drv3")}
@@ -118,12 +96,12 @@ ${nix.app(drvForTest, "fake-booted-system")}
           })),
         })),
         systemd: nix.thunk(() => ({
-          [nix.POS]: pos$26,
+          [nix.POS]: $pos[25],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$25,
+            [nix.POS]: $pos[24],
             angrr: nix.thunk(() => ({
-              [nix.POS]: pos$24,
-              unitConfig: nix.thunk(() => ({ [nix.POS]: pos$23, StartLimitBurst: 10n })),
+              [nix.POS]: $pos[23],
+              unitConfig: nix.thunk(() => ({ [nix.POS]: $pos[22], StartLimitBurst: 10n })),
             })),
           })),
         })),

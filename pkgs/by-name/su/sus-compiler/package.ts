@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5], ["fetchSubmodules", 19, 5], ["leaveDotGit", 20, 5], ["postFetch", 24, 5]], [["lockFile", 43, 13]], [["extraArgs", 67, 47]], [["updateScript", 67, 12]], [["description", 70, 5], ["homepage", 71, 5], ["license", 72, 5], ["maintainers", 73, 5], ["mainProgram", 74, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["cargoLock", 43, 3], ["preBuild", 45, 3], ["postPatch", 50, 3], ["doInstallCheck", 57, 3], ["nativeInstallCheckInputs", 64, 3], ["versionCheckProgram", 65, 3], ["passthru", 67, 3], ["meta", 69, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, rustPlatform: false, fetchFromGitHub: false, versionCheckHook: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5], ["fetchSubmodules", 19, 5], ["leaveDotGit", 20, 5], ["postFetch", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["lockFile", 43, 13]]);
-const pos$3 = nix.positions(here + "/package.nix", [["extraArgs", 67, 47]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 67, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 70, 5], ["homepage", 71, 5], ["license", 72, 5], ["maintainers", 73, 5], ["mainProgram", 74, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["cargoLock", 43, 3], ["preBuild", 45, 3], ["postPatch", 50, 3], ["doInstallCheck", 57, 3], ["nativeInstallCheckInputs", 64, 3], ["versionCheckProgram", 65, 3], ["passthru", 67, 3], ["meta", 69, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "sus-compiler",
       version: "0.5.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "pc2",
           repo: "sus-compiler",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -46,7 +41,7 @@ patch -p1 < "$PATCH"
 find "$out" -name .git -print0 | xargs -0 rm -rf
 `),
         })))),
-      cargoLock: nix.thunk(() => ({ [nix.POS]: pos$2, lockFile: nix.path(here, "./Cargo.lock") })),
+      cargoLock: nix.thunk(() => ({ [nix.POS]: $pos[1], lockFile: nix.path(here, "./Cargo.lock") })),
       preBuild: "export INSTALL_SUS_HOME=\"$out/share/sus-compiler\";\nmkdir -p \"$INSTALL_SUS_HOME\"\n",
       postPatch: nix.thunk(() => nix.str`ln -s ${nix.path(here, "./Cargo.lock")} Cargo.lock
 `),
@@ -58,11 +53,11 @@ find "$out" -name .git -print0 | xargs -0 rm -rf
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       versionCheckProgram: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/bin/sus_compiler`),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$3, extraArgs: nix.thunk(() => ["--generate-lockfile"]) })))),
+        [nix.POS]: $pos[3],
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: $pos[2], extraArgs: nix.thunk(() => ["--generate-lockfile"]) })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "New Hardware Design Language that keeps you in the driver's seat",
         homepage: "https://github.com/pc2/sus-compiler",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

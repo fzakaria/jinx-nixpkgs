@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["unwrapped", 42, 13]], [["pname", 12, 3], ["version", 13, 3], ["buildCommand", 14, 3], ["preferLocalBuild", 35, 3], ["nativeBuildInputs", 37, 3], ["passthru", 41, 3], ["meta", 45, 23]]]);
 const formals$1 = { args: { stdenvNoCC: false, makeWrapper: false, neovim: false, "neovim-qt-unwrapped": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["unwrapped", 42, 13]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["buildCommand", 14, 3], ["preferLocalBuild", 35, 3], ["nativeBuildInputs", 37, 3], ["passthru", 41, 3], ["meta", 45, 23]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const neovim_qt_unwrapped = nix.arg($, "neovim-qt-unwrapped");
   const unwrapped = neovim_qt_unwrapped;
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "neovim-qt",
       version: nix.thunk(() => nix.sel(unwrapped, "version")),
       buildCommand: nix.thunk(() => (nix.asBool(nix.sel(stdenvNoCC, "hostPlatform", "isDarwin")) ? nix.str`mkdir -p $out/Applications
@@ -33,7 +32,7 @@ ln -s ${unwrapped}/share/icons $out/share/icons
 `)),
       preferLocalBuild: true,
       nativeBuildInputs: nix.thunk(() => [makeWrapper]),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$1, unwrapped: unwrapped })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[0], unwrapped: unwrapped })),
       meta: nix.thunk(() => nix.attr(unwrapped, "meta")),
     })));
 })(), formals$1);

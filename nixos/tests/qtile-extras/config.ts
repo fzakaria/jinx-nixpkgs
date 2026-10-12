@@ -2,20 +2,19 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/config.nix", [[["url", 10, 5], ["hash", 11, 5]], [["name", 6, 3], ["version", 7, 3], ["src", 9, 3], ["prePatch", 14, 3], ["patches", 18, 3], ["dontUnpack", 23, 3], ["dontBuild", 24, 3], ["installPhase", 26, 3]]]);
 const formals$1 = { args: { stdenvNoCC: false, fetchurl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/config.nix", [["url", 10, 5], ["hash", 11, 5]]);
-const pos$2 = nix.positions(here + "/config.nix", [["name", 6, 3], ["version", 7, 3], ["src", 9, 3], ["prePatch", 14, 3], ["patches", 18, 3], ["dontUnpack", 23, 3], ["dontBuild", 24, 3], ["installPhase", 26, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       name: "qtile-extras-config",
       version: "0.0.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://raw.githubusercontent.com/qtile/qtile/v0.28.1/libqtile/resources/default_config.py",
           hash: "sha256-Y5W277CWVNSi4BdgEW/f7Px/MMjnN9W9TDqdOncVwPc=",
         })))),

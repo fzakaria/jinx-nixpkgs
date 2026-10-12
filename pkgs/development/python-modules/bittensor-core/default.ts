@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 19, 5], ["version", 20, 26], ["hash", 21, 5]], [["pname", 25, 26], ["version", 25, 32], ["src", 25, 40], ["hash", 26, 5]], [["OPENSSL_NO_VENDOR", 44, 5], ["SODIUM_USE_PKG_CONFIG", 45, 5]], [["description", 54, 5], ["homepage", 55, 5], ["changelog", 56, 5], ["license", 57, 5], ["maintainers", 58, 5]], [["pname", 12, 3], ["version", 13, 3], ["pyproject", 14, 3], ["__structuredAttrs", 16, 3], ["src", 18, 3], ["cargoDeps", 24, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 37, 3], ["env", 43, 3], ["doCheck", 49, 3], ["pythonImportsCheck", 51, 3], ["meta", 53, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, rustPlatform: false, "pkg-config": false, libsodium: false, openssl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 19, 5], ["version", 20, 26], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 25, 26], ["version", 25, 32], ["src", 25, 40], ["hash", 26, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["OPENSSL_NO_VENDOR", 44, 5], ["SODIUM_USE_PKG_CONFIG", 45, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 54, 5], ["homepage", 55, 5], ["changelog", 56, 5], ["license", 57, 5], ["maintainers", 58, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 12, 3], ["version", 13, 3], ["pyproject", 14, 3], ["__structuredAttrs", 16, 3], ["src", 18, 3], ["cargoDeps", 24, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 37, 3], ["env", 43, 3], ["doCheck", 49, 3], ["pythonImportsCheck", 51, 3], ["meta", 53, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,19 +15,19 @@ export default nix.lambda((args) => (() => {
   const libsodium = nix.arg($, "libsodium");
   const openssl = nix.arg($, "openssl");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "bittensor-core",
       version: "0.1.3",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "bittensor_core",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-yKSz88Vgu12cI8Y1pOABIsPvQls6oAgyAIeOswYNKkc=",
         })))),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -45,11 +41,11 @@ export default nix.lambda((args) => (() => {
         ];
       })())),
       buildInputs: nix.thunk(() => [libsodium, openssl]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$3, OPENSSL_NO_VENDOR: true, SODIUM_USE_PKG_CONFIG: true })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[2], OPENSSL_NO_VENDOR: true, SODIUM_USE_PKG_CONFIG: true })),
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["bittensor_core"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Key, timelock and SCALE codec primitives for Bittensor clients",
         homepage: "https://github.com/RaoFoundation/subtensor",
         changelog: nix.thunk(() => nix.str`https://pypi.org/project/bittensor-core/${nix.sel(finalAttrs, "version")}/`),

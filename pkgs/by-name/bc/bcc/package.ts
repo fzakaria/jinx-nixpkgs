@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["hash", 33, 5]], [["ausyscall", 45, 7]], [["bpf", 134, 5]], [["tests", 133, 12]], [["description", 138, 5], ["homepage", 139, 5], ["license", 140, 5], ["maintainers", 141, 5], ["platforms", 148, 5]], [["pname", 25, 3], ["version", 26, 3], ["pyproject", 27, 3], ["src", 29, 3], ["patches", 36, 3], ["build-system", 49, 3], ["dependencies", 51, 3], ["nativeBuildInputs", 53, 3], ["buildInputs", 63, 3], ["cmakeFlags", 75, 3], ["postPatch", 84, 3], ["postInstall", 96, 3], ["pythonImportsCheck", 113, 3], ["postFixup", 115, 3], ["disallowedReferences", 123, 3], ["outputs", 128, 3], ["passthru", 133, 3], ["meta", 137, 3]]]);
 const formals$1 = { args: { audit: false, bash: false, bison: false, cmake: false, elfutils: false, fetchFromGitHub: false, flex: false, iperf: false, lib: false, libbpf: false, llvmPackages: false, luajit: false, makeWrapper: false, netperf: false, nixosTests: false, python3Packages: false, readline: false, removeReferencesTo: false, replaceVars: false, zip: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["hash", 33, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["ausyscall", 45, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["bpf", 134, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 133, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 138, 5], ["homepage", 139, 5], ["license", 140, 5], ["maintainers", 141, 5], ["platforms", 148, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 25, 3], ["version", 26, 3], ["pyproject", 27, 3], ["src", 29, 3], ["patches", 36, 3], ["build-system", 49, 3], ["dependencies", 51, 3], ["nativeBuildInputs", 53, 3], ["buildInputs", 63, 3], ["cmakeFlags", 75, 3], ["postPatch", 84, 3], ["postInstall", 96, 3], ["pythonImportsCheck", 113, 3], ["postFixup", 115, 3], ["disallowedReferences", 123, 3], ["outputs", 128, 3], ["passthru", 133, 3], ["meta", 137, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -37,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.37.0";
       const pyproject = false;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "iovisor",
           repo: "bcc",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -47,7 +42,7 @@ export default nix.lambda((args) => (() => {
         nix.path(here, "./fix-deadlock-detector-import.patch"),
         nix.path(here, "./bashreadline.py-remove-dependency-on-elftools.patch"),
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./absolute-ausyscall.patch"), nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             ausyscall: nix.thunk(() => nix.app(nix.sel(lib, "getExe'"), audit, "ausyscall")),
           })))),
       ]);
@@ -101,11 +96,11 @@ substituteInPlace tools/bashreadline.py \\
       ]);
       const outputs = nix.thunk(() => ["out", "man"]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$3, bpf: nix.thunk(() => nix.sel(nixosTests, "bpf")) })),
+        [nix.POS]: $pos[3],
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[2], bpf: nix.thunk(() => nix.sel(nixosTests, "bpf")) })),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Dynamic Tracing Tools for Linux",
         homepage: "https://iovisor.github.io/bcc/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -122,7 +117,7 @@ substituteInPlace tools/bashreadline.py \\
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname,
         version,
         pyproject,

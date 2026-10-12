@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 34, 5], ["repo", 35, 5], ["tag", 36, 5], ["hash", 37, 5]], [["pname", 42, 7], ["version", 43, 7], ["src", 44, 7], ["pnpm", 46, 5], ["fetcherVersion", 47, 5], ["hash", 48, 5]], [["updateScript", 117, 12]], [["description", 120, 5], ["homepage", 121, 5], ["downloadPage", 122, 5], ["changelog", 123, 5], ["license", 124, 5], ["mainProgram", 125, 5], ["maintainers", 126, 5], ["platforms", 130, 5]], [["pname", 28, 3], ["version", 29, 3], ["__structuredAttrs", 31, 3], ["src", 33, 3], ["pnpmDeps", 40, 3], ["postPatch", 51, 3], ["cargoRoot", 67, 3], ["buildAndTestSubdir", 68, 3], ["cargoHash", 70, 3], ["nativeBuildInputs", 72, 3], ["buildInputs", 88, 3], ["preBuild", 98, 3], ["tauriBuildFlags", 105, 3], ["checkFlags", 108, 3], ["postInstall", 112, 3], ["passthru", 117, 3], ["meta", 119, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, rustPlatform: false, fetchFromGitHub: false, "cargo-tauri": false, jq: false, makeBinaryWrapper: false, moreutils: false, nodejs: false, "pkg-config": false, pnpm_10: false, fetchPnpmDeps: false, pnpmConfigHook: false, wrapGAppsHook3: false, "glib-networking": false, "libayatana-appindicator": false, libsoup_3: false, openssl: false, webkitgtk_4_1: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 34, 5], ["repo", 35, 5], ["tag", 36, 5], ["hash", 37, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 42, 7], ["version", 43, 7], ["src", 44, 7], ["pnpm", 46, 5], ["fetcherVersion", 47, 5], ["hash", 48, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 117, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 120, 5], ["homepage", 121, 5], ["downloadPage", 122, 5], ["changelog", 123, 5], ["license", 124, 5], ["mainProgram", 125, 5], ["maintainers", 126, 5], ["platforms", 130, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 28, 3], ["version", 29, 3], ["__structuredAttrs", 31, 3], ["src", 33, 3], ["pnpmDeps", 40, 3], ["postPatch", 51, 3], ["cargoRoot", 67, 3], ["buildAndTestSubdir", 68, 3], ["cargoHash", 70, 3], ["nativeBuildInputs", 72, 3], ["buildInputs", 88, 3], ["preBuild", 98, 3], ["tauriBuildFlags", 105, 3], ["checkFlags", 108, 3], ["postInstall", 112, 3], ["passthru", 117, 3], ["meta", 119, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,19 +28,19 @@ export default nix.lambda((args) => (() => {
   const webkitgtk_4_1 = nix.arg($, "webkitgtk_4_1");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "cc-switch",
       version: "3.16.5",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "farion1231",
           repo: "cc-switch",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-CrUoTfGAy+gi3gdcSlNyjwM2Rm4nahqDWdM6I9OQgPc=",
         })))),
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -75,11 +71,11 @@ substituteInPlace $cargoDepsCopy/*/libappindicator-sys-*/src/lib.rs \\
         ]))),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "mkdir -p \"$out/bin\"\nmakeWrapper \"$out/Applications/CC Switch.app/Contents/MacOS/cc-switch\" \"$out/bin/cc-switch\"\n")),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "All-in-one assistant for Claude Code, Codex, OpenCode, Gemini CLI and other AI coding agents",
         homepage: "https://ccswitch.io",
         downloadPage: "https://github.com/farion1231/cc-switch",

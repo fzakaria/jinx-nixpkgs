@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["hash", 24, 5]], [["updateScript", 51, 12]], [["broken", 54, 5], ["homepage", 55, 5], ["description", 56, 5], ["mainProgram", 57, 5], ["license", 58, 5], ["platforms", 59, 5], ["teams", 60, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 36, 3], ["preConfigure", 41, 3], ["postPatch", 46, 3], ["passthru", 51, 3], ["meta", 53, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, libconfig: false, "lxqt-build-tools": false, "pkg-config": false, qtbase: false, qttools: false, qtx11extras: false, wrapQtAppsHook: false, gitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["updateScript", 51, 12]]);
-const pos$3 = nix.positions(here + "/default.nix", [["broken", 54, 5], ["homepage", 55, 5], ["description", 56, 5], ["mainProgram", 57, 5], ["license", 58, 5], ["platforms", 59, 5], ["teams", 60, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 36, 3], ["preConfigure", 41, 3], ["postPatch", 46, 3], ["passthru", 51, 3], ["meta", 53, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const pname = "compton-conf";
       const version = "0.16.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "lxqt",
           repo: "compton-conf",
           rev: version,
@@ -37,11 +34,11 @@ export default nix.lambda((args) => (() => {
       const preConfigure = "substituteInPlace autostart/CMakeLists.txt \\\n  --replace-fail \"DESTINATION \\\"\\${LXQT_ETC_XDG_DIR}\" \"DESTINATION \\\"etc/xdg\"\n";
       const postPatch = "substituteInPlace CMakeLists.txt \\\n  --replace-fail \"cmake_minimum_required(VERSION 3.1.0 FATAL_ERROR)\" \"cmake_minimum_required(VERSION 3.10)\"\n";
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
         homepage: "https://github.com/lxqt/compton-conf",
         description: "GUI configuration tool for compton X composite manager",
@@ -54,7 +51,7 @@ export default nix.lambda((args) => (() => {
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "lxqt"))]),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

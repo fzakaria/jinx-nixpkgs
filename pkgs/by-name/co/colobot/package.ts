@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 35, 5], ["repo", 36, 5], ["tag", 37, 5], ["hash", 38, 5]], [["url", 43, 7], ["relative", 44, 7], ["extraPrefix", 45, 7], ["hash", 46, 7]], [["homepage", 86, 5], ["description", 87, 5], ["license", 88, 5], ["maintainers", 89, 5], ["platforms", 90, 5]], [["pname", 29, 3], ["version", 32, 3], ["src", 34, 3], ["patches", 41, 3], ["postPatch", 50, 3], ["nativeBuildInputs", 56, 3], ["buildInputs", 62, 3], ["postInstall", 78, 3], ["meta", 85, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, boost: false, SDL2: false, SDL2_image: false, SDL2_ttf: false, libpng: false, glew: false, gettext: false, libsndfile: false, libvorbis: false, libogg: false, physfs: false, openal: false, xmlstarlet: false, doxygen: false, python3: false, callPackage: false, fetchpatch: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 35, 5], ["repo", 36, 5], ["tag", 37, 5], ["hash", 38, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 43, 7], ["relative", 44, 7], ["extraPrefix", 45, 7], ["hash", 46, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 86, 5], ["description", 87, 5], ["license", 88, 5], ["maintainers", 89, 5], ["platforms", 90, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 29, 3], ["version", 32, 3], ["src", 34, 3], ["patches", 41, 3], ["postPatch", 50, 3], ["nativeBuildInputs", 56, 3], ["buildInputs", 62, 3], ["postInstall", 78, 3], ["meta", 85, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,11 +30,11 @@ export default nix.lambda((args) => (() => {
   const fetchpatch = nix.arg($, "fetchpatch");
   const colobot_data = nix.thunk(() => nix.app(callPackage, nix.path(here, "./data.nix"), nix.thunk(() => ({}))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "colobot",
       version: "0.2.2-alpha",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "colobot",
           repo: "colobot",
           tag: nix.thunk(() => nix.str`colobot-gold-${nix.sel(finalAttrs, "version")}`),
@@ -45,7 +42,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/colobot/colobot/commit/1561854b03500d39955c66971c9c98de1937d7e6.patch",
             relative: "colobot-app/src",
             extraPrefix: "src/app/",
@@ -74,7 +71,7 @@ for contents in ${colobot_data}/share/games/colobot/*; do
 done
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://colobot.info/",
         description: "Real-time strategy game with programmable bots",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

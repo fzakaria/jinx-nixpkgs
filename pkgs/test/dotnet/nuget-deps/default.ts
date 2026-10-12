@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["name", 25, 7], ["unpackPhase", 26, 7], ["nugetDeps", 36, 15]], [["null", 40, 5], ["nix-file", 41, 5], ["json-file", 42, 5], ["derivation", 43, 5], ["list", 44, 5]]]);
 const formals$1 = { args: { lib: false, "dotnet-sdk": false, buildPackages: false, runCommand: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["name", 25, 7], ["unpackPhase", 26, 7], ["nugetDeps", 36, 15]]);
-const pos$2 = nix.positions(here + "/default.nix", [["null", 40, 5], ["nix-file", 41, 5], ["json-file", 42, 5], ["derivation", 43, 5], ["list", 44, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const emptyDirectory = nix.thunk(() => nix.attr(buildPackages, "emptyDirectory"));
   const buildDotnetModule = nix.thunk(() => nix.attr(buildPackages, "buildDotnetModule"));
   return nix.app(mapAttrs, (name) => (nugetDeps) => nix.app(buildDotnetModule, nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         name: nix.thunk(() => nix.str`nuget-deps-${name}`),
         unpackPhase: "runHook preUnpack\n\nmkdir test\ncd test\ndotnet new console -o .\nls -l\n\nrunHook postUnpack\n",
         nugetDeps: nugetDeps,
       }))), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       null: null,
       "nix-file": nix.path(here, "./nuget-deps.nix"),
       "json-file": nix.path(here, "./nuget-deps.json"),

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 19, 5], ["hash", 20, 5], ["stripRoot", 21, 5]], [["url", 29, 5], ["rev-prefix", 30, 5], ["ignoredVersions", 34, 5]], [["updateScript", 28, 12]], [["description", 38, 5], ["homepage", 39, 5], ["license", 40, 5], ["platforms", 41, 5], ["maintainers", 42, 5]], [["pname", 10, 3], ["version", 11, 3], ["outputs", 13, 3], ["src", 18, 3], ["sourceRoot", 24, 3], ["nativeBuildInputs", 26, 3], ["passthru", 28, 3], ["meta", 37, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchzip: false, installFonts: false, gitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 19, 5], ["hash", 20, 5], ["stripRoot", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 29, 5], ["rev-prefix", 30, 5], ["ignoredVersions", 34, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 28, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 38, 5], ["homepage", 39, 5], ["license", 40, 5], ["platforms", 41, 5], ["maintainers", 42, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["outputs", 13, 3], ["src", 18, 3], ["sourceRoot", 24, 3], ["nativeBuildInputs", 26, 3], ["passthru", 28, 3], ["meta", 37, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const installFonts = nix.arg($, "installFonts");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "beedii",
       version: "1.0.0",
       outputs: nix.thunk(() => ["out", "webfont"]),
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/webkul/beedii/releases/download/v${nix.sel(finalAttrs, "version")}/beedii.zip`),
           hash: "sha256-MefkmWl7LdhQiePpixKcatoIeOTlrRaO3QA9xWAxJ4Q=",
           stripRoot: false,
@@ -30,16 +26,16 @@ export default nix.lambda((args) => (() => {
       sourceRoot: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "name")}/Fonts`),
       nativeBuildInputs: nix.thunk(() => [installFonts]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/webkul/beedii",
             "rev-prefix": "v",
             ignoredVersions: "^1\\.2\\.0$",
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Free Hand Drawn Emoji Font",
         homepage: "https://github.com/webkul/beedii",
         license: nix.thunk(() => nix.sel(lib, "licenses", "cc0")),

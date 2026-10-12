@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 14, 5], ["hash", 15, 5]], [["NIX_CFLAGS_COMPILE", 23, 7], ["ENVCMD", 26, 7]], [["description", 31, 5], ["longDescription", 32, 5], ["homepage", 44, 5], ["license", 45, 5], ["platforms", 46, 5], ["maintainers", 47, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["postPatch", 18, 3], ["env", 23, 3], ["buildInputs", 28, 3], ["meta", 30, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, perl: false, coreutils: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 14, 5], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 23, 7], ["ENVCMD", 26, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 31, 5], ["longDescription", 32, 5], ["homepage", 44, 5], ["license", 45, 5], ["platforms", 46, 5], ["maintainers", 47, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["postPatch", 18, 3], ["env", 23, 3], ["buildInputs", 28, 3], ["meta", 30, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,23 +13,23 @@ export default nix.lambda((args) => (() => {
   const perl = nix.arg($, "perl");
   const coreutils = nix.arg($, "coreutils");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "berkeley_upc",
       version: "2022.10.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://upc.lbl.gov/download/release/berkeley_upc-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-ZckvdxDixr06BTzJ0ErEdtmR4G05llIUsVgLEUR65LU=",
         })))),
       postPatch: "patchShebangs .\n",
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: "-Wno-incompatible-pointer-types",
         ENVCMD: nix.thunk(() => nix.str`${coreutils}/bin/env`),
       })),
       buildInputs: nix.thunk(() => [perl]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Compiler for the Berkely Unified Parallel C language",
         longDescription: "Unified Parallel C (UPC) is an extension of the C programming language\ndesigned for high performance computing on large-scale parallel\nmachines.The language provides a uniform programming model for both\nshared and distributed memory hardware. The programmer is presented with\na single shared, partitioned address space, where variables may be\ndirectly read and written by any processor, but each variable is\nphysically associated with a single processor. UPC uses a Single Program\nMultiple Data (SPMD) model of computation in which the amount of\nparallelism is fixed at program startup time, typically with a single\nthread of execution per processor.\n",
         homepage: "https://upc.lbl.gov/",

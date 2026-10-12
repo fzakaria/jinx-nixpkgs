@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 12, 5], ["sha256", 13, 5]], [["description", 39, 5], ["longDescription", 40, 5], ["maintainers", 50, 5], ["platforms", 51, 5], ["license", 52, 5], ["mainProgram", 53, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 11, 3], ["buildInputs", 16, 3], ["buildFlags", 18, 3], ["installFlags", 23, 3], ["installTargets", 29, 3], ["preInstall", 34, 3], ["meta", 38, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, libx11: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 12, 5], ["sha256", 13, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 39, 5], ["longDescription", 40, 5], ["maintainers", 50, 5], ["platforms", 51, 5], ["license", 52, 5], ["mainProgram", 53, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 11, 3], ["buildInputs", 16, 3], ["buildFlags", 18, 3], ["installFlags", 23, 3], ["installTargets", 29, 3], ["preInstall", 34, 3], ["meta", 38, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const libx11 = nix.arg($, "libx11");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "unclutter",
       version: "8",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://www.ibiblio.org/pub/X11/contrib/utilities/unclutter-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "33a78949a7dedf2e8669ae7b5b2c72067896497820292c96afaa60bb71d1f2a6",
         })))),
@@ -35,7 +33,7 @@ export default nix.lambda((args) => (() => {
       installTargets: nix.thunk(() => ["install", "install.man"]),
       preInstall: "mkdir -pv \"$out\"/{bin,share/man/man1}\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Hides mouse pointer while not in use",
         longDescription: "Unclutter hides your X mouse cursor when you do not need it, to prevent\nit from getting in the way. You have only to move the mouse to restore\nthe mouse cursor. Unclutter is very useful in tiling wm's where you do\nnot need the mouse often.\n\nJust run it from your .bash_profile like that:\n\n    unclutter -idle 1 &\n",
         maintainers: [],

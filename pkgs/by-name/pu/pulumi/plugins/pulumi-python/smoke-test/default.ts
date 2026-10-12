@@ -2,8 +2,8 @@
 import * as nix from "../../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["name", 10, 3], ["src", 11, 3], ["doCheck", 13, 3], ["nativeCheckInputs", 15, 3], ["__darwinAllowLocalNetworking", 22, 3], ["checkPhase", 24, 3], ["installPhase", 32, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, pulumiTestHook: false, pulumi: false, "pulumi-python": false, python3Packages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["name", 10, 3], ["src", 11, 3], ["doCheck", 13, 3], ["nativeCheckInputs", 15, 3], ["__darwinAllowLocalNetworking", 22, 3], ["checkPhase", 24, 3], ["installPhase", 32, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const pulumi_python = nix.arg($, "pulumi-python");
   const python3Packages = nix.arg($, "python3Packages");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: "pulumi-python-smoke-test",
       src: nix.thunk(() => nix.builtins.filterSource((name) => (_) => !nix.asBool(nix.app(nix.sel(lib, "hasSuffix"), ".nix", name)), nix.path(here, "./."))),
       doCheck: true,

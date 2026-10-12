@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 52, 9], ["url", 53, 9], ["hash", 54, 9]], [["patches", 50, 5]], [["url", 64, 5], ["hash", 65, 5]], [["NIX_CFLAGS_COMPILE", 107, 5], ["NIX_CFLAGS_LINK", 116, 5]], [["description", 184, 5], ["homepage", 185, 5], ["license", 186, 5], ["maintainers", 193, 5], ["platforms", 194, 5], ["mainProgram", 195, 5]], [["pname", 60, 3], ["version", 61, 3], ["src", 63, 3], ["nativeBuildInputs", 68, 3], ["buildInputs", 74, 3], ["env", 106, 3], ["patches", 121, 3], ["configurePhase", 125, 3], ["enableParallelBuilding", 161, 3], ["installPhase", 163, 3], ["meta", 183, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, perl: false, fetchurl: false, fetchpatch: false, python3: false, fmt_9: false, libidn: false, "pkg-config": false, spidermonkey_128: false, boost: false, icu: false, libxml2: false, libpng: false, libsodium: false, libjpeg: false, zlib: false, curl: false, libogg: false, libvorbis: false, enet: false, miniupnpc: false, openal: false, libGLU: false, libGL: false, xorgproto: false, libx11: false, libxcursor: false, nspr: false, SDL2: false, gloox: false, "nvidia-texture-tools": false, premake5: false, cxxtest: false, freetype: false, withEditor: true, wxwidgets_3_2: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 52, 9], ["url", 53, 9], ["hash", 54, 9]]);
-const pos$2 = nix.positions(here + "/package.nix", [["patches", 50, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 64, 5], ["hash", 65, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 107, 5], ["NIX_CFLAGS_LINK", 116, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 184, 5], ["homepage", 185, 5], ["license", 186, 5], ["maintainers", 193, 5], ["platforms", 194, 5], ["mainProgram", 195, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 60, 3], ["version", 61, 3], ["src", 63, 3], ["nativeBuildInputs", 68, 3], ["buildInputs", 74, 3], ["env", 106, 3], ["patches", 121, 3], ["configurePhase", 125, 3], ["enableParallelBuilding", 161, 3], ["installPhase", 163, 3], ["meta", 183, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -50,10 +45,10 @@ export default nix.lambda((args) => (() => {
   const withEditor = nix.argOr($, "withEditor", () => true);
   const wxwidgets_3_2 = nix.arg($, "wxwidgets_3_2");
   const spidermonkey = nix.thunk(() => nix.app(nix.sel(spidermonkey_128, "overrideAttrs"), (old) => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       patches: nix.thunk(() => nix.concat(nix.selOr(old, () => [], "patches"), [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             name: "fix-extra-gc-tracing.patch",
             url: "https://github.com/mozilla-firefox/firefox/commit/bf1994b05baea60f84309475cd544fe89acf82f2.patch",
             hash: "sha256-3sTcZb34yHheqK7O9aHSwMife3uJnf3us+0sPJ2NzKs=",
@@ -61,11 +56,11 @@ export default nix.lambda((args) => (() => {
       ])),
     })));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "0ad",
       version: "0.28.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           url: nix.thunk(() => nix.str`https://releases.wildfiregames.com/0ad-${nix.sel(finalAttrs, "version")}-unix-build.tar.xz`),
           hash: "sha256-J+IXdV73apIv5Y2/WT2W5Utu0jddI/VIw1YZqmvVpCo=",
         })))),
@@ -101,7 +96,7 @@ export default nix.lambda((args) => (() => {
         cxxtest,
       ], nix.app(nix.sel(lib, "optional"), withEditor, wxwidgets_3_2))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => [
             nix.thunk(() => nix.str`-I${xorgproto}/include`),
             nix.thunk(() => nix.str`-I${nix.sel(libx11, "dev")}/include`),
@@ -167,7 +162,7 @@ install -D build/resources/0ad.png     $out/share/icons/hicolor/128x128/apps/0ad
 install -D build/resources/0ad.desktop $out/share/applications/0ad.desktop
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Free, open-source game of ancient warfare",
         homepage: "https://play0ad.com/",
         license: nix.thunk(() => (() => {

@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]], [["package", 23, 5], ["command", 24, 5], ["version", 25, 5]], [["version", 22, 18]], [["tests", 22, 12]], [["description", 29, 5], ["homepage", 30, 5], ["platforms", 31, 5], ["maintainers", 32, 5], ["license", 39, 5], ["mainProgram", 40, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 20, 3], ["passthru", 22, 3], ["meta", 28, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, autoreconfHook: false, testers: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["package", 23, 5], ["command", 24, 5], ["version", 25, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 22, 18]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 22, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 29, 5], ["homepage", 30, 5], ["platforms", 31, 5], ["maintainers", 32, 5], ["license", 39, 5], ["mainProgram", 40, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 20, 3], ["passthru", 22, 3], ["meta", 28, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const autoreconfHook = nix.arg($, "autoreconfHook");
   const testers = nix.arg($, "testers");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "lha",
       version: "1.14i-unstable-2026-01-01",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "jca02266",
           repo: "lha",
           rev: "86094cb56aba34de45668f39f74fcfb61e9d7fb6",
@@ -30,11 +25,11 @@ export default nix.lambda((args) => (() => {
         })))),
       nativeBuildInputs: nix.thunk(() => [autoreconfHook]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               command: "lha --help",
               version: "1.14i",
@@ -42,7 +37,7 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Archiver and compressor using the LZSS and Huffman encoding compression algorithms",
         homepage: "https://github.com/jca02266/lha",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),

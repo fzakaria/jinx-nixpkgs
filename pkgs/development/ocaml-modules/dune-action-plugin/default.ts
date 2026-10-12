@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["homepage", 23, 25], ["description", 24, 5], ["maintainers", 25, 5], ["license", 26, 5]], [["pname", 11, 3], ["src", 12, 18], ["version", 12, 22], ["dontAddPrefix", 14, 3], ["propagatedBuildInputs", 16, 3], ["meta", 22, 3]]]);
 const formals$1 = { args: { lib: false, buildDunePackage: false, dune: false, "dune-glob": false, "dune-private-libs": false, "dune-rpc": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["homepage", 23, 25], ["description", 24, 5], ["maintainers", 25, 5], ["license", 26, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 11, 3], ["src", 12, 18], ["version", 12, 22], ["dontAddPrefix", 14, 3], ["propagatedBuildInputs", 16, 3], ["meta", 22, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const dune_private_libs = nix.arg($, "dune-private-libs");
   const dune_rpc = nix.arg($, "dune-rpc");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "dune-action-plugin",
       src: nix.thunk(() => nix.attr(dune, "src")),
       version: nix.thunk(() => nix.attr(dune, "version")),
@@ -24,7 +23,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(dune, "meta"));
         return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         description: "API for writing dynamic Dune actions",
         maintainers: [],

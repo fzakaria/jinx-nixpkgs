@@ -2,16 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 25, 7], ["repo", 26, 7], ["tag", 27, 7], ["hash", 28, 7]], [["extensions", 32, 7]], [["pname", 22, 13], ["version", 22, 19], ["src", 24, 5], ["php", 31, 5], ["vendorHash", 41, 5], ["composerStrictValidation", 44, 5], ["composerNoPlugins", 45, 5], ["postInstall", 47, 5]], [["yarnLock", 69, 5], ["hash", 70, 5]], [["part-db", 92, 43]], [["tests", 92, 12]], [["description", 95, 5], ["homepage", 96, 5], ["changelog", 97, 5], ["license", 98, 5], ["maintainers", 99, 5], ["platforms", 103, 5]], [["pname", 64, 11], ["version", 64, 17], ["src", 66, 3], ["yarnOfflineCache", 68, 3], ["nativeBuildInputs", 73, 3], ["installPhase", 79, 3], ["passthru", 92, 3], ["meta", 94, 3]]]);
 const formals$1 = { args: { stdenv: false, php: false, lib: false, fetchFromGitHub: false, fetchYarnDeps: false, nodejs: false, yarnConfigHook: false, yarnBuildHook: false, nixosTests: false, envLocalPath: true, cachePath: true, logPath: true, mediaPath: true, uploadsPath: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 25, 7], ["repo", 26, 7], ["tag", 27, 7], ["hash", 28, 7]]);
 const formals$2 = { args: { enabled: false, all: false }, ellipsis: false };
-const pos$2 = nix.positions(here + "/package.nix", [["extensions", 32, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 22, 13], ["version", 22, 19], ["src", 24, 5], ["php", 31, 5], ["vendorHash", 41, 5], ["composerStrictValidation", 44, 5], ["composerNoPlugins", 45, 5], ["postInstall", 47, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["yarnLock", 69, 5], ["hash", 70, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["part-db", 92, 43]]);
-const pos$6 = nix.positions(here + "/package.nix", [["tests", 92, 12]]);
-const pos$7 = nix.positions(here + "/package.nix", [["description", 95, 5], ["homepage", 96, 5], ["changelog", 97, 5], ["license", 98, 5], ["maintainers", 99, 5], ["platforms", 103, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 64, 11], ["version", 64, 17], ["src", 66, 3], ["yarnOfflineCache", 68, 3], ["nativeBuildInputs", 73, 3], ["installPhase", 79, 3], ["passthru", 92, 3], ["meta", 94, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,18 +25,18 @@ export default nix.lambda((args) => (() => {
   const pname = "part-db";
   const version = "2.13.1";
   const srcWithVendor = nix.thunk(() => nix.app(nix.sel(php, "buildComposerProject2"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: pname,
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Part-DB",
           repo: "Part-DB-server",
           tag: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-j7Kj03RxbrRoHJ4kFeZo1VmeHT3YucY4Zxog93+5Q38=",
         })))),
       php: nix.thunk(() => nix.app(nix.sel(php, "buildEnv"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           extensions: nix.lambda((args_1) => (() => {
             const $_1 = nix.formals(args_1, formals$2);
             const enabled = nix.arg($_1, "enabled");
@@ -60,12 +53,12 @@ export default nix.lambda((args) => (() => {
       postInstall: "chmod -R u+w $out/share\ncd \"$out\"/share/php/part-db\necho \"Running composer dump-autoload to generate autoload_runtime.php...\"\ncomposer dump-autoload --no-interaction\nexport APP_ENV=prod\nexport APP_SECRET=dummy\nexport DATABASE_URL=sqlite:///%kernel.project_dir%/data/app.db\nphp -d memory_limit=256M bin/console cache:warmup\ncd /build\nmv \"$out\"/share/php/part-db/* $out/\nmv \"$out\"/share/php/part-db/.* $out/\nrm -rf \"$out/share\"\n",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: pname,
       version: version,
       src: srcWithVendor,
       yarnOfflineCache: nix.thunk(() => nix.app(fetchYarnDeps, nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           yarnLock: nix.thunk(() => nix.add(nix.sel(finalAttrs, "src"), "/yarn.lock")),
           hash: "sha256-xdRMAOmGQFPuej/8A88edH23jL/3K8igx0BB7Z78sjM=",
         })))),
@@ -82,14 +75,14 @@ ln -s ${mediaPath} $out/public/media
 ln -s ${uploadsPath} $out/uploads
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           "part-db": nix.thunk(() => nix.attr(nixosTests, "part-db")),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "Open source inventory management system for your electronic components",
         homepage: "https://docs.part-db.de/",
         changelog: nix.thunk(() => nix.str`https://github.com/Part-DB/Part-DB-server/releases/tag/v${version}`),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]], [["description", 59, 5], ["homepage", 60, 5], ["changelog", 61, 5], ["downloadPage", 62, 5], ["license", 63, 5], ["maintainers", 69, 5], ["platforms", 70, 5], ["mainProgram", 71, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["cargoHash", 26, 3], ["__structuredAttrs", 28, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 36, 3], ["postInstall", 41, 3], ["doInstallCheck", 55, 3], ["nativeInstallCheckInputs", 56, 3], ["meta", 58, 3]]]);
 const formals$1 = { args: { fetchFromGitHub: false, installShellFiles: false, lib: false, libGL: false, libxkbcommon: false, makeBinaryWrapper: false, "pkg-config": false, rustPlatform: false, versionCheckHook: false, "vulkan-loader": false, wayland: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 59, 5], ["homepage", 60, 5], ["changelog", 61, 5], ["downloadPage", 62, 5], ["license", 63, 5], ["maintainers", 69, 5], ["platforms", 70, 5], ["mainProgram", 71, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["cargoHash", 26, 3], ["__structuredAttrs", 28, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 36, 3], ["postInstall", 41, 3], ["doInstallCheck", 55, 3], ["nativeInstallCheckInputs", 56, 3], ["meta", 58, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const vulkan_loader = nix.arg($, "vulkan-loader");
   const wayland = nix.arg($, "wayland");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "vellum",
       version: "0.6.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "greyxp1",
           repo: "vellum",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -44,7 +42,7 @@ wrapProgram $out/bin/vellum \\
       doInstallCheck: true,
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Live screen annotation overlay for Wayland",
         homepage: "https://github.com/greyxp1/vellum",
         changelog: nix.thunk(() => nix.str`https://github.com/greyxp1/vellum/releases/tag/v${nix.sel(finalAttrs, "version")}`),

@@ -2,10 +2,9 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["closure", 35, 25]], [["name", 31, 11], ["__structuredAttrs", 33, 3], ["exportReferencesGraph", 35, 3], ["preferLocalBuild", 37, 3], ["nativeBuildInputs", 39, 3], ["buildCommand", 48, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, coreutils: false, jq: false, python3: false, nix: false, xz: false, zstd: false }, ellipsis: false };
 const formals$2 = { args: { name: true, compression: true, rootPaths: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["closure", 35, 25]]);
-const pos$2 = nix.positions(here + "/default.nix", [["name", 31, 11], ["__structuredAttrs", 33, 3], ["exportReferencesGraph", 35, 3], ["preferLocalBuild", 37, 3], ["nativeBuildInputs", 39, 3], ["buildCommand", 48, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,10 +23,10 @@ export default nix.lambda((args) => (() => {
     const rootPaths = nix.arg($_1, "rootPaths");
     nix.assert_(nix.app(nix.sel(lib, "elem"), compression, nix.thunk(() => ["none", "xz", "zstd"])), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/build-support/binary-cache/default.nix:24:1");
     return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         name: name,
         __structuredAttrs: true,
-        exportReferencesGraph: nix.thunk(() => ({ [nix.POS]: pos$1, closure: rootPaths })),
+        exportReferencesGraph: nix.thunk(() => ({ [nix.POS]: $pos[0], closure: rootPaths })),
         preferLocalBuild: true,
         nativeBuildInputs: nix.thunk(() => nix.concat([coreutils, jq, python3, nix$], nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.eq(compression, "xz")), xz), nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.eq(compression, "zstd")), zstd)))),
         buildCommand: nix.thunk(() => nix.str`mkdir -p $out/nar

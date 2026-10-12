@@ -2,72 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/eggs.nix", [[["name", 7, 7], ["version", 8, 7], ["sha256", 9, 7]], [["name", 4, 5], ["src", 6, 5], ["buildInputs", 12, 5]], [["name", 21, 7], ["version", 22, 7], ["sha256", 23, 7]], [["name", 18, 5], ["src", 20, 5], ["buildInputs", 26, 5]], [["name", 36, 7], ["version", 37, 7], ["sha256", 38, 7]], [["name", 33, 5], ["src", 35, 5], ["buildInputs", 41, 5]], [["name", 50, 7], ["version", 51, 7], ["sha256", 52, 7]], [["name", 47, 5], ["src", 49, 5], ["buildInputs", 55, 5]], [["name", 64, 7], ["version", 65, 7], ["sha256", 66, 7]], [["name", 61, 5], ["src", 63, 5], ["buildInputs", 69, 5]], [["name", 78, 7], ["version", 79, 7], ["sha256", 80, 7]], [["name", 75, 5], ["src", 77, 5], ["buildInputs", 83, 5]], [["name", 96, 7], ["version", 97, 7], ["sha256", 98, 7]], [["name", 93, 5], ["src", 95, 5], ["buildInputs", 101, 5]], [["name", 110, 7], ["version", 111, 7], ["sha256", 112, 7]], [["name", 107, 5], ["src", 109, 5], ["buildInputs", 115, 5]], [["name", 124, 7], ["version", 125, 7], ["sha256", 126, 7]], [["name", 121, 5], ["src", 123, 5], ["buildInputs", 129, 5]], [["name", 143, 7], ["version", 144, 7], ["sha256", 145, 7]], [["name", 140, 5], ["src", 142, 5], ["buildInputs", 148, 5]], [["name", 157, 7], ["version", 158, 7], ["sha256", 159, 7]], [["name", 154, 5], ["src", 156, 5], ["buildInputs", 162, 5]], [["name", 173, 7], ["version", 174, 7], ["sha256", 175, 7]], [["name", 170, 5], ["src", 172, 5], ["buildInputs", 178, 5]], [["name", 187, 7], ["version", 188, 7], ["sha256", 189, 7]], [["name", 184, 5], ["src", 186, 5], ["buildInputs", 192, 5], ["patches", 196, 5]], [["name", 206, 7], ["version", 207, 7], ["sha256", 208, 7]], [["name", 203, 5], ["src", 205, 5], ["buildInputs", 211, 5]], [["name", 220, 7], ["version", 221, 7], ["sha256", 222, 7]], [["name", 217, 5], ["src", 219, 5], ["buildInputs", 225, 5]], [["name", 234, 7], ["version", 235, 7], ["sha256", 236, 7]], [["name", 231, 5], ["src", 233, 5], ["buildInputs", 239, 5]], [["name", 248, 7], ["version", 249, 7], ["sha256", 250, 7]], [["name", 245, 5], ["src", 247, 5], ["buildInputs", 253, 5]], [["name", 262, 7], ["version", 263, 7], ["sha256", 264, 7]], [["name", 259, 5], ["src", 261, 5], ["buildInputs", 267, 5]], [["name", 277, 7], ["version", 278, 7], ["sha256", 279, 7]], [["name", 274, 5], ["src", 276, 5], ["buildInputs", 282, 5]], [["name", 291, 7], ["version", 292, 7], ["sha256", 293, 7]], [["name", 288, 5], ["src", 290, 5], ["buildInputs", 296, 5]], [["name", 305, 7], ["version", 306, 7], ["sha256", 307, 7]], [["name", 302, 5], ["src", 304, 5], ["buildInputs", 310, 5]], [["name", 319, 7], ["version", 320, 7], ["sha256", 321, 7]], [["name", 316, 5], ["src", 318, 5], ["buildInputs", 324, 5]], [["name", 336, 7], ["version", 337, 7], ["sha256", 338, 7]], [["name", 333, 5], ["src", 335, 5], ["buildInputs", 341, 5]], [["name", 351, 7], ["version", 352, 7], ["sha256", 353, 7]], [["name", 348, 5], ["src", 350, 5], ["buildInputs", 356, 5]], [["name", 366, 7], ["version", 367, 7], ["sha256", 368, 7]], [["name", 363, 5], ["src", 365, 5], ["buildInputs", 371, 5]], [["name", 380, 7], ["version", 381, 7], ["sha256", 382, 7]], [["name", 377, 5], ["src", 379, 5], ["buildInputs", 385, 5]], [["name", 406, 7], ["version", 407, 7], ["sha256", 408, 7]], [["name", 403, 5], ["src", 405, 5], ["buildInputs", 411, 5]], [["name", 421, 7], ["version", 422, 7], ["sha256", 423, 7]], [["name", 418, 5], ["src", 420, 5], ["buildInputs", 426, 5]], [["name", 439, 7], ["version", 440, 7], ["sha256", 441, 7]], [["name", 436, 5], ["src", 438, 5], ["buildInputs", 444, 5]], [["name", 454, 7], ["version", 455, 7], ["sha256", 456, 7]], [["name", 451, 5], ["src", 453, 5], ["buildInputs", 459, 5]], [["name", 468, 7], ["version", 469, 7], ["sha256", 470, 7]], [["name", 465, 5], ["src", 467, 5], ["buildInputs", 473, 5]], [["name", 482, 7], ["version", 483, 7], ["sha256", 484, 7]], [["name", 479, 5], ["src", 481, 5], ["buildInputs", 487, 5]], [["aes", 3, 3], ["blob-utils", 17, 3], ["check-errors", 32, 3], ["crypto-tools", 46, 3], ["foreigners", 60, 3], ["lookup-table", 74, 3], ["lru-cache", 92, 3], ["matchable", 106, 3], ["message-digest", 120, 3], ["miscmacros", 139, 3], ["parley", 153, 3], ["pathname-expand", 169, 3], ["posix-extras", 183, 3], ["record-variants", 202, 3], ["regex", 216, 3], ["setup-helper", 230, 3], ["sha2", 244, 3], ["sql-de-lite", 258, 3], ["srfi-37", 273, 3], ["srfi-71", 287, 3], ["ssql", 301, 3], ["string-utils", 315, 3], ["stty", 332, 3], ["synch", 347, 3], ["tiger-hash", 362, 3], ["ugarit", 376, 3], ["variable-item", 402, 3], ["bind", 417, 3], ["coops", 435, 3], ["make", 450, 3], ["silex", 464, 3], ["z3", 478, 3]]]);
 const formals$1 = { args: { eggDerivation: false, fetchegg: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/eggs.nix", [["name", 7, 7], ["version", 8, 7], ["sha256", 9, 7]]);
-const pos$2 = nix.positions(here + "/eggs.nix", [["name", 4, 5], ["src", 6, 5], ["buildInputs", 12, 5]]);
-const pos$3 = nix.positions(here + "/eggs.nix", [["name", 21, 7], ["version", 22, 7], ["sha256", 23, 7]]);
-const pos$4 = nix.positions(here + "/eggs.nix", [["name", 18, 5], ["src", 20, 5], ["buildInputs", 26, 5]]);
-const pos$5 = nix.positions(here + "/eggs.nix", [["name", 36, 7], ["version", 37, 7], ["sha256", 38, 7]]);
-const pos$6 = nix.positions(here + "/eggs.nix", [["name", 33, 5], ["src", 35, 5], ["buildInputs", 41, 5]]);
-const pos$7 = nix.positions(here + "/eggs.nix", [["name", 50, 7], ["version", 51, 7], ["sha256", 52, 7]]);
-const pos$8 = nix.positions(here + "/eggs.nix", [["name", 47, 5], ["src", 49, 5], ["buildInputs", 55, 5]]);
-const pos$9 = nix.positions(here + "/eggs.nix", [["name", 64, 7], ["version", 65, 7], ["sha256", 66, 7]]);
-const pos$10 = nix.positions(here + "/eggs.nix", [["name", 61, 5], ["src", 63, 5], ["buildInputs", 69, 5]]);
-const pos$11 = nix.positions(here + "/eggs.nix", [["name", 78, 7], ["version", 79, 7], ["sha256", 80, 7]]);
-const pos$12 = nix.positions(here + "/eggs.nix", [["name", 75, 5], ["src", 77, 5], ["buildInputs", 83, 5]]);
-const pos$13 = nix.positions(here + "/eggs.nix", [["name", 96, 7], ["version", 97, 7], ["sha256", 98, 7]]);
-const pos$14 = nix.positions(here + "/eggs.nix", [["name", 93, 5], ["src", 95, 5], ["buildInputs", 101, 5]]);
-const pos$15 = nix.positions(here + "/eggs.nix", [["name", 110, 7], ["version", 111, 7], ["sha256", 112, 7]]);
-const pos$16 = nix.positions(here + "/eggs.nix", [["name", 107, 5], ["src", 109, 5], ["buildInputs", 115, 5]]);
-const pos$17 = nix.positions(here + "/eggs.nix", [["name", 124, 7], ["version", 125, 7], ["sha256", 126, 7]]);
-const pos$18 = nix.positions(here + "/eggs.nix", [["name", 121, 5], ["src", 123, 5], ["buildInputs", 129, 5]]);
-const pos$19 = nix.positions(here + "/eggs.nix", [["name", 143, 7], ["version", 144, 7], ["sha256", 145, 7]]);
-const pos$20 = nix.positions(here + "/eggs.nix", [["name", 140, 5], ["src", 142, 5], ["buildInputs", 148, 5]]);
-const pos$21 = nix.positions(here + "/eggs.nix", [["name", 157, 7], ["version", 158, 7], ["sha256", 159, 7]]);
-const pos$22 = nix.positions(here + "/eggs.nix", [["name", 154, 5], ["src", 156, 5], ["buildInputs", 162, 5]]);
-const pos$23 = nix.positions(here + "/eggs.nix", [["name", 173, 7], ["version", 174, 7], ["sha256", 175, 7]]);
-const pos$24 = nix.positions(here + "/eggs.nix", [["name", 170, 5], ["src", 172, 5], ["buildInputs", 178, 5]]);
-const pos$25 = nix.positions(here + "/eggs.nix", [["name", 187, 7], ["version", 188, 7], ["sha256", 189, 7]]);
-const pos$26 = nix.positions(here + "/eggs.nix", [["name", 184, 5], ["src", 186, 5], ["buildInputs", 192, 5], ["patches", 196, 5]]);
-const pos$27 = nix.positions(here + "/eggs.nix", [["name", 206, 7], ["version", 207, 7], ["sha256", 208, 7]]);
-const pos$28 = nix.positions(here + "/eggs.nix", [["name", 203, 5], ["src", 205, 5], ["buildInputs", 211, 5]]);
-const pos$29 = nix.positions(here + "/eggs.nix", [["name", 220, 7], ["version", 221, 7], ["sha256", 222, 7]]);
-const pos$30 = nix.positions(here + "/eggs.nix", [["name", 217, 5], ["src", 219, 5], ["buildInputs", 225, 5]]);
-const pos$31 = nix.positions(here + "/eggs.nix", [["name", 234, 7], ["version", 235, 7], ["sha256", 236, 7]]);
-const pos$32 = nix.positions(here + "/eggs.nix", [["name", 231, 5], ["src", 233, 5], ["buildInputs", 239, 5]]);
-const pos$33 = nix.positions(here + "/eggs.nix", [["name", 248, 7], ["version", 249, 7], ["sha256", 250, 7]]);
-const pos$34 = nix.positions(here + "/eggs.nix", [["name", 245, 5], ["src", 247, 5], ["buildInputs", 253, 5]]);
-const pos$35 = nix.positions(here + "/eggs.nix", [["name", 262, 7], ["version", 263, 7], ["sha256", 264, 7]]);
-const pos$36 = nix.positions(here + "/eggs.nix", [["name", 259, 5], ["src", 261, 5], ["buildInputs", 267, 5]]);
-const pos$37 = nix.positions(here + "/eggs.nix", [["name", 277, 7], ["version", 278, 7], ["sha256", 279, 7]]);
-const pos$38 = nix.positions(here + "/eggs.nix", [["name", 274, 5], ["src", 276, 5], ["buildInputs", 282, 5]]);
-const pos$39 = nix.positions(here + "/eggs.nix", [["name", 291, 7], ["version", 292, 7], ["sha256", 293, 7]]);
-const pos$40 = nix.positions(here + "/eggs.nix", [["name", 288, 5], ["src", 290, 5], ["buildInputs", 296, 5]]);
-const pos$41 = nix.positions(here + "/eggs.nix", [["name", 305, 7], ["version", 306, 7], ["sha256", 307, 7]]);
-const pos$42 = nix.positions(here + "/eggs.nix", [["name", 302, 5], ["src", 304, 5], ["buildInputs", 310, 5]]);
-const pos$43 = nix.positions(here + "/eggs.nix", [["name", 319, 7], ["version", 320, 7], ["sha256", 321, 7]]);
-const pos$44 = nix.positions(here + "/eggs.nix", [["name", 316, 5], ["src", 318, 5], ["buildInputs", 324, 5]]);
-const pos$45 = nix.positions(here + "/eggs.nix", [["name", 336, 7], ["version", 337, 7], ["sha256", 338, 7]]);
-const pos$46 = nix.positions(here + "/eggs.nix", [["name", 333, 5], ["src", 335, 5], ["buildInputs", 341, 5]]);
-const pos$47 = nix.positions(here + "/eggs.nix", [["name", 351, 7], ["version", 352, 7], ["sha256", 353, 7]]);
-const pos$48 = nix.positions(here + "/eggs.nix", [["name", 348, 5], ["src", 350, 5], ["buildInputs", 356, 5]]);
-const pos$49 = nix.positions(here + "/eggs.nix", [["name", 366, 7], ["version", 367, 7], ["sha256", 368, 7]]);
-const pos$50 = nix.positions(here + "/eggs.nix", [["name", 363, 5], ["src", 365, 5], ["buildInputs", 371, 5]]);
-const pos$51 = nix.positions(here + "/eggs.nix", [["name", 380, 7], ["version", 381, 7], ["sha256", 382, 7]]);
-const pos$52 = nix.positions(here + "/eggs.nix", [["name", 377, 5], ["src", 379, 5], ["buildInputs", 385, 5]]);
-const pos$53 = nix.positions(here + "/eggs.nix", [["name", 406, 7], ["version", 407, 7], ["sha256", 408, 7]]);
-const pos$54 = nix.positions(here + "/eggs.nix", [["name", 403, 5], ["src", 405, 5], ["buildInputs", 411, 5]]);
-const pos$55 = nix.positions(here + "/eggs.nix", [["name", 421, 7], ["version", 422, 7], ["sha256", 423, 7]]);
-const pos$56 = nix.positions(here + "/eggs.nix", [["name", 418, 5], ["src", 420, 5], ["buildInputs", 426, 5]]);
-const pos$57 = nix.positions(here + "/eggs.nix", [["name", 439, 7], ["version", 440, 7], ["sha256", 441, 7]]);
-const pos$58 = nix.positions(here + "/eggs.nix", [["name", 436, 5], ["src", 438, 5], ["buildInputs", 444, 5]]);
-const pos$59 = nix.positions(here + "/eggs.nix", [["name", 454, 7], ["version", 455, 7], ["sha256", 456, 7]]);
-const pos$60 = nix.positions(here + "/eggs.nix", [["name", 451, 5], ["src", 453, 5], ["buildInputs", 459, 5]]);
-const pos$61 = nix.positions(here + "/eggs.nix", [["name", 468, 7], ["version", 469, 7], ["sha256", 470, 7]]);
-const pos$62 = nix.positions(here + "/eggs.nix", [["name", 465, 5], ["src", 467, 5], ["buildInputs", 473, 5]]);
-const pos$63 = nix.positions(here + "/eggs.nix", [["name", 482, 7], ["version", 483, 7], ["sha256", 484, 7]]);
-const pos$64 = nix.positions(here + "/eggs.nix", [["name", 479, 5], ["src", 481, 5], ["buildInputs", 487, 5]]);
-const pos$65 = nix.positions(here + "/eggs.nix", [["aes", 3, 3], ["blob-utils", 17, 3], ["check-errors", 32, 3], ["crypto-tools", 46, 3], ["foreigners", 60, 3], ["lookup-table", 74, 3], ["lru-cache", 92, 3], ["matchable", 106, 3], ["message-digest", 120, 3], ["miscmacros", 139, 3], ["parley", 153, 3], ["pathname-expand", 169, 3], ["posix-extras", 183, 3], ["record-variants", 202, 3], ["regex", 216, 3], ["setup-helper", 230, 3], ["sha2", 244, 3], ["sql-de-lite", 258, 3], ["srfi-37", 273, 3], ["srfi-71", 287, 3], ["ssql", 301, 3], ["string-utils", 315, 3], ["stty", 332, 3], ["synch", 347, 3], ["tiger-hash", 362, 3], ["ugarit", 376, 3], ["variable-item", 402, 3], ["bind", 417, 3], ["coops", 435, 3], ["make", 450, 3], ["silex", 464, 3], ["z3", 478, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -75,10 +11,10 @@ export default nix.lambda((args) => (() => {
   const fetchegg = nix.arg($, "fetchegg");
   return (() => {
     const aes = nix.thunk(() => nix.app(eggDerivation, nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         name: "aes-1.5",
         src: nix.thunk(() => nix.app(fetchegg, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             name: "aes",
             version: "1.5",
             sha256: "0gjlvz5nk0fnaclljpyfk21rkf0nidjj6wcv3jbnpmfafgjny5fi",
@@ -86,10 +22,10 @@ export default nix.lambda((args) => (() => {
         buildInputs: [],
       }))));
     const blob_utils = nix.thunk(() => nix.app(eggDerivation, nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         name: "blob-utils-1.0.3",
         src: nix.thunk(() => nix.app(fetchegg, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "blob-utils",
             version: "1.0.3",
             sha256: "17vdn02fnxnjx5ixgqimln93lqvzyq4y9w02fw7xnbdcjzqm0xml",
@@ -97,10 +33,10 @@ export default nix.lambda((args) => (() => {
         buildInputs: nix.thunk(() => [setup_helper, string_utils]),
       }))));
     const check_errors = nix.thunk(() => nix.app(eggDerivation, nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         name: "check-errors-1.13.0",
         src: nix.thunk(() => nix.app(fetchegg, nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             name: "check-errors",
             version: "1.13.0",
             sha256: "12a0sn82n98jybh72zb39fdddmr5k4785xglxb16750fhy8rmjwi",
@@ -108,10 +44,10 @@ export default nix.lambda((args) => (() => {
         buildInputs: nix.thunk(() => [setup_helper]),
       }))));
     const crypto_tools = nix.thunk(() => nix.app(eggDerivation, nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         name: "crypto-tools-1.3",
         src: nix.thunk(() => nix.app(fetchegg, nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             name: "crypto-tools",
             version: "1.3",
             sha256: "0442wly63zis19vh8xc9nhxgp9sabaccxylpzmchd5f1d48iag65",
@@ -119,10 +55,10 @@ export default nix.lambda((args) => (() => {
         buildInputs: [],
       }))));
     const foreigners = nix.thunk(() => nix.app(eggDerivation, nix.thunk(() => ({
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         name: "foreigners-1.4.1",
         src: nix.thunk(() => nix.app(fetchegg, nix.thunk(() => ({
-            [nix.POS]: pos$9,
+            [nix.POS]: $pos[8],
             name: "foreigners",
             version: "1.4.1",
             sha256: "07nvyadhkd52q0kkvch1a5d7ivpmrhmyg295s4mxb1nw4wz46gfz",
@@ -130,10 +66,10 @@ export default nix.lambda((args) => (() => {
         buildInputs: nix.thunk(() => [matchable]),
       }))));
     const lookup_table = nix.thunk(() => nix.app(eggDerivation, nix.thunk(() => ({
-        [nix.POS]: pos$12,
+        [nix.POS]: $pos[11],
         name: "lookup-table-1.13.5",
         src: nix.thunk(() => nix.app(fetchegg, nix.thunk(() => ({
-            [nix.POS]: pos$11,
+            [nix.POS]: $pos[10],
             name: "lookup-table",
             version: "1.13.5",
             sha256: "1nzly6rhynawlvzlyilk8z8cxz57cf9n5iv20glkhh28pz2izmrb",
@@ -141,10 +77,10 @@ export default nix.lambda((args) => (() => {
         buildInputs: nix.thunk(() => [setup_helper, check_errors, miscmacros, record_variants, synch]),
       }))));
     const lru_cache = nix.thunk(() => nix.app(eggDerivation, nix.thunk(() => ({
-        [nix.POS]: pos$14,
+        [nix.POS]: $pos[13],
         name: "lru-cache-0.5.3",
         src: nix.thunk(() => nix.app(fetchegg, nix.thunk(() => ({
-            [nix.POS]: pos$13,
+            [nix.POS]: $pos[12],
             name: "lru-cache",
             version: "0.5.3",
             sha256: "0z6g3106c4j21v968hfzy9nnbfq2d83y0nyd20aifpq4g55c0d40",
@@ -152,10 +88,10 @@ export default nix.lambda((args) => (() => {
         buildInputs: nix.thunk(() => [record_variants]),
       }))));
     const matchable = nix.thunk(() => nix.app(eggDerivation, nix.thunk(() => ({
-        [nix.POS]: pos$16,
+        [nix.POS]: $pos[15],
         name: "matchable-3.3",
         src: nix.thunk(() => nix.app(fetchegg, nix.thunk(() => ({
-            [nix.POS]: pos$15,
+            [nix.POS]: $pos[14],
             name: "matchable",
             version: "3.3",
             sha256: "07y3lpzgm4djiwi9y2adc796f9kwkmdr28fkfkw65syahdax8990",
@@ -163,10 +99,10 @@ export default nix.lambda((args) => (() => {
         buildInputs: [],
       }))));
     const message_digest = nix.thunk(() => nix.app(eggDerivation, nix.thunk(() => ({
-        [nix.POS]: pos$18,
+        [nix.POS]: $pos[17],
         name: "message-digest-3.1.0",
         src: nix.thunk(() => nix.app(fetchegg, nix.thunk(() => ({
-            [nix.POS]: pos$17,
+            [nix.POS]: $pos[16],
             name: "message-digest",
             version: "3.1.0",
             sha256: "1w6bax19dwgih78vcimiws0rja7qsd8hmbm6qqg2hf9cw3vab21s",
@@ -181,10 +117,10 @@ export default nix.lambda((args) => (() => {
         ]),
       }))));
     const miscmacros = nix.thunk(() => nix.app(eggDerivation, nix.thunk(() => ({
-        [nix.POS]: pos$20,
+        [nix.POS]: $pos[19],
         name: "miscmacros-2.96",
         src: nix.thunk(() => nix.app(fetchegg, nix.thunk(() => ({
-            [nix.POS]: pos$19,
+            [nix.POS]: $pos[18],
             name: "miscmacros",
             version: "2.96",
             sha256: "1ajdgjrni10i2hmhcp4rawnxajjxry3kmq1krdmah4sf0kjrgajc",
@@ -192,10 +128,10 @@ export default nix.lambda((args) => (() => {
         buildInputs: [],
       }))));
     const parley = nix.thunk(() => nix.app(eggDerivation, nix.thunk(() => ({
-        [nix.POS]: pos$22,
+        [nix.POS]: $pos[21],
         name: "parley-0.9.2",
         src: nix.thunk(() => nix.app(fetchegg, nix.thunk(() => ({
-            [nix.POS]: pos$21,
+            [nix.POS]: $pos[20],
             name: "parley",
             version: "0.9.2",
             sha256: "1vsbx4dk1240gzq02slzmavd1jrq04qj7ssnvg15h8xh81xwhbbz",
@@ -203,10 +139,10 @@ export default nix.lambda((args) => (() => {
         buildInputs: nix.thunk(() => [stty, srfi_71, miscmacros]),
       }))));
     const pathname_expand = nix.thunk(() => nix.app(eggDerivation, nix.thunk(() => ({
-        [nix.POS]: pos$24,
+        [nix.POS]: $pos[23],
         name: "pathname-expand-0.1",
         src: nix.thunk(() => nix.app(fetchegg, nix.thunk(() => ({
-            [nix.POS]: pos$23,
+            [nix.POS]: $pos[22],
             name: "pathname-expand",
             version: "0.1",
             sha256: "14llya7l04z49xpi3iylk8aglrw968vy304ymavhhqlyzmzwkx3g",
@@ -214,10 +150,10 @@ export default nix.lambda((args) => (() => {
         buildInputs: [],
       }))));
     const posix_extras = nix.thunk(() => nix.app(eggDerivation, nix.thunk(() => ({
-        [nix.POS]: pos$26,
+        [nix.POS]: $pos[25],
         name: "posix-extras-0.1.6",
         src: nix.thunk(() => nix.app(fetchegg, nix.thunk(() => ({
-            [nix.POS]: pos$25,
+            [nix.POS]: $pos[24],
             name: "posix-extras",
             version: "0.1.6",
             sha256: "0gnmhn2l0161ham7f8i0lx1ay94ap8l8l7ga4nw9qs86lk024abi",
@@ -226,10 +162,10 @@ export default nix.lambda((args) => (() => {
         patches: nix.thunk(() => [nix.path(here, "./posix-extras-add-sysmacros-include.patch")]),
       }))));
     const record_variants = nix.thunk(() => nix.app(eggDerivation, nix.thunk(() => ({
-        [nix.POS]: pos$28,
+        [nix.POS]: $pos[27],
         name: "record-variants-0.5.1",
         src: nix.thunk(() => nix.app(fetchegg, nix.thunk(() => ({
-            [nix.POS]: pos$27,
+            [nix.POS]: $pos[26],
             name: "record-variants",
             version: "0.5.1",
             sha256: "15wgysxkm8m4hx9nhhw9akchzipdnqc7yj3qd3zn0z7sxg4sld1h",
@@ -237,10 +173,10 @@ export default nix.lambda((args) => (() => {
         buildInputs: [],
       }))));
     const regex = nix.thunk(() => nix.app(eggDerivation, nix.thunk(() => ({
-        [nix.POS]: pos$30,
+        [nix.POS]: $pos[29],
         name: "regex-1.0",
         src: nix.thunk(() => nix.app(fetchegg, nix.thunk(() => ({
-            [nix.POS]: pos$29,
+            [nix.POS]: $pos[28],
             name: "regex",
             version: "1.0",
             sha256: "1z9bh7xvab6h5cdlsz8jk02pv5py1i6ryqarbcs3wdgkkjgmmkif",
@@ -248,10 +184,10 @@ export default nix.lambda((args) => (() => {
         buildInputs: [],
       }))));
     const setup_helper = nix.thunk(() => nix.app(eggDerivation, nix.thunk(() => ({
-        [nix.POS]: pos$32,
+        [nix.POS]: $pos[31],
         name: "setup-helper-1.5.5",
         src: nix.thunk(() => nix.app(fetchegg, nix.thunk(() => ({
-            [nix.POS]: pos$31,
+            [nix.POS]: $pos[30],
             name: "setup-helper",
             version: "1.5.5",
             sha256: "1lpplp8f2wyc486dd98gs4wl1kkhh1cs6vdqkxrdk7f92ikmwbx3",
@@ -259,10 +195,10 @@ export default nix.lambda((args) => (() => {
         buildInputs: [],
       }))));
     const sha2 = nix.thunk(() => nix.app(eggDerivation, nix.thunk(() => ({
-        [nix.POS]: pos$34,
+        [nix.POS]: $pos[33],
         name: "sha2-3.1.0",
         src: nix.thunk(() => nix.app(fetchegg, nix.thunk(() => ({
-            [nix.POS]: pos$33,
+            [nix.POS]: $pos[32],
             name: "sha2",
             version: "3.1.0",
             sha256: "01ch290f2kcv1yv8spjdaqwipl80vvgpqc4divsj3vxckvgkawq2",
@@ -270,10 +206,10 @@ export default nix.lambda((args) => (() => {
         buildInputs: nix.thunk(() => [message_digest]),
       }))));
     const sql_de_lite = nix.thunk(() => nix.app(eggDerivation, nix.thunk(() => ({
-        [nix.POS]: pos$36,
+        [nix.POS]: $pos[35],
         name: "sql-de-lite-0.6.6",
         src: nix.thunk(() => nix.app(fetchegg, nix.thunk(() => ({
-            [nix.POS]: pos$35,
+            [nix.POS]: $pos[34],
             name: "sql-de-lite",
             version: "0.6.6",
             sha256: "1mh3hpsibq2gxcpjaycqa4ckznj268xpfzsa6pn0i6iac6my3qra",
@@ -281,10 +217,10 @@ export default nix.lambda((args) => (() => {
         buildInputs: nix.thunk(() => [lru_cache, foreigners]),
       }))));
     const srfi_37 = nix.thunk(() => nix.app(eggDerivation, nix.thunk(() => ({
-        [nix.POS]: pos$38,
+        [nix.POS]: $pos[37],
         name: "srfi-37-1.3.1",
         src: nix.thunk(() => nix.app(fetchegg, nix.thunk(() => ({
-            [nix.POS]: pos$37,
+            [nix.POS]: $pos[36],
             name: "srfi-37",
             version: "1.3.1",
             sha256: "1a2zdkdzrv15fw9dfdy8067fsgh4kr8ppffm8mc3cmlczrrd58cb",
@@ -292,10 +228,10 @@ export default nix.lambda((args) => (() => {
         buildInputs: [],
       }))));
     const srfi_71 = nix.thunk(() => nix.app(eggDerivation, nix.thunk(() => ({
-        [nix.POS]: pos$40,
+        [nix.POS]: $pos[39],
         name: "srfi-71-1.1",
         src: nix.thunk(() => nix.app(fetchegg, nix.thunk(() => ({
-            [nix.POS]: pos$39,
+            [nix.POS]: $pos[38],
             name: "srfi-71",
             version: "1.1",
             sha256: "01mlaxw2lfczykmx69xki2s0f4ywlg794rl4kz07plvzn0s3fbqq",
@@ -303,10 +239,10 @@ export default nix.lambda((args) => (() => {
         buildInputs: [],
       }))));
     const ssql = nix.thunk(() => nix.app(eggDerivation, nix.thunk(() => ({
-        [nix.POS]: pos$42,
+        [nix.POS]: $pos[41],
         name: "ssql-0.2.4",
         src: nix.thunk(() => nix.app(fetchegg, nix.thunk(() => ({
-            [nix.POS]: pos$41,
+            [nix.POS]: $pos[40],
             name: "ssql",
             version: "0.2.4",
             sha256: "0qhnghhx1wrvav4s7l780mspwlh8s6kzq4bl0cslwp1km90fx9bk",
@@ -314,10 +250,10 @@ export default nix.lambda((args) => (() => {
         buildInputs: nix.thunk(() => [matchable]),
       }))));
     const string_utils = nix.thunk(() => nix.app(eggDerivation, nix.thunk(() => ({
-        [nix.POS]: pos$44,
+        [nix.POS]: $pos[43],
         name: "string-utils-1.2.4",
         src: nix.thunk(() => nix.app(fetchegg, nix.thunk(() => ({
-            [nix.POS]: pos$43,
+            [nix.POS]: $pos[42],
             name: "string-utils",
             version: "1.2.4",
             sha256: "07alvghg0dahilrm4jg44bndl0x69sv1zbna9l20cbdvi35i0jp1",
@@ -325,10 +261,10 @@ export default nix.lambda((args) => (() => {
         buildInputs: nix.thunk(() => [setup_helper, miscmacros, lookup_table, check_errors]),
       }))));
     const stty = nix.thunk(() => nix.app(eggDerivation, nix.thunk(() => ({
-        [nix.POS]: pos$46,
+        [nix.POS]: $pos[45],
         name: "stty-0.2.6",
         src: nix.thunk(() => nix.app(fetchegg, nix.thunk(() => ({
-            [nix.POS]: pos$45,
+            [nix.POS]: $pos[44],
             name: "stty",
             version: "0.2.6",
             sha256: "09jmjpdsd3yg6d0f0imcihmn49i28x09lgl60i2dllffs25k22s4",
@@ -336,10 +272,10 @@ export default nix.lambda((args) => (() => {
         buildInputs: nix.thunk(() => [setup_helper, foreigners]),
       }))));
     const synch = nix.thunk(() => nix.app(eggDerivation, nix.thunk(() => ({
-        [nix.POS]: pos$48,
+        [nix.POS]: $pos[47],
         name: "synch-2.1.2",
         src: nix.thunk(() => nix.app(fetchegg, nix.thunk(() => ({
-            [nix.POS]: pos$47,
+            [nix.POS]: $pos[46],
             name: "synch",
             version: "2.1.2",
             sha256: "1m9mnbq0m5jsxmd1a3rqpwpxj0l1b7vn1fknvxycc047pmlcyl00",
@@ -347,10 +283,10 @@ export default nix.lambda((args) => (() => {
         buildInputs: nix.thunk(() => [setup_helper, check_errors]),
       }))));
     const tiger_hash = nix.thunk(() => nix.app(eggDerivation, nix.thunk(() => ({
-        [nix.POS]: pos$50,
+        [nix.POS]: $pos[49],
         name: "tiger-hash-3.1.0",
         src: nix.thunk(() => nix.app(fetchegg, nix.thunk(() => ({
-            [nix.POS]: pos$49,
+            [nix.POS]: $pos[48],
             name: "tiger-hash",
             version: "3.1.0",
             sha256: "0j9dsbjp9cw0y4w4srg0qwgh53jw2v3mx4y4h040ds0fkxlzzknx",
@@ -358,10 +294,10 @@ export default nix.lambda((args) => (() => {
         buildInputs: nix.thunk(() => [message_digest]),
       }))));
     const ugarit = nix.thunk(() => nix.app(eggDerivation, nix.thunk(() => ({
-        [nix.POS]: pos$52,
+        [nix.POS]: $pos[51],
         name: "ugarit-2.0",
         src: nix.thunk(() => nix.app(fetchegg, nix.thunk(() => ({
-            [nix.POS]: pos$51,
+            [nix.POS]: $pos[50],
             name: "ugarit",
             version: "2.0",
             sha256: "1l5zkr6b8l5dw9p5mimbva0ncqw1sbvp3d4cywm1hqx2m03a0f1n",
@@ -383,10 +319,10 @@ export default nix.lambda((args) => (() => {
         ]),
       }))));
     const variable_item = nix.thunk(() => nix.app(eggDerivation, nix.thunk(() => ({
-        [nix.POS]: pos$54,
+        [nix.POS]: $pos[53],
         name: "variable-item-1.3.1",
         src: nix.thunk(() => nix.app(fetchegg, nix.thunk(() => ({
-            [nix.POS]: pos$53,
+            [nix.POS]: $pos[52],
             name: "variable-item",
             version: "1.3.1",
             sha256: "19b3mhb8kr892sz9yyzq79l0vv28dgilw9cf415kj6aq16yp4d5n",
@@ -394,10 +330,10 @@ export default nix.lambda((args) => (() => {
         buildInputs: nix.thunk(() => [setup_helper, check_errors]),
       }))));
     const bind = nix.thunk(() => nix.app(eggDerivation, nix.thunk(() => ({
-        [nix.POS]: pos$56,
+        [nix.POS]: $pos[55],
         name: "bind-1.5.2",
         src: nix.thunk(() => nix.app(fetchegg, nix.thunk(() => ({
-            [nix.POS]: pos$55,
+            [nix.POS]: $pos[54],
             name: "bind",
             version: "1.5.2",
             sha256: "1x768k7dlfmkvgaf2idiaaqqgnqdnif5yb7ib6a6zndacbwz9jps",
@@ -405,10 +341,10 @@ export default nix.lambda((args) => (() => {
         buildInputs: nix.thunk(() => [silex, matchable, coops, regex, make]),
       }))));
     const coops = nix.thunk(() => nix.app(eggDerivation, nix.thunk(() => ({
-        [nix.POS]: pos$58,
+        [nix.POS]: $pos[57],
         name: "coops-1.93",
         src: nix.thunk(() => nix.app(fetchegg, nix.thunk(() => ({
-            [nix.POS]: pos$57,
+            [nix.POS]: $pos[56],
             name: "coops",
             version: "1.93",
             sha256: "0mrkk7pmn9r691svzm4113mn0xsk36zi3f15m86n29a6c7897php",
@@ -416,10 +352,10 @@ export default nix.lambda((args) => (() => {
         buildInputs: nix.thunk(() => [matchable, record_variants]),
       }))));
     const make = nix.thunk(() => nix.app(eggDerivation, nix.thunk(() => ({
-        [nix.POS]: pos$60,
+        [nix.POS]: $pos[59],
         name: "make-1.8",
         src: nix.thunk(() => nix.app(fetchegg, nix.thunk(() => ({
-            [nix.POS]: pos$59,
+            [nix.POS]: $pos[58],
             name: "make",
             version: "1.8",
             sha256: "1w6xsjyapi2x8dv21dpidkyw1kjfsbasddn554xx561pi3i0yv9h",
@@ -427,10 +363,10 @@ export default nix.lambda((args) => (() => {
         buildInputs: [],
       }))));
     const silex = nix.thunk(() => nix.app(eggDerivation, nix.thunk(() => ({
-        [nix.POS]: pos$62,
+        [nix.POS]: $pos[61],
         name: "silex-1.4",
         src: nix.thunk(() => nix.app(fetchegg, nix.thunk(() => ({
-            [nix.POS]: pos$61,
+            [nix.POS]: $pos[60],
             name: "silex",
             version: "1.4",
             sha256: "17x7f07aa3qnay3bhjr7knjivhycs54j97jyv3gjs1h8qnp63g00",
@@ -438,10 +374,10 @@ export default nix.lambda((args) => (() => {
         buildInputs: [],
       }))));
     const z3 = nix.thunk(() => nix.app(eggDerivation, nix.thunk(() => ({
-        [nix.POS]: pos$64,
+        [nix.POS]: $pos[63],
         name: "z3-1.44",
         src: nix.thunk(() => nix.app(fetchegg, nix.thunk(() => ({
-            [nix.POS]: pos$63,
+            [nix.POS]: $pos[62],
             name: "z3",
             version: "1.44",
             sha256: "16ayp4zkgm332q4bmjj22acqg197aqp6d8ifyyjj205iv6k0f3x4",
@@ -449,7 +385,7 @@ export default nix.lambda((args) => (() => {
         buildInputs: nix.thunk(() => [bind]),
       }))));
     return {
-      [nix.POS]: pos$65,
+      [nix.POS]: $pos[64],
       aes,
       "blob-utils": blob_utils,
       "check-errors": check_errors,

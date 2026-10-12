@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]], [["description", 48, 5], ["mainProgram", 49, 5], ["homepage", 50, 5], ["license", 51, 5], ["maintainers", 55, 5]], [["pname", 12, 3], ["version", 13, 3], ["outputs", 15, 3], ["src", 20, 3], ["patches", 27, 3], ["postPatch", 31, 3], ["nativeBuildInputs", 40, 3], ["meta", 47, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, "chromium-hsts-preload-list": false, "autoconf-archive": false, autoreconfHook: false, "pkg-config": false, python3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 48, 5], ["mainProgram", 49, 5], ["homepage", 50, 5], ["license", 51, 5], ["maintainers", 55, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["outputs", 15, 3], ["src", 20, 3], ["patches", 27, 3], ["postPatch", 31, 3], ["nativeBuildInputs", 40, 3], ["meta", 47, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.1.0";
       const outputs = nix.thunk(() => ["out", "dev"]);
       const src = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "rockdaboot",
           repo: "libhsts",
           tag: nix.thunk(() => nix.str`libhsts-${version}`),
@@ -38,7 +36,7 @@ patchShebangs src/hsts-make-dafsa
 `);
       const nativeBuildInputs = nix.thunk(() => [autoconf_archive, autoreconfHook, pkg_config, python3]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Library to easily check a domain against the Chromium HSTS Preload list",
         mainProgram: "hsts",
         homepage: "https://gitlab.com/rockdaboot/libhsts",
@@ -55,7 +53,7 @@ patchShebangs src/hsts-make-dafsa
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         outputs,

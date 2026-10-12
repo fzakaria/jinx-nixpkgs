@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/linux.nix", [[["url", 13, 28], ["hash", 13, 32]], [["pname", 15, 54], ["version", 15, 60], ["src", 15, 68]], [["meta", 19, 5], ["pname", 20, 5], ["version", 21, 5], ["src", 22, 5], ["passthru", 23, 5], ["extraPkgs", 26, 3], ["extraInstallCommands", 28, 3]]]);
 const formals$1 = { args: { appimageTools: false, fetchurl: false, version: false, url: false, hash: false, pname: false, meta: false, stdenv: false, passthru: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/linux.nix", [["url", 13, 28], ["hash", 13, 32]]);
-const pos$2 = nix.positions(here + "/linux.nix", [["pname", 15, 54], ["version", 15, 60], ["src", 15, 68]]);
-const pos$3 = nix.positions(here + "/linux.nix", [["meta", 19, 5], ["pname", 20, 5], ["version", 21, 5], ["src", 22, 5], ["passthru", 23, 5], ["extraPkgs", 26, 3], ["extraInstallCommands", 28, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,10 +16,10 @@ export default nix.lambda((args) => (() => {
   const meta = nix.arg($, "meta");
   const stdenv = nix.arg($, "stdenv");
   const passthru = nix.arg($, "passthru");
-  const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({ [nix.POS]: pos$1, url: url, hash: hash }))));
-  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: pos$2, pname: pname, version: version, src: src }))));
+  const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({ [nix.POS]: $pos[0], url: url, hash: hash }))));
+  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: $pos[1], pname: pname, version: version, src: src }))));
   return nix.app(nix.sel(appimageTools, "wrapType2"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       meta: meta,
       pname: pname,
       version: version,

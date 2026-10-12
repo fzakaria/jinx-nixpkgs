@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["urls", 30, 5], ["hash", 34, 5]], [["NIX_LDFLAGS", 78, 5]], [["NIX_CFLAGS_COMPILE", 82, 5]], [["customTest", 107, 7], ["standardTest", 108, 7], ["musl", 109, 7]], [["url", 114, 7], ["rev-prefix", 115, 7], ["ignoredVersions", 117, 7]], [["tests", 106, 5], ["updateScript", 112, 5]], [["description", 122, 5], ["longDescription", 123, 5], ["homepage", 133, 5], ["license", 134, 5], ["platforms", 135, 5], ["changelog", 136, 5], ["mainProgram", 137, 5]], [["pname", 26, 3], ["version", 27, 3], ["src", 29, 3], ["patches", 37, 3], ["strictDeps", 39, 3], ["nativeBuildInputs", 41, 3], ["buildInputs", 47, 3], ["configureFlags", 61, 3], ["env", 76, 3], ["postConfigure", 90, 3], ["enableParallelBuilding", 94, 3], ["postInstall", 96, 3], ["passthru", 105, 3], ["meta", 121, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, libxt: false, libxft: false, libxext: false, libxaw: false, libx11: false, libsm: false, libice: false, xorgproto: false, luit: false, ncurses: false, freetype: false, fontconfig: false, "pkg-config": false, makeWrapper: false, nixosTests: false, pkgsCross: false, gitUpdater: false, enableDecLocator: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["urls", 30, 5], ["hash", 34, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_LDFLAGS", 78, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 82, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["customTest", 107, 7], ["standardTest", 108, 7], ["musl", 109, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["url", 114, 7], ["rev-prefix", 115, 7], ["ignoredVersions", 117, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["tests", 106, 5], ["updateScript", 112, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["description", 122, 5], ["longDescription", 123, 5], ["homepage", 133, 5], ["license", 134, 5], ["platforms", 135, 5], ["changelog", 136, 5], ["mainProgram", 137, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 26, 3], ["version", 27, 3], ["src", 29, 3], ["patches", 37, 3], ["strictDeps", 39, 3], ["nativeBuildInputs", 41, 3], ["buildInputs", 47, 3], ["configureFlags", 61, 3], ["env", 76, 3], ["postConfigure", 90, 3], ["enableParallelBuilding", 94, 3], ["postInstall", 96, 3], ["passthru", 105, 3], ["meta", 121, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -36,11 +29,11 @@ export default nix.lambda((args) => (() => {
   const gitUpdater = nix.arg($, "gitUpdater");
   const enableDecLocator = nix.argOr($, "enableDecLocator", () => true);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "xterm",
       version: "411",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           urls: nix.thunk(() => [
             nix.thunk(() => nix.str`https://invisible-island.net/archives/xterm/xterm-${nix.sel(finalAttrs, "version")}.tgz`),
             nix.thunk(() => nix.str`https://invisible-mirror.net/archives/xterm/xterm-${nix.sel(finalAttrs, "version")}.tgz`),
@@ -76,27 +69,27 @@ export default nix.lambda((args) => (() => {
         "--with-tty-group=tty",
         "--with-app-defaults=$(out)/lib/X11/app-defaults",
       ], nix.app(nix.sel(lib, "optional"), enableDecLocator, "--enable-dec-locator"))),
-      env: nix.thunk(() => nix.update({ [nix.POS]: pos$2, NIX_LDFLAGS: "-lXmu -lXt -lICE -lX11 -lfontconfig" }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isMusl")), nix.thunk(() => ({ [nix.POS]: pos$3, NIX_CFLAGS_COMPILE: "-D_GNU_SOURCE" }))))),
+      env: nix.thunk(() => nix.update({ [nix.POS]: $pos[1], NIX_LDFLAGS: "-lXmu -lXt -lICE -lX11 -lfontconfig" }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isMusl")), nix.thunk(() => ({ [nix.POS]: $pos[2], NIX_CFLAGS_COMPILE: "-D_GNU_SOURCE" }))))),
       postConfigure: "echo '#define USE_UTMP_SETGID 1'\n",
       enableParallelBuilding: true,
       postInstall: "for bin in $out/bin/*; do\n  wrapProgram $bin --set XAPPLRESDIR $out/lib/X11/app-defaults/\ndone\n\ninstall -D -t $out/share/applications xterm.desktop\ninstall -D -t $out/share/icons/hicolor/48x48/apps icons/xterm-color_48x48.xpm\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           customTest: nix.thunk(() => nix.sel(nixosTests, "xterm")),
           standardTest: nix.thunk(() => nix.sel(nixosTests, "terminal-emulators", "xterm")),
           musl: nix.thunk(() => nix.sel(pkgsCross, "musl64", "xterm")),
         })),
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             url: "https://github.com/ThomasDickey/xterm-snapshots.git",
             "rev-prefix": "xterm-",
             ignoredVersions: "[a-z]$",
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "Terminal emulator for the X Window System",
         longDescription: "The xterm program is a terminal emulator for the X Window System. It\nprovides DEC VT102/VT220 and selected features from higher-level\nterminals such as VT320/VT420/VT520 (VTxxx). It also provides Tektronix\n4014 emulation for programs that cannot use the window system directly.\nIf the underlying operating system supports terminal resizing\ncapabilities (for example, the SIGWINCH signal in systems derived from\n4.3bsd), xterm will use the facilities to notify programs running in the\nwindow whenever it is resized.\n",
         homepage: "https://invisible-island.net/xterm",

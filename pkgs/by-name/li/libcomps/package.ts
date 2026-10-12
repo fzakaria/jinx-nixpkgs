@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 26, 5], ["repo", 27, 5], ["rev", 28, 5], ["hash", 29, 5]], [["description", 64, 5], ["homepage", 65, 5], ["license", 66, 5], ["maintainers", 67, 5], ["platforms", 68, 5]], [["pname", 16, 3], ["version", 17, 3], ["outputs", 19, 3], ["src", 25, 3], ["patches", 32, 3], ["postPatch", 36, 3], ["nativeBuildInputs", 41, 3], ["buildInputs", 49, 3], ["dontUseCmakeBuildDir", 55, 3], ["cmakeDir", 56, 3], ["postFixup", 58, 3], ["meta", 63, 3]]]);
 const formals$1 = { args: { lib: false, check: false, cmake: false, doxygen: false, expat: false, fetchFromGitHub: false, libxml2: false, python3: false, sphinx: false, stdenv: false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 26, 5], ["repo", 27, 5], ["rev", 28, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 64, 5], ["homepage", 65, 5], ["license", 66, 5], ["maintainers", 67, 5], ["platforms", 68, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["outputs", 19, 3], ["src", 25, 3], ["patches", 32, 3], ["postPatch", 36, 3], ["nativeBuildInputs", 41, 3], ["buildInputs", 49, 3], ["dontUseCmakeBuildDir", 55, 3], ["cmakeDir", 56, 3], ["postFixup", 58, 3], ["meta", 63, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "libcomps",
       version: "0.1.24",
       outputs: nix.thunk(() => ["out", "dev", "py"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "rpm-software-management",
           repo: "libcomps",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -44,7 +42,7 @@ export default nix.lambda((args) => (() => {
 moveToOutput "lib/${nix.sel(python3, "libPrefix")}" "$py"
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Comps XML file manipulation library",
         homepage: "https://github.com/rpm-software-management/libcomps",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

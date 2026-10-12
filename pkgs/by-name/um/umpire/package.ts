@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 18, 5], ["paths", 19, 5]], [["owner", 35, 5], ["repo", 36, 5], ["tag", 37, 5], ["hash", 38, 5], ["fetchSubmodules", 39, 5]], [["rocmSupport", 70, 24]], [["description", 73, 5], ["homepage", 74, 5], ["maintainers", 75, 5], ["license", 76, 5], ["platforms", 77, 5]], [["pname", 28, 3], ["version", 29, 3], ["strictDeps", 31, 3], ["__structuredAttrs", 32, 3], ["src", 34, 3], ["nativeBuildInputs", 42, 3], ["buildInputs", 52, 3], ["cmakeFlags", 60, 3], ["passthru", 70, 3], ["meta", 72, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, cmake: false, config: false, symlinkJoin: false, cudaSupport: true, cudaPackages: true, rocmSupport: true, rocmPackages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 18, 5], ["paths", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 35, 5], ["repo", 36, 5], ["tag", 37, 5], ["hash", 38, 5], ["fetchSubmodules", 39, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["rocmSupport", 70, 24]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 73, 5], ["homepage", 74, 5], ["maintainers", 75, 5], ["license", 76, 5], ["platforms", 77, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 28, 3], ["version", 29, 3], ["strictDeps", 31, 3], ["__structuredAttrs", 32, 3], ["src", 34, 3], ["nativeBuildInputs", 42, 3], ["buildInputs", 52, 3], ["cmakeFlags", 60, 3], ["passthru", 70, 3], ["meta", 72, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,7 +19,7 @@ export default nix.lambda((args) => (() => {
   const rocmPackages = nix.arg($, "rocmPackages");
   nix.assert_((!nix.asBool(cudaSupport) || nix.asBool(!nix.eq(cudaPackages, null))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/um/umpire/package.nix:14:1");
   const rocm_sdk = nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: "rocm-merged",
       paths: nix.thunk(() => (() => {
         const w = nix.withScope(rocmPackages, null);
@@ -36,13 +32,13 @@ export default nix.lambda((args) => (() => {
       })()),
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "umpire",
       version: "2025.12.0",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "LLNL",
           repo: "umpire",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -61,9 +57,9 @@ export default nix.lambda((args) => (() => {
           "-DENABLE_CUDA=ON",
           nix.thunk(() => nix.app(nix.sel(lib, "cmakeFeature"), "CMAKE_CUDA_ARCHITECTURES", nix.thunk(() => nix.sel(cudaPackages, "flags", "cmakeCudaArchitecturesString")))),
         ])), nix.app(nix.sel(lib, "optionals"), rocmSupport, nix.thunk(() => ["-DENABLE_HIP=ON", nix.thunk(() => nix.str`-DROCM_ROOT_DIR=${rocm_sdk}`)])))),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$3, rocmSupport: rocmSupport })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[2], rocmSupport: rocmSupport })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Application-focused API for memory management on NUMA & GPU architectures",
         homepage: "https://github.com/LLNL/Umpire",
         maintainers: nix.thunk(() => (() => {

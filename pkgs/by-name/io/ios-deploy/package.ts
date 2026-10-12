@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]], [["package", 48, 5]], [["version", 47, 18]], [["tests", 47, 12]], [["description", 52, 5], ["homepage", 53, 5], ["license", 54, 5], ["mainProgram", 55, 5], ["maintainers", 56, 5], ["platforms", 57, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["buildPhase", 22, 3], ["installPhase", 35, 3], ["__impureHostDeps", 43, 3], ["passthru", 47, 3], ["meta", 51, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, testers: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["package", 48, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 47, 18]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 47, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 52, 5], ["homepage", 53, 5], ["license", 54, 5], ["mainProgram", 55, 5], ["maintainers", 56, 5], ["platforms", 57, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["buildPhase", 22, 3], ["installPhase", 35, 3], ["__impureHostDeps", 43, 3], ["passthru", 47, 3], ["meta", 51, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const privateFrameworks = "/System/Library/PrivateFrameworks";
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "ios-deploy",
       version: "1.12.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ios-control",
           repo: "ios-deploy",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -42,17 +37,17 @@ runHook postBuild
       installPhase: "runHook preInstall\n\ninstall -Dm755 ios-deploy $out/bin/ios-deploy\n\nrunHook postInstall\n",
       __impureHostDeps: nix.thunk(() => [privateFrameworks]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Install and debug iPhone apps from the command line, without using Xcode",
         homepage: "https://github.com/ios-control/ios-deploy",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

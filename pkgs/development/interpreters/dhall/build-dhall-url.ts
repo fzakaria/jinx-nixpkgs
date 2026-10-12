@@ -2,9 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/build-dhall-url.nix", [[["outputHashAlgo", 65, 9], ["outputHash", 66, 9], ["name", 67, 9], ["nativeBuildInputs", 68, 9], ["impureEnvVars", 69, 9]]]);
 const formals$1 = { args: { cacert: false, dhall: false, "dhall-docs": false, haskell: false, lib: false, runCommand: false }, ellipsis: false };
 const formals$2 = { args: { url: false, hash: false, dhallHash: false, name: true, source: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/build-dhall-url.nix", [["outputHashAlgo", 65, 9], ["outputHash", 66, 9], ["name", 67, 9], ["nativeBuildInputs", 68, 9], ["impureEnvVars", 69, 9]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,7 +23,7 @@ export default nix.lambda((args) => (() => {
     const source = nix.argOr($_1, "source", () => false);
     const dhallNoHTTP = nix.thunk(() => nix.app(nix.sel(haskell, "lib", "appendConfigureFlag"), dhall, "-f-with-http"));
     const downloadedEncodedFile = nix.thunk(() => nix.app(runCommand, nix.thunk(() => nix.builtins.baseNameOf(url)), nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         outputHashAlgo: null,
         outputHash: hash,
         name: nix.thunk(() => nix.builtins.baseNameOf(url)),

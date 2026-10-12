@@ -2,19 +2,18 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/login.nix", [[["mainProgram", 11, 8]], [["path", 6, 3], ["buildInputs", 7, 3], ["meta", 11, 3]]]);
 const formals$1 = { args: { mkDerivation: false, libutil: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/login.nix", [["mainProgram", 11, 8]]);
-const pos$2 = nix.positions(here + "/login.nix", [["path", 6, 3], ["buildInputs", 7, 3], ["meta", 11, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const mkDerivation = nix.arg($, "mkDerivation");
   const libutil = nix.arg($, "libutil");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       path: "usr.bin/login",
       buildInputs: nix.thunk(() => [libutil]),
-      meta: nix.thunk(() => ({ [nix.POS]: pos$1, mainProgram: "login" })),
+      meta: nix.thunk(() => ({ [nix.POS]: $pos[0], mainProgram: "login" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=login.ts.map

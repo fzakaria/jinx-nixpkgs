@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 48, 63], ["sha256", 48, 67]], [["rules", 102, 12]], [["homepage", 107, 5], ["maintainers", 108, 5], ["platforms", 109, 5], ["license", 110, 5], ["sourceProvenance", 111, 5], ["description", 112, 5], ["longDescription", 113, 5]], [["pname", 45, 3], ["version", 46, 31], ["srcs", 48, 3], ["unpackPhase", 50, 3], ["nativeBuildInputs", 56, 3], ["dontWrapGApps", 61, 3], ["buildInputs", 63, 3], ["installPhase", 65, 3], ["dontStrip", 96, 3], ["passthru", 102, 3], ["meta", 106, 3]]]);
 const formals$1 = { args: { cacert: false, dpkg: false, fetchurl: false, "gdk-pixbuf": false, glib: false, glibc: false, gtk3: false, icu: false, lib: false, libcap: false, librsvg: false, libusb1: false, openssl: false, patchelf: false, stdenv: false, systemdMinimal: false, onetbb: false, wrapGAppsHook3: false, writeTextDir: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 48, 63], ["sha256", 48, 67]]);
-const pos$2 = nix.positions(here + "/package.nix", [["rules", 102, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 107, 5], ["maintainers", 108, 5], ["platforms", 109, 5], ["license", 110, 5], ["sourceProvenance", 111, 5], ["description", 112, 5], ["longDescription", 113, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 45, 3], ["version", 46, 31], ["srcs", 48, 3], ["unpackPhase", 50, 3], ["nativeBuildInputs", 56, 3], ["dontWrapGApps", 61, 3], ["buildInputs", 63, 3], ["installPhase", 65, 3], ["dontStrip", 96, 3], ["passthru", 102, 3], ["meta", 106, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -48,11 +45,11 @@ export default nix.lambda((args) => (() => {
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => (() => {
       const from = nix.thunk(() => nix.sel(sources, "picoscope"));
       return {
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "picoscope",
       version: nix.thunk(() => nix.attr(from, "version")),
       srcs: nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (_) => (src) => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             url: nix.thunk(() => nix.attr(src, "url")),
             sha256: nix.thunk(() => nix.attr(src, "sha256")),
           }))), sources)),
@@ -87,11 +84,11 @@ runHook postInstall
 `),
       dontStrip: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         rules: nix.thunk(() => nix.app(writeTextDir, "lib/udev/rules.d/95-pico.rules", "SUBSYSTEMS==\"usb\", ATTRS{idVendor}==\"0ce9\", MODE=\"664\",GROUP=\"pico\"\n")),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://www.picotech.com/downloads/linux",
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);

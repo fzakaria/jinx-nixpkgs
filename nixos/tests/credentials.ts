@@ -2,25 +2,8 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/credentials.nix", [[["text", 18, 7]], [["source", 21, 7]], [["source", 24, 7]], [["source", 27, 7]], [["secret-default-mechanism", 17, 5], ["secret-file-nix-store", 20, 5], ["secret-file-host", 23, 5], ["secret-file-host-binary", 26, 5]], [["maintainers", 35, 8]], [["devnet", 38, 20]], [["mechanism", 43, 17], ["text", 44, 9]], [["secret", 42, 7]], [["credentials", 41, 20]], [["virtualisation", 41, 5]], [["vm", 40, 9]], [["text", 52, 9]], [["secret", 51, 7]], [["credentials", 50, 20]], [["virtualisation", 50, 5]], [["container", 49, 14]], [["name", 33, 3], ["meta", 35, 3], ["requiredFeatures", 38, 3], ["nodes", 40, 3], ["containers", 49, 3], ["testScript", 57, 3]]]);
 const formals$1 = { args: { lib: false, pkgs: false, mechanism: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/credentials.nix", [["text", 18, 7]]);
-const pos$2 = nix.positions(here + "/credentials.nix", [["source", 21, 7]]);
-const pos$3 = nix.positions(here + "/credentials.nix", [["source", 24, 7]]);
-const pos$4 = nix.positions(here + "/credentials.nix", [["source", 27, 7]]);
-const pos$5 = nix.positions(here + "/credentials.nix", [["secret-default-mechanism", 17, 5], ["secret-file-nix-store", 20, 5], ["secret-file-host", 23, 5], ["secret-file-host-binary", 26, 5]]);
-const pos$6 = nix.positions(here + "/credentials.nix", [["maintainers", 35, 8]]);
-const pos$7 = nix.positions(here + "/credentials.nix", [["devnet", 38, 20]]);
-const pos$8 = nix.positions(here + "/credentials.nix", [["mechanism", 43, 17], ["text", 44, 9]]);
-const pos$9 = nix.positions(here + "/credentials.nix", [["secret", 42, 7]]);
-const pos$10 = nix.positions(here + "/credentials.nix", [["credentials", 41, 20]]);
-const pos$11 = nix.positions(here + "/credentials.nix", [["virtualisation", 41, 5]]);
-const pos$12 = nix.positions(here + "/credentials.nix", [["vm", 40, 9]]);
-const pos$13 = nix.positions(here + "/credentials.nix", [["text", 52, 9]]);
-const pos$14 = nix.positions(here + "/credentials.nix", [["secret", 51, 7]]);
-const pos$15 = nix.positions(here + "/credentials.nix", [["credentials", 50, 20]]);
-const pos$16 = nix.positions(here + "/credentials.nix", [["virtualisation", 50, 5]]);
-const pos$17 = nix.positions(here + "/credentials.nix", [["container", 49, 14]]);
-const pos$18 = nix.positions(here + "/credentials.nix", [["name", 33, 3], ["meta", 35, 3], ["requiredFeatures", 38, 3], ["nodes", 40, 3], ["containers", 49, 3], ["testScript", 57, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,51 +13,51 @@ export default nix.lambda((args) => (() => {
   const secret = "foo\nbar\nbaz\n";
   const secret_file = "bar";
   const common_credentials = nix.thunk(() => ({
-    [nix.POS]: pos$5,
-    "secret-default-mechanism": nix.thunk(() => ({ [nix.POS]: pos$1, text: "default-mechanism" })),
+    [nix.POS]: $pos[4],
+    "secret-default-mechanism": nix.thunk(() => ({ [nix.POS]: $pos[0], text: "default-mechanism" })),
     "secret-file-nix-store": nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       source: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "secret-file-nix-store", secret_file)),
     })),
-    "secret-file-host": nix.thunk(() => ({ [nix.POS]: pos$3, source: "./secret-file-host" })),
-    "secret-file-host-binary": nix.thunk(() => ({ [nix.POS]: pos$4, source: "./secret-file-host-binary" })),
+    "secret-file-host": nix.thunk(() => ({ [nix.POS]: $pos[2], source: "./secret-file-host" })),
+    "secret-file-host-binary": nix.thunk(() => ({ [nix.POS]: $pos[3], source: "./secret-file-host-binary" })),
   }));
   return {
-    [nix.POS]: pos$18,
+    [nix.POS]: $pos[17],
     name: nix.thunk(() => nix.str`credentials-${mechanism}`),
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "arianvp"))];
       })()),
     })),
     requiredFeatures: nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       devnet: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), false)),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$12,
+      [nix.POS]: $pos[11],
       vm: nix.thunk(() => ({
-        [nix.POS]: pos$11,
+        [nix.POS]: $pos[10],
         virtualisation: nix.thunk(() => ({
-          [nix.POS]: pos$10,
+          [nix.POS]: $pos[9],
           credentials: nix.thunk(() => nix.update(common_credentials, {
-            [nix.POS]: pos$9,
-            secret: nix.thunk(() => ({ [nix.POS]: pos$8, mechanism: mechanism, text: secret })),
+            [nix.POS]: $pos[8],
+            secret: nix.thunk(() => ({ [nix.POS]: $pos[7], mechanism: mechanism, text: secret })),
           })),
         })),
       })),
     })),
     containers: nix.thunk(() => ({
-      [nix.POS]: pos$17,
+      [nix.POS]: $pos[16],
       container: nix.thunk(() => ({
-        [nix.POS]: pos$16,
+        [nix.POS]: $pos[15],
         virtualisation: nix.thunk(() => ({
-          [nix.POS]: pos$15,
+          [nix.POS]: $pos[14],
           credentials: nix.thunk(() => nix.update(common_credentials, {
-            [nix.POS]: pos$14,
-            secret: nix.thunk(() => ({ [nix.POS]: pos$13, text: secret })),
+            [nix.POS]: $pos[13],
+            secret: nix.thunk(() => ({ [nix.POS]: $pos[12], text: secret })),
           })),
         })),
       })),

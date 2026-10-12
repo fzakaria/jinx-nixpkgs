@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["PYARROW_BUILD_TYPE", 70, 5], ["PYARROW_WITH_DATASET", 72, 5], ["PYARROW_WITH_FLIGHT", 73, 5], ["PYARROW_WITH_HDFS", 74, 5], ["PYARROW_WITH_PARQUET", 75, 5], ["PYARROW_WITH_PARQUET_ENCRYPTION", 76, 5], ["PYARROW_WITH_S3", 77, 5], ["PYARROW_WITH_GCS", 78, 5], ["PYARROW_BUNDLE_ARROW_CPP_HEADERS", 79, 5], ["PYARROW_CMAKE_OPTIONS", 81, 5], ["ARROW_HOME", 85, 5], ["PARQUET_HOME", 86, 5]], [["ARROW_TEST_DATA", 90, 5]], [["description", 204, 5], ["homepage", 205, 5], ["license", 206, 5], ["platforms", 207, 5], ["maintainers", 208, 5]], [["pname", 32, 3], ["version", 33, 23], ["src", 33, 31], ["pyproject", 34, 3], ["sourceRoot", 36, 3], ["build-system", 38, 3], ["buildInputs", 50, 3], ["dependencies", 52, 3], ["checkInputs", 57, 3], ["nativeCheckInputs", 62, 3], ["env", 69, 3], ["doCheck", 93, 3], ["dontUseCmakeConfigure", 95, 3], ["__darwinAllowLocalNetworking", 97, 3], ["preBuild", 99, 3], ["postInstall", 103, 3], ["disabledTestPaths", 110, 3], ["disabledTests", 167, 3], ["preCheck", 169, 3], ["pythonImportsCheck", 188, 3], ["meta", 203, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, python: false, pythonAtLeast: false, "arrow-cpp": false, cffi: false, cloudpickle: false, cmake: false, cython: false, fsspec: false, hypothesis: false, libcst: false, ninja: false, numpy: false, pandas: false, pytestCheckHook: false, "pytest-lazy-fixture": false, "pkg-config": false, "scikit-build-core": false, setuptools: false, "setuptools-scm": false, tzdata: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["PYARROW_BUILD_TYPE", 70, 5], ["PYARROW_WITH_DATASET", 72, 5], ["PYARROW_WITH_FLIGHT", 73, 5], ["PYARROW_WITH_HDFS", 74, 5], ["PYARROW_WITH_PARQUET", 75, 5], ["PYARROW_WITH_PARQUET_ENCRYPTION", 76, 5], ["PYARROW_WITH_S3", 77, 5], ["PYARROW_WITH_GCS", 78, 5], ["PYARROW_BUNDLE_ARROW_CPP_HEADERS", 79, 5], ["PYARROW_CMAKE_OPTIONS", 81, 5], ["ARROW_HOME", 85, 5], ["PARQUET_HOME", 86, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["ARROW_TEST_DATA", 90, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 204, 5], ["homepage", 205, 5], ["license", 206, 5], ["platforms", 207, 5], ["maintainers", 208, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 32, 3], ["version", 33, 23], ["src", 33, 31], ["pyproject", 34, 3], ["sourceRoot", 36, 3], ["build-system", 38, 3], ["buildInputs", 50, 3], ["dependencies", 52, 3], ["checkInputs", 57, 3], ["nativeCheckInputs", 62, 3], ["env", 69, 3], ["doCheck", 93, 3], ["dontUseCmakeConfigure", 95, 3], ["__darwinAllowLocalNetworking", 97, 3], ["preBuild", 99, 3], ["postInstall", 103, 3], ["disabledTestPaths", 110, 3], ["disabledTests", 167, 3], ["preCheck", 169, 3], ["pythonImportsCheck", 188, 3], ["meta", 203, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -56,7 +53,7 @@ export default nix.lambda((args) => (() => {
       const checkInputs = nix.thunk(() => [cloudpickle, fsspec]);
       const nativeCheckInputs = nix.thunk(() => [hypothesis, pandas, pytestCheckHook, pytest_lazy_fixture]);
       const env = nix.thunk(() => nix.update({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         PYARROW_BUILD_TYPE: "release",
         PYARROW_WITH_DATASET: nix.thunk(() => nix.app(zero_or_one, true)),
         PYARROW_WITH_FLIGHT: nix.thunk(() => nix.app(zero_or_one, nix.thunk(() => nix.sel(arrow_cpp, "enableFlight")))),
@@ -70,7 +67,7 @@ export default nix.lambda((args) => (() => {
         ARROW_HOME: arrow_cpp,
         PARQUET_HOME: arrow_cpp,
       }, nix.app(nix.sel(lib, "optionalAttrs"), doCheck, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           ARROW_TEST_DATA: nix.thunk(() => nix.sel(arrow_cpp, "env", "ARROW_TEST_DATA")),
         })))));
       const doCheck = true;
@@ -144,7 +141,7 @@ substituteInPlace pyarrow/tests/conftest.py --replace-fail ..conftest .parent_co
           "parquet",
         ]))));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Cross-language development platform for in-memory data",
         homepage: "https://arrow.apache.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -158,7 +155,7 @@ substituteInPlace pyarrow/tests/conftest.py --replace-fail ..conftest .parent_co
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

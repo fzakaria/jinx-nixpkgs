@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["executableName", 55, 7], ["everest", 56, 7], ["withEverest", 57, 7], ["overrideSrc", 58, 7], ["launchFlags", 59, 7], ["launchEnv", 60, 7], ["everestLogFilename", 61, 7], ["desktopItems", 63, 5], ["writableDir", 64, 5]], [["name", 70, 5], ["desktopName", 71, 5], ["genericName", 72, 5], ["comment", 73, 5], ["exec", 74, 5], ["icon", 75, 5], ["categories", 76, 5]], [["celeste-unwrapped", 202, 12]], [["homepage", 206, 7], ["downloadPage", 207, 7], ["description", 208, 7], ["license", 209, 7], ["sourceProvenance", 210, 7], ["platforms", 211, 7], ["maintainers", 213, 5]], [["pname", 81, 11], ["executableName", 81, 17], ["version", 82, 3], ["multiPkgs", 84, 3], ["targetPkgs", 150, 3], ["extraInstallCommands", 152, 3], ["extraPreBwrapCmds", 159, 3], ["runScript", 163, 3], ["passthru", 202, 3], ["meta", 204, 3]]]);
 const formals$1 = { args: { lib: false, callPackage: false, buildFHSEnv: false, fetchzip: false, makeDesktopItem: false, writeShellScript: false, autoPatchelfHook: false, runtimeShell: false, everest: false, withEverest: true, overrideSrc: true, writableDir: true, gameDir: true, launchFlags: true, launchEnv: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["executableName", 55, 7], ["everest", 56, 7], ["withEverest", 57, 7], ["overrideSrc", 58, 7], ["launchFlags", 59, 7], ["launchEnv", 60, 7], ["everestLogFilename", 61, 7], ["desktopItems", 63, 5], ["writableDir", 64, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 70, 5], ["desktopName", 71, 5], ["genericName", 72, 5], ["comment", 73, 5], ["exec", 74, 5], ["icon", 75, 5], ["categories", 76, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["celeste-unwrapped", 202, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 206, 7], ["downloadPage", 207, 7], ["description", 208, 7], ["license", 209, 7], ["sourceProvenance", 210, 7], ["platforms", 211, 7], ["maintainers", 213, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 81, 11], ["executableName", 81, 17], ["version", 82, 3], ["multiPkgs", 84, 3], ["targetPkgs", 150, 3], ["extraInstallCommands", 152, 3], ["extraPreBwrapCmds", 159, 3], ["runScript", 163, 3], ["passthru", 202, 3], ["meta", 204, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,7 +29,7 @@ export default nix.lambda((args) => (() => {
   const gameDir$ = nix.thunk(() => nix.app(nix.sel(lib, "toList"), gameDir));
   const everestLogFilename = "everest-log.txt";
   const celeste = nix.thunk(() => nix.app(callPackage, nix.path(here, "./celeste.nix"), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       executableName: executableName,
       everest: everest,
       withEverest: withEverest,
@@ -47,7 +43,7 @@ export default nix.lambda((args) => (() => {
   const celesteHomeRelative = "lib/Celeste";
   const celesteHome = nix.thunk(() => nix.str`${celeste}/${celesteHomeRelative}`);
   const desktopItem = nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       name: "Celeste",
       desktopName: "Celeste",
       genericName: "Celeste",
@@ -57,7 +53,7 @@ export default nix.lambda((args) => (() => {
       categories: nix.thunk(() => ["Game"]),
     }))));
   return nix.app(buildFHSEnv, nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: pname,
       executableName: executableName,
       version: nix.thunk(() => nix.add(nix.sel(celeste, "version"), nix.app(nix.sel(lib, "optionalString"), withEverest, nix.thunk(() => nix.str`+everest.${nix.sel(everest, "version")}`)))),
@@ -162,11 +158,11 @@ fi
 `, gameDir$)))), nix.str`cd /${celesteHomeRelative}
 exec ./Celeste-unwrapped "$@"
 `)))),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$3, "celeste-unwrapped": celeste })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[2], "celeste-unwrapped": celeste })),
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(celeste, "meta"));
         return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         downloadPage: nix.thunk(() => nix.attr(from, "downloadPage")),
         description: nix.thunk(() => nix.attr(from, "description")),

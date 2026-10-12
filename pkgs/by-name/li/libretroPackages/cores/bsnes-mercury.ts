@@ -2,10 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/bsnes-mercury.nix", [[["owner", 12, 5], ["repo", 13, 5], ["rev", 14, 5], ["hash", 15, 5]], [["description", 22, 5], ["homepage", 23, 5], ["license", 24, 5]], [["core", 8, 3], ["version", 9, 3], ["src", 11, 3], ["makefile", 18, 3], ["makeFlags", 19, 3], ["meta", 21, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, mkLibretroCore: false, withProfile: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/bsnes-mercury.nix", [["owner", 12, 5], ["repo", 13, 5], ["rev", 14, 5], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/bsnes-mercury.nix", [["description", 22, 5], ["homepage", 23, 5], ["license", 24, 5]]);
-const pos$3 = nix.positions(here + "/bsnes-mercury.nix", [["core", 8, 3], ["version", 9, 3], ["src", 11, 3], ["makefile", 18, 3], ["makeFlags", 19, 3], ["meta", 21, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const mkLibretroCore = nix.arg($, "mkLibretroCore");
   const withProfile = nix.argOr($, "withProfile", () => "accuracy");
   return nix.app(mkLibretroCore, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       core: nix.thunk(() => nix.str`bsnes-mercury-${withProfile}`),
       version: "0-unstable-2026-09-04",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "libretro",
           repo: "bsnes-mercury",
           rev: "79d7f9de218b6ffa65a80bbdc5828532bc239232",
@@ -27,7 +25,7 @@ export default nix.lambda((args) => (() => {
       makefile: "Makefile",
       makeFlags: nix.thunk(() => [nix.thunk(() => nix.str`PROFILE=${withProfile}`)]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: nix.thunk(() => nix.str`Fork of bsnes with HLE DSP emulation restored (${withProfile} profile)`),
         homepage: "https://github.com/libretro/bsnes-mercury",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

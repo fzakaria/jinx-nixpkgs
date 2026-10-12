@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 17, 5], ["hash", 18, 5]], [["updateScript", 31, 12]], [["license", 33, 5], ["homepage", 34, 5], ["changelog", 35, 5], ["description", 36, 5], ["platforms", 37, 5], ["maintainers", 38, 5], ["sourceProvenance", 39, 5]], [["pname", 12, 3], ["version", 14, 11], ["src", 16, 3], ["installPhase", 21, 3], ["doInstallCheck", 29, 3], ["passthru", 31, 3], ["meta", 32, 3]]]);
 const formals$1 = { args: { fetchzip: false, lib: false, stdenv: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 31, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["license", 33, 5], ["homepage", 34, 5], ["changelog", 35, 5], ["description", 36, 5], ["platforms", 37, 5], ["maintainers", 38, 5], ["sourceProvenance", 39, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 14, 11], ["src", 16, 3], ["installPhase", 21, 3], ["doInstallCheck", 29, 3], ["passthru", 31, 3], ["meta", 32, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,22 +13,22 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const version = "3.3.39";
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "flashspace",
       version: version,
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/wojciech-kulik/FlashSpace/releases/download/v${version}/FlashSpace.app.zip`),
           hash: "sha256-/mgdeRxaxq+oIjbbaxCSExHxyYqqWl80+6jPzPIhT4M=",
         })))),
       installPhase: "runHook preInstall\nmkdir -p $out/Applications/FlashSpace.app $out/bin\nmv Contents $out/Applications/FlashSpace.app\nln -s ../Applications/Flashspace.app/Contents/Resources/flashspace $out/bin/flashspace\nrunHook postInstall\n",
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         homepage: "https://github.com/wojciech-kulik/FlashSpace",
         changelog: nix.thunk(() => nix.str`https://github.com/wojciech-kulik/FlashSpace/releases/tag/v${version}`),

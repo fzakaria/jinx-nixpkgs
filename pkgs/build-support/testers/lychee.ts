@@ -2,14 +2,9 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/lychee.nix", [[["include_fragments", 58, 11], ["root_dir", 59, 11]], [["remap", 66, 11]], [["name", 75, 11], ["runtimeInputs", 76, 11], ["checkPhase", 78, 11], ["text", 79, 11]], [["lychee", 56, 17], ["remap", 56, 24], ["config", 57, 9], ["online", 74, 9]], [["name", 44, 7], ["__structuredAttrs", 45, 7], ["site", 46, 15], ["nativeBuildInputs", 47, 7], ["configFile", 51, 7], ["extraArgs", 52, 15], ["passthru", 55, 7], ["buildCommand", 87, 7]], [["lycheeLinkCheck", 122, 11]]]);
 const formals$1 = { args: { cacert: false, formats: false, lib: false, lychee: false, stdenv: false, writeShellApplication: false }, ellipsis: false };
 const formals$2 = { args: { site: false, relocatable: true, remap: true, lychee: true, extraConfig: true, extraArgs: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/lychee.nix", [["include_fragments", 58, 11], ["root_dir", 59, 11]]);
-const pos$2 = nix.positions(here + "/lychee.nix", [["remap", 66, 11]]);
-const pos$3 = nix.positions(here + "/lychee.nix", [["name", 75, 11], ["runtimeInputs", 76, 11], ["checkPhase", 78, 11], ["text", 79, 11]]);
-const pos$4 = nix.positions(here + "/lychee.nix", [["lychee", 56, 17], ["remap", 56, 24], ["config", 57, 9], ["online", 74, 9]]);
-const pos$5 = nix.positions(here + "/lychee.nix", [["name", 44, 7], ["__structuredAttrs", 45, 7], ["site", 46, 15], ["nativeBuildInputs", 47, 7], ["configFile", 51, 7], ["extraArgs", 52, 15], ["passthru", 55, 7], ["buildCommand", 87, 7]]);
-const pos$6 = nix.positions(here + "/lychee.nix", [["lycheeLinkCheck", 122, 11]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -45,7 +40,7 @@ Please change attribute name 'remap.${nix.app(escapeNixString, name)}'
     const extraConfig = nix.argOr($_1, "extraConfig", () => ({}));
     const extraArgs = nix.argOr($_1, "extraArgs", () => []);
     return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         name: "lychee-link-check",
         __structuredAttrs: true,
         site: site,
@@ -53,19 +48,19 @@ Please change attribute name 'remap.${nix.app(escapeNixString, name)}'
         configFile: nix.thunk(() => nix.app(nix.sel(nix.app(nix.sel(formats, "toml"), nix.thunk(() => ({}))), "generate"), "lychee.toml", nix.thunk(() => nix.sel(finalAttrs, "passthru", "config")))),
         extraArgs: extraArgs,
         passthru: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           lychee: lychee_1,
           remap: remap,
           config: nix.thunk(() => nix.update({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             include_fragments: "full",
             root_dir: nix.thunk(() => (nix.asBool(nix.eq(relocatable, false)) ? nix.sel(finalAttrs, "site") : "/root-relative-links-are-forbidden-use-relative-links")),
           }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(finalAttrs, "passthru", "remap"), {})), nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               remap: nix.thunk(() => nix.app(mapAttrsToList, (name) => (value) => nix.app(withCheckedName, name, nix.thunk(() => nix.str`${name} ${nix.app(toURL, value)}`)), nix.thunk(() => nix.sel(finalAttrs, "passthru", "remap")))),
             }))), extraConfig))),
           online: nix.thunk(() => nix.app(writeShellApplication, nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               name: "run-lychee-online",
               runtimeInputs: nix.thunk(() => [nix.thunk(() => nix.sel(finalAttrs, "passthru", "lychee"))]),
               checkPhase: "",
@@ -92,6 +87,6 @@ touch $out
 `),
       }));
   })(), formals$2);
-  return { [nix.POS]: pos$6, lycheeLinkCheck: lycheeLinkCheck };
+  return { [nix.POS]: $pos[5], lycheeLinkCheck: lycheeLinkCheck };
 })(), formals$1);
 //# sourceMappingURL=lychee.ts.map

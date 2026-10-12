@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 27, 5], ["hash", 28, 5]], [["package", 67, 5], ["command", 68, 5]], [["version", 66, 18]], [["tests", 66, 12]], [["description", 74, 5], ["homepage", 75, 5], ["license", 76, 5], ["maintainers", 77, 5], ["mainProgram", 78, 5], ["platforms", 79, 5], ["broken", 80, 5]], [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["strictDeps", 31, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 41, 3], ["propagatedBuildInputs", 52, 3], ["makeFlags", 57, 3], ["postInstall", 59, 3], ["passthru", 66, 3], ["doCheck", 71, 3], ["meta", 73, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, autoreconfHook: false, makeWrapper: false, testers: false, guile: false, "pkg-config": false, texinfo: false, freetype: false, libjpeg_turbo: false, libpng: false, libvorbis: false, mpg123: false, openal: false, readline: false, "guile-opengl": false, "guile-sdl2": false, "guile-chickadee": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["package", 67, 5], ["command", 68, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 66, 18]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 66, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 74, 5], ["homepage", 75, 5], ["license", 76, 5], ["maintainers", 77, 5], ["mainProgram", 78, 5], ["platforms", 79, 5], ["broken", 80, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["strictDeps", 31, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 41, 3], ["propagatedBuildInputs", 52, 3], ["makeFlags", 57, 3], ["postInstall", 59, 3], ["passthru", 66, 3], ["doCheck", 71, 3], ["meta", 73, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,11 +27,11 @@ export default nix.lambda((args) => (() => {
   const guile_sdl2 = nix.arg($, "guile-sdl2");
   const guile_chickadee = nix.arg($, "guile-chickadee");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "guile-chickadee",
       version: "0.10.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://files.dthompson.us/chickadee/chickadee-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-Ey9TtuWaGlHG2cYYwqJIt2RX7XNUW28OGl/kuPUCD3U=",
         })))),
@@ -51,15 +46,15 @@ export default nix.lambda((args) => (() => {
   --prefix LD_LIBRARY_PATH : "${nix.app(nix.sel(lib, "strings", "makeLibraryPath"), nix.thunk(() => nix.sel(finalAttrs, "buildInputs")))}"
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$2, package: guile_chickadee, command: "chickadee -v" })))),
+          [nix.POS]: $pos[2],
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: $pos[1], package: guile_chickadee, command: "chickadee -v" })))),
         })),
       })),
       doCheck: nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Game development toolkit for Guile Scheme with SDL2 and OpenGL",
         homepage: "https://dthompson.us/projects/chickadee.html",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

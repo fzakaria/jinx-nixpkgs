@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 31, 5], ["owner", 32, 5], ["repo", 33, 5], ["tag", 34, 5], ["hash", 35, 5]], [["url", 41, 7], ["hash", 42, 7]], [["url", 47, 7], ["hash", 48, 7]], [["rev-prefix", 78, 40]], [["updateScript", 78, 12]], [["description", 81, 5], ["homepage", 82, 5], ["license", 83, 5], ["mainProgram", 84, 5], ["teams", 85, 5], ["platforms", 86, 5]], [["pname", 27, 3], ["version", 28, 3], ["src", 30, 3], ["patches", 38, 3], ["strictDeps", 52, 3], ["nativeBuildInputs", 54, 3], ["buildInputs", 63, 3], ["passthru", 78, 3], ["meta", 80, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitLab: false, fetchpatch: false, meson: false, ninja: false, "pkg-config": false, wrapGAppsHook3: false, clutter: false, gettext: false, libxcomposite: false, libxinerama: false, libxdamage: false, libx11: false, libwnck: false, libxfce4ui: false, libxfce4util: false, garcon: false, xfconf: false, gtk3: false, glib: false, gitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 31, 5], ["owner", 32, 5], ["repo", 33, 5], ["tag", 34, 5], ["hash", 35, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 41, 7], ["hash", 42, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 47, 7], ["hash", 48, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["rev-prefix", 78, 40]]);
-const pos$5 = nix.positions(here + "/package.nix", [["updateScript", 78, 12]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 81, 5], ["homepage", 82, 5], ["license", 83, 5], ["mainProgram", 84, 5], ["teams", 85, 5], ["platforms", 86, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 27, 3], ["version", 28, 3], ["src", 30, 3], ["patches", 38, 3], ["strictDeps", 52, 3], ["nativeBuildInputs", 54, 3], ["buildInputs", 63, 3], ["passthru", 78, 3], ["meta", 80, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -36,11 +30,11 @@ export default nix.lambda((args) => (() => {
   const glib = nix.arg($, "glib");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "xfdashboard",
       version: "1.1.0",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "gitlab.xfce.org",
           owner: "apps",
           repo: "xfdashboard",
@@ -49,12 +43,12 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://gitlab.xfce.org/apps/xfdashboard/-/commit/7452a7074dfc36c5af42c4105aadaac8656c2f60.patch",
             hash: "sha256-u0djTProV3On0uutg89Q+psgmVGJS768KwiYxZ7dhrE=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: "https://gitlab.xfce.org/apps/xfdashboard/-/commit/20f23e62576d186fada6688af3bb05bc7f223f44.patch",
             hash: "sha256-C2oIBi9tfoQF123Ez3YbFUs8vX2DeYdr3BDc85ExTgQ=",
           })))),
@@ -76,11 +70,11 @@ export default nix.lambda((args) => (() => {
         xfconf,
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$4, "rev-prefix": "xfdashboard-" })))),
+        [nix.POS]: $pos[4],
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[3], "rev-prefix": "xfdashboard-" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "GNOME shell like dashboard",
         homepage: "https://gitlab.xfce.org/apps/xfdashboard",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

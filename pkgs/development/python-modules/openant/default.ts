@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]], [["serial", 38, 5], ["influx", 39, 5]], [["homepage", 47, 5], ["description", 48, 5], ["mainProgram", 49, 5], ["license", 50, 5]], [["pname", 14, 3], ["version", 15, 3], ["pyproject", 16, 3], ["src", 18, 3], ["nativeBuildInputs", 25, 3], ["postInstall", 30, 3], ["propagatedBuildInputs", 35, 3], ["optional-dependencies", 37, 3], ["nativeCheckInputs", 42, 3], ["pythonImportsCheck", 44, 3], ["meta", 46, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, pyusb: false, "influxdb-client": false, pyserial: false, pytestCheckHook: false, udevCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["serial", 38, 5], ["influx", 39, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["homepage", 47, 5], ["description", 48, 5], ["mainProgram", 49, 5], ["license", 50, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 14, 3], ["version", 15, 3], ["pyproject", 16, 3], ["src", 18, 3], ["nativeBuildInputs", 25, 3], ["postInstall", 30, 3], ["propagatedBuildInputs", 35, 3], ["optional-dependencies", 37, 3], ["nativeCheckInputs", 42, 3], ["pythonImportsCheck", 44, 3], ["meta", 46, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.3.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Tigge",
           repo: "openant",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -34,21 +31,21 @@ export default nix.lambda((args) => (() => {
       const postInstall = "install -dm755 \"$out/etc/udev/rules.d\"\ninstall -m644 resources/42-ant-usb-sticks.rules \"$out/etc/udev/rules.d/99-ant-usb-sticks.rules\"\n";
       const propagatedBuildInputs = nix.thunk(() => [pyusb]);
       const optional_dependencies = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         serial: nix.thunk(() => [pyserial]),
         influx: nix.thunk(() => [influxdb_client]),
       }));
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const pythonImportsCheck = nix.thunk(() => ["openant"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/Tigge/openant",
         description: "ANT and ANT-FS Python Library",
         mainProgram: "openant",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

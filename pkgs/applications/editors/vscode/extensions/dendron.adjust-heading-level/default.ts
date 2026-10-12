@@ -2,26 +2,24 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["name", 5, 5], ["publisher", 6, 5], ["version", 7, 5], ["hash", 8, 5]], [["description", 11, 5], ["downloadPage", 12, 5], ["homepage", 13, 5], ["license", 14, 5], ["maintainers", 15, 5]], [["mktplcRef", 4, 3], ["meta", 10, 3]]]);
 const formals$1 = { args: { lib: false, "vscode-utils": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["name", 5, 5], ["publisher", 6, 5], ["version", 7, 5], ["hash", 8, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 11, 5], ["downloadPage", 12, 5], ["homepage", 13, 5], ["license", 14, 5], ["maintainers", 15, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["mktplcRef", 4, 3], ["meta", 10, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const vscode_utils = nix.arg($, "vscode-utils");
   return nix.app(nix.sel(vscode_utils, "buildVscodeMarketplaceExtension"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       mktplcRef: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         name: "adjust-heading-level",
         publisher: "dendron",
         version: "0.1.0",
         hash: "sha256-u50RJ7ETVFUC43mp94VJsR931b9REBaTyRhZE7muoLw=",
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "VSCode extension to adjust the heading level of the selected text",
         downloadPage: "https://marketplace.visualstudio.com/items?itemName=dendron.adjust-heading-level",
         homepage: "https://github.com/kevinslin/adjust-heading-level",

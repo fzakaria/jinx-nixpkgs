@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 45, 5], ["repo", 46, 5], ["tag", 47, 5], ["hash", 48, 5]], [["description", 185, 5], ["homepage", 186, 5], ["changelog", 187, 5], ["license", 188, 5], ["maintainers", 189, 5]], [["pname", 39, 3], ["version", 40, 3], ["pyproject", 41, 3], ["__structuredAttrs", 42, 3], ["src", 44, 3], ["build-system", 51, 3], ["dependencies", 55, 3], ["pythonImportsCheck", 72, 3], ["nativeCheckInputs", 77, 3], ["disabledTests", 88, 3], ["disabledTestPaths", 143, 3], ["meta", 184, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, "absl-py": false, distutils: false, h5py: false, "ml-dtypes": false, namex: false, numpy: false, onnxruntime: false, optree: false, "orbax-checkpoint": false, packaging: false, pythonAtLeast: false, rich: false, "scikit-learn": false, tensorflow: false, tf2onnx: false, "dm-tree": false, jax: false, pandas: false, pydot: false, pytestCheckHook: false, "tf-keras": false, torch: false, writableTmpDirAsHomeHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 45, 5], ["repo", 46, 5], ["tag", 47, 5], ["hash", 48, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 185, 5], ["homepage", 186, 5], ["changelog", 187, 5], ["license", 188, 5], ["maintainers", 189, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 39, 3], ["version", 40, 3], ["pyproject", 41, 3], ["__structuredAttrs", 42, 3], ["src", 44, 3], ["build-system", 51, 3], ["dependencies", 55, 3], ["pythonImportsCheck", 72, 3], ["nativeCheckInputs", 77, 3], ["disabledTests", 88, 3], ["disabledTestPaths", 143, 3], ["meta", 184, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -38,13 +36,13 @@ export default nix.lambda((args) => (() => {
   const torch = nix.arg($, "torch");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "keras",
       version: "3.15.1",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "keras-team",
           repo: "keras",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -137,7 +135,7 @@ export default nix.lambda((args) => (() => {
         "keras/src/backend/tensorflow/saved_model_test.py",
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Multi-backend implementation of the Keras API, with support for TensorFlow, JAX, and PyTorch",
         homepage: "https://keras.io",
         changelog: nix.thunk(() => nix.str`https://github.com/keras-team/keras/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

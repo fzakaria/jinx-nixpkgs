@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/update-wheels.nix", [[["attrPath", 15, 3], ["extraArgs", 16, 3]]]);
 const formals$1 = { args: { lib: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/update-wheels.nix", [["attrPath", 15, 3], ["extraArgs", 16, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const wheelSources = nix.thunk(() => nix.builtins.import(nix.path(here, "./wheel-sources.nix")));
   const subpackages = nix.thunk(() => nix.concat(nix.builtins.map((name) => nix.str`srcs.mlx."${name}"`, nix.thunk(() => nix.builtins.attrNames(nix.thunk(() => nix.sel(wheelSources, "mlx"))))), nix.concat(nix.builtins.map((name) => nix.str`srcs.mlx-metal."${name}"`, nix.thunk(() => nix.builtins.attrNames(nix.thunk(() => nix.sel(wheelSources, "mlx-metal"))))), ["srcs.testSource"])));
   return nix.app(nix_update_script, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       attrPath: "python3Packages.mlx-bin",
       extraArgs: nix.thunk(() => nix.concat([
         "--url=mirror://pypi/m/mlx/",

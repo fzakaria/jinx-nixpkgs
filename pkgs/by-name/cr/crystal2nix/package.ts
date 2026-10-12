@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]], [["description", 39, 5], ["homepage", 40, 5], ["mainProgram", 41, 5], ["license", 42, 5], ["maintainers", 43, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["format", 20, 3], ["shardsFile", 22, 3], ["nativeBuildInputs", 24, 3], ["postInstall", 26, 3], ["doCheck", 34, 3], ["doInstallCheck", 36, 3], ["meta", 38, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, crystal: false, makeBinaryWrapper: false, "nix-prefetch-git": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 39, 5], ["homepage", 40, 5], ["mainProgram", 41, 5], ["license", 42, 5], ["maintainers", 43, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["format", 20, 3], ["shardsFile", 22, 3], ["nativeBuildInputs", 24, 3], ["postInstall", 26, 3], ["doCheck", 34, 3], ["doInstallCheck", 36, 3], ["meta", 38, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "crystal2nix";
       const version = "0.3.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "nix-community",
           repo: "crystal2nix",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -35,7 +33,7 @@ makeWrapper $out/libexec/${nix.sel(meta, "mainProgram")} $out/bin/${nix.sel(meta
       const doCheck = false;
       const doInstallCheck = true;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Utility to convert Crystal's shard.lock files to a Nix file",
         homepage: "https://github.com/nix-community/crystal2nix",
         mainProgram: "crystal2nix",
@@ -46,7 +44,7 @@ makeWrapper $out/libexec/${nix.sel(meta, "mainProgram")} $out/bin/${nix.sel(meta
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

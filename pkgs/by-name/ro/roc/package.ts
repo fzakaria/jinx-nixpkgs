@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 28, 5], ["repo", 29, 5], ["rev", 30, 5], ["hash", 31, 5]], [["description", 99, 5], ["mainProgram", 100, 5], ["homepage", 101, 5], ["changelog", 102, 5], ["license", 103, 5], ["maintainers", 104, 5], ["platforms", 109, 5]], [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["dontUseZigBuild", 34, 3], ["dontUseZigCheck", 35, 3], ["dontUseZigInstall", 36, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 46, 3], ["cargoHash", 58, 3], ["preBuild", 60, 3], ["postInstall", 69, 3], ["nativeCheckInputs", 80, 3], ["checkPhase", 86, 3], ["meta", 98, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, libffi: false, libxml2: false, makeBinaryWrapper: false, cmake: false, glibc: false, rustPlatform: false, zig_0_13: false, llvmPackages_18: false, writableTmpDirAsHomeHook: false, valgrind: false, autoPatchelfHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 28, 5], ["repo", 29, 5], ["rev", 30, 5], ["hash", 31, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 99, 5], ["mainProgram", 100, 5], ["homepage", 101, 5], ["changelog", 102, 5], ["license", 103, 5], ["maintainers", 104, 5], ["platforms", 109, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["dontUseZigBuild", 34, 3], ["dontUseZigCheck", 35, 3], ["dontUseZigInstall", 36, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 46, 3], ["cargoHash", 58, 3], ["preBuild", 60, 3], ["postInstall", 69, 3], ["nativeCheckInputs", 80, 3], ["checkPhase", 86, 3], ["meta", 98, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const llvmPackages = llvmPackages_18;
   const rocVersion = "alpha4";
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "roc",
       version: nix.thunk(() => nix.str`0-${rocVersion}`),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "roc-lang",
           repo: "roc",
           rev: "d73ea109cc21442da01387c1e5e911607c74692d",
@@ -70,7 +68,7 @@ NIX_GLIBC_PATH=${nix.sel(glibc, "out")}/lib NIX_LIBGCC_S_PATH=${nix.sel(stdenv, 
 runHook postCheck
 `)), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux"))), "runHook preCheck\ncargo test --release --workspace --exclude test_mono --exclude uitest -- --skip=glue_cli_tests --skip=test_snapshots\nrunHook postCheck\n"))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Fast, friendly, functional programming language",
         mainProgram: "roc",
         homepage: "https://www.roc-lang.org/",

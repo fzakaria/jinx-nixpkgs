@@ -2,19 +2,18 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/wireplumber.nix", [[["description", 5, 8]], [["name", 3, 3], ["buildInputs", 4, 3], ["meta", 5, 3]]]);
 const formals$1 = { args: { buildAstalModule: false, wireplumber: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/wireplumber.nix", [["description", 5, 8]]);
-const pos$2 = nix.positions(here + "/wireplumber.nix", [["name", 3, 3], ["buildInputs", 4, 3], ["meta", 5, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const buildAstalModule = nix.arg($, "buildAstalModule");
   const wireplumber = nix.arg($, "wireplumber");
   return nix.app(buildAstalModule, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       name: "wireplumber",
       buildInputs: nix.thunk(() => [wireplumber]),
-      meta: nix.thunk(() => ({ [nix.POS]: pos$1, description: "Astal module for wireplumber" })),
+      meta: nix.thunk(() => ({ [nix.POS]: $pos[0], description: "Astal module for wireplumber" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=wireplumber.ts.map

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 37, 5], ["hash", 38, 5]], [["url", 123, 5], ["rev-prefix", 124, 5], ["odd-unstable", 125, 5]], [["updateScript", 122, 12]], [["description", 129, 5], ["license", 130, 5], ["homepage", 134, 5], ["changelog", 135, 5], ["maintainers", 136, 5], ["platforms", 137, 5], ["hydraPlatforms", 138, 5]], [["pname", 33, 3], ["version", 34, 3], ["src", 36, 3], ["nativeBuildInputs", 41, 3], ["buildInputs", 64, 3], ["postPatch", 79, 3], ["preConfigure", 87, 3], ["makeFlags", 91, 3], ["installFlags", 95, 3], ["enableParallelBuilding", 99, 3], ["postInstall", 101, 3], ["passthru", 122, 3], ["meta", 128, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, "bash-completion": false, bison: false, cdrkit: false, cpio: false, curl: false, flex: false, getopt: false, glib: false, gnupg: false, hivex: false, jansson: false, "libguestfs-with-appliance": false, libosinfo: false, libvirt: false, libxml2: false, makeWrapper: false, ncurses: false, ocamlPackages: false, openssl: false, pcre2: false, perlPackages: false, "pkg-config": false, qemu: false, xz: false, gitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 37, 5], ["hash", 38, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 123, 5], ["rev-prefix", 124, 5], ["odd-unstable", 125, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 122, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 129, 5], ["license", 130, 5], ["homepage", 134, 5], ["changelog", 135, 5], ["maintainers", 136, 5], ["platforms", 137, 5], ["hydraPlatforms", 138, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 33, 3], ["version", 34, 3], ["src", 36, 3], ["nativeBuildInputs", 41, 3], ["buildInputs", 64, 3], ["postPatch", 79, 3], ["preConfigure", 87, 3], ["makeFlags", 91, 3], ["installFlags", 95, 3], ["enableParallelBuilding", 99, 3], ["postInstall", 101, 3], ["passthru", 122, 3], ["meta", 128, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -40,11 +36,11 @@ export default nix.lambda((args) => (() => {
   const xz = nix.arg($, "xz");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "guestfs-tools",
       version: "1.52.3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://download.libguestfs.org/guestfs-tools/${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}-stable/guestfs-tools-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-0xLCwj6TXU5b+tUewhKE9X0E+FN0MpX6+V+WHFxmiEc=",
         })))),
@@ -103,16 +99,16 @@ wrapProgram $out/bin/virt-win-reg \\
       })()}
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/libguestfs/guestfs-tools",
             "rev-prefix": "v",
             "odd-unstable": true,
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Extra tools for accessing and modifying virtual machine disk images",
         license: nix.thunk(() => (() => {
           const w_3 = nix.withScope(nix.thunk(() => nix.sel(lib, "licenses")), null);

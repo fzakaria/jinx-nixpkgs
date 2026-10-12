@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["5.9.1", 23, 9], ["5.9.2", 24, 9], ["6.1.2", 25, 9]], [["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]], [["homepage", 38, 5], ["description", 39, 5], ["maintainers", 40, 5], ["license", 41, 5]], [["pname", 14, 3], ["version", 15, 11], ["src", 17, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 31, 3], ["propagatedBuildInputs", 32, 3], ["meta", 37, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, libev: false, buildDunePackage: false, cppo: false, "dune-configurator": false, "ocplib-endian": false, ppxlib: false, version: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["5.9.1", 23, 9], ["5.9.2", 24, 9], ["6.1.2", 25, 9]]);
-const pos$2 = nix.positions(here + "/default.nix", [["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["homepage", 38, 5], ["description", 39, 5], ["maintainers", 40, 5], ["license", 41, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 14, 3], ["version", 15, 11], ["src", 17, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 31, 3], ["propagatedBuildInputs", 32, 3], ["meta", 37, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,16 +17,16 @@ export default nix.lambda((args) => (() => {
   const ppxlib = nix.arg($, "ppxlib");
   const version = nix.argOr($, "version", () => (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(ppxlib, "version")), "0.36")) ? "6.1.2" : "5.9.1"));
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "lwt",
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "ocsigen",
           repo: "lwt",
           tag: version,
           hash: nix.thunk(() => nix.sel({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             "5.9.1": "sha256-oPYLFugMTI3a+hmnwgUcoMgn5l88NP1Roq0agLhH/vI=",
             "5.9.2": "sha256-pzowRN1wwaF2iMfMPE7RCtA2XjlaXC3xD0yznriVfu8=",
             "6.1.2": "sha256-9Uxo1ekB3VcvdR4FCVdVWzvPHuVwflYIdD/fWvg0/kc=",
@@ -39,7 +36,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [dune_configurator]),
       propagatedBuildInputs: nix.thunk(() => [libev, ocplib_endian]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://ocsigen.org/lwt/",
         description: "Cooperative threads library for OCaml",
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "vbgl"))]),

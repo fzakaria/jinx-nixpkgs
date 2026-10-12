@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["hash", 33, 5]], [["pname", 50, 7], ["version", 51, 7], ["src", 52, 7], ["patches", 53, 7], ["pnpm", 54, 7], ["postPatch", 56, 5], ["fetcherVersion", 57, 5], ["hash", 58, 5]], [["OPENSSL_NO_VENDOR", 91, 7]], [["updateScript", 93, 12]], [["description", 96, 5], ["homepage", 97, 5], ["changelog", 98, 5], ["license", 99, 5], ["mainProgram", 100, 5], ["maintainers", 101, 5]], [["pname", 26, 3], ["version", 27, 3], ["src", 29, 3], ["patches", 36, 3], ["postPatch", 42, 3], ["pnpmRoot", 47, 3], ["pnpmDeps", 48, 3], ["cargoRoot", 61, 3], ["buildAndTestSubdir", 62, 3], ["cargoPatches", 63, 3], ["cargoHash", 66, 3], ["nativeBuildInputs", 68, 3], ["buildInputs", 83, 3], ["env", 91, 3], ["passthru", 93, 3], ["meta", 95, 3]]]);
 const formals$1 = { args: { lib: false, "cargo-tauri": false, fetchFromGitHub: false, "glib-networking": false, "libayatana-appindicator": false, libsoup_3: false, "nix-update-script": false, nodejs: false, openssl: false, "pkg-config": false, pnpm_10: false, fetchPnpmDeps: false, pnpmConfigHook: false, protobuf: false, rustPlatform: false, stdenv: false, webkitgtk_4_1: false, wrapGAppsHook4: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["hash", 33, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 50, 7], ["version", 51, 7], ["src", 52, 7], ["patches", 53, 7], ["pnpm", 54, 7], ["postPatch", 56, 5], ["fetcherVersion", 57, 5], ["hash", 58, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["OPENSSL_NO_VENDOR", 91, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 93, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 96, 5], ["homepage", 97, 5], ["changelog", 98, 5], ["license", 99, 5], ["mainProgram", 100, 5], ["maintainers", 101, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 26, 3], ["version", 27, 3], ["src", 29, 3], ["patches", 36, 3], ["postPatch", 42, 3], ["pnpmRoot", 47, 3], ["pnpmDeps", 48, 3], ["cargoRoot", 61, 3], ["buildAndTestSubdir", 62, 3], ["cargoPatches", 63, 3], ["cargoHash", 66, 3], ["nativeBuildInputs", 68, 3], ["buildInputs", 83, 3], ["env", 91, 3], ["passthru", 93, 3], ["meta", 95, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -35,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const pname = "rquickshare";
       const version = "0.11.5";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Martichou",
           repo: "rquickshare",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -50,7 +45,7 @@ export default nix.lambda((args) => (() => {
 `)));
       const pnpmRoot = "app/main";
       const pnpmDeps = nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: pname,
           version: version,
           src: src,
@@ -72,13 +67,13 @@ export default nix.lambda((args) => (() => {
         protobuf,
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [pkg_config, wrapGAppsHook4]))));
       const buildInputs = nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [glib_networking, libayatana_appindicator, libsoup_3, openssl, webkitgtk_4_1])));
-      const env = nix.thunk(() => ({ [nix.POS]: pos$3, OPENSSL_NO_VENDOR: 1n }));
+      const env = nix.thunk(() => ({ [nix.POS]: $pos[2], OPENSSL_NO_VENDOR: 1n }));
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Rust implementation of NearbyShare/QuickShare from Android for Linux and macOS",
         homepage: "https://github.com/Martichou/rquickshare",
         changelog: nix.thunk(() => nix.str`https://github.com/Martichou/rquickshare/blob/v${version}/CHANGELOG.md`),
@@ -94,7 +89,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname,
         version,
         src,

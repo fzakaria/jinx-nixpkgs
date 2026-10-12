@@ -2,12 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/scummvm.nix", [[["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]], [["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5]], [["owner", 31, 5], ["repo", 32, 5], ["rev", 33, 5], ["hash", 34, 5]], [["description", 62, 5], ["homepage", 63, 5], ["license", 64, 5]], [["core", 27, 3], ["version", 28, 3], ["src", 30, 3], ["extraBuildInputs", 37, 3], ["extraNativeBuildInputs", 43, 3], ["preConfigure", 45, 3], ["preBuild", 47, 3], ["makefile", 59, 3], ["meta", 61, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, libGL: false, libGLU: false, which: false, zip: false, mkLibretroCore: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/scummvm.nix", [["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/scummvm.nix", [["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5]]);
-const pos$3 = nix.positions(here + "/scummvm.nix", [["owner", 31, 5], ["repo", 32, 5], ["rev", 33, 5], ["hash", 34, 5]]);
-const pos$4 = nix.positions(here + "/scummvm.nix", [["description", 62, 5], ["homepage", 63, 5], ["license", 64, 5]]);
-const pos$5 = nix.positions(here + "/scummvm.nix", [["core", 27, 3], ["version", 28, 3], ["src", 30, 3], ["extraBuildInputs", 37, 3], ["extraNativeBuildInputs", 43, 3], ["preConfigure", 45, 3], ["preBuild", 47, 3], ["makefile", 59, 3], ["meta", 61, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,25 +15,25 @@ export default nix.lambda((args) => (() => {
   const zip = nix.arg($, "zip");
   const mkLibretroCore = nix.arg($, "mkLibretroCore");
   const libretro_common_src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "libretro",
       repo: "libretro-common",
       rev: "70ed90c42ddea828f53dd1b984c6443ddb39dbd6",
       hash: "sha256-ItsUNbJCK/m/3VprK/zHD2UF5MhPC8b7jM3qS/oHU2A=",
     }))));
   const libretro_deps_src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       owner: "libretro",
       repo: "libretro-deps",
       rev: "abf5246b016569759e7d1b0ea91bb98c2e34d160",
       hash: "sha256-tdGytbSNMCfMuXIAUunOSVw9qFq2rRaruELhZwEmhWE=",
     }))));
   return nix.app(mkLibretroCore, nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       core: "scummvm",
       version: "0-unstable-2025-12-24",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           owner: "libretro",
           repo: "scummvm",
           rev: "b56c0d796ebcb4a3a8ea966cc3b8ec3e02b452be",
@@ -58,7 +54,7 @@ patchShebangs ./scripts/*
 `),
       makefile: "Makefile",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Libretro port of ScummVM",
         homepage: "https://github.com/libretro/scummvm",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

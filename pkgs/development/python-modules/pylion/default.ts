@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 19, 5], ["repo", 20, 5], ["rev", 22, 5], ["hash", 23, 5]], [["description", 51, 5], ["homepage", 52, 5], ["license", 53, 5], ["maintainers", 54, 5]], [["pname", 14, 3], ["version", 15, 3], ["format", 16, 3], ["src", 18, 3], ["nativeBuildInputs", 28, 3], ["propagatedBuildInputs", 33, 3], ["pythonImportsCheck", 40, 3], ["doCheck", 43, 3], ["postInstall", 45, 3], ["meta", 50, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, h5py: false, termcolor: false, pexpect: false, jinja2: false, sphinxHook: false, "sphinx-rtd-theme": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 19, 5], ["repo", 20, 5], ["rev", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 51, 5], ["homepage", 52, 5], ["license", 53, 5], ["maintainers", 54, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 14, 3], ["version", 15, 3], ["format", 16, 3], ["src", 18, 3], ["nativeBuildInputs", 28, 3], ["propagatedBuildInputs", 33, 3], ["pythonImportsCheck", 40, 3], ["doCheck", 43, 3], ["postInstall", 45, 3], ["meta", 50, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const sphinxHook = nix.arg($, "sphinxHook");
   const sphinx_rtd_theme = nix.arg($, "sphinx-rtd-theme");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "pylion",
       version: "0.5.3",
       format: "setuptools",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "dtrypogeorgos",
           repo: "pylion",
           rev: "3e6b96b542b97107c622d66b0be0551c3bd9f948",
@@ -36,7 +34,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       postInstall: "mkdir -p $out/share/doc/$name\ncp -r examples $out/share/doc/$name/examples\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "LAMMPS wrapper for molecular dynamics simulations of trapped ions",
         homepage: "https://github.com/dtrypogeorgos/pylion",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

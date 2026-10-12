@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["tinywl", 49, 43]], [["tests", 49, 12]], [["homepage", 52, 5], ["description", 53, 5], ["maintainers", 54, 5], ["license", 55, 5], ["platforms", 56, 28], ["mainProgram", 57, 5]], [["pname", 16, 3], ["version", 18, 5], ["src", 19, 5], ["patches", 20, 5], ["postPatch", 21, 5], ["nativeBuildInputs", 24, 3], ["buildInputs", 28, 3], ["makeFlags", 37, 3], ["installPhase", 42, 3], ["passthru", 49, 3], ["meta", 51, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, wlroots: false, "pkg-config": false, "wayland-scanner": false, libxkbcommon: false, pixman: false, udev: false, wayland: false, "wayland-protocols": false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["tinywl", 49, 43]]);
-const pos$2 = nix.positions(here + "/default.nix", [["tests", 49, 12]]);
-const pos$3 = nix.positions(here + "/default.nix", [["homepage", 52, 5], ["description", 53, 5], ["maintainers", 54, 5], ["license", 55, 5], ["platforms", 56, 28], ["mainProgram", 57, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 16, 3], ["version", 18, 5], ["src", 19, 5], ["patches", 20, 5], ["postPatch", 21, 5], ["nativeBuildInputs", 24, 3], ["buildInputs", 28, 3], ["makeFlags", 37, 3], ["installPhase", 42, 3], ["passthru", 49, 3], ["meta", 51, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,7 +19,7 @@ export default nix.lambda((args) => (() => {
   const wayland_protocols = nix.arg($, "wayland-protocols");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "tinywl",
       version: nix.thunk(() => nix.attr(wlroots, "version")),
       src: nix.thunk(() => nix.attr(wlroots, "src")),
@@ -33,13 +30,13 @@ export default nix.lambda((args) => (() => {
       makeFlags: nix.thunk(() => ["-C", "tinywl"]),
       installPhase: "runHook preInstall\nmkdir -p $out/bin\ncp tinywl/tinywl $out/bin\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$1, tinywl: nix.thunk(() => nix.attr(nixosTests, "tinywl")) })),
+        [nix.POS]: $pos[1],
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[0], tinywl: nix.thunk(() => nix.attr(nixosTests, "tinywl")) })),
       })),
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(wlroots, "meta"));
         return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://gitlab.freedesktop.org/wlroots/wlroots/tree/master/tinywl",
         description: "A \"minimum viable product\" Wayland compositor based on wlroots",
         maintainers: nix.thunk(() => (() => {

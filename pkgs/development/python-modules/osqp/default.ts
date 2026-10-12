@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]], [["owner", 37, 7], ["repo", 38, 7], ["tag", 39, 7], ["hash", 40, 7]], [["qdldl_src", 44, 17]], [["src", 36, 5], ["patches", 42, 5]], [["owner", 57, 5], ["repo", 58, 5], ["tag", 59, 5], ["hash", 60, 5]], [["osqp_src", 65, 15]], [["description", 101, 5], ["longDescription", 102, 5], ["homepage", 109, 5], ["downloadPage", 110, 5], ["changelog", 111, 5], ["license", 112, 5], ["maintainers", 113, 5]], [["pname", 51, 3], ["version", 52, 3], ["pyproject", 53, 3], ["__structuredAttrs", 54, 3], ["src", 56, 3], ["patches", 63, 3], ["build-system", 69, 3], ["dontUseCmakeConfigure", 76, 3], ["dependencies", 78, 3], ["nativeCheckInputs", 85, 3], ["pythonImportsCheck", 91, 3], ["disabledTestPaths", 93, 3], ["meta", 100, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, replaceVars: false, applyPatches: false, cmake: false, ninja: false, "scikit-build-core": false, pybind11: false, "setuptools-scm": false, jinja2: false, joblib: false, numpy: false, scipy: false, cvxopt: false, pytestCheckHook: false, torch: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["owner", 37, 7], ["repo", 38, 7], ["tag", 39, 7], ["hash", 40, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["qdldl_src", 44, 17]]);
-const pos$4 = nix.positions(here + "/default.nix", [["src", 36, 5], ["patches", 42, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["owner", 57, 5], ["repo", 58, 5], ["tag", 59, 5], ["hash", 60, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["osqp_src", 65, 15]]);
-const pos$7 = nix.positions(here + "/default.nix", [["description", 101, 5], ["longDescription", 102, 5], ["homepage", 109, 5], ["downloadPage", 110, 5], ["changelog", 111, 5], ["license", 112, 5], ["maintainers", 113, 5]]);
-const pos$8 = nix.positions(here + "/default.nix", [["pname", 51, 3], ["version", 52, 3], ["pyproject", 53, 3], ["__structuredAttrs", 54, 3], ["src", 56, 3], ["patches", 63, 3], ["build-system", 69, 3], ["dontUseCmakeConfigure", 76, 3], ["dependencies", 78, 3], ["nativeCheckInputs", 85, 3], ["pythonImportsCheck", 91, 3], ["disabledTestPaths", 93, 3], ["meta", 100, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,40 +25,40 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const torch = nix.arg($, "torch");
   const qdldl_src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "osqp",
       repo: "qdldl",
       tag: "v0.1.8",
       hash: "sha256-qCeOs4UjZLuqlbiLgp6BMxvw4niduCPDOOqFt05zi2E=",
     }))));
   const osqp_src = nix.thunk(() => nix.app(applyPatches, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "osqp",
           repo: "osqp",
           tag: "v1.0.0",
           hash: "sha256-BOAytzJzHcggncQzeDrXwJOq8B3doWERJ6CKIVg1yJY=",
         })))),
       patches: nix.thunk(() => [
-        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./dont-fetch-qdldl.patch"), nix.thunk(() => ({ [nix.POS]: pos$3, qdldl_src: qdldl_src })))),
+        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./dont-fetch-qdldl.patch"), nix.thunk(() => ({ [nix.POS]: $pos[2], qdldl_src: qdldl_src })))),
       ]),
     }))));
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "osqp",
       version: "1.1.3",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           owner: "osqp",
           repo: "osqp-python",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-xK7ljAwVwsmj84s5yxeU64nwT6N/Ec58aYjiUUOr4Ig=",
         })))),
       patches: nix.thunk(() => [
-        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./dont-fetch-osqp.patch"), nix.thunk(() => ({ [nix.POS]: pos$6, osqp_src: osqp_src })))),
+        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./dont-fetch-osqp.patch"), nix.thunk(() => ({ [nix.POS]: $pos[5], osqp_src: osqp_src })))),
       ]),
       "build-system": nix.thunk(() => [cmake, ninja, pybind11, scikit_build_core, setuptools_scm]),
       dontUseCmakeConfigure: true,
@@ -77,7 +70,7 @@ export default nix.lambda((args) => (() => {
         "src/osqp/tests/codegen_vectors_test.py",
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "Operator Splitting QP Solver",
         longDescription: "Numerical optimization package for solving problems in the form\n  minimize        0.5 x' P x + q' x\n  subject to      l <= A x <= u\n\nwhere x in R^n is the optimization variable\n",
         homepage: "https://osqp.org/",

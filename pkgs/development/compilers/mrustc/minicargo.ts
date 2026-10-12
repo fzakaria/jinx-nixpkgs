@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/minicargo.nix", [[["description", 30, 5], ["mainProgram", 31, 5], ["longDescription", 32, 5], ["homepage", 37, 24], ["license", 38, 5], ["maintainers", 39, 5], ["platforms", 43, 5]], [["pname", 9, 3], ["src", 10, 20], ["version", 10, 24], ["strictDeps", 12, 3], ["nativeBuildInputs", 13, 3], ["enableParallelBuilding", 15, 3], ["makefile", 16, 3], ["makeFlags", 17, 3], ["installPhase", 19, 3], ["meta", 29, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, makeWrapper: false, mrustc: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/minicargo.nix", [["description", 30, 5], ["mainProgram", 31, 5], ["longDescription", 32, 5], ["homepage", 37, 24], ["license", 38, 5], ["maintainers", 39, 5], ["platforms", 43, 5]]);
-const pos$2 = nix.positions(here + "/minicargo.nix", [["pname", 9, 3], ["src", 10, 20], ["version", 10, 24], ["strictDeps", 12, 3], ["nativeBuildInputs", 13, 3], ["enableParallelBuilding", 15, 3], ["makefile", 16, 3], ["makeFlags", 17, 3], ["installPhase", 19, 3], ["meta", 29, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,7 +31,7 @@ runHook postInstall
       const meta = nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(src, "meta"));
         return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Minimalist builder for Rust",
         mainProgram: "minicargo",
         longDescription: "A minimalist builder for Rust, similar to Cargo but written in C++.\nDesigned to work with mrustc to build Rust projects\n(like the Rust compiler itself).\n",
@@ -49,7 +48,7 @@ runHook postInstall
       };
       })());
       return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         pname,
         src,
         version,

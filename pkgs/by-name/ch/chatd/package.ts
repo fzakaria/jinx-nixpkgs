@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5]], [["ELECTRON_SKIP_BINARY_DOWNLOAD", 27, 7]], [["rev-prefix", 86, 40]], [["updateScript", 86, 12]], [["description", 89, 5], ["homepage", 90, 5], ["changelog", 91, 5], ["license", 92, 5], ["maintainers", 93, 5], ["mainProgram", 94, 5], ["platforms", 95, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["makeCacheWritable", 26, 3], ["env", 27, 3], ["npmDepsHash", 29, 3], ["dontNpmBuild", 31, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 40, 3], ["installPhase", 45, 3], ["postInstall", 61, 3], ["passthru", 86, 3], ["meta", 88, 3]]]);
 const formals$1 = { args: { buildNpmPackage: false, lib: false, autoPatchelfHook: false, electron: false, fetchFromGitHub: false, gitUpdater: false, makeWrapper: false, ollama: false, "pkg-config": false, stdenv: false, vips: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["ELECTRON_SKIP_BINARY_DOWNLOAD", 27, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["rev-prefix", 86, 40]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 86, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 89, 5], ["homepage", 90, 5], ["changelog", 91, 5], ["license", 92, 5], ["maintainers", 93, 5], ["mainProgram", 94, 5], ["platforms", 95, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["makeCacheWritable", 26, 3], ["env", 27, 3], ["npmDepsHash", 29, 3], ["dontNpmBuild", 31, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 40, 3], ["installPhase", 45, 3], ["postInstall", 61, 3], ["passthru", 86, 3], ["meta", 88, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,14 +22,14 @@ export default nix.lambda((args) => (() => {
       const pname = "chatd";
       const version = "1.1.2";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "BruceMacD",
           repo: "chatd",
           rev: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-6z5QoJk81NEP115uW+2ah7vxpDz8XQUmMLESPsZT9uU=",
         }))));
       const makeCacheWritable = true;
-      const env = nix.thunk(() => ({ [nix.POS]: pos$2, ELECTRON_SKIP_BINARY_DOWNLOAD: true }));
+      const env = nix.thunk(() => ({ [nix.POS]: $pos[1], ELECTRON_SKIP_BINARY_DOWNLOAD: true }));
       const npmDepsHash = "sha256-jvGvhgNhY+wz/DFS7NDtmzKXbhHbNF3i0qVQoFFeB0M=";
       const dontNpmBuild = true;
       const nativeBuildInputs = nix.thunk(() => nix.concat([makeWrapper, electron, pkg_config], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), autoPatchelfHook)));
@@ -65,11 +60,11 @@ find $out/share/chatd/node_modules -name '*.exe' -or -name '*.dll' -or -name '*.
 rm -rf ${nix.app(nix.sel(lib, "concatStringsSep"), " ", nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isx86_64"))), "$out/share/chatd/node_modules/onnxruntime-node/bin/napi-v3/*/x64"), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64"))), "$out/share/chatd/node_modules/onnxruntime-node/bin/napi-v3/*/arm64"), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), "$out/share/chatd/node_modules/onnxruntime-node/bin/napi-v3/darwin"), nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux"))), "$out/share/chatd/node_modules/onnxruntime-node/bin/napi-v3/linux"))))))}
 `);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$3, "rev-prefix": "v" })))),
+        [nix.POS]: $pos[3],
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[2], "rev-prefix": "v" })))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Chat with your documents using local AI",
         homepage: "https://github.com/BruceMacD/chatd",
         changelog: nix.thunk(() => nix.str`https://github.com/BruceMacD/chatd/releases/tag/v${version}`),
@@ -79,7 +74,7 @@ rm -rf ${nix.app(nix.sel(lib, "concatStringsSep"), " ", nix.thunk(() => nix.conc
         platforms: nix.thunk(() => nix.sel(electron, "meta", "platforms")),
       }));
       return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname,
         version,
         src,

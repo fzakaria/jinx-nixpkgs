@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 26, 5], ["hash", 29, 5]], [["name", 52, 7], ["exec", 53, 7], ["icon", 54, 7], ["desktopName", 55, 7], ["comment", 56, 7], ["categories", 57, 7]], [["description", 84, 5], ["homepage", 85, 5], ["maintainers", 86, 5], ["mainProgram", 90, 5], ["hydraPlatforms", 91, 5], ["license", 95, 5], ["platforms", 96, 5]], [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 37, 3], ["sourceRoot", 46, 3], ["enableParallelBuilding", 48, 3], ["desktopItems", 50, 3], ["installPhase", 65, 3], ["meta", 83, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchzip: false, makeWrapper: false, copyDesktopItems: false, libGL: false, SDL2: false, SDL2_image: false, SDL2_mixer: false, libx11: false, zlib: false, makeDesktopItem: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 26, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 52, 7], ["exec", 53, 7], ["icon", 54, 7], ["desktopName", 55, 7], ["comment", 56, 7], ["categories", 57, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 84, 5], ["homepage", 85, 5], ["maintainers", 86, 5], ["mainProgram", 90, 5], ["hydraPlatforms", 91, 5], ["license", 95, 5], ["platforms", 96, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 37, 3], ["sourceRoot", 46, 3], ["enableParallelBuilding", 48, 3], ["desktopItems", 50, 3], ["installPhase", 65, 3], ["meta", 83, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const zlib = nix.arg($, "zlib");
   const makeDesktopItem = nix.arg($, "makeDesktopItem");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "sauerbraten",
       version: "2020-12-29",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/sauerbraten/sauerbraten_${nix.builtins.replaceStrings(nix.thunk(() => ["-"]), nix.thunk(() => ["_"]), nix.thunk(() => nix.sel(finalAttrs, "version")))}_linux.tar.bz2`),
           hash: "sha256-os3SmonqHRw1+5dIRVt7EeXfnSq298GiyKpusS1K3rM=",
         })))),
@@ -37,7 +34,7 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: true,
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "sauerbraten",
             exec: "sauerbraten_client %u",
             icon: "sauerbraten",
@@ -48,7 +45,7 @@ export default nix.lambda((args) => (() => {
       ]),
       installPhase: "runHook preInstall\n\nmkdir -p $out/bin $out/share/icon/ $out/share/sauerbraten $out/share/doc/sauerbraten\ncp -r \"../docs/\"* $out/share/doc/sauerbraten/\ncp sauer_client sauer_server $out/share/sauerbraten/\ncp -r ../packages ../data $out/share/sauerbraten/\nln -s $out/share/sauerbraten/data/cube.png $out/share/icon/sauerbraten.png\n\nmakeWrapper $out/share/sauerbraten/sauer_server $out/bin/sauerbraten_server \\\n  --chdir \"$out/share/sauerbraten\"\nmakeWrapper $out/share/sauerbraten/sauer_client $out/bin/sauerbraten_client \\\n  --chdir \"$out/share/sauerbraten\" \\\n  --add-flags \"-q\\${HOME}/.config/sauerbraten\"\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Free multiplayer & singleplayer first person shooter, the successor of the Cube FPS",
         homepage: "http://sauerbraten.org",
         maintainers: nix.thunk(() => (() => {

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 15, 5], ["hash", 16, 5], ["stripRoot", 17, 5]], [["LANG", 26, 5]], [["LOCALE_ARCHIVE", 29, 5]], [["homepage", 62, 5], ["description", 63, 5], ["license", 64, 5], ["maintainers", 65, 5], ["mainProgram", 66, 5], ["platforms", 67, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 20, 3], ["env", 25, 3], ["makeFlags", 32, 3], ["enableParallelBuilding", 33, 3], ["installPhase", 35, 3], ["doInstallCheck", 48, 3], ["installCheckPhase", 49, 3], ["strictDeps", 59, 3], ["meta", 61, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchzip: false, jdk_headless: false, makeWrapper: false, buildPackages: false, javaOpts: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 15, 5], ["hash", 16, 5], ["stripRoot", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["LANG", 26, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["LOCALE_ARCHIVE", 29, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 62, 5], ["description", 63, 5], ["license", 64, 5], ["maintainers", 65, 5], ["mainProgram", 66, 5], ["platforms", 67, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 20, 3], ["env", 25, 3], ["makeFlags", 32, 3], ["enableParallelBuilding", 33, 3], ["installPhase", 35, 3], ["doInstallCheck", 48, 3], ["installCheckPhase", 49, 3], ["strictDeps", 59, 3], ["meta", 61, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,18 +15,18 @@ export default nix.lambda((args) => (() => {
   const buildPackages = nix.arg($, "buildPackages");
   const javaOpts = nix.argOr($, "javaOpts", () => "-XX:+UseZGC");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "hentai-at-home",
       version: "1.6.5",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://repo.e-hentai.org/hath/HentaiAtHome_${nix.sel(finalAttrs, "version")}_src.zip`),
           hash: "sha512-oKyvzHZTPwSTcjsNOQ0LIl6rV+b7JDnuWbYKFogWWkyKcR/xDcNPNhUrKv8QLH6a1AQ2T8DYkxcJYnjhgsaovA==",
           stripRoot: false,
         })))),
       nativeBuildInputs: nix.thunk(() => [jdk_headless, makeWrapper]),
-      env: nix.thunk(() => nix.update({ [nix.POS]: pos$2, LANG: "en_US.UTF-8" }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(nix.sel(stdenvNoCC, "buildPlatform", "libc"), "glibc")), nix.thunk(() => ({
-          [nix.POS]: pos$3,
+      env: nix.thunk(() => nix.update({ [nix.POS]: $pos[1], LANG: "en_US.UTF-8" }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(nix.sel(stdenvNoCC, "buildPlatform", "libc"), "glibc")), nix.thunk(() => ({
+          [nix.POS]: $pos[2],
           LOCALE_ARCHIVE: nix.thunk(() => nix.str`${nix.sel(buildPackages, "glibcLocales")}/lib/locale/locale-archive`),
         }))))),
       makeFlags: nix.thunk(() => ["all"]),
@@ -50,7 +46,7 @@ runHook postInstall
       installCheckPhase: "runHook preInstallCheck\n\npushd $(mktemp -d)\n$out/bin/HentaiAtHome\npopd\n\nrunHook postInstallCheck\n",
       strictDeps: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://ehwiki.org/wiki/Hentai@Home",
         description: "Open-source P2P gallery distribution system which reduces the load on the E-Hentai Galleries",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

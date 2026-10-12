@@ -2,18 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 42, 7], ["hash", 43, 7]], [["desktopName", 32, 7], ["pname", 33, 7], ["program", 34, 7], ["year", 35, 7], ["version", 37, 5], ["longDescription", 38, 5], ["src", 41, 5], ["jdk", 45, 5]], [["url", 58, 7], ["hash", 59, 7]], [["desktopName", 50, 7], ["longDescription", 51, 7], ["pname", 52, 7], ["program", 53, 7], ["year", 54, 7], ["version", 56, 5], ["src", 57, 5], ["extraBuildInputs", 61, 5], ["jdk", 64, 5]], [["url", 77, 7], ["hash", 78, 7]], [["desktopName", 69, 7], ["longDescription", 70, 7], ["pname", 71, 7], ["program", 72, 7], ["year", 73, 7], ["version", 75, 5], ["src", 76, 5], ["extraBuildInputs", 80, 5], ["jdk", 83, 5]], [["url", 96, 7], ["hash", 97, 7]], [["desktopName", 88, 7], ["longDescription", 89, 7], ["pname", 90, 7], ["program", 91, 7], ["year", 92, 7], ["version", 94, 5], ["src", 95, 5], ["extraBuildInputs", 99, 5], ["jdk", 102, 5]], [["url", 115, 7], ["hash", 116, 7]], [["desktopName", 107, 7], ["longDescription", 108, 7], ["pname", 109, 7], ["program", 110, 7], ["year", 111, 7], ["version", 113, 5], ["src", 114, 5], ["extraBuildInputs", 118, 5], ["jdk", 121, 5]], [["pdfstudioviewer", 30, 3], ["pdfstudio2021", 48, 3], ["pdfstudio2022", 67, 3], ["pdfstudio2023", 86, 3], ["pdfstudio2024", 105, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, program: true, year: true, fetchurl: false, callPackage: false, jdk11: false, jdk17: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 42, 7], ["hash", 43, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["desktopName", 32, 7], ["pname", 33, 7], ["program", 34, 7], ["year", 35, 7], ["version", 37, 5], ["longDescription", 38, 5], ["src", 41, 5], ["jdk", 45, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["url", 58, 7], ["hash", 59, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["desktopName", 50, 7], ["longDescription", 51, 7], ["pname", 52, 7], ["program", 53, 7], ["year", 54, 7], ["version", 56, 5], ["src", 57, 5], ["extraBuildInputs", 61, 5], ["jdk", 64, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["url", 77, 7], ["hash", 78, 7]]);
-const pos$6 = nix.positions(here + "/default.nix", [["desktopName", 69, 7], ["longDescription", 70, 7], ["pname", 71, 7], ["program", 72, 7], ["year", 73, 7], ["version", 75, 5], ["src", 76, 5], ["extraBuildInputs", 80, 5], ["jdk", 83, 5]]);
-const pos$7 = nix.positions(here + "/default.nix", [["url", 96, 7], ["hash", 97, 7]]);
-const pos$8 = nix.positions(here + "/default.nix", [["desktopName", 88, 7], ["longDescription", 89, 7], ["pname", 90, 7], ["program", 91, 7], ["year", 92, 7], ["version", 94, 5], ["src", 95, 5], ["extraBuildInputs", 99, 5], ["jdk", 102, 5]]);
-const pos$9 = nix.positions(here + "/default.nix", [["url", 115, 7], ["hash", 116, 7]]);
-const pos$10 = nix.positions(here + "/default.nix", [["desktopName", 107, 7], ["longDescription", 108, 7], ["pname", 109, 7], ["program", 110, 7], ["year", 111, 7], ["version", 113, 5], ["src", 114, 5], ["extraBuildInputs", 118, 5], ["jdk", 121, 5]]);
-const pos$11 = nix.positions(here + "/default.nix", [["pdfstudioviewer", 30, 3], ["pdfstudio2021", 48, 3], ["pdfstudio2022", 67, 3], ["pdfstudio2023", 86, 3], ["pdfstudio2024", 105, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,7 +20,7 @@ export default nix.lambda((args) => (() => {
   const desktopName = nix.thunk(() => (nix.asBool(nix.eq(program, "pdfstudio")) ? nix.str`PDF Studio ${year}` : "PDF Studio Viewer"));
   const dot2dash = (str) => nix.builtins.replaceStrings(nix.thunk(() => ["."]), nix.thunk(() => ["_"]), str);
   return nix.sel({
-    [nix.POS]: pos$11,
+    [nix.POS]: $pos[10],
     pdfstudioviewer: nix.thunk(() => nix.app(callPackage, nix.path(here, "./common.nix"), nix.thunk(() => (() => {
         const desktopName_1 = desktopName;
         const pname_1 = pname;
@@ -39,13 +29,13 @@ export default nix.lambda((args) => (() => {
         const version = nix.thunk(() => nix.str`${year_1}.0.1`);
         const longDescription_1 = "PDF Studio Viewer is an easy to use, full-featured PDF editing software. This is the free edition. For the standard/pro edition, see the package pdfstudio.\n";
         const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             url: "https://web.archive.org/web/20241201121627/https://download.qoppa.com/pdfstudioviewer/PDFStudioViewer_linux64.deb",
             hash: "sha256-hxReGuyGsBiEr7wWxWzQUQvxk11sgF9HkJ07L9i+e+0=",
           }))));
         const jdk = jdk17;
         return {
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           desktopName: desktopName_1,
           pname: pname_1,
           program: program_1,
@@ -64,7 +54,7 @@ export default nix.lambda((args) => (() => {
         const year_1 = year;
         const version = nix.thunk(() => nix.str`${year_1}.2.2`);
         const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: nix.thunk(() => nix.str`https://download.qoppa.com/pdfstudio/v${year_1}/PDFStudio_v${nix.app(dot2dash, version)}_linux64.deb`),
             hash: "sha256-HdkwRMqwquAaW6l3AukGReFtw2f5n36tZ8vXo6QiPvU=",
           }))));
@@ -73,7 +63,7 @@ export default nix.lambda((args) => (() => {
         ]);
         const jdk = jdk11;
         return {
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           desktopName: desktopName_1,
           longDescription: longDescription_1,
           pname: pname_1,
@@ -93,7 +83,7 @@ export default nix.lambda((args) => (() => {
         const year_1 = year;
         const version = nix.thunk(() => nix.str`${year_1}.2.5`);
         const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             url: nix.thunk(() => nix.str`https://download.qoppa.com/pdfstudio/v${year_1}/PDFStudio_v${nix.app(dot2dash, version)}_linux64.deb`),
             hash: "sha256-3faZyWUnFe//S+gOskWhsZ6jzHw67FRsv/xP77R1jj4=",
           }))));
@@ -102,7 +92,7 @@ export default nix.lambda((args) => (() => {
         ]);
         const jdk = jdk17;
         return {
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           desktopName: desktopName_1,
           longDescription: longDescription_1,
           pname: pname_1,
@@ -122,7 +112,7 @@ export default nix.lambda((args) => (() => {
         const year_1 = year;
         const version = nix.thunk(() => nix.str`${year_1}.0.4`);
         const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             url: nix.thunk(() => nix.str`https://download.qoppa.com/pdfstudio/v${year_1}/PDFStudio_v${nix.app(dot2dash, version)}_linux64.deb`),
             hash: "sha256-TTh0yzpCOpxFKGfrakvnu1Y+l9NI0nfWlVuvSWpkRkE=",
           }))));
@@ -131,7 +121,7 @@ export default nix.lambda((args) => (() => {
         ]);
         const jdk = jdk17;
         return {
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           desktopName: desktopName_1,
           longDescription: longDescription_1,
           pname: pname_1,
@@ -151,7 +141,7 @@ export default nix.lambda((args) => (() => {
         const year_1 = year;
         const version = nix.thunk(() => nix.str`${year_1}.0.1`);
         const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$9,
+            [nix.POS]: $pos[8],
             url: nix.thunk(() => nix.str`https://download.qoppa.com/pdfstudio/v${year_1}/PDFStudio_v${nix.app(dot2dash, version)}_linux64.deb`),
             hash: "sha256-dptpkWPlocp4U9QSp+AJTOSVWA3RRs8GrFfXhCYzOJc=",
           }))));
@@ -160,7 +150,7 @@ export default nix.lambda((args) => (() => {
         ]);
         const jdk = jdk17;
         return {
-          [nix.POS]: pos$10,
+          [nix.POS]: $pos[9],
           desktopName: desktopName_1,
           longDescription: longDescription_1,
           pname: pname_1,

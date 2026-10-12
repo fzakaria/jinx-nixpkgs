@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]], [["updateScript", 26, 12]], [["description", 56, 5], ["homepage", 57, 5], ["changelog", 58, 5], ["license", 59, 5], ["maintainers", 60, 5], ["mainProgram", 61, 5]], [["pname", 12, 3], ["version", 13, 3], ["__structuredAttrs", 15, 3], ["src", 17, 3], ["cargoHash", 24, 3], ["passthru", 26, 3], ["cargoBuildFlags", 28, 3], ["cargoTestFlags", 34, 3], ["doInstallCheck", 44, 3], ["nativeInstallCheckInputs", 45, 3], ["nativeBuildInputs", 47, 3], ["buildInputs", 51, 3], ["meta", 55, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchFromGitHub: false, "pkg-config": false, openssl: false, "nix-update-script": false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 26, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 56, 5], ["homepage", 57, 5], ["changelog", 58, 5], ["license", 59, 5], ["maintainers", 60, 5], ["mainProgram", 61, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["__structuredAttrs", 15, 3], ["src", 17, 3], ["cargoHash", 24, 3], ["passthru", 26, 3], ["cargoBuildFlags", 28, 3], ["cargoTestFlags", 34, 3], ["doInstallCheck", 44, 3], ["nativeInstallCheckInputs", 45, 3], ["nativeBuildInputs", 47, 3], ["buildInputs", 51, 3], ["meta", 55, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "ip2asn",
       version: "0.1.2",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "x123",
           repo: "ip2asn",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -31,7 +28,7 @@ export default nix.lambda((args) => (() => {
         })))),
       cargoHash: "sha256-fYg0aIU8usueMg6cMWUcwMIFCinHdm6H7k9ywZGYfg8=",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       cargoBuildFlags: nix.thunk(() => ["-p", "ip2asn-cli"]),
@@ -49,7 +46,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [openssl]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "CLI tool for mapping IP addresses to Autonomous System information",
         homepage: "https://github.com/x123/ip2asn/tree/master/ip2asn-cli",
         changelog: nix.thunk(() => nix.str`https://github.com/x123/ip2asn/blob/${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

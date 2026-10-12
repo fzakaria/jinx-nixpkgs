@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 11, 5], ["repo", 12, 5], ["rev", 13, 5], ["hash", 14, 5]], [["version", 8, 3], ["withCudaLLVM", 9, 3], ["source", 10, 3]], [["license", 28, 9], ["mainProgram", 29, 9], ["pkgConfigModules", 30, 9], ["platforms", 31, 9], ["maintainers", 33, 7]], [["pname", 18, 5], ["postPatch", 20, 5], ["meta", 26, 5]]]);
 const formals$1 = { args: { "ffmpeg_7-headless": false, lib: false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 11, 5], ["repo", 12, 5], ["rev", 13, 5], ["hash", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["version", 8, 3], ["withCudaLLVM", 9, 3], ["source", 10, 3]]);
-const pos$3 = nix.positions(here + "/package.nix", [["license", 28, 9], ["mainProgram", 29, 9], ["pkgConfigModules", 30, 9], ["platforms", 31, 9], ["maintainers", 33, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 18, 5], ["postPatch", 20, 5], ["meta", 26, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,24 +11,24 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(nix.app(nix.sel(ffmpeg_7_headless, "override"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       version: "7.0.1-unstable-2024-07-10",
       withCudaLLVM: true,
       source: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "livepeer",
           repo: "FFmpeg",
           rev: "d9751c73e714b01b363483db358b1ea8022c9bea",
           hash: "sha256-IJVpb/k+obGFD9uOoIVHCd2ZiGL3CA4CV3D+Q9vMbQM=",
         })))),
     }))), "overrideAttrs"), (old) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "ffmpeg-livepeer",
       postPatch: nix.thunk(() => nix.add(nix.selOr(old, () => "", "postPatch"), "      substituteInPlace libavcodec/tableprint_vlc.h \\\n        --replace-fail 'define av_mallocz(s) NULL' 'define av_mallocz(s) NULL\n#define av_malloc(s) NULL'\n")),
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(old, "meta"));
         return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         license: nix.thunk(() => nix.attr(from, "license")),
         mainProgram: nix.thunk(() => nix.attr(from, "mainProgram")),
         pkgConfigModules: nix.thunk(() => nix.attr(from, "pkgConfigModules")),

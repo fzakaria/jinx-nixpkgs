@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["stdenv", 10, 38]], [["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]], [["description", 33, 5], ["homepage", 34, 5], ["changelog", 35, 5], ["license", 36, 5], ["maintainers", 37, 5], ["platforms", 38, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["strictDeps", 21, 3], ["nativeBuildInputs", 23, 3], ["hardeningDisable", 28, 3], ["doCheck", 30, 3], ["meta", 32, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, buildDunePackage: false, stdenv: false, flex: false, bison: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["stdenv", 10, 38]]);
-const pos$2 = nix.positions(here + "/default.nix", [["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 33, 5], ["homepage", 34, 5], ["changelog", 35, 5], ["license", 36, 5], ["maintainers", 37, 5], ["platforms", 38, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["strictDeps", 21, 3], ["nativeBuildInputs", 23, 3], ["hardeningDisable", 28, 3], ["doCheck", 30, 3], ["meta", 32, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const flex = nix.arg($, "flex");
   const bison = nix.arg($, "bison");
-  return nix.app(nix.sel(buildDunePackage, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, stdenv: stdenv })), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+  return nix.app(nix.sel(buildDunePackage, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], stdenv: stdenv })), (finalAttrs) => ({
+      [nix.POS]: $pos[3],
       pname: "teyjus",
       version: "2.1.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "teyjus",
           repo: "teyjus",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -32,7 +29,7 @@ export default nix.lambda((args) => (() => {
       hardeningDisable: nix.thunk(() => ["format"]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Efficient implementation of the Lambda Prolog language",
         homepage: "https://github.com/teyjus/teyjus",
         changelog: nix.thunk(() => nix.str`https://github.com/teyjus/teyjus/releases/tag/v${nix.sel(finalAttrs, "version")}`),

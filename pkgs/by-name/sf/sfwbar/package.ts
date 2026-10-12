@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]], [["homepage", 55, 5], ["description", 56, 5], ["changelog", 57, 5], ["mainProgram", 58, 5], ["platforms", 59, 5], ["maintainers", 60, 5], ["license", 64, 5]], [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["buildInputs", 33, 3], ["nativeBuildInputs", 45, 3], ["meta", 54, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, gtk3: false, meson: false, ninja: false, json_c: false, "pkg-config": false, "gtk-layer-shell": false, libpulseaudio: false, libmpdclient: false, libxkbcommon: false, pipewire: false, "alsa-lib": false, makeWrapper: false, docutils: false, "wayland-scanner": false, wrapGAppsHook3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 55, 5], ["description", 56, 5], ["changelog", 57, 5], ["mainProgram", 58, 5], ["platforms", 59, 5], ["maintainers", 60, 5], ["license", 64, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["buildInputs", 33, 3], ["nativeBuildInputs", 45, 3], ["meta", 54, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const wayland_scanner = nix.arg($, "wayland-scanner");
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "sfwbar",
       version: "1.0_beta17",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "LBCrion",
           repo: "sfwbar",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -51,7 +49,7 @@ export default nix.lambda((args) => (() => {
       ]),
       nativeBuildInputs: nix.thunk(() => [meson, ninja, pkg_config, makeWrapper, wayland_scanner, wrapGAppsHook3]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/LBCrion/sfwbar",
         description: "Flexible taskbar application for wayland compositors, designed with a stacking layout in mind",
         changelog: nix.thunk(() => nix.str`https://github.com/LBCrion/sfwbar/releases/tag/v${nix.sel(finalAttrs, "version")}`),

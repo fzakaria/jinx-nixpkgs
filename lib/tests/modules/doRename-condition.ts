@@ -2,16 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/doRename-condition.nix", [[["enable", 25, 18]], [["type", 30, 30]], [["bar", 30, 13]], [["options", 29, 11]], [["type", 27, 7], ["default", 34, 7]], [["foo", 25, 14], ["foos", 26, 14]], [["services", 25, 5], ["result", 36, 5]], [["from", 40, 7], ["to", 45, 7], ["visible", 51, 7], ["warn", 52, 7], ["use", 53, 7], ["withPriority", 54, 7], ["condition", 55, 7]], [["options", 24, 3], ["imports", 38, 3]]]);
 const formals$1 = { args: { config: false, lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/doRename-condition.nix", [["enable", 25, 18]]);
-const pos$2 = nix.positions(here + "/doRename-condition.nix", [["type", 30, 30]]);
-const pos$3 = nix.positions(here + "/doRename-condition.nix", [["bar", 30, 13]]);
-const pos$4 = nix.positions(here + "/doRename-condition.nix", [["options", 29, 11]]);
-const pos$5 = nix.positions(here + "/doRename-condition.nix", [["type", 27, 7], ["default", 34, 7]]);
-const pos$6 = nix.positions(here + "/doRename-condition.nix", [["foo", 25, 14], ["foos", 26, 14]]);
-const pos$7 = nix.positions(here + "/doRename-condition.nix", [["services", 25, 5], ["result", 36, 5]]);
-const pos$8 = nix.positions(here + "/doRename-condition.nix", [["from", 40, 7], ["to", 45, 7], ["visible", 51, 7], ["warn", 52, 7], ["use", 53, 7], ["withPriority", 54, 7], ["condition", 55, 7]]);
-const pos$9 = nix.positions(here + "/doRename-condition.nix", [["options", 24, 3], ["imports", 38, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,19 +14,19 @@ export default nix.lambda((args) => (() => {
   const types = nix.thunk(() => nix.attr(lib, "types"));
   const doRename = nix.thunk(() => nix.attr(lib, "doRename"));
   return {
-    [nix.POS]: pos$9,
+    [nix.POS]: $pos[8],
     options: nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       services: nix.thunk(() => ({
-        [nix.POS]: pos$6,
-        foo: nix.thunk(() => ({ [nix.POS]: pos$1, enable: nix.thunk(() => nix.app(mkEnableOption, "foo")) })),
+        [nix.POS]: $pos[5],
+        foo: nix.thunk(() => ({ [nix.POS]: $pos[0], enable: nix.thunk(() => nix.app(mkEnableOption, "foo")) })),
         foos: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             type: nix.thunk(() => nix.app(nix.sel(types, "attrsOf"), nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-                  [nix.POS]: pos$4,
+                  [nix.POS]: $pos[3],
                   options: nix.thunk(() => ({
-                    [nix.POS]: pos$3,
-                    bar: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({ [nix.POS]: pos$2, type: nix.thunk(() => nix.sel(types, "str")) })))),
+                    [nix.POS]: $pos[2],
+                    bar: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({ [nix.POS]: $pos[1], type: nix.thunk(() => nix.sel(types, "str")) })))),
                   })),
                 })))))),
             default: nix.thunk(() => ({})),
@@ -44,7 +36,7 @@ export default nix.lambda((args) => (() => {
     })),
     imports: nix.thunk(() => [
       nix.thunk(() => nix.app(doRename, nix.thunk(() => ({
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           from: nix.thunk(() => ["services", "foo", "bar"]),
           to: nix.thunk(() => ["services", "foos", "", "bar"]),
           visible: true,

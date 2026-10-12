@@ -2,13 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 52, 7], ["sha256", 53, 7]], [["NIX_CFLAGS_COMPILE", 61, 9]], [["plugins", 163, 11], ["pidgin", 164, 11]], [["makePluginPath", 159, 7], ["withPlugins", 160, 7]], [["description", 169, 7], ["mainProgram", 170, 7], ["homepage", 171, 7], ["license", 172, 7], ["platforms", 173, 7], ["maintainers", 174, 7]], [["pname", 48, 5], ["version", 49, 5], ["src", 51, 5], ["nativeBuildInputs", 56, 5], ["env", 61, 5], ["buildInputs", 63, 5], ["propagatedBuildInputs", 100, 5], ["patches", 111, 5], ["configureFlags", 116, 5], ["enableParallelBuilding", 137, 5], ["postInstall", 139, 5], ["doInstallCheck", 144, 5], ["postFixup", 146, 5], ["passthru", 158, 5], ["meta", 168, 5]]]);
 const formals$1 = { args: { stdenv: false, callPackage: false, fetchurl: false, makeWrapper: false, aspell: false, avahi: false, cacert: false, dbus: false, "dbus-glib": false, farstream: false, gettext: false, gst_all_1: false, gtk2: false, "gtk2-x11": false, intltool: false, lib: false, libice: false, libsm: false, libxscrnsaver: false, libxext: false, libgcrypt: false, libgnt: false, libidn: false, libstartup_notification: false, libxml2: false, ncurses: false, nspr: false, nss: false, perlPackages: false, "pkg-config": false, python3: false, pidgin: false, plugins: true, withOpenssl: true, openssl: false, withGnutls: true, gnutls: false, withCyrus_sasl: true, cyrus_sasl: false, pidginPackages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 52, 7], ["sha256", 53, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["NIX_CFLAGS_COMPILE", 61, 9]]);
-const pos$3 = nix.positions(here + "/default.nix", [["plugins", 163, 11], ["pidgin", 164, 11]]);
-const pos$4 = nix.positions(here + "/default.nix", [["makePluginPath", 159, 7], ["withPlugins", 160, 7]]);
-const pos$5 = nix.positions(here + "/default.nix", [["description", 169, 7], ["mainProgram", 170, 7], ["homepage", 171, 7], ["license", 172, 7], ["platforms", 173, 7], ["maintainers", 174, 7]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 48, 5], ["version", 49, 5], ["src", 51, 5], ["nativeBuildInputs", 56, 5], ["env", 61, 5], ["buildInputs", 63, 5], ["propagatedBuildInputs", 100, 5], ["patches", 111, 5], ["configureFlags", 116, 5], ["enableParallelBuilding", 137, 5], ["postInstall", 139, 5], ["doInstallCheck", 144, 5], ["postFixup", 146, 5], ["passthru", 158, 5], ["meta", 168, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -56,13 +51,13 @@ export default nix.lambda((args) => (() => {
       const pname = "pidgin";
       const version = "2.14.14";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/pidgin/pidgin-${version}.tar.bz2`),
           sha256: "sha256-D/yZlN7xAmD5ilXNEy3u+o3EqYNUUcwOmCdHvUWOI1Y=",
         }))));
       const nativeBuildInputs = nix.thunk(() => [makeWrapper, intltool]);
       const env = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.str`-I${nix.sel(gst_all_1, "gst-plugins-base", "dev")}/include/gstreamer-1.0`),
       }));
       const buildInputs = nix.thunk(() => (() => {
@@ -129,16 +124,16 @@ done
 `));
       })());
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         makePluginPath: nix.thunk(() => nix.app(nix.sel(lib, "makeSearchPathOutput"), "lib", nix.thunk(() => nix.str`lib/purple-${nix.app(nix.sel(lib, "versions", "major"), version)}`))),
         withPlugins: (pluginfn) => nix.app(callPackage, nix.path(here, "./wrapper.nix"), nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             plugins: nix.thunk(() => nix.app(pluginfn, pidginPackages)),
             pidgin: unwrapped,
           }))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Multi-protocol instant messaging client",
         mainProgram: "pidgin",
         homepage: "https://pidgin.im/",
@@ -147,7 +142,7 @@ done
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname,
         version,
         src,

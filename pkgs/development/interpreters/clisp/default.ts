@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 63, 5], ["repo", 64, 5], ["rev", 65, 5], ["hash", 66, 5]], [["NIX_CFLAGS_COMPILE", 135, 7]], [["description", 140, 5], ["homepage", 141, 5], ["mainProgram", 142, 5], ["teams", 143, 5], ["license", 144, 5], ["platforms", 145, 5]], [["version", 59, 3], ["pname", 60, 3], ["src", 62, 3], ["strictDeps", 69, 3], ["nativeBuildInputs", 70, 3], ["buildInputs", 75, 3], ["postPatch", 97, 3], ["configureFlags", 104, 3], ["preBuild", 116, 3], ["doCheck", 122, 3], ["postInstall", 124, 3], ["env", 135, 3], ["meta", 139, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, autoconf: false, automake: false, bash: false, libtool: false, libsigsegv: false, gettext: false, ncurses: false, zlib: false, readline: false, libffi: false, libffcall: false, libx11: false, libxau: false, libxt: false, libxpm: false, libxext: false, xorgproto: false, coreutils: false, threadSupport: true, x11Support: true, dllSupport: true, withModules: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 63, 5], ["repo", 64, 5], ["rev", 65, 5], ["hash", 66, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["NIX_CFLAGS_COMPILE", 135, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 140, 5], ["homepage", 141, 5], ["mainProgram", 142, 5], ["teams", 143, 5], ["license", 144, 5], ["platforms", 145, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["version", 59, 3], ["pname", 60, 3], ["src", 62, 3], ["strictDeps", 69, 3], ["nativeBuildInputs", 70, 3], ["buildInputs", 75, 3], ["postPatch", 97, 3], ["configureFlags", 104, 3], ["preBuild", 116, 3], ["doCheck", 122, 3], ["postInstall", 124, 3], ["env", 135, 3], ["meta", 139, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -38,11 +35,11 @@ export default nix.lambda((args) => (() => {
   nix.assert_((!nix.asBool(x11Support) || nix.asBool((nix.asBool((nix.asBool((nix.asBool((nix.asBool((nix.asBool(!nix.eq(libx11, null)) && nix.asBool(!nix.eq(libxau, null)))) && nix.asBool(!nix.eq(libxt, null)))) && nix.asBool(!nix.eq(libxpm, null)))) && nix.asBool(!nix.eq(xorgproto, null)))) && nix.asBool(!nix.eq(libxext, null))))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/development/interpreters/clisp/default.nix:43:1");
   const ffcallAvailable = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) && nix.asBool(!nix.eq(libffcall, null))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       version: "2.49.95-unstable-2024-12-28",
       pname: "clisp",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "gnu-clisp",
           repo: "clisp",
           rev: "c3ec11bab87cfdbeba01523ed88ac2a16b22304d",
@@ -69,11 +66,11 @@ find "$out"/lib/clisp*/full -type l -name "*.o" | while read -r symlink; do
 done
 `))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.str`-O0 -falign-functions=${(nix.asBool(nix.sel(stdenv, "hostPlatform", "is64bit")) ? "8" : "4")}`),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "ANSI Common Lisp Implementation",
         homepage: "http://clisp.org",
         mainProgram: "clisp",

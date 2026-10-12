@@ -2,16 +2,15 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/nodic.nix", [[["fetchFromGitHub", 8, 44], ["libiconv", 8, 60]], [["pname", 15, 7]]]);
 const formals$1 = { args: { stdenv: false, fetchFromGitHub: false, libiconv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/nodic.nix", [["fetchFromGitHub", 8, 44], ["libiconv", 8, 60]]);
-const pos$2 = nix.positions(here + "/nodic.nix", [["pname", 15, 7]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const stdenv = nix.arg($, "stdenv");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const libiconv = nix.arg($, "libiconv");
-  const mecab_base = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./base.nix")), nix.thunk(() => ({ [nix.POS]: pos$1, fetchFromGitHub: fetchFromGitHub, libiconv: libiconv }))));
-  return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => nix.update(nix.app(mecab_base, finalAttrs), { [nix.POS]: pos$2, pname: "mecab-nodic" }));
+  const mecab_base = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./base.nix")), nix.thunk(() => ({ [nix.POS]: $pos[0], fetchFromGitHub: fetchFromGitHub, libiconv: libiconv }))));
+  return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => nix.update(nix.app(mecab_base, finalAttrs), { [nix.POS]: $pos[1], pname: "mecab-nodic" }));
 })(), formals$1);
 //# sourceMappingURL=nodic.ts.map

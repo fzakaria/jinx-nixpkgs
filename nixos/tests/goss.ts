@@ -2,89 +2,67 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/goss.nix", [[["maintainers", 4, 8]], [["systemPackages", 7, 17]], [["GOSS_FMT", 13, 9]], [["reachable", 18, 11], ["local-address", 19, 11]], [["tcp://localhost:8080", 17, 14]], [["exec", 22, 11], ["exit-status", 23, 11]], [["check-goss-version", 21, 17]], [["resolvable", 25, 23]], [["localhost", 25, 13]], [["filetype", 27, 11], ["exists", 28, 11]], [["/nix", 26, 14]], [["exists", 30, 20]], [["root", 30, 15]], [["value", 31, 38]], [["kernel.ostype", 31, 22]], [["exists", 32, 19]], [["root", 32, 14]], [["addr", 17, 9], ["command", 21, 9], ["dns", 25, 9], ["file", 26, 9], ["group", 30, 9], ["kernel-param", 31, 9], ["user", 32, 9]], [["enable", 10, 7], ["environment", 12, 7], ["settings", 16, 7]], [["goss", 9, 14]], [["environment", 7, 5], ["services", 9, 5]], [["machine", 6, 9]], [["name", 3, 3], ["meta", 4, 3], ["nodes", 6, 3], ["testScript", 37, 3]]]);
 const formals$1 = { args: { pkgs: false, lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/goss.nix", [["maintainers", 4, 8]]);
-const pos$2 = nix.positions(here + "/goss.nix", [["systemPackages", 7, 17]]);
-const pos$3 = nix.positions(here + "/goss.nix", [["GOSS_FMT", 13, 9]]);
-const pos$4 = nix.positions(here + "/goss.nix", [["reachable", 18, 11], ["local-address", 19, 11]]);
-const pos$5 = nix.positions(here + "/goss.nix", [["tcp://localhost:8080", 17, 14]]);
-const pos$6 = nix.positions(here + "/goss.nix", [["exec", 22, 11], ["exit-status", 23, 11]]);
-const pos$7 = nix.positions(here + "/goss.nix", [["check-goss-version", 21, 17]]);
-const pos$8 = nix.positions(here + "/goss.nix", [["resolvable", 25, 23]]);
-const pos$9 = nix.positions(here + "/goss.nix", [["localhost", 25, 13]]);
-const pos$10 = nix.positions(here + "/goss.nix", [["filetype", 27, 11], ["exists", 28, 11]]);
-const pos$11 = nix.positions(here + "/goss.nix", [["/nix", 26, 14]]);
-const pos$12 = nix.positions(here + "/goss.nix", [["exists", 30, 20]]);
-const pos$13 = nix.positions(here + "/goss.nix", [["root", 30, 15]]);
-const pos$14 = nix.positions(here + "/goss.nix", [["value", 31, 38]]);
-const pos$15 = nix.positions(here + "/goss.nix", [["kernel.ostype", 31, 22]]);
-const pos$16 = nix.positions(here + "/goss.nix", [["exists", 32, 19]]);
-const pos$17 = nix.positions(here + "/goss.nix", [["root", 32, 14]]);
-const pos$18 = nix.positions(here + "/goss.nix", [["addr", 17, 9], ["command", 21, 9], ["dns", 25, 9], ["file", 26, 9], ["group", 30, 9], ["kernel-param", 31, 9], ["user", 32, 9]]);
-const pos$19 = nix.positions(here + "/goss.nix", [["enable", 10, 7], ["environment", 12, 7], ["settings", 16, 7]]);
-const pos$20 = nix.positions(here + "/goss.nix", [["goss", 9, 14]]);
-const pos$21 = nix.positions(here + "/goss.nix", [["environment", 7, 5], ["services", 9, 5]]);
-const pos$22 = nix.positions(here + "/goss.nix", [["machine", 6, 9]]);
-const pos$23 = nix.positions(here + "/goss.nix", [["name", 3, 3], ["meta", 4, 3], ["nodes", 6, 3], ["testScript", 37, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$23,
+    [nix.POS]: $pos[22],
     name: "goss",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "anthonyroussel"))]),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$22,
+      [nix.POS]: $pos[21],
       machine: nix.thunk(() => ({
-        [nix.POS]: pos$21,
+        [nix.POS]: $pos[20],
         environment: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "jq"))]),
         })),
         services: nix.thunk(() => ({
-          [nix.POS]: pos$20,
+          [nix.POS]: $pos[19],
           goss: nix.thunk(() => ({
-            [nix.POS]: pos$19,
+            [nix.POS]: $pos[18],
             enable: true,
-            environment: nix.thunk(() => ({ [nix.POS]: pos$3, GOSS_FMT: "json" })),
+            environment: nix.thunk(() => ({ [nix.POS]: $pos[2], GOSS_FMT: "json" })),
             settings: nix.thunk(() => ({
-              [nix.POS]: pos$18,
+              [nix.POS]: $pos[17],
               addr: nix.thunk(() => ({
-                [nix.POS]: pos$5,
-                "tcp://localhost:8080": nix.thunk(() => ({ [nix.POS]: pos$4, reachable: true, "local-address": "127.0.0.1" })),
+                [nix.POS]: $pos[4],
+                "tcp://localhost:8080": nix.thunk(() => ({ [nix.POS]: $pos[3], reachable: true, "local-address": "127.0.0.1" })),
               })),
               command: nix.thunk(() => ({
-                [nix.POS]: pos$7,
+                [nix.POS]: $pos[6],
                 "check-goss-version": nix.thunk(() => ({
-                  [nix.POS]: pos$6,
+                  [nix.POS]: $pos[5],
                   exec: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgs, "goss")))} --version`),
                   "exit-status": 0n,
                 })),
               })),
               dns: nix.thunk(() => ({
-                [nix.POS]: pos$9,
-                localhost: nix.thunk(() => ({ [nix.POS]: pos$8, resolvable: true })),
+                [nix.POS]: $pos[8],
+                localhost: nix.thunk(() => ({ [nix.POS]: $pos[7], resolvable: true })),
               })),
               file: nix.thunk(() => ({
-                [nix.POS]: pos$11,
-                "/nix": nix.thunk(() => ({ [nix.POS]: pos$10, filetype: "directory", exists: true })),
+                [nix.POS]: $pos[10],
+                "/nix": nix.thunk(() => ({ [nix.POS]: $pos[9], filetype: "directory", exists: true })),
               })),
               group: nix.thunk(() => ({
-                [nix.POS]: pos$13,
-                root: nix.thunk(() => ({ [nix.POS]: pos$12, exists: true })),
+                [nix.POS]: $pos[12],
+                root: nix.thunk(() => ({ [nix.POS]: $pos[11], exists: true })),
               })),
               "kernel-param": nix.thunk(() => ({
-                [nix.POS]: pos$15,
-                "kernel.ostype": nix.thunk(() => ({ [nix.POS]: pos$14, value: "Linux" })),
+                [nix.POS]: $pos[14],
+                "kernel.ostype": nix.thunk(() => ({ [nix.POS]: $pos[13], value: "Linux" })),
               })),
               user: nix.thunk(() => ({
-                [nix.POS]: pos$17,
-                root: nix.thunk(() => ({ [nix.POS]: pos$16, exists: true })),
+                [nix.POS]: $pos[16],
+                root: nix.thunk(() => ({ [nix.POS]: $pos[15], exists: true })),
               })),
             })),
           })),

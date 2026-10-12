@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 20, 5], ["sha256", 21, 5]], [["description", 47, 5], ["homepage", 48, 5], ["license", 49, 5], ["maintainers", 50, 5], ["platforms", 54, 5], ["mainProgram", 55, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["mesonFlags", 24, 3], ["postPatch", 29, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 38, 3], ["meta", 46, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, "pkg-config": false, meson: false, ninja: false, boost: false, curl: false, libgcrypt: false, libmpdclient: false, systemdLibs: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 20, 5], ["sha256", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 47, 5], ["homepage", 48, 5], ["license", 49, 5], ["maintainers", 50, 5], ["platforms", 54, 5], ["mainProgram", 55, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["mesonFlags", 24, 3], ["postPatch", 29, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 38, 3], ["meta", 46, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const libmpdclient = nix.arg($, "libmpdclient");
   const systemdLibs = nix.arg($, "systemdLibs");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "mpdscribble",
       version: "0.25",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://www.musicpd.org/download/mpdscribble/${nix.sel(finalAttrs, "version")}/mpdscribble-${nix.sel(finalAttrs, "version")}.tar.xz`),
           sha256: "sha256-IPidlFv1F8TWi/d6d6NZ/bE4QqsSlejSHtp5vitbNc4=",
         })))),
@@ -37,7 +35,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pkg_config, meson, ninja]),
       buildInputs: nix.thunk(() => nix.concat([libmpdclient, curl, boost, libgcrypt], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), systemdLibs))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "MPD client which submits info about tracks being played to a scrobbler",
         homepage: "https://www.musicpd.org/clients/mpdscribble/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

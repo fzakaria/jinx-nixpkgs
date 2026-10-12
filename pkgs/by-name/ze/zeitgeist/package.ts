@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 35, 5], ["owner", 36, 5], ["repo", 37, 5], ["rev", 38, 5], ["sha256", 39, 5]], [["description", 82, 5], ["homepage", 83, 5], ["teams", 84, 5], ["license", 85, 5], ["platforms", 86, 5]], [["pname", 23, 3], ["version", 24, 3], ["outputs", 26, 3], ["src", 34, 3], ["nativeBuildInputs", 42, 3], ["buildInputs", 53, 3], ["configureFlags", 63, 3], ["enableParallelBuilding", 67, 3], ["postPatch", 69, 3], ["preConfigure", 73, 3], ["postFixup", 77, 3], ["meta", 81, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitLab: false, "pkg-config": false, glib: false, sqlite: false, "gobject-introspection": false, vala: false, autoconf: false, automake: false, libtool: false, gettext: false, dbus: false, gtk3: false, "json-glib": false, librdf_raptor2: false, pythonSupport: true, python3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 35, 5], ["owner", 36, 5], ["repo", 37, 5], ["rev", 38, 5], ["sha256", 39, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 82, 5], ["homepage", 83, 5], ["teams", 84, 5], ["license", 85, 5], ["platforms", 86, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 23, 3], ["version", 24, 3], ["outputs", 26, 3], ["src", 34, 3], ["nativeBuildInputs", 42, 3], ["buildInputs", 53, 3], ["configureFlags", 63, 3], ["enableParallelBuilding", 67, 3], ["postPatch", 69, 3], ["preConfigure", 73, 3], ["postFixup", 77, 3], ["meta", 81, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,12 +26,12 @@ export default nix.lambda((args) => (() => {
   const pythonSupport = nix.argOr($, "pythonSupport", () => true);
   const python3 = nix.arg($, "python3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "zeitgeist",
       version: "1.0.4",
       outputs: nix.thunk(() => nix.concat(["out", "lib", "dev", "man"], nix.app(nix.sel(lib, "optional"), pythonSupport, "py"))),
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "gitlab.freedesktop.org",
           owner: "zeitgeist",
           repo: "zeitgeist",
@@ -66,7 +64,7 @@ export default nix.lambda((args) => (() => {
       postFixup: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), pythonSupport, nix.thunk(() => nix.str`moveToOutput lib/${nix.sel(python3, "libPrefix")} "$py"
 `))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Service which logs the users’s activities and events",
         homepage: "https://zeitgeist.freedesktop.org/",
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "freedesktop"))]),

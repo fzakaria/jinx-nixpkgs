@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 37, 5], ["hash", 38, 5]], [["description", 85, 5], ["homepage", 86, 5], ["license", 88, 5], ["platforms", 93, 5], ["teams", 94, 5]], [["pname", 33, 3], ["version", 34, 3], ["src", 36, 3], ["postPatch", 42, 3], ["nativeBuildInputs", 46, 3], ["buildInputs", 52, 3], ["enableParallelBuilding", 78, 3], ["doCheck", 82, 3], ["meta", 84, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, "pkg-config": false, validatePkgConfig: false, cairo: false, curl: false, fontconfig: false, freetype: false, freexl: false, geos: false, giflib: false, libgeotiff: false, libjpeg: false, libpng: false, librttopo: false, libspatialite: false, libtiff: false, libwebp: false, libxml2: false, lz4: false, minizip: false, openjpeg: false, pixman: false, proj: false, sqlite: false, xz: false, zstd: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 37, 5], ["hash", 38, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 85, 5], ["homepage", 86, 5], ["license", 88, 5], ["platforms", 93, 5], ["teams", 94, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 33, 3], ["version", 34, 3], ["src", 36, 3], ["postPatch", 42, 3], ["nativeBuildInputs", 46, 3], ["buildInputs", 52, 3], ["enableParallelBuilding", 78, 3], ["doCheck", 82, 3], ["meta", 84, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -38,11 +36,11 @@ export default nix.lambda((args) => (() => {
   const xz = nix.arg($, "xz");
   const zstd = nix.arg($, "zstd");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "librasterlite2",
       version: "1.1.0-beta1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://www.gaia-gis.it/gaia-sins/librasterlite2-sources/librasterlite2-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-9yhM38B600OjFOSHjfAwCHSwFF2dMxsGOwlrSC5+RPQ=",
         })))),
@@ -76,7 +74,7 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: true,
       doCheck: false,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Advanced library supporting raster handling methods",
         homepage: "https://www.gaia-gis.it/fossil/librasterlite2",
         license: nix.thunk(() => (() => {

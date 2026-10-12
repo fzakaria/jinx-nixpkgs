@@ -2,36 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/nodejs.nix", [[["brotli", 138, 7], ["libuv", 139, 7], ["nghttp2", 140, 7], ["nghttp3", 141, 7], ["ngtcp2", 142, 7], ["openssl", 143, 7], ["uvwasi", 144, 7], ["zlib", 145, 7], ["cares", 147, 5], ["http-parser", 148, 5]], [["abseil", 151, 5], ["highway", 152, 5]], [["ada", 156, 7], ["simdjson", 157, 7]], [["simdutf", 161, 13]], [["sqlite", 164, 13]], [["temporal_capi", 167, 13]], [["gtest", 170, 13], ["hdr-histogram", 171, 5]], [["ffi", 174, 5]], [["lief", 177, 13]], [["nbytes", 180, 13]], [["simdutf", 184, 60]], [["merve", 184, 5]], [["zstd", 187, 13]], [["cctools", 205, 48]], [["url", 242, 9], ["sha256", 243, 17]], [["NINJA", 254, 9]], [["CC_host", 258, 9], ["CXX_host", 259, 9], ["AR_host", 260, 9]], [["package", 678, 11], ["version", 679, 11]], [["version", 677, 9]], [["writeScript", 685, 11], ["common-updater-scripts", 686, 11], ["coreutils", 687, 11], ["curl", 688, 11], ["fetchurl", 689, 11], ["gnugrep", 690, 11], ["gnupg", 691, 11], ["jq", 692, 11], ["runtimeShell", 693, 11], ["lib", 695, 17], ["majorVersion", 696, 17]], [["interpreterName", 363, 16], ["tests", 676, 16], ["updateScript", 683, 16], ["python", 718, 16]], [["disallowedReferences", 552, 11]], [["disallowedReferences", 559, 11]], [["disallowedReferences", 565, 11]], [["disallowedReferences", 572, 11]], [["out", 551, 9], ["corepack", 558, 9], ["libv8", 564, 9], ["npm", 571, 9]], [["description", 700, 9], ["homepage", 701, 9], ["changelog", 702, 9], ["license", 703, 9], ["maintainers", 704, 9], ["platforms", 706, 9], ["broken", 712, 9], ["mainProgram", 714, 9], ["knownVulnerabilities", 715, 9]], [["pname", 239, 15], ["version", 239, 21], ["src", 241, 7], ["strictDeps", 246, 7], ["env", 248, 7], ["buildInputs", 266, 7], ["nativeBuildInputs", 272, 7], ["dontUseNinjaBuild", 289, 7], ["dontUseNinjaCheck", 290, 7], ["dontUseNinjaInstall", 291, 7], ["outputs", 293, 7], ["setOutputFlags", 300, 7], ["moveToDev", 301, 7], ["configureFlags", 303, 7], ["configurePlatforms", 338, 7], ["dontDisableStatic", 340, 7], ["configureScript", 342, 7], ["postConfigure", 348, 7], ["enableParallelBuilding", 353, 7], ["__contentAddressed", 361, 7], ["passthru", 363, 7], ["setupHook", 365, 7], ["pos", 367, 7], ["patches", 369, 15], ["postPatch", 371, 7], ["__darwinAllowLocalNetworking", 381, 7], ["__structuredAttrs", 382, 7], ["doCheck", 384, 7], ["enableParallelChecking", 387, 7], ["checkTarget", 392, 7], ["checkFlags", 410, 7], ["outputChecks", 550, 7], ["sandboxProfile", 579, 7], ["postInstall", 600, 7], ["postFixup", 662, 7], ["requiredSystemFeatures", 674, 7], ["meta", 699, 7]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, fetchpatch2: false, fetchFromGitHub: false, python: false, "abseil-cpp": false, ada: false, brotli: false, "c-ares": false, gtest: false, hdrhistogram_c: false, libffiReal: false, libhwy: false, libuv: false, lief: false, llhttp: false, merve: false, nbytes: false, nghttp2: false, nghttp3: false, ngtcp2: false, openssl: false, simdjson: false, simdutf: false, sqlite: false, temporal_capi: false, uvwasi: false, zlib: false, zstd: false, icu: false, bash: false, ninja: false, pkgconf: false, unixtools: false, runCommand: false, buildPackages: false, testers: false, callPackage: false, writeScript: false, coreutils: false, gnugrep: false, jq: false, curl: false, "common-updater-scripts": false, runtimeShell: false, gnupg: false, installShellFiles: false, darwin: false }, ellipsis: false };
 const formals$2 = { args: { version: false, sha256: false, patches: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/nodejs.nix", [["brotli", 138, 7], ["libuv", 139, 7], ["nghttp2", 140, 7], ["nghttp3", 141, 7], ["ngtcp2", 142, 7], ["openssl", 143, 7], ["uvwasi", 144, 7], ["zlib", 145, 7], ["cares", 147, 5], ["http-parser", 148, 5]]);
-const pos$2 = nix.positions(here + "/nodejs.nix", [["abseil", 151, 5], ["highway", 152, 5]]);
-const pos$3 = nix.positions(here + "/nodejs.nix", [["ada", 156, 7], ["simdjson", 157, 7]]);
-const pos$4 = nix.positions(here + "/nodejs.nix", [["simdutf", 161, 13]]);
-const pos$5 = nix.positions(here + "/nodejs.nix", [["sqlite", 164, 13]]);
-const pos$6 = nix.positions(here + "/nodejs.nix", [["temporal_capi", 167, 13]]);
-const pos$7 = nix.positions(here + "/nodejs.nix", [["gtest", 170, 13], ["hdr-histogram", 171, 5]]);
-const pos$8 = nix.positions(here + "/nodejs.nix", [["ffi", 174, 5]]);
-const pos$9 = nix.positions(here + "/nodejs.nix", [["lief", 177, 13]]);
-const pos$10 = nix.positions(here + "/nodejs.nix", [["nbytes", 180, 13]]);
-const pos$11 = nix.positions(here + "/nodejs.nix", [["simdutf", 184, 60]]);
-const pos$12 = nix.positions(here + "/nodejs.nix", [["merve", 184, 5]]);
-const pos$13 = nix.positions(here + "/nodejs.nix", [["zstd", 187, 13]]);
-const pos$14 = nix.positions(here + "/nodejs.nix", [["cctools", 205, 48]]);
-const pos$15 = nix.positions(here + "/nodejs.nix", [["url", 242, 9], ["sha256", 243, 17]]);
-const pos$16 = nix.positions(here + "/nodejs.nix", [["NINJA", 254, 9]]);
-const pos$17 = nix.positions(here + "/nodejs.nix", [["CC_host", 258, 9], ["CXX_host", 259, 9], ["AR_host", 260, 9]]);
-const pos$18 = nix.positions(here + "/nodejs.nix", [["package", 678, 11], ["version", 679, 11]]);
-const pos$19 = nix.positions(here + "/nodejs.nix", [["version", 677, 9]]);
-const pos$20 = nix.positions(here + "/nodejs.nix", [["writeScript", 685, 11], ["common-updater-scripts", 686, 11], ["coreutils", 687, 11], ["curl", 688, 11], ["fetchurl", 689, 11], ["gnugrep", 690, 11], ["gnupg", 691, 11], ["jq", 692, 11], ["runtimeShell", 693, 11], ["lib", 695, 17], ["majorVersion", 696, 17]]);
-const pos$21 = nix.positions(here + "/nodejs.nix", [["interpreterName", 363, 16], ["tests", 676, 16], ["updateScript", 683, 16], ["python", 718, 16]]);
-const pos$22 = nix.positions(here + "/nodejs.nix", [["disallowedReferences", 552, 11]]);
-const pos$23 = nix.positions(here + "/nodejs.nix", [["disallowedReferences", 559, 11]]);
-const pos$24 = nix.positions(here + "/nodejs.nix", [["disallowedReferences", 565, 11]]);
-const pos$25 = nix.positions(here + "/nodejs.nix", [["disallowedReferences", 572, 11]]);
-const pos$26 = nix.positions(here + "/nodejs.nix", [["out", 551, 9], ["corepack", 558, 9], ["libv8", 564, 9], ["npm", 571, 9]]);
-const pos$27 = nix.positions(here + "/nodejs.nix", [["description", 700, 9], ["homepage", 701, 9], ["changelog", 702, 9], ["license", 703, 9], ["maintainers", 704, 9], ["platforms", 706, 9], ["broken", 712, 9], ["mainProgram", 714, 9], ["knownVulnerabilities", 715, 9]]);
-const pos$28 = nix.positions(here + "/nodejs.nix", [["pname", 239, 15], ["version", 239, 21], ["src", 241, 7], ["strictDeps", 246, 7], ["env", 248, 7], ["buildInputs", 266, 7], ["nativeBuildInputs", 272, 7], ["dontUseNinjaBuild", 289, 7], ["dontUseNinjaCheck", 290, 7], ["dontUseNinjaInstall", 291, 7], ["outputs", 293, 7], ["setOutputFlags", 300, 7], ["moveToDev", 301, 7], ["configureFlags", 303, 7], ["configurePlatforms", 338, 7], ["dontDisableStatic", 340, 7], ["configureScript", 342, 7], ["postConfigure", 348, 7], ["enableParallelBuilding", 353, 7], ["__contentAddressed", 361, 7], ["passthru", 363, 7], ["setupHook", 365, 7], ["pos", 367, 7], ["patches", 369, 15], ["postPatch", 371, 7], ["__darwinAllowLocalNetworking", 381, 7], ["__structuredAttrs", 382, 7], ["doCheck", 384, 7], ["enableParallelChecking", 387, 7], ["checkTarget", 392, 7], ["checkFlags", 410, 7], ["outputChecks", 550, 7], ["sandboxProfile", 579, 7], ["postInstall", 600, 7], ["postFixup", 662, 7], ["requiredSystemFeatures", 674, 7], ["meta", 699, 7]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -121,7 +94,7 @@ export default nix.lambda((args) => (() => {
     const useSharedTemporal = nix.thunk(() => nix.eq(majorVersion, "26"));
     const useSharedZstd = nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), version, "22.15"));
     const sharedLibDeps = nix.thunk(() => nix.update({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       brotli: brotli,
       libuv: libuv,
       nghttp2: nghttp2,
@@ -132,14 +105,14 @@ export default nix.lambda((args) => (() => {
       zlib: zlib,
       cares: c_ares,
       "http-parser": llhttp,
-    }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), useSharedAbseilAndHighway, nix.thunk(() => ({ [nix.POS]: pos$2, abseil: abseil_cpp, highway: libhwy }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), useSharedAdaAndSimdjson, nix.thunk(() => ({ [nix.POS]: pos$3, ada: ada, simdjson: simdjson }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), useSharedSimdutf, nix.thunk(() => ({ [nix.POS]: pos$4, simdutf: simdutf }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), useSharedSQLite, nix.thunk(() => ({ [nix.POS]: pos$5, sqlite: sqlite }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), useSharedTemporal, nix.thunk(() => ({ [nix.POS]: pos$6, temporal_capi: temporal_capi }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), useSharedGtestAndHistogram, nix.thunk(() => ({ [nix.POS]: pos$7, gtest: gtest, "hdr-histogram": hdrhistogram_c }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), useSharedFFI, nix.thunk(() => ({ [nix.POS]: pos$8, ffi: libffiReal }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), useSharedLief, nix.thunk(() => ({ [nix.POS]: pos$9, lief: lief }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), useSharedNBytes, nix.thunk(() => ({ [nix.POS]: pos$10, nbytes: nbytes }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), useSharedMerve, nix.thunk(() => ({
-        [nix.POS]: pos$12,
-        merve: nix.thunk(() => (nix.asBool(nix.eq(majorVersion, "24")) ? nix.app(nix.sel(merve, "override"), nix.thunk(() => ({ [nix.POS]: pos$11, simdutf: null }))) : nix.force(merve))),
-      }))), nix.app(nix.sel(lib, "optionalAttrs"), useSharedZstd, nix.thunk(() => ({ [nix.POS]: pos$13, zstd: zstd })))))))))))))));
+    }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), useSharedAbseilAndHighway, nix.thunk(() => ({ [nix.POS]: $pos[1], abseil: abseil_cpp, highway: libhwy }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), useSharedAdaAndSimdjson, nix.thunk(() => ({ [nix.POS]: $pos[2], ada: ada, simdjson: simdjson }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), useSharedSimdutf, nix.thunk(() => ({ [nix.POS]: $pos[3], simdutf: simdutf }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), useSharedSQLite, nix.thunk(() => ({ [nix.POS]: $pos[4], sqlite: sqlite }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), useSharedTemporal, nix.thunk(() => ({ [nix.POS]: $pos[5], temporal_capi: temporal_capi }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), useSharedGtestAndHistogram, nix.thunk(() => ({ [nix.POS]: $pos[6], gtest: gtest, "hdr-histogram": hdrhistogram_c }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), useSharedFFI, nix.thunk(() => ({ [nix.POS]: $pos[7], ffi: libffiReal }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), useSharedLief, nix.thunk(() => ({ [nix.POS]: $pos[8], lief: lief }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), useSharedNBytes, nix.thunk(() => ({ [nix.POS]: $pos[9], nbytes: nbytes }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), useSharedMerve, nix.thunk(() => ({
+        [nix.POS]: $pos[11],
+        merve: nix.thunk(() => (nix.asBool(nix.eq(majorVersion, "24")) ? nix.app(nix.sel(merve, "override"), nix.thunk(() => ({ [nix.POS]: $pos[10], simdutf: null }))) : nix.force(merve))),
+      }))), nix.app(nix.sel(lib, "optionalAttrs"), useSharedZstd, nix.thunk(() => ({ [nix.POS]: $pos[12], zstd: zstd })))))))))))))));
     const copyLibHeaders = nix.thunk(() => nix.builtins.map((name) => nix.str`${nix.app(nix.sel(lib, "getDev"), nix.thunk(() => nix.sel(sharedLibDeps, nix.key(nix.force(name)))))}/include/*`, nix.thunk(() => nix.builtins.attrNames(sharedLibDeps))));
     const bundlesCorepack = nix.thunk(() => !nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), version, "25.0.0")));
     const darwin_cctools_only_libtool = nix.thunk(() => nix.app(runCommand, "darwin-cctools-only-libtool", nix.thunk(() => ({
-        [nix.POS]: pos$14,
+        [nix.POS]: $pos[13],
         cctools: nix.thunk(() => nix.app(nix.sel(lib, "getBin"), nix.thunk(() => nix.sel(buildPackages, "cctools")))),
       })), "mkdir -p \"$out/bin\"\nln -s \"$cctools/bin/libtool\" \"$out/bin/libtool\"\n"));
     const touchScript = (real) => nix.app(writeScript, "touch-script", nix.thunk(() => nix.str`#!${nix.sel(stdenv, "shell")}
@@ -158,17 +131,17 @@ done
     const package$ = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => (() => {
         const self = nix.thunk(() => nix.sel(finalAttrs, "finalPackage"));
         return {
-          [nix.POS]: pos$28,
+          [nix.POS]: $pos[27],
           pname: pname,
           version: version,
           src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              [nix.POS]: pos$15,
+              [nix.POS]: $pos[14],
               url: nix.thunk(() => nix.str`https://nodejs.org/${downloadDir}/v${version}/node-v${version}.tar.xz`),
               sha256: sha256,
             })))),
           strictDeps: true,
-          env: nix.thunk(() => nix.update({ [nix.POS]: pos$16, NINJA: "TERM=dumb ninja" }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(!nix.asBool(canExecute)) && nix.asBool(!nix.asBool(canEmulate)))), nix.thunk(() => ({
-              [nix.POS]: pos$17,
+          env: nix.thunk(() => nix.update({ [nix.POS]: $pos[15], NINJA: "TERM=dumb ninja" }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(!nix.asBool(canExecute)) && nix.asBool(!nix.asBool(canEmulate)))), nix.thunk(() => ({
+              [nix.POS]: $pos[16],
               CC_host: nix.thunk(() => nix.app(touchScript, nix.thunk(() => nix.str`${nix.sel(buildPackages, "stdenv", "cc")}/bin/cc`))),
               CXX_host: nix.thunk(() => nix.app(touchScript, nix.thunk(() => nix.str`${nix.sel(buildPackages, "stdenv", "cc")}/bin/c++`))),
               AR_host: nix.thunk(() => nix.app(touchScript, nix.thunk(() => nix.str`${nix.sel(buildPackages, "stdenv", "cc")}/bin/ar`))),
@@ -201,18 +174,18 @@ export FAKE_TOUCH=1
           enableParallelBuilding: true,
           __contentAddressed: false,
           passthru: nix.thunk(() => ({
-            [nix.POS]: pos$21,
+            [nix.POS]: $pos[20],
             interpreterName: "nodejs",
             tests: nix.thunk(() => ({
-              [nix.POS]: pos$19,
+              [nix.POS]: $pos[18],
               version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-                  [nix.POS]: pos$18,
+                  [nix.POS]: $pos[17],
                   package: self,
                   version: nix.thunk(() => nix.str`v${nix.app(nix.sel(lib, "head"), nix.thunk(() => nix.app(nix.sel(lib, "strings", "splitString"), "-rc.", version)))}`),
                 })))),
             })),
             updateScript: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./update.nix")), nix.thunk(() => ({
-                [nix.POS]: pos$20,
+                [nix.POS]: $pos[19],
                 writeScript: writeScript,
                 "common-updater-scripts": common_updater_scripts,
                 coreutils: coreutils,
@@ -306,18 +279,18 @@ export FAKE_TOUCH=1
                   ])), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.eq(majorVersion, "22")), "test-child-process-stdout-flush-exit"), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => (nix.asBool(nix.eq(majorVersion, "22")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isRiscV64")))), "test-worker-messaging"), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => (nix.asBool(nix.eq(majorVersion, "26")) && nix.asBool(!nix.asBool(nix.sel(stdenv, "buildPlatform", "isDarwin"))))), "test-net-boundsocket"), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => (nix.asBool(nix.eq(majorVersion, "22")) && nix.asBool(nix.sel(stdenv, "buildPlatform", "isDarwin")))), "test/sequential/test-http-server-request-timeouts-mixed.js"), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), version, "24"))), "test-tls-junk-server"), nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.eq(majorVersion, "22")), "test-tls-alert-handling")))))))))))))))}`),
             ]))))),
           outputChecks: nix.thunk(() => ({
-            [nix.POS]: pos$26,
+            [nix.POS]: $pos[25],
             out: nix.thunk(() => ({
-              [nix.POS]: pos$22,
+              [nix.POS]: $pos[21],
               disallowedReferences: nix.thunk(() => nix.concat(["libv8", "npm"], nix.app(nix.sel(lib, "optional"), bundlesCorepack, "corepack"))),
             })),
-            corepack: nix.thunk(() => ({ [nix.POS]: pos$23, disallowedReferences: nix.thunk(() => ["libv8", "npm"]) })),
+            corepack: nix.thunk(() => ({ [nix.POS]: $pos[22], disallowedReferences: nix.thunk(() => ["libv8", "npm"]) })),
             libv8: nix.thunk(() => ({
-              [nix.POS]: pos$24,
+              [nix.POS]: $pos[23],
               disallowedReferences: nix.thunk(() => nix.concat(["out", "npm"], nix.app(nix.sel(lib, "optional"), bundlesCorepack, "corepack"))),
             })),
             npm: nix.thunk(() => ({
-              [nix.POS]: pos$25,
+              [nix.POS]: $pos[24],
               disallowedReferences: nix.thunk(() => nix.concat(["libv8"], nix.app(nix.sel(lib, "optional"), bundlesCorepack, "corepack"))),
             })),
           })),
@@ -378,7 +351,7 @@ done
 `),
           requiredSystemFeatures: nix.thunk(() => ["big-parallel"]),
           meta: nix.thunk(() => ({
-            [nix.POS]: pos$27,
+            [nix.POS]: $pos[26],
             description: "Event-driven I/O framework for the V8 JavaScript engine",
             homepage: "https://nodejs.org",
             changelog: nix.thunk(() => nix.str`https://github.com/nodejs/node/releases/tag/v${version}`),

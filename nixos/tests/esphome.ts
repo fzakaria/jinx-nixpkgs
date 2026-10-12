@@ -2,18 +2,10 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/esphome.nix", [[["maintainers", 9, 8]], [["enable", 16, 11], ["port", 17, 11], ["address", 18, 11], ["openFirewall", 19, 11]], [["esphome", 15, 18]], [["services", 15, 9]], [["enable", 27, 11], ["enableUnixSocket", 28, 11]], [["esphome", 26, 18]], [["services", 26, 9]], [["esphomeTcp", 12, 5], ["esphomeUnix", 23, 5]], [["name", 8, 3], ["meta", 9, 3], ["nodes", 11, 3], ["testScript", 33, 3]]]);
 const formals$1 = { args: { pkgs: false, lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/esphome.nix", [["maintainers", 9, 8]]);
 const formals$2 = { args: {  }, ellipsis: true };
-const pos$2 = nix.positions(here + "/esphome.nix", [["enable", 16, 11], ["port", 17, 11], ["address", 18, 11], ["openFirewall", 19, 11]]);
-const pos$3 = nix.positions(here + "/esphome.nix", [["esphome", 15, 18]]);
-const pos$4 = nix.positions(here + "/esphome.nix", [["services", 15, 9]]);
 const formals$3 = { args: {  }, ellipsis: true };
-const pos$5 = nix.positions(here + "/esphome.nix", [["enable", 27, 11], ["enableUnixSocket", 28, 11]]);
-const pos$6 = nix.positions(here + "/esphome.nix", [["esphome", 26, 18]]);
-const pos$7 = nix.positions(here + "/esphome.nix", [["services", 26, 9]]);
-const pos$8 = nix.positions(here + "/esphome.nix", [["esphomeTcp", 12, 5], ["esphomeUnix", 23, 5]]);
-const pos$9 = nix.positions(here + "/esphome.nix", [["name", 8, 3], ["meta", 9, 3], ["nodes", 11, 3], ["testScript", 33, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,25 +14,25 @@ export default nix.lambda((args) => (() => {
   const testPort = 6052n;
   const unixSocket = "/run/esphome/esphome.sock";
   return {
-    [nix.POS]: pos$9,
+    [nix.POS]: $pos[8],
     name: "esphome",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "oddlama"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       esphomeTcp: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             esphome: nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               enable: true,
               port: testPort,
               address: "0.0.0.0",
@@ -52,10 +44,10 @@ export default nix.lambda((args) => (() => {
       esphomeUnix: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$3);
         return {
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$6,
-            esphome: nix.thunk(() => ({ [nix.POS]: pos$5, enable: true, enableUnixSocket: true })),
+            [nix.POS]: $pos[5],
+            esphome: nix.thunk(() => ({ [nix.POS]: $pos[4], enable: true, enableUnixSocket: true })),
           })),
         };
       })(), formals$3),

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 16, 5], ["hash", 17, 5]], [["NIX_CFLAGS_COMPILE", 40, 5], ["NIX_LDFLAGS", 41, 5]], [["name", 57, 7], ["exec", 58, 7], ["desktopName", 59, 7], ["genericName", 60, 7], ["comment", 61, 7], ["categories", 62, 7]], [["description", 67, 5], ["mainProgram", 68, 5], ["longDescription", 69, 5], ["homepage", 73, 5], ["license", 74, 5], ["platforms", 75, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["nativeBuildInputs", 20, 3], ["buildInputs", 21, 3], ["patches", 27, 3], ["postPatch", 28, 3], ["env", 39, 3], ["preInstall", 46, 3], ["installFlags", 50, 3], ["desktopItems", 55, 3], ["meta", 66, 3]]]);
 const formals$1 = { args: { copyDesktopItems: false, fetchurl: false, lib: false, makeDesktopItem: false, stdenv: false, tcl: false, tk: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 40, 5], ["NIX_LDFLAGS", 41, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 57, 7], ["exec", 58, 7], ["desktopName", 59, 7], ["genericName", 60, 7], ["comment", 61, 7], ["categories", 62, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 67, 5], ["mainProgram", 68, 5], ["longDescription", 69, 5], ["homepage", 73, 5], ["license", 74, 5], ["platforms", 75, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["nativeBuildInputs", 20, 3], ["buildInputs", 21, 3], ["patches", 27, 3], ["postPatch", 28, 3], ["env", 39, 3], ["preInstall", 46, 3], ["installFlags", 50, 3], ["desktopItems", 55, 3], ["meta", 66, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const tcl = nix.arg($, "tcl");
   const tk = nix.arg($, "tk");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "dirdiff",
       version: "2.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://samba/paulus/dirdiff-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-yzc2VNV4gCeAQ1XjVd8GlYYsO/wfaj/GAUcisxVqklI=",
         })))),
@@ -40,7 +36,7 @@ done
 sed -i "1i #include <unistd.h>" filecmp.c
 `),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: "-DUSE_INTERP_RESULT",
         NIX_LDFLAGS: "-ltcl",
       })),
@@ -51,7 +47,7 @@ sed -i "1i #include <unistd.h>" filecmp.c
       ]),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "dirdiff",
             exec: "dirdiff",
             desktopName: "Dirdiff",
@@ -61,7 +57,7 @@ sed -i "1i #include <unistd.h>" filecmp.c
           })))),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Graphical directory tree diff and merge tool",
         mainProgram: "dirdiff",
         longDescription: "Dirdiff is a graphical tool for displaying the differences between\ndirectory trees and for merging changes from one tree into another.\n",

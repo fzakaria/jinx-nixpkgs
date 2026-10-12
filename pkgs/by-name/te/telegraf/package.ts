@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]], [["package", 43, 7]], [["version", 42, 5]], [["telegraf", 47, 26]], [["tests", 41, 12]], [["description", 51, 5], ["mainProgram", 52, 5], ["homepage", 53, 5], ["changelog", 54, 5], ["license", 55, 5], ["maintainers", 56, 5]], [["pname", 12, 3], ["version", 13, 3], ["subPackages", 15, 3], ["src", 17, 3], ["vendorHash", 24, 3], ["proxyVendor", 25, 3], ["ldflags", 27, 3], ["passthru", 41, 3], ["meta", 50, 3]]]);
 const formals$1 = { args: { lib: false, buildGo127Module: false, fetchFromGitHub: false, nixosTests: false, stdenv: false, testers: false, telegraf: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["package", 43, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 42, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["telegraf", 47, 26]]);
-const pos$5 = nix.positions(here + "/package.nix", [["tests", 41, 12]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 51, 5], ["mainProgram", 52, 5], ["homepage", 53, 5], ["changelog", 54, 5], ["license", 55, 5], ["maintainers", 56, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["subPackages", 15, 3], ["src", 17, 3], ["vendorHash", 24, 3], ["proxyVendor", 25, 3], ["ldflags", 27, 3], ["passthru", 41, 3], ["meta", 50, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const telegraf = nix.arg($, "telegraf");
   return nix.app(buildGo127Module, (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "telegraf",
       version: "1.40.1",
       subPackages: nix.thunk(() => ["cmd/telegraf"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "influxdata",
           repo: "telegraf",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -41,17 +35,17 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`-X=github.com/influxdata/telegraf/internal.Version=${nix.sel(finalAttrs, "version")}`),
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isAarch32")), nix.thunk(() => ["-extldflags", "-Wl,--long-plt"])))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         tests: nix.thunk(() => nix.update({
-          [nix.POS]: pos$3,
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$2, package: telegraf })))),
+          [nix.POS]: $pos[2],
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: $pos[1], package: telegraf })))),
         }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             telegraf: nix.thunk(() => nix.attr(nixosTests, "telegraf")),
           }))))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Plugin-driven server agent for collecting & reporting metrics",
         mainProgram: "telegraf",
         homepage: "https://www.influxdata.com/time-series-platform/telegraf/",

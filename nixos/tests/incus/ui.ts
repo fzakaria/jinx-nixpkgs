@@ -2,21 +2,9 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/ui.nix", [[["maintainers", 11, 5]], [["core.https_address", 22, 24]], [["config", 22, 17]], [["enable", 23, 12]], [["enable", 19, 9], ["package", 20, 17], ["preseed", 22, 9], ["ui", 23, 9]], [["incus", 18, 22]], [["enable", 26, 27]], [["nftables", 26, 18]], [["libraries", 33, 17]], [["systemPackages", 28, 19]], [["virtualisation", 18, 7], ["networking", 26, 7], ["environment", 28, 7]], [["machine", 14, 9]], [["name", 8, 3], ["meta", 10, 3], ["nodes", 14, 3], ["testScript", 66, 3]]]);
 const formals$1 = { args: { pkgs: false, lib: false, package: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/ui.nix", [["maintainers", 11, 5]]);
 const formals$2 = { args: { lib: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/ui.nix", [["core.https_address", 22, 24]]);
-const pos$3 = nix.positions(here + "/ui.nix", [["config", 22, 17]]);
-const pos$4 = nix.positions(here + "/ui.nix", [["enable", 23, 12]]);
-const pos$5 = nix.positions(here + "/ui.nix", [["enable", 19, 9], ["package", 20, 17], ["preseed", 22, 9], ["ui", 23, 9]]);
-const pos$6 = nix.positions(here + "/ui.nix", [["incus", 18, 22]]);
-const pos$7 = nix.positions(here + "/ui.nix", [["enable", 26, 27]]);
-const pos$8 = nix.positions(here + "/ui.nix", [["nftables", 26, 18]]);
-const pos$9 = nix.positions(here + "/ui.nix", [["libraries", 33, 17]]);
-const pos$10 = nix.positions(here + "/ui.nix", [["systemPackages", 28, 19]]);
-const pos$11 = nix.positions(here + "/ui.nix", [["virtualisation", 18, 7], ["networking", 26, 7], ["environment", 28, 7]]);
-const pos$12 = nix.positions(here + "/ui.nix", [["machine", 14, 9]]);
-const pos$13 = nix.positions(here + "/ui.nix", [["name", 8, 3], ["meta", 10, 3], ["nodes", 14, 3], ["testScript", 66, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,41 +12,41 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const package$ = nix.arg($, "package");
   return {
-    [nix.POS]: pos$13,
+    [nix.POS]: $pos[12],
     name: "incus-ui",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => nix.sel(lib, "teams", "lxc", "members")),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$12,
+      [nix.POS]: $pos[11],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const lib_1 = nix.arg($_1, "lib");
         return {
-          [nix.POS]: pos$11,
+          [nix.POS]: $pos[10],
           virtualisation: nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             incus: nix.thunk(() => ({
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               enable: true,
               package: package$,
               preseed: nix.thunk(() => ({
-                [nix.POS]: pos$3,
-                config: nix.thunk(() => ({ [nix.POS]: pos$2, "core.https_address": ":8443" })),
+                [nix.POS]: $pos[2],
+                config: nix.thunk(() => ({ [nix.POS]: $pos[1], "core.https_address": ":8443" })),
               })),
-              ui: nix.thunk(() => ({ [nix.POS]: pos$4, enable: true })),
+              ui: nix.thunk(() => ({ [nix.POS]: $pos[3], enable: true })),
             })),
           })),
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$8,
-            nftables: nix.thunk(() => ({ [nix.POS]: pos$7, enable: true })),
+            [nix.POS]: $pos[7],
+            nftables: nix.thunk(() => ({ [nix.POS]: $pos[6], enable: true })),
           })),
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$10,
+            [nix.POS]: $pos[9],
             systemPackages: nix.thunk(() => (() => {
               const seleniumScript = nix.thunk(() => nix.app(nix.sel(pkgs, "writers", "writePython3Bin"), "selenium-script", nix.thunk(() => ({
-                  [nix.POS]: pos$9,
+                  [nix.POS]: $pos[8],
                   libraries: nix.thunk(() => (() => {
                     const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "python3Packages")), null);
                     return [nix.thunk(() => nix.lookup(w, "selenium"))];

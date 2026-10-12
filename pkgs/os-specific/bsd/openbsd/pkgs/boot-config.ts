@@ -2,9 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/boot-config.nix", [[["platforms", 31, 8]], [["path", 9, 3], ["extraNativeBuildInputs", 11, 3], ["postPatch", 17, 3], ["buildPhase", 24, 3], ["meta", 31, 3]]]);
 const formals$1 = { args: { mkDerivation: false, lib: false, flex: false, byacc: false, compatHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/boot-config.nix", [["platforms", 31, 8]]);
-const pos$2 = nix.positions(here + "/boot-config.nix", [["path", 9, 3], ["extraNativeBuildInputs", 11, 3], ["postPatch", 17, 3], ["buildPhase", 24, 3], ["meta", 31, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,13 +13,13 @@ export default nix.lambda((args) => (() => {
   const byacc = nix.arg($, "byacc");
   const compatHook = nix.arg($, "compatHook");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       path: "usr.sbin/config",
       extraNativeBuildInputs: nix.thunk(() => [flex, byacc, compatHook]),
       postPatch: "rm $BSDSRCDIR/usr.sbin/config/ukc.c\nrm $BSDSRCDIR/usr.sbin/config/ukcutil.c\nrm $BSDSRCDIR/usr.sbin/config/cmd.c\nrm $BSDSRCDIR/usr.sbin/config/exec_elf.c\n",
       buildPhase: "for f in *.l; do flex $f; done\nfor f in *.y; do yacc -H ${f%.y}.h $f; done\nfor f in *.c; do $CC -I$TMP/include -DMAKE_BOOTSTRAP -c $f; done\n$CC *.o -o config\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       })),
     })));

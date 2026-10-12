@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 14, 5], ["hash", 15, 5]], [["description", 37, 5], ["homepage", 38, 5], ["platforms", 39, 5], ["maintainers", 40, 5], ["license", 41, 5], ["mainProgram", 42, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 18, 3], ["installPhase", 20, 3], ["meta", 36, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchurl: false, makeWrapper: false, jre: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 14, 5], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 37, 5], ["homepage", 38, 5], ["platforms", 39, 5], ["maintainers", 40, 5], ["license", 41, 5], ["mainProgram", 42, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 18, 3], ["installPhase", 20, 3], ["meta", 36, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "panoply";
       const version = "5.10.2";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://www.giss.nasa.gov/tools/panoply/download/PanoplyJ-${version}.tgz`),
           hash: "sha256-prO8DSyGrnQRJQHXwbynPOcZEQZOZGPGk0MnLC2uHNg=",
         }))));
@@ -38,7 +36,7 @@ wrapProgram "$out/bin/panoply" --prefix PATH : "${jre}/bin"
 runHook postInstall
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "netCDF, HDF and GRIB Data Viewer",
         homepage: "https://www.giss.nasa.gov/tools/panoply",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
@@ -46,7 +44,15 @@ runHook postInstall
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
         mainProgram: "panoply",
       }));
-      return { [nix.POS]: pos$3, pname, version, src, nativeBuildInputs, installPhase, meta };
+      return {
+        [nix.POS]: $pos[2],
+        pname,
+        version,
+        src,
+        nativeBuildInputs,
+        installPhase,
+        meta,
+      };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 24, 5], ["repo", 25, 5], ["rev", 28, 5], ["hash", 29, 5]], [["description", 42, 5], ["homepage", 43, 5], ["changelog", 44, 5], ["platforms", 46, 5], ["license", 47, 5], ["maintainers", 48, 5]], [["pname", 20, 11], ["version", 20, 17], ["pyproject", 21, 3], ["src", 23, 3], ["build-system", 32, 3], ["dependencies", 34, 3], ["pythonImportsCheck", 36, 3], ["doCheck", 39, 3], ["meta", 41, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, "typing-extensions": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 24, 5], ["repo", 25, 5], ["rev", 28, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 42, 5], ["homepage", 43, 5], ["changelog", 44, 5], ["platforms", 46, 5], ["license", 47, 5], ["maintainers", 48, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 20, 11], ["version", 20, 17], ["pyproject", 21, 3], ["src", 23, 3], ["build-system", 32, 3], ["dependencies", 34, 3], ["pythonImportsCheck", 36, 3], ["doCheck", 39, 3], ["meta", 41, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const pname = "torcheval";
   const version = "0.0.7";
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: pname,
       version: version,
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "meta-pytorch",
           repo: "torcheval",
           rev: "f1bc22fc67ec2c77ee519aa4af8079f4fdaa41bb",
@@ -33,7 +31,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["torcheval"]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Rich collection of performant PyTorch model metrics and tools for PyTorch model evaluations",
         homepage: "https://pytorch.org/torcheval",
         changelog: nix.thunk(() => nix.str`https://github.com/meta-pytorch/torcheval/releases/tag/${version}`),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 35, 5], ["url", 36, 5], ["sha256", 37, 5]], [["description", 141, 5], ["longDescription", 142, 5], ["homepage", 147, 5], ["license", 148, 5], ["maintainers", 149, 5], ["platforms", 150, 5]], [["pname", 24, 3], ["version", 25, 3], ["nativeBuildInputs", 27, 3], ["src", 34, 3], ["buildCommand", 40, 3], ["libPath", 126, 3], ["meta", 140, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, rpmextract: false, patchelf: false, makeWrapper: false, file: false, requireFile: false, glib: false, zlib: false, freetype: false, fontconfig: false, libxt: false, libxrender: false, libxext: false, libx11: false, libsm: false, libice: false, "libusb-compat-0_1": false, coreutils: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 35, 5], ["url", 36, 5], ["sha256", 37, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 141, 5], ["longDescription", 142, 5], ["homepage", 147, 5], ["license", 148, 5], ["maintainers", 149, 5], ["platforms", 150, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 24, 3], ["version", 25, 3], ["nativeBuildInputs", 27, 3], ["src", 34, 3], ["buildCommand", 40, 3], ["libPath", 126, 3], ["meta", 140, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,12 +27,12 @@ export default nix.lambda((args) => (() => {
   const libusb_compat_0_1 = nix.arg($, "libusb-compat-0_1");
   const coreutils = nix.arg($, "coreutils");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "diamond",
       version: "3.10",
       nativeBuildInputs: nix.thunk(() => [rpmextract, patchelf, makeWrapper, file]),
       src: nix.thunk(() => nix.app(requireFile, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           name: "diamond_3_10-base_x64-111-2-x86_64-linux.rpm",
           url: "http://www.latticesemi.com/view_document?document_id=52180",
           sha256: "ec0b370cf8bd55831eeed7c5eadcabacbd6e63ac657c20209d672119a07a5c0f",
@@ -137,7 +135,7 @@ done
           libusb_compat_0_1,
         ]))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Vendor development tools for Lattice FPGA devices",
         longDescription: "Lattice Diamond software is the leading-edge software design environment\nfor cost- sensitive, low-power Lattice FPGA architectures. It is the\nnext-generation replacement for ispLEVER.\n",
         homepage: "https://www.latticesemi.com/latticediamond",

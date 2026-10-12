@@ -2,30 +2,23 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
-const pos$1 = nix.positions(here + "/neo4j.nix", [["memorySize", 5, 20], ["diskSize", 6, 20]]);
-const pos$2 = nix.positions(here + "/neo4j.nix", [["enable", 10, 26]]);
-const pos$3 = nix.positions(here + "/neo4j.nix", [["enable", 11, 25]]);
-const pos$4 = nix.positions(here + "/neo4j.nix", [["enable", 8, 20], ["https", 10, 20], ["bolt", 11, 20]]);
-const pos$5 = nix.positions(here + "/neo4j.nix", [["neo4j", 8, 14]]);
-const pos$6 = nix.positions(here + "/neo4j.nix", [["virtualisation", 5, 5], ["services", 8, 5]]);
-const pos$7 = nix.positions(here + "/neo4j.nix", [["server", 4, 9]]);
-const pos$8 = nix.positions(here + "/neo4j.nix", [["name", 2, 3], ["nodes", 4, 3], ["testScript", 14, 3]]);
+const $pos = nix.positions(here + "/neo4j.nix", [[["memorySize", 5, 20], ["diskSize", 6, 20]], [["enable", 10, 26]], [["enable", 11, 25]], [["enable", 8, 20], ["https", 10, 20], ["bolt", 11, 20]], [["neo4j", 8, 14]], [["virtualisation", 5, 5], ["services", 8, 5]], [["server", 4, 9]], [["name", 2, 3], ["nodes", 4, 3], ["testScript", 14, 3]]]);
 
 export default nix.thunk(() => ({
-  [nix.POS]: pos$8,
+  [nix.POS]: $pos[7],
   name: "neo4j",
   nodes: nix.thunk(() => ({
-    [nix.POS]: pos$7,
+    [nix.POS]: $pos[6],
     server: nix.thunk(() => ({
-      [nix.POS]: pos$6,
-      virtualisation: nix.thunk(() => ({ [nix.POS]: pos$1, memorySize: 4096n, diskSize: 1024n })),
+      [nix.POS]: $pos[5],
+      virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[0], memorySize: 4096n, diskSize: 1024n })),
       services: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         neo4j: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           enable: true,
-          https: nix.thunk(() => ({ [nix.POS]: pos$2, enable: false })),
-          bolt: nix.thunk(() => ({ [nix.POS]: pos$3, enable: false })),
+          https: nix.thunk(() => ({ [nix.POS]: $pos[1], enable: false })),
+          bolt: nix.thunk(() => ({ [nix.POS]: $pos[2], enable: false })),
         })),
       })),
     })),

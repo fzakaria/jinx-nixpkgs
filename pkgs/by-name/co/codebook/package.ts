@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]], [["CARGO_PROFILE_RELEASE_LTO", 24, 5], ["CARGO_PROFILE_RELEASE_CODEGEN_UNITS", 25, 5]], [["updateScript", 31, 12]], [["description", 39, 5], ["homepage", 40, 5], ["changelog", 41, 5], ["license", 42, 5], ["maintainers", 43, 5], ["mainProgram", 46, 5], ["platforms", 47, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["buildAndTestSubdir", 20, 3], ["cargoHash", 21, 3], ["env", 23, 3], ["doCheck", 29, 3], ["passthru", 31, 3], ["nativeInstallCheckInputs", 33, 3], ["doInstallCheck", 36, 3], ["meta", 38, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, "nix-update-script": false, rustPlatform: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["CARGO_PROFILE_RELEASE_LTO", 24, 5], ["CARGO_PROFILE_RELEASE_CODEGEN_UNITS", 25, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 31, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 39, 5], ["homepage", 40, 5], ["changelog", 41, 5], ["license", 42, 5], ["maintainers", 43, 5], ["mainProgram", 46, 5], ["platforms", 47, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["buildAndTestSubdir", 20, 3], ["cargoHash", 21, 3], ["env", 23, 3], ["doCheck", 29, 3], ["passthru", 31, 3], ["nativeInstallCheckInputs", 33, 3], ["doInstallCheck", 36, 3], ["meta", 38, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const rustPlatform = nix.arg($, "rustPlatform");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "codebook",
       version: "0.3.43",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "blopker",
           repo: "codebook",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -30,19 +26,19 @@ export default nix.lambda((args) => (() => {
       buildAndTestSubdir: "crates/codebook-lsp",
       cargoHash: "sha256-RG2slCQ2RUBt5+6DdLxAwBm0J9kzgtIthNP8jPfRqME=",
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         CARGO_PROFILE_RELEASE_LTO: "fat",
         CARGO_PROFILE_RELEASE_CODEGEN_UNITS: "1",
       })),
       doCheck: false,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Unholy spellchecker for code",
         homepage: "https://github.com/blopker/codebook",
         changelog: nix.thunk(() => nix.str`https://github.com/blopker/codebook/releases/tag/v${nix.sel(finalAttrs, "version")}`),

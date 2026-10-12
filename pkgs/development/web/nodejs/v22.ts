@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/v22.nix", [[["openssl", 13, 13], ["python", 14, 5]], [["url", 37, 13], ["hash", 38, 13]], [["url", 49, 9], ["hash", 50, 9]], [["url", 63, 9], ["hash", 64, 9], ["excludes", 65, 9]], [["url", 68, 9], ["hash", 69, 9], ["includes", 70, 9]], [["url", 76, 9], ["hash", 77, 9]], [["version", 26, 3], ["sha256", 27, 3], ["patches", 28, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPackages: false, callPackage: false, fetchpatch2: false, openssl: false, python3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/v22.nix", [["openssl", 13, 13], ["python", 14, 5]]);
-const pos$2 = nix.positions(here + "/v22.nix", [["url", 37, 13], ["hash", 38, 13]]);
-const pos$3 = nix.positions(here + "/v22.nix", [["url", 49, 9], ["hash", 50, 9]]);
-const pos$4 = nix.positions(here + "/v22.nix", [["url", 63, 9], ["hash", 64, 9], ["excludes", 65, 9]]);
-const pos$5 = nix.positions(here + "/v22.nix", [["url", 68, 9], ["hash", 69, 9], ["includes", 70, 9]]);
-const pos$6 = nix.positions(here + "/v22.nix", [["url", 76, 9], ["hash", 77, 9]]);
-const pos$7 = nix.positions(here + "/v22.nix", [["version", 26, 3], ["sha256", 27, 3], ["patches", 28, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,21 +14,21 @@ export default nix.lambda((args) => (() => {
   const fetchpatch2 = nix.arg($, "fetchpatch2");
   const openssl = nix.arg($, "openssl");
   const python3 = nix.arg($, "python3");
-  const buildNodejs = nix.thunk(() => nix.app(callPackage, nix.path(here, "./nodejs.nix"), nix.thunk(() => ({ [nix.POS]: pos$1, openssl: openssl, python: python3 }))));
+  const buildNodejs = nix.thunk(() => nix.app(callPackage, nix.path(here, "./nodejs.nix"), nix.thunk(() => ({ [nix.POS]: $pos[0], openssl: openssl, python: python3 }))));
   const gypPatches = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "buildPlatform", "isDarwin")) ? [nix.path(here, "./gyp-patches-set-fallback-value-for-CLT-darwin.patch")] : []));
   return nix.app(buildNodejs, nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       version: "22.23.3",
       sha256: "bd97093e1a1e9243338950c174a693a64d4e0926a9c6ce259962bc58d5e96909",
       patches: nix.thunk(() => nix.concat((nix.asBool(nix.app(nix.sel(stdenv, "hostPlatform", "emulatorAvailable"), buildPackages)) ? [nix.path(here, "./configure-emulator.patch")] : [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://raw.githubusercontent.com/buildroot/buildroot/2f0c31bffdb59fb224387e35134a6d5e09a81d57/package/nodejs/nodejs-src/0003-include-obj-name-in-shared-intermediate.patch",
             hash: "sha256-3g4aS+NmmUYNOYRNc6UMJKYoaTlpP5Knt9UHegx+o0Y=",
           })))),
       ]), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(stdenv, "hostPlatform"), nix.sel(stdenv, "buildPlatform"))) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isFreeBSD")))), nix.thunk(() => [
           nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               url: "https://raw.githubusercontent.com/rubyjs/libv8-node/62476a398d4c9c1a670240a3b070d69544be3761/patch/v8-no-assert-trivially-copyable.patch",
               hash: "sha256-hSTLljmVzYmc3WAVeRq9EPYluXGXFeWVXkykufGQPVw=",
             })))),
@@ -45,20 +39,20 @@ export default nix.lambda((args) => (() => {
         nix.path(here, "./bin-sh-node-run-v22.patch"),
         nix.path(here, "./use-nix-codesign.patch"),
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             url: "https://github.com/nodejs/node/commit/eb1a49b0aec9e05cbb59f093d38f0a92818b7de1.patch?full_index=1",
             hash: "sha256-LmLbsRZKkOGXzqDQxNrK/B8TGIrsr4pXIUEv3P6C9Sc=",
             excludes: nix.thunk(() => ["deps/*"]),
           })))),
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             url: "https://github.com/nodejs/node/commit/064e2eee1ec7b17c4bc6e36befc2935eee80d0f7.patch?full_index=1",
             hash: "sha256-RcmWiTpWYwA952nNmhaiq4zw/iuVAXFnuTeuB6ltR1U=",
             includes: nix.thunk(() => ["test/fixtures/wpt/url/resources/urltestdata.json"]),
           })))),
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isStatic"))), nix.thunk(() => [
           nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-              [nix.POS]: pos$6,
+              [nix.POS]: $pos[5],
               url: "https://github.com/nodejs/node/commit/ff3a028f8bf88da70dc79e1d7b7947a8d5a8548a.patch?full_index=1",
               hash: "sha256-LJcO3RXVPnpbeuD87fiJ260m3BQXNk3+vvZkBMFUz5w=",
             })))),

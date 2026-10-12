@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]], [["all", 42, 5], ["fuzz", 48, 5], ["scipy", 49, 5], ["shape", 53, 5]], [["description", 74, 5], ["homepage", 75, 5], ["changelog", 76, 5], ["license", 77, 5], ["maintainers", 78, 5]], [["pname", 21, 3], ["version", 22, 3], ["pyproject", 23, 3], ["src", 25, 3], ["build-system", 32, 3], ["dependencies", 34, 3], ["optional-dependencies", 41, 3], ["nativeCheckInputs", 56, 3], ["pythonImportsCheck", 64, 3], ["disabledTests", 66, 3], ["meta", 73, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, geopy: false, hatchling: false, httpx: false, numpy: false, "pytest-asyncio": false, "pytest-cov-stub": false, pytestCheckHook: false, "python-dateutil": false, rapidfuzz: false, scipy: false, shapely: false, "time-machine": false, xmltodict: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["all", 42, 5], ["fuzz", 48, 5], ["scipy", 49, 5], ["shape", 53, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 74, 5], ["homepage", 75, 5], ["changelog", 76, 5], ["license", 77, 5], ["maintainers", 78, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 21, 3], ["version", 22, 3], ["pyproject", 23, 3], ["src", 25, 3], ["build-system", 32, 3], ["dependencies", 34, 3], ["optional-dependencies", 41, 3], ["nativeCheckInputs", 56, 3], ["pythonImportsCheck", 64, 3], ["disabledTests", 66, 3], ["meta", 73, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,12 +24,12 @@ export default nix.lambda((args) => (() => {
   const time_machine = nix.arg($, "time-machine");
   const xmltodict = nix.arg($, "xmltodict");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "avwx-engine",
       version: "1.9.9",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "avwx-rest",
           repo: "avwx-engine",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -41,7 +38,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [hatchling]),
       dependencies: nix.thunk(() => [geopy, httpx, python_dateutil, xmltodict]),
       "optional-dependencies": nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         all: nix.thunk(() => [numpy, rapidfuzz, scipy, shapely]),
         fuzz: nix.thunk(() => [rapidfuzz]),
         scipy: nix.thunk(() => [numpy, scipy]),
@@ -51,7 +48,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["avwx"]),
       disabledTests: nix.thunk(() => ["fetch", "test_nbm_all", "test_station_nearest_ip"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Aviation Weather parsing engine",
         homepage: "https://github.com/avwx-rest/avwx-engine",
         changelog: nix.thunk(() => nix.str`https://github.com/avwx-rest/avwx-engine/blob/${nix.sel(finalAttrs, "src", "tag")}/changelog.md`),

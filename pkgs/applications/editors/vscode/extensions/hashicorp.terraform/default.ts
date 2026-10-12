@@ -2,12 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["name", 12, 5], ["publisher", 13, 5], ["version", 14, 5], ["hash", 15, 5]], [["extraArgs", 24, 5]], [["updateScript", 23, 12]], [["license", 31, 5], ["maintainers", 32, 5]], [["mktplcRef", 11, 3], ["postInstall", 18, 3], ["passthru", 23, 3], ["meta", 30, 3]]]);
 const formals$1 = { args: { lib: false, "vscode-utils": false, jq: false, moreutils: false, "terraform-ls": false, "vscode-extension-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["name", 12, 5], ["publisher", 13, 5], ["version", 14, 5], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["extraArgs", 24, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["updateScript", 23, 12]]);
-const pos$4 = nix.positions(here + "/default.nix", [["license", 31, 5], ["maintainers", 32, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["mktplcRef", 11, 3], ["postInstall", 18, 3], ["passthru", 23, 3], ["meta", 30, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,9 +14,9 @@ export default nix.lambda((args) => (() => {
   const terraform_ls = nix.arg($, "terraform-ls");
   const vscode_extension_update_script = nix.arg($, "vscode-extension-update-script");
   return nix.app(nix.sel(vscode_utils, "buildVscodeMarketplaceExtension"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       mktplcRef: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         name: "terraform",
         publisher: "hashicorp",
         version: "2.40.0",
@@ -30,9 +26,9 @@ export default nix.lambda((args) => (() => {
 ${nix.app(nix.sel(lib, "getExe"), jq)} '.contributes.configuration[0].properties."terraform.languageServer.path".default = "${terraform_ls}/bin/terraform-ls"' package.json | ${nix.app(nix.sel(lib, "getExe'"), moreutils, "sponge")} package.json
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(vscode_extension_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             extraArgs: nix.thunk(() => [
               "--override-filename",
               "pkgs/applications/editors/vscode/extensions/hashicorp.terraform/default.nix",
@@ -40,7 +36,7 @@ ${nix.app(nix.sel(lib, "getExe"), jq)} '.contributes.configuration[0].properties
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "rhoriguchi"))]),
       })),

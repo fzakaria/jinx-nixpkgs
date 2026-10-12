@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]], [["faacSupport", 37, 51]], [["outPath", 64, 9], ["name", 65, 9]], [["homepage", 103, 5], ["description", 104, 5], ["mainProgram", 105, 5], ["longDescription", 106, 5], ["license", 111, 5], ["platforms", 112, 5], ["maintainers", 113, 5]], [["pname", 19, 3], ["version", 20, 3], ["format", 21, 3], ["src", 23, 3], ["buildInputs", 30, 3], ["nativeBuildInputs", 40, 3], ["dependencies", 46, 3], ["nativeCheckInputs", 53, 3], ["postPatch", 55, 3], ["preCheck", 61, 3], ["checkPhase", 87, 3], ["strictDeps", 94, 3], ["dontWrapGApps", 96, 3], ["preFixup", 98, 3], ["meta", 102, 3]]]);
 const formals$1 = { args: { lib: false, faacSupport: true, fetchFromGitHub: false, glib: false, python3Packages: false, gtk3: false, wrapGAppsHook3: false, "gsettings-desktop-schemas": false, intltool: false, "xvfb-run": false, "gobject-introspection": false, gst_all_1: false, "fdk-aac-encoder": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["faacSupport", 37, 51]]);
-const pos$3 = nix.positions(here + "/package.nix", [["outPath", 64, 9], ["name", 65, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 103, 5], ["description", 104, 5], ["mainProgram", 105, 5], ["longDescription", 106, 5], ["license", 111, 5], ["platforms", 112, 5], ["maintainers", 113, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["format", 21, 3], ["src", 23, 3], ["buildInputs", 30, 3], ["nativeBuildInputs", 40, 3], ["dependencies", 46, 3], ["nativeCheckInputs", 53, 3], ["postPatch", 55, 3], ["preCheck", 61, 3], ["checkPhase", 87, 3], ["strictDeps", 94, 3], ["dontWrapGApps", 96, 3], ["preFixup", 98, 3], ["meta", 102, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const version = "4.0.6";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "kassoulet",
           repo: "soundconverter",
           tag: version,
@@ -42,7 +38,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.sel(gst_all_1, "gst-plugins-base")),
         nix.thunk(() => nix.sel(gst_all_1, "gst-plugins-good")),
         nix.thunk(() => nix.sel(gst_all_1, "gst-plugins-ugly")),
-        nix.thunk(() => nix.app(nix.sel(gst_all_1, "gst-plugins-bad", "override"), nix.thunk(() => ({ [nix.POS]: pos$2, faacSupport: faacSupport })))),
+        nix.thunk(() => nix.app(nix.sel(gst_all_1, "gst-plugins-bad", "override"), nix.thunk(() => ({ [nix.POS]: $pos[1], faacSupport: faacSupport })))),
       ]);
       const nativeBuildInputs = nix.thunk(() => [intltool, wrapGAppsHook3, gobject_introspection]);
       const dependencies = nix.thunk(() => (() => {
@@ -58,7 +54,7 @@ export default nix.lambda((args) => (() => {
       const postPatch = "substituteInPlace  bin/soundconverter --replace \\\n  \"DATA_PATH = os.path.join(SOURCE_PATH, 'data')\" \\\n  \"DATA_PATH = '$out/share/soundconverter'\"\n";
       const preCheck = nix.thunk(() => (() => {
         const self = nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           outPath: "$out",
           name: nix.thunk(() => nix.str`${pname}-${version}`),
         }));
@@ -74,7 +70,7 @@ sed -i '49 a\\    @unittest.skip("Gio.file_parse_name issues")' tests/testcases/
       const dontWrapGApps = true;
       const preFixup = "makeWrapperArgs+=(\"${gappsWrapperArgs[@]}\")\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://soundconverter.org/",
         description: "Leading audio file converter for the GNOME Desktop",
         mainProgram: "soundconverter",
@@ -90,7 +86,7 @@ sed -i '49 a\\    @unittest.skip("Gio.file_parse_name issues")' tests/testcases/
         })()),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         format,

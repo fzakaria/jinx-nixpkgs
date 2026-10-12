@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 25, 5], ["hash", 26, 5]], [["ffmpeg", 69, 13], ["sshping", 69, 20], ["wireshark", 69, 28]], [["tests", 68, 12]], [["description", 73, 5], ["homepage", 74, 5], ["license", 75, 5], ["platforms", 76, 5]], [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["outputs", 29, 3], ["strictDeps", 34, 3], ["__structuredAttrs", 36, 3], ["postPatch", 38, 3], ["cmakeFlags", 43, 3], ["buildInputs", 51, 3], ["nativeBuildInputs", 58, 3], ["postFixup", 63, 3], ["passthru", 68, 3], ["meta", 72, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, "pkg-config": false, cmake: false, zlib: false, openssl: false, libsodium: false, withGssapi: true, krb5: false, ffmpeg: false, sshping: false, wireshark: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["ffmpeg", 69, 13], ["sshping", 69, 20], ["wireshark", 69, 28]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 68, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 73, 5], ["homepage", 74, 5], ["license", 75, 5], ["platforms", 76, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["outputs", 29, 3], ["strictDeps", 34, 3], ["__structuredAttrs", 36, 3], ["postPatch", 38, 3], ["cmakeFlags", 43, 3], ["buildInputs", 51, 3], ["nativeBuildInputs", 58, 3], ["postFixup", 63, 3], ["passthru", 68, 3], ["meta", 72, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const sshping = nix.arg($, "sshping");
   const wireshark = nix.arg($, "wireshark");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "libssh",
       version: "0.12.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://www.libssh.org/files/${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/libssh-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-SVYPZ32W43BqkErC3hEW4l82gJN9UeXJIZj8ukocHp8=",
         })))),
@@ -45,11 +41,11 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [cmake, pkg_config]),
       postFixup: "substituteInPlace $dev/lib/cmake/libssh/libssh-config.cmake \\\n  --replace-fail \"set(_IMPORT_PREFIX \\\"$out\\\")\" \"set(_IMPORT_PREFIX \\\"$dev\\\")\"\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$2, ffmpeg: ffmpeg, sshping: sshping, wireshark: wireshark })),
+        [nix.POS]: $pos[2],
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[1], ffmpeg: ffmpeg, sshping: sshping, wireshark: wireshark })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "SSH client library",
         homepage: "https://libssh.org",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl2Plus")),

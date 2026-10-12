@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["sha256", 26, 5]], [["description", 65, 5], ["mainProgram", 66, 5], ["homepage", 67, 5], ["license", 68, 5], ["platforms", 69, 5], ["broken", 70, 5], ["maintainers", 71, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 35, 3], ["installPhase", 48, 3], ["meta", 64, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, "pkg-config": false, libx11: false, libnotify: false, glfw: false, makeWrapper: false, libxrandr: false, libxinerama: false, libxcursor: false, gtk3: false, "ffmpeg-full": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["sha256", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 65, 5], ["mainProgram", 66, 5], ["homepage", 67, 5], ["license", 68, 5], ["platforms", 69, 5], ["broken", 70, 5], ["maintainers", 71, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 35, 3], ["installPhase", 48, 3], ["meta", 64, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const gtk3 = nix.arg($, "gtk3");
   const ffmpeg_full = nix.arg($, "ffmpeg-full");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "midivisualizer",
       version: "7.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "kosua20",
           repo: "MIDIVisualizer",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -43,7 +41,7 @@ wrapProgram $out/bin/MIDIVisualizer \\
   --prefix XDG_DATA_DIRS : "${gtk3}/share/gsettings-schemas/${nix.sel(gtk3, "name")}:$XDG_DATA_DIRS"
 `)),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Small MIDI visualizer tool, using OpenGL",
         mainProgram: "MIDIVisualizer",
         homepage: "https://github.com/kosua20/MIDIVisualizer",

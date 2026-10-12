@@ -2,60 +2,9 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/peertube.nix", [[["maintainers", 12, 10]], [["address", 20, 17], ["prefixLength", 21, 17]], [["addresses", 18, 18]], [["ipv4", 18, 13]], [["eth1", 17, 22]], [["allowedTCPPorts", 25, 20]], [["interfaces", 17, 11], ["firewall", 25, 11]], [["name", 37, 15], ["ensureDBOwnership", 38, 15]], [["enable", 32, 11], ["enableTCPIP", 33, 11], ["ensureDatabases", 34, 11], ["ensureUsers", 35, 11], ["authentication", 41, 11], ["initialScript", 44, 11]], [["enable", 50, 11], ["bind", 51, 11], ["requirePass", 52, 11], ["port", 53, 11]], [["peertube", 49, 32]], [["servers", 49, 24]], [["postgresql", 31, 18], ["redis", 49, 18]], [["networking", 16, 9], ["services", 31, 9]], [["text", 62, 45]], [["text", 65, 43]], [["text", 68, 49]], [["text", 71, 44]], [["peertube/password-init-root", 62, 15], ["peertube/secrets-peertube", 65, 15], ["peertube/password-posgressql-db", 68, 15], ["peertube/password-redis-db", 71, 15]], [["etc", 61, 13]], [["address", 81, 19], ["prefixLength", 82, 19]], [["addresses", 79, 20]], [["ipv4", 79, 15]], [["eth1", 78, 24]], [["allowedTCPPorts", 89, 22]], [["interfaces", 78, 13], ["extraHosts", 86, 13], ["firewall", 89, 13]], [["secretsFile", 100, 15]], [["host", 104, 15], ["name", 105, 15], ["user", 106, 15], ["passwordFile", 107, 15]], [["host", 111, 15], ["port", 112, 15], ["passwordFile", 113, 15]], [["hostname", 118, 17]], [["name", 121, 17]], [["listen", 117, 15], ["instance", 120, 15]], [["enable", 93, 13], ["localDomain", 94, 13], ["enableWebHttps", 95, 13], ["serviceEnvironmentFile", 97, 13], ["secrets", 99, 13], ["database", 103, 13], ["redis", 110, 13], ["settings", 116, 13]], [["peertube", 92, 20]], [["environment", 60, 11], ["networking", 77, 11], ["services", 92, 11]], [["systemPackages", 128, 21]], [["address", 136, 17], ["prefixLength", 137, 17]], [["addresses", 134, 18]], [["ipv4", 134, 13]], [["eth1", 133, 22]], [["interfaces", 133, 11], ["extraHosts", 141, 11]], [["url", 152, 23], ["registrationTokenFile", 152, 27], ["runnerName", 153, 15]], [["url", 156, 23], ["registrationTokenFile", 156, 27], ["runnerName", 157, 15], ["runnerDescription", 158, 15]], [["testServer1", 151, 13], ["testServer2", 155, 13]], [["enable", 147, 11], ["enabledJobTypes", 149, 11], ["instancesToRegister", 150, 11]], [["peertube-runner", 146, 18]], [["wantedBy", 163, 42]], [["peertube-runner", 163, 26]], [["services", 163, 17]], [["environment", 128, 9], ["networking", 132, 9], ["services", 146, 9], ["systemd", 163, 9]], [["database", 15, 7], ["server", 57, 7], ["client", 127, 7]], [["name", 11, 5], ["meta", 12, 5], ["nodes", 14, 5], ["testScript", 168, 5]]]);
 const formals$1 = { args: { lib: false, pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/peertube.nix", [["maintainers", 12, 10]]);
-const pos$2 = nix.positions(here + "/peertube.nix", [["address", 20, 17], ["prefixLength", 21, 17]]);
-const pos$3 = nix.positions(here + "/peertube.nix", [["addresses", 18, 18]]);
-const pos$4 = nix.positions(here + "/peertube.nix", [["ipv4", 18, 13]]);
-const pos$5 = nix.positions(here + "/peertube.nix", [["eth1", 17, 22]]);
-const pos$6 = nix.positions(here + "/peertube.nix", [["allowedTCPPorts", 25, 20]]);
-const pos$7 = nix.positions(here + "/peertube.nix", [["interfaces", 17, 11], ["firewall", 25, 11]]);
-const pos$8 = nix.positions(here + "/peertube.nix", [["name", 37, 15], ["ensureDBOwnership", 38, 15]]);
-const pos$9 = nix.positions(here + "/peertube.nix", [["enable", 32, 11], ["enableTCPIP", 33, 11], ["ensureDatabases", 34, 11], ["ensureUsers", 35, 11], ["authentication", 41, 11], ["initialScript", 44, 11]]);
-const pos$10 = nix.positions(here + "/peertube.nix", [["enable", 50, 11], ["bind", 51, 11], ["requirePass", 52, 11], ["port", 53, 11]]);
-const pos$11 = nix.positions(here + "/peertube.nix", [["peertube", 49, 32]]);
-const pos$12 = nix.positions(here + "/peertube.nix", [["servers", 49, 24]]);
-const pos$13 = nix.positions(here + "/peertube.nix", [["postgresql", 31, 18], ["redis", 49, 18]]);
-const pos$14 = nix.positions(here + "/peertube.nix", [["networking", 16, 9], ["services", 31, 9]]);
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$15 = nix.positions(here + "/peertube.nix", [["text", 62, 45]]);
-const pos$16 = nix.positions(here + "/peertube.nix", [["text", 65, 43]]);
-const pos$17 = nix.positions(here + "/peertube.nix", [["text", 68, 49]]);
-const pos$18 = nix.positions(here + "/peertube.nix", [["text", 71, 44]]);
-const pos$19 = nix.positions(here + "/peertube.nix", [["peertube/password-init-root", 62, 15], ["peertube/secrets-peertube", 65, 15], ["peertube/password-posgressql-db", 68, 15], ["peertube/password-redis-db", 71, 15]]);
-const pos$20 = nix.positions(here + "/peertube.nix", [["etc", 61, 13]]);
-const pos$21 = nix.positions(here + "/peertube.nix", [["address", 81, 19], ["prefixLength", 82, 19]]);
-const pos$22 = nix.positions(here + "/peertube.nix", [["addresses", 79, 20]]);
-const pos$23 = nix.positions(here + "/peertube.nix", [["ipv4", 79, 15]]);
-const pos$24 = nix.positions(here + "/peertube.nix", [["eth1", 78, 24]]);
-const pos$25 = nix.positions(here + "/peertube.nix", [["allowedTCPPorts", 89, 22]]);
-const pos$26 = nix.positions(here + "/peertube.nix", [["interfaces", 78, 13], ["extraHosts", 86, 13], ["firewall", 89, 13]]);
-const pos$27 = nix.positions(here + "/peertube.nix", [["secretsFile", 100, 15]]);
-const pos$28 = nix.positions(here + "/peertube.nix", [["host", 104, 15], ["name", 105, 15], ["user", 106, 15], ["passwordFile", 107, 15]]);
-const pos$29 = nix.positions(here + "/peertube.nix", [["host", 111, 15], ["port", 112, 15], ["passwordFile", 113, 15]]);
-const pos$30 = nix.positions(here + "/peertube.nix", [["hostname", 118, 17]]);
-const pos$31 = nix.positions(here + "/peertube.nix", [["name", 121, 17]]);
-const pos$32 = nix.positions(here + "/peertube.nix", [["listen", 117, 15], ["instance", 120, 15]]);
-const pos$33 = nix.positions(here + "/peertube.nix", [["enable", 93, 13], ["localDomain", 94, 13], ["enableWebHttps", 95, 13], ["serviceEnvironmentFile", 97, 13], ["secrets", 99, 13], ["database", 103, 13], ["redis", 110, 13], ["settings", 116, 13]]);
-const pos$34 = nix.positions(here + "/peertube.nix", [["peertube", 92, 20]]);
-const pos$35 = nix.positions(here + "/peertube.nix", [["environment", 60, 11], ["networking", 77, 11], ["services", 92, 11]]);
-const pos$36 = nix.positions(here + "/peertube.nix", [["systemPackages", 128, 21]]);
-const pos$37 = nix.positions(here + "/peertube.nix", [["address", 136, 17], ["prefixLength", 137, 17]]);
-const pos$38 = nix.positions(here + "/peertube.nix", [["addresses", 134, 18]]);
-const pos$39 = nix.positions(here + "/peertube.nix", [["ipv4", 134, 13]]);
-const pos$40 = nix.positions(here + "/peertube.nix", [["eth1", 133, 22]]);
-const pos$41 = nix.positions(here + "/peertube.nix", [["interfaces", 133, 11], ["extraHosts", 141, 11]]);
-const pos$42 = nix.positions(here + "/peertube.nix", [["url", 152, 23], ["registrationTokenFile", 152, 27], ["runnerName", 153, 15]]);
-const pos$43 = nix.positions(here + "/peertube.nix", [["url", 156, 23], ["registrationTokenFile", 156, 27], ["runnerName", 157, 15], ["runnerDescription", 158, 15]]);
-const pos$44 = nix.positions(here + "/peertube.nix", [["testServer1", 151, 13], ["testServer2", 155, 13]]);
-const pos$45 = nix.positions(here + "/peertube.nix", [["enable", 147, 11], ["enabledJobTypes", 149, 11], ["instancesToRegister", 150, 11]]);
-const pos$46 = nix.positions(here + "/peertube.nix", [["peertube-runner", 146, 18]]);
-const pos$47 = nix.positions(here + "/peertube.nix", [["wantedBy", 163, 42]]);
-const pos$48 = nix.positions(here + "/peertube.nix", [["peertube-runner", 163, 26]]);
-const pos$49 = nix.positions(here + "/peertube.nix", [["services", 163, 17]]);
-const pos$50 = nix.positions(here + "/peertube.nix", [["environment", 128, 9], ["networking", 132, 9], ["services", 146, 9], ["systemd", 163, 9]]);
-const pos$51 = nix.positions(here + "/peertube.nix", [["database", 15, 7], ["server", 57, 7], ["client", 127, 7]]);
-const pos$52 = nix.positions(here + "/peertube.nix", [["name", 11, 5], ["meta", 12, 5], ["nodes", 14, 5], ["testScript", 168, 5]]);
 
 export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../make-test-python.nix")), nix.lambda((args) => (() => {
     const $ = nix.formals(args, formals$1);
@@ -67,54 +16,54 @@ export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../ma
     const password = "zw4SqYVdcsXUfRX8aaFX";
     const registrationTokenFile = "/etc/peertube-runner-registration-token";
     return {
-      [nix.POS]: pos$52,
+      [nix.POS]: $pos[51],
       name: "peertube",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
           return nix.concat([nix.thunk(() => nix.lookup(w, "izorkin"))], nix.sel(lib, "teams", "ngi", "members"));
         })()),
       })),
       nodes: nix.thunk(() => ({
-        [nix.POS]: pos$51,
+        [nix.POS]: $pos[50],
         database: nix.thunk(() => ({
-          [nix.POS]: pos$14,
+          [nix.POS]: $pos[13],
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             interfaces: nix.thunk(() => ({
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               eth1: nix.thunk(() => ({
-                [nix.POS]: pos$4,
+                [nix.POS]: $pos[3],
                 ipv4: nix.thunk(() => ({
-                  [nix.POS]: pos$3,
+                  [nix.POS]: $pos[2],
                   addresses: nix.thunk(() => [
-                    nix.thunk(() => ({ [nix.POS]: pos$2, address: "192.168.2.10", prefixLength: 24n })),
+                    nix.thunk(() => ({ [nix.POS]: $pos[1], address: "192.168.2.10", prefixLength: 24n })),
                   ]),
                 })),
               })),
             })),
-            firewall: nix.thunk(() => ({ [nix.POS]: pos$6, allowedTCPPorts: nix.thunk(() => [5432n, 31638n]) })),
+            firewall: nix.thunk(() => ({ [nix.POS]: $pos[5], allowedTCPPorts: nix.thunk(() => [5432n, 31638n]) })),
           })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$13,
+            [nix.POS]: $pos[12],
             postgresql: nix.thunk(() => ({
-              [nix.POS]: pos$9,
+              [nix.POS]: $pos[8],
               enable: true,
               enableTCPIP: true,
               ensureDatabases: nix.thunk(() => ["peertube_test"]),
               ensureUsers: nix.thunk(() => [
-                nix.thunk(() => ({ [nix.POS]: pos$8, name: "peertube_test", ensureDBOwnership: true })),
+                nix.thunk(() => ({ [nix.POS]: $pos[7], name: "peertube_test", ensureDBOwnership: true })),
               ]),
               authentication: "hostnossl peertube_test peertube_test 192.168.2.11/32 md5\n",
               initialScript: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "postgresql_init.sql", "CREATE ROLE peertube_test LOGIN PASSWORD '0gUN0C1mgST6czvjZ8T9';\n")),
             })),
             redis: nix.thunk(() => ({
-              [nix.POS]: pos$12,
+              [nix.POS]: $pos[11],
               servers: nix.thunk(() => ({
-                [nix.POS]: pos$11,
+                [nix.POS]: $pos[10],
                 peertube: nix.thunk(() => ({
-                  [nix.POS]: pos$10,
+                  [nix.POS]: $pos[9],
                   enable: true,
                   bind: "0.0.0.0",
                   requirePass: "turrQfaQwnanGbcsdhxy",
@@ -128,92 +77,92 @@ export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../ma
           const $_1 = nix.formals(args_1, formals$2);
           const pkgs_1 = nix.arg($_1, "pkgs");
           return {
-            [nix.POS]: pos$35,
+            [nix.POS]: $pos[34],
             environment: nix.thunk(() => ({
-              [nix.POS]: pos$20,
+              [nix.POS]: $pos[19],
               etc: nix.thunk(() => ({
-                [nix.POS]: pos$19,
+                [nix.POS]: $pos[18],
                 "peertube/password-init-root": nix.thunk(() => ({
-                  [nix.POS]: pos$15,
+                  [nix.POS]: $pos[14],
                   text: nix.thunk(() => nix.str`PT_INITIAL_ROOT_PASSWORD=${password}
 `),
                 })),
                 "peertube/secrets-peertube": nix.thunk(() => ({
-                  [nix.POS]: pos$16,
+                  [nix.POS]: $pos[15],
                   text: "063d9c60d519597acef26003d5ecc32729083965d09181ef3949200cbe5f09ee\n",
                 })),
-                "peertube/password-posgressql-db": nix.thunk(() => ({ [nix.POS]: pos$17, text: "0gUN0C1mgST6czvjZ8T9\n" })),
-                "peertube/password-redis-db": nix.thunk(() => ({ [nix.POS]: pos$18, text: "turrQfaQwnanGbcsdhxy\n" })),
+                "peertube/password-posgressql-db": nix.thunk(() => ({ [nix.POS]: $pos[16], text: "0gUN0C1mgST6czvjZ8T9\n" })),
+                "peertube/password-redis-db": nix.thunk(() => ({ [nix.POS]: $pos[17], text: "turrQfaQwnanGbcsdhxy\n" })),
               })),
             })),
             networking: nix.thunk(() => ({
-              [nix.POS]: pos$26,
+              [nix.POS]: $pos[25],
               interfaces: nix.thunk(() => ({
-                [nix.POS]: pos$24,
+                [nix.POS]: $pos[23],
                 eth1: nix.thunk(() => ({
-                  [nix.POS]: pos$23,
+                  [nix.POS]: $pos[22],
                   ipv4: nix.thunk(() => ({
-                    [nix.POS]: pos$22,
+                    [nix.POS]: $pos[21],
                     addresses: nix.thunk(() => [
-                      nix.thunk(() => ({ [nix.POS]: pos$21, address: "192.168.2.11", prefixLength: 24n })),
+                      nix.thunk(() => ({ [nix.POS]: $pos[20], address: "192.168.2.11", prefixLength: 24n })),
                     ]),
                   })),
                 })),
               })),
               extraHosts: nix.thunk(() => nix.str`192.168.2.11 ${domain}
 `),
-              firewall: nix.thunk(() => ({ [nix.POS]: pos$25, allowedTCPPorts: nix.thunk(() => [port]) })),
+              firewall: nix.thunk(() => ({ [nix.POS]: $pos[24], allowedTCPPorts: nix.thunk(() => [port]) })),
             })),
             services: nix.thunk(() => ({
-              [nix.POS]: pos$34,
+              [nix.POS]: $pos[33],
               peertube: nix.thunk(() => ({
-                [nix.POS]: pos$33,
+                [nix.POS]: $pos[32],
                 enable: true,
                 localDomain: domain,
                 enableWebHttps: false,
                 serviceEnvironmentFile: "/etc/peertube/password-init-root",
-                secrets: nix.thunk(() => ({ [nix.POS]: pos$27, secretsFile: "/etc/peertube/secrets-peertube" })),
+                secrets: nix.thunk(() => ({ [nix.POS]: $pos[26], secretsFile: "/etc/peertube/secrets-peertube" })),
                 database: nix.thunk(() => ({
-                  [nix.POS]: pos$28,
+                  [nix.POS]: $pos[27],
                   host: "192.168.2.10",
                   name: "peertube_test",
                   user: "peertube_test",
                   passwordFile: "/etc/peertube/password-posgressql-db",
                 })),
                 redis: nix.thunk(() => ({
-                  [nix.POS]: pos$29,
+                  [nix.POS]: $pos[28],
                   host: "192.168.2.10",
                   port: 31638n,
                   passwordFile: "/etc/peertube/password-redis-db",
                 })),
                 settings: nix.thunk(() => ({
-                  [nix.POS]: pos$32,
-                  listen: nix.thunk(() => ({ [nix.POS]: pos$30, hostname: "0.0.0.0" })),
-                  instance: nix.thunk(() => ({ [nix.POS]: pos$31, name: "PeerTube Test Server" })),
+                  [nix.POS]: $pos[31],
+                  listen: nix.thunk(() => ({ [nix.POS]: $pos[29], hostname: "0.0.0.0" })),
+                  instance: nix.thunk(() => ({ [nix.POS]: $pos[30], name: "PeerTube Test Server" })),
                 })),
               })),
             })),
           };
         })(), formals$2),
         client: nix.thunk(() => ({
-          [nix.POS]: pos$50,
+          [nix.POS]: $pos[49],
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$36,
+            [nix.POS]: $pos[35],
             systemPackages: nix.thunk(() => [
               nix.thunk(() => nix.sel(pkgs, "jq")),
               nix.thunk(() => nix.sel(pkgs, "peertube", "cli")),
             ]),
           })),
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$41,
+            [nix.POS]: $pos[40],
             interfaces: nix.thunk(() => ({
-              [nix.POS]: pos$40,
+              [nix.POS]: $pos[39],
               eth1: nix.thunk(() => ({
-                [nix.POS]: pos$39,
+                [nix.POS]: $pos[38],
                 ipv4: nix.thunk(() => ({
-                  [nix.POS]: pos$38,
+                  [nix.POS]: $pos[37],
                   addresses: nix.thunk(() => [
-                    nix.thunk(() => ({ [nix.POS]: pos$37, address: "192.168.2.12", prefixLength: 24n })),
+                    nix.thunk(() => ({ [nix.POS]: $pos[36], address: "192.168.2.12", prefixLength: 24n })),
                   ]),
                 })),
               })),
@@ -222,21 +171,21 @@ export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../ma
 `),
           })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$46,
+            [nix.POS]: $pos[45],
             "peertube-runner": nix.thunk(() => ({
-              [nix.POS]: pos$45,
+              [nix.POS]: $pos[44],
               enable: true,
               enabledJobTypes: nix.thunk(() => ["video-studio-transcoding"]),
               instancesToRegister: nix.thunk(() => ({
-                [nix.POS]: pos$44,
+                [nix.POS]: $pos[43],
                 testServer1: nix.thunk(() => ({
-                  [nix.POS]: pos$42,
+                  [nix.POS]: $pos[41],
                   url: url,
                   registrationTokenFile: registrationTokenFile,
                   runnerName: "I'm a test!!!",
                 })),
                 testServer2: nix.thunk(() => ({
-                  [nix.POS]: pos$43,
+                  [nix.POS]: $pos[42],
                   url: url,
                   registrationTokenFile: registrationTokenFile,
                   runnerName: "I'm also a test...",
@@ -246,11 +195,11 @@ export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../ma
             })),
           })),
           systemd: nix.thunk(() => ({
-            [nix.POS]: pos$49,
+            [nix.POS]: $pos[48],
             services: nix.thunk(() => ({
-              [nix.POS]: pos$48,
+              [nix.POS]: $pos[47],
               "peertube-runner": nix.thunk(() => ({
-                [nix.POS]: pos$47,
+                [nix.POS]: $pos[46],
                 wantedBy: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), [])),
               })),
             })),

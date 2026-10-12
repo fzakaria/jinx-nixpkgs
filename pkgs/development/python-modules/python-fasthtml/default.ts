@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 38, 5], ["repo", 39, 5], ["tag", 40, 5], ["hash", 41, 5]], [["dev", 62, 5]], [["description", 85, 5], ["homepage", 86, 5], ["changelog", 87, 5], ["license", 88, 5], ["maintainers", 89, 5]], [["pname", 33, 3], ["version", 34, 3], ["pyproject", 35, 3], ["src", 37, 3], ["build-system", 44, 3], ["dependencies", 48, 3], ["optional-dependencies", 61, 3], ["nativeCheckInputs", 71, 3], ["disabledTests", 75, 3], ["pythonImportsCheck", 80, 3], ["meta", 84, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, beautifulsoup4: false, fastcore: false, fastlite: false, httpx: false, itsdangerous: false, oauthlib: false, "python-dateutil": false, "python-multipart": false, starlette: false, uvicorn: false, ipython: false, lxml: false, monsterui: true, pyjwt: false, "pysymbol-llm": true, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 38, 5], ["repo", 39, 5], ["tag", 40, 5], ["hash", 41, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["dev", 62, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 85, 5], ["homepage", 86, 5], ["changelog", 87, 5], ["license", 88, 5], ["maintainers", 89, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 33, 3], ["version", 34, 3], ["pyproject", 35, 3], ["src", 37, 3], ["build-system", 44, 3], ["dependencies", 48, 3], ["optional-dependencies", 61, 3], ["nativeCheckInputs", 71, 3], ["disabledTests", 75, 3], ["pythonImportsCheck", 80, 3], ["meta", 84, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,12 +28,12 @@ export default nix.lambda((args) => (() => {
   const pysymbol_llm = nix.argOr($, "pysymbol-llm", () => null);
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "python-fasthtml",
       version: "0.13.3",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "AnswerDotAI",
           repo: "fasthtml",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -56,14 +53,14 @@ export default nix.lambda((args) => (() => {
         uvicorn,
       ]),
       "optional-dependencies": nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         dev: nix.thunk(() => [ipython, lxml, monsterui, pyjwt, pysymbol_llm]),
       })),
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
       disabledTests: nix.thunk(() => ["test_get_toaster_with_typehint"]),
       pythonImportsCheck: nix.thunk(() => ["fasthtml"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "The fastest way to create an HTML app",
         homepage: "https://github.com/AnswerDotAI/fasthtml",
         changelog: nix.thunk(() => nix.str`https://github.com/AnswerDotAI/fasthtml/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

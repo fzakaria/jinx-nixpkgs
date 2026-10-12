@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 36, 5], ["repo", 37, 5], ["tag", 38, 5], ["hash", 39, 5]], [["updateScript", 109, 12]], [["homepage", 112, 5], ["changelog", 113, 5], ["description", 114, 5], ["license", 115, 5], ["maintainers", 116, 5], ["mainProgram", 121, 5]], [["version", 23, 11], ["pname", 24, 3], ["outputs", 25, 3], ["__structuredAttrs", 33, 3], ["src", 35, 3], ["cargoHash", 42, 3], ["nativeBuildInputs", 44, 3], ["buildInputs", 47, 3], ["preCheck", 49, 3], ["cargoBuildFlags", 72, 3], ["checkFlags", 77, 3], ["postInstall", 86, 3], ["setupHook", 107, 3], ["passthru", 109, 3], ["meta", 111, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, rustPlatform: false, bashInteractive: false, coreutils: false, installShellFiles: false, libiconv: false, mdbook: false, "nix-update-script": false, installShellCompletions: true, installManPages: true, withDocumentation: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 36, 5], ["repo", 37, 5], ["tag", 38, 5], ["hash", 39, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 109, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 112, 5], ["changelog", 113, 5], ["description", 114, 5], ["license", 115, 5], ["maintainers", 116, 5], ["mainProgram", 121, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["version", 23, 11], ["pname", 24, 3], ["outputs", 25, 3], ["__structuredAttrs", 33, 3], ["src", 35, 3], ["cargoHash", 42, 3], ["nativeBuildInputs", 44, 3], ["buildInputs", 47, 3], ["preCheck", 49, 3], ["cargoBuildFlags", 72, 3], ["checkFlags", 77, 3], ["postInstall", 86, 3], ["setupHook", 107, 3], ["passthru", 109, 3], ["meta", 111, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,13 +22,13 @@ export default nix.lambda((args) => (() => {
   const withDocumentation = nix.argOr($, "withDocumentation", () => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform"))));
   const version = "1.58.0";
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       version: version,
       pname: "just",
       outputs: nix.thunk(() => nix.concat(["out"], nix.concat(nix.app(nix.sel(lib, "optionals"), installManPages, nix.thunk(() => ["man"])), nix.app(nix.sel(lib, "optionals"), withDocumentation, nix.thunk(() => ["doc"]))))),
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "casey",
           repo: "just",
           tag: version,
@@ -73,11 +70,11 @@ patchShebangs tests
       postInstall: nix.thunk(() => nix.add(nix.add(nix.app(nix.sel(lib, "optionalString"), withDocumentation, "$out/bin/generate-book\nrm $out/bin/generate-book\n# No linkcheck in sandbox\necho 'optional = true' >> book/en/book.toml\nmdbook build book/en\nmkdir -p $doc/share/doc/$name/html\nmv ./book/en/build/* $doc/share/doc/$name/html\n"), nix.app(nix.sel(lib, "optionalString"), installManPages, "$out/bin/just --man > ./just.1\ninstallManPage ./just.1\n")), nix.app(nix.sel(lib, "optionalString"), installShellCompletions, "installShellCompletion --cmd just \\\n  --bash <($out/bin/just --completions bash) \\\n  --fish <($out/bin/just --completions fish) \\\n  --zsh <($out/bin/just --completions zsh)\n"))),
       setupHook: nix.path(here, "./setup-hook.sh"),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/casey/just",
         changelog: nix.thunk(() => nix.str`https://github.com/casey/just/blob/${version}/CHANGELOG.md`),
         description: "Handy way to save and run project-specific commands",

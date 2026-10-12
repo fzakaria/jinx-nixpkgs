@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 34, 5], ["repo", 35, 5], ["tag", 36, 5], ["hash", 37, 5]], [["updateScript", 71, 12]], [["homepage", 74, 5], ["license", 75, 5], ["description", 76, 5], ["changelog", 77, 5], ["maintainers", 78, 5], ["platforms", 79, 5]], [["pname", 29, 3], ["version", 30, 3], ["pyproject", 31, 3], ["src", 33, 3], ["build-system", 40, 3], ["pythonRelaxDeps", 45, 3], ["dependencies", 50, 3], ["passthru", 71, 3], ["meta", 73, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, "setuptools-scm": false, numpy: false, pillow: false, pyyaml: false, chardet: false, colorlog: false, filelock: false, pandas: false, prettytable: false, "py-cpuinfo": false, pydantic: false, requests: false, "ruamel-yaml": false, "typing-extensions": false, ujson: false, gputil: false, "huggingface-hub": false, modelscope: false, "aistudio-sdk": false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 34, 5], ["repo", 35, 5], ["tag", 36, 5], ["hash", 37, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["updateScript", 71, 12]]);
-const pos$3 = nix.positions(here + "/default.nix", [["homepage", 74, 5], ["license", 75, 5], ["description", 76, 5], ["changelog", 77, 5], ["maintainers", 78, 5], ["platforms", 79, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 29, 3], ["version", 30, 3], ["pyproject", 31, 3], ["src", 33, 3], ["build-system", 40, 3], ["pythonRelaxDeps", 45, 3], ["dependencies", 50, 3], ["passthru", 71, 3], ["meta", 73, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -35,12 +32,12 @@ export default nix.lambda((args) => (() => {
   const aistudio_sdk = nix.arg($, "aistudio-sdk");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "paddlex",
       version: "3.7.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "PaddlePaddle",
           repo: "PaddleX",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -69,11 +66,11 @@ export default nix.lambda((args) => (() => {
         aistudio_sdk,
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/PaddlePaddle/PaddleX",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
         description: "All-in-One Development Tool based on PaddlePaddle",

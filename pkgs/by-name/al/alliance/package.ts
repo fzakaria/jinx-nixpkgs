@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["hash", 26, 5]], [["NIX_CFLAGS_COMPILE", 51, 7]], [["tagPrefix", 72, 48]], [["updateScript", 72, 12]], [["description", 75, 5], ["homepage", 76, 5], ["license", 77, 5], ["maintainers", 78, 5], ["platforms", 79, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["sourceRoot", 29, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 37, 3], ["configureFlags", 46, 3], ["env", 51, 3], ["postPatch", 53, 3], ["postInstall", 64, 3], ["passthru", 72, 3], ["meta", 74, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, xorgproto: false, motif: false, libx11: false, libxt: false, libxpm: false, bison: false, flex: false, automake: false, autoconf: false, libtool: false, unstableGitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 51, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tagPrefix", 72, 48]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 72, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 75, 5], ["homepage", 76, 5], ["license", 77, 5], ["maintainers", 78, 5], ["platforms", 79, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["sourceRoot", 29, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 37, 3], ["configureFlags", 46, 3], ["env", 51, 3], ["postPatch", 53, 3], ["postInstall", 64, 3], ["passthru", 72, 3], ["meta", 74, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const libtool = nix.arg($, "libtool");
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "alliance",
       version: "5.1.1-unstable-2025-02-24",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "lip6",
           repo: "alliance",
           rev: "a8502d32df0a4ad1bd29ab784c4332319669ecd2",
@@ -42,17 +37,17 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [xorgproto, motif, libx11, libxt, libxpm, bison]),
       configureFlags: nix.thunk(() => ["--enable-alc-shared"]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: "-std=gnu99 -Wno-incompatible-pointer-types",
       })),
       postPatch: "# texlive for docs seems extreme\nsubstituteInPlace autostuff \\\n  --replace \"$newdirs documentation\" \"$newdirs\"\n\nsubstituteInPlace sea/src/DEF_grammar_lex.l --replace \"ifndef FLEX_BETA\" \\\n  \"if (YY_FLEX_MAJOR_VERSION <= 2) && (YY_FLEX_MINOR_VERSION < 6)\"\n\n./autostuff\n",
       postInstall: "sed -i \"s|ALLIANCE_TOP|$out|\" distrib/*.desktop\nmkdir -p $out/share/applications\ncp -p distrib/*.desktop $out/share/applications/\nmkdir -p $out/icons/hicolor/48x48/apps/\ncp -p distrib/*.png $out/icons/hicolor/48x48/apps/\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: pos$3, tagPrefix: "v" })))),
+        [nix.POS]: $pos[3],
+        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[2], tagPrefix: "v" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "(deprecated) Complete set of free CAD tools and portable libraries for VLSI design",
         homepage: "http://coriolis.lip6.fr/",
         license: nix.thunk(() => (() => {

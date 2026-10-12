@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]], [["sage", 48, 13]], [["tests", 47, 12]], [["description", 52, 5], ["mainProgram", 53, 5], ["homepage", 54, 5], ["teams", 55, 5], ["license", 56, 5]], [["pname", 14, 3], ["version", 15, 3], ["pyproject", 16, 3], ["src", 18, 3], ["build-system", 25, 3], ["dontUseCmakeConfigure", 31, 3], ["enableParallelBuilding", 32, 3], ["hardeningDisable", 36, 3], ["doCheck", 39, 3], ["checkTarget", 40, 3], ["preCheck", 42, 3], ["passthru", 47, 3], ["meta", 51, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, buildPythonPackage: false, cython: false, "meson-python": false, ninja: false, sage: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["sage", 48, 13]]);
-const pos$3 = nix.positions(here + "/default.nix", [["tests", 47, 12]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 52, 5], ["mainProgram", 53, 5], ["homepage", 54, 5], ["teams", 55, 5], ["license", 56, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 14, 3], ["version", 15, 3], ["pyproject", 16, 3], ["src", 18, 3], ["build-system", 25, 3], ["dontUseCmakeConfigure", 31, 3], ["enableParallelBuilding", 32, 3], ["hardeningDisable", 36, 3], ["doCheck", 39, 3], ["checkTarget", 40, 3], ["preCheck", 42, 3], ["passthru", 47, 3], ["meta", 51, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.12.6";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "sagemath",
           repo: "cysignals",
           tag: version,
@@ -36,9 +32,12 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const checkTarget = "check-install";
       const preCheck = "# Make sure cysignals-CSI is in PATH\nexport PATH=\"$out/bin:$PATH\"\n";
-      const passthru = nix.thunk(() => ({ [nix.POS]: pos$3, tests: nix.thunk(() => ({ [nix.POS]: pos$2, sage: sage })) }));
+      const passthru = nix.thunk(() => ({
+        [nix.POS]: $pos[2],
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[1], sage: sage })),
+      }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Interrupt and signal handling for Cython",
         mainProgram: "cysignals-CSI",
         homepage: "https://github.com/sagemath/cysignals/",
@@ -46,7 +45,7 @@ export default nix.lambda((args) => (() => {
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3Plus")),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         pyproject,

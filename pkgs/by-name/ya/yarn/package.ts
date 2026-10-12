@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]], [["url", 25, 5], ["sha256", 26, 5]], [["package", 42, 9]], [["version", 40, 11]], [["url", 47, 7], ["rev-prefix", 48, 7]], [["tests", 40, 5], ["updateScript", 46, 5]], [["description", 53, 5], ["homepage", 54, 5], ["changelog", 55, 5], ["license", 56, 5], ["maintainers", 57, 5], ["platforms", 60, 5], ["mainProgram", 61, 5]], [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["buildInputs", 29, 3], ["installPhase", 31, 3], ["passthru", 39, 3], ["meta", 52, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, fetchzip: false, nodejs: false, stdenvNoCC: false, testers: false, gitUpdater: false, withNode: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 25, 5], ["sha256", 26, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["package", 42, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["version", 40, 11]]);
-const pos$5 = nix.positions(here + "/package.nix", [["url", 47, 7], ["rev-prefix", 48, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["tests", 40, 5], ["updateScript", 46, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["description", 53, 5], ["homepage", 54, 5], ["changelog", 55, 5], ["license", 56, 5], ["maintainers", 57, 5], ["platforms", 60, 5], ["mainProgram", 61, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["buildInputs", 29, 3], ["installPhase", 31, 3], ["passthru", 39, 3], ["meta", 52, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,18 +16,18 @@ export default nix.lambda((args) => (() => {
   const gitUpdater = nix.arg($, "gitUpdater");
   const withNode = nix.argOr($, "withNode", () => true);
   const completion = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "dsifford",
       repo: "yarn-completion",
       rev: "v0.17.0",
       hash: "sha256-z7KPXeYPPRuaEPxgY6YqsLt9n8cSsW3n2FhOzVde1HU=",
     }))));
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "yarn",
       version: "1.22.22",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: nix.thunk(() => nix.str`https://github.com/yarnpkg/yarn/releases/download/v${nix.sel(finalAttrs, "version")}/yarn-v${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "sha256-kFa+kmnBerTB7fY/IvfAFy/4LWvrl9lrRHMOUdOZ+Wg=",
         })))),
@@ -46,22 +39,22 @@ ln -s $out/libexec/yarn/bin/yarn.js $out/bin/yarnpkg
 ln -s ${completion}/yarn-completion.bash $out/share/bash-completion/completions/yarn.bash
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           version: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), withNode, nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-                [nix.POS]: pos$3,
+                [nix.POS]: $pos[2],
                 package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               })))))),
         })),
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             url: "https://github.com/yarnpkg/yarn.git",
             "rev-prefix": "v",
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "Fast, reliable, and secure dependency management for javascript",
         homepage: "https://classic.yarnpkg.com/",
         changelog: nix.thunk(() => nix.str`https://github.com/yarnpkg/yarn/blob/v${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

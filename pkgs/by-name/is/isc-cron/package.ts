@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 16, 5], ["hash", 17, 5]], [["sendmailPath", 22, 15], ["viPath", 23, 7], ["defPath", 24, 7]], [["url", 34, 7], ["hash", 35, 7]], [["homepage", 67, 5], ["description", 68, 5], ["license", 69, 5], ["mainProgram", 70, 5], ["maintainers", 71, 5], ["platforms", 72, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["patches", 20, 3], ["makeFlags", 39, 3], ["unpackCmd", 44, 3], ["postPatch", 54, 3], ["preInstall", 62, 3], ["meta", 66, 3]]]);
 const formals$1 = { args: { lib: false, fetchpatch: false, fetchurl: false, stdenv: false, replaceVars: false, vim: false, sendmailPath: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["sendmailPath", 22, 15], ["viPath", 23, 7], ["defPath", 24, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 34, 7], ["hash", 35, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 67, 5], ["description", 68, 5], ["license", 69, 5], ["mainProgram", 70, 5], ["maintainers", 71, 5], ["platforms", 72, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["patches", 20, 3], ["makeFlags", 39, 3], ["unpackCmd", 44, 3], ["postPatch", 54, 3], ["preInstall", 62, 3], ["meta", 66, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,17 +15,17 @@ export default nix.lambda((args) => (() => {
   const vim = nix.arg($, "vim");
   const sendmailPath = nix.argOr($, "sendmailPath", () => "/usr/sbin/sendmail");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "cron",
       version: "4.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`ftp://ftp.isc.org/isc/cron/cron_${nix.sel(finalAttrs, "version")}.shar`),
           hash: "sha256-xEWDd1b7mI8slduNxV15N9FLygzfopLegTIsolVuw5o=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./0000-nixpkgs-specific.diff"), nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             sendmailPath: sendmailPath,
             viPath: nix.thunk(() => nix.app(nix.sel(lib, "getExe'"), vim, "vim")),
             defPath: nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), ":", nix.thunk(() => [
@@ -41,7 +37,7 @@ export default nix.lambda((args) => (() => {
               ]))),
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: "https://github.com/vixie/cron/commit/3ce0c3acdf086a82638818635961c70cba2b6ba7.patch",
             hash: "sha256-d1vN3TGAAOMlWpMZKnHU/RlZ5pBOl3+IXjZ4UALVqLI=",
           })))),
@@ -54,7 +50,7 @@ export default nix.lambda((args) => (() => {
       postPatch: "substituteInPlace Makefile \\\n  --replace ' -o root' ' ' \\\n  --replace 111 755 \\\n  --replace 4755 0755 \\\n  --replace ' -s cron' ' cron'\n",
       preInstall: "mkdir -p $out/{{,s}bin,share/man/man{1,5,8}}\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://ftp.isc.org/isc/cron/",
         description: "Daemon for running commands at specific times",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd0")),

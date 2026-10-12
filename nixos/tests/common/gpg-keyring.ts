@@ -2,14 +2,14 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/gpg-keyring.nix", [[["nativeBuildInputs", 3, 33]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/gpg-keyring.nix", [["nativeBuildInputs", 3, 33]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   return nix.app(nix.sel(pkgs, "runCommand"), "gpg-keyring", nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "gnupg"))]),
     })), "mkdir -p $out\nexport GNUPGHOME=$out\ncat > foo <<EOF\n  %echo Generating a basic OpenPGP key\n  %no-protection\n  Key-Type: EdDSA\n  Key-Curve: ed25519\n  Name-Real: Bob Foobar\n  Name-Email: bob@foo.bar\n  Expire-Date: 0\n  # Do a commit here, so that we can later print \"done\"\n  %commit\n  %echo done\nEOF\ngpg --batch --generate-key foo\nrm $out/S.gpg-agent $out/S.gpg-agent.*\ngpg --export bob@foo.bar -a > $out/pubkey.gpg\n");
 })(), formals$1);

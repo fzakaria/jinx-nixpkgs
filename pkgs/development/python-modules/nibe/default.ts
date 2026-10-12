@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]], [["convert", 44, 5], ["cli", 48, 5]], [["description", 61, 5], ["homepage", 62, 5], ["changelog", 63, 5], ["license", 64, 5], ["maintainers", 65, 5]], [["pname", 20, 3], ["version", 21, 3], ["pyproject", 22, 3], ["src", 24, 3], ["pythonRelaxDeps", 31, 3], ["build-system", 33, 3], ["dependencies", 35, 3], ["optional-dependencies", 43, 3], ["nativeCheckInputs", 51, 3], ["pythonImportsCheck", 58, 3], ["meta", 60, 3]]]);
 const formals$1 = { args: { lib: false, aresponses: false, "async-modbus": false, "async-timeout": false, asyncclick: false, buildPythonPackage: false, construct: false, exceptiongroup: false, fetchFromGitHub: false, pandas: false, "pytest-asyncio": false, pytestCheckHook: false, "python-slugify": false, setuptools: false, tenacity: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["convert", 44, 5], ["cli", 48, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 61, 5], ["homepage", 62, 5], ["changelog", 63, 5], ["license", 64, 5], ["maintainers", 65, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 20, 3], ["version", 21, 3], ["pyproject", 22, 3], ["src", 24, 3], ["pythonRelaxDeps", 31, 3], ["build-system", 33, 3], ["dependencies", 35, 3], ["optional-dependencies", 43, 3], ["nativeCheckInputs", 51, 3], ["pythonImportsCheck", 58, 3], ["meta", 60, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,12 +23,12 @@ export default nix.lambda((args) => (() => {
   const setuptools = nix.arg($, "setuptools");
   const tenacity = nix.arg($, "tenacity");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "nibe",
       version: "2.25.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "yozik04",
           repo: "nibe",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -41,14 +38,14 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [setuptools]),
       dependencies: nix.thunk(() => [async_modbus, async_timeout, construct, exceptiongroup, tenacity]),
       "optional-dependencies": nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         convert: nix.thunk(() => [pandas, python_slugify]),
         cli: nix.thunk(() => [asyncclick]),
       })),
       nativeCheckInputs: nix.thunk(() => nix.concat([aresponses, pytest_asyncio, pytestCheckHook], nix.app(nix.sel(lib, "flatten"), nix.thunk(() => nix.builtins.attrValues(nix.thunk(() => nix.sel(finalAttrs, "passthru", "optional-dependencies"))))))),
       pythonImportsCheck: nix.thunk(() => ["nibe"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Library for the communication with Nibe heatpumps",
         homepage: "https://github.com/yozik04/nibe",
         changelog: nix.thunk(() => nix.str`https://github.com/yozik04/nibe/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

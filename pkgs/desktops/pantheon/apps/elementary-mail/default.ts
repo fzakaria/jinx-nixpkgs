@@ -2,12 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 31, 5], ["repo", 32, 5], ["tag", 33, 5], ["hash", 34, 5]], [["url", 41, 7], ["hash", 42, 7]], [["updateScript", 77, 12]], [["description", 80, 5], ["homepage", 81, 5], ["changelog", 82, 5], ["license", 83, 5], ["platforms", 84, 5], ["maintainers", 85, 5], ["teams", 86, 5], ["mainProgram", 87, 5]], [["pname", 27, 3], ["version", 28, 3], ["src", 30, 3], ["patches", 37, 3], ["nativeBuildInputs", 46, 3], ["buildInputs", 55, 3], ["preFixup", 68, 3], ["passthru", 77, 3], ["meta", 79, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch: false, "nix-update-script": false, "pkg-config": false, meson: false, ninja: false, vala: false, gtk3: false, libxml2: false, libhandy: false, "libportal-gtk3": false, webkitgtk_4_1: false, "elementary-gtk-theme": false, "elementary-icon-theme": false, folks: false, "glib-networking": false, granite: false, "evolution-data-server": false, wrapGAppsHook3: false, libgee: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 31, 5], ["repo", 32, 5], ["tag", 33, 5], ["hash", 34, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["url", 41, 7], ["hash", 42, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["updateScript", 77, 12]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 80, 5], ["homepage", 81, 5], ["changelog", 82, 5], ["license", 83, 5], ["platforms", 84, 5], ["maintainers", 85, 5], ["teams", 86, 5], ["mainProgram", 87, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 27, 3], ["version", 28, 3], ["src", 30, 3], ["patches", 37, 3], ["nativeBuildInputs", 46, 3], ["buildInputs", 55, 3], ["preFixup", 68, 3], ["passthru", 77, 3], ["meta", 79, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,11 +30,11 @@ export default nix.lambda((args) => (() => {
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   const libgee = nix.arg($, "libgee");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "elementary-mail",
       version: "8.0.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "elementary",
           repo: "mail",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -46,7 +42,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/elementary/mail/commit/8cb5bb87ceca9000c2a556bafeb059b9f1cbf2f1.patch",
             hash: "sha256-NFZVvKJyPTV+lRcefTIgm2jOmCfrY+TlawDYzGTBd7Y=",
           })))),
@@ -72,11 +68,11 @@ export default nix.lambda((args) => (() => {
 )
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Mail app designed for elementary OS",
         homepage: "https://github.com/elementary/mail",
         changelog: nix.thunk(() => nix.str`https://github.com/elementary/mail/releases/tag/${nix.sel(finalAttrs, "version")}`),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 14, 5], ["tag", 15, 5], ["hash", 16, 5]], [["homepage", 53, 5], ["description", 54, 5], ["changelog", 55, 5], ["license", 56, 5], ["maintainers", 57, 5], ["platforms", 61, 5], ["mainProgram", 62, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["buildInputs", 19, 3], ["nativeBuildInputs", 21, 3], ["makeFlags", 23, 3], ["postPatch", 28, 3], ["hardeningDisable", 34, 3], ["installPhase", 36, 3], ["enableParallelBuilding", 50, 3], ["meta", 52, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitiles: false, libcap: false, installShellFiles: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 14, 5], ["tag", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 53, 5], ["description", 54, 5], ["changelog", 55, 5], ["license", 56, 5], ["maintainers", 57, 5], ["platforms", 61, 5], ["mainProgram", 62, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["buildInputs", 19, 3], ["nativeBuildInputs", 21, 3], ["makeFlags", 23, 3], ["postPatch", 28, 3], ["hardeningDisable", 34, 3], ["installPhase", 36, 3], ["enableParallelBuilding", 50, 3], ["meta", 52, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const libcap = nix.arg($, "libcap");
   const installShellFiles = nix.arg($, "installShellFiles");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "minijail",
       version: "2026.05.18",
       src: nix.thunk(() => nix.app(fetchFromGitiles, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://chromium.googlesource.com/chromiumos/platform/minijail",
           tag: nix.thunk(() => nix.str`linux-v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-15TQnTFIx2DSdAQZPCVhBPs8a+V6YV3IrA1LqfMWcRQ=",
@@ -43,7 +41,7 @@ installManPage minijail0.1 minijail0.5
 `),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://chromium.googlesource.com/chromiumos/platform/minijail/+/refs/heads/main/README.md",
         description: "Sandboxing library and application using Linux namespaces and capabilities",
         changelog: nix.thunk(() => nix.str`https://chromium.googlesource.com/chromiumos/platform/minijail/+/refs/tags/linux-v${nix.sel(finalAttrs, "version")}`),

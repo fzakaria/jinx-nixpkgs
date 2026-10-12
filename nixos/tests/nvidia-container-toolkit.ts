@@ -2,38 +2,10 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/nvidia-container-toolkit.nix", [[["Cmd", 33, 7]], [["name", 30, 5], ["tag", 31, 5], ["config", 32, 5], ["copyToRoot", 35, 5]], [["mainProgram", 86, 12]], [["pname", 68, 7], ["version", 69, 7], ["dontUnpack", 70, 7], ["dontBuild", 71, 7], ["emptyCDISpec", 73, 15], ["passAsFile", 74, 7], ["installPhase", 76, 7], ["meta", 86, 7]], [["enable", 66, 5], ["package", 67, 5], ["suppressNvidiaDriverAssertion", 88, 5]], [["maintainers", 94, 5]], [["systemPackages", 102, 19]], [["cdi_spec_dirs", 105, 40]], [["engine", 105, 33]], [["settings", 105, 24]], [["containersConf", 105, 9], ["enable", 106, 9]], [["diskSize", 103, 22], ["containers", 104, 22]], [["open", 111, 11], ["package", 112, 11]], [["enable", 114, 18]], [["nvidia-container-toolkit", 109, 17], ["nvidia", 110, 9], ["graphics", 114, 9]], [["environment", 102, 7], ["virtualisation", 103, 7], ["hardware", 108, 7]], [["enable", 119, 33]], [["containers", 119, 22]], [["virtualisation", 119, 7]], [["systemPackages", 125, 21]], [["enable", 126, 27]], [["graphics", 126, 18]], [["environment", 125, 9], ["hardware", 126, 9]], [["hostPath", 132, 11], ["containerPath", 133, 11]], [["mounts", 130, 41]], [["nvidia-container-toolkit", 130, 16]], [["hardware", 130, 7]], [["no-gpus", 118, 5], ["one-gpu", 122, 5], ["one-gpu-invalid-host-paths", 129, 5]], [["name", 92, 3], ["meta", 93, 3], ["defaults", 99, 3], ["nodes", 117, 3], ["testScript", 138, 3]]]);
 const formals$1 = { args: { pkgs: false, lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/nvidia-container-toolkit.nix", [["Cmd", 33, 7]]);
-const pos$2 = nix.positions(here + "/nvidia-container-toolkit.nix", [["name", 30, 5], ["tag", 31, 5], ["config", 32, 5], ["copyToRoot", 35, 5]]);
-const pos$3 = nix.positions(here + "/nvidia-container-toolkit.nix", [["mainProgram", 86, 12]]);
-const pos$4 = nix.positions(here + "/nvidia-container-toolkit.nix", [["pname", 68, 7], ["version", 69, 7], ["dontUnpack", 70, 7], ["dontBuild", 71, 7], ["emptyCDISpec", 73, 15], ["passAsFile", 74, 7], ["installPhase", 76, 7], ["meta", 86, 7]]);
-const pos$5 = nix.positions(here + "/nvidia-container-toolkit.nix", [["enable", 66, 5], ["package", 67, 5], ["suppressNvidiaDriverAssertion", 88, 5]]);
-const pos$6 = nix.positions(here + "/nvidia-container-toolkit.nix", [["maintainers", 94, 5]]);
 const formals$2 = { args: { config: false }, ellipsis: true };
-const pos$7 = nix.positions(here + "/nvidia-container-toolkit.nix", [["systemPackages", 102, 19]]);
-const pos$8 = nix.positions(here + "/nvidia-container-toolkit.nix", [["cdi_spec_dirs", 105, 40]]);
-const pos$9 = nix.positions(here + "/nvidia-container-toolkit.nix", [["engine", 105, 33]]);
-const pos$10 = nix.positions(here + "/nvidia-container-toolkit.nix", [["settings", 105, 24]]);
-const pos$11 = nix.positions(here + "/nvidia-container-toolkit.nix", [["containersConf", 105, 9], ["enable", 106, 9]]);
-const pos$12 = nix.positions(here + "/nvidia-container-toolkit.nix", [["diskSize", 103, 22], ["containers", 104, 22]]);
-const pos$13 = nix.positions(here + "/nvidia-container-toolkit.nix", [["open", 111, 11], ["package", 112, 11]]);
-const pos$14 = nix.positions(here + "/nvidia-container-toolkit.nix", [["enable", 114, 18]]);
-const pos$15 = nix.positions(here + "/nvidia-container-toolkit.nix", [["nvidia-container-toolkit", 109, 17], ["nvidia", 110, 9], ["graphics", 114, 9]]);
-const pos$16 = nix.positions(here + "/nvidia-container-toolkit.nix", [["environment", 102, 7], ["virtualisation", 103, 7], ["hardware", 108, 7]]);
-const pos$17 = nix.positions(here + "/nvidia-container-toolkit.nix", [["enable", 119, 33]]);
-const pos$18 = nix.positions(here + "/nvidia-container-toolkit.nix", [["containers", 119, 22]]);
-const pos$19 = nix.positions(here + "/nvidia-container-toolkit.nix", [["virtualisation", 119, 7]]);
 const formals$3 = { args: { pkgs: false }, ellipsis: true };
-const pos$20 = nix.positions(here + "/nvidia-container-toolkit.nix", [["systemPackages", 125, 21]]);
-const pos$21 = nix.positions(here + "/nvidia-container-toolkit.nix", [["enable", 126, 27]]);
-const pos$22 = nix.positions(here + "/nvidia-container-toolkit.nix", [["graphics", 126, 18]]);
-const pos$23 = nix.positions(here + "/nvidia-container-toolkit.nix", [["environment", 125, 9], ["hardware", 126, 9]]);
-const pos$24 = nix.positions(here + "/nvidia-container-toolkit.nix", [["hostPath", 132, 11], ["containerPath", 133, 11]]);
-const pos$25 = nix.positions(here + "/nvidia-container-toolkit.nix", [["mounts", 130, 41]]);
-const pos$26 = nix.positions(here + "/nvidia-container-toolkit.nix", [["nvidia-container-toolkit", 130, 16]]);
-const pos$27 = nix.positions(here + "/nvidia-container-toolkit.nix", [["hardware", 130, 7]]);
-const pos$28 = nix.positions(here + "/nvidia-container-toolkit.nix", [["no-gpus", 118, 5], ["one-gpu", 122, 5], ["one-gpu-invalid-host-paths", 129, 5]]);
-const pos$29 = nix.positions(here + "/nvidia-container-toolkit.nix", [["name", 92, 3], ["meta", 93, 3], ["defaults", 99, 3], ["nodes", 117, 3], ["testScript", 138, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -65,11 +37,11 @@ check_directory_referential_integrity "${nix.sel(pkgs, "addDriverRunpath", "driv
 check_directory_referential_integrity "/usr/local/nvidia" || exit 1
 `)));
   const testContainerImage = nix.thunk(() => nix.app(nix.sel(pkgs, "dockerTools", "buildImage"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       name: "cdi-test",
       tag: "latest",
       config: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         Cmd: nix.thunk(() => [nix.thunk(() => nix.app(nix.sel(lib, "getExe"), testCDIScript))]),
       })),
       copyToRoot: nix.thunk(() => (() => {
@@ -82,10 +54,10 @@ check_directory_referential_integrity "/usr/local/nvidia" || exit 1
     }))));
   const emptyCDISpec = "{\n  \"cdiVersion\": \"0.5.0\",\n  \"kind\": \"nvidia.com/gpu\",\n  \"devices\": [\n    {\n      \"name\": \"all\",\n      \"containerEdits\": {\n        \"deviceNodes\": [\n          {\n            \"path\": \"/dev/urandom\"\n          }\n        ],\n        \"hooks\": [],\n        \"mounts\": []\n      }\n    }\n  ],\n  \"containerEdits\": {\n    \"deviceNodes\": [],\n    \"hooks\": [],\n    \"mounts\": []\n  }\n}\n";
   const nvidia_container_toolkit = nix.thunk(() => ({
-    [nix.POS]: pos$5,
+    [nix.POS]: $pos[4],
     enable: true,
     package: nix.thunk(() => nix.app(nix.sel(pkgs, "stdenv", "mkDerivation"), nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname: "nvidia-ctk-dummy",
         version: "1.0.0",
         dontUnpack: true,
@@ -101,17 +73,17 @@ cat "$out/share/nvidia-container-toolkit/spec.json"
 EOF
 chmod +x $out/bin/nvidia-ctk
 `),
-        meta: nix.thunk(() => ({ [nix.POS]: pos$3, mainProgram: "nvidia-ctk" })),
+        meta: nix.thunk(() => ({ [nix.POS]: $pos[2], mainProgram: "nvidia-ctk" })),
       })))),
     suppressNvidiaDriverAssertion: true,
   }));
   return {
-    [nix.POS]: pos$29,
+    [nix.POS]: $pos[28],
     name: "nvidia-container-toolkit",
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
       return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         maintainers: nix.thunk(() => [
           nix.thunk(() => nix.lookup(w, "ereslibre")),
           nix.thunk(() => nix.lookup(w, "christoph-heiss")),
@@ -122,80 +94,80 @@ chmod +x $out/bin/nvidia-ctk
       const $_1 = nix.formals(args_1, formals$2);
       const config = nix.arg($_1, "config");
       return {
-        [nix.POS]: pos$16,
+        [nix.POS]: $pos[15],
         environment: nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           systemPackages: nix.thunk(() => (() => {
             const w_1 = nix.withScope(pkgs, null);
             return [nix.thunk(() => nix.lookup(w_1, "jq"))];
           })()),
         })),
         virtualisation: nix.thunk(() => ({
-          [nix.POS]: pos$12,
+          [nix.POS]: $pos[11],
           diskSize: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), 10240n)),
           containers: nix.thunk(() => ({
-            [nix.POS]: pos$11,
+            [nix.POS]: $pos[10],
             containersConf: nix.thunk(() => ({
-              [nix.POS]: pos$10,
+              [nix.POS]: $pos[9],
               settings: nix.thunk(() => ({
-                [nix.POS]: pos$9,
-                engine: nix.thunk(() => ({ [nix.POS]: pos$8, cdi_spec_dirs: nix.thunk(() => ["/var/run/cdi"]) })),
+                [nix.POS]: $pos[8],
+                engine: nix.thunk(() => ({ [nix.POS]: $pos[7], cdi_spec_dirs: nix.thunk(() => ["/var/run/cdi"]) })),
               })),
             })),
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
           })),
         })),
         hardware: nix.thunk(() => ({
-          [nix.POS]: pos$15,
+          [nix.POS]: $pos[14],
           "nvidia-container-toolkit": nvidia_container_toolkit,
           nvidia: nix.thunk(() => ({
-            [nix.POS]: pos$13,
+            [nix.POS]: $pos[12],
             open: true,
             package: nix.thunk(() => nix.sel(config, "boot", "kernelPackages", "nvidiaPackages", "stable", "open")),
           })),
           graphics: nix.thunk(() => ({
-            [nix.POS]: pos$14,
+            [nix.POS]: $pos[13],
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
           })),
         })),
       };
     })(), formals$2),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$28,
+      [nix.POS]: $pos[27],
       "no-gpus": nix.thunk(() => ({
-        [nix.POS]: pos$19,
+        [nix.POS]: $pos[18],
         virtualisation: nix.thunk(() => ({
-          [nix.POS]: pos$18,
-          containers: nix.thunk(() => ({ [nix.POS]: pos$17, enable: false })),
+          [nix.POS]: $pos[17],
+          containers: nix.thunk(() => ({ [nix.POS]: $pos[16], enable: false })),
         })),
       })),
       "one-gpu": nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$3);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$23,
+          [nix.POS]: $pos[22],
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$20,
+            [nix.POS]: $pos[19],
             systemPackages: nix.thunk(() => (() => {
               const w_1 = nix.withScope(pkgs_1, null);
               return [nix.thunk(() => nix.lookup(w_1, "podman"))];
             })()),
           })),
           hardware: nix.thunk(() => ({
-            [nix.POS]: pos$22,
-            graphics: nix.thunk(() => ({ [nix.POS]: pos$21, enable: true })),
+            [nix.POS]: $pos[21],
+            graphics: nix.thunk(() => ({ [nix.POS]: $pos[20], enable: true })),
           })),
         };
       })(), formals$3),
       "one-gpu-invalid-host-paths": nix.thunk(() => ({
-        [nix.POS]: pos$27,
+        [nix.POS]: $pos[26],
         hardware: nix.thunk(() => ({
-          [nix.POS]: pos$26,
+          [nix.POS]: $pos[25],
           "nvidia-container-toolkit": nix.thunk(() => ({
-            [nix.POS]: pos$25,
+            [nix.POS]: $pos[24],
             mounts: nix.thunk(() => [
               nix.thunk(() => ({
-                [nix.POS]: pos$24,
+                [nix.POS]: $pos[23],
                 hostPath: "/non-existant-path",
                 containerPath: "/some/path",
               })),

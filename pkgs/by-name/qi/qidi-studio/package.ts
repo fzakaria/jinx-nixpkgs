@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 13, 5], ["hash", 14, 5]], [["version", 18, 13], ["pname", 18, 21], ["src", 18, 27]], [["description", 41, 5], ["longDescription", 42, 5], ["homepage", 46, 5], ["license", 47, 5], ["maintainers", 48, 5], ["mainProgram", 49, 5], ["platforms", 50, 5], ["sourceProvenance", 51, 5]], [["pname", 22, 11], ["version", 22, 17], ["src", 22, 25], ["extraPkgs", 23, 3], ["nativeBuildInputs", 27, 3], ["extraInstallCommands", 29, 3], ["meta", 40, 3]]]);
 const formals$1 = { args: { appimageTools: false, fetchurl: false, webkitgtk_4_1: false, lib: false, makeWrapper: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 13, 5], ["hash", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["version", 18, 13], ["pname", 18, 21], ["src", 18, 27]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 41, 5], ["longDescription", 42, 5], ["homepage", 46, 5], ["license", 47, 5], ["maintainers", 48, 5], ["mainProgram", 49, 5], ["platforms", 50, 5], ["sourceProvenance", 51, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 22, 11], ["version", 22, 17], ["src", 22, 25], ["extraPkgs", 23, 3], ["nativeBuildInputs", 27, 3], ["extraInstallCommands", 29, 3], ["meta", 40, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,13 +15,13 @@ export default nix.lambda((args) => (() => {
   const pname = "qidi-studio";
   const version = "2.07.02.60";
   const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: nix.thunk(() => nix.str`https://github.com/QIDITECH/QIDIStudio/releases/download/v${version}/QIDIStudio_v0${version}_Ubuntu24.AppImage`),
       hash: "sha256-1H0rLI3V8W1I+KIbolQg/Wat9WsACMy1RIdyU0s8seg=",
     }))));
-  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: pos$2, version: version, pname: pname, src: src }))));
+  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: $pos[1], version: version, pname: pname, src: src }))));
   return nix.app(nix.sel(appimageTools, "wrapType2"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: pname,
       version: version,
       src: src,
@@ -40,7 +37,7 @@ wrapProgram "$out/bin/qidi-studio" \\
   --set-default WEBKIT_DISABLE_DMABUF_RENDERER 0
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Slicer for QIDI 3D Printers, based on Bambu Studio",
         longDescription: "QIDI Studio is a professional 3D printer slicing software, which is perfectly compatible with all printers and 3D printing filaments of QIDI Technology.\nMulti-platform support, simple interface, easy to use, complete functions, easy to learn 3D printing.\n",
         homepage: "https://github.com/QIDITECH/QIDIStudio",

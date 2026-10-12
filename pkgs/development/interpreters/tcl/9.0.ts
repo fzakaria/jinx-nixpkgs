@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/9.0.nix", [[["url", 19, 7], ["hash", 20, 7]], [["name", 30, 9], ["url", 31, 9], ["includes", 32, 9], ["hash", 36, 9]], [["release", 13, 5], ["version", 14, 5], ["src", 18, 5], ["patches", 28, 5], ["extraPatch", 40, 5]]]);
 const formals$1 = { args: { callPackage: false, fetchpatch: false, fetchzip: false, lib: false, stdenv: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/9.0.nix", [["url", 19, 7], ["hash", 20, 7]]);
-const pos$2 = nix.positions(here + "/9.0.nix", [["name", 30, 9], ["url", 31, 9], ["includes", 32, 9], ["hash", 36, 9]]);
-const pos$3 = nix.positions(here + "/9.0.nix", [["release", 13, 5], ["version", 14, 5], ["src", 18, 5], ["patches", 28, 5], ["extraPatch", 40, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,13 +17,13 @@ export default nix.lambda((args) => (() => {
       const release = "9.0";
       const version = nix.thunk(() => nix.str`${release}.4`);
       const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/tcl/tcl${version}-src.tar.gz`),
           hash: "sha256-2yfj4ddGX/QT601NKG5y30LToMBu3jomFGnNUdzRaNw=",
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "windows-disable-tzdata.patch",
             url: "https://github.com/tcltk/tcl/commit/54b509164606717adb3fbeacf71524f0a6e940f4.patch",
             includes: nix.thunk(() => ["win/configure.ac", "win/Makefile.in"]),
@@ -35,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const extraPatch = nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(stdenv, "buildPlatform"), nix.sel(stdenv, "hostPlatform"))), nix.thunk(() => nix.str`substituteInPlace unix/configure unix/configure.ac \\
   --replace-fail '\`uname -s\`' '${nix.sel(stdenv, "hostPlatform", "uname", "system")}'
 `)));
-      return { [nix.POS]: pos$3, release, version, src, patches, extraPatch };
+      return { [nix.POS]: $pos[2], release, version, src, patches, extraPatch };
     })())));
 })(), formals$1);
 //# sourceMappingURL=9.0.ts.map

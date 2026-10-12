@@ -2,39 +2,29 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/console.nix", [[["maintainers", 4, 8]], [["rules", 16, 28]], [["tmpfiles", 16, 19]], [["systemd", 16, 11]], [["keyMap", 26, 19]], [["imports", 25, 11], ["console", 26, 11]], [["keyMap", 33, 19]], [["imperativeLocale", 34, 16]], [["imports", 32, 11], ["console", 33, 11], ["i18n", 34, 11]], [["node_static", 22, 7], ["node_imperative", 29, 7]], [["name", 3, 3], ["meta", 4, 3], ["nodes", 6, 3], ["testScript", 38, 3]]]);
 const formals$1 = { args: {  }, ellipsis: true };
-const pos$1 = nix.positions(here + "/console.nix", [["maintainers", 4, 8]]);
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/console.nix", [["rules", 16, 28]]);
-const pos$3 = nix.positions(here + "/console.nix", [["tmpfiles", 16, 19]]);
-const pos$4 = nix.positions(here + "/console.nix", [["systemd", 16, 11]]);
 const formals$3 = { args: {  }, ellipsis: true };
-const pos$5 = nix.positions(here + "/console.nix", [["keyMap", 26, 19]]);
-const pos$6 = nix.positions(here + "/console.nix", [["imports", 25, 11], ["console", 26, 11]]);
 const formals$4 = { args: {  }, ellipsis: true };
-const pos$7 = nix.positions(here + "/console.nix", [["keyMap", 33, 19]]);
-const pos$8 = nix.positions(here + "/console.nix", [["imperativeLocale", 34, 16]]);
-const pos$9 = nix.positions(here + "/console.nix", [["imports", 32, 11], ["console", 33, 11], ["i18n", 34, 11]]);
-const pos$10 = nix.positions(here + "/console.nix", [["node_static", 22, 7], ["node_imperative", 29, 7]]);
 const formals$5 = { args: {  }, ellipsis: true };
-const pos$11 = nix.positions(here + "/console.nix", [["name", 3, 3], ["meta", 4, 3], ["nodes", 6, 3], ["testScript", 38, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   return {
-    [nix.POS]: pos$11,
+    [nix.POS]: $pos[10],
     name: "console",
-    meta: nix.thunk(() => ({ [nix.POS]: pos$1, maintainers: [] })),
+    meta: nix.thunk(() => ({ [nix.POS]: $pos[0], maintainers: [] })),
     nodes: nix.thunk(() => (() => {
       const missingKeymapsWorkaround = nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           systemd: nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             tmpfiles: nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               rules: nix.thunk(() => [
                 nix.thunk(() => nix.str`L /usr/share/keymaps - - - - ${nix.sel(pkgs, "kbd")}/share/keymaps`),
               ]),
@@ -43,22 +33,22 @@ export default nix.lambda((args) => (() => {
         };
       })(), formals$2);
       return {
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         node_static: nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$3);
           return {
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             imports: nix.thunk(() => [missingKeymapsWorkaround]),
-            console: nix.thunk(() => ({ [nix.POS]: pos$5, keyMap: "lt" })),
+            console: nix.thunk(() => ({ [nix.POS]: $pos[4], keyMap: "lt" })),
           };
         })(), formals$3),
         node_imperative: nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$4);
           return {
-            [nix.POS]: pos$9,
+            [nix.POS]: $pos[8],
             imports: nix.thunk(() => [missingKeymapsWorkaround]),
-            console: nix.thunk(() => ({ [nix.POS]: pos$7, keyMap: "lt" })),
-            i18n: nix.thunk(() => ({ [nix.POS]: pos$8, imperativeLocale: true })),
+            console: nix.thunk(() => ({ [nix.POS]: $pos[6], keyMap: "lt" })),
+            i18n: nix.thunk(() => ({ [nix.POS]: $pos[7], imperativeLocale: true })),
           };
         })(), formals$4),
       };

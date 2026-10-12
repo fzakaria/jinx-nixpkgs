@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["hash", 26, 5]], [["domain", 34, 5], ["owner", 35, 5], ["repo", 36, 5], ["rev", 37, 5], ["hash", 38, 5]], [["name", 44, 7], ["url", 45, 7], ["hash", 46, 7]], [["description", 90, 5], ["mainProgram", 91, 5], ["homepage", 92, 5], ["license", 93, 5], ["maintainers", 94, 5], ["platforms", 95, 5]], [["pname", 30, 3], ["version", 31, 3], ["src", 33, 3], ["patches", 41, 3], ["buildInputs", 50, 3], ["nativeBuildInputs", 64, 3], ["mesonFlags", 80, 3], ["postPatch", 84, 3], ["meta", 89, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchFromGitLab: false, fetchpatch: false, libevdev: false, libxkbcommon: false, meson: false, ninja: false, "pkg-config": false, protobuf: false, protobufc: false, systemdSupport: true, systemdLibs: false, buildPackages: false, "epoll-shim": false, basu: false, "evdev-proto": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["domain", 34, 5], ["owner", 35, 5], ["repo", 36, 5], ["rev", 37, 5], ["hash", 38, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 44, 7], ["url", 45, 7], ["hash", 46, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 90, 5], ["mainProgram", 91, 5], ["homepage", 92, 5], ["license", 93, 5], ["maintainers", 94, 5], ["platforms", 95, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 30, 3], ["version", 31, 3], ["src", 33, 3], ["patches", 41, 3], ["buildInputs", 50, 3], ["nativeBuildInputs", 64, 3], ["mesonFlags", 80, 3], ["postPatch", 84, 3], ["meta", 89, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,18 +26,18 @@ export default nix.lambda((args) => (() => {
   const basu = nix.arg($, "basu");
   const evdev_proto = nix.arg($, "evdev-proto");
   const munit = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "nemequ",
       repo: "munit",
       rev: "fbbdf1467eb0d04a6ee465def2e529e4c87f2118",
       hash: "sha256-qm30C++rpLtxBhOABBzo+6WILSpKz2ibvUvoe8ku4ow=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "libei",
       version: "1.6.0",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           domain: "gitlab.freedesktop.org",
           owner: "libinput",
           repo: "libei",
@@ -50,7 +46,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isBSD")), nix.thunk(() => [
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               name: "peercred-bsd.patch",
               url: "https://gitlab.freedesktop.org/libinput/libei/-/commit/4f11112be0c0a89e8f078c0b4bcc103dbc6ac875.patch",
               hash: "sha256-Z6oZphzyfHMdAQninbUvEtxr738sx/SQV8o0fkF25iI=",
@@ -78,7 +74,7 @@ export default nix.lambda((args) => (() => {
 patchShebangs ./proto/ei-scanner
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Library for Emulated Input",
         mainProgram: "ei-debug-events",
         homepage: "https://gitlab.freedesktop.org/libinput/libei",

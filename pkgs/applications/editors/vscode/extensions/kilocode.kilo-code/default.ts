@@ -2,15 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["arch", 14, 11], ["hash", 15, 11]], [["arch", 18, 11], ["hash", 19, 11]], [["arch", 22, 11], ["hash", 23, 11]], [["x86_64-linux", 13, 9], ["aarch64-linux", 17, 9], ["aarch64-darwin", 21, 9]], [["publisher", 28, 7], ["name", 29, 7], ["version", 30, 7]], [["updateScript", 39, 12]], [["description", 42, 5], ["homepage", 43, 5], ["downloadPage", 44, 5], ["license", 45, 5], ["sourceProvenance", 46, 5], ["platforms", 47, 5], ["maintainers", 52, 5]], [["mktplcRef", 10, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 37, 3], ["passthru", 39, 3], ["meta", 41, 3]]]);
 const formals$1 = { args: { lib: false, "vscode-utils": false, "vscode-extension-update-script": false, autoPatchelfHook: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["arch", 14, 11], ["hash", 15, 11]]);
-const pos$2 = nix.positions(here + "/default.nix", [["arch", 18, 11], ["hash", 19, 11]]);
-const pos$3 = nix.positions(here + "/default.nix", [["arch", 22, 11], ["hash", 23, 11]]);
-const pos$4 = nix.positions(here + "/default.nix", [["x86_64-linux", 13, 9], ["aarch64-linux", 17, 9], ["aarch64-darwin", 21, 9]]);
-const pos$5 = nix.positions(here + "/default.nix", [["publisher", 28, 7], ["name", 29, 7], ["version", 30, 7]]);
-const pos$6 = nix.positions(here + "/default.nix", [["updateScript", 39, 12]]);
-const pos$7 = nix.positions(here + "/default.nix", [["description", 42, 5], ["homepage", 43, 5], ["downloadPage", 44, 5], ["license", 45, 5], ["sourceProvenance", 46, 5], ["platforms", 47, 5], ["maintainers", 52, 5]]);
-const pos$8 = nix.positions(here + "/default.nix", [["mktplcRef", 10, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 37, 3], ["passthru", 39, 3], ["meta", 41, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,36 +13,41 @@ export default nix.lambda((args) => (() => {
   const autoPatchelfHook = nix.arg($, "autoPatchelfHook");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(vscode_utils, "buildVscodeMarketplaceExtension"), nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       mktplcRef: nix.thunk(() => (() => {
         const sources = nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           "x86_64-linux": nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             arch: "linux-x64",
             hash: "sha256-TCgYmw0uZ5NEoiIvNLCNrY7wXfich7sYmfoZEAyaeFU=",
           })),
           "aarch64-linux": nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             arch: "linux-arm64",
             hash: "sha256-LfkfByHLUB1KZ7BH49dSlP+84AqLf+19RdTt7BJZgBE=",
           })),
           "aarch64-darwin": nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             arch: "darwin-arm64",
             hash: "sha256-iHKlTHZ4wdHhrTqpPjLl/Fm5nYDEjPo0J+g0IAxJS58=",
           })),
         }));
-        return nix.update({ [nix.POS]: pos$5, publisher: "kilocode", name: "Kilo-Code", version: "7.7.9" }, nix.selOr(sources, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system ${nix.sel(stdenv, "hostPlatform", "system")}`)), nix.key(nix.sel(stdenv, "hostPlatform", "system"))));
+        return nix.update({
+          [nix.POS]: $pos[4],
+          publisher: "kilocode",
+          name: "Kilo-Code",
+          version: "7.7.9",
+        }, nix.selOr(sources, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system ${nix.sel(stdenv, "hostPlatform", "system")}`)), nix.key(nix.sel(stdenv, "hostPlatform", "system"))));
       })()),
       nativeBuildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [autoPatchelfHook]))),
       buildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(stdenv, "cc", "cc", "lib"))]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         updateScript: nix.thunk(() => nix.app(vscode_extension_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "Open Source AI coding assistant for planning, building, and fixing code",
         homepage: "https://kilo.ai",
         downloadPage: "https://marketplace.visualstudio.com/items?itemName=kilocode.Kilo-Code",

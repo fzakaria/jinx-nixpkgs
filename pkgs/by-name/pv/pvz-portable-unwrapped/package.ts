@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]], [["updateScript", 81, 12]], [["description", 84, 5], ["homepage", 85, 5], ["changelog", 86, 5], ["downloadPage", 87, 5], ["license", 88, 5], ["maintainers", 92, 5], ["platforms", 93, 5], ["mainProgram", 94, 5]], [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 42, 3], ["cmakeFlags", 53, 3], ["installPhase", 59, 3], ["passthru", 81, 3], ["meta", 83, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, desktopToDarwinBundle: false, cmake: false, ninja: false, libogg: false, libjpeg: false, libopenmpt: false, libpng: false, libvorbis: false, libmpg123: false, SDL2: false, python3: false, imagemagick: false, libicns: false, "nix-update-script": false, pvzDebug: true, limboPage: true, doFixBugs: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 81, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 84, 5], ["homepage", 85, 5], ["changelog", 86, 5], ["downloadPage", 87, 5], ["license", 88, 5], ["maintainers", 92, 5], ["platforms", 93, 5], ["mainProgram", 94, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 42, 3], ["cmakeFlags", 53, 3], ["installPhase", 59, 3], ["passthru", 81, 3], ["meta", 83, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,11 +28,11 @@ export default nix.lambda((args) => (() => {
   const limboPage = nix.argOr($, "limboPage", () => true);
   const doFixBugs = nix.argOr($, "doFixBugs", () => false);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "pvz-portable-unwrapped",
       version: "0.2.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "wszqkzqk",
           repo: "PvZ-Portable",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -59,11 +56,11 @@ export default nix.lambda((args) => (() => {
       ]),
       installPhase: "runHook preInstall\n\ninstall -Dm755 pvz-portable $out/bin/pvz-portable\n\ncd .. # exit cmake build dir\n\ninstall -Dm755 scripts/pvzp-v4-converter.py $out/bin/pvzp-v4-converter\ninstall -Dm644 LICENSE $out/share/licenses/pvz-portable/LICENSE\ninstall -Dm644 COPYING $out/share/licenses/pvz-portable/COPYING\n\ninstall -Dm664 archlinux/io.github.wszqkzqk.pvz-portable.desktop $out/share/applications/io.github.wszqkzqk.pvz-portable.desktop\nsubstituteInPlace $out/share/applications/io.github.wszqkzqk.pvz-portable.desktop --replace-fail /usr/bin/ \"\"\ninstall -Dm644 icon.png $out/share/icons/hicolor/512x512/apps/io.github.wszqkzqk.pvz-portable.png\nfor size in 16 32 48 64 128 256; do\n  mkdir -p $out/share/icons/hicolor/${size}x$size/apps\n  magick icon.png -resize ${size}x$size $out/share/icons/hicolor/${size}x$size/apps/io.github.wszqkzqk.pvz-portable.png\ndone\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Cross-platform community-driven reimplementation of Plants vs. Zombies GOTY",
         homepage: "https://github.com/wszqkzqk/PvZ-Portable",
         changelog: "https://github.com/wszqkzqk/PvZ-Portable/releases",

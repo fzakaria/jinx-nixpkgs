@@ -2,106 +2,84 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/github-runner.nix", [[["maintainers", 5, 5]], [["nativeBuildInputs", 11, 9]], [["enable", 16, 9], ["url", 17, 9], ["tokenFile", 18, 9]], [["enable", 22, 9], ["url", 23, 9], ["tokenFile", 24, 9]], [["id", 35, 11], ["login", 36, 11], ["privateKeyFile", 37, 11]], [["enable", 32, 9], ["url", 33, 9], ["githubApp", 34, 9]], [["enable", 44, 9], ["url", 45, 9], ["tokenFile", 46, 9], ["count", 47, 9]], [["count", 56, 20]], [["yaxitech", 56, 11], ["another", 57, 11]], [["enable", 53, 9], ["tokenFile", 54, 9], ["orgs", 55, 9]], [["id", 67, 11], ["privateKeyFile", 68, 11]], [["yaxitech", 71, 11], ["another-org", 72, 11]], [["enable", 65, 9], ["githubApp", 66, 9], ["orgs", 70, 9]], [["test", 15, 31], ["test-disabled", 21, 31], ["test-app", 31, 31], ["test-replicas", 43, 31], ["test-orgs", 52, 31], ["test-orgs-app", 64, 31]], [["github-runners", 15, 16]], [["wantedBy", 77, 9], ["before", 78, 9], ["script", 79, 9]], [["dummy-github-com", 76, 24]], [["services", 76, 15]], [["127.0.0.1", 81, 24]], [["hosts", 81, 18]], [["services", 15, 7], ["systemd", 76, 7], ["networking", 81, 7]], [["machine", 7, 9]], [["name", 3, 3], ["meta", 4, 3], ["nodes", 7, 3], ["testScript", 84, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/github-runner.nix", [["maintainers", 5, 5]]);
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/github-runner.nix", [["nativeBuildInputs", 11, 9]]);
-const pos$3 = nix.positions(here + "/github-runner.nix", [["enable", 16, 9], ["url", 17, 9], ["tokenFile", 18, 9]]);
-const pos$4 = nix.positions(here + "/github-runner.nix", [["enable", 22, 9], ["url", 23, 9], ["tokenFile", 24, 9]]);
-const pos$5 = nix.positions(here + "/github-runner.nix", [["id", 35, 11], ["login", 36, 11], ["privateKeyFile", 37, 11]]);
-const pos$6 = nix.positions(here + "/github-runner.nix", [["enable", 32, 9], ["url", 33, 9], ["githubApp", 34, 9]]);
-const pos$7 = nix.positions(here + "/github-runner.nix", [["enable", 44, 9], ["url", 45, 9], ["tokenFile", 46, 9], ["count", 47, 9]]);
-const pos$8 = nix.positions(here + "/github-runner.nix", [["count", 56, 20]]);
-const pos$9 = nix.positions(here + "/github-runner.nix", [["yaxitech", 56, 11], ["another", 57, 11]]);
-const pos$10 = nix.positions(here + "/github-runner.nix", [["enable", 53, 9], ["tokenFile", 54, 9], ["orgs", 55, 9]]);
-const pos$11 = nix.positions(here + "/github-runner.nix", [["id", 67, 11], ["privateKeyFile", 68, 11]]);
-const pos$12 = nix.positions(here + "/github-runner.nix", [["yaxitech", 71, 11], ["another-org", 72, 11]]);
-const pos$13 = nix.positions(here + "/github-runner.nix", [["enable", 65, 9], ["githubApp", 66, 9], ["orgs", 70, 9]]);
-const pos$14 = nix.positions(here + "/github-runner.nix", [["test", 15, 31], ["test-disabled", 21, 31], ["test-app", 31, 31], ["test-replicas", 43, 31], ["test-orgs", 52, 31], ["test-orgs-app", 64, 31]]);
-const pos$15 = nix.positions(here + "/github-runner.nix", [["github-runners", 15, 16]]);
-const pos$16 = nix.positions(here + "/github-runner.nix", [["wantedBy", 77, 9], ["before", 78, 9], ["script", 79, 9]]);
-const pos$17 = nix.positions(here + "/github-runner.nix", [["dummy-github-com", 76, 24]]);
-const pos$18 = nix.positions(here + "/github-runner.nix", [["services", 76, 15]]);
-const pos$19 = nix.positions(here + "/github-runner.nix", [["127.0.0.1", 81, 24]]);
-const pos$20 = nix.positions(here + "/github-runner.nix", [["hosts", 81, 18]]);
-const pos$21 = nix.positions(here + "/github-runner.nix", [["services", 15, 7], ["systemd", 76, 7], ["networking", 81, 7]]);
-const pos$22 = nix.positions(here + "/github-runner.nix", [["machine", 7, 9]]);
-const pos$23 = nix.positions(here + "/github-runner.nix", [["name", 3, 3], ["meta", 4, 3], ["nodes", 7, 3], ["testScript", 84, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   return {
-    [nix.POS]: pos$23,
+    [nix.POS]: $pos[22],
     name: "github-runner",
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
       return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "veehaitch"))]),
       };
     })()),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$22,
+      [nix.POS]: $pos[21],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs_1 = nix.arg($_1, "pkgs");
         const appPrivateKey = nix.thunk(() => nix.app(nix.sel(pkgs_1, "runCommand"), "github-app.pem", nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs_1, "openssl"))]),
           })), "openssl genrsa -out $out 2048"));
         return {
-          [nix.POS]: pos$21,
+          [nix.POS]: $pos[20],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$15,
+            [nix.POS]: $pos[14],
             "github-runners": nix.thunk(() => ({
-              [nix.POS]: pos$14,
+              [nix.POS]: $pos[13],
               test: nix.thunk(() => ({
-                [nix.POS]: pos$3,
+                [nix.POS]: $pos[2],
                 enable: true,
                 url: "https://github.com/yaxitech",
                 tokenFile: nix.thunk(() => nix.builtins.toFile("github-runner.token", "not-so-secret")),
               })),
               "test-disabled": nix.thunk(() => ({
-                [nix.POS]: pos$4,
+                [nix.POS]: $pos[3],
                 enable: false,
                 url: "https://github.com/yaxitech",
                 tokenFile: nix.thunk(() => nix.builtins.toFile("github-runner.token", "not-so-secret")),
               })),
               "test-app": nix.thunk(() => ({
-                [nix.POS]: pos$6,
+                [nix.POS]: $pos[5],
                 enable: true,
                 url: "https://github.com/yaxitech",
                 githubApp: nix.thunk(() => ({
-                  [nix.POS]: pos$5,
+                  [nix.POS]: $pos[4],
                   id: 123456n,
                   login: "yaxitech",
                   privateKeyFile: appPrivateKey,
                 })),
               })),
               "test-replicas": nix.thunk(() => ({
-                [nix.POS]: pos$7,
+                [nix.POS]: $pos[6],
                 enable: true,
                 url: "https://github.com/yaxitech",
                 tokenFile: nix.thunk(() => nix.builtins.toFile("github-runner.token", "not-so-secret")),
                 count: 2n,
               })),
               "test-orgs": nix.thunk(() => ({
-                [nix.POS]: pos$10,
+                [nix.POS]: $pos[9],
                 enable: true,
                 tokenFile: nix.thunk(() => nix.builtins.toFile("github-runner.token", "not-so-secret")),
                 orgs: nix.thunk(() => ({
-                  [nix.POS]: pos$9,
-                  yaxitech: nix.thunk(() => ({ [nix.POS]: pos$8, count: 2n })),
+                  [nix.POS]: $pos[8],
+                  yaxitech: nix.thunk(() => ({ [nix.POS]: $pos[7], count: 2n })),
                   another: nix.thunk(() => ({})),
                 })),
               })),
               "test-orgs-app": nix.thunk(() => ({
-                [nix.POS]: pos$13,
+                [nix.POS]: $pos[12],
                 enable: true,
-                githubApp: nix.thunk(() => ({ [nix.POS]: pos$11, id: 123456n, privateKeyFile: appPrivateKey })),
+                githubApp: nix.thunk(() => ({ [nix.POS]: $pos[10], id: 123456n, privateKeyFile: appPrivateKey })),
                 orgs: nix.thunk(() => ({
-                  [nix.POS]: pos$12,
+                  [nix.POS]: $pos[11],
                   yaxitech: nix.thunk(() => ({})),
                   "another-org": nix.thunk(() => ({})),
                 })),
@@ -109,11 +87,11 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           systemd: nix.thunk(() => ({
-            [nix.POS]: pos$18,
+            [nix.POS]: $pos[17],
             services: nix.thunk(() => ({
-              [nix.POS]: pos$17,
+              [nix.POS]: $pos[16],
               "dummy-github-com": nix.thunk(() => ({
-                [nix.POS]: pos$16,
+                [nix.POS]: $pos[15],
                 wantedBy: nix.thunk(() => ["multi-user.target"]),
                 before: nix.thunk(() => ["github-runner-test.service"]),
                 script: nix.thunk(() => nix.str`${nix.sel(pkgs_1, "netcat")}/bin/nc -Fl 443 | true && touch /tmp/registration-connect`),
@@ -121,8 +99,8 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$20,
-            hosts: nix.thunk(() => ({ [nix.POS]: pos$19, "127.0.0.1": nix.thunk(() => ["api.github.com"]) })),
+            [nix.POS]: $pos[19],
+            hosts: nix.thunk(() => ({ [nix.POS]: $pos[18], "127.0.0.1": nix.thunk(() => ["api.github.com"]) })),
           })),
         };
       })(), formals$2),

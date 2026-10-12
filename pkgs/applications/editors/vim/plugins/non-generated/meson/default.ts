@@ -2,9 +2,8 @@
 import * as nix from "../../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["description", 11, 5], ["homepage", 13, 7], ["license", 14, 7], ["platforms", 15, 7], ["maintainers", 17, 5]], [["pname", 7, 19], ["version", 7, 25], ["src", 7, 33], ["preInstall", 8, 3], ["meta", 10, 3]]]);
 const formals$1 = { args: { lib: false, vimUtils: false, meson: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["description", 11, 5], ["homepage", 13, 7], ["license", 14, 7], ["platforms", 15, 7], ["maintainers", 17, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 7, 19], ["version", 7, 25], ["src", 7, 33], ["preInstall", 8, 3], ["meta", 10, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -12,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const vimUtils = nix.arg($, "vimUtils");
   const meson = nix.arg($, "meson");
   return nix.app(nix.sel(vimUtils, "buildVimPlugin"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: nix.thunk(() => nix.attr(meson, "pname")),
       version: nix.thunk(() => nix.attr(meson, "version")),
       src: nix.thunk(() => nix.attr(meson, "src")),
@@ -20,7 +19,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(meson, "meta"));
         return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Vim plugin for meson providing syntax highlighting",
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         license: nix.thunk(() => nix.attr(from, "license")),

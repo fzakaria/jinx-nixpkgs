@@ -2,52 +2,37 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/nixseparatedebuginfod2.nix", [[["enable", 5, 9]], [["nix", 5, 5]], [["default", 14, 11], ["addSSL", 15, 11], ["root", 16, 11]], [["default", 13, 22]], [["enable", 12, 9], ["virtualHosts", 13, 9]], [["nginx", 11, 16]], [["allowedTCPPorts", 19, 27]], [["firewall", 19, 18]], [["User", 27, 11], ["Group", 28, 11], ["StateDirectory", 29, 11], ["Type", 30, 11]], [["before", 21, 9], ["wantedBy", 22, 9], ["script", 23, 9], ["serviceConfig", 26, 9]], [["buildthebinarycache", 20, 24]], [["services", 20, 15]], [["services", 11, 7], ["networking", 19, 7], ["systemd", 20, 7]], [["enable", 37, 7], ["substituters", 38, 7]], [["nixseparatedebuginfod2", 36, 14]], [["systemPackages", 40, 17]], [["services", 36, 5], ["environment", 40, 5]], [["cache", 8, 9], ["machine", 35, 9]], [["name", 3, 3], ["defaults", 4, 3], ["nodes", 8, 3], ["testScript", 46, 3]]]);
 const formals$1 = { args: { pkgs: false, lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/nixseparatedebuginfod2.nix", [["enable", 5, 9]]);
-const pos$2 = nix.positions(here + "/nixseparatedebuginfod2.nix", [["nix", 5, 5]]);
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$3 = nix.positions(here + "/nixseparatedebuginfod2.nix", [["default", 14, 11], ["addSSL", 15, 11], ["root", 16, 11]]);
-const pos$4 = nix.positions(here + "/nixseparatedebuginfod2.nix", [["default", 13, 22]]);
-const pos$5 = nix.positions(here + "/nixseparatedebuginfod2.nix", [["enable", 12, 9], ["virtualHosts", 13, 9]]);
-const pos$6 = nix.positions(here + "/nixseparatedebuginfod2.nix", [["nginx", 11, 16]]);
-const pos$7 = nix.positions(here + "/nixseparatedebuginfod2.nix", [["allowedTCPPorts", 19, 27]]);
-const pos$8 = nix.positions(here + "/nixseparatedebuginfod2.nix", [["firewall", 19, 18]]);
-const pos$9 = nix.positions(here + "/nixseparatedebuginfod2.nix", [["User", 27, 11], ["Group", 28, 11], ["StateDirectory", 29, 11], ["Type", 30, 11]]);
-const pos$10 = nix.positions(here + "/nixseparatedebuginfod2.nix", [["before", 21, 9], ["wantedBy", 22, 9], ["script", 23, 9], ["serviceConfig", 26, 9]]);
-const pos$11 = nix.positions(here + "/nixseparatedebuginfod2.nix", [["buildthebinarycache", 20, 24]]);
-const pos$12 = nix.positions(here + "/nixseparatedebuginfod2.nix", [["services", 20, 15]]);
-const pos$13 = nix.positions(here + "/nixseparatedebuginfod2.nix", [["services", 11, 7], ["networking", 19, 7], ["systemd", 20, 7]]);
-const pos$14 = nix.positions(here + "/nixseparatedebuginfod2.nix", [["enable", 37, 7], ["substituters", 38, 7]]);
-const pos$15 = nix.positions(here + "/nixseparatedebuginfod2.nix", [["nixseparatedebuginfod2", 36, 14]]);
-const pos$16 = nix.positions(here + "/nixseparatedebuginfod2.nix", [["systemPackages", 40, 17]]);
-const pos$17 = nix.positions(here + "/nixseparatedebuginfod2.nix", [["services", 36, 5], ["environment", 40, 5]]);
-const pos$18 = nix.positions(here + "/nixseparatedebuginfod2.nix", [["cache", 8, 9], ["machine", 35, 9]]);
-const pos$19 = nix.positions(here + "/nixseparatedebuginfod2.nix", [["name", 3, 3], ["defaults", 4, 3], ["nodes", 8, 3], ["testScript", 46, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$19,
+    [nix.POS]: $pos[18],
     name: "nixseparatedebuginfod2",
-    defaults: nix.thunk(() => ({ [nix.POS]: pos$2, nix: nix.thunk(() => ({ [nix.POS]: pos$1, enable: true })) })),
+    defaults: nix.thunk(() => ({
+      [nix.POS]: $pos[1],
+      nix: nix.thunk(() => ({ [nix.POS]: $pos[0], enable: true })),
+    })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$18,
+      [nix.POS]: $pos[17],
       cache: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$13,
+          [nix.POS]: $pos[12],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             nginx: nix.thunk(() => ({
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               enable: true,
               virtualHosts: nix.thunk(() => ({
-                [nix.POS]: pos$4,
+                [nix.POS]: $pos[3],
                 default: nix.thunk(() => ({
-                  [nix.POS]: pos$3,
+                  [nix.POS]: $pos[2],
                   default: true,
                   addSSL: false,
                   root: "/var/lib/thebinarycache",
@@ -56,21 +41,21 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$8,
-            firewall: nix.thunk(() => ({ [nix.POS]: pos$7, allowedTCPPorts: nix.thunk(() => [80n]) })),
+            [nix.POS]: $pos[7],
+            firewall: nix.thunk(() => ({ [nix.POS]: $pos[6], allowedTCPPorts: nix.thunk(() => [80n]) })),
           })),
           systemd: nix.thunk(() => ({
-            [nix.POS]: pos$12,
+            [nix.POS]: $pos[11],
             services: nix.thunk(() => ({
-              [nix.POS]: pos$11,
+              [nix.POS]: $pos[10],
               buildthebinarycache: nix.thunk(() => ({
-                [nix.POS]: pos$10,
+                [nix.POS]: $pos[9],
                 before: nix.thunk(() => ["nginx.service"]),
                 wantedBy: nix.thunk(() => ["nginx.service"]),
                 script: nix.thunk(() => nix.str`${nix.sel(pkgs_1, "nix")}/bin/nix --extra-experimental-features nix-command copy --to file:///var/lib/thebinarycache?index-debug-info=true ${nix.sel(pkgs_1, "gnumake", "debug")} ${nix.sel(pkgs_1, "gnumake")} ${nix.sel(pkgs_1, "gnumake", "src")} ${nix.sel(pkgs_1, "sl")}
 `),
                 serviceConfig: nix.thunk(() => ({
-                  [nix.POS]: pos$9,
+                  [nix.POS]: $pos[8],
                   User: "nginx",
                   Group: "nginx",
                   StateDirectory: "thebinarycache",
@@ -82,17 +67,17 @@ export default nix.lambda((args) => (() => {
         };
       })(), formals$2),
       machine: nix.thunk(() => ({
-        [nix.POS]: pos$17,
+        [nix.POS]: $pos[16],
         services: nix.thunk(() => ({
-          [nix.POS]: pos$15,
+          [nix.POS]: $pos[14],
           nixseparatedebuginfod2: nix.thunk(() => ({
-            [nix.POS]: pos$14,
+            [nix.POS]: $pos[13],
             enable: true,
             substituters: nix.thunk(() => ["http://cache"]),
           })),
         })),
         environment: nix.thunk(() => ({
-          [nix.POS]: pos$16,
+          [nix.POS]: $pos[15],
           systemPackages: nix.thunk(() => [
             nix.thunk(() => nix.sel(pkgs, "valgrind")),
             nix.thunk(() => nix.sel(pkgs, "gdb")),

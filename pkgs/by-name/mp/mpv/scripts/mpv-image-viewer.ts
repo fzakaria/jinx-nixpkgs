@@ -2,24 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/mpv-image-viewer.nix", [[["owner", 15, 11], ["repo", 16, 11], ["rev", 17, 11], ["hash", 18, 11]], [["updateScript", 24, 11]], [["description", 28, 11], ["longDescription", 29, 11], ["homepage", 40, 11], ["license", 41, 11], ["maintainers", 42, 11]], [["pname", 12, 17], ["version", 13, 9], ["src", 14, 9], ["sourceRoot", 21, 9], ["passthru", 23, 9], ["meta", 27, 9]], [["description", 50, 23]], [["meta", 50, 18]], [["description", 52, 24]], [["meta", 52, 19]], [["description", 53, 28]], [["meta", 53, 23]], [["description", 54, 18]], [["meta", 54, 13]], [["description", 55, 16]], [["meta", 55, 11]], [["description", 56, 22]], [["meta", 56, 17]], [["detect-image", 50, 5], ["equalizer", 51, 5], ["freeze-window", 52, 5], ["image-positioning", 53, 5], ["minimap", 54, 5], ["ruler", 55, 5], ["status-line", 56, 5]]]);
 const formals$1 = { args: { buildLua: false, fetchFromGitHub: false, lib: false, unstableGitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/mpv-image-viewer.nix", [["owner", 15, 11], ["repo", 16, 11], ["rev", 17, 11], ["hash", 18, 11]]);
-const pos$2 = nix.positions(here + "/mpv-image-viewer.nix", [["updateScript", 24, 11]]);
-const pos$3 = nix.positions(here + "/mpv-image-viewer.nix", [["description", 28, 11], ["longDescription", 29, 11], ["homepage", 40, 11], ["license", 41, 11], ["maintainers", 42, 11]]);
-const pos$4 = nix.positions(here + "/mpv-image-viewer.nix", [["pname", 12, 17], ["version", 13, 9], ["src", 14, 9], ["sourceRoot", 21, 9], ["passthru", 23, 9], ["meta", 27, 9]]);
-const pos$5 = nix.positions(here + "/mpv-image-viewer.nix", [["description", 50, 23]]);
-const pos$6 = nix.positions(here + "/mpv-image-viewer.nix", [["meta", 50, 18]]);
-const pos$7 = nix.positions(here + "/mpv-image-viewer.nix", [["description", 52, 24]]);
-const pos$8 = nix.positions(here + "/mpv-image-viewer.nix", [["meta", 52, 19]]);
-const pos$9 = nix.positions(here + "/mpv-image-viewer.nix", [["description", 53, 28]]);
-const pos$10 = nix.positions(here + "/mpv-image-viewer.nix", [["meta", 53, 23]]);
-const pos$11 = nix.positions(here + "/mpv-image-viewer.nix", [["description", 54, 18]]);
-const pos$12 = nix.positions(here + "/mpv-image-viewer.nix", [["meta", 54, 13]]);
-const pos$13 = nix.positions(here + "/mpv-image-viewer.nix", [["description", 55, 16]]);
-const pos$14 = nix.positions(here + "/mpv-image-viewer.nix", [["meta", 55, 11]]);
-const pos$15 = nix.positions(here + "/mpv-image-viewer.nix", [["description", 56, 22]]);
-const pos$16 = nix.positions(here + "/mpv-image-viewer.nix", [["meta", 56, 17]]);
-const pos$17 = nix.positions(here + "/mpv-image-viewer.nix", [["detect-image", 50, 5], ["equalizer", 51, 5], ["freeze-window", 52, 5], ["image-positioning", 53, 5], ["minimap", 54, 5], ["ruler", 55, 5], ["status-line", 56, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   const mkScript = (pname) => (args_1) => (() => {
     const self = nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: pname,
       version: "0-unstable-2024-11-23",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "occivink",
           repo: "mpv-image-viewer",
           rev: "128b498e3e57a14deea5ca9bbf662f8c1ca79e8d",
@@ -41,11 +25,11 @@ export default nix.lambda((args) => (() => {
         })))),
       sourceRoot: nix.thunk(() => nix.str`${nix.sel(self, "src", "name")}/scripts`),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Configuration, scripts and tips for using mpv as an image viewer",
         longDescription: nix.thunk(() => nix.str`${pname} is a component of mpv-image-viewer.
 
@@ -68,47 +52,47 @@ additional configuration tips or examples.
     return nix.app(buildLua, nix.thunk(() => nix.app(nix.sel(lib, "attrsets", "recursiveUpdate"), self, args_1)));
   })();
   return nix.app(nix.sel(lib, "recurseIntoAttrs"), nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (name) => nix.app(nix.sel(lib, "makeOverridable"), nix.thunk(() => nix.app(mkScript, name))), nix.thunk(() => ({
-        [nix.POS]: pos$17,
+        [nix.POS]: $pos[16],
         "detect-image": nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           meta: nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             description: "Allows you to run specific commands when images are being displayed. Does not do anything by default, needs to be configured through detect_image.conf",
           })),
         })),
         equalizer: nix.thunk(() => ({})),
         "freeze-window": nix.thunk(() => ({
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           meta: nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             description: "By default, mpv automatically resizes the window when the current file changes to fit its size. This script freezes the window so that this does not happen. There is no configuration",
           })),
         })),
         "image-positioning": nix.thunk(() => ({
-          [nix.POS]: pos$10,
+          [nix.POS]: $pos[9],
           meta: nix.thunk(() => ({
-            [nix.POS]: pos$9,
+            [nix.POS]: $pos[8],
             description: "Adds several high-level commands to zoom and pan",
           })),
         })),
         minimap: nix.thunk(() => ({
-          [nix.POS]: pos$12,
+          [nix.POS]: $pos[11],
           meta: nix.thunk(() => ({
-            [nix.POS]: pos$11,
+            [nix.POS]: $pos[10],
             description: "Adds a minimap that displays the position of the image relative to the view",
           })),
         })),
         ruler: nix.thunk(() => ({
-          [nix.POS]: pos$14,
+          [nix.POS]: $pos[13],
           meta: nix.thunk(() => ({
-            [nix.POS]: pos$13,
+            [nix.POS]: $pos[12],
             description: "Adds a ruler command that lets you measure positions, distances and angles in the image. Can be configured through ruler.conf",
           })),
         })),
         "status-line": nix.thunk(() => ({
-          [nix.POS]: pos$16,
+          [nix.POS]: $pos[15],
           meta: nix.thunk(() => ({
-            [nix.POS]: pos$15,
+            [nix.POS]: $pos[14],
             description: "Adds a status line that can show different properties in the corner of the window. By default it shows filename [positon/total] in the bottom left",
           })),
         })),

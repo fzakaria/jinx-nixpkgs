@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]], [["updateScript", 51, 12]], [["description", 54, 5], ["homepage", 55, 5], ["changelog", 56, 5], ["license", 57, 5], ["maintainers", 58, 5], ["platforms", 62, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["npmDepsHash", 22, 3], ["dontWrapQtApps", 24, 3], ["nodejs", 26, 3], ["nativeBuildInputs", 28, 3], ["npmBuildScript", 34, 3], ["installPhase", 36, 3], ["passthru", 51, 3], ["meta", 53, 3]]]);
 const formals$1 = { args: { lib: false, "nix-update-script": false, buildNpmPackage: false, fetchFromCodeberg: false, nodejs_22: false, kwin: false, kpackage: false, zip: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["updateScript", 51, 12]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 54, 5], ["homepage", 55, 5], ["changelog", 56, 5], ["license", 57, 5], ["maintainers", 58, 5], ["platforms", 62, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["npmDepsHash", 22, 3], ["dontWrapQtApps", 24, 3], ["nodejs", 26, 3], ["nativeBuildInputs", 28, 3], ["npmBuildScript", 34, 3], ["installPhase", 36, 3], ["passthru", 51, 3], ["meta", 53, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const kpackage = nix.arg($, "kpackage");
   const zip = nix.arg($, "zip");
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "krohnkite",
       version: "0.9.9.2",
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "anametologin",
           repo: "Krohnkite",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -48,11 +45,11 @@ kpackagetool6 --type=KWin/Script --install=krohnkite.kwinscript --packageroot=$o
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Dynamic Tiling Extension for KWin 6",
         homepage: "https://codeberg.org/anametologin/Krohnkite",
         changelog: nix.thunk(() => nix.str`https://codeberg.org/anametologin/Krohnkite/releases/tag/${nix.sel(finalAttrs, "version")}`),

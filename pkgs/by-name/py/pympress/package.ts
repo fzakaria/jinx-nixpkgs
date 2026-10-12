@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]], [["gtkSupport", 57, 44]], [["description", 66, 5], ["mainProgram", 67, 5], ["license", 68, 5], ["homepage", 69, 5], ["maintainers", 70, 5]], [["pname", 17, 3], ["version", 18, 3], ["pyproject", 19, 3], ["src", 21, 3], ["build-system", 28, 3], ["dependencies", 33, 3], ["nativeBuildInputs", 42, 3], ["buildInputs", 47, 3], ["doCheck", 61, 3], ["pythonImportsCheck", 63, 3], ["meta", 65, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, python3Packages: false, fetchFromGitHub: false, wrapGAppsHook3: false, gtk3: false, "gobject-introspection": false, "libcanberra-gtk3": false, poppler_gi: false, withGstreamer: true, gst_all_1: false, withVLC: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["gtkSupport", 57, 44]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 66, 5], ["mainProgram", 67, 5], ["license", 68, 5], ["homepage", 69, 5], ["maintainers", 70, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["pyproject", 19, 3], ["src", 21, 3], ["build-system", 28, 3], ["dependencies", 33, 3], ["nativeBuildInputs", 42, 3], ["buildInputs", 47, 3], ["doCheck", 61, 3], ["pythonImportsCheck", 63, 3], ["meta", 65, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const gst_all_1 = nix.arg($, "gst_all_1");
   const withVLC = nix.argOr($, "withVLC", () => nix.sel(stdenv, "hostPlatform", "isLinux"));
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "pympress",
       version: "1.8.6",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "cimbali",
           repo: "pympress",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -56,13 +53,13 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.sel(gst_all_1, "gst-plugins-base")),
           nix.thunk(() => nix.sel(gst_all_1, "gst-plugins-bad")),
           nix.thunk(() => nix.sel(gst_all_1, "gst-plugins-ugly")),
-          nix.thunk(() => nix.app(nix.sel(gst_all_1, "gst-plugins-good", "override"), nix.thunk(() => ({ [nix.POS]: pos$2, gtkSupport: true })))),
+          nix.thunk(() => nix.app(nix.sel(gst_all_1, "gst-plugins-good", "override"), nix.thunk(() => ({ [nix.POS]: $pos[1], gtkSupport: true })))),
           nix.thunk(() => nix.sel(gst_all_1, "gst-libav")),
         ])))),
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["pympress"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Simple yet powerful PDF reader designed for dual-screen presentations",
         mainProgram: "pympress",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

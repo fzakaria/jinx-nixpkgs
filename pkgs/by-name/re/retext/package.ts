@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]], [["url", 29, 5], ["hash", 30, 5]], [["name", 74, 11], ["paths", 75, 11]], [["description", 94, 5], ["homepage", 95, 5], ["license", 96, 5], ["maintainers", 97, 5], ["platforms", 98, 5], ["mainProgram", 99, 5]], [["pname", 17, 3], ["version", 18, 3], ["pyproject", 19, 3], ["src", 21, 3], ["toolbarIcons", 28, 3], ["build-system", 33, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 40, 3], ["dependencies", 45, 3], ["postPatch", 57, 3], ["preConfigure", 62, 3], ["dontWrapQtApps", 67, 3], ["postInstall", 69, 3], ["doCheck", 87, 3], ["pythonImportsCheck", 89, 3], ["meta", 93, 3]]]);
 const formals$1 = { args: { lib: false, python3Packages: false, fetchzip: false, fetchFromGitHub: false, qt6: false, buildEnv: false, aspellDicts: false, enchantAspellDicts: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 29, 5], ["hash", 30, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 74, 11], ["paths", 75, 11]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 94, 5], ["homepage", 95, 5], ["license", 96, 5], ["maintainers", 97, 5], ["platforms", 98, 5], ["mainProgram", 99, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["pyproject", 19, 3], ["src", 21, 3], ["toolbarIcons", 28, 3], ["build-system", 33, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 40, 3], ["dependencies", 45, 3], ["postPatch", 57, 3], ["preConfigure", 62, 3], ["dontWrapQtApps", 67, 3], ["postInstall", 69, 3], ["doCheck", 87, 3], ["pythonImportsCheck", 89, 3], ["meta", 93, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,14 +23,14 @@ export default nix.lambda((args) => (() => {
       const version = "8.1.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "retext-project",
           repo: "retext",
           tag: version,
           hash: "sha256-npQ1eVb2iyswbqxi262shC9u/g9oE0ofkLbisFgqQM4=",
         }))));
       const toolbarIcons = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: "https://github.com/retext-project/retext/archive/icons.zip",
           hash: "sha256-nqKAUg9nTzGPPxr80KTn6JX9JgCUJwpcwp8aOIlcxPY=",
         }))));
@@ -69,7 +65,7 @@ export default nix.lambda((args) => (() => {
       const postInstall = nix.thunk(() => nix.str`makeWrapperArgs+=("\${qtWrapperArgs[@]}")
 makeWrapperArgs+=(
   "--set" "ASPELL_CONF" "dict-dir ${nix.app(buildEnv, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           name: "aspell-all-dicts",
           paths: nix.thunk(() => nix.builtins.map((path) => nix.str`${path}/lib/aspell`, enchantAspellDicts)),
         })))}"
@@ -84,7 +80,7 @@ substituteInPlace $out/share/applications/me.mitya57.ReText.desktop \\
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["ReText"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Editor for Markdown and reStructuredText",
         homepage: "https://github.com/retext-project/retext/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
@@ -96,7 +92,7 @@ substituteInPlace $out/share/applications/me.mitya57.ReText.desktop \\
         mainProgram: "retext",
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         pyproject,

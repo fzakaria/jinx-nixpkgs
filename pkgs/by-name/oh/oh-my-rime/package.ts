@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 12, 5], ["repo", 13, 5], ["rev", 14, 5], ["hash", 15, 5]], [["hardcodeZeroVersion", 32, 48]], [["updateScript", 32, 12]], [["description", 38, 5], ["longDescription", 39, 5], ["homepage", 54, 5], ["license", 55, 5], ["maintainers", 56, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["installPhase", 18, 3], ["passthru", 32, 3], ["strictDeps", 34, 3], ["__structuredAttrs", 35, 3], ["meta", 37, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchFromGitHub: false, unstableGitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 12, 5], ["repo", 13, 5], ["rev", 14, 5], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["hardcodeZeroVersion", 32, 48]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 32, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 38, 5], ["longDescription", 39, 5], ["homepage", 54, 5], ["license", 55, 5], ["maintainers", 56, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["installPhase", 18, 3], ["passthru", 32, 3], ["strictDeps", 34, 3], ["__structuredAttrs", 35, 3], ["meta", 37, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "oh-my-rime",
       version: "0-unstable-2026-09-29",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Mintimate",
           repo: "oh-my-rime",
           rev: "0b1d78474f5c11bdca78593b525bc2186be6c111",
@@ -28,13 +24,13 @@ export default nix.lambda((args) => (() => {
         })))),
       installPhase: "runHook preInstall\n\nrm -rf README*.md .git* .ide plum preview .cnb.yml demo.webp LICENSE\n\nmv default.yaml oh_my_rime_suggested_default.yaml\n\nmkdir -p $out/share\ncp -r . $out/share/rime-data\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, hardcodeZeroVersion: true })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[1], hardcodeZeroVersion: true })))),
       })),
       strictDeps: true,
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Rime configuration template with multiple Chinese input schemas",
         longDescription: "Oh My Rime, also known as Mint Input Method, is a ready-to-use\nconfiguration template for Rime. It includes full and double pinyin,\nTerra Pinyin, and Wubi input schemas, along with dictionaries, Lua\nscripts, and themes.\n\nThe upstream `default.yaml` is included as\n`oh_my_rime_suggested_default.yaml`. To enable it, add the following to\nyour `default.custom.yaml`:\n\n```yaml\npatch:\n  __include: oh_my_rime_suggested_default:/\n```\n",
         homepage: "https://github.com/Mintimate/oh-my-rime",

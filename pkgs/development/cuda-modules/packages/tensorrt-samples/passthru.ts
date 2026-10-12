@@ -2,15 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/passthru.nix", [[["url", 21, 9], ["hash", 22, 9]], [["url", 26, 9], ["hash", 27, 9], ["stripRoot", 28, 9]], [["10.14.1", 36, 11], ["10.16.1", 37, 11], ["11.0.0", 38, 11], ["11.1.0", 39, 11], ["11.3.0", 40, 11]], [["name", 47, 7], ["runtimeInputs", 48, 7], ["text", 49, 7]], [["mkTester", 60, 39], ["sample-data", 60, 48], ["atLeast", 62, 11], ["backendStdenv", 63, 11], ["finalAttrs", 64, 11], ["lib", 65, 11], ["older", 66, 11], ["python3", 67, 11], ["runCommand", 68, 11]], [["callPackage", 76, 9], ["directory", 77, 9]], [["nativeBuildInputs", 86, 9], ["requiredSystemFeatures", 87, 9]], [["sample-data", 16, 3], ["mkTester", 44, 3], ["testers", 57, 3], ["tests", 82, 3]]]);
 const formals$1 = { args: { backendStdenv: false, fetchzip: false, finalAttrs: false, lib: false, python3: false, runCommand: false, stdenvNoCC: false, writeShellApplication: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/passthru.nix", [["url", 21, 9], ["hash", 22, 9]]);
-const pos$2 = nix.positions(here + "/passthru.nix", [["url", 26, 9], ["hash", 27, 9], ["stripRoot", 28, 9]]);
-const pos$3 = nix.positions(here + "/passthru.nix", [["10.14.1", 36, 11], ["10.16.1", 37, 11], ["11.0.0", 38, 11], ["11.1.0", 39, 11], ["11.3.0", 40, 11]]);
-const pos$4 = nix.positions(here + "/passthru.nix", [["name", 47, 7], ["runtimeInputs", 48, 7], ["text", 49, 7]]);
-const pos$5 = nix.positions(here + "/passthru.nix", [["mkTester", 60, 39], ["sample-data", 60, 48], ["atLeast", 62, 11], ["backendStdenv", 63, 11], ["finalAttrs", 64, 11], ["lib", 65, 11], ["older", 66, 11], ["python3", 67, 11], ["runCommand", 68, 11]]);
-const pos$6 = nix.positions(here + "/passthru.nix", [["callPackage", 76, 9], ["directory", 77, 9]]);
-const pos$7 = nix.positions(here + "/passthru.nix", [["nativeBuildInputs", 86, 9], ["requiredSystemFeatures", 87, 9]]);
-const pos$8 = nix.positions(here + "/passthru.nix", [["sample-data", 16, 3], ["mkTester", 44, 3], ["testers", 57, 3], ["tests", 82, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,21 +18,21 @@ export default nix.lambda((args) => (() => {
   const older = nix.thunk(() => nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(finalAttrs, "version"))));
   const atLeast = nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(finalAttrs, "version"))));
   return {
-    [nix.POS]: pos$8,
+    [nix.POS]: $pos[7],
     "sample-data": nix.thunk(() => (() => {
       const sample_data_10_14_1 = nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         url: "https://github.com/NVIDIA/TensorRT/releases/download/v10.14/tensorrt_sample_data_20260128.zip",
         hash: "sha256-KSUKJsBaOSRHJKDp5SUzmfHNWlcEP1TwTgXja3nhVKI=",
       }));
       const sample_data_11_0_0 = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         url: "https://github.com/NVIDIA/TensorRT/releases/download/v11.0/tensorrt_sample_data_20260602.zip",
         hash: "sha256-4SFzdg1fQS/ot1AtF5VsECjgxCGrV9E62S1B7/1g5c4=",
         stripRoot: false,
       }));
       return nix.app(fetchzip, nix.thunk(() => (nix.asBool(nix.app(older, "10.14.1")) ? nix.force(sample_data_10_14_1) : nix.app(nix.sel(lib, "getAttr"), nix.thunk(() => nix.sel(finalAttrs, "version")), nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             "10.14.1": sample_data_10_14_1,
             "10.16.1": sample_data_10_14_1,
             "11.0.0": sample_data_11_0_0,
@@ -48,7 +41,7 @@ export default nix.lambda((args) => (() => {
           }))))));
     })()),
     mkTester: (name) => (cmdArgs) => nix.app(writeShellApplication, nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         name: nix.thunk(() => nix.add(nix.add(nix.sel(finalAttrs, "name"), "-tester-"), name)),
         runtimeInputs: nix.thunk(() => [nix.thunk(() => nix.sel(finalAttrs, "finalPackage"))]),
         text: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "toShellVar"), "cmdArgs", cmdArgs)}
@@ -60,7 +53,7 @@ echo "running \${cmdArgs[*]@Q}"
       const mkTesters = nix.thunk(() => nix.app(nix.sel(lib, "flip"), nix.builtins.import, nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(finalAttrs, "passthru"));
           return {
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           mkTester: nix.thunk(() => nix.attr(from, "mkTester")),
           "sample-data": nix.thunk(() => nix.attr(from, "sample-data")),
           atLeast: atLeast,
@@ -73,13 +66,13 @@ echo "running \${cmdArgs[*]@Q}"
         };
         })())));
       return nix.app(nix.sel(lib, "filterAttrs"), (_) => (attrs) => !nix.eq(attrs, {}), nix.thunk(() => nix.app(nix.sel(lib, "packagesFromDirectoryRecursive"), nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             callPackage: (path) => (_) => nix.app(mkTesters, path),
             directory: nix.path(here, "./testers"),
           })))));
     })()),
     tests: nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsRecursiveCond"), (as) => !nix.asBool(nix.app(nix.sel(lib, "isDerivation"), as)), (path) => (drv) => nix.app(runCommand, nix.thunk(() => nix.app(nix.sel(lib, "replaceString"), "-tester-", "-test-", nix.thunk(() => nix.sel(drv, "name")))), nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           nativeBuildInputs: nix.thunk(() => [drv]),
           requiredSystemFeatures: nix.thunk(() => ["cuda"]),
         })), nix.thunk(() => nix.str`set -euo pipefail

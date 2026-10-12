@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 17, 5], ["hash", 18, 5]], [["description", 24, 5], ["longDescription", 25, 5], ["homepage", 32, 5], ["license", 42, 5], ["maintainers", 43, 5], ["platforms", 44, 5]], [["pname", 9, 3], ["version", 10, 3], ["outputs", 12, 3], ["src", 16, 3], ["nativeBuildInputs", 21, 3], ["meta", 23, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchzip: false, installFonts: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 24, 5], ["longDescription", 25, 5], ["homepage", 32, 5], ["license", 42, 5], ["maintainers", 43, 5], ["platforms", 44, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["outputs", 12, 3], ["src", 16, 3], ["nativeBuildInputs", 21, 3], ["meta", 23, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,13 +16,13 @@ export default nix.lambda((args) => (() => {
       const version = "3.003";
       const outputs = nix.thunk(() => ["out"]);
       const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/chrissimpkins/Hack/releases/download/v${version}/Hack-v${version}-ttf.zip`),
           hash: "sha256-SxF4kYp9aL/9L9EUniquFadzWt/+PcvhUQOIOvCrFRM=",
         }))));
       const nativeBuildInputs = nix.thunk(() => [installFonts]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Typeface designed for source code",
         longDescription: "Hack is hand groomed and optically balanced to be a workhorse face for\ncode. It has deep roots in the libre, open source typeface community and\nexpands upon the contributions of the Bitstream Vera & DejaVu projects.\nThe face has been re-designed with a larger glyph set, modifications of\nthe original glyph shapes, and meticulous attention to metrics.\n",
         homepage: "https://sourcefoundry.org/hack/",
@@ -35,7 +33,7 @@ export default nix.lambda((args) => (() => {
         })()),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
-      return { [nix.POS]: pos$3, pname, version, outputs, src, nativeBuildInputs, meta };
+      return { [nix.POS]: $pos[2], pname, version, outputs, src, nativeBuildInputs, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

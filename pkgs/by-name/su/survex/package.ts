@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 25, 5], ["hash", 26, 5]], [["description", 67, 5], ["longDescription", 68, 5], ["homepage", 73, 5], ["changelog", 74, 5], ["license", 75, 5], ["maintainers", 76, 5], ["platforms", 77, 5]], [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 36, 3], ["strictDeps", 52, 3], ["postPatch", 54, 3], ["configureFlags", 58, 3], ["enableParallelBuilding", 62, 3], ["doCheck", 63, 3], ["enableParallelChecking", 64, 3], ["meta", 66, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, ffmpeg: false, glib: false, libGLU: false, libice: false, libx11: false, libgbm: false, perl: false, "pkg-config": false, proj: false, gdal: false, python3: false, wrapGAppsHook3: false, wxwidgets_3_2: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 67, 5], ["longDescription", 68, 5], ["homepage", 73, 5], ["changelog", 74, 5], ["license", 75, 5], ["maintainers", 76, 5], ["platforms", 77, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 36, 3], ["strictDeps", 52, 3], ["postPatch", 54, 3], ["configureFlags", 58, 3], ["enableParallelBuilding", 62, 3], ["doCheck", 63, 3], ["enableParallelChecking", 64, 3], ["meta", 66, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   const wxwidgets_3_2 = nix.arg($, "wxwidgets_3_2");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "survex",
       version: "1.4.22",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://survex.com/software/${nix.sel(finalAttrs, "version")}/survex-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-omli2IhiHP0gQ6fMaiJ/yQUTDfvRTEUNwcTAL7/dnbw=",
         })))),
@@ -45,7 +43,7 @@ export default nix.lambda((args) => (() => {
       doCheck: nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))),
       enableParallelChecking: false,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Free Software/Open Source software package for mapping caves",
         longDescription: "Survex is a Free Software/Open Source software package for mapping caves,\nlicensed under the GPL. It is designed to be portable and can be run on a\nvariety of platforms, including Linux/Unix, macOS, and Microsoft Windows.\n",
         homepage: "https://survex.com/",

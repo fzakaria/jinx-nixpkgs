@@ -2,48 +2,42 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
-const pos$1 = nix.positions(here + "/shards.nix", [["url", 3, 5], ["rev", 4, 5], ["sha256", 5, 5]]);
-const pos$2 = nix.positions(here + "/shards.nix", [["url", 8, 5], ["rev", 9, 5], ["sha256", 10, 5]]);
-const pos$3 = nix.positions(here + "/shards.nix", [["url", 13, 5], ["rev", 14, 5], ["sha256", 15, 5]]);
-const pos$4 = nix.positions(here + "/shards.nix", [["url", 18, 5], ["rev", 19, 5], ["sha256", 20, 5]]);
-const pos$5 = nix.positions(here + "/shards.nix", [["url", 23, 5], ["rev", 24, 5], ["sha256", 25, 5]]);
-const pos$6 = nix.positions(here + "/shards.nix", [["url", 28, 5], ["rev", 29, 5], ["sha256", 30, 5]]);
-const pos$7 = nix.positions(here + "/shards.nix", [["admiral", 2, 3], ["ameba", 7, 3], ["ansi-escapes", 12, 3], ["baked_file_system", 17, 3], ["dotenv", 22, 3], ["markd", 27, 3]]);
+const $pos = nix.positions(here + "/shards.nix", [[["url", 3, 5], ["rev", 4, 5], ["sha256", 5, 5]], [["url", 8, 5], ["rev", 9, 5], ["sha256", 10, 5]], [["url", 13, 5], ["rev", 14, 5], ["sha256", 15, 5]], [["url", 18, 5], ["rev", 19, 5], ["sha256", 20, 5]], [["url", 23, 5], ["rev", 24, 5], ["sha256", 25, 5]], [["url", 28, 5], ["rev", 29, 5], ["sha256", 30, 5]], [["admiral", 2, 3], ["ameba", 7, 3], ["ansi-escapes", 12, 3], ["baked_file_system", 17, 3], ["dotenv", 22, 3], ["markd", 27, 3]]]);
 
 export default nix.thunk(() => ({
-  [nix.POS]: pos$7,
+  [nix.POS]: $pos[6],
   admiral: nix.thunk(() => ({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     url: "https://github.com/jwaldrip/admiral.cr.git",
     rev: "v1.12.1",
     sha256: "0x8v9i8ixs7xcwz35kdlqvz0pfm1cqzm6gvwdjfrps0drisk7f6i",
   })),
   ameba: nix.thunk(() => ({
-    [nix.POS]: pos$2,
+    [nix.POS]: $pos[1],
     url: "https://github.com/crystal-ameba/ameba.git",
     rev: "37fe65d0d86477ecd6cf0bab2d519f2235fea6b5",
     sha256: "135jlnxqgg5haxfp5wprw3s0hqhhay2k22vgy2fy6vilk8rlcy7w",
   })),
   "ansi-escapes": nix.thunk(() => ({
-    [nix.POS]: pos$3,
+    [nix.POS]: $pos[2],
     url: "https://github.com/gtramontina/ansi-escapes.cr.git",
     rev: "v1.0.0",
     sha256: "106cy7bq0j438cfs0zqcxhj84msjj9dybxlcjr8qhs1fpm02s00b",
   })),
   baked_file_system: nix.thunk(() => ({
-    [nix.POS]: pos$4,
+    [nix.POS]: $pos[3],
     url: "https://github.com/schovi/baked_file_system.git",
     rev: "ea0b659f43d7ce00bde66e8a87eeb4d5a112621b",
     sha256: "0zxwmznmh8aazjhlf9j5nxqnij74hb2j4kad48p706bzv3m5bymg",
   })),
   dotenv: nix.thunk(() => ({
-    [nix.POS]: pos$5,
+    [nix.POS]: $pos[4],
     url: "https://github.com/gdotdesign/cr-dotenv.git",
     rev: "v1.0.0",
     sha256: "00pdawysns1w1iqwh6j3shilpwh41ljz1chsqkacn6dj2yn21n0r",
   })),
   markd: nix.thunk(() => ({
-    [nix.POS]: pos$6,
+    [nix.POS]: $pos[5],
     url: "https://github.com/icyleaf/markd.git",
     rev: "v0.5.0",
     sha256: "1a677z57kwjq6lp4ws7br1ga8jgpgi8990glhd1r8756bdyd8mg0",

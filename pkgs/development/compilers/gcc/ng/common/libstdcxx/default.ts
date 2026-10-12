@@ -2,13 +2,8 @@
 import * as nix from "../../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["src", 48, 49]], [["name", 108, 9], ["url", 109, 9], ["hash", 110, 9], ["includes", 111, 9]], [["name", 125, 9], ["url", 126, 9], ["includes", 127, 9], ["hash", 135, 9]], [["isGNU", 325, 5]], [["homepage", 329, 5], ["description", 330, 5], ["broken", 337, 5]], [["pname", 45, 3], ["version", 46, 11], ["src", 48, 3], ["outputs", 99, 3], ["patches", 104, 3], ["postUnpack", 139, 3], ["preAutoreconf", 144, 3], ["enableParallelBuilding", 149, 3], ["buildInputs", 152, 3], ["nativeBuildInputs", 154, 3], ["preConfigure", 159, 3], ["configurePlatforms", 235, 3], ["configureFlags", 240, 3], ["hardeningDisable", 310, 3], ["postInstall", 317, 3], ["doCheck", 322, 3], ["passthru", 324, 3], ["meta", 328, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, gcc_meta: false, release_version: false, version: false, getVersionFile: false, monorepoSrc: true, fetchpatch: false, autoreconfHook269: false, runCommand: false, gettext: false, libgcc: false, libbacktrace: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["src", 48, 49]]);
-const pos$2 = nix.positions(here + "/default.nix", [["name", 108, 9], ["url", 109, 9], ["hash", 110, 9], ["includes", 111, 9]]);
-const pos$3 = nix.positions(here + "/default.nix", [["name", 125, 9], ["url", 126, 9], ["includes", 127, 9], ["hash", 135, 9]]);
-const pos$4 = nix.positions(here + "/default.nix", [["isGNU", 325, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["homepage", 329, 5], ["description", 330, 5], ["broken", 337, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 45, 3], ["version", 46, 11], ["src", 48, 3], ["outputs", 99, 3], ["patches", 104, 3], ["postUnpack", 139, 3], ["preAutoreconf", 144, 3], ["enableParallelBuilding", 149, 3], ["buildInputs", 152, 3], ["nativeBuildInputs", 154, 3], ["preConfigure", 159, 3], ["configurePlatforms", 235, 3], ["configureFlags", 240, 3], ["hardeningDisable", 310, 3], ["postInstall", 317, 3], ["doCheck", 322, 3], ["passthru", 324, 3], ["meta", 328, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,14 +23,14 @@ export default nix.lambda((args) => (() => {
   const hosted = nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(stdenv, "cc", "libc"), null)) && nix.asBool(!nix.asBool(nix.selOr(stdenv, () => false, "cc", "libc", "headersOnly")))));
   const cxxForLibstdcxxFlags = nix.thunk(() => nix.concat(["-shared-libgcc", "-nostdinc++"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(hosted)), nix.thunk(() => ["-D_GLIBCXX_INCLUDE_NEXT_C_HEADERS"]))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: nix.thunk(() => nix.add("libstdcxx", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(hosted)), "-no-libc"))),
       version: version,
-      src: nix.thunk(() => nix.app(runCommand, nix.thunk(() => nix.str`libstdcxx-src-${version}`), nix.thunk(() => ({ [nix.POS]: pos$1, src: monorepoSrc })), nix.thunk(() => nix.add(nix.add(nix.add("runPhase unpackPhase\n\nmkdir -p \"$out/gcc\"\ncp gcc/BASE-VER \"$out/gcc\"\ncp gcc/DATESTAMP \"$out/gcc\"\n\nmkdir -p \"$out/libgcc\"\ncp libgcc/gthr*.h \"$out/libgcc\"\ncp libgcc/unwind-pe.h \"$out/libgcc\"\n\n", "cp --parents libgcc/config/*/gthr*.h \"$out\"\n\ncp -r libstdc++-v3 \"$out\"\n\ncp -r libiberty \"$out\"\ncp -r include \"$out\"\ncp -r contrib \"$out\"\n\ncp -r config \"$out\"\ncp -r multilib.am \"$out\"\n\ncp config.guess \"$out\"\ncp config.rpath \"$out\"\ncp config.sub \"$out\"\ncp config-ml.in \"$out\"\ncp ltmain.sh \"$out\"\ncp install-sh \"$out\"\ncp mkinstalldirs \"$out\"\n\n"), "cp libtool-ldflags \"$out\"\n\n"), "if [[ -f MD5SUMS ]]; then cp MD5SUMS \"$out\"; fi\n")))),
+      src: nix.thunk(() => nix.app(runCommand, nix.thunk(() => nix.str`libstdcxx-src-${version}`), nix.thunk(() => ({ [nix.POS]: $pos[0], src: monorepoSrc })), nix.thunk(() => nix.add(nix.add(nix.add("runPhase unpackPhase\n\nmkdir -p \"$out/gcc\"\ncp gcc/BASE-VER \"$out/gcc\"\ncp gcc/DATESTAMP \"$out/gcc\"\n\nmkdir -p \"$out/libgcc\"\ncp libgcc/gthr*.h \"$out/libgcc\"\ncp libgcc/unwind-pe.h \"$out/libgcc\"\n\n", "cp --parents libgcc/config/*/gthr*.h \"$out\"\n\ncp -r libstdc++-v3 \"$out\"\n\ncp -r libiberty \"$out\"\ncp -r include \"$out\"\ncp -r contrib \"$out\"\n\ncp -r config \"$out\"\ncp -r multilib.am \"$out\"\n\ncp config.guess \"$out\"\ncp config.rpath \"$out\"\ncp config.sub \"$out\"\ncp config-ml.in \"$out\"\ncp ltmain.sh \"$out\"\ncp install-sh \"$out\"\ncp mkinstalldirs \"$out\"\n\n"), "cp libtool-ldflags \"$out\"\n\n"), "if [[ -f MD5SUMS ]]; then cp MD5SUMS \"$out\"; fi\n")))),
       outputs: nix.thunk(() => ["out", "dev"]),
       patches: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(nix.sel(lib, "versionOlder"), release_version, "16")), nix.thunk(() => [
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               name: "custom-threading-model.patch",
               url: "https://github.com/gcc-mirror/gcc/commit/e5d853bbe9b05d6a00d98ad236f01937303e40c4.diff",
               hash: "sha256-f0XAim3uzHnUx5lm/xO00IqBHu4YUEHF2WY+c0yCF6Y=",
@@ -44,7 +39,7 @@ export default nix.lambda((args) => (() => {
         ])), [
         nix.thunk(() => nix.app(getVersionFile, "libstdcxx/force-regular-dirs.patch")),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "system-libbacktrace.patch",
             url: "https://inbox.sourceware.org/gcc-patches/20260814013206.3818461-1-git@JohnEricson.me/raw",
             includes: nix.thunk(() => [
@@ -92,9 +87,9 @@ echo "libstdcxx: building with CXX=$CXX"
       hardeningDisable: nix.thunk(() => ["fortify"]),
       postInstall: "moveToOutput lib/libstdc++.modules.json \"$dev\"\n",
       doCheck: hosted,
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$4, isGNU: true })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[3], isGNU: true })),
       meta: nix.thunk(() => nix.update(gcc_meta, {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "https://gcc.gnu.org/onlinedocs/libstdc++",
         description: "GNU C++ Library",
         broken: nix.thunk(() => (nix.asBool(!nix.asBool(hosted)) && nix.asBool(!nix.asBool(nix.sel(stdenv, "hostPlatform", "isCygwin"))))),

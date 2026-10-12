@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 51, 5], ["repo", 52, 5], ["tag", 53, 5], ["hash", 54, 5], ["fetchSubmodules", 55, 5]], [["updateScript", 63, 12]], [["name", 123, 7], ["exec", 124, 7], ["icon", 125, 7], ["desktopName", 126, 7], ["comment", 127, 7], ["categories", 128, 7], ["startupWMClass", 129, 7]], [["description", 141, 5], ["homepage", 142, 5], ["license", 143, 5], ["maintainers", 144, 5], ["platforms", 145, 5], ["mainProgram", 146, 5]], [["version", 46, 11], ["buildType", 46, 19], ["pname", 48, 3], ["src", 50, 3], ["_structuredAttrs", 58, 3], ["strictDeps", 59, 3], ["nugetDeps", 61, 3], ["passthru", 63, 3], ["projectFile", 65, 3], ["dotnet-sdk", 70, 3], ["executables", 72, 3], ["dotnetFlags", 74, 3], ["preBuild", 83, 3], ["runtimeDeps", 88, 3], ["makeWrapperArgs", 114, 3], ["nativeBuildInputs", 116, 3], ["desktopItems", 121, 3], ["postInstall", 133, 3], ["meta", 140, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, config: false, "nix-update-script": false, buildDotnetModule: false, dotnetCorePackages: false, fetchFromGitHub: false, iconConvTools: false, copyDesktopItems: false, makeDesktopItem: false, libx11: false, libice: false, libsm: false, libxi: false, libxcursor: false, libxext: false, libxrandr: false, libGL: false, freetype: false, glib: false, "alsa-lib": false, libjack2: false, pipewire: false, libpulseaudio: false, "at-spi2-atk": false, "at-spi2-core": false, libxkbcommon: false, wayland: false, fontconfig: false, dbus: false, alsaSupport: true, jackSupport: true, pipewireSupport: true, pulseaudioSupport: true, "soundfont-fluid": false, "soundfont-path": true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 51, 5], ["repo", 52, 5], ["tag", 53, 5], ["hash", 54, 5], ["fetchSubmodules", 55, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 63, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 123, 7], ["exec", 124, 7], ["icon", 125, 7], ["desktopName", 126, 7], ["comment", 127, 7], ["categories", 128, 7], ["startupWMClass", 129, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 141, 5], ["homepage", 142, 5], ["license", 143, 5], ["maintainers", 144, 5], ["platforms", 145, 5], ["mainProgram", 146, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["version", 46, 11], ["buildType", 46, 19], ["pname", 48, 3], ["src", 50, 3], ["_structuredAttrs", 58, 3], ["strictDeps", 59, 3], ["nugetDeps", 61, 3], ["passthru", 63, 3], ["projectFile", 65, 3], ["dotnet-sdk", 70, 3], ["executables", 72, 3], ["dotnetFlags", 74, 3], ["preBuild", 83, 3], ["runtimeDeps", 88, 3], ["makeWrapperArgs", 114, 3], ["nativeBuildInputs", 116, 3], ["desktopItems", 121, 3], ["postInstall", 133, 3], ["meta", 140, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -50,12 +46,12 @@ export default nix.lambda((args) => (() => {
   const version = "0.40.2";
   const buildType = "Release";
   return nix.app(buildDotnetModule, nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       version: version,
       buildType: buildType,
       pname: "SS14.Launcher",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "space-wizards",
           repo: "SS14.Launcher",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -66,7 +62,7 @@ export default nix.lambda((args) => (() => {
       strictDeps: true,
       nugetDeps: nix.path(here, "./deps.json"),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       projectFile: nix.thunk(() => ["SS14.Loader/SS14.Loader.csproj", "SS14.Launcher/SS14.Launcher.csproj"]),
@@ -96,7 +92,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [iconConvTools, copyDesktopItems]),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "SS14.Launcher",
             exec: "SS14.Launcher",
             icon: "SS14",
@@ -112,7 +108,7 @@ cp -r SS14.Loader/bin/${buildType}/*/*/* $out/lib/SS14.Launcher/loader/
 icoFileToHiColorTheme SS14.Launcher/Assets/icon.ico SS14 $out
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Launcher for Space Station 14, a multiplayer game about paranoia and disaster",
         homepage: "https://spacestation14.com",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

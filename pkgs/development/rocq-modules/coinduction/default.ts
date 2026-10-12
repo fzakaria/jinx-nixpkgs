@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["case", 19, 9], ["out", 20, 9]], [["hash", 24, 11]], [["1.9", 24, 5]], [["description", 33, 5], ["license", 34, 5]], [["pname", 10, 3], ["owner", 11, 3], ["version", 12, 11], ["defaultVersion", 13, 3], ["release", 23, 3], ["releaseRev", 26, 3], ["propagatedBuildInputs", 28, 3], ["mlPlugin", 30, 3], ["meta", 32, 3]]]);
 const formals$1 = { args: { lib: false, mkCoqDerivation: false, coq: false, stdlib: false, version: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["case", 19, 9], ["out", 20, 9]]);
-const pos$2 = nix.positions(here + "/default.nix", [["hash", 24, 11]]);
-const pos$3 = nix.positions(here + "/default.nix", [["1.9", 24, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 33, 5], ["license", 34, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 10, 3], ["owner", 11, 3], ["version", 12, 11], ["defaultVersion", 13, 3], ["release", 23, 3], ["releaseRev", 26, 3], ["propagatedBuildInputs", 28, 3], ["mlPlugin", 30, 3], ["meta", 32, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const stdlib = nix.arg($, "stdlib");
   const version = nix.argOr($, "version", () => null);
   return nix.app(mkCoqDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "coinduction",
       owner: "damien-pous",
       version: version,
@@ -26,16 +22,16 @@ export default nix.lambda((args) => (() => {
         const range = nix.thunk(() => nix.attr(from, "range"));
         return nix.app(nix.sel(lib, "switch"), nix.thunk(() => nix.sel(coq, "coq-version")), nix.thunk(() => [
             nix.thunk(() => ({
-              [nix.POS]: pos$1,
+              [nix.POS]: $pos[0],
               case: nix.thunk(() => nix.app(range, "8.19", "8.19")),
               out: "1.9",
             })),
           ]), null);
       })()),
       release: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         "1.9": nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           hash: "sha256-bBU+xDklnzJBeN41GarW5KXzD8eKsOYtb//ULYumwWE=",
         })),
       })),
@@ -43,7 +39,7 @@ export default nix.lambda((args) => (() => {
       propagatedBuildInputs: nix.thunk(() => [stdlib]),
       mlPlugin: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Library for doing proofs by (enhanced) coinduction",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3Plus")),
       })),

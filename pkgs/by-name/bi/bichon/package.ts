@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]], [["pname", 32, 26], ["version", 32, 32], ["src", 32, 40], ["pnpm", 33, 13], ["sourceRoot", 34, 5], ["fetcherVersion", 35, 5], ["hash", 36, 5]], [["GIT_HASH", 51, 7]], [["updateScript", 71, 12]], [["changelog", 74, 5], ["description", 75, 5], ["homepage", 76, 5], ["license", 77, 5], ["maintainers", 78, 5], ["mainProgram", 79, 5], ["platforms", 80, 5]], [["pname", 18, 3], ["version", 19, 3], ["__structuredAttrs", 20, 3], ["src", 22, 3], ["cargoHash", 29, 3], ["pnpmDeps", 31, 3], ["pnpmRoot", 38, 3], ["nativeBuildInputs", 40, 3], ["buildInputs", 47, 3], ["env", 51, 3], ["preBuild", 53, 3], ["doCheck", 64, 3], ["doInstallCheck", 66, 3], ["nativeInstallCheckInputs", 67, 3], ["versionCheckProgram", 69, 3], ["passthru", 71, 3], ["meta", 73, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, rustPlatform: false, fetchPnpmDeps: false, pnpm_11: false, pnpmConfigHook: false, nodejs: false, openssl: false, "pkg-config": false, versionCheckHook: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 32, 26], ["version", 32, 32], ["src", 32, 40], ["pnpm", 33, 13], ["sourceRoot", 34, 5], ["fetcherVersion", 35, 5], ["hash", 36, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["GIT_HASH", 51, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 71, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["changelog", 74, 5], ["description", 75, 5], ["homepage", 76, 5], ["license", 77, 5], ["maintainers", 78, 5], ["mainProgram", 79, 5], ["platforms", 80, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["__structuredAttrs", 20, 3], ["src", 22, 3], ["cargoHash", 29, 3], ["pnpmDeps", 31, 3], ["pnpmRoot", 38, 3], ["nativeBuildInputs", 40, 3], ["buildInputs", 47, 3], ["env", 51, 3], ["preBuild", 53, 3], ["doCheck", 64, 3], ["doInstallCheck", 66, 3], ["nativeInstallCheckInputs", 67, 3], ["versionCheckProgram", 69, 3], ["passthru", 71, 3], ["meta", 73, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const pnpm = pnpm_11;
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "bichon",
       version: "2.1.1",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "rustmailer",
           repo: "bichon",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -38,7 +33,7 @@ export default nix.lambda((args) => (() => {
         })))),
       cargoHash: "sha256-f+n38ffIIebd0puhyWaDsWfreMs3sWAi1osqEz9BHYg=",
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -51,7 +46,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [nodejs, pnpmConfigHook, pnpm, pkg_config]),
       buildInputs: nix.thunk(() => [openssl]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         GIT_HASH: nix.thunk(() => nix.sel(finalAttrs, "src", "rev")),
       })),
       preBuild: "# Build web frontend before rust build\npushd web\npnpm run build\npopd\n\n# Just sets the GIT_HASH variable for builds, we set it above so we don't need git\nrm crates/server/build.rs\n",
@@ -60,11 +55,11 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       versionCheckProgram: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/bin/bichon-cli`),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         changelog: nix.thunk(() => nix.str`https://github.com/rustmailer/bichon/releases/tag/${nix.sel(finalAttrs, "version")}`),
         description: "Lightweight, high-performance Rust email archiver with WebUI",
         homepage: "https://github.com/rustmailer/bichon",

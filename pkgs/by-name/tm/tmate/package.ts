@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["sha256", 26, 5]], [["homepage", 54, 5], ["description", 55, 5], ["license", 56, 5], ["platforms", 57, 5], ["maintainers", 58, 5], ["mainProgram", 59, 5], ["knownVulnerabilities", 60, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["postPatch", 29, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 40, 3], ["dontUseCmakeConfigure", 51, 3], ["meta", 53, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, autoreconfHook: false, cmake: false, libtool: false, "pkg-config": false, zlib: false, openssl: false, libevent: false, ncurses: false, ruby: false, "msgpack-c": false, libssh: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["sha256", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 54, 5], ["description", 55, 5], ["license", 56, 5], ["platforms", 57, 5], ["maintainers", 58, 5], ["mainProgram", 59, 5], ["knownVulnerabilities", 60, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["postPatch", 29, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 40, 3], ["dontUseCmakeConfigure", 51, 3], ["meta", 53, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const msgpack_c = nix.arg($, "msgpack-c");
   const libssh = nix.arg($, "libssh");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "tmate",
       version: "unstable-2022-08-07",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "tmate-io",
           repo: "tmate",
           rev: "ac919516f4f1b10ec928e20b3a5034d18f609d68",
@@ -39,7 +37,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [libtool, zlib, openssl, libevent, ncurses, ruby, msgpack_c, libssh]),
       dontUseCmakeConfigure: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/tmate-io/tmate",
         description: "Instant Terminal Sharing",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

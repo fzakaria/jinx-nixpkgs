@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["pname", 14, 5], ["version", 15, 30], ["meta", 15, 38], ["nativeBuildInputs", 17, 5]]]);
 const formals$1 = { args: { runCommand: false, "mcat-unwrapped": false, makeWrapper: false, lib: false, chromium: false, "ffmpeg-headless": false, useChromium: true, useFfmpeg: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["pname", 14, 5], ["version", 15, 30], ["meta", 15, 38], ["nativeBuildInputs", 17, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const useChromium = nix.argOr($, "useChromium", () => false);
   const useFfmpeg = nix.argOr($, "useFfmpeg", () => false);
   return nix.app(runCommand, "mcat", nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       pname: "mcat",
       version: nix.thunk(() => nix.attr(mcat_unwrapped, "version")),
       meta: nix.thunk(() => nix.attr(mcat_unwrapped, "meta")),

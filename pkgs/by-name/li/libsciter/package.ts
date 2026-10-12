@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["urlPath", 17, 5], ["sha256", 18, 5]], [["urlPath", 22, 5], ["sha256", 23, 5]], [["x86_64-linux", 16, 7], ["aarch64-linux", 21, 7]], [["url", 33, 5], ["sha256", 34, 29]], [["homepage", 60, 5], ["description", 61, 5], ["platforms", 62, 5], ["maintainers", 66, 5], ["sourceProvenance", 67, 5], ["license", 68, 5]], [["pname", 29, 3], ["version", 30, 3], ["src", 32, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 41, 3], ["dontUnpack", 49, 3], ["installPhase", 51, 3], ["meta", 59, 3]]]);
 const formals$1 = { args: { lib: false, glib: false, cairo: false, libuuid: false, pango: false, gtk3: false, stdenv: false, fetchurl: false, autoPatchelfHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["urlPath", 17, 5], ["sha256", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["urlPath", 22, 5], ["sha256", 23, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["x86_64-linux", 16, 7], ["aarch64-linux", 21, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["url", 33, 5], ["sha256", 34, 29]]);
-const pos$5 = nix.positions(here + "/package.nix", [["homepage", 60, 5], ["description", 61, 5], ["platforms", 62, 5], ["maintainers", 66, 5], ["sourceProvenance", 67, 5], ["license", 68, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 29, 3], ["version", 30, 3], ["src", 32, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 41, 3], ["dontUnpack", 49, 3], ["installPhase", 51, 3], ["meta", 59, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,26 +19,26 @@ export default nix.lambda((args) => (() => {
   const from = nix.thunk(() => nix.sel(stdenv, "targetPlatform"));
   const system = nix.thunk(() => nix.attr(from, "system"));
   const src = nix.thunk(() => ({
-    [nix.POS]: pos$3,
+    [nix.POS]: $pos[2],
     "x86_64-linux": nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       urlPath: "x64",
       sha256: "a1682fbf55e004f1862d6ace31b5220121d20906bdbf308d0a9237b451e4db86",
     })),
     "aarch64-linux": nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       urlPath: "arm64",
       sha256: "sha256-bqGPbvtOM8/A6acDbFJGGf4kzKo/4S/bWcH/XvxVySU=",
     })),
   }));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "libsciter",
       version: "4.4.8.23-bis",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => (() => {
           const from_1 = nix.thunk(() => nix.sel(src, nix.key(nix.force(system))));
           return {
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           url: nix.thunk(() => nix.str`https://github.com/c-smile/sciter-sdk/raw/524a90ef7eab16575df9496f7e4c374bbd5fb1fe/bin.lnx/${nix.sel(src, nix.key(nix.force(system)), "urlPath")}/libsciter-gtk.so`),
           sha256: nix.thunk(() => nix.attr(from_1, "sha256")),
         };
@@ -53,7 +48,7 @@ export default nix.lambda((args) => (() => {
       dontUnpack: true,
       installPhase: "runHook preInstall\n\ninstall -m755 -D $src $out/lib/libsciter-gtk.so\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "https://sciter.com",
         description: "Embeddable HTML/CSS/JavaScript engine for modern UI development",
         platforms: nix.thunk(() => ["x86_64-linux", "aarch64-linux"]),

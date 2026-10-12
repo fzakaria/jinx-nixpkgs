@@ -2,30 +2,9 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/overrides.nix", [[["language", 34, 21], ["requires", 34, 30], ["isTreesitterQuery", 35, 13]], [["description", 37, 16]], [["passthru", 33, 11], ["meta", 37, 11]], [["buildGrammar", 51, 27], ["buildQueries", 52, 13]], [["dependencies", 66, 19]], [["passthru", 65, 9]], [["associatedQuery", 78, 11]], [["passthru", 77, 9]], [["dependencies", 94, 19]], [["passthru", 93, 9]], [["dependencies", 141, 16]], [["passthru", 141, 7]], [["start", 166, 36]], [["all", 166, 32]], [["packages", 166, 23]], [["configure", 166, 13]], [["nativeBuildInputs", 171, 13], ["CI", 175, 13]], [["CI", 194, 78]], [["check-queries", 163, 7], ["no-queries-for-official-grammars", 190, 7]], [["buildQueries", 150, 7], ["builtGrammars", 151, 7], ["allGrammars", 152, 7], ["grammarPlugins", 153, 7], ["grammarToPlugin", 154, 7], ["withPlugins", 155, 7], ["withAllGrammars", 156, 7], ["queries", 159, 5], ["parsers", 160, 5], ["tests", 162, 5]], [["license", 215, 5], ["maintainers", 216, 5]], [["passthru", 148, 3], ["meta", 214, 3]]]);
 const formals$1 = { args: { lib: false, callPackage: false, symlinkJoin: false, vimUtils: false, "tree-sitter": false, "tree-sitter-grammars": false, neovim: false, neovimUtils: false, runCommand: false, runCommandLocal: false, vimPlugins: false, writableTmpDirAsHomeHook: false }, ellipsis: false };
 const formals$2 = { args: { language: false, requires: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/overrides.nix", [["language", 34, 21], ["requires", 34, 30], ["isTreesitterQuery", 35, 13]]);
-const pos$2 = nix.positions(here + "/overrides.nix", [["description", 37, 16]]);
-const pos$3 = nix.positions(here + "/overrides.nix", [["passthru", 33, 11], ["meta", 37, 11]]);
-const pos$4 = nix.positions(here + "/overrides.nix", [["buildGrammar", 51, 27], ["buildQueries", 52, 13]]);
-const pos$5 = nix.positions(here + "/overrides.nix", [["dependencies", 66, 19]]);
-const pos$6 = nix.positions(here + "/overrides.nix", [["passthru", 65, 9]]);
-const pos$7 = nix.positions(here + "/overrides.nix", [["associatedQuery", 78, 11]]);
-const pos$8 = nix.positions(here + "/overrides.nix", [["passthru", 77, 9]]);
-const pos$9 = nix.positions(here + "/overrides.nix", [["dependencies", 94, 19]]);
-const pos$10 = nix.positions(here + "/overrides.nix", [["passthru", 93, 9]]);
-const pos$11 = nix.positions(here + "/overrides.nix", [["dependencies", 141, 16]]);
-const pos$12 = nix.positions(here + "/overrides.nix", [["passthru", 141, 7]]);
-const pos$13 = nix.positions(here + "/overrides.nix", [["start", 166, 36]]);
-const pos$14 = nix.positions(here + "/overrides.nix", [["all", 166, 32]]);
-const pos$15 = nix.positions(here + "/overrides.nix", [["packages", 166, 23]]);
-const pos$16 = nix.positions(here + "/overrides.nix", [["configure", 166, 13]]);
-const pos$17 = nix.positions(here + "/overrides.nix", [["nativeBuildInputs", 171, 13], ["CI", 175, 13]]);
-const pos$18 = nix.positions(here + "/overrides.nix", [["CI", 194, 78]]);
-const pos$19 = nix.positions(here + "/overrides.nix", [["check-queries", 163, 7], ["no-queries-for-official-grammars", 190, 7]]);
-const pos$20 = nix.positions(here + "/overrides.nix", [["buildQueries", 150, 7], ["builtGrammars", 151, 7], ["allGrammars", 152, 7], ["grammarPlugins", 153, 7], ["grammarToPlugin", 154, 7], ["withPlugins", 155, 7], ["withAllGrammars", 156, 7], ["queries", 159, 5], ["parsers", 160, 5], ["tests", 162, 5]]);
-const pos$21 = nix.positions(here + "/overrides.nix", [["license", 215, 5], ["maintainers", 216, 5]]);
-const pos$22 = nix.positions(here + "/overrides.nix", [["passthru", 148, 3], ["meta", 214, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -48,15 +27,15 @@ export default nix.lambda((args) => (() => {
       const language = nix.arg($_1, "language");
       const requires = nix.argOr($_1, "requires", () => []);
       return nix.app(nix.sel(vimUtils, "toVimPlugin"), nix.thunk(() => nix.app(runCommandLocal, nix.thunk(() => nix.str`nvim-treesitter-queries-${language}`), nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             passthru: nix.thunk(() => ({
-              [nix.POS]: pos$1,
+              [nix.POS]: $pos[0],
               language: language,
               requires: requires,
               isTreesitterQuery: true,
             })),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               description: nix.thunk(() => nix.str`Queries for ${language} from nvim-treesitter`),
             })),
           })), nix.thunk(() => nix.str`mkdir -p "$out/queries"
@@ -69,7 +48,7 @@ fi
 `))));
     })(), formals$2);
     const generated = nix.thunk(() => nix.app(callPackage, nix.path(here, "./generated.nix"), nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         buildGrammar: nix.thunk(() => nix.attr(tree_sitter, "buildGrammar")),
         buildQueries: buildQueries,
       }))));
@@ -79,14 +58,14 @@ fi
         const requires = nix.thunk(() => nix.selOr(query, () => [], "requires"));
         const dependencies = nix.thunk(() => nix.builtins.map((req) => nix.sel(queries, nix.key(nix.force(req))), requires));
         return (nix.asBool(!nix.eq(dependencies, [])) ? nix.app(nix.sel(query, "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$6,
-            passthru: nix.thunk(() => nix.update(nix.selOr(old, () => ({}), "passthru"), { [nix.POS]: pos$5, dependencies: dependencies })),
+            [nix.POS]: $pos[5],
+            passthru: nix.thunk(() => nix.update(nix.selOr(old, () => ({}), "passthru"), { [nix.POS]: $pos[4], dependencies: dependencies })),
           })) : nix.force(query));
       })(), queries));
     const parsersWithQueries = nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (lang) => (parser) => (nix.asBool(nix.app(nix.sel(lib, "hasAttr"), lang, queriesWithDeps)) ? nix.app(nix.sel(parser, "overrideAttrs"), (old) => ({
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           passthru: nix.thunk(() => nix.update(nix.selOr(old, () => ({}), "passthru"), {
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             associatedQuery: nix.thunk(() => nix.sel(queriesWithDeps, nix.key(nix.force(lang)))),
           })),
         })) : nix.force(parser)), parsers));
@@ -94,8 +73,8 @@ fi
         const requires = nix.thunk(() => nix.selOr(parser, () => [], "requires"));
         const dependencies = nix.thunk(() => nix.builtins.map((req) => nix.app(grammarToPlugin, nix.thunk(() => nix.sel(parsersWithQueries, nix.key(nix.force(req))))), requires));
         return (nix.asBool(!nix.eq(dependencies, [])) ? nix.app(nix.sel(parser, "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$10,
-            passthru: nix.thunk(() => nix.update(nix.selOr(old, () => ({}), "passthru"), { [nix.POS]: pos$9, dependencies: dependencies })),
+            [nix.POS]: $pos[9],
+            passthru: nix.thunk(() => nix.update(nix.selOr(old, () => ({}), "passthru"), { [nix.POS]: $pos[8], dependencies: dependencies })),
           })) : nix.force(parser));
       })(), parsersWithQueries));
     const builtGrammars = nix.thunk(() => nix.update(parsersWithMeta, nix.app(nix.sel(lib, "concatMapAttrs"), (k) => (v) => (() => {
@@ -111,9 +90,9 @@ fi
           nix.thunk(() => nix.app(nix.sel(lib, "filter"), (q) => !nix.eq(q, null))),
         ])));
       return nix.app(nix.sel(self, "nvim-treesitter", "overrideAttrs"), nix.thunk(() => ({
-          [nix.POS]: pos$12,
+          [nix.POS]: $pos[11],
           passthru: nix.thunk(() => ({
-            [nix.POS]: pos$11,
+            [nix.POS]: $pos[10],
             dependencies: nix.thunk(() => nix.concat(grammarPlugins_1, queryPlugins)),
           })),
         })));
@@ -121,9 +100,9 @@ fi
     const withAllGrammars = nix.thunk(() => nix.app(withPlugins, (_) => nix.force(allGrammars)));
     const grammarPlugins = nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (_) => nix.force(grammarToPlugin), parsersWithMeta));
     return {
-      [nix.POS]: pos$22,
+      [nix.POS]: $pos[21],
       passthru: nix.thunk(() => nix.update(nix.selOr(super$, () => ({}), "nvim-treesitter", "passthru"), {
-        [nix.POS]: pos$20,
+        [nix.POS]: $pos[19],
         buildQueries: buildQueries,
         builtGrammars: builtGrammars,
         allGrammars: allGrammars,
@@ -134,20 +113,20 @@ fi
         queries: queriesWithDeps,
         parsers: grammarPlugins,
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$19,
+          [nix.POS]: $pos[18],
           "check-queries": nix.thunk(() => (() => {
             const nvimWithAllGrammars = nix.thunk(() => nix.app(nix.sel(neovim, "override"), nix.thunk(() => ({
-                [nix.POS]: pos$16,
+                [nix.POS]: $pos[15],
                 configure: nix.thunk(() => ({
-                  [nix.POS]: pos$15,
+                  [nix.POS]: $pos[14],
                   packages: nix.thunk(() => ({
-                    [nix.POS]: pos$14,
-                    all: nix.thunk(() => ({ [nix.POS]: pos$13, start: nix.thunk(() => [withAllGrammars]) })),
+                    [nix.POS]: $pos[13],
+                    all: nix.thunk(() => ({ [nix.POS]: $pos[12], start: nix.thunk(() => [withAllGrammars]) })),
                   })),
                 })),
               }))));
             return nix.app(runCommand, "nvim-treesitter-check-queries", nix.thunk(() => ({
-                [nix.POS]: pos$17,
+                [nix.POS]: $pos[16],
                 nativeBuildInputs: nix.thunk(() => [nvimWithAllGrammars, writableTmpDirAsHomeHook]),
                 CI: true,
               })), nix.thunk(() => nix.str`touch $out
@@ -164,7 +143,7 @@ fi
           })()),
           "no-queries-for-official-grammars": nix.thunk(() => (() => {
             const pluginsToCheck = nix.thunk(() => nix.app(nix.sel(lib, "filter"), nix.thunk(() => nix.sel(lib, "isDerivation")), nix.thunk(() => nix.app(nix.sel(lib, "attrValues"), nix.thunk(() => nix.sel(vimPlugins, "nvim-treesitter", "parsers"))))));
-            return nix.app(runCommand, "nvim-treesitter-test-no-queries-for-official-grammars", nix.thunk(() => ({ [nix.POS]: pos$18, CI: true })), nix.thunk(() => nix.str`touch "$out"
+            return nix.app(runCommand, "nvim-treesitter-test-no-queries-for-official-grammars", nix.thunk(() => ({ [nix.POS]: $pos[17], CI: true })), nix.thunk(() => nix.str`touch "$out"
 
 function check_grammar {
   local grammar_name="$1"
@@ -184,7 +163,7 @@ ${nix.app(nix.sel(lib, "concatLines"), nix.thunk(() => nix.app(nix.sel(lib, "for
         })),
       })),
       meta: nix.thunk(() => nix.update(nix.selOr(super$, () => ({}), "nvim-treesitter", "meta"), {
-        [nix.POS]: pos$21,
+        [nix.POS]: $pos[20],
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);

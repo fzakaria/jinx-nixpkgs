@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/bootstrap.nix", [[["url", 14, 5], ["sha256", 15, 19]], [["sourceProvenance", 36, 8]], [["pname", 10, 3], ["version", 11, 17], ["src", 13, 3], ["nativeBuildInputs", 18, 3], ["installPhase", 20, 3], ["postFixup", 32, 3], ["meta", 36, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, makeWrapper: false, cfg: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/bootstrap.nix", [["url", 14, 5], ["sha256", 15, 19]]);
-const pos$2 = nix.positions(here + "/bootstrap.nix", [["sourceProvenance", 36, 8]]);
-const pos$3 = nix.positions(here + "/bootstrap.nix", [["pname", 10, 3], ["version", 11, 17], ["src", 13, 3], ["nativeBuildInputs", 18, 3], ["installPhase", 20, 3], ["postFixup", 32, 3], ["meta", 36, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "sbcl-bootstrap";
       const version = nix.thunk(() => nix.attr(cfg, "version"));
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/project/sbcl/sbcl/${version}/sbcl-${version}-${nix.sel(cfg, "system")}-binary.tar.bz2`),
           sha256: nix.thunk(() => nix.attr(cfg, "sha256")),
         }))));
@@ -26,11 +24,11 @@ export default nix.lambda((args) => (() => {
       const installPhase = "mkdir -p $out/bin\ncp -p src/runtime/sbcl $out/bin\n\nmkdir -p $out/share/sbcl\ncp -p src/runtime/sbcl $out/share/sbcl\ncp -p output/sbcl.core $out/share/sbcl\nmkdir -p $out/bin\nmakeWrapper $out/share/sbcl/sbcl $out/bin/sbcl \\\n  --add-flags \"--core $out/share/sbcl/sbcl.core\"\n";
       const postFixup = nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool(!nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch32"))) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")))), "patchelf --set-interpreter $(cat $NIX_CC/nix-support/dynamic-linker) $out/share/sbcl/sbcl\n"));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         sourceProvenance: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "sourceTypes", "binaryNativeCode"))]),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

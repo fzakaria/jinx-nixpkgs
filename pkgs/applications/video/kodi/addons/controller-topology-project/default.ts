@@ -2,10 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 14, 7], ["repo", 15, 7], ["rev", 16, 7], ["sha256", 17, 7]], [["homepage", 36, 7], ["description", 37, 7], ["license", 38, 7], ["teams", 39, 7]], [["pname", 10, 5], ["version", 11, 5], ["src", 13, 5], ["postPatch", 20, 5], ["installPhase", 28, 5], ["meta", 35, 5]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, toKodiAddon: false, addonDir: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 14, 7], ["repo", 15, 7], ["rev", 16, 7], ["sha256", 17, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 36, 7], ["description", 37, 7], ["license", 38, 7], ["teams", 39, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 10, 5], ["version", 11, 5], ["src", 13, 5], ["postPatch", 20, 5], ["installPhase", 28, 5], ["meta", 35, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "controller-topology-project";
       const version = "1.0.14";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "kodi-game",
           repo: "controller-topology-project",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -31,13 +29,13 @@ cp -r addons/* $out${addonDir}
 runHook postInstall
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/kodi-game/controller-topology-project",
         description: "Models how controllers connect to and map to each other for all gaming history",
         license: nix.thunk(() => nix.sel(lib, "licenses", "odbl")),
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "kodi"))]),
       }));
-      return { [nix.POS]: pos$3, pname, version, src, postPatch, installPhase, meta };
+      return { [nix.POS]: $pos[2], pname, version, src, postPatch, installPhase, meta };
     })())));
   return nix.app(toKodiAddon, drv);
 })(), formals$1);

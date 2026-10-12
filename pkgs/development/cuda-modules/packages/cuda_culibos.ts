@@ -2,14 +2,14 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/cuda_culibos.nix", [[["redistName", 3, 3], ["pname", 4, 3], ["outputs", 5, 3]]]);
 const formals$1 = { args: { buildRedist: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/cuda_culibos.nix", [["redistName", 3, 3], ["pname", 4, 3], ["outputs", 5, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const buildRedist = nix.arg($, "buildRedist");
   return nix.app(buildRedist, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       redistName: "cuda",
       pname: "cuda_culibos",
       outputs: nix.thunk(() => ["out"]),

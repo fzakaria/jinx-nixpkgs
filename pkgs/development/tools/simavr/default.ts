@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["darwinSuffixSalt", 20, 7], ["avrSuffixSalt", 21, 7]], [["license", 23, 10]], [["name", 18, 5], ["substitutions", 19, 5], ["meta", 23, 5]], [["owner", 32, 5], ["repo", 33, 5], ["rev", 34, 5], ["sha256", 35, 5]], [["description", 68, 5], ["mainProgram", 69, 5], ["homepage", 70, 5], ["license", 71, 5], ["platforms", 72, 5], ["maintainers", 74, 5]], [["pname", 28, 3], ["version", 29, 3], ["src", 31, 3], ["makeFlags", 38, 3], ["nativeBuildInputs", 46, 3], ["buildInputs", 52, 3], ["preFixup", 60, 3], ["doCheck", 64, 3], ["checkTarget", 65, 3], ["meta", 67, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, makeSetupHook: false, fetchFromGitHub: false, libelf: false, which: false, "pkg-config": false, libglut: false, avrgcc: false, avrlibc: false, libGLU: false, libGL: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["darwinSuffixSalt", 20, 7], ["avrSuffixSalt", 21, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["license", 23, 10]]);
-const pos$3 = nix.positions(here + "/default.nix", [["name", 18, 5], ["substitutions", 19, 5], ["meta", 23, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["owner", 32, 5], ["repo", 33, 5], ["rev", 34, 5], ["sha256", 35, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["description", 68, 5], ["mainProgram", 69, 5], ["homepage", 70, 5], ["license", 71, 5], ["platforms", 72, 5], ["maintainers", 74, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 28, 3], ["version", 29, 3], ["src", 31, 3], ["makeFlags", 38, 3], ["nativeBuildInputs", 46, 3], ["buildInputs", 52, 3], ["preFixup", 60, 3], ["doCheck", 64, 3], ["checkTarget", 65, 3], ["meta", 67, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,20 +20,23 @@ export default nix.lambda((args) => (() => {
   const libGLU = nix.arg($, "libGLU");
   const libGL = nix.arg($, "libGL");
   const setupHookDarwin = nix.thunk(() => nix.app(makeSetupHook, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       name: "darwin-avr-gcc-hook",
       substitutions: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         darwinSuffixSalt: nix.thunk(() => nix.sel(stdenv, "cc", "suffixSalt")),
         avrSuffixSalt: nix.thunk(() => nix.sel(avrgcc, "suffixSalt")),
       })),
-      meta: nix.thunk(() => ({ [nix.POS]: pos$2, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
+      meta: nix.thunk(() => ({
+        [nix.POS]: $pos[1],
+        license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
+      })),
     })), nix.path(here, "./setup-hook-darwin.sh")));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => (() => {
       const pname = "simavr";
       const version = "1.7";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           owner: "buserror",
           repo: "simavr",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -57,7 +55,7 @@ export default nix.lambda((args) => (() => {
       const doCheck = true;
       const checkTarget = "-C tests run_tests";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Lean and mean Atmel AVR simulator",
         mainProgram: "simavr",
         homepage: "https://github.com/buserror/simavr",
@@ -72,7 +70,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname,
         version,
         src,

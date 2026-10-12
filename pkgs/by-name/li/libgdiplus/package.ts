@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 23, 5], ["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]], [["NIX_LDFLAGS", 40, 7]], [["changelog", 79, 5], ["description", 80, 5], ["homepage", 81, 5], ["platforms", 82, 5], ["license", 83, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["patches", 30, 3], ["postPatch", 35, 3], ["env", 40, 3], ["outputs", 42, 3], ["hardeningDisable", 47, 3], ["nativeBuildInputs", 49, 3], ["configureFlags", 54, 3], ["enableParallelBuilding", 56, 3], ["buildInputs", 58, 3], ["postInstall", 70, 3], ["checkPhase", 74, 3], ["meta", 78, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, "pkg-config": false, glib: false, cairo: false, fontconfig: false, libtiff: false, giflib: false, libjpeg: false, libpng: false, libxrender: false, libexif: false, autoreconfHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 23, 5], ["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_LDFLAGS", 40, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["changelog", 79, 5], ["description", 80, 5], ["homepage", 81, 5], ["platforms", 82, 5], ["license", 83, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["patches", 30, 3], ["postPatch", 35, 3], ["env", 40, 3], ["outputs", 42, 3], ["hardeningDisable", 47, 3], ["nativeBuildInputs", 49, 3], ["configureFlags", 54, 3], ["enableParallelBuilding", 56, 3], ["buildInputs", 58, 3], ["postInstall", 70, 3], ["checkPhase", 74, 3], ["meta", 78, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const libexif = nix.arg($, "libexif");
   const autoreconfHook = nix.arg($, "autoreconfHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "libgdiplus",
       version: "6.2",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "gitlab.winehq.org",
           owner: "mono",
           repo: "libgdiplus",
@@ -38,7 +35,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [nix.path(here, "./configure-pkg-config.patch")]),
       postPatch: "substituteInPlace Makefile.am \\\n  --replace-fail \"all: update_submodules\" \"all:\"\n",
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_LDFLAGS: "-lgif" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], NIX_LDFLAGS: "-lgif" })),
       outputs: nix.thunk(() => ["out", "dev"]),
       hardeningDisable: nix.thunk(() => ["format"]),
       nativeBuildInputs: nix.thunk(() => [autoreconfHook, pkg_config]),
@@ -58,7 +55,7 @@ export default nix.lambda((args) => (() => {
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "ln -s $out/lib/libgdiplus.0.dylib $out/lib/libgdiplus.so\n")),
       checkPhase: "make check -w\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         changelog: nix.thunk(() => nix.str`https://gitlab.winehq.org/mono/libgdiplus/-/releases/${nix.sel(finalAttrs, "src", "tag")}`),
         description: "Mono library that provides a GDI+-compatible API on non-Windows operating systems",
         homepage: "https://www.mono-project.com/docs/gui/libgdiplus/",

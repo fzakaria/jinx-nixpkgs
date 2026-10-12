@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["sha256", 17, 5]], [["PUPPETEER_SKIP_CHROMIUM_DOWNLOAD", 23, 5]], [["description", 36, 5], ["homepage", 37, 5], ["license", 38, 5], ["mainProgram", 39, 5], ["maintainers", 40, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["npmDepsHash", 20, 3], ["env", 22, 3], ["dontNpmBuild", 26, 3], ["nativeBuildInputs", 28, 3], ["postInstall", 30, 3], ["meta", 35, 3]]]);
 const formals$1 = { args: { lib: false, buildNpmPackage: false, fetchFromGitHub: false, makeWrapper: false, chromium: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["sha256", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["PUPPETEER_SKIP_CHROMIUM_DOWNLOAD", 23, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 36, 5], ["homepage", 37, 5], ["license", 38, 5], ["mainProgram", 39, 5], ["maintainers", 40, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["npmDepsHash", 20, 3], ["env", 22, 3], ["dontNpmBuild", 26, 3], ["nativeBuildInputs", 28, 3], ["postInstall", 30, 3], ["meta", 35, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,21 +16,21 @@ export default nix.lambda((args) => (() => {
       const pname = "puppeteer-cli";
       const version = "1.5.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "JarvusInnovations",
           repo: "puppeteer-cli",
           rev: nix.thunk(() => nix.str`v${version}`),
           sha256: "0xrb8r4qc9ds7wmfd30nslnkqylxqfwr4gqf7b30v651sjyds29x",
         }))));
       const npmDepsHash = "sha256-R22lXQuYNQ+TQ7U2l4wZeBmAl8AXHUPG/3qVQBi3Ezo=";
-      const env = nix.thunk(() => ({ [nix.POS]: pos$2, PUPPETEER_SKIP_CHROMIUM_DOWNLOAD: true }));
+      const env = nix.thunk(() => ({ [nix.POS]: $pos[1], PUPPETEER_SKIP_CHROMIUM_DOWNLOAD: true }));
       const dontNpmBuild = true;
       const nativeBuildInputs = nix.thunk(() => [makeWrapper]);
       const postInstall = nix.thunk(() => nix.str`wrapProgram $out/bin/puppeteer \\
   --set PUPPETEER_EXECUTABLE_PATH ${chromium}/bin/chromium
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Command-line wrapper for generating PDF prints and PNG screenshots with Puppeteer",
         homepage: "https://github.com/JarvusInnovations/puppeteer-cli",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -44,7 +41,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

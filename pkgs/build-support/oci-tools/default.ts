@@ -2,26 +2,10 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["type", 20, 11], ["source", 21, 11]], [["type", 24, 11], ["source", 25, 11], ["options", 26, 11]], [["type", 34, 11], ["source", 35, 11], ["options", 36, 11]], [["type", 46, 11], ["source", 47, 11], ["options", 48, 11]], [["type", 57, 11], ["source", 58, 11], ["options", 59, 11]], [["type", 66, 11], ["source", 67, 11], ["options", 68, 11]], [["type", 76, 11], ["source", 77, 11], ["options", 78, 11]], [["/proc", 19, 9], ["/dev", 23, 9], ["/dev/pts", 33, 9], ["/dev/shm", 45, 9], ["/dev/mqueue", 56, 9], ["/sys", 65, 9], ["/sys/fs/cgroup", 75, 9]], [["os", 91, 21], ["arch", 91, 24]], [["type", 95, 47]], [["namespaces", 95, 13]], [["path", 105, 13], ["readonly", 106, 21]], [["uid", 112, 15], ["gid", 113, 15]], [["args", 110, 21], ["user", 111, 13], ["cwd", 115, 13]], [["destination", 127, 17], ["type", 128, 17], ["source", 129, 17], ["options", 130, 17]], [["ociVersion", 89, 11], ["platform", 90, 11], ["linux", 94, 11], ["root", 104, 11], ["process", 109, 11], ["mounts", 118, 11]], [["buildContainer", 9, 3]]]);
 const formals$1 = { args: { lib: false, writeText: false, runCommand: false, writeClosure: false }, ellipsis: false };
 const formals$2 = { args: { args: false, mounts: true, os: true, arch: true, readonly: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["type", 20, 11], ["source", 21, 11]]);
-const pos$2 = nix.positions(here + "/default.nix", [["type", 24, 11], ["source", 25, 11], ["options", 26, 11]]);
-const pos$3 = nix.positions(here + "/default.nix", [["type", 34, 11], ["source", 35, 11], ["options", 36, 11]]);
-const pos$4 = nix.positions(here + "/default.nix", [["type", 46, 11], ["source", 47, 11], ["options", 48, 11]]);
-const pos$5 = nix.positions(here + "/default.nix", [["type", 57, 11], ["source", 58, 11], ["options", 59, 11]]);
-const pos$6 = nix.positions(here + "/default.nix", [["type", 66, 11], ["source", 67, 11], ["options", 68, 11]]);
-const pos$7 = nix.positions(here + "/default.nix", [["type", 76, 11], ["source", 77, 11], ["options", 78, 11]]);
-const pos$8 = nix.positions(here + "/default.nix", [["/proc", 19, 9], ["/dev", 23, 9], ["/dev/pts", 33, 9], ["/dev/shm", 45, 9], ["/dev/mqueue", 56, 9], ["/sys", 65, 9], ["/sys/fs/cgroup", 75, 9]]);
-const pos$9 = nix.positions(here + "/default.nix", [["os", 91, 21], ["arch", 91, 24]]);
-const pos$10 = nix.positions(here + "/default.nix", [["type", 95, 47]]);
-const pos$11 = nix.positions(here + "/default.nix", [["namespaces", 95, 13]]);
-const pos$12 = nix.positions(here + "/default.nix", [["path", 105, 13], ["readonly", 106, 21]]);
-const pos$13 = nix.positions(here + "/default.nix", [["uid", 112, 15], ["gid", 113, 15]]);
-const pos$14 = nix.positions(here + "/default.nix", [["args", 110, 21], ["user", 111, 13], ["cwd", 115, 13]]);
 const formals$3 = { args: { type: false, source: false, options: true }, ellipsis: false };
-const pos$15 = nix.positions(here + "/default.nix", [["destination", 127, 17], ["type", 128, 17], ["source", 129, 17], ["options", 130, 17]]);
-const pos$16 = nix.positions(here + "/default.nix", [["ociVersion", 89, 11], ["platform", 90, 11], ["linux", 94, 11], ["root", 104, 11], ["process", 109, 11], ["mounts", 118, 11]]);
-const pos$17 = nix.positions(here + "/default.nix", [["buildContainer", 9, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const runCommand = nix.arg($, "runCommand");
   const writeClosure = nix.arg($, "writeClosure");
   return {
-    [nix.POS]: pos$17,
+    [nix.POS]: $pos[16],
     buildContainer: nix.lambda((args_1) => (() => {
       const $_1 = nix.formals(args_1, formals$2);
       const args_2 = nix.arg($_1, "args");
@@ -39,58 +23,58 @@ export default nix.lambda((args) => (() => {
       const arch = nix.argOr($_1, "arch", () => "x86_64");
       const readonly = nix.argOr($_1, "readonly", () => false);
       const sysMounts = nix.thunk(() => ({
-        [nix.POS]: pos$8,
-        "/proc": nix.thunk(() => ({ [nix.POS]: pos$1, type: "proc", source: "proc" })),
+        [nix.POS]: $pos[7],
+        "/proc": nix.thunk(() => ({ [nix.POS]: $pos[0], type: "proc", source: "proc" })),
         "/dev": nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           type: "tmpfs",
           source: "tmpfs",
           options: nix.thunk(() => ["nosuid", "strictatime", "mode=755", "size=65536k"]),
         })),
         "/dev/pts": nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           type: "devpts",
           source: "devpts",
           options: nix.thunk(() => ["nosuid", "noexec", "newinstance", "ptmxmode=0666", "mode=755", "gid=5"]),
         })),
         "/dev/shm": nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           type: "tmpfs",
           source: "shm",
           options: nix.thunk(() => ["nosuid", "noexec", "nodev", "mode=1777", "size=65536k"]),
         })),
         "/dev/mqueue": nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           type: "mqueue",
           source: "mqueue",
           options: nix.thunk(() => ["nosuid", "noexec", "nodev"]),
         })),
         "/sys": nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           type: "sysfs",
           source: "sysfs",
           options: nix.thunk(() => ["nosuid", "noexec", "nodev", "ro"]),
         })),
         "/sys/fs/cgroup": nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           type: "cgroup",
           source: "cgroup",
           options: nix.thunk(() => ["nosuid", "noexec", "nodev", "relatime", "ro"]),
         })),
       }));
       const config = nix.thunk(() => nix.app(writeText, "config.json", nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => ({
-            [nix.POS]: pos$16,
+            [nix.POS]: $pos[15],
             ociVersion: "1.0.0",
-            platform: nix.thunk(() => ({ [nix.POS]: pos$9, os: os, arch: arch })),
+            platform: nix.thunk(() => ({ [nix.POS]: $pos[8], os: os, arch: arch })),
             linux: nix.thunk(() => ({
-              [nix.POS]: pos$11,
-              namespaces: nix.thunk(() => nix.builtins.map((type) => ({ [nix.POS]: pos$10, type: type }), nix.thunk(() => ["pid", "network", "mount", "ipc", "uts"]))),
+              [nix.POS]: $pos[10],
+              namespaces: nix.thunk(() => nix.builtins.map((type) => ({ [nix.POS]: $pos[9], type: type }), nix.thunk(() => ["pid", "network", "mount", "ipc", "uts"]))),
             })),
-            root: nix.thunk(() => ({ [nix.POS]: pos$12, path: "rootfs", readonly: readonly })),
+            root: nix.thunk(() => ({ [nix.POS]: $pos[11], path: "rootfs", readonly: readonly })),
             process: nix.thunk(() => ({
-              [nix.POS]: pos$14,
+              [nix.POS]: $pos[13],
               args: args_2,
-              user: nix.thunk(() => ({ [nix.POS]: pos$13, uid: 0n, gid: 0n })),
+              user: nix.thunk(() => ({ [nix.POS]: $pos[12], uid: 0n, gid: 0n })),
               cwd: "/",
             })),
             mounts: nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (destination) => nix.lambda((args_3) => (() => {
@@ -99,7 +83,7 @@ export default nix.lambda((args) => (() => {
                 const source = nix.arg($_2, "source");
                 const options = nix.argOr($_2, "options", () => null);
                 return {
-                  [nix.POS]: pos$15,
+                  [nix.POS]: $pos[14],
                   destination: destination,
                   type: type,
                   source: source,

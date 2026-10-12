@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["lilypond", 21, 44]], [["pname", 11, 5], ["outputs", 12, 5], ["version", 13, 5], ["meta", 14, 5], ["paths", 17, 3], ["nativeBuildInputs", 23, 3], ["postBuild", 25, 3]]]);
 const formals$1 = { args: { lib: false, symlinkJoin: false, makeWrapper: false, lilypond: false, "openlilylib-fonts": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["lilypond", 21, 44]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 11, 5], ["outputs", 12, 5], ["version", 13, 5], ["meta", 14, 5], ["paths", 17, 3], ["nativeBuildInputs", 23, 3], ["postBuild", 25, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const lilypond = nix.arg($, "lilypond");
   const openlilylib_fonts = nix.arg($, "openlilylib-fonts");
   return nix.app(nix.sel(lib, "appendToName"), "with-fonts", nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         pname: nix.thunk(() => nix.attr(lilypond, "pname")),
         outputs: nix.thunk(() => nix.attr(lilypond, "outputs")),
         version: nix.thunk(() => nix.attr(lilypond, "version")),
         meta: nix.thunk(() => nix.attr(lilypond, "meta")),
-        paths: nix.thunk(() => nix.concat([lilypond], nix.sel(nix.app(nix.sel(openlilylib_fonts, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, lilypond: lilypond }))), "all"))),
+        paths: nix.thunk(() => nix.concat([lilypond], nix.sel(nix.app(nix.sel(openlilylib_fonts, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], lilypond: lilypond }))), "all"))),
         nativeBuildInputs: nix.thunk(() => [makeWrapper]),
         postBuild: nix.thunk(() => nix.str`for p in $out/bin/*; do
   wrapProgram "$p" --set LILYPOND_DATADIR "$out/share/lilypond/${nix.sel(lilypond, "version")}"

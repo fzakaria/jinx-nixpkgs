@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["description", 134, 5], ["homepage", 135, 5], ["license", 136, 5], ["maintainers", 140, 5], ["platforms", 144, 5]], [["owner", 151, 7], ["repo", 152, 7], ["rev", 153, 7], ["hash", 154, 7]], [["pname", 148, 13], ["version", 148, 19], ["src", 150, 5], ["postPatch", 158, 5], ["nativeBuildInputs", 171, 5], ["buildInputs", 182, 5], ["configureFlags", 187, 5], ["preConfigure", 213, 5], ["makeFlags", 217, 5], ["installPhase", 219, 5], ["enableParallelBuilding", 224, 5], ["meta", 226, 13]], [["pname", 230, 13], ["version", 230, 19], ["src", 232, 5], ["nativeBuildInputs", 234, 5], ["buildInputs", 240, 5], ["cmakeFlags", 248, 5], ["dontUseCmakeBuildDir", 255, 5], ["meta", 257, 13]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, autoconf: false, automake: false, libtool: false, python3: false, perl: false, gmpxx: false, mpfr: false, boost: false, eigen: false, gfortran: false, cmake: false, enableFMA: true, enableFortran: true, enableSSE: true, maxAm: true, eriDeriv: true, eri3Deriv: true, eri2Deriv: true, eriAm: true, eri3Am: true, eri2Am: true, eriOptAm: true, eri3OptAm: true, eri2OptAm: true, enableOneBody: true, oneBodyDerivOrd: true, multipoleOrd: true, enableGeneric: true, enableContracted: true, cartGaussOrd: true, shGaussOrd: true, shellSet: true, eri3PureSh: true, eri2PureSh: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["description", 134, 5], ["homepage", 135, 5], ["license", 136, 5], ["maintainers", 140, 5], ["platforms", 144, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 151, 7], ["repo", 152, 7], ["rev", 153, 7], ["hash", 154, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 148, 13], ["version", 148, 19], ["src", 150, 5], ["postPatch", 158, 5], ["nativeBuildInputs", 171, 5], ["buildInputs", 182, 5], ["configureFlags", 187, 5], ["preConfigure", 213, 5], ["makeFlags", 217, 5], ["installPhase", 219, 5], ["enableParallelBuilding", 224, 5], ["meta", 226, 13]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 230, 13], ["version", 230, 19], ["src", 232, 5], ["nativeBuildInputs", 234, 5], ["buildInputs", 240, 5], ["cmakeFlags", 248, 5], ["dontUseCmakeBuildDir", 255, 5], ["meta", 257, 13]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -65,7 +62,7 @@ export default nix.lambda((args) => (() => {
   const pname = "libint";
   const version = "2.11.2";
   const meta = nix.thunk(() => ({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     description: "Library for the evaluation of molecular integrals of many-body operators over Gaussian functions",
     homepage: "https://github.com/evaleev/libint",
     license: nix.thunk(() => (() => {
@@ -85,11 +82,11 @@ export default nix.lambda((args) => (() => {
     platforms: nix.thunk(() => ["x86_64-linux"]),
   }));
   const codeGen = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: pname,
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "evaleev",
           repo: "libint",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -122,7 +119,7 @@ cp libint-${version}.tgz $out/.
       meta: meta,
     }))));
   const codeComp = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: pname,
       version: version,
       src: nix.thunk(() => nix.str`${codeGen}/libint-${version}.tgz`),

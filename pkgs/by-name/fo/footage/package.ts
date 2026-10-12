@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 35, 5], ["repo", 36, 5], ["tag", 37, 5], ["hash", 38, 5]], [["pname", 42, 13], ["version", 42, 19], ["src", 42, 27], ["hash", 43, 5]], [["description", 93, 5], ["homepage", 94, 5], ["license", 95, 5], ["maintainers", 96, 5], ["broken", 97, 5]], [["pname", 31, 3], ["version", 32, 3], ["src", 34, 3], ["cargoDeps", 41, 3], ["nativeBuildInputs", 46, 3], ["buildInputs", 62, 3], ["preFixup", 86, 3], ["meta", 92, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, rustPlatform: false, cargo: false, rustc: false, "appstream-glib": false, "blueprint-compiler": false, "desktop-file-utils": false, gettext: false, glib: false, gst_all_1: false, gtk4: false, libadwaita: false, meson: false, ninja: false, "pkg-config": false, wrapGAppsHook4: false, a52dec: false, fdk_aac: false, ffmpeg: false, x264: false, x265: false, "vo-aacenc": false, "svt-av1": false, libmpeg2: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 35, 5], ["repo", 36, 5], ["tag", 37, 5], ["hash", 38, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 42, 13], ["version", 42, 19], ["src", 42, 27], ["hash", 43, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 93, 5], ["homepage", 94, 5], ["license", 95, 5], ["maintainers", 96, 5], ["broken", 97, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 31, 3], ["version", 32, 3], ["src", 34, 3], ["cargoDeps", 41, 3], ["nativeBuildInputs", 46, 3], ["buildInputs", 62, 3], ["preFixup", 86, 3], ["meta", 92, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -40,14 +37,14 @@ export default nix.lambda((args) => (() => {
       const pname = "footage";
       const version = "1.3.2";
       const src = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "adhami3310",
           repo: "Footage",
           tag: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-VEL96JrJ5eJEoX2miiB4dqGUXizNlYWCUZkkYkh09B8=",
         }))));
       const cargoDeps = nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: pname,
           version: version,
           src: src,
@@ -98,7 +95,7 @@ export default nix.lambda((args) => (() => {
 )
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Video editing tool that allows you to trim, flip, rotate, and crop clips",
         homepage: "https://gitlab.com/adhami3310/Footage",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),
@@ -109,7 +106,7 @@ export default nix.lambda((args) => (() => {
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

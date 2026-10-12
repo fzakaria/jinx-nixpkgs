@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]], [["description", 62, 5], ["homepage", 63, 5], ["changelog", 64, 5], ["license", 65, 5], ["maintainers", 66, 5]], [["pname", 18, 3], ["version", 19, 3], ["pyproject", 20, 3], ["outputs", 22, 3], ["src", 27, 3], ["sphinxRoot", 34, 3], ["nativeBuildInputs", 36, 3], ["nativeCheckInputs", 43, 3], ["pythonImportsCheck", 51, 3], ["disabledTestPaths", 53, 3], ["meta", 61, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitHub: false, pg8000: false, psycopg: false, "pytest-asyncio": false, "pytest-postgresql": false, pytestCheckHook: false, setuptools: false, "setuptools-scm": false, "sphinx-rtd-theme": false, sphinxHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 62, 5], ["homepage", 63, 5], ["changelog", 64, 5], ["license", 65, 5], ["maintainers", 66, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 18, 3], ["version", 19, 3], ["pyproject", 20, 3], ["outputs", 22, 3], ["src", 27, 3], ["sphinxRoot", 34, 3], ["nativeBuildInputs", 36, 3], ["nativeCheckInputs", 43, 3], ["pythonImportsCheck", 51, 3], ["disabledTestPaths", 53, 3], ["meta", 61, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const pyproject = true;
       const outputs = nix.thunk(() => ["out", "doc"]);
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "nackjicholson",
           repo: "aiosql",
           tag: version,
@@ -40,7 +38,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["aiosql"]);
       const disabledTestPaths = nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["tests/test_pg8000.py", "tests/test_apsycopg3.py", "tests/test_psycopg3.py"])));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Simple SQL in Python",
         homepage: "https://nackjicholson.github.io/aiosql/",
         changelog: nix.thunk(() => nix.str`https://github.com/nackjicholson/aiosql/releases/tag/${nix.sel(src, "tag")}`),
@@ -51,7 +49,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

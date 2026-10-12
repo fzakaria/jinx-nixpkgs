@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["path", 28, 5]], [["url", 37, 5], ["hash", 38, 5]], [["description", 101, 5], ["homepage", 102, 5], ["mainProgram", 103, 5], ["sourceProvenance", 104, 5], ["license", 105, 5], ["maintainers", 106, 5], ["platforms", 107, 5]], [["pname", 33, 3], ["version", 34, 3], ["src", 36, 3], ["nativeBuildInputs", 41, 3], ["buildInputs", 47, 3], ["dontBuild", 71, 3], ["installPhase", 73, 3], ["dontWrapQtApps", 91, 3], ["postFixup", 93, 3], ["meta", 100, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, unzip: false, autoPatchelfHook: false, fontconfig: false, freetype: false, libGL: false, glib: false, "alsa-lib": false, pulseaudio: false, "libxcb-util": false, "libxcb-render-util": false, "libxcb-keysyms": false, "libxcb-image": false, libxtst: false, libxcb: false, gtk3: false, atk: false, pango: false, "gdk-pixbuf": false, cairo: false, gst_all_1: false, makeWrapper: false, libsForQt5: false, profiles: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["path", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 37, 5], ["hash", 38, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 101, 5], ["homepage", 102, 5], ["mainProgram", 103, 5], ["sourceProvenance", 104, 5], ["license", 105, 5], ["maintainers", 106, 5], ["platforms", 107, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 33, 3], ["version", 34, 3], ["src", 36, 3], ["nativeBuildInputs", 41, 3], ["buildInputs", 47, 3], ["dontBuild", 71, 3], ["installPhase", 73, 3], ["dontWrapQtApps", 91, 3], ["postFixup", 93, 3], ["meta", 100, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -35,13 +32,13 @@ export default nix.lambda((args) => (() => {
   const gst_all_1 = nix.arg($, "gst_all_1");
   const makeWrapper = nix.arg($, "makeWrapper");
   const libsForQt5 = nix.arg($, "libsForQt5");
-  const profiles = nix.argOr($, "profiles", () => ({ [nix.POS]: pos$1, path: "~" }));
+  const profiles = nix.argOr($, "profiles", () => ({ [nix.POS]: $pos[0], path: "~" }));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "windterm",
       version: "2.7.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: nix.thunk(() => nix.str`https://github.com/kingToolbox/WindTerm/releases/download/${nix.sel(finalAttrs, "version")}/WindTerm_${nix.sel(finalAttrs, "version")}_Linux_Portable_x86_64.zip`),
           hash: "sha256-d5dpfutgI5AgUS4rVJaVpgw5s/0B/n67BH/VCiiJEDw=",
         })))),
@@ -89,7 +86,7 @@ runHook postInstall
       dontWrapQtApps: true,
       postFixup: "mkdir $out/bin\nmakeWrapper $out/app/windterm/WindTerm $out/bin/windterm \\\n  --prefix QT_PLUGIN_PATH : $out/app/windterm/lib \\\n  ${qtWrapperArgs[@]}\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Professional cross-platform SSH/Sftp/Shell/Telnet/Serial terminal",
         homepage: "https://github.com/kingToolbox/WindTerm",
         mainProgram: "windterm",

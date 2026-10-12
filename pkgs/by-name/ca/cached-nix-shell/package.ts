@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 11, 5], ["repo", 12, 5], ["tag", 13, 5], ["hash", 14, 5]], [["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]], [["BLAKE3_CSRC", 38, 7]], [["description", 49, 5], ["mainProgram", 50, 5], ["homepage", 51, 5], ["changelog", 52, 5], ["license", 53, 5], ["maintainers", 58, 5], ["platforms", 59, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["cargoHash", 28, 3], ["nativeBuildInputs", 30, 3], ["env", 38, 3], ["postBuild", 40, 3], ["postInstall", 44, 3], ["meta", 48, 3]]]);
 const formals$1 = { args: { fetchFromGitHub: false, lib: false, nix: false, ronn: false, rustPlatform: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 11, 5], ["repo", 12, 5], ["tag", 13, 5], ["hash", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["BLAKE3_CSRC", 38, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 49, 5], ["mainProgram", 50, 5], ["homepage", 51, 5], ["changelog", 52, 5], ["license", 53, 5], ["maintainers", 58, 5], ["platforms", 59, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["cargoHash", 28, 3], ["nativeBuildInputs", 30, 3], ["env", 38, 3], ["postBuild", 40, 3], ["postInstall", 44, 3], ["meta", 48, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const ronn = nix.arg($, "ronn");
   const rustPlatform = nix.arg($, "rustPlatform");
   const blake3_src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "BLAKE3-team",
       repo: "BLAKE3",
       tag: "1.5.1",
@@ -27,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const pname = "cached-nix-shell";
       const version = "0.1.6";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "xzfc",
           repo: "cached-nix-shell",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -35,11 +31,11 @@ export default nix.lambda((args) => (() => {
         }))));
       const cargoHash = "sha256-Rl+PgNr29OAl6P/iUfkuFlQycyeYNmxUIIdigk7PgV4=";
       const nativeBuildInputs = nix.thunk(() => [nix$, ronn]);
-      const env = nix.thunk(() => ({ [nix.POS]: pos$3, BLAKE3_CSRC: nix.thunk(() => nix.str`${blake3_src}/c`) }));
+      const env = nix.thunk(() => ({ [nix.POS]: $pos[2], BLAKE3_CSRC: nix.thunk(() => nix.str`${blake3_src}/c`) }));
       const postBuild = "make -f nix/Makefile post-build\n";
       const postInstall = "make -f nix/Makefile post-install\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Instant startup time for nix-shell",
         mainProgram: "cached-nix-shell",
         homepage: "https://github.com/xzfc/cached-nix-shell",
@@ -58,7 +54,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.concat(nix.sel(lib, "platforms", "linux"), nix.sel(lib, "platforms", "darwin"))),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         src,

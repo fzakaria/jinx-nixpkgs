@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]], [["extraArgs", 48, 7]], [["updateScript", 47, 5]], [["description", 56, 5], ["longDescription", 58, 5], ["homepage", 65, 5], ["changelog", 66, 5], ["mainProgram", 67, 5], ["license", 69, 5], ["platforms", 70, 5], ["maintainers", 71, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 33, 3], ["configureFlags", 35, 3], ["doCheck", 37, 3], ["nativeInstallCheckInputs", 39, 3], ["versionCheckProgram", 42, 3], ["versionCheckProgramArg", 43, 3], ["doInstallCheck", 44, 3], ["passthru", 46, 3], ["meta", 55, 3]]]);
 const formals$1 = { args: { fetchFromGitHub: false, fetchpatch2: false, lib: false, stdenv: false, flex: false, bison: false, autoreconfHook: false, "pkg-config": false, libtirpc: false, versionCheckHook: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["extraArgs", 48, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 47, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 56, 5], ["longDescription", 58, 5], ["homepage", 65, 5], ["changelog", 66, 5], ["mainProgram", 67, 5], ["license", 69, 5], ["platforms", 70, 5], ["maintainers", 71, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 33, 3], ["configureFlags", 35, 3], ["doCheck", 37, 3], ["nativeInstallCheckInputs", 39, 3], ["versionCheckProgram", 42, 3], ["versionCheckProgramArg", 43, 3], ["doInstallCheck", 44, 3], ["passthru", 46, 3], ["meta", 55, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const pname = "unfs3";
       const version = "0.11.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "unfs3",
           repo: "unfs3",
           tag: nix.thunk(() => nix.str`unfs3-${version}`),
@@ -41,14 +37,14 @@ export default nix.lambda((args) => (() => {
       const versionCheckProgramArg = "-h";
       const doInstallCheck = true;
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             extraArgs: nix.thunk(() => ["--version-regex", nix.thunk(() => nix.str`${pname}-(.*)`)]),
           })))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "User-space NFSv3 file system server",
         longDescription: "UNFS3 is a user-space implementation of the NFSv3 server\nspecification.  It provides a daemon for the MOUNT and NFS\nprotocols, which are used by NFS clients for accessing files on the\nserver.\n",
         homepage: "https://unfs3.github.io/",
@@ -62,7 +58,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         src,

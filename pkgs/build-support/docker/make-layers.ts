@@ -2,10 +2,9 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/make-layers.nix", [[["graph", 24, 29]], [["__structuredAttrs", 21, 7], ["exportReferencesGraph", 24, 7], ["exclude_paths", 25, 7], ["pipeline", 26, 15], ["nativeBuildInputs", 27, 7]]]);
 const formals$1 = { args: { coreutils: false, "flatten-references-graph": false, lib: false, jq: false, runCommand: false }, ellipsis: false };
 const formals$2 = { args: { closureRoots: false, excludePaths: true, pipeline: true, debug: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/make-layers.nix", [["graph", 24, 29]]);
-const pos$2 = nix.positions(here + "/make-layers.nix", [["__structuredAttrs", 21, 7], ["exportReferencesGraph", 24, 7], ["exclude_paths", 25, 7], ["pipeline", 26, 15], ["nativeBuildInputs", 27, 7]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,9 +20,9 @@ export default nix.lambda((args) => (() => {
     const pipeline = nix.argOr($_1, "pipeline", () => []);
     const debug = nix.argOr($_1, "debug", () => false);
     return (nix.asBool(nix.eq(closureRoots, [])) ? nix.builtins.toFile("docker-layers-empty", "[]") : nix.app(runCommand, "docker-layers", nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         __structuredAttrs: true,
-        exportReferencesGraph: nix.thunk(() => ({ [nix.POS]: pos$1, graph: closureRoots })),
+        exportReferencesGraph: nix.thunk(() => ({ [nix.POS]: $pos[0], graph: closureRoots })),
         exclude_paths: excludePaths,
         pipeline: pipeline,
         nativeBuildInputs: nix.thunk(() => [coreutils, flatten_references_graph, jq]),

@@ -2,16 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["case", 18, 9], ["out", 19, 9]], [["case", 22, 9], ["out", 23, 9]], [["hash", 26, 25]], [["hash", 27, 24]], [["hash", 28, 25]], [["hash", 29, 25]], [["1.4-rocq9.1", 26, 11], ["1.4-coq9.0", 27, 11], ["1.4-coq8.20", 28, 11], ["1.4-coq8.19", 29, 11]], [["description", 37, 5], ["license", 38, 5]], [["pname", 11, 3], ["owner", 12, 3], ["version", 13, 11], ["defaultVersion", 14, 3], ["release", 26, 3], ["releaseRev", 30, 3], ["mlPlugin", 31, 3], ["propagatedBuildInputs", 32, 3], ["meta", 36, 3], ["preBuild", 40, 3]]]);
 const formals$1 = { args: { lib: false, mkCoqDerivation: false, coq: false, stdlib: false, unicoq: false, version: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["case", 18, 9], ["out", 19, 9]]);
-const pos$2 = nix.positions(here + "/default.nix", [["case", 22, 9], ["out", 23, 9]]);
-const pos$3 = nix.positions(here + "/default.nix", [["hash", 26, 25]]);
-const pos$4 = nix.positions(here + "/default.nix", [["hash", 27, 24]]);
-const pos$5 = nix.positions(here + "/default.nix", [["hash", 28, 25]]);
-const pos$6 = nix.positions(here + "/default.nix", [["hash", 29, 25]]);
-const pos$7 = nix.positions(here + "/default.nix", [["1.4-rocq9.1", 26, 11], ["1.4-coq9.0", 27, 11], ["1.4-coq8.20", 28, 11], ["1.4-coq8.19", 29, 11]]);
-const pos$8 = nix.positions(here + "/default.nix", [["description", 37, 5], ["license", 38, 5]]);
-const pos$9 = nix.positions(here + "/default.nix", [["pname", 11, 3], ["owner", 12, 3], ["version", 13, 11], ["defaultVersion", 14, 3], ["release", 26, 3], ["releaseRev", 30, 3], ["mlPlugin", 31, 3], ["propagatedBuildInputs", 32, 3], ["meta", 36, 3], ["preBuild", 40, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const unicoq = nix.arg($, "unicoq");
   const version = nix.argOr($, "version", () => null);
   return nix.app(mkCoqDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       pname: "Mtac2",
       owner: "Mtac2",
       version: version,
@@ -30,33 +22,33 @@ export default nix.lambda((args) => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "versions")), null);
         return nix.app(nix.sel(lib, "switch"), nix.thunk(() => nix.sel(coq, "version")), nix.thunk(() => [
             nix.thunk(() => ({
-              [nix.POS]: pos$1,
+              [nix.POS]: $pos[0],
               case: nix.thunk(() => nix.app(nix.lookup(w, "isEq"), "9.1")),
               out: nix.thunk(() => nix.str`1.4-rocq${nix.sel(coq, "coq-version")}`),
             })),
             nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               case: nix.thunk(() => nix.app(nix.lookup(w, "range"), "8.19", "9.0")),
               out: nix.thunk(() => nix.str`1.4-coq${nix.sel(coq, "coq-version")}`),
             })),
           ]), null);
       })()),
       release: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         "1.4-rocq9.1": nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           hash: "sha256-A+ac84ZfDMW2NhS/NrGIfdairXmzXxZIYGNmJIz0ReM=",
         })),
         "1.4-coq9.0": nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           hash: "sha256-pAPBRCW7M46UZPJ+v/0xAT8mpQURN8czMmlrfYz/MVU=",
         })),
         "1.4-coq8.20": nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           hash: "sha256-3nu/8zDvdnl6WzGtw46mVcdqgkRgc6Xy8/I+lUOrSIY=",
         })),
         "1.4-coq8.19": nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           hash: "sha256-G9eK0eLyECdT20/yf8yyz7M8Xq2WnHHaHpxVGP0yTtU=",
         })),
       })),
@@ -64,7 +56,7 @@ export default nix.lambda((args) => (() => {
       mlPlugin: true,
       propagatedBuildInputs: nix.thunk(() => [stdlib, unicoq]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         description: "Typed tactic language for Coq",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       })),

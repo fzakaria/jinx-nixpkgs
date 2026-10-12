@@ -2,25 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/examples.nix", [[["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["sha256", 19, 5]], [["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["sha256", 25, 5]], [["JAVA_HOME", 42, 7], ["USE_BAZEL_VERSION", 43, 7]], [["path", 58, 9], ["file", 59, 9]], [["aarch64-darwin", 65, 11], ["aarch64-linux", 66, 11], ["x86_64-linux", 67, 11]], [["outputHash", 63, 7], ["outputHashAlgo", 70, 7]], [["src", 31, 13], ["registry", 31, 17], ["sourceRoot", 32, 5], ["name", 33, 5], ["targets", 34, 5], ["bazel", 35, 5], ["commandArgs", 36, 5], ["env", 41, 5], ["installPhase", 45, 5], ["buildInputs", 49, 5], ["nativeBuildInputs", 54, 5], ["patches", 55, 5], ["bazelVendorDepsFOD", 62, 5]], [["USE_BAZEL_VERSION", 90, 7]], [["path", 95, 9], ["file", 96, 9]], [["aarch64-darwin", 102, 11], ["aarch64-linux", 103, 11], ["x86_64-linux", 104, 11]], [["outputHash", 100, 7], ["outputHashAlgo", 107, 7]], [["src", 74, 13], ["registry", 74, 17], ["sourceRoot", 75, 5], ["name", 76, 5], ["targets", 77, 5], ["bazel", 78, 5], ["installPhase", 79, 5], ["nativeBuildInputs", 83, 5], ["commandArgs", 84, 5], ["env", 89, 5], ["patches", 92, 5], ["bazelRepoCacheFOD", 99, 5]], [["USE_BAZEL_VERSION", 117, 7]], [["path", 133, 9], ["file", 134, 9]], [["aarch64-darwin", 140, 11], ["aarch64-linux", 141, 11], ["x86_64-linux", 142, 11]], [["outputHash", 138, 7], ["outputHashAlgo", 145, 7]], [["src", 111, 13], ["registry", 111, 17], ["sourceRoot", 112, 5], ["name", 113, 5], ["targets", 114, 5], ["bazel", 115, 5], ["env", 116, 5], ["installPhase", 119, 5], ["buildInputs", 123, 5], ["nativeBuildInputs", 127, 5], ["commandArgs", 128, 5], ["autoPatchelfIgnoreMissingDeps", 129, 5], ["patches", 130, 5], ["bazelVendorDepsFOD", 137, 5]], [["java", 30, 3], ["cpp", 73, 3], ["rust", 110, 3]]]);
 const formals$1 = { args: { fetchFromGitHub: false, lib: false, bazel_9: false, libgcc: false, cctools: false, stdenv: false, jdk_headless: false, callPackage: false, zlib: false, "libxcrypt-legacy": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/examples.nix", [["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["sha256", 19, 5]]);
-const pos$2 = nix.positions(here + "/examples.nix", [["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["sha256", 25, 5]]);
-const pos$3 = nix.positions(here + "/examples.nix", [["JAVA_HOME", 42, 7], ["USE_BAZEL_VERSION", 43, 7]]);
-const pos$4 = nix.positions(here + "/examples.nix", [["path", 58, 9], ["file", 59, 9]]);
-const pos$5 = nix.positions(here + "/examples.nix", [["aarch64-darwin", 65, 11], ["aarch64-linux", 66, 11], ["x86_64-linux", 67, 11]]);
-const pos$6 = nix.positions(here + "/examples.nix", [["outputHash", 63, 7], ["outputHashAlgo", 70, 7]]);
-const pos$7 = nix.positions(here + "/examples.nix", [["src", 31, 13], ["registry", 31, 17], ["sourceRoot", 32, 5], ["name", 33, 5], ["targets", 34, 5], ["bazel", 35, 5], ["commandArgs", 36, 5], ["env", 41, 5], ["installPhase", 45, 5], ["buildInputs", 49, 5], ["nativeBuildInputs", 54, 5], ["patches", 55, 5], ["bazelVendorDepsFOD", 62, 5]]);
-const pos$8 = nix.positions(here + "/examples.nix", [["USE_BAZEL_VERSION", 90, 7]]);
-const pos$9 = nix.positions(here + "/examples.nix", [["path", 95, 9], ["file", 96, 9]]);
-const pos$10 = nix.positions(here + "/examples.nix", [["aarch64-darwin", 102, 11], ["aarch64-linux", 103, 11], ["x86_64-linux", 104, 11]]);
-const pos$11 = nix.positions(here + "/examples.nix", [["outputHash", 100, 7], ["outputHashAlgo", 107, 7]]);
-const pos$12 = nix.positions(here + "/examples.nix", [["src", 74, 13], ["registry", 74, 17], ["sourceRoot", 75, 5], ["name", 76, 5], ["targets", 77, 5], ["bazel", 78, 5], ["installPhase", 79, 5], ["nativeBuildInputs", 83, 5], ["commandArgs", 84, 5], ["env", 89, 5], ["patches", 92, 5], ["bazelRepoCacheFOD", 99, 5]]);
-const pos$13 = nix.positions(here + "/examples.nix", [["USE_BAZEL_VERSION", 117, 7]]);
-const pos$14 = nix.positions(here + "/examples.nix", [["path", 133, 9], ["file", 134, 9]]);
-const pos$15 = nix.positions(here + "/examples.nix", [["aarch64-darwin", 140, 11], ["aarch64-linux", 141, 11], ["x86_64-linux", 142, 11]]);
-const pos$16 = nix.positions(here + "/examples.nix", [["outputHash", 138, 7], ["outputHashAlgo", 145, 7]]);
-const pos$17 = nix.positions(here + "/examples.nix", [["src", 111, 13], ["registry", 111, 17], ["sourceRoot", 112, 5], ["name", 113, 5], ["targets", 114, 5], ["bazel", 115, 5], ["env", 116, 5], ["installPhase", 119, 5], ["buildInputs", 123, 5], ["nativeBuildInputs", 127, 5], ["commandArgs", 128, 5], ["autoPatchelfIgnoreMissingDeps", 129, 5], ["patches", 130, 5], ["bazelVendorDepsFOD", 137, 5]]);
-const pos$18 = nix.positions(here + "/examples.nix", [["java", 30, 3], ["cpp", 73, 3], ["rust", 110, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -36,14 +19,14 @@ export default nix.lambda((args) => (() => {
   const libxcrypt_legacy = nix.arg($, "libxcrypt-legacy");
   const bazelPackage = nix.thunk(() => nix.app(callPackage, nix.path(here, "./build-support/bazelPackage.nix"), nix.thunk(() => ({}))));
   const registry = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "bazelbuild",
       repo: "bazel-central-registry",
       rev: "0e9e0cfdb88577300cc369d0cbe81e678d0fb271",
       sha256: "sha256-YAR0tYVUdITfW/2H/LZky88nyoWTsgZf/CX4BtJ/Mwk=",
     }))));
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       owner: "bazelbuild",
       repo: "examples",
       rev: "2a8db5804341036b393ff7e1ba88edb30c8a82c7",
@@ -52,9 +35,9 @@ export default nix.lambda((args) => (() => {
   const from = nix.thunk(() => nix.app(callPackage, nix.path(here, "./build-support/patching.nix"), nix.thunk(() => ({}))));
   const addFilePatch = nix.thunk(() => nix.attr(from, "addFilePatch"));
   return {
-    [nix.POS]: pos$18,
+    [nix.POS]: $pos[17],
     java: nix.thunk(() => nix.app(bazelPackage, nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         src: src,
         registry: registry,
         sourceRoot: "source/java-tutorial",
@@ -66,7 +49,7 @@ export default nix.lambda((args) => (() => {
           "--tool_java_runtime_version=local_jdk_21",
         ], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "--spawn_strategy=local"))),
         env: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           JAVA_HOME: nix.thunk(() => nix.sel(jdk_headless, "home")),
           USE_BAZEL_VERSION: nix.thunk(() => nix.sel(bazel_9, "version")),
         })),
@@ -80,15 +63,15 @@ export default nix.lambda((args) => (() => {
         patches: nix.thunk(() => [
           nix.path(here, "./patches/examples/java-tutorial.patch"),
           nix.thunk(() => nix.app(addFilePatch, nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               path: "b/rules_cc.patch",
               file: nix.path(here, "./patches/examples/rules_cc.patch"),
             })))),
         ]),
         bazelVendorDepsFOD: nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           outputHash: nix.thunk(() => nix.sel({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             "aarch64-darwin": "sha256-eWWo7AiZSPSnWNaK3f8rCnu7uGiq6zoYT2YYTLrEMXY",
             "aarch64-linux": "sha256-AFG9Xyru6/m5bZrO4FPCMRnVuq4kpj2OqangxdHQXXM=",
             "x86_64-linux": "sha256-qviZ9GVXA3t3DihlBthpaMO01/oxotDlXSRYF/w/zvY=",
@@ -97,7 +80,7 @@ export default nix.lambda((args) => (() => {
         })),
       })))),
     cpp: nix.thunk(() => nix.app(bazelPackage, nix.thunk(() => ({
-        [nix.POS]: pos$12,
+        [nix.POS]: $pos[11],
         src: src,
         registry: registry,
         sourceRoot: "source/cpp-tutorial/stage3",
@@ -108,21 +91,21 @@ export default nix.lambda((args) => (() => {
         nativeBuildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), cctools)),
         commandArgs: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["--host_cxxopt=-xc++", "--cxxopt=-xc++", "--spawn_strategy=local"]))),
         env: nix.thunk(() => ({
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           USE_BAZEL_VERSION: nix.thunk(() => nix.sel(bazel_9, "version")),
         })),
         patches: nix.thunk(() => [
           nix.path(here, "./patches/examples/cpp-tutorial.patch"),
           nix.thunk(() => nix.app(addFilePatch, nix.thunk(() => ({
-              [nix.POS]: pos$9,
+              [nix.POS]: $pos[8],
               path: "b/rules_cc.patch",
               file: nix.path(here, "./patches/examples/rules_cc.patch"),
             })))),
         ]),
         bazelRepoCacheFOD: nix.thunk(() => ({
-          [nix.POS]: pos$11,
+          [nix.POS]: $pos[10],
           outputHash: nix.thunk(() => nix.sel({
-            [nix.POS]: pos$10,
+            [nix.POS]: $pos[9],
             "aarch64-darwin": "sha256-CbA4Kcn6656xnK6DkN4TZ7u1/mizA49Im9hRCU86TGs=",
             "aarch64-linux": "sha256-CbA4Kcn6656xnK6DkN4TZ7u1/mizA49Im9hRCU86TGs=",
             "x86_64-linux": "sha256-CbA4Kcn6656xnK6DkN4TZ7u1/mizA49Im9hRCU86TGs=",
@@ -131,7 +114,7 @@ export default nix.lambda((args) => (() => {
         })),
       })))),
     rust: nix.thunk(() => nix.app(bazelPackage, nix.thunk(() => ({
-        [nix.POS]: pos$17,
+        [nix.POS]: $pos[16],
         src: src,
         registry: registry,
         sourceRoot: "source/rust-examples/01-hello-world",
@@ -139,7 +122,7 @@ export default nix.lambda((args) => (() => {
         targets: nix.thunk(() => ["//:bin"]),
         bazel: bazel_9,
         env: nix.thunk(() => ({
-          [nix.POS]: pos$13,
+          [nix.POS]: $pos[12],
           USE_BAZEL_VERSION: nix.thunk(() => nix.sel(bazel_9, "version")),
         })),
         installPhase: "mkdir $out\ncp bazel-bin/bin $out/hello-world\n",
@@ -150,15 +133,15 @@ export default nix.lambda((args) => (() => {
         patches: nix.thunk(() => [
           nix.path(here, "./patches/examples/rust-examples.patch"),
           nix.thunk(() => nix.app(addFilePatch, nix.thunk(() => ({
-              [nix.POS]: pos$14,
+              [nix.POS]: $pos[13],
               path: "b/rules_cc.patch",
               file: nix.path(here, "./patches/examples/rules_cc.patch"),
             })))),
         ]),
         bazelVendorDepsFOD: nix.thunk(() => ({
-          [nix.POS]: pos$16,
+          [nix.POS]: $pos[15],
           outputHash: nix.thunk(() => nix.sel({
-            [nix.POS]: pos$15,
+            [nix.POS]: $pos[14],
             "aarch64-darwin": "sha256-sO+LN53wkSpC8XYHzIKveWANhz1znOciS/F7muu7Vp0=",
             "aarch64-linux": "sha256-Ed5asDMPeSODDFzMN+kyYfwxVovRLqkUpWXyyaRPLtQ=",
             "x86_64-linux": "sha256-vU7cvmWvD/nyN8VKX66PWePw5yA/teRjUSlCcjXC+Rw=",

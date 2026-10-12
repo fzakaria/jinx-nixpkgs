@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]], [["description", 51, 5], ["longDescription", 52, 5], ["homepage", 58, 5], ["changelog", 59, 5], ["license", 60, 5], ["maintainers", 61, 5], ["mainProgram", 62, 5], ["platforms", 63, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["cargoHash", 22, 3], ["nativeBuildInputs", 24, 3], ["nativeCheckInputs", 29, 3], ["checkPhase", 31, 3], ["postInstall", 42, 3], ["meta", 50, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, rustPlatform: false, fetchFromGitHub: false, installShellFiles: false, openssh: false, shtk: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 51, 5], ["longDescription", 52, 5], ["homepage", 58, 5], ["changelog", 59, 5], ["license", 60, 5], ["maintainers", 61, 5], ["mainProgram", 62, 5], ["platforms", 63, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["cargoHash", 22, 3], ["nativeBuildInputs", 24, 3], ["nativeCheckInputs", 29, 3], ["checkPhase", 31, 3], ["postInstall", 42, 3], ["meta", 50, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const openssh = nix.arg($, "openssh");
   const shtk = nix.arg($, "shtk");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "ssh-agent-switcher",
       version: "1.0.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "jmmv",
           repo: "ssh-agent-switcher",
           tag: nix.thunk(() => nix.str`ssh-agent-switcher-${nix.sel(finalAttrs, "version")}`),
@@ -41,7 +39,7 @@ runHook postCheck
 `),
       postInstall: "installManPage ssh-agent-switcher.1\n\ninstall -Dm644 README.md -t $out/share/doc/ssh-agent-switcher/\ninstall -Dm644 NEWS.md -t $out/share/doc/ssh-agent-switcher/\ninstall -Dm644 COPYING -t $out/share/doc/ssh-agent-switcher/\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "SSH agent forwarding and tmux done right",
         longDescription: "ssh-agent-switcher is a daemon that proxies SSH agent connections to any\nvalid forwarded agent provided by sshd. This allows long-lived processes\nsuch as terminal multiplexers like tmux or screen to access the\nconnection-specific forwarded agents.\n",
         homepage: "https://github.com/jmmv/ssh-agent-switcher",

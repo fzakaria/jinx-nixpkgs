@@ -2,11 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]], [["name", 23, 7], ["url", 24, 7], ["hash", 25, 7]], [["description", 38, 5], ["homepage", 39, 5], ["license", 40, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["patches", 18, 3], ["preConfigure", 28, 3], ["preInstall", 31, 3], ["meta", 37, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, fetchpatch: false, buildGhidraExtension: false, ghidra: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["name", 23, 7], ["url", 24, 7], ["hash", 25, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 38, 5], ["homepage", 39, 5], ["license", 40, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["patches", 18, 3], ["preConfigure", 28, 3], ["preInstall", 31, 3], ["meta", 37, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const buildGhidraExtension = nix.arg($, "buildGhidraExtension");
   const ghidra = nix.arg($, "ghidra");
   return nix.app(buildGhidraExtension, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "ret-sync-ghidra",
       version: "0-unstable-2024-05-29",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "bootleg",
           repo: "ret-sync",
           rev: "0617c75746ddde7fe2bdbbf880175af8ad27553e",
@@ -28,7 +25,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "ghidra-11.2-fix.patch",
             url: "https://github.com/bootleg/ret-sync/commit/d81d953c24b4369b499e90ba64c1c9f78513a008.patch",
             hash: "sha256-t/voPcBfsZtfdYnskgBAPfqMTBw1LRTT0aXyyb5qtr8=",
@@ -41,7 +38,7 @@ rm dist/ghidra*
 mv dist/safe.zip dist/$correct_version
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Reverse-Engineering Tools SYNChronization. Allows syncing between a debugging session and Ghidra",
         homepage: "https://github.com/bootleg/ret-sync",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

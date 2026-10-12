@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 13, 5], ["sha256", 14, 5], ["stripRoot", 15, 5]], [["description", 22, 5], ["homepage", 23, 5], ["license", 24, 5], ["maintainers", 25, 5]], [["version", 8, 3], ["format", 9, 3], ["pname", 10, 3], ["src", 12, 3], ["doCheck", 19, 3], ["meta", 21, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchzip: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 13, 5], ["sha256", 14, 5], ["stripRoot", 15, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 22, 5], ["homepage", 23, 5], ["license", 24, 5], ["maintainers", 25, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["version", 8, 3], ["format", 9, 3], ["pname", 10, 3], ["src", 12, 3], ["doCheck", 19, 3], ["meta", 21, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,20 +15,20 @@ export default nix.lambda((args) => (() => {
       const format = "setuptools";
       const pname = "patch";
       const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://pypi/p/${pname}/${pname}-${version}.zip`),
           sha256: "1nj55hvyvzax4lxq7vkyfbw91pianzr3hp7ka7j12pgjxccac50g",
           stripRoot: false,
         }))));
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Library to parse and apply unified diffs",
         homepage: "https://github.com/techtonik/python-patch/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "igsha"))]),
       }));
-      return { [nix.POS]: pos$3, version, format, pname, src, doCheck, meta };
+      return { [nix.POS]: $pos[2], version, format, pname, src, doCheck, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

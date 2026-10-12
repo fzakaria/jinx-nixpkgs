@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 17, 5], ["hash", 18, 5]], [["updateScript", 40, 12]], [["description", 43, 5], ["longDescription", 44, 5], ["homepage", 50, 5], ["changelog", 51, 5], ["license", 52, 5], ["sourceProvenance", 53, 5], ["maintainers", 54, 5], ["platforms", 55, 5]], [["pname", 10, 3], ["version", 11, 3], ["__structuredAttrs", 13, 3], ["strictDeps", 14, 3], ["src", 16, 3], ["sourceRoot", 21, 3], ["nativeBuildInputs", 23, 3], ["installPhase", 27, 3], ["dontFixup", 38, 3], ["passthru", 40, 3], ["meta", 42, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchurl: false, undmg: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 40, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 43, 5], ["longDescription", 44, 5], ["homepage", 50, 5], ["changelog", 51, 5], ["license", 52, 5], ["sourceProvenance", 53, 5], ["maintainers", 54, 5], ["platforms", 55, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["__structuredAttrs", 13, 3], ["strictDeps", 14, 3], ["src", 16, 3], ["sourceRoot", 21, 3], ["nativeBuildInputs", 23, 3], ["installPhase", 27, 3], ["dontFixup", 38, 3], ["passthru", 40, 3], ["meta", 42, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,13 +13,13 @@ export default nix.lambda((args) => (() => {
   const undmg = nix.arg($, "undmg");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "harper-desktop",
       version: "2.11.0",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/Automattic/harper/releases/download/v${nix.sel(finalAttrs, "version")}/Harper_${nix.sel(finalAttrs, "version")}_universal.dmg`),
           hash: "sha256-eNrAsEW98pCMx+UoHQA+InSKp/b54FVE0KXf8VHNfok=",
         })))),
@@ -31,11 +28,11 @@ export default nix.lambda((args) => (() => {
       installPhase: "runHook preInstall\n\nmkdir -p \"$out/Applications\"\ncp -R Harper.app \"$out/Applications/\"\n\nrunHook postInstall\n",
       dontFixup: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Privacy-first offline grammar checker for macOS",
         longDescription: "Harper Desktop provides system-wide grammar checking for macOS.\nIt requires macOS 14 or later.\nIts built-in automatic updater should be disabled when installed through\nNix; update Harper Desktop through Nixpkgs instead.\n",
         homepage: "https://writewithharper.com/desktop",

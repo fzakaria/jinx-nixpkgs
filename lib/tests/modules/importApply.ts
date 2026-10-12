@@ -2,23 +2,20 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/importApply.nix", [[["default", 3, 34]], [["value", 3, 11]], [["foo", 4, 69]], [["options", 3, 3], ["imports", 4, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/importApply.nix", [["default", 3, 34]]);
-const pos$2 = nix.positions(here + "/importApply.nix", [["value", 3, 11]]);
-const pos$3 = nix.positions(here + "/importApply.nix", [["foo", 4, 69]]);
-const pos$4 = nix.positions(here + "/importApply.nix", [["options", 3, 3], ["imports", 4, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$4,
+    [nix.POS]: $pos[3],
     options: nix.thunk(() => ({
-      [nix.POS]: pos$2,
-      value: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({ [nix.POS]: pos$1, default: 1n })))),
+      [nix.POS]: $pos[1],
+      value: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({ [nix.POS]: $pos[0], default: 1n })))),
     })),
     imports: nix.thunk(() => [
-      nix.thunk(() => nix.app(nix.sel(lib, "modules", "importApply"), nix.path(here, "./importApply-function.nix"), nix.thunk(() => ({ [nix.POS]: pos$3, foo: "abc" })))),
+      nix.thunk(() => nix.app(nix.sel(lib, "modules", "importApply"), nix.path(here, "./importApply-function.nix"), nix.thunk(() => ({ [nix.POS]: $pos[2], foo: "abc" })))),
     ]),
   };
 })(), formals$1);

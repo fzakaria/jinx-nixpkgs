@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 64, 5], ["repo", 65, 5], ["tag", 66, 5], ["hash", 67, 5]], [["LIBCLANG_PATH", 124, 5], ["RUSTFLAGS", 128, 5]], [["HIP_PATH", 133, 5], ["AMDGPU_TARGETS", 134, 5]], [["update-script", 184, 12]], [["description", 187, 5], ["longDescription", 188, 5], ["homepage", 194, 5], ["downloadPage", 195, 5], ["changelog", 196, 5], ["license", 197, 5], ["maintainers", 198, 5], ["platforms", 202, 5], ["mainProgram", 203, 5]], [["pname", 58, 3], ["version", 59, 3], ["__structuredAttrs", 61, 3], ["src", 63, 3], ["cargoHash", 70, 3], ["buildFeatures", 72, 3], ["nativeBuildInputs", 85, 3], ["buildInputs", 102, 3], ["env", 122, 3], ["preBuild", 137, 3], ["postInstall", 148, 3], ["nativeInstallCheckInputs", 179, 3], ["doInstallCheck", 182, 3], ["passthru", 184, 3], ["meta", 186, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, rustPlatform: false, fetchFromGitHub: false, "nix-update-script": false, versionCheckHook: false, clang: false, cmake: false, gitMinimal: false, installShellFiles: false, libclang: false, makeBinaryWrapper: false, "pkg-config": false, "alsa-lib": false, dotool: false, libnotify: false, openssl: false, pciutils: false, "wl-clipboard": false, wtype: false, which: false, xclip: false, xdotool: false, installManPages: true, installShellCompletions: true, vulkanSupport: true, shaderc: false, "vulkan-headers": false, "vulkan-loader": false, onnxSupport: true, onnxruntime: false, hipSupport: true, rocmPackages: false, rocmGpuTargets: true, waylandSupport: true, waylandRuntimePackages: true, x11Support: true, x11RuntimePackages: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 64, 5], ["repo", 65, 5], ["tag", 66, 5], ["hash", 67, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["LIBCLANG_PATH", 124, 5], ["RUSTFLAGS", 128, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["HIP_PATH", 133, 5], ["AMDGPU_TARGETS", 134, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["update-script", 184, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 187, 5], ["longDescription", 188, 5], ["homepage", 194, 5], ["downloadPage", 195, 5], ["changelog", 196, 5], ["license", 197, 5], ["maintainers", 198, 5], ["platforms", 202, 5], ["mainProgram", 203, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 58, 3], ["version", 59, 3], ["__structuredAttrs", 61, 3], ["src", 63, 3], ["cargoHash", 70, 3], ["buildFeatures", 72, 3], ["nativeBuildInputs", 85, 3], ["buildInputs", 102, 3], ["env", 122, 3], ["preBuild", 137, 3], ["postInstall", 148, 3], ["nativeInstallCheckInputs", 179, 3], ["doInstallCheck", 182, 3], ["passthru", 184, 3], ["meta", 186, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -51,12 +46,12 @@ export default nix.lambda((args) => (() => {
   const x11Support = nix.argOr($, "x11Support", () => nix.sel(stdenv, "hostPlatform", "isLinux"));
   const x11RuntimePackages = nix.argOr($, "x11RuntimePackages", () => [xclip, xdotool]);
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "voxtype",
       version: "1.0.1",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "peteonrails",
           repo: "voxtype",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -81,11 +76,11 @@ export default nix.lambda((args) => (() => {
           ];
         })())), nix.concat(nix.app(nix.sel(lib, "optionals"), vulkanSupport, nix.thunk(() => [vulkan_headers, vulkan_loader])), nix.app(nix.sel(lib, "optionals"), onnxSupport, nix.thunk(() => [onnxruntime])))))),
       env: nix.thunk(() => nix.update({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         LIBCLANG_PATH: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getLib"), libclang)}/lib`),
         RUSTFLAGS: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isx86_64")))), "-C target-cpu=x86-64-v3")),
       }, nix.app(nix.sel(lib, "optionalAttrs"), hipSupport, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           HIP_PATH: nix.thunk(() => nix.str`${nix.sel(rocmPackages, "clr")}`),
           AMDGPU_TARGETS: rocmGpuTargets,
         }))))),
@@ -105,11 +100,11 @@ wrapProgram $out/bin/voxtype \\
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         "update-script": nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Voice-to-text with push-to-talk for Wayland compositors",
         longDescription: "Voxtype is a push-to-talk voice-to-text daemon for Linux.\nHold a hotkey while speaking, release to transcribe and output\ntext at your cursor position. Supports Whisper, Parakeet,\nSenseVoice, Moonshine, Paraformer, Dolphin, and Omnilingual engines.\n",
         homepage: "https://voxtype.io",

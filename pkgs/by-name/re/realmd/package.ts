@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 21, 5], ["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]], [["updateScript", 69, 12]], [["changelog", 72, 5], ["description", 73, 5], ["homepage", 74, 5], ["license", 75, 5], ["mainProgram", 76, 5], ["maintainers", 77, 5], ["platforms", 78, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["patches", 28, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 38, 3], ["configureFlags", 47, 3], ["hardeningDisable", 62, 3], ["doCheck", 67, 3], ["passthru", 69, 3], ["meta", 71, 3]]]);
 const formals$1 = { args: { autoreconfHook: false, fetchFromGitLab: false, glib: false, lib: false, libkrb5: false, "nix-update-script": false, openldap: false, "pkg-config": false, polkit: false, samba: false, stdenv: false, systemdLibs: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 21, 5], ["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 69, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["changelog", 72, 5], ["description", 73, 5], ["homepage", 74, 5], ["license", 75, 5], ["mainProgram", 76, 5], ["maintainers", 77, 5], ["platforms", 78, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["patches", 28, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 38, 3], ["configureFlags", 47, 3], ["hardeningDisable", 62, 3], ["doCheck", 67, 3], ["passthru", 69, 3], ["meta", 71, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const systemdLibs = nix.arg($, "systemdLibs");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "realmd",
       version: "0.17.1",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "gitlab.freedesktop.org",
           owner: "realmd",
           repo: "realmd",
@@ -47,11 +44,11 @@ export default nix.lambda((args) => (() => {
       hardeningDisable: nix.thunk(() => ["fortify3"]),
       doCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         changelog: nix.thunk(() => nix.str`https://gitlab.freedesktop.org/realmd/realmd/-/blob/${nix.sel(finalAttrs, "version")}/NEWS`),
         description: "DBus service for configuring Kerberos and other online identities",
         homepage: "https://gitlab.freedesktop.org/realmd/realmd",

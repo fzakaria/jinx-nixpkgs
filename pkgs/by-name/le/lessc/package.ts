@@ -2,17 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]], [["pname", 30, 7], ["version", 31, 7], ["src", 32, 7], ["pnpmWorkspaces", 33, 7], ["pnpm", 35, 5], ["fetcherVersion", 36, 5], ["hash", 37, 5]], [["plugins", 75, 48]], [["package", 77, 39]], [["nativeBuildInputs", 89, 15], ["base", 90, 15]], [["assertion", 80, 9], ["expected", 81, 9], ["actual", 86, 9]], [["version", 77, 7], ["simple", 79, 7]], [["updateScript", 72, 5], ["plugins", 73, 5], ["wrapper", 74, 5], ["withPlugins", 75, 5], ["tests", 76, 5]], [["homepage", 107, 5], ["changelog", 108, 5], ["description", 109, 5], ["mainProgram", 110, 5], ["license", 111, 5], ["maintainers", 112, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["pnpmDeps", 28, 3], ["strictDeps", 40, 3], ["nativeBuildInputs", 42, 3], ["buildInputs", 48, 3], ["pnpmWorkspaces", 50, 3], ["buildPhase", 52, 3], ["installPhase", 60, 3], ["passthru", 71, 3], ["meta", 106, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchPnpmDeps: false, nodejs: false, pnpm_11: false, pnpmConfigHook: false, callPackage: false, testers: false, runCommand: false, writeText: false, "nix-update-script": false, lessc: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 30, 7], ["version", 31, 7], ["src", 32, 7], ["pnpmWorkspaces", 33, 7], ["pnpm", 35, 5], ["fetcherVersion", 36, 5], ["hash", 37, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["plugins", 75, 48]]);
-const pos$4 = nix.positions(here + "/package.nix", [["package", 77, 39]]);
-const pos$5 = nix.positions(here + "/package.nix", [["nativeBuildInputs", 89, 15], ["base", 90, 15]]);
-const pos$6 = nix.positions(here + "/package.nix", [["assertion", 80, 9], ["expected", 81, 9], ["actual", 86, 9]]);
-const pos$7 = nix.positions(here + "/package.nix", [["version", 77, 7], ["simple", 79, 7]]);
-const pos$8 = nix.positions(here + "/package.nix", [["updateScript", 72, 5], ["plugins", 73, 5], ["wrapper", 74, 5], ["withPlugins", 75, 5], ["tests", 76, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["homepage", 107, 5], ["changelog", 108, 5], ["description", 109, 5], ["mainProgram", 110, 5], ["license", 111, 5], ["maintainers", 112, 5]]);
-const pos$10 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["pnpmDeps", 28, 3], ["strictDeps", 40, 3], ["nativeBuildInputs", 42, 3], ["buildInputs", 48, 3], ["pnpmWorkspaces", 50, 3], ["buildPhase", 52, 3], ["installPhase", 60, 3], ["passthru", 71, 3], ["meta", 106, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,18 +21,18 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const lessc = nix.arg($, "lessc");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       pname: "lessc",
       version: "4.9.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "less",
           repo: "less.js",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-kRhXqmClUyz+W42qXaeBZ2rJXyjZbYl+sxqLGOg5I3Q=",
         })))),
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -57,23 +48,23 @@ export default nix.lambda((args) => (() => {
       buildPhase: "runHook preBuild\n\npnpm --filter \"less\" run build\n\nrunHook postBuild\n",
       installPhase: "runHook preInstall\n\nmkdir -p $out/{bin,lib/lessc}\ncp -r {packages,node_modules} $out/lib/lessc\nchmod +x $out/lib/lessc/packages/less/bin/lessc\nln -s $out/lib/lessc/packages/less/bin/lessc $out/bin/lessc\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         plugins: nix.thunk(() => nix.app(callPackage, nix.path(here, "./plugins"), nix.thunk(() => ({})))),
         wrapper: nix.thunk(() => nix.app(callPackage, nix.path(here, "./wrapper"), nix.thunk(() => ({})))),
         withPlugins: (fn) => nix.app(nix.sel(lessc, "wrapper", "override"), nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             plugins: nix.thunk(() => nix.app(fn, nix.thunk(() => nix.sel(lessc, "plugins")))),
           }))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$7,
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$4, package: lessc })))),
+          [nix.POS]: $pos[6],
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: $pos[3], package: lessc })))),
           simple: nix.thunk(() => nix.app(nix.sel(testers, "testEqualContents"), nix.thunk(() => ({
-              [nix.POS]: pos$6,
+              [nix.POS]: $pos[5],
               assertion: "lessc compiles a basic less file",
               expected: nix.thunk(() => nix.app(writeText, "expected", "body h1 {\n  color: red;\n}\n")),
               actual: nix.thunk(() => nix.app(runCommand, "actual", nix.thunk(() => ({
-                  [nix.POS]: pos$5,
+                  [nix.POS]: $pos[4],
                   nativeBuildInputs: nix.thunk(() => [lessc]),
                   base: nix.thunk(() => nix.app(writeText, "base", "@color: red;\nbody {\n  h1 {\n    color: @color;\n  }\n}\n")),
                 })), "lessc $base > $out\n")),
@@ -81,7 +72,7 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         homepage: "https://github.com/less/less.js",
         changelog: nix.thunk(() => nix.str`https://github.com/less/less.js/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),
         description: "Dynamic stylesheet language",

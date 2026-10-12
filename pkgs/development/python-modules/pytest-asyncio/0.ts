@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/0.nix", [[["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]], [["pytest", 39, 18]], [["tests", 39, 12]], [["description", 44, 5], ["homepage", 45, 5], ["changelog", 46, 5], ["license", 47, 5], ["maintainers", 48, 5]], [["pname", 11, 3], ["version", 12, 3], ["pyproject", 13, 3], ["src", 15, 3], ["outputs", 22, 3], ["build-system", 27, 3], ["buildInputs", 29, 3], ["pythonRelaxDeps", 31, 3], ["postInstall", 33, 3], ["doCheck", 38, 3], ["passthru", 39, 3], ["pythonImportsCheck", 41, 3], ["meta", 43, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, callPackage: false, fetchFromGitHub: false, pytest: false, "setuptools-scm": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/0.nix", [["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/0.nix", [["pytest", 39, 18]]);
-const pos$3 = nix.positions(here + "/0.nix", [["tests", 39, 12]]);
-const pos$4 = nix.positions(here + "/0.nix", [["description", 44, 5], ["homepage", 45, 5], ["changelog", 46, 5], ["license", 47, 5], ["maintainers", 48, 5]]);
-const pos$5 = nix.positions(here + "/0.nix", [["pname", 11, 3], ["version", 12, 3], ["pyproject", 13, 3], ["src", 15, 3], ["outputs", 22, 3], ["build-system", 27, 3], ["buildInputs", 29, 3], ["pythonRelaxDeps", 31, 3], ["postInstall", 33, 3], ["doCheck", 38, 3], ["passthru", 39, 3], ["pythonImportsCheck", 41, 3], ["meta", 43, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.26.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "pytest-dev",
           repo: "pytest-asyncio",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -35,15 +31,15 @@ export default nix.lambda((args) => (() => {
       const postInstall = "mkdir $testout\ncp -R tests $testout/tests\n";
       const doCheck = false;
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pytest: nix.thunk(() => nix.app(callPackage, nix.path(here, "./tests.nix"), nix.thunk(() => ({})))),
         })),
       }));
       const pythonImportsCheck = nix.thunk(() => ["pytest_asyncio"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Library for testing asyncio code with pytest",
         homepage: "https://github.com/pytest-dev/pytest-asyncio",
         changelog: nix.thunk(() => nix.str`https://github.com/pytest-dev/pytest-asyncio/blob/${nix.sel(src, "tag")}/docs/reference/changelog.rst`),
@@ -54,7 +50,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         pyproject,

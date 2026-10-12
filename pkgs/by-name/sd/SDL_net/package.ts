@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["hash", 20, 5]], [["tagFormat", 39, 5], ["tagPrefix", 40, 5], ["branch", 41, 5]], [["updateScript", 38, 12]], [["homepage", 45, 5], ["description", 46, 5], ["license", 47, 5], ["teams", 48, 5], ["platforms", 49, 24]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 23, 3], ["propagatedBuildInputs", 28, 3], ["configureFlags", 32, 3], ["strictDeps", 36, 3], ["passthru", 38, 3], ["meta", 44, 3]]]);
 const formals$1 = { args: { lib: false, SDL: false, fetchFromGitHub: false, "pkg-config": false, stdenv: false, unstableGitUpdater: false, enableSdltest: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["tagFormat", 39, 5], ["tagPrefix", 40, 5], ["branch", 41, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 38, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 45, 5], ["description", 46, 5], ["license", 47, 5], ["teams", 48, 5], ["platforms", 49, 24]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 23, 3], ["propagatedBuildInputs", 28, 3], ["configureFlags", 32, 3], ["strictDeps", 36, 3], ["passthru", 38, 3], ["meta", 44, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   const enableSdltest = nix.argOr($, "enableSdltest", () => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "SDL_net",
       version: "1.2.8-unstable-2026-05-27",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "libsdl-org",
           repo: "SDL_net",
           rev: "8363cd02baf1b65c287691bdd22c3dc87da9759d",
@@ -36,9 +32,9 @@ export default nix.lambda((args) => (() => {
       ]),
       strictDeps: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             tagFormat: "release-1.*",
             tagPrefix: "release-",
             branch: "SDL-1.2",
@@ -47,7 +43,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(SDL, "meta"));
         return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://github.com/libsdl-org/SDL_net",
         description: "SDL networking library",
         license: nix.thunk(() => nix.sel(lib, "licenses", "zlib")),

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 32, 5], ["tag", 33, 5], ["sha256", 34, 5], ["fetchSubmodules", 35, 5]], [["updateScript", 73, 5]], [["description", 77, 5], ["homepage", 78, 5], ["license", 79, 5], ["maintainers", 80, 5], ["platforms", 81, 5]], [["pname", 21, 3], ["version", 22, 3], ["outputs", 24, 3], ["src", 31, 3], ["patches", 38, 3], ["nativeBuildInputs", 43, 3], ["buildInputs", 57, 3], ["mesonFlags", 62, 3], ["postPatch", 67, 3], ["passthru", 72, 3], ["meta", 76, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchgit: false, "nix-update-script": false, "pkg-config": false, meson: false, ninja: false, vala: false, python3: false, "gtk-doc": false, docbook_xsl: false, docbook_xml_dtd_43: false, docbook_xml_dtd_412: false, glib: false, check: false, "gobject-introspection": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 32, 5], ["tag", 33, 5], ["sha256", 34, 5], ["fetchSubmodules", 35, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 73, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 77, 5], ["homepage", 78, 5], ["license", 79, 5], ["maintainers", 80, 5], ["platforms", 81, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 3], ["outputs", 24, 3], ["src", 31, 3], ["patches", 38, 3], ["nativeBuildInputs", 43, 3], ["buildInputs", 57, 3], ["mesonFlags", 62, 3], ["postPatch", 67, 3], ["passthru", 72, 3], ["meta", 76, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,12 +24,12 @@ export default nix.lambda((args) => (() => {
   const check = nix.arg($, "check");
   const gobject_introspection = nix.arg($, "gobject-introspection");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "libsignon-glib",
       version: "2.1",
       outputs: nix.thunk(() => ["out", "dev", "devdoc", "py"]),
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://gitlab.com/accounts-sso/libsignon-glib",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
           sha256: "0gnx9gqsh0hcfm1lk7w60g64mkn1iicga5f5xcy1j9a9byacsfd0",
@@ -61,11 +58,11 @@ export default nix.lambda((args) => (() => {
       ]),
       postPatch: "chmod +x build-aux/gen-error-map.py\npatchShebangs build-aux/gen-error-map.py\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Library for managing single signon credentials which can be used from GLib applications",
         homepage: "https://gitlab.com/accounts-sso/libsignon-glib",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21")),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 16, 5], ["sha256", 17, 5]], [["description", 59, 5], ["platforms", 60, 5], ["license", 61, 5], ["maintainers", 62, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["patches", 20, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 29, 3], ["postPatch", 31, 3], ["preConfigure", 49, 3], ["doInstallCheck", 56, 3], ["meta", 58, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, cmake: false, "pkg-config": false, libxml2: false, udevCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 16, 5], ["sha256", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 59, 5], ["platforms", 60, 5], ["license", 61, 5], ["maintainers", 62, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["patches", 20, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 29, 3], ["postPatch", 31, 3], ["preConfigure", 49, 3], ["doInstallCheck", 56, 3], ["meta", 58, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const libxml2 = nix.arg($, "libxml2");
   const udevCheckHook = nix.arg($, "udevCheckHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "libwebcam",
       version: "0.2.5",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/project/libwebcam/source/libwebcam-src-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "0hcxv8di83fk41zjh0v592qm7c0v37a3m3n3lxavd643gff1k99w",
         })))),
@@ -34,7 +32,7 @@ export default nix.lambda((args) => (() => {
       preConfigure: "cmakeFlagsArray=(\n  $cmakeFlagsArray\n  \"-DCMAKE_INSTALL_PREFIX=$out\"\n)\n",
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Webcam-tools package",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3")),

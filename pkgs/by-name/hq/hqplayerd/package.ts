@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 32, 5], ["hash", 33, 5]], [["rygel", 110, 5]], [["broken", 118, 5], ["homepage", 119, 5], ["description", 120, 5], ["sourceProvenance", 121, 5], ["license", 122, 5], ["platforms", 123, 5], ["maintainers", 124, 5]], [["pname", 28, 3], ["version", 29, 3], ["src", 31, 3], ["unpackPhase", 36, 3], ["nativeBuildInputs", 40, 3], ["buildInputs", 46, 3], ["dontConfigure", 63, 3], ["dontBuild", 64, 3], ["installPhase", 66, 3], ["postInstall", 95, 3], ["doInstallCheck", 103, 3], ["installCheckPhase", 104, 3], ["passthru", 109, 3], ["meta", 113, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, addDriverRunpath: false, "alsa-lib": false, autoPatchelfHook: false, cairo: false, fetchurl: false, flac: false, gcc14: false, "gupnp-av": false, lame: false, libgmpris: false, "libusb-compat-0_1": false, llvmPackages_19: false, mpg123: false, rpmextract: false, wavpack: false, callPackage: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 32, 5], ["hash", 33, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["rygel", 110, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["broken", 118, 5], ["homepage", 119, 5], ["description", 120, 5], ["sourceProvenance", 121, 5], ["license", 122, 5], ["platforms", 123, 5], ["maintainers", 124, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 28, 3], ["version", 29, 3], ["src", 31, 3], ["unpackPhase", 36, 3], ["nativeBuildInputs", 40, 3], ["buildInputs", 46, 3], ["dontConfigure", 63, 3], ["dontBuild", 64, 3], ["installPhase", 66, 3], ["postInstall", 95, 3], ["doInstallCheck", 103, 3], ["installCheckPhase", 104, 3], ["passthru", 109, 3], ["meta", 113, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const pname = "hqplayerd";
       const version = "5.13.2-39";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://www.signalyst.eu/bins/hqplayerd/fc37/hqplayerd-${version}.fc37.x86_64.rpm`),
           hash: "sha256-4wB32xFYpGcBdLqSZFkNXoS7IerPS8f6KIpn13ulqUY=",
         }))));
@@ -59,9 +56,9 @@ export default nix.lambda((args) => (() => {
       const postInstall = "substituteInPlace $out/lib/systemd/system/hqplayerd.service \\\n  --replace /usr/bin/hqplayerd $out/bin/hqplayerd \\\n  --replace \"NetworkManager-wait-online.service\" \"\"\n";
       const doInstallCheck = true;
       const installCheckPhase = "addDriverRunpath $out/bin/hqplayerd\n$out/bin/hqplayerd --version\n";
-      const passthru = nix.thunk(() => ({ [nix.POS]: pos$2, rygel: rygel_hqplayerd }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: $pos[1], rygel: rygel_hqplayerd }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         broken: true,
         homepage: "https://www.signalyst.com/custom.html",
         description: "High-end upsampling multichannel software embedded HD-audio player",
@@ -77,7 +74,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

@@ -2,11 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]], [["updateScript", 35, 12]], [["description", 38, 5], ["homepage", 39, 5], ["changelog", 40, 5], ["license", 41, 5], ["maintainers", 42, 5]], [["version", 11, 3], ["owner", 12, 3], ["domain", 13, 3], ["src", 15, 3], ["doCheck", 23, 3], ["ignoreVersionRequirement", 25, 3], ["dependencies", 30, 3], ["passthru", 35, 3], ["meta", 37, 3]]]);
 const formals$1 = { args: { buildHomeAssistantComponent: false, fetchFromGitHub: false, lib: false, "nix-update-script": false, pypng: false, pyqrcode: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 35, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 38, 5], ["homepage", 39, 5], ["changelog", 40, 5], ["license", 41, 5], ["maintainers", 42, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["version", 11, 3], ["owner", 12, 3], ["domain", 13, 3], ["src", 15, 3], ["doCheck", 23, 3], ["ignoreVersionRequirement", 25, 3], ["dependencies", 30, 3], ["passthru", 35, 3], ["meta", 37, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const owner = "schmittx";
       const domain = "eero";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "schmittx",
           repo: "home-assistant-eero",
           tag: version,
@@ -31,11 +28,11 @@ export default nix.lambda((args) => (() => {
       const ignoreVersionRequirement = nix.thunk(() => ["pypng", "pyqrcode"]);
       const dependencies = nix.thunk(() => [pypng, pyqrcode]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Custom component to allow control of Eero networks in Home Assistant",
         homepage: "https://github.com/schmittx/home-assistant-eero",
         changelog: nix.thunk(() => nix.str`https://github.com/schmittx/home-assistant-eero/releases/tag/${nix.sel(src, "tag")}`),
@@ -46,7 +43,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         version,
         owner,
         domain,

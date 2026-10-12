@@ -2,29 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["libsOnly", 21, 11]], [["lib32", 19, 7]], [["url", 29, 5], ["hash", 30, 5]], [["url", 36, 5], ["hash", 37, 5]], [["url", 42, 5], ["rev", 43, 5], ["hash", 44, 5]], [["url", 49, 5], ["hash", 50, 5], ["stripLen", 51, 5], ["extraPrefix", 52, 5]], [["url", 56, 5], ["hash", 57, 5]], [["version", 74, 5], ["sha256_64bit", 75, 5], ["sha256_aarch64", 76, 5], ["openSha256", 77, 5], ["settingsSha256", 78, 5], ["persistencedSha256", 79, 5]], [["version", 83, 5], ["sha256_64bit", 84, 5], ["sha256_aarch64", 85, 5], ["openSha256", 86, 5], ["settingsSha256", 87, 5], ["persistencedSha256", 88, 5]], [["version", 92, 5], ["sha256_64bit", 93, 5], ["sha256_aarch64", 94, 5], ["openSha256", 95, 5], ["settingsSha256", 96, 5], ["persistencedSha256", 97, 5]], [["version", 103, 5], ["persistencedVersion", 104, 5], ["settingsVersion", 105, 5], ["sha256_64bit", 106, 5], ["openSha256", 107, 5], ["settingsSha256", 108, 5], ["persistencedSha256", 109, 5], ["url", 110, 5]], [["version", 129, 5], ["url", 130, 5], ["sha256_64bit", 131, 5], ["persistencedSha256", 132, 5], ["fabricmanagerSha256", 133, 5], ["openSha256", 134, 5], ["useSettings", 135, 5], ["usePersistenced", 136, 5], ["useFabricmanager", 137, 5]], [["version", 117, 5], ["url", 118, 5], ["sha256_64bit", 119, 5], ["persistencedSha256", 120, 5], ["fabricmanagerSha256", 121, 5], ["openSha256", 122, 5], ["useSettings", 123, 5], ["usePersistenced", 124, 5], ["useFabricmanager", 125, 5]], [["version", 141, 5], ["url", 142, 5], ["sha256_64bit", 143, 5], ["persistencedSha256", 144, 5], ["fabricmanagerSha256", 145, 5], ["openSha256", 146, 5], ["useSettings", 147, 5], ["usePersistenced", 148, 5], ["useFabricmanager", 149, 5]], [["version", 158, 5], ["sha256_64bit", 159, 5], ["sha256_aarch64", 160, 5], ["openSha256", 161, 5], ["settingsSha256", 162, 5], ["persistencedSha256", 163, 5]], [["version", 169, 5], ["sha256_64bit", 170, 5], ["sha256_aarch64", 171, 5], ["openSha256", 172, 5], ["settingsSha256", 173, 5], ["persistencedSha256", 174, 5]], [["url", 182, 9], ["rev", 183, 9], ["hash", 184, 9]], [["version", 188, 7], ["sha256_64bit", 189, 7], ["sha256_aarch64", 190, 7], ["settingsSha256", 191, 7], ["persistencedSha256", 192, 7], ["patches", 194, 7], ["patchFlags", 209, 7]], [["version", 217, 5], ["sha256_32bit", 218, 5], ["sha256_64bit", 219, 5], ["settingsSha256", 220, 5], ["persistencedSha256", 221, 5], ["patches", 223, 5], ["broken", 240, 5], ["postInstall", 245, 5]], [["owner", 255, 9], ["repo", 256, 9], ["rev", 257, 9], ["hash", 258, 9]], [["version", 279, 7], ["sha256_32bit", 280, 7], ["sha256_64bit", 281, 7], ["settingsSha256", 282, 7], ["persistencedSha256", 283, 7], ["useGLVND", 284, 7], ["broken", 286, 7], ["patches", 287, 7], ["postInstall", 292, 7]], [["mkDriver", 61, 3], ["stable", 67, 3], ["latest", 69, 3], ["bleeding_edge", 71, 3], ["production", 73, 3], ["new_feature", 82, 3], ["beta", 91, 3], ["vulkan_beta", 102, 3], ["dc", 114, 3], ["dc_590", 116, 3], ["dc_580", 128, 3], ["dc_570", 140, 3], ["legacy_580", 157, 3], ["legacy_535", 168, 3], ["legacy_470", 178, 3], ["legacy_390", 216, 3], ["legacy_340", 251, 3]]]);
 const formals$1 = { args: { lib: false, callPackage: false, fetchFromGitHub: false, fetchgit: false, fetchpatch: false, stdenv: false, pkgsi686Linux: false, kernel: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["libsOnly", 21, 11]]);
-const pos$2 = nix.positions(here + "/default.nix", [["lib32", 19, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["url", 29, 5], ["hash", 30, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["url", 36, 5], ["hash", 37, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["url", 42, 5], ["rev", 43, 5], ["hash", 44, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["url", 49, 5], ["hash", 50, 5], ["stripLen", 51, 5], ["extraPrefix", 52, 5]]);
-const pos$7 = nix.positions(here + "/default.nix", [["url", 56, 5], ["hash", 57, 5]]);
-const pos$8 = nix.positions(here + "/default.nix", [["version", 74, 5], ["sha256_64bit", 75, 5], ["sha256_aarch64", 76, 5], ["openSha256", 77, 5], ["settingsSha256", 78, 5], ["persistencedSha256", 79, 5]]);
-const pos$9 = nix.positions(here + "/default.nix", [["version", 83, 5], ["sha256_64bit", 84, 5], ["sha256_aarch64", 85, 5], ["openSha256", 86, 5], ["settingsSha256", 87, 5], ["persistencedSha256", 88, 5]]);
-const pos$10 = nix.positions(here + "/default.nix", [["version", 92, 5], ["sha256_64bit", 93, 5], ["sha256_aarch64", 94, 5], ["openSha256", 95, 5], ["settingsSha256", 96, 5], ["persistencedSha256", 97, 5]]);
-const pos$11 = nix.positions(here + "/default.nix", [["version", 103, 5], ["persistencedVersion", 104, 5], ["settingsVersion", 105, 5], ["sha256_64bit", 106, 5], ["openSha256", 107, 5], ["settingsSha256", 108, 5], ["persistencedSha256", 109, 5], ["url", 110, 5]]);
-const pos$12 = nix.positions(here + "/default.nix", [["version", 129, 5], ["url", 130, 5], ["sha256_64bit", 131, 5], ["persistencedSha256", 132, 5], ["fabricmanagerSha256", 133, 5], ["openSha256", 134, 5], ["useSettings", 135, 5], ["usePersistenced", 136, 5], ["useFabricmanager", 137, 5]]);
-const pos$13 = nix.positions(here + "/default.nix", [["version", 117, 5], ["url", 118, 5], ["sha256_64bit", 119, 5], ["persistencedSha256", 120, 5], ["fabricmanagerSha256", 121, 5], ["openSha256", 122, 5], ["useSettings", 123, 5], ["usePersistenced", 124, 5], ["useFabricmanager", 125, 5]]);
-const pos$14 = nix.positions(here + "/default.nix", [["version", 141, 5], ["url", 142, 5], ["sha256_64bit", 143, 5], ["persistencedSha256", 144, 5], ["fabricmanagerSha256", 145, 5], ["openSha256", 146, 5], ["useSettings", 147, 5], ["usePersistenced", 148, 5], ["useFabricmanager", 149, 5]]);
-const pos$15 = nix.positions(here + "/default.nix", [["version", 158, 5], ["sha256_64bit", 159, 5], ["sha256_aarch64", 160, 5], ["openSha256", 161, 5], ["settingsSha256", 162, 5], ["persistencedSha256", 163, 5]]);
-const pos$16 = nix.positions(here + "/default.nix", [["version", 169, 5], ["sha256_64bit", 170, 5], ["sha256_aarch64", 171, 5], ["openSha256", 172, 5], ["settingsSha256", 173, 5], ["persistencedSha256", 174, 5]]);
-const pos$17 = nix.positions(here + "/default.nix", [["url", 182, 9], ["rev", 183, 9], ["hash", 184, 9]]);
-const pos$18 = nix.positions(here + "/default.nix", [["version", 188, 7], ["sha256_64bit", 189, 7], ["sha256_aarch64", 190, 7], ["settingsSha256", 191, 7], ["persistencedSha256", 192, 7], ["patches", 194, 7], ["patchFlags", 209, 7]]);
-const pos$19 = nix.positions(here + "/default.nix", [["version", 217, 5], ["sha256_32bit", 218, 5], ["sha256_64bit", 219, 5], ["settingsSha256", 220, 5], ["persistencedSha256", 221, 5], ["patches", 223, 5], ["broken", 240, 5], ["postInstall", 245, 5]]);
-const pos$20 = nix.positions(here + "/default.nix", [["owner", 255, 9], ["repo", 256, 9], ["rev", 257, 9], ["hash", 258, 9]]);
-const pos$21 = nix.positions(here + "/default.nix", [["version", 279, 7], ["sha256_32bit", 280, 7], ["sha256_64bit", 281, 7], ["settingsSha256", 282, 7], ["persistencedSha256", 283, 7], ["useGLVND", 284, 7], ["broken", 286, 7], ["patches", 287, 7], ["postInstall", 292, 7]]);
-const pos$22 = nix.positions(here + "/default.nix", [["mkDriver", 61, 3], ["stable", 67, 3], ["latest", 69, 3], ["bleeding_edge", 71, 3], ["production", 73, 3], ["new_feature", 82, 3], ["beta", 91, 3], ["vulkan_beta", 102, 3], ["dc", 114, 3], ["dc_590", 116, 3], ["dc_580", 128, 3], ["dc_570", 140, 3], ["legacy_580", 157, 3], ["legacy_535", 168, 3], ["legacy_470", 178, 3], ["legacy_390", 216, 3], ["legacy_340", 251, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -39,36 +18,36 @@ export default nix.lambda((args) => (() => {
   const generic = (args_1) => (() => {
     const imported = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./generic.nix")), args_1));
     return nix.app(callPackage, imported, nix.thunk(() => ({
-        [nix.POS]: pos$2,
-        lib32: nix.thunk(() => nix.sel(nix.app(nix.sel(pkgsi686Linux, "callPackage"), imported, nix.thunk(() => ({ [nix.POS]: pos$1, libsOnly: true }))), "out")),
+        [nix.POS]: $pos[1],
+        lib32: nix.thunk(() => nix.sel(nix.app(nix.sel(pkgsi686Linux, "callPackage"), imported, nix.thunk(() => ({ [nix.POS]: $pos[0], libsOnly: true }))), "out")),
       })));
   })();
   const selectHighestVersion = (a) => (b) => (nix.asBool(nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(a, "version")), nix.thunk(() => nix.sel(b, "version")))) ? nix.force(b) : nix.force(a));
   const rcu_patch = nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       url: "https://github.com/gentoo/gentoo/raw/c64caf53/x11-drivers/nvidia-drivers/files/nvidia-drivers-470.223.02-gpl-pfn_valid.patch",
       hash: "sha256-eZiQQp2S/asE7MfGvfe6dA/kdCvek9SYa/FFGp24dVg=",
     }))));
   const drm_fop_flags_linux_612_patch = nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       url: "https://github.com/Binary-Eater/open-gpu-kernel-modules/commit/8ac26d3c66ea88b0f80504bdd1e907658b41609d.patch",
       hash: "sha256-+SfIu3uYNQCf/KXhv4PWvruTVKQSh4bgU1moePhe57U=",
     }))));
   const aurPatches = nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       url: "https://aur.archlinux.org/nvidia-390xx-utils.git",
       rev: "cf1a1c571c425b4b66d12e468fc4ce45a397c583",
       hash: "sha256-SERB5ihOroagJn7apAiqjUckbrfP2FZPCuTLWcBccoM=",
     }))));
   const gpl_symbols_linux_615_patch = nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       url: "https://github.com/CachyOS/kernel-patches/raw/914aea4298e3744beddad09f3d2773d71839b182/6.15/misc/nvidia/0003-Workaround-nv_vm_flags_-calling-GPL-only-code.patch",
       hash: "sha256-YOTAvONchPPSVDP9eJ9236pAPtxYK5nAePNtm2dlvb4=",
       stripLen: 1n,
       extraPrefix: "kernel/",
     }))));
   const kernel_6_19_patch = nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       url: "https://github.com/CachyOS/CachyOS-PKGBUILDS/raw/d5629d64ac1f9e298c503e407225b528760ffd37/nvidia/nvidia-utils/kernel-6.19.patch",
       hash: "sha256-YuJjSUXE6jYSuZySYGnWSNG5sfVei7vvxDcHx3K+IN4=",
     }))));
@@ -78,7 +57,7 @@ export default nix.lambda((args) => (() => {
     const latest = nix.thunk(() => nix.app(selectHighestVersion, production, new_feature));
     const bleeding_edge = nix.thunk(() => nix.app(selectHighestVersion, latest, beta));
     const production = nix.thunk(() => nix.app(generic, nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         version: "595.104.02",
         sha256_64bit: "sha256-5CHCAuTHn1jDx/MWG75xRU67PYiTb4ggWg4yfNBMWco=",
         sha256_aarch64: "sha256-PafStmwNMufeDp3VtpTGGCoW+53Gor/mieO1m1pI7gI=",
@@ -87,7 +66,7 @@ export default nix.lambda((args) => (() => {
         persistencedSha256: "sha256-JsMLPqJuZwAtHngsQODMsmgO7F2tVkQ2arc7fYa2bwo=",
       }))));
     const new_feature = nix.thunk(() => nix.app(generic, nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         version: "615.71.09",
         sha256_64bit: "sha256-zc7tIrvrYSSNGm3qvCWWZz46ZQFpjucayNL9wo87cP4=",
         sha256_aarch64: "sha256-IbekQhE7cFfmnPZaLY9NDYcF7CoNZ+2Qb7sRd4EOgWM=",
@@ -96,7 +75,7 @@ export default nix.lambda((args) => (() => {
         persistencedSha256: "sha256-qPRb+3d88+2RcpUkoBTbjIaImnQ+jX+/6p1vXcJ5geE=",
       }))));
     const beta = nix.thunk(() => nix.app(generic, nix.thunk(() => ({
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         version: "595.45.04",
         sha256_64bit: "sha256-zUllSSRsuio7dSkcbBTuxF+dN12d6jEPE0WgGvVOj14=",
         sha256_aarch64: "sha256-jl6lQWsgF6ya22sAhYPpERJ9r+wjnWzbGnINDpUMzsk=",
@@ -114,7 +93,7 @@ export default nix.lambda((args) => (() => {
         const persistencedSha256 = "sha256-5FoeUaRRMBIPEWGy4Uo0Aho39KXmjzQsuAD9m/XkNpA=";
         const url = nix.thunk(() => nix.str`https://developer.nvidia.com/downloads/vulkan-beta-${nix.app(nix.sel(lib, "concatStrings"), nix.thunk(() => nix.app(nix.sel(lib, "splitVersion"), version)))}-linux`);
         return {
-          [nix.POS]: pos$11,
+          [nix.POS]: $pos[10],
           version,
           persistencedVersion,
           settingsVersion,
@@ -136,7 +115,7 @@ export default nix.lambda((args) => (() => {
         const usePersistenced = true;
         const useFabricmanager = true;
         return {
-          [nix.POS]: pos$12,
+          [nix.POS]: $pos[11],
           version,
           url,
           sha256_64bit,
@@ -160,7 +139,7 @@ export default nix.lambda((args) => (() => {
         const usePersistenced = true;
         const useFabricmanager = true;
         return {
-          [nix.POS]: pos$13,
+          [nix.POS]: $pos[12],
           version,
           url,
           sha256_64bit,
@@ -183,7 +162,7 @@ export default nix.lambda((args) => (() => {
         const usePersistenced = true;
         const useFabricmanager = true;
         return {
-          [nix.POS]: pos$14,
+          [nix.POS]: $pos[13],
           version,
           url,
           sha256_64bit,
@@ -196,7 +175,7 @@ export default nix.lambda((args) => (() => {
         };
       })())));
     const legacy_580 = nix.thunk(() => nix.app(generic, nix.thunk(() => ({
-        [nix.POS]: pos$15,
+        [nix.POS]: $pos[14],
         version: "580.178.04",
         sha256_64bit: "sha256-WXWobuRb/8tib1GuM9EWmxCBhqLqR61lHnLxP6S21vk=",
         sha256_aarch64: "sha256-71nsXSSFDhLW91UOwffPhNtTqEzpxj6zulXvXtDE8Ek=",
@@ -205,7 +184,7 @@ export default nix.lambda((args) => (() => {
         persistencedSha256: "sha256-3Omj160wtWdKAZDzWt/m/cbUTQ9DMJ1rSxMrnIrKXiw=",
       }))));
     const legacy_535 = nix.thunk(() => nix.app(generic, nix.thunk(() => ({
-        [nix.POS]: pos$16,
+        [nix.POS]: $pos[15],
         version: "535.288.01",
         sha256_64bit: "sha256-8gwy/W7NH3BcbfJ5fAwIQlPs9/9I8sNH+Co5YZiC7OE=",
         sha256_aarch64: "sha256-2d3RYzU+W4uS6mUvpCNCfoVcAJA/aerNwm7Xbg0YJBo=",
@@ -215,13 +194,13 @@ export default nix.lambda((args) => (() => {
       }))));
     const legacy_470 = nix.thunk(() => (() => {
       const aurPatches_1 = nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          [nix.POS]: pos$17,
+          [nix.POS]: $pos[16],
           url: "https://aur.archlinux.org/nvidia-470xx-utils.git",
           rev: "7abbeeb510742be09e1eb806c14bab2833a25783",
           hash: "sha256-hRBws0o4DWI5fvZRn0OwitXRSR9HCkRkgnvnkiZI6Ko=",
         }))));
       return nix.app(generic, nix.thunk(() => ({
-          [nix.POS]: pos$18,
+          [nix.POS]: $pos[17],
           version: "470.256.02",
           sha256_64bit: "sha256-1kUYYt62lbsER/O3zWJo9z6BFowQ4sEFl/8/oBNJsd4=",
           sha256_aarch64: "sha256-e+QvE+S3Fv3JRqC9ZyxTSiCu8gJdZXSz10gF/EN6DY0=",
@@ -246,7 +225,7 @@ export default nix.lambda((args) => (() => {
         })));
     })());
     const legacy_390 = nix.thunk(() => nix.app(generic, nix.thunk(() => ({
-        [nix.POS]: pos$19,
+        [nix.POS]: $pos[18],
         version: "390.157",
         sha256_32bit: "sha256-VdZeCkU5qct5YgDF8Qgv4mP7CVHeqvlqnP/rioD3B5k=",
         sha256_64bit: "sha256-W+u8puj+1da52BBw+541HxjtxTSVJVPL3HHo/QubMoo=",
@@ -274,7 +253,7 @@ export default nix.lambda((args) => (() => {
       }))));
     const legacy_340 = nix.thunk(() => (() => {
       const aurPatches_1 = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$20,
+          [nix.POS]: $pos[19],
           owner: "archlinux-jerry",
           repo: "nvidia-340xx",
           rev: "7616dfed253aa93ca7d2e05caf6f7f332c439c90",
@@ -298,7 +277,7 @@ export default nix.lambda((args) => (() => {
         "0015-kernel-6.6.patch",
       ]);
       return nix.app(generic, nix.thunk(() => ({
-          [nix.POS]: pos$21,
+          [nix.POS]: $pos[20],
           version: "340.108",
           sha256_32bit: "1jkwa1phf0x4sgw8pvr9d6krmmr3wkgwyygrxhdazwyr2bbalci0",
           sha256_64bit: "06xp6c0sa7v1b82gf0pq0i5p0vdhmm3v964v0ypw36y0nzqx8wf6",
@@ -311,7 +290,7 @@ export default nix.lambda((args) => (() => {
         })));
     })());
     return {
-      [nix.POS]: pos$22,
+      [nix.POS]: $pos[21],
       mkDriver,
       stable,
       latest,

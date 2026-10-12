@@ -2,8 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/process-stubs.nix", [[["nativeBuildInputs", 17, 3], ["buildPhase", 22, 3]]]);
 const formals$1 = { args: { lib: false, jq: false, llvm: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/process-stubs.nix", [["nativeBuildInputs", 17, 3], ["buildPhase", 22, 3]]);
 
 export default nix.thunk(() => (() => {
   const removedDylibs = nix.thunk(() => ["/usr/lib/system/libcorecrypto.dylib"]);
@@ -13,7 +13,7 @@ export default nix.thunk(() => (() => {
     const jq = nix.arg($, "jq");
     const llvm = nix.arg($, "llvm");
     return (self) => (super$) => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       nativeBuildInputs: nix.thunk(() => nix.concat(nix.selOr(super$, () => [], "nativeBuildInputs"), [jq, llvm])),
       buildPhase: nix.thunk(() => nix.add(nix.selOr(super$, () => "", "buildPhase"), nix.str`echo "Removing the following dylibs from the libSystem reexported libraries list: ${nix.app(nix.sel(lib, "escapeShellArg"), nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), ", ", removedDylibs)))}"
 for libSystem in libSystem.B.tbd libSystem.B_asan.tbd; do

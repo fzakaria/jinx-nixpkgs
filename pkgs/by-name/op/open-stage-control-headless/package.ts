@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 16, 5], ["hash", 17, 5]], [["description", 49, 5], ["homepage", 50, 5], ["license", 51, 5], ["maintainers", 52, 5], ["platforms", 53, 5], ["mainProgram", 54, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["__structuredAttrs", 20, 3], ["strictDeps", 21, 3], ["nativeBuildInputs", 23, 3], ["buildInputs", 25, 3], ["dontConfigure", 29, 3], ["dontBuild", 30, 3], ["sourceRoot", 31, 3], ["installPhase", 33, 3], ["meta", 48, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchzip: false, unzip: false, makeWrapper: false, nodejs: false, python3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 49, 5], ["homepage", 50, 5], ["license", 51, 5], ["maintainers", 52, 5], ["platforms", 53, 5], ["mainProgram", 54, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["__structuredAttrs", 20, 3], ["strictDeps", 21, 3], ["nativeBuildInputs", 23, 3], ["buildInputs", 25, 3], ["dontConfigure", 29, 3], ["dontBuild", 30, 3], ["sourceRoot", 31, 3], ["installPhase", 33, 3], ["meta", 48, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const nodejs = nix.arg($, "nodejs");
   const python3 = nix.arg($, "python3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "open-stage-control-headless",
       version: "1.30.3",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://openstagecontrol.ammd.net/packages/open-stage-control_${nix.sel(finalAttrs, "version")}_node.zip`),
           hash: "sha256-ef9433pG+eMFc+7pReE2qA3hK27y5KyiRTPQ2h6Ir8A=",
         })))),
@@ -46,7 +44,7 @@ makeWrapper ${nodejs}/bin/node "$out/bin/open-stage-control" \\
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Libre and modular OSC / MIDI controller",
         homepage: "https://openstagecontrol.ammd.net/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

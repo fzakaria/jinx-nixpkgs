@@ -2,9 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/encrypt.nix", [[["AGE_RECIPIENT", 13, 9]], [["nativeBuildInputs", 8, 5], ["env", 13, 5]]]);
 const formals$1 = { args: { runCommand: false, age: false, "age-plugin-tpm": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/encrypt.nix", [["AGE_RECIPIENT", 13, 9]]);
-const pos$2 = nix.positions(here + "/encrypt.nix", [["nativeBuildInputs", 8, 5], ["env", 13, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -12,10 +11,10 @@ export default nix.lambda((args) => (() => {
   const age = nix.arg($, "age");
   const age_plugin_tpm = nix.arg($, "age-plugin-tpm");
   return nix.app(runCommand, "age-plugin-tpm-encrypt", nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       nativeBuildInputs: nix.thunk(() => [age, age_plugin_tpm]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         AGE_RECIPIENT: "age1tpm1qg86fn5esp30u9h6jy6zvu9gcsvnac09vn8jzjxt8s3qtlcv5h2x287wm36",
       })),
     })), "echo \"Hello World\" | age --encrypt --armor --recipient \"$AGE_RECIPIENT\"\ntouch $out\n");

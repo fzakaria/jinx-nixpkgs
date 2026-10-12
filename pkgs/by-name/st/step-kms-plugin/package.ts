@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]], [["CGO_CFLAGS", 45, 7]], [["description", 48, 5], ["homepage", 49, 5], ["license", 50, 5], ["maintainers", 51, 5], ["mainProgram", 52, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["vendorHash", 24, 3], ["proxyVendor", 26, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 32, 3], ["ldflags", 39, 3], ["env", 45, 3], ["meta", 47, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, buildGoModule: false, fetchFromGitHub: false, "pkg-config": false, pcsclite: false, softhsm: false, opensc: false, "yubihsm-shell": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["CGO_CFLAGS", 45, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 48, 5], ["homepage", 49, 5], ["license", 50, 5], ["maintainers", 51, 5], ["mainProgram", 52, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["vendorHash", 24, 3], ["proxyVendor", 26, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 32, 3], ["ldflags", 39, 3], ["env", 45, 3], ["meta", 47, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const pname = "step-kms-plugin";
       const version = "0.17.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "smallstep",
           repo: "step-kms-plugin",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -39,11 +36,11 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`-X github.com/smallstep/step-kms-plugin/cmd.Version=${version}`),
       ]);
       const env = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         CGO_CFLAGS: nix.thunk(() => nix.str`-I${nix.app(nix.sel(lib, "getDev"), pcsclite)}/include/PCSC/`),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Step plugin to manage keys and certificates on cloud KMSs and HSMs",
         homepage: "https://smallstep.com/cli/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -51,7 +48,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "step-kms-plugin",
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

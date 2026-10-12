@@ -2,35 +2,27 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/glances.nix", [[["enable", 11, 11]], [["glances", 10, 18]], [["services", 10, 9]], [["enable", 19, 11], ["port", 20, 11]], [["glances", 18, 18]], [["services", 18, 9]], [["machine_default", 7, 5], ["machine_custom_port", 15, 5]], [["maintainers", 35, 8]], [["name", 4, 3], ["nodes", 6, 3], ["testScript", 25, 3], ["meta", 35, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/glances.nix", [["enable", 11, 11]]);
-const pos$2 = nix.positions(here + "/glances.nix", [["glances", 10, 18]]);
-const pos$3 = nix.positions(here + "/glances.nix", [["services", 10, 9]]);
 const formals$3 = { args: { pkgs: false }, ellipsis: true };
-const pos$4 = nix.positions(here + "/glances.nix", [["enable", 19, 11], ["port", 20, 11]]);
-const pos$5 = nix.positions(here + "/glances.nix", [["glances", 18, 18]]);
-const pos$6 = nix.positions(here + "/glances.nix", [["services", 18, 9]]);
-const pos$7 = nix.positions(here + "/glances.nix", [["machine_default", 7, 5], ["machine_custom_port", 15, 5]]);
-const pos$8 = nix.positions(here + "/glances.nix", [["maintainers", 35, 8]]);
-const pos$9 = nix.positions(here + "/glances.nix", [["name", 4, 3], ["nodes", 6, 3], ["testScript", 25, 3], ["meta", 35, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$9,
+    [nix.POS]: $pos[8],
     name: "glances",
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       machine_default: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$2,
-            glances: nix.thunk(() => ({ [nix.POS]: pos$1, enable: true })),
+            [nix.POS]: $pos[1],
+            glances: nix.thunk(() => ({ [nix.POS]: $pos[0], enable: true })),
           })),
         };
       })(), formals$2),
@@ -38,17 +30,17 @@ export default nix.lambda((args) => (() => {
         const $_1 = nix.formals(args_1, formals$3);
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$5,
-            glances: nix.thunk(() => ({ [nix.POS]: pos$4, enable: true, port: 5678n })),
+            [nix.POS]: $pos[4],
+            glances: nix.thunk(() => ({ [nix.POS]: $pos[3], enable: true, port: 5678n })),
           })),
         };
       })(), formals$3),
     })),
     testScript: "machine_default.start()\nmachine_default.wait_for_unit(\"glances.service\")\nmachine_default.wait_for_open_port(61208)\n\nmachine_custom_port.start()\nmachine_custom_port.wait_for_unit(\"glances.service\")\nmachine_custom_port.wait_for_open_port(5678)\n",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "claha"))]),
     })),
   };

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/glow-lang.nix", [[["fun", 29, 5], ["owner", 30, 5], ["repo", 31, 5], ["rev", 32, 5], ["sha256", 33, 5]], [["description", 62, 5], ["homepage", 63, 5], ["license", 64, 5], ["platforms", 65, 5], ["maintainers", 66, 5], ["broken", 67, 5]], [["pname", 11, 3], ["version", 12, 3], ["git-version", 13, 3], ["softwareName", 14, 3], ["gerbil-package", 15, 3], ["version-path", 16, 3], ["gerbilInputs", 18, 3], ["pre-src", 28, 3], ["postPatch", 36, 3], ["postInstall", 42, 3], ["meta", 61, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, "gerbil-support": false, gerbilPackages: false, gerbil: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/glow-lang.nix", [["fun", 29, 5], ["owner", 30, 5], ["repo", 31, 5], ["rev", 32, 5], ["sha256", 33, 5]]);
-const pos$2 = nix.positions(here + "/glow-lang.nix", [["description", 62, 5], ["homepage", 63, 5], ["license", 64, 5], ["platforms", 65, 5], ["maintainers", 66, 5], ["broken", 67, 5]]);
-const pos$3 = nix.positions(here + "/glow-lang.nix", [["pname", 11, 3], ["version", 12, 3], ["git-version", 13, 3], ["softwareName", 14, 3], ["gerbil-package", 15, 3], ["version-path", 16, 3], ["gerbilInputs", 18, 3], ["pre-src", 28, 3], ["postPatch", 36, 3], ["postInstall", 42, 3], ["meta", 61, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,7 +32,7 @@ export default nix.lambda((args) => (() => {
       ];
     })());
     const pre_src = nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       fun: fetchFromGitHub,
       owner: "Glow-Lang",
       repo: "glow",
@@ -60,7 +58,7 @@ EOF
 chmod a+x $out/bin/glow
 `);
     const meta = nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       description: "Glow: language for safe Decentralized Applications (DApps)",
       homepage: "https://glow-lang.org",
       license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -72,7 +70,7 @@ chmod a+x $out/bin/glow
       broken: true,
     }));
     return {
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname,
       version,
       "git-version": git_version,

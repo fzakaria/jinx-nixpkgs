@@ -2,14 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 20, 7], ["repo", 21, 7], ["tag", 22, 7], ["hash", 23, 7]], [["name", 29, 7], ["src", 30, 28], ["patches", 30, 32], ["hash", 31, 7]], [["name", 15, 5], ["pname", 16, 5], ["version", 17, 5], ["src", 19, 5], ["patches", 26, 5], ["npmDeps", 28, 5], ["makeCacheWritable", 33, 5], ["nativeBuildInputs", 35, 5], ["strictDeps", 41, 5], ["buildPhase", 43, 5], ["installPhase", 52, 5]], [["attrPath", 72, 7]], [["vsix", 70, 5], ["updateScript", 71, 5]], [["description", 77, 5], ["homepage", 78, 5], ["downloadPage", 79, 5], ["license", 80, 5], ["maintainers", 81, 5]], [["pname", 60, 3], ["version", 61, 28], ["vscodeExtPublisher", 63, 3], ["vscodeExtName", 64, 3], ["vscodeExtUniqueId", 65, 3], ["src", 67, 3], ["passthru", 69, 3], ["meta", 76, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchFromGitHub: false, fetchNpmDeps: false, nodejs: false, npmHooks: false, vsce: false, "vscode-utils": false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 20, 7], ["repo", 21, 7], ["tag", 22, 7], ["hash", 23, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["name", 29, 7], ["src", 30, 28], ["patches", 30, 32], ["hash", 31, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["name", 15, 5], ["pname", 16, 5], ["version", 17, 5], ["src", 19, 5], ["patches", 26, 5], ["npmDeps", 28, 5], ["makeCacheWritable", 33, 5], ["nativeBuildInputs", 35, 5], ["strictDeps", 41, 5], ["buildPhase", 43, 5], ["installPhase", 52, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["attrPath", 72, 7]]);
-const pos$5 = nix.positions(here + "/default.nix", [["vsix", 70, 5], ["updateScript", 71, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["description", 77, 5], ["homepage", 78, 5], ["downloadPage", 79, 5], ["license", 80, 5], ["maintainers", 81, 5]]);
-const pos$7 = nix.positions(here + "/default.nix", [["pname", 60, 3], ["version", 61, 28], ["vscodeExtPublisher", 63, 3], ["vscodeExtName", 64, 3], ["vscodeExtUniqueId", 65, 3], ["src", 67, 3], ["passthru", 69, 3], ["meta", 76, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const vscode_utils = nix.arg($, "vscode-utils");
   const nix_update_script = nix.arg($, "nix-update-script");
   const vsix = nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       name: nix.thunk(() => nix.str`vscode-js-profile-table-${nix.sel(finalAttrs, "version")}.vsix`),
       pname: "vscode-js-profile-table-vsix",
       version: "1.0.10",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "microsoft",
           repo: "vscode-js-profile-visualizer",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,7 +30,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [nix.path(here, "./package-lock-json.patch")]),
       npmDeps: nix.thunk(() => nix.app(fetchNpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           name: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-npm-deps`),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           patches: nix.thunk(() => nix.attr(finalAttrs, "patches")),
@@ -54,7 +48,7 @@ runHook postInstall
   return nix.app(nix.sel(vscode_utils, "buildVscodeExtension"), (finalAttrs) => (() => {
       const from = nix.thunk(() => nix.sel(finalAttrs, "src"));
       return {
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "vscode-js-profile-table",
       version: nix.thunk(() => nix.attr(from, "version")),
       vscodeExtPublisher: "ms-vscode",
@@ -62,15 +56,15 @@ runHook postInstall
       vscodeExtUniqueId: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "vscodeExtPublisher")}.${nix.sel(finalAttrs, "vscodeExtName")}`),
       src: vsix,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         vsix: nix.thunk(() => nix.sel(finalAttrs, "src")),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             attrPath: "vscode-extensions.ms-vscode.vscode-js-profile-table.vsix",
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Text visualizer for profiles taken from the JavaScript debugger",
         homepage: "https://github.com/microsoft/vscode-js-profile-visualizer",
         downloadPage: "https://marketplace.visualstudio.com/items?itemName=ms-vscode.vscode-js-profile-table",

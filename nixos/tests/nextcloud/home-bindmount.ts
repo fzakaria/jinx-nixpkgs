@@ -2,29 +2,10 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/home-bindmount.nix", [[["system", 9, 52], ["pkgs", 9, 59]], [["maintainers", 14, 10]], [["d", 20, 82]], [["/sysroot/mnt/nextcloud", 20, 57]], [["nextcloud", 20, 45]], [["settings", 20, 36]], [["DefaultDependencies", 26, 22]], [["unitConfig", 26, 11], ["conflicts", 27, 11], ["wantedBy", 28, 11], ["before", 29, 11], ["options", 30, 11], ["where", 31, 11], ["what", 32, 11], ["type", 33, 11]], [["conflicts", 38, 11], ["wantedBy", 39, 11], ["before", 40, 11], ["options", 41, 11], ["where", 42, 11], ["what", 43, 11], ["type", 44, 11]], [["tmpfiles", 20, 27], ["mounts", 22, 27]], [["systemd", 20, 19]], [["initrd", 20, 12]], [["systemPackages", 47, 19]], [["dbtype", 51, 16]], [["config", 51, 9]], [["nextcloud", 50, 16]], [["boot", 20, 7], ["environment", 47, 7], ["services", 50, 7]], [["nextcloud", 18, 11]], [["init", 55, 18], ["extraTests", 64, 18]], [["name", 13, 13], ["meta", 14, 5], ["imports", 16, 5], ["nodes", 18, 5], ["test-helpers", 55, 5]]]);
 const formals$1 = { args: { name: false, pkgs: false, testBase: false, system: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/home-bindmount.nix", [["system", 9, 52], ["pkgs", 9, 59]]);
 const formals$2 = { args: { lib: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/home-bindmount.nix", [["maintainers", 14, 10]]);
 const formals$3 = { args: { pkgs: false }, ellipsis: true };
-const pos$3 = nix.positions(here + "/home-bindmount.nix", [["d", 20, 82]]);
-const pos$4 = nix.positions(here + "/home-bindmount.nix", [["/sysroot/mnt/nextcloud", 20, 57]]);
-const pos$5 = nix.positions(here + "/home-bindmount.nix", [["nextcloud", 20, 45]]);
-const pos$6 = nix.positions(here + "/home-bindmount.nix", [["settings", 20, 36]]);
-const pos$7 = nix.positions(here + "/home-bindmount.nix", [["DefaultDependencies", 26, 22]]);
-const pos$8 = nix.positions(here + "/home-bindmount.nix", [["unitConfig", 26, 11], ["conflicts", 27, 11], ["wantedBy", 28, 11], ["before", 29, 11], ["options", 30, 11], ["where", 31, 11], ["what", 32, 11], ["type", 33, 11]]);
-const pos$9 = nix.positions(here + "/home-bindmount.nix", [["conflicts", 38, 11], ["wantedBy", 39, 11], ["before", 40, 11], ["options", 41, 11], ["where", 42, 11], ["what", 43, 11], ["type", 44, 11]]);
-const pos$10 = nix.positions(here + "/home-bindmount.nix", [["tmpfiles", 20, 27], ["mounts", 22, 27]]);
-const pos$11 = nix.positions(here + "/home-bindmount.nix", [["systemd", 20, 19]]);
-const pos$12 = nix.positions(here + "/home-bindmount.nix", [["initrd", 20, 12]]);
-const pos$13 = nix.positions(here + "/home-bindmount.nix", [["systemPackages", 47, 19]]);
-const pos$14 = nix.positions(here + "/home-bindmount.nix", [["dbtype", 51, 16]]);
-const pos$15 = nix.positions(here + "/home-bindmount.nix", [["config", 51, 9]]);
-const pos$16 = nix.positions(here + "/home-bindmount.nix", [["nextcloud", 50, 16]]);
-const pos$17 = nix.positions(here + "/home-bindmount.nix", [["boot", 20, 7], ["environment", 47, 7], ["services", 50, 7]]);
-const pos$18 = nix.positions(here + "/home-bindmount.nix", [["nextcloud", 18, 11]]);
-const pos$19 = nix.positions(here + "/home-bindmount.nix", [["init", 55, 18], ["extraTests", 64, 18]]);
-const pos$20 = nix.positions(here + "/home-bindmount.nix", [["name", 13, 13], ["meta", 14, 5], ["imports", 16, 5], ["nodes", 18, 5], ["test-helpers", 55, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,45 +13,45 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const testBase = nix.arg($, "testBase");
   const system = nix.arg($, "system");
-  const w = nix.withScope(nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../lib/testing-python.nix")), nix.thunk(() => ({ [nix.POS]: pos$1, system: system, pkgs: pkgs })))), null);
+  const w = nix.withScope(nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../lib/testing-python.nix")), nix.thunk(() => ({ [nix.POS]: $pos[0], system: system, pkgs: pkgs })))), null);
   return nix.app(nix.lookup(w, "runTest"), nix.lambda((args_1) => (() => {
       const $_1 = nix.formals(args_1, formals$2);
       const lib = nix.arg($_1, "lib");
       return {
-        [nix.POS]: pos$20,
+        [nix.POS]: $pos[19],
         name: name,
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           maintainers: nix.thunk(() => nix.sel(lib, "teams", "nextcloud", "members")),
         })),
         imports: nix.thunk(() => [testBase]),
         nodes: nix.thunk(() => ({
-          [nix.POS]: pos$18,
+          [nix.POS]: $pos[17],
           nextcloud: nix.lambda((args_2) => (() => {
             const $_2 = nix.formals(args_2, formals$3);
             const pkgs_1 = nix.arg($_2, "pkgs");
             return {
-              [nix.POS]: pos$17,
+              [nix.POS]: $pos[16],
               boot: nix.thunk(() => ({
-                [nix.POS]: pos$12,
+                [nix.POS]: $pos[11],
                 initrd: nix.thunk(() => ({
-                  [nix.POS]: pos$11,
+                  [nix.POS]: $pos[10],
                   systemd: nix.thunk(() => ({
-                    [nix.POS]: pos$10,
+                    [nix.POS]: $pos[9],
                     tmpfiles: nix.thunk(() => ({
-                      [nix.POS]: pos$6,
+                      [nix.POS]: $pos[5],
                       settings: nix.thunk(() => ({
-                        [nix.POS]: pos$5,
+                        [nix.POS]: $pos[4],
                         nextcloud: nix.thunk(() => ({
-                          [nix.POS]: pos$4,
-                          "/sysroot/mnt/nextcloud": nix.thunk(() => ({ [nix.POS]: pos$3, d: nix.thunk(() => ({})) })),
+                          [nix.POS]: $pos[3],
+                          "/sysroot/mnt/nextcloud": nix.thunk(() => ({ [nix.POS]: $pos[2], d: nix.thunk(() => ({})) })),
                         })),
                       })),
                     })),
                     mounts: nix.thunk(() => [
                       nix.thunk(() => ({
-                        [nix.POS]: pos$8,
-                        unitConfig: nix.thunk(() => ({ [nix.POS]: pos$7, DefaultDependencies: "no" })),
+                        [nix.POS]: $pos[7],
+                        unitConfig: nix.thunk(() => ({ [nix.POS]: $pos[6], DefaultDependencies: "no" })),
                         conflicts: nix.thunk(() => ["umount.target"]),
                         wantedBy: nix.thunk(() => ["initrd.target"]),
                         before: nix.thunk(() => ["systemd-tmpfiles-setup-sysroot.service"]),
@@ -80,7 +61,7 @@ export default nix.lambda((args) => (() => {
                         type: "tmpfs",
                       })),
                       nix.thunk(() => ({
-                        [nix.POS]: pos$9,
+                        [nix.POS]: $pos[8],
                         conflicts: nix.thunk(() => ["umount.target"]),
                         wantedBy: nix.thunk(() => ["initrd.target"]),
                         before: nix.thunk(() => ["systemd-tmpfiles-setup-sysroot.service"]),
@@ -94,21 +75,21 @@ export default nix.lambda((args) => (() => {
                 })),
               })),
               environment: nix.thunk(() => ({
-                [nix.POS]: pos$13,
+                [nix.POS]: $pos[12],
                 systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs_1, "util-linux"))]),
               })),
               services: nix.thunk(() => ({
-                [nix.POS]: pos$16,
+                [nix.POS]: $pos[15],
                 nextcloud: nix.thunk(() => ({
-                  [nix.POS]: pos$15,
-                  config: nix.thunk(() => ({ [nix.POS]: pos$14, dbtype: "sqlite" })),
+                  [nix.POS]: $pos[14],
+                  config: nix.thunk(() => ({ [nix.POS]: $pos[13], dbtype: "sqlite" })),
                 })),
               })),
             };
           })(), formals$3),
         })),
         "test-helpers": nix.thunk(() => ({
-          [nix.POS]: pos$19,
+          [nix.POS]: $pos[18],
           init: "import json\nmnts = json.loads(nextcloud.succeed(\"findmnt /var/lib/nextcloud -J\"))[\"filesystems\"]\nt.assertEqual(1, len(mnts))\nmnt = mnts[0]\nt.assertEqual(\"tmpfs[/nextcloud]\", mnt[\"source\"])\nt.assertEqual(\"/var/lib/nextcloud\", mnt[\"target\"])\n",
           extraTests: "nextcloud.succeed(\"test -d /mnt/nextcloud/data/root\")\n",
         })),

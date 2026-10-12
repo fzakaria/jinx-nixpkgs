@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 45, 5], ["repo", 46, 5], ["tag", 47, 5], ["hash", 48, 5]], [["description", 146, 5], ["homepage", 147, 5], ["downloadPage", 148, 5], ["changelog", 149, 5], ["license", 150, 5], ["platforms", 151, 5], ["mainProgram", 152, 5], ["maintainers", 153, 5]], [["pname", 41, 3], ["version", 42, 3], ["src", 44, 3], ["patches", 51, 3], ["postPatch", 55, 3], ["buildInputs", 71, 3], ["nativeBuildInputs", 92, 3], ["cmakeFlags", 99, 3], ["nativeInstallCheckInputs", 103, 3], ["doInstallCheck", 104, 3], ["postInstall", 106, 3], ["dontWrapQtApps", 113, 3], ["qtWrapperArgs", 116, 3], ["postFixup", 135, 3], ["meta", 145, 3]]]);
 const formals$1 = { args: { fetchFromGitHub: false, lib: false, stdenv: false, cmake: false, copyDesktopItems: false, "pkg-config": false, qt6Packages: false, "linyaps-box": false, cli11: false, curl: false, elfutils: false, gpgme: false, gtest: false, libarchive: false, libcap: false, libsodium: false, "libsysprof-capture": false, nlohmann_json: false, openssl: false, ostree: false, systemdLibs: false, "tl-expected": false, uncrustify: false, xz: false, "yaml-cpp": false, versionCheckHook: false, bash: false, binutils: false, coreutils: false, "desktop-file-utils": false, "erofs-utils": false, fuse3: false, "fuse-overlayfs": false, gnutar: false, glib: false, "shared-mime-info": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 45, 5], ["repo", 46, 5], ["tag", 47, 5], ["hash", 48, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 146, 5], ["homepage", 147, 5], ["downloadPage", 148, 5], ["changelog", 149, 5], ["license", 150, 5], ["platforms", 151, 5], ["mainProgram", 152, 5], ["maintainers", 153, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 41, 3], ["version", 42, 3], ["src", 44, 3], ["patches", 51, 3], ["postPatch", 55, 3], ["buildInputs", 71, 3], ["nativeBuildInputs", 92, 3], ["cmakeFlags", 99, 3], ["nativeInstallCheckInputs", 103, 3], ["doInstallCheck", 104, 3], ["postInstall", 106, 3], ["dontWrapQtApps", 113, 3], ["qtWrapperArgs", 116, 3], ["postFixup", 135, 3], ["meta", 145, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -46,11 +44,11 @@ export default nix.lambda((args) => (() => {
   const glib = nix.arg($, "glib");
   const shared_mime_info = nix.arg($, "shared-mime-info");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "linyaps",
       version: "1.14.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "OpenAtom-Linyaps",
           repo: nix.thunk(() => nix.sel(finalAttrs, "pname")),
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -121,7 +119,7 @@ substituteInPlace libs/linglong/src/linglong/repo/ostree_repo.cpp \\
       ]),
       postFixup: "# Wrap all executables except ll-init\nfind \"$out\" -type f -executable \\\n  \\( -path \"$out/bin/*\" -o -path \"$out/libexec/*\" \\) \\\n  ! -name \"ll-init\" \\\n  -print0 | while IFS= read -r -d \"\" f; do\n  wrapQtApp \"$f\"\ndone\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Cross-distribution package manager with sandboxed apps and shared runtime",
         homepage: "https://linyaps.org.cn",
         downloadPage: "https://github.com/OpenAtom-Linyaps/linyaps",

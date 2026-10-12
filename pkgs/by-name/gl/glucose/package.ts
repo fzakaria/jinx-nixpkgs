@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 15, 5], ["hash", 16, 5]], [["description", 43, 5], ["mainProgram", 46, 5], ["homepage", 47, 5], ["license", 48, 5], ["platforms", 49, 5], ["maintainers", 50, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["sourceRoot", 19, 3], ["postPatch", 21, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 28, 3], ["makeFlags", 30, 3], ["installPhase", 32, 3], ["meta", 42, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, unzip: false, zlib: false, enableUnfree: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 43, 5], ["mainProgram", 46, 5], ["homepage", 47, 5], ["license", 48, 5], ["platforms", 49, 5], ["maintainers", 50, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["sourceRoot", 19, 3], ["postPatch", 21, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 28, 3], ["makeFlags", 30, 3], ["installPhase", 32, 3], ["meta", 42, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname = nix.thunk(() => nix.add("glucose", nix.app(nix.sel(lib, "optionalString"), enableUnfree, "-syrup")));
       const version = "4.2.1";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://www.labri.fr/perso/lsimon/downloads/softwares/glucose-${version}.zip`),
           hash: "sha256-J0J9EKC/4cCiZr/y4lz+Hm7OcmJmMIIWzQ+4c+KhqXg=",
         }))));
@@ -37,7 +35,7 @@ install -Dm0755 ../{LICEN?E,README*,Changelog*} "$out/share/doc/${pname}-${versi
 runHook postInstall
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: nix.thunk(() => nix.str`Modern, parallel SAT solver (${(nix.asBool(enableUnfree) ? "parallel" : "sequential")} version)`),
         mainProgram: "glucose",
         homepage: "https://www.labri.fr/perso/lsimon/research/glucose/",
@@ -46,7 +44,7 @@ runHook postInstall
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

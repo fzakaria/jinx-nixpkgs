@@ -2,13 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 31, 5], ["repo", 32, 5], ["rev", 33, 5], ["hash", 34, 5]], [["owner", 42, 5], ["repo", 43, 5], ["rev", 44, 5], ["hash", 45, 5]], [["NIX_CFLAGS_COMPILE", 84, 7]], [["updateScript", 86, 12]], [["description", 88, 5], ["homepage", 89, 5], ["license", 90, 5], ["platforms", 91, 5], ["maintainers", 92, 5]], [["pname", 38, 3], ["version", 39, 3], ["src", 41, 3], ["nativeBuildInputs", 48, 3], ["buildInputs", 54, 3], ["dontWrapQtApps", 71, 3], ["postUnpack", 73, 3], ["cmakeFlags", 82, 3], ["env", 84, 3], ["passthru", 86, 3], ["meta", 87, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, "nix-update-script": false, cmake: false, ninja: false, "alsa-lib": false, asio: false, curl: false, libremidi: false, nlohmann_json: false, "obs-studio": false, opencv: false, procps: false, qt6: false, stdenv: false, websocketpp: false, libxscrnsaver: false, libusb1: false, "pkg-config": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 31, 5], ["repo", 32, 5], ["rev", 33, 5], ["hash", 34, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 42, 5], ["repo", 43, 5], ["rev", 44, 5], ["hash", 45, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 84, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 86, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 88, 5], ["homepage", 89, 5], ["license", 90, 5], ["platforms", 91, 5], ["maintainers", 92, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 38, 3], ["version", 39, 3], ["src", 41, 3], ["nativeBuildInputs", 48, 3], ["buildInputs", 54, 3], ["dontWrapQtApps", 71, 3], ["postUnpack", 73, 3], ["cmakeFlags", 82, 3], ["env", 84, 3], ["passthru", 86, 3], ["meta", 87, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,7 +27,7 @@ export default nix.lambda((args) => (() => {
   const libusb1 = nix.arg($, "libusb1");
   const pkg_config = nix.arg($, "pkg-config");
   const httplib_src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "yhirose",
       repo: "cpp-httplib",
       rev: "v0.13.3",
@@ -42,7 +37,7 @@ export default nix.lambda((args) => (() => {
       const pname = "advanced-scene-switcher";
       const version = "1.36.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "WarmUpTill",
           repo: "SceneSwitcher",
           rev: version,
@@ -73,15 +68,15 @@ chmod -R +w $sourceRoot/deps/libremidi
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "LIBREMIDI_NO_PIPEWIRE", true)),
       ]);
       const env = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         NIX_CFLAGS_COMPILE: "-Wno-error=stringop-overflow -Wno-error=deprecated-declarations",
       }));
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Automated scene switcher for OBS Studio",
         homepage: "https://github.com/WarmUpTill/SceneSwitcher",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
@@ -92,7 +87,7 @@ chmod -R +w $sourceRoot/deps/libremidi
         })()),
       }));
       return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname,
         version,
         src,

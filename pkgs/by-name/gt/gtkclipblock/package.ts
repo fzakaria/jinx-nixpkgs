@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]], [["owner", 24, 5], ["repo", 25, 5], ["rev", 26, 5], ["hash", 27, 5], ["fetchSubmodules", 28, 5]], [["description", 56, 5], ["homepage", 57, 5], ["license", 58, 5], ["maintainers", 59, 5], ["platforms", 60, 5]], [["pname", 32, 11], ["version", 32, 17], ["src", 32, 25], ["nativeBuildInputs", 34, 3], ["buildInputs", 41, 3], ["mesonFlags", 46, 3], ["postPatch", 48, 3], ["dontUseCmakeConfigure", 53, 3], ["meta", 55, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, meson: false, cmake: false, ninja: false, "pkg-config": false, gtk3: false, gtk4: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 24, 5], ["repo", 25, 5], ["rev", 26, 5], ["hash", 27, 5], ["fetchSubmodules", 28, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 56, 5], ["homepage", 57, 5], ["license", 58, 5], ["maintainers", 59, 5], ["platforms", 60, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 32, 11], ["version", 32, 17], ["src", 32, 25], ["nativeBuildInputs", 34, 3], ["buildInputs", 41, 3], ["mesonFlags", 46, 3], ["postPatch", 48, 3], ["dontUseCmakeConfigure", 53, 3], ["meta", 55, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,7 +17,7 @@ export default nix.lambda((args) => (() => {
   const gtk3 = nix.arg($, "gtk3");
   const gtk4 = nix.arg($, "gtk4");
   const distorm_src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "gdabah",
       repo: "distorm",
       rev: "3.5.2b",
@@ -29,7 +26,7 @@ export default nix.lambda((args) => (() => {
   const pname = "gtkclipblock";
   const version = "0.2.2";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       owner: "notpeelz",
       repo: "gtkclipblock",
       rev: nix.thunk(() => nix.str`v${version}`),
@@ -37,7 +34,7 @@ export default nix.lambda((args) => (() => {
       fetchSubmodules: true,
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: pname,
       version: version,
       src: src,
@@ -49,7 +46,7 @@ export default nix.lambda((args) => (() => {
 `),
       dontUseCmakeConfigure: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "LD_PRELOAD hack to prevent GTK programs from interacting with the primary clipboard",
         homepage: "https://github.com/notpeelz/gtkclipblock",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3Only")),

@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["mainProgram", 25, 8]], [["pname", 12, 3], ["extraNativeBuildInputs", 14, 3], ["extraBuildInputs", 20, 3], ["meta", 25, 3]]]);
 const formals$1 = { args: { mkKdeDerivation: false, qttools: false, qtsvg: false, "pkg-config": false, eigen: false, "shared-mime-info": false, gsl: false, libqalculate: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["mainProgram", 25, 8]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 12, 3], ["extraNativeBuildInputs", 14, 3], ["extraBuildInputs", 20, 3], ["meta", 25, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const gsl = nix.arg($, "gsl");
   const libqalculate = nix.arg($, "libqalculate");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "step",
       extraNativeBuildInputs: nix.thunk(() => [qttools, qtsvg, pkg_config, shared_mime_info]),
       extraBuildInputs: nix.thunk(() => [eigen, gsl, libqalculate]),
-      meta: nix.thunk(() => ({ [nix.POS]: pos$1, mainProgram: "step" })),
+      meta: nix.thunk(() => ({ [nix.POS]: $pos[0], mainProgram: "step" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

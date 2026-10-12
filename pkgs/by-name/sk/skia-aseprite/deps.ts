@@ -2,53 +2,47 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/deps.nix", [[["url", 4, 5], ["rev", 5, 5], ["hash", 6, 5], ["fetchSubmodules", 7, 5]], [["url", 10, 5], ["rev", 11, 5], ["hash", 12, 5]], [["url", 15, 5], ["rev", 16, 5], ["hash", 17, 5]], [["url", 20, 5], ["rev", 21, 5], ["hash", 22, 5]], [["url", 25, 5], ["rev", 26, 5], ["hash", 27, 5]], [["url", 30, 5], ["rev", 31, 5], ["hash", 32, 5]], [["angle2", 3, 3], ["dng_sdk", 9, 3], ["icu", 14, 3], ["icu4x", 19, 3], ["piex", 24, 3], ["wuffs", 29, 3]]]);
 const formals$1 = { args: { fetchgit: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/deps.nix", [["url", 4, 5], ["rev", 5, 5], ["hash", 6, 5], ["fetchSubmodules", 7, 5]]);
-const pos$2 = nix.positions(here + "/deps.nix", [["url", 10, 5], ["rev", 11, 5], ["hash", 12, 5]]);
-const pos$3 = nix.positions(here + "/deps.nix", [["url", 15, 5], ["rev", 16, 5], ["hash", 17, 5]]);
-const pos$4 = nix.positions(here + "/deps.nix", [["url", 20, 5], ["rev", 21, 5], ["hash", 22, 5]]);
-const pos$5 = nix.positions(here + "/deps.nix", [["url", 25, 5], ["rev", 26, 5], ["hash", 27, 5]]);
-const pos$6 = nix.positions(here + "/deps.nix", [["url", 30, 5], ["rev", 31, 5], ["hash", 32, 5]]);
-const pos$7 = nix.positions(here + "/deps.nix", [["angle2", 3, 3], ["dng_sdk", 9, 3], ["icu", 14, 3], ["icu4x", 19, 3], ["piex", 24, 3], ["wuffs", 29, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const fetchgit = nix.arg($, "fetchgit");
   return {
-    [nix.POS]: pos$7,
+    [nix.POS]: $pos[6],
     angle2: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         url: "https://chromium.googlesource.com/angle/angle.git",
         rev: "21d124c4bf321a18dae1dc94602aa262fc346a8b",
         hash: "sha256-Cz9n2ya4l3L1lvF4elHYJCfxr3l+h5UYOEhrhtw6WJg=",
         fetchSubmodules: false,
       })))),
     dng_sdk: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         url: "https://android.googlesource.com/platform/external/dng_sdk.git",
         rev: "c8d0c9b1d16bfda56f15165d39e0ffa360a11123",
         hash: "sha256-lTtvBUGaia0jhrxpw7k7NIq2SVyGmBJPCvjIqAQCmNo=",
       })))),
     icu: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         url: "https://chromium.googlesource.com/chromium/deps/icu.git",
         rev: "a0718d4f121727e30b8d52c7a189ebf5ab52421f",
         hash: "sha256-BI3f/gf9GNDvSfXWeRHKBvznSz4mjXY8rM24kK7QvOM=",
       })))),
     icu4x: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         url: "https://chromium.googlesource.com/external/github.com/unicode-org/icu4x.git",
         rev: "bcf4f7198d4dc5f3127e84a6ca657c88e7d07a13",
         hash: "sha256-Lha5m97zwTBFJZZUwewCv1blQh/VgDR0G2h+GMMAzME=",
       })))),
     piex: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         url: "https://android.googlesource.com/platform/external/piex.git",
         rev: "bb217acdca1cc0c16b704669dd6f91a1b509c406",
         hash: "sha256-IhAfxlu0UmllihBP9wbg7idT8azlbb9arLKUaZ6qNxY=",
       })))),
     wuffs: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         url: "https://skia.googlesource.com/external/github.com/google/wuffs-mirror-release-c.git",
         rev: "e3f919ccfe3ef542cfc983a82146070258fb57f8",
         hash: "sha256-373d2F/STcgCHEq+PO+SCHrKVOo6uO1rqqwRN5eeBCw=",

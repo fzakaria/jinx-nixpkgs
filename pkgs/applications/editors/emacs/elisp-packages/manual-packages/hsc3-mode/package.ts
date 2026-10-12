@@ -2,9 +2,8 @@
 import * as nix from "../../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["homepage", 20, 25], ["license", 20, 34], ["description", 21, 5]], [["pname", 11, 3], ["ename", 12, 3], ["src", 13, 18], ["version", 13, 22], ["files", 15, 3], ["packageRequires", 17, 3], ["meta", 19, 3]]]);
 const formals$1 = { args: { melpaBuild: false, "haskell-mode": false, haskellPackages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["homepage", 20, 25], ["license", 20, 34], ["description", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["ename", 12, 3], ["src", 13, 18], ["version", 13, 22], ["files", 15, 3], ["packageRequires", 17, 3], ["meta", 19, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const haskellPackages = nix.arg($, "haskellPackages");
   const hsc3 = nix.thunk(() => nix.attr(haskellPackages, "hsc3"));
   return nix.app(melpaBuild, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "hsc3-mode",
       ename: "hsc3",
       src: nix.thunk(() => nix.attr(hsc3, "src")),
@@ -23,7 +22,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(hsc3, "meta"));
         return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         license: nix.thunk(() => nix.attr(from, "license")),
         description: "Emacs mode for hsc3",

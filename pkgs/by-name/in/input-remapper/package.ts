@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 39, 5], ["repo", 40, 5], ["tag", 41, 5], ["hash", 42, 5]], [["tests", 166, 12]], [["description", 169, 5], ["homepage", 170, 5], ["license", 171, 5], ["platforms", 172, 5], ["maintainers", 173, 5], ["mainProgram", 174, 5]], [["pname", 34, 3], ["version", 35, 3], ["pyproject", 36, 3], ["src", 38, 3], ["postPatch", 45, 3], ["nativeBuildInputs", 57, 3], ["build-system", 67, 3], ["dependencies", 69, 3], ["nativeCheckInputs", 81, 3], ["versionCheckProgram", 87, 3], ["pythonImportsCheck", 89, 3], ["postInstall", 94, 3], ["upstreamCheck", 120, 3], ["installCheckPhase", 150, 3], ["dontWrapGApps", 157, 3], ["preFixup", 159, 3], ["passthru", 166, 3], ["meta", 168, 3]], [["postPatch", 184, 7]]]);
 const formals$1 = { args: { lib: false, python3Packages: false, fetchFromGitHub: false, wrapGAppsHook3: false, gettext: false, gtk3: false, glib: false, dbus: false, "gobject-introspection": false, xmodmap: false, procps: false, gtksourceview4: false, bash: false, udevCheckHook: false, versionCheckHook: false, nixosTests: false, withDebugLogLevel: true, withXmodmap: true, withDoCheck: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 39, 5], ["repo", 40, 5], ["tag", 41, 5], ["hash", 42, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["tests", 166, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 169, 5], ["homepage", 170, 5], ["license", 171, 5], ["platforms", 172, 5], ["maintainers", 173, 5], ["mainProgram", 174, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 34, 3], ["version", 35, 3], ["pyproject", 36, 3], ["src", 38, 3], ["postPatch", 45, 3], ["nativeBuildInputs", 57, 3], ["build-system", 67, 3], ["dependencies", 69, 3], ["nativeCheckInputs", 81, 3], ["versionCheckProgram", 87, 3], ["pythonImportsCheck", 89, 3], ["postInstall", 94, 3], ["upstreamCheck", 120, 3], ["installCheckPhase", 150, 3], ["dontWrapGApps", 157, 3], ["preFixup", 159, 3], ["passthru", 166, 3], ["meta", 168, 3]]);
-const pos$5 = nix.positions(here + "/package.nix", [["postPatch", 184, 7]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -36,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.2.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "sezanzeb",
           repo: "input-remapper",
           tag: version,
@@ -119,11 +115,11 @@ PATH=${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => nix.concat([dbus, pr
 )
 `);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         tests: nix.thunk(() => nix.sel(nixosTests, "input-remapper")),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Easy to use tool to change the mapping of your input device buttons",
         homepage: "https://github.com/sezanzeb/input-remapper",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
@@ -135,7 +131,7 @@ PATH=${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => nix.concat([dbus, pr
         mainProgram: "input-remapper-gtk",
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,
@@ -156,7 +152,7 @@ PATH=${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => nix.concat([dbus, pr
         meta,
       };
     })())), "overrideAttrs"), (final) => (prev) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       postPatch: nix.thunk(() => nix.add(nix.selOr(prev, () => "", "postPatch"), nix.str`# set revision for --version output
 substituteInPlace inputremapper/installation_info.py \\
   --replace-fail 'COMMIT_HASH = "unknown"' 'COMMIT_HASH = "${nix.sel(final, "src", "rev")}"'

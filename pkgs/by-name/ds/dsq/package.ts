@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]], [["package", 57, 43]], [["version", 57, 11]], [["updateScript", 55, 5], ["tests", 57, 5]], [["mainProgram", 61, 5], ["description", 62, 5], ["homepage", 63, 5], ["license", 64, 5], ["maintainers", 65, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["vendorHash", 25, 3], ["ldflags", 27, 3], ["nativeCheckInputs", 32, 3], ["preCheck", 39, 3], ["checkPhase", 44, 3], ["passthru", 54, 3], ["meta", 60, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, buildGoModule: false, "nix-update-script": false, testers: false, python3: false, curl: false, jq: false, p7zip: false, dsq: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["package", 57, 43]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 57, 11]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 55, 5], ["tests", 57, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["mainProgram", 61, 5], ["description", 62, 5], ["homepage", 63, 5], ["license", 64, 5], ["maintainers", 65, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["vendorHash", 25, 3], ["ldflags", 27, 3], ["nativeCheckInputs", 32, 3], ["preCheck", 39, 3], ["checkPhase", 44, 3], ["passthru", 54, 3], ["meta", 60, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const p7zip = nix.arg($, "p7zip");
   const dsq = nix.arg($, "dsq");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "dsq",
       version: "0.23.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "multiprocessio",
           repo: "dsq",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -44,15 +39,15 @@ export default nix.lambda((args) => (() => {
 `),
       checkPhase: "runHook preCheck\n\n7z e testdata/taxi.csv.7z\ncp \"$GOPATH/bin/dsq\" .\npython3 scripts/test.py\n\nrunHook postCheck\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$2, package: dsq })))),
+          [nix.POS]: $pos[2],
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: $pos[1], package: dsq })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         mainProgram: "dsq",
         description: "Commandline tool for running SQL queries against JSON, CSV, Excel, Parquet, and more",
         homepage: "https://github.com/multiprocessio/dsq",

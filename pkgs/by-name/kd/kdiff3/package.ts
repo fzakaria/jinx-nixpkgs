@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 15, 5], ["hash", 16, 5]], [["LANG", 37, 7]], [["description", 44, 5], ["mainProgram", 45, 5], ["homepage", 46, 5], ["license", 47, 5], ["maintainers", 48, 5], ["platforms", 49, 39]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 19, 3], ["buildInputs", 26, 3], ["cmakeFlags", 35, 3], ["env", 37, 3], ["postInstall", 39, 3], ["meta", 43, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, boost: false, cmake: false, kdePackages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["LANG", 37, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 44, 5], ["mainProgram", 45, 5], ["homepage", 46, 5], ["license", 47, 5], ["maintainers", 48, 5], ["platforms", 49, 39]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 19, 3], ["buildInputs", 26, 3], ["cmakeFlags", 35, 3], ["env", 37, 3], ["postInstall", 39, 3], ["meta", 43, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const cmake = nix.arg($, "cmake");
   const kdePackages = nix.arg($, "kdePackages");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "kdiff3",
       version: "1.12.4",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://kde/stable/kdiff3/kdiff3-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-RpCjWqkzsZJ1HdWQprT1P+86qVAkY3ERKtbocvaybss=",
         })))),
@@ -43,12 +40,12 @@ export default nix.lambda((args) => (() => {
         ];
       })()),
       cmakeFlags: nix.thunk(() => ["-Wno-dev"]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, LANG: "C.UTF-8" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], LANG: "C.UTF-8" })),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "ln -s \"$out/Applications/KDE/kdiff3.app/Contents/MacOS\" \"$out/bin\"\n")),
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(kdePackages, "qtbase", "meta"));
         return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Compares and merges 2 or 3 files or directories",
         mainProgram: "kdiff3",
         homepage: "https://invent.kde.org/sdk/kdiff3",

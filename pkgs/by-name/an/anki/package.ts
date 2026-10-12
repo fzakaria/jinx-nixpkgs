@@ -2,17 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 105, 5], ["repo", 106, 5], ["rev", 107, 5], ["hash", 108, 5], ["fetchSubmodules", 109, 5]], [["pname", 113, 13], ["version", 113, 19], ["src", 113, 27], ["hash", 114, 5]], [["src", 162, 7], ["substitutions", 163, 7]], [["src", 175, 26], ["missingHashes", 175, 30], ["patches", 175, 44], ["hash", 176, 5]], [["RELEASE", 229, 5], ["OFFLINE_BUILD", 232, 5], ["NODE_BINARY", 233, 5], ["PROTOC_BINARY", 234, 5], ["PYTHON_BINARY", 235, 5], ["UV_BINARY", 236, 5], ["UV_NO_MANAGED_PYTHON", 237, 5], ["UV_SYSTEM_PYTHON", 238, 5], ["UV_PYTHON_DOWNLOADS", 239, 5], ["UV_OFFLINE", 240, 5], ["UV_FIND_LINKS", 241, 5]], [["ankiAddons", 353, 70]], [["anki-sync-server", 354, 11]], [["withAddons", 353, 5], ["tests", 354, 5]], [["description", 358, 5], ["mainProgram", 359, 5], ["longDescription", 360, 5], ["homepage", 372, 5], ["changelog", 373, 5], ["license", 374, 5], ["platforms", 375, 25], ["maintainers", 376, 5]], [["pyproject", 140, 3], ["pname", 141, 11], ["version", 141, 17], ["outputs", 143, 3], ["src", 150, 11], ["patches", 152, 3], ["cargoDeps", 171, 11], ["missingHashes", 173, 3], ["yarnOfflineCache", 174, 3], ["nativeBuildInputs", 179, 3], ["buildInputs", 198, 3], ["nativeCheckInputs", 206, 3], ["doCheck", 215, 3], ["checkFlags", 217, 3], ["dontUseNinjaInstall", 223, 3], ["dontWrapQtApps", 224, 3], ["dontWrapGApps", 225, 3], ["env", 227, 3], ["buildPhase", 244, 3], ["checkPhase", 290, 3], ["installPhase", 318, 3], ["preFixup", 343, 3], ["passthru", 352, 3], ["meta", 357, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, writableTmpDirAsHomeHook: false, cargo: false, fetchFromGitHub: false, installShellFiles: false, lame: false, "mpv-unwrapped": false, ninja: false, callPackage: false, nixosTests: false, nodejs: false, jq: false, protobuf_31: false, python3: false, python3Packages: false, qt6: false, rsync: false, rustPlatform: false, uv: false, writeShellScriptBin: false, yarn: false, "yarn-berry_4": false, runCommand: false, substitute: false, wrapGAppsHook3: false, swift: false, mesa: false, imagemagick: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 105, 5], ["repo", 106, 5], ["rev", 107, 5], ["hash", 108, 5], ["fetchSubmodules", 109, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 113, 13], ["version", 113, 19], ["src", 113, 27], ["hash", 114, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["src", 162, 7], ["substitutions", 163, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["src", 175, 26], ["missingHashes", 175, 30], ["patches", 175, 44], ["hash", 176, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["RELEASE", 229, 5], ["OFFLINE_BUILD", 232, 5], ["NODE_BINARY", 233, 5], ["PROTOC_BINARY", 234, 5], ["PYTHON_BINARY", 235, 5], ["UV_BINARY", 236, 5], ["UV_NO_MANAGED_PYTHON", 237, 5], ["UV_SYSTEM_PYTHON", 238, 5], ["UV_PYTHON_DOWNLOADS", 239, 5], ["UV_OFFLINE", 240, 5], ["UV_FIND_LINKS", 241, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["ankiAddons", 353, 70]]);
-const pos$7 = nix.positions(here + "/package.nix", [["anki-sync-server", 354, 11]]);
-const pos$8 = nix.positions(here + "/package.nix", [["withAddons", 353, 5], ["tests", 354, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["description", 358, 5], ["mainProgram", 359, 5], ["longDescription", 360, 5], ["homepage", 372, 5], ["changelog", 373, 5], ["license", 374, 5], ["platforms", 375, 25], ["maintainers", 376, 5]]);
-const pos$10 = nix.positions(here + "/package.nix", [["pyproject", 140, 3], ["pname", 141, 11], ["version", 141, 17], ["outputs", 143, 3], ["src", 150, 11], ["patches", 152, 3], ["cargoDeps", 171, 11], ["missingHashes", 173, 3], ["yarnOfflineCache", 174, 3], ["nativeBuildInputs", 179, 3], ["buildInputs", 198, 3], ["nativeCheckInputs", 206, 3], ["doCheck", 215, 3], ["checkFlags", 217, 3], ["dontUseNinjaInstall", 223, 3], ["dontWrapQtApps", 224, 3], ["dontWrapGApps", 225, 3], ["env", 227, 3], ["buildPhase", 244, 3], ["checkPhase", 290, 3], ["installPhase", 318, 3], ["preFixup", 343, 3], ["passthru", 352, 3], ["meta", 357, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -102,20 +93,26 @@ export default nix.lambda((args) => (() => {
       ])));
   })());
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "ankitects",
       repo: "anki",
       rev: version,
       hash: srcHash,
       fetchSubmodules: true,
     }))));
-  const cargoDeps = nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({ [nix.POS]: pos$2, pname: pname, version: version, src: src, hash: cargoHash }))));
+  const cargoDeps = nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
+      [nix.POS]: $pos[1],
+      pname: pname,
+      version: version,
+      src: src,
+      hash: cargoHash,
+    }))));
   const noInstallYarn = nix.thunk(() => nix.app(writeShellScriptBin, "yarn", nix.thunk(() => nix.str`[[ "$1" == "install" ]] && exit 0
 exec ${yarn}/bin/yarn "$@"
 `)));
   const uvWheels = nix.thunk(() => nix.app(runCommand, "uv-wheels", nix.thunk(() => ({})), nix.thunk(() => nix.add("mkdir -p $out\n", nix.app(nix.sel(lib, "strings", "concatMapStringsSep"), "\n", (dep) => nix.str`ln -vsf ${nix.sel(dep, "dist")}/*.whl $out`, pythonDeps)))));
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       pyproject: false,
       pname: pname,
       version: version,
@@ -127,7 +124,7 @@ exec ${yarn}/bin/yarn "$@"
         nix.path(here, "./patches/skip-formatting-python-code.patch"),
         nix.path(here, "./patches/allow-setting-addons-folder.patch"),
         nix.thunk(() => nix.app(substitute, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             src: nix.path(here, "./patches/yarn-fix.patch"),
             substitutions: nix.thunk(() => [
               "--replace-fail",
@@ -139,7 +136,7 @@ exec ${yarn}/bin/yarn "$@"
       cargoDeps: cargoDeps,
       missingHashes: nix.path(here, "./missing-hashes.json"),
       yarnOfflineCache: nix.thunk(() => nix.app(nix.sel(yarn_berry, "fetchYarnBerryDeps"), nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           missingHashes: nix.thunk(() => nix.attr(finalAttrs, "missingHashes")),
           patches: nix.thunk(() => nix.attr(finalAttrs, "patches")),
@@ -183,7 +180,7 @@ exec ${yarn}/bin/yarn "$@"
       dontWrapQtApps: true,
       dontWrapGApps: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         RELEASE: true,
         OFFLINE_BUILD: "1",
         NODE_BINARY: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nodejs)),
@@ -262,17 +259,17 @@ runHook postCheck
 )
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$8,
-        withAddons: (ankiAddons) => nix.app(callPackage, nix.path(here, "./with-addons.nix"), nix.thunk(() => ({ [nix.POS]: pos$6, ankiAddons: ankiAddons }))),
+        [nix.POS]: $pos[7],
+        withAddons: (ankiAddons) => nix.app(callPackage, nix.path(here, "./with-addons.nix"), nix.thunk(() => ({ [nix.POS]: $pos[5], ankiAddons: ankiAddons }))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           "anki-sync-server": nix.thunk(() => nix.sel(nixosTests, "anki-sync-server")),
         })),
       })),
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(mesa, "meta"));
         return {
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         description: "Spaced repetition flashcard program",
         mainProgram: "anki",
         longDescription: "Anki is a program which makes remembering things easy. Because it is a lot\nmore efficient than traditional study methods, you can either greatly\ndecrease your time spent studying, or greatly increase the amount you learn.\n\nAnyone who needs to remember things in their daily life can benefit from\nAnki. Since it is content-agnostic and supports images, audio, videos and\nscientific markup (via LaTeX), the possibilities are endless. For example:\nlearning a language, studying for medical and law exams, memorizing\npeople's names and faces, brushing up on geography, mastering long poems,\nor even practicing guitar chords!\n",

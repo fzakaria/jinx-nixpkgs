@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 56, 5], ["repo", 57, 5], ["tag", 58, 5], ["hash", 59, 5]], [["updateScript", 147, 5]], [["description", 151, 5], ["homepage", 152, 5], ["changelog", 153, 5], ["license", 154, 5], ["maintainers", 155, 5], ["platforms", 160, 5], ["mainProgram", 161, 5], ["longDescription", 162, 5]], [["pname", 49, 3], ["version", 50, 3], ["strictDeps", 52, 3], ["__structuredAttrs", 53, 3], ["src", 55, 3], ["outputs", 62, 3], ["nativeBuildInputs", 67, 3], ["buildInputs", 73, 3], ["cmakeFlags", 115, 3], ["postPatch", 132, 3], ["preConfigure", 136, 3], ["nativeInstallCheckInputs", 143, 3], ["doInstallCheck", 144, 3], ["passthru", 146, 3], ["meta", 150, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, "apple-sdk_15": false, chafa: false, cmake: false, dbus: false, dconf: false, ddcutil: false, enlightenment: false, glib: false, hwdata: false, imagemagick: false, libdrm: false, libelf: false, libglvnd: false, libpulseaudio: false, libselinux: false, libsepol: false, "libsysprof-capture": false, libva: false, libvdpau: false, libxau: false, libxcb: false, libxdmcp: false, libxext: false, libxrandr: false, moltenvk: false, "nix-update-script": false, "ocl-icd": false, "opencl-headers": false, pcre2: false, "pkg-config": false, python3: false, rpm: false, sqlite: false, "util-linux": false, versionCheckHook: false, "vulkan-loader": false, wayland: false, xfconf: false, yyjson: false, zfs: false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 56, 5], ["repo", 57, 5], ["tag", 58, 5], ["hash", 59, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 147, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 151, 5], ["homepage", 152, 5], ["changelog", 153, 5], ["license", 154, 5], ["maintainers", 155, 5], ["platforms", 160, 5], ["mainProgram", 161, 5], ["longDescription", 162, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 49, 3], ["version", 50, 3], ["strictDeps", 52, 3], ["__structuredAttrs", 53, 3], ["src", 55, 3], ["outputs", 62, 3], ["nativeBuildInputs", 67, 3], ["buildInputs", 73, 3], ["cmakeFlags", 115, 3], ["postPatch", 132, 3], ["preConfigure", 136, 3], ["nativeInstallCheckInputs", 143, 3], ["doInstallCheck", 144, 3], ["passthru", 146, 3], ["meta", 150, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -55,13 +52,13 @@ export default nix.lambda((args) => (() => {
   const zfs = nix.arg($, "zfs");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "fastfetch-unwrapped",
       version: "2.69.0",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "fastfetch-cli",
           repo: "fastfetch",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -119,11 +116,11 @@ cp ${libdrm}/share/libdrm/amdgpu.ids "$buildDir/amdgpu.ids"
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Actively maintained, feature-rich and performance oriented, neofetch like system information tool",
         homepage: "https://github.com/fastfetch-cli/fastfetch",
         changelog: nix.thunk(() => nix.str`https://github.com/fastfetch-cli/fastfetch/releases/tag/${nix.sel(finalAttrs, "version")}`),

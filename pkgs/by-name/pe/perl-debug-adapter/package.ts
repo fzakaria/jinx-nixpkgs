@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 24, 5], ["repo", 25, 5], ["rev", 26, 5], ["hash", 27, 5]], [["perlInterpreter", 41, 13]], [["description", 45, 5], ["homepage", 46, 5], ["changelog", 47, 5], ["license", 48, 5], ["maintainers", 49, 5], ["mainProgram", 50, 5]], [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["npmDepsHash", 30, 3], ["npmBuildScript", 32, 3], ["makeWrapperArgs", 34, 3], ["passthru", 40, 3], ["meta", 44, 3]]]);
 const formals$1 = { args: { lib: false, buildNpmPackage: false, fetchFromGitHub: false, perl: false, extraPerlPackages: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 24, 5], ["repo", 25, 5], ["rev", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["perlInterpreter", 41, 13]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 45, 5], ["homepage", 46, 5], ["changelog", 47, 5], ["license", 48, 5], ["maintainers", 49, 5], ["mainProgram", 50, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["npmDepsHash", 30, 3], ["npmBuildScript", 32, 3], ["makeWrapperArgs", 34, 3], ["passthru", 40, 3], ["meta", 44, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname = "perl-debug-adapter";
       const version = "1.0.6";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Nihilus118",
           repo: "perl-debug-adapter",
           rev: version,
@@ -34,9 +31,9 @@ export default nix.lambda((args) => (() => {
         ":",
         nix.thunk(() => nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [perlInterpreter]))),
       ]);
-      const passthru = nix.thunk(() => ({ [nix.POS]: pos$2, perlInterpreter: perlInterpreter }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: $pos[1], perlInterpreter: perlInterpreter }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Debug adapter, invokes perl -d and handles communication with VS Code or other editors",
         homepage: "https://github.com/Nihilus118/perl-debug-adapter",
         changelog: nix.thunk(() => nix.str`https://github.com/Nihilus118/perl-debug-adapter/blob/${version}/CHANGELOG.md`),
@@ -48,7 +45,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "perl-debug-adapter",
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

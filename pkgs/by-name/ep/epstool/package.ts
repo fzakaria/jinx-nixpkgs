@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 12, 5], ["hash", 13, 5]], [["description", 27, 5], ["homepage", 28, 5], ["license", 29, 5], ["maintainers", 30, 5], ["platforms", 31, 5], ["mainProgram", 32, 5]], [["version", 8, 3], ["pname", 9, 3], ["src", 11, 3], ["makeFlags", 16, 3], ["installPhase", 22, 3], ["meta", 26, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 12, 5], ["hash", 13, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 27, 5], ["homepage", 28, 5], ["license", 29, 5], ["maintainers", 30, 5], ["platforms", 31, 5], ["mainProgram", 32, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 8, 3], ["pname", 9, 3], ["src", 11, 3], ["makeFlags", 16, 3], ["installPhase", 22, 3], ["meta", 26, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,11 +11,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       version: "3.09",
       pname: "epstool",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`http://ftp.de.debian.org/debian/pool/main/e/epstool/epstool_${nix.sel(finalAttrs, "version")}.orig.tar.xz`),
           hash: "sha256-HoUknRpE+UGLH5Wjrr2LB4TauOSd62QXrJuZbKCPYBE=",
         })))),
@@ -28,7 +26,7 @@ export default nix.lambda((args) => (() => {
       ]),
       installPhase: "make EPSTOOL_ROOT=$out install\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Utility to create or extract preview images in EPS files, fix bounding boxes and convert to bitmaps",
         homepage: "http://pages.cs.wisc.edu/~ghost/gsview/epstool.htm",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

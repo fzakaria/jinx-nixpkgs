@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 17, 5], ["hash", 18, 5]], [["name", 49, 7], ["desktopName", 50, 7], ["comment", 51, 7], ["icon", 52, 7], ["exec", 53, 7], ["terminal", 54, 7], ["categories", 55, 7]], [["description", 63, 5], ["homepage", 64, 5], ["platforms", 65, 5], ["license", 66, 5], ["sourceProvenance", 67, 5], ["maintainers", 68, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["buildInputs", 21, 3], ["nativeBuildInputs", 27, 3], ["dontBuild", 33, 3], ["installPhase", 35, 3], ["desktopItems", 47, 3], ["meta", 62, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchzip: false, autoPatchelfHook: false, copyDesktopItems: false, makeDesktopItem: false, kdePackages: false, bluez: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 49, 7], ["desktopName", 50, 7], ["comment", 51, 7], ["icon", 52, 7], ["exec", 53, 7], ["terminal", 54, 7], ["categories", 55, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 63, 5], ["homepage", 64, 5], ["platforms", 65, 5], ["license", 66, 5], ["sourceProvenance", 67, 5], ["maintainers", 68, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["buildInputs", 21, 3], ["nativeBuildInputs", 27, 3], ["dontBuild", 33, 3], ["installPhase", 35, 3], ["desktopItems", 47, 3], ["meta", 62, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const kdePackages = nix.arg($, "kdePackages");
   const bluez = nix.arg($, "bluez");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "obdautodoctor",
       version: "5.1.8",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://cdn2.obdautodoctor.com/release/obd-auto-doctor_${nix.sel(finalAttrs, "version")}_amd64.tar.gz`),
           hash: "sha256-3qht1G2Qi+IhL/x9MMEAwM0exCav5iKtnZXTl6cwx3E=",
         })))),
@@ -41,7 +38,7 @@ export default nix.lambda((args) => (() => {
       installPhase: "runHook preInstall\n\ninstall -D obdautodoctor $out/bin/obdautodoctor\ninstall -D obdautodoctor.png $out/share/icons/hicolor/128x128/apps/obdautodoctor.png\n\ninstall -D license.txt $out/share/licenses/obdautodoctor/license.txt\ninstall -D lgpl-3.0.txt $out/share/licenses/obdautodoctor/lgpl-3.0.txt\n\nrunHook postInstall\n",
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "obdautodoctor",
             desktopName: "OBD Auto Doctor",
             comment: "OBD Car Diagnostics Software",
@@ -52,7 +49,7 @@ export default nix.lambda((args) => (() => {
           })))),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Diagnose problems, reset the Check Engine Light, and monitor your car's performance with ease",
         homepage: "https://www.obdautodoctor.com/",
         platforms: nix.thunk(() => ["x86_64-linux"]),

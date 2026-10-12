@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["pname", 11, 26], ["version", 11, 32], ["hash", 12, 5]], [["homepage", 18, 5], ["description", 19, 5], ["license", 20, 5], ["maintainers", 21, 5], ["mainProgram", 22, 5]], [["pname", 7, 3], ["version", 8, 3], ["src", 10, 3], ["cargoHash", 15, 3], ["meta", 17, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchCrate: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["pname", 11, 26], ["version", 11, 32], ["hash", 12, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 18, 5], ["description", 19, 5], ["license", 20, 5], ["maintainers", 21, 5], ["mainProgram", 22, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 7, 3], ["version", 8, 3], ["src", 10, 3], ["cargoHash", 15, 3], ["meta", 17, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,18 +11,18 @@ export default nix.lambda((args) => (() => {
   const rustPlatform = nix.arg($, "rustPlatform");
   const fetchCrate = nix.arg($, "fetchCrate");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "cfonts",
       version: "1.3.0",
       src: nix.thunk(() => nix.app(fetchCrate, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-rgdqQzJyb1/bYB3S1MD/53vdQ+GaxOvGHuPE6dxMRB0=",
         })))),
       cargoHash: "sha256-Gf4W7ACyyVSCXV2RmpAfrE7Xircjk34Llk2j58cWXtU=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/dominikwilkowski/cfonts",
         description: "Silly little command line tool for sexy ANSI fonts in the console",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

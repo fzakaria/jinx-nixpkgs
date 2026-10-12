@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 15, 5], ["hash", 16, 5]], [["angie", 35, 5], ["angie-api", 36, 5], ["angie-http3", 37, 5]], [["tests", 34, 12]], [["description", 41, 5], ["homepage", 42, 5], ["mainProgram", 43, 5], ["license", 44, 5], ["platforms", 45, 5], ["maintainers", 46, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["configureFlags", 19, 3], ["preInstall", 24, 3], ["postInstall", 30, 3], ["passthru", 34, 3], ["meta", 40, 3]]]);
 const formals$1 = { args: { callPackage: false, lib: false, fetchurl: false, nixosTests: false, withAcme: true }, ellipsis: true };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["angie", 35, 5], ["angie-api", 36, 5], ["angie-http3", 37, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["tests", 34, 12]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 41, 5], ["homepage", 42, 5], ["mainProgram", 43, 5], ["license", 44, 5], ["platforms", 45, 5], ["maintainers", 46, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["configureFlags", 19, 3], ["preInstall", 24, 3], ["postInstall", 30, 3], ["passthru", 34, 3], ["meta", 40, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname = "angie";
       const version = "1.12.2";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://download.angie.software/files/angie-${version}.tar.gz`),
           hash: "sha256-TwpRsd6N2fCSSLKEW7+k308DSHe/kvYF5Jn9f/8Jx3w=",
         }))));
@@ -29,16 +25,16 @@ export default nix.lambda((args) => (() => {
       const preInstall = "if [[ -e man/angie.8 ]]; then\n  installManPage man/angie.8\nfi\n";
       const postInstall = "ln -s $out/bin/nginx $out/bin/angie\n";
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           angie: nix.thunk(() => nix.sel(nixosTests, "nginx-variants", "angie")),
           "angie-api": nix.thunk(() => nix.sel(nixosTests, "angie-api")),
           "angie-http3": nix.thunk(() => nix.sel(nixosTests, "nginx-http3", "angie")),
         })),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Angie is an efficient, powerful, and scalable web server that was forked from nginx",
         homepage: "https://en.angie.software/",
         mainProgram: "angie",
@@ -53,7 +49,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         src,

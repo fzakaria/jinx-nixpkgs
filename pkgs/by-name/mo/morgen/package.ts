@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 22, 5], ["url", 23, 5], ["hash", 24, 5]], [["updateScript", 65, 12]], [["description", 68, 5], ["homepage", 69, 5], ["mainProgram", 70, 5], ["sourceProvenance", 71, 5], ["license", 72, 5], ["maintainers", 73, 5], ["platforms", 74, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 34, 3], ["installPhase", 42, 3], ["passthru", 65, 3], ["meta", 67, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, dpkg: false, autoPatchelfHook: false, makeWrapper: false, electron: false, asar: false, "alsa-lib": false, gtk3: false, libxshmfence: false, libgbm: false, nss: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 22, 5], ["url", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 65, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 68, 5], ["homepage", 69, 5], ["mainProgram", 70, 5], ["sourceProvenance", 71, 5], ["license", 72, 5], ["maintainers", 73, 5], ["platforms", 74, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 34, 3], ["installPhase", 42, 3], ["passthru", 65, 3], ["meta", 67, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const pname = "morgen";
       const version = "4.0.6";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           name: nix.thunk(() => nix.str`morgen-${version}.deb`),
           url: nix.thunk(() => nix.str`https://dl.todesktop.com/210203cqcj00tw1/versions/${version}/linux/deb`),
           hash: "sha256-ZT8HC8uXDgIjDaAhivCQ9SfYYtPjYgcfCCRYkOWpLhE=",
@@ -55,9 +52,9 @@ makeWrapper ${electron}/bin/electron $out/bin/morgen \\
 
 runHook postInstall
 `);
-      const passthru = nix.thunk(() => ({ [nix.POS]: pos$2, updateScript: nix.path(here, "./update.sh") }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: $pos[1], updateScript: nix.path(here, "./update.sh") }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "All-in-one Calendars, Tasks and Scheduler",
         homepage: "https://morgen.so/",
         mainProgram: "morgen",
@@ -73,7 +70,7 @@ runHook postInstall
         platforms: nix.thunk(() => ["x86_64-linux"]),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 27, 5], ["hash", 28, 5]], [["man", 78, 36]], [["url", 80, 7]], [["tests", 78, 5], ["updateScript", 79, 5]], [["description", 85, 5], ["longDescription", 86, 5], ["homepage", 92, 5], ["license", 93, 5], ["maintainers", 94, 5], ["platforms", 95, 5], ["outputsToInstall", 96, 5], ["priority", 97, 5]], [["pname", 14, 3], ["version", 15, 3], ["outputs", 21, 3], ["src", 26, 3], ["postPatch", 33, 3], ["nativeInstallCheckInputs", 38, 3], ["dontBuild", 44, 3], ["enableParallelInstalling", 45, 3], ["doInstallCheck", 46, 3], ["makeFlags", 48, 3], ["preConfigure", 56, 3], ["installCheckPhase", 66, 3], ["passthru", 77, 3], ["meta", 84, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, directoryListingUpdater: false, gawk: false, groff: false, man: false, pcre2: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["man", 78, 36]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 80, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 78, 5], ["updateScript", 79, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 85, 5], ["longDescription", 86, 5], ["homepage", 92, 5], ["license", 93, 5], ["maintainers", 94, 5], ["platforms", 95, 5], ["outputsToInstall", 96, 5], ["priority", 97, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["outputs", 21, 3], ["src", 26, 3], ["postPatch", 33, 3], ["nativeInstallCheckInputs", 38, 3], ["dontBuild", 44, 3], ["enableParallelInstalling", 45, 3], ["doInstallCheck", 46, 3], ["makeFlags", 48, 3], ["preConfigure", 56, 3], ["installCheckPhase", 66, 3], ["passthru", 77, 3], ["meta", 84, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const pcre2 = nix.arg($, "pcre2");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "man-pages",
       version: "6.19",
       outputs: nix.thunk(() => ["man", "out"]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://kernel/linux/docs/man-pages/man-pages-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-iKfEKtLgPYuW3HLZXkUfLYdf8PQxA6jrisgkITO9ywU=",
         })))),
@@ -48,12 +43,12 @@ export default nix.lambda((args) => (() => {
       preConfigure: "# If not provided externally, the makefile will attempt to determine the\n# date and time of the release from the Git repository log, which is not\n# available in the distributed tarball. We therefore supply it from\n# $SOURCE_DATE_EPOCH, which is based on the most recent modification time\n# of all source files. Cf.\n# nixpkgs/pkgs/build-support/setup-hooks/set-source-date-epoch-to-latest.sh\nexport DISTDATE=\"$(date --utc --date=\"@$SOURCE_DATE_EPOCH\")\"\n",
       installCheckPhase: "runHook preInstallCheck\n\n# Check for a few well-known man pages\nfor page in ldd write printf null hosts random ld.so; do\n  man -M \"$man/share/man\" -P cat \"$page\" >/dev/null\ndone\n\nrunHook postInstallCheck\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$2, man: nix.thunk(() => nix.attr(nixosTests, "man")) })),
-        updateScript: nix.thunk(() => nix.app(directoryListingUpdater, nix.thunk(() => ({ [nix.POS]: pos$3, url: "https://www.kernel.org/pub/linux/docs/man-pages/" })))),
+        [nix.POS]: $pos[3],
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[1], man: nix.thunk(() => nix.attr(nixosTests, "man")) })),
+        updateScript: nix.thunk(() => nix.app(directoryListingUpdater, nix.thunk(() => ({ [nix.POS]: $pos[2], url: "https://www.kernel.org/pub/linux/docs/man-pages/" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Linux development manual pages",
         longDescription: "This package provides the manual pages in its \"man\" output,\nand various utility programs in its \"out\" output.\n\nOnly the \"man\" output is installed by default.\n",
         homepage: "https://www.kernel.org/doc/man-pages/",

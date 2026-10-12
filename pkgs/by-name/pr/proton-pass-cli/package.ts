@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 59, 9], ["hash", 60, 9]], [["url", 63, 9], ["hash", 64, 9]], [["url", 67, 9], ["hash", 68, 9]], [["aarch64-darwin", 58, 7], ["aarch64-linux", 62, 7], ["x86_64-linux", 66, 7]], [["sources", 57, 5], ["updateScript", 71, 5]], [["description", 92, 5], ["homepage", 93, 5], ["license", 94, 5], ["mainProgram", 95, 5], ["maintainers", 96, 5], ["platforms", 97, 5], ["sourceProvenance", 98, 5]], [["pname", 17, 3], ["version", 18, 3], ["__structuredAttrs", 20, 3], ["strictDeps", 21, 3], ["src", 23, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 32, 3], ["dontUnpack", 37, 3], ["installPhase", 39, 3], ["postFixup", 47, 3], ["doInstallCheck", 51, 3], ["nativeInstallCheckInputs", 52, 3], ["passthru", 56, 3], ["meta", 91, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, autoPatchelfHook: false, curl: false, "common-updater-scripts": false, jq: false, keyutils: false, libgcc: false, makeBinaryWrapper: false, versionCheckHook: false, writeShellScript: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 59, 9], ["hash", 60, 9]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 63, 9], ["hash", 64, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 67, 9], ["hash", 68, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["aarch64-darwin", 58, 7], ["aarch64-linux", 62, 7], ["x86_64-linux", 66, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["sources", 57, 5], ["updateScript", 71, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 92, 5], ["homepage", 93, 5], ["license", 94, 5], ["mainProgram", 95, 5], ["maintainers", 96, 5], ["platforms", 97, 5], ["sourceProvenance", 98, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["__structuredAttrs", 20, 3], ["strictDeps", 21, 3], ["src", 23, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 32, 3], ["dontUnpack", 37, 3], ["installPhase", 39, 3], ["postFixup", 47, 3], ["doInstallCheck", 51, 3], ["nativeInstallCheckInputs", 52, 3], ["passthru", 56, 3], ["meta", 91, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,7 +20,7 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const writeShellScript = nix.arg($, "writeShellScript");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "proton-pass-cli",
       version: "2.4.2",
       __structuredAttrs: true,
@@ -40,21 +34,21 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         sources: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           "aarch64-darwin": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              [nix.POS]: pos$1,
+              [nix.POS]: $pos[0],
               url: nix.thunk(() => nix.str`https://proton.me/download/pass-cli/${nix.sel(finalAttrs, "version")}/pass-cli-macos-aarch64`),
               hash: "sha256-mehiCU/SpPgniMkAC6WpIkbnc5+Gw1qEZVudfirfcic=",
             })))),
           "aarch64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               url: nix.thunk(() => nix.str`https://proton.me/download/pass-cli/${nix.sel(finalAttrs, "version")}/pass-cli-linux-aarch64`),
               hash: "sha256-7uOPxFSaXfy7eUqvy21RfJ4M0Nw8U7uymX/YFC7Wgcc=",
             })))),
           "x86_64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               url: nix.thunk(() => nix.str`https://proton.me/download/pass-cli/${nix.sel(finalAttrs, "version")}/pass-cli-linux-x86_64`),
               hash: "sha256-QIm99ZgRQKxb7mXS15v5h2dTf1TTMZe3nl+GxjBxSEI=",
             })))),
@@ -72,7 +66,7 @@ done
 `))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Command-line interface for managing your Proton Pass vaults, items, and secrets",
         homepage: "https://github.com/protonpass/pass-cli",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

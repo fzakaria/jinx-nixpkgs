@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]], [["description", 42, 5], ["longDescription", 43, 5], ["homepage", 48, 5], ["changelog", 49, 5], ["license", 50, 5]], [["pname", 11, 3], ["version", 12, 3], ["format", 13, 3], ["src", 15, 3], ["buildInputs", 22, 3], ["nativeCheckInputs", 24, 3], ["pythonImportsCheck", 29, 3], ["enabledTestPaths", 31, 3], ["disabledTests", 33, 3], ["meta", 41, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, numpy: false, pytestCheckHook: false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 42, 5], ["longDescription", 43, 5], ["homepage", 48, 5], ["changelog", 49, 5], ["license", 50, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 11, 3], ["version", 12, 3], ["format", 13, 3], ["src", 15, 3], ["buildInputs", 22, 3], ["nativeCheckInputs", 24, 3], ["pythonImportsCheck", 29, 3], ["enabledTestPaths", 31, 3], ["disabledTests", 33, 3], ["meta", 41, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.3.26";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "deeptools",
           repo: "pyBigWig",
           tag: version,
@@ -32,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const enabledTestPaths = nix.thunk(() => ["pyBigWigTest/test*.py"]);
       const disabledTests = nix.thunk(() => ["testAll", "testBigBed", "testFoo", "testNumpyValues"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "File access to bigBed files, and read and write access to bigWig files",
         longDescription: "A Python extension, written in C, for quick access to bigBed files\nand access to and creation of bigWig files. This extension uses\nlibBigWig for local and remote file access.\n",
         homepage: "https://github.com/deeptools/pyBigWig",
@@ -40,7 +38,7 @@ export default nix.lambda((args) => (() => {
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         format,

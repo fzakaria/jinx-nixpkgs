@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/build-native-wrapper.nix", [[["pname", 23, 3], ["version", 25, 5], ["src", 26, 5], ["sourceRoot", 27, 5], ["patches", 28, 5], ["buildInputs", 29, 5], ["postPatch", 32, 3], ["dontConfigure", 68, 3], ["dontInstall", 69, 3], ["buildPhase", 71, 3]]]);
 const formals$1 = { args: { depname: false, version: false, src: false, sourceRoot: false, stdenv: false, lib: false, patches: true, extraPostPatch: true, buildInputs: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/build-native-wrapper.nix", [["pname", 23, 3], ["version", 25, 5], ["src", 26, 5], ["sourceRoot", 27, 5], ["patches", 28, 5], ["buildInputs", 29, 5], ["postPatch", 32, 3], ["dontConfigure", 68, 3], ["dontInstall", 69, 3], ["buildPhase", 71, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
   const buildInputs = nix.argOr($, "buildInputs", () => []);
   const rebuildscriptName = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) ? "build_linux" : (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? "build_macos" : nix.builtins.throw(nix.thunk(() => nix.str`Don't know how to rebuild FamiStudio's vendored ${depname} for ${nix.sel(stdenv, "hostPlatform", "system")}`)))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       pname: nix.thunk(() => nix.str`famistudio-nativedep-${depname}`),
       version: version,
       src: src,

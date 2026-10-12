@@ -2,42 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 49, 5], ["repo", 50, 5], ["rev", 51, 5], ["hash", 52, 5]], [["nativeBuildInputs", 62, 9]], [["buildInputs", 66, 9]], [["buildInputs", 69, 9], ["buildFlags", 70, 9]], [["gemName", 78, 55], ["version", 78, 63], ["source", 78, 71]], [["name", 79, 17], ["src", 80, 17], ["unpackPhase", 81, 17], ["nativeBuildInputs", 82, 17], ["dontBuilt", 84, 15], ["installPhase", 85, 15]], [["src", 77, 13], ["hash", 90, 13]], [["cargoDeps", 76, 11], ["dontBuild", 93, 11], ["nativeBuildInputs", 95, 11], ["disallowedReferences", 102, 11], ["preInstall", 106, 11], ["postInstall", 110, 11]], [["postPatch", 116, 11], ["PROTOC", 121, 11]], [["gemName", 127, 53], ["version", 127, 61], ["source", 127, 69]], [["name", 128, 15], ["src", 129, 15], ["unpackPhase", 130, 15], ["nativeBuildInputs", 131, 15], ["dontBuilt", 133, 13], ["installPhase", 134, 13]], [["src", 126, 11], ["hash", 140, 11]], [["cargoDeps", 125, 9], ["dontBuild", 143, 9], ["nativeBuildInputs", 145, 9], ["disallowedReferences", 152, 9], ["preInstall", 156, 9], ["postInstall", 160, 9]], [["gemName", 168, 53], ["version", 168, 61], ["source", 168, 69]], [["name", 169, 15], ["src", 170, 15], ["unpackPhase", 171, 15], ["nativeBuildInputs", 172, 15], ["installPhase", 174, 13]], [["src", 167, 11], ["nativeBuildInputs", 184, 11], ["postPatch", 185, 11], ["postBuild", 189, 11], ["hash", 193, 11]], [["cargoDeps", 166, 9], ["postPatch", 196, 9], ["dontBuild", 200, 9], ["nativeBuildInputs", 202, 9], ["preInstall", 212, 9], ["postInstall", 225, 9]], [["gemName", 241, 53], ["version", 241, 61], ["source", 241, 69]], [["name", 242, 15], ["src", 243, 15], ["unpackPhase", 244, 15], ["nativeBuildInputs", 245, 15], ["dontBuilt", 247, 13], ["installPhase", 248, 13]], [["src", 240, 11], ["hash", 254, 11]], [["dontBuild", 231, 9], ["postPatch", 232, 9], ["cargoDeps", 239, 9], ["nativeBuildInputs", 257, 9], ["disallowedReferences", 264, 9], ["preInstall", 268, 9], ["postInstall", 272, 9]], [["nativeBuildInputs", 278, 9]], [["gpgme", 61, 7], ["openssl", 65, 7], ["ruby-magic", 68, 7], ["gitlab-glaz", 73, 7], ["gitlab-glfm-markdown", 124, 7], ["gitlab_query_language", 165, 7], ["prometheus-client-mmap", 230, 7], ["static_holmes", 277, 7]], [["name", 56, 5], ["ruby", 57, 5], ["gemdir", 58, 5], ["gemset", 59, 5], ["gemConfig", 60, 5], ["groups", 285, 5], ["ignoreCollisions", 298, 5], ["extraConfigPaths", 300, 5]], [["yarnLock", 311, 7], ["hash", 312, 7]], [["yarnLock", 316, 7], ["hash", 317, 7]], [["GITLAB_LOG_PATH", 344, 7], ["FOSS_ONLY", 345, 7], ["SKIP_FRONTEND_ISLANDS_BUILD", 346, 7], ["SKIP_YARN_INSTALL", 348, 7], ["NODE_OPTIONS", 349, 7]], [["pname", 307, 5], ["version", 308, 13], ["src", 308, 21], ["yarnOfflineCache", 310, 5], ["frontendIslandsYarnOfflineCache", 314, 5], ["nativeBuildInputs", 320, 5], ["patches", 329, 5], ["env", 341, 5], ["postConfigure", 352, 5], ["buildPhase", 383, 5], ["installPhase", 403, 5]], [["FOSS_ONLY", 492, 15]], [["nixos-test-passes", 494, 7]], [["rubyEnv", 486, 13], ["assets", 486, 21], ["ruby", 487, 5], ["GITALY_SERVER_VERSION", 488, 5], ["GITLAB_PAGES_VERSION", 489, 5], ["GITLAB_SHELL_VERSION", 490, 5], ["GITLAB_WORKHORSE_VERSION", 491, 5], ["gitlabEnv", 492, 5], ["tests", 493, 5]], [["homepage", 501, 7], ["platforms", 502, 7], ["teams", 503, 7]], [["license", 508, 11], ["description", 509, 11]], [["license", 513, 11], ["description", 514, 11], ["longDescription", 515, 11]], [["pname", 413, 3], ["src", 415, 11], ["version", 415, 15], ["nativeBuildInputs", 417, 3], ["buildInputs", 418, 3], ["patches", 427, 3], ["postPatch", 432, 3], ["buildPhase", 461, 3], ["installPhase", 467, 3], ["passthru", 485, 3], ["meta", 498, 3]]]);
 const formals$1 = { args: { bundlerEnv: false, cacert: false, defaultGemConfig: false, fetchFromGitLab: false, fetchYarnDeps: false, yarnConfigHook: false, git: false, gitlabEnterprise: true, lib: false, makeWrapper: false, "net-tools": false, nixosTests: false, nodejs_22: false, ruby_3_3: false, stdenv: false, tzdata: false, buildRubyGem: false, cargo: false, rustc: false, rustPlatform: false, buildPackages: false, "pkg-config": false, openssl: false, file: false, icu: false, which: false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 49, 5], ["repo", 50, 5], ["rev", 51, 5], ["hash", 52, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["nativeBuildInputs", 62, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["buildInputs", 66, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["buildInputs", 69, 9], ["buildFlags", 70, 9]]);
-const pos$5 = nix.positions(here + "/package.nix", [["gemName", 78, 55], ["version", 78, 63], ["source", 78, 71]]);
-const pos$6 = nix.positions(here + "/package.nix", [["name", 79, 17], ["src", 80, 17], ["unpackPhase", 81, 17], ["nativeBuildInputs", 82, 17], ["dontBuilt", 84, 15], ["installPhase", 85, 15]]);
-const pos$7 = nix.positions(here + "/package.nix", [["src", 77, 13], ["hash", 90, 13]]);
-const pos$8 = nix.positions(here + "/package.nix", [["cargoDeps", 76, 11], ["dontBuild", 93, 11], ["nativeBuildInputs", 95, 11], ["disallowedReferences", 102, 11], ["preInstall", 106, 11], ["postInstall", 110, 11]]);
-const pos$9 = nix.positions(here + "/package.nix", [["postPatch", 116, 11], ["PROTOC", 121, 11]]);
-const pos$10 = nix.positions(here + "/package.nix", [["gemName", 127, 53], ["version", 127, 61], ["source", 127, 69]]);
-const pos$11 = nix.positions(here + "/package.nix", [["name", 128, 15], ["src", 129, 15], ["unpackPhase", 130, 15], ["nativeBuildInputs", 131, 15], ["dontBuilt", 133, 13], ["installPhase", 134, 13]]);
-const pos$12 = nix.positions(here + "/package.nix", [["src", 126, 11], ["hash", 140, 11]]);
-const pos$13 = nix.positions(here + "/package.nix", [["cargoDeps", 125, 9], ["dontBuild", 143, 9], ["nativeBuildInputs", 145, 9], ["disallowedReferences", 152, 9], ["preInstall", 156, 9], ["postInstall", 160, 9]]);
-const pos$14 = nix.positions(here + "/package.nix", [["gemName", 168, 53], ["version", 168, 61], ["source", 168, 69]]);
-const pos$15 = nix.positions(here + "/package.nix", [["name", 169, 15], ["src", 170, 15], ["unpackPhase", 171, 15], ["nativeBuildInputs", 172, 15], ["installPhase", 174, 13]]);
-const pos$16 = nix.positions(here + "/package.nix", [["src", 167, 11], ["nativeBuildInputs", 184, 11], ["postPatch", 185, 11], ["postBuild", 189, 11], ["hash", 193, 11]]);
-const pos$17 = nix.positions(here + "/package.nix", [["cargoDeps", 166, 9], ["postPatch", 196, 9], ["dontBuild", 200, 9], ["nativeBuildInputs", 202, 9], ["preInstall", 212, 9], ["postInstall", 225, 9]]);
-const pos$18 = nix.positions(here + "/package.nix", [["gemName", 241, 53], ["version", 241, 61], ["source", 241, 69]]);
-const pos$19 = nix.positions(here + "/package.nix", [["name", 242, 15], ["src", 243, 15], ["unpackPhase", 244, 15], ["nativeBuildInputs", 245, 15], ["dontBuilt", 247, 13], ["installPhase", 248, 13]]);
-const pos$20 = nix.positions(here + "/package.nix", [["src", 240, 11], ["hash", 254, 11]]);
-const pos$21 = nix.positions(here + "/package.nix", [["dontBuild", 231, 9], ["postPatch", 232, 9], ["cargoDeps", 239, 9], ["nativeBuildInputs", 257, 9], ["disallowedReferences", 264, 9], ["preInstall", 268, 9], ["postInstall", 272, 9]]);
-const pos$22 = nix.positions(here + "/package.nix", [["nativeBuildInputs", 278, 9]]);
-const pos$23 = nix.positions(here + "/package.nix", [["gpgme", 61, 7], ["openssl", 65, 7], ["ruby-magic", 68, 7], ["gitlab-glaz", 73, 7], ["gitlab-glfm-markdown", 124, 7], ["gitlab_query_language", 165, 7], ["prometheus-client-mmap", 230, 7], ["static_holmes", 277, 7]]);
-const pos$24 = nix.positions(here + "/package.nix", [["name", 56, 5], ["ruby", 57, 5], ["gemdir", 58, 5], ["gemset", 59, 5], ["gemConfig", 60, 5], ["groups", 285, 5], ["ignoreCollisions", 298, 5], ["extraConfigPaths", 300, 5]]);
-const pos$25 = nix.positions(here + "/package.nix", [["yarnLock", 311, 7], ["hash", 312, 7]]);
-const pos$26 = nix.positions(here + "/package.nix", [["yarnLock", 316, 7], ["hash", 317, 7]]);
-const pos$27 = nix.positions(here + "/package.nix", [["GITLAB_LOG_PATH", 344, 7], ["FOSS_ONLY", 345, 7], ["SKIP_FRONTEND_ISLANDS_BUILD", 346, 7], ["SKIP_YARN_INSTALL", 348, 7], ["NODE_OPTIONS", 349, 7]]);
-const pos$28 = nix.positions(here + "/package.nix", [["pname", 307, 5], ["version", 308, 13], ["src", 308, 21], ["yarnOfflineCache", 310, 5], ["frontendIslandsYarnOfflineCache", 314, 5], ["nativeBuildInputs", 320, 5], ["patches", 329, 5], ["env", 341, 5], ["postConfigure", 352, 5], ["buildPhase", 383, 5], ["installPhase", 403, 5]]);
-const pos$29 = nix.positions(here + "/package.nix", [["FOSS_ONLY", 492, 15]]);
-const pos$30 = nix.positions(here + "/package.nix", [["nixos-test-passes", 494, 7]]);
-const pos$31 = nix.positions(here + "/package.nix", [["rubyEnv", 486, 13], ["assets", 486, 21], ["ruby", 487, 5], ["GITALY_SERVER_VERSION", 488, 5], ["GITLAB_PAGES_VERSION", 489, 5], ["GITLAB_SHELL_VERSION", 490, 5], ["GITLAB_WORKHORSE_VERSION", 491, 5], ["gitlabEnv", 492, 5], ["tests", 493, 5]]);
-const pos$32 = nix.positions(here + "/package.nix", [["homepage", 501, 7], ["platforms", 502, 7], ["teams", 503, 7]]);
-const pos$33 = nix.positions(here + "/package.nix", [["license", 508, 11], ["description", 509, 11]]);
-const pos$34 = nix.positions(here + "/package.nix", [["license", 513, 11], ["description", 514, 11], ["longDescription", 515, 11]]);
-const pos$35 = nix.positions(here + "/package.nix", [["pname", 413, 3], ["src", 415, 11], ["version", 415, 15], ["nativeBuildInputs", 417, 3], ["buildInputs", 418, 3], ["patches", 427, 3], ["postPatch", 432, 3], ["buildPhase", 461, 3], ["installPhase", 467, 3], ["passthru", 485, 3], ["meta", 498, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -71,7 +37,7 @@ export default nix.lambda((args) => (() => {
   const data = nix.thunk(() => nix.app(nix.sel(lib, "importJSON"), nix.path(here, "./data.json")));
   const version = nix.thunk(() => nix.sel(data, "version"));
   const src = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: nix.thunk(() => nix.sel(data, "owner")),
       repo: nix.thunk(() => nix.sel(data, "repo")),
       rev: nix.thunk(() => nix.sel(data, "rev")),
@@ -83,27 +49,27 @@ export default nix.lambda((args) => (() => {
       const gemdir = nix.path(here, "./rubyEnv");
       const gemset = nix.thunk(() => nix.app(nix.builtins.import(nix.thunk(() => nix.add(gemdir, "/gemset.nix"))), src));
       const gemConfig = nix.thunk(() => nix.update(defaultGemConfig, {
-        [nix.POS]: pos$23,
-        gpgme: (attrs) => ({ [nix.POS]: pos$2, nativeBuildInputs: nix.thunk(() => [pkg_config]) }),
-        openssl: (attrs) => ({ [nix.POS]: pos$3, buildInputs: nix.thunk(() => [openssl]) }),
+        [nix.POS]: $pos[22],
+        gpgme: (attrs) => ({ [nix.POS]: $pos[1], nativeBuildInputs: nix.thunk(() => [pkg_config]) }),
+        openssl: (attrs) => ({ [nix.POS]: $pos[2], buildInputs: nix.thunk(() => [openssl]) }),
         "ruby-magic": (attrs) => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           buildInputs: nix.thunk(() => [file]),
           buildFlags: nix.thunk(() => ["--enable-system-libraries"]),
         }),
         "gitlab-glaz": (attrs) => nix.update({
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-              [nix.POS]: pos$7,
+              [nix.POS]: $pos[6],
               src: nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => (() => {
                   const from = nix.thunk(() => nix.app(buildRubyGem, nix.thunk(() => ({
-                      [nix.POS]: pos$5,
+                      [nix.POS]: $pos[4],
                       gemName: nix.thunk(() => nix.attr(attrs, "gemName")),
                       version: nix.thunk(() => nix.attr(attrs, "version")),
                       source: nix.thunk(() => nix.attr(attrs, "source")),
                     }))));
                   return {
-                  [nix.POS]: pos$6,
+                  [nix.POS]: $pos[5],
                   name: nix.thunk(() => nix.attr(from, "name")),
                   src: nix.thunk(() => nix.attr(from, "src")),
                   unpackPhase: nix.thunk(() => nix.attr(from, "unpackPhase")),
@@ -125,23 +91,23 @@ export default nix.lambda((args) => (() => {
           preInstall: "export CARGO_HOME=\"$PWD/../.cargo/\"\n",
           postInstall: "find $out -type f -name .rustc_info.json -delete\n",
         }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isRiscV64")), nix.thunk(() => ({
-            [nix.POS]: pos$9,
+            [nix.POS]: $pos[8],
             postPatch: "substituteInPlace $cargoDepsCopy/source-*/glaz-proto-*/build.rs \\\n  --replace-fail 'protoc_bin_vendored::protoc_bin_path()?' \\\n    'std::path::PathBuf::from(std::env::var(\"PROTOC\")?)'\n",
             PROTOC: nix.thunk(() => nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(buildPackages, "protobuf")), "protoc")),
           })))),
         "gitlab-glfm-markdown": (attrs) => ({
-          [nix.POS]: pos$13,
+          [nix.POS]: $pos[12],
           cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-              [nix.POS]: pos$12,
+              [nix.POS]: $pos[11],
               src: nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => (() => {
                   const from = nix.thunk(() => nix.app(buildRubyGem, nix.thunk(() => ({
-                      [nix.POS]: pos$10,
+                      [nix.POS]: $pos[9],
                       gemName: nix.thunk(() => nix.attr(attrs, "gemName")),
                       version: nix.thunk(() => nix.attr(attrs, "version")),
                       source: nix.thunk(() => nix.attr(attrs, "source")),
                     }))));
                   return {
-                  [nix.POS]: pos$11,
+                  [nix.POS]: $pos[10],
                   name: nix.thunk(() => nix.attr(from, "name")),
                   src: nix.thunk(() => nix.attr(from, "src")),
                   unpackPhase: nix.thunk(() => nix.attr(from, "unpackPhase")),
@@ -165,16 +131,16 @@ export default nix.lambda((args) => (() => {
         }),
         gitlab_query_language: (attrs) => (() => {
           const cargoDeps = nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-              [nix.POS]: pos$16,
+              [nix.POS]: $pos[15],
               src: nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => (() => {
                   const from = nix.thunk(() => nix.app(buildRubyGem, nix.thunk(() => ({
-                      [nix.POS]: pos$14,
+                      [nix.POS]: $pos[13],
                       gemName: nix.thunk(() => nix.attr(attrs, "gemName")),
                       version: nix.thunk(() => nix.attr(attrs, "version")),
                       source: nix.thunk(() => nix.attr(attrs, "source")),
                     }))));
                   return {
-                  [nix.POS]: pos$15,
+                  [nix.POS]: $pos[14],
                   name: nix.thunk(() => nix.attr(from, "name")),
                   src: nix.thunk(() => nix.attr(from, "src")),
                   unpackPhase: nix.thunk(() => nix.attr(from, "unpackPhase")),
@@ -199,7 +165,7 @@ export default nix.lambda((args) => (() => {
           const preInstall = "export CARGO_HOME=\"$PWD/../.cargo/\"\n# Unpack\ntar xvf $gempkg\n# Modify\ngzip -d data.tar.gz\nchmod +w data.tar\nmv Cargo.lock ./ext/gitlab_query_language\ntar rf data.tar ./ext/gitlab_query_language/Cargo.lock\n# Repack\ngzip data.tar\ntar -cf $gempkg data.tar.gz metadata.gz\n";
           const postInstall = "find $out -type f -name .rustc_info.json -delete\n";
           return {
-            [nix.POS]: pos$17,
+            [nix.POS]: $pos[16],
             cargoDeps,
             postPatch,
             dontBuild,
@@ -209,7 +175,7 @@ export default nix.lambda((args) => (() => {
           };
         })(),
         "prometheus-client-mmap": (attrs) => ({
-          [nix.POS]: pos$21,
+          [nix.POS]: $pos[20],
           dontBuild: false,
           postPatch: nix.thunk(() => (() => {
             const getconf = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isGnu")) ? nix.sel(stdenv, "cc", "libc") : nix.force(getconf)));
@@ -217,16 +183,16 @@ export default nix.lambda((args) => (() => {
 `;
           })()),
           cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-              [nix.POS]: pos$20,
+              [nix.POS]: $pos[19],
               src: nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => (() => {
                   const from = nix.thunk(() => nix.app(buildRubyGem, nix.thunk(() => ({
-                      [nix.POS]: pos$18,
+                      [nix.POS]: $pos[17],
                       gemName: nix.thunk(() => nix.attr(attrs, "gemName")),
                       version: nix.thunk(() => nix.attr(attrs, "version")),
                       source: nix.thunk(() => nix.attr(attrs, "source")),
                     }))));
                   return {
-                  [nix.POS]: pos$19,
+                  [nix.POS]: $pos[18],
                   name: nix.thunk(() => nix.attr(from, "name")),
                   src: nix.thunk(() => nix.attr(from, "src")),
                   unpackPhase: nix.thunk(() => nix.attr(from, "unpackPhase")),
@@ -248,7 +214,7 @@ export default nix.lambda((args) => (() => {
           postInstall: "find $out -type f -name .rustc_info.json -delete\n",
         }),
         static_holmes: (attrs) => ({
-          [nix.POS]: pos$22,
+          [nix.POS]: $pos[21],
           nativeBuildInputs: nix.thunk(() => [icu, which, nix.thunk(() => nix.sel(zlib, "dev"))]),
         }),
       }));
@@ -269,7 +235,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`${src}/gems`),
       ]);
       return {
-        [nix.POS]: pos$24,
+        [nix.POS]: $pos[23],
         name,
         ruby,
         gemdir,
@@ -281,17 +247,17 @@ export default nix.lambda((args) => (() => {
       };
     })())));
   const assets = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$28,
+      [nix.POS]: $pos[27],
       pname: "gitlab-assets",
       version: version,
       src: src,
       yarnOfflineCache: nix.thunk(() => nix.app(fetchYarnDeps, nix.thunk(() => ({
-          [nix.POS]: pos$25,
+          [nix.POS]: $pos[24],
           yarnLock: nix.thunk(() => nix.add(src, "/yarn.lock")),
           hash: nix.thunk(() => nix.sel(data, "yarn_hash")),
         })))),
       frontendIslandsYarnOfflineCache: nix.thunk(() => nix.app(fetchYarnDeps, nix.thunk(() => ({
-          [nix.POS]: pos$26,
+          [nix.POS]: $pos[25],
           yarnLock: nix.thunk(() => nix.add(src, "/ee/frontend_islands/yarn.lock")),
           hash: nix.thunk(() => nix.sel(data, "frontend_islands_yarn_hash")),
         })))),
@@ -308,7 +274,7 @@ export default nix.lambda((args) => (() => {
         nix.path(here, "./Remove-unsupported-database-names.patch"),
       ]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$27,
+        [nix.POS]: $pos[26],
         GITLAB_LOG_PATH: "log",
         FOSS_ONLY: nix.thunk(() => !nix.asBool(gitlabEnterprise)),
         SKIP_FRONTEND_ISLANDS_BUILD: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(gitlabEnterprise)), "true")),
@@ -320,7 +286,7 @@ export default nix.lambda((args) => (() => {
       installPhase: "runHook preInstall\n\nmv public/assets $out\n\nrunHook postInstall\n",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$35,
+      [nix.POS]: $pos[34],
       pname: nix.thunk(() => nix.str`gitlab${nix.app(nix.sel(lib, "optionalString"), gitlabEnterprise, "-ee")}`),
       src: src,
       version: version,
@@ -375,7 +341,7 @@ cp ${nix.path(here, "./reset_token.rake")} $out/share/gitlab/lib/tasks/reset_tok
 wrapProgram $out/share/gitlab/scripts/decomposition/generate-loose-foreign-key --set ENABLE_SPRING 0 --add-flags 'runner -e test'
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$31,
+        [nix.POS]: $pos[30],
         rubyEnv: rubyEnv,
         assets: assets,
         ruby: nix.thunk(() => nix.sel(rubyEnv, "wrappedRuby")),
@@ -384,25 +350,25 @@ wrapProgram $out/share/gitlab/scripts/decomposition/generate-loose-foreign-key -
         GITLAB_SHELL_VERSION: nix.thunk(() => nix.sel(data, "passthru", "GITLAB_SHELL_VERSION")),
         GITLAB_WORKHORSE_VERSION: nix.thunk(() => nix.sel(data, "passthru", "GITLAB_WORKHORSE_VERSION")),
         gitlabEnv: nix.thunk(() => ({
-          [nix.POS]: pos$29,
+          [nix.POS]: $pos[28],
           FOSS_ONLY: nix.thunk(() => nix.app(nix.sel(lib, "boolToString"), nix.thunk(() => !nix.asBool(gitlabEnterprise)))),
         })),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$30,
+          [nix.POS]: $pos[29],
           "nixos-test-passes": nix.thunk(() => nix.sel(nixosTests, "gitlab")),
         })),
       })),
       meta: nix.thunk(() => nix.update({
-        [nix.POS]: pos$32,
+        [nix.POS]: $pos[31],
         homepage: "http://www.gitlab.com/",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "gitlab"))]),
       }, (nix.asBool(gitlabEnterprise) ? {
-        [nix.POS]: pos$33,
+        [nix.POS]: $pos[32],
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfreeRedistributable")),
         description: "GitLab Enterprise Edition",
       } : {
-        [nix.POS]: pos$34,
+        [nix.POS]: $pos[33],
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         description: "GitLab Community Edition",
         longDescription: "GitLab Community Edition (CE) is an open source end-to-end software development platform with built-in version control, issue tracking, code review, CI/CD, and more. Self-host GitLab CE on your own servers, in a container, or on a cloud provider.",

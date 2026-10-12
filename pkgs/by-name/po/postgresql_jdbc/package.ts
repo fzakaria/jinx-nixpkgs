@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["artifactId", 14, 5], ["groupId", 15, 5], ["hash", 16, 5], ["version", 17, 26]], [["homepage", 29, 5], ["changelog", 30, 5], ["description", 31, 5], ["license", 32, 5], ["sourceProvenance", 33, 5], ["platforms", 34, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["installPhase", 20, 3], ["meta", 28, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchMavenArtifact: false, "junixsocket-common": false, "junixsocket-native-common": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["artifactId", 14, 5], ["groupId", 15, 5], ["hash", 16, 5], ["version", 17, 26]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 29, 5], ["changelog", 30, 5], ["description", 31, 5], ["license", 32, 5], ["sourceProvenance", 33, 5], ["platforms", 34, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["installPhase", 20, 3], ["meta", 28, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const junixsocket_common = nix.arg($, "junixsocket-common");
   const junixsocket_native_common = nix.arg($, "junixsocket-native-common");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "postgresql-jdbc",
       version: "42.7.7",
       src: nix.thunk(() => nix.app(fetchMavenArtifact, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           artifactId: "postgresql",
           groupId: "org.postgresql",
           hash: "sha256-FXlj1grmbWB+CUZujAzfgIfpyyDQFZiZ/8qWvKJShGA=",
@@ -32,7 +30,7 @@ ln -s ${junixsocket_native_common}/share/java/* $out/share/java/
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://jdbc.postgresql.org/",
         changelog: nix.thunk(() => nix.str`https://github.com/pgjdbc/pgjdbc/releases/tag/REL${nix.sel(finalAttrs, "version")}`),
         description: "JDBC driver for PostgreSQL allowing Java programs to connect to a PostgreSQL database",

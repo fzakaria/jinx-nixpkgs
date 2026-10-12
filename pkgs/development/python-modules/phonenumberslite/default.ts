@@ -2,16 +2,15 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["changelog", 12, 33], ["description", 12, 43], ["homepage", 12, 55]], [["pname", 7, 3], ["version", 8, 26], ["dependencies", 9, 3], ["optional-dependencies", 10, 3], ["meta", 11, 3]]]);
 const formals$1 = { args: { mkPythonMetaPackage: false, phonenumbers: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["changelog", 12, 33], ["description", 12, 43], ["homepage", 12, 55]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 7, 3], ["version", 8, 26], ["dependencies", 9, 3], ["optional-dependencies", 10, 3], ["meta", 11, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const mkPythonMetaPackage = nix.arg($, "mkPythonMetaPackage");
   const phonenumbers = nix.arg($, "phonenumbers");
   return nix.app(mkPythonMetaPackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "phonenumberslite",
       version: nix.thunk(() => nix.attr(phonenumbers, "version")),
       dependencies: nix.thunk(() => [phonenumbers]),
@@ -19,7 +18,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(phonenumbers, "meta"));
         return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         changelog: nix.thunk(() => nix.attr(from, "changelog")),
         description: nix.thunk(() => nix.attr(from, "description")),
         homepage: nix.thunk(() => nix.attr(from, "homepage")),

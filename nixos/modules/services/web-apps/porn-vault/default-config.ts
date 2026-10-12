@@ -2,46 +2,34 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
-const pos$1 = nix.positions(here + "/default-config.nix", [["convert", 7, 7], ["montage", 8, 7], ["identify", 9, 7]]);
-const pos$2 = nix.positions(here + "/default-config.nix", [["ffmpeg", 4, 5], ["ffprobe", 5, 5], ["imagemagick", 6, 5]]);
-const pos$3 = nix.positions(here + "/default-config.nix", [["ignoreSingleNames", 13, 5], ["applyStudioLabels", 14, 5], ["applyActorLabels", 15, 5], ["regexAliasesCaseSensitive", 16, 5]]);
-const pos$4 = nix.positions(here + "/default-config.nix", [["generatePreviewStrip", 19, 5], ["bookmarkNewScenes", 20, 5]]);
-const pos$5 = nix.positions(here + "/default-config.nix", [["path", 25, 9], ["include", 26, 9], ["exclude", 27, 9], ["extensions", 28, 9], ["enable", 34, 9]]);
-const pos$6 = nix.positions(here + "/default-config.nix", [["path", 39, 9], ["include", 40, 9], ["exclude", 41, 9], ["extensions", 42, 9], ["enable", 47, 9]]);
-const pos$7 = nix.positions(here + "/default-config.nix", [["images", 23, 5], ["videos", 37, 5]]);
-const pos$8 = nix.positions(here + "/default-config.nix", [["libraryPath", 52, 5], ["tempFolder", 53, 5]]);
-const pos$9 = nix.positions(here + "/default-config.nix", [["volumeThreshold", 57, 7]]);
-const pos$10 = nix.positions(here + "/default-config.nix", [["deadAudioChannelDetection", 56, 5]]);
-const pos$11 = nix.positions(here + "/default-config.nix", [["scene:created", 62, 7]]);
-const pos$12 = nix.positions(here + "/default-config.nix", [["events", 61, 5], ["register", 65, 5]]);
-const pos$13 = nix.positions(here + "/default-config.nix", [["binaries", 3, 3], ["matching", 12, 3], ["processing", 18, 3], ["import", 22, 3], ["persistence", 51, 3], ["diagnostics", 55, 3], ["plugins", 60, 3]]);
+const $pos = nix.positions(here + "/default-config.nix", [[["convert", 7, 7], ["montage", 8, 7], ["identify", 9, 7]], [["ffmpeg", 4, 5], ["ffprobe", 5, 5], ["imagemagick", 6, 5]], [["ignoreSingleNames", 13, 5], ["applyStudioLabels", 14, 5], ["applyActorLabels", 15, 5], ["regexAliasesCaseSensitive", 16, 5]], [["generatePreviewStrip", 19, 5], ["bookmarkNewScenes", 20, 5]], [["path", 25, 9], ["include", 26, 9], ["exclude", 27, 9], ["extensions", 28, 9], ["enable", 34, 9]], [["path", 39, 9], ["include", 40, 9], ["exclude", 41, 9], ["extensions", 42, 9], ["enable", 47, 9]], [["images", 23, 5], ["videos", 37, 5]], [["libraryPath", 52, 5], ["tempFolder", 53, 5]], [["volumeThreshold", 57, 7]], [["deadAudioChannelDetection", 56, 5]], [["scene:created", 62, 7]], [["events", 61, 5], ["register", 65, 5]], [["binaries", 3, 3], ["matching", 12, 3], ["processing", 18, 3], ["import", 22, 3], ["persistence", 51, 3], ["diagnostics", 55, 3], ["plugins", 60, 3]]]);
 
 export default nix.thunk(() => ({
-  [nix.POS]: pos$13,
+  [nix.POS]: $pos[12],
   binaries: nix.thunk(() => ({
-    [nix.POS]: pos$2,
+    [nix.POS]: $pos[1],
     ffmpeg: "ffmpeg",
     ffprobe: "ffprobe",
     imagemagick: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       convert: "convert",
       montage: "montage",
       identify: "identify",
     })),
   })),
   matching: nix.thunk(() => ({
-    [nix.POS]: pos$3,
+    [nix.POS]: $pos[2],
     ignoreSingleNames: true,
     applyStudioLabels: true,
     applyActorLabels: true,
     regexAliasesCaseSensitive: false,
   })),
-  processing: nix.thunk(() => ({ [nix.POS]: pos$4, generatePreviewStrip: true, bookmarkNewScenes: false })),
+  processing: nix.thunk(() => ({ [nix.POS]: $pos[3], generatePreviewStrip: true, bookmarkNewScenes: false })),
   import: nix.thunk(() => ({
-    [nix.POS]: pos$7,
+    [nix.POS]: $pos[6],
     images: nix.thunk(() => [
       nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         path: "/media/porn-vault/images",
         include: [],
         exclude: [],
@@ -51,7 +39,7 @@ export default nix.thunk(() => ({
     ]),
     videos: nix.thunk(() => [
       nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         path: "/media/porn-vault/videos",
         include: [],
         exclude: [],
@@ -61,17 +49,17 @@ export default nix.thunk(() => ({
     ]),
   })),
   persistence: nix.thunk(() => ({
-    [nix.POS]: pos$8,
+    [nix.POS]: $pos[7],
     libraryPath: "/media/porn-vault/lib/library",
     tempFolder: "tmp",
   })),
   diagnostics: nix.thunk(() => ({
-    [nix.POS]: pos$10,
-    deadAudioChannelDetection: nix.thunk(() => ({ [nix.POS]: pos$9, volumeThreshold: nix.thunk(() => nix.neg(50n)) })),
+    [nix.POS]: $pos[9],
+    deadAudioChannelDetection: nix.thunk(() => ({ [nix.POS]: $pos[8], volumeThreshold: nix.thunk(() => nix.neg(50n)) })),
   })),
   plugins: nix.thunk(() => ({
-    [nix.POS]: pos$12,
-    events: nix.thunk(() => ({ [nix.POS]: pos$11, "scene:created": [] })),
+    [nix.POS]: $pos[11],
+    events: nix.thunk(() => ({ [nix.POS]: $pos[10], "scene:created": [] })),
     register: nix.thunk(() => ({})),
   })),
 }));

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]], [["updateScript", 53, 12]], [["description", 56, 5], ["homepage", 57, 5], ["maintainers", 58, 5], ["platforms", 62, 5], ["license", 63, 5], ["changelog", 64, 5]], [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 40, 3], ["passthru", 53, 3], ["meta", 55, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchpatch: false, fetchFromGitHub: false, "nix-update-script": false, qt6Packages: false, "pkg-config": false, cmake: false, kdePackages: false, sqlite: false, libsecret: false, "libre-graph-api-cpp-qt-client": false, kdsingleapplication: false, "libinotify-kqueue": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 53, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 56, 5], ["homepage", 57, 5], ["maintainers", 58, 5], ["platforms", 62, 5], ["license", 63, 5], ["changelog", 64, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 40, 3], ["passthru", 53, 3], ["meta", 55, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const pname = "owncloud-client";
       const version = "6.0.3";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "owncloud",
           repo: "client",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -51,11 +48,11 @@ export default nix.lambda((args) => (() => {
         kdsingleapplication,
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [libinotify_kqueue]))));
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Synchronise your ownCloud with your computer using this desktop client",
         homepage: "https://owncloud.org",
         maintainers: nix.thunk(() => (() => {
@@ -70,7 +67,7 @@ export default nix.lambda((args) => (() => {
         changelog: nix.thunk(() => nix.str`https://github.com/owncloud/client/releases/tag/v${version}`),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

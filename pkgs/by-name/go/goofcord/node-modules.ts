@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/node-modules.nix", [[["x86_64-linux", 53, 7], ["aarch64-linux", 54, 7]], [["description", 61, 5], ["license", 62, 5], ["platforms", 63, 5]], [["version", 11, 22], ["src", 11, 30], ["pname", 12, 3], ["impureEnvVars", 14, 3], ["nativeBuildInputs", 19, 3], ["dontConfigure", 25, 3], ["dontFixup", 26, 3], ["buildPhase", 28, 3], ["installPhase", 43, 3], ["outputHash", 51, 3], ["outputHashAlgo", 57, 3], ["outputHashMode", 58, 3], ["meta", 60, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, goofcord: false, bun: false, nodejs: false, writableTmpDirAsHomeHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/node-modules.nix", [["x86_64-linux", 53, 7], ["aarch64-linux", 54, 7]]);
-const pos$2 = nix.positions(here + "/node-modules.nix", [["description", 61, 5], ["license", 62, 5], ["platforms", 63, 5]]);
-const pos$3 = nix.positions(here + "/node-modules.nix", [["version", 11, 22], ["src", 11, 30], ["pname", 12, 3], ["impureEnvVars", 14, 3], ["nativeBuildInputs", 19, 3], ["dontConfigure", 25, 3], ["dontFixup", 26, 3], ["buildPhase", 28, 3], ["installPhase", 43, 3], ["outputHash", 51, 3], ["outputHashAlgo", 57, 3], ["outputHashMode", 58, 3], ["meta", 60, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const nodejs = nix.arg($, "nodejs");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       version: nix.thunk(() => nix.attr(goofcord, "version")),
       src: nix.thunk(() => nix.attr(goofcord, "src")),
       pname: nix.thunk(() => nix.add(nix.sel(goofcord, "pname"), "-modules")),
@@ -27,14 +25,14 @@ export default nix.lambda((args) => (() => {
       buildPhase: "runHook preBuild\n\nexport BUN_INSTALL_CACHE_DIR=$(mktemp -d)\nexport npm_config_build_from_source=true\nexport ELECTRON_SKIP_BINARY_DOWNLOAD=1\n\nbun install \\\n  --frozen-lockfile \\\n  --linker=hoisted \\\n  --no-progress\n\nrunHook postBuild\n",
       installPhase: "runHook preInstall\n\ncp -R ./node_modules $out\n\nrunHook postInstall\n",
       outputHash: nix.thunk(() => nix.selOr({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         "x86_64-linux": "sha256-J26DRSUa/C7lvI8JFPQ92yj4zUVnD+SPkKwRQA9ITB8=",
         "aarch64-linux": "sha256-WIjcl//+OGB5J6Dp4Q2x24MA/cWqdtHYNwBBOgCD/tU=",
       }, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system ${nix.sel(stdenv, "hostPlatform", "system")}`)), nix.key(nix.sel(stdenv, "hostPlatform", "system")))),
       outputHashAlgo: "sha256",
       outputHashMode: "recursive",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Node modules for GoofCord",
         license: nix.thunk(() => nix.sel(lib, "licenses", "osl3")),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),

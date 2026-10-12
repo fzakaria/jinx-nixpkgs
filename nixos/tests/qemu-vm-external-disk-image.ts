@@ -2,26 +2,11 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/qemu-vm-external-disk-image.nix", [[["enable", 22, 32]], [["systemd-boot", 22, 19]], [["loader", 22, 12]], [["device", 25, 13], ["fsType", 26, 13]], [["/", 25, 9]], [["enable", 29, 21]], [["config", 32, 17], ["lib", 32, 24], ["pkgs", 32, 28], ["label", 33, 9], ["partitionTableType", 34, 9], ["format", 35, 9], ["bootSize", 36, 9], ["additionalSpace", 37, 9], ["copyChannel", 38, 9]], [["diskImage", 31, 20]], [["switch", 29, 14], ["build", 31, 14]], [["boot", 22, 7], ["fileSystems", 24, 7], ["system", 29, 7]], [["maintainers", 45, 8]], [["enable", 55, 33]], [["directBoot", 55, 22], ["mountHostNixStore", 56, 22], ["useEFIBoot", 57, 22], ["fileSystems", 61, 22]], [["virtualisation", 55, 7], ["imports", 63, 7]], [["machine", 47, 9]], [["name", 43, 3], ["meta", 45, 3], ["nodes", 47, 3], ["testScript", 66, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
 const formals$2 = { args: { config: false, lib: false, pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/qemu-vm-external-disk-image.nix", [["enable", 22, 32]]);
-const pos$2 = nix.positions(here + "/qemu-vm-external-disk-image.nix", [["systemd-boot", 22, 19]]);
-const pos$3 = nix.positions(here + "/qemu-vm-external-disk-image.nix", [["loader", 22, 12]]);
-const pos$4 = nix.positions(here + "/qemu-vm-external-disk-image.nix", [["device", 25, 13], ["fsType", 26, 13]]);
-const pos$5 = nix.positions(here + "/qemu-vm-external-disk-image.nix", [["/", 25, 9]]);
-const pos$6 = nix.positions(here + "/qemu-vm-external-disk-image.nix", [["enable", 29, 21]]);
-const pos$7 = nix.positions(here + "/qemu-vm-external-disk-image.nix", [["config", 32, 17], ["lib", 32, 24], ["pkgs", 32, 28], ["label", 33, 9], ["partitionTableType", 34, 9], ["format", 35, 9], ["bootSize", 36, 9], ["additionalSpace", 37, 9], ["copyChannel", 38, 9]]);
-const pos$8 = nix.positions(here + "/qemu-vm-external-disk-image.nix", [["diskImage", 31, 20]]);
-const pos$9 = nix.positions(here + "/qemu-vm-external-disk-image.nix", [["switch", 29, 14], ["build", 31, 14]]);
-const pos$10 = nix.positions(here + "/qemu-vm-external-disk-image.nix", [["boot", 22, 7], ["fileSystems", 24, 7], ["system", 29, 7]]);
-const pos$11 = nix.positions(here + "/qemu-vm-external-disk-image.nix", [["maintainers", 45, 8]]);
 const formals$3 = { args: { config: false, lib: false, pkgs: false }, ellipsis: true };
-const pos$12 = nix.positions(here + "/qemu-vm-external-disk-image.nix", [["enable", 55, 33]]);
-const pos$13 = nix.positions(here + "/qemu-vm-external-disk-image.nix", [["directBoot", 55, 22], ["mountHostNixStore", 56, 22], ["useEFIBoot", 57, 22], ["fileSystems", 61, 22]]);
-const pos$14 = nix.positions(here + "/qemu-vm-external-disk-image.nix", [["virtualisation", 55, 7], ["imports", 63, 7]]);
-const pos$15 = nix.positions(here + "/qemu-vm-external-disk-image.nix", [["machine", 47, 9]]);
 const formals$4 = { args: { nodes: false }, ellipsis: true };
-const pos$16 = nix.positions(here + "/qemu-vm-external-disk-image.nix", [["name", 43, 3], ["meta", 45, 3], ["nodes", 47, 3], ["testScript", 66, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,25 +19,25 @@ export default nix.lambda((args) => (() => {
     const lib_1 = nix.arg($_1, "lib");
     const pkgs = nix.arg($_1, "pkgs");
     return {
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       boot: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         loader: nix.thunk(() => ({
-          [nix.POS]: pos$2,
-          "systemd-boot": nix.thunk(() => ({ [nix.POS]: pos$1, enable: true })),
+          [nix.POS]: $pos[1],
+          "systemd-boot": nix.thunk(() => ({ [nix.POS]: $pos[0], enable: true })),
         })),
       })),
       fileSystems: nix.thunk(() => ({
-        [nix.POS]: pos$5,
-        "/": nix.thunk(() => ({ [nix.POS]: pos$4, device: rootFsDevice, fsType: "ext4" })),
+        [nix.POS]: $pos[4],
+        "/": nix.thunk(() => ({ [nix.POS]: $pos[3], device: rootFsDevice, fsType: "ext4" })),
       })),
       system: nix.thunk(() => ({
-        [nix.POS]: pos$9,
-        switch: nix.thunk(() => ({ [nix.POS]: pos$6, enable: true })),
+        [nix.POS]: $pos[8],
+        switch: nix.thunk(() => ({ [nix.POS]: $pos[5], enable: true })),
         build: nix.thunk(() => ({
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           diskImage: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../lib/make-disk-image.nix")), nix.thunk(() => ({
-              [nix.POS]: pos$7,
+              [nix.POS]: $pos[6],
               config: config,
               lib: lib_1,
               pkgs: pkgs,
@@ -68,27 +53,27 @@ export default nix.lambda((args) => (() => {
     };
   })(), formals$2);
   return {
-    [nix.POS]: pos$16,
+    [nix.POS]: $pos[15],
     name: "qemu-vm-external-disk-image",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$11,
+      [nix.POS]: $pos[10],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "nikstur"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$15,
+      [nix.POS]: $pos[14],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$3);
         const config = nix.arg($_1, "config");
         const lib_1 = nix.arg($_1, "lib");
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$14,
+          [nix.POS]: $pos[13],
           virtualisation: nix.thunk(() => ({
-            [nix.POS]: pos$13,
-            directBoot: nix.thunk(() => ({ [nix.POS]: pos$12, enable: false })),
+            [nix.POS]: $pos[12],
+            directBoot: nix.thunk(() => ({ [nix.POS]: $pos[11], enable: false })),
             mountHostNixStore: false,
             useEFIBoot: true,
             fileSystems: nix.thunk(() => nix.app(nix.sel(lib_1, "mkForce"), nix.thunk(() => ({})))),

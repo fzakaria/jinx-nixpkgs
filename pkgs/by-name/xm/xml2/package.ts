@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 14, 5], ["sha256", 15, 5]], [["homepage", 41, 5], ["description", 42, 5], ["license", 43, 5], ["platforms", 44, 5], ["maintainers", 45, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 18, 3], ["buildInputs", 19, 3], ["doInstallCheck", 21, 3], ["installCheckPhase", 22, 3], ["meta", 40, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, "pkg-config": false, libxml2: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 14, 5], ["sha256", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 41, 5], ["description", 42, 5], ["license", 43, 5], ["platforms", 44, 5], ["maintainers", 45, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 18, 3], ["buildInputs", 19, 3], ["doInstallCheck", 21, 3], ["installCheckPhase", 22, 3], ["meta", 40, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const libxml2 = nix.arg($, "libxml2");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "xml2",
       version: "0.5",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://web.archive.org/web/20160427221603/http://download.ofb.net/gale/xml2-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "01cps980m99y99cnmvydihga9zh3pvdsqag2fi1n6k2x7rfkl873",
         })))),
@@ -28,7 +26,7 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       installCheckPhase: "runHook preInstallCheck\n\necho -n 'checking csv2 and 2csv...'\n$out/bin/csv2 -f <<< $'a,b\\n1,2' \\\n  | $out/bin/2csv record a b \\\n  | grep -qF '1,2'\necho ' ok'\n\necho -n 'checking xml2 and 2xml...'\n$out/bin/xml2 <<< $'<a>abc</a>' \\\n  | $out/bin/2xml \\\n  | grep -qF '<a>abc</a>'\necho ' ok'\n\nrunHook postInstallCheck\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://web.archive.org/web/20160515005047/http://dan.egnor.name:80/xml2",
         description: "Tools for command line processing of XML, HTML, and CSV",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

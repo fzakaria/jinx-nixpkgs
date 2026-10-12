@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 18, 5], ["hash", 19, 5]], [["package", 42, 7], ["command", 43, 7], ["version", 44, 7]], [["version", 41, 11]], [["url", 47, 7], ["ignoredVersions", 48, 7], ["rev-prefix", 49, 7]], [["tests", 41, 5], ["updateScript", 46, 5]], [["description", 54, 5], ["longDescription", 57, 5], ["homepage", 68, 5], ["changelog", 69, 5], ["sourceProvenance", 70, 5], ["mainProgram", 71, 5], ["license", 72, 5], ["platforms", 73, 5], ["maintainers", 74, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 22, 3], ["installPhase", 27, 3], ["passthru", 40, 3], ["meta", 53, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchzip: false, jdk: false, makeWrapper: false, installShellFiles: false, coreutils: false, testers: false, gitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["package", 42, 7], ["command", 43, 7], ["version", 44, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 41, 11]]);
-const pos$4 = nix.positions(here + "/package.nix", [["url", 47, 7], ["ignoredVersions", 48, 7], ["rev-prefix", 49, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["tests", 41, 5], ["updateScript", 46, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 54, 5], ["longDescription", 57, 5], ["homepage", 68, 5], ["changelog", 69, 5], ["sourceProvenance", 70, 5], ["mainProgram", 71, 5], ["license", 72, 5], ["platforms", 73, 5], ["maintainers", 74, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 22, 3], ["installPhase", 27, 3], ["passthru", 40, 3], ["meta", 53, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "spring-boot-cli",
       version: "4.1.1",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://maven/org/springframework/boot/spring-boot-cli/${nix.sel(finalAttrs, "version")}/spring-boot-cli-${nix.sel(finalAttrs, "version")}-bin.zip`),
           hash: "sha256-0QexrxlQBOq917CyFFZzt6AV/HCwxIafNAPGLnOlN/o=",
         })))),
@@ -44,25 +38,25 @@ wrapProgram $out/bin/spring \\
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               command: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))} --version`),
               version: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
             })))),
         })),
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             url: "https://github.com/spring-projects/spring-boot",
             ignoredVersions: ".*-(RC|M).*",
             "rev-prefix": "v",
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "CLI which makes it easy to create spring-based applications\n",
         longDescription: "Spring Boot makes it easy to create stand-alone, production-grade\nSpring-based Applications that you can run. We take an opinionated view\nof the Spring platform and third-party libraries, so that you can get\nstarted with minimum fuss. Most Spring Boot applications need very\nlittle Spring configuration.\n\nYou can use Spring Boot to create Java applications that can be started\nby using java -jar or more traditional war deployments. We also provide\na command line tool that runs “spring scripts”.\n",
         homepage: "https://spring.io/projects/spring-boot",

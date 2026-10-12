@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 32, 5], ["owner", 33, 5], ["repo", 34, 5], ["tag", 35, 5], ["hash", 36, 5], ["forceFetchGit", 38, 5]], [["updateScript", 76, 12]], [["description", 79, 5], ["homepage", 80, 5], ["changelog", 81, 5], ["license", 82, 5], ["platforms", 83, 5], ["maintainers", 84, 5], ["mainProgram", 88, 5]], [["pname", 28, 3], ["version", 29, 3], ["src", 31, 3], ["mesonFlags", 41, 3], ["postPatch", 46, 3], ["nativeBuildInputs", 50, 3], ["buildInputs", 60, 3], ["passthru", 76, 3], ["meta", 78, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, meson: false, ninja: false, "pkg-config": false, python3: false, "wayland-scanner": false, wrapGAppsHook3: false, appstream: false, cmake: false, feedbackd: false, fzf: false, glib: false, gmobile: false, "gnome-desktop": false, gtk3: false, hunspell: false, "json-glib": false, libhandy: false, libxkbcommon: false, systemd: false, "nix-update-script": false, dconf: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 32, 5], ["owner", 33, 5], ["repo", 34, 5], ["tag", 35, 5], ["hash", 36, 5], ["forceFetchGit", 38, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 76, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 79, 5], ["homepage", 80, 5], ["changelog", 81, 5], ["license", 82, 5], ["platforms", 83, 5], ["maintainers", 84, 5], ["mainProgram", 88, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 28, 3], ["version", 29, 3], ["src", 31, 3], ["mesonFlags", 41, 3], ["postPatch", 46, 3], ["nativeBuildInputs", 50, 3], ["buildInputs", 60, 3], ["passthru", 76, 3], ["meta", 78, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -35,11 +32,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const dconf = nix.arg($, "dconf");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "stevia",
       version: "0.54.0",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "gitlab.gnome.org",
           owner: "World/Phosh",
           repo: "stevia",
@@ -69,11 +66,11 @@ export default nix.lambda((args) => (() => {
         dconf,
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "User friendly on screen keyboard for Phosh",
         homepage: "https://gitlab.gnome.org/World/Phosh/stevia",
         changelog: nix.thunk(() => nix.str`https://gitlab.gnome.org/World/Phosh/stevia/-/releases/v${nix.sel(finalAttrs, "version")}`),

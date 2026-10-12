@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 39, 5], ["repo", 40, 5], ["tag", 41, 5], ["hash", 42, 5]], [["description", 75, 5], ["homepage", 76, 5], ["changelog", 77, 5], ["license", 78, 5], ["maintainers", 79, 5]], [["pname", 32, 3], ["version", 33, 3], ["pyproject", 34, 3], ["disabled", 36, 3], ["src", 38, 3], ["postPatch", 45, 3], ["build-system", 52, 3], ["dependencies", 54, 3], ["nativeCheckInputs", 65, 3], ["meta", 74, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, pythonOlder: false, fetchFromGitHub: false, hatchling: false, aiohttp: false, frozendict: false, inject: false, joblib: false, loguru: false, nix: false, "nix-prefetch-git": false, nurl: false, platformdirs: false, pydantic: false, typer: false, writableTmpDirAsHomeHook: false, pytestCheckHook: false, aioresponses: false, "pytest-asyncio": false, "pytest-cov-stub": false, "pytest-mock": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 39, 5], ["repo", 40, 5], ["tag", 41, 5], ["hash", 42, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 75, 5], ["homepage", 76, 5], ["changelog", 77, 5], ["license", 78, 5], ["maintainers", 79, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 32, 3], ["version", 33, 3], ["pyproject", 34, 3], ["disabled", 36, 3], ["src", 38, 3], ["postPatch", 45, 3], ["build-system", 52, 3], ["dependencies", 54, 3], ["nativeCheckInputs", 65, 3], ["meta", 74, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,13 +30,13 @@ export default nix.lambda((args) => (() => {
   const pytest_cov_stub = nix.arg($, "pytest-cov-stub");
   const pytest_mock = nix.arg($, "pytest-mock");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "nixpkgs-updaters-library",
       version: "3.1.1",
       pyproject: true,
       disabled: nix.thunk(() => nix.app(pythonOlder, "3.13")),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "PerchunPak",
           repo: "nixpkgs-updaters-library",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -60,7 +58,7 @@ export default nix.lambda((args) => (() => {
         pytestCheckHook,
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Boilerplate-less updater library for Nixpkgs ecosystems",
         homepage: "https://github.com/PerchunPak/nixpkgs-updaters-library",
         changelog: nix.thunk(() => nix.str`https://github.com/PerchunPak/nixpkgs-updaters-library/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]], [["package", 61, 9], ["command", 62, 9], ["version", 63, 9]], [["tang", 59, 28], ["version", 60, 7]], [["tests", 58, 5], ["updateScript", 66, 5]], [["description", 70, 5], ["homepage", 71, 5], ["changelog", 72, 5], ["maintainers", 73, 5], ["license", 74, 5], ["mainProgram", 75, 5]], [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 39, 3], ["outputs", 46, 3], ["postFixup", 51, 3], ["passthru", 57, 3], ["meta", 69, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, "pkg-config": false, "asciidoc-full": false, jansson: false, jose: false, "http-parser": false, systemdLibs: false, meson: false, ninja: false, makeWrapper: false, testers: false, tang: false, gitUpdater: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["package", 61, 9], ["command", 62, 9], ["version", 63, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tang", 59, 28], ["version", 60, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 58, 5], ["updateScript", 66, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 70, 5], ["homepage", 71, 5], ["changelog", 72, 5], ["maintainers", 73, 5], ["license", 74, 5], ["mainProgram", 75, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 39, 3], ["outputs", 46, 3], ["postFixup", 51, 3], ["passthru", 57, 3], ["meta", 69, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const gitUpdater = nix.arg($, "gitUpdater");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "tang",
       version: "15",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "latchset",
           repo: "tang",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -47,12 +42,12 @@ wrapProgram $out/libexec/tangd-keygen --prefix PATH ":" ${nix.app(nix.sel(lib, "
 wrapProgram $out/libexec/tangd-rotate-keys --prefix PATH ":" ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [jose]))}
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           tang: nix.thunk(() => nix.attr(nixosTests, "tang")),
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               package: tang,
               command: nix.thunk(() => nix.str`${tang}/libexec/tangd --version`),
               version: nix.thunk(() => nix.str`tangd ${nix.sel(finalAttrs, "version")}`),
@@ -61,7 +56,7 @@ wrapProgram $out/libexec/tangd-rotate-keys --prefix PATH ":" ${nix.app(nix.sel(l
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Server for binding data to network presence",
         homepage: "https://github.com/latchset/tang",
         changelog: nix.thunk(() => nix.str`https://github.com/latchset/tang/releases/tag/v${nix.sel(finalAttrs, "version")}`),

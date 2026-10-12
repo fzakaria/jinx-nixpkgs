@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["homepage", 54, 5], ["downloadPage", 55, 5], ["platforms", 56, 5], ["mainProgram", 57, 5], ["sourceProvenance", 58, 5], ["license", 59, 5], ["maintainers", 60, 5], ["description", 61, 5], ["longDescription", 62, 5]], [["test-cli", 78, 5], ["test-gui", 79, 5]], [["tests", 77, 12]], [["url", 98, 7], ["hash", 99, 7]], [["pname", 95, 5], ["version", 96, 5], ["src", 97, 5], ["meta", 101, 13], ["passthru", 101, 18], ["__structuredAttrs", 103, 5], ["strictDeps", 104, 5], ["nativeBuildInputs", 106, 5], ["buildInputs", 110, 5], ["runtimeDependencies", 117, 5], ["sourceRoot", 120, 5], ["postUnpack", 122, 5], ["installPhase", 134, 5], ["preFixup", 142, 5]], [["mainProgram", 167, 7]], [["unwrapped", 170, 13]], [["pname", 162, 3], ["version", 163, 23], ["meta", 164, 3], ["passthru", 169, 3], ["paths", 172, 3], ["nativeBuildInputs", 173, 3], ["pathsToLink", 174, 3], ["postBuild", 187, 3]]]);
 const formals$1 = { args: { lib: false, callPackage: false, nixosTests: false, stdenv: false, fetchurl: false, autoPatchelfHook: false, rpmextract: false, brotli: false, libnghttp2: false, "libxcrypt-legacy": false, zlib: false, lvm2: false, acl: false, gnugrep: false, procps: false, jdk: false, buildEnv: false, makeWrapper: false, enableGui: true, dsmSysCli: true, dsmSysApi: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["homepage", 54, 5], ["downloadPage", 55, 5], ["platforms", 56, 5], ["mainProgram", 57, 5], ["sourceProvenance", 58, 5], ["license", 59, 5], ["maintainers", 60, 5], ["description", 61, 5], ["longDescription", 62, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["test-cli", 78, 5], ["test-gui", 79, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 77, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["url", 98, 7], ["hash", 99, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 95, 5], ["version", 96, 5], ["src", 97, 5], ["meta", 101, 13], ["passthru", 101, 18], ["__structuredAttrs", 103, 5], ["strictDeps", 104, 5], ["nativeBuildInputs", 106, 5], ["buildInputs", 110, 5], ["runtimeDependencies", 117, 5], ["sourceRoot", 120, 5], ["postUnpack", 122, 5], ["installPhase", 134, 5], ["preFixup", 142, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["mainProgram", 167, 7]]);
-const pos$7 = nix.positions(here + "/package.nix", [["unwrapped", 170, 13]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 162, 3], ["version", 163, 23], ["meta", 164, 3], ["passthru", 169, 3], ["paths", 172, 3], ["nativeBuildInputs", 173, 3], ["pathsToLink", 174, 3], ["postBuild", 187, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -36,7 +29,7 @@ export default nix.lambda((args) => (() => {
   const dsmSysCli = nix.argOr($, "dsmSysCli", () => "/etc/tsm-client/cli.dsm.sys");
   const dsmSysApi = nix.argOr($, "dsmSysApi", () => "/etc/tsm-client/api.dsm.sys");
   const meta = nix.thunk(() => ({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     homepage: "https://www.ibm.com/products/storage-protect",
     downloadPage: "https://www.ibm.com/support/fixcentral/swg/selectFixes?product=ibm/StorageSoftware/IBM+Spectrum+Protect",
     platforms: nix.thunk(() => ["x86_64-linux"]),
@@ -51,9 +44,9 @@ export default nix.lambda((args) => (() => {
     longDescription: "IBM Storage Protect (Tivoli Storage Manager) provides\na single point of control for backup and recovery.\nThis package contains the client software, that is,\na command line client and linkable libraries.\n\nNote that the software requires a system-wide\nclient system-options file (commonly named \"dsm.sys\").\nThis package allows to use separate files for\nthe command-line interface and for the linkable API.\nThe location of those files can\nbe provided as build parameters.\n",
   }));
   const passthru = nix.thunk(() => ({
-    [nix.POS]: pos$3,
+    [nix.POS]: $pos[2],
     tests: nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       "test-cli": nix.thunk(() => nix.app(callPackage, nix.path(here, "./test-cli.nix"), nix.thunk(() => ({})))),
       "test-gui": nix.thunk(() => nix.sel(nixosTests, "tsm-client-gui")),
     })),
@@ -66,11 +59,11 @@ export default nix.lambda((args) => (() => {
     return nix.str`https://public.dhe.ibm.com/storage/tivoli-storage-management/${(nix.asBool(nix.eq(fixup, "0")) ? "maintenance" : "patches")}/client/v${major}r${minor}/Linux/LinuxX86/BA/v${major}${minor}${patch}/${version}-TIV-TSMBAC-LinuxX86.tar`;
   })();
   const unwrapped = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "tsm-client-unwrapped",
       version: "8.2.2.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           url: nix.thunk(() => nix.app(mkSrcUrl, nix.thunk(() => nix.sel(finalAttrs, "version")))),
           hash: "sha512-nxfwYyQ3jlwZxgfiXN5APb2lr+UlJgYX5IFUZxExuZbS518qQHMWFR+4BJEgMmsdIIg2Ic9QVXA+p89z4dJspA==",
         })))),
@@ -94,11 +87,11 @@ export default nix.lambda((args) => (() => {
     })));
   const binPath = nix.thunk(() => nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => nix.concat([acl, gnugrep, procps], nix.app(nix.sel(lib, "optional"), enableGui, jdk)))));
   return nix.app(buildEnv, nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "tsm-client",
       version: nix.thunk(() => nix.attr(unwrapped, "version")),
-      meta: nix.thunk(() => nix.update(meta, nix.app(nix.sel(lib, "attrsets", "optionalAttrs"), enableGui, nix.thunk(() => ({ [nix.POS]: pos$6, mainProgram: "dsmj" }))))),
-      passthru: nix.thunk(() => nix.update(passthru, { [nix.POS]: pos$7, unwrapped: unwrapped })),
+      meta: nix.thunk(() => nix.update(meta, nix.app(nix.sel(lib, "attrsets", "optionalAttrs"), enableGui, nix.thunk(() => ({ [nix.POS]: $pos[5], mainProgram: "dsmj" }))))),
+      passthru: nix.thunk(() => nix.update(passthru, { [nix.POS]: $pos[6], unwrapped: unwrapped })),
       paths: nix.thunk(() => [unwrapped]),
       nativeBuildInputs: nix.thunk(() => [makeWrapper]),
       pathsToLink: nix.thunk(() => [

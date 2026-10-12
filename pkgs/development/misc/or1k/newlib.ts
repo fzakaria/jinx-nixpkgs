@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/newlib.nix", [[["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["sha256", 16, 5]], [["incdir", 43, 5], ["libdir", 44, 5]], [["homepage", 48, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["depsBuildBuild", 19, 3], ["preConfigure", 22, 3], ["configurePlatforms", 26, 3], ["configureFlags", 30, 3], ["dontDisableStatic", 40, 3], ["passthru", 42, 3], ["meta", 47, 3]]]);
 const formals$1 = { args: { stdenv: false, fetchFromGitHub: false, stdenvNoLibc: false, buildPackages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/newlib.nix", [["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["sha256", 16, 5]]);
-const pos$2 = nix.positions(here + "/newlib.nix", [["incdir", 43, 5], ["libdir", 44, 5]]);
-const pos$3 = nix.positions(here + "/newlib.nix", [["homepage", 48, 5]]);
-const pos$4 = nix.positions(here + "/newlib.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["depsBuildBuild", 19, 3], ["preConfigure", 22, 3], ["configurePlatforms", 26, 3], ["configureFlags", 30, 3], ["dontDisableStatic", 40, 3], ["passthru", 42, 3], ["meta", 47, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const stdenvNoLibc = nix.arg($, "stdenvNoLibc");
   const buildPackages = nix.arg($, "buildPackages");
   return nix.app(nix.sel(stdenvNoLibc, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "or1k-newlib",
       version: "0-unstable-2018-11-05",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "openrisc",
           repo: "newlib",
           rev: "8ac94ca7bbe4ceddafe6583ee4766d3c15b18ac8",
@@ -38,11 +35,11 @@ export default nix.lambda((args) => (() => {
       ]),
       dontDisableStatic: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         incdir: nix.thunk(() => nix.str`/${nix.sel(stdenv, "targetPlatform", "config")}/include`),
         libdir: nix.thunk(() => nix.str`/${nix.sel(stdenv, "targetPlatform", "config")}/lib`),
       })),
-      meta: nix.thunk(() => ({ [nix.POS]: pos$3, homepage: "https://github.com/openrisc/newlib" })),
+      meta: nix.thunk(() => ({ [nix.POS]: $pos[2], homepage: "https://github.com/openrisc/newlib" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=newlib.ts.map

@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]], [["pname", 25, 5], ["version", 27, 13], ["src", 27, 21], ["nativeBuildInputs", 29, 5], ["buildInputs", 31, 5], ["postPatch", 44, 5], ["buildPhase", 50, 5]], [["withBpf", 103, 11], ["withConfigValidation", 104, 11], ["withShellColor", 105, 11]], [["tests", 100, 7], ["features", 101, 7], ["jsonschema", 109, 7], ["docs", 110, 15]], [["description", 114, 7], ["homepage", 115, 7], ["changelog", 116, 7], ["platforms", 117, 7], ["license", 118, 7], ["maintainers", 119, 7], ["mainProgram", 120, 7]], [["pname", 58, 5], ["version", 59, 13], ["src", 59, 21], ["pyproject", 61, 5], ["postPatch", 63, 5], ["build-system", 75, 5], ["dependencies", 79, 5], ["pythonRemoveDeps", 89, 5], ["doCheck", 92, 5], ["pythonImportsCheck", 94, 5], ["passthru", 99, 5], ["meta", 113, 5]]]);
 const formals$1 = { args: { lib: false, stdenv: false, yq: false, python3Packages: false, fetchFromCodeberg: false, ethtool: false, iproute2: false, libbpf: false, nixosTests: false, withBpf: true, withConfigValidation: true, withShellColor: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 25, 5], ["version", 27, 13], ["src", 27, 21], ["nativeBuildInputs", 29, 5], ["buildInputs", 31, 5], ["postPatch", 44, 5], ["buildPhase", 50, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["withBpf", 103, 11], ["withConfigValidation", 104, 11], ["withShellColor", 105, 11]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 100, 7], ["features", 101, 7], ["jsonschema", 109, 7], ["docs", 110, 15]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 114, 7], ["homepage", 115, 7], ["changelog", 116, 7], ["platforms", 117, 7], ["license", 118, 7], ["maintainers", 119, 7], ["mainProgram", 120, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 58, 5], ["version", 59, 13], ["src", 59, 21], ["pyproject", 61, 5], ["postPatch", 63, 5], ["build-system", 75, 5], ["dependencies", 79, 5], ["pythonRemoveDeps", 89, 5], ["doCheck", 92, 5], ["pythonImportsCheck", 94, 5], ["passthru", 99, 5], ["meta", 113, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,14 +21,14 @@ export default nix.lambda((args) => (() => {
   const withShellColor = nix.argOr($, "withShellColor", () => false);
   const version = "2.4.2";
   const src = nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "routerkit",
       repo: "ifstate",
       tag: version,
       hash: "sha256-CcqIVdqyPdTVdhyCpKpbmjYeutidpnYCVtDoZkuq4c4=",
     }))));
   const docs = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "ifstate-docs",
       version: version,
       src: src,
@@ -80,10 +75,10 @@ substituteInPlace libifstate/link/base.py \\
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["libifstate", "ifstate"]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => nix.sel(nixosTests, "ifstate")),
         features: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           withBpf: withBpf,
           withConfigValidation: withConfigValidation,
           withShellColor: withShellColor,
@@ -92,7 +87,7 @@ substituteInPlace libifstate/link/base.py \\
         docs: docs,
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Manage host interface settings in a declarative manner",
         homepage: "https://ifstate.net",
         changelog: nix.thunk(() => nix.str`https://codeberg.org/liske/ifstate/src/tag/${nix.sel(src_1, "tag")}/CHANGELOG.md`),
@@ -105,7 +100,7 @@ substituteInPlace libifstate/link/base.py \\
         mainProgram: "ifstatecli",
       }));
       return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname,
         version: version_1,
         src: src_1,

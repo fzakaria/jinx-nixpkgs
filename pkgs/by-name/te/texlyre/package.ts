@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]], [["owner", 76, 9], ["repo", 77, 9], ["tag", 78, 9], ["hash", 79, 9]], [["pname", 73, 7], ["version", 74, 7], ["src", 75, 7], ["dontBuild", 81, 7], ["installPhase", 82, 7]], [["owner", 88, 9], ["repo", 89, 9], ["tag", 90, 9], ["hash", 91, 9]], [["pname", 85, 7], ["version", 86, 7], ["src", 87, 7], ["dontBuild", 93, 7], ["installPhase", 94, 7]], [["updateScript", 71, 5], ["drawioEmbed", 72, 5], ["busytexAssets", 84, 5]], [["changelog", 99, 5], ["description", 100, 5], ["homepage", 101, 5], ["license", 102, 5], ["platforms", 103, 5], ["mainProgram", 104, 5], ["teams", 105, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["npmDepsHash", 25, 3], ["postPatch", 27, 3], ["nativeBuildInputs", 38, 3], ["__structuredAttrs", 40, 3], ["preBuild", 42, 3], ["doCheck", 51, 3], ["checkPhase", 52, 3], ["installPhase", 58, 3], ["postFixup", 64, 3], ["passthru", 70, 3], ["meta", 98, 3]]]);
 const formals$1 = { args: { lib: false, xsel: false, serve: false, fetchzip: false, stdenvNoCC: false, makeWrapper: false, buildNpmPackage: false, fetchFromGitHub: false, baseUrl: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 76, 9], ["repo", 77, 9], ["tag", 78, 9], ["hash", 79, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 73, 7], ["version", 74, 7], ["src", 75, 7], ["dontBuild", 81, 7], ["installPhase", 82, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["owner", 88, 9], ["repo", 89, 9], ["tag", 90, 9], ["hash", 91, 9]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 85, 7], ["version", 86, 7], ["src", 87, 7], ["dontBuild", 93, 7], ["installPhase", 94, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["updateScript", 71, 5], ["drawioEmbed", 72, 5], ["busytexAssets", 84, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["changelog", 99, 5], ["description", 100, 5], ["homepage", 101, 5], ["license", 102, 5], ["platforms", 103, 5], ["mainProgram", 104, 5], ["teams", 105, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["npmDepsHash", 25, 3], ["postPatch", 27, 3], ["nativeBuildInputs", 38, 3], ["__structuredAttrs", 40, 3], ["preBuild", 42, 3], ["doCheck", 51, 3], ["checkPhase", 52, 3], ["installPhase", 58, 3], ["postFixup", 64, 3], ["passthru", 70, 3], ["meta", 98, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const baseUrl = nix.argOr($, "baseUrl", () => "/");
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "texlyre",
       version: "0.13.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "TeXlyre",
           repo: "texlyre",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -61,14 +54,14 @@ npm run generate:configs
   --chdir $out
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         updateScript: nix.path(here, "./update.sh"),
         drawioEmbed: nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs_1) => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             pname: "drawio-embed",
             version: "31.6.1",
             src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                [nix.POS]: pos$2,
+                [nix.POS]: $pos[1],
                 owner: "TeXlyre",
                 repo: "drawio-embed-mirror",
                 tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs_1, "version")}`),
@@ -78,11 +71,11 @@ npm run generate:configs
             installPhase: "cp -a . $out",
           }))),
         busytexAssets: nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs_1) => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             pname: "busytex-assets",
             version: "1.4.0",
             src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                [nix.POS]: pos$4,
+                [nix.POS]: $pos[3],
                 owner: "TeXlyre",
                 repo: "texlyre-busytex",
                 tag: nix.thunk(() => nix.str`assets-v${nix.sel(finalAttrs_1, "version")}`),
@@ -93,7 +86,7 @@ npm run generate:configs
           }))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         changelog: nix.thunk(() => nix.str`https://github.com/TeXlyre/texlyre/releases/tag/${nix.sel(finalAttrs, "src", "rev")}`),
         description: "Local-first LaTeX & Typst web editor with real-time collaboration & offline support",
         homepage: "https://github.com/TeXlyre/texlyre",

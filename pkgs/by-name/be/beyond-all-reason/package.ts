@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 12, 5], ["hash", 13, 5]], [["pname", 15, 54], ["version", 15, 60], ["src", 15, 68]], [["homepage", 31, 5], ["downloadPage", 32, 5], ["changelog", 33, 5], ["description", 34, 5], ["license", 35, 5], ["platforms", 36, 5], ["maintainers", 37, 5]], [["pname", 18, 11], ["version", 18, 17], ["src", 18, 25], ["extraPkgs", 20, 3], ["extraInstallCommands", 22, 3], ["meta", 30, 3]]]);
 const formals$1 = { args: { lib: false, fetchurl: false, appimageTools: false, openal: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 12, 5], ["hash", 13, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 15, 54], ["version", 15, 60], ["src", 15, 68]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 31, 5], ["downloadPage", 32, 5], ["changelog", 33, 5], ["description", 34, 5], ["license", 35, 5], ["platforms", 36, 5], ["maintainers", 37, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 18, 11], ["version", 18, 17], ["src", 18, 25], ["extraPkgs", 20, 3], ["extraInstallCommands", 22, 3], ["meta", 30, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,13 +14,13 @@ export default nix.lambda((args) => (() => {
   const version = "1.2988.0";
   const pname = "beyond-all-reason";
   const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: nix.thunk(() => nix.str`https://github.com/beyond-all-reason/BYAR-Chobby/releases/download/v${version}/Beyond-All-Reason-${version}.AppImage`),
       hash: "sha256-ZJW5BdxxqyrM2TJTO0SBp4BXt3ILyi77EZx73X8hqJE=",
     }))));
-  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: pos$2, pname: pname, version: version, src: src }))));
+  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: $pos[1], pname: pname, version: version, src: src }))));
   return nix.app(nix.sel(appimageTools, "wrapType2"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: pname,
       version: version,
       src: src,
@@ -35,7 +32,7 @@ substituteInPlace $out/share/applications/beyond-all-reason.desktop \\
   --replace-fail 'Exec=AppRun' 'Exec=beyond-all-reason'
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://www.beyondallreason.info/",
         downloadPage: "https://www.beyondallreason.info/download",
         changelog: nix.thunk(() => nix.str`https://github.com/beyond-all-reason/BYAR-Chobby/releases/tag/v${version}`),

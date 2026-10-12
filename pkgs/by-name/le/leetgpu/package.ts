@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 16, 7], ["hash", 17, 7]], [["url", 21, 7], ["hash", 22, 7]], [["url", 26, 7], ["hash", 27, 7]], [["x86_64-linux", 15, 5], ["aarch64-linux", 20, 5], ["aarch64-darwin", 25, 5]], [["updateScript", 59, 12]], [["description", 62, 5], ["homepage", 63, 5], ["license", 64, 5], ["sourceProvenance", 65, 5], ["maintainers", 66, 5], ["mainProgram", 67, 5]], [["pname", 35, 3], ["version", 36, 11], ["strictDeps", 38, 3], ["__structuredAttrs", 39, 3], ["src", 41, 11], ["dontUnpack", 43, 3], ["dontConfigure", 44, 3], ["dontBuild", 45, 3], ["installPhase", 47, 3], ["nativeInstallCheckInputs", 55, 3], ["versionCheckProgramArg", 56, 3], ["doInstallCheck", 57, 3], ["passthru", 59, 3], ["meta", 61, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchurl: false, installShellFiles: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 16, 7], ["hash", 17, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 21, 7], ["hash", 22, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 26, 7], ["hash", 27, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["x86_64-linux", 15, 5], ["aarch64-linux", 20, 5], ["aarch64-darwin", 25, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["updateScript", 59, 12]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 62, 5], ["homepage", 63, 5], ["license", 64, 5], ["sourceProvenance", 65, 5], ["maintainers", 66, 5], ["mainProgram", 67, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 35, 3], ["version", 36, 11], ["strictDeps", 38, 3], ["__structuredAttrs", 39, 3], ["src", 41, 11], ["dontUnpack", 43, 3], ["dontConfigure", 44, 3], ["dontBuild", 45, 3], ["installPhase", 47, 3], ["nativeInstallCheckInputs", 55, 3], ["versionCheckProgramArg", 56, 3], ["doInstallCheck", 57, 3], ["passthru", 59, 3], ["meta", 61, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,26 +15,26 @@ export default nix.lambda((args) => (() => {
   const version = "1.2.0";
   const throwSystem = nix.thunk(() => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenvNoCC, "hostPlatform", "system")}`)));
   const srcs = nix.thunk(() => ({
-    [nix.POS]: pos$4,
+    [nix.POS]: $pos[3],
     "x86_64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         url: nix.thunk(() => nix.str`https://cli.leetgpu.com/dist/${version}/leetgpu-linux-amd64`),
         hash: "sha256-um+KHqE1mmx7dkKm3pecrZSnsT+vbMh95kWQAsLGxFw=",
       })))),
     "aarch64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         url: nix.thunk(() => nix.str`https://cli.leetgpu.com/dist/${version}/leetgpu-linux-arm64`),
         hash: "sha256-3BcM0SHBugv/72iznR0q6t18B+u1f2auyUK1n1t5KBY=",
       })))),
     "aarch64-darwin": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         url: nix.thunk(() => nix.str`https://cli.leetgpu.com/dist/${version}/leetgpu-macos-arm64`),
         hash: "sha256-B1Sdyw+6fDBKS3PsINmiNA9PnOtEpDZiodFPsx+qk1Y=",
       })))),
   }));
   const src = nix.thunk(() => nix.selOr(srcs, () => nix.force(throwSystem), nix.key(nix.sel(stdenvNoCC, "hostPlatform", "system"))));
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "leetgpu",
       version: version,
       strictDeps: true,
@@ -58,9 +52,9 @@ runHook postInstall
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       versionCheckProgramArg: "version",
       doInstallCheck: true,
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$5, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[4], updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Run CUDA kernels from your terminal",
         homepage: "https://leetgpu.com/cli",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

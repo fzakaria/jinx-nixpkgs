@@ -2,8 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/dhcpleased.nix", [[["path", 7, 3], ["postPatch", 9, 3], ["buildInputs", 13, 3], ["extraNativeBuildInputs", 14, 3]]]);
 const formals$1 = { args: { mkDerivation: false, libevent: false, byacc: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/dhcpleased.nix", [["path", 7, 3], ["postPatch", 9, 3], ["buildInputs", 13, 3], ["extraNativeBuildInputs", 14, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -11,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const libevent = nix.arg($, "libevent");
   const byacc = nix.arg($, "byacc");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       path: "sbin/dhcpleased",
       postPatch: "sed -i 's/DPADD/#DPADD/' $BSDSRCDIR/sbin/dhcpleased/Makefile\n",
       buildInputs: nix.thunk(() => [libevent]),

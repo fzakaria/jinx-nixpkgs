@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]], [["ffmpeg", 26, 52]], [["url", 31, 7], ["hash", 32, 7]], [["url", 38, 7], ["hash", 39, 7]], [["url", 45, 7], ["hash", 46, 7]], [["description", 60, 5], ["homepage", 61, 5], ["license", 62, 5], ["maintainers", 63, 5]], [["pname", 14, 3], ["version", 15, 3], ["pyproject", 16, 3], ["src", 18, 3], ["patches", 25, 3], ["build-system", 50, 3], ["nativeCheckInputs", 52, 3], ["pythonImportsCheck", 57, 3], ["meta", 59, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, replaceVars: false, fetchpatch2: false, setuptools: false, pytestCheckHook: false, "pytest-mock": false, ffmpeg: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["ffmpeg", 26, 52]]);
-const pos$3 = nix.positions(here + "/default.nix", [["url", 31, 7], ["hash", 32, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["url", 38, 7], ["hash", 39, 7]]);
-const pos$5 = nix.positions(here + "/default.nix", [["url", 45, 7], ["hash", 46, 7]]);
-const pos$6 = nix.positions(here + "/default.nix", [["description", 60, 5], ["homepage", 61, 5], ["license", 62, 5], ["maintainers", 63, 5]]);
-const pos$7 = nix.positions(here + "/default.nix", [["pname", 14, 3], ["version", 15, 3], ["pyproject", 16, 3], ["src", 18, 3], ["patches", 25, 3], ["build-system", 50, 3], ["nativeCheckInputs", 52, 3], ["pythonImportsCheck", 57, 3], ["meta", 59, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,31 +17,31 @@ export default nix.lambda((args) => (() => {
   const pytest_mock = nix.arg($, "pytest-mock");
   const ffmpeg = nix.arg($, "ffmpeg");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "ffmpeg-python",
       version: "0.2.0-unstable-2022-07-11",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "kkroening",
           repo: "ffmpeg-python",
           rev: "df129c7ba30aaa9ffffb81a48f53aa7253b0b4e6",
           hash: "sha256-jPiFhYRwfuS+vo6LsLw0+65NWy2A+B+EdC8SewZTRP4=",
         })))),
       patches: nix.thunk(() => [
-        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./ffmpeg-location.patch"), nix.thunk(() => ({ [nix.POS]: pos$2, ffmpeg: ffmpeg })))),
+        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./ffmpeg-location.patch"), nix.thunk(() => ({ [nix.POS]: $pos[1], ffmpeg: ffmpeg })))),
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: "https://github.com/kkroening/ffmpeg-python/commit/dce459d39ace25f03edbabdad1735064787568f7.patch?full_index=1",
             hash: "sha256-ZptCFplL88d0p2s741ymHiwyDsDGVFylBJ8FTrZDGMc=",
           })))),
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             url: "https://github.com/kkroening/ffmpeg-python/commit/557ed8e81ff48c5931c9249ec4aae525347ecf85.patch?full_index=1",
             hash: "sha256-XrL9yLaBg1tu63OYZauEb/4Ghp2zHtiF6vB+1YYbv1Y=",
           })))),
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             url: "https://github.com/kkroening/ffmpeg-python/commit/eeaa83398ba1d4e5b470196f7d4c7ca4ba9e8ddf.patch?full_index=1",
             hash: "sha256-/qxez4RF/RPRr9nA+wp+XB49L3VNgnMwMQhFD2NwijU=",
           })))),
@@ -56,7 +50,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook, pytest_mock]),
       pythonImportsCheck: nix.thunk(() => ["ffmpeg"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Python bindings for FFmpeg - with complex filtering support",
         homepage: "https://github.com/kkroening/ffmpeg-python",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

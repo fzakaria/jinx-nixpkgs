@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]], [["cloud-init", 138, 36], ["cloud-init-hostname", 138, 47]], [["ignoredVersions", 139, 33]], [["tests", 138, 5], ["updateScript", 139, 5]], [["homepage", 143, 5], ["description", 144, 5], ["changelog", 145, 5], ["license", 146, 5], ["maintainers", 150, 5], ["platforms", 154, 5]], [["pname", 19, 3], ["version", 20, 3], ["pyproject", 21, 3], ["namePrefix", 23, 3], ["src", 25, 3], ["patches", 32, 3], ["prePatch", 37, 3], ["postInstall", 52, 3], ["build-system", 59, 3], ["propagatedBuildInputs", 63, 3], ["nativeCheckInputs", 75, 3], ["makeWrapperArgs", 88, 3], ["disabledTests", 98, 3], ["preCheck", 128, 3], ["pythonImportsCheck", 133, 3], ["passthru", 137, 3], ["meta", 142, 3]]]);
 const formals$1 = { args: { lib: false, nixosTests: false, "cloud-utils": false, dmidecode: false, fetchFromGitHub: false, iproute2: false, openssh: false, python3: false, shadow: false, systemd: false, coreutils: false, gitUpdater: false, busybox: false, procps: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["cloud-init", 138, 36], ["cloud-init-hostname", 138, 47]]);
-const pos$3 = nix.positions(here + "/package.nix", [["ignoredVersions", 139, 33]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 138, 5], ["updateScript", 139, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["homepage", 143, 5], ["description", 144, 5], ["changelog", 145, 5], ["license", 146, 5], ["maintainers", 150, 5], ["platforms", 154, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["pyproject", 21, 3], ["namePrefix", 23, 3], ["src", 25, 3], ["patches", 32, 3], ["prePatch", 37, 3], ["postInstall", 52, 3], ["build-system", 59, 3], ["propagatedBuildInputs", 63, 3], ["nativeCheckInputs", 75, 3], ["makeWrapperArgs", 88, 3], ["disabledTests", 98, 3], ["preCheck", 128, 3], ["pythonImportsCheck", 133, 3], ["passthru", 137, 3], ["meta", 142, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,13 +22,13 @@ export default nix.lambda((args) => (() => {
   const busybox = nix.arg($, "busybox");
   const procps = nix.arg($, "procps");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "cloud-init",
       version: "25.2",
       pyproject: true,
       namePrefix: "",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "canonical",
           repo: "cloud-init",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -121,16 +116,16 @@ done
       preCheck: "# TestTempUtils.test_mkdtemp_default_non_root does not like TMPDIR=/build\nexport TMPDIR=/tmp\n",
       pythonImportsCheck: nix.thunk(() => ["cloudinit"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           "cloud-init": nix.thunk(() => nix.attr(nixosTests, "cloud-init")),
           "cloud-init-hostname": nix.thunk(() => nix.attr(nixosTests, "cloud-init-hostname")),
         })),
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$3, ignoredVersions: ".ubuntu.*" })))),
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[2], ignoredVersions: ".ubuntu.*" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "https://github.com/canonical/cloud-init",
         description: "Provides configuration and customization of cloud instance",
         changelog: nix.thunk(() => nix.str`https://github.com/canonical/cloud-init/raw/${nix.sel(finalAttrs, "version")}/ChangeLog`),

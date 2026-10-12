@@ -2,39 +2,34 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/nginx-sqlite.nix", [[["maintainers", 4, 8]], [["enable", 12, 9], ["baseUrl", 13, 9], ["passwordFile", 14, 9], ["dataDir", 15, 9]], [["freshrss", 11, 16]], [["services", 11, 7]], [["machine", 8, 9]], [["name", 3, 3], ["meta", 4, 3], ["nodes", 8, 3], ["testScript", 19, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/nginx-sqlite.nix", [["maintainers", 4, 8]]);
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/nginx-sqlite.nix", [["enable", 12, 9], ["baseUrl", 13, 9], ["passwordFile", 14, 9], ["dataDir", 15, 9]]);
-const pos$3 = nix.positions(here + "/nginx-sqlite.nix", [["freshrss", 11, 16]]);
-const pos$4 = nix.positions(here + "/nginx-sqlite.nix", [["services", 11, 7]]);
-const pos$5 = nix.positions(here + "/nginx-sqlite.nix", [["machine", 8, 9]]);
-const pos$6 = nix.positions(here + "/nginx-sqlite.nix", [["name", 3, 3], ["meta", 4, 3], ["nodes", 8, 3], ["testScript", 19, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$6,
+    [nix.POS]: $pos[5],
     name: "freshrss-nginx-sqlite",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "stunkymonkey"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             freshrss: nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               enable: true,
               baseUrl: "http://localhost",
               passwordFile: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "password", "secret")),

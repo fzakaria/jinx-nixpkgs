@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["pname", 22, 26], ["version", 22, 32], ["hash", 23, 5]], [["homepage", 64, 5], ["description", 65, 5], ["longDescription", 66, 5], ["license", 80, 5], ["maintainers", 81, 5], ["mainProgram", 82, 5]], [["pname", 17, 3], ["version", 18, 3], ["pyproject", 19, 3], ["src", 21, 3], ["__structuredAttrs", 26, 3], ["build-system", 28, 3], ["dependencies", 32, 3], ["propagatedBuildInputs", 44, 3], ["doCheck", 61, 3], ["meta", 63, 3]]]);
 const formals$1 = { args: { lib: false, python3Packages: false, fetchPypi: false, pkgsCross: false, avrdude: false, bootloadhid: false, "dfu-programmer": false, "dfu-util": false, "wb32-dfu-updater": false, "gcc-arm-embedded": false, gnumake: false, "teensy-loader-cli": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["pname", 22, 26], ["version", 22, 32], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 64, 5], ["description", 65, 5], ["longDescription", 66, 5], ["license", 80, 5], ["maintainers", 81, 5], ["mainProgram", 82, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["pyproject", 19, 3], ["src", 21, 3], ["__structuredAttrs", 26, 3], ["build-system", 28, 3], ["dependencies", 32, 3], ["propagatedBuildInputs", 44, 3], ["doCheck", 61, 3], ["meta", 63, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const gnumake = nix.arg($, "gnumake");
   const teensy_loader_cli = nix.arg($, "teensy-loader-cli");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "qmk",
       version: "1.2.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-FkvRbExAGyt2XuTwF7z6gUGULd82KWHEy6GXXYyyikg=",
@@ -67,7 +65,7 @@ export default nix.lambda((args) => (() => {
       ]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/qmk/qmk_cli",
         description: "Program to help users work with QMK Firmware",
         longDescription: "qmk_cli is a companion tool to QMK firmware. With it, you can:\n\n- Interact with your qmk_firmware tree from any location\n- Use qmk clone to pull down anyone's qmk_firmware fork\n- Setup and work with your build environment:\n  - qmk setup\n  - qmk doctor\n  - qmk compile\n  - qmk console\n  - qmk flash\n  - qmk lint\n- ... and many more!\n",

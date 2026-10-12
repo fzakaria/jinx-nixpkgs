@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 27, 5], ["hash", 28, 5]], [["name", 50, 7], ["runtimeInputs", 52, 7], ["text", 61, 7]], [["command", 49, 5], ["supportedFeatures", 112, 5]], [["updateScript", 48, 12]], [["homepage", 116, 5], ["changelog", 117, 5], ["description", 118, 5], ["mainProgram", 119, 5], ["sourceProvenance", 120, 5], ["license", 121, 5], ["maintainers", 122, 5], ["platforms", 127, 5]], [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["dontUnpack", 31, 3], ["nativeBuildInputs", 33, 3], ["installPhase", 35, 3], ["passthru", 48, 3], ["meta", 115, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, makeWrapper: false, jre: false, writeShellApplication: false, "common-updater-scripts": false, gnugrep: false, coreutils: false, git: false, gnused: false, nix: false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 50, 7], ["runtimeInputs", 52, 7], ["text", 61, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["command", 49, 5], ["supportedFeatures", 112, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 48, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["homepage", 116, 5], ["changelog", 117, 5], ["description", 118, 5], ["mainProgram", 119, 5], ["sourceProvenance", 120, 5], ["license", 121, 5], ["maintainers", 122, 5], ["platforms", 127, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["dontUnpack", 31, 3], ["nativeBuildInputs", 33, 3], ["installPhase", 35, 3], ["passthru", 48, 3], ["meta", 115, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const pname = "coursier";
       const version = "2.1.26";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/coursier/coursier/releases/download/v${version}/coursier`),
           hash: "sha256-6ww1N5529EQE93erCiM1ylMm9rdyG4zfqHPoe9n0rAw=",
         }))));
@@ -48,11 +43,11 @@ wrapProgram $out/bin/cs \\
 runHook postInstall
 `);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           command: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.app(writeShellApplication, nix.thunk(() => ({
-                [nix.POS]: pos$2,
+                [nix.POS]: $pos[1],
                 name: "update-coursier",
                 runtimeInputs: nix.thunk(() => [common_updater_scripts, coreutils, git, gnugrep, gnused, nix$]),
                 text: "# stdout is reserved for the JSON --print-changes emits below, everything\n# else has to go to stderr.\nattr_path=\"${UPDATE_NIX_ATTR_PATH:-coursier}\"\n\nnixpkgs=$(git rev-parse --show-toplevel)\nposition=$(nix-instantiate --eval --raw --attr \"$attr_path.meta.position\" \"$nixpkgs\")\npackage_nix=\"${position%:*}\"\nold_version=$(nix-instantiate --eval --raw --attr \"$attr_path.version\" \"$nixpkgs\")\n\n# 'v*.*.*' also matches milestones such as v2.1.25-M26, which are not\n# releases, so keep only plain X.Y.Z and take the highest.\nnew_version=$(git -c 'versionsort.suffix=-' ls-remote --exit-code --refs \\\n  --sort='version:refname' --tags https://github.com/coursier/coursier.git 'v*.*.*' \\\n  | cut --delimiter='/' --fields=3 \\\n  | grep -E '^v[0-9]+\\.[0-9]+\\.[0-9]+$' \\\n  | tail --lines=1 \\\n  | sed 's|^v||')\n\nif [[ -z \"$new_version\" ]]; then\n  echo \"no plain X.Y.Z tag found upstream\" >&2\n  exit 1\nfi\n\norder=$(nix-instantiate --eval \\\n  --expr \"builtins.compareVersions \\\"$new_version\\\" \\\"$old_version\\\"\")\n\ncase \"$order\" in\n  0)\n    echo \"$attr_path is already at the latest version $new_version.\" >&2\n    echo '[]'\n    exit 0\n    ;;\n  -1)\n    echo \"refusing to downgrade $attr_path from $old_version to $new_version.\" >&2\n    exit 1\n    ;;\nesac\n\n# update-source-version rewrites package.nix with a fake hash and rebuilds\n# to discover the real one, so put the file back if that fails.\nbackup=$(mktemp)\ncp \"$package_nix\" \"$backup\"\ntrap 'cp \"$backup\" \"$package_nix\"; rm -f \"$backup\"' EXIT\n\nupdate-source-version \"$attr_path\" \"$new_version\" --version-key=version --print-changes\n\ntrap - EXIT\nrm -f \"$backup\"\n",
@@ -61,7 +56,7 @@ runHook postInstall
         })),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "https://get-coursier.io/",
         changelog: nix.thunk(() => nix.str`https://github.com/coursier/coursier/releases/tag/v${version}`),
         description: "Scala library to fetch dependencies from Maven / Ivy repositories",
@@ -81,7 +76,7 @@ runHook postInstall
         platforms: nix.thunk(() => nix.sel(jre, "meta", "platforms")),
       }));
       return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname,
         version,
         src,

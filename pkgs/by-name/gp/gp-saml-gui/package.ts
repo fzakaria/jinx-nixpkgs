@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5]], [["description", 52, 5], ["mainProgram", 53, 5], ["homepage", 54, 5], ["license", 55, 5], ["maintainers", 56, 5]], [["pname", 13, 3], ["version", 14, 3], ["pyproject", 15, 3], ["build-system", 17, 3], ["src", 19, 3], ["buildInputs", 26, 3], ["nativeBuildInputs", 28, 3], ["dependencies", 34, 3], ["preFixup", 45, 3], ["meta", 51, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, python3Packages: false, webkitgtk_4_1: false, wrapGAppsHook3: false, "glib-networking": false, "gobject-introspection": false, openconnect: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 52, 5], ["mainProgram", 53, 5], ["homepage", 54, 5], ["license", 55, 5], ["maintainers", 56, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["pyproject", 15, 3], ["build-system", 17, 3], ["src", 19, 3], ["buildInputs", 26, 3], ["nativeBuildInputs", 28, 3], ["dependencies", 34, 3], ["preFixup", 45, 3], ["meta", 51, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,7 +17,7 @@ export default nix.lambda((args) => (() => {
   const gobject_introspection = nix.arg($, "gobject-introspection");
   const openconnect = nix.arg($, "openconnect");
   return nix.app(nix.sel(python3Packages, "buildPythonPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "gp-saml-gui",
       version: "0.1-unstable-2024-07-31",
       pyproject: true,
@@ -28,7 +26,7 @@ export default nix.lambda((args) => (() => {
         return [nix.thunk(() => nix.lookup(w, "setuptools"))];
       })()),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "dlenski",
           repo: "gp-saml-gui",
           rev: "c46af04b3a6325b0ecc982840d7cfbd1629b6d43",
@@ -45,7 +43,7 @@ export default nix.lambda((args) => (() => {
       })()),
       preFixup: "gappsWrapperArgs+=(\n  --set WEBKIT_DISABLE_COMPOSITING_MODE \"1\"\n)\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Interactively authenticate to GlobalProtect VPNs that require SAML",
         mainProgram: "gp-saml-gui",
         homepage: "https://github.com/dlenski/gp-saml-gui",

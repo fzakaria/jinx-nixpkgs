@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]], [["babel", 40, 5], ["phonenumbers", 41, 5], ["phonenumberslite", 42, 5]], [["description", 63, 5], ["homepage", 64, 5], ["changelog", 65, 5], ["license", 66, 5], ["maintainers", 67, 5]], [["pname", 18, 3], ["version", 19, 3], ["pyproject", 20, 3], ["src", 22, 3], ["nativeBuildInputs", 29, 3], ["build-system", 31, 3], ["dependencies", 37, 3], ["optional-dependencies", 39, 3], ["preBuild", 45, 3], ["nativeCheckInputs", 49, 3], ["preCheck", 56, 3], ["pythonImportsCheck", 60, 3], ["meta", 62, 3]]]);
 const formals$1 = { args: { lib: false, babel: false, buildPythonPackage: false, django: false, djangorestframework: false, fetchFromGitHub: false, gettext: false, phonenumbers: false, phonenumberslite: false, python: false, pytestCheckHook: false, "pytest-django": false, "setuptools-scm": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["babel", 40, 5], ["phonenumbers", 41, 5], ["phonenumberslite", 42, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 63, 5], ["homepage", 64, 5], ["changelog", 65, 5], ["license", 66, 5], ["maintainers", 67, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 18, 3], ["version", 19, 3], ["pyproject", 20, 3], ["src", 22, 3], ["nativeBuildInputs", 29, 3], ["build-system", 31, 3], ["dependencies", 37, 3], ["optional-dependencies", 39, 3], ["preBuild", 45, 3], ["nativeCheckInputs", 49, 3], ["preCheck", 56, 3], ["pythonImportsCheck", 60, 3], ["meta", 62, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const pytest_django = nix.arg($, "pytest-django");
   const setuptools_scm = nix.arg($, "setuptools-scm");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "django-phonenumber-field",
       version: "8.5.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "django-phonenumber-field",
           repo: "django-phonenumber-field",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -39,7 +36,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [setuptools_scm]),
       dependencies: nix.thunk(() => nix.concat([django], nix.sel(finalAttrs, "passthru", "optional-dependencies", "phonenumbers"))),
       "optional-dependencies": nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         babel: nix.thunk(() => [babel]),
         phonenumbers: nix.thunk(() => [phonenumbers]),
         phonenumberslite: nix.thunk(() => [phonenumberslite]),
@@ -50,7 +47,7 @@ export default nix.lambda((args) => (() => {
       preCheck: "export DJANGO_SETTINGS_MODULE=tests.settings\n",
       pythonImportsCheck: nix.thunk(() => ["phonenumber_field"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Django model and form field for normalised phone numbers using python-phonenumbers",
         homepage: "https://github.com/django-phonenumber-field/django-phonenumber-field",
         changelog: nix.thunk(() => nix.str`https://github.com/django-phonenumber-field/django-phonenumber-field/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

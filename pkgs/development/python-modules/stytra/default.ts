@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 39, 13], ["version", 39, 19], ["sha256", 40, 5]], [["description", 87, 5], ["homepage", 88, 5], ["license", 89, 5], ["maintainers", 90, 5]], [["pname", 34, 3], ["version", 35, 3], ["pyproject", 36, 3], ["src", 38, 3], ["patches", 43, 3], ["build-system", 48, 3], ["dependencies", 50, 3], ["nativeCheckInputs", 76, 3], ["disabledTestPaths", 81, 3], ["meta", 86, 3]]]);
 const formals$1 = { args: { lib: false, anytree: false, arrayqueues: false, av: false, buildPythonPackage: false, colorspacious: false, fetchPypi: false, flammkuchen: false, git: false, gitpython: false, imageio: false, "imageio-ffmpeg": false, lightparam: false, matplotlib: false, numba: false, numpy: false, opencv4: false, pandas: false, pims: false, pyqt5: false, pyqtgraph: false, pyserial: false, pytestCheckHook: false, qdarkstyle: false, qimage2ndarray: false, "scikit-image": false, scipy: false, setuptools: false, tables: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 39, 13], ["version", 39, 19], ["sha256", 40, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 87, 5], ["homepage", 88, 5], ["license", 89, 5], ["maintainers", 90, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 34, 3], ["version", 35, 3], ["pyproject", 36, 3], ["src", 38, 3], ["patches", 43, 3], ["build-system", 48, 3], ["dependencies", 50, 3], ["nativeCheckInputs", 76, 3], ["disabledTestPaths", 81, 3], ["meta", 86, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -43,7 +41,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.8.34";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           sha256: "aab9d07575ef599a9c0ae505656e3c03ec753462df3c15742f1f768f2b578f0a",
@@ -78,14 +76,14 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook, pyserial]);
       const disabledTestPaths = nix.thunk(() => ["stytra/tests/test_z_experiments.py"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Modular package to control stimulation and track behaviour",
         homepage: "https://github.com/portugueslab/stytra",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/rustpkgs.nix", [[["pname", 7, 5], ["version", 8, 5], ["src", 9, 5], ["sourceRoot", 10, 5], ["cargoHash", 12, 5], ["doCheck", 14, 5], ["nativeBuildInputs", 16, 5]], [["pname", 19, 5], ["version", 20, 5], ["src", 21, 5], ["sourceRoot", 22, 5], ["cargoHash", 24, 5], ["doCheck", 26, 5], ["nativeBuildInputs", 28, 5]], [["pname", 31, 5], ["version", 32, 5], ["src", 33, 5], ["sourceRoot", 34, 5], ["cargoHash", 36, 5], ["nativeBuildInputs", 38, 5]], [["pname", 41, 5], ["version", 42, 5], ["src", 43, 5], ["sourceRoot", 44, 5], ["cargoHash", 46, 5], ["nativeBuildInputs", 48, 5]], [["pname", 51, 5], ["version", 52, 5], ["src", 53, 5], ["sourceRoot", 54, 5], ["cargoHash", 56, 5], ["doCheck", 58, 5], ["nativeBuildInputs", 60, 5]], [["pname", 63, 5], ["version", 64, 5], ["src", 65, 5], ["sourceRoot", 66, 5], ["cargoHash", 68, 5], ["doCheck", 70, 5], ["nativeBuildInputs", 72, 5]], [["iir-rust", 6, 3], ["liberty-parser", 18, 3], ["sdf_parse", 30, 3], ["spef-parser", 40, 3], ["vcd_parser", 50, 3], ["verilog-parser", 62, 3]]]);
 const formals$1 = { args: { rustPlatform: false, rootSrc: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/rustpkgs.nix", [["pname", 7, 5], ["version", 8, 5], ["src", 9, 5], ["sourceRoot", 10, 5], ["cargoHash", 12, 5], ["doCheck", 14, 5], ["nativeBuildInputs", 16, 5]]);
-const pos$2 = nix.positions(here + "/rustpkgs.nix", [["pname", 19, 5], ["version", 20, 5], ["src", 21, 5], ["sourceRoot", 22, 5], ["cargoHash", 24, 5], ["doCheck", 26, 5], ["nativeBuildInputs", 28, 5]]);
-const pos$3 = nix.positions(here + "/rustpkgs.nix", [["pname", 31, 5], ["version", 32, 5], ["src", 33, 5], ["sourceRoot", 34, 5], ["cargoHash", 36, 5], ["nativeBuildInputs", 38, 5]]);
-const pos$4 = nix.positions(here + "/rustpkgs.nix", [["pname", 41, 5], ["version", 42, 5], ["src", 43, 5], ["sourceRoot", 44, 5], ["cargoHash", 46, 5], ["nativeBuildInputs", 48, 5]]);
-const pos$5 = nix.positions(here + "/rustpkgs.nix", [["pname", 51, 5], ["version", 52, 5], ["src", 53, 5], ["sourceRoot", 54, 5], ["cargoHash", 56, 5], ["doCheck", 58, 5], ["nativeBuildInputs", 60, 5]]);
-const pos$6 = nix.positions(here + "/rustpkgs.nix", [["pname", 63, 5], ["version", 64, 5], ["src", 65, 5], ["sourceRoot", 66, 5], ["cargoHash", 68, 5], ["doCheck", 70, 5], ["nativeBuildInputs", 72, 5]]);
-const pos$7 = nix.positions(here + "/rustpkgs.nix", [["iir-rust", 6, 3], ["liberty-parser", 18, 3], ["sdf_parse", 30, 3], ["spef-parser", 40, 3], ["vcd_parser", 50, 3], ["verilog-parser", 62, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const rootSrc = nix.arg($, "rootSrc");
   const mkRustpkgs = (_) => (p) => nix.app(nix.sel(rustPlatform, "buildRustPackage"), p);
   return nix.builtins.mapAttrs(mkRustpkgs, nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       "iir-rust": nix.thunk(() => (() => {
         const pname = "iir-rust";
         const version = "0.1.3";
@@ -27,7 +21,7 @@ export default nix.lambda((args) => (() => {
         const doCheck = false;
         const nativeBuildInputs = nix.thunk(() => [nix.thunk(() => nix.sel(rustPlatform, "bindgenHook"))]);
         return {
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname,
           version,
           src,
@@ -46,7 +40,7 @@ export default nix.lambda((args) => (() => {
         const doCheck = false;
         const nativeBuildInputs = nix.thunk(() => [nix.thunk(() => nix.sel(rustPlatform, "bindgenHook"))]);
         return {
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname,
           version,
           src,
@@ -64,7 +58,7 @@ export default nix.lambda((args) => (() => {
         const cargoHash = "sha256-PORA/9DDIax4lOn/pzmi7Y8mCCBUphMTzbBsb64sDl0=";
         const nativeBuildInputs = nix.thunk(() => [nix.thunk(() => nix.sel(rustPlatform, "bindgenHook"))]);
         return {
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           pname,
           version,
           src,
@@ -81,7 +75,7 @@ export default nix.lambda((args) => (() => {
         const cargoHash = "sha256-Qr/oXTqn2gaxyAyLsRjaXNniNzIYVzPGefXTdkULmYk=";
         const nativeBuildInputs = nix.thunk(() => [nix.thunk(() => nix.sel(rustPlatform, "bindgenHook"))]);
         return {
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           pname,
           version,
           src,
@@ -99,7 +93,7 @@ export default nix.lambda((args) => (() => {
         const doCheck = false;
         const nativeBuildInputs = nix.thunk(() => [nix.thunk(() => nix.sel(rustPlatform, "bindgenHook"))]);
         return {
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           pname,
           version,
           src,
@@ -118,7 +112,7 @@ export default nix.lambda((args) => (() => {
         const doCheck = false;
         const nativeBuildInputs = nix.thunk(() => [nix.thunk(() => nix.sel(rustPlatform, "bindgenHook"))]);
         return {
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           pname,
           version,
           src,

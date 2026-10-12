@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 16, 7], ["hash", 17, 7]], [["url", 20, 7], ["hash", 21, 7]], [["url", 24, 7], ["hash", 25, 7]], [["x86_64-linux", 15, 5], ["aarch64-linux", 19, 5], ["aarch64-darwin", 23, 5]], [["description", 35, 5], ["homepage", 36, 5], ["changelog", 37, 5], ["license", 38, 5], ["mainProgram", 39, 5], ["maintainers", 40, 5], ["platforms", 45, 5], ["sourceProvenance", 50, 5]], [["pname", 53, 54], ["version", 53, 60], ["src", 53, 68]], [["pname", 57, 7], ["version", 58, 7], ["src", 59, 7], ["meta", 60, 7], ["nativeBuildInputs", 63, 5], ["extraPkgs", 64, 5], ["extraInstallCommands", 66, 5]], [["pname", 80, 7], ["version", 81, 7], ["src", 82, 7], ["meta", 83, 7], ["nativeBuildInputs", 86, 5], ["unpackPhase", 91, 5], ["sourceRoot", 97, 5], ["installPhase", 99, 5]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, appimageTools: false, makeWrapper: false, _7zz: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 16, 7], ["hash", 17, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 20, 7], ["hash", 21, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 24, 7], ["hash", 25, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["x86_64-linux", 15, 5], ["aarch64-linux", 19, 5], ["aarch64-darwin", 23, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 35, 5], ["homepage", 36, 5], ["changelog", 37, 5], ["license", 38, 5], ["mainProgram", 39, 5], ["maintainers", 40, 5], ["platforms", 45, 5], ["sourceProvenance", 50, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 53, 54], ["version", 53, 60], ["src", 53, 68]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 57, 7], ["version", 58, 7], ["src", 59, 7], ["meta", 60, 7], ["nativeBuildInputs", 63, 5], ["extraPkgs", 64, 5], ["extraInstallCommands", 66, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 80, 7], ["version", 81, 7], ["src", 82, 7], ["meta", 83, 7], ["nativeBuildInputs", 86, 5], ["unpackPhase", 91, 5], ["sourceRoot", 97, 5], ["installPhase", 99, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,26 +16,26 @@ export default nix.lambda((args) => (() => {
   const pname = "caido-desktop";
   const version = "0.57.0";
   const sources = nix.thunk(() => ({
-    [nix.POS]: pos$4,
+    [nix.POS]: $pos[3],
     "x86_64-linux": nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: nix.thunk(() => nix.str`https://caido.download/releases/v${version}/caido-desktop-v${version}-linux-x86_64.AppImage`),
       hash: "sha256-a+WHhJ+TvwhOqHOxU7Y5LXeXAJ6T8hk71meFuTR+ra8=",
     })),
     "aarch64-linux": nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       url: nix.thunk(() => nix.str`https://caido.download/releases/v${version}/caido-desktop-v${version}-linux-aarch64.AppImage`),
       hash: "sha256-B7dw9uoG++AqT264ZlyHxGpv68fH5SlYzDKUaIM8c14=",
     })),
     "aarch64-darwin": nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       url: nix.thunk(() => nix.str`https://caido.download/releases/v${version}/caido-desktop-v${version}-mac-aarch64.dmg`),
       hash: "sha256-GmpMnaGR7gYz1RvSO5xj9AA3xU1mn2IBInakmVkuG7A=",
     })),
   }));
   const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => nix.selOr(sources, () => nix.builtins.throw(nix.thunk(() => nix.str`caido-desktop: unsupported system ${nix.sel(stdenv, "hostPlatform", "system")}`)), nix.key(nix.sel(stdenv, "hostPlatform", "system"))))));
   const meta = nix.thunk(() => ({
-    [nix.POS]: pos$5,
+    [nix.POS]: $pos[4],
     description: "Caido Desktop — lightweight web security auditing toolkit",
     homepage: "https://caido.io/",
     changelog: nix.thunk(() => nix.str`https://github.com/caido/caido/releases/tag/v${version}`),
@@ -62,9 +55,9 @@ export default nix.lambda((args) => (() => {
       return [nix.thunk(() => nix.lookup(w_1, "binaryNativeCode"))];
     })()),
   }));
-  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: pos$6, pname: pname, version: version, src: src }))));
+  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: $pos[5], pname: pname, version: version, src: src }))));
   const linux = nix.thunk(() => nix.app(nix.sel(appimageTools, "wrapType2"), nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: pname,
       version: version,
       src: src,
@@ -82,7 +75,7 @@ wrapProgram $out/bin/${pname} \\
 `),
     }))));
   const darwin = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: pname,
       version: version,
       src: src,

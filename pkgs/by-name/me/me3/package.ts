@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["privateTmp", 18, 7]], [["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["sha256", 25, 5]], [["steamRun", 37, 9]], [["cargoHash", 31, 13], ["version", 31, 23], ["src", 31, 31], ["pname", 32, 5], ["patches", 35, 5], ["cargoBuildFlags", 41, 5], ["cargoTestFlags", 46, 5], ["postInstall", 48, 5]], [["cargoHash", 59, 13], ["version", 59, 23], ["src", 59, 31], ["pname", 60, 5], ["CARGO_TARGET_X86_64_PC_WINDOWS_GNU_RUSTFLAGS", 62, 5], ["RUSTC_BOOTSTRAP", 63, 5], ["cargoBuildFlags", 65, 5], ["cargoTestFlags", 72, 5], ["postInstall", 75, 5]], [["description", 98, 5], ["homepage", 99, 5], ["license", 100, 5], ["maintainers", 101, 5]], [["version", 81, 11], ["pname", 82, 3], ["paths", 84, 3], ["nativeBuildInputs", 89, 3], ["postBuild", 91, 3], ["meta", 97, 3]]]);
 const formals$1 = { args: { fetchFromGitHub: false, lib: false, makeWrapper: false, pkgsCross: false, replaceVars: false, rustPlatform: false, steam: false, symlinkJoin: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["privateTmp", 18, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["sha256", 25, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["steamRun", 37, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["cargoHash", 31, 13], ["version", 31, 23], ["src", 31, 31], ["pname", 32, 5], ["patches", 35, 5], ["cargoBuildFlags", 41, 5], ["cargoTestFlags", 46, 5], ["postInstall", 48, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["cargoHash", 59, 13], ["version", 59, 23], ["src", 59, 31], ["pname", 60, 5], ["CARGO_TARGET_X86_64_PC_WINDOWS_GNU_RUSTFLAGS", 62, 5], ["RUSTC_BOOTSTRAP", 63, 5], ["cargoBuildFlags", 65, 5], ["cargoTestFlags", 72, 5], ["postInstall", 75, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 98, 5], ["homepage", 99, 5], ["license", 100, 5], ["maintainers", 101, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["version", 81, 11], ["pname", 82, 3], ["paths", 84, 3], ["nativeBuildInputs", 89, 3], ["postBuild", 91, 3], ["meta", 97, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,9 +16,9 @@ export default nix.lambda((args) => (() => {
   const steam = nix.arg($, "steam");
   const symlinkJoin = nix.arg($, "symlinkJoin");
   const version = "0.13.0";
-  const steam_run = nix.thunk(() => nix.sel(nix.app(nix.sel(steam, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, privateTmp: false }))), "run-free"));
+  const steam_run = nix.thunk(() => nix.sel(nix.app(nix.sel(steam, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], privateTmp: false }))), "run-free"));
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       owner: "garyttierney",
       repo: "me3",
       tag: nix.thunk(() => nix.str`v${version}`),
@@ -32,14 +26,14 @@ export default nix.lambda((args) => (() => {
     }))));
   const cargoHash = "sha256-e6tytA15kY58efmG3mIgZpTTa11Ijwl8u+NIBdYmha8=";
   const me3_cli = nix.thunk(() => nix.app(nix.sel(rustPlatform, "buildRustPackage"), (final) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       cargoHash: cargoHash,
       version: version,
       src: src,
       pname: "me3-cli",
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./steam-run.patch"), nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             steamRun: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), steam_run)),
           })))),
       ]),
@@ -48,7 +42,7 @@ export default nix.lambda((args) => (() => {
       postInstall: "install -Dm444 distribution/linux/me3-launch.desktop \\\n  $out/share/applications/me3-launch.desktop\ninstall -Dm444 distribution/linux/me3.xml \\\n  $out/share/mime/packages/me3.xml\ninstall -Dm444 distribution/assets/me3.png \\\n  $out/share/icons/hicolor/128x128/apps/me3.png\n",
     })));
   const me3_windows = nix.thunk(() => nix.app(nix.sel(pkgsCross, "mingwW64", "rustPlatform", "buildRustPackage"), (final) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       cargoHash: cargoHash,
       version: version,
       src: src,
@@ -60,14 +54,14 @@ export default nix.lambda((args) => (() => {
       postInstall: "rm -r $out/lib\n",
     })));
   return nix.app(symlinkJoin, nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       version: version,
       pname: "me3",
       paths: nix.thunk(() => [me3_cli, me3_windows]),
       nativeBuildInputs: nix.thunk(() => [makeWrapper]),
       postBuild: "wrapProgram $out/bin/me3 \\\n  --set WINEPATH $out/bin \\\n  --add-flags \"--windows-binaries-dir $out/bin\"\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Framework for modding and instrumenting games.",
         homepage: "https://github.com/garyttierney/me3",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

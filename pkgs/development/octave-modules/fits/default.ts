@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 15, 5], ["sha256", 16, 5]], [["homepage", 37, 5], ["license", 38, 5], ["maintainers", 39, 5], ["description", 40, 5], ["broken", 42, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["patchPhase", 20, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 28, 3], ["propagatedBuildInputs", 32, 3], ["meta", 36, 3]]]);
 const formals$1 = { args: { buildOctavePackage: false, lib: false, fetchurl: false, cfitsio: false, hdf5: false, "pkg-config": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 15, 5], ["sha256", 16, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 37, 5], ["license", 38, 5], ["maintainers", 39, 5], ["description", 40, 5], ["broken", 42, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["patchPhase", 20, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 28, 3], ["propagatedBuildInputs", 32, 3], ["meta", 36, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname = "fits";
       const version = "1.0.7";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/octave/${pname}-${version}.tar.gz`),
           sha256: "0jab5wmrpifqphmrfkqcyrlpc0h4y4m735yc3avqqjajz1rl24lm",
         }))));
@@ -28,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const buildInputs = nix.thunk(() => [hdf5]);
       const propagatedBuildInputs = nix.thunk(() => [cfitsio]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://gnu-octave.github.io/packages/fits/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
         maintainers: nix.thunk(() => (() => {
@@ -39,7 +37,7 @@ export default nix.lambda((args) => (() => {
         broken: true,
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

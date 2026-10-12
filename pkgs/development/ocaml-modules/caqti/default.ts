@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 27, 5], ["hash", 28, 5]], [["description", 51, 5], ["license", 52, 5], ["maintainers", 56, 5], ["homepage", 57, 5]], [["pname", 21, 3], ["version", 22, 3], ["minimalOCamlVersion", 24, 3], ["src", 26, 3], ["buildInputs", 31, 3], ["propagatedBuildInputs", 32, 3], ["nativeBuildInputs", 45, 3], ["doCheck", 48, 3], ["meta", 50, 3]]]);
 const formals$1 = { args: { lib: false, fetchurl: false, buildDunePackage: false, angstrom: false, bigstringaf: false, "domain-name": false, "dune-site": false, ipaddr: false, logs: false, lru: false, "lwt-dllist": false, mtime: false, ptime: false, uri: false, stdenv: false, darwin: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 51, 5], ["license", 52, 5], ["maintainers", 56, 5], ["homepage", 57, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 21, 3], ["version", 22, 3], ["minimalOCamlVersion", 24, 3], ["src", 26, 3], ["buildInputs", 31, 3], ["propagatedBuildInputs", 32, 3], ["nativeBuildInputs", 45, 3], ["doCheck", 48, 3], ["meta", 50, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,12 +24,12 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const darwin = nix.arg($, "darwin");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "caqti",
       version: "2.3.2",
       minimalOCamlVersion: "4.08",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/paurkedal/ocaml-caqti/releases/download/v${nix.sel(finalAttrs, "version")}/caqti-v${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-j2wXJLWawipcZXyeU7mhcG457NRi6ClYsM6ojkPwq6c=",
         })))),
@@ -51,7 +49,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [nix.thunk(() => nix.sel(darwin, "sigtool"))]))),
       doCheck: false,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Unified interface to relational database libraries",
         license: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "licenses")), null);

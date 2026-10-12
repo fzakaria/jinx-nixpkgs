@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["licenseAccepted", 12, 43]], [["url", 19, 5], ["sha256", 20, 5]], [["shortName", 68, 7], ["fullName", 69, 7], ["url", 70, 7], ["free", 71, 7]], [["platforms", 64, 5], ["description", 65, 5], ["sourceProvenance", 66, 5], ["license", 67, 5], ["maintainers", 73, 5]], [["version", 15, 3], ["pname", 16, 3], ["src", 18, 3], ["unpackCmd", 23, 3], ["nativeBuildInputs", 36, 3], ["installPhase", 38, 3], ["preFixup", 48, 3], ["meta", 63, 3]]]);
 const formals$1 = { args: { config: false, stdenv: false, callPackage: false, lib: false, fetchurl: false, unzip: false, licenseAccepted: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["licenseAccepted", 12, 43]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 19, 5], ["sha256", 20, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["shortName", 68, 7], ["fullName", 69, 7], ["url", 70, 7], ["free", 71, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["platforms", 64, 5], ["description", 65, 5], ["sourceProvenance", 66, 5], ["license", 67, 5], ["maintainers", 73, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["version", 15, 3], ["pname", 16, 3], ["src", 18, 3], ["unpackCmd", 23, 3], ["nativeBuildInputs", 36, 3], ["installPhase", 38, 3], ["preFixup", 48, 3], ["meta", 63, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const unzip = nix.arg($, "unzip");
   const licenseAccepted = nix.argOr($, "licenseAccepted", () => nix.selOr(config, () => false, "sc2-headless", "accept_license"));
-  const maps = nix.thunk(() => nix.app(callPackage, nix.path(here, "./maps.nix"), nix.thunk(() => ({ [nix.POS]: pos$1, licenseAccepted: licenseAccepted }))));
+  const maps = nix.thunk(() => nix.app(callPackage, nix.path(here, "./maps.nix"), nix.thunk(() => ({ [nix.POS]: $pos[0], licenseAccepted: licenseAccepted }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => (() => {
       const version = "4.7.1";
       const pname = "sc2-headless";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: nix.thunk(() => nix.str`https://blzdistsc2-a.akamaihd.net/Linux/SC2.${version}.zip`),
           sha256: "0q1ry9bd3dm8y4hvh57yfq7s05hl2k2sxi2wsl6h0r3w690v1kdd",
         }))));
@@ -52,7 +48,7 @@ cp -ur "${nix.sel(maps, "minigames")}"/* "${nix.sel(maps, "melee")}"/* "${nix.se
 done
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
         description: "Starcraft II headless linux client for machine learning research",
         sourceProvenance: nix.thunk(() => (() => {
@@ -60,7 +56,7 @@ done
           return [nix.thunk(() => nix.lookup(w, "binaryNativeCode"))];
         })()),
         license: nix.thunk(() => nix.app(nix.sel(lib, "licenses", "mkLicense"), nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             shortName: "starcraft2",
             fullName: "BLIZZARD® STARCRAFT® II AI AND MACHINE LEARNING LICENSE",
             url: "https://blzdistsc2-a.akamaihd.net/AI_AND_MACHINE_LEARNING_LICENSE.html",
@@ -69,7 +65,7 @@ done
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         version,
         pname,
         src,

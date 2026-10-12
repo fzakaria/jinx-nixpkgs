@@ -2,41 +2,32 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/docuum.nix", [[["maintainers", 4, 8]], [["enable", 7, 27]], [["docker", 7, 20]], [["enable", 10, 7], ["threshold", 11, 7], ["keep", 12, 7]], [["docuum", 9, 14]], [["virtualisation", 7, 5], ["services", 9, 5]], [["machine", 6, 14]], [["name", 24, 19], ["tag", 25, 11], ["copyToRoot", 26, 11]], [["keepMe", 34, 9], ["old", 35, 9], ["new", 36, 9]], [["name", 3, 3], ["meta", 4, 3], ["containers", 6, 3], ["testScript", 16, 3]]]);
 const formals$1 = { args: { pkgs: false, lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/docuum.nix", [["maintainers", 4, 8]]);
-const pos$2 = nix.positions(here + "/docuum.nix", [["enable", 7, 27]]);
-const pos$3 = nix.positions(here + "/docuum.nix", [["docker", 7, 20]]);
-const pos$4 = nix.positions(here + "/docuum.nix", [["enable", 10, 7], ["threshold", 11, 7], ["keep", 12, 7]]);
-const pos$5 = nix.positions(here + "/docuum.nix", [["docuum", 9, 14]]);
-const pos$6 = nix.positions(here + "/docuum.nix", [["virtualisation", 7, 5], ["services", 9, 5]]);
-const pos$7 = nix.positions(here + "/docuum.nix", [["machine", 6, 14]]);
-const pos$8 = nix.positions(here + "/docuum.nix", [["name", 24, 19], ["tag", 25, 11], ["copyToRoot", 26, 11]]);
-const pos$9 = nix.positions(here + "/docuum.nix", [["keepMe", 34, 9], ["old", 35, 9], ["new", 36, 9]]);
-const pos$10 = nix.positions(here + "/docuum.nix", [["name", 3, 3], ["meta", 4, 3], ["containers", 6, 3], ["testScript", 16, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$10,
+    [nix.POS]: $pos[9],
     name: "docuum",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "h7x4"))]),
     })),
     containers: nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       machine: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         virtualisation: nix.thunk(() => ({
-          [nix.POS]: pos$3,
-          docker: nix.thunk(() => ({ [nix.POS]: pos$2, enable: true })),
+          [nix.POS]: $pos[2],
+          docker: nix.thunk(() => ({ [nix.POS]: $pos[1], enable: true })),
         })),
         services: nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           docuum: nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             enable: true,
             threshold: "5 MB",
             keep: nix.thunk(() => ["^keep-me:"]),
@@ -47,7 +38,7 @@ export default nix.lambda((args) => (() => {
     testScript: nix.thunk(() => (() => {
       const imageSizeKb = nix.thunk(() => nix.mul(2n, 1024n));
       const mkTestImage = (name) => nix.app(nix.sel(pkgs, "dockerTools", "buildImage"), nix.thunk(() => ({
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           name: name,
           tag: "test",
           copyToRoot: nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), nix.thunk(() => nix.str`docuum-test-data-${name}`), nix.thunk(() => ({})), nix.thunk(() => nix.str`mkdir -p $out
@@ -56,7 +47,7 @@ dd if=/dev/zero of=$out/data bs=1024 count=${nix.builtins.toString(imageSizeKb)}
 `))),
         })));
       const images = nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         keepMe: nix.thunk(() => nix.app(mkTestImage, "keep-me")),
         old: nix.thunk(() => nix.app(mkTestImage, "old-image")),
         new: nix.thunk(() => nix.app(mkTestImage, "new-image")),

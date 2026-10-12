@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/server.nix", [[["description", 44, 5]], [["pname", 19, 3], ["version", 21, 17], ["src", 21, 25], ["propagatedBuildInputs", 23, 3], ["doCheck", 35, 3], ["checkInputs", 36, 3], ["meta", 43, 3]]]);
 const formals$1 = { args: { buildDunePackage: false, dns: false, "dns-mirage": false, randomconv: false, duration: false, lwt: false, "mirage-sleep": false, "mirage-mtime": false, "mirage-ptime": false, metrics: false, alcotest: false, "mirage-crypto-rng": false, "dns-tsig": false, base64: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/server.nix", [["description", 44, 5]]);
-const pos$2 = nix.positions(here + "/server.nix", [["pname", 19, 3], ["version", 21, 17], ["src", 21, 25], ["propagatedBuildInputs", 23, 3], ["doCheck", 35, 3], ["checkInputs", 36, 3], ["meta", 43, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,7 +22,7 @@ export default nix.lambda((args) => (() => {
   const dns_tsig = nix.arg($, "dns-tsig");
   const base64 = nix.arg($, "base64");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "dns-server",
       version: nix.thunk(() => nix.attr(dns, "version")),
       src: nix.thunk(() => nix.attr(dns, "src")),
@@ -40,7 +39,7 @@ export default nix.lambda((args) => (() => {
       ]),
       doCheck: true,
       checkInputs: nix.thunk(() => [alcotest, mirage_crypto_rng, dns_tsig, base64]),
-      meta: nix.thunk(() => nix.update(nix.sel(dns, "meta"), { [nix.POS]: pos$1, description: "DNS server, primary and secondary" })),
+      meta: nix.thunk(() => nix.update(nix.sel(dns, "meta"), { [nix.POS]: $pos[0], description: "DNS server, primary and secondary" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=server.ts.map

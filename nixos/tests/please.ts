@@ -2,62 +2,50 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/please.nix", [[["maintainers", 4, 8]], [["isNormalUser", 11, 41]], [["extraGroups", 14, 17]], [["user0", 14, 11]], [["users", 9, 13]], [["name", 23, 13], ["target", 24, 13], ["rule", 25, 13], ["require_pass", 26, 13]], [["name", 29, 13], ["type", 30, 13], ["target", 31, 13], ["rule", 32, 13], ["editmode", 33, 13], ["require_pass", 34, 13]], [["user2_run_true_as_root", 22, 11], ["user4_edit_etc_hosts_as_root", 28, 11]], [["enable", 19, 9], ["wheelNeedsPassword", 20, 9], ["settings", 21, 9]], [["please", 18, 16]], [["users", 9, 7], ["security", 18, 7]], [["machine", 6, 9]], [["name", 3, 3], ["meta", 4, 3], ["nodes", 6, 3], ["testScript", 40, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/please.nix", [["maintainers", 4, 8]]);
 const formals$2 = { args: {  }, ellipsis: true };
-const pos$2 = nix.positions(here + "/please.nix", [["isNormalUser", 11, 41]]);
-const pos$3 = nix.positions(here + "/please.nix", [["extraGroups", 14, 17]]);
-const pos$4 = nix.positions(here + "/please.nix", [["user0", 14, 11]]);
-const pos$5 = nix.positions(here + "/please.nix", [["users", 9, 13]]);
-const pos$6 = nix.positions(here + "/please.nix", [["name", 23, 13], ["target", 24, 13], ["rule", 25, 13], ["require_pass", 26, 13]]);
-const pos$7 = nix.positions(here + "/please.nix", [["name", 29, 13], ["type", 30, 13], ["target", 31, 13], ["rule", 32, 13], ["editmode", 33, 13], ["require_pass", 34, 13]]);
-const pos$8 = nix.positions(here + "/please.nix", [["user2_run_true_as_root", 22, 11], ["user4_edit_etc_hosts_as_root", 28, 11]]);
-const pos$9 = nix.positions(here + "/please.nix", [["enable", 19, 9], ["wheelNeedsPassword", 20, 9], ["settings", 21, 9]]);
-const pos$10 = nix.positions(here + "/please.nix", [["please", 18, 16]]);
-const pos$11 = nix.positions(here + "/please.nix", [["users", 9, 7], ["security", 18, 7]]);
-const pos$12 = nix.positions(here + "/please.nix", [["machine", 6, 9]]);
-const pos$13 = nix.positions(here + "/please.nix", [["name", 3, 3], ["meta", 4, 3], ["nodes", 6, 3], ["testScript", 40, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$13,
+    [nix.POS]: $pos[12],
     name: "please",
-    meta: nix.thunk(() => ({ [nix.POS]: pos$1, maintainers: [] })),
+    meta: nix.thunk(() => ({ [nix.POS]: $pos[0], maintainers: [] })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$12,
+      [nix.POS]: $pos[11],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          [nix.POS]: pos$11,
+          [nix.POS]: $pos[10],
           users: nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             users: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
-                nix.thunk(() => nix.app(nix.sel(lib, "listToAttrs"), nix.thunk(() => nix.builtins.map((n) => nix.app(nix.sel(lib, "nameValuePair"), n, nix.thunk(() => ({ [nix.POS]: pos$2, isNormalUser: true }))), nix.thunk(() => nix.app(nix.sel(lib, "genList"), (x) => nix.str`user${nix.builtins.toString(x)}`, 6n)))))),
+                nix.thunk(() => nix.app(nix.sel(lib, "listToAttrs"), nix.thunk(() => nix.builtins.map((n) => nix.app(nix.sel(lib, "nameValuePair"), n, nix.thunk(() => ({ [nix.POS]: $pos[1], isNormalUser: true }))), nix.thunk(() => nix.app(nix.sel(lib, "genList"), (x) => nix.str`user${nix.builtins.toString(x)}`, 6n)))))),
                 nix.thunk(() => ({
-                  [nix.POS]: pos$4,
-                  user0: nix.thunk(() => ({ [nix.POS]: pos$3, extraGroups: nix.thunk(() => ["wheel"]) })),
+                  [nix.POS]: $pos[3],
+                  user0: nix.thunk(() => ({ [nix.POS]: $pos[2], extraGroups: nix.thunk(() => ["wheel"]) })),
                 })),
               ]))),
           })),
           security: nix.thunk(() => ({
-            [nix.POS]: pos$10,
+            [nix.POS]: $pos[9],
             please: nix.thunk(() => ({
-              [nix.POS]: pos$9,
+              [nix.POS]: $pos[8],
               enable: true,
               wheelNeedsPassword: false,
               settings: nix.thunk(() => ({
-                [nix.POS]: pos$8,
+                [nix.POS]: $pos[7],
                 user2_run_true_as_root: nix.thunk(() => ({
-                  [nix.POS]: pos$6,
+                  [nix.POS]: $pos[5],
                   name: "user2",
                   target: "root",
                   rule: "/run/current-system/sw/bin/true",
                   require_pass: false,
                 })),
                 user4_edit_etc_hosts_as_root: nix.thunk(() => ({
-                  [nix.POS]: pos$7,
+                  [nix.POS]: $pos[6],
                   name: "user4",
                   type: "edit",
                   target: "root",

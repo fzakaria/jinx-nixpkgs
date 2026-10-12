@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 25, 5], ["repo", 26, 5], ["rev", 27, 5], ["hash", 28, 5]], [["description", 97, 5], ["homepage", 98, 5], ["license", 99, 5], ["platforms", 100, 5], ["maintainers", 101, 5], ["mainProgram", 102, 5]], [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["cargoHash", 31, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 43, 3], ["nativeCheckInputs", 45, 3], ["postPatch", 54, 3], ["makeFlags", 68, 3], ["dontCargoBuild", 74, 3], ["buildFlags", 75, 3], ["dontCargoCheck", 77, 3], ["checkTarget", 78, 3], ["dontCargoInstall", 80, 3], ["installTargets", 81, 3], ["postInstall", 87, 3], ["meta", 96, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, rustPlatform: false, fetchFromGitHub: false, "pkg-config": false, installShellFiles: false, makeWrapper: false, asciidoc: false, docbook_xsl: false, docbook_xml_dtd_45: false, xmlto: false, curl: false, git: false, perl: false, darwin: false, libiconv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 25, 5], ["repo", 26, 5], ["rev", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 97, 5], ["homepage", 98, 5], ["license", 99, 5], ["platforms", 100, 5], ["maintainers", 101, 5], ["mainProgram", 102, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["cargoHash", 31, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 43, 3], ["nativeCheckInputs", 45, 3], ["postPatch", 54, 3], ["makeFlags", 68, 3], ["dontCargoBuild", 74, 3], ["buildFlags", 75, 3], ["dontCargoCheck", 77, 3], ["checkTarget", 78, 3], ["dontCargoInstall", 80, 3], ["installTargets", 81, 3], ["postInstall", 87, 3], ["meta", 96, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const darwin = nix.arg($, "darwin");
   const libiconv = nix.arg($, "libiconv");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "stgit",
       version: "2.6.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "stacked-git",
           repo: "stgit",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -80,7 +78,7 @@ installShellCompletion --cmd stg \\
   --zsh completion/stgit.zsh
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Patch manager implemented on top of Git",
         homepage: "https://stacked-git.github.io/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 30, 5], ["hash", 31, 5]], [["owner", 39, 5], ["repo", 40, 5], ["tag", 41, 5], ["hash", 42, 5]], [["NIX_CFLAGS_COMPILE", 106, 7], ["FFMPEG_DIR", 135, 7], ["OPENCV_LINK_PATHS", 139, 7], ["OPENCV_LINK_LIBS", 140, 7], ["MDK_SDK", 143, 7]], [["name", 214, 7], ["desktopName", 215, 7], ["genericName", 216, 7], ["comment", 217, 7], ["icon", 218, 7], ["exec", 219, 7], ["terminal", 220, 7], ["mimeTypes", 221, 7], ["categories", 222, 7], ["startupNotify", 228, 7], ["startupWMClass", 229, 7], ["prefersNonDefaultGPU", 230, 7]], [["updateScript", 234, 12]], [["description", 237, 5], ["homepage", 238, 5], ["mainProgram", 239, 5], ["license", 240, 5], ["maintainers", 244, 5], ["platforms", 248, 5]], [["pname", 35, 3], ["version", 36, 3], ["src", 38, 3], ["cargoHash", 45, 3], ["__structuredAttrs", 47, 3], ["nativeBuildInputs", 49, 3], ["buildInputs", 63, 3], ["postPatch", 82, 3], ["env", 106, 3], ["doCheck", 145, 3], ["dontWrapQtApps", 149, 3], ["nativeInstallCheckInputs", 151, 3], ["versionCheckProgramArg", 152, 3], ["doInstallCheck", 153, 3], ["postInstall", 155, 3], ["postFixup", 198, 3], ["desktopItems", 212, 3], ["passthru", 234, 3], ["meta", 236, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, rustPlatform: false, fetchFromGitHub: false, fetchurl: false, makeDesktopItem: false, clang: false, copyDesktopItems: false, patchelf: false, "pkg-config": false, qt6: false, "alsa-lib": false, bash: false, bzip2: false, ffmpeg_7: false, libicns: false, libxml2: false, "mdk-sdk": false, "nix-update-script": false, "ocl-icd": false, opencv: false, versionCheckHook: false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 30, 5], ["hash", 31, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 39, 5], ["repo", 40, 5], ["tag", 41, 5], ["hash", 42, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 106, 7], ["FFMPEG_DIR", 135, 7], ["OPENCV_LINK_PATHS", 139, 7], ["OPENCV_LINK_LIBS", 140, 7], ["MDK_SDK", 143, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["name", 214, 7], ["desktopName", 215, 7], ["genericName", 216, 7], ["comment", 217, 7], ["icon", 218, 7], ["exec", 219, 7], ["terminal", 220, 7], ["mimeTypes", 221, 7], ["categories", 222, 7], ["startupNotify", 228, 7], ["startupWMClass", 229, 7], ["prefersNonDefaultGPU", 230, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["updateScript", 234, 12]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 237, 5], ["homepage", 238, 5], ["mainProgram", 239, 5], ["license", 240, 5], ["maintainers", 244, 5], ["platforms", 248, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 35, 3], ["version", 36, 3], ["src", 38, 3], ["cargoHash", 45, 3], ["__structuredAttrs", 47, 3], ["nativeBuildInputs", 49, 3], ["buildInputs", 63, 3], ["postPatch", 82, 3], ["env", 106, 3], ["doCheck", 145, 3], ["dontWrapQtApps", 149, 3], ["nativeInstallCheckInputs", 151, 3], ["versionCheckProgramArg", 152, 3], ["doInstallCheck", 153, 3], ["postInstall", 155, 3], ["postFixup", 198, 3], ["desktopItems", 212, 3], ["passthru", 234, 3], ["meta", 236, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -38,16 +32,16 @@ export default nix.lambda((args) => (() => {
   const zlib = nix.arg($, "zlib");
   const lens_profiles_version = "v41";
   const lens_profiles_db = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: nix.thunk(() => nix.str`https://github.com/gyroflow/lens_profiles/releases/download/${lens_profiles_version}/profiles.cbor.gz`),
       hash: "sha256-W5E2aXt13fnNogll8X54a2yFMOPVkQn4dQUGlgLn9nY=",
     }))));
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "gyroflow",
       version: "1.6.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "gyroflow",
           repo: "gyroflow",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -80,7 +74,7 @@ substituteInPlace build.rs \\
   --replace-fail 'println!("cargo:rustc-env=BUILD_TIME={}", (time.as_secs() - 1642516578) / 600);' ""
 `, nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "substituteInPlace build.rs \\\n  --replace-fail 'println!(\"cargo:rustc-link-lib=static:+whole-archive=x264\");' \"\" \\\n  --replace-fail 'println!(\"cargo:rustc-link-lib=static=x265\");' \"\"\n"))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? [
             nix.thunk(() => nix.str`-F${nix.sel(qt6, "qtdeclarative")}/lib`),
             nix.thunk(() => nix.str`-I${nix.sel(qt6, "qtdeclarative")}/lib/QtQuick.framework/Headers`),
@@ -148,7 +142,7 @@ install -Dm644 resources/icon.svg $out/share/icons/hicolor/scalable/apps/gyroflo
       postFixup: nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? "macos=$out/Applications/Gyroflow.app/Contents/MacOS\nmakeQtWrapper $macos/gyroflow $macos/gyroflow-launcher\n\nmkdir -p $out/bin\nln -s ../Applications/Gyroflow.app/Contents/MacOS/gyroflow-launcher $out/bin/gyroflow\n" : "makeQtWrapper $out/opt/Gyroflow/gyroflow $out/bin/gyroflow\n")),
       desktopItems: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [
           nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               name: "gyroflow",
               desktopName: "Gyroflow",
               genericName: "Video stabilization using gyroscope data",
@@ -164,11 +158,11 @@ install -Dm644 resources/icon.svg $out/share/icons/hicolor/scalable/apps/gyroflo
             })))),
         ]))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Advanced gyro-based video stabilization tool",
         homepage: "https://gyroflow.xyz",
         mainProgram: "gyroflow",

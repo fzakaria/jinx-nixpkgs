@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/app.nix", [[["description", 41, 5], ["mainProgram", 42, 5]], [["pname", 18, 3], ["src", 21, 5], ["version", 22, 5], ["buildInputs", 25, 3], ["meta", 40, 3]]]);
 const formals$1 = { args: { buildDunePackage: false, letsencrypt: false, "letsencrypt-dns": false, cmdliner: false, "cohttp-lwt-unix": false, logs: false, fmt: false, lwt: false, "mirage-crypto-rng": false, ptime: false, bos: false, fpath: false, randomconv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/app.nix", [["description", 41, 5], ["mainProgram", 42, 5]]);
-const pos$2 = nix.positions(here + "/app.nix", [["pname", 18, 3], ["src", 21, 5], ["version", 22, 5], ["buildInputs", 25, 3], ["meta", 40, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,7 +21,7 @@ export default nix.lambda((args) => (() => {
   const fpath = nix.arg($, "fpath");
   const randomconv = nix.arg($, "randomconv");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "letsencrypt-app",
       src: nix.thunk(() => nix.attr(letsencrypt, "src")),
       version: nix.thunk(() => nix.attr(letsencrypt, "version")),
@@ -41,7 +40,7 @@ export default nix.lambda((args) => (() => {
         randomconv,
       ]),
       meta: nix.thunk(() => nix.update(nix.sel(letsencrypt, "meta"), {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "ACME client implementation of the ACME protocol (RFC 8555) for OCaml",
         mainProgram: "oacmel",
       })),

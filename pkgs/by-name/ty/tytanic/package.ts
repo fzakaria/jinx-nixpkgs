@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]], [["OPENSSL_NO_VENDOR", 39, 5]], [["package", 63, 7]], [["version", 62, 11]], [["updateScript", 60, 5], ["tests", 62, 5]], [["description", 68, 5], ["longDescription", 69, 5], ["homepage", 73, 5], ["changelog", 74, 5], ["downloadPage", 75, 5], ["license", 76, 5], ["mainProgram", 80, 5], ["maintainers", 81, 5]], [["pname", 16, 3], ["version", 17, 3], ["__structuredAttrs", 18, 3], ["src", 20, 3], ["cargoHash", 27, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 34, 3], ["env", 38, 3], ["postInstall", 42, 3], ["doInstallCheck", 56, 3], ["nativeInstallCheckInputs", 57, 3], ["passthru", 59, 3], ["meta", 67, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, rustPlatform: false, fetchFromGitHub: false, installShellFiles: false, "pkg-config": false, openssl: false, "nix-update-script": false, testers: false, tytanic: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["OPENSSL_NO_VENDOR", 39, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["package", 63, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["version", 62, 11]]);
-const pos$5 = nix.positions(here + "/package.nix", [["updateScript", 60, 5], ["tests", 62, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 68, 5], ["longDescription", 69, 5], ["homepage", 73, 5], ["changelog", 74, 5], ["downloadPage", 75, 5], ["license", 76, 5], ["mainProgram", 80, 5], ["maintainers", 81, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["__structuredAttrs", 18, 3], ["src", 20, 3], ["cargoHash", 27, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 34, 3], ["env", 38, 3], ["postInstall", 42, 3], ["doInstallCheck", 56, 3], ["nativeInstallCheckInputs", 57, 3], ["passthru", 59, 3], ["meta", 67, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const tytanic = nix.arg($, "tytanic");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "tytanic",
       version: "0.4.1",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "typst-community",
           repo: "tytanic",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -39,20 +33,20 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-gqIsrQLwOcs+FTVhu8lgQfISiGQVVCnmMHJTCgD9fh0=",
       nativeBuildInputs: nix.thunk(() => [installShellFiles, pkg_config]),
       buildInputs: nix.thunk(() => [openssl]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, OPENSSL_NO_VENDOR: true })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], OPENSSL_NO_VENDOR: true })),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "# Man pages: `tt util manpage [DIR]` writes tytanic*.1 files\nmkdir -p ./man\n$out/bin/tt util manpage ./man\ninstallManPage ./man/*.1\n\n# Shell completions: `tt util completion <shell>` supports bash/fish/zsh (+ elvish/powershell,\n# but installShellCompletion only supports --bash/--fish/--zsh, so only those are installed)\ninstallShellCompletion --cmd tt \\\n  --bash <($out/bin/tt util completion bash) \\\n  --fish <($out/bin/tt util completion fish) \\\n  --zsh <($out/bin/tt util completion zsh)\n")),
       doInstallCheck: true,
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$3, package: tytanic })))),
+          [nix.POS]: $pos[3],
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: $pos[2], package: tytanic })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Test runner for Typst projects",
         longDescription: "Tytanic is a test runner for Typst projects. It helps you worry less about\nregressions and speeds up your development.\n",
         homepage: "https://typst-community.github.io/tytanic/",

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]], [["BTM_GENERATE", 32, 5]], [["updateScript", 58, 5]], [["changelog", 62, 5], ["description", 63, 5], ["homepage", 64, 5], ["license", 65, 5], ["mainProgram", 66, 5], ["maintainers", 67, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["cargoHash", 24, 3], ["nativeBuildInputs", 26, 3], ["env", 31, 3], ["postInstall", 35, 3], ["checkFlags", 45, 3], ["doInstallCheck", 50, 3], ["nativeInstallCheckInputs", 51, 3], ["versionCheckProgram", 55, 3], ["passthru", 57, 3], ["meta", 61, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, rustPlatform: false, fetchFromGitHub: false, autoAddDriverRunpath: false, installShellFiles: false, writableTmpDirAsHomeHook: false, versionCheckHook: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["BTM_GENERATE", 32, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 58, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["changelog", 62, 5], ["description", 63, 5], ["homepage", 64, 5], ["license", 65, 5], ["mainProgram", 66, 5], ["maintainers", 67, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["cargoHash", 24, 3], ["nativeBuildInputs", 26, 3], ["env", 31, 3], ["postInstall", 35, 3], ["checkFlags", 45, 3], ["doInstallCheck", 50, 3], ["nativeInstallCheckInputs", 51, 3], ["versionCheckProgram", 55, 3], ["passthru", 57, 3], ["meta", 61, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "bottom",
       version: "0.14.9",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ClementTsang",
           repo: "bottom",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -33,18 +29,18 @@ export default nix.lambda((args) => (() => {
         })))),
       cargoHash: "sha256-PYbmqiE8G+or1NEtPxnWIXcHnKIBSjQ3FN/Zafb/BTw=",
       nativeBuildInputs: nix.thunk(() => [autoAddDriverRunpath, installShellFiles]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, BTM_GENERATE: true })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], BTM_GENERATE: true })),
       postInstall: "installManPage target/tmp/bottom/manpage/btm.1\ninstallShellCompletion \\\n  target/tmp/bottom/completion/btm.{bash,fish} \\\n  --zsh target/tmp/bottom/completion/_btm\n\ninstall -Dm444 desktop/bottom.desktop -t $out/share/applications\ninstall -Dm644 assets/icons/bottom-system-monitor.svg -t $out/share/icons/hicolor/scalable/apps\n",
       checkFlags: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["--skip=collection::tests::test_data_collection"]))),
       doInstallCheck: true,
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook, writableTmpDirAsHomeHook]),
       versionCheckProgram: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/bin/btm`),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         changelog: nix.thunk(() => nix.str`https://github.com/ClementTsang/bottom/blob/${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),
         description: "Cross-platform graphical process/system monitor with a customizable interface",
         homepage: "https://github.com/ClementTsang/bottom",

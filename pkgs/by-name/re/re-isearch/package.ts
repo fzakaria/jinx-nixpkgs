@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["hash", 20, 5]], [["extraArgs", 79, 5]], [["updateScript", 78, 12]], [["description", 83, 5], ["homepage", 84, 5], ["license", 85, 5], ["platforms", 86, 5], ["maintainers", 87, 5], ["teams", 88, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["patches", 23, 3], ["postPatch", 28, 3], ["nativeBuildInputs", 40, 3], ["buildInputs", 42, 3], ["makeFlags", 48, 3], ["preBuild", 54, 3], ["enableParallelBuilding", 65, 3], ["installPhase", 67, 3], ["passthru", 78, 3], ["meta", 82, 3]]]);
 const formals$1 = { args: { stdenv: false, fetchFromGitHub: false, lib: false, db: false, file: false, libnsl: false, writableTmpDirAsHomeHook: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["extraArgs", 79, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 78, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 83, 5], ["homepage", 84, 5], ["license", 85, 5], ["platforms", 86, 5], ["maintainers", 87, 5], ["teams", 88, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["patches", 23, 3], ["postPatch", 28, 3], ["nativeBuildInputs", 40, 3], ["buildInputs", 42, 3], ["makeFlags", 48, 3], ["preBuild", 54, 3], ["enableParallelBuilding", 65, 3], ["installPhase", 67, 3], ["passthru", 78, 3], ["meta", 82, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "re-Isearch",
       version: "2.20220925.4.0a-unstable-2026-03-03",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "re-Isearch",
           repo: "re-Isearch",
           rev: "54054aab10fce6ab0a3b0271034fcc85b2a4f99d",
@@ -48,11 +44,11 @@ makeFlagsArray+=(
       enableParallelBuilding: false,
       installPhase: "runHook preInstall\n\nmkdir -p $out/{bin,lib}\n\ncp ../bin/{Iindex,Isearch,Iutil,Idelete,zpresent,Iwatch,zipper} $out/bin\ncp ../lib/*.so $out/lib/\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$2, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: $pos[1], extraArgs: nix.thunk(() => ["--version=branch"]) })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Novel multimodal search and retrieval engine",
         homepage: "https://nlnet.nl/project/Re-iSearch/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

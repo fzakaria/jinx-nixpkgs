@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]], [["umurun", 34, 7]], [["updateScript", 84, 12]], [["homepage", 87, 5], ["changelog", 88, 5], ["downloadPage", 89, 5], ["description", 90, 5], ["license", 91, 5], ["maintainers", 92, 5], ["platforms", 93, 5]], [["pname", 21, 3], ["version", 22, 3], ["pyproject", 23, 3], ["src", 25, 3], ["patches", 32, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 43, 3], ["build-system", 50, 3], ["dependencies", 54, 3], ["nativeCheckInputs", 59, 3], ["preCheck", 65, 3], ["dontWrapGApps", 69, 3], ["preFixup", 71, 3], ["passthru", 84, 3], ["meta", 86, 3]]]);
 const formals$1 = { args: { fetchFromGitHub: false, "glib-networking": false, glibcLocales: false, "gobject-introspection": false, gtk3: false, innoextract: false, lib: false, libnotify: false, "nix-update-script": false, python3Packages: false, replaceVars: false, "umu-launcher": false, unzip: false, webkitgtk_4_1: false, wrapGAppsHook3: false, "xdg-utils": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["umurun", 34, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 84, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 87, 5], ["changelog", 88, 5], ["downloadPage", 89, 5], ["description", 90, 5], ["license", 91, 5], ["maintainers", 92, 5], ["platforms", 93, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 3], ["pyproject", 23, 3], ["src", 25, 3], ["patches", 32, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 43, 3], ["build-system", 50, 3], ["dependencies", 54, 3], ["nativeCheckInputs", 59, 3], ["preCheck", 65, 3], ["dontWrapGApps", 69, 3], ["preFixup", 71, 3], ["passthru", 84, 3], ["meta", 86, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.4.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "sharkwouter",
           repo: "minigalaxy",
           tag: version,
@@ -40,7 +36,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./inject-launcher-umu-run.diff"), nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             umurun: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), umu_launcher)),
           })))),
       ]);
@@ -73,11 +69,11 @@ export default nix.lambda((args) => (() => {
 )
 `);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://sharkwouter.github.io/minigalaxy/",
         changelog: nix.thunk(() => nix.str`https://github.com/sharkwouter/minigalaxy/blob/${version}/CHANGELOG.md`),
         downloadPage: "https://github.com/sharkwouter/minigalaxy/releases",
@@ -90,7 +86,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         pyproject,

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]], [["extraArgs", 50, 5]], [["updateScript", 49, 12]], [["description", 54, 5], ["homepage", 55, 5], ["license", 56, 5], ["maintainers", 57, 5], ["mainProgram", 58, 5], ["platforms", 59, 5]], [["pname", 19, 3], ["version", 21, 3], ["__structuredAttrs", 22, 3], ["minimalOCamlVersion", 24, 3], ["src", 26, 3], ["sourceRoot", 33, 3], ["propagatedBuildInputs", 35, 3], ["doCheck", 47, 3], ["passthru", 49, 3], ["meta", 53, 3]]]);
 const formals$1 = { args: { lib: false, buildDunePackage: false, fetchFromGitHub: false, charon: false, core_unix: false, domainslib: false, ocamlgraph: false, ppx_deriving_yojson: false, progress: false, visitors: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["extraArgs", 50, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["updateScript", 49, 12]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 54, 5], ["homepage", 55, 5], ["license", 56, 5], ["maintainers", 57, 5], ["mainProgram", 58, 5], ["platforms", 59, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 19, 3], ["version", 21, 3], ["__structuredAttrs", 22, 3], ["minimalOCamlVersion", 24, 3], ["src", 26, 3], ["sourceRoot", 33, 3], ["propagatedBuildInputs", 35, 3], ["doCheck", 47, 3], ["passthru", 49, 3], ["meta", 53, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,13 +19,13 @@ export default nix.lambda((args) => (() => {
   const visitors = nix.arg($, "visitors");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "aeneas",
       version: nix.thunk(() => nix.str`${nix.sel(charon, "version")}-daa85d7`),
       __structuredAttrs: true,
       minimalOCamlVersion: "5.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "AeneasVerif",
           repo: "aeneas",
           tag: nix.thunk(() => nix.str`nightly-${nix.sel(finalAttrs, "version")}`),
@@ -47,11 +43,11 @@ export default nix.lambda((args) => (() => {
       ]),
       doCheck: false,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$2, extraArgs: nix.thunk(() => ["--version=unstable"]) })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: $pos[1], extraArgs: nix.thunk(() => ["--version=unstable"]) })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Verification toolchain for Rust programs",
         homepage: "https://github.com/AeneasVerif/aeneas",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

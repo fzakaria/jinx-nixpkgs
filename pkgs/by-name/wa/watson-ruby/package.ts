@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 18, 9], ["ruby", 19, 17], ["gemdir", 21, 9]], [["updateScript", 29, 12]], [["description", 32, 5], ["homepage", 33, 5], ["license", 34, 5], ["maintainers", 35, 5], ["mainProgram", 39, 5], ["platforms", 40, 5]], [["pname", 10, 3], ["version", 11, 3], ["dontUnpack", 13, 3], ["installPhase", 15, 3], ["passthru", 29, 3], ["meta", 31, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, bundlerEnv: false, ruby: false, bundlerUpdateScript: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 18, 9], ["ruby", 19, 17], ["gemdir", 21, 9]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 29, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 32, 5], ["homepage", 33, 5], ["license", 34, 5], ["maintainers", 35, 5], ["mainProgram", 39, 5], ["platforms", 40, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["dontUnpack", 13, 3], ["installPhase", 15, 3], ["passthru", 29, 3], ["meta", 31, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const dontUnpack = true;
       const installPhase = nix.thunk(() => (() => {
         const env = nix.thunk(() => nix.app(bundlerEnv, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             name: nix.thunk(() => nix.str`watson-ruby-gems-${version}`),
             ruby: ruby,
             gemdir: nix.path(here, "./."),
@@ -31,11 +28,11 @@ ln -s ${env}/bin/watson $out/bin/watson
 `;
       })());
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(bundlerUpdateScript, "watson-ruby")),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Inline issue manager",
         homepage: "https://goosecode.com/watson/",
         license: nix.thunk(() => (() => {
@@ -52,7 +49,7 @@ ln -s ${env}/bin/watson $out/bin/watson
         mainProgram: "watson",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
-      return { [nix.POS]: pos$4, pname, version, dontUnpack, installPhase, passthru, meta };
+      return { [nix.POS]: $pos[3], pname, version, dontUnpack, installPhase, passthru, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

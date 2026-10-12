@@ -2,69 +2,10 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["x86_64-freebsd", 11, 9]], [["defaultConfig", 21, 39]], [["system", 40, 15], ["name", 41, 7], ["pname", 42, 7], ["version", 43, 7], ["builder", 44, 7], ["args", 45, 7], ["LD_LIBRARY_PATH", 49, 7], ["src", 50, 7], ["bootstrapTools", 51, 32]], [["system", 60, 17], ["name", 61, 9], ["src", 62, 9], ["builder", 63, 9], ["args", 67, 9], ["PATH", 68, 9], ["paths", 69, 9]], [["paths", 77, 29]], [["paths", 78, 32]], [["paths", 80, 7], ["shell", 84, 7], ["shellPath", 85, 7]], [["paths", 88, 7]], [["paths", 94, 9], ["version", 101, 9]], [["name", 104, 9], ["paths", 105, 9]], [["clang-unwrapped", 93, 7], ["libunwind", 103, 7]], [["name", 114, 7], ["paths", 115, 7]], [["name", 215, 7], ["paths", 216, 7]], [["name", 224, 7], ["paths", 225, 7]], [["paths", 230, 29]], [["paths", 231, 32]], [["paths", 232, 29]], [["paths", 233, 30]], [["paths", 235, 7]], [["paths", 240, 31]], [["paths", 242, 7]], [["paths", 248, 30]], [["paths", 250, 7]], [["paths", 256, 7]], [["paths", 263, 7]], [["name", 271, 7], ["paths", 272, 7]], [["paths", 291, 33]], [["paths", 292, 41]], [["name", 294, 9], ["paths", 295, 9], ["pname", 347, 9], ["version", 348, 9]], [["locales", 291, 7], ["libiconvModules", 292, 7], ["libc", 293, 7]], [["expand-response-params", 76, 5], ["bsdcp", 77, 5], ["patchelf", 78, 5], ["bashNonInteractive", 79, 5], ["curl", 87, 5], ["llvmPackages", 92, 5], ["coreutils", 113, 5], ["diffutils", 214, 5], ["findutils", 223, 5], ["iconv", 230, 5], ["libiconv", 231, 5], ["patch", 232, 5], ["gnutar", 233, 5], ["gawk", 234, 5], ["gnumake", 240, 5], ["gnugrep", 241, 5], ["gnused", 248, 5], ["gzip", 249, 5], ["bzip2", 255, 5], ["xz", 262, 5], ["binutils-unwrapped", 270, 5], ["freebsd", 290, 5]], [["initialPath", 387, 11], ["shell", 388, 11], ["fetchurlBoot", 389, 11], ["name", 391, 9], ["buildPlatform", 392, 9], ["hostPlatform", 393, 9], ["targetPlatform", 394, 9], ["cc", 395, 9]], [["lib", 398, 17], ["stdenvNoCC", 398, 21], ["curl", 399, 29], ["hashedMirrors", 400, 26], ["rewriteURL", 400, 40]], [["libcxx-cxxflags", 432, 13]], [["lib", 438, 21], ["stdenvNoCC", 438, 25], ["name", 439, 13], ["libc", 440, 41], ["gnugrep", 441, 33], ["coreutils", 441, 41], ["expand-response-params", 441, 51], ["runtimeShell", 442, 13], ["bintools", 443, 13], ["propagateDoc", 444, 13], ["nativeTools", 445, 13], ["nativeLibc", 446, 13]], [["lib", 417, 19], ["stdenvNoCC", 417, 23], ["name", 418, 11], ["libc", 419, 39], ["gnugrep", 420, 31], ["coreutils", 420, 39], ["expand-response-params", 420, 49], ["libcxx", 421, 11], ["runtimeShell", 422, 11], ["propagateDoc", 423, 11], ["nativeTools", 424, 11], ["nativeLibc", 425, 11], ["cc", 426, 11], ["isClang", 427, 11], ["extraPackages", 428, 11], ["nixSupport", 431, 11], ["extraBuildCommands", 434, 11], ["bintools", 437, 11]], [["initialPath", 404, 11], ["shell", 405, 11], ["fetchurlBoot", 406, 11], ["name", 408, 9], ["buildPlatform", 409, 9], ["hostPlatform", 410, 9], ["targetPlatform", 411, 9], ["extraNativeBuildInputs", 412, 9], ["cc", 416, 9], ["overrides", 449, 9], ["preHook", 450, 9]], [["config", 459, 15], ["overlays", 459, 22], ["stdenv", 459, 31]], [["lib", 492, 19], ["stdenvNoCC", 493, 26], ["curl", 494, 31], ["hashedMirrors", 495, 28], ["rewriteURL", 495, 42]], [["NIX_CFLAGS_COMPILE", 498, 11]], [["NIX_CFLAGS_COMPILE", 501, 47]], [["name", 507, 64]], [["name", 512, 19], ["libc", 513, 19]], [["name", 509, 17], ["libc", 510, 17], ["bintools", 511, 17]], [["locales", 506, 41], ["stdenvNoLibcxx", 507, 13]], [["name", 522, 58]], [["name", 527, 21], ["libc", 528, 21]], [["name", 524, 19], ["libc", 525, 19], ["bintools", 526, 19], ["extraPackages", 530, 19], ["extraBuildCommands", 533, 19]], [["stdenv", 522, 15]], [["NIX_CFLAGS_COMPILE", 539, 19], ["NIX_LDFLAGS", 540, 19], ["cmakeFlags", 541, 19]], [["libcxx", 520, 11]], [["patchelf", 472, 11], ["bashNonInteractive", 473, 11], ["curl", 474, 11], ["coreutils", 475, 11], ["diffutils", 476, 11], ["findutils", 477, 11], ["iconv", 478, 11], ["libiconv", 479, 11], ["patch", 480, 11], ["gnutar", 481, 11], ["gawk", 482, 11], ["gnumake", 483, 11], ["gnugrep", 484, 11], ["gnused", 485, 11], ["gzip", 486, 11], ["bzip2", 487, 11], ["xz", 488, 11], ["binutils-unwrapped", 490, 9], ["fetchurl", 491, 9], ["gettext", 497, 9], ["curlReal", 500, 9], ["tzdata", 501, 9], ["freebsd", 504, 9], ["llvmPackages", 519, 9]], [["name", 466, 7], ["hascxx", 467, 7], ["overrides", 468, 7]], [["locales", 566, 11], ["localesReal", 567, 11], ["libc", 568, 11]], [["libcxx", 572, 9]], [["curl", 554, 7], ["fetchurl", 556, 9], ["python3", 557, 9], ["bison", 558, 9], ["perl", 559, 9], ["cmake", 560, 9], ["ninja", 561, 9], ["fetchurlReal", 563, 7], ["freebsd", 564, 7], ["llvmPackages", 571, 7]], [["name", 549, 5], ["overrides", 550, 5]], [["libc", 583, 39], ["localesPrev", 584, 11]], [["__bootstrapArchive", 579, 7], ["fetchurl", 580, 7], ["freebsd", 581, 7]], [["name", 577, 5], ["overrides", 578, 5]]]);
 const formals$1 = { args: { lib: false, localSystem: false, config: false, overlays: false, bootstrapFiles: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["x86_64-freebsd", 11, 9]]);
-const pos$2 = nix.positions(here + "/default.nix", [["defaultConfig", 21, 39]]);
-const pos$3 = nix.positions(here + "/default.nix", [["system", 40, 15], ["name", 41, 7], ["pname", 42, 7], ["version", 43, 7], ["builder", 44, 7], ["args", 45, 7], ["LD_LIBRARY_PATH", 49, 7], ["src", 50, 7], ["bootstrapTools", 51, 32]]);
-const pos$4 = nix.positions(here + "/default.nix", [["system", 60, 17], ["name", 61, 9], ["src", 62, 9], ["builder", 63, 9], ["args", 67, 9], ["PATH", 68, 9], ["paths", 69, 9]]);
-const pos$5 = nix.positions(here + "/default.nix", [["paths", 77, 29]]);
-const pos$6 = nix.positions(here + "/default.nix", [["paths", 78, 32]]);
-const pos$7 = nix.positions(here + "/default.nix", [["paths", 80, 7], ["shell", 84, 7], ["shellPath", 85, 7]]);
-const pos$8 = nix.positions(here + "/default.nix", [["paths", 88, 7]]);
-const pos$9 = nix.positions(here + "/default.nix", [["paths", 94, 9], ["version", 101, 9]]);
-const pos$10 = nix.positions(here + "/default.nix", [["name", 104, 9], ["paths", 105, 9]]);
-const pos$11 = nix.positions(here + "/default.nix", [["clang-unwrapped", 93, 7], ["libunwind", 103, 7]]);
-const pos$12 = nix.positions(here + "/default.nix", [["name", 114, 7], ["paths", 115, 7]]);
-const pos$13 = nix.positions(here + "/default.nix", [["name", 215, 7], ["paths", 216, 7]]);
-const pos$14 = nix.positions(here + "/default.nix", [["name", 224, 7], ["paths", 225, 7]]);
-const pos$15 = nix.positions(here + "/default.nix", [["paths", 230, 29]]);
-const pos$16 = nix.positions(here + "/default.nix", [["paths", 231, 32]]);
-const pos$17 = nix.positions(here + "/default.nix", [["paths", 232, 29]]);
-const pos$18 = nix.positions(here + "/default.nix", [["paths", 233, 30]]);
-const pos$19 = nix.positions(here + "/default.nix", [["paths", 235, 7]]);
-const pos$20 = nix.positions(here + "/default.nix", [["paths", 240, 31]]);
-const pos$21 = nix.positions(here + "/default.nix", [["paths", 242, 7]]);
-const pos$22 = nix.positions(here + "/default.nix", [["paths", 248, 30]]);
-const pos$23 = nix.positions(here + "/default.nix", [["paths", 250, 7]]);
-const pos$24 = nix.positions(here + "/default.nix", [["paths", 256, 7]]);
-const pos$25 = nix.positions(here + "/default.nix", [["paths", 263, 7]]);
-const pos$26 = nix.positions(here + "/default.nix", [["name", 271, 7], ["paths", 272, 7]]);
-const pos$27 = nix.positions(here + "/default.nix", [["paths", 291, 33]]);
-const pos$28 = nix.positions(here + "/default.nix", [["paths", 292, 41]]);
-const pos$29 = nix.positions(here + "/default.nix", [["name", 294, 9], ["paths", 295, 9], ["pname", 347, 9], ["version", 348, 9]]);
-const pos$30 = nix.positions(here + "/default.nix", [["locales", 291, 7], ["libiconvModules", 292, 7], ["libc", 293, 7]]);
-const pos$31 = nix.positions(here + "/default.nix", [["expand-response-params", 76, 5], ["bsdcp", 77, 5], ["patchelf", 78, 5], ["bashNonInteractive", 79, 5], ["curl", 87, 5], ["llvmPackages", 92, 5], ["coreutils", 113, 5], ["diffutils", 214, 5], ["findutils", 223, 5], ["iconv", 230, 5], ["libiconv", 231, 5], ["patch", 232, 5], ["gnutar", 233, 5], ["gawk", 234, 5], ["gnumake", 240, 5], ["gnugrep", 241, 5], ["gnused", 248, 5], ["gzip", 249, 5], ["bzip2", 255, 5], ["xz", 262, 5], ["binutils-unwrapped", 270, 5], ["freebsd", 290, 5]]);
 const formals$2 = { args: { name: true, overrides: true, hascxx: true }, ellipsis: false };
-const pos$32 = nix.positions(here + "/default.nix", [["initialPath", 387, 11], ["shell", 388, 11], ["fetchurlBoot", 389, 11], ["name", 391, 9], ["buildPlatform", 392, 9], ["hostPlatform", 393, 9], ["targetPlatform", 394, 9], ["cc", 395, 9]]);
-const pos$33 = nix.positions(here + "/default.nix", [["lib", 398, 17], ["stdenvNoCC", 398, 21], ["curl", 399, 29], ["hashedMirrors", 400, 26], ["rewriteURL", 400, 40]]);
-const pos$34 = nix.positions(here + "/default.nix", [["libcxx-cxxflags", 432, 13]]);
-const pos$35 = nix.positions(here + "/default.nix", [["lib", 438, 21], ["stdenvNoCC", 438, 25], ["name", 439, 13], ["libc", 440, 41], ["gnugrep", 441, 33], ["coreutils", 441, 41], ["expand-response-params", 441, 51], ["runtimeShell", 442, 13], ["bintools", 443, 13], ["propagateDoc", 444, 13], ["nativeTools", 445, 13], ["nativeLibc", 446, 13]]);
-const pos$36 = nix.positions(here + "/default.nix", [["lib", 417, 19], ["stdenvNoCC", 417, 23], ["name", 418, 11], ["libc", 419, 39], ["gnugrep", 420, 31], ["coreutils", 420, 39], ["expand-response-params", 420, 49], ["libcxx", 421, 11], ["runtimeShell", 422, 11], ["propagateDoc", 423, 11], ["nativeTools", 424, 11], ["nativeLibc", 425, 11], ["cc", 426, 11], ["isClang", 427, 11], ["extraPackages", 428, 11], ["nixSupport", 431, 11], ["extraBuildCommands", 434, 11], ["bintools", 437, 11]]);
-const pos$37 = nix.positions(here + "/default.nix", [["initialPath", 404, 11], ["shell", 405, 11], ["fetchurlBoot", 406, 11], ["name", 408, 9], ["buildPlatform", 409, 9], ["hostPlatform", 410, 9], ["targetPlatform", 411, 9], ["extraNativeBuildInputs", 412, 9], ["cc", 416, 9], ["overrides", 449, 9], ["preHook", 450, 9]]);
-const pos$38 = nix.positions(here + "/default.nix", [["config", 459, 15], ["overlays", 459, 22], ["stdenv", 459, 31]]);
 const formals$3 = { args: {  }, ellipsis: false };
-const pos$39 = nix.positions(here + "/default.nix", [["lib", 492, 19], ["stdenvNoCC", 493, 26], ["curl", 494, 31], ["hashedMirrors", 495, 28], ["rewriteURL", 495, 42]]);
-const pos$40 = nix.positions(here + "/default.nix", [["NIX_CFLAGS_COMPILE", 498, 11]]);
-const pos$41 = nix.positions(here + "/default.nix", [["NIX_CFLAGS_COMPILE", 501, 47]]);
-const pos$42 = nix.positions(here + "/default.nix", [["name", 507, 64]]);
-const pos$43 = nix.positions(here + "/default.nix", [["name", 512, 19], ["libc", 513, 19]]);
-const pos$44 = nix.positions(here + "/default.nix", [["name", 509, 17], ["libc", 510, 17], ["bintools", 511, 17]]);
-const pos$45 = nix.positions(here + "/default.nix", [["locales", 506, 41], ["stdenvNoLibcxx", 507, 13]]);
-const pos$46 = nix.positions(here + "/default.nix", [["name", 522, 58]]);
-const pos$47 = nix.positions(here + "/default.nix", [["name", 527, 21], ["libc", 528, 21]]);
-const pos$48 = nix.positions(here + "/default.nix", [["name", 524, 19], ["libc", 525, 19], ["bintools", 526, 19], ["extraPackages", 530, 19], ["extraBuildCommands", 533, 19]]);
-const pos$49 = nix.positions(here + "/default.nix", [["stdenv", 522, 15]]);
-const pos$50 = nix.positions(here + "/default.nix", [["NIX_CFLAGS_COMPILE", 539, 19], ["NIX_LDFLAGS", 540, 19], ["cmakeFlags", 541, 19]]);
-const pos$51 = nix.positions(here + "/default.nix", [["libcxx", 520, 11]]);
-const pos$52 = nix.positions(here + "/default.nix", [["patchelf", 472, 11], ["bashNonInteractive", 473, 11], ["curl", 474, 11], ["coreutils", 475, 11], ["diffutils", 476, 11], ["findutils", 477, 11], ["iconv", 478, 11], ["libiconv", 479, 11], ["patch", 480, 11], ["gnutar", 481, 11], ["gawk", 482, 11], ["gnumake", 483, 11], ["gnugrep", 484, 11], ["gnused", 485, 11], ["gzip", 486, 11], ["bzip2", 487, 11], ["xz", 488, 11], ["binutils-unwrapped", 490, 9], ["fetchurl", 491, 9], ["gettext", 497, 9], ["curlReal", 500, 9], ["tzdata", 501, 9], ["freebsd", 504, 9], ["llvmPackages", 519, 9]]);
-const pos$53 = nix.positions(here + "/default.nix", [["name", 466, 7], ["hascxx", 467, 7], ["overrides", 468, 7]]);
-const pos$54 = nix.positions(here + "/default.nix", [["locales", 566, 11], ["localesReal", 567, 11], ["libc", 568, 11]]);
-const pos$55 = nix.positions(here + "/default.nix", [["libcxx", 572, 9]]);
-const pos$56 = nix.positions(here + "/default.nix", [["curl", 554, 7], ["fetchurl", 556, 9], ["python3", 557, 9], ["bison", 558, 9], ["perl", 559, 9], ["cmake", 560, 9], ["ninja", 561, 9], ["fetchurlReal", 563, 7], ["freebsd", 564, 7], ["llvmPackages", 571, 7]]);
-const pos$57 = nix.positions(here + "/default.nix", [["name", 549, 5], ["overrides", 550, 5]]);
-const pos$58 = nix.positions(here + "/default.nix", [["libc", 583, 39], ["localesPrev", 584, 11]]);
-const pos$59 = nix.positions(here + "/default.nix", [["__bootstrapArchive", 579, 7], ["fetchurl", 580, 7], ["freebsd", 581, 7]]);
-const pos$60 = nix.positions(here + "/default.nix", [["name", 577, 5], ["overrides", 578, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -74,13 +15,13 @@ export default nix.lambda((args) => (() => {
   const overlays = nix.arg($, "overlays");
   const bootstrapFiles = nix.argOr($, "bootstrapFiles", () => (() => {
     const table = nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       "x86_64-freebsd": nix.thunk(() => nix.builtins.import(nix.path(here, "./bootstrap-files/x86_64-unknown-freebsd.nix"))),
     }));
     const files = nix.thunk(() => nix.selOr(table, () => nix.builtins.throw(nix.thunk(() => nix.str`unsupported platform ${nix.sel(localSystem, "system")} for the pure FreeBSD stdenv`)), nix.key(nix.sel(localSystem, "system"))));
     return nix.force(files);
   })());
-  const genericStdenv = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../generic")), nix.thunk(() => ({ [nix.POS]: pos$2, defaultConfig: config }))));
+  const genericStdenv = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../generic")), nix.thunk(() => ({ [nix.POS]: $pos[1], defaultConfig: config }))));
   const system = nix.thunk(() => nix.attr(localSystem, "system"));
   const mkExtraBuildCommands0 = (cc) => nix.str`rsrc="$out/resource-root"
 mkdir "$rsrc"
@@ -91,7 +32,7 @@ echo "-resource-dir=$rsrc" >> $out/nix-support/cc-cflags
 ln -s "${nix.sel(compiler_rt, "out")}/share" "$rsrc/share"
 `);
   const bootstrapArchive = nix.thunk(() => nix.app(nix.builtins.derivation, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       system: system,
       name: "bootstrap-archive",
       pname: "bootstrap-archive",
@@ -106,7 +47,7 @@ ln -s "${nix.sel(compiler_rt, "out")}/share" "$rsrc/share"
       bootstrapTools: nix.thunk(() => nix.attr(bootstrapFiles, "bootstrapTools")),
     }))));
   const linkBootstrap = (attrs) => nix.app(nix.builtins.derivation, nix.thunk(() => nix.update(attrs, {
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       system: system,
       name: nix.thunk(() => nix.selOr(attrs, () => nix.builtins.baseNameOf(nix.thunk(() => nix.builtins.elemAt(nix.thunk(() => nix.sel(attrs, "paths")), 0n))), "name")),
       src: bootstrapArchive,
@@ -116,26 +57,26 @@ ln -s "${nix.sel(compiler_rt, "out")}/share" "$rsrc/share"
       paths: nix.thunk(() => nix.sel(attrs, "paths")),
     })));
   const bootstrapTools = nix.thunk(() => ({
-    [nix.POS]: pos$31,
+    [nix.POS]: $pos[30],
     "expand-response-params": "",
-    bsdcp: nix.thunk(() => nix.app(linkBootstrap, nix.thunk(() => ({ [nix.POS]: pos$5, paths: nix.thunk(() => ["bin/bsdcp"]) })))),
-    patchelf: nix.thunk(() => nix.app(linkBootstrap, nix.thunk(() => ({ [nix.POS]: pos$6, paths: nix.thunk(() => ["bin/patchelf"]) })))),
+    bsdcp: nix.thunk(() => nix.app(linkBootstrap, nix.thunk(() => ({ [nix.POS]: $pos[4], paths: nix.thunk(() => ["bin/bsdcp"]) })))),
+    patchelf: nix.thunk(() => nix.app(linkBootstrap, nix.thunk(() => ({ [nix.POS]: $pos[5], paths: nix.thunk(() => ["bin/patchelf"]) })))),
     bashNonInteractive: nix.thunk(() => nix.app(linkBootstrap, nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         paths: nix.thunk(() => ["bin/bash", "bin/sh"]),
         shell: "bin/bash",
         shellPath: "/bin/bash",
       })))),
-    curl: nix.thunk(() => nix.app(linkBootstrap, nix.thunk(() => ({ [nix.POS]: pos$8, paths: nix.thunk(() => ["bin/curl"]) })))),
+    curl: nix.thunk(() => nix.app(linkBootstrap, nix.thunk(() => ({ [nix.POS]: $pos[7], paths: nix.thunk(() => ["bin/curl"]) })))),
     llvmPackages: nix.thunk(() => ({
-      [nix.POS]: pos$11,
+      [nix.POS]: $pos[10],
       "clang-unwrapped": nix.thunk(() => nix.app(linkBootstrap, nix.thunk(() => ({
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           paths: nix.thunk(() => ["bin/clang", "bin/clang++", "bin/cpp", "lib/clang"]),
           version: "21",
         })))),
       libunwind: nix.thunk(() => nix.app(linkBootstrap, nix.thunk(() => ({
-          [nix.POS]: pos$10,
+          [nix.POS]: $pos[9],
           name: "libunwind",
           paths: nix.thunk(() => [
             "lib/libunwind.so",
@@ -146,7 +87,7 @@ ln -s "${nix.sel(compiler_rt, "out")}/share" "$rsrc/share"
         })))),
     })),
     coreutils: nix.thunk(() => nix.app(linkBootstrap, nix.thunk(() => ({
-        [nix.POS]: pos$12,
+        [nix.POS]: $pos[11],
         name: "coreutils",
         paths: nix.thunk(() => nix.builtins.map((str) => nix.add("bin/", str), nix.thunk(() => [
             "base64",
@@ -248,46 +189,46 @@ ln -s "${nix.sel(compiler_rt, "out")}/share" "$rsrc/share"
           ]))),
       })))),
     diffutils: nix.thunk(() => nix.app(linkBootstrap, nix.thunk(() => ({
-        [nix.POS]: pos$13,
+        [nix.POS]: $pos[12],
         name: "diffutils",
         paths: nix.thunk(() => nix.builtins.map((str) => nix.add("bin/", str), nix.thunk(() => ["diff", "cmp"]))),
       })))),
     findutils: nix.thunk(() => nix.app(linkBootstrap, nix.thunk(() => ({
-        [nix.POS]: pos$14,
+        [nix.POS]: $pos[13],
         name: "findutils",
         paths: nix.thunk(() => ["bin/find", "bin/xargs"]),
       })))),
-    iconv: nix.thunk(() => nix.app(linkBootstrap, nix.thunk(() => ({ [nix.POS]: pos$15, paths: nix.thunk(() => ["bin/iconv"]) })))),
-    libiconv: nix.thunk(() => nix.app(linkBootstrap, nix.thunk(() => ({ [nix.POS]: pos$16, paths: nix.thunk(() => ["include/iconv.h"]) })))),
-    patch: nix.thunk(() => nix.app(linkBootstrap, nix.thunk(() => ({ [nix.POS]: pos$17, paths: nix.thunk(() => ["bin/patch"]) })))),
-    gnutar: nix.thunk(() => nix.app(linkBootstrap, nix.thunk(() => ({ [nix.POS]: pos$18, paths: nix.thunk(() => ["bin/tar"]) })))),
-    gawk: nix.thunk(() => nix.app(linkBootstrap, nix.thunk(() => ({ [nix.POS]: pos$19, paths: nix.thunk(() => ["bin/awk", "bin/gawk"]) })))),
-    gnumake: nix.thunk(() => nix.app(linkBootstrap, nix.thunk(() => ({ [nix.POS]: pos$20, paths: nix.thunk(() => ["bin/make"]) })))),
+    iconv: nix.thunk(() => nix.app(linkBootstrap, nix.thunk(() => ({ [nix.POS]: $pos[14], paths: nix.thunk(() => ["bin/iconv"]) })))),
+    libiconv: nix.thunk(() => nix.app(linkBootstrap, nix.thunk(() => ({ [nix.POS]: $pos[15], paths: nix.thunk(() => ["include/iconv.h"]) })))),
+    patch: nix.thunk(() => nix.app(linkBootstrap, nix.thunk(() => ({ [nix.POS]: $pos[16], paths: nix.thunk(() => ["bin/patch"]) })))),
+    gnutar: nix.thunk(() => nix.app(linkBootstrap, nix.thunk(() => ({ [nix.POS]: $pos[17], paths: nix.thunk(() => ["bin/tar"]) })))),
+    gawk: nix.thunk(() => nix.app(linkBootstrap, nix.thunk(() => ({ [nix.POS]: $pos[18], paths: nix.thunk(() => ["bin/awk", "bin/gawk"]) })))),
+    gnumake: nix.thunk(() => nix.app(linkBootstrap, nix.thunk(() => ({ [nix.POS]: $pos[19], paths: nix.thunk(() => ["bin/make"]) })))),
     gnugrep: nix.thunk(() => nix.app(linkBootstrap, nix.thunk(() => ({
-        [nix.POS]: pos$21,
+        [nix.POS]: $pos[20],
         paths: nix.thunk(() => ["bin/grep", "bin/egrep", "bin/fgrep"]),
       })))),
-    gnused: nix.thunk(() => nix.app(linkBootstrap, nix.thunk(() => ({ [nix.POS]: pos$22, paths: nix.thunk(() => ["bin/sed"]) })))),
-    gzip: nix.thunk(() => nix.app(linkBootstrap, nix.thunk(() => ({ [nix.POS]: pos$23, paths: nix.thunk(() => ["bin/gzip"]) })))),
+    gnused: nix.thunk(() => nix.app(linkBootstrap, nix.thunk(() => ({ [nix.POS]: $pos[21], paths: nix.thunk(() => ["bin/sed"]) })))),
+    gzip: nix.thunk(() => nix.app(linkBootstrap, nix.thunk(() => ({ [nix.POS]: $pos[22], paths: nix.thunk(() => ["bin/gzip"]) })))),
     bzip2: nix.thunk(() => nix.app(linkBootstrap, nix.thunk(() => ({
-        [nix.POS]: pos$24,
+        [nix.POS]: $pos[23],
         paths: nix.thunk(() => ["bin/bzip2", "lib/libbz2.so", "lib/libbz2.so.1"]),
       })))),
     xz: nix.thunk(() => nix.app(linkBootstrap, nix.thunk(() => ({
-        [nix.POS]: pos$25,
+        [nix.POS]: $pos[24],
         paths: nix.thunk(() => ["bin/xz", "bin/unxz", "lib/liblzma.so", "lib/liblzma.so.5"]),
       })))),
     "binutils-unwrapped": nix.thunk(() => nix.app(linkBootstrap, nix.thunk(() => ({
-        [nix.POS]: pos$26,
+        [nix.POS]: $pos[25],
         name: "binutils",
         paths: nix.thunk(() => nix.builtins.map((str) => nix.add("bin/", str), nix.thunk(() => ["ld", "ar", "nm", "objcopy", "ranlib", "readelf", "size", "strings", "strip"]))),
       })))),
     freebsd: nix.thunk(() => ({
-      [nix.POS]: pos$30,
-      locales: nix.thunk(() => nix.app(linkBootstrap, nix.thunk(() => ({ [nix.POS]: pos$27, paths: nix.thunk(() => ["share/locale"]) })))),
-      libiconvModules: nix.thunk(() => nix.app(linkBootstrap, nix.thunk(() => ({ [nix.POS]: pos$28, paths: nix.thunk(() => ["lib/i18n"]) })))),
+      [nix.POS]: $pos[29],
+      locales: nix.thunk(() => nix.app(linkBootstrap, nix.thunk(() => ({ [nix.POS]: $pos[26], paths: nix.thunk(() => ["share/locale"]) })))),
+      libiconvModules: nix.thunk(() => nix.app(linkBootstrap, nix.thunk(() => ({ [nix.POS]: $pos[27], paths: nix.thunk(() => ["lib/i18n"]) })))),
       libc: nix.thunk(() => nix.app(linkBootstrap, nix.thunk(() => ({
-          [nix.POS]: pos$29,
+          [nix.POS]: $pos[28],
           name: "bootstrapLibs",
           paths: nix.thunk(() => [
             "lib/Scrt1.o",
@@ -375,7 +316,7 @@ ln -s "${nix.sel(compiler_rt, "out")}/share" "$rsrc/share"
       })());
       const shell = nix.thunk(() => nix.str`${nix.sel(prevStage, "bashNonInteractive")}/bin/bash`);
       const stdenvNoCC = nix.thunk(() => nix.app(genericStdenv, nix.thunk(() => ({
-          [nix.POS]: pos$32,
+          [nix.POS]: $pos[31],
           initialPath: initialPath,
           shell: shell,
           fetchurlBoot: fetchurlBoot,
@@ -386,7 +327,7 @@ ln -s "${nix.sel(compiler_rt, "out")}/share" "$rsrc/share"
           cc: null,
         }))));
       const fetchurlBoot = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../build-support/fetchurl")), nix.thunk(() => ({
-          [nix.POS]: pos$33,
+          [nix.POS]: $pos[32],
           lib: lib,
           stdenvNoCC: stdenvNoCC,
           curl: nix.thunk(() => nix.attr(prevStage, "curl")),
@@ -394,7 +335,7 @@ ln -s "${nix.sel(compiler_rt, "out")}/share" "$rsrc/share"
           rewriteURL: nix.thunk(() => nix.attr(config, "rewriteURL")),
         }))));
       const stdenv = nix.thunk(() => nix.app(genericStdenv, nix.thunk(() => ({
-          [nix.POS]: pos$37,
+          [nix.POS]: $pos[36],
           initialPath: initialPath,
           shell: shell,
           fetchurlBoot: fetchurlBoot,
@@ -406,7 +347,7 @@ ln -s "${nix.sel(compiler_rt, "out")}/share" "$rsrc/share"
           cc: nix.thunk(() => nix.app(nix.sel(lib, "makeOverridable"), nix.thunk(() => nix.builtins.import(nix.path(here, "../../build-support/cc-wrapper"))), nix.thunk(() => (() => {
               const from = nix.thunk(() => nix.sel(prevStage, "freebsd"));
               return {
-              [nix.POS]: pos$36,
+              [nix.POS]: $pos[35],
               lib: lib,
               stdenvNoCC: stdenvNoCC,
               name: nix.thunk(() => nix.str`${name}-cc`),
@@ -423,7 +364,7 @@ ln -s "${nix.sel(compiler_rt, "out")}/share" "$rsrc/share"
               isClang: true,
               extraPackages: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), hascxx, nix.thunk(() => [nix.thunk(() => nix.sel(prevStage, "llvmPackages", "compiler-rt"))]))),
               nixSupport: nix.thunk(() => ({
-                [nix.POS]: pos$34,
+                [nix.POS]: $pos[33],
                 "libcxx-cxxflags": nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(hascxx)), nix.thunk(() => [
                     nix.thunk(() => nix.str`-isystem ${nix.sel(prevStage, "freebsd", "libc")}/include/c++/v1`),
                   ]))),
@@ -432,7 +373,7 @@ ln -s "${nix.sel(compiler_rt, "out")}/share" "$rsrc/share"
               bintools: nix.thunk(() => nix.app(nix.sel(lib, "makeOverridable"), nix.thunk(() => nix.builtins.import(nix.path(here, "../../build-support/bintools-wrapper"))), nix.thunk(() => (() => {
                   const from_1 = nix.thunk(() => nix.sel(prevStage, "freebsd"));
                   return {
-                  [nix.POS]: pos$35,
+                  [nix.POS]: $pos[34],
                   lib: lib,
                   stdenvNoCC: stdenvNoCC,
                   name: nix.thunk(() => nix.str`${name}-bintools`),
@@ -456,18 +397,18 @@ export PATH_LOCALE=${nix.selOr(prevStage, () => nix.sel(prevStage, "freebsd", "l
 export PATH_I18NMODULE=${nix.sel(prevStage, "freebsd", "libiconvModules")}/lib/i18n
 `),
         }))));
-      return { [nix.POS]: pos$38, config: config, overlays: overlays, stdenv: stdenv };
+      return { [nix.POS]: $pos[37], config: config, overlays: overlays, stdenv: stdenv };
     })();
   })(), formals$2);
   return [
     nix.lambda((args_1) => (() => {
       const $_1 = nix.formals(args_1, formals$3);
       return nix.app(mkStdenv, nix.thunk(() => ({
-          [nix.POS]: pos$53,
+          [nix.POS]: $pos[52],
           name: "freebsd-boot-0",
           hascxx: false,
           overrides: (prevStage) => (self) => (super$) => ({
-            [nix.POS]: pos$52,
+            [nix.POS]: $pos[51],
             patchelf: nix.thunk(() => nix.attr(bootstrapTools, "patchelf")),
             bashNonInteractive: nix.thunk(() => nix.attr(bootstrapTools, "bashNonInteractive")),
             curl: nix.thunk(() => nix.attr(bootstrapTools, "curl")),
@@ -487,27 +428,27 @@ export PATH_I18NMODULE=${nix.sel(prevStage, "freebsd", "libiconvModules")}/lib/i
             xz: nix.thunk(() => nix.attr(bootstrapTools, "xz")),
             "binutils-unwrapped": nix.thunk(() => nix.builtins.removeAttrs(nix.thunk(() => nix.sel(bootstrapTools, "binutils-unwrapped")), nix.thunk(() => ["src"]))),
             fetchurl: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../build-support/fetchurl")), nix.thunk(() => ({
-                [nix.POS]: pos$39,
+                [nix.POS]: $pos[38],
                 lib: lib,
                 stdenvNoCC: nix.thunk(() => nix.attr(self, "stdenvNoCC")),
                 curl: nix.thunk(() => nix.attr(prevStage, "curl")),
                 hashedMirrors: nix.thunk(() => nix.attr(config, "hashedMirrors")),
                 rewriteURL: nix.thunk(() => nix.attr(config, "rewriteURL")),
               })))),
-            gettext: nix.thunk(() => nix.app(nix.sel(super$, "gettext", "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: pos$40, NIX_CFLAGS_COMPILE: "-DHAVE_ICONV=1" })))),
+            gettext: nix.thunk(() => nix.app(nix.sel(super$, "gettext", "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: $pos[39], NIX_CFLAGS_COMPILE: "-DHAVE_ICONV=1" })))),
             curlReal: nix.thunk(() => nix.sel(super$, "curl")),
-            tzdata: nix.thunk(() => nix.app(nix.sel(super$, "tzdata", "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: pos$41, NIX_CFLAGS_COMPILE: "-DHAVE_GETTEXT=0" })))),
+            tzdata: nix.thunk(() => nix.app(nix.sel(super$, "tzdata", "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: $pos[40], NIX_CFLAGS_COMPILE: "-DHAVE_GETTEXT=0" })))),
             freebsd: nix.thunk(() => nix.app(nix.sel(super$, "freebsd", "overrideScope"), (self$) => (super$_1) => (() => {
                 const from = nix.thunk(() => nix.sel(prevStage, "freebsd"));
                 return {
-                [nix.POS]: pos$45,
+                [nix.POS]: $pos[44],
                 locales: nix.thunk(() => nix.attr(from, "locales")),
-                stdenvNoLibcxx: nix.thunk(() => nix.app(nix.sel(self, "overrideCC"), nix.thunk(() => nix.update(nix.sel(self, "stdenv"), { [nix.POS]: pos$42, name: "stdenv-freebsd-boot-0.4" })), nix.thunk(() => nix.app(nix.sel(self, "stdenv", "cc", "override"), nix.thunk(() => ({
-                      [nix.POS]: pos$44,
+                stdenvNoLibcxx: nix.thunk(() => nix.app(nix.sel(self, "overrideCC"), nix.thunk(() => nix.update(nix.sel(self, "stdenv"), { [nix.POS]: $pos[41], name: "stdenv-freebsd-boot-0.4" })), nix.thunk(() => nix.app(nix.sel(self, "stdenv", "cc", "override"), nix.thunk(() => ({
+                      [nix.POS]: $pos[43],
                       name: "freebsd-boot-0.4-cc",
                       libc: nix.thunk(() => nix.sel(self, "freebsd", "libc")),
                       bintools: nix.thunk(() => nix.app(nix.sel(self, "stdenv", "cc", "bintools", "override"), nix.thunk(() => ({
-                          [nix.POS]: pos$43,
+                          [nix.POS]: $pos[42],
                           name: "freebsd-boot-0.4-bintools",
                           libc: nix.thunk(() => nix.sel(self, "freebsd", "libc")),
                         })))),
@@ -515,15 +456,15 @@ export PATH_I18NMODULE=${nix.sel(prevStage, "freebsd", "libiconvModules")}/lib/i
               };
               })())),
             llvmPackages: nix.thunk(() => nix.update(nix.sel(super$, "llvmPackages"), {
-              [nix.POS]: pos$51,
+              [nix.POS]: $pos[50],
               libcxx: nix.thunk(() => nix.app(nix.sel(nix.app(nix.sel(super$, "llvmPackages", "libcxx", "override"), nix.thunk(() => ({
-                  [nix.POS]: pos$49,
-                  stdenv: nix.thunk(() => nix.app(nix.sel(self, "overrideCC"), nix.thunk(() => nix.update(nix.sel(self, "stdenv"), { [nix.POS]: pos$46, name: "stdenv-freebsd-boot-0.5" })), nix.thunk(() => nix.app(nix.sel(self, "stdenv", "cc", "override"), nix.thunk(() => ({
-                        [nix.POS]: pos$48,
+                  [nix.POS]: $pos[48],
+                  stdenv: nix.thunk(() => nix.app(nix.sel(self, "overrideCC"), nix.thunk(() => nix.update(nix.sel(self, "stdenv"), { [nix.POS]: $pos[45], name: "stdenv-freebsd-boot-0.5" })), nix.thunk(() => nix.app(nix.sel(self, "stdenv", "cc", "override"), nix.thunk(() => ({
+                        [nix.POS]: $pos[47],
                         name: "freebsd-boot-0.5-cc",
                         libc: nix.thunk(() => nix.sel(self, "freebsd", "libc")),
                         bintools: nix.thunk(() => nix.app(nix.sel(self, "stdenv", "cc", "bintools", "override"), nix.thunk(() => ({
-                            [nix.POS]: pos$47,
+                            [nix.POS]: $pos[46],
                             name: "freebsd-boot-0.5-bintools",
                             libc: nix.thunk(() => nix.sel(self, "freebsd", "libc")),
                           })))),
@@ -531,7 +472,7 @@ export PATH_I18NMODULE=${nix.sel(prevStage, "freebsd", "libiconvModules")}/lib/i
                         extraBuildCommands: nix.thunk(() => nix.app(mkExtraBuildCommands, nix.thunk(() => nix.sel(self, "llvmPackages", "clang-unwrapped")), nix.thunk(() => nix.sel(self, "llvmPackages", "compiler-rt")))),
                       })))))),
                 }))), "overrideAttrs"), (self$) => (super$_1) => ({
-                  [nix.POS]: pos$50,
+                  [nix.POS]: $pos[49],
                   NIX_CFLAGS_COMPILE: "-nostdlib++",
                   NIX_LDFLAGS: "--allow-shlib-undefined",
                   cmakeFlags: nix.thunk(() => nix.builtins.filter((x) => !nix.eq(x, "-DCMAKE_SHARED_LINKER_FLAGS=-nostdlib"), nix.thunk(() => nix.sel(super$_1, "cmakeFlags")))),
@@ -541,10 +482,10 @@ export PATH_I18NMODULE=${nix.sel(prevStage, "freebsd", "libiconvModules")}/lib/i
         })), bootstrapTools);
     })(), formals$3),
     nix.thunk(() => nix.app(mkStdenv, nix.thunk(() => ({
-        [nix.POS]: pos$57,
+        [nix.POS]: $pos[56],
         name: "freebsd-boot-1",
         overrides: (prevStage) => (self) => (super$) => ({
-          [nix.POS]: pos$56,
+          [nix.POS]: $pos[55],
           curl: nix.thunk(() => nix.sel(prevStage, "curlReal")),
           fetchurl: nix.thunk(() => nix.attr(prevStage, "fetchurl")),
           python3: nix.thunk(() => nix.attr(prevStage, "python3")),
@@ -554,28 +495,28 @@ export PATH_I18NMODULE=${nix.sel(prevStage, "freebsd", "libiconvModules")}/lib/i
           ninja: nix.thunk(() => nix.attr(prevStage, "ninja")),
           fetchurlReal: nix.thunk(() => nix.sel(super$, "fetchurl")),
           freebsd: nix.thunk(() => nix.app(nix.sel(super$, "freebsd", "overrideScope"), (self$) => (super$_1) => ({
-              [nix.POS]: pos$54,
+              [nix.POS]: $pos[53],
               locales: nix.thunk(() => nix.sel(prevStage, "freebsd", "locales")),
               localesReal: nix.thunk(() => nix.sel(super$_1, "locales")),
               libc: nix.thunk(() => nix.sel(prevStage, "freebsd", "libc")),
             }))),
           llvmPackages: nix.thunk(() => nix.update(nix.sel(super$, "llvmPackages"), {
-            [nix.POS]: pos$55,
+            [nix.POS]: $pos[54],
             libcxx: nix.thunk(() => nix.sel(prevStage, "llvmPackages", "libcxx")),
           })),
         }),
       })))),
     nix.thunk(() => nix.app(mkStdenv, nix.thunk(() => ({
-        [nix.POS]: pos$60,
+        [nix.POS]: $pos[59],
         name: "freebsd",
         overrides: (prevStage) => (self) => (super$) => ({
-          [nix.POS]: pos$59,
+          [nix.POS]: $pos[58],
           __bootstrapArchive: bootstrapArchive,
           fetchurl: nix.thunk(() => nix.sel(prevStage, "fetchurlReal")),
           freebsd: nix.thunk(() => nix.app(nix.sel(super$, "freebsd", "overrideScope"), (self$) => (super$_1) => (() => {
               const from = nix.thunk(() => nix.sel(prevStage, "freebsd"));
               return {
-              [nix.POS]: pos$58,
+              [nix.POS]: $pos[57],
               libc: nix.thunk(() => nix.attr(from, "libc")),
               localesPrev: nix.thunk(() => nix.sel(prevStage, "freebsd", "localesReal")),
             };

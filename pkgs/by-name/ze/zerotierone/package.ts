@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]], [["src", 36, 13], ["sourceRoot", 37, 5], ["hash", 38, 5]], [["CARGO_BUILD_TARGET", 81, 7]], [["updateScript", 140, 12]], [["description", 143, 5], ["homepage", 144, 5], ["license", 145, 5], ["maintainers", 146, 5], ["platforms", 152, 5]], [["pname", 33, 11], ["version", 33, 17], ["src", 33, 25], ["cargoDeps", 35, 3], ["patches", 41, 3], ["postPatch", 47, 3], ["preConfigure", 51, 3], ["nativeBuildInputs", 61, 3], ["buildInputs", 69, 3], ["enableParallelBuilding", 78, 3], ["env", 81, 3], ["preBuild", 83, 3], ["buildFlags", 104, 3], ["doCheck", 111, 3], ["checkPhase", 113, 3], ["installFlags", 119, 3], ["postInstall", 126, 3], ["outputs", 135, 3], ["passthru", 140, 3], ["meta", 142, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, rustPlatform: false, fetchFromGitHub: false, buildPackages: false, cargo: false, lzo: false, openssl: false, "pkg-config": false, ronn: false, rustc: false, zlib: false, libiconv: false, enableUnfree: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["src", 36, 13], ["sourceRoot", 37, 5], ["hash", 38, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["CARGO_BUILD_TARGET", 81, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 140, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 143, 5], ["homepage", 144, 5], ["license", 145, 5], ["maintainers", 146, 5], ["platforms", 152, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 33, 11], ["version", 33, 17], ["src", 33, 25], ["cargoDeps", 35, 3], ["patches", 41, 3], ["postPatch", 47, 3], ["preConfigure", 51, 3], ["nativeBuildInputs", 61, 3], ["buildInputs", 69, 3], ["enableParallelBuilding", 78, 3], ["env", 81, 3], ["preBuild", 83, 3], ["buildFlags", 104, 3], ["doCheck", 111, 3], ["checkPhase", 113, 3], ["installFlags", 119, 3], ["postInstall", 126, 3], ["outputs", 135, 3], ["passthru", 140, 3], ["meta", 142, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,19 +24,19 @@ export default nix.lambda((args) => (() => {
   const pname = "zerotierone";
   const version = "1.16.0";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "zerotier",
       repo: "ZeroTierOne",
       tag: version,
       hash: "sha256-bFfRz695sbdZJd5DIfF7j8lbEqWHSaIqHq/AfXZgZ4s=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: pname,
       version: version,
       src: src,
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           src: src,
           sourceRoot: nix.thunk(() => nix.str`${nix.sel(src, "name")}/rustybits`),
           hash: "sha256-u3gqETbn4I+mtUeSkSym4s+qhA3eDb4Qaq7bl58M+AY=",
@@ -69,7 +64,7 @@ substituteInPlace ./make-linux.mk \\
       buildInputs: nix.thunk(() => nix.concat([lzo, openssl, zlib], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [libiconv])))),
       enableParallelBuilding: true,
       env: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         CARGO_BUILD_TARGET: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "rust", "rustcTarget")),
       })),
       preBuild: nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? nix.str`# building multiple architectures at the same time from nixpkgs is not supported
@@ -92,9 +87,9 @@ ln -rs \\
       installFlags: nix.thunk(() => ["-f", "make-linux.mk", "DESTDIR=$$out/upstream"]),
       postInstall: "mv $out/upstream/usr/sbin $out/bin\n\nmkdir -p $man/share\nmv $out/upstream/usr/share/man $man/share/man\n\nrm -rf $out/upstream\n",
       outputs: nix.thunk(() => ["out", "man"]),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$4, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[3], updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Create flat virtual Ethernet networks of almost unlimited size",
         homepage: "https://www.zerotier.com",
         license: nix.thunk(() => (nix.asBool(enableUnfree) ? nix.sel(lib, "licenses", "unfree") : nix.sel(lib, "licenses", "mpl20"))),

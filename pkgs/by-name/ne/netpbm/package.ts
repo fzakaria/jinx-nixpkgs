@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 33, 5], ["rev", 34, 5], ["sha256", 35, 5]], [["STRIPPROG", 103, 5]], [["NIX_CFLAGS_COMPILE", 106, 5]], [["updateScript", 129, 12]], [["changelog", 132, 5], ["homepage", 133, 5], ["description", 134, 5], ["license", 135, 5], ["platforms", 136, 5]], [["pname", 23, 3], ["version", 24, 3], ["outputs", 26, 3], ["src", 32, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 44, 3], ["strictDeps", 55, 3], ["enableParallelBuilding", 57, 3], ["postPatch", 59, 3], ["configurePhase", 65, 3], ["env", 102, 3], ["installPhase", 109, 3], ["passthru", 129, 3], ["meta", 131, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchsvn: false, "pkg-config": false, libjpeg: false, libpng: false, jbigkit: false, flex: false, zlib: false, perl: false, libxml2: false, makeWrapper: false, libtiff: false, enableX11: true, libx11: false, buildPackages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 33, 5], ["rev", 34, 5], ["sha256", 35, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["STRIPPROG", 103, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 106, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 129, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["changelog", 132, 5], ["homepage", 133, 5], ["description", 134, 5], ["license", 135, 5], ["platforms", 136, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 23, 3], ["version", 24, 3], ["outputs", 26, 3], ["src", 32, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 44, 3], ["strictDeps", 55, 3], ["enableParallelBuilding", 57, 3], ["postPatch", 59, 3], ["configurePhase", 65, 3], ["env", 102, 3], ["installPhase", 109, 3], ["passthru", 129, 3], ["meta", 131, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,12 +24,12 @@ export default nix.lambda((args) => (() => {
   const libx11 = nix.arg($, "libx11");
   const buildPackages = nix.arg($, "buildPackages");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "netpbm",
       version: "11.15.3",
       outputs: nix.thunk(() => ["bin", "out", "dev"]),
       src: nix.thunk(() => nix.app(fetchsvn, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://svn.code.sf.net/p/netpbm/code/advanced",
           rev: "5264",
           sha256: "sha256-5G2OitW25ZNsdBcVkKfLpFJWjTm9VcB3ca0QllOSugI=",
@@ -72,13 +67,13 @@ echo "JASPERLIB = NONE" >> config.mk
 echo "RGB_DB_PATH = $out/share/netpbm/misc/rgb.txt" >> config.mk
 `, nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "echo \"LDSHLIB=-dynamiclib -install_name $out/lib/libnetpbm.\\$(MAJ).dylib\" >> config.mk\necho \"NETPBMLIBTYPE = dylib\" >> config.mk\necho \"NETPBMLIBSUFFIX = dylib\" >> config.mk\n")), "runHook postConfigure\n")),
       env: nix.thunk(() => nix.update({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         STRIPPROG: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getBin"), nix.thunk(() => nix.sel(stdenv, "cc", "bintools", "bintools")))}/bin/${nix.sel(stdenv, "cc", "targetPrefix")}strip`),
-      }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), nix.thunk(() => ({ [nix.POS]: pos$3, NIX_CFLAGS_COMPILE: "-Wno-implicit-function-declaration" }))))),
+      }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), nix.thunk(() => ({ [nix.POS]: $pos[2], NIX_CFLAGS_COMPILE: "-Wno-implicit-function-declaration" }))))),
       installPhase: "runHook preInstall\n\nmake package pkgdir=$out\n\nrm -rf $out/*_template $out/{pkginfo,README,VERSION} $out/man/web\n\nmkdir -p $out/share/netpbm\nmv $out/misc $out/share/netpbm/\n\nmoveToOutput bin \"${!outputBin}\"\n\n# wrap any scripts that expect other programs in the package to be in their PATH\nfor prog in ppmquant; do\n    wrapProgram \"${!outputBin}/bin/$prog\" --prefix PATH : \"${!outputBin}/bin\"\ndone\n\nrunHook postInstall\n",
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$4, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[3], updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         changelog: nix.thunk(() => nix.str`https://sourceforge.net/p/netpbm/code/${nix.sel(finalAttrs, "src", "rev")}/tree/advanced/doc/HISTORY`),
         homepage: "https://netpbm.sourceforge.net/",
         description: "Toolkit for manipulation of graphic images",

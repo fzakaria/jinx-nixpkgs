@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["tag", 15, 5], ["hash", 16, 5]], [["extraArgs", 33, 7]], [["updateScript", 32, 5]], [["homepage", 38, 5], ["downloadPage", 39, 5], ["changelog", 40, 5], ["description", 41, 5], ["longDescription", 42, 5], ["license", 48, 5], ["mainProgram", 49, 5], ["maintainers", 50, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["vendorHash", 19, 3], ["ldflags", 21, 3], ["nativeInstallCheckInputs", 25, 3], ["versionCheckProgram", 27, 3], ["versionCheckProgramArg", 28, 3], ["doInstallCheck", 29, 3], ["passthru", 31, 3], ["meta", 37, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitHub: false, versionCheckHook: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["tag", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["extraArgs", 33, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 32, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 38, 5], ["downloadPage", 39, 5], ["changelog", 40, 5], ["description", 41, 5], ["longDescription", 42, 5], ["license", 48, 5], ["mainProgram", 49, 5], ["maintainers", 50, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["vendorHash", 19, 3], ["ldflags", 21, 3], ["nativeInstallCheckInputs", 25, 3], ["versionCheckProgram", 27, 3], ["versionCheckProgramArg", 28, 3], ["doInstallCheck", 29, 3], ["passthru", 31, 3], ["meta", 37, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "crowdsec-firewall-bouncer",
       version: "0.0.38",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "crowdsecurity",
           repo: "cs-firewall-bouncer",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,14 +32,14 @@ export default nix.lambda((args) => (() => {
       versionCheckProgramArg: "-version",
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             extraArgs: nix.thunk(() => ["--version-regex=^v(\\d+\\.\\d+\\.\\d+)$"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://crowdsec.net/",
         downloadPage: "https://github.com/crowdsecurity/cs-firewall-bouncer",
         changelog: nix.thunk(() => nix.str`https://github.com/crowdsecurity/cs-firewall-bouncer/releases/tag/v${nix.sel(finalAttrs, "version")}`),

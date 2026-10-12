@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5]], [["maintainers", 45, 5], ["description", 46, 5], ["homepage", 47, 5], ["license", 48, 5], ["platforms", 49, 5], ["mainProgram", 50, 5]], [["pname", 14, 3], ["version", 17, 3], ["src", 19, 3], ["buildInputs", 26, 3], ["nativeBuildInputs", 32, 3], ["postPatch", 38, 3], ["installFlags", 42, 3], ["meta", 44, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, qrtr: false, meson: false, zstd: false, "pkg-config": false, systemdLibs: false, ninja: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["maintainers", 45, 5], ["description", 46, 5], ["homepage", 47, 5], ["license", 48, 5], ["platforms", 49, 5], ["mainProgram", 50, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 17, 3], ["src", 19, 3], ["buildInputs", 26, 3], ["nativeBuildInputs", 32, 3], ["postPatch", 38, 3], ["installFlags", 42, 3], ["meta", 44, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const systemdLibs = nix.arg($, "systemdLibs");
   const ninja = nix.arg($, "ninja");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "tqftpserv",
       version: "1.1-unstable-2025-08-01",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "linux-msm",
           repo: "tqftpserv",
           rev: "408ca1ed5e4e0a9ac3650b13d3f3c60079b3e2a3",
@@ -34,7 +32,7 @@ export default nix.lambda((args) => (() => {
       postPatch: "substituteInPlace translate.c --replace-fail '/lib/firmware/' '/run/current-system/sw/share/uncompressed-firmware'\n",
       installFlags: nix.thunk(() => ["prefix=$(out)"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
           return [nix.thunk(() => nix.lookup(w, "matthewcroughan"))];

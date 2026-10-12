@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["case", 15, 35], ["out", 15, 40]], [["rev", 22, 22], ["hash", 23, 22]], [["rev", 24, 22], ["hash", 25, 22]], [["20230107", 22, 11], ["20200201", 24, 11]], [["pname", 10, 3], ["owner", 11, 3], ["version", 12, 11], ["defaultVersion", 13, 3], ["release", 22, 3], ["propagatedBuildInputs", 27, 3]]]);
 const formals$1 = { args: { lib: false, mkCoqDerivation: false, coq: false, StructTact: false, version: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["case", 15, 35], ["out", 15, 40]]);
-const pos$2 = nix.positions(here + "/default.nix", [["rev", 22, 22], ["hash", 23, 22]]);
-const pos$3 = nix.positions(here + "/default.nix", [["rev", 24, 22], ["hash", 25, 22]]);
-const pos$4 = nix.positions(here + "/default.nix", [["20230107", 22, 11], ["20200201", 24, 11]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 10, 3], ["owner", 11, 3], ["version", 12, 11], ["defaultVersion", 13, 3], ["release", 22, 3], ["propagatedBuildInputs", 27, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const StructTact = nix.arg($, "StructTact");
   const version = nix.argOr($, "version", () => null);
   return nix.app(mkCoqDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "cheerios",
       owner: "uwplse",
       version: version,
       defaultVersion: nix.thunk(() => (() => {
-        const case$ = (case$_1) => (out) => ({ [nix.POS]: pos$1, case: case$_1, out: out });
+        const case$ = (case$_1) => (out) => ({ [nix.POS]: $pos[0], case: case$_1, out: out });
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "versions")), null);
         return nix.app(nix.sel(lib, "switch"), nix.thunk(() => nix.sel(coq, "version")), nix.thunk(() => [
             nix.thunk(() => nix.app(case$, nix.thunk(() => nix.app(nix.lookup(w, "range"), "8.14", "9.3")), "20230107")),
@@ -30,14 +26,14 @@ export default nix.lambda((args) => (() => {
           ]), null);
       })()),
       release: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         "20230107": nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           rev: "bad8ad2476e14df6b5a819b7aaddc27a7c53fb69",
           hash: "sha256-G7a+6h4VDk7seKvFr6wy7vYqYmhUje78TYCj98wXrr8=",
         })),
         "20200201": nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           rev: "9c7f66e57b91f706d70afa8ed99d64ed98ab367d",
           hash: "sha256:1h55s6lk47bk0lv5ralh81z55h799jbl9mhizmqwqzy57y8wqgs1",
         })),

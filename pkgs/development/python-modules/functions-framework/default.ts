@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 37, 5], ["repo", 38, 5], ["tag", 39, 5], ["hash", 40, 5]], [["description", 83, 5], ["homepage", 84, 5], ["changelog", 85, 5], ["license", 86, 5], ["maintainers", 87, 5]], [["pname", 32, 3], ["version", 33, 3], ["pyproject", 34, 3], ["src", 36, 3], ["build-system", 43, 3], ["pythonRelaxDeps", 45, 3], ["dependencies", 48, 3], ["nativeCheckInputs", 61, 3], ["pythonImportsCheck", 70, 3], ["disabledTestPaths", 72, 3], ["disabledTests", 77, 3], ["meta", 82, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, pythonAtLeast: false, setuptools: false, click: false, cloudevents: false, deprecation: false, flask: false, gunicorn: false, starlette: false, uvicorn: false, "uvicorn-worker": false, watchdog: false, werkzeug: false, docker: false, httpx: false, pretend: false, "pytest-asyncio": false, pytestCheckHook: false, requests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 37, 5], ["repo", 38, 5], ["tag", 39, 5], ["hash", 40, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 83, 5], ["homepage", 84, 5], ["changelog", 85, 5], ["license", 86, 5], ["maintainers", 87, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 32, 3], ["version", 33, 3], ["pyproject", 34, 3], ["src", 36, 3], ["build-system", 43, 3], ["pythonRelaxDeps", 45, 3], ["dependencies", 48, 3], ["nativeCheckInputs", 61, 3], ["pythonImportsCheck", 70, 3], ["disabledTestPaths", 72, 3], ["disabledTests", 77, 3], ["meta", 82, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,12 +29,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const requests = nix.arg($, "requests");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "functions-framework",
       version: "3.10.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "GoogleCloudPlatform",
           repo: "functions-framework-python",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -61,7 +59,7 @@ export default nix.lambda((args) => (() => {
       disabledTestPaths: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(pythonAtLeast, "3.14")), nix.thunk(() => ["tests/test_timeouts.py"]))),
       disabledTests: nix.thunk(() => ["test_cloud_run_http"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "FaaS (Function as a service) framework for writing portable Python functions",
         homepage: "https://github.com/GoogleCloudPlatform/functions-framework-python",
         changelog: nix.thunk(() => nix.str`https://github.com/GoogleCloudPlatform/functions-framework-python/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

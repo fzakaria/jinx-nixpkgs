@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 33, 7], ["url", 34, 7], ["hash", 35, 7]], [["name", 38, 7], ["url", 39, 7], ["hash", 40, 7]], [["url", 43, 7], ["hash", 44, 7]], [["x86_64-linux", 32, 5], ["aarch64-linux", 37, 5], ["aarch64-darwin", 42, 5]], [["name", 175, 7], ["runtimeInputs", 177, 7], ["text", 184, 7]], [["sources", 172, 13], ["updateScript", 174, 5]], [["changelog", 202, 5], ["description", 203, 5], ["homepage", 206, 5], ["sourceProvenance", 207, 5], ["license", 208, 5], ["mainProgram", 209, 5], ["maintainers", 210, 5], ["platforms", 214, 5]], [["version", 49, 11], ["pname", 51, 3], ["src", 53, 3], ["nativeBuildInputs", 57, 3], ["buildInputs", 73, 3], ["autoPatchelfIgnoreMissingDeps", 89, 3], ["unpackPhase", 94, 3], ["installPhase", 103, 3], ["postInstall", 156, 3], ["doInstallCheck", 164, 3], ["dontCheckForBrokenSymlinks", 169, 3], ["passthru", 171, 3], ["meta", 201, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, autoPatchelfHook: false, versionCheckHook: false, "desktop-file-utils": false, dbus: false, dpkg: false, fetchurl: false, gtk3: false, "libayatana-appindicator": false, libpcap: false, makeWrapper: false, nftables: false, nss: false, openssl: false, "tpm2-tss": false, webkitgtk_4_1: false, writeShellApplication: false, curl: false, jq: false, ripgrep: false, "common-updater-scripts": false, xar: false, cpio: false, headless: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 33, 7], ["url", 34, 7], ["hash", 35, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 38, 7], ["url", 39, 7], ["hash", 40, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 43, 7], ["hash", 44, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["x86_64-linux", 32, 5], ["aarch64-linux", 37, 5], ["aarch64-darwin", 42, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["name", 175, 7], ["runtimeInputs", 177, 7], ["text", 184, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["sources", 172, 13], ["updateScript", 174, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["changelog", 202, 5], ["description", 203, 5], ["homepage", 206, 5], ["sourceProvenance", 207, 5], ["license", 208, 5], ["mainProgram", 209, 5], ["maintainers", 210, 5], ["platforms", 214, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["version", 49, 11], ["pname", 51, 3], ["src", 53, 3], ["nativeBuildInputs", 57, 3], ["buildInputs", 73, 3], ["autoPatchelfIgnoreMissingDeps", 89, 3], ["unpackPhase", 94, 3], ["installPhase", 103, 3], ["postInstall", 156, 3], ["doInstallCheck", 164, 3], ["dontCheckForBrokenSymlinks", 169, 3], ["passthru", 171, 3], ["meta", 201, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -41,27 +34,27 @@ export default nix.lambda((args) => (() => {
   const headless = nix.argOr($, "headless", () => false);
   const version = "2026.7.1343.0";
   const sources = nix.thunk(() => ({
-    [nix.POS]: pos$4,
+    [nix.POS]: $pos[3],
     "x86_64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         name: nix.thunk(() => nix.str`cloudflare-warp_${version}_amd64.deb`),
         url: nix.thunk(() => nix.str`https://downloads.cloudflareclient.com/v1/download/noble-intel/version/${version}`),
         hash: "sha256-C0u01lhECaHPBDHPIc+yOlDYyHepwCBzJxEaHAV7EF4=",
       })))),
     "aarch64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         name: nix.thunk(() => nix.str`cloudflare-warp_${version}_arm64.deb`),
         url: nix.thunk(() => nix.str`https://downloads.cloudflareclient.com/v1/download/noble-arm/version/${version}`),
         hash: "sha256-NT9VUPzTn7dTKyCn+0v81ekN9EKhzeojR2P096amQTQ=",
       })))),
     "aarch64-darwin": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         url: nix.thunk(() => nix.str`https://downloads.cloudflareclient.com/v1/download/macos/version/${version}`),
         hash: "sha256-tmUwWC8ejsE2bNhFkMBr5SzCnXLOux+wh3nZ9BBDKd4=",
       })))),
   }));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       version: version,
       pname: nix.thunk(() => nix.add("cloudflare-warp", nix.app(nix.sel(lib, "optionalString"), headless, "-headless"))),
       src: nix.thunk(() => nix.selOr(sources, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenv, "hostPlatform", "system")}`)), nix.key(nix.sel(stdenv, "hostPlatform", "system")))),
@@ -107,10 +100,10 @@ wrapProgram $out/bin/warp-taskbar --prefix LD_LIBRARY_PATH : $out/lib/warp/lib
       doInstallCheck: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")),
       dontCheckForBrokenSymlinks: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         sources: sources,
         updateScript: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.app(writeShellApplication, nix.thunk(() => ({
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               name: "update-cloudflare-warp",
               runtimeInputs: nix.thunk(() => [curl, jq, ripgrep, common_updater_scripts]),
               text: nix.thunk(() => nix.str`new_version="$(
@@ -129,7 +122,7 @@ done
             })))))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         changelog: nix.thunk(() => nix.str`https://github.com/cloudflare/cloudflare-docs/blob/production/src/content/warp-releases/linux/ga/${nix.sel(finalAttrs, "version")}.yaml`),
         description: nix.thunk(() => nix.add("Replaces the connection between your device and the Internet with a modern, optimized, protocol", nix.app(nix.sel(lib, "optionalString"), headless, " (headless version)"))),
         homepage: "https://pkg.cloudflareclient.com/",

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["sha256", 21, 5]], [["description", 39, 5], ["longDescription", 40, 5], ["homepage", 45, 5], ["license", 46, 5], ["mainProgram", 47, 5], ["broken", 50, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["vendorHash", 24, 3], ["doCheck", 26, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 29, 3], ["meta", 38, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildGoModule: false, fetchFromGitHub: false, "pkg-config": false, libpcap: false, libnfnetlink: false, libnetfilter_queue: false, libusb1: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["sha256", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 39, 5], ["longDescription", 40, 5], ["homepage", 45, 5], ["license", 46, 5], ["mainProgram", 47, 5], ["broken", 50, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["vendorHash", 24, 3], ["doCheck", 26, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 29, 3], ["meta", 38, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const libnetfilter_queue = nix.arg($, "libnetfilter_queue");
   const libusb1 = nix.arg($, "libusb1");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "bettercap",
       version: "2.41.7",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "bettercap",
           repo: "bettercap",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,7 +32,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => nix.concat([libpcap, libusb1], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [libnfnetlink, libnetfilter_queue])))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Man in the middle tool",
         longDescription: "BetterCAP is a powerful, flexible and portable tool created to perform various\ntypes of MITM attacks against a network, manipulate HTTP, HTTPS and TCP traffic\nin realtime, sniff for credentials and much more.\n",
         homepage: "https://www.bettercap.org/",

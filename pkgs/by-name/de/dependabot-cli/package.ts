@@ -2,18 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["imageDigest", 22, 18], ["hash", 23, 18]], [["imageDigest", 27, 24], ["hash", 28, 24]], [["owner", 34, 5], ["repo", 35, 5], ["rev", 36, 5], ["hash", 37, 5]], [["imageName", 82, 11], ["finalImageName", 83, 11], ["finalImageTag", 84, 11], ["imageDigest", 85, 36], ["hash", 85, 48]], [["imageName", 89, 11], ["finalImageName", 90, 11], ["finalImageTag", 91, 11], ["imageDigest", 92, 42], ["hash", 92, 54]], [["name", 76, 5], ["paths", 77, 5], ["buildInputs", 78, 5], ["postBuild", 79, 5]], [["package", 106, 5], ["command", 107, 5], ["version", 108, 5]], [["version", 105, 18]], [["updateScript", 73, 12], ["withDockerImages", 75, 12], ["tests", 105, 12]], [["changelog", 112, 5], ["description", 113, 5], ["mainProgram", 114, 5], ["homepage", 115, 5], ["license", 116, 5], ["maintainers", 117, 5]], [["pname", 31, 11], ["version", 31, 17], ["src", 33, 3], ["vendorHash", 40, 3], ["ldflags", 42, 3], ["nativeBuildInputs", 48, 3], ["postInstall", 53, 3], ["checkFlags", 60, 3], ["doCheck", 66, 3], ["doInstallCheck", 68, 3], ["installCheckPhase", 69, 3], ["passthru", 73, 3], ["meta", 111, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildGoModule: false, "dependabot-cli": false, dockerTools: false, fetchFromGitHub: false, installShellFiles: false, makeWrapper: false, symlinkJoin: false, testers: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["imageDigest", 22, 18], ["hash", 23, 18]]);
-const pos$2 = nix.positions(here + "/package.nix", [["imageDigest", 27, 24], ["hash", 28, 24]]);
-const pos$3 = nix.positions(here + "/package.nix", [["owner", 34, 5], ["repo", 35, 5], ["rev", 36, 5], ["hash", 37, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["imageName", 82, 11], ["finalImageName", 83, 11], ["finalImageTag", 84, 11], ["imageDigest", 85, 36], ["hash", 85, 48]]);
-const pos$5 = nix.positions(here + "/package.nix", [["imageName", 89, 11], ["finalImageName", 90, 11], ["finalImageTag", 91, 11], ["imageDigest", 92, 42], ["hash", 92, 54]]);
-const pos$6 = nix.positions(here + "/package.nix", [["name", 76, 5], ["paths", 77, 5], ["buildInputs", 78, 5], ["postBuild", 79, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["package", 106, 5], ["command", 107, 5], ["version", 108, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["version", 105, 18]]);
-const pos$9 = nix.positions(here + "/package.nix", [["updateScript", 73, 12], ["withDockerImages", 75, 12], ["tests", 105, 12]]);
-const pos$10 = nix.positions(here + "/package.nix", [["changelog", 112, 5], ["description", 113, 5], ["mainProgram", 114, 5], ["homepage", 115, 5], ["license", 116, 5], ["maintainers", 117, 5]]);
-const pos$11 = nix.positions(here + "/package.nix", [["pname", 31, 11], ["version", 31, 17], ["src", 33, 3], ["vendorHash", 40, 3], ["ldflags", 42, 3], ["nativeBuildInputs", 48, 3], ["postInstall", 53, 3], ["checkFlags", 60, 3], ["doCheck", 66, 3], ["doInstallCheck", 68, 3], ["installCheckPhase", 69, 3], ["passthru", 73, 3], ["meta", 111, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,21 +21,21 @@ export default nix.lambda((args) => (() => {
   const version = "1.93.0";
   const tag = nix.thunk(() => nix.str`nixpkgs-dependabot-cli-${version}`);
   const updateJobProxy = nix.thunk(() => ({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     imageDigest: "sha256:56d8f53a1ea2da7ddd61cc4c36e68cdd0c3ae8dfcc64bdc20979d28be6dbbf92",
     hash: "sha256-wqeihcbVo+x/SXGqvjtccjrFu9seOAoY1zMLiTeVhxw=",
   }));
   const updaterGitHubActions = nix.thunk(() => ({
-    [nix.POS]: pos$2,
+    [nix.POS]: $pos[1],
     imageDigest: "sha256:75f4843d57695da308d73940c9d885cc57ed8f1fbaf96affdee38b260812dcad",
     hash: "sha256-jL38pYoGFV6cpkzTVQn0UZ39gJvOBfQrI6ywefCNwMU=",
   }));
   return nix.app(buildGoModule, nix.thunk(() => ({
-      [nix.POS]: pos$11,
+      [nix.POS]: $pos[10],
       pname: pname,
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           owner: "dependabot",
           repo: "cli",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -64,16 +54,16 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       installCheckPhase: "$out/bin/dependabot --help\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         updateScript: nix.path(here, "./update.sh"),
         withDockerImages: nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             name: "dependabot-cli-with-docker-images",
             paths: nix.thunk(() => [dependabot_cli]),
             buildInputs: nix.thunk(() => [makeWrapper]),
             postBuild: nix.thunk(() => (() => {
               const updateJobProxyImage = nix.thunk(() => nix.app(nix.sel(dockerTools, "pullImage"), nix.thunk(() => ({
-                  [nix.POS]: pos$4,
+                  [nix.POS]: $pos[3],
                   imageName: "ghcr.io/dependabot/proxy",
                   finalImageName: "dependabot-update-job-proxy",
                   finalImageTag: tag,
@@ -81,7 +71,7 @@ export default nix.lambda((args) => (() => {
                   hash: nix.thunk(() => nix.attr(updateJobProxy, "hash")),
                 }))));
               const updaterGitHubActionsImage = nix.thunk(() => nix.app(nix.sel(dockerTools, "pullImage"), nix.thunk(() => ({
-                  [nix.POS]: pos$5,
+                  [nix.POS]: $pos[4],
                   imageName: "ghcr.io/dependabot/dependabot-updater-github-actions",
                   finalImageName: "dependabot-updater-github-actions",
                   finalImageTag: tag,
@@ -98,9 +88,9 @@ wrapProgram $out/bin/dependabot \\
             })()),
           })))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$7,
+              [nix.POS]: $pos[6],
               package: dependabot_cli,
               command: "dependabot --version",
               version: nix.thunk(() => nix.str`v${version}`),
@@ -108,7 +98,7 @@ wrapProgram $out/bin/dependabot \\
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         changelog: nix.thunk(() => nix.str`https://github.com/dependabot/cli/releases/tag/v${version}`),
         description: "Tool for testing and debugging Dependabot update jobs",
         mainProgram: "dependabot",

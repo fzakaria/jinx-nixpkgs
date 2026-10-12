@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 25, 5], ["repo", 26, 5], ["rev", 27, 5], ["hash", 28, 5]], [["prefix", 45, 9], ["exec_prefix", 46, 9], ["includedir", 47, 9], ["libdir", 48, 9]], [["name", 33, 7], ["version", 34, 28], ["description", 35, 33], ["cflags", 37, 7], ["libs", 38, 7], ["variables", 44, 7]], [["homepage", 96, 5], ["description", 97, 5], ["license", 98, 5], ["maintainers", 99, 5], ["platforms", 100, 5]], [["pname", 16, 3], ["version", 17, 3], ["outputs", 19, 3], ["src", 24, 3], ["pkgconfigItems", 31, 3], ["nativeBuildInputs", 53, 3], ["propagatedBuildInputs", 58, 3], ["postConfigure", 66, 3], ["buildFlags", 70, 3], ["installPhase", 72, 3], ["doCheck", 84, 3], ["checkPhase", 86, 3], ["meta", 95, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, copyPkgconfigItems: false, fetchFromGitHub: false, makePkgconfigItem: false, "pkg-config": false, SDL: false, SDL_image: false, SDL_mixer: false, SDL_net: false, SDL_ttf: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 25, 5], ["repo", 26, 5], ["rev", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["prefix", 45, 9], ["exec_prefix", 46, 9], ["includedir", 47, 9], ["libdir", 48, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 33, 7], ["version", 34, 28], ["description", 35, 33], ["cflags", 37, 7], ["libs", 38, 7], ["variables", 44, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 96, 5], ["description", 97, 5], ["license", 98, 5], ["maintainers", 99, 5], ["platforms", 100, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["outputs", 19, 3], ["src", 24, 3], ["pkgconfigItems", 31, 3], ["nativeBuildInputs", 53, 3], ["propagatedBuildInputs", 58, 3], ["postConfigure", 66, 3], ["buildFlags", 70, 3], ["installPhase", 72, 3], ["doCheck", 84, 3], ["checkPhase", 86, 3], ["meta", 95, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const SDL_net = nix.arg($, "SDL_net");
   const SDL_ttf = nix.arg($, "SDL_ttf");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "sparrow3d",
       version: "unstable-2020-10-06",
       outputs: nix.thunk(() => ["out", "dev"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "theZiz",
           repo: "sparrow3d",
           rev: "2033349d7adeba34bda2c442e1fec22377471134",
@@ -52,9 +48,9 @@ export default nix.lambda((args) => (() => {
               const exec_prefix = "@out@";
               const includedir = nix.thunk(() => nix.str`${prefix}/include`);
               const libdir = nix.thunk(() => nix.str`${exec_prefix}/lib`);
-              return { [nix.POS]: pos$2, prefix, exec_prefix, includedir, libdir };
+              return { [nix.POS]: $pos[1], prefix, exec_prefix, includedir, libdir };
             })());
-            return { [nix.POS]: pos$3, name, version, description, cflags, libs, variables };
+            return { [nix.POS]: $pos[2], name, version, description, cflags, libs, variables };
           })()))),
       ]),
       nativeBuildInputs: nix.thunk(() => [copyPkgconfigItems, pkg_config]),
@@ -71,7 +67,7 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       checkPhase: "runHook preCheck\n\nmake all_no_static\n./testfile.sh\n\nrunHook postCheck\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://github.com/theZiz/sparrow3d",
         description: "Software renderer for different open handhelds like the gp2x, wiz, caanoo and pandora",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21")),

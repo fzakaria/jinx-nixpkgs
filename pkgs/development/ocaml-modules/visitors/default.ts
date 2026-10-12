@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["20250212", 24, 9], ["20251010", 25, 9]], [["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["domain", 21, 5], ["hash", 22, 5]], [["homepage", 37, 5], ["changelog", 38, 5], ["license", 39, 5], ["description", 40, 5], ["maintainers", 41, 5]], [["pname", 12, 3], ["version", 13, 11], ["minimalOCamlVersion", 15, 3], ["src", 17, 3], ["propagatedBuildInputs", 30, 3], ["meta", 36, 3]]]);
 const formals$1 = { args: { lib: false, buildDunePackage: false, fetchFromGitLab: false, ppxlib: false, ppx_deriving: false, result: false, version: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["20250212", 24, 9], ["20251010", 25, 9]]);
-const pos$2 = nix.positions(here + "/default.nix", [["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["domain", 21, 5], ["hash", 22, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["homepage", 37, 5], ["changelog", 38, 5], ["license", 39, 5], ["description", 40, 5], ["maintainers", 41, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 12, 3], ["version", 13, 11], ["minimalOCamlVersion", 15, 3], ["src", 17, 3], ["propagatedBuildInputs", 30, 3], ["meta", 36, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,25 +15,25 @@ export default nix.lambda((args) => (() => {
   const result = nix.arg($, "result");
   const version = nix.argOr($, "version", () => (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(ppxlib, "version")), "0.36")) ? "20251010" : "20250212"));
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "visitors",
       version: version,
       minimalOCamlVersion: "4.08",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "fpottier",
           repo: "visitors",
           tag: version,
           domain: "gitlab.inria.fr",
           hash: nix.thunk(() => nix.sel({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             "20250212": "sha256-AFD4+vriwVGt6lzDyIDuIMadakcgB4j235yty5qqFgQ=",
             "20251010": "sha256-3CHXECMHf/UWtLvy7fiOaxx6EizRRtm9HpqRxcRjH3I=",
           }, nix.key(nix.str`${version}`))),
         })))),
       propagatedBuildInputs: nix.thunk(() => [ppxlib, ppx_deriving, result]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://gitlab.inria.fr/fpottier/visitors",
         changelog: nix.thunk(() => nix.str`https://gitlab.inria.fr/fpottier/visitors/-/raw/${version}/CHANGES.md`),
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21")),

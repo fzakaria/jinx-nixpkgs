@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 51, 5], ["hash", 52, 5]], [["name", 57, 7], ["url", 58, 7], ["hash", 59, 7]], [["NIX_LDFLAGS", 90, 7]], [["description", 117, 5], ["homepage", 118, 5], ["license", 119, 5], ["longDescription", 129, 5], ["maintainers", 152, 5], ["platforms", 156, 5]], [["pname", 47, 3], ["version", 48, 3], ["src", 50, 3], ["patches", 55, 3], ["nativeBuildInputs", 63, 3], ["buildInputs", 70, 3], ["cmakeFlags", 85, 3], ["env", 90, 3], ["qtWrapperArgs", 104, 3], ["meta", 116, 3]]]);
 const formals$1 = { args: { stdenv: false, SDL2_image: false, SDL2_ttf: false, SDL2_net: false, fpc: false, haskell: false, ffmpeg: false, libglut: false, lib: false, fetchurl: false, fetchpatch: false, cmake: false, "pkg-config": false, lua5_1: false, SDL2: false, SDL2_mixer: false, zlib: false, libpng: false, libGL: false, libGLU: false, physfs: false, qt5: false, withServer: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 51, 5], ["hash", 52, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 57, 7], ["url", 58, 7], ["hash", 59, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["NIX_LDFLAGS", 90, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 117, 5], ["homepage", 118, 5], ["license", 119, 5], ["longDescription", 129, 5], ["maintainers", 152, 5], ["platforms", 156, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 47, 3], ["version", 48, 3], ["src", 50, 3], ["patches", 55, 3], ["nativeBuildInputs", 63, 3], ["buildInputs", 70, 3], ["cmakeFlags", 85, 3], ["env", 90, 3], ["qtWrapperArgs", 104, 3], ["meta", 116, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -54,17 +50,17 @@ export default nix.lambda((args) => (() => {
       ];
     })()));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "hedgewars",
       version: "1.0.3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://hedgewars.org/download/releases/hedgewars-src-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           hash: "sha256-xcGHfAuuE1THXSuVJ7b5qfeemZMuXQix9vfeFwgGYTA=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "hedgewars-ffmpeg-9.patch",
             url: "https://gitlab.archlinux.org/archlinux/packaging/packages/hedgewars/-/raw/1b03bb9764d38fa6020552174676a9e024d8b18e/ffmpeg-9.patch?inline=false",
             hash: "sha256-J8W8WvQgcteKoUUVDxBINVhMzmec+UuWWltKZ2aq9Go=",
@@ -89,7 +85,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`-DNOSERVER=${(nix.asBool(withServer) ? "OFF" : "ON")}`),
       ]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         NIX_LDFLAGS: nix.thunk(() => nix.app(nix.sel(lib, "concatMapStringsSep"), " ", (e) => nix.str`-rpath ${e}/lib`, nix.thunk(() => [
             nix.thunk(() => nix.sel(SDL2, "out")),
             SDL2_image,
@@ -111,7 +107,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "makeLibraryPath"), nix.thunk(() => [libGL, libGLU, libglut, physfs]))),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Funny turn-based artillery game, featuring fighting hedgehogs",
         homepage: "https://hedgewars.org/",
         license: nix.thunk(() => (() => {

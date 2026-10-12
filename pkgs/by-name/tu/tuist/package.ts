@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 15, 5], ["hash", 16, 5]], [["extraArgs", 57, 47]], [["updateScript", 57, 12]], [["description", 60, 5], ["homepage", 61, 5], ["changelog", 62, 5], ["license", 63, 5], ["sourceProvenance", 64, 5], ["maintainers", 65, 5], ["platforms", 66, 5], ["mainProgram", 67, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["dontUnpack", 19, 3], ["dontPatch", 20, 3], ["dontConfigure", 21, 3], ["dontBuild", 22, 3], ["dontFixup", 23, 3], ["nativeBuildInputs", 25, 3], ["installPhase", 27, 3], ["doInstallCheck", 39, 3], ["nativeInstallCheckInputs", 40, 3], ["versionCheckProgramArg", 43, 3], ["versionCheckKeepEnvironment", 44, 3], ["preVersionCheck", 50, 3], ["passthru", 57, 3], ["meta", 59, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchurl: false, unzip: false, "nix-update-script": false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["extraArgs", 57, 47]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 57, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 60, 5], ["homepage", 61, 5], ["changelog", 62, 5], ["license", 63, 5], ["sourceProvenance", 64, 5], ["maintainers", 65, 5], ["platforms", 66, 5], ["mainProgram", 67, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["dontUnpack", 19, 3], ["dontPatch", 20, 3], ["dontConfigure", 21, 3], ["dontBuild", 22, 3], ["dontFixup", 23, 3], ["nativeBuildInputs", 25, 3], ["installPhase", 27, 3], ["doInstallCheck", 39, 3], ["nativeInstallCheckInputs", 40, 3], ["versionCheckProgramArg", 43, 3], ["versionCheckKeepEnvironment", 44, 3], ["preVersionCheck", 50, 3], ["passthru", 57, 3], ["meta", 59, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "tuist",
       version: "4.202.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/tuist/tuist/releases/download/${nix.sel(finalAttrs, "version")}/tuist.zip`),
           hash: "sha256-J/xlwRRW3zLr03jA6Xpa5frlRQGHa/nmzzlj35/30tw=",
         })))),
@@ -39,14 +35,14 @@ export default nix.lambda((args) => (() => {
       versionCheckKeepEnvironment: nix.thunk(() => ["HOME", "XDG_CACHE_HOME", "XDG_CONFIG_HOME", "XDG_STATE_HOME"]),
       preVersionCheck: "export HOME=$(mktemp -d)\nexport XDG_CACHE_HOME=$HOME/.cache\nexport XDG_CONFIG_HOME=$HOME/.config\nexport XDG_STATE_HOME=$HOME/.local/state\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             extraArgs: nix.thunk(() => ["--version-regex=^([0-9.]+)$"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Command line tool that helps you generate, maintain and interact with Xcode projects",
         homepage: "https://tuist.dev",
         changelog: nix.thunk(() => nix.str`https://github.com/tuist/tuist/blob/${nix.sel(finalAttrs, "version")}/cli/CHANGELOG.md`),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 29, 5], ["sha256", 30, 5], ["stripRoot", 31, 5]], [["description", 59, 5], ["homepage", 60, 5], ["sourceProvenance", 61, 5], ["license", 62, 5], ["maintainers", 63, 5], ["platforms", 64, 5]], [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 38, 3], ["installPhase", 44, 3], ["fixupPhase", 49, 3], ["meta", 58, 3]]]);
 const formals$1 = { args: { fetchzip: false, libx11: false, libGLU: false, libGL: false, makeWrapper: false, lib: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 29, 5], ["sha256", 30, 5], ["stripRoot", 31, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 59, 5], ["homepage", 60, 5], ["sourceProvenance", 61, 5], ["license", 62, 5], ["maintainers", 63, 5], ["platforms", 64, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 38, 3], ["installPhase", 44, 3], ["fixupPhase", 49, 3], ["meta", 58, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const pname = "kisslicer";
       const version = "1.6.3";
       const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://www.kisslicer.com/uploads/1/5/3/8/15381852/kisslicer_linux64_${version}_release.zip`),
           sha256: "1xmywj5jrcsqv1d5x3mphhvafs4mfm9l12npkhk7l03qxbwg9j82",
           stripRoot: false,
@@ -38,7 +36,7 @@ wrapProgram $out/bin/KISSlicer \\
   --run "mkdir -p ${inidir}"
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Convert STL files into Gcode",
         homepage: "http://www.kisslicer.com",
         sourceProvenance: nix.thunk(() => (() => {
@@ -50,7 +48,7 @@ wrapProgram $out/bin/KISSlicer \\
         platforms: nix.thunk(() => ["x86_64-linux"]),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

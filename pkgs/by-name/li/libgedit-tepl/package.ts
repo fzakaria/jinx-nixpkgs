@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 32, 5], ["group", 33, 5], ["owner", 34, 5], ["repo", 35, 5], ["tag", 36, 5], ["hash", 37, 5]], [["ignoredVersions", 65, 40]], [["updateScript", 65, 12]], [["homepage", 68, 5], ["description", 69, 5], ["maintainers", 70, 5], ["license", 73, 5], ["platforms", 74, 5]], [["pname", 22, 3], ["version", 23, 3], ["outputs", 25, 3], ["src", 31, 3], ["strictDeps", 40, 3], ["nativeBuildInputs", 41, 3], ["buildInputs", 53, 3], ["propagatedBuildInputs", 58, 3], ["passthru", 65, 3], ["meta", 67, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitLab: false, meson: false, mesonEmulatorHook: false, ninja: false, "gobject-introspection": false, gtk3: false, icu: false, libhandy: false, "libgedit-amtk": false, "libgedit-gfls": false, "libgedit-gtksourceview": false, "pkg-config": false, "gtk-doc": false, "docbook-xsl-nons": false, gitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 32, 5], ["group", 33, 5], ["owner", 34, 5], ["repo", 35, 5], ["tag", 36, 5], ["hash", 37, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["ignoredVersions", 65, 40]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 65, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 68, 5], ["description", 69, 5], ["maintainers", 70, 5], ["license", 73, 5], ["platforms", 74, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 22, 3], ["version", 23, 3], ["outputs", 25, 3], ["src", 31, 3], ["strictDeps", 40, 3], ["nativeBuildInputs", 41, 3], ["buildInputs", 53, 3], ["propagatedBuildInputs", 58, 3], ["passthru", 65, 3], ["meta", 67, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,12 +25,12 @@ export default nix.lambda((args) => (() => {
   const docbook_xsl_nons = nix.arg($, "docbook-xsl-nons");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "libgedit-tepl",
       version: "6.14.0",
       outputs: nix.thunk(() => ["out", "dev", "devdoc"]),
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "gitlab.gnome.org",
           group: "World",
           owner: "gedit",
@@ -47,11 +43,11 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [icu, libhandy]),
       propagatedBuildInputs: nix.thunk(() => [gtk3, libgedit_amtk, libgedit_gfls, libgedit_gtksourceview]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, ignoredVersions: "(alpha|beta|rc).*" })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[1], ignoredVersions: "(alpha|beta|rc).*" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://gitlab.gnome.org/World/gedit/libgedit-tepl",
         description: "Text editor product line",
         maintainers: nix.thunk(() => (() => {

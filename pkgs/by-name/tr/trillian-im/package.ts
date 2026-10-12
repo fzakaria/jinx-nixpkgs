@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 28, 5], ["hash", 29, 5]], [["description", 71, 5], ["homepage", 72, 5], ["license", 73, 5], ["maintainers", 74, 5], ["platforms", 75, 5]], [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 37, 3], ["dontUnpack", 54, 3], ["installPhase", 56, 3], ["meta", 70, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, autoPatchelfHook: false, dpkg: false, atkmm: false, cairo: false, cairomm_1_0: false, gtk3: false, gtkmm3: false, libnotify: false, libsecret: false, pangomm_1_4: false, libxscrnsaver: false, libpulseaudio: false, librsvg: false, libzip: false, openssl: false, libappindicator: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 28, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 71, 5], ["homepage", 72, 5], ["license", 73, 5], ["maintainers", 74, 5], ["platforms", 75, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 37, 3], ["dontUnpack", 54, 3], ["installPhase", 56, 3], ["meta", 70, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const pname = "trillian-im";
       const version = "6.3.0.2";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://www.trillian.im/get/linux/6.3/trillian_${version}_amd64.deb`),
           hash: "sha256-5QvvAld9IC+6DAWVsyT6BoyKx+0WUA+UC8q1RBnwjqg=",
         }))));
@@ -56,7 +54,7 @@ export default nix.lambda((args) => (() => {
       const dontUnpack = true;
       const installPhase = "runHook preInstall\n\nmkdir -p $out\ndpkg -x $src $out\ncp -av $out/usr/* $out\nrm -rf $out/usr\n\nrm $out/bin/trillian\nln -s \"$out/share/trillian/trillian\" \"$out/bin/trillian\"\n\nrunHook postInstall\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Modern instant messaging for home and work that prioritizes chat interoperability and security",
         homepage: "https://www.trillian.im/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
@@ -67,7 +65,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => ["x86_64-linux"]),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

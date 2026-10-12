@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 28, 5], ["repo", 29, 5], ["rev", 30, 5], ["hash", 31, 5]], [["homepage", 73, 5], ["description", 74, 5], ["changelog", 75, 5], ["license", 76, 5], ["mainProgram", 77, 5], ["maintainers", 78, 5], ["platforms", 79, 5]], [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["buildInputs", 34, 3], ["nativeBuildInputs", 48, 3], ["strictDeps", 59, 3], ["preInstall", 61, 3], ["preFixup", 65, 3], ["meta", 72, 3]]]);
 const formals$1 = { args: { lib: false, SDL2: false, "alsa-lib": false, "autoconf-archive": false, autoreconfHook: false, fetchFromGitHub: false, fltk: false, libGL: false, libGLU: false, libao: false, libarchive: false, libepoxy: false, makeWrapper: false, "pkg-config": false, libsamplerate: false, stdenv: false, unzip: false, wrapGAppsHook3: false, "xdg-utils": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 28, 5], ["repo", 29, 5], ["rev", 30, 5], ["hash", 31, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 73, 5], ["description", 74, 5], ["changelog", 75, 5], ["license", 76, 5], ["mainProgram", 77, 5], ["maintainers", 78, 5], ["platforms", 79, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["buildInputs", 34, 3], ["nativeBuildInputs", 48, 3], ["strictDeps", 59, 3], ["preInstall", 61, 3], ["preFixup", 65, 3], ["meta", 72, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,11 +27,11 @@ export default nix.lambda((args) => (() => {
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   const xdg_utils = nix.arg($, "xdg-utils");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "nestopia",
       version: "1.53.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "0ldsk00l",
           repo: "nestopia",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -65,7 +63,7 @@ export default nix.lambda((args) => (() => {
       preInstall: "mkdir -p $out/{bin,share/nestopia}\n",
       preFixup: "for f in $out/bin/*; do\n  wrapProgram $f \\\n    --prefix XDG_DATA_DIRS : \"$GSETTINGS_SCHEMAS_PATH:$out/share\"\ndone\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "http://0ldsk00l.ca/nestopia/",
         description: "Cross-platform Nestopia emulator core with a GUI",
         changelog: nix.thunk(() => nix.str`https://raw.githubusercontent.com/0ldsk00l/nestopia/${nix.sel(finalAttrs, "src", "rev")}/ChangeLog`),

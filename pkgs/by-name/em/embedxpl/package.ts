@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["tag", 15, 5], ["hash", 16, 5]], [["all", 38, 5], ["at", 45, 5], ["hvac", 46, 5], ["iiot", 47, 5], ["ml", 48, 5], ["ml-gpu", 52, 5], ["nse", 56, 5], ["ot", 57, 5], ["specialized", 58, 5], ["vehicles", 59, 5]], [["description", 68, 5], ["homepage", 69, 5], ["changelog", 70, 5], ["license", 71, 5], ["maintainers", 72, 5], ["mainProgram", 73, 5]], [["pname", 8, 3], ["version", 9, 3], ["pyproject", 10, 3], ["src", 12, 3], ["__structuredAttrs", 19, 3], ["build-system", 21, 3], ["dependencies", 23, 3], ["optional-dependencies", 37, 3], ["doCheck", 63, 3], ["pythonImportsCheck", 65, 3], ["meta", 67, 3]]]);
 const formals$1 = { args: { lib: false, python3: false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["tag", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["all", 38, 5], ["at", 45, 5], ["hvac", 46, 5], ["iiot", 47, 5], ["ml", 48, 5], ["ml-gpu", 52, 5], ["nse", 56, 5], ["ot", 57, 5], ["specialized", 58, 5], ["vehicles", 59, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 68, 5], ["homepage", 69, 5], ["changelog", 70, 5], ["license", 71, 5], ["maintainers", 72, 5], ["mainProgram", 73, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["pyproject", 10, 3], ["src", 12, 3], ["__structuredAttrs", 19, 3], ["build-system", 21, 3], ["dependencies", 23, 3], ["optional-dependencies", 37, 3], ["doCheck", 63, 3], ["pythonImportsCheck", 65, 3], ["meta", 67, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,12 +11,12 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "embedxpl",
       version: "3.12.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "mrhenrike",
           repo: "EmbedXPL-Forge",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -49,7 +46,7 @@ export default nix.lambda((args) => (() => {
       "optional-dependencies": nix.thunk(() => (() => {
         const w_2 = nix.withScope(nix.thunk(() => nix.sel(python3, "pkgs")), null);
         return {
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           all: nix.thunk(() => [
             nix.thunk(() => nix.lookup(w_2, "numpy")),
             nix.thunk(() => nix.lookup(w_2, "pymodbus")),
@@ -77,7 +74,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["embedxpl"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Embedded Device Security Assessment Framework",
         homepage: "https://github.com/mrhenrike/EmbedXPL-Forge",
         changelog: nix.thunk(() => nix.str`https://github.com/mrhenrike/EmbedXPL-Forge/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG.md`),

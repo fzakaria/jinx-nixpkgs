@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 32, 5], ["repo", 33, 5], ["rev", 34, 5], ["hash", 35, 5]], [["homepage", 39, 5], ["description", 40, 5], ["license", 41, 5], ["platforms", 42, 5], ["maintainers", 43, 5]], [["pluginName", 9, 3], ["rtpFilePath", 10, 3], ["version", 11, 3], ["buildInputs", 12, 3], ["postPatch", 17, 3], ["preInstall", 22, 3], ["postInstall", 27, 3], ["src", 31, 3], ["meta", 38, 3]]]);
 const formals$1 = { args: { mkTmuxPlugin: false, fetchFromGitHub: false, lib: false, "check-jsonschema": false, python3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 32, 5], ["repo", 33, 5], ["rev", 34, 5], ["hash", 35, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 39, 5], ["description", 40, 5], ["license", 41, 5], ["platforms", 42, 5], ["maintainers", 43, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pluginName", 9, 3], ["rtpFilePath", 10, 3], ["version", 11, 3], ["buildInputs", 12, 3], ["postPatch", 17, 3], ["preInstall", 22, 3], ["postInstall", 27, 3], ["src", 31, 3], ["meta", 38, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const check_jsonschema = nix.arg($, "check-jsonschema");
   const python3 = nix.arg($, "python3");
   return nix.app(mkTmuxPlugin, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pluginName: "tmux-which-key",
       rtpFilePath: "plugin.sh.tmux",
       version: "0-unstable-2024-06-08",
@@ -37,14 +35,14 @@ ln -s ${nix.sel(python3, "pkgs", "pyyaml", "src")} plugin/pyyaml
 `),
       postInstall: "patchShebangs plugin.sh.tmux plugin/build.py\n",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "alexwforsythe",
           repo: "tmux-which-key",
           rev: "1f419775caf136a60aac8e3a269b51ad10b51eb6",
           hash: "sha256-X7FunHrAexDgAlZfN+JOUJvXFZeyVj9yu6WRnxMEA8E=",
         })))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/alexwforsythe/tmux-which-key",
         description: "Tmux plugin that allows users to select actions from a customizable popup menu",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

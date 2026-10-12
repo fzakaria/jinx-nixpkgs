@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]], [["homepage", 127, 5], ["description", 128, 5], ["changelog", 129, 5], ["license", 130, 5], ["platforms", 136, 5], ["maintainers", 137, 5]], [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["patches", 32, 3], ["nativeBuildInputs", 36, 3], ["propagatedBuildInputs", 41, 3], ["buildInputs", 49, 3], ["outputs", 54, 3], ["cmakeFlags", 59, 3], ["hardeningDisable", 82, 3], ["postPatch", 84, 3], ["preInstall", 107, 3], ["postFixup", 119, 3], ["meta", 126, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, ninja: false, bzip2: false, lz4: false, snappy: false, zlib: false, zstd: false, windows: false, enableJemalloc: true, jemalloc: false, enableLiburing: true, liburing: false, enableShared: true, sse42Support: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 127, 5], ["description", 128, 5], ["changelog", 129, 5], ["license", 130, 5], ["platforms", 136, 5], ["maintainers", 137, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["patches", 32, 3], ["nativeBuildInputs", 36, 3], ["propagatedBuildInputs", 41, 3], ["buildInputs", 49, 3], ["outputs", 54, 3], ["cmakeFlags", 59, 3], ["hardeningDisable", 82, 3], ["postPatch", 84, 3], ["preInstall", 107, 3], ["postFixup", 119, 3], ["meta", 126, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const enableShared = nix.argOr($, "enableShared", () => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isStatic")));
   const sse42Support = nix.argOr($, "sse42Support", () => nix.sel(stdenv, "hostPlatform", "sse4_2Support"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "rocksdb",
       version: "10.10.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "facebook",
           repo: "rocksdb",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -71,7 +69,7 @@ cp tools/{ldb,sst_dump}${nix.sel(stdenv, "hostPlatform", "extensions", "executab
 `)))),
       postFixup: "if [ -f \"$out\"/lib/pkgconfig/rocksdb.pc ]; then\n  substituteInPlace \"$out\"/lib/pkgconfig/rocksdb.pc \\\n    --replace '=\"${prefix}//' '=\"/'\nfi\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://rocksdb.org",
         description: "Library that provides an embeddable, persistent key-value store for fast storage",
         changelog: nix.thunk(() => nix.str`https://github.com/facebook/rocksdb/raw/v${nix.sel(finalAttrs, "version")}/HISTORY.md`),

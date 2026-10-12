@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/kernel-module.nix", [[["tests", 41, 39]], [["description", 45, 5], ["homepage", 48, 7], ["downloadPage", 49, 7], ["license", 50, 7], ["maintainers", 51, 7], ["platforms", 52, 7], ["broken", 55, 5]], [["pname", 11, 3], ["version", 12, 3], ["__structuredAttrs", 14, 3], ["strictDeps", 15, 3], ["src", 17, 3], ["postPatch", 19, 3], ["nativeBuildInputs", 24, 3], ["enableParallelBuilding", 26, 3], ["makeFlags", 28, 3], ["installPhase", 34, 3], ["passthru", 40, 3], ["meta", 44, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, kernelModuleMakeFlags: false, kernel: false, rustPlatform: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/kernel-module.nix", [["tests", 41, 39]]);
-const pos$2 = nix.positions(here + "/kernel-module.nix", [["description", 45, 5], ["homepage", 48, 7], ["downloadPage", 49, 7], ["license", 50, 7], ["maintainers", 51, 7], ["platforms", 52, 7], ["broken", 55, 5]]);
-const pos$3 = nix.positions(here + "/kernel-module.nix", [["pname", 11, 3], ["version", 12, 3], ["__structuredAttrs", 14, 3], ["strictDeps", 15, 3], ["src", 17, 3], ["postPatch", 19, 3], ["nativeBuildInputs", 24, 3], ["enableParallelBuilding", 26, 3], ["makeFlags", 28, 3], ["installPhase", 34, 3], ["passthru", 40, 3], ["meta", 44, 3]]);
 
 export default (bcachefs_tools) => nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,7 +13,7 @@ export default (bcachefs_tools) => nix.lambda((args) => (() => {
   const kernel = nix.arg($, "kernel");
   const rustPlatform = nix.arg($, "rustPlatform");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "bcachefs",
       version: nix.thunk(() => nix.str`${nix.sel(kernel, "version")}-${nix.sel(bcachefs_tools, "version")}`),
       __structuredAttrs: true,
@@ -37,12 +35,12 @@ runHook postInstall
 `),
       passthru: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(bcachefs_tools, "passthru"));
-        return { [nix.POS]: pos$1, tests: nix.thunk(() => nix.attr(from, "tests")) };
+        return { [nix.POS]: $pos[0], tests: nix.thunk(() => nix.attr(from, "tests")) };
       })()),
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(bcachefs_tools, "meta"));
         return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "out-of-tree bcachefs kernel module",
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         downloadPage: nix.thunk(() => nix.attr(from, "downloadPage")),

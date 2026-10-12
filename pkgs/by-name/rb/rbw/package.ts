@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 27, 5], ["hash", 28, 5]], [["description", 74, 5], ["homepage", 75, 5], ["changelog", 76, 5], ["license", 77, 5], ["maintainers", 78, 5], ["mainProgram", 82, 5]], [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["cargoHash", 31, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 38, 3], ["preConfigure", 40, 3], ["postInstall", 45, 3], ["meta", 73, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, rustPlatform: false, fetchzip: false, openssl: false, "pkg-config": false, installShellFiles: false, bash: false, withFzf: true, fzf: false, perl: false, withRofi: true, rofi: false, xclip: false, withPass: true, pass: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 74, 5], ["homepage", 75, 5], ["changelog", 76, 5], ["license", 77, 5], ["maintainers", 78, 5], ["mainProgram", 82, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["cargoHash", 31, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 38, 3], ["preConfigure", 40, 3], ["postInstall", 45, 3], ["meta", 73, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const withPass = nix.argOr($, "withPass", () => false);
   const pass = nix.arg($, "pass");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "rbw",
       version: "1.15.0",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://git.tozt.net/rbw/snapshot/rbw-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-N/s1flB+s2HwEeLsf7YlJG+5TJgP8Wu7PHNPWmVfpIo=",
         })))),
@@ -53,7 +51,7 @@ substituteInPlace $out/bin/pass-import \\
   --replace pass ${pass}/bin/pass
 `)))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Unofficial command line client for Bitwarden",
         homepage: "https://crates.io/crates/rbw",
         changelog: nix.thunk(() => nix.str`https://git.tozt.net/rbw/plain/CHANGELOG.md?id=${nix.sel(finalAttrs, "version")}`),

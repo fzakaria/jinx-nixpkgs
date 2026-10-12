@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 22, 13], ["version", 22, 19], ["hash", 23, 5]], [["SSL_CERT_FILE", 53, 7]], [["description", 58, 5], ["homepage", 59, 5], ["changelog", 60, 5], ["license", 61, 5], ["maintainers", 62, 5]], [["pname", 17, 3], ["version", 18, 3], ["pyproject", 19, 3], ["src", 21, 3], ["preConfigure", 26, 3], ["build-system", 30, 3], ["buildInputs", 32, 3], ["dependencies", 34, 3], ["propagatedNativeBuildInputs", 40, 3], ["nativeCheckInputs", 42, 3], ["disabledTestPaths", 44, 3], ["env", 53, 3], ["pythonImportsCheck", 55, 3], ["meta", 57, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, cacert: false, "cached-property": false, cffi: false, fetchPypi: false, isPyPy: false, libgit2: false, pycparser: false, pytestCheckHook: false, setuptools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 22, 13], ["version", 22, 19], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["SSL_CERT_FILE", 53, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 58, 5], ["homepage", 59, 5], ["changelog", 60, 5], ["license", 61, 5], ["maintainers", 62, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 17, 3], ["version", 18, 3], ["pyproject", 19, 3], ["src", 21, 3], ["preConfigure", 26, 3], ["build-system", 30, 3], ["buildInputs", 32, 3], ["dependencies", 34, 3], ["propagatedNativeBuildInputs", 40, 3], ["nativeCheckInputs", 42, 3], ["disabledTestPaths", 44, 3], ["env", 53, 3], ["pythonImportsCheck", 55, 3], ["meta", 57, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.20.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-clNzVinCL/9BKnLEjCBLGcIG/an8sB5RET2WiRlMsc8=",
@@ -45,12 +42,12 @@ export default nix.lambda((args) => (() => {
         "test/test_submodule.py",
       ]);
       const env = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         SSL_CERT_FILE: nix.thunk(() => nix.str`${cacert}/etc/ssl/certs/ca-bundle.crt`),
       }));
       const pythonImportsCheck = nix.thunk(() => ["pygit2"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Set of Python bindings to the libgit2 shared library",
         homepage: "https://github.com/libgit2/pygit2",
         changelog: nix.thunk(() => nix.str`https://github.com/libgit2/pygit2/blob/v${version}/CHANGELOG.md`),
@@ -58,7 +55,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

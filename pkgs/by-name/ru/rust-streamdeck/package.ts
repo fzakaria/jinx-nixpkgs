@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]], [["name", 25, 7], ["url", 26, 7], ["hash", 27, 7]], [["updateScript", 47, 12]], [["description", 50, 5], ["homepage", 51, 5], ["license", 52, 5], ["maintainers", 53, 5], ["mainProgram", 54, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["cargoPatches", 23, 3], ["cargoHash", 31, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 37, 3], ["doInstallCheck", 39, 3], ["nativeInstallCheckInputs", 40, 3], ["versionCheckProgram", 41, 3], ["postInstall", 43, 3], ["passthru", 47, 3], ["meta", 49, 3]]]);
 const formals$1 = { args: { rustPlatform: false, fetchFromGitHub: false, fetchpatch: false, "pkg-config": false, lib: false, udev: false, udevCheckHook: false, "nix-update-script": false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 25, 7], ["url", 26, 7], ["hash", 27, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 47, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 50, 5], ["homepage", 51, 5], ["license", 52, 5], ["maintainers", 53, 5], ["mainProgram", 54, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["cargoPatches", 23, 3], ["cargoHash", 31, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 37, 3], ["doInstallCheck", 39, 3], ["nativeInstallCheckInputs", 40, 3], ["versionCheckProgram", 41, 3], ["postInstall", 43, 3], ["passthru", 47, 3], ["meta", 49, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "rust-streamdeck",
       version: "0.9.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ryankurte",
           repo: "rust-streamdeck",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -33,7 +29,7 @@ export default nix.lambda((args) => (() => {
         })))),
       cargoPatches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "add_cargo_lock.patch",
             url: "https://github.com/ryankurte/rust-streamdeck/commit/d8497c34898daebafca21885f464f241c29ff9d7.patch",
             hash: "sha256-cwt4nvtuME//t9KpHgIXHCwLQgpybs2CqV2jO02umfE=",
@@ -47,11 +43,11 @@ export default nix.lambda((args) => (() => {
       versionCheckProgram: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/bin/${nix.sel(finalAttrs, "meta", "mainProgram")}`),
       postInstall: "install -Dm444 40-streamdeck.rules -t $out/lib/udev/rules.d/\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "ibusb based driver for Elgato StreamDeck devices",
         homepage: "https://github.com/ryankurte/rust-streamdeck",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mpl20")),

@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["aarch64-linux", 53, 7], ["armv7l-linux", 54, 7], ["x86_64-linux", 55, 7]], [["aarch64-linux", 63, 9], ["armv7l-linux", 64, 9], ["x86_64-linux", 65, 9]], [["url", 60, 5], ["hash", 61, 5]], [["updateScript", 102, 12]], [["homepage", 105, 5], ["description", 106, 5], ["sourceProvenance", 107, 5], ["license", 108, 5], ["maintainers", 109, 5], ["platforms", 110, 5], ["mainProgram", 115, 5]], [["pname", 48, 3], ["version", 49, 3], ["suffix", 51, 3], ["src", 59, 3], ["strictDeps", 70, 3], ["nativeBuildInputs", 72, 3], ["buildInputs", 78, 3], ["dontConfigure", 83, 3], ["dontBuild", 84, 3], ["installPhase", 86, 3], ["passthru", 102, 3], ["meta", 104, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, makeWrapper: false, autoPatchelfHook: false, dpkg: false, "alsa-lib": false, curl: false, avahi: false, jack2: false, libxcb: false, libx11: false, libxcursor: false, libxext: false, libxi: false, libxinerama: false, libxrandr: false, libxrender: false, libxxf86vm: false, libglvnd: false, zenity: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["aarch64-linux", 53, 7], ["armv7l-linux", 54, 7], ["x86_64-linux", 55, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["aarch64-linux", 63, 9], ["armv7l-linux", 64, 9], ["x86_64-linux", 65, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 60, 5], ["hash", 61, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 102, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["homepage", 105, 5], ["description", 106, 5], ["sourceProvenance", 107, 5], ["license", 108, 5], ["maintainers", 109, 5], ["platforms", 110, 5], ["mainProgram", 115, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 48, 3], ["version", 49, 3], ["suffix", 51, 3], ["src", 59, 3], ["strictDeps", 70, 3], ["nativeBuildInputs", 72, 3], ["buildInputs", 78, 3], ["dontConfigure", 83, 3], ["dontBuild", 84, 3], ["installPhase", 86, 3], ["passthru", 102, 3], ["meta", 104, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -53,16 +48,16 @@ export default nix.lambda((args) => (() => {
       const pname = "touchosc";
       const version = "1.4.9.248";
       const suffix = nix.thunk(() => nix.selOr({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         "aarch64-linux": "linux-arm64",
         "armv7l-linux": "linux-armhf",
         "x86_64-linux": "linux-x64",
       }, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenv, "hostPlatform", "system")}`)), nix.key(nix.sel(stdenv, "hostPlatform", "system"))));
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           url: nix.thunk(() => nix.str`https://hexler.net/pub/${pname}/${pname}-${version}-${suffix}.deb`),
           hash: nix.thunk(() => nix.selOr({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             "aarch64-linux": "sha256-IKk688XFTx1rHEF03uHZ3cN60GwwIlf/FK4mJ0c/PqM=",
             "armv7l-linux": "sha256-li1BLZ6/6OJzsCIN2T3V4vEVXfa9GH6PiFkm6lUl4Ec=",
             "x86_64-linux": "sha256-NM9v+wyLNnwNw4qY6jDPB9ig/GZfzzrDshMSmi/yvCM=",
@@ -90,9 +85,9 @@ wrapProgram $out/bin/TouchOSC \\
 
 runHook postInstall
 `);
-      const passthru = nix.thunk(() => ({ [nix.POS]: pos$4, updateScript: nix.path(here, "./update.sh") }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: $pos[3], updateScript: nix.path(here, "./update.sh") }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "https://hexler.net/touchosc",
         description: "Next generation modular control surface",
         sourceProvenance: nix.thunk(() => (() => {
@@ -105,7 +100,7 @@ runHook postInstall
         mainProgram: "TouchOSC",
       }));
       return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname,
         version,
         suffix,

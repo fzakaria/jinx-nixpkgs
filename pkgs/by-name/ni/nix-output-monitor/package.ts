@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["updateScript", 12, 14]], [["passthru", 12, 5], ["testTargets", 16, 5], ["buildTools", 21, 5], ["postInstall", 22, 5]]]);
 const formals$1 = { args: { haskell: false, haskellPackages: false, installShellFiles: false, lib: false, extraComposeFunctions: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["updateScript", 12, 14]]);
-const pos$2 = nix.positions(here + "/package.nix", [["passthru", 12, 5], ["testTargets", 16, 5], ["buildTools", 21, 5], ["postInstall", 22, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,8 +16,8 @@ export default nix.lambda((args) => (() => {
   const justStaticExecutables = nix.thunk(() => nix.attr(from, "justStaticExecutables"));
   const overrideCabal = nix.thunk(() => nix.attr(from, "overrideCabal"));
   const overrides = nix.thunk(() => ({
-    [nix.POS]: pos$2,
-    passthru: nix.thunk(() => ({ [nix.POS]: pos$1, updateScript: nix.path(here, "./update.sh") })),
+    [nix.POS]: $pos[1],
+    passthru: nix.thunk(() => ({ [nix.POS]: $pos[0], updateScript: nix.path(here, "./update.sh") })),
     testTargets: nix.thunk(() => ["unit-tests", "doc-tests"]),
     buildTools: nix.thunk(() => [installShellFiles]),
     postInstall: "ln -s nom \"$out/bin/nom-build\"\nln -s nom \"$out/bin/nom-shell\"\nchmod a+x $out/bin/nom-build\ninstallShellCompletion completions/*\n",

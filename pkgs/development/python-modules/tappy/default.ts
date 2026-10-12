@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 19, 5], ["version", 20, 13], ["hash", 21, 5]], [["yaml", 29, 5]], [["description", 40, 5], ["homepage", 41, 5], ["changelog", 42, 5], ["mainProgram", 43, 5], ["license", 44, 5], ["maintainers", 45, 5]], [["pname", 14, 3], ["version", 15, 11], ["pyproject", 16, 3], ["src", 18, 3], ["build-system", 24, 3], ["optional-dependencies", 28, 3], ["nativeCheckInputs", 35, 3], ["pythonImportsCheck", 37, 3], ["meta", 39, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, hatchling: false, pyyaml: false, "more-itertools": false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 19, 5], ["version", 20, 13], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["yaml", 29, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 40, 5], ["homepage", 41, 5], ["changelog", 42, 5], ["mainProgram", 43, 5], ["license", 44, 5], ["maintainers", 45, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 14, 3], ["version", 15, 11], ["pyproject", 16, 3], ["src", 18, 3], ["build-system", 24, 3], ["optional-dependencies", 28, 3], ["nativeCheckInputs", 35, 3], ["pythonImportsCheck", 37, 3], ["meta", 39, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,22 +16,22 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const version = "3.2.1";
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "tap.py",
       version: version,
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "tap_py",
           version: version,
           hash: "sha256-0DyeavClb62ZTxxp8UBB5naBHXPu7vIL9Ad8Q9Yh1gg=",
         })))),
       "build-system": nix.thunk(() => [hatchling]),
-      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$2, yaml: nix.thunk(() => [pyyaml, more_itertools]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: $pos[1], yaml: nix.thunk(() => [pyyaml, more_itertools]) })),
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["tap"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Set of tools for working with the Test Anything Protocol (TAP) in Python",
         homepage: "https://github.com/python-tap/tappy",
         changelog: "https://tappy.readthedocs.io/en/latest/releases.html",

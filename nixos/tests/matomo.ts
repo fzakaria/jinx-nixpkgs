@@ -2,52 +2,44 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/matomo.nix", [[["forceSSL", 11, 11], ["enableACME", 12, 11]], [["enable", 9, 9], ["nginx", 10, 9]], [["enable", 16, 9], ["package", 17, 9]], [["enable", 19, 22]], [["matomo", 8, 16], ["mysql", 15, 16], ["nginx", 19, 16]], [["services", 8, 7]], [["machine", 5, 9]], [["maintainers", 49, 8]], [["name", 3, 3], ["nodes", 5, 3], ["testScript", 22, 3], ["meta", 49, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
 const formals$2 = { args: { config: false, pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/matomo.nix", [["forceSSL", 11, 11], ["enableACME", 12, 11]]);
-const pos$2 = nix.positions(here + "/matomo.nix", [["enable", 9, 9], ["nginx", 10, 9]]);
-const pos$3 = nix.positions(here + "/matomo.nix", [["enable", 16, 9], ["package", 17, 9]]);
-const pos$4 = nix.positions(here + "/matomo.nix", [["enable", 19, 22]]);
-const pos$5 = nix.positions(here + "/matomo.nix", [["matomo", 8, 16], ["mysql", 15, 16], ["nginx", 19, 16]]);
-const pos$6 = nix.positions(here + "/matomo.nix", [["services", 8, 7]]);
-const pos$7 = nix.positions(here + "/matomo.nix", [["machine", 5, 9]]);
-const pos$8 = nix.positions(here + "/matomo.nix", [["maintainers", 49, 8]]);
-const pos$9 = nix.positions(here + "/matomo.nix", [["name", 3, 3], ["nodes", 5, 3], ["testScript", 22, 3], ["meta", 49, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$9,
+    [nix.POS]: $pos[8],
     name: "matomo",
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config = nix.arg($_1, "config");
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             matomo: nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               enable: true,
-              nginx: nix.thunk(() => ({ [nix.POS]: pos$1, forceSSL: false, enableACME: false })),
+              nginx: nix.thunk(() => ({ [nix.POS]: $pos[0], forceSSL: false, enableACME: false })),
             })),
             mysql: nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               enable: true,
               package: nix.thunk(() => nix.sel(pkgs, "mariadb")),
             })),
-            nginx: nix.thunk(() => ({ [nix.POS]: pos$4, enable: true })),
+            nginx: nix.thunk(() => ({ [nix.POS]: $pos[3], enable: true })),
           })),
         };
       })(), formals$2),
     })),
     testScript: "start_all()\nmachine.wait_for_unit(\"mysql.service\")\nmachine.wait_for_unit(\"phpfpm-matomo.service\")\nmachine.wait_for_unit(\"nginx.service\")\n\nwith subtest(\"matomo.js reachable via HTTP\"):\n  machine.succeed(\"curl -sSfk http://machine/matomo.js\")\n\nwith subtest(\"js/piwik.js reachable via HTTP\"):\n  machine.succeed(\"curl -sSfk http://machine/js/piwik.js\")\n\nwith subtest(\"matomo.php (API) reachable via HTTP\"):\n  machine.succeed(\"curl -sSfk http://machine/matomo.php\")\n\n# without the grep the command does not produce valid utf-8 for some reason\nwith subtest(\"welcome screen loads\"):\n  machine.succeed(\n    \"curl -sSfL http://localhost/ | grep '<title>Matomo[^<]*Installation'\"\n  )\n\nwith subtest(\"killing the phpfpm process should trigger an automatic restart\"):\n  machine.succeed(\"systemctl kill -s KILL phpfpm-matomo\")\n  machine.sleep(1)\n  machine.wait_for_unit(\"phpfpm-matomo.service\")\n",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [

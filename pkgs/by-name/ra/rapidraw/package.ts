@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 50, 5], ["repo", 51, 5], ["tag", 52, 5], ["hash", 53, 5]], [["src", 59, 26], ["hash", 60, 5]], [["ORT_STRATEGY", 133, 5]], [["updateScript", 164, 12]], [["description", 167, 5], ["homepage", 168, 5], ["license", 169, 5], ["mainProgram", 170, 5], ["maintainers", 171, 5], ["platforms", 175, 5]], [["pname", 46, 3], ["version", 47, 3], ["src", 49, 3], ["cargoHash", 56, 3], ["npmDeps", 58, 3], ["nativeBuildInputs", 63, 3], ["buildInputs", 74, 3], ["cargoRoot", 109, 3], ["buildAndTestSubdir", 110, 3], ["preBuild", 113, 3], ["tauriBuildFlags", 125, 3], ["dontWrapGApps", 130, 3], ["env", 132, 3], ["postInstall", 136, 3], ["postFixup", 153, 3], ["passthru", 164, 3], ["meta", 166, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchNpmDeps: false, rustPlatform: false, makeWrapper: false, "pkg-config": false, wrapGAppsHook4: false, openssl: false, onnxruntime: false, webkitgtk_4_1: false, gtk3: false, glib: false, "gdk-pixbuf": false, libappindicator: false, cairo: false, pango: false, libxrender: false, libxrandr: false, libxi: false, libxfixes: false, libxext: false, libxcursor: false, libx11: false, libxcb: false, libxkbcommon: false, "vulkan-loader": false, libjpeg: false, libpng: false, zlib: false, libGL: false, dbus: false, gvfs: false, libheif: false, libgphoto2: false, "glib-networking": false, nodejs_24: false, npmHooks: false, "cargo-tauri": false, writableTmpDirAsHomeHook: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 50, 5], ["repo", 51, 5], ["tag", 52, 5], ["hash", 53, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["src", 59, 26], ["hash", 60, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["ORT_STRATEGY", 133, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 164, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 167, 5], ["homepage", 168, 5], ["license", 169, 5], ["mainProgram", 170, 5], ["maintainers", 171, 5], ["platforms", 175, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 46, 3], ["version", 47, 3], ["src", 49, 3], ["cargoHash", 56, 3], ["npmDeps", 58, 3], ["nativeBuildInputs", 63, 3], ["buildInputs", 74, 3], ["cargoRoot", 109, 3], ["buildAndTestSubdir", 110, 3], ["preBuild", 113, 3], ["tauriBuildFlags", 125, 3], ["dontWrapGApps", 130, 3], ["env", 132, 3], ["postInstall", 136, 3], ["postFixup", 153, 3], ["passthru", 164, 3], ["meta", 166, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -54,11 +49,11 @@ export default nix.lambda((args) => (() => {
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "rapidraw",
       version: "1.6.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "CyberTimon",
           repo: "RapidRAW",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -66,7 +61,7 @@ export default nix.lambda((args) => (() => {
         })))),
       cargoHash: "sha256-DaBEONa4mTxWNErPXfgtsr7l/uUncYqfrXCx3SNlooc=",
       npmDeps: nix.thunk(() => nix.app(fetchNpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           hash: "sha256-MbecY5iU1Swc1gCPsIaiiOJ2/BZx7j5+qSW9tH5tyKs=",
         })))),
@@ -114,7 +109,7 @@ export default nix.lambda((args) => (() => {
       preBuild: "export PATH=\"$PWD/node_modules/.bin:$PATH\"\n\n# Configure Tauri to use lowercase binary name\nsubstituteInPlace src-tauri/tauri.conf.json \\\n  --replace-fail '  \"identifier\": \"io.github.CyberTimon.RapidRAW\",' '  \"identifier\": \"io.github.CyberTimon.RapidRAW\", \"mainBinaryName\": \"rapidraw\",'\n\n# Disable downloading of ONNX runtime library this is correctly linked during postInstall\nsubstituteInPlace src-tauri/build.rs \\\n  --replace-fail 'if !is_valid' 'if false'\n",
       tauriBuildFlags: nix.thunk(() => ["--features", "tethering"]),
       dontWrapGApps: true,
-      env: nix.thunk(() => ({ [nix.POS]: pos$3, ORT_STRATEGY: "system" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[2], ORT_STRATEGY: "system" })),
       postInstall: nix.thunk(() => nix.add(nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => nix.str`# Patch the .desktop file to set the Categories field
 sed -i '/^Categories=/c\\Categories=Graphics;Photography' "$out/share/applications/RapidRAW.desktop"
 
@@ -132,11 +127,11 @@ ln -sf ${onnxruntime}/lib/libonnxruntime.dylib "$out/Applications/RapidRAW.app/C
   --set ORT_STRATEGY "system"
 `)), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "wrapGApp \"$out/Applications/RapidRAW.app/Contents/MacOS/rapidraw\" \\\n  --set ORT_STRATEGY \"system\"\n"))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Blazingly-fast, non-destructive, and GPU-accelerated RAW image editor built with performance in mind",
         homepage: "https://github.com/CyberTimon/RapidRAW",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),

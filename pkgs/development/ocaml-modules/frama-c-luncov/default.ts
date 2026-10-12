@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["domain", 17, 5], ["group", 18, 5], ["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]], [["description", 37, 5], ["homepage", 38, 5], ["license", 39, 5], ["maintainers", 40, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 25, 3], ["propagatedBuildInputs", 29, 3], ["meta", 36, 3]]]);
 const formals$1 = { args: { lib: false, buildDunePackage: false, "dune-site": false, fetchFromGitLab: false, "frama-c": false, menhir: false, unionFind: false, why3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["domain", 17, 5], ["group", 18, 5], ["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 37, 5], ["homepage", 38, 5], ["license", 39, 5], ["maintainers", 40, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 25, 3], ["propagatedBuildInputs", 29, 3], ["meta", 36, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const unionFind = nix.arg($, "unionFind");
   const why3 = nix.arg($, "why3");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "frama-c-luncov",
       version: "0.2.6",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "git.frama-c.com",
           group: "pub",
           owner: "ltest",
@@ -33,7 +31,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [menhir]),
       propagatedBuildInputs: nix.thunk(() => [dune_site, frama_c, unionFind, why3]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Luncov plugin of Frama-C, part of the LTest suite",
         homepage: "https://frama-c.com/fc-plugins/ltest.html",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl2")),

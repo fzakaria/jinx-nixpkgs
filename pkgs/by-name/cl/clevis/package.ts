@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["hash", 33, 5]], [["clevisBcachefs", 128, 7], ["clevisBcachefsFallback", 129, 7], ["clevisLuks", 130, 7], ["clevisLuksFallback", 131, 7], ["clevisZfs", 132, 7], ["clevisZfsFallback", 133, 7], ["clevisLuksSystemdStage1", 135, 5], ["clevisLuksFallbackSystemdStage1", 136, 5], ["clevisLuksAskpassSystemdStage1", 137, 5], ["clevisLuksAskpassFallbackSystemdStage1", 138, 5], ["clevisZfsSystemdStage1", 140, 5], ["clevisZfsFallbackSystemdStage1", 141, 5]], [["tests", 126, 12]], [["homepage", 145, 5], ["description", 146, 5], ["longDescription", 147, 5], ["changelog", 152, 5], ["license", 153, 5], ["maintainers", 154, 5], ["mainProgram", 155, 5]], [["pname", 26, 3], ["version", 27, 3], ["src", 29, 3], ["patches", 36, 3], ["nativeBuildInputs", 42, 3], ["buildInputs", 50, 3], ["outputs", 61, 3], ["strictDeps", 69, 3], ["postPatch", 83, 3], ["postInstall", 95, 3], ["passthru", 126, 3], ["meta", 144, 3]]]);
 const formals$1 = { args: { lib: false, "asciidoc-full": false, coreutils: false, cryptsetup: false, curl: false, fetchFromGitHub: false, gawk: false, gnugrep: false, gnused: false, jansson: false, jose: false, libpwquality: false, luksmeta: false, makeWrapper: false, meson: false, ninja: false, nixosTests: false, "pkg-config": false, stdenv: false, systemd: false, "tpm2-tools": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["hash", 33, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["clevisBcachefs", 128, 7], ["clevisBcachefsFallback", 129, 7], ["clevisLuks", 130, 7], ["clevisLuksFallback", 131, 7], ["clevisZfs", 132, 7], ["clevisZfsFallback", 133, 7], ["clevisLuksSystemdStage1", 135, 5], ["clevisLuksFallbackSystemdStage1", 136, 5], ["clevisLuksAskpassSystemdStage1", 137, 5], ["clevisLuksAskpassFallbackSystemdStage1", 138, 5], ["clevisZfsSystemdStage1", 140, 5], ["clevisZfsFallbackSystemdStage1", 141, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 126, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 145, 5], ["description", 146, 5], ["longDescription", 147, 5], ["changelog", 152, 5], ["license", 153, 5], ["maintainers", 154, 5], ["mainProgram", 155, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 26, 3], ["version", 27, 3], ["src", 29, 3], ["patches", 36, 3], ["nativeBuildInputs", 42, 3], ["buildInputs", 50, 3], ["outputs", 61, 3], ["strictDeps", 69, 3], ["postPatch", 83, 3], ["postInstall", 95, 3], ["passthru", 126, 3], ["meta", 144, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,11 +29,11 @@ export default nix.lambda((args) => (() => {
   const systemd = nix.arg($, "systemd");
   const tpm2_tools = nix.arg($, "tpm2-tools");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "clevis",
       version: "22",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "latchset",
           repo: "clevis",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -77,11 +73,11 @@ wrapProgram $out/libexec/clevis-luks-askpass \\
 `;
       })()),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(nixosTests, "installer"));
           return {
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           clevisBcachefs: nix.thunk(() => nix.attr(from, "clevisBcachefs")),
           clevisBcachefsFallback: nix.thunk(() => nix.attr(from, "clevisBcachefsFallback")),
           clevisLuks: nix.thunk(() => nix.attr(from, "clevisLuks")),
@@ -98,7 +94,7 @@ wrapProgram $out/libexec/clevis-luks-askpass \\
         })()),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://github.com/latchset/clevis",
         description: "Automated Encryption Framework",
         longDescription: "Clevis is a pluggable framework for automated decryption. It can be used\nto provide automated decryption of data or even automated unlocking of\nLUKS volumes.\n",

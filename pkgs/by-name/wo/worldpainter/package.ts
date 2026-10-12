@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 16, 5], ["hash", 17, 5]], [["name", 54, 7], ["desktopName", 55, 7], ["exec", 56, 7], ["icon", 57, 7], ["terminal", 58, 7], ["type", 59, 7], ["startupWMClass", 60, 7], ["comment", 61, 7], ["categories", 62, 7]], [["homepage", 67, 5], ["description", 68, 5], ["longDescription", 69, 5], ["license", 70, 5], ["maintainers", 71, 5], ["platforms", 72, 5], ["sourceProvenance", 73, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["nativeBuildInputs", 20, 3], ["outputs", 26, 3], ["installPhase", 28, 3], ["postInstall", 45, 3], ["desktopItems", 52, 3], ["meta", 66, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, jre: false, makeWrapper: false, makeDesktopItem: false, copyDesktopItems: false, gnused: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 54, 7], ["desktopName", 55, 7], ["exec", 56, 7], ["icon", 57, 7], ["terminal", 58, 7], ["type", 59, 7], ["startupWMClass", 60, 7], ["comment", 61, 7], ["categories", 62, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 67, 5], ["description", 68, 5], ["longDescription", 69, 5], ["license", 70, 5], ["maintainers", 71, 5], ["platforms", 72, 5], ["sourceProvenance", 73, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["nativeBuildInputs", 20, 3], ["outputs", 26, 3], ["installPhase", 28, 3], ["postInstall", 45, 3], ["desktopItems", 52, 3], ["meta", 66, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = "worldpainter";
       const version = "2.27.1";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://www.worldpainter.net/files/worldpainter_${version}.tar.gz`),
           hash: "sha256-w+sT1C4eeidVTNyS5q8tnHQgQ+frJSL0+A//XbbYNcY=",
         }))));
@@ -36,7 +33,7 @@ wrapProgram $out/bin/wpscript --prefix PATH : "${jre}/bin"
 `);
       const desktopItems = nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: pname,
             desktopName: pname,
             exec: pname,
@@ -49,7 +46,7 @@ wrapProgram $out/bin/wpscript --prefix PATH : "${jre}/bin"
           })))),
       ]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://www.worldpainter.net/",
         description: "Interactive map generator for Minecraft",
         longDescription: "WorldPainter is an interactive map generator for Minecraft. It allows you to \"paint\" landscapes using similar tools as a regular paint program. Sculpt and mould the terrain, paint materials, trees, snow and ice, etc. onto it, and much more",
@@ -62,7 +59,7 @@ wrapProgram $out/bin/wpscript --prefix PATH : "${jre}/bin"
         sourceProvenance: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "sourceTypes", "binaryBytecode"))]),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

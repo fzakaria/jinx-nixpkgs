@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 23, 5], ["hash", 24, 5]], [["description", 50, 5], ["homepage", 51, 5], ["license", 52, 5], ["platforms", 53, 5], ["maintainers", 54, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["outputs", 27, 3], ["configureFlags", 32, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 42, 3], ["meta", 49, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, "pkg-config": false, yasm: false, freetype: false, fribidi: false, harfbuzz: false, fontconfigSupport: true, fontconfig: true, largeTilesSupport: true, libiconv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 50, 5], ["homepage", 51, 5], ["license", 52, 5], ["platforms", 53, 5], ["maintainers", 54, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["outputs", 27, 3], ["configureFlags", 32, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 42, 3], ["meta", 49, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const libiconv = nix.arg($, "libiconv");
   nix.assert_((!nix.asBool(fontconfigSupport) || nix.asBool(!nix.eq(fontconfig, null))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/li/libass/package.nix:16:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "libass",
       version: "0.17.4",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/libass/libass/releases/download/${nix.sel(finalAttrs, "version")}/libass-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-ePEXm4ONAl6cJuj+8z+AkvZWEURP+hv8DPrGozURoFo=",
         })))),
@@ -39,7 +37,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pkg_config, yasm]),
       buildInputs: nix.thunk(() => nix.concat([freetype, fribidi, harfbuzz], nix.app(nix.sel(lib, "optional"), fontconfigSupport, fontconfig))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Portable ASS/SSA subtitle renderer",
         homepage: "https://github.com/libass/libass",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),

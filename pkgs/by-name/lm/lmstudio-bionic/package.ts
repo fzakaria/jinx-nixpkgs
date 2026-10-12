@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["description", 18, 5], ["homepage", 19, 5], ["license", 20, 5], ["mainProgram", 21, 5], ["maintainers", 22, 5], ["platforms", 26, 5], ["sourceProvenance", 31, 5]], [["updateScript", 37, 14]], [["pname", 36, 13], ["meta", 36, 19], ["passthru", 37, 5], ["version", 38, 5], ["url", 39, 5], ["hash", 42, 5]], [["updateScript", 47, 14]], [["pname", 46, 13], ["meta", 46, 19], ["passthru", 47, 5], ["version", 48, 5], ["url", 49, 5], ["hash", 52, 5]], [["updateScript", 57, 14]], [["pname", 56, 13], ["meta", 56, 19], ["passthru", 57, 5], ["version", 58, 5], ["url", 59, 5], ["hash", 62, 5]]]);
 const formals$1 = { args: { lib: false, stdenv: false, callPackage: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/package.nix", [["description", 18, 5], ["homepage", 19, 5], ["license", 20, 5], ["mainProgram", 21, 5], ["maintainers", 22, 5], ["platforms", 26, 5], ["sourceProvenance", 31, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 37, 14]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 36, 13], ["meta", 36, 19], ["passthru", 37, 5], ["version", 38, 5], ["url", 39, 5], ["hash", 42, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 47, 14]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 46, 13], ["meta", 46, 19], ["passthru", 47, 5], ["version", 48, 5], ["url", 49, 5], ["hash", 52, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["updateScript", 57, 14]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 56, 13], ["meta", 56, 19], ["passthru", 57, 5], ["version", 58, 5], ["url", 59, 5], ["hash", 62, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,7 +19,7 @@ export default nix.lambda((args) => (() => {
   const version_aarch64_linux = "1.1.7-7";
   const hash_aarch64_linux = "sha256-XEbfluRqMxFEVNC1VtK66Y8xLV7F6RExoYp/oUabxCA=";
   const meta = nix.thunk(() => ({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     description: "Bionic is an easy to use desktop app for experimenting with local and open-source Large Language Models (LLMs)",
     homepage: "https://lmstudio.ai/",
     license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
@@ -44,26 +38,26 @@ export default nix.lambda((args) => (() => {
     })()),
   }));
   return (nix.asBool(nix.eq(nix.sel(stdenv, "hostPlatform", "system"), "aarch64-darwin")) ? nix.app(callPackage, nix.path(here, "./darwin.nix"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: pname,
       meta: meta,
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[1], updateScript: nix.path(here, "./update.sh") })),
       version: version_aarch64_darwin,
       url: nix.thunk(() => nix.selOr(args_1, () => nix.str`https://bionic-installers.lmstudio.ai/darwin/arm64/${version_aarch64_darwin}/Bionic-${version_aarch64_darwin}-arm64.dmg`, "url")),
       hash: nix.thunk(() => nix.selOr(args_1, () => hash_aarch64_darwin, "hash")),
     }))) : (nix.asBool(nix.eq(nix.sel(stdenv, "hostPlatform", "system"), "aarch64-linux")) ? nix.app(callPackage, nix.path(here, "./linux.nix"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: pname,
       meta: meta,
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$4, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[3], updateScript: nix.path(here, "./update.sh") })),
       version: version_aarch64_linux,
       url: nix.thunk(() => nix.selOr(args_1, () => nix.str`https://bionic-installers.lmstudio.ai/linux/arm64/${version_aarch64_linux}/Bionic-${version_aarch64_linux}-arm64.AppImage`, "url")),
       hash: nix.thunk(() => nix.selOr(args_1, () => hash_aarch64_linux, "hash")),
     }))) : nix.app(callPackage, nix.path(here, "./linux.nix"), nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: pname,
       meta: meta,
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$6, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[5], updateScript: nix.path(here, "./update.sh") })),
       version: version_x86_64_linux,
       url: nix.thunk(() => nix.selOr(args_1, () => nix.str`https://bionic-installers.lmstudio.ai/linux/x64/${version_x86_64_linux}/Bionic-${version_x86_64_linux}-x64.AppImage`, "url")),
       hash: nix.thunk(() => nix.selOr(args_1, () => hash_x86_64_linux, "hash")),

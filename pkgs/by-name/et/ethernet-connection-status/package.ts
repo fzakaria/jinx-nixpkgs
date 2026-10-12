@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["escape", 14, 30]], [["CFBundleDevelopmentRegion", 15, 7], ["CFBundleDisplayName", 16, 7], ["CFBundleExecutable", 17, 7], ["CFBundleIconFile", 18, 7], ["CFBundleIconName", 19, 7], ["CFBundleIdentifier", 20, 7], ["CFBundleInfoDictionaryVersion", 21, 7], ["CFBundleName", 22, 7], ["CFBundlePackageType", 23, 7], ["CFBundleShortVersionString", 24, 7], ["CFBundleVersion", 25, 7], ["LSApplicationCategoryType", 26, 7], ["LSMinimumSystemVersion", 27, 7], ["LSUIElement", 28, 7], ["NSHumanReadableCopyright", 29, 7]], [["owner", 40, 5], ["repo", 41, 5], ["tag", 42, 5], ["hash", 43, 5]], [["updateScript", 101, 12]], [["description", 104, 5], ["homepage", 105, 5], ["changelog", 106, 5], ["license", 107, 5], ["maintainers", 108, 5], ["platforms", 109, 5]], [["pname", 33, 3], ["version", 34, 3], ["__structuredAttrs", 36, 3], ["strictDeps", 37, 3], ["src", 39, 3], ["postPatch", 46, 3], ["nativeBuildInputs", 51, 3], ["dontConfigure", 57, 3], ["buildPhase", 59, 3], ["installPhase", 81, 3], ["passthru", 101, 3], ["meta", 103, 3]]]);
 const formals$1 = { args: { actool: false, darwin: false, fetchFromGitHub: false, lib: false, "nix-update-script": false, stdenv: false, swift: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["escape", 14, 30]]);
-const pos$2 = nix.positions(here + "/package.nix", [["CFBundleDevelopmentRegion", 15, 7], ["CFBundleDisplayName", 16, 7], ["CFBundleExecutable", 17, 7], ["CFBundleIconFile", 18, 7], ["CFBundleIconName", 19, 7], ["CFBundleIdentifier", 20, 7], ["CFBundleInfoDictionaryVersion", 21, 7], ["CFBundleName", 22, 7], ["CFBundlePackageType", 23, 7], ["CFBundleShortVersionString", 24, 7], ["CFBundleVersion", 25, 7], ["LSApplicationCategoryType", 26, 7], ["LSMinimumSystemVersion", 27, 7], ["LSUIElement", 28, 7], ["NSHumanReadableCopyright", 29, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["owner", 40, 5], ["repo", 41, 5], ["tag", 42, 5], ["hash", 43, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 101, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 104, 5], ["homepage", 105, 5], ["changelog", 106, 5], ["license", 107, 5], ["maintainers", 108, 5], ["platforms", 109, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 33, 3], ["version", 34, 3], ["__structuredAttrs", 36, 3], ["strictDeps", 37, 3], ["src", 39, 3], ["postPatch", 46, 3], ["nativeBuildInputs", 51, 3], ["dontConfigure", 57, 3], ["buildPhase", 59, 3], ["installPhase", 81, 3], ["passthru", 101, 3], ["meta", 103, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,8 +14,8 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const stdenv = nix.arg($, "stdenv");
   const swift = nix.arg($, "swift");
-  const infoPlist = (version) => nix.app(nix.sel(lib, "generators", "toPlist"), nix.thunk(() => ({ [nix.POS]: pos$1, escape: true })), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+  const infoPlist = (version) => nix.app(nix.sel(lib, "generators", "toPlist"), nix.thunk(() => ({ [nix.POS]: $pos[0], escape: true })), nix.thunk(() => ({
+      [nix.POS]: $pos[1],
       CFBundleDevelopmentRegion: "en",
       CFBundleDisplayName: "Ethernet Connection Status",
       CFBundleExecutable: "Ethernet Connection Status",
@@ -38,13 +33,13 @@ export default nix.lambda((args) => (() => {
       NSHumanReadableCopyright: "Copyright © 2025. All rights reserved.",
     })));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "ethernet-connection-status",
       version: "1.0.0",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           owner: "montanaflynn",
           repo: "EthernetConnectionStatus",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -77,11 +72,11 @@ actool --compile "$app/Contents/Resources" \\
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Native macOS menu bar app that monitors Ethernet connection status",
         homepage: "https://github.com/montanaflynn/EthernetConnectionStatus",
         changelog: nix.thunk(() => nix.str`https://github.com/montanaflynn/EthernetConnectionStatus/releases/tag/v${nix.sel(finalAttrs, "version")}`),

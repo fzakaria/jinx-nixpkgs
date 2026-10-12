@@ -2,43 +2,37 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/geoclue2.nix", [[["maintainers", 5, 5]], [["latitude", 12, 7], ["longitude", 13, 7]], [["enable", 17, 7], ["enableDemoAgent", 18, 7], ["enableStatic", 19, 7], ["staticAltitude", 20, 7], ["staticAccuracy", 21, 7]], [["geoclue2", 16, 14]], [["imports", 9, 5], ["location", 11, 5], ["services", 16, 5]], [["machine", 8, 9]], [["name", 3, 3], ["meta", 4, 3], ["nodes", 8, 3], ["testScript", 25, 3]]]);
 const formals$1 = { args: { config: false, lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/geoclue2.nix", [["maintainers", 5, 5]]);
-const pos$2 = nix.positions(here + "/geoclue2.nix", [["latitude", 12, 7], ["longitude", 13, 7]]);
-const pos$3 = nix.positions(here + "/geoclue2.nix", [["enable", 17, 7], ["enableDemoAgent", 18, 7], ["enableStatic", 19, 7], ["staticAltitude", 20, 7], ["staticAccuracy", 21, 7]]);
-const pos$4 = nix.positions(here + "/geoclue2.nix", [["geoclue2", 16, 14]]);
-const pos$5 = nix.positions(here + "/geoclue2.nix", [["imports", 9, 5], ["location", 11, 5], ["services", 16, 5]]);
-const pos$6 = nix.positions(here + "/geoclue2.nix", [["machine", 8, 9]]);
-const pos$7 = nix.positions(here + "/geoclue2.nix", [["name", 3, 3], ["meta", 4, 3], ["nodes", 8, 3], ["testScript", 25, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const config = nix.arg($, "config");
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$7,
+    [nix.POS]: $pos[6],
     name: "geoclue2",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "rhendric"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       machine: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         imports: nix.thunk(() => [nix.path(here, "common/user-account.nix")]),
         location: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           latitude: 12.345,
           longitude: nix.thunk(() => nix.neg(67.89)),
         })),
         services: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           geoclue2: nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             enable: true,
             enableDemoAgent: true,
             enableStatic: true,

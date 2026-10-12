@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["enablePython", 32, 5], ["python", 33, 13]], [["url", 44, 5], ["hash", 45, 5]], [["boost-libdir", 58, 7], ["cgal", 59, 7], ["python-module-path", 60, 7]], [["url", 116, 5], ["rev-prefix", 117, 5]], [["updateScript", 115, 12]], [["description", 121, 5], ["homepage", 122, 5], ["changelog", 123, 5], ["license", 124, 5], ["maintainers", 125, 5], ["broken", 126, 5]], [["pname", 37, 3], ["version", 38, 3], ["pyproject", 39, 3], ["__structuredAttrs", 41, 3], ["src", 43, 3], ["postPatch", 48, 3], ["configureFlags", 56, 3], ["enableParallelBuilding", 79, 3], ["nativeBuildInputs", 81, 3], ["buildInputs", 84, 3], ["dependencies", 93, 3], ["propagatedNativeBuildInputs", 103, 3], ["nativeCheckInputs", 105, 3], ["preInstallCheck", 107, 3], ["pythonImportsCheck", 113, 3], ["passthru", 115, 3], ["meta", 120, 3]]]);
 const formals$1 = { args: { buildPythonPackage: false, lib: false, fetchurl: false, stdenv: false, boost: false, cairomm_1_16: false, cgal: false, expat: false, fontconfig: false, "gobject-introspection": false, gtk3: false, llvmPackages: false, matplotlib: false, mpfr: false, numpy: false, "pkg-config": false, pycairo: false, pygobject3: false, python: false, scipy: false, zstandard: false, writableTmpDirAsHomeHook: false, gitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["enablePython", 32, 5], ["python", 33, 13]]);
-const pos$2 = nix.positions(here + "/default.nix", [["url", 44, 5], ["hash", 45, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["boost-libdir", 58, 7], ["cgal", 59, 7], ["python-module-path", 60, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["url", 116, 5], ["rev-prefix", 117, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["updateScript", 115, 12]]);
-const pos$6 = nix.positions(here + "/default.nix", [["description", 121, 5], ["homepage", 122, 5], ["changelog", 123, 5], ["license", 124, 5], ["maintainers", 125, 5], ["broken", 126, 5]]);
-const pos$7 = nix.positions(here + "/default.nix", [["pname", 37, 3], ["version", 38, 3], ["pyproject", 39, 3], ["__structuredAttrs", 41, 3], ["src", 43, 3], ["postPatch", 48, 3], ["configureFlags", 56, 3], ["enableParallelBuilding", 79, 3], ["nativeBuildInputs", 81, 3], ["buildInputs", 84, 3], ["dependencies", 93, 3], ["propagatedNativeBuildInputs", 103, 3], ["nativeCheckInputs", 105, 3], ["preInstallCheck", 107, 3], ["pythonImportsCheck", 113, 3], ["passthru", 115, 3], ["meta", 120, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -36,21 +30,21 @@ export default nix.lambda((args) => (() => {
   const zstandard = nix.arg($, "zstandard");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   const gitUpdater = nix.arg($, "gitUpdater");
-  const boost$ = nix.thunk(() => nix.app(nix.sel(boost, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, enablePython: true, python: python }))));
+  const boost$ = nix.thunk(() => nix.app(nix.sel(boost, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], enablePython: true, python: python }))));
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "graph-tool",
       version: "3.9",
       pyproject: false,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: nix.thunk(() => nix.str`https://downloads.skewed.de/graph-tool/graph-tool-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           hash: "sha256-gSqzV1yuE91vqtluTZMnl6enGoRICh6su4dPLrr8fGk=",
         })))),
       postPatch: "substituteInPlace configure \\\n  --replace-fail 'tput setaf $1' : \\\n  --replace-fail 'tput sgr0' :\n",
       configureFlags: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "mapAttrsToList"), nix.thunk(() => nix.app(nix.sel(lib, "withFeatureAs"), true)), nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           "boost-libdir": nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getLib"), boost$)}/lib`),
           cgal: nix.thunk(() => nix.app(nix.sel(lib, "getDev"), cgal)),
           "python-module-path": nix.thunk(() => nix.str`$(out)/${nix.sel(python, "sitePackages")}`),
@@ -65,15 +59,15 @@ export default nix.lambda((args) => (() => {
 `),
       pythonImportsCheck: nix.thunk(() => ["graph_tool.all"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             url: "https://git.skewed.de/count0/graph-tool",
             "rev-prefix": "release-",
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Python module for manipulation and statistical analysis of graphs",
         homepage: "https://graph-tool.skewed.de",
         changelog: nix.thunk(() => nix.str`https://git.skewed.de/count0/graph-tool/commits/release-${nix.sel(finalAttrs, "version")}`),

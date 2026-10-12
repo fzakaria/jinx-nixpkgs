@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 19, 5], ["hash", 20, 5]], [["homepage", 43, 5], ["description", 44, 5], ["mainProgram", 45, 5], ["changelog", 46, 5], ["platforms", 47, 5], ["license", 48, 5], ["maintainers", 52, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 18, 3], ["nativeBuildInputs", 23, 3], ["buildInputs", 31, 3], ["enableParallelBuilding", 33, 3], ["doCheck", 35, 3], ["nativeCheckInputs", 37, 3], ["meta", 42, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, python3Packages: false, perl: false, flex: false, texinfo: false, libiconv: false, libintl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 43, 5], ["description", 44, 5], ["mainProgram", 45, 5], ["changelog", 46, 5], ["platforms", 47, 5], ["license", 48, 5], ["maintainers", 52, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 18, 3], ["nativeBuildInputs", 23, 3], ["buildInputs", 31, 3], ["enableParallelBuilding", 33, 3], ["doCheck", 35, 3], ["nativeCheckInputs", 37, 3], ["meta", 42, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const libiconv = nix.arg($, "libiconv");
   const libintl = nix.arg($, "libintl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "recode",
       version: "3.7.17",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/rrthomas/recode/releases/download/v${nix.sel(finalAttrs, "version")}/recode-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-Gwrr5yg7ef9GvAoG7iH69ltNCzBGMsvIVXIcJVg9jqM=",
         })))),
@@ -45,7 +43,7 @@ export default nix.lambda((args) => (() => {
         ];
       })()),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/rrthomas/recode",
         description: "Converts files between various character sets and usages",
         mainProgram: "recode",

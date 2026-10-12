@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["sha256", 25, 5]], [["homepage", 45, 5], ["description", 46, 5], ["license", 47, 5], ["maintainers", 48, 5]], [["pname", 11, 3], ["version", 12, 3], ["format", 13, 3], ["src", 21, 3], ["buildInputs", 28, 3], ["propagatedBuildInputs", 30, 3], ["postPatch", 32, 3], ["doCheck", 38, 3], ["preCheck", 40, 3], ["meta", 44, 3]]]);
 const formals$1 = { args: { buildPythonPackage: false, exempi: false, fetchFromGitHub: false, pytz: false, lib: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["sha256", 25, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 45, 5], ["description", 46, 5], ["license", 47, 5], ["maintainers", 48, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 11, 3], ["version", 12, 3], ["format", 13, 3], ["src", 21, 3], ["buildInputs", 28, 3], ["propagatedBuildInputs", 30, 3], ["postPatch", 32, 3], ["doCheck", 38, 3], ["preCheck", 40, 3], ["meta", 44, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "python-xmp-toolkit",
       version: "2.0.2",
       format: "setuptools",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "python-xmp-toolkit",
           repo: "python-xmp-toolkit",
           rev: "5692bdf8dac3581a0d5fb3c5aeb29be0ab6a54fc",
@@ -35,7 +33,7 @@ export default nix.lambda((args) => (() => {
       doCheck: nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))),
       preCheck: "rm test/{test_exempi,test_files}.py\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/python-xmp-toolkit/python-xmp-toolkit",
         description: "Python XMP Toolkit for working with metadata",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

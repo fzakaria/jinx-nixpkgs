@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["changelog", 34, 7], ["description", 35, 7], ["homepage", 36, 7], ["license", 37, 7], ["maintainers", 38, 7], ["platforms", 39, 7]], [["pname", 11, 25], ["version", 11, 31], ["src", 11, 39], ["pyproject", 13, 3], ["sourceRoot", 15, 3], ["build-system", 17, 3], ["dependencies", 22, 3], ["pythonImportsCheck", 28, 3], ["meta", 32, 3]]]);
 const formals$1 = { args: { buildPythonPackage: false, cython: false, setuptools: false, numpy: false, matplotlib: false, scipy: false, pkgs: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["changelog", 34, 7], ["description", 35, 7], ["homepage", 36, 7], ["license", 37, 7], ["maintainers", 38, 7], ["platforms", 39, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 11, 25], ["version", 11, 31], ["src", 11, 39], ["pyproject", 13, 3], ["sourceRoot", 15, 3], ["build-system", 17, 3], ["dependencies", 22, 3], ["pythonImportsCheck", 28, 3], ["meta", 32, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,7 +17,7 @@ export default nix.lambda((args) => (() => {
   return nix.app(buildPythonPackage, (finalAttrs) => (() => {
       const from = nix.thunk(() => nix.sel(pkgs, "toppra"));
       return {
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: nix.thunk(() => nix.attr(from, "pname")),
       version: nix.thunk(() => nix.attr(from, "version")),
       src: nix.thunk(() => nix.attr(from, "src")),
@@ -30,7 +29,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from_1 = nix.thunk(() => nix.sel(pkgs, "toppra", "meta"));
         return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         changelog: nix.thunk(() => nix.attr(from_1, "changelog")),
         description: nix.thunk(() => nix.attr(from_1, "description")),
         homepage: nix.thunk(() => nix.attr(from_1, "homepage")),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 32, 5], ["repo", 33, 5], ["rev", 34, 5], ["hash", 35, 5], ["fetchSubmodules", 36, 5]], [["description", 93, 5], ["longDescription", 94, 5], ["homepage", 95, 5], ["license", 96, 5], ["platforms", 97, 5], ["maintainers", 98, 5], ["mainProgram", 99, 5]], [["pname", 29, 3], ["version", 30, 3], ["src", 31, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 47, 3], ["cmakeFlags", 72, 3], ["postPatch", 85, 3], ["meta", 92, 3]]]);
 const formals$1 = { args: { lib: false, clangStdenv: false, cmake: false, expat: false, fetchFromGitHub: false, ffmpeg_4: false, fontconfig: false, freetype: false, glib: false, harfbuzzFull: false, libGL: false, libGLU: false, libjpeg_turbo: false, libpng: false, libsForQt5: false, libunwind: false, libwebp: false, ninja: false, pcre2: false, "pkg-config": false, python3: false, libx11: false, zlib: false, enableWayland: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 32, 5], ["repo", 33, 5], ["rev", 34, 5], ["hash", 35, 5], ["fetchSubmodules", 36, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 93, 5], ["longDescription", 94, 5], ["homepage", 95, 5], ["license", 96, 5], ["platforms", 97, 5], ["maintainers", 98, 5], ["mainProgram", 99, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 29, 3], ["version", 30, 3], ["src", 31, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 47, 3], ["cmakeFlags", 72, 3], ["postPatch", 85, 3], ["meta", 92, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -37,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const pname = "friction";
       const version = "1.0.0-rc.3";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "friction2d",
           repo: "friction",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -80,7 +78,7 @@ export default nix.lambda((args) => (() => {
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(clangStdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["-DCMAKE_OSX_DEPLOYMENT_TARGET=12.7", "-DMAC_DEPLOY=ON"]))));
       const postPatch = nix.thunk(() => nix.add("grep -rl 'hb' src/skia | xargs sed -Ei 's/([\"<])(hb.*\\.h)/\\1harfbuzz\\/\\2/'\n", nix.app(nix.sel(lib, "optionalString"), enableWayland, "sed -i '/qputenv(\"QT_QPA_PLATFORM\", \"xcb\")/d' src/core/appsupport.cpp\n")));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Vector motion graphics program",
         longDescription: "Friction is a powerful and versatile motion graphics application that allows you to create stunning vector and raster animations for web and video platforms with ease.",
         homepage: "https://friction.graphics/",
@@ -93,7 +91,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "friction",
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

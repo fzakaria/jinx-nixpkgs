@@ -2,10 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/remediations.nix", [[["Unfree", 20, 7], ["UnsupportedSystem", 21, 7], ["NonSource", 22, 7]], [["Unfree", 28, 7], ["UnsupportedSystem", 29, 7], ["NonSource", 30, 7]], [["getNameWithVersion", 41, 11], ["remediateOutputsToInstall", 42, 3], ["remediate_predicate", 76, 3], ["remediate_allowlist", 84, 3], ["remediate_insecure", 98, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/remediations.nix", [["Unfree", 20, 7], ["UnsupportedSystem", 21, 7], ["NonSource", 22, 7]]);
-const pos$2 = nix.positions(here + "/remediations.nix", [["Unfree", 28, 7], ["UnsupportedSystem", 29, 7], ["NonSource", 30, 7]]);
-const pos$3 = nix.positions(here + "/remediations.nix", [["getNameWithVersion", 41, 11], ["remediateOutputsToInstall", 42, 3], ["remediate_predicate", 76, 3], ["remediate_allowlist", 84, 3], ["remediate_insecure", 98, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,20 +15,20 @@ export default nix.lambda((args) => (() => {
   const concatStringsSep = nix.thunk(() => nix.attr(lib, "concatStringsSep"));
   const getNameWithVersion = (attrs) => nix.selOr(attrs, () => nix.str`${nix.selOr(attrs, () => "«name-missing»", "pname")}-${nix.selOr(attrs, () => "«version-missing»", "version")}`, "name");
   const remediation_env_var = (allow_attr) => nix.sel({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     Unfree: "NIXPKGS_ALLOW_UNFREE",
     UnsupportedSystem: "NIXPKGS_ALLOW_UNSUPPORTED_SYSTEM",
     NonSource: "NIXPKGS_ALLOW_NONSOURCE",
   }, nix.key(nix.force(allow_attr)));
   const remediation_phrase = (allow_attr) => nix.sel({
-    [nix.POS]: pos$2,
+    [nix.POS]: $pos[1],
     Unfree: "unfree packages",
     UnsupportedSystem: "packages that are unsupported for this system",
     NonSource: "packages not built from source",
   }, nix.key(nix.force(allow_attr)));
   const flakeNote = "\n   Note: When using `nix shell`, `nix build`, `nix develop`, etc with a flake,\n         then pass `--impure` in order to allow use of environment variables.\n    ";
   return {
-    [nix.POS]: pos$3,
+    [nix.POS]: $pos[2],
     getNameWithVersion: getNameWithVersion,
     remediateOutputsToInstall: (attrs) => (() => {
       const expectedOutputs = nix.thunk(() => nix.selOr((attrs_1) => (() => {

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 16, 5], ["tag", 17, 5], ["hash", 18, 5]], [["description", 56, 5], ["homepage", 57, 5], ["license", 58, 5], ["maintainers", 59, 5], ["platforms", 60, 5], ["mainProgram", 61, 5]], [["pname", 11, 3], ["version", 12, 3], ["pyproject", 13, 3], ["src", 15, 3], ["build-system", 21, 3], ["dependencies", 26, 3], ["pythonRemoveDeps", 38, 3], ["makeWrapperArgs", 42, 3], ["doCheck", 53, 3], ["meta", 55, 3]]]);
 const formals$1 = { args: { "acpica-tools": false, ethtool: false, fetchgit: false, lib: false, "libdisplay-info": false, python3Packages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 16, 5], ["tag", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 56, 5], ["homepage", 57, 5], ["license", 58, 5], ["maintainers", 59, 5], ["platforms", 60, 5], ["mainProgram", 61, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["pyproject", 13, 3], ["src", 15, 3], ["build-system", 21, 3], ["dependencies", 26, 3], ["pythonRemoveDeps", 38, 3], ["makeWrapperArgs", 42, 3], ["doCheck", 53, 3], ["meta", 55, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const libdisplay_info = nix.arg($, "libdisplay-info");
   const python3Packages = nix.arg($, "python3Packages");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "amd-debug-tools",
       version: "0.2.20",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://git.kernel.org/pub/scm/linux/kernel/git/superm1/amd-debug-tools.git",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-JDacCakZC+4N4IDAODWLSuensAtFArl052I4weK/zJQ=",
@@ -52,7 +50,7 @@ export default nix.lambda((args) => (() => {
       ]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Debug tools for AMD systems",
         homepage: "https://git.kernel.org/pub/scm/linux/kernel/git/superm1/amd-debug-tools.git/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

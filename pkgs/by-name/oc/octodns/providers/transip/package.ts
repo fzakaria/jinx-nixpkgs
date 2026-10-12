@@ -2,12 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]], [["name", 26, 7], ["url", 27, 7], ["hash", 28, 7]], [["OCTODNS_RELEASE", 41, 7]], [["description", 58, 5], ["homepage", 59, 5], ["changelog", 60, 5], ["license", 61, 5], ["maintainers", 62, 5], ["teams", 63, 5]], [["pname", 12, 3], ["version", 13, 3], ["pyproject", 14, 3], ["src", 16, 3], ["patches", 23, 3], ["build-system", 32, 3], ["dependencies", 36, 3], ["env", 41, 3], ["pythonImportsCheck", 43, 3], ["nativeCheckInputs", 47, 3], ["pytestFlags", 51, 3], ["meta", 57, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, fetchpatch: false, octodns: false, pytestCheckHook: false, setuptools: false, "python-transip": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 26, 7], ["url", 27, 7], ["hash", 28, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["OCTODNS_RELEASE", 41, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 58, 5], ["homepage", 59, 5], ["changelog", 60, 5], ["license", 61, 5], ["maintainers", 62, 5], ["teams", 63, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["pyproject", 14, 3], ["src", 16, 3], ["patches", 23, 3], ["build-system", 32, 3], ["dependencies", 36, 3], ["env", 41, 3], ["pythonImportsCheck", 43, 3], ["nativeCheckInputs", 47, 3], ["pytestFlags", 51, 3], ["meta", 57, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.0.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "octodns",
           repo: "octodns-transip",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -32,7 +28,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "octodns-transip-pull-71.patch",
             url: "https://github.com/octodns/octodns-transip/commit/100fe61c5ff20a8fce319a48bfc7bbfddc995a48.patch",
             hash: "sha256-RfLAZSDVjLKUw/2g25vSySGrJdlb0I+HfBZE6hLtc6Q=",
@@ -40,12 +36,12 @@ export default nix.lambda((args) => (() => {
       ]);
       const build_system = nix.thunk(() => [setuptools]);
       const dependencies = nix.thunk(() => [octodns, python_transip]);
-      const env = nix.thunk(() => ({ [nix.POS]: pos$3, OCTODNS_RELEASE: 1n }));
+      const env = nix.thunk(() => ({ [nix.POS]: $pos[2], OCTODNS_RELEASE: 1n }));
       const pythonImportsCheck = nix.thunk(() => ["octodns_transip"]);
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const pytestFlags = nix.thunk(() => ["-W", "ignore::DeprecationWarning"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "octoDNS provider that targets Transip DNS",
         homepage: "https://github.com/octodns/octodns-transip",
         changelog: nix.thunk(() => nix.str`https://github.com/octodns/octodns-transip/blob/${nix.sel(src, "tag")}/CHANGELOG.md`),
@@ -54,7 +50,7 @@ export default nix.lambda((args) => (() => {
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "octodns"))]),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         pyproject,

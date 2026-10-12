@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5]], [["homepage", 48, 5], ["description", 49, 5], ["mainProgram", 50, 5], ["longDescription", 51, 5], ["license", 59, 5], ["maintainers", 60, 5]], [["pname", 14, 3], ["version", 15, 3], ["nativeBuildInputs", 17, 3], ["src", 19, 3], ["installPhase", 26, 3], ["postInstall", 34, 3], ["meta", 47, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchFromGitHub: false, makeWrapper: false, curl: false, feh: false, file: false, jq: false, "util-linux": false, wget: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 48, 5], ["description", 49, 5], ["mainProgram", 50, 5], ["longDescription", 51, 5], ["license", 59, 5], ["maintainers", 60, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["nativeBuildInputs", 17, 3], ["src", 19, 3], ["installPhase", 26, 3], ["postInstall", 34, 3], ["meta", 47, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "0-unstable-2022-12-05";
       const nativeBuildInputs = nix.thunk(() => [makeWrapper]);
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "thevinter",
           repo: "styli.sh",
           rev: "d595412a949c6cdc7e151ae0cf929aa1958aa7f1",
@@ -39,7 +37,7 @@ runHook postInstall
       const postInstall = nix.thunk(() => nix.str`wrapProgram $out/bin/styli.sh --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [curl, feh, file, jq, util_linux, wget]))}
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/thevinter/styli.sh",
         description: "Shell script to manage wallpapers",
         mainProgram: "styli.sh",
@@ -51,7 +49,7 @@ runHook postInstall
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         nativeBuildInputs,

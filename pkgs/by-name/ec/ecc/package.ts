@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 7], ["repo", 21, 7], ["rev", 22, 7], ["hash", 23, 7], ["fetchSubmodules", 24, 7]], [["pname", 14, 5], ["version", 15, 5], ["src", 19, 5], ["buildInputs", 27, 5], ["buildPhase", 33, 5], ["installPhase", 37, 5]], [["owner", 48, 5], ["repo", 49, 5], ["rev", 50, 5], ["hash", 51, 5]], [["owner", 60, 5], ["repo", 61, 5], ["rev", 62, 5], ["hash", 63, 5]], [["CARGO_TARGET_AARCH64_UNKNOWN_LINUX_GNU_LINKER", 81, 7]], [["bpftool", 109, 13]], [["homepage", 127, 5], ["description", 128, 5], ["mainProgram", 129, 5], ["maintainers", 130, 5], ["platforms", 131, 5], ["license", 132, 5]], [["pname", 56, 3], ["version", 57, 3], ["src", 59, 3], ["sourceRoot", 66, 3], ["cargoHash", 68, 3], ["nativeBuildInputs", 70, 3], ["buildInputs", 76, 3], ["env", 81, 3], ["preBuild", 83, 3], ["preCheck", 91, 3], ["checkFlags", 95, 3], ["passthru", 108, 3], ["postFixup", 112, 3], ["meta", 126, 3]]]);
 const formals$1 = { args: { lib: false, makeWrapper: false, fetchFromGitHub: false, rustPackages: false, "pkg-config": false, elfutils: false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 7], ["repo", 21, 7], ["rev", 22, 7], ["hash", 23, 7], ["fetchSubmodules", 24, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 14, 5], ["version", 15, 5], ["src", 19, 5], ["buildInputs", 27, 5], ["buildPhase", 33, 5], ["installPhase", 37, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["owner", 48, 5], ["repo", 49, 5], ["rev", 50, 5], ["hash", 51, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["owner", 60, 5], ["repo", 61, 5], ["rev", 62, 5], ["hash", 63, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["CARGO_TARGET_AARCH64_UNKNOWN_LINUX_GNU_LINKER", 81, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["bpftool", 109, 13]]);
-const pos$7 = nix.positions(here + "/package.nix", [["homepage", 127, 5], ["description", 128, 5], ["mainProgram", 129, 5], ["maintainers", 130, 5], ["platforms", 131, 5], ["license", 132, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 56, 3], ["version", 57, 3], ["src", 59, 3], ["sourceRoot", 66, 3], ["cargoHash", 68, 3], ["nativeBuildInputs", 70, 3], ["buildInputs", 76, 3], ["env", 81, 3], ["preBuild", 83, 3], ["preCheck", 91, 3], ["checkFlags", 95, 3], ["passthru", 108, 3], ["postFixup", 112, 3], ["meta", 126, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const llvmPackages = nix.thunk(() => nix.attr(from, "llvmPackages"));
   const rustPlatform = nix.thunk(() => nix.attr(rustPackages, "rustPlatform"));
   const bpftool = nix.thunk(() => nix.app(nix.sel(llvmPackages, "stdenv", "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "bpftool",
       version: "0-unstable-2023-03-11",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "eunomia-bpf",
           repo: "bpftool",
           rev: "05940344f5db18d0cb1bc1c42e628f132bc93123",
@@ -41,18 +34,18 @@ export default nix.lambda((args) => (() => {
       installPhase: "# We don't use the default `make install` because we are looking to create a\n# directory structure compatible with `build.rs` of `ecc`.\nmkdir -p $out/src/libbpf\n# some headers are required\ncp -r src/libbpf/include $out/src/libbpf\ncp src/bpftool $out/src\n",
     }))));
   const vmlinux_headers = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       owner: "eunomia-bpf",
       repo: "vmlinux",
       rev: "933f83becb45f5586ed5fd089e60d382aeefb409",
       hash: "sha256-CVEmKkzdFNLKCbcbeSIoM5QjYVLQglpz6gy7+ZFPgCY=",
     }))));
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "ecc",
       version: "1.0.27",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           owner: "eunomia-bpf",
           repo: "eunomia-bpf",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -66,7 +59,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.sel(rustPlatform, "bindgenHook")),
       ]),
       buildInputs: nix.thunk(() => [elfutils, zlib]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$5, CARGO_TARGET_AARCH64_UNKNOWN_LINUX_GNU_LINKER: "gcc" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[4], CARGO_TARGET_AARCH64_UNKNOWN_LINUX_GNU_LINKER: "gcc" })),
       preBuild: nix.thunk(() => nix.str`# \`SANDBOX\` defined by upstream to disable build-time network access
 export SANDBOX=1
 # specify dependencies' location
@@ -83,7 +76,7 @@ export BPFTOOL_DIR=${bpftool}
         "--skip=document_parser::test::test_parse_progss",
         "--skip=document_parser::test::test_parse_variables",
       ]),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$6, bpftool: bpftool })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[5], bpftool: bpftool })),
       postFixup: nix.thunk(() => nix.str`wrapProgram $out/bin/ecc-rs \\
   --prefix LIBCLANG_PATH : ${nix.app(nix.sel(lib, "getLib"), nix.thunk(() => nix.sel(llvmPackages, "libclang")))}/lib \\
   --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => (() => {
@@ -95,7 +88,7 @@ export BPFTOOL_DIR=${bpftool}
         })()))}
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         homepage: "https://eunomia.dev",
         description: "EBPF compile toolchain for eunomia-bpf",
         mainProgram: "ecc-rs",

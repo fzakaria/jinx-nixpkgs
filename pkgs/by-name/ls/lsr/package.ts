@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["did", 20, 5], ["tag", 21, 5], ["hash", 22, 5]], [["src", 26, 26], ["pname", 26, 30], ["version", 26, 36], ["hash", 27, 5]], [["homepage", 44, 5], ["description", 45, 5], ["changelog", 46, 5], ["license", 47, 5], ["maintainers", 48, 5], ["platforms", 49, 5], ["mainProgram", 50, 5]], [["pname", 14, 3], ["version", 15, 3], ["__structuredAttrs", 16, 3], ["strictDeps", 17, 3], ["src", 19, 3], ["zigDeps", 25, 3], ["postConfigure", 30, 3], ["nativeBuildInputs", 34, 3], ["doInstallCheck", 39, 3], ["nativeInstallCheckInputs", 41, 3], ["meta", 43, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, installShellFiles: false, fetchFromTangled: false, zig_0_14: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["did", 20, 5], ["tag", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["src", 26, 26], ["pname", 26, 30], ["version", 26, 36], ["hash", 27, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 44, 5], ["description", 45, 5], ["changelog", 46, 5], ["license", 47, 5], ["maintainers", 48, 5], ["platforms", 49, 5], ["mainProgram", 50, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["__structuredAttrs", 16, 3], ["strictDeps", 17, 3], ["src", 19, 3], ["zigDeps", 25, 3], ["postConfigure", 30, 3], ["nativeBuildInputs", 34, 3], ["doInstallCheck", 39, 3], ["nativeInstallCheckInputs", 41, 3], ["meta", 43, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,19 +15,19 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const zig = zig_0_14;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "lsr",
       version: "1.0.0",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromTangled, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           did: "did:plc:7sufqp5jkgsrtsit7gd5wpo2",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-Te6GKPnW0XFliSjTI9UhkmT72AEmuUXfO7xNrV01mJk=",
         })))),
       zigDeps: nix.thunk(() => nix.app(nix.sel(zig, "fetchDeps"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
@@ -42,7 +39,7 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://tangled.sh/@rockorager.dev/lsr",
         description: "ls but with io_uring",
         changelog: "https://tangled.sh/@rockorager.dev/lsr/tags",

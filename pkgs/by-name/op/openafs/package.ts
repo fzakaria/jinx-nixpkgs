@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["fetchurl", 28, 35]], [["cellservdb", 143, 12]], [["outputsToInstall", 146, 5], ["description", 151, 5], ["homepage", 152, 5], ["license", 153, 5], ["platforms", 154, 5], ["maintainers", 155, 5]], [["pname", 31, 3], ["version", 32, 11], ["srcs", 32, 19], ["depsBuildBuild", 34, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 50, 3], ["patches", 52, 3], ["outputs", 58, 3], ["enableParallelBuilding", 66, 3], ["setOutputFlags", 68, 3], ["dontDisableStatic", 71, 3], ["preConfigure", 73, 3], ["buildFlags", 106, 3], ["postBuild", 108, 3], ["postInstall", 117, 3], ["preFixup", 135, 3], ["passthru", 143, 3], ["meta", 145, 3]]]);
 const formals$1 = { args: { lib: false, callPackage: false, stdenv: false, buildPackages: false, fetchurl: false, which: false, autoconf: false, automake: false, flex: false, bison: false, glibc: false, perl: false, libkrb5: false, libxslt: false, docbook_xsl: false, docbook_xml_dtd_43: false, libtool_2: false, withDevdoc: true, doxygen: false, dblatex: false, withNcurses: true, ncurses: false, withTsm: true, "tsm-client": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["fetchurl", 28, 35]]);
-const pos$2 = nix.positions(here + "/package.nix", [["cellservdb", 143, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["outputsToInstall", 146, 5], ["description", 151, 5], ["homepage", 152, 5], ["license", 153, 5], ["platforms", 154, 5], ["maintainers", 155, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 31, 3], ["version", 32, 11], ["srcs", 32, 19], ["depsBuildBuild", 34, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 50, 3], ["patches", 52, 3], ["outputs", 58, 3], ["enableParallelBuilding", 66, 3], ["setOutputFlags", 68, 3], ["dontDisableStatic", 71, 3], ["preConfigure", 73, 3], ["buildFlags", 106, 3], ["postBuild", 108, 3], ["postInstall", 117, 3], ["preFixup", 135, 3], ["passthru", 143, 3], ["meta", 145, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,9 +31,9 @@ export default nix.lambda((args) => (() => {
   const ncurses = nix.arg($, "ncurses");
   const withTsm = nix.argOr($, "withTsm", () => false);
   const tsm_client = nix.arg($, "tsm-client");
-  const w = nix.withScope(nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./srcs.nix")), nix.thunk(() => ({ [nix.POS]: pos$1, fetchurl: fetchurl })))), null);
+  const w = nix.withScope(nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./srcs.nix")), nix.thunk(() => ({ [nix.POS]: $pos[0], fetchurl: fetchurl })))), null);
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "openafs",
       version: nix.thunk(() => nix.lookup(w, "version")),
       srcs: nix.thunk(() => nix.lookup(w, "srcs")),
@@ -82,11 +79,11 @@ configureFlagsArray=(
       postInstall: nix.thunk(() => nix.add("mkdir -p $doc/share/doc/openafs/{AdminGuide,QuickStartUnix,UserGuide}\ncp -r doc/txt README LICENSE $doc/share/doc/openafs\nfor d in AdminGuide QuickStartUnix UserGuide ; do\n  cp \"doc/xml/${d}\"/*.html \"$doc/share/doc/openafs/${d}\"\ndone\n\ncp src/tools/dumpscan/{afsdump_dirlist,afsdump_extract,afsdump_scan,dumptool} $out/bin\n\nrm -r $out/lib/openafs\n", nix.app(nix.sel(lib, "optionalString"), withDevdoc, "mkdir -p $devdoc/share/devhelp/openafs/doxygen\ncp -r doc/{pdf,protocol} $devdoc/share/devhelp/openafs\ncp -r doc/doxygen/output/html $devdoc/share/devhelp/openafs/doxygen\n"))),
       preFixup: "for f in \"$out\"/bin/*; do\n  if isELF \"$f\"; then\n    patchelf --shrink-rpath --allowed-rpath-prefixes \"$NIX_STORE\" \"$f\"\n  fi\ndone\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         cellservdb: nix.thunk(() => nix.app(callPackage, nix.path(here, "./cellservdb.nix"), nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         outputsToInstall: nix.thunk(() => ["out", "doc", "man"]),
         description: "Open AFS client",
         homepage: "https://www.openafs.org",

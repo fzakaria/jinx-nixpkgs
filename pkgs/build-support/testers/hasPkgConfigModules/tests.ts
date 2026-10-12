@@ -2,17 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/tests.nix", [[["package", 15, 5], ["versionCheck", 16, 5]], [["package", 21, 7], ["version", 22, 7], ["versionCheck", 23, 7]], [["package", 28, 5], ["version", 29, 5]], [["package", 33, 5], ["moduleNames", 34, 5]], [["package", 38, 5]], [["package", 42, 5], ["moduleNames", 43, 5]], [["package", 47, 5]], [["package", 55, 13], ["moduleNames", 56, 13]], [["failed", 53, 9]], [["miniz-versions-match", 14, 3], ["miniz-versions-mismatch", 19, 3], ["miniz-no-versionCheck", 27, 3], ["zlib-has-zlib", 32, 3], ["zlib-has-meta-pkgConfigModules", 37, 3], ["openssl-has-openssl", 41, 3], ["openssl-has-all-meta-pkgConfigModules", 46, 3], ["zlib-does-not-have-ylib", 50, 3]]]);
 const formals$1 = { args: { lib: false, testers: false, miniz: false, zlib: false, openssl: false, runCommand: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/tests.nix", [["package", 15, 5], ["versionCheck", 16, 5]]);
-const pos$2 = nix.positions(here + "/tests.nix", [["package", 21, 7], ["version", 22, 7], ["versionCheck", 23, 7]]);
-const pos$3 = nix.positions(here + "/tests.nix", [["package", 28, 5], ["version", 29, 5]]);
-const pos$4 = nix.positions(here + "/tests.nix", [["package", 33, 5], ["moduleNames", 34, 5]]);
-const pos$5 = nix.positions(here + "/tests.nix", [["package", 38, 5]]);
-const pos$6 = nix.positions(here + "/tests.nix", [["package", 42, 5], ["moduleNames", 43, 5]]);
-const pos$7 = nix.positions(here + "/tests.nix", [["package", 47, 5]]);
-const pos$8 = nix.positions(here + "/tests.nix", [["package", 55, 13], ["moduleNames", 56, 13]]);
-const pos$9 = nix.positions(here + "/tests.nix", [["failed", 53, 9]]);
-const pos$10 = nix.positions(here + "/tests.nix", [["miniz-versions-match", 14, 3], ["miniz-versions-mismatch", 19, 3], ["miniz-no-versionCheck", 27, 3], ["zlib-has-zlib", 32, 3], ["zlib-has-meta-pkgConfigModules", 37, 3], ["openssl-has-openssl", 41, 3], ["openssl-has-all-meta-pkgConfigModules", 46, 3], ["zlib-does-not-have-ylib", 50, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,21 +14,21 @@ export default nix.lambda((args) => (() => {
   const openssl = nix.arg($, "openssl");
   const runCommand = nix.arg($, "runCommand");
   return nix.app(nix.sel(lib, "recurseIntoAttrs"), nix.thunk(() => ({
-      [nix.POS]: pos$10,
-      "miniz-versions-match": nix.thunk(() => nix.app(nix.sel(testers, "hasPkgConfigModules"), nix.thunk(() => ({ [nix.POS]: pos$1, package: miniz, versionCheck: true })))),
-      "miniz-versions-mismatch": nix.thunk(() => nix.app(nix.sel(testers, "testBuildFailure"), nix.thunk(() => nix.app(nix.sel(testers, "hasPkgConfigModules"), nix.thunk(() => ({ [nix.POS]: pos$2, package: miniz, version: "1.2.3", versionCheck: true })))))),
-      "miniz-no-versionCheck": nix.thunk(() => nix.app(nix.sel(testers, "hasPkgConfigModules"), nix.thunk(() => ({ [nix.POS]: pos$3, package: miniz, version: "1.2.3" })))),
-      "zlib-has-zlib": nix.thunk(() => nix.app(nix.sel(testers, "hasPkgConfigModules"), nix.thunk(() => ({ [nix.POS]: pos$4, package: zlib, moduleNames: nix.thunk(() => ["zlib"]) })))),
-      "zlib-has-meta-pkgConfigModules": nix.thunk(() => nix.app(nix.sel(testers, "hasPkgConfigModules"), nix.thunk(() => ({ [nix.POS]: pos$5, package: zlib })))),
+      [nix.POS]: $pos[9],
+      "miniz-versions-match": nix.thunk(() => nix.app(nix.sel(testers, "hasPkgConfigModules"), nix.thunk(() => ({ [nix.POS]: $pos[0], package: miniz, versionCheck: true })))),
+      "miniz-versions-mismatch": nix.thunk(() => nix.app(nix.sel(testers, "testBuildFailure"), nix.thunk(() => nix.app(nix.sel(testers, "hasPkgConfigModules"), nix.thunk(() => ({ [nix.POS]: $pos[1], package: miniz, version: "1.2.3", versionCheck: true })))))),
+      "miniz-no-versionCheck": nix.thunk(() => nix.app(nix.sel(testers, "hasPkgConfigModules"), nix.thunk(() => ({ [nix.POS]: $pos[2], package: miniz, version: "1.2.3" })))),
+      "zlib-has-zlib": nix.thunk(() => nix.app(nix.sel(testers, "hasPkgConfigModules"), nix.thunk(() => ({ [nix.POS]: $pos[3], package: zlib, moduleNames: nix.thunk(() => ["zlib"]) })))),
+      "zlib-has-meta-pkgConfigModules": nix.thunk(() => nix.app(nix.sel(testers, "hasPkgConfigModules"), nix.thunk(() => ({ [nix.POS]: $pos[4], package: zlib })))),
       "openssl-has-openssl": nix.thunk(() => nix.app(nix.sel(testers, "hasPkgConfigModules"), nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           package: openssl,
           moduleNames: nix.thunk(() => ["openssl"]),
         })))),
-      "openssl-has-all-meta-pkgConfigModules": nix.thunk(() => nix.app(nix.sel(testers, "hasPkgConfigModules"), nix.thunk(() => ({ [nix.POS]: pos$7, package: openssl })))),
+      "openssl-has-all-meta-pkgConfigModules": nix.thunk(() => nix.app(nix.sel(testers, "hasPkgConfigModules"), nix.thunk(() => ({ [nix.POS]: $pos[6], package: openssl })))),
       "zlib-does-not-have-ylib": nix.thunk(() => nix.app(runCommand, "zlib-does-not-have-ylib", nix.thunk(() => ({
-          [nix.POS]: pos$9,
-          failed: nix.thunk(() => nix.app(nix.sel(testers, "testBuildFailure"), nix.thunk(() => nix.app(nix.sel(testers, "hasPkgConfigModules"), nix.thunk(() => ({ [nix.POS]: pos$8, package: zlib, moduleNames: nix.thunk(() => ["ylib"]) })))))),
+          [nix.POS]: $pos[8],
+          failed: nix.thunk(() => nix.app(nix.sel(testers, "testBuildFailure"), nix.thunk(() => nix.app(nix.sel(testers, "hasPkgConfigModules"), nix.thunk(() => ({ [nix.POS]: $pos[7], package: zlib, moduleNames: nix.thunk(() => ["ylib"]) })))))),
         })), "echo 'it logs a relevant error message'\n{\n  grep -F \"pkg-config module ylib was not found\" $failed/testBuildFailure.log\n}\n\necho 'it logs which pkg-config modules are available, to be helpful'\n{\n  # grep -v: the string zlib does also occur in a store path in an earlier message, which isn't particularly helpful\n  grep -v \"checking pkg-config module\" < $failed/testBuildFailure.log \\\n    | grep -F \"zlib\"\n}\n\n# done\ntouch $out\n")),
     })));
 })(), formals$1);

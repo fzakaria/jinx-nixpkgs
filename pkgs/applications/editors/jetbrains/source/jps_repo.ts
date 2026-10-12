@@ -2,8 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/jps_repo.nix", [[["outputHashAlgo", 12, 5], ["outputHashMode", 13, 5], ["outputHash", 14, 5], ["nativeBuildInputs", 15, 5]]]);
 const formals$1 = { args: { ant: false, jbr: false, jpsHash: false, runCommand: false, src: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/jps_repo.nix", [["outputHashAlgo", 12, 5], ["outputHashMode", 13, 5], ["outputHash", 14, 5], ["nativeBuildInputs", 15, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const runCommand = nix.arg($, "runCommand");
   const src = nix.arg($, "src");
   return nix.app(runCommand, "jps-bootstrap-repository", nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       outputHashAlgo: "sha256",
       outputHashMode: "recursive",
       outputHash: jpsHash,

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]], [["description", 48, 5], ["homepage", 49, 5], ["changelog", 50, 5], ["license", 51, 5], ["maintainers", 52, 5]], [["pname", 15, 3], ["version", 16, 3], ["pyproject", 18, 3], ["src", 21, 3], ["build-system", 28, 3], ["dependencies", 34, 3], ["nativeCheckInputs", 36, 3], ["pytestFlags", 43, 3], ["pythonImportsCheck", 45, 3], ["meta", 47, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, "poetry-core": false, "poetry-dynamic-versioning": false, "typing-extensions": false, pytestCheckHook: false, "pytest-benchmark": false, "pytest-cov-stub": false, pydantic: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 48, 5], ["homepage", 49, 5], ["changelog", 50, 5], ["license", 51, 5], ["maintainers", 52, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 15, 3], ["version", 16, 3], ["pyproject", 18, 3], ["src", 21, 3], ["build-system", 28, 3], ["dependencies", 34, 3], ["nativeCheckInputs", 36, 3], ["pytestFlags", 43, 3], ["pythonImportsCheck", 45, 3], ["meta", 47, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.1.5";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "eigenein",
           repo: "protobuf",
           tag: version,
@@ -36,7 +34,7 @@ export default nix.lambda((args) => (() => {
       const pytestFlags = nix.thunk(() => ["--benchmark-disable"]);
       const pythonImportsCheck = nix.thunk(() => ["pure_protobuf"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Python implementation of Protocol Buffers with dataclass-based schemas",
         homepage: "https://github.com/eigenein/protobuf",
         changelog: nix.thunk(() => nix.str`https://github.com/eigenein/protobuf/releases/tag/${nix.sel(src, "tag")}`),
@@ -47,7 +45,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

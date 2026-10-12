@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 44, 5], ["repo", 45, 5], ["tag", 46, 5], ["hash", 47, 13]], [["RUSTFLAGS", 55, 5], ["LIBCLANG_PATH", 56, 5], ["ROCKSDB_LIB_DIR", 60, 5], ["CPPFLAGS", 64, 5], ["LDFLAGS", 65, 5], ["OPENSSL_NO_VENDOR", 68, 5]], [["description", 113, 5], ["homepage", 114, 5], ["license", 115, 5], ["maintainers", 116, 5], ["platforms", 122, 5]], [["updateScript", 125, 12]], [["pname", 40, 3], ["version", 41, 11], ["src", 43, 3], ["cargoHash", 50, 3], ["cargoBuildFlags", 52, 3], ["env", 54, 3], ["doCheck", 76, 3], ["nativeBuildInputs", 78, 3], ["buildInputs", 85, 3], ["doInstallCheck", 94, 3], ["nativeInstallCheckInputs", 96, 3], ["versionCheckProgram", 97, 3], ["postInstall", 99, 3], ["meta", 112, 3], ["passthru", 125, 3]]]);
 const formals$1 = { args: { stdenv: false, fetchFromGitHub: false, lib: false, rustPlatform: false, darwin: false, udev: false, protobuf: false, installShellFiles: false, "pkg-config": false, openssl: false, "nix-update-script": false, versionCheckHook: false, clang: false, libclang: false, libusb1: false, rocksdb: false, solanaPkgs: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 44, 5], ["repo", 45, 5], ["tag", 46, 5], ["hash", 47, 13]]);
-const pos$2 = nix.positions(here + "/package.nix", [["RUSTFLAGS", 55, 5], ["LIBCLANG_PATH", 56, 5], ["ROCKSDB_LIB_DIR", 60, 5], ["CPPFLAGS", 64, 5], ["LDFLAGS", 65, 5], ["OPENSSL_NO_VENDOR", 68, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 113, 5], ["homepage", 114, 5], ["license", 115, 5], ["maintainers", 116, 5], ["platforms", 122, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 125, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 40, 3], ["version", 41, 11], ["src", 43, 3], ["cargoHash", 50, 3], ["cargoBuildFlags", 52, 3], ["env", 54, 3], ["doCheck", 76, 3], ["nativeBuildInputs", 78, 3], ["buildInputs", 85, 3], ["doInstallCheck", 94, 3], ["nativeInstallCheckInputs", 96, 3], ["versionCheckProgram", 97, 3], ["postInstall", 99, 3], ["meta", 112, 3], ["passthru", 125, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -40,11 +36,11 @@ export default nix.lambda((args) => (() => {
   const version = "4.0.3";
   const hash = "sha256-lbkuywAuLeTIoe/5zbKmxCbnNcEx96BiX6ftNJHutZE=";
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "solana-cli",
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "anza-xyz",
           repo: "agave",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -53,7 +49,7 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-lQl8q0xMpXOmUirqL3Eyb4JcmYGSZK6pPMxQHOav9Zk=",
       cargoBuildFlags: nix.thunk(() => nix.builtins.map((n) => nix.str`--bin=${n}`, solanaPkgs)),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         RUSTFLAGS: "-Amismatched_lifetime_syntaxes -Adead_code -Aunused_parens -Aunused_imports",
         LIBCLANG_PATH: nix.thunk(() => nix.str`${nix.sel(libclang, "lib")}/lib`),
         ROCKSDB_LIB_DIR: nix.thunk(() => nix.str`${rocksdb}/lib`),
@@ -75,7 +71,7 @@ export default nix.lambda((args) => (() => {
       versionCheckProgram: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/bin/solana`),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "installShellCompletion --cmd solana \\\n  --bash <($out/bin/solana completion --shell bash) \\\n  --fish <($out/bin/solana completion --shell fish)\n\nmkdir -p $out/bin/platform-tools-sdk\ncp -r ./platform-tools-sdk/sbf $out/bin/platform-tools-sdk\n\nmkdir -p $out/bin/deps\nfind . -name libsolana_program.dylib -exec cp {} $out/bin/deps \\;\nfind . -name libsolana_program.rlib -exec cp {} $out/bin/deps \\;\n")),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Web-Scale Blockchain for fast, secure, scalable, decentralized apps and marketplaces",
         homepage: "https://solana.com",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -91,7 +87,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       })),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
     }));

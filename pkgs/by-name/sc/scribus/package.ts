@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 46, 5], ["hash", 47, 5]], [["name", 102, 7], ["url", 103, 7], ["hash", 104, 7]], [["url", 108, 7], ["includes", 109, 7], ["hash", 110, 7]], [["name", 113, 7], ["url", 114, 7], ["hash", 115, 7]], [["name", 118, 7], ["url", 119, 7], ["hash", 120, 7]], [["maintainers", 139, 5], ["description", 140, 5], ["mainProgram", 141, 5], ["homepage", 142, 5], ["license", 145, 5], ["platforms", 151, 5], ["broken", 152, 5]], [["pname", 41, 3], ["version", 43, 3], ["src", 45, 3], ["nativeBuildInputs", 50, 3], ["buildInputs", 56, 3], ["cmakeFlags", 98, 3], ["patches", 100, 3], ["postPatch", 124, 3], ["preFixup", 131, 3], ["meta", 138, 3]]]);
 const formals$1 = { args: { boost: false, cairo: false, cmake: false, cups: false, fetchpatch: false, fetchurl: false, fontconfig: false, freetype: false, graphicsmagick: false, "gsettings-desktop-schemas": false, gtk3: false, harfbuzzFull: false, hunspell: false, lcms2: false, lib: false, libcdr: false, libfreehand: false, libjpeg: false, libjxl: false, libmspub: false, libpagemaker: false, libqxp: false, librevenge: false, "libsysprof-capture": false, libtiff: false, libvisio: false, libwpg: false, libxml2: false, libzmf: false, pixman: false, "pkg-config": false, podofo: false, poppler: false, poppler_data: false, python3: false, qt6: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 46, 5], ["hash", 47, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 102, 7], ["url", 103, 7], ["hash", 104, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 108, 7], ["includes", 109, 7], ["hash", 110, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["name", 113, 7], ["url", 114, 7], ["hash", 115, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["name", 118, 7], ["url", 119, 7], ["hash", 120, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["maintainers", 139, 5], ["description", 140, 5], ["mainProgram", 141, 5], ["homepage", 142, 5], ["license", 145, 5], ["platforms", 151, 5], ["broken", 152, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 41, 3], ["version", 43, 3], ["src", 45, 3], ["nativeBuildInputs", 50, 3], ["buildInputs", 56, 3], ["cmakeFlags", 98, 3], ["patches", 100, 3], ["postPatch", 124, 3], ["preFixup", 131, 3], ["meta", 138, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -51,11 +45,11 @@ export default nix.lambda((args) => (() => {
   const qt6 = nix.arg($, "qt6");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "scribus",
       version: "1.7.3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/scribus/scribus-devel/scribus-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-iC7lXKRJfALE4F8wrMaJ6h9IXC6AI8nrKT9RwsW+Bq0=",
         })))),
@@ -106,25 +100,25 @@ export default nix.lambda((args) => (() => {
       ]),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "fix-build-with-poppler-26.05.0.patch",
             url: "https://github.com/scribusproject/scribus/commit/14a287fc1db2a44abfe1743260554447b31b4adf.patch",
             hash: "sha256-bhxnyL5zWVCjkfkW67CPykLW/uqDP+n3djnRKGMyhjw=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: "https://github.com/scribusproject/scribus/commit/3aed8aa40d01d1affd2b55b107b48878d4b06eab.patch",
             includes: nix.thunk(() => ["scribus/plugins/import/pdf/importpdf.cpp"]),
             hash: "sha256-tiGXGW8CnG0Tj5YaimngelvNvO3CCSa5eXc3bSKJD54=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             name: "fix-build-with-poppler-26.06.0.patch",
             url: "https://github.com/scribusproject/scribus/commit/2b9405a00a96a09e0183190ddc9f83d44963d4e0.patch",
             hash: "sha256-4v+Ba+JODwNg4YLmwpFeBfIxk1j+RcZdtznPFeQ+H+w=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             name: "fix-build-with-poppler-26.07.0.patch",
             url: "https://github.com/scribusproject/scribus/commit/ba246c3a2dd086b4e84517723beab159736ba9ba.patch",
             hash: "sha256-nfJ3eKBhuWC4IO2+IbqNOz0UWTD4UOKtfZXz5ch6NVE=",
@@ -137,7 +131,7 @@ export default nix.lambda((args) => (() => {
 )
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         maintainers: [],
         description: "Desktop Publishing (DTP) and Layout program",
         mainProgram: "scribus",

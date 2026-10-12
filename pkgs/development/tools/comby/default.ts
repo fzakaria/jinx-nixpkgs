@@ -2,14 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 30, 9], ["repo", 31, 9], ["rev", 32, 9], ["sha256", 33, 9]], [["description", 57, 9], ["mainProgram", 58, 9], ["license", 59, 9], ["homepage", 60, 9], ["broken", 61, 9]], [["pname", 23, 15], ["preBuild", 23, 21], ["version", 24, 7], ["duneVersion", 25, 7], ["minimalOCamlVersion", 26, 7], ["doCheck", 27, 7], ["src", 29, 7], ["patches", 36, 7], ["nativeBuildInputs", 38, 7], ["buildInputs", 40, 7], ["nativeCheckInputs", 54, 7], ["meta", 56, 7]], [["pname", 65, 34]], [["pname", 67, 5], ["extraBuildInputs", 68, 5]], [["pname", 72, 3], ["preBuild", 76, 3], ["extraBuildInputs", 84, 3], ["extraNativeInputs", 114, 3]]]);
 const formals$1 = { args: { ocamlPackages: false, fetchFromGitHub: false, lib: false, zlib: false, "pkg-config": false, cacert: false, gmp: false, libev: false, autoconf: false, sqlite: false, stdenv: false }, ellipsis: false };
 const formals$2 = { args: { pname: false, extraBuildInputs: true, extraNativeInputs: true, preBuild: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 30, 9], ["repo", 31, 9], ["rev", 32, 9], ["sha256", 33, 9]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 57, 9], ["mainProgram", 58, 9], ["license", 59, 9], ["homepage", 60, 9], ["broken", 61, 9]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 23, 15], ["preBuild", 23, 21], ["version", 24, 7], ["duneVersion", 25, 7], ["minimalOCamlVersion", 26, 7], ["doCheck", 27, 7], ["src", 29, 7], ["patches", 36, 7], ["nativeBuildInputs", 38, 7], ["buildInputs", 40, 7], ["nativeCheckInputs", 54, 7], ["meta", 56, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 65, 34]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 67, 5], ["extraBuildInputs", 68, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 72, 3], ["preBuild", 76, 3], ["extraBuildInputs", 84, 3], ["extraNativeInputs", 114, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -38,7 +33,7 @@ export default nix.lambda((args) => (() => {
         const minimalOCamlVersion = "4.08.1";
         const doCheck = true;
         const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             owner: "comby-tools",
             repo: "comby",
             rev: version,
@@ -60,7 +55,7 @@ export default nix.lambda((args) => (() => {
         ], extraBuildInputs));
         const nativeCheckInputs = nix.thunk(() => [cacert]);
         const meta = nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           description: "Tool for searching and changing code structure",
           mainProgram: "comby",
           license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -68,7 +63,7 @@ export default nix.lambda((args) => (() => {
           broken: true,
         }));
         return {
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           pname: pname_1,
           preBuild: preBuild_1,
           version,
@@ -84,14 +79,14 @@ export default nix.lambda((args) => (() => {
         };
       })()));
   })(), formals$2);
-  const combyKernel = nix.thunk(() => nix.app(mkCombyPackage, nix.thunk(() => ({ [nix.POS]: pos$4, pname: "comby-kernel" }))));
+  const combyKernel = nix.thunk(() => nix.app(mkCombyPackage, nix.thunk(() => ({ [nix.POS]: $pos[3], pname: "comby-kernel" }))));
   const combySemantic = nix.thunk(() => nix.app(mkCombyPackage, nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "comby-semantic",
       extraBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(ocamlPackages, "cohttp-lwt-unix"))]),
     }))));
   return nix.app(mkCombyPackage, nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "comby",
       preBuild: "substituteInPlace test/common/dune \\\n  --replace \"test_cli_list\" \"\" \\\n  --replace \"test_cli_helper\" \"\" \\\n  --replace \"test_cli\" \"\"\nrm test/common/{test_cli_list,test_cli_helper,test_cli}.ml\n",
       extraBuildInputs: nix.thunk(() => nix.concat([

@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/nccl-tests.nix", [[["owner", 36, 5], ["repo", 37, 5], ["rev", 38, 5], ["hash", 39, 5]], [["message", 88, 9], ["assertion", 89, 9]], [["pname", 94, 28], ["version", 94, 34], ["rev-prefix", 95, 7]], [["brokenAssertions", 86, 5], ["updateScript", 93, 5]], [["description", 100, 5], ["homepage", 101, 5], ["platforms", 102, 5], ["license", 106, 5], ["broken", 107, 5], ["maintainers", 108, 5], ["teams", 109, 5]], [["__structuredAttrs", 27, 3], ["strictDeps", 28, 3], ["name", 31, 3], ["pname", 32, 3], ["version", 33, 3], ["src", 35, 3], ["postPatch", 42, 3], ["nativeBuildInputs", 50, 3], ["buildInputs", 55, 3], ["makeFlags", 64, 3], ["enableParallelBuilding", 74, 3], ["installPhase", 76, 3], ["passthru", 85, 3], ["meta", 99, 3]]]);
 const formals$1 = { args: { backendStdenv: false, _cuda: false, cccl: false, cuda_cudart: false, cuda_nvcc: false, cudaNamePrefix: false, fetchFromGitHub: false, flags: false, gitUpdater: false, lib: false, mpi: false, mpiSupport: true, nccl: false, which: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/nccl-tests.nix", [["owner", 36, 5], ["repo", 37, 5], ["rev", 38, 5], ["hash", 39, 5]]);
-const pos$2 = nix.positions(here + "/nccl-tests.nix", [["message", 88, 9], ["assertion", 89, 9]]);
-const pos$3 = nix.positions(here + "/nccl-tests.nix", [["pname", 94, 28], ["version", 94, 34], ["rev-prefix", 95, 7]]);
-const pos$4 = nix.positions(here + "/nccl-tests.nix", [["brokenAssertions", 86, 5], ["updateScript", 93, 5]]);
-const pos$5 = nix.positions(here + "/nccl-tests.nix", [["description", 100, 5], ["homepage", 101, 5], ["platforms", 102, 5], ["license", 106, 5], ["broken", 107, 5], ["maintainers", 108, 5], ["teams", 109, 5]]);
-const pos$6 = nix.positions(here + "/nccl-tests.nix", [["__structuredAttrs", 27, 3], ["strictDeps", 28, 3], ["name", 31, 3], ["pname", 32, 3], ["version", 33, 3], ["src", 35, 3], ["postPatch", 42, 3], ["nativeBuildInputs", 50, 3], ["buildInputs", 55, 3], ["makeFlags", 64, 3], ["enableParallelBuilding", 74, 3], ["installPhase", 76, 3], ["passthru", 85, 3], ["meta", 99, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -38,14 +33,14 @@ export default nix.lambda((args) => (() => {
   const from_2 = nix.thunk(() => nix.sel(lib, "lists"));
   const optionals = nix.thunk(() => nix.attr(from_2, "optionals"));
   return nix.app(nix.sel(backendStdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       __structuredAttrs: true,
       strictDeps: true,
       name: nix.thunk(() => nix.str`${cudaNamePrefix}-${nix.sel(finalAttrs, "pname")}-${nix.sel(finalAttrs, "version")}`),
       pname: "nccl-tests",
       version: "2.21.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "NVIDIA",
           repo: "nccl-tests",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -65,23 +60,23 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: true,
       installPhase: "runHook preInstall\nmkdir -p \"$out/bin\"\ninstall -Dm755 \\\n  $(find build -type f -executable) \\\n  \"$out/bin\"\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         brokenAssertions: nix.thunk(() => [
           nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             message: "mpi is non-null when mpiSupport is true",
             assertion: nix.thunk(() => (!nix.asBool(mpiSupport) || nix.asBool(!nix.eq(mpi, null)))),
           })),
         ]),
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
             version: nix.thunk(() => nix.attr(finalAttrs, "version")),
             "rev-prefix": "v",
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Tests to check both the performance and the correctness of NVIDIA NCCL operations",
         homepage: "https://github.com/NVIDIA/nccl-tests",
         platforms: nix.thunk(() => ["aarch64-linux", "x86_64-linux"]),

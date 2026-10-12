@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5]], [["updateScript", 45, 5]], [["homepage", 65, 5], ["description", 66, 5], ["mainProgram", 67, 5], ["maintainers", 68, 5], ["platforms", 69, 5], ["license", 70, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 35, 3], ["postInstall", 40, 3], ["passthru", 44, 3], ["nativeInstallCheckInputs", 48, 3], ["versionCheckProgramArg", 52, 3], ["preVersionCheck", 56, 3], ["doInstallCheck", 60, 3], ["versionCheckProgram", 62, 3], ["meta", 64, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, cmake: false, config: false, enableCuda: true, cudaPackages: false, versionCheckHook: false, installShellFiles: false, unstableGitUpdater: false, autoAddDriverRunpath: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 45, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 65, 5], ["description", 66, 5], ["mainProgram", 67, 5], ["maintainers", 68, 5], ["platforms", 69, 5], ["license", 70, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 35, 3], ["postInstall", 40, 3], ["passthru", 44, 3], ["nativeInstallCheckInputs", 48, 3], ["versionCheckProgramArg", 52, 3], ["preVersionCheck", 56, 3], ["doInstallCheck", 60, 3], ["versionCheckProgram", 62, 3], ["meta", 64, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   const autoAddDriverRunpath = nix.arg($, "autoAddDriverRunpath");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "peakperf",
       version: "1.17-unstable-2024-10-07",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Dr-Noob",
           repo: "peakperf",
           rev: "289c8a2f58eb51712d346d5c993b3c1d136bf031",
@@ -40,7 +37,7 @@ export default nix.lambda((args) => (() => {
       postInstall: nix.thunk(() => nix.str`installManPage ${nix.sel(finalAttrs, "src")}/peakperf.1
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
@@ -49,7 +46,7 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       versionCheckProgram: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/bin/peakperf`),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/Dr-Noob/peakperf",
         description: "Achieve peak performance on x86 CPUs and NVIDIA GPUs",
         mainProgram: "peakperf",

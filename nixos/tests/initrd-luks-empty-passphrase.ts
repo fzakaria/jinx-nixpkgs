@@ -2,37 +2,10 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/initrd-luks-empty-passphrase.nix", [[["emptyDiskImages", 21, 9], ["useBootLoader", 22, 9], ["useEFIBoot", 23, 9], ["mountHostNixStore", 28, 9]], [["enable", 31, 32]], [["systemd-boot", 31, 19]], [["enable", 33, 9], ["emergencyAccess", 34, 9]], [["systemd", 32, 19]], [["loader", 31, 12], ["initrd", 32, 12]], [["systemPackages", 36, 19]], [["device", 41, 13], ["keyFile", 42, 13], ["tryEmptyPassphrase", 43, 13], ["fallbackToPassword", 44, 13]], [["cryptroot", 40, 11]], [["devices", 39, 26]], [["/etc/cryptroot.key", 48, 29]], [["luks", 39, 21], ["secrets", 48, 21]], [["initrd", 39, 14]], [["rootDevice", 47, 24]], [["boot", 39, 9], ["virtualisation", 47, 9]], [["configuration", 38, 46]], [["device", 54, 13], ["keyFile", 55, 13], ["tryEmptyPassphrase", 56, 13], ["fallbackToPassword", 57, 13]], [["cryptroot", 53, 11]], [["devices", 52, 26]], [["luks", 52, 21]], [["initrd", 52, 14]], [["rootDevice", 60, 24]], [["boot", 52, 9], ["virtualisation", 60, 9]], [["configuration", 51, 48]], [["boot-luks-wrong-keyfile", 38, 22], ["boot-luks-missing-keyfile", 51, 22]], [["virtualisation", 20, 7], ["boot", 31, 7], ["environment", 36, 7], ["specialisation", 38, 7]], [["machine", 17, 9]], [["name", 15, 3], ["nodes", 17, 3], ["testScript", 64, 3]]]);
 const formals$1 = { args: { systemdStage1: false, lib: false, pkgs: false }, ellipsis: true };
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/initrd-luks-empty-passphrase.nix", [["emptyDiskImages", 21, 9], ["useBootLoader", 22, 9], ["useEFIBoot", 23, 9], ["mountHostNixStore", 28, 9]]);
-const pos$2 = nix.positions(here + "/initrd-luks-empty-passphrase.nix", [["enable", 31, 32]]);
-const pos$3 = nix.positions(here + "/initrd-luks-empty-passphrase.nix", [["systemd-boot", 31, 19]]);
-const pos$4 = nix.positions(here + "/initrd-luks-empty-passphrase.nix", [["enable", 33, 9], ["emergencyAccess", 34, 9]]);
-const pos$5 = nix.positions(here + "/initrd-luks-empty-passphrase.nix", [["systemd", 32, 19]]);
-const pos$6 = nix.positions(here + "/initrd-luks-empty-passphrase.nix", [["loader", 31, 12], ["initrd", 32, 12]]);
-const pos$7 = nix.positions(here + "/initrd-luks-empty-passphrase.nix", [["systemPackages", 36, 19]]);
-const pos$8 = nix.positions(here + "/initrd-luks-empty-passphrase.nix", [["device", 41, 13], ["keyFile", 42, 13], ["tryEmptyPassphrase", 43, 13], ["fallbackToPassword", 44, 13]]);
-const pos$9 = nix.positions(here + "/initrd-luks-empty-passphrase.nix", [["cryptroot", 40, 11]]);
-const pos$10 = nix.positions(here + "/initrd-luks-empty-passphrase.nix", [["devices", 39, 26]]);
-const pos$11 = nix.positions(here + "/initrd-luks-empty-passphrase.nix", [["/etc/cryptroot.key", 48, 29]]);
-const pos$12 = nix.positions(here + "/initrd-luks-empty-passphrase.nix", [["luks", 39, 21], ["secrets", 48, 21]]);
-const pos$13 = nix.positions(here + "/initrd-luks-empty-passphrase.nix", [["initrd", 39, 14]]);
-const pos$14 = nix.positions(here + "/initrd-luks-empty-passphrase.nix", [["rootDevice", 47, 24]]);
-const pos$15 = nix.positions(here + "/initrd-luks-empty-passphrase.nix", [["boot", 39, 9], ["virtualisation", 47, 9]]);
-const pos$16 = nix.positions(here + "/initrd-luks-empty-passphrase.nix", [["configuration", 38, 46]]);
-const pos$17 = nix.positions(here + "/initrd-luks-empty-passphrase.nix", [["device", 54, 13], ["keyFile", 55, 13], ["tryEmptyPassphrase", 56, 13], ["fallbackToPassword", 57, 13]]);
-const pos$18 = nix.positions(here + "/initrd-luks-empty-passphrase.nix", [["cryptroot", 53, 11]]);
-const pos$19 = nix.positions(here + "/initrd-luks-empty-passphrase.nix", [["devices", 52, 26]]);
-const pos$20 = nix.positions(here + "/initrd-luks-empty-passphrase.nix", [["luks", 52, 21]]);
-const pos$21 = nix.positions(here + "/initrd-luks-empty-passphrase.nix", [["initrd", 52, 14]]);
-const pos$22 = nix.positions(here + "/initrd-luks-empty-passphrase.nix", [["rootDevice", 60, 24]]);
-const pos$23 = nix.positions(here + "/initrd-luks-empty-passphrase.nix", [["boot", 52, 9], ["virtualisation", 60, 9]]);
-const pos$24 = nix.positions(here + "/initrd-luks-empty-passphrase.nix", [["configuration", 51, 48]]);
-const pos$25 = nix.positions(here + "/initrd-luks-empty-passphrase.nix", [["boot-luks-wrong-keyfile", 38, 22], ["boot-luks-missing-keyfile", 51, 22]]);
-const pos$26 = nix.positions(here + "/initrd-luks-empty-passphrase.nix", [["virtualisation", 20, 7], ["boot", 31, 7], ["environment", 36, 7], ["specialisation", 38, 7]]);
-const pos$27 = nix.positions(here + "/initrd-luks-empty-passphrase.nix", [["machine", 17, 9]]);
 const formals$3 = { args: { nodes: false }, ellipsis: true };
-const pos$28 = nix.positions(here + "/initrd-luks-empty-passphrase.nix", [["name", 15, 3], ["nodes", 17, 3], ["testScript", 64, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -41,60 +14,60 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const keyfile = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "luks-keyfile", "MIGHAoGBAJ4rGTSo/ldyjQypd0kuS7k2OSsmQYzMH6TNj3nQ/vIUjDn7fqa3slt2\ngV6EK3TmTbGc4tzC1v4SWx2m+2Bjdtn4Fs4wiBwn1lbRdC6i5ZYCqasTWIntWn+6\nFllUkMD5oqjOR/YcboxG8Z3B5sJuvTP9llsF+gnuveWih9dpbBr7AgEC\n"));
   return {
-    [nix.POS]: pos$28,
+    [nix.POS]: $pos[27],
     name: "initrd-luks-empty-passphrase",
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$27,
+      [nix.POS]: $pos[26],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$26,
+          [nix.POS]: $pos[25],
           virtualisation: nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             emptyDiskImages: nix.thunk(() => [512n]),
             useBootLoader: true,
             useEFIBoot: true,
             mountHostNixStore: true,
           })),
           boot: nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             loader: nix.thunk(() => ({
-              [nix.POS]: pos$3,
-              "systemd-boot": nix.thunk(() => ({ [nix.POS]: pos$2, enable: true })),
+              [nix.POS]: $pos[2],
+              "systemd-boot": nix.thunk(() => ({ [nix.POS]: $pos[1], enable: true })),
             })),
             initrd: nix.thunk(() => ({
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               systemd: nix.thunk(() => ({
-                [nix.POS]: pos$4,
+                [nix.POS]: $pos[3],
                 enable: systemdStage1,
                 emergencyAccess: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), systemdStage1, true)),
               })),
             })),
           })),
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             systemPackages: nix.thunk(() => (() => {
               const w = nix.withScope(pkgs_1, null);
               return [nix.thunk(() => nix.lookup(w, "cryptsetup"))];
             })()),
           })),
           specialisation: nix.thunk(() => ({
-            [nix.POS]: pos$25,
+            [nix.POS]: $pos[24],
             "boot-luks-wrong-keyfile": nix.thunk(() => ({
-              [nix.POS]: pos$16,
+              [nix.POS]: $pos[15],
               configuration: nix.thunk(() => ({
-                [nix.POS]: pos$15,
+                [nix.POS]: $pos[14],
                 boot: nix.thunk(() => ({
-                  [nix.POS]: pos$13,
+                  [nix.POS]: $pos[12],
                   initrd: nix.thunk(() => ({
-                    [nix.POS]: pos$12,
+                    [nix.POS]: $pos[11],
                     luks: nix.thunk(() => ({
-                      [nix.POS]: pos$10,
+                      [nix.POS]: $pos[9],
                       devices: nix.thunk(() => nix.app(nix.sel(lib, "mkVMOverride"), nix.thunk(() => ({
-                          [nix.POS]: pos$9,
+                          [nix.POS]: $pos[8],
                           cryptroot: nix.thunk(() => ({
-                            [nix.POS]: pos$8,
+                            [nix.POS]: $pos[7],
                             device: "/dev/vdb",
                             keyFile: "/etc/cryptroot.key",
                             tryEmptyPassphrase: true,
@@ -102,26 +75,26 @@ export default nix.lambda((args) => (() => {
                           })),
                         })))),
                     })),
-                    secrets: nix.thunk(() => ({ [nix.POS]: pos$11, "/etc/cryptroot.key": keyfile })),
+                    secrets: nix.thunk(() => ({ [nix.POS]: $pos[10], "/etc/cryptroot.key": keyfile })),
                   })),
                 })),
-                virtualisation: nix.thunk(() => ({ [nix.POS]: pos$14, rootDevice: "/dev/mapper/cryptroot" })),
+                virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[13], rootDevice: "/dev/mapper/cryptroot" })),
               })),
             })),
             "boot-luks-missing-keyfile": nix.thunk(() => ({
-              [nix.POS]: pos$24,
+              [nix.POS]: $pos[23],
               configuration: nix.thunk(() => ({
-                [nix.POS]: pos$23,
+                [nix.POS]: $pos[22],
                 boot: nix.thunk(() => ({
-                  [nix.POS]: pos$21,
+                  [nix.POS]: $pos[20],
                   initrd: nix.thunk(() => ({
-                    [nix.POS]: pos$20,
+                    [nix.POS]: $pos[19],
                     luks: nix.thunk(() => ({
-                      [nix.POS]: pos$19,
+                      [nix.POS]: $pos[18],
                       devices: nix.thunk(() => nix.app(nix.sel(lib, "mkVMOverride"), nix.thunk(() => ({
-                          [nix.POS]: pos$18,
+                          [nix.POS]: $pos[17],
                           cryptroot: nix.thunk(() => ({
-                            [nix.POS]: pos$17,
+                            [nix.POS]: $pos[16],
                             device: "/dev/vdb",
                             keyFile: "/etc/cryptroot.key",
                             tryEmptyPassphrase: true,
@@ -131,7 +104,7 @@ export default nix.lambda((args) => (() => {
                     })),
                   })),
                 })),
-                virtualisation: nix.thunk(() => ({ [nix.POS]: pos$22, rootDevice: "/dev/mapper/cryptroot" })),
+                virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[21], rootDevice: "/dev/mapper/cryptroot" })),
               })),
             })),
           })),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 18, 5], ["rev", 19, 5], ["hash", 20, 5]], [["description", 47, 5], ["license", 48, 5], ["platforms", 49, 5], ["homepage", 50, 5], ["maintainers", 51, 5], ["longDescription", 52, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["patches", 23, 3], ["buildInputs", 27, 3], ["configureFlags", 33, 3], ["nativeBuildInputs", 41, 3], ["meta", 46, 3]]]);
 const formals$1 = { args: { fetchgit: false, lib: false, stdenv: false, "pkg-config": false, libnsl: false, libtirpc: false, autoreconfHook: false, useSystemd: true, systemdLibs: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 18, 5], ["rev", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 47, 5], ["license", 48, 5], ["platforms", 49, 5], ["homepage", 50, 5], ["maintainers", 51, 5], ["longDescription", 52, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["patches", 23, 3], ["buildInputs", 27, 3], ["configureFlags", 33, 3], ["nativeBuildInputs", 41, 3], ["meta", 46, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const useSystemd = nix.argOr($, "useSystemd", () => true);
   const systemdLibs = nix.arg($, "systemdLibs");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "rpcbind",
       version: "1.3.1",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "git://git.linux-nfs.org/projects/steved/rpcbind.git",
           rev: nix.thunk(() => nix.str`refs/tags/rpcbind-${nix.builtins.replaceStrings(nix.thunk(() => ["."]), nix.thunk(() => ["_"]), nix.thunk(() => nix.sel(finalAttrs, "version")))}`),
           hash: "sha256-xHPVg/2u1GRy1s5nipKK2I5sbHRMF0Cxd+ZHMaLRxvU=",
@@ -37,7 +35,7 @@ export default nix.lambda((args) => (() => {
       ]),
       nativeBuildInputs: nix.thunk(() => [autoreconfHook, pkg_config]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "ONC RPC portmapper",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),

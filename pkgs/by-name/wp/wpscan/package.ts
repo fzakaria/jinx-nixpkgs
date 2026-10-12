@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["updateScript", 20, 12]], [["description", 23, 5], ["homepage", 24, 5], ["changelog", 25, 5], ["license", 26, 5], ["maintainers", 27, 5], ["platforms", 30, 5]], [["pname", 9, 3], ["gemdir", 10, 3], ["exes", 11, 3], ["nativeBuildInputs", 13, 3], ["postBuild", 15, 3], ["passthru", 20, 3], ["meta", 22, 3]]]);
 const formals$1 = { args: { lib: false, bundlerApp: false, makeWrapper: false, curl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["updateScript", 20, 12]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 23, 5], ["homepage", 24, 5], ["changelog", 25, 5], ["license", 26, 5], ["maintainers", 27, 5], ["platforms", 30, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["gemdir", 10, 3], ["exes", 11, 3], ["nativeBuildInputs", 13, 3], ["postBuild", 15, 3], ["passthru", 20, 3], ["meta", 22, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const curl = nix.arg($, "curl");
   return nix.app(bundlerApp, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "wpscan",
       gemdir: nix.path(here, "./."),
       exes: nix.thunk(() => ["wpscan"]),
@@ -22,9 +20,9 @@ export default nix.lambda((args) => (() => {
       postBuild: nix.thunk(() => nix.str`wrapProgram "$out/bin/wpscan" \\
   --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [curl]))}
 `),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$1, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[0], updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Black box WordPress vulnerability scanner",
         homepage: "https://wpscan.org/",
         changelog: "https://github.com/wpscanteam/wpscan/releases",

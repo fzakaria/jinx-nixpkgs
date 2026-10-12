@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]], [["name", 68, 7], ["paths", 71, 7]], [["libraryPath", 67, 5]], [["description", 84, 5], ["homepage", 85, 5], ["license", 86, 5], ["maintainers", 87, 5], ["platforms", 88, 5], ["changelog", 89, 5], ["mainProgram", 90, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["vendorHash", 29, 3], ["subPackages", 31, 3], ["postInstall", 36, 3], ["nativeBuildInputs", 53, 3], ["dontWrapGApps", 58, 3], ["nativeInstallCheckInputs", 60, 3], ["versionCheckProgram", 63, 3], ["doInstallCheck", 64, 3], ["passthru", 66, 3], ["meta", 83, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitHub: false, symlinkJoin: false, versionCheckHook: false, makeWrapper: false, wrapGAppsHook4: false, cairo: false, "gdk-pixbuf": false, glib: false, graphene: false, gtk4: false, libadwaita: false, pango: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 68, 7], ["paths", 71, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["libraryPath", 67, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 84, 5], ["homepage", 85, 5], ["license", 86, 5], ["maintainers", 87, 5], ["platforms", 88, 5], ["changelog", 89, 5], ["mainProgram", 90, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["vendorHash", 29, 3], ["subPackages", 31, 3], ["postInstall", 36, 3], ["nativeBuildInputs", 53, 3], ["dontWrapGApps", 58, 3], ["nativeInstallCheckInputs", 60, 3], ["versionCheckProgram", 63, 3], ["doInstallCheck", 64, 3], ["passthru", 66, 3], ["meta", 83, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const libadwaita = nix.arg($, "libadwaita");
   const pango = nix.arg($, "pango");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "geteduroam",
       version: "0.15",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "geteduroam",
           repo: "linux-app",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -59,9 +55,9 @@ cp -r cmd/geteduroam-gui/resources/share $out/
       versionCheckProgram: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/bin/geteduroam-gui`),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         libraryPath: nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "eduroam-gui-puregotk-lib",
             paths: nix.thunk(() => [
               cairo,
@@ -75,7 +71,7 @@ cp -r cmd/geteduroam-gui/resources/share $out/
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "GUI client to configure eduroam",
         homepage: "https://eduroam.app",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

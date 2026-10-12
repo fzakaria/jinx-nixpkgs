@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]], [["description", 68, 5], ["homepage", 69, 5], ["license", 70, 5], ["teams", 71, 5], ["platforms", 72, 25]], [["pname", 14, 3], ["version", 16, 3], ["src", 18, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 31, 3], ["strictDeps", 38, 3], ["postPatch", 40, 3], ["cmakeFlags", 49, 3], ["meta", 67, 3]]]);
 const formals$1 = { args: { lib: false, SDL2: false, cmake: false, fetchFromGitHub: false, "pkg-config": false, stdenv: false, libogg: false, flac: false, fmt_11: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 68, 5], ["homepage", 69, 5], ["license", 70, 5], ["teams", 71, 5], ["platforms", 72, 25]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 16, 3], ["src", 18, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 31, 3], ["strictDeps", 38, 3], ["postPatch", 40, 3], ["cmakeFlags", 49, 3], ["meta", 67, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const flac = nix.arg($, "flac");
   const fmt_11 = nix.arg($, "fmt_11");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "SDL_audiolib",
       version: "0-unstable-2022-07-13",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "realnc",
           repo: "SDL_audiolib",
           rev: "cc1bb6af8d4cf5e200259072bde1edd1c8c5137e",
@@ -53,7 +51,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(SDL2, "meta"));
         return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Audio decoding, resampling and mixing library for SDL",
         homepage: "https://github.com/realnc/SDL_audiolib",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3Plus")),

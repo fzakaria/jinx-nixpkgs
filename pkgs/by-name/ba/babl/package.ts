@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 25, 5], ["hash", 26, 5]], [["description", 70, 5], ["mainProgram", 71, 5], ["homepage", 72, 5], ["changelog", 73, 5], ["license", 76, 5], ["maintainers", 77, 5], ["platforms", 78, 5]], [["pname", 15, 3], ["version", 16, 3], ["outputs", 18, 3], ["src", 24, 3], ["patches", 29, 3], ["depsBuildBuild", 34, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 47, 3], ["strictDeps", 51, 3], ["mesonFlags", 53, 3], ["postFixup", 62, 3], ["__structuredAttrs", 67, 3], ["meta", 69, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, meson: false, ninja: false, "pkg-config": false, "gi-docgen": false, "gobject-introspection": false, lcms2: false, vala: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 70, 5], ["mainProgram", 71, 5], ["homepage", 72, 5], ["changelog", 73, 5], ["license", 76, 5], ["maintainers", 77, 5], ["platforms", 78, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["outputs", 18, 3], ["src", 24, 3], ["patches", 29, 3], ["depsBuildBuild", 34, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 47, 3], ["strictDeps", 51, 3], ["mesonFlags", 53, 3], ["postFixup", 62, 3], ["__structuredAttrs", 67, 3], ["meta", 69, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const lcms2 = nix.arg($, "lcms2");
   const vala = nix.arg($, "vala");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "babl",
       version: "0.1.126",
       outputs: nix.thunk(() => ["out", "dev", "devdoc"]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://download.gimp.org/pub/babl/${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/babl-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-PwkPSyph/s98jcYKWAS7x3zv2Nd4ry3tBZ8ONnpSkw4=",
         })))),
@@ -38,7 +36,7 @@ export default nix.lambda((args) => (() => {
       postFixup: "# Cannot be in postInstall, otherwise _multioutDocs hook in preFixup will move right back.\nmoveToOutput \"share/doc\" \"$devdoc\"\n",
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Image pixel format conversion library",
         mainProgram: "babl",
         homepage: "https://gegl.org/babl/",

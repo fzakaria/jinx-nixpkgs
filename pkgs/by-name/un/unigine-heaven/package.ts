@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 31, 5], ["exec", 32, 5], ["genericName", 33, 5], ["icon", 34, 5], ["desktopName", 35, 5]], [["url", 43, 5], ["hash", 44, 5]], [["description", 97, 5], ["homepage", 98, 5], ["sourceProvenance", 99, 5], ["license", 100, 5], ["maintainers", 101, 5], ["platforms", 102, 5], ["mainProgram", 106, 5]], [["pname", 39, 3], ["version", 40, 11], ["src", 42, 3], ["installPhase", 47, 3], ["nativeBuildInputs", 77, 3], ["buildInputs", 83, 3], ["dontUnpack", 94, 3], ["meta", 96, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, makeWrapper: false, libx11: false, libxext: false, libxrandr: false, freetype: false, fontconfig: false, libxrender: false, libxinerama: false, autoPatchelfHook: false, libglvnd: false, openal: false, imagemagick: false, makeDesktopItem: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 31, 5], ["exec", 32, 5], ["genericName", 33, 5], ["icon", 34, 5], ["desktopName", 35, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 43, 5], ["hash", 44, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 97, 5], ["homepage", 98, 5], ["sourceProvenance", 99, 5], ["license", 100, 5], ["maintainers", 101, 5], ["platforms", 102, 5], ["mainProgram", 106, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 39, 3], ["version", 40, 11], ["src", 42, 3], ["installPhase", 47, 3], ["nativeBuildInputs", 77, 3], ["buildInputs", 83, 3], ["dontUnpack", 94, 3], ["meta", 96, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,7 +26,7 @@ export default nix.lambda((args) => (() => {
   const version = "4.0";
   const arch = nix.thunk(() => (nix.asBool(nix.eq(nix.sel(stdenv, "hostPlatform", "system"), "x86_64-linux")) ? "x64" : (nix.asBool(nix.eq(nix.sel(stdenv, "hostPlatform", "system"), "i686-linux")) ? "x86" : nix.builtins.throw(nix.thunk(() => nix.str`Unsupported platform ${nix.sel(stdenv, "hostPlatform", "system")}`)))));
   const desktopItem = nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: "Heaven",
       exec: "heaven",
       genericName: "A GPU Stress test tool from the UNIGINE",
@@ -37,11 +34,11 @@ export default nix.lambda((args) => (() => {
       desktopName: "Heaven Benchmark",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "unigine-heaven",
       version: version,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: nix.thunk(() => nix.str`https://assets.unigine.com/d/Unigine_Heaven-${version}.run`),
           hash: "sha256-UtsuXe3VYh18K/qTa0gsCnzGmzBhYnjvGZUT1JTY45c=",
         })))),
@@ -86,7 +83,7 @@ ln -s ${desktopItem}/share/applications/* $out/share/applications
       ]),
       dontUnpack: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Unigine Heaven GPU benchmarking tool",
         homepage: "https://benchmark.unigine.com/heaven",
         sourceProvenance: nix.thunk(() => (() => {

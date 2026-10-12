@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 33, 5], ["repo", 34, 5], ["tag", 35, 5], ["hash", 36, 5]], [["POETRY_DYNAMIC_VERSIONING_BYPASS", 39, 7]], [["updateScript", 95, 12]], [["description", 98, 5], ["homepage", 99, 5], ["changelog", 100, 5], ["license", 101, 5], ["maintainers", 102, 5]], [["pname", 27, 3], ["version", 28, 3], ["pyproject", 29, 3], ["src", 32, 3], ["env", 39, 3], ["build-system", 41, 3], ["dependencies", 46, 3], ["pythonRelaxDeps", 57, 3], ["nativeCheckInputs", 62, 3], ["disabledTestPaths", 67, 3], ["pythonImportsCheck", 82, 3], ["passthru", 95, 3], ["meta", 97, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, buildPythonPackage: false, "nix-update-script": false, "poetry-core": false, "poetry-dynamic-versioning": false, click: false, cryptography: false, dnspython: false, httpx: false, libipld: false, pydantic: false, "typing-extensions": false, websockets: false, pytestCheckHook: false, "pytest-asyncio": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 33, 5], ["repo", 34, 5], ["tag", 35, 5], ["hash", 36, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["POETRY_DYNAMIC_VERSIONING_BYPASS", 39, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["updateScript", 95, 12]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 98, 5], ["homepage", 99, 5], ["changelog", 100, 5], ["license", 101, 5], ["maintainers", 102, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 27, 3], ["version", 28, 3], ["pyproject", 29, 3], ["src", 32, 3], ["env", 39, 3], ["build-system", 41, 3], ["dependencies", 46, 3], ["pythonRelaxDeps", 57, 3], ["nativeCheckInputs", 62, 3], ["disabledTestPaths", 67, 3], ["pythonImportsCheck", 82, 3], ["passthru", 95, 3], ["meta", 97, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,13 +28,13 @@ export default nix.lambda((args) => (() => {
       const version = "0.0.69";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "MarshalX",
           repo: "atproto",
           tag: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-BA8gnGVR+vgfwgKHBgq+EDcmycYAVBGu/WWDVMI7gkw=",
         }))));
-      const env = nix.thunk(() => ({ [nix.POS]: pos$2, POETRY_DYNAMIC_VERSIONING_BYPASS: version }));
+      const env = nix.thunk(() => ({ [nix.POS]: $pos[1], POETRY_DYNAMIC_VERSIONING_BYPASS: version }));
       const build_system = nix.thunk(() => [poetry_core, poetry_dynamic_versioning]);
       const dependencies = nix.thunk(() => [
         click,
@@ -77,11 +73,11 @@ export default nix.lambda((args) => (() => {
         "atproto_server",
       ]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "AT Protocol (Bluesky) SDK for Python",
         homepage: "https://github.com/MarshalX/atproto",
         changelog: nix.thunk(() => nix.str`https://github.com/MarshalX/atproto/blob/v${version}/CHANGES.md`),
@@ -92,7 +88,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         pyproject,

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 13, 5], ["hash", 14, 5]], [["configSharedStatic", 56, 5]], [["homepage", 69, 5], ["description", 70, 5], ["license", 71, 5], ["changelog", 72, 5], ["platforms", 73, 5], ["maintainers", 74, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 12, 3], ["patches", 16, 3], ["sourceRoot", 21, 3], ["makefile", 22, 3], ["enableParallelBuilding", 23, 3], ["setupHook", 25, 3], ["strictDeps", 27, 3], ["propagatedBuildInputs", 29, 3], ["doCheck", 37, 3], ["checkPhase", 38, 3], ["installPhase", 44, 3], ["postFixup", 50, 3], ["passthru", 55, 3], ["meta", 68, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, buildPackages: false, fixDarwinDylibNames: false, fetchpatch: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 13, 5], ["hash", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["configSharedStatic", 56, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 69, 5], ["description", 70, 5], ["license", 71, 5], ["changelog", 72, 5], ["platforms", 73, 5], ["maintainers", 74, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 12, 3], ["patches", 16, 3], ["sourceRoot", 21, 3], ["makefile", 22, 3], ["enableParallelBuilding", 23, 3], ["setupHook", 25, 3], ["strictDeps", 27, 3], ["propagatedBuildInputs", 29, 3], ["doCheck", 37, 3], ["checkPhase", 38, 3], ["installPhase", 44, 3], ["postFixup", 50, 3], ["passthru", 55, 3], ["meta", 68, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fixDarwinDylibNames = nix.arg($, "fixDarwinDylibNames");
   const fetchpatch = nix.arg($, "fetchpatch");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "build2-bootstrap",
       version: "0.18.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://download.build2.org/${nix.sel(finalAttrs, "version")}/build2-toolchain-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-pfPqudRSK8InBImVk91scBM0mhuMNyeMiyMhBz4l/xY=",
         })))),
@@ -42,11 +39,11 @@ export default nix.lambda((args) => (() => {
   --subst-var-by isTargetDarwin '${nix.builtins.toString(nix.thunk(() => nix.sel(stdenv, "targetPlatform", "isDarwin")))}'
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         configSharedStatic: (enableShared) => (enableStatic) => (nix.asBool((nix.asBool(enableShared) && nix.asBool(enableStatic))) ? "both" : (nix.asBool(enableShared) ? "shared" : (nix.asBool(enableStatic) ? "static" : nix.builtins.throw("neither shared nor static libraries requested")))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://www.build2.org/",
         description: "Bootstrap for the 'build2' package, you most likely want to use that one",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

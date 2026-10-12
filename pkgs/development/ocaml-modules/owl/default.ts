@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 13, 3], ["version", 15, 22], ["src", 15, 30], ["meta", 15, 34], ["checkInputs", 17, 3], ["buildInputs", 18, 3], ["propagatedBuildInputs", 22, 3], ["doCheck", 29, 3]]]);
 const formals$1 = { args: { buildDunePackage: false, "dune-configurator": false, alcotest: false, ctypes: false, stdio: false, openblasCompat: false, "owl-base": false, npy: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 13, 3], ["version", 15, 22], ["src", 15, 30], ["meta", 15, 34], ["checkInputs", 17, 3], ["buildInputs", 18, 3], ["propagatedBuildInputs", 22, 3], ["doCheck", 29, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const owl_base = nix.arg($, "owl-base");
   const npy = nix.arg($, "npy");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       pname: "owl",
       version: nix.thunk(() => nix.attr(owl_base, "version")),
       src: nix.thunk(() => nix.attr(owl_base, "src")),

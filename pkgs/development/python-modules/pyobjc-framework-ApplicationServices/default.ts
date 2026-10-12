@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["NIX_CFLAGS_COMPILE", 45, 7]], [["description", 56, 5], ["homepage", 57, 5], ["license", 58, 5], ["platforms", 59, 5], ["maintainers", 60, 5]], [["pname", 13, 3], ["pyproject", 14, 3], ["version", 16, 25], ["src", 16, 33], ["sourceRoot", 18, 3], ["build-system", 20, 3], ["buildInputs", 22, 3], ["nativeBuildInputs", 24, 3], ["postPatch", 30, 3], ["dependencies", 38, 3], ["env", 45, 3], ["pythonImportsCheck", 50, 3], ["meta", 55, 3]]]);
 const formals$1 = { args: { buildPythonPackage: false, setuptools: false, darwin: false, "pyobjc-core": false, "pyobjc-framework-Cocoa": false, "pyobjc-framework-Quartz": false, "pyobjc-framework-CoreText": false, lib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["NIX_CFLAGS_COMPILE", 45, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 56, 5], ["homepage", 57, 5], ["license", 58, 5], ["platforms", 59, 5], ["maintainers", 60, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 13, 3], ["pyproject", 14, 3], ["version", 16, 25], ["src", 16, 33], ["sourceRoot", 18, 3], ["build-system", 20, 3], ["buildInputs", 22, 3], ["nativeBuildInputs", 24, 3], ["postPatch", 30, 3], ["dependencies", 38, 3], ["env", 45, 3], ["pythonImportsCheck", 50, 3], ["meta", 55, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,7 +32,7 @@ export default nix.lambda((args) => (() => {
         pyobjc_framework_CoreText,
       ]);
       const env = nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => [
             nix.thunk(() => nix.str`-I${nix.sel(darwin, "libffi", "dev")}/include`),
             "-Wno-error=unused-command-line-argument",
@@ -42,7 +40,7 @@ export default nix.lambda((args) => (() => {
       }));
       const pythonImportsCheck = nix.thunk(() => ["ApplicationServices", "HIServices"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "PyObjC wrappers for the ApplicationServices framework on macOS",
         homepage: "https://github.com/ronaldoussoren/pyobjc",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -53,7 +51,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         pyproject,
         version,

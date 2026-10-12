@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 13, 5], ["sha256", 14, 5]], [["NIX_CFLAGS_COMPILE", 61, 5]], [["description", 71, 5], ["homepage", 72, 5], ["platforms", 73, 5], ["license", 74, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["outputs", 17, 3], ["setOutputFlags", 24, 3], ["patches", 26, 3], ["preConfigure", 34, 3], ["buildInputs", 53, 3], ["configureFlags", 55, 3], ["env", 60, 3], ["postInstall", 64, 3], ["meta", 70, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, ncurses: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 13, 5], ["sha256", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 61, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 71, 5], ["homepage", 72, 5], ["platforms", 73, 5], ["license", 74, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["outputs", 17, 3], ["setOutputFlags", 24, 3], ["patches", 26, 3], ["preConfigure", 34, 3], ["buildInputs", 53, 3], ["configureFlags", 55, 3], ["env", 60, 3], ["postInstall", 64, 3], ["meta", 70, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const ncurses = nix.arg($, "ncurses");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "aalib",
       version: "1.4rc5",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/aa-project/aalib-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "1vkh19gb76agvh4h87ysbrgy82hrw88lnsvhynjf4vng629dmpgv",
         })))),
@@ -33,7 +30,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`--with-ncurses=${nix.sel(ncurses, "dev")}`),
       ]),
       env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "cc", "isGNU")), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           NIX_CFLAGS_COMPILE: "-Wno-error=implicit-function-declaration",
         })))),
       postInstall: nix.thunk(() => nix.str`mkdir -p $dev/bin
@@ -41,7 +38,7 @@ mv $bin/bin/aalib-config $dev/bin/aalib-config
 substituteInPlace $out/lib/libaa.la --replace-fail "${nix.sel(ncurses, "dev")}/lib" "${nix.sel(ncurses, "out")}/lib"
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "ASCII art graphics library",
         homepage: "https://aa-project.sourceforge.net/aalib/",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),

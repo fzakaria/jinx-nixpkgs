@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 15, 5], ["version", 16, 13], ["hash", 17, 5]], [["description", 58, 5], ["homepage", 59, 5], ["maintainers", 60, 5], ["license", 64, 5]], [["pname", 10, 3], ["version", 11, 3], ["pyproject", 12, 3], ["src", 14, 3], ["build-system", 20, 3], ["nativeCheckInputs", 22, 3], ["checkPhase", 24, 3], ["meta", 57, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, mercurial: false, setuptools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 15, 5], ["version", 16, 13], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 58, 5], ["homepage", 59, 5], ["maintainers", 60, 5], ["license", 64, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 10, 3], ["version", 11, 3], ["pyproject", 12, 3], ["src", 14, 3], ["build-system", 20, 3], ["nativeCheckInputs", 22, 3], ["checkPhase", 24, 3], ["meta", 57, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const version = "11.1.10";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "hg_evolve",
           version: version,
           hash: "sha256-ccFq7sASkOkFJ4Or5dhZpfKR0FdZAmbziDfK3FGcaYM=",
@@ -28,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [mercurial]);
       const checkPhase = "runHook preCheck\n\nexport TESTTMP=$(mktemp -d)\nexport HOME=$TESTTMP\ncat <<EOF >$HOME/.hgrc\n[extensions]\nevolve =\ntopic =\nEOF\n\n# Shipped tests use the mercurial testing framework, and produce inconsistent results.\n# Do a quick smoke-test to see if things do what we expect.\nhg init $TESTTMP/repo\npushd $TESTTMP/repo\ntouch a\nhg add a\nhg commit -m \"init a\"\nhg topic something\n\ntouch b\nhg add b\nhg commit -m \"init b\"\n\necho hi > b\nhg amend\n\nhg obslog\npopd\n\nrunHook postCheck\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Enables the “changeset evolution” feature of Mercurial core",
         homepage: "https://www.mercurial-scm.org/doc/evolution/",
         maintainers: nix.thunk(() => (() => {
@@ -41,7 +39,7 @@ export default nix.lambda((args) => (() => {
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

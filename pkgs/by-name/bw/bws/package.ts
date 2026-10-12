@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]], [["PYO3_PYTHON", 43, 5], ["RUSTONIG_SYSTEM_LIBONIG", 44, 5]], [["description", 64, 5], ["homepage", 65, 5], ["changelog", 66, 5], ["license", 67, 5], ["maintainers", 68, 5], ["mainProgram", 69, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["cargoHash", 25, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 35, 3], ["env", 42, 3], ["cargoBuildFlags", 47, 3], ["cargoTestFlags", 52, 3], ["postInstall", 57, 3], ["meta", 63, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchFromGitHub: false, installShellFiles: false, "pkg-config": false, oniguruma: false, openssl: false, stdenv: false, python3: false, perl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["PYO3_PYTHON", 43, 5], ["RUSTONIG_SYSTEM_LIBONIG", 44, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 64, 5], ["homepage", 65, 5], ["changelog", 66, 5], ["license", 67, 5], ["maintainers", 68, 5], ["mainProgram", 69, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["cargoHash", 25, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 35, 3], ["env", 42, 3], ["cargoBuildFlags", 47, 3], ["cargoTestFlags", 52, 3], ["postInstall", 57, 3], ["meta", 63, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const perl = nix.arg($, "perl");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "bws",
       version: "2.1.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "bitwarden",
           repo: "sdk-sm",
           tag: nix.thunk(() => nix.str`bws-v${nix.sel(finalAttrs, "version")}`),
@@ -35,7 +32,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => nix.concat([installShellFiles, pkg_config], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [perl])))),
       buildInputs: nix.thunk(() => nix.concat([oniguruma], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [openssl])))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         PYO3_PYTHON: nix.thunk(() => nix.str`${python3}/bin/python3`),
         RUSTONIG_SYSTEM_LIBONIG: true,
       })),
@@ -43,7 +40,7 @@ export default nix.lambda((args) => (() => {
       cargoTestFlags: nix.thunk(() => ["--package", "bws"]),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "for shell in bash fish zsh; do\n  installShellCompletion --cmd bws --\"$shell\" <($out/bin/bws completions \"$shell\")\ndone\n")),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Bitwarden Secrets Manager CLI",
         homepage: "https://bitwarden.com/help/secrets-manager-cli/",
         changelog: nix.thunk(() => nix.str`https://github.com/bitwarden/sdk-sm/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

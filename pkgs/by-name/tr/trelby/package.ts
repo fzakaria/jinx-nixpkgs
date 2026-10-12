@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]], [["description", 53, 5], ["homepage", 54, 5], ["downloadPage", 55, 5], ["mainProgram", 56, 5], ["license", 57, 5], ["platforms", 58, 5], ["maintainers", 59, 5]], [["pname", 12, 3], ["version", 13, 3], ["pyproject", 14, 3], ["src", 16, 3], ["build-system", 23, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 31, 3], ["dependencies", 37, 3], ["postInstall", 43, 3], ["meta", 52, 3]]]);
 const formals$1 = { args: { lib: false, python3Packages: false, fetchFromGitHub: false, wrapGAppsHook3: false, gtk3: false, glib: false, "gsettings-desktop-schemas": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 53, 5], ["homepage", 54, 5], ["downloadPage", 55, 5], ["mainProgram", 56, 5], ["license", 57, 5], ["platforms", 58, 5], ["maintainers", 59, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["pyproject", 14, 3], ["src", 16, 3], ["build-system", 23, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 31, 3], ["dependencies", 37, 3], ["postInstall", 43, 3], ["meta", 52, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const glib = nix.arg($, "glib");
   const gsettings_desktop_schemas = nix.arg($, "gsettings-desktop-schemas");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "trelby",
       version: "2.4.16.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "trelby",
           repo: "trelby",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -41,7 +39,7 @@ export default nix.lambda((args) => (() => {
       })()),
       postInstall: "install -Dm644 trelby/resources/trelby.desktop $out/share/applications/trelby.desktop\n\ninstall -Dm644 trelby/resources/icon256.png $out/share/icons/hicolor/256x256/apps/trelby.png\n\nsubstituteInPlace $out/share/applications/trelby.desktop \\\n  --replace-fail \"Icon=trelby256\" \"Icon=trelby\"\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Free, multiplatform, feature-rich screenwriting program",
         homepage: "https://www.trelby.org",
         downloadPage: "https://github.com/trelby/trelby",

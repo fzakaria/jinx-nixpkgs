@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]], [["extraArgs", 41, 5]], [["updateScript", 40, 12]], [["description", 48, 5], ["homepage", 49, 5], ["license", 50, 5], ["teams", 53, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 15, 3], ["__structuredAttrs", 22, 3], ["strictDeps", 23, 3], ["nativeBuildInputs", 25, 3], ["propagatedBuildInputs", 27, 3], ["justFlags", 32, 3], ["dontDropIconThemeCache", 38, 3], ["passthru", 40, 3], ["meta", 47, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchFromGitHub: false, just: false, "pop-icon-theme": false, "hicolor-icon-theme": false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["extraArgs", 41, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 40, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 48, 5], ["homepage", 49, 5], ["license", 50, 5], ["teams", 53, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 15, 3], ["__structuredAttrs", 22, 3], ["strictDeps", 23, 3], ["nativeBuildInputs", 25, 3], ["propagatedBuildInputs", 27, 3], ["justFlags", 32, 3], ["dontDropIconThemeCache", 38, 3], ["passthru", 40, 3], ["meta", 47, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const hicolor_icon_theme = nix.arg($, "hicolor-icon-theme");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "cosmic-icons",
       version: "1.9.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "pop-os",
           repo: "cosmic-icons",
           tag: nix.thunk(() => nix.str`epoch-${nix.sel(finalAttrs, "version")}`),
@@ -36,14 +32,14 @@ export default nix.lambda((args) => (() => {
       justFlags: nix.thunk(() => ["--set", "prefix", nix.thunk(() => nix.builtins.placeholder("out"))]),
       dontDropIconThemeCache: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             extraArgs: nix.thunk(() => ["--version-regex", "epoch-(.*)"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "System76 Cosmic icon theme for Linux",
         homepage: "https://github.com/pop-os/cosmic-icons",
         license: nix.thunk(() => (() => {

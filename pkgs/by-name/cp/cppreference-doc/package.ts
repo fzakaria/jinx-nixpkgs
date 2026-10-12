@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 12, 5], ["hash", 13, 5]], [["pname", 27, 24], ["version", 27, 30]], [["description", 30, 5], ["homepage", 31, 5], ["license", 32, 5], ["maintainers", 33, 5], ["platforms", 34, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["sourceRoot", 16, 3], ["installPhase", 18, 3], ["passthru", 27, 3], ["meta", 29, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchurl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 12, 5], ["hash", 13, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 27, 24], ["version", 27, 30]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 30, 5], ["homepage", 31, 5], ["license", 32, 5], ["maintainers", 33, 5], ["platforms", 34, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["sourceRoot", 16, 3], ["installPhase", 18, 3], ["passthru", 27, 3], ["meta", 29, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,15 +14,15 @@ export default nix.lambda((args) => (() => {
       const pname = "cppreference-doc";
       const version = "20250209";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/PeterFeicht/cppreference-doc/releases/download/v${version}/html-book-${version}.tar.xz`),
           hash: "sha256-rFBnGh9S1/CrCRHRRFDrNejC+BLt0OQmss0ePZ25HW8=",
         }))));
       const sourceRoot = ".";
       const installPhase = "runHook preInstall\n\nmkdir -p $out/share/cppreference/doc\nmv reference $out/share/cppreference/doc/html\n\nrunHook postInstall\n";
-      const passthru = nix.thunk(() => ({ [nix.POS]: pos$2, pname: pname, version: version }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: $pos[1], pname: pname, version: version }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "C++ standard library reference",
         homepage: "https://en.cppreference.com",
         license: nix.thunk(() => nix.sel(lib, "licenses", "cc-by-sa-30")),
@@ -36,7 +33,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

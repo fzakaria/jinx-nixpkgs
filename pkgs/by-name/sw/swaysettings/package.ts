@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 41, 5], ["repo", 42, 5], ["tag", 43, 5], ["hash", 44, 5]], [["name", 83, 7], ["url", 84, 7], ["hash", 85, 7]], [["description", 94, 5], ["longDescription", 95, 5], ["homepage", 99, 5], ["license", 100, 5], ["platforms", 101, 5], ["maintainers", 102, 5]], [["pname", 37, 3], ["version", 38, 3], ["src", 40, 3], ["nativeBuildInputs", 47, 3], ["buildInputs", 64, 3], ["patches", 81, 3], ["postPatch", 89, 3], ["meta", 93, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, fetchpatch2: false, accountsservice: false, "appstream-glib": false, dbus: false, "desktop-file-utils": false, gettext: false, glib: false, "gobject-introspection": false, "gsettings-desktop-schemas": false, "gtk-layer-shell": false, gtk3: false, "json-glib": false, libgee: false, libhandy: false, libpulseaudio: false, libxml2: false, meson: false, ninja: false, pantheon: false, "pkg-config": false, python3: false, stdenv: false, vala: false, wrapGAppsHook3: false, "blueprint-compiler": false, gtk4: false, libadwaita: false, udisks: false, libgtop: false, "gtk4-layer-shell": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 41, 5], ["repo", 42, 5], ["tag", 43, 5], ["hash", 44, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 83, 7], ["url", 84, 7], ["hash", 85, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 94, 5], ["longDescription", 95, 5], ["homepage", 99, 5], ["license", 100, 5], ["platforms", 101, 5], ["maintainers", 102, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 37, 3], ["version", 38, 3], ["src", 40, 3], ["nativeBuildInputs", 47, 3], ["buildInputs", 64, 3], ["patches", 81, 3], ["postPatch", 89, 3], ["meta", 93, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -43,11 +40,11 @@ export default nix.lambda((args) => (() => {
   const libgtop = nix.arg($, "libgtop");
   const gtk4_layer_shell = nix.arg($, "gtk4-layer-shell");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "swaysettings",
       version: "0.5.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ErikReider",
           repo: "SwaySettings",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -87,7 +84,7 @@ export default nix.lambda((args) => (() => {
       ]),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "gtk-4.20-fix.patch",
             url: "https://github.com/ErikReider/SwaySettings/commit/e4f3749a053b5fbe0feab93e46d6eba380ee2e58.patch?full_index=1",
             hash: "sha256-3A0VPAUQ3UjQ2mqR24z5CQ5Tdjw73UzfPz5UUcl/FDA=",
@@ -95,7 +92,7 @@ export default nix.lambda((args) => (() => {
       ]),
       postPatch: "patchShebangs build-aux/meson/postinstall.py\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "GUI for configuring your sway desktop",
         longDescription: "Sway settings enables easy configuration of a sway desktop environment\nsuch as selection of application or icon themes.\n",
         homepage: "https://github.com/ErikReider/SwaySettings",

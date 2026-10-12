@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 26, 13], ["version", 26, 19], ["hash", 27, 5]], [["description", 31, 5], ["mainProgram", 32, 5], ["homepage", 33, 5], ["license", 34, 5], ["maintainers", 35, 5], ["platforms", 36, 5]], [["pname", 21, 3], ["version", 22, 3], ["format", 23, 3], ["src", 25, 3], ["meta", 30, 3], ["doCheck", 39, 3], ["buildInputs", 42, 3], ["propagatedBuildInputs", 50, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, mock: false, pytest: false, "pytest-mock": false, "pytest-server-fixtures": false, "pytest-localserver": false, termcolor: false, click: false, markdown2: false, six: false, jsonref: false, pyyaml: false, xmltodict: false, attrs: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 26, 13], ["version", 26, 19], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 31, 5], ["mainProgram", 32, 5], ["homepage", 33, 5], ["license", 34, 5], ["maintainers", 35, 5], ["platforms", 36, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 21, 3], ["version", 22, 3], ["format", 23, 3], ["src", 25, 3], ["meta", 30, 3], ["doCheck", 39, 3], ["buildInputs", 42, 3], ["propagatedBuildInputs", 50, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,13 +28,13 @@ export default nix.lambda((args) => (() => {
       const version = "0.2.2";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-wcQd5j74y7d0xFeWlwlhceZj95ixUmv5upnv/6Rl1ew=",
         }))));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Python RAML parser",
         mainProgram: "ramlfications",
         homepage: "https://ramlfications.readthedocs.org",
@@ -48,7 +46,7 @@ export default nix.lambda((args) => (() => {
       const buildInputs = nix.thunk(() => [mock, pytest, pytest_mock, pytest_server_fixtures, pytest_localserver]);
       const propagatedBuildInputs = nix.thunk(() => [termcolor, click, markdown2, six, jsonref, pyyaml, xmltodict, attrs]);
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         format,

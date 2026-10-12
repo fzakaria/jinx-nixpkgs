@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 20, 5], ["hash", 21, 5]], [["package", 53, 7]], [["pkg-config", 52, 11]], [["tests", 52, 5]], [["homepage", 58, 5], ["description", 59, 5], ["license", 60, 5], ["teams", 61, 5], ["platforms", 62, 25], ["pkgConfigModules", 63, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["outputs", 24, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 34, 3], ["configureFlags", 43, 3], ["strictDeps", 49, 3], ["passthru", 51, 3], ["meta", 57, 3]]]);
 const formals$1 = { args: { lib: false, SDL2: false, fetchurl: false, freetype: false, harfbuzz: false, libGL: false, "pkg-config": false, stdenv: false, testers: false, enableSdltest: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["package", 53, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pkg-config", 52, 11]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 52, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["homepage", 58, 5], ["description", 59, 5], ["license", 60, 5], ["teams", 61, 5], ["platforms", 62, 25], ["pkgConfigModules", 63, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["outputs", 24, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 34, 3], ["configureFlags", 43, 3], ["strictDeps", 49, 3], ["passthru", 51, 3], ["meta", 57, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const enableSdltest = nix.argOr($, "enableSdltest", () => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "SDL2_ttf",
       version: "2.24.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://www.libsdl.org/projects/SDL_ttf/release/SDL2_ttf-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-Cyvx57ZWitvbybuSRkP3nZ3tr+Bh+h7Wh9HZrE5FO/0=",
         })))),
@@ -41,11 +36,11 @@ export default nix.lambda((args) => (() => {
       ]),
       strictDeps: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "hasPkgConfigModules"), nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         })),
@@ -53,7 +48,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(SDL2, "meta"));
         return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "https://github.com/libsdl-org/SDL_ttf",
         description: "Support for TrueType (.ttf) font files with Simple Directmedia Layer",
         license: nix.thunk(() => nix.sel(lib, "licenses", "zlib")),

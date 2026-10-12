@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]], [["version", 32, 15]], [["ELECTRON_SKIP_BINARY_DOWNLOAD", 71, 7]], [["name", 124, 7], ["exec", 125, 7], ["icon", 126, 7], ["desktopName", 127, 7], ["categories", 128, 7], ["comment", 132, 7], ["terminal", 133, 7]], [["changelog", 138, 5], ["description", 139, 5], ["homepage", 140, 5], ["license", 141, 5], ["mainProgram", 142, 5], ["maintainers", 143, 5], ["platforms", 147, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["npmDepsHash", 27, 3], ["patches", 29, 3], ["postPatch", 42, 3], ["nativeBuildInputs", 65, 3], ["env", 71, 3], ["npmBuildFlags", 74, 3], ["postConfigure", 76, 3], ["installPhase", 92, 3], ["desktopItems", 122, 3], ["meta", 137, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildNpmPackage: false, fetchFromGitHub: false, replaceVars: false, jq: false, moreutils: false, zip: false, makeWrapper: false, copyDesktopItems: false, makeDesktopItem: false, electron: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["version", 32, 15]]);
-const pos$3 = nix.positions(here + "/package.nix", [["ELECTRON_SKIP_BINARY_DOWNLOAD", 71, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["name", 124, 7], ["exec", 125, 7], ["icon", 126, 7], ["desktopName", 127, 7], ["categories", 128, 7], ["comment", 132, 7], ["terminal", 133, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["changelog", 138, 5], ["description", 139, 5], ["homepage", 140, 5], ["license", 141, 5], ["mainProgram", 142, 5], ["maintainers", 143, 5], ["platforms", 147, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["npmDepsHash", 27, 3], ["patches", 29, 3], ["postPatch", 42, 3], ["nativeBuildInputs", 65, 3], ["env", 71, 3], ["npmBuildFlags", 74, 3], ["postConfigure", 76, 3], ["installPhase", 92, 3], ["desktopItems", 122, 3], ["meta", 137, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const pname = "ride";
       const version = "4.6.4265";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Dyalog",
           repo: "ride",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -36,7 +31,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const npmDepsHash = "sha256-6Os6aWkgbA6m4JCp3b6UeZ4NC8N+7pwCWkPBc4xXAHY=";
       const patches = nix.thunk(() => [
-        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./mk.patch"), nix.thunk(() => ({ [nix.POS]: pos$2, version: version })))),
+        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./mk.patch"), nix.thunk(() => ({ [nix.POS]: $pos[1], version: version })))),
         nix.path(here, "./update-nan.patch"),
         nix.path(here, "./bump-yauzl.patch"),
       ]);
@@ -62,7 +57,7 @@ shopt -u globstar
 popd
 `);
       const nativeBuildInputs = nix.thunk(() => nix.concat([zip, makeWrapper], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [copyDesktopItems]))));
-      const env = nix.thunk(() => ({ [nix.POS]: pos$3, ELECTRON_SKIP_BINARY_DOWNLOAD: "1" }));
+      const env = nix.thunk(() => ({ [nix.POS]: $pos[2], ELECTRON_SKIP_BINARY_DOWNLOAD: "1" }));
       const npmBuildFlags = "self";
       const postConfigure = nix.thunk(() => nix.str`# electron files need to be writable on Darwin
 cp -r ${nix.sel(electron, "dist")} electron-dist
@@ -103,7 +98,7 @@ runHook postInstall
 `);
       const desktopItems = nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             name: "ride",
             exec: "ride",
             icon: "ride",
@@ -114,7 +109,7 @@ runHook postInstall
           })))),
       ]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         changelog: nix.thunk(() => nix.str`https://github.com/Dyalog/ride/releases/tag/v${version}`),
         description: "Remote IDE for Dyalog APL",
         homepage: "https://github.com/Dyalog/ride",
@@ -130,7 +125,7 @@ runHook postInstall
         platforms: nix.thunk(() => nix.sel(electron, "meta", "platforms")),
       }));
       return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname,
         version,
         src,

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]], [["changelog", 64, 5], ["description", 65, 5], ["mainProgram", 66, 5], ["homepage", 67, 5], ["license", 68, 5]], [["pname", 21, 3], ["version", 22, 3], ["pyproject", 23, 3], ["src", 26, 3], ["build-system", 33, 3], ["pythonRelaxDeps", 35, 3], ["dependencies", 39, 3], ["nativeCheckInputs", 46, 3], ["disabledTests", 51, 3], ["pythonImportsCheck", 58, 3], ["meta", 63, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, "poetry-core": false, jsonschema: false, "jsonschema-path": false, "lazy-object-proxy": false, "openapi-schema-validator": false, pytestCheckHook: false, "pytest-cov-stub": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["changelog", 64, 5], ["description", 65, 5], ["mainProgram", 66, 5], ["homepage", 67, 5], ["license", 68, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 21, 3], ["version", 22, 3], ["pyproject", 23, 3], ["src", 26, 3], ["build-system", 33, 3], ["pythonRelaxDeps", 35, 3], ["dependencies", 39, 3], ["nativeCheckInputs", 46, 3], ["disabledTests", 51, 3], ["pythonImportsCheck", 58, 3], ["meta", 63, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.8.4";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "python-openapi",
           repo: "openapi-spec-validator",
           tag: version,
@@ -37,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const disabledTests = nix.thunk(() => ["test_default_valid", "test_urllib_valid", "test_valid"]);
       const pythonImportsCheck = nix.thunk(() => ["openapi_spec_validator", "openapi_spec_validator.readers"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         changelog: nix.thunk(() => nix.str`https://github.com/p1c2u/openapi-spec-validator/releases/tag/${nix.sel(src, "tag")}`),
         description: "Validates OpenAPI Specs against the OpenAPI 2.0 (aka Swagger) and OpenAPI 3.0.0 specification",
         mainProgram: "openapi-spec-validator",
@@ -45,7 +43,7 @@ export default nix.lambda((args) => (() => {
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

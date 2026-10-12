@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]], [["description", 22, 5], ["homepage", 23, 5], ["license", 24, 5], ["maintainers", 25, 5], ["platforms", 26, 5]], [["version", 30, 13], ["src", 30, 21], ["pname", 31, 5], ["vendorHash", 33, 5], ["buildPhase", 35, 5], ["meta", 45, 5]], [["libgopeed", 83, 13], ["updateScript", 84, 5]], [["mainProgram", 88, 5]], [["version", 49, 11], ["src", 49, 19], ["pname", 50, 3], ["sourceRoot", 52, 3], ["pubspecLock", 54, 3], ["gitHashes", 56, 3], ["nativeBuildInputs", 58, 3], ["buildInputs", 60, 3], ["preBuild", 65, 3], ["postInstall", 71, 3], ["preFixup", 77, 3], ["passthru", 82, 3], ["meta", 87, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, flutter338: false, autoPatchelfHook: false, buildGoModule: false, keybinder3: false, "libayatana-appindicator": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 22, 5], ["homepage", 23, 5], ["license", 24, 5], ["maintainers", 25, 5], ["platforms", 26, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 30, 13], ["src", 30, 21], ["pname", 31, 5], ["vendorHash", 33, 5], ["buildPhase", 35, 5], ["meta", 45, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["libgopeed", 83, 13], ["updateScript", 84, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["mainProgram", 88, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["version", 49, 11], ["src", 49, 19], ["pname", 50, 3], ["sourceRoot", 52, 3], ["pubspecLock", 54, 3], ["gitHashes", 56, 3], ["nativeBuildInputs", 58, 3], ["buildInputs", 60, 3], ["preBuild", 65, 3], ["postInstall", 71, 3], ["preFixup", 77, 3], ["passthru", 82, 3], ["meta", 87, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,14 +16,14 @@ export default nix.lambda((args) => (() => {
   const libayatana_appindicator = nix.arg($, "libayatana-appindicator");
   const version = "1.9.3";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "GopeedLab",
       repo: "gopeed",
       tag: nix.thunk(() => nix.str`v${version}`),
       hash: "sha256-a/q02UKNa2324XK5f0gF6Wh4qmBmPDcYA35VWup54/4=",
     }))));
   const metaCommon = nix.thunk(() => ({
-    [nix.POS]: pos$2,
+    [nix.POS]: $pos[1],
     description: "Modern download manager",
     homepage: "https://github.com/GopeedLab/gopeed",
     license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
@@ -36,7 +31,7 @@ export default nix.lambda((args) => (() => {
     platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
   }));
   const libgopeed = nix.thunk(() => nix.app(buildGoModule, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       version: version,
       src: src,
       pname: "libgopeed",
@@ -52,7 +47,7 @@ runHook postBuild
       meta: metaCommon,
     }))));
   return nix.app(nix.sel(flutter338, "buildFlutterApplication"), nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       version: version,
       src: src,
       pname: "gopeed",
@@ -68,11 +63,11 @@ cp ${libgopeed}/bin/host assets/exec/host
       postInstall: "install -Dm644 linux/assets/com.gopeed.Gopeed.desktop $out/share/applications/gopeed.desktop\ninstall -Dm644 assets/icon/icon_512.png $out/share/icons/hicolor/512x512/apps/com.gopeed.Gopeed.png\ninstall -Dm644 assets/icon/icon_1024.png $out/share/icons/hicolor/1024x1024/apps/com.gopeed.Gopeed.png\n",
       preFixup: "patchelf --add-needed libgopeed.so \\\n  --add-rpath $out/app/gopeed/lib $out/app/gopeed/gopeed\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         libgopeed: libgopeed,
         updateScript: nix.path(here, "./update.sh"),
       })),
-      meta: nix.thunk(() => nix.update(metaCommon, { [nix.POS]: pos$5, mainProgram: "gopeed" })),
+      meta: nix.thunk(() => nix.update(metaCommon, { [nix.POS]: $pos[4], mainProgram: "gopeed" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

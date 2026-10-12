@@ -2,11 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]], [["url", 24, 7], ["hash", 25, 7]], [["description", 43, 5], ["homepage", 44, 5], ["changelog", 45, 5], ["license", 46, 5], ["maintainers", 47, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["patches", 22, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 34, 3], ["cmakeFlags", 36, 3], ["meta", 42, 3]]]);
 const formals$1 = { args: { stdenv: false, fetchFromGitHub: false, cmake: false, "extra-cmake-modules": false, wrapQtAppsHook: false, kwin: false, lib: false, fetchpatch2: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["url", 24, 7], ["hash", 25, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 43, 5], ["homepage", 44, 5], ["changelog", 45, 5], ["license", 46, 5], ["maintainers", 47, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["patches", 22, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 34, 3], ["cmakeFlags", 36, 3], ["meta", 42, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = "sierra-breeze-enhanced";
       const version = "2.1.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "kupiqu",
           repo: "SierraBreezeEnhanced",
           rev: nix.thunk(() => (nix.asBool(nix.eq(version, "2.1.1")) ? "V.2.1.1" : nix.str`V${version}`)),
@@ -30,7 +27,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/kupiqu/SierraBreezeEnhanced/pull/155.patch",
             hash: "sha256-taj7AqiewiUU4wOTKPgfvua0rDuQ8ssH+/maxz/A3G8=",
           })))),
@@ -43,7 +40,7 @@ export default nix.lambda((args) => (() => {
         "-DKDE_INSTALL_USE_QT_SYS_PATHS=ON",
       ]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "OSX-like window decoration for KDE Plasma written in C++",
         homepage: "https://github.com/kupiqu/SierraBreezeEnhanced",
         changelog: nix.thunk(() => nix.str`https://github.com/kupiqu/SierraBreezeEnhanced/releases/tag/V${version}`),
@@ -54,7 +51,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

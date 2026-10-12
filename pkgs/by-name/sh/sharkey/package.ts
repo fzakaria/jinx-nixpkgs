@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["nodejs-slim", 27, 34]], [["domain", 34, 5], ["owner", 35, 5], ["repo", 36, 5], ["tag", 37, 5], ["hash", 38, 5], ["fetchSubmodules", 39, 5]], [["pname", 43, 26], ["version", 43, 32], ["src", 43, 40], ["pnpm", 44, 5], ["fetcherVersion", 45, 5], ["hash", 46, 5]], [["sharkey", 168, 18]], [["tests", 168, 12], ["updateScript", 170, 12]], [["description", 173, 5], ["homepage", 174, 5], ["changelog", 175, 5], ["license", 176, 5], ["platforms", 177, 5], ["mainProgram", 178, 5], ["maintainers", 179, 5]], [["pname", 30, 3], ["version", 31, 3], ["src", 33, 3], ["pnpmDeps", 42, 3], ["nativeBuildInputs", 49, 3], ["buildInputs", 62, 3], ["buildPhase", 72, 3], ["installPhase", 104, 3], ["fixupPhase", 156, 3], ["passthru", 168, 3], ["meta", 172, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitLab: false, nixosTests: false, bash: false, cairo: false, cctools: false, "ffmpeg-headless": false, giflib: false, jemalloc: false, makeWrapper: false, "nix-update-script": false, "nodejs-slim_22": false, pango: false, pixman: false, "pkg-config": false, pnpm_10_34_0: false, fetchPnpmDeps: false, pnpmConfigHook: false, python3: false, vips: false, xcbuild: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["nodejs-slim", 27, 34]]);
-const pos$2 = nix.positions(here + "/package.nix", [["domain", 34, 5], ["owner", 35, 5], ["repo", 36, 5], ["tag", 37, 5], ["hash", 38, 5], ["fetchSubmodules", 39, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 43, 26], ["version", 43, 32], ["src", 43, 40], ["pnpm", 44, 5], ["fetcherVersion", 45, 5], ["hash", 46, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["sharkey", 168, 18]]);
-const pos$5 = nix.positions(here + "/package.nix", [["tests", 168, 12], ["updateScript", 170, 12]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 173, 5], ["homepage", 174, 5], ["changelog", 175, 5], ["license", 176, 5], ["platforms", 177, 5], ["mainProgram", 178, 5], ["maintainers", 179, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 30, 3], ["version", 31, 3], ["src", 33, 3], ["pnpmDeps", 42, 3], ["nativeBuildInputs", 49, 3], ["buildInputs", 62, 3], ["buildPhase", 72, 3], ["installPhase", 104, 3], ["fixupPhase", 156, 3], ["passthru", 168, 3], ["meta", 172, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -35,13 +29,13 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const vips = nix.arg($, "vips");
   const xcbuild = nix.arg($, "xcbuild");
-  const pnpm = nix.thunk(() => nix.app(nix.sel(pnpm_10_34_0, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, "nodejs-slim": nodejs_slim_22 }))));
+  const pnpm = nix.thunk(() => nix.app(nix.sel(pnpm_10_34_0, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], "nodejs-slim": nodejs_slim_22 }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "sharkey",
       version: "2025.4.7",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           domain: "activitypub.software",
           owner: "TransFem-org",
           repo: "Sharkey",
@@ -50,7 +44,7 @@ export default nix.lambda((args) => (() => {
           fetchSubmodules: true,
         })))),
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -133,12 +127,12 @@ runHook postInstall
       })()),
       fixupPhase: "runHook preFixup\n\n# cleanup dangling symlinks in node_modules, referencing workspace packages we don't include in the final output\nrm -r $out/sharkey/node_modules/.pnpm/node_modules/{sw,misskey-js-type-generator,frontend-shared}\n\n# remove packageManager line from package.json; tries to download a different pnpm version into $HOME otherwise\nsed -i -e '9d' $out/sharkey/package.json\n\nrunHook postFixup\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$4, sharkey: nix.thunk(() => nix.sel(nixosTests, "sharkey")) })),
+        [nix.POS]: $pos[4],
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[3], sharkey: nix.thunk(() => nix.sel(nixosTests, "sharkey")) })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Sharkish microblogging platform",
         homepage: "https://joinsharkey.org",
         changelog: nix.thunk(() => nix.str`https://activitypub.software/TransFem-org/Sharkey/-/releases/${nix.sel(finalAttrs, "version")}`),

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 24, 9], ["sha256", 25, 9]], [["url", 29, 9], ["sha256", 30, 9]], [["shortName", 102, 7], ["fullName", 103, 7], ["url", 104, 7], ["free", 105, 7]], [["description", 97, 5], ["homepage", 98, 5], ["mainProgram", 99, 5], ["sourceProvenance", 100, 5], ["license", 101, 5], ["maintainers", 107, 5], ["platforms", 108, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["postUnpack", 36, 3], ["nativeBuildInputs", 47, 3], ["buildInputs", 52, 3], ["installPhase", 57, 3], ["postFixup", 84, 3], ["dontBuild", 93, 3], ["dontStrip", 94, 3], ["meta", 96, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, file: false, fetchurl: false, makeWrapper: false, autoPatchelfHook: false, jsoncpp: false, libpulseaudio: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 24, 9], ["sha256", 25, 9]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 29, 9], ["sha256", 30, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["shortName", 102, 7], ["fullName", 103, 7], ["url", 104, 7], ["free", 105, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 97, 5], ["homepage", 98, 5], ["mainProgram", 99, 5], ["sourceProvenance", 100, 5], ["license", 101, 5], ["maintainers", 107, 5], ["platforms", 108, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["postUnpack", 36, 3], ["nativeBuildInputs", 47, 3], ["buildInputs", 52, 3], ["installPhase", 57, 3], ["postFixup", 84, 3], ["dontBuild", 93, 3], ["dontStrip", 94, 3], ["meta", 96, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,11 +23,11 @@ export default nix.lambda((args) => (() => {
       const pname = "nomachine-client";
       const version = nix.thunk(() => nix.str`${versionMajor}.${versionMinor}`);
       const src = nix.thunk(() => (nix.asBool(nix.eq(nix.sel(stdenv, "hostPlatform", "system"), "x86_64-linux")) ? nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://download.nomachine.com/download/${versionMajor}/Linux/nomachine_${version}_${versionBuild_x86_64}_x86_64.tar.gz`),
           sha256: "sha256-8f4ZL3Ko5VunojXLvTS9P3oB+ZVCSYIA0GIjM8VpUO4=",
         }))) : (nix.asBool(nix.eq(nix.sel(stdenv, "hostPlatform", "system"), "i686-linux")) ? nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: nix.thunk(() => nix.str`https://download.nomachine.com/download/${versionMajor}/Linux/nomachine_${version}_${versionBuild_i686}_i686.tar.gz`),
           sha256: "sha256-Yr0bw7PW34Nga8vj3TxdFFyDiVVnHJ6lBdNskOyQ8m8=",
         }))) : nix.builtins.throw(nix.thunk(() => nix.str`NoMachine client is not supported on ${nix.sel(stdenv, "hostPlatform", "system")}`)))));
@@ -43,7 +39,7 @@ export default nix.lambda((args) => (() => {
       const dontBuild = true;
       const dontStrip = true;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "NoMachine remote desktop client (nxplayer)",
         homepage: "https://www.nomachine.com/",
         mainProgram: "nxplayer",
@@ -52,7 +48,7 @@ export default nix.lambda((args) => (() => {
           return [nix.thunk(() => nix.lookup(w, "binaryNativeCode"))];
         })()),
         license: nix.thunk(() => nix.app(nix.sel(lib, "licenses", "mkLicense"), nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             shortName: "noMachine",
             fullName: "NoMachine End User License Agreement, version 9",
             url: "https://www.nomachine.com/licensing/nomachine-end-user-license-agreement",
@@ -65,7 +61,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => ["x86_64-linux", "i686-linux"]),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         src,

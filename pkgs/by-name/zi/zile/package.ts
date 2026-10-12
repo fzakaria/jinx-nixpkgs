@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 20, 5], ["hash", 21, 5]], [["NIX_CFLAGS_COMPILE", 43, 7]], [["homepage", 49, 5], ["changelog", 50, 5], ["description", 51, 5], ["longDescription", 52, 5], ["license", 80, 5], ["maintainers", 81, 5], ["platforms", 82, 5], ["mainProgram", 83, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["buildInputs", 24, 3], ["nativeBuildInputs", 30, 3], ["doCheck", 41, 3], ["env", 43, 3], ["gl_cv_func_fstatat_zero_flag", 46, 3], ["meta", 48, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, boehmgc: false, glib: false, help2man: false, libgee: false, ncurses: false, perl: false, "pkg-config": false, vala: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 43, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 49, 5], ["changelog", 50, 5], ["description", 51, 5], ["longDescription", 52, 5], ["license", 80, 5], ["maintainers", 81, 5], ["platforms", 82, 5], ["mainProgram", 83, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["buildInputs", 24, 3], ["nativeBuildInputs", 30, 3], ["doCheck", 41, 3], ["env", 43, 3], ["gl_cv_func_fstatat_zero_flag", 46, 3], ["meta", 48, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const vala = nix.arg($, "vala");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "zile",
       version: "2.6.4",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnu/zile/zile-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-1dRLhctJBkPQcH4aIYbzoymYwvbquqlIFHm2XK7uV8A=",
         })))),
@@ -34,12 +31,12 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => nix.concat([perl, pkg_config, vala], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.eq(nix.sel(stdenv, "hostPlatform"), nix.sel(stdenv, "buildPlatform"))), help2man))),
       doCheck: false,
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: "-Wno-error=incompatible-pointer-types",
       })),
       gl_cv_func_fstatat_zero_flag: "yes",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://www.gnu.org/software/zile/",
         changelog: nix.thunk(() => nix.str`https://git.savannah.gnu.org/cgit/zile.git/plain/NEWS?h=v${nix.sel(finalAttrs, "version")}`),
         description: "Implements Lua Editors",

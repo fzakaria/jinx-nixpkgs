@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["self", 10, 5]], [["immich", 86, 28]], [["tests", 85, 5], ["immich-models", 88, 5]], [["description", 92, 5], ["homepage", 93, 5], ["mainProgram", 94, 5], ["license", 95, 27], ["maintainers", 95, 35], ["platforms", 95, 47]], [["pname", 14, 3], ["version", 15, 20], ["src", 16, 3], ["pyproject", 17, 3], ["__structuredAttrs", 19, 3], ["pythonRelaxDeps", 21, 3], ["build-system", 25, 3], ["dependencies", 29, 3], ["doCheck", 55, 3], ["nativeCheckInputs", 57, 3], ["postInstall", 64, 3], ["passthru", 84, 3], ["meta", 91, 3]]]);
 const formals$1 = { args: { lib: false, immich: false, python3: false, nixosTests: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["self", 10, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["immich", 86, 28]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 85, 5], ["immich-models", 88, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 92, 5], ["homepage", 93, 5], ["mainProgram", 94, 5], ["license", 95, 27], ["maintainers", 95, 35], ["platforms", 95, 47]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 20], ["src", 16, 3], ["pyproject", 17, 3], ["__structuredAttrs", 19, 3], ["pythonRelaxDeps", 21, 3], ["build-system", 25, 3], ["dependencies", 29, 3], ["doCheck", 55, 3], ["nativeCheckInputs", 57, 3], ["postInstall", 64, 3], ["passthru", 84, 3], ["meta", 91, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,9 +12,9 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const nixosTests = nix.arg($, "nixosTests");
   const stdenv = nix.arg($, "stdenv");
-  const python = nix.thunk(() => nix.app(nix.sel(python3, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, self: python }))));
+  const python = nix.thunk(() => nix.app(nix.sel(python3, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], self: python }))));
   return nix.app(nix.sel(python, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "immich-machine-learning",
       version: nix.thunk(() => nix.attr(immich, "version")),
       src: nix.thunk(() => nix.str`${nix.sel(immich, "src")}/machine-learning`),
@@ -80,14 +76,14 @@ makeWrapper ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(python, "p
     --log-config-json $out/share/immich/log_conf.json"
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$2, immich: nix.thunk(() => nix.attr(nixosTests, "immich")) })),
+        [nix.POS]: $pos[2],
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[1], immich: nix.thunk(() => nix.attr(nixosTests, "immich")) })),
         "immich-models": nix.thunk(() => nix.app(nix.sel(python, "pkgs", "callPackage"), nix.path(here, "./immich-models.nix"), nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(immich, "meta"));
         return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: nix.thunk(() => nix.str`${nix.sel(immich, "meta", "description")} (machine learning component)`),
         homepage: "https://github.com/immich-app/immich/tree/main/machine-learning",
         mainProgram: "machine-learning",

@@ -2,47 +2,27 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/e2e.nix", [[["systemPackages", 13, 21]], [["DefaultDeviceTimeoutSec", 47, 34]], [["Manager", 47, 26]], [["settings", 47, 17]], [["kernelModules", 48, 21]], [["initrd", 48, 14]], [["environment", 13, 9], ["systemd", 47, 9], ["boot", 48, 9]], [["machine", 10, 5]], [["enable", 66, 27]], [["enable", 75, 24]], [["xserver", 75, 16]], [["user", 76, 40]], [["auto", 76, 35]], [["displayManager", 76, 20]], [["memorySize", 77, 22]], [["systemPackages", 78, 19]], [["imports", 70, 7], ["services", 75, 7], ["test-support", 76, 7], ["virtualisation", 77, 7], ["environment", 78, 7]], [["machine", 67, 21]], [["sshBackdoor", 66, 15], ["nodes", 67, 15]], [["maintainers", 84, 8]], [["name", 7, 3], ["nodes", 9, 3], ["testScript", 52, 3], ["interactive", 66, 3], ["meta", 84, 3]]]);
 const formals$1 = { args: { lib: false, pkgs: false }, ellipsis: true };
 const formals$2 = { args: {  }, ellipsis: true };
-const pos$1 = nix.positions(here + "/e2e.nix", [["systemPackages", 13, 21]]);
-const pos$2 = nix.positions(here + "/e2e.nix", [["DefaultDeviceTimeoutSec", 47, 34]]);
-const pos$3 = nix.positions(here + "/e2e.nix", [["Manager", 47, 26]]);
-const pos$4 = nix.positions(here + "/e2e.nix", [["settings", 47, 17]]);
-const pos$5 = nix.positions(here + "/e2e.nix", [["kernelModules", 48, 21]]);
-const pos$6 = nix.positions(here + "/e2e.nix", [["initrd", 48, 14]]);
-const pos$7 = nix.positions(here + "/e2e.nix", [["environment", 13, 9], ["systemd", 47, 9], ["boot", 48, 9]]);
-const pos$8 = nix.positions(here + "/e2e.nix", [["machine", 10, 5]]);
 const formals$3 = { args: { nodes: false }, ellipsis: true };
-const pos$9 = nix.positions(here + "/e2e.nix", [["enable", 66, 27]]);
 const formals$4 = { args: { config: false }, ellipsis: true };
-const pos$10 = nix.positions(here + "/e2e.nix", [["enable", 75, 24]]);
-const pos$11 = nix.positions(here + "/e2e.nix", [["xserver", 75, 16]]);
-const pos$12 = nix.positions(here + "/e2e.nix", [["user", 76, 40]]);
-const pos$13 = nix.positions(here + "/e2e.nix", [["auto", 76, 35]]);
-const pos$14 = nix.positions(here + "/e2e.nix", [["displayManager", 76, 20]]);
-const pos$15 = nix.positions(here + "/e2e.nix", [["memorySize", 77, 22]]);
-const pos$16 = nix.positions(here + "/e2e.nix", [["systemPackages", 78, 19]]);
-const pos$17 = nix.positions(here + "/e2e.nix", [["imports", 70, 7], ["services", 75, 7], ["test-support", 76, 7], ["virtualisation", 77, 7], ["environment", 78, 7]]);
-const pos$18 = nix.positions(here + "/e2e.nix", [["machine", 67, 21]]);
-const pos$19 = nix.positions(here + "/e2e.nix", [["sshBackdoor", 66, 15], ["nodes", 67, 15]]);
-const pos$20 = nix.positions(here + "/e2e.nix", [["maintainers", 84, 8]]);
-const pos$21 = nix.positions(here + "/e2e.nix", [["name", 7, 3], ["nodes", 9, 3], ["testScript", 52, 3], ["interactive", 66, 3], ["meta", 84, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   return {
-    [nix.POS]: pos$21,
+    [nix.POS]: $pos[20],
     name: "PdfDing e2e tests",
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             systemPackages: nix.thunk(() => [
               nix.thunk(() => nix.app(nix.sel(pkgs, "writeShellScriptBin"), "tests_e2e", nix.thunk(() => (() => {
                   const pythonPath = nix.thunk(() => (() => {
@@ -69,18 +49,18 @@ python -m pytest pdfding/e2e \\
             ]),
           })),
           systemd: nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             settings: nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               Manager: nix.thunk(() => ({
-                [nix.POS]: pos$2,
+                [nix.POS]: $pos[1],
                 DefaultDeviceTimeoutSec: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), 1800n)),
               })),
             })),
           })),
           boot: nix.thunk(() => ({
-            [nix.POS]: pos$6,
-            initrd: nix.thunk(() => ({ [nix.POS]: pos$5, kernelModules: nix.thunk(() => ["virtio_console"]) })),
+            [nix.POS]: $pos[5],
+            initrd: nix.thunk(() => ({ [nix.POS]: $pos[4], kernelModules: nix.thunk(() => ["virtio_console"]) })),
           })),
         };
       })(), formals$2),
@@ -91,36 +71,36 @@ python -m pytest pdfding/e2e \\
       return "# start\nstart_all()\nmachine.wait_for_unit(\"multi-user.target\")\n\nmachine.succeed(\"tests_e2e | systemd-cat\")\n";
     })(), formals$3),
     interactive: nix.thunk(() => ({
-      [nix.POS]: pos$19,
-      sshBackdoor: nix.thunk(() => ({ [nix.POS]: pos$9, enable: true })),
+      [nix.POS]: $pos[18],
+      sshBackdoor: nix.thunk(() => ({ [nix.POS]: $pos[8], enable: true })),
       nodes: nix.thunk(() => ({
-        [nix.POS]: pos$18,
+        [nix.POS]: $pos[17],
         machine: nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$4);
           const config = nix.arg($_1, "config");
           return {
-            [nix.POS]: pos$17,
+            [nix.POS]: $pos[16],
             imports: nix.thunk(() => [
               nix.path(here, "./common/x11.nix"),
               nix.path(here, "./common/user-account.nix"),
             ]),
             services: nix.thunk(() => ({
-              [nix.POS]: pos$11,
-              xserver: nix.thunk(() => ({ [nix.POS]: pos$10, enable: true })),
+              [nix.POS]: $pos[10],
+              xserver: nix.thunk(() => ({ [nix.POS]: $pos[9], enable: true })),
             })),
             "test-support": nix.thunk(() => ({
-              [nix.POS]: pos$14,
+              [nix.POS]: $pos[13],
               displayManager: nix.thunk(() => ({
-                [nix.POS]: pos$13,
-                auto: nix.thunk(() => ({ [nix.POS]: pos$12, user: "alice" })),
+                [nix.POS]: $pos[12],
+                auto: nix.thunk(() => ({ [nix.POS]: $pos[11], user: "alice" })),
               })),
             })),
             virtualisation: nix.thunk(() => ({
-              [nix.POS]: pos$15,
+              [nix.POS]: $pos[14],
               memorySize: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), 8192n)),
             })),
             environment: nix.thunk(() => ({
-              [nix.POS]: pos$16,
+              [nix.POS]: $pos[15],
               systemPackages: nix.thunk(() => (() => {
                 const w = nix.withScope(pkgs, null);
                 return [nix.thunk(() => nix.lookup(w, "htop"))];
@@ -131,7 +111,7 @@ python -m pytest pdfding/e2e \\
       })),
     })),
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$20,
+      [nix.POS]: $pos[19],
       maintainers: nix.thunk(() => nix.sel(lib, "teams", "ngi", "members")),
     })),
   };

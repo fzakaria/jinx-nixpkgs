@@ -2,9 +2,8 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/make-tarball.nix", [[["pkgs", 6, 60]], [["name", 10, 3], ["src", 11, 3], ["officialRelease", 13, 11], ["version", 14, 3], ["versionSuffix", 15, 3], ["buildInputs", 22, 3], ["configurePhase", 30, 3], ["dontUnpack", 39, 3], ["dontBuild", 41, 3], ["doCheck", 43, 3], ["checkPhase", 45, 3], ["distPhase", 65, 3]]]);
 const formals$1 = { args: { nixpkgs: false, officialRelease: false, pkgs: true, nix: true, "lib-tests": true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/make-tarball.nix", [["pkgs", 6, 60]]);
-const pos$2 = nix.positions(here + "/make-tarball.nix", [["name", 10, 3], ["src", 11, 3], ["officialRelease", 13, 11], ["version", 14, 3], ["versionSuffix", 15, 3], ["buildInputs", 22, 3], ["configurePhase", 30, 3], ["dontUnpack", 39, 3], ["dontBuild", 41, 3], ["doCheck", 43, 3], ["checkPhase", 45, 3], ["distPhase", 65, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -12,9 +11,9 @@ export default nix.lambda((args) => (() => {
   const officialRelease = nix.arg($, "officialRelease");
   const pkgs = nix.argOr($, "pkgs", () => nix.app(nix.builtins.import(nix.thunk(() => nix.sel(nixpkgs, "outPath"))), nix.thunk(() => ({}))));
   const nix$ = nix.argOr($, "nix", () => nix.sel(pkgs, "nix"));
-  const lib_tests = nix.argOr($, "lib-tests", () => nix.app(nix.builtins.import(nix.path(here, "../../lib/tests/release.nix")), nix.thunk(() => ({ [nix.POS]: pos$1, pkgs: pkgs }))));
+  const lib_tests = nix.argOr($, "lib-tests", () => nix.app(nix.builtins.import(nix.path(here, "../../lib/tests/release.nix")), nix.thunk(() => ({ [nix.POS]: $pos[0], pkgs: pkgs }))));
   return nix.app(nix.sel(pkgs, "releaseTools", "sourceTarball"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       name: "nixpkgs-tarball",
       src: nixpkgs,
       officialRelease: officialRelease,

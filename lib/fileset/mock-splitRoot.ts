@@ -2,14 +2,12 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
-const pos$1 = nix.positions(here + "/mock-splitRoot.nix", [["root", 26, 17], ["subpath", 26, 22]]);
-const pos$2 = nix.positions(here + "/mock-splitRoot.nix", [["splitRoot", 11, 5]]);
-const pos$3 = nix.positions(here + "/mock-splitRoot.nix", [["path", 10, 3]]);
+const $pos = nix.positions(here + "/mock-splitRoot.nix", [[["root", 26, 17], ["subpath", 26, 22]], [["splitRoot", 11, 5]], [["path", 10, 3]]]);
 
 export default (self) => (super$) => ({
-  [nix.POS]: pos$3,
+  [nix.POS]: $pos[2],
   path: nix.thunk(() => nix.update(nix.sel(super$, "path"), {
-    [nix.POS]: pos$2,
+    [nix.POS]: $pos[1],
     splitRoot: (path) => (() => {
       const parts = nix.thunk(() => nix.app(nix.sel(super$, "path", "splitRoot"), path));
       const components = nix.thunk(() => nix.app(nix.sel(self, "path", "subpath", "components"), nix.thunk(() => nix.sel(parts, "subpath"))));
@@ -17,7 +15,7 @@ export default (self) => (super$) => ({
       const rootIndex = nix.thunk(() => nix.sub(count, nix.app(nix.sel(self, "lists", "findFirstIndex"), (component) => nix.eq(component, "mock-root"), nix.thunk(() => nix.app(nix.sel(self, "length"), components)), nix.thunk(() => nix.app(nix.sel(self, "reverseList"), components)))));
       const root = nix.thunk(() => nix.app(nix.sel(self, "path", "append"), nix.thunk(() => nix.sel(parts, "root")), nix.thunk(() => nix.app(nix.sel(self, "path", "subpath", "join"), nix.thunk(() => nix.app(nix.sel(self, "take"), rootIndex, components))))));
       const subpath = nix.thunk(() => nix.app(nix.sel(self, "path", "subpath", "join"), nix.thunk(() => nix.app(nix.sel(self, "drop"), rootIndex, components))));
-      return { [nix.POS]: pos$1, root: root, subpath: subpath };
+      return { [nix.POS]: $pos[0], root: root, subpath: subpath };
     })(),
   })),
 });

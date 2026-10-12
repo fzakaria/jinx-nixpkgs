@@ -2,12 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/tarsum.nix", [[["CGO_ENABLED", 18, 5], ["GOFLAGS", 19, 5], ["GO111MODULE", 20, 5]], [["dockerTools", 46, 7]], [["tests", 45, 5]], [["platforms", 50, 8], ["mainProgram", 51, 8]], [["pname", 9, 3], ["version", 10, 20], ["nativeBuildInputs", 12, 3], ["disallowedReferences", 13, 3], ["dontUnpack", 15, 3], ["env", 17, 3], ["buildPhase", 23, 3], ["installPhase", 37, 3], ["passthru", 44, 3], ["meta", 50, 3]]]);
 const formals$1 = { args: { stdenv: false, go: false, docker: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/tarsum.nix", [["CGO_ENABLED", 18, 5], ["GOFLAGS", 19, 5], ["GO111MODULE", 20, 5]]);
-const pos$2 = nix.positions(here + "/tarsum.nix", [["dockerTools", 46, 7]]);
-const pos$3 = nix.positions(here + "/tarsum.nix", [["tests", 45, 5]]);
-const pos$4 = nix.positions(here + "/tarsum.nix", [["platforms", 50, 8], ["mainProgram", 51, 8]]);
-const pos$5 = nix.positions(here + "/tarsum.nix", [["pname", 9, 3], ["version", 10, 20], ["nativeBuildInputs", 12, 3], ["disallowedReferences", 13, 3], ["dontUnpack", 15, 3], ["env", 17, 3], ["buildPhase", 23, 3], ["installPhase", 37, 3], ["passthru", 44, 3], ["meta", 50, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,13 +12,18 @@ export default nix.lambda((args) => (() => {
   const docker = nix.arg($, "docker");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "tarsum",
       version: nix.thunk(() => nix.attr(docker, "version")),
       nativeBuildInputs: nix.thunk(() => [go]),
       disallowedReferences: nix.thunk(() => [go]),
       dontUnpack: true,
-      env: nix.thunk(() => ({ [nix.POS]: pos$1, CGO_ENABLED: 0n, GOFLAGS: "-trimpath", GO111MODULE: "off" })),
+      env: nix.thunk(() => ({
+        [nix.POS]: $pos[0],
+        CGO_ENABLED: 0n,
+        GOFLAGS: "-trimpath",
+        GO111MODULE: "off",
+      })),
       buildPhase: nix.thunk(() => nix.str`runHook preBuild
 mkdir tarsum
 cd tarsum
@@ -37,14 +38,14 @@ runHook postBuild
 `),
       installPhase: "runHook preInstall\nmkdir -p $out/bin\ncp tarsum $out/bin/\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           dockerTools: nix.thunk(() => nix.sel(nixosTests, "docker-tools")),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         platforms: nix.thunk(() => nix.sel(go, "meta", "platforms")),
         mainProgram: "tarsum",
       })),

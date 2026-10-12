@@ -2,32 +2,25 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/fish.nix", [[["enable", 8, 21]], [["fish", 8, 16]], [["systemPackages", 9, 19]], [["enable", 17, 25]], [["man", 17, 21]], [["programs", 8, 7], ["environment", 9, 7], ["documentation", 17, 7]], [["machine", 4, 9]], [["name", 2, 3], ["nodes", 4, 3], ["testScript", 20, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/fish.nix", [["enable", 8, 21]]);
-const pos$2 = nix.positions(here + "/fish.nix", [["fish", 8, 16]]);
-const pos$3 = nix.positions(here + "/fish.nix", [["systemPackages", 9, 19]]);
-const pos$4 = nix.positions(here + "/fish.nix", [["enable", 17, 25]]);
-const pos$5 = nix.positions(here + "/fish.nix", [["man", 17, 21]]);
-const pos$6 = nix.positions(here + "/fish.nix", [["programs", 8, 7], ["environment", 9, 7], ["documentation", 17, 7]]);
-const pos$7 = nix.positions(here + "/fish.nix", [["machine", 4, 9]]);
-const pos$8 = nix.positions(here + "/fish.nix", [["name", 2, 3], ["nodes", 4, 3], ["testScript", 20, 3]]);
 
 export default nix.thunk(() => ({
-  [nix.POS]: pos$8,
+  [nix.POS]: $pos[7],
   name: "fish",
   nodes: nix.thunk(() => ({
-    [nix.POS]: pos$7,
+    [nix.POS]: $pos[6],
     machine: nix.lambda((args) => (() => {
       const $ = nix.formals(args, formals$1);
       const pkgs = nix.arg($, "pkgs");
       return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         programs: nix.thunk(() => ({
-          [nix.POS]: pos$2,
-          fish: nix.thunk(() => ({ [nix.POS]: pos$1, enable: true })),
+          [nix.POS]: $pos[1],
+          fish: nix.thunk(() => ({ [nix.POS]: $pos[0], enable: true })),
         })),
         environment: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           systemPackages: nix.thunk(() => (() => {
             const w = nix.withScope(pkgs, null);
             return [
@@ -37,8 +30,8 @@ export default nix.thunk(() => ({
           })()),
         })),
         documentation: nix.thunk(() => ({
-          [nix.POS]: pos$5,
-          man: nix.thunk(() => ({ [nix.POS]: pos$4, enable: false })),
+          [nix.POS]: $pos[4],
+          man: nix.thunk(() => ({ [nix.POS]: $pos[3], enable: false })),
         })),
       };
     })(), formals$1),

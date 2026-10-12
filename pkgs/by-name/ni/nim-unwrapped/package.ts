@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 20, 5], ["hash", 21, 5]], [["pname", 49, 9], ["version", 50, 30], ["src", 50, 38], ["preBuild", 50, 42], ["enableParallelBuilding", 51, 9], ["buildPhase", 52, 9], ["installPhase", 57, 9]], [["nimHost", 103, 5], ["nimTarget", 104, 5]], [["description", 108, 5], ["homepage", 109, 5], ["license", 110, 5], ["mainProgram", 111, 5], ["teams", 112, 5]], [["pname", 15, 3], ["version", 16, 3], ["strictDeps", 17, 3], ["src", 19, 3], ["buildInputs", 24, 3], ["patches", 32, 3], ["configurePhase", 46, 3], ["kochArgs", 71, 3], ["preBuild", 77, 3], ["buildPhase", 82, 3], ["installPhase", 92, 3], ["passthru", 102, 3], ["meta", 107, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, boehmgc: false, openssl: false, pcre: false, readline: false, sqlite: false, darwin: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 49, 9], ["version", 50, 30], ["src", 50, 38], ["preBuild", 50, 42], ["enableParallelBuilding", 51, 9], ["buildPhase", 52, 9], ["installPhase", 57, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["nimHost", 103, 5], ["nimTarget", 104, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 108, 5], ["homepage", 109, 5], ["license", 110, 5], ["mainProgram", 111, 5], ["teams", 112, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["strictDeps", 17, 3], ["src", 19, 3], ["buildInputs", 24, 3], ["patches", 32, 3], ["configurePhase", 46, 3], ["kochArgs", 71, 3], ["preBuild", 77, 3], ["buildPhase", 82, 3], ["installPhase", 92, 3], ["passthru", 102, 3], ["meta", 107, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const sqlite = nix.arg($, "sqlite");
   const darwin = nix.arg($, "darwin");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "nim-unwrapped",
       version: "2.2.12",
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://nim-lang.org/download/nim-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-Jjmgal6np/z1ffHn4e9NGyvuWMesm9ANvSqlvqHlpWo=",
         })))),
@@ -39,7 +35,7 @@ export default nix.lambda((args) => (() => {
       ]),
       configurePhase: nix.thunk(() => (() => {
         const bootstrapCompiler = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             pname: "nim-bootstrap",
             version: nix.thunk(() => nix.attr(finalAttrs, "version")),
             src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -63,12 +59,12 @@ runHook postConfigure
       buildPhase: "runHook preBuild\nlocal HOME=$TMPDIR\n./bin/nim c --parallelBuild:$NIX_BUILD_CORES koch\n./koch boot $kochArgs --parallelBuild:$NIX_BUILD_CORES\n./koch toolsNoExternal $kochArgs --parallelBuild:$NIX_BUILD_CORES\n./bin/nim js -d:release tools/dochack/dochack.nim\nrunHook postBuild\n",
       installPhase: "runHook preInstall\ninstall -Dt $out/bin bin/*\nln -sf $out/nim/bin/nim $out/bin/nim\nln -sf $out/nim/lib $out/lib\n./install.sh $out\ncp -a tools dist $out/nim/\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         nimHost: nix.thunk(() => nix.app(nix.sel(lib, "warn"), "nimHost is deprecated, please use stdenv.hostPlatform.nim.os instead.", nix.thunk(() => nix.sel(stdenv, "hostPlatform", "nim", "os")))),
         nimTarget: nix.thunk(() => nix.app(nix.sel(lib, "warn"), "nimTarget is deprecated, please use stdenv.hostPlatform.nim.cpu instead.", nix.thunk(() => nix.sel(stdenv, "hostPlatform", "nim", "cpu")))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Statically typed, imperative programming language",
         homepage: "https://nim-lang.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

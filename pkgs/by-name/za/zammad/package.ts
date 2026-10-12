@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["src", 29, 5], ["patches", 30, 5], ["postPatch", 34, 5]], [["name", 43, 5], ["version", 44, 13], ["ruby", 48, 13], ["gemdir", 50, 5], ["gemset", 51, 5], ["groups", 52, 5]], [["RAILS_ENV", 83, 7]], [["pname", 86, 13], ["src", 86, 19], ["pnpm", 87, 5], ["fetcherVersion", 89, 5], ["hash", 90, 5]], [["zammad", 132, 28]], [["rubyEnv", 125, 13], ["updateScript", 126, 5], ["tests", 131, 5]], [["changelog", 137, 5], ["description", 138, 5], ["homepage", 139, 5], ["license", 140, 5], ["platforms", 141, 5], ["maintainers", 145, 5]], [["pname", 65, 11], ["version", 65, 17], ["src", 65, 25], ["buildInputs", 67, 3], ["nativeBuildInputs", 73, 3], ["env", 83, 3], ["pnpmDeps", 85, 3], ["buildPhase", 93, 3], ["installPhase", 113, 3], ["passthru", 124, 3], ["meta", 136, 3]]]);
 const formals$1 = { args: { stdenvNoCC: false, lib: false, nixosTests: false, fetchFromGitHub: false, fetchpatch: false, applyPatches: false, bundlerEnv: false, callPackage: false, procps: false, ruby: false, postgresql: false, jq: false, moreutils: false, nodejs: false, pnpm_10: false, fetchPnpmDeps: false, pnpmConfigHook: false, cacert: false, valkey: false, dataDir: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["src", 29, 5], ["patches", 30, 5], ["postPatch", 34, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 43, 5], ["version", 44, 13], ["ruby", 48, 13], ["gemdir", 50, 5], ["gemset", 51, 5], ["groups", 52, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["RAILS_ENV", 83, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 86, 13], ["src", 86, 19], ["pnpm", 87, 5], ["fetcherVersion", 89, 5], ["hash", 90, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["zammad", 132, 28]]);
-const pos$6 = nix.positions(here + "/package.nix", [["rubyEnv", 125, 13], ["updateScript", 126, 5], ["tests", 131, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["changelog", 137, 5], ["description", 138, 5], ["homepage", 139, 5], ["license", 140, 5], ["platforms", 141, 5], ["maintainers", 145, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 65, 11], ["version", 65, 17], ["src", 65, 25], ["buildInputs", 67, 3], ["nativeBuildInputs", 73, 3], ["env", 83, 3], ["pnpmDeps", 85, 3], ["buildPhase", 93, 3], ["installPhase", 113, 3], ["passthru", 124, 3], ["meta", 136, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -37,7 +30,7 @@ export default nix.lambda((args) => (() => {
   const pname = "zammad";
   const version = "7.1.3";
   const src = nix.thunk(() => nix.app(applyPatches, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => nix.app(nix.sel(lib, "importJSON"), nix.path(here, "./source.json"))))),
       patches: nix.thunk(() => [nix.path(here, "./fix-sendmail-location.diff")]),
       postPatch: nix.thunk(() => nix.str`sed -i -e "s|ruby '3.4.[0-9]\\+'|ruby '${nix.sel(ruby, "version")}'|" Gemfile
@@ -47,7 +40,7 @@ ${jq}/bin/jq '. += {name: "Zammad", version: "${version}"}' package.json | ${mor
 `),
     }))));
   const rubyEnv = nix.thunk(() => nix.app(bundlerEnv, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       name: nix.thunk(() => nix.str`zammad-gems-${version}`),
       version: version,
       ruby: ruby,
@@ -56,7 +49,7 @@ ${jq}/bin/jq '. += {name: "Zammad", version: "${version}"}' package.json | ${mor
       groups: nix.thunk(() => ["assets", "unicorn", "test", "mysql", "puma", "development", "postgres"]),
     }))));
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: pname,
       version: version,
       src: src,
@@ -66,9 +59,9 @@ ${jq}/bin/jq '. += {name: "Zammad", version: "${version}"}' package.json | ${mor
         nix.thunk(() => nix.sel(rubyEnv, "bundler")),
       ]),
       nativeBuildInputs: nix.thunk(() => [valkey, postgresql, pnpmConfigHook, pnpm_10, nodejs, procps, cacert]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$3, RAILS_ENV: "production" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[2], RAILS_ENV: "production" })),
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           pname: pname,
           src: src,
           pnpm: pnpm_10,
@@ -86,17 +79,17 @@ ln -s ${dataDir}/storage $out/storage
 ln -s ${dataDir}/tmp $out/tmp
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         rubyEnv: rubyEnv,
         updateScript: nix.thunk(() => [
           nix.thunk(() => nix.str`${nix.app(callPackage, nix.path(here, "./update.nix"), nix.thunk(() => ({})))}/bin/update.sh`),
           pname,
           nix.thunk(() => nix.builtins.toString(nix.path(here, "./."))),
         ]),
-        tests: nix.thunk(() => ({ [nix.POS]: pos$5, zammad: nix.thunk(() => nix.attr(nixosTests, "zammad")) })),
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[4], zammad: nix.thunk(() => nix.attr(nixosTests, "zammad")) })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         changelog: nix.thunk(() => nix.str`https://zammad.com/en/product/releases/${nix.app(nix.sel(lib, "replaceString"), ".", "-", version)}`),
         description: "Web-based, open source user support/ticketing solution",
         homepage: "https://zammad.org",

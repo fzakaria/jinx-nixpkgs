@@ -2,16 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["sha256", 21, 5]], [["doCheck", 39, 44]], [["extraTestArgs", 48, 30]], [["extraTestArgs", 51, 29]], [["extraTestArgs", 52, 29]], [["with-bin-sh", 47, 7], ["with-bash", 48, 7], ["with-ksh", 51, 7], ["with-zsh", 52, 7]], [["tests", 36, 12]], [["description", 56, 5], ["homepage", 57, 5], ["changelog", 58, 5], ["license", 59, 5], ["maintainers", 60, 5], ["platforms", 61, 5], ["mainProgram", 62, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["strictDeps", 24, 3], ["buildInputs", 25, 3], ["makeFlags", 26, 3], ["checkPhase", 28, 3], ["dontBuild", 34, 3], ["passthru", 36, 3], ["meta", 55, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, bash: false, dash: false, ksh: false, zsh: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["sha256", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["doCheck", 39, 44]]);
-const pos$3 = nix.positions(here + "/package.nix", [["extraTestArgs", 48, 30]]);
-const pos$4 = nix.positions(here + "/package.nix", [["extraTestArgs", 51, 29]]);
-const pos$5 = nix.positions(here + "/package.nix", [["extraTestArgs", 52, 29]]);
-const pos$6 = nix.positions(here + "/package.nix", [["with-bin-sh", 47, 7], ["with-bash", 48, 7], ["with-ksh", 51, 7], ["with-zsh", 52, 7]]);
-const pos$7 = nix.positions(here + "/package.nix", [["tests", 36, 12]]);
-const pos$8 = nix.positions(here + "/package.nix", [["description", 56, 5], ["homepage", 57, 5], ["changelog", 58, 5], ["license", 59, 5], ["maintainers", 60, 5], ["platforms", 61, 5], ["mainProgram", 62, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["strictDeps", 24, 3], ["buildInputs", 25, 3], ["makeFlags", 26, 3], ["checkPhase", 28, 3], ["dontBuild", 34, 3], ["passthru", 36, 3], ["meta", 55, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const ksh = nix.arg($, "ksh");
   const zsh = nix.arg($, "zsh");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       pname: "shellspec",
       version: "0.28.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "shellspec",
           repo: "shellspec",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -41,30 +33,30 @@ export default nix.lambda((args) => (() => {
 `),
       dontBuild: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         tests: nix.thunk(() => (() => {
-          const enabled = nix.thunk(() => nix.app(nix.sel(finalAttrs, "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: pos$2, doCheck: true }))));
+          const enabled = nix.thunk(() => nix.app(nix.sel(finalAttrs, "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: $pos[1], doCheck: true }))));
           const testWith = nix.thunk(() => nix.sel(enabled, "overrideAttrs"));
           return {
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             "with-bin-sh": enabled,
             "with-bash": nix.thunk(() => nix.app(testWith, nix.thunk(() => ({
-                [nix.POS]: pos$3,
+                [nix.POS]: $pos[2],
                 extraTestArgs: nix.thunk(() => nix.str`--shell ${nix.app(nix.sel(lib, "getExe"), bash)}`),
               })))),
             "with-ksh": nix.thunk(() => nix.app(testWith, nix.thunk(() => ({
-                [nix.POS]: pos$4,
+                [nix.POS]: $pos[3],
                 extraTestArgs: nix.thunk(() => nix.str`--shell ${nix.app(nix.sel(lib, "getExe"), ksh)}`),
               })))),
             "with-zsh": nix.thunk(() => nix.app(testWith, nix.thunk(() => ({
-                [nix.POS]: pos$5,
+                [nix.POS]: $pos[4],
                 extraTestArgs: nix.thunk(() => nix.str`--shell ${nix.app(nix.sel(lib, "getExe"), zsh)}`),
               })))),
           };
         })()),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         description: "Full-featured BDD unit testing framework for bash, ksh, zsh, dash and all POSIX shells",
         homepage: "https://shellspec.info/",
         changelog: nix.thunk(() => nix.str`https://github.com/shellspec/shellspec/releases/tag/${nix.sel(finalAttrs, "version")}`),

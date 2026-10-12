@@ -2,17 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["cases", 25, 9], ["out", 29, 17]], [["hash", 44, 29]], [["hash", 45, 29]], [["hash", 46, 29]], [["hash", 47, 28]], [["hash", 48, 28]], [["hash", 49, 27]], [["1.0.0+1.12+8.13", 44, 11], ["1.1.0+1.12+8.13", 45, 11], ["1.3.0+1.12+8.13", 46, 11], ["1.5.0+2.0+8.16", 47, 11], ["1.6.0+2.3+8.18", 48, 11], ["1.7.0+2.4+9.0", 49, 11]], [["description", 61, 5], ["maintainers", 62, 5]], [["namePrefix", 13, 3], ["pname", 17, 3], ["repo", 18, 3], ["owner", 19, 3], ["version", 20, 11], ["defaultVersion", 22, 3], ["release", 44, 3], ["propagatedBuildInputs", 51, 3], ["useCoqifVersion", 58, 3], ["meta", 60, 3]]]);
 const formals$1 = { args: { lib: false, mkRocqDerivation: false, "rocq-core": false, "mathcomp-boot": false, "mathcomp-fingroup": false, "mathcomp-algebra": false, stdlib: false, version: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["cases", 25, 9], ["out", 29, 17]]);
-const pos$2 = nix.positions(here + "/default.nix", [["hash", 44, 29]]);
-const pos$3 = nix.positions(here + "/default.nix", [["hash", 45, 29]]);
-const pos$4 = nix.positions(here + "/default.nix", [["hash", 46, 29]]);
-const pos$5 = nix.positions(here + "/default.nix", [["hash", 47, 28]]);
-const pos$6 = nix.positions(here + "/default.nix", [["hash", 48, 28]]);
-const pos$7 = nix.positions(here + "/default.nix", [["hash", 49, 27]]);
-const pos$8 = nix.positions(here + "/default.nix", [["1.0.0+1.12+8.13", 44, 11], ["1.1.0+1.12+8.13", 45, 11], ["1.3.0+1.12+8.13", 46, 11], ["1.5.0+2.0+8.16", 47, 11], ["1.6.0+2.3+8.18", 48, 11], ["1.7.0+2.4+9.0", 49, 11]]);
-const pos$9 = nix.positions(here + "/default.nix", [["description", 61, 5], ["maintainers", 62, 5]]);
-const pos$10 = nix.positions(here + "/default.nix", [["namePrefix", 13, 3], ["pname", 17, 3], ["repo", 18, 3], ["owner", 19, 3], ["version", 20, 11], ["defaultVersion", 22, 3], ["release", 44, 3], ["propagatedBuildInputs", 51, 3], ["useCoqifVersion", 58, 3], ["meta", 60, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,14 +16,14 @@ export default nix.lambda((args) => (() => {
   const stdlib = nix.arg($, "stdlib");
   const version = nix.argOr($, "version", () => null);
   return nix.app(mkRocqDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       namePrefix: nix.thunk(() => ["rocq", "mathcomp"]),
       pname: "zify",
       repo: "mczify",
       owner: "math-comp",
       version: version,
       defaultVersion: nix.thunk(() => (() => {
-        const case$ = (rocq) => (mc) => (out) => ({ [nix.POS]: pos$1, cases: nix.thunk(() => [rocq, mc]), out: out });
+        const case$ = (rocq) => (mc) => (out) => ({ [nix.POS]: $pos[0], cases: nix.thunk(() => [rocq, mc]), out: out });
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "versions")), null);
         return nix.app(nix.sel(lib, "switch"), nix.thunk(() => [
             nix.thunk(() => nix.sel(rocq_core, "rocq-version")),
@@ -46,36 +37,36 @@ export default nix.lambda((args) => (() => {
           ]), null);
       })()),
       release: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         "1.0.0+1.12+8.13": nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           hash: "sha256:1j533vx6lacr89bj1bf15l1a0s7rvrx4l00wyjv99aczkfbz6h6k",
         })),
         "1.1.0+1.12+8.13": nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           hash: "sha256:1plf4v6q5j7wvmd5gsqlpiy0vwlw6hy5daq2x42gqny23w9mi2pr",
         })),
         "1.3.0+1.12+8.13": nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           hash: "sha256-ebfY8HatP4te44M6o84DSLpDCkMu4IroPCy+HqzOnTE=",
         })),
         "1.5.0+2.0+8.16": nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           hash: "sha256-boBYGvXdGFc6aPnjgSZYSoW4kmN5khtNrSV3DUv9DqM=",
         })),
         "1.6.0+2.3+8.18": nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           hash: "sha256-rI5ZWtgO0a2sxCVChTdASxWxhgYEbM4OhC0dnSMRzZ8=",
         })),
         "1.7.0+2.4+9.0": nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           hash: "sha256-2dEIx/c0zLagT9jW1aDE/87ztg51HrY1wP7ioQYpUTQ=",
         })),
       })),
       propagatedBuildInputs: nix.thunk(() => [mathcomp_boot, mathcomp_algebra, mathcomp_fingroup, stdlib]),
       useCoqifVersion: (v) => (nix.asBool((nix.asBool(!nix.eq(v, null)) && nix.asBool(!nix.eq(v, "dev")))) && nix.asBool(nix.app(nix.sel(lib, "versions", "isLe"), "1.6.0+2.3+8.18", v))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         description: "Micromega tactics for Mathematical Components",
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);

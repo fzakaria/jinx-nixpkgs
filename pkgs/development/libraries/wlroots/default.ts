@@ -2,17 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["domain", 54, 9], ["owner", 55, 9], ["repo", 56, 9], ["rev", 57, 9], ["hash", 58, 17]], [["package", 134, 11]], [["tinywl", 132, 9], ["pkg-config", 133, 9]], [["tests", 131, 16]], [["description", 139, 9], ["longDescription", 140, 9], ["homepage", 144, 39], ["changelog", 145, 9], ["license", 146, 9], ["platforms", 147, 9], ["maintainers", 148, 9], ["pkgConfigModules", 152, 9]], [["pname", 48, 7], ["version", 49, 15], ["enableXWayland", 51, 15], ["src", 53, 7], ["patches", 61, 15], ["postPatch", 61, 23], ["outputs", 64, 7], ["strictDeps", 69, 7], ["depsBuildBuild", 70, 7], ["nativeBuildInputs", 72, 7], ["propagatedBuildInputs", 82, 7], ["buildInputs", 87, 7], ["mesonFlags", 110, 7], ["postFixup", 118, 7], ["passthru", 131, 7], ["meta", 138, 7]], [["version", 166, 5], ["hash", 167, 5]], [["version", 171, 5], ["hash", 172, 5]], [["wlroots_0_19", 165, 3], ["wlroots_0_20", 170, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, meson: false, ninja: false, "pkg-config": false, "wayland-scanner": false, libGL: false, wayland: false, "wayland-protocols": false, libinput: false, libxkbcommon: false, pixman: false, libcap: false, libgbm: false, "libxcb-wm": false, "libxcb-render-util": false, "libxcb-image": false, "libxcb-errors": false, libx11: false, hwdata: false, seatd: false, "vulkan-loader": false, glslang: false, libliftoff: false, "libdisplay-info": false, lcms2: false, "evdev-proto": false, nixosTests: false, testers: false, enableXWayland: true, xwayland: true }, ellipsis: false };
 const formals$2 = { args: { version: false, hash: false, extraBuildInputs: true, extraNativeBuildInputs: true, patches: true, postPatch: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["domain", 54, 9], ["owner", 55, 9], ["repo", 56, 9], ["rev", 57, 9], ["hash", 58, 17]]);
-const pos$2 = nix.positions(here + "/default.nix", [["package", 134, 11]]);
-const pos$3 = nix.positions(here + "/default.nix", [["tinywl", 132, 9], ["pkg-config", 133, 9]]);
-const pos$4 = nix.positions(here + "/default.nix", [["tests", 131, 16]]);
-const pos$5 = nix.positions(here + "/default.nix", [["description", 139, 9], ["longDescription", 140, 9], ["homepage", 144, 39], ["changelog", 145, 9], ["license", 146, 9], ["platforms", 147, 9], ["maintainers", 148, 9], ["pkgConfigModules", 152, 9]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 48, 7], ["version", 49, 15], ["enableXWayland", 51, 15], ["src", 53, 7], ["patches", 61, 15], ["postPatch", 61, 23], ["outputs", 64, 7], ["strictDeps", 69, 7], ["depsBuildBuild", 70, 7], ["nativeBuildInputs", 72, 7], ["propagatedBuildInputs", 82, 7], ["buildInputs", 87, 7], ["mesonFlags", 110, 7], ["postFixup", 118, 7], ["passthru", 131, 7], ["meta", 138, 7]]);
-const pos$7 = nix.positions(here + "/default.nix", [["version", 166, 5], ["hash", 167, 5]]);
-const pos$8 = nix.positions(here + "/default.nix", [["version", 171, 5], ["hash", 172, 5]]);
-const pos$9 = nix.positions(here + "/default.nix", [["wlroots_0_19", 165, 3], ["wlroots_0_20", 170, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -57,12 +49,12 @@ export default nix.lambda((args) => (() => {
     const patches = nix.argOr($_1, "patches", () => []);
     const postPatch = nix.argOr($_1, "postPatch", () => "");
     return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname: "wlroots",
         version: version,
         enableXWayland: enableXWayland,
         src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             domain: "gitlab.freedesktop.org",
             owner: "wlroots",
             repo: "wlroots",
@@ -99,12 +91,12 @@ export default nix.lambda((args) => (() => {
         ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux"))), nix.thunk(() => [nix.thunk(() => nix.app(nix.sel(lib, "mesonOption"), "allocators", "gbm"))])))),
         postFixup: "# Install ALL example programs to $examples:\n# screencopy dmabuf-capture input-inhibitor layer-shell idle-inhibit idle\n# screenshot output-layout multi-pointer rotation tablet touch pointer\n# simple\nmkdir -p $examples/bin\ncd ./examples\nfor binary in $(find . -executable -type f -printf '%P\\n' | grep -vE '\\.so'); do\n  cp \"$binary\" \"$examples/bin/wlroots-$binary\"\ndone\n",
         passthru: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           tests: nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             tinywl: nix.thunk(() => nix.sel(nixosTests, "tinywl")),
             "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "hasPkgConfigModules"), nix.thunk(() => ({
-                [nix.POS]: pos$2,
+                [nix.POS]: $pos[1],
                 package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               })))),
           })),
@@ -112,7 +104,7 @@ export default nix.lambda((args) => (() => {
         meta: nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(finalAttrs, "src", "meta"));
           return {
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           description: "Modular Wayland compositor library",
           longDescription: "Pluggable, composable, unopinionated modules for building a Wayland\ncompositor; or about 50,000 lines of code you were going to write anyway.\n",
           homepage: nix.thunk(() => nix.attr(from, "homepage")),
@@ -134,14 +126,14 @@ export default nix.lambda((args) => (() => {
       }));
   })(), formals$2);
   return {
-    [nix.POS]: pos$9,
+    [nix.POS]: $pos[8],
     wlroots_0_19: nix.thunk(() => nix.app(generic, nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         version: "0.19.3",
         hash: "sha256-J+wSVUtuizaCyCn523chFbE8VtbPjyu5XYv5eLT+GM0=",
       })))),
     wlroots_0_20: nix.thunk(() => nix.app(generic, nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         version: "0.20.2",
         hash: "sha256-VdYymvzYp6/R255AK20j4xTd+JbCZgNiRfgeRJD+UZY=",
       })))),

@@ -2,23 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["case", 20, 9], ["out", 21, 9]], [["case", 24, 9], ["out", 25, 9]], [["hash", 29, 19]], [["hash", 30, 19]], [["hash", 31, 19]], [["hash", 32, 19]], [["hash", 33, 19]], [["hash", 34, 19]], [["hash", 35, 19]], [["hash", 36, 19]], [["hash", 37, 19]], [["hash", 38, 19]], [["1.7.0", 29, 11], ["1.6.0", 30, 11], ["1.5.5", 31, 11], ["1.5.4", 32, 11], ["1.5.3", 33, 11], ["1.5.2", 34, 11], ["1.5.1", 35, 11], ["1.5.0", 36, 11], ["1.4.5", 37, 11], ["1.4.4", 38, 11]], [["logpath", 44, 22]], [["description", 47, 5], ["license", 48, 5], ["maintainers", 49, 5]], [["pname", 11, 3], ["repo", 12, 3], ["owner", 13, 3], ["domain", 14, 3], ["version", 15, 11], ["defaultVersion", 16, 3], ["release", 29, 3], ["releaseRev", 39, 3], ["nativeBuildInputs", 41, 3], ["mlPlugin", 42, 3], ["propagatedBuildInputs", 43, 3], ["useMelquiondRemake", 44, 3], ["meta", 46, 3]]]);
 const formals$1 = { args: { lib: false, mkCoqDerivation: false, autoconf: false, coq: false, flocq: false, version: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["case", 20, 9], ["out", 21, 9]]);
-const pos$2 = nix.positions(here + "/default.nix", [["case", 24, 9], ["out", 25, 9]]);
-const pos$3 = nix.positions(here + "/default.nix", [["hash", 29, 19]]);
-const pos$4 = nix.positions(here + "/default.nix", [["hash", 30, 19]]);
-const pos$5 = nix.positions(here + "/default.nix", [["hash", 31, 19]]);
-const pos$6 = nix.positions(here + "/default.nix", [["hash", 32, 19]]);
-const pos$7 = nix.positions(here + "/default.nix", [["hash", 33, 19]]);
-const pos$8 = nix.positions(here + "/default.nix", [["hash", 34, 19]]);
-const pos$9 = nix.positions(here + "/default.nix", [["hash", 35, 19]]);
-const pos$10 = nix.positions(here + "/default.nix", [["hash", 36, 19]]);
-const pos$11 = nix.positions(here + "/default.nix", [["hash", 37, 19]]);
-const pos$12 = nix.positions(here + "/default.nix", [["hash", 38, 19]]);
-const pos$13 = nix.positions(here + "/default.nix", [["1.7.0", 29, 11], ["1.6.0", 30, 11], ["1.5.5", 31, 11], ["1.5.4", 32, 11], ["1.5.3", 33, 11], ["1.5.2", 34, 11], ["1.5.1", 35, 11], ["1.5.0", 36, 11], ["1.4.5", 37, 11], ["1.4.4", 38, 11]]);
-const pos$14 = nix.positions(here + "/default.nix", [["logpath", 44, 22]]);
-const pos$15 = nix.positions(here + "/default.nix", [["description", 47, 5], ["license", 48, 5], ["maintainers", 49, 5]]);
-const pos$16 = nix.positions(here + "/default.nix", [["pname", 11, 3], ["repo", 12, 3], ["owner", 13, 3], ["domain", 14, 3], ["version", 15, 11], ["defaultVersion", 16, 3], ["release", 29, 3], ["releaseRev", 39, 3], ["nativeBuildInputs", 41, 3], ["mlPlugin", 42, 3], ["propagatedBuildInputs", 43, 3], ["useMelquiondRemake", 44, 3], ["meta", 46, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const flocq = nix.arg($, "flocq");
   const version = nix.argOr($, "version", () => null);
   return nix.app(mkCoqDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$16,
+      [nix.POS]: $pos[15],
       pname: "gappalib",
       repo: "coq",
       owner: "gappa",
@@ -39,57 +24,57 @@ export default nix.lambda((args) => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "versions")), null);
         return nix.app(nix.sel(lib, "switch"), nix.thunk(() => nix.sel(coq, "coq-version")), nix.thunk(() => [
             nix.thunk(() => ({
-              [nix.POS]: pos$1,
+              [nix.POS]: $pos[0],
               case: nix.thunk(() => nix.app(nix.lookup(w, "range"), "8.16", "8.20")),
               out: "1.7.0",
             })),
             nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               case: nix.thunk(() => nix.app(nix.lookup(w, "range"), "8.8", "8.15")),
               out: "1.5.5",
             })),
           ]), null);
       })()),
       release: nix.thunk(() => ({
-        [nix.POS]: pos$13,
+        [nix.POS]: $pos[12],
         "1.7.0": nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           hash: "sha256-NHKfX2on0tw2T0AqOLIFDCHlkl9OXkLiRExEwauwGqE=",
         })),
         "1.6.0": nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           hash: "sha256-GQls31TT4y3h18RUxAX+LpHIKon5UvDfW1GuURRKeKA=",
         })),
         "1.5.5": nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           hash: "sha256-qxi2Kg3N3o6+ncq7aPNEg98dBmQC5WCa86zROPJSDdo=",
         })),
         "1.5.4": nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           hash: "sha256-9PlkXqCu4rbFD7qnMF1GSpPCVmwJ3r593RfAvkJbbdA=",
         })),
         "1.5.3": nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           hash: "sha256-SuMopX5sm4jh2uBuE7zr6vhWhHYZYnab+epjqYJqg+s=",
         })),
         "1.5.2": nix.thunk(() => ({
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           hash: "sha256-A021Bhqz5r2CZBayfjIiWrCIfUlejcQAfbTmOaf6QTM=",
         })),
         "1.5.1": nix.thunk(() => ({
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           hash: "sha256:1806bq1z6q5rq2ma7d5kfbqfyfr755hjg0dq7b2llry8fx9cxjsg",
         })),
         "1.5.0": nix.thunk(() => ({
-          [nix.POS]: pos$10,
+          [nix.POS]: $pos[9],
           hash: "sha256:1i1c0gakffxqqqqw064cbvc243yl325hxd50jmczr6mk18igk41n",
         })),
         "1.4.5": nix.thunk(() => ({
-          [nix.POS]: pos$11,
+          [nix.POS]: $pos[10],
           hash: "sha256:081hib1d9wfm29kis390qsqch8v6fs3q71g2rgbbzx5y5cf48n9k",
         })),
         "1.4.4": nix.thunk(() => ({
-          [nix.POS]: pos$12,
+          [nix.POS]: $pos[11],
           hash: "sha256:114q2hgw64j6kqa9mg3qcp1nlf0ia46z2xadq81fnkxqm856ml7l",
         })),
       })),
@@ -97,9 +82,9 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [autoconf]),
       mlPlugin: true,
       propagatedBuildInputs: nix.thunk(() => [flocq]),
-      useMelquiondRemake: nix.thunk(() => ({ [nix.POS]: pos$14, logpath: "Gappa" })),
+      useMelquiondRemake: nix.thunk(() => ({ [nix.POS]: $pos[13], logpath: "Gappa" })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$15,
+        [nix.POS]: $pos[14],
         description: "Coq support library for Gappa",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21")),
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "vbgl"))]),

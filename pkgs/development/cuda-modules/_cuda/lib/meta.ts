@@ -2,15 +2,15 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/meta.nix", [[["_mkMetaBadPlatforms", 24, 3], ["_mkMetaBroken", 66, 3]]]);
 const formals$1 = { args: { _cuda: false, lib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/meta.nix", [["_mkMetaBadPlatforms", 24, 3], ["_mkMetaBroken", 66, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const _cuda = nix.arg($, "_cuda");
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     _mkMetaBadPlatforms: (finalAttrs) => (() => {
       const failedAssertionsString = nix.thunk(() => nix.app(nix.sel(_cuda, "lib", "_mkFailedAssertionsString"), nix.thunk(() => nix.sel(finalAttrs, "passthru", "platformAssertions"))));
       const hasFailedAssertions = nix.thunk(() => !nix.eq(failedAssertionsString, ""));

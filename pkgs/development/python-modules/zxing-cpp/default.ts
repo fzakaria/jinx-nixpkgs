@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["nanobind_DIR", 26, 5]], [["homepage", 60, 7], ["changelog", 61, 7], ["description", 62, 7], ["longDescription", 63, 7], ["license", 64, 7], ["maintainers", 65, 7], ["platforms", 66, 7]], [["pname", 17, 3], ["src", 18, 26], ["version", 18, 30], ["pyproject", 19, 3], ["sourceRoot", 21, 3], ["dontUseCmakeConfigure", 23, 3], ["env", 25, 3], ["cmakeFlags", 29, 3], ["build-system", 33, 3], ["dependencies", 38, 3], ["nativeBuildInputs", 40, 3], ["buildInputs", 45, 3], ["nativeCheckInputs", 49, 3], ["enabledTestPaths", 54, 3], ["pythonImportsCheck", 56, 3], ["meta", 58, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, cmake: false, ninja: false, "scikit-build-core": false, numpy: false, pillow: false, nanobind: false, "libzxing-cpp": false, pytestCheckHook: false, libzint: false, python: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["nanobind_DIR", 26, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 60, 7], ["changelog", 61, 7], ["description", 62, 7], ["longDescription", 63, 7], ["license", 64, 7], ["maintainers", 65, 7], ["platforms", 66, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 17, 3], ["src", 18, 26], ["version", 18, 30], ["pyproject", 19, 3], ["sourceRoot", 21, 3], ["dontUseCmakeConfigure", 23, 3], ["env", 25, 3], ["cmakeFlags", 29, 3], ["build-system", 33, 3], ["dependencies", 38, 3], ["nativeBuildInputs", 40, 3], ["buildInputs", 45, 3], ["nativeCheckInputs", 49, 3], ["enabledTestPaths", 54, 3], ["pythonImportsCheck", 56, 3], ["meta", 58, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,7 +20,7 @@ export default nix.lambda((args) => (() => {
   const libzint = nix.arg($, "libzint");
   const python = nix.arg($, "python");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "zxing-cpp",
       src: nix.thunk(() => nix.attr(libzxing_cpp, "src")),
       version: nix.thunk(() => nix.attr(libzxing_cpp, "version")),
@@ -30,7 +28,7 @@ export default nix.lambda((args) => (() => {
       sourceRoot: nix.thunk(() => nix.str`${nix.sel(libzxing_cpp, "src", "name")}/wrappers/python`),
       dontUseCmakeConfigure: true,
       env: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         nanobind_DIR: nix.thunk(() => nix.str`${nanobind}/${nix.sel(python, "sitePackages")}/nanobind/cmake`),
       })),
       cmakeFlags: nix.thunk(() => [
@@ -46,7 +44,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(libzxing_cpp, "meta"));
         return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         changelog: nix.thunk(() => nix.attr(from, "changelog")),
         description: nix.thunk(() => nix.attr(from, "description")),

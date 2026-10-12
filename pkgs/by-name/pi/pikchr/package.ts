@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 16, 5], ["rev", 17, 5], ["hash", 18, 5]], [["updateScript", 51, 12]], [["description", 54, 5], ["homepage", 55, 5], ["license", 56, 5], ["maintainers", 57, 5], ["platforms", 58, 5], ["mainProgram", 59, 5]], [["pname", 11, 3], ["version", 13, 3], ["src", 15, 3], ["postPatch", 22, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 28, 3], ["makeFlags", 30, 3], ["buildFlags", 32, 3], ["installPhase", 34, 3], ["dontWrapTclBinaries", 47, 3], ["doCheck", 49, 3], ["passthru", 51, 3], ["meta", 53, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchfossil: false, tcl: false, enableTcl: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 16, 5], ["rev", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 51, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 54, 5], ["homepage", 55, 5], ["license", 56, 5], ["maintainers", 57, 5], ["platforms", 58, 5], ["mainProgram", 59, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 13, 3], ["src", 15, 3], ["postPatch", 22, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 28, 3], ["makeFlags", 30, 3], ["buildFlags", 32, 3], ["installPhase", 34, 3], ["dontWrapTclBinaries", 47, 3], ["doCheck", 49, 3], ["passthru", 51, 3], ["meta", 53, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const tcl = nix.arg($, "tcl");
   const enableTcl = nix.argOr($, "enableTcl", () => true);
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "pikchr",
       version: "0-unstable-2026-04-03",
       src: nix.thunk(() => nix.app(fetchfossil, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://pikchr.org/home",
           rev: "a7f1c35bc0448daf",
           hash: "sha256-Yxp1jvxxXQsdljsvw1ed4XfOvGwbwWIeCfYEQ6D9Zqc=",
@@ -33,9 +30,9 @@ export default nix.lambda((args) => (() => {
       installPhase: nix.thunk(() => nix.add(nix.add("runHook preInstall\ninstall -Dm755 pikchr $out/bin/pikchr\ninstall -Dm755 pikchr.out $out/lib/pikchr.o\ninstall -Dm644 pikchr.h $out/include/pikchr.h\n", nix.app(nix.sel(lib, "optionalString"), enableTcl, "cp -r piktcl $out/lib/piktcl\n")), "runHook postInstall\n")),
       dontWrapTclBinaries: true,
       doCheck: true,
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[1], updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "PIC-like markup language for diagrams in technical documentation",
         homepage: "https://pikchr.org",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd0")),

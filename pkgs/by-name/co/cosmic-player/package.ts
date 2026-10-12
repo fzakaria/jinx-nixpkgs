@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]], [["VERGEN_GIT_SHA", 40, 7]], [["cosmic", 84, 9], ["cosmic-autologin", 85, 9], ["cosmic-noxwayland", 86, 9], ["cosmic-autologin-noxwayland", 87, 9]], [["extraArgs", 92, 7]], [["tests", 82, 5], ["updateScript", 91, 5]], [["homepage", 100, 5], ["description", 101, 5], ["license", 102, 5], ["teams", 103, 5], ["platforms", 104, 5], ["mainProgram", 105, 5]], [["pname", 24, 3], ["version", 25, 3], ["src", 28, 3], ["cargoHash", 35, 3], ["separateDebugInfo", 37, 3], ["__structuredAttrs", 38, 3], ["env", 40, 3], ["nativeBuildInputs", 42, 3], ["buildInputs", 49, 3], ["dontUseJustBuild", 61, 3], ["dontUseJustCheck", 62, 3], ["justFlags", 64, 3], ["preFixup", 73, 3], ["passthru", 81, 3], ["meta", 99, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, rustPlatform: false, libcosmicAppHook: false, just: false, "pkg-config": false, "alsa-lib": false, ffmpeg: false, glib: false, gst_all_1: false, libglvnd: false, libgbm: false, "nix-update-script": false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["VERGEN_GIT_SHA", 40, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["cosmic", 84, 9], ["cosmic-autologin", 85, 9], ["cosmic-noxwayland", 86, 9], ["cosmic-autologin-noxwayland", 87, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["extraArgs", 92, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["tests", 82, 5], ["updateScript", 91, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["homepage", 100, 5], ["description", 101, 5], ["license", 102, 5], ["teams", 103, 5], ["platforms", 104, 5], ["mainProgram", 105, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 24, 3], ["version", 25, 3], ["src", 28, 3], ["cargoHash", 35, 3], ["separateDebugInfo", 37, 3], ["__structuredAttrs", 38, 3], ["env", 40, 3], ["nativeBuildInputs", 42, 3], ["buildInputs", 49, 3], ["dontUseJustBuild", 61, 3], ["dontUseJustCheck", 62, 3], ["justFlags", 64, 3], ["preFixup", 73, 3], ["passthru", 81, 3], ["meta", 99, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "cosmic-player",
       version: "1.9.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "pop-os",
           repo: "cosmic-player",
           tag: nix.thunk(() => nix.str`epoch-${nix.sel(finalAttrs, "version")}`),
@@ -43,7 +37,7 @@ export default nix.lambda((args) => (() => {
       separateDebugInfo: true,
       __structuredAttrs: true,
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         VERGEN_GIT_SHA: nix.thunk(() => nix.sel(finalAttrs, "src", "tag")),
       })),
       nativeBuildInputs: nix.thunk(() => [
@@ -75,21 +69,21 @@ export default nix.lambda((args) => (() => {
       ]),
       preFixup: "libcosmicAppWrapperArgs+=(--prefix GST_PLUGIN_SYSTEM_PATH_1_0 : \"$GST_PLUGIN_SYSTEM_PATH_1_0\")\n\nsubstituteInPlace $out/share/thumbnailers/com.system76.CosmicPlayer.thumbnailer \\\n  --replace-fail \"TryExec=cosmic-player\" \"TryExec=$out/bin/cosmic-player\" \\\n  --replace-fail \"Exec=cosmic-player\" \"Exec=$out/bin/cosmic-player\"\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           cosmic: nix.thunk(() => nix.attr(nixosTests, "cosmic")),
           "cosmic-autologin": nix.thunk(() => nix.attr(nixosTests, "cosmic-autologin")),
           "cosmic-noxwayland": nix.thunk(() => nix.attr(nixosTests, "cosmic-noxwayland")),
           "cosmic-autologin-noxwayland": nix.thunk(() => nix.attr(nixosTests, "cosmic-autologin-noxwayland")),
         })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             extraArgs: nix.thunk(() => ["--version-regex", "epoch-(.*)"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         homepage: "https://github.com/pop-os/cosmic-player",
         description: "Media player for the COSMIC Desktop Environment",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

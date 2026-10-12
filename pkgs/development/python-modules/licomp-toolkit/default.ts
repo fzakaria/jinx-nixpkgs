@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 33, 5], ["repo", 34, 5], ["tag", 35, 5], ["hash", 36, 5]], [["description", 66, 5], ["homepage", 67, 5], ["mainProgram", 68, 5], ["license", 69, 5], ["maintainers", 72, 5], ["teams", 73, 5], ["badPlatforms", 76, 5]], [["pname", 27, 3], ["version", 28, 3], ["pyproject", 29, 3], ["__structuredAttrs", 30, 3], ["src", 32, 3], ["build-system", 39, 3], ["dependencies", 43, 3], ["nativeCheckInputs", 57, 3], ["pythonImportsCheck", 61, 3], ["meta", 65, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromCodeberg: false, setuptools: false, "foss-flame": false, licomp: false, "licomp-doubleopen": false, "licomp-dwheeler": false, "licomp-gnuguide": false, "licomp-hermione": false, "licomp-osadl": false, "licomp-oslc-handbook": false, "licomp-proprietary": false, "licomp-reclicense": false, pyyaml: false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 33, 5], ["repo", 34, 5], ["tag", 35, 5], ["hash", 36, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 66, 5], ["homepage", 67, 5], ["mainProgram", 68, 5], ["license", 69, 5], ["maintainers", 72, 5], ["teams", 73, 5], ["badPlatforms", 76, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 27, 3], ["version", 28, 3], ["pyproject", 29, 3], ["__structuredAttrs", 30, 3], ["src", 32, 3], ["build-system", 39, 3], ["dependencies", 43, 3], ["nativeCheckInputs", 57, 3], ["pythonImportsCheck", 61, 3], ["meta", 65, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,13 +24,13 @@ export default nix.lambda((args) => (() => {
   const pyyaml = nix.arg($, "pyyaml");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "licomp-toolkit",
       version: "0.5.20",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "software-compliance-org",
           repo: "licomp-toolkit",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -55,7 +53,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["licomp_toolkit"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Python module and program to check compatibility between two licenses with context",
         homepage: "https://codeberg.org/software-compliance-org/licomp-toolkit",
         mainProgram: "licomp-toolkit",

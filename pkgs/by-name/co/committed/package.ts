@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]], [["updateScript", 41, 5]], [["homepage", 45, 5], ["changelog", 46, 5], ["description", 47, 5], ["mainProgram", 48, 5], ["license", 49, 5], ["maintainers", 53, 5]], [["pname", 13, 3], ["version", 14, 11], ["src", 16, 3], ["cargoHash", 23, 3], ["nativeCheckInputs", 25, 3], ["preCheck", 31, 3], ["nativeInstallCheckInputs", 37, 3], ["doInstallCheck", 38, 3], ["passthru", 40, 3], ["meta", 44, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, rustPlatform: false, versionCheckHook: false, "nix-update-script": false, git: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 41, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 45, 5], ["changelog", 46, 5], ["description", 47, 5], ["mainProgram", 48, 5], ["license", 49, 5], ["maintainers", 53, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 11], ["src", 16, 3], ["cargoHash", 23, 3], ["nativeCheckInputs", 25, 3], ["preCheck", 31, 3], ["nativeInstallCheckInputs", 37, 3], ["doInstallCheck", 38, 3], ["passthru", 40, 3], ["meta", 44, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const git = nix.arg($, "git");
   const version = "1.1.11";
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "committed",
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "crate-ci",
           repo: "committed",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -34,11 +31,11 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/crate-ci/committed",
         changelog: nix.thunk(() => nix.str`https://github.com/crate-ci/committed/blob/v${version}/CHANGELOG.md`),
         description: "Nitpicking commit history since beabf39",

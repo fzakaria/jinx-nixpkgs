@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 15, 5], ["hash", 16, 5]], [["description", 36, 5], ["downloadPage", 37, 5], ["homepage", 38, 5], ["license", 39, 5], ["platforms", 40, 5], ["mainProgram", 41, 5], ["sourceProvenance", 42, 5], ["maintainers", 43, 5]], [["strictDeps", 8, 3], ["__structuredAttrs", 9, 3], ["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 19, 3], ["dontPatch", 21, 3], ["dontConfigure", 22, 3], ["dontBuild", 23, 3], ["dontFixup", 24, 3], ["installPhase", 26, 3], ["meta", 35, 3]]]);
 const formals$1 = { args: { lib: false, fetchzip: false, stdenvNoCC: false, unzip: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 36, 5], ["downloadPage", 37, 5], ["homepage", 38, 5], ["license", 39, 5], ["platforms", 40, 5], ["mainProgram", 41, 5], ["sourceProvenance", 42, 5], ["maintainers", 43, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["strictDeps", 8, 3], ["__structuredAttrs", 9, 3], ["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 19, 3], ["dontPatch", 21, 3], ["dontConfigure", 22, 3], ["dontBuild", 23, 3], ["dontFixup", 24, 3], ["installPhase", 26, 3], ["meta", 35, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,13 +12,13 @@ export default nix.lambda((args) => (() => {
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   const unzip = nix.arg($, "unzip");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       strictDeps: true,
       __structuredAttrs: true,
       pname: "stillcolor",
       version: "1.1",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/aiaf/Stillcolor/releases/download/v${nix.sel(finalAttrs, "version")}/Stillcolor-v${nix.sel(finalAttrs, "version")}.zip`),
           hash: "sha256-ojs5EvrH4FVWHV6VXOhQmpfH69Zmy0PGMZnEO751pi8=",
         })))),
@@ -31,7 +29,7 @@ export default nix.lambda((args) => (() => {
       dontFixup: true,
       installPhase: "runHook preInstall\n\nmkdir -p $out/Applications/Stillcolor.app\ncp -R . $out/Applications/Stillcolor.app/\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Disable temporal dithering on your Mac with this lightweight menu bar app. Designed for Apple silicon Macs.",
         downloadPage: "https://github.com/aiaf/Stillcolor/releases",
         homepage: "https://github.com/aiaf/Stillcolor",

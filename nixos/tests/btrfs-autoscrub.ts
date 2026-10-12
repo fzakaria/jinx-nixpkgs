@@ -2,36 +2,28 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/btrfs-autoscrub.nix", [[["fsType", 11, 9], ["device", 12, 9], ["autoFormat", 13, 9], ["options", 14, 9]], [["/home/test/btrfs autoscrub test", 10, 34]], [["emptyDiskImages", 8, 22], ["fileSystems", 10, 22]], [["enable", 17, 9], ["limit", 19, 9]], [["autoScrub", 16, 22]], [["btrfs", 16, 16]], [["virtualisation", 8, 7], ["services", 16, 7]], [["machine", 5, 9]], [["name", 3, 3], ["nodes", 5, 3], ["testScript", 23, 3]]]);
 const formals$1 = { args: {  }, ellipsis: true };
 const formals$2 = { args: {  }, ellipsis: true };
-const pos$1 = nix.positions(here + "/btrfs-autoscrub.nix", [["fsType", 11, 9], ["device", 12, 9], ["autoFormat", 13, 9], ["options", 14, 9]]);
-const pos$2 = nix.positions(here + "/btrfs-autoscrub.nix", [["/home/test/btrfs autoscrub test", 10, 34]]);
-const pos$3 = nix.positions(here + "/btrfs-autoscrub.nix", [["emptyDiskImages", 8, 22], ["fileSystems", 10, 22]]);
-const pos$4 = nix.positions(here + "/btrfs-autoscrub.nix", [["enable", 17, 9], ["limit", 19, 9]]);
-const pos$5 = nix.positions(here + "/btrfs-autoscrub.nix", [["autoScrub", 16, 22]]);
-const pos$6 = nix.positions(here + "/btrfs-autoscrub.nix", [["btrfs", 16, 16]]);
-const pos$7 = nix.positions(here + "/btrfs-autoscrub.nix", [["virtualisation", 8, 7], ["services", 16, 7]]);
-const pos$8 = nix.positions(here + "/btrfs-autoscrub.nix", [["machine", 5, 9]]);
-const pos$9 = nix.positions(here + "/btrfs-autoscrub.nix", [["name", 3, 3], ["nodes", 5, 3], ["testScript", 23, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   return {
-    [nix.POS]: pos$9,
+    [nix.POS]: $pos[8],
     name: "btrfs-autoscrub",
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           virtualisation: nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             emptyDiskImages: nix.thunk(() => [128n]),
             fileSystems: nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               "/home/test/btrfs autoscrub test": nix.thunk(() => ({
-                [nix.POS]: pos$1,
+                [nix.POS]: $pos[0],
                 fsType: "btrfs",
                 device: "/dev/vdb",
                 autoFormat: true,
@@ -40,10 +32,10 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             btrfs: nix.thunk(() => ({
-              [nix.POS]: pos$5,
-              autoScrub: nix.thunk(() => ({ [nix.POS]: pos$4, enable: true, limit: "1G" })),
+              [nix.POS]: $pos[4],
+              autoScrub: nix.thunk(() => ({ [nix.POS]: $pos[3], enable: true, limit: "1G" })),
             })),
           })),
         };

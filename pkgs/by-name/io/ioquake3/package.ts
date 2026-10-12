@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 33, 5], ["repo", 34, 5], ["rev", 35, 5], ["hash", 36, 5]], [["name", 86, 7], ["exec", 87, 7], ["icon", 88, 7], ["comment", 89, 7], ["desktopName", 90, 7], ["categories", 91, 7]], [["updateScript", 98, 12]], [["homepage", 101, 5], ["description", 102, 5], ["license", 103, 5], ["mainProgram", 104, 5], ["maintainers", 105, 5], ["platforms", 108, 5]], [["pname", 26, 3], ["version", 27, 3], ["strictDeps", 29, 3], ["__structuredAttrs", 30, 3], ["src", 32, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 48, 3], ["enableParallelBuilding", 61, 3], ["cmakeFlags", 63, 3], ["postInstall", 68, 3], ["desktopItems", 84, 3], ["passthru", 98, 3], ["meta", 100, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, "pkg-config": false, which: false, copyDesktopItems: false, makeBinaryWrapper: false, SDL2: false, libGL: false, openal: false, curl: false, speex: false, opusfile: false, libogg: false, libvorbis: false, libjpeg: false, makeDesktopItem: false, freetype: false, unstableGitUpdater: false, bc: false, cmake: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 33, 5], ["repo", 34, 5], ["rev", 35, 5], ["hash", 36, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 86, 7], ["exec", 87, 7], ["icon", 88, 7], ["comment", 89, 7], ["desktopName", 90, 7], ["categories", 91, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 98, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 101, 5], ["description", 102, 5], ["license", 103, 5], ["mainProgram", 104, 5], ["maintainers", 105, 5], ["platforms", 108, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 26, 3], ["version", 27, 3], ["strictDeps", 29, 3], ["__structuredAttrs", 30, 3], ["src", 32, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 48, 3], ["enableParallelBuilding", 61, 3], ["cmakeFlags", 63, 3], ["postInstall", 68, 3], ["desktopItems", 84, 3], ["passthru", 98, 3], ["meta", 100, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,13 +29,13 @@ export default nix.lambda((args) => (() => {
   const bc = nix.arg($, "bc");
   const cmake = nix.arg($, "cmake");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "ioquake3",
       version: "0-unstable-2026-07-19",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ioquake",
           repo: "ioq3",
           rev: "588393618dbc82e7207c21c6ddecca229944a03a",
@@ -69,7 +65,7 @@ makeWrapper $out/share/ioquake3/ioq3ded $out/bin/ioq3ded
 `, nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), "makeWrapper $out/share/ioquake3/ioquake3 $out/bin/ioquake3\n")), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "mkdir -p $out/Applications\nmv $out/share/ioquake3/ioquake3.app $out/Applications/\nmkdir -p $out/bin\nmakeWrapper $out/Applications/ioquake3.app/Contents/MacOS/ioquake3 $out/bin/ioquake3\nmakeWrapper $out/share/ioquake3/ioq3ded $out/Applications/ioquake3.app/Contents/MacOS/ioq3ded\n"))),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "IOQuake3",
             exec: "ioquake3",
             icon: "ioquake3",
@@ -79,11 +75,11 @@ makeWrapper $out/share/ioquake3/ioq3ded $out/bin/ioq3ded
           })))),
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://ioquake3.org/",
         description: "Fast-paced 3D first-person shooter, a community effort to continue supporting/developing id's Quake III Arena",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

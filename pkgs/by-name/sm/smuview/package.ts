@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 28, 5], ["repo", 29, 5], ["rev", 30, 5], ["hash", 31, 5]], [["description", 66, 5], ["mainProgram", 67, 5], ["longDescription", 68, 5], ["homepage", 69, 5], ["license", 70, 5], ["maintainers", 71, 5], ["platforms", 72, 5]], [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 41, 3], ["postPatch", 56, 3], ["meta", 65, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, "pkg-config": false, cmake: false, glib: false, boost: false, libsigrok: false, libserialport: false, libzip: false, libftdi1: false, hidapi: false, glibmm_2_4: false, python3: false, bluez: false, pcre2: false, libsForQt5: false, desktopToDarwinBundle: false, qt5: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 28, 5], ["repo", 29, 5], ["rev", 30, 5], ["hash", 31, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 66, 5], ["mainProgram", 67, 5], ["longDescription", 68, 5], ["homepage", 69, 5], ["license", 70, 5], ["maintainers", 71, 5], ["platforms", 72, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 41, 3], ["postPatch", 56, 3], ["meta", 65, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,11 +27,11 @@ export default nix.lambda((args) => (() => {
   const desktopToDarwinBundle = nix.arg($, "desktopToDarwinBundle");
   const qt5 = nix.arg($, "qt5");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "smuview",
       version: "0.0.5-unstable-2023-04-12",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "knarfS",
           repo: "smuview",
           rev: "a5ffb66287b725ebcdecc1eab04a4574c8585f66",
@@ -55,7 +53,7 @@ export default nix.lambda((args) => (() => {
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [bluez])))),
       postPatch: "substituteInPlace external/pybind11_2.11_dev1/CMakeLists.txt \\\n  --replace-fail \"cmake_minimum_required(VERSION 3.4)\" \"cmake_minimum_required(VERSION 3.10)\"\nsubstituteInPlace external/QtFindReplaceDialog/dialogs/CMakeLists.txt \\\n  --replace-fail \"cmake_minimum_required(VERSION 3.1)\" \"cmake_minimum_required(VERSION 3.10)\"\nsubstituteInPlace manual/CMakeLists.txt \\\n  --replace-fail \"cmake_minimum_required(VERSION 2.8.12)\" \"cmake_minimum_required(VERSION 3.10)\"\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Qt based source measure unit GUI for sigrok",
         mainProgram: "smuview",
         longDescription: "SmuView is a GUI for sigrok that supports power supplies, electronic loads and all sorts of measurement devices like multimeters, LCR meters and so on",

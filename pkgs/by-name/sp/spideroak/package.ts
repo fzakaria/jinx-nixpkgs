@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 41, 5], ["url", 42, 5], ["hash", 43, 13]], [["homepage", 81, 5], ["description", 82, 5], ["sourceProvenance", 83, 5], ["license", 84, 5], ["platforms", 85, 5], ["mainProgram", 86, 5], ["maintainers", 87, 5]], [["pname", 37, 3], ["version", 38, 11], ["src", 40, 3], ["sourceRoot", 46, 3], ["unpackCmd", 48, 3], ["installPhase", 50, 3], ["nativeBuildInputs", 75, 3], ["meta", 80, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, makeWrapper: false, patchelf: false, fontconfig: false, freetype: false, glib: false, libice: false, libsm: false, libx11: false, libxext: false, libxrender: false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 41, 5], ["url", 42, 5], ["hash", 43, 13]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 81, 5], ["description", 82, 5], ["sourceProvenance", 83, 5], ["license", 84, 5], ["platforms", 85, 5], ["mainProgram", 86, 5], ["maintainers", 87, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 37, 3], ["version", 38, 11], ["src", 40, 3], ["sourceRoot", 46, 3], ["unpackCmd", 48, 3], ["installPhase", 50, 3], ["nativeBuildInputs", 75, 3], ["meta", 80, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const ldpath = nix.thunk(() => nix.app(nix.sel(lib, "makeLibraryPath"), nix.thunk(() => [fontconfig, freetype, glib, libice, libsm, libx11, libxext, libxrender, zlib])));
   const version = "7.5.2";
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "spideroak",
       version: version,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           name: nix.thunk(() => nix.str`SpiderOakONE-${version}-x86_64-1.tgz`),
           url: nix.thunk(() => nix.str`https://spideroak-releases.s3.us-east-2.amazonaws.com/SpiderOakONE-${version}-x86_64-1.tgz`),
           hash: hash,
@@ -63,7 +61,7 @@ runHook postInstall
 `),
       nativeBuildInputs: nix.thunk(() => [patchelf, makeWrapper]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://spideroak.com",
         description: "Secure online backup and synchronization",
         sourceProvenance: nix.thunk(() => (() => {

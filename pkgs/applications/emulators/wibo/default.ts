@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]], [["url", 34, 11], ["hash", 35, 11], ["stripRoot", 36, 11]], [["license", 38, 14]], [["name", 32, 9], ["src", 33, 9], ["meta", 38, 9]], [["description", 47, 5], ["longDescription", 48, 5], ["homepage", 53, 5], ["license", 54, 5], ["maintainers", 55, 5], ["platforms", 56, 5], ["mainProgram", 57, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["nativeBuildInputs", 22, 3], ["doCheck", 27, 3], ["checkPhase", 29, 3], ["meta", 46, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchzip: false, srcOnly: false, cmake: false, unzip: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["url", 34, 11], ["hash", 35, 11], ["stripRoot", 36, 11]]);
-const pos$3 = nix.positions(here + "/default.nix", [["license", 38, 14]]);
-const pos$4 = nix.positions(here + "/default.nix", [["name", 32, 9], ["src", 33, 9], ["meta", 38, 9]]);
-const pos$5 = nix.positions(here + "/default.nix", [["description", 47, 5], ["longDescription", 48, 5], ["homepage", 53, 5], ["license", 54, 5], ["maintainers", 55, 5], ["platforms", 56, 5], ["mainProgram", 57, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["nativeBuildInputs", 22, 3], ["doCheck", 27, 3], ["checkPhase", 29, 3], ["meta", 46, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const cmake = nix.arg($, "cmake");
   const unzip = nix.arg($, "unzip");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "wibo",
       version: "0.6.14",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "decompals",
           repo: "wibo",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -34,16 +29,16 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       checkPhase: nix.thunk(() => (() => {
         const gc = nix.thunk(() => nix.app(srcOnly, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             name: "GC_WII_COMPILERS",
             src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-                [nix.POS]: pos$2,
+                [nix.POS]: $pos[1],
                 url: "https://files.decomp.dev/compilers_20230715.zip",
                 hash: "sha256-IX3byvEUVJB6Rmc+NqO9ZNt1jl95nQpEIqxbHI+uUio=",
                 stripRoot: false,
               })))),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
             })),
           }))));
@@ -52,7 +47,7 @@ file test.o | grep "ELF 32-bit"
 `));
       })()),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Quick-and-dirty wrapper to run 32-bit windows EXEs on linux",
         longDescription: "A minimal, low-fuss wrapper that can run really simple command-line\n32-bit Windows binaries on Linux - with less faff and less dependencies\nthan WINE.\n",
         homepage: "https://github.com/decompals/WiBo",

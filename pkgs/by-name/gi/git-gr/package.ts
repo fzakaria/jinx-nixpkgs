@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]], [["OPENSSL_NO_VENDOR", 33, 7]], [["homepage", 57, 5], ["changelog", 58, 5], ["description", 59, 5], ["license", 60, 5], ["maintainers", 61, 5], ["mainProgram", 62, 5]], [["updateScript", 65, 12]], [["pname", 20, 11], ["version", 20, 17], ["src", 22, 3], ["buildFeatures", 29, 3], ["cargoHash", 31, 3], ["env", 33, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 37, 3], ["postInstall", 43, 3], ["meta", 56, 3], ["passthru", 65, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPackages: false, fetchFromGitHub: false, rustPlatform: false, installShellFiles: false, libiconv: false, "nix-update-script": false, "pkg-config": false, openssl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["OPENSSL_NO_VENDOR", 33, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 57, 5], ["changelog", 58, 5], ["description", 59, 5], ["license", 60, 5], ["maintainers", 61, 5], ["mainProgram", 62, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 65, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 20, 11], ["version", 20, 17], ["src", 22, 3], ["buildFeatures", 29, 3], ["cargoHash", 31, 3], ["env", 33, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 37, 3], ["postInstall", 43, 3], ["meta", 56, 3], ["passthru", 65, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const pname = "git-gr";
   const version = "1.4.6";
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: pname,
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "9999years",
           repo: "git-gr",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -38,7 +34,7 @@ export default nix.lambda((args) => (() => {
         })))),
       buildFeatures: nix.thunk(() => ["clap_mangen"]),
       cargoHash: "sha256-j/qUWGzsODSsn/dbygN2mYHED3wvUDKEGu7nYcTUm90=",
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, OPENSSL_NO_VENDOR: true })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], OPENSSL_NO_VENDOR: true })),
       nativeBuildInputs: nix.thunk(() => nix.concat([installShellFiles], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), pkg_config))),
       buildInputs: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), openssl), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [libiconv])))),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), canRunGitGr, nix.thunk(() => nix.str`manpages=$(mktemp -d)
@@ -53,7 +49,7 @@ installShellCompletion --cmd git-gr \\
   --zsh <(${gitGr} completions zsh)
 `))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/9999years/git-gr",
         changelog: nix.thunk(() => nix.str`https://github.com/9999years/git-gr/releases/tag/v${version}`),
         description: "Gerrit CLI client",
@@ -62,7 +58,7 @@ installShellCompletion --cmd git-gr \\
         mainProgram: "git-gr",
       })),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
     })));

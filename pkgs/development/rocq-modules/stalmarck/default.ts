@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["case", 14, 35], ["out", 14, 40]], [["hash", 21, 14]], [["8.20.0", 21, 5]], [["version", 42, 32]], [["dune", 42, 9]], [["description", 62, 17], ["license", 63, 9]], [["useCoq", 46, 7], ["namePrefix", 47, 7], ["version", 49, 9], ["pname", 50, 9], ["defaultVersion", 51, 9], ["release", 52, 9], ["releaseRev", 53, 9], ["repo", 54, 9], ["propagatedBuildInputs", 55, 9], ["mlPlugin", 58, 7], ["useDune", 59, 7], ["meta", 61, 7], ["passthru", 66, 7]]]);
 const formals$1 = { args: { lib: false, mkRocqDerivation: false, dune: false, coq: false, stdlib: false, version: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["case", 14, 35], ["out", 14, 40]]);
-const pos$2 = nix.positions(here + "/default.nix", [["hash", 21, 14]]);
-const pos$3 = nix.positions(here + "/default.nix", [["8.20.0", 21, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["version", 42, 32]]);
-const pos$5 = nix.positions(here + "/default.nix", [["dune", 42, 9]]);
-const pos$6 = nix.positions(here + "/default.nix", [["description", 62, 17], ["license", 63, 9]]);
-const pos$7 = nix.positions(here + "/default.nix", [["useCoq", 46, 7], ["namePrefix", 47, 7], ["version", 49, 9], ["pname", 50, 9], ["defaultVersion", 51, 9], ["release", 52, 9], ["releaseRev", 53, 9], ["repo", 54, 9], ["propagatedBuildInputs", 55, 9], ["mlPlugin", 58, 7], ["useDune", 59, 7], ["meta", 61, 7], ["passthru", 66, 7]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,16 +15,16 @@ export default nix.lambda((args) => (() => {
   const version = nix.argOr($, "version", () => null);
   const repo = "stalmarck";
   const defaultVersion = nix.thunk(() => (() => {
-    const case$ = (case$_1) => (out) => ({ [nix.POS]: pos$1, case: case$_1, out: out });
+    const case$ = (case$_1) => (out) => ({ [nix.POS]: $pos[0], case: case$_1, out: out });
     const w = nix.withScope(nix.thunk(() => nix.sel(lib, "versions")), null);
     return nix.app(nix.sel(lib, "switch"), nix.thunk(() => nix.sel(coq, "coq-version")), nix.thunk(() => [
         nix.thunk(() => nix.app(case$, nix.thunk(() => nix.app(nix.lookup(w, "isEq"), "8.20")), "8.20.0")),
       ]), null);
   })());
   const release = nix.thunk(() => ({
-    [nix.POS]: pos$3,
+    [nix.POS]: $pos[2],
     "8.20.0": nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       hash: "sha256-jITxQT1jLyZvWCGPnmK8i3IrwsZwMPOV0aBe9r22TIQ=",
     })),
   }));
@@ -42,11 +36,11 @@ export default nix.lambda((args) => (() => {
     const propagatedBuildInputs = nix.thunk(() => (nix.asBool(istac) ? [nix.thunk(() => nix.app(stalmarck_, "stalmarck"))] : [stdlib]));
     const description = nix.thunk(() => (nix.asBool(istac) ? "Coq tactic and verified tool for proving tautologies using Stålmarck's algorithm" : "A two-level approach to prove tautologies using Stålmarck's algorithm in Coq."));
     const duneOverride = nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(nix.eq(version, "8.20.0")) || nix.asBool(nix.eq(defaultVersion, "8.20.0")))), nix.thunk(() => ({
-        [nix.POS]: pos$5,
-        dune: nix.thunk(() => nix.app(nix.sel(dune, "override"), nix.thunk(() => ({ [nix.POS]: pos$4, version: "3.21.1" })))),
+        [nix.POS]: $pos[4],
+        dune: nix.thunk(() => nix.app(nix.sel(dune, "override"), nix.thunk(() => ({ [nix.POS]: $pos[3], version: "3.21.1" })))),
       }))));
     return nix.app(nix.sel(mkRocqDerivation, "override"), duneOverride, nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         useCoq: true,
         namePrefix: nix.thunk(() => ["coq"]),
         version: version,
@@ -59,7 +53,7 @@ export default nix.lambda((args) => (() => {
         mlPlugin: istac,
         useDune: istac,
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           description: description,
           license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),
         })),

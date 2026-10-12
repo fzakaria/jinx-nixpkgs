@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/async.nix", [[["description", 21, 5]], [["pname", 10, 3], ["src", 11, 20], ["version", 11, 24], ["propagatedBuildInputs", 13, 3], ["meta", 20, 3]]]);
 const formals$1 = { args: { buildDunePackage: false, gluten: false, async: false, "faraday-async": false, core: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/async.nix", [["description", 21, 5]]);
-const pos$2 = nix.positions(here + "/async.nix", [["pname", 10, 3], ["src", 11, 20], ["version", 11, 24], ["propagatedBuildInputs", 13, 3], ["meta", 20, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const faraday_async = nix.arg($, "faraday-async");
   const core = nix.arg($, "core");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "gluten-async",
       src: nix.thunk(() => nix.attr(gluten, "src")),
       version: nix.thunk(() => nix.attr(gluten, "version")),
       propagatedBuildInputs: nix.thunk(() => [gluten, async$, faraday_async, core]),
-      meta: nix.thunk(() => nix.update(nix.sel(gluten, "meta"), { [nix.POS]: pos$1, description: "Async support for gluten" })),
+      meta: nix.thunk(() => nix.update(nix.sel(gluten, "meta"), { [nix.POS]: $pos[0], description: "Async support for gluten" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=async.ts.map

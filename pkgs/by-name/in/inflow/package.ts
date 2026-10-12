@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]], [["nativeBuildInputs", 41, 11], ["buildInputs", 42, 11]], [["reflowWithLineLength", 38, 5]], [["tests", 37, 12]], [["description", 78, 5], ["homepage", 79, 5], ["license", 80, 5], ["mainProgram", 81, 5], ["maintainers", 82, 5], ["platforms", 86, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["buildPhase", 21, 3], ["installPhase", 29, 3], ["passthru", 37, 3], ["meta", 77, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, runCommand: false, inflow: false, diffutils: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["nativeBuildInputs", 41, 11], ["buildInputs", 42, 11]]);
-const pos$3 = nix.positions(here + "/package.nix", [["reflowWithLineLength", 38, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 37, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 78, 5], ["homepage", 79, 5], ["license", 80, 5], ["mainProgram", 81, 5], ["maintainers", 82, 5], ["platforms", 86, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["buildPhase", 21, 3], ["installPhase", 29, 3], ["passthru", 37, 3], ["meta", 77, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname = "inflow";
       const version = "1.0.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "stephen-huan",
           repo: "inflow",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -31,18 +26,18 @@ export default nix.lambda((args) => (() => {
       const buildPhase = "runHook preBuild\n\n$CXX -Wall -Wpedantic -Wextra -O3 -o inflow inflow.cpp\n\nrunHook postBuild\n";
       const installPhase = "runHook preInstall\n\ninstall -Dm755 inflow -t $out/bin\n\nrunHook postInstall\n";
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           reflowWithLineLength: nix.thunk(() => nix.app(runCommand, nix.thunk(() => nix.str`${pname}-test`), nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               nativeBuildInputs: nix.thunk(() => [inflow]),
               buildInputs: nix.thunk(() => [diffutils]),
             })), "cat <<EOF > input.txt\nxxxxx xxx xxx xxxx xxxxxxxxx xx x xxxxxxxxx x xxxx xxxx xxxxxxx xxxxxxxx xxx\nxxxxxxxxx xxxxxxxx xx xx xxxxx xxxxx xxxx xx x xxxx xx xxxxxxxx xxxxxxxx xxxx\nxxx xxxx xxxx xxx xxxxxxxxxxxxxxxxxxx xxxxxxxxxxxxx xxx xxxxx xx xxxx x xxxx\nxxxxxxxx xxxx xxxx xx xxxxx xxxx xxxxx xxxx xxxxxxxxx xxx xxxxxxxxxxx xxxxxx\nxxx xxxxxxxxx xxxx xxxx xx x xx xxxx xxx xxxx xx xxx xxx xxxxxxxxxxx xxxx xxxxx\nx xxxxx xxxxxxx xxxxxxx xx xx xxxxxx xx xxxxx\nEOF\n\ninflow 72 < input.txt > actual.txt\n\ncat <<EOF > expected.txt\nxxxxx xxx xxx xxxx xxxxxxxxx xx x xxxxxxxxx x xxxx xxxx xxxxxxx\nxxxxxxxx xxx xxxxxxxxx xxxxxxxx xx xx xxxxx xxxxx xxxx xx x xxxx\nxx xxxxxxxx xxxxxxxx xxxx xxx xxxx xxxx xxx xxxxxxxxxxxxxxxxxxx\nxxxxxxxxxxxxx xxx xxxxx xx xxxx x xxxx xxxxxxxx xxxx xxxx xx xxxxx\nxxxx xxxxx xxxx xxxxxxxxx xxx xxxxxxxxxxx xxxxxx xxx xxxxxxxxx\nxxxx xxxx xx x xx xxxx xxx xxxx xx xxx xxx xxxxxxxxxxx xxxx xxxxx\nx xxxxx xxxxxxx xxxxxxx xx xx xxxxxx xx xxxxx\nEOF\n\nif ! cmp --silent expected.txt actual.txt\nthen\n  echo \"Error: actual.txt and expected.txt are different\"\n  diff actual.txt expected.txt\n  exit 1\nfi\n\ntouch $out\n")),
         })),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Variance-optimal paragraph formatter",
         homepage: "https://github.com/stephen-huan/inflow",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unlicense")),
@@ -57,7 +52,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
       return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname,
         version,
         src,

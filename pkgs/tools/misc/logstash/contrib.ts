@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/contrib.nix", [[["url", 14, 5], ["sha256", 15, 5]], [["description", 31, 5], ["homepage", 32, 5], ["license", 33, 5], ["platforms", 34, 5], ["maintainers", 35, 5]], [["version", 10, 3], ["pname", 11, 3], ["src", 13, 3], ["dontBuild", 18, 3], ["dontPatchELF", 19, 3], ["dontStrip", 20, 3], ["dontPatchShebangs", 21, 3], ["installPhase", 23, 3], ["meta", 30, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchzip: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/contrib.nix", [["url", 14, 5], ["sha256", 15, 5]]);
-const pos$2 = nix.positions(here + "/contrib.nix", [["description", 31, 5], ["homepage", 32, 5], ["license", 33, 5], ["platforms", 34, 5], ["maintainers", 35, 5]]);
-const pos$3 = nix.positions(here + "/contrib.nix", [["version", 10, 3], ["pname", 11, 3], ["src", 13, 3], ["dontBuild", 18, 3], ["dontPatchELF", 19, 3], ["dontStrip", 20, 3], ["dontPatchShebangs", 21, 3], ["installPhase", 23, 3], ["meta", 30, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,7 +14,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.4.2";
       const pname = "logstash-contrib";
       const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://download.elasticsearch.org/logstash/logstash/logstash-contrib-${version}.tar.gz`),
           sha256: "1yj8sf3b526gixh3c6zhgkfpg4f0c72p1lzhfhdx8b3lw7zjkj0k",
         }))));
@@ -26,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const dontPatchShebangs = true;
       const installPhase = "runHook preInstall\nmkdir -p $out/logstash\ncp -r lib/* $out\nrunHook postInstall\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Community-maintained logstash plugins",
         homepage: "https://github.com/elasticsearch/logstash-contrib",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -34,7 +32,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         version,
         pname,
         src,

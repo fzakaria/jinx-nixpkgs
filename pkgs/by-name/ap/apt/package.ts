@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 38, 5], ["owner", 39, 5], ["repo", 40, 5], ["rev", 41, 5], ["hash", 42, 5]], [["updateScript", 98, 12]], [["homepage", 101, 5], ["description", 102, 5], ["changelog", 103, 5], ["license", 104, 5], ["mainProgram", 105, 5], ["maintainers", 106, 5], ["platforms", 107, 5]], [["pname", 34, 3], ["version", 35, 3], ["src", 37, 3], ["outputs", 46, 3], ["nativeBuildInputs", 53, 3], ["buildInputs", 70, 3], ["cmakeFlags", 89, 3], ["passthru", 98, 3], ["meta", 100, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, bzip2: false, cmake: false, curl: false, db: false, docbook_xml_dtd_45: false, docbook_xsl: false, doxygen: false, dpkg: false, gettext: false, gtest: false, libseccomp: false, libtasn1: false, libxslt: false, lz4: false, "p11-kit": false, perlPackages: false, "pkg-config": false, triehash: false, udev: false, w3m: false, xxhash: false, xz: false, zstd: false, withDocs: true, withNLS: true, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 38, 5], ["owner", 39, 5], ["repo", 40, 5], ["rev", 41, 5], ["hash", 42, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 98, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 101, 5], ["description", 102, 5], ["changelog", 103, 5], ["license", 104, 5], ["mainProgram", 105, 5], ["maintainers", 106, 5], ["platforms", 107, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 34, 3], ["version", 35, 3], ["src", 37, 3], ["outputs", 46, 3], ["nativeBuildInputs", 53, 3], ["buildInputs", 70, 3], ["cmakeFlags", 89, 3], ["passthru", 98, 3], ["meta", 100, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -40,11 +37,11 @@ export default nix.lambda((args) => (() => {
   const withNLS = nix.argOr($, "withNLS", () => true);
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "apt",
       version: "3.3.3",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "salsa.debian.org",
           owner: "apt-team",
           repo: "apt",
@@ -91,11 +88,11 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "WITH_DOC", withDocs)),
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://salsa.debian.org/apt-team/apt",
         description: "Command-line package management tools used on Debian-based systems",
         changelog: nix.thunk(() => nix.str`https://salsa.debian.org/apt-team/apt/-/raw/${nix.sel(finalAttrs, "version")}/debian/changelog`),

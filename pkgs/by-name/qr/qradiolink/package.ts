@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 33, 5], ["repo", 34, 5], ["tag", 35, 5], ["hash", 36, 5]], [["description", 95, 5], ["mainProgram", 96, 5], ["homepage", 97, 5], ["license", 98, 5], ["maintainers", 104, 5], ["platforms", 105, 5]], [["pname", 29, 3], ["version", 30, 3], ["src", 32, 3], ["preBuild", 39, 3], ["installPhase", 46, 3], ["buildInputs", 54, 3], ["nativeBuildInputs", 87, 3], ["meta", 94, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromCodeberg: false, libpulseaudio: false, libconfig: false, "pkg-config": false, gnuradio: false, log4cpp: false, thrift: false, codec2: false, gmp: false, gsm: false, libopus: false, libjpeg: false, libsndfile: false, libftdi: false, limesuite: false, "soapysdr-with-plugins": false, protobuf: false, speex: false, speexdsp: false, cppzmq: false, uhd: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 33, 5], ["repo", 34, 5], ["tag", 35, 5], ["hash", 36, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 95, 5], ["mainProgram", 96, 5], ["homepage", 97, 5], ["license", 98, 5], ["maintainers", 104, 5], ["platforms", 105, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 29, 3], ["version", 30, 3], ["src", 32, 3], ["preBuild", 39, 3], ["installPhase", 46, 3], ["buildInputs", 54, 3], ["nativeBuildInputs", 87, 3], ["meta", 94, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -35,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const pname = "qradiolink";
       const version = "0.10.2-1";
       const src = nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "qradiolink",
           repo: "qradiolink",
           tag: version,
@@ -78,7 +76,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.sel(gnuradio, "qt", "wrapQtAppsHook")),
       ]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "SDR transceiver application for analog and digital modes",
         mainProgram: "qradiolink",
         homepage: "http://qradiolink.org/",
@@ -98,7 +96,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

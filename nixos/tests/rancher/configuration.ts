@@ -2,19 +2,9 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/configuration.nix", [[["enable", 24, 27]], [["sshBackdoor", 24, 15]], [["KUBECONFIG", 33, 36]], [["systemPackages", 29, 19], ["sessionVariables", 33, 19]], [["enable", 50, 11], ["shutdownGracePeriod", 51, 19], ["shutdownGracePeriodCriticalPods", 51, 39]], [["podsPerCore", 54, 19], ["memoryThrottlingFactor", 54, 31], ["containerLogMaxSize", 54, 54]], [["enable", 38, 9], ["package", 39, 9], ["disable", 40, 9], ["images", 41, 9], ["nodeName", 42, 17], ["containerdConfigTemplate", 43, 9], ["gracefulNodeShutdown", 49, 9], ["extraKubeletConfig", 53, 9]], [["environment", 29, 7], ["virtualisation", 35, 7], ["services", 37, 7]], [["machine", 26, 9]], [["maintainers", 90, 8]], [["name", 23, 3], ["interactive", 24, 3], ["nodes", 26, 3], ["testScript", 59, 3], ["meta", 90, 3]]]);
 const formals$1 = { args: { pkgs: false, lib: false, rancherDistro: false, rancherPackage: false, serviceName: false, disabledComponents: false, coreImages: false, vmResources: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/configuration.nix", [["enable", 24, 27]]);
-const pos$2 = nix.positions(here + "/configuration.nix", [["sshBackdoor", 24, 15]]);
 const formals$2 = { args: {  }, ellipsis: true };
-const pos$3 = nix.positions(here + "/configuration.nix", [["KUBECONFIG", 33, 36]]);
-const pos$4 = nix.positions(here + "/configuration.nix", [["systemPackages", 29, 19], ["sessionVariables", 33, 19]]);
-const pos$5 = nix.positions(here + "/configuration.nix", [["enable", 50, 11], ["shutdownGracePeriod", 51, 19], ["shutdownGracePeriodCriticalPods", 51, 39]]);
-const pos$6 = nix.positions(here + "/configuration.nix", [["podsPerCore", 54, 19], ["memoryThrottlingFactor", 54, 31], ["containerLogMaxSize", 54, 54]]);
-const pos$7 = nix.positions(here + "/configuration.nix", [["enable", 38, 9], ["package", 39, 9], ["disable", 40, 9], ["images", 41, 9], ["nodeName", 42, 17], ["containerdConfigTemplate", 43, 9], ["gracefulNodeShutdown", 49, 9], ["extraKubeletConfig", 53, 9]]);
-const pos$8 = nix.positions(here + "/configuration.nix", [["environment", 29, 7], ["virtualisation", 35, 7], ["services", 37, 7]]);
-const pos$9 = nix.positions(here + "/configuration.nix", [["machine", 26, 9]]);
-const pos$10 = nix.positions(here + "/configuration.nix", [["maintainers", 90, 8]]);
-const pos$11 = nix.positions(here + "/configuration.nix", [["name", 23, 3], ["interactive", 24, 3], ["nodes", 26, 3], ["testScript", 59, 3], ["meta", 90, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,20 +23,20 @@ export default nix.lambda((args) => (() => {
   const memoryThrottlingFactor = 0.69;
   const containerLogMaxSize = "5Mi";
   return {
-    [nix.POS]: pos$11,
+    [nix.POS]: $pos[10],
     name: nix.thunk(() => nix.str`${nix.sel(rancherPackage, "name")}-configuration`),
     interactive: nix.thunk(() => ({
-      [nix.POS]: pos$2,
-      sshBackdoor: nix.thunk(() => ({ [nix.POS]: pos$1, enable: true })),
+      [nix.POS]: $pos[1],
+      sshBackdoor: nix.thunk(() => ({ [nix.POS]: $pos[0], enable: true })),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             systemPackages: nix.thunk(() => (() => {
               const w = nix.withScope(pkgs, null);
               return [
@@ -55,14 +45,14 @@ export default nix.lambda((args) => (() => {
               ];
             })()),
             sessionVariables: nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               KUBECONFIG: nix.thunk(() => nix.str`/etc/rancher/${rancherDistro}/${rancherDistro}.yaml`),
             })),
           })),
           virtualisation: vmResources,
           services: nix.thunk(() => nix.attrsDyn({}, [
             [nix.force(rancherDistro), nix.thunk(() => ({
-              [nix.POS]: pos$7,
+              [nix.POS]: $pos[6],
               enable: true,
               package: rancherPackage,
               disable: disabledComponents,
@@ -74,13 +64,13 @@ export default nix.lambda((args) => (() => {
 # MAGIC COMMENT
 `),
               gracefulNodeShutdown: nix.thunk(() => ({
-                [nix.POS]: pos$5,
+                [nix.POS]: $pos[4],
                 enable: true,
                 shutdownGracePeriod: shutdownGracePeriod,
                 shutdownGracePeriodCriticalPods: shutdownGracePeriodCriticalPods,
               })),
               extraKubeletConfig: nix.thunk(() => ({
-                [nix.POS]: pos$6,
+                [nix.POS]: $pos[5],
                 podsPerCore: podsPerCore,
                 memoryThrottlingFactor: memoryThrottlingFactor,
                 containerLogMaxSize: containerLogMaxSize,
@@ -119,7 +109,7 @@ with subtest("Kubelet config values are set correctly"):
   t.assertEqual(kubelet_config["containerLogMaxSize"],"${containerLogMaxSize}")
 `),
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       maintainers: nix.thunk(() => nix.concat(nix.sel(lib, "teams", "k3s", "members"), nix.sel(pkgs, "rke2", "meta", "maintainers"))),
     })),
   };

@@ -2,18 +2,17 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/001-all-good.nix", [[["timeout", 9, 10]], [["nativeBuildInputs", 8, 5], ["meta", 9, 5]]]);
 const formals$1 = { args: { cue: false, runCommand: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/001-all-good.nix", [["timeout", 9, 10]]);
-const pos$2 = nix.positions(here + "/001-all-good.nix", [["nativeBuildInputs", 8, 5], ["meta", 9, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const cue = nix.arg($, "cue");
   const runCommand = nix.arg($, "runCommand");
   return nix.app(runCommand, nix.thunk(() => nix.str`cue-test-001-all-good-${nix.sel(cue, "version")}`), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       nativeBuildInputs: nix.thunk(() => [cue]),
-      meta: nix.thunk(() => ({ [nix.POS]: pos$1, timeout: 10n })),
+      meta: nix.thunk(() => ({ [nix.POS]: $pos[0], timeout: 10n })),
     })), "cue eval - <<<'a: \"all good\"' > $out\n");
 })(), formals$1);
 //# sourceMappingURL=001-all-good.ts.map

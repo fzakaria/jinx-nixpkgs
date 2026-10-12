@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]], [["description", 50, 5], ["homepage", 51, 5], ["changelog", 52, 5], ["license", 53, 5], ["maintainers", 54, 5]], [["pname", 17, 3], ["version", 18, 3], ["pyproject", 19, 3], ["disabled", 21, 3], ["src", 23, 3], ["build-system", 30, 3], ["dependencies", 32, 3], ["__darwinAllowLocalNetworking", 38, 3], ["nativeCheckInputs", 40, 3], ["pythonImportsCheck", 47, 3], ["meta", 49, 3]]]);
 const formals$1 = { args: { lib: false, aiohttp: false, buildPythonPackage: false, fetchFromGitHub: false, freezegun: false, ical: false, pydantic: false, "pytest-aiohttp": false, "pytest-asyncio": false, pytestCheckHook: false, pythonOlder: false, setuptools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 50, 5], ["homepage", 51, 5], ["changelog", 52, 5], ["license", 53, 5], ["maintainers", 54, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 17, 3], ["version", 18, 3], ["pyproject", 19, 3], ["disabled", 21, 3], ["src", 23, 3], ["build-system", 30, 3], ["dependencies", 32, 3], ["__darwinAllowLocalNetworking", 38, 3], ["nativeCheckInputs", 40, 3], ["pythonImportsCheck", 47, 3], ["meta", 49, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const pyproject = true;
       const disabled = nix.thunk(() => nix.app(pythonOlder, "3.13"));
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "allenporter",
           repo: "gcal_sync",
           tag: version,
@@ -39,7 +37,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [freezegun, pytest_aiohttp, pytest_asyncio, pytestCheckHook]);
       const pythonImportsCheck = nix.thunk(() => ["gcal_sync"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Library for syncing Google Calendar to local storage",
         homepage: "https://github.com/allenporter/gcal_sync",
         changelog: nix.thunk(() => nix.str`https://github.com/allenporter/gcal_sync/releases/tag/${nix.sel(src, "tag")}`),
@@ -50,7 +48,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

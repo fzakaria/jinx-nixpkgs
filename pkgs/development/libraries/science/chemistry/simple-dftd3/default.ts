@@ -2,10 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["hash", 33, 5]], [["description", 77, 5], ["mainProgram", 78, 5], ["license", 79, 5], ["homepage", 80, 5], ["platforms", 81, 5], ["maintainers", 82, 5]], [["pname", 26, 3], ["version", 27, 3], ["src", 29, 3], ["postPatch", 38, 3], ["patches", 44, 3], ["nativeBuildInputs", 48, 3], ["buildInputs", 58, 3], ["outputs", 65, 3], ["cmakeFlags", 70, 3], ["doCheck", 74, 3], ["meta", 76, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, gfortran: false, meson: false, ninja: false, cmake: false, "pkg-config": false, "mctc-lib": false, mstore: false, "toml-f": false, blas: false, buildType: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["hash", 33, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 77, 5], ["mainProgram", 78, 5], ["license", 79, 5], ["homepage", 80, 5], ["platforms", 81, 5], ["maintainers", 82, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 26, 3], ["version", 27, 3], ["src", 29, 3], ["postPatch", 38, 3], ["patches", 44, 3], ["nativeBuildInputs", 48, 3], ["buildInputs", 58, 3], ["outputs", 65, 3], ["cmakeFlags", 70, 3], ["doCheck", 74, 3], ["meta", 76, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const pname = "simple-dftd3";
       const version = "1.6.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "dftd3",
           repo: "simple-dftd3",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -44,7 +42,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const doCheck = true;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Reimplementation of the DFT-D3 program",
         mainProgram: "s-dftd3",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3Plus")),
@@ -53,7 +51,7 @@ export default nix.lambda((args) => (() => {
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "sheepforce"))]),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

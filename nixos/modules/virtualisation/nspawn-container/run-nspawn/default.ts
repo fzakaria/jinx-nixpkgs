@@ -2,13 +2,13 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["systemd", 5, 11]]]);
 const formals$1 = { args: { python3Packages: false, systemd: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["systemd", 5, 11]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const python3Packages = nix.arg($, "python3Packages");
   const systemd = nix.arg($, "systemd");
-  return nix.app(nix.sel(python3Packages, "callPackage"), nix.path(here, "./package.nix"), nix.thunk(() => ({ [nix.POS]: pos$1, systemd: systemd })));
+  return nix.app(nix.sel(python3Packages, "callPackage"), nix.path(here, "./package.nix"), nix.thunk(() => ({ [nix.POS]: $pos[0], systemd: systemd })));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

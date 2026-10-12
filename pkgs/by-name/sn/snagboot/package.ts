@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]], [["gui", 51, 5]], [["rev-prefix", 67, 7], ["ignoredVersions", 68, 7]], [["package", 72, 7], ["command", 73, 7], ["version", 74, 7]], [["version", 71, 11]], [["updateScript", 66, 5], ["tests", 71, 5]], [["homepage", 79, 5], ["description", 80, 5], ["license", 81, 5], ["maintainers", 82, 5]], [["pname", 13, 3], ["version", 14, 3], ["pyproject", 15, 3], ["src", 17, 3], ["build-system", 24, 3], ["pythonRemoveDeps", 28, 3], ["nativeBuildInputs", 32, 3], ["dependencies", 36, 3], ["pythonRelaxDeps", 48, 3], ["optional-dependencies", 50, 3], ["postInstall", 54, 3], ["passthru", 65, 3], ["meta", 78, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, python3Packages: false, snagboot: false, testers: false, gitUpdater: false, udevCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["gui", 51, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["rev-prefix", 67, 7], ["ignoredVersions", 68, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["package", 72, 7], ["command", 73, 7], ["version", 74, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["version", 71, 11]]);
-const pos$6 = nix.positions(here + "/package.nix", [["updateScript", 66, 5], ["tests", 71, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["homepage", 79, 5], ["description", 80, 5], ["license", 81, 5], ["maintainers", 82, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["pyproject", 15, 3], ["src", 17, 3], ["build-system", 24, 3], ["pythonRemoveDeps", 28, 3], ["nativeBuildInputs", 32, 3], ["dependencies", 36, 3], ["pythonRelaxDeps", 48, 3], ["optional-dependencies", 50, 3], ["postInstall", 54, 3], ["passthru", 65, 3], ["meta", 78, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const gitUpdater = nix.arg($, "gitUpdater");
   const udevCheckHook = nix.arg($, "udevCheckHook");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "snagboot",
       version: "2.4",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "bootlin",
           repo: "snagboot",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -57,18 +50,18 @@ export default nix.lambda((args) => (() => {
       "optional-dependencies": nix.thunk(() => (() => {
         const w_2 = nix.withScope(python3Packages, null);
         return {
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           gui: nix.thunk(() => [nix.thunk(() => nix.lookup(w_2, "kivy"))]),
         };
       })()),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), "rules=\"src/snagrecover/50-snagboot.rules\"\nif [ ! -f \"$rules\" ]; then\n    echo \"$rules is missing, must update the Nix file.\"\n    exit 1\nfi\n\nmkdir -p \"$out/lib/udev/rules.d\"\ncp \"$rules\" \"$out/lib/udev/rules.d/50-snagboot.rules\"\n")),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$3, "rev-prefix": "v", ignoredVersions: ".(rc|beta).*" })))),
+        [nix.POS]: $pos[5],
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[2], "rev-prefix": "v", ignoredVersions: ".(rc|beta).*" })))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               package: snagboot,
               command: "snagrecover --version",
               version: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -76,7 +69,7 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         homepage: "https://github.com/bootlin/snagboot",
         description: "Generic recovery and reflashing tool for embedded platforms",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/options-doc.nix", [[["url", 23, 7], ["name", 24, 7]], [["declarations", 30, 36]], [["documentType", 28, 3], ["options", 29, 3], ["transformOptions", 30, 3]]]);
 const formals$1 = { args: { lib: false, treefmt: false, nixosOptionsDoc: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/options-doc.nix", [["url", 23, 7], ["name", 24, 7]]);
-const pos$2 = nix.positions(here + "/options-doc.nix", [["declarations", 30, 36]]);
-const pos$3 = nix.positions(here + "/options-doc.nix", [["documentType", 28, 3], ["options", 29, 3], ["transformOptions", 30, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,17 +19,17 @@ export default nix.lambda((args) => (() => {
     const subpath = nix.thunk(() => nix.add("pkgs/by-name/tr/treefmt/modules/", nix.app(removeRoot, fileStr)));
     nix.assert_(nix.app(nix.sel(lib, "hasPrefix"), root, fileStr), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/tr/treefmt/options-doc.nix:21:5");
     return {
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: nix.thunk(() => nix.str`https://github.com/NixOS/nixpkgs/blob/${revision}/${subpath}`),
       name: subpath,
     };
   })();
   return nix.app(nixosOptionsDoc, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       documentType: "none",
       options: nix.thunk(() => nix.builtins.removeAttrs(nix.thunk(() => nix.sel(configuration, "options")), nix.thunk(() => ["_module"]))),
       transformOptions: (opt) => nix.update(opt, {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         declarations: nix.thunk(() => nix.builtins.map(transformDeclaration, nix.thunk(() => nix.sel(opt, "declarations")))),
       }),
     })));

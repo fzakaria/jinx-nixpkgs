@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]], [["PDM_PEP517_SCM_VERSION", 35, 7]], [["validation", 51, 5], ["global", 52, 5], ["doc", 53, 5]], [["description", 67, 5], ["homepage", 68, 5], ["changelog", 69, 5], ["license", 70, 5], ["maintainers", 71, 5]], [["pname", 19, 3], ["version", 20, 3], ["pyproject", 21, 3], ["src", 23, 3], ["outputs", 30, 3], ["env", 35, 3], ["nativeBuildInputs", 37, 3], ["propagatedBuildInputs", 48, 3], ["optional-dependencies", 50, 3], ["pythonImportsCheck", 59, 3], ["nativeCheckInputs", 61, 3], ["meta", 66, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, docutils: false, fetchFromGitHub: false, packaging: false, "pdm-backend": false, platformdirs: false, pydantic: false, pytestCheckHook: false, sphinx: false, "sphinx-autodoc-typehints": false, "sphinx-rtd-theme": false, sphinxHook: false, tabulate: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["PDM_PEP517_SCM_VERSION", 35, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["validation", 51, 5], ["global", 52, 5], ["doc", 53, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 67, 5], ["homepage", 68, 5], ["changelog", 69, 5], ["license", 70, 5], ["maintainers", 71, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 19, 3], ["version", 20, 3], ["pyproject", 21, 3], ["src", 23, 3], ["outputs", 30, 3], ["env", 35, 3], ["nativeBuildInputs", 37, 3], ["propagatedBuildInputs", 48, 3], ["optional-dependencies", 50, 3], ["pythonImportsCheck", 59, 3], ["nativeCheckInputs", 61, 3], ["meta", 66, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,14 +26,14 @@ export default nix.lambda((args) => (() => {
       const version = "1.3.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "bagel897",
           repo: "pytoolconfig",
           tag: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-h21SDgVsnCDZQf5GS7sFE19L/p+OlAFZGEYKc0RHn30=",
         }))));
       const outputs = nix.thunk(() => ["out", "doc"]);
-      const env = nix.thunk(() => ({ [nix.POS]: pos$2, PDM_PEP517_SCM_VERSION: version }));
+      const env = nix.thunk(() => ({ [nix.POS]: $pos[1], PDM_PEP517_SCM_VERSION: version }));
       const nativeBuildInputs = nix.thunk(() => nix.concat([
         pdm_backend,
         docutils,
@@ -47,7 +43,7 @@ export default nix.lambda((args) => (() => {
       ], nix.sel(optional_dependencies, "doc")));
       const propagatedBuildInputs = nix.thunk(() => [packaging]);
       const optional_dependencies = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         validation: nix.thunk(() => [pydantic]),
         global: nix.thunk(() => [platformdirs]),
         doc: nix.thunk(() => [sphinx, tabulate]),
@@ -55,7 +51,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["pytoolconfig"]);
       const nativeCheckInputs = nix.thunk(() => nix.concat([pytestCheckHook], nix.app(nix.sel(lib, "concatAttrValues"), optional_dependencies)));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Python tool configuration",
         homepage: "https://github.com/bagel897/pytoolconfig",
         changelog: nix.thunk(() => nix.str`https://github.com/bagel897/pytoolconfig/releases/tag/v${version}`),
@@ -69,7 +65,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         pyproject,

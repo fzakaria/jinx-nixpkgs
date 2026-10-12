@@ -2,10 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["root", 12, 5], ["fileset", 13, 5]], [["timeout", 36, 8]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["nativeBuildInputs", 21, 3], ["buildInputs", 25, 3], ["doCheck", 29, 3], ["doInstallCheck", 31, 3], ["postInstallCheck", 32, 3], ["meta", 36, 3]]]);
 const formals$1 = { args: { lib: false, buildDunePackage: false, reason: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["root", 12, 5], ["fileset", 13, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["timeout", 36, 8]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["nativeBuildInputs", 21, 3], ["buildInputs", 25, 3], ["doCheck", 29, 3], ["doInstallCheck", 31, 3], ["postInstallCheck", 32, 3], ["meta", 36, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,7 +14,7 @@ export default nix.lambda((args) => (() => {
       const pname = "helloreason";
       const version = "0.0.1";
       const src = nix.thunk(() => nix.app(nix.sel(lib, "fileset", "toSource"), nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           root: nix.path(here, "./."),
           fileset: nix.thunk(() => nix.app(nix.sel(lib, "fileset", "unions"), nix.thunk(() => [
               nix.path(here, "./helloreason.opam"),
@@ -31,9 +29,9 @@ export default nix.lambda((args) => (() => {
       const doInstallCheck = true;
       const postInstallCheck = nix.thunk(() => nix.str`$out/bin/${pname} | grep -q "Hello From Reason" > /dev/null
 `);
-      const meta = nix.thunk(() => ({ [nix.POS]: pos$2, timeout: 60n }));
+      const meta = nix.thunk(() => ({ [nix.POS]: $pos[1], timeout: 60n }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

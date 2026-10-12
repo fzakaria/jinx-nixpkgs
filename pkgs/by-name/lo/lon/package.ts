@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]], [["updateScript", 57, 5]], [["description", 61, 5], ["homepage", 62, 5], ["changelog", 63, 5], ["maintainers", 64, 5], ["license", 68, 5], ["mainProgram", 69, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["sourceRoot", 27, 3], ["cargoHash", 29, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 36, 3], ["postInstall", 38, 3], ["nativeCheckInputs", 47, 3], ["nativeInstallCheckInputs", 53, 3], ["doInstallCheck", 54, 3], ["passthru", 56, 3], ["meta", 60, 3]]]);
 const formals$1 = { args: { rustPlatform: false, lib: false, stdenv: false, fetchFromGitHub: false, makeBinaryWrapper: false, "pkg-config": false, openssl: false, "nix-prefetch-git": false, gitMinimal: false, nix: false, "nix-update-script": false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 57, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 61, 5], ["homepage", 62, 5], ["changelog", 63, 5], ["maintainers", 64, 5], ["license", 68, 5], ["mainProgram", 69, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["sourceRoot", 27, 3], ["cargoHash", 29, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 36, 3], ["postInstall", 38, 3], ["nativeCheckInputs", 47, 3], ["nativeInstallCheckInputs", 53, 3], ["doInstallCheck", 54, 3], ["passthru", 56, 3], ["meta", 60, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "lon",
       version: "1.0.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "nikstur",
           repo: "lon",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -43,11 +40,11 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Lock & update Nix dependencies",
         homepage: "https://github.com/nikstur/lon",
         changelog: nix.thunk(() => nix.str`https://github.com/nikstur/lon/blob/${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

@@ -2,16 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["pname", 16, 11], ["version", 17, 19], ["hash", 18, 11]], [["version", 14, 9], ["src", 15, 9]], [["version", 24, 19], ["hash", 25, 11]], [["version", 22, 9], ["src", 23, 9]], [["xstatic-bootstrap", 13, 7], ["xstatic-font-awesome", 21, 7]], [["self", 11, 5], ["packageOverrides", 12, 5]], [["pname", 60, 13], ["version", 60, 19], ["hash", 61, 5]], [["homepage", 85, 5], ["description", 86, 5], ["license", 87, 5], ["maintainers", 88, 5]], [["pname", 37, 3], ["version", 38, 3], ["pyproject", 39, 3], ["propagatedBuildInputs", 41, 3], ["buildInputs", 57, 3], ["src", 59, 3], ["nativeCheckInputs", 64, 3], ["disabledTestPaths", 74, 3], ["meta", 84, 3]]]);
 const formals$1 = { args: { lib: false, python3: false, fetchPypi: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["pname", 16, 11], ["version", 17, 19], ["hash", 18, 11]]);
-const pos$2 = nix.positions(here + "/package.nix", [["version", 14, 9], ["src", 15, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 24, 19], ["hash", 25, 11]]);
-const pos$4 = nix.positions(here + "/package.nix", [["version", 22, 9], ["src", 23, 9]]);
-const pos$5 = nix.positions(here + "/package.nix", [["xstatic-bootstrap", 13, 7], ["xstatic-font-awesome", 21, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["self", 11, 5], ["packageOverrides", 12, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 60, 13], ["version", 60, 19], ["hash", 61, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["homepage", 85, 5], ["description", 86, 5], ["license", 87, 5], ["maintainers", 88, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["pname", 37, 3], ["version", 38, 3], ["pyproject", 39, 3], ["propagatedBuildInputs", 41, 3], ["buildInputs", 57, 3], ["src", 59, 3], ["nativeCheckInputs", 64, 3], ["disabledTestPaths", 74, 3], ["meta", 84, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,28 +11,28 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const fetchPypi = nix.arg($, "fetchPypi");
   const bepastyPython = nix.thunk(() => nix.app(nix.sel(python3, "override"), nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       self: bepastyPython,
       packageOverrides: (self) => (super$) => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         "xstatic-bootstrap": nix.thunk(() => nix.app(nix.sel(super$, "xstatic-bootstrap", "overridePythonAttrs"), (oldAttrs) => (() => {
             const version = "4.5.3.1";
             const src = nix.thunk(() => nix.app(nix.sel(oldAttrs, "src", "override"), nix.thunk(() => ({
-                [nix.POS]: pos$1,
+                [nix.POS]: $pos[0],
                 pname: "XStatic-Bootstrap",
                 version: version,
                 hash: "sha256-z2fSBUN7MlCKiLaafnxbviylqK5xCXORpqb1EOv9KCA=",
               }))));
-            return { [nix.POS]: pos$2, version, src };
+            return { [nix.POS]: $pos[1], version, src };
           })())),
         "xstatic-font-awesome": nix.thunk(() => nix.app(nix.sel(super$, "xstatic-font-awesome", "overridePythonAttrs"), (oldAttrs) => (() => {
             const version = "4.7.0.0";
             const src = nix.thunk(() => nix.app(nix.sel(oldAttrs, "src", "override"), nix.thunk(() => ({
-                [nix.POS]: pos$3,
+                [nix.POS]: $pos[2],
                 version: version,
                 hash: "sha256-4B+0gMqqfHlj3LMyikcA5jG+9gcNsOi2hYFtIg5oX2w=",
               }))));
-            return { [nix.POS]: pos$4, version, src };
+            return { [nix.POS]: $pos[3], version, src };
           })())),
       }),
     }))));
@@ -71,7 +63,7 @@ export default nix.lambda((args) => (() => {
         return [nix.thunk(() => nix.lookup(w_1, "setuptools-scm"))];
       })());
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           pname: pname,
           version: version,
           hash: "sha256-teazPj+IrgbVeUkWqgWhpIldgfCTbZYJAqn5Q5blcm8=",
@@ -94,7 +86,7 @@ export default nix.lambda((args) => (() => {
         "src/bepasty/tests/test_website.py",
       ]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         homepage: "https://github.com/bepasty/bepasty-server",
         description: "Binary pastebin server",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),
@@ -107,7 +99,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         pname,
         version,
         pyproject,

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 48, 5], ["ruby_3_4", 49, 13], ["gemdir", 50, 13], ["gemfile", 51, 13], ["lockfile", 51, 21], ["gemset", 51, 30]], [["owner", 59, 5], ["repo", 60, 5], ["rev", 61, 5], ["sha256", 62, 5]], [["withMongo", 93, 5], ["withRchardet", 94, 5]], [["description", 100, 5], ["longDescription", 101, 5], ["mainProgram", 117, 5], ["homepage", 118, 5], ["license", 119, 5], ["maintainers", 120, 5], ["platforms", 121, 5]], [["pname", 55, 3], ["version", 56, 3], ["src", 58, 3], ["prePatch", 65, 3], ["buildInputs", 72, 3], ["nativeInstallCheckInputs", 74, 3], ["installPhase", 76, 3], ["passthru", 92, 3], ["doInstallCheck", 97, 3], ["meta", 99, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, bundlerEnv: false, ruby_3_4: false, versionCheckHook: false, withMongo: true, withRchardet: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 48, 5], ["ruby_3_4", 49, 13], ["gemdir", 50, 13], ["gemfile", 51, 13], ["lockfile", 51, 21], ["gemset", 51, 30]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 59, 5], ["repo", 60, 5], ["rev", 61, 5], ["sha256", 62, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["withMongo", 93, 5], ["withRchardet", 94, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 100, 5], ["longDescription", 101, 5], ["mainProgram", 117, 5], ["homepage", 118, 5], ["license", 119, 5], ["maintainers", 120, 5], ["platforms", 121, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 55, 3], ["version", 56, 3], ["src", 58, 3], ["prePatch", 65, 3], ["buildInputs", 72, 3], ["nativeInstallCheckInputs", 74, 3], ["installPhase", 76, 3], ["passthru", 92, 3], ["doInstallCheck", 97, 3], ["meta", 99, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,7 +20,7 @@ export default nix.lambda((args) => (() => {
   const lockfile = nix.thunk(() => (nix.asBool(withMongo) ? nix.add(gemdir, "/Gemfile.mongo.lock") : (nix.asBool(withRchardet) ? nix.add(gemdir, "/Gemfile.rchardet.lock") : nix.add(gemdir, "/Gemfile.lock"))));
   const gemset = nix.thunk(() => (nix.asBool(withMongo) ? nix.add(gemdir, "/gemset.mongo.nix") : (nix.asBool(withRchardet) ? nix.add(gemdir, "/gemset.rchardet.nix") : nix.add(gemdir, "/gemset.nix"))));
   const gems = nix.thunk(() => nix.app(bundlerEnv, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: "whatweb-env",
       ruby_3_4: ruby_3_4,
       gemdir: gemdir,
@@ -33,11 +29,11 @@ export default nix.lambda((args) => (() => {
       gemset: gemset,
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "whatweb",
       version: "0.6.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "urbanadventurer",
           repo: "whatweb",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -60,10 +56,10 @@ chmod +x $out/bin/whatweb
 
 runHook postInstall
 `),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$3, withMongo: withMongo, withRchardet: withRchardet })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[2], withMongo: withMongo, withRchardet: withRchardet })),
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Next generation web scanner",
         longDescription: nix.thunk(() => nix.add(nix.add("WhatWeb is a website fingerprinting tool that identifies web technologies such as CMSs, blogging platforms,\nanalytics packages, JavaScript libraries, web servers, and embedded devices. With over 1800 plugins, it detects software\nversions, email addresses, account IDs, web framework modules, SQL errors, and more. WhatWeb offers adjustable scan\nmodes, balancing speed and thoroughness, making it suitable for both quick reconnaissance and detailed penetration\ntesting. Its plugins use multiple detection methods to reliably identify technologies, even when sites attempt to\nobscure their software.\n", nix.app(nix.sel(lib, "optionalString"), withMongo, "\nThis build includes MongoDB support and character set detection capabilities, which may impact performance.\n")), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool(withRchardet) && nix.asBool(!nix.asBool(withMongo)))), "\nThis build includes character set detection capabilities, which may impact performance.\n"))),
         mainProgram: "whatweb",

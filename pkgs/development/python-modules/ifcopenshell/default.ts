@@ -2,17 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 59, 5], ["repo", 60, 5], ["tag", 61, 5], ["fetchSubmodules", 62, 5], ["hash", 63, 5]], [["name", 68, 7], ["url", 69, 7], ["hash", 70, 7]], [["name", 74, 7], ["url", 75, 7], ["hash", 76, 7]], [["PYTHONUSERBASE", 132, 7]], [["rev-prefix", 200, 33]], [["command", 203, 9], ["package", 204, 9]], [["version", 202, 7]], [["updateScript", 200, 5], ["tests", 201, 5]], [["broken", 210, 5], ["description", 211, 5], ["homepage", 212, 5], ["license", 213, 5], ["teams", 214, 5]], [["pname", 54, 3], ["version", 55, 3], ["pyproject", 56, 3], ["src", 58, 3], ["patches", 66, 3], ["nativeBuildInputs", 83, 3], ["buildInputs", 92, 3], ["propagatedBuildInputs", 108, 3], ["nativeCheckInputs", 118, 3], ["pythonImportsCheck", 130, 3], ["env", 132, 3], ["cmakeFlags", 135, 3], ["postPatch", 156, 3], ["preConfigure", 170, 3], ["preCheck", 174, 3], ["pytestFlags", 187, 3], ["disabledTestPaths", 191, 3], ["postCheck", 195, 3], ["passthru", 199, 3], ["meta", 209, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, testers: false, buildPythonPackage: false, python: false, pytestCheckHook: false, fetchFromGitHub: false, fetchpatch: false, gitUpdater: false, cmake: false, swig: false, eigen: false, boost: false, cgal_5: false, gmp: false, hdf5: false, icu: false, libaec: false, libxml2: false, mpfr: false, nlohmann_json: false, "opencascade-occt_7_6": false, zlib: false, setuptools: false, build: false, pytest: false, isodate: false, lark: false, numpy: false, "python-dateutil": false, shapely: false, "typing-extensions": false, ifcopenshell: false, lxml: false, mathutils: false, networkx: false, tabulate: false, xmlschema: false, xsdata: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 59, 5], ["repo", 60, 5], ["tag", 61, 5], ["fetchSubmodules", 62, 5], ["hash", 63, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["name", 68, 7], ["url", 69, 7], ["hash", 70, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["name", 74, 7], ["url", 75, 7], ["hash", 76, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["PYTHONUSERBASE", 132, 7]]);
-const pos$5 = nix.positions(here + "/default.nix", [["rev-prefix", 200, 33]]);
-const pos$6 = nix.positions(here + "/default.nix", [["command", 203, 9], ["package", 204, 9]]);
-const pos$7 = nix.positions(here + "/default.nix", [["version", 202, 7]]);
-const pos$8 = nix.positions(here + "/default.nix", [["updateScript", 200, 5], ["tests", 201, 5]]);
-const pos$9 = nix.positions(here + "/default.nix", [["broken", 210, 5], ["description", 211, 5], ["homepage", 212, 5], ["license", 213, 5], ["teams", 214, 5]]);
-const pos$10 = nix.positions(here + "/default.nix", [["pname", 54, 3], ["version", 55, 3], ["pyproject", 56, 3], ["src", 58, 3], ["patches", 66, 3], ["nativeBuildInputs", 83, 3], ["buildInputs", 92, 3], ["propagatedBuildInputs", 108, 3], ["nativeCheckInputs", 118, 3], ["pythonImportsCheck", 130, 3], ["env", 132, 3], ["cmakeFlags", 135, 3], ["postPatch", 156, 3], ["preConfigure", 170, 3], ["preCheck", 174, 3], ["pytestFlags", 187, 3], ["disabledTestPaths", 191, 3], ["postCheck", 195, 3], ["passthru", 199, 3], ["meta", 209, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -61,7 +52,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.8.0";
       const pyproject = false;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "IfcOpenShell",
           repo: "IfcOpenShell",
           tag: nix.thunk(() => nix.str`ifcopenshell-python-${version}`),
@@ -70,13 +61,13 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "ifcopenshell-boost-1.86-mt19937.patch",
             url: "https://github.com/IfcOpenShell/IfcOpenShell/commit/1fe168d331123920eeb9a96e542fcc1453de57fe.patch",
             hash: "sha256-oZDEL8cPcEu83lW+qSvCbmDGYpaNNRrptW9MLu2pN70=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "ifcopenshell-boost-1.86-json.patch",
             url: "https://github.com/IfcOpenShell/IfcOpenShell/commit/88b861737c7c206d0e7307f90d37467e9585515c.patch",
             hash: "sha256-zMoQcBWRdtavL0xdsr53SqyG6CZoeon8/mmJhrw85lc=",
@@ -110,7 +101,7 @@ export default nix.lambda((args) => (() => {
         pytestCheckHook,
       ]);
       const pythonImportsCheck = nix.thunk(() => ["ifcopenshell"]);
-      const env = nix.thunk(() => ({ [nix.POS]: pos$4, PYTHONUSERBASE: "." }));
+      const env = nix.thunk(() => ({ [nix.POS]: $pos[3], PYTHONUSERBASE: "." }));
       const cmakeFlags = nix.thunk(() => [
         "-DUSERSPACE_PYTHON_PREFIX=ON",
         "-DBUILD_SHARED_LIBS=ON",
@@ -156,15 +147,15 @@ popd
       const disabledTestPaths = nix.thunk(() => ["test/test_open.py"]);
       const postCheck = "popd\n";
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$8,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$5, "rev-prefix": "ifcopenshell-python-" })))),
+        [nix.POS]: $pos[7],
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[4], "rev-prefix": "ifcopenshell-python-" })))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$7,
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$6, command: "IfcConvert --version", package: ifcopenshell })))),
+          [nix.POS]: $pos[6],
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: $pos[5], command: "IfcConvert --version", package: ifcopenshell })))),
         })),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
         description: "Open source IFC library and geometry engine",
         homepage: "https://ifcopenshell.org/",
@@ -172,7 +163,7 @@ popd
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "geospatial"))]),
       }));
       return {
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         pname,
         version,
         pyproject,

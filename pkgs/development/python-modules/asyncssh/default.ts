@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 29, 13], ["version", 29, 19], ["hash", 30, 5]], [["bcrypt", 44, 5], ["fido2", 45, 5], ["ifaddr", 46, 5], ["gssapi", 47, 5], ["libnacl", 48, 5], ["pkcs11", 49, 5], ["pyOpenSSL", 50, 5]], [["description", 97, 5], ["homepage", 98, 5], ["changelog", 99, 5], ["license", 100, 5], ["maintainers", 104, 5]], [["pname", 24, 3], ["version", 25, 3], ["pyproject", 26, 3], ["src", 28, 3], ["build-system", 33, 3], ["dependencies", 35, 3], ["buildInputs", 41, 3], ["optional-dependencies", 43, 3], ["__darwinAllowLocalNetworking", 53, 3], ["nativeCheckInputs", 55, 3], ["patches", 62, 3], ["disabledTestPaths", 72, 3], ["disabledTests", 77, 3], ["pythonImportsCheck", 94, 3], ["meta", 96, 3]]]);
 const formals$1 = { args: { lib: false, bcrypt: false, buildPythonPackage: false, cryptography: false, fetchPypi: false, fido2: false, gssapi: false, ifaddr: false, libnacl: false, libsodium: false, nettle: false, openssh: false, openssl: false, pyopenssl: false, pytestCheckHook: false, "python-pkcs11": false, setuptools: false, stdenv: false, "typing-extensions": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 29, 13], ["version", 29, 19], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["bcrypt", 44, 5], ["fido2", 45, 5], ["ifaddr", 46, 5], ["gssapi", 47, 5], ["libnacl", 48, 5], ["pkcs11", 49, 5], ["pyOpenSSL", 50, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 97, 5], ["homepage", 98, 5], ["changelog", 99, 5], ["license", 100, 5], ["maintainers", 104, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 24, 3], ["version", 25, 3], ["pyproject", 26, 3], ["src", 28, 3], ["build-system", 33, 3], ["dependencies", 35, 3], ["buildInputs", 41, 3], ["optional-dependencies", 43, 3], ["__darwinAllowLocalNetworking", 53, 3], ["nativeCheckInputs", 55, 3], ["patches", 62, 3], ["disabledTestPaths", 72, 3], ["disabledTests", 77, 3], ["pythonImportsCheck", 94, 3], ["meta", 96, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.24.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-QGTFkOWc4ujYKi9m018xINdlgotN9ePb+we0qMJGhsk=",
@@ -43,7 +40,7 @@ export default nix.lambda((args) => (() => {
       const dependencies = nix.thunk(() => [cryptography, nettle, typing_extensions]);
       const buildInputs = nix.thunk(() => [libsodium]);
       const optional_dependencies = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         bcrypt: nix.thunk(() => [bcrypt]),
         fido2: nix.thunk(() => [fido2]),
         ifaddr: nix.thunk(() => [ifaddr]),
@@ -65,7 +62,7 @@ export default nix.lambda((args) => (() => {
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["test_canonicalize_failure"]))));
       const pythonImportsCheck = nix.thunk(() => ["asyncssh"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Asynchronous SSHv2 Python client and server library",
         homepage: "https://asyncssh.readthedocs.io/",
         changelog: nix.thunk(() => nix.str`https://github.com/ronf/asyncssh/blob/v${version}/docs/changes.rst`),
@@ -79,7 +76,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 31, 5], ["rev", 32, 5], ["hash", 33, 5]], [["homepage", 63, 5], ["description", 64, 5], ["license", 65, 5], ["platforms", 66, 5]], [["pname", 24, 3], ["version", 25, 3], ["strictDeps", 27, 3], ["__structuredAttrs", 28, 3], ["src", 30, 3], ["buildInputs", 36, 3], ["nativeBuildInputs", 50, 3], ["preConfigure", 58, 3], ["meta", 62, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchhg: false, autoreconfHook: false, boost: false, libglut: false, glew: false, gsl: false, lcms2: false, libjpeg: false, libpng: false, libtiff: false, libGLU: false, libGL: false, vigra: false, help2man: false, "pkg-config": false, perl: false, texliveSmall: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 31, 5], ["rev", 32, 5], ["hash", 33, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 63, 5], ["description", 64, 5], ["license", 65, 5], ["platforms", 66, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 24, 3], ["version", 25, 3], ["strictDeps", 27, 3], ["__structuredAttrs", 28, 3], ["src", 30, 3], ["buildInputs", 36, 3], ["nativeBuildInputs", 50, 3], ["preConfigure", 58, 3], ["meta", 62, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,13 +27,13 @@ export default nix.lambda((args) => (() => {
   const perl = nix.arg($, "perl");
   const texliveSmall = nix.arg($, "texliveSmall");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "enblend-enfuse",
       version: "4.3-unstable-2022-03-06",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchhg, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "http://hg.code.sf.net/p/enblend/code",
           rev: "0f423c72e51872698fe2985ca3bd453961ffe4e0",
           hash: "sha256-0gCUSdg3HR3YeIbOByEBCZh2zGlYur6DeCOzUM53fdc=",
@@ -56,7 +54,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [autoreconfHook, help2man, perl, pkg_config, texliveSmall]),
       preConfigure: "patchShebangs src/embrace\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://enblend.sourceforge.net/",
         description: "Blends away the seams in a panoramic image mosaic using a multiresolution spline",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

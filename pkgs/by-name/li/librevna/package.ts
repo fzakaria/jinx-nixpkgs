@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]], [["changelog", 79, 5], ["homepage", 80, 5], ["description", 81, 5], ["mainProgram", 82, 5], ["license", 83, 5], ["platforms", 84, 5], ["maintainers", 86, 5]], [["pname", 14, 3], ["version", 15, 3], ["__structuredAttrs", 16, 3], ["src", 18, 3], ["sourceRoot", 25, 3], ["postPatch", 27, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 45, 3], ["strictDeps", 52, 3], ["installPhase", 54, 3], ["meta", 78, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, "apple-sdk_14": false, git: false, "pkg-config": false, qt6: false, libusb1: false, udev: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["changelog", 79, 5], ["homepage", 80, 5], ["description", 81, 5], ["mainProgram", 82, 5], ["license", 83, 5], ["platforms", 84, 5], ["maintainers", 86, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["__structuredAttrs", 16, 3], ["src", 18, 3], ["sourceRoot", 25, 3], ["postPatch", 27, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 45, 3], ["strictDeps", 52, 3], ["installPhase", 54, 3], ["meta", 78, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const libusb1 = nix.arg($, "libusb1");
   const udev = nix.arg($, "udev");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "librevna",
       version: "1.6.5",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "jankae",
           repo: "LibreVNA",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -43,7 +41,7 @@ export default nix.lambda((args) => (() => {
       strictDeps: true,
       installPhase: nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? "runHook preInstall\n\nmkdir -p $out/{Applications,bin}\nmv LibreVNA-GUI.app $out/Applications\nln -s $out/Applications/LibreVNA-GUI.app/Contents/MacOS/LibreVNA-GUI $out/bin/LibreVNA-GUI\n\nrunHook postInstall\n" : "runHook preInstall\n\ninstall -Dm755 LibreVNA-GUI -t $out/bin\ninstall -Dm644 ../51-vna.rules -t $out/etc/udev/rules.d\ninstall -Dm644 resources/librevna.desktop -t $out/share/applications\ninstall -Dm644 resources/librevna.png $out/share/icons/hicolor/256x256/apps/librevna.png\ninstall -Dm644 resources/librevna.png -t $out/share/pixmaps\n\nrunHook postInstall\n")),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         changelog: nix.thunk(() => nix.str`https://github.com/jankae/LibreVNA/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         homepage: "https://github.com/jankae/LibreVNA/",
         description: "100kHz to 6GHz 2 port USB based VNA",

@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/unwrapped.nix", [[["owner", 43, 5], ["repo", 44, 5], ["rev", 45, 5], ["hash", 46, 5], ["fetchSubmodules", 47, 5]], [["hardcodeZeroVersion", 97, 41]], [["isle-portable-unwrapped", 99, 7]], [["updateScript", 97, 5], ["wrapped", 98, 5]], [["description", 104, 5], ["homepage", 105, 5], ["license", 106, 5], ["platforms", 113, 5], ["mainProgram", 114, 5], ["maintainers", 115, 5]], [["strictDeps", 38, 3], ["pname", 39, 3], ["version", 40, 3], ["src", 42, 3], ["postPatch", 50, 3], ["outputs", 55, 3], ["nativeBuildInputs", 60, 3], ["buildInputs", 68, 3], ["cmakeFlags", 90, 3], ["passthru", 96, 3], ["meta", 103, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, stdenv: false, callPackage: false, unstableGitUpdater: false, cmake: false, ninja: false, python3: false, "pkg-config": false, libxrender: false, libxrandr: false, libxi: false, libxinerama: false, libxfixes: false, libxext: false, libxcursor: false, libx11: false, wayland: false, libxkbcommon: false, "wayland-protocols": false, glew: false, qt6: false, "alsa-lib": false, sdl3: false, iniparser: false, libweaver: false, imguiDebug: true, emscriptenHost: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/unwrapped.nix", [["owner", 43, 5], ["repo", 44, 5], ["rev", 45, 5], ["hash", 46, 5], ["fetchSubmodules", 47, 5]]);
-const pos$2 = nix.positions(here + "/unwrapped.nix", [["hardcodeZeroVersion", 97, 41]]);
-const pos$3 = nix.positions(here + "/unwrapped.nix", [["isle-portable-unwrapped", 99, 7]]);
-const pos$4 = nix.positions(here + "/unwrapped.nix", [["updateScript", 97, 5], ["wrapped", 98, 5]]);
-const pos$5 = nix.positions(here + "/unwrapped.nix", [["description", 104, 5], ["homepage", 105, 5], ["license", 106, 5], ["platforms", 113, 5], ["mainProgram", 114, 5], ["maintainers", 115, 5]]);
-const pos$6 = nix.positions(here + "/unwrapped.nix", [["strictDeps", 38, 3], ["pname", 39, 3], ["version", 40, 3], ["src", 42, 3], ["postPatch", 50, 3], ["outputs", 55, 3], ["nativeBuildInputs", 60, 3], ["buildInputs", 68, 3], ["cmakeFlags", 90, 3], ["passthru", 96, 3], ["meta", 103, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -41,12 +36,12 @@ export default nix.lambda((args) => (() => {
   const imguiDebug = nix.argOr($, "imguiDebug", () => false);
   const emscriptenHost = nix.argOr($, "emscriptenHost", () => "");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       strictDeps: true,
       pname: "isle-portable",
       version: "0-unstable-2026-01-31",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "isledecomp",
           repo: "isle-portable",
           rev: "03cb40190a1aedea23b857942d14359c86ad3857",
@@ -83,15 +78,15 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeFeature"), "ISLE_EMSCRIPTEN_HOST", emscriptenHost)),
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, hardcodeZeroVersion: true })))),
+        [nix.POS]: $pos[3],
+        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[1], hardcodeZeroVersion: true })))),
         wrapped: nix.thunk(() => nix.app(callPackage, nix.path(here, "./package.nix"), nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             "isle-portable-unwrapped": nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Portable decompilation of Lego Island",
         homepage: "https://github.com/isledecomp/isle-portable",
         license: nix.thunk(() => (() => {

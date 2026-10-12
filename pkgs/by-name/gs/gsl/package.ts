@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 18, 5], ["hash", 19, 5]], [["url", 24, 7], ["extraPrefix", 25, 7], ["hash", 26, 7]], [["NIX_CFLAGS_COMPILE", 45, 7]], [["description", 55, 5], ["homepage", 56, 5], ["license", 57, 5], ["longDescription", 59, 5], ["platforms", 69, 5], ["maintainers", 70, 5]], [["pname", 9, 3], ["version", 10, 3], ["outputs", 12, 3], ["src", 17, 3], ["patches", 22, 3], ["preConfigure", 30, 3], ["postInstall", 40, 3], ["env", 45, 3], ["doCheck", 47, 3], ["meta", 54, 3]]]);
 const formals$1 = { args: { fetchurl: false, fetchpatch: false, lib: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 24, 7], ["extraPrefix", 25, 7], ["hash", 26, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 45, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 55, 5], ["homepage", 56, 5], ["license", 57, 5], ["longDescription", 59, 5], ["platforms", 69, 5], ["maintainers", 70, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["outputs", 12, 3], ["src", 17, 3], ["patches", 22, 3], ["preConfigure", 30, 3], ["postInstall", 40, 3], ["env", 45, 3], ["doCheck", 47, 3], ["meta", 54, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,18 +12,18 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "gsl",
       version: "2.8",
       outputs: nix.thunk(() => ["out", "dev"]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnu/gsl/gsl-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-apnu7RVjLGNUiVsd1ULtWoVcDxXZrRMmxv4rLJ5CMZA=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/macports/macports-ports/raw/90be777d2ce451d3c23783cb2be0efab9732e4d0/math/gsl/files/patch-fix-linking.diff",
             extraPrefix: "",
             hash: "sha256-lweYndIxcM5+4ckIUubkD9XbJbqkfdK+y9c3aRzmq0M=",
@@ -36,12 +32,12 @@ export default nix.lambda((args) => (() => {
       preConfigure: nix.thunk(() => (nix.asBool((nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "darwinMinVersion")), "11")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")))) ? "MACOSX_DEPLOYMENT_TARGET=10.16\n" : null)),
       postInstall: "moveToOutput bin/gsl-config \"$dev\"\n",
       env: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isx86_64")), "-mno-fma")),
       })),
       doCheck: nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(stdenv, "hostPlatform", "system"), "i686-linux")) && nix.asBool(!nix.asBool(nix.sel(stdenv, "hostPlatform", "isBigEndian"))))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "GNU Scientific Library, a large numerical library",
         homepage: "https://www.gnu.org/software/gsl/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

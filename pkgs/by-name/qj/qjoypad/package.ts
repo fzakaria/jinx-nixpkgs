@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]], [["description", 41, 5], ["longDescription", 42, 5], ["homepage", 58, 5], ["license", 59, 5], ["platforms", 60, 5], ["mainProgram", 61, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["postPatch", 22, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 33, 3], ["meta", 40, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, "pkg-config": false, cmake: false, libx11: false, libxtst: false, libsForQt5: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 41, 5], ["longDescription", 42, 5], ["homepage", 58, 5], ["license", 59, 5], ["platforms", 60, 5], ["mainProgram", 61, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["postPatch", 22, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 33, 3], ["meta", 40, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = "qjoypad";
       const version = "4.3.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "panzi",
           repo: pname,
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -41,7 +39,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.sel(libsForQt5, "qtx11extras")),
       ]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Program that lets you use gaming devices anywhere",
         longDescription: "A simple Linux/QT program that lets you use your gaming devices\nwhere you want them: in your games! QJoyPad takes input from a\ngamepad or joystick and translates it into key strokes or mouse\nactions, letting you control any XWindows program with your game\ncontroller. This lets you play all those games that for some\nreason don't have joystick support with your joystick. QJoyPad\nalso gives you the advantage of multiple saved layouts so you\ncan have a separate setting for every game, or for every class\nof game! That way you can play your games the way you want, not\nthe way the programmers decided, and you can have the same\nbutton be \"fire\" in every one of your space fighters. QJoyPad\ngives you the freedom and flexibility to really take advantage\nof gaming devices in Linux, and makes the Linux gaming\nexperience just a little bit nicer.\n",
         homepage: "https://github.com/panzi/qjoypad/",
@@ -53,7 +51,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "qjoypad",
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

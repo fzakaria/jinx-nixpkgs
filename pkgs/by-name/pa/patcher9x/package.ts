@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 7], ["repo", 15, 7], ["rev", 16, 7], ["hash", 17, 7], ["name", 18, 7]], [["owner", 22, 7], ["repo", 23, 7], ["rev", 24, 7], ["hash", 25, 7], ["name", 26, 7]], [["description", 46, 5], ["mainProgram", 47, 5], ["homepage", 48, 5], ["license", 49, 5], ["maintainers", 50, 5], ["platforms", 51, 5]], [["pname", 9, 3], ["version", 10, 3], ["srcs", 12, 3], ["buildInputs", 30, 3], ["sourceRoot", 31, 3], ["hardeningDisable", 32, 3], ["preBuild", 34, 3], ["installPhase", 39, 3], ["meta", 45, 3]]]);
 const formals$1 = { args: { fasm: false, lib: false, stdenv: false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 7], ["repo", 15, 7], ["rev", 16, 7], ["hash", 17, 7], ["name", 18, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 22, 7], ["repo", 23, 7], ["rev", 24, 7], ["hash", 25, 7], ["name", 26, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 46, 5], ["mainProgram", 47, 5], ["homepage", 48, 5], ["license", 49, 5], ["maintainers", 50, 5], ["platforms", 51, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["srcs", 12, 3], ["buildInputs", 30, 3], ["sourceRoot", 31, 3], ["hardeningDisable", 32, 3], ["preBuild", 34, 3], ["installPhase", 39, 3], ["meta", 45, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,12 +12,12 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "patcher9x",
       version: "0.8.50",
       srcs: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             owner: "JHRobotics",
             repo: "patcher9x",
             rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -28,7 +25,7 @@ export default nix.lambda((args) => (() => {
             name: "src",
           })))),
         nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             owner: "JHRobotics",
             repo: "nocrt",
             rev: "f65cc7ef2a3cccd6264b2eb265d7fffbecb06ba4",
@@ -42,7 +39,7 @@ export default nix.lambda((args) => (() => {
       preBuild: "rmdir nocrt\nln -s ../nocrt .\n",
       installPhase: "runHook preInstall\ninstall -D patcher9x $out/bin/patcher9x\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Patch for Windows 95/98/98 SE/Me to fix CPU issues",
         mainProgram: "patcher9x",
         homepage: "https://github.com/JHRobotics/patcher9x",

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 37, 13], ["version", 37, 19], ["hash", 38, 5]], [["crc32c", 54, 5], ["google_crc32c", 55, 5], ["msgpack", 56, 5], ["pcodec", 57, 5]], [["homepage", 83, 5], ["license", 84, 5], ["description", 85, 5], ["maintainers", 86, 5]], [["pname", 32, 3], ["version", 33, 3], ["pyproject", 34, 3], ["src", 36, 3], ["build-system", 41, 3], ["dependencies", 48, 3], ["optional-dependencies", 53, 3], ["preBuild", 61, 3], ["nativeCheckInputs", 65, 3], ["disabledTestPaths", 73, 3], ["preCheck", 79, 3], ["postCheck", 80, 3], ["meta", 82, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchPypi: false, setuptools: false, "setuptools-scm": false, cython: false, "py-cpuinfo": false, numpy: false, "typing-extensions": false, crc32c: false, "google-crc32c": false, pcodec: false, pyzstd: false, msgpack: false, python: false, pytestCheckHook: false, "importlib-metadata": false, zstd: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 37, 13], ["version", 37, 19], ["hash", 38, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["crc32c", 54, 5], ["google_crc32c", 55, 5], ["msgpack", 56, 5], ["pcodec", 57, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["homepage", 83, 5], ["license", 84, 5], ["description", 85, 5], ["maintainers", 86, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 32, 3], ["version", 33, 3], ["pyproject", 34, 3], ["src", 36, 3], ["build-system", 41, 3], ["dependencies", 48, 3], ["optional-dependencies", 53, 3], ["preBuild", 61, 3], ["nativeCheckInputs", 65, 3], ["disabledTestPaths", 73, 3], ["preCheck", 79, 3], ["postCheck", 80, 3], ["meta", 82, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.16.5";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-DQ+2CFL4TAvZVDzE0que79N/yO/MQQrNR3fmKh0wAxg=",
@@ -42,7 +39,7 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [setuptools, setuptools_scm, cython, py_cpuinfo]);
       const dependencies = nix.thunk(() => [numpy, typing_extensions]);
       const optional_dependencies = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         crc32c: nix.thunk(() => [crc32c]),
         google_crc32c: nix.thunk(() => [google_crc32c]),
         msgpack: nix.thunk(() => [msgpack]),
@@ -54,7 +51,7 @@ export default nix.lambda((args) => (() => {
       const preCheck = nix.thunk(() => nix.str`pushd $out/${nix.sel(python, "sitePackages")}`);
       const postCheck = "popd";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/zarr-developers/numcodecs",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         description: "Buffer compression and transformation codecs for use in data storage and communication applications",
@@ -64,7 +61,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["x86_64", 14, 7], ["aarch64", 15, 7], ["riscv64", 16, 7]], [["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]], [["attrPath", 59, 11], ["ignoredVersions", 60, 11]], [["attrPath", 63, 11], ["url", 64, 11], ["ignoredVersions", 65, 11]], [["updateScript", 56, 5], ["qbe", 70, 13]], [["homepage", 74, 5], ["description", 75, 5], ["license", 76, 5], ["maintainers", 77, 5], ["mainProgram", 78, 5], ["platforms", 82, 5], ["badPlatforms", 85, 5]], [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 33, 3], ["makeFlags", 35, 3], ["strictDeps", 45, 3], ["enableParallelBuilding", 47, 3], ["doCheck", 49, 3], ["postConfigure", 51, 3], ["passthru", 55, 3], ["meta", 73, 3]]]);
 const formals$1 = { args: { "_experimental-update-script-combinators": false, fetchFromSourcehut: false, gitUpdater: false, lib: false, qbe: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["x86_64", 14, 7], ["aarch64", 15, 7], ["riscv64", 16, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["attrPath", 59, 11], ["ignoredVersions", 60, 11]]);
-const pos$4 = nix.positions(here + "/package.nix", [["attrPath", 63, 11], ["url", 64, 11], ["ignoredVersions", 65, 11]]);
-const pos$5 = nix.positions(here + "/package.nix", [["updateScript", 56, 5], ["qbe", 70, 13]]);
-const pos$6 = nix.positions(here + "/package.nix", [["homepage", 74, 5], ["description", 75, 5], ["license", 76, 5], ["maintainers", 77, 5], ["mainProgram", 78, 5], ["platforms", 82, 5], ["badPlatforms", 85, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 33, 3], ["makeFlags", 35, 3], ["strictDeps", 45, 3], ["enableParallelBuilding", 47, 3], ["doCheck", 49, 3], ["postConfigure", 51, 3], ["passthru", 55, 3], ["meta", 73, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,13 +15,13 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const platform = nix.thunk(() => nix.app(nix.sel(lib, "toLower"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "uname", "system"))));
   const arch = nix.thunk(() => nix.sel(stdenv, "hostPlatform", "uname", "processor"));
-  const qbePlatform = nix.thunk(() => nix.sel({ [nix.POS]: pos$1, x86_64: "amd64_sysv", aarch64: "arm64", riscv64: "rv64" }, nix.key(nix.force(arch))));
+  const qbePlatform = nix.thunk(() => nix.sel({ [nix.POS]: $pos[0], x86_64: "amd64_sysv", aarch64: "arm64", riscv64: "rv64" }, nix.key(nix.force(arch))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "harec",
       version: "0.26.0",
       src: nix.thunk(() => nix.app(fetchFromSourcehut, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "~sircmpwn",
           repo: "harec",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -50,15 +44,15 @@ export default nix.lambda((args) => (() => {
       postConfigure: nix.thunk(() => nix.str`ln -s configs/${platform}.mk config.mk
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         updateScript: nix.thunk(() => nix.app(nix.sel(_experimental_update_script_combinators, "sequence"), nix.thunk(() => nix.builtins.map((item) => nix.sel(item, "command"), nix.thunk(() => [
               nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({
-                  [nix.POS]: pos$3,
+                  [nix.POS]: $pos[2],
                   attrPath: "harec",
                   ignoredVersions: nix.thunk(() => ["-rc[0-9]{1,}"]),
                 })))),
               nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({
-                  [nix.POS]: pos$4,
+                  [nix.POS]: $pos[3],
                   attrPath: "hare",
                   url: "https://git.sr.ht/~sircmpwn/hare",
                   ignoredVersions: nix.thunk(() => ["-rc[0-9]{1,}"]),
@@ -67,7 +61,7 @@ export default nix.lambda((args) => (() => {
         qbe: qbe,
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         homepage: "https://harelang.org/",
         description: "Bootstrapping Hare compiler written in C for POSIX systems",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

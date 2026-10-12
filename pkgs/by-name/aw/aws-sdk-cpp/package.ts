@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 41, 5], ["repo", 42, 5], ["tag", 43, 5], ["hash", 44, 5]], [["NIX_CFLAGS_COMPILE", 108, 7]], [["pname", 127, 9], ["version", 128, 9], ["dontUnpack", 129, 9], ["nativeBuildInputs", 130, 9], ["buildInputs", 131, 9], ["buildCommand", 132, 9]], [["nix", 125, 15], ["arrow-cpp", 125, 19], ["cmake-find-package", 126, 7]], [["tests", 124, 5]], [["description", 160, 5], ["homepage", 161, 5], ["license", 162, 5], ["platforms", 163, 5], ["maintainers", 164, 5], ["broken", 166, 5]], [["pname", 36, 3], ["version", 38, 3], ["src", 40, 3], ["postPatch", 47, 3], ["outputs", 77, 3], ["nativeBuildInputs", 82, 3], ["buildInputs", 87, 3], ["propagatedBuildInputs", 94, 3], ["cmakeFlags", 96, 3], ["env", 108, 3], ["postFixupHooks", 113, 3], ["__darwinAllowLocalNetworking", 119, 3], ["requiredSystemFeatures", 121, 11], ["passthru", 123, 3], ["meta", 159, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, curl: false, openssl: false, zlib: false, "aws-crt-cpp": false, nix: false, "arrow-cpp": false, "aws-sdk-cpp": false, apis: true, customMemoryManagement: true, requiredSystemFeatures: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 41, 5], ["repo", 42, 5], ["tag", 43, 5], ["hash", 44, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 108, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 127, 9], ["version", 128, 9], ["dontUnpack", 129, 9], ["nativeBuildInputs", 130, 9], ["buildInputs", 131, 9], ["buildCommand", 132, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["nix", 125, 15], ["arrow-cpp", 125, 19], ["cmake-find-package", 126, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["tests", 124, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 160, 5], ["homepage", 161, 5], ["license", 162, 5], ["platforms", 163, 5], ["maintainers", 164, 5], ["broken", 166, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 36, 3], ["version", 38, 3], ["src", 40, 3], ["postPatch", 47, 3], ["outputs", 77, 3], ["nativeBuildInputs", 82, 3], ["buildInputs", 87, 3], ["propagatedBuildInputs", 94, 3], ["cmakeFlags", 96, 3], ["env", 108, 3], ["postFixupHooks", 113, 3], ["__darwinAllowLocalNetworking", 119, 3], ["requiredSystemFeatures", 121, 11], ["passthru", 123, 3], ["meta", 159, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const requiredSystemFeatures = nix.argOr($, "requiredSystemFeatures", () => ["big-parallel"]);
   const host_os = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? "APPLE" : (nix.asBool(nix.sel(stdenv, "hostPlatform", "isAndroid")) ? "ANDROID" : (nix.asBool(nix.sel(stdenv, "hostPlatform", "isWindows")) ? "WINDOWS" : (nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) ? "LINUX" : nix.builtins.throw("Unknown host OS"))))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "aws-sdk-cpp",
       version: "1.11.647",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "aws",
           repo: "aws-sdk-cpp",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -72,20 +66,20 @@ rm tests/aws-cpp-sdk-core-tests/http/HttpClientTest.cpp
           nix.thunk(() => nix.str`-DTARGET_ARCH=${host_os}`),
         ])), nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(apis, ["*"])), nix.thunk(() => nix.str`-DBUILD_ONLY=${nix.app(nix.sel(lib, "concatStringsSep"), ";", apis)}`)))))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-Wno-error=deprecated-declarations"]))),
       })),
       postFixupHooks: nix.thunk(() => ["mkdir -p $out/include"]),
       __darwinAllowLocalNetworking: true,
       requiredSystemFeatures: requiredSystemFeatures,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           nix: nix$,
           "arrow-cpp": arrow_cpp,
           "cmake-find-package": nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               pname: "aws-sdk-cpp-cmake-find-package-test",
               version: "0",
               dontUnpack: true,
@@ -96,7 +90,7 @@ rm tests/aws-cpp-sdk-core-tests/http/HttpClientTest.cpp
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "C++ interface for Amazon Web Services",
         homepage: "https://github.com/aws/aws-sdk-cpp",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

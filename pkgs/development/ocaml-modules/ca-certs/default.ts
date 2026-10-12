@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 22, 5], ["hash", 23, 5]], [["description", 44, 5], ["maintainers", 45, 5], ["license", 46, 5], ["homepage", 47, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["propagatedBuildInputs", 26, 3], ["doCheck", 36, 3], ["checkInputs", 37, 3], ["meta", 43, 3]]]);
 const formals$1 = { args: { lib: false, buildDunePackage: false, fetchurl: false, bos: false, fpath: false, ptime: false, "mirage-crypto": false, x509: false, astring: false, logs: false, cacert: false, alcotest: false, fmt: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 44, 5], ["maintainers", 45, 5], ["license", 46, 5], ["homepage", 47, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["propagatedBuildInputs", 26, 3], ["doCheck", 36, 3], ["checkInputs", 37, 3], ["meta", 43, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const alcotest = nix.arg($, "alcotest");
   const fmt = nix.arg($, "fmt");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "ca-certs",
       version: "1.0.3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/mirage/ca-certs/releases/download/v${nix.sel(finalAttrs, "version")}/ca-certs-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-At/J53cLGCGN8uJRGScR3UTFhYrSRXVpOxRas9fUHCk=",
         })))),
@@ -35,7 +33,7 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       checkInputs: nix.thunk(() => [cacert, alcotest, fmt]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Detect root CA certificates from the operating system",
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "sternenseemann"))]),
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),

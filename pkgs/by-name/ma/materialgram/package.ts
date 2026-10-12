@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 9], ["repo", 18, 9], ["hash", 19, 9], ["tag", 20, 9], ["fetchSubmodules", 21, 9]], [["description", 25, 9], ["longDescription", 26, 9], ["homepage", 30, 9], ["changelog", 31, 9], ["maintainers", 32, 9], ["mainProgram", 37, 9]], [["pname", 13, 7], ["version", 14, 7], ["src", 16, 7], ["meta", 24, 7]], [["pname", 9, 3], ["withWebkit", 10, 11], ["unwrapped", 11, 3]]]);
 const formals$1 = { args: { lib: false, "telegram-desktop": false, fetchFromGitHub: false, withWebkit: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 9], ["repo", 18, 9], ["hash", 19, 9], ["tag", 20, 9], ["fetchSubmodules", 21, 9]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 25, 9], ["longDescription", 26, 9], ["homepage", 30, 9], ["changelog", 31, 9], ["maintainers", 32, 9], ["mainProgram", 37, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 13, 7], ["version", 14, 7], ["src", 16, 7], ["meta", 24, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["withWebkit", 10, 11], ["unwrapped", 11, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,15 +12,15 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const withWebkit = nix.argOr($, "withWebkit", () => true);
   return nix.app(nix.sel(telegram_desktop, "override"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "materialgram",
       withWebkit: withWebkit,
       unwrapped: nix.thunk(() => nix.app(nix.sel(telegram_desktop, "unwrapped", "overrideAttrs"), (finalAttrs) => (previousAttrs) => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           pname: "materialgram-unwrapped",
           version: "7.0.5.1",
           src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-              [nix.POS]: pos$1,
+              [nix.POS]: $pos[0],
               owner: "kukuruzka165",
               repo: "materialgram",
               hash: "sha256-OE7TbxFEYzTM2IB7HMokR3a+tsrg4n4cbHmRXPITykI=",
@@ -31,7 +28,7 @@ export default nix.lambda((args) => (() => {
               fetchSubmodules: true,
             })))),
           meta: nix.thunk(() => nix.update(nix.sel(previousAttrs, "meta"), {
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             description: "Telegram Desktop fork with material icons and some improvements",
             longDescription: "Telegram Desktop fork with Material Design and other improvements,\nwhich is based on the Telegram API and the MTProto secure protocol.\n",
             homepage: "https://kukuruzka165.github.io/materialgram/",

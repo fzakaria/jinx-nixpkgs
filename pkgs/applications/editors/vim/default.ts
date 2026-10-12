@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["name", 13, 5], ["url", 14, 5], ["sha256", 15, 5]], [["stdenv", 20, 47]], [["pname", 23, 3], ["version", 26, 5], ["outputs", 27, 5], ["src", 28, 5], ["postPatch", 29, 5], ["hardeningDisable", 30, 5], ["enableParallelBuilding", 31, 5], ["enableParallelInstalling", 32, 5], ["postFixup", 33, 5], ["meta", 34, 5], ["nativeBuildInputs", 37, 3], ["buildInputs", 41, 3], ["strictDeps", 47, 3], ["configureFlags", 49, 3], ["preConfigure", 76, 3], ["postInstall", 81, 3], ["__impureHostDeps", 96, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, callPackage: false, ncurses: false, bash: false, gawk: false, gettext: false, "pkg-config": false, vimrc: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["name", 13, 5], ["url", 14, 5], ["sha256", 15, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["stdenv", 20, 47]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 23, 3], ["version", 26, 5], ["outputs", 27, 5], ["src", 28, 5], ["postPatch", 29, 5], ["hardeningDisable", 30, 5], ["enableParallelBuilding", 31, 5], ["enableParallelInstalling", 32, 5], ["postFixup", 33, 5], ["meta", 34, 5], ["nativeBuildInputs", 37, 3], ["buildInputs", 41, 3], ["strictDeps", 47, 3], ["configureFlags", 49, 3], ["preConfigure", 76, 3], ["postInstall", 81, 3], ["__impureHostDeps", 96, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,14 +17,14 @@ export default nix.lambda((args) => (() => {
   const gettext = nix.arg($, "gettext");
   const pkg_config = nix.arg($, "pkg-config");
   const vimrc = nix.argOr($, "vimrc", () => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: "default-vimrc",
       url: "https://raw.githubusercontent.com/archlinux/svntogit-packages/68f6d131750aa778807119e03eed70286a17b1cb/trunk/archlinux.vim",
       sha256: "18ifhv5q9prd175q3vxbqf6qyvkk6bc7d2lhqdk0q78i68kv9y0c",
     }))));
-  const common = nix.thunk(() => nix.app(callPackage, nix.path(here, "./common.nix"), nix.thunk(() => ({ [nix.POS]: pos$2, stdenv: stdenv }))));
+  const common = nix.thunk(() => nix.app(callPackage, nix.path(here, "./common.nix"), nix.thunk(() => ({ [nix.POS]: $pos[1], stdenv: stdenv }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "vim",
       version: nix.thunk(() => nix.attr(common, "version")),
       outputs: nix.thunk(() => nix.attr(common, "outputs")),

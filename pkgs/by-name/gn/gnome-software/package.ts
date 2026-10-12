@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 54, 5], ["hash", 55, 5]], [["isocodes", 60, 15]], [["packageName", 114, 41]], [["updateScript", 114, 5]], [["description", 118, 5], ["mainProgram", 119, 5], ["homepage", 120, 5], ["license", 121, 5], ["teams", 122, 5], ["platforms", 123, 5]], [["pname", 50, 3], ["version", 51, 3], ["src", 53, 3], ["patches", 58, 3], ["nativeBuildInputs", 64, 3], ["buildInputs", 81, 3], ["mesonFlags", 107, 3], ["passthru", 113, 3], ["meta", 117, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, replaceVars: false, "pkg-config": false, meson: false, ninja: false, gettext: false, gnome: false, wrapGAppsHook4: false, packagekit: false, ostree: false, glib: false, appstream: false, libsoup_3: false, libadwaita: false, polkit: false, isocodes: false, gspell: false, libxslt: false, "gobject-introspection": false, itstool: false, flatpak: false, fwupd: false, gtk4: false, "gsettings-desktop-schemas": false, "gnome-desktop": false, libgudev: false, libxmlb: false, malcontent: false, "json-glib": false, "glib-networking": false, libsecret: false, "valgrind-light": false, "docbook-xsl-nons": false, docbook_xml_dtd_42: false, docbook_xml_dtd_43: false, "gtk-doc": false, "desktop-file-utils": false, "libsysprof-capture": false, gst_all_1: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 54, 5], ["hash", 55, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["isocodes", 60, 15]]);
-const pos$3 = nix.positions(here + "/package.nix", [["packageName", 114, 41]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 114, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 118, 5], ["mainProgram", 119, 5], ["homepage", 120, 5], ["license", 121, 5], ["teams", 122, 5], ["platforms", 123, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 50, 3], ["version", 51, 3], ["src", 53, 3], ["patches", 58, 3], ["nativeBuildInputs", 64, 3], ["buildInputs", 81, 3], ["mesonFlags", 107, 3], ["passthru", 113, 3], ["meta", 117, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -55,16 +50,16 @@ export default nix.lambda((args) => (() => {
   const gst_all_1 = nix.arg($, "gst_all_1");
   const withFwupd = nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isx86"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "gnome-software",
       version: "50.3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnome/sources/gnome-software/${nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/gnome-software-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-sTGOaPArs5AvzY+QTVbwP1NOpQmPZeTGu5wskk2n+CM=",
         })))),
       patches: nix.thunk(() => [
-        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix-paths.patch"), nix.thunk(() => ({ [nix.POS]: pos$2, isocodes: isocodes })))),
+        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix-paths.patch"), nix.thunk(() => ({ [nix.POS]: $pos[1], isocodes: isocodes })))),
       ]),
       nativeBuildInputs: nix.thunk(() => [
         meson,
@@ -107,11 +102,11 @@ export default nix.lambda((args) => (() => {
       ], nix.app(nix.sel(lib, "optionals"), withFwupd, nix.thunk(() => [fwupd])))),
       mesonFlags: nix.thunk(() => nix.concat(["-Dtests=false"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(withFwupd)), nix.thunk(() => ["-Dfwupd=false"])))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$3, packageName: "gnome-software" })))),
+        [nix.POS]: $pos[3],
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: $pos[2], packageName: "gnome-software" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Software store that lets you install and update applications and system extensions",
         mainProgram: "gnome-software",
         homepage: "https://apps.gnome.org/Software/",

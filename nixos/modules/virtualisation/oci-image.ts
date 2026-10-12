@@ -2,19 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/oci-image.nix", [[["diskSize", 20, 20], ["diskSizeAutoSupported", 21, 20]], [["tags", 23, 18]], [["config", 27, 15], ["lib", 27, 22], ["pkgs", 27, 26], ["diskSize", 28, 39], ["name", 29, 7], ["baseName", 30, 7], ["configFile", 31, 7], ["format", 32, 7], ["partitionTableType", 33, 7]], [["image", 25, 18], ["OCIImage", 26, 18]], [["nixos", 23, 12], ["build", 25, 12]], [["extension", 24, 11]], [["Type", 63, 9], ["RemainAfterExit", 64, 9], ["StandardError", 65, 9], ["StandardOutput", 66, 9]], [["description", 37, 7], ["wantedBy", 39, 7], ["before", 40, 7], ["after", 42, 7], ["wants", 43, 7], ["path", 45, 7], ["script", 49, 7], ["serviceConfig", 62, 7]], [["fetch-ssh-keys", 36, 22]], [["services", 36, 13]], [["virtualisation", 20, 5], ["system", 23, 5], ["image", 24, 5], ["systemd", 36, 5]], [["imports", 12, 3], ["config", 17, 3]]]);
 const formals$1 = { args: { config: false, lib: false, pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/oci-image.nix", [["diskSize", 20, 20], ["diskSizeAutoSupported", 21, 20]]);
-const pos$2 = nix.positions(here + "/oci-image.nix", [["tags", 23, 18]]);
-const pos$3 = nix.positions(here + "/oci-image.nix", [["config", 27, 15], ["lib", 27, 22], ["pkgs", 27, 26], ["diskSize", 28, 39], ["name", 29, 7], ["baseName", 30, 7], ["configFile", 31, 7], ["format", 32, 7], ["partitionTableType", 33, 7]]);
-const pos$4 = nix.positions(here + "/oci-image.nix", [["image", 25, 18], ["OCIImage", 26, 18]]);
-const pos$5 = nix.positions(here + "/oci-image.nix", [["nixos", 23, 12], ["build", 25, 12]]);
-const pos$6 = nix.positions(here + "/oci-image.nix", [["extension", 24, 11]]);
-const pos$7 = nix.positions(here + "/oci-image.nix", [["Type", 63, 9], ["RemainAfterExit", 64, 9], ["StandardError", 65, 9], ["StandardOutput", 66, 9]]);
-const pos$8 = nix.positions(here + "/oci-image.nix", [["description", 37, 7], ["wantedBy", 39, 7], ["before", 40, 7], ["after", 42, 7], ["wants", 43, 7], ["path", 45, 7], ["script", 49, 7], ["serviceConfig", 62, 7]]);
-const pos$9 = nix.positions(here + "/oci-image.nix", [["fetch-ssh-keys", 36, 22]]);
-const pos$10 = nix.positions(here + "/oci-image.nix", [["services", 36, 13]]);
-const pos$11 = nix.positions(here + "/oci-image.nix", [["virtualisation", 20, 5], ["system", 23, 5], ["image", 24, 5], ["systemd", 36, 5]]);
-const pos$12 = nix.positions(here + "/oci-image.nix", [["imports", 12, 3], ["config", 17, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,28 +12,28 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const cfg = nix.thunk(() => nix.sel(config, "oci"));
   return {
-    [nix.POS]: pos$12,
+    [nix.POS]: $pos[11],
     imports: nix.thunk(() => [
       nix.path(here, "./oci-common.nix"),
       nix.path(here, "../image/file-options.nix"),
     ]),
     config: nix.thunk(() => ({
-      [nix.POS]: pos$11,
+      [nix.POS]: $pos[10],
       virtualisation: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         diskSize: nix.thunk(() => nix.app(nix.sel(lib, "mkOverride"), 1490n, nix.thunk(() => nix.mul(8n, 1024n)))),
         diskSizeAutoSupported: false,
       })),
       system: nix.thunk(() => ({
-        [nix.POS]: pos$5,
-        nixos: nix.thunk(() => ({ [nix.POS]: pos$2, tags: nix.thunk(() => ["oci"]) })),
+        [nix.POS]: $pos[4],
+        nixos: nix.thunk(() => ({ [nix.POS]: $pos[1], tags: nix.thunk(() => ["oci"]) })),
         build: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           image: nix.thunk(() => nix.sel(config, "system", "build", "OCIImage")),
           OCIImage: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../lib/make-disk-image.nix")), nix.thunk(() => (() => {
               const from = nix.thunk(() => nix.sel(config, "virtualisation"));
               return {
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               config: config,
               lib: lib,
               pkgs: pkgs,
@@ -58,13 +47,13 @@ export default nix.lambda((args) => (() => {
             })()))),
         })),
       })),
-      image: nix.thunk(() => ({ [nix.POS]: pos$6, extension: "qcow2" })),
+      image: nix.thunk(() => ({ [nix.POS]: $pos[5], extension: "qcow2" })),
       systemd: nix.thunk(() => ({
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         services: nix.thunk(() => ({
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           "fetch-ssh-keys": nix.thunk(() => ({
-            [nix.POS]: pos$8,
+            [nix.POS]: $pos[7],
             description: "Fetch authorized_keys for root user",
             wantedBy: nix.thunk(() => ["sshd.service"]),
             before: nix.thunk(() => ["sshd.service"]),
@@ -76,7 +65,7 @@ export default nix.lambda((args) => (() => {
             ]),
             script: "mkdir -m 0700 -p /root/.ssh\nif [ -f /root/.ssh/authorized_keys ]; then\n  echo \"Authorized keys have already been downloaded\"\nelse\n  echo \"Downloading authorized keys from Instance Metadata Service v2\"\n  curl -s -S -L \\\n    -H \"Authorization: Bearer Oracle\" \\\n    -o /root/.ssh/authorized_keys \\\n    http://169.254.169.254/opc/v2/instance/metadata/ssh_authorized_keys\n  chmod 600 /root/.ssh/authorized_keys\nfi\n",
             serviceConfig: nix.thunk(() => ({
-              [nix.POS]: pos$7,
+              [nix.POS]: $pos[6],
               Type: "oneshot",
               RemainAfterExit: true,
               StandardError: "journal+console",

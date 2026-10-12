@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["version", 31, 13], ["pname", 32, 5], ["hash", 33, 5]], [["changelog", 75, 5], ["description", 76, 5], ["homepage", 77, 5], ["license", 78, 5], ["maintainers", 79, 5], ["teams", 83, 5]], [["pname", 26, 3], ["version", 27, 3], ["pyproject", 28, 3], ["src", 30, 3], ["build-system", 36, 3], ["dependencies", 40, 3], ["nativeBuildInputs", 59, 3], ["preConfigure", 64, 3], ["pythonImportsCheck", 68, 3], ["meta", 74, 3]]]);
 const formals$1 = { args: { buildPythonPackage: false, colormath: false, cycler: false, fetchPypi: false, h5py: false, joblib: false, lib: false, "more-itertools": false, numpy: false, pandas: false, pint: false, pyarrow: false, pytest: false, pyyaml: false, reprint: false, requests: false, "scikit-rf": false, scipy: false, semver: false, setuptools: false, verilogae: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["version", 31, 13], ["pname", 32, 5], ["hash", 33, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["changelog", 75, 5], ["description", 76, 5], ["homepage", 77, 5], ["license", 78, 5], ["maintainers", 79, 5], ["teams", 83, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 26, 3], ["version", 27, 3], ["pyproject", 28, 3], ["src", 30, 3], ["build-system", 36, 3], ["dependencies", 40, 3], ["nativeBuildInputs", 59, 3], ["preConfigure", 64, 3], ["pythonImportsCheck", 68, 3], ["meta", 74, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -35,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.1.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           version: version,
           pname: "DMT_core",
           hash: "sha256-489E+uNn4NgyCwxsUMEPH/1ZuM+5uNq4zx8F88rkHMU=",
@@ -63,7 +61,7 @@ export default nix.lambda((args) => (() => {
       const preConfigure = "export HOME=$(mktemp -d)\n";
       const pythonImportsCheck = nix.thunk(() => ["DMT.core", "reprint", "verilogae"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         changelog: nix.thunk(() => nix.str`https://gitlab.com/dmt-development/dmt-core/-/blob/Version_${version}/CHANGELOG?ref_type=tags`),
         description: "Tool to help modeling engineers extract model parameters, run circuit and TCAD simulations and automate infrastructure",
         homepage: "https://gitlab.com/dmt-development/dmt-core",
@@ -81,7 +79,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 19, 5], ["group", 20, 5], ["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]], [["ARTI_FS_DISABLE_PERMISSION_CHECKS", 63, 7]], [["tor", 69, 36]], [["extraArgs", 70, 40]], [["tests", 69, 5], ["updateScript", 70, 5]], [["description", 74, 5], ["mainProgram", 75, 5], ["homepage", 76, 5], ["changelog", 77, 5], ["license", 78, 5], ["maintainers", 84, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["postPatch", 29, 3], ["buildAndTestSubdir", 36, 3], ["cargoHash", 37, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 41, 3], ["buildFeatures", 46, 3], ["checkFeatures", 50, 3], ["checkFlags", 55, 3], ["env", 63, 3], ["nativeInstallCheckInputs", 65, 3], ["doInstallCheck", 66, 3], ["passthru", 68, 3], ["meta", 73, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, rustPlatform: false, fetchFromGitLab: false, "pkg-config": false, sqlite: false, openssl: false, versionCheckHook: false, "nix-update-script": false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 19, 5], ["group", 20, 5], ["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["ARTI_FS_DISABLE_PERMISSION_CHECKS", 63, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tor", 69, 36]]);
-const pos$4 = nix.positions(here + "/package.nix", [["extraArgs", 70, 40]]);
-const pos$5 = nix.positions(here + "/package.nix", [["tests", 69, 5], ["updateScript", 70, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 74, 5], ["mainProgram", 75, 5], ["homepage", 76, 5], ["changelog", 77, 5], ["license", 78, 5], ["maintainers", 84, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["postPatch", 29, 3], ["buildAndTestSubdir", 36, 3], ["cargoHash", 37, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 41, 3], ["buildFeatures", 46, 3], ["checkFeatures", 50, 3], ["checkFlags", 55, 3], ["env", 63, 3], ["nativeInstallCheckInputs", 65, 3], ["doInstallCheck", 66, 3], ["passthru", 68, 3], ["meta", 73, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "arti",
       version: "2.7.0",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "gitlab.torproject.org",
           group: "tpo",
           owner: "core",
@@ -44,19 +38,19 @@ export default nix.lambda((args) => (() => {
       buildFeatures: nix.thunk(() => ["full"]),
       checkFeatures: nix.thunk(() => ["full", "experimental-api"]),
       checkFlags: nix.thunk(() => ["--skip=reload_cfg::test::watch_single_file"]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, ARTI_FS_DISABLE_PERMISSION_CHECKS: 1n })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], ARTI_FS_DISABLE_PERMISSION_CHECKS: 1n })),
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$3, tor: nix.thunk(() => nix.attr(nixosTests, "tor")) })),
+        [nix.POS]: $pos[4],
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[2], tor: nix.thunk(() => nix.attr(nixosTests, "tor")) })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             extraArgs: nix.thunk(() => ["--version-regex=^arti-v(.*)$"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Implementation of Tor in Rust",
         mainProgram: "arti",
         homepage: "https://arti.torproject.org/",

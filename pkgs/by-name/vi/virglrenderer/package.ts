@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 28, 5], ["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]], [["updateScript", 90, 5]], [["description", 94, 5], ["homepage", 95, 5], ["license", 96, 5], ["mainProgram", 97, 5], ["platforms", 98, 5], ["teams", 99, 5]], [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["patches", 35, 3], ["separateDebugInfo", 40, 3], ["nativeBuildInputs", 42, 3], ["buildInputs", 51, 3], ["mesonFlags", 68, 3], ["passthru", 89, 3], ["meta", 93, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, meson: false, ninja: false, "pkg-config": false, buildPackages: false, libGLU: false, libepoxy: false, libx11: false, libdrm: false, libgbm: false, libva: false, "vulkan-headers": false, "vulkan-loader": false, "nix-update-script": false, vulkanSupport: true, nativeContextSupport: true, vaapiSupport: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 28, 5], ["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 90, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 94, 5], ["homepage", 95, 5], ["license", 96, 5], ["mainProgram", 97, 5], ["platforms", 98, 5], ["teams", 99, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["patches", 35, 3], ["separateDebugInfo", 40, 3], ["nativeBuildInputs", 42, 3], ["buildInputs", 51, 3], ["mesonFlags", 68, 3], ["passthru", 89, 3], ["meta", 93, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,11 +27,11 @@ export default nix.lambda((args) => (() => {
   const nativeContextSupport = nix.argOr($, "nativeContextSupport", () => nix.sel(stdenv, "hostPlatform", "isLinux"));
   const vaapiSupport = nix.argOr($, "vaapiSupport", () => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "virglrenderer",
       version: "1.3.0",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "gitlab.freedesktop.org",
           owner: "virgl",
           repo: "virglrenderer",
@@ -59,11 +56,11 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "mesonOption"), "drm-renderers", nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nativeContextSupport, nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), ",", nix.thunk(() => nix.concat(["amdgpu-experimental", "asahi"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch32"))), nix.thunk(() => ["msm"])))))))))),
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Virtual 3D GPU for use inside QEMU virtual machines",
         homepage: "https://docs.mesa3d.org/drivers/virgl",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

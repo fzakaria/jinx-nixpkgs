@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 16, 5], ["hash", 17, 5], ["stripRoot", 18, 5]], [["homepage", 30, 5], ["description", 31, 5], ["platforms", 32, 5], ["maintainers", 33, 5], ["license", 36, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["installPhase", 21, 3], ["meta", 29, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchzip: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 16, 5], ["hash", 17, 5], ["stripRoot", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 30, 5], ["description", 31, 5], ["platforms", 32, 5], ["maintainers", 33, 5], ["license", 36, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["installPhase", 21, 3], ["meta", 29, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,18 +13,18 @@ export default nix.lambda((args) => (() => {
   const majorVersion = "0";
   const minorVersion = "601";
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "tenderness",
       version: nix.thunk(() => nix.str`${majorVersion}.${minorVersion}`),
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://dotcolon.net/files/fonts/tenderness_${majorVersion}${minorVersion}.zip`),
           hash: "sha256-bwJKW+rY7/r2pBCSA6HYlaRMsI/U8UdW2vV4tmYuJww=",
           stripRoot: false,
         })))),
       installPhase: "runHook preInstall\n\ninstall -D -m444 -t $out/share/fonts/opentype $src/*.otf\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://dotcolon.net/font/tenderness/",
         description: "Serif font designed by Sora Sagano with old-style figures",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),

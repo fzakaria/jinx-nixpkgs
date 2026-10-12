@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 22, 7], ["hash", 23, 7]], [["pkg-config", 46, 7]], [["url", 50, 7], ["rev-prefix", 51, 7]], [["tests", 45, 5], ["updateScript", 48, 5]], [["description", 56, 5], ["homepage", 57, 5], ["license", 58, 5], ["pkgConfigModules", 59, 5], ["platforms", 60, 5], ["broken", 61, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 26, 3], ["propagatedBuildInputs", 31, 3], ["outputs", 33, 3], ["mesonFlags", 38, 3], ["enableParallelBuilding", 42, 3], ["passthru", 44, 3], ["meta", 55, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, meson: false, ninja: false, "pkg-config": false, libGLX: false, testers: false, gitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 22, 7], ["hash", 23, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pkg-config", 46, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 50, 7], ["rev-prefix", 51, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 45, 5], ["updateScript", 48, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 56, 5], ["homepage", 57, 5], ["license", 58, 5], ["pkgConfigModules", 59, 5], ["platforms", 60, 5], ["broken", 61, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 26, 3], ["propagatedBuildInputs", 31, 3], ["outputs", 33, 3], ["mesonFlags", 38, 3], ["enableParallelBuilding", 42, 3], ["passthru", 44, 3], ["meta", 55, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,14 +17,14 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "glu",
       version: "9.0.3",
       src: nix.thunk(() => (() => {
         const pname = nix.thunk(() => nix.attr(finalAttrs, "pname"));
         const version = nix.thunk(() => nix.attr(finalAttrs, "version"));
         return nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             url: nix.thunk(() => nix.str`https://mesa.freedesktop.org/archive/glu/glu-${version}.tar.xz`),
             hash: "sha256-vUP+EvN0sRkusV/iDkX/RWubwmq1fw7ukZ+Wyg+KMw8=",
           })));
@@ -40,19 +35,19 @@ export default nix.lambda((args) => (() => {
       mesonFlags: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["-Dgl_provider=gl"]))),
       enableParallelBuilding: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "testMetaPkgConfig"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
         })),
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: "https://gitlab.freedesktop.org/mesa/glu",
             "rev-prefix": "glu-",
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "OpenGL utility library",
         homepage: "https://cgit.freedesktop.org/mesa/glu/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "sgi-b-20")),

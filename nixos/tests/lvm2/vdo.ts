@@ -2,20 +2,9 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/vdo.nix", [[["maintainers", 9, 8]], [["emptyDiskImages", 15, 22]], [["enable", 17, 18]], [["vdo", 17, 14]], [["enable", 18, 18]], [["boot", 17, 9], ["dmeventd", 18, 9]], [["lvm", 16, 16]], [["systemPackages", 20, 19]], [["kernelPackages", 21, 58]], [["virtualisation", 15, 7], ["services", 16, 7], ["environment", 20, 7], ["boot", 21, 7]], [["machine", 11, 9]], [["name", 8, 3], ["meta", 9, 3], ["nodes", 11, 3], ["testScript", 24, 3]]]);
 const formals$1 = { args: { lib: false, kernelPackages: true, mkXfsFlags: true }, ellipsis: true };
-const pos$1 = nix.positions(here + "/vdo.nix", [["maintainers", 9, 8]]);
 const formals$2 = { args: { pkgs: false, lib: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/vdo.nix", [["emptyDiskImages", 15, 22]]);
-const pos$3 = nix.positions(here + "/vdo.nix", [["enable", 17, 18]]);
-const pos$4 = nix.positions(here + "/vdo.nix", [["vdo", 17, 14]]);
-const pos$5 = nix.positions(here + "/vdo.nix", [["enable", 18, 18]]);
-const pos$6 = nix.positions(here + "/vdo.nix", [["boot", 17, 9], ["dmeventd", 18, 9]]);
-const pos$7 = nix.positions(here + "/vdo.nix", [["lvm", 16, 16]]);
-const pos$8 = nix.positions(here + "/vdo.nix", [["systemPackages", 20, 19]]);
-const pos$9 = nix.positions(here + "/vdo.nix", [["kernelPackages", 21, 58]]);
-const pos$10 = nix.positions(here + "/vdo.nix", [["virtualisation", 15, 7], ["services", 16, 7], ["environment", 20, 7], ["boot", 21, 7]]);
-const pos$11 = nix.positions(here + "/vdo.nix", [["machine", 11, 9]]);
-const pos$12 = nix.positions(here + "/vdo.nix", [["name", 8, 3], ["meta", 9, 3], ["nodes", 11, 3], ["testScript", 24, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,34 +12,37 @@ export default nix.lambda((args) => (() => {
   const kernelPackages = nix.argOr($, "kernelPackages", () => null);
   const mkXfsFlags = nix.argOr($, "mkXfsFlags", () => "");
   return {
-    [nix.POS]: pos$12,
+    [nix.POS]: $pos[11],
     name: "lvm2-vdo",
-    meta: nix.thunk(() => ({ [nix.POS]: pos$1, maintainers: [] })),
+    meta: nix.thunk(() => ({ [nix.POS]: $pos[0], maintainers: [] })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$11,
+      [nix.POS]: $pos[10],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs = nix.arg($_1, "pkgs");
         const lib_1 = nix.arg($_1, "lib");
         return {
-          [nix.POS]: pos$10,
-          virtualisation: nix.thunk(() => ({ [nix.POS]: pos$2, emptyDiskImages: nix.thunk(() => [8192n]) })),
+          [nix.POS]: $pos[9],
+          virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[1], emptyDiskImages: nix.thunk(() => [8192n]) })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             lvm: nix.thunk(() => ({
-              [nix.POS]: pos$6,
-              boot: nix.thunk(() => ({ [nix.POS]: pos$4, vdo: nix.thunk(() => ({ [nix.POS]: pos$3, enable: true })) })),
-              dmeventd: nix.thunk(() => ({ [nix.POS]: pos$5, enable: true })),
+              [nix.POS]: $pos[5],
+              boot: nix.thunk(() => ({
+                [nix.POS]: $pos[3],
+                vdo: nix.thunk(() => ({ [nix.POS]: $pos[2], enable: true })),
+              })),
+              dmeventd: nix.thunk(() => ({ [nix.POS]: $pos[4], enable: true })),
             })),
           })),
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$8,
+            [nix.POS]: $pos[7],
             systemPackages: nix.thunk(() => (() => {
               const w = nix.withScope(pkgs, null);
               return [nix.thunk(() => nix.lookup(w, "xfsprogs"))];
             })()),
           })),
-          boot: nix.thunk(() => nix.app(nix.sel(lib_1, "mkIf"), nix.thunk(() => !nix.eq(kernelPackages, null)), nix.thunk(() => ({ [nix.POS]: pos$9, kernelPackages: kernelPackages })))),
+          boot: nix.thunk(() => nix.app(nix.sel(lib_1, "mkIf"), nix.thunk(() => !nix.eq(kernelPackages, null)), nix.thunk(() => ({ [nix.POS]: $pos[8], kernelPackages: kernelPackages })))),
         };
       })(), formals$2),
     })),

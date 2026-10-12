@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 11, 5], ["repo", 12, 5], ["tag", 13, 5], ["hash", 14, 5]], [["homepage", 40, 5], ["description", 41, 5], ["mainProgram", 42, 5], ["license", 43, 5], ["maintainers", 44, 5]], [["pname", 18, 11], ["version", 18, 17], ["src", 18, 25], ["pyproject", 20, 3], ["propagatedBuildInputs", 22, 3], ["pythonRelaxDeps", 30, 3], ["meta", 39, 3]]]);
 const formals$1 = { args: { lib: false, python3: false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 11, 5], ["repo", 12, 5], ["tag", 13, 5], ["hash", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 40, 5], ["description", 41, 5], ["mainProgram", 42, 5], ["license", 43, 5], ["maintainers", 44, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 18, 11], ["version", 18, 17], ["src", 18, 25], ["pyproject", 20, 3], ["propagatedBuildInputs", 22, 3], ["pythonRelaxDeps", 30, 3], ["meta", 39, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,14 +13,14 @@ export default nix.lambda((args) => (() => {
   const pname = "wtfis";
   const version = "0.15.0";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "pirxthepilot",
       repo: "wtfis",
       tag: nix.thunk(() => nix.str`v${version}`),
       hash: "sha256-2e8T2R33xOX4XZ3Lsk95kI9ea245eTWrxA1RPi2PqEI=",
     }))));
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: pname,
       version: version,
       src: src,
@@ -36,7 +34,7 @@ export default nix.lambda((args) => (() => {
       ]),
       pythonRelaxDeps: nix.thunk(() => ["pydantic", "python-dotenv", "requests", "rich", "shodan", "types-requests"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/pirxthepilot/wtfis",
         description: "Passive hostname, domain and IP lookup tool for non-robots",
         mainProgram: "wtfis",

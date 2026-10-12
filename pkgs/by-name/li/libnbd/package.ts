@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 24, 5], ["hash", 25, 5]], [["homepage", 69, 5], ["description", 70, 5], ["longDescription", 71, 5], ["license", 86, 5], ["maintainers", 87, 5], ["platforms", 90, 5], ["broken", 91, 5]], [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 43, 3], ["postPatch", 49, 3], ["configureFlags", 54, 3], ["installFlags", 60, 3], ["postInstall", 62, 3], ["meta", 68, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, "bash-completion": false, "pkg-config": false, perl: false, buildPythonBindings: true, buildOcamlBindings: true, disableFuse: true, ocamlPackages: false, python3: false, libxml2: false, fuse3: false, gnutls: false, autoreconfHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 69, 5], ["description", 70, 5], ["longDescription", 71, 5], ["license", 86, 5], ["maintainers", 87, 5], ["platforms", 90, 5], ["broken", 91, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 43, 3], ["postPatch", 49, 3], ["configureFlags", 54, 3], ["installFlags", 60, 3], ["postInstall", 62, 3], ["meta", 68, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const pname = "libnbd";
       const version = "1.22.5";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://download.libguestfs.org/libnbd/${nix.app(nix.sel(lib, "versions", "majorMinor"), version)}-stable/libnbd-${version}.tar.gz`),
           hash: "sha256-y/Ria/R8jC+Zu5bHnlqM7JozNzyt6i/Bu/4E5uFbbjw=",
         }))));
@@ -52,7 +50,7 @@ install -Dm644 -T ${nix.path(here, "./libnbd-metadata")} $LIBNBD_PYTHON_METADATA
 substituteAllInPlace $LIBNBD_PYTHON_METADATA
 `)));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://gitlab.com/nbdkit/libnbd",
         description: "Network Block Device client library in userspace",
         longDescription: "NBD — Network Block Device — is a protocol for accessing Block Devices\n(hard disks and disk-like things) over a Network.  This is the NBD client\nlibrary in userspace, a simple library for writing NBD clients.\n\nThe key features are:\n- Synchronous API for ease of use.\n- Asynchronous API for writing non-blocking, multithreaded clients. You\n  can mix both APIs freely.\n- High performance.\n- Minimal dependencies for the basic library.\n- Well-documented, stable API.\n- Bindings in several programming languages.\n- Shell (nbdsh) for command line and scripting.\n",
@@ -71,7 +69,7 @@ substituteAllInPlace $LIBNBD_PYTHON_METADATA
         broken: nix.thunk(() => (nix.asBool(buildOcamlBindings) && nix.asBool(!nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(ocamlPackages, "ocaml", "version")), "4.05"))))),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

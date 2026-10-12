@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["fetchSubmodules", 29, 5], ["hash", 30, 5]], [["target", 57, 9], ["binary", 58, 9]], [["hasMullvadDaemon", 112, 12]], [["description", 115, 5], ["longDescription", 116, 5], ["homepage", 117, 5], ["changelog", 118, 5], ["license", 119, 5], ["platforms", 120, 5], ["maintainers", 121, 5], ["mainProgram", 126, 5]], [["pname", 20, 3], ["version", 21, 3], ["__structuredAttrs", 23, 3], ["src", 25, 3], ["cargoHash", 33, 3], ["cargoBuildFlags", 35, 3], ["nativeBuildInputs", 67, 3], ["buildInputs", 75, 3], ["postInstall", 87, 3], ["preFixup", 98, 3], ["__darwinAllowLocalNetworking", 104, 3], ["doInstallCheck", 106, 3], ["nativeInstallCheckInputs", 108, 3], ["passthru", 112, 3], ["meta", 114, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, rustPlatform: false, fetchFromGitHub: false, darwin: false, dbus: false, git: false, installShellFiles: false, libmnl: false, libnftnl: false, "pkg-config": false, protobuf: false, "rust-jemalloc-sys": false, versionCheckHook: false, makeBinaryWrapper: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["fetchSubmodules", 29, 5], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["target", 57, 9], ["binary", 58, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["hasMullvadDaemon", 112, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 115, 5], ["longDescription", 116, 5], ["homepage", 117, 5], ["changelog", 118, 5], ["license", 119, 5], ["platforms", 120, 5], ["maintainers", 121, 5], ["mainProgram", 126, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["__structuredAttrs", 23, 3], ["src", 25, 3], ["cargoHash", 33, 3], ["cargoBuildFlags", 35, 3], ["nativeBuildInputs", 67, 3], ["buildInputs", 75, 3], ["postInstall", 87, 3], ["preFixup", 98, 3], ["__darwinAllowLocalNetworking", 104, 3], ["doInstallCheck", 106, 3], ["nativeInstallCheckInputs", 108, 3], ["passthru", 112, 3], ["meta", 114, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,12 +23,12 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const makeBinaryWrapper = nix.arg($, "makeBinaryWrapper");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "mullvad",
       version: "2026.5",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "mullvad",
           repo: "mullvadvpn-app",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -47,7 +43,7 @@ export default nix.lambda((args) => (() => {
               return ["-p", target, "--bin", binary];
             })(), targets)));
         return nix.app(makeTargets, nix.thunk(() => [
-            nix.thunk(() => ({ [nix.POS]: pos$2, target: "mullvad-cli", binary: "mullvad" })),
+            nix.thunk(() => ({ [nix.POS]: $pos[1], target: "mullvad-cli", binary: "mullvad" })),
             "mullvad-daemon",
             "mullvad-setup",
             "mullvad-problem-report",
@@ -62,9 +58,9 @@ export default nix.lambda((args) => (() => {
       __darwinAllowLocalNetworking: true,
       doInstallCheck: true,
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$3, hasMullvadDaemon: true })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[2], hasMullvadDaemon: true })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Mullvad VPN daemon and command-line interface",
         longDescription: "**NOTE:** This package does not contain the Mullvad VPN graphical interface. The GUI to manage the Mullvad daemon is available on `pkgs.mullvad-vpn`.",
         homepage: "https://mullvad.net/",

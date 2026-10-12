@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 16, 5], ["gemfile", 17, 5], ["lockfile", 18, 5], ["gemset", 19, 5]], [["updateScript", 31, 12]], [["description", 34, 5], ["mainProgram", 35, 5], ["homepage", 36, 5], ["license", 37, 5], ["maintainers", 38, 5], ["platforms", 39, 5]], [["pname", 12, 3], ["version", 13, 3], ["gems", 15, 3], ["dontUnpack", 22, 3], ["nativeBuildInputs", 23, 3], ["buildInputs", 24, 3], ["installPhase", 26, 3], ["passthru", 31, 3], ["meta", 33, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, bundlerEnv: false, makeWrapper: false, ruby: false, bundlerUpdateScript: false, testers: false, papertrail: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 16, 5], ["gemfile", 17, 5], ["lockfile", 18, 5], ["gemset", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 31, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 34, 5], ["mainProgram", 35, 5], ["homepage", 36, 5], ["license", 37, 5], ["maintainers", 38, 5], ["platforms", 39, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["gems", 15, 3], ["dontUnpack", 22, 3], ["nativeBuildInputs", 23, 3], ["buildInputs", 24, 3], ["installPhase", 26, 3], ["passthru", 31, 3], ["meta", 33, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = "papertrail";
       const version = nix.thunk(() => nix.sel(nix.builtins.import(nix.path(here, "./gemset.nix")), "papertrail", "version"));
       const gems = nix.thunk(() => nix.app(bundlerEnv, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           name: "papertrail",
           gemfile: nix.path(here, "./Gemfile"),
           lockfile: nix.path(here, "./Gemfile.lock"),
@@ -35,11 +32,11 @@ export default nix.lambda((args) => (() => {
 makeWrapper ${gems}/bin/papertrail $out/bin/papertrail
 `);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(bundlerUpdateScript, "papertrail")),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Command-line client for Papertrail log management service",
         mainProgram: "papertrail",
         homepage: "https://github.com/papertrail/papertrail-cli/",
@@ -51,7 +48,7 @@ makeWrapper ${gems}/bin/papertrail $out/bin/papertrail
         platforms: nix.thunk(() => nix.sel(ruby, "meta", "platforms")),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         gems,

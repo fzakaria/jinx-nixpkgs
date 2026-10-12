@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 30, 5], ["sha256", 31, 5]], [["packageName", 66, 7], ["versionPolicy", 67, 7]], [["updateScript", 65, 5]], [["description", 72, 5], ["homepage", 73, 5], ["license", 74, 5], ["teams", 75, 5], ["platforms", 76, 5]], [["pname", 20, 3], ["version", 21, 3], ["outputs", 23, 3], ["src", 29, 3], ["nativeBuildInputs", 34, 3], ["propagatedBuildInputs", 44, 3], ["buildInputs", 50, 3], ["mesonFlags", 55, 3], ["postPatch", 59, 3], ["passthru", 64, 3], ["meta", 71, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, gnome: false, meson: false, ninja: false, "pkg-config": false, vala: false, libssh2: false, "gtk-doc": false, "gobject-introspection": false, "gi-docgen": false, libgit2: false, glib: false, python3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 30, 5], ["sha256", 31, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["packageName", 66, 7], ["versionPolicy", 67, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 65, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 72, 5], ["homepage", 73, 5], ["license", 74, 5], ["teams", 75, 5], ["platforms", 76, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["outputs", 23, 3], ["src", 29, 3], ["nativeBuildInputs", 34, 3], ["propagatedBuildInputs", 44, 3], ["buildInputs", 50, 3], ["mesonFlags", 55, 3], ["postPatch", 59, 3], ["passthru", 64, 3], ["meta", 71, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,12 +23,12 @@ export default nix.lambda((args) => (() => {
   const glib = nix.arg($, "glib");
   const python3 = nix.arg($, "python3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "libgit2-glib",
       version: "1.2.1",
       outputs: nix.thunk(() => ["out", "dev", "devdoc"]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnome/sources/libgit2-glib/${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/libgit2-glib-${nix.sel(finalAttrs, "version")}.tar.xz`),
           sha256: "l0I6d5ACs76HUcdfnXkEnfzMo2FqJhWfwWJIZ3K6eF8=",
         })))),
@@ -42,11 +38,11 @@ export default nix.lambda((args) => (() => {
       mesonFlags: nix.thunk(() => ["-Dgtk_doc=true"]),
       postPatch: "chmod +x meson_python_compile.py\npatchShebangs meson_python_compile.py\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$2, packageName: "libgit2-glib", versionPolicy: "none" })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: $pos[1], packageName: "libgit2-glib", versionPolicy: "none" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Glib wrapper library around the libgit2 git access library",
         homepage: "https://gitlab.gnome.org/GNOME/libgit2-glib",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),

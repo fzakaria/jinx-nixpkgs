@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]], [["electron-version", 52, 7]], [["pname", 58, 26], ["version", 58, 32], ["src", 58, 40], ["pnpm", 59, 13], ["fetcherVersion", 60, 5], ["hash", 61, 5]], [["name", 100, 7], ["desktopName", 101, 7], ["comment", 102, 7], ["exec", 103, 7], ["terminal", 104, 7], ["type", 105, 7], ["icon", 106, 7], ["startupWMClass", 107, 7], ["mimeTypes", 108, 7], ["categories", 109, 7]], [["tests", 113, 12]], [["description", 116, 13], ["homepage", 117, 5], ["license", 118, 5], ["maintainers", 119, 5], ["platforms", 126, 29], ["mainProgram", 127, 5]], [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["__structuredAttrs", 35, 3], ["strictDeps", 36, 3], ["postUnpack", 39, 3], ["patches", 50, 3], ["pnpmDeps", 57, 3], ["nativeBuildInputs", 64, 3], ["installPhase", 76, 3], ["desktopItems", 98, 3], ["passthru", 113, 3], ["meta", 115, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchFromGitHub: false, fetchPnpmDeps: false, replaceVars: false, makeDesktopItem: false, nodejs: false, pnpmConfigHook: false, pnpmBuildHook: false, pnpm_10: false, makeShellWrapper: false, copyDesktopItems: false, darwin: false, electron_42: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["electron-version", 52, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 58, 26], ["version", 58, 32], ["src", 58, 40], ["pnpm", 59, 13], ["fetcherVersion", 60, 5], ["hash", 61, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["name", 100, 7], ["desktopName", 101, 7], ["comment", 102, 7], ["exec", 103, 7], ["terminal", 104, 7], ["type", 105, 7], ["icon", 106, 7], ["startupWMClass", 107, 7], ["mimeTypes", 108, 7], ["categories", 109, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["tests", 113, 12]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 116, 13], ["homepage", 117, 5], ["license", 118, 5], ["maintainers", 119, 5], ["platforms", 126, 29], ["mainProgram", 127, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["__structuredAttrs", 35, 3], ["strictDeps", 36, 3], ["postUnpack", 39, 3], ["patches", 50, 3], ["pnpmDeps", 57, 3], ["nativeBuildInputs", 64, 3], ["installPhase", 76, 3], ["desktopItems", 98, 3], ["passthru", 113, 3], ["meta", 115, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const pnpm = pnpm_10;
   const electron = electron_42;
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "freetube",
       version: "0.25.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "FreeTubeApp",
           repo: "FreeTube",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}-beta`),
@@ -50,13 +44,13 @@ chmod -R u+w source/electron-dist
 `)),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./patch-build-script.patch"), nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             "electron-version": nix.thunk(() => nix.sel(electron, "version")),
           })))),
         nix.path(here, "./targets.patch"),
       ]),
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -83,7 +77,7 @@ install -D _icons/icon.svg $out/share/icons/hicolor/scalable/apps/freetube.svg
 `))), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenvNoCC, "hostPlatform", "isDarwin")), "mkdir -p $out/Applications $out/bin\ncp -r build/mac*/FreeTube.app $out/Applications\nln -s \"$out/Applications/FreeTube.app/Contents/MacOS/FreeTube\" $out/bin/freetube\n")), "runHook postInstall\n")),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             name: "freetube",
             desktopName: "FreeTube",
             comment: description,
@@ -96,11 +90,11 @@ install -D _icons/icon.svg $out/share/icons/hicolor/scalable/apps/freetube.svg
             categories: nix.thunk(() => ["Network"]),
           })))),
       ]),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$5, tests: nix.thunk(() => nix.sel(nixosTests, "freetube")) })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[4], tests: nix.thunk(() => nix.sel(nixosTests, "freetube")) })),
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(electron, "meta"));
         return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: description,
         homepage: "https://freetubeapp.io/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),

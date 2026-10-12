@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 53, 5], ["repo", 54, 5], ["tag", 55, 5], ["hash", 56, 5]], [["description", 134, 5], ["homepage", 135, 5], ["changelog", 136, 5], ["license", 137, 5], ["maintainers", 138, 5]], [["pname", 48, 3], ["version", 49, 3], ["pyproject", 50, 3], ["src", 52, 3], ["build-system", 59, 3], ["pythonRelaxDeps", 63, 3], ["dependencies", 65, 3], ["preInstallCheck", 99, 3], ["pythonImportsCheck", 103, 3], ["nativeCheckInputs", 105, 3], ["enabledTestPaths", 111, 3], ["disabledTestPaths", 113, 3], ["disabledTests", 118, 3], ["meta", 133, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, aiofiles: false, "azure-cosmos": false, "azure-identity": false, "azure-search-documents": false, "azure-storage-blob": false, devtools: false, environs: false, fnllm: false, future: false, graspologic: false, "json-repair": false, lancedb: false, litellm: false, networkx: false, nltk: false, numpy: false, openai: false, pandas: false, pyarrow: false, pydantic: false, "python-dotenv": false, pyyaml: false, spacy: false, textblob: false, tiktoken: false, tqdm: false, typer: false, "typing-extensions": false, "umap-learn": false, nbformat: false, "pytest-asyncio": false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 53, 5], ["repo", 54, 5], ["tag", 55, 5], ["hash", 56, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 134, 5], ["homepage", 135, 5], ["changelog", 136, 5], ["license", 137, 5], ["maintainers", 138, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 48, 3], ["version", 49, 3], ["pyproject", 50, 3], ["src", 52, 3], ["build-system", 59, 3], ["pythonRelaxDeps", 63, 3], ["dependencies", 65, 3], ["preInstallCheck", 99, 3], ["pythonImportsCheck", 103, 3], ["nativeCheckInputs", 105, 3], ["enabledTestPaths", 111, 3], ["disabledTestPaths", 113, 3], ["disabledTests", 118, 3], ["meta", 133, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -51,7 +49,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.7.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "microsoft",
           repo: "graphrag",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -109,7 +107,7 @@ export default nix.lambda((args) => (() => {
         "test_sort_context_max_tokens",
       ]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Modular graph-based Retrieval-Augmented Generation (RAG) system",
         homepage: "https://github.com/microsoft/graphrag",
         changelog: nix.thunk(() => nix.str`https://github.com/microsoft/graphrag/blob/${nix.sel(src, "tag")}/CHANGELOG.md`),
@@ -120,7 +118,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

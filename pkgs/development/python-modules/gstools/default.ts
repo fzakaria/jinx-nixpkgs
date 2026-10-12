@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 35, 5], ["repo", 36, 5], ["tag", 37, 5], ["hash", 38, 5]], [["plotting", 57, 5]], [["description", 71, 5], ["homepage", 72, 5], ["changelog", 73, 5], ["license", 74, 5], ["maintainers", 75, 5]], [["pname", 30, 3], ["version", 31, 3], ["pyproject", 32, 3], ["src", 34, 3], ["build-system", 41, 3], ["dependencies", 46, 3], ["optional-dependencies", 56, 3], ["pythonImportsCheck", 63, 3], ["nativeCheckInputs", 64, 3], ["meta", 70, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, cython: false, "hatch-vcs": false, hatchling: false, emcee: false, "gstools-cython": false, hankel: false, meshio: false, numpy: false, pyevtk: false, scipy: false, matplotlib: false, pyvista: false, pytestCheckHook: false, "pytest-cov-stub": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 35, 5], ["repo", 36, 5], ["tag", 37, 5], ["hash", 38, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["plotting", 57, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 71, 5], ["homepage", 72, 5], ["changelog", 73, 5], ["license", 74, 5], ["maintainers", 75, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 30, 3], ["version", 31, 3], ["pyproject", 32, 3], ["src", 34, 3], ["build-system", 41, 3], ["dependencies", 46, 3], ["optional-dependencies", 56, 3], ["pythonImportsCheck", 63, 3], ["nativeCheckInputs", 64, 3], ["meta", 70, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,12 +25,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const pytest_cov_stub = nix.arg($, "pytest-cov-stub");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "gstools",
       version: "1.7.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "GeoStat-Framework",
           repo: "GSTools",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -41,11 +38,11 @@ export default nix.lambda((args) => (() => {
         })))),
       "build-system": nix.thunk(() => [hatch_vcs, hatchling]),
       dependencies: nix.thunk(() => [emcee, gstools_cython, hankel, meshio, numpy, pyevtk, scipy]),
-      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$2, plotting: nix.thunk(() => [matplotlib, pyvista]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: $pos[1], plotting: nix.thunk(() => [matplotlib, pyvista]) })),
       pythonImportsCheck: nix.thunk(() => ["gstools"]),
       nativeCheckInputs: nix.thunk(() => nix.concat([pytestCheckHook, pytest_cov_stub], nix.app(nix.sel(lib, "concatAttrValues"), nix.thunk(() => nix.sel(finalAttrs, "passthru", "optional-dependencies"))))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Geostatistical toolbox",
         homepage: "https://github.com/GeoStat-Framework/GSTools",
         changelog: nix.thunk(() => nix.str`https://github.com/GeoStat-Framework/GSTools/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

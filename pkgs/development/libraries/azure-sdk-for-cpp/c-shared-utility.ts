@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/c-shared-utility.nix", [[["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["hash", 24, 5]], [["NIX_CFLAGS_COMPILE", 55, 5]], [["homepage", 63, 5], ["description", 64, 5], ["sourceProvenance", 65, 5], ["license", 66, 5], ["maintainers", 67, 5], ["platforms", 68, 5]], [["pname", 15, 3], ["version", 18, 3], ["src", 20, 3], ["postPatch", 29, 3], ["strictDeps", 34, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 41, 3], ["propagatedBuildInputs", 46, 3], ["cmakeFlags", 48, 3], ["env", 54, 3], ["postInstall", 58, 3], ["meta", 62, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, "apple-sdk": false, "macro-utils-c": false, "umock-c": false, cmake: false, ninja: false, "pkg-config": false, curl: false, openssl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/c-shared-utility.nix", [["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/c-shared-utility.nix", [["NIX_CFLAGS_COMPILE", 55, 5]]);
-const pos$3 = nix.positions(here + "/c-shared-utility.nix", [["homepage", 63, 5], ["description", 64, 5], ["sourceProvenance", 65, 5], ["license", 66, 5], ["maintainers", 67, 5], ["platforms", 68, 5]]);
-const pos$4 = nix.positions(here + "/c-shared-utility.nix", [["pname", 15, 3], ["version", 18, 3], ["src", 20, 3], ["postPatch", 29, 3], ["strictDeps", 34, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 41, 3], ["propagatedBuildInputs", 46, 3], ["cmakeFlags", 48, 3], ["env", 54, 3], ["postInstall", 58, 3], ["meta", 62, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const curl = nix.arg($, "curl");
   const openssl = nix.arg($, "openssl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "azure-c-shared-utility",
       version: "LTS_07_2022_Ref02-unstable-2025-03-31",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Azure",
           repo: "azure-c-shared-utility",
           rev: "772a4f8bc338140b4a0f404cf9c344283c5c937f",
@@ -42,10 +39,10 @@ export default nix.lambda((args) => (() => {
         "-Duse_default_uuid=ON",
         "-Duse_installed_dependencies=ON",
       ]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-Wno-error" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], NIX_CFLAGS_COMPILE: "-Wno-error" })),
       postInstall: "mkdir $out/include/azureiot\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/Azure/azure-c-shared-utility",
         description: "Azure C SDKs common code",
         sourceProvenance: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "sourceTypes", "fromSource"))]),

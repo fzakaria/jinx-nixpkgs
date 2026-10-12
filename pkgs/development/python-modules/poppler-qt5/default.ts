@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 23, 13], ["version", 23, 19], ["hash", 24, 5]], [["homepage", 57, 5], ["license", 58, 5], ["maintainers", 59, 5]], [["pname", 17, 3], ["version", 18, 3], ["disabled", 20, 3], ["src", 22, 3], ["buildInputs", 27, 3], ["nativeBuildInputs", 32, 3], ["propagatedBuildInputs", 38, 3], ["pyproject", 40, 3], ["dontConfigure", 41, 3], ["postPatch", 43, 3], ["doCheck", 51, 3], ["pythonImportsCheck", 52, 3], ["dontWrapQtApps", 54, 3], ["meta", 56, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, isPy3k: false, fetchPypi: false, sip: false, qtbase: false, qmake: false, pyqt5: false, "pyqt-builder": false, poppler: false, "pkg-config": false, setuptools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 23, 13], ["version", 23, 19], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 57, 5], ["license", 58, 5], ["maintainers", 59, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 17, 3], ["version", 18, 3], ["disabled", 20, 3], ["src", 22, 3], ["buildInputs", 27, 3], ["nativeBuildInputs", 32, 3], ["propagatedBuildInputs", 38, 3], ["pyproject", 40, 3], ["dontConfigure", 41, 3], ["postPatch", 43, 3], ["doCheck", 51, 3], ["pythonImportsCheck", 52, 3], ["dontWrapQtApps", 54, 3], ["meta", 56, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "21.3.0";
       const disabled = nix.thunk(() => !nix.asBool(isPy3k));
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-tHfohB8OoOCf2rby8wXPON+XfZ4ULlaTo3RgXXXdb+A=",
@@ -45,13 +43,13 @@ EOF
       const pythonImportsCheck = nix.thunk(() => ["popplerqt5"]);
       const dontWrapQtApps = true;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/frescobaldi/python-poppler-qt5",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         disabled,

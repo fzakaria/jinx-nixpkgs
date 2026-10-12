@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]], [["ext2", 33, 7], ["ext3", 34, 7], ["ext4", 35, 7], ["exfat", 36, 7], ["ntfs", 37, 7], ["btrfs", 38, 7]], [["description", 75, 5], ["homepage", 76, 5], ["license", 77, 5], ["maintainers", 83, 5], ["platforms", 84, 5]], [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["patches", 31, 3], ["sourceRoot", 45, 3], ["buildFlags", 47, 3], ["nativeBuildInputs", 49, 3], ["buildInputs", 55, 3], ["enableParallelBuilding", 62, 3], ["installPhase", 64, 3], ["meta", 74, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, "pkg-config": false, makeself: false, yasm: false, fuse3: false, wxwidgets_3_2: false, lvm2: false, replaceVars: false, e2fsprogs: false, exfat: false, ntfs3g: false, "btrfs-progs": false, pcsclite: false, wrapGAppsHook3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["ext2", 33, 7], ["ext3", 34, 7], ["ext4", 35, 7], ["exfat", 36, 7], ["ntfs", 37, 7], ["btrfs", 38, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 75, 5], ["homepage", 76, 5], ["license", 77, 5], ["maintainers", 83, 5], ["platforms", 84, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["patches", 31, 3], ["sourceRoot", 45, 3], ["buildFlags", 47, 3], ["nativeBuildInputs", 49, 3], ["buildInputs", 55, 3], ["enableParallelBuilding", 62, 3], ["installPhase", 64, 3], ["meta", 74, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const pcsclite = nix.arg($, "pcsclite");
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "veracrypt",
       version: "1.26.29",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "veracrypt",
           repo: "VeraCrypt",
           tag: nix.thunk(() => nix.str`VeraCrypt_${nix.sel(finalAttrs, "version")}`),
@@ -39,7 +36,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix-paths.patch"), nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             ext2: nix.thunk(() => nix.str`${e2fsprogs}/bin/mkfs.ext2`),
             ext3: nix.thunk(() => nix.str`${e2fsprogs}/bin/mkfs.ext3`),
             ext4: nix.thunk(() => nix.str`${e2fsprogs}/bin/mkfs.ext4`),
@@ -56,7 +53,7 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: true,
       installPhase: "install -Dm 755 Main/veracrypt \"$out/bin/veracrypt\"\ninstall -Dm 444 Resources/Icons/VeraCrypt-256x256.xpm \"$out/share/pixmaps/veracrypt.xpm\"\ninstall -Dm 444 License.txt -t \"$out/share/doc/veracrypt/\"\ninstall -d $out/share/applications\nsubstitute Setup/Linux/veracrypt.desktop $out/share/applications/veracrypt.desktop \\\n  --replace-fail \"Exec=/usr/bin/veracrypt\" \"Exec=$out/bin/veracrypt\" \\\n  --replace-fail \"Icon=veracrypt\" \"Icon=veracrypt.xpm\"\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Free Open-Source filesystem on-the-fly encryption",
         homepage: "https://www.veracrypt.fr/",
         license: nix.thunk(() => (() => {

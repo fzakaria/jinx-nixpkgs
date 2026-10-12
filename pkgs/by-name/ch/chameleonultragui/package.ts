@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]], [["description", 48, 5], ["homepage", 49, 5], ["changelog", 50, 5], ["license", 51, 5], ["platforms", 52, 5], ["mainProgram", 53, 5], ["maintainers", 54, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["sourceRoot", 21, 3], ["pubspecLock", 24, 3], ["gitHashes", 25, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 31, 3], ["postPatch", 36, 3], ["postInstall", 41, 3], ["meta", 47, 3]]]);
 const formals$1 = { args: { lib: false, flutter335: false, fetchFromGitHub: false, autoPatchelfHook: false, zenity: false, ninja: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 48, 5], ["homepage", 49, 5], ["changelog", 50, 5], ["license", 51, 5], ["platforms", 52, 5], ["mainProgram", 53, 5], ["maintainers", 54, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["sourceRoot", 21, 3], ["pubspecLock", 24, 3], ["gitHashes", 25, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 31, 3], ["postPatch", 36, 3], ["postInstall", 41, 3], ["meta", 47, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname = "chameleonultragui";
       const version = "1.3";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "GameTec-live",
           repo: "ChameleonUltraGUI",
           tag: version,
@@ -33,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const postPatch = "substituteInPlace linux/main.cc \\\n  --replace-fail '\"../shared\", \"librecovery.so\"' '\"lib\", \"librecovery.so\"'\n";
       const postInstall = "install -Dm0644 aur/chameleonultragui.desktop $out/share/applications/chameleonultragui.desktop\ninstall -Dm0644 aur/chameleonultragui.png $out/share/icons/chameleonultragui.png\ninstall -Dm0644 build/linux/*/release/shared/librecovery.so $out/app/chameleonultragui/lib\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Cross platform GUI for the Chameleon Ultra written in flutter",
         homepage: "https://github.com/GameTec-live/ChameleonUltraGUI",
         changelog: nix.thunk(() => nix.str`https://github.com/GameTec-live/ChameleonUltraGUI/releases/${version}`),
@@ -46,7 +44,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

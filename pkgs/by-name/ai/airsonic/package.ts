@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 13, 5], ["sha256", 14, 5]], [["airsonic-starts", 23, 5]], [["tests", 22, 12]], [["description", 27, 5], ["homepage", 28, 5], ["sourceProvenance", 29, 5], ["license", 30, 5], ["platforms", 31, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["buildCommand", 17, 3], ["passthru", 22, 3], ["meta", 26, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 13, 5], ["sha256", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["airsonic-starts", 23, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 22, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 27, 5], ["homepage", 28, 5], ["sourceProvenance", 29, 5], ["license", 30, 5], ["platforms", 31, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["buildCommand", 17, 3], ["passthru", 22, 3], ["meta", 26, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,24 +12,24 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "airsonic",
       version: "10.6.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/airsonic/airsonic/releases/download/v${nix.sel(finalAttrs, "version")}/airsonic.war`),
           sha256: "0q3qnqymj3gaa6n79pvbyidn1ga99lpngp5wvhlw1aarg1m7vccl",
         })))),
       buildCommand: "mkdir -p \"$out/webapps\"\ncp \"$src\" \"$out/webapps/airsonic.war\"\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           "airsonic-starts": nix.thunk(() => nix.sel(nixosTests, "airsonic")),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Personal media streamer",
         homepage: "https://airsonic.github.io",
         sourceProvenance: nix.thunk(() => (() => {

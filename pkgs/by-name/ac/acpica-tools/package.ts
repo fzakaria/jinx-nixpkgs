@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]], [["NIX_CFLAGS_COMPILE", 41, 5], ["NIX_LDFLAGS", 48, 5], ["NOWERROR", 55, 5], ["INSTALLFLAGS", 59, 5]], [["updateScript", 66, 12]], [["homepage", 69, 5], ["description", 70, 5], ["changelog", 71, 5], ["license", 72, 5], ["maintainers", 77, 5], ["platforms", 81, 5]], [["pname", 11, 3], ["version", 12, 3], ["strictDeps", 14, 3], ["__structuredAttrs", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 24, 3], ["buildFlags", 29, 3], ["env", 40, 3], ["enableParallelBuilding", 62, 3], ["installFlags", 64, 3], ["passthru", 66, 3], ["meta", 68, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, bison: false, flex: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 41, 5], ["NIX_LDFLAGS", 48, 5], ["NOWERROR", 55, 5], ["INSTALLFLAGS", 59, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 66, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 69, 5], ["description", 70, 5], ["changelog", 71, 5], ["license", 72, 5], ["maintainers", 77, 5], ["platforms", 81, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["strictDeps", 14, 3], ["__structuredAttrs", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 24, 3], ["buildFlags", 29, 3], ["env", 40, 3], ["enableParallelBuilding", 62, 3], ["installFlags", 64, 3], ["passthru", 66, 3], ["meta", 68, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,13 +14,13 @@ export default nix.lambda((args) => (() => {
   const flex = nix.arg($, "flex");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "acpica-tools",
       version: "20260408",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "acpica",
           repo: "acpica",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -42,7 +38,7 @@ export default nix.lambda((args) => (() => {
         "iasl",
       ]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-O3"]))),
         NIX_LDFLAGS: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")))), "-no_fixup_chains")),
         NOWERROR: "TRUE",
@@ -51,11 +47,11 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: true,
       installFlags: nix.thunk(() => [nix.thunk(() => nix.str`PREFIX=${nix.builtins.placeholder("out")}`)]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://www.acpica.org/",
         description: "ACPICA Tools",
         changelog: nix.thunk(() => nix.str`https://github.com/acpica/acpica/releases/tag/${nix.sel(finalAttrs, "version")}`),

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["sha256", 21, 5]], [["name", 28, 7], ["url", 29, 7], ["sha256", 30, 7]], [["description", 80, 5], ["homepage", 81, 5], ["license", 82, 5], ["maintainers", 83, 5], ["platforms", 84, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["patches", 24, 3], ["postPatch", 34, 3], ["nativeBuildInputs", 48, 3], ["buildInputs", 53, 3], ["cmakeFlags", 61, 3], ["doInstallCheck", 63, 3], ["installCheckPhase", 64, 3], ["postInstall", 72, 3], ["meta", 79, 3]]]);
 const formals$1 = { args: { stdenv: false, cmake: false, fetchFromGitHub: false, fetchpatch: false, lib: false, libusb1: false, python3: false, libsForQt5: false, udev: false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["sha256", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 28, 7], ["url", 29, 7], ["sha256", 30, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 80, 5], ["homepage", 81, 5], ["license", 82, 5], ["maintainers", 83, 5], ["platforms", 84, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["patches", 24, 3], ["postPatch", 34, 3], ["nativeBuildInputs", 48, 3], ["buildInputs", 53, 3], ["cmakeFlags", 61, 3], ["doInstallCheck", 63, 3], ["installCheckPhase", 64, 3], ["postInstall", 72, 3], ["meta", 79, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const pname = "openambit";
       const version = "0.5";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "openambitproject",
           repo: "openambit",
           rev: version,
@@ -32,7 +29,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "fno-common.patch",
             url: "https://github.com/openambitproject/openambit/commit/b6d97eab417977b6dbe355e0b071d0a56cc3df6b.patch",
             sha256: "1p0dg902mlcfjvs01dxl9wv2b50ayp4330p38d14q87mn0c2xl5d",
@@ -52,7 +49,7 @@ export default nix.lambda((args) => (() => {
       const installCheckPhase = "runHook preInstallCheck\n\n$out/bin/openambit --version\n\nrunHook postInstallCheck\n";
       const postInstall = "install -m755 -D $src/tools/openambit2gpx.py $out/bin/openambit2gpx\n\nmv -v $out/lib/udev/rules.d/libambit.rules \\\n      $out/lib/udev/rules.d/20-libambit.rules\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Helps fetch data from Suunto Ambit GPS watches",
         homepage: "https://github.com/openambitproject/openambit/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
@@ -63,7 +60,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

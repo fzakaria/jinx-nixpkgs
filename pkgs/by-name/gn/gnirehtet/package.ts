@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 16, 7], ["hash", 17, 7]], [["pname", 13, 5], ["version", 14, 13], ["src", 15, 5], ["installPhase", 19, 5]], [["owner", 30, 5], ["repo", 31, 5], ["rev", 32, 5], ["hash", 33, 5]], [["apk", 36, 13]], [["description", 52, 5], ["mainProgram", 53, 5], ["longDescription", 54, 5], ["homepage", 59, 5], ["sourceProvenance", 60, 5], ["license", 64, 5], ["maintainers", 65, 5], ["platforms", 66, 5]], [["pname", 26, 3], ["version", 27, 11], ["src", 29, 3], ["passthru", 35, 3], ["sourceRoot", 39, 3], ["cargoHash", 41, 3], ["nativeBuildInputs", 43, 3], ["postInstall", 45, 3], ["meta", 51, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, rustPlatform: false, fetchFromGitHub: false, fetchzip: false, androidenv: false, makeWrapper: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 16, 7], ["hash", 17, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 13, 5], ["version", 14, 13], ["src", 15, 5], ["installPhase", 19, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["owner", 30, 5], ["repo", 31, 5], ["rev", 32, 5], ["hash", 33, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["apk", 36, 13]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 52, 5], ["mainProgram", 53, 5], ["longDescription", 54, 5], ["homepage", 59, 5], ["sourceProvenance", 60, 5], ["license", 64, 5], ["maintainers", 65, 5], ["platforms", 66, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 26, 3], ["version", 27, 11], ["src", 29, 3], ["passthru", 35, 3], ["sourceRoot", 39, 3], ["cargoHash", 41, 3], ["nativeBuildInputs", 43, 3], ["postInstall", 45, 3], ["meta", 51, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const version = "2.5.1";
   const apk = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "gnirehtet.apk",
       version: version,
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/Genymobile/gnirehtet/releases/download/v${version}/gnirehtet-rust-linux64-v${version}.zip`),
           hash: "sha256-e1wwMhcco9VNoBUzbEq1ESbkX2bqTOkCbPmnV9CpvGo=",
         })))),
@@ -35,13 +30,13 @@ export default nix.lambda((args) => (() => {
       const pname = "gnirehtet";
       const version_1 = version;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           owner: "Genymobile",
           repo: "gnirehtet",
           rev: nix.thunk(() => nix.str`v${version_1}`),
           hash: "sha256-ewLYCZgkjbh6lR9e4iTddCIrB+5dxyviIXhOqlZsLqc=",
         }))));
-      const passthru = nix.thunk(() => ({ [nix.POS]: pos$4, apk: apk }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: $pos[3], apk: apk }));
       const sourceRoot = nix.thunk(() => nix.str`${nix.sel(src, "name")}/relay-rust`);
       const cargoHash = "sha256-xfRTGGlL1/Bq04aGWJSGgkoTGKYiiUAdkHu4zJS3x/U=";
       const nativeBuildInputs = nix.thunk(() => [makeWrapper]);
@@ -50,7 +45,7 @@ export default nix.lambda((args) => (() => {
 --set ADB ${nix.sel(androidenv, "androidPkgs", "platform-tools")}/bin/adb
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Reverse tethering over adb for Android",
         mainProgram: "gnirehtet",
         longDescription: "This project provides reverse tethering over adb for Android: it allows devices to use the internet connection of the computer they are plugged on. It does not require any root access (neither on the device nor on the computer).\n\nThis relies on adb, make sure you have the required permissions/udev rules.\n",
@@ -70,7 +65,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname,
         version: version_1,
         src,

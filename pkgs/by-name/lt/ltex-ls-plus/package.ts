@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 15, 5], ["sha256", 16, 5]], [["homepage", 43, 7], ["description", 44, 7], ["license", 45, 7], ["mainProgram", 46, 7], ["maintainers", 47, 7], ["platforms", 48, 7]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 19, 3], ["installPhase", 21, 3], ["meta", 38, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchurl: false, makeBinaryWrapper: false, jre_headless: false, jvmOptions: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 15, 5], ["sha256", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 43, 7], ["description", 44, 7], ["license", 45, 7], ["mainProgram", 46, 7], ["maintainers", 47, 7], ["platforms", 48, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 19, 3], ["installPhase", 21, 3], ["meta", 38, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname = "ltex-ls-plus";
       const version = "18.7.0";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/ltex-plus/ltex-ls-plus/releases/download/${version}/ltex-ls-plus-${version}.tar.gz`),
           sha256: "sha256-z15a7ilSVw43QMB4YO8qQ8mS6GkxQkaZhdMrIYh6xlg=",
         }))));
@@ -42,7 +40,7 @@ runHook postInstall
         const licenses = nix.thunk(() => nix.attr(lib, "licenses"));
         const maintainers = nix.thunk(() => nix.attr(lib, "maintainers"));
         return {
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           homepage: "https://ltex-plus.github.io/ltex-plus/",
           description: "LSP language server for LanguageTool",
           license: nix.thunk(() => nix.sel(licenses, "mpl20")),
@@ -51,7 +49,15 @@ runHook postInstall
           platforms: nix.thunk(() => nix.sel(jre_headless, "meta", "platforms")),
         };
       })());
-      return { [nix.POS]: pos$3, pname, version, src, nativeBuildInputs, installPhase, meta };
+      return {
+        [nix.POS]: $pos[2],
+        pname,
+        version,
+        src,
+        nativeBuildInputs,
+        installPhase,
+        meta,
+      };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

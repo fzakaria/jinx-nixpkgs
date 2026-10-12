@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 14, 7], ["hash", 15, 7]], [["url", 18, 7], ["hash", 19, 7]], [["aarch64-linux", 13, 5], ["x86_64-linux", 17, 5]], [["pname", 29, 13], ["version", 29, 19], ["src", 29, 27]], [["sources", 49, 13], ["updateScript", 50, 5]], [["description", 54, 5], ["mainProgram", 55, 5], ["homepage", 56, 5], ["changelog", 57, 5], ["license", 58, 5], ["maintainers", 59, 5], ["platforms", 60, 5]], [["pname", 33, 11], ["version", 33, 17], ["src", 33, 25], ["extraPkgs", 35, 3], ["extraBwrapArgs", 37, 3], ["extraInstallCommands", 41, 3], ["passthru", 48, 3], ["meta", 53, 3]]]);
 const formals$1 = { args: { lib: false, appimageTools: false, fetchurl: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 14, 7], ["hash", 15, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 18, 7], ["hash", 19, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["aarch64-linux", 13, 5], ["x86_64-linux", 17, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 29, 13], ["version", 29, 19], ["src", 29, 27]]);
-const pos$5 = nix.positions(here + "/package.nix", [["sources", 49, 13], ["updateScript", 50, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 54, 5], ["mainProgram", 55, 5], ["homepage", 56, 5], ["changelog", 57, 5], ["license", 58, 5], ["maintainers", 59, 5], ["platforms", 60, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 33, 11], ["version", 33, 17], ["src", 33, 25], ["extraPkgs", 35, 3], ["extraBwrapArgs", 37, 3], ["extraInstallCommands", 41, 3], ["passthru", 48, 3], ["meta", 53, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,14 +14,14 @@ export default nix.lambda((args) => (() => {
   const pname = "simplex-chat-desktop";
   const version = "7.0.3";
   const sources = nix.thunk(() => ({
-    [nix.POS]: pos$3,
+    [nix.POS]: $pos[2],
     "aarch64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         url: nix.thunk(() => nix.str`https://github.com/simplex-chat/simplex-chat/releases/download/v${version}/simplex-desktop-aarch64.AppImage`),
         hash: "sha256-jq/aFpDIGhATa14oTYCs/ES56PkZ+kpSLTK4rJ69kV0=",
       })))),
     "x86_64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         url: nix.thunk(() => nix.str`https://github.com/simplex-chat/simplex-chat/releases/download/v${version}/simplex-desktop-x86_64.AppImage`),
         hash: "sha256-QEIg8W8cA4ebjXQC4x6M5SXcPOemkEY3vUjhmXTyU2o=",
       })))),
@@ -36,9 +30,9 @@ export default nix.lambda((args) => (() => {
   const system = nix.thunk(() => nix.attr(from, "system"));
   const throwSystem = nix.thunk(() => nix.builtins.throw(nix.thunk(() => nix.str`simplex-chat-desktop: Unsupported system: ${system}`)));
   const src = nix.thunk(() => nix.selOr(sources, () => nix.force(throwSystem), nix.key(nix.force(system))));
-  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: pos$4, pname: pname, version: version, src: src }))));
+  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: $pos[3], pname: pname, version: version, src: src }))));
   return nix.app(nix.sel(appimageTools, "wrapType2"), nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: pname,
       version: version,
       src: src,
@@ -50,12 +44,12 @@ substituteInPlace $out/share/applications/chat.simplex.app.desktop \\
 cp -r ${appimageContents}/usr/share/icons $out/share
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         sources: sources,
         updateScript: nix.path(here, "./update.sh"),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Desktop application for SimpleX Chat",
         mainProgram: "simplex-chat-desktop",
         homepage: "https://simplex.chat",

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]], [["cli", 46, 5]], [["description", 67, 5], ["homepage", 68, 5], ["changelog", 69, 5], ["license", 70, 5], ["maintainers", 71, 5], ["mainProgram", 72, 5]], [["pname", 23, 3], ["version", 24, 3], ["pyproject", 25, 3], ["src", 27, 3], ["build-system", 34, 3], ["dependencies", 39, 3], ["optional-dependencies", 45, 3], ["nativeCheckInputs", 54, 3], ["pythonImportsCheck", 64, 3], ["meta", 66, 3]]]);
 const formals$1 = { args: { lib: false, aiofiles: false, aiohttp: false, aioresponses: false, aiozoneinfo: false, asyncclick: false, buildPythonPackage: false, debugpy: false, fetchFromGitHub: false, hatchling: false, "hatch-vcs": false, keyring: false, "pytest-asyncio": false, "pytest-freezer": false, pytestCheckHook: false, pyyaml: false, syrupy: false, voluptuous: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["cli", 46, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 67, 5], ["homepage", 68, 5], ["changelog", 69, 5], ["license", 70, 5], ["maintainers", 71, 5], ["mainProgram", 72, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 23, 3], ["version", 24, 3], ["pyproject", 25, 3], ["src", 27, 3], ["build-system", 34, 3], ["dependencies", 39, 3], ["optional-dependencies", 45, 3], ["nativeCheckInputs", 54, 3], ["pythonImportsCheck", 64, 3], ["meta", 66, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,12 +26,12 @@ export default nix.lambda((args) => (() => {
   const syrupy = nix.arg($, "syrupy");
   const voluptuous = nix.arg($, "voluptuous");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "evohome-async",
       version: "2.1.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "zxdavb",
           repo: "evohome-async",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -43,7 +40,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [hatchling, hatch_vcs]),
       dependencies: nix.thunk(() => [aiohttp, aiozoneinfo, voluptuous]),
       "optional-dependencies": nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         cli: nix.thunk(() => [aiofiles, asyncclick, debugpy, keyring]),
       })),
       nativeCheckInputs: nix.thunk(() => nix.concat([
@@ -56,7 +53,7 @@ export default nix.lambda((args) => (() => {
       ], nix.sel(finalAttrs, "passthru", "optional-dependencies", "cli"))),
       pythonImportsCheck: nix.thunk(() => ["evohomeasync2"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Python client for connecting to Honeywell's TCC RESTful API",
         homepage: "https://github.com/zxdavb/evohome-async",
         changelog: nix.thunk(() => nix.str`https://github.com/zxdavb/evohome-async/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

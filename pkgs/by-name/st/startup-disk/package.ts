@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5], ["domain", 20, 5]], [["updateScript", 54, 12]], [["description", 57, 5], ["homepage", 58, 5], ["changelog", 59, 5], ["license", 60, 5], ["mainProgram", 61, 5], ["platforms", 62, 5], ["maintainers", 63, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["nativeBuildInputs", 23, 3], ["buildInputs", 28, 3], ["postPatch", 34, 3], ["cargoHash", 40, 3], ["postInstall", 42, 3], ["postFixup", 49, 3], ["passthru", 54, 3], ["meta", 56, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchFromGitLab: false, "nix-update-script": false, "pkg-config": false, libadwaita: false, gtk4: false, glib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5], ["domain", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 54, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 57, 5], ["homepage", 58, 5], ["changelog", 59, 5], ["license", 60, 5], ["mainProgram", 61, 5], ["platforms", 62, 5], ["maintainers", 63, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["nativeBuildInputs", 23, 3], ["buildInputs", 28, 3], ["postPatch", 34, 3], ["cargoHash", 40, 3], ["postInstall", 42, 3], ["postFixup", 49, 3], ["passthru", 54, 3], ["meta", 56, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const gtk4 = nix.arg($, "gtk4");
   const glib = nix.arg($, "glib");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "startup-disk",
       version: "0.1.5",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "davide125",
           repo: "startup-disk",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -37,11 +34,11 @@ export default nix.lambda((args) => (() => {
       postInstall: "install -Dm644 res/org.startup_disk.StartupDisk.desktop -t $out/share/applications/\ninstall -Dm644 res/org.startup_disk.StartupDisk.svg -t $out/share/icons/hicolor/scalable/apps/\ninstall -Dm644 res/org.startup_disk.StartupDisk.metainfo.xml -t $out/share/metainfo/\ninstall -Dm644 res/org.startup_disk.StartupDisk.policy -t $out/share/polkit-1/actions/\n",
       postFixup: "substituteInPlace $out/share/polkit-1/actions/org.startup_disk.StartupDisk.policy \\\n  --replace-fail /usr/bin/startup-disk /run/current-system/sw/bin/startup-disk\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Interface to choose the startup volume on Apple Silicon systems",
         homepage: "https://gitlab.gnome.org/davide125/startup-disk",
         changelog: nix.thunk(() => nix.str`https://gitlab.gnome.org/davide125/startup-disk/-/tags/${nix.sel(finalAttrs, "version")}`),

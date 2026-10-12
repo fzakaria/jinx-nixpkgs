@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5]], [["homepage", 69, 5], ["description", 70, 5], ["license", 71, 5], ["platforms", 72, 5], ["maintainers", 73, 5], ["mainProgram", 74, 5]], [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["src", 19, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 32, 3], ["build-system", 37, 3], ["dependencies", 39, 3], ["dontWrapGApps", 47, 3], ["preFixup", 49, 3], ["doCheck", 57, 3], ["pythonImportsCheck", 59, 3], ["postPatch", 62, 3], ["meta", 68, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitLab: false, wrapGAppsHook3: false, libxtst: false, libx11: false, "gobject-introspection": false, gtk3: false, libappindicator: false, slop: false, python3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 69, 5], ["description", 70, 5], ["license", 71, 5], ["platforms", 72, 5], ["maintainers", 73, 5], ["mainProgram", 74, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["src", 19, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 32, 3], ["build-system", 37, 3], ["dependencies", 39, 3], ["dontWrapGApps", 47, 3], ["preFixup", 49, 3], ["doCheck", 57, 3], ["pythonImportsCheck", 59, 3], ["postPatch", 62, 3], ["meta", 68, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const slop = nix.arg($, "slop");
   const python3 = nix.arg($, "python3");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "screenkey",
       version: "1.5",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "screenkey",
           repo: "screenkey",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -59,7 +57,7 @@ export default nix.lambda((args) => (() => {
   --replace-fail libXtst.so.6 ${nix.app(nix.sel(lib, "getLib"), libxtst)}/lib/libXtst.so.6
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://www.thregr.org/~wavexx/software/screenkey/",
         description: "Screencast tool to display your keys inspired by Screenflick",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

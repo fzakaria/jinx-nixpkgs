@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]], [["src", 26, 26], ["hash", 27, 5]], [["extraArgs", 40, 5]], [["updateScript", 39, 12]], [["description", 44, 5], ["homepage", 45, 5], ["license", 46, 5], ["maintainers", 47, 5], ["mainProgram", 48, 5], ["platforms", 49, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 20, 3], ["swiftpmDeps", 25, 3], ["installPhase", 30, 3], ["doCheck", 37, 3], ["passthru", 39, 3], ["meta", 43, 3]]]);
 const formals$1 = { args: { fetchFromGitHub: false, lib: false, "nix-update-script": false, stdenv: false, swift: false, swiftpm: false, fetchSwiftPMDeps: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["src", 26, 26], ["hash", 27, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["extraArgs", 40, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 39, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 44, 5], ["homepage", 45, 5], ["license", 46, 5], ["maintainers", 47, 5], ["mainProgram", 48, 5], ["platforms", 49, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 20, 3], ["swiftpmDeps", 25, 3], ["installPhase", 30, 3], ["doCheck", 37, 3], ["passthru", 39, 3], ["meta", 43, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const swiftpm = nix.arg($, "swiftpm");
   const fetchSwiftPMDeps = nix.arg($, "fetchSwiftPMDeps");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "cgtcalc",
       version: "0.1.0-unstable-2026-08-07",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "mattjgalloway",
           repo: "cgtcalc",
           rev: "29adf5bf39f870d4098bc828f356864190e41969",
@@ -32,18 +27,18 @@ export default nix.lambda((args) => (() => {
         })))),
       nativeBuildInputs: nix.thunk(() => [swift, swiftpm]),
       swiftpmDeps: nix.thunk(() => nix.app(fetchSwiftPMDeps, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           hash: "sha256-FBoYVbVMdSZ2q89h7Mcn6vlPNScTJqzoSJKS6wgUGwY=",
         })))),
       installPhase: "runHook preInstall\nmkdir -p $out/bin\ncp $(swiftpmBinPath)/cgtcalc $out/bin/\nrunHook postInstall\n",
       doCheck: nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$3, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
+        [nix.POS]: $pos[3],
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: $pos[2], extraArgs: nix.thunk(() => ["--version=branch"]) })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "UK capital gains tax calculator written in Swift",
         homepage: "https://github.com/mattjgalloway/cgtcalc",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

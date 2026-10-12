@@ -2,17 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 46, 5], ["repo", 47, 5], ["tag", 48, 5], ["hash", 49, 5]], [["name", 72, 5], ["src", 73, 26], ["patches", 73, 30], ["postPatch", 74, 5], ["hash", 75, 5]], [["pname", 83, 7], ["version", 84, 7], ["src", 85, 7], ["patches", 86, 7], ["cargoRoot", 87, 7], ["hash", 89, 5]], [["pname", 93, 26], ["data", 94, 5]], [["PUPPETEER_SKIP_DOWNLOAD", 100, 5], ["DISABLE_ADDITIONAL_FEATURES", 101, 5]], [["stirling-pdf-desktop", 172, 28]], [["tests", 171, 5]], [["updateScript", 177, 5]], [["changelog", 181, 5], ["description", 182, 5], ["homepage", 185, 5], ["license", 186, 5], ["mainProgram", 187, 5], ["maintainers", 188, 5], ["platforms", 192, 5], ["sourceProvenance", 193, 5]], [["__structuredAttrs", 40, 3], ["pname", 42, 3], ["version", 43, 3], ["src", 45, 3], ["patches", 52, 3], ["postPatch", 62, 3], ["npmRoot", 69, 3], ["npmDeps", 71, 3], ["cargoRoot", 78, 3], ["buildAndTestSubdir", 79, 3], ["cargoDeps", 81, 3], ["mitmCache", 92, 3], ["__darwinAllowLocalNetworking", 97, 3], ["env", 99, 3], ["gradleFlags", 104, 3], ["doCheck", 109, 3], ["nativeBuildInputs", 111, 3], ["buildInputs", 131, 3], ["dontUseGradleBuild", 138, 3], ["preBuild", 141, 3], ["installPhase", 156, 3], ["postInstall", 166, 3], ["passthru", 170, 3], ["meta", 180, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchNpmDeps: false, rustPlatform: false, cargo: false, "cargo-tauri": false, "go-task": false, gradle_8: false, makeBinaryWrapper: false, nodejs: false, npmHooks: false, "pkg-config": false, wrapGAppsHook3: false, "glib-networking": false, jdk25: false, libsoup_3: false, openssl: false, webkitgtk_4_1: false, "nix-update-script": false, nixosTests: false, isDesktopVariant: true, withAdditionalFeatures: true, buildWithFrontend: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 46, 5], ["repo", 47, 5], ["tag", 48, 5], ["hash", 49, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 72, 5], ["src", 73, 26], ["patches", 73, 30], ["postPatch", 74, 5], ["hash", 75, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 83, 7], ["version", 84, 7], ["src", 85, 7], ["patches", 86, 7], ["cargoRoot", 87, 7], ["hash", 89, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 93, 26], ["data", 94, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["PUPPETEER_SKIP_DOWNLOAD", 100, 5], ["DISABLE_ADDITIONAL_FEATURES", 101, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["stirling-pdf-desktop", 172, 28]]);
-const pos$7 = nix.positions(here + "/package.nix", [["tests", 171, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["updateScript", 177, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["changelog", 181, 5], ["description", 182, 5], ["homepage", 185, 5], ["license", 186, 5], ["mainProgram", 187, 5], ["maintainers", 188, 5], ["platforms", 192, 5], ["sourceProvenance", 193, 5]]);
-const pos$10 = nix.positions(here + "/package.nix", [["__structuredAttrs", 40, 3], ["pname", 42, 3], ["version", 43, 3], ["src", 45, 3], ["patches", 52, 3], ["postPatch", 62, 3], ["npmRoot", 69, 3], ["npmDeps", 71, 3], ["cargoRoot", 78, 3], ["buildAndTestSubdir", 79, 3], ["cargoDeps", 81, 3], ["mitmCache", 92, 3], ["__darwinAllowLocalNetworking", 97, 3], ["env", 99, 3], ["gradleFlags", 104, 3], ["doCheck", 109, 3], ["nativeBuildInputs", 111, 3], ["buildInputs", 131, 3], ["dontUseGradleBuild", 138, 3], ["preBuild", 141, 3], ["installPhase", 156, 3], ["postInstall", 166, 3], ["passthru", 170, 3], ["meta", 180, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -44,12 +35,12 @@ export default nix.lambda((args) => (() => {
   const gradle = gradle_8;
   const jre = jdk25;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       __structuredAttrs: true,
       pname: nix.thunk(() => nix.add("stirling-pdf", nix.app(nix.sel(lib, "optionalString"), isDesktopVariant, "-desktop"))),
       version: "2.14.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Stirling-Tools",
           repo: "Stirling-PDF",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -63,7 +54,7 @@ export default nix.lambda((args) => (() => {
       postPatch: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), isDesktopVariant, "# Nixpkgs does not produce artifacts for Stirling-PDF's upstream updater\n# and does not have access to upstream's private signing key.\nsubstituteInPlace frontend/editor/src-tauri/tauri.conf.json \\\n  --replace-fail '\"createUpdaterArtifacts\": true' '\"createUpdaterArtifacts\": false'\n")),
       npmRoot: "frontend",
       npmDeps: nix.thunk(() => nix.app(fetchNpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           name: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-${nix.sel(finalAttrs, "version")}-npm-deps`),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           patches: nix.thunk(() => nix.attr(finalAttrs, "patches")),
@@ -73,7 +64,7 @@ export default nix.lambda((args) => (() => {
       cargoRoot: "frontend/editor/src-tauri",
       buildAndTestSubdir: nix.thunk(() => nix.sel(finalAttrs, "cargoRoot")),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -82,13 +73,13 @@ export default nix.lambda((args) => (() => {
           hash: "sha256-YhDFSmx6XK7x5wzQaPslyuaRbiX8W/X8y/Z0fxjbGwk=",
         })))),
       mitmCache: nix.thunk(() => nix.app(nix.sel(gradle, "fetchDeps"), nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           data: nix.path(here, "./deps.json"),
         })))),
       __darwinAllowLocalNetworking: true,
       env: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         PUPPETEER_SKIP_DOWNLOAD: "1",
         DISABLE_ADDITIONAL_FEATURES: nix.thunk(() => (nix.asBool(withAdditionalFeatures) ? "false" : "true")),
       })),
@@ -112,17 +103,17 @@ runHook postInstall
 `))),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool(isDesktopVariant) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")))), "makeWrapper \"$out/Applications/Stirling PDF.app/Contents/MacOS/Stirling-PDF\" \"$out/bin/stirling-pdf\"\n")),
       passthru: nix.thunk(() => nix.update({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           "stirling-pdf-desktop": nix.thunk(() => nix.attr(nixosTests, "stirling-pdf-desktop")),
         })),
       }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.asBool(isDesktopVariant)), nix.thunk(() => ({
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         }))))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         changelog: nix.thunk(() => nix.str`https://github.com/Stirling-Tools/Stirling-PDF/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: nix.thunk(() => nix.add("Powerful, open-source PDF editing platform ", (nix.asBool(isDesktopVariant) ? "runnable as a desktop app" : "hostable as a web app"))),
         homepage: "https://github.com/Stirling-Tools/Stirling-PDF",

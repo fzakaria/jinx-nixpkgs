@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 16, 5], ["src", 17, 5], ["dontUnpack", 18, 5], ["buildPhase", 19, 5], ["installPhase", 20, 5]], [["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["sha256", 32, 5]], [["name", 38, 7], ["url", 39, 7], ["hash", 40, 7]], [["NIX_CFLAGS_COMPILE", 64, 7]], [["description", 79, 5], ["longDescription", 80, 5], ["homepage", 87, 5], ["license", 88, 5], ["platforms", 89, 5]], [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["patches", 35, 3], ["postPatch", 44, 3], ["nativeBuildInputs", 49, 3], ["buildInputs", 50, 3], ["makeFlags", 56, 3], ["env", 64, 3], ["installPhase", 73, 3], ["meta", 78, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, wxwidgets_3_2: false, libx11: false, readline: false, fetchpatch: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 16, 5], ["src", 17, 5], ["dontUnpack", 18, 5], ["buildPhase", 19, 5], ["installPhase", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["sha256", 32, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 38, 7], ["url", 39, 7], ["hash", 40, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 64, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 79, 5], ["longDescription", 80, 5], ["homepage", 87, 5], ["license", 88, 5], ["platforms", 89, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["patches", 35, 3], ["postPatch", 44, 3], ["nativeBuildInputs", 49, 3], ["buildInputs", 50, 3], ["makeFlags", 56, 3], ["env", 64, 3], ["installPhase", 73, 3], ["meta", 78, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const readline = nix.arg($, "readline");
   const fetchpatch = nix.arg($, "fetchpatch");
   const bin2c = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: "bossa-bin2c",
       src: nix.path(here, "./bin2c.c"),
       dontUnpack: true,
@@ -28,11 +23,11 @@ export default nix.lambda((args) => (() => {
       installPhase: "mkdir -p $out/bin; cp bin2c $out/bin/",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "bossa",
       version: "1.9.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "shumatech",
           repo: "BOSSA",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -40,7 +35,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "pr-172-fix.patch",
             url: "https://github.com/shumatech/BOSSA/commit/6e54973c3c758674c3d04b5e2cf12e097006f6a3.patch",
             hash: "sha256-2lp6Ej3IfofztC1n/yHLjabn0MH4BA/CM3dsnAw8klA=",
@@ -51,12 +46,12 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [wxwidgets_3_2, libx11, readline]),
       makeFlags: nix.thunk(() => ["WXVERSION=3.2", "bin/bossac", "bin/bossash", "bin/bossa"]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.concat(["-Wno-error=deprecated-declarations"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), nix.thunk(() => ["-Wno-error=vla-cxx-extension"])))))),
       })),
       installPhase: "mkdir -p $out/bin\ncp bin/bossa{c,sh,} $out/bin/\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Flash programming utility for Atmel's SAM family of flash-based ARM microcontrollers",
         longDescription: "BOSSA is a flash programming utility for Atmel's SAM family of\nflash-based ARM microcontrollers. The motivation behind BOSSA is\nto create a simple, easy-to-use, open source utility to replace\nAtmel's SAM-BA software. BOSSA is an acronym for Basic Open\nSource SAM-BA Application to reflect that goal.\n",
         homepage: "https://github.com/shumatech/BOSSA",

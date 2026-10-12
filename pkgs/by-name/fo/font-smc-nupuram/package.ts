@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 16, 7], ["url", 17, 7], ["hash", 18, 7], ["stripRoot", 19, 7]], [["name", 22, 7], ["url", 23, 7], ["hash", 24, 7], ["stripRoot", 25, 7]], [["name", 28, 7], ["url", 29, 7], ["hash", 30, 7], ["stripRoot", 31, 7]], [["name", 34, 7], ["url", 35, 7], ["hash", 36, 7], ["stripRoot", 37, 7]], [["description", 54, 5], ["homepage", 55, 5], ["license", 56, 5], ["platforms", 57, 5], ["maintainers", 58, 5]], [["pname", 8, 3], ["version", 9, 3], ["strictDeps", 11, 3], ["__structuredAttrs", 12, 3], ["srcs", 14, 3], ["sourceRoot", 41, 3], ["dontBuild", 42, 3], ["installPhase", 44, 3], ["meta", 53, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchzip: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 16, 7], ["url", 17, 7], ["hash", 18, 7], ["stripRoot", 19, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 22, 7], ["url", 23, 7], ["hash", 24, 7], ["stripRoot", 25, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 28, 7], ["url", 29, 7], ["hash", 30, 7], ["stripRoot", 31, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["name", 34, 7], ["url", 35, 7], ["hash", 36, 7], ["stripRoot", 37, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 54, 5], ["homepage", 55, 5], ["license", 56, 5], ["platforms", 57, 5], ["maintainers", 58, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["strictDeps", 11, 3], ["__structuredAttrs", 12, 3], ["srcs", 14, 3], ["sourceRoot", 41, 3], ["dontBuild", 42, 3], ["installPhase", 44, 3], ["meta", 53, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,35 +11,35 @@ export default nix.lambda((args) => (() => {
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   const fetchzip = nix.arg($, "fetchzip");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "font-smc-nupuram",
       version: "20241013",
       strictDeps: true,
       __structuredAttrs: true,
       srcs: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             name: "Nupuram-Arrows-Color",
             url: "https://smc.org.in/downloads/fonts/nupuram/Nupuram-Arrows-Color.zip",
             hash: "sha256-tqDnDCvqE7TF0Yp4wdBfQRJKDfixftCzaXdOLQL9NLQ=",
             stripRoot: false,
           })))),
         nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "Nupuram-Calligraphy",
             url: "https://smc.org.in/downloads/fonts/nupuram/Nupuram-Calligraphy.zip",
             hash: "sha256-Cc4A4qvbAUC2+e7HmMdRJtk8lR60UU4qcXbQIPhNCR0=",
             stripRoot: false,
           })))),
         nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "Nupuram-Color",
             url: "https://smc.org.in/downloads/fonts/nupuram/Nupuram-Color.zip",
             hash: "sha256-vH+HQ38jgYVJ5c6jp7jXPjNNIjRFJ0MDGs62+rdUd5U=",
             stripRoot: false,
           })))),
         nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             name: "Nupuram-Dots",
             url: "https://smc.org.in/downloads/fonts/nupuram/Nupuram-Dots.zip",
             hash: "sha256-nlBAJUJru9q0F+nXJowAhCssN2DnunPei0ZhED2A2qA=",
@@ -55,7 +50,7 @@ export default nix.lambda((args) => (() => {
       dontBuild: true,
       installPhase: "runHook preInstall\n\nfind . -name \"*.otf\" -exec install -Dm644 {} -t \"$out/share/fonts/opentype\" \\;\nfind . -name \"*.ttf\" -exec install -Dm644 {} -t \"$out/share/fonts/truetype\" \\;\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Nupuram is a Malayalam variable typeface inspired by the early Malayalam movie title designs of the 1960s–70s, particularly the work of title designer S. Appukkuttan Nair. This is a superfamily of related typefaces. Designed by Santhosh Thottingal. Maintained by SMC",
         homepage: "https://smc.org.in/fonts/nupuram",
         license: nix.thunk(() => nix.sel(lib, "licenses", "ofl")),

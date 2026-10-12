@@ -2,16 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 19, 7], ["sha256", 20, 7]], [["url", 23, 7], ["sha256", 24, 7]], [["url", 27, 7], ["sha256", 28, 7]], [["url", 31, 7], ["sha256", 32, 7]], [["url", 35, 7], ["sha256", 36, 7]], [["url", 46, 5], ["hash", 47, 5]], [["NIX_LDFLAGS", 50, 7]], [["description", 95, 5], ["homepage", 96, 5], ["license", 97, 5], ["platforms", 98, 5], ["maintainers", 99, 5]], [["pname", 42, 3], ["version", 43, 3], ["src", 45, 3], ["env", 50, 3], ["nativeBuildInputs", 55, 3], ["buildInputs", 60, 3], ["postPatch", 69, 3], ["configurePhase", 74, 3], ["games", 82, 11], ["postInstall", 84, 3], ["enableParallelBuilding", 92, 3], ["meta", 94, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, SDL2: false, SDL2_ttf: false, SDL2_image: false, SDL2_mixer: false, "pkg-config": false, lua: false, zlib: false, unzip: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 19, 7], ["sha256", 20, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 23, 7], ["sha256", 24, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 27, 7], ["sha256", 28, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["url", 31, 7], ["sha256", 32, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["url", 35, 7], ["sha256", 36, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["url", 46, 5], ["hash", 47, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["NIX_LDFLAGS", 50, 7]]);
-const pos$8 = nix.positions(here + "/package.nix", [["description", 95, 5], ["homepage", 96, 5], ["license", 97, 5], ["platforms", 98, 5], ["maintainers", 99, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["pname", 42, 3], ["version", 43, 3], ["src", 45, 3], ["env", 50, 3], ["nativeBuildInputs", 55, 3], ["buildInputs", 60, 3], ["postPatch", 69, 3], ["configurePhase", 74, 3], ["games", 82, 11], ["postInstall", 84, 3], ["enableParallelBuilding", 92, 3], ["meta", 94, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,42 +20,42 @@ export default nix.lambda((args) => (() => {
   const unzip = nix.arg($, "unzip");
   const games = nix.thunk(() => [
     nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         url: "http://instead-games.googlecode.com/files/instead-apple-day-1.2.zip",
         sha256: "0d4m554hiqmgl4xl0jp0b3bqjl35879768hqznh9y57y04sygd2a",
       })))),
     nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         url: "http://instead-games.googlecode.com/files/instead-cat_en-1.2.zip",
         sha256: "0jlm3ssqlka16dm0rg6qfjh6xdh3pv7lj2s4ib4mqwj2vfy0v6sg",
       })))),
     nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         url: "http://instead-games.googlecode.com/files/instead-vinny-0.1.zip",
         sha256: "15qdbg82zp3a8vz4qxminr0xbzbdpnsciliy2wm3raz4hnadawg1",
       })))),
     nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         url: "http://instead-games.googlecode.com/files/instead-toilet3in1-1.2.zip",
         sha256: "0wz4bljbg67m84qwpaqpzs934a5pcbhpgh39fvbbbfvnnlm4lirl",
       })))),
     nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         url: "http://instead-games.googlecode.com/files/instead-kayleth-0.4.1.zip",
         sha256: "0xmn9inys0kbcdd02qaqp8gazqs67xq3fq7hvcy2qb9jbq85j8b2",
       })))),
   ]);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       pname: "instead",
       version: "3.5.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           url: nix.thunk(() => nix.str`mirror://sourceforge/project/instead/instead/${nix.sel(finalAttrs, "version")}/instead_${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-d5BvzZCZ3P5CLptuCuJ4KxfEp4CDbtmIZDIbGDcyV3o=",
         })))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         NIX_LDFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-llua", "-lgcc_s"]))),
       })),
       nativeBuildInputs: nix.thunk(() => [pkg_config, unzip]),
@@ -74,7 +66,7 @@ export default nix.lambda((args) => (() => {
       postInstall: "pushd $out/share/instead/games\nfor a in $games; do\n  unzip $a\ndone\npopd\n",
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         description: "Simple text adventure interpreter for Unix and Windows",
         homepage: "https://instead.syscall.ru/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

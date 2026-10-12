@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 13, 5], ["sha256", 14, 5]], [["description", 37, 5], ["homepage", 38, 5], ["platforms", 39, 5], ["license", 40, 5], ["maintainers", 41, 5], ["mainProgram", 42, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["buildInputs", 17, 3], ["makeFlags", 19, 3], ["enableParallelBuilding", 21, 3], ["dontConfigure", 23, 3], ["installPhase", 25, 3], ["meta", 36, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, mpi: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 13, 5], ["sha256", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 37, 5], ["homepage", 38, 5], ["platforms", 39, 5], ["license", 40, 5], ["maintainers", 41, 5], ["mainProgram", 42, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["buildInputs", 17, 3], ["makeFlags", 19, 3], ["enableParallelBuilding", 21, 3], ["dontConfigure", 23, 3], ["installPhase", 25, 3], ["meta", 36, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const mpi = nix.arg($, "mpi");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "hpcg",
       version: "3.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://www.hpcg-benchmark.org/downloads/hpcg-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "197lw2nwmzsmfsbvgvi8z7kj69n374kgfzzp8pkmk7mp2vkk991k",
         })))),
@@ -28,7 +26,7 @@ export default nix.lambda((args) => (() => {
       dontConfigure: true,
       installPhase: "runHook preInstall\n\nmkdir -p $out/bin $out/share/hpcg\n\ncp bin/xhpcg $out/bin\ncp bin/hpcg.dat $out/share/hpcg\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "HPC conjugate gradient benchmark",
         homepage: "https://www.hpcg-benchmark.org",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),

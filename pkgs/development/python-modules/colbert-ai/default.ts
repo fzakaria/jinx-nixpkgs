@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["version", 30, 13], ["pname", 31, 5], ["hash", 32, 5]], [["description", 60, 5], ["homepage", 61, 5], ["license", 62, 5], ["maintainers", 63, 5]], [["pname", 25, 3], ["version", 26, 3], ["pyproject", 27, 3], ["src", 29, 3], ["build-system", 35, 3], ["dependencies", 39, 3], ["pythonImportsCheck", 54, 3], ["doCheck", 57, 3], ["meta", 59, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, setuptools: false, bitarray: false, datasets: false, flask: false, "python-dotenv": false, ninja: false, scipy: false, tqdm: false, transformers: false, ujson: false, gitpython: false, torch: false, faiss: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["version", 30, 13], ["pname", 31, 5], ["hash", 32, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 60, 5], ["homepage", 61, 5], ["license", 62, 5], ["maintainers", 63, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 25, 3], ["version", 26, 3], ["pyproject", 27, 3], ["src", 29, 3], ["build-system", 35, 3], ["dependencies", 39, 3], ["pythonImportsCheck", 54, 3], ["doCheck", 57, 3], ["meta", 59, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.2.22";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           version: version,
           pname: "colbert_ai",
           hash: "sha256-AK/P711xXw06cGvpDStbdKK7fEAgc4B861UVwAJqiIY=",
@@ -53,7 +51,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["colbert"]);
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Fast and accurate retrieval model, enabling scalable BERT-based search over large text collections in tens of milliseconds",
         homepage: "https://github.com/stanford-futuredata/ColBERT",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -63,7 +61,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

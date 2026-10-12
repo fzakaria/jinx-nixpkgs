@@ -2,16 +2,9 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/croc.nix", [[["systemPackages", 6, 19]], [["environment", 6, 7]], [["maintainers", 13, 5]], [["enable", 23, 9], ["pass", 24, 9], ["openFirewall", 25, 9]], [["croc", 22, 16]], [["services", 22, 7]], [["relay", 21, 5], ["sender", 28, 5], ["receiver", 29, 5]], [["name", 11, 3], ["meta", 12, 3], ["nodes", 20, 3], ["testScript", 32, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/croc.nix", [["systemPackages", 6, 19]]);
-const pos$2 = nix.positions(here + "/croc.nix", [["environment", 6, 7]]);
-const pos$3 = nix.positions(here + "/croc.nix", [["maintainers", 13, 5]]);
-const pos$4 = nix.positions(here + "/croc.nix", [["enable", 23, 9], ["pass", 24, 9], ["openFirewall", 25, 9]]);
-const pos$5 = nix.positions(here + "/croc.nix", [["croc", 22, 16]]);
-const pos$6 = nix.positions(here + "/croc.nix", [["services", 22, 7]]);
-const pos$7 = nix.positions(here + "/croc.nix", [["relay", 21, 5], ["sender", 28, 5], ["receiver", 29, 5]]);
-const pos$8 = nix.positions(here + "/croc.nix", [["name", 11, 3], ["meta", 12, 3], ["nodes", 20, 3], ["testScript", 32, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,21 +13,21 @@ export default nix.lambda((args) => (() => {
     const $_1 = nix.formals(args_1, formals$2);
     const pkgs_1 = nix.arg($_1, "pkgs");
     return {
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       environment: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs_1, "croc"))]),
       })),
     };
   })(), formals$2);
   const pass = "PassRelay";
   return {
-    [nix.POS]: pos$8,
+    [nix.POS]: $pos[7],
     name: "croc",
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         maintainers: nix.thunk(() => [
           nix.thunk(() => nix.lookup(w, "equirosa")),
           nix.thunk(() => nix.lookup(w, "ryan4yin")),
@@ -43,12 +36,12 @@ export default nix.lambda((args) => (() => {
       };
     })()),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       relay: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         services: nix.thunk(() => ({
-          [nix.POS]: pos$5,
-          croc: nix.thunk(() => ({ [nix.POS]: pos$4, enable: true, pass: pass, openFirewall: true })),
+          [nix.POS]: $pos[4],
+          croc: nix.thunk(() => ({ [nix.POS]: $pos[3], enable: true, pass: pass, openFirewall: true })),
         })),
       })),
       sender: client,

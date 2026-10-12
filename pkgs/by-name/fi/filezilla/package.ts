@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 31, 5], ["hash", 32, 5]], [["homepage", 74, 5], ["description", 75, 5], ["longDescription", 76, 5], ["license", 82, 5], ["platforms", 83, 5], ["maintainers", 84, 5]], [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["configureFlags", 35, 3], ["nativeBuildInputs", 41, 3], ["buildInputs", 48, 3], ["strictDeps", 63, 3], ["enableParallelBuilding", 65, 3], ["preFixup", 67, 3], ["meta", 73, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, autoreconfHook: false, dbus: false, fzssh: false, gettext: false, gnutls: false, libfilezilla: false, libidn: false, nettle: false, "pkg-config": false, pugixml: false, sqlite: false, tinyxml: false, boost: false, wrapGAppsHook3: false, wxwidgets_3_2: false, gtk3: false, "xdg-utils": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 31, 5], ["hash", 32, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 74, 5], ["description", 75, 5], ["longDescription", 76, 5], ["license", 82, 5], ["platforms", 83, 5], ["maintainers", 84, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["configureFlags", 35, 3], ["nativeBuildInputs", 41, 3], ["buildInputs", 48, 3], ["strictDeps", 63, 3], ["enableParallelBuilding", 65, 3], ["preFixup", 67, 3], ["meta", 73, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,11 +28,11 @@ export default nix.lambda((args) => (() => {
   const gtk3 = nix.arg($, "gtk3");
   const xdg_utils = nix.arg($, "xdg-utils");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "filezilla",
       version: "3.71.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://sources.archlinux.org/other/filezilla/filezilla-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-Pfm5s+Wyw33G2ey4g1VKuhQKAuxHw9a1IzO/FzOvTaQ=",
         })))),
@@ -65,7 +63,7 @@ export default nix.lambda((args) => (() => {
 )
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://filezilla-project.org/",
         description: "Graphical FTP, FTPS and SFTP client",
         longDescription: "FileZilla Client is a free, open source FTP client. It supports\nFTP, SFTP, and FTPS (FTP over SSL/TLS). The client is available\nunder many platforms, binaries for Windows, Linux and macOS are\nprovided.\n",

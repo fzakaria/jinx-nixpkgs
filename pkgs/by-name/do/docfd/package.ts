@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["hash", 26, 5]], [["url", 34, 7], ["includes", 35, 7], ["hash", 36, 7]], [["package", 79, 50]], [["version", 79, 18]], [["tests", 79, 12]], [["description", 82, 5], ["longDescription", 83, 5], ["homepage", 89, 5], ["license", 90, 5], ["maintainers", 91, 5], ["platforms", 92, 5], ["mainProgram", 93, 5]], [["pname", 17, 3], ["version", 18, 3], ["minimalOCamlVersion", 20, 3], ["src", 22, 3], ["patches", 29, 3], ["nativeBuildInputs", 40, 3], ["buildInputs", 46, 3], ["postInstall", 70, 3], ["passthru", 79, 3], ["meta", 81, 3]]]);
 const formals$1 = { args: { lib: false, ocamlPackages: false, stdenv: false, fetchFromGitHub: false, fetchpatch: false, python3: false, dune: false, makeWrapper: false, pandoc: false, "poppler-utils": false, testers: false, docfd: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 34, 7], ["includes", 35, 7], ["hash", 36, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["package", 79, 50]]);
-const pos$4 = nix.positions(here + "/package.nix", [["version", 79, 18]]);
-const pos$5 = nix.positions(here + "/package.nix", [["tests", 79, 12]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 82, 5], ["longDescription", 83, 5], ["homepage", 89, 5], ["license", 90, 5], ["maintainers", 91, 5], ["platforms", 92, 5], ["mainProgram", 93, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["minimalOCamlVersion", 20, 3], ["src", 22, 3], ["patches", 29, 3], ["nativeBuildInputs", 40, 3], ["buildInputs", 46, 3], ["postInstall", 70, 3], ["passthru", 79, 3], ["meta", 81, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "12.3.2";
       const minimalOCamlVersion = "5.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "darrenldl",
           repo: "docfd",
           rev: version,
@@ -39,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const patches = nix.thunk(() => [
         nix.path(here, "./nottui-unix.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/darrenldl/docfd/commit/439ff57e80778f684cf8526b3b33c745a02da2a7.patch",
             includes: nix.thunk(() => ["*.ml"]),
             hash: "sha256-bB+zta2VcrDd42FUD9ExBui787LmtN3PMyb/MJQO7u0=",
@@ -75,14 +69,14 @@ export default nix.lambda((args) => (() => {
       const postInstall = nix.thunk(() => nix.str`wrapProgram $out/bin/docfd --prefix PATH : "${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [pandoc, poppler_utils]))}"
 `);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$3, package: docfd })))),
+          [nix.POS]: $pos[3],
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: $pos[2], package: docfd })))),
         })),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "TUI multiline fuzzy document finder",
         longDescription: "Think interactive grep for text and other document files.\nWord/token based instead of regex and line based, so you\ncan search across lines easily. Aims to provide good UX via\nintegration with common text editors and other file viewers.\n",
         homepage: "https://github.com/darrenldl/docfd",
@@ -92,7 +86,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "docfd",
       }));
       return {
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         pname,
         version,
         minimalOCamlVersion,

@@ -2,10 +2,8 @@
 import * as nix from "../../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["sha256", 17, 5]], [["homepage", 36, 5], ["description", 37, 5], ["license", 38, 5], ["platforms", 39, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 13, 3], ["preAutoreconf", 22, 3], ["postInstall", 24, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 30, 3], ["meta", 35, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, pidgin: false, xosd: false, autoreconfHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["sha256", 17, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 36, 5], ["description", 37, 5], ["license", 38, 5], ["platforms", 39, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 13, 3], ["preAutoreconf", 22, 3], ["postInstall", 24, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 30, 3], ["meta", 35, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname = "pidgin-osd";
       const version = "0.2.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "edanaher",
           repo: "pidgin-osd",
           rev: nix.thunk(() => nix.str`${pname}-${version}`),
@@ -30,14 +28,14 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [autoreconfHook]);
       const buildInputs = nix.thunk(() => [xosd, pidgin]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/mbroemme/pidgin-osd",
         description: "Plugin for Pidgin which implements on-screen display via libxosd",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

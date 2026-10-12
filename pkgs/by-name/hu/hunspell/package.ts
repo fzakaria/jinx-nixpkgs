@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 26, 5], ["repo", 27, 5], ["rev", 28, 5], ["hash", 29, 5]], [["hunspell", 60, 45]], [["package", 62, 50]], [["package", 63, 39]], [["pkg-config", 62, 7], ["version", 63, 7], ["wrapper", 64, 7]], [["withDicts", 60, 5], ["tests", 61, 5], ["updateScript", 67, 5]], [["description", 71, 5], ["longDescription", 72, 5], ["homepage", 92, 5], ["changelog", 93, 5], ["license", 94, 5], ["maintainers", 99, 5], ["mainProgram", 103, 5], ["platforms", 104, 5], ["pkgConfigModules", 105, 5]], [["pname", 15, 3], ["version", 16, 3], ["outputs", 18, 3], ["src", 25, 3], ["patches", 32, 3], ["postPatch", 34, 3], ["strictDeps", 38, 3], ["nativeBuildInputs", 40, 3], ["buildInputs", 45, 3], ["autoreconfFlags", 50, 3], ["configureFlags", 52, 3], ["hardeningDisable", 57, 3], ["passthru", 59, 3], ["meta", 70, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, autoreconfHook: false, callPackage: false, fetchFromGitHub: false, ncurses: false, "nix-update-script": false, readline: false, testers: false, validatePkgConfig: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 26, 5], ["repo", 27, 5], ["rev", 28, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["hunspell", 60, 45]]);
-const pos$3 = nix.positions(here + "/package.nix", [["package", 62, 50]]);
-const pos$4 = nix.positions(here + "/package.nix", [["package", 63, 39]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pkg-config", 62, 7], ["version", 63, 7], ["wrapper", 64, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["withDicts", 60, 5], ["tests", 61, 5], ["updateScript", 67, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["description", 71, 5], ["longDescription", 72, 5], ["homepage", 92, 5], ["changelog", 93, 5], ["license", 94, 5], ["maintainers", 99, 5], ["mainProgram", 103, 5], ["platforms", 104, 5], ["pkgConfigModules", 105, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["outputs", 18, 3], ["src", 25, 3], ["patches", 32, 3], ["postPatch", 34, 3], ["strictDeps", 38, 3], ["nativeBuildInputs", 40, 3], ["buildInputs", 45, 3], ["autoreconfFlags", 50, 3], ["configureFlags", 52, 3], ["hardeningDisable", 57, 3], ["passthru", 59, 3], ["meta", 70, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const validatePkgConfig = nix.arg($, "validatePkgConfig");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "hunspell",
       version: "1.7.3",
       outputs: nix.thunk(() => ["bin", "dev", "out", "man"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "hunspell",
           repo: "hunspell",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -47,19 +40,19 @@ export default nix.lambda((args) => (() => {
       configureFlags: nix.thunk(() => ["--with-ui", "--with-readline"]),
       hardeningDisable: nix.thunk(() => ["format"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         withDicts: nix.thunk(() => nix.app(callPackage, nix.path(here, "./wrapper.nix"), nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             hunspell: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
           })))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "hasPkgConfigModules"), nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
           wrapper: nix.thunk(() => nix.app(nix.sel(finalAttrs, "finalPackage", "withDicts"), (d) => [nix.thunk(() => nix.sel(d, "en_US"))])),
@@ -67,7 +60,7 @@ export default nix.lambda((args) => (() => {
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "Spell checker",
         longDescription: "Hunspell is the spell checker of LibreOffice, OpenOffice.org, Mozilla\nFirefox 3 & Thunderbird, Google Chrome, and it is also used by\nproprietary software packages, like macOS, InDesign, memoQ, Opera and\nSDL Trados.\n\nMain features:\n\n* Extended support for language peculiarities; Unicode character encoding, compounding and complex morphology.\n* Improved suggestion using n-gram similarity, rule and dictionary based pronunciation data.\n* Morphological analysis, stemming and generation.\n* Hunspell is based on MySpell and works also with MySpell dictionaries.\n* C++ library under GPL/LGPL/MPL tri-license.\n* Interfaces and ports:\n  * Enchant (Generic spelling library from the Abiword project),\n  * XSpell (macOS port, but Hunspell is part of the macOS from version 10.6 (Snow Leopard), and\n      now it is enough to place Hunspell dictionary files into\n      ~/Library/Spelling or /Library/Spelling for spell checking),\n  * Delphi, Java (JNA, JNI), Perl, .NET, Python, Ruby ([1], [2]), UNO.\n",
         homepage: "http://hunspell.github.io/",

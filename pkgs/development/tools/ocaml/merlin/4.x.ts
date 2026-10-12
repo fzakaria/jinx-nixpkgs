@@ -2,13 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/4.x.nix", [[["4.12.0", 20, 7], ["4.12.1", 21, 7], ["4.13.0", 22, 7], ["4.13.1", 23, 7], ["4.14.0", 24, 7], ["4.14.1", 25, 7], ["4.14.2", 26, 7], ["4.14.3", 27, 7], ["4.14.4", 28, 7], ["5.0.0", 29, 7], ["5.1.0", 30, 7], ["5.1.1", 31, 7], ["5.2.0", 32, 7], ["5.2.1", 33, 7], ["5.3.0", 34, 7], ["5.4.0", 35, 7], ["5.4.1", 36, 7], ["5.5.0", 37, 7]], [["4.7-412", 45, 5], ["4.7.1-413", 46, 5], ["4.14-500", 47, 5], ["4.16-414", 48, 5], ["4.16-501", 49, 5], ["4.18-414", 50, 5], ["4.19-414", 51, 5], ["4.17.1-501", 52, 5], ["5.3-502", 53, 5], ["5.4.1-503", 54, 5], ["5.6-503", 55, 5], ["5.6-504", 56, 5], ["5.7.1-504", 57, 5], ["5.8-505", 58, 5]], [["url", 68, 5], ["sha256", 69, 5]], [["dot-merlin-reader", 78, 9], ["dune", 79, 9]], [["description", 107, 5], ["homepage", 108, 5], ["license", 109, 5], ["mainProgram", 110, 5], ["maintainers", 111, 5]], [["pname", 64, 3], ["version", 65, 11], ["src", 67, 3], ["patches", 72, 3], ["strictDeps", 83, 3], ["nativeBuildInputs", 85, 3], ["buildInputs", 89, 3], ["doCheck", 98, 3], ["checkPhase", 99, 3], ["meta", 106, 3]]]);
 const formals$1 = { args: { lib: false, replaceVars: false, fetchurl: false, ocaml: false, dune: false, buildDunePackage: false, yojson: false, csexp: false, "merlin-lib": false, "dot-merlin-reader": false, jq: false, menhir: false, menhirLib: false, menhirSdk: false, seq: false, version: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/4.x.nix", [["4.12.0", 20, 7], ["4.12.1", 21, 7], ["4.13.0", 22, 7], ["4.13.1", 23, 7], ["4.14.0", 24, 7], ["4.14.1", 25, 7], ["4.14.2", 26, 7], ["4.14.3", 27, 7], ["4.14.4", 28, 7], ["5.0.0", 29, 7], ["5.1.0", 30, 7], ["5.1.1", 31, 7], ["5.2.0", 32, 7], ["5.2.1", 33, 7], ["5.3.0", 34, 7], ["5.4.0", 35, 7], ["5.4.1", 36, 7], ["5.5.0", 37, 7]]);
-const pos$2 = nix.positions(here + "/4.x.nix", [["4.7-412", 45, 5], ["4.7.1-413", 46, 5], ["4.14-500", 47, 5], ["4.16-414", 48, 5], ["4.16-501", 49, 5], ["4.18-414", 50, 5], ["4.19-414", 51, 5], ["4.17.1-501", 52, 5], ["5.3-502", 53, 5], ["5.4.1-503", 54, 5], ["5.6-503", 55, 5], ["5.6-504", 56, 5], ["5.7.1-504", 57, 5], ["5.8-505", 58, 5]]);
-const pos$3 = nix.positions(here + "/4.x.nix", [["url", 68, 5], ["sha256", 69, 5]]);
-const pos$4 = nix.positions(here + "/4.x.nix", [["dot-merlin-reader", 78, 9], ["dune", 79, 9]]);
-const pos$5 = nix.positions(here + "/4.x.nix", [["description", 107, 5], ["homepage", 108, 5], ["license", 109, 5], ["mainProgram", 110, 5], ["maintainers", 111, 5]]);
-const pos$6 = nix.positions(here + "/4.x.nix", [["pname", 64, 3], ["version", 65, 11], ["src", 67, 3], ["patches", 72, 3], ["strictDeps", 83, 3], ["nativeBuildInputs", 85, 3], ["buildInputs", 89, 3], ["doCheck", 98, 3], ["checkPhase", 99, 3], ["meta", 106, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,7 +23,7 @@ export default nix.lambda((args) => (() => {
   const menhirSdk = nix.arg($, "menhirSdk");
   const seq = nix.arg($, "seq");
   const version = nix.argOr($, "version", () => nix.sel({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     "4.12.0": "4.7-412",
     "4.12.1": "4.7-412",
     "4.13.0": "4.7.1-413",
@@ -49,7 +44,7 @@ export default nix.lambda((args) => (() => {
     "5.5.0": "5.8-505",
   }, nix.key(nix.str`${nix.sel(ocaml, "version")}`)));
   const hashes = nix.thunk(() => ({
-    [nix.POS]: pos$2,
+    [nix.POS]: $pos[1],
     "4.7-412": "sha256-0U3Ia7EblKULNy8AuXFVKACZvGN0arYJv7BWiBRgT0Y=",
     "4.7.1-413": "sha256-owR9ooUoOrKLOpZbKYDm8Q2ZfDn6C8GJwUF/4HQVRcI=",
     "4.14-500": "sha256-7CPzJPh1UgzYiX8wPMbU5ZXz1wAJFNQQcp8WuGrR1w4=",
@@ -66,11 +61,11 @@ export default nix.lambda((args) => (() => {
     "5.8-505": "sha256-VkLN6EhqhKrZj6XFkLcOjcxgdNf72zubjEayxbQvZTs=",
   }));
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "merlin",
       version: version,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           url: nix.thunk(() => nix.str`https://github.com/ocaml/merlin/releases/download/v${version}/merlin-${version}.tbz`),
           sha256: nix.thunk(() => nix.sel(hashes, nix.key(nix.str`${version}`))),
         })))),
@@ -78,7 +73,7 @@ export default nix.lambda((args) => (() => {
         const old_patch = nix.thunk(() => nix.app(nix.sel(lib, "versionOlder"), version, "4.17"));
         return [
           nix.thunk(() => nix.app(replaceVars, nix.thunk(() => (nix.asBool(old_patch) ? nix.path(here, "./fix-paths.patch") : nix.path(here, "./fix-paths2.patch"))), nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               "dot-merlin-reader": nix.thunk(() => nix.str`${dot_merlin_reader}/bin/dot-merlin-reader`),
               dune: nix.thunk(() => nix.str`${dune}/bin/dune`),
             })))),
@@ -96,7 +91,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       checkPhase: "runHook preCheck\npatchShebangs tests/merlin-wrapper\ndune runtest # filtering with -p disables tests\nrunHook postCheck\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Editor-independent tool to ease the development of programs in OCaml",
         homepage: "https://github.com/ocaml/merlin",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

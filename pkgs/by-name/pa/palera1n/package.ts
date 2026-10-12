@@ -2,17 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["x86_64-linux", 22, 5], ["aarch64-linux", 23, 5], ["i686-linux", 24, 5], ["armv7l-linux", 25, 5]], [["x86_64-linux", 28, 5], ["aarch64-linux", 29, 5], ["i686-linux", 30, 5], ["armv7l-linux", 31, 5]], [["url", 35, 5], ["hash", 36, 5]], [["url", 39, 5], ["sha256", 40, 5]], [["url", 43, 5], ["sha256", 44, 5]], [["url", 47, 5], ["sha256", 48, 5]], [["url", 51, 5], ["sha256", 52, 5]], [["owner", 66, 5], ["repo", 67, 5], ["rev", 68, 5], ["sha256", 69, 5]], [["description", 128, 5], ["homepage", 129, 5], ["license", 130, 5], ["platforms", 131, 5], ["mainProgram", 137, 5], ["maintainers", 138, 5], ["sourceProvenance", 139, 5]], [["pname", 59, 3], ["version", 60, 3], ["strictDeps", 62, 3], ["__structuredAttrs", 63, 3], ["src", 65, 3], ["nativeBuildInputs", 72, 3], ["buildInputs", 77, 3], ["postPatch", 88, 3], ["preBuild", 103, 3], ["makeFlags", 115, 3], ["buildPhase", 117, 3], ["installPhase", 123, 3], ["meta", 127, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, git: false, xz: false, xxd: false, libimobiledevice: false, "libimobiledevice-glue": false, libirecovery: false, libplist: false, libusbmuxd: false, libusb1: false, mbedtls: false, readline: false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["x86_64-linux", 22, 5], ["aarch64-linux", 23, 5], ["i686-linux", 24, 5], ["armv7l-linux", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["x86_64-linux", 28, 5], ["aarch64-linux", 29, 5], ["i686-linux", 30, 5], ["armv7l-linux", 31, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 35, 5], ["hash", 36, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["url", 39, 5], ["sha256", 40, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["url", 43, 5], ["sha256", 44, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["url", 47, 5], ["sha256", 48, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["url", 51, 5], ["sha256", 52, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["owner", 66, 5], ["repo", 67, 5], ["rev", 68, 5], ["sha256", 69, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["description", 128, 5], ["homepage", 129, 5], ["license", 130, 5], ["platforms", 131, 5], ["mainProgram", 137, 5], ["maintainers", 138, 5], ["sourceProvenance", 139, 5]]);
-const pos$10 = nix.positions(here + "/package.nix", [["pname", 59, 3], ["version", 60, 3], ["strictDeps", 62, 3], ["__structuredAttrs", 63, 3], ["src", 65, 3], ["nativeBuildInputs", 72, 3], ["buildInputs", 77, 3], ["postPatch", 88, 3], ["preBuild", 103, 3], ["makeFlags", 115, 3], ["buildPhase", 117, 3], ["installPhase", 123, 3], ["meta", 127, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,14 +24,14 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const checkra1nVersion = "0.1337.3";
   const checkra1nNames = nix.thunk(() => ({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     "x86_64-linux": "linux-x86_64",
     "aarch64-linux": "linux-arm64",
     "i686-linux": "linux-x86",
     "armv7l-linux": "linux-armel",
   }));
   const checkra1nHashes = nix.thunk(() => ({
-    [nix.POS]: pos$2,
+    [nix.POS]: $pos[1],
     "x86_64-linux": "sha256-UxVNh1lM9nxWZZ8kVH8bW7Uzb4TqWMLULyWnst+BqWQ=",
     "aarch64-linux": "sha256-B4BTwR6aMB8Ocbh7a4VObIppyHlyMl3QyQ3u66HDy3A=",
     "i686-linux": "sha256-VV4aIc5QvtMYJtSc7660vZCZhGzSrAx+4M/mSctYiIc=",
@@ -48,39 +39,39 @@ export default nix.lambda((args) => (() => {
   }));
   const checkra1nName = nix.thunk(() => nix.sel(checkra1nNames, nix.key(nix.sel(stdenv, "hostPlatform", "system"))));
   const checkra1n = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       url: nix.thunk(() => nix.str`https://assets.checkra.in/downloads/preview/${checkra1nVersion}/checkra1n-${checkra1nName}`),
       hash: nix.thunk(() => nix.sel(checkra1nHashes, nix.key(nix.sel(stdenv, "hostPlatform", "system")))),
     }))));
   const kpf = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       url: "https://web.archive.org/web/20260305175557id_/https://cdn.nickchan.lol/palera1n/artifacts/kpf/iOS15/checkra1n-kpf-pongo",
       sha256: "sha256-EWKaBuDXYzED5AcdJglhnenVJTQNvACMps8K10l7wRg=",
     }))));
   const ramdisk = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       url: "https://web.archive.org/web/20260310113826id_/https://cdn.nickchan.lol/palera1n/c-rewrite/deps/ramdisk.dmg",
       sha256: "sha256-4ubbTpLGUk0KqRXBJP6WPW+mfefC+jO7jbnk7kVGa2w=",
     }))));
   const binpack = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       url: "https://web.archive.org/web/20260310113826id_/https://cdn.nickchan.lol/palera1n/c-rewrite/deps/binpack.dmg",
       sha256: "sha256-JmxGdlE5OOXHOLpOa/xsyUyuxXOSyWDM22cmA+uk1HY=",
     }))));
   const pongo = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       url: "https://web.archive.org/web/20260310113826id_/https://cdn.nickchan.lol/palera1n/artifacts/kpf/iOS15/Pongo.bin",
       sha256: "sha256-HE0LxY+MuWrH/xrLXl03E9PC7aLLexZNvPOEB9mR/qE=",
     }))));
   const makeFlagsList = nix.thunk(() => [nix.thunk(() => nix.str`CHECKRA1N_NAME=${checkra1nName}`)]);
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       pname: "palera1n",
       version: "2.2.1-unstable-2026-01-17",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           owner: "palera1n",
           repo: "palera1n",
           rev: "62e03acf81f7aaa5a7b3d4a25d08d0bef3731a05",
@@ -115,7 +106,7 @@ runHook postBuild
 `),
       installPhase: "install -Dm755 src/palera1n $out/bin/palera1n\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         description: "Jailbreak for A8 through A11, T2 devices, on iOS/iPadOS/tvOS 15.0+",
         homepage: "https://palera.in",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

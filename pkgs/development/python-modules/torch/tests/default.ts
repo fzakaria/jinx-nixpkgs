@@ -2,15 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["feature", 19, 7], ["versionAttr", 20, 7], ["libraries", 21, 7]], [["feature", 25, 7], ["libraries", 26, 7]], [["tester-cudaAvailable", 18, 5], ["tester-compileCuda", 24, 5]], [["feature", 32, 7], ["versionAttr", 33, 7], ["libraries", 34, 7]], [["feature", 37, 7], ["libraries", 38, 7]], [["tester-rocmAvailable", 31, 5], ["tester-compileRocm", 36, 5]], [["feature", 44, 5], ["libraries", 45, 5]], [["tester-compileCpu", 49, 11], ["compileCpu", 50, 3], ["mnist-example", 52, 3], ["torchvision", 55, 11], ["torchaudio", 55, 23], ["torchcodec", 55, 34]]]);
 const formals$1 = { args: { lib: false, stdenv: false, callPackage: false, torchvision: false, torchcodec: false, torchaudio: false, rocmSupport: false, cudaSupport: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["feature", 19, 7], ["versionAttr", 20, 7], ["libraries", 21, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["feature", 25, 7], ["libraries", 26, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["tester-cudaAvailable", 18, 5], ["tester-compileCuda", 24, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["feature", 32, 7], ["versionAttr", 33, 7], ["libraries", 34, 7]]);
-const pos$5 = nix.positions(here + "/default.nix", [["feature", 37, 7], ["libraries", 38, 7]]);
-const pos$6 = nix.positions(here + "/default.nix", [["tester-rocmAvailable", 31, 5], ["tester-compileRocm", 36, 5]]);
-const pos$7 = nix.positions(here + "/default.nix", [["feature", 44, 5], ["libraries", 45, 5]]);
-const pos$8 = nix.positions(here + "/default.nix", [["tester-compileCpu", 49, 11], ["compileCpu", 50, 3], ["mnist-example", 52, 3], ["torchvision", 55, 11], ["torchaudio", 55, 23], ["torchcodec", 55, 34]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,40 +16,40 @@ export default nix.lambda((args) => (() => {
   const rocmSupport = nix.arg($, "rocmSupport");
   const cudaSupport = nix.arg($, "cudaSupport");
   const cudaOnly = nix.thunk(() => ({
-    [nix.POS]: pos$3,
+    [nix.POS]: $pos[2],
     "tester-cudaAvailable": nix.thunk(() => nix.app(callPackage, nix.path(here, "./mk-runtime-check.nix"), nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         feature: "cuda",
         versionAttr: "cuda",
         libraries: (ps) => [nix.thunk(() => nix.sel(ps, "torchWithCuda"))],
       })))),
     "tester-compileCuda": nix.thunk(() => nix.app(callPackage, nix.path(here, "./mk-torch-compile-check.nix"), nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         feature: "cuda",
         libraries: (ps) => [nix.thunk(() => nix.sel(ps, "torchWithCuda"))],
       })))),
   }));
   const rocmOnly = nix.thunk(() => ({
-    [nix.POS]: pos$6,
+    [nix.POS]: $pos[5],
     "tester-rocmAvailable": nix.thunk(() => nix.app(callPackage, nix.path(here, "./mk-runtime-check.nix"), nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         feature: "rocm",
         versionAttr: "hip",
         libraries: (ps) => [nix.thunk(() => nix.sel(ps, "torchWithRocm"))],
       })))),
     "tester-compileRocm": nix.thunk(() => nix.app(callPackage, nix.path(here, "./mk-torch-compile-check.nix"), nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         feature: "rocm",
         libraries: (ps) => [nix.thunk(() => nix.sel(ps, "torchWithRocm"))],
       })))),
   }));
   const tester_compileCpu = nix.thunk(() => nix.app(callPackage, nix.path(here, "./mk-torch-compile-check.nix"), nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       feature: null,
       libraries: (ps) => [nix.thunk(() => nix.sel(ps, "torch"))],
     }))));
   return nix.update({
-    [nix.POS]: pos$8,
+    [nix.POS]: $pos[7],
     "tester-compileCpu": tester_compileCpu,
     compileCpu: nix.thunk(() => nix.sel(tester_compileCpu, "gpuCheck")),
     "mnist-example": nix.thunk(() => nix.app(callPackage, nix.path(here, "./mnist-example"), nix.thunk(() => ({})))),

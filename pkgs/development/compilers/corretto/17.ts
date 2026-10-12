@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/17.nix", [[["owner", 26, 7], ["repo", 27, 7], ["rev", 28, 7], ["hash", 29, 7]], [["lib", 16, 7], ["stdenv", 17, 7], ["rsync", 18, 7], ["runCommand", 19, 7], ["testers", 20, 7], ["jdk", 22, 5], ["gradle", 23, 5], ["version", 24, 5], ["src", 25, 5]], [["url", 40, 9], ["sha256", 41, 9]], [["patches", 38, 5]]]);
 const formals$1 = { args: { fetchFromGitHub: false, fetchurl: false, gradle_8: false, jdk17: false, lib: false, stdenv: false, rsync: false, runCommand: false, testers: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/17.nix", [["owner", 26, 7], ["repo", 27, 7], ["rev", 28, 7], ["hash", 29, 7]]);
-const pos$2 = nix.positions(here + "/17.nix", [["lib", 16, 7], ["stdenv", 17, 7], ["rsync", 18, 7], ["runCommand", 19, 7], ["testers", 20, 7], ["jdk", 22, 5], ["gradle", 23, 5], ["version", 24, 5], ["src", 25, 5]]);
-const pos$3 = nix.positions(here + "/17.nix", [["url", 40, 9], ["sha256", 41, 9]]);
-const pos$4 = nix.positions(here + "/17.nix", [["patches", 38, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,14 +26,14 @@ export default nix.lambda((args) => (() => {
       const gradle = gradle_8;
       const version = "17.0.17.10.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "corretto",
           repo: "corretto-17",
           rev: version,
           hash: "sha256-Z8+g5jXjcWNTYU9Xvze7scu348okMauGMhSZwX1sS9w=",
         }))));
       return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         lib: lib_1,
         stdenv: stdenv_1,
         rsync: rsync_1,
@@ -49,9 +46,9 @@ export default nix.lambda((args) => (() => {
       };
     })())));
   return nix.app(nix.sel(corretto, "overrideAttrs"), (final) => (prev) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       patches: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "remove"), nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: "https://git.alpinelinux.org/aports/plain/community/openjdk17/FixNullPtrCast.patch?id=41e78a067953e0b13d062d632bae6c4f8028d91c",
             sha256: "sha256-LzmSew51+DyqqGyyMw2fbXeBluCiCYsS1nCjt9hX6zo=",
           })))), nix.thunk(() => nix.selOr(prev, () => [], "patches"))), [nix.path(here, "./corretto17-gradle8.patch")])),

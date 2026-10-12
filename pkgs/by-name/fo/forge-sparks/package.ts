@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 27, 5], ["repo", 28, 5], ["rev", 29, 5], ["hash", 30, 5], ["fetchSubmodules", 31, 5]], [["updateScript", 64, 5]], [["changelog", 68, 5], ["description", 69, 5], ["homepage", 70, 5], ["license", 71, 5], ["mainProgram", 72, 5], ["teams", 73, 5], ["platforms", 74, 5]], [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["patches", 34, 3], ["postPatch", 39, 3], ["nativeBuildInputs", 43, 3], ["buildInputs", 53, 3], ["passthru", 63, 3], ["meta", 67, 3]]]);
 const formals$1 = { args: { lib: false, "blueprint-compiler": false, "desktop-file-utils": false, fetchFromGitHub: false, gjs: false, glib: false, "glib-networking": false, gtk4: false, libadwaita: false, libportal: false, libsecret: false, libsoup_3: false, meson: false, ninja: false, "nix-update-script": false, "pkg-config": false, stdenv: false, wrapGAppsHook4: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 27, 5], ["repo", 28, 5], ["rev", 29, 5], ["hash", 30, 5], ["fetchSubmodules", 31, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 64, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["changelog", 68, 5], ["description", 69, 5], ["homepage", 70, 5], ["license", 71, 5], ["mainProgram", 72, 5], ["teams", 73, 5], ["platforms", 74, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["patches", 34, 3], ["postPatch", 39, 3], ["nativeBuildInputs", 43, 3], ["buildInputs", 53, 3], ["passthru", 63, 3], ["meta", 67, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const wrapGAppsHook4 = nix.arg($, "wrapGAppsHook4");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "forge-sparks",
       version: "1.0.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "rafaelmardojai",
           repo: "forge-sparks",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -53,11 +50,11 @@ export default nix.lambda((args) => (() => {
       ]),
       buildInputs: nix.thunk(() => [glib, glib_networking, gtk4, libadwaita, libportal, libsecret, libsoup_3]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         changelog: nix.thunk(() => nix.str`https://github.com/rafaelmardojai/forge-sparks/releases/tag/${nix.sel(finalAttrs, "version")}`),
         description: "Get Git forges notifications",
         homepage: "https://github.com/rafaelmardojai/forge-sparks",

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 31, 5], ["repo", 32, 5], ["rev", 33, 5], ["sha256", 34, 5]], [["description", 66, 5], ["mainProgram", 67, 5], ["homepage", 68, 5], ["maintainers", 69, 5], ["platforms", 70, 5], ["license", 71, 5]], [["pname", 27, 3], ["version", 28, 3], ["src", 30, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 43, 3], ["cmakeFlags", 53, 3], ["postPatch", 57, 3], ["meta", 65, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, cmake: false, openal: false, "pkg-config": false, libogg: false, libvorbis: false, SDL2: false, makeWrapper: false, libpng: false, libjpeg_turbo: false, libGLU: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 31, 5], ["repo", 32, 5], ["rev", 33, 5], ["sha256", 34, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 66, 5], ["mainProgram", 67, 5], ["homepage", 68, 5], ["maintainers", 69, 5], ["platforms", 70, 5], ["license", 71, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 27, 3], ["version", 28, 3], ["src", 30, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 43, 3], ["cmakeFlags", 53, 3], ["postPatch", 57, 3], ["meta", 65, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const pname = "lugaru";
       const version = "1.2";
       const src = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "osslugaru",
           repo: "lugaru",
           rev: version,
@@ -40,7 +38,7 @@ export default nix.lambda((args) => (() => {
       const cmakeFlags = nix.thunk(() => ["-DSYSTEM_INSTALL=ON"]);
       const postPatch = "substituteInPlace CMakeLists.txt --replace-fail \\\n  \"cmake_minimum_required(VERSION 3.0)\" \\\n  \"cmake_minimum_required(VERSION 3.10)\" \\\n--replace-fail \\\n  \"cmake_policy(SET CMP0004 OLD)\" \"\"\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Third person ninja rabbit fighting game",
         mainProgram: "lugaru",
         homepage: "https://osslugaru.gitlab.io",
@@ -49,7 +47,7 @@ export default nix.lambda((args) => (() => {
         license: nix.thunk(() => nix.sel(licenses, "gpl2Plus")),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

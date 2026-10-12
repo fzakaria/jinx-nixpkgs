@@ -2,11 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 13], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]], [["updateScript", 20, 12]], [["changelog", 23, 5], ["description", 24, 5], ["homepage", 25, 5], ["maintainers", 26, 5], ["license", 27, 5]], [["owner", 9, 3], ["domain", 10, 3], ["version", 11, 3], ["src", 13, 3], ["passthru", 20, 3], ["meta", 22, 3]]]);
 const formals$1 = { args: { lib: false, buildHomeAssistantComponent: false, fetchFromGitHub: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 13], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 20, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["changelog", 23, 5], ["description", 24, 5], ["homepage", 25, 5], ["maintainers", 26, 5], ["license", 27, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["owner", 9, 3], ["domain", 10, 3], ["version", 11, 3], ["src", 13, 3], ["passthru", 20, 3], ["meta", 22, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,18 +16,18 @@ export default nix.lambda((args) => (() => {
       const domain = "hildebrand_glow_ihd";
       const version = "1.8.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: owner,
           repo: "ha_hildebrand_glow_ihd_mqtt",
           tag: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-13NmNHaCYDZkWK5uqKeTZlB84UuThNLOAYaPS4QfTKY=",
         }))));
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         changelog: nix.thunk(() => nix.str`https://github.com/megakid/ha_hildebrand_glow_ihd_mqtt/releases/tag/${nix.sel(src, "tag")}`),
         description: "Home Assistant integration for local MQTT Hildebrand Glow IHD",
         homepage: "https://github.com/megakid/ha_hildebrand_glow_ihd_mqtt",
@@ -40,7 +37,7 @@ export default nix.lambda((args) => (() => {
         })()),
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
       }));
-      return { [nix.POS]: pos$4, owner, domain, version, src, passthru, meta };
+      return { [nix.POS]: $pos[3], owner, domain, version, src, passthru, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

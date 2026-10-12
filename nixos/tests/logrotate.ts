@@ -2,51 +2,25 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/logrotate.nix", [[["olddir", 8, 9]], [["import", 7, 35]], [["settings", 7, 26]], [["logrotate", 7, 16]], [["services", 7, 7]], [["maintainers", 17, 5]], [["enable", 24, 28]], [["logrotate", 24, 18]], [["services", 24, 9]], [["su", 31, 27]], [["header", 31, 20]], [["enable", 30, 11], ["settings", 31, 11]], [["logrotate", 29, 18]], [["services", 29, 9]], [["frequency", 44, 15], ["delaycompress", 45, 15]], [["global", 49, 15], ["priority", 50, 15], ["shred", 51, 15]], [["mail", 55, 15]], [["postrotate", 59, 15]], [["su", 64, 15], ["createolddir", 65, 15], ["createolddir ", 66, 15], ["create", 67, 15], ["create ", 68, 15], ["create  ", 69, 15]], [["files", 73, 15]], [["notifempty", 81, 15]], [["header", 43, 13], ["last_line", 48, 13], ["sendmail", 54, 13], ["postrotate", 58, 13], ["checkConf", 63, 13], ["multipath", 72, 13], ["import", 80, 13]], [["enable", 40, 11], ["settings", 41, 11]], [["logrotate", 39, 18]], [["imports", 37, 9], ["services", 39, 9]], [["defaultMachine", 21, 5], ["failingMachine", 26, 5], ["machine", 34, 5]], [["name", 15, 3], ["meta", 16, 3], ["nodes", 20, 3], ["testScript", 88, 3]]]);
 const formals$1 = { args: {  }, ellipsis: true };
-const pos$1 = nix.positions(here + "/logrotate.nix", [["olddir", 8, 9]]);
-const pos$2 = nix.positions(here + "/logrotate.nix", [["import", 7, 35]]);
-const pos$3 = nix.positions(here + "/logrotate.nix", [["settings", 7, 26]]);
-const pos$4 = nix.positions(here + "/logrotate.nix", [["logrotate", 7, 16]]);
-const pos$5 = nix.positions(here + "/logrotate.nix", [["services", 7, 7]]);
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$6 = nix.positions(here + "/logrotate.nix", [["maintainers", 17, 5]]);
 const formals$3 = { args: {  }, ellipsis: true };
-const pos$7 = nix.positions(here + "/logrotate.nix", [["enable", 24, 28]]);
-const pos$8 = nix.positions(here + "/logrotate.nix", [["logrotate", 24, 18]]);
-const pos$9 = nix.positions(here + "/logrotate.nix", [["services", 24, 9]]);
 const formals$4 = { args: {  }, ellipsis: true };
-const pos$10 = nix.positions(here + "/logrotate.nix", [["su", 31, 27]]);
-const pos$11 = nix.positions(here + "/logrotate.nix", [["header", 31, 20]]);
-const pos$12 = nix.positions(here + "/logrotate.nix", [["enable", 30, 11], ["settings", 31, 11]]);
-const pos$13 = nix.positions(here + "/logrotate.nix", [["logrotate", 29, 18]]);
-const pos$14 = nix.positions(here + "/logrotate.nix", [["services", 29, 9]]);
 const formals$5 = { args: { config: false }, ellipsis: true };
-const pos$15 = nix.positions(here + "/logrotate.nix", [["frequency", 44, 15], ["delaycompress", 45, 15]]);
-const pos$16 = nix.positions(here + "/logrotate.nix", [["global", 49, 15], ["priority", 50, 15], ["shred", 51, 15]]);
-const pos$17 = nix.positions(here + "/logrotate.nix", [["mail", 55, 15]]);
-const pos$18 = nix.positions(here + "/logrotate.nix", [["postrotate", 59, 15]]);
-const pos$19 = nix.positions(here + "/logrotate.nix", [["su", 64, 15], ["createolddir", 65, 15], ["createolddir ", 66, 15], ["create", 67, 15], ["create ", 68, 15], ["create  ", 69, 15]]);
-const pos$20 = nix.positions(here + "/logrotate.nix", [["files", 73, 15]]);
-const pos$21 = nix.positions(here + "/logrotate.nix", [["notifempty", 81, 15]]);
-const pos$22 = nix.positions(here + "/logrotate.nix", [["header", 43, 13], ["last_line", 48, 13], ["sendmail", 54, 13], ["postrotate", 58, 13], ["checkConf", 63, 13], ["multipath", 72, 13], ["import", 80, 13]]);
-const pos$23 = nix.positions(here + "/logrotate.nix", [["enable", 40, 11], ["settings", 41, 11]]);
-const pos$24 = nix.positions(here + "/logrotate.nix", [["logrotate", 39, 18]]);
-const pos$25 = nix.positions(here + "/logrotate.nix", [["imports", 37, 9], ["services", 39, 9]]);
-const pos$26 = nix.positions(here + "/logrotate.nix", [["defaultMachine", 21, 5], ["failingMachine", 26, 5], ["machine", 34, 5]]);
-const pos$27 = nix.positions(here + "/logrotate.nix", [["name", 15, 3], ["meta", 16, 3], ["nodes", 20, 3], ["testScript", 88, 3]]);
 
 export default nix.thunk(() => (() => {
   const importTest = nix.lambda((args) => (() => {
     const $ = nix.formals(args, formals$1);
     return {
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       services: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         logrotate: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           settings: nix.thunk(() => ({
-            [nix.POS]: pos$2,
-            import: nix.thunk(() => ({ [nix.POS]: pos$1, olddir: false })),
+            [nix.POS]: $pos[1],
+            import: nix.thunk(() => ({ [nix.POS]: $pos[0], olddir: false })),
           })),
         })),
       })),
@@ -56,39 +30,39 @@ export default nix.thunk(() => (() => {
     const $ = nix.formals(args, formals$2);
     const pkgs = nix.arg($, "pkgs");
     return {
-      [nix.POS]: pos$27,
+      [nix.POS]: $pos[26],
       name: "logrotate",
       meta: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
         return {
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "martinetd"))]),
         };
       })()),
       nodes: nix.thunk(() => ({
-        [nix.POS]: pos$26,
+        [nix.POS]: $pos[25],
         defaultMachine: nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$3);
           return {
-            [nix.POS]: pos$9,
+            [nix.POS]: $pos[8],
             services: nix.thunk(() => ({
-              [nix.POS]: pos$8,
-              logrotate: nix.thunk(() => ({ [nix.POS]: pos$7, enable: true })),
+              [nix.POS]: $pos[7],
+              logrotate: nix.thunk(() => ({ [nix.POS]: $pos[6], enable: true })),
             })),
           };
         })(), formals$3),
         failingMachine: nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$4);
           return {
-            [nix.POS]: pos$14,
+            [nix.POS]: $pos[13],
             services: nix.thunk(() => ({
-              [nix.POS]: pos$13,
+              [nix.POS]: $pos[12],
               logrotate: nix.thunk(() => ({
-                [nix.POS]: pos$12,
+                [nix.POS]: $pos[11],
                 enable: true,
                 settings: nix.thunk(() => ({
-                  [nix.POS]: pos$11,
-                  header: nix.thunk(() => ({ [nix.POS]: pos$10, su: "notarealuser notagroupeither" })),
+                  [nix.POS]: $pos[10],
+                  header: nix.thunk(() => ({ [nix.POS]: $pos[9], su: "notarealuser notagroupeither" })),
                 })),
               })),
             })),
@@ -98,21 +72,21 @@ export default nix.thunk(() => (() => {
           const $_1 = nix.formals(args_1, formals$5);
           const config = nix.arg($_1, "config");
           return {
-            [nix.POS]: pos$25,
+            [nix.POS]: $pos[24],
             imports: nix.thunk(() => [importTest]),
             services: nix.thunk(() => ({
-              [nix.POS]: pos$24,
+              [nix.POS]: $pos[23],
               logrotate: nix.thunk(() => ({
-                [nix.POS]: pos$23,
+                [nix.POS]: $pos[22],
                 enable: true,
                 settings: nix.thunk(() => ({
-                  [nix.POS]: pos$22,
-                  header: nix.thunk(() => ({ [nix.POS]: pos$15, frequency: null, delaycompress: true })),
-                  last_line: nix.thunk(() => ({ [nix.POS]: pos$16, global: true, priority: 2000n, shred: true })),
-                  sendmail: nix.thunk(() => ({ [nix.POS]: pos$17, mail: "user@domain.tld" })),
-                  postrotate: nix.thunk(() => ({ [nix.POS]: pos$18, postrotate: "touch /dev/null" })),
+                  [nix.POS]: $pos[21],
+                  header: nix.thunk(() => ({ [nix.POS]: $pos[14], frequency: null, delaycompress: true })),
+                  last_line: nix.thunk(() => ({ [nix.POS]: $pos[15], global: true, priority: 2000n, shred: true })),
+                  sendmail: nix.thunk(() => ({ [nix.POS]: $pos[16], mail: "user@domain.tld" })),
+                  postrotate: nix.thunk(() => ({ [nix.POS]: $pos[17], postrotate: "touch /dev/null" })),
                   checkConf: nix.thunk(() => ({
-                    [nix.POS]: pos$19,
+                    [nix.POS]: $pos[18],
                     su: "root utmp",
                     createolddir: "0750 root utmp",
                     "createolddir ": "0750",
@@ -120,8 +94,8 @@ export default nix.thunk(() => (() => {
                     "create ": "0750 root utmp",
                     "create  ": "0750",
                   })),
-                  multipath: nix.thunk(() => ({ [nix.POS]: pos$20, files: nix.thunk(() => ["file1", "file2"]) })),
-                  import: nix.thunk(() => ({ [nix.POS]: pos$21, notifempty: true })),
+                  multipath: nix.thunk(() => ({ [nix.POS]: $pos[19], files: nix.thunk(() => ["file1", "file2"]) })),
+                  import: nix.thunk(() => ({ [nix.POS]: $pos[20], notifempty: true })),
                 })),
               })),
             })),

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]], [["NIX_CFLAGS_COMPILE", 20, 7]], [["description", 45, 5], ["homepage", 46, 5], ["license", 47, 5], ["maintainers", 48, 5], ["platforms", 49, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["env", 20, 3], ["nativeBuildInputs", 22, 3], ["buildInputs", 26, 3], ["preBuild", 30, 3], ["makeFlags", 31, 3], ["installPhase", 37, 3], ["meta", 44, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, opencbm: false, cc65: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 20, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 45, 5], ["homepage", 46, 5], ["license", 47, 5], ["maintainers", 48, 5], ["platforms", 49, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["env", 20, 3], ["nativeBuildInputs", 22, 3], ["buildInputs", 26, 3], ["preBuild", 30, 3], ["makeFlags", 31, 3], ["installPhase", 37, 3], ["meta", 44, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,24 +13,24 @@ export default nix.lambda((args) => (() => {
   const opencbm = nix.arg($, "opencbm");
   const cc65 = nix.arg($, "cc65");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "nibtools",
       version: "0-unstable-2024-11-30",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "OpenCBM",
           repo: "nibtools",
           rev: "91344e0ee357780a90ad7fe3a0a0721a2e11f265",
           hash: "sha256-0skAavJe01b+4Z7LEfS2qIhqkwj8XhOwmflhYPEynw4=",
         })))),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-Wno-error=format-security" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], NIX_CFLAGS_COMPILE: "-Wno-error=format-security" })),
       nativeBuildInputs: nix.thunk(() => [cc65]),
       buildInputs: nix.thunk(() => [opencbm]),
       preBuild: "mkdir build",
       makeFlags: nix.thunk(() => ["-f", "GNU/Makefile", "linux"]),
       installPhase: "runHook preInstall\nmkdir -p $out/bin\nmv nibread nibwrite nibscan nibconv nibrepair nibsrqtest $out/bin/\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Disk transfer utility for imaging and converting commodore 64 disk images",
         homepage: "https://github.com/OpenCBM/nibtools/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),

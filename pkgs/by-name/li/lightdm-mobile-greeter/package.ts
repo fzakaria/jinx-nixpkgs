@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 18, 5], ["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]], [["path", 45, 7], ["name", 46, 7]], [["xgreeters", 43, 12]], [["description", 51, 5], ["homepage", 52, 5], ["maintainers", 53, 5], ["platforms", 54, 5], ["license", 55, 5], ["mainProgram", 56, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["cargoHash", 25, 3], ["buildInputs", 27, 3], ["nativeBuildInputs", 32, 3], ["postInstall", 36, 3], ["passthru", 43, 3], ["meta", 50, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitea: false, gtk3: false, libhandy_0: false, lightdm: false, "lightdm-mobile-greeter": false, linkFarm: false, "pkg-config": false, rustPlatform: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 18, 5], ["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["path", 45, 7], ["name", 46, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["xgreeters", 43, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 51, 5], ["homepage", 52, 5], ["maintainers", 53, 5], ["platforms", 54, 5], ["license", 55, 5], ["mainProgram", 56, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["cargoHash", 25, 3], ["buildInputs", 27, 3], ["nativeBuildInputs", 32, 3], ["postInstall", 36, 3], ["passthru", 43, 3], ["meta", 50, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const rustPlatform = nix.arg($, "rustPlatform");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "lightdm-mobile-greeter",
       version: "2022-10-30",
       src: nix.thunk(() => nix.app(fetchFromGitea, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "git.raatty.club",
           owner: "raatty",
           repo: "lightdm-mobile-greeter",
@@ -37,17 +33,17 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       postInstall: "mkdir -p $out/share/xgreeters\nsubstitute lightdm-mobile-greeter.desktop \\\n  $out/share/xgreeters/lightdm-mobile-greeter.desktop \\\n  --replace lightdm-mobile-greeter $out/bin/lightdm-mobile-greeter\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         xgreeters: nix.thunk(() => nix.app(linkFarm, "lightdm-mobile-greeter-xgreeters", nix.thunk(() => [
             nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               path: nix.thunk(() => nix.str`${lightdm_mobile_greeter}/share/xgreeters/lightdm-mobile-greeter.desktop`),
               name: "lightdm-mobile-greeter.desktop",
             })),
           ]))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Simple log in screen for use on touch screens",
         homepage: "https://git.raatty.club/raatty/lightdm-mobile-greeter",
         maintainers: [],

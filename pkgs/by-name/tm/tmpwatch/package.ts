@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 13, 5], ["sha256", 14, 5]], [["homepage", 20, 5], ["description", 21, 5], ["license", 22, 5], ["maintainers", 23, 5], ["platforms", 24, 5], ["mainProgram", 25, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["configureFlags", 17, 3], ["meta", 19, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, psmisc: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 13, 5], ["sha256", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 20, 5], ["description", 21, 5], ["license", 22, 5], ["maintainers", 23, 5], ["platforms", 24, 5], ["mainProgram", 25, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["configureFlags", 17, 3], ["meta", 19, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,17 +12,17 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const psmisc = nix.arg($, "psmisc");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "tmpwatch",
       version: "2.11",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://releases.pagure.org/tmpwatch/tmpwatch-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           sha256: "1m5859ngwx61l1i4s6fja2avf1hyv6w170by273w8nsin89825lk",
         })))),
       configureFlags: nix.thunk(() => [nix.thunk(() => nix.str`--with-fuser=${psmisc}/bin/fuser`)]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://pagure.io/tmpwatch",
         description: "Recursively searches through specified directories and removes files which have not been accessed in a specified period of time",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

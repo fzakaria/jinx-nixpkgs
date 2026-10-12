@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 25, 5], ["sha256", 26, 5]], [["url", 32, 7], ["sha256", 33, 7]], [["homepage", 59, 5], ["description", 60, 5], ["platforms", 61, 5], ["license", 62, 5]], [["pname", 16, 3], ["version", 17, 3], ["outputs", 19, 3], ["src", 24, 3], ["patches", 29, 3], ["buildInputs", 37, 3], ["nativeBuildInputs", 43, 3], ["propagatedBuildInputs", 50, 3], ["meta", 58, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, fetchpatch: false, buildPackages: false, libnice: false, "pkg-config": false, gst_all_1: false, "gupnp-igd": false, "gobject-introspection": false, python3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 25, 5], ["sha256", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 32, 7], ["sha256", 33, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 59, 5], ["description", 60, 5], ["platforms", 61, 5], ["license", 62, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["outputs", 19, 3], ["src", 24, 3], ["patches", 29, 3], ["buildInputs", 37, 3], ["nativeBuildInputs", 43, 3], ["propagatedBuildInputs", 50, 3], ["meta", 58, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,18 +19,18 @@ export default nix.lambda((args) => (() => {
   const gobject_introspection = nix.arg($, "gobject-introspection");
   const python3 = nix.arg($, "python3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "farstream",
       version: "0.2.9",
       outputs: nix.thunk(() => ["out", "dev"]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://www.freedesktop.org/software/farstream/releases/farstream/farstream-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "0yzlh9jf47a3ir40447s7hlwp98f9yr8z4gcm0vjwz6g6cj12zfb",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://gitlab.freedesktop.org/farstream/farstream/-/commit/54987d44.diff",
             sha256: "02pka68p2j1wg7768rq7afa5wl9xv82wp86q7izrmwwnxdmz4zyg",
           })))),
@@ -56,7 +53,7 @@ export default nix.lambda((args) => (() => {
         ];
       })()),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://www.freedesktop.org/wiki/Software/Farstream",
         description: "Audio/Video Communications Framework formerly known as farsight",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),

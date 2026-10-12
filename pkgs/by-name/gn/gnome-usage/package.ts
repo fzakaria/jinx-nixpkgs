@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 29, 5], ["hash", 30, 5]], [["packageName", 62, 7]], [["updateScript", 61, 5]], [["description", 67, 5], ["mainProgram", 68, 5], ["homepage", 69, 5], ["license", 70, 5], ["platforms", 71, 5], ["teams", 72, 5]], [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 44, 3], ["postPatch", 55, 3], ["passthru", 60, 3], ["meta", 66, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, meson: false, ninja: false, "pkg-config": false, vala: false, gettext: false, libxml2: false, "desktop-file-utils": false, wrapGAppsHook4: false, glib: false, gtk4: false, "json-glib": false, libadwaita: false, libgee: false, libgtop: false, networkmanager: false, gnome: false, tinysparql: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 29, 5], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["packageName", 62, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 61, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 67, 5], ["mainProgram", 68, 5], ["homepage", 69, 5], ["license", 70, 5], ["platforms", 71, 5], ["teams", 72, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 44, 3], ["postPatch", 55, 3], ["passthru", 60, 3], ["meta", 66, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,11 +28,11 @@ export default nix.lambda((args) => (() => {
   const gnome = nix.arg($, "gnome");
   const tinysparql = nix.arg($, "tinysparql");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "gnome-usage",
       version: "48.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnome/sources/gnome-usage/${nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/gnome-usage-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-UB3jxtTWU9Wc4NcHdY3M+D3D6oGi7RSS0vMzFi/uChc=",
         })))),
@@ -62,11 +58,11 @@ export default nix.lambda((args) => (() => {
       ]),
       postPatch: "chmod +x build-aux/meson/postinstall.sh\npatchShebangs build-aux/meson/postinstall.sh\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$2, packageName: "gnome-usage" })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: $pos[1], packageName: "gnome-usage" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Nice way to view information about use of system resources, like memory and disk space",
         mainProgram: "gnome-usage",
         homepage: "https://gitlab.gnome.org/GNOME/gnome-usage",

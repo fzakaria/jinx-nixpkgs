@@ -2,11 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 36, 5], ["repo", 37, 5], ["tag", 38, 5], ["hash", 39, 5]], [["url", 45, 7], ["hash", 46, 7]], [["homepage", 95, 5], ["description", 96, 5], ["mainProgram", 97, 5], ["maintainers", 98, 5], ["license", 102, 5], ["platforms", 103, 5]], [["pname", 32, 3], ["version", 33, 3], ["src", 35, 3], ["patches", 42, 3], ["postPatch", 50, 3], ["nativeBuildInputs", 60, 3], ["buildInputs", 70, 3], ["pythonPath", 86, 3], ["preFixup", 87, 3], ["meta", 94, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, "pkg-config": false, "adwaita-icon-theme": false, gmime3: false, webkitgtk_4_1: false, ronn: false, libsass: false, notmuch: false, boost: false, wrapGAppsHook3: false, "glib-networking": false, protobuf: false, gtkmm3: false, libpeas: false, "gsettings-desktop-schemas": false, "gobject-introspection": false, python3: false, fetchpatch: false, vim: false, extraPythonPackages: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 36, 5], ["repo", 37, 5], ["tag", 38, 5], ["hash", 39, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["url", 45, 7], ["hash", 46, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["homepage", 95, 5], ["description", 96, 5], ["mainProgram", 97, 5], ["maintainers", 98, 5], ["license", 102, 5], ["platforms", 103, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 32, 3], ["version", 33, 3], ["src", 35, 3], ["patches", 42, 3], ["postPatch", 50, 3], ["nativeBuildInputs", 60, 3], ["buildInputs", 70, 3], ["pythonPath", 86, 3], ["preFixup", 87, 3], ["meta", 94, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,11 +31,11 @@ export default nix.lambda((args) => (() => {
   const vim = nix.arg($, "vim");
   const extraPythonPackages = nix.argOr($, "extraPythonPackages", () => []);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "astroid",
       version: "0.17",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "astroidmail",
           repo: "astroid",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -46,7 +43,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/astroidmail/astroid/commit/b84962a7920aaa9b0cc4a85a0c9fd1802495b1bc.patch",
             hash: "sha256-QO5hoWscSMcxWLjPn/NT2MaIKrgMvTJeutitm4GaKZY=",
           })))),
@@ -89,7 +86,7 @@ substituteInPlace src/plugin/gir_main.c \\
       })()),
       preFixup: "buildPythonPath \"$out ${pythonPath[*]}\"\ngappsWrapperArgs+=(\n  --prefix PYTHONPATH : \"$program_PYTHONPATH\"\n)\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://astroidmail.github.io/",
         description: "GTK frontend to the notmuch mail system",
         mainProgram: "astroid",

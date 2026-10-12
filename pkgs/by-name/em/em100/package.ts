@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 18, 5], ["rev", 20, 5], ["hash", 21, 5]], [["homepage", 47, 5], ["description", 48, 5], ["license", 49, 5], ["maintainers", 50, 5], ["platforms", 51, 5], ["mainProgram", 52, 5]], [["pname", 11, 3], ["version", 12, 3], ["strictDeps", 14, 3], ["__structuredAttrs", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 26, 3], ["buildFlags", 31, 3], ["doInstallCheck", 36, 3], ["installPhase", 38, 3], ["meta", 46, 3]]]);
 const formals$1 = { args: { curl: false, fetchgit: false, lib: false, libusb1: false, "pkg-config": false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 18, 5], ["rev", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 47, 5], ["description", 48, 5], ["license", 49, 5], ["maintainers", 50, 5], ["platforms", 51, 5], ["mainProgram", 52, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["strictDeps", 14, 3], ["__structuredAttrs", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 26, 3], ["buildFlags", 31, 3], ["doInstallCheck", 36, 3], ["installPhase", 38, 3], ["meta", 46, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,13 +14,13 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "em100",
       version: "0-unstable-2024-11-14",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://review.coreboot.org/em100",
           rev: "a78b4ba4774f05ecd7af495604b437113596d70e",
           hash: "sha256-jzP56SMMiWiOynW17CFksi1VhpGt4oYYJrf4Rp9Vfs4=",
@@ -33,7 +31,7 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       installPhase: "runHook preInstall\ninstall -Dm755 em100 $out/bin/em100\ninstall -Dm755 makedpfw $out/bin/makedpfw\ninstall -Dm644 60-dediprog-em100pro.rules $out/lib/udev/rules.d/dediprog_em100.rules\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://www.coreboot.org",
         description: "Open source tool for the EM100 SPI flash emulator",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),

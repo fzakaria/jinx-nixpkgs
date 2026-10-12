@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]], [["url", 39, 7], ["hash", 40, 7]], [["url", 43, 7], ["hash", 44, 7]], [["homepage", 51, 5], ["changelog", 52, 5], ["description", 53, 5], ["license", 54, 5], ["maintainers", 55, 5], ["platforms", 56, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 29, 3], ["patches", 36, 3], ["cmakeFlags", 48, 3], ["meta", 50, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch: false, cmake: false, "pkg-config": false, libad9361: false, libiio: false, libusb1: false, soapysdr: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 39, 7], ["hash", 40, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 43, 7], ["hash", 44, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 51, 5], ["changelog", 52, 5], ["description", 53, 5], ["license", 54, 5], ["maintainers", 55, 5], ["platforms", 56, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 29, 3], ["patches", 36, 3], ["cmakeFlags", 48, 3], ["meta", 50, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const libusb1 = nix.arg($, "libusb1");
   const soapysdr = nix.arg($, "soapysdr");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "soapyplutosdr",
       version: "0.2.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "pothosware",
           repo: "SoapyPlutoSDR",
           rev: nix.thunk(() => nix.str`soapy-plutosdr-${nix.sel(finalAttrs, "version")}`),
@@ -36,19 +32,19 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [libad9361, libiio, libusb1, soapysdr]),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/pothosware/SoapyPlutoSDR/commit/6ab50457c378e19fa53038cadb131313cde23916.patch",
             hash: "sha256-ExrcziyDmytaVosQ+em177Unh6er/2+2nLjEXg6f0vU=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: "https://github.com/pothosware/SoapyPlutoSDR/commit/4a01ddf1ae2fd0de86c6774ff35aa51f9b4f0b5a.patch",
             hash: "sha256-XgyCWSAlKqCXxH5vtijYqub6656xYkWaY6+B0dkfsGA=",
           })))),
       ]),
       cmakeFlags: nix.thunk(() => [nix.thunk(() => nix.str`-DSoapySDR_DIR=${soapysdr}/share/cmake/SoapySDR/`)]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://github.com/pothosware/SoapyPlutoSDR",
         changelog: nix.thunk(() => nix.str`https://github.com/pothosware/SoapyPlutoSDR/blob/soapy-plutosdr-${nix.sel(finalAttrs, "version")}/Changelog.txt`),
         description: "SoapySDR plugin for Pluto SDR devices",

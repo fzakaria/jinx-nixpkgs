@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]], [["description", 69, 5], ["homepage", 70, 5], ["platforms", 71, 5], ["license", 72, 5], ["maintainers", 73, 5], ["mainProgram", 76, 5]], [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 40, 3], ["mesonFlags", 53, 3], ["installPhase", 55, 3], ["desktopItems", 66, 3], ["meta", 68, 3]]]);
 const formals$1 = { args: { bzip2: false, copyDesktopItems: false, curl: false, fetchFromGitHub: false, fftwFloat: false, jsoncpp: false, lib: false, libpng: false, libx11: false, lua5_2: false, luajit: false, meson: false, ninja: false, "pkg-config": false, python3: false, SDL2: false, stdenv: false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 69, 5], ["homepage", 70, 5], ["platforms", 71, 5], ["license", 72, 5], ["maintainers", 73, 5], ["mainProgram", 76, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 40, 3], ["mesonFlags", 53, 3], ["installPhase", 55, 3], ["desktopItems", 66, 3], ["meta", 68, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "the-powder-toy",
       version: "100.1.400",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "The-Powder-Toy",
           repo: "The-Powder-Toy",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -44,7 +42,7 @@ export default nix.lambda((args) => (() => {
       installPhase: "runHook preInstall\n\ninstall -Dm 755 powder $out/bin/powder\n\nmkdir -p $out/share\nmv ../resources $out/share\n\nrunHook postInstall\n",
       desktopItems: nix.thunk(() => ["resources/powder.desktop"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Free 2D physics sandbox game",
         homepage: "https://powdertoy.co.uk/",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),

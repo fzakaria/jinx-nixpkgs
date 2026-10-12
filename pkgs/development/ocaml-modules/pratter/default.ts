@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["domain", 17, 5], ["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]], [["description", 32, 5], ["homepage", 33, 5], ["license", 34, 5], ["changelog", 35, 5], ["maintainers", 36, 5]], [["version", 11, 3], ["pname", 12, 3], ["minimalOCamlVersion", 14, 3], ["src", 16, 3], ["checkInputs", 24, 3], ["doCheck", 29, 3], ["meta", 31, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitLab: false, buildDunePackage: false, alcotest: false, qcheck: false, "qcheck-alcotest": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["domain", 17, 5], ["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 32, 5], ["homepage", 33, 5], ["license", 34, 5], ["changelog", 35, 5], ["maintainers", 36, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["version", 11, 3], ["pname", 12, 3], ["minimalOCamlVersion", 14, 3], ["src", 16, 3], ["checkInputs", 24, 3], ["doCheck", 29, 3], ["meta", 31, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const qcheck = nix.arg($, "qcheck");
   const qcheck_alcotest = nix.arg($, "qcheck-alcotest");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       version: "5.0.1",
       pname: "pratter",
       minimalOCamlVersion: "4.10",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "forge.tedomum.net",
           owner: "koizel",
           repo: "pratter",
@@ -31,7 +29,7 @@ export default nix.lambda((args) => (() => {
       checkInputs: nix.thunk(() => [alcotest, qcheck, qcheck_alcotest]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Extended Pratt parser",
         homepage: "https://github.com/gabrielhdt/pratter",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

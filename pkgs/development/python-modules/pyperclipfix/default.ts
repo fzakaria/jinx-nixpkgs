@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]], [["homepage", 36, 5], ["license", 37, 5], ["description", 38, 5], ["maintainers", 39, 5]], [["version", 10, 3], ["pname", 11, 3], ["pyproject", 12, 3], ["src", 14, 3], ["build-system", 21, 3], ["nativeCheckInputs", 23, 3], ["preCheck", 25, 3], ["pythonImportsCheck", 30, 3], ["doCheck", 33, 3], ["meta", 35, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, pytestCheckHook: false, setuptools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 36, 5], ["license", 37, 5], ["description", 38, 5], ["maintainers", 39, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["version", 10, 3], ["pname", 11, 3], ["pyproject", 12, 3], ["src", 14, 3], ["build-system", 21, 3], ["nativeCheckInputs", 23, 3], ["preCheck", 25, 3], ["pythonImportsCheck", 30, 3], ["doCheck", 33, 3], ["meta", 35, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       version: "1.9.4-unstable-2024-01-23",
       pname: "pyperclipfix",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "AuroraWright",
           repo: "pyperclipfix",
           rev: "8c6c61de35b44ddbc927b37ade5579825db40826",
@@ -32,7 +30,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["pyperclipfix"]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/AuroraWright/pyperclipfix",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
         description: "Cross-platform clipboard module with various fixes",

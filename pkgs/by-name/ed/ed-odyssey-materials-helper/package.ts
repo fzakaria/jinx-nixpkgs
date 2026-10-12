@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]], [["pname", 69, 13], ["data", 70, 5]], [["name", 119, 7], ["type", 120, 7], ["desktopName", 121, 7], ["comment", 122, 7], ["icon", 123, 7], ["exec", 124, 7], ["categories", 125, 7], ["mimeTypes", 126, 7]], [["updateScript", 137, 12]], [["description", 146, 5], ["homepage", 147, 5], ["downloadPage", 148, 5], ["changelog", 149, 5], ["license", 150, 5], ["sourceProvenance", 151, 5], ["maintainers", 155, 5], ["mainProgram", 159, 5], ["platforms", 160, 5]], [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["nativeBuildInputs", 34, 3], ["patches", 40, 3], ["postPatch", 49, 3], ["mitmCache", 68, 3], ["gradleFlags", 73, 3], ["gradleInitScript", 78, 3], ["gradleBuildTask", 80, 3], ["preBuild", 82, 3], ["installPhase", 87, 3], ["dontWrapGApps", 99, 3], ["postFixup", 101, 3], ["desktopItems", 117, 3], ["gradleUpdateScript", 130, 3], ["passthru", 137, 3], ["meta", 145, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, gradle_9: false, jdk25: false, wrapGAppsHook3: false, libxxf86vm: false, libxtst: false, libglvnd: false, glib: false, "alsa-lib": false, ffmpeg: false, "lsb-release": false, copyDesktopItems: false, makeDesktopItem: false, writeScript: false, writeText: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 69, 13], ["data", 70, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 119, 7], ["type", 120, 7], ["desktopName", 121, 7], ["comment", 122, 7], ["icon", 123, 7], ["exec", 124, 7], ["categories", 125, 7], ["mimeTypes", 126, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 137, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 146, 5], ["homepage", 147, 5], ["downloadPage", 148, 5], ["changelog", 149, 5], ["license", 150, 5], ["sourceProvenance", 151, 5], ["maintainers", 155, 5], ["mainProgram", 159, 5], ["platforms", 160, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["nativeBuildInputs", 34, 3], ["patches", 40, 3], ["postPatch", 49, 3], ["mitmCache", 68, 3], ["gradleFlags", 73, 3], ["gradleInitScript", 78, 3], ["gradleBuildTask", 80, 3], ["preBuild", 82, 3], ["installPhase", 87, 3], ["dontWrapGApps", 99, 3], ["postFixup", 101, 3], ["desktopItems", 117, 3], ["gradleUpdateScript", 130, 3], ["passthru", 137, 3], ["meta", 145, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const pname = "ed-odyssey-materials-helper";
       const version = "3.7.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "jixxed",
           repo: "ed-odyssey-materials-helper",
           tag: version,
@@ -47,7 +42,7 @@ export default nix.lambda((args) => (() => {
         nix.path(here, "./disable-broken-features.patch"),
       ]);
       const postPatch = "# oslib doesn't seem to do releases and hasn't had a change since 2021, so always use commit d6ee6549bb\n# it is not the latest commit because using a commit here whose hash starts with a number causes issues, but this works\nsubstituteInPlace build.gradle \\\n  --replace-fail '\"com.github.wille:oslib:master-SNAPSHOT\"' '\"com.github.wille:oslib:d6ee6549bb\"'\nsubstituteInPlace application/src/main/java/module-info.java \\\n  --replace-fail 'requires oslib.master.SNAPSHOT;' 'requires oslib.d6ee6549bb;'\n\n# remove \"new version available\" (not needed) and eddn question (eddn doesn't work in this build) popups\nsubstituteInPlace application/src/main/java/nl/jixxed/eliteodysseymaterials/FXApplication.java \\\n  --replace-fail 'versionPopup();' \"\" \\\n  --replace-fail 'eddnPopup();' \"\"\n\nsubstituteInPlace build.gradle bootstrap/build.gradle application/build.gradle \\\n  --replace-fail 'vendor = JvmVendorSpec.AZUL' \"\"\n\necho \"This nixpkgs-packaged version of Elite Dangerous Odyssey Materials Helper doesn't upload any data.\" > application/src/main/resources/text/privacy.txt\n";
-      const mitmCache = nix.thunk(() => nix.app(nix.sel(gradle, "fetchDeps"), nix.thunk(() => ({ [nix.POS]: pos$2, pname: pname, data: nix.path(here, "./deps.json") }))));
+      const mitmCache = nix.thunk(() => nix.app(nix.sel(gradle, "fetchDeps"), nix.thunk(() => ({ [nix.POS]: $pos[1], pname: pname, data: nix.path(here, "./deps.json") }))));
       const gradleFlags = nix.thunk(() => [nix.thunk(() => nix.str`-Dorg.gradle.java.home=${jdk25}`), "--stacktrace"]);
       const gradleInitScript = nix.thunk(() => nix.app(writeText, "empty-init-script.gradle", ""));
       const gradleBuildTask = "application:jpackage";
@@ -61,7 +56,7 @@ export default nix.lambda((args) => (() => {
 `);
       const desktopItems = nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "ed-odyssey-materials-helper",
             type: "Application",
             desktopName: "Elite Dangerous Odyssey Materials Helper",
@@ -74,11 +69,11 @@ export default nix.lambda((args) => (() => {
       ]);
       const gradleUpdateScript = "runHook preBuild\n\ngradle application:nixDownloadDeps -Dos.family=linux -Dos.arch=amd64\ngradle application:nixDownloadDeps -Dos.family=linux -Dos.arch=aarch64\n";
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(writeScript, "update-ed-odyssey-materials-helper", "#!/usr/bin/env nix-shell\n#!nix-shell -i bash -p nix-update\n\nnix-update ed-odyssey-materials-helper # update version and hash\n`nix-build --no-out-link -A ed-odyssey-materials-helper.mitmCache.updateScript` # update deps.json\n")),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Helper for managing materials in Elite Dangerous Odyssey",
         homepage: "https://github.com/jixxed/ed-odyssey-materials-helper",
         downloadPage: nix.thunk(() => nix.str`https://github.com/jixxed/ed-odyssey-materials-helper/releases/tag/${version}`),
@@ -102,7 +97,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => ["x86_64-linux", "aarch64-linux"]),
       }));
       return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname,
         version,
         src,

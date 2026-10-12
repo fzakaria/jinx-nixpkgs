@@ -2,12 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/models.nix", [[["url", 43, 9], ["sha256", 44, 17]], [["updateScript", 81, 16]], [["description", 112, 9], ["homepage", 113, 9], ["license", 114, 9]], [["pname", 39, 15], ["version", 39, 21], ["pyproject", 40, 7], ["src", 42, 7], ["propagatedBuildInputs", 47, 7], ["postPatch", 64, 7], ["nativeBuildInputs", 77, 7], ["pythonImportsCheck", 79, 7], ["passthru", 81, 7], ["meta", 111, 7]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchurl: false, protobuf: false, pymorphy3: false, "pymorphy3-dicts-uk": false, sentencepiece: false, setuptools: false, spacy: false, "spacy-pkuseg": false, "spacy-curated-transformers": false, sudachipy: false, "sudachidict-core": false, transformers: false, writeScript: false, stdenv: false, jq: false, nix: false, moreutils: false }, ellipsis: false };
 const formals$2 = { args: { pname: false, version: false, sha256: false, license: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/models.nix", [["url", 43, 9], ["sha256", 44, 17]]);
-const pos$2 = nix.positions(here + "/models.nix", [["updateScript", 81, 16]]);
-const pos$3 = nix.positions(here + "/models.nix", [["description", 112, 9], ["homepage", 113, 9], ["license", 114, 9]]);
-const pos$4 = nix.positions(here + "/models.nix", [["pname", 39, 15], ["version", 39, 21], ["pyproject", 40, 7], ["src", 42, 7], ["propagatedBuildInputs", 47, 7], ["postPatch", 64, 7], ["nativeBuildInputs", 77, 7], ["pythonImportsCheck", 79, 7], ["passthru", 81, 7], ["meta", 111, 7]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -41,12 +38,12 @@ export default nix.lambda((args) => (() => {
     const requires_sentencepiece = nix.thunk(() => (nix.asBool(nix.eq(pname, "fr_dep_news_trf")) || nix.asBool(nix.eq(pname, "sl_core_news_trf"))));
     const requires_transformers = nix.thunk(() => nix.eq(pname, "uk_core_news_trf"));
     return nix.app(buildPythonPackage, nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname: pname,
         version: version,
         pyproject: true,
         src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             url: nix.thunk(() => nix.str`https://github.com/explosion/spacy-models/releases/download/${pname}-${version}/${pname}-${version}.tar.gz`),
             sha256: sha256,
           })))),
@@ -55,7 +52,7 @@ export default nix.lambda((args) => (() => {
         nativeBuildInputs: nix.thunk(() => nix.concat([setuptools], nix.app(nix.sel(lib, "optionals"), requires_protobuf, nix.thunk(() => [protobuf])))),
         pythonImportsCheck: nix.thunk(() => [pname]),
         passthru: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           updateScript: nix.thunk(() => nix.app(writeScript, "update-spacy-models", nix.thunk(() => nix.str`#!${nix.sel(stdenv, "shell")}
 set -eou pipefail
 PATH=${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [jq, nix$, moreutils]))}
@@ -80,7 +77,7 @@ popd || exit
 `))),
         })),
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           description: "Models for the spaCy NLP library",
           homepage: "https://github.com/explosion/spacy-models",
           license: nix.thunk(() => nix.sel(lib, "licenses", nix.key(nix.force(license)))),

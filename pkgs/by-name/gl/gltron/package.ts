@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 19, 5], ["sha256", 20, 5]], [["name", 28, 7], ["url", 29, 7], ["hash", 30, 7]], [["SDL_CONFIG", 44, 7]], [["homepage", 61, 5], ["description", 62, 5], ["mainProgram", 63, 5], ["license", 64, 5], ["maintainers", 65, 5], ["platforms", 66, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 18, 3], ["patches", 23, 3], ["postPatch", 34, 3], ["configureFlags", 40, 3], ["makeFlags", 42, 3], ["env", 44, 3], ["buildInputs", 46, 3], ["strictDeps", 57, 3], ["enableParallelBuilding", 58, 3], ["meta", 60, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, SDL: false, libGLU: false, libGL: false, zlib: false, libpng: false, libvorbis: false, libmikmod: false, SDL_sound: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 19, 5], ["sha256", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 28, 7], ["url", 29, 7], ["hash", 30, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["SDL_CONFIG", 44, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 61, 5], ["description", 62, 5], ["mainProgram", 63, 5], ["license", 64, 5], ["maintainers", 65, 5], ["platforms", 66, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 18, 3], ["patches", 23, 3], ["postPatch", 34, 3], ["configureFlags", 40, 3], ["makeFlags", 42, 3], ["env", 44, 3], ["buildInputs", 46, 3], ["strictDeps", 57, 3], ["enableParallelBuilding", 58, 3], ["meta", 60, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,18 +19,18 @@ export default nix.lambda((args) => (() => {
   const libmikmod = nix.arg($, "libmikmod");
   const SDL_sound = nix.arg($, "SDL_sound");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "gltron",
       version: "0.70",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/gltron/gltron-${nix.sel(finalAttrs, "version")}-source.tar.gz`),
           sha256: "e0c8ebb41a18a1f8d7302a9c2cb466f5b1dd63e9a9966c769075e6b6bdad8bb0",
         })))),
       patches: nix.thunk(() => [
         nix.path(here, "./gentoo-prototypes.patch"),
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "gcc-14.patch",
             url: "https://sourceforge.net/p/gltron/patches/7/attachment/gcc-14.patch",
             hash: "sha256-OJAUAM/OQVwxYnIacBkncNxMLn/HDCoysbi+Txe+DC8=",
@@ -44,14 +40,14 @@ export default nix.lambda((args) => (() => {
       configureFlags: nix.thunk(() => ["--disable-warn"]),
       makeFlags: nix.thunk(() => [nix.thunk(() => nix.str`AR=${nix.sel(stdenv, "cc", "targetPrefix")}ar`)]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         SDL_CONFIG: nix.thunk(() => nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.app(nix.sel(lib, "getDev"), SDL)), "sdl-config")),
       })),
       buildInputs: nix.thunk(() => [SDL, libGLU, libGL, zlib, libpng, libvorbis, libmikmod, SDL_sound]),
       strictDeps: true,
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "http://www.gltron.org/",
         description: "Game based on the movie Tron",
         mainProgram: "gltron",

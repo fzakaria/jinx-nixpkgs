@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]], [["owner", 38, 5], ["repo", 39, 5], ["tag", 40, 5], ["fetchSubmodules", 41, 5], ["hash", 42, 5]], [["pybind11", 47, 7]], [["description", 103, 5], ["homepage", 104, 5], ["changelog", 105, 5], ["license", 106, 5], ["maintainers", 107, 5]], [["pname", 32, 3], ["version", 33, 3], ["pyproject", 34, 3], ["__structuredAttrs", 35, 3], ["src", 37, 3], ["patches", 45, 3], ["postPatch", 53, 3], ["build-system", 59, 3], ["dontUseCmakeConfigure", 64, 3], ["preBuild", 67, 3], ["dependencies", 77, 3], ["pythonImportsCheck", 83, 3], ["preCheck", 88, 3], ["nativeCheckInputs", 92, 3], ["disabledTestPaths", 97, 3], ["meta", 102, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, replaceVars: false, cmake: false, pybind11: false, setuptools: false, sentencepiece: false, tiktoken: false, tokenizers: false, pytestCheckHook: false, transformers: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["owner", 38, 5], ["repo", 39, 5], ["tag", 40, 5], ["fetchSubmodules", 41, 5], ["hash", 42, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pybind11", 47, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 103, 5], ["homepage", 104, 5], ["changelog", 105, 5], ["license", 106, 5], ["maintainers", 107, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 32, 3], ["version", 33, 3], ["pyproject", 34, 3], ["__structuredAttrs", 35, 3], ["src", 37, 3], ["patches", 45, 3], ["postPatch", 53, 3], ["build-system", 59, 3], ["dontUseCmakeConfigure", 64, 3], ["preBuild", 67, 3], ["dependencies", 77, 3], ["pythonImportsCheck", 83, 3], ["preCheck", 88, 3], ["nativeCheckInputs", 92, 3], ["disabledTestPaths", 97, 3], ["meta", 102, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,20 +20,20 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const transformers = nix.arg($, "transformers");
   const pybind11_src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "pybind",
       repo: "pybind11",
       tag: "v2.13.6",
       hash: "sha256-SNLdtrOjaC3lGHN9MAqTf51U9EzNKQLyTMNPe0GcdrU=",
     }))));
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "pytorch-tokenizers",
       version: "1.5.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "meta-pytorch",
           repo: "tokenizers",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -45,7 +41,7 @@ export default nix.lambda((args) => (() => {
           hash: "sha256-cEt+1n4ORgixipx14vCuFBYDSeaDF0UupITlihLxsew=",
         })))),
       patches: nix.thunk(() => [
-        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./dont-fetch-pybind11.patch"), nix.thunk(() => ({ [nix.POS]: pos$3, pybind11: pybind11_src })))),
+        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./dont-fetch-pybind11.patch"), nix.thunk(() => ({ [nix.POS]: $pos[2], pybind11: pybind11_src })))),
         nix.path(here, "./add-missing-cstdint-sentencepiece.patch"),
       ]),
       postPatch: "substituteInPlace pyproject.toml \\\n  --replace-fail '\"pip>=23\",' \"\" \\\n  --replace-fail '\"pytest\",' \"\"\n",
@@ -58,7 +54,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook, transformers]),
       disabledTestPaths: nix.thunk(() => ["test/test_hf_tokenizer.py"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "C++ implementations for various tokenizers (sentencepiece, tiktoken, etc.)",
         homepage: "https://github.com/meta-pytorch/tokenizers",
         changelog: nix.thunk(() => nix.str`https://github.com/meta-pytorch/tokenizers/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

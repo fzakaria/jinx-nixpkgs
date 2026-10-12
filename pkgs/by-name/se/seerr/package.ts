@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["nodejs-slim", 19, 37]], [["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]], [["pname", 33, 26], ["version", 33, 32], ["src", 33, 40], ["pnpm", 34, 13], ["fetcherVersion", 35, 5], ["hash", 36, 5]], [["seerr", 87, 26], ["updateScript", 88, 5]], [["description", 92, 5], ["homepage", 93, 5], ["license", 94, 5], ["maintainers", 95, 5], ["platforms", 99, 5], ["mainProgram", 100, 5]], [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["pnpmDeps", 32, 3], ["buildInputs", 39, 3], ["nativeBuildInputs", 41, 3], ["preBuild", 50, 3], ["buildPhase", 57, 3], ["installPhase", 71, 3], ["postInstall", 78, 3], ["passthru", 86, 3], ["meta", 91, 3]]]);
 const formals$1 = { args: { lib: false, fetchPnpmDeps: false, pnpmConfigHook: false, pnpm_10: false, fetchFromGitHub: false, stdenv: false, makeWrapper: false, "nodejs-slim_22": false, python3: false, python3Packages: false, sqlite: false, "nix-update-script": false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["nodejs-slim", 19, 37]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 33, 26], ["version", 33, 32], ["src", 33, 40], ["pnpm", 34, 13], ["fetcherVersion", 35, 5], ["hash", 36, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["seerr", 87, 26], ["updateScript", 88, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 92, 5], ["homepage", 93, 5], ["license", 94, 5], ["maintainers", 95, 5], ["platforms", 99, 5], ["mainProgram", 100, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["pnpmDeps", 32, 3], ["buildInputs", 39, 3], ["nativeBuildInputs", 41, 3], ["preBuild", 50, 3], ["buildPhase", 57, 3], ["installPhase", 71, 3], ["postInstall", 78, 3], ["passthru", 86, 3], ["meta", 91, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,20 +21,20 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const nixosTests = nix.arg($, "nixosTests");
   const nodejs_slim = nodejs_slim_22;
-  const pnpm = nix.thunk(() => nix.app(nix.sel(pnpm_10, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, "nodejs-slim": nodejs_slim }))));
+  const pnpm = nix.thunk(() => nix.app(nix.sel(pnpm_10, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], "nodejs-slim": nodejs_slim }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "seerr",
       version: "3.4.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "seerr-team",
           repo: "seerr",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-OF8iX6Q7NK8d3ugGOw7FFcKQul2ERRNqD3SKWtlQuAg=",
         })))),
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -70,12 +65,12 @@ makeWrapper '${nodejs_slim}/bin/node' "$out/bin/seerr" \\
   --set NODE_ENV production
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         seerr: nix.thunk(() => nix.attr(nixosTests, "seerr")),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Open-source media request and discovery manager for Jellyfin, Plex, and Emby",
         homepage: "https://github.com/seerr-team/seerr",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

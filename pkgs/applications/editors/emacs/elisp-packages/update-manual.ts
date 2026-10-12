@@ -2,13 +2,12 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
-const pos$1 = nix.positions(here + "/update-manual.nix", [["allowBroken", 3, 12]]);
-const pos$2 = nix.positions(here + "/update-manual.nix", [["config", 3, 5]]);
+const $pos = nix.positions(here + "/update-manual.nix", [[["allowBroken", 3, 12]], [["config", 3, 5]]]);
 
 export default nix.thunk(() => (() => {
   const pkgs = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../../../../.")), nix.thunk(() => ({
-      [nix.POS]: pos$2,
-      config: nix.thunk(() => ({ [nix.POS]: pos$1, allowBroken: true })),
+      [nix.POS]: $pos[1],
+      config: nix.thunk(() => ({ [nix.POS]: $pos[0], allowBroken: true })),
     }))));
   const lib = nix.thunk(() => nix.attr(pkgs, "lib"));
   const emacs = nix.thunk(() => nix.attr(pkgs, "emacs"));

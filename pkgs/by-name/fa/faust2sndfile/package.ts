@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["baseName", 14, 3], ["propagatedBuildInputs", 16, 3]]]);
 const formals$1 = { args: { faust: false, flac: false, lame: false, libmpg123: false, libogg: false, libopus: false, libsndfile: false, libvorbis: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["baseName", 14, 3], ["propagatedBuildInputs", 16, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const libsndfile = nix.arg($, "libsndfile");
   const libvorbis = nix.arg($, "libvorbis");
   return nix.app(nix.sel(faust, "wrapWithBuildEnv"), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       baseName: "faust2sndfile",
       propagatedBuildInputs: nix.thunk(() => [flac, lame, libmpg123, libogg, libopus, libsndfile, libvorbis]),
     })));

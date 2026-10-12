@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 30, 5], ["repo", 31, 5], ["rev", 32, 5], ["hash", 33, 5]], [["src", 37, 5], ["hash", 38, 5]], [["url", 73, 11], ["rev-suffix", 74, 11]], [["command", 78, 11], ["supportedFeatures", 91, 11]], [["updateScript", 70, 5]], [["description", 101, 5], ["mainProgram", 102, 5], ["homepage", 103, 5], ["license", 104, 5], ["maintainers", 105, 5], ["platforms", 106, 5]], [["pname", 26, 3], ["version", 27, 3], ["src", 29, 3], ["cargoDeps", 36, 3], ["nativeBuildInputs", 41, 3], ["buildInputs", 54, 3], ["postPatch", 65, 3], ["passthru", 69, 3], ["meta", 100, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, cargo: false, meson: false, ninja: false, rustPlatform: false, rustc: false, "pkg-config": false, glib: false, libshumate: false, gst_all_1: false, gtk4: false, libadwaita: false, pipewire: false, wayland: false, wrapGAppsHook4: false, "desktop-file-utils": false, gitUpdater: false, "common-updater-scripts": false, "_experimental-update-script-combinators": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 30, 5], ["repo", 31, 5], ["rev", 32, 5], ["hash", 33, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["src", 37, 5], ["hash", 38, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 73, 11], ["rev-suffix", 74, 11]]);
-const pos$4 = nix.positions(here + "/package.nix", [["command", 78, 11], ["supportedFeatures", 91, 11]]);
-const pos$5 = nix.positions(here + "/package.nix", [["updateScript", 70, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 101, 5], ["mainProgram", 102, 5], ["homepage", 103, 5], ["license", 104, 5], ["maintainers", 105, 5], ["platforms", 106, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 26, 3], ["version", 27, 3], ["src", 29, 3], ["cargoDeps", 36, 3], ["nativeBuildInputs", 41, 3], ["buildInputs", 54, 3], ["postPatch", 65, 3], ["passthru", 69, 3], ["meta", 100, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -35,18 +29,18 @@ export default nix.lambda((args) => (() => {
   const common_updater_scripts = nix.arg($, "common-updater-scripts");
   const _experimental_update_script_combinators = nix.arg($, "_experimental-update-script-combinators");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "ashpd-demo",
       version: "0.5.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "bilelmoussaoui",
           repo: "ashpd",
           rev: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "version")}-demo`),
           hash: "sha256-0IGqA8PM6I2p4/MrptkdSWIZThMoeaMsdMc6tVTI2MU=",
         })))),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           src: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src")}/ashpd-demo`),
           hash: "sha256-kUEzVBk8dKXCQdHFJJS633CBG1F57TIxJg1xApMwzbI=",
         })))),
@@ -74,15 +68,15 @@ export default nix.lambda((args) => (() => {
       ]),
       postPatch: "cd ashpd-demo\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         updateScript: nix.thunk(() => (() => {
           const updateSource = nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               url: nix.thunk(() => nix.sel(finalAttrs, "src", "gitRepoUrl")),
               "rev-suffix": "-demo",
             }))));
           const updateLockfile = nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             command: nix.thunk(() => [
               "sh",
               "-c",
@@ -96,7 +90,7 @@ update-source-version ashpd-demo --ignore-same-version --source-key=cargoDeps.ve
         })()),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Tool for playing with XDG desktop portals",
         mainProgram: "ashpd-demo",
         homepage: "https://github.com/bilelmoussaoui/ashpd/tree/master/ashpd-demo",

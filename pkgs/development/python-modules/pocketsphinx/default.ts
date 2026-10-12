@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["CMAKE_ARGS", 22, 7]], [["description", 44, 5], ["homepage", 45, 5], ["changelog", 46, 5], ["license", 47, 5], ["maintainers", 54, 5]], [["version", 16, 26], ["src", 16, 34], ["pname", 17, 3], ["pyproject", 18, 3], ["dontUseCmakeConfigure", 20, 3], ["env", 22, 3], ["buildInputs", 24, 3], ["build-system", 26, 3], ["dependencies", 34, 3], ["nativeCheckInputs", 36, 3], ["pythonImportsCheck", 41, 3], ["meta", 43, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, cmake: false, cython: false, "memory-profiler": false, ninja: false, pathspec: false, pocketsphinx: false, pytestCheckHook: false, "scikit-build-core": false, sounddevice: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["CMAKE_ARGS", 22, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 44, 5], ["homepage", 45, 5], ["changelog", 46, 5], ["license", 47, 5], ["maintainers", 54, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["version", 16, 26], ["src", 16, 34], ["pname", 17, 3], ["pyproject", 18, 3], ["dontUseCmakeConfigure", 20, 3], ["env", 22, 3], ["buildInputs", 24, 3], ["build-system", 26, 3], ["dependencies", 34, 3], ["nativeCheckInputs", 36, 3], ["pythonImportsCheck", 41, 3], ["meta", 43, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const pyproject = true;
       const dontUseCmakeConfigure = true;
       const env = nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         CMAKE_ARGS: nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "USE_INSTALLED_POCKETSPHINX", true)),
       }));
       const buildInputs = nix.thunk(() => [pocketsphinx]);
@@ -36,7 +34,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [memory_profiler, pytestCheckHook]);
       const pythonImportsCheck = nix.thunk(() => ["pocketsphinx"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Small speech recognizer",
         homepage: "https://github.com/cmusphinx/pocketsphinx",
         changelog: nix.thunk(() => nix.str`https://github.com/cmusphinx/pocketsphinx/blob/v${version}/NEWS`),
@@ -54,7 +52,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         version,
         src,
         pname,

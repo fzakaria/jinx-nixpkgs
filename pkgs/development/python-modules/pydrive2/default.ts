@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 23, 13], ["version", 23, 19], ["hash", 24, 5]], [["fsspec", 40, 5]], [["description", 54, 5], ["homepage", 55, 5], ["changelog", 56, 5], ["broken", 60, 5], ["license", 61, 5], ["maintainers", 62, 5]], [["pname", 18, 3], ["version", 19, 3], ["pyproject", 20, 3], ["src", 22, 3], ["build-system", 27, 3], ["dependencies", 32, 3], ["optional-dependencies", 39, 3], ["doCheck", 49, 3], ["pythonImportsCheck", 51, 3], ["meta", 53, 3]]]);
 const formals$1 = { args: { lib: false, appdirs: false, buildPythonPackage: false, fetchPypi: false, fsspec: false, funcy: false, "google-api-python-client": false, oauth2client: false, pyopenssl: false, pyyaml: false, setuptools: false, "setuptools-scm": false, tqdm: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 23, 13], ["version", 23, 19], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["fsspec", 40, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 54, 5], ["homepage", 55, 5], ["changelog", 56, 5], ["broken", 60, 5], ["license", 61, 5], ["maintainers", 62, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 18, 3], ["version", 19, 3], ["pyproject", 20, 3], ["src", 22, 3], ["build-system", 27, 3], ["dependencies", 32, 3], ["optional-dependencies", 39, 3], ["doCheck", 49, 3], ["pythonImportsCheck", 51, 3], ["meta", 53, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,18 +25,18 @@ export default nix.lambda((args) => (() => {
       const version = "1.21.3";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-ZJuE1gxje8cUZIUDlTWqjxJUrRVkI3OfB+XTJQdEfBM=",
         }))));
       const build_system = nix.thunk(() => [setuptools, setuptools_scm]);
       const dependencies = nix.thunk(() => [google_api_python_client, oauth2client, pyopenssl, pyyaml]);
-      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, fsspec: nix.thunk(() => [appdirs, fsspec, funcy, tqdm]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: $pos[1], fsspec: nix.thunk(() => [appdirs, fsspec, funcy, tqdm]) }));
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["pydrive2"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Google Drive API Python wrapper library",
         homepage: "https://github.com/iterative/PyDrive2",
         changelog: nix.thunk(() => nix.str`https://github.com/iterative/PyDrive2/releases/tag/${version}`),
@@ -51,7 +48,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

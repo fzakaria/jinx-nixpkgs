@@ -2,11 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["name", 21, 15], ["nativeBuildInputs", 23, 7], ["buildCommand", 25, 7]], [["name", 40, 7], ["nativeBuildInputs", 41, 7], ["buildCommand", 44, 7]], [["compileDTS", 13, 3], ["applyOverlays", 37, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, stdenvNoCC: false, dtc: false, writers: false, python3: false }, ellipsis: false };
 const formals$2 = { args: { name: false, dtsFile: false, includePaths: true, extraPreprocessorFlags: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["name", 21, 15], ["nativeBuildInputs", 23, 7], ["buildCommand", 25, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["name", 40, 7], ["nativeBuildInputs", 41, 7], ["buildCommand", 44, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["compileDTS", 13, 3], ["applyOverlays", 37, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const writers = nix.arg($, "writers");
   const python3 = nix.arg($, "python3");
   return {
-    [nix.POS]: pos$3,
+    [nix.POS]: $pos[2],
     compileDTS: nix.lambda((args_1) => (() => {
       const $_1 = nix.formals(args_1, formals$2);
       const name = nix.arg($_1, "name");
@@ -25,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const includePaths = nix.argOr($_1, "includePaths", () => []);
       const extraPreprocessorFlags = nix.argOr($_1, "extraPreprocessorFlags", () => []);
       return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           name: name,
           nativeBuildInputs: nix.thunk(() => [dtc]),
           buildCommand: nix.thunk(() => (() => {
@@ -38,7 +36,7 @@ dtc -I dts -O dtb -@ -o $out
         })));
     })(), formals$2),
     applyOverlays: (base) => (overlays$) => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         name: "device-tree-overlays",
         nativeBuildInputs: nix.thunk(() => [
           nix.thunk(() => nix.app(nix.sel(python3, "pythonOnBuildForHost", "withPackages"), (ps) => [nix.thunk(() => nix.sel(ps, "libfdt"))])),

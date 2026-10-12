@@ -2,53 +2,11 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["lib", 31, 38], ["fetchgit", 31, 42], ["fetchFromGitHub", 31, 51]], [["name", 47, 9], ["url", 48, 9], ["hash", 49, 9]], [["url", 52, 9], ["hash", 53, 9]], [["url", 66, 9], ["stripLen", 67, 9], ["extraPrefix", 68, 9], ["hash", 69, 9]], [["url", 77, 9], ["hash", 78, 9]], [["url", 82, 9], ["hash", 83, 9]], [["url", 87, 9], ["hash", 88, 9]], [["url", 92, 9], ["hash", 93, 9]], [["url", 97, 9], ["hash", 98, 9]], [["url", 102, 9], ["hash", 103, 9]], [["url", 107, 9], ["hash", 108, 9]], [["url", 112, 9], ["hash", 113, 9]], [["url", 117, 9], ["hash", 118, 9]], [["url", 122, 9], ["hash", 123, 9]], [["url", 127, 9], ["hash", 128, 9]], [["url", 132, 9], ["hash", 133, 9]], [["url", 137, 9], ["hash", 138, 9]], [["url", 142, 9], ["hash", 143, 9]], [["url", 150, 9], ["hash", 151, 9]], [["url", 155, 9], ["hash", 156, 9]], [["url", 160, 9], ["hash", 161, 9]], [["url", 165, 9], ["hash", 166, 9]], [["name", 172, 9], ["url", 173, 9], ["hash", 174, 9]], [["url", 181, 9], ["hash", 182, 9]], [["url", 187, 9], ["hash", 188, 9]], [["qtbase", 36, 5], ["qtdeclarative", 56, 5], ["qtlocation", 63, 5], ["qtpim", 72, 5], ["qtscript", 169, 5], ["qtserialport", 177, 5], ["qtsystems", 178, 5], ["qttools", 191, 5]], [["wrapQtAppsHook", 203, 61]], [["patches", 200, 19], ["mkDerivation", 203, 11]], [["qtCompatVersion", 209, 11], ["qtModule", 210, 11], ["srcs", 211, 11], ["stdenv", 212, 11]], [["src", 230, 31], ["version", 230, 35], ["patches", 231, 9], ["withGtk3", 232, 9], ["developerBuild", 233, 17], ["decryptSslTraffic", 233, 32]], [["debug", 290, 21], ["fix_qmake_libtool", 291, 13]], [["license", 293, 16]], [["name", 281, 11], ["substitutions", 289, 11], ["meta", 293, 11]], [["qtbase", 312, 21], ["wrapQtAppsHook", 312, 28]], [["tests", 311, 20]], [["license", 314, 16]], [["name", 305, 11], ["propagatedBuildInputs", 306, 11], ["passthru", 311, 11], ["meta", 314, 11]], [["callPackage", 219, 9], ["qtCompatVersion", 220, 9], ["qtModule", 221, 9], ["srcs", 222, 9], ["mkDerivationWith", 225, 7], ["mkDerivation", 227, 7], ["qtbase", 229, 7], ["qt3d", 236, 7], ["qtcharts", 237, 7], ["qtconnectivity", 238, 7], ["qtdatavis3d", 239, 7], ["qtdeclarative", 240, 7], ["qtdoc", 241, 7], ["qtgamepad", 242, 7], ["qtgraphicaleffects", 243, 7], ["qtimageformats", 244, 7], ["qtlocation", 245, 7], ["qtlottie", 246, 7], ["qtmacextras", 247, 7], ["qtmultimedia", 248, 7], ["qtnetworkauth", 249, 7], ["qtpim", 250, 7], ["qtpositioning", 251, 7], ["qtpurchasing", 252, 7], ["qtquick1", 253, 7], ["qtquick3d", 254, 7], ["qtquickcontrols", 255, 7], ["qtquickcontrols2", 256, 7], ["qtremoteobjects", 257, 7], ["qtscript", 258, 7], ["qtsensors", 259, 7], ["qtserialbus", 260, 7], ["qtserialport", 261, 7], ["qtspeech", 262, 7], ["qtsvg", 263, 7], ["qtsystems", 264, 7], ["qtscxml", 265, 7], ["qttools", 266, 7], ["qttranslations", 267, 7], ["qtvirtualkeyboard", 268, 7], ["qtwayland", 269, 7], ["qtwebchannel", 270, 7], ["qtwebglplugin", 271, 7], ["qtwebsockets", 272, 7], ["qtx11extras", 273, 7], ["qtxmlpatterns", 274, 7], ["env", 276, 7], ["qmake", 278, 7], ["wrapQtAppsHook", 297, 7]], [["full", 319, 7]], [["otherSplices", 323, 5], ["f", 324, 5]], [["qttranslations", 329, 39]], [["qtbase", 329, 7], ["qtdeclarative", 330, 7]], [["qttranslations", 338, 7]]]);
 const formals$1 = { args: { "makeScopeWithSplicing'": false, generateSplicesForMkScope: false, lib: false, stdenv: false, callPackages: false, fetchurl: false, fetchgit: false, fetchpatch: false, fetchFromGitHub: false, makeSetupHook: false, python3: false, darwin: false, developerBuild: true, decryptSslTraffic: true, debug: true, config: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["lib", 31, 38], ["fetchgit", 31, 42], ["fetchFromGitHub", 31, 51]]);
-const pos$2 = nix.positions(here + "/default.nix", [["name", 47, 9], ["url", 48, 9], ["hash", 49, 9]]);
-const pos$3 = nix.positions(here + "/default.nix", [["url", 52, 9], ["hash", 53, 9]]);
-const pos$4 = nix.positions(here + "/default.nix", [["url", 66, 9], ["stripLen", 67, 9], ["extraPrefix", 68, 9], ["hash", 69, 9]]);
-const pos$5 = nix.positions(here + "/default.nix", [["url", 77, 9], ["hash", 78, 9]]);
-const pos$6 = nix.positions(here + "/default.nix", [["url", 82, 9], ["hash", 83, 9]]);
-const pos$7 = nix.positions(here + "/default.nix", [["url", 87, 9], ["hash", 88, 9]]);
-const pos$8 = nix.positions(here + "/default.nix", [["url", 92, 9], ["hash", 93, 9]]);
-const pos$9 = nix.positions(here + "/default.nix", [["url", 97, 9], ["hash", 98, 9]]);
-const pos$10 = nix.positions(here + "/default.nix", [["url", 102, 9], ["hash", 103, 9]]);
-const pos$11 = nix.positions(here + "/default.nix", [["url", 107, 9], ["hash", 108, 9]]);
-const pos$12 = nix.positions(here + "/default.nix", [["url", 112, 9], ["hash", 113, 9]]);
-const pos$13 = nix.positions(here + "/default.nix", [["url", 117, 9], ["hash", 118, 9]]);
-const pos$14 = nix.positions(here + "/default.nix", [["url", 122, 9], ["hash", 123, 9]]);
-const pos$15 = nix.positions(here + "/default.nix", [["url", 127, 9], ["hash", 128, 9]]);
-const pos$16 = nix.positions(here + "/default.nix", [["url", 132, 9], ["hash", 133, 9]]);
-const pos$17 = nix.positions(here + "/default.nix", [["url", 137, 9], ["hash", 138, 9]]);
-const pos$18 = nix.positions(here + "/default.nix", [["url", 142, 9], ["hash", 143, 9]]);
-const pos$19 = nix.positions(here + "/default.nix", [["url", 150, 9], ["hash", 151, 9]]);
-const pos$20 = nix.positions(here + "/default.nix", [["url", 155, 9], ["hash", 156, 9]]);
-const pos$21 = nix.positions(here + "/default.nix", [["url", 160, 9], ["hash", 161, 9]]);
-const pos$22 = nix.positions(here + "/default.nix", [["url", 165, 9], ["hash", 166, 9]]);
-const pos$23 = nix.positions(here + "/default.nix", [["name", 172, 9], ["url", 173, 9], ["hash", 174, 9]]);
-const pos$24 = nix.positions(here + "/default.nix", [["url", 181, 9], ["hash", 182, 9]]);
-const pos$25 = nix.positions(here + "/default.nix", [["url", 187, 9], ["hash", 188, 9]]);
-const pos$26 = nix.positions(here + "/default.nix", [["qtbase", 36, 5], ["qtdeclarative", 56, 5], ["qtlocation", 63, 5], ["qtpim", 72, 5], ["qtscript", 169, 5], ["qtserialport", 177, 5], ["qtsystems", 178, 5], ["qttools", 191, 5]]);
-const pos$27 = nix.positions(here + "/default.nix", [["wrapQtAppsHook", 203, 61]]);
-const pos$28 = nix.positions(here + "/default.nix", [["patches", 200, 19], ["mkDerivation", 203, 11]]);
-const pos$29 = nix.positions(here + "/default.nix", [["qtCompatVersion", 209, 11], ["qtModule", 210, 11], ["srcs", 211, 11], ["stdenv", 212, 11]]);
 const formals$2 = { args: { mkDerivationWith: false }, ellipsis: false };
-const pos$30 = nix.positions(here + "/default.nix", [["src", 230, 31], ["version", 230, 35], ["patches", 231, 9], ["withGtk3", 232, 9], ["developerBuild", 233, 17], ["decryptSslTraffic", 233, 32]]);
 const formals$3 = { args: { qtbase: false }, ellipsis: false };
-const pos$31 = nix.positions(here + "/default.nix", [["debug", 290, 21], ["fix_qmake_libtool", 291, 13]]);
-const pos$32 = nix.positions(here + "/default.nix", [["license", 293, 16]]);
-const pos$33 = nix.positions(here + "/default.nix", [["name", 281, 11], ["substitutions", 289, 11], ["meta", 293, 11]]);
 const formals$4 = { args: { wrapQtAppsHook: false, makeBinaryWrapper: false, qtbase: false, qtwayland: false }, ellipsis: false };
-const pos$34 = nix.positions(here + "/default.nix", [["qtbase", 312, 21], ["wrapQtAppsHook", 312, 28]]);
-const pos$35 = nix.positions(here + "/default.nix", [["tests", 311, 20]]);
-const pos$36 = nix.positions(here + "/default.nix", [["license", 314, 16]]);
-const pos$37 = nix.positions(here + "/default.nix", [["name", 305, 11], ["propagatedBuildInputs", 306, 11], ["passthru", 311, 11], ["meta", 314, 11]]);
-const pos$38 = nix.positions(here + "/default.nix", [["callPackage", 219, 9], ["qtCompatVersion", 220, 9], ["qtModule", 221, 9], ["srcs", 222, 9], ["mkDerivationWith", 225, 7], ["mkDerivation", 227, 7], ["qtbase", 229, 7], ["qt3d", 236, 7], ["qtcharts", 237, 7], ["qtconnectivity", 238, 7], ["qtdatavis3d", 239, 7], ["qtdeclarative", 240, 7], ["qtdoc", 241, 7], ["qtgamepad", 242, 7], ["qtgraphicaleffects", 243, 7], ["qtimageformats", 244, 7], ["qtlocation", 245, 7], ["qtlottie", 246, 7], ["qtmacextras", 247, 7], ["qtmultimedia", 248, 7], ["qtnetworkauth", 249, 7], ["qtpim", 250, 7], ["qtpositioning", 251, 7], ["qtpurchasing", 252, 7], ["qtquick1", 253, 7], ["qtquick3d", 254, 7], ["qtquickcontrols", 255, 7], ["qtquickcontrols2", 256, 7], ["qtremoteobjects", 257, 7], ["qtscript", 258, 7], ["qtsensors", 259, 7], ["qtserialbus", 260, 7], ["qtserialport", 261, 7], ["qtspeech", 262, 7], ["qtsvg", 263, 7], ["qtsystems", 264, 7], ["qtscxml", 265, 7], ["qttools", 266, 7], ["qttranslations", 267, 7], ["qtvirtualkeyboard", 268, 7], ["qtwayland", 269, 7], ["qtwebchannel", 270, 7], ["qtwebglplugin", 271, 7], ["qtwebsockets", 272, 7], ["qtx11extras", 273, 7], ["qtxmlpatterns", 274, 7], ["env", 276, 7], ["qmake", 278, 7], ["wrapQtAppsHook", 297, 7]]);
-const pos$39 = nix.positions(here + "/default.nix", [["full", 319, 7]]);
-const pos$40 = nix.positions(here + "/default.nix", [["otherSplices", 323, 5], ["f", 324, 5]]);
-const pos$41 = nix.positions(here + "/default.nix", [["qttranslations", 329, 39]]);
-const pos$42 = nix.positions(here + "/default.nix", [["qtbase", 329, 7], ["qtdeclarative", 330, 7]]);
-const pos$43 = nix.positions(here + "/default.nix", [["qttranslations", 338, 7]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -69,14 +27,14 @@ export default nix.lambda((args) => (() => {
   const debug = nix.argOr($, "debug", () => false);
   const config = nix.arg($, "config");
   const srcs = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./srcs.nix")), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       lib: lib,
       fetchgit: fetchgit,
       fetchFromGitHub: fetchFromGitHub,
     }))));
   const qtCompatVersion = nix.thunk(() => nix.sel(srcs, "qtbase", "version"));
   const patches = nix.thunk(() => ({
-    [nix.POS]: pos$26,
+    [nix.POS]: $pos[25],
     qtbase: nix.thunk(() => [
       nix.path(here, "./qtbase.patch.d/0003-qtbase-mkspecs.patch"),
       nix.path(here, "./qtbase.patch.d/0004-qtbase-replace-libdir.patch"),
@@ -88,13 +46,13 @@ export default nix.lambda((args) => (() => {
       nix.path(here, "./qtbase.patch.d/0010-qtbase-assert.patch"),
       nix.path(here, "./qtbase.patch.d/0011-fix-header_module.patch"),
       nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           name: "0012-qtbase-loongarch64.patch",
           url: "https://gitlab.alpinelinux.org/alpine/aports/-/raw/81b14ae4eed038662b53cd20786fd5e0816279ec/community/qt5-qtbase/loongarch64.patch",
           hash: "sha256-BnpejF6/L73kVVts0R0/OMbVN8G4DXVFwBMJPLU9QbE=",
         })))),
       nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           url: "https://salsa.debian.org/qt-kde-team/qt/qtbase/-/raw/6910758e1141f8ea65a8f2359ac30163d65bf6e2/debian/patches/cross_build_mysql.diff",
           hash: "sha256-tzmmLmMXmeDwRVjdpWekDJvSkrIIlslC12HP7XPcm3E=",
         })))),
@@ -106,7 +64,7 @@ export default nix.lambda((args) => (() => {
     ]),
     qtlocation: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             url: "https://github.com/boostorg/numeric_conversion/commit/50a1eae942effb0a9b90724323ef8f2a67e7984a.patch",
             stripLen: 1n,
             extraPrefix: "src/3rdparty/mapbox-gl-native/deps/boost/1.65.1/",
@@ -115,92 +73,92 @@ export default nix.lambda((args) => (() => {
       ]))),
     qtpim: nix.thunk(() => [
       nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           url: "https://github.com/qt/qtpim/commit/f337e281e28904741a3b1ac23d15c3a83ef2bbc9.patch",
           hash: "sha256-zlxD45JnbhIgdJxMmGxGMUBcQPcgzpu3s4bLX939jL0=",
         })))),
       nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           url: "https://github.com/qt/qtpim/commit/2aefdd8bd28a4decf9ef8381f5b255f39f1ee90c.patch",
           hash: "sha256-mg93QF3hi50igw1/Ok7fEs9iCaN6co1+p2/5fQtxTmc=",
         })))),
       nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           url: "https://github.com/qt/qtpim/commit/79b41af6a4117f5efb0298289e20c30b4d0b0b2e.patch",
           hash: "sha256-u+cLl4lu6r2+j5GAiasqbB6/OZPz5A6GpSB33vd/VBg=",
         })))),
       nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           url: "https://github.com/qt/qtpim/commit/5679a6141c76ae7d64c3acc8a87b1adb048289e0.patch",
           hash: "sha256-z8f8kLhC9CqBOfGPL8W9KJq7MwALAAicXfRkHiQEVJ4=",
         })))),
       nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           url: "https://github.com/qt/qtpim/commit/a43cc24e57db8d3c3939fa540d67da3294dcfc5c.patch",
           hash: "sha256-SsYkxX6prxi8VRZr4az+wqawcRN8tR3UuIFswJL+3T4=",
         })))),
       nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-          [nix.POS]: pos$10,
+          [nix.POS]: $pos[9],
           url: "https://github.com/qt/qtpim/commit/9c698155d82fc2b68a87c59d0443c33f9085b117.patch",
           hash: "sha256-rb8D8taaglhQikYSAPrtLvazgIw8Nga/a9+J21k8gIo=",
         })))),
       nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-          [nix.POS]: pos$11,
+          [nix.POS]: $pos[10],
           url: "https://github.com/qt/qtpim/commit/f34cf2ff2b0f428d5b8a70763b29088075ebbd1c.patch",
           hash: "sha256-tNPOEVpx1eqHx5T23ueW32KxMQ/SB+TBCJ4PZ6SA3LI=",
         })))),
       nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-          [nix.POS]: pos$12,
+          [nix.POS]: $pos[11],
           url: "https://github.com/qt/qtpim/commit/a66590d473753bc49105d3132fb9e4150c92a14a.patch",
           hash: "sha256-RPRtGQ24NQYewnv6+IqYITpwD/XxuK68a1iKgFmKm3c=",
         })))),
       nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-          [nix.POS]: pos$13,
+          [nix.POS]: $pos[12],
           url: "https://github.com/qt/qtpim/commit/7802f038ed1391078e27fa3f37d785a69314537b.patch",
           hash: "sha256-hogUXyPXjGE0q53PWOjiQbQ2YzOsvrJ7mo9djGIbjVQ=",
         })))),
       nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-          [nix.POS]: pos$14,
+          [nix.POS]: $pos[13],
           url: "https://github.com/qt/qtpim/commit/114615812dcf9398c957b0833e860befe15f840f.patch",
           hash: "sha256-yZ1qs8y5DSq8FDXRPyuSPRIzjEUTWAhpVide/b+xaLQ=",
         })))),
       nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-          [nix.POS]: pos$15,
+          [nix.POS]: $pos[14],
           url: "https://github.com/qt/qtpim/commit/5bdfb9127b3f6c9863def0578c7a8734a5156ea9.patch",
           hash: "sha256-asJNa8tcdtovVE579FjZg1CHeCmvRJ8otQeSrEdrXdQ=",
         })))),
       nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-          [nix.POS]: pos$16,
+          [nix.POS]: $pos[15],
           url: "https://github.com/qt/qtpim/commit/a2bf7cdf05c264b5dd2560f799760b5508f154e4.patch",
           hash: "sha256-+YfPrKyOKnPkqFokwW/aDsEivg4TzdJwQpDdAtM+rQE=",
         })))),
       nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-          [nix.POS]: pos$17,
+          [nix.POS]: $pos[16],
           url: "https://github.com/qt/qtpim/commit/8765a35233aa21a932ee92bbbb92a5f8edd4dc68.patch",
           hash: "sha256-vp/enerVecEXz4zyxQ66DG+fVVWxI4bYnLj92qaaqNk=",
         })))),
       nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-          [nix.POS]: pos$18,
+          [nix.POS]: $pos[17],
           url: "https://github.com/qt/qtpim/commit/4b2bdce30bd0629c9dc0567af6eeaa1d038f3152.patch",
           hash: "sha256-2dXhkZyxPvY2KQq2veerAlpXkpU5/FeArWRlm1aOcEY=",
         })))),
       nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-          [nix.POS]: pos$19,
+          [nix.POS]: $pos[18],
           url: "https://salsa.debian.org/qt-kde-team/qt/qtpim/-/raw/360682f88457b5ae7c92f32f574e51ccc5edbea0/debian/patches/1001_fix-qtdatetime-null-comparison.patch",
           hash: "sha256-k/rO9QjwSlRChwFTZLkxDjZWqFkua4FNbaNf1bJKLxc=",
         })))),
       nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-          [nix.POS]: pos$20,
+          [nix.POS]: $pos[19],
           url: "https://salsa.debian.org/qt-kde-team/qt/qtpim/-/raw/360682f88457b5ae7c92f32f574e51ccc5edbea0/debian/patches/1002_Avoid-crash-while-parsing-vcards-from-different-threads.patch",
           hash: "sha256-zhayAoWgcmKosEGVBy2k6a2e6BxyVwfGX18tBbzqEk8=",
         })))),
       nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-          [nix.POS]: pos$21,
+          [nix.POS]: $pos[20],
           url: "https://salsa.debian.org/qt-kde-team/qt/qtpim/-/raw/360682f88457b5ae7c92f32f574e51ccc5edbea0/debian/patches/1003_adapt_to_json_parser_change.patch",
           hash: "sha256-qAIa48hmDd8vMH/ywqW+22vISKai76XnjgFuB+tQbIU=",
         })))),
       nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-          [nix.POS]: pos$22,
+          [nix.POS]: $pos[21],
           url: "https://salsa.debian.org/qt-kde-team/qt/qtpim/-/raw/360682f88457b5ae7c92f32f574e51ccc5edbea0/debian/patches/2000_revert_module_version.patch",
           hash: "sha256-6wg/eVu9J83yvIO428U1FX3otz58tAy6pCvp7fqOBKU=",
         })))),
@@ -208,7 +166,7 @@ export default nix.lambda((args) => (() => {
     qtscript: nix.thunk(() => [
       nix.path(here, "./qtscript.patch"),
       nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-          [nix.POS]: pos$23,
+          [nix.POS]: $pos[22],
           name: "qtscript-loongarch64.patch",
           url: "https://gitlab.alpinelinux.org/alpine/aports/-/raw/2fa4f3b28affc29835fcca5c75431f19ff3754a3/community/qt5-qtscript/qtscript-loongarch64.patch",
           hash: "sha256-DUTXX20ClqGRYat8zk3/Facc1IyAw58qCXrbUaDLyiM=",
@@ -217,12 +175,12 @@ export default nix.lambda((args) => (() => {
     qtserialport: nix.thunk(() => [nix.path(here, "./qtserialport.patch")]),
     qtsystems: nix.thunk(() => [
       nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-          [nix.POS]: pos$24,
+          [nix.POS]: $pos[23],
           url: "https://salsa.debian.org/qt-kde-team/qt/qtsystems/-/raw/1a4df40671d6f1bb0657a9dfdae4cd9bd48fcf21/debian/patches/1005_check_XOpenDisplay.patch",
           hash: "sha256-/onla2nlUSySEgz2IYOYajx/LZkJzAKDyxwAZzy0Ivs=",
         })))),
       nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-          [nix.POS]: pos$25,
+          [nix.POS]: $pos[24],
           url: "https://salsa.debian.org/qt-kde-team/qt/qtsystems/-/raw/a23fd92222c33479d7f3b59e48116def6b46894c/debian/patches/2001_build_with_udisk.patch",
           hash: "sha256-B/z/+tai01RU/bAJSCp5a0/dGI8g36nwso8MiJv27YM=",
         })))),
@@ -231,20 +189,20 @@ export default nix.lambda((args) => (() => {
   }));
   const addPackages = (self) => (() => {
     const qtModuleWithStdenv = (stdenv_1) => nix.app(callPackage, nix.path(here, "../qtModule.nix"), nix.thunk(() => ({
-        [nix.POS]: pos$28,
+        [nix.POS]: $pos[27],
         patches: patches,
-        mkDerivation: nix.thunk(() => nix.app(callPackage, nix.path(here, "../mkDerivation.nix"), nix.thunk(() => ({ [nix.POS]: pos$27, wrapQtAppsHook: null })), nix.thunk(() => nix.sel(stdenv_1, "mkDerivation")))),
+        mkDerivation: nix.thunk(() => nix.app(callPackage, nix.path(here, "../mkDerivation.nix"), nix.thunk(() => ({ [nix.POS]: $pos[26], wrapQtAppsHook: null })), nix.thunk(() => nix.sel(stdenv_1, "mkDerivation")))),
       })));
     const qtModule = nix.thunk(() => nix.app(qtModuleWithStdenv, stdenv));
     const callPackage = nix.thunk(() => nix.app(nix.sel(self, "newScope"), nix.thunk(() => ({
-        [nix.POS]: pos$29,
+        [nix.POS]: $pos[28],
         qtCompatVersion: qtCompatVersion,
         qtModule: qtModule,
         srcs: srcs,
         stdenv: stdenv,
       }))));
     return nix.update({
-      [nix.POS]: pos$38,
+      [nix.POS]: $pos[37],
       callPackage: callPackage,
       qtCompatVersion: qtCompatVersion,
       qtModule: qtModule,
@@ -258,7 +216,7 @@ export default nix.lambda((args) => (() => {
       qtbase: nix.thunk(() => nix.app(callPackage, nix.path(here, "../modules/qtbase.nix"), nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(srcs, "qtbase"));
           return {
-          [nix.POS]: pos$30,
+          [nix.POS]: $pos[29],
           src: nix.thunk(() => nix.attr(from, "src")),
           version: nix.thunk(() => nix.attr(from, "version")),
           patches: nix.thunk(() => nix.sel(patches, "qtbase")),
@@ -311,14 +269,17 @@ export default nix.lambda((args) => (() => {
           const $_1 = nix.formals(args_1, formals$3);
           const qtbase = nix.arg($_1, "qtbase");
           return nix.app(makeSetupHook, nix.thunk(() => nix.attrsDyn({
-              [nix.POS]: pos$33,
+              [nix.POS]: $pos[32],
               name: "qmake-hook",
               substitutions: nix.thunk(() => ({
-                [nix.POS]: pos$31,
+                [nix.POS]: $pos[30],
                 debug: debug,
                 fix_qmake_libtool: nix.path(here, "../hooks/fix-qmake-libtool.sh"),
               })),
-              meta: nix.thunk(() => ({ [nix.POS]: pos$32, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
+              meta: nix.thunk(() => ({
+                [nix.POS]: $pos[31],
+                license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
+              })),
             }, [
               [(nix.asBool(nix.eq(nix.sel(stdenv, "buildPlatform"), nix.sel(stdenv, "hostPlatform"))) ? "propagatedBuildInputs" : "depsTargetTargetPropagated"), nix.thunk(() => [nix.thunk(() => nix.sel(qtbase, "dev"))])],
             ])), nix.path(here, "../hooks/qmake-hook.sh"));
@@ -330,33 +291,36 @@ export default nix.lambda((args) => (() => {
           const qtbase = nix.arg($_1, "qtbase");
           const qtwayland = nix.arg($_1, "qtwayland");
           return nix.app(makeSetupHook, nix.thunk(() => ({
-              [nix.POS]: pos$37,
+              [nix.POS]: $pos[36],
               name: "wrap-qt5-apps-hook",
               propagatedBuildInputs: nix.thunk(() => nix.concat([nix.thunk(() => nix.sel(qtbase, "dev")), makeBinaryWrapper], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => nix.sel(qtwayland, "dev"))))),
               passthru: nix.thunk(() => ({
-                [nix.POS]: pos$35,
-                tests: nix.thunk(() => nix.app(callPackages, nix.path(here, "../../qt-6/tests/wrap-qt-apps-hook.nix"), nix.thunk(() => ({ [nix.POS]: pos$34, qtbase: qtbase, wrapQtAppsHook: wrapQtAppsHook })))),
+                [nix.POS]: $pos[34],
+                tests: nix.thunk(() => nix.app(callPackages, nix.path(here, "../../qt-6/tests/wrap-qt-apps-hook.nix"), nix.thunk(() => ({ [nix.POS]: $pos[33], qtbase: qtbase, wrapQtAppsHook: wrapQtAppsHook })))),
               })),
-              meta: nix.thunk(() => ({ [nix.POS]: pos$36, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
+              meta: nix.thunk(() => ({
+                [nix.POS]: $pos[35],
+                license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
+              })),
             })), nix.path(here, "../hooks/wrap-qt-apps-hook.sh"));
         })(), formals$4), nix.thunk(() => ({})))),
     }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(config, "allowAliases")), nix.thunk(() => ({
-        [nix.POS]: pos$39,
+        [nix.POS]: $pos[38],
         full: nix.thunk(() => nix.builtins.throw("libsForQt5.full has been removed. Please use individual packages instead.")),
       }))));
   })();
   const baseScope = nix.thunk(() => nix.app(makeScopeWithSplicing$, nix.thunk(() => ({
-      [nix.POS]: pos$40,
+      [nix.POS]: $pos[39],
       otherSplices: nix.thunk(() => nix.app(generateSplicesForMkScope, "qt5")),
       f: addPackages,
     }))));
   const bootstrapScope = nix.thunk(() => nix.app(nix.sel(baseScope, "overrideScope"), (final) => (prev) => ({
-      [nix.POS]: pos$42,
-      qtbase: nix.thunk(() => nix.app(nix.sel(prev, "qtbase", "override"), nix.thunk(() => ({ [nix.POS]: pos$41, qttranslations: null })))),
+      [nix.POS]: $pos[41],
+      qtbase: nix.thunk(() => nix.app(nix.sel(prev, "qtbase", "override"), nix.thunk(() => ({ [nix.POS]: $pos[40], qttranslations: null })))),
       qtdeclarative: null,
     })));
   const finalScope = nix.thunk(() => nix.app(nix.sel(baseScope, "overrideScope"), (final) => (prev) => ({
-      [nix.POS]: pos$43,
+      [nix.POS]: $pos[42],
       qttranslations: nix.thunk(() => (nix.asBool(nix.eq(nix.sel(stdenv, "buildPlatform"), nix.sel(stdenv, "hostPlatform"))) ? nix.sel(bootstrapScope, "qttranslations") : null)),
     })));
   return nix.force(finalScope);

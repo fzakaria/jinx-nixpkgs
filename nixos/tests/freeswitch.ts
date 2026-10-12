@@ -2,61 +2,51 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/freeswitch.nix", [[["maintainers", 5, 5]], [["address", 15, 15], ["prefixLength", 16, 15]], [["addresses", 13, 16]], [["ipv4", 13, 11]], [["eth1", 12, 31]], [["useDHCP", 11, 20], ["interfaces", 12, 20]], [["enable", 21, 11], ["enableReload", 22, 11], ["configTemplate", 23, 11]], [["freeswitch", 20, 18]], [["networking", 11, 9], ["services", 20, 9]], [["node0", 8, 5]], [["name", 3, 3], ["meta", 4, 3], ["nodes", 7, 3], ["testScript", 27, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/freeswitch.nix", [["maintainers", 5, 5]]);
 const formals$2 = { args: { config: false, lib: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/freeswitch.nix", [["address", 15, 15], ["prefixLength", 16, 15]]);
-const pos$3 = nix.positions(here + "/freeswitch.nix", [["addresses", 13, 16]]);
-const pos$4 = nix.positions(here + "/freeswitch.nix", [["ipv4", 13, 11]]);
-const pos$5 = nix.positions(here + "/freeswitch.nix", [["eth1", 12, 31]]);
-const pos$6 = nix.positions(here + "/freeswitch.nix", [["useDHCP", 11, 20], ["interfaces", 12, 20]]);
-const pos$7 = nix.positions(here + "/freeswitch.nix", [["enable", 21, 11], ["enableReload", 22, 11], ["configTemplate", 23, 11]]);
-const pos$8 = nix.positions(here + "/freeswitch.nix", [["freeswitch", 20, 18]]);
-const pos$9 = nix.positions(here + "/freeswitch.nix", [["networking", 11, 9], ["services", 20, 9]]);
-const pos$10 = nix.positions(here + "/freeswitch.nix", [["node0", 8, 5]]);
-const pos$11 = nix.positions(here + "/freeswitch.nix", [["name", 3, 3], ["meta", 4, 3], ["nodes", 7, 3], ["testScript", 27, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   return {
-    [nix.POS]: pos$11,
+    [nix.POS]: $pos[10],
     name: "freeswitch",
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
       return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "misuzu"))]),
       };
     })()),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       node0: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config = nix.arg($_1, "config");
         const lib = nix.arg($_1, "lib");
         return {
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             useDHCP: false,
             interfaces: nix.thunk(() => ({
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               eth1: nix.thunk(() => ({
-                [nix.POS]: pos$4,
+                [nix.POS]: $pos[3],
                 ipv4: nix.thunk(() => ({
-                  [nix.POS]: pos$3,
+                  [nix.POS]: $pos[2],
                   addresses: nix.thunk(() => [
-                    nix.thunk(() => ({ [nix.POS]: pos$2, address: "192.168.0.1", prefixLength: 24n })),
+                    nix.thunk(() => ({ [nix.POS]: $pos[1], address: "192.168.0.1", prefixLength: 24n })),
                   ]),
                 })),
               })),
             })),
           })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$8,
+            [nix.POS]: $pos[7],
             freeswitch: nix.thunk(() => ({
-              [nix.POS]: pos$7,
+              [nix.POS]: $pos[6],
               enable: true,
               enableReload: true,
               configTemplate: nix.thunk(() => nix.str`${nix.sel(config, "services", "freeswitch", "package")}/share/freeswitch/conf/minimal`),

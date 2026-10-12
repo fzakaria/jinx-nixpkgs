@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 17, 5], ["sha256", 18, 5]], [["homepage", 45, 5], ["downloadPage", 46, 5], ["description", 47, 5], ["mainProgram", 48, 5], ["longDescription", 49, 5], ["license", 56, 5], ["maintainers", 57, 5], ["platforms", 58, 5], ["broken", 59, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 21, 3], ["buildInputs", 26, 3], ["preConfigure", 32, 3], ["installFlags", 36, 3], ["meta", 44, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, autoconf: false, automake: false, SDL: false, SDL_mixer: false, libpng: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 17, 5], ["sha256", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 45, 5], ["downloadPage", 46, 5], ["description", 47, 5], ["mainProgram", 48, 5], ["longDescription", 49, 5], ["license", 56, 5], ["maintainers", 57, 5], ["platforms", 58, 5], ["broken", 59, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 21, 3], ["buildInputs", 26, 3], ["preConfigure", 32, 3], ["installFlags", 36, 3], ["meta", 44, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const SDL_mixer = nix.arg($, "SDL_mixer");
   const libpng = nix.arg($, "libpng");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "powermanga",
       version: "0.93.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://linux.tlk.fr/games/Powermanga/download/powermanga-${nix.sel(finalAttrs, "version")}.tgz`),
           sha256: "sha256-2nU/zoOQWm2z/Y6mXHDFfWYjYshsQp1saVRBcUT5Q+g=",
         })))),
@@ -31,7 +29,7 @@ export default nix.lambda((args) => (() => {
       preConfigure: "./bootstrap\n",
       installFlags: nix.thunk(() => ["gamesdir=$(out)/bin", "scoredir=$(TMPDIR)"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://linux.tlk.fr/games/Powermanga/",
         downloadPage: "https://linux.tlk.fr/games/Powermanga/download/",
         description: "Arcade 2D shoot-em-up game",

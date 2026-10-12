@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]], [["help", 24, 18]], [["tests", 24, 12]], [["description", 30, 5], ["homepage", 31, 5], ["license", 32, 5], ["mainProgram", 33, 5], ["maintainers", 34, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["npmDepsHash", 20, 3], ["npmBuildFlags", 22, 3], ["passthru", 24, 3], ["meta", 29, 3]]]);
 const formals$1 = { args: { lib: false, buildNpmPackage: false, fetchFromGitHub: false, runCommand: false, "web-ext": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["help", 24, 18]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 24, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 30, 5], ["homepage", 31, 5], ["license", 32, 5], ["mainProgram", 33, 5], ["maintainers", 34, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["npmDepsHash", 20, 3], ["npmBuildFlags", 22, 3], ["passthru", 24, 3], ["meta", 29, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "web-ext";
       const version = "10.7.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "mozilla",
           repo: "web-ext",
           rev: version,
@@ -29,16 +25,16 @@ export default nix.lambda((args) => (() => {
       const npmDepsHash = "sha256-ygV+NcwX77G3hnyjJEdoJWiMgQXUl9+vNylWRzL/zcQ=";
       const npmBuildFlags = nix.thunk(() => ["--production"]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           help: nix.thunk(() => nix.app(runCommand, nix.thunk(() => nix.str`${pname}-tests`), nix.thunk(() => ({})), nix.thunk(() => nix.str`${web_ext}/bin/web-ext --help
 touch $out
 `))),
         })),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Command line tool to help build, run, and test web extensions",
         homepage: "https://github.com/mozilla/web-ext",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mpl20")),
@@ -46,7 +42,7 @@ touch $out
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         src,

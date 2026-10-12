@@ -2,11 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 11, 5], ["repo", 12, 5], ["tag", 13, 5], ["hash", 14, 5]], [["updateScript", 17, 12]], [["description", 19, 5], ["homepage", 23, 5], ["license", 24, 5], ["maintainers", 25, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 10, 3], ["sourceRoot", 16, 3], ["passthru", 17, 3], ["meta", 18, 3]]]);
 const formals$1 = { args: { lib: false, "anki-utils": false, fetchFromSourcehut: false, gitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 11, 5], ["repo", 12, 5], ["tag", 13, 5], ["hash", 14, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["updateScript", 17, 12]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 19, 5], ["homepage", 23, 5], ["license", 24, 5], ["maintainers", 25, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 10, 3], ["sourceRoot", 16, 3], ["passthru", 17, 3], ["meta", 18, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromSourcehut = nix.arg($, "fetchFromSourcehut");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(nix.sel(anki_utils, "buildAnkiAddon"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "anki-connect",
       version: "25.11.9.0",
       src: nix.thunk(() => nix.app(fetchFromSourcehut, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "~foosoft",
           repo: "anki-connect",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -27,11 +24,11 @@ export default nix.lambda((args) => (() => {
         })))),
       sourceRoot: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "name")}/plugin`),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Enable external applications such as Yomichan to communicate\nwith Anki over a simple HTTP API\n",
         homepage: "https://git.sr.ht/~foosoft/anki-connect",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

@@ -2,11 +2,9 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/postgresql.nix", [[["url", 14, 7], ["hash", 15, 7]], [["description", 21, 7], ["mainProgram", 22, 7], ["homepage", 23, 7], ["license", 24, 7], ["maintainers", 29, 7], ["platforms", 33, 7]], [["pname", 10, 5], ["version", 11, 13], ["src", 13, 5], ["vendorHash", 18, 5], ["meta", 20, 5]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchurl: false }, ellipsis: false };
 const formals$2 = { args: { version: false, postgresqlHash: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/postgresql.nix", [["url", 14, 7], ["hash", 15, 7]]);
-const pos$2 = nix.positions(here + "/postgresql.nix", [["description", 21, 7], ["mainProgram", 22, 7], ["homepage", 23, 7], ["license", 24, 7], ["maintainers", 29, 7], ["platforms", 33, 7]]);
-const pos$3 = nix.positions(here + "/postgresql.nix", [["pname", 10, 5], ["version", 11, 13], ["src", 13, 5], ["vendorHash", 18, 5], ["meta", 20, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,17 +16,17 @@ export default nix.lambda((args) => (() => {
       const version = nix.arg($_1, "version");
       const postgresqlHash = nix.arg($_1, "postgresqlHash");
       return nix.app(buildGoModule, (finalAttrs) => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           pname: "zabbix-agent2-plugin-postgresql",
           version: version,
           src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              [nix.POS]: pos$1,
+              [nix.POS]: $pos[0],
               url: nix.thunk(() => nix.str`https://cdn.zabbix.com/zabbix-agent2-plugins/sources/postgresql/zabbix-agent2-plugin-postgresql-${nix.sel(finalAttrs, "version")}.tar.gz`),
               hash: postgresqlHash,
             })))),
           vendorHash: null,
           meta: nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             description: "Required tool for Zabbix agent integrated PostgreSQL monitoring",
             mainProgram: "postgresql",
             homepage: "https://www.zabbix.com/integrations/postgresql",

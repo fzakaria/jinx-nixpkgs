@@ -2,16 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 23]], [["src", 34, 5], ["patches", 35, 5], ["postPatch", 39, 5]], [["name", 52, 5], ["gemset", 53, 13], ["ruby", 53, 20], ["version", 54, 26], ["gemdir", 55, 5]], [["src", 59, 26], ["hash", 60, 5]], [["RAILS_ENV", 64, 5], ["NODE_ENV", 65, 5], ["TAILWINDCSS_INSTALL_DIR", 66, 5]], [["dawarich", 123, 28]], [["tests", 122, 5], ["updateScript", 126, 5]], [["changelog", 130, 5], ["description", 131, 5], ["homepage", 132, 5], ["license", 133, 5], ["maintainers", 134, 5], ["platforms", 138, 5]], [["pname", 26, 3], ["version", 27, 21], ["src", 33, 3], ["postPatch", 45, 3], ["dawarichGems", 51, 3], ["npmDeps", 58, 3], ["env", 63, 3], ["nativeBuildInputs", 69, 3], ["propagatedBuildInputs", 75, 3], ["buildInputs", 78, 3], ["buildPhase", 82, 3], ["installPhase", 106, 3], ["passthru", 121, 3], ["meta", 129, 3]]]);
 const formals$1 = { args: { lib: false, applyPatches: false, bundlerEnv: false, fetchFromGitHub: false, fetchNpmDeps: false, nixosTests: false, nodejs: false, npmHooks: false, ruby_3_4: false, stdenv: false, tailwindcss_3: false, gemset: true, sources: true, unpatchedSource: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 23]]);
-const pos$2 = nix.positions(here + "/package.nix", [["src", 34, 5], ["patches", 35, 5], ["postPatch", 39, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 52, 5], ["gemset", 53, 13], ["ruby", 53, 20], ["version", 54, 26], ["gemdir", 55, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["src", 59, 26], ["hash", 60, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["RAILS_ENV", 64, 5], ["NODE_ENV", 65, 5], ["TAILWINDCSS_INSTALL_DIR", 66, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["dawarich", 123, 28]]);
-const pos$7 = nix.positions(here + "/package.nix", [["tests", 122, 5], ["updateScript", 126, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["changelog", 130, 5], ["description", 131, 5], ["homepage", 132, 5], ["license", 133, 5], ["maintainers", 134, 5], ["platforms", 138, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["pname", 26, 3], ["version", 27, 21], ["src", 33, 3], ["postPatch", 45, 3], ["dawarichGems", 51, 3], ["npmDeps", 58, 3], ["env", 63, 3], ["nativeBuildInputs", 69, 3], ["propagatedBuildInputs", 75, 3], ["buildInputs", 78, 3], ["buildPhase", 82, 3], ["installPhase", 106, 3], ["passthru", 121, 3], ["meta", 129, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,7 +21,7 @@ export default nix.lambda((args) => (() => {
   const gemset = nix.argOr($, "gemset", () => nix.builtins.import(nix.path(here, "./gemset.nix")));
   const sources = nix.argOr($, "sources", () => nix.app(nix.sel(lib, "importJSON"), nix.path(here, "./sources.json")));
   const unpatchedSource = nix.argOr($, "unpatchedSource", () => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "Freika",
       repo: "dawarich",
       tag: nix.thunk(() => nix.sel(sources, "version")),
@@ -37,18 +29,18 @@ export default nix.lambda((args) => (() => {
     }))));
   const ruby = ruby_3_4;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       pname: "dawarich",
       version: nix.thunk(() => nix.attr(sources, "version")),
       src: nix.thunk(() => nix.app(applyPatches, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           src: unpatchedSource,
           patches: nix.thunk(() => [nix.path(here, "./0001-build-ffi-gem.diff")]),
           postPatch: "substituteInPlace ./Gemfile \\\n  --replace-fail \"ruby File.read('.ruby-version').strip\" \"ruby '>= 3.4.0'\"\n",
         })))),
       postPatch: "# move import directory to a more convenient place, otherwise its behind systemd private tmp\nsubstituteInPlace ./app/services/imports/watcher.rb \\\n  --replace-fail 'tmp/imports/watched' 'storage/imports/watched'\n",
       dawarichGems: nix.thunk(() => nix.app(bundlerEnv, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           name: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-gems-${nix.sel(finalAttrs, "version")}`),
           gemset: gemset,
           ruby: ruby,
@@ -56,12 +48,12 @@ export default nix.lambda((args) => (() => {
           gemdir: nix.thunk(() => nix.sel(finalAttrs, "src")),
         })))),
       npmDeps: nix.thunk(() => nix.app(fetchNpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           hash: nix.thunk(() => nix.sel(sources, "npmHash")),
         })))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         RAILS_ENV: "production",
         NODE_ENV: "production",
         TAILWINDCSS_INSTALL_DIR: nix.thunk(() => nix.str`${tailwindcss_3}/bin`),
@@ -77,15 +69,15 @@ export default nix.lambda((args) => (() => {
       buildPhase: "runHook preBuild\n\npatchShebangs bin/\nfor b in $(ls $dawarichGems/bin/)\ndo\n  if [ ! -f bin/$b ]; then\n    ln -s $dawarichGems/bin/$b bin/$b\n  fi\ndone\n\nSECRET_KEY_BASE_DUMMY=1 bundle exec rake assets:precompile\n\nrm -rf node_modules tmp log storage\nln -s /var/log/dawarich log\nln -s /var/lib/dawarich storage\nln -s /tmp tmp\n\n# delete more files unneeded at runtime\nrm -rf docker docs screenshots package.json package-lock.json *.md *.example\n\nrunHook postBuild\n",
       installPhase: "runHook preInstall\n\n# tests are not needed at runtime\nrm -rf spec e2e\n# delete artifacts from patching\nrm -f *.orig\n\nmkdir -p $out\nmv .{ruby*,app_version} $out/\nmv * $out/\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           dawarich: nix.thunk(() => nix.attr(nixosTests, "dawarich")),
         })),
         updateScript: nix.path(here, "./update.sh"),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         changelog: nix.thunk(() => nix.str`https://github.com/Freika/dawarich/blob/${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),
         description: "Self-hostable alternative to Google Location History (Google Maps Timeline)",
         homepage: "https://dawarich.app/",

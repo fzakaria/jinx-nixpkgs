@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]], [["AVX2", 58, 9]], [["SSE41", 60, 9]], [["SSE2", 62, 9]], [["simple", 88, 5]], [["tests", 87, 12]], [["description", 94, 5], ["homepage", 95, 5], ["changelog", 96, 5], ["license", 97, 5], ["maintainers", 98, 5], ["mainProgram", 99, 5], ["platforms", 100, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["patches", 26, 3], ["postPatch", 28, 3], ["nativeBuildInputs", 34, 3], ["buildFlags", 45, 3], ["env", 56, 3], ["buildInputs", 65, 3], ["installPhase", 67, 3], ["pythonImportsCheck", 75, 3], ["doInstallCheck", 77, 3], ["installCheckPhase", 79, 3], ["passthru", 87, 3], ["meta", 93, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, simde: false, zlib: false, enableSse4_1: true, enableAvx: true, enablePython: true, python3Packages: false, runCommand: false, abpoa: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["AVX2", 58, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["SSE41", 60, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["SSE2", 62, 9]]);
-const pos$5 = nix.positions(here + "/package.nix", [["simple", 88, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["tests", 87, 12]]);
-const pos$7 = nix.positions(here + "/package.nix", [["description", 94, 5], ["homepage", 95, 5], ["changelog", 96, 5], ["license", 97, 5], ["maintainers", 98, 5], ["mainProgram", 99, 5], ["platforms", 100, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["patches", 26, 3], ["postPatch", 28, 3], ["nativeBuildInputs", 34, 3], ["buildFlags", 45, 3], ["env", 56, 3], ["buildInputs", 65, 3], ["installPhase", 67, 3], ["pythonImportsCheck", 75, 3], ["doInstallCheck", 77, 3], ["installCheckPhase", 79, 3], ["passthru", 87, 3], ["meta", 93, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const runCommand = nix.arg($, "runCommand");
   const abpoa = nix.arg($, "abpoa");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "optionalString"), enablePython, "py")}abpoa`),
       version: "1.5.7.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "yangao07",
           repo: "abPOA",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -54,22 +47,22 @@ substituteInPlace Makefile \\
       buildFlags: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isx86_64")), nix.thunk(() => [
           nix.thunk(() => (nix.asBool(enableAvx) ? "avx2=1" : (nix.asBool(enableSse4_1) ? "sse41=1" : "sse2=1"))),
         ]))),
-      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), enablePython, nix.thunk(() => (nix.asBool(enableAvx) ? { [nix.POS]: pos$2, AVX2: 1n } : (nix.asBool(enableSse4_1) ? { [nix.POS]: pos$3, SSE41: 1n } : { [nix.POS]: pos$4, SSE2: 1n }))))),
+      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), enablePython, nix.thunk(() => (nix.asBool(enableAvx) ? { [nix.POS]: $pos[1], AVX2: 1n } : (nix.asBool(enableSse4_1) ? { [nix.POS]: $pos[2], SSE41: 1n } : { [nix.POS]: $pos[3], SSE2: 1n }))))),
       buildInputs: nix.thunk(() => [zlib]),
       installPhase: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(enablePython)), "runHook preInstall\n\ninstall -Dm755 ./bin/abpoa* $out/bin/abpoa\n\nrunHook postInstall\n")),
       pythonImportsCheck: nix.thunk(() => ["pyabpoa"]),
       doInstallCheck: enablePython,
       installCheckPhase: "runHook preInstallCheck\n\npython python/example.py\n\nrunHook postInstallCheck\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           simple: nix.thunk(() => nix.app(runCommand, nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-test`), nix.thunk(() => ({})), nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), abpoa)} ${nix.sel(abpoa, "src")}/test_data/seq.fa > $out
 `))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "SIMD-based C library for fast partial order alignment using adaptive band",
         homepage: "https://github.com/yangao07/abPOA",
         changelog: nix.thunk(() => nix.str`https://github.com/yangao07/abPOA/releases/tag/v${nix.sel(finalAttrs, "version")}`),

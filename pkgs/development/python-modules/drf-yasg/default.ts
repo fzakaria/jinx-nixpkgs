@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["version", 26, 13], ["pname", 27, 5], ["hash", 28, 5]], [["DJANGO_SETTINGS_MODULE", 58, 7]], [["description", 70, 5], ["homepage", 71, 5], ["maintainers", 72, 5], ["license", 73, 5]], [["pname", 21, 3], ["version", 22, 3], ["pyproject", 23, 3], ["src", 25, 3], ["postPatch", 31, 3], ["build-system", 36, 3], ["dependencies", 41, 3], ["nativeCheckInputs", 51, 3], ["env", 58, 3], ["preCheck", 60, 3], ["doCheck", 65, 3], ["pythonImportsCheck", 67, 3], ["meta", 69, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, setuptools: false, "setuptools-scm": false, django: false, djangorestframework: false, inflection: false, packaging: false, pytz: false, pyyaml: false, uritemplate: false, datadiff: false, "dj-database-url": false, "pytest-django": false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["version", 26, 13], ["pname", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["DJANGO_SETTINGS_MODULE", 58, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 70, 5], ["homepage", 71, 5], ["maintainers", 72, 5], ["license", 73, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 21, 3], ["version", 22, 3], ["pyproject", 23, 3], ["src", 25, 3], ["postPatch", 31, 3], ["build-system", 36, 3], ["dependencies", 41, 3], ["nativeCheckInputs", 51, 3], ["env", 58, 3], ["preCheck", 60, 3], ["doCheck", 65, 3], ["pythonImportsCheck", 67, 3], ["meta", 69, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.21.15";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           version: version,
           pname: "drf_yasg",
           hash: "sha256-74aDjE7xDc06wevyvmAcvgKXi5mWccqkNmf3yduWFGg=",
@@ -48,19 +45,19 @@ export default nix.lambda((args) => (() => {
         uritemplate,
       ]);
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook, pytest_django, datadiff, dj_database_url]);
-      const env = nix.thunk(() => ({ [nix.POS]: pos$2, DJANGO_SETTINGS_MODULE: "testproj.settings.local" }));
+      const env = nix.thunk(() => ({ [nix.POS]: $pos[1], DJANGO_SETTINGS_MODULE: "testproj.settings.local" }));
       const preCheck = "cd testproj\n";
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["drf_yasg"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Generation of Swagger/OpenAPI schemas for Django REST Framework",
         homepage: "https://github.com/axnsan12/drf-yasg",
         maintainers: [],
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

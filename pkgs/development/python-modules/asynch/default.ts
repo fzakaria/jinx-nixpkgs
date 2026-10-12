@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["sha256", 30, 5]], [["compression", 50, 5]], [["asynch", 66, 28]], [["updateScript", 64, 5], ["tests", 65, 5]], [["description", 71, 5], ["homepage", 72, 5], ["license", 73, 5], ["maintainers", 74, 5]], [["pname", 21, 3], ["version", 22, 3], ["pyproject", 23, 3], ["__structuredAttrs", 24, 3], ["src", 26, 3], ["disabled", 33, 3], ["build-system", 35, 3], ["dependencies", 41, 3], ["optional-dependencies", 49, 3], ["pythonImportsCheck", 59, 3], ["passthru", 63, 3], ["meta", 70, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, pythonOlder: false, "poetry-core": false, setuptools: false, cython: false, ciso8601: false, tzdata: false, lz4: false, tzlocal: false, zstd: false, "clickhouse-cityhash": false, stdenv: false, "nix-update-script": false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["sha256", 30, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["compression", 50, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["asynch", 66, 28]]);
-const pos$4 = nix.positions(here + "/default.nix", [["updateScript", 64, 5], ["tests", 65, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["description", 71, 5], ["homepage", 72, 5], ["license", 73, 5], ["maintainers", 74, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 21, 3], ["version", 22, 3], ["pyproject", 23, 3], ["__structuredAttrs", 24, 3], ["src", 26, 3], ["disabled", 33, 3], ["build-system", 35, 3], ["dependencies", 41, 3], ["optional-dependencies", 49, 3], ["pythonImportsCheck", 59, 3], ["passthru", 63, 3], ["meta", 70, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,13 +24,13 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "asynch",
       version: "0.4.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "long2ice",
           repo: "asynch",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -45,17 +40,17 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [poetry_core, setuptools, cython]),
       dependencies: nix.thunk(() => nix.concat([ciso8601, tzlocal], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isWindows")), nix.thunk(() => [tzdata])))),
       "optional-dependencies": nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         compression: nix.thunk(() => nix.concat([clickhouse_cityhash, lz4], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(pythonOlder, "3.14")), nix.thunk(() => [zstd])))),
       })),
       pythonImportsCheck: nix.thunk(() => ["asynch"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
-        tests: nix.thunk(() => ({ [nix.POS]: pos$3, asynch: nix.thunk(() => nix.attr(nixosTests, "asynch")) })),
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[2], asynch: nix.thunk(() => nix.attr(nixosTests, "asynch")) })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Asyncio driver for ClickHouse with native TCP support",
         homepage: "https://github.com/long2ice/asynch",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

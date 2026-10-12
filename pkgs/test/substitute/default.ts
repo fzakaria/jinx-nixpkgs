@@ -2,21 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["warn", 14, 11]], [["trivial", 13, 9]], [["lib", 11, 5]], [["src", 25, 7], ["substitutions", 28, 7]], [["assertion", 23, 5], ["actual", 24, 5], ["expected", 34, 5]], [["src", 42, 7], ["replacements", 45, 7]], [["assertion", 40, 5], ["actual", 41, 5], ["expected", 51, 5]], [["src", 59, 7], ["replacements", 63, 7]], [["assertion", 57, 5], ["actual", 58, 5], ["expected", 65, 5]], [["src", 73, 7], ["replacements", 77, 7]], [["assertion", 71, 5], ["actual", 72, 5], ["expected", 81, 5]], [["src", 89, 7], ["replacements", 93, 7], ["name", 97, 7]], [["assertion", 87, 5], ["actual", 88, 5], ["expected", 99, 5]], [["substitutions", 22, 3], ["legacySingleReplace", 39, 3], ["legacyString", 56, 3], ["legacySingleArg", 70, 3], ["legacyVar", 86, 3]]]);
 const formals$1 = { args: { substitute: false, testers: false, runCommand: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["warn", 14, 11]]);
-const pos$2 = nix.positions(here + "/default.nix", [["trivial", 13, 9]]);
-const pos$3 = nix.positions(here + "/default.nix", [["lib", 11, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["src", 25, 7], ["substitutions", 28, 7]]);
-const pos$5 = nix.positions(here + "/default.nix", [["assertion", 23, 5], ["actual", 24, 5], ["expected", 34, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["src", 42, 7], ["replacements", 45, 7]]);
-const pos$7 = nix.positions(here + "/default.nix", [["assertion", 40, 5], ["actual", 41, 5], ["expected", 51, 5]]);
-const pos$8 = nix.positions(here + "/default.nix", [["src", 59, 7], ["replacements", 63, 7]]);
-const pos$9 = nix.positions(here + "/default.nix", [["assertion", 57, 5], ["actual", 58, 5], ["expected", 65, 5]]);
-const pos$10 = nix.positions(here + "/default.nix", [["src", 73, 7], ["replacements", 77, 7]]);
-const pos$11 = nix.positions(here + "/default.nix", [["assertion", 71, 5], ["actual", 72, 5], ["expected", 81, 5]]);
-const pos$12 = nix.positions(here + "/default.nix", [["src", 89, 7], ["replacements", 93, 7], ["name", 97, 7]]);
-const pos$13 = nix.positions(here + "/default.nix", [["assertion", 87, 5], ["actual", 88, 5], ["expected", 99, 5]]);
-const pos$14 = nix.positions(here + "/default.nix", [["substitutions", 22, 3], ["legacySingleReplace", 39, 3], ["legacyString", 56, 3], ["legacySingleArg", 70, 3], ["legacyVar", 86, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,59 +11,59 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const runCommand = nix.arg($, "runCommand");
   const substituteSilent = nix.thunk(() => nix.app(nix.sel(substitute, "override"), (prevArgs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       lib: nix.thunk(() => nix.app(nix.sel(prevArgs, "lib", "extend"), (finalLib) => (prevLib) => ({
-          [nix.POS]: pos$2,
-          trivial: nix.thunk(() => nix.update(nix.sel(prevLib, "trivial"), { [nix.POS]: pos$1, warn: (msg) => (value) => nix.force(value) })),
+          [nix.POS]: $pos[1],
+          trivial: nix.thunk(() => nix.update(nix.sel(prevLib, "trivial"), { [nix.POS]: $pos[0], warn: (msg) => (value) => nix.force(value) })),
         }))),
     })));
   return {
-    [nix.POS]: pos$14,
+    [nix.POS]: $pos[13],
     substitutions: nix.thunk(() => nix.app(nix.sel(testers, "testEqualContents"), nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         assertion: "substitutions-spaces",
         actual: nix.thunk(() => nix.app(substitute, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             src: nix.thunk(() => nix.builtins.toFile("source", "Hello world!\n")),
             substitutions: nix.thunk(() => ["--replace-fail", "Hello world!", "Yo peter!"]),
           })))),
         expected: nix.thunk(() => nix.builtins.toFile("expected", "Yo peter!\n")),
       })))),
     legacySingleReplace: nix.thunk(() => nix.app(nix.sel(testers, "testEqualContents"), nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         assertion: "substitute-single-replace",
         actual: nix.thunk(() => nix.app(substituteSilent, nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             src: nix.thunk(() => nix.builtins.toFile("source", "Hello world!\n")),
             replacements: nix.thunk(() => ["--replace-fail", "world", "paul"]),
           })))),
         expected: nix.thunk(() => nix.builtins.toFile("expected", "Hello paul!\n")),
       })))),
     legacyString: nix.thunk(() => nix.app(nix.sel(testers, "testEqualContents"), nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         assertion: "substitute-string",
         actual: nix.thunk(() => nix.app(substituteSilent, nix.thunk(() => ({
-            [nix.POS]: pos$8,
+            [nix.POS]: $pos[7],
             src: nix.thunk(() => nix.builtins.toFile("source", "Hello world!\n")),
             replacements: "--replace-fail world string",
           })))),
         expected: nix.thunk(() => nix.builtins.toFile("expected", "Hello string!\n")),
       })))),
     legacySingleArg: nix.thunk(() => nix.app(nix.sel(testers, "testEqualContents"), nix.thunk(() => ({
-        [nix.POS]: pos$11,
+        [nix.POS]: $pos[10],
         assertion: "substitute-single-arg",
         actual: nix.thunk(() => nix.app(substituteSilent, nix.thunk(() => ({
-            [nix.POS]: pos$10,
+            [nix.POS]: $pos[9],
             src: nix.thunk(() => nix.builtins.toFile("source", "Hello world!\n")),
             replacements: nix.thunk(() => ["--replace-fail world list"]),
           })))),
         expected: nix.thunk(() => nix.builtins.toFile("expected", "Hello list!\n")),
       })))),
     legacyVar: nix.thunk(() => nix.app(nix.sel(testers, "testEqualContents"), nix.thunk(() => ({
-        [nix.POS]: pos$13,
+        [nix.POS]: $pos[12],
         assertion: "substitute-var",
         actual: nix.thunk(() => nix.app(substituteSilent, nix.thunk(() => ({
-            [nix.POS]: pos$12,
+            [nix.POS]: $pos[11],
             src: nix.thunk(() => nix.builtins.toFile("source", "@greeting@ @name@!\n")),
             replacements: nix.thunk(() => ["--subst-var name", "--subst-var-by greeting Yo"]),
             name: "peter",

@@ -2,37 +2,32 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/minidlna.nix", [[["log_level", 13, 11], ["media_dir", 14, 11], ["friendly_name", 17, 11], ["root_container", 18, 11], ["notify_interval", 19, 11], ["album_art_names", 20, 11]], [["enable", 10, 27], ["openFirewall", 11, 27], ["settings", 12, 27]], [["minidlna", 10, 18]], [["imports", 9, 9], ["services", 10, 9]], [["server", 6, 5], ["client", 27, 5]], [["name", 3, 3], ["nodes", 5, 3], ["testScript", 30, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
 const formals$2 = { args: {  }, ellipsis: true };
-const pos$1 = nix.positions(here + "/minidlna.nix", [["log_level", 13, 11], ["media_dir", 14, 11], ["friendly_name", 17, 11], ["root_container", 18, 11], ["notify_interval", 19, 11], ["album_art_names", 20, 11]]);
-const pos$2 = nix.positions(here + "/minidlna.nix", [["enable", 10, 27], ["openFirewall", 11, 27], ["settings", 12, 27]]);
-const pos$3 = nix.positions(here + "/minidlna.nix", [["minidlna", 10, 18]]);
-const pos$4 = nix.positions(here + "/minidlna.nix", [["imports", 9, 9], ["services", 10, 9]]);
 const formals$3 = { args: {  }, ellipsis: true };
-const pos$5 = nix.positions(here + "/minidlna.nix", [["server", 6, 5], ["client", 27, 5]]);
-const pos$6 = nix.positions(here + "/minidlna.nix", [["name", 3, 3], ["nodes", 5, 3], ["testScript", 30, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   return {
-    [nix.POS]: pos$6,
+    [nix.POS]: $pos[5],
     name: "minidlna",
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       server: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           imports: nix.thunk(() => [nix.path(here, "../modules/profiles/minimal.nix")]),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             minidlna: nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               enable: true,
               openFirewall: true,
               settings: nix.thunk(() => ({
-                [nix.POS]: pos$1,
+                [nix.POS]: $pos[0],
                 log_level: "error",
                 media_dir: nix.thunk(() => ["PV,/tmp/stuff"]),
                 friendly_name: "rpi3",

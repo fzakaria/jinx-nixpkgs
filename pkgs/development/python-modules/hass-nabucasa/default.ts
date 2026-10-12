@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 40, 5], ["repo", 41, 5], ["tag", 42, 5], ["hash", 43, 5]], [["description", 89, 5], ["homepage", 90, 5], ["changelog", 91, 5], ["license", 92, 5], ["maintainers", 93, 5]], [["pname", 33, 3], ["version", 34, 3], ["pyproject", 35, 3], ["disabled", 37, 3], ["src", 39, 3], ["postPatch", 46, 3], ["build-system", 51, 3], ["pythonRelaxDeps", 53, 3], ["dependencies", 57, 3], ["nativeCheckInputs", 76, 3], ["pythonImportsCheck", 86, 3], ["meta", 88, 3]]]);
 const formals$1 = { args: { lib: false, acme: false, aiohttp: false, "atomicwrites-homeassistant": false, attrs: false, buildPythonPackage: false, ciso8601: false, cryptography: false, fetchFromGitHub: false, freezegun: false, grpcio: false, icmplib: false, josepy: false, pycognito: false, pyjwt: false, "pytest-aiohttp": false, "pytest-socket": false, "pytest-timeout": false, pytestCheckHook: false, pythonOlder: false, "sentence-stream": false, setuptools: false, snitun: false, syrupy: false, voluptuous: false, "webrtc-models": false, xmltodict: false, yarl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 40, 5], ["repo", 41, 5], ["tag", 42, 5], ["hash", 43, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 89, 5], ["homepage", 90, 5], ["changelog", 91, 5], ["license", 92, 5], ["maintainers", 93, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 33, 3], ["version", 34, 3], ["pyproject", 35, 3], ["disabled", 37, 3], ["src", 39, 3], ["postPatch", 46, 3], ["build-system", 51, 3], ["pythonRelaxDeps", 53, 3], ["dependencies", 57, 3], ["nativeCheckInputs", 76, 3], ["pythonImportsCheck", 86, 3], ["meta", 88, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -38,13 +36,13 @@ export default nix.lambda((args) => (() => {
   const xmltodict = nix.arg($, "xmltodict");
   const yarl = nix.arg($, "yarl");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "hass-nabucasa",
       version: "2.7.0",
       pyproject: true,
       disabled: nix.thunk(() => nix.app(pythonOlder, "3.14")),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "nabucasa",
           repo: "hass-nabucasa",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -84,7 +82,7 @@ export default nix.lambda((args) => (() => {
       ]),
       pythonImportsCheck: nix.thunk(() => ["hass_nabucasa"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Python module for the Home Assistant cloud integration",
         homepage: "https://github.com/NabuCasa/hass-nabucasa",
         changelog: nix.thunk(() => nix.str`https://github.com/NabuCasa/hass-nabucasa/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

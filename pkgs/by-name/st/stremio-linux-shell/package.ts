@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 35, 5], ["repo", 36, 5], ["tag", 37, 5], ["hash", 38, 5]], [["extraArgs", 102, 7]], [["updateScript", 101, 5]], [["description", 107, 5], ["homepage", 108, 5], ["downloadPage", 109, 5], ["changelog", 110, 5], ["license", 111, 5], ["sourceProvenance", 117, 5], ["maintainers", 121, 5], ["platforms", 125, 5], ["mainProgram", 126, 5]], [["pname", 29, 3], ["version", 30, 3], ["__structuredAttrs", 32, 3], ["src", 34, 3], ["cargoHash", 41, 3], ["patches", 43, 3], ["postPatch", 47, 3], ["nativeBuildInputs", 52, 3], ["buildInputs", 58, 3], ["postInstall", 69, 3], ["dontWrapGApps", 84, 3], ["preFixup", 88, 3], ["nativeInstallCheckInputs", 96, 3], ["versionCheckProgramArg", 97, 3], ["doInstallCheck", 98, 3], ["passthru", 100, 3], ["meta", 106, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchFromGitHub: false, versionCheckHook: false, "nix-update-script": false, installShellFiles: false, "pkg-config": false, wrapGAppsHook4: false, bashNonInteractive: false, "glib-networking": false, gtk4: false, libadwaita: false, libepoxy: false, libsoup_3: false, mpv: false, webkitgtk_6_0: false, addDriverRunpath: false, nodejs: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 35, 5], ["repo", 36, 5], ["tag", 37, 5], ["hash", 38, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["extraArgs", 102, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 101, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 107, 5], ["homepage", 108, 5], ["downloadPage", 109, 5], ["changelog", 110, 5], ["license", 111, 5], ["sourceProvenance", 117, 5], ["maintainers", 121, 5], ["platforms", 125, 5], ["mainProgram", 126, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 29, 3], ["version", 30, 3], ["__structuredAttrs", 32, 3], ["src", 34, 3], ["cargoHash", 41, 3], ["patches", 43, 3], ["postPatch", 47, 3], ["nativeBuildInputs", 52, 3], ["buildInputs", 58, 3], ["postInstall", 69, 3], ["dontWrapGApps", 84, 3], ["preFixup", 88, 3], ["nativeInstallCheckInputs", 96, 3], ["versionCheckProgramArg", 97, 3], ["doInstallCheck", 98, 3], ["passthru", 100, 3], ["meta", 106, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,12 +26,12 @@ export default nix.lambda((args) => (() => {
   const addDriverRunpath = nix.arg($, "addDriverRunpath");
   const nodejs = nix.arg($, "nodejs");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "stremio-linux-shell",
       version: "1.2.2",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Stremio",
           repo: "stremio-linux-shell",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -67,14 +63,14 @@ export default nix.lambda((args) => (() => {
       versionCheckProgramArg: "--version",
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             extraArgs: nix.thunk(() => ["--version-regex=^v([0-9.]+)$"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Client for Stremio on Linux",
         homepage: "https://www.stremio.com/",
         downloadPage: "https://github.com/Stremio/stremio-linux-shell",

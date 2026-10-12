@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 26, 5], ["repo", 27, 5], ["rev", 28, 5], ["sha256", 29, 5]], [["rauc", 65, 11]], [["updateScript", 64, 5], ["tests", 65, 5]], [["description", 69, 5], ["homepage", 70, 5], ["license", 71, 5], ["maintainers", 72, 5], ["platforms", 76, 5], ["mainProgram", 77, 5]], [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["enableParallelBuilding", 32, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 41, 3], ["mesonFlags", 53, 3], ["passthru", 63, 3], ["meta", 68, 3]]]);
 const formals$1 = { args: { composefs: false, curl: false, dbus: false, fetchFromGitHub: false, glib: false, "json-glib": false, lib: false, "nix-update-script": false, openssl: false, "pkg-config": false, stdenv: false, meson: false, ninja: false, "util-linux": false, libnl: false, systemdLibs: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 26, 5], ["repo", 27, 5], ["rev", 28, 5], ["sha256", 29, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["rauc", 65, 11]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 64, 5], ["tests", 65, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 69, 5], ["homepage", 70, 5], ["license", 71, 5], ["maintainers", 72, 5], ["platforms", 76, 5], ["mainProgram", 77, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["enableParallelBuilding", 32, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 41, 3], ["mesonFlags", 53, 3], ["passthru", 63, 3], ["meta", 68, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const systemdLibs = nix.arg($, "systemdLibs");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "rauc",
       version: "1.15.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "rauc",
           repo: "rauc",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -62,12 +58,12 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "mesonOption"), "systemdcatalogdir", nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/lib/systemd/catalog`))),
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
-        tests: nix.thunk(() => ({ [nix.POS]: pos$2, rauc: nix.thunk(() => nix.sel(nixosTests, "rauc")) })),
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[1], rauc: nix.thunk(() => nix.sel(nixosTests, "rauc")) })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Safe and secure software updates for embedded Linux",
         homepage: "https://rauc.io",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Only")),

@@ -2,11 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/tests.nix", [[["name", 10, 5], ["url", 12, 5], ["sha256", 13, 5]], [["url", 18, 9], ["sha256", 19, 9]], [["name", 23, 7], ["src", 24, 7]], [["simple", 9, 3], ["overridden-source", 15, 3]]]);
 const formals$1 = { args: { testers: false, fetchFirefoxAddon: false, fetchurl: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/tests.nix", [["name", 10, 5], ["url", 12, 5], ["sha256", 13, 5]]);
-const pos$2 = nix.positions(here + "/tests.nix", [["url", 18, 9], ["sha256", 19, 9]]);
-const pos$3 = nix.positions(here + "/tests.nix", [["name", 23, 7], ["src", 24, 7]]);
-const pos$4 = nix.positions(here + "/tests.nix", [["simple", 9, 3], ["overridden-source", 15, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,20 +11,20 @@ export default nix.lambda((args) => (() => {
   const fetchFirefoxAddon = nix.arg($, "fetchFirefoxAddon");
   const fetchurl = nix.arg($, "fetchurl");
   return {
-    [nix.POS]: pos$4,
+    [nix.POS]: $pos[3],
     simple: nix.thunk(() => nix.app(nix.sel(testers, "invalidateFetcherByDrvHash"), fetchFirefoxAddon, nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         name: "image-search-options",
         url: "https://addons.mozilla.org/firefox/downloads/file/3059971/image_search_options-3.0.12-fx.xpi",
         sha256: "sha256-H73YWX/DKxvhEwKpWOo7orAQ7c/rQywpljeyxYxv0Gg=",
       })))),
     "overridden-source": nix.thunk(() => (() => {
       const image_search_options = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: "https://addons.mozilla.org/firefox/downloads/file/3059971/image_search_options-3.0.12-fx.xpi",
           sha256: "sha256-H73YWX/DKxvhEwKpWOo7orAQ7c/rQywpljeyxYxv0Gg=",
         }))));
-      return nix.app(nix.sel(testers, "invalidateFetcherByDrvHash"), fetchFirefoxAddon, nix.thunk(() => ({ [nix.POS]: pos$3, name: "image-search-options", src: image_search_options })));
+      return nix.app(nix.sel(testers, "invalidateFetcherByDrvHash"), fetchFirefoxAddon, nix.thunk(() => ({ [nix.POS]: $pos[2], name: "image-search-options", src: image_search_options })));
     })()),
   };
 })(), formals$1);

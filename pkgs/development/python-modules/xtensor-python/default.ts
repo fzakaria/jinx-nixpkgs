@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 19, 7], ["repo", 20, 7], ["tag", 21, 7], ["hash", 22, 7]], [["homepage", 43, 7], ["description", 44, 7], ["license", 45, 7]], [["pname", 15, 5], ["version", 16, 5], ["src", 18, 5], ["nativeBuildInputs", 25, 5], ["buildInputs", 26, 5], ["nativeCheckInputs", 27, 5], ["doCheck", 28, 5], ["cmakeFlags", 29, 5], ["propagatedBuildInputs", 35, 5], ["checkTarget", 40, 5], ["meta", 42, 5]]]);
 const formals$1 = { args: { lib: false, stdenv: false, toPythonModule: false, fetchFromGitHub: false, cmake: false, gtest: false, xtensor: false, pybind11: false, numpy: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 19, 7], ["repo", 20, 7], ["tag", 21, 7], ["hash", 22, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 43, 7], ["description", 44, 7], ["license", 45, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 15, 5], ["version", 16, 5], ["src", 18, 5], ["nativeBuildInputs", 25, 5], ["buildInputs", 26, 5], ["nativeCheckInputs", 27, 5], ["doCheck", 28, 5], ["cmakeFlags", 29, 5], ["propagatedBuildInputs", 35, 5], ["checkTarget", 40, 5], ["meta", 42, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const pybind11 = nix.arg($, "pybind11");
   const numpy = nix.arg($, "numpy");
   return nix.app(toPythonModule, nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname: "xtensor-python",
         version: "0.29.0",
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             owner: "xtensor-stack",
             repo: "xtensor-python",
             tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -37,7 +35,7 @@ export default nix.lambda((args) => (() => {
         propagatedBuildInputs: nix.thunk(() => [xtensor, numpy]),
         checkTarget: "xtest",
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           homepage: "https://github.com/xtensor-stack/xtensor-python",
           description: "Python bindings for the xtensor C++ multi-dimensional array library",
           license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

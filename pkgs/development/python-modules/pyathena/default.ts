@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 24, 13], ["version", 24, 19], ["hash", 25, 5]], [["pandas", 42, 5], ["sqlalchemy", 43, 5], ["arrow", 44, 5], ["fastparquet", 45, 5]], [["description", 56, 5], ["homepage", 57, 5], ["changelog", 58, 5], ["license", 59, 5], ["maintainers", 60, 5]], [["pname", 19, 3], ["version", 20, 3], ["pyproject", 21, 3], ["src", 23, 3], ["build-system", 28, 3], ["dependencies", 33, 3], ["optional-dependencies", 41, 3], ["doCheck", 51, 3], ["pythonImportsCheck", 53, 3], ["meta", 55, 3]]]);
 const formals$1 = { args: { lib: false, boto3: false, botocore: false, buildPythonPackage: false, fastparquet: false, fetchPypi: false, fsspec: false, hatchling: false, "hatch-vcs": false, pandas: false, pyarrow: false, "python-dateutil": false, sqlalchemy: false, tenacity: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 24, 13], ["version", 24, 19], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pandas", 42, 5], ["sqlalchemy", 43, 5], ["arrow", 44, 5], ["fastparquet", 45, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 56, 5], ["homepage", 57, 5], ["changelog", 58, 5], ["license", 59, 5], ["maintainers", 60, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 19, 3], ["version", 20, 3], ["pyproject", 21, 3], ["src", 23, 3], ["build-system", 28, 3], ["dependencies", 33, 3], ["optional-dependencies", 41, 3], ["doCheck", 51, 3], ["pythonImportsCheck", 53, 3], ["meta", 55, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.36.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-AN2Y/6d/HKMLMLNVXru04vccVdMt2LJKCDioE1k/J94=",
@@ -37,7 +34,7 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [hatchling, hatch_vcs]);
       const dependencies = nix.thunk(() => [boto3, botocore, fsspec, tenacity, python_dateutil]);
       const optional_dependencies = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         pandas: nix.thunk(() => [pandas]),
         sqlalchemy: nix.thunk(() => [sqlalchemy]),
         arrow: nix.thunk(() => [pyarrow]),
@@ -46,7 +43,7 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["pyathena"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Python DB API 2.0 (PEP 249) client for Amazon Athena",
         homepage: "https://github.com/laughingman7743/PyAthena/",
         changelog: nix.thunk(() => nix.str`https://github.com/laughingman7743/PyAthena/releases/tag/v${version}`),
@@ -54,7 +51,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 31, 5], ["repo", 32, 5], ["tag", 33, 5], ["hash", 34, 5]], [["zathura", 78, 15]], [["updateScript", 76, 5], ["tests", 77, 5]], [["homepage", 83, 5], ["description", 84, 5], ["longDescription", 85, 5], ["license", 89, 5], ["platforms", 90, 5], ["maintainers", 91, 5]], [["pname", 22, 3], ["version", 23, 3], ["outputs", 25, 3], ["src", 30, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 47, 3], ["propagatedBuildInputs", 53, 3], ["nativeCheckInputs", 58, 3], ["doCheck", 62, 3], ["mesonFlags", 64, 3], ["checkPhase", 68, 3], ["passthru", 75, 3], ["meta", 82, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, meson: false, ninja: false, "pkg-config": false, check: false, dbus: false, "xvfb-run": false, glib: false, gtk3: false, gettext: false, libiconv: false, "json-glib": false, libintl: false, zathura: false, gitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 31, 5], ["repo", 32, 5], ["tag", 33, 5], ["hash", 34, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["zathura", 78, 15]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 76, 5], ["tests", 77, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 83, 5], ["description", 84, 5], ["longDescription", 85, 5], ["license", 89, 5], ["platforms", 90, 5], ["maintainers", 91, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 22, 3], ["version", 23, 3], ["outputs", 25, 3], ["src", 30, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 47, 3], ["propagatedBuildInputs", 53, 3], ["nativeCheckInputs", 58, 3], ["doCheck", 62, 3], ["mesonFlags", 64, 3], ["checkPhase", 68, 3], ["passthru", 75, 3], ["meta", 82, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,12 +25,12 @@ export default nix.lambda((args) => (() => {
   const zathura = nix.arg($, "zathura");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "girara",
       version: "2026.07.18",
       outputs: nix.thunk(() => ["out", "dev"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "pwmt",
           repo: "girara",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -52,12 +48,12 @@ xvfb-run -s '-screen 0 800x600x24' dbus-run-session \\
   meson test --print-errorlogs
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
-        tests: nix.thunk(() => ({ [nix.POS]: pos$2, zathura: zathura })),
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[1], zathura: zathura })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://pwmt.org/projects/girara",
         description: "User interface library",
         longDescription: "girara is a library that implements a GTK based VIM-like user interface\nthat focuses on simplicity and minimalism.\n",

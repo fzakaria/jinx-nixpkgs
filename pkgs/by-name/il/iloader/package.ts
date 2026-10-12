@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 28, 5], ["repo", 29, 5], ["rev", 30, 5], ["sha256", 31, 5]], [["pname", 35, 5], ["src", 36, 26], ["version", 36, 30], ["nativeBuildInputs", 38, 5], ["dontConfigure", 43, 5], ["buildPhase", 45, 5], ["installPhase", 58, 5], ["outputHash", 67, 5], ["outputHashAlgo", 68, 5], ["outputHashMode", 69, 5]], [["changelog", 116, 5], ["description", 117, 5], ["homepage", 118, 5], ["license", 119, 5], ["mainProgram", 120, 5], ["maintainers", 121, 5], ["platforms", 122, 5]], [["__structuredAttrs", 22, 3], ["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["nodeModules", 34, 3], ["cargoRoot", 72, 3], ["buildAndTestSubdir", 73, 3], ["cargoHash", 74, 3], ["doCheck", 76, 3], ["patches", 78, 3], ["postPatch", 80, 3], ["nativeBuildInputs", 86, 3], ["buildInputs", 95, 3], ["tauriBuildFlags", 104, 3], ["postInstall", 110, 3], ["meta", 115, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, rustPlatform: false, nodejs: false, "cargo-tauri": false, bun: false, writableTmpDirAsHomeHook: false, glib: false, "glib-networking": false, gst_all_1: false, openssl: false, "pkg-config": false, webkitgtk_4_1: false, wrapGAppsHook3: false, makeWrapper: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 28, 5], ["repo", 29, 5], ["rev", 30, 5], ["sha256", 31, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 35, 5], ["src", 36, 26], ["version", 36, 30], ["nativeBuildInputs", 38, 5], ["dontConfigure", 43, 5], ["buildPhase", 45, 5], ["installPhase", 58, 5], ["outputHash", 67, 5], ["outputHashAlgo", 68, 5], ["outputHashMode", 69, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["changelog", 116, 5], ["description", 117, 5], ["homepage", 118, 5], ["license", 119, 5], ["mainProgram", 120, 5], ["maintainers", 121, 5], ["platforms", 122, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["__structuredAttrs", 22, 3], ["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["nodeModules", 34, 3], ["cargoRoot", 72, 3], ["buildAndTestSubdir", 73, 3], ["cargoHash", 74, 3], ["doCheck", 76, 3], ["patches", 78, 3], ["postPatch", 80, 3], ["nativeBuildInputs", 86, 3], ["buildInputs", 95, 3], ["tauriBuildFlags", 104, 3], ["postInstall", 110, 3], ["meta", 115, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,19 +24,19 @@ export default nix.lambda((args) => (() => {
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   const makeWrapper = nix.arg($, "makeWrapper");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       __structuredAttrs: true,
       pname: "iloader",
       version: "2.3.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "nab138",
           repo: "iloader",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           sha256: "sha256-FpWX9m5WtTYTXueKX41RP1Zhyf5UuuhrSIYITq+g+Ew=",
         })))),
       nodeModules: nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-node_modules`),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
@@ -72,7 +69,7 @@ patchShebangs --build node_modules
       tauriBuildFlags: nix.thunk(() => ["--config", "ci.conf.json", "--no-sign"]),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "mkdir -p $out/bin\nmakeWrapper $out/Applications/iloader.app/Contents/MacOS/iloader $out/bin/iloader\n")),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         changelog: nix.thunk(() => nix.str`https://github.com/nab138/iloader/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "User friendly sideloader",
         homepage: "https://github.com/nab138/iloader",

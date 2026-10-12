@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 40, 5], ["owner", 41, 5], ["repo", 42, 5], ["tag", 43, 5], ["hash", 44, 5]], [["package", 111, 7], ["versionCheck", 112, 7]], [["pkg-config", 110, 11]], [["tests", 110, 5], ["updateScript", 114, 5]], [["description", 120, 5], ["homepage", 121, 5], ["license", 122, 5], ["maintainers", 129, 5], ["pkgConfigModules", 133, 5], ["platforms", 134, 5]], [["pname", 30, 3], ["version", 31, 3], ["outputs", 33, 3], ["src", 39, 3], ["postPatch", 47, 3], ["depsBuildBuild", 54, 3], ["nativeBuildInputs", 58, 3], ["buildInputs", 73, 3], ["mesonFlags", 81, 3], ["nativeCheckInputs", 89, 3], ["doCheck", 94, 3], ["postFixup", 96, 3], ["doInstallCheck", 107, 3], ["passthru", 109, 3], ["strictDeps", 117, 3], ["meta", 119, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, testers: false, "docbook-xsl-nons": false, docutils: false, "gi-docgen": false, "gobject-introspection": false, "gtk-doc": false, libxslt: false, meson: false, ninja: false, "pkg-config": false, vala: false, wrapGAppsHook3: false, glib: false, gsound: false, "json-glib": false, libgudev: false, dbus: false, gmobile: false, umockdev: false, "feedbackd-device-themes": false, udevCheckHook: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 40, 5], ["owner", 41, 5], ["repo", 42, 5], ["tag", 43, 5], ["hash", 44, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["package", 111, 7], ["versionCheck", 112, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pkg-config", 110, 11]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 110, 5], ["updateScript", 114, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 120, 5], ["homepage", 121, 5], ["license", 122, 5], ["maintainers", 129, 5], ["pkgConfigModules", 133, 5], ["platforms", 134, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 30, 3], ["version", 31, 3], ["outputs", 33, 3], ["src", 39, 3], ["postPatch", 47, 3], ["depsBuildBuild", 54, 3], ["nativeBuildInputs", 58, 3], ["buildInputs", 73, 3], ["mesonFlags", 81, 3], ["nativeCheckInputs", 89, 3], ["doCheck", 94, 3], ["postFixup", 96, 3], ["doInstallCheck", 107, 3], ["passthru", 109, 3], ["strictDeps", 117, 3], ["meta", 119, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -38,12 +33,12 @@ export default nix.lambda((args) => (() => {
   const udevCheckHook = nix.arg($, "udevCheckHook");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "feedbackd",
       version: "0.8.9",
       outputs: nix.thunk(() => ["out", "dev", "devdoc"]),
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "gitlab.freedesktop.org",
           owner: "feedbackd",
           repo: "feedbackd",
@@ -78,11 +73,11 @@ export default nix.lambda((args) => (() => {
       postFixup: "# Move developer documentation to devdoc output.\n# Cannot be in postInstall, otherwise _multioutDocs hook in preFixup will move right back.\nif [[ -d \"$out/share/doc\" ]]; then\n    find -L \"$out/share/doc\" -type f -regex '.*\\.devhelp2?' -print0 \\\n      | while IFS= read -r -d '' file; do\n        moveToOutput \"$(dirname \"${file/\"$out/\"/}\")\" \"$devdoc\"\n    done\nfi\n",
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "hasPkgConfigModules"), nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               versionCheck: true,
             })))),
@@ -91,7 +86,7 @@ export default nix.lambda((args) => (() => {
       })),
       strictDeps: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Theme based Haptic, Visual and Audio Feedback",
         homepage: "https://gitlab.freedesktop.org/feedbackd/feedbackd/",
         license: nix.thunk(() => (() => {

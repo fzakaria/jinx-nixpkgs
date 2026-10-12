@@ -2,11 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]], [["tests", 36, 12]], [["description", 38, 5], ["homepage", 39, 5], ["license", 40, 5], ["maintainers", 41, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["preConfigure", 22, 3], ["buildInputs", 30, 3], ["passthru", 36, 3], ["meta", 37, 3]]]);
 const formals$1 = { args: { fetchFromGitHub: false, lib: false, mkNginxPlugin: false, nixosTests: false, quickjs: false, which: false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["tests", 36, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 38, 5], ["homepage", 39, 5], ["license", 40, 5], ["maintainers", 41, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["preConfigure", 22, 3], ["buildInputs", 30, 3], ["passthru", 36, 3], ["meta", 37, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const which = nix.arg($, "which");
   const zlib = nix.arg($, "zlib");
   return nix.app(mkNginxPlugin, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "njs",
       version: "1.0.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "nginx",
           repo: "njs",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -35,9 +32,9 @@ appendToVar configureFlags "--with-cc-opt=-I${nix.app(nix.sel(lib, "getInclude")
 appendToVar configureFlags "--with-ld-opt=-L${nix.app(nix.sel(lib, "getLib"), quickjs)}/lib/quickjs"
 `),
       buildInputs: nix.thunk(() => [quickjs, which, zlib]),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, tests: nix.thunk(() => nix.sel(nixosTests, "nginx-njs")) })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[1], tests: nix.thunk(() => nix.sel(nixosTests, "nginx-njs")) })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Subset of the JavaScript language that allows extending nginx functionality",
         homepage: "https://nginx.org/en/docs/njs/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

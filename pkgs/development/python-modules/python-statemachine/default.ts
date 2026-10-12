@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 27, 5], ["version", 28, 26], ["hash", 29, 5]], [["description", 81, 5], ["homepage", 83, 5], ["changelog", 84, 5], ["license", 85, 5], ["maintainers", 86, 5]], [["pname", 20, 3], ["version", 21, 3], ["pyproject", 22, 3], ["__structuredAttrs", 24, 3], ["src", 26, 3], ["build-system", 32, 3], ["nativeCheckInputs", 34, 3], ["pytestFlags", 47, 3], ["disabledTestPaths", 49, 3], ["disabledTests", 58, 3], ["pythonImportsCheck", 78, 3], ["meta", 80, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchPypi: false, hatchling: false, pytestCheckHook: false, "pytest-asyncio": false, "pytest-benchmark": false, "pytest-mock": false, "pytest-timeout": false, "pytest-django": false, pydot: false, docutils: false, pyyaml: false, jsonschema: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 27, 5], ["version", 28, 26], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 81, 5], ["homepage", 83, 5], ["changelog", 84, 5], ["license", 85, 5], ["maintainers", 86, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 20, 3], ["version", 21, 3], ["pyproject", 22, 3], ["__structuredAttrs", 24, 3], ["src", 26, 3], ["build-system", 32, 3], ["nativeCheckInputs", 34, 3], ["pytestFlags", 47, 3], ["disabledTestPaths", 49, 3], ["disabledTests", 58, 3], ["pythonImportsCheck", 78, 3], ["meta", 80, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,13 +23,13 @@ export default nix.lambda((args) => (() => {
   const pyyaml = nix.arg($, "pyyaml");
   const jsonschema = nix.arg($, "jsonschema");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "python-statemachine",
       version: "3.2.1",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "python_statemachine",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-3/NmgsqwC6f3l+AevdkMTbssLgD+fPzJ+Sb2PFAmZQc=",
@@ -68,7 +66,7 @@ export default nix.lambda((args) => (() => {
         ])))),
       pythonImportsCheck: nix.thunk(() => ["statemachine"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Expressive statecharts and FSMs for modern Python",
         homepage: "https://github.com/fgmacedo/python-statemachine",
         changelog: nix.thunk(() => nix.str`https://github.com/fgmacedo/python-statemachine/releases/tag/v${nix.sel(finalAttrs, "version")}`),

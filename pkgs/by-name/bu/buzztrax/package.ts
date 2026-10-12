@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 28, 5], ["repo", 29, 5], ["rev", 30, 5], ["hash", 31, 5]], [["NIX_CFLAGS_COMPILE", 66, 7]], [["description", 72, 5], ["homepage", 73, 5], ["license", 74, 5], ["maintainers", 75, 5], ["platforms", 76, 5]], [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["postPatch", 34, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 49, 3], ["env", 66, 3], ["meta", 71, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, autoreconfHook: false, "gtk-doc": false, intltool: false, itstool: false, libtool: false, "pkg-config": false, wrapGAppsHook3: false, "yelp-tools": false, "clutter-gtk": false, gst_all_1: false, glib: false, gtk3: false, libgsf: false, libxml2: false, fluidsynth: false, orc: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 28, 5], ["repo", 29, 5], ["rev", 30, 5], ["hash", 31, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 66, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 72, 5], ["homepage", 73, 5], ["license", 74, 5], ["maintainers", 75, 5], ["platforms", 76, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["postPatch", 34, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 49, 3], ["env", 66, 3], ["meta", 71, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,11 +27,11 @@ export default nix.lambda((args) => (() => {
   const fluidsynth = nix.arg($, "fluidsynth");
   const orc = nix.arg($, "orc");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "buzztrax",
       version: "0.11.0-unstable-2024-03-02",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Buzztrax",
           repo: "buzztrax",
           rev: "4bb66d9d9870e1e56ce1f0e97bb58a0c627356d3",
@@ -66,11 +63,11 @@ export default nix.lambda((args) => (() => {
         orc,
       ]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.add("-Wno-error=deprecated-declarations -Wno-error=incompatible-pointer-types", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), " -Wno-error=incompatible-function-pointer-types"))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Modular music composer for Linux",
         homepage: "https://www.buzztrax.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),

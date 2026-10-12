@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["domain", 28, 5], ["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]], [["description", 57, 5], ["homepage", 58, 5], ["license", 59, 5], ["maintainers", 60, 5]], [["pname", 24, 3], ["version", 25, 3], ["minimalOCamlVersion", 26, 3], ["src", 27, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 36, 3], ["propagatedBuildInputs", 42, 3], ["meta", 56, 3]]]);
 const formals$1 = { args: { lib: false, buildDunePackage: false, fetchFromGitLab: false, fmt: false, lwt_ppx: false, menhir: false, ocf_ppx: false, ppx_blob: false, xtmpl_ppx: false, "dune-build-info": false, "dune-site": false, higlo: false, logs: false, lwt: false, ocf: false, ptime: false, uri: false, uutf: false, xtmpl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["domain", 28, 5], ["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 57, 5], ["homepage", 58, 5], ["license", 59, 5], ["maintainers", 60, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 24, 3], ["version", 25, 3], ["minimalOCamlVersion", 26, 3], ["src", 27, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 36, 3], ["propagatedBuildInputs", 42, 3], ["meta", 56, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.1.0";
       const minimalOCamlVersion = "4.13";
       const src = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "framagit.org",
           owner: "zoggy",
           repo: "stog",
@@ -56,7 +54,7 @@ export default nix.lambda((args) => (() => {
         xtmpl,
       ]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "XML documents and web site compiler",
         homepage: "https://www.good-eris.net/stog",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3")),
@@ -66,7 +64,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         minimalOCamlVersion,

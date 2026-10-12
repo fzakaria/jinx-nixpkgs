@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 28, 5], ["repo", 29, 5], ["rev", 30, 5], ["hash", 31, 5]], [["fetcherVersion", 45, 5], ["pname", 46, 26], ["version", 46, 32], ["src", 46, 40], ["pnpm", 47, 13], ["hash", 48, 5]], [["pnpmDeps", 78, 26], ["updateScript", 79, 5]], [["description", 83, 5], ["homepage", 84, 5], ["license", 85, 5], ["maintainers", 86, 5], ["mainProgram", 87, 5]], [["pname", 25, 3], ["version", 26, 3], ["src", 27, 3], ["patches", 34, 3], ["cargoHash", 41, 3], ["cargoRoot", 42, 3], ["pnpmDeps", 44, 3], ["nativeBuildInputs", 51, 3], ["buildInputs", 63, 3], ["buildAndTestSubdir", 75, 3], ["passthru", 77, 3], ["meta", 82, 3]]]);
 const formals$1 = { args: { lib: false, pnpm_10: false, stdenv: false, rustPlatform: false, "cargo-tauri": false, "glib-networking": false, nodejs: false, libgudev: false, systemdLibs: false, fetchPnpmDeps: false, pnpmConfigHook: false, openssl: false, "nix-update-script": false, "pkg-config": false, webkitgtk_4_1: false, wrapGAppsHook4: false, autoPatchelfHook: false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 28, 5], ["repo", 29, 5], ["rev", 30, 5], ["hash", 31, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["fetcherVersion", 45, 5], ["pname", 46, 26], ["version", 46, 32], ["src", 46, 40], ["pnpm", 47, 13], ["hash", 48, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pnpmDeps", 78, 26], ["updateScript", 79, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 83, 5], ["homepage", 84, 5], ["license", 85, 5], ["maintainers", 86, 5], ["mainProgram", 87, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 25, 3], ["version", 26, 3], ["src", 27, 3], ["patches", 34, 3], ["cargoHash", 41, 3], ["cargoRoot", 42, 3], ["pnpmDeps", 44, 3], ["nativeBuildInputs", 51, 3], ["buildInputs", 63, 3], ["buildAndTestSubdir", 75, 3], ["passthru", 77, 3], ["meta", 82, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,11 +27,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const pnpm = pnpm_10;
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "sftool-gui",
       version: "1.1.4-unstable-2026-04-16",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "OpenSiFli",
           repo: "sftool-gui",
           rev: "e182a5973a4e23f8af078f3480a8b2416d7439b3",
@@ -45,7 +41,7 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-hwQJnhWgPqQ3ZudCsEEuWoygYDcUKXgWz15dHZ+vR6Q=",
       cargoRoot: "src-tauri",
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           fetcherVersion: 3n,
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
@@ -63,12 +59,12 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => nix.concat([openssl], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [glib_networking, webkitgtk_4_1, libgudev, systemdLibs])))),
       buildAndTestSubdir: nix.thunk(() => nix.sel(finalAttrs, "cargoRoot")),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pnpmDeps: nix.thunk(() => nix.attr(finalAttrs, "pnpmDeps")),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Download tool for the SiFli family of chips",
         homepage: "https://github.com/OpenSiFli/sftool-gui",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

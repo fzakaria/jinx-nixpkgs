@@ -2,9 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["src", 14, 9], ["release", 15, 9], ["owner", 16, 9], ["repo", 17, 9], ["repoURL", 18, 9]], [["url", 10, 5], ["hash", 11, 5], ["passthru", 12, 5]]]);
 const formals$1 = { args: { fetchurl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["src", 14, 9], ["release", 15, 9], ["owner", 16, 9], ["repo", 17, 9], ["repoURL", 18, 9]]);
-const pos$2 = nix.positions(here + "/default.nix", [["url", 10, 5], ["hash", 11, 5], ["passthru", 12, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const repo = "game-hashes";
   const repoURL = nix.thunk(() => nix.str`https://github.com/${owner}/${repo}`);
   const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       url: nix.thunk(() => nix.str`${repoURL}/releases/download/${release}/game_hashes_db.zip`),
       hash: "sha256-lu/C/WkjXtGJuZrsTg9fc/aEyJSsj9unjz1Sym39/b8=",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         src: src,
         release: release,
         owner: owner,

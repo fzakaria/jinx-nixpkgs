@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["hash", 24, 5]], [["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]], [["owner", 41, 5], ["repo", 42, 5], ["rev", 43, 5], ["hash", 44, 5]], [["NIX_CFLAGS_COMPILE", 99, 5], ["NIX_LDFLAGS", 107, 5]], [["description", 136, 5], ["homepage", 137, 5], ["license", 138, 5], ["maintainers", 142, 5], ["platforms", 146, 5], ["mainProgram", 147, 5]], [["pname", 37, 3], ["version", 38, 3], ["src", 40, 3], ["patches", 47, 3], ["nativeBuildInputs", 52, 3], ["buildInputs", 60, 3], ["postPatch", 75, 3], ["env", 98, 3], ["qmakeFlags", 110, 3], ["postInstall", 114, 3], ["dontWrapGApps", 121, 3], ["preFixup", 123, 3], ["postFixup", 127, 3], ["meta", 135, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, kdePackages: false, "pkg-config": false, qt6: false, boost: false, libngspice: false, libgit2: false, clipper: false, wrapGAppsHook3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["owner", 41, 5], ["repo", 42, 5], ["rev", 43, 5], ["hash", 44, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 99, 5], ["NIX_LDFLAGS", 107, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 136, 5], ["homepage", 137, 5], ["license", 138, 5], ["maintainers", 142, 5], ["platforms", 146, 5], ["mainProgram", 147, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 37, 3], ["version", 38, 3], ["src", 40, 3], ["patches", 47, 3], ["nativeBuildInputs", 52, 3], ["buildInputs", 60, 3], ["postPatch", 75, 3], ["env", 98, 3], ["qmakeFlags", 110, 3], ["postInstall", 114, 3], ["dontWrapGApps", 121, 3], ["preFixup", 123, 3], ["postFixup", 127, 3], ["meta", 135, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,25 +20,25 @@ export default nix.lambda((args) => (() => {
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   const partsSha = "73bc0559bb8399b2f895d68f032e41d7efc720c0";
   const parts = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "fritzing",
       repo: "fritzing-parts",
       rev: partsSha,
       hash: "sha256-2aXvSXWjQliEChQGhcCicOVoAqeNdeq69wQVYQsd2ew=",
     }))));
   const svgpp = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       owner: "svgpp",
       repo: "svgpp",
       tag: "v1.3.1",
       hash: "sha256-nW0ns06XWfUi22nOKZzFKgAOHVIlQqChW8HxUDOFMh4=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "fritzing",
       version: "1.0.6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           owner: "fritzing",
           repo: "fritzing-app",
           rev: "04e5bb0241e8f1de24d0fce9be070041c6d5b68e",
@@ -88,7 +83,7 @@ mkdir parts
 cp -a ${parts}/* parts/
 `),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), " ", nix.thunk(() => nix.concat([
             nix.thunk(() => nix.str`-I${nix.app(nix.sel(lib, "getDev"), nix.thunk(() => nix.sel(kdePackages, "quazip")))}/include/QuaZip-Qt${nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(qt6, "qtbase", "version")))}-${nix.sel(kdePackages, "quazip", "version")}`),
             nix.thunk(() => nix.str`-I${svgpp}/include`),
@@ -102,7 +97,7 @@ cp -a ${parts}/* parts/
       preFixup: "qtWrapperArgs+=(\"${gappsWrapperArgs[@]}\")\n",
       postFixup: "# generate the parts.db file\nQT_QPA_PLATFORM=offscreen \"$out/bin/Fritzing\" \\\n  -db \"$out/share/fritzing/parts/parts.db\" \\\n  -pp \"$out/share/fritzing/parts\" \\\n  -folder \"$out/share/fritzing\"\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Open source prototyping tool for Arduino-based projects",
         homepage: "https://fritzing.org",
         license: nix.thunk(() => (() => {

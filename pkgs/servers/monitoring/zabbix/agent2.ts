@@ -2,11 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/agent2.nix", [[["url", 24, 7], ["hash", 25, 15]], [["description", 81, 7], ["homepage", 82, 7], ["license", 83, 7], ["maintainers", 85, 7], ["platforms", 89, 7]], [["pname", 20, 5], ["version", 21, 13], ["src", 23, 5], ["modRoot", 28, 5], ["vendorHash", 30, 5], ["nativeBuildInputs", 32, 5], ["buildInputs", 36, 5], ["postPatch", 44, 5], ["preConfigure", 53, 5], ["buildPhase", 65, 5], ["installPhase", 70, 5], ["meta", 80, 5]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchurl: false, autoreconfHook: false, "pkg-config": false, libiconv: false, openssl: false, pcre2: false, zlib: false }, ellipsis: false };
 const formals$2 = { args: { version: false, hash: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/agent2.nix", [["url", 24, 7], ["hash", 25, 15]]);
-const pos$2 = nix.positions(here + "/agent2.nix", [["description", 81, 7], ["homepage", 82, 7], ["license", 83, 7], ["maintainers", 85, 7], ["platforms", 89, 7]]);
-const pos$3 = nix.positions(here + "/agent2.nix", [["pname", 20, 5], ["version", 21, 13], ["src", 23, 5], ["modRoot", 28, 5], ["vendorHash", 30, 5], ["nativeBuildInputs", 32, 5], ["buildInputs", 36, 5], ["postPatch", 44, 5], ["preConfigure", 53, 5], ["buildPhase", 65, 5], ["installPhase", 70, 5], ["meta", 80, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,11 +22,11 @@ export default nix.lambda((args) => (() => {
       const version = nix.arg($_1, "version");
       const hash = nix.arg($_1, "hash");
       return nix.app(buildGoModule, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           pname: "zabbix-agent2",
           version: version,
           src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              [nix.POS]: pos$1,
+              [nix.POS]: $pos[0],
               url: nix.thunk(() => nix.str`https://cdn.zabbix.com/zabbix/sources/stable/${nix.app(nix.sel(lib, "versions", "majorMinor"), version)}/zabbix-${version}.tar.gz`),
               hash: hash,
             })))),
@@ -48,7 +46,7 @@ export default nix.lambda((args) => (() => {
           buildPhase: "cd ../..\nmake\n",
           installPhase: "mkdir -p $out/sbin\n\ninstall -Dm0644 src/go/conf/zabbix_agent2.conf $out/etc/zabbix_agent2.conf\ninstall -Dm0755 src/go/bin/zabbix_agent2 $out/bin/zabbix_agent2\n\n# create a symlink which is compatible with the zabbixAgent module\nln -s $out/bin/zabbix_agent2 $out/sbin/zabbix_agentd\n",
           meta: nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             description: "Enterprise-class open source distributed monitoring solution (client-side agent)",
             homepage: "https://www.zabbix.com/",
             license: nix.thunk(() => (nix.asBool(nix.ge(nix.app(nix.sel(lib, "versions", "major"), version), "7")) ? nix.sel(lib, "licenses", "agpl3Only") : nix.sel(lib, "licenses", "gpl2Plus"))),

@@ -2,44 +2,34 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/consul-template.nix", [[["contents", 11, 13], ["perms", 14, 13], ["destination", 15, 13]], [["template", 9, 9]], [["settings", 8, 50]], [["example", 8, 42]], [["instances", 8, 32]], [["server", 23, 11], ["bootstrap_expect", 24, 11], ["bind_addr", 25, 11]], [["enable", 21, 9], ["extraConfig", 22, 9]], [["consul-template", 8, 16], ["consul", 20, 16]], [["services", 8, 7]], [["machine", 5, 9]], [["name", 3, 3], ["nodes", 5, 3], ["testScript", 30, 3]]]);
 const formals$1 = { args: {  }, ellipsis: true };
 const formals$2 = { args: {  }, ellipsis: true };
-const pos$1 = nix.positions(here + "/consul-template.nix", [["contents", 11, 13], ["perms", 14, 13], ["destination", 15, 13]]);
-const pos$2 = nix.positions(here + "/consul-template.nix", [["template", 9, 9]]);
-const pos$3 = nix.positions(here + "/consul-template.nix", [["settings", 8, 50]]);
-const pos$4 = nix.positions(here + "/consul-template.nix", [["example", 8, 42]]);
-const pos$5 = nix.positions(here + "/consul-template.nix", [["instances", 8, 32]]);
-const pos$6 = nix.positions(here + "/consul-template.nix", [["server", 23, 11], ["bootstrap_expect", 24, 11], ["bind_addr", 25, 11]]);
-const pos$7 = nix.positions(here + "/consul-template.nix", [["enable", 21, 9], ["extraConfig", 22, 9]]);
-const pos$8 = nix.positions(here + "/consul-template.nix", [["consul-template", 8, 16], ["consul", 20, 16]]);
-const pos$9 = nix.positions(here + "/consul-template.nix", [["services", 8, 7]]);
-const pos$10 = nix.positions(here + "/consul-template.nix", [["machine", 5, 9]]);
-const pos$11 = nix.positions(here + "/consul-template.nix", [["name", 3, 3], ["nodes", 5, 3], ["testScript", 30, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   return {
-    [nix.POS]: pos$11,
+    [nix.POS]: $pos[10],
     name: "consul-template",
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$8,
+            [nix.POS]: $pos[7],
             "consul-template": nix.thunk(() => ({
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               instances: nix.thunk(() => ({
-                [nix.POS]: pos$4,
+                [nix.POS]: $pos[3],
                 example: nix.thunk(() => ({
-                  [nix.POS]: pos$3,
+                  [nix.POS]: $pos[2],
                   settings: nix.thunk(() => ({
-                    [nix.POS]: pos$2,
+                    [nix.POS]: $pos[1],
                     template: nix.thunk(() => [
                       nix.thunk(() => ({
-                        [nix.POS]: pos$1,
+                        [nix.POS]: $pos[0],
                         contents: "{{ key \"example\" }}\n",
                         perms: "0600",
                         destination: "/example",
@@ -50,9 +40,14 @@ export default nix.lambda((args) => (() => {
               })),
             })),
             consul: nix.thunk(() => ({
-              [nix.POS]: pos$7,
+              [nix.POS]: $pos[6],
               enable: true,
-              extraConfig: nix.thunk(() => ({ [nix.POS]: pos$6, server: true, bootstrap_expect: 1n, bind_addr: "127.0.0.1" })),
+              extraConfig: nix.thunk(() => ({
+                [nix.POS]: $pos[5],
+                server: true,
+                bootstrap_expect: 1n,
+                bind_addr: "127.0.0.1",
+              })),
             })),
           })),
         };

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 11, 5], ["hash", 12, 5]], [["description", 16, 5], ["longDescription", 17, 5], ["homepage", 22, 5]], [["pname", 4, 3], ["desktopName", 5, 3], ["version", 6, 3], ["icon", 7, 3], ["zip", 10, 3], ["meta", 15, 3]]]);
 const formals$1 = { args: { alephone: false, fetchurl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 11, 5], ["hash", 12, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 16, 5], ["longDescription", 17, 5], ["homepage", 22, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 4, 3], ["desktopName", 5, 3], ["version", 6, 3], ["icon", 7, 3], ["zip", 10, 3], ["meta", 15, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,17 +15,17 @@ export default nix.lambda((args) => (() => {
       const version = "20240510";
       const icon = nix.thunk(() => nix.add(nix.sel(alephone, "icons"), "/marathon-infinity.png"));
       const zip = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/Aleph-One-Marathon/alephone/releases/download/release-${version}/MarathonInfinity-${version}-Data.zip`),
           hash: "sha256-+FPym4Avqzyo4cZtfYPHXCS+q21+g9AIdKOImkd/UjU=",
         }))));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Third chapter of the Marathon trilogy",
         longDescription: "Marathon Infinity takes the closed universe of the Marathon series and blows it wide open. The solo/co-op campaign, “Blood Tides of Lh’owon,” is a 20-level scenario sporting new textures, weapons, and aliens. More than that, the scenario sheds a surprising new light on the story’s characters and the meaning of events. Having defeated the Pfhor and reawakened the ancient remnants of the S’pht, the player now faces a world where friends become enemies and all is not what it seems…\n\nMarathon Infinity is the most popular Marathon game in online play, and is compatible with hundreds of community-made maps. This release includes the classic graphics, and revamped high-definition textures and weapons.\n",
         homepage: "https://alephone.lhowon.org/games/infinity.html",
       }));
-      return { [nix.POS]: pos$3, pname, desktopName, version, icon, zip, meta };
+      return { [nix.POS]: $pos[2], pname, desktopName, version, icon, zip, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

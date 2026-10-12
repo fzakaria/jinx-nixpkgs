@@ -2,24 +2,10 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/cockpit.nix", [[["cockpitPath", 61, 16]], [["passthru", 61, 7]], [["maintainers", 67, 5]], [["enable", 74, 25]], [["polkit", 74, 18]], [["extraGroups", 76, 11]], [["users", 75, 15]], [["enable", 79, 11], ["port", 80, 11], ["openFirewall", 81, 11], ["plugins", 82, 11], ["allowed-origins", 83, 11]], [["cockpit", 78, 18]], [["imports", 73, 9], ["security", 74, 9], ["users", 75, 9], ["services", 78, 9]], [["libraries", 97, 19]], [["systemPackages", 92, 21]], [["imports", 91, 9], ["environment", 92, 9]], [["server", 70, 5], ["client", 88, 5]], [["name", 65, 3], ["meta", 66, 3], ["nodes", 69, 3], ["testScript", 220, 3]]]);
 const formals$1 = { args: { pkgs: false, lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/cockpit.nix", [["cockpitPath", 61, 16]]);
-const pos$2 = nix.positions(here + "/cockpit.nix", [["passthru", 61, 7]]);
-const pos$3 = nix.positions(here + "/cockpit.nix", [["maintainers", 67, 5]]);
 const formals$2 = { args: { config: false }, ellipsis: true };
-const pos$4 = nix.positions(here + "/cockpit.nix", [["enable", 74, 25]]);
-const pos$5 = nix.positions(here + "/cockpit.nix", [["polkit", 74, 18]]);
-const pos$6 = nix.positions(here + "/cockpit.nix", [["extraGroups", 76, 11]]);
-const pos$7 = nix.positions(here + "/cockpit.nix", [["users", 75, 15]]);
-const pos$8 = nix.positions(here + "/cockpit.nix", [["enable", 79, 11], ["port", 80, 11], ["openFirewall", 81, 11], ["plugins", 82, 11], ["allowed-origins", 83, 11]]);
-const pos$9 = nix.positions(here + "/cockpit.nix", [["cockpit", 78, 18]]);
-const pos$10 = nix.positions(here + "/cockpit.nix", [["imports", 73, 9], ["security", 74, 9], ["users", 75, 9], ["services", 78, 9]]);
 const formals$3 = { args: { config: false }, ellipsis: true };
-const pos$11 = nix.positions(here + "/cockpit.nix", [["libraries", 97, 19]]);
-const pos$12 = nix.positions(here + "/cockpit.nix", [["systemPackages", 92, 21]]);
-const pos$13 = nix.positions(here + "/cockpit.nix", [["imports", 91, 9], ["environment", 92, 9]]);
-const pos$14 = nix.positions(here + "/cockpit.nix", [["server", 70, 5], ["client", 88, 5]]);
-const pos$15 = nix.positions(here + "/cockpit.nix", [["name", 65, 3], ["meta", 66, 3], ["nodes", 69, 3], ["testScript", 220, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,44 +14,44 @@ export default nix.lambda((args) => (() => {
   const user = "alice";
   const password = "foobar";
   const helloPlugin = nix.thunk(() => nix.update(nix.app(nix.sel(pkgs, "runCommand"), "cockpit-hello-test", nix.thunk(() => ({})), "mkdir -p $out/share/cockpit/hello-test\n\ncat > $out/share/cockpit/hello-test/manifest.json << 'EOF'\n{\n  \"name\": \"hello-test\",\n  \"menu\": {\n    \"index\": {\n      \"label\": \"Hello Test\",\n      \"order\": 100\n    }\n  }\n}\nEOF\n\ncat > $out/share/cockpit/hello-test/index.html << 'EOF'\n<!DOCTYPE html>\n<html>\n<head>\n  <title>Hello Test</title>\n  <meta charset=\"utf-8\">\n  <script src=\"../base1/cockpit.js\"></script>\n</head>\n<body>\n  <h1>Hello Test Plugin</h1>\n  <div id=\"output\">Loading...</div>\n  <script src=\"test.js\"></script>\n</body>\n</html>\nEOF\n\ncat > $out/share/cockpit/hello-test/test.js << 'EOF'\n(function() {\n  var output = document.getElementById(\"output\");\n\n  if (typeof cockpit === \"undefined\") {\n    output.innerText = \"FAILED: cockpit.js not loaded\";\n    return;\n  }\n\n  cockpit.spawn([\"hello\"], { err: \"message\" })\n    .then(function(data) {\n      output.innerText = \"SUCCESS: \" + data;\n    })\n    .catch(function(error) {\n      output.innerText = \"FAILED: \" + (error ? error.message : \"unknown error\");\n    });\n})();\nEOF\n"), {
-    [nix.POS]: pos$2,
+    [nix.POS]: $pos[1],
     passthru: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       cockpitPath: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "hello"))]),
     })),
   }));
   return {
-    [nix.POS]: pos$15,
+    [nix.POS]: $pos[14],
     name: "cockpit",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "lucasew"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$14,
+      [nix.POS]: $pos[13],
       server: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config = nix.arg($_1, "config");
         return {
-          [nix.POS]: pos$10,
+          [nix.POS]: $pos[9],
           imports: nix.thunk(() => [nix.path(here, "./common/user-account.nix")]),
           security: nix.thunk(() => ({
-            [nix.POS]: pos$5,
-            polkit: nix.thunk(() => ({ [nix.POS]: pos$4, enable: true })),
+            [nix.POS]: $pos[4],
+            polkit: nix.thunk(() => ({ [nix.POS]: $pos[3], enable: true })),
           })),
           users: nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             users: nix.thunk(() => nix.attrsDyn({}, [
-              [user, nix.thunk(() => ({ [nix.POS]: pos$6, extraGroups: nix.thunk(() => ["wheel"]) }))],
+              [user, nix.thunk(() => ({ [nix.POS]: $pos[5], extraGroups: nix.thunk(() => ["wheel"]) }))],
             ])),
           })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$9,
+            [nix.POS]: $pos[8],
             cockpit: nix.thunk(() => ({
-              [nix.POS]: pos$8,
+              [nix.POS]: $pos[7],
               enable: true,
               port: 7890n,
               openFirewall: true,
@@ -81,13 +67,13 @@ export default nix.lambda((args) => (() => {
         const $_1 = nix.formals(args_1, formals$3);
         const config = nix.arg($_1, "config");
         return {
-          [nix.POS]: pos$13,
+          [nix.POS]: $pos[12],
           imports: nix.thunk(() => [nix.path(here, "./common/user-account.nix")]),
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$12,
+            [nix.POS]: $pos[11],
             systemPackages: nix.thunk(() => (() => {
               const seleniumScript = nix.thunk(() => nix.app(nix.sel(pkgs, "writers", "writePython3Bin"), "selenium-script", nix.thunk(() => ({
-                  [nix.POS]: pos$11,
+                  [nix.POS]: $pos[10],
                   libraries: nix.thunk(() => (() => {
                     const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "python3Packages")), null);
                     return [nix.thunk(() => nix.lookup(w, "selenium"))];

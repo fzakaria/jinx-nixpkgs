@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 27, 5], ["hash", 28, 5]], [["homepage", 65, 5], ["description", 66, 5], ["license", 67, 5], ["longDescription", 69, 5], ["platforms", 88, 5], ["maintainers", 89, 5], ["mainProgram", 90, 5]], [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["postPatch", 31, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 43, 3], ["configureFlags", 59, 3], ["meta", 64, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, SDL2: false, ftgl: false, autoreconfHook: false, "pkg-config": false, libpng: false, libjpeg: false, pcre2: false, SDL2_image: false, glew: false, libGLU: false, libGL: false, libx11: false, boost: false, glm: false, freetype: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 65, 5], ["description", 66, 5], ["license", 67, 5], ["longDescription", 69, 5], ["platforms", 88, 5], ["maintainers", 89, 5], ["mainProgram", 90, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["postPatch", 31, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 43, 3], ["configureFlags", 59, 3], ["meta", 64, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const glm = nix.arg($, "glm");
   const freetype = nix.arg($, "freetype");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "logstalgia",
       version: "1.1.4",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/acaudwell/Logstalgia/releases/download/logstalgia-${nix.sel(finalAttrs, "version")}/logstalgia-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-wEnv9AXpJANSIu2ya8xse18AoIkmq9t7Rn4kSSQnkKk=",
         })))),
@@ -58,7 +56,7 @@ export default nix.lambda((args) => (() => {
         "--with-boost-filesystem=boost_filesystem",
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://logstalgia.io/",
         description: "Website traffic visualization tool",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

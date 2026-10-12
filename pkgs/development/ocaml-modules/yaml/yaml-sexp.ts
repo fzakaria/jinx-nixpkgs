@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/yaml-sexp.nix", [[["description", 24, 5]], [["pname", 10, 3], ["version", 12, 18], ["src", 12, 26], ["propagatedBuildInputs", 14, 3], ["doCheck", 20, 3], ["checkInputs", 21, 3], ["meta", 23, 3]]]);
 const formals$1 = { args: { buildDunePackage: false, yaml: false, ppx_sexp_conv: false, sexplib: false, junit_alcotest: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/yaml-sexp.nix", [["description", 24, 5]]);
-const pos$2 = nix.positions(here + "/yaml-sexp.nix", [["pname", 10, 3], ["version", 12, 18], ["src", 12, 26], ["propagatedBuildInputs", 14, 3], ["doCheck", 20, 3], ["checkInputs", 21, 3], ["meta", 23, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,14 +13,14 @@ export default nix.lambda((args) => (() => {
   const sexplib = nix.arg($, "sexplib");
   const junit_alcotest = nix.arg($, "junit_alcotest");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "yaml-sexp",
       version: nix.thunk(() => nix.attr(yaml, "version")),
       src: nix.thunk(() => nix.attr(yaml, "src")),
       propagatedBuildInputs: nix.thunk(() => [yaml, ppx_sexp_conv, sexplib]),
       doCheck: true,
       checkInputs: nix.thunk(() => [junit_alcotest]),
-      meta: nix.thunk(() => nix.update(nix.sel(yaml, "meta"), { [nix.POS]: pos$1, description: "ocaml-yaml with sexp support" })),
+      meta: nix.thunk(() => nix.update(nix.sel(yaml, "meta"), { [nix.POS]: $pos[0], description: "ocaml-yaml with sexp support" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=yaml-sexp.ts.map

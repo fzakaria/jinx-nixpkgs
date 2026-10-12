@@ -2,12 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/prebuilt.nix", [[["self", 32, 7], ["sourceVersion", 33, 7], ["pythonVersion", 34, 7], ["packageOverrides", 35, 7], ["implementation", 37, 5], ["libPrefix", 38, 5], ["executable", 39, 5], ["sitePackages", 40, 5], ["hasDistutilsCxxPatch", 41, 5], ["pythonOnBuildForBuild", 44, 5], ["pythonOnBuildForHost", 45, 5], ["pythonOnBuildForTarget", 46, 5], ["pythonOnHostForHost", 47, 5], ["pythonOnTargetForTarget", 48, 5], ["pythonABITags", 50, 5]], [["aarch64-linux", 61, 5], ["x86_64-linux", 62, 5], ["aarch64-darwin", 63, 5]], [["url", 72, 5], ["hash", 73, 13]], [["homepage", 185, 5], ["description", 186, 5], ["mainProgram", 187, 5], ["license", 188, 5], ["platforms", 189, 5]], [["pname", 69, 11], ["version", 69, 17], ["src", 71, 3], ["buildInputs", 76, 3], ["nativeBuildInputs", 88, 3], ["installPhase", 90, 3], ["preFixup", 124, 3], ["doInstallCheck", 154, 3], ["installCheckPhase", 157, 3], ["setupHook", 177, 3], ["donPatchElf", 179, 3], ["dontStrip", 180, 3], ["passthru", 182, 11], ["meta", 184, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, autoPatchelfHook: false, "python-setup-hook": false, self: false, bzip2: false, expat: false, gdbm: false, ncurses6: false, sqlite: false, "tcl-8_6": false, "tk-8_6": false, zlib: false, packageOverrides: true, sourceVersion: false, pythonVersion: false, hash: false, passthruFun: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/prebuilt.nix", [["self", 32, 7], ["sourceVersion", 33, 7], ["pythonVersion", 34, 7], ["packageOverrides", 35, 7], ["implementation", 37, 5], ["libPrefix", 38, 5], ["executable", 39, 5], ["sitePackages", 40, 5], ["hasDistutilsCxxPatch", 41, 5], ["pythonOnBuildForBuild", 44, 5], ["pythonOnBuildForHost", 45, 5], ["pythonOnBuildForTarget", 46, 5], ["pythonOnHostForHost", 47, 5], ["pythonOnTargetForTarget", 48, 5], ["pythonABITags", 50, 5]]);
-const pos$2 = nix.positions(here + "/prebuilt.nix", [["aarch64-linux", 61, 5], ["x86_64-linux", 62, 5], ["aarch64-darwin", 63, 5]]);
-const pos$3 = nix.positions(here + "/prebuilt.nix", [["url", 72, 5], ["hash", 73, 13]]);
-const pos$4 = nix.positions(here + "/prebuilt.nix", [["homepage", 185, 5], ["description", 186, 5], ["mainProgram", 187, 5], ["license", 188, 5], ["platforms", 189, 5]]);
-const pos$5 = nix.positions(here + "/prebuilt.nix", [["pname", 69, 11], ["version", 69, 17], ["src", 71, 3], ["buildInputs", 76, 3], ["nativeBuildInputs", 88, 3], ["installPhase", 90, 3], ["preFixup", 124, 3], ["doInstallCheck", 154, 3], ["installCheckPhase", 157, 3], ["setupHook", 177, 3], ["donPatchElf", 179, 3], ["dontStrip", 180, 3], ["passthru", 182, 11], ["meta", 184, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -51,7 +47,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`pypy${nix.app(nix.sel(lib, "concatStrings"), nix.thunk(() => nix.app(nix.sel(lib, "take"), 2n, nix.thunk(() => nix.app(nix.sel(lib, "splitString"), ".", pythonVersion_1)))))}_pp${nix.sel(sourceVersion_1, "major")}${nix.sel(sourceVersion_1, "minor")}`),
       ]);
       return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         self: self_1,
         sourceVersion: sourceVersion_1,
         pythonVersion: pythonVersion_1,
@@ -76,18 +72,18 @@ export default nix.lambda((args) => (() => {
   })());
   const majorVersion = nix.thunk(() => nix.app(nix.sel(lib, "versions", "major"), pythonVersion));
   const downloadUrls = nix.thunk(() => ({
-    [nix.POS]: pos$2,
+    [nix.POS]: $pos[1],
     "aarch64-linux": nix.thunk(() => nix.str`https://downloads.python.org/pypy/pypy${pythonVersion}-v${version}-aarch64.tar.bz2`),
     "x86_64-linux": nix.thunk(() => nix.str`https://downloads.python.org/pypy/pypy${pythonVersion}-v${version}-linux64.tar.bz2`),
     "aarch64-darwin": nix.thunk(() => nix.str`https://downloads.python.org/pypy/pypy${pythonVersion}-v${version}-macos_arm64.tar.bz2`),
   }));
   const w_1 = nix.withScope(passthru, null);
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: pname,
       version: version,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           url: nix.thunk(() => nix.selOr(downloadUrls, () => nix.app(nix.builtins.throw, nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenv, "system")}`)), nix.key(nix.sel(stdenv, "system")))),
           hash: hash,
         })))),
@@ -154,7 +150,7 @@ $out/bin/${nix.lookup(w_1, "executable")} -c '${imports}'
       dontStrip: true,
       passthru: passthru,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "http://pypy.org/",
         description: nix.thunk(() => nix.str`Fast, compliant alternative implementation of the Python language (${pythonVersion})`),
         mainProgram: "pypy",

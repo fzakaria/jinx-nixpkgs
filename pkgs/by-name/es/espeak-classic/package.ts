@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 14, 5], ["sha256", 15, 5]], [["description", 41, 5], ["mainProgram", 42, 5], ["homepage", 43, 5], ["license", 44, 5], ["platforms", 45, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 18, 3], ["buildInputs", 19, 3], ["patches", 21, 3], ["prePatch", 25, 3], ["configurePhase", 33, 3], ["meta", 40, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, unzip: false, portaudio: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 14, 5], ["sha256", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 41, 5], ["mainProgram", 42, 5], ["homepage", 43, 5], ["license", 44, 5], ["platforms", 45, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 18, 3], ["buildInputs", 19, 3], ["patches", 21, 3], ["prePatch", 25, 3], ["configurePhase", 33, 3], ["meta", 40, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const unzip = nix.arg($, "unzip");
   const portaudio = nix.arg($, "portaudio");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "espeak",
       version: "1.48.04",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/espeak/espeak-${nix.sel(finalAttrs, "version")}-source.zip`),
           sha256: "0n86gwh9pw0jqqpdz7mxggllfr8k0r7pc67ayy7w5z6z79kig6mz",
         })))),
@@ -29,7 +27,7 @@ export default nix.lambda((args) => (() => {
       prePatch: nix.thunk(() => nix.add("sed -e s,/bin/ln,ln,g -i src/Makefile\nsed -e 's,^CXXFLAGS=-O2,CXXFLAGS=-O2 -D PATH_ESPEAK_DATA=\\\\\\\"$(DATADIR)\\\\\\\",' -i src/Makefile\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.eq(nix.sel(portaudio, "api_version"), 19n)), "cp src/portaudio19.h src/portaudio.h\n"))),
       configurePhase: "runHook preConfigure\ncd src\nmakeFlags=\"PREFIX=$out DATADIR=$out/share/espeak-data\"\nrunHook postConfigure\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Compact open source software speech synthesizer",
         mainProgram: "espeak",
         homepage: "https://espeak.sourceforge.net/",

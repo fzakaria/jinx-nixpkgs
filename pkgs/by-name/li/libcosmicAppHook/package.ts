@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["fallbackXdgDirs", 53, 5], ["cargoLinkerVar", 63, 5], ["cargoLinkLibs", 65, 5]], [["description", 92, 5], ["teams", 93, 5], ["license", 94, 5]], [["name", 29, 3], ["propagatedBuildInputs", 31, 3], ["depsTargetTargetPropagated", 37, 3], ["substitutions", 52, 3], ["meta", 91, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, makeSetupHook: false, runCommand: false, makeBinaryWrapper: false, "pkg-config": false, targetPackages: false, "cosmic-icons": false, "cosmic-settings": false, libGL: false, libxkbcommon: false, libxi: false, libxcursor: false, libx11: false, libxcb: false, wayland: false, "vulkan-loader": false, includeSettings: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["fallbackXdgDirs", 53, 5], ["cargoLinkerVar", 63, 5], ["cargoLinkLibs", 65, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 92, 5], ["teams", 93, 5], ["license", 94, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 29, 3], ["propagatedBuildInputs", 31, 3], ["depsTargetTargetPropagated", 37, 3], ["substitutions", 52, 3], ["meta", 91, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,7 +26,7 @@ export default nix.lambda((args) => (() => {
   const vulkan_loader = nix.arg($, "vulkan-loader");
   const includeSettings = nix.argOr($, "includeSettings", () => true);
   return nix.app(makeSetupHook, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       name: "libcosmic-app-hook",
       propagatedBuildInputs: nix.thunk(() => [makeBinaryWrapper, pkg_config]),
       depsTargetTargetPropagated: nix.thunk(() => (() => {
@@ -36,7 +34,7 @@ export default nix.lambda((args) => (() => {
         return nix.concat([libGL, libxkbcommon, libx11, libxcursor, libxi, libxcb], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), nix.thunk(() => [wayland, vulkan_loader])));
       })()),
       substitutions: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         fallbackXdgDirs: nix.thunk(() => (() => {
           const fallbackThemes = nix.thunk(() => nix.app(runCommand, "cosmic-fallback-themes", nix.thunk(() => ({})), nix.thunk(() => nix.str`mkdir -p $out/share
 ln -s ${nix.selOr(targetPackages, () => nix.force(cosmic_settings), "cosmic-settings")}/share/cosmic $out/share/cosmic
@@ -49,7 +47,7 @@ ln -s ${nix.selOr(targetPackages, () => nix.force(cosmic_settings), "cosmic-sett
         cargoLinkLibs: nix.thunk(() => nix.app(nix.sel(lib, "escapeShellArgs"), nix.thunk(() => nix.concat(["EGL", "xkbcommon", "X11", "X11-xcb", "Xcursor", "Xi", "xcb"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), nix.thunk(() => ["wayland-client", "wayland-egl", "vulkan"])))))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Setup hook for configuring and wrapping applications based on libcosmic",
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "cosmic"))]),
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

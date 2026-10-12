@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["RUSTFLAGS", 28, 5], ["RUSTC_BOOTSTRAP", 29, 5]], [["changelog", 46, 33], ["license", 46, 43], ["maintainers", 46, 51], ["description", 47, 5], ["homepage", 48, 5], ["platforms", 49, 5]], [["pname", 10, 3], ["version", 11, 26], ["src", 11, 34], ["cargoDeps", 11, 38], ["pyproject", 12, 3], ["postPatch", 14, 3], ["env", 27, 3], ["buildAndTestSubdir", 32, 3], ["nativeBuildInputs", 34, 3], ["doCheck", 41, 3], ["pythonImportsCheck", 43, 3], ["meta", 45, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, "bpf-linker": false, rustPlatform: false, "mitmproxy-rs": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["RUSTFLAGS", 28, 5], ["RUSTC_BOOTSTRAP", 29, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["changelog", 46, 33], ["license", 46, 43], ["maintainers", 46, 51], ["description", 47, 5], ["homepage", 48, 5], ["platforms", 49, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 10, 3], ["version", 11, 26], ["src", 11, 34], ["cargoDeps", 11, 38], ["pyproject", 12, 3], ["postPatch", 14, 3], ["env", 27, 3], ["buildAndTestSubdir", 32, 3], ["nativeBuildInputs", 34, 3], ["doCheck", 41, 3], ["pythonImportsCheck", 43, 3], ["meta", 45, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const rustPlatform = nix.arg($, "rustPlatform");
   const mitmproxy_rs = nix.arg($, "mitmproxy-rs");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "mitmproxy-linux",
       version: nix.thunk(() => nix.attr(mitmproxy_rs, "version")),
       src: nix.thunk(() => nix.attr(mitmproxy_rs, "src")),
@@ -32,7 +30,7 @@ substituteInPlace tmp.diff \\
   --replace-fail @mitmproxy-linux-redirector@ $out/bin/mitmproxy-linux-redirector
 patch -p1 < tmp.diff
 `),
-      env: nix.thunk(() => ({ [nix.POS]: pos$1, RUSTFLAGS: "-C target-feature=", RUSTC_BOOTSTRAP: 1n })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[0], RUSTFLAGS: "-C target-feature=", RUSTC_BOOTSTRAP: 1n })),
       buildAndTestSubdir: "mitmproxy-linux",
       nativeBuildInputs: nix.thunk(() => [
         bpf_linker,
@@ -44,7 +42,7 @@ patch -p1 < tmp.diff
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(mitmproxy_rs, "meta"));
         return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         changelog: nix.thunk(() => nix.attr(from, "changelog")),
         license: nix.thunk(() => nix.attr(from, "license")),
         maintainers: nix.thunk(() => nix.attr(from, "maintainers")),

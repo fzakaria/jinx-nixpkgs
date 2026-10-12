@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 15, 5], ["hash", 16, 5]], [["pname", 18, 54], ["version", 18, 60], ["src", 18, 68]], [["pname", 23, 43], ["version", 23, 49], ["src", 23, 57]], [["name", 32, 7], ["exec", 33, 7], ["icon", 34, 7], ["terminal", 35, 7], ["desktopName", 36, 7], ["genericName", 37, 7], ["comment", 38, 7], ["categories", 39, 7], ["startupWMClass", 44, 7], ["mimeTypes", 45, 7]], [["description", 69, 5], ["mainProgram", 70, 5], ["homepage", 71, 5], ["downloadPage", 72, 5], ["sourceProvenance", 73, 5], ["license", 74, 5], ["maintainers", 75, 5], ["platforms", 76, 5]], [["pname", 21, 11], ["version", 21, 17], ["src", 23, 3], ["nativeBuildInputs", 25, 3], ["desktopItems", 30, 3], ["installPhase", 52, 3], ["meta", 68, 3]]]);
 const formals$1 = { args: { lib: false, appimageTools: false, fetchurl: false, stdenvNoCC: false, makeDesktopItem: false, copyDesktopItems: false, makeWrapper: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 18, 54], ["version", 18, 60], ["src", 18, 68]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 23, 43], ["version", 23, 49], ["src", 23, 57]]);
-const pos$4 = nix.positions(here + "/package.nix", [["name", 32, 7], ["exec", 33, 7], ["icon", 34, 7], ["terminal", 35, 7], ["desktopName", 36, 7], ["genericName", 37, 7], ["comment", 38, 7], ["categories", 39, 7], ["startupWMClass", 44, 7], ["mimeTypes", 45, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 69, 5], ["mainProgram", 70, 5], ["homepage", 71, 5], ["downloadPage", 72, 5], ["sourceProvenance", 73, 5], ["license", 74, 5], ["maintainers", 75, 5], ["platforms", 76, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 21, 11], ["version", 21, 17], ["src", 23, 3], ["nativeBuildInputs", 25, 3], ["desktopItems", 30, 3], ["installPhase", 52, 3], ["meta", 68, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,20 +17,20 @@ export default nix.lambda((args) => (() => {
   const pname = "chatzone-desktop";
   const version = "5.7.0";
   const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: "https://ir.ozone.ru/s3/chatzone-clients/ci/5.7.0/1258/chatzone-desktop-linux-5.7.0.AppImage",
       hash: "sha256-t8qAdrvs1M9NuaQYZj+pCaYiSb4TZc7rY1rJVjSYaAE=",
     }))));
-  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: pos$2, pname: pname, version: version, src: src }))));
+  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: $pos[1], pname: pname, version: version, src: src }))));
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: pname,
       version: version,
-      src: nix.thunk(() => nix.app(nix.sel(appimageTools, "wrapType2"), nix.thunk(() => ({ [nix.POS]: pos$3, pname: pname, version: version, src: src })))),
+      src: nix.thunk(() => nix.app(nix.sel(appimageTools, "wrapType2"), nix.thunk(() => ({ [nix.POS]: $pos[2], pname: pname, version: version, src: src })))),
       nativeBuildInputs: nix.thunk(() => [copyDesktopItems, makeWrapper]),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             name: "chatzone",
             exec: "chatzone-desktop %U",
             icon: "chatzone-desktop",
@@ -63,7 +58,7 @@ wrapProgram $out/bin/chatzone-desktop \\
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Ozon corporate messenger",
         mainProgram: "chatzone-desktop",
         homepage: "https://apps.o3team.ru/",

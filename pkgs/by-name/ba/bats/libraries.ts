@@ -2,20 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/libraries.nix", [[["owner", 11, 7], ["repo", 12, 7], ["rev", 13, 7], ["hash", 14, 7]], [["description", 25, 7], ["platforms", 26, 7], ["homepage", 27, 7], ["license", 28, 7], ["maintainers", 29, 7]], [["pname", 8, 5], ["version", 9, 5], ["src", 10, 5], ["dontBuild", 16, 5], ["installPhase", 17, 5], ["meta", 24, 5]], [["owner", 37, 7], ["repo", 38, 7], ["rev", 39, 7], ["hash", 40, 7]], [["description", 51, 7], ["platforms", 52, 7], ["homepage", 53, 7], ["license", 54, 7], ["maintainers", 55, 7]], [["pname", 34, 5], ["version", 35, 5], ["src", 36, 5], ["dontBuild", 42, 5], ["installPhase", 43, 5], ["meta", 50, 5]], [["owner", 63, 7], ["repo", 64, 7], ["rev", 65, 7], ["hash", 66, 7]], [["description", 76, 7], ["platforms", 77, 7], ["homepage", 78, 7], ["license", 79, 7], ["maintainers", 80, 7]], [["pname", 60, 5], ["version", 61, 5], ["src", 62, 5], ["dontBuild", 68, 5], ["installPhase", 69, 5], ["meta", 75, 5]], [["owner", 88, 7], ["repo", 89, 7], ["rev", 90, 7], ["hash", 91, 7]], [["description", 102, 7], ["platforms", 103, 7], ["homepage", 104, 7], ["license", 105, 7], ["maintainers", 106, 7]], [["pname", 85, 5], ["version", 86, 5], ["src", 87, 5], ["dontBuild", 93, 5], ["installPhase", 94, 5], ["meta", 101, 5]], [["bats-assert", 7, 3], ["bats-file", 33, 3], ["bats-detik", 59, 3], ["bats-support", 84, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/libraries.nix", [["owner", 11, 7], ["repo", 12, 7], ["rev", 13, 7], ["hash", 14, 7]]);
-const pos$2 = nix.positions(here + "/libraries.nix", [["description", 25, 7], ["platforms", 26, 7], ["homepage", 27, 7], ["license", 28, 7], ["maintainers", 29, 7]]);
-const pos$3 = nix.positions(here + "/libraries.nix", [["pname", 8, 5], ["version", 9, 5], ["src", 10, 5], ["dontBuild", 16, 5], ["installPhase", 17, 5], ["meta", 24, 5]]);
-const pos$4 = nix.positions(here + "/libraries.nix", [["owner", 37, 7], ["repo", 38, 7], ["rev", 39, 7], ["hash", 40, 7]]);
-const pos$5 = nix.positions(here + "/libraries.nix", [["description", 51, 7], ["platforms", 52, 7], ["homepage", 53, 7], ["license", 54, 7], ["maintainers", 55, 7]]);
-const pos$6 = nix.positions(here + "/libraries.nix", [["pname", 34, 5], ["version", 35, 5], ["src", 36, 5], ["dontBuild", 42, 5], ["installPhase", 43, 5], ["meta", 50, 5]]);
-const pos$7 = nix.positions(here + "/libraries.nix", [["owner", 63, 7], ["repo", 64, 7], ["rev", 65, 7], ["hash", 66, 7]]);
-const pos$8 = nix.positions(here + "/libraries.nix", [["description", 76, 7], ["platforms", 77, 7], ["homepage", 78, 7], ["license", 79, 7], ["maintainers", 80, 7]]);
-const pos$9 = nix.positions(here + "/libraries.nix", [["pname", 60, 5], ["version", 61, 5], ["src", 62, 5], ["dontBuild", 68, 5], ["installPhase", 69, 5], ["meta", 75, 5]]);
-const pos$10 = nix.positions(here + "/libraries.nix", [["owner", 88, 7], ["repo", 89, 7], ["rev", 90, 7], ["hash", 91, 7]]);
-const pos$11 = nix.positions(here + "/libraries.nix", [["description", 102, 7], ["platforms", 103, 7], ["homepage", 104, 7], ["license", 105, 7], ["maintainers", 106, 7]]);
-const pos$12 = nix.positions(here + "/libraries.nix", [["pname", 85, 5], ["version", 86, 5], ["src", 87, 5], ["dontBuild", 93, 5], ["installPhase", 94, 5], ["meta", 101, 5]]);
-const pos$13 = nix.positions(here + "/libraries.nix", [["bats-assert", 7, 3], ["bats-file", 33, 3], ["bats-detik", 59, 3], ["bats-support", 84, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,13 +11,13 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return {
-    [nix.POS]: pos$13,
+    [nix.POS]: $pos[12],
     "bats-assert": nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname: "bats-assert",
         version: "2.2.4",
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             owner: "bats-core",
             repo: "bats-assert",
             rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,7 +26,7 @@ export default nix.lambda((args) => (() => {
         dontBuild: true,
         installPhase: "runHook preInstall\nmkdir -p \"$out/share/bats/bats-assert\"\ncp load.bash \"$out/share/bats/bats-assert\"\ncp -r src \"$out/share/bats/bats-assert\"\nrunHook postInstall\n",
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           description: "Common assertions for Bats",
           platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
           homepage: "https://github.com/bats-core/bats-assert",
@@ -50,11 +38,11 @@ export default nix.lambda((args) => (() => {
         })),
       }))),
     "bats-file": nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname: "bats-file",
         version: "0.4.0",
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             owner: "bats-core",
             repo: "bats-file",
             rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -63,7 +51,7 @@ export default nix.lambda((args) => (() => {
         dontBuild: true,
         installPhase: "runHook preInstall\nmkdir -p \"$out/share/bats/bats-file\"\ncp load.bash \"$out/share/bats/bats-file\"\ncp -r src \"$out/share/bats/bats-file\"\nrunHook postInstall\n",
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           description: "Common filesystem assertions for Bats",
           platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
           homepage: "https://github.com/bats-core/bats-file",
@@ -75,11 +63,11 @@ export default nix.lambda((args) => (() => {
         })),
       }))),
     "bats-detik": nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         pname: "bats-detik",
         version: "1.3.3",
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             owner: "bats-core",
             repo: "bats-detik",
             rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -88,7 +76,7 @@ export default nix.lambda((args) => (() => {
         dontBuild: true,
         installPhase: "runHook preInstall\nmkdir -p \"$out/share/bats/bats-detik\"\ncp -r lib/* \"$out/share/bats/bats-detik\"\nrunHook postInstall\n",
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           description: "Library to ease e2e tests of applications in K8s environments",
           platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
           homepage: "https://github.com/bats-core/bats-detik",
@@ -100,11 +88,11 @@ export default nix.lambda((args) => (() => {
         })),
       }))),
     "bats-support": nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-        [nix.POS]: pos$12,
+        [nix.POS]: $pos[11],
         pname: "bats-support",
         version: "0.3.0",
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$10,
+            [nix.POS]: $pos[9],
             owner: "bats-core",
             repo: "bats-support",
             rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -113,7 +101,7 @@ export default nix.lambda((args) => (() => {
         dontBuild: true,
         installPhase: "runHook preInstall\nmkdir -p \"$out/share/bats/bats-support\"\ncp load.bash \"$out/share/bats/bats-support\"\ncp -r src \"$out/share/bats/bats-support\"\nrunHook postInstall\n",
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$11,
+          [nix.POS]: $pos[10],
           description: "Supporting library for Bats test helpers",
           platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
           homepage: "https://github.com/bats-core/bats-support",

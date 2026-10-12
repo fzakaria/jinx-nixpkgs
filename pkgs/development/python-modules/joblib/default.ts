@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 35, 13], ["version", 35, 19], ["hash", 36, 5]], [["changelog", 72, 5], ["description", 73, 5], ["homepage", 74, 5], ["license", 75, 5], ["maintainers", 76, 5]], [["pname", 30, 3], ["version", 31, 3], ["pyproject", 32, 3], ["src", 34, 3], ["nativeBuildInputs", 39, 3], ["propagatedBuildInputs", 41, 3], ["nativeCheckInputs", 46, 3], ["propagatedNativeBuildInputs", 51, 3], ["dontLimitCheckPhaseThreads", 57, 3], ["enabledTestPaths", 59, 3], ["disabledTests", 61, 3], ["meta", 71, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, pythonAtLeast: false, stdenv: false, checkPhaseThreadLimitHook: false, setuptools: false, lz4: false, psutil: false, pytestCheckHook: false, threadpoolctl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 35, 13], ["version", 35, 19], ["hash", 36, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["changelog", 72, 5], ["description", 73, 5], ["homepage", 74, 5], ["license", 75, 5], ["maintainers", 76, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 30, 3], ["version", 31, 3], ["pyproject", 32, 3], ["src", 34, 3], ["nativeBuildInputs", 39, 3], ["propagatedBuildInputs", 41, 3], ["nativeCheckInputs", 46, 3], ["propagatedNativeBuildInputs", 51, 3], ["dontLimitCheckPhaseThreads", 57, 3], ["enabledTestPaths", 59, 3], ["disabledTests", 61, 3], ["meta", 71, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.5.3";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-hWGjJp5oARBoY/0NbYS7c3vp52MeM6rtP7nOWVNojaM=",
@@ -43,7 +41,7 @@ export default nix.lambda((args) => (() => {
         "test_memory",
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["test_dispatch_multiprocessing"]))));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         changelog: nix.thunk(() => nix.str`https://github.com/joblib/joblib/releases/tag/${version}`),
         description: "Lightweight pipelining: using Python functions as pipeline jobs",
         homepage: "https://joblib.readthedocs.io/",
@@ -51,7 +49,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

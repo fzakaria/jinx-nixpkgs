@@ -2,15 +2,8 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/wg-access-server.nix", [[["maintainers", 10, 5]], [["adminUsername", 18, 11]], [["adminPassword", 22, 13]], [["enable", 16, 9], ["settings", 17, 9], ["secretsFile", 20, 9]], [["wg-access-server", 15, 16]], [["services", 15, 7]], [["server", 14, 5]], [["name", 8, 3], ["meta", 9, 3], ["nodes", 13, 3], ["testScript", 29, 3]]]);
 const formals$1 = { args: { pkgs: false, lib: false, kernelPackages: true }, ellipsis: true };
-const pos$1 = nix.positions(here + "/wg-access-server.nix", [["maintainers", 10, 5]]);
-const pos$2 = nix.positions(here + "/wg-access-server.nix", [["adminUsername", 18, 11]]);
-const pos$3 = nix.positions(here + "/wg-access-server.nix", [["adminPassword", 22, 13]]);
-const pos$4 = nix.positions(here + "/wg-access-server.nix", [["enable", 16, 9], ["settings", 17, 9], ["secretsFile", 20, 9]]);
-const pos$5 = nix.positions(here + "/wg-access-server.nix", [["wg-access-server", 15, 16]]);
-const pos$6 = nix.positions(here + "/wg-access-server.nix", [["services", 15, 7]]);
-const pos$7 = nix.positions(here + "/wg-access-server.nix", [["server", 14, 5]]);
-const pos$8 = nix.positions(here + "/wg-access-server.nix", [["name", 8, 3], ["meta", 9, 3], ["nodes", 13, 3], ["testScript", 29, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,26 +11,26 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const kernelPackages = nix.argOr($, "kernelPackages", () => null);
   return {
-    [nix.POS]: pos$8,
+    [nix.POS]: $pos[7],
     name: "wg-access-server",
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
       return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "xanderio"))]),
       };
     })()),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       server: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         services: nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           "wg-access-server": nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             enable: true,
-            settings: nix.thunk(() => ({ [nix.POS]: pos$2, adminUsername: "admin" })),
-            secretsFile: nix.thunk(() => nix.app(nix.sel(pkgs, "writers", "writeYAML"), "secrets.yaml", nix.thunk(() => ({ [nix.POS]: pos$3, adminPassword: "hunter2" })))),
+            settings: nix.thunk(() => ({ [nix.POS]: $pos[1], adminUsername: "admin" })),
+            secretsFile: nix.thunk(() => nix.app(nix.sel(pkgs, "writers", "writeYAML"), "secrets.yaml", nix.thunk(() => ({ [nix.POS]: $pos[2], adminPassword: "hunter2" })))),
           })),
         })),
       })),

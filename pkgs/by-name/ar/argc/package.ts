@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]], [["LANG", 44, 5], ["LOCALE_ARCHIVE", 45, 5]], [["cross", 57, 7]], [["updateScript", 55, 5], ["tests", 56, 5]], [["description", 63, 5], ["mainProgram", 64, 5], ["homepage", 65, 5], ["changelog", 66, 5], ["license", 67, 5], ["maintainers", 72, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["cargoHash", 28, 3], ["nativeBuildInputs", 30, 3], ["postInstall", 32, 3], ["disallowedReferences", 41, 3], ["env", 43, 3], ["doInstallCheck", 50, 3], ["nativeInstallCheckInputs", 51, 3], ["versionCheckProgramArg", 52, 3], ["passthru", 54, 3], ["meta", 62, 3]]]);
 const formals$1 = { args: { lib: false, buildPackages: false, pkgsCross: false, rustPlatform: false, stdenv: false, glibcLocales: false, fetchFromGitHub: false, installShellFiles: false, versionCheckHook: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["LANG", 44, 5], ["LOCALE_ARCHIVE", 45, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["cross", 57, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 55, 5], ["tests", 56, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 63, 5], ["mainProgram", 64, 5], ["homepage", 65, 5], ["changelog", 66, 5], ["license", 67, 5], ["maintainers", 72, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["cargoHash", 28, 3], ["nativeBuildInputs", 30, 3], ["postInstall", 32, 3], ["disallowedReferences", 41, 3], ["env", 43, 3], ["doInstallCheck", 50, 3], ["nativeInstallCheckInputs", 51, 3], ["versionCheckProgramArg", 52, 3], ["passthru", 54, 3], ["meta", 62, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const canExecuteHost = nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform"))));
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "argc",
       version: "1.24.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "sigoden",
           repo: "argc",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -45,7 +40,7 @@ installShellCompletion --cmd argc \\
 `),
       disallowedReferences: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(canExecuteHost)), nix.thunk(() => nix.sel(buildPackages, "argc")))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         LANG: "C.UTF-8",
         LOCALE_ARCHIVE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool(nix.sel(finalAttrs, "finalPackage", "doInstallCheck")) && nix.asBool(!nix.eq(glibcLocales, null)))), nix.thunk(() => nix.str`${glibcLocales}/lib/locale/locale-archive`))),
       })),
@@ -53,15 +48,15 @@ installShellCompletion --cmd argc \\
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       versionCheckProgramArg: "--argc-version",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           cross: nix.thunk(() => nix.sel((nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")) ? nix.sel(pkgsCross, "gnu64") : nix.sel(pkgsCross, "aarch64-multiplatform")), "argc")),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Command-line options, arguments and sub-commands parser for bash",
         mainProgram: "argc",
         homepage: "https://github.com/sigoden/argc",

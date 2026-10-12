@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 14, 5], ["hash", 15, 5]], [["repos", 30, 5], ["groupId", 31, 5], ["artifactId", 32, 5], ["version", 33, 5], ["hash", 34, 5]], [["graal-build-time", 29, 12]], [["description", 38, 5], ["homepage", 39, 5], ["sourceProvenance", 40, 5], ["license", 41, 5], ["changelog", 42, 5], ["maintainers", 43, 5], ["mainProgram", 44, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["extraNativeImageBuildArgs", 18, 3], ["doInstallCheck", 24, 3], ["nativeInstallCheckInputs", 25, 3], ["versionCheckProgramArg", 26, 3], ["passthru", 29, 3], ["meta", 37, 3]]]);
 const formals$1 = { args: { lib: false, buildGraalvmNativeImage: false, fetchMavenArtifact: false, fetchurl: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 14, 5], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["repos", 30, 5], ["groupId", 31, 5], ["artifactId", 32, 5], ["version", 33, 5], ["hash", 34, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["graal-build-time", 29, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 38, 5], ["homepage", 39, 5], ["sourceProvenance", 40, 5], ["license", 41, 5], ["changelog", 42, 5], ["maintainers", 43, 5], ["mainProgram", 44, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["extraNativeImageBuildArgs", 18, 3], ["doInstallCheck", 24, 3], ["nativeInstallCheckInputs", 25, 3], ["versionCheckProgramArg", 26, 3], ["passthru", 29, 3], ["meta", 37, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(buildGraalvmNativeImage, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "cljstyle",
       version: "0.17.642",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/greglook/cljstyle/releases/download/${nix.sel(finalAttrs, "version")}/cljstyle-${nix.sel(finalAttrs, "version")}.jar`),
           hash: "sha256-AkCuTZeDXbNBuwPZEMhYGF/oOGIKq5zVDwL8xwnj+mE=",
         })))),
@@ -34,9 +30,9 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       versionCheckProgramArg: nix.thunk(() => ["version"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         "graal-build-time": nix.thunk(() => nix.app(fetchMavenArtifact, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             repos: nix.thunk(() => ["https://repo.clojars.org/"]),
             groupId: "com.github.clj-easy",
             artifactId: "graal-build-time",
@@ -45,7 +41,7 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Tool for formatting Clojure code",
         homepage: "https://github.com/greglook/cljstyle",
         sourceProvenance: nix.thunk(() => (() => {

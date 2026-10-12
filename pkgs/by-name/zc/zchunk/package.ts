@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5]], [["callPackage", 50, 15], ["directory", 51, 7]], [["updateScript", 48, 5], ["tests", 49, 5]], [["homepage", 56, 5], ["description", 57, 5], ["longDescription", 58, 5], ["license", 66, 5], ["mainProgram", 67, 5], ["maintainers", 68, 5], ["platforms", 69, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 32, 3], ["outputs", 38, 3], ["strictDeps", 45, 3], ["passthru", 47, 3], ["meta", 55, 3]]]);
 const formals$1 = { args: { lib: false, "argp-standalone": false, callPackage: false, curl: false, fetchFromGitHub: false, gitUpdater: false, meson: false, ninja: false, "pkg-config": false, stdenv: false, zstd: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["callPackage", 50, 15], ["directory", 51, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 48, 5], ["tests", 49, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 56, 5], ["description", 57, 5], ["longDescription", 58, 5], ["license", 66, 5], ["mainProgram", 67, 5], ["maintainers", 68, 5], ["platforms", 69, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 32, 3], ["outputs", 38, 3], ["strictDeps", 45, 3], ["passthru", 47, 3], ["meta", 55, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const zstd = nix.arg($, "zstd");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "zchunk",
       version: "1.5.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "zchunk",
           repo: "zchunk",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -38,16 +34,16 @@ export default nix.lambda((args) => (() => {
       outputs: nix.thunk(() => ["out", "dev", "lib", "man"]),
       strictDeps: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
         tests: nix.thunk(() => nix.app(nix.sel(lib, "packagesFromDirectoryRecursive"), nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             callPackage: callPackage,
             directory: nix.path(here, "./tests"),
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://github.com/zchunk/zchunk",
         description: "File format designed for highly efficient deltas while maintaining good compression",
         longDescription: "zchunk is a compressed file format that splits the file into independent\nchunks. This allows you to only download changed chunks when downloading a\nnew version of the file, and also makes zchunk files efficient over rsync.\n\nzchunk files are protected with strong checksums to verify that the file\nyou downloaded is, in fact, the file you wanted.\n",

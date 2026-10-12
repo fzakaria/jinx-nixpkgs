@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]], [["description", 74, 5], ["homepage", 75, 5], ["changelog", 76, 5], ["license", 77, 5], ["maintainers", 78, 5]], [["pname", 22, 3], ["version", 23, 3], ["pyproject", 24, 3], ["src", 26, 3], ["postPatch", 33, 3], ["build-system", 41, 3], ["dependencies", 43, 3], ["nativeCheckInputs", 55, 3], ["disabledTests", 62, 3], ["pythonImportsCheck", 68, 3], ["meta", 73, 3]]]);
 const formals$1 = { args: { lib: false, allpairspy: false, "approval-utilities": false, beautifulsoup4: false, buildPythonPackage: false, "empty-files": false, fetchFromGitHub: false, mock: false, numpy: false, pyperclip: false, pytest: false, "pytest-asyncio": false, pytestCheckHook: false, pyyaml: false, setuptools: false, testfixtures: false, "typing-extensions": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 74, 5], ["homepage", 75, 5], ["changelog", 76, 5], ["license", 77, 5], ["maintainers", 78, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 22, 3], ["version", 23, 3], ["pyproject", 24, 3], ["src", 26, 3], ["postPatch", 33, 3], ["build-system", 41, 3], ["dependencies", 43, 3], ["nativeCheckInputs", 55, 3], ["disabledTests", 62, 3], ["pythonImportsCheck", 68, 3], ["meta", 73, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const version = "18.0.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "approvals",
           repo: "ApprovalTests.Python",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -62,7 +60,7 @@ patchShebangs internal_documentation/scripts
         "approvaltests.reporters.generic_diff_reporter_factory",
       ]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Assertion/verification library to aid testing",
         homepage: "https://github.com/approvals/ApprovalTests.Python",
         changelog: nix.thunk(() => nix.str`https://github.com/approvals/ApprovalTests.Python/releases/tag/${nix.sel(src, "tag")}`),
@@ -70,7 +68,7 @@ patchShebangs internal_documentation/scripts
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

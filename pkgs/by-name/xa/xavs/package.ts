@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 12, 5], ["rev", 13, 5], ["sha256", 14, 5]], [["description", 47, 5], ["mainProgram", 48, 5], ["homepage", 49, 5], ["license", 50, 5], ["platforms", 51, 5], ["maintainers", 52, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["enableParallelBuilding", 17, 3], ["patchPhase", 19, 3], ["configureFlags", 39, 3], ["meta", 46, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchsvn: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 12, 5], ["rev", 13, 5], ["sha256", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 47, 5], ["mainProgram", 48, 5], ["homepage", 49, 5], ["license", 50, 5], ["platforms", 51, 5], ["maintainers", 52, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["enableParallelBuilding", 17, 3], ["patchPhase", 19, 3], ["configureFlags", 39, 3], ["meta", 46, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,11 +11,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchsvn = nix.arg($, "fetchsvn");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "xavs",
       version: "55",
       src: nix.thunk(() => nix.app(fetchsvn, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://svn.code.sf.net/p/xavs/code/trunk",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
           sha256: "0drw16wm95dqszpl7j33y4gckz0w0107lnz6wkzb66f0dlbv48cf",
@@ -26,7 +24,7 @@ export default nix.lambda((args) => (() => {
       patchPhase: nix.thunk(() => nix.add("patchShebangs configure\npatchShebangs config.sub\npatchShebangs version.sh\npatchShebangs tools/countquant_xavs.pl\npatchShebangs tools/patcheck\npatchShebangs tools/regression-test.pl\npatchShebangs tools/xavs-format\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "substituteInPlace config.guess --replace 'uname -p' 'uname -m'\nsubstituteInPlace configure \\\n  --replace '-O4' '-O3' \\\n  --replace ' -s ' ' ' \\\n  --replace 'LDFLAGS -s' 'LDFLAGS' \\\n  --replace '-dynamiclib' ' ' \\\n  --replace '-falign-loops=16' ' '\nsubstituteInPlace Makefile --replace '-Wl,-soname,' ' '\n"))),
       configureFlags: nix.thunk(() => ["--enable-pic", "--enable-shared", "--disable-asm"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "AVS encoder and decoder",
         mainProgram: "xavs",
         homepage: "https://xavs.sourceforge.net/",

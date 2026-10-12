@@ -2,69 +2,14 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/test-containers-bittorrent.nix", [[["systemPackages", 41, 19]], [["environment", 41, 7]], [["maintainers", 51, 5]], [["vlans", 62, 24]], [["enable", 63, 29]], [["address", 66, 13], ["prefixLength", 67, 13]], [["addresses", 64, 41]], [["ipv4", 64, 36]], [["eth1", 64, 31]], [["firewall", 63, 20], ["interfaces", 64, 20]], [["adminAddr", 76, 15], ["documentRoot", 77, 15]], [["torrentserver.org", 75, 13]], [["enable", 73, 11], ["virtualHosts", 74, 11]], [["enable", 81, 30]], [["httpd", 72, 18], ["opentracker", 81, 18]], [["imports", 60, 9], ["virtualisation", 62, 9], ["networking", 63, 9], ["services", 72, 9]], [["vlans", 87, 24]], [["enable", 91, 24], ["internalInterfaces", 92, 24], ["externalInterface", 93, 24]], [["enable", 94, 29], ["trustedInterfaces", 95, 29]], [["addresses", 96, 41]], [["ipv4", 96, 36]], [["address", 99, 13], ["prefixLength", 100, 13]], [["addresses", 97, 41]], [["ipv4", 97, 36]], [["address", 105, 13], ["prefixLength", 106, 13]], [["addresses", 103, 41]], [["ipv4", 103, 36]], [["eth0", 96, 31], ["eth1", 97, 31], ["eth2", 103, 31]], [["enable", 109, 29]], [["nat", 91, 20], ["firewall", 94, 20], ["interfaces", 96, 20], ["nftables", 109, 20]], [["enable", 111, 11], ["externalInterface", 112, 11], ["internalIPs", 113, 11], ["appendConfig", 114, 11]], [["miniupnpd", 110, 18]], [["virtualisation", 87, 9], ["networking", 91, 9], ["services", 110, 9]], [["systemPackages", 124, 21]], [["vlans", 126, 24]], [["addresses", 127, 41]], [["ipv4", 127, 36]], [["address", 130, 13], ["prefixLength", 131, 13]], [["addresses", 128, 41]], [["ipv4", 128, 36]], [["eth0", 127, 31], ["eth1", 128, 31]], [["enable", 135, 29]], [["interfaces", 127, 20], ["defaultGateway", 134, 20], ["firewall", 135, 20]], [["imports", 123, 9], ["environment", 124, 9], ["virtualisation", 126, 9], ["networking", 127, 9]], [["vlans", 143, 24]], [["addresses", 144, 41]], [["ipv4", 144, 36]], [["address", 147, 13], ["prefixLength", 148, 13]], [["addresses", 145, 41]], [["ipv4", 145, 36]], [["eth0", 144, 31], ["eth1", 145, 31]], [["enable", 151, 29]], [["interfaces", 144, 20], ["firewall", 151, 20]], [["imports", 141, 9], ["virtualisation", 143, 9], ["networking", 144, 9]], [["tracker", 57, 5], ["router", 84, 5], ["client1", 120, 5], ["client2", 138, 5]], [["name", 49, 3], ["meta", 50, 3], ["containers", 56, 3], ["testScript", 155, 3]]]);
 const formals$1 = { args: { lib: false, hostPkgs: false }, ellipsis: true };
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/test-containers-bittorrent.nix", [["systemPackages", 41, 19]]);
-const pos$2 = nix.positions(here + "/test-containers-bittorrent.nix", [["environment", 41, 7]]);
-const pos$3 = nix.positions(here + "/test-containers-bittorrent.nix", [["maintainers", 51, 5]]);
 const formals$3 = { args: { pkgs: false }, ellipsis: true };
-const pos$4 = nix.positions(here + "/test-containers-bittorrent.nix", [["vlans", 62, 24]]);
-const pos$5 = nix.positions(here + "/test-containers-bittorrent.nix", [["enable", 63, 29]]);
-const pos$6 = nix.positions(here + "/test-containers-bittorrent.nix", [["address", 66, 13], ["prefixLength", 67, 13]]);
-const pos$7 = nix.positions(here + "/test-containers-bittorrent.nix", [["addresses", 64, 41]]);
-const pos$8 = nix.positions(here + "/test-containers-bittorrent.nix", [["ipv4", 64, 36]]);
-const pos$9 = nix.positions(here + "/test-containers-bittorrent.nix", [["eth1", 64, 31]]);
-const pos$10 = nix.positions(here + "/test-containers-bittorrent.nix", [["firewall", 63, 20], ["interfaces", 64, 20]]);
-const pos$11 = nix.positions(here + "/test-containers-bittorrent.nix", [["adminAddr", 76, 15], ["documentRoot", 77, 15]]);
-const pos$12 = nix.positions(here + "/test-containers-bittorrent.nix", [["torrentserver.org", 75, 13]]);
-const pos$13 = nix.positions(here + "/test-containers-bittorrent.nix", [["enable", 73, 11], ["virtualHosts", 74, 11]]);
-const pos$14 = nix.positions(here + "/test-containers-bittorrent.nix", [["enable", 81, 30]]);
-const pos$15 = nix.positions(here + "/test-containers-bittorrent.nix", [["httpd", 72, 18], ["opentracker", 81, 18]]);
-const pos$16 = nix.positions(here + "/test-containers-bittorrent.nix", [["imports", 60, 9], ["virtualisation", 62, 9], ["networking", 63, 9], ["services", 72, 9]]);
 const formals$4 = { args: { pkgs: false, containers: false }, ellipsis: true };
-const pos$17 = nix.positions(here + "/test-containers-bittorrent.nix", [["vlans", 87, 24]]);
-const pos$18 = nix.positions(here + "/test-containers-bittorrent.nix", [["enable", 91, 24], ["internalInterfaces", 92, 24], ["externalInterface", 93, 24]]);
-const pos$19 = nix.positions(here + "/test-containers-bittorrent.nix", [["enable", 94, 29], ["trustedInterfaces", 95, 29]]);
-const pos$20 = nix.positions(here + "/test-containers-bittorrent.nix", [["addresses", 96, 41]]);
-const pos$21 = nix.positions(here + "/test-containers-bittorrent.nix", [["ipv4", 96, 36]]);
-const pos$22 = nix.positions(here + "/test-containers-bittorrent.nix", [["address", 99, 13], ["prefixLength", 100, 13]]);
-const pos$23 = nix.positions(here + "/test-containers-bittorrent.nix", [["addresses", 97, 41]]);
-const pos$24 = nix.positions(here + "/test-containers-bittorrent.nix", [["ipv4", 97, 36]]);
-const pos$25 = nix.positions(here + "/test-containers-bittorrent.nix", [["address", 105, 13], ["prefixLength", 106, 13]]);
-const pos$26 = nix.positions(here + "/test-containers-bittorrent.nix", [["addresses", 103, 41]]);
-const pos$27 = nix.positions(here + "/test-containers-bittorrent.nix", [["ipv4", 103, 36]]);
-const pos$28 = nix.positions(here + "/test-containers-bittorrent.nix", [["eth0", 96, 31], ["eth1", 97, 31], ["eth2", 103, 31]]);
-const pos$29 = nix.positions(here + "/test-containers-bittorrent.nix", [["enable", 109, 29]]);
-const pos$30 = nix.positions(here + "/test-containers-bittorrent.nix", [["nat", 91, 20], ["firewall", 94, 20], ["interfaces", 96, 20], ["nftables", 109, 20]]);
-const pos$31 = nix.positions(here + "/test-containers-bittorrent.nix", [["enable", 111, 11], ["externalInterface", 112, 11], ["internalIPs", 113, 11], ["appendConfig", 114, 11]]);
-const pos$32 = nix.positions(here + "/test-containers-bittorrent.nix", [["miniupnpd", 110, 18]]);
-const pos$33 = nix.positions(here + "/test-containers-bittorrent.nix", [["virtualisation", 87, 9], ["networking", 91, 9], ["services", 110, 9]]);
 const formals$5 = { args: { pkgs: false, containers: false }, ellipsis: true };
-const pos$34 = nix.positions(here + "/test-containers-bittorrent.nix", [["systemPackages", 124, 21]]);
-const pos$35 = nix.positions(here + "/test-containers-bittorrent.nix", [["vlans", 126, 24]]);
-const pos$36 = nix.positions(here + "/test-containers-bittorrent.nix", [["addresses", 127, 41]]);
-const pos$37 = nix.positions(here + "/test-containers-bittorrent.nix", [["ipv4", 127, 36]]);
-const pos$38 = nix.positions(here + "/test-containers-bittorrent.nix", [["address", 130, 13], ["prefixLength", 131, 13]]);
-const pos$39 = nix.positions(here + "/test-containers-bittorrent.nix", [["addresses", 128, 41]]);
-const pos$40 = nix.positions(here + "/test-containers-bittorrent.nix", [["ipv4", 128, 36]]);
-const pos$41 = nix.positions(here + "/test-containers-bittorrent.nix", [["eth0", 127, 31], ["eth1", 128, 31]]);
-const pos$42 = nix.positions(here + "/test-containers-bittorrent.nix", [["enable", 135, 29]]);
-const pos$43 = nix.positions(here + "/test-containers-bittorrent.nix", [["interfaces", 127, 20], ["defaultGateway", 134, 20], ["firewall", 135, 20]]);
-const pos$44 = nix.positions(here + "/test-containers-bittorrent.nix", [["imports", 123, 9], ["environment", 124, 9], ["virtualisation", 126, 9], ["networking", 127, 9]]);
 const formals$6 = { args: { pkgs: false }, ellipsis: true };
-const pos$45 = nix.positions(here + "/test-containers-bittorrent.nix", [["vlans", 143, 24]]);
-const pos$46 = nix.positions(here + "/test-containers-bittorrent.nix", [["addresses", 144, 41]]);
-const pos$47 = nix.positions(here + "/test-containers-bittorrent.nix", [["ipv4", 144, 36]]);
-const pos$48 = nix.positions(here + "/test-containers-bittorrent.nix", [["address", 147, 13], ["prefixLength", 148, 13]]);
-const pos$49 = nix.positions(here + "/test-containers-bittorrent.nix", [["addresses", 145, 41]]);
-const pos$50 = nix.positions(here + "/test-containers-bittorrent.nix", [["ipv4", 145, 36]]);
-const pos$51 = nix.positions(here + "/test-containers-bittorrent.nix", [["eth0", 144, 31], ["eth1", 145, 31]]);
-const pos$52 = nix.positions(here + "/test-containers-bittorrent.nix", [["enable", 151, 29]]);
-const pos$53 = nix.positions(here + "/test-containers-bittorrent.nix", [["interfaces", 144, 20], ["firewall", 151, 20]]);
-const pos$54 = nix.positions(here + "/test-containers-bittorrent.nix", [["imports", 141, 9], ["virtualisation", 143, 9], ["networking", 144, 9]]);
-const pos$55 = nix.positions(here + "/test-containers-bittorrent.nix", [["tracker", 57, 5], ["router", 84, 5], ["client1", 120, 5], ["client2", 138, 5]]);
 const formals$7 = { args: { containers: false }, ellipsis: true };
-const pos$56 = nix.positions(here + "/test-containers-bittorrent.nix", [["name", 49, 3], ["meta", 50, 3], ["containers", 56, 3], ["testScript", 155, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -81,9 +26,9 @@ export default nix.lambda((args) => (() => {
     const $_1 = nix.formals(args_1, formals$2);
     const pkgs = nix.arg($_1, "pkgs");
     return {
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       environment: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         systemPackages: nix.thunk(() => [
           nix.thunk(() => nix.sel(pkgs, "aria2")),
           nix.thunk(() => nix.sel(pkgs, "transmission_4")),
@@ -92,48 +37,48 @@ export default nix.lambda((args) => (() => {
     };
   })(), formals$2);
   return {
-    [nix.POS]: pos$56,
+    [nix.POS]: $pos[55],
     name: "bittorrent",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "kmein"))]),
     })),
     containers: nix.thunk(() => ({
-      [nix.POS]: pos$55,
+      [nix.POS]: $pos[54],
       tracker: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$3);
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$16,
+          [nix.POS]: $pos[15],
           imports: nix.thunk(() => [peerConfig]),
-          virtualisation: nix.thunk(() => ({ [nix.POS]: pos$4, vlans: nix.thunk(() => [1n]) })),
+          virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[3], vlans: nix.thunk(() => [1n]) })),
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$10,
-            firewall: nix.thunk(() => ({ [nix.POS]: pos$5, enable: false })),
+            [nix.POS]: $pos[9],
+            firewall: nix.thunk(() => ({ [nix.POS]: $pos[4], enable: false })),
             interfaces: nix.thunk(() => ({
-              [nix.POS]: pos$9,
+              [nix.POS]: $pos[8],
               eth1: nix.thunk(() => ({
-                [nix.POS]: pos$8,
+                [nix.POS]: $pos[7],
                 ipv4: nix.thunk(() => ({
-                  [nix.POS]: pos$7,
+                  [nix.POS]: $pos[6],
                   addresses: nix.thunk(() => [
-                    nix.thunk(() => ({ [nix.POS]: pos$6, address: externalTrackerAddress, prefixLength: 24n })),
+                    nix.thunk(() => ({ [nix.POS]: $pos[5], address: externalTrackerAddress, prefixLength: 24n })),
                   ]),
                 })),
               })),
             })),
           })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$15,
+            [nix.POS]: $pos[14],
             httpd: nix.thunk(() => ({
-              [nix.POS]: pos$13,
+              [nix.POS]: $pos[12],
               enable: true,
               virtualHosts: nix.thunk(() => ({
-                [nix.POS]: pos$12,
-                "torrentserver.org": nix.thunk(() => ({ [nix.POS]: pos$11, adminAddr: "foo@example.org", documentRoot: "/tmp" })),
+                [nix.POS]: $pos[11],
+                "torrentserver.org": nix.thunk(() => ({ [nix.POS]: $pos[10], adminAddr: "foo@example.org", documentRoot: "/tmp" })),
               })),
             })),
-            opentracker: nix.thunk(() => ({ [nix.POS]: pos$14, enable: true })),
+            opentracker: nix.thunk(() => ({ [nix.POS]: $pos[13], enable: true })),
           })),
         };
       })(), formals$3),
@@ -142,52 +87,52 @@ export default nix.lambda((args) => (() => {
         const pkgs = nix.arg($_1, "pkgs");
         const containers = nix.arg($_1, "containers");
         return {
-          [nix.POS]: pos$33,
-          virtualisation: nix.thunk(() => ({ [nix.POS]: pos$17, vlans: nix.thunk(() => [1n, 2n]) })),
+          [nix.POS]: $pos[32],
+          virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[16], vlans: nix.thunk(() => [1n, 2n]) })),
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$30,
+            [nix.POS]: $pos[29],
             nat: nix.thunk(() => ({
-              [nix.POS]: pos$18,
+              [nix.POS]: $pos[17],
               enable: true,
               internalInterfaces: nix.thunk(() => ["eth2"]),
               externalInterface: "eth1",
             })),
             firewall: nix.thunk(() => ({
-              [nix.POS]: pos$19,
+              [nix.POS]: $pos[18],
               enable: true,
               trustedInterfaces: nix.thunk(() => ["eth2"]),
             })),
             interfaces: nix.thunk(() => ({
-              [nix.POS]: pos$28,
+              [nix.POS]: $pos[27],
               eth0: nix.thunk(() => ({
-                [nix.POS]: pos$21,
-                ipv4: nix.thunk(() => ({ [nix.POS]: pos$20, addresses: [] })),
+                [nix.POS]: $pos[20],
+                ipv4: nix.thunk(() => ({ [nix.POS]: $pos[19], addresses: [] })),
               })),
               eth1: nix.thunk(() => ({
-                [nix.POS]: pos$24,
+                [nix.POS]: $pos[23],
                 ipv4: nix.thunk(() => ({
-                  [nix.POS]: pos$23,
+                  [nix.POS]: $pos[22],
                   addresses: nix.thunk(() => [
-                    nix.thunk(() => ({ [nix.POS]: pos$22, address: externalRouterAddress, prefixLength: 24n })),
+                    nix.thunk(() => ({ [nix.POS]: $pos[21], address: externalRouterAddress, prefixLength: 24n })),
                   ]),
                 })),
               })),
               eth2: nix.thunk(() => ({
-                [nix.POS]: pos$27,
+                [nix.POS]: $pos[26],
                 ipv4: nix.thunk(() => ({
-                  [nix.POS]: pos$26,
+                  [nix.POS]: $pos[25],
                   addresses: nix.thunk(() => [
-                    nix.thunk(() => ({ [nix.POS]: pos$25, address: internalRouterAddress, prefixLength: 24n })),
+                    nix.thunk(() => ({ [nix.POS]: $pos[24], address: internalRouterAddress, prefixLength: 24n })),
                   ]),
                 })),
               })),
             })),
-            nftables: nix.thunk(() => ({ [nix.POS]: pos$29, enable: true })),
+            nftables: nix.thunk(() => ({ [nix.POS]: $pos[28], enable: true })),
           })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$32,
+            [nix.POS]: $pos[31],
             miniupnpd: nix.thunk(() => ({
-              [nix.POS]: pos$31,
+              [nix.POS]: $pos[30],
               enable: true,
               externalInterface: "eth1",
               internalIPs: nix.thunk(() => ["eth2"]),
@@ -202,33 +147,33 @@ export default nix.lambda((args) => (() => {
         const pkgs = nix.arg($_1, "pkgs");
         const containers = nix.arg($_1, "containers");
         return {
-          [nix.POS]: pos$44,
+          [nix.POS]: $pos[43],
           imports: nix.thunk(() => [peerConfig]),
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$34,
+            [nix.POS]: $pos[33],
             systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "miniupnpc"))]),
           })),
-          virtualisation: nix.thunk(() => ({ [nix.POS]: pos$35, vlans: nix.thunk(() => [2n]) })),
+          virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[34], vlans: nix.thunk(() => [2n]) })),
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$43,
+            [nix.POS]: $pos[42],
             interfaces: nix.thunk(() => ({
-              [nix.POS]: pos$41,
+              [nix.POS]: $pos[40],
               eth0: nix.thunk(() => ({
-                [nix.POS]: pos$37,
-                ipv4: nix.thunk(() => ({ [nix.POS]: pos$36, addresses: [] })),
+                [nix.POS]: $pos[36],
+                ipv4: nix.thunk(() => ({ [nix.POS]: $pos[35], addresses: [] })),
               })),
               eth1: nix.thunk(() => ({
-                [nix.POS]: pos$40,
+                [nix.POS]: $pos[39],
                 ipv4: nix.thunk(() => ({
-                  [nix.POS]: pos$39,
+                  [nix.POS]: $pos[38],
                   addresses: nix.thunk(() => [
-                    nix.thunk(() => ({ [nix.POS]: pos$38, address: internalClient1Address, prefixLength: 24n })),
+                    nix.thunk(() => ({ [nix.POS]: $pos[37], address: internalClient1Address, prefixLength: 24n })),
                   ]),
                 })),
               })),
             })),
             defaultGateway: internalRouterAddress,
-            firewall: nix.thunk(() => ({ [nix.POS]: pos$42, enable: false })),
+            firewall: nix.thunk(() => ({ [nix.POS]: $pos[41], enable: false })),
           })),
         };
       })(), formals$5),
@@ -236,28 +181,28 @@ export default nix.lambda((args) => (() => {
         const $_1 = nix.formals(args_1, formals$6);
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$54,
+          [nix.POS]: $pos[53],
           imports: nix.thunk(() => [peerConfig]),
-          virtualisation: nix.thunk(() => ({ [nix.POS]: pos$45, vlans: nix.thunk(() => [1n]) })),
+          virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[44], vlans: nix.thunk(() => [1n]) })),
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$53,
+            [nix.POS]: $pos[52],
             interfaces: nix.thunk(() => ({
-              [nix.POS]: pos$51,
+              [nix.POS]: $pos[50],
               eth0: nix.thunk(() => ({
-                [nix.POS]: pos$47,
-                ipv4: nix.thunk(() => ({ [nix.POS]: pos$46, addresses: [] })),
+                [nix.POS]: $pos[46],
+                ipv4: nix.thunk(() => ({ [nix.POS]: $pos[45], addresses: [] })),
               })),
               eth1: nix.thunk(() => ({
-                [nix.POS]: pos$50,
+                [nix.POS]: $pos[49],
                 ipv4: nix.thunk(() => ({
-                  [nix.POS]: pos$49,
+                  [nix.POS]: $pos[48],
                   addresses: nix.thunk(() => [
-                    nix.thunk(() => ({ [nix.POS]: pos$48, address: externalClient2Address, prefixLength: 24n })),
+                    nix.thunk(() => ({ [nix.POS]: $pos[47], address: externalClient2Address, prefixLength: 24n })),
                   ]),
                 })),
               })),
             })),
-            firewall: nix.thunk(() => ({ [nix.POS]: pos$52, enable: false })),
+            firewall: nix.thunk(() => ({ [nix.POS]: $pos[51], enable: false })),
           })),
         };
       })(), formals$6),

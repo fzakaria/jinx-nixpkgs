@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]], [["homepage", 65, 5], ["description", 66, 5], ["license", 67, 5], ["platforms", 68, 5], ["maintainers", 69, 5], ["mainProgram", 70, 5]], [["pname", 17, 3], ["version", 18, 3], ["format", 19, 3], ["src", 21, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 33, 3], ["propagatedBuildInputs", 37, 3], ["dontWrapGApps", 50, 3], ["postInstall", 52, 3], ["preFixup", 57, 3], ["doCheck", 62, 3], ["meta", 64, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, atk: false, "gdk-pixbuf": false, "gobject-introspection": false, "gtk-layer-shell": false, gtk3: false, pango: false, python3Packages: false, wrapGAppsHook3: false, hyprlandSupport: true, "wlr-randr": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 65, 5], ["description", 66, 5], ["license", 67, 5], ["platforms", 68, 5], ["maintainers", 69, 5], ["mainProgram", 70, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["format", 19, 3], ["src", 21, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 33, 3], ["propagatedBuildInputs", 37, 3], ["dontWrapGApps", 50, 3], ["postInstall", 52, 3], ["preFixup", 57, 3], ["doCheck", 62, 3], ["meta", 64, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const hyprlandSupport = nix.argOr($, "hyprlandSupport", () => true);
   const wlr_randr = nix.arg($, "wlr-randr");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "nwg-displays",
       version: "0.4.4",
       format: "setuptools",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "nwg-piotr",
           repo: "nwg-displays",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -49,7 +47,7 @@ export default nix.lambda((args) => (() => {
       preFixup: "makeWrapperArgs+=(\"${gappsWrapperArgs[@]}\");\n",
       doCheck: false,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/nwg-piotr/nwg-displays",
         description: "Output management utility for Sway, Hyprland and Niri",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

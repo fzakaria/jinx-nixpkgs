@@ -2,15 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 21, 9], ["repo", 22, 9], ["rev", 23, 9], ["sha256", 24, 9]], [["mainProgram", 43, 17], ["homepage", 44, 9], ["description", 45, 9], ["license", 46, 9], ["maintainers", 47, 9]], [["pname", 16, 15], ["version", 17, 7], ["shortRev", 18, 7], ["src", 20, 7], ["subPackages", 27, 15], ["postInstall", 27, 27], ["vendorHash", 29, 7], ["doCheck", 31, 7], ["ldflags", 33, 7], ["meta", 42, 7]], [["pname", 55, 5], ["subPackages", 56, 5], ["postInstall", 57, 5], ["mainProgram", 72, 5]], [["pname", 76, 5], ["subPackages", 77, 5], ["mainProgram", 78, 5]], [["pname", 82, 5], ["subPackages", 83, 5], ["mainProgram", 84, 5]], [["sensu-go-cli", 54, 3], ["sensu-go-backend", 75, 3], ["sensu-go-agent", 81, 3]]]);
 const formals$1 = { args: { buildGoModule: false, fetchFromGitHub: false, lib: false }, ellipsis: false };
 const formals$2 = { args: { subPackages: false, pname: false, postInstall: true, mainProgram: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 21, 9], ["repo", 22, 9], ["rev", 23, 9], ["sha256", 24, 9]]);
-const pos$2 = nix.positions(here + "/default.nix", [["mainProgram", 43, 17], ["homepage", 44, 9], ["description", 45, 9], ["license", 46, 9], ["maintainers", 47, 9]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 16, 15], ["version", 17, 7], ["shortRev", 18, 7], ["src", 20, 7], ["subPackages", 27, 15], ["postInstall", 27, 27], ["vendorHash", 29, 7], ["doCheck", 31, 7], ["ldflags", 33, 7], ["meta", 42, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 55, 5], ["subPackages", 56, 5], ["postInstall", 57, 5], ["mainProgram", 72, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 76, 5], ["subPackages", 77, 5], ["mainProgram", 78, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 82, 5], ["subPackages", 83, 5], ["mainProgram", 84, 5]]);
-const pos$7 = nix.positions(here + "/default.nix", [["sensu-go-cli", 54, 3], ["sensu-go-backend", 75, 3], ["sensu-go-agent", 81, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,7 +22,7 @@ export default nix.lambda((args) => (() => {
         const version = "6.14.2";
         const shortRev = "591ed6e";
         const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             owner: "sensu",
             repo: "sensu-go",
             rev: nix.thunk(() => nix.str`v${version}`),
@@ -46,7 +40,7 @@ export default nix.lambda((args) => (() => {
           ];
         })());
         const meta = nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           mainProgram: mainProgram,
           homepage: "https://sensu.io",
           description: "Open source monitoring tool for ephemeral infrastructure & distributed applications",
@@ -57,7 +51,7 @@ export default nix.lambda((args) => (() => {
           })()),
         }));
         return {
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           pname: pname_1,
           version,
           shortRev,
@@ -72,22 +66,22 @@ export default nix.lambda((args) => (() => {
       })()));
   })(), formals$2);
   return {
-    [nix.POS]: pos$7,
+    [nix.POS]: $pos[6],
     "sensu-go-cli": nix.thunk(() => nix.app(generic, nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname: "sensu-go-cli",
         subPackages: nix.thunk(() => ["cmd/sensuctl"]),
         postInstall: "mkdir -p \\\n  \"${!outputBin}/share/bash-completion/completions\" \\\n  \"${!outputBin}/share/zsh/site-functions\"\n\n${!outputBin}/bin/sensuctl completion bash > ${!outputBin}/share/bash-completion/completions/sensuctl\n\n# https://github.com/sensu/sensu-go/issues/3132\n(\n  echo \"#compdef sensuctl\"\n  ${!outputBin}/bin/sensuctl completion zsh\n  echo '_complete sensuctl 2>/dev/null'\n) > ${!outputBin}/share/zsh/site-functions/_sensuctl\n\n",
         mainProgram: "sensuctl",
       })))),
     "sensu-go-backend": nix.thunk(() => nix.app(generic, nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname: "sensu-go-backend",
         subPackages: nix.thunk(() => ["cmd/sensu-backend"]),
         mainProgram: "sensu-backend",
       })))),
     "sensu-go-agent": nix.thunk(() => nix.app(generic, nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname: "sensu-go-agent",
         subPackages: nix.thunk(() => ["cmd/sensu-agent"]),
         mainProgram: "sensu-agent",

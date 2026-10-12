@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]], [["cli", 36, 5]], [["description", 54, 5], ["homepage", 55, 5], ["changelog", 56, 5], ["license", 57, 5], ["maintainers", 58, 5]], [["pname", 17, 3], ["version", 18, 3], ["pyproject", 19, 3], ["src", 21, 3], ["build-system", 28, 3], ["dependencies", 30, 3], ["optional-dependencies", 35, 3], ["nativeCheckInputs", 43, 3], ["pytestFlags", 49, 3], ["pythonImportsCheck", 51, 3], ["meta", 53, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, click: false, cryptography: false, fetchFromGitHub: false, hatchling: false, orjson: false, "pytest-asyncio": false, "pytest-timeout": false, pytestCheckHook: false, xdg: false, zeroconf: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["cli", 36, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 54, 5], ["homepage", 55, 5], ["changelog", 56, 5], ["license", 57, 5], ["maintainers", 58, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 17, 3], ["version", 18, 3], ["pyproject", 19, 3], ["src", 21, 3], ["build-system", 28, 3], ["dependencies", 30, 3], ["optional-dependencies", 35, 3], ["nativeCheckInputs", 43, 3], ["pytestFlags", 49, 3], ["pythonImportsCheck", 51, 3], ["meta", 53, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const xdg = nix.arg($, "xdg");
   const zeroconf = nix.arg($, "zeroconf");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "pylutron-caseta",
       version: "0.29.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "gurumitts",
           repo: "pylutron-caseta",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,12 +33,12 @@ export default nix.lambda((args) => (() => {
         })))),
       "build-system": nix.thunk(() => [hatchling]),
       dependencies: nix.thunk(() => [cryptography, orjson]),
-      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$2, cli: nix.thunk(() => [click, xdg, zeroconf]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: $pos[1], cli: nix.thunk(() => [click, xdg, zeroconf]) })),
       nativeCheckInputs: nix.thunk(() => [pytest_asyncio, pytest_timeout, pytestCheckHook]),
       pytestFlags: nix.thunk(() => ["--asyncio-mode=auto"]),
       pythonImportsCheck: nix.thunk(() => ["pylutron_caseta"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Python module to control Lutron Caseta devices",
         homepage: "https://github.com/gurumitts/pylutron-caseta",
         changelog: nix.thunk(() => nix.str`https://github.com/gurumitts/pylutron-caseta/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

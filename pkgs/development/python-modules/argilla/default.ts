@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 74, 5], ["repo", 75, 5], ["tag", 76, 5], ["hash", 77, 5]], [["server", 110, 5], ["postgresql", 135, 5], ["listeners", 139, 5], ["integrations", 143, 5]], [["description", 186, 5], ["homepage", 187, 5], ["changelog", 188, 5], ["license", 189, 5], ["maintainers", 190, 5], ["mainProgram", 191, 5]], [["pname", 69, 3], ["version", 70, 3], ["pyproject", 71, 3], ["src", 73, 3], ["sourceRoot", 80, 3], ["pythonRelaxDeps", 82, 3], ["build-system", 90, 3], ["dependencies", 92, 3], ["optional-dependencies", 109, 3], ["doCheck", 169, 3], ["preCheck", 171, 3], ["nativeCheckInputs", 175, 3], ["disabledTestPaths", 183, 3], ["meta", 185, 3]]]);
 const formals$1 = { args: { lib: false, aiofiles: false, aiosqlite: false, alembic: false, asyncpg: false, backoff: false, "brotli-asgi": false, buildPythonPackage: false, cleanlab: false, datasets: false, elasticsearch8: false, evaluate: false, "factory-boy": false, faiss: false, fastapi: false, fetchFromGitHub: false, flyingsquid: false, greenlet: false, httpx: false, "huggingface-hub": false, luqum: false, monotonic: false, numpy: false, openai: false, "opensearch-py": false, packaging: false, pandas: false, passlib: false, "pdm-backend": false, peft: false, pgmpy: false, pillow: false, plotly: false, prodict: false, psutil: false, psycopg2: false, pydantic: false, "pytest-asyncio": false, "pytest-mock": false, pytestCheckHook: false, "python-jose": false, "python-multipart": false, pyyaml: false, rich: false, schedule: false, "scikit-learn": false, "sentence-transformers": false, seqeval: false, "smart-open": false, snorkel: false, "spacy-transformers": false, spacy: false, sqlalchemy: false, standardwebhooks: false, tqdm: false, transformers: false, typer: false, uvicorn: false, wrapt: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 74, 5], ["repo", 75, 5], ["tag", 76, 5], ["hash", 77, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["server", 110, 5], ["postgresql", 135, 5], ["listeners", 139, 5], ["integrations", 143, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 186, 5], ["homepage", 187, 5], ["changelog", 188, 5], ["license", 189, 5], ["maintainers", 190, 5], ["mainProgram", 191, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 69, 3], ["version", 70, 3], ["pyproject", 71, 3], ["src", 73, 3], ["sourceRoot", 80, 3], ["pythonRelaxDeps", 82, 3], ["build-system", 90, 3], ["dependencies", 92, 3], ["optional-dependencies", 109, 3], ["doCheck", 169, 3], ["preCheck", 171, 3], ["nativeCheckInputs", 175, 3], ["disabledTestPaths", 183, 3], ["meta", 185, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -74,7 +71,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.8.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "argilla-io",
           repo: "argilla",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -100,7 +97,7 @@ export default nix.lambda((args) => (() => {
         standardwebhooks,
       ]);
       const optional_dependencies = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         server: nix.thunk(() => nix.concat([
           aiofiles,
           aiosqlite,
@@ -147,7 +144,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => nix.concat([pytestCheckHook, pytest_mock, pytest_asyncio, factory_boy], nix.app(nix.sel(lib, "concatAttrValues"), optional_dependencies)));
       const disabledTestPaths = nix.thunk(() => ["tests/server/datasets/test_dao.py"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Open-source data curation platform for LLMs",
         homepage: "https://github.com/argilla-io/argilla",
         changelog: nix.thunk(() => nix.str`https://github.com/argilla-io/argilla/releases/tag/${nix.sel(src, "tag")}`),
@@ -159,7 +156,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "argilla",
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

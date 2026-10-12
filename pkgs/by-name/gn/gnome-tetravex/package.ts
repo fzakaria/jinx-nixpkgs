@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 25, 5], ["hash", 26, 5]], [["packageName", 51, 41]], [["updateScript", 51, 5]], [["homepage", 55, 5], ["description", 56, 5], ["mainProgram", 57, 5], ["teams", 58, 5], ["license", 59, 5], ["platforms", 60, 5]], [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 43, 3], ["postPatch", 45, 3], ["passthru", 50, 3], ["meta", 54, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, "pkg-config": false, gnome: false, "adwaita-icon-theme": false, gtk3: false, wrapGAppsHook3: false, libxml2: false, gettext: false, itstool: false, meson: false, ninja: false, python3: false, vala: false, "desktop-file-utils": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["packageName", 51, 41]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 51, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 55, 5], ["description", 56, 5], ["mainProgram", 57, 5], ["teams", 58, 5], ["license", 59, 5], ["platforms", 60, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 43, 3], ["postPatch", 45, 3], ["passthru", 50, 3], ["meta", 54, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const vala = nix.arg($, "vala");
   const desktop_file_utils = nix.arg($, "desktop-file-utils");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "gnome-tetravex",
       version: "3.38.3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnome/sources/gnome-tetravex/${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/gnome-tetravex-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-g4SawGTUVuHdRrbiAcaGFSYkw9HsS5mTWYWkmqeRcss=",
         })))),
@@ -52,11 +48,11 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [gtk3]),
       postPatch: "chmod +x build-aux/meson_post_install.py\npatchShebangs build-aux/meson_post_install.py\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$2, packageName: "gnome-tetravex" })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: $pos[1], packageName: "gnome-tetravex" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://gitlab.gnome.org/GNOME/gnome-tetravex",
         description: "Complete the puzzle by matching numbered tiles",
         mainProgram: "gnome-tetravex",

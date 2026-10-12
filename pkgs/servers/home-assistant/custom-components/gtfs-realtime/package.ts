@@ -2,10 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]], [["changelog", 41, 5], ["description", 42, 5], ["homepage", 43, 5], ["license", 44, 5], ["maintainers", 45, 5]], [["owner", 13, 3], ["domain", 14, 3], ["version", 15, 3], ["src", 17, 3], ["dependencies", 24, 3], ["nativeCheckInputs", 26, 3], ["disabledTests", 33, 3], ["ignoreVersionRequirement", 38, 3], ["meta", 40, 3]]]);
 const formals$1 = { args: { lib: false, buildHomeAssistantComponent: false, fetchFromGitHub: false, "gtfs-station-stop": false, "pytest-cov-stub": false, "pytest-freezer": false, "pytest-homeassistant-custom-component": false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["changelog", 41, 5], ["description", 42, 5], ["homepage", 43, 5], ["license", 44, 5], ["maintainers", 45, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["owner", 13, 3], ["domain", 14, 3], ["version", 15, 3], ["src", 17, 3], ["dependencies", 24, 3], ["nativeCheckInputs", 26, 3], ["disabledTests", 33, 3], ["ignoreVersionRequirement", 38, 3], ["meta", 40, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const domain = "gtfs_realtime";
       const version = "0.4.10";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "bcpearce",
           repo: "homeassistant-gtfs-realtime",
           tag: version,
@@ -38,7 +36,7 @@ export default nix.lambda((args) => (() => {
       const disabledTests = nix.thunk(() => ["test_call_card_creator"]);
       const ignoreVersionRequirement = nix.thunk(() => ["gtfs_station_stop"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         changelog: nix.thunk(() => nix.str`https://github.com/bcpearce/homeassistant-gtfs-realtime/releases/tag/${nix.sel(src, "tag")}`),
         description: "GTFS Realtime transit arrivals for Home Assistant",
         homepage: "https://github.com/bcpearce/homeassistant-gtfs-realtime",
@@ -46,7 +44,7 @@ export default nix.lambda((args) => (() => {
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "stepbrobd"))]),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         owner,
         domain,
         version,

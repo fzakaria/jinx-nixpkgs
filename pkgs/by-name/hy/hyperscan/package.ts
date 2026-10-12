@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]], [["broken", 118, 5], ["description", 119, 5], ["longDescription", 120, 5], ["homepage", 133, 5], ["maintainers", 134, 5], ["platforms", 135, 5], ["license", 138, 5]], [["pname", 16, 3], ["version", 17, 3], ["__structuredAttrs", 19, 3], ["strictDeps", 20, 3], ["src", 22, 3], ["outputs", 29, 3], ["postPatch", 34, 3], ["buildInputs", 56, 3], ["nativeBuildInputs", 57, 3], ["cmakeFlags", 65, 3], ["preConfigure", 82, 3], ["doCheck", 107, 3], ["checkPhase", 108, 3], ["meta", 117, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, ragel: false, python3: false, "util-linux": false, "pkg-config": false, boost: false, pcre: false, withStatic: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["broken", 118, 5], ["description", 119, 5], ["longDescription", 120, 5], ["homepage", 133, 5], ["maintainers", 134, 5], ["platforms", 135, 5], ["license", 138, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["__structuredAttrs", 19, 3], ["strictDeps", 20, 3], ["src", 22, 3], ["outputs", 29, 3], ["postPatch", 34, 3], ["buildInputs", 56, 3], ["nativeBuildInputs", 57, 3], ["cmakeFlags", 65, 3], ["preConfigure", 82, 3], ["doCheck", 107, 3], ["checkPhase", 108, 3], ["meta", 117, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,13 +19,13 @@ export default nix.lambda((args) => (() => {
   const pcre = nix.arg($, "pcre");
   const withStatic = nix.argOr($, "withStatic", () => false);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "hyperscan",
       version: "5.4.2",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "intel",
           repo: "hyperscan",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -54,7 +52,7 @@ ${nix.app(nix.sel(lib, "optionalString"), withStatic, "bin/unit-chimera")}
 runHook postCheck
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isStatic")),
         description: "High-performance multiple regex matching library",
         longDescription: "Hyperscan is a high-performance multiple regex matching library.\nIt follows the regular expression syntax of the commonly-used\nlibpcre library, but is a standalone library with its own C API.\n\nHyperscan uses hybrid automata techniques to allow simultaneous\nmatching of large numbers (up to tens of thousands) of regular\nexpressions and for the matching of regular expressions across\nstreams of data.\n\nHyperscan is typically used in a DPI library stack.\n",

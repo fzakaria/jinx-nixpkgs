@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["pname", 16, 5], ["version", 17, 13], ["hash", 18, 5]], [["name", 24, 7], ["url", 25, 7], ["hash", 26, 7]], [["description", 54, 5], ["mainProgram", 55, 5], ["homepage", 56, 5], ["changelog", 57, 5], ["license", 58, 5], ["maintainers", 59, 5]], [["pname", 11, 3], ["version", 12, 3], ["pyproject", 13, 3], ["src", 15, 3], ["patches", 21, 3], ["build-system", 30, 3], ["dependencies", 36, 3], ["__darwinAllowLocalNetworking", 40, 3], ["nativeCheckInputs", 42, 3], ["unittestFlagsArray", 46, 3], ["pythonImportsCheck", 51, 3], ["meta", 53, 3]]]);
 const formals$1 = { args: { lib: false, python311: false, fetchpatch: false, fetchPypi: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["pname", 16, 5], ["version", 17, 13], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 24, 7], ["url", 25, 7], ["hash", 26, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 54, 5], ["mainProgram", 55, 5], ["homepage", 56, 5], ["changelog", 57, 5], ["license", 58, 5], ["maintainers", 59, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["pyproject", 13, 3], ["src", 15, 3], ["patches", 21, 3], ["build-system", 30, 3], ["dependencies", 36, 3], ["__darwinAllowLocalNetworking", 40, 3], ["nativeCheckInputs", 42, 3], ["unittestFlagsArray", 46, 3], ["pythonImportsCheck", 51, 3], ["meta", 53, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,14 +16,14 @@ export default nix.lambda((args) => (() => {
       const version = "2.2.9.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: nix.thunk(() => nix.app(nix.sel(lib, "toUpper"), pname)),
           version: version,
           hash: "sha256-jVa8N/uCP8Y4fXgTjOloQFxUoKjNl3ZoJwX9CYMlLRY=",
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "remove-pip-build-dependency.patch",
             url: "https://github.com/macs3-project/MACS/commit/cf95a930daccf9f16e5b9a9224c5a2670cf67939.patch",
             hash: "sha256-WB3Ubqk5fKtZt97QYo/sZDU/yya9MUo1NL4VsKXR+Yo=",
@@ -52,7 +49,7 @@ export default nix.lambda((args) => (() => {
       const unittestFlagsArray = nix.thunk(() => ["-s", "test"]);
       const pythonImportsCheck = nix.thunk(() => ["MACS2"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Model-based Analysis for ChIP-Seq",
         mainProgram: "macs2",
         homepage: "https://github.com/macs3-project/MACS/",
@@ -61,7 +58,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

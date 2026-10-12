@@ -2,11 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/fetchxrd.nix", [[["nativeBuildInputs", 18, 5], ["outputHashAlgo", 19, 5], ["outputHashMode", 20, 5], ["outputHash", 21, 5], ["url", 22, 13], ["urls", 23, 5]], [["pname", 41, 17], ["version", 41, 23], ["name", 42, 9]], [["name", 46, 9]]]);
 const formals$1 = { args: { lib: false, runCommandLocal: false, xrootd: false }, ellipsis: false };
 const formals$2 = { args: { name: true, pname: true, version: true, urls: true, url: true, hash: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/fetchxrd.nix", [["nativeBuildInputs", 18, 5], ["outputHashAlgo", 19, 5], ["outputHashMode", 20, 5], ["outputHash", 21, 5], ["url", 22, 13], ["urls", 23, 5]]);
-const pos$2 = nix.positions(here + "/fetchxrd.nix", [["pname", 41, 17], ["version", 41, 23], ["name", 42, 9]]);
-const pos$3 = nix.positions(here + "/fetchxrd.nix", [["name", 46, 9]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,7 +20,7 @@ export default nix.lambda((args) => (() => {
     const url = nix.argOr($_1, "url", () => (nix.asBool(nix.eq(urls, [])) ? nix.builtins.abort("Expect either non-empty `urls` or `url`") : nix.builtins.head(urls)));
     const hash = nix.argOr($_1, "hash", () => nix.sel(lib, "fakeHash"));
     return nix.app(nix.sel(nix.app(runCommandLocal, name, nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         nativeBuildInputs: nix.thunk(() => [xrootd]),
         outputHashAlgo: null,
         outputHashMode: "flat",
@@ -30,12 +28,12 @@ export default nix.lambda((args) => (() => {
         url: url,
         urls: nix.thunk(() => (nix.asBool(nix.eq(urls, [])) ? nix.app(nix.sel(lib, "singleton"), url) : nix.force(urls))),
       })), "for u in $urls; do\n  xrdcp --verbose --force \"$u\" \"$out\"\n  ret=$?\n  (( ret != 0 )) || break\ndone\nif (( ret )); then\n  echo \"xrdcp failed trying to download any of the urls\" >&2\n  exit $ret\nfi\n"), "overrideAttrs"), (finalAttrs) => (nix.asBool((nix.asBool(!nix.eq(pname, "")) && nix.asBool(!nix.eq(version, "")))) ? {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         pname: pname,
         version: version,
         name: nix.thunk(() => nix.str`${pname}-${version}`),
       } : {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         name: nix.thunk(() => (nix.asBool(!nix.eq(name, "")) ? nix.force(name) : nix.builtins.baseNameOf(nix.thunk(() => nix.sel(finalAttrs, "url"))))),
       }));
   })(), formals$2);

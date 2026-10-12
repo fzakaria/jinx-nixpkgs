@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 23, 9], ["hash", 24, 9]], [["url", 27, 9], ["hash", 28, 9]], [["x86_64-linux", 22, 7], ["aarch64-linux", 26, 7]], [["name", 48, 5], ["desktopName", 49, 5], ["genericName", 50, 5], ["exec", 51, 5], ["tryExec", 52, 5], ["categories", 53, 5]], [["description", 68, 5], ["homepage", 69, 5], ["changelog", 70, 5], ["sourceProvenance", 71, 5], ["license", 72, 5], ["platforms", 73, 5], ["maintainers", 77, 5], ["mainProgram", 78, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 38, 3], ["desktop", 47, 3], ["patchPhase", 56, 3], ["installPhase", 60, 3], ["meta", 67, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, autoPatchelfHook: false, "alsa-lib": false, freetype: false, libjack2: false, libglvnd: false, libpulseaudio: false, makeDesktopItem: false, makeWrapper: false, openldap: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 23, 9], ["hash", 24, 9]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 27, 9], ["hash", 28, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["x86_64-linux", 22, 7], ["aarch64-linux", 26, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["name", 48, 5], ["desktopName", 49, 5], ["genericName", 50, 5], ["exec", 51, 5], ["tryExec", 52, 5], ["categories", 53, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 68, 5], ["homepage", 69, 5], ["changelog", 70, 5], ["sourceProvenance", 71, 5], ["license", 72, 5], ["platforms", 73, 5], ["maintainers", 77, 5], ["mainProgram", 78, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 38, 3], ["desktop", 47, 3], ["patchPhase", 56, 3], ["installPhase", 60, 3], ["meta", 67, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,14 +23,14 @@ export default nix.lambda((args) => (() => {
       const pname = "outfox";
       const version = "0.5.0-pre043";
       const src = nix.thunk(() => nix.selOr({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         "x86_64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             url: "https://github.com/TeamRizu/OutFox/releases/download/OF5.0.0-043/OutFox-alpha-0.5.0-pre-043-Final-24.04-amd64-current-date-20250907.tar.gz",
             hash: "sha256-1YN3YCcSluHBUpNRQdh0pJ9R9hTHKBuTSULTKL28OO0=",
           })))),
         "aarch64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/TeamRizu/OutFox/releases/download/OF5.0.0-043/OutFox-alpha-0.5.0-pre-043-Final-RaspberryPi-debian12-arm64-aarch64-current-date-20250927.tar.gz",
             hash: "sha256-/E4Keh1J3iytqaq0ziJy9F1mRR3mPbjlGto1Dbct3JM=",
           })))),
@@ -43,7 +38,7 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [autoPatchelfHook, makeWrapper]);
       const buildInputs = nix.thunk(() => [alsa_lib, freetype, libjack2, libglvnd, libpulseaudio, openldap]);
       const desktop = nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           name: "project-outfox",
           desktopName: "Project OutFox",
           genericName: "Rhythm game engine",
@@ -58,7 +53,7 @@ ln -s ${desktop}/share/applications/project-outfox.desktop $out/share/applicatio
 makeWrapper $out/share/OutFox/OutFox $out/bin/OutFox --argv0
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Rhythm game engine forked from StepMania",
         homepage: "https://projectoutfox.com",
         changelog: "https://github.com/TeamRizu/OutFox/releases/tag/OF5.0.0-043",
@@ -75,7 +70,7 @@ makeWrapper $out/share/OutFox/OutFox $out/bin/OutFox --argv0
         mainProgram: "OutFox",
       }));
       return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname,
         version,
         src,

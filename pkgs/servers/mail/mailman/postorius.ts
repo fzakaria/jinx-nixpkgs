@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/postorius.nix", [[["pname", 17, 26], ["version", 17, 32], ["hash", 18, 5]], [["name", 23, 7], ["url", 24, 7], ["excludes", 25, 7], ["hash", 26, 7]], [["name", 30, 7], ["url", 31, 7], ["excludes", 32, 7], ["hash", 36, 7]], [["mailman", 55, 43]], [["tests", 55, 12]], [["homepage", 58, 5], ["description", 59, 5], ["license", 60, 5], ["maintainers", 61, 5]], [["pname", 12, 3], ["version", 13, 3], ["format", 14, 3], ["src", 16, 3], ["patches", 21, 3], ["build-system", 40, 3], ["dependencies", 41, 3], ["nativeCheckInputs", 46, 3], ["doCheck", 53, 3], ["passthru", 55, 3], ["meta", 57, 3]]]);
 const formals$1 = { args: { lib: false, python3: false, fetchPypi: false, fetchpatch: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/postorius.nix", [["pname", 17, 26], ["version", 17, 32], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/postorius.nix", [["name", 23, 7], ["url", 24, 7], ["excludes", 25, 7], ["hash", 26, 7]]);
-const pos$3 = nix.positions(here + "/postorius.nix", [["name", 30, 7], ["url", 31, 7], ["excludes", 32, 7], ["hash", 36, 7]]);
-const pos$4 = nix.positions(here + "/postorius.nix", [["mailman", 55, 43]]);
-const pos$5 = nix.positions(here + "/postorius.nix", [["tests", 55, 12]]);
-const pos$6 = nix.positions(here + "/postorius.nix", [["homepage", 58, 5], ["description", 59, 5], ["license", 60, 5], ["maintainers", 61, 5]]);
-const pos$7 = nix.positions(here + "/postorius.nix", [["pname", 12, 3], ["version", 13, 3], ["format", 14, 3], ["src", 16, 3], ["patches", 21, 3], ["build-system", 40, 3], ["dependencies", 41, 3], ["nativeCheckInputs", 46, 3], ["doCheck", 53, 3], ["passthru", 55, 3], ["meta", 57, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,26 +14,26 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const w = nix.withScope(nix.thunk(() => nix.sel(python3, "pkgs")), null);
   return nix.app(nix.lookup(w, "buildPythonPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "postorius",
       version: "1.3.13",
       format: "pyproject",
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-YC3vXEhSkA1J6K2VGWojNOE8MeSdnAhZMkh558UTGiI=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "security-fix.patch",
             url: "https://gitlab.com/mailman/postorius/-/commit/c4706abd05ba6bcf472fc674b160d3a9d6a4868b.patch",
             excludes: nix.thunk(() => ["src/postorius/doc/news.rst"]),
             hash: "sha256-M8C7mO/KoVhl1YtZ5x3wqL+aBkepJ/7NoIRUmd0JpiM=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "django-5.2.patch",
             url: "https://gitlab.com/mailman/postorius/-/commit/0468ab0329df85b89e6b5d9f7b4d1805f47450c9.patch",
             excludes: nix.thunk(() => [".gitlab-ci.yml", "src/postorius/doc/news.rst"]),
@@ -58,11 +52,14 @@ export default nix.lambda((args) => (() => {
       ]),
       doCheck: false,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$4, mailman: nix.thunk(() => nix.attr(nixosTests, "mailman")) })),
+        [nix.POS]: $pos[4],
+        tests: nix.thunk(() => ({
+          [nix.POS]: $pos[3],
+          mailman: nix.thunk(() => nix.attr(nixosTests, "mailman")),
+        })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         homepage: "https://docs.mailman3.org/projects/postorius",
         description: "Web-based user interface for managing GNU Mailman",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

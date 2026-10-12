@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]], [["description", 41, 5], ["license", 42, 5], ["homepage", 43, 5], ["mainProgram", 44, 5], ["maintainers", 45, 5], ["platforms", 46, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["nodejs", 20, 11], ["npmDepsHash", 22, 3], ["npmFlags", 25, 3], ["dontNpmBuild", 27, 3], ["postInstall", 29, 3], ["meta", 40, 3]]]);
 const formals$1 = { args: { lib: false, buildNpmPackage: false, fetchFromGitHub: false, nodejs: false, runtimeShell: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 41, 5], ["license", 42, 5], ["homepage", 43, 5], ["mainProgram", 44, 5], ["maintainers", 45, 5], ["platforms", 46, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["nodejs", 20, 11], ["npmDepsHash", 22, 3], ["npmFlags", 25, 3], ["dontNpmBuild", 27, 3], ["postInstall", 29, 3], ["meta", 40, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "whitebophir";
       const version = "1.19.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "lovasoa",
           repo: "whitebophir",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -38,7 +36,7 @@ EOF
 chmod +x $out/bin/whitebophir
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Online collaborative whiteboard that is simple, free, easy to use and to deploy",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Plus")),
         homepage: "https://github.com/lovasoa/whitebophir",
@@ -50,7 +48,7 @@ chmod +x $out/bin/whitebophir
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

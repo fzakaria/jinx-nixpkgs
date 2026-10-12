@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/build-env.nix", [[["name", 105, 7], ["buildCommand", 107, 7]], [["interpreter", 102, 5], ["octave", 103, 13], ["env", 104, 5]], [["name", 29, 3], ["paths", 30, 3], ["ignoreCollisions", 32, 11], ["extraOutputsToInstall", 33, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 36, 3], ["postBuild", 46, 3], ["meta", 99, 20], ["version", 99, 25], ["passthru", 101, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, octave: false, buildEnv: false, makeWrapper: false, locale: false, texinfo: false, glibcLocalesUtf8: false, wrapOctave: false, computeRequiredOctavePackages: false, extraLibs: true, extraOutputsToInstall: true, postBuild: true, ignoreCollisions: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/build-env.nix", [["name", 105, 7], ["buildCommand", 107, 7]]);
-const pos$2 = nix.positions(here + "/build-env.nix", [["interpreter", 102, 5], ["octave", 103, 13], ["env", 104, 5]]);
-const pos$3 = nix.positions(here + "/build-env.nix", [["name", 29, 3], ["paths", 30, 3], ["ignoreCollisions", 32, 11], ["extraOutputsToInstall", 33, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 36, 3], ["postBuild", 46, 3], ["meta", 99, 20], ["version", 99, 25], ["passthru", 101, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,7 +25,7 @@ export default nix.lambda((args) => (() => {
   const localeArchiveArgs = nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(glibcLocalesUtf8, null)), nix.thunk(() => nix.str`--set LOCALE_ARCHIVE "${glibcLocalesUtf8}/lib/locale/locale-archive"
 `)));
   return nix.app(buildEnv, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       name: nix.thunk(() => nix.str`${nix.sel(octave, "name")}-env`),
       paths: nix.thunk(() => nix.concat(extraLibs, [octave])),
       ignoreCollisions: ignoreCollisions,
@@ -87,11 +85,11 @@ substitute \\
       meta: nix.thunk(() => nix.attr(octave, "meta")),
       version: nix.thunk(() => nix.attr(octave, "version")),
       passthru: nix.thunk(() => nix.update(nix.builtins.removeAttrs(nix.thunk(() => nix.sel(octave, "passthru")), nix.thunk(() => ["tests"])), {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         interpreter: "$out/bin/octave",
         octave: octave,
         env: nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             name: nix.thunk(() => nix.str`interactive-${nix.sel(octave, "name")}-environment`),
             buildCommand: "echo >&2 \"\"\necho >&2 \"*** octave 'env' attributes are intended for interactive nix-shell sessions, not for building! ***\"\necho >&2 \"\"\nexit 1\n",
           })))),

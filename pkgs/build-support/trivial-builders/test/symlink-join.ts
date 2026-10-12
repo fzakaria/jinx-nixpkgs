@@ -2,26 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/symlink-join.nix", [[["name", 12, 5], ["text", 13, 5], ["destination", 14, 5]], [["name", 18, 5], ["text", 19, 5], ["destination", 20, 5]], [["name", 24, 5], ["text", 25, 5], ["destination", 26, 5]], [["name", 30, 5], ["text", 31, 5]], [["name", 44, 7], ["paths", 45, 7]], [["assertion", 42, 5], ["actual", 43, 5], ["expected", 51, 5]], [["__structuredAttrs", 61, 7], ["name", 62, 7], ["paths", 63, 7]], [["assertion", 59, 5], ["actual", 60, 5], ["expected", 69, 5]], [["name", 79, 7], ["paths", 80, 7], ["stripPrefix", 84, 7]], [["assertion", 77, 5], ["actual", 78, 5], ["expected", 86, 5]], [["name", 92, 7], ["paths", 93, 7], ["stripPrefix", 98, 7]], [["assertion", 90, 5], ["actual", 91, 5], ["expected", 100, 5]], [["name", 106, 7], ["paths", 107, 7], ["stripPrefix", 112, 7]], [["assertion", 104, 5], ["actual", 105, 5], ["expected", 114, 5]], [["name", 121, 11], ["paths", 122, 11], ["stripPrefix", 127, 11], ["failOnMissing", 128, 11]], [["failed", 120, 9]], [["name", 140, 11], ["paths", 141, 11], ["stripPrefix", 146, 11], ["failOnMissing", 147, 11]], [["failed", 139, 9]], [["symlinkJoin", 41, 3], ["symlinkJoin-structured-attrs", 58, 3], ["symlinkJoin-strip-paths", 76, 3], ["symlinkJoin-strip-paths-skip-missing", 89, 3], ["symlinkJoin-strip-paths-skip-not-directories", 103, 3], ["symlinkJoin-fails-on-missing", 117, 3], ["symlinkJoin-fails-on-file", 136, 3]]]);
 const formals$1 = { args: { symlinkJoin: false, writeTextFile: false, runCommandLocal: false, testers: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/symlink-join.nix", [["name", 12, 5], ["text", 13, 5], ["destination", 14, 5]]);
-const pos$2 = nix.positions(here + "/symlink-join.nix", [["name", 18, 5], ["text", 19, 5], ["destination", 20, 5]]);
-const pos$3 = nix.positions(here + "/symlink-join.nix", [["name", 24, 5], ["text", 25, 5], ["destination", 26, 5]]);
-const pos$4 = nix.positions(here + "/symlink-join.nix", [["name", 30, 5], ["text", 31, 5]]);
-const pos$5 = nix.positions(here + "/symlink-join.nix", [["name", 44, 7], ["paths", 45, 7]]);
-const pos$6 = nix.positions(here + "/symlink-join.nix", [["assertion", 42, 5], ["actual", 43, 5], ["expected", 51, 5]]);
-const pos$7 = nix.positions(here + "/symlink-join.nix", [["__structuredAttrs", 61, 7], ["name", 62, 7], ["paths", 63, 7]]);
-const pos$8 = nix.positions(here + "/symlink-join.nix", [["assertion", 59, 5], ["actual", 60, 5], ["expected", 69, 5]]);
-const pos$9 = nix.positions(here + "/symlink-join.nix", [["name", 79, 7], ["paths", 80, 7], ["stripPrefix", 84, 7]]);
-const pos$10 = nix.positions(here + "/symlink-join.nix", [["assertion", 77, 5], ["actual", 78, 5], ["expected", 86, 5]]);
-const pos$11 = nix.positions(here + "/symlink-join.nix", [["name", 92, 7], ["paths", 93, 7], ["stripPrefix", 98, 7]]);
-const pos$12 = nix.positions(here + "/symlink-join.nix", [["assertion", 90, 5], ["actual", 91, 5], ["expected", 100, 5]]);
-const pos$13 = nix.positions(here + "/symlink-join.nix", [["name", 106, 7], ["paths", 107, 7], ["stripPrefix", 112, 7]]);
-const pos$14 = nix.positions(here + "/symlink-join.nix", [["assertion", 104, 5], ["actual", 105, 5], ["expected", 114, 5]]);
-const pos$15 = nix.positions(here + "/symlink-join.nix", [["name", 121, 11], ["paths", 122, 11], ["stripPrefix", 127, 11], ["failOnMissing", 128, 11]]);
-const pos$16 = nix.positions(here + "/symlink-join.nix", [["failed", 120, 9]]);
-const pos$17 = nix.positions(here + "/symlink-join.nix", [["name", 140, 11], ["paths", 141, 11], ["stripPrefix", 146, 11], ["failOnMissing", 147, 11]]);
-const pos$18 = nix.positions(here + "/symlink-join.nix", [["failed", 139, 9]]);
-const pos$19 = nix.positions(here + "/symlink-join.nix", [["symlinkJoin", 41, 3], ["symlinkJoin-structured-attrs", 58, 3], ["symlinkJoin-strip-paths", 76, 3], ["symlinkJoin-strip-paths-skip-missing", 89, 3], ["symlinkJoin-strip-paths-skip-not-directories", 103, 3], ["symlinkJoin-fails-on-missing", 117, 3], ["symlinkJoin-fails-on-file", 136, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,26 +13,26 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const testEqualContents = nix.thunk(() => nix.attr(testers, "testEqualContents"));
   const testBuildFailure = nix.thunk(() => nix.attr(testers, "testBuildFailure"));
-  const foo = nix.thunk(() => nix.app(writeTextFile, nix.thunk(() => ({ [nix.POS]: pos$1, name: "foo", text: "foo", destination: "/etc/test.d/foo" }))));
-  const bar = nix.thunk(() => nix.app(writeTextFile, nix.thunk(() => ({ [nix.POS]: pos$2, name: "bar", text: "bar", destination: "/etc/test.d/bar" }))));
+  const foo = nix.thunk(() => nix.app(writeTextFile, nix.thunk(() => ({ [nix.POS]: $pos[0], name: "foo", text: "foo", destination: "/etc/test.d/foo" }))));
+  const bar = nix.thunk(() => nix.app(writeTextFile, nix.thunk(() => ({ [nix.POS]: $pos[1], name: "bar", text: "bar", destination: "/etc/test.d/bar" }))));
   const baz = nix.thunk(() => nix.app(writeTextFile, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       name: "baz",
       text: "baz",
       destination: "/var/lib/arbitrary/baz",
     }))));
-  const qux = nix.thunk(() => nix.app(writeTextFile, nix.thunk(() => ({ [nix.POS]: pos$4, name: "qux", text: "qux" }))));
+  const qux = nix.thunk(() => nix.app(writeTextFile, nix.thunk(() => ({ [nix.POS]: $pos[3], name: "qux", text: "qux" }))));
   const emulatedSymlinkJoinFooBarStrip = nix.thunk(() => nix.app(runCommandLocal, "symlinkJoin-strip-foo-bar", nix.thunk(() => ({})), nix.thunk(() => nix.str`mkdir $out
 ln -s ${foo}/etc/test.d/foo $out/
 ln -s ${bar}/etc/test.d/bar $out/
 `)));
   return {
-    [nix.POS]: pos$19,
+    [nix.POS]: $pos[18],
     symlinkJoin: nix.thunk(() => nix.app(testEqualContents, nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         assertion: "symlinkJoin",
         actual: nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             name: "symlinkJoin",
             paths: nix.thunk(() => [foo, bar, baz]),
           })))),
@@ -60,10 +42,10 @@ ln -s ${baz}/var/lib/arbitrary/baz $out/var/lib/arbitrary/
 `))),
       })))),
     "symlinkJoin-structured-attrs": nix.thunk(() => nix.app(testEqualContents, nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         assertion: "symlinkJoin-structured-attrs",
         actual: nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             __structuredAttrs: true,
             name: "symlinkJoin-structured-attrs",
             paths: nix.thunk(() => [foo, bar, baz]),
@@ -74,10 +56,10 @@ ln -s ${baz}/var/lib/arbitrary/baz $out/var/lib/arbitrary/
 `))),
       })))),
     "symlinkJoin-strip-paths": nix.thunk(() => nix.app(testEqualContents, nix.thunk(() => ({
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         assertion: "symlinkJoin-strip-paths",
         actual: nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({
-            [nix.POS]: pos$9,
+            [nix.POS]: $pos[8],
             name: "symlinkJoinPrefix",
             paths: nix.thunk(() => [foo, bar]),
             stripPrefix: "/etc/test.d",
@@ -85,10 +67,10 @@ ln -s ${baz}/var/lib/arbitrary/baz $out/var/lib/arbitrary/
         expected: emulatedSymlinkJoinFooBarStrip,
       })))),
     "symlinkJoin-strip-paths-skip-missing": nix.thunk(() => nix.app(testEqualContents, nix.thunk(() => ({
-        [nix.POS]: pos$12,
+        [nix.POS]: $pos[11],
         assertion: "symlinkJoin-strip-paths-skip-missing",
         actual: nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({
-            [nix.POS]: pos$11,
+            [nix.POS]: $pos[10],
             name: "symlinkJoinPrefix",
             paths: nix.thunk(() => [foo, bar, baz]),
             stripPrefix: "/etc/test.d",
@@ -96,10 +78,10 @@ ln -s ${baz}/var/lib/arbitrary/baz $out/var/lib/arbitrary/
         expected: emulatedSymlinkJoinFooBarStrip,
       })))),
     "symlinkJoin-strip-paths-skip-not-directories": nix.thunk(() => nix.app(testEqualContents, nix.thunk(() => ({
-        [nix.POS]: pos$14,
+        [nix.POS]: $pos[13],
         assertion: "symlinkJoin-strip-paths-skip-not-directories",
         actual: nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({
-            [nix.POS]: pos$13,
+            [nix.POS]: $pos[12],
             name: "symlinkJoinPrefix",
             paths: nix.thunk(() => [foo, bar, qux]),
             stripPrefix: "/etc/test.d",
@@ -107,9 +89,9 @@ ln -s ${baz}/var/lib/arbitrary/baz $out/var/lib/arbitrary/
         expected: emulatedSymlinkJoinFooBarStrip,
       })))),
     "symlinkJoin-fails-on-missing": nix.thunk(() => nix.app(runCommandLocal, "symlinkJoin-fails-on-missing", nix.thunk(() => ({
-        [nix.POS]: pos$16,
+        [nix.POS]: $pos[15],
         failed: nix.thunk(() => nix.app(testBuildFailure, nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({
-              [nix.POS]: pos$15,
+              [nix.POS]: $pos[14],
               name: "symlinkJoin-fail",
               paths: nix.thunk(() => [foo, bar, baz]),
               stripPrefix: "/etc/test.d",
@@ -117,9 +99,9 @@ ln -s ${baz}/var/lib/arbitrary/baz $out/var/lib/arbitrary/
             })))))),
       })), "grep -e \"-baz/etc/test.d: No such file or directory\" $failed/testBuildFailure.log\ntouch $out\n")),
     "symlinkJoin-fails-on-file": nix.thunk(() => nix.app(runCommandLocal, "symlinkJoin-fails-on-file", nix.thunk(() => ({
-        [nix.POS]: pos$18,
+        [nix.POS]: $pos[17],
         failed: nix.thunk(() => nix.app(testBuildFailure, nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({
-              [nix.POS]: pos$17,
+              [nix.POS]: $pos[16],
               name: "symlinkJoin-fail",
               paths: nix.thunk(() => [foo, bar, qux]),
               stripPrefix: "/etc/test.d",

@@ -2,9 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 8, 5], ["repo", 9, 5], ["rev", 10, 5], ["sha256", 11, 5]], [["pname", 4, 3], ["version", 5, 3], ["src", 7, 3]]]);
 const formals$1 = { args: { roundcubePlugin: false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 8, 5], ["repo", 9, 5], ["rev", 10, 5], ["sha256", 11, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 4, 3], ["version", 5, 3], ["src", 7, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,13 +13,13 @@ export default nix.lambda((args) => (() => {
       const pname = "persistent_login";
       const version = "5.3.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "mfreiholz",
           repo: pname,
           rev: nix.thunk(() => nix.str`version-${version}`),
           sha256: "1qf7q1sypwa800pgxa3bg6ngcpkf4dqgg6jqx8cnd6cb7ikbfldb",
         }))));
-      return { [nix.POS]: pos$2, pname, version, src };
+      return { [nix.POS]: $pos[1], pname, version, src };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

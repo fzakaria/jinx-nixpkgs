@@ -2,42 +2,36 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/prefix-module-argument.nix", [[["type", 4, 5], ["default", 5, 5]], [["foo", 3, 11]], [["ok", 13, 17]], [["ok", 14, 16]], [["options", 13, 9], ["config", 14, 9]], [["foo", 9, 5]], [["options", 3, 3], ["config", 8, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/prefix-module-argument.nix", [["type", 4, 5], ["default", 5, 5]]);
-const pos$2 = nix.positions(here + "/prefix-module-argument.nix", [["foo", 3, 11]]);
 const formals$2 = { args: { _prefix: false }, ellipsis: true };
-const pos$3 = nix.positions(here + "/prefix-module-argument.nix", [["ok", 13, 17]]);
-const pos$4 = nix.positions(here + "/prefix-module-argument.nix", [["ok", 14, 16]]);
-const pos$5 = nix.positions(here + "/prefix-module-argument.nix", [["options", 13, 9], ["config", 14, 9]]);
-const pos$6 = nix.positions(here + "/prefix-module-argument.nix", [["foo", 9, 5]]);
-const pos$7 = nix.positions(here + "/prefix-module-argument.nix", [["options", 3, 3], ["config", 8, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$7,
+    [nix.POS]: $pos[6],
     options: nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       foo: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({})))),
           default: nix.thunk(() => ({})),
         })))),
     })),
     config: nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       foo: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const _prefix = nix.arg($_1, "_prefix");
         nix.assert_(nix.eq(_prefix, ["foo"]), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/lib/tests/modules/prefix-module-argument.nix:11:7");
         return {
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           options: nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             ok: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({})))),
           })),
-          config: nix.thunk(() => ({ [nix.POS]: pos$4, ok: true })),
+          config: nix.thunk(() => ({ [nix.POS]: $pos[3], ok: true })),
         };
       })(), formals$2),
     })),

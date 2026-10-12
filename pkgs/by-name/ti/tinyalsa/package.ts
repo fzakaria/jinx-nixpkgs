@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]], [["tagPrefix", 39, 7]], [["package", 42, 7], ["versionCheck", 43, 7]], [["pkg-config", 41, 11]], [["updateScript", 38, 5], ["tests", 41, 5]], [["homepage", 48, 5], ["description", 49, 5], ["license", 50, 5], ["pkgConfigModules", 51, 5], ["maintainers", 52, 5], ["platforms", 53, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["separateDebugInfo", 22, 3], ["strictDeps", 23, 3], ["__structuredAttrs", 24, 3], ["outputs", 26, 3], ["nativeBuildInputs", 32, 3], ["passthru", 37, 3], ["meta", 47, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, testers: false, unstableGitUpdater: false, fetchFromGitHub: false, meson: false, ninja: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["tagPrefix", 39, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["package", 42, 7], ["versionCheck", 43, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pkg-config", 41, 11]]);
-const pos$5 = nix.positions(here + "/package.nix", [["updateScript", 38, 5], ["tests", 41, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["homepage", 48, 5], ["description", 49, 5], ["license", 50, 5], ["pkgConfigModules", 51, 5], ["maintainers", 52, 5], ["platforms", 53, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["separateDebugInfo", 22, 3], ["strictDeps", 23, 3], ["__structuredAttrs", 24, 3], ["outputs", 26, 3], ["nativeBuildInputs", 32, 3], ["passthru", 37, 3], ["meta", 47, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const meson = nix.arg($, "meson");
   const ninja = nix.arg($, "ninja");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "tinyalsa",
       version: "2.0.0-unstable-2026-09-29",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "tinyalsa",
           repo: "tinyalsa",
           rev: "961babfe962e71d952ae734074cc89576b28a9e7",
@@ -37,19 +31,19 @@ export default nix.lambda((args) => (() => {
       outputs: nix.thunk(() => ["out", "dev", "bin"]),
       nativeBuildInputs: nix.thunk(() => [meson, ninja]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
-        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, tagPrefix: "v" })))),
+        [nix.POS]: $pos[4],
+        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[1], tagPrefix: "v" })))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "hasPkgConfigModules"), nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               versionCheck: false,
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         homepage: "https://github.com/tinyalsa/tinyalsa",
         description: "Tiny library to interface with ALSA in the Linux kernel",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

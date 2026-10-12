@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 41, 5], ["repo", 42, 5], ["tag", 43, 5], ["hash", 44, 5]], [["encryption", 61, 5], ["grpc", 62, 5], ["http-server", 67, 5], ["mysql", 72, 5], ["postgresql", 77, 5], ["signing", 82, 5], ["sqlite", 83, 5], ["telemetry", 88, 5]], [["description", 122, 5], ["homepage", 123, 5], ["changelog", 124, 5], ["license", 125, 5], ["maintainers", 126, 5]], [["pname", 36, 3], ["version", 37, 3], ["pyproject", 38, 3], ["src", 40, 3], ["build-system", 47, 3], ["dependencies", 52, 3], ["optional-dependencies", 60, 3], ["nativeCheckInputs", 94, 3], ["pythonImportsCheck", 106, 3], ["disabledTests", 108, 3], ["meta", 121, 3]]]);
 const formals$1 = { args: { lib: false, aiosqlite: false, buildPythonPackage: false, cryptography: false, fastapi: false, fetchFromGitHub: false, "google-api-core": false, "grpcio-reflection": false, "grpcio-tools": false, grpcio: false, hatchling: false, "httpx-sse": false, httpx: false, "opentelemetry-api": false, "opentelemetry-sdk": false, protobuf: false, pydantic: false, pyjwt: false, "pytest-asyncio": false, "pytest-cov-stub": false, "pytest-timeout": false, "pytest-xdist": false, pytestCheckHook: false, pythonAtLeast: false, respx: false, sqlalchemy: false, "sse-starlette": false, starlette: false, stdenv: false, "uv-dynamic-versioning": false, uvicorn: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 41, 5], ["repo", 42, 5], ["tag", 43, 5], ["hash", 44, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["encryption", 61, 5], ["grpc", 62, 5], ["http-server", 67, 5], ["mysql", 72, 5], ["postgresql", 77, 5], ["signing", 82, 5], ["sqlite", 83, 5], ["telemetry", 88, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 122, 5], ["homepage", 123, 5], ["changelog", 124, 5], ["license", 125, 5], ["maintainers", 126, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 36, 3], ["version", 37, 3], ["pyproject", 38, 3], ["src", 40, 3], ["build-system", 47, 3], ["dependencies", 52, 3], ["optional-dependencies", 60, 3], ["nativeCheckInputs", 94, 3], ["pythonImportsCheck", 106, 3], ["disabledTests", 108, 3], ["meta", 121, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -42,12 +39,12 @@ export default nix.lambda((args) => (() => {
   const uv_dynamic_versioning = nix.arg($, "uv-dynamic-versioning");
   const uvicorn = nix.arg($, "uvicorn");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "a2a-sdk",
       version: "0.3.26",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "a2aproject",
           repo: "a2a-python",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -56,7 +53,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [hatchling, uv_dynamic_versioning]),
       dependencies: nix.thunk(() => [google_api_core, httpx, httpx_sse, protobuf, pydantic]),
       "optional-dependencies": nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         encryption: nix.thunk(() => [cryptography]),
         grpc: nix.thunk(() => [grpcio, grpcio_reflection, grpcio_tools]),
         "http-server": nix.thunk(() => [fastapi, sse_starlette, starlette]),
@@ -83,7 +80,7 @@ export default nix.lambda((args) => (() => {
           "test_trace_function_sync_attribute_extractor_error_logged",
         ]))))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Python SDK for the Agent2Agent (A2A) Protocol",
         homepage: "https://github.com/a2aproject/a2a-python",
         changelog: nix.thunk(() => nix.str`https://github.com/a2aproject/a2a-python/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

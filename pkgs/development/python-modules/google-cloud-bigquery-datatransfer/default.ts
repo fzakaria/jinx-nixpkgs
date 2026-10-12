@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 22, 5], ["version", 23, 26], ["hash", 24, 5]], [["description", 59, 5], ["homepage", 60, 5], ["changelog", 61, 5], ["license", 62, 5], ["maintainers", 63, 5]], [["pname", 17, 3], ["version", 18, 3], ["pyproject", 19, 3], ["src", 21, 3], ["build-system", 27, 3], ["pythonRelaxDeps", 29, 3], ["dependencies", 33, 3], ["nativeCheckInputs", 42, 3], ["pythonImportsCheck", 48, 3], ["disabledTests", 53, 3], ["meta", 58, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, "google-api-core": false, libcst: false, mock: false, "proto-plus": false, protobuf: false, "pytest-asyncio": false, pytestCheckHook: false, pytz: false, setuptools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 22, 5], ["version", 23, 26], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 59, 5], ["homepage", 60, 5], ["changelog", 61, 5], ["license", 62, 5], ["maintainers", 63, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 17, 3], ["version", 18, 3], ["pyproject", 19, 3], ["src", 21, 3], ["build-system", 27, 3], ["pythonRelaxDeps", 29, 3], ["dependencies", 33, 3], ["nativeCheckInputs", 42, 3], ["pythonImportsCheck", 48, 3], ["disabledTests", 53, 3], ["meta", 58, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const pytz = nix.arg($, "pytz");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "google-cloud-bigquery-datatransfer",
       version: "3.24.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "google_cloud_bigquery_datatransfer",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-5X6HMhRX71XKAa6f94vRIRcN8HKHZWjjYcpsofQ5Z98=",
@@ -42,7 +40,7 @@ export default nix.lambda((args) => (() => {
       ]),
       disabledTests: nix.thunk(() => ["test_list_data_sources"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "BigQuery Data Transfer API client library",
         homepage: "https://github.com/googleapis/google-cloud-python/tree/main/packages/google-cloud-bigquery-datatransfer",
         changelog: nix.thunk(() => nix.str`https://github.com/googleapis/google-cloud-python/blob/google-cloud-bigquery-datatransfer-v${nix.sel(finalAttrs, "version")}/packages/google-cloud-bigquery-datatransfer/CHANGELOG.md`),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["tests", 14, 12]], [["description", 16, 5], ["license", 17, 5]], [["name", 9, 3], ["propagatedBuildInputs", 10, 3], ["passthru", 14, 3], ["meta", 15, 3]]]);
 const formals$1 = { args: { lib: false, callPackages: false, isDeclaredArray: false, makeSetupHook: false, patchelf: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["tests", 14, 12]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 16, 5], ["license", 17, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 9, 3], ["propagatedBuildInputs", 10, 3], ["passthru", 14, 3], ["meta", 15, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,15 +13,15 @@ export default nix.lambda((args) => (() => {
   const makeSetupHook = nix.arg($, "makeSetupHook");
   const patchelf = nix.arg($, "patchelf");
   return nix.app(makeSetupHook, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       name: "getRunpathEntries",
       propagatedBuildInputs: nix.thunk(() => [isDeclaredArray, patchelf]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         tests: nix.thunk(() => nix.app(callPackages, nix.path(here, "./tests.nix"), nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Appends runpath entries of a file to an array",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       })),

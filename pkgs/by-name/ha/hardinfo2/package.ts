@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 57, 5], ["repo", 58, 5], ["tag", 59, 5], ["hash", 60, 5]], [["extraArgs", 150, 47]], [["updateScript", 150, 12]], [["description", 153, 5], ["homepage", 154, 5], ["downloadPage", 155, 5], ["changelog", 156, 5], ["license", 157, 5], ["maintainers", 162, 5], ["platforms", 166, 5], ["mainProgram", 167, 5]], [["pname", 53, 3], ["version", 54, 3], ["src", 56, 3], ["patches", 63, 3], ["postPatch", 69, 3], ["nativeBuildInputs", 74, 3], ["buildInputs", 85, 3], ["hardeningDisable", 109, 3], ["cmakeFlags", 111, 3], ["dontWrapQtApps", 116, 3], ["preFixup", 117, 3], ["runtimeDeps", 121, 3], ["runtimeLibs", 138, 3], ["postFixup", 140, 3], ["passthru", 150, 3], ["meta", 152, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, glslang: false, "pkg-config": false, libsForQt5: false, makeWrapper: false, wrapGAppsHook4: false, cups: false, gtk3: false, "json-glib": false, lerc: false, libdatrie: false, libdecor: false, libepoxy: false, libnghttp2: false, libpsl: false, libselinux: false, libsepol: false, libsoup_3: false, "libsysprof-capture": false, libthai: false, libxkbcommon: false, libxdmcp: false, libxtst: false, pcre2: false, sqlite: false, "util-linux": false, "vulkan-headers": false, wayland: false, dmidecode: false, gawk: false, iperf: false, "mesa-demos": false, sysbench: false, udisks: false, "vulkan-tools": false, "xdg-utils": false, xrandr: false, "nix-update-script": false, printingSupport: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 57, 5], ["repo", 58, 5], ["tag", 59, 5], ["hash", 60, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["extraArgs", 150, 47]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 150, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 153, 5], ["homepage", 154, 5], ["downloadPage", 155, 5], ["changelog", 156, 5], ["license", 157, 5], ["maintainers", 162, 5], ["platforms", 166, 5], ["mainProgram", 167, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 53, 3], ["version", 54, 3], ["src", 56, 3], ["patches", 63, 3], ["postPatch", 69, 3], ["nativeBuildInputs", 74, 3], ["buildInputs", 85, 3], ["hardeningDisable", 109, 3], ["cmakeFlags", 111, 3], ["dontWrapQtApps", 116, 3], ["preFixup", 117, 3], ["runtimeDeps", 121, 3], ["runtimeLibs", 138, 3], ["postFixup", 140, 3], ["passthru", 150, 3], ["meta", 152, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -54,11 +50,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const printingSupport = nix.argOr($, "printingSupport", () => true);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "hardinfo2",
       version: "2.3.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "hardinfo2",
           repo: "hardinfo2",
           tag: nix.thunk(() => nix.str`release-${nix.sel(finalAttrs, "version")}`),
@@ -119,14 +115,14 @@ export default nix.lambda((args) => (() => {
     --replace-fail "ExecStart=/usr/bin/hwinfo2_fetch_sysdata" "ExecStart=$out/bin/hwinfo2_fetch_sysdata"
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             extraArgs: nix.thunk(() => ["--version-regex=release-(.*)"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "System information and benchmarks for Linux systems",
         homepage: "http://www.hardinfo2.org/",
         downloadPage: "https://github.com/hardinfo2/hardinfo2/",

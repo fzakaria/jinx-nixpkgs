@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 30, 5], ["sha256", 31, 5], ["message", 32, 5]], [["FIRMWARE", 29, 7]], [["url", 42, 5], ["rev", 43, 5], ["hash", 44, 5]], [["description", 90, 5], ["homepage", 91, 5], ["maintainers", 92, 5], ["platforms", 93, 5], ["license", 94, 5]], [["pname", 21, 3], ["version", 26, 3], ["env", 29, 3], ["src", 41, 3], ["patches", 49, 3], ["nativeBuildInputs", 54, 3], ["makeFlags", 60, 3], ["buildPhase", 67, 3], ["installPhase", 73, 3], ["meta", 89, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchgit: false, requireFile: false, "pkg-config": false, libusb1: false, p7zip: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 30, 5], ["sha256", 31, 5], ["message", 32, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["FIRMWARE", 29, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 42, 5], ["rev", 43, 5], ["hash", 44, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 90, 5], ["homepage", 91, 5], ["maintainers", 92, 5], ["platforms", 93, 5], ["license", 94, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 26, 3], ["env", 29, 3], ["src", 41, 3], ["patches", 49, 3], ["nativeBuildInputs", 54, 3], ["makeFlags", 60, 3], ["buildPhase", 67, 3], ["installPhase", 73, 3], ["meta", 89, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,13 +17,13 @@ export default nix.lambda((args) => (() => {
   const firmwareUrl = "https://download.microsoft.com/download/F/9/9/F99791F2-D5BE-478A-B77A-830AD14950C3/KinectSDK-v1.0-beta2-x86.msi";
   const licenseUrl = "https://www.microsoft.com/en-us/legal/terms-of-use";
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "kinect-audio-setup",
       version: "0.5",
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         FIRMWARE: nix.thunk(() => nix.app(requireFile, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             name: "UACFirmware",
             sha256: "08a2vpgd061cmc6h3h8i6qj3sjvjr1fwcnwccwywqypz3icn8xw1",
             message: nix.thunk(() => nix.str`In order to install the Kinect Audio Firmware, you need to download the
@@ -39,7 +35,7 @@ add it to the Nix store.
           })))),
       })),
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           url: "git://git.ao2.it/kinect-audio-setup.git",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-bFwmWh822KvFwP/0Gu097nF5K2uCwCLMB1RtP7k+Zt0=",
@@ -71,7 +67,7 @@ make install_udev_rules $makeFlags "\${makeFlagsArray[@]}"
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Tools to enable audio input from the Microsoft Kinect sensor device",
         homepage: "https://git.ao2.it/kinect-audio-setup.git",
         maintainers: nix.thunk(() => (() => {

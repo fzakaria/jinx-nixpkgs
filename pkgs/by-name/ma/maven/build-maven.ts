@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/build-maven.nix", [[["url", 47, 23], ["sha1", 47, 27]], [["url", 53, 30], ["sha1", 53, 34]], [["layout", 59, 9], ["drv", 60, 9]], [["layout", 65, 13], ["drv", 66, 13]], [["layout", 70, 11], ["drv", 71, 11]], [["name", 79, 7], ["path", 80, 7]], [["name", 99, 5], ["src", 101, 5], ["buildInputs", 106, 5], ["buildPhase", 108, 5], ["installPhase", 110, 5]], [["repo", 96, 11], ["settings", 96, 16], ["info", 96, 25], ["build", 98, 3]]]);
 const formals$1 = { args: { stdenv: false, maven: false, runCommand: false, writeText: false, fetchurl: false, lib: false, requireFile: false, linkFarm: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/build-maven.nix", [["url", 47, 23], ["sha1", 47, 27]]);
-const pos$2 = nix.positions(here + "/build-maven.nix", [["url", 53, 30], ["sha1", 53, 34]]);
-const pos$3 = nix.positions(here + "/build-maven.nix", [["layout", 59, 9], ["drv", 60, 9]]);
-const pos$4 = nix.positions(here + "/build-maven.nix", [["layout", 65, 13], ["drv", 66, 13]]);
-const pos$5 = nix.positions(here + "/build-maven.nix", [["layout", 70, 11], ["drv", 71, 11]]);
-const pos$6 = nix.positions(here + "/build-maven.nix", [["name", 79, 7], ["path", 80, 7]]);
-const pos$7 = nix.positions(here + "/build-maven.nix", [["name", 99, 5], ["src", 101, 5], ["buildInputs", 106, 5], ["buildPhase", 108, 5], ["installPhase", 110, 5]]);
-const pos$8 = nix.positions(here + "/build-maven.nix", [["repo", 96, 11], ["settings", 96, 16], ["info", 96, 25], ["build", 98, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,31 +27,31 @@ export default nix.lambda((args) => (() => {
           const versionDir = nix.thunk(() => nix.selOr(dep, () => nix.force(version), "unresolved-version"));
           const authenticated = nix.thunk(() => nix.selOr(dep, () => false, "authenticated"));
           const url = nix.thunk(() => nix.selOr(dep, () => "", "url"));
-          const fetch = nix.thunk(() => (nix.asBool(!nix.eq(url, "")) ? nix.app((nix.asBool(authenticated) ? nix.force(requireFile) : nix.force(fetchurl)), nix.thunk(() => ({ [nix.POS]: pos$1, url: url, sha1: sha1 }))) : ""));
+          const fetch = nix.thunk(() => (nix.asBool(!nix.eq(url, "")) ? nix.app((nix.asBool(authenticated) ? nix.force(requireFile) : nix.force(fetchurl)), nix.thunk(() => ({ [nix.POS]: $pos[0], url: url, sha1: sha1 }))) : ""));
           const fetchMetadata = nix.thunk(() => nix.app((nix.asBool(authenticated) ? nix.force(requireFile) : nix.force(fetchurl)), nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               url: nix.thunk(() => nix.attr(metadata, "url")),
               sha1: nix.thunk(() => nix.attr(metadata, "sha1")),
             }))));
           const layout = nix.thunk(() => nix.str`${nix.builtins.replaceStrings(nix.thunk(() => ["."]), nix.thunk(() => ["/"]), groupId)}/${artifactId}/${versionDir}`);
           return nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(url, "")), nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               layout: nix.thunk(() => nix.str`${layout}/${nix.sel(fetch, "name")}`),
               drv: fetch,
             }))), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.has(dep, "metadata")), nix.thunk(() => nix.concat([
               nix.thunk(() => ({
-                [nix.POS]: pos$4,
+                [nix.POS]: $pos[3],
                 layout: nix.thunk(() => nix.str`${layout}/maven-metadata-${repository_id}.xml`),
                 drv: fetchMetadata,
               })),
             ], nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(fetch, "")), nix.thunk(() => ({
-                [nix.POS]: pos$5,
+                [nix.POS]: $pos[4],
                 layout: nix.thunk(() => nix.str`${layout}/${nix.builtins.replaceStrings(nix.thunk(() => [version]), nix.thunk(() => [nix.thunk(() => nix.sel(dep, "unresolved-version"))]), nix.thunk(() => nix.sel(fetch, "name")))}`),
                 drv: fetch,
               })))))));
         })(), nix.thunk(() => nix.sel(info, "dependencies"))))));
     const repo = nix.thunk(() => nix.app(linkFarm, "maven-repository", nix.thunk(() => nix.app(nix.sel(lib, "forEach"), dependencies, (dependency) => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           name: nix.thunk(() => nix.sel(dependency, "layout")),
           path: nix.thunk(() => nix.sel(dependency, "drv")),
         })))));
@@ -71,12 +64,12 @@ export default nix.lambda((args) => (() => {
 `)));
     const src = nix.thunk(() => nix.builtins.dirOf(infoFile));
     return {
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       repo: repo,
       settings: settings,
       info: info,
       build: nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           name: nix.thunk(() => nix.str`${nix.sel(info, "project", "artifactId")}-${nix.sel(info, "project", "version")}.jar`),
           src: nix.thunk(() => nix.builtins.filterSource((path) => (type) => (nix.asBool(!nix.eq(nix.builtins.toString(path), nix.builtins.toString(nix.thunk(() => nix.add(src, "/target"))))) && nix.asBool(!nix.eq(nix.builtins.toString(path), nix.builtins.toString(nix.thunk(() => nix.add(src, "/.git")))))), src)),
           buildInputs: nix.thunk(() => [maven]),

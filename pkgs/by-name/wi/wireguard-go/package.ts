@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 13, 5], ["tag", 14, 5], ["hash", 15, 5]], [["description", 52, 5], ["homepage", 53, 5], ["license", 54, 5], ["maintainers", 55, 5], ["mainProgram", 60, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["postPatch", 18, 3], ["vendorHash", 23, 3], ["subPackages", 25, 3], ["ldflags", 27, 3], ["checkPhase", 34, 3], ["__darwinAllowLocalNetworking", 42, 3], ["postInstall", 44, 3], ["nativeInstallCheckInputs", 48, 3], ["doInstallCheck", 49, 3], ["meta", 51, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchgit: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 13, 5], ["tag", 14, 5], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 52, 5], ["homepage", 53, 5], ["license", 54, 5], ["maintainers", 55, 5], ["mainProgram", 60, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["postPatch", 18, 3], ["vendorHash", 23, 3], ["subPackages", 25, 3], ["ldflags", 27, 3], ["checkPhase", 34, 3], ["__darwinAllowLocalNetworking", 42, 3], ["postInstall", 44, 3], ["nativeInstallCheckInputs", 48, 3], ["doInstallCheck", 49, 3], ["meta", 51, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchgit = nix.arg($, "fetchgit");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "wireguard-go",
       version: "0.0.20250522",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://git.zx2c4.com/wireguard-go",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-GRr8NKKb4SHd0WxmNL84eiofFHcauDDmSyNNrXermcA=",
@@ -33,7 +31,7 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Userspace Go implementation of WireGuard",
         homepage: "https://git.zx2c4.com/wireguard-go/about/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

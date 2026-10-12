@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["mainProgram", 35, 8]], [["pname", 17, 3], ["extraNativeBuildInputs", 19, 3], ["extraBuildInputs", 20, 3], ["meta", 35, 3]]]);
 const formals$1 = { args: { mkKdeDerivation: false, "pkg-config": false, qtspeech: false, qtsvg: false, "plasma-activities": false, poppler: false, libtiff: false, libspectre: false, libzip: false, djvulibre: false, ebook_tools: false, fetchpatch: false, discount: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["mainProgram", 35, 8]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 17, 3], ["extraNativeBuildInputs", 19, 3], ["extraBuildInputs", 20, 3], ["meta", 35, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,7 +21,7 @@ export default nix.lambda((args) => (() => {
   const fetchpatch = nix.arg($, "fetchpatch");
   const discount = nix.arg($, "discount");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "okular",
       extraNativeBuildInputs: nix.thunk(() => [pkg_config]),
       extraBuildInputs: nix.thunk(() => [
@@ -37,7 +36,7 @@ export default nix.lambda((args) => (() => {
         ebook_tools,
         discount,
       ]),
-      meta: nix.thunk(() => ({ [nix.POS]: pos$1, mainProgram: "okular" })),
+      meta: nix.thunk(() => ({ [nix.POS]: $pos[0], mainProgram: "okular" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 11, 3], ["extraBuildInputs", 13, 3], ["extraPropagatedBuildInputs", 19, 3]]]);
 const formals$1 = { args: { mkKdeDerivation: false, qt5compat: false, qtdeclarative: false, qgpgme: false, kirigami: false, "kirigami-addons": false, qtwebengine: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 11, 3], ["extraBuildInputs", 13, 3], ["extraPropagatedBuildInputs", 19, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const kirigami_addons = nix.arg($, "kirigami-addons");
   const qtwebengine = nix.arg($, "qtwebengine");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       pname: "mimetreeparser",
       extraBuildInputs: nix.thunk(() => [qt5compat, qtdeclarative, qgpgme]),
       extraPropagatedBuildInputs: nix.thunk(() => [kirigami, kirigami_addons, qtwebengine]),

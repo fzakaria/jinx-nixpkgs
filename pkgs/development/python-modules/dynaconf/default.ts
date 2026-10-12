@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 32, 5], ["repo", 33, 5], ["tag", 34, 5], ["hash", 35, 5]], [["DJANGO_SETTINGS_MODULE", 93, 7]], [["description", 98, 5], ["homepage", 99, 5], ["changelog", 100, 5], ["mainProgram", 101, 5], ["license", 102, 5], ["maintainers", 103, 5]], [["pname", 27, 3], ["version", 28, 3], ["pyproject", 29, 3], ["src", 31, 3], ["build-system", 38, 3], ["dependencies", 40, 3], ["nativeCheckInputs", 42, 3], ["disabledTests", 62, 3], ["disabledTestPaths", 67, 3], ["env", 93, 3], ["pythonImportsCheck", 95, 3], ["meta", 97, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, "ansible-core": false, boto3: false, commentjson: false, configobj: false, django: false, "django-debug-toolbar": false, flask: false, hvac: false, ipython: false, "pytest-cov-stub": false, "pytest-mock": false, "pytest-xdist": false, pytestCheckHook: false, "python-dotenv": false, radon: false, toml: false, tox: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 32, 5], ["repo", 33, 5], ["tag", 34, 5], ["hash", 35, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["DJANGO_SETTINGS_MODULE", 93, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 98, 5], ["homepage", 99, 5], ["changelog", 100, 5], ["mainProgram", 101, 5], ["license", 102, 5], ["maintainers", 103, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 27, 3], ["version", 28, 3], ["pyproject", 29, 3], ["src", 31, 3], ["build-system", 38, 3], ["dependencies", 40, 3], ["nativeCheckInputs", 42, 3], ["disabledTests", 62, 3], ["disabledTestPaths", 67, 3], ["env", 93, 3], ["pythonImportsCheck", 95, 3], ["meta", 97, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -37,7 +34,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.2.13";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "dynaconf",
           repo: "dynaconf",
           tag: version,
@@ -78,10 +75,10 @@ export default nix.lambda((args) => (() => {
         "tests/test_redis.py",
         "tests/test_vault.py",
       ]);
-      const env = nix.thunk(() => ({ [nix.POS]: pos$2, DJANGO_SETTINGS_MODULE: "project.settings" }));
+      const env = nix.thunk(() => ({ [nix.POS]: $pos[1], DJANGO_SETTINGS_MODULE: "project.settings" }));
       const pythonImportsCheck = nix.thunk(() => ["dynaconf"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Dynamic configurator for Python Project",
         homepage: "https://github.com/dynaconf/dynaconf",
         changelog: nix.thunk(() => nix.str`https://github.com/dynaconf/dynaconf/blob/${nix.sel(src, "tag")}/CHANGELOG.md`),
@@ -90,7 +87,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

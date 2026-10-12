@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]], [["OPENSSL_NO_VENDOR", 25, 7]], [["updateScript", 39, 12]], [["description", 42, 5], ["homepage", 43, 5], ["changelog", 44, 5], ["license", 45, 5], ["maintainers", 46, 5], ["platforms", 47, 5], ["mainProgram", 48, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["cargoHash", 23, 3], ["env", 25, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 32, 3], ["doCheck", 35, 3], ["doInstallCheck", 37, 3], ["passthru", 39, 3], ["meta", 41, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, openssl: false, "pkg-config": false, rustPlatform: false, "nix-update-script": false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["OPENSSL_NO_VENDOR", 25, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 39, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 42, 5], ["homepage", 43, 5], ["changelog", 44, 5], ["license", 45, 5], ["maintainers", 46, 5], ["platforms", 47, 5], ["mainProgram", 48, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["cargoHash", 23, 3], ["env", 25, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 32, 3], ["doCheck", 35, 3], ["doInstallCheck", 37, 3], ["passthru", 39, 3], ["meta", 41, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,24 +19,24 @@ export default nix.lambda((args) => (() => {
       const pname = "feroxbuster";
       const version = "2.13.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "epi052",
           repo: "feroxbuster",
           tag: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-x0oNgDEuRIHDUUSAiIgcjmm6NadyBFuvz/hOcqquM3g=",
         }))));
       const cargoHash = "sha256-kWRODW1BsnifEqGZj8jK5tUK/5zK1AIRSq3JSo6YmkI=";
-      const env = nix.thunk(() => ({ [nix.POS]: pos$2, OPENSSL_NO_VENDOR: true }));
+      const env = nix.thunk(() => ({ [nix.POS]: $pos[1], OPENSSL_NO_VENDOR: true }));
       const nativeBuildInputs = nix.thunk(() => [pkg_config, versionCheckHook]);
       const buildInputs = nix.thunk(() => [openssl]);
       const doCheck = false;
       const doInstallCheck = true;
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Recursive content discovery tool",
         homepage: "https://github.com/epi052/feroxbuster",
         changelog: nix.thunk(() => nix.str`https://github.com/epi052/feroxbuster/releases/tag/${nix.sel(src, "tag")}`),
@@ -53,7 +49,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "feroxbuster",
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         src,

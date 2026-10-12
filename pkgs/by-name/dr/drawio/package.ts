@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["fetchSubmodules", 24, 5], ["hash", 25, 5]], [["src", 35, 5], ["hash", 36, 5]], [["ELECTRON_SKIP_BINARY_DOWNLOAD", 51, 7]], [["name", 113, 7], ["exec", 114, 7], ["icon", 115, 7], ["desktopName", 116, 7], ["comment", 117, 7], ["mimeTypes", 118, 7], ["categories", 122, 7], ["startupWMClass", 123, 7]], [["updateScript", 127, 12]], [["description", 130, 5], ["homepage", 131, 5], ["license", 132, 5], ["changelog", 133, 5], ["maintainers", 134, 5], ["platforms", 135, 5], ["mainProgram", 136, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["postPatch", 29, 3], ["offlineCache", 34, 3], ["nativeBuildInputs", 39, 3], ["env", 51, 3], ["configurePhase", 53, 3], ["buildPhase", 65, 3], ["installPhase", 84, 3], ["desktopItems", 111, 3], ["passthru", 127, 3], ["meta", 129, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchNpmDeps: false, makeDesktopItem: false, copyDesktopItems: false, "npm-lockfile-fix": false, makeWrapper: false, darwin: false, nodejs: false, electron_44: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["fetchSubmodules", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["src", 35, 5], ["hash", 36, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["ELECTRON_SKIP_BINARY_DOWNLOAD", 51, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["name", 113, 7], ["exec", 114, 7], ["icon", 115, 7], ["desktopName", 116, 7], ["comment", 117, 7], ["mimeTypes", 118, 7], ["categories", 122, 7], ["startupWMClass", 123, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["updateScript", 127, 12]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 130, 5], ["homepage", 131, 5], ["license", 132, 5], ["changelog", 133, 5], ["maintainers", 134, 5], ["platforms", 135, 5], ["mainProgram", 136, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["postPatch", 29, 3], ["offlineCache", 34, 3], ["nativeBuildInputs", 39, 3], ["env", 51, 3], ["configurePhase", 53, 3], ["buildPhase", 65, 3], ["installPhase", 84, 3], ["desktopItems", 111, 3], ["passthru", 127, 3], ["meta", 129, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const electron_44 = nix.arg($, "electron_44");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "drawio",
       version: "31.7.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "jgraph",
           repo: "drawio-desktop",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -39,12 +33,12 @@ export default nix.lambda((args) => (() => {
         })))),
       postPatch: "substituteInPlace ./build/fuses.mjs \\\n  --replace-fail \"resetAdHocDarwinSignature:\" \"// resetAdHocDarwinSignature:\"\n",
       offlineCache: nix.thunk(() => nix.app(fetchNpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           src: nix.thunk(() => nix.sel(finalAttrs, "src")),
           hash: "sha256-toGjhKYJt9X6xgncEGx6wco5WJh5tUwATNVLsXI3MVs=",
         })))),
       nativeBuildInputs: nix.thunk(() => nix.concat([npm_lockfile_fix, makeWrapper, nodejs], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), nix.thunk(() => [copyDesktopItems])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [nix.thunk(() => nix.sel(darwin, "autoSignDarwinBinariesHook"))]))))),
-      env: nix.thunk(() => ({ [nix.POS]: pos$3, ELECTRON_SKIP_BINARY_DOWNLOAD: true })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[2], ELECTRON_SKIP_BINARY_DOWNLOAD: true })),
       configurePhase: "runHook preConfigure\n\nexport HOME=\"$TMPDIR\"\nnpm config set cache \"$offlineCache\"\nnpm-lockfile-fix package-lock.json\nnpm ci --offline --ignore-scripts --no-audit --no-fund\npatchShebangs node_modules/\n\nrunHook postConfigure\n",
       buildPhase: nix.thunk(() => nix.str`runHook preBuild
 
@@ -75,7 +69,7 @@ makeWrapper '${electron_44}/bin/electron' "$out/bin/drawio" \\
 `))), "\nrunHook postInstall\n")),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             name: "drawio",
             exec: "drawio %U",
             icon: "drawio",
@@ -87,11 +81,11 @@ makeWrapper '${electron_44}/bin/electron' "$out/bin/drawio" \\
           })))),
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Desktop version of draw.io for creating diagrams",
         homepage: "https://about.draw.io/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

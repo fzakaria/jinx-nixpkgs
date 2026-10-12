@@ -2,33 +2,22 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/docker-registry.nix", [[["maintainers", 6, 5]], [["enable", 16, 33], ["enableDelete", 17, 33], ["port", 18, 33], ["listenAddress", 19, 33], ["enableGarbageCollect", 20, 33], ["openFirewall", 21, 33]], [["dockerRegistry", 16, 18]], [["services", 16, 9]], [["enable", 27, 31], ["extraOptions", 28, 31]], [["docker", 27, 24]], [["virtualisation", 27, 9]], [["enable", 34, 31], ["extraOptions", 35, 31]], [["docker", 34, 24]], [["virtualisation", 34, 9]], [["registry", 13, 5], ["client1", 24, 5], ["client2", 31, 5]], [["name", 4, 3], ["meta", 5, 3], ["nodes", 12, 3], ["testScript", 39, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/docker-registry.nix", [["maintainers", 6, 5]]);
 const formals$2 = { args: {  }, ellipsis: true };
-const pos$2 = nix.positions(here + "/docker-registry.nix", [["enable", 16, 33], ["enableDelete", 17, 33], ["port", 18, 33], ["listenAddress", 19, 33], ["enableGarbageCollect", 20, 33], ["openFirewall", 21, 33]]);
-const pos$3 = nix.positions(here + "/docker-registry.nix", [["dockerRegistry", 16, 18]]);
-const pos$4 = nix.positions(here + "/docker-registry.nix", [["services", 16, 9]]);
 const formals$3 = { args: {  }, ellipsis: true };
-const pos$5 = nix.positions(here + "/docker-registry.nix", [["enable", 27, 31], ["extraOptions", 28, 31]]);
-const pos$6 = nix.positions(here + "/docker-registry.nix", [["docker", 27, 24]]);
-const pos$7 = nix.positions(here + "/docker-registry.nix", [["virtualisation", 27, 9]]);
 const formals$4 = { args: {  }, ellipsis: true };
-const pos$8 = nix.positions(here + "/docker-registry.nix", [["enable", 34, 31], ["extraOptions", 35, 31]]);
-const pos$9 = nix.positions(here + "/docker-registry.nix", [["docker", 34, 24]]);
-const pos$10 = nix.positions(here + "/docker-registry.nix", [["virtualisation", 34, 9]]);
-const pos$11 = nix.positions(here + "/docker-registry.nix", [["registry", 13, 5], ["client1", 24, 5], ["client2", 31, 5]]);
-const pos$12 = nix.positions(here + "/docker-registry.nix", [["name", 4, 3], ["meta", 5, 3], ["nodes", 12, 3], ["testScript", 39, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   return {
-    [nix.POS]: pos$12,
+    [nix.POS]: $pos[11],
     name: "docker-registry",
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
       return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         maintainers: nix.thunk(() => [
           nix.thunk(() => nix.lookup(w, "ironpinguin")),
           nix.thunk(() => nix.lookup(w, "cafkafk")),
@@ -36,15 +25,15 @@ export default nix.lambda((args) => (() => {
       };
     })()),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$11,
+      [nix.POS]: $pos[10],
       registry: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             dockerRegistry: nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               enable: true,
               enableDelete: true,
               port: 8080n,
@@ -58,11 +47,11 @@ export default nix.lambda((args) => (() => {
       client1: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$3);
         return {
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           virtualisation: nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             docker: nix.thunk(() => ({
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               enable: true,
               extraOptions: "--insecure-registry registry:8080",
             })),
@@ -72,11 +61,11 @@ export default nix.lambda((args) => (() => {
       client2: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$4);
         return {
-          [nix.POS]: pos$10,
+          [nix.POS]: $pos[9],
           virtualisation: nix.thunk(() => ({
-            [nix.POS]: pos$9,
+            [nix.POS]: $pos[8],
             docker: nix.thunk(() => ({
-              [nix.POS]: pos$8,
+              [nix.POS]: $pos[7],
               enable: true,
               extraOptions: "--insecure-registry registry:8080",
             })),

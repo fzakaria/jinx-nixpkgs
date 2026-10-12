@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 17, 13], ["version", 17, 19], ["hash", 18, 5]], [["url", 24, 7], ["hash", 25, 7]], [["skipBulkUpdate", 39, 12]], [["description", 42, 5], ["homepage", 43, 5], ["license", 44, 5], ["maintainers", 45, 5]], [["pname", 11, 3], ["version", 12, 3], ["pyproject", 14, 3], ["src", 16, 3], ["patches", 21, 3], ["nativeBuildInputs", 29, 3], ["propagatedBuildInputs", 31, 3], ["doCheck", 34, 3], ["pythonImportsCheck", 36, 3], ["passthru", 39, 3], ["meta", 41, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, fetchpatch: false, setuptools: false, requests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 17, 13], ["version", 17, 19], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["url", 24, 7], ["hash", 25, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["skipBulkUpdate", 39, 12]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 42, 5], ["homepage", 43, 5], ["license", 44, 5], ["maintainers", 45, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 11, 3], ["version", 12, 3], ["pyproject", 14, 3], ["src", 16, 3], ["patches", 21, 3], ["nativeBuildInputs", 29, 3], ["propagatedBuildInputs", 31, 3], ["doCheck", 34, 3], ["pythonImportsCheck", 36, 3], ["passthru", 39, 3], ["meta", 41, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,14 +18,14 @@ export default nix.lambda((args) => (() => {
       const version = "0.1.5";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-F1P1/NKml2rtd1r7A/g5IVnwQMZzkXzAxjRRDZXBPLk=",
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/Anonym-tsk/starline/commit/4e6cdf8e05c5fb8509ee384e77b39a2495587160.patch",
             hash: "sha256-y9b6ePH3IEgmt3ALHQGwH102rlm4KfmH4oIoIC93cWU=",
           })))),
@@ -38,9 +34,9 @@ export default nix.lambda((args) => (() => {
       const propagatedBuildInputs = nix.thunk(() => [requests]);
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["starline"]);
-      const passthru = nix.thunk(() => ({ [nix.POS]: pos$3, skipBulkUpdate: true }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: $pos[2], skipBulkUpdate: true }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Unofficial python library for StarLine API",
         homepage: "https://github.com/Anonym-tsk/starline",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -50,7 +46,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         pyproject,

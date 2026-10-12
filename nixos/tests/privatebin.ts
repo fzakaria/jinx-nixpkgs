@@ -2,34 +2,29 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/privatebin.nix", [[["maintainers", 5, 8]], [["enable", 11, 9], ["enableNginx", 12, 9]], [["privatebin", 10, 16]], [["services", 10, 7]], [["dataImporter", 7, 9]], [["name", 4, 3], ["meta", 5, 3], ["nodes", 7, 3], ["testScript", 16, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/privatebin.nix", [["maintainers", 5, 8]]);
 const formals$2 = { args: {  }, ellipsis: true };
-const pos$2 = nix.positions(here + "/privatebin.nix", [["enable", 11, 9], ["enableNginx", 12, 9]]);
-const pos$3 = nix.positions(here + "/privatebin.nix", [["privatebin", 10, 16]]);
-const pos$4 = nix.positions(here + "/privatebin.nix", [["services", 10, 7]]);
-const pos$5 = nix.positions(here + "/privatebin.nix", [["dataImporter", 7, 9]]);
-const pos$6 = nix.positions(here + "/privatebin.nix", [["name", 4, 3], ["meta", 5, 3], ["nodes", 7, 3], ["testScript", 16, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$6,
+    [nix.POS]: $pos[5],
     name: "privatebin",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "savyajha"))]),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       dataImporter: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$3,
-            privatebin: nix.thunk(() => ({ [nix.POS]: pos$2, enable: true, enableNginx: true })),
+            [nix.POS]: $pos[2],
+            privatebin: nix.thunk(() => ({ [nix.POS]: $pos[1], enable: true, enableNginx: true })),
           })),
         };
       })(), formals$2),

@@ -2,22 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 25, 13], ["repo", 26, 13], ["tag", 27, 13], ["hash", 28, 13]], [["pname", 50, 32], ["version", 51, 21], ["src", 51, 29], ["sourceRoot", 51, 33], ["hash", 52, 13]], [["version", 33, 19], ["src", 33, 27], ["sourceRoot", 33, 31], ["postPatch", 36, 11], ["disabledTests", 37, 11], ["cargoDeps", 49, 11]], [["tokenizers", 20, 7], ["huggingface-hub", 57, 7], ["transformers", 58, 7]], [["name", 70, 5], ["owner", 71, 5], ["repo", 72, 5], ["tag", 73, 5], ["hash", 74, 5]], [["driverLink", 83, 34]], [["version", 266, 28], ["src", 266, 36]], [["callPackage", 273, 19], ["directory", 274, 11]], [["callPackage", 281, 19], ["directory", 282, 11]], [["callPackage", 290, 19], ["directory", 291, 11]], [["edgetpu", 271, 7], ["openvino", 279, 7], ["tflite", 288, 7]], [["frigate", 296, 28]], [["python", 261, 13], ["python3Packages", 261, 20], ["pythonPath", 262, 5], ["web", 265, 5], ["models", 268, 5], ["tests", 295, 5]], [["changelog", 301, 5], ["description", 302, 5], ["longDescription", 303, 5], ["homepage", 308, 5], ["license", 309, 5], ["maintainers", 310, 5]], [["pname", 65, 3], ["version", 66, 3], ["pyproject", 67, 3], ["src", 69, 3], ["patches", 77, 3], ["postPatch", 105, 3], ["dontBuild", 150, 3], ["dependencies", 152, 3], ["installPhase", 224, 3], ["nativeCheckInputs", 238, 3], ["preCheck", 243, 3], ["disabledTests", 250, 3], ["passthru", 260, 3], ["meta", 300, 3]]]);
 const formals$1 = { args: { addDriverRunpath: false, callPackage: false, fetchFromGitHub: false, rustPlatform: false, "ffmpeg-headless": false, frigate: false, lib: false, nixosTests: false, python313Packages: false, replaceVars: false, "sqlite-vec": false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 25, 13], ["repo", 26, 13], ["tag", 27, 13], ["hash", 28, 13]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 50, 32], ["version", 51, 21], ["src", 51, 29], ["sourceRoot", 51, 33], ["hash", 52, 13]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 33, 19], ["src", 33, 27], ["sourceRoot", 33, 31], ["postPatch", 36, 11], ["disabledTests", 37, 11], ["cargoDeps", 49, 11]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tokenizers", 20, 7], ["huggingface-hub", 57, 7], ["transformers", 58, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["name", 70, 5], ["owner", 71, 5], ["repo", 72, 5], ["tag", 73, 5], ["hash", 74, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["driverLink", 83, 34]]);
-const pos$7 = nix.positions(here + "/package.nix", [["version", 266, 28], ["src", 266, 36]]);
-const pos$8 = nix.positions(here + "/package.nix", [["callPackage", 273, 19], ["directory", 274, 11]]);
-const pos$9 = nix.positions(here + "/package.nix", [["callPackage", 281, 19], ["directory", 282, 11]]);
-const pos$10 = nix.positions(here + "/package.nix", [["callPackage", 290, 19], ["directory", 291, 11]]);
-const pos$11 = nix.positions(here + "/package.nix", [["edgetpu", 271, 7], ["openvino", 279, 7], ["tflite", 288, 7]]);
-const pos$12 = nix.positions(here + "/package.nix", [["frigate", 296, 28]]);
-const pos$13 = nix.positions(here + "/package.nix", [["python", 261, 13], ["python3Packages", 261, 20], ["pythonPath", 262, 5], ["web", 265, 5], ["models", 268, 5], ["tests", 295, 5]]);
-const pos$14 = nix.positions(here + "/package.nix", [["changelog", 301, 5], ["description", 302, 5], ["longDescription", 303, 5], ["homepage", 308, 5], ["license", 309, 5], ["maintainers", 310, 5]]);
-const pos$15 = nix.positions(here + "/package.nix", [["pname", 65, 3], ["version", 66, 3], ["pyproject", 67, 3], ["src", 69, 3], ["patches", 77, 3], ["postPatch", 105, 3], ["dontBuild", 150, 3], ["dependencies", 152, 3], ["installPhase", 224, 3], ["nativeCheckInputs", 238, 3], ["preCheck", 243, 3], ["disabledTests", 250, 3], ["passthru", 260, 3], ["meta", 300, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const sqlite_vec = nix.arg($, "sqlite-vec");
   const stdenv = nix.arg($, "stdenv");
   const python3Packages = nix.thunk(() => nix.app(nix.sel(python313Packages, "overrideScope"), (self) => (super$) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       tokenizers: nix.thunk(() => nix.app(nix.sel(super$, "tokenizers", "overridePythonAttrs"), (oldAttrs) => (() => {
           const version = "0.22.1";
           const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-              [nix.POS]: pos$1,
+              [nix.POS]: $pos[0],
               owner: "huggingface",
               repo: "tokenizers",
               tag: nix.thunk(() => nix.str`v${version}`),
@@ -46,7 +32,7 @@ export default nix.lambda((args) => (() => {
             }))));
           const sourceRoot = nix.thunk(() => nix.str`${nix.sel(src, "name")}/bindings/python`);
           return {
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             version: version,
             src: src,
             sourceRoot: sourceRoot,
@@ -58,7 +44,7 @@ export default nix.lambda((args) => (() => {
               "TestTrainFromIterators",
             ]),
             cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-                [nix.POS]: pos$2,
+                [nix.POS]: $pos[1],
                 pname: nix.thunk(() => nix.attr(oldAttrs, "pname")),
                 version: version,
                 src: src,
@@ -72,12 +58,12 @@ export default nix.lambda((args) => (() => {
     })));
   const python = nix.thunk(() => nix.attr(python3Packages, "python"));
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$15,
+      [nix.POS]: $pos[14],
       pname: "frigate",
       version: "0.18.0",
       pyproject: false,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           name: nix.thunk(() => nix.str`frigate-${nix.sel(finalAttrs, "version")}-source`),
           owner: "blakeblackshear",
           repo: "frigate",
@@ -87,7 +73,7 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [
         nix.path(here, "./ffmpeg.patch"),
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./libteflon-driverlink-path.patch"), nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             driverLink: nix.thunk(() => nix.attr(addDriverRunpath, "driverLink")),
           })))),
         nix.path(here, "./onnxruntime-compat.patch"),
@@ -234,37 +220,40 @@ runHook postInstall
         "test_unconfigured_role_can_access_any_stream",
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$13,
+        [nix.POS]: $pos[12],
         python: python,
         python3Packages: python3Packages,
         pythonPath: nix.thunk(() => nix.add(nix.app(nix.sel(python3Packages, "makePythonPath"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage", "dependencies"))), nix.str`:${frigate}/${nix.sel(python, "sitePackages")}`)),
         web: nix.thunk(() => nix.app(callPackage, nix.path(here, "./web.nix"), nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             version: nix.thunk(() => nix.attr(finalAttrs, "version")),
             src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           })))),
         models: nix.thunk(() => ({
-          [nix.POS]: pos$11,
+          [nix.POS]: $pos[10],
           edgetpu: nix.thunk(() => nix.app(nix.sel(lib, "recurseIntoAttrs"), nix.thunk(() => nix.app(nix.sel(lib, "packagesFromDirectoryRecursive"), nix.thunk(() => ({
-                [nix.POS]: pos$8,
+                [nix.POS]: $pos[7],
                 callPackage: callPackage,
                 directory: nix.path(here, "./models/edgetpu"),
               })))))),
           openvino: nix.thunk(() => nix.app(nix.sel(lib, "recurseIntoAttrs"), nix.thunk(() => nix.app(nix.sel(lib, "packagesFromDirectoryRecursive"), nix.thunk(() => ({
-                [nix.POS]: pos$9,
+                [nix.POS]: $pos[8],
                 callPackage: callPackage,
                 directory: nix.path(here, "./models/openvino"),
               })))))),
           tflite: nix.thunk(() => nix.app(nix.sel(lib, "recurseIntoAttrs"), nix.thunk(() => nix.app(nix.sel(lib, "packagesFromDirectoryRecursive"), nix.thunk(() => ({
-                [nix.POS]: pos$10,
+                [nix.POS]: $pos[9],
                 callPackage: callPackage,
                 directory: nix.path(here, "./models/tflite"),
               })))))),
         })),
-        tests: nix.thunk(() => ({ [nix.POS]: pos$12, frigate: nix.thunk(() => nix.attr(nixosTests, "frigate")) })),
+        tests: nix.thunk(() => ({
+          [nix.POS]: $pos[11],
+          frigate: nix.thunk(() => nix.attr(nixosTests, "frigate")),
+        })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$14,
+        [nix.POS]: $pos[13],
         changelog: nix.thunk(() => nix.str`https://github.com/blakeblackshear/frigate/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         description: "NVR with realtime local object detection for IP cameras",
         longDescription: "A complete and local NVR designed for Home Assistant with AI\nobject detection. Uses OpenCV and Tensorflow to perform realtime\nobject detection locally for IP cameras.\n",

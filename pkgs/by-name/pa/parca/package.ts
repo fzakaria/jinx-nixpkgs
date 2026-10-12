@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]], [["pname", 28, 28], ["src", 28, 34], ["version", 28, 38], ["pnpm", 29, 7], ["fetcherVersion", 30, 7], ["hash", 31, 7]], [["version", 23, 13], ["pname", 24, 5], ["src", 25, 5], ["pnpmDeps", 27, 5], ["nativeBuildInputs", 34, 5], ["buildPhase", 43, 5], ["installPhase", 49, 5]], [["ui", 77, 13], ["updateScript", 78, 5]], [["mainProgram", 82, 5], ["description", 83, 5], ["homepage", 84, 5], ["changelog", 85, 5], ["license", 86, 5], ["platforms", 87, 5], ["maintainers", 88, 5]], [["version", 59, 11], ["pname", 61, 3], ["src", 62, 3], ["vendorHash", 64, 3], ["ldflags", 66, 3], ["preBuild", 71, 3], ["passthru", 76, 3], ["meta", 81, 3]]]);
 const formals$1 = { args: { buildGoModule: false, faketty: false, fetchFromGitHub: false, lib: false, nodejs: false, pnpm_10: false, fetchPnpmDeps: false, pnpmConfigHook: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 28, 28], ["src", 28, 34], ["version", 28, 38], ["pnpm", 29, 7], ["fetcherVersion", 30, 7], ["hash", 31, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 23, 13], ["pname", 24, 5], ["src", 25, 5], ["pnpmDeps", 27, 5], ["nativeBuildInputs", 34, 5], ["buildPhase", 43, 5], ["installPhase", 49, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["ui", 77, 13], ["updateScript", 78, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["mainProgram", 82, 5], ["description", 83, 5], ["homepage", 84, 5], ["changelog", 85, 5], ["license", 86, 5], ["platforms", 87, 5], ["maintainers", 88, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["version", 59, 11], ["pname", 61, 3], ["src", 62, 3], ["vendorHash", 64, 3], ["ldflags", 66, 3], ["preBuild", 71, 3], ["passthru", 76, 3], ["meta", 81, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,19 +18,19 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const version = "0.28.0";
   const parca_src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "parca-dev",
       repo: "parca",
       tag: nix.thunk(() => nix.str`v${version}`),
       hash: "sha256-7ndRiOYa7HiOwwHRXqeCr3A+5EAVvbo4I4vkoqSya+E=",
     }))));
   const ui = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       version: version,
       pname: "parca-ui",
       src: nix.thunk(() => nix.str`${parca_src}/ui`),
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
@@ -59,9 +54,9 @@ export default nix.lambda((args) => (() => {
       const preBuild = nix.thunk(() => nix.str`# Copy the built UI into the right place for the Go build to embed it.
 cp -r ${ui}/share/parca/ui/* ui/packages/app/web/build
 `);
-      const passthru = nix.thunk(() => ({ [nix.POS]: pos$4, ui: ui, updateScript: nix.path(here, "./update.sh") }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: $pos[3], ui: ui, updateScript: nix.path(here, "./update.sh") }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         mainProgram: "parca",
         description: "Continuous profiling for analysis of CPU and memory usage",
         homepage: "https://github.com/parca-dev/parca",
@@ -77,7 +72,7 @@ cp -r ${ui}/share/parca/ui/* ui/packages/app/web/build
         })()),
       }));
       return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         version: version_1,
         pname,
         src,

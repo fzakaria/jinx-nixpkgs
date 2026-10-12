@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]], [["description", 100, 5], ["homepage", 101, 5], ["changelog", 102, 5], ["license", 103, 5], ["maintainers", 107, 5], ["mainProgram", 108, 5], ["platforms", 109, 5]], [["pname", 16, 3], ["version", 17, 3], ["pyproject", 18, 3], ["__structuredAttrs", 19, 3], ["src", 21, 3], ["build-system", 28, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 38, 3], ["dependencies", 46, 3], ["dontUseCmakeConfigure", 55, 3], ["cmakeFlags", 56, 3], ["postInstall", 61, 3], ["dontWrapQtApps", 74, 3], ["preFixup", 75, 3], ["pythonImportsCheck", 79, 3], ["nativeCheckInputs", 86, 3], ["doCheck", 87, 3], ["installCheckPhase", 88, 3], ["meta", 99, 3]]]);
 const formals$1 = { args: { lib: false, cmake: false, "desktop-file-utils": false, fetchFromGitHub: false, kdePackages: false, ninja: false, "pkg-config": false, python3Packages: false, qt6: false, wayland: false, "wayland-scanner": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 100, 5], ["homepage", 101, 5], ["changelog", 102, 5], ["license", 103, 5], ["maintainers", 107, 5], ["mainProgram", 108, 5], ["platforms", 109, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["pyproject", 18, 3], ["__structuredAttrs", 19, 3], ["src", 21, 3], ["build-system", 28, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 38, 3], ["dependencies", 46, 3], ["dontUseCmakeConfigure", 55, 3], ["cmakeFlags", 56, 3], ["postInstall", 61, 3], ["dontWrapQtApps", 74, 3], ["preFixup", 75, 3], ["pythonImportsCheck", 79, 3], ["nativeCheckInputs", 86, 3], ["doCheck", 87, 3], ["installCheckPhase", 88, 3], ["meta", 99, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,13 +19,13 @@ export default nix.lambda((args) => (() => {
   const wayland = nix.arg($, "wayland");
   const wayland_scanner = nix.arg($, "wayland-scanner");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "kotonoha",
       version: "0.2.3",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "locez",
           repo: "kotonoha",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -79,7 +77,7 @@ desktop-file-validate "$out/share/applications/kotonoha.desktop"
 runHook postInstallCheck
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Linux desktop lyrics overlay for MPRIS players",
         homepage: "https://github.com/locez/kotonoha",
         changelog: nix.thunk(() => nix.str`https://github.com/locez/kotonoha/releases/tag/v${nix.sel(finalAttrs, "version")}`),

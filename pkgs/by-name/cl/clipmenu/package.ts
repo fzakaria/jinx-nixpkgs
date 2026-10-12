@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["sha256", 21, 5]], [["description", 56, 5], ["homepage", 57, 35], ["maintainers", 58, 5], ["license", 59, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["postPatch", 24, 3], ["makeFlags", 29, 3], ["nativeBuildInputs", 30, 3], ["postFixup", 36, 3], ["meta", 55, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, makeWrapper: false, clipnotify: false, coreutils: false, gawk: false, "util-linux": false, xdotool: false, xsel: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["sha256", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 56, 5], ["homepage", 57, 35], ["maintainers", 58, 5], ["license", 59, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["postPatch", 24, 3], ["makeFlags", 29, 3], ["nativeBuildInputs", 30, 3], ["postFixup", 36, 3], ["meta", 55, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const xdotool = nix.arg($, "xdotool");
   const xsel = nix.arg($, "xsel");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "clipmenu",
       version: "6.2.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "cdown",
           repo: "clipmenu",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -44,7 +42,7 @@ wrapProgram "$out/bin/clipmenud" \\
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(finalAttrs, "src", "meta"));
         return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Clipboard management using dmenu",
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         maintainers: nix.thunk(() => (() => {

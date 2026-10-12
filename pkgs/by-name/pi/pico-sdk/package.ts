@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["fetchSubmodules", 26, 5], ["hash", 27, 5]], [["extraArgs", 54, 7]], [["withSubmodules", 60, 44]], [["withSubmodules", 60, 7]], [["updateScript", 53, 5], ["tests", 59, 5]], [["description", 65, 5], ["homepage", 66, 5], ["changelog", 67, 5], ["license", 68, 5], ["maintainers", 69, 5], ["platforms", 73, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["cmakeFlags", 34, 3], ["nativeBuildInputs", 38, 3], ["sourceRoot", 42, 3], ["installPhase", 44, 3], ["passthru", 52, 3], ["meta", 64, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, versionCheckHook: false, "nix-update-script": false, "pico-sdk": false, withSubmodules: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["fetchSubmodules", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["extraArgs", 54, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["withSubmodules", 60, 44]]);
-const pos$4 = nix.positions(here + "/package.nix", [["withSubmodules", 60, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["updateScript", 53, 5], ["tests", 59, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 65, 5], ["homepage", 66, 5], ["changelog", 67, 5], ["license", 68, 5], ["maintainers", 69, 5], ["platforms", 73, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["cmakeFlags", 34, 3], ["nativeBuildInputs", 38, 3], ["sourceRoot", 42, 3], ["installPhase", 44, 3], ["passthru", 52, 3], ["meta", 64, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const pico_sdk = nix.arg($, "pico-sdk");
   const withSubmodules = nix.argOr($, "withSubmodules", () => false);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "pico-sdk",
       version: "2.3.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "raspberrypi",
           repo: "pico-sdk",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -40,18 +34,18 @@ export default nix.lambda((args) => (() => {
       sourceRoot: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "name")}/tools/pioasm`),
       installPhase: "runHook preInstall\nmkdir -p $out/lib/pico-sdk\ncp -a ../../../* $out/lib/pico-sdk/\nchmod 755 $out/lib/pico-sdk/tools/pioasm/build/pioasm\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             extraArgs: nix.thunk(() => ["--subpackage", "tests.withSubmodules"]),
           })))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
-          withSubmodules: nix.thunk(() => nix.app(nix.sel(pico_sdk, "override"), nix.thunk(() => ({ [nix.POS]: pos$3, withSubmodules: true })))),
+          [nix.POS]: $pos[3],
+          withSubmodules: nix.thunk(() => nix.app(nix.sel(pico_sdk, "override"), nix.thunk(() => ({ [nix.POS]: $pos[2], withSubmodules: true })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "SDK provides the headers, libraries and build system necessary to write programs for the RP2040-based devices",
         homepage: "https://github.com/raspberrypi/pico-sdk",
         changelog: nix.thunk(() => nix.str`https://github.com/raspberrypi/pico-sdk/releases/tag/${nix.sel(finalAttrs, "version")}`),

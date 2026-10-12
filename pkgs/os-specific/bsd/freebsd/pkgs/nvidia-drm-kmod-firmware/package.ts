@@ -2,9 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["platforms", 33, 8], ["license", 34, 8], ["sourceProvenance", 35, 8]], [["path", 10, 3], ["pname", 11, 3], ["version", 12, 29], ["src", 12, 37], ["extraNativeBuildInputs", 14, 3], ["makeFlags", 19, 3], ["hardeningDisable", 25, 3], ["preConfigure", 29, 3], ["meta", 33, 3]]]);
 const formals$1 = { args: { lib: false, mkDerivation: false, sys: false, "xargs-j": false, kldxref: false, "nvidia-drm-kmod": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["platforms", 33, 8], ["license", 34, 8], ["sourceProvenance", 35, 8]]);
-const pos$2 = nix.positions(here + "/package.nix", [["path", 10, 3], ["pname", 11, 3], ["version", 12, 29], ["src", 12, 37], ["extraNativeBuildInputs", 14, 3], ["makeFlags", 19, 3], ["hardeningDisable", 25, 3], ["preConfigure", 29, 3], ["meta", 33, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const kldxref = nix.arg($, "kldxref");
   const nvidia_drm_kmod = nix.arg($, "nvidia-drm-kmod");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       path: "...",
       pname: "nvidia-drm-kmod-firmware",
       version: nix.thunk(() => nix.attr(nvidia_drm_kmod, "version")),
@@ -29,7 +28,7 @@ export default nix.lambda((args) => (() => {
       hardeningDisable: nix.thunk(() => ["pic"]),
       preConfigure: "cd firmware\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         platforms: nix.thunk(() => ["x86_64-freebsd"]),
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfreeRedistributableFirmware")),
         sourceProvenance: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "sourceTypes", "binaryFirmware"))]),

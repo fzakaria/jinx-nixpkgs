@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 40, 13], ["version", 40, 19], ["hash", 41, 5]], [["infographics", 79, 5], ["tools", 82, 5], ["transformers", 87, 5], ["web", 90, 5]], [["description", 102, 5], ["homepage", 103, 5], ["license", 104, 5], ["maintainers", 105, 5], ["mainProgram", 106, 5]], [["pname", 34, 3], ["version", 35, 3], ["pyproject", 36, 3], ["src", 39, 3], ["patches", 44, 3], ["build-system", 50, 3], ["dependencies", 55, 3], ["optional-dependencies", 78, 3], ["doCheck", 97, 3], ["pythonImportsCheck", 99, 3], ["meta", 101, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, setuptools: false, "setuptools-scm": false, altair: false, fastapi: false, geopandas: false, kaleido: false, llmx: false, matplotlib: false, "matplotlib-venn": false, networkx: false, numpy: false, pandas: false, plotly: false, plotnine: false, pydantic: false, "python-multipart": false, scipy: false, seaborn: false, statsmodels: false, typer: false, uvicorn: false, wordcloud: false, peacasso: false, basemap: false, "basemap-data-hires": false, geopy: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 40, 13], ["version", 40, 19], ["hash", 41, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["infographics", 79, 5], ["tools", 82, 5], ["transformers", 87, 5], ["web", 90, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 102, 5], ["homepage", 103, 5], ["license", 104, 5], ["maintainers", 105, 5], ["mainProgram", 106, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 34, 3], ["version", 35, 3], ["pyproject", 36, 3], ["src", 39, 3], ["patches", 44, 3], ["build-system", 50, 3], ["dependencies", 55, 3], ["optional-dependencies", 78, 3], ["doCheck", 97, 3], ["pythonImportsCheck", 99, 3], ["meta", 101, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -44,7 +41,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.0.14";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-/az6hS8rNPxb8cDiz9SOyUBi/X48r9prJNFUnx1wPHM=",
@@ -74,7 +71,7 @@ export default nix.lambda((args) => (() => {
         wordcloud,
       ]);
       const optional_dependencies = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         infographics: nix.thunk(() => [peacasso]),
         tools: nix.thunk(() => [basemap, basemap_data_hires, geopy]),
         transformers: nix.thunk(() => [llmx]),
@@ -83,7 +80,7 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["lida"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Automatic Generation of Visualizations and Infographics using Large Language Models",
         homepage: "https://github.com/microsoft/lida",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -94,7 +91,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "lida",
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

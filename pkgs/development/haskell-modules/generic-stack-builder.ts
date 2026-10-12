@@ -2,12 +2,9 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/generic-stack-builder.nix", [[["license", 31, 10]], [["name", 29, 5], ["meta", 31, 5]], [["STACK_PLATFORM_VARIANT", 53, 7], ["STACK_IN_NIX_SHELL", 54, 7], ["STACK_IN_NIX_EXTRA_ARGS", 55, 7], ["LD_LIBRARY_PATH", 58, 7], ["GIT_SSL_CAINFO", 62, 7], ["LANG", 65, 7]], [["__noChroot", 41, 5], ["buildInputs", 43, 5], ["nativeBuildInputs", 45, 5], ["env", 52, 5], ["preferLocalBuild", 68, 5], ["preConfigure", 70, 5], ["buildPhase", 74, 5], ["checkPhase", 83, 5], ["doCheck", 92, 5], ["installPhase", 94, 5]]]);
 const formals$1 = { args: { stdenv: false, ghc: false, "pkg-config": false, glibcLocales: false, cacert: false, stack: false, makeSetupHook: false, lib: false }, ellipsis: false };
 const formals$2 = { args: { buildInputs: true, nativeBuildInputs: true, extraArgs: true, LD_LIBRARY_PATH: true, ghc: true, stack: true }, ellipsis: true };
-const pos$1 = nix.positions(here + "/generic-stack-builder.nix", [["license", 31, 10]]);
-const pos$2 = nix.positions(here + "/generic-stack-builder.nix", [["name", 29, 5], ["meta", 31, 5]]);
-const pos$3 = nix.positions(here + "/generic-stack-builder.nix", [["STACK_PLATFORM_VARIANT", 53, 7], ["STACK_IN_NIX_SHELL", 54, 7], ["STACK_IN_NIX_EXTRA_ARGS", 55, 7], ["LD_LIBRARY_PATH", 58, 7], ["GIT_SSL_CAINFO", 62, 7], ["LANG", 65, 7]]);
-const pos$4 = nix.positions(here + "/generic-stack-builder.nix", [["__noChroot", 41, 5], ["buildInputs", 43, 5], ["nativeBuildInputs", 45, 5], ["env", 52, 5], ["preferLocalBuild", 68, 5], ["preConfigure", 70, 5], ["buildPhase", 74, 5], ["checkPhase", 83, 5], ["doCheck", 92, 5], ["installPhase", 94, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,17 +28,20 @@ export default nix.lambda((args) => (() => {
     const stack_1 = nix.argOr($_1, "stack", () => nix.sel(depArgs, "stack"));
     const stackCmd = nix.thunk(() => nix.str`stack --internal-re-exec-version=${nix.sel(stack_1, "version")}`);
     const stackHook = nix.thunk(() => nix.app(makeSetupHook, nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         name: "stack-hook",
-        meta: nix.thunk(() => ({ [nix.POS]: pos$1, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
+        meta: nix.thunk(() => ({
+          [nix.POS]: $pos[0],
+          license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
+        })),
       })), nix.path(here, "./stack-hook.sh")));
     return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => nix.update(args_2, {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         __noChroot: true,
         buildInputs: nix.thunk(() => nix.concat(buildInputs, nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.eq(nix.sel(stdenv, "hostPlatform", "libc"), "glibc")), glibcLocales))),
         nativeBuildInputs: nix.thunk(() => nix.concat(nativeBuildInputs, [ghc_1, pkg_config, stack_1, stackHook])),
         env: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           STACK_PLATFORM_VARIANT: "nix",
           STACK_IN_NIX_SHELL: 1n,
           STACK_IN_NIX_EXTRA_ARGS: extraArgs,

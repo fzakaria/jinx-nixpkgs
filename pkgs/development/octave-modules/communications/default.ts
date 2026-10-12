@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 16, 5], ["sha256", 17, 5]], [["homepage", 45, 5], ["license", 46, 5], ["maintainers", 47, 5], ["description", 48, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["nativeBuildInputs", 20, 3], ["buildInputs", 25, 3], ["requiredOctavePackages", 29, 3], ["preAutoreconf", 37, 3], ["postAutoreconf", 40, 3], ["meta", 44, 3]]]);
 const formals$1 = { args: { buildOctavePackage: false, lib: false, fetchurl: false, autoreconfHook: false, "pkg-config": false, signal: false, hdf5: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 16, 5], ["sha256", 17, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 45, 5], ["license", 46, 5], ["maintainers", 47, 5], ["description", 48, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["nativeBuildInputs", 20, 3], ["buildInputs", 25, 3], ["requiredOctavePackages", 29, 3], ["preAutoreconf", 37, 3], ["postAutoreconf", 40, 3], ["meta", 44, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pname = "communications";
       const version = "1.2.7";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/octave/${pname}-${version}.tar.gz`),
           sha256: "sha256-UXaoV45mdmA7n2cB8J3S+/8Nt7uhokyv2MVBm+FK5lw=",
         }))));
@@ -30,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const preAutoreconf = "pushd src\n";
       const postAutoreconf = "popd\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://gnu-octave.github.io/packages/communications/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
         maintainers: nix.thunk(() => (() => {
@@ -40,7 +38,7 @@ export default nix.lambda((args) => (() => {
         description: "Digital Communications, Error Correcting Codes (Channel Code), Source Code functions, Modulation and Galois Fields",
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

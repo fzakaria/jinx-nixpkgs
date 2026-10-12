@@ -2,16 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["gristSrc", 35, 7], ["version", 36, 28], ["hash", 37, 7], ["offlineCacheHash", 38, 7]], [["owner", 73, 7], ["repo", 74, 7], ["tag", 75, 7], ["hash", 76, 7]], [["yarnLock", 80, 7], ["hash", 81, 7]], [["GRIST_SKIP_EXT_AUTOSETUP", 86, 7], ["sandboxPath", 88, 7], ["sandboxLibPath", 89, 7]], [["grist-core", 219, 13]], [["extraArgs", 222, 9]], [["pythonEnv", 216, 15], ["enterpriseSrc", 217, 7], ["enterpriseOfflineCache", 218, 7], ["tests", 219, 7], ["updateScript", 221, 7]], [["maintainers", 232, 7], ["description", 235, 7], ["homepage", 239, 7], ["license", 240, 7], ["platforms", 241, 7]], [["pname", 68, 5], ["version", 69, 5], ["__structuredAttrs", 70, 5], ["src", 72, 5], ["offlineCache", 79, 5], ["env", 84, 5], ["strictDeps", 92, 5], ["patches", 94, 5], ["nativeBuildInputs", 104, 5], ["buildInputs", 124, 5], ["yarnInstallFlags", 126, 5], ["postPatch", 137, 5], ["preConfigure", 141, 5], ["preBuild", 149, 5], ["buildPhase", 173, 5], ["postBuild", 181, 5], ["installPhase", 187, 5], ["postInstall", 202, 5], ["passthru", 215, 5], ["meta", 231, 5]]]);
 const formals$1 = { args: { lib: false, stdenv: false, callPackage: false, fetchFromGitHub: false, fetchYarnDeps: false, writeScriptBin: false, python3: false, yarn: false, nodejs: false, "node-gyp-build": false, "node-gyp": false, "node-pre-gyp": false, "fixup-yarn-lock": false, yarnConfigHook: false, sandboxEnv: true, extraPythonPackages: true, nixosTests: false, enterpriseEdition: true, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["gristSrc", 35, 7], ["version", 36, 28], ["hash", 37, 7], ["offlineCacheHash", 38, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 73, 7], ["repo", 74, 7], ["tag", 75, 7], ["hash", 76, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["yarnLock", 80, 7], ["hash", 81, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["GRIST_SKIP_EXT_AUTOSETUP", 86, 7], ["sandboxPath", 88, 7], ["sandboxLibPath", 89, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["grist-core", 219, 13]]);
-const pos$6 = nix.positions(here + "/package.nix", [["extraArgs", 222, 9]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pythonEnv", 216, 15], ["enterpriseSrc", 217, 7], ["enterpriseOfflineCache", 218, 7], ["tests", 219, 7], ["updateScript", 221, 7]]);
-const pos$8 = nix.positions(here + "/package.nix", [["maintainers", 232, 7], ["description", 235, 7], ["homepage", 239, 7], ["license", 240, 7], ["platforms", 241, 7]]);
-const pos$9 = nix.positions(here + "/package.nix", [["pname", 68, 5], ["version", 69, 5], ["__structuredAttrs", 70, 5], ["src", 72, 5], ["offlineCache", 79, 5], ["env", 84, 5], ["strictDeps", 92, 5], ["patches", 94, 5], ["nativeBuildInputs", 104, 5], ["buildInputs", 124, 5], ["yarnInstallFlags", 126, 5], ["postPatch", 137, 5], ["preConfigure", 141, 5], ["preBuild", 149, 5], ["buildPhase", 173, 5], ["postBuild", 181, 5], ["installPhase", 187, 5], ["postInstall", 202, 5], ["passthru", 215, 5], ["meta", 231, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -37,7 +29,7 @@ export default nix.lambda((args) => (() => {
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => (() => {
       const fetchGristEnterprise = nix.thunk(() => nix.app(callPackage, nix.path(here, "./fetch-grist-enterprise.nix"), nix.thunk(() => ({}))));
       const enterprise = nix.thunk(() => nix.app(fetchGristEnterprise, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           gristSrc: nix.thunk(() => nix.sel(finalAttrs, "src")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-fAi0qCfNPH+w51EmsaecS1y0aP4vx2kYK9hS5UQHIA8=",
@@ -65,24 +57,24 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.sel(p, "wrapt")),
         ])));
       return {
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         pname: "grist-core",
         version: "1.7.20",
         __structuredAttrs: true,
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             owner: "gristlabs",
             repo: "grist-core",
             tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
             hash: "sha256-umLdlxC0YBhhb17XMDVOeSNVJqkO9+DFwaHP3Sq3rWw=",
           })))),
         offlineCache: nix.thunk(() => nix.app(fetchYarnDeps, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             yarnLock: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src")}/yarn.lock`),
             hash: "sha256-o3hsHfgq1/14j0O13mjJ4a+dpwQ9kXkDnNOHsEhCroM=",
           })))),
         env: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           GRIST_SKIP_EXT_AUTOSETUP: "1",
           sandboxPath: nix.thunk(() => nix.app(nix.sel(lib, "makeSearchPath"), "bin", nix.thunk(() => nix.concat([pythonEnv], sandboxEnv)))),
           sandboxLibPath: nix.thunk(() => nix.app(nix.sel(lib, "makeLibraryPath"), nix.thunk(() => nix.concat([pythonEnv], sandboxEnv)))),
@@ -149,21 +141,21 @@ runHook postInstall
 `),
         postInstall: "unlink $out/grist-core/static/mocha.js\nunlink $out/grist-core/static/sinon.js\nunlink $out/grist-core/static/mocha.css\n\nunlink $out/grist-core/node_modules/msgpackr/node_modules/.bin/download-msgpackr-prebuilds\nunlink $out/grist-core/node_modules/.bin/download-msgpackr-prebuilds\n\nunlink $out/grist-core/bower_components/bootstrap\n\nsubstituteAllInPlace $out/grist-core/sandbox/gvisor/run.py\n",
         passthru: nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           pythonEnv: pythonEnv,
           enterpriseSrc: nix.thunk(() => nix.sel(enterprise, "src")),
           enterpriseOfflineCache: nix.thunk(() => nix.sel(enterprise, "offlineCache")),
           tests: nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             "grist-core": nix.thunk(() => nix.sel(nixosTests, "grist")),
           })),
           updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-              [nix.POS]: pos$6,
+              [nix.POS]: $pos[5],
               extraArgs: nix.thunk(() => ["--custom-dep", "enterpriseSrc", "--custom-dep", "enterpriseOfflineCache"]),
             })))),
         })),
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           maintainers: nix.thunk(() => (() => {
             const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
             return [nix.thunk(() => nix.lookup(w, "sinavir"))];

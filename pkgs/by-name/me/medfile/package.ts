@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 14, 5], ["hash", 15, 5], ["curlOptsList", 20, 5]], [["apiVersion", 47, 36]], [["description", 54, 5], ["homepage", 55, 5], ["platforms", 56, 5], ["license", 57, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["outputs", 26, 3], ["postPatch", 32, 3], ["nativeBuildInputs", 45, 3], ["buildInputs", 47, 3], ["checkPhase", 49, 3], ["postInstall", 51, 3], ["meta", 53, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, cmake: false, hdf5: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 14, 5], ["hash", 15, 5], ["curlOptsList", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["apiVersion", 47, 36]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 54, 5], ["homepage", 55, 5], ["platforms", 56, 5], ["license", 57, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["outputs", 26, 3], ["postPatch", 32, 3], ["nativeBuildInputs", 45, 3], ["buildInputs", 47, 3], ["checkPhase", 49, 3], ["postInstall", 51, 3], ["meta", 53, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const cmake = nix.arg($, "cmake");
   const hdf5 = nix.arg($, "hdf5");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "medfile",
       version: "6.0.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://files.salome-platform.org/Salome/medfile/med-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-+PHtxodLxI2PPk6L4c9zee0xhybYq8aAToXoIVVbH6g=",
           curlOptsList: nix.thunk(() => [
@@ -32,12 +29,12 @@ export default nix.lambda((args) => (() => {
       postPatch: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "# Some medfile test files #define _a, which\n# breaks system header files that use _a as a function parameter\nsubstituteInPlace tests/c/*.c \\\n  --replace-warn \"_a\" \"_A\" \\\n  --replace-warn \"_b\" \"_B\"\n# Fix compiler errors in test files\nsubstituteInPlace tests/c/*.c \\\n  --replace-warn \"med_Bool\" \"med_bool\" \\\n  --replace-warn \"med_Axis_type\" \"med_axis_type\" \\\n  --replace-warn \"med_Access_mode\" \"med_access_mode\"\n")),
       nativeBuildInputs: nix.thunk(() => [cmake]),
       buildInputs: nix.thunk(() => [
-        nix.thunk(() => nix.app(nix.sel(hdf5, "override"), nix.thunk(() => ({ [nix.POS]: pos$2, apiVersion: "v110" })))),
+        nix.thunk(() => nix.app(nix.sel(hdf5, "override"), nix.thunk(() => ({ [nix.POS]: $pos[1], apiVersion: "v110" })))),
       ]),
       checkPhase: "make test",
       postInstall: "rm -r $out/bin/testc",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Library to read and write MED files",
         homepage: "https://salome-platform.org/",
         platforms: nix.thunk(() => nix.concat(nix.sel(lib, "platforms", "linux"), nix.sel(lib, "platforms", "darwin"))),

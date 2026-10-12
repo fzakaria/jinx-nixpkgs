@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 13, 5], ["hash", 14, 5]], [["description", 45, 5], ["downloadPage", 46, 5], ["homepage", 47, 5], ["license", 48, 5], ["platforms", 49, 5], ["maintainers", 50, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["buildInputs", 17, 3], ["nativeBuildInputs", 18, 3], ["unpackPhase", 20, 3], ["postPatch", 28, 3], ["installPhase", 35, 3], ["meta", 44, 3]]]);
 const formals$1 = { args: { fetchzip: false, lib: false, stdenv: false, cmake: false, cups: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 13, 5], ["hash", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 45, 5], ["downloadPage", 46, 5], ["homepage", 47, 5], ["license", 48, 5], ["platforms", 49, 5], ["maintainers", 50, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["buildInputs", 17, 3], ["nativeBuildInputs", 18, 3], ["unpackPhase", 20, 3], ["postPatch", 28, 3], ["installPhase", 35, 3], ["meta", 44, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const cmake = nix.arg($, "cmake");
   const cups = nix.arg($, "cups");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "epson-tm-t88vi",
       version: "3.0.0.0",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://download3.ebz.epson.net/dsc/f/03/00/15/35/42/b1a708bb8b21d7a68ae7394287db440974b68a0e/tmx-cups-src-ImpactReceipt-${nix.sel(finalAttrs, "version")}_pck_e.zip`),
           hash: "sha256-c6VpnNXYebkDkK9kcTZ/ILE8pD/qSWKCHYqkHV+WIkc=",
         })))),
@@ -34,7 +32,7 @@ runHook postUnpack
       postPatch: "substituteInPlace ./ppd/*.ppd --replace-fail \"rastertotmtr\" \"$out/lib/cups/filter/rastertotmtr\"\n\nsubstituteInPlace CMakeLists.txt \\\n  --replace-fail \"cmake_minimum_required(VERSION 2.8)\" \"cmake_minimum_required(VERSION 3.10)\"\n",
       installPhase: "runHook preInstall\n\ninstall -Ds ./rastertotmtr $out/lib/cups/filter/rastertotmtr\ninstall ../ppd/*.ppd -Dt $out/share/cups/model/EPSON\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "EPSON TM Series T88VI Series Printer Driver for Linux",
         downloadPage: "https://epson.com/Support/Point-of-Sale/OmniLink-Printers/Epson-TM-T88VI-Series/s/SPT_C31CE94061?review-filter=Linux",
         homepage: "https://www.epson.com/",

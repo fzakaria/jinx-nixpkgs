@@ -2,11 +2,9 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 29, 9], ["sha1", 31, 11], ["sha256", 32, 11], ["sha512", 33, 11], ["hash", 34, 11]], [["extid", 42, 13]], [["name", 39, 11], ["passthru", 41, 3], ["builder", 45, 3], ["nativeBuildInputs", 59, 3], ["strictDeps", 66, 3], ["__structuredAttrs", 67, 3]]]);
 const formals$1 = { args: { stdenvNoCC: false, fetchurl: false, jq: false, "strip-nondeterminism": false, unzip: false, writeScript: false, zip: false }, ellipsis: false };
 const formals$2 = { args: { name: false, url: true, sha1: true, sha256: true, sha512: true, fixedExtid: true, hash: true, src: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 29, 9], ["sha1", 31, 11], ["sha256", 32, 11], ["sha512", 33, 11], ["hash", 34, 11]]);
-const pos$2 = nix.positions(here + "/default.nix", [["extid", 42, 13]]);
-const pos$3 = nix.positions(here + "/default.nix", [["name", 39, 11], ["passthru", 41, 3], ["builder", 45, 3], ["nativeBuildInputs", 59, 3], ["strictDeps", 66, 3], ["__structuredAttrs", 67, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,7 +27,7 @@ export default nix.lambda((args) => (() => {
     const src = nix.argOr($_1, "src", () => "");
     const extid = nix.thunk(() => (nix.asBool(nix.eq(fixedExtid, null)) ? nix.str`nixos@${name}` : nix.force(fixedExtid)));
     const source = nix.thunk(() => (nix.asBool(nix.eq(url, null)) ? nix.force(src) : nix.app(fetchurl, nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         url: url,
         sha1: sha1,
         sha256: sha256,
@@ -37,9 +35,9 @@ export default nix.lambda((args) => (() => {
         hash: hash,
       })))));
     return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         name: name,
-        passthru: nix.thunk(() => ({ [nix.POS]: pos$2, extid: extid })),
+        passthru: nix.thunk(() => ({ [nix.POS]: $pos[1], extid: extid })),
         builder: nix.thunk(() => nix.app(writeScript, "xpibuilder", nix.thunk(() => nix.str`echo "firefox addon $name into $out"
 
 UUID="${extid}"

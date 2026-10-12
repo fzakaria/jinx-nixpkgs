@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["sha256", 21, 5]], [["homepage", 53, 5], ["downloadPage", 54, 5], ["description", 55, 5], ["longDescription", 56, 5], ["license", 66, 5], ["platforms", 67, 5], ["mainProgram", 68, 5], ["maintainers", 69, 5], ["broken", 70, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 29, 3], ["makeFlags", 36, 3], ["postBuild", 43, 3], ["postInstall", 47, 3], ["meta", 52, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, "pkg-config": false, SDL: false, SDL_image: false, SDL_ttf: false, gtk3: false, wrapGAppsHook3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["sha256", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 53, 5], ["downloadPage", 54, 5], ["description", 55, 5], ["longDescription", 56, 5], ["license", 66, 5], ["platforms", 67, 5], ["mainProgram", 68, 5], ["maintainers", 69, 5], ["broken", 70, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 29, 3], ["makeFlags", 36, 3], ["postBuild", 43, 3], ["postInstall", 47, 3], ["meta", 52, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const gtk3 = nix.arg($, "gtk3");
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "hivelytracker",
       version: "1.9",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "pete-gordon",
           repo: "hivelytracker",
           rev: nix.thunk(() => nix.str`V${nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => ["_"]), nix.thunk(() => nix.sel(finalAttrs, "version")))}`),
@@ -35,7 +33,7 @@ export default nix.lambda((args) => (() => {
       postBuild: "make -C hvl2wav\n",
       postInstall: "# Also install the hvl2wav tool\ninstall -Dm755 hvl2wav/hvl2wav $out/bin/hvl2wav\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "http://www.hivelytracker.co.uk/",
         downloadPage: "http://www.hivelytracker.co.uk/downl.php",
         description: "Chip music tracker based upon the AHX format",

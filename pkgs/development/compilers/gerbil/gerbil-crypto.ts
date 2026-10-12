@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/gerbil-crypto.nix", [[["fun", 24, 5], ["owner", 25, 5], ["repo", 26, 5], ["rev", 27, 5], ["sha256", 28, 5]], [["description", 32, 5], ["homepage", 33, 5], ["license", 34, 5], ["platforms", 35, 5], ["maintainers", 36, 5]], [["pname", 10, 3], ["version", 11, 3], ["git-version", 12, 3], ["gerbil-package", 13, 3], ["gerbilInputs", 14, 3], ["nativeBuildInputs", 18, 3], ["buildInputs", 19, 3], ["version-path", 20, 3], ["softwareName", 21, 3], ["pre-src", 23, 3], ["meta", 31, 3]]]);
 const formals$1 = { args: { pkgs: false, lib: false, fetchFromGitHub: false, gerbilPackages: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/gerbil-crypto.nix", [["fun", 24, 5], ["owner", 25, 5], ["repo", 26, 5], ["rev", 27, 5], ["sha256", 28, 5]]);
-const pos$2 = nix.positions(here + "/gerbil-crypto.nix", [["description", 32, 5], ["homepage", 33, 5], ["license", 34, 5], ["platforms", 35, 5], ["maintainers", 36, 5]]);
-const pos$3 = nix.positions(here + "/gerbil-crypto.nix", [["pname", 10, 3], ["version", 11, 3], ["git-version", 12, 3], ["gerbil-package", 13, 3], ["gerbilInputs", 14, 3], ["nativeBuildInputs", 18, 3], ["buildInputs", 19, 3], ["version-path", 20, 3], ["softwareName", 21, 3], ["pre-src", 23, 3], ["meta", 31, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const gerbilPackages = nix.arg($, "gerbilPackages");
   return {
-    [nix.POS]: pos$3,
+    [nix.POS]: $pos[2],
     pname: "gerbil-crypto",
     version: "unstable-2023-11-29",
     "git-version": "0.1-1-g4197bfa",
@@ -31,7 +29,7 @@ export default nix.lambda((args) => (() => {
     "version-path": "version",
     softwareName: "Gerbil-crypto",
     "pre-src": nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       fun: fetchFromGitHub,
       owner: "mighty-gerbils",
       repo: "gerbil-crypto",
@@ -39,7 +37,7 @@ export default nix.lambda((args) => (() => {
       sha256: "1jdfz5x24dfvpwyfxalkhv83gf9ylyaqii1kg8rjl8dzickawrix",
     })),
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       description: "Gerbil Crypto: Extra Cryptographic Primitives for Gerbil",
       homepage: "https://github.com/fare/gerbil-crypto",
       license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

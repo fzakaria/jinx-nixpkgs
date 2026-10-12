@@ -2,37 +2,10 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/mosquitto.nix", [[["buildInputs", 14, 9], ["caTemplate", 15, 9], ["certTemplate", 21, 9], ["userCertTemplate", 28, 9]], [["maintainers", 62, 5]], [["systemPackages", 70, 23]], [["environment", 70, 11]], [["allowedTCPPorts", 77, 31]], [["firewall", 77, 22], ["useNetworkd", 82, 22]], [["sys_interval", 86, 15]], [["password", 93, 29]], [["passwordFile", 96, 21]], [["hashedPassword", 99, 29]], [["hashedPasswordFile", 102, 21]], [["password", 106, 29], ["acl", 107, 21]], [["password", 113, 29], ["acl", 114, 21]], [["password_store", 92, 19], ["password_file", 95, 19], ["hashed_store", 98, 19], ["hashed_file", 101, 19], ["reader", 105, 19], ["writer", 112, 19]], [["port", 90, 25], ["users", 91, 17]], [["acl", 121, 19]], [["client1", 120, 23]], [["cafile", 124, 19], ["certfile", 125, 19], ["keyfile", 126, 19], ["require_certificate", 127, 19], ["use_identity_as_username", 128, 19]], [["port", 119, 17], ["users", 120, 17], ["settings", 123, 17]], [["allow_anonymous", 134, 26]], [["password", 138, 21], ["acl", 139, 21]], [["anonWriter", 137, 19]], [["port", 132, 17], ["omitPasswordAuth", 133, 17], ["settings", 134, 17], ["acl", 135, 17], ["users", 136, 17]], [["enable", 84, 13], ["settings", 85, 13], ["listeners", 88, 13]], [["mosquitto", 83, 20]], [["networking", 77, 11], ["services", 83, 11]], [["server", 74, 7], ["client1", 147, 7], ["client2", 148, 7]], [["name", 60, 3], ["meta", 61, 3], ["nodes", 65, 3], ["testScript", 151, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/mosquitto.nix", [["buildInputs", 14, 9], ["caTemplate", 15, 9], ["certTemplate", 21, 9], ["userCertTemplate", 28, 9]]);
-const pos$2 = nix.positions(here + "/mosquitto.nix", [["maintainers", 62, 5]]);
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$3 = nix.positions(here + "/mosquitto.nix", [["systemPackages", 70, 23]]);
-const pos$4 = nix.positions(here + "/mosquitto.nix", [["environment", 70, 11]]);
 const formals$3 = { args: { pkgs: false }, ellipsis: true };
-const pos$5 = nix.positions(here + "/mosquitto.nix", [["allowedTCPPorts", 77, 31]]);
-const pos$6 = nix.positions(here + "/mosquitto.nix", [["firewall", 77, 22], ["useNetworkd", 82, 22]]);
-const pos$7 = nix.positions(here + "/mosquitto.nix", [["sys_interval", 86, 15]]);
-const pos$8 = nix.positions(here + "/mosquitto.nix", [["password", 93, 29]]);
-const pos$9 = nix.positions(here + "/mosquitto.nix", [["passwordFile", 96, 21]]);
-const pos$10 = nix.positions(here + "/mosquitto.nix", [["hashedPassword", 99, 29]]);
-const pos$11 = nix.positions(here + "/mosquitto.nix", [["hashedPasswordFile", 102, 21]]);
-const pos$12 = nix.positions(here + "/mosquitto.nix", [["password", 106, 29], ["acl", 107, 21]]);
-const pos$13 = nix.positions(here + "/mosquitto.nix", [["password", 113, 29], ["acl", 114, 21]]);
-const pos$14 = nix.positions(here + "/mosquitto.nix", [["password_store", 92, 19], ["password_file", 95, 19], ["hashed_store", 98, 19], ["hashed_file", 101, 19], ["reader", 105, 19], ["writer", 112, 19]]);
-const pos$15 = nix.positions(here + "/mosquitto.nix", [["port", 90, 25], ["users", 91, 17]]);
-const pos$16 = nix.positions(here + "/mosquitto.nix", [["acl", 121, 19]]);
-const pos$17 = nix.positions(here + "/mosquitto.nix", [["client1", 120, 23]]);
-const pos$18 = nix.positions(here + "/mosquitto.nix", [["cafile", 124, 19], ["certfile", 125, 19], ["keyfile", 126, 19], ["require_certificate", 127, 19], ["use_identity_as_username", 128, 19]]);
-const pos$19 = nix.positions(here + "/mosquitto.nix", [["port", 119, 17], ["users", 120, 17], ["settings", 123, 17]]);
-const pos$20 = nix.positions(here + "/mosquitto.nix", [["allow_anonymous", 134, 26]]);
-const pos$21 = nix.positions(here + "/mosquitto.nix", [["password", 138, 21], ["acl", 139, 21]]);
-const pos$22 = nix.positions(here + "/mosquitto.nix", [["anonWriter", 137, 19]]);
-const pos$23 = nix.positions(here + "/mosquitto.nix", [["port", 132, 17], ["omitPasswordAuth", 133, 17], ["settings", 134, 17], ["acl", 135, 17], ["users", 136, 17]]);
-const pos$24 = nix.positions(here + "/mosquitto.nix", [["enable", 84, 13], ["settings", 85, 13], ["listeners", 88, 13]]);
-const pos$25 = nix.positions(here + "/mosquitto.nix", [["mosquitto", 83, 20]]);
-const pos$26 = nix.positions(here + "/mosquitto.nix", [["networking", 77, 11], ["services", 83, 11]]);
-const pos$27 = nix.positions(here + "/mosquitto.nix", [["server", 74, 7], ["client1", 147, 7], ["client2", 148, 7]]);
-const pos$28 = nix.positions(here + "/mosquitto.nix", [["name", 60, 3], ["meta", 61, 3], ["nodes", 65, 3], ["testScript", 151, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -44,17 +17,17 @@ export default nix.lambda((args) => (() => {
   const hashedPassword = "$7$101$/WJc4Mp+I+uYE9sR$o7z9rD1EYXHPwEP5GqQj6A7k4W1yVbePlb8TqNcuOLV9WNCiDgwHOB0JHC1WCtdkssqTBduBNUnUGd6kmZvDSw==";
   const topic = "test/foo";
   const snakeOil = nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "snakeoil-certs", nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       buildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "gnutls", "bin"))]),
       caTemplate: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "snakeoil-ca.template", "cn = server\nexpiration_days = -1\ncert_signing_key\nca\n")),
       certTemplate: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "snakeoil-cert.template", "cn = server\nexpiration_days = -1\ntls_www_server\nencryption_key\nsigning_key\n")),
       userCertTemplate: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "snakeoil-user-cert.template", "organization = snakeoil\ncn = client1\nexpiration_days = -1\ntls_www_client\nencryption_key\nsigning_key\n")),
     })), "mkdir \"$out\"\n\ncerttool -p --bits 2048 --outfile \"$out/ca.key\"\ncerttool -s --template \"$caTemplate\" --load-privkey \"$out/ca.key\" \\\n            --outfile \"$out/ca.crt\"\ncerttool -p --bits 2048 --outfile \"$out/server.key\"\ncerttool -c --template \"$certTemplate\" \\\n            --load-ca-privkey \"$out/ca.key\" \\\n            --load-ca-certificate \"$out/ca.crt\" \\\n            --load-privkey \"$out/server.key\" \\\n            --outfile \"$out/server.crt\"\n\ncerttool -p --bits 2048 --outfile \"$out/client1.key\"\ncerttool -c --template \"$userCertTemplate\" \\\n            --load-privkey \"$out/client1.key\" \\\n            --load-ca-privkey \"$out/ca.key\" \\\n            --load-ca-certificate \"$out/ca.crt\" \\\n            --outfile \"$out/client1.crt\"\n"));
   return {
-    [nix.POS]: pos$28,
+    [nix.POS]: $pos[27],
     name: "mosquitto",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "peterhoeg"))];
@@ -65,9 +38,9 @@ export default nix.lambda((args) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             systemPackages: nix.thunk(() => (() => {
               const w = nix.withScope(pkgs_1, null);
               return [nix.thunk(() => nix.lookup(w, "mosquitto"))];
@@ -76,63 +49,63 @@ export default nix.lambda((args) => (() => {
         };
       })(), formals$2);
       return {
-        [nix.POS]: pos$27,
+        [nix.POS]: $pos[26],
         server: nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$3);
           const pkgs_1 = nix.arg($_1, "pkgs");
           return {
-            [nix.POS]: pos$26,
+            [nix.POS]: $pos[25],
             networking: nix.thunk(() => ({
-              [nix.POS]: pos$6,
+              [nix.POS]: $pos[5],
               firewall: nix.thunk(() => ({
-                [nix.POS]: pos$5,
+                [nix.POS]: $pos[4],
                 allowedTCPPorts: nix.thunk(() => [port, tlsPort, anonPort]),
               })),
               useNetworkd: true,
             })),
             services: nix.thunk(() => ({
-              [nix.POS]: pos$25,
+              [nix.POS]: $pos[24],
               mosquitto: nix.thunk(() => ({
-                [nix.POS]: pos$24,
+                [nix.POS]: $pos[23],
                 enable: true,
-                settings: nix.thunk(() => ({ [nix.POS]: pos$7, sys_interval: 1n })),
+                settings: nix.thunk(() => ({ [nix.POS]: $pos[6], sys_interval: 1n })),
                 listeners: nix.thunk(() => [
                   nix.thunk(() => ({
-                    [nix.POS]: pos$15,
+                    [nix.POS]: $pos[14],
                     port: port,
                     users: nix.thunk(() => ({
-                      [nix.POS]: pos$14,
-                      password_store: nix.thunk(() => ({ [nix.POS]: pos$8, password: password })),
+                      [nix.POS]: $pos[13],
+                      password_store: nix.thunk(() => ({ [nix.POS]: $pos[7], password: password })),
                       password_file: nix.thunk(() => ({
-                        [nix.POS]: pos$9,
+                        [nix.POS]: $pos[8],
                         passwordFile: nix.thunk(() => nix.app(nix.sel(pkgs_1, "writeText"), "mqtt-password", password)),
                       })),
-                      hashed_store: nix.thunk(() => ({ [nix.POS]: pos$10, hashedPassword: hashedPassword })),
+                      hashed_store: nix.thunk(() => ({ [nix.POS]: $pos[9], hashedPassword: hashedPassword })),
                       hashed_file: nix.thunk(() => ({
-                        [nix.POS]: pos$11,
+                        [nix.POS]: $pos[10],
                         hashedPasswordFile: nix.thunk(() => nix.app(nix.sel(pkgs_1, "writeText"), "mqtt-hashed-password", hashedPassword)),
                       })),
                       reader: nix.thunk(() => ({
-                        [nix.POS]: pos$12,
+                        [nix.POS]: $pos[11],
                         password: password,
                         acl: nix.thunk(() => [nix.thunk(() => nix.str`read ${topic}`), "read $SYS/#"]),
                       })),
                       writer: nix.thunk(() => ({
-                        [nix.POS]: pos$13,
+                        [nix.POS]: $pos[12],
                         password: password,
                         acl: nix.thunk(() => [nix.thunk(() => nix.str`write ${topic}`)]),
                       })),
                     })),
                   })),
                   nix.thunk(() => ({
-                    [nix.POS]: pos$19,
+                    [nix.POS]: $pos[18],
                     port: tlsPort,
                     users: nix.thunk(() => ({
-                      [nix.POS]: pos$17,
-                      client1: nix.thunk(() => ({ [nix.POS]: pos$16, acl: nix.thunk(() => ["read $SYS/#"]) })),
+                      [nix.POS]: $pos[16],
+                      client1: nix.thunk(() => ({ [nix.POS]: $pos[15], acl: nix.thunk(() => ["read $SYS/#"]) })),
                     })),
                     settings: nix.thunk(() => ({
-                      [nix.POS]: pos$18,
+                      [nix.POS]: $pos[17],
                       cafile: nix.thunk(() => nix.str`${snakeOil}/ca.crt`),
                       certfile: nix.thunk(() => nix.str`${snakeOil}/server.crt`),
                       keyfile: nix.thunk(() => nix.str`${snakeOil}/server.key`),
@@ -141,15 +114,15 @@ export default nix.lambda((args) => (() => {
                     })),
                   })),
                   nix.thunk(() => ({
-                    [nix.POS]: pos$23,
+                    [nix.POS]: $pos[22],
                     port: anonPort,
                     omitPasswordAuth: true,
-                    settings: nix.thunk(() => ({ [nix.POS]: pos$20, allow_anonymous: true })),
+                    settings: nix.thunk(() => ({ [nix.POS]: $pos[19], allow_anonymous: true })),
                     acl: nix.thunk(() => ["pattern read #"]),
                     users: nix.thunk(() => ({
-                      [nix.POS]: pos$22,
+                      [nix.POS]: $pos[21],
                       anonWriter: nix.thunk(() => ({
-                        [nix.POS]: pos$21,
+                        [nix.POS]: $pos[20],
                         password: nix.thunk(() => nix.add("<ignored>", password)),
                         acl: nix.thunk(() => [nix.thunk(() => nix.str`write ${topic}`)]),
                       })),

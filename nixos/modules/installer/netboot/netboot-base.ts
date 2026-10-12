@@ -2,21 +2,20 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/netboot-base.nix", [[["enableAllHardware", 15, 12]], [["imports", 7, 3], ["hardware", 15, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/netboot-base.nix", [["enableAllHardware", 15, 12]]);
-const pos$2 = nix.positions(here + "/netboot-base.nix", [["imports", 7, 3], ["hardware", 15, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$2,
+    [nix.POS]: $pos[1],
     imports: nix.thunk(() => [
       nix.path(here, "./netboot.nix"),
       nix.path(here, "../../profiles/base.nix"),
       nix.path(here, "../../profiles/installation-device.nix"),
     ]),
-    hardware: nix.thunk(() => ({ [nix.POS]: pos$1, enableAllHardware: true })),
+    hardware: nix.thunk(() => ({ [nix.POS]: $pos[0], enableAllHardware: true })),
   };
 })(), formals$1);
 //# sourceMappingURL=netboot-base.ts.map

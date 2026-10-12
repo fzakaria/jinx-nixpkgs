@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/cmake.nix", [[["license", 26, 5]], [["package", 14, 11], ["os", 14, 19], ["arch", 14, 22], ["nativeBuildInputs", 15, 3], ["buildInputs", 16, 3], ["patchInstructions", 21, 3], ["meta", 25, 3]]]);
 const formals$1 = { args: { deployAndroidPackage: false, lib: false, package: false, os: false, arch: false, autoPatchelfHook: false, pkgs: false, stdenv: false, meta: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/cmake.nix", [["license", 26, 5]]);
-const pos$2 = nix.positions(here + "/cmake.nix", [["package", 14, 11], ["os", 14, 19], ["arch", 14, 22], ["nativeBuildInputs", 15, 3], ["buildInputs", 16, 3], ["patchInstructions", 21, 3], ["meta", 25, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,7 +17,7 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const meta = nix.arg($, "meta");
   return nix.app(deployAndroidPackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       package: package$,
       os: os,
       arch: arch,
@@ -29,7 +28,10 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.sel(pkgs, "ncurses5")),
         ]))),
       patchInstructions: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.eq(os, "linux")), "autoPatchelf $packageBaseDir/bin\n")),
-      meta: nix.thunk(() => nix.update(meta, { [nix.POS]: pos$1, license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")) })),
+      meta: nix.thunk(() => nix.update(meta, {
+        [nix.POS]: $pos[0],
+        license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
+      })),
     })));
 })(), formals$1);
 //# sourceMappingURL=cmake.ts.map

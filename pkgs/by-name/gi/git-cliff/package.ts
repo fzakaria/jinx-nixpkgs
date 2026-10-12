@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5]], [["LIBGIT2_NO_VENDOR", 29, 5], ["LIBZ_SYS_STATIC", 30, 5], ["ZSTD_SYS_USE_PKG_CONFIG", 31, 5]], [["description", 64, 5], ["homepage", 65, 5], ["changelog", 66, 5], ["license", 67, 5], ["maintainers", 73, 5], ["mainProgram", 77, 5]], [["pname", 14, 3], ["version", 15, 3], ["__structuredAttrs", 17, 3], ["src", 19, 3], ["cargoHash", 26, 3], ["env", 28, 3], ["doCheck", 35, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 42, 3], ["postInstall", 48, 3], ["meta", 63, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, rustPlatform: false, installShellFiles: false, "pkg-config": false, libgit2: false, libz: false, zstd: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["LIBGIT2_NO_VENDOR", 29, 5], ["LIBZ_SYS_STATIC", 30, 5], ["ZSTD_SYS_USE_PKG_CONFIG", 31, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 64, 5], ["homepage", 65, 5], ["changelog", 66, 5], ["license", 67, 5], ["maintainers", 73, 5], ["mainProgram", 77, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["__structuredAttrs", 17, 3], ["src", 19, 3], ["cargoHash", 26, 3], ["env", 28, 3], ["doCheck", 35, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 42, 3], ["postInstall", 48, 3], ["meta", 63, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const libz = nix.arg($, "libz");
   const zstd = nix.arg($, "zstd");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "git-cliff",
       version: "2.14.2",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "orhun",
           repo: "git-cliff",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -33,7 +30,7 @@ export default nix.lambda((args) => (() => {
         })))),
       cargoHash: "sha256-yO8Ov2+cJky3JqePy2mnOd4AFEKJRuAirm/iozTwArU=",
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         LIBGIT2_NO_VENDOR: 1n,
         LIBZ_SYS_STATIC: 0n,
         ZSTD_SYS_USE_PKG_CONFIG: 1n,
@@ -43,7 +40,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [libgit2, libz, zstd]),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "export OUT_DIR=$(mktemp -d)\n\n# Generate shell completions\n$out/bin/git-cliff-completions\ninstallShellCompletion \\\n  --bash $OUT_DIR/git-cliff.bash \\\n  --fish $OUT_DIR/git-cliff.fish \\\n  --zsh $OUT_DIR/_git-cliff\n\n# Generate man page\n$out/bin/git-cliff-mangen\ninstallManPage $OUT_DIR/git-cliff.1\n")),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Highly customizable Changelog Generator that follows Conventional Commit specifications",
         homepage: "https://github.com/orhun/git-cliff",
         changelog: nix.thunk(() => nix.str`https://github.com/orhun/git-cliff/blob/v${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

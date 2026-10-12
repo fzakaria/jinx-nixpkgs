@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["version", 20, 26], ["pname", 21, 5], ["hash", 22, 5]], [["KPATHSEA_SKIP_TOOLCHAIN_CHECK", 43, 7], ["RUSTC_BOOTSTRAP", 45, 7]], [["description", 66, 5], ["homepage", 67, 5], ["license", 68, 5], ["maintainers", 69, 5], ["mainProgram", 70, 5]], [["__structuredAttrs", 14, 3], ["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["cargoHash", 25, 3], ["postPatch", 27, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 37, 3], ["env", 43, 3], ["postInstall", 49, 3], ["meta", 65, 3]]]);
 const formals$1 = { args: { lib: false, buildPackages: false, fetchCrate: false, libxml2: false, libxslt: false, "pkg-config": false, rustPlatform: false, stdenv: false, texliveBasic: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["version", 20, 26], ["pname", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["KPATHSEA_SKIP_TOOLCHAIN_CHECK", 43, 7], ["RUSTC_BOOTSTRAP", 45, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 66, 5], ["homepage", 67, 5], ["license", 68, 5], ["maintainers", 69, 5], ["mainProgram", 70, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["__structuredAttrs", 14, 3], ["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["cargoHash", 25, 3], ["postPatch", 27, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 37, 3], ["env", 43, 3], ["postInstall", 49, 3], ["meta", 65, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const texliveBasic = nix.arg($, "texliveBasic");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       __structuredAttrs: true,
       pname: "latexml-oxide",
       version: "0.7.6",
       src: nix.thunk(() => nix.app(fetchCrate, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           pname: "latexml",
           hash: "sha256-2OIQ8gv0wSJEk1QNKHYQOOXbzfilW45WX9bzHKOSu7c=",
@@ -39,12 +36,12 @@ export default nix.lambda((args) => (() => {
         texliveBasic,
       ]),
       buildInputs: nix.thunk(() => [libxml2, libxslt]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, KPATHSEA_SKIP_TOOLCHAIN_CHECK: 1n, RUSTC_BOOTSTRAP: 1n })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], KPATHSEA_SKIP_TOOLCHAIN_CHECK: 1n, RUSTC_BOOTSTRAP: 1n })),
       postInstall: nix.thunk(() => (nix.asBool(nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))) ? "mkdir -p \"$out\"/share/latexml-oxide/resources/dumps\n(\n  cd \"$out\"/share/latexml-oxide\n  \"$out\"/bin/latexml_oxide --init=plain.tex\n  \"$out\"/bin/latexml_oxide --init=latex.ltx\n)\n" : nix.str`mkdir -p "$out"/share/latexml-oxide/resources/dumps
 cp "${nix.sel(buildPackages, "latexml-oxide")}"/share/latexml-oxide/resources/dumps/*.txt "$out"/share/latexml-oxide/resources/dumps
 `)),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "TeX to XML/HTML/ePub converter: a LaTeXML reimplementation in Rust",
         homepage: "https://crates.io/crates/latexml",
         license: nix.thunk(() => nix.sel(lib, "licenses", "cc0")),

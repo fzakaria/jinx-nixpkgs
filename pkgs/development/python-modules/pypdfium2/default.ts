@@ -2,16 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 25, 7], ["repo", 26, 7], ["rev", 27, 7], ["hash", 28, 7]], [["pname", 20, 5], ["version", 21, 5], ["pyproject", 22, 5], ["src", 24, 5], ["build-system", 31, 5]], [["owner", 43, 5], ["repo", 44, 5], ["tag", 45, 5], ["hash", 46, 5]], [["GIVEN_FULLVER", 63, 5], ["PDFIUM_PLATFORM", 64, 5], ["PDFIUM_HEADERS", 65, 5], ["PDFIUM_BINARY", 66, 5], ["CPP", 67, 5]], [["allowedVersions", 92, 7]], [["cross", 94, 11]], [["updateScript", 91, 5], ["tests", 94, 5]], [["changelog", 98, 5], ["description", 99, 5], ["homepage", 100, 5], ["license", 101, 5], ["maintainers", 105, 5]], [["pname", 38, 3], ["version", 39, 3], ["pyproject", 40, 3], ["src", 42, 3], ["build-system", 49, 3], ["nativeBuildInputs", 54, 3], ["propagatedBuildInputs", 58, 3], ["env", 62, 3], ["postInstall", 71, 3], ["nativeCheckInputs", 75, 3], ["disabledTestPaths", 81, 3], ["pythonImportsCheck", 86, 3], ["passthru", 90, 3], ["meta", 97, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, pkgsCross: false, buildPythonPackage: false, fetchFromGitHub: false, gitUpdater: false, "setuptools-scm": false, pdfium: false, numpy: false, pillow: false, pytestCheckHook: false, removeReferencesTo: false, python: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 25, 7], ["repo", 26, 7], ["rev", 27, 7], ["hash", 28, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 20, 5], ["version", 21, 5], ["pyproject", 22, 5], ["src", 24, 5], ["build-system", 31, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["owner", 43, 5], ["repo", 44, 5], ["tag", 45, 5], ["hash", 46, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["GIVEN_FULLVER", 63, 5], ["PDFIUM_PLATFORM", 64, 5], ["PDFIUM_HEADERS", 65, 5], ["PDFIUM_BINARY", 66, 5], ["CPP", 67, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["allowedVersions", 92, 7]]);
-const pos$6 = nix.positions(here + "/default.nix", [["cross", 94, 11]]);
-const pos$7 = nix.positions(here + "/default.nix", [["updateScript", 91, 5], ["tests", 94, 5]]);
-const pos$8 = nix.positions(here + "/default.nix", [["changelog", 98, 5], ["description", 99, 5], ["homepage", 100, 5], ["license", 101, 5], ["maintainers", 105, 5]]);
-const pos$9 = nix.positions(here + "/default.nix", [["pname", 38, 3], ["version", 39, 3], ["pyproject", 40, 3], ["src", 42, 3], ["build-system", 49, 3], ["nativeBuildInputs", 54, 3], ["propagatedBuildInputs", 58, 3], ["env", 62, 3], ["postInstall", 71, 3], ["nativeCheckInputs", 75, 3], ["disabledTestPaths", 81, 3], ["pythonImportsCheck", 86, 3], ["passthru", 90, 3], ["meta", 97, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const version = nix.thunk(() => nix.str`1.1.1+g${nix.sel(src, "rev")}`);
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "pypdfium2-team",
           repo: "ctypesgen",
           rev: "3961621c3e057015362db82471e07f3a57822b15",
@@ -41,7 +33,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const build_system = nix.thunk(() => [setuptools_scm]);
       return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         pname,
         version,
         pyproject,
@@ -54,7 +46,7 @@ export default nix.lambda((args) => (() => {
       const version = "5.13.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           owner: "pypdfium2-team",
           repo: "pypdfium2",
           tag: version,
@@ -64,7 +56,7 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [removeReferencesTo]);
       const propagatedBuildInputs = nix.thunk(() => [pdfium]);
       const env = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         GIVEN_FULLVER: nix.thunk(() => nix.sel(pdfium, "fullVersion")),
         PDFIUM_PLATFORM: nix.thunk(() => nix.str`system-search:${nix.sel(pdfium, "version")}`),
         PDFIUM_HEADERS: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getDev"), pdfium)}/include/public`),
@@ -77,15 +69,15 @@ export default nix.lambda((args) => (() => {
       const disabledTestPaths = nix.thunk(() => ["tests/test_opener.py::test_open_garbled_filename"]);
       const pythonImportsCheck = nix.thunk(() => ["pypdfium2"]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$7,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$5, allowedVersions: "^[.0-9]+$" })))),
+        [nix.POS]: $pos[6],
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[4], allowedVersions: "^[.0-9]+$" })))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           cross: nix.thunk(() => nix.sel(pkgsCross, "aarch64-multiplatform", "python3Packages", "pypdfium2")),
         })),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         changelog: nix.thunk(() => nix.str`https://github.com/pypdfium2-team/pypdfium2/releases/tag/${version}`),
         description: "Python bindings to PDFium",
         homepage: "https://pypdfium2.readthedocs.io/",
@@ -102,7 +94,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         pname,
         version,
         pyproject,

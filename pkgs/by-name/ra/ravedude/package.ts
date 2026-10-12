@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["pname", 20, 26], ["version", 20, 32], ["hash", 21, 5]], [["package", 40, 7], ["version", 41, 7]], [["version", 39, 11]], [["updateScript", 38, 5], ["tests", 39, 5]], [["description", 46, 5], ["homepage", 47, 5], ["license", 48, 5], ["platforms", 52, 5], ["maintainers", 53, 5], ["mainProgram", 57, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["cargoHash", 24, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 31, 3], ["postInstall", 33, 3], ["passthru", 37, 3], ["meta", 45, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchCrate: false, "pkg-config": false, udev: false, avrdude: false, makeBinaryWrapper: false, "nix-update-script": false, testers: false, ravedude: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["pname", 20, 26], ["version", 20, 32], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["package", 40, 7], ["version", 41, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 39, 11]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 38, 5], ["tests", 39, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 46, 5], ["homepage", 47, 5], ["license", 48, 5], ["platforms", 52, 5], ["maintainers", 53, 5], ["mainProgram", 57, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["cargoHash", 24, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 31, 3], ["postInstall", 33, 3], ["passthru", 37, 3], ["meta", 45, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const ravedude = nix.arg($, "ravedude");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "ravedude",
       version: "0.2.2",
       src: nix.thunk(() => nix.app(fetchCrate, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-Ar2oQx7dKKfzkM3FMcJXiPHxNa0KcMRht38q+NgowfU=",
@@ -39,19 +34,19 @@ export default nix.lambda((args) => (() => {
       postInstall: nix.thunk(() => nix.str`wrapProgram $out/bin/ravedude --suffix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [avrdude]))}
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               package: ravedude,
               version: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Tool to easily flash code onto an AVR microcontroller with avrdude",
         homepage: "https://crates.io/crates/ravedude",
         license: nix.thunk(() => (() => {

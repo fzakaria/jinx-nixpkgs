@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["hash", 26, 5], ["fetchSubmodules", 27, 5]], [["description", 71, 5], ["homepage", 72, 5], ["license", 73, 5], ["maintainers", 74, 5], ["teams", 75, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["patches", 30, 3], ["extraNativeBuildInputs", 35, 3], ["extraBuildInputs", 41, 3], ["extraCmakeFlags", 48, 3], ["postInstall", 61, 3], ["meta", 70, 3]]]);
 const formals$1 = { args: { "extra-cmake-modules": false, fetchFromGitHub: false, kpackage: false, libplasma: false, lib: false, lz4: false, mkKdeDerivation: false, "mpv-unwrapped": false, "pkg-config": false, python3: false, qtbase: false, qtmultimedia: false, qtwebchannel: false, qtwebengine: false, qtwebsockets: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["hash", 26, 5], ["fetchSubmodules", 27, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 71, 5], ["homepage", 72, 5], ["license", 73, 5], ["maintainers", 74, 5], ["teams", 75, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["patches", 30, 3], ["extraNativeBuildInputs", 35, 3], ["extraBuildInputs", 41, 3], ["extraCmakeFlags", 48, 3], ["postInstall", 61, 3], ["meta", 70, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const qtwebengine = nix.arg($, "qtwebengine");
   const qtwebsockets = nix.arg($, "qtwebsockets");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "wallpaper-engine-kde-plugin",
       version: "0.5.4-unstable-2025-06-29",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "catsout",
           repo: "wallpaper-engine-kde-plugin",
           rev: "9e60b364e268814a1a778549c579ad45a9b9c7bb",
@@ -59,7 +57,7 @@ substituteInPlace ./contents/ui/Pyext.qml \\
 cd -
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "KDE wallpaper plugin integrating Wallpaper Engine",
         homepage: "https://github.com/catsout/wallpaper-engine-kde-plugin",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/chromium.nix", [[["name", 46, 7], ["revision", 47, 15], ["browserVersion", 47, 24]], [["x86_64-linux", 55, 7], ["aarch64-linux", 56, 7]], [["x86_64-linux", 66, 11], ["aarch64-linux", 67, 11]], [["url", 63, 26], ["stripRoot", 63, 30], ["hash", 64, 7]], [["name", 61, 5], ["src", 62, 5], ["nativeBuildInputs", 72, 5], ["buildInputs", 77, 5], ["installPhase", 104, 5], ["appendRunpaths", 117, 5], ["postFixup", 123, 5]], [["aarch64-darwin", 133, 9]], [["url", 130, 24], ["stripRoot", 130, 28], ["hash", 131, 5]], [["x86_64-linux", 139, 3], ["aarch64-linux", 140, 3], ["aarch64-darwin", 141, 3]]]);
 const formals$1 = { args: { runCommand: false, makeWrapper: false, fontconfig_file: false, chromium: false, fetchzip: false, revision: false, browserVersion: false, system: false, throwSystem: false, lib: false, "alsa-lib": false, "at-spi2-atk": false, atk: false, autoPatchelfHook: false, cairo: false, cups: false, dbus: false, expat: false, glib: false, "gobject-introspection": false, libGL: false, libgbm: false, libgcc: false, libxkbcommon: false, nspr: false, nss: false, pango: false, patchelf: false, pciutils: false, stdenv: false, systemd: false, "vulkan-loader": false, libxrandr: false, libxfixes: false, libxext: false, libxdamage: false, libxcomposite: false, libx11: false, libxcb: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/chromium.nix", [["name", 46, 7], ["revision", 47, 15], ["browserVersion", 47, 24]]);
-const pos$2 = nix.positions(here + "/chromium.nix", [["x86_64-linux", 55, 7], ["aarch64-linux", 56, 7]]);
-const pos$3 = nix.positions(here + "/chromium.nix", [["x86_64-linux", 66, 11], ["aarch64-linux", 67, 11]]);
-const pos$4 = nix.positions(here + "/chromium.nix", [["url", 63, 26], ["stripRoot", 63, 30], ["hash", 64, 7]]);
-const pos$5 = nix.positions(here + "/chromium.nix", [["name", 61, 5], ["src", 62, 5], ["nativeBuildInputs", 72, 5], ["buildInputs", 77, 5], ["installPhase", 104, 5], ["appendRunpaths", 117, 5], ["postFixup", 123, 5]]);
-const pos$6 = nix.positions(here + "/chromium.nix", [["aarch64-darwin", 133, 9]]);
-const pos$7 = nix.positions(here + "/chromium.nix", [["url", 130, 24], ["stripRoot", 130, 28], ["hash", 131, 5]]);
-const pos$8 = nix.positions(here + "/chromium.nix", [["x86_64-linux", 139, 3], ["aarch64-linux", 140, 3], ["aarch64-darwin", 141, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -54,25 +47,25 @@ export default nix.lambda((args) => (() => {
   const libx11 = nix.arg($, "libx11");
   const libxcb = nix.arg($, "libxcb");
   const download = nix.thunk(() => nix.selOr(nix.app(nix.builtins.import(nix.path(here, "./browser-downloads.nix")), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: "chromium",
       revision: revision,
       browserVersion: browserVersion,
     }))), () => nix.force(throwSystem), nix.key(nix.force(system))));
   const chromeDir = nix.thunk(() => nix.selOr({
-    [nix.POS]: pos$2,
+    [nix.POS]: $pos[1],
     "x86_64-linux": "chrome-linux64",
     "aarch64-linux": "chrome-linux-arm64",
   }, () => nix.force(throwSystem), nix.key(nix.force(system))));
   const chromium_linux = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       name: "playwright-chromium",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           url: nix.thunk(() => nix.attr(download, "url")),
           stripRoot: nix.thunk(() => nix.attr(download, "stripRoot")),
           hash: nix.thunk(() => nix.selOr({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             "x86_64-linux": "sha256-ORdMu1e4Peolr8rdfvzgeaFhC8RgBipaOsAm7e3ZeqE=",
             "aarch64-linux": "sha256-AWXksACJGsDisnp9dAUcukDf/ruMCRCX9kZNNnE0R8Q=",
           }, () => nix.force(throwSystem), nix.key(nix.force(system)))),
@@ -122,16 +115,16 @@ ln -s -t "$out/${chromeDir}" "${nix.app(nix.sel(lib, "getLib"), vulkan_loader)}/
 `),
     }))));
   const chromium_darwin = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       url: nix.thunk(() => nix.attr(download, "url")),
       stripRoot: nix.thunk(() => nix.attr(download, "stripRoot")),
       hash: nix.thunk(() => nix.selOr({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         "aarch64-darwin": "sha256-Zm7aHjwXL0kbucBiNoWxBM6rFdY0UmVIwcr/f8V31G8=",
       }, () => nix.force(throwSystem), nix.key(nix.force(system)))),
     }))));
   return nix.selOr({
-    [nix.POS]: pos$8,
+    [nix.POS]: $pos[7],
     "x86_64-linux": chromium_linux,
     "aarch64-linux": chromium_linux,
     "aarch64-darwin": chromium_darwin,

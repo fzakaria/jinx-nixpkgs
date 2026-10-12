@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 36, 5], ["hash", 37, 5]], [["description", 88, 5], ["homepage", 89, 5], ["license", 90, 5], ["maintainers", 91, 5], ["platforms", 92, 5]], [["pname", 27, 3], ["version", 28, 3], ["outputs", 30, 3], ["src", 35, 3], ["strictDeps", 40, 3], ["nativeBuildInputs", 42, 3], ["buildInputs", 47, 3], ["checkInputs", 60, 3], ["propagatedBuildInputs", 65, 3], ["enableParallelBuilding", 73, 3], ["doCheck", 75, 3], ["configureFlags", 77, 3], ["meta", 87, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, aspell: false, groff: false, "pkg-config": false, glib: false, hunspell: false, hspell: false, nuspell: false, libvoikko: false, "unittest-cpp": false, withHspell: true, withAspell: true, withHunspell: true, withNuspell: true, withVoikko: true, withAppleSpell: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 36, 5], ["hash", 37, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 88, 5], ["homepage", 89, 5], ["license", 90, 5], ["maintainers", 91, 5], ["platforms", 92, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 27, 3], ["version", 28, 3], ["outputs", 30, 3], ["src", 35, 3], ["strictDeps", 40, 3], ["nativeBuildInputs", 42, 3], ["buildInputs", 47, 3], ["checkInputs", 60, 3], ["propagatedBuildInputs", 65, 3], ["enableParallelBuilding", 73, 3], ["doCheck", 75, 3], ["configureFlags", 77, 3], ["meta", 87, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,12 +27,12 @@ export default nix.lambda((args) => (() => {
   const withAppleSpell = nix.argOr($, "withAppleSpell", () => nix.sel(stdenv, "hostPlatform", "isDarwin"));
   nix.assert_((!nix.asBool(withAppleSpell) || nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/en/enchant_2/package.nix:24:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "enchant",
       version: "2.6.9",
       outputs: nix.thunk(() => ["out", "dev"]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/rrthomas/enchant/releases/download/v${nix.sel(finalAttrs, "version")}/enchant-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-2aWhDcmzikOzoPoix27W67fgnrU1r/YpVK/NvUDv/2s=",
         })))),
@@ -55,7 +53,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "withFeature"), withAppleSpell, "applespell")),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Generic spell checking library",
         homepage: "https://rrthomas.github.io/enchant/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),

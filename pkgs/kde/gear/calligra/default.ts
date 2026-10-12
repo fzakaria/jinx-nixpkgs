@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["maintainers", 64, 5], ["mainProgram", 68, 5]], [["pname", 27, 3], ["extraBuildInputs", 29, 3], ["extraNativeBuildInputs", 49, 3], ["extraCmakeFlags", 58, 3], ["meta", 63, 3]]]);
 const formals$1 = { args: { mkKdeDerivation: false, lib: false, boost: false, eigen: false, gsl: false, imath: false, libetonyek: false, libgit2: false, libodfgen: false, librevenge: false, libvisio: false, libwpd: false, libwpg: false, libwps: false, okular: false, perl: false, "pkg-config": false, poppler: false, qtkeychain: false, qtsvg: false, qtwebengine: false, "shared-mime-info": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["maintainers", 64, 5], ["mainProgram", 68, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 27, 3], ["extraBuildInputs", 29, 3], ["extraNativeBuildInputs", 49, 3], ["extraCmakeFlags", 58, 3], ["meta", 63, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,7 +30,7 @@ export default nix.lambda((args) => (() => {
   const qtwebengine = nix.arg($, "qtwebengine");
   const shared_mime_info = nix.arg($, "shared-mime-info");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "calligra",
       extraBuildInputs: nix.thunk(() => [
         boost,
@@ -58,7 +57,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeFeature"), "CMAKE_CXX_FLAGS", "-DKDE_NO_DEBUG_OUTPUT")),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
           return [

@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 30, 5], ["hash", 31, 5]], [["intune", 39, 9], ["pam", 58, 9]], [["intune", 104, 36]], [["updateScript", 103, 5], ["tests", 104, 5]], [["description", 108, 5], ["homepage", 109, 5], ["license", 110, 5], ["platforms", 111, 5], ["maintainers", 112, 5], ["sourceProvenance", 113, 5]], [["pname", 26, 3], ["version", 27, 3], ["src", 29, 3], ["nativeBuildInputs", 34, 3], ["buildPhase", 36, 3], ["installPhase", 72, 3], ["dontPatchELF", 100, 3], ["passthru", 102, 3], ["meta", 107, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, dpkg: false, libuuid: false, libx11: false, curlMinimal: false, openssl_3_5: false, libsecret: false, webkitgtk_4_1: false, libsoup_3: false, gtk3: false, atk: false, pango: false, glib: false, sqlite: false, zlib: false, systemd: false, pam: false, "p11-kit": false, dbus: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 30, 5], ["hash", 31, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["intune", 39, 9], ["pam", 58, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["intune", 104, 36]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 103, 5], ["tests", 104, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 108, 5], ["homepage", 109, 5], ["license", 110, 5], ["platforms", 111, 5], ["maintainers", 112, 5], ["sourceProvenance", 113, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 26, 3], ["version", 27, 3], ["src", 29, 3], ["nativeBuildInputs", 34, 3], ["buildPhase", 36, 3], ["installPhase", 72, 3], ["dontPatchELF", 100, 3], ["passthru", 102, 3], ["meta", 107, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -38,14 +33,14 @@ export default nix.lambda((args) => (() => {
       const pname = "intune-portal";
       const version = "1.2609.5-resolute";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://packages.microsoft.com/ubuntu/26.04/prod/pool/main/i/intune-portal/intune-portal_${version}_amd64.deb`),
           hash: "sha256-dFAX1MR8t17NQxR+sOpl1lYIxwnaTimnA8ZoHBrzq3Y=",
         }))));
       const nativeBuildInputs = nix.thunk(() => [dpkg]);
       const buildPhase = nix.thunk(() => (() => {
         const libPath = nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           intune: nix.thunk(() => nix.app(nix.sel(lib, "makeLibraryPath"), nix.thunk(() => [
               nix.thunk(() => nix.sel(stdenv, "cc", "cc")),
               libuuid,
@@ -80,12 +75,12 @@ runHook postBuild
       const installPhase = "runHook preInstall\n\nmkdir -p $out/bin\ncp -a opt/microsoft/intune/bin/* $out/bin/\ncp -a usr/share $out\ncp -a lib $out\nmkdir -p $out/lib/security\ncp -a ./usr/lib/x86_64-linux-gnu/security/pam_intune.so $out/lib/security/\ncp -a usr/lib/tmpfiles.d $out/lib\n\nsubstituteInPlace $out/share/applications/intune-portal.desktop \\\n  --replace /opt/microsoft/intune/bin/intune-portal $out/bin/intune-portal\n\nsubstituteInPlace $out/lib/systemd/user/intune-agent.service \\\n  --replace \\\n    ExecStart=/opt/microsoft/intune/bin/intune-agent \\\n    ExecStart=$out/bin/intune-agent\n\nsubstituteInPlace $out/lib/systemd/system/intune-daemon.service \\\n  --replace \\\n    ExecStart=/opt/microsoft/intune/bin/intune-daemon \\\n    ExecStart=$out/bin/intune-daemon\n\nrunHook postInstall\n";
       const dontPatchELF = true;
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.path(here, "./update.sh"),
-        tests: nix.thunk(() => ({ [nix.POS]: pos$3, intune: nix.thunk(() => nix.attr(nixosTests, "intune")) })),
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[2], intune: nix.thunk(() => nix.attr(nixosTests, "intune")) })),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Microsoft Intune Portal allows you to securely access corporate apps, data, and resources",
         homepage: "https://www.microsoft.com/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
@@ -97,7 +92,7 @@ runHook postBuild
         sourceProvenance: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "sourceTypes", "binaryNativeCode"))]),
       }));
       return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname,
         version,
         src,

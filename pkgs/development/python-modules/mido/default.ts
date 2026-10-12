@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 34, 13], ["version", 34, 19], ["hash", 35, 5]], [["libportmidi", 40, 7]], [["ports-pygame", 54, 5], ["ports-rtmidi", 55, 5], ["ports-rtmidi-python", 56, 5]], [["description", 64, 5], ["homepage", 65, 5], ["changelog", 66, 5], ["license", 67, 5], ["maintainers", 68, 5]], [["pname", 29, 3], ["version", 30, 3], ["pyproject", 31, 3], ["src", 33, 3], ["patches", 38, 3], ["build-system", 44, 3], ["pythonRelaxDeps", 49, 3], ["dependencies", 51, 3], ["optional-dependencies", 53, 3], ["nativeCheckInputs", 59, 3], ["pythonImportsCheck", 61, 3], ["meta", 63, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, buildPythonPackage: false, fetchPypi: false, replaceVars: false, setuptools: false, "setuptools-scm": false, packaging: false, portmidi: false, pygame: false, "python-rtmidi": false, "rtmidi-python": false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 34, 13], ["version", 34, 19], ["hash", 35, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["libportmidi", 40, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["ports-pygame", 54, 5], ["ports-rtmidi", 55, 5], ["ports-rtmidi-python", 56, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 64, 5], ["homepage", 65, 5], ["changelog", 66, 5], ["license", 67, 5], ["maintainers", 68, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 29, 3], ["version", 30, 3], ["pyproject", 31, 3], ["src", 33, 3], ["patches", 38, 3], ["build-system", 44, 3], ["pythonRelaxDeps", 49, 3], ["dependencies", 51, 3], ["optional-dependencies", 53, 3], ["nativeCheckInputs", 59, 3], ["pythonImportsCheck", 61, 3], ["meta", 63, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,14 +25,14 @@ export default nix.lambda((args) => (() => {
       const version = "1.3.3";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-GuyzC38oJATxfkN2jL90pqMb8is7eDvdEXoc6dIst0w=",
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./libportmidi-cdll.patch"), nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             libportmidi: nix.thunk(() => nix.str`${nix.sel(portmidi, "out")}/lib/libportmidi${nix.sel(stdenv, "hostPlatform", "extensions", "sharedLibrary")}`),
           })))),
       ]);
@@ -44,7 +40,7 @@ export default nix.lambda((args) => (() => {
       const pythonRelaxDeps = nix.thunk(() => ["packaging"]);
       const dependencies = nix.thunk(() => [packaging]);
       const optional_dependencies = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         "ports-pygame": nix.thunk(() => [pygame]),
         "ports-rtmidi": nix.thunk(() => [python_rtmidi]),
         "ports-rtmidi-python": nix.thunk(() => [rtmidi_python]),
@@ -52,7 +48,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const pythonImportsCheck = nix.thunk(() => ["mido"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "MIDI Objects for Python",
         homepage: "https://mido.readthedocs.io",
         changelog: nix.thunk(() => nix.str`https://github.com/mido/mido/releases/tag/${version}`),
@@ -60,7 +56,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         pyproject,

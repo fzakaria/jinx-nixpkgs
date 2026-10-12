@@ -2,26 +2,22 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/module-argument-default.nix", [[["result", 8, 5]], [["a", 11, 18]], [["args", 11, 13]], [["_module", 11, 5], ["result", 12, 5]], [["options", 7, 3], ["config", 10, 3]]]);
 const formals$1 = { args: { a: true, lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/module-argument-default.nix", [["result", 8, 5]]);
-const pos$2 = nix.positions(here + "/module-argument-default.nix", [["a", 11, 18]]);
-const pos$3 = nix.positions(here + "/module-argument-default.nix", [["args", 11, 13]]);
-const pos$4 = nix.positions(here + "/module-argument-default.nix", [["_module", 11, 5], ["result", 12, 5]]);
-const pos$5 = nix.positions(here + "/module-argument-default.nix", [["options", 7, 3], ["config", 10, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const a = nix.argOr($, "a", () => false);
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$5,
+    [nix.POS]: $pos[4],
     options: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       result: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({})))),
     })),
     config: nix.thunk(() => ({
-      [nix.POS]: pos$4,
-      _module: nix.thunk(() => ({ [nix.POS]: pos$3, args: nix.thunk(() => ({ [nix.POS]: pos$2, a: true })) })),
+      [nix.POS]: $pos[3],
+      _module: nix.thunk(() => ({ [nix.POS]: $pos[2], args: nix.thunk(() => ({ [nix.POS]: $pos[1], a: true })) })),
       result: a,
     })),
   };

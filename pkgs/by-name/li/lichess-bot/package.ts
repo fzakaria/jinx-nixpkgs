@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]], [["name", 54, 7], ["runtimeInputs", 56, 7], ["text", 62, 7]], [["updateScript", 53, 5]], [["description", 77, 5], ["homepage", 78, 5], ["license", 79, 5], ["maintainers", 80, 5], ["platforms", 81, 5], ["mainProgram", 82, 5]], [["pname", 13, 3], ["version", 14, 3], ["pyproject", 15, 3], ["src", 17, 3], ["propagatedBuildInputs", 24, 3], ["installPhase", 32, 3], ["nativeInstallCheckInputs", 46, 3], ["versionCheckProgramArg", 49, 3], ["doInstallCheck", 50, 3], ["passthru", 52, 3], ["meta", 76, 3]]]);
 const formals$1 = { args: { lib: false, python3Packages: false, fetchFromGitHub: false, versionCheckHook: false, writeShellApplication: false, curl: false, jq: false, "common-updater-scripts": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 54, 7], ["runtimeInputs", 56, 7], ["text", 62, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 53, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 77, 5], ["homepage", 78, 5], ["license", 79, 5], ["maintainers", 80, 5], ["platforms", 81, 5], ["mainProgram", 82, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["pyproject", 15, 3], ["src", 17, 3], ["propagatedBuildInputs", 24, 3], ["installPhase", 32, 3], ["nativeInstallCheckInputs", 46, 3], ["versionCheckProgramArg", 49, 3], ["doInstallCheck", 50, 3], ["passthru", 52, 3], ["meta", 76, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const jq = nix.arg($, "jq");
   const common_updater_scripts = nix.arg($, "common-updater-scripts");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "lichess-bot",
       version: "2026.8.9.2",
       pyproject: false,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "lichess-bot-devs",
           repo: "lichess-bot",
           rev: "df7e730de58cc3ef2f1415a0dc2eeda842d39167",
@@ -57,16 +53,16 @@ runHook postInstall
       versionCheckProgramArg: "--disable_auto_logging",
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.app(writeShellApplication, nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               name: "lichess-bot-update-script",
               runtimeInputs: nix.thunk(() => [curl, jq, common_updater_scripts]),
               text: "commit_msg='^Auto update version to (?<ver>[0-9.]+)$'\ncommit=\"$(\n  curl -s 'https://api.github.com/repos/lichess-bot-devs/lichess-bot/commits?path=lib/versioning.yml' | \\\n  jq -c \"map(select(.commit.message | test(\\\"$commit_msg\\\"))) | first\"\n)\"\nrev=\"$(jq -r '.sha' <<< \"$commit\")\"\nversion=\"$(jq -r \".commit.message | capture(\\\"$commit_msg\\\") | .ver\" <<< \"$commit\")\"\n\nupdate-source-version lichess-bot \"$version\" --rev=\"$rev\"\n",
             })))))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Bridge between lichess.org and bots",
         homepage: "https://github.com/lichess-bot-devs/lichess-bot",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

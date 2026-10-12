@@ -2,18 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/vrrp-script-options.nix", [[["type", 9, 7], ["example", 10, 7], ["description", 11, 7]], [["type", 15, 7], ["default", 16, 7], ["description", 17, 7]], [["type", 21, 7], ["default", 22, 7], ["description", 23, 7]], [["type", 27, 7], ["default", 28, 7], ["description", 29, 7]], [["type", 33, 7], ["default", 34, 7], ["description", 35, 7]], [["type", 39, 7], ["default", 40, 7], ["description", 41, 7]], [["type", 45, 7], ["default", 46, 7], ["description", 47, 7]], [["type", 51, 7], ["default", 52, 7], ["description", 53, 7]], [["type", 57, 7], ["default", 58, 7], ["description", 59, 7]], [["script", 8, 5], ["interval", 14, 5], ["timeout", 20, 5], ["weight", 26, 5], ["rise", 32, 5], ["fall", 38, 5], ["user", 44, 5], ["group", 50, 5], ["extraConfig", 56, 5]], [["options", 6, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/vrrp-script-options.nix", [["type", 9, 7], ["example", 10, 7], ["description", 11, 7]]);
-const pos$2 = nix.positions(here + "/vrrp-script-options.nix", [["type", 15, 7], ["default", 16, 7], ["description", 17, 7]]);
-const pos$3 = nix.positions(here + "/vrrp-script-options.nix", [["type", 21, 7], ["default", 22, 7], ["description", 23, 7]]);
-const pos$4 = nix.positions(here + "/vrrp-script-options.nix", [["type", 27, 7], ["default", 28, 7], ["description", 29, 7]]);
-const pos$5 = nix.positions(here + "/vrrp-script-options.nix", [["type", 33, 7], ["default", 34, 7], ["description", 35, 7]]);
-const pos$6 = nix.positions(here + "/vrrp-script-options.nix", [["type", 39, 7], ["default", 40, 7], ["description", 41, 7]]);
-const pos$7 = nix.positions(here + "/vrrp-script-options.nix", [["type", 45, 7], ["default", 46, 7], ["description", 47, 7]]);
-const pos$8 = nix.positions(here + "/vrrp-script-options.nix", [["type", 51, 7], ["default", 52, 7], ["description", 53, 7]]);
-const pos$9 = nix.positions(here + "/vrrp-script-options.nix", [["type", 57, 7], ["default", 58, 7], ["description", 59, 7]]);
-const pos$10 = nix.positions(here + "/vrrp-script-options.nix", [["script", 8, 5], ["interval", 14, 5], ["timeout", 20, 5], ["weight", 26, 5], ["rise", 32, 5], ["fall", 38, 5], ["user", 44, 5], ["group", 50, 5], ["extraConfig", 56, 5]]);
-const pos$11 = nix.positions(here + "/vrrp-script-options.nix", [["options", 6, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,59 +11,59 @@ export default nix.lambda((args) => (() => {
   const w = nix.withScope(lib, null);
   const w_1 = nix.withScope(nix.thunk(() => nix.sel(lib, "types")), w);
   return {
-    [nix.POS]: pos$11,
+    [nix.POS]: $pos[10],
     options: nix.thunk(() => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       script: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           type: nix.thunk(() => nix.lookup(w_1, "str")),
           example: nix.thunk(() => nix.app(nix.lookup(w_1, "literalExpression"), "\"${pkgs.curl} -f http://localhost:80\"")),
           description: "(Path of) Script command to execute followed by args, i.e. cmd [args]...",
         })))),
       interval: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           type: nix.thunk(() => nix.lookup(w_1, "int")),
           default: 1n,
           description: "Seconds between script invocations.",
         })))),
       timeout: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           type: nix.thunk(() => nix.lookup(w_1, "int")),
           default: 5n,
           description: "Seconds after which script is considered to have failed.",
         })))),
       weight: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           type: nix.thunk(() => nix.lookup(w_1, "int")),
           default: 0n,
           description: "Following a failure, adjust the priority by this weight.",
         })))),
       rise: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           type: nix.thunk(() => nix.lookup(w_1, "int")),
           default: 5n,
           description: "Required number of successes for OK transition.",
         })))),
       fall: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           type: nix.thunk(() => nix.lookup(w_1, "int")),
           default: 3n,
           description: "Required number of failures for KO transition.",
         })))),
       user: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           type: nix.thunk(() => nix.lookup(w_1, "str")),
           default: "keepalived_script",
           description: "Name of user to run the script under.",
         })))),
       group: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           type: nix.thunk(() => nix.app(nix.lookup(w_1, "nullOr"), nix.thunk(() => nix.lookup(w_1, "str")))),
           default: null,
           description: "Name of group to run the script under. Defaults to user group.",
         })))),
       extraConfig: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           type: nix.thunk(() => nix.lookup(w_1, "lines")),
           default: "",
           description: "Extra lines to be added verbatim to the vrrp_script section.",

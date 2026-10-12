@@ -2,14 +2,13 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
-const pos$1 = nix.positions(here + "/data.nix", [["linux-aarch_64", 4, 5], ["linux-ppcle_64", 5, 5], ["linux-s390_64", 6, 5], ["linux-x86_32", 7, 5], ["linux-x86_64", 8, 5], ["osx-aarch_64", 9, 5], ["osx-x86_64", 10, 5], ["windows-x86_32", 11, 5], ["windows-x86_64", 12, 5]]);
-const pos$2 = nix.positions(here + "/data.nix", [["version", 2, 3], ["hashes", 3, 3]]);
+const $pos = nix.positions(here + "/data.nix", [[["linux-aarch_64", 4, 5], ["linux-ppcle_64", 5, 5], ["linux-s390_64", 6, 5], ["linux-x86_32", 7, 5], ["linux-x86_64", 8, 5], ["osx-aarch_64", 9, 5], ["osx-x86_64", 10, 5], ["windows-x86_32", 11, 5], ["windows-x86_64", 12, 5]], [["version", 2, 3], ["hashes", 3, 3]]]);
 
 export default nix.thunk(() => ({
-  [nix.POS]: pos$2,
+  [nix.POS]: $pos[1],
   version: "1.84.0",
   hashes: nix.thunk(() => ({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     "linux-aarch_64": "sha256-2TV3YbTmndx6vsPTqA4QlrXto+JdbtbQserQcGZgCoY=",
     "linux-ppcle_64": "sha256-/CsKC+8AIRHWDJGsHGayu1heJ8+SOC3ZC6CI2Um2J2M=",
     "linux-s390_64": "sha256-ugcWqz1IrtGsHhyEYobtQH2o7fW5f04cQvrTZAjeBnw=",

@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 7], ["repo", 16, 7], ["rev", 17, 7], ["sha256", 18, 7]], [["src", 14, 5], ["nativeBuildInputs", 20, 5]], [["owner", 26, 7], ["repo", 27, 7], ["rev", 28, 7], ["sha256", 29, 7]], [["pname", 23, 5], ["version", 24, 5], ["src", 25, 5], ["nativeBuildInputs", 31, 5], ["propagatedBuildInputs", 32, 5], ["meta", 33, 36]], [["owner", 43, 5], ["repo", 44, 5], ["tag", 45, 5], ["hash", 46, 5], ["fetchSubmodules", 47, 5]], [["homepage", 92, 5], ["description", 93, 5], ["changelog", 94, 5], ["license", 95, 5], ["maintainers", 96, 5], ["platforms", 99, 5], ["mainProgram", 100, 5]], [["pname", 39, 3], ["version", 40, 11], ["src", 42, 3], ["preConfigure", 50, 3], ["nativeBuildInputs", 56, 3], ["buildInputs", 61, 3], ["postInstall", 78, 3], ["meta", 91, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, "ocaml-ng": false, ipaexfont: false, junicode: false, libpng: false, lmodern: false, lmmath: false, which: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 7], ["repo", 16, 7], ["rev", 17, 7], ["sha256", 18, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["src", 14, 5], ["nativeBuildInputs", 20, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["owner", 26, 7], ["repo", 27, 7], ["rev", 28, 7], ["sha256", 29, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 23, 5], ["version", 24, 5], ["src", 25, 5], ["nativeBuildInputs", 31, 5], ["propagatedBuildInputs", 32, 5], ["meta", 33, 36]]);
-const pos$5 = nix.positions(here + "/package.nix", [["owner", 43, 5], ["repo", 44, 5], ["tag", 45, 5], ["hash", 46, 5], ["fetchSubmodules", 47, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["homepage", 92, 5], ["description", 93, 5], ["changelog", 94, 5], ["license", 95, 5], ["maintainers", 96, 5], ["platforms", 99, 5], ["mainProgram", 100, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 39, 3], ["version", 40, 11], ["src", 42, 3], ["preConfigure", 50, 3], ["nativeBuildInputs", 56, 3], ["buildInputs", 61, 3], ["postInstall", 78, 3], ["meta", 91, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,9 +17,9 @@ export default nix.lambda((args) => (() => {
   const lmmath = nix.arg($, "lmmath");
   const which = nix.arg($, "which");
   const camlpdf = nix.thunk(() => nix.app(nix.sel(ocamlPackages, "camlpdf", "overrideAttrs"), (o) => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "gfngfn",
           repo: "camlpdf",
           rev: "v2.3.1+satysfi",
@@ -36,11 +30,11 @@ export default nix.lambda((args) => (() => {
   const yojson_with_position = nix.thunk(() => nix.app(nix.sel(ocamlPackages, "buildDunePackage"), nix.thunk(() => (() => {
       const from = nix.thunk(() => nix.sel(ocamlPackages, "yojson"));
       return {
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "yojson-with-position",
       version: "1.4.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           owner: "gfngfn",
           repo: "yojson-with-position",
           rev: "v1.4.2+satysfi",
@@ -54,11 +48,11 @@ export default nix.lambda((args) => (() => {
   const ocamlPackages = nix.thunk(() => nix.sel(ocaml_ng, "ocamlPackages_4_14"));
   const version = "0.0.11";
   return nix.app(nix.sel(ocamlPackages, "buildDunePackage"), nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "satysfi",
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           owner: "gfngfn",
           repo: "SATySFi",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -99,7 +93,7 @@ cp ${junicode}/share/fonts/truetype/Junicode-Regular.ttf \\
   $out/share/satysfi/dist/fonts/Junicode.ttf
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         homepage: "https://github.com/gfngfn/SATySFi",
         description: "Statically-typed, functional typesetting system",
         changelog: nix.thunk(() => nix.str`https://github.com/gfngfn/SATySFi/blob/v${version}/CHANGELOG.md`),

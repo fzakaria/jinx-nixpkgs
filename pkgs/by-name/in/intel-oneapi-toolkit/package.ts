@@ -2,17 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 72, 7], ["runtimeInputs", 73, 7], ["text", 78, 7]], [["dpcpp-cpp-compiler", 160, 5], ["dpcpp_dbg", 164, 5], ["dpcpp-ct", 168, 5], ["mpi", 169, 5], ["pti", 179, 5], ["vtune", 180, 5], ["ifort-compiler", 213, 5], ["tbb", 214, 5], ["mkl", 215, 5]], [["url", 232, 5], ["hash", 233, 5]], [["pname", 340, 26], ["file", 341, 5], ["downloadPage", 342, 5]], [["kit", 345, 48]], [["kit", 347, 46]], [["updateScript", 339, 12], ["stdenv", 345, 12], ["tests", 347, 12]], [["description", 350, 5], ["homepage", 351, 5], ["license", 352, 5], ["maintainers", 357, 5], ["platforms", 362, 5]], [["pname", 219, 3], ["versionYear", 221, 3], ["versionMajor", 222, 3], ["versionMinor", 223, 3], ["versionRel", 224, 3], ["version", 226, 3], ["strictDeps", 228, 3], ["__structuredAttrs", 229, 3], ["src", 231, 3], ["nativeBuildInputs", 236, 3], ["buildInputs", 244, 3], ["dontUnpack", 261, 3], ["installPhase", 264, 3], ["dontAutoPatchelf", 311, 3], ["postFixup", 312, 3], ["autoPatchelfIgnoreMissingDeps", 324, 3], ["passthru", 339, 3], ["meta", 349, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, callPackage: false, fetchurl: false, ncurses5: false, bc: false, bubblewrap: false, autoPatchelfHook: false, python3: false, libgcc: false, glibc: false, writableTmpDirAsHomeHook: false, writeShellApplication: false, curl: false, jq: false, "common-updater-scripts": false, zlib: false, "rdma-core": false, libpsm2: false, ucx: false, numactl: false, "level-zero": false, libdrm: false, elfutils: false, libxrandr: false, libxfixes: false, libxext: false, libxdamage: false, libxcomposite: false, libx11: false, libxcb: false, glib: false, nss: false, nspr: false, dbus: false, "at-spi2-atk": false, cups: false, gtk3: false, pango: false, cairo: false, libgbm: false, expat: false, libxkbcommon: false, eudev: false, "alsa-lib": false, bzip2: false, gdbm: false, "libxcrypt-legacy": false, libuuid: false, sqlite: false, libffi: false, openssl: false, bash: false, "ocl-icd": false, components: true }, ellipsis: false };
 const formals$2 = { args: { pname: false, downloadPage: false, file: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 72, 7], ["runtimeInputs", 73, 7], ["text", 78, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["dpcpp-cpp-compiler", 160, 5], ["dpcpp_dbg", 164, 5], ["dpcpp-ct", 168, 5], ["mpi", 169, 5], ["pti", 179, 5], ["vtune", 180, 5], ["ifort-compiler", 213, 5], ["tbb", 214, 5], ["mkl", 215, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 232, 5], ["hash", 233, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 340, 26], ["file", 341, 5], ["downloadPage", 342, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["kit", 345, 48]]);
-const pos$6 = nix.positions(here + "/package.nix", [["kit", 347, 46]]);
-const pos$7 = nix.positions(here + "/package.nix", [["updateScript", 339, 12], ["stdenv", 345, 12], ["tests", 347, 12]]);
-const pos$8 = nix.positions(here + "/package.nix", [["description", 350, 5], ["homepage", 351, 5], ["license", 352, 5], ["maintainers", 357, 5], ["platforms", 362, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["pname", 219, 3], ["versionYear", 221, 3], ["versionMajor", 222, 3], ["versionMinor", 223, 3], ["versionRel", 224, 3], ["version", 226, 3], ["strictDeps", 228, 3], ["__structuredAttrs", 229, 3], ["src", 231, 3], ["nativeBuildInputs", 236, 3], ["buildInputs", 244, 3], ["dontUnpack", 261, 3], ["installPhase", 264, 3], ["dontAutoPatchelf", 311, 3], ["postFixup", 312, 3], ["autoPatchelfIgnoreMissingDeps", 324, 3], ["passthru", 339, 3], ["meta", 349, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -78,7 +70,7 @@ export default nix.lambda((args) => (() => {
     const downloadPage = nix.arg($_1, "downloadPage");
     const file = nix.arg($_1, "file");
     return nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.app(writeShellApplication, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           name: "update-intel-oneapi",
           runtimeInputs: nix.thunk(() => [curl, jq, common_updater_scripts]),
           text: nix.thunk(() => nix.str`download_page=${nix.app(nix.sel(lib, "escapeShellArg"), downloadPage)}
@@ -203,7 +195,7 @@ sed -i "s|hash = \\".*\\";|hash = \\"$hash\\";|" "$file"
     const tbb = [];
     const mkl = nix.thunk(() => nix.concat(mpi, pti));
     return {
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       "dpcpp-cpp-compiler": dpcpp_cpp_compiler,
       dpcpp_dbg,
       "dpcpp-ct": dpcpp_ct,
@@ -216,7 +208,7 @@ sed -i "s|hash = \\".*\\";|hash = \\"$hash\\";|" "$file"
     };
   })());
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       pname: "intel-oneapi-toolkit",
       versionYear: "2026",
       versionMajor: "0",
@@ -226,7 +218,7 @@ sed -i "s|hash = \\".*\\";|hash = \\"$hash\\";|" "$file"
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           url: "https://registrationcenter-download.intel.com/akdlm/IRC_NAS/c9c3d3e3-ddb4-490e-bb41-6e9041ba32a7/intel-oneapi-toolkit-2026.0.1.27_offline.sh",
           hash: "sha256-MCMdAN4BCIkuptUOeFCRtAy4eQuwBryl5PXmRzWjPPo=",
         })))),
@@ -293,18 +285,24 @@ runHook postInstall
         "liboutputgenerator.so",
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         updateScript: nix.thunk(() => nix.app(mkUpdateScript, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
             file: "package.nix",
             downloadPage: "https://www.intel.com/content/www/us/en/developer/tools/oneapi/oneapi-toolkit-download.html",
           })))),
-        stdenv: nix.thunk(() => nix.app(callPackage, nix.path(here, "./stdenv.nix"), nix.thunk(() => ({ [nix.POS]: pos$5, kit: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")) })))),
-        tests: nix.thunk(() => nix.app(callPackage, nix.path(here, "./tests.nix"), nix.thunk(() => ({ [nix.POS]: pos$6, kit: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")) })))),
+        stdenv: nix.thunk(() => nix.app(callPackage, nix.path(here, "./stdenv.nix"), nix.thunk(() => ({
+            [nix.POS]: $pos[4],
+            kit: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
+          })))),
+        tests: nix.thunk(() => nix.app(callPackage, nix.path(here, "./tests.nix"), nix.thunk(() => ({
+            [nix.POS]: $pos[5],
+            kit: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
+          })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         description: "Intel oneAPI Toolkit",
         homepage: "https://www.intel.com/content/www/us/en/developer/tools/oneapi/oneapi-toolkit.html",
         license: nix.thunk(() => (() => {

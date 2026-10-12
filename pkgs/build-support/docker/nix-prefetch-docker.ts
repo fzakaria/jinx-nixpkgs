@@ -2,9 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/nix-prefetch-docker.nix", [[["description", 35, 5], ["mainProgram", 36, 5], ["maintainers", 37, 5], ["platforms", 38, 5]], [["name", 12, 3], ["nativeBuildInputs", 14, 3], ["dontUnpack", 16, 3], ["installPhase", 18, 3], ["preferLocalBuild", 32, 3], ["meta", 34, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, makeWrapper: false, nix: false, skopeo: false, jq: false, coreutils: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/nix-prefetch-docker.nix", [["description", 35, 5], ["mainProgram", 36, 5], ["maintainers", 37, 5], ["platforms", 38, 5]]);
-const pos$2 = nix.positions(here + "/nix-prefetch-docker.nix", [["name", 12, 3], ["nativeBuildInputs", 14, 3], ["dontUnpack", 16, 3], ["installPhase", 18, 3], ["preferLocalBuild", 32, 3], ["meta", 34, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const jq = nix.arg($, "jq");
   const coreutils = nix.arg($, "coreutils");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       name: "nix-prefetch-docker",
       nativeBuildInputs: nix.thunk(() => [makeWrapper]),
       dontUnpack: true,
@@ -27,7 +26,7 @@ wrapProgram $out/bin/$name \\
 `),
       preferLocalBuild: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Script used to obtain source hashes for dockerTools.pullImage",
         mainProgram: "nix-prefetch-docker",
         maintainers: [],

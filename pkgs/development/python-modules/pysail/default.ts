@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]], [["pname", 27, 26], ["src", 27, 32], ["version", 27, 36], ["hash", 28, 5]], [["package", 61, 7]], [["version", 60, 11]], [["updateScript", 59, 5], ["tests", 60, 5]], [["description", 66, 5], ["homepage", 67, 5], ["changelog", 68, 5], ["license", 69, 5], ["mainProgram", 70, 5], ["maintainers", 71, 5]], [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["src", 19, 3], ["cargoDeps", 26, 3], ["postPatch", 34, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 45, 3], ["pythonImportsCheck", 49, 3], ["doCheck", 56, 3], ["passthru", 58, 3], ["meta", 65, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, rustPlatform: false, "nix-update-script": false, testers: false, pysail: false, protoc: false, protobuf: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 27, 26], ["src", 27, 32], ["version", 27, 36], ["hash", 28, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["package", 61, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["version", 60, 11]]);
-const pos$5 = nix.positions(here + "/default.nix", [["updateScript", 59, 5], ["tests", 60, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["description", 66, 5], ["homepage", 67, 5], ["changelog", 68, 5], ["license", 69, 5], ["mainProgram", 70, 5], ["maintainers", 71, 5]]);
-const pos$7 = nix.positions(here + "/default.nix", [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["src", 19, 3], ["cargoDeps", 26, 3], ["postPatch", 34, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 45, 3], ["pythonImportsCheck", 49, 3], ["doCheck", 56, 3], ["passthru", 58, 3], ["meta", 65, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,19 +17,19 @@ export default nix.lambda((args) => (() => {
   const protoc = nix.arg($, "protoc");
   const protobuf = nix.arg($, "protobuf");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "pysail",
       version: "0.7.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "lakehq",
           repo: "sail",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-UJP2d56IF0h9s/kZhNWVkCp/YfTf1RpQStM1NjzJKK4=",
         })))),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
@@ -54,15 +48,15 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["pysail", "pysail._native"]),
       doCheck: false,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$3, package: pysail })))),
+          [nix.POS]: $pos[3],
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: $pos[2], package: pysail })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Python bindings for Sail, a Spark-compatible compute engine on Apache Arrow and DataFusion",
         homepage: "https://github.com/lakehq/sail",
         changelog: nix.thunk(() => nix.str`https://github.com/lakehq/sail/blob/${nix.sel(finalAttrs, "src", "tag")}/docs/reference/changelog/index.md`),

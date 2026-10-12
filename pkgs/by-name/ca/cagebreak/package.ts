@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 34, 5], ["repo", 35, 5], ["tag", 36, 5], ["hash", 37, 5]], [["homepage", 87, 5], ["description", 88, 5], ["license", 89, 5], ["maintainers", 90, 5], ["platforms", 91, 5], ["changelog", 92, 5], ["mainProgram", 93, 5]], [["basic", 96, 18]], [["tests", 96, 12]], [["pname", 30, 3], ["version", 31, 3], ["src", 33, 3], ["nativeBuildInputs", 40, 3], ["buildInputs", 49, 3], ["mesonFlags", 65, 3], ["postPatch", 71, 3], ["postFixup", 81, 3], ["meta", 86, 3], ["passthru", 96, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cairo: false, fontconfig: false, libdrm: false, libevdev: false, libinput: false, libxkbcommon: false, "libxcb-wm": false, makeWrapper: false, meson: false, ninja: false, nixosTests: false, pango: false, pixman: false, "pkg-config": false, scdoc: false, systemd: false, wayland: false, "wayland-protocols": false, "wayland-scanner": false, withXwayland: true, xwayland: false, wlroots_0_19: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 34, 5], ["repo", 35, 5], ["tag", 36, 5], ["hash", 37, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 87, 5], ["description", 88, 5], ["license", 89, 5], ["maintainers", 90, 5], ["platforms", 91, 5], ["changelog", 92, 5], ["mainProgram", 93, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["basic", 96, 18]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 96, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 30, 3], ["version", 31, 3], ["src", 33, 3], ["nativeBuildInputs", 40, 3], ["buildInputs", 49, 3], ["mesonFlags", 65, 3], ["postPatch", 71, 3], ["postFixup", 81, 3], ["meta", 86, 3], ["passthru", 96, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -37,11 +33,11 @@ export default nix.lambda((args) => (() => {
   const xwayland = nix.arg($, "xwayland");
   const wlroots_0_19 = nix.arg($, "wlroots_0_19");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "cagebreak",
       version: "3.1.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "project-repo",
           repo: "cagebreak",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -73,7 +69,7 @@ export default nix.lambda((args) => (() => {
   --prefix PATH : "${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [xwayland]))}"
 `))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/project-repo/cagebreak",
         description: "Wayland tiling compositor inspired by ratpoison",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -83,8 +79,8 @@ export default nix.lambda((args) => (() => {
         mainProgram: "cagebreak",
       })),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$3, basic: nix.thunk(() => nix.sel(nixosTests, "cagebreak")) })),
+        [nix.POS]: $pos[3],
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[2], basic: nix.thunk(() => nix.sel(nixosTests, "cagebreak")) })),
       })),
     }));
 })(), formals$1);

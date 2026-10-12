@@ -2,77 +2,58 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/ghostunnel.nix", [[["root", 9, 47]], [["backend", 9, 37]], [["enable", 8, 24], ["virtualHosts", 9, 24]], [["nginx", 8, 18]], [["allowedTCPPorts", 13, 29]], [["firewall", 13, 20]], [["services", 8, 9], ["networking", 13, 9]], [["listen", 20, 11], ["cert", 21, 11], ["key", 22, 11], ["disableAuthentication", 23, 11], ["target", 24, 11], ["unsafeTarget", 25, 11]], [["listen", 28, 11], ["cert", 29, 11], ["key", 30, 11], ["cacert", 31, 11], ["target", 32, 11], ["allowCN", 33, 11], ["unsafeTarget", 34, 11]], [["plain-old", 19, 37], ["client-cert", 27, 37]], [["enable", 18, 29], ["servers", 19, 29]], [["ghostunnel", 18, 18]], [["allowedTCPPorts", 36, 29]], [["firewall", 36, 20]], [["services", 18, 9], ["networking", 36, 9]], [["systemPackages", 44, 21]], [["environment", 44, 9]], [["backend", 5, 5], ["service", 15, 5], ["client", 41, 5]], [["maintainers", 112, 8]], [["name", 3, 3], ["nodes", 4, 3], ["testScript", 50, 3], ["meta", 112, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/ghostunnel.nix", [["root", 9, 47]]);
-const pos$2 = nix.positions(here + "/ghostunnel.nix", [["backend", 9, 37]]);
-const pos$3 = nix.positions(here + "/ghostunnel.nix", [["enable", 8, 24], ["virtualHosts", 9, 24]]);
-const pos$4 = nix.positions(here + "/ghostunnel.nix", [["nginx", 8, 18]]);
-const pos$5 = nix.positions(here + "/ghostunnel.nix", [["allowedTCPPorts", 13, 29]]);
-const pos$6 = nix.positions(here + "/ghostunnel.nix", [["firewall", 13, 20]]);
-const pos$7 = nix.positions(here + "/ghostunnel.nix", [["services", 8, 9], ["networking", 13, 9]]);
 const formals$3 = { args: {  }, ellipsis: true };
-const pos$8 = nix.positions(here + "/ghostunnel.nix", [["listen", 20, 11], ["cert", 21, 11], ["key", 22, 11], ["disableAuthentication", 23, 11], ["target", 24, 11], ["unsafeTarget", 25, 11]]);
-const pos$9 = nix.positions(here + "/ghostunnel.nix", [["listen", 28, 11], ["cert", 29, 11], ["key", 30, 11], ["cacert", 31, 11], ["target", 32, 11], ["allowCN", 33, 11], ["unsafeTarget", 34, 11]]);
-const pos$10 = nix.positions(here + "/ghostunnel.nix", [["plain-old", 19, 37], ["client-cert", 27, 37]]);
-const pos$11 = nix.positions(here + "/ghostunnel.nix", [["enable", 18, 29], ["servers", 19, 29]]);
-const pos$12 = nix.positions(here + "/ghostunnel.nix", [["ghostunnel", 18, 18]]);
-const pos$13 = nix.positions(here + "/ghostunnel.nix", [["allowedTCPPorts", 36, 29]]);
-const pos$14 = nix.positions(here + "/ghostunnel.nix", [["firewall", 36, 20]]);
-const pos$15 = nix.positions(here + "/ghostunnel.nix", [["services", 18, 9], ["networking", 36, 9]]);
 const formals$4 = { args: { pkgs: false }, ellipsis: true };
-const pos$16 = nix.positions(here + "/ghostunnel.nix", [["systemPackages", 44, 21]]);
-const pos$17 = nix.positions(here + "/ghostunnel.nix", [["environment", 44, 9]]);
-const pos$18 = nix.positions(here + "/ghostunnel.nix", [["backend", 5, 5], ["service", 15, 5], ["client", 41, 5]]);
-const pos$19 = nix.positions(here + "/ghostunnel.nix", [["maintainers", 112, 8]]);
-const pos$20 = nix.positions(here + "/ghostunnel.nix", [["name", 3, 3], ["nodes", 4, 3], ["testScript", 50, 3], ["meta", 112, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   return {
-    [nix.POS]: pos$20,
+    [nix.POS]: $pos[19],
     name: "ghostunnel",
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$18,
+      [nix.POS]: $pos[17],
       backend: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             nginx: nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               enable: true,
               virtualHosts: nix.thunk(() => ({
-                [nix.POS]: pos$2,
+                [nix.POS]: $pos[1],
                 backend: nix.thunk(() => ({
-                  [nix.POS]: pos$1,
+                  [nix.POS]: $pos[0],
                   root: nix.thunk(() => nix.app(nix.sel(pkgs_1, "runCommand"), "webroot", nix.thunk(() => ({})), "mkdir $out\necho hi >$out/hi.txt\n")),
                 })),
               })),
             })),
           })),
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$6,
-            firewall: nix.thunk(() => ({ [nix.POS]: pos$5, allowedTCPPorts: nix.thunk(() => [80n]) })),
+            [nix.POS]: $pos[5],
+            firewall: nix.thunk(() => ({ [nix.POS]: $pos[4], allowedTCPPorts: nix.thunk(() => [80n]) })),
           })),
         };
       })(), formals$2),
       service: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$3);
         return {
-          [nix.POS]: pos$15,
+          [nix.POS]: $pos[14],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$12,
+            [nix.POS]: $pos[11],
             ghostunnel: nix.thunk(() => ({
-              [nix.POS]: pos$11,
+              [nix.POS]: $pos[10],
               enable: true,
               servers: nix.thunk(() => ({
-                [nix.POS]: pos$10,
+                [nix.POS]: $pos[9],
                 "plain-old": nix.thunk(() => ({
-                  [nix.POS]: pos$8,
+                  [nix.POS]: $pos[7],
                   listen: "0.0.0.0:443",
                   cert: "/root/service-cert.pem",
                   key: "/root/service-key.pem",
@@ -81,7 +62,7 @@ export default nix.lambda((args) => (() => {
                   unsafeTarget: true,
                 })),
                 "client-cert": nix.thunk(() => ({
-                  [nix.POS]: pos$9,
+                  [nix.POS]: $pos[8],
                   listen: "0.0.0.0:1443",
                   cert: "/root/service-cert.pem",
                   key: "/root/service-key.pem",
@@ -94,8 +75,8 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$14,
-            firewall: nix.thunk(() => ({ [nix.POS]: pos$13, allowedTCPPorts: nix.thunk(() => [443n, 1443n]) })),
+            [nix.POS]: $pos[13],
+            firewall: nix.thunk(() => ({ [nix.POS]: $pos[12], allowedTCPPorts: nix.thunk(() => [443n, 1443n]) })),
           })),
         };
       })(), formals$3),
@@ -103,9 +84,9 @@ export default nix.lambda((args) => (() => {
         const $_1 = nix.formals(args_1, formals$4);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$17,
+          [nix.POS]: $pos[16],
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$16,
+            [nix.POS]: $pos[15],
             systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs_1, "curl"))]),
           })),
         };
@@ -172,7 +153,7 @@ client.succeed("bash -c 'diff <(curl -v --no-progress-meter --cert /root/client-
 client.fail("bash -c 'diff <(curl -v --no-progress-meter --cacert /root/ca.pem https://service:1443/hi.txt) <(echo hi)'")
 `),
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$19,
+      [nix.POS]: $pos[18],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "roberth"))];

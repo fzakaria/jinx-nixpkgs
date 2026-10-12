@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 93, 5], ["repo", 94, 5], ["tag", 95, 5], ["hash", 96, 5]], [["GIT_BRANCH", 121, 5], ["GIT_COMMITS", 124, 5], ["GIT_COMMIT_DATE", 125, 5], ["GIT_DIRTY", 126, 5], ["GIT_COMMIT_HASH", 127, 5], ["GIT_COMMIT_MESSAGE", 128, 5], ["GIT_TAG", 129, 5]], [["BUILT_WITH_NIX", 203, 5], ["NO_XWAYLAND", 204, 5], ["NO_SYSTEMD", 205, 5], ["CMAKE_DISABLE_PRECOMPILE_HEADERS", 206, 5], ["NO_UWSM", 207, 5], ["TRACY_ENABLE", 208, 5]], [["providedSessions", 226, 5], ["updateScript", 227, 5]], [["homepage", 231, 5], ["changelog", 232, 5], ["description", 233, 5], ["license", 234, 5], ["teams", 235, 5], ["mainProgram", 236, 5], ["platforms", 237, 5]], [["pname", 89, 3], ["version", 90, 3], ["src", 92, 3], ["postPatch", 99, 3], ["env", 120, 3], ["depsBuildBuild", 132, 3], ["nativeBuildInputs", 137, 3], ["outputs", 147, 3], ["buildInputs", 153, 3], ["cmakeBuildType", 196, 3], ["dontStrip", 198, 3], ["separateDebugInfo", 199, 3], ["strictDeps", 200, 3], ["cmakeFlags", 202, 3], ["postInstall", 211, 3], ["passthru", 225, 3], ["meta", 230, 3]]]);
 const formals$1 = { args: { lib: false, gcc16Stdenv: false, stdenvAdapters: false, fetchFromGitHub: false, "pkg-config": false, makeWrapper: false, cmake: false, aquamarine: false, binutils: false, cairo: false, "epoll-shim": false, glaze: false, glslang: false, hyprcursor: false, hyprgraphics: false, "hyprland-protocols": false, "hyprland-qtutils": false, hyprlang: false, hyprutils: false, hyprwire: false, "hyprwayland-scanner": false, lcms2: false, libGL: false, libdrm: false, libei: false, libexecinfo: false, libgbm: false, libinput: false, libuuid: false, libxkbcommon: false, lua5_5: false, muparser: false, pango: false, pciutils: false, pkgconf: false, python3: false, re2: false, readline: false, systemd: false, tomlplusplus: false, udis86: false, uwsm: false, wayland: false, "wayland-protocols": false, "wayland-scanner": false, "libxcb-wm": false, "libxcb-errors": false, libxdmcp: false, libxcursor: false, libxcb: false, xwayland: false, debug: true, enableXWayland: true, withSystemd: true, wrapRuntimeDeps: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 93, 5], ["repo", 94, 5], ["tag", 95, 5], ["hash", 96, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["GIT_BRANCH", 121, 5], ["GIT_COMMITS", 124, 5], ["GIT_COMMIT_DATE", 125, 5], ["GIT_DIRTY", 126, 5], ["GIT_COMMIT_HASH", 127, 5], ["GIT_COMMIT_MESSAGE", 128, 5], ["GIT_TAG", 129, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["BUILT_WITH_NIX", 203, 5], ["NO_XWAYLAND", 204, 5], ["NO_SYSTEMD", 205, 5], ["CMAKE_DISABLE_PRECOMPILE_HEADERS", 206, 5], ["NO_UWSM", 207, 5], ["TRACY_ENABLE", 208, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["providedSessions", 226, 5], ["updateScript", 227, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["homepage", 231, 5], ["changelog", 232, 5], ["description", 233, 5], ["license", 234, 5], ["teams", 235, 5], ["mainProgram", 236, 5], ["platforms", 237, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 89, 3], ["version", 90, 3], ["src", 92, 3], ["postPatch", 99, 3], ["env", 120, 3], ["depsBuildBuild", 132, 3], ["nativeBuildInputs", 137, 3], ["outputs", 147, 3], ["buildInputs", 153, 3], ["cmakeBuildType", 196, 3], ["dontStrip", 198, 3], ["separateDebugInfo", 199, 3], ["strictDeps", 200, 3], ["cmakeFlags", 202, 3], ["postInstall", 211, 3], ["passthru", 225, 3], ["meta", 230, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -83,11 +78,11 @@ export default nix.lambda((args) => (() => {
   const adapters = nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(nix.sel(gcc16Stdenv, "targetPlatform", "isDarwin"))), nix.thunk(() => [nix.thunk(() => nix.sel(stdenvAdapters, "useMoldLinker"))])));
   const customStdenv = nix.thunk(() => nix.app(foldl$, (acc) => (adapter) => nix.app(adapter, acc), gcc16Stdenv, adapters));
   return nix.app(nix.sel(customStdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: nix.thunk(() => nix.add("hyprland", nix.app(optionalString, debug, "-debug"))),
       version: "0.56.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "hyprwm",
           repo: "hyprland",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -112,7 +107,7 @@ substituteInPlace systemd/hyprland-uwsm.desktop \\
   --replace-fail "TryExec=uwsm" "TryExec=${nix.app(nix.sel(lib, "getExe"), uwsm)}"
 `),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         GIT_BRANCH: nix.thunk(() => nix.sel(info, "branch")),
         GIT_COMMITS: "-1",
         GIT_COMMIT_DATE: nix.thunk(() => nix.sel(info, "date")),
@@ -173,7 +168,7 @@ substituteInPlace systemd/hyprland-uwsm.desktop \\
       separateDebugInfo: nix.thunk(() => !nix.asBool(debug)),
       strictDeps: true,
       cmakeFlags: nix.thunk(() => nix.app(mapAttrsToList, cmakeBool, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           BUILT_WITH_NIX: true,
           NO_XWAYLAND: nix.thunk(() => !nix.asBool(enableXWayland)),
           NO_SYSTEMD: nix.thunk(() => !nix.asBool(withSystemd)),
@@ -186,12 +181,12 @@ substituteInPlace systemd/hyprland-uwsm.desktop \\
 `))}
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         providedSessions: nix.thunk(() => nix.concat(["hyprland"], nix.app(optionals, withSystemd, nix.thunk(() => ["hyprland-uwsm"])))),
         updateScript: nix.path(here, "./update.sh"),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "https://github.com/hyprwm/Hyprland",
         changelog: nix.thunk(() => nix.str`https://github.com/hyprwm/Hyprland/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         description: "Dynamic tiling Wayland compositor that doesn't sacrifice on its looks",

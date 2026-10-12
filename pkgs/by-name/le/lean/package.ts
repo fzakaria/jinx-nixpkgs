@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["rev", 22, 5], ["hash", 23, 5]], [["name", 29, 7], ["url", 30, 7], ["hash", 31, 7]], [["NIX_CFLAGS_COMPILE", 63, 7]], [["broken", 72, 5], ["description", 73, 5], ["homepage", 74, 5], ["changelog", 75, 5], ["license", 76, 5], ["platforms", 77, 5], ["maintainers", 78, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["patches", 26, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 36, 3], ["cmakeDir", 38, 3], ["cmakeFlags", 40, 3], ["doCheck", 46, 3], ["preConfigure", 48, 3], ["postPatch", 57, 3], ["env", 63, 3], ["postInstall", 65, 3], ["meta", 70, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch: false, cmake: false, gmp: false, coreutils: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["rev", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 29, 7], ["url", 30, 7], ["hash", 31, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 63, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["broken", 72, 5], ["description", 73, 5], ["homepage", 74, 5], ["changelog", 75, 5], ["license", 76, 5], ["platforms", 77, 5], ["maintainers", 78, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["patches", 26, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 36, 3], ["cmakeDir", 38, 3], ["cmakeFlags", 40, 3], ["doCheck", 46, 3], ["preConfigure", 48, 3], ["postPatch", 57, 3], ["env", 63, 3], ["postInstall", 65, 3], ["meta", 70, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pname = "lean";
       const version = "3.51.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "leanprover-community",
           repo: "lean",
           rev: "9fc1dee97a72a3e34d658aefb4b8a95ecd3d477c",
@@ -30,7 +26,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "gcc-13.patch",
             url: "https://github.com/leanprover-community/lean/commit/21d264a66d53b0a910178ae7d9529cb5886a39b6.patch",
             hash: "sha256-hBm2QNFS1jdoR6LUQHLReKxMKv7kbkrkrTGJ43YnvfA=",
@@ -52,12 +48,12 @@ substituteInPlace library/init/version.lean.in \\
 `;
       })());
       const postPatch = "patchShebangs .\n\nsed -e '1i #include <cstdint>' -i src/util/hash.{cpp,h}\n";
-      const env = nix.thunk(() => ({ [nix.POS]: pos$3, NIX_CFLAGS_COMPILE: "-Wno-error=template-body" }));
+      const env = nix.thunk(() => ({ [nix.POS]: $pos[2], NIX_CFLAGS_COMPILE: "-Wno-error=template-body" }));
       const postInstall = nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => nix.str`substituteInPlace $out/bin/leanpkg \\
   --replace "greadlink" "${coreutils}/bin/readlink"
 `)));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
         description: "Automatic and interactive theorem prover",
         homepage: "https://leanprover.github.io/",
@@ -70,7 +66,7 @@ substituteInPlace library/init/version.lean.in \\
         })()),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         src,

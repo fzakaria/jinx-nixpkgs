@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["case", 17, 35], ["out", 17, 40]], [["hash", 27, 19]], [["hash", 28, 19]], [["hash", 29, 19]], [["0.0.7", 27, 11], ["0.0.6", 28, 11], ["0.0.5", 29, 11]], [["description", 36, 5], ["license", 37, 5], ["maintainers", 38, 5]], [["pname", 11, 3], ["owner", 12, 3], ["version", 14, 11], ["defaultVersion", 15, 3], ["releaseRev", 26, 3], ["release", 27, 3], ["nativeBuildInputs", 31, 3], ["propagatedBuildInputs", 33, 3], ["meta", 35, 3]], [["propagatedBuildInputs", 45, 9]]]);
 const formals$1 = { args: { lib: false, mkCoqDerivation: false, coq: false, stdlib: false, findutils: false, version: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["case", 17, 35], ["out", 17, 40]]);
-const pos$2 = nix.positions(here + "/default.nix", [["hash", 27, 19]]);
-const pos$3 = nix.positions(here + "/default.nix", [["hash", 28, 19]]);
-const pos$4 = nix.positions(here + "/default.nix", [["hash", 29, 19]]);
-const pos$5 = nix.positions(here + "/default.nix", [["0.0.7", 27, 11], ["0.0.6", 28, 11], ["0.0.5", 29, 11]]);
-const pos$6 = nix.positions(here + "/default.nix", [["description", 36, 5], ["license", 37, 5], ["maintainers", 38, 5]]);
-const pos$7 = nix.positions(here + "/default.nix", [["pname", 11, 3], ["owner", 12, 3], ["version", 14, 11], ["defaultVersion", 15, 3], ["releaseRev", 26, 3], ["release", 27, 3], ["nativeBuildInputs", 31, 3], ["propagatedBuildInputs", 33, 3], ["meta", 35, 3]]);
-const pos$8 = nix.positions(here + "/default.nix", [["propagatedBuildInputs", 45, 9]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const findutils = nix.arg($, "findutils");
   const version = nix.argOr($, "version", () => null);
   return nix.app(nix.sel(nix.app(mkCoqDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "coqutil",
       owner: "mit-plv",
       version: version,
       defaultVersion: nix.thunk(() => (() => {
-        const case$ = (case$_1) => (out) => ({ [nix.POS]: pos$1, case: case$_1, out: out });
+        const case$ = (case$_1) => (out) => ({ [nix.POS]: $pos[0], case: case$_1, out: out });
         const from = nix.thunk(() => nix.sel(lib, "versions"));
         const range = nix.thunk(() => nix.attr(from, "range"));
         return nix.app(nix.sel(lib, "switch"), nix.thunk(() => nix.sel(coq, "version")), nix.thunk(() => [
@@ -37,24 +30,24 @@ export default nix.lambda((args) => (() => {
       })()),
       releaseRev: (v) => nix.str`v${v}`,
       release: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         "0.0.7": nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           hash: "sha256-A5QDQscZ9BUxxcGTI2RDYOKTZoCYexJQuGNl9i+Wt/g=",
         })),
         "0.0.6": nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           hash: "sha256-c/ddrj0ahuaj9Zu7YBqK7Q0ur+LK7Fgaa//nxQpQcm4=",
         })),
         "0.0.5": nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           hash: "sha256-vkZIAAr82GNuCGlCVRgSCj/nqIdD8FITBiX1a8fybqw=",
         })),
       })),
       nativeBuildInputs: nix.thunk(() => [findutils]),
       propagatedBuildInputs: [],
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Coq library for tactics, basic definitions, sets, maps",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: nix.thunk(() => (() => {
@@ -63,7 +56,7 @@ export default nix.lambda((args) => (() => {
         })()),
       })),
     }))), "overrideAttrs"), (o) => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool((nix.asBool(!nix.eq(nix.sel(o, "version"), null)) && nix.asBool(!nix.eq(nix.sel(o, "version"), "dev")))) && nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(o, "version")), "0.0.7")))), nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         propagatedBuildInputs: nix.thunk(() => nix.concat(nix.sel(o, "propagatedBuildInputs"), [stdlib])),
       }))));
 })(), formals$1);

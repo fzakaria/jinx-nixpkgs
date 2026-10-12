@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 27, 5], ["hash", 28, 5]], [["packageName", 57, 41]], [["updateScript", 57, 5]], [["homepage", 61, 5], ["changelog", 62, 5], ["description", 63, 5], ["mainProgram", 64, 5], ["teams", 65, 5], ["license", 66, 5], ["platforms", 67, 5]], [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 44, 3], ["postPatch", 51, 3], ["passthru", 56, 3], ["meta", 60, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, "pkg-config": false, gtk3: false, gnome: false, "adwaita-icon-theme": false, "gdk-pixbuf": false, librsvg: false, "libgnome-games-support": false, gettext: false, itstool: false, libxml2: false, wrapGAppsHook3: false, meson: false, ninja: false, python3: false, "desktop-file-utils": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["packageName", 57, 41]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 57, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 61, 5], ["changelog", 62, 5], ["description", 63, 5], ["mainProgram", 64, 5], ["teams", 65, 5], ["license", 66, 5], ["platforms", 67, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 44, 3], ["postPatch", 51, 3], ["passthru", 56, 3], ["meta", 60, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const desktop_file_utils = nix.arg($, "desktop-file-utils");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "tali",
       version: "40.9",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnome/sources/tali/${nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/tali-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-+p7eNm8KcuTKpSGJw6sLEMG1aoDHiFsBZgJVjETc59M=",
         })))),
@@ -53,11 +49,11 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [gtk3, gdk_pixbuf, librsvg, libgnome_games_support]),
       postPatch: "chmod +x build-aux/meson_post_install.py\npatchShebangs build-aux/meson_post_install.py\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$2, packageName: "tali" })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: $pos[1], packageName: "tali" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://gitlab.gnome.org/GNOME/tali",
         changelog: nix.thunk(() => nix.str`https://gitlab.gnome.org/GNOME/tali/-/blob/${nix.sel(finalAttrs, "version")}/NEWS?ref_type=tags`),
         description: "Sort of poker with dice and less money",

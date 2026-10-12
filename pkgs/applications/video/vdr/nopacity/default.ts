@@ -2,10 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["repo", 13, 5], ["owner", 14, 5], ["hash", 15, 5], ["tag", 16, 5]], [["homepage", 27, 24], ["description", 28, 5], ["maintainers", 29, 5], ["license", 30, 5], ["platforms", 31, 24]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["buildInputs", 19, 3], ["installFlags", 24, 3], ["meta", 26, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitLab: false, vdr: false, graphicsmagick: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["repo", 13, 5], ["owner", 14, 5], ["hash", 15, 5], ["tag", 16, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 27, 24], ["description", 28, 5], ["maintainers", 29, 5], ["license", 30, 5], ["platforms", 31, 24]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["buildInputs", 19, 3], ["installFlags", 24, 3], ["meta", 26, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "vdr-skin-nopacity";
       const version = "1.1.20";
       const src = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           repo: "SkinNopacity",
           owner: "kamel5",
           hash: "sha256-50oCb9xixPQEwv3Ni1UUmmWVzky/MTvZaqSUczhsHWc=",
@@ -30,7 +28,7 @@ export default nix.lambda((args) => (() => {
         const from = nix.thunk(() => nix.sel(src, "meta"));
         const from_1 = nix.thunk(() => nix.sel(vdr, "meta"));
         return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         description: "Highly customizable native true color skin for the Video Disc Recorder",
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "ck3d"))]),
@@ -38,7 +36,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.attr(from_1, "platforms")),
       };
       })());
-      return { [nix.POS]: pos$3, pname, version, src, buildInputs, installFlags, meta };
+      return { [nix.POS]: $pos[2], pname, version, src, buildInputs, installFlags, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

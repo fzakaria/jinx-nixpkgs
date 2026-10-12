@@ -2,10 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/containerExecutor.nix", [[["url", 17, 5], ["hash", 18, 5]], [["homepage", 37, 5], ["description", 38, 5], ["license", 39, 5], ["longDescription", 41, 5], ["maintainers", 47, 5], ["platforms", 48, 5]], [["pname", 13, 3], ["version", 14, 11], ["src", 16, 3], ["sourceRoot", 20, 3], ["postPatch", 24, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 28, 3], ["cmakeFlags", 29, 3], ["installPhase", 31, 3], ["meta", 36, 3]]]);
 const formals$1 = { args: { version: false, stdenv: false, fetchurl: false, lib: false, cmake: false, openssl: false, platformAttrs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/containerExecutor.nix", [["url", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/containerExecutor.nix", [["homepage", 37, 5], ["description", 38, 5], ["license", 39, 5], ["longDescription", 41, 5], ["maintainers", 47, 5], ["platforms", 48, 5]]);
-const pos$3 = nix.positions(here + "/containerExecutor.nix", [["pname", 13, 3], ["version", 14, 11], ["src", 16, 3], ["sourceRoot", 20, 3], ["postPatch", 24, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 28, 3], ["cmakeFlags", 29, 3], ["installPhase", 31, 3], ["meta", 36, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const openssl = nix.arg($, "openssl");
   const platformAttrs = nix.arg($, "platformAttrs");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "hadoop-yarn-containerexecutor",
       version: version,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://apache/hadoop/common/hadoop-${nix.sel(finalAttrs, "version")}/hadoop-${nix.sel(finalAttrs, "version")}-src.tar.gz`),
           hash: nix.thunk(() => nix.sel(platformAttrs, nix.key(nix.sel(stdenv, "system")), "srcHash")),
         })))),
@@ -32,7 +30,7 @@ export default nix.lambda((args) => (() => {
       cmakeFlags: nix.thunk(() => ["-DHADOOP_CONF_DIR=/run/wrappers/yarn-nodemanager/etc/hadoop"]),
       installPhase: "mkdir $out\nmv target/usr/local/bin $out/\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://hadoop.apache.org/",
         description: "Framework for distributed processing of large data sets across clusters of computers",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

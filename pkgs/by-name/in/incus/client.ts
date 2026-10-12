@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/client.nix", [[["CGO_ENABLED", 27, 7]], [["platforms", 52, 5]], [["pname", 21, 5], ["src", 22, 5], ["vendorHash", 23, 5], ["version", 24, 5], ["env", 27, 3], ["nativeBuildInputs", 29, 3], ["subPackages", 31, 3], ["patches", 33, 3], ["postInstall", 35, 3], ["doCheck", 49, 3], ["meta", 51, 3]]]);
 const formals$1 = { args: { lts: true, meta: false, patches: false, src: false, vendorHash: false, version: false, lib: false, buildGoModule: false, installShellFiles: false, fetchpatch2: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/client.nix", [["CGO_ENABLED", 27, 7]]);
-const pos$2 = nix.positions(here + "/client.nix", [["platforms", 52, 5]]);
-const pos$3 = nix.positions(here + "/client.nix", [["pname", 21, 5], ["src", 22, 5], ["vendorHash", 23, 5], ["version", 24, 5], ["env", 27, 3], ["nativeBuildInputs", 29, 3], ["subPackages", 31, 3], ["patches", 33, 3], ["postInstall", 35, 3], ["doCheck", 49, 3], ["meta", 51, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,19 +20,19 @@ export default nix.lambda((args) => (() => {
   const pname = nix.thunk(() => nix.str`incus${nix.app(nix.sel(lib, "optionalString"), lts, "-lts")}-client`);
   const evaluatedPatches = nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "isFunction"), patches)) ? nix.app(patches, fetchpatch2) : nix.force(patches)));
   return nix.app(buildGoModule, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: pname,
       src: src,
       vendorHash: vendorHash,
       version: version,
-      env: nix.thunk(() => ({ [nix.POS]: pos$1, CGO_ENABLED: 0n })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[0], CGO_ENABLED: 0n })),
       nativeBuildInputs: nix.thunk(() => [installShellFiles]),
       subPackages: nix.thunk(() => ["cmd/incus"]),
       patches: evaluatedPatches,
       postInstall: "# Needed for builds on systems with auto-allocate-uids to pass.\n# Incus tries to read ~/.config/incus while generating completions\n# to resolve user aliases.\nexport HOME=\"$(mktemp -d)\"\nmkdir -p \"$HOME/.config/incus\"\n\ninstallShellCompletion --cmd incus \\\n  --bash <($out/bin/incus completion bash) \\\n  --fish <($out/bin/incus completion fish) \\\n  --zsh <($out/bin/incus completion zsh)\n",
       doCheck: false,
       meta: nix.thunk(() => nix.update(meta, {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         platforms: nix.thunk(() => nix.concat(nix.sel(lib, "platforms", "linux"), nix.sel(lib, "platforms", "darwin"))),
       })),
     })));

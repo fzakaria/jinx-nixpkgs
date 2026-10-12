@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 33, 5], ["owner", 34, 5], ["repo", 35, 5], ["rev", 36, 5], ["hash", 37, 5], ["fetchSubmodules", 38, 5]], [["name", 77, 7], ["exec", 78, 7], ["comment", 79, 7], ["desktopName", 80, 7], ["categories", 81, 7]], [["description", 88, 5], ["longDescription", 89, 5], ["homepage", 103, 5], ["license", 104, 5], ["maintainers", 105, 5], ["mainProgram", 109, 5], ["platforms", 110, 25], ["broken", 111, 5]], [["pname", 29, 3], ["version", 30, 3], ["src", 32, 3], ["postPatch", 41, 3], ["nativeBuildInputs", 45, 3], ["buildInputs", 55, 3], ["strictDeps", 71, 3], ["dontUseCmakeConfigure", 73, 3], ["desktopItems", 75, 3], ["meta", 87, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitea: false, meson: false, libGLU: false, ninja: false, python3: false, cmake: false, "pkg-config": false, xxd: false, libopus: false, libogg: false, zlib: false, SDL2: false, SDL2_mixer: false, libopenmpt: false, libxrandr: false, libxext: false, libxfixes: false, libxcursor: false, libxi: false, libxscrnsaver: false, makeDesktopItem: false, copyDesktopItems: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 33, 5], ["owner", 34, 5], ["repo", 35, 5], ["rev", 36, 5], ["hash", 37, 5], ["fetchSubmodules", 38, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 77, 7], ["exec", 78, 7], ["comment", 79, 7], ["desktopName", 80, 7], ["categories", 81, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 88, 5], ["longDescription", 89, 5], ["homepage", 103, 5], ["license", 104, 5], ["maintainers", 105, 5], ["mainProgram", 109, 5], ["platforms", 110, 25], ["broken", 111, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 29, 3], ["version", 30, 3], ["src", 32, 3], ["postPatch", 41, 3], ["nativeBuildInputs", 45, 3], ["buildInputs", 55, 3], ["strictDeps", 71, 3], ["dontUseCmakeConfigure", 73, 3], ["desktopItems", 75, 3], ["meta", 87, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -35,11 +32,11 @@ export default nix.lambda((args) => (() => {
   const makeDesktopItem = nix.arg($, "makeDesktopItem");
   const copyDesktopItems = nix.arg($, "copyDesktopItems");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "apotris",
       version: "4.1.0",
       src: nix.thunk(() => nix.app(fetchFromGitea, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "gitea.com",
           owner: "akouzoukos",
           repo: "apotris",
@@ -68,7 +65,7 @@ export default nix.lambda((args) => (() => {
       dontUseCmakeConfigure: true,
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "Apotris",
             exec: "Apotris",
             comment: "A block stacking game",
@@ -79,7 +76,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(SDL2, "meta"));
         return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Block stacking game",
         longDescription: "Apotris is a multiplatform open-source block stacking game! What sets\nApotris apart from other block stacking games is its extensive\ncustomization options, complemented by ultra-responsive controls that let\nyou execute your moves with precision. With 14 unique game modes and a\nplethora of settings, you can tailor the game to your preferences,\nensuring a fresh and challenging experience every time you play. Whether\nyou're a casual player or a hardcore enthusiast, Apotris has something for\neveryone. You can even battle your friends using the Gameboy Advance Link\nCable or Wireless Adapters in 2-Player Battle! While Apotris was\noriginally designed for Gameboy Advance, it now supports all kinds of\nplatforms, so between the ports and emulation you can play Apotris on\nalmost anything.\n",
         homepage: "https://akouzoukos.com/apotris/",

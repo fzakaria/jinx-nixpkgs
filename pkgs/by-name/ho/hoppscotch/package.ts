@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 17, 11], ["hash", 18, 11]], [["url", 21, 11], ["hash", 22, 11]], [["aarch64-darwin", 16, 9], ["x86_64-linux", 20, 9]], [["updateScript", 27, 12]], [["description", 30, 5], ["longDescription", 31, 5], ["homepage", 37, 5], ["downloadPage", 38, 5], ["changelog", 39, 5], ["license", 40, 5], ["maintainers", 41, 5], ["mainProgram", 42, 5], ["platforms", 43, 5], ["sourceProvenance", 47, 5]], [["pname", 53, 7], ["version", 54, 7], ["src", 55, 7], ["passthru", 56, 7], ["meta", 57, 7], ["sourceRoot", 60, 5], ["nativeBuildInputs", 62, 5], ["installPhase", 64, 5]], [["pname", 85, 60], ["version", 85, 66], ["src", 85, 74]], [["pname", 76, 7], ["version", 77, 7], ["src", 78, 7], ["passthru", 79, 7], ["meta", 80, 7], ["extraInstallCommands", 83, 5]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, appimageTools: false, undmg: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 17, 11], ["hash", 18, 11]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 21, 11], ["hash", 22, 11]]);
-const pos$3 = nix.positions(here + "/package.nix", [["aarch64-darwin", 16, 9], ["x86_64-linux", 20, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 27, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 30, 5], ["longDescription", 31, 5], ["homepage", 37, 5], ["downloadPage", 38, 5], ["changelog", 39, 5], ["license", 40, 5], ["maintainers", 41, 5], ["mainProgram", 42, 5], ["platforms", 43, 5], ["sourceProvenance", 47, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 53, 7], ["version", 54, 7], ["src", 55, 7], ["passthru", 56, 7], ["meta", 57, 7], ["sourceRoot", 60, 5], ["nativeBuildInputs", 62, 5], ["installPhase", 64, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 85, 60], ["version", 85, 66], ["src", 85, 74]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 76, 7], ["version", 77, 7], ["src", 78, 7], ["passthru", 79, 7], ["meta", 80, 7], ["extraInstallCommands", 83, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,21 +15,21 @@ export default nix.lambda((args) => (() => {
   const pname = "hoppscotch";
   const version = "26.9.0-0";
   const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => nix.selOr({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       "aarch64-darwin": nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         url: nix.thunk(() => nix.str`https://github.com/hoppscotch/releases/releases/download/v${version}/Hoppscotch_mac_aarch64.dmg`),
         hash: "sha256-pK6+YBhkZLwldAF34SYMLjMjr4Ol9b7WIyWuI+9lOhs=",
       })),
       "x86_64-linux": nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         url: nix.thunk(() => nix.str`https://github.com/hoppscotch/releases/releases/download/v${version}/Hoppscotch_linux_x64.AppImage`),
         hash: "sha256-QXY9fPTc7lg0X+x46todzcWDaDpT91gJ8n+xztJnjm8=",
       })),
     }, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenv, "hostPlatform", "system")}`)), nix.key(nix.sel(stdenv, "hostPlatform", "system"))))));
-  const passthru = nix.thunk(() => ({ [nix.POS]: pos$4, updateScript: nix.path(here, "./update.sh") }));
+  const passthru = nix.thunk(() => ({ [nix.POS]: $pos[3], updateScript: nix.path(here, "./update.sh") }));
   const meta = nix.thunk(() => ({
-    [nix.POS]: pos$5,
+    [nix.POS]: $pos[4],
     description: "Open source API development ecosystem",
     longDescription: "Hoppscotch is a lightweight, web-based API development suite. It was built\nfrom the ground up with ease of use and accessibility in mind providing\nall the functionality needed for API developers with minimalist,\nunobtrusive UI.\n",
     homepage: "https://hoppscotch.com",
@@ -52,7 +45,7 @@ export default nix.lambda((args) => (() => {
     sourceProvenance: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "sourceTypes", "binaryNativeCode"))]),
   }));
   return (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: pname,
       version: version,
       src: src,
@@ -62,14 +55,14 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [undmg]),
       installPhase: "runHook preInstall\n\nmkdir -p \"$out/Applications\"\nmv Hoppscotch.app $out/Applications/\n\nrunHook postInstall\n",
     }))) : nix.app(nix.sel(appimageTools, "wrapType2"), nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: pname,
       version: version,
       src: src,
       passthru: passthru,
       meta: meta,
       extraInstallCommands: nix.thunk(() => (() => {
-        const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: pos$7, pname: pname, version: version, src: src }))));
+        const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: $pos[6], pname: pname, version: version, src: src }))));
         return nix.str`# Install .desktop files
 install -Dm444 ${appimageContents}/Hoppscotch.desktop $out/share/applications/hoppscotch.desktop
 install -Dm444 ${appimageContents}/Hoppscotch.png $out/share/icons/hicolor/256x256/apps/hoppscotch.png

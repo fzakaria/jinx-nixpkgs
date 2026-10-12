@@ -2,8 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/prepare-artifacts.nix", [[["name", 10, 17], ["src", 11, 11], ["nativeBuildInputs", 13, 3], ["installPhase", 15, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, callPackage: false, autoPatchelfHook: false, src: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/prepare-artifacts.nix", [["name", 10, 17], ["src", 11, 11], ["nativeBuildInputs", 13, 3], ["installPhase", 15, 3]]);
 const formals$2 = { args: {  }, ellipsis: true };
 
 export default nix.lambda((args) => (() => {
@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const autoPatchelfHook = nix.arg($, "autoPatchelfHook");
   const src = nix.arg($, "src");
   return nix.app(nix.sel(nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: nix.thunk(() => nix.attr(src, "name")),
       src: src,
       nativeBuildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), autoPatchelfHook)),

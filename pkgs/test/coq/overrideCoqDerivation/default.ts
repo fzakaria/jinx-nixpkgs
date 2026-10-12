@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["dontFilter", 15, 5]], [["sha256", 27, 20]], [["9999", 27, 13]], [["defaultVersion", 26, 5], ["release", 27, 5]], [["maintainers", 32, 10]], [["meta", 32, 5]]]);
 const formals$1 = { args: { lib: false, coq: false, mkCoqPackages: false, runCommand: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["dontFilter", 15, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["sha256", 27, 20]]);
-const pos$3 = nix.positions(here + "/default.nix", [["9999", 27, 13]]);
-const pos$4 = nix.positions(here + "/default.nix", [["defaultVersion", 26, 5], ["release", 27, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["maintainers", 32, 10]]);
-const pos$6 = nix.positions(here + "/default.nix", [["meta", 32, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,20 +11,20 @@ export default nix.lambda((args) => (() => {
   const coq = nix.arg($, "coq");
   const mkCoqPackages = nix.arg($, "mkCoqPackages");
   const runCommand = nix.arg($, "runCommand");
-  const coqWithAllPackages = nix.thunk(() => nix.update(coq, { [nix.POS]: pos$1, dontFilter: true }));
+  const coqWithAllPackages = nix.thunk(() => nix.update(coq, { [nix.POS]: $pos[0], dontFilter: true }));
   const coqPackages = nix.thunk(() => nix.app(mkCoqPackages, coqWithAllPackages));
   const overriddenQuickChick = nix.thunk(() => nix.app(nix.sel(coqPackages, "lib", "overrideCoqDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       defaultVersion: "9999",
       release: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        "9999": nix.thunk(() => ({ [nix.POS]: pos$2, sha256: nix.thunk(() => nix.sel(lib, "fakeSha256")) })),
+        [nix.POS]: $pos[2],
+        "9999": nix.thunk(() => ({ [nix.POS]: $pos[1], sha256: nix.thunk(() => nix.sel(lib, "fakeSha256")) })),
       })),
     })), nix.thunk(() => nix.sel(coqPackages, "QuickChick"))));
   return nix.app(runCommand, "coq-overrideCoqDerivation-test-0.1", nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
           return [nix.thunk(() => nix.lookup(w, "cdepillabout"))];

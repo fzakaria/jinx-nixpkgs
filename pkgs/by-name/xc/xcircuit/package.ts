@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 26, 5], ["repo", 27, 5], ["rev", 28, 5], ["sha256", 29, 5]], [["description", 59, 5], ["mainProgram", 60, 5], ["homepage", 61, 5], ["license", 62, 5], ["platforms", 63, 5], ["maintainers", 64, 5]], [["version", 22, 3], ["pname", 23, 3], ["src", 25, 3], ["nativeBuildInputs", 32, 3], ["hardeningDisable", 37, 3], ["configureFlags", 39, 3], ["buildInputs", 45, 3], ["meta", 58, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, autoreconfHook: false, automake: false, "pkg-config": false, cairo: false, ghostscript: false, ngspice: false, tcl: false, tk: false, libxt: false, libxpm: false, libx11: false, libsm: false, libice: false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 26, 5], ["repo", 27, 5], ["rev", 28, 5], ["sha256", 29, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 59, 5], ["mainProgram", 60, 5], ["homepage", 61, 5], ["license", 62, 5], ["platforms", 63, 5], ["maintainers", 64, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 22, 3], ["pname", 23, 3], ["src", 25, 3], ["nativeBuildInputs", 32, 3], ["hardeningDisable", 37, 3], ["configureFlags", 39, 3], ["buildInputs", 45, 3], ["meta", 58, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const libice = nix.arg($, "libice");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       version: "3.10.42",
       pname: "xcircuit",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "RTimothyEdwards",
           repo: "XCircuit",
           rev: "8a0429250abbd2b70c4d3fbfe2e2c20b4c43be81",
@@ -46,7 +44,7 @@ export default nix.lambda((args) => (() => {
       ]),
       buildInputs: nix.thunk(() => [cairo, ghostscript, libsm, libxt, libice, libx11, libxpm, tcl, tk, zlib]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Generic drawing program tailored to circuit diagrams",
         mainProgram: "xcircuit",
         homepage: "http://opencircuitdesign.com/xcircuit",

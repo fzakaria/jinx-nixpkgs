@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/20130715.nix", [[["url", 24, 9], ["hash", 25, 9]], [["url", 29, 9], ["hash", 30, 9]], [["url", 36, 5], ["hash", 37, 5]], [["lib", 118, 38]], [["pname", 18, 3], ["version", 19, 11], ["binSrc", 21, 3], ["codeSrc", 35, 3], ["srcs", 40, 3], ["sourceRoot", 45, 3], ["buildInputs", 47, 3], ["nativeBuildInputs", 48, 3], ["makeFlags", 50, 3], ["configurePhase", 52, 3], ["preBuild", 76, 3], ["doCheck", 95, 3], ["installTargets", 97, 3], ["postInstall", 99, 3], ["meta", 118, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, patchelf: false, gmp: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/20130715.nix", [["url", 24, 9], ["hash", 25, 9]]);
-const pos$2 = nix.positions(here + "/20130715.nix", [["url", 29, 9], ["hash", 30, 9]]);
-const pos$3 = nix.positions(here + "/20130715.nix", [["url", 36, 5], ["hash", 37, 5]]);
-const pos$4 = nix.positions(here + "/20130715.nix", [["lib", 118, 38]]);
-const pos$5 = nix.positions(here + "/20130715.nix", [["pname", 18, 3], ["version", 19, 11], ["binSrc", 21, 3], ["codeSrc", 35, 3], ["srcs", 40, 3], ["sourceRoot", 45, 3], ["buildInputs", 47, 3], ["nativeBuildInputs", 48, 3], ["makeFlags", 50, 3], ["configurePhase", 52, 3], ["preBuild", 76, 3], ["doCheck", 95, 3], ["installTargets", 97, 3], ["postInstall", 99, 3], ["meta", 118, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,16 +19,16 @@ export default nix.lambda((args) => (() => {
       const pname = "mlton";
       const version_1 = version;
       const binSrc = nix.thunk(() => (nix.asBool(nix.eq(nix.sel(stdenv, "hostPlatform", "system"), "i686-linux")) ? nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/project/mlton/mlton/${version_1}/${pname}-${version_1}-1.x86-linux.tgz`),
           hash: "sha256-ktiWJ892DFbQ6XJ/MosAY0G/W+KD/H1hamJ2wm2Vss8=",
         }))) : (nix.asBool(nix.eq(nix.sel(stdenv, "hostPlatform", "system"), "x86_64-linux")) ? nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: nix.thunk(() => nix.str`mirror://sourceforge/project/mlton/mlton/${version_1}/${pname}-${version_1}-1.amd64-linux.tgz`),
           hash: "sha256-9vkSAJsJRrc6+I/18+cTtr5juHFpbiaXzPFWS1bn0Ds=",
         }))) : nix.builtins.throw("Architecture not supported"))));
       const codeSrc = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           url: nix.thunk(() => nix.str`mirror://sourceforge/project/mlton/mlton/${version_1}/${pname}-${version_1}.src.tgz`),
           hash: "sha256-IVhXrRHUT42Uwn9150AXqkSyyXAzBLzsnjjCBDMUPWw=",
         }))));
@@ -96,9 +92,9 @@ cp -r $(pwd)/install/${usr_prefix}/bin $out
 cp -r $(pwd)/install/${usr_prefix}/lib $out
 cp -r $(pwd)/install/${usr_prefix}/man $out
 `);
-      const meta = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./meta.nix")), nix.thunk(() => ({ [nix.POS]: pos$4, lib: lib }))));
+      const meta = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./meta.nix")), nix.thunk(() => ({ [nix.POS]: $pos[3], lib: lib }))));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version: version_1,
         binSrc,

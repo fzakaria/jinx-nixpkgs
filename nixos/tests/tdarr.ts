@@ -2,52 +2,40 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/tdarr.nix", [[["maintainers", 5, 5]], [["serverPort", 14, 11], ["webUIPort", 15, 11]], [["server", 34, 17], ["node", 35, 17]], [["server", 38, 17], ["node", 39, 17]], [["transcodeGPU", 43, 15], ["transcodeCPU", 44, 15], ["healthcheckGPU", 45, 15], ["healthcheckCPU", 46, 15]], [["name", 19, 13], ["serverURL", 20, 13], ["serverIP", 21, 13], ["serverPort", 22, 13], ["environmentFile", 23, 13], ["type", 26, 13], ["priority", 27, 13], ["pollInterval", 28, 13], ["startPaused", 29, 13], ["maxLogSizeMB", 30, 13], ["cronPluginUpdate", 31, 13], ["pathTranslators", 32, 13], ["workers", 42, 13]], [["enable", 50, 13]], [["main", 18, 11], ["secondary", 49, 11]], [["enable", 12, 9], ["server", 13, 9], ["nodes", 17, 9]], [["tdarr", 11, 16]], [["services", 11, 7]], [["machine", 8, 9]], [["name", 3, 3], ["meta", 4, 3], ["nodes", 8, 3], ["testScript", 56, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/tdarr.nix", [["maintainers", 5, 5]]);
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/tdarr.nix", [["serverPort", 14, 11], ["webUIPort", 15, 11]]);
-const pos$3 = nix.positions(here + "/tdarr.nix", [["server", 34, 17], ["node", 35, 17]]);
-const pos$4 = nix.positions(here + "/tdarr.nix", [["server", 38, 17], ["node", 39, 17]]);
-const pos$5 = nix.positions(here + "/tdarr.nix", [["transcodeGPU", 43, 15], ["transcodeCPU", 44, 15], ["healthcheckGPU", 45, 15], ["healthcheckCPU", 46, 15]]);
-const pos$6 = nix.positions(here + "/tdarr.nix", [["name", 19, 13], ["serverURL", 20, 13], ["serverIP", 21, 13], ["serverPort", 22, 13], ["environmentFile", 23, 13], ["type", 26, 13], ["priority", 27, 13], ["pollInterval", 28, 13], ["startPaused", 29, 13], ["maxLogSizeMB", 30, 13], ["cronPluginUpdate", 31, 13], ["pathTranslators", 32, 13], ["workers", 42, 13]]);
-const pos$7 = nix.positions(here + "/tdarr.nix", [["enable", 50, 13]]);
-const pos$8 = nix.positions(here + "/tdarr.nix", [["main", 18, 11], ["secondary", 49, 11]]);
-const pos$9 = nix.positions(here + "/tdarr.nix", [["enable", 12, 9], ["server", 13, 9], ["nodes", 17, 9]]);
-const pos$10 = nix.positions(here + "/tdarr.nix", [["tdarr", 11, 16]]);
-const pos$11 = nix.positions(here + "/tdarr.nix", [["services", 11, 7]]);
-const pos$12 = nix.positions(here + "/tdarr.nix", [["machine", 8, 9]]);
-const pos$13 = nix.positions(here + "/tdarr.nix", [["name", 3, 3], ["meta", 4, 3], ["nodes", 8, 3], ["testScript", 56, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$13,
+    [nix.POS]: $pos[12],
     name: "tdarr",
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
       return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "mistyttm"))]),
       };
     })()),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$12,
+      [nix.POS]: $pos[11],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$11,
+          [nix.POS]: $pos[10],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$10,
+            [nix.POS]: $pos[9],
             tdarr: nix.thunk(() => ({
-              [nix.POS]: pos$9,
+              [nix.POS]: $pos[8],
               enable: true,
-              server: nix.thunk(() => ({ [nix.POS]: pos$2, serverPort: 9266n, webUIPort: 9265n })),
+              server: nix.thunk(() => ({ [nix.POS]: $pos[1], serverPort: 9266n, webUIPort: 9265n })),
               nodes: nix.thunk(() => ({
-                [nix.POS]: pos$8,
+                [nix.POS]: $pos[7],
                 main: nix.thunk(() => ({
-                  [nix.POS]: pos$6,
+                  [nix.POS]: $pos[5],
                   name: "tdarr-main-custom",
                   serverURL: "http://127.0.0.1:9266",
                   serverIP: "127.0.0.1",
@@ -60,18 +48,18 @@ export default nix.lambda((args) => (() => {
                   maxLogSizeMB: 42n,
                   cronPluginUpdate: "*/15 * * * *",
                   pathTranslators: nix.thunk(() => [
-                    nix.thunk(() => ({ [nix.POS]: pos$3, server: "/mnt/server/cache", node: "/mnt/node/cache" })),
-                    nix.thunk(() => ({ [nix.POS]: pos$4, server: "/mnt/server/media", node: "/mnt/node/media" })),
+                    nix.thunk(() => ({ [nix.POS]: $pos[2], server: "/mnt/server/cache", node: "/mnt/node/cache" })),
+                    nix.thunk(() => ({ [nix.POS]: $pos[3], server: "/mnt/server/media", node: "/mnt/node/media" })),
                   ]),
                   workers: nix.thunk(() => ({
-                    [nix.POS]: pos$5,
+                    [nix.POS]: $pos[4],
                     transcodeGPU: 1n,
                     transcodeCPU: 3n,
                     healthcheckGPU: 1n,
                     healthcheckCPU: 2n,
                   })),
                 })),
-                secondary: nix.thunk(() => ({ [nix.POS]: pos$7, enable: false })),
+                secondary: nix.thunk(() => ({ [nix.POS]: $pos[6], enable: false })),
               })),
             })),
           })),

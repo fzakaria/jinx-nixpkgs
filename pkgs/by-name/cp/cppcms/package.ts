@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 17, 5], ["sha256", 18, 5]], [["homepage", 43, 5], ["description", 44, 5], ["platforms", 45, 5], ["license", 46, 5], ["maintainers", 47, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["postPatch", 21, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 30, 3], ["strictDeps", 36, 3], ["cmakeFlags", 38, 3], ["meta", 42, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, cmake: false, pcre2: false, zlib: false, python3: false, openssl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 17, 5], ["sha256", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 43, 5], ["description", 44, 5], ["platforms", 45, 5], ["license", 46, 5], ["maintainers", 47, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["postPatch", 21, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 30, 3], ["strictDeps", 36, 3], ["cmakeFlags", 38, 3], ["meta", 42, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const openssl = nix.arg($, "openssl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "cppcms",
       version: "2.0.0.beta2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/cppcms/cppcms-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           sha256: "sha256-aXAxx9FB/dIVxr5QkLZuIQamO7PlLwnugSDo78bAiiE=",
         })))),
@@ -32,7 +30,7 @@ export default nix.lambda((args) => (() => {
       strictDeps: true,
       cmakeFlags: nix.thunk(() => ["--no-warn-unused-cli"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "http://cppcms.com",
         description: "High Performance C++ Web Framework",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),

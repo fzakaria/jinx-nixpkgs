@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["pname", 13, 26], ["version", 13, 32], ["hash", 14, 5]], [["updateScript", 19, 12]], [["description", 22, 5], ["mainProgram", 23, 5], ["homepage", 24, 5], ["changelog", 25, 5], ["license", 26, 5], ["maintainers", 27, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["cargoHash", 17, 3], ["passthru", 19, 3], ["meta", 21, 3]]]);
 const formals$1 = { args: { fetchCrate: false, lib: false, rustPlatform: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["pname", 13, 26], ["version", 13, 32], ["hash", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 19, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 22, 5], ["mainProgram", 23, 5], ["homepage", 24, 5], ["changelog", 25, 5], ["license", 26, 5], ["maintainers", 27, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["cargoHash", 17, 3], ["passthru", 19, 3], ["meta", 21, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,22 +12,22 @@ export default nix.lambda((args) => (() => {
   const rustPlatform = nix.arg($, "rustPlatform");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "protoc-gen-prost-serde",
       version: "0.4.0",
       src: nix.thunk(() => nix.app(fetchCrate, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-tgsGyUVoQZQcOqh56KGVwS3VcxwbKzBL3P2VpYs72Ok=",
         })))),
       cargoHash: "sha256-otsovgqCC+IdxbdGBaPfjK61bZsHtWwY0QqZBPQxnvw=",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Protoc plugin that generates serde serialization implementations for `protoc-gen-prost`",
         mainProgram: "protoc-gen-prost-serde",
         homepage: "https://github.com/neoeinstein/protoc-gen-prost",

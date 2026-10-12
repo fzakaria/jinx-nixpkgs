@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 12, 5], ["repo", 13, 5], ["tag", 14, 5], ["fetchSubmodules", 15, 5], ["hash", 16, 5]], [["updateScript", 28, 5]], [["description", 36, 5], ["homepage", 37, 5], ["license", 38, 5], ["maintainers", 39, 5], ["mainProgram", 42, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["vendorHash", 19, 3], ["ldflags", 21, 3], ["passthru", 27, 3], ["subPackages", 31, 3], ["__structuredAttrs", 33, 3], ["meta", 35, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitHub: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 12, 5], ["repo", 13, 5], ["tag", 14, 5], ["fetchSubmodules", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 28, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 36, 5], ["homepage", 37, 5], ["license", 38, 5], ["maintainers", 39, 5], ["mainProgram", 42, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["vendorHash", 19, 3], ["ldflags", 21, 3], ["passthru", 27, 3], ["subPackages", 31, 3], ["__structuredAttrs", 33, 3], ["meta", 35, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,7 +15,7 @@ export default nix.lambda((args) => (() => {
       const pname = "addchain";
       const version = "0.4.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "mmcloughlin",
           repo: "addchain",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -32,13 +29,13 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`-X github.com/mmcloughlin/addchain/meta.buildversion=${version}`),
       ]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const subPackages = nix.thunk(() => ["cmd/addchain"]);
       const __structuredAttrs = true;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "addchain generates short addition chains for exponents of cryptographic interest with results rivaling the best hand-optimized chains",
         homepage: "https://github.com/mmcloughlin/addchain",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
@@ -49,7 +46,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "addchain",
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

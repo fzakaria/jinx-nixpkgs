@@ -1,1 +1,1 @@
-{"version":3,"file":"sd-image-aarch64-new-kernel.ts","sources":["../../../../../../../../../../nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/nixos/modules/installer/sd-card/sd-image-aarch64-new-kernel.nix"],"names":[],"mappings":";;;;;;;;eAAA;;;SAEA;;6BACY,CAAE;2BAEZ;;sCAA0B"}
+{"version":3,"file":"sd-image-aarch64-new-kernel.ts","sources":["../../../../../../../../../../nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/nixos/modules/installer/sd-card/sd-image-aarch64-new-kernel.nix"],"names":[],"mappings":";;;;;;;eAAA;;;SAEA;;6BACY,CAAE;2BAEZ;;sCAA0B"}

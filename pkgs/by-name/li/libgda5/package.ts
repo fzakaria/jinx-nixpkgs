@@ -2,17 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 32, 5], ["hash", 33, 5]], [["url", 39, 7], ["hash", 40, 7]], [["name", 43, 7], ["url", 44, 7], ["hash", 45, 7]], [["url", 56, 7], ["hash", 57, 7]], [["url", 61, 7], ["hash", 62, 7]], [["NIX_CFLAGS_COMPILE", 108, 7]], [["packageName", 116, 7], ["attrPath", 117, 7], ["versionPolicy", 118, 7], ["freeze", 119, 7]], [["updateScript", 115, 5]], [["description", 124, 5], ["homepage", 125, 5], ["license", 126, 5], ["maintainers", 132, 5], ["platforms", 133, 5]], [["pname", 28, 3], ["version", 29, 3], ["src", 31, 3], ["patches", 36, 3], ["nativeBuildInputs", 66, 3], ["buildInputs", 80, 3], ["propagatedBuildInputs", 92, 3], ["configureFlags", 96, 3], ["env", 108, 3], ["enableParallelBuilding", 110, 3], ["hardeningDisable", 112, 3], ["passthru", 114, 3], ["meta", 123, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, "pkg-config": false, intltool: false, itstool: false, libxml2: false, gtk3: false, openssl: false, gettext: false, gnome: false, "gobject-introspection": false, vala: false, libgee: false, fetchpatch: false, autoreconfHook: false, "gtk-doc": false, "autoconf-archive": false, "yelp-tools": false, mysqlSupport: true, libmysqlclient: false, postgresSupport: true, libpq: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 32, 5], ["hash", 33, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 39, 7], ["hash", 40, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 43, 7], ["url", 44, 7], ["hash", 45, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["url", 56, 7], ["hash", 57, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["url", 61, 7], ["hash", 62, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 108, 7]]);
-const pos$7 = nix.positions(here + "/package.nix", [["packageName", 116, 7], ["attrPath", 117, 7], ["versionPolicy", 118, 7], ["freeze", 119, 7]]);
-const pos$8 = nix.positions(here + "/package.nix", [["updateScript", 115, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["description", 124, 5], ["homepage", 125, 5], ["license", 126, 5], ["maintainers", 132, 5], ["platforms", 133, 5]]);
-const pos$10 = nix.positions(here + "/package.nix", [["pname", 28, 3], ["version", 29, 3], ["src", 31, 3], ["patches", 36, 3], ["nativeBuildInputs", 66, 3], ["buildInputs", 80, 3], ["propagatedBuildInputs", 92, 3], ["configureFlags", 96, 3], ["env", 108, 3], ["enableParallelBuilding", 110, 3], ["hardeningDisable", 112, 3], ["passthru", 114, 3], ["meta", 123, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -40,22 +31,22 @@ export default nix.lambda((args) => (() => {
   const postgresSupport = nix.argOr($, "postgresSupport", () => false);
   const libpq = nix.arg($, "libpq");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       pname: "libgda",
       version: "5.2.10",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnome/sources/libgda/${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/libgda-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-b2zfe4BT9VO5B+DIimBk60jPJ1GFLrJDI9zwJ3kjNMg=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://gitlab.gnome.org/GNOME/libgda/-/commit/9859479884fad5f39e6c37e8995e57c28b11b1b9.diff",
             hash: "sha256-G2PS8LkUXj7deofEn8lgpEMbYg4RLB5injS9VRizGpU=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "CVE-2021-39359.patch",
             url: "https://src.fedoraproject.org/rpms/libgda5/raw/72bb769f12e861e27e883dac5fab34f1ba4bd97e/f/bebdffb4de586fb43fd07ac549121f4b22f6812d.patch",
             hash: "sha256-hIKuY5NEqOzntdlLb541bA4xZU5ypTRmV1u765K6KbM=",
@@ -63,12 +54,12 @@ export default nix.lambda((args) => (() => {
         nix.path(here, "./0001-gcc14-fix.patch"),
         nix.path(here, "./0002-c23-md5c.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             url: "https://src.fedoraproject.org/rpms/libgda5/raw/945495e5c6cdd98a5360eff77245421876a97a57/f/gettext.patch",
             hash: "sha256-DOCsCbx+HLZvlpMgSQrW5YoWl/EhDuQEln18YDqgCVk=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             url: "https://src.fedoraproject.org/rpms/libgda5/raw/76be2c07cb747ce30cc63da21662abb589814404/f/types.patch",
             hash: "sha256-LdvDQm7p0uWznBCD8qhJ5h44zNWLmI0BoqYPCeTBN9M=",
           })))),
@@ -94,15 +85,15 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`--enable-system-sqlite=${nix.app(nix.sel(lib, "boolToYesNo"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))))}`),
       ]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         NIX_CFLAGS_COMPILE: "-Wno-error=incompatible-pointer-types",
       })),
       enableParallelBuilding: true,
       hardeningDisable: nix.thunk(() => ["format"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             packageName: "libgda",
             attrPath: "libgda5",
             versionPolicy: "odd-unstable",
@@ -110,7 +101,7 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         description: "Database access library",
         homepage: "https://www.gnome-db.org/",
         license: nix.thunk(() => (() => {

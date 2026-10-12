@@ -2,9 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/qtpim.nix", [[["maintainers", 26, 5]], [["pname", 9, 3], ["outputs", 11, 3], ["propagatedBuildInputs", 16, 3], ["qmakeFlags", 21, 3], ["meta", 25, 3]]]);
 const formals$1 = { args: { qtModule: false, lib: false, qtbase: false, qtdeclarative: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/qtpim.nix", [["maintainers", 26, 5]]);
-const pos$2 = nix.positions(here + "/qtpim.nix", [["pname", 9, 3], ["outputs", 11, 3], ["propagatedBuildInputs", 16, 3], ["qmakeFlags", 21, 3], ["meta", 25, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,13 +12,13 @@ export default nix.lambda((args) => (() => {
   const qtbase = nix.arg($, "qtbase");
   const qtdeclarative = nix.arg($, "qtdeclarative");
   return nix.app(qtModule, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "qtpim",
       outputs: nix.thunk(() => ["out", "dev"]),
       propagatedBuildInputs: nix.thunk(() => [qtbase, qtdeclarative]),
       qmakeFlags: nix.thunk(() => ["CONFIG+=git_build"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
           return [nix.thunk(() => nix.lookup(w, "OPNA2608"))];

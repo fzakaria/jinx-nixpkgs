@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["stdenv", 19, 47]], [["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["fetchSubmodules", 29, 5], ["hash", 30, 5]], [["TORCH_CUDA_ARCH_LIST", 46, 5]], [["description", 77, 5], ["homepage", 78, 5], ["changelog", 79, 5], ["license", 80, 5], ["maintainers", 84, 5]], [["pname", 20, 3], ["version", 21, 3], ["pyproject", 22, 3], ["__structuredAttrs", 23, 3], ["src", 25, 3], ["build-system", 33, 3], ["dontUseCmakeConfigure", 39, 3], ["nativeBuildInputs", 41, 3], ["env", 45, 3], ["buildInputs", 49, 3], ["pythonImportsCheck", 54, 3], ["nativeCheckInputs", 56, 3], ["preCheck", 60, 3], ["disabledTests", 64, 3], ["meta", 76, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitHub: false, cmake: false, ninja: false, setuptools: false, torch: false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["stdenv", 19, 47]]);
-const pos$2 = nix.positions(here + "/default.nix", [["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["fetchSubmodules", 29, 5], ["hash", 30, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["TORCH_CUDA_ARCH_LIST", 46, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 77, 5], ["homepage", 78, 5], ["changelog", 79, 5], ["license", 80, 5], ["maintainers", 84, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 20, 3], ["version", 21, 3], ["pyproject", 22, 3], ["__structuredAttrs", 23, 3], ["src", 25, 3], ["build-system", 33, 3], ["dontUseCmakeConfigure", 39, 3], ["nativeBuildInputs", 41, 3], ["env", 45, 3], ["buildInputs", 49, 3], ["pythonImportsCheck", 54, 3], ["nativeCheckInputs", 56, 3], ["preCheck", 60, 3], ["disabledTests", 64, 3], ["meta", 76, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,14 +19,14 @@ export default nix.lambda((args) => (() => {
   const cudaPackages = nix.thunk(() => nix.attr(torch, "cudaPackages"));
   const cudaSupport = nix.thunk(() => nix.attr(torch, "cudaSupport"));
   const cudaCapabilities = nix.thunk(() => nix.attr(torch, "cudaCapabilities"));
-  return nix.app(nix.sel(buildPythonPackage, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, stdenv: nix.thunk(() => nix.attr(torch, "stdenv")) })), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+  return nix.app(nix.sel(buildPythonPackage, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], stdenv: nix.thunk(() => nix.attr(torch, "stdenv")) })), (finalAttrs) => ({
+      [nix.POS]: $pos[4],
       pname: "pyg-lib",
       version: "0.9.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "pyg-team",
           repo: "pyg-lib",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -41,7 +37,7 @@ export default nix.lambda((args) => (() => {
       dontUseCmakeConfigure: true,
       nativeBuildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), cudaSupport, nix.thunk(() => [nix.thunk(() => nix.sel(cudaPackages, "cuda_nvcc"))]))),
       env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), cudaSupport, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           TORCH_CUDA_ARCH_LIST: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "concatStringsSep"), ";", cudaCapabilities)}`),
         })))),
       buildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(torch, "cxxdev")), torch]),
@@ -50,7 +46,7 @@ export default nix.lambda((args) => (() => {
       preCheck: "rm -rf pyg_lib\n",
       disabledTests: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")))), nix.thunk(() => ["test_scatter_mean_forward_dtypes", "test_scatter_sum_forward_dtypes"])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["test_hetero_neighbor_sampler_temporal_sample"])))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Low-Level Graph Neural Network Operators for PyG",
         homepage: "https://github.com/pyg-team/pyg-lib",
         changelog: nix.thunk(() => nix.str`https://github.com/pyg-team/pyg-lib/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

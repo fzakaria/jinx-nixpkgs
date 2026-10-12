@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 30, 5], ["repo", 31, 5], ["rev", 32, 5], ["hash", 33, 5]], [["LANG", 89, 7]], [["description", 92, 5], ["license", 93, 5], ["homepage", 94, 5], ["changelog", 95, 5], ["maintainers", 96, 5], ["mainProgram", 101, 5], ["platforms", 102, 5]], [["pname", 21, 3], ["version", 22, 3], ["outputs", 24, 3], ["src", 29, 3], ["postPatch", 36, 3], ["postInstall", 40, 3], ["postFixup", 49, 3], ["buildInputs", 59, 3], ["mesonFlags", 70, 3], ["nativeBuildInputs", 78, 3], ["doCheck", 86, 3], ["env", 89, 3], ["meta", 91, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, glibcLocales: false, meson: false, ninja: false, "pkg-config": false, python3: false, cld2: false, cli11: false, fmt_11: false, emacs: false, glib: false, gmime3: false, texinfo: false, xapian: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 30, 5], ["repo", 31, 5], ["rev", 32, 5], ["hash", 33, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["LANG", 89, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 92, 5], ["license", 93, 5], ["homepage", 94, 5], ["changelog", 95, 5], ["maintainers", 96, 5], ["mainProgram", 101, 5], ["platforms", 102, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 3], ["outputs", 24, 3], ["src", 29, 3], ["postPatch", 36, 3], ["postInstall", 40, 3], ["postFixup", 49, 3], ["buildInputs", 59, 3], ["mesonFlags", 70, 3], ["nativeBuildInputs", 78, 3], ["doCheck", 86, 3], ["env", 89, 3], ["meta", 91, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,12 +24,12 @@ export default nix.lambda((args) => (() => {
   const texinfo = nix.arg($, "texinfo");
   const xapian = nix.arg($, "xapian");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "mu",
       version: "1.14.3",
       outputs: nix.thunk(() => ["out", "mu4e"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "djcb",
           repo: "mu",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -51,9 +48,9 @@ export default nix.lambda((args) => (() => {
       ]),
       nativeBuildInputs: nix.thunk(() => [pkg_config, meson, ninja, python3, glibcLocales]),
       doCheck: true,
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, LANG: "C.UTF-8" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], LANG: "C.UTF-8" })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Collection of utilities for indexing and searching Maildirs",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
         homepage: "https://www.djcbsoftware.nl/code/mu/",

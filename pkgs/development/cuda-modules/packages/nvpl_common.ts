@@ -2,20 +2,19 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/nvpl_common.nix", [[["description", 12, 5], ["homepage", 13, 5], ["changelog", 14, 5]], [["redistName", 3, 3], ["pname", 4, 3], ["outputs", 6, 3], ["meta", 11, 3]]]);
 const formals$1 = { args: { buildRedist: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/nvpl_common.nix", [["description", 12, 5], ["homepage", 13, 5], ["changelog", 14, 5]]);
-const pos$2 = nix.positions(here + "/nvpl_common.nix", [["redistName", 3, 3], ["pname", 4, 3], ["outputs", 6, 3], ["meta", 11, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const buildRedist = nix.arg($, "buildRedist");
   return nix.app(buildRedist, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       redistName: "nvpl",
       pname: "nvpl_common",
       outputs: nix.thunk(() => ["out", "dev"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Common part of NVIDIA Performance Libraries",
         homepage: "https://developer.nvidia.com/nvpl",
         changelog: "https://docs.nvidia.com/nvpl/latest/release_notes.html",

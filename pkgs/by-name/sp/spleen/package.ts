@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 13, 5], ["hash", 14, 5]], [["description", 36, 5], ["homepage", 37, 5], ["license", 38, 5], ["maintainers", 39, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["nativeBuildInputs", 17, 3], ["dontBuild", 19, 3], ["installPhase", 21, 3], ["meta", 35, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchurl: false, mkfontscale: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 13, 5], ["hash", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 36, 5], ["homepage", 37, 5], ["license", 38, 5], ["maintainers", 39, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["nativeBuildInputs", 17, 3], ["dontBuild", 19, 3], ["installPhase", 21, 3], ["meta", 35, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,7 +15,7 @@ export default nix.lambda((args) => (() => {
       const pname = "spleen";
       const version = "2.2.0";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/fcambus/spleen/releases/download/${version}/spleen-${version}.tar.gz`),
           hash: "sha256-7EKSXGtW0hOMhisvlxR8hy5HL2dL8DQjQX2CegjWmok=",
         }))));
@@ -25,14 +23,14 @@ export default nix.lambda((args) => (() => {
       const dontBuild = true;
       const installPhase = "runHook preInstall\n\nd=\"$out/share/fonts/misc\"\ninstall -D -m 644 *.{pcf,bdf,otf} -t \"$d\"\ninstall -D -m 644 *.psfu -t \"$out/share/consolefonts\"\ninstall -m644 fonts.alias-spleen $d/fonts.alias\n\n# create fonts.dir so NixOS xorg module adds to fp\nmkfontdir \"$d\"\n\nrunHook postInstall\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Monospaced bitmap fonts",
         homepage: "https://www.cambus.net/spleen-monospaced-bitmap-fonts",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

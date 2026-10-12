@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 51, 5], ["hash", 52, 5]], [["description", 150, 5], ["homepage", 151, 5], ["license", 152, 5], ["maintainers", 153, 5], ["platforms", 154, 5]], [["version", 31, 3], ["pname", 32, 3], ["__structuredAttrs", 34, 3], ["enableParallelBuilding", 35, 3], ["strictDeps", 37, 3], ["nativeBuildInputs", 38, 3], ["nativeInstallCheckInputs", 39, 3], ["buildInputs", 43, 3], ["src", 50, 3], ["patches", 55, 3], ["installPhase", 60, 3], ["preFixup", 71, 3], ["doInstallCheck", 86, 3], ["installCheckPhase", 87, 3], ["meta", 149, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, which: false, coreutils: false, perl: false, fetchurl: false, makeWrapper: false, diffutils: false, writeScriptBin: false, bzip2: false, runtimeShellPackage: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 51, 5], ["hash", 52, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 150, 5], ["homepage", 151, 5], ["license", 152, 5], ["maintainers", 153, 5], ["platforms", 154, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 31, 3], ["pname", 32, 3], ["__structuredAttrs", 34, 3], ["enableParallelBuilding", 35, 3], ["strictDeps", 37, 3], ["nativeBuildInputs", 38, 3], ["nativeInstallCheckInputs", 39, 3], ["buildInputs", 43, 3], ["src", 50, 3], ["patches", 55, 3], ["installPhase", 60, 3], ["preFixup", 71, 3], ["doInstallCheck", 86, 3], ["installCheckPhase", 87, 3], ["meta", 149, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,7 +21,7 @@ export default nix.lambda((args) => (() => {
   const dummyMount = nix.thunk(() => nix.app(writeScriptBin, "mount", nix.thunk(() => nix.str`#!${nix.sel(stdenv, "shell")}`)));
   const perl$ = nix.thunk(() => nix.app(nix.sel(perl, "withPackages"), (p) => [nix.thunk(() => nix.sel(p, "DBFile"))]));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       version: "3.5.2",
       pname: "storebackup",
       __structuredAttrs: true,
@@ -33,7 +31,7 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [diffutils, perl$]),
       buildInputs: nix.thunk(() => [perl$, which, bzip2, runtimeShellPackage]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://savannah/storebackup/storeBackup-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           hash: "sha256-Ki1DT2zypFFiiMVd9Y8eSX7T+yr8moWMoALmAexjqWU=",
         })))),
@@ -109,7 +107,7 @@ export HOME=$(mktemp -d)
 runHook postInstallCheck
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Backup suite that stores files on other disks",
         homepage: "https://savannah.nongnu.org/projects/storebackup",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

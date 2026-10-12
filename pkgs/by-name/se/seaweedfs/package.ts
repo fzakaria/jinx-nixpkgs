@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["leaveDotGit", 18, 5], ["postFetch", 19, 5], ["hash", 25, 5]], [["CGO_ENABLED", 52, 5], ["GODEBUG", 53, 5]], [["updateScript", 78, 12]], [["description", 81, 5], ["longDescription", 82, 5], ["homepage", 90, 5], ["license", 91, 5], ["maintainers", 92, 5], ["mainProgram", 97, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["vendorHash", 28, 3], ["nativeBuildInputs", 30, 3], ["subPackages", 32, 3], ["tags", 34, 3], ["ldflags", 44, 3], ["env", 51, 3], ["preBuild", 56, 3], ["doCheck", 64, 3], ["postInstall", 66, 3], ["doInstallCheck", 74, 3], ["nativeInstallCheckInputs", 75, 3], ["versionCheckProgramArg", 76, 3], ["passthru", 78, 3], ["meta", 80, 3]]]);
 const formals$1 = { args: { buildGoModule: false, fetchFromGitHub: false, installShellFiles: false, lib: false, "nix-update-script": false, stdenv: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["leaveDotGit", 18, 5], ["postFetch", 19, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["CGO_ENABLED", 52, 5], ["GODEBUG", 53, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 78, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 81, 5], ["longDescription", 82, 5], ["homepage", 90, 5], ["license", 91, 5], ["maintainers", 92, 5], ["mainProgram", 97, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["vendorHash", 28, 3], ["nativeBuildInputs", 30, 3], ["subPackages", 32, 3], ["tags", 34, 3], ["ldflags", 44, 3], ["env", 51, 3], ["preBuild", 56, 3], ["doCheck", 64, 3], ["postInstall", 66, 3], ["doInstallCheck", 74, 3], ["nativeInstallCheckInputs", 75, 3], ["versionCheckProgramArg", 76, 3], ["passthru", 78, 3], ["meta", 80, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "seaweedfs",
       version: "4.48",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "seaweedfs",
           repo: "seaweedfs",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -37,7 +33,7 @@ export default nix.lambda((args) => (() => {
       tags: nix.thunk(() => ["elastic", "gocdk", "rclone", "sqlite", "tarantool", "tikv", "ydb"]),
       ldflags: nix.thunk(() => nix.concat(["-s"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), nix.thunk(() => ["-extldflags=-static"])))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         CGO_ENABLED: nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? 1n : 0n)),
         GODEBUG: "http2client=0",
       })),
@@ -48,11 +44,11 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       versionCheckProgramArg: "version",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Simple and highly scalable distributed file system",
         longDescription: "SeaweedFS is a versatile and efficient storage system designed to meet the\nneeds of modern sysadmins managing a mix of blob, object, file, and data\nwarehouse storage requirements. Its architecture guarantees fast access\ntimes, with constant-time (O(1)) disk seeks, regardless of the size of the\ndataset. This makes it an excellent choice for environments where speed\nand efficiency are critical.\n",
         homepage: "https://github.com/seaweedfs/seaweedfs",

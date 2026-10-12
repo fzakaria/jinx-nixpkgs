@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 41, 9], ["repo", 42, 9], ["rev", 43, 9], ["sha256", 44, 9]], [["pname", 38, 7], ["version", 39, 7], ["src", 40, 7], ["nativeBuildInputs", 46, 7], ["buildInputs", 55, 7]], [["owner", 68, 9], ["repo", 69, 9], ["rev", 70, 9], ["sha256", 71, 9]], [["pname", 65, 7], ["version", 66, 7], ["src", 67, 7], ["nativeBuildInputs", 73, 7], ["buildInputs", 85, 7], ["preConfigure", 95, 7]], [["owner", 106, 5], ["repo", 107, 5], ["rev", 109, 5], ["sha256", 110, 5]], [["broken", 141, 5], ["description", 142, 5], ["longDescription", 143, 5], ["homepage", 146, 5], ["license", 147, 5], ["maintainers", 148, 5], ["platforms", 149, 5], ["mainProgram", 150, 5]], [["pname", 103, 3], ["version", 104, 3], ["src", 105, 3], ["nativeBuildInputs", 112, 3], ["buildInputs", 121, 3], ["preConfigure", 134, 3], ["meta", 139, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, meson: false, ninja: false, "pkg-config": false, python3: false, perl: false, bison: false, texinfo: false, "desktop-file-utils": false, wrapGAppsHook3: false, docbook2x: false, "docbook-xsl-nons": false, inform7: false, gettext: false, libossp_uuid: false, gtk3: false, "gobject-introspection": false, vala: false, "gtk-doc": false, gtksourceview3: false, gspell: false, libxml2: false, goocanvas_2: false, libplist: false, glib: false, gst_all_1: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 41, 9], ["repo", 42, 9], ["rev", 43, 9], ["sha256", 44, 9]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 38, 7], ["version", 39, 7], ["src", 40, 7], ["nativeBuildInputs", 46, 7], ["buildInputs", 55, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["owner", 68, 9], ["repo", 69, 9], ["rev", 70, 9], ["sha256", 71, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 65, 7], ["version", 66, 7], ["src", 67, 7], ["nativeBuildInputs", 73, 7], ["buildInputs", 85, 7], ["preConfigure", 95, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["owner", 106, 5], ["repo", 107, 5], ["rev", 109, 5], ["sha256", 110, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["broken", 141, 5], ["description", 142, 5], ["longDescription", 143, 5], ["homepage", 146, 5], ["license", 147, 5], ["maintainers", 148, 5], ["platforms", 149, 5], ["mainProgram", 150, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 103, 3], ["version", 104, 3], ["src", 105, 3], ["nativeBuildInputs", 112, 3], ["buildInputs", 121, 3], ["preConfigure", 134, 3], ["meta", 139, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -42,11 +36,11 @@ export default nix.lambda((args) => (() => {
   const glib = nix.arg($, "glib");
   const gst_all_1 = nix.arg($, "gst_all_1");
   const ratify = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "ratify",
       version: "0-unstable-2021-02-21",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ptomato",
           repo: "ratify",
           rev: "f4d2d60ec73d5588e953650b3879e69a727f30ca",
@@ -64,11 +58,11 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [gtk3, vala, gtk_doc]),
     }))));
   const chimara = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "chimara",
       version: "0.9.1-unstable-2021-04-06",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           owner: "chimara",
           repo: "Chimara",
           rev: "9934b142af508c75c0f1eed597990f39495b1af4",
@@ -99,11 +93,11 @@ export default nix.lambda((args) => (() => {
       preConfigure: "patchShebangs build-aux/meson_post_install.py\n",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "gnome-inform7",
       version: "6M62-unstable-2021-04-06",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           owner: "ptomato",
           repo: "inform7-ide",
           rev: "c37e045c159692aae2e4e79b917e5f96cfefa66a",
@@ -134,7 +128,7 @@ export default nix.lambda((args) => (() => {
 patchShebangs build-aux/* src/generate-resource-xml.{py,sh}
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         broken: true,
         description: "Inform 7 for the Gnome platform",
         longDescription: "This version of Inform 7 for the Gnome platform was created by Philip Chimento, based on a design by Graham Nelson and Andrew Hunter.\n",

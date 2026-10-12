@@ -2,10 +2,10 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
-const pos$1 = nix.positions(here + "/jdk-darwin-base.nix", [["name-prefix", 4, 5], ["brand-name", 5, 5]]);
+const $pos = nix.positions(here + "/jdk-darwin-base.nix", [[["name-prefix", 4, 5], ["brand-name", 5, 5]]]);
 
 export default (args) => nix.app(nix.builtins.import(nix.path(here, "../temurin-bin/jdk-darwin-base.nix")), nix.thunk(() => nix.update({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     "name-prefix": "semeru",
     "brand-name": "IBM Semeru Runtime",
   }, args)));

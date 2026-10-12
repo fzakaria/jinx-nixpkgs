@@ -2,22 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["lib", 24, 78]], [["sha256", 27, 13]], [["sha256", 28, 13]], [["sha256", 29, 13]], [["sha256", 30, 13]], [["sha256", 31, 13]], [["sha256", 32, 13]], [["9.0.0", 27, 5], ["9.0.1", 28, 5], ["9.1.0", 29, 5], ["9.1.1", 30, 5], ["9.2.0", 31, 5], ["9.3.0", 32, 5]], [["lib", 39, 11], ["stdenv", 40, 11], ["fetchzip", 41, 11], ["fetchurl", 42, 11]], [["owner", 48, 11], ["repo", 49, 11]], [["release", 46, 17], ["releaseRev", 46, 25], ["location", 47, 9]], [["case", 65, 37], ["out", 65, 42]], [["rocq-version", 85, 15], ["ocamlPackages", 86, 15], ["ocamlNativeBuildInputs", 86, 29], ["ocamlPropagatedBuildInputs", 87, 15], ["emacsBufferSetup", 88, 7]], [["description", 184, 7], ["longDescription", 185, 7], ["homepage", 191, 7], ["license", 192, 7], ["branch", 193, 7], ["maintainers", 194, 7], ["platforms", 200, 7], ["mainProgram", 201, 7]], [["pname", 81, 5], ["version", 82, 23], ["src", 82, 31], ["passthru", 84, 5], ["nativeBuildInputs", 136, 5], ["buildInputs", 137, 5], ["propagatedBuildInputs", 139, 5], ["postPatch", 141, 5], ["setupHook", 148, 5], ["preConfigure", 158, 5], ["prefixKey", 162, 5], ["enableParallelBuilding", 164, 5], ["createFindlibDestdir", 166, 5], ["buildPhase", 168, 5], ["installPhase", 175, 5], ["meta", 183, 5], ["strictDeps", 205, 5], ["__structuredAttrs", 206, 5]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchzip: false, fetchurl: false, writeText: false, "pkg-config": false, dune: false, customOCamlPackages: true, ocamlPackages_4_14: false, ocamlPackages_5_5: false, ncurses: false, csdp: true, version: false, "rocq-version": true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["lib", 24, 78]]);
-const pos$2 = nix.positions(here + "/default.nix", [["sha256", 27, 13]]);
-const pos$3 = nix.positions(here + "/default.nix", [["sha256", 28, 13]]);
-const pos$4 = nix.positions(here + "/default.nix", [["sha256", 29, 13]]);
-const pos$5 = nix.positions(here + "/default.nix", [["sha256", 30, 13]]);
-const pos$6 = nix.positions(here + "/default.nix", [["sha256", 31, 13]]);
-const pos$7 = nix.positions(here + "/default.nix", [["sha256", 32, 13]]);
-const pos$8 = nix.positions(here + "/default.nix", [["9.0.0", 27, 5], ["9.0.1", 28, 5], ["9.1.0", 29, 5], ["9.1.1", 30, 5], ["9.2.0", 31, 5], ["9.3.0", 32, 5]]);
-const pos$9 = nix.positions(here + "/default.nix", [["lib", 39, 11], ["stdenv", 40, 11], ["fetchzip", 41, 11], ["fetchurl", 42, 11]]);
-const pos$10 = nix.positions(here + "/default.nix", [["owner", 48, 11], ["repo", 49, 11]]);
-const pos$11 = nix.positions(here + "/default.nix", [["release", 46, 17], ["releaseRev", 46, 25], ["location", 47, 9]]);
-const pos$12 = nix.positions(here + "/default.nix", [["case", 65, 37], ["out", 65, 42]]);
-const pos$13 = nix.positions(here + "/default.nix", [["rocq-version", 85, 15], ["ocamlPackages", 86, 15], ["ocamlNativeBuildInputs", 86, 29], ["ocamlPropagatedBuildInputs", 87, 15], ["emacsBufferSetup", 88, 7]]);
-const pos$14 = nix.positions(here + "/default.nix", [["description", 184, 7], ["longDescription", 185, 7], ["homepage", 191, 7], ["license", 192, 7], ["branch", 193, 7], ["maintainers", 194, 7], ["platforms", 200, 7], ["mainProgram", 201, 7]]);
-const pos$15 = nix.positions(here + "/default.nix", [["pname", 81, 5], ["version", 82, 23], ["src", 82, 31], ["passthru", 84, 5], ["nativeBuildInputs", 136, 5], ["buildInputs", 137, 5], ["propagatedBuildInputs", 139, 5], ["postPatch", 141, 5], ["setupHook", 148, 5], ["preConfigure", 158, 5], ["prefixKey", 162, 5], ["enableParallelBuilding", 164, 5], ["createFindlibDestdir", 166, 5], ["buildPhase", 168, 5], ["installPhase", 175, 5], ["meta", 183, 5], ["strictDeps", 205, 5], ["__structuredAttrs", 206, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -36,46 +22,46 @@ export default nix.lambda((args) => (() => {
   const csdp = nix.argOr($, "csdp", () => null);
   const version = nix.arg($, "version");
   const rocq_version = nix.argOr($, "rocq-version", () => null);
-  const lib_1 = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../../../build-support/rocq/extra-lib.nix")), nix.thunk(() => ({ [nix.POS]: pos$1, lib: nix.thunk(() => nix.attr(args_1, "lib")) }))));
+  const lib_1 = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../../../build-support/rocq/extra-lib.nix")), nix.thunk(() => ({ [nix.POS]: $pos[0], lib: nix.thunk(() => nix.attr(args_1, "lib")) }))));
   const release = nix.thunk(() => ({
-    [nix.POS]: pos$8,
+    [nix.POS]: $pos[7],
     "9.0.0": nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       sha256: "sha256-GRwYSvrJGiPD+I82gLOgotb+8Ra5xHZUJGcNwxWqZkU=",
     })),
     "9.0.1": nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       sha256: "sha256-gRgQhFiYvGR/Z46TmTl1bgN9O32nifxQGdrzfw0WHrk=",
     })),
     "9.1.0": nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       sha256: "sha256-+QL7I1/0BfT87n7lSaOmpHj2jJuDB4idWhAxwzvVQOE=",
     })),
     "9.1.1": nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       sha256: "sha256-aFsGsFzexyDnOVarHPKs35HjiV8uUCpeOKSl15wXZ4s=",
     })),
     "9.2.0": nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       sha256: "sha256-rVhv2GLImdVPgRwwTQ+wiWNtRUflMrES0ElIrdTIN1s=",
     })),
     "9.3.0": nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       sha256: "sha256-Wr9+5Mq3/hS3gnyZDnzBo9aJCjeqQDGi4eaU1LinwaE=",
     })),
   }));
   const releaseRev = (v) => nix.str`V${v}`;
   const fetched = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../../../build-support/rocq/meta-fetch/default.nix")), nix.thunk(() => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       lib: lib_1,
       stdenv: stdenv,
       fetchzip: fetchzip,
       fetchurl: fetchurl,
     })), nix.thunk(() => ({
-      [nix.POS]: pos$11,
+      [nix.POS]: $pos[10],
       release: release,
       releaseRev: releaseRev,
-      location: nix.thunk(() => ({ [nix.POS]: pos$10, owner: "coq", repo: "coq" })),
+      location: nix.thunk(() => ({ [nix.POS]: $pos[9], owner: "coq", repo: "coq" })),
     })), nix.thunk(() => nix.sel(args_1, "version"))));
   const version_1 = nix.thunk(() => nix.sel(fetched, "version"));
   const rocq_version_1 = nix.thunk(() => nix.selOr(args_1, () => (nix.asBool(!nix.eq(version_1, "dev")) ? nix.app(nix.sel(lib_1, "versions", "majorMinor"), version_1) : "dev"), "rocq-version"));
@@ -83,7 +69,7 @@ export default nix.lambda((args) => (() => {
 substituteInPlace plugins/micromega/coq_micromega.ml --replace-warn "System.is_in_system_path \\"csdp\\"" "true"
 `)));
   const ocamlPackages = nix.thunk(() => (nix.asBool(!nix.eq(customOCamlPackages, null)) ? nix.force(customOCamlPackages) : (() => {
-    const case$ = (case$_1) => (out) => ({ [nix.POS]: pos$12, case: case$_1, out: out });
+    const case$ = (case$_1) => (out) => ({ [nix.POS]: $pos[11], case: case$_1, out: out });
     const from = nix.thunk(() => nix.sel(lib_1, "versions"));
     const range = nix.thunk(() => nix.attr(from, "range"));
     return nix.app(nix.sel(lib_1, "switch"), rocq_version_1, nix.thunk(() => [
@@ -98,12 +84,12 @@ substituteInPlace plugins/micromega/coq_micromega.ml --replace-warn "System.is_i
   const ocamlBuildInputs = nix.thunk(() => [nix.thunk(() => nix.sel(ocamlPackages, "findlib"))]);
   const ocamlPropagatedBuildInputs = nix.thunk(() => [nix.thunk(() => nix.sel(ocamlPackages, "zarith"))]);
   const self = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$15,
+      [nix.POS]: $pos[14],
       pname: "rocq",
       version: nix.thunk(() => nix.attr(fetched, "version")),
       src: nix.thunk(() => nix.attr(fetched, "src")),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$13,
+        [nix.POS]: $pos[12],
         "rocq-version": rocq_version_1,
         ocamlPackages: ocamlPackages,
         ocamlNativeBuildInputs: ocamlNativeBuildInputs,
@@ -175,7 +161,7 @@ addEnvHooks "$targetOffset" addRocqPath
       buildPhase: "runHook preBuild\nmake dunestrap\ndune build -p rocq-runtime,rocq-core -j $NIX_BUILD_CORES\nrunHook postBuild\n",
       installPhase: "runHook preInstall\ndune install --prefix $out rocq-runtime rocq-core\nln -s $out/lib/rocq-runtime $OCAMLFIND_DESTDIR/rocq-runtime\nln -s $out/lib/rocq-core $OCAMLFIND_DESTDIR/rocq-core\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$14,
+        [nix.POS]: $pos[13],
         description: "Rocq Prover",
         longDescription: "The Rocq Prover is an interactive theorem prover, or proof assistant. It provides\na formal language to write mathematical definitions, executable\nalgorithms and theorems together with an environment for\nsemi-interactive development of machine-checked proofs.\n",
         homepage: "https://rocq-prover.org",

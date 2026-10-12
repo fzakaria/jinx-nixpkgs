@@ -2,79 +2,51 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/nginx-clickhouse.nix", [[["maintainers", 5, 8]], [["memorySize", 11, 24]], [["allowedTCPPorts", 14, 29]], [["firewall", 14, 20]], [["enable", 15, 29]], [["type", 24, 17], ["address", 25, 17]], [["vector_source", 23, 15]], [["type", 31, 17], ["inputs", 32, 17], ["endpoint", 33, 17], ["database", 34, 17], ["table", 35, 17], ["skip_unknown_fields", 36, 17]], [["clickhouse", 30, 15]], [["sources", 22, 13], ["sinks", 29, 13]], [["enable", 19, 11], ["settings", 21, 11]], [["clickhouse", 15, 18], ["vector", 18, 18]], [["virtualisation", 11, 9], ["networking", 14, 9], ["services", 15, 9]], [["localhost", 48, 24]], [["enable", 47, 11], ["virtualHosts", 48, 11]], [["type", 57, 17], ["include", 58, 17], ["read_from", 59, 17]], [["nginx_logs", 56, 15]], [["type", 65, 17], ["inputs", 66, 17], ["address", 67, 17]], [["vector_sink", 64, 15]], [["sources", 55, 13], ["sinks", 63, 13]], [["enable", 52, 11], ["settings", 54, 11]], [["nginx", 46, 18], ["vector", 51, 18]], [["SupplementaryGroups", 74, 11]], [["serviceConfig", 73, 33]], [["vector", 73, 26]], [["services", 73, 17]], [["services", 46, 9], ["systemd", 73, 9]], [["clickhouse", 8, 5], ["nginx", 43, 5]], [["name", 4, 3], ["meta", 5, 3], ["nodes", 7, 3], ["testScript", 79, 3]]]);
 const formals$1 = { args: { lib: false, pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/nginx-clickhouse.nix", [["maintainers", 5, 8]]);
 const formals$2 = { args: { config: false, pkgs: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/nginx-clickhouse.nix", [["memorySize", 11, 24]]);
-const pos$3 = nix.positions(here + "/nginx-clickhouse.nix", [["allowedTCPPorts", 14, 29]]);
-const pos$4 = nix.positions(here + "/nginx-clickhouse.nix", [["firewall", 14, 20]]);
-const pos$5 = nix.positions(here + "/nginx-clickhouse.nix", [["enable", 15, 29]]);
-const pos$6 = nix.positions(here + "/nginx-clickhouse.nix", [["type", 24, 17], ["address", 25, 17]]);
-const pos$7 = nix.positions(here + "/nginx-clickhouse.nix", [["vector_source", 23, 15]]);
-const pos$8 = nix.positions(here + "/nginx-clickhouse.nix", [["type", 31, 17], ["inputs", 32, 17], ["endpoint", 33, 17], ["database", 34, 17], ["table", 35, 17], ["skip_unknown_fields", 36, 17]]);
-const pos$9 = nix.positions(here + "/nginx-clickhouse.nix", [["clickhouse", 30, 15]]);
-const pos$10 = nix.positions(here + "/nginx-clickhouse.nix", [["sources", 22, 13], ["sinks", 29, 13]]);
-const pos$11 = nix.positions(here + "/nginx-clickhouse.nix", [["enable", 19, 11], ["settings", 21, 11]]);
-const pos$12 = nix.positions(here + "/nginx-clickhouse.nix", [["clickhouse", 15, 18], ["vector", 18, 18]]);
-const pos$13 = nix.positions(here + "/nginx-clickhouse.nix", [["virtualisation", 11, 9], ["networking", 14, 9], ["services", 15, 9]]);
 const formals$3 = { args: { config: false, pkgs: false }, ellipsis: true };
-const pos$14 = nix.positions(here + "/nginx-clickhouse.nix", [["localhost", 48, 24]]);
-const pos$15 = nix.positions(here + "/nginx-clickhouse.nix", [["enable", 47, 11], ["virtualHosts", 48, 11]]);
-const pos$16 = nix.positions(here + "/nginx-clickhouse.nix", [["type", 57, 17], ["include", 58, 17], ["read_from", 59, 17]]);
-const pos$17 = nix.positions(here + "/nginx-clickhouse.nix", [["nginx_logs", 56, 15]]);
-const pos$18 = nix.positions(here + "/nginx-clickhouse.nix", [["type", 65, 17], ["inputs", 66, 17], ["address", 67, 17]]);
-const pos$19 = nix.positions(here + "/nginx-clickhouse.nix", [["vector_sink", 64, 15]]);
-const pos$20 = nix.positions(here + "/nginx-clickhouse.nix", [["sources", 55, 13], ["sinks", 63, 13]]);
-const pos$21 = nix.positions(here + "/nginx-clickhouse.nix", [["enable", 52, 11], ["settings", 54, 11]]);
-const pos$22 = nix.positions(here + "/nginx-clickhouse.nix", [["nginx", 46, 18], ["vector", 51, 18]]);
-const pos$23 = nix.positions(here + "/nginx-clickhouse.nix", [["SupplementaryGroups", 74, 11]]);
-const pos$24 = nix.positions(here + "/nginx-clickhouse.nix", [["serviceConfig", 73, 33]]);
-const pos$25 = nix.positions(here + "/nginx-clickhouse.nix", [["vector", 73, 26]]);
-const pos$26 = nix.positions(here + "/nginx-clickhouse.nix", [["services", 73, 17]]);
-const pos$27 = nix.positions(here + "/nginx-clickhouse.nix", [["services", 46, 9], ["systemd", 73, 9]]);
-const pos$28 = nix.positions(here + "/nginx-clickhouse.nix", [["clickhouse", 8, 5], ["nginx", 43, 5]]);
-const pos$29 = nix.positions(here + "/nginx-clickhouse.nix", [["name", 4, 3], ["meta", 5, 3], ["nodes", 7, 3], ["testScript", 79, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   return {
-    [nix.POS]: pos$29,
+    [nix.POS]: $pos[28],
     name: "vector-nginx-clickhouse",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "lib", "maintainers", "happysalada"))]),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$28,
+      [nix.POS]: $pos[27],
       clickhouse: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config = nix.arg($_1, "config");
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$13,
-          virtualisation: nix.thunk(() => ({ [nix.POS]: pos$2, memorySize: 4096n })),
+          [nix.POS]: $pos[12],
+          virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[1], memorySize: 4096n })),
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$4,
-            firewall: nix.thunk(() => ({ [nix.POS]: pos$3, allowedTCPPorts: nix.thunk(() => [6000n]) })),
+            [nix.POS]: $pos[3],
+            firewall: nix.thunk(() => ({ [nix.POS]: $pos[2], allowedTCPPorts: nix.thunk(() => [6000n]) })),
           })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$12,
-            clickhouse: nix.thunk(() => ({ [nix.POS]: pos$5, enable: true })),
+            [nix.POS]: $pos[11],
+            clickhouse: nix.thunk(() => ({ [nix.POS]: $pos[4], enable: true })),
             vector: nix.thunk(() => ({
-              [nix.POS]: pos$11,
+              [nix.POS]: $pos[10],
               enable: true,
               settings: nix.thunk(() => ({
-                [nix.POS]: pos$10,
+                [nix.POS]: $pos[9],
                 sources: nix.thunk(() => ({
-                  [nix.POS]: pos$7,
-                  vector_source: nix.thunk(() => ({ [nix.POS]: pos$6, type: "vector", address: "[::]:6000" })),
+                  [nix.POS]: $pos[6],
+                  vector_source: nix.thunk(() => ({ [nix.POS]: $pos[5], type: "vector", address: "[::]:6000" })),
                 })),
                 sinks: nix.thunk(() => ({
-                  [nix.POS]: pos$9,
+                  [nix.POS]: $pos[8],
                   clickhouse: nix.thunk(() => ({
-                    [nix.POS]: pos$8,
+                    [nix.POS]: $pos[7],
                     type: "clickhouse",
                     inputs: nix.thunk(() => ["vector_source"]),
                     endpoint: "http://localhost:8123",
@@ -93,32 +65,32 @@ export default nix.lambda((args) => (() => {
         const config = nix.arg($_1, "config");
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$27,
+          [nix.POS]: $pos[26],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$22,
+            [nix.POS]: $pos[21],
             nginx: nix.thunk(() => ({
-              [nix.POS]: pos$15,
+              [nix.POS]: $pos[14],
               enable: true,
-              virtualHosts: nix.thunk(() => ({ [nix.POS]: pos$14, localhost: nix.thunk(() => ({})) })),
+              virtualHosts: nix.thunk(() => ({ [nix.POS]: $pos[13], localhost: nix.thunk(() => ({})) })),
             })),
             vector: nix.thunk(() => ({
-              [nix.POS]: pos$21,
+              [nix.POS]: $pos[20],
               enable: true,
               settings: nix.thunk(() => ({
-                [nix.POS]: pos$20,
+                [nix.POS]: $pos[19],
                 sources: nix.thunk(() => ({
-                  [nix.POS]: pos$17,
+                  [nix.POS]: $pos[16],
                   nginx_logs: nix.thunk(() => ({
-                    [nix.POS]: pos$16,
+                    [nix.POS]: $pos[15],
                     type: "file",
                     include: nix.thunk(() => ["/var/log/nginx/access.log"]),
                     read_from: "end",
                   })),
                 })),
                 sinks: nix.thunk(() => ({
-                  [nix.POS]: pos$19,
+                  [nix.POS]: $pos[18],
                   vector_sink: nix.thunk(() => ({
-                    [nix.POS]: pos$18,
+                    [nix.POS]: $pos[17],
                     type: "vector",
                     inputs: nix.thunk(() => ["nginx_logs"]),
                     address: "clickhouse:6000",
@@ -128,12 +100,12 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           systemd: nix.thunk(() => ({
-            [nix.POS]: pos$26,
+            [nix.POS]: $pos[25],
             services: nix.thunk(() => ({
-              [nix.POS]: pos$25,
+              [nix.POS]: $pos[24],
               vector: nix.thunk(() => ({
-                [nix.POS]: pos$24,
-                serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$23, SupplementaryGroups: nix.thunk(() => ["nginx"]) })),
+                [nix.POS]: $pos[23],
+                serviceConfig: nix.thunk(() => ({ [nix.POS]: $pos[22], SupplementaryGroups: nix.thunk(() => ["nginx"]) })),
               })),
             })),
           })),

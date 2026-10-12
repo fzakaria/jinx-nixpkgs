@@ -2,10 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["root", 12, 5], ["fileset", 13, 5]], [["timeout", 34, 8]], [["name", 9, 3], ["src", 11, 3], ["dontConfigure", 18, 3], ["dontBuild", 19, 3], ["nativeCheckInputs", 21, 3], ["checkPhase", 26, 3], ["installPhase", 30, 3], ["meta", 34, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, pytest: false, "spacy-models": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["root", 12, 5], ["fileset", 13, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["timeout", 34, 8]]);
-const pos$3 = nix.positions(here + "/default.nix", [["name", 9, 3], ["src", 11, 3], ["dontConfigure", 18, 3], ["dontBuild", 19, 3], ["nativeCheckInputs", 21, 3], ["checkPhase", 26, 3], ["installPhase", 30, 3], ["meta", 34, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,10 +12,10 @@ export default nix.lambda((args) => (() => {
   const pytest = nix.arg($, "pytest");
   const spacy_models = nix.arg($, "spacy-models");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       name: "spacy-annotation-test",
       src: nix.thunk(() => nix.app(nix.sel(lib, "fileset", "toSource"), nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           root: nix.path(here, "./."),
           fileset: nix.thunk(() => nix.app(nix.sel(lib, "fileset", "unions"), nix.thunk(() => [nix.path(here, "./annotate.py")]))),
         })))),
@@ -26,7 +24,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytest, nix.thunk(() => nix.sel(spacy_models, "en_core_web_sm"))]),
       checkPhase: "pytest annotate.py\n",
       installPhase: "touch $out\n",
-      meta: nix.thunk(() => ({ [nix.POS]: pos$2, timeout: 60n })),
+      meta: nix.thunk(() => ({ [nix.POS]: $pos[1], timeout: 60n })),
     })));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 42, 5], ["repo", 43, 5], ["tag", 44, 5], ["hash", 45, 5], ["fetchSubmodules", 46, 5]], [["updateScript", 111, 5]], [["description", 115, 5], ["license", 116, 5], ["longDescription", 117, 5], ["homepage", 131, 5], ["mainProgram", 132, 5], ["maintainers", 133, 5], ["platforms", 138, 5]], [["pname", 38, 3], ["version", 39, 3], ["src", 41, 3], ["strictDeps", 49, 3], ["nativeBuildInputs", 51, 3], ["buildInputs", 61, 3], ["mesonBuildType", 85, 3], ["dontStrip", 86, 3], ["mesonFlags", 88, 3], ["installFlags", 92, 3], ["postInstall", 96, 3], ["nativeInstallCheckInputs", 104, 3], ["doInstallCheck", 108, 3], ["passthru", 110, 3], ["meta", 114, 3]]]);
 const formals$1 = { args: { asciidoctor: false, dbus: false, docbook_xml_dtd_45: false, docbook_xsl: false, fetchFromGitHub: false, lib: false, libconfig: false, libdrm: false, libev: false, libGL: false, libepoxy: false, libx11: false, libxcb: false, libxdg_basedir: false, libxext: false, libxml2: false, libxslt: false, makeWrapper: false, meson: false, ninja: false, pcre2: false, pixman: false, "pkg-config": false, stdenv: false, uthash: false, "libxcb-util": false, "libxcb-image": false, "libxcb-render-util": false, xorgproto: false, xwininfo: false, withDebug: true, versionCheckHook: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 42, 5], ["repo", 43, 5], ["tag", 44, 5], ["hash", 45, 5], ["fetchSubmodules", 46, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 111, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 115, 5], ["license", 116, 5], ["longDescription", 117, 5], ["homepage", 131, 5], ["mainProgram", 132, 5], ["maintainers", 133, 5], ["platforms", 138, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 38, 3], ["version", 39, 3], ["src", 41, 3], ["strictDeps", 49, 3], ["nativeBuildInputs", 51, 3], ["buildInputs", 61, 3], ["mesonBuildType", 85, 3], ["dontStrip", 86, 3], ["mesonFlags", 88, 3], ["installFlags", 92, 3], ["postInstall", 96, 3], ["nativeInstallCheckInputs", 104, 3], ["doInstallCheck", 108, 3], ["passthru", 110, 3], ["meta", 114, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -44,11 +41,11 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "picom",
       version: "13",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "yshui",
           repo: "picom",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -96,11 +93,11 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Fork of XCompMgr, a sample compositing manager for X servers",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         longDescription: "A fork of XCompMgr, which is a sample compositing manager for X\nservers supporting the XFIXES, DAMAGE, RENDER, and COMPOSITE\nextensions. It enables basic eye-candy effects. This fork adds\nadditional features, such as additional effects, and a fork at a\nwell-defined and proper place.\n\nThe package can be installed in debug mode as:\n\n  picom.override { withDebug = true; }\n\nFor gdb to find the source files, you need to run gdb in the bin directory\nof picom package in the nix store.\n",

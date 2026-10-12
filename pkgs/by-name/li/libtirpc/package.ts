@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 14, 5], ["hash", 17, 5], ["name", 18, 5]], [["KRB5_CONFIG", 26, 7]], [["homepage", 51, 5], ["description", 52, 5], ["license", 53, 5], ["platforms", 54, 5], ["maintainers", 55, 5], ["longDescription", 56, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["outputs", 21, 3], ["env", 26, 3], ["nativeBuildInputs", 28, 3], ["propagatedBuildInputs", 29, 3], ["strictDeps", 30, 3], ["preConfigure", 32, 3], ["configureFlags", 36, 3], ["enableParallelBuilding", 40, 3], ["preInstall", 42, 3], ["doCheck", 46, 3], ["__structuredAttrs", 48, 3], ["meta", 50, 3]]]);
 const formals$1 = { args: { fetchurl: false, lib: false, stdenv: false, autoreconfHook: false, libkrb5: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 14, 5], ["hash", 17, 5], ["name", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["KRB5_CONFIG", 26, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 51, 5], ["description", 52, 5], ["license", 53, 5], ["platforms", 54, 5], ["maintainers", 55, 5], ["longDescription", 56, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["outputs", 21, 3], ["env", 26, 3], ["nativeBuildInputs", 28, 3], ["propagatedBuildInputs", 29, 3], ["strictDeps", 30, 3], ["preConfigure", 32, 3], ["configureFlags", 36, 3], ["enableParallelBuilding", 40, 3], ["preInstall", 42, 3], ["doCheck", 46, 3], ["__structuredAttrs", 48, 3], ["meta", 50, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,18 +13,18 @@ export default nix.lambda((args) => (() => {
   const autoreconfHook = nix.arg($, "autoreconfHook");
   const libkrb5 = nix.arg($, "libkrb5");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "libtirpc",
       version: "1.3.7",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://git.linux-nfs.org/?p=steved/libtirpc.git;a=snapshot;h=refs/tags/libtirpc-${nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => ["-"]), nix.thunk(() => nix.sel(finalAttrs, "version")))};sf=tgz`),
           hash: "sha256-VGftEr3xzCp8O3oqCjIZozlq599gxN5IsHBRaG37GP4=",
           name: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-${nix.sel(finalAttrs, "version")}.tar.gz`),
         })))),
       outputs: nix.thunk(() => ["out", "dev"]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         KRB5_CONFIG: nix.thunk(() => nix.str`${nix.sel(libkrb5, "dev")}/bin/krb5-config`),
       })),
       nativeBuildInputs: nix.thunk(() => [autoreconfHook]),
@@ -40,7 +37,7 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://sourceforge.net/projects/libtirpc/",
         description: "Transport-independent Sun RPC implementation (TI-RPC)",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]], [["homepage", 76, 5], ["description", 77, 5], ["mainProgram", 78, 5], ["license", 79, 5], ["maintainers", 80, 5], ["platforms", 81, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 33, 3], ["strictDeps", 46, 3], ["sourceRoot", 48, 3], ["postPatch", 50, 3], ["configureFlags", 54, 3], ["installPhase", 65, 3], ["meta", 75, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, SDL2: false, aalib: false, "alsa-lib": false, libxext: false, libxxf86vm: false, libcaca: false, libpulseaudio: false, libsndfile: false, ncurses: false, openssl: false, which: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 76, 5], ["description", 77, 5], ["mainProgram", 78, 5], ["license", 79, 5], ["maintainers", 80, 5], ["platforms", 81, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 33, 3], ["strictDeps", 46, 3], ["sourceRoot", 48, 3], ["postPatch", 50, 3], ["configureFlags", 54, 3], ["installPhase", 65, 3], ["meta", 75, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const openssl = nix.arg($, "openssl");
   const which = nix.arg($, "which");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "zesarux",
       version: "13.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "chernandezba",
           repo: "zesarux",
           tag: nix.thunk(() => nix.str`ZEsarUX-${nix.sel(finalAttrs, "version")}`),
@@ -62,7 +60,7 @@ export default nix.lambda((args) => (() => {
       ]),
       installPhase: "runHook preInstall\n\n./generate_install_sh.sh\npatchShebangs ./install.sh\n./install.sh\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/chernandezba/zesarux",
         description: "ZX Second-Emulator And Released for UniX",
         mainProgram: "zesarux",

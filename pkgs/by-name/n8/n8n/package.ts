@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 33, 5], ["repo", 34, 5], ["tag", 35, 5], ["hash", 36, 5]], [["pname", 40, 26], ["version", 40, 32], ["src", 40, 40], ["pnpm", 41, 5], ["fetcherVersion", 42, 5], ["hash", 43, 5]], [["tests", 129, 5], ["updateScript", 130, 5]], [["description", 139, 5], ["longDescription", 140, 5], ["homepage", 144, 5], ["changelog", 145, 5], ["maintainers", 146, 5], ["license", 152, 5], ["mainProgram", 153, 5], ["platforms", 154, 5]], [["pname", 29, 3], ["version", 30, 3], ["src", 32, 3], ["pnpmDeps", 39, 3], ["nativeBuildInputs", 46, 3], ["buildInputs", 59, 3], ["buildPhase", 67, 3], ["preInstall", 84, 3], ["installPhase", 101, 3], ["passthru", 128, 3], ["dontStrip", 134, 3], ["dontPatchELF", 135, 3], ["dontRewriteSymlinks", 136, 3], ["meta", 138, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, nixosTests: false, fetchFromGitHub: false, nodejs: false, pnpm_11: false, fetchPnpmDeps: false, pnpmConfigHook: false, python3: false, "node-gyp": false, cctools: false, xcbuild: false, libkrb5: false, libmongocrypt: false, libpq: false, sqlite: false, "dart-sass": false, makeWrapper: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 33, 5], ["repo", 34, 5], ["tag", 35, 5], ["hash", 36, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 40, 26], ["version", 40, 32], ["src", 40, 40], ["pnpm", 41, 5], ["fetcherVersion", 42, 5], ["hash", 43, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 129, 5], ["updateScript", 130, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 139, 5], ["longDescription", 140, 5], ["homepage", 144, 5], ["changelog", 145, 5], ["maintainers", 146, 5], ["license", 152, 5], ["mainProgram", 153, 5], ["platforms", 154, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 29, 3], ["version", 30, 3], ["src", 32, 3], ["pnpmDeps", 39, 3], ["nativeBuildInputs", 46, 3], ["buildInputs", 59, 3], ["buildPhase", 67, 3], ["preInstall", 84, 3], ["installPhase", 101, 3], ["passthru", 128, 3], ["dontStrip", 134, 3], ["dontPatchELF", 135, 3], ["dontRewriteSymlinks", 136, 3], ["meta", 138, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,18 +30,18 @@ export default nix.lambda((args) => (() => {
       return [nix.thunk(() => nix.lookup(w, "websockets"))];
     })()));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "n8n",
       version: "2.39.6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "n8n-io",
           repo: "n8n",
           tag: nix.thunk(() => nix.str`n8n@${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-fmo0xL6IF6J+D5ZamkoBXyZ4Q8s3l5MeBWaXc39OsTU=",
         })))),
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -97,7 +93,7 @@ makeWrapper ${python}/bin/python $out/bin/n8n-task-runner-python \\
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => nix.sel(nixosTests, "n8n")),
         updateScript: nix.path(here, "./update.sh"),
       })),
@@ -105,7 +101,7 @@ runHook postInstall
       dontPatchELF: true,
       dontRewriteSymlinks: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Free and source-available fair-code licensed workflow automation tool",
         longDescription: "Free and source-available fair-code licensed workflow automation tool.\nEasily automate tasks across different services.\n",
         homepage: "https://n8n.io",

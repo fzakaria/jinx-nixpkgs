@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 21, 5], ["url", 22, 5], ["sha256", 23, 5]], [["description", 60, 5], ["mainProgram", 61, 5], ["homepage", 62, 5], ["maintainers", 63, 5], ["platforms", 64, 5], ["sourceProvenance", 65, 5], ["license", 66, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["nativeBuildInputs", 26, 3], ["unpackCmd", 31, 3], ["installPhase", 36, 3], ["meta", 59, 3]]]);
 const formals$1 = { args: { fetchurl: false, makeWrapper: false, patchelf: false, lib: false, stdenv: false, libxft: false, libx11: false, freetype: false, fontconfig: false, libxrender: false, libxscrnsaver: false, libxext: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 21, 5], ["url", 22, 5], ["sha256", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 60, 5], ["mainProgram", 61, 5], ["homepage", 62, 5], ["maintainers", 63, 5], ["platforms", 64, 5], ["sourceProvenance", 65, 5], ["license", 66, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["nativeBuildInputs", 26, 3], ["unpackCmd", 31, 3], ["installPhase", 36, 3], ["meta", 59, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const libxscrnsaver = nix.arg($, "libxscrnsaver");
   const libxext = nix.arg($, "libxext");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "gorilla-bin",
       version: "1.5.3.7",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           name: "gorilla1537_64.bin",
           url: "https://gorilla.dp100.com/downloads/gorilla1537_64.bin",
           sha256: "19ir6x4c01825hpx2wbbcxkk70ymwbw4j03v8b2xc13ayylwzx0r",
@@ -48,7 +46,7 @@ makeWrapper "$out/opt/password-gorilla/gorilla-${nix.sel(finalAttrs, "version")}
 `;
       })()),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Password Gorilla is a Tk based password manager",
         mainProgram: "gorilla",
         homepage: "https://github.com/zdia/gorilla/wiki",

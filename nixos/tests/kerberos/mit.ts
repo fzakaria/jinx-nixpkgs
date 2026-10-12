@@ -2,57 +2,39 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/mit.nix", [[["principal", 18, 15], ["access", 19, 15]], [["acl", 16, 21]], [["FOO.BAR", 16, 11]], [["realms", 15, 18]], [["enable", 14, 9], ["settings", 15, 9]], [["kerberos_server", 13, 16]], [["default_realm", 32, 13]], [["admin_server", 36, 15], ["kdc", 37, 15]], [["FOO.BAR", 35, 13]], [["libdefaults", 31, 11], ["realms", 34, 11]], [["enable", 28, 9], ["package", 29, 9], ["settings", 30, 9]], [["krb5", 27, 16]], [["isNormalUser", 43, 9]], [["alice", 42, 24]], [["extraUsers", 42, 13]], [["services", 13, 7], ["security", 27, 7], ["users", 42, 7]], [["machine", 5, 9]], [["maintainers", 63, 8]], [["name", 3, 3], ["nodes", 5, 3], ["testScript", 47, 3], ["meta", 63, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
 const formals$2 = { args: { config: false, libs: false, pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/mit.nix", [["principal", 18, 15], ["access", 19, 15]]);
-const pos$2 = nix.positions(here + "/mit.nix", [["acl", 16, 21]]);
-const pos$3 = nix.positions(here + "/mit.nix", [["FOO.BAR", 16, 11]]);
-const pos$4 = nix.positions(here + "/mit.nix", [["realms", 15, 18]]);
-const pos$5 = nix.positions(here + "/mit.nix", [["enable", 14, 9], ["settings", 15, 9]]);
-const pos$6 = nix.positions(here + "/mit.nix", [["kerberos_server", 13, 16]]);
-const pos$7 = nix.positions(here + "/mit.nix", [["default_realm", 32, 13]]);
-const pos$8 = nix.positions(here + "/mit.nix", [["admin_server", 36, 15], ["kdc", 37, 15]]);
-const pos$9 = nix.positions(here + "/mit.nix", [["FOO.BAR", 35, 13]]);
-const pos$10 = nix.positions(here + "/mit.nix", [["libdefaults", 31, 11], ["realms", 34, 11]]);
-const pos$11 = nix.positions(here + "/mit.nix", [["enable", 28, 9], ["package", 29, 9], ["settings", 30, 9]]);
-const pos$12 = nix.positions(here + "/mit.nix", [["krb5", 27, 16]]);
-const pos$13 = nix.positions(here + "/mit.nix", [["isNormalUser", 43, 9]]);
-const pos$14 = nix.positions(here + "/mit.nix", [["alice", 42, 24]]);
-const pos$15 = nix.positions(here + "/mit.nix", [["extraUsers", 42, 13]]);
-const pos$16 = nix.positions(here + "/mit.nix", [["services", 13, 7], ["security", 27, 7], ["users", 42, 7]]);
-const pos$17 = nix.positions(here + "/mit.nix", [["machine", 5, 9]]);
-const pos$18 = nix.positions(here + "/mit.nix", [["maintainers", 63, 8]]);
-const pos$19 = nix.positions(here + "/mit.nix", [["name", 3, 3], ["nodes", 5, 3], ["testScript", 47, 3], ["meta", 63, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   return {
-    [nix.POS]: pos$19,
+    [nix.POS]: $pos[18],
     name: "kerberos_server-mit",
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$17,
+      [nix.POS]: $pos[16],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config = nix.arg($_1, "config");
         const libs = nix.arg($_1, "libs");
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$16,
+          [nix.POS]: $pos[15],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             kerberos_server: nix.thunk(() => ({
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               enable: true,
               settings: nix.thunk(() => ({
-                [nix.POS]: pos$4,
+                [nix.POS]: $pos[3],
                 realms: nix.thunk(() => ({
-                  [nix.POS]: pos$3,
+                  [nix.POS]: $pos[2],
                   "FOO.BAR": nix.thunk(() => ({
-                    [nix.POS]: pos$2,
+                    [nix.POS]: $pos[1],
                     acl: nix.thunk(() => [
                       nix.thunk(() => ({
-                        [nix.POS]: pos$1,
+                        [nix.POS]: $pos[0],
                         principal: "admin",
                         access: nix.thunk(() => ["add", "cpw"]),
                       })),
@@ -63,26 +45,26 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           security: nix.thunk(() => ({
-            [nix.POS]: pos$12,
+            [nix.POS]: $pos[11],
             krb5: nix.thunk(() => ({
-              [nix.POS]: pos$11,
+              [nix.POS]: $pos[10],
               enable: true,
               package: nix.thunk(() => nix.sel(pkgs_1, "krb5")),
               settings: nix.thunk(() => ({
-                [nix.POS]: pos$10,
-                libdefaults: nix.thunk(() => ({ [nix.POS]: pos$7, default_realm: "FOO.BAR" })),
+                [nix.POS]: $pos[9],
+                libdefaults: nix.thunk(() => ({ [nix.POS]: $pos[6], default_realm: "FOO.BAR" })),
                 realms: nix.thunk(() => ({
-                  [nix.POS]: pos$9,
-                  "FOO.BAR": nix.thunk(() => ({ [nix.POS]: pos$8, admin_server: "machine", kdc: "machine" })),
+                  [nix.POS]: $pos[8],
+                  "FOO.BAR": nix.thunk(() => ({ [nix.POS]: $pos[7], admin_server: "machine", kdc: "machine" })),
                 })),
               })),
             })),
           })),
           users: nix.thunk(() => ({
-            [nix.POS]: pos$15,
+            [nix.POS]: $pos[14],
             extraUsers: nix.thunk(() => ({
-              [nix.POS]: pos$14,
-              alice: nix.thunk(() => ({ [nix.POS]: pos$13, isNormalUser: true })),
+              [nix.POS]: $pos[13],
+              alice: nix.thunk(() => ({ [nix.POS]: $pos[12], isNormalUser: true })),
             })),
           })),
         };
@@ -90,7 +72,7 @@ export default nix.lambda((args) => (() => {
     })),
     testScript: "machine.succeed(\n    \"kdb5_util create -s -r FOO.BAR -P master_key\",\n    \"systemctl restart kadmind.service kdc.service\",\n)\n\nfor unit in [\"kadmind\", \"kdc\"]:\n    machine.wait_for_unit(f\"{unit}.service\")\n\nmachine.succeed(\n    \"kadmin.local add_principal -pw admin_pw admin\",\n    \"kadmin -p admin -w admin_pw addprinc -pw alice_pw alice\",\n    \"echo alice_pw | sudo -u alice kinit\",\n)\n",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$18,
+      [nix.POS]: $pos[17],
       maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "lib", "maintainers", "dblsaiko"))]),
     })),
   };

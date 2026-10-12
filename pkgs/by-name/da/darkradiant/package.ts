@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 33, 5], ["repo", 34, 5], ["tag", 35, 5], ["hash", 36, 5]], [["description", 85, 5], ["homepage", 86, 5], ["changelog", 87, 5], ["license", 88, 5], ["maintainers", 89, 5], ["platforms", 90, 5], ["mainProgram", 91, 5], ["broken", 92, 5]], [["pname", 29, 3], ["version", 30, 3], ["src", 32, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 48, 3], ["doCheck", 67, 3], ["cmakeFlags", 69, 3], ["postPatch", 75, 3], ["postInstall", 80, 3], ["meta", 84, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, "pkg-config": false, zlib: false, libjpeg: false, wxwidgets_3_2: false, libxml2: false, libsigcxx_2_0: false, libpng: false, openal: false, libvorbis: false, eigen: false, ftgl: false, freetype: false, glew: false, libx11: false, glib: false, python3: false, asciidoctor: false, libgit2: false, wrapGAppsHook3: false, installShellFiles: false, buildPlugins: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 33, 5], ["repo", 34, 5], ["tag", 35, 5], ["hash", 36, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 85, 5], ["homepage", 86, 5], ["changelog", 87, 5], ["license", 88, 5], ["maintainers", 89, 5], ["platforms", 90, 5], ["mainProgram", 91, 5], ["broken", 92, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 29, 3], ["version", 30, 3], ["src", 32, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 48, 3], ["doCheck", 67, 3], ["cmakeFlags", 69, 3], ["postPatch", 75, 3], ["postInstall", 80, 3], ["meta", 84, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -35,11 +33,11 @@ export default nix.lambda((args) => (() => {
   const installShellFiles = nix.arg($, "installShellFiles");
   const buildPlugins = nix.argOr($, "buildPlugins", () => true);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "darkradiant",
       version: "3.9.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "codereader",
           repo: "DarkRadiant",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -78,7 +76,7 @@ export default nix.lambda((args) => (() => {
       postPatch: "substituteInPlace radiantcore/CMakeLists.txt \\\n  --replace-fail \"\\$ORIGIN/..\" \"$out/lib/darkradiant\"\n",
       postInstall: "installManPage ../man/darkradiant.1\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Open-source level editor for Doom 3 and The Dark Mod",
         homepage: "https://github.com/codereader/DarkRadiant",
         changelog: "https://github.com/codereader/DarkRadiant/releases",

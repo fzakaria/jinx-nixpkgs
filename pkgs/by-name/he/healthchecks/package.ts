@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["django", 12, 7]], [["self", 10, 5], ["packageOverrides", 11, 5]], [["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["sha256", 25, 5]], [["healthchecks", 92, 28]], [["pythonPath", 89, 5], ["tests", 91, 5]], [["homepage", 97, 5], ["description", 98, 5], ["license", 99, 5], ["maintainers", 100, 5]], [["pname", 17, 3], ["version", 18, 3], ["pyproject", 19, 3], ["src", 21, 3], ["propagatedBuildInputs", 28, 3], ["secrets", 48, 3], ["localSettings", 65, 3], ["installPhase", 80, 3], ["passthru", 87, 3], ["meta", 96, 3]]]);
 const formals$1 = { args: { lib: false, writeText: false, fetchFromGitHub: false, nixosTests: false, python3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["django", 12, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["self", 10, 5], ["packageOverrides", 11, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["sha256", 25, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["healthchecks", 92, 28]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pythonPath", 89, 5], ["tests", 91, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["homepage", 97, 5], ["description", 98, 5], ["license", 99, 5], ["maintainers", 100, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["pyproject", 19, 3], ["src", 21, 3], ["propagatedBuildInputs", 28, 3], ["secrets", 48, 3], ["localSettings", 65, 3], ["installPhase", 80, 3], ["passthru", 87, 3], ["meta", 96, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,16 +13,16 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const python3 = nix.arg($, "python3");
   const py = nix.thunk(() => nix.app(nix.sel(python3, "override"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       self: py,
-      packageOverrides: (final) => (prev) => ({ [nix.POS]: pos$1, django: nix.thunk(() => nix.sel(prev, "django_6")) }),
+      packageOverrides: (final) => (prev) => ({ [nix.POS]: $pos[0], django: nix.thunk(() => nix.sel(prev, "django_6")) }),
     }))));
   return nix.app(nix.sel(py, "pkgs", "buildPythonApplication"), nix.thunk(() => (() => {
       const pname = "healthchecks";
       const version = "4.4";
       const pyproject = false;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           owner: "healthchecks",
           repo: "healthchecks",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -88,22 +82,22 @@ chmod +x $out/opt/healthchecks/manage.py
 cp ${localSettings} $out/opt/healthchecks/hc/local_settings.py
 `);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pythonPath: nix.thunk(() => nix.app(nix.sel(py, "pkgs", "makePythonPath"), propagatedBuildInputs)),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           healthchecks: nix.thunk(() => nix.attr(nixosTests, "healthchecks")),
         })),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         homepage: "https://github.com/healthchecks/healthchecks",
         description: "Cron monitoring tool written in Python & Django",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         pname,
         version,
         pyproject,

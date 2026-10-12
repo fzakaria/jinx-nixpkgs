@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["mpi", 28, 15], ["mpiSupport", 28, 19]], [["mpi", 31, 15], ["enableMpi", 32, 7]], [["mpi", 35, 15], ["enableMpi", 36, 7]], [["mpi", 39, 15], ["mpiSupport", 39, 19], ["cppSupport", 40, 7]], [["adios2", 27, 5], ["fftw", 30, 5], ["fftwFloat", 34, 5], ["hdf5", 38, 5]], [["owner", 49, 5], ["repo", 50, 5], ["tag", 51, 5], ["hash", 52, 5]], [["homepage", 111, 5], ["changelog", 112, 5], ["description", 113, 5], ["maintainers", 114, 5], ["license", 115, 5], ["platforms", 116, 5]], [["pname", 45, 3], ["version", 46, 3], ["src", 48, 3], ["strictDeps", 55, 3], ["nativeBuildInputs", 57, 3], ["propagatedBuildInputs", 65, 3], ["buildInputs", 73, 3], ["patches", 85, 3], ["enableParallelBuilding", 92, 3], ["cmakeFlags", 94, 3], ["meta", 110, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, gfortran: false, flex: false, bison: false, blas: false, lapack: false, cfitsio: false, wcslib: false, fftw: false, fftwFloat: false, readline: false, gsl: false, mpi: false, adios2: false, hdf5: false, llvmPackages: false, mpiSupport: true, adios2Support: true, hdf5Support: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["mpi", 28, 15], ["mpiSupport", 28, 19]]);
-const pos$2 = nix.positions(here + "/package.nix", [["mpi", 31, 15], ["enableMpi", 32, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["mpi", 35, 15], ["enableMpi", 36, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["mpi", 39, 15], ["mpiSupport", 39, 19], ["cppSupport", 40, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["adios2", 27, 5], ["fftw", 30, 5], ["fftwFloat", 34, 5], ["hdf5", 38, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["owner", 49, 5], ["repo", 50, 5], ["tag", 51, 5], ["hash", 52, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["homepage", 111, 5], ["changelog", 112, 5], ["description", 113, 5], ["maintainers", 114, 5], ["license", 115, 5], ["platforms", 116, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 45, 3], ["version", 46, 3], ["src", 48, 3], ["strictDeps", 55, 3], ["nativeBuildInputs", 57, 3], ["propagatedBuildInputs", 65, 3], ["buildInputs", 73, 3], ["patches", 85, 3], ["enableParallelBuilding", 92, 3], ["cmakeFlags", 94, 3], ["meta", 110, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -37,23 +30,23 @@ export default nix.lambda((args) => (() => {
   const adios2Support = nix.argOr($, "adios2Support", () => false);
   const hdf5Support = nix.argOr($, "hdf5Support", () => false);
   const casacorePackages = nix.thunk(() => ({
-    [nix.POS]: pos$5,
-    adios2: nix.thunk(() => nix.app(nix.sel(adios2, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, mpi: mpi, mpiSupport: mpiSupport })))),
-    fftw: nix.thunk(() => nix.app(nix.sel(fftw, "override"), nix.thunk(() => ({ [nix.POS]: pos$2, mpi: mpi, enableMpi: mpiSupport })))),
-    fftwFloat: nix.thunk(() => nix.app(nix.sel(fftwFloat, "override"), nix.thunk(() => ({ [nix.POS]: pos$3, mpi: mpi, enableMpi: mpiSupport })))),
+    [nix.POS]: $pos[4],
+    adios2: nix.thunk(() => nix.app(nix.sel(adios2, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], mpi: mpi, mpiSupport: mpiSupport })))),
+    fftw: nix.thunk(() => nix.app(nix.sel(fftw, "override"), nix.thunk(() => ({ [nix.POS]: $pos[1], mpi: mpi, enableMpi: mpiSupport })))),
+    fftwFloat: nix.thunk(() => nix.app(nix.sel(fftwFloat, "override"), nix.thunk(() => ({ [nix.POS]: $pos[2], mpi: mpi, enableMpi: mpiSupport })))),
     hdf5: nix.thunk(() => nix.app(nix.sel(hdf5, "override"), nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         mpi: mpi,
         mpiSupport: mpiSupport,
         cppSupport: nix.thunk(() => !nix.asBool(mpiSupport)),
       })))),
   }));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "casacore",
       version: "3.8.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           owner: "casacore",
           repo: "casacore",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -86,7 +79,7 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.app(nix.sel(lib, "cmakeFeature"), "CMAKE_Fortran_FLAGS", "-fallow-argument-mismatch")),
         ])))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         homepage: "https://casacore.github.io/casacore/",
         changelog: "https://github.com/casacore/casacore/blob/master/CHANGES.md",
         description: "Suite of C++ libraries for radio astronomy data processing",

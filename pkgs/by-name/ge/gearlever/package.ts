@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["hash", 33, 5]], [["description", 95, 5], ["longDescription", 96, 5], ["homepage", 108, 5], ["license", 109, 5], ["mainProgram", 113, 5], ["maintainers", 114, 5], ["platforms", 115, 5]], [["pname", 25, 3], ["version", 26, 3], ["pyproject", 27, 3], ["src", 29, 3], ["postPatch", 36, 3], ["nativeBuildInputs", 56, 3], ["buildInputs", 65, 3], ["dependencies", 67, 3], ["dontWrapGApps", 74, 3], ["makeWrapperArgs", 76, 3], ["meta", 94, 3]]]);
 const formals$1 = { args: { lib: false, python3Packages: false, fetchFromGitHub: false, stdenv: false, meson: false, ninja: false, "pkg-config": false, "gobject-introspection": false, wrapGAppsHook4: false, "desktop-file-utils": false, libadwaita: false, file: false, _7zz: false, which: false, "appimage-run": false, gtk4: false, bintools: false, libnotify: false, dwarfs: false, "squashfs-tools": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["hash", 33, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 95, 5], ["longDescription", 96, 5], ["homepage", 108, 5], ["license", 109, 5], ["mainProgram", 113, 5], ["maintainers", 114, 5], ["platforms", 115, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 25, 3], ["version", 26, 3], ["pyproject", 27, 3], ["src", 29, 3], ["postPatch", 36, 3], ["nativeBuildInputs", 56, 3], ["buildInputs", 65, 3], ["dependencies", 67, 3], ["dontWrapGApps", 74, 3], ["makeWrapperArgs", 76, 3], ["meta", 94, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,12 +28,12 @@ export default nix.lambda((args) => (() => {
   const dwarfs = nix.arg($, "dwarfs");
   const squashfs_tools = nix.arg($, "squashfs-tools");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "gearlever",
       version: "3.4.7",
       pyproject: false,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "mijorus",
           repo: "gearlever",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -81,7 +79,7 @@ substituteInPlace src/models/UpdateManager.py \\
           ]))}`),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Manage AppImages with ease",
         longDescription: "Features:\n\n- Integrate AppImages into your app menu with just one click\n- Drag and drop files directly from your file manager\n- Keep all the AppImages organized in a custom folder\n- Open new AppImages directly with Gear lever\n- Manage updates: keep older versions installed or replace\n  them with the latest release\n- Save CLI apps with their executable name automatically\n- Modern and Fresh UI\n",
         homepage: "https://mijorus.it/projects/gearlever",

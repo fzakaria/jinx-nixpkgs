@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 26, 7], ["hash", 27, 7]], [["NIX_CFLAGS_COMPILE", 33, 7]], [["description", 36, 5], ["license", 37, 5], ["homepage", 38, 5]], [["pname", 10, 3], ["version", 12, 3], ["hash", 13, 3], ["buildInputs", 15, 3], ["nativeBuildInputs", 19, 3], ["patches", 23, 3], ["env", 33, 3], ["meta", 35, 3]]]);
 const formals$1 = { args: { buildPecl: false, lib: false, "pkg-config": false, rrdtool: false, fetchpatch: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 26, 7], ["hash", 27, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["NIX_CFLAGS_COMPILE", 33, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 36, 5], ["license", 37, 5], ["homepage", 38, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 10, 3], ["version", 12, 3], ["hash", 13, 3], ["buildInputs", 15, 3], ["nativeBuildInputs", 19, 3], ["patches", 23, 3], ["env", 33, 3], ["meta", 35, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const rrdtool = nix.arg($, "rrdtool");
   const fetchpatch = nix.arg($, "fetchpatch");
   return nix.app(buildPecl, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "rrd",
       version: "2.0.3",
       hash: "sha256-pCFh5YzcioU7cs/ymJidy96CsPdkVt1ZzgKFTJK3MPc=",
@@ -24,17 +21,17 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             url: "https://github.com/php/pecl-processing-rrd/pull/4/commits/dd4856dc89499a0141b1710e791f0e1096c7b244.patch",
             hash: "sha256-ES+cMhMBUubFB5TpTZzzKKfEK2cY737z7zCuNy4XF8Y=",
           })))),
       ]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: "-Wno-error=incompatible-pointer-types",
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "PHP bindings to RRD tool system",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd0")),
         homepage: "https://github.com/php/pecl-processing-rrd",

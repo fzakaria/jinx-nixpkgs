@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]], [["description", 69, 5], ["homepage", 70, 5], ["license", 71, 5], ["maintainers", 72, 5], ["platforms", 73, 5], ["mainProgram", 74, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["vendorHash", 25, 3], ["proxyVendor", 27, 3], ["modRoot", 29, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 37, 3], ["ldflags", 44, 3], ["postInstall", 50, 3], ["postFixup", 55, 3], ["meta", 68, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromSourcehut: false, makeWrapper: false, scdoc: false, installShellFiles: false, xclip: false, "wl-clipboard": false, xdotool: false, wtype: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 69, 5], ["homepage", 70, 5], ["license", 71, 5], ["maintainers", 72, 5], ["platforms", 73, 5], ["mainProgram", 74, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["vendorHash", 25, 3], ["proxyVendor", 27, 3], ["modRoot", 29, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 37, 3], ["ldflags", 44, 3], ["postInstall", 50, 3], ["postFixup", 55, 3], ["meta", 68, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const xdotool = nix.arg($, "xdotool");
   const wtype = nix.arg($, "wtype");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "snippetexpanderd",
       version: "1.1.2",
       src: nix.thunk(() => nix.app(fetchFromSourcehut, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "~ianmjones",
           repo: "snippetexpander",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -46,7 +44,7 @@ wrapProgram $out/bin/snippetexpanderd \\
   --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [xclip, wl_clipboard, xdotool, wtype]))}
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Your little expandable text snippet helper daemon",
         homepage: "https://snippetexpander.org",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

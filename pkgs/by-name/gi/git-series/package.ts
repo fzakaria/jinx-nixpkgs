@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5]], [["LIBGIT2_SYS_USE_PKG_CONFIG", 43, 5], ["LIBSSH2_SYS_USE_PKG_CONFIG", 44, 5]], [["description", 52, 5], ["longDescription", 53, 5], ["homepage", 58, 5], ["license", 59, 5], ["maintainers", 60, 5], ["mainProgram", 65, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["cargoHash", 26, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 34, 3], ["env", 42, 3], ["postInstall", 47, 3], ["meta", 51, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchFromGitHub: false, "pkg-config": false, stdenv: false, curl: false, installShellFiles: false, libgit2: false, libssh2: false, openssl: false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["LIBGIT2_SYS_USE_PKG_CONFIG", 43, 5], ["LIBSSH2_SYS_USE_PKG_CONFIG", 44, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 52, 5], ["longDescription", 53, 5], ["homepage", 58, 5], ["license", 59, 5], ["maintainers", 60, 5], ["mainProgram", 65, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["cargoHash", 26, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 34, 3], ["env", 42, 3], ["postInstall", 47, 3], ["meta", 51, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const openssl = nix.arg($, "openssl");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "git-series",
       version: "0.9.1-unstable-2024-02-02",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "git-series",
           repo: "git-series",
           rev: "9c5d40edec87b79db0c5bac1458aa0e2c8fdeb8e",
@@ -36,13 +33,13 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => nix.concat([pkg_config, installShellFiles], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [curl])))),
       buildInputs: nix.thunk(() => nix.concat([libgit2, libssh2, openssl, zlib], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [curl])))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         LIBGIT2_SYS_USE_PKG_CONFIG: true,
         LIBSSH2_SYS_USE_PKG_CONFIG: true,
       })),
       postInstall: "installManPage ./git-series.1\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Tool to help with formatting git patches for review on mailing lists",
         longDescription: "git series tracks changes to a patch series over time. git\nseries also tracks a cover letter for the patch series,\nformats the series for email, and prepares pull requests.\n",
         homepage: "https://github.com/git-series/git-series",

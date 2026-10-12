@@ -2,9 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/user.nix", [[["fetchurl", 15, 13], ["lib", 15, 22], ["pname", 16, 5]], [["nativeBuildInputs", 20, 5], ["configureFlags", 29, 5], ["doInstallCheck", 34, 5]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, autoconf: false, libtool: false, bison: false, flex: false, automake: false, udevCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/user.nix", [["fetchurl", 15, 13], ["lib", 15, 22], ["pname", 16, 5]]);
-const pos$2 = nix.positions(here + "/user.nix", [["nativeBuildInputs", 20, 5], ["configureFlags", 29, 5], ["doInstallCheck", 34, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,8 +16,8 @@ export default nix.lambda((args) => (() => {
   const flex = nix.arg($, "flex");
   const automake = nix.arg($, "automake");
   const udevCheckHook = nix.arg($, "udevCheckHook");
-  return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => nix.update(nix.app(nix.builtins.import(nix.path(here, "./common.nix")), nix.thunk(() => ({ [nix.POS]: pos$1, fetchurl: fetchurl, lib: lib, pname: "linux-gpib-user" }))), {
-      [nix.POS]: pos$2,
+  return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => nix.update(nix.app(nix.builtins.import(nix.path(here, "./common.nix")), nix.thunk(() => ({ [nix.POS]: $pos[0], fetchurl: fetchurl, lib: lib, pname: "linux-gpib-user" }))), {
+      [nix.POS]: $pos[1],
       nativeBuildInputs: nix.thunk(() => [autoconf, libtool, bison, flex, automake, udevCheckHook]),
       configureFlags: nix.thunk(() => ["--sysconfdir=$(out)/etc", "--prefix=$(out)"]),
       doInstallCheck: true,

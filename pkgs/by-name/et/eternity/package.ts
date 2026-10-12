@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5], ["fetchSubmodules", 22, 5]], [["homepage", 66, 5], ["description", 67, 5], ["mainProgram", 68, 5], ["license", 69, 5], ["platforms", 70, 5], ["maintainers", 71, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 17, 3], ["postPatch", 25, 3], ["nativeBuildInputs", 52, 3], ["buildInputs", 57, 3], ["meta", 65, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, cmake: false, libGL: false, SDL2: false, SDL2_mixer: false, SDL2_net: false, fetchFromGitHub: false, makeWrapper: false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5], ["fetchSubmodules", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 66, 5], ["description", 67, 5], ["mainProgram", 68, 5], ["license", 69, 5], ["platforms", 70, 5], ["maintainers", 71, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 17, 3], ["postPatch", 25, 3], ["nativeBuildInputs", 52, 3], ["buildInputs", 57, 3], ["meta", 65, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "eternity-engine",
       version: "4.05.04",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "team-eternity",
           repo: "eternity",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -35,7 +33,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [cmake, makeWrapper]),
       buildInputs: nix.thunk(() => [libGL, SDL2, SDL2_mixer, SDL2_net, zlib]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://doomworld.com/eternity",
         description: "New school Doom port by James Haley",
         mainProgram: "eternity",

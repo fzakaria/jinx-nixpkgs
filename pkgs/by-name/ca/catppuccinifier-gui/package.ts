@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]], [["yarnLock", 37, 5], ["hash", 38, 5]], [["description", 66, 5], ["homepage", 67, 5], ["license", 68, 5], ["maintainers", 69, 5], ["platforms", 70, 5], ["mainProgram", 71, 5]], [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["sourceRoot", 30, 3], ["cargoRoot", 31, 3], ["buildAndTestSubdir", 32, 3], ["cargoHash", 34, 3], ["yarnOfflineCache", 36, 3], ["nativeBuildInputs", 41, 3], ["buildInputs", 50, 3], ["postInstall", 59, 3], ["meta", 65, 3]]]);
 const formals$1 = { args: { lib: false, gtk3: false, glib: false, dbus: false, nodejs: false, cairo: false, "cargo-tauri": false, webkitgtk_4_1: false, wrapGAppsHook3: false, "gdk-pixbuf": false, "pkg-config": false, rustPlatform: false, fetchYarnDeps: false, yarnConfigHook: false, fetchFromGitHub: false, "desktop-file-utils": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["yarnLock", 37, 5], ["hash", 38, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 66, 5], ["homepage", 67, 5], ["license", 68, 5], ["maintainers", 69, 5], ["platforms", 70, 5], ["mainProgram", 71, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["sourceRoot", 30, 3], ["cargoRoot", 31, 3], ["buildAndTestSubdir", 32, 3], ["cargoHash", 34, 3], ["yarnOfflineCache", 36, 3], ["nativeBuildInputs", 41, 3], ["buildInputs", 50, 3], ["postInstall", 59, 3], ["meta", 65, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const desktop_file_utils = nix.arg($, "desktop-file-utils");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "catppuccinifier-gui",
       version: "9.1.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "lighttigerXIV",
           repo: "catppuccinifier",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -42,7 +39,7 @@ export default nix.lambda((args) => (() => {
       buildAndTestSubdir: nix.thunk(() => nix.sel(finalAttrs, "cargoRoot")),
       cargoHash: "sha256-BUXqPY3jNn4YB1avtCp6MFyN1KIYqT0b1H9drOmikj0=",
       yarnOfflineCache: nix.thunk(() => nix.app(fetchYarnDeps, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           yarnLock: nix.thunk(() => nix.add(nix.sel(finalAttrs, "src"), "/src/catppuccinifier-gui/yarn.lock")),
           hash: "sha256-UfQZf2raMrgPhUQVTAW+mA/nP1XjLKx0WBbYtdeD9kY=",
         })))),
@@ -57,7 +54,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [webkitgtk_4_1, gtk3, cairo, gdk_pixbuf, glib, dbus]),
       postInstall: "desktop-file-edit \"$out/share/applications/catppuccinifier-gui.desktop\" \\\n  --set-key \"Categories\" --set-value \"Graphics\" \\\n  --set-key \"Comment\" --set-value \"Apply catppuccin flavors to your wallpapers\"\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Apply catppuccin flavors to your wallpapers",
         homepage: "https://github.com/lighttigerXIV/catppuccinifier",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

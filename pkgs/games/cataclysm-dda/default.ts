@@ -2,12 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["tiles", 9, 31]], [["tiles", 7, 5], ["curses", 9, 5]], [["tiles", 15, 31]], [["tiles", 13, 5], ["curses", 15, 5]], [["callPackage", 24, 7], ["stable", 25, 7], ["git", 26, 7], ["buildMod", 30, 7], ["buildSoundPack", 31, 7], ["buildTileSet", 32, 7], ["wrapCDDA", 33, 7], ["attachPkgs", 34, 7], ["pkgs", 37, 13]]]);
 const formals$1 = { args: { newScope: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["tiles", 9, 31]]);
-const pos$2 = nix.positions(here + "/default.nix", [["tiles", 7, 5], ["curses", 9, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["tiles", 15, 31]]);
-const pos$4 = nix.positions(here + "/default.nix", [["tiles", 13, 5], ["curses", 15, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["callPackage", 24, 7], ["stable", 25, 7], ["git", 26, 7], ["buildMod", 30, 7], ["buildSoundPack", 31, 7], ["buildTileSet", 32, 7], ["wrapCDDA", 33, 7], ["attachPkgs", 34, 7], ["pkgs", 37, 13]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,18 +11,18 @@ export default nix.lambda((args) => (() => {
   const callPackage = nix.thunk(() => nix.app(newScope, self));
   const stable = nix.thunk(() => (() => {
     const tiles = nix.thunk(() => nix.app(callPackage, nix.path(here, "./stable.nix"), nix.thunk(() => ({}))));
-    const curses = nix.thunk(() => nix.app(nix.sel(tiles, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, tiles: false }))));
-    return { [nix.POS]: pos$2, tiles, curses };
+    const curses = nix.thunk(() => nix.app(nix.sel(tiles, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], tiles: false }))));
+    return { [nix.POS]: $pos[1], tiles, curses };
   })());
   const git = nix.thunk(() => (() => {
     const tiles = nix.thunk(() => nix.app(callPackage, nix.path(here, "./git.nix"), nix.thunk(() => ({}))));
-    const curses = nix.thunk(() => nix.app(nix.sel(tiles, "override"), nix.thunk(() => ({ [nix.POS]: pos$3, tiles: false }))));
-    return { [nix.POS]: pos$4, tiles, curses };
+    const curses = nix.thunk(() => nix.app(nix.sel(tiles, "override"), nix.thunk(() => ({ [nix.POS]: $pos[2], tiles: false }))));
+    return { [nix.POS]: $pos[3], tiles, curses };
   })());
   const lib = nix.thunk(() => nix.app(callPackage, nix.path(here, "./lib.nix"), nix.thunk(() => ({}))));
   const pkgs = nix.thunk(() => nix.app(callPackage, nix.path(here, "./pkgs"), nix.thunk(() => ({}))));
   const self = nix.thunk(() => ({
-    [nix.POS]: pos$5,
+    [nix.POS]: $pos[4],
     callPackage: callPackage,
     stable: stable,
     git: git,

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 65, 5], ["repo", 66, 5], ["tag", 67, 5], ["hash", 68, 5]], [["buildPlans", 87, 25]], [["homepage", 141, 5], ["downloadPage", 142, 5], ["description", 143, 5], ["longDescription", 144, 5], ["license", 149, 5], ["platforms", 150, 5], ["maintainers", 151, 5]], [["pname", 61, 3], ["version", 62, 3], ["src", 64, 3], ["npmDepsHash", 71, 3], ["nodejs", 72, 3], ["nativeBuildInputs", 74, 3], ["strictDeps", 83, 3], ["buildPlan", 85, 3], ["extraParameters", 91, 11], ["configurePhase", 93, 3], ["buildPhase", 117, 3], ["installPhase", 127, 3], ["enableParallelBuilding", 135, 3], ["requiredSystemFeatures", 136, 3], ["__structuredAttrs", 138, 3], ["meta", 140, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, buildNpmPackage: false, fetchFromGitHub: false, cctools: false, "go-toml": false, "ttfautohint-nox": false, nodejs_latest: false, privateBuildPlan: true, extraParameters: true, set: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 65, 5], ["repo", 66, 5], ["tag", 67, 5], ["hash", 68, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["buildPlans", 87, 25]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 141, 5], ["downloadPage", 142, 5], ["description", 143, 5], ["longDescription", 144, 5], ["license", 149, 5], ["platforms", 150, 5], ["maintainers", 151, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 61, 3], ["version", 62, 3], ["src", 64, 3], ["npmDepsHash", 71, 3], ["nodejs", 72, 3], ["nativeBuildInputs", 74, 3], ["strictDeps", 83, 3], ["buildPlan", 85, 3], ["extraParameters", 91, 11], ["configurePhase", 93, 3], ["buildPhase", 117, 3], ["installPhase", 127, 3], ["enableParallelBuilding", 135, 3], ["requiredSystemFeatures", 136, 3], ["__structuredAttrs", 138, 3], ["meta", 140, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const pname = nix.thunk(() => nix.str`Iosevka${nix.builtins.toString(set)}`);
       const version = "34.7.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "be5invis",
           repo: "iosevka",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -39,7 +36,7 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => nix.concat([go_toml, ttfautohint_nox], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [cctools]))));
       const strictDeps = true;
       const buildPlan = nix.thunk(() => (nix.asBool(nix.builtins.isAttrs(privateBuildPlan)) ? nix.builtins.toJSON(nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           buildPlans: nix.thunk(() => nix.attrsDyn({}, [[nix.force(pname), privateBuildPlan]])),
         }))) : nix.force(privateBuildPlan)));
       const extraParameters_1 = extraParameters;
@@ -56,7 +53,7 @@ runHook postConfigure
       const requiredSystemFeatures = nix.thunk(() => ["big-parallel"]);
       const __structuredAttrs = true;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://typeof.net/Iosevka/",
         downloadPage: "https://github.com/be5invis/Iosevka/releases",
         description: "Versatile typeface for code, from code",
@@ -69,7 +66,7 @@ runHook postConfigure
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

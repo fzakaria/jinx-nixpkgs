@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 32, 5], ["repo", 33, 5], ["tag", 34, 5], ["hash", 35, 5]], [["URLLIB3_NO_OVERRIDE", 47, 7]], [["brotli", 56, 5], ["qh3", 57, 5], ["secure", 58, 5], ["socks", 59, 5], ["ws", 60, 5], ["zstd", 61, 5]], [["changelog", 90, 5], ["description", 91, 5], ["homepage", 92, 5], ["license", 93, 5], ["maintainers", 94, 5]], [["pname", 27, 3], ["version", 28, 3], ["pyproject", 29, 3], ["src", 31, 3], ["postPatch", 38, 3], ["build-system", 44, 3], ["env", 47, 3], ["dependencies", 49, 3], ["optional-dependencies", 55, 3], ["pythonImportsCheck", 64, 3], ["doCheck", 67, 3], ["nativeCheckInputs", 69, 3], ["pytestFlags", 80, 3], ["disabledTestPaths", 84, 3], ["meta", 89, 3]]]);
 const formals$1 = { args: { aiofile: false, brotli: false, brotlicffi: false, buildPythonPackage: false, fetchFromGitHub: false, hatchling: false, h11: false, isPyPy: false, jh2: false, lib: false, "pytest-asyncio": false, "pytest-rerunfailures": false, "pytest-timeout": false, pytestCheckHook: false, "python-socks": false, pythonOlder: false, qh3: false, stdenv: false, tornado: false, trustme: false, wsproto: false, zstandard: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 32, 5], ["repo", 33, 5], ["tag", 34, 5], ["hash", 35, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["URLLIB3_NO_OVERRIDE", 47, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["brotli", 56, 5], ["qh3", 57, 5], ["secure", 58, 5], ["socks", 59, 5], ["ws", 60, 5], ["zstd", 61, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["changelog", 90, 5], ["description", 91, 5], ["homepage", 92, 5], ["license", 93, 5], ["maintainers", 94, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 27, 3], ["version", 28, 3], ["pyproject", 29, 3], ["src", 31, 3], ["postPatch", 38, 3], ["build-system", 44, 3], ["env", 47, 3], ["dependencies", 49, 3], ["optional-dependencies", 55, 3], ["pythonImportsCheck", 64, 3], ["doCheck", 67, 3], ["nativeCheckInputs", 69, 3], ["pytestFlags", 80, 3], ["disabledTestPaths", 84, 3], ["meta", 89, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,12 +30,12 @@ export default nix.lambda((args) => (() => {
   const wsproto = nix.arg($, "wsproto");
   const zstandard = nix.arg($, "zstandard");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "urllib3-future",
       version: "2.25.902",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "jawah",
           repo: "urllib3.future",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -47,10 +43,10 @@ export default nix.lambda((args) => (() => {
         })))),
       postPatch: "substituteInPlace pyproject.toml \\\n  --replace-fail \"'''ignore:.*but not measured.*:coverage.exceptions.CoverageWarning''',\" \"\" \\\n  --replace-fail \"'''ignore:.*No data was collected.*:coverage.exceptions.CoverageWarning''',\" \"\"\n",
       "build-system": nix.thunk(() => [hatchling]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, URLLIB3_NO_OVERRIDE: "true" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], URLLIB3_NO_OVERRIDE: "true" })),
       dependencies: nix.thunk(() => [h11, jh2, qh3]),
       "optional-dependencies": nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         brotli: nix.thunk(() => [
           nix.thunk(() => (nix.asBool(isPyPy) ? nix.force(brotlicffi) : nix.force(brotli))),
         ]),
@@ -74,7 +70,7 @@ export default nix.lambda((args) => (() => {
       pytestFlags: nix.thunk(() => ["-Wignore::pytest.PytestRemovedIn10Warning"]),
       disabledTestPaths: nix.thunk(() => ["test/contrib/test_resolver.py::test_url_resolver"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         changelog: nix.thunk(() => nix.str`https://github.com/jawah/urllib3.future/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGES.rst`),
         description: "Powerful HTTP 1.1, 2, and 3 client with both sync and async interfaces",
         homepage: "https://github.com/jawah/urllib3.future",

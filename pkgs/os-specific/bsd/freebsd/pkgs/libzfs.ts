@@ -2,9 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/libzfs.nix", [[["license", 83, 5]], [["path", 38, 3], ["extraPaths", 39, 3], ["buildInputs", 47, 3], ["postPatch", 54, 3], ["preBuild", 66, 3], ["outputs", 75, 3], ["MK_TESTS", 80, 3], ["meta", 82, 3]]]);
 const formals$1 = { args: { mkDerivation: false, lib: false, libbsdxml: false, libgeom: false, openssl: false, "zfs-data": false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/libzfs.nix", [["license", 83, 5]]);
-const pos$2 = nix.positions(here + "/libzfs.nix", [["path", 38, 3], ["extraPaths", 39, 3], ["buildInputs", 47, 3], ["postPatch", 54, 3], ["preBuild", 66, 3], ["outputs", 75, 3], ["MK_TESTS", 80, 3], ["meta", 82, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,7 +28,7 @@ export default nix.lambda((args) => (() => {
     "libzfs",
   ]);
   return nix.app(mkDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       path: "cddl/lib/libzfs",
       extraPaths: nix.thunk(() => [
         "cddl/Makefile.inc",
@@ -52,7 +51,10 @@ make -C $BSDSRCDIR/cddl/lib/${libname} $makeFlags install
 `))),
       outputs: nix.thunk(() => ["out", "debug"]),
       MK_TESTS: "no",
-      meta: nix.thunk(() => ({ [nix.POS]: pos$1, license: nix.thunk(() => nix.sel(lib, "licenses", "cddl")) })),
+      meta: nix.thunk(() => ({
+        [nix.POS]: $pos[0],
+        license: nix.thunk(() => nix.sel(lib, "licenses", "cddl")),
+      })),
     })));
 })(), formals$1);
 //# sourceMappingURL=libzfs.ts.map

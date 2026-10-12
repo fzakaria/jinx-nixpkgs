@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]], [["name", 29, 7], ["url", 30, 7], ["hash", 31, 7]], [["updateScript", 50, 12]], [["homepage", 53, 5], ["changelog", 54, 5], ["description", 55, 5], ["license", 56, 5], ["maintainers", 57, 5], ["platforms", 58, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["patches", 27, 3], ["nativeBuildInputs", 35, 3], ["cmakeDir", 37, 3], ["cmakeFlags", 39, 3], ["doCheck", 47, 3], ["passthru", 50, 3], ["meta", 52, 3]]]);
 const formals$1 = { args: { pkgs: false, lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch: false, cmake: false, withStatic: true, withShared: true, buildExamples: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 29, 7], ["url", 30, 7], ["hash", 31, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 50, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 53, 5], ["changelog", 54, 5], ["description", 55, 5], ["license", 56, 5], ["maintainers", 57, 5], ["platforms", 58, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["patches", 27, 3], ["nativeBuildInputs", 35, 3], ["cmakeDir", 37, 3], ["cmakeFlags", 39, 3], ["doCheck", 47, 3], ["passthru", 50, 3], ["meta", 52, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const buildExamples = nix.argOr($, "buildExamples", () => false);
   nix.assert_((!nix.asBool(buildExamples) || nix.asBool(withStatic)), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/so/sobjectizer/package.nix:14:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "sobjectizer",
       version: "5.8.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Stiffstream",
           repo: "sobjectizer",
           tag: nix.thunk(() => nix.str`v.${nix.sel(finalAttrs, "version")}`),
@@ -34,7 +30,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "tests-do-not-require-static-library.patch",
             url: "https://github.com/Stiffstream/sobjectizer/commit/10eb34c65ccdaa4fea62d0c4354b83104256370d.patch",
             hash: "sha256-a2g6jDGDC/y8cmbAD0KtVQKhVS5ZAjKtMhbAUyoQIvg=",
@@ -50,11 +46,11 @@ export default nix.lambda((args) => (() => {
       ]),
       doCheck: withShared,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix.sel(pkgs, "nix-update-script"), nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://github.com/Stiffstream/sobjectizer/tree/master",
         changelog: nix.thunk(() => nix.str`https://github.com/Stiffstream/sobjectizer/releases/tag/v.${nix.sel(finalAttrs, "version")}`),
         description: "Implementation of Actor, Publish-Subscribe, and CSP models in one rather small C++ framework",

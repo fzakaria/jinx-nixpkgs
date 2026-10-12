@@ -2,48 +2,13 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/frr.nix", [[["maintainers", 36, 5]], [["vlans", 44, 24]], [["config", 46, 11]], [["frr", 45, 18]], [["virtualisation", 44, 9], ["services", 45, 9]], [["vlans", 55, 24]], [["net.ipv4.ip_forward", 59, 28]], [["sysctl", 59, 21]], [["kernel", 59, 14]], [["extraCommands", 60, 29]], [["firewall", 60, 20]], [["enable", 62, 17]], [["ospfd", 62, 11], ["config", 63, 11]], [["frr", 61, 18]], [["config", 67, 24]], [["frr", 67, 20]], [["services", 67, 11]], [["configuration", 66, 29]], [["ospf", 66, 24]], [["virtualisation", 55, 9], ["boot", 59, 9], ["networking", 60, 9], ["services", 61, 9], ["specialisation", 66, 9]], [["vlans", 74, 24]], [["net.ipv4.ip_forward", 78, 28]], [["sysctl", 78, 21]], [["kernel", 78, 14]], [["extraCommands", 79, 29]], [["firewall", 79, 20]], [["enable", 81, 17]], [["ospfd", 81, 11], ["config", 82, 11]], [["frr", 80, 18]], [["virtualisation", 74, 9], ["boot", 78, 9], ["networking", 79, 9], ["services", 80, 9]], [["vlans", 89, 24]], [["config", 91, 11]], [["frr", 90, 18]], [["virtualisation", 89, 9], ["services", 90, 9]], [["client", 41, 5], ["router1", 52, 5], ["router2", 71, 5], ["server", 86, 5]], [["name", 33, 3], ["meta", 35, 3], ["nodes", 39, 3], ["testScript", 98, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/frr.nix", [["maintainers", 36, 5]]);
 const formals$2 = { args: { nodes: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/frr.nix", [["vlans", 44, 24]]);
-const pos$3 = nix.positions(here + "/frr.nix", [["config", 46, 11]]);
-const pos$4 = nix.positions(here + "/frr.nix", [["frr", 45, 18]]);
-const pos$5 = nix.positions(here + "/frr.nix", [["virtualisation", 44, 9], ["services", 45, 9]]);
 const formals$3 = { args: {  }, ellipsis: true };
-const pos$6 = nix.positions(here + "/frr.nix", [["vlans", 55, 24]]);
-const pos$7 = nix.positions(here + "/frr.nix", [["net.ipv4.ip_forward", 59, 28]]);
-const pos$8 = nix.positions(here + "/frr.nix", [["sysctl", 59, 21]]);
-const pos$9 = nix.positions(here + "/frr.nix", [["kernel", 59, 14]]);
-const pos$10 = nix.positions(here + "/frr.nix", [["extraCommands", 60, 29]]);
-const pos$11 = nix.positions(here + "/frr.nix", [["firewall", 60, 20]]);
-const pos$12 = nix.positions(here + "/frr.nix", [["enable", 62, 17]]);
-const pos$13 = nix.positions(here + "/frr.nix", [["ospfd", 62, 11], ["config", 63, 11]]);
-const pos$14 = nix.positions(here + "/frr.nix", [["frr", 61, 18]]);
-const pos$15 = nix.positions(here + "/frr.nix", [["config", 67, 24]]);
-const pos$16 = nix.positions(here + "/frr.nix", [["frr", 67, 20]]);
-const pos$17 = nix.positions(here + "/frr.nix", [["services", 67, 11]]);
-const pos$18 = nix.positions(here + "/frr.nix", [["configuration", 66, 29]]);
-const pos$19 = nix.positions(here + "/frr.nix", [["ospf", 66, 24]]);
-const pos$20 = nix.positions(here + "/frr.nix", [["virtualisation", 55, 9], ["boot", 59, 9], ["networking", 60, 9], ["services", 61, 9], ["specialisation", 66, 9]]);
 const formals$4 = { args: {  }, ellipsis: true };
-const pos$21 = nix.positions(here + "/frr.nix", [["vlans", 74, 24]]);
-const pos$22 = nix.positions(here + "/frr.nix", [["net.ipv4.ip_forward", 78, 28]]);
-const pos$23 = nix.positions(here + "/frr.nix", [["sysctl", 78, 21]]);
-const pos$24 = nix.positions(here + "/frr.nix", [["kernel", 78, 14]]);
-const pos$25 = nix.positions(here + "/frr.nix", [["extraCommands", 79, 29]]);
-const pos$26 = nix.positions(here + "/frr.nix", [["firewall", 79, 20]]);
-const pos$27 = nix.positions(here + "/frr.nix", [["enable", 81, 17]]);
-const pos$28 = nix.positions(here + "/frr.nix", [["ospfd", 81, 11], ["config", 82, 11]]);
-const pos$29 = nix.positions(here + "/frr.nix", [["frr", 80, 18]]);
-const pos$30 = nix.positions(here + "/frr.nix", [["virtualisation", 74, 9], ["boot", 78, 9], ["networking", 79, 9], ["services", 80, 9]]);
 const formals$5 = { args: { nodes: false }, ellipsis: true };
-const pos$31 = nix.positions(here + "/frr.nix", [["vlans", 89, 24]]);
-const pos$32 = nix.positions(here + "/frr.nix", [["config", 91, 11]]);
-const pos$33 = nix.positions(here + "/frr.nix", [["frr", 90, 18]]);
-const pos$34 = nix.positions(here + "/frr.nix", [["virtualisation", 89, 9], ["services", 90, 9]]);
-const pos$35 = nix.positions(here + "/frr.nix", [["client", 41, 5], ["router1", 52, 5], ["router2", 71, 5], ["server", 86, 5]]);
 const formals$6 = { args: { nodes: false }, ellipsis: true };
-const pos$36 = nix.positions(here + "/frr.nix", [["name", 33, 3], ["meta", 35, 3], ["nodes", 39, 3], ["testScript", 98, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -52,21 +17,21 @@ export default nix.lambda((args) => (() => {
   const ospfConf1 = "interface eth2\n  ip ospf hello-interval 1\n  ip ospf dead-interval 5\n!\nrouter ospf\n  network 192.168.0.0/16 area 0\n";
   const ospfConf2 = "interface eth2\n  ip ospf hello-interval 1\n  ip ospf dead-interval 5\n!\nrouter ospf\n  network 192.168.0.0/16 area 0\n";
   return {
-    [nix.POS]: pos$36,
+    [nix.POS]: $pos[35],
     name: "frr",
-    meta: nix.thunk(() => ({ [nix.POS]: pos$1, maintainers: [] })),
+    meta: nix.thunk(() => ({ [nix.POS]: $pos[0], maintainers: [] })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$35,
+      [nix.POS]: $pos[34],
       client: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const nodes = nix.arg($_1, "nodes");
         return {
-          [nix.POS]: pos$5,
-          virtualisation: nix.thunk(() => ({ [nix.POS]: pos$2, vlans: nix.thunk(() => [1n]) })),
+          [nix.POS]: $pos[4],
+          virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[1], vlans: nix.thunk(() => [1n]) })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             frr: nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               config: nix.thunk(() => nix.str`ip route 192.168.0.0/16 ${nix.app(ifAddr, nix.thunk(() => nix.sel(nodes, "router1")), "eth1")}
 `),
             })),
@@ -76,39 +41,39 @@ export default nix.lambda((args) => (() => {
       router1: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$3);
         return {
-          [nix.POS]: pos$20,
-          virtualisation: nix.thunk(() => ({ [nix.POS]: pos$6, vlans: nix.thunk(() => [1n, 2n]) })),
+          [nix.POS]: $pos[19],
+          virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[5], vlans: nix.thunk(() => [1n, 2n]) })),
           boot: nix.thunk(() => ({
-            [nix.POS]: pos$9,
+            [nix.POS]: $pos[8],
             kernel: nix.thunk(() => ({
-              [nix.POS]: pos$8,
-              sysctl: nix.thunk(() => ({ [nix.POS]: pos$7, "net.ipv4.ip_forward": "1" })),
+              [nix.POS]: $pos[7],
+              sysctl: nix.thunk(() => ({ [nix.POS]: $pos[6], "net.ipv4.ip_forward": "1" })),
             })),
           })),
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$11,
+            [nix.POS]: $pos[10],
             firewall: nix.thunk(() => ({
-              [nix.POS]: pos$10,
+              [nix.POS]: $pos[9],
               extraCommands: "iptables -A nixos-fw -i eth2 -p ospfigp -j ACCEPT",
             })),
           })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$14,
+            [nix.POS]: $pos[13],
             frr: nix.thunk(() => ({
-              [nix.POS]: pos$13,
-              ospfd: nix.thunk(() => ({ [nix.POS]: pos$12, enable: true })),
+              [nix.POS]: $pos[12],
+              ospfd: nix.thunk(() => ({ [nix.POS]: $pos[11], enable: true })),
               config: ospfConf1,
             })),
           })),
           specialisation: nix.thunk(() => ({
-            [nix.POS]: pos$19,
+            [nix.POS]: $pos[18],
             ospf: nix.thunk(() => ({
-              [nix.POS]: pos$18,
+              [nix.POS]: $pos[17],
               configuration: nix.thunk(() => ({
-                [nix.POS]: pos$17,
+                [nix.POS]: $pos[16],
                 services: nix.thunk(() => ({
-                  [nix.POS]: pos$16,
-                  frr: nix.thunk(() => ({ [nix.POS]: pos$15, config: ospfConf2 })),
+                  [nix.POS]: $pos[15],
+                  frr: nix.thunk(() => ({ [nix.POS]: $pos[14], config: ospfConf2 })),
                 })),
               })),
             })),
@@ -118,27 +83,27 @@ export default nix.lambda((args) => (() => {
       router2: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$4);
         return {
-          [nix.POS]: pos$30,
-          virtualisation: nix.thunk(() => ({ [nix.POS]: pos$21, vlans: nix.thunk(() => [3n, 2n]) })),
+          [nix.POS]: $pos[29],
+          virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[20], vlans: nix.thunk(() => [3n, 2n]) })),
           boot: nix.thunk(() => ({
-            [nix.POS]: pos$24,
+            [nix.POS]: $pos[23],
             kernel: nix.thunk(() => ({
-              [nix.POS]: pos$23,
-              sysctl: nix.thunk(() => ({ [nix.POS]: pos$22, "net.ipv4.ip_forward": "1" })),
+              [nix.POS]: $pos[22],
+              sysctl: nix.thunk(() => ({ [nix.POS]: $pos[21], "net.ipv4.ip_forward": "1" })),
             })),
           })),
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$26,
+            [nix.POS]: $pos[25],
             firewall: nix.thunk(() => ({
-              [nix.POS]: pos$25,
+              [nix.POS]: $pos[24],
               extraCommands: "iptables -A nixos-fw -i eth2 -p ospfigp -j ACCEPT",
             })),
           })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$29,
+            [nix.POS]: $pos[28],
             frr: nix.thunk(() => ({
-              [nix.POS]: pos$28,
-              ospfd: nix.thunk(() => ({ [nix.POS]: pos$27, enable: true })),
+              [nix.POS]: $pos[27],
+              ospfd: nix.thunk(() => ({ [nix.POS]: $pos[26], enable: true })),
               config: ospfConf2,
             })),
           })),
@@ -148,12 +113,12 @@ export default nix.lambda((args) => (() => {
         const $_1 = nix.formals(args_1, formals$5);
         const nodes = nix.arg($_1, "nodes");
         return {
-          [nix.POS]: pos$34,
-          virtualisation: nix.thunk(() => ({ [nix.POS]: pos$31, vlans: nix.thunk(() => [3n]) })),
+          [nix.POS]: $pos[33],
+          virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[30], vlans: nix.thunk(() => [3n]) })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$33,
+            [nix.POS]: $pos[32],
             frr: nix.thunk(() => ({
-              [nix.POS]: pos$32,
+              [nix.POS]: $pos[31],
               config: nix.thunk(() => nix.str`ip route 192.168.0.0/16 ${nix.app(ifAddr, nix.thunk(() => nix.sel(nodes, "router2")), "eth1")}
 `),
             })),

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5]], [["firefox-unwrapped", 50, 7], ["firefox-esr-unwrapped", 51, 7], ["mesa", 52, 7]], [["tests", 48, 12]], [["changelog", 57, 5], ["description", 58, 5], ["mainProgram", 59, 5], ["homepage", 60, 5], ["license", 61, 5], ["maintainers", 62, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["cargoHash", 26, 3], ["nativeCheckInputs", 28, 3], ["checkFlags", 33, 3], ["passthru", 48, 3], ["meta", 56, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, rustPlatform: false, cmake: false, python3Packages: false, "firefox-unwrapped": false, "firefox-esr-unwrapped": false, mesa: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["firefox-unwrapped", 50, 7], ["firefox-esr-unwrapped", 51, 7], ["mesa", 52, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 48, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["changelog", 57, 5], ["description", 58, 5], ["mainProgram", 59, 5], ["homepage", 60, 5], ["license", 61, 5], ["maintainers", 62, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["cargoHash", 26, 3], ["nativeCheckInputs", 28, 3], ["checkFlags", 33, 3], ["passthru", 48, 3], ["meta", 56, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const firefox_esr_unwrapped = nix.arg($, "firefox-esr-unwrapped");
   const mesa = nix.arg($, "mesa");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "rust-cbindgen",
       version: "0.29.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "mozilla",
           repo: "cbindgen",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -41,16 +37,16 @@ export default nix.lambda((args) => (() => {
         "--skip=lib_explicit_release_build",
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["--skip=test_body"])))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           "firefox-unwrapped": firefox_unwrapped,
           "firefox-esr-unwrapped": firefox_esr_unwrapped,
           mesa: mesa,
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         changelog: nix.thunk(() => nix.str`https://github.com/mozilla/cbindgen/blob/v${nix.sel(finalAttrs, "version")}/CHANGES`),
         description: "Project for generating C bindings from Rust code",
         mainProgram: "cbindgen",

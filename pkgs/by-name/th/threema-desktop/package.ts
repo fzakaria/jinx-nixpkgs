@@ -2,16 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]], [["owner", 26, 7], ["repo", 27, 7], ["tag", 28, 7], ["hash", 29, 7]], [["pname", 22, 5], ["version", 23, 5], ["src", 25, 5], ["npmDepsHash", 32, 5], ["npmBuildScript", 33, 5], ["nativeBuildInputs", 35, 5], ["patches", 39, 5], ["postInstall", 44, 5]], [["ELECTRON_SKIP_BINARY_DOWNLOAD", 58, 9]], [["pname", 53, 5], ["version", 54, 13], ["src", 55, 5], ["sourceRoot", 56, 5], ["npmDepsHash", 57, 5], ["env", 58, 5], ["dontNpmBuild", 59, 5], ["prePatch", 60, 5], ["postInstall", 65, 5]], [["ELECTRON_SKIP_BINARY_DOWNLOAD", 78, 7]], [["name", 98, 7], ["exec", 99, 7], ["icon", 100, 7], ["desktopName", 101, 7], ["comment", 102, 7]], [["description", 121, 5], ["homepage", 122, 5], ["license", 123, 5], ["mainProgram", 124, 5], ["maintainers", 125, 5], ["platforms", 126, 5]], [["pname", 72, 3], ["version", 73, 11], ["src", 74, 3], ["npmDepsHash", 76, 3], ["env", 78, 3], ["postPatch", 80, 3], ["npmBuildScript", 86, 3], ["dontNpmInstall", 89, 3], ["nativeBuildInputs", 91, 3], ["desktopItems", 96, 3], ["postInstall", 106, 3], ["meta", 120, 3]]]);
 const formals$1 = { args: { lib: false, buildNpmPackage: false, fetchFromGitHub: false, makeDesktopItem: false, copyDesktopItems: false, makeWrapper: false, electron: false, python3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 26, 7], ["repo", 27, 7], ["tag", 28, 7], ["hash", 29, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 22, 5], ["version", 23, 5], ["src", 25, 5], ["npmDepsHash", 32, 5], ["npmBuildScript", 33, 5], ["nativeBuildInputs", 35, 5], ["patches", 39, 5], ["postInstall", 44, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["ELECTRON_SKIP_BINARY_DOWNLOAD", 58, 9]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 53, 5], ["version", 54, 13], ["src", 55, 5], ["sourceRoot", 56, 5], ["npmDepsHash", 57, 5], ["env", 58, 5], ["dontNpmBuild", 59, 5], ["prePatch", 60, 5], ["postInstall", 65, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["ELECTRON_SKIP_BINARY_DOWNLOAD", 78, 7]]);
-const pos$7 = nix.positions(here + "/package.nix", [["name", 98, 7], ["exec", 99, 7], ["icon", 100, 7], ["desktopName", 101, 7], ["comment", 102, 7]]);
-const pos$8 = nix.positions(here + "/package.nix", [["description", 121, 5], ["homepage", 122, 5], ["license", 123, 5], ["mainProgram", 124, 5], ["maintainers", 125, 5], ["platforms", 126, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["pname", 72, 3], ["version", 73, 11], ["src", 74, 3], ["npmDepsHash", 76, 3], ["env", 78, 3], ["postPatch", 80, 3], ["npmBuildScript", 86, 3], ["dontNpmInstall", 89, 3], ["nativeBuildInputs", 91, 3], ["desktopItems", 96, 3], ["postInstall", 106, 3], ["meta", 120, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,7 +17,7 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const version = "1.2.50";
   const electronSrc = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "threema-ch",
       repo: "threema-web-electron",
       tag: version,
@@ -35,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const pname = "threema-web";
       const version_1 = "2.6.4";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "threema-ch",
           repo: "threema-web",
           tag: nix.thunk(() => nix.str`v${version_1}`),
@@ -56,7 +48,7 @@ sed -i.bak -E "s/IN_MEMORY_SESSION_PASSWORD:(true|false|0|1|\\!0|\\!1)/IN_MEMORY
 cp -r . "$out"
 `);
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version: version_1,
         src,
@@ -73,7 +65,7 @@ cp -r . "$out"
       const src = electronSrc;
       const sourceRoot = nix.thunk(() => nix.str`${nix.sel(src, "name")}/app`);
       const npmDepsHash = "sha256-zSrW8/XBJejYWKuDMIkZLYnFd3M9JG8/mjxuvGWfQqw=";
-      const env = nix.thunk(() => ({ [nix.POS]: pos$4, ELECTRON_SKIP_BINARY_DOWNLOAD: "1" }));
+      const env = nix.thunk(() => ({ [nix.POS]: $pos[3], ELECTRON_SKIP_BINARY_DOWNLOAD: "1" }));
       const dontNpmBuild = true;
       const prePatch = nix.thunk(() => nix.str`rm -r dependencies/threema-web
 cp -r ${threema_web} dependencies/threema-web
@@ -81,7 +73,7 @@ chmod +w dependencies/threema-web
 `);
       const postInstall = "cp -r . \"$out\"\n";
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version: version_1,
         src,
@@ -98,7 +90,7 @@ chmod +w dependencies/threema-web
       const version_1 = version;
       const src = electronSrc;
       const npmDepsHash = "sha256-5HDYcJAZ06lI3ZCO2zHi3FCNUUe06vy/Vggo0K1P7q8=";
-      const env = nix.thunk(() => ({ [nix.POS]: pos$6, ELECTRON_SKIP_BINARY_DOWNLOAD: "1" }));
+      const env = nix.thunk(() => ({ [nix.POS]: $pos[5], ELECTRON_SKIP_BINARY_DOWNLOAD: "1" }));
       const postPatch = nix.thunk(() => nix.str`rm -r app
 cp -r ${consumer} app
 chmod +w app
@@ -108,7 +100,7 @@ chmod +w app
       const nativeBuildInputs = nix.thunk(() => [copyDesktopItems, makeWrapper]);
       const desktopItems = nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             name: "threema-desktop",
             exec: nix.thunk(() => nix.sel(meta, "mainProgram")),
             icon: "threema",
@@ -129,7 +121,7 @@ makeWrapper ${electron}/bin/electron $out/bin/threema \\
   --add-flags $out/opt/threema/dist/src/main.js
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         description: "Desktop client for Threema, a privacy-focused end-to-end encrypted mobile messenger",
         homepage: "https://threema.ch",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),
@@ -138,7 +130,7 @@ makeWrapper ${electron}/bin/electron $out/bin/threema \\
         platforms: nix.thunk(() => ["x86_64-linux"]),
       }));
       return {
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         pname,
         version: version_1,
         src,

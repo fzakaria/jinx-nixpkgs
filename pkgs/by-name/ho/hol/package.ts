@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 32, 5], ["repo", 33, 5], ["tag", 34, 5], ["hash", 35, 5]], [["description", 89, 5], ["longDescription", 90, 5], ["homepage", 102, 5], ["license", 103, 5], ["platforms", 104, 5], ["maintainers", 105, 5]], [["pname", 28, 3], ["version", 29, 3], ["src", 31, 3], ["buildInputs", 38, 3], ["enableParallelBuilding", 46, 3], ["postPatch", 48, 3], ["configurePhase", 53, 3], ["installPhase", 63, 3], ["meta", 88, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, polyml: false, fetchFromGitHub: false, graphviz: false, fontconfig: false, liberation_ttf: false, mlton: false, experimentalKernel: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 32, 5], ["repo", 33, 5], ["tag", 34, 5], ["hash", 35, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 89, 5], ["longDescription", 90, 5], ["homepage", 102, 5], ["license", 103, 5], ["platforms", 104, 5], ["maintainers", 105, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 28, 3], ["version", 29, 3], ["src", 31, 3], ["buildInputs", 38, 3], ["enableParallelBuilding", 46, 3], ["postPatch", 48, 3], ["configurePhase", 53, 3], ["installPhase", 63, 3], ["meta", 88, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const kernelFlag = nix.thunk(() => (nix.asBool(experimentalKernel) ? "--expk" : "--stdknl"));
   const useMlton = nix.thunk(() => (nix.asBool((nix.asBool((nix.asBool((nix.asBool((nix.asBool(!nix.eq(nix.sel(stdenv, "buildPlatform", "system"), "i686-linux")) && nix.asBool(!nix.eq(nix.sel(stdenv, "hostPlatform", "system"), "i686-linux")))) && nix.asBool(!nix.asBool(nix.sel(stdenv, "buildPlatform", "isMusl"))))) && nix.asBool(!nix.asBool(nix.sel(stdenv, "hostPlatform", "isMusl"))))) && nix.asBool(nix.app(nix.sel(lib, "elem"), nix.thunk(() => nix.sel(stdenv, "buildPlatform", "system")), nix.thunk(() => nix.sel(mlton, "meta", "platforms")))))) && nix.asBool(nix.app(nix.sel(lib, "elem"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "system")), nix.thunk(() => nix.sel(mlton, "meta", "platforms"))))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "hol",
       version: nix.thunk(() => nix.str`4-${versionBase}`),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "HOL-Theorem-Prover",
           repo: "HOL",
           tag: versionBase,
@@ -67,7 +65,7 @@ mkdir -p "$out/bin"
 ln -st "$out/bin" "$out"/share/hol/bin/*
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Interactive theorem prover based on Higher-Order Logic",
         longDescription: "HOL4 is the latest version of the HOL interactive proof\nassistant for higher order logic: a programming environment in\nwhich theorems can be proved and proof tools\nimplemented. Built-in decision procedures and theorem provers\ncan automatically establish many simple theorems (users may have\nto prove the hard theorems themselves!) An oracle mechanism\ngives access to external programs such as SMT and BDD\nengines. HOL4 is particularly suitable as a platform for\nimplementing combinations of deduction, execution and property\nchecking.\n",
         homepage: "https://hol-theorem-prover.org/",

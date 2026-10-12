@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 98, 5], ["repo", 99, 5], ["tag", 100, 5], ["fetchSubmodules", 101, 5], ["hash", 102, 5]], [["description", 106, 5], ["longDescription", 107, 5], ["sourceProvenance", 114, 5], ["license", 115, 5], ["homepage", 116, 5], ["maintainers", 117, 5], ["platforms", 121, 5]], [["pname", 28, 3], ["version", 29, 3], ["pyproject", 32, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 46, 3], ["propagatedBuildInputs", 52, 3], ["postPatch", 72, 3], ["cmakeFlags", 80, 3], ["postInstall", 87, 3], ["src", 97, 3], ["meta", 105, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, readline: false, libxext: false, libxcomposite: false, libx11: false, mpi: false, cmake: false, bison: false, flex: false, git: false, perl: false, gsl: false, xcbuild: false, python3: false, useMpi: true, useIv: true, useCore: true, useRx3d: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 98, 5], ["repo", 99, 5], ["tag", 100, 5], ["fetchSubmodules", 101, 5], ["hash", 102, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 106, 5], ["longDescription", 107, 5], ["sourceProvenance", 114, 5], ["license", 115, 5], ["homepage", 116, 5], ["maintainers", 117, 5], ["platforms", 121, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 28, 3], ["version", 29, 3], ["pyproject", 32, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 46, 3], ["propagatedBuildInputs", 52, 3], ["postPatch", 72, 3], ["cmakeFlags", 80, 3], ["postInstall", 87, 3], ["src", 97, 3], ["meta", 105, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,7 +32,7 @@ export default nix.lambda((args) => (() => {
   const from_1 = nix.thunk(() => nix.sel(lib, "strings"));
   const cmakeBool = nix.thunk(() => nix.attr(from_1, "cmakeBool"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "neuron",
       version: "8.2.7",
       pyproject: false,
@@ -71,7 +69,7 @@ for entry in $out/lib/*.so; do
 done
 `),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "neuronsimulator",
           repo: "nrn",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -79,7 +77,7 @@ done
           hash: "sha256-dmpx0Wud0IhdFvvTJuW/w1Uq6vFYaNal9n27LAqV1Qc=",
         })))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Simulation environment for empirically-based simulations of neurons and networks of neurons",
         longDescription: "NEURON is a simulation environment for developing and exercising models of\nneurons and networks of neurons. It is particularly well-suited to problems where\ncable properties of cells play an important role, possibly including extracellular\npotential close to the membrane), and where cell membrane properties are complex,\ninvolving many ion-specific channels, ion accumulation, and second messengers\n",
         sourceProvenance: nix.thunk(() => (() => {

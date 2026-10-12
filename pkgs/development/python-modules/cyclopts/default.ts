@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 35, 5], ["repo", 36, 5], ["tag", 37, 5], ["hash", 38, 5]], [["trio", 56, 5], ["yaml", 57, 5], ["mkdocs", 58, 5]], [["description", 94, 5], ["homepage", 95, 5], ["changelog", 96, 5], ["license", 97, 5], ["maintainers", 98, 5]], [["pname", 30, 3], ["version", 31, 3], ["pyproject", 32, 3], ["src", 34, 3], ["pythonRelaxDeps", 41, 3], ["build-system", 43, 3], ["dependencies", 48, 3], ["optional-dependencies", 55, 3], ["nativeCheckInputs", 65, 3], ["pythonImportsCheck", 81, 3], ["disabledTests", 83, 3], ["meta", 93, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, attrs: false, buildPythonPackage: false, "docstring-parser": false, fetchFromGitHub: false, bash: false, fish: false, "hatch-vcs": false, hatchling: false, markdown: false, mkdocs: false, pexpect: false, pydantic: false, "pymdown-extensions": false, "pytest-cov-stub": false, "pytest-mock": false, pytestCheckHook: false, pyyaml: false, rich: false, "rich-rst": false, sphinx: false, syrupy: false, trio: false, zsh: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 35, 5], ["repo", 36, 5], ["tag", 37, 5], ["hash", 38, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["trio", 56, 5], ["yaml", 57, 5], ["mkdocs", 58, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 94, 5], ["homepage", 95, 5], ["changelog", 96, 5], ["license", 97, 5], ["maintainers", 98, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 30, 3], ["version", 31, 3], ["pyproject", 32, 3], ["src", 34, 3], ["pythonRelaxDeps", 41, 3], ["build-system", 43, 3], ["dependencies", 48, 3], ["optional-dependencies", 55, 3], ["nativeCheckInputs", 65, 3], ["pythonImportsCheck", 81, 3], ["disabledTests", 83, 3], ["meta", 93, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -36,12 +33,12 @@ export default nix.lambda((args) => (() => {
   const trio = nix.arg($, "trio");
   const zsh = nix.arg($, "zsh");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "cyclopts",
       version: "4.25.3",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "BrianPugh",
           repo: "cyclopts",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -51,7 +48,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [hatchling, hatch_vcs]),
       dependencies: nix.thunk(() => [attrs, docstring_parser, rich, rich_rst]),
       "optional-dependencies": nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         trio: nix.thunk(() => [trio]),
         yaml: nix.thunk(() => [pyyaml]),
         mkdocs: nix.thunk(() => [mkdocs, markdown, pymdown_extensions]),
@@ -77,7 +74,7 @@ export default nix.lambda((args) => (() => {
         "test_requires_equals_eq_form_value_completion",
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Module to create CLIs based on Python type hints",
         homepage: "https://github.com/BrianPugh/cyclopts",
         changelog: nix.thunk(() => nix.str`https://github.com/BrianPugh/cyclopts/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

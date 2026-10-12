@@ -2,55 +2,9 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/basic.nix", [[["reporting_enabled", 10, 19]], [["http_addr", 13, 11], ["domain", 14, 11]], [["admin_user", 18, 11], ["admin_password", 19, 11], ["secret_key", 20, 11]], [["analytics", 10, 9], ["server", 12, 9], ["security", 17, 9]], [["enable", 8, 7], ["settings", 9, 7]], [["grafana", 7, 14]], [["services", 7, 5]], [["protocol", 33, 11], ["socket", 34, 11], ["socket_gid", 35, 11]], [["server", 32, 35]], [["settings", 32, 26]], [["proxyPass", 43, 42]], [["/", 43, 38]], [["locations", 43, 28]], [["_", 43, 24]], [["enable", 41, 11], ["recommendedProxySettings", 42, 11], ["virtualHosts", 43, 11]], [["grafana", 32, 18], ["nginx", 40, 18]], [["extraGroups", 38, 29]], [["grafana", 38, 21]], [["users", 38, 15]], [["services", 32, 9], ["users", 38, 9]], [["declarativePlugins", 48, 24]], [["grafana", 48, 16]], [["services", 48, 7]], [["host", 53, 9], ["user", 54, 9]], [["database", 52, 33]], [["settings", 52, 24]], [["name", 61, 13], ["ensureDBOwnership", 62, 13]], [["enable", 57, 9], ["ensureDatabases", 58, 9], ["ensureUsers", 59, 9]], [["grafana", 52, 16], ["postgresql", 56, 16]], [["after", 66, 32]], [["grafana", 66, 24]], [["services", 66, 15]], [["services", 52, 7], ["systemd", 66, 7]], [["user", 70, 42]], [["database", 70, 33]], [["settings", 70, 24]], [["grafana.*", 77, 31]], [["name", 76, 13], ["ensurePermissions", 77, 13]], [["enable", 72, 9], ["ensureDatabases", 73, 9], ["ensureUsers", 74, 9], ["package", 80, 9]], [["grafana", 70, 16], ["mysql", 71, 16]], [["after", 82, 32]], [["grafana", 82, 24]], [["services", 82, 15]], [["services", 70, 7], ["systemd", 82, 7]], [["sqlite", 27, 5], ["socket", 29, 5], ["declarativePlugins", 47, 5], ["postgresql", 51, 5], ["mysql", 69, 5]], [["maintainers", 97, 8]], [["name", 95, 3], ["meta", 97, 3], ["containers", 99, 11], ["testScript", 101, 3]]]);
 const formals$1 = { args: { lib: false, pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/basic.nix", [["reporting_enabled", 10, 19]]);
-const pos$2 = nix.positions(here + "/basic.nix", [["http_addr", 13, 11], ["domain", 14, 11]]);
-const pos$3 = nix.positions(here + "/basic.nix", [["admin_user", 18, 11], ["admin_password", 19, 11], ["secret_key", 20, 11]]);
-const pos$4 = nix.positions(here + "/basic.nix", [["analytics", 10, 9], ["server", 12, 9], ["security", 17, 9]]);
-const pos$5 = nix.positions(here + "/basic.nix", [["enable", 8, 7], ["settings", 9, 7]]);
-const pos$6 = nix.positions(here + "/basic.nix", [["grafana", 7, 14]]);
-const pos$7 = nix.positions(here + "/basic.nix", [["services", 7, 5]]);
 const formals$2 = { args: { config: false }, ellipsis: true };
-const pos$8 = nix.positions(here + "/basic.nix", [["protocol", 33, 11], ["socket", 34, 11], ["socket_gid", 35, 11]]);
-const pos$9 = nix.positions(here + "/basic.nix", [["server", 32, 35]]);
-const pos$10 = nix.positions(here + "/basic.nix", [["settings", 32, 26]]);
-const pos$11 = nix.positions(here + "/basic.nix", [["proxyPass", 43, 42]]);
-const pos$12 = nix.positions(here + "/basic.nix", [["/", 43, 38]]);
-const pos$13 = nix.positions(here + "/basic.nix", [["locations", 43, 28]]);
-const pos$14 = nix.positions(here + "/basic.nix", [["_", 43, 24]]);
-const pos$15 = nix.positions(here + "/basic.nix", [["enable", 41, 11], ["recommendedProxySettings", 42, 11], ["virtualHosts", 43, 11]]);
-const pos$16 = nix.positions(here + "/basic.nix", [["grafana", 32, 18], ["nginx", 40, 18]]);
-const pos$17 = nix.positions(here + "/basic.nix", [["extraGroups", 38, 29]]);
-const pos$18 = nix.positions(here + "/basic.nix", [["grafana", 38, 21]]);
-const pos$19 = nix.positions(here + "/basic.nix", [["users", 38, 15]]);
-const pos$20 = nix.positions(here + "/basic.nix", [["services", 32, 9], ["users", 38, 9]]);
-const pos$21 = nix.positions(here + "/basic.nix", [["declarativePlugins", 48, 24]]);
-const pos$22 = nix.positions(here + "/basic.nix", [["grafana", 48, 16]]);
-const pos$23 = nix.positions(here + "/basic.nix", [["services", 48, 7]]);
-const pos$24 = nix.positions(here + "/basic.nix", [["host", 53, 9], ["user", 54, 9]]);
-const pos$25 = nix.positions(here + "/basic.nix", [["database", 52, 33]]);
-const pos$26 = nix.positions(here + "/basic.nix", [["settings", 52, 24]]);
-const pos$27 = nix.positions(here + "/basic.nix", [["name", 61, 13], ["ensureDBOwnership", 62, 13]]);
-const pos$28 = nix.positions(here + "/basic.nix", [["enable", 57, 9], ["ensureDatabases", 58, 9], ["ensureUsers", 59, 9]]);
-const pos$29 = nix.positions(here + "/basic.nix", [["grafana", 52, 16], ["postgresql", 56, 16]]);
-const pos$30 = nix.positions(here + "/basic.nix", [["after", 66, 32]]);
-const pos$31 = nix.positions(here + "/basic.nix", [["grafana", 66, 24]]);
-const pos$32 = nix.positions(here + "/basic.nix", [["services", 66, 15]]);
-const pos$33 = nix.positions(here + "/basic.nix", [["services", 52, 7], ["systemd", 66, 7]]);
-const pos$34 = nix.positions(here + "/basic.nix", [["user", 70, 42]]);
-const pos$35 = nix.positions(here + "/basic.nix", [["database", 70, 33]]);
-const pos$36 = nix.positions(here + "/basic.nix", [["settings", 70, 24]]);
-const pos$37 = nix.positions(here + "/basic.nix", [["grafana.*", 77, 31]]);
-const pos$38 = nix.positions(here + "/basic.nix", [["name", 76, 13], ["ensurePermissions", 77, 13]]);
-const pos$39 = nix.positions(here + "/basic.nix", [["enable", 72, 9], ["ensureDatabases", 73, 9], ["ensureUsers", 74, 9], ["package", 80, 9]]);
-const pos$40 = nix.positions(here + "/basic.nix", [["grafana", 70, 16], ["mysql", 71, 16]]);
-const pos$41 = nix.positions(here + "/basic.nix", [["after", 82, 32]]);
-const pos$42 = nix.positions(here + "/basic.nix", [["grafana", 82, 24]]);
-const pos$43 = nix.positions(here + "/basic.nix", [["services", 82, 15]]);
-const pos$44 = nix.positions(here + "/basic.nix", [["services", 70, 7], ["systemd", 82, 7]]);
-const pos$45 = nix.positions(here + "/basic.nix", [["sqlite", 27, 5], ["socket", 29, 5], ["declarativePlugins", 47, 5], ["postgresql", 51, 5], ["mysql", 69, 5]]);
-const pos$46 = nix.positions(here + "/basic.nix", [["maintainers", 97, 8]]);
-const pos$47 = nix.positions(here + "/basic.nix", [["name", 95, 3], ["meta", 97, 3], ["containers", 99, 11], ["testScript", 101, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -58,18 +12,18 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const mkMerge = nix.thunk(() => nix.attr(lib, "mkMerge"));
   const baseGrafanaConf = nix.thunk(() => ({
-    [nix.POS]: pos$7,
+    [nix.POS]: $pos[6],
     services: nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       grafana: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         enable: true,
         settings: nix.thunk(() => ({
-          [nix.POS]: pos$4,
-          analytics: nix.thunk(() => ({ [nix.POS]: pos$1, reporting_enabled: false })),
-          server: nix.thunk(() => ({ [nix.POS]: pos$2, http_addr: "::1", domain: "localhost" })),
+          [nix.POS]: $pos[3],
+          analytics: nix.thunk(() => ({ [nix.POS]: $pos[0], reporting_enabled: false })),
+          server: nix.thunk(() => ({ [nix.POS]: $pos[1], http_addr: "::1", domain: "localhost" })),
           security: nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             admin_user: "testadmin",
             admin_password: "snakeoilpwd",
             secret_key: "11111111111111111111",
@@ -79,21 +33,21 @@ export default nix.lambda((args) => (() => {
     })),
   }));
   const extraNodeConfs = nix.thunk(() => ({
-    [nix.POS]: pos$45,
+    [nix.POS]: $pos[44],
     sqlite: nix.thunk(() => ({})),
     socket: nix.lambda((args_1) => (() => {
       const $_1 = nix.formals(args_1, formals$2);
       const config = nix.arg($_1, "config");
       return {
-        [nix.POS]: pos$20,
+        [nix.POS]: $pos[19],
         services: nix.thunk(() => ({
-          [nix.POS]: pos$16,
+          [nix.POS]: $pos[15],
           grafana: nix.thunk(() => ({
-            [nix.POS]: pos$10,
+            [nix.POS]: $pos[9],
             settings: nix.thunk(() => ({
-              [nix.POS]: pos$9,
+              [nix.POS]: $pos[8],
               server: nix.thunk(() => ({
-                [nix.POS]: pos$8,
+                [nix.POS]: $pos[7],
                 protocol: "socket",
                 socket: "/run/grafana/sock",
                 socket_gid: nix.thunk(() => nix.sel(config, "users", "groups", "nginx", "gid")),
@@ -101,107 +55,107 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           nginx: nix.thunk(() => ({
-            [nix.POS]: pos$15,
+            [nix.POS]: $pos[14],
             enable: true,
             recommendedProxySettings: true,
             virtualHosts: nix.thunk(() => ({
-              [nix.POS]: pos$14,
+              [nix.POS]: $pos[13],
               _: nix.thunk(() => ({
-                [nix.POS]: pos$13,
+                [nix.POS]: $pos[12],
                 locations: nix.thunk(() => ({
-                  [nix.POS]: pos$12,
-                  "/": nix.thunk(() => ({ [nix.POS]: pos$11, proxyPass: "http://unix:/run/grafana/sock" })),
+                  [nix.POS]: $pos[11],
+                  "/": nix.thunk(() => ({ [nix.POS]: $pos[10], proxyPass: "http://unix:/run/grafana/sock" })),
                 })),
               })),
             })),
           })),
         })),
         users: nix.thunk(() => ({
-          [nix.POS]: pos$19,
+          [nix.POS]: $pos[18],
           users: nix.thunk(() => ({
-            [nix.POS]: pos$18,
-            grafana: nix.thunk(() => ({ [nix.POS]: pos$17, extraGroups: nix.thunk(() => ["nginx"]) })),
+            [nix.POS]: $pos[17],
+            grafana: nix.thunk(() => ({ [nix.POS]: $pos[16], extraGroups: nix.thunk(() => ["nginx"]) })),
           })),
         })),
       };
     })(), formals$2),
     declarativePlugins: nix.thunk(() => ({
-      [nix.POS]: pos$23,
+      [nix.POS]: $pos[22],
       services: nix.thunk(() => ({
-        [nix.POS]: pos$22,
+        [nix.POS]: $pos[21],
         grafana: nix.thunk(() => ({
-          [nix.POS]: pos$21,
+          [nix.POS]: $pos[20],
           declarativePlugins: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "grafanaPlugins", "grafana-clock-panel"))]),
         })),
       })),
     })),
     postgresql: nix.thunk(() => ({
-      [nix.POS]: pos$33,
+      [nix.POS]: $pos[32],
       services: nix.thunk(() => ({
-        [nix.POS]: pos$29,
+        [nix.POS]: $pos[28],
         grafana: nix.thunk(() => ({
-          [nix.POS]: pos$26,
+          [nix.POS]: $pos[25],
           settings: nix.thunk(() => ({
-            [nix.POS]: pos$25,
-            database: nix.thunk(() => ({ [nix.POS]: pos$24, host: "[::1]:5432", user: "grafana" })),
+            [nix.POS]: $pos[24],
+            database: nix.thunk(() => ({ [nix.POS]: $pos[23], host: "[::1]:5432", user: "grafana" })),
           })),
         })),
         postgresql: nix.thunk(() => ({
-          [nix.POS]: pos$28,
+          [nix.POS]: $pos[27],
           enable: true,
           ensureDatabases: nix.thunk(() => ["grafana"]),
           ensureUsers: nix.thunk(() => [
-            nix.thunk(() => ({ [nix.POS]: pos$27, name: "grafana", ensureDBOwnership: true })),
+            nix.thunk(() => ({ [nix.POS]: $pos[26], name: "grafana", ensureDBOwnership: true })),
           ]),
         })),
       })),
       systemd: nix.thunk(() => ({
-        [nix.POS]: pos$32,
+        [nix.POS]: $pos[31],
         services: nix.thunk(() => ({
-          [nix.POS]: pos$31,
-          grafana: nix.thunk(() => ({ [nix.POS]: pos$30, after: nix.thunk(() => ["postgresql.target"]) })),
+          [nix.POS]: $pos[30],
+          grafana: nix.thunk(() => ({ [nix.POS]: $pos[29], after: nix.thunk(() => ["postgresql.target"]) })),
         })),
       })),
     })),
     mysql: nix.thunk(() => ({
-      [nix.POS]: pos$44,
+      [nix.POS]: $pos[43],
       services: nix.thunk(() => ({
-        [nix.POS]: pos$40,
+        [nix.POS]: $pos[39],
         grafana: nix.thunk(() => ({
-          [nix.POS]: pos$36,
+          [nix.POS]: $pos[35],
           settings: nix.thunk(() => ({
-            [nix.POS]: pos$35,
-            database: nix.thunk(() => ({ [nix.POS]: pos$34, user: "grafana" })),
+            [nix.POS]: $pos[34],
+            database: nix.thunk(() => ({ [nix.POS]: $pos[33], user: "grafana" })),
           })),
         })),
         mysql: nix.thunk(() => ({
-          [nix.POS]: pos$39,
+          [nix.POS]: $pos[38],
           enable: true,
           ensureDatabases: nix.thunk(() => ["grafana"]),
           ensureUsers: nix.thunk(() => [
             nix.thunk(() => ({
-              [nix.POS]: pos$38,
+              [nix.POS]: $pos[37],
               name: "grafana",
-              ensurePermissions: nix.thunk(() => ({ [nix.POS]: pos$37, "grafana.*": "ALL PRIVILEGES" })),
+              ensurePermissions: nix.thunk(() => ({ [nix.POS]: $pos[36], "grafana.*": "ALL PRIVILEGES" })),
             })),
           ]),
           package: nix.thunk(() => nix.sel(pkgs, "mariadb")),
         })),
       })),
       systemd: nix.thunk(() => ({
-        [nix.POS]: pos$43,
+        [nix.POS]: $pos[42],
         services: nix.thunk(() => ({
-          [nix.POS]: pos$42,
-          grafana: nix.thunk(() => ({ [nix.POS]: pos$41, after: nix.thunk(() => ["mysql.service"]) })),
+          [nix.POS]: $pos[41],
+          grafana: nix.thunk(() => ({ [nix.POS]: $pos[40], after: nix.thunk(() => ["mysql.service"]) })),
         })),
       })),
     })),
   }));
   const containers = nix.thunk(() => nix.builtins.mapAttrs((_) => (val) => nix.app(mkMerge, nix.thunk(() => [val, baseGrafanaConf])), extraNodeConfs));
   return {
-    [nix.POS]: pos$47,
+    [nix.POS]: $pos[46],
     name: "grafana-basic",
-    meta: nix.thunk(() => ({ [nix.POS]: pos$46, maintainers: [] })),
+    meta: nix.thunk(() => ({ [nix.POS]: $pos[45], maintainers: [] })),
     containers: containers,
     testScript: "start_all()\n\nwith subtest(\"Declarative plugins installed\"):\n    declarativePlugins.wait_for_unit(\"grafana.service\")\n    declarativePlugins.wait_for_open_port(3000, addr=\"::1\")\n    declarativePlugins.succeed(\n        \"curl -sSfN -u testadmin:snakeoilpwd http://[::1]:3000/api/plugins | grep grafana-clock-panel\"\n    )\n    declarativePlugins.shutdown()\n\nwith subtest(\"Successful API query as admin user with sqlite db\"):\n    sqlite.wait_for_unit(\"grafana.service\")\n    sqlite.wait_for_open_port(3000)\n    print(sqlite.succeed(\n        \"curl -sSfN -u testadmin:snakeoilpwd http://[::1]:3000/api/org/users -i\"\n    ))\n    sqlite.succeed(\n        \"curl -sSfN -u testadmin:snakeoilpwd http://[::1]:3000/api/org/users | grep admin\\@localhost\"\n    )\n\nwith subtest(\"Successful API query as admin user with sqlite db listening on socket\"):\n    socket.wait_for_unit(\"grafana.service\")\n    socket.wait_for_open_port(80)\n    print(socket.succeed(\n        \"curl -sSfN -u testadmin:snakeoilpwd http://[::1]/api/org/users -i\"\n    ))\n    socket.succeed(\n        \"curl -sSfN -u testadmin:snakeoilpwd http://[::1]/api/org/users | grep admin\\@localhost\"\n    )\n\nwith subtest(\"Successful API query as admin user with postgresql db\"):\n    postgresql.wait_for_unit(\"grafana.service\")\n    postgresql.wait_for_unit(\"postgresql.target\")\n    postgresql.wait_for_open_port(3000)\n    postgresql.wait_for_open_port(5432)\n    postgresql.succeed(\n        \"curl -sSfN -u testadmin:snakeoilpwd http://[::1]:3000/api/org/users | grep admin\\@localhost\"\n    )\n\nwith subtest(\"Successful API query as admin user with mysql db\"):\n    mysql.wait_for_unit(\"grafana.service\")\n    mysql.wait_for_unit(\"mysql.service\")\n    mysql.wait_for_open_port(3000)\n    mysql.wait_for_open_port(3306)\n    mysql.succeed(\n        \"curl -sSfN -u testadmin:snakeoilpwd http://[::1]:3000/api/org/users | grep admin\\@localhost\"\n    )\n",
   };

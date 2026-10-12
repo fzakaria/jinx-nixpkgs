@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 14, 5], ["hash", 15, 5]], [["homepage", 37, 5], ["description", 38, 5], ["longDescription", 39, 5], ["license", 45, 5], ["mainProgram", 46, 5], ["maintainers", 47, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["dontConfigure", 18, 3], ["dontBuild", 19, 3], ["nativeBuildInputs", 21, 3], ["buildInputs", 22, 3], ["installPhase", 24, 3], ["meta", 36, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, makeWrapper: false, fetchurl: false, jre: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 14, 5], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 37, 5], ["description", 38, 5], ["longDescription", 39, 5], ["license", 45, 5], ["mainProgram", 46, 5], ["maintainers", 47, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["dontConfigure", 18, 3], ["dontBuild", 19, 3], ["nativeBuildInputs", 21, 3], ["buildInputs", 22, 3], ["installPhase", 24, 3], ["meta", 36, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const jre = nix.arg($, "jre");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "allure",
       version: "2.46.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/allure-framework/allure2/releases/download/${nix.sel(finalAttrs, "version")}/allure-${nix.sel(finalAttrs, "version")}.tgz`),
           hash: "sha256-N0KBZPMQyNE3z90sOiXQSbIzJh3asT4b1N/XYntcv40=",
         })))),
@@ -38,7 +36,7 @@ makeWrapper $out/share/${nix.sel(finalAttrs, "meta", "mainProgram")}-${nix.sel(f
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://allurereport.org/",
         description: "Flexible, lightweight multi-language test reporting tool",
         longDescription: "Allure Report is a flexible, lightweight multi-language test reporting\ntool providing clear graphical reports and allowing everyone involved\nin the development process to extract the maximum of information from\nthe everyday testing process.\n",

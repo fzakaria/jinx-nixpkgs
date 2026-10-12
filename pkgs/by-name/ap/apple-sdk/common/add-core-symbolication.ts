@@ -2,11 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/add-core-symbolication.nix", [[["repo", 13, 7], ["owner", 14, 7], ["rev", 15, 7], ["hash", 16, 7]], [["description", 34, 7], ["homepage", 35, 7], ["license", 36, 7], ["teams", 37, 7], ["platforms", 38, 7]], [["pname", 9, 5], ["version", 10, 5], ["src", 12, 5], ["patches", 19, 5], ["dontBuild", 26, 5], ["installPhase", 28, 5], ["meta", 33, 5]], [["buildPhase", 43, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, stdenvNoCC: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/add-core-symbolication.nix", [["repo", 13, 7], ["owner", 14, 7], ["rev", 15, 7], ["hash", 16, 7]]);
-const pos$2 = nix.positions(here + "/add-core-symbolication.nix", [["description", 34, 7], ["homepage", 35, 7], ["license", 36, 7], ["teams", 37, 7], ["platforms", 38, 7]]);
-const pos$3 = nix.positions(here + "/add-core-symbolication.nix", [["pname", 9, 5], ["version", 10, 5], ["src", 12, 5], ["patches", 19, 5], ["dontBuild", 26, 5], ["installPhase", 28, 5], ["meta", 33, 5]]);
-const pos$4 = nix.positions(here + "/add-core-symbolication.nix", [["buildPhase", 43, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +11,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   const CoreSymbolication = nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "CoreSymbolication",
       version: "0-unstable-2018-06-17",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           repo: "CoreSymbolication",
           owner: "matthewbauer",
           rev: "24c87c23664b3ee05dc7a5a87d647ae476a680e4",
@@ -31,7 +28,7 @@ export default nix.lambda((args) => (() => {
       dontBuild: true,
       installPhase: "mkdir -p \"$out/include\"\ncp *.h \"$out/include\"\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Reverse engineered headers for Apple's CoreSymbolication framework",
         homepage: "https://github.com/matthewbauer/CoreSymbolication",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -40,7 +37,7 @@ export default nix.lambda((args) => (() => {
       })),
     })));
   return (self) => (super$) => ({
-    [nix.POS]: pos$4,
+    [nix.POS]: $pos[3],
     buildPhase: nix.thunk(() => nix.add(nix.selOr(super$, () => "", "buildPhase"), nix.str`mkdir -p System/Library/PrivateFrameworks/CoreSymbolication.framework/Versions/A/Headers
 ln -s Versions/Current/Headers System/Library/PrivateFrameworks/CoreSymbolication.framework/Headers
 cp '${CoreSymbolication}/include/'*.h System/Library/PrivateFrameworks/CoreSymbolication.framework/Versions/A/Headers

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]], [["updateScript", 72, 5]], [["description", 76, 5], ["longDescription", 77, 5], ["homepage", 83, 5], ["changelog", 84, 5], ["license", 85, 5], ["teams", 86, 5], ["mainProgram", 87, 5], ["platforms", 88, 5]], [["pname", 21, 3], ["version", 22, 3], ["pyproject", 23, 3], ["src", 25, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 45, 3], ["dependencies", 50, 3], ["dontWrapGApps", 57, 3], ["makeWrapperArgs", 58, 3], ["postFixup", 60, 3], ["postInstallCheck", 67, 3], ["passthru", 71, 3], ["meta", 75, 3]]]);
 const formals$1 = { args: { lib: false, appstream: false, "blueprint-compiler": false, "desktop-file-utils": false, fetchFromGitHub: false, glib: false, "glib-networking": false, "gobject-introspection": false, gtk4: false, libadwaita: false, meson: false, ninja: false, "nix-update-script": false, "pkg-config": false, python3Packages: false, wrapGAppsHook4: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 72, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 76, 5], ["longDescription", 77, 5], ["homepage", 83, 5], ["changelog", 84, 5], ["license", 85, 5], ["teams", 86, 5], ["mainProgram", 87, 5], ["platforms", 88, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 3], ["pyproject", 23, 3], ["src", 25, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 45, 3], ["dependencies", 50, 3], ["dontWrapGApps", 57, 3], ["makeWrapperArgs", 58, 3], ["postFixup", 60, 3], ["postInstallCheck", 67, 3], ["passthru", 71, 3], ["meta", 75, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,12 +24,12 @@ export default nix.lambda((args) => (() => {
   const python3Packages = nix.arg($, "python3Packages");
   const wrapGAppsHook4 = nix.arg($, "wrapGAppsHook4");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "cartridges",
       version: "2.12.1",
       pyproject: false,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "kra-mo",
           repo: "cartridges",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -65,11 +62,11 @@ export default nix.lambda((args) => (() => {
       postFixup: "wrapPythonProgramsIn $out/libexec \"$out ${pythonPath[*]}\"\n",
       postInstallCheck: "mesonCheckPhase\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "GTK4 + Libadwaita game launcher",
         longDescription: "A simple game launcher for all of your games.\nIt has support for importing games from Steam, Lutris, Heroic\nand more with no login necessary.\nYou can sort and hide games or download cover art from SteamGridDB.\n",
         homepage: "https://apps.gnome.org/Cartridges/",

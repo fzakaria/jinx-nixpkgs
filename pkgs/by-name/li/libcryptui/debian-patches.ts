@@ -2,37 +2,33 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
-const pos$1 = nix.positions(here + "/debian-patches.nix", [["url", 7, 5], ["sha256", 8, 5]]);
-const pos$2 = nix.positions(here + "/debian-patches.nix", [["url", 11, 5], ["sha256", 12, 5]]);
-const pos$3 = nix.positions(here + "/debian-patches.nix", [["url", 15, 5], ["sha256", 16, 5]]);
-const pos$4 = nix.positions(here + "/debian-patches.nix", [["url", 19, 5], ["sha256", 20, 5]]);
-const pos$5 = nix.positions(here + "/debian-patches.nix", [["url", 23, 5], ["sha256", 24, 5]]);
+const $pos = nix.positions(here + "/debian-patches.nix", [[["url", 7, 5], ["sha256", 8, 5]], [["url", 11, 5], ["sha256", 12, 5]], [["url", 15, 5], ["sha256", 16, 5]], [["url", 19, 5], ["sha256", 20, 5]], [["url", 23, 5], ["sha256", 24, 5]]]);
 
 export default nix.thunk(() => (() => {
   const prefix = "https://sources.debian.org/data/main/libc/libcryptui/3.12.2-8/debian/patches";
   return [
     nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: nix.thunk(() => nix.str`${prefix}/build-use-pkg-config-to-detect-gpgme.patch`),
       sha256: "1kvp30qrnnhnjma8vgi3acvjn74fzig1mdmkxn6xbdz2vj12wwns",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       url: nix.thunk(() => nix.str`${prefix}/daemon-fix-conflicting-return-types.patch`),
       sha256: "1iqr58v1rmykq2z48sniixfvq2v0qaifdfihkq6is2a711fkigxp",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       url: nix.thunk(() => nix.str`${prefix}/daemon-port-to-gcr-3.patch`),
       sha256: "1j1nbh03m4cqymhqiamndn3gmi7bdzv0srr90nhlgjhszmyg150g",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       url: nix.thunk(() => nix.str`${prefix}/git_allow-gpg2-2.1.patch`),
       sha256: "1g93psg0cki4wnyymc59wchzhas3qqja7y46rbzdksp5wmfl51ap",
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       url: nix.thunk(() => nix.str`${prefix}/libcryptui-fix-logic-flaw-in-the-prompt-recipients-d.patch`),
       sha256: "1qnd6j2zk8gssj2fgrgikc05ccdv7sqabprykzxix7v8827sa56j",
     })),

@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]], [["OPENSSL_NO_VENDOR", 82, 5], ["OPENSSL_DIR", 83, 5], ["OPENSSL_LIB_DIR", 84, 5], ["ZSTD_SYS_USE_PKG_CONFIG", 85, 5], ["ROCKSDB_INCLUDE_DIR", 86, 5], ["ROCKSDB_LIB_DIR", 87, 5]], [["JEMALLOC_SYS_WITH_LG_PAGE", 93, 9]], [["stalwart", 201, 11]], [["rocksdb", 197, 13], ["webadmin", 198, 5], ["spam-filter", 199, 5], ["updateScript", 200, 5], ["tests", 201, 5]], [["description", 205, 5], ["longDescription", 206, 5], ["homepage", 209, 5], ["changelog", 210, 5], ["license", 211, 5], ["mainProgram", 218, 5], ["maintainers", 219, 5]], [["pname", 23, 3], ["version", 24, 3], ["src", 27, 3], ["__structuredAttrs", 34, 3], ["cargoHash", 35, 3], ["depsBuildBuild", 37, 3], ["nativeBuildInputs", 42, 3], ["buildInputs", 47, 3], ["nativeCheckInputs", 55, 3], ["buildNoDefaultFeatures", 60, 3], ["buildFeatures", 61, 3], ["cargoBuildFlags", 74, 3], ["cargoTestFlags", 78, 3], ["env", 80, 3], ["postInstall", 96, 3], ["checkFlags", 105, 3], ["doCheck", 191, 3], ["__darwinAllowLocalNetworking", 194, 3], ["passthru", 196, 3], ["meta", 204, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchFromGitHub: false, "pkg-config": false, protobuf: false, bzip2: false, openssl: false, sqlite: false, foundationdb: false, zstd: false, stdenv: false, "nix-update-script": false, nixosTests: false, rocksdb: false, callPackage: false, withFoundationdb: true, stalwartEnterprise: true, buildPackages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["OPENSSL_NO_VENDOR", 82, 5], ["OPENSSL_DIR", 83, 5], ["OPENSSL_LIB_DIR", 84, 5], ["ZSTD_SYS_USE_PKG_CONFIG", 85, 5], ["ROCKSDB_INCLUDE_DIR", 86, 5], ["ROCKSDB_LIB_DIR", 87, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["JEMALLOC_SYS_WITH_LG_PAGE", 93, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["stalwart", 201, 11]]);
-const pos$5 = nix.positions(here + "/package.nix", [["rocksdb", 197, 13], ["webadmin", 198, 5], ["spam-filter", 199, 5], ["updateScript", 200, 5], ["tests", 201, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 205, 5], ["longDescription", 206, 5], ["homepage", 209, 5], ["changelog", 210, 5], ["license", 211, 5], ["mainProgram", 218, 5], ["maintainers", 219, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 23, 3], ["version", 24, 3], ["src", 27, 3], ["__structuredAttrs", 34, 3], ["cargoHash", 35, 3], ["depsBuildBuild", 37, 3], ["nativeBuildInputs", 42, 3], ["buildInputs", 47, 3], ["nativeCheckInputs", 55, 3], ["buildNoDefaultFeatures", 60, 3], ["buildFeatures", 61, 3], ["cargoBuildFlags", 74, 3], ["cargoTestFlags", 78, 3], ["env", 80, 3], ["postInstall", 96, 3], ["checkFlags", 105, 3], ["doCheck", 191, 3], ["__darwinAllowLocalNetworking", 194, 3], ["passthru", 196, 3], ["meta", 204, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const stalwartEnterprise = nix.argOr($, "stalwartEnterprise", () => false);
   const buildPackages = nix.arg($, "buildPackages");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: nix.thunk(() => nix.add("stalwart", nix.app(nix.sel(lib, "optionalString"), stalwartEnterprise, "-enterprise"))),
       version: "0.15.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "stalwartlabs",
           repo: "stalwart",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -53,14 +47,14 @@ export default nix.lambda((args) => (() => {
       cargoBuildFlags: nix.thunk(() => ["-p", "stalwart"]),
       cargoTestFlags: nix.thunk(() => nix.sel(finalAttrs, "cargoBuildFlags")),
       env: nix.thunk(() => nix.update({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         OPENSSL_NO_VENDOR: true,
         OPENSSL_DIR: nix.thunk(() => nix.app(nix.sel(lib, "getDev"), openssl)),
         OPENSSL_LIB_DIR: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getLib"), openssl)}/lib`),
         ZSTD_SYS_USE_PKG_CONFIG: true,
         ROCKSDB_INCLUDE_DIR: nix.thunk(() => nix.str`${rocksdb}/include`),
         ROCKSDB_LIB_DIR: nix.thunk(() => nix.str`${rocksdb}/lib`),
-      }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) && nix.asBool((nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")) || nix.asBool(nix.sel(stdenv, "hostPlatform", "isArmv7")))))), nix.thunk(() => ({ [nix.POS]: pos$3, JEMALLOC_SYS_WITH_LG_PAGE: 16n }))))),
+      }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) && nix.asBool((nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")) || nix.asBool(nix.sel(stdenv, "hostPlatform", "isArmv7")))))), nix.thunk(() => ({ [nix.POS]: $pos[2], JEMALLOC_SYS_WITH_LG_PAGE: 16n }))))),
       postInstall: "mkdir -p $out/etc/stalwart\n\nmkdir -p $out/lib/systemd/system\n\nsubstitute resources/systemd/stalwart-mail.service $out/lib/systemd/system/stalwart.service \\\n  --replace-fail \"__PATH__\" \"$out\"\n",
       checkFlags: nix.thunk(() => nix.app(nix.sel(lib, "forEach"), nix.thunk(() => [
           "directory::imap::imap_directory",
@@ -102,15 +96,18 @@ export default nix.lambda((args) => (() => {
       doCheck: nix.thunk(() => !nix.asBool((nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64"))))),
       __darwinAllowLocalNetworking: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         rocksdb: rocksdb,
         webadmin: nix.thunk(() => nix.app(nix.sel(buildPackages, "callPackage"), nix.path(here, "./webadmin.nix"), nix.thunk(() => ({})))),
         "spam-filter": nix.thunk(() => nix.app(callPackage, nix.path(here, "./spam-filter.nix"), nix.thunk(() => ({})))),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
-        tests: nix.thunk(() => ({ [nix.POS]: pos$4, stalwart: nix.thunk(() => nix.sel(nixosTests, "stalwart")) })),
+        tests: nix.thunk(() => ({
+          [nix.POS]: $pos[3],
+          stalwart: nix.thunk(() => nix.sel(nixosTests, "stalwart")),
+        })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Secure, modern, all-in-one mail and collaboration server",
         longDescription: "Secure, scalable and fluent in every protocol (IMAP, JMAP, SMTP, CalDAV, CardDAV, WebDAV).\n",
         homepage: "https://github.com/stalwartlabs/stalwart",

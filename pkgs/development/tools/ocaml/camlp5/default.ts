@@ -2,11 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["8.05.02", 39, 11], ["8.03.2", 40, 11], ["7.14", 41, 11]], [["owner", 30, 7], ["repo", 31, 7], ["tag", 32, 7], ["hash", 37, 7]], [["broken", 87, 7], ["description", 88, 7], ["longDescription", 89, 7], ["homepage", 93, 7], ["license", 94, 7], ["platforms", 95, 7], ["maintainers", 96, 7]], [["version", 25, 5], ["pname", 27, 5], ["src", 29, 5], ["nativeBuildInputs", 45, 5], ["buildInputs", 54, 5], ["propagatedBuildInputs", 60, 5], ["strictDeps", 66, 5], ["prefixKey", 68, 5], ["preConfigure", 70, 5], ["buildFlags", 75, 5], ["postInstall", 77, 5], ["dontStrip", 84, 5], ["meta", 86, 5]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, ocaml: false, findlib: false, perl: false, makeWrapper: false, rresult: false, bos: false, fmt: false, pcre2: false, re: false, "camlp-streams": false, legacy: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["8.05.02", 39, 11], ["8.03.2", 40, 11], ["7.14", 41, 11]]);
-const pos$2 = nix.positions(here + "/default.nix", [["owner", 30, 7], ["repo", 31, 7], ["tag", 32, 7], ["hash", 37, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["broken", 87, 7], ["description", 88, 7], ["longDescription", 89, 7], ["homepage", 93, 7], ["license", 94, 7], ["platforms", 95, 7], ["maintainers", 96, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["version", 25, 5], ["pname", 27, 5], ["src", 29, 5], ["nativeBuildInputs", 45, 5], ["buildInputs", 54, 5], ["propagatedBuildInputs", 60, 5], ["strictDeps", 66, 5], ["prefixKey", 68, 5], ["preConfigure", 70, 5], ["buildFlags", 75, 5], ["postInstall", 77, 5], ["dontStrip", 84, 5], ["meta", 86, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,16 +24,16 @@ export default nix.lambda((args) => (() => {
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => (() => {
       const recent = nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(finalAttrs, "version")))), "8"));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         version: nix.thunk(() => (nix.asBool((nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(ocaml, "version")), "4.12")) && nix.asBool(!nix.asBool(legacy)))) ? "8.05.02" : "7.14")),
         pname: nix.thunk(() => nix.str`ocaml${nix.sel(ocaml, "version")}-camlp5`),
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             owner: "camlp5",
             repo: "camlp5",
             tag: nix.thunk(() => (nix.asBool(recent) ? nix.sel(finalAttrs, "version") : nix.str`rel${nix.builtins.replaceStrings(nix.thunk(() => ["."]), nix.thunk(() => [""]), nix.thunk(() => nix.sel(finalAttrs, "version")))}`)),
             hash: nix.thunk(() => nix.sel({
-              [nix.POS]: pos$1,
+              [nix.POS]: $pos[0],
               "8.05.02": "sha256-OnTc4Vpr2I3sFwm5JYxud9z1hbzDvQw3LNsO/EHa3k8=",
               "8.03.2": "sha256-nz+VfGR/6FdBvMzPPpVpviAXXBWNqM3Ora96Yzx964o=",
               "7.14": "sha256-/ORtS0uc/GN+g3y6N5ftjL4OBSqV6iswLRbfpeNCprU=",
@@ -54,7 +51,7 @@ patchShebangs ./config/find_stuffversion.pl etc/META.pl tools/ ocaml_src/tools/
         postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), recent, "for prog in camlp5 camlp5o camlp5r camlp5sch mkcamlp5 ocpp5\ndo\n  wrapProgram $out/bin/$prog \\\n    --prefix CAML_LD_LIBRARY_PATH : \"$CAML_LD_LIBRARY_PATH\"\ndone\n")),
         dontStrip: true,
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           broken: nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(ocaml, "version")), "5.4")) && nix.asBool(!nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(finalAttrs, "version")), "8.04.00"))))),
           description: "Preprocessor-pretty-printer for OCaml",
           longDescription: "Camlp5 is a preprocessor and pretty-printer for OCaml programs.\nIt also provides parsing and printing tools.\n",

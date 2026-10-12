@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 15, 5], ["sha256", 16, 5]], [["JAVA_HOME", 20, 5], ["JAVA", 21, 5], ["PREFIX", 22, 5], ["JAVAUNIXLIBDIR", 23, 5], ["JAVAUNIXJARDIR", 24, 5]], [["platforms", 37, 5], ["license", 38, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["env", 19, 3], ["buildInputs", 26, 3], ["preBuild", 31, 3], ["meta", 36, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, gettext: false, jdk8: false, libmatthew_java: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 15, 5], ["sha256", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["JAVA_HOME", 20, 5], ["JAVA", 21, 5], ["PREFIX", 22, 5], ["JAVAUNIXLIBDIR", 23, 5], ["JAVAUNIXJARDIR", 24, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["platforms", 37, 5], ["license", 38, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["env", 19, 3], ["buildInputs", 26, 3], ["preBuild", 31, 3], ["meta", 36, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,16 +14,16 @@ export default nix.lambda((args) => (() => {
   const jdk8 = nix.arg($, "jdk8");
   const libmatthew_java = nix.arg($, "libmatthew_java");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "dbus-java",
       version: "2.7",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://dbus.freedesktop.org/releases/dbus-java/dbus-java-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "0cyaxd8x6sxmi6pklkkx45j311a6w51fxl4jc5j3inc4cailwh5y",
         })))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         JAVA_HOME: jdk8,
         JAVA: nix.thunk(() => nix.str`${jdk8}/bin/java`),
         PREFIX: "${out}",
@@ -36,7 +33,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [gettext, jdk8]),
       preBuild: "sed -i -e \"s|all: bin doc man|all: bin|\" \\\n       -e \"s|install: install-bin install-man install-doc|install: install-bin|\" Makefile\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
         license: nix.thunk(() => nix.sel(lib, "licenses", "afl21")),
       })),

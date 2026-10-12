@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/dev-shell.nix", [[["inputsFrom", 12, 3], ["buildInputs", 13, 3], ["shellHook", 24, 3]]]);
 const formals$1 = { args: { mkShell: false, callPackage: false, python3Packages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/dev-shell.nix", [["inputsFrom", 12, 3], ["buildInputs", 13, 3], ["shellHook", 24, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const python3Packages = nix.arg($, "python3Packages");
   const helpers = nix.thunk(() => nix.app(callPackage, nix.thunk(() => nix.builtins.import(nix.path(here, "./helpers.nix"))), nix.thunk(() => ({}))));
   return nix.app(mkShell, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       inputsFrom: nix.thunk(() => [
         nix.thunk(() => nix.app(callPackage, nix.thunk(() => nix.builtins.import(nix.path(here, "./package.nix"))), nix.thunk(() => ({})))),
       ]),

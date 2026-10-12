@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["aarch64-darwin", 26, 7], ["aarch64-linux", 27, 7], ["x86_64-linux", 28, 7]], [["url", 77, 9], ["hash", 78, 9]], [["url", 81, 9], ["hash", 82, 9]], [["url", 85, 9], ["hash", 86, 9]], [["aarch64-darwin", 76, 7], ["aarch64-linux", 80, 7], ["x86_64-linux", 84, 7]], [["sources", 75, 5], ["updateScript", 89, 5]], [["description", 110, 5], ["homepage", 111, 5], ["changelog", 112, 5], ["license", 113, 5], ["mainProgram", 114, 5], ["maintainers", 115, 5], ["platforms", 116, 5], ["sourceProvenance", 117, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["sourceRoot", 24, 3], ["strictDeps", 32, 3], ["__structuredAttrs", 33, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 46, 3], ["dontConfigure", 50, 3], ["dontBuild", 51, 3], ["installPhase", 53, 3], ["postFixup", 68, 3], ["passthru", 74, 3], ["meta", 109, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, autoPatchelfHook: false, makeWrapper: false, writeShellScript: false, curl: false, "common-updater-scripts": false, gnused: false, cctools: false, darwin: false, rcodesign: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["aarch64-darwin", 26, 7], ["aarch64-linux", 27, 7], ["x86_64-linux", 28, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 77, 9], ["hash", 78, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 81, 9], ["hash", 82, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["url", 85, 9], ["hash", 86, 9]]);
-const pos$5 = nix.positions(here + "/package.nix", [["aarch64-darwin", 76, 7], ["aarch64-linux", 80, 7], ["x86_64-linux", 84, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["sources", 75, 5], ["updateScript", 89, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["description", 110, 5], ["homepage", 111, 5], ["changelog", 112, 5], ["license", 113, 5], ["mainProgram", 114, 5], ["maintainers", 115, 5], ["platforms", 116, 5], ["sourceProvenance", 117, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["sourceRoot", 24, 3], ["strictDeps", 32, 3], ["__structuredAttrs", 33, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 46, 3], ["dontConfigure", 50, 3], ["dontBuild", 51, 3], ["installPhase", 53, 3], ["postFixup", 68, 3], ["passthru", 74, 3], ["meta", 109, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const darwin = nix.arg($, "darwin");
   const rcodesign = nix.arg($, "rcodesign");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "codegraph",
       version: "1.6.2",
       src: nix.thunk(() => nix.selOr(finalAttrs, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenv, "hostPlatform", "system")}`)), "passthru", "sources", nix.key(nix.sel(stdenv, "hostPlatform", "system")))),
       sourceRoot: nix.thunk(() => nix.selOr({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         "aarch64-darwin": "codegraph-darwin-arm64",
         "aarch64-linux": "codegraph-linux-arm64",
         "x86_64-linux": "codegraph-linux-x64",
@@ -49,21 +42,21 @@ export default nix.lambda((args) => (() => {
 '${nix.app(nix.sel(lib, "getExe"), rcodesign)}' sign --code-signature-flags linker-signed $out/lib/codegraph/node
 `))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         sources: nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           "aarch64-darwin": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               url: nix.thunk(() => nix.str`https://github.com/colbymchenry/codegraph/releases/download/v${nix.sel(finalAttrs, "version")}/codegraph-darwin-arm64.tar.gz`),
               hash: "sha256-100b+0Bg22PsPCtyxOF/dsMZeK87rWrOQ3DRUBrAZi4=",
             })))),
           "aarch64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               url: nix.thunk(() => nix.str`https://github.com/colbymchenry/codegraph/releases/download/v${nix.sel(finalAttrs, "version")}/codegraph-linux-arm64.tar.gz`),
               hash: "sha256-yMa+KSviHQDeomutiyjUNHMc9hL7jMR13BD1swOLW2Q=",
             })))),
           "x86_64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               url: nix.thunk(() => nix.str`https://github.com/colbymchenry/codegraph/releases/download/v${nix.sel(finalAttrs, "version")}/codegraph-linux-x64.tar.gz`),
               hash: "sha256-7wr0FgkhKPsczHI3hgALft9KaXH+YErNCL+Wbk83uCg=",
             })))),
@@ -81,7 +74,7 @@ done
 `))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "Pre-indexed code knowledge graph for AI coding agents",
         homepage: "https://github.com/colbymchenry/codegraph",
         changelog: nix.thunk(() => nix.str`https://github.com/colbymchenry/codegraph/releases/tag/v${nix.sel(finalAttrs, "version")}`),

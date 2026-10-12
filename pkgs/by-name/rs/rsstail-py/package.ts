@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["pname", 12, 5], ["version", 13, 26], ["hash", 14, 5]], [["description", 22, 5], ["mainProgram", 23, 5], ["homepage", 24, 5], ["changelog", 25, 5], ["license", 26, 5], ["maintainers", 27, 5]], [["pname", 7, 3], ["version", 8, 3], ["pyproject", 9, 3], ["src", 11, 3], ["build-system", 17, 3], ["dependencies", 19, 3], ["meta", 21, 3]]]);
 const formals$1 = { args: { lib: false, python3: false, fetchPypi: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["pname", 12, 5], ["version", 13, 26], ["hash", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 22, 5], ["mainProgram", 23, 5], ["homepage", 24, 5], ["changelog", 25, 5], ["license", 26, 5], ["maintainers", 27, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 7, 3], ["version", 8, 3], ["pyproject", 9, 3], ["src", 11, 3], ["build-system", 17, 3], ["dependencies", 19, 3], ["meta", 21, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,12 +11,12 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const fetchPypi = nix.arg($, "fetchPypi");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "rsstail-py",
       version: "0.6.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "rsstail",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-nAqk8qomG02SVq2cbQAO0MidGbxCHCk2kPNB+7YgGOQ=",
@@ -32,7 +30,7 @@ export default nix.lambda((args) => (() => {
         return [nix.thunk(() => nix.lookup(w_1, "feedparser"))];
       })()),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Command-line syndication feed monitor",
         mainProgram: "rsstail",
         homepage: "https://github.com/gvalkov/rsstail.py",

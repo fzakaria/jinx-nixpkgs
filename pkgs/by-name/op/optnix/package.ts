@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]], [["CGO_ENABLED", 28, 5], ["VERSION", 29, 5]], [["updateScript", 56, 12]], [["homepage", 59, 5], ["description", 60, 5], ["changelog", 61, 5], ["license", 62, 5], ["maintainers", 63, 5], ["mainProgram", 64, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 13, 3], ["vendorHash", 20, 3], ["nativeBuildInputs", 22, 3], ["env", 27, 3], ["buildPhase", 32, 3], ["installPhase", 38, 3], ["postInstall", 49, 3], ["passthru", 56, 3], ["meta", 58, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromSourcehut: false, buildGoModule: false, installShellFiles: false, "nix-update-script": false, scdoc: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["CGO_ENABLED", 28, 5], ["VERSION", 29, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 56, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 59, 5], ["description", 60, 5], ["changelog", 61, 5], ["license", 62, 5], ["maintainers", 63, 5], ["mainProgram", 64, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 13, 3], ["vendorHash", 20, 3], ["nativeBuildInputs", 22, 3], ["env", 27, 3], ["buildPhase", 32, 3], ["installPhase", 38, 3], ["postInstall", 49, 3], ["passthru", 56, 3], ["meta", 58, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const scdoc = nix.arg($, "scdoc");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "optnix",
       version: "0.3.2",
       src: nix.thunk(() => nix.app(fetchFromSourcehut, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "~watersucks",
           repo: "optnix",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -32,7 +28,7 @@ export default nix.lambda((args) => (() => {
       vendorHash: "sha256-g/H91PiHWSRRQOkaobw2wAYX/07DFxWTCTlKzf7BT1Y=",
       nativeBuildInputs: nix.thunk(() => [installShellFiles, scdoc]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         CGO_ENABLED: 0n,
         VERSION: nix.thunk(() => nix.sel(finalAttrs, "version")),
       })),
@@ -40,11 +36,11 @@ export default nix.lambda((args) => (() => {
       installPhase: "runHook preInstall\n\ninstall -Dm755 ./optnix -t $out/bin\n\ninstall -Dm755 ./optnix.1 -t $out/share/man/man1\ninstall -Dm755 ./optnix.toml.5 -t $out/share/man/man5\n\nrunHook postInstall\n",
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "installShellCompletion --cmd optnix \\\n  --bash <($out/bin/optnix --completion bash) \\\n  --fish <($out/bin/optnix --completion fish) \\\n  --zsh <($out/bin/optnix --completion zsh)\n")),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://github.com/water-sucks/optnix",
         description: "Options searcher for Nix module systems",
         changelog: nix.thunk(() => nix.str`https://github.com/water-sucks/optnix/releases/tag/v${nix.sel(finalAttrs, "version")}`),

@@ -2,16 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 96, 5], ["hash", 97, 5]], [["cc_version", 104, 7]], [["python_interpreter", 111, 7], ["PYTHON_EXE", 112, 7]], [["session_conf", 118, 7]], [["fontDirectories", 259, 7]], [["GIO_EXTRA_MODULES", 250, 5], ["NIX_CFLAGS_COMPILE", 252, 5], ["PKG_CONFIG_GDK_PIXBUF_2_0_GDK_PIXBUF_MODULEDIR", 255, 5], ["FONTCONFIG_FILE", 258, 5]], [["apiVersion", 328, 5], ["appVersion", 334, 5], ["majorVersion", 335, 5], ["targetLibDir", 336, 5], ["targetDataDir", 337, 5], ["targetPluginDir", 338, 5], ["targetScriptDir", 339, 5], ["gtk", 342, 5]], [["description", 346, 5], ["homepage", 347, 5], ["donationPage", 348, 5], ["maintainers", 349, 5], ["license", 353, 5], ["platforms", 354, 5], ["broken", 357, 5], ["mainProgram", 358, 5]], [["pname", 85, 3], ["version", 86, 3], ["outputs", 88, 3], ["src", 95, 3], ["patches", 100, 3], ["nativeBuildInputs", 122, 3], ["buildInputs", 149, 3], ["propagatedBuildInputs", 221, 3], ["strictDeps", 229, 3], ["mesonFlags", 231, 3], ["doCheck", 246, 3], ["env", 248, 3], ["postPatch", 263, 3], ["preBuild", 273, 3], ["preCheck", 300, 3], ["preFixup", 308, 3], ["postFixup", 320, 3], ["passthru", 325, 3], ["meta", 345, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, replaceVars: false, meson: false, ninja: false, "pkg-config": false, babl: false, "bash-completion": false, cfitsio: false, gegl: false, gtk3: false, glib: false, "gdk-pixbuf": false, graphviz: false, isocodes: false, pango: false, cairo: false, libarchive: false, luajit: false, freetype: false, fontconfig: false, lcms: false, libpng: false, libiff: false, libilbm: false, libjpeg: false, libjxl: false, poppler: false, poppler_data: false, libtiff: false, libmng: false, librsvg: false, libwmf: false, zlib: false, xz: false, libzip: false, ghostscript: false, aalib: false, "shared-mime-info": false, python3: false, libexif: false, gettext: false, glibcLocales: false, wrapGAppsHook3: false, libxslt: false, "gobject-introspection": false, vala: false, "gi-docgen": false, perl: false, appstream: false, "desktop-file-utils": false, libxpm: false, libxmu: false, "glib-networking": false, "json-glib": false, libmypaint: false, llvmPackages: false, gexiv2_0_10: false, harfbuzz: false, makeFontsConf: false, "mypaint-brushes": false, libwebp: false, libheif: false, gjs: false, libgudev: false, openexr: false, "xvfb-run": false, dbus: false, "adwaita-icon-theme": false, "alsa-lib": false, desktopToDarwinBundle: false, qoi: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 96, 5], ["hash", 97, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["cc_version", 104, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["python_interpreter", 111, 7], ["PYTHON_EXE", 112, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["session_conf", 118, 7]]);
-const pos$5 = nix.positions(here + "/default.nix", [["fontDirectories", 259, 7]]);
-const pos$6 = nix.positions(here + "/default.nix", [["GIO_EXTRA_MODULES", 250, 5], ["NIX_CFLAGS_COMPILE", 252, 5], ["PKG_CONFIG_GDK_PIXBUF_2_0_GDK_PIXBUF_MODULEDIR", 255, 5], ["FONTCONFIG_FILE", 258, 5]]);
-const pos$7 = nix.positions(here + "/default.nix", [["apiVersion", 328, 5], ["appVersion", 334, 5], ["majorVersion", 335, 5], ["targetLibDir", 336, 5], ["targetDataDir", 337, 5], ["targetPluginDir", 338, 5], ["targetScriptDir", 339, 5], ["gtk", 342, 5]]);
-const pos$8 = nix.positions(here + "/default.nix", [["description", 346, 5], ["homepage", 347, 5], ["donationPage", 348, 5], ["maintainers", 349, 5], ["license", 353, 5], ["platforms", 354, 5], ["broken", 357, 5], ["mainProgram", 358, 5]]);
-const pos$9 = nix.positions(here + "/default.nix", [["pname", 85, 3], ["version", 86, 3], ["outputs", 88, 3], ["src", 95, 3], ["patches", 100, 3], ["nativeBuildInputs", 122, 3], ["buildInputs", 149, 3], ["propagatedBuildInputs", 221, 3], ["strictDeps", 229, 3], ["mesonFlags", 231, 3], ["doCheck", 246, 3], ["env", 248, 3], ["postPatch", 263, 3], ["preBuild", 273, 3], ["preCheck", 300, 3], ["preFixup", 308, 3], ["postFixup", 320, 3], ["passthru", 325, 3], ["meta", 345, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -93,27 +85,27 @@ export default nix.lambda((args) => (() => {
       return [nix.thunk(() => nix.lookup(w, "pygobject3"))];
     })()));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       pname: "gimp",
       version: "3.2.6",
       outputs: nix.thunk(() => ["out", "dev", "devdoc", "man"]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://download.gimp.org/gimp/v${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/gimp-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-QLFekK0MDGMbdto8Rn6phH+lwk83QTrFtJKASGCijNg=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./remove-cc-reference.patch"), nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             cc_version: nix.thunk(() => nix.sel(stdenv, "cc", "cc", "name")),
           })))),
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./hardcode-plugin-interpreters.patch"), nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             python_interpreter: nix.thunk(() => nix.sel(python, "interpreter")),
             PYTHON_EXE: null,
           })))),
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./tests-dbus-conf.patch"), nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             session_conf: nix.thunk(() => nix.str`${nix.sel(dbus, "out")}/share/dbus-1/session.conf`),
           })))),
       ]),
@@ -196,11 +188,11 @@ export default nix.lambda((args) => (() => {
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["-Dalsa=disabled", "-Djavascript=disabled"])))),
       doCheck: true,
       env: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         GIO_EXTRA_MODULES: nix.thunk(() => nix.str`${glib_networking}/lib/gio/modules`),
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "-DGDK_OSX_BIG_SUR=16")),
         PKG_CONFIG_GDK_PIXBUF_2_0_GDK_PIXBUF_MODULEDIR: nix.thunk(() => nix.str`${librsvg}/${nix.sel(gdk_pixbuf, "moduleDir")}`),
-        FONTCONFIG_FILE: nix.thunk(() => nix.app(makeFontsConf, nix.thunk(() => ({ [nix.POS]: pos$5, fontDirectories: [] })))),
+        FONTCONFIG_FILE: nix.thunk(() => nix.app(makeFontsConf, nix.thunk(() => ({ [nix.POS]: $pos[4], fontDirectories: [] })))),
       })),
       postPatch: "patchShebangs tools/gimp-mkenums\n\n# GIMP is executed at build time so we need to fix this.\n# TODO: Look into if we can fix the interp thing.\nchmod +x plug-ins/python/{colorxhtml,file-openraster,foggify,gradients-save-as-css,histogram-export,palette-export-as-kpl,palette-offset,palette-sort,palette-to-gradient,python-eval,spyro-plus}.py\npatchShebangs \\\n  plug-ins/python/{colorxhtml,file-openraster,foggify,gradients-save-as-css,histogram-export,palette-export-as-kpl,palette-offset,palette-sort,palette-to-gradient,python-eval,spyro-plus}.py\n",
       preBuild: nix.thunk(() => (() => {
@@ -232,7 +224,7 @@ export XDG_DATA_DIRS="${nix.app(nix.sel(glib, "getSchemaDataDirPath"), gtk3)}:${
 `),
       postFixup: "# Cannot be in postInstall, otherwise _multioutDocs hook in preFixup will move right back.\nmoveToOutput \"share/doc\" \"$devdoc\"\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         apiVersion: nix.thunk(() => nix.str`${nix.builtins.toString(nix.thunk(() => nix.add(nix.app(nix.sel(lib, "toInt"), nix.thunk(() => nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(finalAttrs, "version"))))), (nix.asBool(nix.eq(nix.app(nix.sel(lib, "versions", "minor"), nix.thunk(() => nix.sel(finalAttrs, "version"))), "99")) ? 1n : 0n))))}.0`),
         appVersion: nix.thunk(() => nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))),
         majorVersion: nix.thunk(() => nix.app(nix.sel(lib, "warn"), "gimp.majorVersion is deprecated in favour of gimp.apiVersion and gimp.appVersion", nix.thunk(() => nix.sel(finalAttrs, "passthru", "apiVersion")))),
@@ -243,7 +235,7 @@ export XDG_DATA_DIRS="${nix.app(nix.sel(glib, "getSchemaDataDirPath"), gtk3)}:${
         gtk: gtk3,
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         description: "GNU Image Manipulation Program",
         homepage: "https://www.gimp.org/",
         donationPage: "https://www.gimp.org/donating/",

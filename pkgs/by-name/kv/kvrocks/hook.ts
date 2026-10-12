@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/hook.nix", [[["cli", 12, 5], ["server", 13, 5]], [["name", 9, 3], ["substitutions", 11, 3]]]);
 const formals$1 = { args: { lib: false, makeSetupHook: false, kvrocks: false, valkey: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/hook.nix", [["cli", 12, 5], ["server", 13, 5]]);
-const pos$2 = nix.positions(here + "/hook.nix", [["name", 9, 3], ["substitutions", 11, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,10 +12,10 @@ export default nix.lambda((args) => (() => {
   const kvrocks = nix.arg($, "kvrocks");
   const valkey = nix.arg($, "valkey");
   return nix.app(makeSetupHook, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       name: "kvrocks-test-hook",
       substitutions: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         cli: nix.thunk(() => nix.app(nix.sel(lib, "getExe'"), valkey, "redis-cli")),
         server: nix.thunk(() => nix.app(nix.sel(lib, "getExe'"), kvrocks, "kvrocks")),
       })),

@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 54, 5], ["repo", 55, 5], ["tag", 56, 5], ["hash", 57, 5]], [["url", 66, 7], ["hash", 67, 7]], [["firewalld", 162, 26], ["firewall-firewalld", 162, 36]], [["tests", 161, 12]], [["description", 166, 5], ["homepage", 167, 5], ["downloadPage", 168, 5], ["license", 169, 5], ["maintainers", 170, 5], ["platforms", 171, 5]], [["pname", 46, 3], ["version", 47, 3], ["__structuredAttrs", 49, 3], ["strictDeps", 50, 3], ["enableParallelBuilding", 51, 3], ["src", 53, 3], ["patches", 60, 3], ["postPatch", 72, 3], ["nativeBuildInputs", 82, 3], ["buildInputs", 101, 3], ["preConfigure", 117, 3], ["ac_cv_path_MODPROBE", 121, 3], ["ac_cv_path_RMMOD", 122, 3], ["ac_cv_path_SYSCTL", 123, 3], ["configureFlags", 125, 3], ["postInstall", 135, 3], ["dontWrapGApps", 145, 3], ["dontWrapQtApps", 146, 3], ["preFixup", 148, 3], ["postFixup", 155, 3], ["passthru", 161, 3], ["meta", 165, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch2: false, autoconf: false, automake: false, docbook_xml_dtd_42: false, "docbook-xsl-nons": false, glib: false, "gobject-introspection": false, gtk3: false, intltool: false, ipset: false, iptables: false, kmod: false, libnotify: false, librsvg: false, libxml2: false, libxslt: false, networkmanager: false, "pkg-config": false, python3: false, qt6: false, sysctl: false, wrapGAppsNoGuiHook: false, withGui: true, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 54, 5], ["repo", 55, 5], ["tag", 56, 5], ["hash", 57, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 66, 7], ["hash", 67, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["firewalld", 162, 26], ["firewall-firewalld", 162, 36]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 161, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 166, 5], ["homepage", 167, 5], ["downloadPage", 168, 5], ["license", 169, 5], ["maintainers", 170, 5], ["platforms", 171, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 46, 3], ["version", 47, 3], ["__structuredAttrs", 49, 3], ["strictDeps", 50, 3], ["enableParallelBuilding", 51, 3], ["src", 53, 3], ["patches", 60, 3], ["postPatch", 72, 3], ["nativeBuildInputs", 82, 3], ["buildInputs", 101, 3], ["preConfigure", 117, 3], ["ac_cv_path_MODPROBE", 121, 3], ["ac_cv_path_RMMOD", 122, 3], ["ac_cv_path_SYSCTL", 123, 3], ["configureFlags", 125, 3], ["postInstall", 135, 3], ["dontWrapGApps", 145, 3], ["dontWrapQtApps", 146, 3], ["preFixup", 148, 3], ["postFixup", 155, 3], ["passthru", 161, 3], ["meta", 165, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -48,14 +43,14 @@ export default nix.lambda((args) => (() => {
       ], nix.app(nix.sel(lib, "optionals"), withGui, nix.thunk(() => [nix.thunk(() => nix.lookup(w, "pyqt6"))])));
     })()));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "firewalld",
       version: "2.5.2",
       __structuredAttrs: true,
       strictDeps: true,
       enableParallelBuilding: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "firewalld",
           repo: "firewalld",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -66,7 +61,7 @@ export default nix.lambda((args) => (() => {
         nix.path(here, "./respect-xml-catalog-files-var.patch"),
         nix.path(here, "./specify-localedir.patch"),
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://gitlab.archlinux.org/archlinux/packaging/packages/firewalld/-/raw/5f2f37e3018835d0183ca44bc4467b3a096edec7/fix_gettext_domain.patch",
             hash: "sha256-cZnat9fAVktgDn3rdKOLCbK27ddcKW7o2KuKAm8GV8Y=",
           })))),
@@ -110,15 +105,15 @@ patchShebangs --host $out/share/firewalld/*.py
 wrapPythonProgramsIn "$out/bin" "$out ${pythonPath}"
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           firewalld: nix.thunk(() => nix.attr(nixosTests, "firewalld")),
           "firewall-firewalld": nix.thunk(() => nix.attr(nixosTests, "firewall-firewalld")),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Firewall daemon with D-Bus interface",
         homepage: "https://firewalld.org",
         downloadPage: "https://github.com/firewalld/firewalld/releases",

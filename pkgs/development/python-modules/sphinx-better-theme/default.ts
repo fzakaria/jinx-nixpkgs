@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["sha256", 21, 5]], [["homepage", 29, 5], ["description", 30, 5], ["longDescription", 31, 5], ["license", 51, 5], ["maintainers", 52, 5]], [["pname", 9, 3], ["version", 10, 3], ["format", 11, 3], ["outputs", 12, 3], ["src", 17, 3], ["nativeBuildInputs", 24, 3], ["pythonImportsCheck", 26, 3], ["meta", 28, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, sphinxHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["sha256", 21, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 29, 5], ["description", 30, 5], ["longDescription", 31, 5], ["license", 51, 5], ["maintainers", 52, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 9, 3], ["version", 10, 3], ["format", 11, 3], ["outputs", 12, 3], ["src", 17, 3], ["nativeBuildInputs", 24, 3], ["pythonImportsCheck", 26, 3], ["meta", 28, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const format = "setuptools";
       const outputs = nix.thunk(() => ["out", "doc"]);
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "irskep",
           repo: "sphinx-better-theme",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -28,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [sphinxHook]);
       const pythonImportsCheck = nix.thunk(() => ["better"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/irskep/sphinx-better-theme",
         description: "Better Sphinx Theme",
         longDescription: "This is a modified version of the default Sphinx theme with the following\ngoals:\n\n1. Remove frivolous colors, especially hard-coded ones\n2. Improve readability by limiting width and using more whitespace\n3. Encourage visual customization through CSS, not themeconf\n4. Use semantic markup\n\nv0.1 meets goals one and two. Goal three is partially complete; it's simple to\nadd your own CSS file without creating a whole new theme.\nyou'd like something changed.\n\nTo use the theme, set ``html_theme_path`` to contain\n``better.better_theme_path``, and set ``html_theme`` to ``'better'``::\n\n    from better import better_theme_path\n    html_theme_path = [better_theme_path]\n    html_theme = 'better'\n",
@@ -39,7 +37,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         format,

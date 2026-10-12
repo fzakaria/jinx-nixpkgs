@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 36, 5], ["repo", 37, 5], ["tag", 38, 5], ["hash", 39, 5]], [["LIBRARY_PATH", 45, 7]], [["backend", 137, 56]], [["simple", 137, 7]], [["tests", 136, 5]], [["homepage", 142, 5], ["description", 143, 5], ["license", 144, 5], ["mainProgram", 145, 5], ["maintainers", 146, 5], ["platforms", 151, 5]], [["pname", 32, 3], ["version", 33, 3], ["src", 35, 3], ["strictDeps", 42, 3], ["__structuredAttrs", 43, 3], ["env", 45, 3], ["nativeBuildInputs", 47, 3], ["buildInputs", 57, 3], ["preConfigure", 66, 3], ["configureFlags", 74, 3], ["buildPhase", 89, 3], ["postFixup", 116, 3], ["hardeningDisable", 122, 3], ["enableParallelBuilding", 129, 3], ["passthru", 131, 3], ["meta", 141, 3]]]);
 const formals$1 = { args: { stdenv: false, fetchFromGitHub: false, callPackage: false, gnat: false, zlib: false, llvm: false, lib: false, gcc13: false, texinfo: false, gmp: false, mpfr: false, libmpc: false, gnutar: false, makeWrapper: false, backend: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 36, 5], ["repo", 37, 5], ["tag", 38, 5], ["hash", 39, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["LIBRARY_PATH", 45, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["backend", 137, 56]]);
-const pos$4 = nix.positions(here + "/package.nix", [["simple", 137, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["tests", 136, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["homepage", 142, 5], ["description", 143, 5], ["license", 144, 5], ["mainProgram", 145, 5], ["maintainers", 146, 5], ["platforms", 151, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 32, 3], ["version", 33, 3], ["src", 35, 3], ["strictDeps", 42, 3], ["__structuredAttrs", 43, 3], ["env", 45, 3], ["nativeBuildInputs", 47, 3], ["buildInputs", 57, 3], ["preConfigure", 66, 3], ["configureFlags", 74, 3], ["buildPhase", 89, 3], ["postFixup", 116, 3], ["hardeningDisable", 122, 3], ["enableParallelBuilding", 129, 3], ["passthru", 131, 3], ["meta", 141, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,11 +27,11 @@ export default nix.lambda((args) => (() => {
   const backendIsLLVMJit = nix.thunk(() => nix.eq(backend, "llvm-jit"));
   const backendIsGCC = nix.thunk(() => nix.eq(backend, "gcc"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: nix.thunk(() => nix.str`ghdl-${backend}`),
       version: "6.0.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ghdl",
           repo: "ghdl",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -46,7 +40,7 @@ export default nix.lambda((args) => (() => {
       strictDeps: true,
       __structuredAttrs: true,
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         LIBRARY_PATH: nix.thunk(() => nix.str`${nix.sel(stdenv, "cc", "libc")}/lib`),
       })),
       nativeBuildInputs: nix.thunk(() => nix.concat([gnat], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(backendIsLLVM) || nix.asBool(backendIsGCC))), nix.thunk(() => [makeWrapper])), nix.app(nix.sel(lib, "optionals"), backendIsGCC, nix.thunk(() => [texinfo]))))),
@@ -88,14 +82,14 @@ make -j $NIX_BUILD_CORES ghdllib
       hardeningDisable: nix.thunk(() => nix.concat([], nix.app(nix.sel(lib, "optionals"), backendIsGCC, nix.thunk(() => ["format"])))),
       enableParallelBuilding: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
-          simple: nix.thunk(() => nix.app(callPackage, nix.path(here, "./test-simple.nix"), nix.thunk(() => ({ [nix.POS]: pos$3, backend: backend })))),
+          [nix.POS]: $pos[3],
+          simple: nix.thunk(() => nix.app(callPackage, nix.path(here, "./test-simple.nix"), nix.thunk(() => ({ [nix.POS]: $pos[2], backend: backend })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         homepage: "https://github.com/ghdl/ghdl",
         description: "VHDL 2008/93/87 simulator",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

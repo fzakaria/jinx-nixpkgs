@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]], [["CC_FOR_BUILD", 38, 5], ["CXX_FOR_BUILD", 39, 5]], [["NIX_CFLAGS_COMPILE", 42, 5]], [["description", 87, 5], ["homepage", 88, 5], ["downloadPage", 89, 5], ["license", 90, 5], ["maintainers", 94, 5], ["platforms", 95, 5]], [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["nativeBuildInputs", 30, 3], ["env", 37, 3], ["buildInputs", 45, 3], ["preConfigure", 52, 3], ["configureFlags", 54, 3], ["enableParallelBuilding", 56, 3], ["doCheck", 63, 3], ["doInstallCheck", 64, 3], ["nativeInstallCheckInputs", 66, 3], ["installCheckPhase", 76, 3], ["meta", 86, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, autoconf: false, bison: false, bzip2: false, flex: false, gperf: false, ncurses: false, perl: false, python3: false, readline: false, zlib: false, buildPackages: false, addBinToPathHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["CC_FOR_BUILD", 38, 5], ["CXX_FOR_BUILD", 39, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 42, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 87, 5], ["homepage", 88, 5], ["downloadPage", 89, 5], ["license", 90, 5], ["maintainers", 94, 5], ["platforms", 95, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["nativeBuildInputs", 30, 3], ["env", 37, 3], ["buildInputs", 45, 3], ["preConfigure", 52, 3], ["configureFlags", 54, 3], ["enableParallelBuilding", 56, 3], ["doCheck", 63, 3], ["doInstallCheck", 64, 3], ["nativeInstallCheckInputs", 66, 3], ["installCheckPhase", 76, 3], ["meta", 86, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const buildPackages = nix.arg($, "buildPackages");
   const addBinToPathHook = nix.arg($, "addBinToPathHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "iverilog",
       version: "13.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "steveicarus",
           repo: "iverilog",
           tag: nix.thunk(() => nix.str`v${nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => ["_"]), nix.thunk(() => nix.sel(finalAttrs, "version")))}`),
@@ -39,11 +35,11 @@ export default nix.lambda((args) => (() => {
         })))),
       nativeBuildInputs: nix.thunk(() => [autoconf, bison, flex, gperf]),
       env: nix.thunk(() => nix.update({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         CC_FOR_BUILD: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(buildPackages, "stdenv", "cc")), "cc")}`),
         CXX_FOR_BUILD: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(buildPackages, "stdenv", "cc")), "cc++")}`),
       }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           NIX_CFLAGS_COMPILE: "-Wno-error=implicit-function-declaration",
         }))))),
       buildInputs: nix.thunk(() => [bzip2, ncurses, readline, zlib]),
@@ -62,7 +58,7 @@ export default nix.lambda((args) => (() => {
       ]),
       installCheckPhase: "runHook preInstallCheck\n\n# PLI1 is not enabled in the build (ENABLE_PLI1=no), so skip PLI1 VPI tests\n# which would fail at runtime with \"Failed - running vvp\".\nsh .github/test.sh no-pli1\n\nrunHook postInstallCheck\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Icarus Verilog compiler",
         homepage: "https://steveicarus.github.io/iverilog",
         downloadPage: "https://github.com/steveicarus/iverilog",

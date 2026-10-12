@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/generic.nix", [[["owner", 26, 5], ["repo", 27, 5], ["rev", 28, 5], ["hash", 29, 5], ["fetchSubmodules", 30, 5]], [["version", 71, 11], ["sha256", 72, 11]], [["version", 75, 11], ["sha256", 76, 11]], [["gitver", 70, 9], ["semver", 74, 9]], [["dependencies", 69, 7]], [["name", 127, 9], ["desktopName", 128, 9], ["exec", 129, 9], ["comment", 130, 9], ["categories", 131, 9]], [["homepage", 150, 7], ["license", 151, 7], ["mainProgram", 152, 7], ["maintainers", 153, 7]], [["nativeBuildInputs", 44, 5], ["buildInputs", 56, 5], ["dontUseCmakeConfigure", 64, 5], ["dubLock", 68, 5], ["postConfigure", 81, 5], ["preBuild", 105, 5], ["dubFlags", 114, 5], ["installPhase", 116, 5], ["desktopItems", 125, 5], ["postFixup", 135, 5], ["meta", 149, 5]]]);
 const formals$1 = { args: { lib: false, buildDubPackage: false, fetchFromGitHub: false, writeShellScriptBin: false, cmake: false, gettext: false, copyDesktopItems: false, makeDesktopItem: false, makeWrapper: false, dbus: false, freetype: false, SDL2: false, zenity: false, luajit_2_1: false, libGL: false, libx11: false, builderArgs: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/generic.nix", [["owner", 26, 5], ["repo", 27, 5], ["rev", 28, 5], ["hash", 29, 5], ["fetchSubmodules", 30, 5]]);
-const pos$2 = nix.positions(here + "/generic.nix", [["version", 71, 11], ["sha256", 72, 11]]);
-const pos$3 = nix.positions(here + "/generic.nix", [["version", 75, 11], ["sha256", 76, 11]]);
-const pos$4 = nix.positions(here + "/generic.nix", [["gitver", 70, 9], ["semver", 74, 9]]);
-const pos$5 = nix.positions(here + "/generic.nix", [["dependencies", 69, 7]]);
-const pos$6 = nix.positions(here + "/generic.nix", [["name", 127, 9], ["desktopName", 128, 9], ["exec", 129, 9], ["comment", 130, 9], ["categories", 131, 9]]);
-const pos$7 = nix.positions(here + "/generic.nix", [["homepage", 150, 7], ["license", 151, 7], ["mainProgram", 152, 7], ["maintainers", 153, 7]]);
-const pos$8 = nix.positions(here + "/generic.nix", [["nativeBuildInputs", 44, 5], ["buildInputs", 56, 5], ["dontUseCmakeConfigure", 64, 5], ["dubLock", 68, 5], ["postConfigure", 81, 5], ["preBuild", 105, 5], ["dubFlags", 114, 5], ["installPhase", 116, 5], ["desktopItems", 125, 5], ["postFixup", 135, 5], ["meta", 149, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,7 +25,7 @@ export default nix.lambda((args) => (() => {
   const libx11 = nix.arg($, "libx11");
   const builderArgs = nix.arg($, "builderArgs");
   const cimgui_src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "Inochi2D",
       repo: "cimgui",
       rev: "49bb5ce65f7d5eeab7861d8ffd5aa2a58ca8f08c",
@@ -45,7 +38,7 @@ export default nix.lambda((args) => (() => {
   const dubLock = nix.thunk(() => nix.attr(builderArgs, "dubLock"));
   const meta = nix.thunk(() => nix.attr(builderArgs, "meta"));
   return nix.app(buildDubPackage, nix.thunk(() => nix.update(builderArgs, {
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       nativeBuildInputs: nix.thunk(() => [
         cmake,
         gettext,
@@ -56,16 +49,16 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [dbus, freetype, SDL2, libGL, libx11]),
       dontUseCmakeConfigure: true,
       dubLock: nix.thunk(() => nix.app(nix.sel(lib, "recursiveUpdate"), nix.thunk(() => nix.app(nix.sel(lib, "importJSON"), dubLock)), nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           dependencies: nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             gitver: nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               version: "1.6.1",
               sha256: "sha256-NCyFik4FbD7yMLd5zwf/w4cHwhzLhIRSVw1bWo/CZB4=",
             })),
             semver: nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               version: "0.3.2",
               sha256: "sha256-l6c9hniUd5xNsJepq8x30e0JTjmXs4pYUmv4ws+Nrn4=",
             })),
@@ -104,7 +97,7 @@ runHook postInstall
 `),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             name: pname,
             desktopName: appname,
             exec: pname,
@@ -120,7 +113,7 @@ patchelf $out/share/${pname}/${pname} \\
   --add-rpath ${nix.app(nix.sel(lib, "makeLibraryPath"), nix.thunk(() => [libGL, luajit_2_1]))}
 `),
       meta: nix.thunk(() => nix.update({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         homepage: "https://inochi2d.com/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),
         mainProgram: pname,

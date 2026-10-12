@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/cuda_cupti.nix", [[["description", 28, 5], ["longDescription", 29, 5], ["homepage", 33, 5], ["changelog", 34, 5]], [["redistName", 7, 3], ["pname", 8, 3], ["outputs", 10, 3], ["allowFHSReferences", 25, 3], ["meta", 27, 3]]]);
 const formals$1 = { args: { backendStdenv: false, buildRedist: false, lib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/cuda_cupti.nix", [["description", 28, 5], ["longDescription", 29, 5], ["homepage", 33, 5], ["changelog", 34, 5]]);
-const pos$2 = nix.positions(here + "/cuda_cupti.nix", [["redistName", 7, 3], ["pname", 8, 3], ["outputs", 10, 3], ["allowFHSReferences", 25, 3], ["meta", 27, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -12,13 +11,13 @@ export default nix.lambda((args) => (() => {
   const buildRedist = nix.arg($, "buildRedist");
   const lib = nix.arg($, "lib");
   return nix.app(buildRedist, (finalAttrs) => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       redistName: "cuda",
       pname: "cuda_cupti",
       outputs: nix.thunk(() => nix.concat(["out", "dev", "include", "lib", "samples"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(nix.eq(nix.sel(backendStdenv, "hostRedistSystem"), "linux-x86_64")) || nix.asBool((nix.asBool(nix.eq(nix.sel(backendStdenv, "hostRedistSystem"), "linux-sbsa")) && nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(finalAttrs, "version")), "12.6")))))), nix.thunk(() => ["static"])))),
       allowFHSReferences: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "C-based interface for creating profiling and tracing tools designed for CUDA applications",
         longDescription: "The CUDA Profiling Tools Interface (CUPTI) provides a C-based interface for creating profiling and tracing tools\ndesigned for CUDA applications.\n",
         homepage: "https://docs.nvidia.com/cupti",

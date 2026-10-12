@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5], ["fetchSubmodules", 31, 5]], [["pname", 59, 7], ["version", 60, 7], ["src", 61, 7], ["pnpm", 63, 13], ["fetcherVersion", 64, 5], ["hash", 65, 5]], [["misskey", 146, 11]], [["extraArgs", 148, 7]], [["tests", 146, 5], ["updateScript", 147, 5]], [["description", 156, 5], ["homepage", 157, 5], ["license", 158, 5], ["maintainers", 159, 5], ["teams", 160, 5], ["platforms", 161, 5], ["mainProgram", 162, 5]], [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["postPatch", 39, 3], ["nativeBuildInputs", 48, 3], ["pnpmDeps", 57, 3], ["buildPhase", 68, 3], ["installPhase", 97, 3], ["passthru", 145, 3], ["meta", 155, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, nixosTests: false, fetchFromGitHub: false, "nix-update-script": false, nodejs: false, pnpm_11: false, fetchPnpmDeps: false, pnpmConfigHook: false, makeWrapper: false, python3: false, "dart-sass": false, bash: false, jemalloc: false, "ffmpeg-headless": false, writeShellScript: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5], ["fetchSubmodules", 31, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 59, 7], ["version", 60, 7], ["src", 61, 7], ["pnpm", 63, 13], ["fetcherVersion", 64, 5], ["hash", 65, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["misskey", 146, 11]]);
-const pos$4 = nix.positions(here + "/package.nix", [["extraArgs", 148, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["tests", 146, 5], ["updateScript", 147, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 156, 5], ["homepage", 157, 5], ["license", 158, 5], ["maintainers", 159, 5], ["teams", 160, 5], ["platforms", 161, 5], ["mainProgram", 162, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["postPatch", 39, 3], ["nativeBuildInputs", 48, 3], ["pnpmDeps", 57, 3], ["buildPhase", 68, 3], ["installPhase", 97, 3], ["passthru", 145, 3], ["meta", 155, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const writeShellScript = nix.arg($, "writeShellScript");
   const pnpm = pnpm_11;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "misskey",
       version: "2026.6.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "misskey-dev",
           repo: "misskey",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -45,7 +39,7 @@ export default nix.lambda((args) => (() => {
       postPatch: "substituteInPlace packages/backend/src/config.ts \\\n  --replace-fail \\\n    \"resolve(projectBuiltDir, '.config.json')\" \\\n    \"resolve('/run/misskey/default.json')\"\nsubstituteInPlace {.,packages/backend}/package.json \\\n  --replace-fail \"pnpm compile-config && \" \"\"\n",
       nativeBuildInputs: nix.thunk(() => [nodejs, pnpmConfigHook, pnpm, makeWrapper, python3, dart_sass]),
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -108,15 +102,15 @@ runHook postInstall
 `;
       })()),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$3, misskey: nix.thunk(() => nix.sel(nixosTests, "misskey")) })),
+        [nix.POS]: $pos[4],
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[2], misskey: nix.thunk(() => nix.sel(nixosTests, "misskey")) })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             extraArgs: nix.thunk(() => ["--version-regex", "^([0-9.]+)$"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Open source, federated social media platform",
         homepage: "https://misskey-hub.net/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),

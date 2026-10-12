@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 25, 5], ["repo", 26, 5], ["rev", 27, 5], ["sha256", 28, 5]], [["description", 38, 5], ["longDescription", 39, 5], ["homepage", 51, 5], ["license", 52, 5], ["maintainers", 53, 5], ["platforms", 54, 5], ["mainProgram", 55, 5]], [["version", 13, 3], ["pname", 14, 3], ["buildInputs", 16, 3], ["src", 24, 3], ["makeFlags", 31, 3], ["preInstall", 33, 3], ["meta", 37, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, libx11: false, libxi: false, libxt: false, libxfixes: false, libxext: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 25, 5], ["repo", 26, 5], ["rev", 27, 5], ["sha256", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 38, 5], ["longDescription", 39, 5], ["homepage", 51, 5], ["license", 52, 5], ["maintainers", 53, 5], ["platforms", 54, 5], ["mainProgram", 55, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 13, 3], ["pname", 14, 3], ["buildInputs", 16, 3], ["src", 24, 3], ["makeFlags", 31, 3], ["preInstall", 33, 3], ["meta", 37, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const libxfixes = nix.arg($, "libxfixes");
   const libxext = nix.arg($, "libxext");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       version: "1.8",
       pname: "xbanish",
       buildInputs: nix.thunk(() => [libx11, libxi, libxt, libxfixes, libxext]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "jcs",
           repo: "xbanish",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -32,7 +30,7 @@ export default nix.lambda((args) => (() => {
       makeFlags: nix.thunk(() => ["PREFIX=$(out)"]),
       preInstall: "mkdir -p $out/bin $out/man/man1\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Hides mouse pointer while not in use",
         longDescription: "xbanish hides the mouse cursor when you start typing, and shows it again when\nthe mouse cursor moves or a mouse button is pressed.  This is similar to\nxterm's pointerMode setting, but xbanish works globally in the X11 session.\n\nunclutter's -keystroke mode is supposed to do this, but it's broken[0].  I\nlooked into fixing it, but the unclutter source code is terrible, so I wrote\nxbanish.\n\nThe name comes from ratpoison's \"banish\" command that sends the cursor to the\ncorner of the screen.\n",
         homepage: "https://github.com/jcs/xbanish",

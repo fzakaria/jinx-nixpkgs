@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["repo", 17, 5], ["owner", 18, 5], ["tag", 19, 5], ["fetchSubmodules", 20, 5], ["hash", 21, 5]], [["description", 45, 5], ["longDescription", 46, 5], ["homepage", 51, 5], ["license", 52, 5], ["platforms", 53, 5], ["maintainers", 54, 5], ["mainProgram", 55, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["postPatch", 25, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 36, 3], ["qmakeFlags", 42, 3], ["meta", 44, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, qt6: false, mpv: false, withAPIKey: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["repo", 17, 5], ["owner", 18, 5], ["tag", 19, 5], ["fetchSubmodules", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 45, 5], ["longDescription", 46, 5], ["homepage", 51, 5], ["license", 52, 5], ["platforms", 53, 5], ["maintainers", 54, 5], ["mainProgram", 55, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["postPatch", 25, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 36, 3], ["qmakeFlags", 42, 3], ["meta", 44, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname = "minitube";
       const version = "4.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           repo: "minitube",
           owner: "flaviotordini",
           tag: version,
@@ -41,7 +39,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const qmakeFlags = nix.thunk(() => [nix.thunk(() => nix.str`DEFINES+=APP_GOOGLE_API_KEY=${withAPIKey}`)]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Stand-alone YouTube video player",
         longDescription: "Watch YouTube videos in a new way: you type a keyword, Minitube gives\nyou an endless video stream. Minitube is not about cloning the YouTube\nwebsite, it aims to create a new TV-like experience.\n",
         homepage: "https://flavio.tordini.org/minitube",
@@ -51,7 +49,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "minitube",
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

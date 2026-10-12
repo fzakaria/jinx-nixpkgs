@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["hash", 26, 5]], [["description", 84, 5], ["longDescription", 85, 5], ["maintainers", 91, 5], ["homepage", 92, 5], ["license", 93, 5], ["platforms", 94, 5], ["mainProgram", 95, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["patches", 29, 3], ["nativeBuildInputs", 33, 3], ["cmakeFlags", 48, 3], ["buildInputs", 53, 3], ["cmakeBuildType", 59, 3], ["clang", 61, 3], ["postInstall", 63, 3], ["dontFixup", 77, 3], ["dontStrip", 78, 3], ["nativeInstallCheckInputs", 80, 3], ["doInstallCheck", 81, 3], ["meta", 83, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, clangStdenv: false, cmake: false, "pkg-config": false, installShellFiles: false, libclang: false, llvmPackages: false, libllvm: false, "yaml-cpp": false, elfutils: false, libunwind: false, versionCheckHook: false, enableLibcxx: true, debug: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 84, 5], ["longDescription", 85, 5], ["maintainers", 91, 5], ["homepage", 92, 5], ["license", 93, 5], ["platforms", 94, 5], ["mainProgram", 95, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["patches", 29, 3], ["nativeBuildInputs", 33, 3], ["cmakeFlags", 48, 3], ["buildInputs", 53, 3], ["cmakeBuildType", 59, 3], ["clang", 61, 3], ["postInstall", 63, 3], ["dontFixup", 77, 3], ["dontStrip", 78, 3], ["nativeInstallCheckInputs", 80, 3], ["doInstallCheck", 81, 3], ["meta", 83, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const enableLibcxx = nix.argOr($, "enableLibcxx", () => false);
   const debug = nix.argOr($, "debug", () => false);
   return nix.app(nix.sel(clangStdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "clang-uml",
       version: "0.6.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "bkryza",
           repo: "clang-uml",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -61,7 +59,7 @@ installShellCompletion --cmd clang-uml \\
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Customizable automatic UML diagram generator for C++ based on Clang",
         longDescription: "clang-uml is an automatic C++ to UML class, sequence, package and include diagram generator, driven by YAML configuration files.\nThe main idea behind the project is to easily maintain up-to-date diagrams within a code-base or document legacy code.\nThe configuration file or files for clang-uml define the types and contents of each generated diagram.\nThe diagrams can be generated in PlantUML, MermaidJS and JSON formats.\n",
         maintainers: nix.thunk(() => (() => {

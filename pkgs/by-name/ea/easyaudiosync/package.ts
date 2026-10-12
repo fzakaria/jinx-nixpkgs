@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]], [["name", 73, 7], ["exec", 74, 7], ["icon", 75, 7], ["desktopName", 76, 7], ["categories", 77, 7], ["comment", 82, 7]], [["description", 87, 5], ["longDescription", 88, 5], ["homepage", 97, 5], ["license", 98, 5], ["maintainers", 99, 5], ["platforms", 100, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["patches", 26, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 42, 3], ["installPhase", 50, 3], ["desktopItems", 71, 3], ["meta", 86, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, "pkg-config": false, cmake: false, spdlog: false, ffmpeg: false, taglib: false, kdePackages: false, makeDesktopItem: false, copyDesktopItems: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 73, 7], ["exec", 74, 7], ["icon", 75, 7], ["desktopName", 76, 7], ["categories", 77, 7], ["comment", 82, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 87, 5], ["longDescription", 88, 5], ["homepage", 97, 5], ["license", 98, 5], ["maintainers", 99, 5], ["platforms", 100, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["patches", 26, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 42, 3], ["installPhase", 50, 3], ["desktopItems", 71, 3], ["meta", 86, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const makeDesktopItem = nix.arg($, "makeDesktopItem");
   const copyDesktopItems = nix.arg($, "copyDesktopItems");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "easyaudiosync",
       version: "1.1.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "complexlogic",
           repo: "EasyAudioSync",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -49,7 +46,7 @@ export default nix.lambda((args) => (() => {
       installPhase: nix.thunk(() => nix.add(nix.add(nix.add("runHook preInstall\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "mkdir -p $out/Applications\nmv \"easyaudiosync.app\" \"Easy Audio Sync.app\"\ncp -r \"Easy Audio Sync.app\" $out/Applications\n")), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), "install -Dm755 easyaudiosync $out/bin/easyaudiosync\n\nfor RES in 48 64 128 256; do\n  install -Dm755 \"$src/assets/icons/easyaudiosync${RES}.png\" \"$out/share/icons/hicolor/${RES}x${RES}/apps/easyaudiosync.png\"\ndone\n\ninstall -Dm755 \"$src/assets/icons/easyaudiosync.svg\" \"$out/share/icons/hicolor/scalable/apps/easyaudiosync.svg\"\n")), "runHook postInstall\n")),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "easyaudiosync",
             exec: "easyaudiosync",
             icon: "easyaudiosync",
@@ -59,7 +56,7 @@ export default nix.lambda((args) => (() => {
           })))),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Audio library syncing and conversion utility",
         longDescription: "Easy Audio Sync is an audio library syncing and conversion utility.\nThe intended use is syncing an audio library with many lossless files to a mobile device\nwith limited storage.\n\nThe program's design is inspired by the rsync utility. It supports folder-based\nsource to destination syncing, with added audio transcoding capability, and is\nGUI-based instead of CLI-based.\n",
         homepage: "https://github.com/complexlogic/EasyAudioSync",

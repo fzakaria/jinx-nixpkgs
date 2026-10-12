@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["description", 21, 5]], [["pname", 10, 3], ["version", 11, 21], ["src", 11, 29], ["pyproject", 12, 3], ["sourceRoot", 14, 3], ["build-system", 16, 3], ["pythonImportsCheck", 18, 3], ["meta", 20, 3]]]);
 const formals$1 = { args: { buildPythonPackage: false, logfire: false, hatchling: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["description", 21, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 10, 3], ["version", 11, 21], ["src", 11, 29], ["pyproject", 12, 3], ["sourceRoot", 14, 3], ["build-system", 16, 3], ["pythonImportsCheck", 18, 3], ["meta", 20, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -12,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const logfire = nix.arg($, "logfire");
   const hatchling = nix.arg($, "hatchling");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "logfire-api",
       version: nix.thunk(() => nix.attr(logfire, "version")),
       src: nix.thunk(() => nix.attr(logfire, "src")),
@@ -21,7 +20,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [hatchling]),
       pythonImportsCheck: nix.thunk(() => ["logfire_api"]),
       meta: nix.thunk(() => nix.update(nix.sel(logfire, "meta"), {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Shim for the Logfire SDK which does nothing unless Logfire is installed",
       })),
     }));

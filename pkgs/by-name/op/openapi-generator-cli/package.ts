@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["modules", 14, 5]], [["owner", 41, 7], ["repo", 42, 7], ["tag", 43, 7], ["hash", 44, 7]], [["url", 50, 9], ["hash", 51, 9]], [["openapi-generator-cli", 82, 9]], [["example", 81, 13]], [["updateScript", 80, 7], ["tests", 81, 7]], [["description", 87, 7], ["homepage", 88, 7], ["changelog", 89, 7], ["sourceProvenance", 90, 7], ["license", 91, 7], ["maintainers", 92, 7], ["mainProgram", 96, 15]], [["version", 36, 13], ["pname", 38, 5], ["src", 40, 5], ["patches", 47, 5], ["mvnHash", 55, 5], ["mvnParameters", 56, 5], ["doCheck", 57, 5], ["__darwinAllowLocalNetworking", 60, 5], ["nativeBuildInputs", 62, 5], ["installPhase", 66, 5], ["passthru", 79, 5], ["meta", 86, 5]]]);
 const formals$1 = { args: { callPackage: false, lib: false, jre_minimal: false, fetchFromGitHub: false, fetchpatch: false, maven: false, makeWrapper: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["modules", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 41, 7], ["repo", 42, 7], ["tag", 43, 7], ["hash", 44, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 50, 9], ["hash", 51, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["openapi-generator-cli", 82, 9]]);
-const pos$5 = nix.positions(here + "/package.nix", [["example", 81, 13]]);
-const pos$6 = nix.positions(here + "/package.nix", [["updateScript", 80, 7], ["tests", 81, 7]]);
-const pos$7 = nix.positions(here + "/package.nix", [["description", 87, 7], ["homepage", 88, 7], ["changelog", 89, 7], ["sourceProvenance", 90, 7], ["license", 91, 7], ["maintainers", 92, 7], ["mainProgram", 96, 15]]);
-const pos$8 = nix.positions(here + "/package.nix", [["version", 36, 13], ["pname", 38, 5], ["src", 40, 5], ["patches", 47, 5], ["mvnHash", 55, 5], ["mvnParameters", 56, 5], ["doCheck", 57, 5], ["__darwinAllowLocalNetworking", 60, 5], ["nativeBuildInputs", 62, 5], ["installPhase", 66, 5], ["passthru", 79, 5], ["meta", 86, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const nix_update_script = nix.arg($, "nix-update-script");
   const jre = nix.thunk(() => nix.app(nix.sel(jre_minimal, "override"), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       modules: nix.thunk(() => [
         "java.base",
         "java.compiler",
@@ -46,11 +39,11 @@ export default nix.lambda((args) => (() => {
   const version = "7.25.0";
   const mainProgram = "openapi-generator-cli";
   const this$ = nix.thunk(() => nix.app(nix.sel(maven, "buildMavenPackage"), nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       version: version,
       pname: "openapi-generator-cli",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "OpenAPITools",
           repo: "openapi-generator",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -58,7 +51,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: "https://github.com/OpenAPITools/openapi-generator/commit/ff66e1bc7fe33dcee89de7296eb7bcd5e2a11cc6.patch",
             hash: "sha256-E1VgtaIW1V+8ch2RpW850fVNl5Iqitjog+0b8DKFgZw=",
           })))),
@@ -80,15 +73,15 @@ makeWrapper ${jre}/bin/java $out/bin/${mainProgram} \\
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$5,
-          example: nix.thunk(() => nix.app(callPackage, nix.path(here, "./example.nix"), nix.thunk(() => ({ [nix.POS]: pos$4, "openapi-generator-cli": this$ })))),
+          [nix.POS]: $pos[4],
+          example: nix.thunk(() => nix.app(callPackage, nix.path(here, "./example.nix"), nix.thunk(() => ({ [nix.POS]: $pos[3], "openapi-generator-cli": this$ })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "Allows generation of API client libraries (SDK generation), server stubs and documentation automatically given an OpenAPI Spec",
         homepage: "https://github.com/OpenAPITools/openapi-generator",
         changelog: nix.thunk(() => nix.str`https://github.com/OpenAPITools/openapi-generator/releases/tag/v${version}`),

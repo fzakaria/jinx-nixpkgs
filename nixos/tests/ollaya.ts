@@ -2,15 +2,9 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/ollaya.nix", [[["maintainers", 9, 8]], [["OLLAYA_API_KEY", 17, 18]], [["enable", 15, 9], ["port", 16, 17], ["settings", 17, 9]], [["ollaya", 14, 16]], [["services", 14, 7]], [["machine", 11, 9]], [["name", 8, 3], ["meta", 9, 3], ["nodes", 11, 3], ["testScript", 21, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/ollaya.nix", [["maintainers", 9, 8]]);
 const formals$2 = { args: {  }, ellipsis: true };
-const pos$2 = nix.positions(here + "/ollaya.nix", [["OLLAYA_API_KEY", 17, 18]]);
-const pos$3 = nix.positions(here + "/ollaya.nix", [["enable", 15, 9], ["port", 16, 17], ["settings", 17, 9]]);
-const pos$4 = nix.positions(here + "/ollaya.nix", [["ollaya", 14, 16]]);
-const pos$5 = nix.positions(here + "/ollaya.nix", [["services", 14, 7]]);
-const pos$6 = nix.positions(here + "/ollaya.nix", [["machine", 11, 9]]);
-const pos$7 = nix.positions(here + "/ollaya.nix", [["name", 8, 3], ["meta", 9, 3], ["nodes", 11, 3], ["testScript", 21, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,28 +12,28 @@ export default nix.lambda((args) => (() => {
   const port = 11435n;
   const apiKey = "ollaya-test-key";
   return {
-    [nix.POS]: pos$7,
+    [nix.POS]: $pos[6],
     name: "ollaya",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "happysalada"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             ollaya: nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               enable: true,
               port: port,
-              settings: nix.thunk(() => ({ [nix.POS]: pos$2, OLLAYA_API_KEY: apiKey })),
+              settings: nix.thunk(() => ({ [nix.POS]: $pos[1], OLLAYA_API_KEY: apiKey })),
             })),
           })),
         };

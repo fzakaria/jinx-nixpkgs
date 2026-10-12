@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 26, 7], ["hash", 27, 7]], [["pname", 23, 13], ["version", 23, 19], ["src", 25, 5], ["nativeBuildInputs", 30, 5], ["dontConfigure", 35, 5], ["dontBuild", 36, 5], ["unpackPhase", 38, 5], ["installPhase", 44, 5]], [["version", 52, 13], ["pname", 53, 5], ["runScript", 60, 5], ["extraBuildCommands", 75, 5], ["targetPkgs", 84, 5]], [["description", 109, 5], ["homepage", 110, 5], ["license", 111, 5], ["platforms", 112, 5], ["maintainers", 113, 5]], [["pname", 93, 11], ["version", 93, 17], ["dontUnpack", 95, 3], ["dontConfigure", 96, 3], ["dontBuild", 97, 3], ["installPhase", 99, 3], ["meta", 108, 3]]]);
 const formals$1 = { args: { autoPatchelfHook: false, buildFHSEnv: false, dpkg: false, fetchurl: false, "inotify-tools": false, lib: false, stdenvNoCC: false, sysctl: false, writeScript: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 26, 7], ["hash", 27, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 23, 13], ["version", 23, 19], ["src", 25, 5], ["nativeBuildInputs", 30, 5], ["dontConfigure", 35, 5], ["dontBuild", 36, 5], ["unpackPhase", 38, 5], ["installPhase", 44, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 52, 13], ["pname", 53, 5], ["runScript", 60, 5], ["extraBuildCommands", 75, 5], ["targetPkgs", 84, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 109, 5], ["homepage", 110, 5], ["license", 111, 5], ["platforms", 112, 5], ["maintainers", 113, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 93, 11], ["version", 93, 17], ["dontUnpack", 95, 3], ["dontConfigure", 96, 3], ["dontBuild", 97, 3], ["installPhase", 99, 3], ["meta", 108, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const clientBuild = "2";
   const version = nix.thunk(() => nix.app(nix.sel(lib, "strings", "concatStringsSep"), ".", nix.thunk(() => [clientVersion, clientBuild])));
   const expressvpnBase = nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: pname,
       version: version,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://www.expressvpn.works/clients/linux/expressvpn_${version}-1_amd64.deb`),
           hash: "sha256-cDZ9R+MA3FXEto518bH4/c1X4W9XxgTvXns7zisylew=",
         })))),
@@ -40,7 +36,7 @@ export default nix.lambda((args) => (() => {
       installPhase: "runHook preInstall\nmv usr/ $out/\nrunHook postInstall\n",
     }))));
   const expressvpndFHS = nix.thunk(() => nix.app(buildFHSEnv, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       version: version,
       pname: "expressvpnd",
       runScript: nix.thunk(() => nix.app(writeScript, nix.thunk(() => nix.str`${pname}-wrapper`), nix.thunk(() => nix.str`mkdir -p /host/etc
@@ -65,7 +61,7 @@ ln -s ${sysctl}/bin/sysctl sbin/sysctl
       })(),
     }))));
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: pname,
       version: version,
       dontUnpack: true,
@@ -79,7 +75,7 @@ ln -s ${expressvpnBase}/share/{bash-completion,doc,man} $out/share/
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "CLI client for ExpressVPN",
         homepage: "https://www.expressvpn.com",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

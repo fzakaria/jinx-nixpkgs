@@ -2,40 +2,33 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/without-nix.nix", [[["maintainers", 4, 8]], [["pkgsReadOnly", 6, 8]], [["enable", 9, 9]], [["nix", 12, 9], ["nixVersions", 13, 9], ["nix_2_3", 15, 9], ["nix_2_4", 16, 9], ["nix_2_5", 17, 9], ["nix_2_6", 18, 9], ["nixFlakes", 19, 9], ["nixStable", 20, 9], ["nixUnstable", 21, 9], ["nixStatic", 22, 9]], [["overlays", 10, 13]], [["nix", 9, 5], ["nixpkgs", 10, 5]], [["machine", 8, 9]], [["name", 3, 3], ["meta", 4, 3], ["node", 6, 3], ["nodes", 8, 3], ["testScript", 27, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/without-nix.nix", [["maintainers", 4, 8]]);
-const pos$2 = nix.positions(here + "/without-nix.nix", [["pkgsReadOnly", 6, 8]]);
-const pos$3 = nix.positions(here + "/without-nix.nix", [["enable", 9, 9]]);
-const pos$4 = nix.positions(here + "/without-nix.nix", [["nix", 12, 9], ["nixVersions", 13, 9], ["nix_2_3", 15, 9], ["nix_2_4", 16, 9], ["nix_2_5", 17, 9], ["nix_2_6", 18, 9], ["nixFlakes", 19, 9], ["nixStable", 20, 9], ["nixUnstable", 21, 9], ["nixStatic", 22, 9]]);
-const pos$5 = nix.positions(here + "/without-nix.nix", [["overlays", 10, 13]]);
-const pos$6 = nix.positions(here + "/without-nix.nix", [["nix", 9, 5], ["nixpkgs", 10, 5]]);
-const pos$7 = nix.positions(here + "/without-nix.nix", [["machine", 8, 9]]);
-const pos$8 = nix.positions(here + "/without-nix.nix", [["name", 3, 3], ["meta", 4, 3], ["node", 6, 3], ["nodes", 8, 3], ["testScript", 27, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$8,
+    [nix.POS]: $pos[7],
     name: "without-nix",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "ericson2314"))];
       })()),
     })),
-    node: nix.thunk(() => ({ [nix.POS]: pos$2, pkgsReadOnly: false })),
+    node: nix.thunk(() => ({ [nix.POS]: $pos[1], pkgsReadOnly: false })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       machine: nix.thunk(() => ({
-        [nix.POS]: pos$6,
-        nix: nix.thunk(() => ({ [nix.POS]: pos$3, enable: false })),
+        [nix.POS]: $pos[5],
+        nix: nix.thunk(() => ({ [nix.POS]: $pos[2], enable: false })),
         nixpkgs: nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           overlays: nix.thunk(() => [
             (self) => (super$) => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               nix: nix.thunk(() => nix.builtins.throw("don't want to use pkgs.nix")),
               nixVersions: nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (k) => nix.builtins.throw(nix.thunk(() => nix.str`don't want to use pkgs.nixVersions.${k}`)), nix.thunk(() => nix.sel(super$, "nixVersions")))),
               nix_2_3: nix.thunk(() => nix.builtins.throw("don't want to use pkgs.nix_2_3")),

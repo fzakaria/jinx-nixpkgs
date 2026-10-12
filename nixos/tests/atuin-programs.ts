@@ -2,41 +2,32 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/atuin-programs.nix", [[["maintainers", 4, 8]], [["enable", 8, 12]], [["enable", 9, 12]], [["enable", 10, 11]], [["auto_sync", 15, 11]], [["enable", 13, 9], ["settings", 14, 9]], [["bash", 8, 7], ["fish", 9, 7], ["zsh", 10, 7], ["atuin", 12, 7]], [["programs", 7, 5]], [["machine", 6, 9]], [["name", 3, 3], ["meta", 4, 3], ["nodes", 6, 3], ["testScript", 21, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/atuin-programs.nix", [["maintainers", 4, 8]]);
-const pos$2 = nix.positions(here + "/atuin-programs.nix", [["enable", 8, 12]]);
-const pos$3 = nix.positions(here + "/atuin-programs.nix", [["enable", 9, 12]]);
-const pos$4 = nix.positions(here + "/atuin-programs.nix", [["enable", 10, 11]]);
-const pos$5 = nix.positions(here + "/atuin-programs.nix", [["auto_sync", 15, 11]]);
-const pos$6 = nix.positions(here + "/atuin-programs.nix", [["enable", 13, 9], ["settings", 14, 9]]);
-const pos$7 = nix.positions(here + "/atuin-programs.nix", [["bash", 8, 7], ["fish", 9, 7], ["zsh", 10, 7], ["atuin", 12, 7]]);
-const pos$8 = nix.positions(here + "/atuin-programs.nix", [["programs", 7, 5]]);
-const pos$9 = nix.positions(here + "/atuin-programs.nix", [["machine", 6, 9]]);
-const pos$10 = nix.positions(here + "/atuin-programs.nix", [["name", 3, 3], ["meta", 4, 3], ["nodes", 6, 3], ["testScript", 21, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   return {
-    [nix.POS]: pos$10,
+    [nix.POS]: $pos[9],
     name: "atuin",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => nix.sel(pkgs, "atuin", "meta", "maintainers")),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       machine: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         programs: nix.thunk(() => ({
-          [nix.POS]: pos$7,
-          bash: nix.thunk(() => ({ [nix.POS]: pos$2, enable: true })),
-          fish: nix.thunk(() => ({ [nix.POS]: pos$3, enable: true })),
-          zsh: nix.thunk(() => ({ [nix.POS]: pos$4, enable: true })),
+          [nix.POS]: $pos[6],
+          bash: nix.thunk(() => ({ [nix.POS]: $pos[1], enable: true })),
+          fish: nix.thunk(() => ({ [nix.POS]: $pos[2], enable: true })),
+          zsh: nix.thunk(() => ({ [nix.POS]: $pos[3], enable: true })),
           atuin: nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             enable: true,
-            settings: nix.thunk(() => ({ [nix.POS]: pos$5, auto_sync: false })),
+            settings: nix.thunk(() => ({ [nix.POS]: $pos[4], auto_sync: false })),
           })),
         })),
       })),

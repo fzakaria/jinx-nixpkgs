@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]], [["updateScript", 44, 5]], [["description", 48, 5], ["longDescription", 49, 5], ["homepage", 53, 5], ["license", 54, 5], ["mainProgram", 55, 5], ["platforms", 56, 5], ["maintainers", 57, 5]], [["pname", 13, 3], ["version", 14, 3], ["pyproject", 16, 3], ["src", 18, 3], ["nativeBuildInputs", 25, 3], ["build-system", 30, 3], ["buildInputs", 32, 3], ["dependencies", 37, 3], ["passthru", 43, 3], ["meta", 47, 3]]]);
 const formals$1 = { args: { lib: false, python3: false, fetchFromCodeberg: false, "gobject-introspection": false, libadwaita: false, modemmanager: false, wrapGAppsHook4: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 44, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 48, 5], ["longDescription", 49, 5], ["homepage", 53, 5], ["license", 54, 5], ["mainProgram", 55, 5], ["platforms", 56, 5], ["maintainers", 57, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["pyproject", 16, 3], ["src", 18, 3], ["nativeBuildInputs", 25, 3], ["build-system", 30, 3], ["buildInputs", 32, 3], ["dependencies", 37, 3], ["passthru", 43, 3], ["meta", 47, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const wrapGAppsHook4 = nix.arg($, "wrapGAppsHook4");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "satellite",
       version: "0.9.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "tpikonen",
           repo: "satellite",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -45,11 +42,11 @@ export default nix.lambda((args) => (() => {
         ];
       })()),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Program for showing navigation satellite data",
         longDescription: "Satellite is an adaptive GTK3 / libhandy application which displays global navigation satellite system (GNSS: GPS et al.) data obtained from ModemManager or gnss-share.\nIt can also save your position to a GPX-file.\n",
         homepage: "https://codeberg.org/tpikonen/satellite",

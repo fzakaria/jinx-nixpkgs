@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 14, 5], ["version", 15, 5], ["sha256", 16, 5], ["description", 17, 5], ["maintainers", 18, 5]], [["description", 21, 8]], [["pname", 9, 3], ["version", 10, 3], ["sha256", 11, 3], ["manpages", 13, 3], ["meta", 21, 3], ["outputs", 26, 3], ["buildInputs", 33, 3], ["configureFlags", 39, 3], ["postInstall", 49, 3]]]);
 const formals$1 = { args: { lib: false, skawarePackages: false, skalibs: false, execline: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 14, 5], ["version", 15, 5], ["sha256", 16, 5], ["description", 17, 5], ["maintainers", 18, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 21, 8]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 9, 3], ["version", 10, 3], ["sha256", 11, 3], ["manpages", 13, 3], ["meta", 21, 3], ["outputs", 26, 3], ["buildInputs", 33, 3], ["configureFlags", 39, 3], ["postInstall", 49, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,12 +12,12 @@ export default nix.lambda((args) => (() => {
   const skalibs = nix.arg($, "skalibs");
   const execline = nix.arg($, "execline");
   return nix.app(nix.sel(skawarePackages, "buildPackage"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "s6",
       version: "2.15.1.0",
       sha256: "sha256-6rnEbiK2axYTX5oF7Gig6ih9kGC4TRDe+qosqtFYq1I=",
       manpages: nix.thunk(() => nix.app(nix.sel(skawarePackages, "buildManPages"), nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "s6-man-pages",
           version: "2.14.0.1.4",
           sha256: "sha256-c77NwS4x5L1nLmtWVz64izzanTfc0hohvFMOi77uMh4=",
@@ -27,7 +25,7 @@ export default nix.lambda((args) => (() => {
           maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "sternenseemann"))]),
         })))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "skarnet.org's small & secure supervision software suite",
       })),
       outputs: nix.thunk(() => ["out", "dev", "doc"]),

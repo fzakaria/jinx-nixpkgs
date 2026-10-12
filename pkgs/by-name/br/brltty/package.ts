@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 28, 5], ["sha256", 29, 5]], [["description", 50, 5], ["longDescription", 51, 5], ["homepage", 57, 5], ["license", 58, 5], ["maintainers", 59, 5], ["platforms", 60, 5]], [["CC_FOR_BUILD", 88, 5]], [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["depsBuildBuild", 32, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 39, 3], ["doInstallCheck", 47, 3], ["meta", 49, 3], ["makeFlags", 63, 3], ["configureFlags", 75, 3], ["installFlags", 80, 3], ["env", 86, 3], ["preConfigure", 91, 3], ["postInstall", 112, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, "pkg-config": false, python3: false, bluez: false, tcl: false, acl: false, kmod: false, coreutils: false, shadow: false, "util-linux": false, alsaSupport: true, "alsa-lib": false, systemdSupport: true, systemdMinimal: false, ncurses: false, udevCheckHook: false, buildPackages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 28, 5], ["sha256", 29, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 50, 5], ["longDescription", 51, 5], ["homepage", 57, 5], ["license", 58, 5], ["maintainers", 59, 5], ["platforms", 60, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["CC_FOR_BUILD", 88, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["depsBuildBuild", 32, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 39, 3], ["doInstallCheck", 47, 3], ["meta", 49, 3], ["makeFlags", 63, 3], ["configureFlags", 75, 3], ["installFlags", 80, 3], ["env", 86, 3], ["preConfigure", 91, 3], ["postInstall", 112, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,11 +27,11 @@ export default nix.lambda((args) => (() => {
   const udevCheckHook = nix.arg($, "udevCheckHook");
   const buildPackages = nix.arg($, "buildPackages");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "brltty",
       version: "6.9.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://brltty.app/archive/brltty-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "sha256-gi3iyHtECf3wLWFU0bRoVsNTnT6onGWu80MPJ3Nnf3Y=",
         })))),
@@ -48,7 +45,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => nix.concat([bluez, nix.thunk(() => nix.sel(ncurses, "dev")), tcl], nix.concat(nix.app(nix.sel(lib, "optional"), alsaSupport, alsa_lib), nix.app(nix.sel(lib, "optional"), systemdSupport, systemdMinimal)))),
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Access software for a blind person using a braille display",
         longDescription: "BRLTTY is a background process (daemon) which provides access to the Linux/Unix\nconsole (when in text mode) for a blind person using a refreshable braille display.\nIt drives the braille display, and provides complete screen review functionality.\nSome speech capability has also been incorporated.\n",
         homepage: "https://brltty.app",
@@ -75,7 +72,7 @@ export default nix.lambda((args) => (() => {
       ]),
       installFlags: nix.thunk(() => ["install-systemd", "install-udev", "install-polkit"]),
       env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(stdenv, "hostPlatform"), nix.sel(stdenv, "buildPlatform"))), nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           CC_FOR_BUILD: nix.thunk(() => nix.str`${nix.sel(buildPackages, "stdenv", "cc")}/bin/${nix.sel(buildPackages, "stdenv", "cc", "targetPrefix")}cc`),
         })))),
       preConfigure: nix.thunk(() => nix.add("substituteInPlace configure --replace-fail \"/sbin/ldconfig -n\" \"true\"\n\n# Some script needs a working tclsh shebang\npatchShebangs .\n\n# Skip impure operations\nsubstituteInPlace Programs/Makefile.in    \\\n  --replace-fail install-apisoc-directory \"\"   \\\n  --replace-fail install-api-key \"\"\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(nix.sel(stdenv, "hostPlatform"), nix.sel(stdenv, "buildPlatform"))), "# ./configure call itself second time for build platform, if it fail -- it fails silently, make it visible\n# (this is not mandatory changing, but make further maintaining easier)\nsubstituteInPlace mk4build \\\n  --replace-fail \"--quiet\" \"\"\n# Respect targetPrefix when invoking ar\nsubstituteInPlace Programs/Makefile.in \\\n  --replace-fail \"ar \" \"$AR \"\n"))),

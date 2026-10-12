@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]], [["name", 29, 7], ["url", 30, 7], ["hash", 31, 7]], [["homepage", 59, 5], ["changelog", 60, 5], ["description", 61, 5], ["mainProgram", 62, 5], ["longDescription", 64, 5], ["license", 76, 5], ["maintainers", 77, 5], ["platforms", 78, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["patches", 21, 3], ["outputs", 35, 3], ["cmakeFlags", 40, 3], ["nativeBuildInputs", 45, 3], ["doCheck", 47, 3], ["checkInputs", 49, 3], ["postInstall", 52, 3], ["meta", 58, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, fetchpatch2: false, cmake: false, doctest: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 29, 7], ["url", 30, 7], ["hash", 31, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 59, 5], ["changelog", 60, 5], ["description", 61, 5], ["mainProgram", 62, 5], ["longDescription", 64, 5], ["license", 76, 5], ["maintainers", 77, 5], ["platforms", 78, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["patches", 21, 3], ["outputs", 35, 3], ["cmakeFlags", 40, 3], ["nativeBuildInputs", 45, 3], ["doCheck", 47, 3], ["checkInputs", 49, 3], ["postInstall", 52, 3], ["meta", 58, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const cmake = nix.arg($, "cmake");
   const doctest = nix.arg($, "doctest");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "foonathan-memory",
       version: "0.7-4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "foonathan",
           repo: "memory",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -30,7 +27,7 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [
         nix.path(here, "./0001-Use-system-doctest.patch.patch"),
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "size-suffixes-cannot-have-a-space.patch",
             url: "https://github.com/foonathan/memory/commit/0f5ebe9f4ac2d2ad106d596c993d13e107b27820.patch?full_index=1",
             hash: "sha256-RtLGDe6ZQ4CQD25pjS20+SZLhxGSrm/A7cO6VUgPbfo=",
@@ -46,7 +43,7 @@ export default nix.lambda((args) => (() => {
       checkInputs: nix.thunk(() => [doctest]),
       postInstall: "mkdir -p $out/lib/cmake\nmv $out/lib/foonathan_memory/cmake $out/lib/cmake/foonathan_memory\nrmdir $out/lib/foonathan_memory\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://memory.foonathan.net/",
         changelog: nix.thunk(() => nix.str`https://github.com/foonathan/memory/releases/tag/${nix.sel(finalAttrs, "src", "rev")}`),
         description: "STL compatible C++ memory allocator library",

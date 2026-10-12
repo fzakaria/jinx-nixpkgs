@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["useMupdf", 13, 13], ["zathura_core", 15, 5], ["zathura_pdf_poppler", 17, 5], ["zathura_pdf_mupdf", 19, 5], ["zathura_djvu", 21, 5], ["zathura_ps", 23, 5], ["zathura_cb", 25, 5], ["zathuraWrapper", 27, 5]]]);
 const formals$1 = { args: { lib: false, newScope: false, useMupdf: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["useMupdf", 13, 13], ["zathura_core", 15, 5], ["zathura_pdf_poppler", 17, 5], ["zathura_pdf_mupdf", 19, 5], ["zathura_djvu", 21, 5], ["zathura_ps", 23, 5], ["zathura_cb", 25, 5], ["zathuraWrapper", 27, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   return nix.app(nix.sel(lib, "makeScope"), newScope, (self) => (() => {
       const callPackage = nix.thunk(() => nix.attr(self, "callPackage"));
       return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         useMupdf: useMupdf,
         zathura_core: nix.thunk(() => nix.app(callPackage, nix.path(here, "./core"), nix.thunk(() => ({})))),
         zathura_pdf_poppler: nix.thunk(() => nix.app(callPackage, nix.path(here, "./pdf-poppler"), nix.thunk(() => ({})))),

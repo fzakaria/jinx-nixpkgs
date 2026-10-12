@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 52, 5], ["hash", 55, 5]], [["homepage", 152, 5], ["description", 153, 5], ["mainProgram", 154, 5], ["platforms", 155, 5], ["maintainers", 156, 5], ["sourceProvenance", 164, 5], ["license", 165, 5]], [["pname", 48, 3], ["version", 49, 3], ["src", 51, 3], ["strictDeps", 58, 3], ["__structuredAttrs", 59, 3], ["nativeBuildInputs", 61, 3], ["buildInputs", 66, 3], ["runtimeDependencies", 101, 3], ["dontBuild", 106, 3], ["dontConfigure", 107, 3], ["dontPatchELF", 108, 3], ["unpackPhase", 110, 3], ["installPhase", 115, 3], ["meta", 151, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, "alsa-lib": false, atk: false, cairo: false, cups: false, udev: false, libdrm: false, libgbm: false, dbus: false, expat: false, fontconfig: false, freetype: false, "gdk-pixbuf": false, glib: false, gtk3: false, libappindicator: false, libnotify: false, nspr: false, nss: false, pango: false, systemd: false, libxtst: false, libxscrnsaver: false, libxrender: false, libxrandr: false, libxi: false, libxfixes: false, libxext: false, libxdamage: false, libxcursor: false, libxcomposite: false, libx11: false, libxcb: false, autoPatchelfHook: false, wrapGAppsHook3: false, runtimeShell: false, "gsettings-desktop-schemas": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 52, 5], ["hash", 55, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 152, 5], ["description", 153, 5], ["mainProgram", 154, 5], ["platforms", 155, 5], ["maintainers", 156, 5], ["sourceProvenance", 164, 5], ["license", 165, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 48, 3], ["version", 49, 3], ["src", 51, 3], ["strictDeps", 58, 3], ["__structuredAttrs", 59, 3], ["nativeBuildInputs", 61, 3], ["buildInputs", 66, 3], ["runtimeDependencies", 101, 3], ["dontBuild", 106, 3], ["dontConfigure", 107, 3], ["dontPatchELF", 108, 3], ["unpackPhase", 110, 3], ["installPhase", 115, 3], ["meta", 151, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -50,11 +48,11 @@ export default nix.lambda((args) => (() => {
   const gsettings_desktop_schemas = nix.arg($, "gsettings-desktop-schemas");
   const versionSuffix = "20260603142455.f60f2ff97e";
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "keybase-gui",
       version: "6.6.3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://s3.amazonaws.com/prerelease.keybase.io/linux_binaries/deb/keybase_${nix.add(nix.add(nix.sel(finalAttrs, "version"), "-"), versionSuffix)}_amd64.deb`),
           hash: "sha256-4OqjEc2kLJpJ7FC7WR0DAfsmsrvoKHrm4RtBdGpkti4=",
         })))),
@@ -135,7 +133,7 @@ substituteInPlace $out/share/applications/keybase.desktop \\
   --replace-fail run_keybase $out/bin/keybase-gui
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://www.keybase.io/",
         description: "Keybase official GUI",
         mainProgram: "keybase-gui",

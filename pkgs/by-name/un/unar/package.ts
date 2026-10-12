@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 23, 7], ["repo", 24, 7], ["name", 25, 7], ["rev", 26, 7], ["hash", 27, 7]], [["owner", 30, 7], ["repo", 31, 7], ["name", 32, 7], ["rev", 33, 7], ["hash", 34, 7]], [["homepage", 105, 5], ["description", 106, 5], ["longDescription", 107, 5], ["license", 114, 5], ["maintainers", 115, 5], ["mainProgram", 116, 5], ["platforms", 117, 5]], [["pname", 18, 3], ["version", 19, 3], ["srcs", 21, 3], ["postPatch", 38, 3], ["buildInputs", 63, 3], ["nativeBuildInputs", 72, 3], ["xcbuildFlags", 77, 3], ["makefile", 84, 3], ["enableParallelBuilding", 86, 3], ["dontConfigure", 88, 3], ["sourceRoot", 90, 3], ["installPhase", 92, 3], ["meta", 104, 3]]]);
 const formals$1 = { args: { lib: false, clangStdenv: false, fetchFromGitHub: false, installShellFiles: false, "gnustep-base": false, bzip2: false, zlib: false, icu: false, openssl: false, wavpack: false, xcbuildHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 23, 7], ["repo", 24, 7], ["name", 25, 7], ["rev", 26, 7], ["hash", 27, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 30, 7], ["repo", 31, 7], ["name", 32, 7], ["rev", 33, 7], ["hash", 34, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 105, 5], ["description", 106, 5], ["longDescription", 107, 5], ["license", 114, 5], ["maintainers", 115, 5], ["mainProgram", 116, 5], ["platforms", 117, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["srcs", 21, 3], ["postPatch", 38, 3], ["buildInputs", 63, 3], ["nativeBuildInputs", 72, 3], ["xcbuildFlags", 77, 3], ["makefile", 84, 3], ["enableParallelBuilding", 86, 3], ["dontConfigure", 88, 3], ["sourceRoot", 90, 3], ["installPhase", 92, 3], ["meta", 104, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,7 +20,7 @@ export default nix.lambda((args) => (() => {
   const xcbuildHook = nix.arg($, "xcbuildHook");
   const stdenv = clangStdenv;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "unar",
       version: "1.10.8",
       srcs: nix.thunk(() => [
@@ -33,10 +30,10 @@ export default nix.lambda((args) => (() => {
             const name = repo;
             const rev = nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`);
             const hash = "sha256-dmIyxpa3pq4ls4Grp0gy/6ZjcaA7rmobMn4h1inVgns=";
-            return { [nix.POS]: pos$1, owner, repo, name, rev, hash };
+            return { [nix.POS]: $pos[0], owner, repo, name, rev, hash };
           })()))),
         nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             owner: "MacPaw",
             repo: "universal-detector",
             name: "UniversalDetector",
@@ -80,7 +77,7 @@ done
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://theunarchiver.com",
         description: "Archive unpacker program",
         longDescription: "The Unarchiver is an archive unpacker program with support for the popular\nzip, RAR, 7z, tar, gzip, bzip2, LZMA, XZ, CAB, MSI, NSIS, EXE, ISO, BIN,\nand split file formats, as well as the old Stuffit, Stuffit X, DiskDouble,\nCompact Pro, Packit, cpio, compress (.Z), ARJ, ARC, PAK, ACE, ZOO, LZH,\nADF, DMS, LZX, PowerPacker, LBR, Squeeze, Crunch, and other old formats.\n",

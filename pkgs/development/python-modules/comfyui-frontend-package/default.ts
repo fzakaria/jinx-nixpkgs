@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 17, 5], ["version", 18, 26], ["hash", 19, 5]], [["COMFYUI_FRONTEND_VERSION", 25, 5]], [["description", 34, 5], ["homepage", 35, 5], ["license", 36, 5], ["maintainers", 37, 28], ["sourceProvenance", 40, 5]], [["pname", 10, 3], ["version", 11, 3], ["pyproject", 12, 3], ["src", 16, 3], ["build-system", 22, 3], ["env", 24, 3], ["doCheck", 29, 3], ["pythonImportsCheck", 31, 3], ["meta", 33, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, setuptools: false, comfyui: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 17, 5], ["version", 18, 26], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["COMFYUI_FRONTEND_VERSION", 25, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 34, 5], ["homepage", 35, 5], ["license", 36, 5], ["maintainers", 37, 28], ["sourceProvenance", 40, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 10, 3], ["version", 11, 3], ["pyproject", 12, 3], ["src", 16, 3], ["build-system", 22, 3], ["env", 24, 3], ["doCheck", 29, 3], ["pythonImportsCheck", 31, 3], ["meta", 33, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,19 +13,19 @@ export default nix.lambda((args) => (() => {
   const setuptools = nix.arg($, "setuptools");
   const comfyui = nix.arg($, "comfyui");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "comfyui-frontend-package",
       version: "1.52.7",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "comfyui_frontend_package",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-XLKH2CthihdZjMrmQd1Wreh8paRN3IVKdyVtveKa2kM=",
         })))),
       "build-system": nix.thunk(() => [setuptools]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         COMFYUI_FRONTEND_VERSION: nix.thunk(() => nix.sel(finalAttrs, "version")),
       })),
       doCheck: false,
@@ -36,7 +33,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(comfyui, "meta"));
         return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Frontend assets for ComfyUI",
         homepage: "https://github.com/Comfy-Org/ComfyUI_frontend",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

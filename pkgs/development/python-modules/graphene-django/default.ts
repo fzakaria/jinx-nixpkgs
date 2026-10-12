@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]], [["description", 72, 5], ["homepage", 73, 5], ["changelog", 74, 5], ["license", 75, 5], ["maintainers", 76, 5]], [["pname", 23, 3], ["version", 24, 3], ["format", 25, 3], ["src", 27, 3], ["postPatch", 34, 3], ["propagatedBuildInputs", 39, 3], ["preCheck", 48, 3], ["nativeCheckInputs", 52, 3], ["disabledTests", 61, 3], ["meta", 71, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, buildPythonPackage: false, fetchFromGitHub: false, graphene: false, "graphql-core": false, django: false, djangorestframework: false, promise: false, "text-unidecode": false, "django-filter": false, mock: false, py: false, "pytest-django": false, "pytest-random-order": false, pytest7CheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 72, 5], ["homepage", 73, 5], ["changelog", 74, 5], ["license", 75, 5], ["maintainers", 76, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 23, 3], ["version", 24, 3], ["format", 25, 3], ["src", 27, 3], ["postPatch", 34, 3], ["propagatedBuildInputs", 39, 3], ["preCheck", 48, 3], ["nativeCheckInputs", 52, 3], ["disabledTests", 61, 3], ["meta", 71, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.2.3";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "graphql-python",
           repo: "graphene-django",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -49,7 +47,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const disabledTests = nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(django, "version")), "6.0")), nix.thunk(() => ["test_global_id_field_explicit", "test_global_id_field_implicit"])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["test_should_filepath_convert_string"]))));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Integrate GraphQL into your Django project",
         homepage: "https://github.com/graphql-python/graphene-django",
         changelog: nix.thunk(() => nix.str`https://github.com/graphql-python/graphene-django/releases/tag/v${version}`),
@@ -60,7 +58,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         format,

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]], [["updateScript", 78, 12]], [["description", 81, 5], ["homepage", 82, 5], ["downloadPage", 83, 5], ["changelog", 84, 5], ["platforms", 85, 5], ["maintainers", 86, 5], ["license", 87, 5]], [["pname", 17, 3], ["version", 18, 3], ["outputs", 20, 3], ["src", 25, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 37, 3], ["cmakeFlags", 56, 3], ["doCheck", 75, 3], ["checkTarget", 76, 3], ["passthru", 78, 3], ["meta", 80, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, gfortran: false, python3: false, blas: false, lapack: false, suitesparse: false, "nix-update-script": false, lapackSupport: true, kluSupport: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 78, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 81, 5], ["homepage", 82, 5], ["downloadPage", 83, 5], ["changelog", 84, 5], ["platforms", 85, 5], ["maintainers", 86, 5], ["license", 87, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["outputs", 20, 3], ["src", 25, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 37, 3], ["cmakeFlags", 56, 3], ["doCheck", 75, 3], ["checkTarget", 76, 3], ["passthru", 78, 3], ["meta", 80, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const lapackSupport = nix.argOr($, "lapackSupport", () => true);
   const kluSupport = nix.argOr($, "kluSupport", () => true);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "sundials",
       version: "7.6.0",
       outputs: nix.thunk(() => ["out", "examples"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "LLNL",
           repo: "sundials",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -54,11 +51,11 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       checkTarget: "test",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Suite of nonlinear differential/algebraic equation solvers",
         homepage: "https://computing.llnl.gov/projects/sundials",
         downloadPage: "https://github.com/LLNL/sundials",

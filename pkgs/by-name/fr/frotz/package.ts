@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 35, 5], ["repo", 36, 5], ["tag", 37, 5], ["hash", 38, 5]], [["homepage", 85, 5], ["changelog", 86, 5], ["description", 87, 5], ["mainProgram", 88, 5], ["platforms", 89, 5], ["maintainers", 90, 5], ["license", 94, 5]], [["pname", 31, 3], ["version", 32, 3], ["src", 34, 3], ["patches", 41, 3], ["strictDeps", 46, 3], ["enableParallelBuilding", 47, 3], ["nativeBuildInputs", 48, 3], ["buildInputs", 52, 3], ["makeFlags", 73, 3], ["preConfigure", 77, 3], ["buildFlags", 81, 3], ["installTargets", 82, 3], ["meta", 84, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, libao: false, libmodplug: false, libsamplerate: false, libsndfile: false, libvorbis: false, ncurses: false, which: false, "pkg-config": false, SDL2: false, SDL2_mixer: false, zlib: false, libjpeg: false, libpng: false, freetype: false, frontend: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 35, 5], ["repo", 36, 5], ["tag", 37, 5], ["hash", 38, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 85, 5], ["changelog", 86, 5], ["description", 87, 5], ["mainProgram", 88, 5], ["platforms", 89, 5], ["maintainers", 90, 5], ["license", 94, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 31, 3], ["version", 32, 3], ["src", 34, 3], ["patches", 41, 3], ["strictDeps", 46, 3], ["enableParallelBuilding", 47, 3], ["nativeBuildInputs", 48, 3], ["buildInputs", 52, 3], ["makeFlags", 73, 3], ["preConfigure", 77, 3], ["buildFlags", 81, 3], ["installTargets", 82, 3], ["meta", 84, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,11 +28,11 @@ export default nix.lambda((args) => (() => {
   nix.assert_(nix.app(nix.sel(lib, "assertOneOf"), "frontend", frontend, nix.thunk(() => ["ncurses", "sdl"])), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/fr/frotz/package.nix:22:1");
   const progName = nix.thunk(() => (nix.asBool(nix.eq(frontend, "ncurses")) ? "frotz" : "sfrotz"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: progName,
       version: "2.55",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "DavidGriffith",
           repo: "frotz",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -53,7 +51,7 @@ export default nix.lambda((args) => (() => {
       buildFlags: nix.thunk(() => [frontend]),
       installTargets: nix.thunk(() => (nix.asBool(nix.eq(frontend, "ncurses")) ? "install-frotz" : nix.str`install-${frontend}`)),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://davidgriffith.gitlab.io/frotz/",
         changelog: nix.thunk(() => nix.str`https://gitlab.com/DavidGriffith/frotz/-/raw/${nix.sel(finalAttrs, "version")}/ChangeLog`),
         description: nix.thunk(() => nix.str`Z-machine interpreter for Infocom games and other interactive fiction (${frontend})`),

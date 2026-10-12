@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 21, 5], ["hash", 22, 5]], [["updateScript", 64, 12]], [["description", 67, 5], ["homepage", 68, 5], ["license", 69, 5], ["mainProgram", 70, 5], ["maintainers", 71, 5], ["platforms", 75, 5]], [["pname", 14, 3], ["version", 15, 3], ["__structuredAttrs", 17, 3], ["src", 20, 3], ["nativeBuildInputs", 25, 3], ["unpackPhase", 31, 3], ["dontConfigure", 40, 3], ["dontBuild", 41, 3], ["strictDeps", 42, 3], ["installPhase", 44, 3], ["nativeInstallCheckInputs", 61, 3], ["doInstallCheck", 62, 3], ["passthru", 64, 3], ["meta", 66, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchurl: false, installShellFiles: false, jq: false, libarchive: false, p7zip: false, versionCheckHook: false, zsh: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 64, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 67, 5], ["homepage", 68, 5], ["license", 69, 5], ["mainProgram", 70, 5], ["maintainers", 71, 5], ["platforms", 75, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["__structuredAttrs", 17, 3], ["src", 20, 3], ["nativeBuildInputs", 25, 3], ["unpackPhase", 31, 3], ["dontConfigure", 40, 3], ["dontBuild", 41, 3], ["strictDeps", 42, 3], ["installPhase", 44, 3], ["nativeInstallCheckInputs", 61, 3], ["doInstallCheck", 62, 3], ["passthru", 64, 3], ["meta", 66, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const zsh = nix.arg($, "zsh");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "mas",
       version: "7.0.0",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/mas-cli/mas/releases/download/v${nix.sel(finalAttrs, "version")}/mas-${nix.sel(finalAttrs, "version")}-arm64.pkg`),
           hash: "sha256-vCGKhUyF2eHJVJapayYoe7ZgVrlWiLkPkdBPpi7SG3U=",
         })))),
@@ -51,9 +48,9 @@ runHook postInstall
 `),
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[1], updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Mac App Store command line interface",
         homepage: "https://github.com/mas-cli/mas",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

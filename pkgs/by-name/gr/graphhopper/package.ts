@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]], [["name", 30, 5], ["url", 31, 5], ["hash", 32, 5]], [["name", 38, 5], ["src", 40, 13], ["patches", 40, 17], ["buildInputs", 42, 5], ["buildPhase", 44, 5], ["installPhase", 51, 5], ["outputHashMode", 60, 5], ["outputHash", 61, 5]], [["description", 131, 5], ["homepage", 132, 5], ["changelog", 133, 5], ["license", 134, 5], ["maintainers", 135, 5], ["teams", 136, 5], ["platforms", 137, 5], ["mainProgram", 138, 5], ["sourceProvenance", 139, 5]], [["package", 148, 7], ["command", 150, 7], ["version", 151, 7]], [["version", 147, 11]], [["updateScript", 146, 5], ["tests", 147, 5]], [["pname", 65, 3], ["src", 67, 11], ["patches", 67, 15], ["version", 69, 3], ["nativeBuildInputs", 71, 3], ["strictDeps", 76, 3], ["configurePhase", 78, 3], ["buildPhase", 89, 3], ["installPhase", 99, 3], ["fixupPhase", 117, 3], ["meta", 130, 3], ["passthru", 145, 3]]]);
 const formals$1 = { args: { fetchFromGitHub: false, fetchurl: false, lib: false, stdenv: false, testers: false, jre: false, makeWrapper: false, maven: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 30, 5], ["url", 31, 5], ["hash", 32, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 38, 5], ["src", 40, 13], ["patches", 40, 17], ["buildInputs", 42, 5], ["buildPhase", 44, 5], ["installPhase", 51, 5], ["outputHashMode", 60, 5], ["outputHash", 61, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 131, 5], ["homepage", 132, 5], ["changelog", 133, 5], ["license", 134, 5], ["maintainers", 135, 5], ["teams", 136, 5], ["platforms", 137, 5], ["mainProgram", 138, 5], ["sourceProvenance", 139, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["package", 148, 7], ["command", 150, 7], ["version", 151, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["version", 147, 11]]);
-const pos$7 = nix.positions(here + "/package.nix", [["updateScript", 146, 5], ["tests", 147, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 65, 3], ["src", 67, 11], ["patches", 67, 15], ["version", 69, 3], ["nativeBuildInputs", 71, 3], ["strictDeps", 76, 3], ["configurePhase", 78, 3], ["buildPhase", 89, 3], ["installPhase", 99, 3], ["fixupPhase", 117, 3], ["meta", 130, 3], ["passthru", 145, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,7 +17,7 @@ export default nix.lambda((args) => (() => {
   const maven = nix.arg($, "maven");
   const version = nix.thunk(() => nix.builtins.fromTOML(nix.thunk(() => nix.builtins.readFile(nix.path(here, "./version.toml")))));
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "graphhopper",
       repo: "graphhopper",
       tag: nix.thunk(() => nix.sel(version, "patch")),
@@ -32,13 +25,13 @@ export default nix.lambda((args) => (() => {
     }))));
   const patches = nix.thunk(() => [nix.path(here, "./remove-npm-dependency.patch")]);
   const mapsBundle = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       name: nix.thunk(() => nix.str`@graphhopper/graphhopper-maps-bundle-${nix.sel(version, "mapsBundle")}`),
       url: nix.thunk(() => nix.str`https://registry.npmjs.org/@graphhopper/graphhopper-maps-bundle/-/graphhopper-maps-bundle-${nix.sel(version, "mapsBundle")}.tgz`),
       hash: nix.thunk(() => nix.sel(version, "hash", "mapsBundle")),
     }))));
   const mvnDeps = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       name: "graphhopper-dependencies",
       src: src,
       patches: patches,
@@ -49,7 +42,7 @@ export default nix.lambda((args) => (() => {
       outputHash: nix.thunk(() => nix.sel(version, "hash", "mvnDeps")),
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "graphhopper",
       src: src,
       patches: patches,
@@ -89,7 +82,7 @@ runHook postInstall
 `),
       fixupPhase: "runHook preFixup\n\n# keep only *.{pom,jar,sha1,nbm} and delete all ephemeral files with lastModified timestamps inside\nfind $out -type f \\( \\\n  -name \\*.lastUpdated \\\n  -o -name resolver-status.properties \\\n  -o -name _remote.repositories \\) \\\n  -delete\n\nrunHook postFixup\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Fast and memory-efficient routing engine for OpenStreetMap",
         homepage: "https://www.graphhopper.com/",
         changelog: nix.thunk(() => nix.str`https://github.com/graphhopper/graphhopper/releases/tag/${nix.sel(version, "patch")}`),
@@ -110,12 +103,12 @@ runHook postInstall
         })()),
       })),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         updateScript: nix.path(here, "./update.nu"),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               command: "graphhopper --help",
               version: nix.thunk(() => nix.str`graphhopper-web-${nix.sel(version, "major")}-SNAPSHOT.jar`),

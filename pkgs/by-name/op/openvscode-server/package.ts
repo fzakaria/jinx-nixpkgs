@@ -2,16 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["x86_64-linux", 33, 7], ["aarch64-linux", 34, 7], ["aarch64-darwin", 35, 7]], [["owner", 48, 5], ["repo", 49, 5], ["rev", 50, 5], ["hash", 51, 5]], [["FORCE_EMPTY_CACHE", 66, 11], ["FORCE_GIT_DEPS", 67, 11], ["npm_config_progress", 68, 11], ["npm_config_cafile", 69, 11]], [["src", 61, 30], ["nativeBuildInputs", 61, 34], ["outputHashMode", 62, 9], ["outputHashAlgo", 63, 9], ["outputHash", 64, 9], ["env", 65, 9]], [["NODE_OPTIONS", 85, 5], ["NODE_ENV", 86, 5], ["PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD", 89, 5], ["ELECTRON_SKIP_BINARY_DOWNLOAD", 90, 5], ["NIX_NODEJS_BUILDNPMPACKAGE", 93, 5], ["npm_config_nodedir", 94, 5], ["npm_config_node_gyp", 95, 5], ["npm_config_offline", 96, 5], ["npm_config_progress", 97, 5], ["prefetchNpmDeps", 100, 5], ["forceGitDeps", 101, 5]], [["openvscode-server", 231, 26]], [["tests", 230, 12]], [["description", 235, 5], ["longDescription", 236, 5], ["homepage", 240, 5], ["license", 241, 5], ["maintainers", 242, 5], ["platforms", 246, 5], ["mainProgram", 251, 5]], [["pname", 41, 3], ["version", 42, 3], ["executableName", 44, 3], ["longName", 45, 3], ["src", 47, 3], ["nodeModules", 58, 3], ["env", 84, 3], ["nativeBuildInputs", 104, 3], ["buildInputs", 114, 3], ["postPatch", 127, 3], ["preConfigure", 146, 3], ["configurePhase", 154, 3], ["buildPhase", 212, 3], ["installPhase", 220, 3], ["passthru", 230, 3], ["meta", 234, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, buildGoModule: false, makeWrapper: false, cacert: false, moreutils: false, jq: false, git: false, "pkg-config": false, runCommand: false, nodejs_22: false, "nodejs-slim_22": false, "node-gyp": false, libsecret: false, libkrb5: false, libx11: false, libxkbfile: false, ripgrep: false, cctools: false, nixosTests: false, "prefetch-npm-deps": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["x86_64-linux", 33, 7], ["aarch64-linux", 34, 7], ["aarch64-darwin", 35, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 48, 5], ["repo", 49, 5], ["rev", 50, 5], ["hash", 51, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["FORCE_EMPTY_CACHE", 66, 11], ["FORCE_GIT_DEPS", 67, 11], ["npm_config_progress", 68, 11], ["npm_config_cafile", 69, 11]]);
-const pos$4 = nix.positions(here + "/package.nix", [["src", 61, 30], ["nativeBuildInputs", 61, 34], ["outputHashMode", 62, 9], ["outputHashAlgo", 63, 9], ["outputHash", 64, 9], ["env", 65, 9]]);
-const pos$5 = nix.positions(here + "/package.nix", [["NODE_OPTIONS", 85, 5], ["NODE_ENV", 86, 5], ["PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD", 89, 5], ["ELECTRON_SKIP_BINARY_DOWNLOAD", 90, 5], ["NIX_NODEJS_BUILDNPMPACKAGE", 93, 5], ["npm_config_nodedir", 94, 5], ["npm_config_node_gyp", 95, 5], ["npm_config_offline", 96, 5], ["npm_config_progress", 97, 5], ["prefetchNpmDeps", 100, 5], ["forceGitDeps", 101, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["openvscode-server", 231, 26]]);
-const pos$7 = nix.positions(here + "/package.nix", [["tests", 230, 12]]);
-const pos$8 = nix.positions(here + "/package.nix", [["description", 235, 5], ["longDescription", 236, 5], ["homepage", 240, 5], ["license", 241, 5], ["maintainers", 242, 5], ["platforms", 246, 5], ["mainProgram", 251, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["pname", 41, 3], ["version", 42, 3], ["executableName", 44, 3], ["longName", 45, 3], ["src", 47, 3], ["nodeModules", 58, 3], ["env", 84, 3], ["nativeBuildInputs", 104, 3], ["buildInputs", 114, 3], ["postPatch", 127, 3], ["preConfigure", 146, 3], ["configurePhase", 154, 3], ["buildPhase", 212, 3], ["installPhase", 220, 3], ["passthru", 230, 3], ["meta", 234, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -40,33 +32,33 @@ export default nix.lambda((args) => (() => {
   const nodejs = nodejs_22;
   const system = nix.thunk(() => nix.sel(stdenv, "hostPlatform", "system"));
   const vsBuildTarget = nix.thunk(() => nix.selOr({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     "x86_64-linux": "linux-x64",
     "aarch64-linux": "linux-arm64",
     "aarch64-darwin": "darwin-arm64",
   }, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system ${system}`)), nix.key(nix.force(system))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       pname: "openvscode-server",
       version: "1.109.5",
       executableName: "openvscode-server",
       longName: "OpenVSCode Server",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "gitpod-io",
           repo: "openvscode-server",
           rev: nix.thunk(() => nix.str`openvscode-server-v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-FWexstn6pmKPkMuoXOWr4+levM+3FK74q1HLu4kFWTc=",
         })))),
       nodeModules: nix.thunk(() => nix.app(runCommand, "openvscode-server-node-modules", nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           nativeBuildInputs: nix.thunk(() => nix.attr(finalAttrs, "nativeBuildInputs")),
           outputHashMode: "recursive",
           outputHashAlgo: "sha256",
           outputHash: "sha256-DMjqFMdp7ocGdvMEmrKqB8RhF+BTN/9ybOKQAeuSG/o=",
           env: nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             FORCE_EMPTY_CACHE: true,
             FORCE_GIT_DEPS: true,
             npm_config_progress: false,
@@ -83,7 +75,7 @@ do (
 done
 `))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         NODE_OPTIONS: "--openssl-legacy-provider",
         NODE_ENV: "development",
         PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: "1",
@@ -133,14 +125,14 @@ ln -sf ${nodejs}/bin/node $out
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           "openvscode-server": nix.thunk(() => nix.attr(nixosTests, "openvscode-server")),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         description: "Run VS Code on a remote machine",
         longDescription: "Run upstream VS Code on a remote machine with access through a modern web\nbrowser from any device, anywhere.\n",
         homepage: "https://github.com/gitpod-io/openvscode-server",

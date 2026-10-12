@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 14, 5], ["hash", 15, 5]], [["updateScript", 34, 12]], [["homepage", 37, 5], ["description", 38, 5], ["changelog", 39, 5], ["license", 40, 5], ["maintainers", 49, 5], ["platforms", 54, 35]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["patches", 18, 3], ["postPatch", 20, 3], ["nativeBuildInputs", 25, 3], ["hardeningDisable", 27, 28], ["configurePlatforms", 27, 45], ["env", 27, 64], ["preFixup", 29, 3], ["passthru", 34, 3], ["meta", 36, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchzip: false, python3: false, librandombytes: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 14, 5], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 34, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 37, 5], ["description", 38, 5], ["changelog", 39, 5], ["license", 40, 5], ["maintainers", 49, 5], ["platforms", 54, 35]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["patches", 18, 3], ["postPatch", 20, 3], ["nativeBuildInputs", 25, 3], ["hardeningDisable", 27, 28], ["configurePlatforms", 27, 45], ["env", 27, 64], ["preFixup", 29, 3], ["passthru", 34, 3], ["meta", 36, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const librandombytes = nix.arg($, "librandombytes");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "libcpucycles",
       version: "20260105",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://cpucycles.cr.yp.to/libcpucycles-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-hWmMLBadM/E/kF8D/cTjU+G0f2HTkZQlKoIWsgzAFj0=",
         })))),
@@ -31,11 +28,11 @@ export default nix.lambda((args) => (() => {
       configurePlatforms: nix.thunk(() => nix.attr(librandombytes, "configurePlatforms")),
       env: nix.thunk(() => nix.attr(librandombytes, "env")),
       preFixup: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "install_name_tool -id \"$out/lib/libcpucycles.1.dylib\" \"$out/lib/libcpucycles.1.dylib\"\ninstall_name_tool -change \"libcpucycles.1.dylib\" \"$out/lib/libcpucycles.1.dylib\" \"$out/bin/cpucycles-info\"\n")),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[1], updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(librandombytes, "meta"));
         return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://cpucycles.cr.yp.to/",
         description: "Microlibrary for counting CPU cycles",
         changelog: "https://cpucycles.cr.yp.to/download.html",

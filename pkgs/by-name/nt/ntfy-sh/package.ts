@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["src", 19, 28], ["version", 19, 32], ["pname", 20, 7], ["npmDepsHash", 21, 7], ["prePatch", 23, 7], ["installPhase", 27, 7]], [["owner", 44, 7], ["repo", 45, 7], ["tag", 46, 7], ["hash", 47, 7]], [["ntfy-sh", 90, 13]], [["updateScript", 89, 7], ["tests", 90, 7]], [["description", 94, 7], ["homepage", 95, 7], ["changelog", 96, 7], ["license", 97, 7], ["maintainers", 98, 7], ["mainProgram", 103, 7]], [["pname", 40, 5], ["version", 41, 5], ["src", 43, 5], ["vendorHash", 50, 5], ["doCheck", 52, 5], ["ldflags", 54, 5], ["excludedPackages", 60, 5], ["nativeBuildInputs", 65, 5], ["postPatch", 73, 5], ["preBuild", 83, 5], ["passthru", 88, 5], ["meta", 93, 5]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitHub: false, buildNpmPackage: false, nixosTests: false, debianutils: false, mkdocs: false, python3: false, python3Packages: false, runtimeShell: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["src", 19, 28], ["version", 19, 32], ["pname", 20, 7], ["npmDepsHash", 21, 7], ["prePatch", 23, 7], ["installPhase", 27, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 44, 7], ["repo", 45, 7], ["tag", 46, 7], ["hash", 47, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["ntfy-sh", 90, 13]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 89, 7], ["tests", 90, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 94, 7], ["homepage", 95, 7], ["changelog", 96, 7], ["license", 97, 7], ["maintainers", 98, 7], ["mainProgram", 103, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 40, 5], ["version", 41, 5], ["src", 43, 5], ["vendorHash", 50, 5], ["doCheck", 52, 5], ["ldflags", 54, 5], ["excludedPackages", 60, 5], ["nativeBuildInputs", 65, 5], ["postPatch", 73, 5], ["preBuild", 83, 5], ["passthru", 88, 5], ["meta", 93, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,7 +19,7 @@ export default nix.lambda((args) => (() => {
   const runtimeShell = nix.arg($, "runtimeShell");
   return nix.app(buildGoModule, (finalAttrs) => (() => {
       const ui = nix.thunk(() => nix.app(buildNpmPackage, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           pname: "ntfy-sh-ui",
@@ -33,11 +28,11 @@ export default nix.lambda((args) => (() => {
           installPhase: "runHook preInstall\n\nmv build/index.html build/app.html\nrm build/config.js\nmkdir -p $out\nmv build/ $out/site\n\nrunHook postInstall\n",
         }))));
       return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname: "ntfy-sh",
         version: "2.28.0",
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             owner: "binwiederhier",
             repo: "ntfy",
             tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -70,12 +65,15 @@ substituteInPlace \\
 make docs-build
 `),
         passthru: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           updateScript: nix.path(here, "./update.sh"),
-          tests: nix.thunk(() => ({ [nix.POS]: pos$3, "ntfy-sh": nix.thunk(() => nix.sel(nixosTests, "ntfy-sh")) })),
+          tests: nix.thunk(() => ({
+            [nix.POS]: $pos[2],
+            "ntfy-sh": nix.thunk(() => nix.sel(nixosTests, "ntfy-sh")),
+          })),
         })),
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           description: "Send push notifications to your phone or desktop via PUT/POST",
           homepage: "https://ntfy.sh",
           changelog: nix.thunk(() => nix.str`https://github.com/binwiederhier/ntfy/releases/tag/v${nix.sel(finalAttrs, "version")}`),

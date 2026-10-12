@@ -2,19 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/linux.nix", [[["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]], [["device_apps", 40, 5], ["pasteboard", 41, 5], ["permission_handler_windows", 42, 5]], [["rustLib", 65, 43]], [["pname", 57, 7], ["version", 58, 15], ["src", 58, 23], ["passthru", 59, 21], ["postPatch", 61, 7], ["installPhase", 71, 7]], [["rust_lib_localsend_app", 54, 24]], [["name", 92, 7], ["exec", 93, 7], ["icon", 94, 7], ["desktopName", 95, 7], ["startupWMClass", 96, 7], ["comment", 97, 7], ["genericName", 98, 7], ["categories", 99, 7], ["keywords", 105, 7], ["startupNotify", 110, 7]], [["pname", 116, 7], ["version", 117, 28], ["src", 117, 36], ["cargoHash", 118, 7], ["buildAndTestSubdir", 119, 7]], [["localsend", 121, 36]], [["rustLib", 115, 5], ["tests", 121, 5]], [["mainProgram", 125, 5], ["platforms", 126, 5]], [["pname", 24, 11], ["version", 24, 17], ["strictDeps", 26, 3], ["src", 28, 3], ["sourceRoot", 35, 3], ["pubspecLock", 37, 3], ["gitHashes", 39, 3], ["postPatch", 45, 3], ["nativeBuildInputs", 50, 3], ["buildInputs", 52, 3], ["customSourceBuilders", 54, 3], ["postInstall", 78, 3], ["extraWrapProgramArgs", 86, 3], ["desktopItems", 90, 3], ["passthru", 114, 3], ["meta", 124, 3]]]);
 const formals$1 = { args: { pname: false, version: false, meta: false, lib: false, fetchFromGitHub: false, flutter341: false, replaceVars: false, rustPlatform: false, stdenvNoCC: false, copyDesktopItems: false, makeDesktopItem: false, "libayatana-appindicator": false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/linux.nix", [["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]]);
-const pos$2 = nix.positions(here + "/linux.nix", [["device_apps", 40, 5], ["pasteboard", 41, 5], ["permission_handler_windows", 42, 5]]);
 const formals$2 = { args: { version: false, src: false }, ellipsis: true };
-const pos$3 = nix.positions(here + "/linux.nix", [["rustLib", 65, 43]]);
-const pos$4 = nix.positions(here + "/linux.nix", [["pname", 57, 7], ["version", 58, 15], ["src", 58, 23], ["passthru", 59, 21], ["postPatch", 61, 7], ["installPhase", 71, 7]]);
-const pos$5 = nix.positions(here + "/linux.nix", [["rust_lib_localsend_app", 54, 24]]);
-const pos$6 = nix.positions(here + "/linux.nix", [["name", 92, 7], ["exec", 93, 7], ["icon", 94, 7], ["desktopName", 95, 7], ["startupWMClass", 96, 7], ["comment", 97, 7], ["genericName", 98, 7], ["categories", 99, 7], ["keywords", 105, 7], ["startupNotify", 110, 7]]);
-const pos$7 = nix.positions(here + "/linux.nix", [["pname", 116, 7], ["version", 117, 28], ["src", 117, 36], ["cargoHash", 118, 7], ["buildAndTestSubdir", 119, 7]]);
-const pos$8 = nix.positions(here + "/linux.nix", [["localsend", 121, 36]]);
-const pos$9 = nix.positions(here + "/linux.nix", [["rustLib", 115, 5], ["tests", 121, 5]]);
-const pos$10 = nix.positions(here + "/linux.nix", [["mainProgram", 125, 5], ["platforms", 126, 5]]);
-const pos$11 = nix.positions(here + "/linux.nix", [["pname", 24, 11], ["version", 24, 17], ["strictDeps", 26, 3], ["src", 28, 3], ["sourceRoot", 35, 3], ["pubspecLock", 37, 3], ["gitHashes", 39, 3], ["postPatch", 45, 3], ["nativeBuildInputs", 50, 3], ["buildInputs", 52, 3], ["customSourceBuilders", 54, 3], ["postInstall", 78, 3], ["extraWrapProgramArgs", 86, 3], ["desktopItems", 90, 3], ["passthru", 114, 3], ["meta", 124, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,12 +22,12 @@ export default nix.lambda((args) => (() => {
   const libayatana_appindicator = nix.arg($, "libayatana-appindicator");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(flutter341, "buildFlutterApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$11,
+      [nix.POS]: $pos[10],
       pname: pname,
       version: version,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "localsend",
           repo: "localsend",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -46,7 +36,7 @@ export default nix.lambda((args) => (() => {
       sourceRoot: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "name")}/app`),
       pubspecLock: nix.thunk(() => nix.app(nix.sel(lib, "importJSON"), nix.path(here, "./pubspec.lock.json"))),
       gitHashes: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         device_apps: "sha256-oreTBOYh4J2N4HhY2gxNwwxfl1OSAZRH1GOeVrH8LG8=",
         pasteboard: "sha256-lJA5OWoAHfxORqWMglKzhsL1IFr9YcdAQP/NVOLYB4o=",
         permission_handler_windows: "sha256-+TP3neqlQRZnW6BxHaXr2EbmdITIx1Yo7AEn5iwAhwM=",
@@ -55,13 +45,13 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [copyDesktopItems]),
       buildInputs: nix.thunk(() => [libayatana_appindicator]),
       customSourceBuilders: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         rust_lib_localsend_app: nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$2);
           const version_1 = nix.arg($_1, "version");
           const src = nix.arg($_1, "src");
           return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs$) => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               pname: "rust_lib_localsend_app",
               version: version_1,
               src: src,
@@ -69,7 +59,7 @@ export default nix.lambda((args) => (() => {
               postPatch: nix.thunk(() => nix.str`pushd ${nix.sel(finalAttrs$, "src", "passthru", "packageRoot")}
 patch -p1 <${nix.app(replaceVars, nix.path(here, "./no-cargokit.patch"), nix.thunk(() => (() => {
                   const from = nix.thunk(() => nix.sel(finalAttrs, "passthru"));
-                  return { [nix.POS]: pos$3, rustLib: nix.thunk(() => nix.attr(from, "rustLib")) };
+                  return { [nix.POS]: $pos[2], rustLib: nix.thunk(() => nix.attr(from, "rustLib")) };
                 })()))}
 popd
 `),
@@ -81,7 +71,7 @@ popd
       extraWrapProgramArgs: "--prefix LD_LIBRARY_PATH : $out/app/localsend/lib\n",
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             name: "LocalSend",
             exec: "localsend_app %U",
             icon: "localsend",
@@ -95,9 +85,9 @@ popd
           })))),
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         rustLib: nix.thunk(() => nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             pname: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-rust-lib`),
             version: nix.thunk(() => nix.attr(finalAttrs, "version")),
             src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -105,12 +95,12 @@ popd
             buildAndTestSubdir: "packages/localsend_isolates/rust",
           })))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           localsend: nix.thunk(() => nix.attr(nixosTests, "localsend")),
         })),
       })),
       meta: nix.thunk(() => nix.update(meta, {
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         mainProgram: "localsend_app",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       })),

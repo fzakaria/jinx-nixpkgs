@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5]], [["ASSET_OUT_DIR", 46, 7]], [["homepage", 58, 5], ["license", 59, 5], ["maintainers", 60, 5], ["mainProgram", 61, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["cargoHash", 26, 3], ["buildInputs", 28, 3], ["nativeBuildInputs", 34, 3], ["nativeCheckInputs", 40, 3], ["env", 46, 3], ["postInstall", 48, 3], ["__structuredAttrs", 55, 3], ["meta", 57, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchFromGitLab: false, openssl: false, nettle: false, sqlite: false, "pkg-config": false, installShellFiles: false, gnupg: false, gitMinimal: false, libfaketime: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["ASSET_OUT_DIR", 46, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 58, 5], ["license", 59, 5], ["maintainers", 60, 5], ["mainProgram", 61, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["cargoHash", 26, 3], ["buildInputs", 28, 3], ["nativeBuildInputs", 34, 3], ["nativeCheckInputs", 40, 3], ["env", 46, 3], ["postInstall", 48, 3], ["__structuredAttrs", 55, 3], ["meta", 57, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const gitMinimal = nix.arg($, "gitMinimal");
   const libfaketime = nix.arg($, "libfaketime");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (final) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "sequoia-git",
       version: "0.6.0",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "sequoia-pgp",
           repo: "sequoia-git",
           rev: nix.thunk(() => nix.str`v${nix.sel(final, "version")}`),
@@ -44,7 +41,7 @@ export default nix.lambda((args) => (() => {
         installShellFiles,
       ]),
       nativeCheckInputs: nix.thunk(() => [gnupg, gitMinimal, libfaketime]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, ASSET_OUT_DIR: "target" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], ASSET_OUT_DIR: "target" })),
       postInstall: nix.thunk(() => nix.str`installManPage ${nix.sel(final, "env", "ASSET_OUT_DIR")}/man-pages/*.1
 installShellCompletion --bash ${nix.sel(final, "env", "ASSET_OUT_DIR")}/shell-completions/${nix.sel(final, "meta", "mainProgram")}.bash
 installShellCompletion --zsh ${nix.sel(final, "env", "ASSET_OUT_DIR")}/shell-completions/_${nix.sel(final, "meta", "mainProgram")}
@@ -52,7 +49,7 @@ installShellCompletion --fish ${nix.sel(final, "env", "ASSET_OUT_DIR")}/shell-co
 `),
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://sequoia-pgp.gitlab.io/sequoia-git",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl2Plus")),
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "matthiasbeyer"))]),

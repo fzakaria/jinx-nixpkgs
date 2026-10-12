@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["baseName", 25, 3], ["propagatedBuildInputs", 27, 3], ["dontWrapQtApps", 32, 3], ["preFixup", 34, 3]]]);
 const formals$1 = { args: { faust: false, "alsa-lib": false, qt5: false, writeText: false, buildPackages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["baseName", 25, 3], ["propagatedBuildInputs", 27, 3], ["dontWrapQtApps", 32, 3], ["preFixup", 34, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,7 +24,7 @@ for p in $FILES; do
 done
 `)));
   return nix.app(nix.sel(faust, "wrapWithBuildEnv"), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       baseName: "faust2alqt",
       propagatedBuildInputs: nix.thunk(() => [alsa_lib, nix.thunk(() => nix.sel(qt5, "qtbase"))]),
       dontWrapQtApps: true,

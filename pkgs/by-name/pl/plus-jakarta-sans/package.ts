@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 11, 5], ["stripRoot", 12, 5], ["hash", 13, 5]], [["homepage", 26, 5], ["description", 27, 5], ["license", 28, 5], ["platforms", 29, 5], ["maintainers", 30, 5]], [["pname", 7, 3], ["version", 8, 3], ["src", 10, 3], ["installPhase", 16, 3], ["meta", 25, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchzip: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 11, 5], ["stripRoot", 12, 5], ["hash", 13, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 26, 5], ["description", 27, 5], ["license", 28, 5], ["platforms", 29, 5], ["maintainers", 30, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 7, 3], ["version", 8, 3], ["src", 10, 3], ["installPhase", 16, 3], ["meta", 25, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,18 +11,18 @@ export default nix.lambda((args) => (() => {
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   const fetchzip = nix.arg($, "fetchzip");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "plus-jakarta-sans",
       version: "2.7.1",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/tokotype/PlusJakartaSans/releases/download/${nix.sel(finalAttrs, "version")}/PlusJakartaSans-${nix.sel(finalAttrs, "version")}.zip`),
           stripRoot: false,
           hash: "sha256-+ghkQ4/wxou3FB68ceCwBeGrSCaHJhb16MybvN6mCSc=",
         })))),
       installPhase: "runHook preInstall\n\nmkdir -p $out/share/fonts/truetype\ncp PlusJakartaSans-$version/*/PlusJakartaSans*.ttf $out/share/fonts/truetype\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://www.tokotype.com/custom-fonts/plusjakarta",
         description: "Typeface designed for Jakarta 'City of collaboration' program in 2020",
         license: nix.thunk(() => nix.sel(lib, "licenses", "ofl")),

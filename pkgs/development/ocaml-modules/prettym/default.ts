@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 20, 5], ["hash", 21, 5]], [["description", 43, 5], ["license", 44, 5], ["homepage", 45, 5], ["maintainers", 46, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["duneVersion", 24, 3], ["minimalOCamlVersion", 25, 3], ["propagatedBuildInputs", 27, 3], ["checkInputs", 34, 3], ["doCheck", 40, 3], ["meta", 42, 3]]]);
 const formals$1 = { args: { alcotest: false, base64: false, "bigarray-overlap": false, bigstringaf: false, buildDunePackage: false, fetchurl: false, fmt: false, jsonm: false, ke: false, lib: false, ptime: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 43, 5], ["license", 44, 5], ["homepage", 45, 5], ["maintainers", 46, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["duneVersion", 24, 3], ["minimalOCamlVersion", 25, 3], ["propagatedBuildInputs", 27, 3], ["checkInputs", 34, 3], ["doCheck", 40, 3], ["meta", 42, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const ptime = nix.arg($, "ptime");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "prettym",
       version: "0.0.3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/dinosaure/prettym/releases/download/${nix.sel(finalAttrs, "version")}/prettym-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-kXDxoRref02YpYSlvlK7a5FBX5ccbnWJQzG0axi5jwk=",
         })))),
@@ -35,7 +33,7 @@ export default nix.lambda((args) => (() => {
       checkInputs: nix.thunk(() => [ptime, alcotest, jsonm, base64]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Simple bounded encoder to serialize human readable values and respect the 80-column constraint",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         homepage: "https://github.com/dinosaure/prettym",

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 10, 5], ["hash", 11, 5]], [["maintainers", 25, 5], ["description", 26, 5], ["homepage", 27, 5], ["license", 28, 5]], [["pname", 7, 3], ["version", 8, 3], ["src", 9, 3], ["dontUnpack", 14, 3], ["installPhase", 15, 3], ["meta", 24, 3]]]);
 const formals$1 = { args: { fetchurl: false, stdenvNoCC: false, lib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 10, 5], ["hash", 11, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["maintainers", 25, 5], ["description", 26, 5], ["homepage", 27, 5], ["license", 28, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 7, 3], ["version", 8, 3], ["src", 9, 3], ["dontUnpack", 14, 3], ["installPhase", 15, 3], ["meta", 24, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,18 +11,18 @@ export default nix.lambda((args) => (() => {
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   const lib = nix.arg($, "lib");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "rime-zhwiki",
       version: "20260416",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://github.com/felixonmars/fcitx5-pinyin-zhwiki/releases/download/0.3.0/zhwiki-20260416.dict.yaml",
           hash: "sha256-XBQORi+cAKEZUAt/7A07kn8Pg5IAAafqQI4mdI0J6gc=",
         })))),
       dontUnpack: true,
       installPhase: "runHook preInstall\n\nmkdir -p $out/share/rime-data\ncp $src $out/share/rime-data/zhwiki.dict.yaml\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
           return [nix.thunk(() => nix.lookup(w, "xddxdd"))];

@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 18, 15], ["version", 18, 21], ["hash", 19, 7]], [["doCheck", 39, 9]], [["check", 38, 7]], [["tests", 37, 14]], [["homepage", 44, 7], ["description", 45, 7], ["mainProgram", 46, 7], ["license", 47, 7], ["maintainers", 48, 7]], [["version", 13, 5], ["pyproject", 14, 5], ["pname", 15, 5], ["src", 17, 5], ["build-system", 22, 5], ["nativeCheckInputs", 27, 5], ["pytestFlags", 32, 5], ["doCheck", 35, 5], ["passthru", 37, 5], ["meta", 43, 5]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, "hatch-vcs": false, "pytest-benchmark": false, pytestCheckHook: false, setuptools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 18, 15], ["version", 18, 21], ["hash", 19, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["doCheck", 39, 9]]);
-const pos$3 = nix.positions(here + "/default.nix", [["check", 38, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["tests", 37, 14]]);
-const pos$5 = nix.positions(here + "/default.nix", [["homepage", 44, 7], ["description", 45, 7], ["mainProgram", 46, 7], ["license", 47, 7], ["maintainers", 48, 7]]);
-const pos$6 = nix.positions(here + "/default.nix", [["version", 13, 5], ["pyproject", 14, 5], ["pname", 15, 5], ["src", 17, 5], ["build-system", 22, 5], ["nativeCheckInputs", 27, 5], ["pytestFlags", 32, 5], ["doCheck", 35, 5], ["passthru", 37, 5], ["meta", 43, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pyproject = true;
       const pname = "automat";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-ABdZGlR3Bm6Q0msOaW3cFDuq/Ye1iM+sgQC8a+ljTeA=",
@@ -34,14 +29,14 @@ export default nix.lambda((args) => (() => {
       const pytestFlags = nix.thunk(() => ["--benchmark-disable"]);
       const doCheck = false;
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
-          check: nix.thunk(() => nix.app(nix.sel(automat, "overridePythonAttrs"), (_) => ({ [nix.POS]: pos$2, doCheck: true }))),
+          [nix.POS]: $pos[2],
+          check: nix.thunk(() => nix.app(nix.sel(automat, "overridePythonAttrs"), (_) => ({ [nix.POS]: $pos[1], doCheck: true }))),
         })),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "https://github.com/glyph/Automat",
         description: "Self-service finite-state machines for the programmer on the go",
         mainProgram: "automat-visualize",
@@ -49,7 +44,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         version,
         pyproject,
         pname,

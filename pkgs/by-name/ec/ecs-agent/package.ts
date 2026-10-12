@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["rev", 12, 5], ["owner", 13, 5], ["repo", 14, 5], ["hash", 15, 5]], [["description", 30, 5], ["homepage", 31, 5], ["changelog", 32, 5], ["license", 33, 5], ["platforms", 34, 5], ["maintainers", 35, 5], ["mainProgram", 36, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["vendorHash", 18, 3], ["modRoot", 20, 3], ["excludedPackages", 22, 3], ["ldflags", 24, 3], ["meta", 29, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, buildGoModule: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["rev", 12, 5], ["owner", 13, 5], ["repo", 14, 5], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 30, 5], ["homepage", 31, 5], ["changelog", 32, 5], ["license", 33, 5], ["platforms", 34, 5], ["maintainers", 35, 5], ["mainProgram", 36, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["vendorHash", 18, 3], ["modRoot", 20, 3], ["excludedPackages", 22, 3], ["ldflags", 24, 3], ["meta", 29, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,11 +11,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const buildGoModule = nix.arg($, "buildGoModule");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "amazon-ecs-agent",
       version: "1.107.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           owner: "aws",
           repo: "amazon-ecs-agent",
@@ -28,7 +26,7 @@ export default nix.lambda((args) => (() => {
       excludedPackages: nix.thunk(() => ["./version/gen"]),
       ldflags: nix.thunk(() => ["-s", "-w"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Agent that runs on AWS EC2 container instances and starts containers on behalf of Amazon ECS",
         homepage: "https://github.com/aws/amazon-ecs-agent",
         changelog: nix.thunk(() => nix.str`https://github.com/aws/amazon-ecs-agent/raw/v${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

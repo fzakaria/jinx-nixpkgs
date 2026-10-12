@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 12, 5], ["sha256", 13, 5]], [["CXXFLAGS", 16, 7]], [["description", 22, 5], ["license", 23, 5], ["platforms", 24, 5], ["maintainers", 25, 5], ["mainProgram", 26, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["env", 16, 3], ["preInstall", 18, 3], ["postInstall", 19, 3], ["meta", 21, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 12, 5], ["sha256", 13, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["CXXFLAGS", 16, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 22, 5], ["license", 23, 5], ["platforms", 24, 5], ["maintainers", 25, 5], ["mainProgram", 26, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["env", 16, 3], ["preInstall", 18, 3], ["postInstall", 19, 3], ["meta", 21, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,19 +11,19 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "mkcue",
       version: "1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`http://http.debian.net/debian/pool/main/m/mkcue/mkcue_${nix.sel(finalAttrs, "version")}.orig.tar.gz`),
           sha256: "0rs897wp08z4hd904bjb5sl4lb8qxj82x5ayklr28bhg9pd5gbra",
         })))),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, CXXFLAGS: "-std=c++98" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], CXXFLAGS: "-std=c++98" })),
       preInstall: "mkdir -pv $out/bin",
       postInstall: "chmod -v +w $out/bin/mkcue",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Generates CUE sheets from a CD TOC",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl2Plus")),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),

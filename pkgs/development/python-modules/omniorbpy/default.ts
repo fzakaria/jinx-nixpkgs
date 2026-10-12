@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 16, 5], ["hash", 17, 5]], [["description", 49, 5], ["homepage", 50, 5], ["license", 51, 5], ["maintainers", 55, 5], ["platforms", 56, 5]], [["pname", 11, 3], ["version", 12, 3], ["pyproject", 13, 3], ["src", 15, 3], ["outputs", 20, 3], ["nativeBuildInputs", 25, 3], ["propagatedBuildInputs", 27, 3], ["configureFlags", 29, 3], ["postInstall", 36, 3], ["pythonImportsCheck", 42, 3], ["meta", 48, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchurl: false, omniorb: false, "pkg-config": false, python: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 49, 5], ["homepage", 50, 5], ["license", 51, 5], ["maintainers", 55, 5], ["platforms", 56, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 11, 3], ["version", 12, 3], ["pyproject", 13, 3], ["src", 15, 3], ["outputs", 20, 3], ["nativeBuildInputs", 25, 3], ["propagatedBuildInputs", 27, 3], ["configureFlags", 29, 3], ["postInstall", 36, 3], ["pythonImportsCheck", 42, 3], ["meta", 48, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const version = "4.3.2";
       const pyproject = false;
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://downloads.sourceforge.net/omniorb/omniORBpy-${version}.tar.bz2`),
           hash: "sha256-y1cX1BKhAbr0MPWYysfWkjGITa5DctjirfPd7rxffrs=",
         }))));
@@ -37,7 +35,7 @@ rm $out/${nix.sel(python, "sitePackages")}/omniidl_be/__pycache__/__init__.*.pyc
 `);
       const pythonImportsCheck = nix.thunk(() => ["omniidl_be.cxx", "omniidl_be.python", "omniORB"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Python backend for omniorb",
         homepage: "http://omniorb.sourceforge.net",
         license: nix.thunk(() => (() => {
@@ -54,7 +52,7 @@ rm $out/${nix.sel(python, "sitePackages")}/omniidl_be/__pycache__/__init__.*.pyc
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

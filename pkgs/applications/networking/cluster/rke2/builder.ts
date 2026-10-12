@@ -2,13 +2,9 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/builder.nix", [[["url", 54, 5], ["hash", 55, 5]], [["GOFIPS140", 82, 7], ["GODEBUG", 84, 7]], [["updateScript", 144, 13], ["tests", 145, 5]], [["homepage", 157, 5], ["description", 158, 5], ["changelog", 159, 5], ["license", 160, 5], ["maintainers", 161, 5], ["mainProgram", 167, 5], ["platforms", 168, 5]], [["__structuredAttrs", 49, 3], ["pname", 50, 3], ["version", 51, 3], ["src", 53, 3], ["vendorHash", 58, 3], ["nativeBuildInputs", 60, 3], ["buildInputs", 65, 3], ["env", 82, 3], ["ldflags", 87, 3], ["tags", 108, 3], ["subPackages", 118, 3], ["installPhase", 120, 3], ["doCheck", 137, 3], ["doInstallCheck", 139, 3], ["nativeInstallCheckInputs", 140, 3], ["versionCheckProgramArg", 141, 3], ["passthru", 143, 3], ["meta", 156, 3]]]);
 const formals$1 = { args: { rke2Version: false, rke2Commit: false, rke2TarballHash: false, rke2VendorHash: false, updateScript: true, k8sImageTag: false, etcdVersion: false, pauseVersion: false, ccmVersion: false, dockerizedVersion: false, helmJobVersion: false, imagesVersions: false }, ellipsis: false };
 const formals$2 = { args: { lib: false, stdenv: false, buildGoModule: false, go: false, makeWrapper: false, fetchzip: false, fetchurl: false, versionCheckHook: false, procps: false, coreutils: false, "util-linux": false, ethtool: false, socat: false, iptables: false, "bridge-utils": false, iproute2: false, kmod: false, lvm2: false, systemd: false, gnugrep: false, gnused: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/builder.nix", [["url", 54, 5], ["hash", 55, 5]]);
-const pos$2 = nix.positions(here + "/builder.nix", [["GOFIPS140", 82, 7], ["GODEBUG", 84, 7]]);
-const pos$3 = nix.positions(here + "/builder.nix", [["updateScript", 144, 13], ["tests", 145, 5]]);
-const pos$4 = nix.positions(here + "/builder.nix", [["homepage", 157, 5], ["description", 158, 5], ["changelog", 159, 5], ["license", 160, 5], ["maintainers", 161, 5], ["mainProgram", 167, 5], ["platforms", 168, 5]]);
-const pos$5 = nix.positions(here + "/builder.nix", [["__structuredAttrs", 49, 3], ["pname", 50, 3], ["version", 51, 3], ["src", 53, 3], ["vendorHash", 58, 3], ["nativeBuildInputs", 60, 3], ["buildInputs", 65, 3], ["env", 82, 3], ["ldflags", 87, 3], ["tags", 108, 3], ["subPackages", 118, 3], ["installPhase", 120, 3], ["doCheck", 137, 3], ["doInstallCheck", 139, 3], ["nativeInstallCheckInputs", 140, 3], ["versionCheckProgramArg", 141, 3], ["passthru", 143, 3], ["meta", 156, 3]]);
 
 export default (lib) => nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -49,12 +45,12 @@ export default (lib) => nix.lambda((args) => (() => {
     const gnused = nix.arg($_1, "gnused");
     const nixosTests = nix.arg($_1, "nixosTests");
     return nix.app(buildGoModule, (finalAttrs) => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         __structuredAttrs: true,
         pname: "rke2",
         version: rke2Version,
         src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             url: nix.thunk(() => nix.str`https://github.com/rancher/rke2/archive/refs/tags/v${rke2Version}.tar.gz`),
             hash: nix.thunk(() => nix.str`${rke2TarballHash}`),
           })))),
@@ -72,7 +68,7 @@ export default (lib) => nix.lambda((args) => (() => {
           kmod,
           lvm2,
         ]),
-        env: nix.thunk(() => ({ [nix.POS]: pos$2, GOFIPS140: "latest", GODEBUG: "fips140=only,tlsmlkem=0" })),
+        env: nix.thunk(() => ({ [nix.POS]: $pos[1], GOFIPS140: "latest", GODEBUG: "fips140=only,tlsmlkem=0" })),
         ldflags: nix.thunk(() => (() => {
           const K3S_PKG = "github.com/k3s-io/k3s";
           const HELMCTR_PKG = "github.com/k3s-io/helm-controller";
@@ -116,7 +112,7 @@ wrapProgram $out/bin/rke2-killall.sh \\
         nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
         versionCheckProgramArg: "--version",
         passthru: nix.thunk(() => nix.update({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           updateScript: updateScript,
           tests: nix.thunk(() => (() => {
             const versionedPackage = nix.thunk(() => nix.add("rke2_", nix.app(nix.sel(lib_1, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => ["_"]), nix.thunk(() => nix.app(nix.sel(lib_1, "versions", "majorMinor"), rke2Version)))));
@@ -124,7 +120,7 @@ wrapProgram $out/bin/rke2-killall.sh \\
           })()),
         }, nix.app(nix.sel(lib_1, "mapAttrs"), (_) => (value) => nix.app(fetchurl, value), imagesVersions))),
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           homepage: "https://github.com/rancher/rke2",
           description: "Rancher's next-generation Kubernetes distribution, also known as RKE Government",
           changelog: nix.thunk(() => nix.str`https://github.com/rancher/rke2/releases/tag/v${nix.sel(finalAttrs, "version")}`),

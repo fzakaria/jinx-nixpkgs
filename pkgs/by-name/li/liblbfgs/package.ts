@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 12, 5], ["sha256", 13, 5]], [["broken", 18, 5], ["description", 20, 5], ["homepage", 21, 5], ["license", 22, 5], ["platforms", 23, 5]], [["pname", 7, 3], ["version", 8, 3], ["configureFlags", 10, 3], ["src", 11, 3], ["meta", 16, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 12, 5], ["sha256", 13, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["broken", 18, 5], ["description", 20, 5], ["homepage", 21, 5], ["license", 22, 5], ["platforms", 23, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 7, 3], ["version", 8, 3], ["configureFlags", 10, 3], ["src", 11, 3], ["meta", 16, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,17 +11,17 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "liblbfgs",
       version: "1.10",
       configureFlags: nix.thunk(() => ["--enable-sse2"]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/downloads/chokkan/liblbfgs/liblbfgs-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "1kv8d289rbz38wrpswx5dkhr2yh4fg4h6sszkp3fawxm09sann21",
         })))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         broken: nix.thunk(() => (nix.asBool((nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")))) || nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")))),
         description: "Library of Limited-memory Broyden-Fletcher-Goldfarb-Shanno (L-BFGS)",
         homepage: "http://www.chokkan.org/software/liblbfgs/",

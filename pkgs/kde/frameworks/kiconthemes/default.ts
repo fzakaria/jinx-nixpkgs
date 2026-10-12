@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["mainProgram", 15, 8]], [["pname", 8, 3], ["extraBuildInputs", 10, 3], ["meta", 15, 3]]]);
 const formals$1 = { args: { mkKdeDerivation: false, qtdeclarative: false, qtsvg: false, qttools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["mainProgram", 15, 8]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 8, 3], ["extraBuildInputs", 10, 3], ["meta", 15, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,10 +12,10 @@ export default nix.lambda((args) => (() => {
   const qtsvg = nix.arg($, "qtsvg");
   const qttools = nix.arg($, "qttools");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "kiconthemes",
       extraBuildInputs: nix.thunk(() => [qtdeclarative, qtsvg, qttools]),
-      meta: nix.thunk(() => ({ [nix.POS]: pos$1, mainProgram: "kiconfinder6" })),
+      meta: nix.thunk(() => ({ [nix.POS]: $pos[0], mainProgram: "kiconfinder6" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

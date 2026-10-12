@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]], [["mainProgram", 67, 5], ["homepage", 68, 5], ["changelog", 69, 5], ["description", 70, 5], ["longDescription", 71, 5], ["license", 77, 5], ["maintainers", 78, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["vendorHash", 26, 3], ["nativeBuildInputs", 28, 3], ["subPackages", 30, 3], ["ldflags", 32, 3], ["tags", 38, 3], ["checkPhase", 46, 3], ["doInstallCheck", 50, 3], ["installCheckPhase", 51, 3], ["meta", 66, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildGoModule: false, fetchFromGitHub: false, installShellFiles: false, enableWasmEval: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["mainProgram", 67, 5], ["homepage", 68, 5], ["changelog", 69, 5], ["description", 70, 5], ["longDescription", 71, 5], ["license", 77, 5], ["maintainers", 78, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["vendorHash", 26, 3], ["nativeBuildInputs", 28, 3], ["subPackages", 30, 3], ["ldflags", 32, 3], ["tags", 38, 3], ["checkPhase", 46, 3], ["doInstallCheck", 50, 3], ["installCheckPhase", 51, 3], ["meta", 66, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const enableWasmEval = nix.argOr($, "enableWasmEval", () => false);
   nix.assert_((!nix.asBool((nix.asBool(enableWasmEval) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")))) || nix.asBool(nix.builtins.throw("building with wasm on darwin is failing in nixpkgs"))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/op/opa-envoy-plugin/package.nix:11:1");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "opa-envoy-plugin",
       version: "1.21.1-envoy",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "open-policy-agent",
           repo: "opa-envoy-plugin",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -49,7 +47,7 @@ ${nix.app(nix.sel(lib, "optionalString"), enableWasmEval, "# If wasm is enabled 
 runHook postInstallCheck
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         mainProgram: "opa",
         homepage: "https://www.openpolicyagent.org/docs/latest/envoy-introduction/",
         changelog: nix.thunk(() => nix.str`https://github.com/open-policy-agent/opa-envoy-plugin/blob/v${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

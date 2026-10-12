@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 31, 5], ["repo", 32, 5], ["tag", 33, 5], ["hash", 34, 5]], [["enablePython", 39, 7], ["python", 40, 7]], [["description", 85, 5], ["homepage", 86, 5], ["license", 87, 5], ["platforms", 91, 5], ["maintainers", 92, 5]], [["pname", 27, 3], ["version", 28, 3], ["src", 30, 3], ["buildInputs", 37, 3], ["nativeBuildInputs", 57, 3], ["cmakeFlags", 65, 3], ["postInstall", 67, 3], ["meta", 84, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, doxygen: false, graphviz: false, makeWrapper: false, boost: false, SDL2: false, python3: false, freetype: false, openal: false, libogg: false, libvorbis: false, zlib: false, libpng: false, libtiff: false, libjpeg: false, libGLU: false, libGL: false, glew: false, libxslt: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 31, 5], ["repo", 32, 5], ["tag", 33, 5], ["hash", 34, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["enablePython", 39, 7], ["python", 40, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 85, 5], ["homepage", 86, 5], ["license", 87, 5], ["platforms", 91, 5], ["maintainers", 92, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 27, 3], ["version", 28, 3], ["src", 30, 3], ["buildInputs", 37, 3], ["nativeBuildInputs", 57, 3], ["cmakeFlags", 65, 3], ["postInstall", 67, 3], ["meta", 84, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,18 +30,18 @@ export default nix.lambda((args) => (() => {
   const glew = nix.arg($, "glew");
   const libxslt = nix.arg($, "libxslt");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "freeorion",
       version: "0.5.1.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "freeorion",
           repo: "freeorion",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-/pLNOkxjuh/vdQQZQ9BzPCMygYPMDJDJuSXxn5lJt2o=",
         })))),
       buildInputs: nix.thunk(() => [
-        nix.thunk(() => nix.app(nix.sel(boost, "override"), nix.thunk(() => ({ [nix.POS]: pos$2, enablePython: true, python: python3 })))),
+        nix.thunk(() => nix.app(nix.sel(boost, "override"), nix.thunk(() => ({ [nix.POS]: $pos[1], enablePython: true, python: python3 })))),
         nix.thunk(() => nix.app(nix.sel(python3, "withPackages"), (p) => (() => {
             const w = nix.withScope(p, null);
             return [nix.thunk(() => nix.lookup(w, "pycodestyle"))];
@@ -80,7 +77,7 @@ wrapProgram $out/bin/freeorion \\
   --prefix LD_LIBRARY_PATH : $out/lib/freeorion
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Free, open source, turn-based space empire and galactic conquest (4X) computer game",
         homepage: "https://www.freeorion.org/",
         license: nix.thunk(() => (() => {

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["withWebKit", 39, 40]], [["url", 46, 5], ["hash", 47, 5]], [["description", 180, 5], ["mainProgram", 181, 5], ["homepage", 182, 5], ["changelog", 183, 5], ["license", 184, 5], ["maintainers", 189, 5], ["platforms", 193, 5]], [["pname", 42, 3], ["version", 43, 3], ["src", 45, 3], ["patches", 50, 3], ["postPatch", 63, 3], ["nativeBuildInputs", 68, 3], ["buildInputs", 83, 3], ["cmakeFlags", 115, 3], ["preConfigure", 129, 3], ["preInstall", 133, 3], ["postInstall", 141, 3], ["qtWrapperArgs", 146, 3], ["preFixup", 156, 3], ["postFixup", 160, 3], ["dontWrapGApps", 172, 3], ["dontWrapQtApps", 174, 3], ["strictDeps", 176, 3], ["__structuredAttrs", 177, 3], ["meta", 179, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, cmake: false, git: false, linuxHeaders: false, ninja: false, "pkg-config": false, python3: false, qt6: false, wrapGAppsHook3: false, "alsa-lib": false, expat: false, ffmpeg: false, flac: false, freetype: false, harfbuzz: false, lame: false, libjack2: false, libogg: false, libopus: false, libsndfile: false, libvorbis: false, mpg123: false, opusfile: false, portaudio: false, pugixml: false, utf8cpp: false, wavpack: false, wxwidgets_3_2: false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["withWebKit", 39, 40]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 46, 5], ["hash", 47, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 180, 5], ["mainProgram", 181, 5], ["homepage", 182, 5], ["changelog", 183, 5], ["license", 184, 5], ["maintainers", 189, 5], ["platforms", 193, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 42, 3], ["version", 43, 3], ["src", 45, 3], ["patches", 50, 3], ["postPatch", 63, 3], ["nativeBuildInputs", 68, 3], ["buildInputs", 83, 3], ["cmakeFlags", 115, 3], ["preConfigure", 129, 3], ["preInstall", 133, 3], ["postInstall", 141, 3], ["qtWrapperArgs", 146, 3], ["preFixup", 156, 3], ["postFixup", 160, 3], ["dontWrapGApps", 172, 3], ["dontWrapQtApps", 174, 3], ["strictDeps", 176, 3], ["__structuredAttrs", 177, 3], ["meta", 179, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -41,13 +38,13 @@ export default nix.lambda((args) => (() => {
   const wavpack = nix.arg($, "wavpack");
   const wxwidgets_3_2 = nix.arg($, "wxwidgets_3_2");
   const zlib = nix.arg($, "zlib");
-  const wxwidgets = nix.thunk(() => nix.app(nix.sel(wxwidgets_3_2, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, withWebKit: false }))));
+  const wxwidgets = nix.thunk(() => nix.app(nix.sel(wxwidgets_3_2, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], withWebKit: false }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "audacity",
       version: "4.0.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: nix.thunk(() => nix.str`https://github.com/audacity/audacity/releases/download/Audacity-${nix.sel(finalAttrs, "version")}/audacity-sources-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-spB2+Z+l0vUi0AHbRyqJbbgfnv/v0VlIyUBXF1OFgFg=",
         })))),
@@ -137,7 +134,7 @@ makeWrapper "$out/Applications/audacity.app/Contents/MacOS/audacity" "$out/bin/a
       strictDeps: true,
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Sound editor with graphical UI",
         mainProgram: "audacity",
         homepage: "https://www.audacityteam.org",

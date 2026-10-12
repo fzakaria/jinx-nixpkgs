@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]], [["description", 37, 5], ["homepage", 38, 5], ["license", 39, 5], ["maintainers", 40, 5], ["platforms", 41, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 21, 3], ["makeFlags", 23, 3], ["doInstallCheck", 29, 3], ["postInstall", 31, 3], ["meta", 36, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, kernel: false, kernelModuleMakeFlags: false, udevCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 37, 5], ["homepage", 38, 5], ["license", 39, 5], ["maintainers", 40, 5], ["platforms", 41, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 21, 3], ["makeFlags", 23, 3], ["doInstallCheck", 29, 3], ["postInstall", 31, 3], ["meta", 36, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const kernelModuleMakeFlags = nix.arg($, "kernelModuleMakeFlags");
   const udevCheckHook = nix.arg($, "udevCheckHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "nxp-pn5xx",
       version: nix.thunk(() => nix.str`0-unstable-2026-07-16-${nix.sel(kernel, "version")}`),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "jr64",
           repo: "nxp-pn5xx",
           rev: "6ebc3ce2000dc0ba82bd2f47eb01e69b8ba2dbd0",
@@ -35,7 +33,7 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       postInstall: "mkdir -p $out/etc/udev/rules.d\necho 'SUBSYSTEM==\"misc\", KERNEL==\"pn544\", MODE=\"0666\", GROUP=\"dialout\"' > $out/etc/udev/rules.d/99-nxp-pn5xx.rules\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "NXP's NFC Open Source Kernel mode driver with ACPI configuration support",
         homepage: "https://github.com/jr64/nxp-pn5xx",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

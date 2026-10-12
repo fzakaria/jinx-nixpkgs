@@ -2,11 +2,9 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/nongnu-devel-packages.nix", [[["fetchurl", 39, 15]], [["callPackage", 33, 9]], [["haskell-tng-mode", 51, 9]]]);
 const formals$1 = { args: { lib: false, pkgs: false, buildPackages: false }, ellipsis: false };
 const formals$2 = { args: { generated: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/nongnu-devel-packages.nix", [["fetchurl", 39, 15]]);
-const pos$2 = nix.positions(here + "/nongnu-devel-packages.nix", [["callPackage", 33, 9]]);
-const pos$3 = nix.positions(here + "/nongnu-devel-packages.nix", [["haskell-tng-mode", 51, 9]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,16 +18,16 @@ export default nix.lambda((args) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const generated = nix.argOr($_1, "generated", () => nix.path(here, "./nongnu-devel-generated.nix"));
         const imported = nix.thunk(() => nix.app(nix.builtins.import(generated), nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             callPackage: (pkgs_1) => (args_2) => nix.app(nix.sel(self, "callPackage"), pkgs_1, nix.thunk(() => nix.update(args_2, {
-                [nix.POS]: pos$1,
+                [nix.POS]: $pos[0],
                 fetchurl: nix.thunk(() => nix.app(nix.sel(buildPackages, "callPackage"), nix.path(here, "./fetchelpa.nix"), nix.thunk(() => ({})))),
               }))),
           }))));
         const super$ = imported;
         const commonOverrides = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./nongnu-common-overrides.nix")), pkgs, lib));
         const overrides = (self_1) => (super$_1) => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           "haskell-tng-mode": nix.thunk(() => nix.app(addPackageRequires, nix.thunk(() => nix.sel(super$_1, "haskell-tng-mode")), nix.thunk(() => [
               nix.thunk(() => nix.sel(self_1, "shut-up")),
               nix.thunk(() => nix.sel(self_1, "lsp-mode")),

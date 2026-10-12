@@ -2,32 +2,26 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
-const pos$1 = nix.positions(here + "/dnsmasq.nix", [["port", 11, 26]]);
-const pos$2 = nix.positions(here + "/dnsmasq.nix", [["webserver", 11, 16]]);
-const pos$3 = nix.positions(here + "/dnsmasq.nix", [["enable", 9, 7], ["useDnsmasqConfig", 10, 7], ["settings", 11, 7]]);
-const pos$4 = nix.positions(here + "/dnsmasq.nix", [["pihole-ftl", 8, 14]]);
-const pos$5 = nix.positions(here + "/dnsmasq.nix", [["services", 8, 5]]);
-const pos$6 = nix.positions(here + "/dnsmasq.nix", [["machine", 7, 9]]);
-const pos$7 = nix.positions(here + "/dnsmasq.nix", [["name", 5, 3], ["nodes", 7, 3], ["testScript", 15, 3]]);
+const $pos = nix.positions(here + "/dnsmasq.nix", [[["port", 11, 26]], [["webserver", 11, 16]], [["enable", 9, 7], ["useDnsmasqConfig", 10, 7], ["settings", 11, 7]], [["pihole-ftl", 8, 14]], [["services", 8, 5]], [["machine", 7, 9]], [["name", 5, 3], ["nodes", 7, 3], ["testScript", 15, 3]]]);
 
 export default nix.thunk(() => (() => {
   const port = "9077";
   return {
-    [nix.POS]: pos$7,
+    [nix.POS]: $pos[6],
     name: "pihole-ftl-dnsmasq",
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       machine: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         services: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           "pihole-ftl": nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             enable: true,
             useDnsmasqConfig: true,
             settings: nix.thunk(() => ({
-              [nix.POS]: pos$2,
-              webserver: nix.thunk(() => ({ [nix.POS]: pos$1, port: port })),
+              [nix.POS]: $pos[1],
+              webserver: nix.thunk(() => ({ [nix.POS]: $pos[0], port: port })),
             })),
           })),
         })),

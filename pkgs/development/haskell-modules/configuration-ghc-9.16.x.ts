@@ -2,8 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/configuration-ghc-9.16.x.nix", [[["array", 10, 3], ["base", 11, 3], ["binary", 12, 3], ["bytestring", 13, 3], ["Cabal", 14, 3], ["Cabal-syntax", 15, 3], ["containers", 16, 3], ["deepseq", 17, 3], ["directory", 18, 3], ["exceptions", 19, 3], ["file-io", 20, 3], ["filepath", 21, 3], ["ghc-bignum", 22, 3], ["ghc-boot", 23, 3], ["ghc-boot-th", 24, 3], ["ghc-compact", 25, 3], ["ghc-experimental", 26, 3], ["ghc-heap", 27, 3], ["ghc-internal", 28, 3], ["ghc-platform", 29, 3], ["ghc-prim", 30, 3], ["ghc-toolchain", 31, 3], ["ghci", 32, 3], ["haddock-api", 33, 3], ["haddock-library", 34, 3], ["haskeline", 35, 3], ["hpc", 36, 3], ["integer-gmp", 37, 3], ["mtl", 38, 3], ["os-string", 39, 3], ["parsec", 40, 3], ["pretty", 41, 3], ["process", 42, 3], ["rts", 43, 3], ["semaphore-compat", 44, 3], ["stm", 45, 3], ["system-cxx-std-lib", 46, 3], ["template-haskell", 47, 3], ["template-haskell-lift", 48, 3], ["template-haskell-quasiquoter", 49, 3], ["terminfo", 50, 3], ["text", 51, 3], ["time", 52, 3], ["transformers", 53, 3], ["unix", 54, 3], ["xhtml", 55, 3], ["Win32", 56, 3]]]);
 const formals$1 = { args: { pkgs: false, haskellLib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/configuration-ghc-9.16.x.nix", [["array", 10, 3], ["base", 11, 3], ["binary", 12, 3], ["bytestring", 13, 3], ["Cabal", 14, 3], ["Cabal-syntax", 15, 3], ["containers", 16, 3], ["deepseq", 17, 3], ["directory", 18, 3], ["exceptions", 19, 3], ["file-io", 20, 3], ["filepath", 21, 3], ["ghc-bignum", 22, 3], ["ghc-boot", 23, 3], ["ghc-boot-th", 24, 3], ["ghc-compact", 25, 3], ["ghc-experimental", 26, 3], ["ghc-heap", 27, 3], ["ghc-internal", 28, 3], ["ghc-platform", 29, 3], ["ghc-prim", 30, 3], ["ghc-toolchain", 31, 3], ["ghci", 32, 3], ["haddock-api", 33, 3], ["haddock-library", 34, 3], ["haskeline", 35, 3], ["hpc", 36, 3], ["integer-gmp", 37, 3], ["mtl", 38, 3], ["os-string", 39, 3], ["parsec", 40, 3], ["pretty", 41, 3], ["process", 42, 3], ["rts", 43, 3], ["semaphore-compat", 44, 3], ["stm", 45, 3], ["system-cxx-std-lib", 46, 3], ["template-haskell", 47, 3], ["template-haskell-lift", 48, 3], ["template-haskell-quasiquoter", 49, 3], ["terminfo", 50, 3], ["text", 51, 3], ["time", 52, 3], ["transformers", 53, 3], ["unix", 54, 3], ["xhtml", 55, 3], ["Win32", 56, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -11,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const haskellLib = nix.arg($, "haskellLib");
   const lib = nix.thunk(() => nix.attr(pkgs, "lib"));
   return (self) => (super$) => ({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     array: null,
     base: null,
     binary: null,

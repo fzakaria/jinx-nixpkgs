@@ -2,10 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/jheiling-js.nix", [[["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["sha256", 22, 5]], [["description", 26, 5], ["homepage", 27, 5], ["license", 28, 5], ["maintainers", 29, 5]], [["pname", 9, 3], ["version", 10, 3], ["ipkgName", 12, 3], ["idrisDeps", 13, 3], ["src", 18, 3], ["meta", 25, 3]]]);
 const formals$1 = { args: { "build-idris-package": false, fetchFromGitHub: false, contrib: false, "jheiling-extras": false, lib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/jheiling-js.nix", [["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["sha256", 22, 5]]);
-const pos$2 = nix.positions(here + "/jheiling-js.nix", [["description", 26, 5], ["homepage", 27, 5], ["license", 28, 5], ["maintainers", 29, 5]]);
-const pos$3 = nix.positions(here + "/jheiling-js.nix", [["pname", 9, 3], ["version", 10, 3], ["ipkgName", 12, 3], ["idrisDeps", 13, 3], ["src", 18, 3], ["meta", 25, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,20 +13,20 @@ export default nix.lambda((args) => (() => {
   const jheiling_extras = nix.arg($, "jheiling-extras");
   const lib = nix.arg($, "lib");
   return nix.app(build_idris_package, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "jheiling-js",
       version: "2016-03-09",
       ipkgName: "js",
       idrisDeps: nix.thunk(() => [contrib, jheiling_extras]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "jheiling",
           repo: "idris-js",
           rev: "59763cd0c9715a9441931ae1077e501bb2ec6020",
           sha256: "1mvpxwszh56cfrf509qiadn7gp2l4syanhvdq6v1br0y03g8wk9v",
         })))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Js library for Idris",
         homepage: "https://github.com/jheiling/idris-js",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unlicense")),

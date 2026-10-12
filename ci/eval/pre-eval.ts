@@ -2,15 +2,8 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/pre-eval.nix", [[["path", 36, 23], ["value", 36, 28]], [["path", 53, 13], ["extraNixpkgsConfig", 54, 5], ["attrNamesOnly", 55, 5]], [["path", 61, 17], ["value", 65, 9]], [["lib", 95, 68]], [["problematicProblems", 106, 9]], [["attrPath", 115, 7], ["reason", 116, 7]], [["paths", 126, 13], ["attrPathsDisallowedForInternalUse", 126, 19]], [["paths", 124, 11], ["names", 124, 17], ["result", 125, 3]]]);
 const formals$1 = { args: { lib: true, trace: true, path: true, extraNixpkgsConfigJson: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/pre-eval.nix", [["path", 36, 23], ["value", 36, 28]]);
-const pos$2 = nix.positions(here + "/pre-eval.nix", [["path", 53, 13], ["extraNixpkgsConfig", 54, 5], ["attrNamesOnly", 55, 5]]);
-const pos$3 = nix.positions(here + "/pre-eval.nix", [["path", 61, 17], ["value", 65, 9]]);
-const pos$4 = nix.positions(here + "/pre-eval.nix", [["lib", 95, 68]]);
-const pos$5 = nix.positions(here + "/pre-eval.nix", [["problematicProblems", 106, 9]]);
-const pos$6 = nix.positions(here + "/pre-eval.nix", [["attrPath", 115, 7], ["reason", 116, 7]]);
-const pos$7 = nix.positions(here + "/pre-eval.nix", [["paths", 126, 13], ["attrPathsDisallowedForInternalUse", 126, 19]]);
-const pos$8 = nix.positions(here + "/pre-eval.nix", [["paths", 124, 11], ["names", 124, 17], ["result", 125, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,19 +12,19 @@ export default nix.lambda((args) => (() => {
   const path = nix.argOr($, "path", () => nix.path(here, "./../.."));
   const extraNixpkgsConfigJson = nix.argOr($, "extraNixpkgsConfigJson", () => "{}");
   const listAttrs = (path_1) => (value) => (() => {
-    const result = nix.thunk(() => (nix.asBool((nix.asBool(nix.eq(path_1, ["AAAAAASomeThingsFailToEvaluate"])) || nix.asBool(!nix.asBool(nix.app(nix.sel(lib, "isAttrs"), value))))) ? [] : (nix.asBool(nix.app(nix.sel(lib, "isDerivation"), value)) ? [nix.thunk(() => ({ [nix.POS]: pos$1, path: path_1, value: value }))] : nix.app(nix.sel(lib, "pipe"), value, nix.thunk(() => [
+    const result = nix.thunk(() => (nix.asBool((nix.asBool(nix.eq(path_1, ["AAAAAASomeThingsFailToEvaluate"])) || nix.asBool(!nix.asBool(nix.app(nix.sel(lib, "isAttrs"), value))))) ? [] : (nix.asBool(nix.app(nix.sel(lib, "isDerivation"), value)) ? [nix.thunk(() => ({ [nix.POS]: $pos[0], path: path_1, value: value }))] : nix.app(nix.sel(lib, "pipe"), value, nix.thunk(() => [
         nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (name) => (value_1) => nix.app(nix.sel(lib, "addErrorContext"), nix.thunk(() => nix.str`while evaluating package set attribute path '${nix.app(nix.sel(lib, "showAttrPath"), nix.thunk(() => nix.concat(path_1, [name])))}'`), nix.thunk(() => nix.app(listAttrs, nix.thunk(() => nix.concat(path_1, [name])), value_1))))),
         nix.thunk(() => nix.sel(lib, "concatLists")),
       ])))));
     return nix.app(nix.sel(lib, "traceIf"), trace, nix.thunk(() => nix.str`** ${nix.app(nix.sel(lib, "showAttrPath"), path_1)}`), result);
   })();
   const outpaths = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./outpaths.nix")), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       path: path,
       extraNixpkgsConfig: nix.thunk(() => nix.builtins.fromJSON(extraNixpkgsConfigJson)),
       attrNamesOnly: true,
     }))));
-  const list = nix.thunk(() => nix.concat(nix.builtins.map((path_1) => ({ [nix.POS]: pos$3, path: path_1, value: nix.thunk(() => ({})) }), nix.thunk(() => [
+  const list = nix.thunk(() => nix.concat(nix.builtins.map((path_1) => ({ [nix.POS]: $pos[2], path: path_1, value: nix.thunk(() => ({})) }), nix.thunk(() => [
       nix.thunk(() => ["pkgsLLVM", "stdenv"]),
       nix.thunk(() => ["pkgsArocc", "stdenv"]),
       nix.thunk(() => ["pkgsZig", "stdenv"]),
@@ -40,26 +33,26 @@ export default nix.lambda((args) => (() => {
     ])), nix.app(listAttrs, [], outpaths)));
   const paths = nix.thunk(() => nix.builtins.map((attrs) => nix.sel(attrs, "path"), list));
   const names = nix.thunk(() => nix.builtins.map(nix.thunk(() => nix.sel(lib, "showAttrPath")), paths));
-  const from = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../pkgs/stdenv/generic/problems.nix")), nix.thunk(() => ({ [nix.POS]: pos$4, lib: lib }))));
+  const from = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../pkgs/stdenv/generic/problems.nix")), nix.thunk(() => ({ [nix.POS]: $pos[3], lib: lib }))));
   const disallowNixpkgsInternalUseKinds = nix.thunk(() => nix.attr(from, "disallowNixpkgsInternalUseKinds"));
   const attrPathsDisallowedForInternalUse = nix.thunk(() => nix.app(nix.sel(lib, "pipe"), list, nix.thunk(() => [
       nix.thunk(() => nix.app(nix.sel(lib, "map"), (attrs) => nix.update(attrs, {
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           problematicProblems: nix.thunk(() => nix.builtins.tryEval(nix.thunk(() => nix.app(nix.sel(lib, "filterAttrs"), (name) => (problem) => nix.has(disallowNixpkgsInternalUseKinds, nix.key(nix.sel(problem, "kind"))), nix.thunk(() => nix.selOr(attrs, () => ({}), "value", "meta", "problems")))))),
         }))),
       nix.thunk(() => nix.app(nix.sel(lib, "filter"), (attrs) => (nix.asBool(nix.sel(attrs, "problematicProblems", "success")) && nix.asBool(!nix.eq(nix.sel(attrs, "problematicProblems", "value"), {}))))),
       nix.thunk(() => nix.app(nix.sel(lib, "map"), (attrs) => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           attrPath: nix.thunk(() => nix.sel(attrs, "path")),
           reason: nix.thunk(() => nix.str`it has certain meta.problems whose kinds are disallowed: ${nix.app(nix.sel(lib, "generators", "toPretty"), nix.thunk(() => ({})), nix.thunk(() => nix.sel(attrs, "problematicProblems", "value")))}`),
         }))),
     ])));
   return {
-    [nix.POS]: pos$8,
+    [nix.POS]: $pos[7],
     paths: paths,
     names: names,
     result: nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       paths: paths,
       attrPathsDisallowedForInternalUse: attrPathsDisallowedForInternalUse,
     })),

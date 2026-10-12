@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["hash", 25, 5]], [["description", 54, 5], ["longDescription", 55, 5], ["homepage", 60, 5], ["license", 61, 5], ["maintainers", 62, 5], ["mainProgram", 63, 5], ["platforms", 64, 5]], [["pname", 13, 3], ["version", 14, 3], ["outputs", 16, 3], ["src", 21, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 33, 3], ["doInstallCheck", 39, 3], ["preAutoreconf", 41, 3], ["configureFlags", 48, 3], ["meta", 53, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, autoreconfHook: false, "pkg-config": false, libusb1: false, readline: false, "libimobiledevice-glue": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 54, 5], ["longDescription", 55, 5], ["homepage", 60, 5], ["license", 61, 5], ["maintainers", 62, 5], ["mainProgram", 63, 5], ["platforms", 64, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["outputs", 16, 3], ["src", 21, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 33, 3], ["doInstallCheck", 39, 3], ["preAutoreconf", 41, 3], ["configureFlags", 48, 3], ["meta", 53, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const readline = nix.arg($, "readline");
   const libimobiledevice_glue = nix.arg($, "libimobiledevice-glue");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "libirecovery",
       version: "1.3.1-unstable-2026-08-23",
       outputs: nix.thunk(() => ["out", "dev"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "libimobiledevice",
           repo: "libirecovery",
           rev: "95dec3aa25b1e30654ca107eb971971f6a216520",
@@ -39,7 +37,7 @@ export default nix.lambda((args) => (() => {
         "--with-udevrule=OWNER=\"root\",GROUP=\"myusergroup\",MODE=\"0660\"",
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Library and utility to talk to iBoot/iBSS via USB on Mac OS X, Windows, and Linux",
         longDescription: "libirecovery is a cross-platform library which implements communication to\niBoot/iBSS found on Apple's iOS devices via USB. A command-line utility is also\nprovided.\n",
         homepage: "https://github.com/libimobiledevice/libirecovery",

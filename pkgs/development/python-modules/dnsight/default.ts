@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]], [["description", 90, 5], ["homepage", 91, 5], ["changelog", 92, 5], ["license", 93, 5], ["maintainers", 94, 5], ["mainProgram", 95, 5]], [["pname", 24, 3], ["version", 25, 3], ["pyproject", 26, 3], ["src", 28, 3], ["pythonRelaxDeps", 35, 3], ["build-system", 41, 3], ["dependencies", 46, 3], ["nativeCheckInputs", 56, 3], ["pythonImportsCheck", 63, 3], ["preCheck", 65, 3], ["postCheck", 71, 3], ["disabledTests", 75, 3], ["meta", 89, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, cryptography: false, dnspython: false, fetchFromGitHub: false, "hatch-vcs": false, hatchling: false, httpx: false, hypothesis: false, "iana-etc": false, libredirect: false, pydantic: false, "pytest-asyncio": false, "pytest-cov-stub": false, pytestCheckHook: false, pyyaml: false, rich: false, typer: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 90, 5], ["homepage", 91, 5], ["changelog", 92, 5], ["license", 93, 5], ["maintainers", 94, 5], ["mainProgram", 95, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 24, 3], ["version", 25, 3], ["pyproject", 26, 3], ["src", 28, 3], ["pythonRelaxDeps", 35, 3], ["build-system", 41, 3], ["dependencies", 46, 3], ["nativeCheckInputs", 56, 3], ["pythonImportsCheck", 63, 3], ["preCheck", 65, 3], ["postCheck", 71, 3], ["disabledTests", 75, 3], ["meta", 89, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,12 +27,12 @@ export default nix.lambda((args) => (() => {
   const rich = nix.arg($, "rich");
   const typer = nix.arg($, "typer");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "dnsight",
       version: "1.0.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "dnsight",
           repo: "dnsight",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -62,7 +60,7 @@ export LD_PRELOAD=${libredirect}/lib/libredirect.so
         "test_run_check_sync_yaml_plus_overlay_merge",
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "SDK and CLI tool for DNS, email and web security hygiene",
         homepage: "https://github.com/dnsight/dnsight",
         changelog: nix.thunk(() => nix.str`https://github.com/dnsight/dnsight/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

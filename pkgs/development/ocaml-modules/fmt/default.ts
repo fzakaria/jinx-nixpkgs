@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 17, 5], ["sha256", 18, 5]], [["homepage", 37, 5], ["license", 38, 5], ["description", 39, 5], ["platforms", 40, 26], ["maintainers", 41, 5], ["broken", 42, 5]], [["version", 13, 3], ["pname", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 21, 3], ["buildInputs", 27, 3], ["strictDeps", 32, 3], ["buildPhase", 34, 19], ["installPhase", 34, 30], ["meta", 36, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, ocaml: false, findlib: false, ocamlbuild: false, topkg: false, cmdliner: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 17, 5], ["sha256", 18, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 37, 5], ["license", 38, 5], ["description", 39, 5], ["platforms", 40, 26], ["maintainers", 41, 5], ["broken", 42, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["version", 13, 3], ["pname", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 21, 3], ["buildInputs", 27, 3], ["strictDeps", 32, 3], ["buildPhase", 34, 19], ["installPhase", 34, 30], ["meta", 36, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.11.0";
       const pname = nix.thunk(() => nix.str`ocaml${nix.sel(ocaml, "version")}-fmt`);
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://erratique.ch/software/fmt/releases/fmt-${version}.tbz`),
           sha256: "sha256-hXz9R6VLUkKc2bPiZl5EFzzRvTtDW+znFy+YStU3ahs=",
         }))));
@@ -33,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const meta = nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(ocaml, "meta"));
         return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://erratique.ch/software/fmt",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),
         description: "OCaml Format pretty-printer combinators",
@@ -43,7 +41,7 @@ export default nix.lambda((args) => (() => {
       };
       })());
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         version,
         pname,
         src,

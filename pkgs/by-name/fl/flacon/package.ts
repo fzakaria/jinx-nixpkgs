@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["hash", 33, 5]], [["description", 70, 5], ["longDescription", 71, 5], ["mainProgram", 81, 5], ["homepage", 82, 5], ["license", 83, 5], ["platforms", 84, 5], ["maintainers", 85, 5]], [["pname", 26, 3], ["version", 27, 3], ["src", 29, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 41, 3], ["bin_path", 48, 3], ["qtWrapperArgs", 64, 3], ["meta", 69, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, cmake: false, libuchardet: false, "pkg-config": false, faac: false, flac: false, "opus-tools": false, "vorbis-tools": false, mp3gain: false, lame: false, taglib: false, wavpack: false, vorbisgain: false, "monkeys-audio": false, sox: false, gtk3: false, qt6: false, ttaenc: false, withFaac: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["hash", 33, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 70, 5], ["longDescription", 71, 5], ["mainProgram", 81, 5], ["homepage", 82, 5], ["license", 83, 5], ["platforms", 84, 5], ["maintainers", 85, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 26, 3], ["version", 27, 3], ["src", 29, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 41, 3], ["bin_path", 48, 3], ["qtWrapperArgs", 64, 3], ["meta", 69, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,11 +29,11 @@ export default nix.lambda((args) => (() => {
   const ttaenc = nix.arg($, "ttaenc");
   const withFaac = nix.argOr($, "withFaac", () => false);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "flacon",
       version: "13.0.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "flacon",
           repo: "flacon",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -65,7 +63,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`--prefix PATH : ${nix.sel(finalAttrs, "bin_path")}`),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Extracts audio tracks from an audio CD image to separate tracks",
         longDescription: "Flacon extracts individual tracks from one big audio file containing the\nentire album of music and saves them as separate audio files. To do this,\nit uses information from the appropriate CUE file. Besides, Flacon makes\nit possible to conveniently revise or specify tags both for all tracks\nat once or for each tag separately.\n\nSupported input formats: WAV, FLAC, APE, WavPack, True Audio (TTA)\nSupported output formats: FLAC, WAV, WavPack, AAC, OGG or MP3\n",
         mainProgram: "flacon",

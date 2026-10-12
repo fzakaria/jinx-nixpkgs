@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 51, 5], ["repo", 52, 5], ["rev", 53, 5], ["hash", 54, 5]], [["description", 135, 5], ["homepage", 136, 5], ["license", 137, 5], ["maintainers", 138, 5], ["mainProgram", 139, 5], ["platforms", 140, 5]], [["pname", 47, 3], ["version", 48, 3], ["src", 50, 3], ["patches", 57, 3], ["nativeBuildInputs", 70, 3], ["buildInputs", 79, 3], ["runtimeDeps", 87, 3], ["autoPatchelfIgnoreMissingDeps", 98, 3], ["dotnet-sdk", 103, 3], ["dotnet-runtime", 104, 3], ["projectFile", 106, 3], ["nugetDeps", 111, 3], ["executables", 112, 3], ["libPath", 118, 3], ["makeWrapperArgs", 122, 3], ["postInstall", 124, 3], ["meta", 134, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, buildDotnetModule: false, dotnetCorePackages: false, xz: false, pcre2: false, autoPatchelfHook: false, bintools: false, fixDarwinDylibNames: false, darwin: false, fontconfig: false, libgdiplus: false, libxrandr: false, glib: false, writeShellScriptBin: false, blender: false, openssl: false, libkrb5: false, icu: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 51, 5], ["repo", 52, 5], ["rev", 53, 5], ["hash", 54, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 135, 5], ["homepage", 136, 5], ["license", 137, 5], ["maintainers", 138, 5], ["mainProgram", 139, 5], ["platforms", 140, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 47, 3], ["version", 48, 3], ["src", 50, 3], ["patches", 57, 3], ["nativeBuildInputs", 70, 3], ["buildInputs", 79, 3], ["runtimeDeps", 87, 3], ["autoPatchelfIgnoreMissingDeps", 98, 3], ["dotnet-sdk", 103, 3], ["dotnet-runtime", 104, 3], ["projectFile", 106, 3], ["nugetDeps", 111, 3], ["executables", 112, 3], ["libPath", 118, 3], ["makeWrapperArgs", 122, 3], ["postInstall", 124, 3], ["meta", 134, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -47,7 +45,7 @@ exec -a "$0" @out@/bin/LogicReinc.BlendFarm  "$@"
       const pname = "blendfarm";
       const version = "1.1.6";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "LogicReinc",
           repo: "LogicReinc.BlendFarm",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -90,7 +88,7 @@ substituteInPlace $out/bin/blendfarm-nix --subst-var out
 `)), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => nix.str`ln -s ${libgdiplus}/lib/libgdiplus.dylib $out/lib/blendfarm/
 `))));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Open-source, cross-platform, stand-alone, Network Renderer for Blender",
         homepage: "https://github.com/LogicReinc/LogicReinc.BlendFarm",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
@@ -102,7 +100,7 @@ substituteInPlace $out/bin/blendfarm-nix --subst-var out
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

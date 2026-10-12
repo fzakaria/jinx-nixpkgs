@@ -2,14 +2,8 @@
 import * as nix from "../../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]], [["description", 24, 5], ["mainProgram", 25, 5], ["homepage", 26, 5], ["changelog", 27, 5], ["license", 28, 5], ["maintainers", 29, 5]], [["url", 44, 9], ["hash", 45, 9]], [["pname", 33, 5], ["version", 34, 13], ["src", 34, 21], ["meta", 34, 25], ["strictDeps", 36, 5], ["cargoHash", 38, 5], ["cargoPatches", 40, 5], ["nativeBuildInputs", 49, 5], ["buildInputs", 53, 5]], [["attrPath", 73, 7]], [["maple", 71, 13], ["updateScript", 72, 5]], [["pname", 61, 3], ["version", 62, 11], ["src", 62, 19], ["meta", 62, 23], ["strictDeps", 64, 3], ["postInstall", 66, 3], ["passthru", 70, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchFromGitHub: false, fetchpatch2: false, "pkg-config": false, libgit2: false, zlib: false, vimUtils: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 24, 5], ["mainProgram", 25, 5], ["homepage", 26, 5], ["changelog", 27, 5], ["license", 28, 5], ["maintainers", 29, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["url", 44, 9], ["hash", 45, 9]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 33, 5], ["version", 34, 13], ["src", 34, 21], ["meta", 34, 25], ["strictDeps", 36, 5], ["cargoHash", 38, 5], ["cargoPatches", 40, 5], ["nativeBuildInputs", 49, 5], ["buildInputs", 53, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["attrPath", 73, 7]]);
-const pos$6 = nix.positions(here + "/default.nix", [["maple", 71, 13], ["updateScript", 72, 5]]);
-const pos$7 = nix.positions(here + "/default.nix", [["pname", 61, 3], ["version", 62, 11], ["src", 62, 19], ["meta", 62, 23], ["strictDeps", 64, 3], ["postInstall", 66, 3], ["passthru", 70, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,14 +18,14 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const version = "0.55";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "liuchengxu",
       repo: "vim-clap",
       tag: nix.thunk(() => nix.str`v${version}`),
       hash: "sha256-vtIA2URex7DOBIZ9KW++/ziqhVd/GDJOKYTUULdMqGc=",
     }))));
   const meta = nix.thunk(() => ({
-    [nix.POS]: pos$2,
+    [nix.POS]: $pos[1],
     description: "Modern performant fuzzy picker for Vim and NeoVim",
     mainProgram: "maple",
     homepage: "https://github.com/liuchengxu/vim-clap",
@@ -40,7 +34,7 @@ export default nix.lambda((args) => (() => {
     maintainers: [],
   }));
   const maple = nix.thunk(() => nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "maple",
       version: version,
       src: src,
@@ -49,7 +43,7 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-RMDlLpPWDLHCRWLz7NAAQhp6FhKA7aNYqx9MCqR8vYM=",
       cargoPatches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: "https://github.com/liuchengxu/vim-clap/commit/b95d4a3f9371271096553df1240b3f59a2dc99ec.patch?full_index=1",
             hash: "sha256-FvGuSFHMOprPSUlR82SR/IMNDd3RaGECQm2wfPCOW4Y=",
           })))),
@@ -58,7 +52,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [libgit2, zlib]),
     }))));
   return nix.app(nix.sel(vimUtils, "buildVimPlugin"), nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "vim-clap",
       version: version,
       src: src,
@@ -67,9 +61,9 @@ export default nix.lambda((args) => (() => {
       postInstall: nix.thunk(() => nix.str`ln -s ${maple}/bin/maple $out/bin/maple
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         maple: maple,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$5, attrPath: "vimPlugins.vim-clap.maple" })))),
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: $pos[4], attrPath: "vimPlugins.vim-clap.maple" })))),
       })),
     })));
 })(), formals$1);

@@ -2,16 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 16, 5], ["hash", 17, 5]], [["url", 33, 7], ["hash", 34, 7]], [["url", 37, 7], ["hash", 38, 7]], [["url", 41, 7], ["hash", 42, 7]], [["url", 45, 7], ["hash", 46, 7]], [["url", 49, 7], ["hash", 50, 7]], [["CFLAGS", 56, 5]], [["homepage", 60, 5], ["description", 61, 5], ["longDescription", 62, 5], ["license", 68, 5], ["platforms", 69, 5], ["maintainers", 70, 5], ["mainProgram", 71, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["buildInputs", 20, 3], ["configureFlags", 25, 3], ["patches", 31, 3], ["env", 55, 3], ["meta", 59, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, fetchpatch: false, flite: false, "alsa-lib": false, debug: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 33, 7], ["hash", 34, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 37, 7], ["hash", 38, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["url", 41, 7], ["hash", 42, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["url", 45, 7], ["hash", 46, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["url", 49, 7], ["hash", 50, 7]]);
-const pos$7 = nix.positions(here + "/package.nix", [["CFLAGS", 56, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["homepage", 60, 5], ["description", 61, 5], ["longDescription", 62, 5], ["license", 68, 5], ["platforms", 69, 5], ["maintainers", 70, 5], ["mainProgram", 71, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["buildInputs", 20, 3], ["configureFlags", 25, 3], ["patches", 31, 3], ["env", 55, 3], ["meta", 59, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const alsa_lib = nix.arg($, "alsa-lib");
   const debug = nix.argOr($, "debug", () => false);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       pname: "eflite",
       version: "0.4.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/eflite/eflite/${nix.sel(finalAttrs, "version")}/eflite-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-ka2FhV5Vo/w7l6GlJdtf0dIR1UNCu/yI0QJoExBPFyE=",
         })))),
@@ -39,35 +31,35 @@ export default nix.lambda((args) => (() => {
       ]),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://sources.debian.org/data/main/e/eflite/0.4.1-14/debian/patches/cvs-update",
             hash: "sha256-BcgBZCbXWOaM4cSPeDPuIDviTymihAo9Puv4Wf8Ow2Q=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: "https://sources.debian.org/data/main/e/eflite/0.4.1-14/debian/patches/link",
             hash: "sha256-zAEJl473sk1H6Ltbbeo9IhWE5/Z6QL7EUV63S24bA10=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             url: "https://sources.debian.org/data/main/e/eflite/0.4.1-14/debian/patches/buf-overflow",
             hash: "sha256-vc6dn4x0ortRp8TqHgNl0Ki10h3w9WnwOvasOUaYOBw=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             url: "https://sources.debian.org/data/main/e/eflite/0.4.1-14/debian/patches/flags",
             hash: "sha256-h7+OewOznlOrGNcn2zfE4kb/0rP+h9rTP3TLlyiPTJM=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             url: "https://sources.debian.org/data/main/e/eflite/0.4.1-14/debian/patches/gcc-15",
             hash: "sha256-hiQaEM9Rf0KV8rgkXdjj3KIF+4jMYS4J4CT4UIfydGQ=",
           })))),
         nix.path(here, "./format.patch"),
       ]),
-      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), debug, nix.thunk(() => ({ [nix.POS]: pos$7, CFLAGS: " -DDEBUG=2" })))),
+      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), debug, nix.thunk(() => ({ [nix.POS]: $pos[6], CFLAGS: " -DDEBUG=2" })))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         homepage: "https://eflite.sourceforge.net",
         description: "Speech server for screen readers",
         longDescription: "EFlite is a speech server for Emacspeak and other screen\nreaders that allows them to interface with Festival Lite,\na free text-to-speech engine developed at the CMU Speech\nCenter as an off-shoot of Festival.\n",

@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["nodejs-slim", 20, 38]], [["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]], [["pname", 36, 26], ["version", 36, 32], ["src", 36, 40], ["prePatch", 37, 5], ["pnpm", 40, 5], ["fetcherVersion", 41, 5], ["hash", 42, 5]], [["PKG_CONFIG_PATH", 67, 7]], [["description", 93, 5], ["homepage", 94, 5], ["license", 95, 5], ["maintainers", 96, 5], ["platforms", 97, 27], ["mainProgram", 98, 5]], [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["cargoHash", 33, 3], ["pnpmDeps", 35, 3], ["nativeBuildInputs", 45, 3], ["prePnpmInstall", 54, 3], ["postPatch", 58, 3], ["preBuild", 63, 3], ["env", 67, 3], ["doCheck", 69, 3], ["installPhase", 71, 3], ["preFixup", 81, 3], ["meta", 92, 3]]]);
 const formals$1 = { args: { fetchFromGitLab: false, rustPlatform: false, lib: false, pnpm_11: false, fetchPnpmDeps: false, pnpmConfigHook: false, stdenv: false, nodejs_26: false, "nodejs-slim_26": false, ffmpeg: false, imagemagick: false, openssl: false, "pkg-config": false, makeWrapper: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["nodejs-slim", 20, 38]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 36, 26], ["version", 36, 32], ["src", 36, 40], ["prePatch", 37, 5], ["pnpm", 40, 5], ["fetcherVersion", 41, 5], ["hash", 42, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["PKG_CONFIG_PATH", 67, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 93, 5], ["homepage", 94, 5], ["license", 95, 5], ["maintainers", 96, 5], ["platforms", 97, 27], ["mainProgram", 98, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["cargoHash", 33, 3], ["pnpmDeps", 35, 3], ["nativeBuildInputs", 45, 3], ["prePnpmInstall", 54, 3], ["postPatch", 58, 3], ["preBuild", 63, 3], ["env", 67, 3], ["doCheck", 69, 3], ["installPhase", 71, 3], ["preFixup", 81, 3], ["meta", 92, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,13 +23,13 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const nodejs = nodejs_26;
   const nodejs_slim = nodejs_slim_26;
-  const pnpm$ = nix.thunk(() => nix.app(nix.sel(pnpm_11, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, "nodejs-slim": nodejs_slim }))));
+  const pnpm$ = nix.thunk(() => nix.app(nix.sel(pnpm_11, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], "nodejs-slim": nodejs_slim }))));
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "porn-vault",
       version: "0.40.7",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "porn-vault",
           repo: "porn-vault",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -42,7 +37,7 @@ export default nix.lambda((args) => (() => {
         })))),
       cargoHash: "sha256-7juoF4I/OD8NRwBvKAnAwberJQ4RZqBh+rbtIjff90I=",
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -56,7 +51,7 @@ export default nix.lambda((args) => (() => {
       postPatch: "substituteInPlace vault/src/temp.rs \\\n  --replace-fail 'PV_TMP_FOLDER' \"CACHE_DIRECTORY\"\n",
       preBuild: "pnpm build\n",
       env: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         PKG_CONFIG_PATH: nix.thunk(() => nix.str`${nix.sel(openssl, "dev")}/lib/pkgconfig`),
       })),
       doCheck: false,
@@ -74,7 +69,7 @@ runHook postInstall
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(nodejs, "meta"));
         return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Self-hosted organizer for adult videos and imagery",
         homepage: "https://gitlab.com/porn-vault/porn-vault",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

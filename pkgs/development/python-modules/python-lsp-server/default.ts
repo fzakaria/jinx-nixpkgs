@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 50, 5], ["repo", 51, 5], ["tag", 52, 5], ["hash", 53, 5]], [["all", 84, 5], ["autopep8", 98, 5], ["flake8", 99, 5], ["mccabe", 100, 5], ["pycodestyle", 101, 5], ["pydocstyle", 102, 5], ["pyflakes", 103, 5], ["pylint", 104, 5], ["rope", 105, 5], ["yapf", 106, 5], ["websockets", 110, 5]], [["description", 146, 5], ["homepage", 147, 5], ["changelog", 148, 5], ["license", 149, 5], ["maintainers", 150, 5], ["mainProgram", 151, 5]], [["pname", 45, 3], ["version", 46, 3], ["pyproject", 47, 3], ["src", 49, 3], ["patches", 56, 3], ["pythonRelaxDeps", 61, 3], ["build-system", 71, 3], ["dependencies", 73, 3], ["optional-dependencies", 83, 3], ["nativeCheckInputs", 113, 3], ["disabledTests", 125, 3], ["pythonImportsCheck", 140, 3], ["meta", 145, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitHub: false, "setuptools-scm": false, black: false, "docstring-to-markdown": false, jedi: false, pluggy: false, "python-lsp-jsonrpc": false, setuptools: false, ujson: false, autopep8: false, flake8: false, mccabe: false, pycodestyle: false, pydocstyle: false, pyflakes: false, pylint: false, rope: false, toml: false, whatthepatch: false, yapf: false, flaky: false, matplotlib: false, numpy: false, pandas: false, "pytest-cov-stub": false, pytestCheckHook: false, websockets: false, versionCheckHook: false, writableTmpDirAsHomeHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 50, 5], ["repo", 51, 5], ["tag", 52, 5], ["hash", 53, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["all", 84, 5], ["autopep8", 98, 5], ["flake8", 99, 5], ["mccabe", 100, 5], ["pycodestyle", 101, 5], ["pydocstyle", 102, 5], ["pyflakes", 103, 5], ["pylint", 104, 5], ["rope", 105, 5], ["yapf", 106, 5], ["websockets", 110, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 146, 5], ["homepage", 147, 5], ["changelog", 148, 5], ["license", 149, 5], ["maintainers", 150, 5], ["mainProgram", 151, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 45, 3], ["version", 46, 3], ["pyproject", 47, 3], ["src", 49, 3], ["patches", 56, 3], ["pythonRelaxDeps", 61, 3], ["build-system", 71, 3], ["dependencies", 73, 3], ["optional-dependencies", 83, 3], ["nativeCheckInputs", 113, 3], ["disabledTests", 125, 3], ["pythonImportsCheck", 140, 3], ["meta", 145, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -47,7 +44,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.14.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "python-lsp",
           repo: "python-lsp-server",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -74,7 +71,7 @@ export default nix.lambda((args) => (() => {
         ujson,
       ]);
       const optional_dependencies = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         all: nix.thunk(() => [
           autopep8,
           flake8,
@@ -117,7 +114,7 @@ export default nix.lambda((args) => (() => {
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["test_autoimport_code_actions_and_completions_for_notebook_document"]))));
       const pythonImportsCheck = nix.thunk(() => ["pylsp", "pylsp.python_lsp"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Python implementation of the Language Server Protocol",
         homepage: "https://github.com/python-lsp/python-lsp-server",
         changelog: nix.thunk(() => nix.str`https://github.com/python-lsp/python-lsp-server/blob/v${version}/CHANGELOG.md`),
@@ -129,7 +126,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "pylsp",
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

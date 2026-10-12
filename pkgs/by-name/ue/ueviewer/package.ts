@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5]], [["name", 30, 7], ["url", 31, 7], ["hash", 32, 7]], [["hardcodeZeroVersion", 91, 5]], [["updateScript", 89, 12]], [["description", 95, 5], ["homepage", 96, 5], ["license", 97, 5], ["mainProgram", 98, 5], ["maintainers", 99, 5], ["platforms", 101, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["patches", 26, 3], ["postPatch", 36, 3], ["strictDeps", 55, 3], ["nativeBuildInputs", 57, 3], ["buildInputs", 61, 3], ["enableParallelBuilding", 71, 3], ["buildPhase", 73, 3], ["installPhase", 81, 3], ["passthru", 89, 3], ["meta", 94, 3]]]);
 const formals$1 = { args: { gccStdenv: false, lib: false, fetchFromGitHub: false, fetchpatch: false, unstableGitUpdater: false, libGL: false, libpng: false, libx11: false, perl: false, SDL2: false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 30, 7], ["url", 31, 7], ["hash", 32, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["hardcodeZeroVersion", 91, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 89, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 95, 5], ["homepage", 96, 5], ["license", 97, 5], ["mainProgram", 98, 5], ["maintainers", 99, 5], ["platforms", 101, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["patches", 26, 3], ["postPatch", 36, 3], ["strictDeps", 55, 3], ["nativeBuildInputs", 57, 3], ["buildInputs", 61, 3], ["enableParallelBuilding", 71, 3], ["buildPhase", 73, 3], ["installPhase", 81, 3], ["passthru", 89, 3], ["meta", 94, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const SDL2 = nix.arg($, "SDL2");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(gccStdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "ueviewer",
       version: "0-unstable-2024-02-23",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "gildor2",
           repo: "UEViewer",
           rev: "a0bfb468d42be831b126632fd8a0ae6b3614f981",
@@ -36,7 +31,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "0001-ueviewer-Dont-use-c++2a-standard.patch",
             url: "https://github.com/gildor2/UEViewer/commit/d44bef038abca99c84d7f418aedcbcb761de58aa.patch",
             hash: "sha256-v68yoBLz0dUB3evlKApKuajKQiOwbJczVeW5oxYaVyw=",
@@ -50,11 +45,11 @@ export default nix.lambda((args) => (() => {
       buildPhase: "runHook preBuild\n\n./build.sh\n\nrunHook postBuild\n",
       installPhase: "runHook preInstall\n\ninstall -Dm755 umodel $out/bin/umodel\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: pos$3, hardcodeZeroVersion: true })))),
+        [nix.POS]: $pos[3],
+        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[2], hardcodeZeroVersion: true })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Viewer and exporter for Unreal Engine 1-4 assets (aka umodel)",
         homepage: "https://www.gildor.org/en/projects/umodel",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/wrapper.nix", [[["unwrapped", 51, 5]], [["priority", 55, 5]], [["pname", 17, 3], ["version", 18, 28], ["outputs", 20, 3], ["dontUnpack", 26, 3], ["nativeBuildInputs", 28, 3], ["propagatedBuildInputs", 30, 3], ["makeWrapperArgs", 32, 3], ["installPhase", 36, 3], ["postFixup", 46, 3], ["passthru", 50, 3], ["meta", 54, 3]]]);
 const formals$1 = { args: { lib: false, wrapPython: false, python: false, stdenv: false, dnf4: false, "dnf-plugins-core": false, plugins: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/wrapper.nix", [["unwrapped", 51, 5]]);
-const pos$2 = nix.positions(here + "/wrapper.nix", [["priority", 55, 5]]);
-const pos$3 = nix.positions(here + "/wrapper.nix", [["pname", 17, 3], ["version", 18, 28], ["outputs", 20, 3], ["dontUnpack", 26, 3], ["nativeBuildInputs", 28, 3], ["propagatedBuildInputs", 30, 3], ["makeWrapperArgs", 32, 3], ["installPhase", 36, 3], ["postFixup", 46, 3], ["passthru", 50, 3], ["meta", 54, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,7 +17,7 @@ export default nix.lambda((args) => (() => {
   const pluginPaths = nix.thunk(() => nix.builtins.map((p) => nix.str`${p}/${nix.sel(python, "sitePackages")}/dnf-plugins`, plugins));
   const dnf4_unwrapped = dnf4;
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "dnf4",
       version: nix.thunk(() => nix.attr(dnf4_unwrapped, "version")),
       outputs: nix.thunk(() => ["out", "man", "py"]),
@@ -36,9 +34,9 @@ cp -R ${nix.sel(dnf4_unwrapped, "man")} $man
 runHook postInstall
 `),
       postFixup: "wrapPythonPrograms\n",
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$1, unwrapped: dnf4_unwrapped })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[0], unwrapped: dnf4_unwrapped })),
       meta: nix.thunk(() => nix.update(nix.sel(dnf4_unwrapped, "meta"), {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         priority: nix.thunk(() => nix.sub(nix.selOr(dnf4_unwrapped, () => nix.sel(lib, "meta", "defaultPriority"), "meta", "priority"), 1n)),
       })),
     })));

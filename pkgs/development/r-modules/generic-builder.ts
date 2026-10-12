@@ -2,9 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/generic-builder.nix", [[["NIX_CFLAGS_COMPILE", 43, 9]], [["__structuredAttrs", 15, 5], ["strictDeps", 16, 5], ["name", 18, 5], ["requireX", 20, 5], ["nativeBuildInputs", 22, 5], ["buildInputs", 32, 5], ["enableParallelBuilding", 38, 5], ["env", 40, 5], ["configurePhase", 49, 5], ["buildPhase", 62, 5], ["doCheck", 67, 5], ["checkPhase", 69, 5], ["rCommand", 73, 5], ["installFlags", 81, 5], ["installPhase", 83, 5], ["stripDebugList", 105, 5], ["postFixup", 111, 5]]]);
 const formals$1 = { args: { stdenv: false, lib: false, R: false, "xvfb-run": false, "util-linux": false, libintl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/generic-builder.nix", [["NIX_CFLAGS_COMPILE", 43, 9]]);
-const pos$2 = nix.positions(here + "/generic-builder.nix", [["__structuredAttrs", 15, 5], ["strictDeps", 16, 5], ["name", 18, 5], ["requireX", 20, 5], ["nativeBuildInputs", 22, 5], ["buildInputs", 32, 5], ["enableParallelBuilding", 38, 5], ["env", 40, 5], ["configurePhase", 49, 5], ["buildPhase", 62, 5], ["doCheck", 67, 5], ["checkPhase", 69, 5], ["rCommand", 73, 5], ["installFlags", 81, 5], ["installPhase", 83, 5], ["stripDebugList", 105, 5], ["postFixup", 111, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const util_linux = nix.arg($, "util-linux");
   const libintl = nix.arg($, "libintl");
   return (attrs) => nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => nix.update({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       __structuredAttrs: true,
       strictDeps: true,
       name: nix.thunk(() => nix.str`r-${nix.selOr(attrs, () => nix.str`${nix.sel(attrs, "pname")}-${nix.sel(attrs, "version")}`, "name")}`),
@@ -24,7 +23,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => nix.concat(nix.selOr(attrs, () => [], "buildInputs"), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [libintl])))),
       enableParallelBuilding: true,
       env: nix.thunk(() => nix.update(nix.selOr(attrs, () => ({}), "env"), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           NIX_CFLAGS_COMPILE: nix.thunk(() => nix.str`${nix.selOr(attrs, () => "", "env", "NIX_CFLAGS_COMPILE")} -I${nix.app(nix.sel(lib, "getInclude"), nix.thunk(() => nix.sel(stdenv, "cc", "libcxx")))}/include/c++/v1`),
         }))))),
       configurePhase: "runHook preConfigure\n\nexport MAKEFLAGS+=\"${enableParallelBuilding:+-j$NIX_BUILD_CORES}\"\nexport R_LIBS_SITE=\"$R_LIBS_SITE${R_LIBS_SITE:+:}$out/library\"\n\nif [ -f ./configure ] && [ -z \"${dontPatchShebangsInConfigure:-}\" ]; then\n  patchShebangs --build ./configure\nfi\n\nrunHook postConfigure\n",

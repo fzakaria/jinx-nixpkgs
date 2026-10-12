@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]], [["changelog", 83, 5], ["description", 84, 5], ["homepage", 85, 5], ["license", 86, 5], ["maintainers", 87, 5]], [["pname", 24, 3], ["version", 25, 3], ["pyproject", 26, 3], ["src", 28, 3], ["pythonRelaxDeps", 35, 3], ["build-system", 37, 3], ["dependencies", 42, 3], ["nativeCheckInputs", 48, 3], ["doCheck", 55, 3], ["preCheck", 57, 3], ["disabledTests", 64, 3], ["pythonImportsCheck", 80, 3], ["meta", 82, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitHub: false, "hatch-vcs": false, hatchling: false, dnspython: false, greenlet: false, isPyPy: false, six: false, "iana-etc": false, pytestCheckHook: false, libredirect: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["changelog", 83, 5], ["description", 84, 5], ["homepage", 85, 5], ["license", 86, 5], ["maintainers", 87, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 24, 3], ["version", 25, 3], ["pyproject", 26, 3], ["src", 28, 3], ["pythonRelaxDeps", 35, 3], ["build-system", 37, 3], ["dependencies", 42, 3], ["nativeCheckInputs", 48, 3], ["doCheck", 55, 3], ["preCheck", 57, 3], ["disabledTests", 64, 3], ["pythonImportsCheck", 80, 3], ["meta", 82, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.41.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "eventlet",
           repo: "eventlet",
           tag: version,
@@ -54,7 +52,7 @@ export EVENTLET_IMPORT_VERSION_ONLY=0
       ]);
       const pythonImportsCheck = nix.thunk(() => ["eventlet"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         changelog: nix.thunk(() => nix.str`https://github.com/eventlet/eventlet/blob/${nix.sel(src, "tag")}/NEWS`),
         description: "Concurrent networking library for Python",
         homepage: "https://github.com/eventlet/eventlet/",
@@ -65,7 +63,7 @@ export EVENTLET_IMPORT_VERSION_ONLY=0
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

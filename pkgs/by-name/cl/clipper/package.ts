@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 14, 5], ["sha256", 15, 5]], [["description", 32, 5], ["longDescription", 33, 5], ["homepage", 37, 5], ["license", 38, 5], ["maintainers", 39, 5], ["platforms", 40, 5]], [["version", 11, 3], ["pname", 12, 3], ["src", 13, 3], ["sourceRoot", 18, 3], ["postPatch", 20, 3], ["nativeBuildInputs", 25, 3], ["meta", 31, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, cmake: false, ninja: false, unzip: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 14, 5], ["sha256", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 32, 5], ["longDescription", 33, 5], ["homepage", 37, 5], ["license", 38, 5], ["maintainers", 39, 5], ["platforms", 40, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 11, 3], ["pname", 12, 3], ["src", 13, 3], ["sourceRoot", 18, 3], ["postPatch", 20, 3], ["nativeBuildInputs", 25, 3], ["meta", 31, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const ninja = nix.arg($, "ninja");
   const unzip = nix.arg($, "unzip");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       version: "6.4.2",
       pname: "Clipper",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/polyclipping/clipper_ver${nix.sel(finalAttrs, "version")}.zip`),
           sha256: "09q6jc5k7p9y5d75qr2na5d1gm0wly5cjnffh127r04l47c20hx1",
         })))),
@@ -28,7 +26,7 @@ export default nix.lambda((args) => (() => {
       postPatch: "substituteInPlace CMakeLists.txt \\\n  --replace-fail \"CMAKE_MINIMUM_REQUIRED(VERSION 2.6.0)\" \"CMAKE_MINIMUM_REQUIRED(VERSION 3.10.0)\"\n",
       nativeBuildInputs: nix.thunk(() => [cmake, ninja, unzip]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Polygon and line clipping and offsetting library (C++, C#, Delphi)",
         longDescription: "The Clipper library performs line & polygon clipping - intersection, union, difference & exclusive-or,\nand line & polygon offsetting. The library is based on Vatti's clipping algorithm.\n",
         homepage: "https://sourceforge.net/projects/polyclipping",

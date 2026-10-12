@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 23, 5], ["version", 24, 26], ["hash", 25, 5]], [["updateScript", 51, 12]], [["description", 54, 5], ["homepage", 55, 5], ["license", 56, 5], ["maintainers", 57, 5]], [["pname", 16, 3], ["version", 17, 3], ["pyproject", 18, 3], ["__structuredAttrs", 20, 3], ["src", 22, 3], ["postPatch", 28, 3], ["build-system", 33, 3], ["dependencies", 35, 3], ["pythonImportsCheck", 44, 3], ["nativeCheckInputs", 46, 3], ["passthru", 51, 3], ["meta", 53, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, "caido-server-auth": false, fetchPypi: false, gql: false, "nix-update-script": false, pydantic: false, semver: false, "uv-build": false, pytestCheckHook: false, "pytest-asyncio": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 23, 5], ["version", 24, 26], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["updateScript", 51, 12]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 54, 5], ["homepage", 55, 5], ["license", 56, 5], ["maintainers", 57, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 16, 3], ["version", 17, 3], ["pyproject", 18, 3], ["__structuredAttrs", 20, 3], ["src", 22, 3], ["postPatch", 28, 3], ["build-system", 33, 3], ["dependencies", 35, 3], ["pythonImportsCheck", 44, 3], ["nativeCheckInputs", 46, 3], ["passthru", 51, 3], ["meta", 53, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,13 +19,13 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const pytest_asyncio = nix.arg($, "pytest-asyncio");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "caido-sdk-client",
       version: "0.3.2",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "caido_sdk_client",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-lOeCi/FzvtoHFYBDs3mFgGwghY7pBFh72o/wy8pigIA=",
@@ -39,11 +36,11 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["caido_sdk_client"]),
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook, pytest_asyncio]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Client SDK for interacting with a Caido instance",
         homepage: "https://pypi.org/project/caido-sdk-client",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5]], [["changelog", 70, 5], ["description", 71, 5], ["downloadPage", 72, 5], ["homepage", 73, 5], ["license", 74, 5], ["maintainers", 75, 5], ["platforms", 76, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["outputs", 26, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 37, 3], ["nativeCheckInputs", 41, 3], ["postPatch", 46, 3], ["configureFlags", 56, 3], ["doCheck", 61, 3], ["enableParallelBuilding", 63, 3], ["__structuredAttrs", 65, 3], ["strictDeps", 67, 3], ["meta", 69, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, gcc14Stdenv: false, fetchFromGitHub: false, libpq: false, python3: false, postgresql: false, postgresqlTestHook: false, autoreconfHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["changelog", 70, 5], ["description", 71, 5], ["downloadPage", 72, 5], ["homepage", 73, 5], ["license", 74, 5], ["maintainers", 75, 5], ["platforms", 76, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["outputs", 26, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 37, 3], ["nativeCheckInputs", 41, 3], ["postPatch", 46, 3], ["configureFlags", 56, 3], ["doCheck", 61, 3], ["enableParallelBuilding", 63, 3], ["__structuredAttrs", 65, 3], ["strictDeps", 67, 3], ["meta", 69, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const postgresqlTestHook = nix.arg($, "postgresqlTestHook");
   const autoreconfHook = nix.arg($, "autoreconfHook");
   return nix.app(nix.sel((nix.asBool(nix.sel(stdenv, "cc", "isGNU")) ? nix.force(gcc14Stdenv) : nix.force(stdenv)), "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "libpqxx",
       version: "7.10.7",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "jtv",
           repo: "libpqxx",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -40,7 +38,7 @@ export default nix.lambda((args) => (() => {
       __structuredAttrs: true,
       strictDeps: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         changelog: nix.thunk(() => nix.str`https://github.com/jtv/libpqxx/releases/tag/${nix.sel(finalAttrs, "version")}`),
         description: "C++ library to access PostgreSQL databases",
         downloadPage: "https://github.com/jtv/libpqxx",

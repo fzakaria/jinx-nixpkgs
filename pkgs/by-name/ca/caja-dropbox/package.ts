@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 24, 5], ["sha256", 25, 5]], [["dropboxd", 30, 15], ["DESKTOP_FILE_DIR", 32, 7]], [["url", 61, 5], ["odd-unstable", 62, 5], ["rev-prefix", 63, 5]], [["updateScript", 60, 12]], [["description", 67, 5], ["homepage", 68, 5], ["license", 69, 5], ["platforms", 73, 5], ["teams", 74, 5]], [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["patches", 28, 3], ["strictDeps", 36, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 50, 3], ["configureFlags", 56, 3], ["enableParallelBuilding", 58, 3], ["passthru", 60, 3], ["meta", 66, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, replaceVars: false, "pkg-config": false, "gobject-introspection": false, "gdk-pixbuf": false, caja: false, gtk3: false, python3: false, dropbox: false, gitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 24, 5], ["sha256", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["dropboxd", 30, 15], ["DESKTOP_FILE_DIR", 32, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 61, 5], ["odd-unstable", 62, 5], ["rev-prefix", 63, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 60, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 67, 5], ["homepage", 68, 5], ["license", 69, 5], ["platforms", 73, 5], ["teams", 74, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["patches", 28, 3], ["strictDeps", 36, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 50, 3], ["configureFlags", 56, 3], ["enableParallelBuilding", 58, 3], ["passthru", 60, 3], ["meta", 66, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,16 +21,16 @@ export default nix.lambda((args) => (() => {
   const gitUpdater = nix.arg($, "gitUpdater");
   const dropboxd = nix.thunk(() => nix.str`${dropbox}/bin/dropbox`);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "caja-dropbox",
       version: "1.28.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://pub.mate-desktop.org/releases/${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/caja-dropbox-${nix.sel(finalAttrs, "version")}.tar.xz`),
           sha256: "t0w4qZQlS9PPfLxxK8LsdRagypQqpleFJs29aqYgGWM=",
         })))),
       patches: nix.thunk(() => [
-        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix-cli-paths.patch"), nix.thunk(() => ({ [nix.POS]: pos$2, dropboxd: dropboxd, DESKTOP_FILE_DIR: null })))),
+        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix-cli-paths.patch"), nix.thunk(() => ({ [nix.POS]: $pos[1], dropboxd: dropboxd, DESKTOP_FILE_DIR: null })))),
       ]),
       strictDeps: true,
       nativeBuildInputs: nix.thunk(() => [
@@ -54,16 +49,16 @@ export default nix.lambda((args) => (() => {
       configureFlags: nix.thunk(() => ["--with-caja-extension-dir=$$out/lib/caja/extensions-2.0"]),
       enableParallelBuilding: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: "https://git.mate-desktop.org/caja-dropbox",
             "odd-unstable": true,
             "rev-prefix": "v",
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Dropbox extension for Caja file manager",
         homepage: "https://github.com/mate-desktop/caja-dropbox",
         license: nix.thunk(() => (() => {

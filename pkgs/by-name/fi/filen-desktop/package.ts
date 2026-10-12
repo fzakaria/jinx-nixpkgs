@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 26, 5], ["exec", 27, 5], ["icon", 28, 5], ["startupWMClass", 29, 5], ["desktopName", 30, 5], ["comment", 31, 5], ["categories", 32, 5], ["keywords", 37, 5]], [["owner", 50, 5], ["repo", 51, 5], ["rev", 52, 5], ["hash", 53, 5]], [["ELECTRON_SKIP_BINARY_DOWNLOAD", 74, 5], ["PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD", 75, 5]], [["homepage", 197, 5], ["downloadPage", 198, 5], ["description", 199, 5], ["longDescription", 200, 5], ["mainProgram", 207, 5], ["platforms", 208, 5], ["license", 213, 5], ["maintainers", 214, 5]], [["pname", 45, 3], ["version", 46, 3], ["makeCacheWritable", 47, 3], ["src", 49, 3], ["npmDepsHash", 56, 3], ["nativeBuildInputs", 58, 3], ["buildInputs", 67, 3], ["env", 73, 3], ["postPatch", 78, 3], ["npmRebuildFlags", 111, 3], ["preBuild", 115, 3], ["buildPhase", 123, 3], ["installPhase", 157, 3], ["desktopItems", 194, 3], ["meta", 196, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildNpmPackage: false, fetchFromGitHub: false, makeDesktopItem: false, copyDesktopItems: false, makeWrapper: false, electron: false, libicns: false, "pkg-config": false, pixman: false, cairo: false, pango: false, rclone: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 26, 5], ["exec", 27, 5], ["icon", 28, 5], ["startupWMClass", 29, 5], ["desktopName", 30, 5], ["comment", 31, 5], ["categories", 32, 5], ["keywords", 37, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 50, 5], ["repo", 51, 5], ["rev", 52, 5], ["hash", 53, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["ELECTRON_SKIP_BINARY_DOWNLOAD", 74, 5], ["PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD", 75, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 197, 5], ["downloadPage", 198, 5], ["description", 199, 5], ["longDescription", 200, 5], ["mainProgram", 207, 5], ["platforms", 208, 5], ["license", 213, 5], ["maintainers", 214, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 45, 3], ["version", 46, 3], ["makeCacheWritable", 47, 3], ["src", 49, 3], ["npmDepsHash", 56, 3], ["nativeBuildInputs", 58, 3], ["buildInputs", 67, 3], ["env", 73, 3], ["postPatch", 78, 3], ["npmRebuildFlags", 111, 3], ["preBuild", 115, 3], ["buildPhase", 123, 3], ["installPhase", 157, 3], ["desktopItems", 194, 3], ["meta", 196, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,7 +28,7 @@ export default nix.lambda((args) => (() => {
   const rcloneArch = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")) ? "arm64" : "amd64"));
   const rcloneOs = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? "osx" : "linux"));
   const desktopItem = nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: packageName,
       exec: packageName,
       icon: packageName,
@@ -43,12 +39,12 @@ export default nix.lambda((args) => (() => {
       keywords: nix.thunk(() => ["cloud", "storage", "encrypted"]),
     }))));
   return nix.app(buildNpmPackage, nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: packageName,
       version: packageVersion,
       makeCacheWritable: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "FilenCloudDienste",
           repo: packageName,
           rev: nix.thunk(() => nix.str`v${packageVersion}`),
@@ -58,7 +54,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => nix.concat([pkg_config, makeWrapper], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [libicns])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), nix.thunk(() => [copyDesktopItems]))))),
       buildInputs: nix.thunk(() => [pixman, cairo, pango]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         ELECTRON_SKIP_BINARY_DOWNLOAD: "1",
         PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: "1",
       })),
@@ -155,7 +151,7 @@ runHook postInstall
 `),
       desktopItems: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), nix.thunk(() => [desktopItem]))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://filen.io/products",
         downloadPage: "https://filen.io/products/desktop",
         description: "Filen Desktop Client",

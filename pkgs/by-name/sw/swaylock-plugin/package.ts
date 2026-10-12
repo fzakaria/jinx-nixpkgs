@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 28, 5], ["repo", 29, 5], ["rev", 30, 5], ["hash", 31, 5]], [["updateScript", 70, 5]], [["description", 74, 5], ["longDescription", 75, 5], ["homepage", 82, 5], ["mainProgram", 83, 5], ["license", 84, 5], ["platforms", 85, 5], ["maintainers", 86, 5]], [["pname", 25, 3], ["version", 26, 3], ["src", 27, 3], ["strictDeps", 34, 3], ["depsBuildBuild", 35, 3], ["nativeInstallCheckInputs", 36, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 47, 3], ["postInstall", 58, 3], ["mesonFlags", 63, 3], ["passthru", 69, 3], ["meta", 73, 3]]]);
 const formals$1 = { args: { cairo: false, fetchFromGitHub: false, "gdk-pixbuf": false, lib: false, libxcrypt: false, libxkbcommon: false, makeWrapper: false, meson: false, ninja: false, "nix-update-script": false, pam: false, "pkg-config": false, scdoc: false, stdenv: false, swaybg: false, systemd: false, versionCheckHook: false, wayland: false, "wayland-protocols": false, "wayland-scanner": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 28, 5], ["repo", 29, 5], ["rev", 30, 5], ["hash", 31, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 70, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 74, 5], ["longDescription", 75, 5], ["homepage", 82, 5], ["mainProgram", 83, 5], ["license", 84, 5], ["platforms", 85, 5], ["maintainers", 86, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 25, 3], ["version", 26, 3], ["src", 27, 3], ["strictDeps", 34, 3], ["depsBuildBuild", 35, 3], ["nativeInstallCheckInputs", 36, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 47, 3], ["postInstall", 58, 3], ["mesonFlags", 63, 3], ["passthru", 69, 3], ["meta", 73, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,11 +28,11 @@ export default nix.lambda((args) => (() => {
   const wayland_protocols = nix.arg($, "wayland-protocols");
   const wayland_scanner = nix.arg($, "wayland-scanner");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "swaylock-plugin",
       version: "1.8.7",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "mstoeckl",
           repo: "swaylock-plugin",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -60,11 +57,11 @@ export default nix.lambda((args) => (() => {
 `),
       mesonFlags: nix.thunk(() => ["-Dpam=enabled", "-Dgdk-pixbuf=enabled", "-Dman-pages=enabled"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Screen locker for Wayland, forked from swaylock",
         longDescription: "swaylock-plugin is a fork of swaylock, a screen locking utility for Wayland compositors.\nOn top of the usual swaylock features, it allow you to use a\nsubcommand to generate the lockscreen background.\n\nImportant note: You need to set \"security.pam.services.swaylock-plugin = {};\" manually.\n",
         homepage: "https://github.com/mstoeckl/swaylock-plugin",

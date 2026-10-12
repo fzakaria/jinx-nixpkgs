@@ -2,10 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/cython-debug-speedups.nix", [[["shell", 15, 5], ["python", 16, 5]], [["description", 19, 5], ["teams", 20, 5]], [["name", 13, 3], ["substitutions", 14, 3], ["meta", 18, 3]]]);
 const formals$1 = { args: { bash: false, lib: false, makeSetupHook: false, python3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/cython-debug-speedups.nix", [["shell", 15, 5], ["python", 16, 5]]);
-const pos$2 = nix.positions(here + "/cython-debug-speedups.nix", [["description", 19, 5], ["teams", 20, 5]]);
-const pos$3 = nix.positions(here + "/cython-debug-speedups.nix", [["name", 13, 3], ["substitutions", 14, 3], ["meta", 18, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,15 +12,15 @@ export default nix.lambda((args) => (() => {
   const makeSetupHook = nix.arg($, "makeSetupHook");
   const python3 = nix.arg($, "python3");
   return nix.app(makeSetupHook, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       name: "cython-debug-speedups-hook",
       substitutions: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         shell: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), bash)),
         python: nix.thunk(() => nix.sel(python3, "interpreter")),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Setup hook that applies Cython-based debugger speedups from JetBrains",
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "jetbrains"))]),
       })),

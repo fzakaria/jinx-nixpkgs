@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/build-from-dmg.nix", [[["url", 17, 5], ["hash", 20, 13]], [["platforms", 37, 5], ["mainProgram", 38, 5]], [["pname", 14, 11], ["version", 14, 17], ["src", 16, 3], ["nativeBuildInputs", 23, 3], ["sourceRoot", 25, 3], ["installPhase", 27, 3], ["meta", 36, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchurl: false, undmg: false, pname: false, version: false, hash: false, isAarch64: false, metaCommon: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/build-from-dmg.nix", [["url", 17, 5], ["hash", 20, 13]]);
-const pos$2 = nix.positions(here + "/build-from-dmg.nix", [["platforms", 37, 5], ["mainProgram", 38, 5]]);
-const pos$3 = nix.positions(here + "/build-from-dmg.nix", [["pname", 14, 11], ["version", 14, 17], ["src", 16, 3], ["nativeBuildInputs", 23, 3], ["sourceRoot", 25, 3], ["installPhase", 27, 3], ["meta", 36, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const isAarch64 = nix.arg($, "isAarch64");
   const metaCommon = nix.argOr($, "metaCommon", () => ({}));
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: pname,
       version: version,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/mifi/lossless-cut/releases/download/v${version}/LosslessCut-mac-${(nix.asBool(isAarch64) ? "arm64" : "x64")}.dmg`),
           hash: hash,
         })))),
@@ -31,7 +29,7 @@ export default nix.lambda((args) => (() => {
       sourceRoot: ".",
       installPhase: "runHook preInstall\nmkdir -p \"$out/Applications\"\ncp -r LosslessCut.app \"$out/Applications\"\nmkdir -p \"$out/bin\"\nln -s \"$out/Applications/LosslessCut.app/Contents/MacOS/LosslessCut\" \"$out/bin/losslesscut\"\nrunHook postInstall\n",
       meta: nix.thunk(() => nix.update(metaCommon, {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         platforms: nix.thunk(() => (nix.asBool(isAarch64) ? ["aarch64-darwin"] : nix.sel(lib, "platforms", "darwin"))),
         mainProgram: "losslesscut",
       })),

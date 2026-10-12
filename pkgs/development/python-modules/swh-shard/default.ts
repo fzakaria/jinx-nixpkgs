@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["domain", 24, 5], ["group", 25, 5], ["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]], [["changelog", 79, 5], ["description", 80, 5], ["homepage", 81, 5], ["license", 82, 5], ["maintainers", 83, 5]], [["pname", 19, 3], ["version", 20, 3], ["pyproject", 21, 3], ["src", 23, 3], ["build-system", 32, 3], ["nativeBuildInputs", 40, 3], ["dontUseCmakeConfigure", 44, 3], ["buildInputs", 46, 3], ["dependencies", 50, 3], ["pythonImportsCheck", 54, 3], ["nativeCheckInputs", 56, 3], ["preCheck", 61, 3], ["disabledTests", 66, 3], ["meta", 78, 3]]]);
 const formals$1 = { args: { stdenv: false, buildPythonPackage: false, click: false, cmake: false, cmph: false, fetchFromGitLab: false, lib: false, ninja: false, "pkg-config": false, pybind11: false, "pytest-mock": false, pytestCheckHook: false, "scikit-build-core": false, "setuptools-scm": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["domain", 24, 5], ["group", 25, 5], ["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["changelog", 79, 5], ["description", 80, 5], ["homepage", 81, 5], ["license", 82, 5], ["maintainers", 83, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 19, 3], ["version", 20, 3], ["pyproject", 21, 3], ["src", 23, 3], ["build-system", 32, 3], ["nativeBuildInputs", 40, 3], ["dontUseCmakeConfigure", 44, 3], ["buildInputs", 46, 3], ["dependencies", 50, 3], ["pythonImportsCheck", 54, 3], ["nativeCheckInputs", 56, 3], ["preCheck", 61, 3], ["disabledTests", 66, 3], ["meta", 78, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,12 +22,12 @@ export default nix.lambda((args) => (() => {
   const scikit_build_core = nix.arg($, "scikit-build-core");
   const setuptools_scm = nix.arg($, "setuptools-scm");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "swh-shard",
       version: "2.2.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "gitlab.softwareheritage.org",
           group: "swh",
           owner: "devel",
@@ -51,7 +49,7 @@ export default nix.lambda((args) => (() => {
           "test_finalize_above_rlimit_fsize",
         ])))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         changelog: nix.thunk(() => nix.str`https://gitlab.softwareheritage.org/swh/devel/swh-shard/-/tags/${nix.sel(finalAttrs, "src", "tag")}`),
         description: "Shard File Format for the Software Heritage Object Storage",
         homepage: "https://gitlab.softwareheritage.org/swh/devel/swh-shard",

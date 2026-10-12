@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["tag", 17, 5], ["url", 18, 5], ["hash", 19, 5]], [["description", 37, 5], ["mainProgram", 38, 5], ["homepage", 39, 5], ["maintainers", 40, 5], ["license", 41, 5]], [["pname", 11, 3], ["version", 12, 3], ["nativeBuildInputs", 14, 3], ["src", 16, 3], ["vendorHash", 22, 3], ["doCheck", 24, 3], ["postFixup", 26, 3], ["meta", 36, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchgit: false, qemu: false, podman: false, makeWrapper: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["tag", 17, 5], ["url", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 37, 5], ["mainProgram", 38, 5], ["homepage", 39, 5], ["maintainers", 40, 5], ["license", 41, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["nativeBuildInputs", 14, 3], ["src", 16, 3], ["vendorHash", 22, 3], ["doCheck", 24, 3], ["postFixup", 26, 3], ["meta", 36, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const podman = nix.arg($, "podman");
   const makeWrapper = nix.arg($, "makeWrapper");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "out-of-tree",
       version: "2.1.1",
       nativeBuildInputs: nix.thunk(() => [makeWrapper]),
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           url: "https://code.dumpstack.io/tools/out-of-tree.git",
           hash: "sha256-XzO8NU7A5m631PjAm0F/K7qLrD+ZDSdHXaNowGaZAPo=",
@@ -32,7 +30,7 @@ export default nix.lambda((args) => (() => {
   --prefix PATH : "${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [qemu, podman]))}"
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Kernel {module, exploit} development tool",
         mainProgram: "out-of-tree",
         homepage: "https://out-of-tree.io",

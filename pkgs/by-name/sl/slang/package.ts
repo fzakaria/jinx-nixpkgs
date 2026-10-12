@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 18, 5], ["sha256", 19, 5]], [["updateScript", 68, 5]], [["description", 82, 5], ["longDescription", 83, 5], ["homepage", 103, 5], ["license", 104, 5], ["maintainers", 105, 5], ["mainProgram", 106, 5], ["platforms", 107, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["outputs", 22, 3], ["preConfigure", 30, 3], ["configureFlags", 37, 3], ["buildInputs", 44, 3], ["propagatedBuildInputs", 51, 3], ["buildFlags", 53, 3], ["installTargets", 54, 3], ["preBuild", 56, 3], ["enableParallelBuilding", 60, 3], ["postInstall", 62, 3], ["passthru", 67, 3], ["meta", 81, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, libiconv: false, libpng: false, ncurses: false, readline: false, zlib: false, writeScript: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 18, 5], ["sha256", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 68, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 82, 5], ["longDescription", 83, 5], ["homepage", 103, 5], ["license", 104, 5], ["maintainers", 105, 5], ["mainProgram", 106, 5], ["platforms", 107, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["outputs", 22, 3], ["preConfigure", 30, 3], ["configureFlags", 37, 3], ["buildInputs", 44, 3], ["propagatedBuildInputs", 51, 3], ["buildFlags", 53, 3], ["installTargets", 54, 3], ["preBuild", 56, 3], ["enableParallelBuilding", 60, 3], ["postInstall", 62, 3], ["passthru", 67, 3], ["meta", 81, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const pname = "slang";
       const version = "2.3.3";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://www.jedsoft.org/releases/slang/${pname}-${version}.tar.bz2`),
           sha256: "sha256-+RRQVK4TGXPGEgjqgkhtXdEOPFza0jt8SgYXdDyPWhg=",
         }))));
@@ -48,7 +45,7 @@ sed -i -e "s|-ltermcap|-lncurses|" ./configure
       const enableParallelBuilding = true;
       const postInstall = "find \"$out\"/lib/ -name '*.so' -exec chmod +x \"{}\" \\;\nsed '/^Libs:/s/$/ -lncurses/' -i \"$dev\"/lib/pkgconfig/slang.pc\n";
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(writeScript, "update-slang", nix.thunk(() => nix.str`#!/usr/bin/env nix-shell
 #!nix-shell -i bash -p curl pcre2 common-updater-scripts
 
@@ -61,7 +58,7 @@ update-source-version ${pname} "$new_version"
 `))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Small, embeddable multi-platform programming library",
         longDescription: "S-Lang is an interpreted language that was designed from the start to be\neasily embedded into a program to provide it with a powerful extension\nlanguage. Examples of programs that use S-Lang as an extension language\ninclude the jed text editor and the slrn newsreader. Although S-Lang does\nnot exist as a separate application, it is distributed with a quite\ncapable program called slsh (\"slang-shell\") that embeds the interpreter\nand allows one to execute S-Lang scripts, or simply experiment with S-Lang\nat an interactive prompt. Many of the the examples in this document are\npresented in the context of one of the above applications.\n\nS-Lang is also a programmer's library that permits a programmer to develop\nsophisticated platform-independent software. In addition to providing the\nS-Lang interpreter, the library provides facilities for screen management,\nkeymaps, low-level terminal I/O, etc. However, this document is concerned\nonly with the extension language and does not address these other features\nof the S-Lang library. For information about the other components of the\nlibrary, the reader is referred to the S-Lang Library C Programmer's\nGuide.\n",
         homepage: "http://www.jedsoft.org/slang/",
@@ -71,7 +68,7 @@ update-source-version ${pname} "$new_version"
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

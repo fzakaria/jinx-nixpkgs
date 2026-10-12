@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/wrapper.nix", [[["description", 24, 7], ["longDescription", 25, 7], ["homepage", 26, 7], ["changelog", 27, 7], ["license", 28, 7], ["mainProgram", 29, 7], ["maintainers", 30, 7]], [["version", 10, 24], ["pname", 11, 3], ["paths", 13, 3], ["nativeBuildInputs", 15, 3], ["postBuild", 17, 3], ["meta", 22, 3]]]);
 const formals$1 = { args: { lib: false, symlinkJoin: false, television: false, makeBinaryWrapper: false, extraPackages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/wrapper.nix", [["description", 24, 7], ["longDescription", 25, 7], ["homepage", 26, 7], ["changelog", 27, 7], ["license", 28, 7], ["mainProgram", 29, 7], ["maintainers", 30, 7]]);
-const pos$2 = nix.positions(here + "/wrapper.nix", [["version", 10, 24], ["pname", 11, 3], ["paths", 13, 3], ["nativeBuildInputs", 15, 3], ["postBuild", 17, 3], ["meta", 22, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const makeBinaryWrapper = nix.arg($, "makeBinaryWrapper");
   const extraPackages = nix.arg($, "extraPackages");
   return nix.app(symlinkJoin, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       version: nix.thunk(() => nix.attr(television, "version")),
       pname: nix.thunk(() => nix.str`${nix.sel(television, "pname")}-with-pkgs`),
       paths: nix.thunk(() => [television]),
@@ -25,7 +24,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(television, "meta"));
         return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: nix.thunk(() => nix.attr(from, "description")),
         longDescription: nix.thunk(() => nix.attr(from, "longDescription")),
         homepage: nix.thunk(() => nix.attr(from, "homepage")),

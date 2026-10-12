@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/wrapper.nix", [[["description", 26, 5], ["homepage", 27, 5], ["downloadPage", 28, 5], ["changelog", 29, 5], ["maintainers", 30, 5], ["mainProgram", 31, 5], ["platforms", 32, 5], ["license", 33, 5]], [["pname", 13, 3], ["version", 14, 28], ["paths", 16, 3], ["meta", 25, 3]]]);
 const formals$1 = { args: { lib: false, symlinkJoin: false, "aw-server-rust": false, "aw-qt": false, "aw-notify": false, "aw-watcher-afk": false, "aw-watcher-window": false, extraWatchers: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/wrapper.nix", [["description", 26, 5], ["homepage", 27, 5], ["downloadPage", 28, 5], ["changelog", 29, 5], ["maintainers", 30, 5], ["mainProgram", 31, 5], ["platforms", 32, 5], ["license", 33, 5]]);
-const pos$2 = nix.positions(here + "/wrapper.nix", [["pname", 13, 3], ["version", 14, 28], ["paths", 16, 3], ["meta", 25, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const aw_watcher_window = nix.arg($, "aw-watcher-window");
   const extraWatchers = nix.argOr($, "extraWatchers", () => []);
   return nix.app(symlinkJoin, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "activitywatch",
       version: nix.thunk(() => nix.attr(aw_server_rust, "version")),
       paths: nix.thunk(() => nix.concat([
@@ -28,7 +27,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.sel(aw_watcher_window, "out")),
       ], nix.app(nix.sel(lib, "forEach"), extraWatchers, (p) => nix.sel(p, "out")))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Best free and open-source automated time tracker",
         homepage: "https://activitywatch.net/",
         downloadPage: "https://github.com/ActivityWatch/activitywatch/releases",

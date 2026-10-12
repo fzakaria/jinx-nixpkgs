@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 7], ["repo", 14, 7], ["rev", 15, 7], ["name", 16, 7], ["sha256", 17, 7]], [["owner", 21, 7], ["repo", 22, 7], ["rev", 23, 7], ["name", 24, 7], ["sha256", 25, 7]], [["description", 44, 5], ["homepage", 45, 5], ["license", 49, 5], ["maintainers", 50, 5], ["platforms", 51, 5]], [["pname", 8, 3], ["version", 9, 3], ["srcs", 11, 3], ["sourceRoot", 29, 3], ["installPhase", 31, 3], ["outputHashAlgo", 39, 3], ["outputHashMode", 40, 3], ["outputHash", 41, 3], ["meta", 43, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 7], ["repo", 14, 7], ["rev", 15, 7], ["name", 16, 7], ["sha256", 17, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 21, 7], ["repo", 22, 7], ["rev", 23, 7], ["name", 24, 7], ["sha256", 25, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 44, 5], ["homepage", 45, 5], ["license", 49, 5], ["maintainers", 50, 5], ["platforms", 51, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["srcs", 11, 3], ["sourceRoot", 29, 3], ["installPhase", 31, 3], ["outputHashAlgo", 39, 3], ["outputHashMode", 40, 3], ["outputHash", 41, 3], ["meta", 43, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,7 +15,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.002";
       const srcs = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             owner: "impallari",
             repo: "Libre-Caslon-Text",
             rev: "c31e21f7e8cf91f18d90f778ce20e66c68219c74",
@@ -26,7 +23,7 @@ export default nix.lambda((args) => (() => {
             sha256: "0zczv9qm8cgc7w1p64mnf0p0fi7xv89zhf1zzf1qcna15kbgc705",
           })))),
         nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             owner: "impallari",
             repo: "Libre-Caslon-Display",
             rev: "3491f6a9cfde2bc15e736463b0bc7d93054d5da1",
@@ -45,7 +42,7 @@ cp -v libre-caslon-text-${version}-src/README.md libre-caslon-text-${version}-sr
       const outputHashMode = "recursive";
       const outputHash = "05aajwny99yqzn1nnq1blx6h7rl54x056y12hyawfbigkzxhscns";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Caslon fonts based on hand-lettered American Caslons of 1960s",
         homepage: nix.thunk(() => [
           "https://github.com/impallari/Libre-Caslon-Text",
@@ -56,7 +53,7 @@ cp -v libre-caslon-text-${version}-src/README.md libre-caslon-text-${version}-sr
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         srcs,

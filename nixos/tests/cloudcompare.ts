@@ -2,33 +2,24 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/cloudcompare.nix", [[["url", 4, 5], ["hash", 5, 5]], [["maintainers", 10, 10]], [["enable", 23, 26]], [["xserver", 23, 18]], [["systemPackages", 24, 21]], [["imports", 19, 9], ["services", 23, 9], ["environment", 24, 9]], [["machine", 16, 11]], [["name", 9, 5], ["meta", 10, 5], ["enableOCR", 14, 5], ["nodes", 16, 5], ["testScript", 29, 5]], [["name", 47, 5], ["screenshot", 48, 5], ["question", 49, 5]], [["vm", 44, 3], ["screenshot-analysis", 46, 3]]]);
 const formals$1 = { args: { pkgs: false, runTest: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/cloudcompare.nix", [["url", 4, 5], ["hash", 5, 5]]);
-const pos$2 = nix.positions(here + "/cloudcompare.nix", [["maintainers", 10, 10]]);
 const formals$2 = { args: {  }, ellipsis: true };
-const pos$3 = nix.positions(here + "/cloudcompare.nix", [["enable", 23, 26]]);
-const pos$4 = nix.positions(here + "/cloudcompare.nix", [["xserver", 23, 18]]);
-const pos$5 = nix.positions(here + "/cloudcompare.nix", [["systemPackages", 24, 21]]);
-const pos$6 = nix.positions(here + "/cloudcompare.nix", [["imports", 19, 9], ["services", 23, 9], ["environment", 24, 9]]);
-const pos$7 = nix.positions(here + "/cloudcompare.nix", [["machine", 16, 11]]);
-const pos$8 = nix.positions(here + "/cloudcompare.nix", [["name", 9, 5], ["meta", 10, 5], ["enableOCR", 14, 5], ["nodes", 16, 5], ["testScript", 29, 5]]);
-const pos$9 = nix.positions(here + "/cloudcompare.nix", [["name", 47, 5], ["screenshot", 48, 5], ["question", 49, 5]]);
-const pos$10 = nix.positions(here + "/cloudcompare.nix", [["vm", 44, 3], ["screenshot-analysis", 46, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   const runTest = nix.arg($, "runTest");
   const testFile = nix.thunk(() => nix.app(nix.sel(pkgs, "fetchurl"), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: "https://raw.githubusercontent.com/asmaloney/libE57Format-test-data/bbcacec05d60f923869545c5eab33d94c390d50e/self/ColouredCubeFloat.e57",
       hash: "sha256-bb95crNYvX3Qhkx4k6Sqe2GjOf1u4nxxswMfdjyXfTM=",
     }))));
   const vmTest = nix.thunk(() => nix.app(runTest, nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       name: "cloudcompare-vm",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
           return [nix.thunk(() => nix.lookup(w, "nh2"))];
@@ -36,18 +27,18 @@ export default nix.lambda((args) => (() => {
       })),
       enableOCR: true,
       nodes: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         machine: nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$2);
           return {
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             imports: nix.thunk(() => [nix.path(here, "./common/x11.nix")]),
             services: nix.thunk(() => ({
-              [nix.POS]: pos$4,
-              xserver: nix.thunk(() => ({ [nix.POS]: pos$3, enable: true })),
+              [nix.POS]: $pos[3],
+              xserver: nix.thunk(() => ({ [nix.POS]: $pos[2], enable: true })),
             })),
             environment: nix.thunk(() => ({
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "cloudcompare"))]),
             })),
           };
@@ -66,10 +57,10 @@ machine.screenshot("screen.png")
 `),
     }))));
   return {
-    [nix.POS]: pos$10,
+    [nix.POS]: $pos[9],
     vm: vmTest,
     "screenshot-analysis": nix.thunk(() => nix.app(nix.sel(pkgs, "callPackage"), nix.path(here, "./vlm-screenshot-question.nix"), nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         name: "cloudcompare-screenshot-analysis",
         screenshot: nix.thunk(() => nix.str`${vmTest}/screen.png`),
         question: "Look at this screenshot of a desktop application.\nAnswer: Does the application show a 3D point cloud viewer (CloudCompare) that has successfully loaded and is displaying a coloured point cloud?\nEvidence of success: a 3D viewport with coloured points is visible AND there are no error dialogs or error messages.\n",

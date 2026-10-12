@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["repo", 12, 5], ["owner", 13, 5], ["tag", 14, 5], ["sha256", 15, 5]], [["description", 26, 5], ["homepage", 27, 5], ["license", 28, 5], ["platforms", 29, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["dontBuild", 18, 3], ["installPhase", 20, 3], ["meta", 25, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["repo", 12, 5], ["owner", 13, 5], ["tag", 14, 5], ["sha256", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 26, 5], ["homepage", 27, 5], ["license", 28, 5], ["platforms", 29, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["dontBuild", 18, 3], ["installPhase", 20, 3], ["meta", 25, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,11 +11,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "Albatross",
       version: "1.7.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           repo: "Albatross",
           owner: "shimmerproject",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -26,7 +24,7 @@ export default nix.lambda((args) => (() => {
       dontBuild: true,
       installPhase: "install -dm 755 $out/share/themes/Albatross\ncp -dr --no-preserve='ownership' {LICENSE.GPL,README,index.theme,gtk-2.0,gtk-3.0,metacity-1,xfwm4} $out/share/themes/Albatross/\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Desktop Suite for Xfce",
         homepage: "https://github.com/shimmerproject/Albatross",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),

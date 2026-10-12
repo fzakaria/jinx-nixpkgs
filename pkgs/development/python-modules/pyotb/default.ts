@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 24, 5], ["sha256", 25, 5]], [["url", 29, 5], ["sha256", 30, 5]], [["enablePython", 34, 5], ["python3", 35, 5]], [["owner", 44, 5], ["repo", 45, 5], ["tag", 46, 5], ["hash", 47, 5]], [["description", 96, 5], ["homepage", 97, 5], ["changelog", 98, 5], ["license", 99, 5], ["teams", 100, 5], ["maintainers", 101, 5]], [["pname", 39, 3], ["version", 40, 3], ["pyproject", 41, 3], ["src", 43, 3], ["postPatch", 50, 3], ["build-system", 69, 3], ["dependencies", 73, 3], ["pythonRelaxDeps", 75, 3], ["pythonImportsCheck", 77, 3], ["nativeCheckInputs", 79, 3], ["disabledTests", 86, 3], ["meta", 95, 3]]]);
 const formals$1 = { args: { lib: false, fetchurl: false, fetchFromGitHub: false, buildPythonPackage: false, python: false, setuptools: false, otb: false, pytestCheckHook: false, "pytest-cov-stub": false, requests: false, writableTmpDirAsHomeHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 24, 5], ["sha256", 25, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["url", 29, 5], ["sha256", 30, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["enablePython", 34, 5], ["python3", 35, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["owner", 44, 5], ["repo", 45, 5], ["tag", 46, 5], ["hash", 47, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["description", 96, 5], ["homepage", 97, 5], ["changelog", 98, 5], ["license", 99, 5], ["teams", 100, 5], ["maintainers", 101, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 39, 3], ["version", 40, 3], ["pyproject", 41, 3], ["src", 43, 3], ["postPatch", 50, 3], ["build-system", 69, 3], ["dependencies", 73, 3], ["pythonRelaxDeps", 75, 3], ["pythonImportsCheck", 77, 3], ["nativeCheckInputs", 79, 3], ["disabledTests", 86, 3], ["meta", 95, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,22 +19,22 @@ export default nix.lambda((args) => (() => {
   const requests = nix.arg($, "requests");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   const spotImage = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: "https://gitlab.orfeo-toolbox.org/orfeotoolbox/otb/-/raw/develop/Data/Input/SP67_FR_subset_1.tif",
       sha256: "sha256-MuWY/g7KI+F23lFY/+AX5MLWJlIgHCr5BvFjDHzpWgY=",
     }))));
   const pleiadesImage = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       url: "https://gitlab.orfeo-toolbox.org/orfeotoolbox/otb/-/raw/develop/Data/Baseline/OTB/Images/prTvOrthoRectification_pleiades-1_noDEM.tif",
       sha256: "sha256-1EsGAJdHgBIb/gfbh4Y7yEEmYHb54bSx4fEMKssZ/oA=",
     }))));
-  const otbWithPy = nix.thunk(() => nix.app(nix.sel(otb, "override"), nix.thunk(() => ({ [nix.POS]: pos$3, enablePython: true, python3: python }))));
+  const otbWithPy = nix.thunk(() => nix.app(nix.sel(otb, "override"), nix.thunk(() => ({ [nix.POS]: $pos[2], enablePython: true, python3: python }))));
   return nix.app(buildPythonPackage, nix.thunk(() => (() => {
       const pname = "pyotb";
       const version = "2.2.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           owner: "orfeotoolbox",
           repo: "pyotb",
           tag: version,
@@ -75,7 +70,7 @@ substituteInPlace tests/tests_data.py \\
         "test_summarize_strip_output",
       ]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Python extension of Orfeo Toolbox",
         homepage: "https://github.com/orfeotoolbox/pyotb",
         changelog: nix.thunk(() => nix.str`https://github.com/orfeotoolbox/pyotb/releases/tag/${version}`),
@@ -87,7 +82,7 @@ substituteInPlace tests/tests_data.py \\
         })()),
       }));
       return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname,
         version,
         pyproject,

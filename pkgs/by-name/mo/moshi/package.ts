@@ -2,19 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 49, 5], ["repo", 50, 5], ["tag", 51, 5], ["hash", 52, 5]], [["RUSTONIG_SYSTEM_LIBONIG", 99, 5], ["PYO3_USE_ABI3_FORWARD_COMPATIBILITY", 102, 5]], [["CUDA_COMPUTE_CAP", 105, 5], ["CUDA_TOOLKIT_ROOT_DIR", 109, 5]], [["cudaSupport", 122, 33]], [["config", 122, 26]], [["withCuda", 121, 7]], [["extraArgs", 126, 7]], [["tests", 120, 5], ["updateScript", 125, 5]], [["message", 144, 9], ["kind", 149, 9]], [["unsupported-cuda-version", 143, 7]], [["description", 134, 5], ["homepage", 135, 5], ["license", 138, 5], ["maintainers", 139, 5], ["platforms", 140, 5], ["mainProgram", 141, 5], ["problems", 142, 5]], [["pname", 45, 3], ["version", 46, 3], ["src", 48, 3], ["sourceRoot", 55, 3], ["cargoHash", 57, 3], ["nativeBuildInputs", 59, 3], ["buildInputs", 76, 3], ["buildFeatures", 93, 3], ["env", 97, 3], ["appendRunpaths", 112, 3], ["passthru", 119, 3], ["meta", 133, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, rustPlatform: false, fetchFromGitHub: false, "pkg-config": false, python3: false, autoPatchelfHook: false, autoAddDriverRunpath: false, libopus: false, oniguruma: false, openssl: false, sentencepiece: false, "alsa-lib": false, moshi: false, "nix-update-script": false, config: false, cudaPackages: false, cudaCapability: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 49, 5], ["repo", 50, 5], ["tag", 51, 5], ["hash", 52, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["RUSTONIG_SYSTEM_LIBONIG", 99, 5], ["PYO3_USE_ABI3_FORWARD_COMPATIBILITY", 102, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["CUDA_COMPUTE_CAP", 105, 5], ["CUDA_TOOLKIT_ROOT_DIR", 109, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["cudaSupport", 122, 33]]);
-const pos$5 = nix.positions(here + "/package.nix", [["config", 122, 26]]);
-const pos$6 = nix.positions(here + "/package.nix", [["withCuda", 121, 7]]);
-const pos$7 = nix.positions(here + "/package.nix", [["extraArgs", 126, 7]]);
-const pos$8 = nix.positions(here + "/package.nix", [["tests", 120, 5], ["updateScript", 125, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["message", 144, 9], ["kind", 149, 9]]);
-const pos$10 = nix.positions(here + "/package.nix", [["unsupported-cuda-version", 143, 7]]);
-const pos$11 = nix.positions(here + "/package.nix", [["description", 134, 5], ["homepage", 135, 5], ["license", 138, 5], ["maintainers", 139, 5], ["platforms", 140, 5], ["mainProgram", 141, 5], ["problems", 142, 5]]);
-const pos$12 = nix.positions(here + "/package.nix", [["pname", 45, 3], ["version", 46, 3], ["src", 48, 3], ["sourceRoot", 55, 3], ["cargoHash", 57, 3], ["nativeBuildInputs", 59, 3], ["buildInputs", 76, 3], ["buildFeatures", 93, 3], ["env", 97, 3], ["appendRunpaths", 112, 3], ["passthru", 119, 3], ["meta", 133, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -44,11 +33,11 @@ export default nix.lambda((args) => (() => {
     ]))) : nix.force(cudaCapability)));
   const cudaCapability$ = nix.thunk(() => nix.app(nix.sel(lib, "toInt"), nix.thunk(() => nix.app(nix.sel(cudaPackages, "flags", "dropDots"), cudaCapabilityString))));
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$12,
+      [nix.POS]: $pos[11],
       pname: "moshi",
       version: "0.2.12",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "kyutai-labs",
           repo: "moshi",
           tag: nix.thunk(() => nix.str`moshi-v${nix.sel(finalAttrs, "version")}`),
@@ -70,11 +59,11 @@ export default nix.lambda((args) => (() => {
         ]))))),
       buildFeatures: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["metal"])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(config, "cudaSupport")), nix.thunk(() => ["cuda"])))),
       env: nix.thunk(() => nix.update({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         RUSTONIG_SYSTEM_LIBONIG: true,
         PYO3_USE_ABI3_FORWARD_COMPATIBILITY: true,
       }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(config, "cudaSupport")), nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           CUDA_COMPUTE_CAP: cudaCapability$,
           CUDA_TOOLKIT_ROOT_DIR: nix.thunk(() => nix.app(nix.sel(lib, "getDev"), nix.thunk(() => nix.sel(cudaPackages, "cuda_cudart")))),
         }))))),
@@ -85,21 +74,21 @@ export default nix.lambda((args) => (() => {
             ]))),
         ]))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           withCuda: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => nix.app(nix.sel(moshi, "override"), nix.thunk(() => ({
-                [nix.POS]: pos$5,
-                config: nix.thunk(() => ({ [nix.POS]: pos$4, cudaSupport: true })),
+                [nix.POS]: $pos[4],
+                config: nix.thunk(() => ({ [nix.POS]: $pos[3], cudaSupport: true })),
               })))))),
         })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             extraArgs: nix.thunk(() => ["--generate-lockfile", "--version-regex=moshi-v(.*)"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$11,
+        [nix.POS]: $pos[10],
         description: "Rust implementation of moshi, a real-time voice AI",
         homepage: "https://github.com/kyutai-labs/moshi",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -110,9 +99,9 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
         mainProgram: "moshi-cli",
         problems: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(nix.sel(config, "cudaSupport")) && nix.asBool(nix.app(nix.sel(cudaPackages, "cudaAtLeast"), "12.9")))), nix.thunk(() => ({
-            [nix.POS]: pos$10,
+            [nix.POS]: $pos[9],
             "unsupported-cuda-version": nix.thunk(() => ({
-              [nix.POS]: pos$9,
+              [nix.POS]: $pos[8],
               message: nix.thunk(() => nix.str`cudaPackages is too new (${nix.sel(cudaPackages, "cudaMajorMinorVersion")}).
 Version 0.16.2 of the cudarc crate asks for a CUDA version older than 12.9.
 Please override cudaPackages with an older version.

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]], [["PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION", 28, 7]], [["description", 48, 5], ["homepage", 49, 5], ["changelog", 50, 5], ["license", 51, 5], ["maintainers", 52, 5], ["platforms", 53, 5]], [["pname", 10, 3], ["version", 11, 3], ["outputs", 13, 3], ["strictDeps", 18, 3], ["__structuredAttrs", 19, 3], ["src", 21, 3], ["env", 28, 3], ["nativeBuildInputs", 30, 3], ["buildPhase", 36, 3], ["dontUseNinjaBuild", 44, 3], ["dontUseNinjaInstall", 45, 3], ["meta", 47, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchFromGitHub: false, installFonts: false, python3Packages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION", 28, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 48, 5], ["homepage", 49, 5], ["changelog", 50, 5], ["license", 51, 5], ["maintainers", 52, 5], ["platforms", 53, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["outputs", 13, 3], ["strictDeps", 18, 3], ["__structuredAttrs", 19, 3], ["src", 21, 3], ["env", 28, 3], ["nativeBuildInputs", 30, 3], ["buildPhase", 36, 3], ["dontUseNinjaBuild", 44, 3], ["dontUseNinjaInstall", 45, 3], ["meta", 47, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,20 +13,20 @@ export default nix.lambda((args) => (() => {
   const installFonts = nix.arg($, "installFonts");
   const python3Packages = nix.arg($, "python3Packages");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "martian-mono",
       version: "1.1.0",
       outputs: nix.thunk(() => ["out", "webfont"]),
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "evilmartians",
           repo: "mono",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-qm1Ljz344BTesQXIjKwuE4XwXwskZQlNkCgaVyst54o=",
         })))),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION: "python" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION: "python" })),
       nativeBuildInputs: nix.thunk(() => [
         nix.thunk(() => nix.sel(python3Packages, "gftools")),
         nix.thunk(() => nix.sel(python3Packages, "fontmake")),
@@ -39,7 +36,7 @@ export default nix.lambda((args) => (() => {
       dontUseNinjaBuild: true,
       dontUseNinjaInstall: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Free and open-source monospaced font from Evil Martians",
         homepage: "https://github.com/evilmartians/mono",
         changelog: nix.thunk(() => nix.str`https://github.com/evilmartians/mono/raw/${nix.sel(finalAttrs, "src", "tag")}/Changelog.md`),

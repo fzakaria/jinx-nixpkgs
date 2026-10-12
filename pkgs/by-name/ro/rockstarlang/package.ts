@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]], [["description", 37, 5], ["homepage", 38, 5], ["license", 39, 5], ["sourceProvenance", 40, 5], ["maintainers", 41, 5], ["mainProgram", 42, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["projectFile", 19, 3], ["nugetDeps", 20, 3], ["dotnet-sdk", 22, 3], ["selfContainedBuild", 24, 3], ["executables", 26, 3], ["doInstallCheck", 28, 3], ["installCheckPhase", 29, 3], ["meta", 36, 3]]]);
 const formals$1 = { args: { buildDotnetModule: false, dotnetCorePackages: false, fetchFromGitHub: false, lib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 37, 5], ["homepage", 38, 5], ["license", 39, 5], ["sourceProvenance", 40, 5], ["maintainers", 41, 5], ["mainProgram", 42, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["projectFile", 19, 3], ["nugetDeps", 20, 3], ["dotnet-sdk", 22, 3], ["selfContainedBuild", 24, 3], ["executables", 26, 3], ["doInstallCheck", 28, 3], ["installCheckPhase", 29, 3], ["meta", 36, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const lib = nix.arg($, "lib");
   return nix.app(buildDotnetModule, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "rockstarlang",
       version: "2.0.31",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "RockstarLang",
           repo: "rockstar",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -32,7 +30,7 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       installCheckPhase: "{\n  echo 'Shout \"it seems to work\"'\n  echo 'exit'\n} | $out/bin/rockstar | grep '« \"it seems to work\"'\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Esoteric programming language whose syntax is inspired by the lyrics to 80s hard rock and heavy metal songs",
         homepage: "https://codewithrockstar.com",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),

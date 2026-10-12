@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 38, 5], ["paths", 41, 5]], [["name", 53, 5], ["pname", 54, 33], ["version", 54, 39], ["passthru", 54, 47], ["preferLocalBuild", 56, 5], ["meta", 58, 5], ["outputs", 60, 5], ["nativeBuildInputs", 65, 5]]]);
 const formals$1 = { args: { "buildah-unwrapped": false, runCommand: false, makeBinaryWrapper: false, symlinkJoin: false, lib: false, stdenv: false, extraPackages: true, runc: false, crun: false, conmon: false, slirp4netns: false, "fuse-overlayfs": false, "util-linuxMinimal": false, iptables: false, "aardvark-dns": false, netavark: false, passt: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 38, 5], ["paths", 41, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 53, 5], ["pname", 54, 33], ["version", 54, 39], ["passthru", 54, 47], ["preferLocalBuild", 56, 5], ["meta", 58, 5], ["outputs", 60, 5], ["nativeBuildInputs", 65, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,12 +26,12 @@ export default nix.lambda((args) => (() => {
   const passt = nix.arg($, "passt");
   const binPath = nix.thunk(() => nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => nix.concat([], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [runc, crun, conmon, slirp4netns, fuse_overlayfs, util_linuxMinimal, iptables])), extraPackages)))));
   const helpersBin = nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: nix.thunk(() => nix.str`${nix.sel(buildah_unwrapped, "pname")}-helper-binary-wrapper-${nix.sel(buildah_unwrapped, "version")}`),
       paths: nix.thunk(() => nix.concat([], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [aardvark_dns, netavark, passt])))),
     }))));
   return nix.app(runCommand, nix.thunk(() => nix.sel(buildah_unwrapped, "name")), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       name: nix.thunk(() => nix.str`${nix.sel(buildah_unwrapped, "pname")}-wrapper-${nix.sel(buildah_unwrapped, "version")}`),
       pname: nix.thunk(() => nix.attr(buildah_unwrapped, "pname")),
       version: nix.thunk(() => nix.attr(buildah_unwrapped, "version")),

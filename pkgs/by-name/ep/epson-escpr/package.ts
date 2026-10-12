@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["urls", 23, 5], ["sha256", 28, 5]], [["url", 39, 7], ["hash", 40, 7]], [["url", 43, 7], ["hash", 44, 7]], [["homepage", 55, 5], ["description", 56, 5], ["longDescription", 57, 5], ["license", 75, 5], ["maintainers", 76, 5], ["platforms", 77, 5]], [["pname", 14, 3], ["version", 15, 11], ["src", 17, 3], ["prePatch", 32, 3], ["patches", 36, 3], ["patchFlags", 49, 3], ["buildInputs", 52, 3], ["meta", 54, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, cups: false, fetchpatch: false, dos2unix: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["urls", 23, 5], ["sha256", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 39, 7], ["hash", 40, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 43, 7], ["hash", 44, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 55, 5], ["description", 56, 5], ["longDescription", 57, 5], ["license", 75, 5], ["maintainers", 76, 5], ["platforms", 77, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 11], ["src", 17, 3], ["prePatch", 32, 3], ["patches", 36, 3], ["patchFlags", 49, 3], ["buildInputs", 52, 3], ["meta", 54, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const dos2unix = nix.arg($, "dos2unix");
   const version = "1.8.6-1";
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "epson-escpr",
       version: version,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           urls: nix.thunk(() => [
             nix.thunk(() => nix.str`https://download3.ebz.epson.net/dsc/f/03/00/16/21/81/74d098a47c3a616713079c9cd5904b468bb33dea/epson-inkjet-printer-escpr-${version}.tar.gz`),
             nix.thunk(() => nix.str`https://web.archive.org/web/https://download3.ebz.epson.net/dsc/f/03/00/16/21/81/74d098a47c3a616713079c9cd5904b468bb33dea/epson-inkjet-printer-escpr-${version}.tar.gz`),
@@ -35,12 +31,12 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [
         nix.path(here, "./cups-filter-ppd-dirs.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://gitweb.gentoo.org/repo/gentoo.git/plain/net-print/epson-inkjet-printer-escpr/files/epson-inkjet-printer-escpr-1.8-missing-include.patch",
             hash: "sha256-L4WhaxPQnJYyqCH00wiKIlFNMmCEXoGe5d7hJ5TMyEI=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: "https://gitweb.gentoo.org/repo/gentoo.git/plain/net-print/epson-inkjet-printer-escpr/files/1.8.6-warnings.patch",
             hash: "sha256-wSY0LZv2b+1kF7TfPolt554g79y2Ce6N/JqgjJyd3Ag=",
           })))),
@@ -48,7 +44,7 @@ export default nix.lambda((args) => (() => {
       patchFlags: nix.thunk(() => ["-p1"]),
       buildInputs: nix.thunk(() => [cups]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "http://download.ebz.epson.net/dsc/search/01/search/",
         description: "ESC/P-R Driver (generic driver)",
         longDescription: "Epson Inkjet Printer Driver (ESC/P-R) for Linux and the\ncorresponding PPD files. The list of supported printers\ncan be found at http://www.openprinting.org/driver/epson-escpr/ .\n\nTo use the driver adjust your configuration.nix file:\n  services.printing = {\n    enable = true;\n    drivers = [ pkgs.epson-escpr ];\n  };\n\nTo setup a wireless printer, enable Avahi which provides\nprinter's hostname to CUPS and nss-mdns to make this\nhostname resolvable:\n  services.avahi = {\n    enable = true;\n    nssmdns4 = true;\n  };",

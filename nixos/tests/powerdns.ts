@@ -2,52 +2,44 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/powerdns.nix", [[["enable", 12, 25], ["extraConfig", 13, 25]], [["powerdns.*", 26, 13]], [["name", 24, 11], ["ensurePermissions", 25, 11]], [["enable", 20, 9], ["package", 21, 9], ["ensureDatabases", 22, 9], ["ensureUsers", 23, 9]], [["powerdns", 12, 16], ["mysql", 19, 16]], [["systemPackages", 31, 19]], [["services", 12, 7], ["environment", 31, 7]], [["server", 9, 9]], [["name", 7, 3], ["nodes", 9, 3], ["testScript", 38, 3]]]);
 const formals$1 = { args: { pkgs: false, lib: false }, ellipsis: true };
 const formals$2 = { args: {  }, ellipsis: true };
-const pos$1 = nix.positions(here + "/powerdns.nix", [["enable", 12, 25], ["extraConfig", 13, 25]]);
-const pos$2 = nix.positions(here + "/powerdns.nix", [["powerdns.*", 26, 13]]);
-const pos$3 = nix.positions(here + "/powerdns.nix", [["name", 24, 11], ["ensurePermissions", 25, 11]]);
-const pos$4 = nix.positions(here + "/powerdns.nix", [["enable", 20, 9], ["package", 21, 9], ["ensureDatabases", 22, 9], ["ensureUsers", 23, 9]]);
-const pos$5 = nix.positions(here + "/powerdns.nix", [["powerdns", 12, 16], ["mysql", 19, 16]]);
-const pos$6 = nix.positions(here + "/powerdns.nix", [["systemPackages", 31, 19]]);
-const pos$7 = nix.positions(here + "/powerdns.nix", [["services", 12, 7], ["environment", 31, 7]]);
-const pos$8 = nix.positions(here + "/powerdns.nix", [["server", 9, 9]]);
-const pos$9 = nix.positions(here + "/powerdns.nix", [["name", 7, 3], ["nodes", 9, 3], ["testScript", 38, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$9,
+    [nix.POS]: $pos[8],
     name: "powerdns",
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       server: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             powerdns: nix.thunk(() => ({
-              [nix.POS]: pos$1,
+              [nix.POS]: $pos[0],
               enable: true,
               extraConfig: "launch=gmysql\ngmysql-user=pdns\nzone-cache-refresh-interval=0\n",
             })),
             mysql: nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               enable: true,
               package: nix.thunk(() => nix.sel(pkgs, "mariadb")),
               ensureDatabases: nix.thunk(() => ["powerdns"]),
               ensureUsers: nix.thunk(() => nix.app(nix.sel(lib, "singleton"), nix.thunk(() => ({
-                  [nix.POS]: pos$3,
+                  [nix.POS]: $pos[2],
                   name: "pdns",
-                  ensurePermissions: nix.thunk(() => ({ [nix.POS]: pos$2, "powerdns.*": "ALL PRIVILEGES" })),
+                  ensurePermissions: nix.thunk(() => ({ [nix.POS]: $pos[1], "powerdns.*": "ALL PRIVILEGES" })),
                 })))),
             })),
           })),
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             systemPackages: nix.thunk(() => (() => {
               const w = nix.withScope(pkgs, null);
               return [

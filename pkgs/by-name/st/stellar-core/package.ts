@@ -2,21 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 29, 7], ["repo", 30, 7], ["tag", 31, 7], ["hash", 32, 7]], [["lockFile", 35, 15]], [["mainProgram", 46, 10]], [["pname", 25, 5], ["version", 26, 5], ["src", 28, 5], ["cargoLock", 35, 5], ["postPatch", 37, 5], ["cargoBuildFlags", 41, 5], ["meta", 46, 5]], [["owner", 55, 5], ["repo", 56, 5], ["tag", 57, 5], ["hash", 58, 5], ["fetchSubmodules", 59, 5]], [["p21", 65, 9], ["p22", 66, 9], ["p23", 67, 9], ["p24", 68, 9], ["p25", 69, 9], ["p26", 70, 9], ["p27", 71, 9], ["p28", 72, 9]], [["src", 75, 30], ["hash", 76, 9]], [["pname", 81, 11], ["version", 82, 32], ["src", 82, 40], ["cargoRoot", 83, 11], ["hash", 84, 19]], [["sorobanProtocolHashes", 92, 17], ["mainCargoDeps", 92, 39], ["sorobanCargoDeps", 92, 53]], [["name", 89, 7], ["paths", 90, 7], ["passthru", 91, 7], ["postBuild", 94, 7]], [["name", 128, 11], ["url", 129, 11], ["hash", 130, 11]], [["updateScript", 221, 5]], [["description", 225, 5], ["longDescription", 226, 5], ["homepage", 232, 5], ["changelog", 233, 5], ["license", 234, 5], ["maintainers", 235, 5], ["platforms", 236, 5], ["mainProgram", 237, 5]], [["pname", 51, 3], ["version", 52, 3], ["src", 54, 3], ["cargoDeps", 62, 3], ["postPatch", 109, 3], ["strictDeps", 148, 3], ["nativeBuildInputs", 150, 3], ["buildInputs", 165, 3], ["enableParallelBuilding", 170, 3], ["preBuild", 175, 3], ["doCheck", 184, 3], ["__darwinAllowLocalNetworking", 186, 3], ["preConfigure", 188, 3], ["checkPhase", 210, 3], ["passthru", 220, 3], ["meta", 224, 3]]]);
 const formals$1 = { args: { autoconf: false, automake: false, bison: false, cargo: false, fetchFromGitHub: false, fetchpatch2: false, flex: false, gitMinimal: false, lib: false, libpq: false, libtool: false, libunwind: false, perl: false, "pkg-config": false, ripgrep: false, rustc: false, rustPlatform: false, stdenv: false, symlinkJoin: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 29, 7], ["repo", 30, 7], ["tag", 31, 7], ["hash", 32, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["lockFile", 35, 15]]);
-const pos$3 = nix.positions(here + "/package.nix", [["mainProgram", 46, 10]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 25, 5], ["version", 26, 5], ["src", 28, 5], ["cargoLock", 35, 5], ["postPatch", 37, 5], ["cargoBuildFlags", 41, 5], ["meta", 46, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["owner", 55, 5], ["repo", 56, 5], ["tag", 57, 5], ["hash", 58, 5], ["fetchSubmodules", 59, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["p21", 65, 9], ["p22", 66, 9], ["p23", 67, 9], ["p24", 68, 9], ["p25", 69, 9], ["p26", 70, 9], ["p27", 71, 9], ["p28", 72, 9]]);
-const pos$7 = nix.positions(here + "/package.nix", [["src", 75, 30], ["hash", 76, 9]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 81, 11], ["version", 82, 32], ["src", 82, 40], ["cargoRoot", 83, 11], ["hash", 84, 19]]);
-const pos$9 = nix.positions(here + "/package.nix", [["sorobanProtocolHashes", 92, 17], ["mainCargoDeps", 92, 39], ["sorobanCargoDeps", 92, 53]]);
-const pos$10 = nix.positions(here + "/package.nix", [["name", 89, 7], ["paths", 90, 7], ["passthru", 91, 7], ["postBuild", 94, 7]]);
-const pos$11 = nix.positions(here + "/package.nix", [["name", 128, 11], ["url", 129, 11], ["hash", 130, 11]]);
-const pos$12 = nix.positions(here + "/package.nix", [["updateScript", 221, 5]]);
-const pos$13 = nix.positions(here + "/package.nix", [["description", 225, 5], ["longDescription", 226, 5], ["homepage", 232, 5], ["changelog", 233, 5], ["license", 234, 5], ["maintainers", 235, 5], ["platforms", 236, 5], ["mainProgram", 237, 5]]);
-const pos$14 = nix.positions(here + "/package.nix", [["pname", 51, 3], ["version", 52, 3], ["src", 54, 3], ["cargoDeps", 62, 3], ["postPatch", 109, 3], ["strictDeps", 148, 3], ["nativeBuildInputs", 150, 3], ["buildInputs", 165, 3], ["enableParallelBuilding", 170, 3], ["preBuild", 175, 3], ["doCheck", 184, 3], ["__darwinAllowLocalNetworking", 186, 3], ["preConfigure", 188, 3], ["checkPhase", 210, 3], ["passthru", 220, 3], ["meta", 224, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -40,28 +27,28 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const symlinkJoin = nix.arg($, "symlinkJoin");
   const cxxbridge_cmd = nix.thunk(() => nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "cxxbridge-cmd",
       version: "1.0.97",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "dtolnay",
           repo: "cxx",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-Zvu+OYCfBZVQZCNoOG2bDFsz48NnbVH0q4q+CPth+0E=",
         })))),
-      cargoLock: nix.thunk(() => ({ [nix.POS]: pos$2, lockFile: nix.path(here, "./Cargo.lock") })),
+      cargoLock: nix.thunk(() => ({ [nix.POS]: $pos[1], lockFile: nix.path(here, "./Cargo.lock") })),
       postPatch: nix.thunk(() => nix.str`cp ${nix.path(here, "./Cargo.lock")} Cargo.lock
 `),
       cargoBuildFlags: nix.thunk(() => ["--package", "cxxbridge-cmd"]),
-      meta: nix.thunk(() => ({ [nix.POS]: pos$3, mainProgram: "cxxbridge" })),
+      meta: nix.thunk(() => ({ [nix.POS]: $pos[2], mainProgram: "cxxbridge" })),
     })));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$14,
+      [nix.POS]: $pos[13],
       pname: "stellar-core",
       version: "28.0.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           owner: "stellar",
           repo: "stellar-core",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -70,7 +57,7 @@ export default nix.lambda((args) => (() => {
         })))),
       cargoDeps: nix.thunk(() => (() => {
         const sorobanProtocolHashes = nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           p21: "sha256-cUhi2YennW+tukwf0woP69bqf1ZMsQ4JDeNqpk0jYjg=",
           p22: "sha256-5mNAblS3TYXu5a1ThmIdbKC9hUg/3F8vUPvFex3G58U=",
           p23: "sha256-l1nqc4qrqWV8aKOd9NFUaOLw1Mags2znjbQixU5H3+Y=",
@@ -81,12 +68,12 @@ export default nix.lambda((args) => (() => {
           p28: "sha256-SGA69mE0VZSumZKOBcZqvzYtZRkFVSIMHFI5R9xcTWE=",
         }));
         const mainCargoDeps = nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             src: nix.thunk(() => nix.attr(finalAttrs, "src")),
             hash: "sha256-7gU7vtYMOXX4qf3PkqriAxANhV3vraF71WMj/sS83ak=",
           }))));
         const sorobanCargoDeps = nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (protocol) => (hash) => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-              [nix.POS]: pos$8,
+              [nix.POS]: $pos[7],
               pname: nix.thunk(() => nix.str`stellar-core-${protocol}`),
               version: nix.thunk(() => nix.attr(finalAttrs, "version")),
               src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -94,11 +81,11 @@ export default nix.lambda((args) => (() => {
               hash: hash,
             }))), sorobanProtocolHashes));
         return nix.app(symlinkJoin, nix.thunk(() => ({
-            [nix.POS]: pos$10,
+            [nix.POS]: $pos[9],
             name: nix.thunk(() => nix.str`stellar-core-${nix.sel(finalAttrs, "version")}-cargo-vendor-dir`),
             paths: nix.thunk(() => nix.concat([mainCargoDeps], nix.app(nix.sel(lib, "attrValues"), sorobanCargoDeps))),
             passthru: nix.thunk(() => ({
-              [nix.POS]: pos$9,
+              [nix.POS]: $pos[8],
               sorobanProtocolHashes: sorobanProtocolHashes,
               mainCargoDeps: mainCargoDeps,
               sorobanCargoDeps: sorobanCargoDeps,
@@ -123,7 +110,7 @@ substituteInPlace src/util/DebugMetaUtils.h \\
 shopt -s nullglob
 for crate in "$cargoDepsCopy"/source-registry-*/ethnum-1.5.0; do
   patch -p1 -d "$crate" < ${nix.app(fetchpatch2, nix.thunk(() => ({
-          [nix.POS]: pos$11,
+          [nix.POS]: $pos[10],
           name: "ethnum-1.5.0-rustc-1.97.patch",
           url: "https://github.com/nlordell/ethnum-rs/commit/87e3457c095c98fcac554548ee80f56e0cfb80ae.patch?full_index=1",
           hash: "sha256-xG3RQg2vF+XW9IiYWaNyOF39WipSeoZGrygsOJ3XgIs=",
@@ -183,9 +170,9 @@ git add .
 ./autogen.sh
 `),
       checkPhase: "runHook preCheck\n\n# The full upstream test suite is too heavy for a default package check.\n# Keep this focused on a basic consensus smoke test.\n./src/stellar-core test --ll fatal -w NoTests -a -r simple --disable-dots \"standalone\"\n\nrunHook postCheck\n",
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$12, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[11], updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$13,
+        [nix.POS]: $pos[12],
         description: "Reference peer-to-peer agent that manages the Stellar network",
         longDescription: "Stellar-core is a replicated state machine that maintains a local copy of\nthe Stellar cryptographic ledger and processes transactions against it in\nconsensus with a set of peers. It implements the Stellar Consensus\nProtocol, a federated consensus protocol.\n",
         homepage: "https://www.stellar.org/",

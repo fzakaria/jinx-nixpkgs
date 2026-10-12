@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["description", 20, 5]], [["pname", 9, 3], ["version", 10, 18], ["src", 10, 26], ["dontAddPrefix", 12, 3], ["propagatedBuildInputs", 14, 3], ["meta", 19, 3]]]);
 const formals$1 = { args: { buildDunePackage: false, dune: false, ordering: false, pp: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["description", 20, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 9, 3], ["version", 10, 18], ["src", 10, 26], ["dontAddPrefix", 12, 3], ["propagatedBuildInputs", 14, 3], ["meta", 19, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,13 +12,13 @@ export default nix.lambda((args) => (() => {
   const ordering = nix.arg($, "ordering");
   const pp = nix.arg($, "pp");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "dyn",
       version: nix.thunk(() => nix.attr(dune, "version")),
       src: nix.thunk(() => nix.attr(dune, "src")),
       dontAddPrefix: true,
       propagatedBuildInputs: nix.thunk(() => [ordering, pp]),
-      meta: nix.thunk(() => nix.update(nix.sel(dune, "meta"), { [nix.POS]: pos$1, description: "Dynamic type" })),
+      meta: nix.thunk(() => nix.update(nix.sel(dune, "meta"), { [nix.POS]: $pos[0], description: "Dynamic type" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

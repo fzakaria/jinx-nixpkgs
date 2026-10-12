@@ -2,35 +2,30 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/http-auth.nix", [[["maintainers", 4, 8]], [["enable", 8, 7], ["baseUrl", 9, 7], ["dataDir", 10, 7], ["authType", 11, 7]], [["freshrss", 7, 14]], [["services", 7, 5]], [["machine", 6, 9]], [["name", 3, 3], ["meta", 4, 3], ["nodes", 6, 3], ["testScript", 15, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/http-auth.nix", [["maintainers", 4, 8]]);
-const pos$2 = nix.positions(here + "/http-auth.nix", [["enable", 8, 7], ["baseUrl", 9, 7], ["dataDir", 10, 7], ["authType", 11, 7]]);
-const pos$3 = nix.positions(here + "/http-auth.nix", [["freshrss", 7, 14]]);
-const pos$4 = nix.positions(here + "/http-auth.nix", [["services", 7, 5]]);
-const pos$5 = nix.positions(here + "/http-auth.nix", [["machine", 6, 9]]);
-const pos$6 = nix.positions(here + "/http-auth.nix", [["name", 3, 3], ["meta", 4, 3], ["nodes", 6, 3], ["testScript", 15, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$6,
+    [nix.POS]: $pos[5],
     name: "freshrss-http-auth",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "mattchrist"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       machine: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         services: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           freshrss: nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             enable: true,
             baseUrl: "http://localhost",
             dataDir: "/srv/freshrss",

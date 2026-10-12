@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]], [["GOWORK", 25, 7]], [["gui", 51, 5], ["updateScript", 52, 5]], [["description", 56, 5], ["homepage", 57, 5], ["changelog", 58, 5], ["license", 59, 5], ["platforms", 60, 5], ["maintainers", 61, 5], ["mainProgram", 62, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["env", 25, 3], ["vendorHash", 27, 3], ["modRoot", 28, 3], ["tags", 31, 3], ["ldflags", 33, 3], ["buildInputs", 39, 3], ["doInstallCheck", 46, 3], ["nativeInstallCheckInputs", 47, 3], ["versionCheckProgramArg", 48, 3], ["passthru", 50, 3], ["meta", 55, 3]]]);
 const formals$1 = { args: { buildGoModule: false, bzip2: false, callPackage: false, fetchFromGitHub: false, lib: false, libunarr: false, "mupdf-headless": false, "nix-update-script": false, versionCheckHook: false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["GOWORK", 25, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["gui", 51, 5], ["updateScript", 52, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 56, 5], ["homepage", 57, 5], ["changelog", 58, 5], ["license", 59, 5], ["platforms", 60, 5], ["maintainers", 61, 5], ["mainProgram", 62, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["env", 25, 3], ["vendorHash", 27, 3], ["modRoot", 28, 3], ["tags", 31, 3], ["ldflags", 33, 3], ["buildInputs", 39, 3], ["doInstallCheck", 46, 3], ["nativeInstallCheckInputs", 47, 3], ["versionCheckProgramArg", 48, 3], ["passthru", 50, 3], ["meta", 55, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,17 +18,17 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const zlib = nix.arg($, "zlib");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "cbconvert",
       version: "1.2.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "gen2brain",
           repo: "cbconvert",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-fLAVX3AlHUp2jmb8AiFeqB4IhVcWxYk0tkjvwWiKwPc=",
         })))),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, GOWORK: "off" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], GOWORK: "off" })),
       vendorHash: "sha256-lR1ZbEDNjJ9+bl8ijdI5/ifC5uIB1rdbnXQh5D2T7NM=",
       modRoot: "cmd/cbconvert",
       tags: nix.thunk(() => ["extlib"]),
@@ -46,12 +42,12 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       versionCheckProgramArg: "version",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         gui: nix.thunk(() => nix.app(callPackage, nix.path(here, "./gui.nix"), nix.thunk(() => ({})))),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Comic Book converter",
         homepage: "https://github.com/gen2brain/cbconvert",
         changelog: nix.thunk(() => nix.str`https://github.com/gen2brain/cbconvert/releases/tag/v${nix.sel(finalAttrs, "version")}`),

@@ -2,9 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["homepage", 124, 5], ["description", 125, 5], ["license", 126, 5], ["mainProgram", 135, 5], ["maintainers", 136, 5], ["platforms", 141, 5]], [["pname", 21, 3], ["version", 22, 26], ["src", 22, 34], ["nativeBuildInputs", 24, 3], ["buildInputs", 31, 3], ["makeFlags", 35, 3], ["buildFlags", 39, 3], ["outputs", 54, 3], ["dontConfigure", 62, 3], ["doInstallCheck", 64, 3], ["strictDeps", 66, 3], ["postPatch", 68, 3], ["preBuild", 73, 3], ["installPhase", 94, 3], ["installCheckPhase", 111, 3], ["meta", 123, 3]]]);
 const formals$1 = { args: { lib: false, callPackage: false, fixDarwinDylibNames: false, libffi: false, "mbqn-source": false, "pkg-config": false, stdenv: false, enableReplxx: true, enableLibcbqn: true, generateBytecode: true, "bqn-interpreter": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["homepage", 124, 5], ["description", 125, 5], ["license", 126, 5], ["mainProgram", 135, 5], ["maintainers", 136, 5], ["platforms", 141, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 21, 3], ["version", 22, 26], ["src", 22, 34], ["nativeBuildInputs", 24, 3], ["buildInputs", 31, 3], ["makeFlags", 35, 3], ["buildFlags", 39, 3], ["outputs", 54, 3], ["dontConfigure", 62, 3], ["doInstallCheck", 64, 3], ["strictDeps", 66, 3], ["postPatch", 68, 3], ["preBuild", 73, 3], ["installPhase", 94, 3], ["installCheckPhase", 111, 3], ["meta", 123, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,7 +22,7 @@ export default nix.lambda((args) => (() => {
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => (() => {
       const from = nix.thunk(() => nix.sel(sources, "cbqn"));
       return {
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: nix.thunk(() => nix.add("cbqn", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(generateBytecode)), "-standalone"))),
       version: nix.thunk(() => nix.attr(from, "version")),
       src: nix.thunk(() => nix.attr(from, "src")),
@@ -64,7 +63,7 @@ $out/bin/BQN test/run.bqn lint
 runHook postInstallCheck
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         homepage: "https://github.com/dzaima/CBQN/",
         description: "BQN implementation in C",
         license: nix.thunk(() => (() => {

@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["hash", 24, 5]], [["url", 31, 7], ["hash", 32, 7]], [["url", 37, 7], ["hash", 38, 7]], [["hub", 78, 43]], [["tests", 78, 12]], [["description", 81, 5], ["homepage", 82, 5], ["license", 83, 5], ["maintainers", 84, 5]], [["pname", 15, 3], ["version", 16, 3], ["__structuredAttrs", 18, 3], ["src", 20, 3], ["patches", 27, 3], ["postPatch", 42, 3], ["vendorHash", 47, 3], ["excludedPackages", 50, 3], ["nativeBuildInputs", 52, 3], ["postInstall", 59, 3], ["__darwinAllowLocalNetworking", 72, 3], ["nativeCheckInputs", 74, 3], ["passthru", 78, 3], ["meta", 80, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchpatch: false, fetchFromGitHub: false, git: false, groff: false, installShellFiles: false, makeWrapper: false, unixtools: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 31, 7], ["hash", 32, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 37, 7], ["hash", 38, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["hub", 78, 43]]);
-const pos$5 = nix.positions(here + "/package.nix", [["tests", 78, 12]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 81, 5], ["homepage", 82, 5], ["license", 83, 5], ["maintainers", 84, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["__structuredAttrs", 18, 3], ["src", 20, 3], ["patches", 27, 3], ["postPatch", 42, 3], ["vendorHash", 47, 3], ["excludedPackages", 50, 3], ["nativeBuildInputs", 52, 3], ["postInstall", 59, 3], ["__darwinAllowLocalNetworking", 72, 3], ["nativeCheckInputs", 74, 3], ["passthru", 78, 3], ["meta", 80, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const unixtools = nix.arg($, "unixtools");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "hub",
       version: "2.14.2-unstable-2022-12-01",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "mislav",
           repo: "hub",
           rev: "38bcd4ae469e5f53f01901340b715c7658ab417a",
@@ -37,12 +31,12 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/mislav/hub/commit/439b7699e79471fc789929bcdea2f30bd719963e.patch",
             hash: "sha256-pR/OkGa2ICR4n1pLNx8E2UTtLeDwFtXxeeTB94KFjC4=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: "https://github.com/mislav/hub/commit/64b291006f208fc7db1d5be96ff7db5535f1d853.patch",
             hash: "sha256-jGFFIvSKEIpTQY0Wz63cqciUk25MzPHv5Z1ox8l7wmo=",
           })))),
@@ -72,11 +66,11 @@ wrapProgram $out/bin/hub \\
       __darwinAllowLocalNetworking: true,
       nativeCheckInputs: nix.thunk(() => [git]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$4, hub: nix.thunk(() => nix.attr(nixosTests, "hub")) })),
+        [nix.POS]: $pos[4],
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[3], hub: nix.thunk(() => nix.attr(nixosTests, "hub")) })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Command-line wrapper for git that makes you better at GitHub",
         homepage: "https://hub.github.com/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

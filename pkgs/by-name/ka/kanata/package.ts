@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["hash", 25, 5]], [["name", 55, 7], ["runtimeInputs", 56, 7], ["text", 63, 7]], [["driver-version", 69, 11]], [["darwinDriverVersion", 53, 5], ["updateScript", 54, 5], ["darwinDriver", 66, 5]], [["description", 76, 5], ["homepage", 77, 5], ["license", 78, 5], ["maintainers", 79, 5], ["platforms", 83, 5], ["mainProgram", 84, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["cargoHash", 28, 3], ["nativeBuildInputs", 30, 3], ["buildFeatures", 36, 3], ["postInstall", 38, 3], ["checkFlags", 42, 3], ["doInstallCheck", 47, 3], ["nativeInstallCheckInputs", 48, 3], ["passthru", 52, 3], ["meta", 75, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, gnused: false, rustPlatform: false, "karabiner-dk": false, fetchFromGitHub: false, versionCheckHook: false, "nix-update": false, yq: false, curl: false, jq: false, writeShellApplication: false, writeShellScriptBin: false, withCmd: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 55, 7], ["runtimeInputs", 56, 7], ["text", 63, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["driver-version", 69, 11]]);
-const pos$4 = nix.positions(here + "/package.nix", [["darwinDriverVersion", 53, 5], ["updateScript", 54, 5], ["darwinDriver", 66, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 76, 5], ["homepage", 77, 5], ["license", 78, 5], ["maintainers", 79, 5], ["platforms", 83, 5], ["mainProgram", 84, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["cargoHash", 28, 3], ["nativeBuildInputs", 30, 3], ["buildFeatures", 36, 3], ["postInstall", 38, 3], ["checkFlags", 42, 3], ["doInstallCheck", 47, 3], ["nativeInstallCheckInputs", 48, 3], ["passthru", 52, 3], ["meta", 75, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const writeShellScriptBin = nix.arg($, "writeShellScriptBin");
   const withCmd = nix.argOr($, "withCmd", () => false);
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "kanata",
       version: "1.12.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "jtroo",
           repo: "kanata",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -48,21 +43,21 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         darwinDriverVersion: "6.2.0",
         updateScript: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.app(writeShellApplication, nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               name: "update-script-kanata",
               runtimeInputs: nix.thunk(() => [curl, gnused, yq, jq, nix_update]),
               text: nix.thunk(() => nix.builtins.readFile(nix.path(here, "./update.sh"))),
             })))))),
         darwinDriver: nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? nix.app(nix.sel(karabiner_dk, "override"), nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             "driver-version": nix.thunk(() => nix.sel(finalAttrs, "passthru", "darwinDriverVersion")),
           }))) : null)),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Tool to improve keyboard comfort and usability with advanced customization",
         homepage: "https://github.com/jtroo/kanata",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3Only")),

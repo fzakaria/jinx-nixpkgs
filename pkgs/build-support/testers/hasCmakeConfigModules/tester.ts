@@ -2,11 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/tester.nix", [[["description", 40, 7]], [["available", 46, 7], ["broken", 47, 7], ["insecure", 48, 7], ["license", 49, 7], ["maintainers", 50, 7], ["teams", 51, 7], ["platforms", 52, 7], ["unfree", 53, 7], ["unsupported", 54, 7]], [["moduleNames", 32, 13], ["versionCheck", 32, 25], ["cmakeFlags", 32, 38], ["version", 33, 5], ["nativeBuildInputs", 34, 5], ["buildInputs", 38, 5], ["meta", 39, 5]]]);
 const formals$1 = { args: { lib: false, runCommandCC: false, cmake: false }, ellipsis: false };
 const formals$2 = { args: { package: false, moduleNames: true, nativeBuildInputs: true, buildInputs: true, cmakeFlags: true, testName: true, version: true, versionCheck: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/tester.nix", [["description", 40, 7]]);
-const pos$2 = nix.positions(here + "/tester.nix", [["available", 46, 7], ["broken", 47, 7], ["insecure", 48, 7], ["license", 49, 7], ["maintainers", 50, 7], ["teams", 51, 7], ["platforms", 52, 7], ["unfree", 53, 7], ["unsupported", 54, 7]]);
-const pos$3 = nix.positions(here + "/tester.nix", [["moduleNames", 32, 13], ["versionCheck", 32, 25], ["cmakeFlags", 32, 38], ["version", 33, 5], ["nativeBuildInputs", 34, 5], ["buildInputs", 38, 5], ["meta", 39, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,7 +22,7 @@ export default nix.lambda((args) => (() => {
     const version = nix.argOr($_1, "version", () => nix.selOr(package$, () => null, "version"));
     const versionCheck = nix.argOr($_1, "versionCheck", () => false);
     return nix.app(runCommandCC, testName, nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         moduleNames: moduleNames,
         versionCheck: versionCheck,
         cmakeFlags: cmakeFlags,
@@ -32,10 +30,10 @@ export default nix.lambda((args) => (() => {
         nativeBuildInputs: nix.thunk(() => nix.concat([cmake], nativeBuildInputs)),
         buildInputs: nix.thunk(() => nix.concat([package$], buildInputs)),
         meta: nix.thunk(() => nix.update({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           description: nix.thunk(() => nix.str`Test whether ${nix.sel(package$, "name")} exposes cmake-config modules ${nix.app(nix.sel(lib, "concatStringsSep"), ", ", moduleNames)}`),
         }, nix.builtins.intersectAttrs(nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             available: nix.thunk(() => nix.builtins.throw("unused")),
             broken: nix.thunk(() => nix.builtins.throw("unused")),
             insecure: nix.thunk(() => nix.builtins.throw("unused")),

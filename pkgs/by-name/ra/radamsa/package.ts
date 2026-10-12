@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 12, 5], ["url", 13, 5], ["hash", 14, 5]], [["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["hash", 20, 5]], [["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]], [["description", 59, 5], ["mainProgram", 60, 5], ["longDescription", 61, 5], ["homepage", 62, 5], ["maintainers", 63, 5], ["license", 64, 5], ["platforms", 65, 5]], [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["patchPhase", 34, 3], ["makeFlags", 47, 3], ["nativeCheckInputs", 52, 3], ["doCheck", 54, 3], ["__darwinAllowLocalNetworking", 56, 3], ["meta", 58, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, fetchFromGitLab: false, bash: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 12, 5], ["url", 13, 5], ["hash", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["hash", 20, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 59, 5], ["mainProgram", 60, 5], ["longDescription", 61, 5], ["homepage", 62, 5], ["maintainers", 63, 5], ["license", 64, 5], ["platforms", 65, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["patchPhase", 34, 3], ["makeFlags", 47, 3], ["nativeCheckInputs", 52, 3], ["doCheck", 54, 3], ["__darwinAllowLocalNetworking", 56, 3], ["meta", 58, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,24 +13,24 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitLab = nix.arg($, "fetchFromGitLab");
   const bash = nix.arg($, "bash");
   const owl = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: "ol.c.gz",
       url: "https://haltp.org/files/ol-0.2.2.c.gz",
       hash: "sha256-/KhdrjaRAQhZjYpKJE33qMJxnngDrEbScHYuzkrvxVw=",
     }))));
   const hex = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       owner: "owl-lisp",
       repo: "hex",
       rev: "e95ebd38e4f7ef8e3d4e653f432e43ce0a804ca6",
       hash: "sha256-OT04EGun8nKR6D55bMx8xj20dSFwxI7zP/8sdeFZAHQ=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "radamsa",
       version: "0.7",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           owner: "akihe",
           repo: "radamsa",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -59,7 +55,7 @@ patchShebangs tests
       doCheck: true,
       __darwinAllowLocalNetworking: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "General purpose fuzzer",
         mainProgram: "radamsa",
         longDescription: "Radamsa is a general purpose data fuzzer. It reads data from given sample files, or standard input if none are given, and outputs modified data. It is usually used to generate malformed data for testing programs.",

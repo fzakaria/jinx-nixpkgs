@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]], [["url", 30, 7], ["hash", 31, 7], ["excludes", 32, 7]], [["pname", 45, 26], ["data", 46, 5]], [["description", 156, 5], ["longDescription", 157, 5], ["homepage", 163, 5], ["changelog", 164, 5], ["license", 165, 5], ["maintainers", 166, 5], ["sourceProvenance", 167, 5], ["platforms", 171, 5], ["mainProgram", 172, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["patches", 25, 3], ["nativeBuildInputs", 36, 3], ["mitmCache", 44, 3], ["__darwinAllowLocalNetworking", 50, 3], ["gradleFlags", 52, 3], ["gradleBuildTask", 64, 3], ["installPhase", 66, 3], ["nativeCheckInputs", 106, 3], ["installCheckPhase", 108, 3], ["meta", 155, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch: false, gradle: false, jdk17: false, jre: false, makeWrapper: false, coreutils: false, gitMinimal: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 30, 7], ["hash", 31, 7], ["excludes", 32, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 45, 26], ["data", 46, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 156, 5], ["longDescription", 157, 5], ["homepage", 163, 5], ["changelog", 164, 5], ["license", 165, 5], ["maintainers", 166, 5], ["sourceProvenance", 167, 5], ["platforms", 171, 5], ["mainProgram", 172, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["patches", 25, 3], ["nativeBuildInputs", 36, 3], ["mitmCache", 44, 3], ["__darwinAllowLocalNetworking", 50, 3], ["gradleFlags", 52, 3], ["gradleBuildTask", 64, 3], ["installPhase", 66, 3], ["nativeCheckInputs", 106, 3], ["installCheckPhase", 108, 3], ["meta", 155, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const coreutils = nix.arg($, "coreutils");
   const gitMinimal = nix.arg($, "gitMinimal");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "jmeter",
       version: "5.6.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "apache",
           repo: "jmeter",
           rev: nix.thunk(() => nix.str`rel/v${nix.sel(finalAttrs, "version")}`),
@@ -34,7 +30,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/apache/jmeter/commit/f4f1ef144ab5678bddb010ed1f05c67a76f547a5.patch",
             hash: "sha256-ICG2z+nyJT0WDiYmU/Dx3VtkG83ymU7HwYjEuJMjaiY=",
             excludes: nix.thunk(() => ["xdocs/changes.xml"]),
@@ -42,7 +38,7 @@ export default nix.lambda((args) => (() => {
       ]),
       nativeBuildInputs: nix.thunk(() => [gradle, jdk17, makeWrapper, gitMinimal]),
       mitmCache: nix.thunk(() => nix.app(nix.sel(gradle, "fetchDeps"), nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           data: nix.path(here, "./deps.json"),
         })))),
@@ -139,7 +135,7 @@ echo "HTML report generation test passed!"
 runHook postInstallCheck
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "100% pure Java desktop application designed to load test functional behavior and measure performance",
         longDescription: "The Apache JMeter desktop application is open source software, a 100%\npure Java application designed to load test functional behavior and\nmeasure performance. It was originally designed for testing Web\nApplications but has since expanded to other test functions.\n",
         homepage: "https://jmeter.apache.org/",

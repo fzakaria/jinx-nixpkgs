@@ -2,9 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/AlsaMixer-app.nix", [[["description", 43, 5], ["homepage", 44, 5], ["license", 45, 5], ["maintainers", 46, 5]], [["pname", 13, 3], ["version", 15, 30], ["src", 15, 38], ["sourceRoot", 17, 3], ["nativeBuildInputs", 19, 3], ["buildInputs", 23, 3], ["hardeningDisable", 30, 3], ["dontConfigure", 32, 3], ["installPhase", 34, 3], ["meta", 42, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, "alsa-lib": false, "dockapps-sources": false, libx11: false, libxext: false, libxpm: false, "pkg-config": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/AlsaMixer-app.nix", [["description", 43, 5], ["homepage", 44, 5], ["license", 45, 5], ["maintainers", 46, 5]]);
-const pos$2 = nix.positions(here + "/AlsaMixer-app.nix", [["pname", 13, 3], ["version", 15, 30], ["src", 15, 38], ["sourceRoot", 17, 3], ["nativeBuildInputs", 19, 3], ["buildInputs", 23, 3], ["hardeningDisable", 30, 3], ["dontConfigure", 32, 3], ["installPhase", 34, 3], ["meta", 42, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const libxpm = nix.arg($, "libxpm");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "AlsaMixer.app",
       version: nix.thunk(() => nix.attr(dockapps_sources, "version")),
       src: nix.thunk(() => nix.attr(dockapps_sources, "src")),
@@ -33,7 +32,7 @@ ln -vs AlsaMixer.app AlsaMixer
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Alsa mixer application for Windowmaker",
         homepage: "https://www.dockapps.net/alsamixerapp",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

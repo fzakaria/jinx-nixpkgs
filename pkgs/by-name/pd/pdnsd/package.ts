@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 13, 5], ["sha256", 14, 5]], [["name", 20, 7], ["url", 21, 7], ["hash", 22, 7]], [["CPPFLAGS", 32, 7]], [["description", 35, 5], ["homepage", 36, 5], ["license", 37, 5], ["platforms", 38, 5], ["maintainers", 39, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["patches", 17, 3], ["postPatch", 25, 3], ["configureFlags", 29, 3], ["env", 32, 3], ["meta", 34, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, fetchpatch: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 13, 5], ["sha256", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 20, 7], ["url", 21, 7], ["hash", 22, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["CPPFLAGS", 32, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 35, 5], ["homepage", 36, 5], ["license", 37, 5], ["platforms", 38, 5], ["maintainers", 39, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["patches", 17, 3], ["postPatch", 25, 3], ["configureFlags", 29, 3], ["env", 32, 3], ["meta", 34, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,25 +12,25 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const fetchpatch = nix.arg($, "fetchpatch");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "pdnsd",
       version: "1.2.9a-par",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`http://members.home.nl/p.a.rombouts/pdnsd/releases/pdnsd-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "0yragv5zk77a1hfkpnsh17vvsw8b14d6mzfng4bb7i58rb83an5v",
         })))),
       patches: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "fix-build-linux-headers-gte-5.13.patch",
             url: "https://gitweb.gentoo.org/repo/gentoo.git/plain/net-dns/pdnsd/files/pdnsd-1.2.9a-linux-5.13_build_fix.patch?id=7ce35657f269c3b7016e8940ad36e59cf06e12a4",
             hash: "sha256-Sh/0ZyiQpDvFZOWE9OCQ9+ocXurjzJvrE4WNWaGwAwk=",
           })))))),
       postPatch: "sed -i 's/.*(cachedir).*/:/' Makefile.in\n",
       configureFlags: nix.thunk(() => ["--enable-ipv6"]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$3, CPPFLAGS: "-D__APPLE_USE_RFC_3542" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[2], CPPFLAGS: "-D__APPLE_USE_RFC_3542" })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Permanent DNS caching",
         homepage: "http://members.home.nl/p.a.rombouts/pdnsd",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]], [["ssh-audit", 37, 26]], [["tests", 36, 12]], [["description", 41, 5], ["homepage", 42, 5], ["changelog", 43, 5], ["license", 44, 5], ["platforms", 45, 5], ["maintainers", 46, 5], ["mainProgram", 50, 5]], [["pname", 10, 3], ["version", 11, 3], ["pyproject", 12, 3], ["outputs", 14, 3], ["src", 19, 3], ["build-system", 26, 3], ["nativeBuildInputs", 28, 3], ["postInstall", 30, 3], ["nativeCheckInputs", 34, 3], ["passthru", 36, 3], ["meta", 40, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, installShellFiles: false, nixosTests: false, python3Packages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["ssh-audit", 37, 26]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 36, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 41, 5], ["homepage", 42, 5], ["changelog", 43, 5], ["license", 44, 5], ["platforms", 45, 5], ["maintainers", 46, 5], ["mainProgram", 50, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["pyproject", 12, 3], ["outputs", 14, 3], ["src", 19, 3], ["build-system", 26, 3], ["nativeBuildInputs", 28, 3], ["postInstall", 30, 3], ["nativeCheckInputs", 34, 3], ["passthru", 36, 3], ["meta", 40, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,13 +13,13 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const python3Packages = nix.arg($, "python3Packages");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "ssh-audit",
       version: "3.9.0",
       pyproject: true,
       outputs: nix.thunk(() => ["out", "man"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "jtesta",
           repo: "ssh-audit",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -40,14 +36,14 @@ export default nix.lambda((args) => (() => {
         return [nix.thunk(() => nix.lookup(w_1, "pytestCheckHook"))];
       })()),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           "ssh-audit": nix.thunk(() => nix.attr(nixosTests, "ssh-audit")),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Tool for ssh server auditing",
         homepage: "https://github.com/jtesta/ssh-audit",
         changelog: nix.thunk(() => nix.str`https://github.com/jtesta/ssh-audit/releases/tag/v${nix.sel(finalAttrs, "version")}`),

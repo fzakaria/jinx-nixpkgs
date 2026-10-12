@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]], [["homepage", 34, 5], ["description", 35, 5], ["longDescription", 36, 5], ["changelog", 47, 5], ["license", 48, 5], ["mainProgram", 49, 5], ["maintainers", 50, 5], ["platforms", 51, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 21, 3], ["buildInputs", 26, 3], ["strictDeps", 31, 3], ["meta", 33, 3]]]);
 const formals$1 = { args: { lib: false, SDL2: false, fetchFromGitHub: false, sqlite: false, "pkg-config": false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 34, 5], ["description", 35, 5], ["longDescription", 36, 5], ["changelog", 47, 5], ["license", 48, 5], ["mainProgram", 49, 5], ["maintainers", 50, 5], ["platforms", 51, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 21, 3], ["buildInputs", 26, 3], ["strictDeps", 31, 3], ["meta", 33, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "stella",
       version: "7.0c",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "stella-emu",
           repo: "stella",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -30,7 +28,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [SDL2, sqlite]),
       strictDeps: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://stella-emu.github.io/",
         description: "Open-source Atari 2600 VCS emulator",
         longDescription: "Stella is a multi-platform Atari 2600 VCS emulator released under the GNU\nGeneral Public License (GPL). Stella was originally developed for Linux by\nBradford W. Mott, and is currently maintained by Stephen Anthony. Since\nits original release several people have joined the development team to\nport Stella to other operating systems such as AcornOS, AmigaOS, DOS,\nFreeBSD, IRIX, Linux, OS/2, MacOS, Unix, and Windows. The development team\nis working hard to perfect the emulator and we hope you enjoy our effort.\n\nAs of its 3.5 release, Stella is officially donationware.\n",

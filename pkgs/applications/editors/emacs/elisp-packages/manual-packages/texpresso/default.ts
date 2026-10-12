@@ -2,9 +2,8 @@
 import * as nix from "../../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["homepage", 14, 30], ["license", 14, 39], ["description", 15, 5], ["maintainers", 16, 5]], [["pname", 7, 3], ["version", 8, 3], ["src", 9, 3], ["files", 11, 3], ["meta", 13, 3]]]);
 const formals$1 = { args: { lib: false, melpaBuild: false, texpresso: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["homepage", 14, 30], ["license", 14, 39], ["description", 15, 5], ["maintainers", 16, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 7, 3], ["version", 8, 3], ["src", 9, 3], ["files", 11, 3], ["meta", 13, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -12,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const melpaBuild = nix.arg($, "melpaBuild");
   const texpresso = nix.arg($, "texpresso");
   return nix.app(melpaBuild, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "texpresso",
       version: nix.thunk(() => nix.sel(texpresso, "version")),
       src: nix.thunk(() => nix.sel(texpresso, "src")),
@@ -20,7 +19,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(texpresso, "meta"));
         return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         license: nix.thunk(() => nix.attr(from, "license")),
         description: "Emacs mode for TeXpresso",

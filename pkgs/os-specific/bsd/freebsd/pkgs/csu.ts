@@ -2,8 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/csu.nix", [[["noLibc", 16, 3], ["path", 17, 3], ["extraPaths", 18, 3], ["nativeBuildInputs", 23, 3], ["buildInputs", 33, 3], ["MK_TESTS", 34, 3]]]);
 const formals$1 = { args: { lib: false, mkDerivation: false, versionData: false, bsdSetupHook: false, freebsdSetupHook: false, makeMinimal: false, install: false, flex: false, byacc: false, gencat: false, include: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/csu.nix", [["noLibc", 16, 3], ["path", 17, 3], ["extraPaths", 18, 3], ["nativeBuildInputs", 23, 3], ["buildInputs", 33, 3], ["MK_TESTS", 34, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,7 +19,7 @@ export default nix.lambda((args) => (() => {
   const gencat = nix.arg($, "gencat");
   const include = nix.arg($, "include");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       noLibc: true,
       path: "lib/csu",
       extraPaths: nix.thunk(() => nix.concat(["lib/Makefile.inc", "lib/libc/include/libc_private.h"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.ge(nix.sel(versionData, "major"), 14n)), nix.thunk(() => ["sys/sys/param.h"])))),

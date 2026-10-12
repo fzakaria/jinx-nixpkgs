@@ -2,12 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["name", 85, 5], ["publisher", 86, 5], ["version", 87, 5], ["hash", 88, 5]], [["vscode-remote-ssh", 97, 26]], [["tests", 96, 12]], [["description", 101, 5], ["license", 102, 5], ["maintainers", 103, 5]], [["mktplcRef", 84, 3], ["postPatch", 91, 3], ["passthru", 96, 3], ["meta", 100, 3]]]);
 const formals$1 = { args: { lib: false, nixosTests: false, "vscode-utils": false, useLocalExtensions: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["name", 85, 5], ["publisher", 86, 5], ["version", 87, 5], ["hash", 88, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["vscode-remote-ssh", 97, 26]]);
-const pos$3 = nix.positions(here + "/default.nix", [["tests", 96, 12]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 101, 5], ["license", 102, 5], ["maintainers", 103, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["mktplcRef", 84, 3], ["postPatch", 91, 3], ["passthru", 96, 3], ["meta", 100, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -70,9 +66,9 @@ ${nix.app(nix.sel(lib, "optionalString"), useLocalExtensions, "# Use local exten
 # Start the server
 `);
   return nix.app(buildVscodeMarketplaceExtension, nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       mktplcRef: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         name: "remote-ssh",
         publisher: "ms-vscode-remote",
         version: "0.128.0",
@@ -82,14 +78,14 @@ ${nix.app(nix.sel(lib, "optionalString"), useLocalExtensions, "# Use local exten
   --replace '# Start the server\\n' '${patch}'
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           "vscode-remote-ssh": nix.thunk(() => nix.attr(nixosTests, "vscode-remote-ssh")),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Use any remote machine with a SSH server as your development environment",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
         maintainers: [],

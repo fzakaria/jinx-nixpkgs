@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["stdenv", 25, 46]], [["description", 95, 5]], [["pname", 27, 5], ["version", 28, 5], ["src", 29, 5], ["__structuredAttrs", 30, 5], ["strictDeps", 31, 5], ["nativeBuildInputs", 32, 5], ["dontUseCmakeConfigure", 33, 5], ["buildInputs", 34, 5], ["mesonFlags", 35, 5], ["pyproject", 37, 3], ["postPatch", 39, 3], ["build-system", 49, 3], ["dontUseMesonConfigure", 59, 3], ["dependencies", 61, 3], ["postInstall", 70, 3], ["pythonImportsCheck", 80, 3], ["doCheck", 88, 3], ["dontCheckPythonMetadata", 92, 3], ["meta", 94, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, python: false, nixl: false, build: false, "meson-python": false, pybind11: false, pytest: false, pyyaml: false, setuptools: false, "types-pyyaml": false, numpy: false, torch: false, config: false, cudaSupport: true, cudaPackages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["stdenv", 25, 46]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 95, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 27, 5], ["version", 28, 5], ["src", 29, 5], ["__structuredAttrs", 30, 5], ["strictDeps", 31, 5], ["nativeBuildInputs", 32, 5], ["dontUseCmakeConfigure", 33, 5], ["buildInputs", 34, 5], ["mesonFlags", 35, 5], ["pyproject", 37, 3], ["postPatch", 39, 3], ["build-system", 49, 3], ["dontUseMesonConfigure", 59, 3], ["dependencies", 61, 3], ["postInstall", 70, 3], ["pythonImportsCheck", 80, 3], ["doCheck", 88, 3], ["dontCheckPythonMetadata", 92, 3], ["meta", 94, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,8 +23,8 @@ export default nix.lambda((args) => (() => {
   const config = nix.arg($, "config");
   const cudaSupport = nix.argOr($, "cudaSupport", () => nix.sel(config, "cudaSupport"));
   const cudaPackages = nix.arg($, "cudaPackages");
-  return nix.app(nix.sel(buildPythonPackage, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, stdenv: nix.thunk(() => nix.attr(nixl, "stdenv")) })), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+  return nix.app(nix.sel(buildPythonPackage, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], stdenv: nix.thunk(() => nix.attr(nixl, "stdenv")) })), (finalAttrs) => ({
+      [nix.POS]: $pos[2],
       pname: nix.thunk(() => nix.attr(nixl, "pname")),
       version: nix.thunk(() => nix.attr(nixl, "version")),
       src: nix.thunk(() => nix.attr(nixl, "src")),
@@ -63,7 +61,7 @@ install -Dm644 \\
         ])))),
       doCheck: false,
       dontCheckPythonMetadata: true,
-      meta: nix.thunk(() => nix.update(nix.sel(nixl, "meta"), { [nix.POS]: pos$2, description: "Python API for nixl" })),
+      meta: nix.thunk(() => nix.update(nix.sel(nixl, "meta"), { [nix.POS]: $pos[1], description: "Python API for nixl" })),
     }));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

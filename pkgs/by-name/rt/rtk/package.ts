@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]], [["LIBSQLITE3_SYS_USE_PKG_CONFIG", 37, 7]], [["extraArgs", 65, 5]], [["updateScript", 63, 12]], [["description", 72, 5], ["homepage", 73, 5], ["changelog", 74, 5], ["license", 75, 5], ["maintainers", 76, 5], ["mainProgram", 77, 5]], [["pname", 15, 3], ["version", 16, 3], ["__structuredAttrs", 17, 3], ["src", 19, 3], ["cargoHash", 26, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 33, 3], ["env", 37, 3], ["postInstall", 38, 3], ["nativeCheckInputs", 47, 3], ["checkFlags", 52, 3], ["nativeInstallCheckInputs", 58, 3], ["doInstallCheck", 61, 3], ["passthru", 63, 3], ["meta", 71, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchFromGitHub: false, makeWrapper: false, "pkg-config": false, sqlite: false, gitMinimal: false, writableTmpDirAsHomeHook: false, versionCheckHook: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["LIBSQLITE3_SYS_USE_PKG_CONFIG", 37, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["extraArgs", 65, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 63, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 72, 5], ["homepage", 73, 5], ["changelog", 74, 5], ["license", 75, 5], ["maintainers", 76, 5], ["mainProgram", 77, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["__structuredAttrs", 17, 3], ["src", 19, 3], ["cargoHash", 26, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 33, 3], ["env", 37, 3], ["postInstall", 38, 3], ["nativeCheckInputs", 47, 3], ["checkFlags", 52, 3], ["nativeInstallCheckInputs", 58, 3], ["doInstallCheck", 61, 3], ["passthru", 63, 3], ["meta", 71, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "rtk",
       version: "0.50.0",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "rtk-ai",
           repo: "rtk",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -37,7 +32,7 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-COpR8TZJgim/WxRG//bEKc4tAEWy0GfkGcFK/dnpRlQ=",
       nativeBuildInputs: nix.thunk(() => [makeWrapper, pkg_config]),
       buildInputs: nix.thunk(() => [sqlite]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, LIBSQLITE3_SYS_USE_PKG_CONFIG: "1" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], LIBSQLITE3_SYS_USE_PKG_CONFIG: "1" })),
       postInstall: nix.thunk(() => nix.str`wrapProgram $out/bin/rtk \\
   --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [gitMinimal]))}
 `),
@@ -46,14 +41,14 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             extraArgs: nix.thunk(() => ["--version-regex", "^v([0-9.]+)$"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "CLI proxy that reduces LLM token consumption by 60-90% on common dev commands",
         homepage: "https://github.com/rtk-ai/rtk",
         changelog: nix.thunk(() => nix.str`https://github.com/rtk-ai/rtk/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["version", 15, 26], ["pname", 16, 5], ["hash", 17, 5]], [["pname", 21, 26], ["version", 21, 32], ["src", 21, 40], ["hash", 22, 5]], [["PYO3_USE_ABI3_FORWARD_COMPATIBILITY", 27, 5], ["RUSTFLAGS", 28, 5]], [["description", 43, 5], ["homepage", 44, 5], ["changelog", 45, 5], ["license", 46, 5], ["maintainers", 47, 5]], [["pname", 10, 3], ["version", 11, 3], ["pyproject", 12, 3], ["src", 14, 3], ["cargoDeps", 20, 3], ["env", 26, 3], ["nativeBuildInputs", 31, 3], ["doCheck", 38, 3], ["pythonImportsCheck", 40, 3], ["meta", 42, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, perl: false, rustPlatform: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["version", 15, 26], ["pname", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 21, 26], ["version", 21, 32], ["src", 21, 40], ["hash", 22, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["PYO3_USE_ABI3_FORWARD_COMPATIBILITY", 27, 5], ["RUSTFLAGS", 28, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 43, 5], ["homepage", 44, 5], ["changelog", 45, 5], ["license", 46, 5], ["maintainers", 47, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 10, 3], ["version", 11, 3], ["pyproject", 12, 3], ["src", 14, 3], ["cargoDeps", 20, 3], ["env", 26, 3], ["nativeBuildInputs", 31, 3], ["doCheck", 38, 3], ["pythonImportsCheck", 40, 3], ["meta", 42, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,25 +13,25 @@ export default nix.lambda((args) => (() => {
   const perl = nix.arg($, "perl");
   const rustPlatform = nix.arg($, "rustPlatform");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "ipv8-rust-tunnels",
       version: "0.1.53",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           pname: "ipv8_rust_tunnels",
           hash: "sha256-A95LhuZoLHCW9IcDVnL/QyHursaUKC3GCIXkYHVdwIU=",
         })))),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           hash: "sha256-aPLwXECgEumulnCc9dw/18EE+UUgw4uQ7FZAbe0IKAI=",
         })))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         PYO3_USE_ABI3_FORWARD_COMPATIBILITY: true,
         RUSTFLAGS: "--cfg tokio_unstable",
       })),
@@ -50,7 +46,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["ipv8_rust_tunnels"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Set of performance enhancements to the TunnelCommunity, the anonymization layer used in IPv8 and Tribler",
         homepage: "https://github.com/Tribler/ipv8-rust-tunnels",
         changelog: nix.thunk(() => nix.str`https://github.com/Tribler/ipv8-rust-tunnels/releases/tag/${nix.sel(finalAttrs, "version")}`),

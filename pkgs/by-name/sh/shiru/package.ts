@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]], [["pname", 47, 26], ["version", 47, 32], ["src", 47, 40], ["pnpm", 48, 13], ["prePnpmInstall", 49, 5], ["fetcherVersion", 52, 5], ["hash", 53, 5]], [["name", 109, 7], ["exec", 110, 7], ["icon", 111, 7], ["desktopName", 112, 7], ["genericName", 113, 7], ["comment", 114, 7], ["categories", 115, 7], ["keywords", 119, 7], ["mimeTypes", 120, 7]], [["updateScript", 127, 12]], [["description", 130, 5], ["homepage", 131, 5], ["changelog", 132, 5], ["license", 133, 5], ["maintainers", 134, 5], ["platforms", 137, 5], ["mainProgram", 141, 5]], [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["patches", 31, 3], ["nativeBuildInputs", 37, 3], ["pnpmDeps", 46, 3], ["buildPhase", 56, 3], ["installPhase", 78, 3], ["desktopItems", 107, 3], ["strictDeps", 124, 3], ["__structuredAttrs", 125, 3], ["passthru", 127, 3], ["meta", 129, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, pnpm_10: false, nodejs: false, fetchFromGitHub: false, python3: false, electron_42: false, makeDesktopItem: false, makeBinaryWrapper: false, copyDesktopItems: false, fetchPnpmDeps: false, pnpmConfigHook: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 47, 26], ["version", 47, 32], ["src", 47, 40], ["pnpm", 48, 13], ["prePnpmInstall", 49, 5], ["fetcherVersion", 52, 5], ["hash", 53, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 109, 7], ["exec", 110, 7], ["icon", 111, 7], ["desktopName", 112, 7], ["genericName", 113, 7], ["comment", 114, 7], ["categories", 115, 7], ["keywords", 119, 7], ["mimeTypes", 120, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 127, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 130, 5], ["homepage", 131, 5], ["changelog", 132, 5], ["license", 133, 5], ["maintainers", 134, 5], ["platforms", 137, 5], ["mainProgram", 141, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["patches", 31, 3], ["nativeBuildInputs", 37, 3], ["pnpmDeps", 46, 3], ["buildPhase", 56, 3], ["installPhase", 78, 3], ["desktopItems", 107, 3], ["strictDeps", 124, 3], ["__structuredAttrs", 125, 3], ["passthru", 127, 3], ["meta", 129, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const pnpm = pnpm_10;
   const electron = electron_42;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "shiru",
       version: "6.8.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "RockinChaos",
           repo: "shiru",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -41,7 +36,7 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [nix.path(here, "./0001-Remove-Windows-specific-dep.patch")]),
       nativeBuildInputs: nix.thunk(() => [nodejs, pnpm, pnpmConfigHook, python3, makeBinaryWrapper, copyDesktopItems]),
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -78,7 +73,7 @@ makeWrapper '${electron}/bin/electron' "$out/bin/shiru" \\
 `))), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "mkdir -p \"$out/Applications\"\ncp -r dist/mac*/Shiru.app \"$out/Applications/\"\n\nmkdir -p \"$out/bin\"\nmakeWrapper \\\n  \"$out/Applications/Shiru.app/Contents/MacOS/Shiru\" \\\n  \"$out/bin/shiru\" \\\n  --set-default ELECTRON_IS_DEV 0\n")), "runHook postInstall\n")),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "shiru",
             exec: "shiru %U",
             icon: "shiru",
@@ -93,11 +88,11 @@ makeWrapper '${electron}/bin/electron' "$out/bin/shiru" \\
       strictDeps: true,
       __structuredAttrs: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Stream your personal media library in real-time",
         homepage: "https://github.com/RockinChaos/Shiru",
         changelog: nix.thunk(() => nix.str`https://github.com/RockinChaos/Shiru/releases/tag/v${nix.sel(finalAttrs, "version")}`),

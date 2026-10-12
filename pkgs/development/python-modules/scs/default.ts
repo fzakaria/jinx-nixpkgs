@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["fetchSubmodules", 33, 5], ["hash", 34, 5]], [["description", 62, 5], ["longDescription", 63, 5], ["homepage", 68, 29], ["downloadPage", 69, 5], ["changelog", 70, 5], ["license", 71, 5], ["maintainers", 72, 5]], [["pname", 24, 3], ["version", 25, 22], ["pyproject", 26, 3], ["__structuredAttrs", 27, 3], ["src", 29, 3], ["postPatch", 37, 3], ["build-system", 42, 3], ["buildInputs", 48, 3], ["dependencies", 53, 3], ["nativeCheckInputs", 58, 3], ["pythonImportsCheck", 59, 3], ["meta", 61, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, pkgs: false, buildPythonPackage: false, fetchFromGitHub: false, "meson-python": false, numpy: false, "pkg-config": false, blas: false, lapack: false, scipy: false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["fetchSubmodules", 33, 5], ["hash", 34, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 62, 5], ["longDescription", 63, 5], ["homepage", 68, 29], ["downloadPage", 69, 5], ["changelog", 70, 5], ["license", 71, 5], ["maintainers", 72, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 24, 3], ["version", 25, 22], ["pyproject", 26, 3], ["__structuredAttrs", 27, 3], ["src", 29, 3], ["postPatch", 37, 3], ["build-system", 42, 3], ["buildInputs", 48, 3], ["dependencies", 53, 3], ["nativeCheckInputs", 58, 3], ["pythonImportsCheck", 59, 3], ["meta", 61, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,13 +22,13 @@ export default nix.lambda((args) => (() => {
   return nix.app(buildPythonPackage, (finalAttrs) => (() => {
       const from = nix.thunk(() => nix.sel(pkgs, "scs"));
       return {
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "scs",
       version: nix.thunk(() => nix.attr(from, "version")),
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "bodono",
           repo: "scs-python",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -46,7 +44,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from_1 = nix.thunk(() => nix.sel(pkgs, "scs", "meta"));
         return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Python interface for SCS: Splitting Conic Solver",
         longDescription: "Solves convex cone programs via operator splitting.\nCan solve: linear programs (LPs), second-order cone programs (SOCPs), semidefinite programs (SDPs),\nexponential cone programs (ECPs), and power cone programs (PCPs), or problems with any combination of those cones.\n",
         homepage: nix.thunk(() => nix.attr(from_1, "homepage")),

@@ -2,51 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["groupId", 23, 9], ["artifactId", 24, 9], ["version", 25, 9], ["hash", 26, 9]], [["groupId", 31, 9], ["artifactId", 32, 9], ["version", 33, 9], ["hash", 34, 9]], [["groupId", 39, 9], ["artifactId", 40, 9], ["version", 41, 9], ["hash", 42, 9]], [["groupId", 45, 9], ["artifactId", 46, 9], ["version", 47, 9], ["hash", 48, 9]], [["groupId", 51, 9], ["artifactId", 52, 9], ["version", 53, 9], ["hash", 54, 9]], [["url", 59, 9], ["groupId", 60, 9], ["artifactId", 61, 9], ["version", 62, 9], ["hash", 63, 9]], [["groupId", 68, 9], ["artifactId", 69, 9], ["version", 70, 9], ["hash", 71, 9]], [["groupId", 76, 9], ["artifactId", 77, 9], ["version", 78, 9], ["hash", 79, 9]], [["groupId", 82, 9], ["artifactId", 83, 9], ["version", 84, 9], ["hash", 85, 9]], [["groupId", 88, 9], ["artifactId", 89, 9], ["version", 90, 9], ["hash", 91, 9]], [["groupId", 96, 9], ["artifactId", 97, 9], ["version", 98, 9], ["hash", 99, 9]], [["groupId", 104, 9], ["artifactId", 105, 9], ["version", 106, 9], ["hash", 107, 9]], [["groupId", 112, 9], ["artifactId", 113, 9], ["version", 114, 9], ["hash", 115, 9]], [["groupId", 118, 9], ["artifactId", 119, 9], ["version", 120, 9], ["hash", 121, 9]], [["groupId", 126, 9], ["artifactId", 127, 9], ["version", 128, 9], ["hash", 129, 9]], [["groupId", 134, 9], ["artifactId", 135, 9], ["version", 136, 9], ["hash", 137, 9]], [["groupId", 142, 9], ["artifactId", 143, 9], ["version", 144, 9], ["hash", 145, 9]], [["groupId", 148, 9], ["artifactId", 149, 9], ["version", 150, 9], ["hash", 151, 9]], [["groupId", 154, 9], ["artifactId", 155, 9], ["version", 156, 9], ["hash", 157, 9]], [["groupId", 160, 9], ["artifactId", 161, 9], ["version", 162, 9], ["classifier", 163, 9], ["hash", 164, 9]], [["groupId", 169, 9], ["artifactId", 170, 9], ["version", 171, 9], ["hash", 172, 9]], [["groupId", 175, 9], ["artifactId", 176, 9], ["version", 177, 9], ["hash", 178, 9]], [["groupId", 183, 9], ["artifactId", 184, 9], ["version", 185, 9], ["hash", 186, 9]], [["groupId", 191, 9], ["artifactId", 192, 9], ["version", 193, 9], ["hash", 194, 9]], [["groupId", 199, 9], ["artifactId", 200, 9], ["version", 201, 9], ["hash", 202, 9]], [["groupId", 207, 9], ["artifactId", 208, 9], ["version", 209, 9], ["classifier", 210, 9], ["hash", 211, 9]], [["groupId", 216, 9], ["artifactId", 217, 9], ["version", 218, 9], ["hash", 219, 9]], [["groupId", 224, 9], ["artifactId", 225, 9], ["version", 226, 9], ["hash", 227, 9]], [["groupId", 230, 9], ["artifactId", 231, 9], ["version", 232, 9], ["hash", 233, 9]], [["groupId", 238, 9], ["artifactId", 239, 9], ["version", 240, 9], ["hash", 241, 9]], [["groupId", 246, 9], ["artifactId", 247, 9], ["version", 248, 9], ["hash", 249, 9]], [["groupId", 252, 9], ["artifactId", 253, 9], ["version", 254, 9], ["classifier", 255, 9], ["hash", 256, 9]], [["groupId", 261, 9], ["artifactId", 262, 9], ["version", 263, 9], ["hash", 264, 9]], [["apache", 21, 5], ["guava", 29, 5], ["gwt", 37, 5], ["hamcrest", 57, 5], ["hbase", 66, 5], ["jackson", 74, 5], ["javacc", 94, 5], ["javassist", 102, 5], ["jexl", 110, 5], ["jgrapht", 124, 5], ["junit", 132, 5], ["kryo", 140, 5], ["logback", 167, 5], ["mockito", 181, 5], ["netty", 189, 5], ["objenesis", 197, 5], ["powermock", 205, 5], ["protobuf", 214, 5], ["slf4j", 222, 5], ["suasync", 236, 5], ["validation-api", 244, 5], ["zookeeper", 259, 5]], [["owner", 274, 5], ["repo", 275, 5], ["tag", 276, 5], ["hash", 277, 5]], [["name", 282, 7], ["url", 283, 7], ["hash", 284, 7]], [["name", 287, 7], ["url", 288, 7], ["hash", 289, 7]], [["name", 292, 7], ["url", 293, 7], ["hash", 294, 7]], [["name", 297, 7], ["url", 298, 7], ["hash", 299, 7]], [["name", 302, 7], ["url", 303, 7], ["hash", 304, 7]], [["name", 307, 7], ["url", 308, 7], ["hash", 309, 7]], [["name", 312, 7], ["url", 313, 7], ["hash", 314, 7]], [["description", 354, 5], ["homepage", 355, 5], ["license", 356, 5], ["platforms", 357, 5], ["sourceProvenance", 358, 5], ["maintainers", 362, 5], ["mainProgram", 363, 5]], [["pname", 270, 3], ["version", 271, 3], ["src", 273, 3], ["patches", 280, 3], ["nativeBuildInputs", 318, 3], ["buildInputs", 324, 3], ["preConfigure", 332, 3], ["preBuild", 338, 3], ["postInstall", 347, 3], ["meta", 353, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, autoconf: false, automake: false, curl: false, fetchFromGitHub: false, fetchMavenArtifact: false, fetchpatch: false, git: false, jdk8: false, makeWrapper: false, "net-tools": false, python3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["groupId", 23, 9], ["artifactId", 24, 9], ["version", 25, 9], ["hash", 26, 9]]);
-const pos$2 = nix.positions(here + "/package.nix", [["groupId", 31, 9], ["artifactId", 32, 9], ["version", 33, 9], ["hash", 34, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["groupId", 39, 9], ["artifactId", 40, 9], ["version", 41, 9], ["hash", 42, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["groupId", 45, 9], ["artifactId", 46, 9], ["version", 47, 9], ["hash", 48, 9]]);
-const pos$5 = nix.positions(here + "/package.nix", [["groupId", 51, 9], ["artifactId", 52, 9], ["version", 53, 9], ["hash", 54, 9]]);
-const pos$6 = nix.positions(here + "/package.nix", [["url", 59, 9], ["groupId", 60, 9], ["artifactId", 61, 9], ["version", 62, 9], ["hash", 63, 9]]);
-const pos$7 = nix.positions(here + "/package.nix", [["groupId", 68, 9], ["artifactId", 69, 9], ["version", 70, 9], ["hash", 71, 9]]);
-const pos$8 = nix.positions(here + "/package.nix", [["groupId", 76, 9], ["artifactId", 77, 9], ["version", 78, 9], ["hash", 79, 9]]);
-const pos$9 = nix.positions(here + "/package.nix", [["groupId", 82, 9], ["artifactId", 83, 9], ["version", 84, 9], ["hash", 85, 9]]);
-const pos$10 = nix.positions(here + "/package.nix", [["groupId", 88, 9], ["artifactId", 89, 9], ["version", 90, 9], ["hash", 91, 9]]);
-const pos$11 = nix.positions(here + "/package.nix", [["groupId", 96, 9], ["artifactId", 97, 9], ["version", 98, 9], ["hash", 99, 9]]);
-const pos$12 = nix.positions(here + "/package.nix", [["groupId", 104, 9], ["artifactId", 105, 9], ["version", 106, 9], ["hash", 107, 9]]);
-const pos$13 = nix.positions(here + "/package.nix", [["groupId", 112, 9], ["artifactId", 113, 9], ["version", 114, 9], ["hash", 115, 9]]);
-const pos$14 = nix.positions(here + "/package.nix", [["groupId", 118, 9], ["artifactId", 119, 9], ["version", 120, 9], ["hash", 121, 9]]);
-const pos$15 = nix.positions(here + "/package.nix", [["groupId", 126, 9], ["artifactId", 127, 9], ["version", 128, 9], ["hash", 129, 9]]);
-const pos$16 = nix.positions(here + "/package.nix", [["groupId", 134, 9], ["artifactId", 135, 9], ["version", 136, 9], ["hash", 137, 9]]);
-const pos$17 = nix.positions(here + "/package.nix", [["groupId", 142, 9], ["artifactId", 143, 9], ["version", 144, 9], ["hash", 145, 9]]);
-const pos$18 = nix.positions(here + "/package.nix", [["groupId", 148, 9], ["artifactId", 149, 9], ["version", 150, 9], ["hash", 151, 9]]);
-const pos$19 = nix.positions(here + "/package.nix", [["groupId", 154, 9], ["artifactId", 155, 9], ["version", 156, 9], ["hash", 157, 9]]);
-const pos$20 = nix.positions(here + "/package.nix", [["groupId", 160, 9], ["artifactId", 161, 9], ["version", 162, 9], ["classifier", 163, 9], ["hash", 164, 9]]);
-const pos$21 = nix.positions(here + "/package.nix", [["groupId", 169, 9], ["artifactId", 170, 9], ["version", 171, 9], ["hash", 172, 9]]);
-const pos$22 = nix.positions(here + "/package.nix", [["groupId", 175, 9], ["artifactId", 176, 9], ["version", 177, 9], ["hash", 178, 9]]);
-const pos$23 = nix.positions(here + "/package.nix", [["groupId", 183, 9], ["artifactId", 184, 9], ["version", 185, 9], ["hash", 186, 9]]);
-const pos$24 = nix.positions(here + "/package.nix", [["groupId", 191, 9], ["artifactId", 192, 9], ["version", 193, 9], ["hash", 194, 9]]);
-const pos$25 = nix.positions(here + "/package.nix", [["groupId", 199, 9], ["artifactId", 200, 9], ["version", 201, 9], ["hash", 202, 9]]);
-const pos$26 = nix.positions(here + "/package.nix", [["groupId", 207, 9], ["artifactId", 208, 9], ["version", 209, 9], ["classifier", 210, 9], ["hash", 211, 9]]);
-const pos$27 = nix.positions(here + "/package.nix", [["groupId", 216, 9], ["artifactId", 217, 9], ["version", 218, 9], ["hash", 219, 9]]);
-const pos$28 = nix.positions(here + "/package.nix", [["groupId", 224, 9], ["artifactId", 225, 9], ["version", 226, 9], ["hash", 227, 9]]);
-const pos$29 = nix.positions(here + "/package.nix", [["groupId", 230, 9], ["artifactId", 231, 9], ["version", 232, 9], ["hash", 233, 9]]);
-const pos$30 = nix.positions(here + "/package.nix", [["groupId", 238, 9], ["artifactId", 239, 9], ["version", 240, 9], ["hash", 241, 9]]);
-const pos$31 = nix.positions(here + "/package.nix", [["groupId", 246, 9], ["artifactId", 247, 9], ["version", 248, 9], ["hash", 249, 9]]);
-const pos$32 = nix.positions(here + "/package.nix", [["groupId", 252, 9], ["artifactId", 253, 9], ["version", 254, 9], ["classifier", 255, 9], ["hash", 256, 9]]);
-const pos$33 = nix.positions(here + "/package.nix", [["groupId", 261, 9], ["artifactId", 262, 9], ["version", 263, 9], ["hash", 264, 9]]);
-const pos$34 = nix.positions(here + "/package.nix", [["apache", 21, 5], ["guava", 29, 5], ["gwt", 37, 5], ["hamcrest", 57, 5], ["hbase", 66, 5], ["jackson", 74, 5], ["javacc", 94, 5], ["javassist", 102, 5], ["jexl", 110, 5], ["jgrapht", 124, 5], ["junit", 132, 5], ["kryo", 140, 5], ["logback", 167, 5], ["mockito", 181, 5], ["netty", 189, 5], ["objenesis", 197, 5], ["powermock", 205, 5], ["protobuf", 214, 5], ["slf4j", 222, 5], ["suasync", 236, 5], ["validation-api", 244, 5], ["zookeeper", 259, 5]]);
-const pos$35 = nix.positions(here + "/package.nix", [["owner", 274, 5], ["repo", 275, 5], ["tag", 276, 5], ["hash", 277, 5]]);
-const pos$36 = nix.positions(here + "/package.nix", [["name", 282, 7], ["url", 283, 7], ["hash", 284, 7]]);
-const pos$37 = nix.positions(here + "/package.nix", [["name", 287, 7], ["url", 288, 7], ["hash", 289, 7]]);
-const pos$38 = nix.positions(here + "/package.nix", [["name", 292, 7], ["url", 293, 7], ["hash", 294, 7]]);
-const pos$39 = nix.positions(here + "/package.nix", [["name", 297, 7], ["url", 298, 7], ["hash", 299, 7]]);
-const pos$40 = nix.positions(here + "/package.nix", [["name", 302, 7], ["url", 303, 7], ["hash", 304, 7]]);
-const pos$41 = nix.positions(here + "/package.nix", [["name", 307, 7], ["url", 308, 7], ["hash", 309, 7]]);
-const pos$42 = nix.positions(here + "/package.nix", [["name", 312, 7], ["url", 313, 7], ["hash", 314, 7]]);
-const pos$43 = nix.positions(here + "/package.nix", [["description", 354, 5], ["homepage", 355, 5], ["license", 356, 5], ["platforms", 357, 5], ["sourceProvenance", 358, 5], ["maintainers", 362, 5], ["mainProgram", 363, 5]]);
-const pos$44 = nix.positions(here + "/package.nix", [["pname", 270, 3], ["version", 271, 3], ["src", 273, 3], ["patches", 280, 3], ["nativeBuildInputs", 318, 3], ["buildInputs", 324, 3], ["preConfigure", 332, 3], ["preBuild", 338, 3], ["postInstall", 347, 3], ["meta", 353, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -66,10 +23,10 @@ export default nix.lambda((args) => (() => {
   const jdk = jdk8;
   const jre = nix.thunk(() => nix.sel(jdk8, "jre"));
   const artifacts = nix.thunk(() => ({
-    [nix.POS]: pos$34,
+    [nix.POS]: $pos[33],
     apache: nix.thunk(() => [
       nix.thunk(() => nix.app(fetchMavenArtifact, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           groupId: "org.apache.commons",
           artifactId: "commons-math3",
           version: "3.6.1",
@@ -78,7 +35,7 @@ export default nix.lambda((args) => (() => {
     ]),
     guava: nix.thunk(() => [
       nix.thunk(() => nix.app(fetchMavenArtifact, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           groupId: "com.google.guava",
           artifactId: "guava",
           version: "18.0",
@@ -87,21 +44,21 @@ export default nix.lambda((args) => (() => {
     ]),
     gwt: nix.thunk(() => [
       nix.thunk(() => nix.app(fetchMavenArtifact, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           groupId: "com.google.gwt",
           artifactId: "gwt-dev",
           version: "2.6.1",
           hash: "sha256-iS8VpnMPuxE9L9hkTJVtW5Tqgw2TIYei47zRvkdoK0o=",
         })))),
       nix.thunk(() => nix.app(fetchMavenArtifact, nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           groupId: "com.google.gwt",
           artifactId: "gwt-user",
           version: "2.6.1",
           hash: "sha256-3IlJ+b6C0Gmuh7aAFg9+ldgvZCdfJmTB8qcdC4HZC9g=",
         })))),
       nix.thunk(() => nix.app(fetchMavenArtifact, nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           groupId: "net.opentsdb",
           artifactId: "opentsdb-gwt-theme",
           version: "1.0.0",
@@ -110,7 +67,7 @@ export default nix.lambda((args) => (() => {
     ]),
     hamcrest: nix.thunk(() => [
       nix.thunk(() => nix.app(fetchMavenArtifact, nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           url: "mirror://maven/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar",
           groupId: "org.hamcrest",
           artifactId: "hamcrest-core",
@@ -120,7 +77,7 @@ export default nix.lambda((args) => (() => {
     ]),
     hbase: nix.thunk(() => [
       nix.thunk(() => nix.app(fetchMavenArtifact, nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           groupId: "org.hbase",
           artifactId: "asynchbase",
           version: "1.8.2",
@@ -129,21 +86,21 @@ export default nix.lambda((args) => (() => {
     ]),
     jackson: nix.thunk(() => [
       nix.thunk(() => nix.app(fetchMavenArtifact, nix.thunk(() => ({
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           groupId: "com.fasterxml.jackson.core",
           artifactId: "jackson-annotations",
           version: "2.14.1",
           hash: "sha256-0lW0uGP/jscUqPlvpVw0Yh1D27grgtP1dHZJakwJ4ec=",
         })))),
       nix.thunk(() => nix.app(fetchMavenArtifact, nix.thunk(() => ({
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           groupId: "com.fasterxml.jackson.core",
           artifactId: "jackson-core",
           version: "2.14.1",
           hash: "sha256-ARQYfilrNMkxwb+eWoQVK2K/q30YL1Yj85gtwto15SY=",
         })))),
       nix.thunk(() => nix.app(fetchMavenArtifact, nix.thunk(() => ({
-          [nix.POS]: pos$10,
+          [nix.POS]: $pos[9],
           groupId: "com.fasterxml.jackson.core",
           artifactId: "jackson-databind",
           version: "2.14.1",
@@ -152,7 +109,7 @@ export default nix.lambda((args) => (() => {
     ]),
     javacc: nix.thunk(() => [
       nix.thunk(() => nix.app(fetchMavenArtifact, nix.thunk(() => ({
-          [nix.POS]: pos$11,
+          [nix.POS]: $pos[10],
           groupId: "net.java.dev.javacc",
           artifactId: "javacc",
           version: "6.1.2",
@@ -161,7 +118,7 @@ export default nix.lambda((args) => (() => {
     ]),
     javassist: nix.thunk(() => [
       nix.thunk(() => nix.app(fetchMavenArtifact, nix.thunk(() => ({
-          [nix.POS]: pos$12,
+          [nix.POS]: $pos[11],
           groupId: "org.javassist",
           artifactId: "javassist",
           version: "3.21.0-GA",
@@ -170,14 +127,14 @@ export default nix.lambda((args) => (() => {
     ]),
     jexl: nix.thunk(() => [
       nix.thunk(() => nix.app(fetchMavenArtifact, nix.thunk(() => ({
-          [nix.POS]: pos$13,
+          [nix.POS]: $pos[12],
           groupId: "commons-logging",
           artifactId: "commons-logging",
           version: "1.2",
           hash: "sha256-2t3qHqC+D1aXirMAa4rJKDSv7vvZt+TmMW/KV98PpjY=",
         })))),
       nix.thunk(() => nix.app(fetchMavenArtifact, nix.thunk(() => ({
-          [nix.POS]: pos$14,
+          [nix.POS]: $pos[13],
           groupId: "org.apache.commons",
           artifactId: "commons-jexl",
           version: "2.1.1",
@@ -186,7 +143,7 @@ export default nix.lambda((args) => (() => {
     ]),
     jgrapht: nix.thunk(() => [
       nix.thunk(() => nix.app(fetchMavenArtifact, nix.thunk(() => ({
-          [nix.POS]: pos$15,
+          [nix.POS]: $pos[14],
           groupId: "org.jgrapht",
           artifactId: "jgrapht-core",
           version: "0.9.1",
@@ -195,7 +152,7 @@ export default nix.lambda((args) => (() => {
     ]),
     junit: nix.thunk(() => [
       nix.thunk(() => nix.app(fetchMavenArtifact, nix.thunk(() => ({
-          [nix.POS]: pos$16,
+          [nix.POS]: $pos[15],
           groupId: "junit",
           artifactId: "junit",
           version: "4.11",
@@ -204,28 +161,28 @@ export default nix.lambda((args) => (() => {
     ]),
     kryo: nix.thunk(() => [
       nix.thunk(() => nix.app(fetchMavenArtifact, nix.thunk(() => ({
-          [nix.POS]: pos$17,
+          [nix.POS]: $pos[16],
           groupId: "org.ow2.asm",
           artifactId: "asm",
           version: "4.0",
           hash: "sha256-+y3ekCCke7AkxD2d4KlOc6vveTvwjwE1TMl8stLiqVc=",
         })))),
       nix.thunk(() => nix.app(fetchMavenArtifact, nix.thunk(() => ({
-          [nix.POS]: pos$18,
+          [nix.POS]: $pos[17],
           groupId: "com.esotericsoftware.kryo",
           artifactId: "kryo",
           version: "2.21.1",
           hash: "sha256-adEG73euU3sZBp9WUQNLZBN6Y3UAZXTAxjsuvDuy7q4=",
         })))),
       nix.thunk(() => nix.app(fetchMavenArtifact, nix.thunk(() => ({
-          [nix.POS]: pos$19,
+          [nix.POS]: $pos[18],
           groupId: "com.esotericsoftware.minlog",
           artifactId: "minlog",
           version: "1.2",
           hash: "sha256-pnjLGqj10D2QHJksdXQYQdmKm8PVXa0C6E1lMVxOYPI=",
         })))),
       nix.thunk(() => nix.app(fetchMavenArtifact, nix.thunk(() => ({
-          [nix.POS]: pos$20,
+          [nix.POS]: $pos[19],
           groupId: "com.esotericsoftware.reflectasm",
           artifactId: "reflectasm",
           version: "1.07",
@@ -235,14 +192,14 @@ export default nix.lambda((args) => (() => {
     ]),
     logback: nix.thunk(() => [
       nix.thunk(() => nix.app(fetchMavenArtifact, nix.thunk(() => ({
-          [nix.POS]: pos$21,
+          [nix.POS]: $pos[20],
           groupId: "ch.qos.logback",
           artifactId: "logback-classic",
           version: "1.3.4",
           hash: "sha256-uGal2myLeOFVxn/M11YoYNC1/Hdric2WjC8/Ljf8OgI=",
         })))),
       nix.thunk(() => nix.app(fetchMavenArtifact, nix.thunk(() => ({
-          [nix.POS]: pos$22,
+          [nix.POS]: $pos[21],
           groupId: "ch.qos.logback",
           artifactId: "logback-core",
           version: "1.3.4",
@@ -251,7 +208,7 @@ export default nix.lambda((args) => (() => {
     ]),
     mockito: nix.thunk(() => [
       nix.thunk(() => nix.app(fetchMavenArtifact, nix.thunk(() => ({
-          [nix.POS]: pos$23,
+          [nix.POS]: $pos[22],
           groupId: "org.mockito",
           artifactId: "mockito-core",
           version: "1.9.5",
@@ -260,7 +217,7 @@ export default nix.lambda((args) => (() => {
     ]),
     netty: nix.thunk(() => [
       nix.thunk(() => nix.app(fetchMavenArtifact, nix.thunk(() => ({
-          [nix.POS]: pos$24,
+          [nix.POS]: $pos[23],
           groupId: "io.netty",
           artifactId: "netty",
           version: "3.10.6.Final",
@@ -269,7 +226,7 @@ export default nix.lambda((args) => (() => {
     ]),
     objenesis: nix.thunk(() => [
       nix.thunk(() => nix.app(fetchMavenArtifact, nix.thunk(() => ({
-          [nix.POS]: pos$25,
+          [nix.POS]: $pos[24],
           groupId: "org.objenesis",
           artifactId: "objenesis",
           version: "1.3",
@@ -278,7 +235,7 @@ export default nix.lambda((args) => (() => {
     ]),
     powermock: nix.thunk(() => [
       nix.thunk(() => nix.app(fetchMavenArtifact, nix.thunk(() => ({
-          [nix.POS]: pos$26,
+          [nix.POS]: $pos[25],
           groupId: "org.powermock",
           artifactId: "powermock-mockito-release-full",
           version: "1.5.4",
@@ -288,7 +245,7 @@ export default nix.lambda((args) => (() => {
     ]),
     protobuf: nix.thunk(() => [
       nix.thunk(() => nix.app(fetchMavenArtifact, nix.thunk(() => ({
-          [nix.POS]: pos$27,
+          [nix.POS]: $pos[26],
           groupId: "com.google.protobuf",
           artifactId: "protobuf-java",
           version: "2.5.0",
@@ -297,14 +254,14 @@ export default nix.lambda((args) => (() => {
     ]),
     slf4j: nix.thunk(() => [
       nix.thunk(() => nix.app(fetchMavenArtifact, nix.thunk(() => ({
-          [nix.POS]: pos$28,
+          [nix.POS]: $pos[27],
           groupId: "org.slf4j",
           artifactId: "log4j-over-slf4j",
           version: "2.0.6",
           hash: "sha256-QHMpiJioL0KeHr2iNaMUc7G0jDR94ShnNbtnkiUm6uQ=",
         })))),
       nix.thunk(() => nix.app(fetchMavenArtifact, nix.thunk(() => ({
-          [nix.POS]: pos$29,
+          [nix.POS]: $pos[28],
           groupId: "org.slf4j",
           artifactId: "slf4j-api",
           version: "2.0.6",
@@ -313,7 +270,7 @@ export default nix.lambda((args) => (() => {
     ]),
     suasync: nix.thunk(() => [
       nix.thunk(() => nix.app(fetchMavenArtifact, nix.thunk(() => ({
-          [nix.POS]: pos$30,
+          [nix.POS]: $pos[29],
           groupId: "com.stumbleupon",
           artifactId: "async",
           version: "1.4.0",
@@ -322,14 +279,14 @@ export default nix.lambda((args) => (() => {
     ]),
     "validation-api": nix.thunk(() => [
       nix.thunk(() => nix.app(fetchMavenArtifact, nix.thunk(() => ({
-          [nix.POS]: pos$31,
+          [nix.POS]: $pos[30],
           groupId: "javax.validation",
           artifactId: "validation-api",
           version: "1.0.0.GA",
           hash: "sha256-5FnzE+vG2ySD+M6q05rwcIY2G0dPqS5A9ELo3l2Yldw=",
         })))),
       nix.thunk(() => nix.app(fetchMavenArtifact, nix.thunk(() => ({
-          [nix.POS]: pos$32,
+          [nix.POS]: $pos[31],
           groupId: "javax.validation",
           artifactId: "validation-api",
           version: "1.0.0.GA",
@@ -339,7 +296,7 @@ export default nix.lambda((args) => (() => {
     ]),
     zookeeper: nix.thunk(() => [
       nix.thunk(() => nix.app(fetchMavenArtifact, nix.thunk(() => ({
-          [nix.POS]: pos$33,
+          [nix.POS]: $pos[32],
           groupId: "org.apache.zookeeper",
           artifactId: "zookeeper",
           version: "3.4.6",
@@ -348,11 +305,11 @@ export default nix.lambda((args) => (() => {
     ]),
   }));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$44,
+      [nix.POS]: $pos[43],
       pname: "opentsdb",
       version: "2.4.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$35,
+          [nix.POS]: $pos[34],
           owner: "OpenTSDB",
           repo: "opentsdb",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -360,43 +317,43 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$36,
+            [nix.POS]: $pos[35],
             name: "bump-deps.0.patch",
             url: "https://github.com/OpenTSDB/opentsdb/commit/2f4bbfba2f9a32f9295123e8b90adba022c11ece.patch",
             hash: "sha256-4LpR4O8mNiJZQ7PUmAzFdkZAaF8i9/ZM5NhQ+8AJgSw=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$37,
+            [nix.POS]: $pos[36],
             name: "bump-deps.1.patch",
             url: "https://github.com/OpenTSDB/opentsdb/commit/8c6a86ddbc367c7e4e2877973b70f77c105c6158.patch",
             hash: "sha256-LZHqDOhwO/Gfgu870hJ6/uxnmigv7RP8OFe2a7Ug5SM=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$38,
+            [nix.POS]: $pos[37],
             name: "bump-deps.2.patch",
             url: "https://github.com/OpenTSDB/opentsdb/commit/9b62442ba5c006376f57ef250fb7debe1047c3bf.patch",
             hash: "sha256-2VjI9EkirKj4h7xhUtWdnKxJG0Noz3Hk5njm3pYEU1g=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$39,
+            [nix.POS]: $pos[38],
             name: "CVE-2023-25826.prerequisite.0.patch",
             url: "https://github.com/OpenTSDB/opentsdb/commit/a82a4f85f0fc1af554a104f28cc495451b26b1f6.patch",
             hash: "sha256-GgoRZUGdKthK+ZwMpgSQQ4V2oHyqi8SwWGZT571gltQ=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$40,
+            [nix.POS]: $pos[39],
             name: "CVE-2023-25826.prerequisite.1.patch",
             url: "https://github.com/OpenTSDB/opentsdb/commit/22b27ea30a859a6dbdcd65fcdf61190d46e1b677.patch",
             hash: "sha256-pXo6U7d4iy2squAiFvV2iDAQcNDdrl0pIOQEXfkJ3a8=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$41,
+            [nix.POS]: $pos[40],
             name: "CVE-2023-25826.patch",
             url: "https://github.com/OpenTSDB/opentsdb/commit/07c4641471c6f5c2ab5aab615969e97211eb50d9.patch",
             hash: "sha256-88gIOhAhLCQC/UesIdYtjf0UgKNfnO0W2icyoMmiC3U=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$42,
+            [nix.POS]: $pos[41],
             name: "CVE-2023-25827.patch",
             url: "https://github.com/OpenTSDB/opentsdb/commit/fa88d3e4b5369f9fb73da384fab0b23e246309ba.patch",
             hash: "sha256-FJHUiEmGhBIHoyOwNZtUWA36ENbrqDkUT8HfccmMSe8=",
@@ -412,7 +369,7 @@ export default nix.lambda((args) => (() => {
   --set JAVA "${jre}/bin/java"
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$43,
+        [nix.POS]: $pos[42],
         description: "Time series database with millisecond precision",
         homepage: "http://opentsdb.net",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),

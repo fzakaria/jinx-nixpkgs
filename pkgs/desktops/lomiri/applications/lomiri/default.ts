@@ -2,17 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 69, 5], ["repo", 70, 5], ["tag", 71, 5], ["hash", 72, 5]], [["name", 78, 7], ["url", 79, 7], ["hash", 80, 7]], [["name", 85, 7], ["url", 86, 7], ["hash", 87, 7]], [["name", 94, 7], ["url", 95, 7], ["hash", 96, 7]], [["name", 101, 7], ["url", 102, 7], ["hash", 103, 7]], [["nixosLayoutFile", 108, 7]], [["path", 277, 9], ["name", 278, 9]], [["etcLayoutsFile", 272, 5], ["tests", 273, 5], ["updateScript", 274, 5], ["greeter", 275, 5]], [["description", 284, 5], ["longDescription", 285, 5], ["homepage", 291, 5], ["changelog", 292, 5], ["license", 293, 5], ["mainProgram", 294, 5], ["teams", 295, 5], ["platforms", 296, 5]], [["pname", 65, 3], ["version", 66, 3], ["src", 68, 3], ["patches", 75, 3], ["postPatch", 112, 3], ["strictDeps", 150, 3], ["nativeBuildInputs", 152, 3], ["buildInputs", 161, 3], ["nativeCheckInputs", 209, 3], ["checkInputs", 214, 3], ["dontWrapGApps", 220, 3], ["dontWrapQtApps", 223, 3], ["cmakeFlags", 225, 3], ["postInstall", 233, 3], ["doCheck", 237, 3], ["preCheck", 239, 3], ["preFixup", 244, 3], ["postFixup", 248, 3], ["passthru", 271, 3], ["meta", 283, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitLab: false, fetchpatch: false, gitUpdater: false, linkFarm: false, replaceVars: false, nixosTests: false, bash: false, biometryd: false, boost: false, cmake: false, "cmake-extras": false, coreutils: false, dbus: false, "dbus-test-runner": false, deviceinfo: false, geonames: false, glib: false, glm: false, "gnome-desktop": false, "gsettings-qt": false, gtk3: false, "hfd-service": false, libevdev: false, libqtdbustest: false, libqtdbusmock: false, libusermetrics: false, libuuid: false, lightdm_qt: false, "lomiri-api": false, "lomiri-app-launch": false, "lomiri-download-manager": false, "lomiri-indicator-datetime": false, "lomiri-indicator-network": false, "lomiri-notifications": false, "lomiri-settings-components": false, "lomiri-system-settings-unwrapped": false, "lomiri-schemas": false, "lomiri-telephony-service": false, "lomiri-thumbnailer": false, "lomiri-ui-extras": false, "lomiri-ui-toolkit": false, "maliit-keyboard": false, mir_2_15: false, "nixos-icons": false, pam: false, "pkg-config": false, "properties-cpp": false, protobuf: false, python3: false, qmenumodel: false, qtbase: false, qtdeclarative: false, qtmir: false, qtmultimedia: false, qtsvg: false, wrapGAppsHook3: false, wrapQtAppsHook: false, xwayland: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 69, 5], ["repo", 70, 5], ["tag", 71, 5], ["hash", 72, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["name", 78, 7], ["url", 79, 7], ["hash", 80, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["name", 85, 7], ["url", 86, 7], ["hash", 87, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["name", 94, 7], ["url", 95, 7], ["hash", 96, 7]]);
-const pos$5 = nix.positions(here + "/default.nix", [["name", 101, 7], ["url", 102, 7], ["hash", 103, 7]]);
-const pos$6 = nix.positions(here + "/default.nix", [["nixosLayoutFile", 108, 7]]);
-const pos$7 = nix.positions(here + "/default.nix", [["path", 277, 9], ["name", 278, 9]]);
-const pos$8 = nix.positions(here + "/default.nix", [["etcLayoutsFile", 272, 5], ["tests", 273, 5], ["updateScript", 274, 5], ["greeter", 275, 5]]);
-const pos$9 = nix.positions(here + "/default.nix", [["description", 284, 5], ["longDescription", 285, 5], ["homepage", 291, 5], ["changelog", 292, 5], ["license", 293, 5], ["mainProgram", 294, 5], ["teams", 295, 5], ["platforms", 296, 5]]);
-const pos$10 = nix.positions(here + "/default.nix", [["pname", 65, 3], ["version", 66, 3], ["src", 68, 3], ["patches", 75, 3], ["postPatch", 112, 3], ["strictDeps", 150, 3], ["nativeBuildInputs", 152, 3], ["buildInputs", 161, 3], ["nativeCheckInputs", 209, 3], ["checkInputs", 214, 3], ["dontWrapGApps", 220, 3], ["dontWrapQtApps", 223, 3], ["cmakeFlags", 225, 3], ["postInstall", 233, 3], ["doCheck", 237, 3], ["preCheck", 239, 3], ["preFixup", 244, 3], ["postFixup", 248, 3], ["passthru", 271, 3], ["meta", 283, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -77,11 +68,11 @@ export default nix.lambda((args) => (() => {
   const wrapQtAppsHook = nix.arg($, "wrapQtAppsHook");
   const xwayland = nix.arg($, "xwayland");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       pname: "lomiri",
       version: "0.6.2",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ubports",
           repo: "development/core/lomiri",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -89,33 +80,33 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "2012-lomiri-dont-suspend-apps.patch",
             url: "https://salsa.debian.org/ubports-team/lomiri/-/raw/1d6e83446f69299d1206927c2adbf78470ba27ec/debian/patches/2012_no-app-suspension-on-Debian+Ubuntu-proper.patch",
             hash: "sha256-9mvkILrkig18fAw5KyA2+5vXup6Le7X0blgY0PJ2Trc=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "1013-lomiri-fix-convergence-on-high-resolution-tablets.patch",
             url: "https://salsa.debian.org/ubports-team/lomiri/-/raw/4d4904b728a3e66706c756f911ddc79b01f863a2/debian/patches/1013_fix-convergence-on-high-resolution-tablets.patch",
             hash: "sha256-pQYIa8U0gEFdwZBuWMp8nL5j2HPSivMrsuKUC9scKg0=",
           })))),
         nix.path(here, "./2014_lomiri-greeter-wrapper-on-wayland.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             name: "2015-lomiri-greeter-use-wayland.patch",
             url: "https://salsa.debian.org/ubports-team/lomiri/-/raw/2f5acfa085c901359bf6f6cccbce36d7e2981555/debian/patches/2015_lomiri-greeter-use-wayland.patch",
             hash: "sha256-fnTEVQnOBQVd95ucs+iDMcQFOevfQ8dckQg0PrtL/A0=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             name: "1005-lomiri-cursor-always-follow-cursor-position-from-mir.patch",
             url: "https://salsa.debian.org/ubports-team/lomiri/-/raw/84cde8264050d7c7995dc317a3f3d6688e80c839/debian/patches/1005_cursor-always-follow-cursor-position-from-mir.patch",
             hash: "sha256-BDu3/XWG5GLXWleEJ1yXfuAKxzhojtyiTl2Iae01AI0=",
           })))),
         nix.path(here, "./9901-lomiri-Disable-Wizard.patch"),
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./9902-Layout-fallback-file.patch"), nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             nixosLayoutFile: nix.thunk(() => nix.add("/etc/", nix.sel(finalAttrs, "finalPackage", "passthru", "etcLayoutsFile"))),
           })))),
       ]),
@@ -204,20 +195,20 @@ wrapProgram $out/libexec/lomiri-systemd-wrapper \\
   --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [dbus]))}
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         etcLayoutsFile: "lomiri/keymaps",
         tests: nix.thunk(() => nix.sel(nixosTests, "lomiri")),
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
         greeter: nix.thunk(() => nix.app(linkFarm, "lomiri-greeter", nix.thunk(() => [
             nix.thunk(() => ({
-              [nix.POS]: pos$7,
+              [nix.POS]: $pos[6],
               path: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "finalPackage")}/share/lightdm/greeters/lomiri-greeter.desktop`),
               name: "lomiri-greeter.desktop",
             })),
           ]))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         description: "Shell of the Lomiri Operating environment",
         longDescription: "Shell of the Lomiri Operating environment optimized for touch based human-machine interaction, but also supporting\nconvergence (i.e. switching between tablet/phone and desktop mode).\n\nLomiri is the user shell driving Ubuntu Touch based mobile devices.\n",
         homepage: "https://lomiri.com/",

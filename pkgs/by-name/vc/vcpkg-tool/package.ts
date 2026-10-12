@@ -2,21 +2,12 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 30, 5], ["repo", 31, 5], ["rev", 32, 5], ["hash", 33, 5]], [["arg", 87, 11], ["env", 88, 11], ["default", 89, 11]], [["arg", 92, 11], ["env", 93, 11], ["default", 94, 11]], [["arg", 97, 11], ["env", 98, 11], ["default", 99, 11]], [["arg", 102, 11], ["env", 103, 11], ["default", 104, 11]], [["buildInputs", 180, 58]], [["testWrapper", 180, 5]], [["tests", 179, 12]], [["description", 197, 5], ["mainProgram", 198, 5], ["homepage", 199, 5], ["changelog", 200, 5], ["license", 201, 5], ["maintainers", 202, 5], ["platforms", 207, 5]], [["pname", 26, 3], ["version", 27, 3], ["src", 29, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 41, 3], ["patches", 46, 3], ["cmakeFlags", 51, 3], ["vcpkgWrapper", 56, 3], ["postFixup", 173, 3], ["passthru", 179, 3], ["__structuredAttrs", 194, 3], ["meta", 196, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, runtimeShell: false, cacert: false, cmake: false, cmakerc: false, curl: false, fmt_11: false, git: false, gzip: false, meson: false, ninja: false, openssh: false, python3: false, unzip: false, zip: false, zstd: false, runCommand: false, writeText: false, extraRuntimeDeps: true, doWrap: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 30, 5], ["repo", 31, 5], ["rev", 32, 5], ["hash", 33, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["arg", 87, 11], ["env", 88, 11], ["default", 89, 11]]);
-const pos$3 = nix.positions(here + "/package.nix", [["arg", 92, 11], ["env", 93, 11], ["default", 94, 11]]);
-const pos$4 = nix.positions(here + "/package.nix", [["arg", 97, 11], ["env", 98, 11], ["default", 99, 11]]);
-const pos$5 = nix.positions(here + "/package.nix", [["arg", 102, 11], ["env", 103, 11], ["default", 104, 11]]);
 const formals$2 = { args: { env: false, default: false }, ellipsis: true };
 const formals$3 = { args: { arg: false, env: false }, ellipsis: true };
 const formals$4 = { args: { env: false }, ellipsis: true };
 const formals$5 = { args: { arg: false, env: false }, ellipsis: true };
-const pos$6 = nix.positions(here + "/package.nix", [["buildInputs", 180, 58]]);
-const pos$7 = nix.positions(here + "/package.nix", [["testWrapper", 180, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["tests", 179, 12]]);
-const pos$9 = nix.positions(here + "/package.nix", [["description", 197, 5], ["mainProgram", 198, 5], ["homepage", 199, 5], ["changelog", 200, 5], ["license", 201, 5], ["maintainers", 202, 5], ["platforms", 207, 5]]);
-const pos$10 = nix.positions(here + "/package.nix", [["pname", 26, 3], ["version", 27, 3], ["src", 29, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 41, 3], ["patches", 46, 3], ["cmakeFlags", 51, 3], ["vcpkgWrapper", 56, 3], ["postFixup", 173, 3], ["passthru", 179, 3], ["__structuredAttrs", 194, 3], ["meta", 196, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -43,11 +34,11 @@ export default nix.lambda((args) => (() => {
   const extraRuntimeDeps = nix.argOr($, "extraRuntimeDeps", () => []);
   const doWrap = nix.argOr($, "doWrap", () => true);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       pname: "vcpkg-tool",
       version: "2025-12-16",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "microsoft",
           repo: "vcpkg-tool",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -77,25 +68,25 @@ export default nix.lambda((args) => (() => {
         ], extraRuntimeDeps));
         const argsWithDefault = nix.thunk(() => [
           nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             arg: "--downloads-root",
             env: "NIX_VCPKG_DOWNLOADS_ROOT",
             default: "$NIX_VCPKG_WRITABLE_PATH/downloads",
           })),
           nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             arg: "--x-buildtrees-root",
             env: "NIX_VCPKG_BUILDTREES_ROOT",
             default: "$NIX_VCPKG_WRITABLE_PATH/buildtrees",
           })),
           nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             arg: "--x-packages-root",
             env: "NIX_VCPKG_PACKAGES_ROOT",
             default: "$NIX_VCPKG_WRITABLE_PATH/packages",
           })),
           nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             arg: "--x-install-root",
             env: "NIX_VCPKG_INSTALL_ROOT",
             default: "$NIX_VCPKG_WRITABLE_PATH/installed",
@@ -177,11 +168,11 @@ ${nix.app(nix.sel(lib, "concatMapStringsSep"), "\n", nix.lambda((args_1) => (() 
       })()),
       postFixup: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), doWrap, "mv \"$out/bin/vcpkg\" \"$out/bin/.vcpkg-wrapped\"\nprintf \"%s\" \"$vcpkgWrapper\" > \"$out/bin/vcpkg\"\nchmod 555 \"$out/bin/vcpkg\"\n")),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         tests: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), doWrap, nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             testWrapper: nix.thunk(() => nix.app(runCommand, "vcpkg-tool-test-wrapper", nix.thunk(() => ({
-                [nix.POS]: pos$6,
+                [nix.POS]: $pos[5],
                 buildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(finalAttrs, "finalPackage"))]),
               })), nix.thunk(() => nix.str`export NIX_VCPKG_DEBUG_PRINT_ENVVARS=true
 export VCPKG_ROOT=.
@@ -193,7 +184,7 @@ cat "$out" | head -n 4 | diff - ${nix.app(writeText, "vcpkg-tool-test-wrapper-ex
       })),
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         description: "Components of microsoft/vcpkg's binary",
         mainProgram: "vcpkg",
         homepage: "https://github.com/microsoft/vcpkg-tool",

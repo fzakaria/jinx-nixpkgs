@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 66, 5], ["repo", 67, 5], ["rev", 68, 5], ["hash", 69, 5]], [["owner", 77, 5], ["repo", 78, 5], ["tag", 79, 5], ["fetchSubmodules", 80, 5], ["hash", 81, 5]], [["pname", 130, 30], ["version", 130, 36], ["src", 130, 44], ["hash", 131, 9]], [["pname", 134, 9], ["version", 135, 30], ["src", 135, 38], ["sourceRoot", 136, 9], ["hash", 137, 9]], [["name", 141, 7], ["paths", 145, 7], ["postBuild", 154, 7]], [["description", 227, 5], ["homepage", 228, 5], ["changelog", 229, 5], ["license", 230, 5], ["maintainers", 231, 5], ["platforms", 235, 5], ["mainProgram", 236, 5]], [["pname", 73, 3], ["version", 74, 3], ["src", 76, 3], ["postPatch", 84, 3], ["cargoDeps", 127, 3], ["nativeBuildInputs", 160, 3], ["dontUseCmakeConfigure", 176, 3], ["buildInputs", 178, 3], ["nativeInstallCheckInputs", 198, 3], ["versionCheckProgram", 201, 3], ["doInstallCheck", 202, 3], ["dontWrapGApps", 204, 3], ["postFixup", 206, 3], ["meta", 226, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchFromGitLab: false, rustPlatform: false, systemdMinimal: false, symlinkJoin: false, "blueprint-compiler": false, cargo: false, makeWrapper: false, libxml2: false, meson: false, ninja: false, "pkg-config": false, protobuf: false, python3: false, rustc: false, wrapGAppsHook4: false, "appstream-glib": false, cairo: false, cmake: false, dbus: false, "desktop-file-utils": false, "gdk-pixbuf": false, gettext: false, glib: false, graphene: false, gtk4: false, libadwaita: false, libdrm: false, libgbm: false, pango: false, sqlite: false, udev: false, wayland: false, versionCheckHook: false, addDriverRunpath: false, libGL: false, "vulkan-loader": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 66, 5], ["repo", 67, 5], ["rev", 68, 5], ["hash", 69, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 77, 5], ["repo", 78, 5], ["tag", 79, 5], ["fetchSubmodules", 80, 5], ["hash", 81, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 130, 30], ["version", 130, 36], ["src", 130, 44], ["hash", 131, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 134, 9], ["version", 135, 30], ["src", 135, 38], ["sourceRoot", 136, 9], ["hash", 137, 9]]);
-const pos$5 = nix.positions(here + "/package.nix", [["name", 141, 7], ["paths", 145, 7], ["postBuild", 154, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 227, 5], ["homepage", 228, 5], ["changelog", 229, 5], ["license", 230, 5], ["maintainers", 231, 5], ["platforms", 235, 5], ["mainProgram", 236, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 73, 3], ["version", 74, 3], ["src", 76, 3], ["postPatch", 84, 3], ["cargoDeps", 127, 3], ["nativeBuildInputs", 160, 3], ["dontUseCmakeConfigure", 176, 3], ["buildInputs", 178, 3], ["nativeInstallCheckInputs", 198, 3], ["versionCheckProgram", 201, 3], ["doInstallCheck", 202, 3], ["dontWrapGApps", 204, 3], ["postFixup", 206, 3], ["meta", 226, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -53,18 +47,18 @@ export default nix.lambda((args) => (() => {
   const libGL = nix.arg($, "libGL");
   const vulkan_loader = nix.arg($, "vulkan-loader");
   const nvtop = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "Syllo",
       repo: "nvtop",
       rev: "3d4a953da02bc18886734613bb9f60ff80669de7",
       hash: "sha256-yBCJZt23NIjXYXLQAY9Go3bcwzxyUnL+3TP9kyFthr0=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "mission-center",
       version: "1.2.0",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "mission-center-devs",
           repo: "mission-center",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -94,14 +88,14 @@ mkdir -p include/libdrm
 `)),
       cargoDeps: nix.thunk(() => (() => {
         const missionCenterCargoDeps = nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
             version: nix.thunk(() => nix.attr(finalAttrs, "version")),
             src: nix.thunk(() => nix.attr(finalAttrs, "src")),
             hash: "sha256-G48wiOa82hCX/xl6DQeWxLNZ6PAfzqfxzl/Srra004E=",
           }))));
         const magpieCargoDeps = nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             pname: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-magpie`),
             version: nix.thunk(() => nix.attr(finalAttrs, "version")),
             src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -109,7 +103,7 @@ mkdir -p include/libdrm
             hash: "sha256-WwUyPgP47O5i8+1XZciH/FCLAWz9/LRmJtgkhSPJwiY=",
           }))));
         return nix.app(symlinkJoin, nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             name: "cargo-vendor-dir",
             paths: nix.thunk(() => [missionCenterCargoDeps, magpieCargoDeps]),
             postBuild: nix.thunk(() => nix.str`rm -f $out/.cargo/config.toml
@@ -170,7 +164,7 @@ wrapProgram $out/bin/missioncenter-magpie \\
         ]))}"
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Monitor your CPU, Memory, Disk, Network and GPU usage",
         homepage: "https://gitlab.com/mission-center-devs/mission-center",
         changelog: nix.thunk(() => nix.str`https://gitlab.com/mission-center-devs/mission-center/-/releases/${nix.sel(finalAttrs, "src", "tag")}`),

@@ -2,16 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["pname", 17, 7], ["version", 18, 7], ["src", 20, 7], ["sourceRoot", 21, 7], ["patches", 23, 7], ["npmDepsHash", 27, 7], ["nativeBuildInputs", 29, 7], ["preBuild", 31, 7], ["installPhase", 33, 7]], [["owner", 45, 7], ["repo", 46, 7], ["tag", 47, 7], ["hash", 48, 7]], [["version", 54, 68]], [["RUSTC_BOOTSTRAP", 59, 7], ["RUSTFLAGS", 60, 7]], [["warpgate", 83, 30]], [["extraArgs", 86, 9]], [["webUi", 81, 15], ["tests", 82, 7], ["updateScript", 85, 7]], [["description", 91, 7], ["homepage", 92, 7], ["changelog", 93, 7], ["license", 94, 7], ["platforms", 95, 7], ["mainProgram", 96, 7], ["maintainers", 97, 7]], [["pname", 41, 5], ["version", 42, 5], ["src", 44, 5], ["cargoHash", 51, 5], ["patches", 53, 5], ["env", 57, 5], ["nativeBuildInputs", 63, 5], ["buildFeatures", 65, 5], ["preBuild", 72, 5], ["doCheck", 78, 5], ["passthru", 80, 5], ["meta", 90, 5]]]);
 const formals$1 = { args: { lib: false, replaceVars: false, fetchFromGitHub: false, rustPlatform: false, buildNpmPackage: false, "openapi-generator-cli": false, nixosTests: false, "nix-update-script": false, perl: false, withRDPLegacyTLSBackend: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["pname", 17, 7], ["version", 18, 7], ["src", 20, 7], ["sourceRoot", 21, 7], ["patches", 23, 7], ["npmDepsHash", 27, 7], ["nativeBuildInputs", 29, 7], ["preBuild", 31, 7], ["installPhase", 33, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 45, 7], ["repo", 46, 7], ["tag", 47, 7], ["hash", 48, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 54, 68]]);
-const pos$4 = nix.positions(here + "/package.nix", [["RUSTC_BOOTSTRAP", 59, 7], ["RUSTFLAGS", 60, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["warpgate", 83, 30]]);
-const pos$6 = nix.positions(here + "/package.nix", [["extraArgs", 86, 9]]);
-const pos$7 = nix.positions(here + "/package.nix", [["webUi", 81, 15], ["tests", 82, 7], ["updateScript", 85, 7]]);
-const pos$8 = nix.positions(here + "/package.nix", [["description", 91, 7], ["homepage", 92, 7], ["changelog", 93, 7], ["license", 94, 7], ["platforms", 95, 7], ["mainProgram", 96, 7], ["maintainers", 97, 7]]);
-const pos$9 = nix.positions(here + "/package.nix", [["pname", 41, 5], ["version", 42, 5], ["src", 44, 5], ["cargoHash", 51, 5], ["patches", 53, 5], ["env", 57, 5], ["nativeBuildInputs", 63, 5], ["buildFeatures", 65, 5], ["preBuild", 72, 5], ["doCheck", 78, 5], ["passthru", 80, 5], ["meta", 90, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,7 +19,7 @@ export default nix.lambda((args) => (() => {
   const withRDPLegacyTLSBackend = nix.argOr($, "withRDPLegacyTLSBackend", () => false);
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => (() => {
       const webUi = nix.thunk(() => nix.app(buildNpmPackage, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "warpgate-web",
           version: nix.thunk(() => nix.sel(finalAttrs, "version")),
           src: nix.thunk(() => nix.sel(finalAttrs, "src")),
@@ -39,11 +31,11 @@ export default nix.lambda((args) => (() => {
           installPhase: "runHook preInstall\ncp -R dist $out\nrunHook postInstall\n",
         }))));
       return {
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         pname: "warpgate",
         version: "0.29.1",
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             owner: "warp-tech",
             repo: "warpgate",
             tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -51,9 +43,12 @@ export default nix.lambda((args) => (() => {
           })))),
         cargoHash: "sha256-XmFJf0ntat//tFjjQJOBeEeq9Cvdej9IkCfGcnOI6nE=",
         patches: nix.thunk(() => [
-          nix.thunk(() => nix.app(replaceVars, nix.path(here, "./hardcode-version.patch"), nix.thunk(() => ({ [nix.POS]: pos$3, version: nix.thunk(() => nix.attr(finalAttrs, "version")) })))),
+          nix.thunk(() => nix.app(replaceVars, nix.path(here, "./hardcode-version.patch"), nix.thunk(() => ({
+              [nix.POS]: $pos[2],
+              version: nix.thunk(() => nix.attr(finalAttrs, "version")),
+            })))),
         ]),
-        env: nix.thunk(() => ({ [nix.POS]: pos$4, RUSTC_BOOTSTRAP: true, RUSTFLAGS: "--cfg tokio_unstable" })),
+        env: nix.thunk(() => ({ [nix.POS]: $pos[3], RUSTC_BOOTSTRAP: true, RUSTFLAGS: "--cfg tokio_unstable" })),
         nativeBuildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optional"), withRDPLegacyTLSBackend, perl)),
         buildFeatures: nix.thunk(() => nix.concat(["postgres", "mysql", "sqlite"], nix.app(nix.sel(lib, "optional"), withRDPLegacyTLSBackend, "rdp-openssl-tls"))),
         preBuild: nix.thunk(() => nix.str`rm -rf .cargo/
@@ -61,16 +56,16 @@ ln -rs "${webUi}" warpgate-web/dist
 `),
         doCheck: false,
         passthru: nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           webUi: webUi,
           tests: nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             warpgate: nix.thunk(() => nix.attr(nixosTests, "warpgate")),
           })),
-          updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$6, extraArgs: nix.thunk(() => ["--subpackage=webUi"]) })))),
+          updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: $pos[5], extraArgs: nix.thunk(() => ["--subpackage=webUi"]) })))),
         })),
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           description: "Smart SSH, HTTPS, MySQL and Postgres bastion that requires no additional client-side software",
           homepage: "https://warpgate.null.page",
           changelog: nix.thunk(() => nix.str`https://github.com/warp-tech/warpgate/releases/tag/v${nix.sel(finalAttrs, "version")}`),

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 22, 5], ["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["sha256", 26, 5]], [["os-prober", 81, 5]], [["tests", 80, 12]], [["description", 84, 5], ["homepage", 85, 5], ["license", 86, 5], ["mainProgram", 87, 5], ["maintainers", 88, 5], ["platforms", 89, 5]], [["version", 19, 3], ["pname", 20, 3], ["src", 21, 3], ["nativeBuildInputs", 29, 3], ["installPhase", 30, 3], ["postFixup", 54, 3], ["passthru", 80, 3], ["meta", 83, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, makeWrapper: false, nixosTests: false, coreutils: false, grub2: false, cryptsetup: false, libuuid: false, systemd: false, ntfs3g: false, dmraid: false, lvm2: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 22, 5], ["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["sha256", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["os-prober", 81, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 80, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 84, 5], ["homepage", 85, 5], ["license", 86, 5], ["mainProgram", 87, 5], ["maintainers", 88, 5], ["platforms", 89, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["version", 19, 3], ["pname", 20, 3], ["src", 21, 3], ["nativeBuildInputs", 29, 3], ["installPhase", 30, 3], ["postFixup", 54, 3], ["passthru", 80, 3], ["meta", 83, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const dmraid = nix.arg($, "dmraid");
   const lvm2 = nix.arg($, "lvm2");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       version: "1.85",
       pname: "os-prober",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "salsa.debian.org",
           owner: "installer-team",
           repo: "os-prober",
@@ -74,14 +70,14 @@ for file in $out/bin/*; do
 done;
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           "os-prober": nix.thunk(() => nix.sel(nixosTests, "os-prober")),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Utility to detect other OSs on a set of drives",
         homepage: "http://packages.debian.org/source/sid/os-prober",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

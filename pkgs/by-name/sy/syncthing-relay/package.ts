@@ -2,17 +2,16 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["target", 8, 3]], [["pname", 11, 5], ["postInstall", 12, 5]]]);
 const formals$1 = { args: { lib: false, stdenv: false, syncthing: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["target", 8, 3]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 11, 5], ["postInstall", 12, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const stdenv = nix.arg($, "stdenv");
   const syncthing = nix.arg($, "syncthing");
-  return nix.app(nix.sel(nix.app(nix.sel(syncthing, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, target: "strelaysrv" }))), "overrideAttrs"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+  return nix.app(nix.sel(nix.app(nix.sel(syncthing, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], target: "strelaysrv" }))), "overrideAttrs"), nix.thunk(() => ({
+      [nix.POS]: $pos[1],
       pname: "syncthing-relay",
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), "mkdir -p $out/lib/systemd/system\n\nsubstitute cmd/strelaysrv/etc/linux-systemd/strelaysrv.service \\\n           $out/lib/systemd/system/strelaysrv.service \\\n           --replace-fail /usr/bin/strelaysrv $out/bin/strelaysrv\n")),
     })));

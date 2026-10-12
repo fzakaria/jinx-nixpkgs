@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 45, 5], ["repo", 46, 5], ["tag", 47, 5], ["hash", 48, 5]], [["mpi", 164, 61]], [["description", 167, 5], ["homepage", 168, 5], ["maintainers", 169, 5], ["license", 170, 5], ["platforms", 176, 5]], [["pname", 41, 3], ["version", 42, 3], ["src", 44, 3], ["outputs", 51, 3], ["patches", 57, 3], ["nativeBuildInputs", 63, 3], ["buildInputs", 78, 3], ["propagatedBuildInputs", 107, 3], ["propagatedUserEnvPkgs", 108, 3], ["cmakeFlags", 110, 3], ["nativeCheckInputs", 129, 3], ["doCheck", 130, 3], ["postPatch", 132, 3], ["postConfigure", 136, 3], ["postInstall", 140, 3], ["postFixup", 152, 3], ["enableParallelBuilding", 162, 3], ["passthru", 164, 3], ["meta", 166, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, cmake: false, "pkg-config": false, ninja: false, gfortran: false, which: false, perl: false, procps: false, libvdwxc: false, libyaml: false, libxc: false, fftw: false, blas: false, lapack: false, gsl: false, netcdf: false, arpack: false, spglib: false, metis: false, scalapack: false, mpi: false, enableMpi: true, config: false, cudaPackages: false, enableCuda: true, rocmPackages: false, enableHip: true, makeWrapper: false, addDriverRunpath: false, python3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 45, 5], ["repo", 46, 5], ["tag", 47, 5], ["hash", 48, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["mpi", 164, 61]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 167, 5], ["homepage", 168, 5], ["maintainers", 169, 5], ["license", 170, 5], ["platforms", 176, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 41, 3], ["version", 42, 3], ["src", 44, 3], ["outputs", 51, 3], ["patches", 57, 3], ["nativeBuildInputs", 63, 3], ["buildInputs", 78, 3], ["propagatedBuildInputs", 107, 3], ["propagatedUserEnvPkgs", 108, 3], ["cmakeFlags", 110, 3], ["nativeCheckInputs", 129, 3], ["doCheck", 130, 3], ["postPatch", 132, 3], ["postConfigure", 136, 3], ["postInstall", 140, 3], ["postFixup", 152, 3], ["enableParallelBuilding", 162, 3], ["passthru", 164, 3], ["meta", 166, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -46,11 +43,11 @@ export default nix.lambda((args) => (() => {
   nix.assert_(nix.eq(nix.sel(blas, "isILP64"), nix.sel(arpack, "isILP64")), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/oc/octopus/package.nix:37:1");
   nix.assert_(!nix.asBool((nix.asBool(enableCuda) && nix.asBool(enableHip))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/oc/octopus/package.nix:38:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "octopus",
       version: "16.4",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "octopus-code",
           repo: "octopus",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -114,9 +111,9 @@ export default nix.lambda((args) => (() => {
 done
 `))),
       enableParallelBuilding: true,
-      passthru: nix.thunk(() => nix.app(nix.sel(lib, "attrsets", "optionalAttrs"), enableMpi, nix.thunk(() => ({ [nix.POS]: pos$2, mpi: mpi })))),
+      passthru: nix.thunk(() => nix.app(nix.sel(lib, "attrsets", "optionalAttrs"), enableMpi, nix.thunk(() => ({ [nix.POS]: $pos[1], mpi: mpi })))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Real-space time dependent density-functional theory code",
         homepage: "https://octopus-code.org",
         maintainers: nix.thunk(() => (() => {

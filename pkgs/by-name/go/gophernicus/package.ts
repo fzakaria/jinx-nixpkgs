@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]], [["HOSTCC", 85, 5], ["CC", 86, 5]], [["nixos", 109, 11]], [["updateScript", 108, 5], ["tests", 109, 5]], [["description", 113, 5], ["homepage", 114, 5], ["changelog", 115, 5], ["license", 116, 5], ["platforms", 117, 5], ["maintainers", 118, 5], ["mainProgram", 122, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["postPatch", 27, 3], ["configurePlatforms", 58, 3], ["dontAddStaticConfigureFlags", 59, 3], ["configureFlags", 60, 3], ["env", 84, 3], ["makeFlags", 89, 3], ["strictDeps", 93, 3], ["__structuredAttrs", 94, 3], ["installTargets", 96, 3], ["doInstallCheck", 103, 3], ["nativeInstallCheckInputs", 104, 3], ["versionCheckProgramArg", 105, 3], ["passthru", 107, 3], ["meta", 112, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPackages: false, fetchFromGitHub: false, gnused: false, systemdMinimal: false, systemdSupport: true, xinetd: false, xinetdSupport: true, versionCheckHook: false, "nix-update-script": false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["HOSTCC", 85, 5], ["CC", 86, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["nixos", 109, 11]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 108, 5], ["tests", 109, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 113, 5], ["homepage", 114, 5], ["changelog", 115, 5], ["license", 116, 5], ["platforms", 117, 5], ["maintainers", 118, 5], ["mainProgram", 122, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["postPatch", 27, 3], ["configurePlatforms", 58, 3], ["dontAddStaticConfigureFlags", 59, 3], ["configureFlags", 60, 3], ["env", 84, 3], ["makeFlags", 89, 3], ["strictDeps", 93, 3], ["__structuredAttrs", 94, 3], ["installTargets", 96, 3], ["doInstallCheck", 103, 3], ["nativeInstallCheckInputs", 104, 3], ["versionCheckProgramArg", 105, 3], ["passthru", 107, 3], ["meta", 112, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "gophernicus",
       version: "3.1.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "gophernicus",
           repo: "gophernicus",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -72,7 +67,7 @@ sed -E -i '/^\\s+(chown|chmod)/d' Makefile.in
         nix.thunk(() => nix.str`--os=${(nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? "mac" : (nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) ? "linux" : (nix.asBool(nix.sel(stdenv, "hostPlatform", "isBSD")) ? "freebsd" : "autodetected")))}`),
       ], nix.concat(nix.app(nix.sel(lib, "optionals"), systemdSupport, nix.thunk(() => ["--listener=systemd"])), nix.concat(nix.app(nix.sel(lib, "optionals"), xinetdSupport, nix.thunk(() => ["--listener=xinetd"])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["--listener=mac"])))))),
       env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.asBool(nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform"))))), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           HOSTCC: nix.thunk(() => nix.str`${nix.sel(buildPackages, "stdenv", "cc")}/bin/cc`),
           CC: nix.thunk(() => nix.str`${nix.sel(stdenv, "cc", "targetPrefix")}cc`),
         })))),
@@ -84,12 +79,15 @@ sed -E -i '/^\\s+(chown|chmod)/d' Makefile.in
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       versionCheckProgramArg: "-v",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
-        tests: nix.thunk(() => ({ [nix.POS]: pos$3, nixos: nix.thunk(() => nix.sel(nixosTests, "gophernicus")) })),
+        tests: nix.thunk(() => ({
+          [nix.POS]: $pos[2],
+          nixos: nix.thunk(() => nix.sel(nixosTests, "gophernicus")),
+        })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Modern full-featured (and hopefully) secure gopher daemon",
         homepage: "https://gophernicus.org/",
         changelog: nix.thunk(() => nix.str`https://github.com/gophernicus/gophernicus/blob/${nix.sel(finalAttrs, "src", "tag")}/changelog`),

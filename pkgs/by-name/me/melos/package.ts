@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 10, 5], ["repo", 11, 5], ["tag", 12, 5], ["hash", 13, 5]], [["command", 38, 7], ["supportedFeatures", 42, 7]], [["updateScript", 37, 5]], [["homepage", 47, 5], ["description", 48, 5], ["mainProgram", 49, 5], ["license", 50, 5], ["maintainers", 51, 5]], [["pname", 7, 3], ["version", 8, 3], ["src", 9, 3], ["patches", 16, 3], ["pubspecLock", 22, 3], ["preBuild", 25, 3], ["passthru", 36, 3], ["meta", 46, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, buildDartApplication: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 10, 5], ["repo", 11, 5], ["tag", 12, 5], ["hash", 13, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["command", 38, 7], ["supportedFeatures", 42, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 37, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 47, 5], ["description", 48, 5], ["mainProgram", 49, 5], ["license", 50, 5], ["maintainers", 51, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 7, 3], ["version", 8, 3], ["src", 9, 3], ["patches", 16, 3], ["pubspecLock", 22, 3], ["preBuild", 25, 3], ["passthru", 36, 3], ["meta", 46, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +11,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const buildDartApplication = nix.arg($, "buildDartApplication");
   return nix.app(buildDartApplication, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "melos",
       version: "8.9.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "invertase",
           repo: "melos",
           tag: nix.thunk(() => nix.str`melos-v${nix.sel(finalAttrs, "version")}`),
@@ -29,15 +25,15 @@ export default nix.lambda((args) => (() => {
       pubspecLock: nix.thunk(() => nix.app(nix.sel(lib, "importJSON"), nix.path(here, "./pubspec.lock.json"))),
       preBuild: "substituteInPlace packages/melos/lib/src/common/utils.dart \\\n  --replace-fail \"final melosPackageFileUri = await Isolate.resolvePackageUri(melosPackageUri);\" \"return \\\"$out\\\";\"\nsubstituteInPlace packages/melos/lib/src/common/utils.dart \\\n  --replace-fail \"return p.normalize('\\${melosPackageFileUri!.toFilePath()}/../..');\" \" \"\nsubstituteInPlace packages/melos/bin/melos.dart \\\n  --replace-fail \"__NIX_MELOS_PACKAGE_ROOT__\" \"$out\"\nmkdir --parents $out\ncp --recursive packages/melos/templates $out/\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           command: nix.thunk(() => [nix.path(here, "./update.sh"), nix.path(here, "./.")]),
           supportedFeatures: nix.thunk(() => ["commit"]),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://github.com/invertase/melos",
         description: "Tool for managing Dart projects with multiple packages",
         mainProgram: "melos",

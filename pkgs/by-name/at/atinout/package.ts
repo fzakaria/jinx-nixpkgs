@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["LANG", 14, 5]], [["NIX_CFLAGS_COMPILE", 17, 5]], [["url", 26, 5], ["rev", 27, 5], ["sha256", 28, 5]], [["homepage", 38, 5], ["description", 39, 5], ["platforms", 40, 5], ["license", 41, 5], ["maintainers", 42, 5], ["mainProgram", 43, 5]], [["pname", 10, 3], ["version", 11, 3], ["env", 13, 3], ["nativeBuildInputs", 20, 3], ["src", 25, 3], ["makeFlags", 31, 3], ["installPhase", 33, 3], ["meta", 37, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchgit: false, ronn: false, mount: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["LANG", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 17, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 26, 5], ["rev", 27, 5], ["sha256", 28, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 38, 5], ["description", 39, 5], ["platforms", 40, 5], ["license", 41, 5], ["maintainers", 42, 5], ["mainProgram", 43, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["env", 13, 3], ["nativeBuildInputs", 20, 3], ["src", 25, 3], ["makeFlags", 31, 3], ["installPhase", 33, 3], ["meta", 37, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,16 +13,16 @@ export default nix.lambda((args) => (() => {
   const ronn = nix.arg($, "ronn");
   const mount = nix.arg($, "mount");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "atinout",
       version: "0.9.2-alpha",
       env: nix.thunk(() => nix.update({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         LANG: nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? "en_US.UTF-8" : "C.UTF-8")),
-      }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "cc", "isClang"))), nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-Werror=implicit-fallthrough=0" }))))),
+      }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "cc", "isClang"))), nix.thunk(() => ({ [nix.POS]: $pos[1], NIX_CFLAGS_COMPILE: "-Werror=implicit-fallthrough=0" }))))),
       nativeBuildInputs: nix.thunk(() => [ronn, mount]),
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           url: "git://git.code.sf.net/p/atinout/code",
           rev: "4976a6cb5237373b7e23cd02d7cd5517f306e3f6",
           sha256: "0bninv2bklz7ly140cxx8iyaqjlq809jjx6xqpimn34ghwsaxbpv",
@@ -34,7 +30,7 @@ export default nix.lambda((args) => (() => {
       makeFlags: nix.thunk(() => [nix.thunk(() => nix.str`CC=${nix.sel(stdenv, "cc", "targetPrefix")}cc`)]),
       installPhase: "make PREFIX=$out install\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://atinout.sourceforge.net",
         description: "Tool for talking to modems",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),

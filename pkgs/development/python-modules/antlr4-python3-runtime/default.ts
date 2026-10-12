@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["description", 38, 5], ["mainProgram", 39, 5], ["homepage", 40, 5], ["license", 41, 5], ["maintainers", 42, 5]], [["pname", 10, 3], ["version", 11, 32], ["src", 11, 40], ["pyproject", 13, 3], ["sourceRoot", 15, 3], ["build-system", 17, 3], ["postPatch", 19, 3], ["checkPhase", 27, 3], ["meta", 37, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, setuptools: false, python: false, antlr4: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["description", 38, 5], ["mainProgram", 39, 5], ["homepage", 40, 5], ["license", 41, 5], ["maintainers", 42, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 10, 3], ["version", 11, 32], ["src", 11, 40], ["pyproject", 13, 3], ["sourceRoot", 15, 3], ["build-system", 17, 3], ["postPatch", 19, 3], ["checkPhase", 27, 3], ["meta", 37, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,7 +30,7 @@ popd
 runHook postCheck
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Runtime for ANTLR",
         mainProgram: "pygrun",
         homepage: "https://www.antlr.org/",
@@ -42,7 +41,7 @@ runHook postCheck
         })()),
       }));
       return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         pname,
         version,
         src,

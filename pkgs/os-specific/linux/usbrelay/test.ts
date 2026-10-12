@@ -2,74 +2,59 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/test.nix", [[["options", 23, 27]], [["qemu", 23, 22]], [["enable", 27, 26]], [["allow_anonymous", 37, 22]], [["acl", 35, 13], ["omitPasswordAuth", 36, 13], ["settings", 37, 13]], [["enable", 32, 9], ["listeners", 33, 9]], [["usbrelayd", 27, 16], ["mosquitto", 31, 16]], [["after", 29, 9]], [["usbrelayd", 28, 24]], [["services", 28, 15]], [["systemPackages", 41, 19]], [["enable", 45, 27]], [["nixos", 45, 21]], [["virtualisation", 23, 7], ["services", 27, 7], ["systemd", 28, 7], ["environment", 41, 7], ["documentation", 45, 7]], [["machine", 22, 11]], [["name", 20, 5], ["nodes", 22, 5], ["testScript", 48, 5]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/test.nix", [["options", 23, 27]]);
-const pos$2 = nix.positions(here + "/test.nix", [["qemu", 23, 22]]);
-const pos$3 = nix.positions(here + "/test.nix", [["enable", 27, 26]]);
-const pos$4 = nix.positions(here + "/test.nix", [["allow_anonymous", 37, 22]]);
-const pos$5 = nix.positions(here + "/test.nix", [["acl", 35, 13], ["omitPasswordAuth", 36, 13], ["settings", 37, 13]]);
-const pos$6 = nix.positions(here + "/test.nix", [["enable", 32, 9], ["listeners", 33, 9]]);
-const pos$7 = nix.positions(here + "/test.nix", [["usbrelayd", 27, 16], ["mosquitto", 31, 16]]);
-const pos$8 = nix.positions(here + "/test.nix", [["after", 29, 9]]);
-const pos$9 = nix.positions(here + "/test.nix", [["usbrelayd", 28, 24]]);
-const pos$10 = nix.positions(here + "/test.nix", [["services", 28, 15]]);
-const pos$11 = nix.positions(here + "/test.nix", [["systemPackages", 41, 19]]);
-const pos$12 = nix.positions(here + "/test.nix", [["enable", 45, 27]]);
-const pos$13 = nix.positions(here + "/test.nix", [["nixos", 45, 21]]);
-const pos$14 = nix.positions(here + "/test.nix", [["virtualisation", 23, 7], ["services", 27, 7], ["systemd", 28, 7], ["environment", 41, 7], ["documentation", 45, 7]]);
-const pos$15 = nix.positions(here + "/test.nix", [["machine", 22, 11]]);
-const pos$16 = nix.positions(here + "/test.nix", [["name", 20, 5], ["nodes", 22, 5], ["testScript", 48, 5]]);
 
 export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../../../nixos/tests/make-test-python.nix")), nix.lambda((args) => (() => {
     const $ = nix.formals(args, formals$1);
     const pkgs = nix.arg($, "pkgs");
     return {
-      [nix.POS]: pos$16,
+      [nix.POS]: $pos[15],
       name: "usbrelayd",
       nodes: nix.thunk(() => ({
-        [nix.POS]: pos$15,
+        [nix.POS]: $pos[14],
         machine: nix.thunk(() => ({
-          [nix.POS]: pos$14,
+          [nix.POS]: $pos[13],
           virtualisation: nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             qemu: nix.thunk(() => ({
-              [nix.POS]: pos$1,
+              [nix.POS]: $pos[0],
               options: nix.thunk(() => ["-device qemu-xhci", "-device usb-host,vendorid=0x16c0,productid=0x05df"]),
             })),
           })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$7,
-            usbrelayd: nix.thunk(() => ({ [nix.POS]: pos$3, enable: true })),
+            [nix.POS]: $pos[6],
+            usbrelayd: nix.thunk(() => ({ [nix.POS]: $pos[2], enable: true })),
             mosquitto: nix.thunk(() => ({
-              [nix.POS]: pos$6,
+              [nix.POS]: $pos[5],
               enable: true,
               listeners: nix.thunk(() => [
                 nix.thunk(() => ({
-                  [nix.POS]: pos$5,
+                  [nix.POS]: $pos[4],
                   acl: nix.thunk(() => ["pattern readwrite #"]),
                   omitPasswordAuth: true,
-                  settings: nix.thunk(() => ({ [nix.POS]: pos$4, allow_anonymous: true })),
+                  settings: nix.thunk(() => ({ [nix.POS]: $pos[3], allow_anonymous: true })),
                 })),
               ]),
             })),
           })),
           systemd: nix.thunk(() => ({
-            [nix.POS]: pos$10,
+            [nix.POS]: $pos[9],
             services: nix.thunk(() => ({
-              [nix.POS]: pos$9,
-              usbrelayd: nix.thunk(() => ({ [nix.POS]: pos$8, after: nix.thunk(() => ["mosquitto.service"]) })),
+              [nix.POS]: $pos[8],
+              usbrelayd: nix.thunk(() => ({ [nix.POS]: $pos[7], after: nix.thunk(() => ["mosquitto.service"]) })),
             })),
           })),
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$11,
+            [nix.POS]: $pos[10],
             systemPackages: nix.thunk(() => [
               nix.thunk(() => nix.sel(pkgs, "usbrelay")),
               nix.thunk(() => nix.sel(pkgs, "mosquitto")),
             ]),
           })),
           documentation: nix.thunk(() => ({
-            [nix.POS]: pos$13,
-            nixos: nix.thunk(() => ({ [nix.POS]: pos$12, enable: false })),
+            [nix.POS]: $pos[12],
+            nixos: nix.thunk(() => ({ [nix.POS]: $pos[11], enable: false })),
           })),
         })),
       })),

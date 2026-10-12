@@ -2,20 +2,18 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["firmware", 6, 7]], [["pcmcia", 5, 5]], [["hardware", 4, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/default.nix", [["firmware", 6, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pcmcia", 5, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["hardware", 4, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$3,
+    [nix.POS]: $pos[2],
     hardware: nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pcmcia: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         firmware: nix.thunk(() => [
           nix.thunk(() => nix.app(nix.sel(lib, "cleanSource"), nix.path(here, "./firmware"))),
         ]),

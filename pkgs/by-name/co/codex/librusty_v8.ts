@@ -2,18 +2,17 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/librusty_v8.nix", [[["x86_64-linux", 7, 5], ["aarch64-linux", 8, 5], ["riscv64-linux", 9, 5], ["aarch64-darwin", 10, 5]], [["version", 5, 3], ["shas", 6, 3]]]);
 const formals$1 = { args: { fetchLibrustyV8: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/librusty_v8.nix", [["x86_64-linux", 7, 5], ["aarch64-linux", 8, 5], ["riscv64-linux", 9, 5], ["aarch64-darwin", 10, 5]]);
-const pos$2 = nix.positions(here + "/librusty_v8.nix", [["version", 5, 3], ["shas", 6, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const fetchLibrustyV8 = nix.arg($, "fetchLibrustyV8");
   return nix.app(fetchLibrustyV8, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       version: "150.4.0",
       shas: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         "x86_64-linux": "0v5hi3s56b6yk7nh5n0wygh7fn0j41yyjz5903r227qv0yvzssaq",
         "aarch64-linux": "1lvx9xjzv7ibqvg5jnaxqaaim0lw4dwfgf6kw0pjfdrkmm97s5xp",
         "riscv64-linux": "1lmx74mwavvx6rbwa7aq0pkjc58mxqy9hysbhpkhc3573360jdjh",

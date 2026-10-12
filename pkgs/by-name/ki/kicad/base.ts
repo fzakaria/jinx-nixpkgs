@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/base.nix", [[["mbedtlsSupport", 139, 21]], [["description", 167, 5], ["longDescription", 168, 5], ["homepage", 171, 5], ["license", 172, 5], ["platforms", 173, 5], ["broken", 174, 5]], [["pname", 61, 3], ["version", 62, 3], ["src", 64, 3], ["patches", 66, 3], ["postPatch", 76, 3], ["preConfigure", 84, 3], ["cmakeFlags", 89, 3], ["cmakeBuildType", 109, 3], ["nativeBuildInputs", 111, 3], ["buildInputs", 120, 3], ["doInstallCheck", 149, 3], ["installCheckTarget", 150, 3], ["nativeInstallCheckInputs", 152, 3], ["dontStrip", 164, 3], ["meta", 166, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, cmake: false, zlib: false, wxGTK: false, gtk3: false, gettext: false, glew: false, glm: false, cairo: false, curl: false, openssl: false, boost: false, "pkg-config": false, doxygen: false, unixodbc: false, libgit2: false, libsecret: false, ninja: false, writableTmpDirAsHomeHook: false, swig: false, python: false, poppler: false, wxPython: false, "opencascade-occt_7_6": false, libngspice: false, libspnav: false, valgrind: false, protobuf_29: false, nng: false, stable: false, testing: false, kicadSrc: false, kicadVersion: false, withNgspice: false, withScripting: false, withI18n: false, debug: false, sanitizeAddress: false, sanitizeThreads: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/base.nix", [["mbedtlsSupport", 139, 21]]);
-const pos$2 = nix.positions(here + "/base.nix", [["description", 167, 5], ["longDescription", 168, 5], ["homepage", 171, 5], ["license", 172, 5], ["platforms", 173, 5], ["broken", 174, 5]]);
-const pos$3 = nix.positions(here + "/base.nix", [["pname", 61, 3], ["version", 62, 3], ["src", 64, 3], ["patches", 66, 3], ["postPatch", 76, 3], ["preConfigure", 84, 3], ["cmakeFlags", 89, 3], ["cmakeBuildType", 109, 3], ["nativeBuildInputs", 111, 3], ["buildInputs", 120, 3], ["doInstallCheck", 149, 3], ["installCheckTarget", 150, 3], ["nativeInstallCheckInputs", 152, 3], ["dontStrip", 164, 3], ["meta", 166, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -57,7 +55,7 @@ export default nix.lambda((args) => (() => {
   const optionals = nix.thunk(() => nix.attr(lib, "optionals"));
   const optionalString = nix.thunk(() => nix.attr(lib, "optionalString"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "kicad-base",
       version: nix.thunk(() => (nix.asBool(stable) ? nix.force(kicadVersion) : nix.builtins.substring(0n, 10n, nix.thunk(() => nix.sel(finalAttrs, "src", "rev"))))),
       src: kicadSrc,
@@ -108,7 +106,7 @@ substituteInPlace cmake/CreateGitVersionHeader.cmake \\
         unixodbc,
         opencascade_occt,
         protobuf_29,
-        nix.thunk(() => nix.app(nix.sel(nng, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, mbedtlsSupport: false })))),
+        nix.thunk(() => nix.app(nix.sel(nng, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], mbedtlsSupport: false })))),
       ], nix.concat(nix.app(optionals, nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [libspnav])), nix.concat(nix.app(optionals, withScripting, nix.thunk(() => [wxPython])), nix.concat(nix.app(optionals, withNgspice, nix.thunk(() => [libngspice])), nix.app(optionals, debug, nix.thunk(() => [valgrind]))))))),
       doInstallCheck: nix.thunk(() => !nix.asBool(debug)),
       installCheckTarget: "test",
@@ -126,7 +124,7 @@ substituteInPlace cmake/CreateGitVersionHeader.cmake \\
       ]),
       dontStrip: debug,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Just the built source without the libraries",
         longDescription: "Just the build products, the libraries are passed via an env var in the wrapper, default.nix\n",
         homepage: "https://www.kicad.org/",

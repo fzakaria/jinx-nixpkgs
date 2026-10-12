@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 25, 5], ["repo", 26, 5], ["rev", 27, 5], ["hash", 28, 5]], [["OPENSSL_NO_VENDOR", 70, 5], ["RUSTY_V8_ARCHIVE", 71, 5], ["OBSCURA_VERSION", 76, 5]], [["updateScript", 80, 5], ["librusty_v8", 84, 13]], [["description", 88, 5], ["homepage", 89, 5], ["license", 90, 5], ["maintainers", 91, 5], ["mainProgram", 92, 5], ["platforms", 93, 5], ["sourceProvenance", 98, 5]], [["pname", 20, 3], ["__structuredAttrs", 21, 3], ["version", 22, 3], ["src", 24, 3], ["cargoHash", 31, 3], ["buildFeatures", 35, 3], ["nativeBuildInputs", 40, 3], ["buildInputs", 53, 3], ["doCheck", 62, 3], ["doInstallCheck", 66, 3], ["nativeInstallCheckInputs", 67, 3], ["env", 69, 3], ["passthru", 79, 3], ["meta", 87, 3]]]);
 const formals$1 = { args: { lib: false, callPackage: false, fetchFromGitHub: false, rustPlatform: false, openssl: false, "pkg-config": false, cmake: false, perl: false, git: false, "nix-update-script": false, versionCheckHook: false, "_experimental-update-script-combinators": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 25, 5], ["repo", 26, 5], ["rev", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["OPENSSL_NO_VENDOR", 70, 5], ["RUSTY_V8_ARCHIVE", 71, 5], ["OBSCURA_VERSION", 76, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 80, 5], ["librusty_v8", 84, 13]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 88, 5], ["homepage", 89, 5], ["license", 90, 5], ["maintainers", 91, 5], ["mainProgram", 92, 5], ["platforms", 93, 5], ["sourceProvenance", 98, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["__structuredAttrs", 21, 3], ["version", 22, 3], ["src", 24, 3], ["cargoHash", 31, 3], ["buildFeatures", 35, 3], ["nativeBuildInputs", 40, 3], ["buildInputs", 53, 3], ["doCheck", 62, 3], ["doInstallCheck", 66, 3], ["nativeInstallCheckInputs", 67, 3], ["env", 69, 3], ["passthru", 79, 3], ["meta", 87, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const __structuredAttrs = true;
       const version = "0.2.2";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "h4ckf0r0day",
           repo: "obscura",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -49,13 +45,13 @@ export default nix.lambda((args) => (() => {
       const doInstallCheck = true;
       const nativeInstallCheckInputs = nix.thunk(() => [versionCheckHook]);
       const env = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         OPENSSL_NO_VENDOR: 1n,
         RUSTY_V8_ARCHIVE: librusty_v8,
         OBSCURA_VERSION: version,
       }));
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix.sel(_experimental_update_script_combinators, "sequence"), nix.thunk(() => [
             nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
             nix.path(here, "./update.sh"),
@@ -65,7 +61,7 @@ export default nix.lambda((args) => (() => {
       const meta = nix.thunk(() => (() => {
         const w = nix.withScope(lib, null);
         return {
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           description: "Headless browser for AI agents and web scraping",
           homepage: "https://github.com/h4ckf0r0day/obscura",
           license: nix.thunk(() => nix.sel(nix.lookup(w, "licenses"), "asl20")),
@@ -82,7 +78,7 @@ export default nix.lambda((args) => (() => {
         };
       })());
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         __structuredAttrs,
         version,

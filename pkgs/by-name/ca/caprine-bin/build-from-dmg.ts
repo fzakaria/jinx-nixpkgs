@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/build-from-dmg.nix", [[["url", 16, 5], ["name", 17, 5], ["sha256", 18, 13]], [["platforms", 33, 5]], [["pname", 13, 11], ["version", 13, 17], ["src", 15, 3], ["sourceRoot", 21, 3], ["nativeBuildInputs", 23, 3], ["installPhase", 25, 3], ["meta", 32, 3]]]);
 const formals$1 = { args: { stdenvNoCC: false, lib: false, fetchurl: false, undmg: false, pname: false, version: false, sha256: false, metaCommon: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/build-from-dmg.nix", [["url", 16, 5], ["name", 17, 5], ["sha256", 18, 13]]);
-const pos$2 = nix.positions(here + "/build-from-dmg.nix", [["platforms", 33, 5]]);
-const pos$3 = nix.positions(here + "/build-from-dmg.nix", [["pname", 13, 11], ["version", 13, 17], ["src", 15, 3], ["sourceRoot", 21, 3], ["nativeBuildInputs", 23, 3], ["installPhase", 25, 3], ["meta", 32, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const sha256 = nix.arg($, "sha256");
   const metaCommon = nix.argOr($, "metaCommon", () => ({}));
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: pname,
       version: version,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/sindresorhus/caprine/releases/download/v${version}/Caprine-${version}.dmg`),
           name: nix.thunk(() => nix.str`Caprine-${version}.dmg`),
           sha256: sha256,
@@ -31,7 +29,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [undmg]),
       installPhase: "mkdir -p \"$out/Applications/Caprine.app\"\ncp -R . \"$out/Applications/Caprine.app\"\nmkdir \"$out/bin\"\nln -s \"$out/Applications/Caprine.app/Contents/MacOS/Caprine\" \"$out/bin/caprine\"\n",
       meta: nix.thunk(() => nix.update(metaCommon, {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         platforms: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "platforms")), null);
           return nix.force(nix.lookup(w, "darwin"));

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["sha256", 18, 5]], [["homepage", 52, 5], ["description", 53, 5], ["license", 54, 5], ["platforms", 55, 5], ["maintainers", 56, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 21, 3], ["buildPhase", 27, 3], ["postInstall", 39, 3], ["outputs", 46, 3], ["meta", 51, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, libfaketime: false, mkfontscale: false, fonttosfnt: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["sha256", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 52, 5], ["description", 53, 5], ["license", 54, 5], ["platforms", 55, 5], ["maintainers", 56, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 21, 3], ["buildPhase", 27, 3], ["postInstall", 39, 3], ["outputs", 46, 3], ["meta", 51, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const mkfontscale = nix.arg($, "mkfontscale");
   const fonttosfnt = nix.arg($, "fonttosfnt");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "siji",
       version: "2016-05-13",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "stark",
           repo: "siji",
           rev: "3cbb7fe938c33aaadbb657803ea5946e5157d6e2",
@@ -31,7 +29,7 @@ export default nix.lambda((args) => (() => {
       postInstall: "install -m 644 -D *.otb pcf/* -t \"$out/share/fonts/misc\"\ninstall -m 644 -D bdf/* -t \"$bdf/share/fonts/misc\"\nmkfontdir \"$out/share/fonts/misc\"\nmkfontdir \"$bdf/share/fonts/misc\"\n",
       outputs: nix.thunk(() => ["out", "bdf"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/stark/siji",
         description: "Iconic bitmap font based on Stlarch with additional glyphs",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),

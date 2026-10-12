@@ -2,115 +2,93 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/bashless.nix", [[["enable", 9, 21]], [["nixos-init", 9, 10], ["activatable", 10, 10], ["forbiddenDependenciesRegexes", 39, 10]], [["enable", 11, 21]], [["shell", 11, 15], ["corePackages", 15, 15]], [["enable", 12, 17]], [["bash", 12, 12]], [["enable", 17, 7]], [["enable", 18, 28]], [["man-db", 18, 21]], [["man", 18, 17]], [["enable", 20, 11]], [["enable", 26, 23]], [["useNetworkd", 22, 14], ["firewall", 26, 14]], [["enable", 24, 15]], [["enable", 30, 14]], [["bcache", 24, 8], ["kexec", 30, 8]], [["enableWrappers", 28, 12]], [["enable", 32, 19]], [["manageLingering", 33, 9]], [["enable", 35, 29]], [["resizeHelper", 35, 16]], [["lvm", 35, 12]], [["imports", 6, 3], ["system", 9, 3], ["environment", 11, 3], ["programs", 12, 3], ["nix", 17, 3], ["documentation", 18, 3], ["console", 20, 3], ["networking", 22, 3], ["boot", 24, 3], ["security", 28, 3], ["powerManagement", 32, 3], ["users", 33, 3], ["services", 35, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/bashless.nix", [["enable", 9, 21]]);
-const pos$2 = nix.positions(here + "/bashless.nix", [["nixos-init", 9, 10], ["activatable", 10, 10], ["forbiddenDependenciesRegexes", 39, 10]]);
-const pos$3 = nix.positions(here + "/bashless.nix", [["enable", 11, 21]]);
-const pos$4 = nix.positions(here + "/bashless.nix", [["shell", 11, 15], ["corePackages", 15, 15]]);
-const pos$5 = nix.positions(here + "/bashless.nix", [["enable", 12, 17]]);
-const pos$6 = nix.positions(here + "/bashless.nix", [["bash", 12, 12]]);
-const pos$7 = nix.positions(here + "/bashless.nix", [["enable", 17, 7]]);
-const pos$8 = nix.positions(here + "/bashless.nix", [["enable", 18, 28]]);
-const pos$9 = nix.positions(here + "/bashless.nix", [["man-db", 18, 21]]);
-const pos$10 = nix.positions(here + "/bashless.nix", [["man", 18, 17]]);
-const pos$11 = nix.positions(here + "/bashless.nix", [["enable", 20, 11]]);
-const pos$12 = nix.positions(here + "/bashless.nix", [["enable", 26, 23]]);
-const pos$13 = nix.positions(here + "/bashless.nix", [["useNetworkd", 22, 14], ["firewall", 26, 14]]);
-const pos$14 = nix.positions(here + "/bashless.nix", [["enable", 24, 15]]);
-const pos$15 = nix.positions(here + "/bashless.nix", [["enable", 30, 14]]);
-const pos$16 = nix.positions(here + "/bashless.nix", [["bcache", 24, 8], ["kexec", 30, 8]]);
-const pos$17 = nix.positions(here + "/bashless.nix", [["enableWrappers", 28, 12]]);
-const pos$18 = nix.positions(here + "/bashless.nix", [["enable", 32, 19]]);
-const pos$19 = nix.positions(here + "/bashless.nix", [["manageLingering", 33, 9]]);
-const pos$20 = nix.positions(here + "/bashless.nix", [["enable", 35, 29]]);
-const pos$21 = nix.positions(here + "/bashless.nix", [["resizeHelper", 35, 16]]);
-const pos$22 = nix.positions(here + "/bashless.nix", [["lvm", 35, 12]]);
-const pos$23 = nix.positions(here + "/bashless.nix", [["imports", 6, 3], ["system", 9, 3], ["environment", 11, 3], ["programs", 12, 3], ["nix", 17, 3], ["documentation", 18, 3], ["console", 20, 3], ["networking", 22, 3], ["boot", 24, 3], ["security", 28, 3], ["powerManagement", 32, 3], ["users", 33, 3], ["services", 35, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$23,
+    [nix.POS]: $pos[22],
     imports: nix.thunk(() => [nix.path(here, "./perlless.nix")]),
     system: nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       "nixos-init": nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         enable: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
       })),
       activatable: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), false)),
       forbiddenDependenciesRegexes: nix.thunk(() => ["bash"]),
     })),
     environment: nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       shell: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         enable: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), false)),
       })),
       corePackages: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), [])),
     })),
     programs: nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       bash: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         enable: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), false)),
       })),
     })),
     nix: nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       enable: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), false)),
     })),
     documentation: nix.thunk(() => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       man: nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         "man-db": nix.thunk(() => ({
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           enable: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), false)),
         })),
       })),
     })),
     console: nix.thunk(() => ({
-      [nix.POS]: pos$11,
+      [nix.POS]: $pos[10],
       enable: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), false)),
     })),
     networking: nix.thunk(() => ({
-      [nix.POS]: pos$13,
+      [nix.POS]: $pos[12],
       useNetworkd: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), true)),
       firewall: nix.thunk(() => ({
-        [nix.POS]: pos$12,
+        [nix.POS]: $pos[11],
         enable: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), false)),
       })),
     })),
     boot: nix.thunk(() => ({
-      [nix.POS]: pos$16,
+      [nix.POS]: $pos[15],
       bcache: nix.thunk(() => ({
-        [nix.POS]: pos$14,
+        [nix.POS]: $pos[13],
         enable: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), false)),
       })),
       kexec: nix.thunk(() => ({
-        [nix.POS]: pos$15,
+        [nix.POS]: $pos[14],
         enable: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), false)),
       })),
     })),
     security: nix.thunk(() => ({
-      [nix.POS]: pos$17,
+      [nix.POS]: $pos[16],
       enableWrappers: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), false)),
     })),
     powerManagement: nix.thunk(() => ({
-      [nix.POS]: pos$18,
+      [nix.POS]: $pos[17],
       enable: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), false)),
     })),
     users: nix.thunk(() => ({
-      [nix.POS]: pos$19,
+      [nix.POS]: $pos[18],
       manageLingering: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), false)),
     })),
     services: nix.thunk(() => ({
-      [nix.POS]: pos$22,
+      [nix.POS]: $pos[21],
       lvm: nix.thunk(() => ({
-        [nix.POS]: pos$21,
-        resizeHelper: nix.thunk(() => ({ [nix.POS]: pos$20, enable: false })),
+        [nix.POS]: $pos[20],
+        resizeHelper: nix.thunk(() => ({ [nix.POS]: $pos[19], enable: false })),
       })),
     })),
   };

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["sha256", 18, 5]], [["description", 72, 5], ["longDescription", 73, 5], ["homepage", 82, 5], ["license", 83, 5], ["maintainers", 84, 5], ["mainProgram", 85, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["buildInputs", 21, 3], ["installPhase", 25, 3], ["meta", 71, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, perl: false, xterm: false, coreutils: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["sha256", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 72, 5], ["longDescription", 73, 5], ["homepage", 82, 5], ["license", 83, 5], ["maintainers", 84, 5], ["mainProgram", 85, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["buildInputs", 21, 3], ["installPhase", 25, 3], ["meta", 71, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const xterm = nix.arg($, "xterm");
   const coreutils = nix.arg($, "coreutils");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "tagtime",
       version: "2018-09-02",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "tagtime",
           repo: "TagTime",
           rev: "59343e2cbe451eb16109e782c194ccbd0ee4196d",
@@ -72,7 +70,7 @@ $logf = "$ENV{HOME}/.local/share/tagtime/pings.log";' \\
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Stochastic Time Tracking for Space Cadets",
         longDescription: "To determine how you spend your time, TagTime literally randomly samples\nyou. At random times it pops up and asks what you're doing right at that\nmoment. You answer with tags.\n\nSee https://messymatters.com/tagtime for the whole story.\n\n[maintainer’s note]: This is the original perl script implementation.\n",
         homepage: "https://messymatters.com/tagtime/",

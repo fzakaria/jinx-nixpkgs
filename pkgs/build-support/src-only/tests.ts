@@ -2,17 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/tests.nix", [[["passedAttrs", 25, 13]], [["passthru", 24, 11]], [["stdenv", 30, 42]], [["name", 52, 7], ["pname", 53, 7], ["version", 54, 7], ["src", 55, 7], ["patches", 56, 7]], [["name", 62, 7], ["pname", 63, 7], ["version", 64, 7], ["src", 65, 7], ["patches", 66, 7], ["stdenv", 67, 7]], [["name", 75, 9]], [["stdenv", 89, 15]], [["NIX_DEBUG", 100, 13]], [["name", 97, 9], ["src", 98, 9], ["env", 100, 9], ["__structuredAttrs", 101, 9]], [["moreTests", 114, 5]]]);
 const formals$1 = { args: { lib: false, runCommand: false, srcOnly: false, hello: false, emptyDirectory: false, zlib: false, git: false, withCFlags: false, stdenv: false, testers: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/tests.nix", [["passedAttrs", 25, 13]]);
-const pos$2 = nix.positions(here + "/tests.nix", [["passthru", 24, 11]]);
-const pos$3 = nix.positions(here + "/tests.nix", [["stdenv", 30, 42]]);
-const pos$4 = nix.positions(here + "/tests.nix", [["name", 52, 7], ["pname", 53, 7], ["version", 54, 7], ["src", 55, 7], ["patches", 56, 7]]);
-const pos$5 = nix.positions(here + "/tests.nix", [["name", 62, 7], ["pname", 63, 7], ["version", 64, 7], ["src", 65, 7], ["patches", 66, 7], ["stdenv", 67, 7]]);
-const pos$6 = nix.positions(here + "/tests.nix", [["name", 75, 9]]);
-const pos$7 = nix.positions(here + "/tests.nix", [["stdenv", 89, 15]]);
-const pos$8 = nix.positions(here + "/tests.nix", [["NIX_DEBUG", 100, 13]]);
-const pos$9 = nix.positions(here + "/tests.nix", [["name", 97, 9], ["src", 98, 9], ["env", 100, 9], ["__structuredAttrs", 101, 9]]);
-const pos$10 = nix.positions(here + "/tests.nix", [["moreTests", 114, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,10 +19,10 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const getEquivAttrs = (drv) => (() => {
     const drv$ = nix.thunk(() => nix.app(nix.sel(drv, "overrideAttrs"), (_finalAttrs) => (prevAttrs) => ({
-        [nix.POS]: pos$2,
-        passthru: nix.thunk(() => nix.update(nix.selOr(prevAttrs, () => ({}), "passthru"), { [nix.POS]: pos$1, passedAttrs: prevAttrs })),
+        [nix.POS]: $pos[1],
+        passthru: nix.thunk(() => nix.update(nix.selOr(prevAttrs, () => ({}), "passthru"), { [nix.POS]: $pos[0], passedAttrs: prevAttrs })),
       })));
-    return nix.update(nix.sel(drv$, "passedAttrs"), { [nix.POS]: pos$3, stdenv: nix.thunk(() => nix.attr(drv$, "stdenv")) });
+    return nix.update(nix.sel(drv$, "passedAttrs"), { [nix.POS]: $pos[2], stdenv: nix.thunk(() => nix.attr(drv$, "stdenv")) });
   })();
   const canEvalDrv = (drv) => nix.sel(nix.builtins.tryEval(nix.thunk(() => nix.sel(drv, "drvPath"))), "success");
   const emptySrc = nix.thunk(() => nix.app(srcOnly, emptyDirectory));
@@ -42,7 +33,7 @@ export default nix.lambda((args) => (() => {
   const gitSrc = nix.thunk(() => nix.app(srcOnly, git));
   const gitSrcEquiv = nix.thunk(() => nix.app(srcOnly, nix.thunk(() => nix.app(getEquivAttrs, git))));
   const helloDrvSimple = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       name: nix.thunk(() => nix.attr(hello, "name")),
       pname: nix.thunk(() => nix.attr(hello, "pname")),
       version: nix.thunk(() => nix.attr(hello, "version")),
@@ -51,7 +42,7 @@ export default nix.lambda((args) => (() => {
     }))));
   const helloDrvSimpleSrc = nix.thunk(() => nix.app(srcOnly, helloDrvSimple));
   const helloDrvSimpleSrcFreeform = nix.thunk(() => nix.app(srcOnly, nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       name: nix.thunk(() => nix.attr(helloDrvSimple, "name")),
       pname: nix.thunk(() => nix.attr(helloDrvSimple, "pname")),
       version: nix.thunk(() => nix.attr(helloDrvSimple, "version")),
@@ -60,18 +51,18 @@ export default nix.lambda((args) => (() => {
       stdenv: nix.thunk(() => nix.attr(helloDrvSimple, "stdenv")),
     }))));
   const stdenvAdapterDrv = nix.thunk(() => (() => {
-    const drv = nix.thunk(() => nix.app(nix.sel(nix.app(withCFlags, nix.thunk(() => ["-Werror", "-Wall"]), stdenv), "mkDerivation"), nix.thunk(() => ({ [nix.POS]: pos$6, name: "drv-using-stdenv-adapter" }))));
+    const drv = nix.thunk(() => nix.app(nix.sel(nix.app(withCFlags, nix.thunk(() => ["-Werror", "-Wall"]), stdenv), "mkDerivation"), nix.thunk(() => ({ [nix.POS]: $pos[5], name: "drv-using-stdenv-adapter" }))));
     nix.assert_(!nix.asBool(nix.app(canEvalDrv, nix.thunk(() => nix.app(srcOnly, nix.thunk(() => nix.sel(drv, "drvAttrs")))))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/build-support/src-only/tests.nix:79:5");
     return nix.force(drv);
   })());
   const stdenvAdapterDrvSrc = nix.thunk(() => nix.app(srcOnly, stdenvAdapterDrv));
-  const stdenvAdapterDrvSrcEquiv = nix.thunk(() => nix.app(srcOnly, nix.thunk(() => nix.update(nix.app(getEquivAttrs, stdenvAdapterDrv), { [nix.POS]: pos$7, stdenv: stdenv }))));
+  const stdenvAdapterDrvSrcEquiv = nix.thunk(() => nix.app(srcOnly, nix.thunk(() => nix.update(nix.app(getEquivAttrs, stdenvAdapterDrv), { [nix.POS]: $pos[6], stdenv: stdenv }))));
   const structuredAttrsDrv = nix.thunk(() => (() => {
     const drv = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         name: "drv-using-structured-attrs",
         src: emptyDirectory,
-        env: nix.thunk(() => ({ [nix.POS]: pos$8, NIX_DEBUG: true })),
+        env: nix.thunk(() => ({ [nix.POS]: $pos[7], NIX_DEBUG: true })),
         __structuredAttrs: true,
       }))));
     nix.assert_(!nix.asBool(nix.app(canEvalDrv, nix.thunk(() => nix.app(srcOnly, nix.thunk(() => nix.sel(drv, "drvAttrs")))))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/build-support/src-only/tests.nix:105:5");
@@ -80,7 +71,7 @@ export default nix.lambda((args) => (() => {
   const structuredAttrsDrvSrc = nix.thunk(() => nix.app(srcOnly, structuredAttrsDrv));
   const structuredAttrsDrvSrcEquiv = nix.thunk(() => nix.app(srcOnly, nix.thunk(() => nix.app(getEquivAttrs, structuredAttrsDrv))));
   return nix.app(runCommand, "srcOnly-tests", nix.thunk(() => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       moreTests: nix.thunk(() => [
         nix.thunk(() => nix.app(nix.sel(testers, "testEqualDerivation"), "zlibSrcEquiv == zlibSrc", zlibSrcEquiv, zlibSrc)),
         nix.thunk(() => nix.app(nix.sel(testers, "testEqualDerivation"), "helloSrcEquiv == helloSrc", helloSrcEquiv, helloSrc)),

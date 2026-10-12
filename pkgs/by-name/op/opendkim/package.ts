@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]], [["name", 32, 7], ["url", 33, 7], ["hash", 34, 7]], [["name", 38, 7], ["url", 39, 7], ["hash", 40, 7]], [["name", 44, 7], ["url", 45, 7], ["hash", 46, 7]], [["extraArgs", 77, 5]], [["updateScript", 76, 12]], [["description", 84, 5], ["homepage", 85, 5], ["license", 86, 5], ["platforms", 87, 5], ["mainProgram", 88, 5], ["maintainers", 89, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["patches", 29, 3], ["configureFlags", 50, 3], ["nativeBuildInputs", 57, 3], ["buildInputs", 63, 3], ["postInstall", 71, 3], ["passthru", 76, 3], ["meta", 83, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch: false, "nix-update-script": false, autoreconfHook: false, "pkg-config": false, makeWrapper: false, libbsd: false, libmilter: false, openssl: false, perl: false, unbound: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 32, 7], ["url", 33, 7], ["hash", 34, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 38, 7], ["url", 39, 7], ["hash", 40, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["name", 44, 7], ["url", 45, 7], ["hash", 46, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["extraArgs", 77, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["updateScript", 76, 12]]);
-const pos$7 = nix.positions(here + "/package.nix", [["description", 84, 5], ["homepage", 85, 5], ["license", 86, 5], ["platforms", 87, 5], ["mainProgram", 88, 5], ["maintainers", 89, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["patches", 29, 3], ["configureFlags", 50, 3], ["nativeBuildInputs", 57, 3], ["buildInputs", 63, 3], ["postInstall", 71, 3], ["passthru", 76, 3], ["meta", 83, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const perl = nix.arg($, "perl");
   const unbound = nix.arg($, "unbound");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "opendkim",
       version: "2.11.0-Beta2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "trusteddomainproject",
           repo: "OpenDKIM",
           tag: nix.thunk(() => nix.str`rel-opendkim-${nix.app(nix.sel(lib, "replaceString"), ".", "-", nix.thunk(() => nix.sel(finalAttrs, "version")))}`),
@@ -40,19 +33,19 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "CVE-2020-35766.patch",
             url: "https://github.com/trusteddomainproject/OpenDKIM/commit/520338d25af68cf263b97ba63037e3f5856a10da.patch",
             hash: "sha256-O4a4boa67tj0nqxee6V+u7rd3l3RGaiWE+Mu0ib4DWE=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "CVE-2022-48521.patch",
             url: "https://github.com/trusteddomainproject/OpenDKIM/commit/e67c33e1a08cca793470e6a6ff44082f73f6d222.patch",
             hash: "sha256-QtxiRM+/NDlQhfGB8XNX1M1PtQyXXarawoF+8pTTMVo=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             name: "fix-old-style-dkimf_base64_encode_file.patch",
             url: "https://github.com/trusteddomainproject/OpenDKIM/commit/3f0aa0a31c11b9924f826708535071b68c22b731.patch",
             hash: "sha256-nQCBGef2kjs9ZyHwPreNPQYW6jBOBTDhVq9RyeGSN/Y=",
@@ -69,14 +62,14 @@ export default nix.lambda((args) => (() => {
   --prefix PATH : ${nix.sel(openssl, "bin")}/bin
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             extraArgs: nix.thunk(() => ["--version=unstable", "--version-regex=rel-opendkim-(\\d+)-(\\d+)-(.*)"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "C library for producing DKIM-aware applications and an open source milter for providing DKIM service",
         homepage: "http://www.opendkim.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

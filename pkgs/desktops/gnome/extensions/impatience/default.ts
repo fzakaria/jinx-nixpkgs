@@ -2,11 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]], [["extensionUuid", 37, 5], ["extensionPortalSlug", 38, 5]], [["description", 42, 5], ["license", 43, 5], ["maintainers", 44, 5], ["homepage", 49, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["buildInputs", 19, 3], ["buildPhase", 23, 3], ["installPhase", 29, 3], ["passthru", 36, 3], ["meta", 41, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchFromGitHub: false, glib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["extensionUuid", 37, 5], ["extensionPortalSlug", 38, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 42, 5], ["license", 43, 5], ["maintainers", 44, 5], ["homepage", 49, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["buildInputs", 19, 3], ["buildPhase", 23, 3], ["installPhase", 29, 3], ["passthru", 36, 3], ["meta", 41, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const glib = nix.arg($, "glib");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "gnome-shell-extension-impatience",
       version: "0.5.3-unstable-2026-03-11",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "timbertson",
           repo: "gnome-shell-impatience",
           rev: "f3f145d33d88a46abcfd77f84665bc64b8c0e01c",
@@ -29,12 +26,12 @@ export default nix.lambda((args) => (() => {
       buildPhase: "runHook preBuild\nmake schemas\nrunHook postBuild\n",
       installPhase: "runHook preInstall\nmkdir -p $out/share/gnome-shell/extensions\ncp -r impatience \"$out/share/gnome-shell/extensions/impatience@gfxmonk.net\"\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         extensionUuid: "impatience@gfxmonk.net",
         extensionPortalSlug: "impatience",
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Speed up builtin gnome-shell animations",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
         maintainers: nix.thunk(() => (() => {

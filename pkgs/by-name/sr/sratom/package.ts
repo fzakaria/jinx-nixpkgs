@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 24, 5], ["hash", 25, 5]], [["updateScript", 51, 5]], [["homepage", 66, 5], ["description", 67, 5], ["license", 68, 5], ["maintainers", 69, 5], ["platforms", 70, 5]], [["pname", 15, 3], ["version", 16, 3], ["outputs", 18, 3], ["src", 23, 3], ["strictDeps", 28, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 36, 3], ["postPatch", 42, 3], ["mesonFlags", 46, 3], ["passthru", 50, 3], ["meta", 65, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, lv2: false, meson: false, ninja: false, "pkg-config": false, serd: false, sord: false, writeScript: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 51, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 66, 5], ["description", 67, 5], ["license", 68, 5], ["maintainers", 69, 5], ["platforms", 70, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["outputs", 18, 3], ["src", 23, 3], ["strictDeps", 28, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 36, 3], ["postPatch", 42, 3], ["mesonFlags", 46, 3], ["passthru", 50, 3], ["meta", 65, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.6.22";
       const outputs = nix.thunk(() => ["out", "dev"]);
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://download.drobilla.net/${pname}-${version}.tar.xz`),
           hash: "sha256-Agm30PIslqu0FnIu1zWwkzvkeTHs/0qksm3td2C08lI=",
         }))));
@@ -35,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const postPatch = "patchShebangs --build scripts/dox_to_sphinx.py\n";
       const mesonFlags = nix.thunk(() => ["-Ddocs=disabled"]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(writeScript, "update-sratom", nix.thunk(() => nix.str`#!/usr/bin/env nix-shell
 #!nix-shell -i bash -p curl pcre2 common-updater-scripts
 
@@ -49,7 +46,7 @@ update-source-version ${pname} "$new_version"
 `))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://drobilla.net/software/sratom",
         description: "Library for serialising LV2 atoms to/from RDF",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -57,7 +54,7 @@ update-source-version ${pname} "$new_version"
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         outputs,

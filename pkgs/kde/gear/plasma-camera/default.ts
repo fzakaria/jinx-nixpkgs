@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 10, 3], ["extraNativeBuildInputs", 12, 3], ["extraBuildInputs", 14, 3]]]);
 const formals$1 = { args: { mkKdeDerivation: false, "pkg-config": false, qtmultimedia: false, qtsensors: false, exiv2: false, libcamera: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 10, 3], ["extraNativeBuildInputs", 12, 3], ["extraBuildInputs", 14, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const exiv2 = nix.arg($, "exiv2");
   const libcamera = nix.arg($, "libcamera");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       pname: "plasma-camera",
       extraNativeBuildInputs: nix.thunk(() => [pkg_config]),
       extraBuildInputs: nix.thunk(() => [qtmultimedia, qtsensors, exiv2, libcamera]),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["urls", 25, 5], ["sha256", 29, 5]], [["homepage", 70, 5], ["description", 71, 5], ["longDescription", 72, 5], ["license", 83, 5], ["platforms", 87, 5], ["maintainers", 88, 5]], [["pname", 17, 3], ["version", 18, 11], ["__structuredAttrs", 20, 3], ["strictDeps", 21, 3], ["src", 23, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 39, 3], ["unpackPhase", 45, 3], ["preConfigure", 56, 3], ["postInstall", 60, 3], ["meta", 69, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, rpmextract: false, autoreconfHook: false, autoPatchelfHook: false, file: false, libjpeg: false, cups: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["urls", 25, 5], ["sha256", 29, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 70, 5], ["description", 71, 5], ["longDescription", 72, 5], ["license", 83, 5], ["platforms", 87, 5], ["maintainers", 88, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 11], ["__structuredAttrs", 20, 3], ["strictDeps", 21, 3], ["src", 23, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 39, 3], ["unpackPhase", 45, 3], ["preConfigure", 56, 3], ["postInstall", 60, 3], ["meta", 69, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,13 +18,13 @@ export default nix.lambda((args) => (() => {
   const cups = nix.arg($, "cups");
   const version = "1.0.2";
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "epson-202101w",
       version: version,
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           urls: nix.thunk(() => [
             "https://download3.ebz.epson.net/dsc/f/03/00/15/15/02/f5cba2761f2f501363cdbf7e1b9b9879b0715aa5/epson-inkjet-printer-202101w-1.0.2-1.src.rpm",
             "https://web.archive.org/web/20250609030209if_/https://download3.ebz.epson.net/dsc/f/03/00/15/15/02/f5cba2761f2f501363cdbf7e1b9b9879b0715aa5/epson-inkjet-printer-202101w-1.0.2-1.src.rpm",
@@ -57,7 +55,7 @@ cp -a Manual.txt $out/doc/
 cp -a README $out/doc/README.driver
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://www.openprinting.org/driver/epson-202101w",
         description: "Epson printer driver (L1210, L1250, L3200, L3210)",
         longDescription: "This software is a filter program used with the Common UNIX Printing\nSystem (CUPS) under Linux. It supplies high quality printing with\nSeiko Epson Color Ink Jet Printers.\n\nTo use the driver adjust your configuration.nix file:\n  services.printing = {\n    enable = true;\n    drivers = [ pkgs.epson-202101w ];\n  };\n",

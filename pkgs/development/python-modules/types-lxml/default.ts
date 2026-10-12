@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]], [["mypy", 45, 5], ["pyright", 46, 5]], [["description", 88, 5], ["homepage", 89, 5], ["changelog", 90, 5], ["license", 91, 5], ["maintainers", 92, 5]], [["pname", 22, 3], ["version", 23, 3], ["pyproject", 24, 3], ["src", 26, 3], ["pythonRelaxDeps", 33, 3], ["build-system", 35, 3], ["dependencies", 37, 3], ["optional-dependencies", 44, 3], ["nativeCheckInputs", 49, 3], ["pythonImportsCheck", 61, 3], ["preCheck", 64, 3], ["disabledTests", 73, 3], ["meta", 87, 3]]]);
 const formals$1 = { args: { lib: false, beautifulsoup4: false, buildPythonPackage: false, cssselect: false, fetchFromGitHub: false, html5lib: false, hypothesis: false, lxml: false, mypy: false, "pdm-backend": false, pook: false, pyright: false, pytestCheckHook: false, typeguard: false, "types-html5lib": false, "typing-extensions": false, urllib3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["mypy", 45, 5], ["pyright", 46, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 88, 5], ["homepage", 89, 5], ["changelog", 90, 5], ["license", 91, 5], ["maintainers", 92, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 22, 3], ["version", 23, 3], ["pyproject", 24, 3], ["src", 26, 3], ["pythonRelaxDeps", 33, 3], ["build-system", 35, 3], ["dependencies", 37, 3], ["optional-dependencies", 44, 3], ["nativeCheckInputs", 49, 3], ["pythonImportsCheck", 61, 3], ["preCheck", 64, 3], ["disabledTests", 73, 3], ["meta", 87, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,12 +25,12 @@ export default nix.lambda((args) => (() => {
   const typing_extensions = nix.arg($, "typing-extensions");
   const urllib3 = nix.arg($, "urllib3");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "types-lxml",
       version: "2026.01.01",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "abelcheung",
           repo: "types-lxml",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -43,7 +40,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [pdm_backend]),
       dependencies: nix.thunk(() => [cssselect, beautifulsoup4, types_html5lib, typing_extensions]),
       "optional-dependencies": nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         mypy: nix.thunk(() => [mypy]),
         pyright: nix.thunk(() => [pyright]),
       })),
@@ -71,7 +68,7 @@ export default nix.lambda((args) => (() => {
         "test_index_arg_bad_1",
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Complete lxml external type annotation",
         homepage: "https://github.com/abelcheung/types-lxml",
         changelog: nix.thunk(() => nix.str`https://github.com/abelcheung/types-lxml/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

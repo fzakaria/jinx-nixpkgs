@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["package", 18, 5], ["version", 21, 5]], [["tests", 17, 12]], [["description", 25, 5], ["mainProgram", 26, 5], ["homepage", 27, 5], ["changelog", 28, 5], ["license", 29, 5], ["platforms", 30, 5], ["maintainers", 31, 5]], [["pname", 9, 3], ["version", 10, 3], ["nugetHash", 12, 3], ["dotnet-sdk", 14, 3], ["dotnet-runtime", 15, 3], ["passthru", 17, 3], ["meta", 24, 3]]]);
 const formals$1 = { args: { buildDotnetGlobalTool: false, dotnetCorePackages: false, lib: false, testers: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["package", 18, 5], ["version", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["tests", 17, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 25, 5], ["mainProgram", 26, 5], ["homepage", 27, 5], ["changelog", 28, 5], ["license", 29, 5], ["platforms", 30, 5], ["maintainers", 31, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["nugetHash", 12, 3], ["dotnet-sdk", 14, 3], ["dotnet-runtime", 15, 3], ["passthru", 17, 3], ["meta", 24, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,22 +12,22 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const testers = nix.arg($, "testers");
   return nix.app(buildDotnetGlobalTool, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "fable",
       version: "5.18.0",
       nugetHash: "sha256-zaa7UJnn5IM7fhGUBmogRUDe/2rpH79UR+k6dym7kmQ=",
       "dotnet-sdk": nix.thunk(() => nix.sel(dotnetCorePackages, "sdk_10_0")),
       "dotnet-runtime": nix.thunk(() => nix.sel(dotnetCorePackages, "runtime_10_0")),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         tests: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             version: nix.thunk(() => nix.str`[37m${nix.sel(finalAttrs, "version")}`),
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "F# to JavaScript compiler",
         mainProgram: "fable",
         homepage: "https://github.com/fable-compiler/Fable",

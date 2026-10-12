@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 28, 5], ["repo", 29, 5], ["rev", 30, 5], ["hash", 31, 5]], [["description", 71, 5], ["homepage", 72, 5], ["changelog", 73, 5], ["maintainers", 74, 5], ["license", 75, 5]], [["pname", 23, 3], ["version", 24, 3], ["pyproject", 25, 3], ["src", 27, 3], ["build-system", 34, 3], ["dependencies", 36, 3], ["nativeCheckInputs", 52, 3], ["pythonImportsCheck", 56, 3], ["disabledTests", 58, 3], ["disabledTestPaths", 64, 3], ["meta", 70, 3]]]);
 const formals$1 = { args: { "absl-py": false, buildPythonPackage: false, chex: false, "dm-env": false, "dm-tree": false, fetchFromGitHub: false, flax: false, immutabledict: false, jax: false, lib: false, matplotlib: false, mediapy: false, numpy: false, pillow: false, pytestCheckHook: false, setuptools: false, tensorflow: false, tqdm: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 28, 5], ["repo", 29, 5], ["rev", 30, 5], ["hash", 31, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 71, 5], ["homepage", 72, 5], ["changelog", 73, 5], ["maintainers", 74, 5], ["license", 75, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 23, 3], ["version", 24, 3], ["pyproject", 25, 3], ["src", 27, 3], ["build-system", 34, 3], ["dependencies", 36, 3], ["nativeCheckInputs", 52, 3], ["pythonImportsCheck", 56, 3], ["disabledTests", 58, 3], ["disabledTestPaths", 64, 3], ["meta", 70, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,12 +26,12 @@ export default nix.lambda((args) => (() => {
   const tensorflow = nix.arg($, "tensorflow");
   const tqdm = nix.arg($, "tqdm");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "waymax",
       version: "0-unstable-2025-05-30",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "waymo-research",
           repo: "waymax",
           rev: "48b33d71aac20a22db7d25f2d3220596899d944a",
@@ -63,7 +61,7 @@ export default nix.lambda((args) => (() => {
       ]),
       disabledTestPaths: nix.thunk(() => ["waymax/visualization/viz_test.py"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "JAX-based simulator for autonomous driving research",
         homepage: "https://github.com/waymo-research/waymax",
         changelog: "https://github.com/waymo-research/waymax/blob/main/CHANGELOG.md",

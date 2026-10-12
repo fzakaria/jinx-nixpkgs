@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 17, 5], ["hash", 18, 5]], [["nemoPythonExtensionDeps", 47, 12]], [["homepage", 50, 5], ["description", 51, 5], ["license", 52, 5], ["platforms", 53, 5], ["teams", 54, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 21, 3], ["postPatch", 26, 3], ["installPhase", 36, 3], ["passthru", 47, 3], ["meta", 49, 3]]]);
 const formals$1 = { args: { stdenvNoCC: false, lib: false, fetchFromGitHub: false, gettext: false, python3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["nemoPythonExtensionDeps", 47, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 50, 5], ["description", 51, 5], ["license", 52, 5], ["platforms", 53, 5], ["teams", 54, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 21, 3], ["postPatch", 26, 3], ["installPhase", 36, 3], ["passthru", 47, 3], ["meta", 49, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const gettext = nix.arg($, "gettext");
   const python3 = nix.arg($, "python3");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "folder-color-switcher",
       version: "1.7.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "linuxmint",
           repo: "folder-color-switcher",
           rev: "856f6f27dfa48ee1ac8d7ec40333e3f892458067",
@@ -30,11 +27,11 @@ export default nix.lambda((args) => (() => {
       postPatch: "substituteInPlace usr/share/nemo-python/extensions/nemo-folder-color-switcher.py \\\n  --replace \"/usr/share/locale\" \"$out/share/locale\" \\\n  --replace \"/usr/share/folder-color-switcher/colors.d\" \"/run/current-system/sw/share/folder-color-switcher/colors.d\" \\\n  --replace \"/usr/share/folder-color-switcher/color.svg\" \"$out/share/folder-color-switcher/color.svg\"\n\nsubstituteInPlace usr/share/caja-python/extensions/caja-folder-color-switcher.py \\\n  --replace \"/usr/share/folder-color-switcher/colors.d\" \"/run/current-system/sw/share/folder-color-switcher/colors.d\"\n",
       installPhase: "runHook preInstall\n\nmkdir -p $out\nmv usr/share $out\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         nemoPythonExtensionDeps: nix.thunk(() => [nix.thunk(() => nix.sel(python3, "pkgs", "pycairo"))]),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/linuxmint/folder-color-switcher",
         description: "Change folder colors for Nemo and Caja",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

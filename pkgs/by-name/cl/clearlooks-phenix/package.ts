@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 12, 5], ["sha256", 13, 5]], [["description", 25, 5], ["longDescription", 26, 5], ["homepage", 31, 5], ["downloadPage", 32, 5], ["license", 33, 5], ["maintainers", 34, 5], ["platforms", 35, 5]], [["version", 8, 3], ["pname", 9, 3], ["src", 11, 3], ["dontBuild", 16, 3], ["installPhase", 17, 3], ["preferLocalBuild", 22, 3], ["meta", 24, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchzip: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 12, 5], ["sha256", 13, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 25, 5], ["longDescription", 26, 5], ["homepage", 31, 5], ["downloadPage", 32, 5], ["license", 33, 5], ["maintainers", 34, 5], ["platforms", 35, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 8, 3], ["pname", 9, 3], ["src", 11, 3], ["dontBuild", 16, 3], ["installPhase", 17, 3], ["preferLocalBuild", 22, 3], ["meta", 24, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,11 +11,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchzip = nix.arg($, "fetchzip");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       version: "7.1",
       pname: "clearlooks-phenix",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/jpfleury/clearlooks-phenix/archive/${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "sha256-UJgKPoNcpBkIxITAIn3INsANJn/hD8l9NCr/entbZx8=",
         })))),
@@ -25,7 +23,7 @@ export default nix.lambda((args) => (() => {
       installPhase: "mkdir -p $out/share/themes/Clearlooks-Phenix\ncp -r . $out/share/themes/Clearlooks-Phenix/\n",
       preferLocalBuild: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "GTK3 port of the Clearlooks theme",
         longDescription: "The Clearlooks-Phénix project aims at creating a GTK3 port of Clearlooks,\nthe default theme for Gnome 2. Style is also included for GTK2, Unity and\nfor Metacity, Openbox and Xfwm4 window managers.\n",
         homepage: "https://github.com/jpfleury/clearlooks-phenix",

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 20, 5], ["hash", 21, 5]], [["description", 38, 5], ["homepage", 39, 5], ["maintainers", 40, 5], ["license", 41, 5]], [["version", 15, 11], ["pname", 17, 3], ["src", 19, 3], ["propagatedBuildInputs", 24, 3], ["doCheck", 32, 3], ["checkInputs", 33, 3], ["meta", 37, 3]]]);
 const formals$1 = { args: { lib: false, buildDunePackage: false, fetchurl: false, angstrom: false, base64: false, bstr: false, faraday: false, "httpun-types": false, alcotest: false, version: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 38, 5], ["homepage", 39, 5], ["maintainers", 40, 5], ["license", 41, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["version", 15, 11], ["pname", 17, 3], ["src", 19, 3], ["propagatedBuildInputs", 24, 3], ["doCheck", 32, 3], ["checkInputs", 33, 3], ["meta", 37, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const alcotest = nix.arg($, "alcotest");
   const version = nix.argOr($, "version", () => "1.1.1");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       version: version,
       pname: "h1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/robur-coop/ocaml-h1/releases/download/v${version}/h1-${version}.tbz`),
           hash: "sha256-K3hsBXZmlZqeBm8O58uEmvjknJX1UIRf+fG0gLzI4Zo=",
         })))),
@@ -32,7 +30,7 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       checkInputs: nix.thunk(() => [alcotest]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "High-performance, memory-efficient, and scalable web server for OCaml",
         homepage: "https://github.com/robur-coop/ocaml-h1",
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "vbgl"))]),

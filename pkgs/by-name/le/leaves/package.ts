@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]], [["extraArgs", 26, 5]], [["updateScript", 25, 12]], [["type", 51, 9], ["spec", 52, 9]], [["cpeParts", 49, 7], ["purlParts", 50, 7]], [["mainProgram", 33, 5], ["description", 34, 5], ["longDescription", 35, 5], ["homepage", 43, 5], ["downloadPage", 44, 5], ["changelog", 45, 5], ["license", 46, 5], ["sourceProvenance", 47, 5], ["identifiers", 48, 5], ["platforms", 55, 5], ["maintainers", 56, 5]], [["pname", 10, 3], ["version", 11, 3], ["__structuredAttrs", 12, 3], ["src", 14, 3], ["cargoHash", 21, 3], ["nativeInstallCheckInputs", 23, 3], ["doInstallCheck", 24, 3], ["passthru", 25, 3], ["meta", 32, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchFromGitHub: false, "nix-update-script": false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["extraArgs", 26, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 25, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["type", 51, 9], ["spec", 52, 9]]);
-const pos$5 = nix.positions(here + "/package.nix", [["cpeParts", 49, 7], ["purlParts", 50, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["mainProgram", 33, 5], ["description", 34, 5], ["longDescription", 35, 5], ["homepage", 43, 5], ["downloadPage", 44, 5], ["changelog", 45, 5], ["license", 46, 5], ["sourceProvenance", 47, 5], ["identifiers", 48, 5], ["platforms", 55, 5], ["maintainers", 56, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["__structuredAttrs", 12, 3], ["src", 14, 3], ["cargoHash", 21, 3], ["nativeInstallCheckInputs", 23, 3], ["doInstallCheck", 24, 3], ["passthru", 25, 3], ["meta", 32, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "leaves",
       version: "0.2.0",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "patonw",
           repo: "leaves",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,14 +28,14 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             extraArgs: nix.thunk(() => ["--version-regex", "^v([0-9.]+)$"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         mainProgram: "leaves",
         description: "A text-mode disk usage visualization utility",
         longDescription: "Leaves is a disk usage analyzer inspired by WinDirStat and QDirStat.\n\nIt shows files and directories in a hierarchy of nested rectangles.\nThe area of a rectangle is proportional to its size.\nA 200 MB file will have twice the size as a sibling with 100 MB.\nThe parent directory will have about 3 times the area of the smaller file.\n",
@@ -54,10 +48,10 @@ export default nix.lambda((args) => (() => {
           return [nix.thunk(() => nix.lookup(w, "fromSource"))];
         })()),
         identifiers: nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           cpeParts: nix.thunk(() => nix.app(nix.sel(lib, "meta", "cpeFullVersionWithVendor"), "patonw", nix.thunk(() => nix.sel(finalAttrs, "version")))),
           purlParts: nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             type: "github",
             spec: nix.thunk(() => nix.str`patonw/leaves@v${nix.sel(finalAttrs, "version")}`),
           })),

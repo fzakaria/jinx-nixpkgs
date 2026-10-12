@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]], [["url", 33, 7], ["includes", 34, 7], ["hash", 35, 7]], [["description", 64, 5], ["homepage", 65, 5], ["changelog", 66, 5], ["license", 67, 5], ["maintainers", 68, 5]], [["pname", 19, 3], ["version", 20, 3], ["pyproject", 21, 3], ["src", 23, 3], ["patches", 30, 3], ["build-system", 39, 3], ["dependencies", 41, 3], ["nativeCheckInputs", 48, 3], ["disabledTestPaths", 56, 3], ["pythonImportsCheck", 61, 3], ["meta", 63, 3]]]);
 const formals$1 = { args: { lib: false, "betamax-matchers": false, "betamax-serializers": false, betamax: false, buildPythonPackage: false, fetchFromGitHub: false, fetchpatch: false, "flit-core": false, mock: false, prawcore: false, pytestCheckHook: false, "requests-toolbelt": false, "update-checker": false, "websocket-client": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["url", 33, 7], ["includes", 34, 7], ["hash", 35, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 64, 5], ["homepage", 65, 5], ["changelog", 66, 5], ["license", 67, 5], ["maintainers", 68, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 19, 3], ["version", 20, 3], ["pyproject", 21, 3], ["src", 23, 3], ["patches", 30, 3], ["build-system", 39, 3], ["dependencies", 41, 3], ["nativeCheckInputs", 48, 3], ["disabledTestPaths", 56, 3], ["pythonImportsCheck", 61, 3], ["meta", 63, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,12 +22,12 @@ export default nix.lambda((args) => (() => {
   const update_checker = nix.arg($, "update-checker");
   const websocket_client = nix.arg($, "websocket-client");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "praw",
       version: "7.8.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "praw-dev",
           repo: "praw",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,7 +35,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/praw-dev/praw/commit/9edc0bfa62c1878c395d8bc225edfe87e4fc4cd4.patch",
             includes: nix.thunk(() => ["tests/unit/test_reddit.py"]),
             hash: "sha256-QozdHz8WPCsuBgFgx1j0NwFsPFBmq9KhKiW7B5/QmfE=",
@@ -56,7 +53,7 @@ export default nix.lambda((args) => (() => {
       disabledTestPaths: nix.thunk(() => ["tests/integration"]),
       pythonImportsCheck: nix.thunk(() => ["praw"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Python Reddit API wrapper",
         homepage: "https://praw.readthedocs.org/",
         changelog: nix.thunk(() => nix.str`https://github.com/praw-dev/praw/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGES.rst`),

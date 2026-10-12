@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["urls", 17, 5], ["hash", 21, 5]], [["description", 56, 5], ["maintainers", 57, 5], ["hydraPlatforms", 63, 5], ["platforms", 64, 5], ["sourceProvenance", 65, 5], ["license", 66, 5], ["homepage", 67, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 28, 3], ["installPhase", 34, 3], ["meta", 55, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, "swi-prolog": false, tcsh: false, perl: false, patchelf: false, curl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["urls", 17, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 56, 5], ["maintainers", 57, 5], ["hydraPlatforms", 63, 5], ["platforms", 64, 5], ["sourceProvenance", 65, 5], ["license", 66, 5], ["homepage", 67, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 28, 3], ["installPhase", 34, 3], ["meta", 55, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = "TPTP";
       const version = "9.1.0";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           urls: nix.thunk(() => [
             nix.thunk(() => nix.str`https://tptp.org/TPTP/Distribution/TPTP-v${version}.tgz`),
             nix.thunk(() => nix.str`https://tptp.org/TPTP/Archive/TPTP-v${version}.tgz`),
@@ -50,7 +48,7 @@ ln -s $sharedir/Scripts/tptp2T $out/bin
 ln -s $sharedir/Scripts/tptp4X $out/bin
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Thousands of problems for theorem provers and tools",
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -66,7 +64,7 @@ ln -s $sharedir/Scripts/tptp4X $out/bin
         homepage: "https://tptp.org/TPTP/",
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

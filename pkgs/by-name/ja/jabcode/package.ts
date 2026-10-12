@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["library", 13, 5], ["reader", 14, 5], ["writer", 15, 5]], [["repo", 22, 5], ["owner", 23, 5], ["rev", 24, 5], ["hash", 25, 5]], [["description", 57, 5], ["longDescription", 58, 5], ["homepage", 59, 5], ["license", 60, 5], ["maintainers", 61, 5], ["platforms", 62, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 21, 3], ["nativeBuildInputs", 28, 3], ["postPatch", 35, 3], ["preConfigure", 42, 3], ["installPhase", 44, 3], ["meta", 56, 3]]]);
 const formals$1 = { args: { stdenv: false, fetchFromGitHub: false, lib: false, subproject: true, zlib: false, libpng: false, libtiff: false, jabcode: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["library", 13, 5], ["reader", 14, 5], ["writer", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["repo", 22, 5], ["owner", 23, 5], ["rev", 24, 5], ["hash", 25, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 57, 5], ["longDescription", 58, 5], ["homepage", 59, 5], ["license", 60, 5], ["maintainers", 61, 5], ["platforms", 62, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 21, 3], ["nativeBuildInputs", 28, 3], ["postPatch", 35, 3], ["preConfigure", 42, 3], ["installPhase", 44, 3], ["meta", 56, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,17 +16,17 @@ export default nix.lambda((args) => (() => {
   const libtiff = nix.arg($, "libtiff");
   const jabcode = nix.arg($, "jabcode");
   const subdir = nix.thunk(() => nix.app(nix.sel(lib, "getAttr"), subproject, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       library: "jabcode",
       reader: "jabcodeReader",
       writer: "jabcodeWriter",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: nix.thunk(() => nix.str`jabcode-${subproject}`),
       version: "0-unstable-2022-06-17",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           repo: "jabcode",
           owner: "jabcode",
           rev: "ee0e4c88b9f3c1da46d6f679ee8b69c547907c20",
@@ -40,7 +37,7 @@ export default nix.lambda((args) => (() => {
       preConfigure: nix.thunk(() => nix.str`cd src/${subdir}`),
       installPhase: nix.thunk(() => (nix.asBool(nix.eq(subproject, "library")) ? "mkdir -p $out/lib\ncp build/* $out/lib\n" : "mkdir -p $out/bin\ncp -RT bin $out/bin\n")),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: nix.thunk(() => nix.str`High-capacity 2D color bar code (${subproject})`),
         longDescription: nix.thunk(() => nix.str`JAB Code (Just Another Bar Code) is a high-capacity 2D color bar code, which can encode more data than traditional black/white (QR) codes. This is the ${subproject} part.`),
         homepage: "https://jabcode.org/",

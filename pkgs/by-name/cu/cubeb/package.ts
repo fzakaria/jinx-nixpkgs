@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 30, 5], ["repo", 31, 5], ["rev", 32, 5], ["hash", 33, 5]], [["hardcodeZeroVersion", 69, 41]], [["pkg-config", 70, 11]], [["updateScript", 69, 5], ["tests", 70, 5]], [["description", 74, 5], ["mainProgram", 75, 5], ["homepage", 76, 5], ["license", 77, 5], ["platforms", 78, 5], ["maintainers", 79, 5], ["pkgConfigModules", 83, 5]], [["pname", 26, 3], ["version", 27, 3], ["src", 29, 3], ["outputs", 36, 3], ["nativeBuildInputs", 42, 3], ["buildInputs", 48, 3], ["cmakeFlags", 58, 3], ["passthru", 68, 3], ["meta", 73, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, unstableGitUpdater: false, cmake: false, "pkg-config": false, "alsa-lib": false, jack2: false, libpulseaudio: false, sndio: false, speexdsp: false, validatePkgConfig: false, testers: false, alsaSupport: true, pulseSupport: true, jackSupport: true, sndioSupport: true, enableShared: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 30, 5], ["repo", 31, 5], ["rev", 32, 5], ["hash", 33, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["hardcodeZeroVersion", 69, 41]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pkg-config", 70, 11]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 69, 5], ["tests", 70, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 74, 5], ["mainProgram", 75, 5], ["homepage", 76, 5], ["license", 77, 5], ["platforms", 78, 5], ["maintainers", 79, 5], ["pkgConfigModules", 83, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 26, 3], ["version", 27, 3], ["src", 29, 3], ["outputs", 36, 3], ["nativeBuildInputs", 42, 3], ["buildInputs", 48, 3], ["cmakeFlags", 58, 3], ["passthru", 68, 3], ["meta", 73, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const sndioSupport = nix.argOr($, "sndioSupport", () => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")));
   const enableShared = nix.argOr($, "enableShared", () => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isStatic")));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "cubeb",
       version: "0-unstable-2026-09-16",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "mozilla",
           repo: "cubeb",
           rev: "e13d9c8855d42bebcd52e69f296404ff437dcdf5",
@@ -52,15 +47,15 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "LAZY_LOAD_LIBS", false)),
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, hardcodeZeroVersion: true })))),
+        [nix.POS]: $pos[3],
+        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[1], hardcodeZeroVersion: true })))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "testMetaPkgConfig"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Cross platform audio library",
         mainProgram: "cubeb-test",
         homepage: "https://github.com/mozilla/cubeb",

@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["GO_XGETTEXT", 21, 7], ["MOCKERY", 23, 7], ["PIGEON", 24, 7], ["PROTOC_GO_INJECT_TAG", 25, 7]], [["owner", 34, 5], ["repo", 35, 5], ["tag", 36, 5], ["hash", 37, 5]], [["STRING", 99, 5], ["VERSION", 100, 5], ["AUTOMEMLIMIT", 102, 5]], [["opencloud", 110, 36]], [["web", 108, 5], ["idp-web", 109, 5], ["tests", 110, 5], ["updateScript", 111, 5]], [["description", 119, 5], ["homepage", 120, 5], ["changelog", 121, 5], ["license", 122, 5], ["maintainers", 123, 5], ["mainProgram", 127, 5]], [["pname", 30, 3], ["version", 31, 3], ["src", 33, 3], ["postPatch", 40, 3], ["vendorHash", 55, 3], ["preConfigure", 57, 3], ["ldflags", 62, 3], ["tags", 73, 3], ["nativeBuildInputs", 75, 3], ["buildInputs", 83, 3], ["preCheck", 90, 3], ["__darwinAllowLocalNetworking", 95, 3], ["env", 97, 3], ["excludedPackages", 105, 3], ["passthru", 107, 3], ["doInstallCheck", 114, 3], ["nativeInstallCheckInputs", 115, 3], ["versionCheckProgramArg", 116, 3], ["meta", 118, 3]]]);
 const formals$1 = { args: { lib: false, callPackage: false, buildGoModule: false, fetchFromGitHub: false, ncurses: false, gettext: false, pigeon: false, "protoc-go-inject-tag": false, libxcrypt: false, vips: false, "pkg-config": false, nixosTests: false, "nix-update-script": false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["GO_XGETTEXT", 21, 7], ["MOCKERY", 23, 7], ["PIGEON", 24, 7], ["PROTOC_GO_INJECT_TAG", 25, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 34, 5], ["repo", 35, 5], ["tag", 36, 5], ["hash", 37, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["STRING", 99, 5], ["VERSION", 100, 5], ["AUTOMEMLIMIT", 102, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["opencloud", 110, 36]]);
-const pos$5 = nix.positions(here + "/package.nix", [["web", 108, 5], ["idp-web", 109, 5], ["tests", 110, 5], ["updateScript", 111, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 119, 5], ["homepage", 120, 5], ["changelog", 121, 5], ["license", 122, 5], ["maintainers", 123, 5], ["mainProgram", 127, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 30, 3], ["version", 31, 3], ["src", 33, 3], ["postPatch", 40, 3], ["vendorHash", 55, 3], ["preConfigure", 57, 3], ["ldflags", 62, 3], ["tags", 73, 3], ["nativeBuildInputs", 75, 3], ["buildInputs", 83, 3], ["preCheck", 90, 3], ["__darwinAllowLocalNetworking", 95, 3], ["env", 97, 3], ["excludedPackages", 105, 3], ["passthru", 107, 3], ["doInstallCheck", 114, 3], ["nativeInstallCheckInputs", 115, 3], ["versionCheckProgramArg", 116, 3], ["meta", 118, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,18 +23,18 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const bingoBinsMakefile = nix.thunk(() => nix.builtins.concatStringsSep("\n", nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (n) => (v) => nix.str`${n} := ${v}
 \\$(${n}):`, nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         GO_XGETTEXT: "xgettext",
         MOCKERY: "true",
         PIGEON: "pigeon",
         PROTOC_GO_INJECT_TAG: "protoc-go-inject-tag",
       }))))));
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "opencloud",
       version: "7.5.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "opencloud-eu",
           repo: "opencloud",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -77,18 +71,18 @@ sed -i -e '/\\$(BINGO) get/d' -e '/\\$(BUF) generate/d' .make/protobuf.mk
       preCheck: "rm services/search/pkg/opensearch/*_test.go\n",
       __darwinAllowLocalNetworking: true,
       env: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         STRING: nix.thunk(() => nix.sel(finalAttrs, "version")),
         VERSION: nix.thunk(() => nix.sel(finalAttrs, "version")),
         AUTOMEMLIMIT: "off",
       })),
       excludedPackages: nix.thunk(() => ["tests/*"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         web: nix.thunk(() => nix.app(callPackage, nix.path(here, "./web.nix"), nix.thunk(() => ({})))),
         "idp-web": nix.thunk(() => nix.app(callPackage, nix.path(here, "./idp-web.nix"), nix.thunk(() => ({})))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           opencloud: nix.thunk(() => nix.attr(nixosTests, "opencloud")),
         })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
@@ -97,7 +91,7 @@ sed -i -e '/\\$(BINGO) get/d' -e '/\\$(BUF) generate/d' .make/protobuf.mk
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       versionCheckProgramArg: nix.thunk(() => ["version"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "OpenCloud gives you a secure and private way to store, access, and share your files",
         homepage: "https://github.com/opencloud-eu/opencloud",
         changelog: nix.thunk(() => nix.str`https://github.com/opencloud-eu/opencloud/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

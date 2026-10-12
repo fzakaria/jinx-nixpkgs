@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/ck4inductor.nix", [[["description", 38, 5], ["homepage", 39, 5], ["license", 40, 5], ["teams", 41, 5], ["platforms", 42, 5]], [["pyproject", 11, 3], ["pname", 12, 3], ["build-system", 13, 3], ["version", 17, 31], ["src", 17, 39], ["sourceRoot", 17, 43], ["dontCheckPythonMetadata", 19, 3], ["pythonImportsCheck", 20, 3], ["propagatedBuildInputs", 26, 3], ["checkPhase", 31, 3], ["meta", 37, 3]]]);
 const formals$1 = { args: { buildPythonPackage: false, python: false, composable_kernel: false, lib: false, "rocm-toolchain": false, setuptools: false, "setuptools-scm": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/ck4inductor.nix", [["description", 38, 5], ["homepage", 39, 5], ["license", 40, 5], ["teams", 41, 5], ["platforms", 42, 5]]);
-const pos$2 = nix.positions(here + "/ck4inductor.nix", [["pyproject", 11, 3], ["pname", 12, 3], ["build-system", 13, 3], ["version", 17, 31], ["src", 17, 39], ["sourceRoot", 17, 43], ["dontCheckPythonMetadata", 19, 3], ["pythonImportsCheck", 20, 3], ["propagatedBuildInputs", 26, 3], ["checkPhase", 31, 3], ["meta", 37, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const setuptools = nix.arg($, "setuptools");
   const setuptools_scm = nix.arg($, "setuptools-scm");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pyproject: true,
       pname: "ck4inductor",
       "build-system": nix.thunk(() => [setuptools, setuptools_scm]),
@@ -37,7 +36,7 @@ export default nix.lambda((args) => (() => {
 fi
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Pytorch inductor backend which uses composable_kernel universal GEMM implementations",
         homepage: "https://github.com/ROCm/rocm-libraries/tree/develop/projects/composablekernel",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

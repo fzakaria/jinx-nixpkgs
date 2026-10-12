@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 38, 5], ["repo", 39, 5], ["tag", 40, 5], ["fetchSubmodules", 41, 5], ["hash", 42, 5]], [["description", 85, 5], ["homepage", 86, 5], ["changelog", 87, 5], ["license", 88, 5], ["maintainers", 89, 5]], [["pname", 32, 3], ["version", 33, 3], ["pyproject", 34, 3], ["__structuredAttrs", 35, 3], ["src", 37, 3], ["nativeBuildInputs", 45, 3], ["dontUseCmakeConfigure", 47, 3], ["build-system", 49, 3], ["buildInputs", 57, 3], ["dependencies", 59, 3], ["nativeCheckInputs", 61, 3], ["pytestFlags", 69, 3], ["disabledTests", 71, 3], ["pythonImportsCheck", 82, 3], ["meta", 84, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitHub: false, cmake: false, pybind11: false, nanobind: false, ninja: false, "scikit-build-core": false, "setuptools-scm": false, boost: false, numpy: false, pytestCheckHook: false, "pytest-benchmark": false, "pytest-xdist": false, cloudpickle: false, hypothesis: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 38, 5], ["repo", 39, 5], ["tag", 40, 5], ["fetchSubmodules", 41, 5], ["hash", 42, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 85, 5], ["homepage", 86, 5], ["changelog", 87, 5], ["license", 88, 5], ["maintainers", 89, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 32, 3], ["version", 33, 3], ["pyproject", 34, 3], ["__structuredAttrs", 35, 3], ["src", 37, 3], ["nativeBuildInputs", 45, 3], ["dontUseCmakeConfigure", 47, 3], ["build-system", 49, 3], ["buildInputs", 57, 3], ["dependencies", 59, 3], ["nativeCheckInputs", 61, 3], ["pytestFlags", 69, 3], ["disabledTests", 71, 3], ["pythonImportsCheck", 82, 3], ["meta", 84, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,13 +25,13 @@ export default nix.lambda((args) => (() => {
   const cloudpickle = nix.arg($, "cloudpickle");
   const hypothesis = nix.arg($, "hypothesis");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "boost-histogram",
       version: "1.8.1",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "scikit-hep",
           repo: "boost-histogram",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -50,7 +48,7 @@ export default nix.lambda((args) => (() => {
       disabledTests: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["test_round_trip_3d_histogram_json"])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")))), nix.thunk(() => ["test_numpy_conversion_4"])))),
       pythonImportsCheck: nix.thunk(() => ["boost_histogram"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Python bindings for the C++14 Boost::Histogram library",
         homepage: "https://github.com/scikit-hep/boost-histogram",
         changelog: nix.thunk(() => nix.str`https://github.com/scikit-hep/boost-histogram/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 31, 5], ["sha256", 32, 5]], [["description", 85, 5], ["homepage", 86, 5], ["sourceProvenance", 87, 5], ["license", 88, 5], ["platforms", 89, 5], ["mainProgram", 90, 5]], [["pname", 27, 3], ["version", 28, 3], ["src", 30, 3], ["sourceRoot", 35, 3], ["dontConfigure", 36, 3], ["dontBuild", 37, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 44, 3], ["installPhase", 64, 3], ["postFixup", 80, 3], ["meta", 84, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, autoPatchelfHook: false, makeWrapper: false, "c-ares": false, ffmpeg: false, libevent: false, libvpx: false, libxslt: false, libxtst: false, libxscrnsaver: false, libxdamage: false, minizip: false, nss: false, re2: false, snappy: false, libnotify: false, libappindicator: false, udev: false, libgbm: false, libGL: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 31, 5], ["sha256", 32, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 85, 5], ["homepage", 86, 5], ["sourceProvenance", 87, 5], ["license", 88, 5], ["platforms", 89, 5], ["mainProgram", 90, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 27, 3], ["version", 28, 3], ["src", 30, 3], ["sourceRoot", 35, 3], ["dontConfigure", 36, 3], ["dontBuild", 37, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 44, 3], ["installPhase", 64, 3], ["postFixup", 80, 3], ["meta", 84, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -35,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const pname = "tetrd";
       const version = "1.3.1-1";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://web.archive.org/web/20260108185127/https://download.tetrd.app/files/tetrd.linux_amd64.pkg.tar.xz",
           sha256: "0mpixs20jrxkbxvd7nl0p664jgqfp3m6qf7kmsj7frkhky697fbm",
         }))));
@@ -78,7 +76,7 @@ runHook postInstall
 `);
       const postFixup = "substituteInPlace $out/share/applications/tetrd.desktop --replace /opt $out/opt\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Share your internet connection from your device to your PC and vice versa through a USB cable",
         homepage: "https://tetrd.app",
         sourceProvenance: nix.thunk(() => (() => {
@@ -90,7 +88,7 @@ runHook postInstall
         mainProgram: "tetrd",
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

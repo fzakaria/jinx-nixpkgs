@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]], [["PERL_MM_OPT", 32, 7]], [["version", 47, 15], ["command", 48, 7], ["package", 49, 7]], [["version", 46, 11]], [["tests", 46, 5], ["updateScript", 51, 5]], [["homepage", 55, 5], ["description", 56, 5], ["changelog", 57, 5], ["license", 58, 5], ["mainProgram", 59, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["postPatch", 26, 3], ["outputs", 30, 3], ["env", 32, 3], ["buildInputs", 34, 3], ["nativeCheckInputs", 40, 3], ["passthru", 45, 3], ["meta", 54, 3]]]);
 const formals$1 = { args: { buildPerlPackage: false, bzip2: false, fetchFromGitHub: false, JSONXS: false, lib: false, "nix-update-script": false, pgbadger: false, PodMarkdown: false, testers: false, TextCSV_XS: false, which: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["PERL_MM_OPT", 32, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["version", 47, 15], ["command", 48, 7], ["package", 49, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["version", 46, 11]]);
-const pos$5 = nix.positions(here + "/default.nix", [["tests", 46, 5], ["updateScript", 51, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["homepage", 55, 5], ["description", 56, 5], ["changelog", 57, 5], ["license", 58, 5], ["mainProgram", 59, 5]]);
-const pos$7 = nix.positions(here + "/default.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["postPatch", 26, 3], ["outputs", 30, 3], ["env", 32, 3], ["buildInputs", 34, 3], ["nativeCheckInputs", 40, 3], ["passthru", 45, 3], ["meta", 54, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const pname = "pgbadger";
       const version = "13.2";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "darold",
           repo: "pgbadger",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -37,17 +31,17 @@ export default nix.lambda((args) => (() => {
       const postPatch = "patchShebangs ./pgbadger\n";
       const outputs = nix.thunk(() => ["out"]);
       const env = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         PERL_MM_OPT: nix.thunk(() => nix.str`INSTALL_BASE=${nix.builtins.placeholder("out")}`),
       }));
       const buildInputs = nix.thunk(() => [JSONXS, PodMarkdown, TextCSV_XS]);
       const nativeCheckInputs = nix.thunk(() => [bzip2, which]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               version: version,
               command: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), pgbadger)} --version`),
               package: pgbadger,
@@ -56,7 +50,7 @@ export default nix.lambda((args) => (() => {
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         homepage: "https://github.com/darold/pgbadger",
         description: "Fast PostgreSQL Log Analyzer",
         changelog: nix.thunk(() => nix.str`https://github.com/darold/pgbadger/raw/v${version}/ChangeLog`),
@@ -64,7 +58,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "pgbadger",
       }));
       return {
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         pname,
         version,
         src,

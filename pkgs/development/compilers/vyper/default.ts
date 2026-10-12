@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 36, 13], ["version", 36, 19], ["hash", 37, 5]], [["description", 83, 5], ["homepage", 84, 5], ["changelog", 85, 5], ["license", 86, 5], ["maintainers", 87, 5]], [["pname", 31, 3], ["version", 32, 3], ["pyproject", 33, 3], ["src", 35, 3], ["postPatch", 40, 3], ["nativeBuildInputs", 46, 3], ["pythonRelaxDeps", 54, 3], ["propagatedBuildInputs", 59, 3], ["checkPhase", 74, 3], ["pythonImportsCheck", 78, 3], ["meta", 82, 3]]]);
 const formals$1 = { args: { lib: false, lark: false, asttokens: false, buildPythonPackage: false, cbor2: false, fetchPypi: false, git: false, immutables: false, "importlib-metadata": false, packaging: false, pycryptodome: false, recommonmark: false, "setuptools-scm": false, sphinx: false, "sphinx-rtd-theme": false, writeText: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 36, 13], ["version", 36, 19], ["hash", 37, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 83, 5], ["homepage", 84, 5], ["changelog", 85, 5], ["license", 86, 5], ["maintainers", 87, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 31, 3], ["version", 32, 3], ["pyproject", 33, 3], ["src", 35, 3], ["postPatch", 40, 3], ["nativeBuildInputs", 46, 3], ["pythonRelaxDeps", 54, 3], ["propagatedBuildInputs", 59, 3], ["checkPhase", 74, 3], ["pythonImportsCheck", 78, 3], ["meta", 82, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.4.3";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-IqdXNldAHYo7xpDWXWt3QWgABxgJeMOgX5iS2zHV3PU=",
@@ -55,7 +53,7 @@ export default nix.lambda((args) => (() => {
 `);
       const pythonImportsCheck = nix.thunk(() => ["vyper"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Pythonic Smart Contract Language for the EVM",
         homepage: "https://github.com/vyperlang/vyper",
         changelog: nix.thunk(() => nix.str`https://github.com/vyperlang/vyper/releases/tag/v${version}`),
@@ -66,7 +64,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

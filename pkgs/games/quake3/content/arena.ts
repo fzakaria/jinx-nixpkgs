@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/arena.nix", [[["name", 16, 5], ["hash", 17, 5], ["message", 18, 5]], [["description", 48, 5], ["longDescription", 49, 5], ["homepage", 60, 5], ["license", 61, 5], ["platforms", 62, 5], ["maintainers", 63, 5]], [["pname", 12, 3], ["version", 13, 11], ["src", 15, 3], ["buildCommand", 39, 3], ["preferLocalBuild", 45, 3], ["meta", 47, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchzip: false, requireFile: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/arena.nix", [["name", 16, 5], ["hash", 17, 5], ["message", 18, 5]]);
-const pos$2 = nix.positions(here + "/arena.nix", [["description", 48, 5], ["longDescription", 49, 5], ["homepage", 60, 5], ["license", 61, 5], ["platforms", 62, 5], ["maintainers", 63, 5]]);
-const pos$3 = nix.positions(here + "/arena.nix", [["pname", 12, 3], ["version", 13, 11], ["src", 15, 3], ["buildCommand", 39, 3], ["preferLocalBuild", 45, 3], ["meta", 47, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const requireFile = nix.arg($, "requireFile");
   const version = "1.32c";
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "quake3arenadata",
       version: version,
       src: nix.thunk(() => nix.app(requireFile, nix.thunk(() => (() => {
@@ -39,12 +37,12 @@ inside the baseq3 folder and then run the following command on it:
 
 nix-prefetch-url file:///path/to/baseq3/${name}
 `);
-          return { [nix.POS]: pos$1, name, hash, message };
+          return { [nix.POS]: $pos[0], name, hash, message };
         })()))),
       buildCommand: "mkdir -p $out/baseq3\necho 'wwwwwwwwwwwwwwww' > $out/baseq3/q3key\nln -s $src $out/baseq3/pak0.pk3\n",
       preferLocalBuild: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Quake 3 Arena content",
         longDescription: "Quake III Arena and it's demo don't offer current wide screen resolutions in the menu.\n\nTo switch to such a resolution, you will have to enter something like this in the quake console (invoke with ~ by default)\n\nr_mode -1; r_customwidth 2560; r_customheight 1440; r_fullscreen 1; vid_restart\n\nOr call the quake commandline with these parameters\n\n$ quake3 +set r_mode -1 +set r_customwidth 2560 +set r_customheight 1440 +set r_fullscreen 1\n",
         homepage: "https://www.idsoftware.com/",

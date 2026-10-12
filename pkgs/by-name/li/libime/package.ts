@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 18, 5], ["hash", 19, 5]], [["url", 23, 5], ["hash", 24, 5]], [["url", 28, 5], ["hash", 29, 5]], [["owner", 37, 5], ["repo", 38, 5], ["tag", 39, 5], ["hash", 40, 5], ["fetchSubmodules", 41, 5]], [["description", 64, 5], ["homepage", 65, 5], ["license", 66, 5], ["maintainers", 67, 5], ["platforms", 68, 5]], [["pname", 33, 3], ["version", 34, 3], ["src", 36, 3], ["prePatch", 44, 3], ["nativeBuildInputs", 50, 3], ["buildInputs", 57, 3], ["meta", 63, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, fetchFromGitHub: false, cmake: false, "pkg-config": false, kdePackages: false, boost: false, python3: false, fcitx5: false, zstd: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 23, 5], ["hash", 24, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 28, 5], ["hash", 29, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["owner", 37, 5], ["repo", 38, 5], ["tag", 39, 5], ["hash", 40, 5], ["fetchSubmodules", 41, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 64, 5], ["homepage", 65, 5], ["license", 66, 5], ["maintainers", 67, 5], ["platforms", 68, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 33, 3], ["version", 34, 3], ["src", 36, 3], ["prePatch", 44, 3], ["nativeBuildInputs", 50, 3], ["buildInputs", 57, 3], ["meta", 63, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,28 +20,28 @@ export default nix.lambda((args) => (() => {
   const zstd = nix.arg($, "zstd");
   const tableVer = "20240108";
   const table = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: nix.thunk(() => nix.str`https://download.fcitx-im.org/data/table-${tableVer}.tar.zst`),
       hash: "sha256-Pp2HsEo5PxMXI0csjqqGDdI8N4o9T2qQBVE7KpWzYUs=",
     }))));
   const arpaVer = "20260629";
   const arpa = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       url: nix.thunk(() => nix.str`https://download.fcitx-im.org/data/lm_sc.arpa-${arpaVer}.tar.zst`),
       hash: "sha256-BoCDM7kXPlN0zyy1r8EtCPViW/mrtTZInKw3b8BfLn8=",
     }))));
   const dictVer = "20260703";
   const dict = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       url: nix.thunk(() => nix.str`https://download.fcitx-im.org/data/dict-${dictVer}.tar.zst`),
       hash: "sha256-xobKtt+JZMSNWW9X0gW6wx/HKHCwaoMBfkRQPfjAlpc=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "libime",
       version: "1.1.16",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           owner: "fcitx",
           repo: "libime",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -65,7 +60,7 @@ ln -s ${dict} data/$(stripHash ${dict})
       ]),
       buildInputs: nix.thunk(() => [zstd, boost, fcitx5]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Library to support generic input method implementation",
         homepage: "https://github.com/fcitx/libime",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),

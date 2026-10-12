@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 14, 5], ["sha256", 15, 5]], [["homepage", 27, 5], ["license", 28, 5], ["maintainers", 29, 5], ["description", 30, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["buildInputs", 18, 3], ["requiredOctavePackages", 22, 3], ["meta", 26, 3]]]);
 const formals$1 = { args: { buildOctavePackage: false, lib: false, fetchurl: false, netcdf: false, statistics: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 14, 5], ["sha256", 15, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 27, 5], ["license", 28, 5], ["maintainers", 29, 5], ["description", 30, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["buildInputs", 18, 3], ["requiredOctavePackages", 22, 3], ["meta", 26, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,14 +16,14 @@ export default nix.lambda((args) => (() => {
       const pname = "ncarray";
       const version = "1.0.6";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/octave/${pname}-${version}.tar.gz`),
           sha256: "sha256-W6L2Esm7AdzntT7cimKylbeKYcZWKhHim96N5dM/qoE=",
         }))));
       const buildInputs = nix.thunk(() => [netcdf]);
       const requiredOctavePackages = nix.thunk(() => [statistics]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://gnu-octave.github.io/packages/ncarray/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
         maintainers: nix.thunk(() => (() => {
@@ -35,7 +33,7 @@ export default nix.lambda((args) => (() => {
         description: "Access a single or a collection of NetCDF files as a multi-dimensional array",
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

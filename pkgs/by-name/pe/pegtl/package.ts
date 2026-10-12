@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]], [["updateScript", 40, 12]], [["homepage", 43, 5], ["description", 44, 5], ["longDescription", 45, 5], ["license", 49, 5], ["maintainers", 50, 5], ["platforms", 51, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["postPatch", 29, 3], ["nativeBuildInputs", 35, 3], ["passthru", 40, 3], ["meta", 42, 3]]]);
 const formals$1 = { args: { cmake: false, fetchFromGitHub: false, gitUpdater: false, lib: false, ninja: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 40, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 43, 5], ["description", 44, 5], ["longDescription", 45, 5], ["license", 49, 5], ["maintainers", 50, 5], ["platforms", 51, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["postPatch", 29, 3], ["nativeBuildInputs", 35, 3], ["passthru", 40, 3], ["meta", 42, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const ninja = nix.arg($, "ninja");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "pegtl",
       version: "3.2.8",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "taocpp",
           repo: "PEGTL",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -30,11 +27,11 @@ export default nix.lambda((args) => (() => {
       postPatch: "substituteInPlace include/tao/pegtl/demangle.hpp --replace-fail \\\n  \"#elif( __GNUC__ == 9 ) && ( __GNUC_MINOR__ < 3 )\" \\\n  \"#elif ( ( __GNUC__ == 9 ) && ( __GNUC_MINOR__ < 3 ) ) || ( __GNUC__ == 16 )\"\n",
       nativeBuildInputs: nix.thunk(() => [cmake, ninja]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/taocpp/pegtl",
         description: "Parsing Expression Grammar Template Library",
         longDescription: "Zero-dependency C++ header-only parser combinator library\nfor creating parsers according to a Parsing Expression Grammar (PEG).\n",

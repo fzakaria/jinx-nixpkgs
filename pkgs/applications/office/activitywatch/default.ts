@@ -2,24 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["sha256", 25, 5], ["fetchSubmodules", 26, 5]], [["description", 52, 7], ["homepage", 53, 7], ["maintainers", 54, 7], ["mainProgram", 55, 7], ["license", 56, 7]], [["pname", 31, 5], ["version", 32, 13], ["src", 34, 5], ["pyproject", 36, 5], ["build-system", 37, 5], ["dependencies", 39, 5], ["pythonRelaxDeps", 45, 5], ["pythonImportsCheck", 49, 5], ["meta", 51, 5]], [["description", 81, 7], ["homepage", 82, 7], ["maintainers", 83, 7], ["mainProgram", 84, 7], ["license", 85, 7], ["badPlatforms", 86, 7]], [["pname", 61, 5], ["version", 62, 13], ["src", 64, 5], ["pyproject", 66, 5], ["build-system", 67, 5], ["dependencies", 69, 5], ["pythonRelaxDeps", 74, 5], ["pythonImportsCheck", 78, 5], ["meta", 80, 5]], [["description", 143, 7], ["homepage", 144, 7], ["maintainers", 145, 7], ["mainProgram", 146, 7], ["license", 147, 7], ["badPlatforms", 148, 7]], [["pname", 91, 5], ["version", 92, 13], ["src", 94, 5], ["pyproject", 96, 5], ["build-system", 97, 5], ["dependencies", 102, 5], ["nativeBuildInputs", 110, 5], ["dontWrapQtApps", 115, 5], ["makeWrapperArgs", 117, 5], ["postInstall", 121, 5], ["preFixup", 134, 5], ["pythonImportsCheck", 140, 5], ["meta", 142, 5]], [["description", 179, 7], ["homepage", 180, 7], ["maintainers", 181, 7], ["mainProgram", 182, 7], ["license", 183, 7]], [["pname", 153, 5], ["version", 154, 13], ["src", 156, 5], ["pyproject", 158, 5], ["build-system", 159, 5], ["patches", 161, 5], ["dependencies", 167, 5], ["pythonRelaxDeps", 172, 5], ["pythonImportsCheck", 176, 5], ["meta", 178, 5]], [["version", 198, 9]], [["AW_WEBUI_DIR", 213, 9]], [["description", 221, 7], ["homepage", 222, 7], ["maintainers", 223, 7], ["mainProgram", 224, 7], ["platforms", 225, 7], ["license", 226, 7]], [["pname", 188, 5], ["version", 189, 13], ["src", 191, 5], ["cargoHash", 193, 5], ["patches", 195, 5], ["nativeBuildInputs", 202, 5], ["buildInputs", 208, 5], ["env", 213, 5], ["preCheck", 215, 5], ["meta", 220, 5]], [["commit_hash", 245, 9]], [["description", 264, 7], ["homepage", 265, 7], ["maintainers", 266, 7], ["license", 267, 7]], [["pname", 231, 5], ["version", 232, 13], ["src", 234, 5], ["nodejs", 236, 5], ["npmDepsHash", 237, 5], ["makeCacheWritable", 239, 5], ["npmFlags", 240, 5], ["patches", 242, 5], ["installPhase", 249, 5], ["doCheck", 256, 5], ["checkPhase", 257, 5], ["meta", 263, 5]], [["aw-watcher-afk", 30, 3], ["aw-watcher-window", 60, 3], ["aw-qt", 90, 3], ["aw-notify", 152, 3], ["aw-server-rust", 187, 3], ["aw-webui", 230, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, rustPlatform: false, makeWrapper: false, "pkg-config": false, perl: false, openssl: false, "rust-jemalloc-sys": false, python3: false, python3Packages: false, qt6: false, "xdg-utils": false, replaceVars: false, nodejs_22: false, buildNpmPackage: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["sha256", 25, 5], ["fetchSubmodules", 26, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 52, 7], ["homepage", 53, 7], ["maintainers", 54, 7], ["mainProgram", 55, 7], ["license", 56, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 31, 5], ["version", 32, 13], ["src", 34, 5], ["pyproject", 36, 5], ["build-system", 37, 5], ["dependencies", 39, 5], ["pythonRelaxDeps", 45, 5], ["pythonImportsCheck", 49, 5], ["meta", 51, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 81, 7], ["homepage", 82, 7], ["maintainers", 83, 7], ["mainProgram", 84, 7], ["license", 85, 7], ["badPlatforms", 86, 7]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 61, 5], ["version", 62, 13], ["src", 64, 5], ["pyproject", 66, 5], ["build-system", 67, 5], ["dependencies", 69, 5], ["pythonRelaxDeps", 74, 5], ["pythonImportsCheck", 78, 5], ["meta", 80, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["description", 143, 7], ["homepage", 144, 7], ["maintainers", 145, 7], ["mainProgram", 146, 7], ["license", 147, 7], ["badPlatforms", 148, 7]]);
-const pos$7 = nix.positions(here + "/default.nix", [["pname", 91, 5], ["version", 92, 13], ["src", 94, 5], ["pyproject", 96, 5], ["build-system", 97, 5], ["dependencies", 102, 5], ["nativeBuildInputs", 110, 5], ["dontWrapQtApps", 115, 5], ["makeWrapperArgs", 117, 5], ["postInstall", 121, 5], ["preFixup", 134, 5], ["pythonImportsCheck", 140, 5], ["meta", 142, 5]]);
-const pos$8 = nix.positions(here + "/default.nix", [["description", 179, 7], ["homepage", 180, 7], ["maintainers", 181, 7], ["mainProgram", 182, 7], ["license", 183, 7]]);
-const pos$9 = nix.positions(here + "/default.nix", [["pname", 153, 5], ["version", 154, 13], ["src", 156, 5], ["pyproject", 158, 5], ["build-system", 159, 5], ["patches", 161, 5], ["dependencies", 167, 5], ["pythonRelaxDeps", 172, 5], ["pythonImportsCheck", 176, 5], ["meta", 178, 5]]);
-const pos$10 = nix.positions(here + "/default.nix", [["version", 198, 9]]);
-const pos$11 = nix.positions(here + "/default.nix", [["AW_WEBUI_DIR", 213, 9]]);
-const pos$12 = nix.positions(here + "/default.nix", [["description", 221, 7], ["homepage", 222, 7], ["maintainers", 223, 7], ["mainProgram", 224, 7], ["platforms", 225, 7], ["license", 226, 7]]);
-const pos$13 = nix.positions(here + "/default.nix", [["pname", 188, 5], ["version", 189, 13], ["src", 191, 5], ["cargoHash", 193, 5], ["patches", 195, 5], ["nativeBuildInputs", 202, 5], ["buildInputs", 208, 5], ["env", 213, 5], ["preCheck", 215, 5], ["meta", 220, 5]]);
-const pos$14 = nix.positions(here + "/default.nix", [["commit_hash", 245, 9]]);
-const pos$15 = nix.positions(here + "/default.nix", [["description", 264, 7], ["homepage", 265, 7], ["maintainers", 266, 7], ["license", 267, 7]]);
-const pos$16 = nix.positions(here + "/default.nix", [["pname", 231, 5], ["version", 232, 13], ["src", 234, 5], ["nodejs", 236, 5], ["npmDepsHash", 237, 5], ["makeCacheWritable", 239, 5], ["npmFlags", 240, 5], ["patches", 242, 5], ["installPhase", 249, 5], ["doCheck", 256, 5], ["checkPhase", 257, 5], ["meta", 263, 5]]);
-const pos$17 = nix.positions(here + "/default.nix", [["aw-watcher-afk", 30, 3], ["aw-watcher-window", 60, 3], ["aw-qt", 90, 3], ["aw-notify", 152, 3], ["aw-server-rust", 187, 3], ["aw-webui", 230, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -40,7 +24,7 @@ export default nix.lambda((args) => (() => {
   const buildNpmPackage = nix.arg($, "buildNpmPackage");
   const version = "0.13.2";
   const sources = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "ActivityWatch",
       repo: "activitywatch",
       rev: nix.thunk(() => nix.str`v${version}`),
@@ -49,7 +33,7 @@ export default nix.lambda((args) => (() => {
     }))));
   return (() => {
     const aw_watcher_afk = nix.thunk(() => nix.app(nix.sel(python3Packages, "buildPythonApplication"), nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname: "aw-watcher-afk",
         version: version,
         src: nix.thunk(() => nix.str`${sources}/aw-watcher-afk`),
@@ -66,7 +50,7 @@ export default nix.lambda((args) => (() => {
         pythonRelaxDeps: nix.thunk(() => ["python-xlib"]),
         pythonImportsCheck: nix.thunk(() => ["aw_watcher_afk"]),
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           description: "Watches keyboard and mouse activity to determine if you are AFK or not (for use with ActivityWatch)",
           homepage: "https://github.com/ActivityWatch/aw-watcher-afk",
           maintainers: nix.thunk(() => (() => {
@@ -78,7 +62,7 @@ export default nix.lambda((args) => (() => {
         })),
       }))));
     const aw_watcher_window = nix.thunk(() => nix.app(nix.sel(python3Packages, "buildPythonApplication"), nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname: "aw-watcher-window",
         version: version,
         src: nix.thunk(() => nix.str`${sources}/aw-watcher-window`),
@@ -94,7 +78,7 @@ export default nix.lambda((args) => (() => {
         pythonRelaxDeps: nix.thunk(() => ["python-xlib"]),
         pythonImportsCheck: nix.thunk(() => ["aw_watcher_window"]),
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           description: "Cross-platform window watcher (for use with ActivityWatch)",
           homepage: "https://github.com/ActivityWatch/aw-watcher-window",
           maintainers: nix.thunk(() => (() => {
@@ -107,7 +91,7 @@ export default nix.lambda((args) => (() => {
         })),
       }))));
     const aw_qt = nix.thunk(() => nix.app(nix.sel(python3Packages, "buildPythonApplication"), nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         pname: "aw-qt",
         version: version,
         src: nix.thunk(() => nix.str`${sources}/aw-qt`),
@@ -145,7 +129,7 @@ install -D media/logo/logo-128.png $out/share/icons/hicolor/128x128/apps/activit
         preFixup: "makeWrapperArgs+=(\n  \"${qtWrapperArgs[@]}\"\n)\n",
         pythonImportsCheck: nix.thunk(() => ["aw_qt"]),
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           description: "Tray icon that manages ActivityWatch processes, built with Qt",
           homepage: "https://github.com/ActivityWatch/aw-qt",
           maintainers: nix.thunk(() => (() => {
@@ -158,7 +142,7 @@ install -D media/logo/logo-128.png $out/share/icons/hicolor/128x128/apps/activit
         })),
       }))));
     const aw_notify = nix.thunk(() => nix.app(nix.sel(python3Packages, "buildPythonApplication"), nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         pname: "aw-notify",
         version: version,
         src: nix.thunk(() => nix.str`${sources}/aw-notify`),
@@ -175,7 +159,7 @@ install -D media/logo/logo-128.png $out/share/icons/hicolor/128x128/apps/activit
         pythonRelaxDeps: nix.thunk(() => ["desktop-notifier"]),
         pythonImportsCheck: nix.thunk(() => ["aw_notify"]),
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           description: "Desktop notification service for ActivityWatch",
           homepage: "https://github.com/ActivityWatch/aw-notify",
           maintainers: nix.thunk(() => (() => {
@@ -187,20 +171,20 @@ install -D media/logo/logo-128.png $out/share/icons/hicolor/128x128/apps/activit
         })),
       }))));
     const aw_server_rust = nix.thunk(() => nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-        [nix.POS]: pos$13,
+        [nix.POS]: $pos[12],
         pname: "aw-server-rust",
         version: version,
         src: nix.thunk(() => nix.str`${sources}/aw-server-rust`),
         cargoHash: "sha256-E89E/LWBPHtb6vX94swodmE+UrWMrzQnm8AO5GeyuoA=",
         patches: nix.thunk(() => [
-          nix.thunk(() => nix.app(replaceVars, nix.path(here, "./override-version.patch"), nix.thunk(() => ({ [nix.POS]: pos$10, version: nix.thunk(() => nix.sel(sources, "rev")) })))),
+          nix.thunk(() => nix.app(replaceVars, nix.path(here, "./override-version.patch"), nix.thunk(() => ({ [nix.POS]: $pos[9], version: nix.thunk(() => nix.sel(sources, "rev")) })))),
         ]),
         nativeBuildInputs: nix.thunk(() => [makeWrapper, pkg_config, perl]),
         buildInputs: nix.thunk(() => [openssl, rust_jemalloc_sys]),
-        env: nix.thunk(() => ({ [nix.POS]: pos$11, AW_WEBUI_DIR: aw_webui })),
+        env: nix.thunk(() => ({ [nix.POS]: $pos[10], AW_WEBUI_DIR: aw_webui })),
         preCheck: "# Fake home folder for tests that use ~/.cache and ~/.local/share\nexport HOME=\"$TMPDIR\"\n",
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$12,
+          [nix.POS]: $pos[11],
           description: "High-performance implementation of the ActivityWatch server, written in Rust",
           homepage: "https://github.com/ActivityWatch/aw-server-rust",
           maintainers: nix.thunk(() => (() => {
@@ -213,7 +197,7 @@ install -D media/logo/logo-128.png $out/share/icons/hicolor/128x128/apps/activit
         })),
       }))));
     const aw_webui = nix.thunk(() => nix.app(buildNpmPackage, nix.thunk(() => ({
-        [nix.POS]: pos$16,
+        [nix.POS]: $pos[15],
         pname: "aw-webui",
         version: version,
         src: nix.thunk(() => nix.str`${sources}/aw-server-rust/aw-webui`),
@@ -222,13 +206,13 @@ install -D media/logo/logo-128.png $out/share/icons/hicolor/128x128/apps/activit
         makeCacheWritable: true,
         npmFlags: nix.thunk(() => ["--legacy-peer-deps"]),
         patches: nix.thunk(() => [
-          nix.thunk(() => nix.app(replaceVars, nix.path(here, "./commit-hash.patch"), nix.thunk(() => ({ [nix.POS]: pos$14, commit_hash: nix.thunk(() => nix.sel(sources, "rev")) })))),
+          nix.thunk(() => nix.app(replaceVars, nix.path(here, "./commit-hash.patch"), nix.thunk(() => ({ [nix.POS]: $pos[13], commit_hash: nix.thunk(() => nix.sel(sources, "rev")) })))),
         ]),
         installPhase: "runHook preInstall\nmv dist $out\nmv media/logo/logo.{png,svg} $out\nrunHook postInstall\n",
         doCheck: true,
         checkPhase: "runHook preCheck\nnpm test\nrunHook postCheck\n",
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$15,
+          [nix.POS]: $pos[14],
           description: "Web-based UI for ActivityWatch, built with Vue.js",
           homepage: "https://github.com/ActivityWatch/aw-webui/",
           maintainers: nix.thunk(() => (() => {
@@ -239,7 +223,7 @@ install -D media/logo/logo-128.png $out/share/icons/hicolor/128x128/apps/activit
         })),
       }))));
     return {
-      [nix.POS]: pos$17,
+      [nix.POS]: $pos[16],
       "aw-watcher-afk": aw_watcher_afk,
       "aw-watcher-window": aw_watcher_window,
       "aw-qt": aw_qt,

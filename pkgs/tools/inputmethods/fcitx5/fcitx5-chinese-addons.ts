@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/fcitx5-chinese-addons.nix", [[["url", 27, 5], ["hash", 28, 5]], [["url", 32, 5], ["hash", 33, 5]], [["owner", 42, 5], ["repo", 43, 5], ["rev", 44, 5], ["hash", 45, 5]], [["description", 78, 5], ["mainProgram", 79, 5], ["homepage", 80, 5], ["license", 81, 5], ["maintainers", 87, 5], ["platforms", 88, 5]], [["pname", 38, 3], ["version", 39, 3], ["src", 41, 3], ["nativeBuildInputs", 48, 3], ["prePatch", 56, 3], ["buildInputs", 61, 3], ["dontWrapQtApps", 75, 3], ["meta", 77, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, fetchFromGitHub: false, cmake: false, "pkg-config": false, kdePackages: false, boost: false, gettext: false, libime: false, fcitx5: false, "fcitx5-qt": false, "fcitx5-lua": false, qtwebengine: false, opencc: false, curl: false, fmt: false, qtbase: false, luaSupport: true, nlohmann_json: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/fcitx5-chinese-addons.nix", [["url", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/fcitx5-chinese-addons.nix", [["url", 32, 5], ["hash", 33, 5]]);
-const pos$3 = nix.positions(here + "/fcitx5-chinese-addons.nix", [["owner", 42, 5], ["repo", 43, 5], ["rev", 44, 5], ["hash", 45, 5]]);
-const pos$4 = nix.positions(here + "/fcitx5-chinese-addons.nix", [["description", 78, 5], ["mainProgram", 79, 5], ["homepage", 80, 5], ["license", 81, 5], ["maintainers", 87, 5], ["platforms", 88, 5]]);
-const pos$5 = nix.positions(here + "/fcitx5-chinese-addons.nix", [["pname", 38, 3], ["version", 39, 3], ["src", 41, 3], ["nativeBuildInputs", 48, 3], ["prePatch", 56, 3], ["buildInputs", 61, 3], ["dontWrapQtApps", 75, 3], ["meta", 77, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,13 +29,13 @@ export default nix.lambda((args) => (() => {
   const nlohmann_json = nix.arg($, "nlohmann_json");
   const pyStrokeVer = "20250329";
   const pyStroke = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: nix.thunk(() => nix.str`http://download.fcitx-im.org/data/py_stroke-${pyStrokeVer}.tar.gz`),
       hash: "sha256-wafKciXTYUq4M1P8gnUDAGqYBEd2IBj1N2BCXXtTA6Y=",
     }))));
   const pyTableVer = "20121124";
   const pyTable = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       url: nix.thunk(() => nix.str`http://download.fcitx-im.org/data/py_table-${pyTableVer}.tar.gz`),
       hash: "sha256-QhRqyX3mwT1V+eme2HORX0xmc56cEVMqNFVrrfl5LAQ=",
     }))));
@@ -47,7 +43,7 @@ export default nix.lambda((args) => (() => {
       const pname = "fcitx5-chinese-addons";
       const version = "5.1.14";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           owner: "fcitx",
           repo: pname,
           rev: version,
@@ -77,7 +73,7 @@ ln -s ${pyTable} modules/pinyinhelper/$(stripHash ${pyTable})
       ], nix.app(nix.sel(lib, "optional"), luaSupport, fcitx5_lua)));
       const dontWrapQtApps = true;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Addons related to Chinese, including IME previous bundled inside fcitx4",
         mainProgram: "scel2org5",
         homepage: "https://github.com/fcitx/fcitx5-chinese-addons",
@@ -95,7 +91,7 @@ ln -s ${pyTable} modules/pinyinhelper/$(stripHash ${pyTable})
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         src,

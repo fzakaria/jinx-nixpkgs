@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]], [["description", 38, 5], ["homepage", 39, 5], ["license", 40, 5], ["maintainers", 41, 5], ["mainProgram", 42, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["buildInputs", 19, 3], ["postPatch", 23, 3], ["installPhase", 28, 3], ["meta", 37, 3]]]);
 const formals$1 = { args: { stdenv: false, fetchFromGitLab: false, lib: false, python3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 38, 5], ["homepage", 39, 5], ["license", 40, 5], ["maintainers", 41, 5], ["mainProgram", 42, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["buildInputs", 19, 3], ["postPatch", 23, 3], ["installPhase", 28, 3], ["meta", 37, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const python3 = nix.arg($, "python3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "pokemon-colorscripts",
       version: "0-unstable-2024-10-19",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "phoneybadger",
           repo: "pokemon-colorscripts",
           rev: "5802ff67520be2ff6117a0abc78a08501f6252ad",
@@ -28,7 +26,7 @@ export default nix.lambda((args) => (() => {
       postPatch: "patchShebangs --build ./install.sh\nsubstituteInPlace install.sh --replace-fail \"/usr/local\" \"$out\"\n",
       installPhase: "runHook preInstall\n\nmkdir -p \"$out/bin\"\n./install.sh\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Scripts for Pokémon color manipulation",
         homepage: "https://gitlab.com/phoneybadger/pokemon-colorscripts",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

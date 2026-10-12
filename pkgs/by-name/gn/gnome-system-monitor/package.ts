@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 31, 5], ["hash", 32, 5]], [["packageName", 74, 7]], [["updateScript", 73, 5]], [["homepage", 79, 5], ["description", 80, 5], ["mainProgram", 81, 5], ["teams", 82, 5], ["license", 83, 5], ["platforms", 84, 5]], [["pname", 27, 3], ["version", 28, 3], ["src", 30, 3], ["patches", 35, 3], ["nativeBuildInputs", 40, 3], ["buildInputs", 50, 3], ["mesonFlags", 65, 3], ["doCheck", 70, 3], ["passthru", 72, 3], ["meta", 78, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, gettext: false, fetchurl: false, "pkg-config": false, gtkmm4: false, bash: false, catch2_3: false, gtk4: false, libadwaita: false, glib: false, wrapGAppsHook4: false, meson: false, ninja: false, "gsettings-desktop-schemas": false, itstool: false, gnome: false, "adwaita-icon-theme": false, librsvg: false, "gdk-pixbuf": false, libgtop: false, systemd: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 31, 5], ["hash", 32, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["packageName", 74, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 73, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 79, 5], ["description", 80, 5], ["mainProgram", 81, 5], ["teams", 82, 5], ["license", 83, 5], ["platforms", 84, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 27, 3], ["version", 28, 3], ["src", 30, 3], ["patches", 35, 3], ["nativeBuildInputs", 40, 3], ["buildInputs", 50, 3], ["mesonFlags", 65, 3], ["doCheck", 70, 3], ["passthru", 72, 3], ["meta", 78, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,11 +30,11 @@ export default nix.lambda((args) => (() => {
   const libgtop = nix.arg($, "libgtop");
   const systemd = nix.arg($, "systemd");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "gnome-system-monitor",
       version: "50.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnome/sources/gnome-system-monitor/${nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/gnome-system-monitor-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-pBOKp1S0WExG3pH60daF4nsSvCRX3nYYY7a+AthMSGI=",
         })))),
@@ -61,11 +57,11 @@ export default nix.lambda((args) => (() => {
       mesonFlags: nix.thunk(() => ["-Db_lto=false"]),
       doCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$2, packageName: "gnome-system-monitor" })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: $pos[1], packageName: "gnome-system-monitor" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://apps.gnome.org/SystemMonitor/",
         description: "System Monitor shows you what programs are running and how much processor time, memory, and disk space are being used",
         mainProgram: "gnome-system-monitor",

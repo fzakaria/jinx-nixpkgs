@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 16, 5], ["sha256", 17, 5]], [["url", 21, 5], ["sha256", 22, 5]], [["description", 43, 5], ["longDescription", 44, 5], ["homepage", 53, 5], ["license", 54, 5], ["platforms", 55, 5], ["maintainers", 56, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 15, 3], ["ecSrc", 20, 3], ["buildInputs", 25, 3], ["dontUnpack", 27, 3], ["installPhase", 29, 3], ["meta", 42, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, gnuplot: false, ruby: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 16, 5], ["sha256", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 21, 5], ["sha256", 22, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 43, 5], ["longDescription", 44, 5], ["homepage", 53, 5], ["license", 54, 5], ["platforms", 55, 5], ["maintainers", 56, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 15, 3], ["ecSrc", 20, 3], ["buildInputs", 25, 3], ["dontUnpack", 27, 3], ["installPhase", 29, 3], ["meta", 42, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,16 +13,16 @@ export default nix.lambda((args) => (() => {
   const gnuplot = nix.arg($, "gnuplot");
   const ruby = nix.arg($, "ruby");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "eplot",
       version: "2.09",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "http://liris.cnrs.fr/christian.wolf/software/eplot/download/eplot",
           sha256: "0y9x82i3sfpgxsqz2w42r6iad6ph7vxb7np1xbwapx5iipciclw5",
         })))),
       ecSrc: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: "http://liris.cnrs.fr/christian.wolf/software/eplot/download/ec",
           sha256: "0fg31g8mrcx14h2rjcf091cbd924n19z55iscaiflspifya30yhd",
         })))),
@@ -43,7 +40,7 @@ sed -i -e "s|gnuplot -persist|${gnuplot}/bin/gnuplot -persist|" "$out/bin/eplot"
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Create plots quickly with gnuplot",
         longDescription: "eplot (\"easy gnuplot\") is a ruby script which allows to pipe data easily\nthrough gnuplot and create plots quickly, which can be saved in\npostscript, PDF, PNG or EMF files. Plotting of multiple files into a\nsingle diagram is supported.\n\nThis package also includes the complementary 'ec' tool (say \"extract\ncolumn\").\n",
         homepage: "https://perso.liris.cnrs.fr/christian.wolf/software/eplot/",

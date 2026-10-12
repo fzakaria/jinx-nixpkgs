@@ -2,20 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["tlc", 14, 5]], [["case", 20, 9], ["out", 21, 9]], [["case", 24, 9], ["out", 25, 9]], [["case", 28, 9], ["out", 29, 9]], [["case", 32, 9], ["out", 33, 9]], [["hash", 36, 22]], [["hash", 37, 22]], [["hash", 38, 22]], [["hash", 39, 22]], [["20211215", 36, 11], ["20210316", 37, 11], ["20200328", 38, 11], ["20181116", 39, 11]], [["homepage", 44, 5], ["description", 45, 5], ["license", 46, 5], ["maintainers", 47, 5]], [["pname", 10, 3], ["owner", 11, 3], ["version", 12, 11], ["displayVersion", 13, 3], ["defaultVersion", 16, 3], ["release", 36, 3], ["propagatedBuildInputs", 41, 3], ["meta", 43, 3]], [["installFlags", 53, 7]]]);
 const formals$1 = { args: { lib: false, mkCoqDerivation: false, coq: false, stdlib: false, version: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["tlc", 14, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["case", 20, 9], ["out", 21, 9]]);
-const pos$3 = nix.positions(here + "/default.nix", [["case", 24, 9], ["out", 25, 9]]);
-const pos$4 = nix.positions(here + "/default.nix", [["case", 28, 9], ["out", 29, 9]]);
-const pos$5 = nix.positions(here + "/default.nix", [["case", 32, 9], ["out", 33, 9]]);
-const pos$6 = nix.positions(here + "/default.nix", [["hash", 36, 22]]);
-const pos$7 = nix.positions(here + "/default.nix", [["hash", 37, 22]]);
-const pos$8 = nix.positions(here + "/default.nix", [["hash", 38, 22]]);
-const pos$9 = nix.positions(here + "/default.nix", [["hash", 39, 22]]);
-const pos$10 = nix.positions(here + "/default.nix", [["20211215", 36, 11], ["20210316", 37, 11], ["20200328", 38, 11], ["20181116", 39, 11]]);
-const pos$11 = nix.positions(here + "/default.nix", [["homepage", 44, 5], ["description", 45, 5], ["license", 46, 5], ["maintainers", 47, 5]]);
-const pos$12 = nix.positions(here + "/default.nix", [["pname", 10, 3], ["owner", 11, 3], ["version", 12, 11], ["displayVersion", 13, 3], ["defaultVersion", 16, 3], ["release", 36, 3], ["propagatedBuildInputs", 41, 3], ["meta", 43, 3]]);
-const pos$13 = nix.positions(here + "/default.nix", [["installFlags", 53, 7]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,65 +13,65 @@ export default nix.lambda((args) => (() => {
   const stdlib = nix.arg($, "stdlib");
   const version = nix.argOr($, "version", () => null);
   return nix.app(nix.sel(nix.app(mkCoqDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$12,
+      [nix.POS]: $pos[11],
       pname: "tlc",
       owner: "charguer",
       version: version,
-      displayVersion: nix.thunk(() => ({ [nix.POS]: pos$1, tlc: false })),
+      displayVersion: nix.thunk(() => ({ [nix.POS]: $pos[0], tlc: false })),
       defaultVersion: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "versions")), null);
         return nix.app(nix.sel(lib, "switch"), nix.thunk(() => nix.sel(coq, "coq-version")), nix.thunk(() => [
             nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               case: nix.thunk(() => nix.app(nix.lookup(w, "range"), "8.13", "8.16")),
               out: "20211215",
             })),
             nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               case: nix.thunk(() => nix.app(nix.lookup(w, "range"), "8.12", "8.13")),
               out: "20210316",
             })),
             nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               case: nix.thunk(() => nix.app(nix.lookup(w, "range"), "8.10", "8.12")),
               out: "20200328",
             })),
             nix.thunk(() => ({
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               case: nix.thunk(() => nix.app(nix.lookup(w, "range"), "8.6", "8.12")),
               out: "20181116",
             })),
           ]), null);
       })()),
       release: nix.thunk(() => ({
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         "20211215": nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           hash: "sha256:0m4d4jhdcyq8p2gpz9j3nd6jqzmz2bjmbpc0q06b38b8i550mamp",
         })),
         "20210316": nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           hash: "sha256:1hlavnx20lxpf2iydbbxqmim9p8wdwv4phzp9ypij93yivih0g4a",
         })),
         "20200328": nix.thunk(() => ({
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           hash: "sha256:16vzild9gni8zhgb3qhmka47f8zagdh03k6nssif7drpim8233lx",
         })),
         "20181116": nix.thunk(() => ({
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           hash: "sha256:032lrbkxqm9d3fhf6nv1kq2z0mqd3czv3ijlbsjwnfh12xck4vpl",
         })),
       })),
       propagatedBuildInputs: nix.thunk(() => [stdlib]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$11,
+        [nix.POS]: $pos[10],
         homepage: "http://www.chargueraud.org/softs/tlc/",
         description: "Non-constructive library for Coq",
         license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "vbgl"))]),
       })),
     }))), "overrideAttrs"), (x) => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(x, "version")), "20210316")) && nix.asBool(!nix.eq(nix.sel(x, "version"), "dev")))), nix.thunk(() => ({
-        [nix.POS]: pos$13,
+        [nix.POS]: $pos[12],
         installFlags: nix.thunk(() => [
           nix.thunk(() => nix.str`CONTRIB=$(out)/lib/coq/${nix.sel(coq, "coq-version")}/user-contrib`),
         ]),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 13, 5], ["rev", 14, 5], ["sha256", 15, 5]], [["homepage", 32, 5], ["description", 33, 5], ["license", 34, 5], ["platforms", 35, 5], ["maintainers", 36, 5], ["broken", 37, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["nativeBuildInputs", 18, 3], ["doCheck", 19, 3], ["outputs", 21, 3], ["meta", 28, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchgit: false, autoreconfHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 13, 5], ["rev", 14, 5], ["sha256", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 32, 5], ["description", 33, 5], ["license", 34, 5], ["platforms", 35, 5], ["maintainers", 36, 5], ["broken", 37, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["nativeBuildInputs", 18, 3], ["doCheck", 19, 3], ["outputs", 21, 3], ["meta", 28, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchgit = nix.arg($, "fetchgit");
   const autoreconfHook = nix.arg($, "autoreconfHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "gfshare",
       version: "2.0.0",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "git://git.gitano.org.uk/libgfshare.git",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
           sha256: "0s37xn9pr5p820hd40489xwra7kg3gzqrxhc2j9rnxnd489hl0pr",
@@ -27,7 +25,7 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       outputs: nix.thunk(() => ["bin", "lib", "dev", "out"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://git.gitano.org.uk/libgfshare.git/",
         description: "Shamir's secret-sharing method in the Galois Field GF(2**8)",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

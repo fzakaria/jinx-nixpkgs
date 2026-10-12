@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 25, 5], ["hash", 26, 5]], [["NIX_CFLAGS_COMPILE", 61, 7]], [["description", 64, 5], ["longDescription", 65, 5], ["homepage", 69, 5], ["license", 70, 5], ["maintainers", 71, 5], ["platforms", 72, 5], ["mainProgram", 73, 5]], [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 40, 3], ["strictDeps", 50, 3], ["postPatch", 52, 3], ["env", 61, 3], ["meta", 63, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, "alsa-lib": false, audiofile: false, autoconf: false, automake: false, autoreconfHook: false, gettext: false, gtk2: false, libGL: false, libjack2: false, libpulseaudio: false, libtool: false, libxml2: false, "pkg-config": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 61, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 64, 5], ["longDescription", 65, 5], ["homepage", 69, 5], ["license", 70, 5], ["maintainers", 71, 5], ["platforms", 72, 5], ["mainProgram", 73, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 40, 3], ["strictDeps", 50, 3], ["postPatch", 52, 3], ["env", 61, 3], ["meta", 63, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const libxml2 = nix.arg($, "libxml2");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "industrializer",
       version: "0.2.7",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/project/industrializer/psindustrializer-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-28w23zAex41yUzeh9l+kPgGrTk2XHb9CGVXdy8VEyEw=",
         })))),
@@ -49,11 +46,11 @@ export default nix.lambda((args) => (() => {
       strictDeps: true,
       postPatch: "# Replace obsolete AM_PATH_XML2 with PKG_CHECK_MODULES\nsubstituteInPlace configure.ac \\\n  --replace-fail 'AM_PATH_XML2(2.6.0, [], AC_MSG_ERROR(Fatal error: Need libxml2 >= 2.6.0))' \\\n                 'PKG_CHECK_MODULES([XML], [libxml-2.0 >= 2.6.0])' \\\n  --replace-fail 'XML_CPPFLAGS' 'XML_CFLAGS'\n",
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: "-Wno-error=incompatible-pointer-types",
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "This program generates synthesized percussion sounds using physical modelling",
         longDescription: "The range of sounds possible include but is not limited to cymbal sounds, metallic noises, bubbly sounds, and chimes.\nAfter a sound is rendered, it can be played and then saved to a .WAV file.\n",
         homepage: "https://sourceforge.net/projects/industrializer/",

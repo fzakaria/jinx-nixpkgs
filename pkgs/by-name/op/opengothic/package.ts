@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["fetchSubmodules", 25, 5], ["hash", 26, 5]], [["updateScript", 59, 12]], [["description", 62, 5], ["homepage", 63, 5], ["license", 64, 5], ["maintainers", 65, 5], ["platforms", 66, 5], ["mainProgram", 67, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 36, 3], ["installPhase", 46, 3], ["postFixup", 54, 3], ["passthru", 59, 3], ["meta", 61, 3]]]);
 const formals$1 = { args: { "alsa-lib": false, cmake: false, fetchFromGitHub: false, glslang: false, lib: false, libglvnd: false, libx11: false, libxcursor: false, makeWrapper: false, ninja: false, stdenv: false, "vulkan-headers": false, "vulkan-loader": false, "vulkan-validation-layers": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["fetchSubmodules", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 59, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 62, 5], ["homepage", 63, 5], ["license", 64, 5], ["maintainers", 65, 5], ["platforms", 66, 5], ["mainProgram", 67, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 36, 3], ["installPhase", 46, 3], ["postFixup", 54, 3], ["passthru", 59, 3], ["meta", 61, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const vulkan_loader = nix.arg($, "vulkan-loader");
   const vulkan_validation_layers = nix.arg($, "vulkan-validation-layers");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "opengothic",
       version: "1.0.3756",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Try",
           repo: "OpenGothic",
           rev: "refs/tags/v0.92",
@@ -50,9 +47,9 @@ export default nix.lambda((args) => (() => {
       postFixup: nix.thunk(() => nix.str`wrapProgram $out/bin/Gothic2Notr \\
   --prefix LD_PRELOAD : "${nix.app(nix.sel(lib, "getLib"), alsa_lib)}/lib/libasound.so.2"
 `),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[1], updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Open source re-implementation of Gothic 2: Night of the Raven",
         homepage: "https://github.com/Try/OpenGothic",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

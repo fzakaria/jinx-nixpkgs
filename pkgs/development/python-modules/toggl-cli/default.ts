@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 36, 5], ["repo", 37, 5], ["tag", 38, 5], ["hash", 39, 5]], [["PBR_VERSION", 42, 7]], [["description", 90, 5], ["homepage", 91, 5], ["changelog", 92, 5], ["license", 93, 5], ["maintainers", 94, 5], ["mainProgram", 95, 5]], [["pname", 31, 3], ["version", 32, 3], ["pyproject", 33, 3], ["src", 35, 3], ["env", 42, 3], ["build-system", 44, 3], ["pythonRelaxDeps", 50, 3], ["dependencies", 52, 3], ["nativeCheckInputs", 65, 3], ["versionCheckProgram", 72, 3], ["disabledTests", 74, 3], ["disabledTestPaths", 82, 3], ["pythonImportsCheck", 87, 3], ["meta", 89, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitHub: false, pbr: false, setuptools: false, twine: false, click: false, "click-completion": false, inquirer: false, "notify-py": false, pendulum: false, prettytable: false, requests: false, "validate-email": false, "factory-boy": false, "pytest-cov-stub": false, "pytest-mock": false, pytestCheckHook: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 36, 5], ["repo", 37, 5], ["tag", 38, 5], ["hash", 39, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["PBR_VERSION", 42, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 90, 5], ["homepage", 91, 5], ["changelog", 92, 5], ["license", 93, 5], ["maintainers", 94, 5], ["mainProgram", 95, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 31, 3], ["version", 32, 3], ["pyproject", 33, 3], ["src", 35, 3], ["env", 42, 3], ["build-system", 44, 3], ["pythonRelaxDeps", 50, 3], ["dependencies", 52, 3], ["nativeCheckInputs", 65, 3], ["versionCheckProgram", 72, 3], ["disabledTests", 74, 3], ["disabledTestPaths", 82, 3], ["pythonImportsCheck", 87, 3], ["meta", 89, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -35,13 +32,13 @@ export default nix.lambda((args) => (() => {
       const version = "4.0.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "AuHau",
           repo: "toggl-cli",
           tag: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-f3s0XlhQZH9xC5xyM+e2VG9j1GK0qqWFm4Xy08Iwj/Q=",
         }))));
-      const env = nix.thunk(() => ({ [nix.POS]: pos$2, PBR_VERSION: version }));
+      const env = nix.thunk(() => ({ [nix.POS]: $pos[1], PBR_VERSION: version }));
       const build_system = nix.thunk(() => [pbr, setuptools, twine]);
       const pythonRelaxDeps = true;
       const dependencies = nix.thunk(() => [
@@ -62,7 +59,7 @@ export default nix.lambda((args) => (() => {
       const disabledTestPaths = nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["tests/unit/cli/test_types.py"])));
       const pythonImportsCheck = nix.thunk(() => ["toggl"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Command line tool and set of Python wrapper classes for interacting with toggl's API",
         homepage: "https://toggl.uhlir.dev/",
         changelog: nix.thunk(() => nix.str`https://github.com/AuHau/toggl-cli/releases/tag/${nix.sel(src, "tag")}`),
@@ -74,7 +71,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "toggl",
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

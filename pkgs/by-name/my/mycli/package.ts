@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]], [["description", 92, 5], ["mainProgram", 93, 5], ["longDescription", 94, 5], ["homepage", 98, 5], ["license", 99, 5], ["maintainers", 100, 5]], [["pname", 9, 3], ["version", 10, 3], ["pyproject", 11, 3], ["__darwinAllowLocalNetworking", 15, 3], ["src", 17, 3], ["pythonRelaxDeps", 24, 3], ["build-system", 37, 3], ["dependencies", 42, 3], ["nativeCheckInputs", 67, 3], ["disabledTestPaths", 75, 3], ["pytestFlags", 81, 3], ["meta", 91, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, python3Packages: false, writableTmpDirAsHomeHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 92, 5], ["mainProgram", 93, 5], ["longDescription", 94, 5], ["homepage", 98, 5], ["license", 99, 5], ["maintainers", 100, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["pyproject", 11, 3], ["__darwinAllowLocalNetworking", 15, 3], ["src", 17, 3], ["pythonRelaxDeps", 24, 3], ["build-system", 37, 3], ["dependencies", 42, 3], ["nativeCheckInputs", 67, 3], ["disabledTestPaths", 75, 3], ["pytestFlags", 81, 3], ["meta", 91, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,13 +12,13 @@ export default nix.lambda((args) => (() => {
   const python3Packages = nix.arg($, "python3Packages");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "mycli",
       version: "2.20.0",
       pyproject: true,
       __darwinAllowLocalNetworking: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "dbcli",
           repo: "mycli",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -86,7 +84,7 @@ export default nix.lambda((args) => (() => {
         "--deselect=test/pytests/test_bash_completion.py::test_bash_completion_matches_mycli_completion_behavior",
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Command-line interface for MySQL",
         mainProgram: "mycli",
         longDescription: "Rich command-line interface for MySQL with auto-completion and\nsyntax highlighting.\n",

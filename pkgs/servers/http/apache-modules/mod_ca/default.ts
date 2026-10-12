@@ -2,12 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 19, 5], ["hash", 20, 5]], [["url", 44, 5]], [["updateScript", 43, 12]], [["description", 48, 5], ["homepage", 49, 5], ["changelog", 50, 5], ["license", 51, 5], ["platforms", 52, 5], ["maintainers", 53, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["nativeBuildInputs", 23, 3], ["buildInputs", 25, 3], ["configureFlags", 36, 3], ["installFlags", 38, 3], ["passthru", 43, 3], ["meta", 47, 3]]]);
 const formals$1 = { args: { apacheHttpd: false, apr: false, aprutil: false, directoryListingUpdater: false, fetchurl: false, lib: false, openldap: false, openssl: false, "pkg-config": false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["url", 44, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["updateScript", 43, 12]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 48, 5], ["homepage", 49, 5], ["changelog", 50, 5], ["license", 51, 5], ["platforms", 52, 5], ["maintainers", 53, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["nativeBuildInputs", 23, 3], ["buildInputs", 25, 3], ["configureFlags", 36, 3], ["installFlags", 38, 3], ["passthru", 43, 3], ["meta", 47, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const pname = "mod_ca";
       const version = "0.2.3";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://redwax.eu/dist/rs/${pname}-${version}.tar.gz`),
           hash: "sha256-HGnhypOO0WOgRw9i9oqO4da131zAwBXOdrc9dypFjyk=",
         }))));
@@ -39,11 +35,11 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`LIBEXECDIR=${nix.builtins.placeholder("out")}/modules`),
       ]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(directoryListingUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, url: "https://redwax.eu/dist/rs/" })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(directoryListingUpdater, nix.thunk(() => ({ [nix.POS]: $pos[1], url: "https://redwax.eu/dist/rs/" })))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "RedWax CA service module",
         homepage: "https://redwax.eu",
         changelog: "https://source.redwax.eu/projects/RS/repos/mod_ca/browse/ChangeLog",
@@ -55,7 +51,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         src,

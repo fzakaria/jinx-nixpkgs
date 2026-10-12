@@ -2,64 +2,44 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/v2ray.nix", [[["id", 6, 5], ["alterId", 7, 5]], [["tag", 14, 9], ["port", 15, 9], ["listen", 16, 9], ["protocol", 17, 9]], [["clients", 24, 18]], [["tag", 20, 9], ["port", 21, 9], ["listen", 22, 9], ["protocol", 23, 9], ["settings", 24, 9]], [["address", 33, 13], ["port", 34, 13], ["users", 35, 13]], [["vnext", 31, 18]], [["tag", 29, 9], ["protocol", 30, 9], ["settings", 31, 9]], [["tag", 40, 9], ["protocol", 41, 9]], [["type", 46, 9], ["inboundTag", 47, 9], ["outboundTag", 48, 9]], [["type", 51, 9], ["inboundTag", 52, 9], ["outboundTag", 53, 9]], [["type", 58, 9], ["ip", 59, 9], ["domain", 60, 9], ["outboundTag", 61, 9]], [["rules", 44, 13]], [["inbounds", 12, 5], ["outbounds", 27, 5], ["routing", 44, 5]], [["maintainers", 70, 5]], [["systemPackages", 75, 19]], [["enable", 77, 9], ["config", 78, 9]], [["enable", 81, 9], ["adminAddr", 82, 9]], [["v2ray", 76, 16], ["httpd", 80, 16]], [["environment", 75, 7], ["services", 76, 7]], [["machine", 72, 9]], [["name", 68, 3], ["meta", 69, 3], ["nodes", 72, 3], ["testScript", 86, 3]]]);
 const formals$1 = { args: { lib: false, pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/v2ray.nix", [["id", 6, 5], ["alterId", 7, 5]]);
-const pos$2 = nix.positions(here + "/v2ray.nix", [["tag", 14, 9], ["port", 15, 9], ["listen", 16, 9], ["protocol", 17, 9]]);
-const pos$3 = nix.positions(here + "/v2ray.nix", [["clients", 24, 18]]);
-const pos$4 = nix.positions(here + "/v2ray.nix", [["tag", 20, 9], ["port", 21, 9], ["listen", 22, 9], ["protocol", 23, 9], ["settings", 24, 9]]);
-const pos$5 = nix.positions(here + "/v2ray.nix", [["address", 33, 13], ["port", 34, 13], ["users", 35, 13]]);
-const pos$6 = nix.positions(here + "/v2ray.nix", [["vnext", 31, 18]]);
-const pos$7 = nix.positions(here + "/v2ray.nix", [["tag", 29, 9], ["protocol", 30, 9], ["settings", 31, 9]]);
-const pos$8 = nix.positions(here + "/v2ray.nix", [["tag", 40, 9], ["protocol", 41, 9]]);
-const pos$9 = nix.positions(here + "/v2ray.nix", [["type", 46, 9], ["inboundTag", 47, 9], ["outboundTag", 48, 9]]);
-const pos$10 = nix.positions(here + "/v2ray.nix", [["type", 51, 9], ["inboundTag", 52, 9], ["outboundTag", 53, 9]]);
-const pos$11 = nix.positions(here + "/v2ray.nix", [["type", 58, 9], ["ip", 59, 9], ["domain", 60, 9], ["outboundTag", 61, 9]]);
-const pos$12 = nix.positions(here + "/v2ray.nix", [["rules", 44, 13]]);
-const pos$13 = nix.positions(here + "/v2ray.nix", [["inbounds", 12, 5], ["outbounds", 27, 5], ["routing", 44, 5]]);
-const pos$14 = nix.positions(here + "/v2ray.nix", [["maintainers", 70, 5]]);
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$15 = nix.positions(here + "/v2ray.nix", [["systemPackages", 75, 19]]);
-const pos$16 = nix.positions(here + "/v2ray.nix", [["enable", 77, 9], ["config", 78, 9]]);
-const pos$17 = nix.positions(here + "/v2ray.nix", [["enable", 81, 9], ["adminAddr", 82, 9]]);
-const pos$18 = nix.positions(here + "/v2ray.nix", [["v2ray", 76, 16], ["httpd", 80, 16]]);
-const pos$19 = nix.positions(here + "/v2ray.nix", [["environment", 75, 7], ["services", 76, 7]]);
-const pos$20 = nix.positions(here + "/v2ray.nix", [["machine", 72, 9]]);
-const pos$21 = nix.positions(here + "/v2ray.nix", [["name", 68, 3], ["meta", 69, 3], ["nodes", 72, 3], ["testScript", 86, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
-  const v2rayUser = nix.thunk(() => ({ [nix.POS]: pos$1, id: "a6a46834-2150-45f8-8364-0f6f6ab32384", alterId: 0n }));
+  const v2rayUser = nix.thunk(() => ({ [nix.POS]: $pos[0], id: "a6a46834-2150-45f8-8364-0f6f6ab32384", alterId: 0n }));
   const v2rayConfig = nix.thunk(() => ({
-    [nix.POS]: pos$13,
+    [nix.POS]: $pos[12],
     inbounds: nix.thunk(() => [
       nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         tag: "http_in",
         port: 1080n,
         listen: "127.0.0.1",
         protocol: "http",
       })),
       nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tag: "vmess_in",
         port: 1081n,
         listen: "127.0.0.1",
         protocol: "vmess",
-        settings: nix.thunk(() => ({ [nix.POS]: pos$3, clients: nix.thunk(() => [v2rayUser]) })),
+        settings: nix.thunk(() => ({ [nix.POS]: $pos[2], clients: nix.thunk(() => [v2rayUser]) })),
       })),
     ]),
     outbounds: nix.thunk(() => [
       nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         tag: "vmess_out",
         protocol: "vmess",
         settings: nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           vnext: nix.thunk(() => [
             nix.thunk(() => ({
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               address: "127.0.0.1",
               port: 1081n,
               users: nix.thunk(() => [v2rayUser]),
@@ -67,25 +47,25 @@ export default nix.lambda((args) => (() => {
           ]),
         })),
       })),
-      nix.thunk(() => ({ [nix.POS]: pos$8, tag: "direct", protocol: "freedom" })),
+      nix.thunk(() => ({ [nix.POS]: $pos[7], tag: "direct", protocol: "freedom" })),
     ]),
     routing: nix.thunk(() => ({
-      [nix.POS]: pos$12,
+      [nix.POS]: $pos[11],
       rules: nix.thunk(() => [
         nix.thunk(() => ({
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           type: "field",
           inboundTag: "http_in",
           outboundTag: "vmess_out",
         })),
         nix.thunk(() => ({
-          [nix.POS]: pos$10,
+          [nix.POS]: $pos[9],
           type: "field",
           inboundTag: "vmess_in",
           outboundTag: "direct",
         })),
         nix.thunk(() => ({
-          [nix.POS]: pos$11,
+          [nix.POS]: $pos[10],
           type: "field",
           ip: nix.thunk(() => ["geoip:private"]),
           domain: nix.thunk(() => ["geosite:category-ads"]),
@@ -95,30 +75,30 @@ export default nix.lambda((args) => (() => {
     })),
   }));
   return {
-    [nix.POS]: pos$21,
+    [nix.POS]: $pos[20],
     name: "v2ray",
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
       return {
-        [nix.POS]: pos$14,
+        [nix.POS]: $pos[13],
         maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "servalcatty"))]),
       };
     })()),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$20,
+      [nix.POS]: $pos[19],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$19,
+          [nix.POS]: $pos[18],
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$15,
+            [nix.POS]: $pos[14],
             systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs_1, "curl"))]),
           })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$18,
-            v2ray: nix.thunk(() => ({ [nix.POS]: pos$16, enable: true, config: v2rayConfig })),
-            httpd: nix.thunk(() => ({ [nix.POS]: pos$17, enable: true, adminAddr: "foo@example.org" })),
+            [nix.POS]: $pos[17],
+            v2ray: nix.thunk(() => ({ [nix.POS]: $pos[15], enable: true, config: v2rayConfig })),
+            httpd: nix.thunk(() => ({ [nix.POS]: $pos[16], enable: true, adminAddr: "foo@example.org" })),
           })),
         };
       })(), formals$2),

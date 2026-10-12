@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]], [["package", 80, 7], ["versionCheck", 81, 7]], [["pkg-config", 79, 11]], [["tests", 79, 5], ["updateScript", 83, 5]], [["description", 87, 5], ["longDescription", 88, 5], ["homepage", 92, 5], ["changelog", 93, 5], ["license", 94, 5], ["teams", 95, 5], ["platforms", 96, 5], ["pkgConfigModules", 97, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["outputs", 29, 3], ["postPatch", 35, 3], ["nativeBuildInputs", 48, 3], ["buildInputs", 55, 3], ["nativeCheckInputs", 61, 3], ["checkInputs", 65, 3], ["cmakeFlags", 69, 3], ["doCheck", 76, 3], ["passthru", 78, 3], ["meta", 86, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitLab: false, gitUpdater: false, testers: false, boost: false, cmake: false, doxygen: false, gtest: false, leveldb: false, lomiri: false, "pkg-config": false, python3: false, validatePkgConfig: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["package", 80, 7], ["versionCheck", 81, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pkg-config", 79, 11]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 79, 5], ["updateScript", 83, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 87, 5], ["longDescription", 88, 5], ["homepage", 92, 5], ["changelog", 93, 5], ["license", 94, 5], ["teams", 95, 5], ["platforms", 96, 5], ["pkgConfigModules", 97, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["outputs", 29, 3], ["postPatch", 35, 3], ["nativeBuildInputs", 48, 3], ["buildInputs", 55, 3], ["nativeCheckInputs", 61, 3], ["checkInputs", 65, 3], ["cmakeFlags", 69, 3], ["doCheck", 76, 3], ["passthru", 78, 3], ["meta", 86, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const validatePkgConfig = nix.arg($, "validatePkgConfig");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "persistent-cache-cpp",
       version: "1.0.10",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ubports",
           repo: "development/core/lib-cpp/persistent-cache-cpp",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -49,11 +44,11 @@ export default nix.lambda((args) => (() => {
       ]),
       doCheck: nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "hasPkgConfigModules"), nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               versionCheck: true,
             })))),
@@ -61,7 +56,7 @@ export default nix.lambda((args) => (() => {
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Cache of key-value pairs with persistent storage for C++ 11",
         longDescription: "A persistent cache for arbitrary (possibly large amount of data, such as\nimage files) that is fast, scalable, and crash-proof.\n",
         homepage: "https://gitlab.com/ubports/development/core/lib-cpp/persistent-cache-cpp",

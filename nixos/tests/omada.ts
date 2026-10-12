@@ -2,37 +2,31 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/omada.nix", [[["maintainers", 9, 8]], [["memorySize", 14, 20]], [["enable", 17, 7]], [["omada", 16, 14]], [["virtualisation", 14, 5], ["services", 16, 5]], [["machine", 11, 9]], [["name", 8, 3], ["meta", 9, 3], ["nodes", 11, 3], ["testScript", 21, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/omada.nix", [["maintainers", 9, 8]]);
-const pos$2 = nix.positions(here + "/omada.nix", [["memorySize", 14, 20]]);
-const pos$3 = nix.positions(here + "/omada.nix", [["enable", 17, 7]]);
-const pos$4 = nix.positions(here + "/omada.nix", [["omada", 16, 14]]);
-const pos$5 = nix.positions(here + "/omada.nix", [["virtualisation", 14, 5], ["services", 16, 5]]);
-const pos$6 = nix.positions(here + "/omada.nix", [["machine", 11, 9]]);
-const pos$7 = nix.positions(here + "/omada.nix", [["name", 8, 3], ["meta", 9, 3], ["nodes", 11, 3], ["testScript", 21, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const port = 8088n;
   return {
-    [nix.POS]: pos$7,
+    [nix.POS]: $pos[6],
     name: "omada",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "pathob"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       machine: nix.thunk(() => ({
-        [nix.POS]: pos$5,
-        virtualisation: nix.thunk(() => ({ [nix.POS]: pos$2, memorySize: 2048n })),
+        [nix.POS]: $pos[4],
+        virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[1], memorySize: 2048n })),
         services: nix.thunk(() => ({
-          [nix.POS]: pos$4,
-          omada: nix.thunk(() => ({ [nix.POS]: pos$3, enable: true })),
+          [nix.POS]: $pos[3],
+          omada: nix.thunk(() => ({ [nix.POS]: $pos[2], enable: true })),
         })),
       })),
     })),

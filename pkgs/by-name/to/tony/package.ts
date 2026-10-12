@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 36, 5], ["sha256", 37, 5]], [["url", 42, 7], ["stripLen", 43, 7], ["extraPrefix", 44, 7], ["hash", 45, 7]], [["url", 48, 7], ["stripLen", 49, 7], ["extraPrefix", 50, 7], ["excludes", 51, 7], ["hash", 52, 7]], [["description", 95, 5], ["mainProgram", 96, 5], ["homepage", 97, 5], ["license", 98, 5], ["maintainers", 99, 5], ["platforms", 100, 5]], [["pname", 32, 3], ["version", 33, 3], ["src", 35, 3], ["patches", 40, 3], ["nativeBuildInputs", 56, 3], ["buildInputs", 61, 3], ["preConfigure", 88, 3], ["enableParallelBuilding", 92, 3], ["meta", 94, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, fetchpatch2: false, "pkg-config": false, "alsa-lib": false, boost: false, bzip2: false, fftw: false, fftwFloat: false, libx11: false, libfishsound: false, libid3tag: false, libjack2: false, liblo: false, libmad: false, libogg: false, liboggz: false, libpulseaudio: false, libsamplerate: false, libsndfile: false, lrdf: false, opusfile: false, rubberband: false, serd: false, sord: false, libsForQt5: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 36, 5], ["sha256", 37, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 42, 7], ["stripLen", 43, 7], ["extraPrefix", 44, 7], ["hash", 45, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 48, 7], ["stripLen", 49, 7], ["extraPrefix", 50, 7], ["excludes", 51, 7], ["hash", 52, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 95, 5], ["mainProgram", 96, 5], ["homepage", 97, 5], ["license", 98, 5], ["maintainers", 99, 5], ["platforms", 100, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 32, 3], ["version", 33, 3], ["src", 35, 3], ["patches", 40, 3], ["nativeBuildInputs", 56, 3], ["buildInputs", 61, 3], ["preConfigure", 88, 3], ["enableParallelBuilding", 92, 3], ["meta", 94, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -39,24 +35,24 @@ export default nix.lambda((args) => (() => {
   const sord = nix.arg($, "sord");
   const libsForQt5 = nix.arg($, "libsForQt5");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "tony",
       version: "2.1.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://code.soundsoftware.ac.uk/attachments/download/2616/tony-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "03g2bmlj08lmgvh54dyd635xccjn730g4wwlhpvsw04bffz8b7fp",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/sonic-visualiser/svcore/commit/5a7b517e43b7f0b3f03b7fc3145102cf4e5b0ffc.patch",
             stripLen: 1n,
             extraPrefix: "svcore/",
             hash: "sha256-DOCdQqCihkR0g/6m90DbJxw00QTpyVmFzCxagrVWKiI=",
           })))),
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: "https://github.com/sonic-visualiser/svgui/commit/5b6417891cff5cc614e8c96664d68674eb12b191.patch",
             stripLen: 1n,
             extraPrefix: "svgui/",
@@ -93,7 +89,7 @@ export default nix.lambda((args) => (() => {
       preConfigure: "sed -i 's/sub_test_svcore_/#sub_test_svcore_/' tony.pro\n",
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Pitch and note annotation of unaccompanied melody",
         mainProgram: "tony",
         homepage: "https://www.sonicvisualiser.org/tony/",

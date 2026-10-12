@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]], [["name", 47, 7], ["path", 48, 7]], [["signingKey", 53, 9]], [["softwareKey", 52, 7]], [["internal", 34, 5], ["signingKey", 36, 5], ["sign", 38, 5], ["x509", 40, 5], ["authenticode", 42, 5], ["mkTest", 44, 5], ["testSigningKey", 46, 5], ["tests", 51, 5]], [["description", 59, 5], ["homepage", 60, 5], ["license", 61, 5], ["sourceProvenance", 62, 5], ["teams", 63, 5], ["mainProgram", 64, 5], ["platforms", 65, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["cargoHash", 21, 3], ["nativeBuildInputs", 23, 3], ["useNextest", 27, 3], ["cargoTestFlags", 29, 3], ["__structuredAttrs", 31, 3], ["passthru", 33, 3], ["meta", 58, 3]]]);
 const formals$1 = { args: { lib: false, callPackage: false, rustPlatform: false, fetchFromGitHub: false, capnproto: false, autopen: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 47, 7], ["path", 48, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["signingKey", 53, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["softwareKey", 52, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["internal", 34, 5], ["signingKey", 36, 5], ["sign", 38, 5], ["x509", 40, 5], ["authenticode", 42, 5], ["mkTest", 44, 5], ["testSigningKey", 46, 5], ["tests", 51, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 59, 5], ["homepage", 60, 5], ["license", 61, 5], ["sourceProvenance", 62, 5], ["teams", 63, 5], ["mainProgram", 64, 5], ["platforms", 65, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["cargoHash", 21, 3], ["nativeBuildInputs", 23, 3], ["useNextest", 27, 3], ["cargoTestFlags", 29, 3], ["__structuredAttrs", 31, 3], ["passthru", 33, 3], ["meta", 58, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const capnproto = nix.arg($, "capnproto");
   const autopen = nix.arg($, "autopen");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "autopen",
       version: "0.2.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "emilazy",
           repo: "autopen",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,7 +30,7 @@ export default nix.lambda((args) => (() => {
       cargoTestFlags: nix.thunk(() => ["--max-fail=all"]),
       __structuredAttrs: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         internal: nix.thunk(() => nix.app(callPackage, nix.path(here, "./internal.nix"), nix.thunk(() => ({})))),
         signingKey: nix.thunk(() => nix.app(callPackage, nix.path(here, "./signing-key.nix"), nix.thunk(() => ({})))),
         sign: nix.thunk(() => nix.app(callPackage, nix.path(here, "./sign.nix"), nix.thunk(() => ({})))),
@@ -44,20 +38,20 @@ export default nix.lambda((args) => (() => {
         authenticode: nix.thunk(() => nix.app(callPackage, nix.path(here, "./authenticode.nix"), nix.thunk(() => ({})))),
         mkTest: nix.thunk(() => nix.app(callPackage, nix.path(here, "./tests"), nix.thunk(() => ({})))),
         testSigningKey: nix.thunk(() => nix.app(nix.sel(autopen, "signingKey", "import"), nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "autopen-test-rsa3072-pkcs1-sha256",
             path: nix.path(here, "./tests/test-rsa3072-pkcs1-sha256-signing-key.bin"),
           })))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           softwareKey: nix.thunk(() => nix.app(nix.sel(autopen, "mkTest"), nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               signingKey: nix.thunk(() => nix.sel(autopen, "testSigningKey")),
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Cryptographic signing tool with an object‐capability interface",
         homepage: "https://github.com/emilazy/autopen",
         license: nix.thunk(() => nix.sel(lib, "licenses", "blueOak100")),

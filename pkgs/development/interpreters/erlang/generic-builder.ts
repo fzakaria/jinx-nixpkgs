@@ -2,14 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/generic-builder.nix", [[["owner", 84, 5], ["repo", 85, 5], ["tag", 86, 5], ["hash", 87, 13]], [["DOC_TARGETS", 92, 5], ["LANG", 93, 5]], [["extraArgs", 154, 7]], [["updateScript", 153, 5]], [["homepage", 164, 5], ["downloadPage", 165, 5], ["description", 166, 5], ["changelog", 167, 5], ["longDescription", 169, 5], ["platforms", 178, 5], ["teams", 179, 5], ["license", 180, 5]], [["pname", 80, 3], ["version", 81, 11], ["src", 83, 3], ["env", 90, 3], ["nativeBuildInputs", 96, 3], ["buildInputs", 104, 3], ["postPatch", 115, 3], ["debugInfo", 119, 3], ["enableParallelBuilding", 122, 3], ["configureFlags", 124, 3], ["installTargets", 140, 3], ["postInstall", 145, 3], ["passthru", 152, 3], ["meta", 163, 3]]]);
 const formals$1 = { args: { systemdSupport: true, wxSupport: true, version: false, hash: true }, ellipsis: false };
 const formals$2 = { args: { enableDebugInfo: true, enableHipe: true, enableKernelPoll: true, enableSmpSupport: true, enableThreads: true, javacSupport: true, odbcSupport: true, parallelBuild: true, fetchFromGitHub: false, gawk: false, gnum4: false, gnused: false, lib: false, libGL: false, libGLU: false, libxml2: false, libxslt: false, makeWrapper: false, ncurses: false, "nix-update-script": false, openjdk11: false, openssl: false, perl: false, runtimeShell: false, stdenv: false, systemd: false, unixodbc: false, wrapGAppsHook3: false, wxwidgets_3_2: false, libx11: false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/generic-builder.nix", [["owner", 84, 5], ["repo", 85, 5], ["tag", 86, 5], ["hash", 87, 13]]);
-const pos$2 = nix.positions(here + "/generic-builder.nix", [["DOC_TARGETS", 92, 5], ["LANG", 93, 5]]);
-const pos$3 = nix.positions(here + "/generic-builder.nix", [["extraArgs", 154, 7]]);
-const pos$4 = nix.positions(here + "/generic-builder.nix", [["updateScript", 153, 5]]);
-const pos$5 = nix.positions(here + "/generic-builder.nix", [["homepage", 164, 5], ["downloadPage", 165, 5], ["description", 166, 5], ["changelog", 167, 5], ["longDescription", 169, 5], ["platforms", 178, 5], ["teams", 179, 5], ["license", 180, 5]]);
-const pos$6 = nix.positions(here + "/generic-builder.nix", [["pname", 80, 3], ["version", 81, 11], ["src", 83, 3], ["env", 90, 3], ["nativeBuildInputs", 96, 3], ["buildInputs", 104, 3], ["postPatch", 115, 3], ["debugInfo", 119, 3], ["enableParallelBuilding", 122, 3], ["configureFlags", 124, 3], ["installTargets", 140, 3], ["postInstall", 145, 3], ["passthru", 152, 3], ["meta", 163, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -58,17 +53,17 @@ export default nix.lambda((args) => (() => {
     const enableSystemd = nix.thunk(() => (nix.asBool(nix.eq(systemdSupport, null)) ? nix.app(nix.sel(lib, "meta", "availableOn"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")), systemd) : nix.force(systemdSupport)));
     const runtimePath = nix.thunk(() => nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [gawk, gnused])));
     return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname: nix.thunk(() => nix.add(nix.add("erlang", nix.app(optionalString, javacSupport, "_javac")), nix.app(optionalString, odbcSupport, "_odbc"))),
         version: version,
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             owner: "erlang",
             repo: "otp",
             tag: nix.thunk(() => nix.str`OTP-${version}`),
             hash: hash,
           })))),
-        env: nix.thunk(() => ({ [nix.POS]: pos$2, DOC_TARGETS: "man chunks", LANG: "C.UTF-8" })),
+        env: nix.thunk(() => ({ [nix.POS]: $pos[1], DOC_TARGETS: "man chunks", LANG: "C.UTF-8" })),
         nativeBuildInputs: nix.thunk(() => [makeWrapper, perl, gnum4, libxslt, libxml2]),
         buildInputs: nix.thunk(() => nix.concat([ncurses, openssl, zlib], nix.concat(nix.app(optionals, wxSupport, wxPackages2), nix.concat(nix.app(optionals, odbcSupport, nix.thunk(() => [unixodbc])), nix.concat(nix.app(optionals, javacSupport, nix.thunk(() => [openjdk11])), nix.app(optionals, enableSystemd, nix.thunk(() => [systemd]))))))),
         postPatch: nix.thunk(() => nix.str`substituteInPlace lib/os_mon/src/disksup.erl --replace-fail '"sh ' '"${runtimeShell} '
@@ -86,9 +81,9 @@ wrapProgram $out/lib/erlang/bin/erl --prefix PATH ":" "${runtimePath}"
 wrapProgram $out/lib/erlang/bin/start_erl --prefix PATH ":" "${runtimePath}"
 `),
         passthru: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               extraArgs: nix.thunk(() => [
                 "--version-regex",
                 nix.thunk(() => nix.str`OTP-(${major}.*)`),
@@ -98,7 +93,7 @@ wrapProgram $out/lib/erlang/bin/start_erl --prefix PATH ":" "${runtimePath}"
             })))),
         })),
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           homepage: "https://www.erlang.org/",
           downloadPage: "https://www.erlang.org/download.html",
           description: "Programming language used for massively scalable soft real-time systems",

@@ -2,20 +2,11 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["lua", 32, 9]], [["fetchFromGitHub", 56, 28], ["postFetch", 57, 13]], [["name", 87, 23]], [["engine", 86, 13]], [["name", 118, 25], ["assetsError", 118, 30]], [["mods", 121, 25]], [["mod", 117, 15], ["engine", 120, 15]], [["buildOpenRAEngine", 131, 61]], [["buildOpenRAMod", 132, 55]], [["buildOpenRAEngine", 71, 3], ["buildOpenRAMod", 95, 3], ["engines", 131, 3], ["mods", 132, 3]]]);
 const formals$1 = { args: { pkgs: false, lib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["lua", 32, 9]]);
-const pos$2 = nix.positions(here + "/default.nix", [["fetchFromGitHub", 56, 28], ["postFetch", 57, 13]]);
 const formals$2 = { args: { name: true, version: false, meta: false, mods: false, src: false }, ellipsis: false };
-const pos$3 = nix.positions(here + "/default.nix", [["name", 87, 23]]);
-const pos$4 = nix.positions(here + "/default.nix", [["engine", 86, 13]]);
 const formals$3 = { args: { name: true, version: false, title: false, meta: false, src: false, engine: false, assetsError: true }, ellipsis: false };
 const formals$4 = { args: { version: false, mods: true, src: false }, ellipsis: false };
-const pos$5 = nix.positions(here + "/default.nix", [["name", 118, 25], ["assetsError", 118, 30]]);
-const pos$6 = nix.positions(here + "/default.nix", [["mods", 121, 25]]);
-const pos$7 = nix.positions(here + "/default.nix", [["mod", 117, 15], ["engine", 120, 15]]);
-const pos$8 = nix.positions(here + "/default.nix", [["buildOpenRAEngine", 131, 61]]);
-const pos$9 = nix.positions(here + "/default.nix", [["buildOpenRAMod", 132, 55]]);
-const pos$10 = nix.positions(here + "/default.nix", [["buildOpenRAEngine", 71, 3], ["buildOpenRAMod", 95, 3], ["engines", 131, 3], ["mods", 132, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const common = nix.thunk(() => (() => {
     const f = nix.thunk(() => nix.builtins.import(nix.path(here, "./common.nix")));
     const fArgs = nix.thunk(() => nix.app(nix.sel(lib, "functionArgs"), f));
-    return nix.app(f, nix.thunk(() => nix.update(nix.builtins.intersectAttrs(fArgs, pkgs), { [nix.POS]: pos$1, lua: nix.thunk(() => nix.sel(pkgs, "lua5_1")) })));
+    return nix.app(f, nix.thunk(() => nix.update(nix.builtins.intersectAttrs(fArgs, pkgs), { [nix.POS]: $pos[0], lua: nix.thunk(() => nix.sel(pkgs, "lua5_1")) })));
   })());
   const callWithName = (name) => (value) => (nix.asBool(nix.app(nix.sel(lib, "isFunction"), value)) ? nix.app(value, name) : nix.force(value));
   const buildOpenRASet = (f) => (args_1) => nix.app(nix.sel(lib, "recurseIntoAttrs"), nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), callWithName, nix.thunk(() => nix.app(f, nix.thunk(() => nix.update({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           fetchFromGitHub: nix.thunk(() => nix.attr(pkgs, "fetchFromGitHub")),
           postFetch: "sed -i 's/curl/curl --insecure/g' $out/thirdparty/{fetch-thirdparty-deps,noget}.sh\n$out/thirdparty/fetch-thirdparty-deps.sh\n",
         }, args_1)))))));
@@ -42,8 +33,8 @@ export default nix.lambda((args) => (() => {
         const mods_1 = nix.arg($_1, "mods");
         const src = nix.arg($_1, "src");
         const builder = (name_1) => nix.app(nix.sel(pkgs, "callPackage"), nix.path(here, "./engine.nix"), nix.thunk(() => nix.update(common, {
-            [nix.POS]: pos$4,
-            engine: nix.thunk(() => nix.update(engine, { [nix.POS]: pos$3, name: name_1 })),
+            [nix.POS]: $pos[3],
+            engine: nix.thunk(() => nix.update(engine, { [nix.POS]: $pos[2], name: name_1 })),
           })));
         return (nix.asBool(nix.eq(name, null)) ? builder : nix.app(builder, name));
       })(), formals$2);
@@ -64,16 +55,16 @@ export default nix.lambda((args) => (() => {
           const mods_1 = nix.argOr($_2, "mods", () => []);
           const src_1 = nix.arg($_2, "src");
           const builder = (name_1) => nix.app(nix.sel(pkgs, "callPackage"), nix.path(here, "./mod.nix"), nix.thunk(() => nix.update(common, {
-              [nix.POS]: pos$7,
-              mod: nix.thunk(() => nix.update(mod, { [nix.POS]: pos$5, name: name_1, assetsError: assetsError })),
-              engine: nix.thunk(() => nix.update(engine_1, { [nix.POS]: pos$6, mods: mods_1 })),
+              [nix.POS]: $pos[6],
+              mod: nix.thunk(() => nix.update(mod, { [nix.POS]: $pos[4], name: name_1, assetsError: assetsError })),
+              engine: nix.thunk(() => nix.update(engine_1, { [nix.POS]: $pos[5], mods: mods_1 })),
             })));
           return (nix.asBool(nix.eq(name, null)) ? builder : nix.app(builder, name));
         })(), formals$4), engine);
       })(), formals$3);
-      const engines = nix.thunk(() => nix.app(buildOpenRASet, nix.thunk(() => nix.builtins.import(nix.path(here, "./engines.nix"))), nix.thunk(() => ({ [nix.POS]: pos$8, buildOpenRAEngine: buildOpenRAEngine }))));
-      const mods = nix.thunk(() => nix.app(buildOpenRASet, nix.thunk(() => nix.builtins.import(nix.path(here, "./mods.nix"))), nix.thunk(() => ({ [nix.POS]: pos$9, buildOpenRAMod: buildOpenRAMod }))));
-      return { [nix.POS]: pos$10, buildOpenRAEngine, buildOpenRAMod, engines, mods };
+      const engines = nix.thunk(() => nix.app(buildOpenRASet, nix.thunk(() => nix.builtins.import(nix.path(here, "./engines.nix"))), nix.thunk(() => ({ [nix.POS]: $pos[7], buildOpenRAEngine: buildOpenRAEngine }))));
+      const mods = nix.thunk(() => nix.app(buildOpenRASet, nix.thunk(() => nix.builtins.import(nix.path(here, "./mods.nix"))), nix.thunk(() => ({ [nix.POS]: $pos[8], buildOpenRAMod: buildOpenRAMod }))));
+      return { [nix.POS]: $pos[9], buildOpenRAEngine, buildOpenRAMod, engines, mods };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

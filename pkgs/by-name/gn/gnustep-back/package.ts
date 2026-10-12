@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 20, 5], ["sha256", 21, 5]], [["description", 40, 5], ["mainProgram", 41, 5], ["homepage", 42, 5], ["license", 43, 5], ["maintainers", 44, 5], ["platforms", 48, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 29, 3], ["propagatedBuildInputs", 37, 3], ["meta", 39, 3]]]);
 const formals$1 = { args: { lib: false, clangStdenv: false, fetchzip: false, cairo: false, fontconfig: false, freetype: false, "gnustep-gui": false, libxft: false, libxmu: false, "pkg-config": false, wrapGNUstepAppsHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 20, 5], ["sha256", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 40, 5], ["mainProgram", 41, 5], ["homepage", 42, 5], ["license", 43, 5], ["maintainers", 44, 5], ["platforms", 48, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 29, 3], ["propagatedBuildInputs", 37, 3], ["meta", 39, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const wrapGNUstepAppsHook = nix.arg($, "wrapGNUstepAppsHook");
   return nix.app(nix.sel(clangStdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "gnustep-back",
       version: "0.32.0",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`ftp://ftp.gnustep.org/pub/gnustep/core/gnustep-back-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "sha256-E9rg3ySRUXSVgdPLeg1WrMO8u+SHHmM2Kb/XDAYqIOQ=",
         })))),
@@ -33,7 +31,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [cairo, fontconfig, freetype, libxft, libxmu]),
       propagatedBuildInputs: nix.thunk(() => [gnustep_gui]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Generic backend for GNUstep",
         mainProgram: "gpbs",
         homepage: "https://gnustep.github.io/",

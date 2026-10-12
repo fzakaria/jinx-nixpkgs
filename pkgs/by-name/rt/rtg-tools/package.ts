@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]], [["homepage", 66, 5], ["description", 67, 5], ["license", 68, 5], ["platforms", 69, 5], ["maintainers", 70, 5], ["mainProgram", 71, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["nativeBuildInputs", 25, 3], ["buildPhase", 32, 3], ["installPhase", 38, 3], ["postPatch", 46, 3], ["checkPhase", 61, 3], ["meta", 65, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, jdk: false, ant: false, git: false, coreutils: false, hostname: false, gawk: false, unzip: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 66, 5], ["description", 67, 5], ["license", 68, 5], ["platforms", 69, 5], ["maintainers", 70, 5], ["mainProgram", 71, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["nativeBuildInputs", 25, 3], ["buildPhase", 32, 3], ["installPhase", 38, 3], ["postPatch", 46, 3], ["checkPhase", 61, 3], ["meta", 65, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const gawk = nix.arg($, "gawk");
   const unzip = nix.arg($, "unzip");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "rtg-tools",
       version: "3.13",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "RealTimeGenomics",
           repo: "rtg-tools",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -48,7 +46,7 @@ sed -i '/# Now write the selection to local config/i mkdir -p $HOME/.config/rtg-
 `),
       checkPhase: "ant runalltests\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/RealTimeGenomics/rtg-tools",
         description: "Useful utilities for dealing with VCF files and sequence data, especially vcfeval",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

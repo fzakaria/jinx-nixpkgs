@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["version", 9, 33]], [["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]], [["description", 68, 5], ["mainProgram", 69, 5], ["homepage", 70, 5], ["license", 71, 5], ["platforms", 72, 5], ["maintainers", 73, 5]], [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["__structuredAttrs", 30, 3], ["strictDeps", 31, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 44, 3], ["preConfigure", 54, 3], ["cmakeBuildType", 58, 3], ["cmakeFlags", 60, 3], ["doCheck", 65, 3], ["meta", 67, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, "pkg-config": false, cmake: false, flex: false, cadical: false, "cadical'": true, symfpu: false, gmp: false, python3: false, gtest: false, boost: false, jdk: false, libpoly: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["version", 9, 33]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 68, 5], ["mainProgram", 69, 5], ["homepage", 70, 5], ["license", 71, 5], ["platforms", 72, 5], ["maintainers", 73, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["__structuredAttrs", 30, 3], ["strictDeps", 31, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 44, 3], ["preConfigure", 54, 3], ["cmakeBuildType", 58, 3], ["cmakeFlags", 60, 3], ["doCheck", 65, 3], ["meta", 67, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const cmake = nix.arg($, "cmake");
   const flex = nix.arg($, "flex");
   const cadical = nix.arg($, "cadical");
-  const cadical$ = nix.argOr($, "cadical'", () => nix.app(nix.sel(cadical, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, version: "2.1.3" }))));
+  const cadical$ = nix.argOr($, "cadical'", () => nix.app(nix.sel(cadical, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], version: "2.1.3" }))));
   const symfpu = nix.arg($, "symfpu");
   const gmp = nix.arg($, "gmp");
   const python3 = nix.arg($, "python3");
@@ -26,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const jdk = nix.arg($, "jdk");
   const libpoly = nix.arg($, "libpoly");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "cvc5",
       version: "1.4.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "cvc5",
           repo: "cvc5",
           tag: nix.thunk(() => nix.str`cvc5-${nix.sel(finalAttrs, "version")}`),
@@ -64,7 +61,7 @@ export default nix.lambda((args) => (() => {
       cmakeFlags: nix.thunk(() => ["-DBUILD_SHARED_LIBS=1", "-DUSE_POLY=ON"]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "High-performance theorem prover and SMT solver",
         mainProgram: "cvc5",
         homepage: "https://cvc5.github.io",

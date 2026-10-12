@@ -2,16 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["stdenv", 53, 31]], [["owner", 60, 5], ["repo", 61, 5], ["tag", 62, 5], ["hash", 63, 5]], [["cudartInclude", 70, 15], ["cccl", 71, 7], ["libcudart", 72, 7], ["libcudartStatic", 73, 7], ["libnvrtc", 74, 7], ["libnvvm", 75, 7]], [["NUMBA_ENABLE_CUDASIM", 123, 5]], [["NUMBA_ENABLE_CUDASIM", 182, 7]], [["requiredSystemFeatures", 170, 5], ["nativeBuildInputs", 172, 5], ["buildInputs", 179, 5], ["env", 181, 5], ["preCheck", 185, 5]], [["gpuCheck", 169, 12]], [["description", 196, 5], ["homepage", 197, 5], ["changelog", 198, 5], ["license", 199, 5], ["teams", 200, 5], ["maintainers", 201, 5], ["broken", 202, 5]], [["pname", 54, 3], ["version", 55, 3], ["pyproject", 56, 3], ["__structuredAttrs", 57, 3], ["src", 59, 3], ["patches", 66, 3], ["postPatch", 79, 3], ["build-system", 108, 3], ["dependencies", 113, 3], ["env", 121, 3], ["pythonImportsCheck", 126, 3], ["nativeCheckInputs", 128, 3], ["preCheck", 139, 3], ["pytestFlags", 162, 3], ["passthru", 169, 3], ["meta", 195, 3]]]);
 const formals$1 = { args: { lib: false, config: false, addDriverRunpath: false, buildPythonPackage: false, cudaPackages: false, fetchFromGitHub: false, python: false, replaceVars: false, numpy: false, setuptools: false, "cuda-bindings": false, "cuda-core": false, "cuda-pathfinder": false, numba: false, packaging: false, cffi: false, filecheck: false, "ml-dtypes": false, "pytest-benchmark": false, "pytest-subtests": false, pytestCheckHook: false, writableTmpDirAsHomeHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["stdenv", 53, 31]]);
-const pos$2 = nix.positions(here + "/default.nix", [["owner", 60, 5], ["repo", 61, 5], ["tag", 62, 5], ["hash", 63, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["cudartInclude", 70, 15], ["cccl", 71, 7], ["libcudart", 72, 7], ["libcudartStatic", 73, 7], ["libnvrtc", 74, 7], ["libnvvm", 75, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["NUMBA_ENABLE_CUDASIM", 123, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["NUMBA_ENABLE_CUDASIM", 182, 7]]);
-const pos$6 = nix.positions(here + "/default.nix", [["requiredSystemFeatures", 170, 5], ["nativeBuildInputs", 172, 5], ["buildInputs", 179, 5], ["env", 181, 5], ["preCheck", 185, 5]]);
-const pos$7 = nix.positions(here + "/default.nix", [["gpuCheck", 169, 12]]);
-const pos$8 = nix.positions(here + "/default.nix", [["description", 196, 5], ["homepage", 197, 5], ["changelog", 198, 5], ["license", 199, 5], ["teams", 200, 5], ["maintainers", 201, 5], ["broken", 202, 5]]);
-const pos$9 = nix.positions(here + "/default.nix", [["pname", 54, 3], ["version", 55, 3], ["pyproject", 56, 3], ["__structuredAttrs", 57, 3], ["src", 59, 3], ["patches", 66, 3], ["postPatch", 79, 3], ["build-system", 108, 3], ["dependencies", 113, 3], ["env", 121, 3], ["pythonImportsCheck", 126, 3], ["nativeCheckInputs", 128, 3], ["preCheck", 139, 3], ["pytestFlags", 162, 3], ["passthru", 169, 3], ["meta", 195, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -42,16 +34,16 @@ export default nix.lambda((args) => (() => {
   const cudartInclude = nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getInclude"), nix.thunk(() => nix.sel(cudaPackages, "cuda_cudart")))}/include`);
   const ccclInclude = nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getInclude"), nix.thunk(() => nix.sel(cudaPackages, "cccl")))}/include`);
   return nix.app(nix.sel(buildPythonPackage, "override"), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       stdenv: nix.thunk(() => nix.sel(cudaPackages, "backendStdenv")),
     })), (finalAttrs) => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       pname: "numba-cuda",
       version: "0.30.4",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "NVIDIA",
           repo: "numba-cuda",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -59,7 +51,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./nvidia-libs-paths.patch"), nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             cudartInclude: cudartInclude,
             cccl: ccclInclude,
             libcudart: nix.thunk(() => nix.app(nix.sel(lib, "getLib"), nix.thunk(() => nix.sel(cudaPackages, "cuda_cudart")))),
@@ -79,7 +71,7 @@ export default nix.lambda((args) => (() => {
 `)),
       "build-system": nix.thunk(() => [numpy, setuptools]),
       dependencies: nix.thunk(() => [cuda_bindings, cuda_core, cuda_pathfinder, numba, packaging]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$4, NUMBA_ENABLE_CUDASIM: "1" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[3], NUMBA_ENABLE_CUDASIM: "1" })),
       pythonImportsCheck: nix.thunk(() => ["numba_cuda"]),
       nativeCheckInputs: nix.thunk(() => [
         cffi,
@@ -94,21 +86,21 @@ export default nix.lambda((args) => (() => {
 `), "mv conftest.py numba_cuda_pytest_plugin.py\n"), "echo \"import os; os.environ['NIX_PYTHONPATH'] = '$NIX_PYTHONPATH'\" \\\n  > nix_pythonpath_plugin.py\n")),
       pytestFlags: nix.thunk(() => ["-pnix_pythonpath_plugin", "-pnumba_cuda_pytest_plugin", "-ofilterwarnings="]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         gpuCheck: nix.thunk(() => nix.app(nix.sel(finalAttrs, "finalPackage", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             requiredSystemFeatures: nix.thunk(() => ["cuda"]),
             nativeBuildInputs: nix.thunk(() => nix.concat(nix.sel(old, "nativeBuildInputs"), [
               nix.thunk(() => nix.sel(cudaPackages, "cuda_cuobjdump")),
               nix.thunk(() => nix.sel(cudaPackages, "cuda_nvcc")),
             ])),
             buildInputs: nix.thunk(() => nix.concat(nix.sel(old, "buildInputs"), [nix.thunk(() => nix.sel(cudaPackages, "cuda_cudart"))])),
-            env: nix.thunk(() => nix.update(nix.sel(old, "env"), { [nix.POS]: pos$5, NUMBA_ENABLE_CUDASIM: "0" })),
+            env: nix.thunk(() => nix.update(nix.sel(old, "env"), { [nix.POS]: $pos[4], NUMBA_ENABLE_CUDASIM: "0" })),
             preCheck: nix.thunk(() => nix.add(nix.sel(old, "preCheck"), "make GPU_CC=$(python -c \\\n  'from numba import cuda; print(\"%d%d\" % cuda.get_current_device().compute_capability)')\n")),
           }))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         description: "The CUDA target for Numba",
         homepage: "https://github.com/NVIDIA/numba-cuda",
         changelog: nix.thunk(() => nix.str`https://github.com/NVIDIA/numba-cuda/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

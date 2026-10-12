@@ -2,23 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["outputHashAlgo", 17, 11], ["outputHashMode", 18, 11], ["outputHash", 19, 11]], [["value", 25, 34]], [["integer", 25, 26]], [["a", 25, 24]], [["has", 25, 20]], [["attrset", 25, 12]], [["a", 44, 32]], [["x", 43, 7], ["y", 44, 7]], [["value", 51, 9], ["required", 52, 9]], [["a", 48, 7], ["a b", 49, 7], ["a b c", 50, 7]], [["required", 61, 11], ["type", 62, 11], ["value", 63, 11]], [["value", 65, 32]], [["value", 67, 11], ["type", 68, 11]], [["_includes", 57, 7]], [["simple_top_level_attr", 24, 5], ["nested", 25, 5], ["some_floaty", 26, 5], ["array2d", 28, 5], ["nasty_string", 40, 5], ["misc attrs", 42, 5], ["cursed \" .attrs \" ", 47, 5], ["to_include", 56, 5]], [["name", 77, 3], ["dontUnpack", 79, 3], ["dontBuild", 80, 3], ["doCheck", 82, 3], ["checkPhase", 83, 3], ["installPhase", 91, 3]]]);
 const formals$1 = { args: { lib: false, formats: false, stdenvNoCC: false, writeText: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/default.nix", [["outputHashAlgo", 17, 11], ["outputHashMode", 18, 11], ["outputHash", 19, 11]]);
-const pos$2 = nix.positions(here + "/default.nix", [["value", 25, 34]]);
-const pos$3 = nix.positions(here + "/default.nix", [["integer", 25, 26]]);
-const pos$4 = nix.positions(here + "/default.nix", [["a", 25, 24]]);
-const pos$5 = nix.positions(here + "/default.nix", [["has", 25, 20]]);
-const pos$6 = nix.positions(here + "/default.nix", [["attrset", 25, 12]]);
-const pos$7 = nix.positions(here + "/default.nix", [["a", 44, 32]]);
-const pos$8 = nix.positions(here + "/default.nix", [["x", 43, 7], ["y", 44, 7]]);
-const pos$9 = nix.positions(here + "/default.nix", [["value", 51, 9], ["required", 52, 9]]);
-const pos$10 = nix.positions(here + "/default.nix", [["a", 48, 7], ["a b", 49, 7], ["a b c", 50, 7]]);
-const pos$11 = nix.positions(here + "/default.nix", [["required", 61, 11], ["type", 62, 11], ["value", 63, 11]]);
-const pos$12 = nix.positions(here + "/default.nix", [["value", 65, 32]]);
-const pos$13 = nix.positions(here + "/default.nix", [["value", 67, 11], ["type", 68, 11]]);
-const pos$14 = nix.positions(here + "/default.nix", [["_includes", 57, 7]]);
-const pos$15 = nix.positions(here + "/default.nix", [["simple_top_level_attr", 24, 5], ["nested", 25, 5], ["some_floaty", 26, 5], ["array2d", 28, 5], ["nasty_string", 40, 5], ["misc attrs", 42, 5], ["cursed \" .attrs \" ", 47, 5], ["to_include", 56, 5]]);
-const pos$16 = nix.positions(here + "/default.nix", [["name", 77, 3], ["dontUnpack", 79, 3], ["dontBuild", 80, 3], ["doCheck", 82, 3], ["checkPhase", 83, 3], ["installPhase", 91, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,23 +13,23 @@ export default nix.lambda((args) => (() => {
   const writeText = nix.arg($, "writeText");
   const hocon = nix.thunk(() => nix.app(nix.sel(formats, "hocon"), nix.thunk(() => ({}))));
   const include_file = nix.thunk(() => nix.app(nix.sel(nix.app(writeText, "hocon-test-include.conf", "\"val\" = 1\n"), "overrideAttrs"), (_) => (__1) => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       outputHashAlgo: "sha256",
       outputHashMode: "flat",
       outputHash: "sha256-UhkJLhT3bD6znq+IdDjs/ahP19mLzrLCy/R14pVrfew=",
     })));
   const expression = nix.thunk(() => ({
-    [nix.POS]: pos$15,
+    [nix.POS]: $pos[14],
     simple_top_level_attr: "1.0",
     nested: nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       attrset: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         has: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           a: nix.thunk(() => ({
-            [nix.POS]: pos$3,
-            integer: nix.thunk(() => ({ [nix.POS]: pos$2, value: 100n })),
+            [nix.POS]: $pos[2],
+            integer: nix.thunk(() => ({ [nix.POS]: $pos[1], value: 100n })),
           })),
         })),
       })),
@@ -53,30 +38,30 @@ export default nix.lambda((args) => (() => {
     array2d: nix.thunk(() => [nix.thunk(() => [1n, 2n, "a"]), nix.thunk(() => [2n, 1n, "b"])]),
     nasty_string: "\"@\n\\\t^*bf\n0\";'''$",
     "misc attrs": nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       x: 1n,
-      y: nix.thunk(() => nix.app(nix.sel(hocon, "lib", "mkAppend"), nix.thunk(() => ({ [nix.POS]: pos$7, a: 1n })))),
+      y: nix.thunk(() => nix.app(nix.sel(hocon, "lib", "mkAppend"), nix.thunk(() => ({ [nix.POS]: $pos[6], a: 1n })))),
     })),
     "cursed \" .attrs \" ": nix.thunk(() => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       a: 1n,
       "a b": nix.thunk(() => nix.app(nix.sel(hocon, "lib", "mkSubstitution"), "a")),
-      "a b c": nix.thunk(() => nix.app(nix.sel(hocon, "lib", "mkSubstitution"), nix.thunk(() => ({ [nix.POS]: pos$9, value: "a b", required: false })))),
+      "a b c": nix.thunk(() => nix.app(nix.sel(hocon, "lib", "mkSubstitution"), nix.thunk(() => ({ [nix.POS]: $pos[8], value: "a b", required: false })))),
     })),
     to_include: nix.thunk(() => ({
-      [nix.POS]: pos$14,
+      [nix.POS]: $pos[13],
       _includes: nix.thunk(() => [
         nix.thunk(() => nix.app(nix.sel(hocon, "lib", "mkInclude"), include_file)),
         nix.thunk(() => nix.app(nix.sel(hocon, "lib", "mkInclude"), "https://example.com")),
-        nix.thunk(() => nix.app(nix.sel(hocon, "lib", "mkInclude"), nix.thunk(() => ({ [nix.POS]: pos$11, required: true, type: "file", value: include_file })))),
-        nix.thunk(() => nix.app(nix.sel(hocon, "lib", "mkInclude"), nix.thunk(() => ({ [nix.POS]: pos$12, value: include_file })))),
-        nix.thunk(() => nix.app(nix.sel(hocon, "lib", "mkInclude"), nix.thunk(() => ({ [nix.POS]: pos$13, value: "https://example.com", type: "url" })))),
+        nix.thunk(() => nix.app(nix.sel(hocon, "lib", "mkInclude"), nix.thunk(() => ({ [nix.POS]: $pos[10], required: true, type: "file", value: include_file })))),
+        nix.thunk(() => nix.app(nix.sel(hocon, "lib", "mkInclude"), nix.thunk(() => ({ [nix.POS]: $pos[11], value: include_file })))),
+        nix.thunk(() => nix.app(nix.sel(hocon, "lib", "mkInclude"), nix.thunk(() => ({ [nix.POS]: $pos[12], value: "https://example.com", type: "url" })))),
       ]),
     })),
   }));
   const hocon_test_conf = nix.thunk(() => nix.app(nix.sel(hocon, "generate"), "hocon-test.conf", expression));
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$16,
+      [nix.POS]: $pos[15],
       name: "pkgs.formats.hocon-test-comprehensive",
       dontUnpack: true,
       dontBuild: true,

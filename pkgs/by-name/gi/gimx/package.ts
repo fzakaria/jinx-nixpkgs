@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]], [["owner", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["fetchSubmodules", 33, 5], ["hash", 34, 5]], [["NIX_CFLAGS_COMPILE", 37, 7]], [["homepage", 72, 5], ["description", 73, 5], ["license", 74, 5], ["platforms", 75, 5]], [["pname", 26, 3], ["version", 27, 3], ["src", 29, 3], ["env", 37, 3], ["patches", 38, 3], ["makeFlags", 39, 3], ["nativeBuildInputs", 41, 3], ["buildInputs", 42, 3], ["installPhase", 53, 3], ["meta", 71, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, makeWrapper: false, curl: false, libusb1: false, bluez: false, libxml2: false, ncurses5: false, libmhash: false, libxi: false, libx11: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["fetchSubmodules", 33, 5], ["hash", 34, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 37, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 72, 5], ["description", 73, 5], ["license", 74, 5], ["platforms", 75, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 26, 3], ["version", 27, 3], ["src", 29, 3], ["env", 37, 3], ["patches", 38, 3], ["makeFlags", 39, 3], ["nativeBuildInputs", 41, 3], ["buildInputs", 42, 3], ["installPhase", 53, 3], ["meta", 71, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,25 +20,25 @@ export default nix.lambda((args) => (() => {
   const libxi = nix.arg($, "libxi");
   const libx11 = nix.arg($, "libx11");
   const gimx_config = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "matlo",
       repo: "GIMX-configurations",
       rev: "c20300f24d32651d369e2b27614b62f4b856e4a0",
       hash: "sha256-t/Ttlvc9LCRW624oSsFaP8EmswJ3OAn86QgF1dCUjAs=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "gimx",
       version: "8.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "matlo",
           repo: "GIMX",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           fetchSubmodules: true,
           hash: "sha256-BcFLdQgEAi6Sxyb5/P9YAIkmeXNZXrKcOa/6g817xQg=",
         })))),
-      env: nix.thunk(() => ({ [nix.POS]: pos$3, NIX_CFLAGS_COMPILE: "-Wno-error" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[2], NIX_CFLAGS_COMPILE: "-Wno-error" })),
       patches: nix.thunk(() => [nix.path(here, "./conf.patch")]),
       makeFlags: nix.thunk(() => ["build-core"]),
       nativeBuildInputs: nix.thunk(() => [makeWrapper]),
@@ -64,7 +60,7 @@ makeWrapper $out/bin/gimx $out/bin/gimx-ds4 \\
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://github.com/matlo/GIMX",
         description: "Game Input Multiplexer",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

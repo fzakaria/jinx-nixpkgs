@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 15, 5], ["hash", 16, 5], ["stripRoot", 17, 5]], [["description", 38, 5], ["homepage", 39, 5], ["license", 40, 5], ["platforms", 41, 5], ["maintainers", 42, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["strictDeps", 20, 3], ["__structuredAttrs", 21, 3], ["nativeBuildInputs", 23, 3], ["buildInputs", 28, 3], ["postPatch", 30, 3], ["meta", 37, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchzip: false, cmake: false, "pkg-config": false, libusb1: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 15, 5], ["hash", 16, 5], ["stripRoot", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 38, 5], ["homepage", 39, 5], ["license", 40, 5], ["platforms", 41, 5], ["maintainers", 42, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["strictDeps", 20, 3], ["__structuredAttrs", 21, 3], ["nativeBuildInputs", 23, 3], ["buildInputs", 28, 3], ["postPatch", 30, 3], ["meta", 37, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const libusb1 = nix.arg($, "libusb1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "libdlcr",
       version: "0.3.0",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://dragnlabs.com/host-tools/dlcr_host_v${nix.sel(finalAttrs, "version")}.zip`),
           hash: "sha256-DOoc02woE10tU+8CDaYC0Xezvma06+UbhVuGFEiG67c=",
           stripRoot: false,
@@ -31,7 +29,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [libusb1]),
       postPatch: "# Workaround based on\n# https://github.com/NixOS/nixpkgs/issues/144170\n\nsubstituteInPlace libdlcr.pc.in --replace-fail \"\\${prefix}/\" \"\"\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Dragon Labs CR-8 Host Driver and Utilities",
         homepage: "https://dragnlabs.com/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3")),

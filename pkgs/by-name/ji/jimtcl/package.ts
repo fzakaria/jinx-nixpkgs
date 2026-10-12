@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 25, 5], ["repo", 26, 5], ["rev", 27, 5], ["sha256", 28, 5]], [["description", 77, 5], ["homepage", 78, 5], ["license", 79, 5], ["platforms", 80, 5], ["mainProgram", 81, 5], ["maintainers", 82, 5]], [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 37, 3], ["configureFlags", 47, 3], ["enableParallelBuilding", 60, 3], ["doCheck", 62, 3], ["preCheck", 63, 3], ["nativeCheckInputs", 74, 3], ["meta", 76, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, asciidoc: false, "pkg-config": false, inetutils: false, tcl: false, sqlite: false, readline: false, SDL2: false, SDL2_gfx: false, openssl: false, SDLSupport: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 25, 5], ["repo", 26, 5], ["rev", 27, 5], ["sha256", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 77, 5], ["homepage", 78, 5], ["license", 79, 5], ["platforms", 80, 5], ["mainProgram", 81, 5], ["maintainers", 82, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 37, 3], ["configureFlags", 47, 3], ["enableParallelBuilding", 60, 3], ["doCheck", 62, 3], ["preCheck", 63, 3], ["nativeCheckInputs", 74, 3], ["meta", 76, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const openssl = nix.arg($, "openssl");
   const SDLSupport = nix.argOr($, "SDLSupport", () => true);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "jimtcl",
       version: "0.84",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "msteveb",
           repo: "jimtcl",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -51,7 +49,7 @@ export default nix.lambda((args) => (() => {
       preCheck: "# test exec2-3.2 fails depending on platform or sandboxing (?)\nrm tests/exec2.test\n# requires internet access\nrm tests/ssl.test\n# test fails due to timing in some environments\n# https://github.com/msteveb/jimtcl/issues/282\nrm tests/timer.test\n",
       nativeCheckInputs: nix.thunk(() => [inetutils]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Open source small-footprint implementation of the Tcl programming language",
         homepage: "http://jim.tcl.tk/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

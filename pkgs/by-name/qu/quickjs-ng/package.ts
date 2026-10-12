@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]], [["package", 55, 7], ["command", 56, 7]], [["version", 54, 5]], [["tests", 53, 12]], [["homepage", 61, 5], ["description", 62, 5], ["license", 63, 5], ["mainProgram", 64, 5], ["maintainers", 65, 5], ["platforms", 66, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["outputs", 21, 3], ["nativeBuildInputs", 29, 3], ["cmakeFlags", 34, 3], ["strictDeps", 39, 3], ["postBuild", 41, 3], ["postInstall", 47, 3], ["passthru", 53, 3], ["meta", 60, 3]]]);
 const formals$1 = { args: { lib: false, cmake: false, fetchFromGitHub: false, stdenv: false, testers: false, texinfo: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["package", 55, 7], ["command", 56, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 54, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 53, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["homepage", 61, 5], ["description", 62, 5], ["license", 63, 5], ["mainProgram", 64, 5], ["maintainers", 65, 5], ["platforms", 66, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["outputs", 21, 3], ["nativeBuildInputs", 29, 3], ["cmakeFlags", 34, 3], ["strictDeps", 39, 3], ["postBuild", 41, 3], ["postInstall", 47, 3], ["passthru", 53, 3], ["meta", 60, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const texinfo = nix.arg($, "texinfo");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "quickjs-ng",
       version: "0.17.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "quickjs-ng",
           repo: "quickjs",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -39,18 +34,18 @@ export default nix.lambda((args) => (() => {
       postBuild: "pushd ../docs\nmakeinfo *texi\npopd\n",
       postInstall: "pushd ../docs\ninstall -Dm644 -t ${!outputInfo}/share/info *info\npopd\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               command: "qjs --help || true",
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "https://github.com/quickjs-ng/quickjs",
         description: "Mighty JavaScript engine",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

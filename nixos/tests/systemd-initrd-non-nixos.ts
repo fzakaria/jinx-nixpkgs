@@ -2,27 +2,8 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/systemd-initrd-non-nixos.nix", [[["SYSTEMD_LOG_LEVEL", 26, 44]], [["mode", 31, 7], ["argument", 32, 7]], [["f", 30, 85]], [["/sysroot/etc/os-release", 30, 59]], [["10-os-release", 30, 43]], [["settings", 30, 34]], [["enable", 15, 25], ["managerEnvironment", 26, 25], ["tmpfiles", 30, 25]], [["systemd", 15, 17]], [["initrd", 15, 10], ["consoleLogLevel", 25, 10]], [["diskImage", 19, 7], ["graphics", 21, 7]], [["boot", 15, 5], ["virtualisation", 17, 5]], [["enable", 44, 25]], [["enable", 45, 26]], [["overlay", 45, 18]], [["nixos-init", 44, 14], ["etc", 45, 14]], [["enable", 46, 25]], [["userborn", 46, 16]], [["imports", 43, 7], ["system", 44, 7], ["services", 46, 7]], [["bashActivation", 40, 5], ["nixosInit", 42, 5]], [["name", 37, 3], ["nodes", 39, 3], ["testScript", 50, 3]]]);
 const formals$1 = { args: { lib: false, pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/systemd-initrd-non-nixos.nix", [["SYSTEMD_LOG_LEVEL", 26, 44]]);
-const pos$2 = nix.positions(here + "/systemd-initrd-non-nixos.nix", [["mode", 31, 7], ["argument", 32, 7]]);
-const pos$3 = nix.positions(here + "/systemd-initrd-non-nixos.nix", [["f", 30, 85]]);
-const pos$4 = nix.positions(here + "/systemd-initrd-non-nixos.nix", [["/sysroot/etc/os-release", 30, 59]]);
-const pos$5 = nix.positions(here + "/systemd-initrd-non-nixos.nix", [["10-os-release", 30, 43]]);
-const pos$6 = nix.positions(here + "/systemd-initrd-non-nixos.nix", [["settings", 30, 34]]);
-const pos$7 = nix.positions(here + "/systemd-initrd-non-nixos.nix", [["enable", 15, 25], ["managerEnvironment", 26, 25], ["tmpfiles", 30, 25]]);
-const pos$8 = nix.positions(here + "/systemd-initrd-non-nixos.nix", [["systemd", 15, 17]]);
-const pos$9 = nix.positions(here + "/systemd-initrd-non-nixos.nix", [["initrd", 15, 10], ["consoleLogLevel", 25, 10]]);
-const pos$10 = nix.positions(here + "/systemd-initrd-non-nixos.nix", [["diskImage", 19, 7], ["graphics", 21, 7]]);
-const pos$11 = nix.positions(here + "/systemd-initrd-non-nixos.nix", [["boot", 15, 5], ["virtualisation", 17, 5]]);
-const pos$12 = nix.positions(here + "/systemd-initrd-non-nixos.nix", [["enable", 44, 25]]);
-const pos$13 = nix.positions(here + "/systemd-initrd-non-nixos.nix", [["enable", 45, 26]]);
-const pos$14 = nix.positions(here + "/systemd-initrd-non-nixos.nix", [["overlay", 45, 18]]);
-const pos$15 = nix.positions(here + "/systemd-initrd-non-nixos.nix", [["nixos-init", 44, 14], ["etc", 45, 14]]);
-const pos$16 = nix.positions(here + "/systemd-initrd-non-nixos.nix", [["enable", 46, 25]]);
-const pos$17 = nix.positions(here + "/systemd-initrd-non-nixos.nix", [["userborn", 46, 16]]);
-const pos$18 = nix.positions(here + "/systemd-initrd-non-nixos.nix", [["imports", 43, 7], ["system", 44, 7], ["services", 46, 7]]);
-const pos$19 = nix.positions(here + "/systemd-initrd-non-nixos.nix", [["bashActivation", 40, 5], ["nixosInit", 42, 5]]);
-const pos$20 = nix.positions(here + "/systemd-initrd-non-nixos.nix", [["name", 37, 3], ["nodes", 39, 3], ["testScript", 50, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,24 +14,24 @@ export default nix.lambda((args) => (() => {
 exec ${nix.sel(pkgs, "coreutils")}/bin/sleep infinity
 `)));
   const common = nix.thunk(() => ({
-    [nix.POS]: pos$11,
+    [nix.POS]: $pos[10],
     boot: nix.thunk(() => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       initrd: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         systemd: nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           enable: true,
-          managerEnvironment: nix.thunk(() => ({ [nix.POS]: pos$1, SYSTEMD_LOG_LEVEL: "warning" })),
+          managerEnvironment: nix.thunk(() => ({ [nix.POS]: $pos[0], SYSTEMD_LOG_LEVEL: "warning" })),
           tmpfiles: nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             settings: nix.thunk(() => ({
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               "10-os-release": nix.thunk(() => ({
-                [nix.POS]: pos$4,
+                [nix.POS]: $pos[3],
                 "/sysroot/etc/os-release": nix.thunk(() => ({
-                  [nix.POS]: pos$3,
-                  f: nix.thunk(() => ({ [nix.POS]: pos$2, mode: "0644", argument: "ID=test-non-nixos" })),
+                  [nix.POS]: $pos[2],
+                  f: nix.thunk(() => ({ [nix.POS]: $pos[1], mode: "0644", argument: "ID=test-non-nixos" })),
                 })),
               })),
             })),
@@ -59,28 +40,28 @@ exec ${nix.sel(pkgs, "coreutils")}/bin/sleep infinity
       })),
       consoleLogLevel: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), 3n)),
     })),
-    virtualisation: nix.thunk(() => ({ [nix.POS]: pos$10, diskImage: null, graphics: false })),
+    virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[9], diskImage: null, graphics: false })),
   }));
   return {
-    [nix.POS]: pos$20,
+    [nix.POS]: $pos[19],
     name: "systemd-initrd-non-nixos",
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$19,
+      [nix.POS]: $pos[18],
       bashActivation: common,
       nixosInit: nix.thunk(() => ({
-        [nix.POS]: pos$18,
+        [nix.POS]: $pos[17],
         imports: nix.thunk(() => [common]),
         system: nix.thunk(() => ({
-          [nix.POS]: pos$15,
-          "nixos-init": nix.thunk(() => ({ [nix.POS]: pos$12, enable: true })),
+          [nix.POS]: $pos[14],
+          "nixos-init": nix.thunk(() => ({ [nix.POS]: $pos[11], enable: true })),
           etc: nix.thunk(() => ({
-            [nix.POS]: pos$14,
-            overlay: nix.thunk(() => ({ [nix.POS]: pos$13, enable: true })),
+            [nix.POS]: $pos[13],
+            overlay: nix.thunk(() => ({ [nix.POS]: $pos[12], enable: true })),
           })),
         })),
         services: nix.thunk(() => ({
-          [nix.POS]: pos$17,
-          userborn: nix.thunk(() => ({ [nix.POS]: pos$16, enable: true })),
+          [nix.POS]: $pos[16],
+          userborn: nix.thunk(() => ({ [nix.POS]: $pos[15], enable: true })),
         })),
       })),
     })),

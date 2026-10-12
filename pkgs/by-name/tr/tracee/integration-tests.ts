@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/integration-tests.nix", [[["outputsToInstall", 49, 5]], [["pname", 7, 3], ["postPatch", 8, 3], ["nativeBuildInputs", 25, 3], ["buildPhase", 26, 3], ["doCheck", 39, 3], ["installPhase", 40, 3], ["doInstallCheck", 45, 3], ["outputs", 47, 3], ["meta", 48, 3]]]);
 const formals$1 = { args: { lib: false, tracee: false, makeWrapper: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/integration-tests.nix", [["outputsToInstall", 49, 5]]);
-const pos$2 = nix.positions(here + "/integration-tests.nix", [["pname", 7, 3], ["postPatch", 8, 3], ["nativeBuildInputs", 25, 3], ["buildPhase", 26, 3], ["doCheck", 39, 3], ["installPhase", 40, 3], ["doInstallCheck", 45, 3], ["outputs", 47, 3], ["meta", 48, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -12,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const tracee = nix.arg($, "tracee");
   const makeWrapper = nix.arg($, "makeWrapper");
   return nix.app(nix.sel(tracee, "overrideAttrs"), (old) => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: nix.thunk(() => nix.add(nix.sel(old, "pname"), "-integration")),
       postPatch: nix.thunk(() => nix.add(nix.selOr(old, () => "", "postPatch"), nix.str`# fix the test to look at nixos paths for running programs
   # --replace-fail '"integration.tes"' '"tracee-integrat"' \\
@@ -50,7 +49,7 @@ mv $GOPATH/tracee-integration/{integration.test,syscaller} $out/bin/
 `),
       doInstallCheck: false,
       outputs: nix.thunk(() => ["out"]),
-      meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), { [nix.POS]: pos$1, outputsToInstall: nix.thunk(() => ["out"]) })),
+      meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), { [nix.POS]: $pos[0], outputsToInstall: nix.thunk(() => ["out"]) })),
     }));
 })(), formals$1);
 //# sourceMappingURL=integration-tests.ts.map

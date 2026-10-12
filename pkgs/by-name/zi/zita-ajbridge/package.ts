@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 16, 5], ["hash", 17, 5]], [["description", 39, 5], ["homepage", 40, 5], ["license", 41, 5], ["maintainers", 42, 5], ["platforms", 43, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["buildInputs", 20, 3], ["preConfigure", 27, 3], ["makeFlags", 31, 3], ["enableParallelBuilding", 36, 3], ["meta", 38, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, "alsa-lib": false, libjack2: false, "zita-alsa-pcmi": false, "zita-resampler": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 39, 5], ["homepage", 40, 5], ["license", 41, 5], ["maintainers", 42, 5], ["platforms", 43, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["buildInputs", 20, 3], ["preConfigure", 27, 3], ["makeFlags", 31, 3], ["enableParallelBuilding", 36, 3], ["meta", 38, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const zita_alsa_pcmi = nix.arg($, "zita-alsa-pcmi");
   const zita_resampler = nix.arg($, "zita-resampler");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "zita-ajbridge",
       version: "0.8.4",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://kokkinizita.linuxaudio.org/linuxaudio/downloads/zita-ajbridge-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           hash: "sha256-vCZONrpNcVw07H3W4xfNHtS7ikZWmA1rIgDi+gEFuzw=",
         })))),
@@ -30,7 +28,7 @@ export default nix.lambda((args) => (() => {
       makeFlags: nix.thunk(() => ["PREFIX=$(out)", "MANDIR=$(out)/share/man/man1"]),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Connect additional ALSA devices to JACK",
         homepage: "http://kokkinizita.linuxaudio.org/linuxaudio/index.html",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

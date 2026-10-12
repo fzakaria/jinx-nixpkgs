@@ -2,35 +2,30 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/watt.nix", [[["maintainers", 4, 8]], [["enable", 7, 19]], [["watt", 7, 14]], [["services", 7, 5]], [["machine", 6, 9]], [["name", 3, 3], ["meta", 4, 3], ["nodes", 6, 3], ["testScript", 10, 3]]]);
 const formals$1 = { args: { pkgs: false, lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/watt.nix", [["maintainers", 4, 8]]);
-const pos$2 = nix.positions(here + "/watt.nix", [["enable", 7, 19]]);
-const pos$3 = nix.positions(here + "/watt.nix", [["watt", 7, 14]]);
-const pos$4 = nix.positions(here + "/watt.nix", [["services", 7, 5]]);
-const pos$5 = nix.positions(here + "/watt.nix", [["machine", 6, 9]]);
-const pos$6 = nix.positions(here + "/watt.nix", [["name", 3, 3], ["meta", 4, 3], ["nodes", 6, 3], ["testScript", 10, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$6,
+    [nix.POS]: $pos[5],
     name: "watt",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "Soliprem"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       machine: (_) => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         services: nix.thunk(() => ({
-          [nix.POS]: pos$3,
-          watt: nix.thunk(() => ({ [nix.POS]: pos$2, enable: true })),
+          [nix.POS]: $pos[2],
+          watt: nix.thunk(() => ({ [nix.POS]: $pos[1], enable: true })),
         })),
       }),
     })),

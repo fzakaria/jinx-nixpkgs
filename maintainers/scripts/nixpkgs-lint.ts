@@ -2,9 +2,8 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/nixpkgs-lint.nix", [[["description", 39, 5], ["mainProgram", 40, 5], ["platforms", 41, 5], ["license", 42, 5]], [["pname", 10, 3], ["version", 11, 3], ["__structuredAttrs", 13, 3], ["strictDeps", 14, 3], ["nativeBuildInputs", 16, 3], ["buildInputs", 17, 3], ["dontUnpack", 22, 3], ["dontBuild", 23, 3], ["installPhase", 25, 3], ["meta", 38, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, makeWrapper: false, perl: false, perlPackages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/nixpkgs-lint.nix", [["description", 39, 5], ["mainProgram", 40, 5], ["platforms", 41, 5], ["license", 42, 5]]);
-const pos$2 = nix.positions(here + "/nixpkgs-lint.nix", [["pname", 10, 3], ["version", 11, 3], ["__structuredAttrs", 13, 3], ["strictDeps", 14, 3], ["nativeBuildInputs", 16, 3], ["buildInputs", 17, 3], ["dontUnpack", 22, 3], ["dontBuild", 23, 3], ["installPhase", 25, 3], ["meta", 38, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const perl = nix.arg($, "perl");
   const perlPackages = nix.arg($, "perlPackages");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "nixpkgs-lint",
       version: "1",
       __structuredAttrs: true,
@@ -35,7 +34,7 @@ wrapProgram $out/bin/nixpkgs-lint --set PERL5LIB $PERL5LIB
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Utility for Nixpkgs contributors to check Nixpkgs for common errors",
         mainProgram: "nixpkgs-lint",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),

@@ -2,10 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["PYTHON", 37, 9], ["PYTHON_CONFIG", 38, 9]], [["pname", 17, 7], ["nativeBuildInputs", 19, 7], ["configureFlags", 21, 7], ["env", 32, 7]]]);
 const formals$1 = { args: { toPythonModule: false, python: false, "lttng-tools": false, swig: false }, ellipsis: false };
 const formals$2 = { args: { nativeBuildInputs: true, configureFlags: true, env: true }, ellipsis: true };
-const pos$1 = nix.positions(here + "/default.nix", [["PYTHON", 37, 9], ["PYTHON_CONFIG", 38, 9]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 17, 7], ["nativeBuildInputs", 19, 7], ["configureFlags", 21, 7], ["env", 32, 7]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,7 +18,7 @@ export default nix.lambda((args) => (() => {
         const configureFlags = nix.argOr($_1, "configureFlags", () => []);
         const env = nix.argOr($_1, "env", () => ({}));
         return {
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: "lttng",
           nativeBuildInputs: nix.thunk(() => nix.concat(nativeBuildInputs, [swig])),
           configureFlags: nix.thunk(() => nix.concat(configureFlags, [
@@ -31,7 +30,7 @@ export default nix.lambda((args) => (() => {
             "--disable-man-pages",
           ])),
           env: nix.thunk(() => nix.update(env, {
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             PYTHON: nix.thunk(() => nix.str`${nix.sel(python, "pythonOnBuildForHost")}/bin/python`),
             PYTHON_CONFIG: nix.thunk(() => nix.str`${nix.sel(python, "pythonOnBuildForHost")}/bin/python-config`),
           })),

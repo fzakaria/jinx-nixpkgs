@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 25, 5], ["repo", 26, 5], ["rev", 27, 5], ["sha256", 28, 13]], [["BUILD_REV_COUNT", 41, 5], ["RUN_TIME_CLOSURE", 42, 5]], [["nixos", 65, 7]], [["updater", 59, 5], ["tests", 64, 5]], [["description", 70, 5], ["homepage", 71, 5], ["license", 72, 5], ["maintainers", 73, 5], ["mainProgram", 77, 5]], [["pname", 21, 3], ["version", 22, 11], ["src", 24, 3], ["outputs", 31, 3], ["cargoHash", 37, 11], ["doCheck", 38, 3], ["env", 40, 3], ["nativeBuildInputs", 45, 3], ["postInstall", 48, 3], ["passthru", 58, 3], ["meta", 69, 3]]]);
 const formals$1 = { args: { lib: false, pkgs: false, rustPackages: false, fetchFromGitHub: false, rustPlatform: false, writers: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 25, 5], ["repo", 26, 5], ["rev", 27, 5], ["sha256", 28, 13]]);
-const pos$2 = nix.positions(here + "/package.nix", [["BUILD_REV_COUNT", 41, 5], ["RUN_TIME_CLOSURE", 42, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["nixos", 65, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updater", 59, 5], ["tests", 64, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 70, 5], ["homepage", 71, 5], ["license", 72, 5], ["maintainers", 73, 5], ["mainProgram", 77, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 11], ["src", 24, 3], ["outputs", 31, 3], ["cargoHash", 37, 11], ["doCheck", 38, 3], ["env", 40, 3], ["nativeBuildInputs", 45, 3], ["postInstall", 48, 3], ["passthru", 58, 3], ["meta", 69, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const pname = "lorri";
       const version_1 = version;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "nix-community",
           repo: "lorri",
           rev: version_1,
@@ -36,22 +31,22 @@ export default nix.lambda((args) => (() => {
       const cargoHash_1 = cargoHash;
       const doCheck = false;
       const env = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         BUILD_REV_COUNT: nix.thunk(() => nix.selOr(src, () => 1n, "revCount")),
         RUN_TIME_CLOSURE: nix.thunk(() => nix.app(nix.sel(pkgs, "callPackage"), nix.path(here, "./runtime.nix"), nix.thunk(() => ({})))),
       }));
       const nativeBuildInputs = nix.thunk(() => [nix.thunk(() => nix.sel(rustPackages, "rustfmt"))]);
       const postInstall = "install -Dm644 lorri.1 $man/share/man/man1/lorri.1\ninstall -Dm644 -t $doc/share/doc/lorri/ \\\n  README.md \\\n  CONTRIBUTING.md \\\n  LICENSE \\\n  MAINTAINERS.md\ncp -r contrib/ $doc/share/doc/lorri/contrib\n";
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updater: nix.thunk(() => nix.app(nix.sel(writers, "writeBash"), "copy-runtime-nix.sh", nix.thunk(() => nix.str`set -euo pipefail
 cp ${src}/nix/runtime.nix ${nix.builtins.toString(nix.path(here, "./runtime.nix"))}
 cp ${src}/nix/runtime-closure.nix.template ${nix.builtins.toString(nix.path(here, "./runtime-closure.nix.template"))}
 `))),
-        tests: nix.thunk(() => ({ [nix.POS]: pos$3, nixos: nix.thunk(() => nix.sel(nixosTests, "lorri")) })),
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[2], nixos: nix.thunk(() => nix.sel(nixosTests, "lorri")) })),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Your project's nix-env",
         homepage: "https://github.com/nix-community/lorri",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -65,7 +60,7 @@ cp ${src}/nix/runtime-closure.nix.template ${nix.builtins.toString(nix.path(here
         mainProgram: "lorri",
       }));
       return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname,
         version: version_1,
         src,

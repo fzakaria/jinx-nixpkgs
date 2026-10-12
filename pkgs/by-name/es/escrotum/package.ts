@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["sha256", 22, 5]], [["extraArgs", 62, 5]], [["updateScript", 61, 12]], [["homepage", 66, 5], ["description", 67, 5], ["platforms", 68, 5], ["maintainers", 69, 5], ["license", 70, 5], ["mainProgram", 71, 5]], [["pname", 14, 3], ["version", 15, 3], ["pyproject", 16, 3], ["src", 18, 3], ["buildInputs", 25, 3], ["nativeBuildInputs", 30, 3], ["build-system", 35, 3], ["dependencies", 39, 3], ["strictDeps", 47, 3], ["outputs", 49, 3], ["makeWrapperArgs", 54, 3], ["postInstall", 56, 3], ["passthru", 61, 3], ["meta", 65, 3]]]);
 const formals$1 = { args: { lib: false, python3Packages: false, fetchFromGitHub: false, "nix-update-script": false, "ffmpeg-full": false, gtk3: false, pango: false, "gobject-introspection": false, wrapGAppsHook3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["sha256", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["extraArgs", 62, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 61, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 66, 5], ["description", 67, 5], ["platforms", 68, 5], ["maintainers", 69, 5], ["license", 70, 5], ["mainProgram", 71, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["pyproject", 16, 3], ["src", 18, 3], ["buildInputs", 25, 3], ["nativeBuildInputs", 30, 3], ["build-system", 35, 3], ["dependencies", 39, 3], ["strictDeps", 47, 3], ["outputs", 49, 3], ["makeWrapperArgs", 54, 3], ["postInstall", 56, 3], ["passthru", 61, 3], ["meta", 65, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const gobject_introspection = nix.arg($, "gobject-introspection");
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "escrotum",
       version: "1.0.1-unstable-2020-12-07",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Roger",
           repo: "escrotum",
           rev: "a41d0f11bb6af4f08e724b8ccddf8513d905c0d1",
@@ -54,11 +50,11 @@ export default nix.lambda((args) => (() => {
       ]),
       postInstall: "mkdir -p $man/share/man/man1\ncp man/escrotum.1 $man/share/man/man1/\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$2, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: $pos[1], extraArgs: nix.thunk(() => ["--version=branch"]) })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://github.com/Roger/escrotum",
         description: "Linux screen capture using pygtk, inspired by scrot",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),

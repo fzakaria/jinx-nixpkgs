@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]], [["description", 39, 5], ["longDescription", 40, 5], ["homepage", 49, 5], ["license", 50, 5], ["platforms", 54, 5], ["maintainers", 55, 5], ["mainProgram", 56, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 21, 3], ["buildInputs", 22, 3], ["configureFlags", 27, 3], ["preConfigure", 34, 3], ["meta", 38, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, autoreconfHook: false, libpcap: false, pcre2: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 39, 5], ["longDescription", 40, 5], ["homepage", 49, 5], ["license", 50, 5], ["platforms", 54, 5], ["maintainers", 55, 5], ["mainProgram", 56, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 21, 3], ["buildInputs", 22, 3], ["configureFlags", 27, 3], ["preConfigure", 34, 3], ["meta", 38, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const libpcap = nix.arg($, "libpcap");
   const pcre2 = nix.arg($, "pcre2");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "ngrep",
       version: "1.49.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "jpr5",
           repo: "ngrep",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -37,7 +35,7 @@ export default nix.lambda((args) => (() => {
       preConfigure: nix.thunk(() => nix.str`sed -i "s|BPF=.*|BPF=${libpcap}/include/pcap/bpf.h|" configure
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Network packet analyzer",
         longDescription: "ngrep strives to provide most of GNU grep's common features, applying\nthem to the network layer. ngrep is a pcap-aware tool that will allow you\nto specify extended regular or hexadecimal expressions to match against\ndata payloads of packets. It currently recognizes IPv4/6, TCP, UDP,\nICMPv4/6, IGMP and Raw across Ethernet, PPP, SLIP, FDDI, Token Ring and\nnull interfaces, and understands BPF filter logic in the same fashion as\nmore common packet sniffing tools, such as tcpdump and snoop.\n",
         homepage: "https://github.com/jpr5/ngrep/",

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 17, 5], ["hash", 20, 5]], [["updateScript", 51, 5]], [["changelog", 55, 5], ["description", 58, 5], ["homepage", 59, 5], ["license", 60, 5], ["mainProgram", 61, 5], ["maintainers", 62, 5], ["platforms", 63, 5], ["sourceProvenance", 64, 5]], [["pname", 13, 3], ["version", 14, 11], ["src", 16, 3], ["nativeBuildInputs", 23, 3], ["sourceRoot", 28, 3], ["installPhase", 30, 3], ["postInstall", 44, 3], ["passthru", 50, 3], ["meta", 54, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchurl: false, _7zz: false, installShellFiles: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 17, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 51, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["changelog", 55, 5], ["description", 58, 5], ["homepage", 59, 5], ["license", 60, 5], ["mainProgram", 61, 5], ["maintainers", 62, 5], ["platforms", 63, 5], ["sourceProvenance", 64, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 11], ["src", 16, 3], ["nativeBuildInputs", 23, 3], ["sourceRoot", 28, 3], ["installPhase", 30, 3], ["postInstall", 44, 3], ["passthru", 50, 3], ["meta", 54, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const system = nix.thunk(() => nix.attr(from, "system"));
   const version = "2.2.3-20963";
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "orbstack",
       version: version,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://cdn-updates.orbstack.dev/arm64/OrbStack_v${nix.app(nix.sel(lib, "replaceString"), "-", "_", version)}_arm64.dmg`),
           hash: "sha256-fKd4aPOg19n1ez+YYVqtMMxZ0jzIS7/xP3iEbfC0k9Q=",
         })))),
@@ -31,9 +28,9 @@ export default nix.lambda((args) => (() => {
       sourceRoot: ".",
       installPhase: "runHook preInstall\n\nmkdir -p \"$out/Applications\"\ncp -R OrbStack.app \"$out/Applications\"\n\nmkdir -p \"$out/bin\"\nfor binary in \"$out\"/Applications/OrbStack.app/Contents/MacOS/{bin,xbin}/*; do\n  ln -s \"$binary\" \"$out/bin/$(basename \"$binary\")\"\ndone\n\nrunHook postInstall\n",
       postInstall: "installShellCompletion --bash \"$out\"/Applications/OrbStack.app/Contents/Resources/completions/bash/{docker,kubectl,orbctl}.bash\ninstallShellCompletion --zsh \"$out\"/Applications/OrbStack.app/Contents/Resources/completions/zsh/{_docker,_kubectl,_orb,_orbctl}\ninstallShellCompletion --fish \"$out\"/Applications/OrbStack.app/Contents/Resources/completions/fish/{docker,kubectl,orbctl}.fish\n",
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[1], updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         changelog: nix.thunk(() => nix.str`https://docs.orbstack.dev/release-notes#${nix.builtins.replaceStrings(nix.thunk(() => ["."]), nix.thunk(() => ["-"]), version)}`),
         description: "Fast, light, and easy way to run Docker containers and Linux machines",
         homepage: "https://orbstack.dev/",

@@ -2,16 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["sha256", 18, 5]], [["NIX_CFLAGS_COMPILE", 21, 7]], [["url", 29, 7], ["sha256", 30, 7]], [["url", 34, 7], ["sha256", 35, 7]], [["name", 41, 7], ["url", 42, 7], ["sha256", 43, 7]], [["name", 49, 7], ["url", 50, 7], ["sha256", 51, 7]], [["pname", 56, 7], ["version", 57, 7], ["debianRevision", 58, 7], ["patch", 59, 7], ["hash", 60, 7]], [["description", 65, 5], ["homepage", 66, 5], ["license", 67, 5], ["platforms", 68, 5], ["maintainers", 69, 5], ["mainProgram", 70, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["buildInputs", 20, 3], ["env", 21, 3], ["patches", 26, 3], ["meta", 64, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, fetchpatch: false, fetchDebianPatch: false, ncurses: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["sha256", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 21, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 29, 7], ["sha256", 30, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["url", 34, 7], ["sha256", 35, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["name", 41, 7], ["url", 42, 7], ["sha256", 43, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["name", 49, 7], ["url", 50, 7], ["sha256", 51, 7]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 56, 7], ["version", 57, 7], ["debianRevision", 58, 7], ["patch", 59, 7], ["hash", 60, 7]]);
-const pos$8 = nix.positions(here + "/package.nix", [["description", 65, 5], ["homepage", 66, 5], ["license", 67, 5], ["platforms", 68, 5], ["maintainers", 69, 5], ["mainProgram", 70, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["buildInputs", 20, 3], ["env", 21, 3], ["patches", 26, 3], ["meta", 64, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchDebianPatch = nix.arg($, "fetchDebianPatch");
   const ncurses = nix.arg($, "ncurses");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       pname: "hexcurse",
       version: "1.60.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "LonnyGomes",
           repo: "hexcurse",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,7 +26,7 @@ export default nix.lambda((args) => (() => {
         })))),
       buildInputs: nix.thunk(() => [ncurses]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => [
             "-Wno-error=stringop-overflow",
             "-Wno-error=stringop-truncation",
@@ -43,29 +35,29 @@ export default nix.lambda((args) => (() => {
       })),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: "https://github.com/LonnyGomes/hexcurse/commit/d808cb7067d1df067f8b707fabbfaf9f8931484c.patch",
             sha256: "0h8345blmc401c6bivf0imn4cwii67264yrzxg821r46wrnfvyi2",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             url: "https://github.com/LonnyGomes/hexcurse/commit/716b5d58ac859cc240b8ccb9cbd79ace3e0593c1.patch",
             sha256: "0v6gbp6pjpmnzswlf6d97aywiy015g3kcmfrrkspsbb7lh1y3nix",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             name: "fno-common.patch",
             url: "https://github.com/LonnyGomes/hexcurse/commit/9cf7c9dcd012656df949d06f2986b57db3a72bdc.patch",
             sha256: "1awsyxys4pd3gkkgyckgjg3njgqy07223kcmnpfdkidh2xb0s360",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             name: "ncurses-6.3.patch",
             url: "https://github.com/LonnyGomes/hexcurse/commit/cb70d4a93a46102f488f471fad31a7cfc9fec025.patch",
             sha256: "19674zhhp7gc097kl4bxvi0gblq6jzjy8cw8961svbq5y3hv1v5y",
           })))),
         nix.thunk(() => nix.app(fetchDebianPatch, nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             pname: "hexcurse",
             version: "1.60.0",
             debianRevision: "1",
@@ -74,7 +66,7 @@ export default nix.lambda((args) => (() => {
           })))),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         description: "ncurses-based console hexeditor written in C",
         homepage: "https://github.com/LonnyGomes/hexcurse",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),

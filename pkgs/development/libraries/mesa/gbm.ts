@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/gbm.nix", [[["lib", 16, 42], ["fetchFromGitLab", 16, 46]], [["domain", 26, 5], ["owner", 27, 5], ["repo", 28, 5], ["rev", 29, 5], ["hash", 30, 5]], [["pname", 19, 3], ["version", 23, 3], ["src", 25, 3], ["mesonAutoFeatures", 33, 3], ["mesonFlags", 35, 3], ["strictDeps", 51, 3], ["propagatedBuildInputs", 53, 3], ["nativeBuildInputs", 55, 3], ["meta", 67, 20]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, libglvnd: false, bison: false, flex: false, meson: false, "pkg-config": false, ninja: false, python3Packages: false, libdrm: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/gbm.nix", [["lib", 16, 42], ["fetchFromGitLab", 16, 46]]);
-const pos$2 = nix.positions(here + "/gbm.nix", [["domain", 26, 5], ["owner", 27, 5], ["repo", 28, 5], ["rev", 29, 5], ["hash", 30, 5]]);
-const pos$3 = nix.positions(here + "/gbm.nix", [["pname", 19, 3], ["version", 23, 3], ["src", 25, 3], ["mesonAutoFeatures", 33, 3], ["mesonFlags", 35, 3], ["strictDeps", 51, 3], ["propagatedBuildInputs", 53, 3], ["nativeBuildInputs", 55, 3], ["meta", 67, 20]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const ninja = nix.arg($, "ninja");
   const python3Packages = nix.arg($, "python3Packages");
   const libdrm = nix.arg($, "libdrm");
-  const common = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./common.nix")), nix.thunk(() => ({ [nix.POS]: pos$1, lib: lib, fetchFromGitLab: fetchFromGitLab }))));
+  const common = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./common.nix")), nix.thunk(() => ({ [nix.POS]: $pos[0], lib: lib, fetchFromGitLab: fetchFromGitLab }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => (() => {
       const pname = "mesa-libgbm";
       const version = "26.1.3";
       const src = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           domain: "gitlab.freedesktop.org",
           owner: "mesa",
           repo: "mesa",
@@ -60,7 +58,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const meta = nix.thunk(() => nix.attr(common, "meta"));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

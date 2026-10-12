@@ -2,47 +2,38 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/basic.nix", [[["maintainers", 12, 10]], [["source", 17, 40]], [["guix/scripts", 17, 25]], [["etc", 17, 21]], [["enable", 20, 14]], [["enable", 19, 11], ["gc", 20, 11]], [["guix", 18, 18]], [["environment", 17, 9], ["services", 18, 9]], [["machine", 14, 11]], [["name", 11, 5], ["meta", 12, 5], ["nodes", 14, 5], ["testScript", 24, 5]]]);
 const formals$1 = { args: { lib: false, pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/basic.nix", [["maintainers", 12, 10]]);
 const formals$2 = { args: { config: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/basic.nix", [["source", 17, 40]]);
-const pos$3 = nix.positions(here + "/basic.nix", [["guix/scripts", 17, 25]]);
-const pos$4 = nix.positions(here + "/basic.nix", [["etc", 17, 21]]);
-const pos$5 = nix.positions(here + "/basic.nix", [["enable", 20, 14]]);
-const pos$6 = nix.positions(here + "/basic.nix", [["enable", 19, 11], ["gc", 20, 11]]);
-const pos$7 = nix.positions(here + "/basic.nix", [["guix", 18, 18]]);
-const pos$8 = nix.positions(here + "/basic.nix", [["environment", 17, 9], ["services", 18, 9]]);
-const pos$9 = nix.positions(here + "/basic.nix", [["machine", 14, 11]]);
-const pos$10 = nix.positions(here + "/basic.nix", [["name", 11, 5], ["meta", 12, 5], ["nodes", 14, 5], ["testScript", 24, 5]]);
 
 export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../make-test-python.nix")), nix.lambda((args) => (() => {
     const $ = nix.formals(args, formals$1);
     const lib = nix.arg($, "lib");
     const pkgs = nix.arg($, "pkgs");
     return {
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       name: "guix-basic",
-      meta: nix.thunk(() => ({ [nix.POS]: pos$1, maintainers: [] })),
+      meta: nix.thunk(() => ({ [nix.POS]: $pos[0], maintainers: [] })),
       nodes: nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         machine: nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$2);
           const config = nix.arg($_1, "config");
           return {
-            [nix.POS]: pos$8,
+            [nix.POS]: $pos[7],
             environment: nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               etc: nix.thunk(() => ({
-                [nix.POS]: pos$3,
-                "guix/scripts": nix.thunk(() => ({ [nix.POS]: pos$2, source: nix.path(here, "./scripts") })),
+                [nix.POS]: $pos[2],
+                "guix/scripts": nix.thunk(() => ({ [nix.POS]: $pos[1], source: nix.path(here, "./scripts") })),
               })),
             })),
             services: nix.thunk(() => ({
-              [nix.POS]: pos$7,
+              [nix.POS]: $pos[6],
               guix: nix.thunk(() => ({
-                [nix.POS]: pos$6,
+                [nix.POS]: $pos[5],
                 enable: true,
-                gc: nix.thunk(() => ({ [nix.POS]: pos$5, enable: true })),
+                gc: nix.thunk(() => ({ [nix.POS]: $pos[4], enable: true })),
               })),
             })),
           };

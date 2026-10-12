@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/rely.nix", [[["description", 30, 5], ["downloadPage", 31, 5], ["homepage", 32, 5], ["license", 33, 5], ["maintainers", 34, 5]], [["src", 13, 11], ["pname", 15, 3], ["version", 16, 3], ["nativeBuildInputs", 18, 3], ["propagatedBuildInputs", 22, 3], ["meta", 29, 3]]]);
 const formals$1 = { args: { lib: false, buildDunePackage: false, re: false, reason: false, cli: false, "file-context-printer": false, pastel: false, src: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/rely.nix", [["description", 30, 5], ["downloadPage", 31, 5], ["homepage", 32, 5], ["license", 33, 5], ["maintainers", 34, 5]]);
-const pos$2 = nix.positions(here + "/rely.nix", [["src", 13, 11], ["pname", 15, 3], ["version", 16, 3], ["nativeBuildInputs", 18, 3], ["propagatedBuildInputs", 22, 3], ["meta", 29, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,14 +16,14 @@ export default nix.lambda((args) => (() => {
   const pastel = nix.arg($, "pastel");
   const src = nix.arg($, "src");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       src: src,
       pname: "rely",
       version: "4.0.0-unstable-2024-05-07",
       nativeBuildInputs: nix.thunk(() => [reason]),
       propagatedBuildInputs: nix.thunk(() => [re, cli, file_context_printer, pastel]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Jest-inspired testing framework for native OCaml/Reason",
         downloadPage: "https://github.com/reasonml/reason-native/tree/master/src/rely",
         homepage: "https://reason-native.com/docs/rely/",

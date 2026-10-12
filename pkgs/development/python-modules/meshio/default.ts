@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]], [["description", 106, 5], ["homepage", 107, 5], ["changelog", 108, 5], ["mainProgram", 109, 5], ["license", 110, 5], ["maintainers", 111, 5]], [["pname", 21, 3], ["version", 22, 3], ["pyproject", 23, 3], ["src", 25, 3], ["build-system", 32, 3], ["dependencies", 34, 3], ["pythonImportsCheck", 41, 3], ["nativeCheckInputs", 43, 3], ["disabledTests", 48, 3], ["meta", 105, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, h5py: false, netcdf4: false, numpy: false, rich: false, exdown: false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 106, 5], ["homepage", 107, 5], ["changelog", 108, 5], ["mainProgram", 109, 5], ["license", 110, 5], ["maintainers", 111, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 21, 3], ["version", 22, 3], ["pyproject", 23, 3], ["src", 25, 3], ["build-system", 32, 3], ["dependencies", 34, 3], ["pythonImportsCheck", 41, 3], ["nativeCheckInputs", 43, 3], ["disabledTests", 48, 3], ["meta", 105, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "5.3.5";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "nschloe",
           repo: "meshio",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -56,7 +54,7 @@ export default nix.lambda((args) => (() => {
         "test_write_str",
       ]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "I/O for mesh files",
         homepage: "https://github.com/nschloe/meshio",
         changelog: nix.thunk(() => nix.str`https://github.com/nschloe/meshio/blob/v${version}/CHANGELOG.md`),
@@ -68,7 +66,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

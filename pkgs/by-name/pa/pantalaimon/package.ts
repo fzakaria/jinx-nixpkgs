@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]], [["withVodozemac", 46, 30]], [["ui", 53, 25]], [["pantalaimon", 88, 26]], [["tests", 87, 12]], [["description", 92, 5], ["homepage", 93, 5], ["license", 94, 5], ["maintainers", 95, 5], ["knownVulnerabilities", 96, 5]], [["pname", 13, 3], ["version", 14, 3], ["pyproject", 15, 3], ["src", 18, 3], ["build-system", 25, 3], ["pythonRelaxDeps", 32, 3], ["dependencies", 36, 3], ["optional-dependencies", 53, 3], ["nativeCheckInputs", 60, 3], ["nativeBuildInputs", 70, 3], ["dontWrapGApps", 74, 3], ["makeWrapperArgs", 75, 3], ["doCheck", 81, 3], ["postInstall", 83, 3], ["passthru", 87, 3], ["meta", 91, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, python3Packages: false, fetchFromGitHub: false, installShellFiles: false, nixosTests: false, enableDbusUi: true, wrapGAppsHook3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["withVodozemac", 46, 30]]);
-const pos$3 = nix.positions(here + "/package.nix", [["ui", 53, 25]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pantalaimon", 88, 26]]);
-const pos$5 = nix.positions(here + "/package.nix", [["tests", 87, 12]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 92, 5], ["homepage", 93, 5], ["license", 94, 5], ["maintainers", 95, 5], ["knownVulnerabilities", 96, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["pyproject", 15, 3], ["src", 18, 3], ["build-system", 25, 3], ["pythonRelaxDeps", 32, 3], ["dependencies", 36, 3], ["optional-dependencies", 53, 3], ["nativeCheckInputs", 60, 3], ["nativeBuildInputs", 70, 3], ["dontWrapGApps", 74, 3], ["makeWrapperArgs", 75, 3], ["doCheck", 81, 3], ["postInstall", 83, 3], ["passthru", 87, 3], ["meta", 91, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.10.6";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "matrix-org",
           repo: "pantalaimon",
           rev: version,
@@ -47,14 +41,14 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.lookup(w_1, "janus")),
           nix.thunk(() => nix.lookup(w_1, "keyring")),
           nix.thunk(() => nix.lookup(w_1, "logbook")),
-          nix.thunk(() => nix.app(nix.sel(nix.lookup(w_1, "matrix-nio"), "override"), nix.thunk(() => ({ [nix.POS]: pos$2, withVodozemac: true })))),
+          nix.thunk(() => nix.app(nix.sel(nix.lookup(w_1, "matrix-nio"), "override"), nix.thunk(() => ({ [nix.POS]: $pos[1], withVodozemac: true })))),
           nix.thunk(() => nix.lookup(w_1, "peewee")),
           nix.thunk(() => nix.lookup(w_1, "platformdirs")),
           nix.thunk(() => nix.lookup(w_1, "prompt-toolkit")),
         ], nix.app(nix.sel(lib, "optionals"), enableDbusUi, nix.thunk(() => nix.sel(optional_dependencies, "ui"))));
       })());
       const optional_dependencies = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         ui: nix.thunk(() => (() => {
           const w_2 = nix.withScope(python3Packages, null);
           return [
@@ -80,14 +74,14 @@ export default nix.lambda((args) => (() => {
       const doCheck = nix.thunk(() => (nix.asBool(!nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))) && nix.asBool(nix.app(nix.sel(python3Packages, "pythonOlder"), "3.13"))));
       const postInstall = "installManPage docs/man/*.[1-9]\n";
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           pantalaimon: nix.thunk(() => nix.attr(nixosTests, "pantalaimon")),
         })),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "End-to-end encryption aware Matrix reverse proxy daemon",
         homepage: "https://github.com/matrix-org/pantalaimon",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -100,7 +94,7 @@ export default nix.lambda((args) => (() => {
         ]),
       }));
       return {
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         pname,
         version,
         pyproject,

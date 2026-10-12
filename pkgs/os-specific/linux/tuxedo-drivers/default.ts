@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["group", 19, 5], ["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5]], [["rev-prefix", 52, 5]], [["updateScript", 51, 12]], [["broken", 56, 5], ["description", 57, 5], ["homepage", 58, 5], ["license", 59, 5], ["longDescription", 60, 5], ["maintainers", 68, 5], ["platforms", 76, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["patches", 26, 3], ["postInstall", 28, 3], ["buildInputs", 36, 3], ["nativeBuildInputs", 37, 3], ["makeFlags", 43, 3], ["doInstallCheck", 49, 3], ["passthru", 51, 3], ["meta", 55, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, kernel: false, kernelModuleMakeFlags: false, kmod: false, pahole: false, gitUpdater: false, udevCheckHook: false, bash: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["group", 19, 5], ["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["rev-prefix", 52, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["updateScript", 51, 12]]);
-const pos$4 = nix.positions(here + "/default.nix", [["broken", 56, 5], ["description", 57, 5], ["homepage", 58, 5], ["license", 59, 5], ["longDescription", 60, 5], ["maintainers", 68, 5], ["platforms", 76, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["patches", 26, 3], ["postInstall", 28, 3], ["buildInputs", 36, 3], ["nativeBuildInputs", 37, 3], ["makeFlags", 43, 3], ["doInstallCheck", 49, 3], ["passthru", 51, 3], ["meta", 55, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const udevCheckHook = nix.arg($, "udevCheckHook");
   const bash = nix.arg($, "bash");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: nix.thunk(() => nix.str`tuxedo-drivers-${nix.sel(kernel, "version")}`),
       version: "4.20.1",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           group: "tuxedocomputers",
           owner: "development/packages",
           repo: "tuxedo-drivers",
@@ -49,11 +45,11 @@ install -Dm 0644 -t $out/etc/udev/rules.d usr/lib/udev/rules.d/*
       ])),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, "rev-prefix": "v" })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[1], "rev-prefix": "v" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         broken: nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")) || nix.asBool(nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(kernel, "version")), "5.5")))),
         description: "Keyboard and hardware I/O driver for TUXEDO Computers laptops",
         homepage: "https://gitlab.com/tuxedocomputers/development/packages/tuxedo-drivers",

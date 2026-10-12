@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["pname", 20, 3], ["version", 21, 21], ["extraDrivers", 22, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, "indi-3rdparty": false, "indi-with-drivers": false, indilib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 21], ["extraDrivers", 22, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const isFree = (p) => (nix.asBool(nix.builtins.all(licenseFree, nix.thunk(() => nix.concat(nix.selOr(p, () => [], "buildInputs"), nix.selOr(p, () => [], "propagatedBuildInputs"))))) && nix.asBool(nix.app(licenseFree, p)));
   const drivers = nix.thunk(() => nix.builtins.filter((attrs) => (nix.asBool(nix.app(isFree, attrs)) && nix.asBool(nix.app(nix.sel(lib, "meta", "availableOn"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")), attrs))), nix.thunk(() => nix.builtins.attrValues(indi_3rdparty))));
   return nix.app(nix.sel(indi_with_drivers, "override"), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       pname: "indi-full",
       version: nix.thunk(() => nix.attr(indilib, "version")),
       extraDrivers: drivers,

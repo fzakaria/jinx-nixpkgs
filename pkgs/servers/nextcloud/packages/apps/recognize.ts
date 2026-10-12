@@ -2,16 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/recognize.nix", [[["version", 21, 7], ["appHash", 22, 7], ["modelHash", 23, 7]], [["version", 26, 7], ["appHash", 27, 7], ["modelHash", 28, 7]], [["version", 31, 7], ["appHash", 32, 7], ["modelHash", 33, 7]], [["32", 20, 5], ["33", 25, 5], ["34", 30, 5]], [["url", 46, 7], ["hash", 47, 7]], [["url", 51, 7], ["hash", 52, 7]], [["url", 58, 7], ["hash", 59, 7]], [["license", 138, 5], ["maintainers", 139, 5], ["longDescription", 140, 5], ["homepage", 144, 5], ["description", 145, 5], ["changelog", 146, 5]], [["pname", 41, 3], ["version", 42, 32], ["srcs", 44, 3], ["unpackPhase", 63, 3], ["postPatch", 73, 3], ["nativeBuildInputs", 98, 3], ["buildPhase", 106, 3], ["installPhase", 125, 3], ["meta", 137, 3]]]);
 const formals$1 = { args: { stdenv: false, fetchurl: false, lib: false, nodejs_22: false, "node-pre-gyp": false, "node-gyp": false, python3: false, "util-linux": false, "ffmpeg-headless": false, useLibTensorflow: true, ncVersion: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/recognize.nix", [["version", 21, 7], ["appHash", 22, 7], ["modelHash", 23, 7]]);
-const pos$2 = nix.positions(here + "/recognize.nix", [["version", 26, 7], ["appHash", 27, 7], ["modelHash", 28, 7]]);
-const pos$3 = nix.positions(here + "/recognize.nix", [["version", 31, 7], ["appHash", 32, 7], ["modelHash", 33, 7]]);
-const pos$4 = nix.positions(here + "/recognize.nix", [["32", 20, 5], ["33", 25, 5], ["34", 30, 5]]);
-const pos$5 = nix.positions(here + "/recognize.nix", [["url", 46, 7], ["hash", 47, 7]]);
-const pos$6 = nix.positions(here + "/recognize.nix", [["url", 51, 7], ["hash", 52, 7]]);
-const pos$7 = nix.positions(here + "/recognize.nix", [["url", 58, 7], ["hash", 59, 7]]);
-const pos$8 = nix.positions(here + "/recognize.nix", [["license", 138, 5], ["maintainers", 139, 5], ["longDescription", 140, 5], ["homepage", 144, 5], ["description", 145, 5], ["changelog", 146, 5]]);
-const pos$9 = nix.positions(here + "/recognize.nix", [["pname", 41, 3], ["version", 42, 32], ["srcs", 44, 3], ["unpackPhase", 63, 3], ["postPatch", 73, 3], ["nativeBuildInputs", 98, 3], ["buildPhase", 106, 3], ["installPhase", 125, 3], ["meta", 137, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,21 +20,21 @@ export default nix.lambda((args) => (() => {
   const ncVersion = nix.arg($, "ncVersion");
   const nodejs = nodejs_22;
   const latestVersionForNc = nix.thunk(() => ({
-    [nix.POS]: pos$4,
+    [nix.POS]: $pos[3],
     "32": nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       version: "10.0.7",
       appHash: "sha256-quuH9ZNQhvlJ6SsFeboVIrMtF9K6ckpQkXb9OXDvFm8=",
       modelHash: "sha256-Q862f4mNWE6V4ZUpfNFZrs4kwRF/29uETCroyie0+zA=",
     })),
     "33": nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       version: "11.0.1",
       appHash: "sha256-x3LXZKDWmzCYLTaNqSvgu4Gvrn6w2c/jifNCx1oaw1U=",
       modelHash: "sha256-Yx/NJwtD4ltETpkzlcadZsFKqEmMneoZaXiHVSB1WoE=",
     })),
     "34": nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       version: "12.0.0",
       appHash: "sha256-1TpfDRMmJ7d5MPp0iTr/RpZHAG7LDsXof9u35O3+5Mg=",
       modelHash: "sha256-+ec7kRPyWPVTk2wgRKMOP5mdmSnpv9mZmiRicEDKD6A=",
@@ -54,18 +46,18 @@ export default nix.lambda((args) => (() => {
       const version = nix.thunk(() => nix.attr(currentVersionInfo, "version"));
       const srcs = nix.thunk(() => nix.concat([
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             url: nix.thunk(() => nix.str`https://github.com/nextcloud/recognize/releases/download/v${version}/recognize-${version}.tar.gz`),
             hash: nix.thunk(() => nix.sel(currentVersionInfo, "appHash")),
           })))),
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             url: nix.thunk(() => nix.str`https://github.com/nextcloud/recognize/archive/refs/tags/v${version}.tar.gz`),
             hash: nix.thunk(() => nix.sel(currentVersionInfo, "modelHash")),
           })))),
       ], nix.app(nix.sel(lib, "optionals"), useLibTensorflow, nix.thunk(() => [
           nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              [nix.POS]: pos$7,
+              [nix.POS]: $pos[6],
               url: "https://storage.googleapis.com/tensorflow/libtensorflow/libtensorflow-cpu-linux-x86_64-2.9.1.tar.gz",
               hash: "sha256-f1ENJUbj214QsdEZRjaJAD1YeEKJKtPJW8pRz4KCAXM=",
             })))),
@@ -119,7 +111,7 @@ runHook postBuild
 `)));
       const installPhase = "runHook preInstall\n\napproot=\"$(dirname $(dirname $(find -path '*/appinfo/info.xml' | head -n 1)))\"\nif [ -d \"$approot\" ]; then\n  mv \"$approot/\" $out\n  chmod -R a-w $out\nfi\n\nrunHook postInstall\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -131,7 +123,7 @@ runHook postBuild
         changelog: nix.thunk(() => nix.str`https://github.com/nextcloud/recognize/blob/v${version}/CHANGELOG.md`),
       }));
       return {
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         pname,
         version,
         srcs,

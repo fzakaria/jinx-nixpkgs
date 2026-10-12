@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 57, 5], ["hash", 58, 5]], [["packageName", 134, 7]], [["updateScript", 133, 5]], [["description", 139, 5], ["homepage", 140, 5], ["license", 141, 5], ["platforms", 142, 5], ["teams", 143, 5], ["mainProgram", 144, 5]], [["pname", 47, 3], ["version", 48, 3], ["outputs", 50, 3], ["src", 56, 3], ["patches", 61, 3], ["nativeBuildInputs", 66, 3], ["buildInputs", 80, 3], ["propagatedBuildInputs", 107, 3], ["mesonFlags", 111, 3], ["preFixup", 116, 3], ["postFixup", 127, 3], ["passthru", 132, 3], ["meta", 138, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, meson: false, ninja: false, "pkg-config": false, "gi-docgen": false, "docbook-xsl-nons": false, gettext: false, "blueprint-compiler": false, "desktop-file-utils": false, "wayland-scanner": false, wrapGAppsHook4: false, gtk4: false, libadwaita: false, "libportal-gtk4": false, gnome: false, "adwaita-icon-theme": false, "gnome-autoar": false, "glib-networking": false, icu: false, "shared-mime-info": false, libnotify: false, libexif: false, libglycin: false, "libglycin-gtk4": false, libjxl: false, libseccomp: false, librsvg: false, "webp-pixbuf-loader": false, tinysparql: false, localsearch: false, gexiv2_0_16: false, libselinux: false, libcloudproviders: false, "gdk-pixbuf": false, "gnome-desktop": false, gst_all_1: false, "gsettings-desktop-schemas": false, "gnome-user-share": false, "gobject-introspection": false, "glycin-loaders": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 57, 5], ["hash", 58, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["packageName", 134, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 133, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 139, 5], ["homepage", 140, 5], ["license", 141, 5], ["platforms", 142, 5], ["teams", 143, 5], ["mainProgram", 144, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 47, 3], ["version", 48, 3], ["outputs", 50, 3], ["src", 56, 3], ["patches", 61, 3], ["nativeBuildInputs", 66, 3], ["buildInputs", 80, 3], ["propagatedBuildInputs", 107, 3], ["mesonFlags", 111, 3], ["preFixup", 116, 3], ["postFixup", 127, 3], ["passthru", 132, 3], ["meta", 138, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -54,12 +50,12 @@ export default nix.lambda((args) => (() => {
   const gobject_introspection = nix.arg($, "gobject-introspection");
   const glycin_loaders = nix.arg($, "glycin-loaders");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "nautilus",
       version: "50.2.2",
       outputs: nix.thunk(() => ["out", "dev", "devdoc"]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnome/sources/nautilus/${nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/nautilus-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-4eKF7930LtMN2lsp9/jSQtq0vBQJqQVIY7NnutSzTVo=",
         })))),
@@ -119,11 +115,11 @@ export default nix.lambda((args) => (() => {
 `),
       postFixup: "# Cannot be in postInstall, otherwise _multioutDocs hook in preFixup will move right back.\nmoveToOutput \"share/doc\" \"$devdoc\"\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$2, packageName: "nautilus" })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: $pos[1], packageName: "nautilus" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "File manager for GNOME",
         homepage: "https://apps.gnome.org/Nautilus/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

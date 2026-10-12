@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 33, 5], ["repo", 34, 5], ["tag", 35, 5], ["hash", 36, 5]], [["description", 67, 5], ["homepage", 68, 5], ["changelog", 69, 5], ["maintainers", 70, 5], ["license", 71, 5]], [["pname", 26, 3], ["version", 27, 3], ["pyproject", 28, 3], ["__structuredAttrs", 29, 3], ["src", 32, 3], ["build-system", 39, 3], ["dependencies", 43, 3], ["pythonImportsCheck", 53, 3], ["nativeCheckInputs", 57, 3], ["pytestFlags", 64, 3], ["meta", 66, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, "poetry-core": false, httpcore: false, httpx: false, openai: false, pydantic: false, "python-dotenv": false, requests: false, "typing-extensions": false, "pytest-asyncio": false, "pytest-cov-stub": false, "pytest-mock": false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 33, 5], ["repo", 34, 5], ["tag", 35, 5], ["hash", 36, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 67, 5], ["homepage", 68, 5], ["changelog", 69, 5], ["maintainers", 70, 5], ["license", 71, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 26, 3], ["version", 27, 3], ["pyproject", 28, 3], ["__structuredAttrs", 29, 3], ["src", 32, 3], ["build-system", 39, 3], ["dependencies", 43, 3], ["pythonImportsCheck", 53, 3], ["nativeCheckInputs", 57, 3], ["pytestFlags", 64, 3], ["meta", 66, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,13 +23,13 @@ export default nix.lambda((args) => (() => {
   const pytest_mock = nix.arg($, "pytest-mock");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "exa-py",
       version: "2.25.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "exa-labs",
           repo: "exa-py",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -51,7 +49,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytest_asyncio, pytest_cov_stub, pytest_mock, pytestCheckHook]),
       pytestFlags: nix.thunk(() => ["tests/"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Official Python SDK for Exa, the web search API for AI",
         homepage: "https://github.com/exa-labs/exa-py/",
         changelog: nix.thunk(() => nix.str`https://github.com/exa-labs/exa-py/releases/tag/v${nix.sel(finalAttrs, "version")}`),

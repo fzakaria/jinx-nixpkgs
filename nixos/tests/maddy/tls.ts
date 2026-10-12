@@ -2,25 +2,10 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/tls.nix", [[["maintainers", 10, 7]], [["passwordFile", 26, 38]], [["certPath", 32, 19], ["keyPath", 33, 19]], [["loader", 29, 15], ["certificates", 30, 15]], [["enable", 18, 13], ["hostname", 19, 13], ["primaryDomain", 20, 13], ["openFirewall", 21, 13], ["ensureAccounts", 22, 13], ["ensureCredentials", 23, 13], ["tls", 28, 13], ["config", 39, 13]], [["maddy", 17, 20]], [["allowedTCPPorts", 52, 31]], [["firewall", 52, 22]], [["services", 17, 11], ["networking", 52, 11]], [["certificateFiles", 61, 24]], [["pki", 61, 20]], [["extraHosts", 64, 22]], [["systemPackages", 67, 23]], [["security", 61, 11], ["networking", 64, 11], ["environment", 67, 11]], [["server", 14, 7], ["client", 58, 7]], [["name", 8, 5], ["meta", 9, 5], ["nodes", 13, 5], ["testScript", 101, 5]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/tls.nix", [["maintainers", 10, 7]]);
 const formals$2 = { args: { options: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/tls.nix", [["passwordFile", 26, 38]]);
-const pos$3 = nix.positions(here + "/tls.nix", [["certPath", 32, 19], ["keyPath", 33, 19]]);
-const pos$4 = nix.positions(here + "/tls.nix", [["loader", 29, 15], ["certificates", 30, 15]]);
-const pos$5 = nix.positions(here + "/tls.nix", [["enable", 18, 13], ["hostname", 19, 13], ["primaryDomain", 20, 13], ["openFirewall", 21, 13], ["ensureAccounts", 22, 13], ["ensureCredentials", 23, 13], ["tls", 28, 13], ["config", 39, 13]]);
-const pos$6 = nix.positions(here + "/tls.nix", [["maddy", 17, 20]]);
-const pos$7 = nix.positions(here + "/tls.nix", [["allowedTCPPorts", 52, 31]]);
-const pos$8 = nix.positions(here + "/tls.nix", [["firewall", 52, 22]]);
-const pos$9 = nix.positions(here + "/tls.nix", [["services", 17, 11], ["networking", 52, 11]]);
 const formals$3 = { args: { nodes: false }, ellipsis: true };
-const pos$10 = nix.positions(here + "/tls.nix", [["certificateFiles", 61, 24]]);
-const pos$11 = nix.positions(here + "/tls.nix", [["pki", 61, 20]]);
-const pos$12 = nix.positions(here + "/tls.nix", [["extraHosts", 64, 22]]);
-const pos$13 = nix.positions(here + "/tls.nix", [["systemPackages", 67, 23]]);
-const pos$14 = nix.positions(here + "/tls.nix", [["security", 61, 11], ["networking", 64, 11], ["environment", 67, 11]]);
-const pos$15 = nix.positions(here + "/tls.nix", [["server", 14, 7], ["client", 58, 7]]);
-const pos$16 = nix.positions(here + "/tls.nix", [["name", 8, 5], ["meta", 9, 5], ["nodes", 13, 5], ["testScript", 101, 5]]);
 
 export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../make-test-python.nix")), nix.lambda((args) => (() => {
     const $ = nix.formals(args, formals$1);
@@ -28,26 +13,26 @@ export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../ma
     const certs = nix.thunk(() => nix.builtins.import(nix.path(here, "../common/acme/server/snakeoil-certs.nix")));
     const domain = nix.thunk(() => nix.sel(certs, "domain"));
     return {
-      [nix.POS]: pos$16,
+      [nix.POS]: $pos[15],
       name: "maddy-tls",
       meta: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
         return {
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "onny"))]),
         };
       })()),
       nodes: nix.thunk(() => ({
-        [nix.POS]: pos$15,
+        [nix.POS]: $pos[14],
         server: nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$2);
           const options = nix.arg($_1, "options");
           return {
-            [nix.POS]: pos$9,
+            [nix.POS]: $pos[8],
             services: nix.thunk(() => ({
-              [nix.POS]: pos$6,
+              [nix.POS]: $pos[5],
               maddy: nix.thunk(() => ({
-                [nix.POS]: pos$5,
+                [nix.POS]: $pos[4],
                 enable: true,
                 hostname: domain,
                 primaryDomain: domain,
@@ -55,16 +40,16 @@ export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../ma
                 ensureAccounts: nix.thunk(() => [nix.thunk(() => nix.str`postmaster@${domain}`)]),
                 ensureCredentials: nix.thunk(() => nix.attrsDyn({}, [
                   [nix.str`postmaster@${domain}`, nix.thunk(() => ({
-                    [nix.POS]: pos$2,
+                    [nix.POS]: $pos[1],
                     passwordFile: nix.thunk(() => nix.str`${nix.app(nix.sel(pkgs, "writeText"), "postmaster", "test")}`),
                   }))],
                 ])),
                 tls: nix.thunk(() => ({
-                  [nix.POS]: pos$4,
+                  [nix.POS]: $pos[3],
                   loader: "file",
                   certificates: nix.thunk(() => [
                     nix.thunk(() => ({
-                      [nix.POS]: pos$3,
+                      [nix.POS]: $pos[2],
                       certPath: nix.thunk(() => nix.str`${nix.sel(certs, nix.key(nix.force(domain)), "cert")}`),
                       keyPath: nix.thunk(() => nix.str`${nix.sel(certs, nix.key(nix.force(domain)), "key")}`),
                     })),
@@ -77,8 +62,8 @@ export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../ma
               })),
             })),
             networking: nix.thunk(() => ({
-              [nix.POS]: pos$8,
-              firewall: nix.thunk(() => ({ [nix.POS]: pos$7, allowedTCPPorts: nix.thunk(() => [993n, 465n]) })),
+              [nix.POS]: $pos[7],
+              firewall: nix.thunk(() => ({ [nix.POS]: $pos[6], allowedTCPPorts: nix.thunk(() => [993n, 465n]) })),
             })),
           };
         })(), formals$2),
@@ -86,21 +71,21 @@ export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../ma
           const $_1 = nix.formals(args_1, formals$3);
           const nodes = nix.arg($_1, "nodes");
           return {
-            [nix.POS]: pos$14,
+            [nix.POS]: $pos[13],
             security: nix.thunk(() => ({
-              [nix.POS]: pos$11,
+              [nix.POS]: $pos[10],
               pki: nix.thunk(() => ({
-                [nix.POS]: pos$10,
+                [nix.POS]: $pos[9],
                 certificateFiles: nix.thunk(() => [nix.thunk(() => nix.sel(certs, "ca", "cert"))]),
               })),
             })),
             networking: nix.thunk(() => ({
-              [nix.POS]: pos$12,
+              [nix.POS]: $pos[11],
               extraHosts: nix.thunk(() => nix.str`${nix.sel(nodes, "server", "networking", "primaryIPAddress")} ${domain}
 `),
             })),
             environment: nix.thunk(() => ({
-              [nix.POS]: pos$13,
+              [nix.POS]: $pos[12],
               systemPackages: nix.thunk(() => [
                 nix.thunk(() => nix.app(nix.sel(pkgs, "writers", "writePython3Bin"), "send-testmail", nix.thunk(() => ({})), nix.thunk(() => nix.str`import smtplib
 import ssl

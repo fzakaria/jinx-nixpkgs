@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/krunner.nix", [[["pname", 20, 5], ["nativeBuildInputs", 21, 5], ["buildInputs", 25, 5], ["propagatedBuildInputs", 35, 5]]]);
 const formals$1 = { args: { mkDerivation: false, cmake: false, "extra-cmake-modules": false, kconfig: false, kcoreaddons: false, ki18n: false, kio: false, kservice: false, "plasma-framework": false, qtbase: false, qtdeclarative: false, solid: false, threadweaver: false, kwindowsystem: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/krunner.nix", [["pname", 20, 5], ["nativeBuildInputs", 21, 5], ["buildInputs", 25, 5], ["propagatedBuildInputs", 35, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
   const threadweaver = nix.arg($, "threadweaver");
   const kwindowsystem = nix.arg($, "kwindowsystem");
   const self = nix.thunk(() => nix.app(mkDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       pname: "krunner",
       nativeBuildInputs: nix.thunk(() => [cmake, extra_cmake_modules]),
       buildInputs: nix.thunk(() => [

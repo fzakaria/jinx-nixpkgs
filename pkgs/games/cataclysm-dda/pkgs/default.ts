@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["UndeadPeople", 16, 7]], [["mod", 9, 5], ["soundpack", 12, 5], ["tileset", 15, 5]]]);
 const formals$1 = { args: { lib: false, callPackage: false, build: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["UndeadPeople", 16, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["mod", 9, 5], ["soundpack", 12, 5], ["tileset", 15, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -12,11 +11,11 @@ export default nix.lambda((args) => (() => {
   const callPackage = nix.arg($, "callPackage");
   const build = nix.argOr($, "build", () => null);
   const pkgs = nix.thunk(() => ({
-    [nix.POS]: pos$2,
+    [nix.POS]: $pos[1],
     mod: nix.thunk(() => ({})),
     soundpack: nix.thunk(() => ({})),
     tileset: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       UndeadPeople: nix.thunk(() => nix.app(callPackage, nix.path(here, "./tilesets/UndeadPeople"), nix.thunk(() => ({})))),
     })),
   }));

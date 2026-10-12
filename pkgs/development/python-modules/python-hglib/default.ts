@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 17, 5], ["hash", 18, 5]], [["name", 23, 7], ["excludes", 24, 7], ["url", 25, 7], ["hash", 26, 7]], [["name", 29, 7], ["url", 30, 7], ["hash", 31, 7]], [["description", 50, 5], ["homepage", 51, 5], ["license", 52, 5], ["maintainers", 53, 5]], [["pname", 12, 3], ["version", 13, 3], ["pyproject", 14, 3], ["src", 16, 3], ["patches", 21, 3], ["build-system", 35, 3], ["nativeCheckInputs", 37, 3], ["preCheck", 42, 3], ["pythonImportsCheck", 47, 3], ["meta", 49, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchzip: false, mercurial: false, pytestCheckHook: false, fetchpatch2: false, setuptools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["name", 23, 7], ["excludes", 24, 7], ["url", 25, 7], ["hash", 26, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["name", 29, 7], ["url", 30, 7], ["hash", 31, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 50, 5], ["homepage", 51, 5], ["license", 52, 5], ["maintainers", 53, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 12, 3], ["version", 13, 3], ["pyproject", 14, 3], ["src", 16, 3], ["patches", 21, 3], ["build-system", 35, 3], ["nativeCheckInputs", 37, 3], ["preCheck", 42, 3], ["pythonImportsCheck", 47, 3], ["meta", 49, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,20 +19,20 @@ export default nix.lambda((args) => (() => {
       const version = "2.6.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://repo.mercurial-scm.org/python-hglib/archive/${version}.tar.gz`),
           hash: "sha256-UXersegqJ9VAxy4Kvpb2IiOJfQbWryeeaGvwiR4ncW8=",
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "remove-nose.patch",
             excludes: nix.thunk(() => ["heptapod-ci.yml"]),
             url: "https://repo.mercurial-scm.org/python-hglib/raw-rev/8341f2494b3fc1c0d9ee55fa4487c0ac82f64d2a",
             hash: "sha256-4gicVCAH94itxHY0l8ek0L/RVhUrw2lMbbnENbWrV6U=",
           })))),
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "fix-tests.patch",
             url: "https://repo.mercurial-scm.org/python-hglib/raw-rev/a2afbf236ca86287e72f54e1248413625d1bc405",
             hash: "sha256-T/yKJ8cMMOBVk24SXwyPOoD321S1fZEIunaPJAxI0KI=",
@@ -47,14 +43,14 @@ export default nix.lambda((args) => (() => {
       const preCheck = "export HGTMP=$(mktemp -d)\nexport HGUSER=test\n";
       const pythonImportsCheck = nix.thunk(() => ["hglib"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Library with a fast, convenient interface to Mercurial. It uses Mercurial’s command server for communication with hg",
         homepage: "https://www.mercurial-scm.org/wiki/PythonHglibs",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         pyproject,

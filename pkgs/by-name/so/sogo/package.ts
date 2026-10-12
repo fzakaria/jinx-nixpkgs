@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 32, 5], ["repo", 33, 5], ["rev", 34, 5], ["hash", 35, 5]], [["NIX_CFLAGS_COMPILE", 90, 7]], [["sogo", 115, 18]], [["tests", 115, 12]], [["description", 118, 5], ["license", 119, 5], ["homepage", 123, 5], ["platforms", 124, 5], ["maintainers", 125, 5]], [["pname", 27, 3], ["version", 28, 3], ["src", 31, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 43, 3], ["patches", 58, 3], ["postPatch", 60, 3], ["configureFlags", 84, 3], ["env", 90, 3], ["preFixup", 92, 3], ["passthru", 115, 3], ["meta", 117, 3]]]);
 const formals$1 = { args: { lib: false, clangStdenv: false, fetchFromGitHub: false, makeWrapper: false, python3: false, lndir: false, libxcrypt: false, openssl: false, openldap: false, sope: false, libmemcached: false, curl: false, libsodium: false, libytnef: false, libzip: false, "pkg-config": false, nixosTests: false, "oath-toolkit": false, "gnustep-make": false, "gnustep-base": false, enableActiveSync: true, libwbxml: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 32, 5], ["repo", 33, 5], ["rev", 34, 5], ["hash", 35, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 90, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["sogo", 115, 18]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 115, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 118, 5], ["license", 119, 5], ["homepage", 123, 5], ["platforms", 124, 5], ["maintainers", 125, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 27, 3], ["version", 28, 3], ["src", 31, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 43, 3], ["patches", 58, 3], ["postPatch", 60, 3], ["configureFlags", 84, 3], ["env", 90, 3], ["preFixup", 92, 3], ["passthru", 115, 3], ["meta", 117, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -38,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const pname = "sogo";
       const version = "5.12.11";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Alinto",
           repo: "sogo",
           rev: nix.thunk(() => nix.str`SOGo-${version}`),
@@ -83,7 +78,7 @@ find . -type f -name GNUmakefile -exec sed -i "s:\\\\$.GNUSTEP_MAKEFILES.:$PWD/m
 `);
       const configureFlags = nix.thunk(() => ["--disable-debug", "--with-ssl=ssl", "--enable-mfa"]);
       const env = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: "-Wno-error=incompatible-pointer-types -Wno-error=int-conversion -Wno-error=implicit-int -Wno-error=return-type",
       }));
       const preFixup = nix.thunk(() => nix.str`# Create gnustep.conf
@@ -108,11 +103,11 @@ for bin in $out/bin/*; do
 done
 `);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$3, sogo: nix.thunk(() => nix.sel(nixosTests, "sogo")) })),
+        [nix.POS]: $pos[3],
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[2], sogo: nix.thunk(() => nix.sel(nixosTests, "sogo")) })),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Very fast and scalable modern collaboration suite (groupware)",
         license: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "licenses")), null);
@@ -129,7 +124,7 @@ done
         })()),
       }));
       return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname,
         version,
         src,

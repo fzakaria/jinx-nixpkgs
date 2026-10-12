@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 35, 5], ["sha256", 36, 5]], [["description", 84, 5], ["mainProgram", 85, 5], ["homepage", 86, 5], ["license", 87, 5], ["platforms", 88, 5], ["maintainers", 89, 5], ["teams", 90, 5]], [["pname", 31, 3], ["version", 32, 3], ["src", 34, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 49, 3], ["makeFlags", 68, 3], ["patches", 74, 3], ["postPatch", 78, 3], ["meta", 83, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, vala: false, atk: false, cairo: false, dconf: false, glib: false, "gnome-common": false, gtk3: false, libwnck: false, libx11: false, libxfixes: false, libxi: false, pango: false, gettext: false, "pkg-config": false, libxml2: false, bamf: false, "gdk-pixbuf": false, "libdbusmenu-gtk3": false, file: false, "gnome-menus": false, libgee: false, wrapGAppsHook3: false, autoreconfHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 35, 5], ["sha256", 36, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 84, 5], ["mainProgram", 85, 5], ["homepage", 86, 5], ["license", 87, 5], ["platforms", 88, 5], ["maintainers", 89, 5], ["teams", 90, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 31, 3], ["version", 32, 3], ["src", 34, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 49, 3], ["makeFlags", 68, 3], ["patches", 74, 3], ["postPatch", 78, 3], ["meta", 83, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -36,11 +34,11 @@ export default nix.lambda((args) => (() => {
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   const autoreconfHook = nix.arg($, "autoreconfHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "plank",
       version: "0.11.89",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://launchpad.net/plank/1.0/${nix.sel(finalAttrs, "version")}/+download/plank-${nix.sel(finalAttrs, "version")}.tar.xz`),
           sha256: "17cxlmy7n13jp1v8i4abxyx9hylzb39andhz3mk41ggzmrpa8qm6",
         })))),
@@ -79,7 +77,7 @@ export default nix.lambda((args) => (() => {
   --replace "/usr/bin/file" "${file}/bin/file"
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Elegant, simple, clean dock",
         mainProgram: "plank",
         homepage: "https://launchpad.net/plank",

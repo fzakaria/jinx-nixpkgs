@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["sha256", 20, 5]], [["tests", 115, 12]], [["homepage", 118, 5], ["description", 119, 5], ["mainProgram", 120, 5], ["license", 121, 5], ["maintainers", 122, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 23, 3], ["buildInputs", 25, 3], ["propagatedBuildInputs", 51, 3], ["nativeCheckInputs", 53, 3], ["postPatch", 55, 3], ["preCheck", 59, 3], ["postInstall", 103, 3], ["passthru", 115, 3], ["meta", 117, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, perl: false, perlPackages: false, makeWrapper: false, openssl: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["sha256", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["tests", 115, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 118, 5], ["description", 119, 5], ["mainProgram", 120, 5], ["license", 121, 5], ["maintainers", 122, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 23, 3], ["buildInputs", 25, 3], ["propagatedBuildInputs", 51, 3], ["nativeCheckInputs", 53, 3], ["postPatch", 55, 3], ["preCheck", 59, 3], ["postInstall", 103, 3], ["passthru", 115, 3], ["meta", 117, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = "convos";
       const version = "8.05";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "convos-chat",
           repo: "convos",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -71,9 +68,9 @@ ln -s $AUTO_SHARE_PATH/public/assets $out/assets
 cp -vR templates $out/templates
 cp Makefile.PL $out/Makefile.PL
 `, "wrapProgram $out/bin/convos --set MOJO_HOME $out\n"));
-      const passthru = nix.thunk(() => ({ [nix.POS]: pos$2, tests: nix.thunk(() => nix.sel(nixosTests, "convos")) }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: $pos[1], tests: nix.thunk(() => nix.sel(nixosTests, "convos")) }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://convos.chat",
         description: "IRC browser client",
         mainProgram: "convos",
@@ -84,7 +81,7 @@ cp Makefile.PL $out/Makefile.PL
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

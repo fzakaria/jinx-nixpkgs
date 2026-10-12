@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/sdk.nix", [[["description", 13, 5], ["license", 14, 5]], [["pname", 8, 3], ["version", 10, 23], ["src", 10, 31], ["meta", 12, 3]]]);
 const formals$1 = { args: { lib: false, buildDunePackage: false, menhirLib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/sdk.nix", [["description", 13, 5], ["license", 14, 5]]);
-const pos$2 = nix.positions(here + "/sdk.nix", [["pname", 8, 3], ["version", 10, 23], ["src", 10, 31], ["meta", 12, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -12,12 +11,12 @@ export default nix.lambda((args) => (() => {
   const buildDunePackage = nix.arg($, "buildDunePackage");
   const menhirLib = nix.arg($, "menhirLib");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "menhirSdk",
       version: nix.thunk(() => nix.attr(menhirLib, "version")),
       src: nix.thunk(() => nix.attr(menhirLib, "src")),
       meta: nix.thunk(() => nix.update(nix.sel(menhirLib, "meta"), {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Compile-time library for auxiliary tools related to Menhir",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),
       })),

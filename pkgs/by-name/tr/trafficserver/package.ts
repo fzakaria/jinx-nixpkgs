@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 54, 5], ["hash", 55, 5]], [["trafficserver", 182, 43]], [["tests", 182, 12]], [["homepage", 185, 5], ["changelog", 186, 5], ["description", 187, 5], ["longDescription", 188, 5], ["license", 197, 5], ["maintainers", 198, 5], ["platforms", 199, 5]], [["pname", 50, 3], ["version", 51, 3], ["src", 53, 3], ["nativeBuildInputs", 66, 3], ["buildInputs", 79, 3], ["outputs", 99, 3], ["postPatch", 104, 3], ["configureFlags", 121, 3], ["installFlags", 129, 3], ["postInstall", 139, 3], ["installCheckPhase", 152, 3], ["doCheck", 178, 3], ["doInstallCheck", 179, 3], ["enableParallelBuilding", 180, 3], ["passthru", 182, 3], ["meta", 184, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchzip: false, autoreconfHook: false, makeWrapper: false, nixosTests: false, "pkg-config": false, file: false, linuxHeaders: false, openssl: false, pcre: false, perlPackages: false, python3: false, withHwloc: true, hwloc: false, withCurl: true, curl: false, withCurses: true, ncurses: false, withCap: true, libcap: false, withUnwind: true, libunwind: false, withBrotli: true, brotli: false, withCjose: true, cjose: false, withGeoIP: true, geoip: false, withHiredis: true, hiredis: false, withImageMagick: true, imagemagick: false, withJansson: true, jansson: false, withKyotoCabinet: true, kyotocabinet: false, withLuaJIT: true, luajit: false, withMaxmindDB: true, libmaxminddb: false, enableWCCP: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 54, 5], ["hash", 55, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["trafficserver", 182, 43]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 182, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 185, 5], ["changelog", 186, 5], ["description", 187, 5], ["longDescription", 188, 5], ["license", 197, 5], ["maintainers", 198, 5], ["platforms", 199, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 50, 3], ["version", 51, 3], ["src", 53, 3], ["nativeBuildInputs", 66, 3], ["buildInputs", 79, 3], ["outputs", 99, 3], ["postPatch", 104, 3], ["configureFlags", 121, 3], ["installFlags", 129, 3], ["postInstall", 139, 3], ["installCheckPhase", 152, 3], ["doCheck", 178, 3], ["doInstallCheck", 179, 3], ["enableParallelBuilding", 180, 3], ["passthru", 182, 3], ["meta", 184, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -54,11 +50,11 @@ export default nix.lambda((args) => (() => {
   const libmaxminddb = nix.arg($, "libmaxminddb");
   const enableWCCP = nix.argOr($, "enableWCCP", () => false);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "trafficserver",
       version: "9.2.11",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://apache/trafficserver/trafficserver-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           hash: "sha256-WFABr7+JsUbQagLFK0OXZ20t4QCuYrozeaV4fKO/c2s=",
         })))),
@@ -114,14 +110,14 @@ runHook postInstallCheck
       doInstallCheck: true,
       enableParallelBuilding: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           trafficserver: nix.thunk(() => nix.attr(nixosTests, "trafficserver")),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://trafficserver.apache.org",
         changelog: nix.thunk(() => nix.str`https://raw.githubusercontent.com/apache/trafficserver/${nix.sel(finalAttrs, "version")}/CHANGELOG-${nix.sel(finalAttrs, "version")}`),
         description: "Fast, scalable, and extensible HTTP caching proxy server",

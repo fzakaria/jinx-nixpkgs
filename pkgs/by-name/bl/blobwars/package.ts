@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 20, 5], ["sha256", 21, 5]], [["NIX_CFLAGS_COMPILE", 38, 7]], [["description", 55, 5], ["mainProgram", 56, 5], ["homepage", 57, 5], ["license", 58, 5], ["maintainers", 62, 5], ["platforms", 63, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["patches", 24, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 30, 3], ["env", 38, 3], ["makeFlags", 40, 3], ["postInstall", 45, 3], ["meta", 54, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, "pkg-config": false, gettext: false, SDL2: false, SDL2_image: false, SDL2_mixer: false, SDL2_net: false, SDL2_ttf: false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 20, 5], ["sha256", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 38, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 55, 5], ["mainProgram", 56, 5], ["homepage", 57, 5], ["license", 58, 5], ["maintainers", 62, 5], ["platforms", 63, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["patches", 24, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 30, 3], ["env", 38, 3], ["makeFlags", 40, 3], ["postInstall", 45, 3], ["meta", 54, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const SDL2_ttf = nix.arg($, "SDL2_ttf");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "blobwars",
       version: "2.00",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/blobwars/blobwars-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "c406279f6cdf2aed3c6edb8d8be16efeda0217494acd525f39ee2bd3e77e4a99",
         })))),
@@ -34,13 +31,13 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pkg_config, gettext]),
       buildInputs: nix.thunk(() => [SDL2, SDL2_image, SDL2_mixer, SDL2_net, SDL2_ttf, zlib]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-Wno-error"]))),
       })),
       makeFlags: nix.thunk(() => ["PREFIX=$(out)", "RELEASE=1"]),
       postInstall: "install -Dm755 $out/games/blobwars -t $out/bin\nrm -r $out/games\ncp -r {data,gfx,sound,music} $out/share/games/blobwars/\n# fix world readable bit\nfind $out/share/games/blobwars/. -type d -exec chmod 755 {} +\nfind $out/share/games/blobwars/. -type f -exec chmod 644 {} +\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Platform action game featuring a blob with lots of weapons",
         mainProgram: "blobwars",
         homepage: "https://www.parallelrealities.co.uk/games/metalBlobSolid/",

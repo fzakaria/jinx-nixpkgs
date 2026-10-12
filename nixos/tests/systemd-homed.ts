@@ -2,46 +2,32 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/systemd-homed.nix", [[["enable", 15, 17]], [["enable", 16, 19]], [["homed", 15, 11], ["openssh", 16, 11]], [["experimental-features", 22, 11], ["auto-allocate-uids", 23, 11]], [["settings", 21, 13]], [["services", 14, 9], ["nix", 21, 9]], [["enable", 31, 17]], [["silenceHighSystemUsers", 32, 19]], [["homed", 31, 11], ["userdbd", 32, 11]], [["extraGroups", 37, 11], ["isNormalUser", 38, 11], ["initialPassword", 39, 19]], [["test-normal-user", 36, 21]], [["users", 36, 15]], [["services", 30, 9], ["users", 36, 9]], [["machine", 11, 5], ["sshClient", 27, 5]], [["name", 8, 3], ["nodes", 10, 3], ["testScript", 44, 3]]]);
 const formals$1 = { args: {  }, ellipsis: true };
-const pos$1 = nix.positions(here + "/systemd-homed.nix", [["enable", 15, 17]]);
-const pos$2 = nix.positions(here + "/systemd-homed.nix", [["enable", 16, 19]]);
-const pos$3 = nix.positions(here + "/systemd-homed.nix", [["homed", 15, 11], ["openssh", 16, 11]]);
-const pos$4 = nix.positions(here + "/systemd-homed.nix", [["experimental-features", 22, 11], ["auto-allocate-uids", 23, 11]]);
-const pos$5 = nix.positions(here + "/systemd-homed.nix", [["settings", 21, 13]]);
-const pos$6 = nix.positions(here + "/systemd-homed.nix", [["services", 14, 9], ["nix", 21, 9]]);
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$7 = nix.positions(here + "/systemd-homed.nix", [["enable", 31, 17]]);
-const pos$8 = nix.positions(here + "/systemd-homed.nix", [["silenceHighSystemUsers", 32, 19]]);
-const pos$9 = nix.positions(here + "/systemd-homed.nix", [["homed", 31, 11], ["userdbd", 32, 11]]);
-const pos$10 = nix.positions(here + "/systemd-homed.nix", [["extraGroups", 37, 11], ["isNormalUser", 38, 11], ["initialPassword", 39, 19]]);
-const pos$11 = nix.positions(here + "/systemd-homed.nix", [["test-normal-user", 36, 21]]);
-const pos$12 = nix.positions(here + "/systemd-homed.nix", [["users", 36, 15]]);
-const pos$13 = nix.positions(here + "/systemd-homed.nix", [["services", 30, 9], ["users", 36, 9]]);
-const pos$14 = nix.positions(here + "/systemd-homed.nix", [["machine", 11, 5], ["sshClient", 27, 5]]);
-const pos$15 = nix.positions(here + "/systemd-homed.nix", [["name", 8, 3], ["nodes", 10, 3], ["testScript", 44, 3]]);
 
 export default nix.thunk(() => (() => {
   const username = "test-homed-user";
   const initialPassword = "foobarfoo";
   const newPassword = "barfoobar";
   return {
-    [nix.POS]: pos$15,
+    [nix.POS]: $pos[14],
     name: "systemd-homed",
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$14,
+      [nix.POS]: $pos[13],
       machine: nix.lambda((args) => (() => {
         const $ = nix.formals(args, formals$1);
         return {
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$3,
-            homed: nix.thunk(() => ({ [nix.POS]: pos$1, enable: true })),
-            openssh: nix.thunk(() => ({ [nix.POS]: pos$2, enable: true })),
+            [nix.POS]: $pos[2],
+            homed: nix.thunk(() => ({ [nix.POS]: $pos[0], enable: true })),
+            openssh: nix.thunk(() => ({ [nix.POS]: $pos[1], enable: true })),
           })),
           nix: nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             settings: nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               "experimental-features": nix.thunk(() => ["auto-allocate-uids"]),
               "auto-allocate-uids": true,
             })),
@@ -52,18 +38,18 @@ export default nix.thunk(() => (() => {
         const $ = nix.formals(args, formals$2);
         const pkgs = nix.arg($, "pkgs");
         return {
-          [nix.POS]: pos$13,
+          [nix.POS]: $pos[12],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$9,
-            homed: nix.thunk(() => ({ [nix.POS]: pos$7, enable: true })),
-            userdbd: nix.thunk(() => ({ [nix.POS]: pos$8, silenceHighSystemUsers: true })),
+            [nix.POS]: $pos[8],
+            homed: nix.thunk(() => ({ [nix.POS]: $pos[6], enable: true })),
+            userdbd: nix.thunk(() => ({ [nix.POS]: $pos[7], silenceHighSystemUsers: true })),
           })),
           users: nix.thunk(() => ({
-            [nix.POS]: pos$12,
+            [nix.POS]: $pos[11],
             users: nix.thunk(() => ({
-              [nix.POS]: pos$11,
+              [nix.POS]: $pos[10],
               "test-normal-user": nix.thunk(() => ({
-                [nix.POS]: pos$10,
+                [nix.POS]: $pos[9],
                 extraGroups: nix.thunk(() => ["wheel"]),
                 isNormalUser: true,
                 initialPassword: initialPassword,

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 26, 5], ["sha256", 27, 5]], [["description", 49, 5], ["homepage", 50, 5], ["license", 51, 5], ["platforms", 52, 5]], [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 34, 3], ["configureFlags", 40, 3], ["meta", 48, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, gnutls: false, openssl: false, gsasl: false, libidn2: false, "pkg-config": false, nlsSupport: true, idnSupport: true, gsaslSupport: true, sslLibrary: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 26, 5], ["sha256", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 49, 5], ["homepage", 50, 5], ["license", 51, 5], ["platforms", 52, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 34, 3], ["configureFlags", 40, 3], ["meta", 48, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const sslLibrary = nix.argOr($, "sslLibrary", () => "gnutls");
   nix.assert_(nix.app(nix.sel(lib, "assertOneOf"), "sslLibrary", sslLibrary, nix.thunk(() => ["gnutls", "openssl", "no"])), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/mp/mpop/package.nix:15:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "mpop",
       version: "1.4.23",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://marlam.de/mpop/releases/mpop-${nix.sel(finalAttrs, "version")}.tar.xz`),
           sha256: "sha256-Avwv9E9iuPv0J+1tixbg03R1EZglT7HmrTbrbZqTgBc=",
         })))),
@@ -40,7 +38,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`--with-tls=${sslLibrary}`),
       ], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "--with-macosx-keyring"))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "POP3 mail retrieval agent",
         homepage: "https://marlam.de/mpop",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

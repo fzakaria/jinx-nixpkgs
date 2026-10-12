@@ -2,13 +2,12 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
-const pos$1 = nix.positions(here + "/generate-shell.nix", [["packages", 16, 7]]);
-const pos$2 = nix.positions(here + "/generate-shell.nix", [["name", 4, 3], ["buildCommand", 6, 3], ["buildInputs", 8, 3], ["nativeBuildInputs", 14, 3]]);
+const $pos = nix.positions(here + "/generate-shell.nix", [[["packages", 16, 7]], [["name", 4, 3], ["buildCommand", 6, 3], ["buildInputs", 8, 3], ["nativeBuildInputs", 14, 3]]]);
 
 export default nix.thunk(() => (() => {
   const w = nix.withScope(nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../..")), nix.thunk(() => ({})))), null);
   return nix.app(nix.sel(nix.lookup(w, "stdenv"), "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       name: "generate-r-packages-shell",
       buildCommand: "exit 1",
       buildInputs: nix.thunk(() => [
@@ -18,7 +17,7 @@ export default nix.thunk(() => (() => {
       ]),
       nativeBuildInputs: nix.thunk(() => [
         nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "rWrapper"), "override"), nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             packages: nix.thunk(() => (() => {
               const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "rPackages")), w);
               return [

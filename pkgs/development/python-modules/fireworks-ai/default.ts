@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 45, 5], ["repo", 46, 5], ["tag", 47, 5], ["hash", 48, 5]], [["training-sdk", 75, 5], ["training", 79, 5]], [["description", 114, 5], ["homepage", 115, 5], ["changelog", 116, 5], ["license", 117, 5], ["maintainers", 118, 5]], [["pname", 39, 3], ["version", 40, 3], ["pyproject", 41, 3], ["__structuredAttrs", 42, 3], ["src", 44, 3], ["postPatch", 51, 3], ["build-system", 56, 3], ["pythonRelaxDeps", 61, 3], ["dependencies", 63, 3], ["optional-dependencies", 74, 3], ["nativeCheckInputs", 90, 3], ["pytestFlags", 99, 3], ["disabledTests", 104, 3], ["pythonImportsCheck", 109, 3], ["meta", 113, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, hatchling: false, "hatch-fancy-pypi-readme": false, httpx: false, pydantic: false, "typing-extensions": false, anyio: false, distro: false, sniffio: false, aiohttp: false, "httpx-aiohttp": false, datasets: false, numpy: false, requests: false, tiktoken: false, torch: false, transformers: false, wandb: false, "dirty-equals": false, "pytest-asyncio": false, pytestCheckHook: false, respx: false, "time-machine": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 45, 5], ["repo", 46, 5], ["tag", 47, 5], ["hash", 48, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["training-sdk", 75, 5], ["training", 79, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 114, 5], ["homepage", 115, 5], ["changelog", 116, 5], ["license", 117, 5], ["maintainers", 118, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 39, 3], ["version", 40, 3], ["pyproject", 41, 3], ["__structuredAttrs", 42, 3], ["src", 44, 3], ["postPatch", 51, 3], ["build-system", 56, 3], ["pythonRelaxDeps", 61, 3], ["dependencies", 63, 3], ["optional-dependencies", 74, 3], ["nativeCheckInputs", 90, 3], ["pytestFlags", 99, 3], ["disabledTests", 104, 3], ["pythonImportsCheck", 109, 3], ["meta", 113, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -36,13 +33,13 @@ export default nix.lambda((args) => (() => {
   const respx = nix.arg($, "respx");
   const time_machine = nix.arg($, "time-machine");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "fireworks-ai",
       version: "1.2.11",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "fw-ai-external",
           repo: "python-sdk",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -62,7 +59,7 @@ export default nix.lambda((args) => (() => {
         typing_extensions,
       ]),
       "optional-dependencies": nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         "training-sdk": nix.thunk(() => [requests]),
         training: nix.thunk(() => nix.concat([datasets, numpy, tiktoken, torch, transformers, wandb], nix.sel(finalAttrs, "passthru", "optional-dependencies", "training-sdk"))),
       })),
@@ -71,7 +68,7 @@ export default nix.lambda((args) => (() => {
       disabledTests: nix.thunk(() => ["test_retrying_timeout_errors_doesnt_leak"]),
       pythonImportsCheck: nix.thunk(() => ["fireworks"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Client library for Fireworks.ai",
         homepage: "https://github.com/fw-ai-external/python-sdk",
         changelog: nix.thunk(() => nix.str`https://github.com/fw-ai-external/python-sdk/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

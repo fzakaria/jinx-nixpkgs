@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 14, 5], ["sha256", 15, 5]], [["name", 20, 7], ["url", 21, 7], ["hash", 22, 7]], [["description", 40, 5], ["mainProgram", 41, 5], ["platforms", 42, 5], ["license", 43, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 13, 3], ["patches", 18, 3], ["buildInputs", 26, 3], ["nativeBuildInputs", 27, 3], ["cmakeFlags", 32, 3], ["preConfigure", 35, 3], ["meta", 39, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, cmake: false, taglib: false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 14, 5], ["sha256", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 20, 7], ["url", 21, 7], ["hash", 22, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 40, 5], ["mainProgram", 41, 5], ["platforms", 42, 5], ["license", 43, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 13, 3], ["patches", 18, 3], ["buildInputs", 26, 3], ["nativeBuildInputs", 27, 3], ["cmakeFlags", 32, 3], ["preConfigure", 35, 3], ["meta", 39, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,17 +14,17 @@ export default nix.lambda((args) => (() => {
   const taglib = nix.arg($, "taglib");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "taglib-extras",
       version: "1.0.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://download.kde.org/stable/taglib-extras/${nix.sel(finalAttrs, "version")}/src/taglib-extras-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "0cln49ws9svvvals5fzxjxlzqm0fzjfymn7yfp4jfcjz655nnm7y",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "2001-taglib-extras-Fix-taglib-2.x-compat.patch",
             url: "https://aur.archlinux.org/cgit/aur.git/plain/taglib-2.0.diff?h=taglib-extras&id=5826657b841b138c501e0633d1c9333fe9197b00",
             hash: "sha256-yhme2KcIS5SPXz+mx/R2OiLV57WHz6WW8LJtYab4h5I=",
@@ -40,7 +37,7 @@ export default nix.lambda((args) => (() => {
       ]),
       preConfigure: "sed -i -e 's/STRLESS/VERSION_LESS/g' cmake/modules/FindTaglib.cmake\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Additional taglib plugins",
         mainProgram: "taglib-extras-config",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),

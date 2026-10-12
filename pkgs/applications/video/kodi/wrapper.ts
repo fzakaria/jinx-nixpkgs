@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/wrapper.nix", [[["mainProgram", 52, 25]], [["name", 31, 3], ["paths", 33, 3], ["pathsToLink", 34, 3], ["nativeBuildInputs", 36, 3], ["postBuild", 38, 3], ["meta", 51, 3]]]);
 const formals$1 = { args: { lib: false, makeWrapper: false, buildEnv: false, kodi: false, addons: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/wrapper.nix", [["mainProgram", 52, 25]]);
-const pos$2 = nix.positions(here + "/wrapper.nix", [["name", 31, 3], ["paths", 33, 3], ["pathsToLink", 34, 3], ["nativeBuildInputs", 36, 3], ["postBuild", 38, 3], ["meta", 51, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,7 +24,7 @@ export default nix.lambda((args) => (() => {
     return nix.app(nix.sel(lib, "concatMapStringsSep"), ":", (addon) => nix.str`${addon}${nix.sel(kodi, "packages", "addonDir")}/${nix.sel(addon, "namespace")}/${nix.sel(addon, "pythonPath")}`, addonsWithPythonPath);
   })());
   return nix.app(buildEnv, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       name: nix.thunk(() => nix.str`${nix.sel(kodi, "name")}-env`),
       paths: nix.thunk(() => nix.concat([kodi], addons)),
       pathsToLink: nix.thunk(() => ["/share"]),
@@ -42,7 +41,7 @@ done
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(kodi, "meta"));
         return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         mainProgram: nix.thunk(() => nix.attr(from, "mainProgram")),
       };
       })()),

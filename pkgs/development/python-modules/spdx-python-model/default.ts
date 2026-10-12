@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 16, 5], ["hash", 17, 5]], [["url", 21, 5], ["hash", 22, 5]], [["url", 26, 5], ["hash", 27, 5]], [["owner", 45, 5], ["repo", 46, 5], ["tag", 47, 5], ["hash", 48, 5]], [["updateScript", 70, 12]], [["description", 73, 5], ["homepage", 74, 5], ["changelog", 75, 5], ["license", 76, 5], ["maintainers", 77, 5]], [["pname", 38, 3], ["version", 39, 3], ["pyproject", 40, 3], ["__structuredAttrs", 42, 3], ["src", 44, 3], ["postPatch", 51, 3], ["build-system", 56, 3], ["nativeCheckInputs", 62, 3], ["preBuild", 64, 3], ["pythonImportsCheck", 68, 3], ["passthru", 70, 3], ["meta", 72, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, fetchurl: false, "hatch-build-scripts": false, hatchling: false, "nix-update-script": false, pytestCheckHook: false, runCommandLocal: false, shacl2code: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["url", 21, 5], ["hash", 22, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["url", 26, 5], ["hash", 27, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["owner", 45, 5], ["repo", 46, 5], ["tag", 47, 5], ["hash", 48, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["updateScript", 70, 12]]);
-const pos$6 = nix.positions(here + "/default.nix", [["description", 73, 5], ["homepage", 74, 5], ["changelog", 75, 5], ["license", 76, 5], ["maintainers", 77, 5]]);
-const pos$7 = nix.positions(here + "/default.nix", [["pname", 38, 3], ["version", 39, 3], ["pyproject", 40, 3], ["__structuredAttrs", 42, 3], ["src", 44, 3], ["postPatch", 51, 3], ["build-system", 56, 3], ["nativeCheckInputs", 62, 3], ["preBuild", 64, 3], ["pythonImportsCheck", 68, 3], ["passthru", 70, 3], ["meta", 72, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,17 +18,17 @@ export default nix.lambda((args) => (() => {
   const runCommandLocal = nix.arg($, "runCommandLocal");
   const shacl2code = nix.arg($, "shacl2code");
   const spdxModel = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: "https://raw.githubusercontent.com/spdx/spdx-spec/gh-pages/3.0.1/rdf/spdx-model.ttl",
       hash: "sha256-MOu0ry1wqYCQRO9G9EzD3FElIm1w+BilDtLh1fQExZM=",
     }))));
   const spdxJsonLdAnnotations = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       url: "https://raw.githubusercontent.com/spdx/spdx-spec/gh-pages/3.0.1/rdf/jsonld-annotations.ttl",
       hash: "sha256-xqVLUSMOsr87MTAlRq8gHzA+C3kxwdtATX9bcrb4Y+Y=",
     }))));
   const spdxContext = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       url: "https://raw.githubusercontent.com/spdx/spdx-spec/gh-pages/3.0.1/rdf/spdx-context.jsonld",
       hash: "sha256-xysJKPCUyD5cEneE7bHryir3ShBPyswAfDMrI8vHiL0=",
     }))));
@@ -44,13 +38,13 @@ ln -s ${spdxJsonLdAnnotations} "$out/3.0.1/spdx-json-serialize-annotations.ttl"
 ln -s ${spdxContext} "$out/3.0.1/spdx-context.jsonld"
 `)));
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "spdx-python-model",
       version: "0.0.6",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           owner: "spdx",
           repo: "spdx-python-model",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -63,11 +57,11 @@ ln -s ${spdxContext} "$out/3.0.1/spdx-context.jsonld"
 `),
       pythonImportsCheck: nix.thunk(() => ["spdx_python_model"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Generated Python code for SPDX Spec version 3",
         homepage: "https://github.com/spdx/spdx-python-model",
         changelog: nix.thunk(() => nix.str`https://github.com/spdx/spdx-python-model/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

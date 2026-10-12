@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["hlogin", 49, 5], ["ulogin", 50, 5], ["rancid-cvs", 51, 5]], [["owner", 62, 5], ["repo", 63, 5], ["rev", 64, 5], ["hash", 65, 5]], [["description", 136, 5], ["longDescription", 137, 5], ["homepage", 141, 5], ["license", 142, 5], ["maintainers", 143, 5], ["platforms", 144, 5]], [["pname", 58, 3], ["version", 59, 3], ["src", 61, 3], ["postPatch", 68, 3], ["enableParallelBuilding", 110, 3], ["nativeBuildInputs", 112, 3], ["buildInputs", 119, 3], ["postInstall", 126, 3], ["meta", 135, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, writeShellScriptBin: false, autoreconfHook: false, libtool: false, makeBinaryWrapper: false, coreutils: false, expect: false, git: false, gnugrep: false, inetutils: false, gnused: false, openssh: false, perl: false, runtimeShell: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["hlogin", 49, 5], ["ulogin", 50, 5], ["rancid-cvs", 51, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 62, 5], ["repo", 63, 5], ["rev", 64, 5], ["hash", 65, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 136, 5], ["longDescription", 137, 5], ["homepage", 141, 5], ["license", 142, 5], ["maintainers", 143, 5], ["platforms", 144, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 58, 3], ["version", 59, 3], ["src", 61, 3], ["postPatch", 68, 3], ["enableParallelBuilding", 110, 3], ["nativeBuildInputs", 112, 3], ["buildInputs", 119, 3], ["postInstall", 126, 3], ["meta", 135, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,18 +30,18 @@ export default nix.lambda((args) => (() => {
   const replaceStrings = nix.thunk(() => nix.attr(lib, "replaceStrings"));
   const wrappedPing = nix.thunk(() => nix.app(writeShellScriptBin, "ping", "for b in /run/wrappers/bin/ping /usr/bin/ping /usr/local/bin/ping; do\n  if [ -x \"$b\" ]; then\n    exec \"$b\" \"$@\"\n  fi\ndone\n\n# we are inside the installer. Pretend everything is OK so the installer will set the path to\n# this wrapper as the ping program\nexit 0\n"));
   const needsBin = nix.thunk(() => ({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     hlogin: nix.thunk(() => [nix.thunk(() => nix.builtins.placeholder("out"))]),
     ulogin: nix.thunk(() => [nix.thunk(() => nix.builtins.placeholder("out"))]),
     "rancid-cvs": nix.thunk(() => [git]),
   }));
   const telnet$ = inetutils;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "rancid",
       version: "3.13",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "haussli",
           repo: "rancid",
           rev: nix.thunk(() => nix.add("v", nix.app(replaceStrings, nix.thunk(() => ["."]), nix.thunk(() => ["_"]), nix.thunk(() => nix.sel(finalAttrs, "version"))))),
@@ -97,7 +94,7 @@ makeWrapper $out/libexec/${n} $out/bin/${n} \\
   --prefix PATH : ${nix.app(makeBinPath, v)}
 `, needsBin)))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Really Awesome New Cisco confIg Differ",
         longDescription: "RANCID monitors a device's configuration, including software and hardware\nand uses a VCS to maintain history of changes.\n",
         homepage: "https://shrubbery.net/rancid/",

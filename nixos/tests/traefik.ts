@@ -2,68 +2,34 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/traefik.nix", [[["maintainers", 7, 5]], [["systemPackages", 14, 21]], [["environment", 14, 9]], [["extraOptions", 22, 13], ["image", 30, 13], ["imageStream", 31, 13]], [["nginx", 21, 22]], [["backend", 20, 11], ["containers", 21, 11]], [["oci-containers", 19, 24]], [["allowedTCPPorts", 35, 29]], [["firewall", 35, 20]], [["rule", 42, 15], ["entryPoints", 43, 15], ["service", 44, 15]], [["simplehttp", 41, 26]], [["url", 50, 19]], [["servers", 48, 28]], [["loadBalancer", 48, 15]], [["simplehttp", 47, 27]], [["routers", 41, 18], ["services", 47, 18]], [["http", 41, 13]], [["checkNewVersion", 58, 15], ["sendAnonymousUsage", 59, 15]], [["address", 62, 29]], [["web", 62, 25]], [["exposedByDefault", 64, 30]], [["docker", 64, 23]], [["global", 57, 13], ["entryPoints", 62, 13], ["providers", 64, 13]], [["enable", 38, 11], ["dynamicConfigOptions", 40, 11], ["staticConfigOptions", 56, 11], ["environmentFiles", 66, 11]], [["traefik", 37, 18]], [["Type", 75, 25]], [["script", 74, 11], ["serviceConfig", 75, 11], ["wantedBy", 76, 11]], [["simplehttp", 73, 26]], [["services", 73, 17]], [["extraGroups", 79, 29]], [["traefik", 79, 21]], [["users", 79, 15]], [["virtualisation", 19, 9], ["networking", 35, 9], ["services", 37, 9], ["systemd", 73, 9], ["users", 79, 9]], [["client", 11, 5], ["traefik", 16, 5]], [["name", 5, 3], ["meta", 6, 3], ["nodes", 10, 3], ["testScript", 83, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/traefik.nix", [["maintainers", 7, 5]]);
 const formals$2 = { args: { config: false, pkgs: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/traefik.nix", [["systemPackages", 14, 21]]);
-const pos$3 = nix.positions(here + "/traefik.nix", [["environment", 14, 9]]);
 const formals$3 = { args: { config: false, pkgs: false }, ellipsis: true };
-const pos$4 = nix.positions(here + "/traefik.nix", [["extraOptions", 22, 13], ["image", 30, 13], ["imageStream", 31, 13]]);
-const pos$5 = nix.positions(here + "/traefik.nix", [["nginx", 21, 22]]);
-const pos$6 = nix.positions(here + "/traefik.nix", [["backend", 20, 11], ["containers", 21, 11]]);
-const pos$7 = nix.positions(here + "/traefik.nix", [["oci-containers", 19, 24]]);
-const pos$8 = nix.positions(here + "/traefik.nix", [["allowedTCPPorts", 35, 29]]);
-const pos$9 = nix.positions(here + "/traefik.nix", [["firewall", 35, 20]]);
-const pos$10 = nix.positions(here + "/traefik.nix", [["rule", 42, 15], ["entryPoints", 43, 15], ["service", 44, 15]]);
-const pos$11 = nix.positions(here + "/traefik.nix", [["simplehttp", 41, 26]]);
-const pos$12 = nix.positions(here + "/traefik.nix", [["url", 50, 19]]);
-const pos$13 = nix.positions(here + "/traefik.nix", [["servers", 48, 28]]);
-const pos$14 = nix.positions(here + "/traefik.nix", [["loadBalancer", 48, 15]]);
-const pos$15 = nix.positions(here + "/traefik.nix", [["simplehttp", 47, 27]]);
-const pos$16 = nix.positions(here + "/traefik.nix", [["routers", 41, 18], ["services", 47, 18]]);
-const pos$17 = nix.positions(here + "/traefik.nix", [["http", 41, 13]]);
-const pos$18 = nix.positions(here + "/traefik.nix", [["checkNewVersion", 58, 15], ["sendAnonymousUsage", 59, 15]]);
-const pos$19 = nix.positions(here + "/traefik.nix", [["address", 62, 29]]);
-const pos$20 = nix.positions(here + "/traefik.nix", [["web", 62, 25]]);
-const pos$21 = nix.positions(here + "/traefik.nix", [["exposedByDefault", 64, 30]]);
-const pos$22 = nix.positions(here + "/traefik.nix", [["docker", 64, 23]]);
-const pos$23 = nix.positions(here + "/traefik.nix", [["global", 57, 13], ["entryPoints", 62, 13], ["providers", 64, 13]]);
-const pos$24 = nix.positions(here + "/traefik.nix", [["enable", 38, 11], ["dynamicConfigOptions", 40, 11], ["staticConfigOptions", 56, 11], ["environmentFiles", 66, 11]]);
-const pos$25 = nix.positions(here + "/traefik.nix", [["traefik", 37, 18]]);
-const pos$26 = nix.positions(here + "/traefik.nix", [["Type", 75, 25]]);
-const pos$27 = nix.positions(here + "/traefik.nix", [["script", 74, 11], ["serviceConfig", 75, 11], ["wantedBy", 76, 11]]);
-const pos$28 = nix.positions(here + "/traefik.nix", [["simplehttp", 73, 26]]);
-const pos$29 = nix.positions(here + "/traefik.nix", [["services", 73, 17]]);
-const pos$30 = nix.positions(here + "/traefik.nix", [["extraGroups", 79, 29]]);
-const pos$31 = nix.positions(here + "/traefik.nix", [["traefik", 79, 21]]);
-const pos$32 = nix.positions(here + "/traefik.nix", [["users", 79, 15]]);
-const pos$33 = nix.positions(here + "/traefik.nix", [["virtualisation", 19, 9], ["networking", 35, 9], ["services", 37, 9], ["systemd", 73, 9], ["users", 79, 9]]);
-const pos$34 = nix.positions(here + "/traefik.nix", [["client", 11, 5], ["traefik", 16, 5]]);
-const pos$35 = nix.positions(here + "/traefik.nix", [["name", 5, 3], ["meta", 6, 3], ["nodes", 10, 3], ["testScript", 83, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   return {
-    [nix.POS]: pos$35,
+    [nix.POS]: $pos[34],
     name: "traefik",
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
       return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "joko"))]),
       };
     })()),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$34,
+      [nix.POS]: $pos[33],
       client: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config = nix.arg($_1, "config");
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs_1, "curl"))]),
           })),
         };
@@ -73,16 +39,16 @@ export default nix.lambda((args) => (() => {
         const config = nix.arg($_1, "config");
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$33,
+          [nix.POS]: $pos[32],
           virtualisation: nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             "oci-containers": nix.thunk(() => ({
-              [nix.POS]: pos$6,
+              [nix.POS]: $pos[5],
               backend: "docker",
               containers: nix.thunk(() => ({
-                [nix.POS]: pos$5,
+                [nix.POS]: $pos[4],
                 nginx: nix.thunk(() => ({
-                  [nix.POS]: pos$4,
+                  [nix.POS]: $pos[3],
                   extraOptions: nix.thunk(() => [
                     "-l",
                     "traefik.enable=true",
@@ -98,49 +64,49 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$9,
-            firewall: nix.thunk(() => ({ [nix.POS]: pos$8, allowedTCPPorts: nix.thunk(() => [80n]) })),
+            [nix.POS]: $pos[8],
+            firewall: nix.thunk(() => ({ [nix.POS]: $pos[7], allowedTCPPorts: nix.thunk(() => [80n]) })),
           })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$25,
+            [nix.POS]: $pos[24],
             traefik: nix.thunk(() => ({
-              [nix.POS]: pos$24,
+              [nix.POS]: $pos[23],
               enable: true,
               dynamicConfigOptions: nix.thunk(() => ({
-                [nix.POS]: pos$17,
+                [nix.POS]: $pos[16],
                 http: nix.thunk(() => ({
-                  [nix.POS]: pos$16,
+                  [nix.POS]: $pos[15],
                   routers: nix.thunk(() => ({
-                    [nix.POS]: pos$11,
+                    [nix.POS]: $pos[10],
                     simplehttp: nix.thunk(() => ({
-                      [nix.POS]: pos$10,
+                      [nix.POS]: $pos[9],
                       rule: "Host(`simplehttp.traefik.test`)",
                       entryPoints: nix.thunk(() => ["web"]),
                       service: "simplehttp",
                     })),
                   })),
                   services: nix.thunk(() => ({
-                    [nix.POS]: pos$15,
+                    [nix.POS]: $pos[14],
                     simplehttp: nix.thunk(() => ({
-                      [nix.POS]: pos$14,
+                      [nix.POS]: $pos[13],
                       loadBalancer: nix.thunk(() => ({
-                        [nix.POS]: pos$13,
-                        servers: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$12, url: "http://127.0.0.1:8000" }))]),
+                        [nix.POS]: $pos[12],
+                        servers: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: $pos[11], url: "http://127.0.0.1:8000" }))]),
                       })),
                     })),
                   })),
                 })),
               })),
               staticConfigOptions: nix.thunk(() => ({
-                [nix.POS]: pos$23,
-                global: nix.thunk(() => ({ [nix.POS]: pos$18, checkNewVersion: false, sendAnonymousUsage: false })),
+                [nix.POS]: $pos[22],
+                global: nix.thunk(() => ({ [nix.POS]: $pos[17], checkNewVersion: false, sendAnonymousUsage: false })),
                 entryPoints: nix.thunk(() => ({
-                  [nix.POS]: pos$20,
-                  web: nix.thunk(() => ({ [nix.POS]: pos$19, address: ":${HTTP_PORT}" })),
+                  [nix.POS]: $pos[19],
+                  web: nix.thunk(() => ({ [nix.POS]: $pos[18], address: ":${HTTP_PORT}" })),
                 })),
                 providers: nix.thunk(() => ({
-                  [nix.POS]: pos$22,
-                  docker: nix.thunk(() => ({ [nix.POS]: pos$21, exposedByDefault: false })),
+                  [nix.POS]: $pos[21],
+                  docker: nix.thunk(() => ({ [nix.POS]: $pos[20], exposedByDefault: false })),
                 })),
               })),
               environmentFiles: nix.thunk(() => [
@@ -149,22 +115,22 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           systemd: nix.thunk(() => ({
-            [nix.POS]: pos$29,
+            [nix.POS]: $pos[28],
             services: nix.thunk(() => ({
-              [nix.POS]: pos$28,
+              [nix.POS]: $pos[27],
               simplehttp: nix.thunk(() => ({
-                [nix.POS]: pos$27,
+                [nix.POS]: $pos[26],
                 script: nix.thunk(() => nix.str`${nix.sel(pkgs_1, "python3")}/bin/python -m http.server 8000`),
-                serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$26, Type: "simple" })),
+                serviceConfig: nix.thunk(() => ({ [nix.POS]: $pos[25], Type: "simple" })),
                 wantedBy: nix.thunk(() => ["multi-user.target"]),
               })),
             })),
           })),
           users: nix.thunk(() => ({
-            [nix.POS]: pos$32,
+            [nix.POS]: $pos[31],
             users: nix.thunk(() => ({
-              [nix.POS]: pos$31,
-              traefik: nix.thunk(() => ({ [nix.POS]: pos$30, extraGroups: nix.thunk(() => ["docker"]) })),
+              [nix.POS]: $pos[30],
+              traefik: nix.thunk(() => ({ [nix.POS]: $pos[29], extraGroups: nix.thunk(() => ["docker"]) })),
             })),
           })),
         };

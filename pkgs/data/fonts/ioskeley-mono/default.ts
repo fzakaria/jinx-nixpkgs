@@ -2,18 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 37, 9], ["stripRoot", 38, 9], ["hash", 39, 17]], [["homepage", 47, 9], ["description", 48, 9], ["license", 51, 9], ["platforms", 52, 9], ["maintainers", 53, 9]], [["pname", 34, 15], ["version", 34, 21], ["src", 36, 7], ["sourceRoot", 42, 7], ["nativeBuildInputs", 44, 7], ["meta", 46, 7]], [["hash", 60, 5]], [["variant", 65, 5], ["hash", 66, 5]], [["variant", 71, 5], ["isNF", 72, 5], ["hash", 73, 5]], [["variant", 78, 5], ["hash", 79, 5]], [["variant", 84, 5], ["isNF", 85, 5], ["hash", 86, 5]], [["isNF", 91, 5], ["hash", 92, 5]], [["standard", 59, 3], ["term", 64, 3], ["term-nf", 70, 3], ["nl", 77, 3], ["nl-nf", 83, 3], ["nf", 90, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchzip: false, installFonts: false, width: true, hinted: true }, ellipsis: false };
 const formals$2 = { args: { variant: true, hash: false, isNF: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 37, 9], ["stripRoot", 38, 9], ["hash", 39, 17]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 47, 9], ["description", 48, 9], ["license", 51, 9], ["platforms", 52, 9], ["maintainers", 53, 9]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 34, 15], ["version", 34, 21], ["src", 36, 7], ["sourceRoot", 42, 7], ["nativeBuildInputs", 44, 7], ["meta", 46, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["hash", 60, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["variant", 65, 5], ["hash", 66, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["variant", 71, 5], ["isNF", 72, 5], ["hash", 73, 5]]);
-const pos$7 = nix.positions(here + "/default.nix", [["variant", 78, 5], ["hash", 79, 5]]);
-const pos$8 = nix.positions(here + "/default.nix", [["variant", 84, 5], ["isNF", 85, 5], ["hash", 86, 5]]);
-const pos$9 = nix.positions(here + "/default.nix", [["isNF", 91, 5], ["hash", 92, 5]]);
-const pos$10 = nix.positions(here + "/default.nix", [["standard", 59, 3], ["term", 64, 3], ["term-nf", 70, 3], ["nl", 77, 3], ["nl-nf", 83, 3], ["nf", 90, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -37,11 +28,11 @@ export default nix.lambda((args) => (() => {
       return nix.str`ioskeley-mono${vPart}${nfPart}`;
     })());
     return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname: pname,
         version: version,
         src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             url: nix.thunk(() => nix.str`https://github.com/ahatem/IoskeleyMono/releases/download/${version}/${fileName}`),
             stripRoot: false,
             hash: hash,
@@ -49,7 +40,7 @@ export default nix.lambda((args) => (() => {
         sourceRoot: nix.thunk(() => (nix.asBool(isNF) ? nix.str`source/${width}` : nix.str`source/${width}/${hintDir}`)),
         nativeBuildInputs: nix.thunk(() => [installFonts]),
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           homepage: "https://github.com/ahatem/IoskeleyMono",
           description: nix.thunk(() => nix.str`Iosevka configuration mimicking Berkeley Mono, ${width} width${(nix.asBool(!nix.eq(variant, "")) ? nix.str`, ${variant} variant` : "")}${(nix.asBool(isNF) ? ", Nerd Font patched" : "")}${(nix.asBool(!nix.asBool(hinted)) ? ", unhinted" : "")}`),
           license: nix.thunk(() => nix.sel(lib, "licenses", "ofl")),
@@ -62,35 +53,35 @@ export default nix.lambda((args) => (() => {
       })));
   })(), formals$2);
   return {
-    [nix.POS]: pos$10,
+    [nix.POS]: $pos[9],
     standard: nix.thunk(() => nix.app(mkFont, nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         hash: "sha256-1WGAPwbfSG3fpssUTnHCTVI8eKNHSHWHdfdq4JUQ9ls=",
       })))),
     term: nix.thunk(() => nix.app(mkFont, nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         variant: "Term",
         hash: "sha256-Ei6cRAMC9C62X8coHsTMvfPZfloiUp+A4HeT89df3pk=",
       })))),
     "term-nf": nix.thunk(() => nix.app(mkFont, nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         variant: "Term",
         isNF: true,
         hash: "sha256-joAhNADErBErDqTrNelJ0ulGZCN/OUZ1SMYyU++7l6U=",
       })))),
     nl: nix.thunk(() => nix.app(mkFont, nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         variant: "NL",
         hash: "sha256-3zqO7W23Zcdz7L8cO0A8oAH0PQqYUNwKiKnAmN/Ja8s=",
       })))),
     "nl-nf": nix.thunk(() => nix.app(mkFont, nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         variant: "NL",
         isNF: true,
         hash: "sha256-3eTVqMlLx/AF3aoTbQ68Qzhr5nQzWIKt4HWZZsH2yE0=",
       })))),
     nf: nix.thunk(() => nix.app(mkFont, nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         isNF: true,
         hash: "sha256-b0mqhLeDT+uYPYiOKB+cxc5M1TtFkICKAmlcmW3IjDg=",
       })))),

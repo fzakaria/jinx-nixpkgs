@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/bin.nix", [[["format", 19, 5], ["pname", 20, 5], ["version", 21, 26], ["dist", 22, 5], ["python", 23, 5], ["hash", 24, 5]], [["description", 40, 5], ["homepage", 41, 5], ["downloadPage", 42, 5], ["license", 43, 5], ["maintainers", 44, 5], ["broken", 45, 5]], [["pname", 13, 3], ["version", 14, 3], ["format", 15, 3], ["__structuredAttrs", 16, 3], ["src", 18, 3], ["pythonRelaxDeps", 27, 3], ["dependencies", 30, 3], ["pythonImportsCheck", 37, 3], ["meta", 39, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, "apache-tvm-ffi": false, "nvidia-cutlass-dsl": false, "tokenspeed-triton": false, torch: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/bin.nix", [["format", 19, 5], ["pname", 20, 5], ["version", 21, 26], ["dist", 22, 5], ["python", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/bin.nix", [["description", 40, 5], ["homepage", 41, 5], ["downloadPage", 42, 5], ["license", 43, 5], ["maintainers", 44, 5], ["broken", 45, 5]]);
-const pos$3 = nix.positions(here + "/bin.nix", [["pname", 13, 3], ["version", 14, 3], ["format", 15, 3], ["__structuredAttrs", 16, 3], ["src", 18, 3], ["pythonRelaxDeps", 27, 3], ["dependencies", 30, 3], ["pythonImportsCheck", 37, 3], ["meta", 39, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,13 +15,13 @@ export default nix.lambda((args) => (() => {
   const tokenspeed_triton = nix.arg($, "tokenspeed-triton");
   const torch = nix.arg($, "torch");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "tokenspeed-mla",
       version: "0.2.10",
       format: "wheel",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           format: "wheel",
           pname: "tokenspeed_mla",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
@@ -35,7 +33,7 @@ export default nix.lambda((args) => (() => {
       dependencies: nix.thunk(() => [apache_tvm_ffi, nvidia_cutlass_dsl, tokenspeed_triton, torch]),
       pythonImportsCheck: nix.thunk(() => ["tokenspeed_mla"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Speed-of-light TokenSpeed MLA kernels for Blackwell SM100 and SM103",
         homepage: "https://github.com/lightseekorg/tokenspeed/tree/main/tokenspeed-mla",
         downloadPage: "https://pypi.org/project/tokenspeed-mla/#files",

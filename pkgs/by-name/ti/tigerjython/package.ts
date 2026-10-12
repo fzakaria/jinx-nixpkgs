@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 15, 5], ["hash", 16, 5]], [["url", 35, 5], ["hash", 37, 5]], [["name", 53, 7], ["desktopName", 54, 7], ["comment", 55, 7], ["type", 56, 7], ["categories", 57, 7], ["terminal", 58, 7], ["startupNotify", 59, 7], ["exec", 60, 7], ["icon", 61, 7], ["mimeTypes", 62, 7]], [["homepage", 108, 5], ["downloadPage", 109, 5], ["description", 110, 5], ["longDescription", 111, 5], ["license", 117, 5], ["maintainers", 118, 5], ["platforms", 119, 5], ["mainProgram", 120, 5]], [["pname", 20, 3], ["version", 28, 3], ["src", 33, 3], ["nativeBuildInputs", 46, 3], ["desktopItems", 51, 3], ["dontConfigure", 66, 3], ["dontBuild", 67, 3], ["tjconfig", 74, 3], ["installPhase", 79, 3], ["postInstall", 103, 3], ["meta", 107, 3]]]);
 const formals$1 = { args: { stdenvNoCC: false, lib: false, fetchurl: false, makeWrapper: false, writeText: false, makeDesktopItem: false, copyDesktopItems: false, jre: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 35, 5], ["hash", 37, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 53, 7], ["desktopName", 54, 7], ["comment", 55, 7], ["type", 56, 7], ["categories", 57, 7], ["terminal", 58, 7], ["startupNotify", 59, 7], ["exec", 60, 7], ["icon", 61, 7], ["mimeTypes", 62, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 108, 5], ["downloadPage", 109, 5], ["description", 110, 5], ["longDescription", 111, 5], ["license", 117, 5], ["maintainers", 118, 5], ["platforms", 119, 5], ["mainProgram", 120, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 28, 3], ["src", 33, 3], ["nativeBuildInputs", 46, 3], ["desktopItems", 51, 3], ["dontConfigure", 66, 3], ["dontBuild", 67, 3], ["tjconfig", 74, 3], ["installPhase", 79, 3], ["postInstall", 103, 3], ["meta", 107, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,23 +16,23 @@ export default nix.lambda((args) => (() => {
   const copyDesktopItems = nix.arg($, "copyDesktopItems");
   const jre = nix.arg($, "jre");
   const icon = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: "https://raw.githubusercontent.com/tigerjython/tjinstall/611c56d4e765731883656a5c4b71209d72b5ab74/tjlogo64.png",
       hash: "sha256-tw3uDWLtcMHYmN6JGsEvVKLgI09v5DF27V2+OF9Z5tA=",
     }))));
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "tigerjython",
       version: "2.42",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: "https://web.archive.org/web/20260804083812/https://www.tjgroup.ch/download/TigerJython.tar.gz",
           hash: "sha256-jQUQiunrEi3cJhMV9URFeI7JKbGXL/Q2mgd2v0YWRBE=",
         })))),
       nativeBuildInputs: nix.thunk(() => [makeWrapper, copyDesktopItems]),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "TigerJython",
             desktopName: "TigerJython",
             comment: "The Python IDE for beginners",
@@ -77,7 +73,7 @@ runHook postInstall
       postInstall: nix.thunk(() => nix.str`install -Dm444 ${icon} $out/share/icons/hicolor/64x64/apps/tigerjython.png
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://www.tigerjython.ch",
         downloadPage: "https://tigerjython.ch/en/products/download",
         description: "Simple development environment for programming in Python",

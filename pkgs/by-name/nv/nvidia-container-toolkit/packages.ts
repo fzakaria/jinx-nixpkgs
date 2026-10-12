@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/packages.nix", [[["name", 12, 5], ["paths", 13, 5], ["meta", 17, 44]], [["nvidia-container-toolkit-docker", 9, 3], ["nvidia-docker", 11, 3], ["nvidia-docker-unwrapped", 19, 3]]]);
 const formals$1 = { args: { lib: false, newScope: false, symlinkJoin: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/packages.nix", [["name", 12, 5], ["paths", 13, 5], ["meta", 17, 44]]);
-const pos$2 = nix.positions(here + "/packages.nix", [["nvidia-container-toolkit-docker", 9, 3], ["nvidia-docker", 11, 3], ["nvidia-docker-unwrapped", 19, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -12,12 +11,12 @@ export default nix.lambda((args) => (() => {
   const newScope = nix.arg($, "newScope");
   const symlinkJoin = nix.arg($, "symlinkJoin");
   return nix.app(nix.sel(lib, "makeScope"), newScope, (self) => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       "nvidia-container-toolkit-docker": nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./package.nix"), nix.thunk(() => ({})))),
       "nvidia-docker": nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(self, "nvidia-docker-unwrapped"));
           return {
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           name: "nvidia-docker",
           paths: nix.thunk(() => [
             nix.thunk(() => nix.sel(self, "nvidia-docker-unwrapped")),

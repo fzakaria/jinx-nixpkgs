@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 28, 5], ["repo", 29, 5], ["rev", 30, 5], ["hash", 31, 5]], [["NIX_CFLAGS_LINK", 89, 7], ["NIX_LDFLAGS", 95, 7]], [["description", 107, 5], ["longDescription", 108, 5], ["homepage", 113, 5], ["platforms", 114, 5], ["license", 115, 5], ["maintainers", 116, 5]], [["pname", 17, 3], ["version", 19, 3], ["outputs", 21, 3], ["src", 27, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 41, 3], ["postPatch", 46, 3], ["installPhase", 60, 3], ["postFixup", 75, 3], ["hardeningDisable", 82, 3], ["env", 89, 3], ["makeFlags", 97, 3], ["enableParallelBuilding", 104, 3], ["meta", 106, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, bc: false, python3: false, bison: false, flex: false, fuse3: false, libarchive: false, buildPackages: false, firewallSupport: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 28, 5], ["repo", 29, 5], ["rev", 30, 5], ["hash", 31, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_LINK", 89, 7], ["NIX_LDFLAGS", 95, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 107, 5], ["longDescription", 108, 5], ["homepage", 113, 5], ["platforms", 114, 5], ["license", 115, 5], ["maintainers", 116, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 19, 3], ["outputs", 21, 3], ["src", 27, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 41, 3], ["postPatch", 46, 3], ["installPhase", 60, 3], ["postFixup", 75, 3], ["hardeningDisable", 82, 3], ["env", 89, 3], ["makeFlags", 97, 3], ["enableParallelBuilding", 104, 3], ["meta", 106, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const buildPackages = nix.arg($, "buildPackages");
   const firewallSupport = nix.argOr($, "firewallSupport", () => false);
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "lkl",
       version: "2025-11-13",
       outputs: nix.thunk(() => ["dev", "lib", "out"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "lkl",
           repo: "linux",
           rev: "9c51103caa1481493ebbbaf858f016e7f25ab921",
@@ -41,7 +38,7 @@ export default nix.lambda((args) => (() => {
       postFixup: "ln -s $out/bin/lklfuse $out/bin/mount.fuse.lklfuse\n",
       hardeningDisable: nix.thunk(() => ["format", "fortify"]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_LINK: "-lgcc_s",
         NIX_LDFLAGS: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLoongArch64")), "--no-relax")),
       })),
@@ -53,7 +50,7 @@ export default nix.lambda((args) => (() => {
       ]),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Linux kernel as a library",
         longDescription: "LKL (Linux Kernel Library) aims to allow reusing the Linux kernel code as\nextensively as possible with minimal effort and reduced maintenance\noverhead\n",
         homepage: "https://github.com/lkl/linux/",

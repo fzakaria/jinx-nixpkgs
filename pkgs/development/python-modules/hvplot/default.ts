@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 35, 5], ["repo", 36, 5], ["tag", 37, 5], ["hash", 38, 5]], [["description", 96, 5], ["homepage", 97, 5], ["changelog", 98, 5], ["license", 99, 5], ["maintainers", 100, 5]], [["pname", 29, 3], ["version", 30, 3], ["pyproject", 31, 3], ["__structuredAttrs", 32, 3], ["src", 34, 3], ["build-system", 41, 3], ["dependencies", 46, 3], ["nativeCheckInputs", 53, 3], ["disabledTests", 65, 3], ["disabledTestPaths", 72, 3], ["preCheck", 89, 3], ["pythonImportsCheck", 93, 3], ["meta", 95, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, "hatch-vcs": false, hatchling: false, bokeh: false, colorcet: false, holoviews: false, pandas: false, pytestCheckHook: false, dask: false, xarray: false, "bokeh-sampledata": false, parameterized: false, selenium: false, matplotlib: false, scipy: false, plotly: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 35, 5], ["repo", 36, 5], ["tag", 37, 5], ["hash", 38, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 96, 5], ["homepage", 97, 5], ["changelog", 98, 5], ["license", 99, 5], ["maintainers", 100, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 29, 3], ["version", 30, 3], ["pyproject", 31, 3], ["__structuredAttrs", 32, 3], ["src", 34, 3], ["build-system", 41, 3], ["dependencies", 46, 3], ["nativeCheckInputs", 53, 3], ["disabledTests", 65, 3], ["disabledTestPaths", 72, 3], ["preCheck", 89, 3], ["pythonImportsCheck", 93, 3], ["meta", 95, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,13 +26,13 @@ export default nix.lambda((args) => (() => {
   const scipy = nix.arg($, "scipy");
   const plotly = nix.arg($, "plotly");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "hvplot",
       version: "0.12.2",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "holoviz",
           repo: "hvplot",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -66,7 +64,7 @@ export default nix.lambda((args) => (() => {
       preCheck: "export MPLBACKEND=agg\n",
       pythonImportsCheck: nix.thunk(() => ["hvplot.pandas"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "High-level plotting API for the PyData ecosystem built on HoloViews",
         homepage: "https://hvplot.pyviz.org",
         changelog: nix.thunk(() => nix.str`https://github.com/holoviz/hvplot/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

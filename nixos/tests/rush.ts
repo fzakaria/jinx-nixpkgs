@@ -2,29 +2,10 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/rush.nix", [[["maintainers", 8, 37], ["platforms", 8, 49]], [["enable", 11, 9]], [["nix", 11, 5]], [["extra-experimental-features", 18, 22]], [["settings", 18, 13]], [["nix", 18, 9]], [["trusted-users", 24, 22]], [["settings", 24, 13]], [["daemon", 31, 13], ["whoami", 39, 13]], [["enable", 27, 11], ["global", 28, 11], ["rules", 30, 11]], [["rush", 26, 18]], [["enable", 49, 11], ["extraConfig", 51, 11]], [["openssh", 48, 18]], [["keys", 69, 36]], [["authorizedKeys", 69, 21]], [["shell", 66, 44], ["group", 67, 13], ["isSystemUser", 68, 13], ["openssh", 69, 13]], [["groups", 63, 11], ["users", 65, 11]], [["nix", 24, 9], ["programs", 26, 9], ["services", 48, 9], ["users", 62, 9]], [["client", 15, 5], ["server", 21, 5]], [["name", 7, 3], ["meta", 8, 3], ["defaults", 10, 3], ["nodes", 14, 3], ["testScript", 75, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/rush.nix", [["maintainers", 8, 37], ["platforms", 8, 49]]);
-const pos$2 = nix.positions(here + "/rush.nix", [["enable", 11, 9]]);
-const pos$3 = nix.positions(here + "/rush.nix", [["nix", 11, 5]]);
 const formals$2 = { args: {  }, ellipsis: true };
-const pos$4 = nix.positions(here + "/rush.nix", [["extra-experimental-features", 18, 22]]);
-const pos$5 = nix.positions(here + "/rush.nix", [["settings", 18, 13]]);
-const pos$6 = nix.positions(here + "/rush.nix", [["nix", 18, 9]]);
 const formals$3 = { args: { config: false }, ellipsis: true };
-const pos$7 = nix.positions(here + "/rush.nix", [["trusted-users", 24, 22]]);
-const pos$8 = nix.positions(here + "/rush.nix", [["settings", 24, 13]]);
-const pos$9 = nix.positions(here + "/rush.nix", [["daemon", 31, 13], ["whoami", 39, 13]]);
-const pos$10 = nix.positions(here + "/rush.nix", [["enable", 27, 11], ["global", 28, 11], ["rules", 30, 11]]);
-const pos$11 = nix.positions(here + "/rush.nix", [["rush", 26, 18]]);
-const pos$12 = nix.positions(here + "/rush.nix", [["enable", 49, 11], ["extraConfig", 51, 11]]);
-const pos$13 = nix.positions(here + "/rush.nix", [["openssh", 48, 18]]);
-const pos$14 = nix.positions(here + "/rush.nix", [["keys", 69, 36]]);
-const pos$15 = nix.positions(here + "/rush.nix", [["authorizedKeys", 69, 21]]);
-const pos$16 = nix.positions(here + "/rush.nix", [["shell", 66, 44], ["group", 67, 13], ["isSystemUser", 68, 13], ["openssh", 69, 13]]);
-const pos$17 = nix.positions(here + "/rush.nix", [["groups", 63, 11], ["users", 65, 11]]);
-const pos$18 = nix.positions(here + "/rush.nix", [["nix", 24, 9], ["programs", 26, 9], ["services", 48, 9], ["users", 62, 9]]);
-const pos$19 = nix.positions(here + "/rush.nix", [["client", 15, 5], ["server", 21, 5]]);
-const pos$20 = nix.positions(here + "/rush.nix", [["name", 7, 3], ["meta", 8, 3], ["defaults", 10, 3], ["nodes", 14, 3], ["testScript", 75, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,27 +15,30 @@ export default nix.lambda((args) => (() => {
   const snakeOilEd25519PublicKey = nix.thunk(() => nix.attr(from, "snakeOilEd25519PublicKey"));
   const username = "nix-remote-builder";
   return {
-    [nix.POS]: pos$20,
+    [nix.POS]: $pos[19],
     name: "rush",
     meta: nix.thunk(() => (() => {
       const from_1 = nix.thunk(() => nix.sel(pkgs, "rush", "meta"));
       return {
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => nix.attr(from_1, "maintainers")),
       platforms: nix.thunk(() => nix.attr(from_1, "platforms")),
     };
     })()),
-    defaults: nix.thunk(() => ({ [nix.POS]: pos$3, nix: nix.thunk(() => ({ [nix.POS]: pos$2, enable: true })) })),
+    defaults: nix.thunk(() => ({
+      [nix.POS]: $pos[2],
+      nix: nix.thunk(() => ({ [nix.POS]: $pos[1], enable: true })),
+    })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$19,
+      [nix.POS]: $pos[18],
       client: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           nix: nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             settings: nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               "extra-experimental-features": nix.thunk(() => ["nix-command"]),
             })),
           })),
@@ -64,22 +48,22 @@ export default nix.lambda((args) => (() => {
         const $_1 = nix.formals(args_1, formals$3);
         const config = nix.arg($_1, "config");
         return {
-          [nix.POS]: pos$18,
+          [nix.POS]: $pos[17],
           nix: nix.thunk(() => ({
-            [nix.POS]: pos$8,
+            [nix.POS]: $pos[7],
             settings: nix.thunk(() => ({
-              [nix.POS]: pos$7,
+              [nix.POS]: $pos[6],
               "trusted-users": nix.thunk(() => [nix.thunk(() => nix.str`${username}`)]),
             })),
           })),
           programs: nix.thunk(() => ({
-            [nix.POS]: pos$11,
+            [nix.POS]: $pos[10],
             rush: nix.thunk(() => ({
-              [nix.POS]: pos$10,
+              [nix.POS]: $pos[9],
               enable: true,
               global: "debug 1",
               rules: nix.thunk(() => ({
-                [nix.POS]: pos$9,
+                [nix.POS]: $pos[8],
                 daemon: nix.thunk(() => nix.str`match $# == 2
 match $0 == "nix-daemon"
 match $1 == "--stdio"
@@ -95,9 +79,9 @@ chdir "${nix.builtins.dirOf(nix.thunk(() => nix.sel(config, "environment", "usrb
             })),
           })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$13,
+            [nix.POS]: $pos[12],
             openssh: nix.thunk(() => ({
-              [nix.POS]: pos$12,
+              [nix.POS]: $pos[11],
               enable: true,
               extraConfig: nix.thunk(() => nix.str`Match User ${username}
   AllowAgentForwarding no
@@ -110,19 +94,19 @@ Match All
             })),
           })),
           users: nix.thunk(() => ({
-            [nix.POS]: pos$17,
+            [nix.POS]: $pos[16],
             groups: nix.thunk(() => nix.attrsDyn({}, [[nix.str`${username}`, nix.thunk(() => ({}))]])),
             users: nix.thunk(() => nix.attrsDyn({}, [
               [nix.str`${username}`, nix.thunk(() => (() => {
                 const from_1 = nix.thunk(() => nix.sel(config, "programs", "rush"));
                 return {
-                [nix.POS]: pos$16,
+                [nix.POS]: $pos[15],
                 shell: nix.thunk(() => nix.attr(from_1, "shell")),
                 group: nix.thunk(() => nix.str`${username}`),
                 isSystemUser: true,
                 openssh: nix.thunk(() => ({
-                  [nix.POS]: pos$15,
-                  authorizedKeys: nix.thunk(() => ({ [nix.POS]: pos$14, keys: nix.thunk(() => [snakeOilEd25519PublicKey]) })),
+                  [nix.POS]: $pos[14],
+                  authorizedKeys: nix.thunk(() => ({ [nix.POS]: $pos[13], keys: nix.thunk(() => [snakeOilEd25519PublicKey]) })),
                 })),
               };
               })())],

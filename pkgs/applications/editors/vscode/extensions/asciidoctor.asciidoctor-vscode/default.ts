@@ -2,10 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["name", 9, 5], ["publisher", 10, 5], ["version", 11, 5], ["hash", 12, 5]], [["license", 26, 5]], [["mktplcRef", 8, 3], ["patches", 15, 3], ["postPatch", 19, 3], ["meta", 25, 3]]]);
 const formals$1 = { args: { asciidoctor: false, lib: false, "vscode-utils": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["name", 9, 5], ["publisher", 10, 5], ["version", 11, 5], ["hash", 12, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["license", 26, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["mktplcRef", 8, 3], ["patches", 15, 3], ["postPatch", 19, 3], ["meta", 25, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,9 +11,9 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const vscode_utils = nix.arg($, "vscode-utils");
   return nix.app(nix.sel(vscode_utils, "buildVscodeMarketplaceExtension"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       mktplcRef: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         name: "asciidoctor-vscode",
         publisher: "asciidoctor",
         version: "3.4.5",
@@ -26,7 +24,10 @@ export default nix.lambda((args) => (() => {
     --replace-fail "@ASCIIDOCTOR_PDF_BIN@" \\
                    "${asciidoctor}/bin/asciidoctor-pdf"
 `),
-      meta: nix.thunk(() => ({ [nix.POS]: pos$2, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
+      meta: nix.thunk(() => ({
+        [nix.POS]: $pos[1],
+        license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
+      })),
     })));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

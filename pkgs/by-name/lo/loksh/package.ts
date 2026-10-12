@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["fetchSubmodules", 19, 5], ["hash", 20, 5]], [["shellPath", 50, 5]], [["homepage", 54, 5], ["description", 55, 5], ["mainProgram", 56, 5], ["longDescription", 57, 5], ["license", 66, 5], ["maintainers", 67, 5], ["platforms", 68, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["outputs", 23, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 35, 3], ["strictDeps", 39, 3], ["postInstall", 41, 3], ["passthru", 49, 3], ["meta", 53, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, meson: false, ncurses: false, ninja: false, "pkg-config": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["fetchSubmodules", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["shellPath", 50, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 54, 5], ["description", 55, 5], ["mainProgram", 56, 5], ["longDescription", 57, 5], ["license", 66, 5], ["maintainers", 67, 5], ["platforms", 68, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["outputs", 23, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 35, 3], ["strictDeps", 39, 3], ["postInstall", 41, 3], ["passthru", 49, 3], ["meta", 53, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const ninja = nix.arg($, "ninja");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "loksh",
       version: "7.9",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "dimkr",
           repo: "loksh",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -34,9 +31,9 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [ncurses]),
       strictDeps: true,
       postInstall: "mv $out/bin/ksh $out/bin/loksh\npushd $man/share/man/man1/\nmv ksh.1 loksh.1\nmv sh.1 loksh-sh.1\npopd\n",
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, shellPath: "/bin/loksh" })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[1], shellPath: "/bin/loksh" })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/dimkr/loksh",
         description: "Linux port of OpenBSD's ksh",
         mainProgram: "loksh",

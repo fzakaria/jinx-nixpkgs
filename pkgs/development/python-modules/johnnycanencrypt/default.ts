@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]], [["pname", 30, 13], ["version", 30, 19], ["src", 30, 27], ["hash", 31, 5]], [["description", 75, 5], ["homepage", 76, 5], ["changelog", 77, 5], ["license", 78, 5], ["maintainers", 79, 5]], [["pname", 18, 3], ["version", 19, 3], ["pyproject", 20, 3], ["src", 22, 3], ["cargoDeps", 29, 3], ["build-system", 34, 3], ["nativeBuildInputs", 40, 3], ["buildInputs", 49, 3], ["dependencies", 57, 3], ["nativeCheckInputs", 62, 3], ["preCheck", 67, 3], ["pythonImportsCheck", 72, 3], ["meta", 74, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitHub: false, httpx: false, libiconv: false, nettle: false, pcsclite: false, "pkg-config": false, pytestCheckHook: false, rustPlatform: false, tzdata: false, vcrpy: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 30, 13], ["version", 30, 19], ["src", 30, 27], ["hash", 31, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 75, 5], ["homepage", 76, 5], ["changelog", 77, 5], ["license", 78, 5], ["maintainers", 79, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 18, 3], ["version", 19, 3], ["pyproject", 20, 3], ["src", 22, 3], ["cargoDeps", 29, 3], ["build-system", 34, 3], ["nativeBuildInputs", 40, 3], ["buildInputs", 49, 3], ["dependencies", 57, 3], ["nativeCheckInputs", 62, 3], ["preCheck", 67, 3], ["pythonImportsCheck", 72, 3], ["meta", 74, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,14 +25,14 @@ export default nix.lambda((args) => (() => {
       const version = "0.18.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "kushaldas",
           repo: "johnnycanencrypt",
           tag: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-qpta6D5aslUwuJ0+voYrHFIDetlsUB6PkScrtl/plVs=",
         }))));
       const cargoDeps = nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: pname,
           version: version,
           src: src,
@@ -63,7 +60,7 @@ export default nix.lambda((args) => (() => {
       const preCheck = "# import from $out\nrm -r johnnycanencrypt\n";
       const pythonImportsCheck = nix.thunk(() => ["johnnycanencrypt"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Python module for OpenPGP written in Rust",
         homepage: "https://github.com/kushaldas/johnnycanencrypt",
         changelog: nix.thunk(() => nix.str`https://github.com/kushaldas/johnnycanencrypt/blob/v${version}/changelog.md`),
@@ -74,7 +71,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

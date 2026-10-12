@@ -2,16 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["displayName", 10, 7], ["version", 11, 7], ["sha256", 12, 7], ["outputHash", 13, 7]], [["displayName", 16, 7], ["version", 17, 7], ["sha256", 18, 7], ["outputHash", 19, 7]], [["displayName", 22, 7], ["version", 23, 7], ["sha256", 24, 7], ["outputHash", 25, 7]], [["displayName", 28, 7], ["version", 29, 7], ["sha256", 30, 7], ["outputHash", 31, 7]], [["bonum", 9, 5], ["pagella", 15, 5], ["schola", 21, 5], ["termes", 27, 5]], [["url", 51, 9], ["sha256", 52, 17]], [["longDescription", 65, 9], ["homepage", 70, 9], ["license", 74, 9], ["maintainers", 75, 9], ["platforms", 76, 9]], [["pname", 47, 7], ["version", 48, 15], ["src", 50, 7], ["installPhase", 55, 7], ["outputHashAlgo", 60, 7], ["outputHashMode", 61, 7], ["outputHash", 62, 15], ["meta", 64, 7]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchzip: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["displayName", 10, 7], ["version", 11, 7], ["sha256", 12, 7], ["outputHash", 13, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["displayName", 16, 7], ["version", 17, 7], ["sha256", 18, 7], ["outputHash", 19, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["displayName", 22, 7], ["version", 23, 7], ["sha256", 24, 7], ["outputHash", 25, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["displayName", 28, 7], ["version", 29, 7], ["sha256", 30, 7], ["outputHash", 31, 7]]);
-const pos$5 = nix.positions(here + "/default.nix", [["bonum", 9, 5], ["pagella", 15, 5], ["schola", 21, 5], ["termes", 27, 5]]);
 const formals$2 = { args: { displayName: false, version: false, sha256: false, outputHash: false }, ellipsis: false };
-const pos$6 = nix.positions(here + "/default.nix", [["url", 51, 9], ["sha256", 52, 17]]);
-const pos$7 = nix.positions(here + "/default.nix", [["longDescription", 65, 9], ["homepage", 70, 9], ["license", 74, 9], ["maintainers", 75, 9], ["platforms", 76, 9]]);
-const pos$8 = nix.positions(here + "/default.nix", [["pname", 47, 7], ["version", 48, 15], ["src", 50, 7], ["installPhase", 55, 7], ["outputHashAlgo", 60, 7], ["outputHashMode", 61, 7], ["outputHash", 62, 15], ["meta", 64, 7]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,30 +12,30 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchzip = nix.arg($, "fetchzip");
   const variants = nix.thunk(() => ({
-    [nix.POS]: pos$5,
+    [nix.POS]: $pos[4],
     bonum: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       displayName: "Bonum",
       version: "1.005",
       sha256: "1b6x7siypyxp1lhq7xxdqafwbn6p2p3xm3jb38q999sv8cgslxz8",
       outputHash: "1zjaxkzidqmxakh9d61n0by9mi8hrmir45jppjj6hzwhm3rvknff",
     })),
     pagella: nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       displayName: "Pagella",
       version: "1.632",
       sha256: "0f4cgq9w0lc1fbcbfqiv19mdhivbsscl13jmb0ln685641ci2sjr",
       outputHash: "0wz2n1dpx9b8a0qgqy8vl712fxhi87mhcda281xaad62chndwf6k",
     })),
     schola: nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       displayName: "Schola",
       version: "1.533",
       sha256: "0caqgkz7gz700h5a1mai0gq8hv7skrgs5nnrs1f7zw1mb9g53ya9",
       outputHash: "0jk4bpxki95a9lmfj4cgpnv1jwlkh8qixbkf498n1x7hkaz03f5n",
     })),
     termes: nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       displayName: "Termes",
       version: "1.543",
       sha256: "10ayqfpryfn1l35hy0vwyjzw3a6mfsnzgf78vsnccgk2gz1g9vhz",
@@ -60,7 +53,7 @@ export default nix.lambda((args) => (() => {
         const pname = nix.thunk(() => nix.str`tex-gyre-${variant}-math`);
         const version_1 = version;
         const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             url: nix.thunk(() => nix.str`https://www.gust.org.pl/projects/e-foundry/tg-math/download/texgyre${variant}-math-${dotless_version}.zip`),
             sha256: sha256,
           }))));
@@ -71,7 +64,7 @@ install -m444 -Dt $out/share/doc/${pname}-${version_1}    doc/*.txt
         const outputHashMode = "recursive";
         const outputHash_1 = outputHash;
         const meta = nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           longDescription: nix.thunk(() => nix.str`TeX Gyre ${displayName} Math is a math companion for the TeX Gyre
 ${displayName} family of fonts (see
 http://www.gust.org.pl/projects/e-foundry/tex-gyre/) in the OpenType format.
@@ -85,7 +78,7 @@ http://www.gust.org.pl/projects/e-foundry/tex-gyre/) in the OpenType format.
           platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
         }));
         return {
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           pname,
           version: version_1,
           src,

@@ -2,9 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/ctfmerge.nix", [[["license", 34, 8], ["platforms", 35, 8]], [["path", 11, 3], ["extraPaths", 12, 3], ["OPENSOLARIS_USR_DISTDIR", 19, 3], ["OPENSOLARIS_SYS_DISTDIR", 20, 3], ["makeFlags", 22, 3], ["buildInputs", 28, 3], ["meta", 34, 3]]]);
 const formals$1 = { args: { lib: false, mkDerivation: false, compatIfNeeded: false, libelf: false, zlib: false, libspl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/ctfmerge.nix", [["license", 34, 8], ["platforms", 35, 8]]);
-const pos$2 = nix.positions(here + "/ctfmerge.nix", [["path", 11, 3], ["extraPaths", 12, 3], ["OPENSOLARIS_USR_DISTDIR", 19, 3], ["OPENSOLARIS_SYS_DISTDIR", 20, 3], ["makeFlags", 22, 3], ["buildInputs", 28, 3], ["meta", 34, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const zlib = nix.arg($, "zlib");
   const libspl = nix.arg($, "libspl");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       path: "cddl/usr.bin/ctfmerge",
       extraPaths: nix.thunk(() => [
         "cddl/compat/opensolaris",
@@ -29,7 +28,7 @@ export default nix.lambda((args) => (() => {
       makeFlags: nix.thunk(() => ["STRIP=-s", "MK_WERROR=no", "MK_TESTS=no"]),
       buildInputs: nix.thunk(() => nix.concat(compatIfNeeded, [zlib, libspl, libelf])),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         license: nix.thunk(() => nix.sel(lib, "licenses", "cddl")),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       })),

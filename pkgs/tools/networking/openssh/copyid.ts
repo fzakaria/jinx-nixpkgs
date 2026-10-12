@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/copyid.nix", [[["description", 16, 7], ["priority", 17, 7]], [["pname", 9, 5], ["version", 10, 23], ["outputs", 11, 5], ["meta", 15, 5]]]);
 const formals$1 = { args: { lib: false, runCommand: false, openssh: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/copyid.nix", [["description", 16, 7], ["priority", 17, 7]]);
-const pos$2 = nix.positions(here + "/copyid.nix", [["pname", 9, 5], ["version", 10, 23], ["outputs", 11, 5], ["meta", 15, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -12,12 +11,12 @@ export default nix.lambda((args) => (() => {
   const runCommand = nix.arg($, "runCommand");
   const openssh = nix.arg($, "openssh");
   return nix.app(runCommand, nix.thunk(() => nix.str`ssh-copy-id-${nix.sel(openssh, "version")}`), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "ssh-copy-id",
       version: nix.thunk(() => nix.attr(openssh, "version")),
       outputs: nix.thunk(() => ["out", "man"]),
       meta: nix.thunk(() => nix.update(nix.sel(openssh, "meta"), {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Tool to copy SSH public keys to a remote machine",
         priority: nix.thunk(() => nix.sub(nix.selOr(openssh, () => nix.sel(lib, "meta", "defaultPriority"), "meta", "priority"), 1n)),
       })),

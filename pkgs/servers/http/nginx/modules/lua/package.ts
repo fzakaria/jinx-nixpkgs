@@ -2,12 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]], [["nginx-lua", 30, 26]], [["tests", 29, 12]], [["description", 34, 5], ["homepage", 35, 5], ["license", 36, 5], ["maintainers", 37, 5]], [["pname", 10, 3], ["version", 13, 3], ["src", 15, 3], ["buildInputs", 22, 3], ["preConfigure", 24, 3], ["passthru", 29, 3], ["meta", 33, 3]]]);
 const formals$1 = { args: { fetchFromGitHub: false, lib: false, luajit_openresty: false, mkNginxPlugin: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["nginx-lua", 30, 26]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 29, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 34, 5], ["homepage", 35, 5], ["license", 36, 5], ["maintainers", 37, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 13, 3], ["src", 15, 3], ["buildInputs", 22, 3], ["preConfigure", 24, 3], ["passthru", 29, 3], ["meta", 33, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const mkNginxPlugin = nix.arg($, "mkNginxPlugin");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(mkNginxPlugin, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "lua",
       version: "0.10.31",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "openresty",
           repo: "lua-nginx-module",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -32,14 +28,14 @@ export default nix.lambda((args) => (() => {
 export LUAJIT_INC="$(realpath ${luajit_openresty}/include/luajit-*)"
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           "nginx-lua": nix.thunk(() => nix.attr(nixosTests, "nginx-lua")),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Embed the Power of Lua",
         homepage: "https://github.com/openresty/lua-nginx-module",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

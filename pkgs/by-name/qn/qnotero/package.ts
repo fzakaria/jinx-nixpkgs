@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["sha256", 19, 5]], [["description", 55, 5], ["mainProgram", 56, 5], ["homepage", 57, 5], ["license", 58, 5], ["platforms", 59, 5], ["broken", 60, 5], ["maintainers", 61, 5]], [["pname", 10, 3], ["version", 12, 3], ["format", 13, 3], ["src", 15, 3], ["propagatedBuildInputs", 22, 3], ["patchPhase", 27, 3], ["preFixup", 35, 3], ["postInstall", 39, 3], ["doCheck", 52, 3], ["meta", 54, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, python3Packages: false, libsForQt5: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["sha256", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 55, 5], ["mainProgram", 56, 5], ["homepage", 57, 5], ["license", 58, 5], ["platforms", 59, 5], ["broken", 60, 5], ["maintainers", 61, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 12, 3], ["format", 13, 3], ["src", 15, 3], ["propagatedBuildInputs", 22, 3], ["patchPhase", 27, 3], ["preFixup", 35, 3], ["postInstall", 39, 3], ["doCheck", 52, 3], ["meta", 54, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.3.1";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ealbiter",
           repo: "qnotero",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -34,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const postInstall = "mkdir $out/share\nmv $out/usr/share/applications $out/share/applications\n\nsubstituteInPlace $out/share/applications/qnotero.desktop \\\n  --replace \"Icon=/usr/share/qnotero/resources/light/qnotero.png\" \"Icon=qnotero\"\n\nmkdir -p $out/share/icons/hicolor/64x64/apps\nln -s $out/usr/share/qnotero/resources/light/qnotero.png \\\n  $out/share/icons/hicolor/64x64/apps/qnotero.png\n";
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Quick access to Zotero references",
         mainProgram: "qnotero",
         homepage: "https://www.cogsci.nl/software/qnotero",
@@ -44,7 +42,7 @@ export default nix.lambda((args) => (() => {
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "nico202"))]),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         format,

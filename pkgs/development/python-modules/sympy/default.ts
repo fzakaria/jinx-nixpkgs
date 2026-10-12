@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]], [["sage", 49, 13]], [["tests", 48, 12]], [["description", 53, 5], ["mainProgram", 54, 5], ["homepage", 55, 5], ["downloadPage", 56, 5], ["changelog", 57, 5], ["license", 58, 5], ["maintainers", 59, 5], ["teams", 62, 5]], [["pname", 20, 3], ["version", 21, 3], ["pyproject", 22, 3], ["__structuredAttrs", 23, 3], ["src", 25, 3], ["build-system", 32, 3], ["pythonRelaxDeps", 36, 3], ["dependencies", 39, 3], ["doCheck", 44, 3], ["nativeCheckInputs", 45, 3], ["pythonImportsCheck", 46, 3], ["passthru", 48, 3], ["meta", 52, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, mpmath: false, glibcLocales: false, sage: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["sage", 49, 13]]);
-const pos$3 = nix.positions(here + "/default.nix", [["tests", 48, 12]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 53, 5], ["mainProgram", 54, 5], ["homepage", 55, 5], ["downloadPage", 56, 5], ["changelog", 57, 5], ["license", 58, 5], ["maintainers", 59, 5], ["teams", 62, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 20, 3], ["version", 21, 3], ["pyproject", 22, 3], ["__structuredAttrs", 23, 3], ["src", 25, 3], ["build-system", 32, 3], ["pythonRelaxDeps", 36, 3], ["dependencies", 39, 3], ["doCheck", 44, 3], ["nativeCheckInputs", 45, 3], ["pythonImportsCheck", 46, 3], ["passthru", 48, 3], ["meta", 52, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,13 +15,13 @@ export default nix.lambda((args) => (() => {
   const glibcLocales = nix.arg($, "glibcLocales");
   const sage = nix.arg($, "sage");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "sympy",
       version: "1.14.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "sympy",
           repo: "sympy",
           tag: nix.thunk(() => nix.str`sympy-${nix.sel(finalAttrs, "version")}`),
@@ -37,9 +33,12 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       nativeCheckInputs: nix.thunk(() => [glibcLocales]),
       pythonImportsCheck: nix.thunk(() => ["sympy"]),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$3, tests: nix.thunk(() => ({ [nix.POS]: pos$2, sage: sage })) })),
+      passthru: nix.thunk(() => ({
+        [nix.POS]: $pos[2],
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[1], sage: sage })),
+      })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Python library for symbolic mathematics",
         mainProgram: "isympy",
         homepage: "https://www.sympy.org/",

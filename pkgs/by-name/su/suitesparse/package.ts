@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 37, 5], ["repo", 38, 5], ["tag", 39, 5], ["hash", 40, 5]], [["NIX_LDFLAGS", 97, 5]], [["homepage", 130, 5], ["description", 131, 5], ["license", 132, 5], ["maintainers", 137, 5], ["platforms", 138, 5]], [["__structuredAttrs", 24, 3], ["strictDeps", 25, 3], ["pname", 27, 3], ["version", 28, 3], ["outputs", 30, 3], ["src", 36, 3], ["nativeBuildInputs", 43, 3], ["buildInputs", 55, 3], ["preConfigure", 75, 3], ["cmakeFlags", 79, 3], ["env", 94, 3], ["postInstall", 101, 3], ["meta", 129, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, gfortran: false, blas: false, lapack: false, metis: false, fixDarwinDylibNames: false, gmp: false, mpfr: false, config: false, enableCuda: true, cudaPackages: false, llvmPackages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 37, 5], ["repo", 38, 5], ["tag", 39, 5], ["hash", 40, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_LDFLAGS", 97, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 130, 5], ["description", 131, 5], ["license", 132, 5], ["maintainers", 137, 5], ["platforms", 138, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["__structuredAttrs", 24, 3], ["strictDeps", 25, 3], ["pname", 27, 3], ["version", 28, 3], ["outputs", 30, 3], ["src", 36, 3], ["nativeBuildInputs", 43, 3], ["buildInputs", 55, 3], ["preConfigure", 75, 3], ["cmakeFlags", 79, 3], ["env", 94, 3], ["postInstall", 101, 3], ["meta", 129, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,14 +26,14 @@ export default nix.lambda((args) => (() => {
   const stdenv_1 = nix.thunk(() => nix.builtins.throw("Use effectiveStdenv instead"));
   const effectiveStdenv = nix.thunk(() => (nix.asBool(enableCuda) ? nix.sel(cudaPackages, "backendStdenv") : nix.sel(inputs, "stdenv")));
   return nix.app(nix.sel(effectiveStdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       __structuredAttrs: true,
       strictDeps: true,
       pname: "suitesparse",
       version: "7.10.0",
       outputs: nix.thunk(() => ["out", "dev", "doc"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "DrTimothyAldenDavis",
           repo: "SuiteSparse",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -70,7 +67,7 @@ export default nix.lambda((args) => (() => {
         ])), nix.app(nix.sel(lib, "optionals"), enableCuda, nix.thunk(() => [
           nix.thunk(() => nix.app(nix.sel(lib, "cmakeFeature"), "SUITESPARSE_CUDA_ARCHITECTURES", nix.thunk(() => nix.sel(cudaPackages, "flags", "cmakeCudaArchitecturesString")))),
         ]))))),
-      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(effectiveStdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({ [nix.POS]: pos$2, NIX_LDFLAGS: "-headerpad_max_install_names" })))),
+      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(effectiveStdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({ [nix.POS]: $pos[1], NIX_LDFLAGS: "-headerpad_max_install_names" })))),
       postInstall: nix.thunk(() => nix.str`# Versions of SuiteSparse < 6 had a flat structure, which most downstream
 # consumers can continue to expect.
 for header in "$dev"/include/suitesparse/*; do
@@ -98,7 +95,7 @@ for dir in $src/*/Doc; do
 done
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "http://faculty.cse.tamu.edu/davis/suitesparse.html",
         description: "Suite of sparse matrix algorithms",
         license: nix.thunk(() => (() => {

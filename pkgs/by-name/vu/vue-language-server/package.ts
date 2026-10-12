@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["hash", 25, 5]], [["pname", 30, 7], ["src", 31, 7], ["version", 32, 7], ["pnpm", 34, 13], ["fetcherVersion", 35, 5], ["hash", 36, 5]], [["smoke", 84, 11]], [["updateScript", 82, 5], ["tests", 84, 5]], [["description", 101, 5], ["homepage", 102, 5], ["changelog", 103, 5], ["license", 104, 5], ["maintainers", 105, 5], ["mainProgram", 106, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["pnpmDeps", 28, 3], ["nativeBuildInputs", 39, 3], ["buildPhase", 46, 3], ["preInstall", 52, 3], ["installPhase", 68, 3], ["passthru", 81, 3], ["meta", 100, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchPnpmDeps: false, pnpmConfigHook: false, pnpm_11: false, "nodejs-slim": false, "nix-update-script": false, makeBinaryWrapper: false, runCommand: false, "vue-language-server": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 30, 7], ["src", 31, 7], ["version", 32, 7], ["pnpm", 34, 13], ["fetcherVersion", 35, 5], ["hash", 36, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["smoke", 84, 11]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 82, 5], ["tests", 84, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 101, 5], ["homepage", 102, 5], ["changelog", 103, 5], ["license", 104, 5], ["maintainers", 105, 5], ["mainProgram", 106, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["pnpmDeps", 28, 3], ["nativeBuildInputs", 39, 3], ["buildPhase", 46, 3], ["preInstall", 52, 3], ["installPhase", 68, 3], ["passthru", 81, 3], ["meta", 100, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,18 +20,18 @@ export default nix.lambda((args) => (() => {
   const vue_language_server = nix.arg($, "vue-language-server");
   const pnpm = pnpm_11;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "vue-language-server",
       version: "3.3.11",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "vuejs",
           repo: "language-tools",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-a8gs53zcq5qssqnxlMGjxfZaBICisdjqkLfzqZStPfQ=",
         })))),
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
@@ -59,10 +54,10 @@ makeWrapper ${nix.app(nix.sel(lib, "getExe"), nodejs_slim)} $out/bin/vue-languag
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           smoke: nix.thunk(() => nix.app(runCommand, "vue-language-server-smoke-test", nix.thunk(() => ({})), nix.thunk(() => nix.str`INIT_REQUEST='{"jsonrpc":"2.0","id":1,"method":"initialize","params":{"processId":null,"rootUri":"file:///tmp","workspaceFolders":[{"uri":"file:///tmp","name":"test"}],"capabilities":{}}}'
 CONTENT_LENGTH=\${#INIT_REQUEST}
 
@@ -79,7 +74,7 @@ touch $out
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Official Vue.js language server",
         homepage: "https://github.com/vuejs/language-tools#readme",
         changelog: nix.thunk(() => nix.str`https://github.com/vuejs/language-tools/releases/tag/v${nix.sel(finalAttrs, "version")}`),

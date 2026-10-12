@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 43, 5], ["repo", 44, 5], ["tag", 45, 5], ["hash", 46, 5]], [["pname", 50, 26], ["version", 50, 32], ["src", 50, 40], ["hash", 51, 5]], [["description", 100, 5], ["homepage", 101, 5], ["changelog", 102, 5], ["license", 103, 5], ["maintainers", 104, 5]], [["pname", 37, 3], ["version", 38, 3], ["pyproject", 39, 3], ["__structuredAttrs", 40, 3], ["src", 42, 3], ["cargoDeps", 49, 3], ["build-system", 54, 3], ["dependencies", 62, 3], ["pythonImportsCheck", 72, 3], ["nativeCheckInputs", 74, 3], ["disabledTests", 89, 3], ["disabledTestPaths", 94, 3], ["meta", 99, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitHub: false, rustPlatform: false, cargo: false, rustc: false, "arro3-core": false, arviz: false, obstore: false, pandas: false, platformdirs: false, pyarrow: false, xarray: false, zarr: false, equinox: false, flowjax: false, jax: false, jaxlib: false, numba: false, "pytest-timeout": false, pymc: false, pytestCheckHook: false, setuptools: false, writableTmpDirAsHomeHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 43, 5], ["repo", 44, 5], ["tag", 45, 5], ["hash", 46, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 50, 26], ["version", 50, 32], ["src", 50, 40], ["hash", 51, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 100, 5], ["homepage", 101, 5], ["changelog", 102, 5], ["license", 103, 5], ["maintainers", 104, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 37, 3], ["version", 38, 3], ["pyproject", 39, 3], ["__structuredAttrs", 40, 3], ["src", 42, 3], ["cargoDeps", 49, 3], ["build-system", 54, 3], ["dependencies", 62, 3], ["pythonImportsCheck", 72, 3], ["nativeCheckInputs", 74, 3], ["disabledTests", 89, 3], ["disabledTestPaths", 94, 3], ["meta", 99, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -36,20 +33,20 @@ export default nix.lambda((args) => (() => {
   const setuptools = nix.arg($, "setuptools");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "nutpie",
       version: "0.16.11",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "pymc-devs",
           repo: "nutpie",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-ZakNyVW06QONdBSZFonOc585ZPLHsIjbFlBnX+Kg2kc=",
         })))),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -80,7 +77,7 @@ export default nix.lambda((args) => (() => {
       disabledTests: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")))), nix.thunk(() => ["test_normalizing_flow"]))),
       disabledTestPaths: nix.thunk(() => ["tests/test_stan.py"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Python wrapper for nuts-rs",
         homepage: "https://github.com/pymc-devs/nutpie",
         changelog: nix.thunk(() => nix.str`https://github.com/pymc-devs/nutpie/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

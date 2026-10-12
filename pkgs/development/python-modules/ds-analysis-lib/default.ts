@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["description", 56, 5], ["homepage", 58, 7], ["license", 59, 7], ["maintainers", 60, 7], ["teams", 61, 7]], [["pname", 26, 3], ["version", 27, 22], ["src", 27, 30], ["pyproject", 28, 3], ["sourceRoot", 30, 3], ["build-system", 32, 3], ["dependencies", 36, 3], ["pythonImportsCheck", 47, 3], ["nativeCheckInputs", 49, 3], ["meta", 55, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, "dep-scan": false, setuptools: false, "appthreat-vulnerability-db": false, "custom-json-diff": false, cvss: false, "ds-xbom-lib": false, jsonschema: false, referencing: false, rich: false, toml: false, writableTmpDirAsHomeHook: false, pytestCheckHook: false, "pytest-cov-stub": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["description", 56, 5], ["homepage", 58, 7], ["license", 59, 7], ["maintainers", 60, 7], ["teams", 61, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 26, 3], ["version", 27, 22], ["src", 27, 30], ["pyproject", 28, 3], ["sourceRoot", 30, 3], ["build-system", 32, 3], ["dependencies", 36, 3], ["pythonImportsCheck", 47, 3], ["nativeCheckInputs", 49, 3], ["meta", 55, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -45,7 +44,7 @@ export default nix.lambda((args) => (() => {
       const meta = nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(dep_scan, "meta"));
         return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Analysis library for owasp depscan",
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         license: nix.thunk(() => nix.attr(from, "license")),
@@ -54,7 +53,7 @@ export default nix.lambda((args) => (() => {
       };
       })());
       return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         pname,
         version,
         src,

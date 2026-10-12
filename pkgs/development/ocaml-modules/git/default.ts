@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 47, 5], ["hash", 48, 5]], [["description", 94, 5], ["license", 95, 5], ["maintainers", 96, 5], ["homepage", 100, 5]], [["pname", 41, 3], ["version", 42, 3], ["minimalOCamlVersion", 44, 3], ["src", 46, 3], ["buildInputs", 51, 3], ["propagatedBuildInputs", 54, 3], ["nativeCheckInputs", 81, 3], ["checkInputs", 84, 3], ["doCheck", 91, 3], ["meta", 93, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, buildDunePackage: false, alcotest: false, "mirage-crypto-rng": false, "git-binary": false, angstrom: false, astring: false, decompress: false, digestif: false, encore: false, fmt: false, checkseum: false, ke: false, logs: false, lwt: false, ocamlgraph: false, uri: false, rresult: false, base64: false, hxd: false, bigstringaf: false, optint: false, "mirage-flow": false, "domain-name": false, emile: false, mimic: false, carton: false, "carton-lwt": false, "carton-git": false, ipaddr: false, psq: false, crowbar: false, "alcotest-lwt": false, cmdliner: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 47, 5], ["hash", 48, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 94, 5], ["license", 95, 5], ["maintainers", 96, 5], ["homepage", 100, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 41, 3], ["version", 42, 3], ["minimalOCamlVersion", 44, 3], ["src", 46, 3], ["buildInputs", 51, 3], ["propagatedBuildInputs", 54, 3], ["nativeCheckInputs", 81, 3], ["checkInputs", 84, 3], ["doCheck", 91, 3], ["meta", 93, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -46,12 +44,12 @@ export default nix.lambda((args) => (() => {
   const alcotest_lwt = nix.arg($, "alcotest-lwt");
   const cmdliner = nix.arg($, "cmdliner");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "git",
       version: "3.18.0",
       minimalOCamlVersion: "4.08",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/mirage/ocaml-git/releases/download/${nix.sel(finalAttrs, "version")}/git-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-kleVYn5tquC0vRaqUGh53xHLIB5l/v446BN48Y1RfUs=",
         })))),
@@ -87,7 +85,7 @@ export default nix.lambda((args) => (() => {
       checkInputs: nix.thunk(() => [alcotest, alcotest_lwt, mirage_crypto_rng, crowbar, cmdliner]),
       doCheck: nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64"))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Git format and protocol in pure OCaml",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),
         maintainers: nix.thunk(() => (() => {

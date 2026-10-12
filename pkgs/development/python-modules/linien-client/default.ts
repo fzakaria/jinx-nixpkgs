@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["description", 37, 5], ["homepage", 38, 5], ["changelog", 39, 5], ["license", 40, 5], ["maintainers", 41, 5], ["broken", 46, 5]], [["pname", 13, 3], ["pyproject", 14, 3], ["src", 16, 27], ["version", 16, 31], ["sourceRoot", 18, 3], ["preBuild", 20, 3], ["build-system", 24, 3], ["dependencies", 26, 3], ["pythonImportsCheck", 34, 3], ["meta", 36, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, "linien-common": false, setuptools: false, fabric: false, "typing-extensions": false, numpy: false, scipy: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["description", 37, 5], ["homepage", 38, 5], ["changelog", 39, 5], ["license", 40, 5], ["maintainers", 41, 5], ["broken", 46, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 13, 3], ["pyproject", 14, 3], ["src", 16, 27], ["version", 16, 31], ["sourceRoot", 18, 3], ["preBuild", 20, 3], ["build-system", 24, 3], ["dependencies", 26, 3], ["pythonImportsCheck", 34, 3], ["meta", 36, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const dependencies = nix.thunk(() => [fabric, typing_extensions, numpy, scipy, linien_common]);
       const pythonImportsCheck = nix.thunk(() => ["linien_client"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Client components of the Linien spectroscopy lock application",
         homepage: "https://github.com/linien-org/linien/tree/develop/linien-client",
         changelog: nix.thunk(() => nix.str`https://github.com/linien-org/linien/blob/v${version}/CHANGELOG.md`),
@@ -42,7 +41,7 @@ export default nix.lambda((args) => (() => {
         broken: nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(numpy, "version")), "2")),
       }));
       return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         pname,
         pyproject,
         src,

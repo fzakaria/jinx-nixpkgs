@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["broken", 72, 5], ["description", 73, 5], ["homepage", 74, 5], ["license", 75, 5], ["maintainers", 76, 5], ["platforms", 77, 5], ["mainProgram", 78, 5]], [["src", 16, 30], ["version", 16, 34], ["pname", 18, 3], ["vendorHash", 20, 3], ["proxyVendor", 22, 3], ["modRoot", 24, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 33, 3], ["ldflags", 41, 3], ["tags", 47, 3], ["postInstall", 52, 3], ["preFixup", 58, 3], ["meta", 70, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, wrapGAppsHook3: false, wails: false, scdoc: false, installShellFiles: false, libx11: false, gtk3: false, snippetexpanderd: false, snippetexpanderx: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["broken", 72, 5], ["description", 73, 5], ["homepage", 74, 5], ["license", 75, 5], ["maintainers", 76, 5], ["platforms", 77, 5], ["mainProgram", 78, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["src", 16, 30], ["version", 16, 34], ["pname", 18, 3], ["vendorHash", 20, 3], ["proxyVendor", 22, 3], ["modRoot", 24, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 33, 3], ["ldflags", 41, 3], ["tags", 47, 3], ["postInstall", 52, 3], ["preFixup", 58, 3], ["meta", 70, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,7 +18,7 @@ export default nix.lambda((args) => (() => {
   const snippetexpanderd = nix.arg($, "snippetexpanderd");
   const snippetexpanderx = nix.arg($, "snippetexpanderx");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       src: nix.thunk(() => nix.attr(snippetexpanderd, "src")),
       version: nix.thunk(() => nix.attr(snippetexpanderd, "version")),
       pname: "snippetexpandergui",
@@ -41,7 +40,7 @@ export default nix.lambda((args) => (() => {
 )
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         broken: true,
         description: "Your little expandable text snippet helper GUI",
         homepage: "https://snippetexpander.org",

@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["fetchSubmodules", 30, 5], ["hash", 31, 5]], [["odd-unstable", 58, 5], ["rev-prefix", 59, 5]], [["test", 62, 18]], [["updateScript", 57, 12], ["tests", 62, 12]], [["description", 65, 5], ["homepage", 66, 5], ["license", 67, 5], ["platforms", 68, 5], ["teams", 69, 5]], [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["strictDeps", 34, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 48, 3], ["enableParallelBuilding", 55, 3], ["passthru", 57, 3], ["meta", 64, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, "autoconf-archive": false, autoreconfHook: false, "mate-common": false, "pkg-config": false, gettext: false, itstool: false, libxml2: false, "mate-desktop": false, dconf: false, vte: false, pcre2: false, wrapGAppsHook3: false, "yelp-tools": false, gitUpdater: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["fetchSubmodules", 30, 5], ["hash", 31, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["odd-unstable", 58, 5], ["rev-prefix", 59, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["test", 62, 18]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 57, 12], ["tests", 62, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 65, 5], ["homepage", 66, 5], ["license", 67, 5], ["platforms", 68, 5], ["teams", 69, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["strictDeps", 34, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 48, 3], ["enableParallelBuilding", 55, 3], ["passthru", 57, 3], ["meta", 64, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const gitUpdater = nix.arg($, "gitUpdater");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "mate-terminal",
       version: "1.28.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "mate-desktop",
           repo: "mate-terminal",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -57,15 +52,15 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [dconf, mate_desktop, pcre2, vte]),
       enableParallelBuilding: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, "odd-unstable": true, "rev-prefix": "v" })))),
+        [nix.POS]: $pos[3],
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[1], "odd-unstable": true, "rev-prefix": "v" })))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           test: nix.thunk(() => nix.sel(nixosTests, "terminal-emulators", "mate-terminal")),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "MATE desktop terminal emulator",
         homepage: "https://mate-desktop.org",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

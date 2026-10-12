@@ -2,10 +2,10 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["valueToString", 14, 3], ["unstructuredDerivationInputEnv", 29, 3], ["derivationOutputEnv", 52, 3]]]);
 const formals$1 = { args: { lib: false, writeText: false }, ellipsis: false };
 const formals$2 = { args: { drvAttrs: false }, ellipsis: false };
 const formals$3 = { args: { outputList: false, outputMap: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["valueToString", 14, 3], ["unstructuredDerivationInputEnv", 29, 3], ["derivationOutputEnv", 52, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,7 +29,7 @@ export default nix.lambda((args) => (() => {
       return nix.app(nix.sel(lib, "genAttrs"), outputList, (output) => nix.builtins.unsafeDiscardStringContext(nix.thunk(() => nix.sel(outputMap, nix.key(nix.force(output)), "outPath"))));
     })(), formals$3);
     return {
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       valueToString,
       unstructuredDerivationInputEnv,
       derivationOutputEnv,

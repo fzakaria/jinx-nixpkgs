@@ -2,7 +2,7 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
-const pos$1 = nix.positions(here + "/convert-license.nix", [["Bitstream-Vera AND MIT", 16, 5], ["LicenseRef-Monofur", 20, 5], ["LicenseRef-UbuntuFont", 21, 5], ["LicenseRef-VicFieger", 22, 5], ["MIT OR OFL-1.1-no-RFN", 23, 5], ["OFL-1.1-RFN", 24, 5], ["OFL-1.1-no-RFN or LGPL-2.1-only", 25, 5], ["OFL-1.1-no-RFN", 26, 5]]);
+const $pos = nix.positions(here + "/convert-license.nix", [[["Bitstream-Vera AND MIT", 16, 5], ["LicenseRef-Monofur", 20, 5], ["LicenseRef-UbuntuFont", 21, 5], ["LicenseRef-VicFieger", 22, 5], ["MIT OR OFL-1.1-no-RFN", 23, 5], ["OFL-1.1-RFN", 24, 5], ["OFL-1.1-no-RFN or LGPL-2.1-only", 25, 5], ["OFL-1.1-no-RFN", 26, 5]]]);
 
 export default (lib) => (() => {
   const ls = nix.thunk(() => nix.sel(lib, "licenses"));
@@ -14,7 +14,7 @@ export default (lib) => (() => {
           nix.thunk(() => nix.lookup(w, "listToAttrs")),
         ]));
     })(), {
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       "Bitstream-Vera AND MIT": nix.thunk(() => (() => {
         const w_1 = nix.withScope(ls, null);
         return [

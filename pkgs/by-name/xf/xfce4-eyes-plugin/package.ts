@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 22, 5], ["hash", 23, 5]], [["url", 44, 5], ["rev-prefix", 45, 5]], [["updateScript", 43, 12]], [["homepage", 49, 5], ["description", 50, 5], ["license", 51, 5], ["platforms", 52, 5], ["teams", 53, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["strictDeps", 26, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 35, 3], ["passthru", 43, 3], ["meta", 48, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, gettext: false, meson: false, ninja: false, "pkg-config": false, libxfce4util: false, "xfce4-panel": false, libxfce4ui: false, glib: false, gtk3: false, gitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 44, 5], ["rev-prefix", 45, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 43, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 49, 5], ["description", 50, 5], ["license", 51, 5], ["platforms", 52, 5], ["teams", 53, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["strictDeps", 26, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 35, 3], ["passthru", 43, 3], ["meta", 48, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const gtk3 = nix.arg($, "gtk3");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "xfce4-eyes-plugin",
       version: "4.7.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://xfce/src/panel-plugins/xfce4-eyes-plugin/${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/xfce4-eyes-plugin-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-h/m5eMp1q7OqXtsTFetl75hlSmYsFGIYR93/6KpldK0=",
         })))),
@@ -37,15 +33,15 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [gettext, meson, ninja, pkg_config]),
       buildInputs: nix.thunk(() => [libxfce4util, libxfce4ui, xfce4_panel, glib, gtk3]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://gitlab.xfce.org/panel-plugins/xfce4-eyes-plugin",
             "rev-prefix": "xfce4-eyes-plugin-",
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://docs.xfce.org/panel-plugins/xfce4-eyes-plugin",
         description: "Rolling eyes (following mouse pointer) plugin for the Xfce panel",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

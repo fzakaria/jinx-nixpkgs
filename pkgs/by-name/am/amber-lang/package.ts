@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]], [["extraArgs", 71, 40]], [["nativeBuildInputs", 78, 15]], [["eval-hello-world-bash", 89, 9], ["eval-hello-world-bash-3_2", 90, 9], ["eval-hello-world-ksh", 91, 9], ["eval-hello-world-zsh", 92, 9]], [["updateScript", 71, 5], ["tests", 72, 5]], [["description", 97, 5], ["homepage", 98, 5], ["license", 99, 5], ["mainProgram", 100, 5], ["maintainers", 101, 5]], [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["cargoHash", 30, 3], ["nativeBuildInputs", 32, 3], ["nativeCheckInputs", 37, 3], ["preCheck", 45, 3], ["checkFlags", 52, 3], ["postInstall", 57, 3], ["nativeInstallCheckInputs", 65, 3], ["doInstallCheck", 68, 3], ["passthru", 70, 3], ["meta", 96, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, rustPlatform: false, bc: false, "util-linux": false, makeWrapper: false, installShellFiles: false, versionCheckHook: false, stdenv: false, runCommand: false, "amber-lang": false, "nix-update-script": false, bash: false, ksh: false, zsh: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["extraArgs", 71, 40]]);
-const pos$3 = nix.positions(here + "/package.nix", [["nativeBuildInputs", 78, 15]]);
-const pos$4 = nix.positions(here + "/package.nix", [["eval-hello-world-bash", 89, 9], ["eval-hello-world-bash-3_2", 90, 9], ["eval-hello-world-ksh", 91, 9], ["eval-hello-world-zsh", 92, 9]]);
-const pos$5 = nix.positions(here + "/package.nix", [["updateScript", 71, 5], ["tests", 72, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 97, 5], ["homepage", 98, 5], ["license", 99, 5], ["mainProgram", 100, 5], ["maintainers", 101, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["cargoHash", 30, 3], ["nativeBuildInputs", 32, 3], ["nativeCheckInputs", 37, 3], ["preCheck", 45, 3], ["checkFlags", 52, 3], ["postInstall", 57, 3], ["nativeInstallCheckInputs", 65, 3], ["doInstallCheck", 68, 3], ["passthru", 70, 3], ["meta", 96, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const pname = "amber-lang";
       const version = "0.6.0-alpha";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "amber-lang",
           repo: "amber",
           tag: version,
@@ -55,14 +49,14 @@ substituteInPlace src/tests/cli.rs \\
       const nativeInstallCheckInputs = nix.thunk(() => [versionCheckHook]);
       const doInstallCheck = true;
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$5,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$2, extraArgs: nix.thunk(() => ["--version=unstable"]) })))),
+        [nix.POS]: $pos[4],
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: $pos[1], extraArgs: nix.thunk(() => ["--version=unstable"]) })))),
         tests: nix.thunk(() => (() => {
-          const testHelloWorld = (type) => (pkg) => nix.app(runCommand, nix.thunk(() => nix.str`amber-lang-test-eval-hello-world-${type}`), nix.thunk(() => ({ [nix.POS]: pos$3, nativeBuildInputs: nix.thunk(() => [amber_lang, pkg]) })), nix.thunk(() => nix.str`diff -U3 --color=auto <(amber eval --target ${type} 'echo("Hello, World")') <(echo 'Hello, World')
+          const testHelloWorld = (type) => (pkg) => nix.app(runCommand, nix.thunk(() => nix.str`amber-lang-test-eval-hello-world-${type}`), nix.thunk(() => ({ [nix.POS]: $pos[2], nativeBuildInputs: nix.thunk(() => [amber_lang, pkg]) })), nix.thunk(() => nix.str`diff -U3 --color=auto <(amber eval --target ${type} 'echo("Hello, World")') <(echo 'Hello, World')
 touch $out
 `));
           return {
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             "eval-hello-world-bash": nix.thunk(() => nix.app(testHelloWorld, "bash", bash)),
             "eval-hello-world-bash-3_2": nix.thunk(() => nix.app(testHelloWorld, "bash-3.2", bash)),
             "eval-hello-world-ksh": nix.thunk(() => nix.app(testHelloWorld, "ksh", ksh)),
@@ -71,7 +65,7 @@ touch $out
         })()),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Programming language compiled to bash",
         homepage: "https://amber-lang.com",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3Only")),
@@ -86,7 +80,7 @@ touch $out
         })()),
       }));
       return {
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         pname,
         version,
         src,

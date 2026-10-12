@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["sha256", 20, 5]], [["sed", 32, 7], ["xprop", 33, 7], ["rlwrap", 34, 7], ["tput", 35, 7]], [["homepage", 48, 5], ["description", 49, 5], ["license", 50, 5], ["platforms", 51, 5], ["mainProgram", 52, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["buildInputs", 23, 3], ["patches", 30, 3], ["buildPhase", 39, 3], ["installPhase", 43, 3], ["meta", 47, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, replaceVars: false, fetchFromGitHub: false, gnused: false, ncurses: false, xprop: false, rlwrap: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["sha256", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["sed", 32, 7], ["xprop", 33, 7], ["rlwrap", 34, 7], ["tput", 35, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 48, 5], ["description", 49, 5], ["license", 50, 5], ["platforms", 51, 5], ["mainProgram", 52, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["buildInputs", 23, 3], ["patches", 30, 3], ["buildPhase", 39, 3], ["installPhase", 43, 3], ["meta", 47, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const xprop = nix.arg($, "xprop");
   const rlwrap = nix.arg($, "rlwrap");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "stumpish",
       version: "0.0.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "stumpwm",
           repo: "stumpwm-contrib",
           rev: "9f5f06652c480159ec57d1fd8751b16f02db06dc",
@@ -32,7 +29,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [gnused, xprop, rlwrap, ncurses]),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./paths.patch"), nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             sed: nix.thunk(() => nix.str`${gnused}/bin/sed`),
             xprop: nix.thunk(() => nix.str`${xprop}/bin/xprop`),
             rlwrap: nix.thunk(() => nix.str`${rlwrap}/bin/rlwrap`),
@@ -42,7 +39,7 @@ export default nix.lambda((args) => (() => {
       buildPhase: "mkdir -p $out/bin\n",
       installPhase: "cp util/stumpish/stumpish $out/bin\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/stumpwm/stumpwm-contrib",
         description: "STUMPwm Interactive SHell",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),

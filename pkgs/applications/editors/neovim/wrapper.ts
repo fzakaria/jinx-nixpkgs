@@ -2,14 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/wrapper.nix", [[["name", 183, 11], ["gemdir", 184, 11], ["postBuild", 185, 11]], [["myNeovimPackages", 204, 22]], [["nativeBuildInputs", 286, 19]], [["providerLuaRc", 461, 19], ["packpathDirs", 461, 33], ["unwrapped", 462, 11], ["initRc", 463, 11], ["tests", 465, 11]], [["description", 470, 13], ["longDescription", 471, 13], ["homepage", 472, 13], ["mainProgram", 473, 13], ["license", 474, 13], ["teams", 475, 13], ["platforms", 476, 13], ["hydraPlatforms", 480, 11], ["priority", 482, 11]], [["name", 340, 9], ["pname", 341, 17], ["version", 341, 23], ["plugins", 342, 17], ["strictDeps", 344, 9], ["__structuredAttrs", 346, 9], ["dontUnpack", 347, 9], ["viAlias", 349, 11], ["vimAlias", 350, 11], ["waylandSupport", 351, 11], ["withNodeJs", 352, 11], ["withPython3", 353, 11], ["withPerl", 354, 11], ["withRuby", 355, 11], ["autoconfigure", 358, 11], ["autowrapRuntimeDeps", 359, 11], ["wrapRc", 360, 11], ["providerLuaRc", 361, 11], ["packpathDirs", 362, 11], ["python3Env", 364, 17], ["rubyEnv", 364, 28], ["wrapperArgs", 365, 17], ["generatedWrapperArgs", 365, 29], ["runtimeDeps", 367, 9], ["luaRcContent", 373, 9], ["postBuild", 376, 9], ["buildPhase", 435, 9], ["preferLocalBuild", 444, 9], ["nativeBuildInputs", 446, 9], ["vimPackage", 451, 9], ["checkPhase", 453, 9], ["passthru", 460, 9], ["meta", 468, 9]]]);
 const formals$1 = { args: { stdenv: false, lib: false, wayland: false, makeWrapper: false, bundlerEnv: false, "wl-clipboard": false, ruby: false, nodejs: false, writeText: false, "neovim-node-client": false, python3: false, callPackage: false, neovimUtils: false, perl: false, lndir: false, runCommand: false }, ellipsis: false };
 const formals$2 = { args: { extraName: true, autoconfigure: true, autowrapRuntimeDeps: true, wrapperArgs: true, withPython2: true, withPython3: true, extraPython3Packages: true, waylandSupport: true, withNodeJs: true, withPerl: true, withRuby: true, vimAlias: true, viAlias: true, wrapRc: true, neovimRcContent: true, luaRcContent: true, packpathDirs: true, plugins: true, extraLuaPackages: true }, ellipsis: true };
-const pos$1 = nix.positions(here + "/wrapper.nix", [["name", 183, 11], ["gemdir", 184, 11], ["postBuild", 185, 11]]);
-const pos$2 = nix.positions(here + "/wrapper.nix", [["myNeovimPackages", 204, 22]]);
-const pos$3 = nix.positions(here + "/wrapper.nix", [["nativeBuildInputs", 286, 19]]);
-const pos$4 = nix.positions(here + "/wrapper.nix", [["providerLuaRc", 461, 19], ["packpathDirs", 461, 33], ["unwrapped", 462, 11], ["initRc", 463, 11], ["tests", 465, 11]]);
-const pos$5 = nix.positions(here + "/wrapper.nix", [["description", 470, 13], ["longDescription", 471, 13], ["homepage", 472, 13], ["mainProgram", 473, 13], ["license", 474, 13], ["teams", 475, 13], ["platforms", 476, 13], ["hydraPlatforms", 480, 11], ["priority", 482, 11]]);
-const pos$6 = nix.positions(here + "/wrapper.nix", [["name", 340, 9], ["pname", 341, 17], ["version", 341, 23], ["plugins", 342, 17], ["strictDeps", 344, 9], ["__structuredAttrs", 346, 9], ["dontUnpack", 347, 9], ["viAlias", 349, 11], ["vimAlias", 350, 11], ["waylandSupport", 351, 11], ["withNodeJs", 352, 11], ["withPython3", 353, 11], ["withPerl", 354, 11], ["withRuby", 355, 11], ["autoconfigure", 358, 11], ["autowrapRuntimeDeps", 359, 11], ["wrapRc", 360, 11], ["providerLuaRc", 361, 11], ["packpathDirs", 362, 11], ["python3Env", 364, 17], ["rubyEnv", 364, 28], ["wrapperArgs", 365, 17], ["generatedWrapperArgs", 365, 29], ["runtimeDeps", 367, 9], ["luaRcContent", 373, 9], ["postBuild", 376, 9], ["buildPhase", 435, 9], ["preferLocalBuild", 444, 9], ["nativeBuildInputs", 446, 9], ["vimPackage", 451, 9], ["checkPhase", 453, 9], ["passthru", 460, 9], ["meta", 468, 9]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -57,7 +52,7 @@ export default nix.lambda((args) => (() => {
       nix.assert_((!nix.asBool(!nix.eq(packpathDirs, null)) || nix.asBool(nix.builtins.throw("packpathdirs is not used anymore: pass a list of neovim plugin derivations in 'plugins' instead."))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/applications/editors/neovim/wrapper.nix:174:5");
       return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => (() => {
           const rubyEnv = nix.thunk(() => nix.app(bundlerEnv, nix.thunk(() => ({
-              [nix.POS]: pos$1,
+              [nix.POS]: $pos[0],
               name: "neovim-ruby-env",
               gemdir: nix.path(here, "./ruby_provider"),
               postBuild: nix.thunk(() => nix.str`ln -sf ${ruby}/bin/* $out/bin
@@ -67,7 +62,7 @@ export default nix.lambda((args) => (() => {
           const vimPackageInfo = nix.thunk(() => nix.app(nix.sel(neovimUtils, "makeVimPackageInfo"), nix.thunk(() => nix.sel(finalAttrs, "plugins"))));
           const neovimRcContent$ = nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), "\n", nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(nix.selOr(vimPackageInfo, () => "", "userPluginConfigs", "viml"), "")), nix.thunk(() => nix.sel(vimPackageInfo, "userPluginConfigs", "viml"))), nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(neovimRcContent, null)), neovimRcContent)))));
           const packpathDirs_1 = nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             myNeovimPackages: nix.thunk(() => nix.sel(vimPackageInfo, "vimPackage")),
           }));
           const finalPackdir = nix.thunk(() => nix.app(nix.sel(neovimUtils, "packDir"), packpathDirs_1));
@@ -100,7 +95,7 @@ package.cpath = "${generatedLuaCPath}".. ";" .. package.cpath
               nix.thunk(() => nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => nix.sel(finalAttrs, "runtimeDeps")))),
             ]))))));
           const providerLuaRc = nix.thunk(() => (() => {
-            const hostPython3 = nix.thunk(() => nix.app(runCommand, nix.thunk(() => nix.str`nvim-host-${nix.sel(python3Env, "name")}`), nix.thunk(() => ({ [nix.POS]: pos$3, nativeBuildInputs: nix.thunk(() => [makeWrapper]) })), nix.thunk(() => nix.str`makeWrapper ${nix.sel(python3Env, "interpreter")} $out/bin/nvim-python3 --unset PYTHONPATH --unset PYTHONSAFEPATH
+            const hostPython3 = nix.thunk(() => nix.app(runCommand, nix.thunk(() => nix.str`nvim-host-${nix.sel(python3Env, "name")}`), nix.thunk(() => ({ [nix.POS]: $pos[2], nativeBuildInputs: nix.thunk(() => [makeWrapper]) })), nix.thunk(() => nix.str`makeWrapper ${nix.sel(python3Env, "interpreter")} $out/bin/nvim-python3 --unset PYTHONPATH --unset PYTHONSAFEPATH
 `)));
             const genProviderCommand = (prog) => (withProg) => (exec) => (nix.asBool(withProg) ? nix.str`vim.g.${prog}_host_prog='${exec}'` : nix.str`vim.g.loaded_${prog}_provider=0`);
             return nix.app(nix.sel(lib, "concatStringsSep"), ";", nix.thunk(() => [
@@ -129,7 +124,7 @@ package.cpath = "${generatedLuaCPath}".. ";" .. package.cpath
           const pname = "neovim";
           const version = nix.thunk(() => nix.app(nix.sel(lib, "getVersion"), neovim_unwrapped));
           return {
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             name: nix.thunk(() => nix.str`${pname}-${version}${extraName}`),
             pname: pname,
             version: version,
@@ -210,7 +205,7 @@ runHook postBuild
             vimPackage: nix.thunk(() => nix.sel(vimPackageInfo, "vimPackage")),
             checkPhase: "runHook preCheck\n\n$out/bin/nvim -i NONE -e +quitall!\nrunHook postCheck\n",
             passthru: nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               providerLuaRc: providerLuaRc,
               packpathDirs: packpathDirs_1,
               unwrapped: neovim_unwrapped,
@@ -220,7 +215,7 @@ runHook postBuild
             meta: nix.thunk(() => (() => {
               const from = nix.thunk(() => nix.sel(neovim_unwrapped, "meta"));
               return {
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               description: nix.thunk(() => nix.attr(from, "description")),
               longDescription: nix.thunk(() => nix.attr(from, "longDescription")),
               homepage: nix.thunk(() => nix.attr(from, "homepage")),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]], [["description", 79, 5], ["homepage", 80, 5], ["license", 81, 5], ["mainProgram", 82, 5], ["platforms", 83, 5], ["maintainers", 84, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 30, 3], ["__structuredAttrs", 38, 3], ["strictDeps", 39, 3], ["postPatch", 41, 3], ["cmakeDir", 48, 3], ["cmakeFlags", 50, 3], ["qtWrapperArgs", 57, 3], ["postInstall", 67, 3], ["meta", 78, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, cmake: false, qt6: false, sqlite: false, "letos-plugins": false, includeOfficialPlugins: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 79, 5], ["homepage", 80, 5], ["license", 81, 5], ["mainProgram", 82, 5], ["platforms", 83, 5], ["maintainers", 84, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 30, 3], ["__structuredAttrs", 38, 3], ["strictDeps", 39, 3], ["postPatch", 41, 3], ["cmakeDir", 48, 3], ["cmakeFlags", 50, 3], ["qtWrapperArgs", 57, 3], ["postInstall", 67, 3], ["meta", 78, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const letos_plugins = nix.arg($, "letos-plugins");
   const includeOfficialPlugins = nix.argOr($, "includeOfficialPlugins", () => nix.app(nix.sel(lib, "meta", "availableOn"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")), letos_plugins));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "letos",
       version: "4.0.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "pawelsalawa",
           repo: "letos",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -58,7 +56,7 @@ export default nix.lambda((args) => (() => {
       ]),
       postInstall: "for size in 16 48 256; do\n  mv \\\n    \"$out/share/icons/hicolor/${size}x${size}/apps/letos_${size}.png\" \\\n    \"$out/share/icons/hicolor/${size}x${size}/apps/letos.png\"\ndone\n\ninstall -Dm644 ../LICENSE -t \"$out/share/licenses/letos\"\ninstall -Dm644 ../README.md ../ChangeLog.md -t \"$out/share/doc/letos\"\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Database manager for SQLite (formerly SQLiteStudio)",
         homepage: "https://letos.org",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

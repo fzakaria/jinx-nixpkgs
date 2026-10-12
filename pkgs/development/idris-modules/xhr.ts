@@ -2,10 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/xhr.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["sha256", 17, 5]], [["description", 21, 5], ["homepage", 22, 5], ["license", 23, 5], ["maintainers", 24, 5]], [["pname", 8, 3], ["version", 9, 3], ["idrisDeps", 11, 3], ["src", 13, 3], ["meta", 20, 3]]]);
 const formals$1 = { args: { "build-idris-package": false, fetchFromGitHub: false, idrisscript: false, lib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/xhr.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["sha256", 17, 5]]);
-const pos$2 = nix.positions(here + "/xhr.nix", [["description", 21, 5], ["homepage", 22, 5], ["license", 23, 5], ["maintainers", 24, 5]]);
-const pos$3 = nix.positions(here + "/xhr.nix", [["pname", 8, 3], ["version", 9, 3], ["idrisDeps", 11, 3], ["src", 13, 3], ["meta", 20, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,19 +12,19 @@ export default nix.lambda((args) => (() => {
   const idrisscript = nix.arg($, "idrisscript");
   const lib = nix.arg($, "lib");
   return nix.app(build_idris_package, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "xhr",
       version: "2017-04-22",
       idrisDeps: nix.thunk(() => [idrisscript]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "pierrebeaucamp",
           repo: "idris-xhr",
           rev: "fb32a748ccdb9070de3f2d6048564e34c064b362",
           sha256: "0l07mnarvrb4xdw0b2xqgyxq4rljw1axz5mc9w4gmhvcrzxnyfnr",
         })))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Idris library to interact with xhr",
         homepage: "https://github.com/pierrebeaucamp/idris-xhr",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

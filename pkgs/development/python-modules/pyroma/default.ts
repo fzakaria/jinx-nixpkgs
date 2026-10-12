@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 32, 5], ["repo", 33, 5], ["tag", 34, 5], ["sha256", 35, 5]], [["description", 60, 5], ["mainProgram", 61, 5], ["homepage", 62, 5], ["license", 63, 5], ["maintainers", 64, 5]], [["pname", 24, 3], ["version", 25, 3], ["pyproject", 26, 3], ["disabled", 29, 3], ["src", 31, 3], ["propagatedBuildInputs", 38, 3], ["nativeCheckInputs", 49, 3], ["disabledTests", 51, 3], ["pythonImportsCheck", 57, 3], ["meta", 59, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, pythonAtLeast: false, setuptools: false, build: false, docutils: false, "flit-core": false, packaging: false, pygments: false, requests: false, "trove-classifiers": false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 32, 5], ["repo", 33, 5], ["tag", 34, 5], ["sha256", 35, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 60, 5], ["mainProgram", 61, 5], ["homepage", 62, 5], ["license", 63, 5], ["maintainers", 64, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 24, 3], ["version", 25, 3], ["pyproject", 26, 3], ["disabled", 29, 3], ["src", 31, 3], ["propagatedBuildInputs", 38, 3], ["nativeCheckInputs", 49, 3], ["disabledTests", 51, 3], ["pythonImportsCheck", 57, 3], ["meta", 59, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const pyproject = true;
       const disabled = nix.thunk(() => nix.app(pythonAtLeast, "3.12"));
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "regebro",
           repo: "pyroma",
           tag: version,
@@ -48,7 +46,7 @@ export default nix.lambda((args) => (() => {
       const disabledTests = nix.thunk(() => ["test_complete", "test_distribute"]);
       const pythonImportsCheck = nix.thunk(() => ["pyroma"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Test your project's packaging friendliness",
         mainProgram: "pyroma",
         homepage: "https://github.com/regebro/pyroma",
@@ -59,7 +57,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

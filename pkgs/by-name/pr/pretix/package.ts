@@ -2,21 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 27, 34], ["repo", 27, 40], ["tag", 28, 11], ["hash", 29, 11]], [["version", 25, 9], ["src", 26, 9], ["disabledTests", 31, 9]], [["pname", 43, 11], ["version", 44, 19], ["hash", 45, 11]], [["version", 40, 9], ["src", 42, 9], ["build-system", 48, 9]], [["chardet", 20, 7], ["django", 21, 7], ["djangorestframework", 22, 7], ["django-oauth-toolkit", 24, 7], ["stripe", 39, 7], ["pretix", 51, 7], ["pretix-plugin-build", 52, 7]], [["self", 18, 5], ["packageOverrides", 19, 5]], [["owner", 63, 5], ["repo", 64, 5], ["tag", 65, 5], ["hash", 66, 5]], [["src", 95, 26], ["hash", 96, 5]], [["memcached", 199, 5]], [["callPackage", 308, 34], ["directory", 309, 9]], [["pretix", 313, 28]], [["python", 304, 7], ["plugins", 306, 5], ["tests", 312, 5]], [["description", 320, 5], ["homepage", 321, 5], ["license", 322, 5], ["maintainers", 333, 5], ["mainProgram", 334, 5], ["platforms", 335, 5]], [["pname", 58, 3], ["version", 59, 3], ["pyproject", 60, 3], ["src", 62, 3], ["patches", 69, 3], ["postPatch", 79, 3], ["npmDeps", 94, 3], ["nativeBuildInputs", 99, 3], ["preBuild", 104, 3], ["build-system", 108, 3], ["dependencies", 115, 3], ["optional-dependencies", 198, 3], ["pythonRelaxDeps", 204, 3], ["pythonRemoveDeps", 243, 3], ["postInstall", 247, 3], ["dontStrip", 257, 3], ["nativeCheckInputs", 259, 3], ["pytestFlags", 276, 3], ["disabledTests", 280, 3], ["disabledTestPaths", 285, 3], ["preCheck", 290, 3], ["postCheck", 298, 3], ["passthru", 302, 3], ["__structuredAttrs", 317, 3], ["meta", 319, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, fetchPypi: false, fetchNpmDeps: false, libredirect: false, nodejs: false, npmHooks: false, python3: false, gettext: false, nixosTests: false, pretix: false, plugins: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 27, 34], ["repo", 27, 40], ["tag", 28, 11], ["hash", 29, 11]]);
-const pos$2 = nix.positions(here + "/package.nix", [["version", 25, 9], ["src", 26, 9], ["disabledTests", 31, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 43, 11], ["version", 44, 19], ["hash", 45, 11]]);
-const pos$4 = nix.positions(here + "/package.nix", [["version", 40, 9], ["src", 42, 9], ["build-system", 48, 9]]);
-const pos$5 = nix.positions(here + "/package.nix", [["chardet", 20, 7], ["django", 21, 7], ["djangorestframework", 22, 7], ["django-oauth-toolkit", 24, 7], ["stripe", 39, 7], ["pretix", 51, 7], ["pretix-plugin-build", 52, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["self", 18, 5], ["packageOverrides", 19, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["owner", 63, 5], ["repo", 64, 5], ["tag", 65, 5], ["hash", 66, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["src", 95, 26], ["hash", 96, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["memcached", 199, 5]]);
-const pos$10 = nix.positions(here + "/package.nix", [["callPackage", 308, 34], ["directory", 309, 9]]);
-const pos$11 = nix.positions(here + "/package.nix", [["pretix", 313, 28]]);
-const pos$12 = nix.positions(here + "/package.nix", [["python", 304, 7], ["plugins", 306, 5], ["tests", 312, 5]]);
-const pos$13 = nix.positions(here + "/package.nix", [["description", 320, 5], ["homepage", 321, 5], ["license", 322, 5], ["maintainers", 333, 5], ["mainProgram", 334, 5], ["platforms", 335, 5]]);
-const pos$14 = nix.positions(here + "/package.nix", [["pname", 58, 3], ["version", 59, 3], ["pyproject", 60, 3], ["src", 62, 3], ["patches", 69, 3], ["postPatch", 79, 3], ["npmDeps", 94, 3], ["nativeBuildInputs", 99, 3], ["preBuild", 104, 3], ["build-system", 108, 3], ["dependencies", 115, 3], ["optional-dependencies", 198, 3], ["pythonRelaxDeps", 204, 3], ["pythonRemoveDeps", 243, 3], ["postInstall", 247, 3], ["dontStrip", 257, 3], ["nativeCheckInputs", 259, 3], ["pytestFlags", 276, 3], ["disabledTests", 280, 3], ["disabledTestPaths", 285, 3], ["preCheck", 290, 3], ["postCheck", 298, 3], ["passthru", 302, 3], ["__structuredAttrs", 317, 3], ["meta", 319, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,10 +20,10 @@ export default nix.lambda((args) => (() => {
   const pretix = nix.arg($, "pretix");
   const plugins = nix.argOr($, "plugins", () => []);
   const python = nix.thunk(() => nix.app(nix.sel(python3, "override"), nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       self: python,
       packageOverrides: (self) => (super$) => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         chardet: nix.thunk(() => nix.sel(super$, "chardet_5")),
         django: nix.thunk(() => nix.sel(super$, "django_5")),
         djangorestframework: nix.thunk(() => nix.sel(super$, "djangorestframework_3_17")),
@@ -45,7 +32,7 @@ export default nix.lambda((args) => (() => {
             const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => (() => {
                 const from = nix.thunk(() => nix.sel(oldAttrs, "src"));
                 return {
-                [nix.POS]: pos$1,
+                [nix.POS]: $pos[0],
                 owner: nix.thunk(() => nix.attr(from, "owner")),
                 repo: nix.thunk(() => nix.attr(from, "repo")),
                 tag: nix.thunk(() => nix.str`v${version}`),
@@ -56,12 +43,12 @@ export default nix.lambda((args) => (() => {
               "test_validation_failed_message",
               "test_response_when_auth_server_response_return_404",
             ]);
-            return { [nix.POS]: pos$2, version, src, disabledTests };
+            return { [nix.POS]: $pos[1], version, src, disabledTests };
           })())),
         stripe: nix.thunk(() => nix.app(nix.sel(super$, "stripe", "overridePythonAttrs"), nix.thunk(() => (() => {
             const version = "7.9.0";
             const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-                [nix.POS]: pos$3,
+                [nix.POS]: $pos[2],
                 pname: "stripe",
                 version: version,
                 hash: "sha256-hOXkMINaSwzU/SpXzjhTJp0ds0OREc2mtu11LjSc9KE=",
@@ -70,7 +57,7 @@ export default nix.lambda((args) => (() => {
               const w = nix.withScope(self, null);
               return [nix.thunk(() => nix.lookup(w, "setuptools"))];
             })());
-            return { [nix.POS]: pos$4, version, src, "build-system": build_system };
+            return { [nix.POS]: $pos[3], version, src, "build-system": build_system };
           })()))),
         pretix: nix.thunk(() => nix.app(nix.sel(self, "toPythonModule"), pretix)),
         "pretix-plugin-build": nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./plugin-build.nix"), nix.thunk(() => ({})))),
@@ -78,12 +65,12 @@ export default nix.lambda((args) => (() => {
     }))));
   const pythonPackages = nix.thunk(() => nix.sel(python, "pkgs"));
   return nix.app(nix.sel(pythonPackages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$14,
+      [nix.POS]: $pos[13],
       pname: "pretix",
       version: "2026.8.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           owner: "pretix",
           repo: "pretix",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -95,7 +82,7 @@ export default nix.lambda((args) => (() => {
       ]),
       postPatch: "# unused\nsed -i \"/setuptools-rust/d\" pyproject.toml\n\n# unbreak dependency relaxation\nsubstituteInPlace pyproject.toml \\\n  --replace-fail '\"backend\"' '\"setuptools.build_meta\"' \\\n  --replace-fail 'backend-path = [\"_build\"]' \"\"\n\n# we take care of the npm build\nsubstituteInPlace src/pretix/_build.py \\\n  --replace-fail \"npm ci\" \"true\" \\\n  --replace-fail \"npm run build\" \"true\"\n",
       npmDeps: nix.thunk(() => nix.app(fetchNpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           hash: "sha256-iHtQrZLqjz9RbcIAhFrY+mrIe5pqzE9vCOH0u7cC4MU=",
         })))),
@@ -194,7 +181,7 @@ export default nix.lambda((args) => (() => {
       "optional-dependencies": nix.thunk(() => (() => {
         const w_2 = nix.withScope(pythonPackages, null);
         return {
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           memcached: nix.thunk(() => [nix.thunk(() => nix.lookup(w_2, "pylibmc"))]),
         };
       })()),
@@ -268,18 +255,18 @@ rm -rfv $out/${nix.sel(python, "sitePackages")}/pretix/static.dist/node_prefix
       preCheck: "export PYTHONPATH=$(pwd)/src:$PYTHONPATH\nexport DJANGO_SETTINGS_MODULE=tests.settings\n\necho \"nameserver 127.0.0.1\" > resolv.conf\nexport NIX_REDIRECTS=/etc/resolv.conf=$(realpath resolv.conf)\n",
       postCheck: "unset NIX_REDIRECTS\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$12,
+        [nix.POS]: $pos[11],
         python: python,
         plugins: nix.thunk(() => nix.app(nix.sel(lib, "recurseIntoAttrs"), nix.thunk(() => nix.app(nix.sel(lib, "packagesFromDirectoryRecursive"), nix.thunk(() => ({
-              [nix.POS]: pos$10,
+              [nix.POS]: $pos[9],
               callPackage: nix.thunk(() => nix.attr(pythonPackages, "callPackage")),
               directory: nix.path(here, "./plugins"),
             })))))),
-        tests: nix.thunk(() => ({ [nix.POS]: pos$11, pretix: nix.thunk(() => nix.attr(nixosTests, "pretix")) })),
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[10], pretix: nix.thunk(() => nix.attr(nixosTests, "pretix")) })),
       })),
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$13,
+        [nix.POS]: $pos[12],
         description: "Ticketing software that cares about your event—all the way",
         homepage: "https://github.com/pretix/pretix",
         license: nix.thunk(() => (() => {

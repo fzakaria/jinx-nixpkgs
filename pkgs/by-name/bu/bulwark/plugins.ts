@@ -2,46 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/plugins.nix", [[["updateScript", 47, 18]], [["pluginName", 30, 9], ["strictDeps", 32, 9], ["installPhase", 34, 9], ["passthru", 47, 9]], [["url", 69, 7], ["hash", 70, 7], ["extension", 71, 7], ["stripRoot", 72, 7]], [["description", 75, 7], ["homepage", 76, 7], ["license", 77, 7], ["maintainers", 78, 7]], [["pname", 66, 5], ["version", 67, 5], ["src", 68, 5], ["meta", 74, 5]], [["url", 85, 7], ["hash", 86, 7], ["extension", 87, 7], ["stripRoot", 88, 7]], [["description", 91, 7], ["homepage", 92, 7], ["license", 93, 7], ["maintainers", 94, 7]], [["pname", 82, 5], ["version", 83, 5], ["src", 84, 5], ["meta", 90, 5]], [["url", 101, 7], ["hash", 102, 7], ["extension", 103, 7], ["stripRoot", 104, 7]], [["description", 107, 7], ["homepage", 108, 7], ["license", 109, 7], ["maintainers", 110, 7]], [["pname", 98, 5], ["version", 99, 5], ["src", 100, 5], ["meta", 106, 5]], [["url", 117, 7], ["hash", 118, 7], ["extension", 119, 7], ["stripRoot", 120, 7]], [["description", 123, 7], ["homepage", 124, 7], ["license", 125, 7], ["maintainers", 126, 7]], [["pname", 114, 5], ["version", 115, 5], ["src", 116, 5], ["meta", 122, 5]], [["url", 133, 7], ["hash", 134, 7], ["extension", 135, 7], ["stripRoot", 136, 7]], [["description", 139, 7], ["homepage", 140, 7], ["license", 141, 7], ["maintainers", 142, 7]], [["pname", 130, 5], ["version", 131, 5], ["src", 132, 5], ["meta", 138, 5]], [["url", 149, 7], ["hash", 150, 7], ["extension", 151, 7], ["stripRoot", 152, 7]], [["description", 155, 7], ["homepage", 156, 7], ["license", 157, 7], ["maintainers", 158, 7]], [["pname", 146, 5], ["version", 147, 5], ["src", 148, 5], ["meta", 154, 5]], [["url", 165, 7], ["hash", 166, 7], ["extension", 167, 7], ["stripRoot", 168, 7]], [["description", 171, 7], ["homepage", 172, 7], ["license", 173, 7], ["maintainers", 174, 7]], [["pname", 162, 5], ["version", 163, 5], ["src", 164, 5], ["meta", 170, 5]], [["owner", 181, 7], ["repo", 182, 7], ["tag", 183, 7], ["hash", 184, 7]], [["description", 188, 7], ["homepage", 189, 7], ["license", 190, 7], ["maintainers", 191, 7]], [["pname", 178, 5], ["version", 179, 5], ["src", 180, 5], ["npmDepsHash", 186, 5], ["meta", 187, 5]], [["owner", 198, 7], ["repo", 199, 7], ["tag", 200, 7], ["hash", 201, 7]], [["description", 205, 7], ["homepage", 206, 7], ["license", 207, 7], ["maintainers", 208, 7]], [["pname", 195, 5], ["version", 196, 5], ["src", 197, 5], ["npmDepsHash", 203, 5], ["meta", 204, 5]], [["url", 215, 7], ["hash", 216, 7], ["extension", 217, 7], ["stripRoot", 218, 7]], [["description", 221, 7], ["homepage", 222, 7], ["license", 223, 7], ["maintainers", 224, 7]], [["pname", 212, 5], ["version", 213, 5], ["src", 214, 5], ["meta", 220, 5]], [["url", 231, 7], ["hash", 232, 7], ["extension", 233, 7], ["stripRoot", 234, 7]], [["description", 237, 7], ["homepage", 238, 7], ["license", 239, 7], ["maintainers", 240, 7]], [["pname", 228, 5], ["version", 229, 5], ["src", 230, 5], ["meta", 236, 5]], [["url", 247, 7], ["hash", 248, 7], ["extension", 249, 7], ["stripRoot", 250, 7]], [["description", 253, 7], ["homepage", 254, 7], ["license", 255, 7], ["maintainers", 256, 7]], [["pname", 244, 5], ["version", 245, 5], ["src", 246, 5], ["meta", 252, 5]], [["mkBulwarkPlugin", 63, 11], ["calendar-agenda", 65, 3], ["external-link-warning", 81, 3], ["external-mail-warning", 97, 3], ["gravatar", 113, 3], ["impersonation-notice", 129, 3], ["jitsi-meet", 145, 3], ["libravatar", 161, 3], ["openpgp", 177, 3], ["pgp-true-end-to-end", 194, 3], ["quick-notes", 211, 3], ["smime", 227, 3], ["spam-score", 243, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, buildNpmPackage: false, fetchFromGitHub: false, fetchzip: false, "nix-update": false, "nix-update-script": false, writeShellScript: false, curl: false, jq: false, coreutils: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/plugins.nix", [["updateScript", 47, 18]]);
-const pos$2 = nix.positions(here + "/plugins.nix", [["pluginName", 30, 9], ["strictDeps", 32, 9], ["installPhase", 34, 9], ["passthru", 47, 9]]);
-const pos$3 = nix.positions(here + "/plugins.nix", [["url", 69, 7], ["hash", 70, 7], ["extension", 71, 7], ["stripRoot", 72, 7]]);
-const pos$4 = nix.positions(here + "/plugins.nix", [["description", 75, 7], ["homepage", 76, 7], ["license", 77, 7], ["maintainers", 78, 7]]);
-const pos$5 = nix.positions(here + "/plugins.nix", [["pname", 66, 5], ["version", 67, 5], ["src", 68, 5], ["meta", 74, 5]]);
-const pos$6 = nix.positions(here + "/plugins.nix", [["url", 85, 7], ["hash", 86, 7], ["extension", 87, 7], ["stripRoot", 88, 7]]);
-const pos$7 = nix.positions(here + "/plugins.nix", [["description", 91, 7], ["homepage", 92, 7], ["license", 93, 7], ["maintainers", 94, 7]]);
-const pos$8 = nix.positions(here + "/plugins.nix", [["pname", 82, 5], ["version", 83, 5], ["src", 84, 5], ["meta", 90, 5]]);
-const pos$9 = nix.positions(here + "/plugins.nix", [["url", 101, 7], ["hash", 102, 7], ["extension", 103, 7], ["stripRoot", 104, 7]]);
-const pos$10 = nix.positions(here + "/plugins.nix", [["description", 107, 7], ["homepage", 108, 7], ["license", 109, 7], ["maintainers", 110, 7]]);
-const pos$11 = nix.positions(here + "/plugins.nix", [["pname", 98, 5], ["version", 99, 5], ["src", 100, 5], ["meta", 106, 5]]);
-const pos$12 = nix.positions(here + "/plugins.nix", [["url", 117, 7], ["hash", 118, 7], ["extension", 119, 7], ["stripRoot", 120, 7]]);
-const pos$13 = nix.positions(here + "/plugins.nix", [["description", 123, 7], ["homepage", 124, 7], ["license", 125, 7], ["maintainers", 126, 7]]);
-const pos$14 = nix.positions(here + "/plugins.nix", [["pname", 114, 5], ["version", 115, 5], ["src", 116, 5], ["meta", 122, 5]]);
-const pos$15 = nix.positions(here + "/plugins.nix", [["url", 133, 7], ["hash", 134, 7], ["extension", 135, 7], ["stripRoot", 136, 7]]);
-const pos$16 = nix.positions(here + "/plugins.nix", [["description", 139, 7], ["homepage", 140, 7], ["license", 141, 7], ["maintainers", 142, 7]]);
-const pos$17 = nix.positions(here + "/plugins.nix", [["pname", 130, 5], ["version", 131, 5], ["src", 132, 5], ["meta", 138, 5]]);
-const pos$18 = nix.positions(here + "/plugins.nix", [["url", 149, 7], ["hash", 150, 7], ["extension", 151, 7], ["stripRoot", 152, 7]]);
-const pos$19 = nix.positions(here + "/plugins.nix", [["description", 155, 7], ["homepage", 156, 7], ["license", 157, 7], ["maintainers", 158, 7]]);
-const pos$20 = nix.positions(here + "/plugins.nix", [["pname", 146, 5], ["version", 147, 5], ["src", 148, 5], ["meta", 154, 5]]);
-const pos$21 = nix.positions(here + "/plugins.nix", [["url", 165, 7], ["hash", 166, 7], ["extension", 167, 7], ["stripRoot", 168, 7]]);
-const pos$22 = nix.positions(here + "/plugins.nix", [["description", 171, 7], ["homepage", 172, 7], ["license", 173, 7], ["maintainers", 174, 7]]);
-const pos$23 = nix.positions(here + "/plugins.nix", [["pname", 162, 5], ["version", 163, 5], ["src", 164, 5], ["meta", 170, 5]]);
-const pos$24 = nix.positions(here + "/plugins.nix", [["owner", 181, 7], ["repo", 182, 7], ["tag", 183, 7], ["hash", 184, 7]]);
-const pos$25 = nix.positions(here + "/plugins.nix", [["description", 188, 7], ["homepage", 189, 7], ["license", 190, 7], ["maintainers", 191, 7]]);
-const pos$26 = nix.positions(here + "/plugins.nix", [["pname", 178, 5], ["version", 179, 5], ["src", 180, 5], ["npmDepsHash", 186, 5], ["meta", 187, 5]]);
-const pos$27 = nix.positions(here + "/plugins.nix", [["owner", 198, 7], ["repo", 199, 7], ["tag", 200, 7], ["hash", 201, 7]]);
-const pos$28 = nix.positions(here + "/plugins.nix", [["description", 205, 7], ["homepage", 206, 7], ["license", 207, 7], ["maintainers", 208, 7]]);
-const pos$29 = nix.positions(here + "/plugins.nix", [["pname", 195, 5], ["version", 196, 5], ["src", 197, 5], ["npmDepsHash", 203, 5], ["meta", 204, 5]]);
-const pos$30 = nix.positions(here + "/plugins.nix", [["url", 215, 7], ["hash", 216, 7], ["extension", 217, 7], ["stripRoot", 218, 7]]);
-const pos$31 = nix.positions(here + "/plugins.nix", [["description", 221, 7], ["homepage", 222, 7], ["license", 223, 7], ["maintainers", 224, 7]]);
-const pos$32 = nix.positions(here + "/plugins.nix", [["pname", 212, 5], ["version", 213, 5], ["src", 214, 5], ["meta", 220, 5]]);
-const pos$33 = nix.positions(here + "/plugins.nix", [["url", 231, 7], ["hash", 232, 7], ["extension", 233, 7], ["stripRoot", 234, 7]]);
-const pos$34 = nix.positions(here + "/plugins.nix", [["description", 237, 7], ["homepage", 238, 7], ["license", 239, 7], ["maintainers", 240, 7]]);
-const pos$35 = nix.positions(here + "/plugins.nix", [["pname", 228, 5], ["version", 229, 5], ["src", 230, 5], ["meta", 236, 5]]);
-const pos$36 = nix.positions(here + "/plugins.nix", [["url", 247, 7], ["hash", 248, 7], ["extension", 249, 7], ["stripRoot", 250, 7]]);
-const pos$37 = nix.positions(here + "/plugins.nix", [["description", 253, 7], ["homepage", 254, 7], ["license", 255, 7], ["maintainers", 256, 7]]);
-const pos$38 = nix.positions(here + "/plugins.nix", [["pname", 244, 5], ["version", 245, 5], ["src", 246, 5], ["meta", 252, 5]]);
-const pos$39 = nix.positions(here + "/plugins.nix", [["mkBulwarkPlugin", 63, 11], ["calendar-agenda", 65, 3], ["external-link-warning", 81, 3], ["external-mail-warning", 97, 3], ["gravatar", 113, 3], ["impersonation-notice", 129, 3], ["jitsi-meet", 145, 3], ["libravatar", 161, 3], ["openpgp", 177, 3], ["pgp-true-end-to-end", 194, 3], ["quick-notes", 211, 3], ["smime", 227, 3], ["spam-score", 243, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -74,7 +36,7 @@ fi
 runHook postInstall
 `);
           const passthru = nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             updateScript: nix.thunk(() => (nix.asBool(fromSource) ? nix.app(nix_update_script, nix.thunk(() => ({}))) : nix.app(writeShellScript, nix.thunk(() => nix.str`update-${nix.sel(attrs, "pname")}`), nix.thunk(() => nix.str`set -euo pipefail
 version=$(${nix.app(nix.sel(lib, "getExe"), curl)} -sSf https://extensions.bulwarkmail.org/api/v1/extension/${pluginName} \\
   | ${nix.app(nix.sel(lib, "getExe"), jq)} -r '.data.versions[].version' \\
@@ -82,26 +44,26 @@ version=$(${nix.app(nix.sel(lib, "getExe"), curl)} -sSf https://extensions.bulwa
 exec ${nix.app(nix.sel(lib, "getExe"), nix_update)} bulwark-plugins.${pluginName} --version="$version"
 `)))),
           }));
-          return { [nix.POS]: pos$2, pluginName, strictDeps, installPhase, passthru };
+          return { [nix.POS]: $pos[1], pluginName, strictDeps, installPhase, passthru };
         })());
       })());
   })();
   return {
-    [nix.POS]: pos$39,
+    [nix.POS]: $pos[38],
     mkBulwarkPlugin: mkBulwarkPlugin,
     "calendar-agenda": nix.thunk(() => nix.app(mkBulwarkPlugin, (finalAttrs) => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname: "bulwark-plugin-calendar-agenda",
         version: "1.2.1",
         src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: nix.thunk(() => nix.str`https://extensions.bulwarkmail.org/api/v1/bundle/calendar-agenda/${nix.sel(finalAttrs, "version")}`),
             hash: "sha256-p6RIndNGifU70JadAbWmTT5RE2kOgEVmXKCaa6CkFp0=",
             extension: "zip",
             stripRoot: false,
           })))),
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           description: "Shows an agenda of your upcoming calendar events in the sidebar",
           homepage: "https://extensions.bulwarkmail.org/extension/calendar-agenda",
           license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),
@@ -112,18 +74,18 @@ exec ${nix.app(nix.sel(lib, "getExe"), nix_update)} bulwark-plugins.${pluginName
         })),
       }))),
     "external-link-warning": nix.thunk(() => nix.app(mkBulwarkPlugin, (finalAttrs) => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         pname: "bulwark-plugin-external-link-warning",
         version: "1.2.1",
         src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             url: nix.thunk(() => nix.str`https://extensions.bulwarkmail.org/api/v1/bundle/external-link-warning/${nix.sel(finalAttrs, "version")}`),
             hash: "sha256-FHq3l5yhVpwcgzbXMI7L5l6+wVwRODm56SJSFQuaRAY=",
             extension: "zip",
             stripRoot: false,
           })))),
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           description: "Warns before opening external links to unknown domains",
           homepage: "https://extensions.bulwarkmail.org/extension/external-link-warning",
           license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),
@@ -134,18 +96,18 @@ exec ${nix.app(nix.sel(lib, "getExe"), nix_update)} bulwark-plugins.${pluginName
         })),
       }))),
     "external-mail-warning": nix.thunk(() => nix.app(mkBulwarkPlugin, (finalAttrs) => ({
-        [nix.POS]: pos$11,
+        [nix.POS]: $pos[10],
         pname: "bulwark-plugin-external-mail-warning",
         version: "1.3.1",
         src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-            [nix.POS]: pos$9,
+            [nix.POS]: $pos[8],
             url: nix.thunk(() => nix.str`https://extensions.bulwarkmail.org/api/v1/bundle/external-mail-warning/${nix.sel(finalAttrs, "version")}`),
             hash: "sha256-J0+WCqc8GGw8txZ1g/4JhnivcLA5iuZOQdlXuUSJMxA=",
             extension: "zip",
             stripRoot: false,
           })))),
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$10,
+          [nix.POS]: $pos[9],
           description: "Warns before sending email to recipients outside your safe-domain list",
           homepage: "https://extensions.bulwarkmail.org/extension/external-mail-warning",
           license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),
@@ -156,18 +118,18 @@ exec ${nix.app(nix.sel(lib, "getExe"), nix_update)} bulwark-plugins.${pluginName
         })),
       }))),
     gravatar: nix.thunk(() => nix.app(mkBulwarkPlugin, (finalAttrs) => ({
-        [nix.POS]: pos$14,
+        [nix.POS]: $pos[13],
         pname: "bulwark-plugin-gravatar",
         version: "1.3.1",
         src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-            [nix.POS]: pos$12,
+            [nix.POS]: $pos[11],
             url: nix.thunk(() => nix.str`https://extensions.bulwarkmail.org/api/v1/bundle/gravatar/${nix.sel(finalAttrs, "version")}`),
             hash: "sha256-Rz+xgBw4mfQcdGvQnPLrrW5i4nDQYwMt5Y37gZ2WxyE=",
             extension: "zip",
             stripRoot: false,
           })))),
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$13,
+          [nix.POS]: $pos[12],
           description: "Resolves Gravatar profile pictures for email contacts via the avatar transform hook",
           homepage: "https://extensions.bulwarkmail.org/extension/gravatar",
           license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),
@@ -178,18 +140,18 @@ exec ${nix.app(nix.sel(lib, "getExe"), nix_update)} bulwark-plugins.${pluginName
         })),
       }))),
     "impersonation-notice": nix.thunk(() => nix.app(mkBulwarkPlugin, (finalAttrs) => ({
-        [nix.POS]: pos$17,
+        [nix.POS]: $pos[16],
         pname: "bulwark-plugin-impersonation-notice",
         version: "1.2.5",
         src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-            [nix.POS]: pos$15,
+            [nix.POS]: $pos[14],
             url: nix.thunk(() => nix.str`https://extensions.bulwarkmail.org/api/v1/bundle/impersonation-notice/${nix.sel(finalAttrs, "version")}`),
             hash: "sha256-BuE+51gOAMFAsfrRK8O+1SNJ2G/L1NQ9WBYZZq7tlko=",
             extension: "zip",
             stripRoot: false,
           })))),
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$16,
+          [nix.POS]: $pos[15],
           description: "Shows a persistent top-of-app banner when the active session is a Stalwart master-user impersonation",
           homepage: "https://extensions.bulwarkmail.org/extension/impersonation-notice",
           license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),
@@ -200,18 +162,18 @@ exec ${nix.app(nix.sel(lib, "getExe"), nix_update)} bulwark-plugins.${pluginName
         })),
       }))),
     "jitsi-meet": nix.thunk(() => nix.app(mkBulwarkPlugin, (finalAttrs) => ({
-        [nix.POS]: pos$20,
+        [nix.POS]: $pos[19],
         pname: "bulwark-plugin-jitsi-meet",
         version: "1.0.1",
         src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-            [nix.POS]: pos$18,
+            [nix.POS]: $pos[17],
             url: nix.thunk(() => nix.str`https://extensions.bulwarkmail.org/api/v1/bundle/jitsi-meet/${nix.sel(finalAttrs, "version")}`),
             hash: "sha256-8HYA5Ihi3D9ia4RxxM/J3lfB1qxB3LDyVYx4TDTNSJo=",
             extension: "zip",
             stripRoot: false,
           })))),
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$19,
+          [nix.POS]: $pos[18],
           description: "Adds a 'Add Jitsi Meeting' button to calendar events",
           homepage: "https://extensions.bulwarkmail.org/extension/jitsi-meet",
           license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),
@@ -222,18 +184,18 @@ exec ${nix.app(nix.sel(lib, "getExe"), nix_update)} bulwark-plugins.${pluginName
         })),
       }))),
     libravatar: nix.thunk(() => nix.app(mkBulwarkPlugin, (finalAttrs) => ({
-        [nix.POS]: pos$23,
+        [nix.POS]: $pos[22],
         pname: "bulwark-plugin-libravatar",
         version: "1.0.0",
         src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-            [nix.POS]: pos$21,
+            [nix.POS]: $pos[20],
             url: nix.thunk(() => nix.str`https://extensions.bulwarkmail.org/api/v1/bundle/libravatar/${nix.sel(finalAttrs, "version")}`),
             hash: "sha256-R0AfJJv6IjeFyFUN4L4JA25VvrkLYb1FFAo5IMqxQzU=",
             extension: "zip",
             stripRoot: false,
           })))),
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$22,
+          [nix.POS]: $pos[21],
           description: "Resolves Libravatar profile pictures for email contacts via the avatar transform hook",
           homepage: "https://extensions.bulwarkmail.org/extension/libravatar",
           license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),
@@ -244,11 +206,11 @@ exec ${nix.app(nix.sel(lib, "getExe"), nix_update)} bulwark-plugins.${pluginName
         })),
       }))),
     openpgp: nix.thunk(() => nix.app(mkBulwarkPlugin, (finalAttrs) => ({
-        [nix.POS]: pos$26,
+        [nix.POS]: $pos[25],
         pname: "bulwark-plugin-openpgp",
         version: "1.1.6",
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$24,
+            [nix.POS]: $pos[23],
             owner: "samuelmiller36",
             repo: "bulwark-gpg",
             tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -256,7 +218,7 @@ exec ${nix.app(nix.sel(lib, "getExe"), nix_update)} bulwark-plugins.${pluginName
           })))),
         npmDepsHash: "sha256-rIPl4HIETiZjnfDwORf/lauqN/nbVjLy0a29nm3+bHo=",
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$25,
+          [nix.POS]: $pos[24],
           description: "End-to-end OpenPGP (GnuPG-compatible) for webmail",
           homepage: "https://github.com/samuelmiller36/bulwark-gpg",
           license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -267,11 +229,11 @@ exec ${nix.app(nix.sel(lib, "getExe"), nix_update)} bulwark-plugins.${pluginName
         })),
       }))),
     "pgp-true-end-to-end": nix.thunk(() => nix.app(mkBulwarkPlugin, (finalAttrs) => ({
-        [nix.POS]: pos$29,
+        [nix.POS]: $pos[28],
         pname: "bulwark-plugin-pgp-true-end-to-end",
         version: "2.0.0",
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$27,
+            [nix.POS]: $pos[26],
             owner: "paulhenry46",
             repo: "pgp-plugin",
             tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -279,7 +241,7 @@ exec ${nix.app(nix.sel(lib, "getExe"), nix_update)} bulwark-plugins.${pluginName
           })))),
         npmDepsHash: "sha256-O84i5VyIJ+MlhQAJhXRjmlzmwPl910HTFwFWg/vzrUE=",
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$28,
+          [nix.POS]: $pos[27],
           description: "End-to-end OpenPGP for webmail",
           homepage: "https://github.com/paulhenry46/pgp-plugin",
           license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
@@ -290,18 +252,18 @@ exec ${nix.app(nix.sel(lib, "getExe"), nix_update)} bulwark-plugins.${pluginName
         })),
       }))),
     "quick-notes": nix.thunk(() => nix.app(mkBulwarkPlugin, (finalAttrs) => ({
-        [nix.POS]: pos$32,
+        [nix.POS]: $pos[31],
         pname: "bulwark-plugin-quick-notes",
         version: "1.0.0",
         src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-            [nix.POS]: pos$30,
+            [nix.POS]: $pos[29],
             url: nix.thunk(() => nix.str`https://extensions.bulwarkmail.org/api/v1/bundle/quick-notes/${nix.sel(finalAttrs, "version")}`),
             hash: "sha256-Hh9tTuL0OGSxZWUj2seYD6038ny1DubInpSdtAntOgU=",
             extension: "zip",
             stripRoot: false,
           })))),
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$31,
+          [nix.POS]: $pos[30],
           description: "Per-email sticky notes in the sidebar — jot notes while reading emails",
           homepage: "https://extensions.bulwarkmail.org/extension/quick-notes",
           license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),
@@ -312,18 +274,18 @@ exec ${nix.app(nix.sel(lib, "getExe"), nix_update)} bulwark-plugins.${pluginName
         })),
       }))),
     smime: nix.thunk(() => nix.app(mkBulwarkPlugin, (finalAttrs) => ({
-        [nix.POS]: pos$35,
+        [nix.POS]: $pos[34],
         pname: "bulwark-plugin-smime",
         version: "1.0.2",
         src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-            [nix.POS]: pos$33,
+            [nix.POS]: $pos[32],
             url: nix.thunk(() => nix.str`https://extensions.bulwarkmail.org/api/v1/bundle/smime/${nix.sel(finalAttrs, "version")}`),
             hash: "sha256-BGOOkZu3EHCo4uM+g4B81B+6BoXGLlq++hfbevfpWVc=",
             extension: "zip",
             stripRoot: false,
           })))),
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$34,
+          [nix.POS]: $pos[33],
           description: "End-to-end S/MIME for webmail",
           homepage: "https://extensions.bulwarkmail.org/extension/smime",
           license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),
@@ -334,18 +296,18 @@ exec ${nix.app(nix.sel(lib, "getExe"), nix_update)} bulwark-plugins.${pluginName
         })),
       }))),
     "spam-score": nix.thunk(() => nix.app(mkBulwarkPlugin, (finalAttrs) => ({
-        [nix.POS]: pos$38,
+        [nix.POS]: $pos[37],
         pname: "bulwark-plugin-spam-score",
         version: "1.0.0",
         src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-            [nix.POS]: pos$36,
+            [nix.POS]: $pos[35],
             url: nix.thunk(() => nix.str`https://extensions.bulwarkmail.org/api/v1/bundle/spam-score/${nix.sel(finalAttrs, "version")}`),
             hash: "sha256-JmT/r4Xhn9NiiAnPfya6EqWvpW3wpJFXjNpzmznMDcE=",
             extension: "zip",
             stripRoot: false,
           })))),
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$37,
+          [nix.POS]: $pos[36],
           description: "Adds a Spam Analysis section to a message's \"More details\" panel",
           homepage: "https://extensions.bulwarkmail.org/extension/spam-score",
           license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),

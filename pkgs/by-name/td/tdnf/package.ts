@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["hash", 25, 5]], [["url", 31, 7], ["hash", 32, 7]], [["url", 36, 7], ["hash", 37, 7]], [["description", 83, 5], ["homepage", 84, 5], ["changelog", 85, 5], ["license", 86, 5], ["maintainers", 90, 5], ["mainProgram", 91, 5], ["platforms", 93, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["patches", 28, 3], ["nativeBuildInputs", 41, 3], ["buildInputs", 47, 3], ["propagatedBuildInputs", 55, 3], ["cmakeFlags", 59, 3], ["hardeningDisable", 67, 3], ["postPatch", 69, 3], ["postInstall", 80, 3], ["meta", 82, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch2: false, cmake: false, curl: false, gpgme: false, libsolv: false, libxml2: false, "pkg-config": false, python3: false, rpm: false, sqlite: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 31, 7], ["hash", 32, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 36, 7], ["hash", 37, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 83, 5], ["homepage", 84, 5], ["changelog", 85, 5], ["license", 86, 5], ["maintainers", 90, 5], ["mainProgram", 91, 5], ["platforms", 93, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["patches", 28, 3], ["nativeBuildInputs", 41, 3], ["buildInputs", 47, 3], ["propagatedBuildInputs", 55, 3], ["cmakeFlags", 59, 3], ["hardeningDisable", 67, 3], ["postPatch", 69, 3], ["postInstall", 80, 3], ["meta", 82, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const rpm = nix.arg($, "rpm");
   const sqlite = nix.arg($, "sqlite");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "tdnf",
       version: "3.5.9",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "vmware",
           repo: "tdnf",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -37,12 +33,12 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://patch-diff.githubusercontent.com/raw/vmware/tdnf/pull/410.patch",
             hash: "sha256-p/ix5O1J/lj2fw7qJokT+wPN4ROoulnVqByfxgFvuEo=",
           })))),
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: "https://github.com/vmware/tdnf/commit/24211f2077d2423e511c43f21cd5ee5b53fa4021.patch?full_index=1",
             hash: "sha256-twzyVV+VgtRljj1E70Tq5U0sNEiSWU/rG9buoAYDF0o=",
           })))),
@@ -66,7 +62,7 @@ export default nix.lambda((args) => (() => {
       postPatch: "substituteInPlace CMakeLists.txt \\\n  --replace-fail 'SYSCONFDIR /etc' 'SYSCONFDIR $out/etc' \\\n  --replace-fail '/etc/motdgen.d' '$out/etc/motdgen.d'\nsubstituteInPlace client/tdnf.pc.in \\\n  --replace-fail 'libdir=${prefix}/@CMAKE_INSTALL_LIBDIR@' 'libdir=@CMAKE_INSTALL_FULL_LIBDIR@'\nsubstituteInPlace tools/cli/lib/tdnf-cli-libs.pc.in \\\n  --replace-fail 'libdir=${prefix}/@CMAKE_INSTALL_LIBDIR@' 'libdir=@CMAKE_INSTALL_FULL_LIBDIR@'\n",
       postInstall: "rm $out/bin/*test",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Tiny Dandified Yum",
         homepage: "https://github.com/vmware/tdnf",
         changelog: nix.thunk(() => nix.str`https://github.com/vmware/tdnf/releases/tag/v${nix.sel(finalAttrs, "version")}`),

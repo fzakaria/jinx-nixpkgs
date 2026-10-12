@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["sha256", 20, 5]], [["url", 29, 7], ["sha256", 30, 7]], [["homepage", 68, 5], ["description", 69, 5], ["license", 70, 5], ["platforms", 71, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["patches", 23, 3], ["outputs", 34, 3], ["buildInputs", 39, 3], ["nativeBuildInputs", 41, 3], ["doCheck", 43, 3], ["buildFlags", 45, 3], ["cmakeFlags", 48, 3], ["postInstall", 54, 3], ["meta", 67, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch: false, fixDarwinDylibNames: false, snappy: false, cmake: false, static: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["sha256", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 29, 7], ["sha256", 30, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 68, 5], ["description", 69, 5], ["license", 70, 5], ["platforms", 71, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["patches", 23, 3], ["outputs", 34, 3], ["buildInputs", 39, 3], ["nativeBuildInputs", 41, 3], ["doCheck", 43, 3], ["buildFlags", 45, 3], ["cmakeFlags", 48, 3], ["postInstall", 54, 3], ["meta", 67, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const cmake = nix.arg($, "cmake");
   const static$ = nix.argOr($, "static", () => nix.sel(stdenv, "hostPlatform", "isStatic"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "leveldb",
       version: "1.23",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "google",
           repo: "leveldb",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -31,7 +28,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://src.fedoraproject.org/rpms/leveldb/raw/e8178670c664e952fdd00f1fc6e3eb28b2c5b6a8/f/0006-revert-no-rtti.patch",
             sha256: "sha256-d2YAV8O+1VKu3WwgNsWw6Cxg5sUUR+xOlJtA7pTcigQ=",
           })))),
@@ -58,7 +55,7 @@ cat <<EOF > $dev/lib/pkgconfig/leveldb.pc
 EOF
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/google/leveldb",
         description: "Fast and lightweight key/value database library by Google",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

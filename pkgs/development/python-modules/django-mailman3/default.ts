@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 29, 5], ["version", 30, 13], ["hash", 31, 5]], [["name", 36, 7], ["url", 37, 7], ["excludes", 38, 7], ["hash", 42, 7]], [["name", 47, 7], ["url", 48, 7], ["hash", 49, 7]], [["name", 52, 7], ["url", 53, 7], ["hash", 54, 7]], [["mailman", 84, 26]], [["tests", 83, 12]], [["description", 88, 5], ["homepage", 89, 5], ["license", 90, 5], ["maintainers", 91, 5], ["broken", 92, 5]], [["pname", 24, 3], ["version", 25, 3], ["pyproject", 26, 3], ["src", 28, 3], ["patches", 34, 3], ["pythonRelaxDeps", 58, 3], ["build-system", 60, 3], ["dependencies", 62, 3], ["nativeCheckInputs", 71, 3], ["preCheck", 77, 3], ["pythonImportsCheck", 81, 3], ["passthru", 83, 3], ["meta", 87, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, fetchpatch: false, "pdm-backend": false, "django-gravatar2": false, "django-allauth": false, mailmanclient: false, pytz: false, django: false, "pytest-django": false, pytestCheckHook: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 29, 5], ["version", 30, 13], ["hash", 31, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["name", 36, 7], ["url", 37, 7], ["excludes", 38, 7], ["hash", 42, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["name", 47, 7], ["url", 48, 7], ["hash", 49, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["name", 52, 7], ["url", 53, 7], ["hash", 54, 7]]);
-const pos$5 = nix.positions(here + "/default.nix", [["mailman", 84, 26]]);
-const pos$6 = nix.positions(here + "/default.nix", [["tests", 83, 12]]);
-const pos$7 = nix.positions(here + "/default.nix", [["description", 88, 5], ["homepage", 89, 5], ["license", 90, 5], ["maintainers", 91, 5], ["broken", 92, 5]]);
-const pos$8 = nix.positions(here + "/default.nix", [["pname", 24, 3], ["version", 25, 3], ["pyproject", 26, 3], ["src", 28, 3], ["patches", 34, 3], ["pythonRelaxDeps", 58, 3], ["build-system", 60, 3], ["dependencies", 62, 3], ["nativeCheckInputs", 71, 3], ["preCheck", 77, 3], ["pythonImportsCheck", 81, 3], ["passthru", 83, 3], ["meta", 87, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,27 +25,27 @@ export default nix.lambda((args) => (() => {
       const version = "1.3.15";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "django_mailman3",
           version: version,
           hash: "sha256-+ZFrJpy5xdW6Yde/XEvxoAN8+TSQdiI0PfjZ7bHG0Rs=",
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "django-5.2.patch",
             url: "https://gitlab.com/mailman/django-mailman3/-/commit/465c1ffc77556bb8a80a678f53a40f16b9766cc6.patch",
             excludes: nix.thunk(() => [".gitlab-ci.yml", "README.rst"]),
             hash: "sha256-gSFczuNLlMclqixOu6ElS0BewUTGyhP6RXtE/waLzyo=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "allauth-64-1.patch",
             url: "https://gitlab.com/mailman/django-mailman3/-/commit/96f3f3bf0c718395ccd1b0d539a40d627522a9c4.patch",
             hash: "sha256-xgQu70DkbPz+ULRFgKeJTbx/Tq2PLEyGgrncf26ChA4=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             name: "allauth-64-2.patch",
             url: "https://gitlab.com/mailman/django-mailman3/-/commit/cfdacb9195ce266e5ae23307b31304898369f696.patch",
             hash: "sha256-6mwGSw31Q0+APwdGFe0JE0gBigdo453HZZ6JApqgtTE=",
@@ -65,11 +58,14 @@ export default nix.lambda((args) => (() => {
       const preCheck = "export DJANGO_SETTINGS_MODULE=django_mailman3.tests.settings_test\n";
       const pythonImportsCheck = nix.thunk(() => ["django_mailman3"]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$6,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$5, mailman: nix.thunk(() => nix.attr(nixosTests, "mailman")) })),
+        [nix.POS]: $pos[5],
+        tests: nix.thunk(() => ({
+          [nix.POS]: $pos[4],
+          mailman: nix.thunk(() => nix.attr(nixosTests, "mailman")),
+        })),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "Django library for Mailman UIs",
         homepage: "https://gitlab.com/mailman/django-mailman3",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
@@ -80,7 +76,7 @@ export default nix.lambda((args) => (() => {
         broken: nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(django, "version")), "5.3")),
       }));
       return {
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         pname,
         version,
         pyproject,

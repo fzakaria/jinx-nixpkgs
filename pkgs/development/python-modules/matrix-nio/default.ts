@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 52, 5], ["repo", 53, 5], ["tag", 54, 5], ["hash", 55, 5]], [["e2e", 78, 5]], [["pytest-asyncio", 97, 32]], [["dendrite", 158, 7], ["matrix-appservice-irc", 159, 7], ["matrix-conduit", 160, 7], ["mjolnir", 161, 7], ["weechat-matrix", 163, 30], ["opsdroid", 164, 13], ["pantalaimon", 164, 22], ["zulip", 164, 34]], [["tests", 156, 12]], [["homepage", 168, 5], ["changelog", 169, 5], ["description", 170, 5], ["license", 171, 5], ["maintainers", 172, 5]], [["pname", 47, 3], ["version", 48, 3], ["pyproject", 49, 3], ["src", 51, 3], ["patches", 58, 3], ["build-system", 63, 3], ["dependencies", 65, 3], ["optional-dependencies", 77, 3], ["pythonRelaxDeps", 86, 3], ["nativeCheckInputs", 91, 3], ["pytestFlags", 102, 3], ["disabledTestPaths", 104, 3], ["disabledTests", 113, 3], ["passthru", 156, 3], ["meta", 167, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, aiofiles: false, aiohttp: false, "aiohttp-socks": false, h11: false, h2: false, jsonschema: false, pycryptodome: false, unpaddedbase64: false, atomicwrites: false, cachetools: false, peewee: false, vodozemac: false, aioresponses: false, faker: false, hpack: false, hyperframe: false, hypothesis: false, "pytest-aiohttp": false, "pytest-asyncio_0": false, "pytest-benchmark": false, pytestCheckHook: false, nixosTests: false, opsdroid: false, pantalaimon: false, weechatScripts: false, zulip: false, withVodozemac: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 52, 5], ["repo", 53, 5], ["tag", 54, 5], ["hash", 55, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["e2e", 78, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pytest-asyncio", 97, 32]]);
-const pos$4 = nix.positions(here + "/default.nix", [["dendrite", 158, 7], ["matrix-appservice-irc", 159, 7], ["matrix-conduit", 160, 7], ["mjolnir", 161, 7], ["weechat-matrix", 163, 30], ["opsdroid", 164, 13], ["pantalaimon", 164, 22], ["zulip", 164, 34]]);
-const pos$5 = nix.positions(here + "/default.nix", [["tests", 156, 12]]);
-const pos$6 = nix.positions(here + "/default.nix", [["homepage", 168, 5], ["changelog", 169, 5], ["description", 170, 5], ["license", 171, 5], ["maintainers", 172, 5]]);
-const pos$7 = nix.positions(here + "/default.nix", [["pname", 47, 3], ["version", 48, 3], ["pyproject", 49, 3], ["src", 51, 3], ["patches", 58, 3], ["build-system", 63, 3], ["dependencies", 65, 3], ["optional-dependencies", 77, 3], ["pythonRelaxDeps", 86, 3], ["nativeCheckInputs", 91, 3], ["pytestFlags", 102, 3], ["disabledTestPaths", 104, 3], ["disabledTests", 113, 3], ["passthru", 156, 3], ["meta", 167, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -49,7 +43,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.26.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "poljar",
           repo: "matrix-nio",
           tag: version,
@@ -68,7 +62,7 @@ export default nix.lambda((args) => (() => {
         unpaddedbase64,
       ], nix.app(nix.sel(lib, "optionals"), withVodozemac, nix.thunk(() => nix.sel(optional_dependencies, "e2e")))));
       const optional_dependencies = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         e2e: nix.thunk(() => [atomicwrites, cachetools, vodozemac, peewee]),
       }));
       const pythonRelaxDeps = nix.thunk(() => ["aiofiles", "aiohttp-socks"]);
@@ -78,7 +72,7 @@ export default nix.lambda((args) => (() => {
         hpack,
         hyperframe,
         hypothesis,
-        nix.thunk(() => nix.app(nix.sel(pytest_aiohttp, "override"), nix.thunk(() => ({ [nix.POS]: pos$3, "pytest-asyncio": pytest_asyncio_0 })))),
+        nix.thunk(() => nix.app(nix.sel(pytest_aiohttp, "override"), nix.thunk(() => ({ [nix.POS]: $pos[2], "pytest-asyncio": pytest_asyncio_0 })))),
         pytest_benchmark,
         pytestCheckHook,
       ]);
@@ -130,9 +124,9 @@ export default nix.lambda((args) => (() => {
           "test_sync_token_restoring",
         ]))));
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           dendrite: nix.thunk(() => nix.attr(nixosTests, "dendrite")),
           "matrix-appservice-irc": nix.thunk(() => nix.attr(nixosTests, "matrix-appservice-irc")),
           "matrix-conduit": nix.thunk(() => nix.attr(nixosTests, "matrix-conduit")),
@@ -144,7 +138,7 @@ export default nix.lambda((args) => (() => {
         })),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         homepage: "https://github.com/poljar/matrix-nio",
         changelog: nix.thunk(() => nix.str`https://github.com/poljar/matrix-nio/blob/${version}/CHANGELOG.md`),
         description: "Python Matrix client library, designed according to sans I/O principles",
@@ -158,7 +152,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         pname,
         version,
         pyproject,

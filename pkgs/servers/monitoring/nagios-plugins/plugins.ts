@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/plugins.nix", [[["check_esxi_hardware", 4, 3], ["check_interfaces", 5, 3], ["check_openvpn", 6, 3], ["check_smartmon", 7, 3], ["check_ssl_cert", 8, 3], ["check_systemd", 9, 3], ["check_uptime", 10, 3], ["check_wmi_plus", 11, 3], ["check_zfs", 12, 3], ["check_mssql_health", 14, 46], ["check_nwc_health", 14, 65], ["check_ups_health", 14, 82], ["manubulon-snmp-plugins", 15, 3], ["openbsd_snmp3_check", 16, 3]]]);
 const formals$1 = { args: { callPackage: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/plugins.nix", [["check_esxi_hardware", 4, 3], ["check_interfaces", 5, 3], ["check_openvpn", 6, 3], ["check_smartmon", 7, 3], ["check_ssl_cert", 8, 3], ["check_systemd", 9, 3], ["check_uptime", 10, 3], ["check_wmi_plus", 11, 3], ["check_zfs", 12, 3], ["check_mssql_health", 14, 46], ["check_nwc_health", 14, 65], ["check_ups_health", 14, 82], ["manubulon-snmp-plugins", 15, 3], ["openbsd_snmp3_check", 16, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -11,7 +11,7 @@ export default nix.lambda((args) => (() => {
   return (() => {
     const from = nix.thunk(() => nix.app(callPackage, nix.path(here, "./labs_consol_de"), nix.thunk(() => ({}))));
     return {
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     check_esxi_hardware: nix.thunk(() => nix.app(callPackage, nix.path(here, "./check_esxi_hardware"), nix.thunk(() => ({})))),
     check_interfaces: nix.thunk(() => nix.app(callPackage, nix.path(here, "./check_interfaces"), nix.thunk(() => ({})))),
     check_openvpn: nix.thunk(() => nix.app(callPackage, nix.path(here, "./check_openvpn"), nix.thunk(() => ({})))),

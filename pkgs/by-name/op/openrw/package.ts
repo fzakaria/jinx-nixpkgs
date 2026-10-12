@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 30, 5], ["repo", 31, 5], ["rev", 32, 5], ["fetchSubmodules", 33, 5], ["hash", 34, 5]], [["updateScript", 68, 5]], [["description", 72, 5], ["homepage", 73, 5], ["license", 74, 5], ["longDescription", 75, 5], ["maintainers", 79, 5], ["platforms", 80, 5], ["mainProgram", 81, 5], ["badPlatforms", 82, 5]], [["version", 26, 3], ["pname", 27, 3], ["src", 29, 3], ["postPatch", 37, 3], ["nativeBuildInputs", 49, 3], ["buildInputs", 54, 3], ["passthru", 67, 3], ["meta", 71, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, ninja: false, SDL2: false, boost: false, bullet: false, ffmpeg_6: false, glm: false, libGL: false, libGLU: false, libmad: false, libx11: false, openal: false, unstableGitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 30, 5], ["repo", 31, 5], ["rev", 32, 5], ["fetchSubmodules", 33, 5], ["hash", 34, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 68, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 72, 5], ["homepage", 73, 5], ["license", 74, 5], ["longDescription", 75, 5], ["maintainers", 79, 5], ["platforms", 80, 5], ["mainProgram", 81, 5], ["badPlatforms", 82, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["version", 26, 3], ["pname", 27, 3], ["src", 29, 3], ["postPatch", 37, 3], ["nativeBuildInputs", 49, 3], ["buildInputs", 54, 3], ["passthru", 67, 3], ["meta", 71, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const openal = nix.arg($, "openal");
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       version: "0-unstable-2025-06-18",
       pname: "openrw",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "rwengine",
           repo: "openrw",
           rev: "5c5f266b71aa55aeec8cb4d823f19e7c4348f3bd",
@@ -42,11 +39,11 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [cmake, ninja]),
       buildInputs: nix.thunk(() => [SDL2, boost, bullet, ffmpeg_6, glm, libGL, libGLU, libmad, libx11, openal]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Unofficial open source recreation of the classic Grand Theft Auto III game executable",
         homepage: "https://github.com/rwengine/openrw",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

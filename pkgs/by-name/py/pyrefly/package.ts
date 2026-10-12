@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]], [["bash", 33, 40]], [["extraArgs", 43, 5]], [["updateScript", 42, 12]], [["description", 47, 5], ["homepage", 48, 5], ["license", 49, 5], ["mainProgram", 50, 5], ["platforms", 51, 5], ["maintainers", 52, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["buildAndTestSubdir", 22, 3], ["cargoHash", 24, 3], ["buildInputs", 26, 3], ["nativeInstallCheckInputs", 28, 3], ["versionCheckProgramArg", 29, 3], ["doInstallCheck", 30, 3], ["patches", 32, 3], ["preCheck", 37, 3], ["passthru", 42, 3], ["meta", 46, 3]]]);
 const formals$1 = { args: { lib: false, bash: false, replaceVars: false, rustPlatform: false, fetchFromGitHub: false, versionCheckHook: false, "nix-update-script": false, "rust-jemalloc-sys": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["bash", 33, 40]]);
-const pos$3 = nix.positions(here + "/package.nix", [["extraArgs", 43, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 42, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 47, 5], ["homepage", 48, 5], ["license", 49, 5], ["mainProgram", 50, 5], ["platforms", 51, 5], ["maintainers", 52, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["buildAndTestSubdir", 22, 3], ["cargoHash", 24, 3], ["buildInputs", 26, 3], ["nativeInstallCheckInputs", 28, 3], ["versionCheckProgramArg", 29, 3], ["doInstallCheck", 30, 3], ["patches", 32, 3], ["preCheck", 37, 3], ["passthru", 42, 3], ["meta", 46, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const rust_jemalloc_sys = nix.arg($, "rust-jemalloc-sys");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "pyrefly",
       version: "1.3.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "facebook",
           repo: "pyrefly",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -39,20 +34,20 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix-shebang.patch"), nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             bash: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), bash)),
           })))),
       ]),
       preCheck: "export TMPDIR=$(mktemp -d)\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             extraArgs: nix.thunk(() => ["--version-regex=^([\\d.]+)$"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Fast type checker and IDE for Python",
         homepage: "https://github.com/facebook/pyrefly",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

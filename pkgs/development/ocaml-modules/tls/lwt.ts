@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/lwt.nix", [[["pname", 9, 3], ["src", 11, 17], ["meta", 11, 21], ["version", 11, 26], ["doCheck", 13, 3], ["propagatedBuildInputs", 15, 3]]]);
 const formals$1 = { args: { buildDunePackage: false, tls: false, lwt: false, "mirage-crypto-rng": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/lwt.nix", [["pname", 9, 3], ["src", 11, 17], ["meta", 11, 21], ["version", 11, 26], ["doCheck", 13, 3], ["propagatedBuildInputs", 15, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const lwt = nix.arg($, "lwt");
   const mirage_crypto_rng = nix.arg($, "mirage-crypto-rng");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       pname: "tls-lwt",
       src: nix.thunk(() => nix.attr(tls, "src")),
       meta: nix.thunk(() => nix.attr(tls, "meta")),

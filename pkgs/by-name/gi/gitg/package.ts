@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 38, 5], ["hash", 39, 5]], [["url", 46, 7], ["hash", 47, 7]], [["packageName", 96, 7]], [["updateScript", 95, 5]], [["homepage", 103, 5], ["changelog", 104, 5], ["description", 105, 5], ["mainProgram", 106, 5], ["maintainers", 107, 5], ["license", 110, 5], ["platforms", 111, 5]], [["pname", 34, 3], ["version", 35, 3], ["src", 37, 3], ["patches", 42, 3], ["nativeBuildInputs", 51, 3], ["buildInputs", 61, 3], ["doCheck", 79, 3], ["postPatch", 81, 3], ["preFixup", 87, 3], ["passthru", 94, 3], ["strictDeps", 100, 3], ["meta", 102, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, fetchpatch: false, vala: false, "pkg-config": false, gtk3: false, glib: false, gpgme: false, "json-glib": false, wrapGAppsHook3: false, libpeas: false, bash: false, "gobject-introspection": false, gtksourceview4: false, "gsettings-desktop-schemas": false, gnome: false, gspell: false, gvfs: false, "shared-mime-info": false, libgee: false, "libgit2-glib": false, libhandy: false, libsecret: false, libxml2: false, meson: false, ninja: false, python3: false, libdazzle: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 38, 5], ["hash", 39, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 46, 7], ["hash", 47, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["packageName", 96, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 95, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["homepage", 103, 5], ["changelog", 104, 5], ["description", 105, 5], ["mainProgram", 106, 5], ["maintainers", 107, 5], ["license", 110, 5], ["platforms", 111, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 34, 3], ["version", 35, 3], ["src", 37, 3], ["patches", 42, 3], ["nativeBuildInputs", 51, 3], ["buildInputs", 61, 3], ["doCheck", 79, 3], ["postPatch", 81, 3], ["preFixup", 87, 3], ["passthru", 94, 3], ["strictDeps", 100, 3], ["meta", 102, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -42,17 +37,17 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const libdazzle = nix.arg($, "libdazzle");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "gitg",
       version: "50",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnome/sources/gitg/${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/gitg-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-MxIWqGkgzU6KubADbmPOyz4aHRFixhqjG9aSTphagVQ=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://src.fedoraproject.org/rpms/gitg/raw/630cf1bdb50ad37fb20b81d76caa8622e7225c58/f/gitg-gir-2.0.patch",
             hash: "sha256-9pC7wrxWcI1C/8yB5AcaED0RyaVbQzT0Ajuz0TM4hmo=",
           })))),
@@ -94,12 +89,12 @@ substituteInPlace tests/libgitg/test-commit.vala --replace-fail "/bin/bash" "${b
 )
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$3, packageName: "gitg" })))),
+        [nix.POS]: $pos[3],
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: $pos[2], packageName: "gitg" })))),
       })),
       strictDeps: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "https://gitlab.gnome.org/GNOME/gitg",
         changelog: nix.thunk(() => nix.str`https://gitlab.gnome.org/GNOME/gitg/-/blob/v${nix.sel(finalAttrs, "version")}/NEWS?ref_type=tags`),
         description: "GNOME GUI client to view git repositories",

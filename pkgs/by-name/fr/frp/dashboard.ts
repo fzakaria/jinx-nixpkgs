@@ -2,17 +2,15 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/dashboard.nix", [[["description", 27, 9]], [["pname", 9, 7], ["version", 10, 21], ["src", 10, 29], ["sourceRoot", 12, 7], ["preBuild", 14, 7], ["installPhase", 18, 7], ["npmDepsHash", 24, 7], ["meta", 26, 7]], [["frpc", 32, 3], ["frps", 33, 3]]]);
 const formals$1 = { args: { buildNpmPackage: false, frp: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/dashboard.nix", [["description", 27, 9]]);
-const pos$2 = nix.positions(here + "/dashboard.nix", [["pname", 9, 7], ["version", 10, 21], ["src", 10, 29], ["sourceRoot", 12, 7], ["preBuild", 14, 7], ["installPhase", 18, 7], ["npmDepsHash", 24, 7], ["meta", 26, 7]]);
-const pos$3 = nix.positions(here + "/dashboard.nix", [["frpc", 32, 3], ["frps", 33, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const buildNpmPackage = nix.arg($, "buildNpmPackage");
   const frp = nix.arg($, "frp");
   const builder = (name) => nix.app(buildNpmPackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: nix.thunk(() => nix.str`${name}-dashboard`),
       version: nix.thunk(() => nix.attr(frp, "version")),
       src: nix.thunk(() => nix.attr(frp, "src")),
@@ -21,10 +19,10 @@ export default nix.lambda((args) => (() => {
 `),
       installPhase: "runHook preInstall\ncp -r dist $out\nrunHook postInstall\n",
       npmDepsHash: "sha256-yiQK196bsGijjA9VyWSnWgK9k6o39a098YELOTfyScU",
-      meta: nix.thunk(() => nix.update(nix.sel(frp, "meta"), { [nix.POS]: pos$1, description: "Dashboard for frp" })),
+      meta: nix.thunk(() => nix.update(nix.sel(frp, "meta"), { [nix.POS]: $pos[0], description: "Dashboard for frp" })),
     })));
   return {
-    [nix.POS]: pos$3,
+    [nix.POS]: $pos[2],
     frpc: nix.thunk(() => nix.app(builder, "frpc")),
     frps: nix.thunk(() => nix.app(builder, "frps")),
   };

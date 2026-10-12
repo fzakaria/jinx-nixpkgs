@@ -2,9 +2,8 @@
 import * as nix from "../../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["description", 35, 5], ["homepage", 36, 5], ["changelog", 37, 31], ["license", 37, 41], ["maintainers", 38, 5]], [["src", 11, 11], ["version", 11, 15], ["pname", 13, 3], ["sourceRoot", 18, 3], ["dependencies", 20, 3], ["buildInputs", 24, 3], ["postPatch", 26, 3], ["checkInputs", 30, 3], ["meta", 34, 3]]]);
 const formals$1 = { args: { lib: false, vimUtils: false, vectorcode: false, vimPlugins: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["description", 35, 5], ["homepage", 36, 5], ["changelog", 37, 31], ["license", 37, 41], ["maintainers", 38, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["src", 11, 11], ["version", 11, 15], ["pname", 13, 3], ["sourceRoot", 18, 3], ["dependencies", 20, 3], ["buildInputs", 24, 3], ["postPatch", 26, 3], ["checkInputs", 30, 3], ["meta", 34, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const src = nix.thunk(() => nix.attr(vectorcode, "src"));
   const version = nix.thunk(() => nix.attr(vectorcode, "version"));
   return nix.app(nix.sel(vimUtils, "buildVimPlugin"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       src: src,
       version: version,
       pname: "vectorcode.nvim",
@@ -27,7 +26,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(vectorcode, "meta"));
         return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Index and navigate your code repository using vectorcode",
         homepage: "https://github.com/Davidyz/VectorCode/blob/main/docs/neovim/README.md",
         changelog: nix.thunk(() => nix.attr(from, "changelog")),

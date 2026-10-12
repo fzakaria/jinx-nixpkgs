@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]], [["updateScript", 29, 12]], [["PUPPETEER_SKIP_DOWNLOAD", 38, 5]], [["description", 46, 5], ["homepage", 47, 5], ["changelog", 48, 5], ["license", 49, 5], ["mainProgram", 50, 5], ["maintainers", 51, 5], ["platforms", 52, 5], ["broken", 54, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["npmDepsHash", 21, 3], ["dontNpmBuild", 23, 3], ["npmFlags", 25, 3], ["makeWrapperArgs", 27, 3], ["passthru", 29, 3], ["postInstall", 31, 3], ["env", 37, 3], ["nativeInstallCheckInputs", 41, 3], ["doInstallCheck", 42, 3], ["versionCheckProgram", 43, 3], ["meta", 45, 3]]]);
 const formals$1 = { args: { lib: false, buildNpmPackage: false, fetchFromGitHub: false, nodejs: false, "nix-update-script": false, versionCheckHook: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 29, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["PUPPETEER_SKIP_DOWNLOAD", 38, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 46, 5], ["homepage", 47, 5], ["changelog", 48, 5], ["license", 49, 5], ["mainProgram", 50, 5], ["maintainers", 51, 5], ["platforms", 52, 5], ["broken", 54, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["npmDepsHash", 21, 3], ["dontNpmBuild", 23, 3], ["npmFlags", 25, 3], ["makeWrapperArgs", 27, 3], ["passthru", 29, 3], ["postInstall", 31, 3], ["env", 37, 3], ["nativeInstallCheckInputs", 41, 3], ["doInstallCheck", 42, 3], ["versionCheckProgram", 43, 3], ["meta", 45, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "task-master-ai",
       version: "0.25.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "eyaltoledano",
           repo: "claude-task-master",
           tag: nix.thunk(() => nix.str`task-master-ai@${nix.sel(finalAttrs, "version")}`),
@@ -36,16 +32,16 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`--prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [nodejs]))}`),
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       postInstall: "mkdir -p $out/lib/node_modules/task-master-ai/apps\ncp -r apps/extension $out/lib/node_modules/task-master-ai/apps/extension\ncp -r apps/docs $out/lib/node_modules/task-master-ai/apps/docs\n",
-      env: nix.thunk(() => ({ [nix.POS]: pos$3, PUPPETEER_SKIP_DOWNLOAD: 1n })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[2], PUPPETEER_SKIP_DOWNLOAD: 1n })),
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       versionCheckProgram: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/bin/task-master`),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Node.js agentic AI workflow orchestrator",
         homepage: "https://task-master.dev",
         changelog: nix.thunk(() => nix.str`https://github.com/eyaltoledano/claude-task-master/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

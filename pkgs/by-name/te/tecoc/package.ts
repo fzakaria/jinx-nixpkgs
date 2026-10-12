@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]], [["url", 64, 5]], [["updateScript", 63, 12]], [["shortName", 85, 7], ["url", 86, 7]], [["homepage", 68, 5], ["description", 69, 5], ["longDescription", 70, 5], ["license", 84, 5], ["maintainers", 88, 5], ["platforms", 89, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["patches", 20, 3], ["buildInputs", 24, 3], ["makefile", 26, 3], ["makeFlags", 38, 3], ["installPhase", 43, 3], ["postFixup", 54, 3], ["passthru", 63, 3], ["meta", 67, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, ncurses: false, unstableGitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 64, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 63, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["shortName", 85, 7], ["url", 86, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["homepage", 68, 5], ["description", 69, 5], ["longDescription", 70, 5], ["license", 84, 5], ["maintainers", 88, 5], ["platforms", 89, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["patches", 20, 3], ["buildInputs", 24, 3], ["makefile", 26, 3], ["makeFlags", 38, 3], ["installPhase", 43, 3], ["postFixup", 54, 3], ["passthru", 63, 3], ["meta", 67, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const ncurses = nix.arg($, "ncurses");
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "tecoc",
       version: "0-unstable-2026-08-21",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "blakemcbride",
           repo: "TECOC",
           rev: "c18a5ea95591994d36535d603e098836c6b86b7a",
@@ -38,19 +33,19 @@ export default nix.lambda((args) => (() => {
       installPhase: "runHook preInstall\n\ninstall -d $out/bin $out/share/doc/tecoc $out/lib/teco/macros\ninstall -m755 src/tecoc $out/bin\ninstall -m644 src/aaout.txt doc/* $out/share/doc/tecoc\ninstall -m644 lib/* lib2/* $out/lib/teco/macros\n\nrunHook postInstall\n",
       postFixup: "pushd $out/bin\nln -s tecoc Make\nln -s tecoc mung\nln -s tecoc teco\nln -s tecoc Inspect\npopd\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: nix.thunk(() => nix.sel(finalAttrs, "meta", "homepage")),
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "https://github.com/blakemcbride/TECOC",
         description: "Clone of the good old TECO editor",
         longDescription: "For those who don't know: TECO is the acronym of Tape Editor and COrrector\n(because it was a paper tape edition tool in its debut days). Now the\nacronym follows after Text Editor and Corrector, or Text Editor\nCharacter-Oriented.\n\nTECO is a character-oriented text editor, originally developed by Dan\nMurphy at MIT circa 1962. It is also a Turing-complete imperative\ninterpreted programming language for text manipulation, done via\nuser-loaded sets of macros. In fact, the venerable Emacs was born as a set\nof Editor MACroS for TECO.\n\nTECOC is a portable C implementation of TECO-11.\n",
         license: nix.thunk(() => nix.app(nix.sel(lib, "licenses", "mkLicense"), nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             shortName: "tecoc",
             url: nix.thunk(() => nix.str`https://github.com/blakemcbride/TECOC/blob/${nix.sel(finalAttrs, "src", "rev")}/doc/readme-1st.txt`),
           })))),

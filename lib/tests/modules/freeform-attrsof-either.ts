@@ -2,12 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/freeform-attrsof-either.nix", [[["freeformType", 8, 7]], [["int", 11, 7]], [["type", 7, 5], ["default", 10, 5]], [["number", 6, 11]], [["options", 6, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/freeform-attrsof-either.nix", [["freeformType", 8, 7]]);
-const pos$2 = nix.positions(here + "/freeform-attrsof-either.nix", [["int", 11, 7]]);
-const pos$3 = nix.positions(here + "/freeform-attrsof-either.nix", [["type", 7, 5], ["default", 10, 5]]);
-const pos$4 = nix.positions(here + "/freeform-attrsof-either.nix", [["number", 6, 11]]);
-const pos$5 = nix.positions(here + "/freeform-attrsof-either.nix", [["options", 6, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,16 +11,16 @@ export default nix.lambda((args) => (() => {
   const types = nix.thunk(() => nix.attr(lib, "types"));
   const mkOption = nix.thunk(() => nix.attr(lib, "mkOption"));
   return {
-    [nix.POS]: pos$5,
+    [nix.POS]: $pos[4],
     options: nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       number: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           type: nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-              [nix.POS]: pos$1,
+              [nix.POS]: $pos[0],
               freeformType: nix.thunk(() => nix.app(nix.sel(types, "attrsOf"), nix.thunk(() => nix.app(nix.sel(types, "either"), nix.thunk(() => nix.sel(types, "int")), nix.thunk(() => nix.sel(types, "int")))))),
             })))),
-          default: nix.thunk(() => ({ [nix.POS]: pos$2, int: 42n })),
+          default: nix.thunk(() => ({ [nix.POS]: $pos[1], int: 42n })),
         })))),
     })),
   };

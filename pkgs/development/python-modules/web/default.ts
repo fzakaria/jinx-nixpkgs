@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 21, 13], ["version", 21, 19], ["sha256", 22, 5]], [["description", 45, 5], ["longDescription", 46, 5], ["homepage", 50, 5], ["license", 51, 5], ["maintainers", 52, 5]], [["version", 16, 3], ["format", 17, 3], ["pname", 18, 3], ["src", 20, 3], ["propagatedBuildInputs", 25, 3], ["doCheck", 31, 3], ["pythonImportsCheck", 33, 3], ["nativeCheckInputs", 35, 3], ["meta", 44, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, pytestCheckHook: false, cheroot: false, "legacy-cgi": false, dbutils: false, mysqlclient: false, pymysql: false, "mysql-connector-python": false, psycopg2: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 21, 13], ["version", 21, 19], ["sha256", 22, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 45, 5], ["longDescription", 46, 5], ["homepage", 50, 5], ["license", 51, 5], ["maintainers", 52, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["version", 16, 3], ["format", 17, 3], ["pname", 18, 3], ["src", 20, 3], ["propagatedBuildInputs", 25, 3], ["doCheck", 31, 3], ["pythonImportsCheck", 33, 3], ["nativeCheckInputs", 35, 3], ["meta", 44, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const format = "setuptools";
       const pname = "web.py";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           sha256: "5ce684caa240654cae5950da8b4b7bc178812031e08f990518d072bd44ab525e",
@@ -42,7 +40,7 @@ export default nix.lambda((args) => (() => {
         psycopg2,
       ]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Makes web apps",
         longDescription: "Think about the ideal way to write a web app.\nWrite the code to make it happen.\n",
         homepage: "https://webpy.org/",
@@ -53,7 +51,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         version,
         format,
         pname,

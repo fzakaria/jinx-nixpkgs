@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/25.nix", [[["zuluVersion", 18, 17], ["jdkVersion", 18, 29], ["hash", 19, 9]], [["zuluVersion", 27, 17], ["jdkVersion", 27, 29], ["hash", 28, 9]], [["zuluVersion", 36, 17], ["jdkVersion", 36, 29], ["hash", 37, 9]], [["x86_64-linux", 17, 7], ["aarch64-linux", 26, 7], ["aarch64-darwin", 35, 7]], [["dists", 16, 5]]]);
 const formals$1 = { args: { callPackage: false, enableJavaFX: true }, ellipsis: true };
-const pos$1 = nix.positions(here + "/25.nix", [["zuluVersion", 18, 17], ["jdkVersion", 18, 29], ["hash", 19, 9]]);
-const pos$2 = nix.positions(here + "/25.nix", [["zuluVersion", 27, 17], ["jdkVersion", 27, 29], ["hash", 28, 9]]);
-const pos$3 = nix.positions(here + "/25.nix", [["zuluVersion", 36, 17], ["jdkVersion", 36, 29], ["hash", 37, 9]]);
-const pos$4 = nix.positions(here + "/25.nix", [["x86_64-linux", 17, 7], ["aarch64-linux", 26, 7], ["aarch64-darwin", 35, 7]]);
-const pos$5 = nix.positions(here + "/25.nix", [["dists", 16, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,23 +13,23 @@ export default nix.lambda((args) => (() => {
   const zuluVersion = nix.thunk(() => (nix.asBool(enableJavaFX) ? "25.34.17" : "25.34.17"));
   const jdkVersion = "25.0.3";
   return nix.app(callPackage, nix.path(here, "./common.nix"), nix.thunk(() => nix.update({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       dists: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         "x86_64-linux": nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           zuluVersion: zuluVersion,
           jdkVersion: jdkVersion,
           hash: nix.thunk(() => (nix.asBool(enableJavaFX) ? "sha256-gL7WgJFifVy3wYYqLFE13c7GZ6YMi3BVWhL+1+yTFN8=" : "sha256-OpMjX05bMTIyZHkWIZ6R3FzKC5g1ybUqQEuljENXFpc=")),
         })),
         "aarch64-linux": nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           zuluVersion: zuluVersion,
           jdkVersion: jdkVersion,
           hash: nix.thunk(() => (nix.asBool(enableJavaFX) ? "sha256-K/vR9QBMbtW3KBePsoyIas9l64s6hf/uMuhAm53himE=" : "sha256-JhDlxk35TO5ftZHXAYPFv4Uy2OHTlMdU6LoGdRvM6xs=")),
         })),
         "aarch64-darwin": nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           zuluVersion: zuluVersion,
           jdkVersion: jdkVersion,
           hash: nix.thunk(() => (nix.asBool(enableJavaFX) ? "sha256-/aWoDAXxCtXhGcsZCDjJe+hvIwHANZSw8NkBbjpgklk=" : "sha256-dIR+eskwrRQ5UGB0Id1sCnzLPRy72LFmXySrYri33kI=")),

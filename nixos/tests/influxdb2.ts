@@ -2,121 +2,65 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/influxdb2.nix", [[["systemPackages", 8, 19]], [["RestartSec", 11, 48]], [["serviceConfig", 11, 34]], [["influxdb2", 11, 24]], [["services", 11, 15]], [["organization", 16, 11], ["bucket", 17, 11], ["passwordFile", 18, 11], ["tokenFile", 19, 11]], [["somebucket", 22, 19]], [["description", 24, 13], ["readBuckets", 25, 13], ["writeBuckets", 26, 13]], [["sometoken", 23, 17]], [["buckets", 22, 11], ["auths", 23, 11]], [["someorg", 21, 23]], [["passwordFile", 29, 24]], [["someuser", 29, 15]], [["enable", 14, 9], ["initialSetup", 15, 9], ["organizations", 21, 9], ["users", 29, 9]], [["enable", 12, 26], ["provision", 13, 26]], [["influxdb2", 12, 16]], [["present", 36, 54]], [["somebucket", 36, 43]], [["present", 37, 51]], [["sometoken", 37, 41]], [["buckets", 36, 35], ["auths", 37, 35]], [["description", 43, 17]], [["mybucket", 42, 23]], [["operator", 46, 17], ["description", 47, 17], ["tokenFile", 48, 17]], [["mytoken", 45, 21]], [["description", 41, 15], ["buckets", 42, 15], ["auths", 45, 15]], [["someorg", 36, 27], ["myorg", 40, 27]], [["present", 38, 28]], [["passwordFile", 51, 26]], [["someuser", 38, 19], ["myuser", 51, 19]], [["organizations", 36, 13], ["users", 38, 13]], [["provision", 35, 30]], [["influxdb2", 35, 20]], [["services", 35, 11]], [["configuration", 32, 40]], [["present", 59, 35]], [["someorg", 59, 27]], [["organizations", 59, 13]], [["provision", 58, 30]], [["influxdb2", 58, 20]], [["services", 58, 11]], [["configuration", 55, 39]], [["operator", 72, 17], ["description", 73, 17], ["tokenFile", 74, 17]], [["operator", 77, 17], ["description", 78, 17], ["tokenFile", 79, 17]], [["description", 82, 17], ["readPermissions", 83, 17], ["writePermissions", 87, 17], ["tokenFile", 88, 17]], [["operator", 71, 21], ["allaccess", 76, 21], ["specifics", 81, 21]], [["auths", 71, 15]], [["default", 70, 27]], [["organizations", 70, 13]], [["provision", 69, 30]], [["influxdb2", 69, 20]], [["services", 69, 11]], [["configuration", 66, 36]], [["withModifications", 32, 22], ["withParentDelete", 55, 22], ["withNewTokens", 66, 22]], [["environment", 8, 7], ["systemd", 11, 7], ["services", 12, 7], ["specialisation", 32, 7]], [["machine", 5, 9]], [["name", 3, 3], ["nodes", 5, 3], ["testScript", 95, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
 const formals$2 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/influxdb2.nix", [["systemPackages", 8, 19]]);
-const pos$2 = nix.positions(here + "/influxdb2.nix", [["RestartSec", 11, 48]]);
-const pos$3 = nix.positions(here + "/influxdb2.nix", [["serviceConfig", 11, 34]]);
-const pos$4 = nix.positions(here + "/influxdb2.nix", [["influxdb2", 11, 24]]);
-const pos$5 = nix.positions(here + "/influxdb2.nix", [["services", 11, 15]]);
-const pos$6 = nix.positions(here + "/influxdb2.nix", [["organization", 16, 11], ["bucket", 17, 11], ["passwordFile", 18, 11], ["tokenFile", 19, 11]]);
-const pos$7 = nix.positions(here + "/influxdb2.nix", [["somebucket", 22, 19]]);
-const pos$8 = nix.positions(here + "/influxdb2.nix", [["description", 24, 13], ["readBuckets", 25, 13], ["writeBuckets", 26, 13]]);
-const pos$9 = nix.positions(here + "/influxdb2.nix", [["sometoken", 23, 17]]);
-const pos$10 = nix.positions(here + "/influxdb2.nix", [["buckets", 22, 11], ["auths", 23, 11]]);
-const pos$11 = nix.positions(here + "/influxdb2.nix", [["someorg", 21, 23]]);
-const pos$12 = nix.positions(here + "/influxdb2.nix", [["passwordFile", 29, 24]]);
-const pos$13 = nix.positions(here + "/influxdb2.nix", [["someuser", 29, 15]]);
-const pos$14 = nix.positions(here + "/influxdb2.nix", [["enable", 14, 9], ["initialSetup", 15, 9], ["organizations", 21, 9], ["users", 29, 9]]);
-const pos$15 = nix.positions(here + "/influxdb2.nix", [["enable", 12, 26], ["provision", 13, 26]]);
-const pos$16 = nix.positions(here + "/influxdb2.nix", [["influxdb2", 12, 16]]);
 const formals$3 = { args: {  }, ellipsis: true };
-const pos$17 = nix.positions(here + "/influxdb2.nix", [["present", 36, 54]]);
-const pos$18 = nix.positions(here + "/influxdb2.nix", [["somebucket", 36, 43]]);
-const pos$19 = nix.positions(here + "/influxdb2.nix", [["present", 37, 51]]);
-const pos$20 = nix.positions(here + "/influxdb2.nix", [["sometoken", 37, 41]]);
-const pos$21 = nix.positions(here + "/influxdb2.nix", [["buckets", 36, 35], ["auths", 37, 35]]);
-const pos$22 = nix.positions(here + "/influxdb2.nix", [["description", 43, 17]]);
-const pos$23 = nix.positions(here + "/influxdb2.nix", [["mybucket", 42, 23]]);
-const pos$24 = nix.positions(here + "/influxdb2.nix", [["operator", 46, 17], ["description", 47, 17], ["tokenFile", 48, 17]]);
-const pos$25 = nix.positions(here + "/influxdb2.nix", [["mytoken", 45, 21]]);
-const pos$26 = nix.positions(here + "/influxdb2.nix", [["description", 41, 15], ["buckets", 42, 15], ["auths", 45, 15]]);
-const pos$27 = nix.positions(here + "/influxdb2.nix", [["someorg", 36, 27], ["myorg", 40, 27]]);
-const pos$28 = nix.positions(here + "/influxdb2.nix", [["present", 38, 28]]);
-const pos$29 = nix.positions(here + "/influxdb2.nix", [["passwordFile", 51, 26]]);
-const pos$30 = nix.positions(here + "/influxdb2.nix", [["someuser", 38, 19], ["myuser", 51, 19]]);
-const pos$31 = nix.positions(here + "/influxdb2.nix", [["organizations", 36, 13], ["users", 38, 13]]);
-const pos$32 = nix.positions(here + "/influxdb2.nix", [["provision", 35, 30]]);
-const pos$33 = nix.positions(here + "/influxdb2.nix", [["influxdb2", 35, 20]]);
-const pos$34 = nix.positions(here + "/influxdb2.nix", [["services", 35, 11]]);
-const pos$35 = nix.positions(here + "/influxdb2.nix", [["configuration", 32, 40]]);
 const formals$4 = { args: {  }, ellipsis: true };
-const pos$36 = nix.positions(here + "/influxdb2.nix", [["present", 59, 35]]);
-const pos$37 = nix.positions(here + "/influxdb2.nix", [["someorg", 59, 27]]);
-const pos$38 = nix.positions(here + "/influxdb2.nix", [["organizations", 59, 13]]);
-const pos$39 = nix.positions(here + "/influxdb2.nix", [["provision", 58, 30]]);
-const pos$40 = nix.positions(here + "/influxdb2.nix", [["influxdb2", 58, 20]]);
-const pos$41 = nix.positions(here + "/influxdb2.nix", [["services", 58, 11]]);
-const pos$42 = nix.positions(here + "/influxdb2.nix", [["configuration", 55, 39]]);
 const formals$5 = { args: {  }, ellipsis: true };
-const pos$43 = nix.positions(here + "/influxdb2.nix", [["operator", 72, 17], ["description", 73, 17], ["tokenFile", 74, 17]]);
-const pos$44 = nix.positions(here + "/influxdb2.nix", [["operator", 77, 17], ["description", 78, 17], ["tokenFile", 79, 17]]);
-const pos$45 = nix.positions(here + "/influxdb2.nix", [["description", 82, 17], ["readPermissions", 83, 17], ["writePermissions", 87, 17], ["tokenFile", 88, 17]]);
-const pos$46 = nix.positions(here + "/influxdb2.nix", [["operator", 71, 21], ["allaccess", 76, 21], ["specifics", 81, 21]]);
-const pos$47 = nix.positions(here + "/influxdb2.nix", [["auths", 71, 15]]);
-const pos$48 = nix.positions(here + "/influxdb2.nix", [["default", 70, 27]]);
-const pos$49 = nix.positions(here + "/influxdb2.nix", [["organizations", 70, 13]]);
-const pos$50 = nix.positions(here + "/influxdb2.nix", [["provision", 69, 30]]);
-const pos$51 = nix.positions(here + "/influxdb2.nix", [["influxdb2", 69, 20]]);
-const pos$52 = nix.positions(here + "/influxdb2.nix", [["services", 69, 11]]);
-const pos$53 = nix.positions(here + "/influxdb2.nix", [["configuration", 66, 36]]);
-const pos$54 = nix.positions(here + "/influxdb2.nix", [["withModifications", 32, 22], ["withParentDelete", 55, 22], ["withNewTokens", 66, 22]]);
-const pos$55 = nix.positions(here + "/influxdb2.nix", [["environment", 8, 7], ["systemd", 11, 7], ["services", 12, 7], ["specialisation", 32, 7]]);
-const pos$56 = nix.positions(here + "/influxdb2.nix", [["machine", 5, 9]]);
 const formals$6 = { args: { nodes: false }, ellipsis: true };
-const pos$57 = nix.positions(here + "/influxdb2.nix", [["name", 3, 3], ["nodes", 5, 3], ["testScript", 95, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   return {
-    [nix.POS]: pos$57,
+    [nix.POS]: $pos[56],
     name: "influxdb2",
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$56,
+      [nix.POS]: $pos[55],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const lib = nix.arg($_1, "lib");
         return {
-          [nix.POS]: pos$55,
+          [nix.POS]: $pos[54],
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "influxdb2-cli"))]),
           })),
           systemd: nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             services: nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               influxdb2: nix.thunk(() => ({
-                [nix.POS]: pos$3,
-                serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$2, RestartSec: 6000n })),
+                [nix.POS]: $pos[2],
+                serviceConfig: nix.thunk(() => ({ [nix.POS]: $pos[1], RestartSec: 6000n })),
               })),
             })),
           })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$16,
+            [nix.POS]: $pos[15],
             influxdb2: nix.thunk(() => ({
-              [nix.POS]: pos$15,
+              [nix.POS]: $pos[14],
               enable: true,
               provision: nix.thunk(() => ({
-                [nix.POS]: pos$14,
+                [nix.POS]: $pos[13],
                 enable: true,
                 initialSetup: nix.thunk(() => ({
-                  [nix.POS]: pos$6,
+                  [nix.POS]: $pos[5],
                   organization: "default",
                   bucket: "default",
                   passwordFile: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "admin-pw", "ExAmPl3PA55W0rD")),
                   tokenFile: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "admin-token", "verysecureadmintoken")),
                 })),
                 organizations: nix.thunk(() => ({
-                  [nix.POS]: pos$11,
+                  [nix.POS]: $pos[10],
                   someorg: nix.thunk(() => ({
-                    [nix.POS]: pos$10,
-                    buckets: nix.thunk(() => ({ [nix.POS]: pos$7, somebucket: nix.thunk(() => ({})) })),
+                    [nix.POS]: $pos[9],
+                    buckets: nix.thunk(() => ({ [nix.POS]: $pos[6], somebucket: nix.thunk(() => ({})) })),
                     auths: nix.thunk(() => ({
-                      [nix.POS]: pos$9,
+                      [nix.POS]: $pos[8],
                       sometoken: nix.thunk(() => ({
-                        [nix.POS]: pos$8,
+                        [nix.POS]: $pos[7],
                         description: "some auth token",
                         readBuckets: nix.thunk(() => ["somebucket"]),
                         writeBuckets: nix.thunk(() => ["somebucket"]),
@@ -125,9 +69,9 @@ export default nix.lambda((args) => (() => {
                   })),
                 })),
                 users: nix.thunk(() => ({
-                  [nix.POS]: pos$13,
+                  [nix.POS]: $pos[12],
                   someuser: nix.thunk(() => ({
-                    [nix.POS]: pos$12,
+                    [nix.POS]: $pos[11],
                     passwordFile: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "tmp-pw", "abcgoiuhaoga")),
                   })),
                 })),
@@ -135,43 +79,43 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           specialisation: nix.thunk(() => ({
-            [nix.POS]: pos$54,
+            [nix.POS]: $pos[53],
             withModifications: nix.thunk(() => ({
-              [nix.POS]: pos$35,
+              [nix.POS]: $pos[34],
               configuration: nix.lambda((args_2) => (() => {
                 const $_2 = nix.formals(args_2, formals$3);
                 return {
-                  [nix.POS]: pos$34,
+                  [nix.POS]: $pos[33],
                   services: nix.thunk(() => ({
-                    [nix.POS]: pos$33,
+                    [nix.POS]: $pos[32],
                     influxdb2: nix.thunk(() => ({
-                      [nix.POS]: pos$32,
+                      [nix.POS]: $pos[31],
                       provision: nix.thunk(() => ({
-                        [nix.POS]: pos$31,
+                        [nix.POS]: $pos[30],
                         organizations: nix.thunk(() => ({
-                          [nix.POS]: pos$27,
+                          [nix.POS]: $pos[26],
                           someorg: nix.thunk(() => ({
-                            [nix.POS]: pos$21,
+                            [nix.POS]: $pos[20],
                             buckets: nix.thunk(() => ({
-                              [nix.POS]: pos$18,
-                              somebucket: nix.thunk(() => ({ [nix.POS]: pos$17, present: false })),
+                              [nix.POS]: $pos[17],
+                              somebucket: nix.thunk(() => ({ [nix.POS]: $pos[16], present: false })),
                             })),
                             auths: nix.thunk(() => ({
-                              [nix.POS]: pos$20,
-                              sometoken: nix.thunk(() => ({ [nix.POS]: pos$19, present: false })),
+                              [nix.POS]: $pos[19],
+                              sometoken: nix.thunk(() => ({ [nix.POS]: $pos[18], present: false })),
                             })),
                           })),
                           myorg: nix.thunk(() => ({
-                            [nix.POS]: pos$26,
+                            [nix.POS]: $pos[25],
                             description: "Myorg description",
                             buckets: nix.thunk(() => ({
-                              [nix.POS]: pos$23,
-                              mybucket: nix.thunk(() => ({ [nix.POS]: pos$22, description: "Mybucket description" })),
+                              [nix.POS]: $pos[22],
+                              mybucket: nix.thunk(() => ({ [nix.POS]: $pos[21], description: "Mybucket description" })),
                             })),
                             auths: nix.thunk(() => ({
-                              [nix.POS]: pos$25,
+                              [nix.POS]: $pos[24],
                               mytoken: nix.thunk(() => ({
-                                [nix.POS]: pos$24,
+                                [nix.POS]: $pos[23],
                                 operator: true,
                                 description: "operator token",
                                 tokenFile: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "tmp-tok", "someusertoken")),
@@ -180,10 +124,10 @@ export default nix.lambda((args) => (() => {
                           })),
                         })),
                         users: nix.thunk(() => ({
-                          [nix.POS]: pos$30,
-                          someuser: nix.thunk(() => ({ [nix.POS]: pos$28, present: false })),
+                          [nix.POS]: $pos[29],
+                          someuser: nix.thunk(() => ({ [nix.POS]: $pos[27], present: false })),
                           myuser: nix.thunk(() => ({
-                            [nix.POS]: pos$29,
+                            [nix.POS]: $pos[28],
                             passwordFile: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "tmp-pw", "abcgoiuhaoga")),
                           })),
                         })),
@@ -194,20 +138,20 @@ export default nix.lambda((args) => (() => {
               })(), formals$3),
             })),
             withParentDelete: nix.thunk(() => ({
-              [nix.POS]: pos$42,
+              [nix.POS]: $pos[41],
               configuration: nix.lambda((args_2) => (() => {
                 const $_2 = nix.formals(args_2, formals$4);
                 return {
-                  [nix.POS]: pos$41,
+                  [nix.POS]: $pos[40],
                   services: nix.thunk(() => ({
-                    [nix.POS]: pos$40,
+                    [nix.POS]: $pos[39],
                     influxdb2: nix.thunk(() => ({
-                      [nix.POS]: pos$39,
+                      [nix.POS]: $pos[38],
                       provision: nix.thunk(() => ({
-                        [nix.POS]: pos$38,
+                        [nix.POS]: $pos[37],
                         organizations: nix.thunk(() => ({
-                          [nix.POS]: pos$37,
-                          someorg: nix.thunk(() => ({ [nix.POS]: pos$36, present: false })),
+                          [nix.POS]: $pos[36],
+                          someorg: nix.thunk(() => ({ [nix.POS]: $pos[35], present: false })),
                         })),
                       })),
                     })),
@@ -216,37 +160,37 @@ export default nix.lambda((args) => (() => {
               })(), formals$4),
             })),
             withNewTokens: nix.thunk(() => ({
-              [nix.POS]: pos$53,
+              [nix.POS]: $pos[52],
               configuration: nix.lambda((args_2) => (() => {
                 const $_2 = nix.formals(args_2, formals$5);
                 return {
-                  [nix.POS]: pos$52,
+                  [nix.POS]: $pos[51],
                   services: nix.thunk(() => ({
-                    [nix.POS]: pos$51,
+                    [nix.POS]: $pos[50],
                     influxdb2: nix.thunk(() => ({
-                      [nix.POS]: pos$50,
+                      [nix.POS]: $pos[49],
                       provision: nix.thunk(() => ({
-                        [nix.POS]: pos$49,
+                        [nix.POS]: $pos[48],
                         organizations: nix.thunk(() => ({
-                          [nix.POS]: pos$48,
+                          [nix.POS]: $pos[47],
                           default: nix.thunk(() => ({
-                            [nix.POS]: pos$47,
+                            [nix.POS]: $pos[46],
                             auths: nix.thunk(() => ({
-                              [nix.POS]: pos$46,
+                              [nix.POS]: $pos[45],
                               operator: nix.thunk(() => ({
-                                [nix.POS]: pos$43,
+                                [nix.POS]: $pos[42],
                                 operator: true,
                                 description: "new optoken",
                                 tokenFile: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "tmp-tok", "newoptoken")),
                               })),
                               allaccess: nix.thunk(() => ({
-                                [nix.POS]: pos$44,
+                                [nix.POS]: $pos[43],
                                 operator: true,
                                 description: "new allaccess",
                                 tokenFile: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "tmp-tok", "newallaccess")),
                               })),
                               specifics: nix.thunk(() => ({
-                                [nix.POS]: pos$45,
+                                [nix.POS]: $pos[44],
                                 description: "new specifics",
                                 readPermissions: nix.thunk(() => ["users", "tasks"]),
                                 writePermissions: nix.thunk(() => ["tasks"]),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["VERSION_RELEASE", 14, 7]], [["description", 31, 5], ["license", 32, 5], ["maintainers", 33, 5]], [["pname", 9, 3], ["version", 10, 3], ["format", 11, 3], ["src", 12, 3], ["env", 14, 3], ["nativeBuildInputs", 16, 3], ["buildInputs", 17, 3], ["unpackCmd", 19, 3], ["doInstallCheck", 20, 3], ["postPatch", 22, 3], ["pythonImportsCheck", 28, 3], ["meta", 30, 3]]]);
 const formals$1 = { args: { buildPythonPackage: false, lib: false, cython: false, libseccomp: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["VERSION_RELEASE", 14, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 31, 5], ["license", 32, 5], ["maintainers", 33, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 9, 3], ["version", 10, 3], ["format", 11, 3], ["src", 12, 3], ["env", 14, 3], ["nativeBuildInputs", 16, 3], ["buildInputs", 17, 3], ["unpackCmd", 19, 3], ["doInstallCheck", 20, 3], ["postPatch", 22, 3], ["pythonImportsCheck", 28, 3], ["meta", 30, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const version = nix.thunk(() => nix.sel(libseccomp, "version"));
       const format = "setuptools";
       const src = nix.thunk(() => nix.sel(libseccomp, "pythonsrc"));
-      const env = nix.thunk(() => ({ [nix.POS]: pos$1, VERSION_RELEASE: version }));
+      const env = nix.thunk(() => ({ [nix.POS]: $pos[0], VERSION_RELEASE: version }));
       const nativeBuildInputs = nix.thunk(() => [cython]);
       const buildInputs = nix.thunk(() => [libseccomp]);
       const unpackCmd = "tar xf $curSrc";
@@ -26,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const postPatch = "substituteInPlace ./setup.py \\\n  --replace 'extra_objects=[\"../.libs/libseccomp.a\"]' \\\n            'libraries=[\"seccomp\"]'\n";
       const pythonImportsCheck = nix.thunk(() => ["seccomp"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Python bindings for libseccomp",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21")),
         maintainers: nix.thunk(() => (() => {
@@ -35,7 +33,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         format,

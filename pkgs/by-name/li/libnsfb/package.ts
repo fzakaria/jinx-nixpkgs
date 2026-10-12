@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 22, 5], ["hash", 23, 5]], [["homepage", 40, 5], ["description", 41, 5], ["license", 42, 5], ["maintainers", 43, 40], ["platforms", 43, 52]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 28, 3], ["makeFlags", 33, 3], ["meta", 39, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, SDL: false, "pkg-config": false, "netsurf-buildsystem": false, uilib: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 40, 5], ["description", 41, 5], ["license", 42, 5], ["maintainers", 43, 40], ["platforms", 43, 52]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 28, 3], ["makeFlags", 33, 3], ["meta", 39, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const uilib = nix.argOr($, "uilib", () => "gtk3");
   nix.assert_(nix.app(nix.sel(lib, "assertOneOf"), "uilib", uilib, nix.thunk(() => ["framebuffer", "gtk2", "gtk3"])), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/li/libnsfb/package.nix:11:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "libnsfb",
       version: "0.2.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://download.netsurf-browser.org/libs/releases/libnsfb-${nix.sel(finalAttrs, "version")}-src.tar.gz`),
           hash: "sha256-vkRso+tU35A/LamDEdEH11dM0R9awHE+YZFW1NGeo5o=",
         })))),
@@ -36,7 +34,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(netsurf_buildsystem, "meta"));
         return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://www.netsurf-browser.org/projects/libnsfb/",
         description: "Netsurf framebuffer abstraction library",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -2,12 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["nixStore", 35, 7]], [["url", 42, 7], ["hash", 43, 7], ["revert", 44, 7]], [["url", 49, 7], ["hash", 50, 7]], [["maintainers", 64, 8]], [["pname", 17, 3], ["propagatedBuildInputs", 19, 3], ["strictDeps", 26, 3], ["nativeBuildInputs", 28, 3], ["patches", 32, 3], ["cmakeFlags", 54, 3], ["meta", 64, 3]]]);
 const formals$1 = { args: { qtModule: false, qtbase: false, qtlanguageserver: false, qtshadertools: false, qtsvg: false, openssl: false, darwin: false, stdenv: false, lib: false, pkgsBuildBuild: false, replaceVars: false, fetchpatch: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["nixStore", 35, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["url", 42, 7], ["hash", 43, 7], ["revert", 44, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["url", 49, 7], ["hash", 50, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["maintainers", 64, 8]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 17, 3], ["propagatedBuildInputs", 19, 3], ["strictDeps", 26, 3], ["nativeBuildInputs", 28, 3], ["patches", 32, 3], ["cmakeFlags", 54, 3], ["meta", 64, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,22 +20,22 @@ export default nix.lambda((args) => (() => {
   const replaceVars = nix.arg($, "replaceVars");
   const fetchpatch = nix.arg($, "fetchpatch");
   return nix.app(qtModule, nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "qtdeclarative",
       propagatedBuildInputs: nix.thunk(() => [qtbase, qtlanguageserver, qtshadertools, qtsvg, openssl]),
       strictDeps: true,
       nativeBuildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [nix.thunk(() => nix.sel(darwin, "sigtool"))]))),
       patches: nix.thunk(() => [
-        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./dont-cache-nix-store-paths.patch"), nix.thunk(() => ({ [nix.POS]: pos$1, nixStore: nix.thunk(() => nix.builtins.storeDir) })))),
+        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./dont-cache-nix-store-paths.patch"), nix.thunk(() => ({ [nix.POS]: $pos[0], nixStore: nix.thunk(() => nix.builtins.storeDir) })))),
         nix.path(here, "./use-versioned-import-path.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/qt/qtdeclarative/commit/a7084abd9778b955d80e7419e82f6f7b92f7978d.diff",
             hash: "sha256-ESy35OlmsvI4yFQ/rFT8oelOUBCwCmlcbQJvwcTrCig=",
             revert: true,
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: "https://codereview.qt-project.org/changes/qt%2Fqtdeclarative~768697/revisions/4/patch?download&raw",
             hash: "sha256-HiHAWbLr2MaZpw+yaA+JIveYory5cWkL2ZNf3zveYX4=",
           })))),
@@ -51,7 +47,7 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.str`-DQt6QmlTools_DIR=${nix.sel(pkgsBuildBuild, "qt6", "qtdeclarative")}/lib/cmake/Qt6QmlTools`),
         ])))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
           return [

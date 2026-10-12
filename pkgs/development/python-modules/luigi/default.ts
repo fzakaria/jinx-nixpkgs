@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 20, 5], ["version", 21, 26], ["hash", 22, 5]], [["description", 49, 5], ["longDescription", 50, 5], ["homepage", 54, 5], ["changelog", 55, 5], ["license", 56, 5]], [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["src", 19, 3], ["build-system", 25, 3], ["pythonRelaxDeps", 30, 3], ["dependencies", 32, 3], ["pythonImportsCheck", 40, 3], ["doCheck", 43, 3], ["makeWrapperArgs", 46, 3], ["meta", 48, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, "hatch-fancy-pypi-readme": false, hatchling: false, "python-daemon": false, "python-dateutil": false, tenacity: false, tornado: false, "typing-extensions": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 20, 5], ["version", 21, 26], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 49, 5], ["longDescription", 50, 5], ["homepage", 54, 5], ["changelog", 55, 5], ["license", 56, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["src", 19, 3], ["build-system", 25, 3], ["pythonRelaxDeps", 30, 3], ["dependencies", 32, 3], ["pythonImportsCheck", 40, 3], ["doCheck", 43, 3], ["makeWrapperArgs", 46, 3], ["meta", 48, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const tornado = nix.arg($, "tornado");
   const typing_extensions = nix.arg($, "typing-extensions");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "luigi",
       version: "3.8.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "luigi",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-L6XrXTR05JXeCb2WT1ApNsCPix624PPKPIppEWw40MM=",
@@ -37,7 +35,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       makeWrapperArgs: nix.thunk(() => ["--prefix PYTHONPATH . :"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Python package that helps you build complex pipelines of batch jobs",
         longDescription: "Luigi handles dependency resolution, workflow management, visualization,\nhandling failures, command line integration, and much more.\n",
         homepage: "https://github.com/spotify/luigi",

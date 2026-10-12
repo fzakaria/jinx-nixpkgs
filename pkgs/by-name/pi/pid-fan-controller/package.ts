@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]], [["description", 30, 5], ["homepage", 31, 5], ["license", 32, 5], ["maintainers", 33, 5], ["platforms", 34, 5], ["mainProgram", 35, 5]], [["pname", 10, 3], ["version", 11, 11], ["src", 13, 3], ["cargoHash", 19, 3], ["postPatch", 21, 3], ["postInstall", 25, 3], ["meta", 29, 3]]]);
 const formals$1 = { args: { rustPlatform: false, fetchFromGitHub: false, lib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 30, 5], ["homepage", 31, 5], ["license", 32, 5], ["maintainers", 33, 5], ["platforms", 34, 5], ["mainProgram", 35, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 11], ["src", 13, 3], ["cargoHash", 19, 3], ["postPatch", 21, 3], ["postInstall", 25, 3], ["meta", 29, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const version = "0.1.5";
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "pid-fan-controller",
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "zimward",
           repo: "pid-fan-controller",
           tag: version,
@@ -28,7 +26,7 @@ export default nix.lambda((args) => (() => {
       postPatch: "substituteInPlace resources/pid-fan-controller.service \\\n  --replace-fail '/usr/bin' \"$out/bin\"\n",
       postInstall: "install -Dm0644 resources/pid-fan-controller.service $out/lib/systemd/system/pid-fan-controller.service\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Service to provide closed-loop PID fan control",
         homepage: "https://github.com/zimward/pid-fan-controller",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

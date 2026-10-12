@@ -2,19 +2,17 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/options-type-error-configuration.nix", [[["modules", 5, 32]], [["result", 5, 5]], [["options", 3, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/options-type-error-configuration.nix", [["modules", 5, 32]]);
-const pos$2 = nix.positions(here + "/options-type-error-configuration.nix", [["result", 5, 5]]);
-const pos$3 = nix.positions(here + "/options-type-error-configuration.nix", [["options", 3, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$3,
+    [nix.POS]: $pos[2],
     options: nix.thunk(() => ({
-      [nix.POS]: pos$2,
-      result: nix.thunk(() => nix.app(nix.sel(lib, "evalModules"), nix.thunk(() => ({ [nix.POS]: pos$1, modules: [] })))),
+      [nix.POS]: $pos[1],
+      result: nix.thunk(() => nix.app(nix.sel(lib, "evalModules"), nix.thunk(() => ({ [nix.POS]: $pos[0], modules: [] })))),
     })),
   };
 })(), formals$1);

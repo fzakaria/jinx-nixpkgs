@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["hydra", 44, 43]], [["tests", 44, 12]], [["description", 47, 5], ["homepage", 48, 5], ["license", 49, 5], ["mainProgram", 50, 5], ["maintainers", 51, 5], ["platforms", 57, 5]], [["pname", 13, 3], ["version", 14, 19], ["src", 14, 27], ["__structuredAttrs", 15, 3], ["cargoHash", 17, 3], ["cargoBuildFlags", 19, 3], ["buildFeatures", 24, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 31, 3], ["nativeCheckInputs", 37, 3], ["cargoTestFlags", 39, 3], ["passthru", 44, 3], ["meta", 46, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, hydra: false, "pkg-config": false, postgresql: false, protobuf: false, "rust-jemalloc-sys": false, nixosTests: false, withOtel: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["hydra", 44, 43]]);
-const pos$2 = nix.positions(here + "/package.nix", [["tests", 44, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 47, 5], ["homepage", 48, 5], ["license", 49, 5], ["mainProgram", 50, 5], ["maintainers", 51, 5], ["platforms", 57, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 19], ["src", 14, 27], ["__structuredAttrs", 15, 3], ["cargoHash", 17, 3], ["cargoBuildFlags", 19, 3], ["buildFeatures", 24, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 31, 3], ["nativeCheckInputs", 37, 3], ["cargoTestFlags", 39, 3], ["passthru", 44, 3], ["meta", 46, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,7 +17,7 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const withOtel = nix.argOr($, "withOtel", () => false);
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "hydra-ad-hoc",
       version: nix.thunk(() => nix.attr(hydra, "version")),
       src: nix.thunk(() => nix.attr(hydra, "src")),
@@ -33,11 +30,11 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [postgresql]),
       cargoTestFlags: nix.thunk(() => ["--package", "hydra-ad-hoc"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$1, hydra: nix.thunk(() => nix.attr(nixosTests, "hydra")) })),
+        [nix.POS]: $pos[1],
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[0], hydra: nix.thunk(() => nix.attr(nixosTests, "hydra")) })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Experimental Hydra service presenting Hydra as one big Nix daemon for ad hoc builds",
         homepage: "https://github.com/NixOS/hydra",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

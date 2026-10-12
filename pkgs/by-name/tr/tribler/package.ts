@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]], [["nodejs", 23, 13], ["version", 23, 20], ["pname", 24, 5], ["src", 25, 5], ["npmDepsHash", 26, 5], ["npmPackFlags", 29, 5], ["NODE_OPTIONS", 31, 5], ["dontNpmBuild", 33, 5], ["dontNpmInstall", 34, 5], ["installPhase", 36, 5]], [["updateScript", 142, 12]], [["description", 145, 5], ["homepage", 146, 5], ["changelog", 147, 5], ["license", 148, 5], ["maintainers", 149, 5], ["mainProgram", 154, 5], ["platforms", 155, 5]], [["version", 48, 11], ["src", 48, 19], ["pname", 49, 3], ["pyproject", 50, 3], ["build-system", 52, 3], ["dependencies", 54, 3], ["nativeBuildInputs", 70, 3], ["buildInputs", 72, 3], ["nativeCheckInputs", 85, 3], ["outputs", 87, 3], ["postPatch", 91, 3], ["buildPhase", 104, 3], ["postInstall", 114, 3], ["preFixup", 118, 3], ["disabledTestPaths", 124, 3], ["disabledTests", 133, 3], ["passthru", 142, 3], ["meta", 144, 3]]]);
 const formals$1 = { args: { lib: false, buildNpmPackage: false, fetchFromGitHub: false, libappindicator: false, "nix-update-script": false, nodejs_24: false, python3: false, wrapGAppsHook3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["nodejs", 23, 13], ["version", 23, 20], ["pname", 24, 5], ["src", 25, 5], ["npmDepsHash", 26, 5], ["npmPackFlags", 29, 5], ["NODE_OPTIONS", 31, 5], ["dontNpmBuild", 33, 5], ["dontNpmInstall", 34, 5], ["installPhase", 36, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 142, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 145, 5], ["homepage", 146, 5], ["changelog", 147, 5], ["license", 148, 5], ["maintainers", 149, 5], ["mainProgram", 154, 5], ["platforms", 155, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["version", 48, 11], ["src", 48, 19], ["pname", 49, 3], ["pyproject", 50, 3], ["build-system", 52, 3], ["dependencies", 54, 3], ["nativeBuildInputs", 70, 3], ["buildInputs", 72, 3], ["nativeCheckInputs", 85, 3], ["outputs", 87, 3], ["postPatch", 91, 3], ["buildPhase", 104, 3], ["postInstall", 114, 3], ["preFixup", 118, 3], ["disabledTestPaths", 124, 3], ["disabledTests", 133, 3], ["passthru", 142, 3], ["meta", 144, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,14 +18,14 @@ export default nix.lambda((args) => (() => {
   const version = "8.4.3";
   const nodejs = nodejs_24;
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "tribler",
       repo: "Tribler",
       tag: nix.thunk(() => nix.str`v${version}`),
       hash: "sha256-5ykIQBvYKzGn9toXb2248ulvh22fJlE0mNQkilkWRYo=",
     }))));
   const tribler_webui = nix.thunk(() => nix.app(buildNpmPackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       nodejs: nodejs,
       version: version,
       pname: "tribler-webui",
@@ -42,7 +38,7 @@ export default nix.lambda((args) => (() => {
       installPhase: "mkdir -pv $out\ncp -prvd ./* $out/\ncd $out\nnpm install\nnpm run build\n",
     }))));
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       version: version,
       src: src,
       pname: "tribler",
@@ -125,11 +121,11 @@ runHook postBuild
         "test_get_set_explicit",
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Decentralized P2P filesharing client based on the Bittorrent protocol",
         homepage: "https://www.tribler.org/",
         changelog: nix.thunk(() => nix.str`https://github.com/Tribler/tribler/releases/tag/v${version}`),

@@ -2,105 +2,38 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/mods.nix", [[["doCheck", 11, 7]], [["description", 19, 10], ["homepage", 20, 10]], [["owner", 22, 7], ["repo", 23, 7], ["rev", 24, 7], ["sha256", 25, 7]], [["owner", 30, 9], ["repo", 31, 9], ["rev", 32, 9], ["sha256", 33, 9], ["name", 34, 9], ["postFetch", 35, 17]], [["version", 28, 7], ["src", 29, 7]], [["version", 17, 5], ["title", 18, 5], ["meta", 19, 5], ["src", 21, 5], ["engine", 27, 5]], [["description", 43, 10], ["homepage", 44, 10]], [["owner", 46, 7], ["repo", 47, 7], ["rev", 48, 7], ["sha256", 49, 7]], [["owner", 59, 9], ["repo", 60, 9], ["rev", 61, 9], ["sha256", 62, 9], ["name", 63, 9], ["postFetch", 64, 17]], [["version", 52, 7], ["mods", 53, 7], ["src", 58, 7]], [["version", 41, 5], ["title", 42, 5], ["meta", 43, 5], ["src", 45, 5], ["engine", 51, 5], ["assetsError", 67, 5]], [["description", 76, 10], ["homepage", 77, 10]], [["owner", 79, 7], ["repo", 80, 7], ["rev", 81, 7], ["sha256", 82, 7]], [["owner", 87, 9], ["repo", 88, 9], ["rev", 89, 9], ["sha256", 90, 9], ["name", 91, 9], ["postFetch", 92, 17]], [["version", 85, 7], ["src", 86, 7]], [["version", 74, 5], ["title", 75, 5], ["meta", 76, 5], ["src", 78, 5], ["engine", 84, 5]], [["description", 100, 10], ["homepage", 101, 10]], [["owner", 103, 7], ["repo", 104, 7], ["rev", 105, 7], ["sha256", 106, 7]], [["owner", 111, 9], ["repo", 112, 9], ["rev", 113, 9], ["sha256", 114, 9], ["name", 115, 9], ["postFetch", 116, 17]], [["version", 109, 7], ["src", 110, 7]], [["version", 98, 5], ["title", 99, 5], ["meta", 100, 5], ["src", 102, 5], ["engine", 108, 5]], [["description", 129, 12], ["homepage", 130, 12]], [["owner", 132, 9], ["repo", 133, 9], ["rev", 134, 9], ["sha256", 135, 9]], [["owner", 140, 11], ["repo", 141, 11], ["rev", 143, 11], ["sha256", 144, 11], ["name", 145, 11], ["postFetch", 146, 19]], [["version", 138, 9], ["src", 139, 9]], [["version", 127, 15], ["title", 128, 7], ["meta", 129, 7], ["src", 131, 7], ["engine", 137, 7]], [["postPatch", 151, 9]], [["description", 160, 10], ["homepage", 161, 10]], [["owner", 163, 7], ["repo", 164, 7], ["rev", 165, 7], ["sha256", 166, 7]], [["owner", 171, 9], ["repo", 172, 9], ["rev", 173, 9], ["sha256", 174, 9], ["name", 175, 9], ["postFetch", 176, 17]], [["version", 169, 7], ["src", 170, 7]], [["version", 158, 5], ["title", 159, 5], ["meta", 160, 5], ["src", 162, 5], ["engine", 168, 5]], [["description", 184, 10], ["homepage", 185, 10]], [["owner", 187, 7], ["repo", 188, 7], ["rev", 189, 7], ["sha256", 190, 7]], [["owner", 195, 9], ["repo", 196, 9], ["rev", 197, 9], ["sha256", 198, 9], ["name", 199, 9], ["postFetch", 200, 17]], [["version", 193, 7], ["src", 194, 7]], [["version", 182, 5], ["title", 183, 5], ["meta", 184, 5], ["src", 186, 5], ["engine", 192, 5], ["assetsError", 203, 5]], [["description", 212, 10], ["homepage", 213, 10]], [["owner", 215, 7], ["repo", 216, 7], ["rev", 217, 7], ["sha256", 218, 7]], [["owner", 223, 9], ["repo", 224, 9], ["rev", 225, 9], ["sha256", 226, 9], ["name", 227, 9], ["postFetch", 228, 17]], [["version", 221, 7], ["src", 222, 7]], [["version", 210, 5], ["title", 211, 5], ["meta", 212, 5], ["src", 214, 5], ["engine", 220, 5]], [["description", 236, 10], ["homepage", 237, 10]], [["owner", 239, 7], ["repo", 240, 7], ["rev", 241, 7], ["sha256", 242, 7]], [["owner", 248, 9], ["repo", 249, 9], ["rev", 250, 9], ["sha256", 251, 9], ["name", 252, 9], ["postFetch", 253, 17]], [["version", 245, 7], ["mods", 246, 7], ["src", 247, 7]], [["version", 234, 5], ["title", 235, 5], ["meta", 236, 5], ["src", 238, 5], ["engine", 244, 5], ["assetsError", 256, 5]], [["description", 265, 10], ["homepage", 266, 10]], [["owner", 268, 7], ["repo", 269, 7], ["rev", 270, 7], ["sha256", 271, 7]], [["owner", 280, 9], ["repo", 281, 9], ["rev", 282, 9], ["sha256", 283, 9], ["name", 284, 9], ["postFetch", 285, 17]], [["version", 274, 7], ["mods", 275, 7], ["src", 279, 7]], [["version", 263, 5], ["title", 264, 5], ["meta", 265, 5], ["src", 267, 5], ["engine", 273, 5]], [["description", 293, 10], ["homepage", 294, 10]], [["owner", 296, 7], ["repo", 297, 7], ["rev", 298, 7], ["sha256", 299, 7]], [["owner", 304, 9], ["repo", 305, 9], ["rev", 306, 9], ["sha256", 307, 9], ["name", 308, 9], ["postFetch", 309, 17]], [["version", 302, 7], ["src", 303, 7]], [["version", 291, 5], ["title", 292, 5], ["meta", 293, 5], ["src", 295, 5], ["engine", 301, 5]], [["description", 317, 10], ["homepage", 318, 10]], [["owner", 320, 7], ["repo", 321, 7], ["rev", 322, 7], ["sha256", 323, 7]], [["owner", 328, 9], ["repo", 329, 9], ["rev", 330, 9], ["sha256", 331, 9], ["name", 332, 9], ["postFetch", 333, 17]], [["version", 326, 7], ["src", 327, 7]], [["version", 315, 5], ["title", 316, 5], ["meta", 317, 5], ["src", 319, 5], ["engine", 325, 5]], [["description", 341, 10], ["homepage", 342, 10]], [["owner", 344, 7], ["repo", 345, 7], ["rev", 346, 7], ["sha256", 347, 7]], [["owner", 352, 9], ["repo", 353, 9], ["rev", 354, 9], ["sha256", 355, 9], ["name", 356, 9], ["postFetch", 357, 17]], [["version", 350, 7], ["src", 351, 7]], [["version", 339, 5], ["title", 340, 5], ["meta", 341, 5], ["src", 343, 5], ["engine", 349, 5], ["assetsError", 360, 5]], [["ca", 16, 3], ["d2", 40, 3], ["dr", 73, 3], ["gen", 97, 3], ["kknd", 121, 3], ["mw", 157, 3], ["ra2", 181, 3], ["raclassic", 209, 3], ["rv", 233, 3], ["sp", 262, 3], ["ss", 290, 3], ["ura", 314, 3], ["yr", 338, 3]]]);
 const formals$1 = { args: { buildOpenRAMod: false, fetchFromGitHub: false, postFetch: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/mods.nix", [["doCheck", 11, 7]]);
-const pos$2 = nix.positions(here + "/mods.nix", [["description", 19, 10], ["homepage", 20, 10]]);
-const pos$3 = nix.positions(here + "/mods.nix", [["owner", 22, 7], ["repo", 23, 7], ["rev", 24, 7], ["sha256", 25, 7]]);
-const pos$4 = nix.positions(here + "/mods.nix", [["owner", 30, 9], ["repo", 31, 9], ["rev", 32, 9], ["sha256", 33, 9], ["name", 34, 9], ["postFetch", 35, 17]]);
-const pos$5 = nix.positions(here + "/mods.nix", [["version", 28, 7], ["src", 29, 7]]);
-const pos$6 = nix.positions(here + "/mods.nix", [["version", 17, 5], ["title", 18, 5], ["meta", 19, 5], ["src", 21, 5], ["engine", 27, 5]]);
-const pos$7 = nix.positions(here + "/mods.nix", [["description", 43, 10], ["homepage", 44, 10]]);
-const pos$8 = nix.positions(here + "/mods.nix", [["owner", 46, 7], ["repo", 47, 7], ["rev", 48, 7], ["sha256", 49, 7]]);
-const pos$9 = nix.positions(here + "/mods.nix", [["owner", 59, 9], ["repo", 60, 9], ["rev", 61, 9], ["sha256", 62, 9], ["name", 63, 9], ["postFetch", 64, 17]]);
-const pos$10 = nix.positions(here + "/mods.nix", [["version", 52, 7], ["mods", 53, 7], ["src", 58, 7]]);
-const pos$11 = nix.positions(here + "/mods.nix", [["version", 41, 5], ["title", 42, 5], ["meta", 43, 5], ["src", 45, 5], ["engine", 51, 5], ["assetsError", 67, 5]]);
-const pos$12 = nix.positions(here + "/mods.nix", [["description", 76, 10], ["homepage", 77, 10]]);
-const pos$13 = nix.positions(here + "/mods.nix", [["owner", 79, 7], ["repo", 80, 7], ["rev", 81, 7], ["sha256", 82, 7]]);
-const pos$14 = nix.positions(here + "/mods.nix", [["owner", 87, 9], ["repo", 88, 9], ["rev", 89, 9], ["sha256", 90, 9], ["name", 91, 9], ["postFetch", 92, 17]]);
-const pos$15 = nix.positions(here + "/mods.nix", [["version", 85, 7], ["src", 86, 7]]);
-const pos$16 = nix.positions(here + "/mods.nix", [["version", 74, 5], ["title", 75, 5], ["meta", 76, 5], ["src", 78, 5], ["engine", 84, 5]]);
-const pos$17 = nix.positions(here + "/mods.nix", [["description", 100, 10], ["homepage", 101, 10]]);
-const pos$18 = nix.positions(here + "/mods.nix", [["owner", 103, 7], ["repo", 104, 7], ["rev", 105, 7], ["sha256", 106, 7]]);
-const pos$19 = nix.positions(here + "/mods.nix", [["owner", 111, 9], ["repo", 112, 9], ["rev", 113, 9], ["sha256", 114, 9], ["name", 115, 9], ["postFetch", 116, 17]]);
-const pos$20 = nix.positions(here + "/mods.nix", [["version", 109, 7], ["src", 110, 7]]);
-const pos$21 = nix.positions(here + "/mods.nix", [["version", 98, 5], ["title", 99, 5], ["meta", 100, 5], ["src", 102, 5], ["engine", 108, 5]]);
-const pos$22 = nix.positions(here + "/mods.nix", [["description", 129, 12], ["homepage", 130, 12]]);
-const pos$23 = nix.positions(here + "/mods.nix", [["owner", 132, 9], ["repo", 133, 9], ["rev", 134, 9], ["sha256", 135, 9]]);
-const pos$24 = nix.positions(here + "/mods.nix", [["owner", 140, 11], ["repo", 141, 11], ["rev", 143, 11], ["sha256", 144, 11], ["name", 145, 11], ["postFetch", 146, 19]]);
-const pos$25 = nix.positions(here + "/mods.nix", [["version", 138, 9], ["src", 139, 9]]);
-const pos$26 = nix.positions(here + "/mods.nix", [["version", 127, 15], ["title", 128, 7], ["meta", 129, 7], ["src", 131, 7], ["engine", 137, 7]]);
-const pos$27 = nix.positions(here + "/mods.nix", [["postPatch", 151, 9]]);
-const pos$28 = nix.positions(here + "/mods.nix", [["description", 160, 10], ["homepage", 161, 10]]);
-const pos$29 = nix.positions(here + "/mods.nix", [["owner", 163, 7], ["repo", 164, 7], ["rev", 165, 7], ["sha256", 166, 7]]);
-const pos$30 = nix.positions(here + "/mods.nix", [["owner", 171, 9], ["repo", 172, 9], ["rev", 173, 9], ["sha256", 174, 9], ["name", 175, 9], ["postFetch", 176, 17]]);
-const pos$31 = nix.positions(here + "/mods.nix", [["version", 169, 7], ["src", 170, 7]]);
-const pos$32 = nix.positions(here + "/mods.nix", [["version", 158, 5], ["title", 159, 5], ["meta", 160, 5], ["src", 162, 5], ["engine", 168, 5]]);
-const pos$33 = nix.positions(here + "/mods.nix", [["description", 184, 10], ["homepage", 185, 10]]);
-const pos$34 = nix.positions(here + "/mods.nix", [["owner", 187, 7], ["repo", 188, 7], ["rev", 189, 7], ["sha256", 190, 7]]);
-const pos$35 = nix.positions(here + "/mods.nix", [["owner", 195, 9], ["repo", 196, 9], ["rev", 197, 9], ["sha256", 198, 9], ["name", 199, 9], ["postFetch", 200, 17]]);
-const pos$36 = nix.positions(here + "/mods.nix", [["version", 193, 7], ["src", 194, 7]]);
-const pos$37 = nix.positions(here + "/mods.nix", [["version", 182, 5], ["title", 183, 5], ["meta", 184, 5], ["src", 186, 5], ["engine", 192, 5], ["assetsError", 203, 5]]);
-const pos$38 = nix.positions(here + "/mods.nix", [["description", 212, 10], ["homepage", 213, 10]]);
-const pos$39 = nix.positions(here + "/mods.nix", [["owner", 215, 7], ["repo", 216, 7], ["rev", 217, 7], ["sha256", 218, 7]]);
-const pos$40 = nix.positions(here + "/mods.nix", [["owner", 223, 9], ["repo", 224, 9], ["rev", 225, 9], ["sha256", 226, 9], ["name", 227, 9], ["postFetch", 228, 17]]);
-const pos$41 = nix.positions(here + "/mods.nix", [["version", 221, 7], ["src", 222, 7]]);
-const pos$42 = nix.positions(here + "/mods.nix", [["version", 210, 5], ["title", 211, 5], ["meta", 212, 5], ["src", 214, 5], ["engine", 220, 5]]);
-const pos$43 = nix.positions(here + "/mods.nix", [["description", 236, 10], ["homepage", 237, 10]]);
-const pos$44 = nix.positions(here + "/mods.nix", [["owner", 239, 7], ["repo", 240, 7], ["rev", 241, 7], ["sha256", 242, 7]]);
-const pos$45 = nix.positions(here + "/mods.nix", [["owner", 248, 9], ["repo", 249, 9], ["rev", 250, 9], ["sha256", 251, 9], ["name", 252, 9], ["postFetch", 253, 17]]);
-const pos$46 = nix.positions(here + "/mods.nix", [["version", 245, 7], ["mods", 246, 7], ["src", 247, 7]]);
-const pos$47 = nix.positions(here + "/mods.nix", [["version", 234, 5], ["title", 235, 5], ["meta", 236, 5], ["src", 238, 5], ["engine", 244, 5], ["assetsError", 256, 5]]);
-const pos$48 = nix.positions(here + "/mods.nix", [["description", 265, 10], ["homepage", 266, 10]]);
-const pos$49 = nix.positions(here + "/mods.nix", [["owner", 268, 7], ["repo", 269, 7], ["rev", 270, 7], ["sha256", 271, 7]]);
-const pos$50 = nix.positions(here + "/mods.nix", [["owner", 280, 9], ["repo", 281, 9], ["rev", 282, 9], ["sha256", 283, 9], ["name", 284, 9], ["postFetch", 285, 17]]);
-const pos$51 = nix.positions(here + "/mods.nix", [["version", 274, 7], ["mods", 275, 7], ["src", 279, 7]]);
-const pos$52 = nix.positions(here + "/mods.nix", [["version", 263, 5], ["title", 264, 5], ["meta", 265, 5], ["src", 267, 5], ["engine", 273, 5]]);
-const pos$53 = nix.positions(here + "/mods.nix", [["description", 293, 10], ["homepage", 294, 10]]);
-const pos$54 = nix.positions(here + "/mods.nix", [["owner", 296, 7], ["repo", 297, 7], ["rev", 298, 7], ["sha256", 299, 7]]);
-const pos$55 = nix.positions(here + "/mods.nix", [["owner", 304, 9], ["repo", 305, 9], ["rev", 306, 9], ["sha256", 307, 9], ["name", 308, 9], ["postFetch", 309, 17]]);
-const pos$56 = nix.positions(here + "/mods.nix", [["version", 302, 7], ["src", 303, 7]]);
-const pos$57 = nix.positions(here + "/mods.nix", [["version", 291, 5], ["title", 292, 5], ["meta", 293, 5], ["src", 295, 5], ["engine", 301, 5]]);
-const pos$58 = nix.positions(here + "/mods.nix", [["description", 317, 10], ["homepage", 318, 10]]);
-const pos$59 = nix.positions(here + "/mods.nix", [["owner", 320, 7], ["repo", 321, 7], ["rev", 322, 7], ["sha256", 323, 7]]);
-const pos$60 = nix.positions(here + "/mods.nix", [["owner", 328, 9], ["repo", 329, 9], ["rev", 330, 9], ["sha256", 331, 9], ["name", 332, 9], ["postFetch", 333, 17]]);
-const pos$61 = nix.positions(here + "/mods.nix", [["version", 326, 7], ["src", 327, 7]]);
-const pos$62 = nix.positions(here + "/mods.nix", [["version", 315, 5], ["title", 316, 5], ["meta", 317, 5], ["src", 319, 5], ["engine", 325, 5]]);
-const pos$63 = nix.positions(here + "/mods.nix", [["description", 341, 10], ["homepage", 342, 10]]);
-const pos$64 = nix.positions(here + "/mods.nix", [["owner", 344, 7], ["repo", 345, 7], ["rev", 346, 7], ["sha256", 347, 7]]);
-const pos$65 = nix.positions(here + "/mods.nix", [["owner", 352, 9], ["repo", 353, 9], ["rev", 354, 9], ["sha256", 355, 9], ["name", 356, 9], ["postFetch", 357, 17]]);
-const pos$66 = nix.positions(here + "/mods.nix", [["version", 350, 7], ["src", 351, 7]]);
-const pos$67 = nix.positions(here + "/mods.nix", [["version", 339, 5], ["title", 340, 5], ["meta", 341, 5], ["src", 343, 5], ["engine", 349, 5], ["assetsError", 360, 5]]);
-const pos$68 = nix.positions(here + "/mods.nix", [["ca", 16, 3], ["d2", 40, 3], ["dr", 73, 3], ["gen", 97, 3], ["kknd", 121, 3], ["mw", 157, 3], ["ra2", 181, 3], ["raclassic", 209, 3], ["rv", 233, 3], ["sp", 262, 3], ["ss", 290, 3], ["ura", 314, 3], ["yr", 338, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const buildOpenRAMod = nix.arg($, "buildOpenRAMod");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const postFetch = nix.arg($, "postFetch");
-  const unsafeBuildOpenRAMod = (attrs) => (name) => nix.app(nix.sel(nix.app(buildOpenRAMod, attrs, name), "overrideAttrs"), (_) => ({ [nix.POS]: pos$1, doCheck: false }));
+  const unsafeBuildOpenRAMod = (attrs) => (name) => nix.app(nix.sel(nix.app(buildOpenRAMod, attrs, name), "overrideAttrs"), (_) => ({ [nix.POS]: $pos[0], doCheck: false }));
   return {
-    [nix.POS]: pos$68,
+    [nix.POS]: $pos[67],
     ca: nix.thunk(() => nix.app(buildOpenRAMod, nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         version: "96.git.fc3cf0b",
         title: "Combined Arms",
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           description: "A game that combines units from the official OpenRA Red Alert and Tiberian Dawn mods",
           homepage: "https://github.com/Inq8/CAmod",
         })),
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             owner: "Inq8",
             repo: "CAmod",
             rev: "fc3cf0baf2b827650eaae9e1d2335a3eed24bac9",
             sha256: "15w91xs253gyrlzsgid6ixxjazx0fbzick6vlkiay0znb58n883m",
           })))),
         engine: nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           version: "b8a7dd5",
           src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               owner: "Inq8",
               repo: "CAengine",
               rev: "b8a7dd52ff893ed8225726d4ed4e14ecad748404",
@@ -114,12 +47,12 @@ export default nix.lambda((args) => (() => {
         const version = "134.git.69a4aa7";
         const title = "Dune II";
         const meta = nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           description: nix.thunk(() => nix.str`A modernization of the original ${title} game`),
           homepage: "https://github.com/OpenRA/d2",
         }));
         const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$8,
+            [nix.POS]: $pos[7],
             owner: "OpenRA",
             repo: "d2",
             rev: "69a4aa708e2c26376469c0048fac13592aa452ca",
@@ -129,7 +62,7 @@ export default nix.lambda((args) => (() => {
           const version_1 = "release-20181215";
           const mods = nix.thunk(() => ["cnc", "d2k", "ra"]);
           const src_1 = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-              [nix.POS]: pos$9,
+              [nix.POS]: $pos[8],
               owner: "OpenRA",
               repo: "OpenRA",
               rev: version_1,
@@ -137,33 +70,33 @@ export default nix.lambda((args) => (() => {
               name: "engine",
               postFetch: postFetch,
             }))));
-          return { [nix.POS]: pos$10, version: version_1, mods, src: src_1 };
+          return { [nix.POS]: $pos[9], version: version_1, mods, src: src_1 };
         })());
         const assetsError = nix.thunk(() => nix.str`The mod expects the original ${title} game assets in place:
 https://github.com/OpenRA/d2/wiki
 `);
-        return { [nix.POS]: pos$11, version, title, meta, src, engine, assetsError };
+        return { [nix.POS]: $pos[10], version, title, meta, src, engine, assetsError };
       })()))),
     dr: nix.thunk(() => nix.app(buildOpenRAMod, nix.thunk(() => (() => {
         const version = "324.git.ffcd6ba";
         const title = "Dark Reign";
         const meta = nix.thunk(() => ({
-          [nix.POS]: pos$12,
+          [nix.POS]: $pos[11],
           description: nix.thunk(() => nix.str`A re-imagination of the original Command & Conquer: ${title} game`),
           homepage: "https://github.com/drogoganor/DarkReign",
         }));
         const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$13,
+            [nix.POS]: $pos[12],
             owner: "drogoganor",
             repo: "DarkReign",
             rev: "ffcd6ba72979e5f77508136ed7b0efc13e4b100e",
             sha256: "07g4qw909649s3i1yhw75613mpwfka05jana5mpp5smhnf0pkack",
           }))));
         const engine = nix.thunk(() => ({
-          [nix.POS]: pos$15,
+          [nix.POS]: $pos[14],
           version: "DarkReign",
           src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-              [nix.POS]: pos$14,
+              [nix.POS]: $pos[13],
               owner: "drogoganor",
               repo: "OpenRA",
               rev: "f91d3f2603bbf51afaa89357e4defcdc36138102",
@@ -172,19 +105,19 @@ https://github.com/OpenRA/d2/wiki
               postFetch: postFetch,
             })))),
         }));
-        return { [nix.POS]: pos$16, version, title, meta, src, engine };
+        return { [nix.POS]: $pos[15], version, title, meta, src, engine };
       })()))),
     gen: nix.thunk(() => nix.app(buildOpenRAMod, nix.thunk(() => ({
-        [nix.POS]: pos$21,
+        [nix.POS]: $pos[20],
         version: "1157.git.4f5e11d",
         title: "Generals Alpha",
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$17,
+          [nix.POS]: $pos[16],
           description: "Re-imagination of the original Command & Conquer: Generals game",
           homepage: "https://github.com/MustaphaTR/Generals-Alpha",
         })),
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$18,
+            [nix.POS]: $pos[17],
             owner: "MustaphaTR",
             repo: "Generals-Alpha",
             rev: "4f5e11d916e4a03d8cf1c97eef484ce2d77d7df2",
@@ -193,7 +126,7 @@ https://github.com/OpenRA/d2/wiki
         engine: nix.thunk(() => (() => {
           const version = "gen-20190128_3";
           const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-              [nix.POS]: pos$19,
+              [nix.POS]: $pos[18],
               owner: "MustaphaTR",
               repo: "OpenRA",
               rev: version,
@@ -201,7 +134,7 @@ https://github.com/OpenRA/d2/wiki
               name: "generals-alpha-engine",
               postFetch: postFetch,
             }))));
-          return { [nix.POS]: pos$20, version, src };
+          return { [nix.POS]: $pos[19], version, src };
         })()),
       })))),
     kknd: nix.thunk(() => (() => {
@@ -210,22 +143,22 @@ https://github.com/OpenRA/d2/wiki
           const version_1 = version;
           const title = "Krush, Kill 'n' Destroy";
           const meta = nix.thunk(() => ({
-            [nix.POS]: pos$22,
+            [nix.POS]: $pos[21],
             description: nix.thunk(() => nix.str`Re-imagination of the original ${title} game`),
             homepage: "https://kknd-game.com/",
           }));
           const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-              [nix.POS]: pos$23,
+              [nix.POS]: $pos[22],
               owner: "IceReaper",
               repo: "KKnD",
               rev: "5530babcb05170e0959e4cf2b079161e9fedde4f",
               sha256: "07jczrarmgm6zdk0myzwgq200x19yvpjyxrnhdac08mjgyz75zk1",
             }))));
           const engine = nix.thunk(() => ({
-            [nix.POS]: pos$25,
+            [nix.POS]: $pos[24],
             version: "4e8eab4ca00d1910203c8a103dfd2c002714daa8",
             src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                [nix.POS]: pos$24,
+                [nix.POS]: $pos[23],
                 owner: "IceReaper",
                 repo: "OpenRA",
                 rev: "4e8eab4ca00d1910203c8a103dfd2c002714daa8",
@@ -234,9 +167,9 @@ https://github.com/OpenRA/d2/wiki
                 postFetch: postFetch,
               })))),
           }));
-          return { [nix.POS]: pos$26, version: version_1, title, meta, src, engine };
+          return { [nix.POS]: $pos[25], version: version_1, title, meta, src, engine };
         })()), name), "overrideAttrs"), (origAttrs) => ({
-          [nix.POS]: pos$27,
+          [nix.POS]: $pos[26],
           postPatch: nix.thunk(() => nix.str`${nix.sel(origAttrs, "postPatch")}
 sed -i 's/{DEV_VERSION}/${version}/' mods/*/mod.yaml
 `),
@@ -246,22 +179,22 @@ sed -i 's/{DEV_VERSION}/${version}/' mods/*/mod.yaml
         const version = "257.git.c9be8f2";
         const title = "Medieval Warfare";
         const meta = nix.thunk(() => ({
-          [nix.POS]: pos$28,
+          [nix.POS]: $pos[27],
           description: nix.thunk(() => nix.str`A re-imagination of the original Command & Conquer: ${title} game`),
           homepage: "https://github.com/CombinE88/Medieval-Warfare",
         }));
         const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$29,
+            [nix.POS]: $pos[28],
             owner: "CombinE88",
             repo: "Medieval-Warfare",
             rev: "c9be8f2a6f1dd710b1aedd9d5b00b4cf5020e2fe",
             sha256: "09fp7k95jd6hjqdasbspbd43z5670wkyzbbgqkll9dfsrv0sky0v",
           }))));
         const engine = nix.thunk(() => ({
-          [nix.POS]: pos$31,
+          [nix.POS]: $pos[30],
           version: "MedievalWarfareEngine",
           src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-              [nix.POS]: pos$30,
+              [nix.POS]: $pos[29],
               owner: "CombinE88",
               repo: "OpenRA",
               rev: "52109c0910f479753704c46fb19e8afaab353c83",
@@ -270,18 +203,18 @@ sed -i 's/{DEV_VERSION}/${version}/' mods/*/mod.yaml
               postFetch: postFetch,
             })))),
         }));
-        return { [nix.POS]: pos$32, version, title, meta, src, engine };
+        return { [nix.POS]: $pos[31], version, title, meta, src, engine };
       })()))),
     ra2: nix.thunk(() => nix.app(buildOpenRAMod, nix.thunk(() => (() => {
         const version = "903.git.2f7c700";
         const title = "Red Alert 2";
         const meta = nix.thunk(() => ({
-          [nix.POS]: pos$33,
+          [nix.POS]: $pos[32],
           description: nix.thunk(() => nix.str`Re-imagination of the original Command & Conquer: ${title} game`),
           homepage: "https://github.com/OpenRA/ra2",
         }));
         const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$34,
+            [nix.POS]: $pos[33],
             owner: "OpenRA",
             repo: "ra2",
             rev: "2f7c700d6d63c0625e7158ef3098221fa6741569",
@@ -290,7 +223,7 @@ sed -i 's/{DEV_VERSION}/${version}/' mods/*/mod.yaml
         const engine = nix.thunk(() => (() => {
           const version_1 = "release-20180923";
           const src_1 = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-              [nix.POS]: pos$35,
+              [nix.POS]: $pos[34],
               owner: "OpenRA",
               repo: "OpenRA",
               rev: version_1,
@@ -298,24 +231,24 @@ sed -i 's/{DEV_VERSION}/${version}/' mods/*/mod.yaml
               name: "engine",
               postFetch: postFetch,
             }))));
-          return { [nix.POS]: pos$36, version: version_1, src: src_1 };
+          return { [nix.POS]: $pos[35], version: version_1, src: src_1 };
         })());
         const assetsError = nix.thunk(() => nix.str`The mod expects the original ${title} game assets in place:
 https://github.com/OpenRA/ra2/wiki
 `);
-        return { [nix.POS]: pos$37, version, title, meta, src, engine, assetsError };
+        return { [nix.POS]: $pos[36], version, title, meta, src, engine, assetsError };
       })()))),
     raclassic: nix.thunk(() => nix.app(buildOpenRAMod, nix.thunk(() => ({
-        [nix.POS]: pos$42,
+        [nix.POS]: $pos[41],
         version: "183.git.c76c13e",
         title: "Red Alert Classic",
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$38,
+          [nix.POS]: $pos[37],
           description: "A modernization of the original Command & Conquer: Red Alert game",
           homepage: "https://github.com/OpenRA/raclassic",
         })),
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$39,
+            [nix.POS]: $pos[38],
             owner: "OpenRA",
             repo: "raclassic",
             rev: "c76c13e9f0912a66ddebae8d05573632b19736b2",
@@ -324,7 +257,7 @@ https://github.com/OpenRA/ra2/wiki
         engine: nix.thunk(() => (() => {
           const version = "release-20190314";
           const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-              [nix.POS]: pos$40,
+              [nix.POS]: $pos[39],
               owner: "OpenRA",
               repo: "OpenRA",
               rev: version,
@@ -332,31 +265,31 @@ https://github.com/OpenRA/ra2/wiki
               name: "engine",
               postFetch: postFetch,
             }))));
-          return { [nix.POS]: pos$41, version, src };
+          return { [nix.POS]: $pos[40], version, src };
         })()),
       })))),
     rv: nix.thunk(() => nix.app(unsafeBuildOpenRAMod, nix.thunk(() => ({
-        [nix.POS]: pos$47,
+        [nix.POS]: $pos[46],
         version: "1330.git.9230e6f",
         title: "Romanov's Vengeance",
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$43,
+          [nix.POS]: $pos[42],
           description: "Re-imagination of the original Command & Conquer: Red Alert 2 game",
           homepage: "https://github.com/MustaphaTR/Romanovs-Vengeance",
         })),
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$44,
+            [nix.POS]: $pos[43],
             owner: "MustaphaTR",
             repo: "Romanovs-Vengeance",
             rev: "9230e6f1dd9758467832aee4eda115e18f0e635f",
             sha256: "0bwbmmlhp1kh8rgk2nx1ca9vqssj849amndacf318d61gksc1w9n",
           })))),
         engine: nix.thunk(() => ({
-          [nix.POS]: pos$46,
+          [nix.POS]: $pos[45],
           version: "f3873ae",
           mods: nix.thunk(() => ["as"]),
           src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-              [nix.POS]: pos$45,
+              [nix.POS]: $pos[44],
               owner: "AttacqueSuperior",
               repo: "Engine",
               rev: "f3873ae242803051285994d77eb26f4b951594b5",
@@ -368,27 +301,27 @@ https://github.com/OpenRA/ra2/wiki
         assetsError: "The mod expects the Command & Conquer: The Ultimate Collection assets in place:\nhttps://github.com/OpenRA/ra2/wiki\n",
       })))),
     sp: nix.thunk(() => nix.app(unsafeBuildOpenRAMod, nix.thunk(() => ({
-        [nix.POS]: pos$52,
+        [nix.POS]: $pos[51],
         version: "221.git.ac000cc",
         title: "Shattered Paradise",
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$48,
+          [nix.POS]: $pos[47],
           description: "Re-imagination of the original Command & Conquer: Tiberian Sun game",
           homepage: "https://github.com/ABrandau/OpenRAModSDK",
         })),
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$49,
+            [nix.POS]: $pos[48],
             owner: "ABrandau",
             repo: "OpenRAModSDK",
             rev: "ac000cc15377cdf6d3c2b72c737d692aa0ed8bcd",
             sha256: "16mzs5wcxj9nlpcyx2c87idsqpbm40lx0rznsccclnlb3hiwqas9",
           })))),
         engine: nix.thunk(() => ({
-          [nix.POS]: pos$51,
+          [nix.POS]: $pos[50],
           version: "SP-22-04-19",
           mods: nix.thunk(() => ["as", "ts"]),
           src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-              [nix.POS]: pos$50,
+              [nix.POS]: $pos[49],
               owner: "ABrandau",
               repo: "OpenRA",
               rev: "bb0930008a57c07f3002421023f6b446e3e3af69",
@@ -402,22 +335,22 @@ https://github.com/OpenRA/ra2/wiki
         const version = "77.git.23e1f3e";
         const title = "Sole Survivor";
         const meta = nix.thunk(() => ({
-          [nix.POS]: pos$53,
+          [nix.POS]: $pos[52],
           description: nix.thunk(() => nix.str`A re-imagination of the original Command & Conquer: ${title} game`),
           homepage: "https://github.com/MustaphaTR/sole-survivor",
         }));
         const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$54,
+            [nix.POS]: $pos[53],
             owner: "MustaphaTR",
             repo: "sole-survivor",
             rev: "23e1f3e5d8b98c936797b6680d95d56a69a9e2ab",
             sha256: "104clmxphchs7r8y7hpmw103bychayz80bqj98bp89i64nv9d89x",
           }))));
         const engine = nix.thunk(() => ({
-          [nix.POS]: pos$56,
+          [nix.POS]: $pos[55],
           version: "6de92de",
           src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-              [nix.POS]: pos$55,
+              [nix.POS]: $pos[54],
               owner: "OpenRA",
               repo: "OpenRA",
               rev: "6de92de8d982094a766eab97a92225c240d85493",
@@ -426,19 +359,19 @@ https://github.com/OpenRA/ra2/wiki
               postFetch: postFetch,
             })))),
         }));
-        return { [nix.POS]: pos$57, version, title, meta, src, engine };
+        return { [nix.POS]: $pos[56], version, title, meta, src, engine };
       })()))),
     ura: nix.thunk(() => nix.app(buildOpenRAMod, nix.thunk(() => ({
-        [nix.POS]: pos$62,
+        [nix.POS]: $pos[61],
         version: "431.git.128dc53",
         title: "Red Alert Unplugged",
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$58,
+          [nix.POS]: $pos[57],
           description: "Re-imagination of the original Command & Conquer: Red Alert game",
           homepage: "http://redalertunplugged.com/",
         })),
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$59,
+            [nix.POS]: $pos[58],
             owner: "RAunplugged",
             repo: "uRA",
             rev: "128dc53741fae923f4af556f2293ceaa0cf571f0",
@@ -447,7 +380,7 @@ https://github.com/OpenRA/ra2/wiki
         engine: nix.thunk(() => (() => {
           const version = "unplugged-cd82382";
           const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-              [nix.POS]: pos$60,
+              [nix.POS]: $pos[59],
               owner: "RAunplugged",
               repo: "OpenRA",
               rev: version,
@@ -455,19 +388,19 @@ https://github.com/OpenRA/ra2/wiki
               name: "engine",
               postFetch: postFetch,
             }))));
-          return { [nix.POS]: pos$61, version, src };
+          return { [nix.POS]: $pos[60], version, src };
         })()),
       })))),
     yr: nix.thunk(() => nix.app(unsafeBuildOpenRAMod, nix.thunk(() => (() => {
         const version = "199.git.5b8b952";
         const title = "Yuri's Revenge";
         const meta = nix.thunk(() => ({
-          [nix.POS]: pos$63,
+          [nix.POS]: $pos[62],
           description: nix.thunk(() => nix.str`Re-imagination of the original Command & Conquer: ${title} game`),
           homepage: "https://github.com/cookgreen/yr",
         }));
         const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$64,
+            [nix.POS]: $pos[63],
             owner: "cookgreen",
             repo: "yr",
             rev: "5b8b952dbe21f194a6d00485f20e215ce8362712",
@@ -476,7 +409,7 @@ https://github.com/OpenRA/ra2/wiki
         const engine = nix.thunk(() => (() => {
           const version_1 = "release-20190314";
           const src_1 = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-              [nix.POS]: pos$65,
+              [nix.POS]: $pos[64],
               owner: "OpenRA",
               repo: "OpenRA",
               rev: version_1,
@@ -484,10 +417,10 @@ https://github.com/OpenRA/ra2/wiki
               name: "engine",
               postFetch: postFetch,
             }))));
-          return { [nix.POS]: pos$66, version: version_1, src: src_1 };
+          return { [nix.POS]: $pos[65], version: version_1, src: src_1 };
         })());
         const assetsError = "The mod expects the Command & Conquer: The Ultimate Collection assets in place:\nhttps://github.com/OpenRA/ra2/wiki\n";
-        return { [nix.POS]: pos$67, version, title, meta, src, engine, assetsError };
+        return { [nix.POS]: $pos[66], version, title, meta, src, engine, assetsError };
       })()))),
   };
 })(), formals$1);

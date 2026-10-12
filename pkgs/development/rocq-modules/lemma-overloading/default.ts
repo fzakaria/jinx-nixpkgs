@@ -2,20 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["cases", 19, 11], ["out", 23, 11]], [["cases", 26, 11], ["out", 30, 11]], [["cases", 33, 11], ["out", 37, 11]], [["cases", 40, 11], ["out", 44, 11]], [["cases", 47, 11], ["out", 51, 11]], [["hash", 57, 14]], [["hash", 58, 14]], [["hash", 59, 14]], [["hash", 60, 13]], [["hash", 61, 13]], [["8.12.0", 57, 5], ["8.11.0", 58, 5], ["8.10.0", 59, 5], ["8.9.0", 60, 5], ["8.8.0", 61, 5]], [["description", 68, 5], ["maintainers", 69, 5], ["license", 70, 5]], [["pname", 10, 3], ["version", 11, 11], ["defaultVersion", 13, 3], ["release", 56, 3], ["releaseRev", 63, 3], ["propagatedBuildInputs", 65, 3], ["meta", 67, 3]]]);
 const formals$1 = { args: { lib: false, mkCoqDerivation: false, coq: false, "mathcomp-ssreflect": false, version: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["cases", 19, 11], ["out", 23, 11]]);
-const pos$2 = nix.positions(here + "/default.nix", [["cases", 26, 11], ["out", 30, 11]]);
-const pos$3 = nix.positions(here + "/default.nix", [["cases", 33, 11], ["out", 37, 11]]);
-const pos$4 = nix.positions(here + "/default.nix", [["cases", 40, 11], ["out", 44, 11]]);
-const pos$5 = nix.positions(here + "/default.nix", [["cases", 47, 11], ["out", 51, 11]]);
-const pos$6 = nix.positions(here + "/default.nix", [["hash", 57, 14]]);
-const pos$7 = nix.positions(here + "/default.nix", [["hash", 58, 14]]);
-const pos$8 = nix.positions(here + "/default.nix", [["hash", 59, 14]]);
-const pos$9 = nix.positions(here + "/default.nix", [["hash", 60, 13]]);
-const pos$10 = nix.positions(here + "/default.nix", [["hash", 61, 13]]);
-const pos$11 = nix.positions(here + "/default.nix", [["8.12.0", 57, 5], ["8.11.0", 58, 5], ["8.10.0", 59, 5], ["8.9.0", 60, 5], ["8.8.0", 61, 5]]);
-const pos$12 = nix.positions(here + "/default.nix", [["description", 68, 5], ["maintainers", 69, 5], ["license", 70, 5]]);
-const pos$13 = nix.positions(here + "/default.nix", [["pname", 10, 3], ["version", 11, 11], ["defaultVersion", 13, 3], ["release", 56, 3], ["releaseRev", 63, 3], ["propagatedBuildInputs", 65, 3], ["meta", 67, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const mathcomp_ssreflect = nix.arg($, "mathcomp-ssreflect");
   const version = nix.argOr($, "version", () => null);
   return nix.app(mkCoqDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$13,
+      [nix.POS]: $pos[12],
       pname: "lemma-overloading",
       version: version,
       defaultVersion: nix.thunk(() => (() => {
@@ -35,7 +23,7 @@ export default nix.lambda((args) => (() => {
             nix.thunk(() => nix.sel(mathcomp_ssreflect, "version")),
           ]), nix.thunk(() => [
             nix.thunk(() => ({
-              [nix.POS]: pos$1,
+              [nix.POS]: $pos[0],
               cases: nix.thunk(() => [
                 nix.thunk(() => nix.app(nix.lookup(w, "range"), "8.10", "8.12")),
                 nix.thunk(() => nix.app(nix.lookup(w, "range"), "1.7", "1.11")),
@@ -43,7 +31,7 @@ export default nix.lambda((args) => (() => {
               out: "8.12.0",
             })),
             nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               cases: nix.thunk(() => [
                 nix.thunk(() => nix.app(nix.lookup(w, "range"), "8.10", "8.11")),
                 nix.thunk(() => nix.app(nix.lookup(w, "range"), "1.7", "1.11")),
@@ -51,7 +39,7 @@ export default nix.lambda((args) => (() => {
               out: "8.11.0",
             })),
             nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               cases: nix.thunk(() => [
                 nix.thunk(() => nix.app(nix.lookup(w, "range"), "8.8", "8.11")),
                 nix.thunk(() => nix.app(nix.lookup(w, "range"), "1.7", "1.10")),
@@ -59,7 +47,7 @@ export default nix.lambda((args) => (() => {
               out: "8.10.0",
             })),
             nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               cases: nix.thunk(() => [
                 nix.thunk(() => nix.app(nix.lookup(w, "range"), "8.8", "8.9")),
                 nix.thunk(() => nix.app(nix.lookup(w, "range"), "1.7", "1.8")),
@@ -67,7 +55,7 @@ export default nix.lambda((args) => (() => {
               out: "8.9.0",
             })),
             nix.thunk(() => ({
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               cases: nix.thunk(() => [
                 nix.thunk(() => nix.app(nix.lookup(w, "isEq"), "8.8")),
                 nix.thunk(() => nix.app(nix.lookup(w, "range"), "1.6.2", "1.7")),
@@ -77,32 +65,32 @@ export default nix.lambda((args) => (() => {
           ]), null);
       })()),
       release: nix.thunk(() => ({
-        [nix.POS]: pos$11,
+        [nix.POS]: $pos[10],
         "8.12.0": nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           hash: "sha256-ul1IhxFwhLTy3+rmo3gvjHI3Z8A8avN0Rzq0YDy2bjs=",
         })),
         "8.11.0": nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           hash: "sha256-RI3KdSEYxUbjfZWKO7atGdEqDU8WmLJSFeF6TLlgUFc=",
         })),
         "8.10.0": nix.thunk(() => ({
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           hash: "sha256-qpHh/iz2fFtGwUedjJ6fuOh8uq1mlL4ETxc9zDJ6800=",
         })),
         "8.9.0": nix.thunk(() => ({
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           hash: "sha256-dE9O94DvcF93TUTU7ky9pvGZgTtPZWz6826b6Js/nHc=",
         })),
         "8.8.0": nix.thunk(() => ({
-          [nix.POS]: pos$10,
+          [nix.POS]: $pos[9],
           hash: "sha256-Iq3KfESMnZF8hhGKuvZHx+hAMEaoCP7MhhQEI6xfoO8=",
         })),
       })),
       releaseRev: (v) => nix.str`v${v}`,
       propagatedBuildInputs: nix.thunk(() => [mathcomp_ssreflect]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$12,
+        [nix.POS]: $pos[11],
         description: "Libraries demonstrating design patterns for programming and proving with canonical structures in Coq",
         maintainers: nix.thunk(() => (() => {
           const w_1 = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);

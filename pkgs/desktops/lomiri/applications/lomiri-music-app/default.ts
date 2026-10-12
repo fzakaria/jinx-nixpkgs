@@ -2,13 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]], [["vm", 93, 11]], [["rev-prefix", 94, 33]], [["tests", 93, 5], ["updateScript", 94, 5]], [["description", 98, 5], ["homepage", 99, 5], ["changelog", 100, 5], ["license", 103, 5], ["mainProgram", 106, 5], ["teams", 107, 5], ["platforms", 108, 5]], [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["postPatch", 34, 3], ["strictDeps", 41, 3], ["nativeBuildInputs", 43, 3], ["buildInputs", 50, 3], ["dontWrapGApps", 71, 3], ["cmakeFlags", 73, 3], ["doCheck", 79, 3], ["postInstall", 81, 3], ["preFixup", 88, 3], ["passthru", 92, 3], ["meta", 97, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitLab: false, gitUpdater: false, nixosTests: false, cmake: false, gettext: false, gst_all_1: false, libusermetrics: false, "lomiri-content-hub": false, "lomiri-thumbnailer": false, "lomiri-ui-toolkit": false, mediascanner2: false, qtbase: false, qtdeclarative: false, qtmultimedia: false, qtsystems: false, wrapGAppsHook3: false, wrapQtAppsHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["vm", 93, 11]]);
-const pos$3 = nix.positions(here + "/default.nix", [["rev-prefix", 94, 33]]);
-const pos$4 = nix.positions(here + "/default.nix", [["tests", 93, 5], ["updateScript", 94, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["description", 98, 5], ["homepage", 99, 5], ["changelog", 100, 5], ["license", 103, 5], ["mainProgram", 106, 5], ["teams", 107, 5], ["platforms", 108, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["postPatch", 34, 3], ["strictDeps", 41, 3], ["nativeBuildInputs", 43, 3], ["buildInputs", 50, 3], ["dontWrapGApps", 71, 3], ["cmakeFlags", 73, 3], ["doCheck", 79, 3], ["postInstall", 81, 3], ["preFixup", 88, 3], ["passthru", 92, 3], ["meta", 97, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,11 +27,11 @@ export default nix.lambda((args) => (() => {
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   const wrapQtAppsHook = nix.arg($, "wrapQtAppsHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "lomiri-music-app",
       version: "3.3.0",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ubports",
           repo: "development/apps/lomiri-music-app",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -73,15 +68,15 @@ export default nix.lambda((args) => (() => {
       postInstall: "mkdir -p $out/share/{icons/hicolor/scalable/apps,lomiri-app-launch/splash}\n\nln -s $out/share/{lomiri-music-app/app/graphics/music-app.svg,icons/hicolor/scalable/apps/lomiri-music-app.svg}\nln -s $out/share/{lomiri-music-app/app/graphics/music-app-splash.svg,lomiri-app-launch/splash/lomiri-music-app.svg}\n",
       preFixup: "qtWrapperArgs+=(\"${gappsWrapperArgs[@]}\")\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           vm: nix.thunk(() => nix.sel(nixosTests, "lomiri-music-app")),
         })),
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$3, "rev-prefix": "v" })))),
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[2], "rev-prefix": "v" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Default Music application for Ubuntu devices",
         homepage: "https://gitlab.com/ubports/development/apps/lomiri-music-app",
         changelog: nix.thunk(() => nix.str`https://gitlab.com/ubports/development/apps/lomiri-music-app/-/blob/${(nix.asBool(!nix.asBool(nix.builtins.isNull(nix.thunk(() => nix.sel(finalAttrs, "src", "tag"))))) ? nix.sel(finalAttrs, "src", "tag") : nix.sel(finalAttrs, "src", "rev"))}/ChangeLog`),

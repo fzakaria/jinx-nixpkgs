@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 7], ["repo", 14, 7], ["rev", 15, 7], ["hash", 16, 7]], [["homepage", 24, 7], ["description", 25, 7], ["changelog", 26, 7], ["mainProgram", 27, 7], ["maintainers", 28, 7], ["license", 29, 7]], [["pname", 9, 5], ["version", 10, 5], ["src", 12, 5], ["build-system", 19, 5], ["pyproject", 21, 5], ["meta", 23, 5]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, python3Packages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 7], ["repo", 14, 7], ["rev", 15, 7], ["hash", 16, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 24, 7], ["description", 25, 7], ["changelog", 26, 7], ["mainProgram", 27, 7], ["maintainers", 28, 7], ["license", 29, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 5], ["version", 10, 5], ["src", 12, 5], ["build-system", 19, 5], ["pyproject", 21, 5], ["meta", 23, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,11 +11,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const python3Packages = nix.arg($, "python3Packages");
   const self = nix.thunk(() => nix.app(nix.sel(python3Packages, "buildPythonApplication"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "setconf",
       version: "0.7.7",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "xyproto",
           repo: "setconf",
           rev: nix.thunk(() => nix.sel(self, "version")),
@@ -29,7 +27,7 @@ export default nix.lambda((args) => (() => {
       })()),
       pyproject: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/xyproto/setconf",
         description: "Small utility for changing settings in configuration textfiles",
         changelog: nix.thunk(() => nix.str`https://github.com/xyproto/setconf/releases/tag/${nix.sel(self, "src", "rev")}`),

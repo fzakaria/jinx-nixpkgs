@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 16, 5], ["hash", 17, 5]], [["description", 49, 5], ["homepage", 50, 5], ["sourceProvenance", 51, 5], ["license", 52, 5], ["mainProgram", 53, 5], ["maintainers", 54, 5], ["platforms", 55, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["unpackPhase", 20, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 33, 3], ["installPhase", 39, 3], ["meta", 48, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, autoPatchelfHook: false, p7zip: false, libGL: false, libx11: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 49, 5], ["homepage", 50, 5], ["sourceProvenance", 51, 5], ["license", 52, 5], ["mainProgram", 53, 5], ["maintainers", 54, 5], ["platforms", 55, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["unpackPhase", 20, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 33, 3], ["installPhase", 39, 3], ["meta", 48, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const libGL = nix.arg($, "libGL");
   const libx11 = nix.arg($, "libx11");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "bink-player",
       version: "2025.05",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://web.archive.org/web/20250602103030if_/https://www.radgametools.com/down/Bink/BinkLinuxPlayer.7z",
           hash: "sha256-A3IDQtdYlIcU2U8uieQI6xe1SvW4BqH+5ZwPYJxr83M=",
         })))),
@@ -30,7 +28,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(stdenv, "cc", "cc", "lib")), libGL, libx11]),
       installPhase: "runHook preInstall\n\ninstall -Dm755 BinkPlayer64 -t $out/bin/\ninstall -Dm755 BinkPlayer -t $out/bin/\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Play videos in the Bink format",
         homepage: "https://www.radgametools.com/bnkmain.htm",
         sourceProvenance: nix.thunk(() => (() => {

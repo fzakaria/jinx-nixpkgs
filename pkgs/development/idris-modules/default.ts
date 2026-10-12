@@ -2,12 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["overrideScope", 15, 7]], [["prelude", 28, 9], ["base", 30, 9], ["contrib", 32, 9], ["effects", 37, 9], ["pruviloj", 42, 9]], [["idris-no-deps", 55, 17]], [["idris-no-deps", 50, 15], ["callPackage", 50, 29], ["idris", 54, 7], ["with-packages", 60, 7], ["build-builtin-package", 62, 7], ["build-idris-package", 64, 7], ["builtins", 68, 7], ["array", 72, 7], ["bi", 74, 7], ["bifunctors", 76, 7], ["bytes", 78, 7], ["canvas", 80, 7], ["categories", 82, 7], ["coda", 84, 7], ["config", 86, 7], ["comonad", 88, 7], ["composition", 90, 7], ["console", 92, 7], ["containers", 94, 7], ["cube", 96, 7], ["derive", 98, 7], ["dict", 100, 7], ["dom", 102, 7], ["electron", 104, 7], ["eternal", 106, 7], ["farrp", 108, 7], ["free", 110, 7], ["fsm", 112, 7], ["glfw", 114, 7], ["graphviz", 116, 7], ["hamt", 118, 7], ["html", 120, 7], ["hezarfen", 122, 7], ["hrtime", 124, 7], ["http", 126, 7], ["http4idris", 128, 7], ["iaia", 130, 7], ["idrishighlighter", 132, 7], ["idrisscript", 134, 7], ["ipkgparser", 136, 7], ["jheiling-extras", 138, 7], ["jheiling-js", 140, 7], ["js", 142, 7], ["lens", 144, 7], ["lightyear", 146, 7], ["logic", 148, 7], ["mapping", 150, 7], ["mhd", 152, 7], ["pacman", 154, 7], ["patricia", 156, 7], ["permutations", 158, 7], ["pfds", 160, 7], ["pipes", 162, 7], ["posix", 164, 7], ["quantities", 166, 7], ["rationals", 168, 7], ["recursion_schemes", 170, 7], ["refined", 172, 7], ["sdl2", 174, 7], ["semidirect", 176, 7], ["setoids", 178, 7], ["smproc", 180, 7], ["snippets", 182, 7], ["software_foundations", 184, 7], ["specdris", 186, 7], ["tap", 188, 7], ["test", 190, 7], ["tf-random", 192, 7], ["tlhydra", 194, 7], ["tomladris", 196, 7], ["tp", 198, 7], ["tparsec", 200, 7], ["transducers", 202, 7], ["trees", 204, 7], ["union_type", 206, 7], ["vdom", 208, 7], ["vecspace", 210, 7], ["webgl", 212, 7], ["wl-pprint", 214, 7], ["wyvern", 216, 7], ["xhr", 218, 7], ["yaml", 220, 7], ["yampa", 222, 7]], [["descncrunch", 228, 7], ["protobuf", 229, 7], ["sdl", 230, 7]]]);
 const formals$1 = { args: { pkgs: false, config: false, "idris-no-deps": false, overrides: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["overrideScope", 15, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["prelude", 28, 9], ["base", 30, 9], ["contrib", 32, 9], ["effects", 37, 9], ["pruviloj", 42, 9]]);
-const pos$3 = nix.positions(here + "/default.nix", [["idris-no-deps", 55, 17]]);
-const pos$4 = nix.positions(here + "/default.nix", [["idris-no-deps", 50, 15], ["callPackage", 50, 29], ["idris", 54, 7], ["with-packages", 60, 7], ["build-builtin-package", 62, 7], ["build-idris-package", 64, 7], ["builtins", 68, 7], ["array", 72, 7], ["bi", 74, 7], ["bifunctors", 76, 7], ["bytes", 78, 7], ["canvas", 80, 7], ["categories", 82, 7], ["coda", 84, 7], ["config", 86, 7], ["comonad", 88, 7], ["composition", 90, 7], ["console", 92, 7], ["containers", 94, 7], ["cube", 96, 7], ["derive", 98, 7], ["dict", 100, 7], ["dom", 102, 7], ["electron", 104, 7], ["eternal", 106, 7], ["farrp", 108, 7], ["free", 110, 7], ["fsm", 112, 7], ["glfw", 114, 7], ["graphviz", 116, 7], ["hamt", 118, 7], ["html", 120, 7], ["hezarfen", 122, 7], ["hrtime", 124, 7], ["http", 126, 7], ["http4idris", 128, 7], ["iaia", 130, 7], ["idrishighlighter", 132, 7], ["idrisscript", 134, 7], ["ipkgparser", 136, 7], ["jheiling-extras", 138, 7], ["jheiling-js", 140, 7], ["js", 142, 7], ["lens", 144, 7], ["lightyear", 146, 7], ["logic", 148, 7], ["mapping", 150, 7], ["mhd", 152, 7], ["pacman", 154, 7], ["patricia", 156, 7], ["permutations", 158, 7], ["pfds", 160, 7], ["pipes", 162, 7], ["posix", 164, 7], ["quantities", 166, 7], ["rationals", 168, 7], ["recursion_schemes", 170, 7], ["refined", 172, 7], ["sdl2", 174, 7], ["semidirect", 176, 7], ["setoids", 178, 7], ["smproc", 180, 7], ["snippets", 182, 7], ["software_foundations", 184, 7], ["specdris", 186, 7], ["tap", 188, 7], ["test", 190, 7], ["tf-random", 192, 7], ["tlhydra", 194, 7], ["tomladris", 196, 7], ["tp", 198, 7], ["tparsec", 200, 7], ["transducers", 202, 7], ["trees", 204, 7], ["union_type", 206, 7], ["vdom", 208, 7], ["vecspace", 210, 7], ["webgl", 212, 7], ["wl-pprint", 214, 7], ["wyvern", 216, 7], ["xhr", 218, 7], ["yaml", 220, 7], ["yampa", 222, 7]]);
-const pos$5 = nix.positions(here + "/default.nix", [["descncrunch", 228, 7], ["protobuf", 229, 7], ["sdl", 230, 7]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const fix$ = nix.thunk(() => nix.attr(from, "fix'"));
   const extends$ = nix.thunk(() => nix.attr(from, "extends"));
   const callPackageWithScope = (scope) => (drv) => (args_1) => nix.update(nix.app(callPackageWith, scope, drv, args_1), {
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     overrideScope: (f) => nix.app(callPackageWithScope, nix.thunk(() => nix.app(mkScope, nix.thunk(() => nix.app(fix$, nix.thunk(() => nix.app(extends$, f, nix.thunk(() => nix.sel(scope, "__unfix__")))))))), drv, args_1),
   });
   const mkScope = (scope) => nix.update(pkgs, scope);
@@ -28,7 +24,7 @@ export default nix.lambda((args) => (() => {
     const defaultScope = nix.thunk(() => nix.app(mkScope, self));
     const callPackage = nix.thunk(() => nix.app(callPackageWithScope, defaultScope));
     const builtins_ = nix.thunk(() => nix.app(nix.sel(pkgs, "lib", "mapAttrs"), nix.thunk(() => nix.sel(self, "build-builtin-package")), nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         prelude: [],
         base: nix.thunk(() => [nix.thunk(() => nix.sel(self, "prelude"))]),
         contrib: nix.thunk(() => [
@@ -45,10 +41,10 @@ export default nix.lambda((args) => (() => {
         ]),
       }))));
     return nix.update({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       "idris-no-deps": idris_no_deps,
       callPackage: callPackage,
-      idris: nix.thunk(() => nix.app(nix.sel(pkgs, "callPackage"), nix.path(here, "./idris-wrapper.nix"), nix.thunk(() => ({ [nix.POS]: pos$3, "idris-no-deps": idris_no_deps })))),
+      idris: nix.thunk(() => nix.app(nix.sel(pkgs, "callPackage"), nix.path(here, "./idris-wrapper.nix"), nix.thunk(() => ({ [nix.POS]: $pos[2], "idris-no-deps": idris_no_deps })))),
       "with-packages": nix.thunk(() => nix.app(callPackage, nix.path(here, "./with-packages.nix"), nix.thunk(() => ({})))),
       "build-builtin-package": nix.thunk(() => nix.app(callPackage, nix.path(here, "./build-builtin-package.nix"), nix.thunk(() => ({})))),
       "build-idris-package": nix.thunk(() => nix.app(callPackage, nix.path(here, "./build-idris-package.nix"), nix.thunk(() => ({})))),
@@ -130,7 +126,7 @@ export default nix.lambda((args) => (() => {
       yaml: nix.thunk(() => nix.app(callPackage, nix.path(here, "./yaml.nix"), nix.thunk(() => ({})))),
       yampa: nix.thunk(() => nix.app(callPackage, nix.path(here, "./yampa.nix"), nix.thunk(() => ({})))),
     }, nix.update(builtins_, nix.app(nix.sel(pkgs, "lib", "optionalAttrs"), nix.thunk(() => nix.sel(config, "allowAliases")), nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         descncrunch: nix.thunk(() => nix.builtins.throw("descncrunch has been removed because it has been marked as broken since 2018.")),
         protobuf: nix.thunk(() => nix.builtins.throw("idrisPackages.protobuf has been removed: abandoned by upstream")),
         sdl: nix.thunk(() => nix.builtins.throw("'idrisPackages.sdl' has been removed, as it was broken and unmaintained")),

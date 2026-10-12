@@ -2,58 +2,48 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/unit-perl.nix", [[["maintainers", 16, 8]], [["application", 29, 30]], [["*:8080", 29, 21]], [["type", 31, 13], ["script", 32, 13]], [["perl", 30, 24]], [["listeners", 29, 11], ["applications", 30, 11]], [["enable", 27, 9], ["config", 28, 9]], [["unit", 26, 16]], [["services", 26, 7]], [["machine", 18, 9]], [["name", 15, 3], ["meta", 16, 3], ["nodes", 18, 3], ["testScript", 37, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/unit-perl.nix", [["maintainers", 16, 8]]);
 const formals$2 = { args: { config: false, lib: false, pkgs: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/unit-perl.nix", [["application", 29, 30]]);
-const pos$3 = nix.positions(here + "/unit-perl.nix", [["*:8080", 29, 21]]);
-const pos$4 = nix.positions(here + "/unit-perl.nix", [["type", 31, 13], ["script", 32, 13]]);
-const pos$5 = nix.positions(here + "/unit-perl.nix", [["perl", 30, 24]]);
-const pos$6 = nix.positions(here + "/unit-perl.nix", [["listeners", 29, 11], ["applications", 30, 11]]);
-const pos$7 = nix.positions(here + "/unit-perl.nix", [["enable", 27, 9], ["config", 28, 9]]);
-const pos$8 = nix.positions(here + "/unit-perl.nix", [["unit", 26, 16]]);
-const pos$9 = nix.positions(here + "/unit-perl.nix", [["services", 26, 7]]);
-const pos$10 = nix.positions(here + "/unit-perl.nix", [["machine", 18, 9]]);
-const pos$11 = nix.positions(here + "/unit-perl.nix", [["name", 15, 3], ["meta", 16, 3], ["nodes", 18, 3], ["testScript", 37, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   const testdir = nix.thunk(() => nix.app(nix.sel(pkgs, "writeTextDir"), "www/app.psgi", "my $app = sub {\n    return [\n        \"200\",\n        [ \"Content-Type\" => \"text/plain\" ],\n        [ \"Hello, Perl on Unit!\" ],\n    ];\n};\n"));
   return {
-    [nix.POS]: pos$11,
+    [nix.POS]: $pos[10],
     name: "unit-perl-test",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "sgo"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config = nix.arg($_1, "config");
         const lib = nix.arg($_1, "lib");
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$8,
+            [nix.POS]: $pos[7],
             unit: nix.thunk(() => ({
-              [nix.POS]: pos$7,
+              [nix.POS]: $pos[6],
               enable: true,
               config: nix.thunk(() => nix.app(nix.sel(pkgs_1, "lib", "strings", "toJSON"), nix.thunk(() => ({
-                  [nix.POS]: pos$6,
+                  [nix.POS]: $pos[5],
                   listeners: nix.thunk(() => ({
-                    [nix.POS]: pos$3,
-                    "*:8080": nix.thunk(() => ({ [nix.POS]: pos$2, application: "perl" })),
+                    [nix.POS]: $pos[2],
+                    "*:8080": nix.thunk(() => ({ [nix.POS]: $pos[1], application: "perl" })),
                   })),
                   applications: nix.thunk(() => ({
-                    [nix.POS]: pos$5,
+                    [nix.POS]: $pos[4],
                     perl: nix.thunk(() => ({
-                      [nix.POS]: pos$4,
+                      [nix.POS]: $pos[3],
                       type: "perl",
                       script: nix.thunk(() => nix.str`${testdir}/www/app.psgi`),
                     })),

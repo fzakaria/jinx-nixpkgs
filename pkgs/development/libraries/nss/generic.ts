@@ -2,16 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/generic.nix", [[["owner", 38, 5], ["repo", 39, 5], ["rev", 40, 5], ["hash", 41, 13]], [["NIX_CFLAGS_COMPILE", 151, 7]], [["extraArgs", 247, 5]], [["firefox-esr", 257, 28]], [["firefox", 260, 28]], [["updateScript", 246, 12], ["tests", 255, 12]], [["homepage", 264, 5], ["description", 265, 5], ["changelog", 266, 5], ["maintainers", 267, 5], ["license", 271, 5], ["platforms", 272, 5]], [["pname", 34, 3], ["version", 35, 11], ["src", 37, 3], ["depsBuildBuild", 44, 3], ["nativeBuildInputs", 46, 3], ["buildInputs", 57, 3], ["propagatedBuildInputs", 62, 3], ["patches", 64, 3], ["postPatch", 70, 3], ["outputs", 87, 3], ["buildPhase", 94, 3], ["env", 151, 3], ["installPhase", 172, 3], ["postInstall", 208, 3], ["postFixup", 213, 3], ["passthru", 246, 3], ["meta", 263, 3]]]);
 const formals$1 = { args: { version: false, hash: false, filename: false, versionRegex: false }, ellipsis: false };
 const formals$2 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, nspr: false, perl: false, installShellFiles: false, zlib: false, sqlite: false, ninja: false, cctools: false, fixDarwinDylibNames: false, buildPackages: false, useP11kit: true, "p11-kit": false, enableFIPS: true, nixosTests: false, nss_latest: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/generic.nix", [["owner", 38, 5], ["repo", 39, 5], ["rev", 40, 5], ["hash", 41, 13]]);
-const pos$2 = nix.positions(here + "/generic.nix", [["NIX_CFLAGS_COMPILE", 151, 7]]);
-const pos$3 = nix.positions(here + "/generic.nix", [["extraArgs", 247, 5]]);
-const pos$4 = nix.positions(here + "/generic.nix", [["firefox-esr", 257, 28]]);
-const pos$5 = nix.positions(here + "/generic.nix", [["firefox", 260, 28]]);
-const pos$6 = nix.positions(here + "/generic.nix", [["updateScript", 246, 12], ["tests", 255, 12]]);
-const pos$7 = nix.positions(here + "/generic.nix", [["homepage", 264, 5], ["description", 265, 5], ["changelog", 266, 5], ["maintainers", 267, 5], ["license", 271, 5], ["platforms", 272, 5]]);
-const pos$8 = nix.positions(here + "/generic.nix", [["pname", 34, 3], ["version", 35, 11], ["src", 37, 3], ["depsBuildBuild", 44, 3], ["nativeBuildInputs", 46, 3], ["buildInputs", 57, 3], ["propagatedBuildInputs", 62, 3], ["patches", 64, 3], ["postPatch", 70, 3], ["outputs", 87, 3], ["buildPhase", 94, 3], ["env", 151, 3], ["installPhase", 172, 3], ["postInstall", 208, 3], ["postFixup", 213, 3], ["passthru", 246, 3], ["meta", 263, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -44,7 +37,7 @@ export default nix.lambda((args) => (() => {
         const pname = "nss";
         const version_1 = version;
         const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             owner: "mozilla",
             repo: "nss",
             rev: nix.thunk(() => nix.str`NSS_${nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => ["_"]), version_1)}_RTM`),
@@ -107,7 +100,7 @@ runHook postBuild
 `;
         })());
         const env = nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.concat([
               "-Wno-error",
               nix.thunk(() => nix.str`-DNIX_NSS_LIBDIR="${nix.builtins.placeholder("out")}/lib/"`),
@@ -128,9 +121,9 @@ done
 `))), "moveToOutput bin \"$tools\"\nmoveToOutput bin/nss-config \"$dev\"\nmoveToOutput lib/libcrmf.a \"$dev\" # needed by firefox, for example\nrm -f \"$out\"/lib/*.a\n\nrunHook postInstall\n");
         })());
         const passthru = nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               extraArgs: nix.thunk(() => [
                 "--override-filename",
                 nix.thunk(() => nix.str`pkgs/development/libraries/nss/${filename}`),
@@ -139,12 +132,15 @@ done
               ]),
             })))),
           tests: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.app(nix.sel(lib, "versionOlder"), version_1, nix.thunk(() => nix.sel(nss_latest, "version")))), nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               "firefox-esr": nix.thunk(() => nix.attr(nixosTests, "firefox-esr")),
-            }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), version_1, nix.thunk(() => nix.sel(nss_latest, "version")))), nix.thunk(() => ({ [nix.POS]: pos$5, firefox: nix.thunk(() => nix.attr(nixosTests, "firefox")) }))))),
+            }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), version_1, nix.thunk(() => nix.sel(nss_latest, "version")))), nix.thunk(() => ({
+              [nix.POS]: $pos[4],
+              firefox: nix.thunk(() => nix.attr(nixosTests, "firefox")),
+            }))))),
         }));
         const meta = nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           homepage: "https://developer.mozilla.org/en-US/docs/Mozilla/Projects/NSS",
           description: "Set of libraries for development of security-enabled client and server applications",
           changelog: nix.thunk(() => nix.str`https://github.com/mozilla/nss/blob/master/doc/src/releases/nss_${underscoreVersion}.md`),
@@ -159,7 +155,7 @@ done
           platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
         }));
         return {
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           pname,
           version: version_1,
           src,

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 36, 26], ["version", 36, 32], ["hash", 37, 5]], [["description", 84, 5], ["homepage", 85, 5], ["changelog", 86, 5], ["license", 87, 5], ["maintainers", 88, 5], ["mainProgram", 89, 5]], [["pname", 28, 3], ["version", 29, 3], ["pyproject", 30, 3], ["src", 35, 3], ["postPatch", 40, 3], ["build-system", 46, 3], ["dependencies", 48, 3], ["nativeCheckInputs", 57, 3], ["disabledTests", 63, 3], ["pythonImportsCheck", 80, 3], ["doCheck", 81, 3], ["meta", 83, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchPypi: false, hatchling: false, click: false, numpy: false, onnxruntime: false, "python-dotenv": false, tabulate: false, tqdm: false, pytestCheckHook: false, dacite: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 36, 26], ["version", 36, 32], ["hash", 37, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 84, 5], ["homepage", 85, 5], ["changelog", 86, 5], ["license", 87, 5], ["maintainers", 88, 5], ["mainProgram", 89, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 28, 3], ["version", 29, 3], ["pyproject", 30, 3], ["src", 35, 3], ["postPatch", 40, 3], ["build-system", 46, 3], ["dependencies", 48, 3], ["nativeCheckInputs", 57, 3], ["disabledTests", 63, 3], ["pythonImportsCheck", 80, 3], ["doCheck", 81, 3], ["meta", 83, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,12 +23,12 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const isNotAarch64Linux = nix.thunk(() => !nix.asBool((nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")))));
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "magika",
       version: "1.0.3",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-rTIWAS9t0ze+NMI649+rNvBiO8Yvv7Mp+aGFLJrUAwQ=",
@@ -53,7 +51,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), isNotAarch64Linux, nix.thunk(() => ["magika"]))),
       doCheck: isNotAarch64Linux,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Detect file content types with deep learning",
         homepage: "https://github.com/google/magika",
         changelog: nix.thunk(() => nix.str`https://github.com/google/magika/blob/python-v${nix.sel(finalAttrs, "version")}/python/CHANGELOG.md`),

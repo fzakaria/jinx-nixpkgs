@@ -2,30 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["label", 10, 7], ["version", 11, 7], ["hash", 12, 7]], [["label", 15, 7], ["version", 16, 7], ["hash", 17, 7]], [["label", 20, 7], ["version", 21, 7], ["hash", 22, 7]], [["label", 25, 7], ["version", 26, 7], ["hash", 27, 7]], [["label", 30, 7], ["version", 31, 7], ["hash", 32, 7]], [["label", 35, 7], ["version", 36, 7], ["hash", 37, 7]], [["label", 40, 7], ["version", 41, 7], ["hash", 42, 7]], [["label", 45, 7], ["version", 46, 7], ["hash", 47, 7]], [["label", 50, 7], ["version", 51, 7], ["hash", 52, 7]], [["label", 55, 7], ["version", 56, 7], ["hash", 57, 7]], [["label", 60, 7], ["version", 61, 7], ["hash", 62, 7]], [["label", 65, 7], ["version", 66, 7], ["hash", 67, 7]], [["label", 70, 7], ["version", 71, 7], ["hash", 72, 7]], [["assamese", 9, 5], ["bengali", 14, 5], ["devanagari", 19, 5], ["gujarati", 24, 5], ["gurmukhi", 29, 5], ["kannada", 34, 5], ["malayalam", 39, 5], ["marathi", 44, 5], ["nepali", 49, 5], ["odia", 54, 5], ["tamil-classical", 59, 5], ["tamil", 64, 5], ["telugu", 69, 5]], [["label", 78, 7], ["version", 79, 7], ["hash", 80, 7]], [["label", 83, 7], ["version", 84, 7], ["hash", 85, 7]], [["label", 88, 7], ["version", 89, 7], ["hash", 90, 7]], [["label", 93, 7], ["version", 94, 7], ["hash", 95, 7]], [["kashmiri", 77, 5], ["konkani", 82, 5], ["maithili", 87, 5], ["sindhi", 92, 5]], [["url", 110, 9], ["hash", 111, 17]], [["license", 124, 17], ["description", 125, 9], ["homepage", 126, 9], ["maintainers", 127, 9], ["priority", 132, 9]], [["pname", 107, 15], ["version", 107, 21], ["src", 109, 7], ["nativeBuildInputs", 114, 7], ["postInstall", 118, 7], ["meta", 123, 7]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchurl: false, installFonts: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["label", 10, 7], ["version", 11, 7], ["hash", 12, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["label", 15, 7], ["version", 16, 7], ["hash", 17, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["label", 20, 7], ["version", 21, 7], ["hash", 22, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["label", 25, 7], ["version", 26, 7], ["hash", 27, 7]]);
-const pos$5 = nix.positions(here + "/default.nix", [["label", 30, 7], ["version", 31, 7], ["hash", 32, 7]]);
-const pos$6 = nix.positions(here + "/default.nix", [["label", 35, 7], ["version", 36, 7], ["hash", 37, 7]]);
-const pos$7 = nix.positions(here + "/default.nix", [["label", 40, 7], ["version", 41, 7], ["hash", 42, 7]]);
-const pos$8 = nix.positions(here + "/default.nix", [["label", 45, 7], ["version", 46, 7], ["hash", 47, 7]]);
-const pos$9 = nix.positions(here + "/default.nix", [["label", 50, 7], ["version", 51, 7], ["hash", 52, 7]]);
-const pos$10 = nix.positions(here + "/default.nix", [["label", 55, 7], ["version", 56, 7], ["hash", 57, 7]]);
-const pos$11 = nix.positions(here + "/default.nix", [["label", 60, 7], ["version", 61, 7], ["hash", 62, 7]]);
-const pos$12 = nix.positions(here + "/default.nix", [["label", 65, 7], ["version", 66, 7], ["hash", 67, 7]]);
-const pos$13 = nix.positions(here + "/default.nix", [["label", 70, 7], ["version", 71, 7], ["hash", 72, 7]]);
-const pos$14 = nix.positions(here + "/default.nix", [["assamese", 9, 5], ["bengali", 14, 5], ["devanagari", 19, 5], ["gujarati", 24, 5], ["gurmukhi", 29, 5], ["kannada", 34, 5], ["malayalam", 39, 5], ["marathi", 44, 5], ["nepali", 49, 5], ["odia", 54, 5], ["tamil-classical", 59, 5], ["tamil", 64, 5], ["telugu", 69, 5]]);
-const pos$15 = nix.positions(here + "/default.nix", [["label", 78, 7], ["version", 79, 7], ["hash", 80, 7]]);
-const pos$16 = nix.positions(here + "/default.nix", [["label", 83, 7], ["version", 84, 7], ["hash", 85, 7]]);
-const pos$17 = nix.positions(here + "/default.nix", [["label", 88, 7], ["version", 89, 7], ["hash", 90, 7]]);
-const pos$18 = nix.positions(here + "/default.nix", [["label", 93, 7], ["version", 94, 7], ["hash", 95, 7]]);
-const pos$19 = nix.positions(here + "/default.nix", [["kashmiri", 77, 5], ["konkani", 82, 5], ["maithili", 87, 5], ["sindhi", 92, 5]]);
 const formals$2 = { args: { label: false, version: false, hash: false }, ellipsis: false };
-const pos$20 = nix.positions(here + "/default.nix", [["url", 110, 9], ["hash", 111, 17]]);
-const pos$21 = nix.positions(here + "/default.nix", [["license", 124, 17], ["description", 125, 9], ["homepage", 126, 9], ["maintainers", 127, 9], ["priority", 132, 9]]);
-const pos$22 = nix.positions(here + "/default.nix", [["pname", 107, 15], ["version", 107, 21], ["src", 109, 7], ["nativeBuildInputs", 114, 7], ["postInstall", 118, 7], ["meta", 123, 7]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,108 +13,108 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const installFonts = nix.arg($, "installFonts");
   const fonts = nix.thunk(() => ({
-    [nix.POS]: pos$14,
+    [nix.POS]: $pos[13],
     assamese: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       label: "Assamese",
       version: "2.91.5",
       hash: "sha256-Oo/hHHFg/Nu3eaZLMdBclY90lKU2AMFUclyXHxGaAgg=",
     })),
     bengali: nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       label: "Bengali",
       version: "2.91.5",
       hash: "sha256-QGf94TdQS2c9+wSSDK4Mknw5ubCGTuvg0xoNaJdirBc=",
     })),
     devanagari: nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       label: "Devanagari script",
       version: "2.95.4",
       hash: "sha256-6CbOCqOei5eO1zwNQZvB+fFDkqxvJnK82z+zmClhRAE=",
     })),
     gujarati: nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       label: "Gujarati",
       version: "2.92.4",
       hash: "sha256-BpwibF0/HXDvXpDEek0fj73cxo2QC1hSfQ49Q/ZOZg8=",
     })),
     gurmukhi: nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       label: "Gurmukhi script",
       version: "2.91.2",
       hash: "sha256-5iLFW2FEE5LBqoALi+3sUjwC0ADntsp259TP+bYwR9g=",
     })),
     kannada: nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       label: "Kannada",
       version: "2.5.4",
       hash: "sha256-7y2u0tBdNYCeY7Y+aqhxXP7Qv6GglJeVO1wvM9CzyIQ=",
     })),
     malayalam: nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       label: "Malayalam",
       version: "2.92.2",
       hash: "sha256-SzM38vuAlP9OMC8kUuHQylmH8TUjCeg1y/Zcu2I2bjA=",
     })),
     marathi: nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       label: "Marathi",
       version: "2.94.2",
       hash: "sha256-jK1Gwcr5gqzRNkbIxs4V/OYgUlUEpU0OYzKDTkiMlqM=",
     })),
     nepali: nix.thunk(() => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       label: "Nepali",
       version: "2.94.2",
       hash: "sha256-OX1ekxeSbVGOrdbZ3Jvu4nii0zkgbuij10JIzqRcFx4=",
     })),
     odia: nix.thunk(() => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       label: "Odia",
       version: "2.91.2",
       hash: "sha256-3/eczBGGZj4QPs7KY0as9zk5HaBfhgz6YgU0qmwpVcA=",
     })),
     "tamil-classical": nix.thunk(() => ({
-      [nix.POS]: pos$11,
+      [nix.POS]: $pos[10],
       label: "Classical Tamil",
       version: "2.5.4",
       hash: "sha256-6SsddTCEUHMoF7X4+i7eXimmMuktfFAl8uz95RwM+yg=",
     })),
     tamil: nix.thunk(() => ({
-      [nix.POS]: pos$12,
+      [nix.POS]: $pos[11],
       label: "Tamil",
       version: "2.91.3",
       hash: "sha256-8lcNw87o9lhQsKwCqwBSfx7rhcrH/eEqac7EsA9/w/E=",
     })),
     telugu: nix.thunk(() => ({
-      [nix.POS]: pos$13,
+      [nix.POS]: $pos[12],
       label: "Telugu",
       version: "2.5.5",
       hash: "sha256-cZh93NfEB+5S1JeEowtBMJ0nbZsFGpbEp2WAtzxrA8A=",
     })),
   }));
   const gplfonts = nix.thunk(() => ({
-    [nix.POS]: pos$19,
+    [nix.POS]: $pos[18],
     kashmiri: nix.thunk(() => ({
-      [nix.POS]: pos$15,
+      [nix.POS]: $pos[14],
       label: "Kashmiri",
       version: "2.4.3",
       hash: "sha256-6T2QaWnt3+e5nr4vbk44FouqmeWKzia1lSf8S/bvqCs=",
     })),
     konkani: nix.thunk(() => ({
-      [nix.POS]: pos$16,
+      [nix.POS]: $pos[15],
       label: "Konkani",
       version: "2.4.3",
       hash: "sha256-hVy2rxrUTPDeNnugi3Bk7z0JqGmk4/yeUsAoI/4R7A8=",
     })),
     maithili: nix.thunk(() => ({
-      [nix.POS]: pos$17,
+      [nix.POS]: $pos[16],
       label: "Maithili",
       version: "2.4.3",
       hash: "sha256-ikDcpJqdizAYRpgoebzqxOEeodJ6C3fO2rsqGzC0HCs=",
     })),
     sindhi: nix.thunk(() => ({
-      [nix.POS]: pos$18,
+      [nix.POS]: $pos[17],
       label: "Sindhi",
       version: "2.4.3",
       hash: "sha256-wU3B9fh+8E1bFBMnakzmajY7eNKzed9+eYL5AOxyNQI=",
@@ -147,11 +126,11 @@ export default nix.lambda((args) => (() => {
     const version = nix.arg($_1, "version");
     const hash = nix.arg($_1, "hash");
     return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-        [nix.POS]: pos$22,
+        [nix.POS]: $pos[21],
         pname: pname,
         version: version,
         src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$20,
+            [nix.POS]: $pos[19],
             url: nix.thunk(() => nix.str`https://releases.pagure.org/lohit/lohit-${pname}-ttf-${version}.tar.gz`),
             hash: hash,
           })))),
@@ -160,7 +139,7 @@ export default nix.lambda((args) => (() => {
 install -Dm644 ChangeLog* COPYRIGHT* -t "$out/share/doc/lohit-${pname}/"
 `),
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$21,
+          [nix.POS]: $pos[20],
           license: license,
           description: nix.thunk(() => nix.add(nix.add("Free and open source fonts for Indian languages (", label), ")")),
           homepage: "https://pagure.io/lohit",

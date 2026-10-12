@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 18, 5], ["version", 19, 13], ["hash", 20, 5]], [["owner", 24, 5], ["repo", 25, 5], ["rev", 26, 5], ["hash", 27, 5]], [["description", 44, 5], ["homepage", 45, 5], ["changelog", 46, 5], ["license", 47, 5], ["maintainers", 51, 5], ["mainProgram", 55, 5]], [["updateScript", 58, 12]], [["pname", 12, 3], ["version", 13, 3], ["docs_version", 14, 3], ["pyproject", 15, 3], ["src", 17, 3], ["docs", 23, 3], ["postInstall", 30, 3], ["build-system", 34, 3], ["nativeBuildInputs", 36, 3], ["doCheck", 39, 3], ["pythonImportsCheck", 41, 3], ["meta", 43, 3], ["passthru", 58, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, fetchPypi: false, installShellFiles: false, "setuptools-scm": false, writeScript: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 18, 5], ["version", 19, 13], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["owner", 24, 5], ["repo", 25, 5], ["rev", 26, 5], ["hash", 27, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 44, 5], ["homepage", 45, 5], ["changelog", 46, 5], ["license", 47, 5], ["maintainers", 51, 5], ["mainProgram", 55, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["updateScript", 58, 12]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 12, 3], ["version", 13, 3], ["docs_version", 14, 3], ["pyproject", 15, 3], ["src", 17, 3], ["docs", 23, 3], ["postInstall", 30, 3], ["build-system", 34, 3], ["nativeBuildInputs", 36, 3], ["doCheck", 39, 3], ["pythonImportsCheck", 41, 3], ["meta", 43, 3], ["passthru", 58, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,13 +20,13 @@ export default nix.lambda((args) => (() => {
       const docs_version = "71d71d4be238628bf9cb9b27be79b8bb824ed1a9";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "git_filter_repo",
           version: version,
           hash: "sha256-QRsn5ooIDAemnCM8tSbbwthIsJpy8QR39ERN0IIs8pA=",
         }))));
       const docs = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "newren",
           repo: "git-filter-repo",
           rev: docs_version,
@@ -43,7 +39,7 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["git_filter_repo"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Quickly rewrite git repository history",
         homepage: "https://github.com/newren/git-filter-repo",
         changelog: nix.thunk(() => nix.str`https://github.com/newren/git-filter-repo/releases/tag/v${version}`),
@@ -64,7 +60,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "git-filter-repo",
       }));
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(writeScript, nix.thunk(() => nix.str`update-${pname}`), nix.thunk(() => nix.str`#!/usr/bin/env nix-shell
 #!nix-shell -i bash -p common-updater-scripts curl jq nix-update
 
@@ -79,7 +75,7 @@ docs_latest=$(curl -s https://api.github.com/repos/newren/git-filter-repo/commit
 `))),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         docs_version,

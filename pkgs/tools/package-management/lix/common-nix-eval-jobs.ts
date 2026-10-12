@@ -2,11 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/common-nix-eval-jobs.nix", [[["nix", 53, 5]], [["description", 57, 5], ["mainProgram", 58, 5], ["homepage", 59, 5], ["license", 65, 5], ["teams", 66, 5], ["platforms", 67, 5], ["broken", 68, 5]], [["pname", 24, 3], ["version", 25, 3], ["src", 26, 11], ["patches", 26, 15], ["sourceRoot", 27, 3], ["buildInputs", 28, 3], ["nativeBuildInputs", 36, 3], ["pos", 47, 3], ["passthru", 52, 3], ["meta", 56, 3]]]);
 const formals$1 = { args: { lib: false, suffix: true, version: false, src: false, patches: true }, ellipsis: false };
 const formals$2 = { args: { stdenv: false, lib: false, lix: false, boost: false, capnproto: false, nlohmann_json: false, meson: false, "pkg-config": false, ninja: false, cmake: false, buildPackages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/common-nix-eval-jobs.nix", [["nix", 53, 5]]);
-const pos$2 = nix.positions(here + "/common-nix-eval-jobs.nix", [["description", 57, 5], ["mainProgram", 58, 5], ["homepage", 59, 5], ["license", 65, 5], ["teams", 66, 5], ["platforms", 67, 5], ["broken", 68, 5]]);
-const pos$3 = nix.positions(here + "/common-nix-eval-jobs.nix", [["pname", 24, 3], ["version", 25, 3], ["src", 26, 11], ["patches", 26, 15], ["sourceRoot", 27, 3], ["buildInputs", 28, 3], ["nativeBuildInputs", 36, 3], ["pos", 47, 3], ["passthru", 52, 3], ["meta", 56, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,7 +28,7 @@ export default nix.lambda((args) => (() => {
     const cmake = nix.arg($_1, "cmake");
     const buildPackages = nix.arg($_1, "buildPackages");
     return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname: "nix-eval-jobs",
         version: nix.thunk(() => nix.str`${version}${suffix}`),
         src: src,
@@ -39,9 +37,9 @@ export default nix.lambda((args) => (() => {
         buildInputs: nix.thunk(() => nix.concat([nlohmann_json, lix, boost], nix.app(nix.sel(lib_1, "optionals"), nix.thunk(() => nix.app(nix.sel(lib_1, "versionAtLeast"), version, "2.93")), nix.thunk(() => [capnproto])))),
         nativeBuildInputs: nix.thunk(() => nix.concat([meson, pkg_config, ninja, cmake], nix.app(nix.sel(lib_1, "optional"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), nix.thunk(() => nix.sel(buildPackages, "clang-tools"))))),
         pos: nix.thunk(() => nix.builtins.unsafeGetAttrPos("version", args_1)),
-        passthru: nix.thunk(() => ({ [nix.POS]: pos$1, nix: lix })),
+        passthru: nix.thunk(() => ({ [nix.POS]: $pos[0], nix: lix })),
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           description: "Hydra's builtin `hydra-eval-jobs` as a standalone tool",
           mainProgram: "nix-eval-jobs",
           homepage: nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib_1, "versionAtLeast"), version, "2.93")) ? "https://git.lix.systems/lix-project/lix/src/branch/main/subprojects/nix-eval-jobs" : "https://git.lix.systems/lix-project/nix-eval-jobs")),

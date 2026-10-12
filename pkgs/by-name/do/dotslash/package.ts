@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["pname", 15, 26], ["version", 15, 32], ["hash", 16, 5]], [["package", 25, 7]], [["updateScript", 23, 5], ["tests", 24, 5]], [["homepage", 30, 5], ["description", 31, 5], ["longDescription", 32, 5], ["license", 41, 5], ["mainProgram", 45, 5], ["maintainers", 46, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["cargoHash", 19, 3], ["doCheck", 20, 3], ["passthru", 22, 3], ["meta", 29, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchCrate: false, testers: false, "nix-update-script": false, dotslash: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["pname", 15, 26], ["version", 15, 32], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["package", 25, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 23, 5], ["tests", 24, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 30, 5], ["description", 31, 5], ["longDescription", 32, 5], ["license", 41, 5], ["mainProgram", 45, 5], ["maintainers", 46, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["cargoHash", 19, 3], ["doCheck", 20, 3], ["passthru", 22, 3], ["meta", 29, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const dotslash = nix.arg($, "dotslash");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "dotslash",
       version: "0.5.7",
       src: nix.thunk(() => nix.app(fetchCrate, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-VFesGum2xjknUuCwIojntdst5dmhvZb78ejJ2OG1FVI=",
@@ -30,12 +26,12 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-+FWDeR4AcFSFz0gGQ8VMvX68/F0yEm25cNfHeedqsWE=",
       doCheck: false,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
-        tests: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$2, package: dotslash })))),
+        tests: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: $pos[1], package: dotslash })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://dotslash-cli.com",
         description: "Simplified multi-platform executable deployment",
         longDescription: "DotSlash is a command-line tool that is designed to facilitate fetching an\nexecutable, verifying it, and then running it. It maintains a local cache\nof fetched executables so that subsequent invocations are fast.\n\nDotSlash helps keeps heavyweight binaries out of your repo while ensuring\nyour developers seamlessly get the tools they need, ensuring consistent\nbuilds across platforms.\n",

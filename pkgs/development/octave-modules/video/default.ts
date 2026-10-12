@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]], [["homepage", 44, 5], ["license", 45, 5], ["maintainers", 49, 5], ["description", 50, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["preBuild", 23, 3], ["nativeBuildInputs", 33, 3], ["propagatedBuildInputs", 39, 3], ["meta", 43, 3]]]);
 const formals$1 = { args: { buildOctavePackage: false, stdenv: false, lib: false, fetchFromGitHub: false, "pkg-config": false, autoconf: false, automake: false, ffmpeg_7: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 44, 5], ["license", 45, 5], ["maintainers", 49, 5], ["description", 50, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["preBuild", 23, 3], ["nativeBuildInputs", 33, 3], ["propagatedBuildInputs", 39, 3], ["meta", 43, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = "video";
       const version = "2.1.3";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Andy1978",
           repo: "octave-video",
           tag: version,
@@ -38,7 +36,7 @@ tar --transform 's,^,video-${version}/,' -cz * -f video-${version}.tar.gz
       const nativeBuildInputs = nix.thunk(() => [pkg_config, autoconf, automake]);
       const propagatedBuildInputs = nix.thunk(() => [ffmpeg_7]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://gnu-octave.github.io/packages/video/",
         license: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "licenses")), null);
@@ -54,7 +52,7 @@ tar --transform 's,^,video-${version}/,' -cz * -f video-${version}.tar.gz
         description: "Wrapper for OpenCV's CvCapture_FFMPEG and CvVideoWriter_FFMPEG",
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

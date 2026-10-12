@@ -2,17 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 11], ["repo", 20, 11], ["tag", 21, 11], ["hash", 22, 11]], [["version", 17, 9], ["src", 18, 9]], [["wtforms", 16, 7]], [["self", 13, 5], ["packageOverrides", 14, 5]], [["owner", 34, 5], ["repo", 35, 5], ["tag", 36, 5], ["hash", 37, 5]], [["front", 112, 5], ["oidc", 121, 5], ["scim", 126, 5], ["ldap", 132, 5], ["sentry", 136, 5], ["postgresql", 137, 5], ["otp", 145, 5], ["fido", 150, 5], ["sms", 151, 5], ["captcha", 152, 5], ["server", 153, 5], ["redis", 160, 5], ["rabbitmq", 161, 5]], [["canaille", 167, 28]], [["python", 165, 13], ["tests", 166, 5]], [["description", 172, 5], ["homepage", 173, 5], ["changelog", 174, 5], ["license", 175, 5], ["platforms", 176, 5], ["maintainers", 177, 5], ["mainProgram", 178, 5]], [["pname", 29, 3], ["version", 30, 3], ["pyproject", 31, 3], ["src", 33, 3], ["build-system", 40, 3], ["dependencies", 46, 3], ["nativeCheckInputs", 61, 3], ["postInstall", 84, 3], ["preCheck", 89, 3], ["dontUsePytestXdist", 98, 3], ["pytestFlags", 99, 3], ["disabledTests", 101, 3], ["optional-dependencies", 111, 3], ["passthru", 164, 3], ["meta", 171, 3]]]);
 const formals$1 = { args: { lib: false, python3: false, fetchFromGitLab: false, fetchFromGitHub: false, openldap: false, nixosTests: false, postgresql: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 11], ["repo", 20, 11], ["tag", 21, 11], ["hash", 22, 11]]);
-const pos$2 = nix.positions(here + "/package.nix", [["version", 17, 9], ["src", 18, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["wtforms", 16, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["self", 13, 5], ["packageOverrides", 14, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["owner", 34, 5], ["repo", 35, 5], ["tag", 36, 5], ["hash", 37, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["front", 112, 5], ["oidc", 121, 5], ["scim", 126, 5], ["ldap", 132, 5], ["sentry", 136, 5], ["postgresql", 137, 5], ["otp", 145, 5], ["fido", 150, 5], ["sms", 151, 5], ["captcha", 152, 5], ["server", 153, 5], ["redis", 160, 5], ["rabbitmq", 161, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["canaille", 167, 28]]);
-const pos$8 = nix.positions(here + "/package.nix", [["python", 165, 13], ["tests", 166, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["description", 172, 5], ["homepage", 173, 5], ["changelog", 174, 5], ["license", 175, 5], ["platforms", 176, 5], ["maintainers", 177, 5], ["mainProgram", 178, 5]]);
-const pos$10 = nix.positions(here + "/package.nix", [["pname", 29, 3], ["version", 30, 3], ["pyproject", 31, 3], ["src", 33, 3], ["build-system", 40, 3], ["dependencies", 46, 3], ["nativeCheckInputs", 61, 3], ["postInstall", 84, 3], ["preCheck", 89, 3], ["dontUsePytestXdist", 98, 3], ["pytestFlags", 99, 3], ["disabledTests", 101, 3], ["optional-dependencies", 111, 3], ["passthru", 164, 3], ["meta", 171, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,30 +15,30 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const postgresql = nix.arg($, "postgresql");
   const python = nix.thunk(() => nix.app(nix.sel(python3, "override"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       self: python,
       packageOverrides: (_final) => (prev) => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         wtforms: nix.thunk(() => nix.app(nix.sel(prev, "wtforms", "overridePythonAttrs"), (_old) => (() => {
             const version = "3.3.0b3";
             const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                [nix.POS]: pos$1,
+                [nix.POS]: $pos[0],
                 owner: "wtforms",
                 repo: "wtforms",
                 tag: version,
                 hash: "sha256-h+rzhFPN+N4Jxs9lugvWqNy2eXkXtSCpMW3wp2KgrFk=",
               }))));
-            return { [nix.POS]: pos$2, version, src };
+            return { [nix.POS]: $pos[1], version, src };
           })())),
       }),
     }))));
   return nix.app(nix.sel(python, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       pname: "canaille",
       version: "0.3.6",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           owner: "yaal",
           repo: "canaille",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -120,7 +111,7 @@ export SCHEMA="${openldap}/etc/schema"
       "optional-dependencies": nix.thunk(() => (() => {
         const w_3 = nix.withScope(nix.thunk(() => nix.sel(python, "pkgs")), null);
         return {
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           front: nix.thunk(() => [
             nix.thunk(() => nix.lookup(w_3, "email-validator")),
             nix.thunk(() => nix.lookup(w_3, "flask-babel")),
@@ -173,15 +164,15 @@ export SCHEMA="${openldap}/etc/schema"
         };
       })()),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         python: python,
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           canaille: nix.thunk(() => nix.attr(nixosTests, "canaille")),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         description: "Lightweight Identity and Authorization Management",
         homepage: "https://canaille.readthedocs.io/en/latest/index.html",
         changelog: nix.thunk(() => nix.str`https://gitlab.com/yaal/canaille/-/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGES.rst`),

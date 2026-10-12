@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/breez-sdk-spark.nix", [[["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]], [["CARGO_PROFILE_RELEASE_RPATH", 25, 7]], [["description", 49, 5], ["homepage", 50, 5], ["license", 51, 5], ["maintainers", 52, 5], ["platforms", 53, 5]], [["pname", 11, 3], ["version", 13, 3], ["src", 15, 3], ["cargoHash", 22, 3], ["env", 25, 3], ["nativeBuildInputs", 27, 3], ["cargoBuildFlags", 32, 3], ["doCheck", 39, 3], ["installPhase", 41, 3], ["meta", 48, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, rustPlatform: false, "pkg-config": false, protobuf: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/breez-sdk-spark.nix", [["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/breez-sdk-spark.nix", [["CARGO_PROFILE_RELEASE_RPATH", 25, 7]]);
-const pos$3 = nix.positions(here + "/breez-sdk-spark.nix", [["description", 49, 5], ["homepage", 50, 5], ["license", 51, 5], ["maintainers", 52, 5], ["platforms", 53, 5]]);
-const pos$4 = nix.positions(here + "/breez-sdk-spark.nix", [["pname", 11, 3], ["version", 13, 3], ["src", 15, 3], ["cargoHash", 22, 3], ["env", 25, 3], ["nativeBuildInputs", 27, 3], ["cargoBuildFlags", 32, 3], ["doCheck", 39, 3], ["installPhase", 41, 3], ["meta", 48, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,18 +14,18 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const protobuf = nix.arg($, "protobuf");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "breez-sdk-spark",
       version: "0.25.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "breez",
           repo: "spark-sdk",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-dNJjdzAxm5tjeM5DTozOat7QH6oRz0lgNvN802mppAM=",
         })))),
       cargoHash: "sha256-Dfok3pCFqPLrtx9mV8AshyZ2cGOPUTo/aIzudIPihE8=",
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, CARGO_PROFILE_RELEASE_RPATH: "false" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], CARGO_PROFILE_RELEASE_RPATH: "false" })),
       nativeBuildInputs: nix.thunk(() => [pkg_config, protobuf]),
       cargoBuildFlags: nix.thunk(() => ["-p", "breez-sdk-bindings", "--lib"]),
       doCheck: false,
@@ -38,7 +35,7 @@ install -Dm755 target/${nix.sel(stdenv, "hostPlatform", "rust", "rustcTarget")}/
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Rust library for the Breez SDK Spark bindings",
         homepage: "https://github.com/breez/spark-sdk",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

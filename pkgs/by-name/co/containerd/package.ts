@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]], [["cross", 84, 9], ["docker", 90, 30]], [["tests", 82, 5], ["updateScript", 95, 5]], [["description", 99, 5], ["homepage", 100, 5], ["changelog", 101, 5], ["license", 102, 5], ["maintainers", 103, 5], ["mainProgram", 107, 5], ["platforms", 108, 5]], [["pname", 18, 3], ["version", 19, 3], ["outputs", 21, 3], ["src", 27, 3], ["postPatch", 34, 3], ["vendorHash", 44, 3], ["nativeBuildInputs", 46, 3], ["buildInputs", 51, 3], ["tags", 53, 3], ["makeFlags", 55, 3], ["installTargets", 63, 3], ["buildPhase", 69, 3], ["installPhase", 75, 3], ["passthru", 81, 3], ["meta", 98, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, pkgsCross: false, "btrfs-progs": false, buildGoModule: false, fetchFromGitHub: false, "go-md2man": false, kubernetes: false, "nix-update-script": false, nixosTests: false, "util-linux": false, btrfsSupport: true, withMan: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["cross", 84, 9], ["docker", 90, 30]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 82, 5], ["updateScript", 95, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 99, 5], ["homepage", 100, 5], ["changelog", 101, 5], ["license", 102, 5], ["maintainers", 103, 5], ["mainProgram", 107, 5], ["platforms", 108, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["outputs", 21, 3], ["src", 27, 3], ["postPatch", 34, 3], ["vendorHash", 44, 3], ["nativeBuildInputs", 46, 3], ["buildInputs", 51, 3], ["tags", 53, 3], ["makeFlags", 55, 3], ["installTargets", 63, 3], ["buildPhase", 69, 3], ["installPhase", 75, 3], ["passthru", 81, 3], ["meta", 98, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.4.1";
       const outputs = nix.thunk(() => nix.concat(["out", "doc"], nix.app(nix.sel(lib, "optional"), withMan, "man")));
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "containerd",
           repo: "containerd",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -50,9 +46,9 @@ export default nix.lambda((args) => (() => {
       const buildPhase = "runHook preBuild\nmake $makeFlags\nrunHook postBuild\n";
       const installPhase = "runHook preInstall\nmake $makeFlags $installTargets\nrunHook postInstall\n";
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => nix.update({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             cross: nix.thunk(() => (() => {
               const systemString = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "buildPlatform", "isAarch64")) ? "gnu64" : "aarch64-multiplatform"));
               return nix.sel(pkgsCross, nix.key(nix.force(systemString)), "containerd");
@@ -62,7 +58,7 @@ export default nix.lambda((args) => (() => {
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Daemon to control runC",
         homepage: "https://containerd.io/",
         changelog: nix.thunk(() => nix.str`https://github.com/containerd/containerd/releases/tag/v${version}`),
@@ -78,7 +74,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         outputs,

@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 28, 5], ["owner", 29, 5], ["repo", 30, 5], ["rev", 31, 5], ["hash", 32, 5]], [["pname", 36, 26], ["version", 36, 32], ["src", 36, 40], ["hash", 37, 5]], [["GETTEXT_BIN_DIR", 43, 5], ["GETTEXT_INCLUDE_DIR", 44, 5], ["GETTEXT_LIB_DIR", 45, 5]], [["updateScript", 69, 5]], [["description", 73, 5], ["homepage", 74, 5], ["license", 75, 5], ["platforms", 76, 5], ["mainProgram", 77, 5], ["maintainers", 78, 5], ["teams", 79, 5]], [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["cargoDeps", 35, 3], ["env", 40, 3], ["nativeBuildInputs", 48, 3], ["buildInputs", 61, 3], ["passthru", 68, 3], ["meta", 72, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitLab: false, buildPackages: false, cargo: false, gettext: false, meson: false, ninja: false, "pkg-config": false, rustPlatform: false, rustc: false, wrapGAppsHook4: false, "appstream-glib": false, "desktop-file-utils": false, glib: false, gtk4: false, "gdk-pixbuf": false, libadwaita: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 28, 5], ["owner", 29, 5], ["repo", 30, 5], ["rev", 31, 5], ["hash", 32, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 36, 26], ["version", 36, 32], ["src", 36, 40], ["hash", 37, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["GETTEXT_BIN_DIR", 43, 5], ["GETTEXT_INCLUDE_DIR", 44, 5], ["GETTEXT_LIB_DIR", 45, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 69, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 73, 5], ["homepage", 74, 5], ["license", 75, 5], ["platforms", 76, 5], ["mainProgram", 77, 5], ["maintainers", 78, 5], ["teams", 79, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["cargoDeps", 35, 3], ["env", 40, 3], ["nativeBuildInputs", 48, 3], ["buildInputs", 61, 3], ["passthru", 68, 3], ["meta", 72, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,11 +27,11 @@ export default nix.lambda((args) => (() => {
   const libadwaita = nix.arg($, "libadwaita");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "gnome-obfuscate",
       version: "0.0.10",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "gitlab.gnome.org",
           owner: "World",
           repo: "Obfuscate",
@@ -44,14 +39,14 @@ export default nix.lambda((args) => (() => {
           hash: "sha256-/Plvvn1tle8t/bsPcsamn5d81CqnyGCyGYPF6j6U5NI=",
         })))),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           hash: "sha256-Llgn+dYNKZ9Mles9f9Xor+GZoCCQ0cERkXz4MicZglY=",
         })))),
       env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           GETTEXT_BIN_DIR: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getBin"), nix.thunk(() => nix.sel(buildPackages, "gettext")))}/bin`),
           GETTEXT_INCLUDE_DIR: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getDev"), gettext)}/include`),
           GETTEXT_LIB_DIR: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getLib"), gettext)}/lib`),
@@ -70,11 +65,11 @@ export default nix.lambda((args) => (() => {
       ]),
       buildInputs: nix.thunk(() => [glib, gtk4, gdk_pixbuf, libadwaita]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Censor private information",
         homepage: "https://gitlab.gnome.org/World/obfuscate",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

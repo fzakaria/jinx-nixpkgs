@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 38, 7], ["repo", 39, 7], ["tag", 40, 7], ["hash", 41, 7]], [["data", 70, 7], ["optional", 71, 7], ["optional_free_threaded", 77, 7]], [["doCheck", 153, 46]], [["all-tests", 153, 7]], [["tests", 152, 14]], [["description", 157, 7], ["homepage", 158, 7], ["changelog", 159, 7], ["license", 160, 7], ["maintainers", 161, 7]], [["pname", 33, 5], ["version", 34, 5], ["pyproject", 35, 5], ["src", 37, 5], ["postPatch", 44, 5], ["build-system", 51, 5], ["dependencies", 58, 5], ["optional-dependencies", 69, 5], ["doCheck", 88, 5], ["nativeCheckInputs", 89, 5], ["preCheck", 99, 5], ["pytestFlags", 103, 5], ["enabledTestPaths", 108, 5], ["disabledTestPaths", 112, 5], ["pythonImportsCheck", 136, 5], ["passthru", 152, 5], ["meta", 156, 5]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, buildPythonPackage: false, python: false, astropy: false, cython: false, dask: false, imageio: false, "lazy-loader": false, matplotlib: false, "meson-python": false, networkx: false, numpy: false, packaging: false, pillow: false, pooch: false, pyamg: false, pytestCheckHook: false, numpydoc: false, pythran: false, pywavelets: false, "scikit-learn": false, scipy: false, simpleitk: false, tifffile: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 38, 7], ["repo", 39, 7], ["tag", 40, 7], ["hash", 41, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["data", 70, 7], ["optional", 71, 7], ["optional_free_threaded", 77, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["doCheck", 153, 46]]);
-const pos$4 = nix.positions(here + "/default.nix", [["all-tests", 153, 7]]);
-const pos$5 = nix.positions(here + "/default.nix", [["tests", 152, 14]]);
-const pos$6 = nix.positions(here + "/default.nix", [["description", 157, 7], ["homepage", 158, 7], ["changelog", 159, 7], ["license", 160, 7], ["maintainers", 161, 7]]);
-const pos$7 = nix.positions(here + "/default.nix", [["pname", 33, 5], ["version", 34, 5], ["pyproject", 35, 5], ["src", 37, 5], ["postPatch", 44, 5], ["build-system", 51, 5], ["dependencies", 58, 5], ["optional-dependencies", 69, 5], ["doCheck", 88, 5], ["nativeCheckInputs", 89, 5], ["preCheck", 99, 5], ["pytestFlags", 103, 5], ["enabledTestPaths", 108, 5], ["disabledTestPaths", 112, 5], ["pythonImportsCheck", 136, 5], ["passthru", 152, 5], ["meta", 156, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -45,7 +39,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.26.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "scikit-image",
           repo: "scikit-image",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -59,7 +53,7 @@ substituteInPlace src/skimage/_build_utils/version.py \\
       const build_system = nix.thunk(() => [cython, meson_python, numpy, pythran]);
       const dependencies = nix.thunk(() => [imageio, lazy_loader, networkx, numpy, packaging, pillow, scipy, tifffile]);
       const optional_dependencies = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         data: nix.thunk(() => [pooch]),
         optional: nix.thunk(() => nix.concat([simpleitk, scikit_learn, pyamg], nix.sel(self, "passthru", "optional-dependencies", "optional_free_threaded"))),
         optional_free_threaded: nix.thunk(() => nix.concat([astropy, dask, matplotlib, pooch, pywavelets], nix.sel(dask, "optional-dependencies", "array"))),
@@ -97,14 +91,14 @@ substituteInPlace src/skimage/_build_utils/version.py \\
         "skimage.segmentation",
       ]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
-          "all-tests": nix.thunk(() => nix.app(nix.sel(self, "overridePythonAttrs"), nix.thunk(() => ({ [nix.POS]: pos$3, doCheck: true })))),
+          [nix.POS]: $pos[3],
+          "all-tests": nix.thunk(() => nix.app(nix.sel(self, "overridePythonAttrs"), nix.thunk(() => ({ [nix.POS]: $pos[2], doCheck: true })))),
         })),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Image processing routines for SciPy",
         homepage: "https://scikit-image.org",
         changelog: nix.thunk(() => nix.str`https://github.com/scikit-image/scikit-image/releases/tag/${nix.sel(src, "tag")}`),
@@ -115,7 +109,7 @@ substituteInPlace src/skimage/_build_utils/version.py \\
         })()),
       }));
       return {
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         pname,
         version,
         pyproject,

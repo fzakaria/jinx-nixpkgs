@@ -2,49 +2,42 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/owi.nix", [[["maintainers", 9, 8]], [["source", 14, 34]], [["source", 33, 34]], [["owipass.rs", 14, 21], ["owifail.rs", 33, 21]], [["systemPackages", 12, 17], ["etc", 14, 17]], [["environment", 12, 5]], [["machine", 11, 14]], [["name", 7, 3], ["meta", 9, 3], ["containers", 11, 3], ["testScript", 52, 3]]]);
 const formals$1 = { args: { lib: false, pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/owi.nix", [["maintainers", 9, 8]]);
-const pos$2 = nix.positions(here + "/owi.nix", [["source", 14, 34]]);
-const pos$3 = nix.positions(here + "/owi.nix", [["source", 33, 34]]);
-const pos$4 = nix.positions(here + "/owi.nix", [["owipass.rs", 14, 21], ["owifail.rs", 33, 21]]);
-const pos$5 = nix.positions(here + "/owi.nix", [["systemPackages", 12, 17], ["etc", 14, 17]]);
-const pos$6 = nix.positions(here + "/owi.nix", [["environment", 12, 5]]);
-const pos$7 = nix.positions(here + "/owi.nix", [["machine", 11, 14]]);
 const formals$2 = { args: { nodes: false }, ellipsis: true };
-const pos$8 = nix.positions(here + "/owi.nix", [["name", 7, 3], ["meta", 9, 3], ["containers", 11, 3], ["testScript", 52, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   return {
-    [nix.POS]: pos$8,
+    [nix.POS]: $pos[7],
     name: "owi",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "ethancedwards8"))];
       })()),
     })),
     containers: nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       machine: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         environment: nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           systemPackages: nix.thunk(() => (() => {
             const w = nix.withScope(pkgs, null);
             return [nix.thunk(() => nix.lookup(w, "owi"))];
           })()),
           etc: nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             "owipass.rs": nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               source: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "owi.rs", "use owi_sym::Symbolic;\n\nfn mean_one(x: i32, y: i32) -> i32 {\n    (x + y)/2\n}\n\nfn mean_two(x: i32, y: i32) -> i32 {\n    (y + x)/2\n}\n\nfn main() {\n    let x = i32::symbol();\n    let y = i32::symbol();\n    // proving the commutative property of addition!\n    owi_sym::assert(mean_one(x, y) == mean_two(x, y))\n}\n")),
             })),
             "owifail.rs": nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               source: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "owi.rs", "use owi_sym::Symbolic;\n\nfn mean_wrong(x: i32, y: i32) -> i32 {\n    (x + y) / 2\n}\n\nfn mean_correct(x: i32, y: i32) -> i32 {\n    (x & y) + ((x ^ y) >> 1)\n}\n\nfn main() {\n    let x = i32::symbol();\n    let y = i32::symbol();\n    owi_sym::assert(mean_wrong(x, y) == mean_correct(x, y))\n}\n")),
             })),
           })),

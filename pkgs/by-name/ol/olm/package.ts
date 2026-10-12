@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 16, 5], ["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]], [["description", 45, 5], ["homepage", 46, 5], ["license", 47, 5], ["maintainers", 48, 5], ["knownVulnerabilities", 51, 5]], [["pname", 9, 3], ["version", 10, 3], ["__structuredAttrs", 12, 3], ["strictDeps", 13, 3], ["src", 15, 3], ["nativeBuildInputs", 23, 3], ["doCheck", 25, 3], ["postPatch", 27, 3], ["meta", 44, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, cmake: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 16, 5], ["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 45, 5], ["homepage", 46, 5], ["license", 47, 5], ["maintainers", 48, 5], ["knownVulnerabilities", 51, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["__structuredAttrs", 12, 3], ["strictDeps", 13, 3], ["src", 15, 3], ["nativeBuildInputs", 23, 3], ["doCheck", 25, 3], ["postPatch", 27, 3], ["meta", 44, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,13 +12,13 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitLab = nix.arg($, "fetchFromGitLab");
   const cmake = nix.arg($, "cmake");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "olm",
       version: "3.2.16",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "gitlab.matrix.org",
           owner: "matrix-org",
           repo: "olm",
@@ -31,7 +29,7 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       postPatch: nix.thunk(() => nix.add("substituteInPlace olm.pc.in \\\n  --replace '$'{exec_prefix}/@CMAKE_INSTALL_LIBDIR@ @CMAKE_INSTALL_FULL_LIBDIR@ \\\n  --replace '$'{prefix}/@CMAKE_INSTALL_INCLUDEDIR@ @CMAKE_INSTALL_FULL_INCLUDEDIR@\n\nsubstituteInPlace CMakeLists.txt \\\n  --replace-fail \\\n    'cmake_minimum_required(VERSION 3.4)' \\\n    'cmake_minimum_required(VERSION 3.10)'\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "cc", "isClang")) && nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(stdenv, "cc", "version")), "19")))), "substituteInPlace include/olm/list.hh \\\n  --replace-fail \"T * const other_pos = other._data;\" \"T const * other_pos = other._data;\"\n"))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Implements double cryptographic ratchet and Megolm ratchet",
         homepage: "https://gitlab.matrix.org/matrix-org/olm",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

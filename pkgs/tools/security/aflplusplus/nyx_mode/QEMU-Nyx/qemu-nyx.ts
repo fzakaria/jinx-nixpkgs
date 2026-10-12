@@ -2,9 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/qemu-nyx.nix", [[["homepage", 71, 5], ["description", 72, 5], ["license", 73, 5], ["platforms", 74, 5], ["maintainers", 75, 5]], [["version", 18, 3], ["pname", 19, 3], ["src", 21, 3], ["postUnpack", 22, 3], ["configureFlags", 27, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 46, 3], ["enableParallelBuilding", 51, 3], ["preConfigure", 53, 3], ["meta", 70, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, python3: false, "pkg-config": false, flex: false, bison: false, glib: false, pixman: false, aflplusplus: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/qemu-nyx.nix", [["homepage", 71, 5], ["description", 72, 5], ["license", 73, 5], ["platforms", 74, 5], ["maintainers", 75, 5]]);
-const pos$2 = nix.positions(here + "/qemu-nyx.nix", [["version", 18, 3], ["pname", 19, 3], ["src", 21, 3], ["postUnpack", 22, 3], ["configureFlags", 27, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 46, 3], ["enableParallelBuilding", 51, 3], ["preConfigure", 53, 3], ["meta", 70, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,7 +19,7 @@ export default nix.lambda((args) => (() => {
   const aflplusplus = nix.arg($, "aflplusplus");
   nix.assert_(nix.eq(nix.sel(stdenv, "targetPlatform", "system"), "x86_64-linux"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/tools/security/aflplusplus/nyx_mode/QEMU-Nyx/qemu-nyx.nix:15:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       version: nix.thunk(() => nix.builtins.readFile(nix.thunk(() => nix.add(nix.sel(aflplusplus, "src"), "/nyx_mode/QEMU_NYX_VERSION")))),
       pname: "QEMU-Nyx",
       src: nix.thunk(() => nix.sel(aflplusplus, "src")),
@@ -41,7 +40,7 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: true,
       preConfigure: "CAPSTONE_ROOT=$PWD/capstone_v4\nLIBXDC_ROOT=$PWD/libxdc\n\nmake -C $CAPSTONE_ROOT -j$(nproc)\nmake -C $LIBXDC_ROOT -j$(nproc) clean\n\n# For some reason the Makefile of libxdc clears LDFLAGS; we remove that line\n# so ld can find libcapstone.so.4\nsed -i '3d' $LIBXDC_ROOT/Makefile\n\nNO_LTO=1 LDFLAGS=\"-L$CAPSTONE_ROOT -L$LIBXDC_ROOT\" CFLAGS=\"-I$CAPSTONE_ROOT/include/\" make -C $LIBXDC_ROOT -j$(nproc)\n\nexport LIBS=\"-L$CAPSTONE_ROOT -L$LIBXDC_ROOT/\"\nexport QEMU_CFLAGS=\"-I$CAPSTONE_ROOT/include/ -I$LIBXDC_ROOT/ $QEMU_CFLAGS\"\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         homepage: "https://github.com/nyx-fuzz/QEMU-Nyx",
         description: "Nyx's fork of QEMU",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

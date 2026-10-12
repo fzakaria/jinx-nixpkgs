@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 20, 13], ["version", 20, 19], ["sha256", 21, 5]], [["homepage", 48, 5], ["description", 49, 5], ["license", 50, 5]], [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["src", 19, 3], ["patches", 24, 3], ["build-system", 30, 3], ["nativeCheckInputs", 32, 3], ["disabledTestPaths", 39, 3], ["__darwinAllowLocalNetworking", 45, 3], ["meta", 47, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, setuptools: false, freezegun: false, mock: false, pytestCheckHook: false, sure: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 20, 13], ["version", 20, 19], ["sha256", 21, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 48, 5], ["description", 49, 5], ["license", 50, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["src", 19, 3], ["patches", 24, 3], ["build-system", 30, 3], ["nativeCheckInputs", 32, 3], ["disabledTestPaths", 39, 3], ["__darwinAllowLocalNetworking", 45, 3], ["meta", 47, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.1.4";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           sha256: "20de0e5dd5a18292d36d928cc3d6e52f8b2ac73daec40d41eb62dee154933b68",
@@ -33,13 +31,13 @@ export default nix.lambda((args) => (() => {
       const disabledTestPaths = nix.thunk(() => ["tests/bugfixes", "tests/functional", "tests/pyopenssl"]);
       const __darwinAllowLocalNetworking = true;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://httpretty.readthedocs.org/",
         description: "HTTP client request mocking tool",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

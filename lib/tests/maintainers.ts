@@ -2,11 +2,8 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/maintainers.nix", [[["_file", 25, 15], ["config", 26, 15]], [["prefix", 21, 19], ["modules", 22, 11]], [["handle", 68, 56]], [["nativeBuildInputs", 88, 9], ["outputHash", 92, 9], ["outputHAlgo", 93, 9], ["outputHashMode", 94, 9], ["SSL_CERT_FILE", 95, 9]]]);
 const formals$1 = { args: { pkgs: true, lib: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/maintainers.nix", [["_file", 25, 15], ["config", 26, 15]]);
-const pos$2 = nix.positions(here + "/maintainers.nix", [["prefix", 21, 19], ["modules", 22, 11]]);
-const pos$3 = nix.positions(here + "/maintainers.nix", [["handle", 68, 56]]);
-const pos$4 = nix.positions(here + "/maintainers.nix", [["nativeBuildInputs", 88, 9], ["outputHash", 92, 9], ["outputHAlgo", 93, 9], ["outputHashMode", 94, 9], ["SSL_CERT_FILE", 95, 9]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,12 +12,12 @@ export default nix.lambda((args) => (() => {
   const checkMaintainer = (handle) => (uncheckedAttrs) => (() => {
     const prefix = nix.thunk(() => ["lib", "maintainers", handle]);
     const checkedAttrs = nix.thunk(() => nix.sel(nix.app(nix.sel(lib, "modules", "evalModules"), nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         prefix: prefix,
         modules: nix.thunk(() => [
           nix.path(here, "./maintainer-module.nix"),
           nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             _file: nix.thunk(() => nix.builtins.toString(nix.path(here, "../../maintainers/maintainer-list.nix"))),
             config: uncheckedAttrs,
           })),
@@ -41,7 +38,7 @@ echo -e "    githubId = $id;\\n"
   const missingGithubIds = nix.thunk(() => nix.app(nix.sel(lib, "concatLists"), nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), checkMaintainer, nix.thunk(() => nix.sel(lib, "maintainers"))))));
   const uniqueFields = nix.thunk(() => ["github", "githubId", "email", "matrix"]);
   const nonUniqueFields = nix.thunk(() => nix.app(nix.sel(lib, "filterAttrs"), (field) => (nonUnique) => !nix.eq(nonUnique, {}), nix.thunk(() => nix.app(nix.sel(lib, "genAttrs"), uniqueFields, (field) => nix.app(nix.sel(lib, "pipe"), nix.thunk(() => nix.sel(lib, "maintainers")), nix.thunk(() => [
-          nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (handle) => (m) => nix.update(m, { [nix.POS]: pos$3, handle: handle }))),
+          nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (handle) => (m) => nix.update(m, { [nix.POS]: $pos[2], handle: handle }))),
           nix.thunk(() => nix.app(nix.sel(lib, "groupBy"), (m) => nix.builtins.toString(nix.thunk(() => nix.selOr(m, () => null, nix.key(nix.force(field))))))),
           nix.thunk(() => nix.app(nix.sel(lib, "filterAttrs"), (v) => (ms) => (nix.asBool(!nix.eq(v, "")) && nix.asBool(nix.gt(nix.app(nix.sel(lib, "length"), ms), 1n))))),
           nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (v) => (ms) => nix.builtins.map((m) => nix.sel(m, "handle"), ms))),
@@ -49,7 +46,7 @@ echo -e "    githubId = $id;\\n"
   const uniquenessError = (value) => (nix.asBool(nix.eq(nonUniqueFields, {})) ? nix.force(value) : nix.builtins.throw(nix.thunk(() => nix.str`lib.maintainers has non-unique fields: ${nix.app(nix.sel(lib, "generators", "toPretty"), nix.thunk(() => ({})), nonUniqueFields)}`)));
   const success = nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "checked-maintainers-success", nix.thunk(() => ({})), "mkdir $out"));
   const failure = nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "checked-maintainers-failure", nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "curl")), nix.thunk(() => nix.sel(pkgs, "jq"))]),
       outputHash: nix.thunk(() => nix.str`sha256:${nix.sel(lib, "fakeSha256")}`),
       outputHAlgo: "sha256",

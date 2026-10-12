@@ -2,80 +2,62 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/ntpd-rs.nix", [[["maintainers", 6, 5]], [["enable", 13, 17]], [["mode", 18, 15], ["address", 19, 15]], [["minimum-agreeing-sources", 23, 13]], [["source", 16, 11], ["synchronization", 22, 11]], [["enable", 12, 9], ["metrics", 13, 9], ["useNetworkingTimeServers", 14, 9], ["settings", 15, 9]], [["ntpd-rs", 11, 16]], [["services", 11, 7]], [["allowedTCPPorts", 30, 9], ["allowedUDPPorts", 33, 9]], [["firewall", 29, 18]], [["enable", 40, 17]], [["metrics-exporter-listen", 43, 13]], [["listen", 46, 15]], [["observability", 42, 11], ["server", 45, 11]], [["enable", 39, 9], ["metrics", 40, 9], ["settings", 41, 9]], [["ntpd-rs", 38, 16]], [["networking", 29, 7], ["services", 38, 7]], [["client", 10, 5], ["server", 28, 5]], [["name", 3, 3], ["meta", 5, 3], ["nodes", 9, 3], ["testScript", 53, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/ntpd-rs.nix", [["maintainers", 6, 5]]);
-const pos$2 = nix.positions(here + "/ntpd-rs.nix", [["enable", 13, 17]]);
-const pos$3 = nix.positions(here + "/ntpd-rs.nix", [["mode", 18, 15], ["address", 19, 15]]);
-const pos$4 = nix.positions(here + "/ntpd-rs.nix", [["minimum-agreeing-sources", 23, 13]]);
-const pos$5 = nix.positions(here + "/ntpd-rs.nix", [["source", 16, 11], ["synchronization", 22, 11]]);
-const pos$6 = nix.positions(here + "/ntpd-rs.nix", [["enable", 12, 9], ["metrics", 13, 9], ["useNetworkingTimeServers", 14, 9], ["settings", 15, 9]]);
-const pos$7 = nix.positions(here + "/ntpd-rs.nix", [["ntpd-rs", 11, 16]]);
-const pos$8 = nix.positions(here + "/ntpd-rs.nix", [["services", 11, 7]]);
-const pos$9 = nix.positions(here + "/ntpd-rs.nix", [["allowedTCPPorts", 30, 9], ["allowedUDPPorts", 33, 9]]);
-const pos$10 = nix.positions(here + "/ntpd-rs.nix", [["firewall", 29, 18]]);
-const pos$11 = nix.positions(here + "/ntpd-rs.nix", [["enable", 40, 17]]);
-const pos$12 = nix.positions(here + "/ntpd-rs.nix", [["metrics-exporter-listen", 43, 13]]);
-const pos$13 = nix.positions(here + "/ntpd-rs.nix", [["listen", 46, 15]]);
-const pos$14 = nix.positions(here + "/ntpd-rs.nix", [["observability", 42, 11], ["server", 45, 11]]);
-const pos$15 = nix.positions(here + "/ntpd-rs.nix", [["enable", 39, 9], ["metrics", 40, 9], ["settings", 41, 9]]);
-const pos$16 = nix.positions(here + "/ntpd-rs.nix", [["ntpd-rs", 38, 16]]);
-const pos$17 = nix.positions(here + "/ntpd-rs.nix", [["networking", 29, 7], ["services", 38, 7]]);
-const pos$18 = nix.positions(here + "/ntpd-rs.nix", [["client", 10, 5], ["server", 28, 5]]);
 const formals$2 = { args: { nodes: false }, ellipsis: true };
-const pos$19 = nix.positions(here + "/ntpd-rs.nix", [["name", 3, 3], ["meta", 5, 3], ["nodes", 9, 3], ["testScript", 53, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$19,
+    [nix.POS]: $pos[18],
     name: "ntpd-rs",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "fpletz"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$18,
+      [nix.POS]: $pos[17],
       client: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         services: nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           "ntpd-rs": nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             enable: true,
-            metrics: nix.thunk(() => ({ [nix.POS]: pos$2, enable: false })),
+            metrics: nix.thunk(() => ({ [nix.POS]: $pos[1], enable: false })),
             useNetworkingTimeServers: false,
             settings: nix.thunk(() => ({
-              [nix.POS]: pos$5,
-              source: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$3, mode: "server", address: "server" }))]),
-              synchronization: nix.thunk(() => ({ [nix.POS]: pos$4, "minimum-agreeing-sources": 1n })),
+              [nix.POS]: $pos[4],
+              source: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: $pos[2], mode: "server", address: "server" }))]),
+              synchronization: nix.thunk(() => ({ [nix.POS]: $pos[3], "minimum-agreeing-sources": 1n })),
             })),
           })),
         })),
       })),
       server: nix.thunk(() => ({
-        [nix.POS]: pos$17,
+        [nix.POS]: $pos[16],
         networking: nix.thunk(() => ({
-          [nix.POS]: pos$10,
+          [nix.POS]: $pos[9],
           firewall: nix.thunk(() => ({
-            [nix.POS]: pos$9,
+            [nix.POS]: $pos[8],
             allowedTCPPorts: nix.thunk(() => [9975n]),
             allowedUDPPorts: nix.thunk(() => [123n]),
           })),
         })),
         services: nix.thunk(() => ({
-          [nix.POS]: pos$16,
+          [nix.POS]: $pos[15],
           "ntpd-rs": nix.thunk(() => ({
-            [nix.POS]: pos$15,
+            [nix.POS]: $pos[14],
             enable: true,
-            metrics: nix.thunk(() => ({ [nix.POS]: pos$11, enable: true })),
+            metrics: nix.thunk(() => ({ [nix.POS]: $pos[10], enable: true })),
             settings: nix.thunk(() => ({
-              [nix.POS]: pos$14,
-              observability: nix.thunk(() => ({ [nix.POS]: pos$12, "metrics-exporter-listen": "[::]:9975" })),
-              server: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$13, listen: "[::]:123" }))]),
+              [nix.POS]: $pos[13],
+              observability: nix.thunk(() => ({ [nix.POS]: $pos[11], "metrics-exporter-listen": "[::]:9975" })),
+              server: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: $pos[12], listen: "[::]:123" }))]),
             })),
           })),
         })),

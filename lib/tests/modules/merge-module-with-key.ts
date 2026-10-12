@@ -2,20 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/merge-module-with-key.nix", [[["raw", 7, 7]], [["config", 6, 5]], [["raw", 14, 7]], [["key", 12, 5], ["config", 13, 5]], [["type", 21, 9]], [["raw", 20, 7]], [["options", 19, 5]], [["imports", 30, 9]], [["type", 29, 7], ["default", 36, 7]], [["imports", 40, 9]], [["type", 39, 7], ["default", 46, 7]], [["once", 28, 5], ["twice", 38, 5]], [["options", 27, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/merge-module-with-key.nix", [["raw", 7, 7]]);
-const pos$2 = nix.positions(here + "/merge-module-with-key.nix", [["config", 6, 5]]);
-const pos$3 = nix.positions(here + "/merge-module-with-key.nix", [["raw", 14, 7]]);
-const pos$4 = nix.positions(here + "/merge-module-with-key.nix", [["key", 12, 5], ["config", 13, 5]]);
-const pos$5 = nix.positions(here + "/merge-module-with-key.nix", [["type", 21, 9]]);
-const pos$6 = nix.positions(here + "/merge-module-with-key.nix", [["raw", 20, 7]]);
-const pos$7 = nix.positions(here + "/merge-module-with-key.nix", [["options", 19, 5]]);
-const pos$8 = nix.positions(here + "/merge-module-with-key.nix", [["imports", 30, 9]]);
-const pos$9 = nix.positions(here + "/merge-module-with-key.nix", [["type", 29, 7], ["default", 36, 7]]);
-const pos$10 = nix.positions(here + "/merge-module-with-key.nix", [["imports", 40, 9]]);
-const pos$11 = nix.positions(here + "/merge-module-with-key.nix", [["type", 39, 7], ["default", 46, 7]]);
-const pos$12 = nix.positions(here + "/merge-module-with-key.nix", [["once", 28, 5], ["twice", 38, 5]]);
-const pos$13 = nix.positions(here + "/merge-module-with-key.nix", [["options", 27, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,37 +11,37 @@ export default nix.lambda((args) => (() => {
   const mkOption = nix.thunk(() => nix.attr(lib, "mkOption"));
   const types = nix.thunk(() => nix.attr(lib, "types"));
   const moduleWithoutKey = nix.thunk(() => ({
-    [nix.POS]: pos$2,
-    config: nix.thunk(() => ({ [nix.POS]: pos$1, raw: "pear" })),
+    [nix.POS]: $pos[1],
+    config: nix.thunk(() => ({ [nix.POS]: $pos[0], raw: "pear" })),
   }));
   const moduleWithKey = nix.thunk(() => ({
-    [nix.POS]: pos$4,
+    [nix.POS]: $pos[3],
     key: nix.thunk(() => nix.add(nix.sel({ file: nix.add(here, "/merge-module-with-key.nix"), line: 12n, column: 11n }, "file"), "#moduleWithKey")),
-    config: nix.thunk(() => ({ [nix.POS]: pos$3, raw: "pear" })),
+    config: nix.thunk(() => ({ [nix.POS]: $pos[2], raw: "pear" })),
   }));
   const decl = nix.thunk(() => ({
-    [nix.POS]: pos$7,
+    [nix.POS]: $pos[6],
     options: nix.thunk(() => ({
-      [nix.POS]: pos$6,
-      raw: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({ [nix.POS]: pos$5, type: nix.thunk(() => nix.sel(types, "lines")) })))),
+      [nix.POS]: $pos[5],
+      raw: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({ [nix.POS]: $pos[4], type: nix.thunk(() => nix.sel(types, "lines")) })))),
     })),
   }));
   return {
-    [nix.POS]: pos$13,
+    [nix.POS]: $pos[12],
     options: nix.thunk(() => ({
-      [nix.POS]: pos$12,
+      [nix.POS]: $pos[11],
       once: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           type: nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-              [nix.POS]: pos$8,
+              [nix.POS]: $pos[7],
               imports: nix.thunk(() => [decl, moduleWithKey, moduleWithKey]),
             })))),
           default: nix.thunk(() => ({})),
         })))),
       twice: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          [nix.POS]: pos$11,
+          [nix.POS]: $pos[10],
           type: nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-              [nix.POS]: pos$10,
+              [nix.POS]: $pos[9],
               imports: nix.thunk(() => [decl, moduleWithoutKey, moduleWithoutKey]),
             })))),
           default: nix.thunk(() => ({})),

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 31, 7], ["repo", 32, 7], ["rev", 33, 7], ["hash", 34, 7]], [["updateScript", 69, 14]], [["description", 72, 7], ["homepage", 73, 7], ["license", 74, 7], ["platforms", 75, 7], ["maintainers", 76, 7]], [["pname", 27, 5], ["version", 28, 5], ["src", 30, 5], ["nativeBuildInputs", 37, 5], ["propagatedBuildInputs", 42, 5], ["dontDropIconThemeCache", 46, 5], ["dontPatchELF", 49, 5], ["dontRewriteSymlinks", 50, 5], ["postPatch", 52, 5], ["installPhase", 56, 5], ["passthru", 69, 5], ["meta", 71, 5]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchFromGitHub: false, gitUpdater: false, gtk3: false, "hicolor-icon-theme": false, jdupes: false, colorVariants: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 31, 7], ["repo", 32, 7], ["rev", 33, 7], ["hash", 34, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 69, 14]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 72, 7], ["homepage", 73, 7], ["license", 74, 7], ["platforms", 75, 7], ["maintainers", 76, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 27, 5], ["version", 28, 5], ["src", 30, 5], ["nativeBuildInputs", 37, 5], ["propagatedBuildInputs", 42, 5], ["dontDropIconThemeCache", 46, 5], ["dontPatchELF", 49, 5], ["dontRewriteSymlinks", 50, 5], ["postPatch", 52, 5], ["installPhase", 56, 5], ["passthru", 69, 5], ["meta", 71, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = "vimix-icon-theme";
       const version = "2025.02.10";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "vinceliuice",
           repo: "vimix-icon-theme",
           rev: version,
@@ -46,11 +43,11 @@ jdupes --quiet --link-soft --recurse $out/share
 runHook postInstall
 `);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Material Design icon theme based on Paper icon theme",
         homepage: "https://github.com/vinceliuice/vimix-icon-theme",
         license: nix.thunk(() => nix.sel(lib, "licenses", "cc-by-sa-40")),
@@ -61,7 +58,7 @@ runHook postInstall
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 11, 5], ["desktopName", 12, 5], ["exec", 13, 5]], [["domain", 22, 5], ["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["sha256", 26, 5]], [["description", 48, 5], ["mainProgram", 49, 5], ["homepage", 50, 5], ["license", 51, 5], ["maintainers", 52, 5], ["platforms", 53, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 33, 3], ["qmakeFlags", 38, 3], ["postInstall", 43, 3], ["meta", 47, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, makeDesktopItem: false, fetchFromGitLab: false, libsForQt5: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 11, 5], ["desktopName", 12, 5], ["exec", 13, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["domain", 22, 5], ["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["sha256", 26, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 48, 5], ["mainProgram", 49, 5], ["homepage", 50, 5], ["license", 51, 5], ["maintainers", 52, 5], ["platforms", 53, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 33, 3], ["qmakeFlags", 38, 3], ["postInstall", 43, 3], ["meta", 47, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,12 +12,12 @@ export default nix.lambda((args) => (() => {
   const makeDesktopItem = nix.arg($, "makeDesktopItem");
   const fetchFromGitLab = nix.arg($, "fetchFromGitLab");
   const libsForQt5 = nix.arg($, "libsForQt5");
-  const desktopItem = nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({ [nix.POS]: pos$1, name: "Michabo", desktopName: "Michabo", exec: "Michabo" }))));
+  const desktopItem = nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({ [nix.POS]: $pos[0], name: "Michabo", desktopName: "Michabo", exec: "Michabo" }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => (() => {
       const pname = "michabo";
       const version = "0.1";
       const src = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           domain: "git.pleroma.social",
           owner: "kaniini",
           repo: "michabo",
@@ -42,7 +39,7 @@ export default nix.lambda((args) => (() => {
       const postInstall = nix.thunk(() => nix.str`ln -s ${desktopItem}/share $out/share
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Native desktop app for Pleroma and Mastodon servers",
         mainProgram: "Michabo",
         homepage: "https://git.pleroma.social/kaniini/michabo",
@@ -54,7 +51,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/generic-rust.nix", [[["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]], [["package", 66, 39]], [["pnpm", 65, 23], ["version", 66, 7]], [["majorVersion", 62, 13], ["nodejs-slim", 62, 26], ["tests", 64, 5], ["updateScript", 69, 5]], [["description", 102, 5], ["homepage", 103, 5], ["changelog", 104, 5], ["license", 105, 5], ["maintainers", 106, 5], ["mainProgram", 110, 5], ["knownVulnerabilities", 111, 13]], [["pname", 22, 3], ["version", 23, 11], ["cargoHash", 23, 19], ["src", 25, 3], ["nativeBuildInputs", 32, 3], ["postPatch", 37, 3], ["cargoBuildFlags", 43, 3], ["postInstall", 47, 3], ["passthru", 61, 3], ["__structuredAttrs", 96, 3], ["doCheck", 99, 3], ["meta", 101, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, installShellFiles: false, makeWrapper: false, "nodejs-slim": false, rustPlatform: false, stdenv: false, testers: false, tests: false, writeScript: false, version: false, srcHash: false, cargoHash: false, knownVulnerabilities: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/generic-rust.nix", [["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/generic-rust.nix", [["package", 66, 39]]);
-const pos$3 = nix.positions(here + "/generic-rust.nix", [["pnpm", 65, 23], ["version", 66, 7]]);
-const pos$4 = nix.positions(here + "/generic-rust.nix", [["majorVersion", 62, 13], ["nodejs-slim", 62, 26], ["tests", 64, 5], ["updateScript", 69, 5]]);
-const pos$5 = nix.positions(here + "/generic-rust.nix", [["description", 102, 5], ["homepage", 103, 5], ["changelog", 104, 5], ["license", 105, 5], ["maintainers", 106, 5], ["mainProgram", 110, 5], ["knownVulnerabilities", 111, 13]]);
-const pos$6 = nix.positions(here + "/generic-rust.nix", [["pname", 22, 3], ["version", 23, 11], ["cargoHash", 23, 19], ["src", 25, 3], ["nativeBuildInputs", 32, 3], ["postPatch", 37, 3], ["cargoBuildFlags", 43, 3], ["postInstall", 47, 3], ["passthru", 61, 3], ["__structuredAttrs", 96, 3], ["doCheck", 99, 3], ["meta", 101, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,12 +23,12 @@ export default nix.lambda((args) => (() => {
   const knownVulnerabilities = nix.argOr($, "knownVulnerabilities", () => []);
   const majorVersion = nix.thunk(() => nix.app(nix.sel(lib, "versions", "major"), version));
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "pnpm",
       version: version,
       cargoHash: cargoHash,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "pnpm",
           repo: "pnpm",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -44,14 +39,14 @@ export default nix.lambda((args) => (() => {
       cargoBuildFlags: nix.thunk(() => ["--bin=pnpm"]),
       postInstall: nix.thunk(() => nix.add("makeWrapper \"$out\"/bin/pnpm \"$out\"/bin/pnpx \\\n  --add-flag \"dlx\"\n\nln -s \"$out\"/bin/pnpm \"$out\"/bin/pn\nln -s \"$out\"/bin/pnpx \"$out\"/bin/pnx\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "\"$out\"/bin/pnpm completion bash > pnpm.bash\n\"$out\"/bin/pnpm completion fish > pnpm.fish\n\"$out\"/bin/pnpm completion zsh > pnpm.zsh\ninstallShellCompletion pnpm.{bash,fish,zsh}\n"))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         majorVersion: majorVersion,
         "nodejs-slim": nodejs_slim,
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           pnpm: nix.thunk(() => nix.attr(tests, "pnpm")),
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         })),
@@ -83,7 +78,7 @@ nix-update pnpm_${majorVersion} --version="$latestVersion" --override-filename=.
       __structuredAttrs: true,
       doCheck: false,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Fast, disk space efficient package manager for JavaScript",
         homepage: "https://pnpm.io/",
         changelog: nix.thunk(() => nix.str`https://github.com/pnpm/pnpm/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

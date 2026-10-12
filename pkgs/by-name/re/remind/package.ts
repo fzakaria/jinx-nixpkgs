@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 22, 5], ["hash", 23, 5]], [["NIX_CFLAGS_COMPILE", 47, 5]], [["updateScript", 53, 12]], [["homepage", 56, 5], ["description", 57, 5], ["license", 58, 5], ["maintainers", 59, 5], ["mainProgram", 64, 5], ["platforms", 65, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["buildInputs", 26, 3], ["propagatedBuildInputs", 30, 3], ["postPatch", 35, 3], ["env", 45, 3], ["passthru", 53, 3], ["meta", 55, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchzip: false, bashNonInteractive: false, tk: false, tclPackages: false, tcl: false, tkremind: true, withGui: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 47, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 53, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 56, 5], ["description", 57, 5], ["license", 58, 5], ["maintainers", 59, 5], ["mainProgram", 64, 5], ["platforms", 65, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["buildInputs", 26, 3], ["propagatedBuildInputs", 30, 3], ["postPatch", 35, 3], ["env", 45, 3], ["passthru", 53, 3], ["meta", 55, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const tkremind = nix.argOr($, "tkremind", () => null);
   const withGui = nix.argOr($, "withGui", () => (nix.asBool(!nix.eq(tkremind, null)) ? nix.app(nix.sel(lib, "warn"), "tkremind is deprecated and should be removed; use withGui instead.", tkremind) : true));
   return nix.app(nix.sel(tcl, "mkTclDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "remind",
       version: "06.03.05",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://dianne.skoll.ca/projects/remind/download/remind-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-4TESOZrPqa2LahojSy27qgIzkuS/tr8ElAS7nw/t5Fo=",
         })))),
@@ -40,12 +36,12 @@ substituteInPlace scripts/tkremind.in \\
   --replace-fail 'set Rem2PDF "rem2pdf"' "set Rem2PDF \\"$out/bin/rem2pdf\\""
 `))),
       env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-DHAVE_SETENV", "-DHAVE_UNSETENV"]))),
         })))),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$3, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[2], updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://dianne.skoll.ca/projects/remind/",
         description: "Sophisticated calendar and alarm program for the console",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 26, 5], ["repo", 27, 5], ["rev", 28, 5], ["sha256", 29, 5]], [["url", 35, 9], ["hash", 36, 9]], [["owner", 86, 9], ["repo", 87, 9], ["rev", 88, 9], ["hash", 89, 9], ["postFetch", 90, 9]], [["openfst", 85, 7]], [["sources", 83, 5], ["updateScript", 100, 5]], [["description", 115, 5], ["homepage", 116, 5], ["license", 117, 5], ["maintainers", 118, 5], ["platforms", 119, 5]], [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["postPatch", 32, 3], ["cmakeFlags", 44, 3], ["buildInputs", 54, 3], ["nativeBuildInputs", 59, 3], ["preConfigure", 65, 3], ["postInstall", 75, 3], ["dontCheckForBrokenSymlinks", 80, 3], ["passthru", 82, 3], ["meta", 114, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, openblas: false, blas: false, lapack: false, icu: false, cmake: false, "pkg-config": false, fetchFromGitHub: false, fetchurl: false, python3: false, "_experimental-update-script-combinators": false, "common-updater-scripts": false, ripgrep: false, unstableGitUpdater: false, writeShellScript: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 26, 5], ["repo", 27, 5], ["rev", 28, 5], ["sha256", 29, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 35, 9], ["hash", 36, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["owner", 86, 9], ["repo", 87, 9], ["rev", 88, 9], ["hash", 89, 9], ["postFetch", 90, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["openfst", 85, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["sources", 83, 5], ["updateScript", 100, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 115, 5], ["homepage", 116, 5], ["license", 117, 5], ["maintainers", 118, 5], ["platforms", 119, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["postPatch", 32, 3], ["cmakeFlags", 44, 3], ["buildInputs", 54, 3], ["nativeBuildInputs", 59, 3], ["preConfigure", 65, 3], ["postInstall", 75, 3], ["dontCheckForBrokenSymlinks", 80, 3], ["passthru", 82, 3], ["meta", 114, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,18 +25,18 @@ export default nix.lambda((args) => (() => {
   const writeShellScript = nix.arg($, "writeShellScript");
   nix.assert_((nix.asBool(nix.eq(nix.sel(blas, "implementation"), "openblas")) && nix.asBool(nix.eq(nix.sel(lapack, "implementation"), "openblas"))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/ka/kaldi/package.nix:20:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "kaldi",
       version: "0-unstable-2025-09-22",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "kaldi-asr",
           repo: "kaldi",
           rev: "e02e35f0254bb033fab73d1df99fc34123e31d56",
           sha256: "sha256-ZnVSQTETrMeU+pkqy50ldAe8g1pbnG7VS1utcUy28ls=",
         })))),
       postPatch: nix.thunk(() => nix.str`cp ${nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: "https://raw.githubusercontent.com/rhasspy/rhasspy-speech/8a7bcc977d9c12fed89ab990089ed64524e54d2a/kaldi/src/online2bin/online2-cli-nnet3-decode-faster.cc",
           hash: "sha256-eKItaomBw3xE9unVuMSmzUwJfnpfLExxusKW+bhvaJI=",
         })))} src/online2bin/online2-cli-nnet3-decode-faster.cc
@@ -64,11 +58,11 @@ substituteInPlace src/online2bin/Makefile \\
       postInstall: "mkdir -p $out/share/kaldi\ncp -r ../egs $out/share/kaldi\n",
       dontCheckForBrokenSymlinks: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         sources: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           openfst: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               owner: "kkm000",
               repo: "openfst",
               rev: "338225416178ac36b8002d70387f5556e44c8d05",
@@ -90,7 +84,7 @@ ${common_updater_scripts}/bin/update-source-version kaldi.sources.openfst "$hash
         })()),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Speech Recognition Toolkit",
         homepage: "https://kaldi-asr.org",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

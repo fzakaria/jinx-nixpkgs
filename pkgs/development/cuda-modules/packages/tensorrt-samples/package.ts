@@ -2,34 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 46, 7], ["repo", 47, 7]], [["tag", 51, 9], ["hash", 52, 9]], [["tag", 55, 9], ["hash", 56, 9]], [["tag", 59, 9], ["hash", 60, 9]], [["tag", 63, 9], ["hash", 64, 9]], [["tag", 67, 9], ["hash", 68, 9]], [["tag", 71, 9], ["hash", 72, 9]], [["tag", 75, 9], ["hash", 76, 9]], [["tag", 79, 9], ["hash", 80, 9]], [["tag", 83, 9], ["hash", 84, 9]], [["tag", 87, 9], ["hash", 88, 9]], [["tag", 91, 9], ["hash", 92, 9]], [["tag", 95, 9], ["hash", 96, 9]], [["tag", 99, 9], ["hash", 100, 9]], [["tag", 103, 9], ["hash", 104, 9]], [["tag", 107, 9], ["hash", 108, 9]], [["tag", 111, 9], ["hash", 112, 9]], [["tag", 115, 9], ["hash", 116, 9]], [["tag", 119, 9], ["hash", 120, 9]], [["tag", 123, 9], ["hash", 124, 9]], [["tag", 127, 9], ["hash", 128, 9]], [["tag", 131, 9], ["hash", 132, 9]], [["tag", 135, 9], ["hash", 136, 9]], [["10.0.0", 50, 7], ["10.0.1", 54, 7], ["10.1.0", 58, 7], ["10.2.0", 62, 7], ["10.3.0", 66, 7], ["10.4.0", 70, 7], ["10.5.0", 74, 7], ["10.6.0", 78, 7], ["10.7.0", 82, 7], ["10.8.0", 86, 7], ["10.9.0", 90, 7], ["10.10.0", 94, 7], ["10.11.0", 98, 7], ["10.12.0", 102, 7], ["10.13.0", 106, 7], ["10.13.2", 110, 7], ["10.13.3", 114, 7], ["10.14.1", 118, 7], ["10.16.1", 122, 7], ["11.0.0", 126, 7], ["11.1.0", 130, 7], ["11.3.0", 134, 7]], [["backendStdenv", 203, 7], ["fetchzip", 204, 7], ["finalAttrs", 205, 7], ["lib", 206, 7], ["python3", 207, 7], ["runCommand", 208, 7], ["stdenvNoCC", 209, 7], ["writeShellApplication", 210, 7]], [["description", 215, 5], ["homepage", 216, 5], ["license", 217, 5], ["platforms", 218, 5], ["teams", 222, 5], ["maintainers", 223, 5]], [["__structuredAttrs", 35, 3], ["strictDeps", 36, 3], ["name", 38, 3], ["pname", 40, 3], ["version", 42, 3], ["src", 44, 3], ["nativeBuildInputs", 141, 3], ["postPatch", 147, 3], ["cmakeFlags", 174, 3], ["buildInputs", 194, 3], ["passthru", 201, 3], ["meta", 214, 3]]]);
 const formals$1 = { args: { _cuda: false, backendStdenv: false, cmake: false, cuda_cudart: false, cuda_nvcc: false, cuda_profiler_api: false, cudaNamePrefix: false, fetchFromGitHub: false, fetchzip: false, flags: false, lib: false, nlohmann_json: false, python3: false, runCommand: false, stdenvNoCC: false, tensorrt: false, writeShellApplication: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 46, 7], ["repo", 47, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["tag", 51, 9], ["hash", 52, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tag", 55, 9], ["hash", 56, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tag", 59, 9], ["hash", 60, 9]]);
-const pos$5 = nix.positions(here + "/package.nix", [["tag", 63, 9], ["hash", 64, 9]]);
-const pos$6 = nix.positions(here + "/package.nix", [["tag", 67, 9], ["hash", 68, 9]]);
-const pos$7 = nix.positions(here + "/package.nix", [["tag", 71, 9], ["hash", 72, 9]]);
-const pos$8 = nix.positions(here + "/package.nix", [["tag", 75, 9], ["hash", 76, 9]]);
-const pos$9 = nix.positions(here + "/package.nix", [["tag", 79, 9], ["hash", 80, 9]]);
-const pos$10 = nix.positions(here + "/package.nix", [["tag", 83, 9], ["hash", 84, 9]]);
-const pos$11 = nix.positions(here + "/package.nix", [["tag", 87, 9], ["hash", 88, 9]]);
-const pos$12 = nix.positions(here + "/package.nix", [["tag", 91, 9], ["hash", 92, 9]]);
-const pos$13 = nix.positions(here + "/package.nix", [["tag", 95, 9], ["hash", 96, 9]]);
-const pos$14 = nix.positions(here + "/package.nix", [["tag", 99, 9], ["hash", 100, 9]]);
-const pos$15 = nix.positions(here + "/package.nix", [["tag", 103, 9], ["hash", 104, 9]]);
-const pos$16 = nix.positions(here + "/package.nix", [["tag", 107, 9], ["hash", 108, 9]]);
-const pos$17 = nix.positions(here + "/package.nix", [["tag", 111, 9], ["hash", 112, 9]]);
-const pos$18 = nix.positions(here + "/package.nix", [["tag", 115, 9], ["hash", 116, 9]]);
-const pos$19 = nix.positions(here + "/package.nix", [["tag", 119, 9], ["hash", 120, 9]]);
-const pos$20 = nix.positions(here + "/package.nix", [["tag", 123, 9], ["hash", 124, 9]]);
-const pos$21 = nix.positions(here + "/package.nix", [["tag", 127, 9], ["hash", 128, 9]]);
-const pos$22 = nix.positions(here + "/package.nix", [["tag", 131, 9], ["hash", 132, 9]]);
-const pos$23 = nix.positions(here + "/package.nix", [["tag", 135, 9], ["hash", 136, 9]]);
-const pos$24 = nix.positions(here + "/package.nix", [["10.0.0", 50, 7], ["10.0.1", 54, 7], ["10.1.0", 58, 7], ["10.2.0", 62, 7], ["10.3.0", 66, 7], ["10.4.0", 70, 7], ["10.5.0", 74, 7], ["10.6.0", 78, 7], ["10.7.0", 82, 7], ["10.8.0", 86, 7], ["10.9.0", 90, 7], ["10.10.0", 94, 7], ["10.11.0", 98, 7], ["10.12.0", 102, 7], ["10.13.0", 106, 7], ["10.13.2", 110, 7], ["10.13.3", 114, 7], ["10.14.1", 118, 7], ["10.16.1", 122, 7], ["11.0.0", 126, 7], ["11.1.0", 130, 7], ["11.3.0", 134, 7]]);
-const pos$25 = nix.positions(here + "/package.nix", [["backendStdenv", 203, 7], ["fetchzip", 204, 7], ["finalAttrs", 205, 7], ["lib", 206, 7], ["python3", 207, 7], ["runCommand", 208, 7], ["stdenvNoCC", 209, 7], ["writeShellApplication", 210, 7]]);
-const pos$26 = nix.positions(here + "/package.nix", [["description", 215, 5], ["homepage", 216, 5], ["license", 217, 5], ["platforms", 218, 5], ["teams", 222, 5], ["maintainers", 223, 5]]);
-const pos$27 = nix.positions(here + "/package.nix", [["__structuredAttrs", 35, 3], ["strictDeps", 36, 3], ["name", 38, 3], ["pname", 40, 3], ["version", 42, 3], ["src", 44, 3], ["nativeBuildInputs", 141, 3], ["postPatch", 147, 3], ["cmakeFlags", 174, 3], ["buildInputs", 194, 3], ["passthru", 201, 3], ["meta", 214, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -62,121 +36,121 @@ export default nix.lambda((args) => (() => {
   const replaceStrings = nix.thunk(() => nix.attr(lib, "replaceStrings"));
   const teams = nix.thunk(() => nix.attr(lib, "teams"));
   return nix.app(nix.sel(backendStdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$27,
+      [nix.POS]: $pos[26],
       __structuredAttrs: true,
       strictDeps: true,
       name: nix.thunk(() => nix.str`${cudaNamePrefix}-${nix.sel(finalAttrs, "pname")}-${nix.sel(finalAttrs, "version")}`),
       pname: "tensorrt-samples",
       version: nix.thunk(() => nix.app(majorMinorPatch, nix.thunk(() => nix.sel(tensorrt, "version")))),
-      src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => nix.update({ [nix.POS]: pos$1, owner: "NVIDIA", repo: "TensorRT" }, nix.app(getAttr, nix.thunk(() => nix.sel(finalAttrs, "version")), nix.thunk(() => ({
-            [nix.POS]: pos$24,
+      src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => nix.update({ [nix.POS]: $pos[0], owner: "NVIDIA", repo: "TensorRT" }, nix.app(getAttr, nix.thunk(() => nix.sel(finalAttrs, "version")), nix.thunk(() => ({
+            [nix.POS]: $pos[23],
             "10.0.0": nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               tag: "v10.0.0",
               hash: "sha256-k0FqEURPCtcPgowORHme/lhQ5SN63d0lYQvTvFXS6vw=",
             })),
             "10.0.1": nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               tag: "v10.0.1",
               hash: "sha256-lSEw0GM0eW2BHNBq/wTQA8v3aNueE3FT+k9F5nH1OgA=",
             })),
             "10.1.0": nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               tag: "v10.1.0",
               hash: "sha256-A3QwrQaI0EgRspgXEKcna/z6p7abOq3M7KDQMPQftvE=",
             })),
             "10.2.0": nix.thunk(() => ({
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               tag: "v10.2.0",
               hash: "sha256-Euo9VD4VTpx8XJV97IMETTAx/YkPGXiNdA39Wjp3UMU=",
             })),
             "10.3.0": nix.thunk(() => ({
-              [nix.POS]: pos$6,
+              [nix.POS]: $pos[5],
               tag: "v10.3.0",
               hash: "sha256-odSrsfOa8PlbJiPrkvWFm2hHc+ud0qSpLQanx9/M/90=",
             })),
             "10.4.0": nix.thunk(() => ({
-              [nix.POS]: pos$7,
+              [nix.POS]: $pos[6],
               tag: "v10.4.0",
               hash: "sha256-GAu/VdHrC3UQw9okPexVItLPrRb1m3ZMpCkHNcfzRkE=",
             })),
             "10.5.0": nix.thunk(() => ({
-              [nix.POS]: pos$8,
+              [nix.POS]: $pos[7],
               tag: "v10.5.0",
               hash: "sha256-No0JKfvi6ETXrnebMX+tAVhz7fuuCwYAp/WNUN73XzY=",
             })),
             "10.6.0": nix.thunk(() => ({
-              [nix.POS]: pos$9,
+              [nix.POS]: $pos[8],
               tag: "v10.6.0",
               hash: "sha256-nnzicyCjVqpAonIhx3u9yNnoJkZ0XXjJ8oxQH+wfrtE=",
             })),
             "10.7.0": nix.thunk(() => ({
-              [nix.POS]: pos$10,
+              [nix.POS]: $pos[9],
               tag: "v10.7.0",
               hash: "sha256-sbp61GverIWrHKvJV+oO9TctFTO4WUmH0oInZIwqF/s=",
             })),
             "10.8.0": nix.thunk(() => ({
-              [nix.POS]: pos$11,
+              [nix.POS]: $pos[10],
               tag: "v10.8.0",
               hash: "sha256-SDlTZf8EQBq8vDCH3YFJCROHbf47RB5WUu4esLNpYuA=",
             })),
             "10.9.0": nix.thunk(() => ({
-              [nix.POS]: pos$12,
+              [nix.POS]: $pos[11],
               tag: "v10.9.0",
               hash: "sha256-J8K9RjeGIem5ZxXyU+Rne8uBbul54ie6P/Y1In2mQ0g=",
             })),
             "10.10.0": nix.thunk(() => ({
-              [nix.POS]: pos$13,
+              [nix.POS]: $pos[12],
               tag: "v10.10.0",
               hash: "sha256-/vkGmH+WKXMXsUizGfjBKRHOp5IpS236eUdCQ8tr1u8=",
             })),
             "10.11.0": nix.thunk(() => ({
-              [nix.POS]: pos$14,
+              [nix.POS]: $pos[13],
               tag: "v10.11",
               hash: "sha256-OXI6mR2X+kF/0EO5RSBnnaGjMKD6AkuQMfl0OMzayxc=",
             })),
             "10.12.0": nix.thunk(() => ({
-              [nix.POS]: pos$15,
+              [nix.POS]: $pos[14],
               tag: "v10.12.0",
               hash: "sha256-3pFiqDzWcMAk3GfnSOzzInddEfoGX0Fwqb+vEYr9eBw=",
             })),
             "10.13.0": nix.thunk(() => ({
-              [nix.POS]: pos$16,
+              [nix.POS]: $pos[15],
               tag: "v10.13.0",
               hash: "sha256-hjl9fKFIE8p05/lmius2vuil6evPbNEjTT9yJyC44FI=",
             })),
             "10.13.2": nix.thunk(() => ({
-              [nix.POS]: pos$17,
+              [nix.POS]: $pos[16],
               tag: "v10.13.2",
               hash: "sha256-1t4TyQKGTVPyPPNA3dlVDoBSHXKGcTms8AUejbvtVfw=",
             })),
             "10.13.3": nix.thunk(() => ({
-              [nix.POS]: pos$18,
+              [nix.POS]: $pos[17],
               tag: "v10.13.3",
               hash: "sha256-d14R0UmSLT63wlmpCMi9ZvHZjottr8LJfig7EcqxLEY=",
             })),
             "10.14.1": nix.thunk(() => ({
-              [nix.POS]: pos$19,
+              [nix.POS]: $pos[18],
               tag: "v10.14",
               hash: "sha256-pWvXpXiUriLDYHqro3HWAmO/9wbGznyUrc9qxq/t0/U=",
             })),
             "10.16.1": nix.thunk(() => ({
-              [nix.POS]: pos$20,
+              [nix.POS]: $pos[19],
               tag: "v10.16",
               hash: "sha256-Wm5oOXxAIpIlwiJKhH0WjgUAuTB9H2xFEVpM/sO36qk=",
             })),
             "11.0.0": nix.thunk(() => ({
-              [nix.POS]: pos$21,
+              [nix.POS]: $pos[20],
               tag: "v11.0",
               hash: "sha256-xbGMxCSDTixR0fOoOABWyEVE4S9x031L3i5KQwPu24Y=",
             })),
             "11.1.0": nix.thunk(() => ({
-              [nix.POS]: pos$22,
+              [nix.POS]: $pos[21],
               tag: "v11.1",
               hash: "sha256-b+vpN/LTTbE1N/qQ/+1u78YmaVf6vvbg1XtFjQJkwTs=",
             })),
             "11.3.0": nix.thunk(() => ({
-              [nix.POS]: pos$23,
+              [nix.POS]: $pos[22],
               tag: "v11.3",
               hash: "sha256-U52/Pyd+94taV+yhfxseUdyY5lLwOcxBPIwDatjr6gs=",
             })),
@@ -201,7 +175,7 @@ export default nix.lambda((args) => (() => {
         tensorrt,
       ]),
       passthru: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./passthru.nix")), nix.thunk(() => ({
-          [nix.POS]: pos$25,
+          [nix.POS]: $pos[24],
           backendStdenv: backendStdenv,
           fetchzip: fetchzip,
           finalAttrs: finalAttrs,
@@ -212,7 +186,7 @@ export default nix.lambda((args) => (() => {
           writeShellApplication: writeShellApplication,
         })))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$26,
+        [nix.POS]: $pos[25],
         description: "Open Source Software (OSS) components of NVIDIA TensorRT",
         homepage: "https://github.com/NVIDIA/TensorRT",
         license: nix.thunk(() => nix.sel(licenses, "asl20")),

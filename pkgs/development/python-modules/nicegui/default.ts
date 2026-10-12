@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 54, 5], ["repo", 55, 5], ["tag", 56, 5], ["hash", 57, 5]], [["matplotlib", 104, 5], ["native", 105, 5], ["plotly", 106, 5], ["sass", 107, 5], ["redis", 108, 5]], [["description", 130, 5], ["homepage", 131, 5], ["changelog", 132, 5], ["license", 133, 5], ["maintainers", 134, 5]], [["pname", 49, 3], ["version", 50, 3], ["pyproject", 51, 3], ["src", 53, 3], ["pythonRelaxDeps", 60, 3], ["build-system", 68, 3], ["dependencies", 74, 3], ["optional-dependencies", 101, 3], ["nativeCheckInputs", 111, 3], ["pythonImportsCheck", 124, 3], ["doCheck", 127, 3], ["meta", 129, 3]]]);
 const formals$1 = { args: { lib: false, aiofiles: false, aiohttp: false, buildPythonPackage: false, certifi: false, docutils: false, fastapi: false, fetchFromGitHub: false, httpx: false, ifaddr: false, itsdangerous: false, jinja2: false, libsass: false, "lxml-html-clean": false, lxml: false, markdown2: false, matplotlib: false, orjson: false, pandas: false, pkgs: false, plotly: false, "poetry-core": false, "poetry-dynamic-versioning": false, polars: false, pyecharts: false, pygments: false, "pytest-asyncio": false, "pytest-selenium": false, pytestCheckHook: false, "python-dotenv": false, "python-multipart": false, "python-socketio": false, pywebview: false, redis: false, requests: false, setuptools: false, tinycss2: false, "typing-extensions": false, urllib3: false, uvicorn: false, vbuild: false, watchfiles: false, "webdriver-manager": false, writableTmpDirAsHomeHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 54, 5], ["repo", 55, 5], ["tag", 56, 5], ["hash", 57, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["matplotlib", 104, 5], ["native", 105, 5], ["plotly", 106, 5], ["sass", 107, 5], ["redis", 108, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 130, 5], ["homepage", 131, 5], ["changelog", 132, 5], ["license", 133, 5], ["maintainers", 134, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 49, 3], ["version", 50, 3], ["pyproject", 51, 3], ["src", 53, 3], ["pythonRelaxDeps", 60, 3], ["build-system", 68, 3], ["dependencies", 74, 3], ["optional-dependencies", 101, 3], ["nativeCheckInputs", 111, 3], ["pythonImportsCheck", 124, 3], ["doCheck", 127, 3], ["meta", 129, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -55,12 +52,12 @@ export default nix.lambda((args) => (() => {
   const webdriver_manager = nix.arg($, "webdriver-manager");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "nicegui",
       version: "3.17.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "zauberzeug",
           repo: "nicegui",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -95,7 +92,7 @@ export default nix.lambda((args) => (() => {
         watchfiles,
       ]),
       "optional-dependencies": nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         matplotlib: nix.thunk(() => [matplotlib]),
         native: nix.thunk(() => [pywebview]),
         plotly: nix.thunk(() => [plotly]),
@@ -116,7 +113,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["nicegui"]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Module to create web-based user interfaces",
         homepage: "https://github.com/zauberzeug/nicegui/",
         changelog: nix.thunk(() => nix.str`https://github.com/zauberzeug/nicegui/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

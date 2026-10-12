@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 46, 5], ["repo", 47, 5], ["rev", 48, 5], ["hash", 49, 5], ["fetchSubmodules", 50, 5], ["postFetch", 52, 5]], [["owner", 118, 5], ["repo", 119, 5], ["tag", 120, 5], ["hash", 121, 5]], [["CXXFLAGS", 265, 5], ["CFLAGS", 271, 5]], [["homepage", 298, 5], ["description", 299, 5], ["changelog", 300, 5], ["license", 301, 5], ["maintainers", 305, 5], ["platforms", 309, 5]], [["pname", 111, 3], ["version", 112, 3], ["strictDeps", 114, 3], ["__structuredAttrs", 115, 3], ["src", 117, 3], ["prePatch", 124, 3], ["patches", 131, 3], ["postPatch", 151, 3], ["nativeBuildInputs", 207, 3], ["buildInputs", 218, 3], ["cmakeFlags", 245, 3], ["preConfigure", 260, 3], ["env", 264, 3], ["nativeCheckInputs", 278, 3], ["doCheck", 285, 3], ["dontWrapQtApps", 288, 3], ["preFixup", 289, 3], ["meta", 297, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, doxygen: false, lemon: false, libxslt: false, re2c: false, adaptagrams: false, assimp: false, clipper2: false, eigen: false, gdal: false, geogram: false, gtmathematics: false, libGL: false, libjpeg_turbo: false, libpng: false, lmdb: false, netpbm: false, opencv: false, openmesh: false, pugixml: false, qt6: false, stepcode: false, tcl: false, tinygltf_2: false, tk: false, zlib: false, gzip: false, which: false, writableTmpDirAsHomeHook: false, enableQt: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 46, 5], ["repo", 47, 5], ["rev", 48, 5], ["hash", 49, 5], ["fetchSubmodules", 50, 5], ["postFetch", 52, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 118, 5], ["repo", 119, 5], ["tag", 120, 5], ["hash", 121, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["CXXFLAGS", 265, 5], ["CFLAGS", 271, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 298, 5], ["description", 299, 5], ["changelog", 300, 5], ["license", 301, 5], ["maintainers", 305, 5], ["platforms", 309, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 111, 3], ["version", 112, 3], ["strictDeps", 114, 3], ["__structuredAttrs", 115, 3], ["src", 117, 3], ["prePatch", 124, 3], ["patches", 131, 3], ["postPatch", 151, 3], ["nativeBuildInputs", 207, 3], ["buildInputs", 218, 3], ["cmakeFlags", 245, 3], ["preConfigure", 260, 3], ["env", 264, 3], ["nativeCheckInputs", 278, 3], ["doCheck", 285, 3], ["dontWrapQtApps", 288, 3], ["preFixup", 289, 3], ["meta", 297, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -45,7 +41,7 @@ export default nix.lambda((args) => (() => {
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   const enableQt = nix.argOr($, "enableQt", () => false);
   const bext = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "BRL-CAD",
       repo: "bext",
       rev: "12f7d5669eec143eb882a367fa2d2a56127d1942",
@@ -106,13 +102,13 @@ done
       })()),
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "brlcad",
       version: "7.44.0",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "BRL-CAD",
           repo: "brlcad",
           tag: nix.thunk(() => nix.str`rel-${nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => ["-"]), nix.thunk(() => nix.sel(finalAttrs, "version")))}`),
@@ -177,7 +173,7 @@ cp -r --no-preserve=mode ${bext}/. build/bext/
       ]),
       preConfigure: "cmakeFlagsArray+=(\"-DBRLCAD_EXT_SOURCE_DIR=$(pwd)/build/bext\")\n",
       env: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         CXXFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-Wno-template-body", "-Wno-error=template-id-cdtor"]))),
         CFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-Wno-incompatible-pointer-types", "-std=gnu17"]))),
       })),
@@ -186,7 +182,7 @@ cp -r --no-preserve=mode ${bext}/. build/bext/
       dontWrapQtApps: true,
       preFixup: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), enableQt, "wrapQtApp $out/bin/brlman\nwrapQtApp $out/bin/qged\nwrapQtApp $out/bin/qgmodel\nwrapQtApp $out/bin/qgview\nwrapQtApp $out/bin/qisst\n")),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://brlcad.org",
         description: "BRL-CAD is a powerful cross-platform open source combinatorial solid modeling system",
         changelog: nix.thunk(() => nix.str`https://github.com/BRL-CAD/brlcad/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]], [["ELECTRON_SKIP_BINARY_DOWNLOAD", 36, 7]], [["name", 84, 7], ["exec", 85, 7], ["icon", 86, 7], ["desktopName", 87, 7], ["genericName", 88, 7], ["categories", 89, 7], ["startupWMClass", 93, 7]], [["description", 98, 5], ["homepage", 99, 5], ["downloadPage", 100, 5], ["license", 101, 5], ["maintainers", 102, 5], ["platforms", 103, 5], ["mainProgram", 104, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["nativeBuildInputs", 26, 3], ["npmDepsHash", 31, 3], ["forceGitDeps", 32, 3], ["makeCacheWritable", 33, 3], ["__structuredAttrs", 34, 3], ["env", 36, 3], ["patches", 38, 3], ["buildPhase", 42, 3], ["installPhase", 63, 3], ["desktopItems", 82, 3], ["meta", 97, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchFromGitHub: false, buildNpmPackage: false, copyDesktopItems: false, makeDesktopItem: false, makeWrapper: false, electron_43: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["ELECTRON_SKIP_BINARY_DOWNLOAD", 36, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 84, 7], ["exec", 85, 7], ["icon", 86, 7], ["desktopName", 87, 7], ["genericName", 88, 7], ["categories", 89, 7], ["startupWMClass", 93, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 98, 5], ["homepage", 99, 5], ["downloadPage", 100, 5], ["license", 101, 5], ["maintainers", 102, 5], ["platforms", 103, 5], ["mainProgram", 104, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["nativeBuildInputs", 26, 3], ["npmDepsHash", 31, 3], ["forceGitDeps", 32, 3], ["makeCacheWritable", 33, 3], ["__structuredAttrs", 34, 3], ["env", 36, 3], ["patches", 38, 3], ["buildPhase", 42, 3], ["installPhase", 63, 3], ["desktopItems", 82, 3], ["meta", 97, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const electron = electron_43;
   const stdenv = stdenvNoCC;
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "knockoutcitylauncher",
       version: "2.4.6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "kocxyz",
           repo: "Launcher",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -37,7 +33,7 @@ export default nix.lambda((args) => (() => {
       forceGitDeps: true,
       makeCacheWritable: true,
       __structuredAttrs: true,
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, ELECTRON_SKIP_BINARY_DOWNLOAD: "1" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], ELECTRON_SKIP_BINARY_DOWNLOAD: "1" })),
       patches: nix.thunk(() => [nix.path(here, "./updatecheck-and-devconsole.patch")]),
       buildPhase: nix.thunk(() => nix.str`runHook preBuild
 
@@ -77,7 +73,7 @@ runHook postInstall
 `),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "Knockout City Launcher",
             exec: nix.thunk(() => nix.sel(finalAttrs, "meta", "mainProgram")),
             icon: nix.thunk(() => nix.sel(finalAttrs, "meta", "mainProgram")),
@@ -88,7 +84,7 @@ runHook postInstall
           })))),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Unofficial Knockout City Launcher",
         homepage: "https://kocity.xyz/",
         downloadPage: "https://github.com/kocxyz/Launcher/releases",

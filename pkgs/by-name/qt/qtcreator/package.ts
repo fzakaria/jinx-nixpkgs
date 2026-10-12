@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 26, 5], ["hash", 27, 5]], [["pname", 31, 7], ["version", 32, 7], ["src", 33, 15], ["vendorHash", 34, 7], ["setSourceRoot", 35, 7]], [["withClang", 46, 29]], [["withPackages", 118, 5]], [["description", 122, 5], ["longDescription", 123, 5], ["homepage", 128, 5], ["license", 129, 5], ["maintainers", 130, 5], ["platforms", 135, 5], ["mainProgram", 136, 5]], [["pname", 41, 11], ["version", 41, 17], ["src", 41, 25], ["nativeBuildInputs", 43, 3], ["buildInputs", 53, 3], ["outputs", 75, 3], ["cmakeFlags", 80, 3], ["preConfigure", 95, 3], ["qtWrapperArgs", 101, 3], ["postInstall", 105, 3], ["postFixup", 113, 3], ["passthru", 117, 3], ["meta", 121, 3]]]);
 const formals$1 = { args: { lib: false, fetchurl: false, cmake: false, "pkg-config": false, ninja: false, go: false, python3: false, qt6: false, "yaml-cpp": false, litehtml: false, libsecret: false, gumbo: false, llvmPackages_21: false, "stdenv'": true, "rustc-demangle": false, elfutils: false, perf: false, callPackage: false, buildGoModule: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 31, 7], ["version", 32, 7], ["src", 33, 15], ["vendorHash", 34, 7], ["setSourceRoot", 35, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["withClang", 46, 29]]);
-const pos$4 = nix.positions(here + "/package.nix", [["withPackages", 118, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 122, 5], ["longDescription", 123, 5], ["homepage", 128, 5], ["license", 129, 5], ["maintainers", 130, 5], ["platforms", 135, 5], ["mainProgram", 136, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 41, 11], ["version", 41, 17], ["src", 41, 25], ["nativeBuildInputs", 43, 3], ["buildInputs", 53, 3], ["outputs", 75, 3], ["cmakeFlags", 80, 3], ["preConfigure", 95, 3], ["qtWrapperArgs", 101, 3], ["postInstall", 105, 3], ["postFixup", 113, 3], ["passthru", 117, 3], ["meta", 121, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,12 +29,12 @@ export default nix.lambda((args) => (() => {
   const pname = "qtcreator";
   const version = "20.0.1";
   const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: nix.thunk(() => nix.str`mirror://qt/official_releases/${pname}/${nix.app(nix.sel(lib, "versions", "majorMinor"), version)}/${version}/qt-creator-opensource-src-${version}.tar.xz`),
       hash: "sha256-XsO8zwbumhkFqHYKyfunoShWcvFAqX4MUsniSNkFGrg=",
     }))));
   const goModules = nix.thunk(() => nix.sel(nix.app(buildGoModule, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "gocmdbridge",
       version: "1.0.0",
       src: src,
@@ -47,14 +42,14 @@ export default nix.lambda((args) => (() => {
       setSourceRoot: "sourceRoot=$(echo */src/libs/gocmdbridge/server)\n",
     }))), "goModules"));
   return nix.app(nix.sel(stdenv$, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: pname,
       version: version,
       src: src,
       nativeBuildInputs: nix.thunk(() => [
         cmake,
         pkg_config,
-        nix.thunk(() => nix.app(nix.sel(qt6, "qttools", "override"), nix.thunk(() => ({ [nix.POS]: pos$3, withClang: true })))),
+        nix.thunk(() => nix.app(nix.sel(qt6, "qttools", "override"), nix.thunk(() => ({ [nix.POS]: $pos[2], withClang: true })))),
         nix.thunk(() => nix.sel(qt6, "wrapQtAppsHook")),
         python3,
         ninja,
@@ -102,11 +97,11 @@ cp -r --reflink=auto ${goModules} src/libs/gocmdbridge/server/vendor
       postInstall: "# Small hack to set-up right prefix in cmake modules for header files\ncmake . $cmakeFlags -DCMAKE_INSTALL_PREFIX=\"${!outputDev}\"\n\ncmake --install . --prefix \"${!outputDev}\" --component Devel\n",
       postFixup: "substituteInPlace ${!outputDev}/lib/cmake/QtCreator/QtCreatorConfig.cmake --replace \"$out/\" \"\"\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         withPackages: nix.thunk(() => nix.app(callPackage, nix.path(here, "./with-plugins.nix"), nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Cross-platform IDE tailored to the needs of Qt developers",
         longDescription: "Qt Creator is a cross-platform IDE (integrated development environment)\ntailored to the needs of Qt developers. It includes features such as an\nadvanced code editor, a visual debugger and a GUI designer.\n",
         homepage: "https://wiki.qt.io/Qt_Creator",

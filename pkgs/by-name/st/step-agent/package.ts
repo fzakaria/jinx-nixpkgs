@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 19, 7], ["sha256", 20, 7]], [["url", 24, 7], ["sha256", 25, 7]], [["x86_64-linux", 18, 5], ["aarch64-linux", 23, 5]], [["updateScript", 60, 12]], [["description", 63, 5], ["homepage", 64, 5], ["license", 65, 5], ["maintainers", 66, 5], ["sourceProvenance", 67, 5], ["platforms", 68, 5], ["mainProgram", 69, 5]], [["strictDeps", 30, 3], ["__structuredAttrs", 31, 3], ["version", 33, 11], ["pname", 34, 3], ["src", 36, 3], ["sourceRoot", 39, 3], ["nativeBuildInputs", 41, 3], ["installPhase", 47, 3], ["passthru", 60, 3], ["meta", 62, 3]]]);
 const formals$1 = { args: { lib: false, fetchurl: false, installShellFiles: false, stdenvNoCC: false, stdenv: false, autoPatchelfHook: false, makeWrapper: false, "p11-kit": false, polkit: false, "tpm2-openssl": false, "tpm2-tss": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 19, 7], ["sha256", 20, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 24, 7], ["sha256", 25, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["x86_64-linux", 18, 5], ["aarch64-linux", 23, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 60, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 63, 5], ["homepage", 64, 5], ["license", 65, 5], ["maintainers", 66, 5], ["sourceProvenance", 67, 5], ["platforms", 68, 5], ["mainProgram", 69, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["strictDeps", 30, 3], ["__structuredAttrs", 31, 3], ["version", 33, 11], ["pname", 34, 3], ["src", 36, 3], ["sourceRoot", 39, 3], ["nativeBuildInputs", 41, 3], ["installPhase", 47, 3], ["passthru", 60, 3], ["meta", 62, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,20 +20,20 @@ export default nix.lambda((args) => (() => {
   const tpm2_tss = nix.arg($, "tpm2-tss");
   const version = "0.69.2";
   const srcs = nix.thunk(() => ({
-    [nix.POS]: pos$3,
+    [nix.POS]: $pos[2],
     "x86_64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         url: nix.thunk(() => nix.str`https://packages.smallstep.com/stable/step-agent/linux/${version}/step-agent_${version}_linux_amd64.tar.gz`),
         sha256: "sha256-HIIXGIczw6bqVY05mTaCW0JhZNbgHW8cDKSmeUTzSf0=",
       })))),
     "aarch64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         url: nix.thunk(() => nix.str`https://packages.smallstep.com/stable/step-agent/linux/${version}/step-agent_${version}_linux_arm64.tar.gz`),
         sha256: "sha256-ENT7vn0YqpMX1SrdFTTo3ZV1aVKl2lqZ8e6vwUqDgk4=",
       })))),
   }));
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       strictDeps: true,
       __structuredAttrs: true,
       version: version,
@@ -50,9 +45,9 @@ export default nix.lambda((args) => (() => {
 cp -vr ./step-agent $out/bin/step-agent
 wrapProgram $out/bin/step-agent --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [tpm2_tss, tpm2_openssl, polkit, p11_kit]))}
 `),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$4, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[3], updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "step-agent is an automated certificate management agent plugin for step-cli",
         homepage: "https://github.com/smallstep/step-agent-plugin/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 16, 5], ["sha256", 17, 5]], [["name", 33, 7], ["url", 34, 7], ["sha256", 35, 7]], [["description", 44, 5], ["homepage", 45, 5], ["license", 46, 5], ["platforms", 47, 5], ["maintainers", 48, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 15, 3], ["nativeBuildInputs", 20, 3], ["buildInputs", 21, 3], ["propagatedBuildInputs", 25, 3], ["outputs", 26, 3], ["patches", 30, 3], ["configureFlags", 41, 3], ["meta", 43, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, "pkg-config": false, openssl: false, libogg: false, libopus: false, fetchpatch: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 16, 5], ["sha256", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 33, 7], ["url", 34, 7], ["sha256", 35, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 44, 5], ["homepage", 45, 5], ["license", 46, 5], ["platforms", 47, 5], ["maintainers", 48, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 15, 3], ["nativeBuildInputs", 20, 3], ["buildInputs", 21, 3], ["propagatedBuildInputs", 25, 3], ["outputs", 26, 3], ["patches", 30, 3], ["configureFlags", 41, 3], ["meta", 43, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const libopus = nix.arg($, "libopus");
   const fetchpatch = nix.arg($, "fetchpatch");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "opusfile",
       version: "0.12",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://downloads.xiph.org/releases/opus/opusfile-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "02smwc5ah8nb3a67mnkjzqmrzk43j356hgj2a97s9midq40qd38i",
         })))),
@@ -34,7 +31,7 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => nix.concat([
         nix.path(here, "./include-multistream.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "CVE-2022-47021.patch",
             url: "https://github.com/xiph/opusfile/commit/0a4cd796df5b030cb866f3f4a5e41a4b92caddf5.patch",
             sha256: "sha256-XThI/ys5caB+OncFVfxm5IsvQPy1MbLQKwIlYjPvTJQ=",
@@ -42,7 +39,7 @@ export default nix.lambda((args) => (() => {
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isWindows")), nix.thunk(() => [nix.path(here, "./disable-cert-store.patch")])))),
       configureFlags: nix.thunk(() => ["--disable-examples"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "High-level API for decoding and seeking in .opus files",
         homepage: "https://www.opus-codec.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

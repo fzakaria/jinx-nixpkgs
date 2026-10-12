@@ -2,19 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 22, 5], ["hash", 23, 5]], [["pname", 29, 28], ["version", 29, 34], ["debianRevision", 30, 7], ["patch", 31, 7], ["hash", 32, 7]], [["pname", 36, 28], ["version", 36, 34], ["debianRevision", 37, 7], ["patch", 38, 7], ["hash", 39, 7]], [["pname", 43, 28], ["version", 43, 34], ["debianRevision", 44, 7], ["patch", 45, 7], ["hash", 46, 7]], [["pname", 50, 28], ["version", 50, 34], ["debianRevision", 51, 7], ["patch", 52, 7], ["hash", 53, 7]], [["pname", 57, 28], ["version", 57, 34], ["debianRevision", 58, 7], ["patch", 59, 7], ["hash", 60, 7]], [["url", 64, 7], ["hash", 65, 7]], [["url", 69, 7], ["hash", 70, 7]], [["url", 74, 7], ["hash", 75, 7]], [["url", 79, 7], ["hash", 80, 7]], [["description", 113, 5], ["homepage", 114, 5], ["license", 115, 5], ["maintainers", 116, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["patches", 26, 3], ["postPatch", 84, 3], ["nativeBuildInputs", 93, 3], ["buildInputs", 98, 3], ["cmakeFlags", 107, 3], ["meta", 112, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, fetchpatch: false, fetchDebianPatch: false, libresample: false, cmake: false, "pkg-config": false, boost: false, gd: false, libogg: false, libtheora: false, libvorbis: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 29, 28], ["version", 29, 34], ["debianRevision", 30, 7], ["patch", 31, 7], ["hash", 32, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 36, 28], ["version", 36, 34], ["debianRevision", 37, 7], ["patch", 38, 7], ["hash", 39, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 43, 28], ["version", 43, 34], ["debianRevision", 44, 7], ["patch", 45, 7], ["hash", 46, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 50, 28], ["version", 50, 34], ["debianRevision", 51, 7], ["patch", 52, 7], ["hash", 53, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 57, 28], ["version", 57, 34], ["debianRevision", 58, 7], ["patch", 59, 7], ["hash", 60, 7]]);
-const pos$7 = nix.positions(here + "/package.nix", [["url", 64, 7], ["hash", 65, 7]]);
-const pos$8 = nix.positions(here + "/package.nix", [["url", 69, 7], ["hash", 70, 7]]);
-const pos$9 = nix.positions(here + "/package.nix", [["url", 74, 7], ["hash", 75, 7]]);
-const pos$10 = nix.positions(here + "/package.nix", [["url", 79, 7], ["hash", 80, 7]]);
-const pos$11 = nix.positions(here + "/package.nix", [["description", 113, 5], ["homepage", 114, 5], ["license", 115, 5], ["maintainers", 116, 5]]);
-const pos$12 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["patches", 26, 3], ["postPatch", 84, 3], ["nativeBuildInputs", 93, 3], ["buildInputs", 98, 3], ["cmakeFlags", 107, 3], ["meta", 112, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,17 +21,17 @@ export default nix.lambda((args) => (() => {
   const libtheora = nix.arg($, "libtheora");
   const libvorbis = nix.arg($, "libvorbis");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$12,
+      [nix.POS]: $pos[11],
       pname: "oggvideotools",
       version: "0.9.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/oggvideotools/oggvideotools/oggvideotools-${nix.sel(finalAttrs, "version")}/oggvideotools-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           hash: "sha256-2dv3iXt86phhIgnYC5EnRzyX1u5ssNzPwrOP4+jilSM=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchDebianPatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
             version: nix.thunk(() => nix.attr(finalAttrs, "version")),
             debianRevision: "7",
@@ -50,7 +39,7 @@ export default nix.lambda((args) => (() => {
             hash: "sha256-0D22P+Qdf9Sfp6vptSnL4E33NVUL/XL72gNE36BF6QI=",
           })))),
         nix.thunk(() => nix.app(fetchDebianPatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
             version: nix.thunk(() => nix.attr(finalAttrs, "version")),
             debianRevision: "7",
@@ -58,7 +47,7 @@ export default nix.lambda((args) => (() => {
             hash: "sha256-yGzHGEADlSRnWZIN8x6xfg9ChAn8WKFQgZAJmbKtKq8=",
           })))),
         nix.thunk(() => nix.app(fetchDebianPatch, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
             version: nix.thunk(() => nix.attr(finalAttrs, "version")),
             debianRevision: "7",
@@ -66,7 +55,7 @@ export default nix.lambda((args) => (() => {
             hash: "sha256-LBgmpyyxmeAFE3zpeHRryuxboMBdBztUEGxbs0Ay+HU=",
           })))),
         nix.thunk(() => nix.app(fetchDebianPatch, nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
             version: nix.thunk(() => nix.attr(finalAttrs, "version")),
             debianRevision: "7",
@@ -74,7 +63,7 @@ export default nix.lambda((args) => (() => {
             hash: "sha256-7BtdAGHHW860hFZYlRWDVfEw6CDkb18HfFROZHl+guY=",
           })))),
         nix.thunk(() => nix.app(fetchDebianPatch, nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
             version: nix.thunk(() => nix.attr(finalAttrs, "version")),
             debianRevision: "7",
@@ -82,22 +71,22 @@ export default nix.lambda((args) => (() => {
             hash: "sha256-KMs4nyILveKY+ZmcSONmtS5+sAPPB+ypNUi9yzxBsXQ=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             url: "https://salsa.debian.org/multimedia-team/oggvideotools/-/raw/ed006e5d78f9509508dbc72277de8ab3c06d2362/debian/patches/1010-kate-header-buffer-read-past-end.patch",
             hash: "sha256-CEkNG9tHZIggCvKRPj2pKI855pVWQUdudLfpda/ZVME=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$8,
+            [nix.POS]: $pos[7],
             url: "https://salsa.debian.org/multimedia-team/oggvideotools/-/raw/122047a7cf644e282906370f277ae83b4672e5e4/debian/patches/1020-CVE-2020-21723-null-pointer-crash.patch",
             hash: "sha256-dUkMfEaB5Hn9I5+QbE/002X6ij+xIzzqjc8QTom1ITk=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$9,
+            [nix.POS]: $pos[8],
             url: "https://src.fedoraproject.org/rpms/oggvideotools/raw/23f918f39278d87adb5a5ab2e57d5cc1816e1e8a/f/0005-unbundle-libresample.patch",
             hash: "sha256-JSuH8ScYBi6zAgEhrFdPOGCSXzDk+lEnSHX9wuctAsg=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$10,
+            [nix.POS]: $pos[9],
             url: "https://src.fedoraproject.org/rpms/oggvideotools/raw/2dd078ea81773a34cc0c4817ebbf3c4038b8098c/f/stream-serializer.diff",
             hash: "sha256-3HkAuCBaNjKoTN8Q3oW89e3zXo13Ev5g7VJ/RPO3zRA=",
           })))),
@@ -109,7 +98,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeFeature"), "CMAKE_POLICY_VERSION_MINIMUM", "4.0")),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$11,
+        [nix.POS]: $pos[10],
         description: "Toolbox for manipulating and creating Ogg video files",
         homepage: "https://sourceforge.net/projects/oggvideotools/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

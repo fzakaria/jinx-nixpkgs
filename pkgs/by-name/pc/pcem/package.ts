@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 23, 5], ["stripRoot", 24, 5], ["sha256", 25, 5]], [["NIX_CFLAGS_COMPILE", 49, 7]], [["description", 52, 5], ["mainProgram", 53, 5], ["homepage", 54, 5], ["license", 55, 5], ["maintainers", 56, 5], ["platforms", 57, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 33, 3], ["configureFlags", 42, 3], ["env", 49, 3], ["meta", 51, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchzip: false, wxwidgets_3_2: false, coreutils: false, SDL2: false, openal: false, "alsa-lib": false, "pkg-config": false, gtk3: false, wrapGAppsHook3: false, autoreconfHook: false, withNetworking: true, withALSA: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 23, 5], ["stripRoot", 24, 5], ["sha256", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 49, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 52, 5], ["mainProgram", 53, 5], ["homepage", 54, 5], ["license", 55, 5], ["maintainers", 56, 5], ["platforms", 57, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 33, 3], ["configureFlags", 42, 3], ["env", 49, 3], ["meta", 51, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const withNetworking = nix.argOr($, "withNetworking", () => true);
   const withALSA = nix.argOr($, "withALSA", () => true);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "pcem",
       version: "17",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://pcem-emulator.co.uk/files/PCemV${nix.sel(finalAttrs, "version")}Linux.tar.gz`),
           stripRoot: false,
           sha256: "067pbnc15h6a4pnnym82klr1w8qwfm6p0pkx93gx06wvwqsxvbdv",
@@ -38,11 +35,11 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => nix.concat([wxwidgets_3_2, coreutils, SDL2, openal, gtk3], nix.app(nix.sel(lib, "optional"), withALSA, alsa_lib))),
       configureFlags: nix.thunk(() => nix.concat(["--enable-release-build"], nix.concat(nix.app(nix.sel(lib, "optional"), withNetworking, "--enable-networking"), nix.app(nix.sel(lib, "optional"), withALSA, "--enable-alsa")))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: "-Wno-error=implicit-function-declaration -Wno-error=incompatible-pointer-types -std=gnu17",
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Emulator for IBM PC computers and clones",
         mainProgram: "pcem",
         homepage: "https://pcem-emulator.co.uk/",

@@ -2,28 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 46, 7], ["value", 52, 7]], [["extra_cxxflags", 83, 5], ["is_debug", 84, 5], ["is_system_compiler", 85, 5], ["is_clang", 86, 5], ["monolithic_binaries", 87, 5], ["perfetto_use_pkgconfig", 88, 5], ["use_custom_libcxx", 89, 5]], [["owner", 101, 5], ["repo", 102, 5], ["tag", 103, 5], ["hash", 104, 5]], [["url", 115, 7], ["hash", 116, 7]], [["url", 119, 7], ["hash", 120, 7]], [["url", 123, 7], ["hash", 124, 7]], [["url", 127, 7], ["hash", 128, 7]], [["url", 131, 7], ["hash", 132, 7]], [["name", 161, 9], ["value", 162, 9]], [["enable_perfetto_etm_importer", 166, 7], ["enable_perfetto_llvm_demangle", 167, 7], ["enable_perfetto_trace_processor_percentile", 168, 7]], [["extra_ldflags", 171, 7]], [["enable_perfetto_ipc", 235, 23], ["enable_perfetto_pcre2", 236, 23], ["enable_perfetto_re2", 237, 23], ["enable_perfetto_zlib", 238, 23], ["enable_perfetto_zstd", 239, 23], ["is_perfetto_build_generator", 240, 23], ["is_perfetto_embedder", 241, 23], ["perfetto_amalgamated_sdk", 242, 23], ["perfetto_enable_git_rev_version_header", 243, 23]], [["updateScript", 296, 41], ["tests", 296, 54]], [["homepage", 301, 13], ["changelog", 302, 13], ["license", 303, 13], ["maintainers", 304, 13], ["platforms", 305, 13], ["description", 307, 11], ["pkgConfigModules", 308, 11]], [["pname", 207, 9], ["src", 209, 11], ["version", 210, 11], ["patches", 211, 11], ["postPatch", 212, 11], ["nativeBuildInputs", 213, 11], ["propagatedBuildInputs", 215, 9], ["__structuredAttrs", 217, 9], ["strictDeps", 218, 9], ["outputs", 219, 9], ["dontUseGnConfigure", 224, 9], ["configurePhase", 225, 9], ["dontUseNinjaBuild", 253, 9], ["buildPhase", 254, 9], ["dontUseNinjaInstall", 270, 9], ["installPhase", 271, 9], ["passthru", 295, 9], ["meta", 299, 9]], [["package", 315, 9]], [["pname", 320, 11], ["src", 321, 32], ["version", 321, 36], ["sourceRoot", 323, 11], ["__structuredAttrs", 325, 11], ["strictDeps", 326, 11], ["postPatch", 328, 11], ["nativeBuildInputs", 341, 11], ["buildInputs", 345, 11], ["installPhase", 350, 11], ["doInstallCheck", 357, 11], ["nativeInstallCheckInputs", 358, 11], ["installCheckPhase", 359, 11]], [["pkg-config", 314, 7], ["examples", 318, 7]], [["updateScript", 203, 5], ["sdk", 205, 5], ["tests", 313, 5]], [["description", 401, 5], ["homepage", 402, 5], ["changelog", 403, 5], ["license", 404, 5], ["maintainers", 405, 5], ["mainProgram", 406, 5], ["platforms", 407, 5]], [["pname", 94, 3], ["version", 95, 3], ["__structuredAttrs", 97, 3], ["strictDeps", 98, 3], ["src", 100, 3], ["outputs", 107, 3], ["patches", 112, 3], ["postPatch", 136, 3], ["nativeBuildInputs", 145, 3], ["buildInputs", 155, 3], ["gnFlags", 157, 3], ["ninjaFlags", 175, 3], ["dontUseNinjaInstall", 177, 3], ["installPhase", 178, 3], ["nativeInstallCheckInputs", 188, 3], ["doInstallCheck", 191, 3], ["installCheckPhase", 192, 3], ["passthru", 202, 3], ["meta", 400, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, cctools: false, cmake: false, expat: false, fetchFromGitHub: false, fetchpatch2: false, gn: false, linenoise: false, ninja: false, "nix-update-script": false, "pkg-config": false, protobuf: false, python3: false, re2: false, sqlite: false, zlib: false, zstd: false, testers: false, validatePkgConfig: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 46, 7], ["value", 52, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["extra_cxxflags", 83, 5], ["is_debug", 84, 5], ["is_system_compiler", 85, 5], ["is_clang", 86, 5], ["monolithic_binaries", 87, 5], ["perfetto_use_pkgconfig", 88, 5], ["use_custom_libcxx", 89, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["owner", 101, 5], ["repo", 102, 5], ["tag", 103, 5], ["hash", 104, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["url", 115, 7], ["hash", 116, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["url", 119, 7], ["hash", 120, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["url", 123, 7], ["hash", 124, 7]]);
-const pos$7 = nix.positions(here + "/package.nix", [["url", 127, 7], ["hash", 128, 7]]);
-const pos$8 = nix.positions(here + "/package.nix", [["url", 131, 7], ["hash", 132, 7]]);
-const pos$9 = nix.positions(here + "/package.nix", [["name", 161, 9], ["value", 162, 9]]);
-const pos$10 = nix.positions(here + "/package.nix", [["enable_perfetto_etm_importer", 166, 7], ["enable_perfetto_llvm_demangle", 167, 7], ["enable_perfetto_trace_processor_percentile", 168, 7]]);
-const pos$11 = nix.positions(here + "/package.nix", [["extra_ldflags", 171, 7]]);
-const pos$12 = nix.positions(here + "/package.nix", [["enable_perfetto_ipc", 235, 23], ["enable_perfetto_pcre2", 236, 23], ["enable_perfetto_re2", 237, 23], ["enable_perfetto_zlib", 238, 23], ["enable_perfetto_zstd", 239, 23], ["is_perfetto_build_generator", 240, 23], ["is_perfetto_embedder", 241, 23], ["perfetto_amalgamated_sdk", 242, 23], ["perfetto_enable_git_rev_version_header", 243, 23]]);
-const pos$13 = nix.positions(here + "/package.nix", [["updateScript", 296, 41], ["tests", 296, 54]]);
-const pos$14 = nix.positions(here + "/package.nix", [["homepage", 301, 13], ["changelog", 302, 13], ["license", 303, 13], ["maintainers", 304, 13], ["platforms", 305, 13], ["description", 307, 11], ["pkgConfigModules", 308, 11]]);
-const pos$15 = nix.positions(here + "/package.nix", [["pname", 207, 9], ["src", 209, 11], ["version", 210, 11], ["patches", 211, 11], ["postPatch", 212, 11], ["nativeBuildInputs", 213, 11], ["propagatedBuildInputs", 215, 9], ["__structuredAttrs", 217, 9], ["strictDeps", 218, 9], ["outputs", 219, 9], ["dontUseGnConfigure", 224, 9], ["configurePhase", 225, 9], ["dontUseNinjaBuild", 253, 9], ["buildPhase", 254, 9], ["dontUseNinjaInstall", 270, 9], ["installPhase", 271, 9], ["passthru", 295, 9], ["meta", 299, 9]]);
-const pos$16 = nix.positions(here + "/package.nix", [["package", 315, 9]]);
-const pos$17 = nix.positions(here + "/package.nix", [["pname", 320, 11], ["src", 321, 32], ["version", 321, 36], ["sourceRoot", 323, 11], ["__structuredAttrs", 325, 11], ["strictDeps", 326, 11], ["postPatch", 328, 11], ["nativeBuildInputs", 341, 11], ["buildInputs", 345, 11], ["installPhase", 350, 11], ["doInstallCheck", 357, 11], ["nativeInstallCheckInputs", 358, 11], ["installCheckPhase", 359, 11]]);
-const pos$18 = nix.positions(here + "/package.nix", [["pkg-config", 314, 7], ["examples", 318, 7]]);
-const pos$19 = nix.positions(here + "/package.nix", [["updateScript", 203, 5], ["sdk", 205, 5], ["tests", 313, 5]]);
-const pos$20 = nix.positions(here + "/package.nix", [["description", 401, 5], ["homepage", 402, 5], ["changelog", 403, 5], ["license", 404, 5], ["maintainers", 405, 5], ["mainProgram", 406, 5], ["platforms", 407, 5]]);
-const pos$21 = nix.positions(here + "/package.nix", [["pname", 94, 3], ["version", 95, 3], ["__structuredAttrs", 97, 3], ["strictDeps", 98, 3], ["src", 100, 3], ["outputs", 107, 3], ["patches", 112, 3], ["postPatch", 136, 3], ["nativeBuildInputs", 145, 3], ["buildInputs", 155, 3], ["gnFlags", 157, 3], ["ninjaFlags", 175, 3], ["dontUseNinjaInstall", 177, 3], ["installPhase", 178, 3], ["nativeInstallCheckInputs", 188, 3], ["doInstallCheck", 191, 3], ["installCheckPhase", 192, 3], ["passthru", 202, 3], ["meta", 400, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -56,7 +36,7 @@ export default nix.lambda((args) => (() => {
   const sdkPropagatedBuildInputs = nix.thunk(() => [protobuf, re2, zlib, zstd]);
   const toolsInputs = nix.thunk(() => [expat, linenoise, sqlite]);
   const systemLibs = nix.thunk(() => nix.builtins.listToAttrs(nix.thunk(() => nix.builtins.map((drv) => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         name: nix.thunk(() => nix.str`${(nix.asBool(nix.builtins.hasAttr("pkgConfigModules", nix.thunk(() => nix.sel(drv, "meta")))) ? nix.builtins.head(nix.thunk(() => nix.sel(drv, "meta", "pkgConfigModules"))) : nix.sel(drv, "pname"))}`),
         value: nix.thunk(() => nix.sel(drv, "pname")),
       }), sdkPropagatedBuildInputs))));
@@ -66,7 +46,7 @@ export default nix.lambda((args) => (() => {
   const toGnValue = (value) => (nix.asBool(nix.app(nix.sel(lib, "isBool"), value)) ? nix.app(nix.sel(lib, "boolToString"), value) : (nix.asBool(nix.app(nix.sel(lib, "isInt"), value)) ? nix.builtins.toString(value) : (nix.asBool(nix.app(nix.sel(lib, "isString"), value)) ? nix.str`"${nix.app(nix.sel(lib, "escape"), nix.thunk(() => ["\"", "$", "\\"]), value)}"` : nix.builtins.throw(nix.thunk(() => nix.str`Unsupported type for GN value: ${nix.app(nix.sel(lib, "generators", "toPretty"), nix.thunk(() => ({})), value)}`)))));
   const toGnFlags = nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (name) => (value) => nix.str`${name}=${nix.app(toGnValue, value)}`));
   const commonGnFlags = nix.thunk(() => nix.update({
-    [nix.POS]: pos$2,
+    [nix.POS]: $pos[1],
     extra_cxxflags: "-std=c++20",
     is_debug: false,
     is_system_compiler: true,
@@ -76,13 +56,13 @@ export default nix.lambda((args) => (() => {
     use_custom_libcxx: false,
   }, nix.app(nix.sel(lib, "concatMapAttrs"), (_) => (gnName) => nix.attrsDyn({}, [[nix.str`perfetto_use_system_${gnName}`, true]]), systemLibs)));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$21,
+      [nix.POS]: $pos[20],
       pname: "perfetto",
       version: "58.3",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           owner: "google",
           repo: "perfetto",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -91,27 +71,27 @@ export default nix.lambda((args) => (() => {
       outputs: nix.thunk(() => ["out", "tools"]),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             url: "https://github.com/google/perfetto/commit/e698e3903870da0317511334ee21d3ae830ecd66.patch?full_index=1",
             hash: "sha256-L3/xAz1dc3KDZLs7nt7F945ZuvexyWlA9x0YqRNjdIo=",
           })))),
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             url: "https://github.com/google/perfetto/commit/5739344741e4b881952a2786f67355eefe0a2c8d.patch?full_index=1",
             hash: "sha256-AplecRNDDLGpbYC6zg2Ie0LrX+0MBxodTC72SP6SSl8=",
           })))),
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             url: "https://github.com/google/perfetto/commit/25f6c94bf1321f61e63c7cd8d50b3b997b176ccb.patch?full_index=1",
             hash: "sha256-AJLof+TbpGxNUedW2dzKmwS2j9XpnJqI+vEy4d4Qf1Q=",
           })))),
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             url: "https://github.com/google/perfetto/commit/38a4e881bec05dbf51a3defb66d7b201c2fd1ea1.patch?full_index=1",
             hash: "sha256-j/X8GbioV2pNrTUvtaTf1YRaxX6/XhbPTwmJ+9f4bUY=",
           })))),
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            [nix.POS]: pos$8,
+            [nix.POS]: $pos[7],
             url: "https://github.com/google/perfetto/commit/782904b123a369e8c16b91c6eeab093fd3b9343e.patch?full_index=1",
             hash: "sha256-lHEvJEigMtYXmHPx2cwQ+Wh5rdh7IQVdnNHUJN6I1Zg=",
           })))),
@@ -126,16 +106,16 @@ substituteInPlace gn/standalone/toolchain/BUILD.gn \\
       nativeBuildInputs: nix.thunk(() => nix.concat([gn, ninja, pkg_config, protobuf, python3, validatePkgConfig], nix.app(nix.sel(lib, "optional"), isDarwin, nix.thunk(() => nix.sel(cctools, "libtool"))))),
       buildInputs: nix.thunk(() => nix.concat(sdkPropagatedBuildInputs, toolsInputs)),
       gnFlags: nix.thunk(() => nix.app(toGnFlags, nix.thunk(() => nix.update(commonGnFlags, nix.update(nix.builtins.listToAttrs(nix.thunk(() => nix.builtins.map((drv) => ({
-              [nix.POS]: pos$9,
+              [nix.POS]: $pos[8],
               name: nix.thunk(() => nix.str`perfetto_use_system_${nix.sel(drv, "pname")}`),
               value: true,
             }), toolsInputs))), nix.update({
-          [nix.POS]: pos$10,
+          [nix.POS]: $pos[9],
           enable_perfetto_etm_importer: false,
           enable_perfetto_llvm_demangle: false,
           enable_perfetto_trace_processor_percentile: false,
         }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.asBool(isStatic)), nix.thunk(() => ({
-            [nix.POS]: pos$11,
+            [nix.POS]: $pos[10],
             extra_ldflags: nix.thunk(() => nix.str`-Wl,-rpath,${nix.builtins.placeholder("out")}/lib`),
           }))))))))),
       ninjaFlags: nix.thunk(() => nix.concat(executablesToInstall, toolsToInstall)),
@@ -152,10 +132,10 @@ runHook postInstall
       doInstallCheck: true,
       installCheckPhase: "runHook preInstallCheck\n\n$tools/bin/trace_processor_shell \\\n  -Q \"select percentile(x, 50), median(x) from (select 1 x union all select 3)\" /dev/null \\\n| grep -F '2.0'\n\nrunHook postInstallCheck\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$19,
+        [nix.POS]: $pos[18],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         sdk: nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-            [nix.POS]: pos$15,
+            [nix.POS]: $pos[14],
             pname: "perfetto-sdk",
             src: nix.thunk(() => nix.attr(finalAttrs, "src")),
             version: nix.thunk(() => nix.attr(finalAttrs, "version")),
@@ -171,7 +151,7 @@ runHook postInstall
 
 python3 tools/gen_amalgamated --quiet --system_buildtools --sdk cpp --output sdk/perfetto \\
   --gn_args ${nix.app(nix.sel(lib, "escapeShellArg"), nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.app(toGnFlags, nix.thunk(() => nix.update(commonGnFlags, {
-                    [nix.POS]: pos$12,
+                    [nix.POS]: $pos[11],
                     enable_perfetto_ipc: true,
                     enable_perfetto_pcre2: false,
                     enable_perfetto_re2: true,
@@ -219,7 +199,7 @@ runHook postInstall
             passthru: nix.thunk(() => (() => {
               const from_1 = nix.thunk(() => nix.sel(finalAttrs, "passthru"));
               return {
-              [nix.POS]: pos$13,
+              [nix.POS]: $pos[12],
               updateScript: nix.thunk(() => nix.attr(from_1, "updateScript")),
               tests: nix.thunk(() => nix.attr(from_1, "tests")),
             };
@@ -227,7 +207,7 @@ runHook postInstall
             meta: nix.thunk(() => (() => {
               const from_1 = nix.thunk(() => nix.sel(finalAttrs, "meta"));
               return {
-              [nix.POS]: pos$14,
+              [nix.POS]: $pos[13],
               homepage: nix.thunk(() => nix.attr(from_1, "homepage")),
               changelog: nix.thunk(() => nix.attr(from_1, "changelog")),
               license: nix.thunk(() => nix.attr(from_1, "license")),
@@ -239,13 +219,13 @@ runHook postInstall
             })()),
           })))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$18,
+          [nix.POS]: $pos[17],
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "hasPkgConfigModules"), nix.thunk(() => ({
-              [nix.POS]: pos$16,
+              [nix.POS]: $pos[15],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage", "sdk")),
             })))),
           examples: nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-              [nix.POS]: pos$17,
+              [nix.POS]: $pos[16],
               pname: "perfetto-sdk-examples",
               src: nix.thunk(() => nix.attr(finalAttrs, "src")),
               version: nix.thunk(() => nix.attr(finalAttrs, "version")),
@@ -263,7 +243,7 @@ runHook postInstall
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$20,
+        [nix.POS]: $pos[19],
         description: "Client-side tracing, profiling, and analysis for complex software systems",
         homepage: "https://perfetto.dev/",
         changelog: nix.thunk(() => nix.str`https://github.com/google/perfetto/releases/tag/v${nix.sel(finalAttrs, "version")}`),

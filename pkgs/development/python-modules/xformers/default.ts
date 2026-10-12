@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["stdenv", 42, 31]], [["owner", 49, 5], ["repo", 50, 5], ["tag", 51, 5], ["fetchSubmodules", 52, 5], ["hash", 53, 5]], [["name", 60, 7], ["url", 61, 7], ["hash", 62, 7]], [["FORCE_CUDA", 83, 5], ["TORCH_CUDA_ARCH_LIST", 85, 5]], [["requiredSystemFeatures", 188, 5], ["disabledTestPaths", 191, 5], ["disabledTests", 193, 5], ["nativeCheckInputs", 221, 5]], [["gpuCheck", 187, 12]], [["description", 227, 5], ["homepage", 228, 5], ["changelog", 229, 5], ["license", 230, 5], ["maintainers", 231, 5]], [["pname", 43, 3], ["version", 44, 3], ["pyproject", 45, 3], ["__structuredAttrs", 46, 3], ["src", 48, 3], ["patches", 56, 3], ["postPatch", 67, 3], ["build-system", 72, 3], ["preBuild", 77, 3], ["env", 81, 3], ["buildInputs", 88, 3], ["nativeBuildInputs", 104, 3], ["dependencies", 112, 3], ["pythonImportsCheck", 120, 3], ["nativeCheckInputs", 126, 3], ["preCheck", 142, 3], ["enabledTestPaths", 154, 3], ["disabledTestPaths", 158, 3], ["disabledTests", 168, 3], ["passthru", 187, 3], ["meta", 226, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitHub: false, fetchpatch: false, torch: false, setuptools: false, openmp: false, numpy: false, "nvidia-ml-py": false, einops: false, fairscale: false, "hydra-core": false, networkx: false, "pytest-cov-stub": false, "pytest-timeout": false, pytestCheckHook: false, scipy: false, timm: false, transformers: false, triton: false, python: false, xformers: false, writableTmpDirAsHomeHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["stdenv", 42, 31]]);
-const pos$2 = nix.positions(here + "/default.nix", [["owner", 49, 5], ["repo", 50, 5], ["tag", 51, 5], ["fetchSubmodules", 52, 5], ["hash", 53, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["name", 60, 7], ["url", 61, 7], ["hash", 62, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["FORCE_CUDA", 83, 5], ["TORCH_CUDA_ARCH_LIST", 85, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["requiredSystemFeatures", 188, 5], ["disabledTestPaths", 191, 5], ["disabledTests", 193, 5], ["nativeCheckInputs", 221, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["gpuCheck", 187, 12]]);
-const pos$7 = nix.positions(here + "/default.nix", [["description", 227, 5], ["homepage", 228, 5], ["changelog", 229, 5], ["license", 230, 5], ["maintainers", 231, 5]]);
-const pos$8 = nix.positions(here + "/default.nix", [["pname", 43, 3], ["version", 44, 3], ["pyproject", 45, 3], ["__structuredAttrs", 46, 3], ["src", 48, 3], ["patches", 56, 3], ["postPatch", 67, 3], ["build-system", 72, 3], ["preBuild", 77, 3], ["env", 81, 3], ["buildInputs", 88, 3], ["nativeBuildInputs", 104, 3], ["dependencies", 112, 3], ["pythonImportsCheck", 120, 3], ["nativeCheckInputs", 126, 3], ["preCheck", 142, 3], ["enabledTestPaths", 154, 3], ["disabledTestPaths", 158, 3], ["disabledTests", 168, 3], ["passthru", 187, 3], ["meta", 226, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -42,14 +35,14 @@ export default nix.lambda((args) => (() => {
   const cudaPackages = nix.thunk(() => nix.attr(torch, "cudaPackages"));
   const cudaSupport = nix.thunk(() => nix.attr(torch, "cudaSupport"));
   const effectiveStdenv = nix.thunk(() => (nix.asBool(cudaSupport) ? nix.sel(cudaPackages, "backendStdenv") : nix.force(stdenv)));
-  return nix.app(nix.sel(buildPythonPackage, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, stdenv: effectiveStdenv })), (finalAttrs) => ({
-      [nix.POS]: pos$8,
+  return nix.app(nix.sel(buildPythonPackage, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], stdenv: effectiveStdenv })), (finalAttrs) => ({
+      [nix.POS]: $pos[7],
       pname: "xformers",
       version: "0.0.35",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "facebookresearch",
           repo: "xformers",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -58,7 +51,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "xformers-fix-tests-pytorch-2.13.patch",
             url: "https://github.com/facebookresearch/xformers/commit/f06b9a7b0db97a78913ca8dc1652468a0527dc80.patch",
             hash: "sha256-QE3hmwXI3yJBgRWOHKoDUaEsFO+vuqV+DTMW7sjuURU=",
@@ -68,7 +61,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [setuptools, torch]),
       preBuild: "export MAX_JOBS=$NIX_BUILD_CORES\n",
       env: nix.thunk(() => nix.app(nix.sel(lib, "attrsets", "optionalAttrs"), cudaSupport, nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           FORCE_CUDA: 1n,
           TORCH_CUDA_ARCH_LIST: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "concatStringsSep"), ";", cudaCapabilities)}`),
         })))),
@@ -114,9 +107,9 @@ export default nix.lambda((args) => (() => {
           "test_dispatch_decoding_bmghk",
         ]))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         gpuCheck: nix.thunk(() => nix.app(nix.sel(xformers, "overridePythonAttrs"), (old) => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             requiredSystemFeatures: nix.thunk(() => ["cuda"]),
             disabledTestPaths: [],
             disabledTests: nix.thunk(() => nix.concat(nix.selOr(old, () => [], "disabledTests"), [
@@ -134,7 +127,7 @@ export default nix.lambda((args) => (() => {
           }))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "Collection of composable Transformer building blocks",
         homepage: "https://github.com/facebookresearch/xformers",
         changelog: nix.thunk(() => nix.str`https://github.com/facebookresearch/xformers/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

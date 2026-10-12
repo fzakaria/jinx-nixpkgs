@@ -2,10 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["IMGUI_BUILD_GLFW_BINDING", 19, 37]], [["description", 22, 5], ["homepage", 23, 5], ["license", 24, 5], ["maintainers", 25, 5], ["mainProgram", 26, 5], ["platforms", 27, 5]], [["pname", 9, 3], ["version", 10, 19], ["src", 12, 3], ["postPatch", 13, 3], ["nativeBuildInputs", 18, 3], ["buildInputs", 19, 3], ["meta", 21, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, cmake: false, imgui: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["IMGUI_BUILD_GLFW_BINDING", 19, 37]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 22, 5], ["homepage", 23, 5], ["license", 24, 5], ["maintainers", 25, 5], ["mainProgram", 26, 5], ["platforms", 27, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 9, 3], ["version", 10, 19], ["src", 12, 3], ["postPatch", 13, 3], ["nativeBuildInputs", 18, 3], ["buildInputs", 19, 3], ["meta", 21, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const cmake = nix.arg($, "cmake");
   const imgui = nix.arg($, "imgui");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: nix.thunk(() => nix.str`${nix.sel(imgui, "pname")}-demo`),
       version: nix.thunk(() => nix.attr(imgui, "version")),
       src: nix.thunk(() => nix.str`${nix.sel(imgui, "src")}/examples/example_glfw_opengl3`),
@@ -23,10 +21,10 @@ cp ${nix.path(here, "./CMakeLists.txt")} CMakeLists.txt
 `),
       nativeBuildInputs: nix.thunk(() => [cmake]),
       buildInputs: nix.thunk(() => [
-        nix.thunk(() => nix.app(nix.sel(imgui, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, IMGUI_BUILD_GLFW_BINDING: true })))),
+        nix.thunk(() => nix.app(nix.sel(imgui, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], IMGUI_BUILD_GLFW_BINDING: true })))),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Standalone ImPlot Demos",
         homepage: "https://github.com/ocornut/imgui/tree/master/examples/example_glfw_opengl3",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

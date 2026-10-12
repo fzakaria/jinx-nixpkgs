@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 25, 5], ["repo", 26, 5], ["rev", 27, 5], ["hash", 28, 5]], [["description", 78, 5], ["homepage", 79, 5], ["license", 80, 5], ["maintainers", 81, 5]], [["pname", 20, 3], ["version", 21, 3], ["pyproject", 22, 3], ["src", 24, 3], ["postPatch", 32, 3], ["build-system", 39, 3], ["dontUseCmakeConfigure", 43, 3], ["nativeBuildInputs", 45, 3], ["cmakeFlags", 51, 3], ["buildInputs", 56, 3], ["dependencies", 63, 3], ["pythonImportsCheck", 68, 3], ["dontUsePythonImportsCheck", 72, 3], ["doCheck", 75, 3], ["meta", 77, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, cmake: false, setuptools: false, autoAddDriverRunpath: false, cudaPackages: false, numpy: false, scipy: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 25, 5], ["repo", 26, 5], ["rev", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 78, 5], ["homepage", 79, 5], ["license", 80, 5], ["maintainers", 81, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 20, 3], ["version", 21, 3], ["pyproject", 22, 3], ["src", 24, 3], ["postPatch", 32, 3], ["build-system", 39, 3], ["dontUseCmakeConfigure", 43, 3], ["nativeBuildInputs", 45, 3], ["cmakeFlags", 51, 3], ["buildInputs", 56, 3], ["dependencies", 63, 3], ["pythonImportsCheck", 68, 3], ["dontUsePythonImportsCheck", 72, 3], ["doCheck", 75, 3], ["meta", 77, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const numpy = nix.arg($, "numpy");
   const scipy = nix.arg($, "scipy");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "gpu-rir",
       version: "0-unstable-2025-01-20",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "DavidDiazGuerra",
           repo: "gpuRIR",
           rev: "fd8af43a4a113d3c2c05f0085a0119ecb1f1a484",
@@ -52,7 +50,7 @@ export default nix.lambda((args) => (() => {
       dontUsePythonImportsCheck: true,
       doCheck: false,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Python library for Room Impulse Response (RIR) simulation with GPU acceleration",
         homepage: "https://github.com/DavidDiazGuerra/gpuRIR",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),

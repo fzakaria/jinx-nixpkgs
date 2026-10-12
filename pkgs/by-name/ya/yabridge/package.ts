@@ -2,19 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]], [["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]], [["owner", 36, 5], ["repo", 37, 5], ["tag", 38, 5], ["hash", 39, 5]], [["owner", 44, 5], ["repo", 45, 5], ["tag", 46, 5], ["hash", 47, 5]], [["owner", 52, 5], ["repo", 53, 5], ["tag", 54, 5], ["hash", 55, 5]], [["owner", 60, 5], ["repo", 61, 5], ["tag", 62, 5], ["hash", 63, 5]], [["owner", 68, 5], ["repo", 69, 5], ["tag", 70, 5], ["fetchSubmodules", 71, 5], ["hash", 72, 5]], [["owner", 81, 5], ["repo", 82, 5], ["tag", 83, 5], ["hash", 84, 5]], [["libdbus", 106, 7], ["wine", 107, 15]], [["updateScript", 163, 12]], [["description", 166, 5], ["homepage", 167, 5], ["changelog", 168, 5], ["license", 169, 5], ["maintainers", 170, 5], ["platforms", 171, 5]], [["pname", 76, 3], ["version", 77, 3], ["src", 80, 3], ["postUnpack", 88, 3], ["patches", 101, 3], ["postPatch", 114, 3], ["nativeBuildInputs", 126, 3], ["buildInputs", 133, 3], ["mesonFlags", 138, 3], ["installPhase", 147, 3], ["postFixup", 156, 3], ["passthru", 163, 3], ["meta", 165, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, replaceVars: false, dbus: false, meson: false, ninja: false, "pkg-config": false, wineWow64Packages: false, libxcb: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["owner", 36, 5], ["repo", 37, 5], ["tag", 38, 5], ["hash", 39, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["owner", 44, 5], ["repo", 45, 5], ["tag", 46, 5], ["hash", 47, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["owner", 52, 5], ["repo", 53, 5], ["tag", 54, 5], ["hash", 55, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["owner", 60, 5], ["repo", 61, 5], ["tag", 62, 5], ["hash", 63, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["owner", 68, 5], ["repo", 69, 5], ["tag", 70, 5], ["fetchSubmodules", 71, 5], ["hash", 72, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["owner", 81, 5], ["repo", 82, 5], ["tag", 83, 5], ["hash", 84, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["libdbus", 106, 7], ["wine", 107, 15]]);
-const pos$10 = nix.positions(here + "/package.nix", [["updateScript", 163, 12]]);
-const pos$11 = nix.positions(here + "/package.nix", [["description", 166, 5], ["homepage", 167, 5], ["changelog", 168, 5], ["license", 169, 5], ["maintainers", 170, 5], ["platforms", 171, 5]]);
-const pos$12 = nix.positions(here + "/package.nix", [["pname", 76, 3], ["version", 77, 3], ["src", 80, 3], ["postUnpack", 88, 3], ["patches", 101, 3], ["postPatch", 114, 3], ["nativeBuildInputs", 126, 3], ["buildInputs", 133, 3], ["mesonFlags", 138, 3], ["installPhase", 147, 3], ["postFixup", 156, 3], ["passthru", 163, 3], ["meta", 165, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,49 +20,49 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const wine = nix.thunk(() => nix.sel(wineWow64Packages, "yabridge"));
   const asio = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "chriskohlhoff",
       repo: "asio",
       tag: "asio-1-28-2",
       hash: "sha256-8Sw0LuAqZFw+dxlsTstlwz5oaz3+ZnKBuvSdLW6/DKQ=",
     }))));
   const bitsery = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       owner: "fraillt",
       repo: "bitsery",
       tag: "v5.2.3",
       hash: "sha256-rmfcIYCrANycFuLtibQ5wOPwpMVhpTMpdGsUfpR3YsM=",
     }))));
   const clap = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       owner: "free-audio",
       repo: "clap",
       tag: "1.1.9",
       hash: "sha256-z2P0U2NkDK1/5oDV35jn/pTXCcspuM1y2RgZyYVVO3w=",
     }))));
   const function2 = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       owner: "Naios",
       repo: "function2",
       tag: "4.2.3",
       hash: "sha256-+fzntJn1fRifOgJhh5yiv+sWR9pyaeeEi2c1+lqX3X8=",
     }))));
   const ghc_filesystem = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       owner: "gulrak",
       repo: "filesystem",
       tag: "v1.5.14",
       hash: "sha256-XZ0IxyNIAs2tegktOGQevkLPbWHam/AOFT+M6wAWPFg=",
     }))));
   const tomlplusplus = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       owner: "marzer",
       repo: "tomlplusplus",
       tag: "v3.4.0",
       hash: "sha256-h5tbO0Rv2tZezY58yUbyRVpsfRjY3i+5TPkkxr6La8M=",
     }))));
   const vst3 = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       owner: "robbert-vdh",
       repo: "vst3sdk",
       tag: "v3.7.7_build_19-patched",
@@ -81,11 +70,11 @@ export default nix.lambda((args) => (() => {
       hash: "sha256-LsPHPoAL21XOKmF1Wl/tvLJGzjaCLjaDAcUtDvXdXSU=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$12,
+      [nix.POS]: $pos[11],
       pname: "yabridge",
       version: "5.1.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           owner: "robbert-vdh",
           repo: "yabridge",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -104,7 +93,11 @@ export default nix.lambda((args) => (() => {
 `),
       patches: nix.thunk(() => [
         nix.path(here, "./libyabridge-drop-32-bit-support.patch"),
-        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./hardcode-dependencies.patch"), nix.thunk(() => ({ [nix.POS]: pos$9, libdbus: nix.thunk(() => nix.sel(dbus, "lib")), wine: wine })))),
+        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./hardcode-dependencies.patch"), nix.thunk(() => ({
+            [nix.POS]: $pos[8],
+            libdbus: nix.thunk(() => nix.sel(dbus, "lib")),
+            wine: wine,
+          })))),
         nix.path(here, "./libyabridge-from-nix-profiles.patch"),
       ]),
       postPatch: "patchShebangs .\n(\n  cd subprojects\n  cp packagefiles/asio/* asio\n  cp packagefiles/bitsery/* bitsery\n  cp packagefiles/clap/* clap\n  cp packagefiles/function2/* function2\n  cp packagefiles/ghc_filesystem/* ghc_filesystem\n)\n",
@@ -123,11 +116,11 @@ export default nix.lambda((args) => (() => {
 done
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$11,
+        [nix.POS]: $pos[10],
         description: "Modern and transparent way to use Windows VST2 and VST3 plugins on Linux",
         homepage: "https://github.com/robbert-vdh/yabridge",
         changelog: nix.thunk(() => nix.str`https://github.com/robbert-vdh/yabridge/blob/${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

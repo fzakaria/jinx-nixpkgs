@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["sha256", 19, 5]], [["name", 25, 7], ["url", 26, 7], ["hash", 27, 7]], [["url", 31, 7], ["sha256", 32, 7]], [["NIX_CFLAGS_COMPILE", 38, 7]], [["homepage", 52, 5], ["description", 53, 5], ["platforms", 54, 5], ["license", 55, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["patches", 22, 3], ["env", 38, 3], ["nativeBuildInputs", 40, 3], ["buildInputs", 42, 3], ["configureFlags", 47, 3], ["meta", 51, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch: false, autoreconfHook: false, libpcap: false, mbedtls: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["sha256", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 25, 7], ["url", 26, 7], ["hash", 27, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 31, 7], ["sha256", 32, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 38, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["homepage", 52, 5], ["description", 53, 5], ["platforms", 54, 5], ["license", 55, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["patches", 22, 3], ["env", 38, 3], ["nativeBuildInputs", 40, 3], ["buildInputs", 42, 3], ["configureFlags", 47, 3], ["meta", 51, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const libpcap = nix.arg($, "libpcap");
   const mbedtls = nix.arg($, "mbedtls");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "vde2",
       version: "2.3.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "virtualsquare",
           repo: "vde-2",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -32,23 +27,23 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "vde2-backport-mbedtls-support.patch",
             url: "https://github.com/virtualsquare/vde-2/commit/e3f701978a0a20e56cd9829353d110d4ddcedd90.patch",
             hash: "sha256-cq3yrA3w/K6J+RtwYX9AcG/nfctlAkc3aYJZpJxJXTQ=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: "https://git.alpinelinux.org/aports/plain/main/vde2/musl-build-fix.patch?id=ddee2f86a48e087867d4a2c12849b2e3baccc238",
             sha256: "0b5382v541bkxhqylilcy34bh83ag96g71f39m070jzvi84kx8af",
           })))),
       ]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$4, NIX_CFLAGS_COMPILE: "-std=gnu17" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[3], NIX_CFLAGS_COMPILE: "-std=gnu17" })),
       nativeBuildInputs: nix.thunk(() => [autoreconfHook]),
       buildInputs: nix.thunk(() => [libpcap, mbedtls]),
       configureFlags: nix.thunk(() => ["--with-crypt=mbedtls"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "https://github.com/virtualsquare/vde-2",
         description: "Virtual Distributed Ethernet, an Ethernet compliant virtual network",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),

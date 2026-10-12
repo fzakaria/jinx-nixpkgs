@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 21, 5], ["sha256", 22, 5]], [["NIX_CFLAGS_COMPILE", 25, 7]], [["description", 39, 5], ["mainProgram", 40, 5], ["platforms", 41, 5], ["license", 42, 5], ["longDescription", 43, 5], ["homepage", 44, 5]], [["pname", 11, 3], ["version", 12, 3], ["nativeBuildInputs", 14, 3], ["buildInputs", 15, 3], ["src", 20, 3], ["env", 25, 3], ["preInstall", 27, 3], ["installTargets", 33, 3], ["meta", 38, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, libx11: false, imake: false, gccmakedep: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 21, 5], ["sha256", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 25, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 39, 5], ["mainProgram", 40, 5], ["platforms", 41, 5], ["license", 42, 5], ["longDescription", 43, 5], ["homepage", 44, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["nativeBuildInputs", 14, 3], ["buildInputs", 15, 3], ["src", 20, 3], ["env", 25, 3], ["preInstall", 27, 3], ["installTargets", 33, 3], ["meta", 38, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,21 +14,21 @@ export default nix.lambda((args) => (() => {
   const imake = nix.arg($, "imake");
   const gccmakedep = nix.arg($, "gccmakedep");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "xskat",
       version: "4.0",
       nativeBuildInputs: nix.thunk(() => [gccmakedep]),
       buildInputs: nix.thunk(() => [libx11, imake]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://web.archive.org/web/20220331112433if_/https://www.xskat.de/xskat-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "8ba52797ccbd131dce69b96288f525b0d55dee5de4008733f7a5a51deb831c10",
         })))),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-std=gnu17 -Wno-implicit-int" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], NIX_CFLAGS_COMPILE: "-std=gnu17 -Wno-implicit-int" })),
       preInstall: "sed -i Makefile \\\n  -e \"s|.* BINDIR .*|   BINDIR = $out/bin|\" \\\n  -e \"s|.* MANPATH .*|  MANPATH = $out/man|\"\n",
       installTargets: nix.thunk(() => ["install", "install.man"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Famous german card game",
         mainProgram: "xskat",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),

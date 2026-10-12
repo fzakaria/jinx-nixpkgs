@@ -2,134 +2,102 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/kvrocks.nix", [[["maintainers", 5, 8]], [["log-level", 10, 16]], [["enable", 9, 7], ["settings", 10, 7]], [["kvrocks", 8, 14]], [["dir", 14, 33]], [["settings", 14, 24]], [["kvrocks", 14, 16]], [["services", 14, 7]], [["configuration", 13, 40]], [["bind", 18, 33], ["unixsocket", 19, 33]], [["settings", 18, 24]], [["kvrocks", 18, 16]], [["services", 18, 7]], [["configuration", 17, 33]], [["unixsocket", 23, 33]], [["settings", 23, 24]], [["kvrocks", 23, 16]], [["services", 23, 7]], [["configuration", 22, 33]], [["bind", 29, 18]], [["socketActivation", 28, 9], ["settings", 29, 9]], [["kvrocks", 27, 16]], [["services", 27, 7]], [["configuration", 26, 39]], [["bind", 37, 11], ["unixsocket", 38, 11]], [["socketActivation", 35, 9], ["settings", 36, 9]], [["kvrocks", 34, 16]], [["services", 34, 7]], [["configuration", 33, 46]], [["nonDefaultDataDir", 13, 20], ["unixSocket", 17, 20], ["tcpAndUnix", 22, 20], ["socketActivation", 26, 20], ["socketActivationAndUnix", 33, 20]], [["services", 8, 5], ["specialisation", 13, 5]], [["machine", 7, 9]], [["name", 4, 3], ["meta", 5, 3], ["nodes", 7, 3], ["testScript", 44, 3]]]);
 const formals$1 = { args: { lib: false, pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/kvrocks.nix", [["maintainers", 5, 8]]);
-const pos$2 = nix.positions(here + "/kvrocks.nix", [["log-level", 10, 16]]);
-const pos$3 = nix.positions(here + "/kvrocks.nix", [["enable", 9, 7], ["settings", 10, 7]]);
-const pos$4 = nix.positions(here + "/kvrocks.nix", [["kvrocks", 8, 14]]);
-const pos$5 = nix.positions(here + "/kvrocks.nix", [["dir", 14, 33]]);
-const pos$6 = nix.positions(here + "/kvrocks.nix", [["settings", 14, 24]]);
-const pos$7 = nix.positions(here + "/kvrocks.nix", [["kvrocks", 14, 16]]);
-const pos$8 = nix.positions(here + "/kvrocks.nix", [["services", 14, 7]]);
-const pos$9 = nix.positions(here + "/kvrocks.nix", [["configuration", 13, 40]]);
-const pos$10 = nix.positions(here + "/kvrocks.nix", [["bind", 18, 33], ["unixsocket", 19, 33]]);
-const pos$11 = nix.positions(here + "/kvrocks.nix", [["settings", 18, 24]]);
-const pos$12 = nix.positions(here + "/kvrocks.nix", [["kvrocks", 18, 16]]);
-const pos$13 = nix.positions(here + "/kvrocks.nix", [["services", 18, 7]]);
-const pos$14 = nix.positions(here + "/kvrocks.nix", [["configuration", 17, 33]]);
-const pos$15 = nix.positions(here + "/kvrocks.nix", [["unixsocket", 23, 33]]);
-const pos$16 = nix.positions(here + "/kvrocks.nix", [["settings", 23, 24]]);
-const pos$17 = nix.positions(here + "/kvrocks.nix", [["kvrocks", 23, 16]]);
-const pos$18 = nix.positions(here + "/kvrocks.nix", [["services", 23, 7]]);
-const pos$19 = nix.positions(here + "/kvrocks.nix", [["configuration", 22, 33]]);
-const pos$20 = nix.positions(here + "/kvrocks.nix", [["bind", 29, 18]]);
-const pos$21 = nix.positions(here + "/kvrocks.nix", [["socketActivation", 28, 9], ["settings", 29, 9]]);
-const pos$22 = nix.positions(here + "/kvrocks.nix", [["kvrocks", 27, 16]]);
-const pos$23 = nix.positions(here + "/kvrocks.nix", [["services", 27, 7]]);
-const pos$24 = nix.positions(here + "/kvrocks.nix", [["configuration", 26, 39]]);
-const pos$25 = nix.positions(here + "/kvrocks.nix", [["bind", 37, 11], ["unixsocket", 38, 11]]);
-const pos$26 = nix.positions(here + "/kvrocks.nix", [["socketActivation", 35, 9], ["settings", 36, 9]]);
-const pos$27 = nix.positions(here + "/kvrocks.nix", [["kvrocks", 34, 16]]);
-const pos$28 = nix.positions(here + "/kvrocks.nix", [["services", 34, 7]]);
-const pos$29 = nix.positions(here + "/kvrocks.nix", [["configuration", 33, 46]]);
-const pos$30 = nix.positions(here + "/kvrocks.nix", [["nonDefaultDataDir", 13, 20], ["unixSocket", 17, 20], ["tcpAndUnix", 22, 20], ["socketActivation", 26, 20], ["socketActivationAndUnix", 33, 20]]);
-const pos$31 = nix.positions(here + "/kvrocks.nix", [["services", 8, 5], ["specialisation", 13, 5]]);
-const pos$32 = nix.positions(here + "/kvrocks.nix", [["machine", 7, 9]]);
 const formals$2 = { args: { nodes: false }, ellipsis: true };
-const pos$33 = nix.positions(here + "/kvrocks.nix", [["name", 4, 3], ["meta", 5, 3], ["nodes", 7, 3], ["testScript", 44, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   return {
-    [nix.POS]: pos$33,
+    [nix.POS]: $pos[32],
     name: "kvrocks",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "xyenon"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$32,
+      [nix.POS]: $pos[31],
       machine: nix.thunk(() => ({
-        [nix.POS]: pos$31,
+        [nix.POS]: $pos[30],
         services: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           kvrocks: nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             enable: true,
-            settings: nix.thunk(() => ({ [nix.POS]: pos$2, "log-level": "debug" })),
+            settings: nix.thunk(() => ({ [nix.POS]: $pos[1], "log-level": "debug" })),
           })),
         })),
         specialisation: nix.thunk(() => ({
-          [nix.POS]: pos$30,
+          [nix.POS]: $pos[29],
           nonDefaultDataDir: nix.thunk(() => ({
-            [nix.POS]: pos$9,
+            [nix.POS]: $pos[8],
             configuration: nix.thunk(() => ({
-              [nix.POS]: pos$8,
+              [nix.POS]: $pos[7],
               services: nix.thunk(() => ({
-                [nix.POS]: pos$7,
+                [nix.POS]: $pos[6],
                 kvrocks: nix.thunk(() => ({
-                  [nix.POS]: pos$6,
-                  settings: nix.thunk(() => ({ [nix.POS]: pos$5, dir: "/var/lib/kvrocks-custom" })),
+                  [nix.POS]: $pos[5],
+                  settings: nix.thunk(() => ({ [nix.POS]: $pos[4], dir: "/var/lib/kvrocks-custom" })),
                 })),
               })),
             })),
           })),
           unixSocket: nix.thunk(() => ({
-            [nix.POS]: pos$14,
+            [nix.POS]: $pos[13],
             configuration: nix.thunk(() => ({
-              [nix.POS]: pos$13,
+              [nix.POS]: $pos[12],
               services: nix.thunk(() => ({
-                [nix.POS]: pos$12,
+                [nix.POS]: $pos[11],
                 kvrocks: nix.thunk(() => ({
-                  [nix.POS]: pos$11,
-                  settings: nix.thunk(() => ({ [nix.POS]: pos$10, bind: [], unixsocket: "/run/kvrocks/kvrocks.sock" })),
+                  [nix.POS]: $pos[10],
+                  settings: nix.thunk(() => ({ [nix.POS]: $pos[9], bind: [], unixsocket: "/run/kvrocks/kvrocks.sock" })),
                 })),
               })),
             })),
           })),
           tcpAndUnix: nix.thunk(() => ({
-            [nix.POS]: pos$19,
+            [nix.POS]: $pos[18],
             configuration: nix.thunk(() => ({
-              [nix.POS]: pos$18,
+              [nix.POS]: $pos[17],
               services: nix.thunk(() => ({
-                [nix.POS]: pos$17,
+                [nix.POS]: $pos[16],
                 kvrocks: nix.thunk(() => ({
-                  [nix.POS]: pos$16,
-                  settings: nix.thunk(() => ({ [nix.POS]: pos$15, unixsocket: "/run/kvrocks/kvrocks.sock" })),
+                  [nix.POS]: $pos[15],
+                  settings: nix.thunk(() => ({ [nix.POS]: $pos[14], unixsocket: "/run/kvrocks/kvrocks.sock" })),
                 })),
               })),
             })),
           })),
           socketActivation: nix.thunk(() => ({
-            [nix.POS]: pos$24,
+            [nix.POS]: $pos[23],
             configuration: nix.thunk(() => ({
-              [nix.POS]: pos$23,
+              [nix.POS]: $pos[22],
               services: nix.thunk(() => ({
-                [nix.POS]: pos$22,
+                [nix.POS]: $pos[21],
                 kvrocks: nix.thunk(() => ({
-                  [nix.POS]: pos$21,
+                  [nix.POS]: $pos[20],
                   socketActivation: true,
-                  settings: nix.thunk(() => ({ [nix.POS]: pos$20, bind: nix.thunk(() => ["127.0.0.1"]) })),
+                  settings: nix.thunk(() => ({ [nix.POS]: $pos[19], bind: nix.thunk(() => ["127.0.0.1"]) })),
                 })),
               })),
             })),
           })),
           socketActivationAndUnix: nix.thunk(() => ({
-            [nix.POS]: pos$29,
+            [nix.POS]: $pos[28],
             configuration: nix.thunk(() => ({
-              [nix.POS]: pos$28,
+              [nix.POS]: $pos[27],
               services: nix.thunk(() => ({
-                [nix.POS]: pos$27,
+                [nix.POS]: $pos[26],
                 kvrocks: nix.thunk(() => ({
-                  [nix.POS]: pos$26,
+                  [nix.POS]: $pos[25],
                   socketActivation: true,
                   settings: nix.thunk(() => ({
-                    [nix.POS]: pos$25,
+                    [nix.POS]: $pos[24],
                     bind: nix.thunk(() => ["127.0.0.1"]),
                     unixsocket: "/run/kvrocks/kvrocks.sock",
                   })),

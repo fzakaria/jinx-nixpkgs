@@ -2,62 +2,39 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/remote-write.nix", [[["systemPackages", 8, 21]], [["allowedTCPPorts", 10, 29]], [["firewall", 10, 20]], [["scrape_interval", 14, 24]], [["enable", 13, 11], ["globalConfig", 14, 11], ["extraFlags", 16, 11]], [["prometheus", 12, 18]], [["environment", 8, 9], ["networking", 10, 9], ["services", 12, 9]], [["systemPackages", 23, 21]], [["allowedTCPPorts", 25, 29]], [["firewall", 25, 20]], [["scrape_interval", 29, 24]], [["url", 31, 29]], [["targets", 37, 19]], [["job_name", 35, 15], ["static_configs", 36, 15]], [["enable", 28, 11], ["globalConfig", 29, 11], ["remoteWrite", 31, 11], ["scrapeConfigs", 33, 11]], [["prometheus", 27, 18]], [["environment", 23, 9], ["networking", 25, 9], ["services", 27, 9]], [["enable", 48, 11], ["openFirewall", 49, 11]], [["node", 47, 39]], [["exporters", 47, 29]], [["prometheus", 47, 18]], [["services", 47, 9]], [["receiver", 5, 5], ["prometheus", 20, 5], ["node", 44, 5]], [["name", 2, 3], ["nodes", 4, 3], ["testScript", 54, 3]]]);
 const formals$1 = { args: { config: false, pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/remote-write.nix", [["systemPackages", 8, 21]]);
-const pos$2 = nix.positions(here + "/remote-write.nix", [["allowedTCPPorts", 10, 29]]);
-const pos$3 = nix.positions(here + "/remote-write.nix", [["firewall", 10, 20]]);
-const pos$4 = nix.positions(here + "/remote-write.nix", [["scrape_interval", 14, 24]]);
-const pos$5 = nix.positions(here + "/remote-write.nix", [["enable", 13, 11], ["globalConfig", 14, 11], ["extraFlags", 16, 11]]);
-const pos$6 = nix.positions(here + "/remote-write.nix", [["prometheus", 12, 18]]);
-const pos$7 = nix.positions(here + "/remote-write.nix", [["environment", 8, 9], ["networking", 10, 9], ["services", 12, 9]]);
 const formals$2 = { args: { config: false, pkgs: false }, ellipsis: true };
-const pos$8 = nix.positions(here + "/remote-write.nix", [["systemPackages", 23, 21]]);
-const pos$9 = nix.positions(here + "/remote-write.nix", [["allowedTCPPorts", 25, 29]]);
-const pos$10 = nix.positions(here + "/remote-write.nix", [["firewall", 25, 20]]);
-const pos$11 = nix.positions(here + "/remote-write.nix", [["scrape_interval", 29, 24]]);
-const pos$12 = nix.positions(here + "/remote-write.nix", [["url", 31, 29]]);
-const pos$13 = nix.positions(here + "/remote-write.nix", [["targets", 37, 19]]);
-const pos$14 = nix.positions(here + "/remote-write.nix", [["job_name", 35, 15], ["static_configs", 36, 15]]);
-const pos$15 = nix.positions(here + "/remote-write.nix", [["enable", 28, 11], ["globalConfig", 29, 11], ["remoteWrite", 31, 11], ["scrapeConfigs", 33, 11]]);
-const pos$16 = nix.positions(here + "/remote-write.nix", [["prometheus", 27, 18]]);
-const pos$17 = nix.positions(here + "/remote-write.nix", [["environment", 23, 9], ["networking", 25, 9], ["services", 27, 9]]);
 const formals$3 = { args: { config: false, pkgs: false }, ellipsis: true };
-const pos$18 = nix.positions(here + "/remote-write.nix", [["enable", 48, 11], ["openFirewall", 49, 11]]);
-const pos$19 = nix.positions(here + "/remote-write.nix", [["node", 47, 39]]);
-const pos$20 = nix.positions(here + "/remote-write.nix", [["exporters", 47, 29]]);
-const pos$21 = nix.positions(here + "/remote-write.nix", [["prometheus", 47, 18]]);
-const pos$22 = nix.positions(here + "/remote-write.nix", [["services", 47, 9]]);
-const pos$23 = nix.positions(here + "/remote-write.nix", [["receiver", 5, 5], ["prometheus", 20, 5], ["node", 44, 5]]);
-const pos$24 = nix.positions(here + "/remote-write.nix", [["name", 2, 3], ["nodes", 4, 3], ["testScript", 54, 3]]);
 
 export default nix.thunk(() => ({
-  [nix.POS]: pos$24,
+  [nix.POS]: $pos[23],
   name: "prometheus-remote-write",
   nodes: nix.thunk(() => ({
-    [nix.POS]: pos$23,
+    [nix.POS]: $pos[22],
     receiver: nix.lambda((args) => (() => {
       const $ = nix.formals(args, formals$1);
       const config = nix.arg($, "config");
       const pkgs = nix.arg($, "pkgs");
       return {
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         environment: nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "jq"))]),
         })),
         networking: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           firewall: nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             allowedTCPPorts: nix.thunk(() => [nix.thunk(() => nix.sel(config, "services", "prometheus", "port"))]),
           })),
         })),
         services: nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           prometheus: nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             enable: true,
-            globalConfig: nix.thunk(() => ({ [nix.POS]: pos$4, scrape_interval: "2s" })),
+            globalConfig: nix.thunk(() => ({ [nix.POS]: $pos[3], scrape_interval: "2s" })),
             extraFlags: nix.thunk(() => ["--web.enable-remote-write-receiver"]),
           })),
         })),
@@ -68,34 +45,34 @@ export default nix.thunk(() => ({
       const config = nix.arg($, "config");
       const pkgs = nix.arg($, "pkgs");
       return {
-        [nix.POS]: pos$17,
+        [nix.POS]: $pos[16],
         environment: nix.thunk(() => ({
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "jq"))]),
         })),
         networking: nix.thunk(() => ({
-          [nix.POS]: pos$10,
+          [nix.POS]: $pos[9],
           firewall: nix.thunk(() => ({
-            [nix.POS]: pos$9,
+            [nix.POS]: $pos[8],
             allowedTCPPorts: nix.thunk(() => [nix.thunk(() => nix.sel(config, "services", "prometheus", "port"))]),
           })),
         })),
         services: nix.thunk(() => ({
-          [nix.POS]: pos$16,
+          [nix.POS]: $pos[15],
           prometheus: nix.thunk(() => ({
-            [nix.POS]: pos$15,
+            [nix.POS]: $pos[14],
             enable: true,
-            globalConfig: nix.thunk(() => ({ [nix.POS]: pos$11, scrape_interval: "2s" })),
+            globalConfig: nix.thunk(() => ({ [nix.POS]: $pos[10], scrape_interval: "2s" })),
             remoteWrite: nix.thunk(() => [
-              nix.thunk(() => ({ [nix.POS]: pos$12, url: "http://receiver:9090/api/v1/write" })),
+              nix.thunk(() => ({ [nix.POS]: $pos[11], url: "http://receiver:9090/api/v1/write" })),
             ]),
             scrapeConfigs: nix.thunk(() => [
               nix.thunk(() => ({
-                [nix.POS]: pos$14,
+                [nix.POS]: $pos[13],
                 job_name: "node",
                 static_configs: nix.thunk(() => [
                   nix.thunk(() => ({
-                    [nix.POS]: pos$13,
+                    [nix.POS]: $pos[12],
                     targets: nix.thunk(() => [
                       nix.thunk(() => nix.str`node:${nix.builtins.toString(nix.thunk(() => nix.sel(config, "services", "prometheus", "exporters", "node", "port")))}`),
                     ]),
@@ -112,14 +89,14 @@ export default nix.thunk(() => ({
       const config = nix.arg($, "config");
       const pkgs = nix.arg($, "pkgs");
       return {
-        [nix.POS]: pos$22,
+        [nix.POS]: $pos[21],
         services: nix.thunk(() => ({
-          [nix.POS]: pos$21,
+          [nix.POS]: $pos[20],
           prometheus: nix.thunk(() => ({
-            [nix.POS]: pos$20,
+            [nix.POS]: $pos[19],
             exporters: nix.thunk(() => ({
-              [nix.POS]: pos$19,
-              node: nix.thunk(() => ({ [nix.POS]: pos$18, enable: true, openFirewall: true })),
+              [nix.POS]: $pos[18],
+              node: nix.thunk(() => ({ [nix.POS]: $pos[17], enable: true, openFirewall: true })),
             })),
           })),
         })),

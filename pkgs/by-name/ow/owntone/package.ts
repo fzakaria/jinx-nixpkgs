@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 44, 5], ["repo", 45, 5], ["tag", 46, 5], ["hash", 47, 5]], [["updateScript", 90, 12]], [["description", 93, 5], ["homepage", 94, 5], ["downloadPage", 95, 5], ["changelog", 96, 5], ["mainProgram", 97, 5], ["license", 98, 5], ["maintainers", 99, 5], ["platforms", 102, 5]], [["version", 40, 3], ["pname", 41, 3], ["src", 43, 3], ["nativeBuildInputs", 50, 3], ["buildInputs", 60, 3], ["configureFlags", 82, 3], ["patches", 86, 3], ["passthru", 90, 3], ["meta", 92, 3]]]);
 const formals$1 = { args: { config: false, lib: false, stdenv: false, autoPatchelfHook: false, autoreconfHook: false, fetchFromGitHub: false, "nix-update-script": false, chromecastSupport: true, pulseSupport: true, avahi: false, curl: false, bison: false, ffmpeg: false, flex: false, gettext: false, gnutls: false, gperf: false, json_c: false, libconfuse: false, libevent: false, libgcrypt: false, "libgpg-error": false, libplist: false, libpulseaudio: false, libsodium: false, libtool: false, libunistring: false, libwebsockets: false, libxml2: false, "pkg-config": false, protobufc: false, sqlite: false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 44, 5], ["repo", 45, 5], ["tag", 46, 5], ["hash", 47, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 90, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 93, 5], ["homepage", 94, 5], ["downloadPage", 95, 5], ["changelog", 96, 5], ["mainProgram", 97, 5], ["license", 98, 5], ["maintainers", 99, 5], ["platforms", 102, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["version", 40, 3], ["pname", 41, 3], ["src", 43, 3], ["nativeBuildInputs", 50, 3], ["buildInputs", 60, 3], ["configureFlags", 82, 3], ["patches", 86, 3], ["passthru", 90, 3], ["meta", 92, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -44,11 +41,11 @@ export default nix.lambda((args) => (() => {
   const sqlite = nix.arg($, "sqlite");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       version: "29.3",
       pname: "owntone",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "owntone",
           repo: "owntone-server",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -77,11 +74,11 @@ export default nix.lambda((args) => (() => {
       configureFlags: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optionals"), chromecastSupport, nix.thunk(() => ["--enable-chromecast"])), nix.app(nix.sel(lib, "optionals"), pulseSupport, nix.thunk(() => ["--with-pulseaudio"])))),
       patches: nix.thunk(() => [nix.path(here, "./gettext-0.25.patch")]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Media server to stream audio to AirPlay and Chromecast receivers",
         homepage: "https://github.com/owntone/owntone-server",
         downloadPage: nix.thunk(() => nix.str`https://github.com/owntone/owntone-server/releases/tag/${nix.sel(finalAttrs, "version")}`),

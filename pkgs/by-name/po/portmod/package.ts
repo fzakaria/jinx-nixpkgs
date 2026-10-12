@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]], [["src", 26, 13], ["version", 26, 17], ["pname", 27, 5], ["cargoHash", 29, 5], ["nativeBuildInputs", 31, 5], ["doCheck", 35, 5]], [["description", 124, 5], ["homepage", 125, 5], ["license", 126, 5], ["maintainers", 127, 5]], [["src", 50, 11], ["version", 50, 15], ["pname", 52, 3], ["pyproject", 53, 3], ["prePatch", 56, 3], ["nativeBuildInputs", 65, 3], ["propagatedBuildInputs", 70, 3], ["nativeCheckInputs", 88, 3], ["preCheck", 95, 3], ["disabledTests", 101, 3], ["postInstall", 116, 3], ["meta", 123, 3]]]);
 const formals$1 = { args: { lib: false, bubblewrap: false, cacert: false, fetchFromGitLab: false, git: false, imagemagick: false, openmw: false, python3Packages: false, rustPlatform: false, tes3cmd: false, "tr-patcher": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["src", 26, 13], ["version", 26, 17], ["pname", 27, 5], ["cargoHash", 29, 5], ["nativeBuildInputs", 31, 5], ["doCheck", 35, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 124, 5], ["homepage", 125, 5], ["license", 126, 5], ["maintainers", 127, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["src", 50, 11], ["version", 50, 15], ["pname", 52, 3], ["pyproject", 53, 3], ["prePatch", 56, 3], ["nativeBuildInputs", 65, 3], ["propagatedBuildInputs", 70, 3], ["nativeCheckInputs", 88, 3], ["preCheck", 95, 3], ["disabledTests", 101, 3], ["postInstall", 116, 3], ["meta", 123, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,14 +20,14 @@ export default nix.lambda((args) => (() => {
   const tr_patcher = nix.arg($, "tr-patcher");
   const version = "2.9.2";
   const src = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "portmod",
       repo: "Portmod",
       rev: "aa454a8ed943758a2f73efa82766d5f627bb3ccd",
       hash: "sha256-bnCyjHy3I5ETnfvkTGPEwVD5LtrvavU9AisFvQ942l8=",
     }))));
   const portmod_rust = nix.thunk(() => nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       src: src,
       version: version,
       pname: "portmod-rust",
@@ -48,7 +45,7 @@ export default nix.lambda((args) => (() => {
     openmw,
   ]);
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       src: src,
       version: version,
       pname: "portmod",
@@ -107,7 +104,7 @@ makeWrapperArgs+=("--prefix" "GIT_SSL_CAINFO" ":" "${cacert}/etc/ssl/certs/ca-bu
   "--prefix" "PATH" ":" "${nix.app(nix.sel(lib, "makeBinPath"), bin_programs)}")
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Mod manager for openMW based on portage",
         homepage: "https://gitlab.com/portmod/portmod",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

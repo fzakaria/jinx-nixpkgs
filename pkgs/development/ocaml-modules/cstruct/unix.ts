@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/unix.nix", [[["pname", 12, 5], ["version", 13, 23], ["src", 13, 31], ["meta", 13, 35], ["minimalOCamlVersion", 15, 5], ["duneVersion", 16, 5], ["propagatedBuildInputs", 18, 5]]]);
 const formals$1 = { args: { lib: false, buildDunePackage: false, cstruct: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/unix.nix", [["pname", 12, 5], ["version", 13, 23], ["src", 13, 31], ["meta", 13, 35], ["minimalOCamlVersion", 15, 5], ["duneVersion", 16, 5], ["propagatedBuildInputs", 18, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -11,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const buildDunePackage = nix.arg($, "buildDunePackage");
   const cstruct = nix.arg($, "cstruct");
   return (nix.asBool(nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.selOr(cstruct, () => "1", "version")), "3")) ? nix.force(cstruct) : nix.app(buildDunePackage, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       pname: "cstruct-unix",
       version: nix.thunk(() => nix.attr(cstruct, "version")),
       src: nix.thunk(() => nix.attr(cstruct, "src")),

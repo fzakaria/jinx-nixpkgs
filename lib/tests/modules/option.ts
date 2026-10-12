@@ -2,13 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/option.nix", [[["type", 10, 7]], [["type", 14, 7], ["description", 15, 7]], [["theOption", 9, 5], ["anOption", 12, 5], ["aBadOptionDef", 13, 5]], [["type", 22, 7]], [["theOption", 21, 5], ["anOption", 24, 5], ["aBadOptionDef", 25, 5]], [["options", 8, 3], ["config", 20, 3]]]);
 const formals$1 = { args: { config: false, lib: false, options: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/option.nix", [["type", 10, 7]]);
-const pos$2 = nix.positions(here + "/option.nix", [["type", 14, 7], ["description", 15, 7]]);
-const pos$3 = nix.positions(here + "/option.nix", [["theOption", 9, 5], ["anOption", 12, 5], ["aBadOptionDef", 13, 5]]);
-const pos$4 = nix.positions(here + "/option.nix", [["type", 22, 7]]);
-const pos$5 = nix.positions(here + "/option.nix", [["theOption", 21, 5], ["anOption", 24, 5], ["aBadOptionDef", 25, 5]]);
-const pos$6 = nix.positions(here + "/option.nix", [["options", 8, 3], ["config", 20, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,23 +11,23 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const options = nix.arg($, "options");
   return {
-    [nix.POS]: pos$6,
+    [nix.POS]: $pos[5],
     options: nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       theOption: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           type: nix.thunk(() => nix.sel(lib, "types", "optionDeclaration")),
         })))),
       anOption: nix.thunk(() => nix.sel(config, "theOption")),
       aBadOptionDef: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           type: nix.thunk(() => nix.sel(lib, "types", "optionDeclaration")),
           description: "This option is perfectly fine, but will have a bad definition.\n",
         })))),
     })),
     config: nix.thunk(() => ({
-      [nix.POS]: pos$5,
-      theOption: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({ [nix.POS]: pos$4, type: nix.thunk(() => nix.sel(lib, "types", "int")) })))),
+      [nix.POS]: $pos[4],
+      theOption: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({ [nix.POS]: $pos[3], type: nix.thunk(() => nix.sel(lib, "types", "int")) })))),
       anOption: 10n,
       aBadOptionDef: nix.thunk(() => nix.sel(options, "theOption")),
     })),

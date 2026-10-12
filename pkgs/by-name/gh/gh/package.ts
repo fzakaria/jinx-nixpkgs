@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5], ["postCheckout", 28, 5]], [["GH_VERSION", 56, 7]], [["description", 93, 5], ["homepage", 94, 5], ["downloadPage", 95, 5], ["changelog", 96, 5], ["license", 97, 5], ["mainProgram", 98, 5], ["maintainers", 99, 5]], [["pname", 16, 3], ["version", 17, 3], ["__structuredAttrs", 19, 3], ["separateDebugInfo", 20, 3], ["src", 22, 3], ["vendorHash", 33, 3], ["nativeBuildInputs", 35, 3], ["buildPhase", 41, 3], ["postPatch", 45, 3], ["makeFlags", 49, 3], ["env", 56, 3], ["installPhase", 58, 3], ["nativeCheckInputs", 76, 3], ["doCheck", 81, 3], ["__darwinAllowLocalNetworking", 82, 3], ["checkPhase", 83, 3], ["nativeInstallCheckInputs", 89, 3], ["doInstallCheck", 90, 3], ["meta", 92, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, buildGo127Module: false, installShellFiles: false, stdenv: false, versionCheckHook: false, makeWrapper: false, writableTmpDirAsHomeHook: false, git: false, openssh: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5], ["postCheckout", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["GH_VERSION", 56, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 93, 5], ["homepage", 94, 5], ["downloadPage", 95, 5], ["changelog", 96, 5], ["license", 97, 5], ["mainProgram", 98, 5], ["maintainers", 99, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["__structuredAttrs", 19, 3], ["separateDebugInfo", 20, 3], ["src", 22, 3], ["vendorHash", 33, 3], ["nativeBuildInputs", 35, 3], ["buildPhase", 41, 3], ["postPatch", 45, 3], ["makeFlags", 49, 3], ["env", 56, 3], ["installPhase", 58, 3], ["nativeCheckInputs", 76, 3], ["doCheck", 81, 3], ["__darwinAllowLocalNetworking", 82, 3], ["checkPhase", 83, 3], ["nativeInstallCheckInputs", 89, 3], ["doInstallCheck", 90, 3], ["meta", 92, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,13 +18,13 @@ export default nix.lambda((args) => (() => {
   const git = nix.arg($, "git");
   const openssh = nix.arg($, "openssh");
   return nix.app(buildGo127Module, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "gh",
       version: "2.102.0",
       __structuredAttrs: true,
       separateDebugInfo: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "cli",
           repo: "cli",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -40,7 +37,7 @@ export default nix.lambda((args) => (() => {
       postPatch: "export SOURCE_DATE_EPOCH=$(cat SOURCE_DATE_EPOCH)\n",
       makeFlags: nix.thunk(() => nix.concat(["bin/gh"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), nix.thunk(() => ["manpages"])))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         GH_VERSION: nix.thunk(() => nix.sel(finalAttrs, "version")),
       })),
       installPhase: nix.thunk(() => nix.add(nix.add("runHook preInstall\ninstallBin bin/gh\nwrapProgram $out/bin/gh \\\n  --set-default GH_TELEMETRY false\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "installManPage share/man/*/*.[1-9]\n\ninstallShellCompletion --cmd gh \\\n  --bash <($out/bin/gh completion -s bash) \\\n  --fish <($out/bin/gh completion -s fish) \\\n  --zsh <($out/bin/gh completion -s zsh)\n")), "runHook postInstall\n")),
@@ -51,7 +48,7 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "GitHub CLI tool",
         homepage: "https://cli.github.com/",
         downloadPage: "https://github.com/cli/cli",

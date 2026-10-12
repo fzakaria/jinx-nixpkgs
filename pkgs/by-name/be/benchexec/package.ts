@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]], [["command", 51, 11], ["package", 52, 11]], [["nixos", 56, 7], ["benchexec-version", 57, 7], ["runexec-version", 58, 7], ["table-generator-version", 59, 7], ["containerexec-version", 60, 7]], [["tests", 46, 12]], [["description", 64, 5], ["homepage", 65, 5], ["maintainers", 66, 5], ["license", 67, 5], ["mainProgram", 68, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["pyproject", 21, 3], ["postPatch", 23, 3], ["nativeBuildInputs", 28, 3], ["propagatedBuildInputs", 37, 3], ["makeWrapperArgs", 44, 3], ["passthru", 46, 3], ["meta", 63, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, python3: false, libseccomp: false, nixosTests: false, testers: false, benchexec: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["command", 51, 11], ["package", 52, 11]]);
-const pos$3 = nix.positions(here + "/package.nix", [["nixos", 56, 7], ["benchexec-version", 57, 7], ["runexec-version", 58, 7], ["table-generator-version", 59, 7], ["containerexec-version", 60, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 46, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 64, 5], ["homepage", 65, 5], ["maintainers", 66, 5], ["license", 67, 5], ["mainProgram", 68, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["pyproject", 21, 3], ["postPatch", 23, 3], ["nativeBuildInputs", 28, 3], ["propagatedBuildInputs", 37, 3], ["makeWrapperArgs", 44, 3], ["passthru", 46, 3], ["meta", 63, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const benchexec = nix.arg($, "benchexec");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "benchexec",
       version: "3.27",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "sosy-lab",
           repo: "benchexec",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -49,15 +44,15 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`--set-default LIBSECCOMP ${nix.app(nix.sel(lib, "getLib"), libseccomp)}/lib/libseccomp.so`),
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => (() => {
           const testVersion = (result) => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               command: nix.thunk(() => nix.str`${result} --version`),
               package: benchexec,
             })));
           return {
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             nixos: nix.thunk(() => nix.sel(nixosTests, "benchexec")),
             "benchexec-version": nix.thunk(() => nix.app(testVersion, "benchexec")),
             "runexec-version": nix.thunk(() => nix.app(testVersion, "runexec")),
@@ -67,7 +62,7 @@ export default nix.lambda((args) => (() => {
         })()),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Framework for Reliable Benchmarking and Resource Measurement",
         homepage: "https://github.com/sosy-lab/benchexec",
         maintainers: nix.thunk(() => (() => {

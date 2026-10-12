@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]], [["description", 91, 5], ["mainProgram", 92, 5], ["homepage", 93, 5], ["changelog", 94, 5], ["license", 95, 5], ["maintainers", 96, 5]], [["pname", 24, 3], ["version", 25, 3], ["pyproject", 26, 3], ["src", 28, 3], ["patches", 35, 3], ["postPatch", 40, 3], ["build-system", 57, 3], ["dependencies", 62, 3], ["nativeCheckInputs", 64, 3], ["pythonImportsCheck", 74, 3], ["enableParallelBuilding", 76, 3], ["enabledTestPaths", 78, 3], ["disabledTests", 84, 3], ["meta", 90, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, pybind11: false, setuptools: false, numpy: false, "cirq-core": false, matplotlib: false, networkx: false, pandas: false, "pytest-xdist": false, pytestCheckHook: false, scipy: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 91, 5], ["mainProgram", 92, 5], ["homepage", 93, 5], ["changelog", 94, 5], ["license", 95, 5], ["maintainers", 96, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 24, 3], ["version", 25, 3], ["pyproject", 26, 3], ["src", 28, 3], ["patches", 35, 3], ["postPatch", 40, 3], ["build-system", 57, 3], ["dependencies", 62, 3], ["nativeCheckInputs", 64, 3], ["pythonImportsCheck", 74, 3], ["enableParallelBuilding", 76, 3], ["enabledTestPaths", 78, 3], ["disabledTests", 84, 3], ["meta", 90, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.16.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "quantumlib",
           repo: "Stim",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -54,7 +52,7 @@ export default nix.lambda((args) => (() => {
         "test_tableau_simulator_sampling_noisy_gates_agrees_with_cirq_data",
       ]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Tool for high performance simulation and analysis of quantum stabilizer circuits, especially quantum error correction (QEC) circuits",
         mainProgram: "stim",
         homepage: "https://github.com/quantumlib/stim",
@@ -66,7 +64,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

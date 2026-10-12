@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 14, 5], ["sha256", 17, 5]], [["description", 41, 5], ["longDescription", 42, 5], ["homepage", 53, 5], ["sourceProvenance", 54, 5], ["license", 55, 5], ["platforms", 56, 5], ["maintainers", 57, 5], ["mainProgram", 58, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["installPhase", 21, 3], ["meta", 40, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, jre: false, runtimeShell: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 14, 5], ["sha256", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 41, 5], ["longDescription", 42, 5], ["homepage", 53, 5], ["sourceProvenance", 54, 5], ["license", 55, 5], ["platforms", 56, 5], ["maintainers", 57, 5], ["mainProgram", 58, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["installPhase", 21, 3], ["meta", 40, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const jre = nix.arg($, "jre");
   const runtimeShell = nix.arg($, "runtimeShell");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "smc",
       version: "6.6.3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/project/smc/smc/${nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => ["_"]), nix.thunk(() => nix.sel(finalAttrs, "version")))}/smc_${nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => ["_"]), nix.thunk(() => nix.sel(finalAttrs, "version")))}.tgz`),
           sha256: "1gv0hrgdl4wp562virpf9sib6pdhapwv4zvwbl0d5f5xyx04il11",
         })))),
@@ -41,7 +39,7 @@ EOF
 chmod a+x "$out/bin/smc"
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Generate state machine code from text input (state diagram)",
         longDescription: "SMC (State Machine Compiler) takes a text input file describing states,\nevents and actions of a state machine and generates source code that\nimplements the state machine.\n\nSMC supports many target languages:\nC, C++, DotNet, Groovy, java, Java, JavaScript, Lua, ObjC, Perl, Php,\nPython, Ruby, Scala, Tcl.\n\nSMC can also generate GraphViz state diagrams from the input file.\n",
         homepage: "https://smc.sourceforge.net/",

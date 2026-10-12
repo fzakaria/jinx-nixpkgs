@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 15, 5], ["sha256", 16, 5]], [["updateScript", 19, 12]], [["description", 62, 5], ["homepage", 63, 5], ["mainProgram", 64, 5], ["license", 65, 5], ["maintainers", 66, 5], ["platforms", 67, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["passthru", 19, 3], ["dontConfigure", 29, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 36, 3], ["unpackPhase", 41, 3], ["installPhase", 48, 3], ["meta", 61, 3]]]);
 const formals$1 = { args: { stdenv: false, fetchurl: false, writeScript: false, autoPatchelfHook: false, dpkg: false, libz: false, lib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 15, 5], ["sha256", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 19, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 62, 5], ["homepage", 63, 5], ["mainProgram", 64, 5], ["license", 65, 5], ["maintainers", 66, 5], ["platforms", 67, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["passthru", 19, 3], ["dontConfigure", 29, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 36, 3], ["unpackPhase", 41, 3], ["installPhase", 48, 3], ["meta", 61, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,12 +18,12 @@ export default nix.lambda((args) => (() => {
       const pname = "cato-client";
       const version = "5.7.0.5525";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://clients.catonetworks.com/linux/${version}/cato-client-install.deb`),
           sha256: "sha256-UDIDddVk7UXiOoZGTz1757x66DmOSOGqMielSQ5W5z0=",
         }))));
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(writeScript, "update-cato-client", "#!/usr/bin/env nix-shell\n#!nix-shell -i bash -p curl pcre2 common-updater-scripts\n\nset -eu -o pipefail\n\nversion=\"$(curl -sI https://clientdownload.catonetworks.com/public/clients/cato-client-install.deb | grep -Fi 'Location:' | pcre2grep -o1 '/(([0-9]\\.?)+)/')\"\nupdate-source-version cato-client \"$version\"\n")),
       }));
       const dontConfigure = true;
@@ -35,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const unpackPhase = "runHook preUnpack\ndpkg -x $src source\ncd source\nrunHook postUnpack\n";
       const installPhase = "runHook preInstall\nmkdir $out\n\nmv usr/lib $out/lib\n\nmkdir -p $out/bin\nmv usr/sbin/* $out/bin\nmv usr/bin/* $out/bin\n\nrunHook postInstall\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Lightweight agent that provides secure zero-trust access to resources everywhere",
         homepage: "https://www.catonetworks.com/platform/cato-client/",
         mainProgram: "cato-sdp",
@@ -47,7 +44,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => ["x86_64-linux"]),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]], [["intel-compute-runtime", 36, 15], ["openvino", 36, 37]], [["extraArgs", 38, 40]], [["tests", 35, 5], ["updateScript", 38, 5]], [["description", 42, 5], ["homepage", 43, 5], ["changelog", 44, 5], ["license", 45, 5], ["platforms", 46, 5], ["maintainers", 47, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 23, 3], ["postFixup", 28, 3], ["setupHook", 32, 3], ["passthru", 34, 3], ["meta", 41, 3]]]);
 const formals$1 = { args: { lib: false, addDriverRunpath: false, cmake: false, fetchFromGitHub: false, "intel-compute-runtime": false, openvino: false, stdenv: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["intel-compute-runtime", 36, 15], ["openvino", 36, 37]]);
-const pos$3 = nix.positions(here + "/package.nix", [["extraArgs", 38, 40]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 35, 5], ["updateScript", 38, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 42, 5], ["homepage", 43, 5], ["changelog", 44, 5], ["license", 45, 5], ["platforms", 46, 5], ["maintainers", 47, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 23, 3], ["postFixup", 28, 3], ["setupHook", 32, 3], ["passthru", 34, 3], ["meta", 41, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "level-zero",
       version: "1.32.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "oneapi-src",
           repo: "level-zero",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,16 +30,16 @@ export default nix.lambda((args) => (() => {
       postFixup: "addDriverRunpath $out/lib/libze_loader.so\n",
       setupHook: nix.path(here, "./setup-hook.sh"),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           "intel-compute-runtime": intel_compute_runtime,
           openvino: openvino,
         })),
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$3, extraArgs: nix.thunk(() => ["--use-github-releases"]) })))),
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: $pos[2], extraArgs: nix.thunk(() => ["--use-github-releases"]) })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "oneAPI Level Zero Specification Headers and Loader",
         homepage: "https://github.com/oneapi-src/level-zero",
         changelog: nix.thunk(() => nix.str`https://github.com/oneapi-src/level-zero/blob/v${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

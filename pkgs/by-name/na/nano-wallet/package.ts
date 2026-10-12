@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["fetchSubmodules", 23, 5], ["hash", 24, 5]], [["NIX_CFLAGS_COMPILE", 27, 7]], [["url", 32, 7], ["hash", 33, 7]], [["PYTHON_EXECUTABLE", 40, 9], ["NANO_SHARED_BOOST", 41, 9], ["BOOST_ROOT", 42, 9], ["RAIBLOCKS_GUI", 43, 9], ["RAIBLOCKS_TEST", 44, 9], ["Qt5_DIR", 45, 9], ["Qt5Core_DIR", 46, 9], ["Qt5Gui_INCLUDE_DIRS", 47, 9], ["Qt5Widgets_INCLUDE_DIRS", 48, 9]], [["description", 76, 5], ["homepage", 77, 5], ["license", 78, 5], ["platforms", 81, 5], ["maintainers", 82, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["env", 27, 3], ["patches", 29, 3], ["cmakeFlags", 37, 3], ["nativeBuildInputs", 54, 3], ["buildInputs", 59, 3], ["strictDeps", 65, 3], ["makeFlags", 67, 3], ["checkPhase", 69, 3], ["meta", 75, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch: false, cmake: false, "pkg-config": false, boost: false, libGL: false, libsForQt5: false, python3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["fetchSubmodules", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 27, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 32, 7], ["hash", 33, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["PYTHON_EXECUTABLE", 40, 9], ["NANO_SHARED_BOOST", 41, 9], ["BOOST_ROOT", 42, 9], ["RAIBLOCKS_GUI", 43, 9], ["RAIBLOCKS_TEST", 44, 9], ["Qt5_DIR", 45, 9], ["Qt5Core_DIR", 46, 9], ["Qt5Gui_INCLUDE_DIRS", 47, 9], ["Qt5Widgets_INCLUDE_DIRS", 48, 9]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 76, 5], ["homepage", 77, 5], ["license", 78, 5], ["platforms", 81, 5], ["maintainers", 82, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["env", 27, 3], ["patches", 29, 3], ["cmakeFlags", 37, 3], ["nativeBuildInputs", 54, 3], ["buildInputs", 59, 3], ["strictDeps", 65, 3], ["makeFlags", 67, 3], ["checkPhase", 69, 3], ["meta", 75, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,28 +18,28 @@ export default nix.lambda((args) => (() => {
   const libsForQt5 = nix.arg($, "libsForQt5");
   const python3 = nix.arg($, "python3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "nano-wallet",
       version: "28.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "nanocurrency",
           repo: "nano-node",
           tag: nix.thunk(() => nix.str`V${nix.sel(finalAttrs, "version")}`),
           fetchSubmodules: true,
           hash: "sha256-Wo1Gd6dOnCoPiGmuJQhZmKKSg7LrKpfdvLNNKBYTUWI=",
         })))),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-Wno-error" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], NIX_CFLAGS_COMPILE: "-Wno-error" })),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: "https://github.com/nanocurrency/nano-node/commit/1835a04dbbd1f6970649d7f72c454831432dd01f.patch",
             hash: "sha256-IpC4yaIbJzQWYIC0QGXYQ345g6JnD2+xZG30qAQ1ubo=",
           })))),
       ]),
       cmakeFlags: nix.thunk(() => (() => {
         const options = nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           PYTHON_EXECUTABLE: nix.thunk(() => nix.str`${nix.sel(python3, "interpreter")}`),
           NANO_SHARED_BOOST: "ON",
           BOOST_ROOT: boost,
@@ -64,7 +59,7 @@ export default nix.lambda((args) => (() => {
       makeFlags: nix.thunk(() => ["nano_wallet"]),
       checkPhase: "runHook preCheck\n./core_test\nrunHook postCheck\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Wallet for Nano cryptocurrency",
         homepage: "https://nano.org/en/wallet/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

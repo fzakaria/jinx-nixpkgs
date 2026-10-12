@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 30, 5], ["repo", 31, 5], ["rev", 32, 5], ["hash", 33, 5]], [["package", 63, 43]], [["version", 63, 11]], [["updateScript", 62, 5], ["tests", 63, 5]], [["description", 67, 5], ["longDescription", 68, 5], ["homepage", 73, 5], ["changelog", 74, 5], ["license", 75, 5], ["mainProgram", 76, 5], ["maintainers", 77, 5]], [["pname", 21, 3], ["version", 22, 3], ["outputs", 24, 3], ["src", 29, 3], ["patches", 36, 3], ["nativeBuildInputs", 41, 3], ["buildInputs", 48, 3], ["preConfigure", 55, 3], ["enableParallelBuilding", 59, 3], ["passthru", 61, 3], ["meta", 66, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, autoconf: false, automake: false, libtool: false, "pkg-config": false, libimobiledevice: false, libplist: false, libusb1: false, openssl: false, "nix-update-script": false, testers: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 30, 5], ["repo", 31, 5], ["rev", 32, 5], ["hash", 33, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["package", 63, 43]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 63, 11]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 62, 5], ["tests", 63, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 67, 5], ["longDescription", 68, 5], ["homepage", 73, 5], ["changelog", 74, 5], ["license", 75, 5], ["mainProgram", 76, 5], ["maintainers", 77, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 3], ["outputs", 24, 3], ["src", 29, 3], ["patches", 36, 3], ["nativeBuildInputs", 41, 3], ["buildInputs", 48, 3], ["preConfigure", 55, 3], ["enableParallelBuilding", 59, 3], ["passthru", 61, 3], ["meta", 66, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const testers = nix.arg($, "testers");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "ios-webkit-debug-proxy",
       version: "1.9.2",
       outputs: nix.thunk(() => ["out", "dev"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "google",
           repo: "ios-webkit-debug-proxy",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -43,18 +38,18 @@ export default nix.lambda((args) => (() => {
       preConfigure: "NOCONFIGURE=1 ./autogen.sh\n",
       enableParallelBuilding: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "DevTools proxy (Chrome Remote Debugging Protocol) for iOS devices (Safari Remote Web Inspector)",
         longDescription: "The ios_webkit_debug_proxy (aka iwdp) proxies requests from usbmuxd\ndaemon over a websocket connection, allowing developers to send commands\nto MobileSafari and UIWebViews on real and simulated iOS devices.\n",
         homepage: "https://github.com/google/ios-webkit-debug-proxy",

@@ -2,10 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["name", 12, 5], ["publisher", 13, 5], ["version", 14, 13], ["hash", 15, 5]], [["changelog", 21, 5], ["description", 22, 5], ["downloadPage", 23, 5], ["homepage", 24, 5], ["license", 25, 5], ["maintainers", 26, 5]], [["mktplcRef", 11, 3], ["buildInputs", 18, 3], ["meta", 20, 3]]]);
 const formals$1 = { args: { lib: false, "vscode-utils": false, httpyac: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["name", 12, 5], ["publisher", 13, 5], ["version", 14, 13], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["changelog", 21, 5], ["description", 22, 5], ["downloadPage", 23, 5], ["homepage", 24, 5], ["license", 25, 5], ["maintainers", 26, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["mktplcRef", 11, 3], ["buildInputs", 18, 3], ["meta", 20, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,9 +12,9 @@ export default nix.lambda((args) => (() => {
   const httpyac = nix.arg($, "httpyac");
   const version = "6.16.7";
   return nix.app(nix.sel(vscode_utils, "buildVscodeMarketplaceExtension"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       mktplcRef: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         name: "vscode-httpyac",
         publisher: "anweber",
         version: version,
@@ -24,7 +22,7 @@ export default nix.lambda((args) => (() => {
       })),
       buildInputs: nix.thunk(() => [httpyac]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         changelog: nix.thunk(() => nix.str`https://github.com/AnWeber/vscode-httpyac/releases/tag/${version}`),
         description: "Quickly and easily send REST, Soap, GraphQL, GRPC, MQTT, RabbitMQ and WebSocket requests directly within Visual Studio Code",
         downloadPage: "https://marketplace.visualstudio.com/items?itemName=anweber.vscode-httpyac",

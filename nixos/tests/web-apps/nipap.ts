@@ -2,15 +2,9 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/nipap.nix", [[["maintainers", 16, 8]], [["enable", 22, 9]], [["nipap", 21, 16]], [["systemPackages", 25, 19]], [["services", 21, 7], ["environment", 25, 7]], [["main", 18, 9]], [["name", 15, 3], ["meta", 16, 3], ["nodes", 18, 3], ["testScript", 30, 3]]]);
 const formals$1 = { args: { pkgs: false, lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/nipap.nix", [["maintainers", 16, 8]]);
 const formals$2 = { args: {  }, ellipsis: true };
-const pos$2 = nix.positions(here + "/nipap.nix", [["enable", 22, 9]]);
-const pos$3 = nix.positions(here + "/nipap.nix", [["nipap", 21, 16]]);
-const pos$4 = nix.positions(here + "/nipap.nix", [["systemPackages", 25, 19]]);
-const pos$5 = nix.positions(here + "/nipap.nix", [["services", 21, 7], ["environment", 25, 7]]);
-const pos$6 = nix.positions(here + "/nipap.nix", [["main", 18, 9]]);
-const pos$7 = nix.positions(here + "/nipap.nix", [["name", 15, 3], ["meta", 16, 3], ["nodes", 18, 3], ["testScript", 30, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,24 +12,24 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const nipapRc = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "nipaprc", "[global]\nhostname = [::1]\nport = 1337\nusername = nixostest\npassword = nIx0st3st\ndefault_vrf_rt = -\ndefault_list_vrf_rt = all\n"));
   return {
-    [nix.POS]: pos$7,
+    [nix.POS]: $pos[6],
     name: "lukegb",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "lukegb"))]),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       main: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$3,
-            nipap: nix.thunk(() => ({ [nix.POS]: pos$2, enable: true })),
+            [nix.POS]: $pos[2],
+            nipap: nix.thunk(() => ({ [nix.POS]: $pos[1], enable: true })),
           })),
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "nipap-cli"))]),
           })),
         };

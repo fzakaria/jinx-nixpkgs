@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]], [["fontDirectories", 39, 7]], [["FONTCONFIG_FILE", 38, 5]], [["description", 75, 5], ["mainProgram", 76, 5], ["homepage", 77, 5], ["license", 78, 5], ["maintainers", 82, 5], ["platforms", 83, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["cmakeFlags", 29, 3], ["env", 37, 3], ["nativeBuildInputs", 43, 3], ["buildInputs", 51, 3], ["outputs", 58, 3], ["preBuild", 70, 3], ["meta", 74, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, makeFontsConf: false, "pkg-config": false, pugixml: false, wayland: false, libGL: false, libffi: false, buildPackages: false, docSupport: true, doxygen: false, graphviz: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["fontDirectories", 39, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["FONTCONFIG_FILE", 38, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 75, 5], ["mainProgram", 76, 5], ["homepage", 77, 5], ["license", 78, 5], ["maintainers", 82, 5], ["platforms", 83, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["cmakeFlags", 29, 3], ["env", 37, 3], ["nativeBuildInputs", 43, 3], ["buildInputs", 51, 3], ["outputs", 58, 3], ["preBuild", 70, 3], ["meta", 74, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const doxygen = nix.arg($, "doxygen");
   const graphviz = nix.arg($, "graphviz");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "waylandpp",
       version: "1.0.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "NilsBrause",
           repo: "waylandpp",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -42,15 +38,15 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.app(nix.sel(lib, "cmakeFeature"), "WAYLAND_SCANNERPP", nix.thunk(() => nix.str`${nix.sel(buildPackages, "waylandpp")}/bin/wayland-scanner++`))),
         ])))),
       env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), docSupport, nix.thunk(() => ({
-          [nix.POS]: pos$3,
-          FONTCONFIG_FILE: nix.thunk(() => nix.app(makeFontsConf, nix.thunk(() => ({ [nix.POS]: pos$2, fontDirectories: [] })))),
+          [nix.POS]: $pos[2],
+          FONTCONFIG_FILE: nix.thunk(() => nix.app(makeFontsConf, nix.thunk(() => ({ [nix.POS]: $pos[1], fontDirectories: [] })))),
         })))),
       nativeBuildInputs: nix.thunk(() => nix.concat([cmake, pkg_config], nix.app(nix.sel(lib, "optionals"), docSupport, nix.thunk(() => [doxygen, graphviz])))),
       buildInputs: nix.thunk(() => [pugixml, wayland, libGL, libffi]),
       outputs: nix.thunk(() => nix.concat(["bin", "dev", "lib", "out"], nix.app(nix.sel(lib, "optionals"), docSupport, nix.thunk(() => ["doc", "devman"])))),
       preBuild: "export XDG_CACHE_HOME=\"$(mktemp -d)\"\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Wayland C++ binding",
         mainProgram: "wayland-scanner++",
         homepage: "https://github.com/NilsBrause/waylandpp/",

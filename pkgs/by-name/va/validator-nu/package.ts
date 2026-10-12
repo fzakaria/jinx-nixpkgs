@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["hash", 25, 5]], [["pname", 29, 5], ["version", 30, 13], ["src", 30, 21], ["nativeBuildInputs", 32, 5], ["postPatch", 39, 5], ["buildPhase", 46, 5], ["installPhase", 50, 5], ["outputHashMode", 56, 5], ["outputHash", 57, 5]], [["package", 99, 5]], [["version", 98, 18]], [["tests", 98, 12]], [["description", 103, 5], ["homepage", 104, 5], ["license", 105, 5], ["maintainers", 106, 5], ["mainProgram", 109, 5], ["platforms", 110, 5], ["sourceProvenance", 111, 5]], [["pname", 62, 11], ["version", 62, 17], ["src", 62, 25], ["nativeBuildInputs", 64, 3], ["postPatch", 73, 3], ["buildPhase", 79, 3], ["installPhase", 86, 3], ["passthru", 98, 3], ["meta", 102, 3]]]);
 const formals$1 = { args: { ant: false, cacert: false, fetchFromGitHub: false, git: false, installShellFiles: false, jdk_headless: false, jre_headless: false, makeWrapper: false, pandoc: false, python3: false, stdenvNoCC: false, lib: false, testers: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 29, 5], ["version", 30, 13], ["src", 30, 21], ["nativeBuildInputs", 32, 5], ["postPatch", 39, 5], ["buildPhase", 46, 5], ["installPhase", 50, 5], ["outputHashMode", 56, 5], ["outputHash", 57, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["package", 99, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["version", 98, 18]]);
-const pos$5 = nix.positions(here + "/package.nix", [["tests", 98, 12]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 103, 5], ["homepage", 104, 5], ["license", 105, 5], ["maintainers", 106, 5], ["mainProgram", 109, 5], ["platforms", 110, 5], ["sourceProvenance", 111, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 62, 11], ["version", 62, 17], ["src", 62, 25], ["nativeBuildInputs", 64, 3], ["postPatch", 73, 3], ["buildPhase", 79, 3], ["installPhase", 86, 3], ["passthru", 98, 3], ["meta", 102, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,14 +23,14 @@ export default nix.lambda((args) => (() => {
   const pname = "validator-nu";
   const version = "25.12.12";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "validator",
       repo: "validator",
       rev: "7ed7f67468f7f61975dcc78891ea462fce578828",
       hash: "sha256-cdDmhRyXIdoNWhP4oqu7vRb5abuNXRqvt4P4Dzq48xY=",
     }))));
   const deps = nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: nix.thunk(() => nix.str`${pname}-deps`),
       version: version,
       src: src,
@@ -48,7 +42,7 @@ export default nix.lambda((args) => (() => {
       outputHash: "sha256-8cMoLeOnKNqisezkVS2UeVW11gtkGmhvQWrbSVuqbb8=",
     }))));
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: pname,
       version: version,
       src: src,
@@ -73,17 +67,17 @@ makeWrapper "${jre_headless}/bin/java" "$out/bin/vnu" \\
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Helps you catch problems in your HTML/CSS/SVG",
         homepage: "https://validator.github.io/validator/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

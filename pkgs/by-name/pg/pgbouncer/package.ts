@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 21, 5], ["hash", 22, 5]], [["pgbouncer", 40, 5]], [["tests", 39, 12]], [["homepage", 44, 5], ["mainProgram", 45, 5], ["description", 46, 5], ["changelog", 47, 5], ["license", 50, 5], ["maintainers", 51, 5], ["platforms", 52, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 30, 3], ["enableParallelBuilding", 36, 3], ["configureFlags", 37, 3], ["passthru", 39, 3], ["meta", 43, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, openssl: false, libevent: false, "c-ares": false, "pkg-config": false, python3: false, pandoc: false, systemd: false, nixosTests: false, systemdSupport: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pgbouncer", 40, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 39, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 44, 5], ["mainProgram", 45, 5], ["description", 46, 5], ["changelog", 47, 5], ["license", 50, 5], ["maintainers", 51, 5], ["platforms", 52, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 30, 3], ["enableParallelBuilding", 36, 3], ["configureFlags", 37, 3], ["passthru", 39, 3], ["meta", 43, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const systemdSupport = nix.argOr($, "systemdSupport", () => nix.app(nix.sel(lib, "meta", "availableOn"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")), systemd));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "pgbouncer",
       version: "1.25.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://www.pgbouncer.org/downloads/files/${nix.sel(finalAttrs, "version")}/pgbouncer-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-kkrTURP9CnHI4tvoW10DRFUy4rezep+KSJg77qI4szI=",
         })))),
@@ -37,14 +33,14 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: true,
       configureFlags: nix.thunk(() => nix.app(nix.sel(lib, "optional"), systemdSupport, "--with-systemd")),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pgbouncer: nix.thunk(() => nix.sel(nixosTests, "pgbouncer")),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://www.pgbouncer.org/",
         mainProgram: "pgbouncer",
         description: "Lightweight connection pooler for PostgreSQL",

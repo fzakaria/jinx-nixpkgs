@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 23, 7], ["repo", 24, 7], ["tag", 25, 7], ["hash", 26, 7]], [["description", 50, 7], ["homepage", 51, 7], ["license", 52, 7], ["maintainers", 53, 7]], [["pname", 19, 5], ["version", 20, 5], ["src", 22, 5], ["cmakeFlags", 29, 5], ["nativeBuildInputs", 31, 5], ["propagatedBuildInputs", 33, 5], ["buildInputs", 41, 5], ["doCheck", 47, 5], ["meta", 49, 5]]]);
 const formals$1 = { args: { lib: false, stdenv: false, toPythonModule: false, fetchFromGitHub: false, cmake: false, boost: false, pagmo2: false, python: false, cloudpickle: false, ipyparallel: false, numba: false, numpy: false, pybind11: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 23, 7], ["repo", 24, 7], ["tag", 25, 7], ["hash", 26, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 50, 7], ["homepage", 51, 7], ["license", 52, 7], ["maintainers", 53, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 19, 5], ["version", 20, 5], ["src", 22, 5], ["cmakeFlags", 29, 5], ["nativeBuildInputs", 31, 5], ["propagatedBuildInputs", 33, 5], ["buildInputs", 41, 5], ["doCheck", 47, 5], ["meta", 49, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,7 +24,7 @@ export default nix.lambda((args) => (() => {
         const pname = "pygmo";
         const version = "2.19.7";
         const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             owner: "esa",
             repo: "pygmo2",
             tag: nix.thunk(() => nix.str`v${version}`),
@@ -40,14 +38,14 @@ export default nix.lambda((args) => (() => {
         const buildInputs = nix.thunk(() => [boost, pagmo2, pybind11]);
         const doCheck = true;
         const meta = nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           description: "Parallel optimisation for Python",
           homepage: "https://github.com/esa/pygmo2",
           license: nix.thunk(() => nix.sel(lib, "licenses", "mpl20")),
           maintainers: [],
         }));
         return {
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           pname,
           version,
           src,

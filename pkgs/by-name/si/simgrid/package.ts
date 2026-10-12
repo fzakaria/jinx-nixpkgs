@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 37, 5], ["owner", 38, 5], ["repo", 39, 5], ["rev", 40, 5], ["sha256", 41, 5]], [["description", 140, 5], ["longDescription", 141, 5], ["homepage", 149, 5], ["license", 150, 5], ["maintainers", 151, 5], ["platforms", 155, 5], ["broken", 156, 5]], [["pname", 33, 3], ["version", 34, 3], ["src", 36, 3], ["patches", 44, 3], ["propagatedBuildInputs", 49, 3], ["nativeBuildInputs", 50, 3], ["outputs", 70, 3], ["cmakeBuildType", 73, 3], ["cmakeFlags", 75, 3], ["makeFlags", 100, 3], ["preBuild", 103, 3], ["preConfigure", 108, 3], ["doCheck", 112, 3], ["preCheck", 113, 3], ["postInstall", 123, 3], ["hardeningDisable", 136, 3], ["dontStrip", 137, 3], ["meta", 139, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitLab: false, cmake: false, perl: false, python3: false, boost: false, fortranSupport: true, gfortran: false, buildDocumentation: true, fig2dev: false, ghostscript: false, doxygen: false, buildJavaBindings: true, openjdk: false, buildPythonBindings: true, python3Packages: false, modelCheckingSupport: true, libunwind: false, libevent: false, elfutils: false, bmfSupport: true, eigen: false, minimalBindings: true, debug: true, optimize: true, moreTests: true, withoutBin: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 37, 5], ["owner", 38, 5], ["repo", 39, 5], ["rev", 40, 5], ["sha256", 41, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 140, 5], ["longDescription", 141, 5], ["homepage", 149, 5], ["license", 150, 5], ["maintainers", 151, 5], ["platforms", 155, 5], ["broken", 156, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 33, 3], ["version", 34, 3], ["src", 36, 3], ["patches", 44, 3], ["propagatedBuildInputs", 49, 3], ["nativeBuildInputs", 50, 3], ["outputs", 70, 3], ["cmakeBuildType", 73, 3], ["cmakeFlags", 75, 3], ["makeFlags", 100, 3], ["preBuild", 103, 3], ["preConfigure", 108, 3], ["doCheck", 112, 3], ["preCheck", 113, 3], ["postInstall", 123, 3], ["hardeningDisable", 136, 3], ["dontStrip", 137, 3], ["meta", 139, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -41,7 +39,7 @@ export default nix.lambda((args) => (() => {
       const pname = "simgrid";
       const version = "4.1";
       const src = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "framagit.org",
           owner: "simgrid",
           repo: "simgrid",
@@ -88,7 +86,7 @@ cp ./lib/simgrid.cpython*.so $python/lib/python${nix.app(nix.sel(lib, "versions"
       const hardeningDisable = nix.thunk(() => nix.app(nix.sel(lib, "optionals"), debug, nix.thunk(() => ["fortify"])));
       const dontStrip = debug;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Framework for the simulation of distributed applications",
         longDescription: "SimGrid is a toolkit that provides core functionalities for the\nsimulation of distributed applications in heterogeneous distributed\nenvironments.  The specific goal of the project is to facilitate\nresearch in the area of distributed and parallel application\nscheduling on distributed computing platforms ranging from simple\nnetwork of workstations to Computational Grids.\n",
         homepage: "https://simgrid.org/",
@@ -104,7 +102,7 @@ cp ./lib/simgrid.cpython*.so $python/lib/python${nix.app(nix.sel(lib, "versions"
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

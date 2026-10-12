@@ -2,15 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["hash", 18, 7], ["arch", 19, 7]], [["hash", 22, 7], ["arch", 23, 7]], [["hash", 26, 7], ["arch", 27, 7]], [["x86_64-linux", 17, 5], ["aarch64-linux", 21, 5], ["aarch64-darwin", 25, 5]], [["name", 38, 5], ["publisher", 39, 5], ["version", 40, 5]], [["updateScript", 68, 12]], [["description", 71, 5], ["downloadPage", 72, 5], ["homepage", 73, 5], ["changelog", 74, 5], ["license", 75, 5], ["platforms", 76, 5], ["maintainers", 77, 5]], [["mktplcRef", 37, 3], ["buildInputs", 43, 3], ["nativeBuildInputs", 45, 3], ["propagatedBuildInputs", 47, 3], ["postPatch", 52, 3], ["passthru", 68, 3], ["meta", 70, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, "vscode-utils": false, icu: false, python3: false, pythonUseFixed: true, "vscode-extension-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["hash", 18, 7], ["arch", 19, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["hash", 22, 7], ["arch", 23, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["hash", 26, 7], ["arch", 27, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["x86_64-linux", 17, 5], ["aarch64-linux", 21, 5], ["aarch64-darwin", 25, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["name", 38, 5], ["publisher", 39, 5], ["version", 40, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["updateScript", 68, 12]]);
-const pos$7 = nix.positions(here + "/default.nix", [["description", 71, 5], ["downloadPage", 72, 5], ["homepage", 73, 5], ["changelog", 74, 5], ["license", 75, 5], ["platforms", 76, 5], ["maintainers", 77, 5]]);
-const pos$8 = nix.positions(here + "/default.nix", [["mktplcRef", 37, 3], ["buildInputs", 43, 3], ["nativeBuildInputs", 45, 3], ["propagatedBuildInputs", 47, 3], ["postPatch", 52, 3], ["passthru", 68, 3], ["meta", 70, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,28 +15,28 @@ export default nix.lambda((args) => (() => {
   const pythonUseFixed = nix.argOr($, "pythonUseFixed", () => false);
   const vscode_extension_update_script = nix.arg($, "vscode-extension-update-script");
   const supported = nix.thunk(() => ({
-    [nix.POS]: pos$4,
+    [nix.POS]: $pos[3],
     "x86_64-linux": nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       hash: "sha256-HQfmDV6rJX6l1pGybe8//2QrTSwE+rlEJOi4/iW69lY=",
       arch: "linux-x64",
     })),
     "aarch64-linux": nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       hash: "sha256-v7fatW/LMJ8CeSRrE/5b7dLqOrhNhwzUySUxtAMuBUE=",
       arch: "linux-arm64",
     })),
     "aarch64-darwin": nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       hash: "sha256-XntiQmvagiSWcfVIp13CDq2RTZ4NhKOzf4QmecZjMIs=",
       arch: "darwin-arm64",
     })),
   }));
   const base = nix.thunk(() => nix.selOr(supported, () => nix.builtins.throw(nix.thunk(() => nix.str`unsupported platform ${nix.sel(stdenv, "hostPlatform", "system")}`)), nix.key(nix.sel(stdenv, "hostPlatform", "system"))));
   return nix.app(nix.sel(vscode_utils, "buildVscodeMarketplaceExtension"), nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       mktplcRef: nix.thunk(() => nix.update(base, {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         name: "python",
         publisher: "ms-python",
         version: "2026.4.0",
@@ -70,11 +63,11 @@ substituteInPlace "./package.json" \\
   --replace-fail "\\"default\\":\\"python\\"" "\\"default\\":\\"${nix.sel(python3, "interpreter")}\\""
 `)))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         updateScript: nix.thunk(() => nix.app(vscode_extension_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "Visual Studio Code extension with rich support for the Python language",
         downloadPage: "https://marketplace.visualstudio.com/items?itemName=ms-python.python",
         homepage: "https://github.com/Microsoft/vscode-python",

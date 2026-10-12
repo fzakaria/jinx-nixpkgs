@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]], [["VERSION", 21, 7]], [["homepage", 37, 5], ["downloadPage", 38, 5], ["changelog", 39, 5], ["description", 40, 5], ["license", 41, 5], ["maintainers", 42, 5], ["platforms", 43, 5], ["mainProgram", 44, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["env", 21, 3], ["doCheck", 23, 3], ["nativeBuildInputs", 25, 3], ["postInstall", 31, 3], ["meta", 36, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, autoreconfHook: false, smartmontools: false, makeWrapper: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["VERSION", 21, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 37, 5], ["downloadPage", 38, 5], ["changelog", 39, 5], ["description", 40, 5], ["license", 41, 5], ["maintainers", 42, 5], ["platforms", 43, 5], ["mainProgram", 44, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["env", 21, 3], ["doCheck", 23, 3], ["nativeBuildInputs", 25, 3], ["postInstall", 31, 3], ["meta", 36, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,24 +14,24 @@ export default nix.lambda((args) => (() => {
   const smartmontools = nix.arg($, "smartmontools");
   const makeWrapper = nix.arg($, "makeWrapper");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "snapraid",
       version: "14.10",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "amadvance",
           repo: "snapraid",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-vM1qPNrMbMaiMTRtpIJr2WdpIDXH5EydmgPeiZ4FrwQ=",
         })))),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, VERSION: nix.thunk(() => nix.sel(finalAttrs, "version")) })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], VERSION: nix.thunk(() => nix.sel(finalAttrs, "version")) })),
       doCheck: true,
       nativeBuildInputs: nix.thunk(() => [autoreconfHook, makeWrapper]),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => nix.str`wrapProgram $out/bin/snapraid \\
  --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [smartmontools]))}
 `))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "http://www.snapraid.it/",
         downloadPage: "https://github.com/amadvance/snapraid/releases",
         changelog: nix.thunk(() => nix.str`https://github.com/amadvance/snapraid/blob/v${nix.sel(finalAttrs, "version")}/HISTORY`),

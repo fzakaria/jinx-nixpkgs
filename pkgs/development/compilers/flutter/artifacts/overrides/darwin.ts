@@ -2,9 +2,9 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/darwin.nix", [[["postPatch", 8, 3]]]);
 const formals$1 = { args: {  }, ellipsis: false };
 const formals$2 = { args: { buildInputs: true }, ellipsis: true };
-const pos$1 = nix.positions(here + "/darwin.nix", [["postPatch", 8, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
     const $_1 = nix.formals(args_1, formals$2);
     const buildInputs = nix.argOr($_1, "buildInputs", () => []);
     return {
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       postPatch: "if [ \"$pname\" == \"flutter-tools\" ]; then\n  substituteInPlace lib/src/ios/xcodeproj.dart \\\n    --replace-fail arm64e arm64\nfi\n",
     };
   })(), formals$2);

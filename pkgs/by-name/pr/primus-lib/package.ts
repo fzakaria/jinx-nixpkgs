@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["libsOnly", 9, 52]], [["owner", 28, 5], ["repo", 29, 5], ["rev", 30, 5], ["sha256", 31, 5]], [["url", 37, 7], ["sha256", 38, 7]], [["glvnd", 57, 12]], [["description", 60, 5], ["homepage", 61, 5], ["platforms", 62, 5], ["license", 66, 5], ["maintainers", 67, 5]], [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["patches", 34, 3], ["buildInputs", 42, 3], ["makeFlags", 47, 3], ["installPhase", 53, 3], ["passthru", 57, 3], ["meta", 59, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch: false, libx11: false, libGL: false, linuxPackages: false, nvidia_x11: true, libglvnd: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["libsOnly", 9, 52]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 28, 5], ["repo", 29, 5], ["rev", 30, 5], ["sha256", 31, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 37, 7], ["sha256", 38, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["glvnd", 57, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 60, 5], ["homepage", 61, 5], ["platforms", 62, 5], ["license", 66, 5], ["maintainers", 67, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["patches", 34, 3], ["buildInputs", 42, 3], ["makeFlags", 47, 3], ["installPhase", 53, 3], ["passthru", 57, 3], ["meta", 59, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,15 +14,15 @@ export default nix.lambda((args) => (() => {
   const libx11 = nix.arg($, "libx11");
   const libGL = nix.arg($, "libGL");
   const linuxPackages = nix.arg($, "linuxPackages");
-  const nvidia_x11 = nix.argOr($, "nvidia_x11", () => nix.app(nix.sel(linuxPackages, "nvidia_x11", "override"), nix.thunk(() => ({ [nix.POS]: pos$1, libsOnly: true }))));
+  const nvidia_x11 = nix.argOr($, "nvidia_x11", () => nix.app(nix.sel(linuxPackages, "nvidia_x11", "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], libsOnly: true }))));
   const libglvnd = nix.arg($, "libglvnd");
   const aPackage = nix.thunk(() => (nix.asBool(nix.eq(nvidia_x11, null)) ? nix.force(libGL) : (nix.asBool(nix.sel(nvidia_x11, "useGLVND")) ? nix.force(libglvnd) : nix.force(nvidia_x11))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "primus-lib",
       version: "unstable-2015-04-28",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "amonakov",
           repo: "primus",
           rev: "d1afbf6fce2778c0751eddf19db9882e04f18bfd",
@@ -35,7 +30,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: "https://github.com/abbradar/primus/commit/2f429e232581c556df4f4bf210aee8a0c99c60b7.patch",
             sha256: "1da6ynz7r7x98495i329sf821308j1rpy8prcdraqahz7p4c89nc",
           })))),
@@ -48,11 +43,11 @@ export default nix.lambda((args) => (() => {
       ]),
       installPhase: "ln -s $out/lib/libGL.so.1 $out/lib/libGL.so\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         glvnd: nix.thunk(() => (nix.asBool((nix.asBool(!nix.eq(nvidia_x11, null)) && nix.asBool(nix.sel(nvidia_x11, "useGLVND")))) ? nix.force(nvidia_x11) : null)),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Low-overhead client-side GPU offloading",
         homepage: "https://github.com/amonakov/primus",
         platforms: nix.thunk(() => ["i686-linux", "x86_64-linux"]),

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]], [["gokapi", 63, 28]], [["tests", 62, 5], ["updateScript", 65, 5]], [["description", 69, 5], ["homepage", 70, 5], ["changelog", 71, 5], ["license", 72, 5], ["platforms", 73, 5], ["maintainers", 74, 5], ["mainProgram", 77, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["vendorHash", 21, 3], ["proxyVendor", 23, 3], ["patches", 25, 3], ["preBuild", 28, 3], ["subPackages", 44, 3], ["ldflags", 49, 3], ["postInstall", 54, 3], ["nativeInstallCheckInputs", 58, 3], ["doInstallCheck", 59, 3], ["passthru", 61, 3], ["meta", 68, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitHub: false, nixosTests: false, "nix-update-script": false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["gokapi", 63, 28]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 62, 5], ["updateScript", 65, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 69, 5], ["homepage", 70, 5], ["changelog", 71, 5], ["license", 72, 5], ["platforms", 73, 5], ["maintainers", 74, 5], ["mainProgram", 77, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["vendorHash", 21, 3], ["proxyVendor", 23, 3], ["patches", 25, 3], ["preBuild", 28, 3], ["subPackages", 44, 3], ["ldflags", 49, 3], ["postInstall", 54, 3], ["nativeInstallCheckInputs", 58, 3], ["doInstallCheck", 59, 3], ["passthru", 61, 3], ["meta", 68, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "gokapi",
       version: "2.2.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Forceu",
           repo: "Gokapi",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,12 +34,12 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$2, gokapi: nix.thunk(() => nix.attr(nixosTests, "gokapi")) })),
+        [nix.POS]: $pos[2],
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[1], gokapi: nix.thunk(() => nix.attr(nixosTests, "gokapi")) })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Lightweight selfhosted Firefox Send alternative without public upload",
         homepage: "https://github.com/Forceu/Gokapi",
         changelog: nix.thunk(() => nix.str`https://github.com/Forceu/Gokapi/releases/tag/v${nix.sel(finalAttrs, "version")}`),

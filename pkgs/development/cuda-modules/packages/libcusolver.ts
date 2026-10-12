@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/libcusolver.nix", [[["description", 31, 5], ["longDescription", 32, 5], ["homepage", 37, 5], ["license", 39, 5]], [["redistName", 10, 3], ["pname", 11, 3], ["outputs", 13, 3], ["buildInputs", 22, 3], ["meta", 30, 3]]]);
 const formals$1 = { args: { buildRedist: false, cudaAtLeast: false, lib: false, libcublas: false, libcusparse: false, libnvjitlink: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/libcusolver.nix", [["description", 31, 5], ["longDescription", 32, 5], ["homepage", 37, 5], ["license", 39, 5]]);
-const pos$2 = nix.positions(here + "/libcusolver.nix", [["redistName", 10, 3], ["pname", 11, 3], ["outputs", 13, 3], ["buildInputs", 22, 3], ["meta", 30, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,13 +14,13 @@ export default nix.lambda((args) => (() => {
   const libcusparse = nix.arg($, "libcusparse");
   const libnvjitlink = nix.arg($, "libnvjitlink");
   return nix.app(buildRedist, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       redistName: "cuda",
       pname: "libcusolver",
       outputs: nix.thunk(() => ["out", "dev", "include", "lib", "static", "stubs"]),
       buildInputs: nix.thunk(() => nix.concat([nix.thunk(() => nix.app(nix.sel(lib, "getLib"), libcublas))], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(cudaAtLeast, "12.0")), nix.thunk(() => [libnvjitlink])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(cudaAtLeast, "12.1")), nix.thunk(() => [nix.thunk(() => nix.app(nix.sel(lib, "getLib"), libcusparse))]))))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Collection of dense and sparse direct linear solvers and Eigen solvers",
         longDescription: "The NVIDIA cuSOLVER library provides a collection of dense and sparse direct linear solvers and Eigen solvers\nwhich deliver significant acceleration for Computer Vision, CFD, Computational Chemistry, and Linear\nOptimization applications.\n",
         homepage: "https://developer.nvidia.com/cusolver",

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]], [["clang", 36, 9], ["libc", 37, 9]], [["description", 59, 5], ["homepage", 60, 5], ["maintainers", 61, 5], ["license", 62, 5], ["platforms", 63, 5]], [["pname", 19, 3], ["version", 20, 11], ["src", 22, 3], ["patches", 29, 3], ["enableParallelBuilding", 42, 3], ["nativeBuildInputs", 44, 3], ["buildInputs", 46, 3], ["makeFlags", 53, 3], ["meta", 58, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, "pkg-config": false, sqlite: false, openssl: false, libllvm: false, libxml2: false, replaceVars: false, llvmPackages: false, buildllvmsparse: true, buildc2xml: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["clang", 36, 9], ["libc", 37, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 59, 5], ["homepage", 60, 5], ["maintainers", 61, 5], ["license", 62, 5], ["platforms", 63, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 11], ["src", 22, 3], ["patches", 29, 3], ["enableParallelBuilding", 42, 3], ["nativeBuildInputs", 44, 3], ["buildInputs", 46, 3], ["makeFlags", 53, 3], ["meta", 58, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const buildc2xml = nix.argOr($, "buildc2xml", () => false);
   const version = "1.75";
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "smatch",
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "error27",
           repo: "smatch",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -39,7 +36,7 @@ export default nix.lambda((args) => (() => {
           const clang_major = nix.thunk(() => nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.app(nix.sel(lib, "getVersion"), nix.thunk(() => nix.sel(llvmPackages, "clang-unwrapped"))))));
           const clang_lib = nix.thunk(() => nix.app(nix.sel(lib, "getLib"), nix.thunk(() => nix.sel(llvmPackages, "clang-unwrapped"))));
           return nix.app(replaceVars, nix.path(here, "./fix_include_path.patch"), nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               clang: nix.thunk(() => nix.str`${clang_lib}/lib/clang/${clang_major}/include`),
               libc: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getDev"), nix.thunk(() => nix.sel(stdenv, "cc", "libc")))}/include`),
             })));
@@ -53,7 +50,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`CXX=${nix.sel(stdenv, "cc", "targetPrefix")}c++`),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Semantic analysis tool for C",
         homepage: "https://sparse.docs.kernel.org/",
         maintainers: [],

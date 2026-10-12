@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["fetchSubmodules", 19, 5], ["hash", 20, 5]], [["tagPrefix", 79, 5], ["tagFormat", 80, 5], ["shallowClone", 81, 5]], [["updateScript", 78, 12]], [["homepage", 85, 5], ["description", 86, 5], ["mainProgram", 87, 5], ["license", 88, 5], ["maintainers", 89, 5], ["platforms", 94, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["nativeBuildInputs", 23, 3], ["patches", 27, 3], ["makeFlags", 34, 3], ["postPatch", 40, 3], ["doCheck", 44, 3], ["checkTarget", 46, 3], ["nativeCheckInputs", 47, 3], ["preCheck", 48, 3], ["postInstall", 54, 3], ["passthru", 78, 3], ["meta", 84, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchFromGitHub: false, bashInteractive: false, gawk: false, runtimeShell: false, unstableGitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["fetchSubmodules", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["tagPrefix", 79, 5], ["tagFormat", 80, 5], ["shallowClone", 81, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 78, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 85, 5], ["description", 86, 5], ["mainProgram", 87, 5], ["license", 88, 5], ["maintainers", 89, 5], ["platforms", 94, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["nativeBuildInputs", 23, 3], ["patches", 27, 3], ["makeFlags", 34, 3], ["postPatch", 40, 3], ["doCheck", 44, 3], ["checkTarget", 46, 3], ["nativeCheckInputs", 47, 3], ["preCheck", 48, 3], ["postInstall", 54, 3], ["passthru", 78, 3], ["meta", 84, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const runtimeShell = nix.arg($, "runtimeShell");
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "blesh",
       version: "0.4.0-devel3-unstable-2026-09-08",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "akinomyoga",
           repo: "ble.sh",
           rev: "d81fd54feb0d996fdff20dca27eaf0201f7015cc",
@@ -63,11 +59,11 @@ chmod +x "$out/bin/blesh-share"
 rm -rf "$out/share/blesh/cache.d" "$out/share/blesh/run"
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, tagPrefix: "v", tagFormat: "v*", shallowClone: false })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[1], tagPrefix: "v", tagFormat: "v*", shallowClone: false })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://github.com/akinomyoga/ble.sh",
         description: "Bash Line Editor -- a full-featured line editor written in pure Bash",
         mainProgram: "blesh-share",

@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/9.1.nix", [[["url", 16, 7], ["hash", 17, 7]], [["release", 10, 5], ["version", 11, 5], ["src", 15, 5]]]);
 const formals$1 = { args: { callPackage: false, fetchzip: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/9.1.nix", [["url", 16, 7], ["hash", 17, 7]]);
-const pos$2 = nix.positions(here + "/9.1.nix", [["release", 10, 5], ["version", 11, 5], ["src", 15, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +14,11 @@ export default nix.lambda((args) => (() => {
       const release = "9.1";
       const version = nix.thunk(() => nix.str`${release}.0`);
       const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/tcl/tcl${version}-src.tar.gz`),
           hash: "sha256-iSJYZOQvzgvWA9/cD2jwOJsyuHIsryzw3fU+3bGH0cQ=",
         }))));
-      return { [nix.POS]: pos$2, release, version, src };
+      return { [nix.POS]: $pos[1], release, version, src };
     })())));
 })(), formals$1);
 //# sourceMappingURL=9.1.ts.map

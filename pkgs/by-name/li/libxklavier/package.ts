@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 28, 5], ["tag", 29, 5], ["hash", 30, 5]], [["url", 38, 7], ["sha256", 39, 7]], [["description", 88, 5], ["homepage", 89, 5], ["license", 90, 5], ["platforms", 91, 5]], [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["patches", 33, 3], ["outputs", 43, 3], ["propagatedBuildInputs", 50, 3], ["depsBuildBuild", 61, 3], ["nativeBuildInputs", 65, 3], ["strictDeps", 73, 3], ["preAutoreconf", 75, 3], ["configureFlags", 80, 3], ["meta", 87, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchgit: false, fetchpatch: false, autoreconfHook: false, "pkg-config": false, "gtk-doc": false, xkeyboard_config: false, libxml2: false, libxi: false, libx11: false, libice: false, xkbcomp: false, libxkbfile: false, docbook_xsl: false, glib: false, isocodes: false, "gobject-introspection": false, withDoc: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 28, 5], ["tag", 29, 5], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 38, 7], ["sha256", 39, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 88, 5], ["homepage", 89, 5], ["license", 90, 5], ["platforms", 91, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["patches", 33, 3], ["outputs", 43, 3], ["propagatedBuildInputs", 50, 3], ["depsBuildBuild", 61, 3], ["nativeBuildInputs", 65, 3], ["strictDeps", 73, 3], ["preAutoreconf", 75, 3], ["configureFlags", 80, 3], ["meta", 87, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,18 +27,18 @@ export default nix.lambda((args) => (() => {
   const gobject_introspection = nix.arg($, "gobject-introspection");
   const withDoc = nix.argOr($, "withDoc", () => nix.eq(nix.sel(stdenv, "buildPlatform"), nix.sel(stdenv, "hostPlatform")));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "libxklavier",
       version: "5.4",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://gitlab.freedesktop.org/archived-projects/libxklavier.git",
           tag: nix.thunk(() => nix.str`libxklavier-${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-6uzfuVaQlnMMURIke+ZLqL0PhPEmCzx4bFR4+nItPfA=",
         })))),
       patches: nix.thunk(() => nix.concat([nix.path(here, "./honor-XKB_CONFIG_ROOT.patch")], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               url: "https://gitlab.freedesktop.org/archived-projects/libxklavier/-/commit/1387c21a788ec1ea203c8392ea1460fc29d83f70.patch",
               sha256: "sha256-fyWu7sVfDv/ozjhLSLCVsv+iNFawWgJqHUsQHHSkQn4=",
             })))),
@@ -59,7 +56,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`${(nix.asBool(withDoc) ? "--enable-gtk-doc" : "--disable-gtk-doc")}`),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Library providing high-level API for X Keyboard Extension known as XKB",
         homepage: "http://freedesktop.org/wiki/Software/LibXklavier",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl2Plus")),

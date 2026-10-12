@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/tests.nix", [[["pname", 8, 3], ["version", 9, 27], ["src", 9, 35], ["pyproject", 10, 3], ["postPatch", 12, 3], ["dontBuild", 18, 3], ["dontInstall", 19, 3], ["nativeCheckInputs", 21, 3], ["checkPhase", 26, 3]]]);
 const formals$1 = { args: { buildPythonPackage: false, debtcollector: false, stestr: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/tests.nix", [["pname", 8, 3], ["version", 9, 27], ["src", 9, 35], ["pyproject", 10, 3], ["postPatch", 12, 3], ["dontBuild", 18, 3], ["dontInstall", 19, 3], ["nativeCheckInputs", 21, 3], ["checkPhase", 26, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -11,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const debtcollector = nix.arg($, "debtcollector");
   const stestr = nix.arg($, "stestr");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       pname: "debtcollector-tests",
       version: nix.thunk(() => nix.attr(debtcollector, "version")),
       src: nix.thunk(() => nix.attr(debtcollector, "src")),

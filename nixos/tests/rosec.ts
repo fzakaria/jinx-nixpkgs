@@ -2,20 +2,10 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/rosec.nix", [[["maintainers", 12, 8], ["broken", 17, 8]], [["enable", 29, 13]], [["enable", 28, 9], ["pam", 29, 9]], [["rosec", 27, 16]], [["text", 35, 9], ["mode", 39, 9]], [["rosec/test-askpass", 34, 23]], [["SSH_ASKPASS", 43, 9], ["SSH_ASKPASS_REQUIRE", 44, 9], ["DBUS_SESSION_BUS_ADDRESS", 45, 9]], [["systemPackages", 32, 19], ["etc", 34, 19], ["variables", 42, 19]], [["imports", 25, 7], ["services", 27, 7], ["environment", 32, 7]], [["machine", 19, 9]], [["name", 11, 3], ["meta", 12, 3], ["nodes", 19, 3], ["testScript", 49, 3]]]);
 const formals$1 = { args: { pkgs: false, lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/rosec.nix", [["maintainers", 12, 8], ["broken", 17, 8]]);
 const formals$2 = { args: { nodes: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/rosec.nix", [["enable", 29, 13]]);
-const pos$3 = nix.positions(here + "/rosec.nix", [["enable", 28, 9], ["pam", 29, 9]]);
-const pos$4 = nix.positions(here + "/rosec.nix", [["rosec", 27, 16]]);
-const pos$5 = nix.positions(here + "/rosec.nix", [["text", 35, 9], ["mode", 39, 9]]);
-const pos$6 = nix.positions(here + "/rosec.nix", [["rosec/test-askpass", 34, 23]]);
-const pos$7 = nix.positions(here + "/rosec.nix", [["SSH_ASKPASS", 43, 9], ["SSH_ASKPASS_REQUIRE", 44, 9], ["DBUS_SESSION_BUS_ADDRESS", 45, 9]]);
-const pos$8 = nix.positions(here + "/rosec.nix", [["systemPackages", 32, 19], ["etc", 34, 19], ["variables", 42, 19]]);
-const pos$9 = nix.positions(here + "/rosec.nix", [["imports", 25, 7], ["services", 27, 7], ["environment", 32, 7]]);
-const pos$10 = nix.positions(here + "/rosec.nix", [["machine", 19, 9]]);
 const formals$3 = { args: { nodes: false }, ellipsis: true };
-const pos$11 = nix.positions(here + "/rosec.nix", [["name", 11, 3], ["meta", 12, 3], ["nodes", 19, 3], ["testScript", 49, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,37 +13,37 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const rosec_config = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "rosec-config.toml", "[[provider]]\nid = \"local\"\nkind = \"local\"\npath = \"/home/alice/.local/share/rosec/providers/local.vault\"\n"));
   return {
-    [nix.POS]: pos$11,
+    [nix.POS]: $pos[10],
     name: "rosec",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "mikilio"))]),
       broken: nix.thunk(() => nix.sel(pkgs, "stdenv", "hostPlatform", "isAarch64")),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const nodes = nix.arg($_1, "nodes");
         const user = nix.thunk(() => nix.sel(nodes, "machine", "users", "users", "alice"));
         return {
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           imports: nix.thunk(() => [nix.path(here, "./common/user-account.nix")]),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             rosec: nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               enable: true,
-              pam: nix.thunk(() => ({ [nix.POS]: pos$2, enable: true })),
+              pam: nix.thunk(() => ({ [nix.POS]: $pos[1], enable: true })),
             })),
           })),
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$8,
+            [nix.POS]: $pos[7],
             systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "libsecret"))]),
             etc: nix.thunk(() => ({
-              [nix.POS]: pos$6,
+              [nix.POS]: $pos[5],
               "rosec/test-askpass": nix.thunk(() => ({
-                [nix.POS]: pos$5,
+                [nix.POS]: $pos[4],
                 text: nix.thunk(() => nix.str`#!/bin/sh
 echo "${nix.sel(user, "password")}"
 `),
@@ -61,7 +51,7 @@ echo "${nix.sel(user, "password")}"
               })),
             })),
             variables: nix.thunk(() => ({
-              [nix.POS]: pos$7,
+              [nix.POS]: $pos[6],
               SSH_ASKPASS: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), "/etc/rosec/test-askpass")),
               SSH_ASKPASS_REQUIRE: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), "force")),
               DBUS_SESSION_BUS_ADDRESS: nix.thunk(() => nix.str`unix:path=/run/user/${nix.builtins.toString(nix.thunk(() => nix.sel(user, "uid")))}/bus`),

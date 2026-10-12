@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["all", 106, 5], ["aws", 108, 7], ["grpc", 109, 7], ["io-image", 110, 7], ["io-pandas", 111, 7], ["io", 112, 7], ["grpc-reflection", 113, 7], ["grpc-channelz", 114, 7], ["monitor-otlp", 115, 7], ["tracing-otlp", 116, 7], ["tracing", 117, 7], ["triton", 119, 5]], [["owner", 128, 5], ["repo", 129, 5], ["tag", 130, 5], ["hash", 131, 5]], [["description", 248, 5], ["homepage", 249, 5], ["changelog", 250, 5], ["knownVulnerabilities", 251, 5], ["license", 259, 5], ["maintainers", 260, 5]], [["pname", 135, 3], ["version", 136, 11], ["src", 136, 19], ["pyproject", 137, 3], ["pythonRelaxDeps", 139, 3], ["build-system", 153, 3], ["dependencies", 158, 3], ["optional-dependencies", 208, 11], ["pythonImportsCheck", 210, 3], ["preCheck", 212, 3], ["disabledTestPaths", 218, 3], ["disabledTests", 225, 3], ["nativeCheckInputs", 232, 3], ["meta", 247, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, a2wsgi: false, aiohttp: false, "aiohttp-asgi-connector": false, aiosqlite: false, attrs: false, buildPythonPackage: false, cattrs: false, circus: false, "click-option-group": false, click: false, cloudpickle: false, deepmerge: false, fetchFromGitHub: false, "fs-s3fs": false, fs: false, fsspec: false, "grpcio-channelz": false, "grpcio-health-checking": false, "grpcio-reflection": false, grpcio: false, "hatch-vcs": false, hatchling: false, "httpx-ws": false, httpx: false, inflection: false, inquirerpy: false, jinja2: false, kantoku: false, numpy: false, "nvidia-ml-py": false, "opentelemetry-api": false, "opentelemetry-exporter-otlp-proto-http": false, "opentelemetry-exporter-otlp": false, "opentelemetry-instrumentation-aiohttp-client": false, "opentelemetry-instrumentation-asgi": false, "opentelemetry-instrumentation-grpc": false, "opentelemetry-instrumentation": false, "opentelemetry-sdk": false, "opentelemetry-semantic-conventions": false, "opentelemetry-util-http": false, packaging: false, pandas: false, pathspec: false, pillow: false, "pip-requirements-parser": false, "prometheus-client": false, protobuf: false, psutil: false, pyarrow: false, pydantic: false, "python-dateutil": false, "python-json-logger": false, "python-multipart": false, pyyaml: false, questionary: false, rich: false, "rich-toolkit": false, schema: false, "simple-di": false, starlette: false, "tomli-w": false, tritonclient: false, uvicorn: false, watchfiles: false, pytestCheckHook: false, "pytest-xdist": false, "google-api-python-client": false, "scikit-learn": false, lxml: false, orjson: false, "pytest-asyncio": false, fastapi: false, writableTmpDirAsHomeHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["all", 106, 5], ["aws", 108, 7], ["grpc", 109, 7], ["io-image", 110, 7], ["io-pandas", 111, 7], ["io", 112, 7], ["grpc-reflection", 113, 7], ["grpc-channelz", 114, 7], ["monitor-otlp", 115, 7], ["tracing-otlp", 116, 7], ["tracing", 117, 7], ["triton", 119, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["owner", 128, 5], ["repo", 129, 5], ["tag", 130, 5], ["hash", 131, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 248, 5], ["homepage", 249, 5], ["changelog", 250, 5], ["knownVulnerabilities", 251, 5], ["license", 259, 5], ["maintainers", 260, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 135, 3], ["version", 136, 11], ["src", 136, 19], ["pyproject", 137, 3], ["pythonRelaxDeps", 139, 3], ["build-system", 153, 3], ["dependencies", 158, 3], ["optional-dependencies", 208, 11], ["pythonImportsCheck", 210, 3], ["preCheck", 212, 3], ["disabledTestPaths", 218, 3], ["disabledTests", 225, 3], ["nativeCheckInputs", 232, 3], ["meta", 247, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -97,7 +94,7 @@ export default nix.lambda((args) => (() => {
   const io = nix.thunk(() => nix.concat(io_image, io_pandas));
   const tracing = tracing_otlp;
   const optional_dependencies = nix.thunk(() => ({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     all: nix.thunk(() => nix.concat(aws, nix.concat(io, nix.concat(grpc, nix.concat(grpc_reflection, nix.concat(grpc_channelz, nix.concat(tracing, monitor_otlp))))))),
     aws: aws,
     grpc: grpc,
@@ -112,14 +109,14 @@ export default nix.lambda((args) => (() => {
     triton: nix.thunk(() => nix.concat([tritonclient], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => nix.concat(nix.sel(tritonclient, "optional-dependencies", "http"), nix.sel(tritonclient, "optional-dependencies", "grpc")))))),
   }));
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       owner: "bentoml",
       repo: "BentoML",
       tag: nix.thunk(() => nix.str`v${version}`),
       hash: "sha256-SR84EeZ9WNoaRDG4uklYhlFSDigZv81XX3VlKCn/7Zw=",
     }))));
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "bentoml",
       version: version,
       src: src,
@@ -206,7 +203,7 @@ export default nix.lambda((args) => (() => {
         writableTmpDirAsHomeHook,
       ], nix.sel(optional_dependencies, "grpc"))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Build Production-Grade AI Applications",
         homepage: "https://github.com/bentoml/BentoML",
         changelog: nix.thunk(() => nix.str`https://github.com/bentoml/BentoML/releases/tag/${nix.sel(src, "tag")}`),

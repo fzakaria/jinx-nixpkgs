@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["enableJavaFX", 15, 5]], [["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["hash", 26, 5]], [["name", 79, 7], ["exec", 80, 7], ["icon", 81, 7], ["comment", 82, 7], ["desktopName", 83, 7], ["mimeTypes", 84, 7], ["categories", 89, 7]], [["changelog", 94, 5], ["description", 95, 5], ["homepage", 96, 5], ["license", 97, 5], ["mainProgram", 98, 5], ["maintainers", 99, 5], ["platforms", 100, 5], ["sourceProvenance", 101, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["patches", 29, 3], ["postPatch", 37, 3], ["mvnJdk", 43, 3], ["mvnParameters", 44, 3], ["mvnHash", 49, 3], ["nativeBuildInputs", 51, 3], ["dontWrapGApps", 58, 3], ["installPhase", 60, 3], ["postFixup", 69, 3], ["desktopItems", 77, 3], ["meta", 93, 3]]]);
 const formals$1 = { args: { lib: false, jdk21: false, maven: false, fetchFromGitHub: false, makeDesktopItem: false, copyDesktopItems: false, glib: false, makeWrapper: false, wrapGAppsHook3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["enableJavaFX", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["hash", 26, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 79, 7], ["exec", 80, 7], ["icon", 81, 7], ["comment", 82, 7], ["desktopName", 83, 7], ["mimeTypes", 84, 7], ["categories", 89, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["changelog", 94, 5], ["description", 95, 5], ["homepage", 96, 5], ["license", 97, 5], ["mainProgram", 98, 5], ["maintainers", 99, 5], ["platforms", 100, 5], ["sourceProvenance", 101, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["patches", 29, 3], ["postPatch", 37, 3], ["mvnJdk", 43, 3], ["mvnParameters", 44, 3], ["mvnHash", 49, 3], ["nativeBuildInputs", 51, 3], ["dontWrapGApps", 58, 3], ["installPhase", 60, 3], ["postFixup", 69, 3], ["desktopItems", 77, 3], ["meta", 93, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const glib = nix.arg($, "glib");
   const makeWrapper = nix.arg($, "makeWrapper");
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
-  const jdk = nix.thunk(() => nix.app(nix.sel(jdk21, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, enableJavaFX: true }))));
+  const jdk = nix.thunk(() => nix.app(nix.sel(jdk21, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], enableJavaFX: true }))));
   return nix.app(nix.sel(maven, "buildMavenPackage"), nix.thunk(() => (() => {
       const pname = "scenebuilder";
       const version = "21.0.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "gluonhq",
           repo: "scenebuilder",
           rev: version,
@@ -56,7 +52,7 @@ runHook postInstall
 `);
       const desktopItems = nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "scenebuilder",
             exec: "scenebuilder",
             icon: "scenebuilder",
@@ -67,7 +63,7 @@ runHook postInstall
           })))),
       ]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         changelog: nix.thunk(() => nix.str`https://github.com/gluonhq/scenebuilder/releases/tag/${nix.sel(src, "rev")}`),
         description: "Visual, drag'n'drop, layout tool for designing JavaFX application user interfaces",
         homepage: "https://gluonhq.com/products/scene-builder/",
@@ -87,7 +83,7 @@ runHook postInstall
         })()),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         src,

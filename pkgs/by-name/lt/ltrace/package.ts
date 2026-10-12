@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 16, 5], ["sha256", 17, 5]], [["url", 30, 9], ["rev", 31, 9], ["sha256", 32, 9]], [["url", 53, 7], ["hash", 54, 7]], [["description", 78, 5], ["mainProgram", 79, 5], ["homepage", 80, 5], ["platforms", 81, 5], ["license", 82, 5], ["maintainers", 83, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["nativeBuildInputs", 20, 3], ["buildInputs", 21, 3], ["nativeCheckInputs", 22, 3], ["prePatch", 27, 3], ["patches", 46, 3], ["doCheck", 64, 3], ["checkPhase", 65, 3], ["meta", 77, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, fetchgit: false, autoreconfHook: false, dejagnu: false, elfutils: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 16, 5], ["sha256", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 30, 9], ["rev", 31, 9], ["sha256", 32, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 53, 7], ["hash", 54, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 78, 5], ["mainProgram", 79, 5], ["homepage", 80, 5], ["platforms", 81, 5], ["license", 82, 5], ["maintainers", 83, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["nativeBuildInputs", 20, 3], ["buildInputs", 21, 3], ["nativeCheckInputs", 22, 3], ["prePatch", 27, 3], ["patches", 46, 3], ["doCheck", 64, 3], ["checkPhase", 65, 3], ["meta", 77, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const dejagnu = nix.arg($, "dejagnu");
   const elfutils = nix.arg($, "elfutils");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "ltrace",
       version: "0.7.91",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://src.fedoraproject.org/repo/pkgs/ltrace/ltrace-0.7.91.tar.bz2/9db3bdee7cf3e11c87d8cc7673d4d25b/ltrace-0.7.91.tar.bz2",
           sha256: "sha256-HqellbKh2ZDHxslXl7SSIXtpjV1sodtgVwh8hgTC3Dc=",
         })))),
@@ -32,7 +28,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [dejagnu]),
       prePatch: nix.thunk(() => (() => {
         const fedora = nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://src.fedoraproject.org/rpms/ltrace.git",
             rev: "00f430ccbebdbd13bdd4d7ee6303b091cf005542",
             sha256: "sha256-FBGEgmaslu7xrJtZ2WsYwu9Cw1ZQrWRV1+Eu9qLXO4s=",
@@ -50,7 +46,7 @@ patches="$fedorapatches $patches"
         nix.path(here, "./testsuite-newfstatat.patch"),
         nix.path(here, "./sysdeps-x86.patch"),
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: "https://github.com/gentoo/gentoo/raw/a2eb7e103ec985ff90f59e722e0a8a43373972a2/dev-debug/ltrace/files/ltrace-0.7.3-print-test-pie.patch",
             hash: "sha256-QRsUoN3WLzfiY5GDPwVYXtJPFMJt6rcc6eE96SAtI6Q=",
           })))),
@@ -69,7 +65,7 @@ RUNTESTFLAGS="--host=${nix.sel(stdenv, "hostPlatform", "config")} \\
   make check
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Library call tracer",
         mainProgram: "ltrace",
         homepage: "https://www.ltrace.org/",

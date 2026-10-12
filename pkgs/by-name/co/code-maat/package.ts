@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 14, 5], ["hash", 15, 5]], [["description", 40, 5], ["mainProgram", 41, 5], ["homepage", 42, 5], ["platforms", 43, 5], ["license", 44, 5], ["maintainers", 45, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["dontUnpack", 18, 3], ["nativeBuildInputs", 20, 3], ["installPhase", 24, 3], ["meta", 39, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchurl: false, makeBinaryWrapper: false, jre: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 14, 5], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 40, 5], ["mainProgram", 41, 5], ["homepage", 42, 5], ["platforms", 43, 5], ["license", 44, 5], ["maintainers", 45, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["dontUnpack", 18, 3], ["nativeBuildInputs", 20, 3], ["installPhase", 24, 3], ["meta", 39, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const makeBinaryWrapper = nix.arg($, "makeBinaryWrapper");
   const jre = nix.arg($, "jre");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "code-maat",
       version: "1.0.4",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/adamtornhill/code-maat/releases/download/v${nix.sel(finalAttrs, "version")}/code-maat-${nix.sel(finalAttrs, "version")}-standalone.jar`),
           hash: "sha256-QoeuIDSQGERFD3aVR7xEl6DaGm0cf6b63IWHBeZ0O18=",
         })))),
@@ -38,7 +36,7 @@ runHook postInstall
 `;
       })()),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Command line tool to mine and analyze data from version-control systems",
         mainProgram: "code-maat",
         homepage: "https://github.com/adamtornhill/code-maat",

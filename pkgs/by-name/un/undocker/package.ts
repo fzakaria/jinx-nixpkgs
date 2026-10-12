@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 10, 5], ["rev", 11, 5], ["hash", 12, 5]], [["homepage", 28, 5], ["description", 29, 5], ["license", 30, 5], ["maintainers", 31, 5], ["mainProgram", 35, 5]], [["pname", 16, 3], ["version", 17, 11], ["src", 17, 19], ["nativeBuildInputs", 19, 3], ["buildPhase", 21, 3], ["installPhase", 23, 3], ["vendorHash", 25, 3], ["meta", 27, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchgit: false, gnumake: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 10, 5], ["rev", 11, 5], ["hash", 12, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 28, 5], ["description", 29, 5], ["license", 30, 5], ["maintainers", 31, 5], ["mainProgram", 35, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 11], ["src", 17, 19], ["nativeBuildInputs", 19, 3], ["buildPhase", 21, 3], ["installPhase", 23, 3], ["vendorHash", 25, 3], ["meta", 27, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,13 +13,13 @@ export default nix.lambda((args) => (() => {
   const gnumake = nix.arg($, "gnumake");
   const version = "1.2.3";
   const src = nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: "https://git.jakstys.lt/undocker.git",
       rev: nix.thunk(() => nix.str`v${version}`),
       hash: "sha256-hyP85pYtXxucAliilUt9Y2qnrfPeSjeGsYEFJndJWyA=",
     }))));
   return nix.app(buildGoModule, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "undocker",
       version: version,
       src: src,
@@ -30,7 +28,7 @@ export default nix.lambda((args) => (() => {
       installPhase: "install -D undocker $out/bin/undocker",
       vendorHash: null,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://git.jakstys.lt/undocker",
         description: "CLI tool to convert a Docker image to a flattened rootfs tarball",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

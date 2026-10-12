@@ -2,9 +2,9 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/clean-packaging.nix", [[["commonFileActions", 57, 11], ["checkForRemainingFiles", 57, 29]]]);
 const formals$1 = { args: { lib: false, stdenv: false, file: false, writeScript: false }, ellipsis: false };
 const formals$2 = { args: { noiseFiles: false, docFiles: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/clean-packaging.nix", [["commonFileActions", 57, 11], ["checkForRemainingFiles", 57, 29]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -39,7 +39,7 @@ if [[ "$rem" != "" ]]; then
 fi
 `)));
   return {
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     commonFileActions: commonFileActions,
     checkForRemainingFiles: checkForRemainingFiles,
   };

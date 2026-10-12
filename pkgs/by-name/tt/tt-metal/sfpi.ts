@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/sfpi.nix", [[["url", 37, 11], ["hash", 38, 11]], [["url", 41, 11], ["hash", 42, 11]], [["aarch64-linux", 36, 9], ["x86_64-linux", 40, 9]], [["version", 19, 13], ["nativeBuildInputs", 21, 5], ["buildInputs", 25, 5], ["src", 34, 5]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, runCommand: false, autoPatchelfHook: false, ncurses: false, mpfr: false, libmpc: false, xz: false, zstd: false, expat: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/sfpi.nix", [["url", 37, 11], ["hash", 38, 11]]);
-const pos$2 = nix.positions(here + "/sfpi.nix", [["url", 41, 11], ["hash", 42, 11]]);
-const pos$3 = nix.positions(here + "/sfpi.nix", [["aarch64-linux", 36, 9], ["x86_64-linux", 40, 9]]);
-const pos$4 = nix.positions(here + "/sfpi.nix", [["version", 19, 13], ["nativeBuildInputs", 21, 5], ["buildInputs", 25, 5], ["src", 34, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,19 +20,19 @@ export default nix.lambda((args) => (() => {
   const expat = nix.arg($, "expat");
   const version = "7.78.0";
   return nix.app(runCommand, nix.thunk(() => nix.str`sfpi-${version}`), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       version: version,
       nativeBuildInputs: nix.thunk(() => [autoPatchelfHook]),
       buildInputs: nix.thunk(() => [ncurses, mpfr, libmpc, xz, zstd, expat]),
       src: nix.thunk(() => nix.selOr({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         "aarch64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             url: nix.thunk(() => nix.str`https://github.com/tenstorrent/sfpi/releases/download/${version}/sfpi_${version}_aarch64_debian.txz`),
             hash: "sha256-ATcNRyNZ6c3DOb+s5k7ATpMafr6k3+DoZJYTgd0rdHI=",
           })))),
         "x86_64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: nix.thunk(() => nix.str`https://github.com/tenstorrent/sfpi/releases/download/${version}/sfpi_${version}_x86_64_debian.txz`),
             hash: "sha256-RkxkdZ5EG4Qda8BiFtvUcNeg8Yjg/6msjrsuQEzyRNs=",
           })))),

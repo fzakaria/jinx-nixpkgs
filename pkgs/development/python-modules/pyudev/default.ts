@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 21, 26], ["version", 21, 32], ["hash", 22, 5]], [["homepage", 50, 5], ["description", 51, 5], ["changelog", 52, 5], ["license", 53, 5], ["maintainers", 54, 5]], [["pname", 16, 3], ["version", 17, 3], ["pyproject", 18, 3], ["src", 20, 3], ["postPatch", 25, 3], ["build-system", 30, 3], ["dependencies", 32, 3], ["checkPhase", 34, 3], ["doCheck", 40, 3], ["nativeCheckInputs", 42, 3], ["meta", 49, 3]]]);
 const formals$1 = { args: { lib: false, fetchPypi: false, buildPythonPackage: false, six: false, udev: false, pytest: false, mock: false, hypothesis: false, docutils: false, stdenvNoCC: false, setuptools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 21, 26], ["version", 21, 32], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 50, 5], ["description", 51, 5], ["changelog", 52, 5], ["license", 53, 5], ["maintainers", 54, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 16, 3], ["version", 17, 3], ["pyproject", 18, 3], ["src", 20, 3], ["postPatch", 25, 3], ["build-system", 30, 3], ["dependencies", 32, 3], ["checkPhase", 34, 3], ["doCheck", 40, 3], ["nativeCheckInputs", 42, 3], ["meta", 49, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "pyudev",
       version: "0.24.4",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-54i7mDcAsahO/C6IhisKUa8qmV1bhryZl1RlBc97Nrw=",
@@ -40,7 +38,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       nativeCheckInputs: nix.thunk(() => [pytest, mock, hypothesis, docutils]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://pyudev.readthedocs.org/",
         description: "Pure Python libudev binding",
         changelog: nix.thunk(() => nix.str`https://github.com/pyudev/pyudev/blob/v${nix.sel(finalAttrs, "version")}/CHANGES.rst`),

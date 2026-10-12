@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["description", 17, 5], ["platforms", 18, 5], ["maintainers", 19, 5], ["mainProgram", 20, 5], ["license", 21, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 11, 3], ["nativeBuildInputs", 12, 3], ["meta", 16, 3]]]);
 const formals$1 = { args: { cmake: false, lib: false, ninja: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["description", 17, 5], ["platforms", 18, 5], ["maintainers", 19, 5], ["mainProgram", 20, 5], ["license", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 11, 3], ["nativeBuildInputs", 12, 3], ["meta", 16, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,13 +12,13 @@ export default nix.lambda((args) => (() => {
   const ninja = nix.arg($, "ninja");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "hello-cpp",
       version: nix.thunk(() => nix.sel(lib, "trivial", "release")),
       src: nix.path(here, "./src"),
       nativeBuildInputs: nix.thunk(() => [cmake, ninja]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Basic sanity check that C++ and cmake infrastructure are working",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
         maintainers: nix.thunk(() => nix.selOr(stdenv, () => [], "meta", "maintainers")),

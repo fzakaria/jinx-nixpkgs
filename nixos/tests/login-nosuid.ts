@@ -2,61 +2,47 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
-const pos$1 = nix.positions(here + "/login-nosuid.nix", [["maintainers", 4, 5]]);
+const $pos = nix.positions(here + "/login-nosuid.nix", [[["maintainers", 4, 5]], [["SpMin", 17, 24]], [["ExpiredCheck", 17, 11]], [["settings", 16, 19]], [["enable", 15, 9], ["pwaccessd", 16, 9], ["extraArgs", 21, 30]], [["chfnRestrict", 25, 26]], [["enableWrappers", 12, 16], ["account-utils", 14, 16], ["loginDefs", 25, 16]], [["NoNewPrivileges", 13, 32]], [["Manager", 13, 24]], [["settings", 13, 15]], [["mutableUsers", 20, 13]], [["systemPackages", 27, 19], ["shells", 31, 19]], [["security", 12, 7], ["systemd", 13, 7], ["users", 20, 7], ["environment", 27, 7]], [["machine", 9, 9]], [["name", 2, 3], ["meta", 3, 3], ["nodes", 9, 3], ["testScript", 42, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/login-nosuid.nix", [["SpMin", 17, 24]]);
-const pos$3 = nix.positions(here + "/login-nosuid.nix", [["ExpiredCheck", 17, 11]]);
-const pos$4 = nix.positions(here + "/login-nosuid.nix", [["settings", 16, 19]]);
-const pos$5 = nix.positions(here + "/login-nosuid.nix", [["enable", 15, 9], ["pwaccessd", 16, 9], ["extraArgs", 21, 30]]);
-const pos$6 = nix.positions(here + "/login-nosuid.nix", [["chfnRestrict", 25, 26]]);
-const pos$7 = nix.positions(here + "/login-nosuid.nix", [["enableWrappers", 12, 16], ["account-utils", 14, 16], ["loginDefs", 25, 16]]);
-const pos$8 = nix.positions(here + "/login-nosuid.nix", [["NoNewPrivileges", 13, 32]]);
-const pos$9 = nix.positions(here + "/login-nosuid.nix", [["Manager", 13, 24]]);
-const pos$10 = nix.positions(here + "/login-nosuid.nix", [["settings", 13, 15]]);
-const pos$11 = nix.positions(here + "/login-nosuid.nix", [["mutableUsers", 20, 13]]);
-const pos$12 = nix.positions(here + "/login-nosuid.nix", [["systemPackages", 27, 19], ["shells", 31, 19]]);
-const pos$13 = nix.positions(here + "/login-nosuid.nix", [["security", 12, 7], ["systemd", 13, 7], ["users", 20, 7], ["environment", 27, 7]]);
-const pos$14 = nix.positions(here + "/login-nosuid.nix", [["machine", 9, 9]]);
-const pos$15 = nix.positions(here + "/login-nosuid.nix", [["name", 2, 3], ["meta", 3, 3], ["nodes", 9, 3], ["testScript", 42, 3]]);
 
 export default nix.thunk(() => ({
-  [nix.POS]: pos$15,
+  [nix.POS]: $pos[14],
   name: "login-nosuid",
-  meta: nix.thunk(() => ({ [nix.POS]: pos$1, maintainers: [] })),
+  meta: nix.thunk(() => ({ [nix.POS]: $pos[0], maintainers: [] })),
   nodes: nix.thunk(() => ({
-    [nix.POS]: pos$14,
+    [nix.POS]: $pos[13],
     machine: nix.lambda((args) => (() => {
       const $ = nix.formals(args, formals$1);
       const pkgs = nix.arg($, "pkgs");
       return {
-        [nix.POS]: pos$13,
+        [nix.POS]: $pos[12],
         security: nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           enableWrappers: false,
           "account-utils": nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             enable: true,
             pwaccessd: nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               settings: nix.thunk(() => ({
-                [nix.POS]: pos$3,
-                ExpiredCheck: nix.thunk(() => ({ [nix.POS]: pos$2, SpMin: true })),
+                [nix.POS]: $pos[2],
+                ExpiredCheck: nix.thunk(() => ({ [nix.POS]: $pos[1], SpMin: true })),
               })),
             })),
             extraArgs: nix.thunk(() => ["-v", "--debug"]),
           })),
-          loginDefs: nix.thunk(() => ({ [nix.POS]: pos$6, chfnRestrict: "f" })),
+          loginDefs: nix.thunk(() => ({ [nix.POS]: $pos[5], chfnRestrict: "f" })),
         })),
         systemd: nix.thunk(() => ({
-          [nix.POS]: pos$10,
+          [nix.POS]: $pos[9],
           settings: nix.thunk(() => ({
-            [nix.POS]: pos$9,
-            Manager: nix.thunk(() => ({ [nix.POS]: pos$8, NoNewPrivileges: true })),
+            [nix.POS]: $pos[8],
+            Manager: nix.thunk(() => ({ [nix.POS]: $pos[7], NoNewPrivileges: true })),
           })),
         })),
-        users: nix.thunk(() => ({ [nix.POS]: pos$11, mutableUsers: true })),
+        users: nix.thunk(() => ({ [nix.POS]: $pos[10], mutableUsers: true })),
         environment: nix.thunk(() => ({
-          [nix.POS]: pos$12,
+          [nix.POS]: $pos[11],
           systemPackages: nix.thunk(() => [
             nix.thunk(() => nix.sel(pkgs, "which")),
             nix.thunk(() => nix.sel(pkgs, "fish")),

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 11, 5], ["hash", 12, 5]], [["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5]], [["homepage", 53, 5], ["description", 54, 5], ["license", 55, 5], ["maintainers", 56, 5], ["platforms", 60, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["buildInputs", 26, 3], ["propagatedUserEnvPkgs", 27, 3], ["format", 29, 3], ["shardsFile", 30, 3], ["lockFile", 31, 3], ["preConfigure", 33, 3], ["postInstall", 39, 3], ["installCheckPhase", 46, 3], ["dontCheckForBrokenSymlinks", 50, 3], ["meta", 52, 3]]]);
 const formals$1 = { args: { lib: false, crystal: false, fetchFromGitHub: false, fetchurl: false, jq: false, bash: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 11, 5], ["hash", 12, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 53, 5], ["description", 54, 5], ["license", 55, 5], ["maintainers", 56, 5], ["platforms", 60, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["buildInputs", 26, 3], ["propagatedUserEnvPkgs", 27, 3], ["format", 29, 3], ["shardsFile", 30, 3], ["lockFile", 31, 3], ["preConfigure", 33, 3], ["postInstall", 39, 3], ["installCheckPhase", 46, 3], ["dontCheckForBrokenSymlinks", 50, 3], ["meta", 52, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const jq = nix.arg($, "jq");
   const bash = nix.arg($, "bash");
   const icon = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: "https://github.com/mawww/kakoune/raw/master/doc/kakoune_logo.svg",
       hash: "sha256-JxhIEmjiGrisaarA1sX1AfzNjHNIm9xjyPs/nG1uL/U=",
     }))));
@@ -25,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const pname = "kakoune.cr";
       const version = "0-unstable-2021-11-12";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "alexherbo2",
           repo: "kakoune.cr",
           rev: "43d4276e1d173839f335ff60f205b89705892e00",
@@ -48,7 +45,7 @@ cp -r share/kcr $out/share/
       const installCheckPhase = "$out/bin/kcr --help\n";
       const dontCheckForBrokenSymlinks = true;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/alexherbo2/kakoune.cr",
         description: "Command-line tool for Kakoune",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unlicense")),
@@ -62,7 +59,7 @@ cp -r share/kcr $out/share/
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

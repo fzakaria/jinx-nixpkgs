@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]], [["description", 67, 5], ["longDescription", 68, 5], ["homepage", 89, 5], ["maintainers", 90, 5], ["mainProgram", 91, 5], ["license", 92, 5], ["platforms", 94, 5], ["broken", 95, 5]], [["version", 22, 3], ["pname", 23, 3], ["src", 25, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 36, 3], ["makeFlags", 51, 3], ["preInstall", 52, 3], ["installFlags", 55, 3], ["postInstall", 60, 3], ["meta", 66, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, autoreconfHook: false, "pkg-config": false, libxcb: false, "libxcb-keysyms": false, "libxcb-image": false, pam: false, libx11: false, libev: false, cairo: false, libxkbcommon: false, libxkbfile: false, libjpeg_turbo: false, xcbutilxrm: false, "libxcb-util": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 67, 5], ["longDescription", 68, 5], ["homepage", 89, 5], ["maintainers", 90, 5], ["mainProgram", 91, 5], ["license", 92, 5], ["platforms", 94, 5], ["broken", 95, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 22, 3], ["pname", 23, 3], ["src", 25, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 36, 3], ["makeFlags", 51, 3], ["preInstall", 52, 3], ["installFlags", 55, 3], ["postInstall", 60, 3], ["meta", 66, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const xcbutilxrm = nix.arg($, "xcbutilxrm");
   const libxcb_util = nix.arg($, "libxcb-util");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       version: "2.13.c.5",
       pname: "i3lock-color",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "PandorasFox",
           repo: "i3lock-color",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -57,7 +55,7 @@ export default nix.lambda((args) => (() => {
       installFlags: nix.thunk(() => ["PREFIX=${out}", "SYSCONFDIR=${out}/etc", "MANDIR=${out}/share/man"]),
       postInstall: "mv $out/bin/i3lock $out/bin/i3lock-color\nln -s $out/bin/i3lock-color $out/bin/i3lock\nmv $out/share/man/man1/i3lock.1 $out/share/man/man1/i3lock-color.1\nsed -i 's/\\(^\\|\\s\\|\"\\)i3lock\\(\\s\\|$\\)/\\1i3lock-color\\2/g' $out/share/man/man1/i3lock-color.1\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Simple screen locker like slock, enhanced version with extra configuration options",
         longDescription: "Simple screen locker. After locking, a colored background (default: white) or\na configurable image is shown, and a ring-shaped unlock-indicator gives feedback\nfor every keystroke. After entering your password, the screen is unlocked again.\n\ni3lock-color is forked from i3lock (https://i3wm.org/i3lock/) with the following\nenhancements / additional configuration options:\n\n- indicator:\n  - shape: ring or bar\n  - size: configurable\n  - all colors: configurable\n  - all texts: configurable\n  - visibility: can be always visible, can be restricted to some screens\n\n- background: optionally show a blurred screen instead of a single color\n\n- more information: show text at configurable positions:\n  - clock: time/date with configurable format\n  - keyboard-layout\n",
         homepage: "https://github.com/PandorasFox/i3lock-color",

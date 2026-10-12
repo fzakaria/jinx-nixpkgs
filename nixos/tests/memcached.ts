@@ -2,34 +2,29 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/memcached.nix", [[["enable", 7, 24]], [["memcached", 7, 14]], [["imports", 6, 5], ["services", 7, 5]], [["machine", 5, 9]], [["libraries", 15, 13]], [["name", 3, 3], ["nodes", 5, 3], ["testScript", 10, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/memcached.nix", [["enable", 7, 24]]);
-const pos$2 = nix.positions(here + "/memcached.nix", [["memcached", 7, 14]]);
-const pos$3 = nix.positions(here + "/memcached.nix", [["imports", 6, 5], ["services", 7, 5]]);
-const pos$4 = nix.positions(here + "/memcached.nix", [["machine", 5, 9]]);
-const pos$5 = nix.positions(here + "/memcached.nix", [["libraries", 15, 13]]);
-const pos$6 = nix.positions(here + "/memcached.nix", [["name", 3, 3], ["nodes", 5, 3], ["testScript", 10, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   return {
-    [nix.POS]: pos$6,
+    [nix.POS]: $pos[5],
     name: "memcached",
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       machine: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         imports: nix.thunk(() => [nix.path(here, "../modules/profiles/minimal.nix")]),
         services: nix.thunk(() => ({
-          [nix.POS]: pos$2,
-          memcached: nix.thunk(() => ({ [nix.POS]: pos$1, enable: true })),
+          [nix.POS]: $pos[1],
+          memcached: nix.thunk(() => ({ [nix.POS]: $pos[0], enable: true })),
         })),
       })),
     })),
     testScript: nix.thunk(() => (() => {
       const testScript = nix.thunk(() => nix.app(nix.sel(pkgs, "writers", "writePython3"), "test_memcache", nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           libraries: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "python3Packages", "python-memcached"))]),
         })), "import memcache\nc = memcache.Client(['localhost:11211'])\nc.set('key', 'value')\nassert 'value' == c.get('key')\n"));
       return nix.str`machine.start()

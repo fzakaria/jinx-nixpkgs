@@ -2,9 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/geom.nix", [[["name", 10, 5], ["path", 11, 5], ["extraPaths", 12, 5], ["outputs", 22, 5], ["buildInputs", 29, 5], ["preBuild", 36, 5]], [["path", 42, 3], ["extraPaths", 43, 3], ["outputs", 47, 3], ["GEOM_CLASS_DIR", 53, 3], ["postInstall", 56, 3], ["buildInputs", 61, 3]]]);
 const formals$1 = { args: { lib: false, mkDerivation: false, libgeom: false, libufs: false, openssl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/geom.nix", [["name", 10, 5], ["path", 11, 5], ["extraPaths", 12, 5], ["outputs", 22, 5], ["buildInputs", 29, 5], ["preBuild", 36, 5]]);
-const pos$2 = nix.positions(here + "/geom.nix", [["path", 42, 3], ["extraPaths", 43, 3], ["outputs", 47, 3], ["GEOM_CLASS_DIR", 53, 3], ["postInstall", 56, 3], ["buildInputs", 61, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const libufs = nix.arg($, "libufs");
   const openssl = nix.arg($, "openssl");
   const libs = nix.thunk(() => nix.app(mkDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: "geom-class-libs",
       path: "lib/geom",
       extraPaths: nix.thunk(() => [
@@ -29,7 +28,7 @@ export default nix.lambda((args) => (() => {
       preBuild: "export NIX_CFLAGS_COMPILE=\"-I$BSDSRCDIR/sys $NIX_CFLAGS_COMPILE\";\n",
     }))));
   return nix.app(mkDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       path: "sbin/geom",
       extraPaths: nix.thunk(() => ["lib/Makefile.inc", "lib/geom"]),
       outputs: nix.thunk(() => ["out", "man", "debug"]),

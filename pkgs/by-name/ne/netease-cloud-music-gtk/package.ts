@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]], [["netease-cloud-music-api-1.5.2", 35, 7]], [["lockFile", 33, 5], ["outputHashes", 34, 5]], [["description", 70, 5], ["homepage", 71, 5], ["license", 72, 5], ["maintainers", 73, 5], ["mainProgram", 77, 5], ["platforms", 78, 5]], [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["cargoDeps", 32, 3], ["postPatch", 39, 3], ["nativeBuildInputs", 43, 3], ["buildInputs", 55, 3], ["meta", 69, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, rustPlatform: false, cargo: false, meson: false, ninja: false, "pkg-config": false, "desktop-file-utils": false, rustc: false, wrapGAppsHook4: false, openssl: false, dbus: false, libadwaita: false, "glib-networking": false, gst_all_1: false, libxml2: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["netease-cloud-music-api-1.5.2", 35, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["lockFile", 33, 5], ["outputHashes", 34, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 70, 5], ["homepage", 71, 5], ["license", 72, 5], ["maintainers", 73, 5], ["mainProgram", 77, 5], ["platforms", 78, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["cargoDeps", 32, 3], ["postPatch", 39, 3], ["nativeBuildInputs", 43, 3], ["buildInputs", 55, 3], ["meta", 69, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,21 +25,21 @@ export default nix.lambda((args) => (() => {
   const gst_all_1 = nix.arg($, "gst_all_1");
   const libxml2 = nix.arg($, "libxml2");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "netease-cloud-music-gtk",
       version: "2.5.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "gmg137",
           repo: "netease-cloud-music-gtk",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-yZOCUoAee2XSfO87SzTBjkZ4r2YzVC7mpqYULV5JPRE=",
         })))),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "importCargoLock"), nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           lockFile: nix.path(here, "./Cargo.lock"),
           outputHashes: nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             "netease-cloud-music-api-1.5.2": "sha256-7j5MLC++MPyuRvJRiUMWPV7OxWM2H+RD/hChuco3UTE=",
           })),
         })))),
@@ -71,7 +67,7 @@ export default nix.lambda((args) => (() => {
         ];
       })())),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Rust + GTK based netease cloud music player",
         homepage: "https://github.com/gmg137/netease-cloud-music-gtk",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

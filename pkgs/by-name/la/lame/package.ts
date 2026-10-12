@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 26, 5], ["hash", 27, 5]], [["description", 70, 5], ["homepage", 71, 5], ["license", 72, 5], ["maintainers", 73, 5], ["platforms", 74, 5], ["mainProgram", 75, 5]], [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["outputs", 30, 3], ["outputMan", 35, 3], ["patches", 37, 3], ["nativeBuildInputs", 51, 3], ["buildInputs", 53, 3], ["configureFlags", 55, 3], ["meta", 69, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, "pkg-config": false, nasmSupport: true, nasm: false, cpmlSupport: true, sndfileFileIOSupport: true, libsndfile: false, analyzerHooksSupport: true, decoderSupport: true, libmpg123: false, frontendSupport: true, mp3rtpSupport: true, debugSupport: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 70, 5], ["homepage", 71, 5], ["license", 72, 5], ["maintainers", 73, 5], ["platforms", 74, 5], ["mainProgram", 75, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["outputs", 30, 3], ["outputMan", 35, 3], ["patches", 37, 3], ["nativeBuildInputs", 51, 3], ["buildInputs", 53, 3], ["configureFlags", 55, 3], ["meta", 69, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const mp3rtpSupport = nix.argOr($, "mp3rtpSupport", () => false);
   const debugSupport = nix.argOr($, "debugSupport", () => false);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "lame",
       version: "4.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/lame/lame-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-PfUSTVrTqYMS/9e6aps2Iw5Pij5m084PQl4zbDLSFus=",
         })))),
@@ -54,7 +52,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), debugSupport, "--enable-debug=alot")),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "High quality MPEG Audio Layer III (MP3) encoder",
         homepage: "https://lame.sourceforge.io",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl2")),

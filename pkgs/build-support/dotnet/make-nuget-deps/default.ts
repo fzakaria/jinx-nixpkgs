@@ -2,13 +2,10 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["installable", 27, 58]], [["fetchNuGet", 27, 9]], [["name", 14, 5], ["paths", 15, 5]], [["sourceFile", 31, 13]]]);
 const formals$1 = { args: { symlinkJoin: false, lib: false, fetchNupkg: false }, ellipsis: false };
 const formals$2 = { args: { name: false, nugetDeps: true, sourceFile: true, installable: true }, ellipsis: false };
 const formals$3 = { args: { fetchNuGet: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["installable", 27, 58]]);
-const pos$2 = nix.positions(here + "/default.nix", [["fetchNuGet", 27, 9]]);
-const pos$3 = nix.positions(here + "/default.nix", [["name", 14, 5], ["paths", 15, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["sourceFile", 31, 13]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const sourceFile = nix.argOr($_1, "sourceFile", () => null);
       const installable = nix.argOr($_1, "installable", () => false);
       return nix.update(nix.app(symlinkJoin, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           name: nix.thunk(() => nix.str`${name}-nuget-deps`),
           paths: nix.thunk(() => (() => {
             const loadDeps = nix.thunk(() => (nix.asBool(!nix.eq(nugetDeps, null)) ? nix.force(nugetDeps) : (nix.asBool(nix.app(nix.sel(lib, "hasSuffix"), ".nix", sourceFile)) ? (() => {
@@ -34,11 +31,11 @@ export default nix.lambda((args) => (() => {
               return nix.builtins.map(fetchNuGet, nix.thunk(() => nix.app(nix.sel(lib, "importJSON"), sourceFile)));
             })(), formals$3))));
             return nix.app(loadDeps, nix.thunk(() => ({
-                [nix.POS]: pos$2,
-                fetchNuGet: (args_2) => nix.app(fetchNupkg, nix.thunk(() => nix.update(args_2, { [nix.POS]: pos$1, installable: installable }))),
+                [nix.POS]: $pos[1],
+                fetchNuGet: (args_2) => nix.app(fetchNupkg, nix.thunk(() => nix.update(args_2, { [nix.POS]: $pos[0], installable: installable }))),
               })));
           })()),
-        }))), { [nix.POS]: pos$4, sourceFile: sourceFile });
+        }))), { [nix.POS]: $pos[3], sourceFile: sourceFile });
     })(), formals$2));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

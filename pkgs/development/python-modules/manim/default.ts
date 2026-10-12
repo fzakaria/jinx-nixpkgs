@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 196, 5], ["repo", 197, 5], ["tag", 198, 5], ["hash", 199, 5]], [["jupyterlab", 254, 5], ["typst", 260, 5]], [["description", 291, 5], ["longDescription", 292, 5], ["mainProgram", 298, 5], ["changelog", 299, 5], ["homepage", 300, 5], ["license", 301, 5], ["maintainers", 302, 5]], [["pname", 190, 3], ["version", 191, 3], ["pyproject", 192, 3], ["__structuredAttrs", 193, 3], ["src", 195, 3], ["patches", 202, 3], ["postPatch", 204, 3], ["build-system", 213, 3], ["buildInputs", 217, 3], ["pythonRelaxDeps", 219, 3], ["dependencies", 222, 3], ["optional-dependencies", 253, 3], ["makeWrapperArgs", 265, 3], ["nativeCheckInputs", 275, 3], ["disabledTests", 286, 3], ["pythonImportsCheck", 288, 3], ["meta", 290, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, texliveInfraOnly: false, "uv-build": false, cairo: false, av: false, beautifulsoup4: false, click: false, cloup: false, decorator: false, isosurfaces: false, manimpango: false, "mapbox-earcut": false, moderngl: false, "moderngl-window": false, networkx: false, numpy: false, pillow: false, pycairo: false, pydub: false, pygments: false, rich: false, scipy: false, screeninfo: false, "skia-pathops": false, srt: false, svgelements: false, tqdm: false, "typing-extensions": false, watchdog: false, pythonAtLeast: false, "audioop-lts": false, jupyterlab: false, notebook: false, typst: false, ffmpeg: false, "pytest-cov-stub": false, "pytest-xdist": false, pytestCheckHook: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 196, 5], ["repo", 197, 5], ["tag", 198, 5], ["hash", 199, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["jupyterlab", 254, 5], ["typst", 260, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 291, 5], ["longDescription", 292, 5], ["mainProgram", 298, 5], ["changelog", 299, 5], ["homepage", 300, 5], ["license", 301, 5], ["maintainers", 302, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 190, 3], ["version", 191, 3], ["pyproject", 192, 3], ["__structuredAttrs", 193, 3], ["src", 195, 3], ["patches", 202, 3], ["postPatch", 204, 3], ["build-system", 213, 3], ["buildInputs", 217, 3], ["pythonRelaxDeps", 219, 3], ["dependencies", 222, 3], ["optional-dependencies", 253, 3], ["makeWrapperArgs", 265, 3], ["nativeCheckInputs", 275, 3], ["disabledTests", 286, 3], ["pythonImportsCheck", 288, 3], ["meta", 290, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -170,13 +167,13 @@ export default nix.lambda((args) => (() => {
       ];
     })()));
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "manim",
       version: "0.21.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ManimCommunity",
           repo: "manim",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -215,7 +212,7 @@ export default nix.lambda((args) => (() => {
         watchdog,
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(pythonAtLeast, "3.13")), nix.thunk(() => [audioop_lts])))),
       "optional-dependencies": nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         jupyterlab: nix.thunk(() => [jupyterlab, notebook]),
         typst: nix.thunk(() => [typst]),
       })),
@@ -237,7 +234,7 @@ export default nix.lambda((args) => (() => {
       disabledTests: nix.thunk(() => nix.builtins.import(nix.path(here, "./failing_tests.nix"))),
       pythonImportsCheck: nix.thunk(() => ["manim"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Animation engine for explanatory math videos - Community version",
         longDescription: "Manim is an animation engine for explanatory math videos. It's used to\ncreate precise animations programmatically, as seen in the videos of\n3Blue1Brown on YouTube. This is the community maintained version of\nmanim.\n",
         mainProgram: "manim",

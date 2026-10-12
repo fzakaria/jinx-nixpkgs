@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]], [["pname", 54, 26], ["version", 54, 32], ["src", 54, 40], ["pnpm", 55, 5], ["fetcherVersion", 56, 5], ["hash", 57, 5]], [["ELECTRON_SKIP_BINARY_DOWNLOAD", 125, 5]], [["name", 130, 7], ["genericName", 131, 7], ["desktopName", 132, 7], ["exec", 133, 7], ["icon", 134, 7], ["comment", 135, 7], ["keywords", 136, 7], ["categories", 142, 7], ["startupWMClass", 147, 7], ["terminal", 148, 7]], [["pnpmDeps", 153, 26], ["updateScript", 154, 5]], [["description", 158, 5], ["homepage", 159, 5], ["downloadPage", 160, 5], ["license", 161, 5], ["maintainers", 162, 5], ["platforms", 167, 5], ["mainProgram", 171, 5]], [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 47, 3], ["pnpmDeps", 53, 3], ["preBuild", 60, 3], ["buildPhase", 74, 3], ["installPhase", 104, 3], ["env", 124, 3], ["desktopItems", 128, 3], ["passthru", 152, 3], ["meta", 157, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchPnpmDeps: false, pnpmConfigHook: false, pnpm_10: false, nodejs: false, electron_43: false, makeWrapper: false, copyDesktopItems: false, makeDesktopItem: false, autoPatchelfHook: false, pipewire: false, libpulseaudio: false, jq: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 54, 26], ["version", 54, 32], ["src", 54, 40], ["pnpm", 55, 5], ["fetcherVersion", 56, 5], ["hash", 57, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["ELECTRON_SKIP_BINARY_DOWNLOAD", 125, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["name", 130, 7], ["genericName", 131, 7], ["desktopName", 132, 7], ["exec", 133, 7], ["icon", 134, 7], ["comment", 135, 7], ["keywords", 136, 7], ["categories", 142, 7], ["startupWMClass", 147, 7], ["terminal", 148, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pnpmDeps", 153, 26], ["updateScript", 154, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 158, 5], ["homepage", 159, 5], ["downloadPage", 160, 5], ["license", 161, 5], ["maintainers", 162, 5], ["platforms", 167, 5], ["mainProgram", 171, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 47, 3], ["pnpmDeps", 53, 3], ["preBuild", 60, 3], ["buildPhase", 74, 3], ["installPhase", 104, 3], ["env", 124, 3], ["desktopItems", 128, 3], ["passthru", 152, 3], ["meta", 157, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const electron = electron_43;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "legcord",
       version: "1.3.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Legcord",
           repo: "Legcord",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -56,7 +50,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "getLib"), nix.thunk(() => nix.sel(stdenv, "cc", "cc")))),
       ]),
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -122,10 +116,10 @@ makeShellWrapper "${nix.app(nix.sel(lib, "getExe"), electron)}" "$out/bin/legcor
 
 runHook postInstall
 `),
-      env: nix.thunk(() => ({ [nix.POS]: pos$3, ELECTRON_SKIP_BINARY_DOWNLOAD: 1n })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[2], ELECTRON_SKIP_BINARY_DOWNLOAD: 1n })),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             name: "legcord",
             genericName: "Internet Messenger",
             desktopName: "Legcord",
@@ -139,12 +133,12 @@ runHook postInstall
           })))),
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pnpmDeps: nix.thunk(() => nix.attr(finalAttrs, "pnpmDeps")),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Lightweight, alternative desktop client for Discord",
         homepage: "https://legcord.app",
         downloadPage: "https://github.com/Legcord/Legcord",

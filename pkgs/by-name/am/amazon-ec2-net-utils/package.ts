@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]], [["updateScript", 128, 5]], [["description", 132, 5], ["homepage", 133, 5], ["license", 134, 5], ["platforms", 135, 5], ["maintainers", 136, 5]], [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["strictDeps", 30, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 38, 3], ["installPhase", 43, 3], ["doInstallCheck", 120, 3], ["outputs", 122, 3], ["passthru", 127, 3], ["meta", 131, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, bash: false, coreutils: false, curl: false, fetchFromGitHub: false, gnugrep: false, gnused: false, installShellFiles: false, iproute2: false, makeBinaryWrapper: false, "nix-update-script": false, systemd: false, udevCheckHook: false, "util-linuxMinimal": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 128, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 132, 5], ["homepage", 133, 5], ["license", 134, 5], ["platforms", 135, 5], ["maintainers", 136, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["strictDeps", 30, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 38, 3], ["installPhase", 43, 3], ["doInstallCheck", 120, 3], ["outputs", 122, 3], ["passthru", 127, 3], ["meta", 131, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const udevCheckHook = nix.arg($, "udevCheckHook");
   const util_linuxMinimal = nix.arg($, "util-linuxMinimal");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "amazon-ec2-net-utils",
       version: "2.7.6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "amazonlinux",
           repo: "amazon-ec2-net-utils",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -98,11 +95,11 @@ runHook postInstall
       doInstallCheck: true,
       outputs: nix.thunk(() => ["out", "man"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Contains a set of utilities for managing elastic network interfaces on Amazon EC2",
         homepage: "https://github.com/amazonlinux/amazon-ec2-net-utils",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

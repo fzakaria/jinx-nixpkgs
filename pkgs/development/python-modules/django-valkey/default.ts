@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 32, 5], ["repo", 33, 5], ["tag", 34, 5], ["hash", 35, 5]], [["brotli", 46, 5], ["libvalkey", 47, 5], ["lz4", 48, 5], ["msgpack", 49, 5], ["msgspec", 50, 5], ["pyzstd", 51, 5], ["zstd", 52, 5]], [["description", 87, 5], ["homepage", 88, 5], ["changelog", 89, 5], ["license", 90, 5], ["maintainers", 91, 5]], [["pname", 27, 3], ["version", 28, 3], ["pyproject", 29, 3], ["src", 31, 3], ["build-system", 38, 3], ["dependencies", 40, 3], ["optional-dependencies", 45, 3], ["pythonImportsCheck", 55, 3], ["nativeCheckInputs", 57, 3], ["disabledTestPaths", 66, 3], ["__darwinAllowLocalNetworking", 84, 3], ["meta", 86, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, buildPythonPackage: false, hatchling: false, pythonOlder: false, "backports-zstd": false, brotli: false, django: false, libvalkey: false, lz4: false, msgpack: false, msgspec: false, valkey: false, anyio: false, "pytest-django_4_12": false, "pytest-mock": false, pytestCheckHook: false, redisTestHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 32, 5], ["repo", 33, 5], ["tag", 34, 5], ["hash", 35, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["brotli", 46, 5], ["libvalkey", 47, 5], ["lz4", 48, 5], ["msgpack", 49, 5], ["msgspec", 50, 5], ["pyzstd", 51, 5], ["zstd", 52, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 87, 5], ["homepage", 88, 5], ["changelog", 89, 5], ["license", 90, 5], ["maintainers", 91, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 27, 3], ["version", 28, 3], ["pyproject", 29, 3], ["src", 31, 3], ["build-system", 38, 3], ["dependencies", 40, 3], ["optional-dependencies", 45, 3], ["pythonImportsCheck", 55, 3], ["nativeCheckInputs", 57, 3], ["disabledTestPaths", 66, 3], ["__darwinAllowLocalNetworking", 84, 3], ["meta", 86, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.4.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "django-commons",
           repo: "django-valkey",
           tag: version,
@@ -42,7 +39,7 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [hatchling]);
       const dependencies = nix.thunk(() => [django, valkey]);
       const optional_dependencies = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         brotli: nix.thunk(() => [brotli]),
         libvalkey: nix.thunk(() => [libvalkey]),
         lz4: nix.thunk(() => [lz4]),
@@ -65,7 +62,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const __darwinAllowLocalNetworking = true;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Valkey backend for django",
         homepage: "https://github.com/django-commons/django-valkey",
         changelog: nix.thunk(() => nix.str`https://github.com/django-commons/django-valkey/releases/tag/${version}`),
@@ -73,7 +70,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

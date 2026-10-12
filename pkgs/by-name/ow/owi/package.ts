@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["fetchSubmodules", 24, 5], ["hash", 25, 5]], [["owi", 82, 36]], [["updateScript", 81, 5], ["tests", 82, 5]], [["description", 86, 5], ["homepage", 87, 5], ["downloadPage", 88, 5], ["license", 89, 5], ["maintainers", 90, 5], ["teams", 94, 5], ["mainProgram", 95, 5], ["badPlatforms", 96, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 41, 3], ["propagatedBuildInputs", 46, 3], ["postInstall", 66, 3], ["doCheck", 78, 3], ["passthru", 80, 3], ["meta", 85, 3]]]);
 const formals$1 = { args: { lib: false, "ocaml-ng": false, fetchFromGitHub: false, llvmPackages: false, rustc: false, zig: false, makeWrapper: false, unstableGitUpdater: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["fetchSubmodules", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owi", 82, 36]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 81, 5], ["tests", 82, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 86, 5], ["homepage", 87, 5], ["downloadPage", 88, 5], ["license", 89, 5], ["maintainers", 90, 5], ["teams", 94, 5], ["mainProgram", 95, 5], ["badPlatforms", 96, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 41, 3], ["propagatedBuildInputs", 46, 3], ["postInstall", 66, 3], ["doCheck", 78, 3], ["passthru", 80, 3], ["meta", 85, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const ocamlPackages = nix.thunk(() => nix.sel(ocaml_ng, "ocamlPackages_5_4"));
   return nix.app(nix.sel(ocamlPackages, "buildDunePackage"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "owi",
       version: "0.2-unstable-2026-05-22",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ocamlpro",
           repo: "owi",
           rev: "2d6ec0d897a209f34849d25f8bcfc73298820be3",
@@ -84,12 +80,12 @@ export default nix.lambda((args) => (() => {
 `),
       doCheck: false,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
-        tests: nix.thunk(() => ({ [nix.POS]: pos$2, owi: nix.thunk(() => nix.attr(nixosTests, "owi")) })),
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[1], owi: nix.thunk(() => nix.attr(nixosTests, "owi")) })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Symbolic execution for Wasm, C, C++, Rust and Zig",
         homepage: "https://ocamlpro.github.io/owi/",
         downloadPage: "https://github.com/OCamlPro/owi",

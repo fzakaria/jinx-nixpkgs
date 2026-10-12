@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["hash", 20, 5]], [["description", 38, 5], ["homepage", 39, 5], ["license", 40, 5], ["maintainers", 41, 5]], [["pname", 12, 3], ["version", 13, 3], ["format", 14, 3], ["src", 16, 3], ["pythonImportsCheck", 23, 3], ["doCheck", 24, 3], ["nativeCheckInputs", 25, 3], ["checkPhase", 30, 3], ["propagatedBuildInputs", 35, 3], ["meta", 37, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitHub: false, pillow: false, "python-xlib": false, "xvfb-run": false, scrot: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 38, 5], ["homepage", 39, 5], ["license", 40, 5], ["maintainers", 41, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 12, 3], ["version", 13, 3], ["format", 14, 3], ["src", 16, 3], ["pythonImportsCheck", 23, 3], ["doCheck", 24, 3], ["nativeCheckInputs", 25, 3], ["checkPhase", 30, 3], ["propagatedBuildInputs", 35, 3], ["meta", 37, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const xvfb_run = nix.arg($, "xvfb-run");
   const scrot = nix.arg($, "scrot");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "pyscreeze",
       version: "0.1.26",
       format: "setuptools",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "asweigart",
           repo: "pyscreeze",
           rev: "28ab707dceecbdd135a9491c3f8effd3a69680af",
@@ -35,7 +33,7 @@ export default nix.lambda((args) => (() => {
       checkPhase: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), "python -m unittest tests.test_pillow_unavailable\nxvfb-run python -m unittest tests.test_pyscreeze\n")),
       propagatedBuildInputs: nix.thunk(() => [pillow]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "PyScreeze is a simple, cross-platform screenshot module for Python 2 and 3",
         homepage: "https://github.com/asweigart/pyscreeze",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

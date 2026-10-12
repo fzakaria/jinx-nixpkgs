@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 17, 5], ["sha256", 18, 5]], [["description", 76, 5], ["mainProgram", 77, 5], ["homepage", 78, 5], ["license", 79, 5], ["platforms", 80, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 21, 3], ["buildInputs", 25, 3], ["patches", 39, 3], ["postPatch", 48, 3], ["buildPhase", 63, 3], ["installPhase", 69, 3], ["meta", 75, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, "pkg-config": false, unzip: false, portaudio: false, wxwidgets_3_2: false, sox: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 17, 5], ["sha256", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 76, 5], ["mainProgram", 77, 5], ["homepage", 78, 5], ["license", 79, 5], ["platforms", 80, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 21, 3], ["buildInputs", 25, 3], ["patches", 39, 3], ["postPatch", 48, 3], ["buildPhase", 63, 3], ["installPhase", 69, 3], ["meta", 75, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const wxwidgets_3_2 = nix.arg($, "wxwidgets_3_2");
   const sox = nix.arg($, "sox");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "espeakedit",
       version: "1.48.03",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/espeak/espeakedit-${nix.sel(finalAttrs, "version")}.zip`),
           sha256: "0x8s7vpb7rw5x37yjzy1f98m4f2csdg89libb74fm36gn8ly0hli",
         })))),
@@ -49,7 +47,7 @@ done
       buildPhase: "runHook preBuild\nmake -C src\nrunHook postBuild\n",
       installPhase: "runHook preInstall\ninstall -D src/espeakedit -t $out/bin\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Phoneme editor for espeak",
         mainProgram: "espeakedit",
         homepage: "https://espeak.sourceforge.net/",

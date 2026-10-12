@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/pure.nix", [[["url", 18, 5], ["hash", 19, 5]], [["description", 33, 5], ["homepage", 34, 5], ["license", 35, 5], ["maintainers", 36, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["buildInputs", 22, 3], ["propagatedBuildInputs", 24, 3], ["meta", 32, 3]]]);
 const formals$1 = { args: { lib: false, buildDunePackage: false, fetchurl: false, lwt_ppx: false, base64: false, hmap: false, lwt: false, ptime: false, uri: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/pure.nix", [["url", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/pure.nix", [["description", 33, 5], ["homepage", 34, 5], ["license", 35, 5], ["maintainers", 36, 5]]);
-const pos$3 = nix.positions(here + "/pure.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["buildInputs", 22, 3], ["propagatedBuildInputs", 24, 3], ["meta", 32, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,18 +17,18 @@ export default nix.lambda((args) => (() => {
   const ptime = nix.arg($, "ptime");
   const uri = nix.arg($, "uri");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "dream-pure",
       version: "1.0.0-alpha8",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/aantron/dream/releases/download/${nix.sel(finalAttrs, "version")}/dream-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-I+2BKJDAP+XJl0pJYano5iEmvte8fX0UQLhGUslc8pY=",
         })))),
       buildInputs: nix.thunk(() => [lwt_ppx]),
       propagatedBuildInputs: nix.thunk(() => [base64, hmap, lwt, ptime, uri]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Shared HTTP types for Dream (server) and Hyper (client)",
         homepage: "https://aantron.github.io/dream/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

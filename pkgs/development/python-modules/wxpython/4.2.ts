@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/4.2.nix", [[["pname", 57, 26], ["version", 57, 32], ["hash", 58, 5]], [["libgdk", 63, 7], ["libpangocairo", 64, 7], ["libcairo", 65, 7]], [["changelog", 174, 5], ["description", 175, 5], ["homepage", 176, 5], ["license", 177, 5]], [["pname", 52, 3], ["version", 53, 3], ["pyproject", 54, 3], ["src", 56, 3], ["patches", 61, 3], ["postPatch", 71, 3], ["nativeBuildInputs", 78, 3], ["buildInputs", 90, 3], ["propagatedBuildInputs", 108, 3], ["nativeCheckInputs", 114, 3], ["wafPath", 121, 3], ["buildPhase", 123, 3], ["installPhase", 134, 3], ["doCheck", 145, 3], ["checkPhase", 147, 3], ["meta", 173, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, setuptools: false, fetchPypi: false, fetchpatch: false, replaceVars: false, autoPatchelfHook: false, attrdict: false, cython: false, doxygen: false, "pkg-config": false, python: false, requests: false, sip: false, which: false, buildPackages: false, cairo: false, gst_all_1: false, gtk3: false, libGL: false, libGLU: false, libsm: false, libxinerama: false, libxtst: false, libxxf86vm: false, libglvnd: false, libgbm: false, pango: false, webkitgtk_4_1: false, wxGTK: false, xorgproto: false, numpy: false, pillow: false, six: false, py: false, pytest: false, "pytest-forked": false, "xvfb-run": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/4.2.nix", [["pname", 57, 26], ["version", 57, 32], ["hash", 58, 5]]);
-const pos$2 = nix.positions(here + "/4.2.nix", [["libgdk", 63, 7], ["libpangocairo", 64, 7], ["libcairo", 65, 7]]);
-const pos$3 = nix.positions(here + "/4.2.nix", [["changelog", 174, 5], ["description", 175, 5], ["homepage", 176, 5], ["license", 177, 5]]);
-const pos$4 = nix.positions(here + "/4.2.nix", [["pname", 52, 3], ["version", 53, 3], ["pyproject", 54, 3], ["src", 56, 3], ["patches", 61, 3], ["postPatch", 71, 3], ["nativeBuildInputs", 78, 3], ["buildInputs", 90, 3], ["propagatedBuildInputs", 108, 3], ["nativeCheckInputs", 114, 3], ["wafPath", 121, 3], ["buildPhase", 123, 3], ["installPhase", 134, 3], ["doCheck", 145, 3], ["checkPhase", 147, 3], ["meta", 173, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -50,19 +47,19 @@ export default nix.lambda((args) => (() => {
   const pytest_forked = nix.arg($, "pytest-forked");
   const xvfb_run = nix.arg($, "xvfb-run");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "wxpython",
       version: "4.2.5",
       pyproject: false,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-ROg20bzNmcOHkLsDS27PcNkGD2c0MgVg98Sw0AYUR5M=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./4.2-ctypes.patch"), nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             libgdk: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getLib"), gtk3)}/lib/libgdk-3${nix.sel(stdenv, "hostPlatform", "extensions", "sharedLibrary")}`),
             libpangocairo: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getLib"), pango)}/lib/libpangocairo-1.0${nix.sel(stdenv, "hostPlatform", "extensions", "sharedLibrary")}`),
             libcairo: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getLib"), cairo)}/lib/libcairo${nix.sel(stdenv, "hostPlatform", "extensions", "sharedLibrary")}`),
@@ -130,7 +127,7 @@ runHook postCheck
 `;
       })()),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         changelog: nix.thunk(() => nix.str`https://github.com/wxWidgets/Phoenix/blob/wxPython-${nix.sel(finalAttrs, "version")}/CHANGES.rst`),
         description: "Cross platform GUI toolkit for Python, Phoenix version",
         homepage: "http://wxpython.org/",

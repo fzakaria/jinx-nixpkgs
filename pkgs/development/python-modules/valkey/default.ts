@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 36, 5], ["repo", 37, 5], ["tag", 38, 5], ["hash", 39, 5]], [["url", 45, 7], ["hash", 46, 7]], [["url", 50, 7], ["hash", 51, 7]], [["url", 54, 7], ["hash", 55, 7]], [["libvalkey", 62, 5], ["ocsp", 63, 5]], [["description", 123, 5], ["homepage", 124, 5], ["changelog", 125, 5], ["license", 126, 5], ["maintainers", 127, 5]], [["pname", 31, 3], ["version", 32, 3], ["pyproject", 33, 3], ["src", 35, 3], ["patches", 42, 3], ["build-system", 59, 3], ["optional-dependencies", 61, 3], ["pythonImportsCheck", 70, 3], ["nativeCheckInputs", 80, 3], ["disabledTestMarks", 93, 3], ["disabledTests", 98, 3], ["disabledTestPaths", 115, 3], ["__darwinAllowLocalNetworking", 120, 3], ["meta", 122, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch: false, buildPythonPackage: false, pythonOlder: false, setuptools: false, cryptography: false, libvalkey: false, pyopenssl: false, requests: false, cachetools: false, mock: false, packaging: false, pytestCheckHook: false, "pytest-asyncio": false, "pytest-timeout": false, redisTestHook: false, ujson: false, uvloop: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 36, 5], ["repo", 37, 5], ["tag", 38, 5], ["hash", 39, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["url", 45, 7], ["hash", 46, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["url", 50, 7], ["hash", 51, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["url", 54, 7], ["hash", 55, 7]]);
-const pos$5 = nix.positions(here + "/default.nix", [["libvalkey", 62, 5], ["ocsp", 63, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["description", 123, 5], ["homepage", 124, 5], ["changelog", 125, 5], ["license", 126, 5], ["maintainers", 127, 5]]);
-const pos$7 = nix.positions(here + "/default.nix", [["pname", 31, 3], ["version", 32, 3], ["pyproject", 33, 3], ["src", 35, 3], ["patches", 42, 3], ["build-system", 59, 3], ["optional-dependencies", 61, 3], ["pythonImportsCheck", 70, 3], ["nativeCheckInputs", 80, 3], ["disabledTestMarks", 93, 3], ["disabledTests", 98, 3], ["disabledTestPaths", 115, 3], ["__darwinAllowLocalNetworking", 120, 3], ["meta", 122, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -38,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const version = "6.1.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "valkey-io",
           repo: "valkey-py",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -46,24 +40,24 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/valkey-io/valkey-py/commit/c01505e547f614f278b882a016557b6ed652bb9f.patch",
             hash: "sha256-rvA65inIioqdc+QV4KaaUv1I/TMZUq0TWaFJcJiy8NU=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: "https://github.com/valkey-io/valkey-py/commit/df5c44903dc8e2dda733e5576324ba0ff8c4c6a0.patch",
             hash: "sha256-0wsWuaOYWBgf6BjlJuciZYRbugYfchTU2khQX7rtRJg=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             url: "https://github.com/valkey-io/valkey-py/commit/046c7fb9e8260c2d69d05141b1519903c4e40efe.patch",
             hash: "sha256-/yN1y0hbmBR6o6ab4h0qkn/qhU6jASOIeqWhxUi5w/I=",
           })))),
       ]);
       const build_system = nix.thunk(() => [setuptools]);
       const optional_dependencies = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         libvalkey: nix.thunk(() => [libvalkey]),
         ocsp: nix.thunk(() => [cryptography, pyopenssl, requests]),
       }));
@@ -92,7 +86,7 @@ export default nix.lambda((args) => (() => {
       const disabledTestPaths = nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["tests/test_multiprocessing.py"])));
       const __darwinAllowLocalNetworking = true;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Python client for Redis key-value store",
         homepage: "https://github.com/valkey-io/valkey-py",
         changelog: nix.thunk(() => nix.str`https://github.com/valkey-io/valkey-py/releases/tag/${nix.sel(src, "tag")}`),
@@ -103,7 +97,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         pname,
         version,
         pyproject,

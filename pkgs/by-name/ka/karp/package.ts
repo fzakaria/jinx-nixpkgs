@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 19, 5], ["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5]], [["updateScript", 57, 12]], [["homepage", 60, 5], ["platforms", 61, 5], ["maintainers", 62, 5], ["description", 63, 5], ["license", 64, 5], ["mainProgram", 74, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["nativeBuildInputs", 26, 3], ["qtWrapperArgs", 33, 3], ["buildInputs", 42, 3], ["passthru", 57, 3], ["meta", 59, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitLab: false, cmake: false, qt6: false, kdePackages: false, ghostscript: false, qpdf: false, ninja: false, unstableGitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 19, 5], ["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 57, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 60, 5], ["platforms", 61, 5], ["maintainers", 62, 5], ["description", 63, 5], ["license", 64, 5], ["mainProgram", 74, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["nativeBuildInputs", 26, 3], ["qtWrapperArgs", 33, 3], ["buildInputs", 42, 3], ["passthru", 57, 3], ["meta", 59, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const ninja = nix.arg($, "ninja");
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "karp",
       version: "0-unstable-2025-03-05",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "invent.kde.org",
           owner: "graphics",
           repo: "karp",
@@ -56,11 +53,11 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.sel(qt6, "qtwebengine")),
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://apps.kde.org/karp/",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
         maintainers: nix.thunk(() => (() => {

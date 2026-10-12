@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]], [["url", 37, 7], ["hash", 38, 7]], [["NIX_CFLAGS_COMPILE", 53, 7]], [["intel-media-driver", 76, 29]], [["tests", 75, 12]], [["description", 80, 5], ["longDescription", 81, 5], ["homepage", 86, 5], ["changelog", 87, 5], ["license", 88, 5], ["platforms", 92, 5], ["maintainers", 93, 5]], [["pname", 19, 3], ["version", 20, 3], ["outputs", 22, 3], ["src", 27, 3], ["patches", 34, 3], ["cmakeFlags", 45, 3], ["env", 53, 3], ["nativeBuildInputs", 57, 3], ["buildInputs", 62, 3], ["postFixup", 70, 3], ["passthru", 75, 3], ["meta", 79, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch: false, cmake: false, "pkg-config": false, libva: false, libpciaccess: false, "intel-gmmlib": false, libdrm: false, enableX11: true, libx11: false, pkgsi686Linux: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 37, 7], ["hash", 38, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 53, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["intel-media-driver", 76, 29]]);
-const pos$5 = nix.positions(here + "/package.nix", [["tests", 75, 12]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 80, 5], ["longDescription", 81, 5], ["homepage", 86, 5], ["changelog", 87, 5], ["license", 88, 5], ["platforms", 92, 5], ["maintainers", 93, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["outputs", 22, 3], ["src", 27, 3], ["patches", 34, 3], ["cmakeFlags", 45, 3], ["env", 53, 3], ["nativeBuildInputs", 57, 3], ["buildInputs", 62, 3], ["postFixup", 70, 3], ["passthru", 75, 3], ["meta", 79, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const libx11 = nix.arg($, "libx11");
   const pkgsi686Linux = nix.arg($, "pkgsi686Linux");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "intel-media-driver",
       version: "26.2.4",
       outputs: nix.thunk(() => ["out", "dev"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "intel",
           repo: "media-driver",
           tag: nix.thunk(() => nix.str`intel-media-${nix.sel(finalAttrs, "version")}`),
@@ -40,7 +34,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://salsa.debian.org/multimedia-team/intel-media-driver-non-free/-/raw/7376a99f060c26d6be8e56674da52a61662617b9/debian/patches/0002-Remove-settings-based-on-ARCH.patch",
             hash: "sha256-57yePuHWYb3XXrB4MjYO2h6jbqfs4SGTLlLG91el8M4=",
           })))),
@@ -53,7 +47,7 @@ export default nix.lambda((args) => (() => {
         "-DMEDIA_BUILD_FATAL_WARNINGS=OFF",
       ]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.eq(nix.sel(stdenv, "hostPlatform", "system"), "i686-linux")), "-D_FILE_OFFSET_BITS=64")),
       })),
       nativeBuildInputs: nix.thunk(() => [cmake, pkg_config]),
@@ -62,14 +56,14 @@ export default nix.lambda((args) => (() => {
   $out/lib/dri/iHD_drv_video.so
 `))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           "intel-media-driver": nix.thunk(() => nix.attr(pkgsi686Linux, "intel-media-driver")),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Intel Media Driver for VAAPI — Broadwell+ iGPUs",
         longDescription: "The Intel Media Driver for VAAPI is a new VA-API (Video Acceleration API)\nuser mode driver supporting hardware accelerated decoding, encoding, and\nvideo post processing for GEN based graphics hardware.\n",
         homepage: "https://github.com/intel/media-driver",

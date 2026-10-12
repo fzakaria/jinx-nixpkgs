@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 12, 5], ["sha256", 13, 5]], [["url", 21, 5], ["sha256", 22, 5]], [["url", 27, 7], ["hash", 28, 7]], [["license", 79, 5], ["homepage", 80, 5], ["description", 81, 5], ["maintainers", 83, 5], ["platforms", 84, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["patches", 25, 3], ["outputs", 33, 3], ["nativeBuildInputs", 38, 3], ["configurePhase", 40, 3], ["buildPhase", 57, 3], ["installPhase", 61, 3], ["outputDoc", 76, 3], ["meta", 78, 3]]]);
 const formals$1 = { args: { fetchurl: false, bash: false, glibc: false, lib: false, stdenv: false, installShellFiles: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 12, 5], ["sha256", 13, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 21, 5], ["sha256", 22, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 27, 7], ["hash", 28, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["license", 79, 5], ["homepage", 80, 5], ["description", 81, 5], ["maintainers", 83, 5], ["platforms", 84, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["patches", 25, 3], ["outputs", 33, 3], ["nativeBuildInputs", 38, 3], ["configurePhase", 40, 3], ["buildPhase", 57, 3], ["installPhase", 61, 3], ["outputDoc", 76, 3], ["meta", 78, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,22 +14,22 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const installShellFiles = nix.arg($, "installShellFiles");
   const man_pages = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: "https://salsa.debian.org/debian/daemontools/-/archive/debian/1%250.76-8/daemontools-debian-1%250.76-8.tar.gz?path=debian/daemontools-man",
       sha256: "sha256-om5r1ddUx1uObp9LR+SwCLLtm+rRuLoq28OLbhWhdzU=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "daemontools",
       version: "0.76",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: nix.thunk(() => nix.str`https://cr.yp.to/daemontools/daemontools-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "07scvw88faxkscxi91031pjkpccql6wspk4yrlnsbrrb5c0kamd5",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: "https://salsa.debian.org/debian/daemontools/-/raw/1844f0e704ab66844da14354a16ea068eba0403f/debian/patches/0005-fix-ftbfs.patch",
             hash: "sha256-Q7t0kwajjTW2Ms5m44E4spBwHi5Xi6Y39FQVsawr8LA=",
           })))),
@@ -71,7 +67,7 @@ sed -i "s_^PATH=.*_PATH=$out/bin:\\$PATH_" "$out/bin/svscanboot"
 `),
       outputDoc: "man",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         license: nix.thunk(() => nix.sel(lib, "licenses", "publicDomain")),
         homepage: "https://cr.yp.to/daemontools.html",
         description: "Collection of tools for managing UNIX services",

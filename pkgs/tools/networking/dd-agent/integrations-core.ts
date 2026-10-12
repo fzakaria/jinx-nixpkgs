@@ -2,14 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/integrations-core.nix", [[["owner", 48, 5], ["repo", 49, 5], ["tag", 50, 5], ["hash", 51, 5]], [["src", 60, 17], ["version", 60, 21], ["name", 61, 9], ["pyproject", 62, 9], ["sourceRoot", 64, 9], ["buildInputs", 65, 9], ["doCheck", 69, 9]], [["pname", 75, 5], ["sourceRoot", 76, 5], ["dependencies", 78, 5], ["pythonImportsCheck", 98, 5]], [["disk", 107, 5], ["mongo", 108, 5], ["network", 109, 5], ["nginx", 110, 5], ["postgres", 111, 5], ["process", 118, 5]], [["pname", 126, 15], ["propagatedBuildInputs", 127, 7]], [["datadog_checks_base", 134, 11], ["python", 135, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, python3Packages: false, extraIntegrations: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/integrations-core.nix", [["owner", 48, 5], ["repo", 49, 5], ["tag", 50, 5], ["hash", 51, 5]]);
 const formals$2 = { args: { pname: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/integrations-core.nix", [["src", 60, 17], ["version", 60, 21], ["name", 61, 9], ["pyproject", 62, 9], ["sourceRoot", 64, 9], ["buildInputs", 65, 9], ["doCheck", 69, 9]]);
-const pos$3 = nix.positions(here + "/integrations-core.nix", [["pname", 75, 5], ["sourceRoot", 76, 5], ["dependencies", 78, 5], ["pythonImportsCheck", 98, 5]]);
-const pos$4 = nix.positions(here + "/integrations-core.nix", [["disk", 107, 5], ["mongo", 108, 5], ["network", 109, 5], ["nginx", 110, 5], ["postgres", 111, 5], ["process", 118, 5]]);
-const pos$5 = nix.positions(here + "/integrations-core.nix", [["pname", 126, 15], ["propagatedBuildInputs", 127, 7]]);
-const pos$6 = nix.positions(here + "/integrations-core.nix", [["datadog_checks_base", 134, 11], ["python", 135, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const mapAttrs = nix.thunk(() => nix.attr(lib, "mapAttrs"));
   const version = "7.70.2";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "DataDog",
       repo: "integrations-core",
       tag: version,
@@ -32,7 +27,7 @@ export default nix.lambda((args) => (() => {
     const args_2 = args_1;
     const pname = nix.arg($_1, "pname");
     return nix.app(nix.sel(python3Packages, "buildPythonPackage"), nix.thunk(() => nix.update(args_2, {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         src: src,
         version: version,
         name: nix.thunk(() => nix.str`datadog-integration-${pname}-${version}`),
@@ -49,7 +44,7 @@ export default nix.lambda((args) => (() => {
       })));
   })(), formals$2);
   const datadog_checks_base = nix.thunk(() => nix.app(buildIntegration, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "checks-base",
       sourceRoot: "datadog_checks_base",
       dependencies: nix.thunk(() => (() => {
@@ -77,7 +72,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["datadog_checks.base", "datadog_checks.base.checks", "datadog_checks.checks"]),
     }))));
   const defaultIntegrations = nix.thunk(() => ({
-    [nix.POS]: pos$4,
+    [nix.POS]: $pos[3],
     disk: (ps) => [nix.thunk(() => nix.sel(ps, "psutil"))],
     mongo: (ps) => [nix.thunk(() => nix.sel(ps, "pymongo"))],
     network: (ps) => [nix.thunk(() => nix.sel(ps, "psutil"))],
@@ -94,12 +89,12 @@ export default nix.lambda((args) => (() => {
   }));
   const integrations = nix.thunk(() => nix.update(defaultIntegrations, extraIntegrations));
   const builtIntegrations = nix.thunk(() => nix.app(mapAttrs, (pname) => (fdeps) => nix.app(buildIntegration, nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname: pname,
         propagatedBuildInputs: nix.thunk(() => nix.concat(nix.app(fdeps, python3Packages), [datadog_checks_base])),
       }))), integrations));
   return nix.update(builtIntegrations, {
-    [nix.POS]: pos$6,
+    [nix.POS]: $pos[5],
     datadog_checks_base: datadog_checks_base,
     python: nix.thunk(() => nix.app(nix.sel(python3Packages, "python", "withPackages"), (_) => nix.app(attrValues, builtIntegrations))),
   });

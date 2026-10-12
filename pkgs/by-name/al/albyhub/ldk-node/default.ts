@@ -2,10 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]], [["description", 37, 5], ["homepage", 38, 5], ["changelog", 39, 5], ["license", 40, 5], ["platforms", 44, 5], ["maintainers", 45, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["buildFeatures", 20, 3], ["cargoHash", 22, 3], ["doCheck", 25, 3], ["nativeBuildInputs", 27, 3], ["NIX_CFLAGS_COMPILE", 34, 3], ["meta", 36, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchFromGitHub: false, cmake: false, llvmPackages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 37, 5], ["homepage", 38, 5], ["changelog", 39, 5], ["license", 40, 5], ["platforms", 44, 5], ["maintainers", 45, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["buildFeatures", 20, 3], ["cargoHash", 22, 3], ["doCheck", 25, 3], ["nativeBuildInputs", 27, 3], ["NIX_CFLAGS_COMPILE", 34, 3], ["meta", 36, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const cmake = nix.arg($, "cmake");
   const llvmPackages = nix.arg($, "llvmPackages");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "ldk-node",
       version: "0-unstable-2026-06-08",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "getAlby",
           repo: "ldk-node",
           rev: "549107b4d731bc9af06b81fbcd65463e3055df16",
@@ -35,7 +33,7 @@ export default nix.lambda((args) => (() => {
       ]),
       NIX_CFLAGS_COMPILE: "-Wno-error=stringop-overflow",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Embeds the LDK node implementation compiled as shared library objects",
         homepage: "https://github.com/getAlby/ldk-node",
         changelog: nix.thunk(() => nix.str`https://github.com/getAlby/ldk-node/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG.md`),

@@ -2,72 +2,55 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/kthxbye.nix", [[["maintainers", 6, 5]], [["systemPackages", 12, 19]], [["scrape_interval", 17, 11], ["scrape_timeout", 18, 11], ["evaluation_interval", 19, 11]], [["targets", 28, 17]], [["job_name", 24, 13], ["scrape_interval", 25, 13], ["static_configs", 26, 13]], [["targets", 53, 17]], [["static_configs", 51, 13]], [["receiver", 65, 13], ["group_wait", 66, 13], ["group_interval", 67, 13], ["group_by", 68, 13]], [["url", 75, 19]], [["name", 72, 15], ["webhook_configs", 73, 15]], [["route", 64, 25], ["receivers", 70, 25]], [["enable", 62, 11], ["openFirewall", 63, 11], ["configuration", 64, 11]], [["enable", 14, 9], ["globalConfig", 16, 9], ["scrapeConfigs", 22, 9], ["rules", 34, 9], ["alertmanagers", 49, 9], ["alertmanager", 61, 9]], [["enable", 84, 9], ["openFirewall", 85, 9], ["extendIfExpiringIn", 86, 9], ["logJSON", 87, 9], ["maxDuration", 88, 9], ["interval", 89, 9]], [["prometheus", 13, 16], ["kthxbye", 83, 16]], [["environment", 12, 7], ["services", 13, 7]], [["server", 9, 9]], [["name", 3, 3], ["meta", 5, 3], ["nodes", 9, 3], ["testScript", 93, 3]]]);
 const formals$1 = { args: { lib: false, pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/kthxbye.nix", [["maintainers", 6, 5]]);
 const formals$2 = { args: {  }, ellipsis: true };
-const pos$2 = nix.positions(here + "/kthxbye.nix", [["systemPackages", 12, 19]]);
-const pos$3 = nix.positions(here + "/kthxbye.nix", [["scrape_interval", 17, 11], ["scrape_timeout", 18, 11], ["evaluation_interval", 19, 11]]);
-const pos$4 = nix.positions(here + "/kthxbye.nix", [["targets", 28, 17]]);
-const pos$5 = nix.positions(here + "/kthxbye.nix", [["job_name", 24, 13], ["scrape_interval", 25, 13], ["static_configs", 26, 13]]);
-const pos$6 = nix.positions(here + "/kthxbye.nix", [["targets", 53, 17]]);
-const pos$7 = nix.positions(here + "/kthxbye.nix", [["static_configs", 51, 13]]);
-const pos$8 = nix.positions(here + "/kthxbye.nix", [["receiver", 65, 13], ["group_wait", 66, 13], ["group_interval", 67, 13], ["group_by", 68, 13]]);
-const pos$9 = nix.positions(here + "/kthxbye.nix", [["url", 75, 19]]);
-const pos$10 = nix.positions(here + "/kthxbye.nix", [["name", 72, 15], ["webhook_configs", 73, 15]]);
-const pos$11 = nix.positions(here + "/kthxbye.nix", [["route", 64, 25], ["receivers", 70, 25]]);
-const pos$12 = nix.positions(here + "/kthxbye.nix", [["enable", 62, 11], ["openFirewall", 63, 11], ["configuration", 64, 11]]);
-const pos$13 = nix.positions(here + "/kthxbye.nix", [["enable", 14, 9], ["globalConfig", 16, 9], ["scrapeConfigs", 22, 9], ["rules", 34, 9], ["alertmanagers", 49, 9], ["alertmanager", 61, 9]]);
-const pos$14 = nix.positions(here + "/kthxbye.nix", [["enable", 84, 9], ["openFirewall", 85, 9], ["extendIfExpiringIn", 86, 9], ["logJSON", 87, 9], ["maxDuration", 88, 9], ["interval", 89, 9]]);
-const pos$15 = nix.positions(here + "/kthxbye.nix", [["prometheus", 13, 16], ["kthxbye", 83, 16]]);
-const pos$16 = nix.positions(here + "/kthxbye.nix", [["environment", 12, 7], ["services", 13, 7]]);
-const pos$17 = nix.positions(here + "/kthxbye.nix", [["server", 9, 9]]);
-const pos$18 = nix.positions(here + "/kthxbye.nix", [["name", 3, 3], ["meta", 5, 3], ["nodes", 9, 3], ["testScript", 93, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   return {
-    [nix.POS]: pos$18,
+    [nix.POS]: $pos[17],
     name: "kthxbye",
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
       return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "nukaduka"))]),
       };
     })()),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$17,
+      [nix.POS]: $pos[16],
       server: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          [nix.POS]: pos$16,
+          [nix.POS]: $pos[15],
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             systemPackages: nix.thunk(() => (() => {
               const w_1 = nix.withScope(pkgs, null);
               return [nix.thunk(() => nix.lookup(w_1, "prometheus-alertmanager"))];
             })()),
           })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$15,
+            [nix.POS]: $pos[14],
             prometheus: nix.thunk(() => ({
-              [nix.POS]: pos$13,
+              [nix.POS]: $pos[12],
               enable: true,
               globalConfig: nix.thunk(() => ({
-                [nix.POS]: pos$3,
+                [nix.POS]: $pos[2],
                 scrape_interval: "5s",
                 scrape_timeout: "5s",
                 evaluation_interval: "5s",
               })),
               scrapeConfigs: nix.thunk(() => [
                 nix.thunk(() => ({
-                  [nix.POS]: pos$5,
+                  [nix.POS]: $pos[4],
                   job_name: "prometheus",
                   scrape_interval: "5s",
                   static_configs: nix.thunk(() => [
-                    nix.thunk(() => ({ [nix.POS]: pos$4, targets: nix.thunk(() => ["localhost:9090"]) })),
+                    nix.thunk(() => ({ [nix.POS]: $pos[3], targets: nix.thunk(() => ["localhost:9090"]) })),
                   ]),
                 })),
               ]),
@@ -76,20 +59,20 @@ export default nix.lambda((args) => (() => {
               ]),
               alertmanagers: nix.thunk(() => [
                 nix.thunk(() => ({
-                  [nix.POS]: pos$7,
+                  [nix.POS]: $pos[6],
                   static_configs: nix.thunk(() => [
-                    nix.thunk(() => ({ [nix.POS]: pos$6, targets: nix.thunk(() => ["localhost:9093"]) })),
+                    nix.thunk(() => ({ [nix.POS]: $pos[5], targets: nix.thunk(() => ["localhost:9093"]) })),
                   ]),
                 })),
               ]),
               alertmanager: nix.thunk(() => ({
-                [nix.POS]: pos$12,
+                [nix.POS]: $pos[11],
                 enable: true,
                 openFirewall: true,
                 configuration: nix.thunk(() => ({
-                  [nix.POS]: pos$11,
+                  [nix.POS]: $pos[10],
                   route: nix.thunk(() => ({
-                    [nix.POS]: pos$8,
+                    [nix.POS]: $pos[7],
                     receiver: "test",
                     group_wait: "5s",
                     group_interval: "5s",
@@ -97,16 +80,16 @@ export default nix.lambda((args) => (() => {
                   })),
                   receivers: nix.thunk(() => [
                     nix.thunk(() => ({
-                      [nix.POS]: pos$10,
+                      [nix.POS]: $pos[9],
                       name: "test",
-                      webhook_configs: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$9, url: "http://localhost:1234" }))]),
+                      webhook_configs: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: $pos[8], url: "http://localhost:1234" }))]),
                     })),
                   ]),
                 })),
               })),
             })),
             kthxbye: nix.thunk(() => ({
-              [nix.POS]: pos$14,
+              [nix.POS]: $pos[13],
               enable: true,
               openFirewall: true,
               extendIfExpiringIn: "30s",

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["sha256", 19, 5]], [["description", 60, 5], ["homepage", 61, 5], ["license", 62, 5], ["platforms", 63, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["buildInputs", 22, 3], ["nativeBuildInputs", 26, 3], ["enableParallelBuilding", 31, 3], ["dontUseQmakeConfigure", 33, 3], ["configureFlags", 34, 3], ["dontWrapQtApps", 44, 3], ["preConfigure", 46, 3], ["doCheck", 52, 3], ["doInstallCheck", 53, 3], ["installCheckTarget", 54, 3], ["preFixup", 57, 3], ["meta", 59, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, qtbase: false, qtdeclarative: false, qmake: false, which: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["sha256", 19, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 60, 5], ["homepage", 61, 5], ["license", 62, 5], ["platforms", 63, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["buildInputs", 22, 3], ["nativeBuildInputs", 26, 3], ["enableParallelBuilding", 31, 3], ["dontUseQmakeConfigure", 33, 3], ["configureFlags", 34, 3], ["dontWrapQtApps", 44, 3], ["preConfigure", 46, 3], ["doCheck", 52, 3], ["doInstallCheck", 53, 3], ["installCheckTarget", 54, 3], ["preFixup", 57, 3], ["meta", 59, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pname = "libcommuni";
       const version = "3.7.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "communi",
           repo: "libcommuni",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -38,14 +36,14 @@ export default nix.lambda((args) => (() => {
       const installCheckTarget = "check";
       const preFixup = "rm -rf lib";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Cross-platform IRC framework written with Qt",
         homepage: "https://communi.github.io",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

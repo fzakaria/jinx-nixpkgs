@@ -2,19 +2,10 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/signing-key.nix", [[["type", 41, 9], ["outputs", 43, 9], ["out", 44, 9], ["all", 45, 9], ["outputName", 46, 9], ["outPath", 48, 17]], [["name", 102, 17], ["verificationKey", 102, 22], ["meta", 103, 9]], [["signingKey", 115, 21], ["output", 116, 13]], [["name", 109, 9], ["autopenArgs", 111, 9], ["pos", 120, 17], ["meta", 122, 9]], [["name", 178, 9], ["meta", 180, 9]], [["path", 213, 9], ["name", 214, 9], ["filter", 215, 9]], [["socketPath", 226, 19], ["fileRefPath", 226, 30], ["verificationKey", 226, 42], ["output", 227, 11]], [["socketPath", 237, 17], ["fileRefPath", 237, 28], ["verificationKey", 237, 40]], [["name", 219, 7], ["autopenArgs", 221, 7], ["allowedRequisites", 231, 7], ["passthru", 236, 7], ["pos", 240, 15], ["meta", 240, 19]], [["import", 93, 3], ["remote", 168, 3]]]);
 const formals$1 = { args: { lib: false, autopen: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/signing-key.nix", [["type", 41, 9], ["outputs", 43, 9], ["out", 44, 9], ["all", 45, 9], ["outputName", 46, 9], ["outPath", 48, 17]]);
 const formals$2 = { args: { name: false, path: false, pos: true, meta: true }, ellipsis: false };
-const pos$2 = nix.positions(here + "/signing-key.nix", [["name", 102, 17], ["verificationKey", 102, 22], ["meta", 103, 9]]);
-const pos$3 = nix.positions(here + "/signing-key.nix", [["signingKey", 115, 21], ["output", 116, 13]]);
-const pos$4 = nix.positions(here + "/signing-key.nix", [["name", 109, 9], ["autopenArgs", 111, 9], ["pos", 120, 17], ["meta", 122, 9]]);
 const formals$3 = { args: { name: false, socketPath: true, verificationKey: false, pos: true, meta: true }, ellipsis: false };
-const pos$5 = nix.positions(here + "/signing-key.nix", [["name", 178, 9], ["meta", 180, 9]]);
-const pos$6 = nix.positions(here + "/signing-key.nix", [["path", 213, 9], ["name", 214, 9], ["filter", 215, 9]]);
-const pos$7 = nix.positions(here + "/signing-key.nix", [["socketPath", 226, 19], ["fileRefPath", 226, 30], ["verificationKey", 226, 42], ["output", 227, 11]]);
-const pos$8 = nix.positions(here + "/signing-key.nix", [["socketPath", 237, 17], ["fileRefPath", 237, 28], ["verificationKey", 237, 40]]);
-const pos$9 = nix.positions(here + "/signing-key.nix", [["name", 219, 7], ["autopenArgs", 221, 7], ["allowedRequisites", 231, 7], ["passthru", 236, 7], ["pos", 240, 15], ["meta", 240, 19]]);
-const pos$10 = nix.positions(here + "/signing-key.nix", [["import", 93, 3], ["remote", 168, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,7 +18,7 @@ export default nix.lambda((args) => (() => {
   const mkAutopenDerivation = nix.thunk(() => nix.attr(from, "mkAutopenDerivation"));
   const fakeDerivation = (outPath) => (attrs) => (() => {
     const drv = nix.thunk(() => nix.update({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       type: "derivation",
       outputs: nix.thunk(() => ["out"]),
       out: drv,
@@ -38,7 +29,7 @@ export default nix.lambda((args) => (() => {
     return nix.force(drv);
   })();
   return {
-    [nix.POS]: pos$10,
+    [nix.POS]: $pos[9],
     import: nix.lambda((args_1) => (() => {
       const $_1 = nix.formals(args_1, formals$2);
       const args_2 = args_1;
@@ -47,7 +38,7 @@ export default nix.lambda((args) => (() => {
       const pos = nix.argOr($_1, "pos", () => nix.app(unsafeGetAttrPos, "name", args_2));
       const meta = nix.argOr($_1, "meta", () => ({}));
       const signingKey = nix.thunk(() => nix.app(fakeDerivation, nix.thunk(() => nix.str`${path}`), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           name: name,
           verificationKey: verificationKey,
           meta: nix.thunk(() => nix.update(meta, nix.attrsDyn({}, [
@@ -55,13 +46,13 @@ export default nix.lambda((args) => (() => {
           ]))),
         }))));
       const verificationKey = nix.thunk(() => nix.app(hideDerivation, nix.thunk(() => nix.app(mkAutopenDerivation, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             name: nix.thunk(() => nix.str`${name}-verification-key`),
             autopenArgs: nix.thunk(() => [
               "signing-key",
               "get-verification-key",
               nix.thunk(() => ({
-                [nix.POS]: pos$3,
+                [nix.POS]: $pos[2],
                 signingKey: signingKey,
                 output: nix.thunk(() => nix.builtins.placeholder("out")),
               })),
@@ -82,7 +73,7 @@ export default nix.lambda((args) => (() => {
       const pos = nix.argOr($_1, "pos", () => nix.app(unsafeGetAttrPos, "name", args_2));
       const meta = nix.argOr($_1, "meta", () => ({}));
       const verificationKey_1 = nix.thunk(() => nix.app(fakeDerivation, nix.thunk(() => nix.str`${nix.sel(args_2, "verificationKey")}`), nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           name: nix.thunk(() => nix.str`${name}-verification-key`),
           meta: nix.thunk(() => nix.update(meta, nix.attrsDyn({}, [
             [(nix.asBool(nix.has(meta, "description")) ? "description" : null), nix.thunk(() => nix.str`${nix.sel(meta, "description")} (verification key)`)],
@@ -90,20 +81,20 @@ export default nix.lambda((args) => (() => {
           ]))),
         }))));
       const fileRefPath = nix.thunk(() => nix.builtins.path(nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           path: nix.path(here, "./."),
           name: nix.thunk(() => nix.str`${name}-key-handle-${nix.app(hashString, "sha256", nix.thunk(() => nix.str`${verificationKey_1}`))}`),
           filter: (_) => (__1) => false,
         }))));
       return nix.app(mkAutopenDerivation, nix.thunk(() => ({
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           name: nix.thunk(() => nix.str`${name}-signing-key`),
           autopenArgs: nix.thunk(() => [
             "signing-key",
             "remote",
             "create",
             nix.thunk(() => ({
-              [nix.POS]: pos$7,
+              [nix.POS]: $pos[6],
               socketPath: socketPath,
               fileRefPath: fileRefPath,
               verificationKey: verificationKey_1,
@@ -112,7 +103,7 @@ export default nix.lambda((args) => (() => {
           ]),
           allowedRequisites: nix.thunk(() => ["out", fileRefPath]),
           passthru: nix.thunk(() => ({
-            [nix.POS]: pos$8,
+            [nix.POS]: $pos[7],
             socketPath: socketPath,
             fileRefPath: fileRefPath,
             verificationKey: verificationKey_1,

@@ -2,26 +2,8 @@
 import * as nix from "../../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["name", 108, 9], ["url", 109, 9], ["includes", 114, 9], ["hash", 120, 9]], [["name", 129, 9], ["url", 130, 9], ["hash", 131, 9]], [["name", 134, 9], ["url", 135, 9], ["hash", 136, 9]], [["name", 142, 9], ["url", 143, 9], ["hash", 144, 9]], [["name", 147, 9], ["url", 148, 9], ["hash", 149, 9]], [["name", 154, 9], ["url", 155, 9], ["hash", 156, 9]], [["name", 163, 9], ["url", 164, 9], ["hash", 165, 9]], [["name", 168, 9], ["url", 169, 9], ["hash", 170, 9]], [["name", 173, 9], ["url", 174, 9], ["hash", 175, 9]], [["name", 178, 9], ["url", 179, 9], ["hash", 180, 9]], [["name", 189, 9], ["url", 190, 9], ["hash", 191, 9]], [["name", 195, 11], ["url", 196, 11]], [["postFetch", 206, 15], ["hash", 211, 15]], [["hash", 216, 15]], [["name", 221, 9], ["url", 222, 9], ["hash", 223, 9]], [["name", 240, 9], ["url", 241, 9], ["includes", 242, 9], ["hash", 247, 9]], [["langC", 493, 7], ["langCC", 494, 7], ["langObjC", 495, 7], ["langObjCpp", 496, 7], ["langAda", 497, 7], ["langFortran", 498, 7], ["langGo", 499, 7], ["isGNU", 501, 5]], [["homepage", 505, 5]], [["pname", 51, 3], ["version", 52, 11], ["src", 54, 3], ["outputs", 56, 3], ["patches", 62, 3], ["enableParallelBuilding", 251, 3], ["autoreconfFlags", 262, 3], ["preAutoreconf", 268, 3], ["hardeningDisable", 272, 3], ["strictDeps", 276, 3], ["depsBuildBuild", 278, 3], ["depsBuildTarget", 300, 3], ["nativeBuildInputs", 302, 3], ["buildInputs", 314, 3], ["postUnpack", 323, 3], ["postPatch", 328, 3], ["preConfigure", 344, 3], ["postConfigure", 376, 3], ["dontDisableStatic", 380, 3], ["configurePlatforms", 382, 3], ["configureFlags", 388, 3], ["makeFlags", 483, 3], ["doCheck", 485, 3], ["postInstall", 487, 3], ["passthru", 491, 3], ["meta", 504, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, gcc_meta: false, release_version: false, version: false, monorepoSrc: true, fetchpatch: false, langAda: true, langC: true, langCC: true, langFortran: true, langGo: true, langJava: true, langObjC: true, langObjCpp: true, langJit: true, enablePlugin: true, buildPackages: false, isl: false, zlib: false, gmp: false, libmpc: false, mpfr: false, perl: false, texinfo: false, which: false, gettext: false, flex: false, bison: false, fromVCS: true, getVersionFile: false, buildGccPackages: false, libbacktrace: false, autoreconfHook269: false, bintools: false, enableShared: true, enableTargetShared: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["name", 108, 9], ["url", 109, 9], ["includes", 114, 9], ["hash", 120, 9]]);
-const pos$2 = nix.positions(here + "/default.nix", [["name", 129, 9], ["url", 130, 9], ["hash", 131, 9]]);
-const pos$3 = nix.positions(here + "/default.nix", [["name", 134, 9], ["url", 135, 9], ["hash", 136, 9]]);
-const pos$4 = nix.positions(here + "/default.nix", [["name", 142, 9], ["url", 143, 9], ["hash", 144, 9]]);
-const pos$5 = nix.positions(here + "/default.nix", [["name", 147, 9], ["url", 148, 9], ["hash", 149, 9]]);
-const pos$6 = nix.positions(here + "/default.nix", [["name", 154, 9], ["url", 155, 9], ["hash", 156, 9]]);
-const pos$7 = nix.positions(here + "/default.nix", [["name", 163, 9], ["url", 164, 9], ["hash", 165, 9]]);
-const pos$8 = nix.positions(here + "/default.nix", [["name", 168, 9], ["url", 169, 9], ["hash", 170, 9]]);
-const pos$9 = nix.positions(here + "/default.nix", [["name", 173, 9], ["url", 174, 9], ["hash", 175, 9]]);
-const pos$10 = nix.positions(here + "/default.nix", [["name", 178, 9], ["url", 179, 9], ["hash", 180, 9]]);
-const pos$11 = nix.positions(here + "/default.nix", [["name", 189, 9], ["url", 190, 9], ["hash", 191, 9]]);
-const pos$12 = nix.positions(here + "/default.nix", [["name", 195, 11], ["url", 196, 11]]);
-const pos$13 = nix.positions(here + "/default.nix", [["postFetch", 206, 15], ["hash", 211, 15]]);
-const pos$14 = nix.positions(here + "/default.nix", [["hash", 216, 15]]);
-const pos$15 = nix.positions(here + "/default.nix", [["name", 221, 9], ["url", 222, 9], ["hash", 223, 9]]);
-const pos$16 = nix.positions(here + "/default.nix", [["name", 240, 9], ["url", 241, 9], ["includes", 242, 9], ["hash", 247, 9]]);
-const pos$17 = nix.positions(here + "/default.nix", [["langC", 493, 7], ["langCC", 494, 7], ["langObjC", 495, 7], ["langObjCpp", 496, 7], ["langAda", 497, 7], ["langFortran", 498, 7], ["langGo", 499, 7], ["isGNU", 501, 5]]);
-const pos$18 = nix.positions(here + "/default.nix", [["homepage", 505, 5]]);
-const pos$19 = nix.positions(here + "/default.nix", [["pname", 51, 3], ["version", 52, 11], ["src", 54, 3], ["outputs", 56, 3], ["patches", 62, 3], ["enableParallelBuilding", 251, 3], ["autoreconfFlags", 262, 3], ["preAutoreconf", 268, 3], ["hardeningDisable", 272, 3], ["strictDeps", 276, 3], ["depsBuildBuild", 278, 3], ["depsBuildTarget", 300, 3], ["nativeBuildInputs", 302, 3], ["buildInputs", 314, 3], ["postUnpack", 323, 3], ["postPatch", 328, 3], ["preConfigure", 344, 3], ["postConfigure", 376, 3], ["dontDisableStatic", 380, 3], ["configurePlatforms", 382, 3], ["configureFlags", 388, 3], ["makeFlags", 483, 3], ["doCheck", 485, 3], ["postInstall", 487, 3], ["passthru", 491, 3], ["meta", 504, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -66,7 +48,7 @@ export default nix.lambda((args) => (() => {
   const hostPlatform = nix.thunk(() => nix.attr(stdenv, "hostPlatform"));
   const targetPrefix = nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(targetPlatform, hostPlatform)), nix.thunk(() => nix.str`${nix.sel(targetPlatform, "config")}-`)));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$19,
+      [nix.POS]: $pos[18],
       pname: nix.thunk(() => nix.str`${targetPrefix}${(nix.asBool(langFortran) ? "gfortran" : "gcc")}`),
       version: version,
       src: monorepoSrc,
@@ -78,7 +60,7 @@ export default nix.lambda((args) => (() => {
         nix.path(here, "./ppc-musl.patch"),
       ], nix.concat(nix.app(nix.sel(lib, "optionals"), langFortran, nix.thunk(() => [nix.path(here, "./gfortran-driving.patch")])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(nix.sel(lib, "versionOlder"), release_version, "16")), nix.thunk(() => [nix.path(here, "./c++tools-dont-check-enable-default-pie.patch")])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "targetPlatform", "isDarwin")), nix.thunk(() => [
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              [nix.POS]: pos$1,
+              [nix.POS]: $pos[0],
               name: "darwin-aarch64-support.patch",
               url: nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), release_version, "16")) ? "https://raw.githubusercontent.com/Homebrew/homebrew-core/70e2a9e1d072fa3bc34cf41d97f4b65bede2b01e/Patches/gcc/gcc-16.1.0.diff" : "https://raw.githubusercontent.com/Homebrew/homebrew-core/70e2a9e1d072fa3bc34cf41d97f4b65bede2b01e/Patches/gcc/gcc-15.3.0.diff")),
               includes: nix.thunk(() => ["gcc/*", "fixincludes/*", "configure", "configure.ac"]),
@@ -86,88 +68,88 @@ export default nix.lambda((args) => (() => {
             })))),
         ])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "targetPlatform", "isCygwin")), nix.thunk(() => [
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               name: "cygwin-fix-compilation-with-inhibit_libc.patch",
               url: "https://inbox.sourceware.org/gcc-patches/20250926170154.2222977-1-corngood@gmail.com/raw",
               hash: "sha256-mgzMRvgPdhj+Q2VRsFhpE2WQzg0CvWsc5/FRAsSU1Es=",
             })))),
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               name: "cygwin-use-builtin_define_std-for-unix.patch",
               url: "https://inbox.sourceware.org/gcc-patches/20250922182808.2599390-3-corngood@gmail.com/raw",
               hash: "sha256-8I2G4430gkYoWgUued4unqhk8ZCajHf1dcivAeuLZ0E=",
             })))),
         ])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(nix.sel(lib, "versionOlder"), release_version, "16")), nix.thunk(() => [
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               name: "for_each_path-functional-programming.patch",
               url: "https://github.com/gcc-mirror/gcc/commit/f23bac62f46fc296a4d0526ef54824d406c3756c.diff",
               hash: "sha256-J7SrypmVSbvYUzxWWvK2EwEbRsfGGLg4vNZuLEe6Xe0=",
             })))),
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               name: "for_each_path-fix-uninitialized-ret-PR121806.patch",
               url: "https://github.com/gcc-mirror/gcc/commit/6b008944e7bc3a342a734c4fcf1001d63fd0a6f8.diff",
               hash: "sha256-preG5DdRX+a0NIebsapAVnqiLYtPjsR4H5BkAXL/65g=",
             })))),
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              [nix.POS]: pos$6,
+              [nix.POS]: $pos[5],
               name: "mingw-drop-obsolete-STMP_FIXINC-override.patch",
               url: "https://github.com/gcc-mirror/gcc/commit/7fb73dd7bb8aabab1416f0b28e6df45131a8e8ab.diff",
               hash: "sha256-FmFJISfXt+/TCRcd4rYfwacBiTqu+/OKw0VvLh46Hz0=",
             })))),
         ])), nix.concat([
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             name: "find_a_program-separate-from-find_a_file.patch",
             url: "https://github.com/gcc-mirror/gcc/commit/948eb02800777d0318ee2a38bf32076afee739f2.diff",
             hash: "sha256-doXak3VfdWR/BP9XiJaU7uJz7rex78N1oaW6CqYwKaQ=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$8,
+            [nix.POS]: $pos[7],
             name: "simplify-find_a_program-and-find_a_file.patch",
             url: "https://github.com/gcc-mirror/gcc/commit/073b4656d07e40f83a1db7f4462ab2d68b1875a2.diff",
             hash: "sha256-kW6ZHyMzsn7snUBuDx4XLriaFGWZ1fixNc9UH8O5els=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$9,
+            [nix.POS]: $pos[8],
             name: "for_each_path-pass-machine-specific.patch",
             url: "https://github.com/gcc-mirror/gcc/commit/f62f68e7c4bde0385fbd2dba3e926586dd2f1281.diff",
             hash: "sha256-NsgGnTMQTnz1c4urr6jeoGOzQ4xeJ/p+F53osNDYDCA=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$10,
+            [nix.POS]: $pos[9],
             name: "find_a_program-search-with-machine-prefix.patch",
             url: "https://github.com/gcc-mirror/gcc/commit/a514707ffd7d58b140686036c2dece43ecb7d33c.diff",
             hash: "sha256-54/HzM+aeWq8CTkQu8Pualqc/LgRLS0+8EY8uPUsD+s=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$11,
+            [nix.POS]: $pos[10],
             name: "driver-factor-out-env-path-parsing.patch",
             url: "https://inbox.sourceware.org/gcc-patches/20260810065714.2215299-1-git@JohnEricson.me/raw",
             hash: "sha256-2qUUMWuyxX4mVaBPeNnHIiMl/aN7ejWM5stTSFWxD7g=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => nix.update({
-            [nix.POS]: pos$12,
+            [nix.POS]: $pos[11],
             name: "driver-search-PATH-ourselves.patch",
             url: "https://inbox.sourceware.org/gcc-patches/20260810065714.2215299-2-git@JohnEricson.me/raw",
           }, (nix.asBool(nix.app(nix.sel(lib, "versionOlder"), release_version, "16")) ? {
-            [nix.POS]: pos$13,
+            [nix.POS]: $pos[12],
             postFetch: "substituteInPlace \"$out\" \\\n  --replace-fail 'string, const_cast<char **> (commands[i].argv),' \\\n                 'string, CONST_CAST (char **, commands[i].argv),'\n",
             hash: "sha256-uD8xJxQus2qyNgNDN/63WnURNuUJFDkhaXPph7g/DIk=",
           } : {
-            [nix.POS]: pos$14,
+            [nix.POS]: $pos[13],
             hash: "sha256-ILH3oHsnPXZmwPWfZ7Pt5MfLs00ZBJ+vFHw3MRRh4Dw=",
           }))))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$15,
+            [nix.POS]: $pos[14],
             name: "driver-search-PATH-machine-prefix.patch",
             url: "https://inbox.sourceware.org/gcc-patches/20260810065714.2215299-3-git@JohnEricson.me/raw",
             hash: "sha256-Q5CJpJKD11kadIKselQdHgNe26GqojpyAAmlAyHnsB0=",
           })))),
       ], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "targetPlatform", "isDarwin"))), nix.thunk(() => [nix.thunk(() => nix.app(getVersionFile, "gcc/fix-collect2-paths.diff"))])), [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$16,
+            [nix.POS]: $pos[15],
             name: "system-libbacktrace.patch",
             url: "https://inbox.sourceware.org/gcc-patches/20260814013206.3818461-1-git@JohnEricson.me/raw",
             includes: nix.thunk(() => ["config/libbacktrace.m4", "gcc/configure.ac", "gcc/Makefile.in"]),
@@ -231,7 +213,7 @@ configureScript=../$sourceRoot/configure
       postInstall: nix.thunk(() => nix.str`moveToOutput "lib/gcc/${nix.sel(targetPlatform, "config")}/${version}/plugin/include" "\${!outputDev}"
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$17,
+        [nix.POS]: $pos[16],
         langC: langC,
         langCC: langCC,
         langObjC: langObjC,
@@ -241,7 +223,7 @@ configureScript=../$sourceRoot/configure
         langGo: langGo,
         isGNU: true,
       })),
-      meta: nix.thunk(() => nix.update(gcc_meta, { [nix.POS]: pos$18, homepage: "https://gcc.gnu.org/" })),
+      meta: nix.thunk(() => nix.update(gcc_meta, { [nix.POS]: $pos[17], homepage: "https://gcc.gnu.org/" })),
     }));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

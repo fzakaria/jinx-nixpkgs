@@ -2,9 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/compose-xcodewrapper.nix", [[["name", 33, 3], ["__noChroot", 35, 3], ["buildCommand", 36, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, writeShellScriptBin: false }, ellipsis: false };
 const formals$2 = { args: { versions: true, xcodeBaseDir: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/compose-xcodewrapper.nix", [["name", 33, 3], ["__noChroot", 35, 3], ["buildCommand", 36, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,7 +33,7 @@ echo "Please update your local Xcode installation to match one of the allowed ve
 exit 1
 `)));
     return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         name: "xcode-wrapper-impure",
         __noChroot: true,
         buildCommand: nix.thunk(() => nix.str`mkdir -p $out/bin

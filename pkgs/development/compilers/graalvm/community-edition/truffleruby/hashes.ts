@@ -2,29 +2,25 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
-const pos$1 = nix.positions(here + "/hashes.nix", [["sha256", 6, 7], ["url", 7, 7]]);
-const pos$2 = nix.positions(here + "/hashes.nix", [["sha256", 10, 7], ["url", 11, 7]]);
-const pos$3 = nix.positions(here + "/hashes.nix", [["sha256", 14, 7], ["url", 15, 7]]);
-const pos$4 = nix.positions(here + "/hashes.nix", [["aarch64-darwin", 5, 5], ["aarch64-linux", 9, 5], ["x86_64-linux", 13, 5]]);
-const pos$5 = nix.positions(here + "/hashes.nix", [["version", 3, 3], ["hashes", 4, 3]]);
+const $pos = nix.positions(here + "/hashes.nix", [[["sha256", 6, 7], ["url", 7, 7]], [["sha256", 10, 7], ["url", 11, 7]], [["sha256", 14, 7], ["url", 15, 7]], [["aarch64-darwin", 5, 5], ["aarch64-linux", 9, 5], ["x86_64-linux", 13, 5]], [["version", 3, 3], ["hashes", 4, 3]]]);
 
 export default nix.thunk(() => ({
-  [nix.POS]: pos$5,
+  [nix.POS]: $pos[4],
   version: "34.0.1",
   hashes: nix.thunk(() => ({
-    [nix.POS]: pos$4,
+    [nix.POS]: $pos[3],
     "aarch64-darwin": nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       sha256: "003n13yb6mfq49yijgx3y4pzn61zvl19pjjags9dlwff92fq5pfa",
       url: "https://github.com/truffleruby/truffleruby/releases/download/graal-34.0.1/truffleruby-community-34.0.1-macos-aarch64.tar.gz",
     })),
     "aarch64-linux": nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       sha256: "0hal66wb02knn8dq03c5wngv8pbk0qzirya4cp2h0fhgl7nmc4cb",
       url: "https://github.com/truffleruby/truffleruby/releases/download/graal-34.0.1/truffleruby-community-34.0.1-linux-aarch64.tar.gz",
     })),
     "x86_64-linux": nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       sha256: "0h8z016w8351vs0ahm7v2a4kh1axh0sprzvvgkamaxa5dpil0dfp",
       url: "https://github.com/truffleruby/truffleruby/releases/download/graal-34.0.1/truffleruby-community-34.0.1-linux-amd64.tar.gz",
     })),

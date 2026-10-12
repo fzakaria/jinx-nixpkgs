@@ -2,10 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["driverLinkLib", 16, 5]], [["license", 19, 8]], [["name", 9, 3], ["propagatedBuildInputs", 10, 3], ["substitutions", 15, 3], ["meta", 19, 3]]]);
 const formals$1 = { args: { lib: false, addDriverRunpath: false, arrayUtilities: false, autoFixElfFiles: false, makeSetupHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["driverLinkLib", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["license", 19, 8]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 9, 3], ["propagatedBuildInputs", 10, 3], ["substitutions", 15, 3], ["meta", 19, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,17 +13,20 @@ export default nix.lambda((args) => (() => {
   const autoFixElfFiles = nix.arg($, "autoFixElfFiles");
   const makeSetupHook = nix.arg($, "makeSetupHook");
   return nix.app(makeSetupHook, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       name: "removeStubsFromRunpathHook",
       propagatedBuildInputs: nix.thunk(() => [
         nix.thunk(() => nix.sel(arrayUtilities, "getRunpathEntries")),
         autoFixElfFiles,
       ]),
       substitutions: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         driverLinkLib: nix.thunk(() => nix.add(nix.sel(addDriverRunpath, "driverLink"), "/lib")),
       })),
-      meta: nix.thunk(() => ({ [nix.POS]: pos$2, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
+      meta: nix.thunk(() => ({
+        [nix.POS]: $pos[1],
+        license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
+      })),
     })), nix.path(here, "./removeStubsFromRunpathHook.bash"));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

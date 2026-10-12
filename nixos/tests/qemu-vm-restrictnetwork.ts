@@ -2,27 +2,22 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/qemu-vm-restrictnetwork.nix", [[["restrictNetwork", 8, 24]], [["virtualisation", 8, 9]], [["restrictNetwork", 14, 24]], [["virtualisation", 14, 9]], [["unrestricted", 5, 5], ["restricted", 11, 5]], [["name", 2, 3], ["nodes", 4, 3], ["testScript", 18, 3]]]);
 const formals$1 = { args: { config: false, pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/qemu-vm-restrictnetwork.nix", [["restrictNetwork", 8, 24]]);
-const pos$2 = nix.positions(here + "/qemu-vm-restrictnetwork.nix", [["virtualisation", 8, 9]]);
 const formals$2 = { args: { config: false, pkgs: false }, ellipsis: true };
-const pos$3 = nix.positions(here + "/qemu-vm-restrictnetwork.nix", [["restrictNetwork", 14, 24]]);
-const pos$4 = nix.positions(here + "/qemu-vm-restrictnetwork.nix", [["virtualisation", 14, 9]]);
-const pos$5 = nix.positions(here + "/qemu-vm-restrictnetwork.nix", [["unrestricted", 5, 5], ["restricted", 11, 5]]);
-const pos$6 = nix.positions(here + "/qemu-vm-restrictnetwork.nix", [["name", 2, 3], ["nodes", 4, 3], ["testScript", 18, 3]]);
 
 export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./make-test-python.nix")), nix.thunk(() => ({
-    [nix.POS]: pos$6,
+    [nix.POS]: $pos[5],
     name: "qemu-vm-restrictnetwork",
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       unrestricted: nix.lambda((args) => (() => {
         const $ = nix.formals(args, formals$1);
         const config = nix.arg($, "config");
         const pkgs = nix.arg($, "pkgs");
         return {
-          [nix.POS]: pos$2,
-          virtualisation: nix.thunk(() => ({ [nix.POS]: pos$1, restrictNetwork: false })),
+          [nix.POS]: $pos[1],
+          virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[0], restrictNetwork: false })),
         };
       })(), formals$1),
       restricted: nix.lambda((args) => (() => {
@@ -30,8 +25,8 @@ export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./mak
         const config = nix.arg($, "config");
         const pkgs = nix.arg($, "pkgs");
         return {
-          [nix.POS]: pos$4,
-          virtualisation: nix.thunk(() => ({ [nix.POS]: pos$3, restrictNetwork: true })),
+          [nix.POS]: $pos[3],
+          virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[2], restrictNetwork: true })),
         };
       })(), formals$2),
     })),

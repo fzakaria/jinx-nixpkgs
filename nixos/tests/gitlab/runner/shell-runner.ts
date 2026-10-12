@@ -2,26 +2,22 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/shell-runner.nix", [[["description", 7, 5], ["authenticationTokenConfigFile", 8, 5], ["executor", 10, 5]], [["shell-runner", 6, 35]], [["services", 6, 26]], [["gitlab-runner", 6, 12]], [["services", 6, 3]]]);
 const formals$1 = { args: { runnerConfig: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/shell-runner.nix", [["description", 7, 5], ["authenticationTokenConfigFile", 8, 5], ["executor", 10, 5]]);
-const pos$2 = nix.positions(here + "/shell-runner.nix", [["shell-runner", 6, 35]]);
-const pos$3 = nix.positions(here + "/shell-runner.nix", [["services", 6, 26]]);
-const pos$4 = nix.positions(here + "/shell-runner.nix", [["gitlab-runner", 6, 12]]);
-const pos$5 = nix.positions(here + "/shell-runner.nix", [["services", 6, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const runnerConfig = nix.arg($, "runnerConfig");
   return {
-    [nix.POS]: pos$5,
+    [nix.POS]: $pos[4],
     services: nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       "gitlab-runner": nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         services: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           "shell-runner": nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             description: nix.thunk(() => nix.sel(runnerConfig, "desc")),
             authenticationTokenConfigFile: nix.thunk(() => nix.sel(runnerConfig, "tokenFile")),
             executor: "shell",

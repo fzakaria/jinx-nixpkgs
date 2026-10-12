@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["nativeBuildInputs", 16, 45]], [["tests", 16, 7]], [["description", 13, 5], ["passthru", 15, 5]]]);
 const formals$1 = { args: { lib: false, haskell: false, haskellPackages: false, cornelis: false, runCommand: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["nativeBuildInputs", 16, 45]]);
-const pos$2 = nix.positions(here + "/package.nix", [["tests", 16, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 13, 5], ["passthru", 15, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const overrideCabal = nix.thunk(() => nix.attr(from, "overrideCabal"));
   const justStaticExecutables = nix.thunk(() => nix.attr(from, "justStaticExecutables"));
   const overrides = nix.thunk(() => ({
-    [nix.POS]: pos$3,
+    [nix.POS]: $pos[2],
     description: "agda-mode for Neovim",
     passthru: nix.thunk(() => ({
-      [nix.POS]: pos$2,
-      tests: nix.thunk(() => nix.app(runCommand, "cornelis-tests", nix.thunk(() => ({ [nix.POS]: pos$1, nativeBuildInputs: nix.thunk(() => [cornelis]) })), "cornelis --help > $out\n")),
+      [nix.POS]: $pos[1],
+      tests: nix.thunk(() => nix.app(runCommand, "cornelis-tests", nix.thunk(() => ({ [nix.POS]: $pos[0], nativeBuildInputs: nix.thunk(() => [cornelis]) })), "cornelis --help > $out\n")),
     })),
   }));
   return nix.app(nix.sel(lib, "pipe"), nix.thunk(() => nix.sel(haskellPackages, "cornelis")), nix.thunk(() => [nix.thunk(() => nix.app(overrideCabal, overrides)), justStaticExecutables]));

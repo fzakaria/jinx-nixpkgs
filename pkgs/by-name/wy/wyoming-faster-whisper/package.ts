@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["tag", 15, 5], ["hash", 16, 5]], [["transformers", 35, 5], ["sherpa", 39, 5], ["onnx_asr", 42, 5], ["qwen3_asr", 47, 5], ["hass", 51, 5], ["zeroconf", 52, 5]], [["changelog", 66, 5], ["description", 67, 5], ["homepage", 68, 5], ["license", 69, 5], ["maintainers", 70, 5], ["mainProgram", 71, 5]], [["pname", 8, 3], ["version", 9, 3], ["pyproject", 10, 3], ["src", 12, 3], ["build-system", 19, 3], ["pythonRelaxDeps", 23, 3], ["dependencies", 28, 3], ["optional-dependencies", 34, 3], ["pythonImportsCheck", 58, 3], ["doCheck", 63, 3], ["meta", 65, 3]]]);
 const formals$1 = { args: { lib: false, python3Packages: false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["tag", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["transformers", 35, 5], ["sherpa", 39, 5], ["onnx_asr", 42, 5], ["qwen3_asr", 47, 5], ["hass", 51, 5], ["zeroconf", 52, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["changelog", 66, 5], ["description", 67, 5], ["homepage", 68, 5], ["license", 69, 5], ["maintainers", 70, 5], ["mainProgram", 71, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["pyproject", 10, 3], ["src", 12, 3], ["build-system", 19, 3], ["pythonRelaxDeps", 23, 3], ["dependencies", 28, 3], ["optional-dependencies", 34, 3], ["pythonImportsCheck", 58, 3], ["doCheck", 63, 3], ["meta", 65, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,12 +11,12 @@ export default nix.lambda((args) => (() => {
   const python3Packages = nix.arg($, "python3Packages");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "wyoming-faster-whisper",
       version: "3.8.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "OHF-Voice",
           repo: "wyoming-faster-whisper",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -41,7 +38,7 @@ export default nix.lambda((args) => (() => {
       "optional-dependencies": nix.thunk(() => (() => {
         const w_2 = nix.withScope(python3Packages, null);
         return {
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           transformers: nix.thunk(() => nix.concat([nix.thunk(() => nix.lookup(w_2, "transformers"))], nix.sel(nix.lookup(w_2, "transformers"), "optional-dependencies", "torch"))),
           sherpa: nix.thunk(() => [nix.thunk(() => nix.lookup(w_2, "sherpa-onnx"))]),
           onnx_asr: nix.thunk(() => nix.concat([nix.thunk(() => nix.lookup(w_2, "onnx-asr"))], nix.concat(nix.sel(nix.lookup(w_2, "onnx-asr"), "optional-dependencies", "cpu"), nix.sel(nix.lookup(w_2, "onnx-asr"), "optional-dependencies", "hub")))),
@@ -56,7 +53,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["wyoming_faster_whisper"]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         changelog: nix.thunk(() => nix.str`https://github.com/OHF-Voice/wyoming-faster-whisper/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "Wyoming Server for Faster Whisper",
         homepage: "https://github.com/OHF-Voice/wyoming-faster-whisper",

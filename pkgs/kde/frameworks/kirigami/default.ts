@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 18, 5], ["extraNativeBuildInputs", 20, 5], ["extraBuildInputs", 24, 5], ["extraPropagatedBuildInputs", 25, 5]], [["unwrapped", 41, 13]], [["pname", 29, 3], ["version", 30, 23], ["propagatedBuildInputs", 32, 3], ["dontUnpack", 37, 3], ["dontWrapQtApps", 38, 3], ["passthru", 40, 3]]]);
 const formals$1 = { args: { stdenv: false, mkKdeDerivation: false, qtsvg: false, qttools: false, qtdeclarative: false, qt5compat: false, "qqc2-desktop-style": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 18, 5], ["extraNativeBuildInputs", 20, 5], ["extraBuildInputs", 24, 5], ["extraPropagatedBuildInputs", 25, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["unwrapped", 41, 13]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 29, 3], ["version", 30, 23], ["propagatedBuildInputs", 32, 3], ["dontUnpack", 37, 3], ["dontWrapQtApps", 38, 3], ["passthru", 40, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,20 +15,20 @@ export default nix.lambda((args) => (() => {
   const qt5compat = nix.arg($, "qt5compat");
   const qqc2_desktop_style = nix.arg($, "qqc2-desktop-style");
   const unwrapped = nix.thunk(() => nix.app(mkKdeDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       pname: "kirigami",
       extraNativeBuildInputs: nix.thunk(() => [qtsvg, qttools]),
       extraBuildInputs: nix.thunk(() => [qtdeclarative]),
       extraPropagatedBuildInputs: nix.thunk(() => [qt5compat]),
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "kirigami-wrapped",
       version: nix.thunk(() => nix.attr(unwrapped, "version")),
       propagatedBuildInputs: nix.thunk(() => [unwrapped, qqc2_desktop_style]),
       dontUnpack: true,
       dontWrapQtApps: true,
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, unwrapped: unwrapped })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[1], unwrapped: unwrapped })),
     })));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

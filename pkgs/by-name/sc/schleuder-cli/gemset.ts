@@ -2,21 +2,17 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
-const pos$1 = nix.positions(here + "/gemset.nix", [["fetchSubmodules", 7, 7], ["rev", 8, 7], ["sha256", 9, 7], ["type", 10, 7], ["url", 11, 7]]);
-const pos$2 = nix.positions(here + "/gemset.nix", [["dependencies", 3, 5], ["groups", 4, 5], ["platforms", 5, 5], ["source", 6, 5], ["version", 13, 5]]);
-const pos$3 = nix.positions(here + "/gemset.nix", [["remotes", 19, 7], ["sha256", 20, 7], ["type", 21, 7]]);
-const pos$4 = nix.positions(here + "/gemset.nix", [["groups", 16, 5], ["platforms", 17, 5], ["source", 18, 5], ["version", 23, 5]]);
-const pos$5 = nix.positions(here + "/gemset.nix", [["schleuder-cli", 2, 3], ["thor", 15, 3]]);
+const $pos = nix.positions(here + "/gemset.nix", [[["fetchSubmodules", 7, 7], ["rev", 8, 7], ["sha256", 9, 7], ["type", 10, 7], ["url", 11, 7]], [["dependencies", 3, 5], ["groups", 4, 5], ["platforms", 5, 5], ["source", 6, 5], ["version", 13, 5]], [["remotes", 19, 7], ["sha256", 20, 7], ["type", 21, 7]], [["groups", 16, 5], ["platforms", 17, 5], ["source", 18, 5], ["version", 23, 5]], [["schleuder-cli", 2, 3], ["thor", 15, 3]]]);
 
 export default nix.thunk(() => ({
-  [nix.POS]: pos$5,
+  [nix.POS]: $pos[4],
   "schleuder-cli": nix.thunk(() => ({
-    [nix.POS]: pos$2,
+    [nix.POS]: $pos[1],
     dependencies: nix.thunk(() => ["thor"]),
     groups: nix.thunk(() => ["default"]),
     platforms: [],
     source: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       fetchSubmodules: false,
       rev: "fd010d28b1503504056e714e03abf043b64794ea",
       sha256: "1r8ayi0d00c14q40247rwjf5s5n3dsy9d9blhf5jzm3kddzpwnbx",
@@ -26,11 +22,11 @@ export default nix.thunk(() => ({
     version: "0.2.0",
   })),
   thor: nix.thunk(() => ({
-    [nix.POS]: pos$4,
+    [nix.POS]: $pos[3],
     groups: nix.thunk(() => ["default"]),
     platforms: [],
     source: nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       remotes: nix.thunk(() => ["https://rubygems.org"]),
       sha256: "1vq1fjp45az9hfp6fxljhdrkv75cvbab1jfrwcw738pnsiqk8zps",
       type: "gem",

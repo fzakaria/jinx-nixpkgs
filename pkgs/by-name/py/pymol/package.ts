@@ -2,16 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 25, 5], ["exec", 26, 5], ["desktopName", 27, 5], ["genericName", 28, 5], ["comment", 29, 5], ["icon", 30, 5], ["mimeTypes", 31, 5], ["categories", 40, 5]], [["owner", 54, 5], ["repo", 55, 5], ["rev", 56, 5], ["hash", 57, 5]], [["url", 67, 7], ["hash", 68, 7]], [["url", 71, 7], ["hash", 72, 7]], [["url", 76, 7], ["hash", 77, 7]], [["url", 81, 7], ["hash", 82, 7]], [["PREFIX_PATH", 94, 7], ["NIX_CFLAGS_COMPILE", 122, 7]], [["description", 186, 13], ["mainProgram", 187, 5], ["homepage", 188, 5], ["license", 189, 5], ["maintainers", 190, 5]], [["pname", 49, 11], ["version", 50, 3], ["pyproject", 51, 3], ["src", 53, 3], ["patches", 62, 3], ["postPatch", 86, 3], ["env", 94, 3], ["build-system", 95, 3], ["dontUseCmakeConfigure", 96, 3], ["nativeBuildInputs", 98, 3], ["buildInputs", 103, 3], ["dependencies", 117, 3], ["postInstall", 124, 3], ["pythonImportsCheck", 142, 3], ["nativeCheckInputs", 144, 3], ["doCheck", 152, 3], ["disabledTestPaths", 154, 3], ["disabledTests", 159, 3], ["preCheck", 175, 3], ["__darwinAllowLocalNetworking", 179, 3], ["preFixup", 181, 3], ["meta", 185, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, fetchpatch: false, fetchpatch2: false, makeDesktopItem: false, cmake: false, python3Packages: false, netcdf: false, glew: false, glm: false, libpng: false, libxml2: false, freetype: false, "mmtf-cpp": false, "msgpack-cxx": false, qt5: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 25, 5], ["exec", 26, 5], ["desktopName", 27, 5], ["genericName", 28, 5], ["comment", 29, 5], ["icon", 30, 5], ["mimeTypes", 31, 5], ["categories", 40, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 54, 5], ["repo", 55, 5], ["rev", 56, 5], ["hash", 57, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 67, 7], ["hash", 68, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["url", 71, 7], ["hash", 72, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["url", 76, 7], ["hash", 77, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["url", 81, 7], ["hash", 82, 7]]);
-const pos$7 = nix.positions(here + "/package.nix", [["PREFIX_PATH", 94, 7], ["NIX_CFLAGS_COMPILE", 122, 7]]);
-const pos$8 = nix.positions(here + "/package.nix", [["description", 186, 13], ["mainProgram", 187, 5], ["homepage", 188, 5], ["license", 189, 5], ["maintainers", 190, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["pname", 49, 11], ["version", 50, 3], ["pyproject", 51, 3], ["src", 53, 3], ["patches", 62, 3], ["postPatch", 86, 3], ["env", 94, 3], ["build-system", 95, 3], ["dontUseCmakeConfigure", 96, 3], ["nativeBuildInputs", 98, 3], ["buildInputs", 103, 3], ["dependencies", 117, 3], ["postInstall", 124, 3], ["pythonImportsCheck", 142, 3], ["nativeCheckInputs", 144, 3], ["doCheck", 152, 3], ["disabledTestPaths", 154, 3], ["disabledTests", 159, 3], ["preCheck", 175, 3], ["__darwinAllowLocalNetworking", 179, 3], ["preFixup", 181, 3], ["meta", 185, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -35,7 +27,7 @@ export default nix.lambda((args) => (() => {
   const pname = "pymol";
   const description = "Python-enhanced molecular graphics tool";
   const desktopItem = nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: pname,
       exec: pname,
       desktopName: "PyMol Molecular Graphics System",
@@ -58,7 +50,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.1.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "schrodinger",
           repo: "pymol-open-source",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -67,22 +59,22 @@ export default nix.lambda((args) => (() => {
       const patches = nix.thunk(() => [
         nix.path(here, "./script-already-exists.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: "https://github.com/schrodinger/pymol-open-source/commit/fef4a026425d195185e84d46ab88b2bbd6d96cf8.patch",
             hash: "sha256-F/5UcYwgHgcMQ+zeigedc1rr3WkN9rhxAxH+gQfWKIY=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             url: "https://github.com/schrodinger/pymol-open-source/commit/97cc1797695ee0850621762491e93dc611b04165.patch",
             hash: "sha256-H2PsRFn7brYTtLff/iMvJbZ+RZr7GYElMSINa4RDYdA=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             url: "https://github.com/schrodinger/pymol-open-source/commit/17c6cbd96d52e9692fd298daec6c9bda273a8aad.patch",
             hash: "sha256-dcYRzUhiaGlR3CjQ0BktA5L+8lFyVdw0+hIz3Li7gDQ=",
           })))),
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             url: "https://github.com/schrodinger/pymol-open-source/commit/71246845f77ecfa2e14f01887abd180c18ebfb55.patch",
             hash: "sha256-ES7v38daaDXgbHqtxJ6Pt6Xa3ggKwXcx1txWJWkkLgI=",
           })))),
@@ -94,7 +86,7 @@ substituteInPlace pyproject.toml \\
   --replace-fail '"cmake>=3.13.3",' ""
 `);
       const env = nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         PREFIX_PATH: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), nix.thunk(() => nix.str`${msgpack_cxx}`))),
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.str`-I ${nix.sel(libxml2, "dev")}/include/libxml2`),
       }));
@@ -147,7 +139,7 @@ ln -s $out/${nix.sel(python3Packages, "python", "sitePackages")}/pymol/pymol_pat
       const __darwinAllowLocalNetworking = true;
       const preFixup = "wrapQtApp \"$out/bin/pymol\"\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         description: description,
         mainProgram: "pymol",
         homepage: "https://www.pymol.org/",
@@ -161,7 +153,7 @@ ln -s $out/${nix.sel(python3Packages, "python", "sitePackages")}/pymol/pymol_pat
         })()),
       }));
       return {
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         pname: pname_1,
         version,
         pyproject,

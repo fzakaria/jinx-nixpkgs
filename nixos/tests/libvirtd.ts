@@ -2,80 +2,64 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/libvirtd.nix", [[["maintainers", 4, 8]], [["is_working", 15, 31]], [["qemu", 15, 26]], [["enable", 18, 24]], [["enable", 19, 25]], [["enable", 14, 20], ["hooks", 15, 20], ["nss", 18, 20], ["dbus", 19, 20]], [["cores", 11, 11], ["memorySize", 12, 11], ["libvirtd", 14, 11]], [["supportedFilesystems", 21, 14]], [["hostId", 22, 20]], [["enable", 23, 25]], [["polkit", 23, 18]], [["systemPackages", 24, 21]], [["enable", 29, 27]], [["resolved", 29, 18]], [["virtualisation", 10, 9], ["boot", 21, 9], ["networking", 22, 9], ["security", 23, 9], ["environment", 24, 9], ["services", 29, 9]], [["virthost", 7, 5]], [["name", 3, 3], ["meta", 4, 3], ["nodes", 6, 3], ["testScript", 33, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/libvirtd.nix", [["maintainers", 4, 8]]);
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/libvirtd.nix", [["is_working", 15, 31]]);
-const pos$3 = nix.positions(here + "/libvirtd.nix", [["qemu", 15, 26]]);
-const pos$4 = nix.positions(here + "/libvirtd.nix", [["enable", 18, 24]]);
-const pos$5 = nix.positions(here + "/libvirtd.nix", [["enable", 19, 25]]);
-const pos$6 = nix.positions(here + "/libvirtd.nix", [["enable", 14, 20], ["hooks", 15, 20], ["nss", 18, 20], ["dbus", 19, 20]]);
-const pos$7 = nix.positions(here + "/libvirtd.nix", [["cores", 11, 11], ["memorySize", 12, 11], ["libvirtd", 14, 11]]);
-const pos$8 = nix.positions(here + "/libvirtd.nix", [["supportedFilesystems", 21, 14]]);
-const pos$9 = nix.positions(here + "/libvirtd.nix", [["hostId", 22, 20]]);
-const pos$10 = nix.positions(here + "/libvirtd.nix", [["enable", 23, 25]]);
-const pos$11 = nix.positions(here + "/libvirtd.nix", [["polkit", 23, 18]]);
-const pos$12 = nix.positions(here + "/libvirtd.nix", [["systemPackages", 24, 21]]);
-const pos$13 = nix.positions(here + "/libvirtd.nix", [["enable", 29, 27]]);
-const pos$14 = nix.positions(here + "/libvirtd.nix", [["resolved", 29, 18]]);
-const pos$15 = nix.positions(here + "/libvirtd.nix", [["virtualisation", 10, 9], ["boot", 21, 9], ["networking", 22, 9], ["security", 23, 9], ["environment", 24, 9], ["services", 29, 9]]);
-const pos$16 = nix.positions(here + "/libvirtd.nix", [["virthost", 7, 5]]);
-const pos$17 = nix.positions(here + "/libvirtd.nix", [["name", 3, 3], ["meta", 4, 3], ["nodes", 6, 3], ["testScript", 33, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   return {
-    [nix.POS]: pos$17,
+    [nix.POS]: $pos[16],
     name: "libvirtd",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "fpletz"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$16,
+      [nix.POS]: $pos[15],
       virthost: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$15,
+          [nix.POS]: $pos[14],
           virtualisation: nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             cores: 2n,
             memorySize: 2048n,
             libvirtd: nix.thunk(() => ({
-              [nix.POS]: pos$6,
+              [nix.POS]: $pos[5],
               enable: true,
               hooks: nix.thunk(() => ({
-                [nix.POS]: pos$3,
+                [nix.POS]: $pos[2],
                 qemu: nix.thunk(() => ({
-                  [nix.POS]: pos$2,
+                  [nix.POS]: $pos[1],
                   is_working: nix.thunk(() => nix.str`${nix.app(nix.sel(pkgs_1, "writeShellScript"), "testHook.sh", "touch /tmp/qemu_hook_is_working\n")}`),
                 })),
               })),
-              nss: nix.thunk(() => ({ [nix.POS]: pos$4, enable: true })),
-              dbus: nix.thunk(() => ({ [nix.POS]: pos$5, enable: true })),
+              nss: nix.thunk(() => ({ [nix.POS]: $pos[3], enable: true })),
+              dbus: nix.thunk(() => ({ [nix.POS]: $pos[4], enable: true })),
             })),
           })),
-          boot: nix.thunk(() => ({ [nix.POS]: pos$8, supportedFilesystems: nix.thunk(() => ["zfs"]) })),
-          networking: nix.thunk(() => ({ [nix.POS]: pos$9, hostId: "deadbeef" })),
+          boot: nix.thunk(() => ({ [nix.POS]: $pos[7], supportedFilesystems: nix.thunk(() => ["zfs"]) })),
+          networking: nix.thunk(() => ({ [nix.POS]: $pos[8], hostId: "deadbeef" })),
           security: nix.thunk(() => ({
-            [nix.POS]: pos$11,
-            polkit: nix.thunk(() => ({ [nix.POS]: pos$10, enable: true })),
+            [nix.POS]: $pos[10],
+            polkit: nix.thunk(() => ({ [nix.POS]: $pos[9], enable: true })),
           })),
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$12,
+            [nix.POS]: $pos[11],
             systemPackages: nix.thunk(() => (() => {
               const w = nix.withScope(pkgs_1, null);
               return [nix.thunk(() => nix.lookup(w, "virt-manager"))];
             })()),
           })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$14,
-            resolved: nix.thunk(() => ({ [nix.POS]: pos$13, enable: true })),
+            [nix.POS]: $pos[13],
+            resolved: nix.thunk(() => ({ [nix.POS]: $pos[12], enable: true })),
           })),
         };
       })(), formals$2),

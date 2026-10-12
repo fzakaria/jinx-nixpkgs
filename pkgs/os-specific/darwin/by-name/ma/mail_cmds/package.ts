@@ -2,9 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["description", 19, 8]], [["releaseName", 10, 3], ["outputs", 12, 3], ["xcodeHash", 17, 3], ["meta", 19, 3]]]);
 const formals$1 = { args: { lib: false, "apple-sdk": false, file_cmds: false, mkAppleDerivation: false, "pkg-config": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["description", 19, 8]]);
-const pos$2 = nix.positions(here + "/package.nix", [["releaseName", 10, 3], ["outputs", 12, 3], ["xcodeHash", 17, 3], ["meta", 19, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const mkAppleDerivation = nix.arg($, "mkAppleDerivation");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(mkAppleDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       releaseName: "mail_cmds",
       outputs: nix.thunk(() => ["out", "man"]),
       xcodeHash: "sha256-X9WKaCXm7gJI04iOJ3upmqTwZ6Lw+JjH0xSs+ng/9J0=",
-      meta: nix.thunk(() => ({ [nix.POS]: pos$1, description: "Traditional mail command for Darwin" })),
+      meta: nix.thunk(() => ({ [nix.POS]: $pos[0], description: "Traditional mail command for Darwin" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

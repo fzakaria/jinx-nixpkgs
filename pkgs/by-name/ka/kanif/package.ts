@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 15, 5], ["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]], [["description", 42, 5], ["longDescription", 43, 5], ["homepage", 52, 5], ["license", 53, 5], ["maintainers", 54, 5], ["platforms", 55, 5]], [["version", 11, 3], ["pname", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 22, 3], ["preBuild", 28, 3], ["strictDeps", 39, 3], ["meta", 41, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, autoreconfHook: false, fetchFromGitLab: false, perl: false, taktuk: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 15, 5], ["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 42, 5], ["longDescription", 43, 5], ["homepage", 52, 5], ["license", 53, 5], ["maintainers", 54, 5], ["platforms", 55, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 11, 3], ["pname", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 22, 3], ["preBuild", 28, 3], ["strictDeps", 39, 3], ["meta", 41, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const perl = nix.arg($, "perl");
   const taktuk = nix.arg($, "taktuk");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       version: "1.2.2",
       pname: "kanif",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "gitlab.inria.fr",
           owner: "taktuk",
           repo: "kanif",
@@ -39,7 +37,7 @@ substituteInPlace ./kanif.pod --replace-fail '=item 4' '=item B<4>'
 `),
       strictDeps: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Cluster management and administration swiss army knife",
         longDescription: "Kanif is a tool for high performance computing clusters management and\nadministration. It combines the main functionalities of well-known cluster\nmanagement tools such as c3, pdsh and dsh, and mimics their syntax. It\nprovides three tools to run the same command on several nodes (\"parallel\nssh\", using the 'kash' command), to broadcast the copy of files or\ndirectories to several nodes ('kaput' command), and to gather several\nremote files or directories locally ('kaget' command). It relies on TakTuk\nfor efficiency and scalability.",
         homepage: "https://gitlab.inria.fr/taktuk/kanif",

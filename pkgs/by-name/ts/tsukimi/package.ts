@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 33, 5], ["repo", 34, 5], ["tag", 35, 5], ["hash", 36, 5]], [["pname", 40, 26], ["version", 40, 32], ["src", 40, 40], ["hash", 41, 5]], [["updateScript", 85, 12]], [["description", 88, 5], ["homepage", 89, 5], ["license", 90, 5], ["maintainers", 91, 5], ["mainProgram", 95, 5], ["platforms", 96, 5]], [["pname", 29, 3], ["version", 30, 3], ["src", 32, 3], ["cargoDeps", 39, 3], ["nativeBuildInputs", 44, 3], ["buildInputs", 59, 3], ["mesonFlags", 78, 3], ["nativeInstallCheckInputs", 82, 3], ["doInstallCheck", 83, 3], ["passthru", 85, 3], ["meta", 87, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, rustPlatform: false, "pkg-config": false, "mpv-unwrapped": false, ffmpeg: false, libadwaita: false, gst_all_1: false, openssl: false, libepoxy: false, wrapGAppsHook4: false, "nix-update-script": false, stdenv: false, meson: false, ninja: false, rustc: false, cargo: false, dbus: false, "desktop-file-utils": false, versionCheckHook: false, libxml2: false, appstream: false, "blueprint-compiler": false, "glycin-loaders": false, libglycin: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 33, 5], ["repo", 34, 5], ["tag", 35, 5], ["hash", 36, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 40, 26], ["version", 40, 32], ["src", 40, 40], ["hash", 41, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 85, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 88, 5], ["homepage", 89, 5], ["license", 90, 5], ["maintainers", 91, 5], ["mainProgram", 95, 5], ["platforms", 96, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 29, 3], ["version", 30, 3], ["src", 32, 3], ["cargoDeps", 39, 3], ["nativeBuildInputs", 44, 3], ["buildInputs", 59, 3], ["mesonFlags", 78, 3], ["nativeInstallCheckInputs", 82, 3], ["doInstallCheck", 83, 3], ["passthru", 85, 3], ["meta", 87, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -37,18 +33,18 @@ export default nix.lambda((args) => (() => {
   const glycin_loaders = nix.arg($, "glycin-loaders");
   const libglycin = nix.arg($, "libglycin");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "tsukimi",
       version: "26.9.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "tsukinaha",
           repo: "tsukimi",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-qlkXQxae8rhDgIJk60NzD6yk6b71S8jTGuChcnW9VuM=",
         })))),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -92,11 +88,11 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Simple third-party Emby client, featured with GTK4-RS, MPV and GStreamer",
         homepage: "https://github.com/tsukinaha/tsukimi",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

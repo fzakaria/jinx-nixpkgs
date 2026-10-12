@@ -2,10 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["tag", 15, 5], ["hash", 16, 5]], [["description", 24, 5], ["homepage", 25, 5], ["license", 26, 5], ["maintainers", 27, 5]], [["owner", 8, 3], ["domain", 9, 3], ["version", 10, 3], ["src", 12, 3], ["dependencies", 19, 3], ["meta", 23, 3]]]);
 const formals$1 = { args: { buildHomeAssistantComponent: false, fetchFromGitHub: false, lib: false, alphaessopenapi: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["tag", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 24, 5], ["homepage", 25, 5], ["license", 26, 5], ["maintainers", 27, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["owner", 8, 3], ["domain", 9, 3], ["version", 10, 3], ["src", 12, 3], ["dependencies", 19, 3], ["meta", 23, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const domain = "alphaess";
       const version = "0.8.5";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "CharlesGillanders",
           repo: "homeassistant-alphaESS",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -26,7 +24,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const dependencies = nix.thunk(() => [alphaessopenapi]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Monitor your energy generation, storage, and usage data using the official API from Alpha ESS",
         homepage: "https://github.com/CharlesGillanders/homeassistant-alphaESS",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -35,7 +33,7 @@ export default nix.lambda((args) => (() => {
           return [nix.thunk(() => nix.lookup(w, "benediktbroich"))];
         })()),
       }));
-      return { [nix.POS]: pos$3, owner, domain, version, src, dependencies, meta };
+      return { [nix.POS]: $pos[2], owner, domain, version, src, dependencies, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

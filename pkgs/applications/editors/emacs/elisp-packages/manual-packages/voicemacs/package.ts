@@ -2,10 +2,8 @@
 import * as nix from "../../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 25, 5], ["repo", 26, 5], ["rev", 27, 5], ["hash", 28, 5]], [["homepage", 52, 5], ["description", 53, 5], ["license", 54, 5], ["maintainers", 55, 5]], [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["patches", 31, 3], ["packageRequires", 35, 3], ["meta", 51, 3]]]);
 const formals$1 = { args: { lib: false, avy: false, "bind-key": false, "cl-lib": false, company: false, "company-quickhelp": false, "default-text-scale": false, f: false, fetchFromGitHub: false, helm: false, "json-rpc-server": false, melpaBuild: false, "nav-flash": false, porthole: false, yasnippet: false, "el-patch": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 25, 5], ["repo", 26, 5], ["rev", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 52, 5], ["description", 53, 5], ["license", 54, 5], ["maintainers", 55, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["patches", 31, 3], ["packageRequires", 35, 3], ["meta", 51, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const yasnippet = nix.arg($, "yasnippet");
   const el_patch = nix.arg($, "el-patch");
   return nix.app(melpaBuild, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "voicemacs",
       version: "0-unstable-2024-12-11",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "jcaw",
           repo: "voicemacs",
           rev: "fb6133f59d3062a0cb2396353d9a1edd2af4750a",
@@ -53,7 +51,7 @@ export default nix.lambda((args) => (() => {
         el_patch,
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/jcaw/voicemacs/",
         description: "Set of utilities for controlling Emacs by voice",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

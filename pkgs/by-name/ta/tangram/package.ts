@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 33, 5], ["repo", 34, 5], ["tag", 35, 5], ["hash", 36, 5], ["fetchSubmodules", 37, 5]], [["gtkSupport", 68, 34]], [["updateScript", 87, 5]], [["description", 91, 5], ["mainProgram", 92, 5], ["homepage", 93, 5], ["license", 94, 5], ["platforms", 95, 5], ["maintainers", 96, 5], ["teams", 100, 5]], [["pname", 29, 3], ["version", 30, 3], ["src", 32, 3], ["nativeBuildInputs", 40, 3], ["buildInputs", 54, 3], ["dontPatchShebangs", 72, 3], ["postPatch", 74, 3], ["preFixup", 81, 3], ["passthru", 86, 3], ["meta", 90, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, "appstream-glib": false, "desktop-file-utils": false, "gdk-pixbuf": false, gettext: false, gjs: false, glib: false, "glib-networking": false, "gobject-introspection": false, "gsettings-desktop-schemas": false, gtk4: false, libadwaita: false, gst_all_1: false, "hicolor-icon-theme": false, meson: false, ninja: false, "nix-update-script": false, "pkg-config": false, python3: false, webkitgtk_6_0: false, "blueprint-compiler": false, wrapGAppsHook4: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 33, 5], ["repo", 34, 5], ["tag", 35, 5], ["hash", 36, 5], ["fetchSubmodules", 37, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["gtkSupport", 68, 34]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 87, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 91, 5], ["mainProgram", 92, 5], ["homepage", 93, 5], ["license", 94, 5], ["platforms", 95, 5], ["maintainers", 96, 5], ["teams", 100, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 29, 3], ["version", 30, 3], ["src", 32, 3], ["nativeBuildInputs", 40, 3], ["buildInputs", 54, 3], ["dontPatchShebangs", 72, 3], ["postPatch", 74, 3], ["preFixup", 81, 3], ["passthru", 86, 3], ["meta", 90, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -36,11 +32,11 @@ export default nix.lambda((args) => (() => {
   const blueprint_compiler = nix.arg($, "blueprint-compiler");
   const wrapGAppsHook4 = nix.arg($, "wrapGAppsHook4");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "tangram",
       version: "3.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "sonnyp",
           repo: "Tangram",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -75,7 +71,7 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.lookup(w, "gstreamer")),
           nix.thunk(() => nix.lookup(w, "gst-libav")),
           nix.thunk(() => nix.lookup(w, "gst-plugins-base")),
-          nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "gst-plugins-good"), "override"), nix.thunk(() => ({ [nix.POS]: pos$2, gtkSupport: true })))),
+          nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "gst-plugins-good"), "override"), nix.thunk(() => ({ [nix.POS]: $pos[1], gtkSupport: true })))),
           nix.thunk(() => nix.lookup(w, "gst-plugins-bad")),
         ];
       })())),
@@ -86,11 +82,11 @@ substituteInPlace src/bin.js troll/gjspack/bin/gjspack \\
 `),
       preFixup: "sed -e '2iimports.package._findEffectiveEntryPointName = () => \"re.sonny.Tangram\"' \\\n  -i $out/bin/re.sonny.Tangram\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Run web apps on your desktop",
         mainProgram: "re.sonny.Tangram",
         homepage: "https://github.com/sonnyp/Tangram",

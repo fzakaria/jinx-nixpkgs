@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["sha256", 14, 5], ["rev", 15, 5], ["repo", 16, 5], ["owner", 17, 5]], [["description", 40, 5], ["mainProgram", 41, 5], ["longDescription", 42, 5], ["homepage", 46, 5], ["license", 47, 5], ["platforms", 48, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 20, 3], ["preAutoreconf", 25, 3], ["enableParallelBuilding", 37, 3], ["meta", 39, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, autoreconfHook: false, gettext: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["sha256", 14, 5], ["rev", 15, 5], ["repo", 16, 5], ["owner", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 40, 5], ["mainProgram", 41, 5], ["longDescription", 42, 5], ["homepage", 46, 5], ["license", 47, 5], ["platforms", 48, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 20, 3], ["preAutoreconf", 25, 3], ["enableParallelBuilding", 37, 3], ["meta", 39, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const autoreconfHook = nix.arg($, "autoreconfHook");
   const gettext = nix.arg($, "gettext");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "duff",
       version: "2024-02-16",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           sha256: "9lS4th+qeglsoA+1s45uEE2UGmlE3YtSy4/uGqWKU/k=",
           rev: "c1baefa4f4d5cefbbbc7bfefc0c18356752c8a1b",
           repo: "duff",
@@ -38,7 +36,7 @@ sed '/^XGETTEXT_OPTIONS =/ s,$, --from-code=utf-8,' -i po/Makevars
 `),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Quickly find duplicate files",
         mainProgram: "duff",
         longDescription: "Duff is a Unix command-line utility for quickly finding duplicates in\na given set of files.\n",

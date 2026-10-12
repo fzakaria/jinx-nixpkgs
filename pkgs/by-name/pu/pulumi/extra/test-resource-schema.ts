@@ -2,11 +2,9 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/test-resource-schema.nix", [[["PULUMI_SKIP_UPDATE_CHECK", 22, 7], ["PULUMI_DISABLE_AUTOMATIC_PLUGIN_ACQUISITION", 23, 7]], [["timeout", 26, 10]], [["resourceName", 14, 5], ["expectedVersion", 15, 5], ["nativeBuildInputs", 16, 5], ["env", 21, 5], ["__darwinAllowLocalNetworking", 25, 5], ["meta", 26, 5]]]);
 const formals$1 = { args: { lib: false, runCommand: false, pulumi: false, jq: false }, ellipsis: false };
 const formals$2 = { args: { package: false, name: true, version: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/test-resource-schema.nix", [["PULUMI_SKIP_UPDATE_CHECK", 22, 7], ["PULUMI_DISABLE_AUTOMATIC_PLUGIN_ACQUISITION", 23, 7]]);
-const pos$2 = nix.positions(here + "/test-resource-schema.nix", [["timeout", 26, 10]]);
-const pos$3 = nix.positions(here + "/test-resource-schema.nix", [["resourceName", 14, 5], ["expectedVersion", 15, 5], ["nativeBuildInputs", 16, 5], ["env", 21, 5], ["__darwinAllowLocalNetworking", 25, 5], ["meta", 26, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,17 +18,17 @@ export default nix.lambda((args) => (() => {
     const name = nix.argOr($_1, "name", () => nix.app(nix.sel(lib, "removePrefix"), "pulumi-", nix.thunk(() => nix.app(nix.sel(lib, "getName"), package$))));
     const version = nix.argOr($_1, "version", () => nix.app(nix.sel(lib, "getVersion"), package$));
     return nix.app(runCommand, nix.thunk(() => nix.str`pulumi-resource-${name}-schema-version-check`), nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         resourceName: name,
         expectedVersion: nix.thunk(() => (nix.asBool(!nix.eq(version, null)) ? nix.force(version) : "null")),
         nativeBuildInputs: nix.thunk(() => [jq, pulumi, package$]),
         env: nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           PULUMI_SKIP_UPDATE_CHECK: "1",
           PULUMI_DISABLE_AUTOMATIC_PLUGIN_ACQUISITION: "1",
         })),
         __darwinAllowLocalNetworking: true,
-        meta: nix.thunk(() => ({ [nix.POS]: pos$2, timeout: 120n })),
+        meta: nix.thunk(() => ({ [nix.POS]: $pos[1], timeout: 120n })),
       })), "actualVersion=$(pulumi package get-schema -- \"$resourceName\" | jq -j .version)\nif [[ $expectedVersion != \"$actualVersion\" ]]; then\n  echo \"Expected schema version $expectedVersion, but got $actualVersion\" >&2\n  false\nfi\nmkdir -p \"$out\"\n");
   })(), formals$2);
 })(), formals$1);

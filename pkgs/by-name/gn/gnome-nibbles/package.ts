@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 27, 5], ["hash", 28, 5]], [["packageName", 52, 41]], [["updateScript", 52, 5]], [["description", 56, 5], ["mainProgram", 57, 5], ["homepage", 58, 5], ["changelog", 59, 5], ["license", 60, 5], ["teams", 61, 5], ["platforms", 62, 5]], [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 43, 3], ["passthru", 51, 3], ["meta", 55, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, "pkg-config": false, gnome: false, gsound: false, gtk4: false, wrapGAppsHook4: false, librsvg: false, gettext: false, itstool: false, vala: false, libxml2: false, libadwaita: false, libgee: false, meson: false, ninja: false, "desktop-file-utils": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["packageName", 52, 41]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 52, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 56, 5], ["mainProgram", 57, 5], ["homepage", 58, 5], ["changelog", 59, 5], ["license", 60, 5], ["teams", 61, 5], ["platforms", 62, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 43, 3], ["passthru", 51, 3], ["meta", 55, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const ninja = nix.arg($, "ninja");
   const desktop_file_utils = nix.arg($, "desktop-file-utils");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "gnome-nibbles",
       version: "4.5.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnome/sources/gnome-nibbles/${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/gnome-nibbles-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-dnKdO1Ys14Yq0wWQw71A/SUfnUu1xTuqhBUBl/Ixpfo=",
         })))),
@@ -51,11 +47,11 @@ export default nix.lambda((args) => (() => {
       ]),
       buildInputs: nix.thunk(() => [gsound, gtk4, librsvg, libadwaita, libgee]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$2, packageName: "gnome-nibbles" })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: $pos[1], packageName: "gnome-nibbles" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Guide a worm around a maze",
         mainProgram: "gnome-nibbles",
         homepage: "https://gitlab.gnome.org/GNOME/gnome-nibbles",

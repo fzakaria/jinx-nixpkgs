@@ -2,11 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]], [["NIX_CFLAGS_COMPILE", 50, 7]], [["description", 55, 5], ["homepage", 56, 5], ["license", 57, 5], ["maintainers", 58, 5], ["platforms", 59, 5]], [["pname", 13, 3], ["version", 14, 3], ["nativeBuildInputs", 16, 3], ["buildInputs", 21, 3], ["src", 28, 3], ["patches", 36, 3], ["postPatch", 38, 3], ["cmakeFlags", 48, 3], ["env", 50, 3], ["dontWrapQtApps", 52, 3], ["meta", 54, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, "obs-studio": false, cmake: false, qt6: false, "ndi-6": false, curl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 50, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 55, 5], ["homepage", 56, 5], ["license", 57, 5], ["maintainers", 58, 5], ["platforms", 59, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["nativeBuildInputs", 16, 3], ["buildInputs", 21, 3], ["src", 28, 3], ["patches", 36, 3], ["postPatch", 38, 3], ["cmakeFlags", 48, 3], ["env", 50, 3], ["dontWrapQtApps", 52, 3], ["meta", 54, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [cmake, nix.thunk(() => nix.sel(qt6, "qtbase"))]);
       const buildInputs = nix.thunk(() => [obs_studio, nix.thunk(() => nix.sel(qt6, "qtbase")), ndi_6, curl]);
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "DistroAV",
           repo: "DistroAV",
           tag: version,
@@ -40,10 +37,10 @@ rm -rf lib/ndi
 ln -s ${ndi_6}/include lib/ndi
 `);
       const cmakeFlags = nix.thunk(() => ["-DENABLE_QT=ON"]);
-      const env = nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-Wno-deprecated-declarations" }));
+      const env = nix.thunk(() => ({ [nix.POS]: $pos[1], NIX_CFLAGS_COMPILE: "-Wno-deprecated-declarations" }));
       const dontWrapQtApps = true;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Network A/V plugin for OBS Studio (formerly obs-ndi)",
         homepage: "https://github.com/DistroAV/DistroAV",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),
@@ -54,7 +51,7 @@ ln -s ${ndi_6}/include lib/ndi
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         nativeBuildInputs,

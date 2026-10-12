@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5], ["fetchSubmodules", 19, 5]], [["broken", 65, 5], ["description", 66, 5], ["homepage", 67, 5], ["license", 68, 5], ["platforms", 69, 5], ["maintainers", 70, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 22, 3], ["enableParallelBuilding", 27, 3], ["enableParallelInstalling", 28, 3], ["makeFlags", 35, 3], ["postInstall", 43, 3], ["outputs", 57, 3], ["meta", 63, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, bmake: false, docbook_xsl: false, libxslt: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5], ["fetchSubmodules", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["broken", 65, 5], ["description", 66, 5], ["homepage", 67, 5], ["license", 68, 5], ["platforms", 69, 5], ["maintainers", 70, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 22, 3], ["enableParallelBuilding", 27, 3], ["enableParallelInstalling", 28, 3], ["makeFlags", 35, 3], ["postInstall", 43, 3], ["outputs", 57, 3], ["meta", 63, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname = "libfsm";
       const version = nix.thunk(() => nix.str`0.1pre2987_${nix.builtins.substring(0n, 8n, nix.thunk(() => nix.sel(src, "rev")))}`);
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "katef",
           repo: "libfsm",
           rev: "087e3389ad2cd5e5c40caeb40387e632567d7258",
@@ -33,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const postInstall = "mkdir -p $lib $dev/lib\n\nmv $out/lib             $lib/lib\nmv $out/include         $dev/include\nmv $out/share/pkgconfig $dev/lib/pkgconfig\nrmdir $out/share\n\nfor x in libfsm.pc libre.pc; do\n  substituteInPlace \"$dev/lib/pkgconfig/$x\" \\\n    --replace 'libdir=${prefix}/lib' \"libdir=$lib/lib\"\ndone\n";
       const outputs = nix.thunk(() => ["out", "lib", "dev"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
         description: "DFA regular expression library & friends",
         homepage: "https://github.com/katef/libfsm",
@@ -45,7 +43,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

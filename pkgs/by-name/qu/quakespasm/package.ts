@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 28, 5], ["hash", 29, 5]], [["name", 109, 7], ["exec", 110, 7], ["desktopName", 111, 7], ["categories", 112, 7]], [["description", 117, 5], ["homepage", 118, 5], ["longDescription", 119, 5], ["platforms", 128, 5], ["maintainers", 129, 5], ["mainProgram", 130, 5], ["license", 131, 5]], [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["sourceRoot", 32, 3], ["patches", 34, 3], ["postPatch", 40, 3], ["nativeBuildInputs", 44, 3], ["buildInputs", 49, 3], ["buildFlags", 63, 3], ["makefile", 82, 3], ["preInstall", 84, 3], ["postInstall", 90, 3], ["enableParallelBuilding", 105, 3], ["desktopItems", 107, 3], ["meta", 116, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, SDL: false, SDL2: false, fetchurl: false, gzip: false, libGL: false, libGLU: false, libvorbis: false, libmad: false, flac: false, libopus: false, opusfile: false, libogg: false, libxmp: false, copyDesktopItems: false, makeDesktopItem: false, "pkg-config": false, useSDL2: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 28, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 109, 7], ["exec", 110, 7], ["desktopName", 111, 7], ["categories", 112, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 117, 5], ["homepage", 118, 5], ["longDescription", 119, 5], ["platforms", 128, 5], ["maintainers", 129, 5], ["mainProgram", 130, 5], ["license", 131, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["sourceRoot", 32, 3], ["patches", 34, 3], ["postPatch", 40, 3], ["nativeBuildInputs", 44, 3], ["buildInputs", 49, 3], ["buildFlags", 63, 3], ["makefile", 82, 3], ["preInstall", 84, 3], ["postInstall", 90, 3], ["enableParallelBuilding", 105, 3], ["desktopItems", 107, 3], ["meta", 116, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,11 +27,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const useSDL2 = nix.argOr($, "useSDL2", () => nix.sel(stdenv, "hostPlatform", "isDarwin"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "quakespasm",
       version: "0.96.3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/quakespasm/quakespasm-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-tXjWzkpPf04mokRY8YxLzI04VK5iUuuZgu6B2V5QGA4=",
         })))),
@@ -74,7 +71,7 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: true,
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "quakespasm",
             exec: "quake",
             desktopName: "Quakespasm",
@@ -82,7 +79,7 @@ export default nix.lambda((args) => (() => {
           })))),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Engine for iD software's Quake",
         homepage: "https://quakespasm.sourceforge.net/",
         longDescription: "QuakeSpasm is a modern, cross-platform Quake 1 engine based on FitzQuake.\nIt includes support for 64 bit CPUs and custom music playback, a new sound driver,\nsome graphical niceities, and numerous bug-fixes and other improvements.\nQuakespasm utilizes either the SDL or SDL2 frameworks, so choose which one\nworks best for you. SDL is probably less buggy, but SDL2 has nicer features\nand smoother mouse input - though no CD support.\n",

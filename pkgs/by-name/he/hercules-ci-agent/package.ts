@@ -2,37 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["postInstall", 29, 7]], [["position", 44, 7]], [["package", 49, 11], ["command", 50, 11]], [["version", 48, 9]], [["enable", 57, 30]], [["grub", 57, 25]], [["loader", 57, 18]], [["device", 58, 29]], [["/", 58, 25]], [["enable", 59, 40]], [["hercules-ci-agent", 59, 22]], [["stateVersion", 61, 20]], [["boot", 57, 13], ["fileSystems", 58, 13], ["services", 59, 13], ["system", 61, 13]], [["enable", 68, 32]], [["grub", 68, 27]], [["loader", 68, 20]], [["device", 69, 31]], [["/", 69, 27]], [["baz", 76, 34]], [["bar", 76, 30]], [["foo", 76, 26], ["qux", 77, 26]], [["workDirectory", 74, 19], ["binaryCachesPath", 75, 19], ["labels", 76, 19], ["apiBaseUrl", 81, 19], ["concurrentTasks", 82, 19]], [["enable", 71, 17], ["package", 72, 17], ["settings", 73, 17]], [["hercules-ci-agent", 70, 24]], [["stateVersion", 86, 22]], [["boot", 68, 15], ["fileSystems", 69, 15], ["services", 70, 15], ["system", 86, 15]], [["nixos-simple-config", 55, 9], ["nixos-many-options-config", 64, 9]], [["tests", 47, 7]], [["meta", 43, 5], ["passthru", 46, 5]]]);
 const formals$1 = { args: { crun: false, git: false, gnutar: false, gzip: false, haskell: false, haskellPackages: false, lib: false, makeBinaryWrapper: false, nixos: false, openssh: false, stdenv: false, testers: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["postInstall", 29, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["position", 44, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["package", 49, 11], ["command", 50, 11]]);
-const pos$4 = nix.positions(here + "/package.nix", [["version", 48, 9]]);
-const pos$5 = nix.positions(here + "/package.nix", [["enable", 57, 30]]);
-const pos$6 = nix.positions(here + "/package.nix", [["grub", 57, 25]]);
-const pos$7 = nix.positions(here + "/package.nix", [["loader", 57, 18]]);
-const pos$8 = nix.positions(here + "/package.nix", [["device", 58, 29]]);
-const pos$9 = nix.positions(here + "/package.nix", [["/", 58, 25]]);
-const pos$10 = nix.positions(here + "/package.nix", [["enable", 59, 40]]);
-const pos$11 = nix.positions(here + "/package.nix", [["hercules-ci-agent", 59, 22]]);
-const pos$12 = nix.positions(here + "/package.nix", [["stateVersion", 61, 20]]);
-const pos$13 = nix.positions(here + "/package.nix", [["boot", 57, 13], ["fileSystems", 58, 13], ["services", 59, 13], ["system", 61, 13]]);
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$14 = nix.positions(here + "/package.nix", [["enable", 68, 32]]);
-const pos$15 = nix.positions(here + "/package.nix", [["grub", 68, 27]]);
-const pos$16 = nix.positions(here + "/package.nix", [["loader", 68, 20]]);
-const pos$17 = nix.positions(here + "/package.nix", [["device", 69, 31]]);
-const pos$18 = nix.positions(here + "/package.nix", [["/", 69, 27]]);
-const pos$19 = nix.positions(here + "/package.nix", [["baz", 76, 34]]);
-const pos$20 = nix.positions(here + "/package.nix", [["bar", 76, 30]]);
-const pos$21 = nix.positions(here + "/package.nix", [["foo", 76, 26], ["qux", 77, 26]]);
-const pos$22 = nix.positions(here + "/package.nix", [["workDirectory", 74, 19], ["binaryCachesPath", 75, 19], ["labels", 76, 19], ["apiBaseUrl", 81, 19], ["concurrentTasks", 82, 19]]);
-const pos$23 = nix.positions(here + "/package.nix", [["enable", 71, 17], ["package", 72, 17], ["settings", 73, 17]]);
-const pos$24 = nix.positions(here + "/package.nix", [["hercules-ci-agent", 70, 24]]);
-const pos$25 = nix.positions(here + "/package.nix", [["stateVersion", 86, 22]]);
-const pos$26 = nix.positions(here + "/package.nix", [["boot", 68, 15], ["fileSystems", 69, 15], ["services", 70, 15], ["system", 86, 15]]);
-const pos$27 = nix.positions(here + "/package.nix", [["nixos-simple-config", 55, 9], ["nixos-many-options-config", 64, 9]]);
-const pos$28 = nix.positions(here + "/package.nix", [["tests", 47, 7]]);
-const pos$29 = nix.positions(here + "/package.nix", [["meta", 43, 5], ["passthru", 46, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -55,7 +27,7 @@ export default nix.lambda((args) => (() => {
   const makeBinPath = nix.thunk(() => nix.attr(lib, "makeBinPath"));
   const bundledBins = nix.thunk(() => nix.concat([gnutar, gzip, git, openssh], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), crun)));
   const pkg = nix.thunk(() => nix.app(overrideCabal, (o) => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       postInstall: nix.thunk(() => nix.str`${nix.selOr(o, () => "", "postInstall")}
 ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")))), nix.thunk(() => nix.str`remove-references-to -t ${nix.sel(haskellPackages, "hercules-ci-cnix-expr")} $out/bin/hercules-ci-agent
 remove-references-to -t ${nix.sel(haskellPackages, "hercules-ci-cnix-expr")} $out/bin/hercules-ci-agent-worker
@@ -66,41 +38,41 @@ makeWrapper $out/libexec/hercules-ci-agent $out/bin/hercules-ci-agent --prefix P
 `),
     }), nix.thunk(() => nix.app(addBuildTools, nix.thunk(() => [makeBinaryWrapper]), nix.thunk(() => nix.app(justStaticExecutables, nix.thunk(() => nix.sel(haskellPackages, "hercules-ci-agent"))))))));
   return nix.app(nix.sel(pkg, "overrideAttrs"), (finalAttrs) => (o) => ({
-      [nix.POS]: pos$29,
+      [nix.POS]: $pos[28],
       meta: nix.thunk(() => nix.update(nix.sel(o, "meta"), {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         position: nix.thunk(() => nix.add(nix.builtins.toString(nix.path(here, "./package.nix")), ":1")),
       })),
       passthru: nix.thunk(() => nix.update(nix.sel(o, "passthru"), {
-        [nix.POS]: pos$28,
+        [nix.POS]: $pos[27],
         tests: nix.thunk(() => nix.update({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               command: "hercules-ci-agent --help",
             })))),
         }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => ({
-            [nix.POS]: pos$27,
+            [nix.POS]: $pos[26],
             "nixos-simple-config": nix.thunk(() => nix.sel(nix.app(nixos, nix.thunk(() => ({
-                [nix.POS]: pos$13,
+                [nix.POS]: $pos[12],
                 boot: nix.thunk(() => ({
-                  [nix.POS]: pos$7,
+                  [nix.POS]: $pos[6],
                   loader: nix.thunk(() => ({
-                    [nix.POS]: pos$6,
-                    grub: nix.thunk(() => ({ [nix.POS]: pos$5, enable: false })),
+                    [nix.POS]: $pos[5],
+                    grub: nix.thunk(() => ({ [nix.POS]: $pos[4], enable: false })),
                   })),
                 })),
                 fileSystems: nix.thunk(() => ({
-                  [nix.POS]: pos$9,
-                  "/": nix.thunk(() => ({ [nix.POS]: pos$8, device: "bogus" })),
+                  [nix.POS]: $pos[8],
+                  "/": nix.thunk(() => ({ [nix.POS]: $pos[7], device: "bogus" })),
                 })),
                 services: nix.thunk(() => ({
-                  [nix.POS]: pos$11,
-                  "hercules-ci-agent": nix.thunk(() => ({ [nix.POS]: pos$10, enable: true })),
+                  [nix.POS]: $pos[10],
+                  "hercules-ci-agent": nix.thunk(() => ({ [nix.POS]: $pos[9], enable: true })),
                 })),
                 system: nix.thunk(() => ({
-                  [nix.POS]: pos$12,
+                  [nix.POS]: $pos[11],
                   stateVersion: nix.thunk(() => nix.sel(lib, "trivial", "release")),
                 })),
               }))), "config", "system", "build", "toplevel")),
@@ -108,31 +80,34 @@ makeWrapper $out/libexec/hercules-ci-agent $out/bin/hercules-ci-agent --prefix P
                 const $_1 = nix.formals(args_1, formals$2);
                 const pkgs = nix.arg($_1, "pkgs");
                 return {
-                  [nix.POS]: pos$26,
+                  [nix.POS]: $pos[25],
                   boot: nix.thunk(() => ({
-                    [nix.POS]: pos$16,
+                    [nix.POS]: $pos[15],
                     loader: nix.thunk(() => ({
-                      [nix.POS]: pos$15,
-                      grub: nix.thunk(() => ({ [nix.POS]: pos$14, enable: false })),
+                      [nix.POS]: $pos[14],
+                      grub: nix.thunk(() => ({ [nix.POS]: $pos[13], enable: false })),
                     })),
                   })),
                   fileSystems: nix.thunk(() => ({
-                    [nix.POS]: pos$18,
-                    "/": nix.thunk(() => ({ [nix.POS]: pos$17, device: "bogus" })),
+                    [nix.POS]: $pos[17],
+                    "/": nix.thunk(() => ({ [nix.POS]: $pos[16], device: "bogus" })),
                   })),
                   services: nix.thunk(() => ({
-                    [nix.POS]: pos$24,
+                    [nix.POS]: $pos[23],
                     "hercules-ci-agent": nix.thunk(() => ({
-                      [nix.POS]: pos$23,
+                      [nix.POS]: $pos[22],
                       enable: true,
                       package: nix.thunk(() => nix.sel(pkgs, "hercules-ci-agent")),
                       settings: nix.thunk(() => ({
-                        [nix.POS]: pos$22,
+                        [nix.POS]: $pos[21],
                         workDirectory: "/var/tmp/hci",
                         binaryCachesPath: "/var/keys/binary-caches.json",
                         labels: nix.thunk(() => ({
-                          [nix.POS]: pos$21,
-                          foo: nix.thunk(() => ({ [nix.POS]: pos$20, bar: nix.thunk(() => ({ [nix.POS]: pos$19, baz: "qux" })) })),
+                          [nix.POS]: $pos[20],
+                          foo: nix.thunk(() => ({
+                            [nix.POS]: $pos[19],
+                            bar: nix.thunk(() => ({ [nix.POS]: $pos[18], baz: "qux" })),
+                          })),
                           qux: nix.thunk(() => ["q", "u"]),
                         })),
                         apiBaseUrl: "https://hci.dev.biz.example.com",
@@ -141,7 +116,7 @@ makeWrapper $out/libexec/hercules-ci-agent $out/bin/hercules-ci-agent --prefix P
                     })),
                   })),
                   system: nix.thunk(() => ({
-                    [nix.POS]: pos$25,
+                    [nix.POS]: $pos[24],
                     stateVersion: nix.thunk(() => nix.sel(lib, "trivial", "release")),
                   })),
                 };

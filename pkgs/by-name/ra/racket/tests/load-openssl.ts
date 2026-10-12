@@ -2,13 +2,13 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/load-openssl.nix", [[["nativeBuildInputs", 5, 5]]]);
 const formals$1 = { args: { runCommandLocal: false, racket: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/load-openssl.nix", [["nativeBuildInputs", 5, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const runCommandLocal = nix.arg($, "runCommandLocal");
   const racket = nix.arg($, "racket");
-  return nix.app(runCommandLocal, "racket-test-load-openssl", nix.thunk(() => ({ [nix.POS]: pos$1, nativeBuildInputs: nix.thunk(() => [racket]) })), "racket -f - <<EOF\n(require openssl)\n(unless ssl-available?\n  (raise ssl-load-fail-reason))\nEOF\n\ntouch $out\n");
+  return nix.app(runCommandLocal, "racket-test-load-openssl", nix.thunk(() => ({ [nix.POS]: $pos[0], nativeBuildInputs: nix.thunk(() => [racket]) })), "racket -f - <<EOF\n(require openssl)\n(unless ssl-available?\n  (raise ssl-load-fail-reason))\nEOF\n\ntouch $out\n");
 })(), formals$1);
 //# sourceMappingURL=load-openssl.ts.map

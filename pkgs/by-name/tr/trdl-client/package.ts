@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 12, 5], ["repo", 13, 5], ["tag", 14, 5], ["hash", 15, 5]], [["description", 41, 5], ["longDescription", 42, 5], ["homepage", 54, 5], ["changelog", 55, 5], ["license", 56, 5], ["maintainers", 57, 5], ["mainProgram", 58, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["sourceRoot", 18, 3], ["vendorHash", 20, 3], ["subPackages", 22, 3], ["ldflags", 24, 3], ["tags", 30, 3], ["doInstallCheck", 35, 3], ["nativeInstallCheckInputs", 36, 3], ["versionCheckProgram", 37, 3], ["versionCheckProgramArg", 38, 3], ["meta", 40, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitHub: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 12, 5], ["repo", 13, 5], ["tag", 14, 5], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 41, 5], ["longDescription", 42, 5], ["homepage", 54, 5], ["changelog", 55, 5], ["license", 56, 5], ["maintainers", 57, 5], ["mainProgram", 58, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["sourceRoot", 18, 3], ["vendorHash", 20, 3], ["subPackages", 22, 3], ["ldflags", 24, 3], ["tags", 30, 3], ["doInstallCheck", 35, 3], ["nativeInstallCheckInputs", 36, 3], ["versionCheckProgram", 37, 3], ["versionCheckProgramArg", 38, 3], ["meta", 40, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "trdl-client",
       version: "0.13.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "werf",
           repo: "trdl",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,7 +36,7 @@ export default nix.lambda((args) => (() => {
       versionCheckProgram: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/bin/trdl`),
       versionCheckProgramArg: "version",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Universal solution for delivering your software updates",
         longDescription: "trdl is an Open Source solution providing a secure channel for delivering\nupdates from the Git repository to the end user.\n\nThe project team releases new versions of the software and switches them\nin the release channels. Git acts as the single source of truth while\nVault is used as a tool to verify operations as well as populate and\nmaintain the TUF repository.\n\nThe user selects a release channel, continuously receives the latest\nsoftware version from the TUF repository, and uses it.\n",
         homepage: "https://trdl.dev",

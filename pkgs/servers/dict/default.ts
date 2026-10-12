@@ -2,12 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 19, 5], ["hash", 20, 5]], [["nixos", 51, 18]], [["tests", 51, 12]], [["description", 54, 5], ["homepage", 55, 5], ["license", 56, 5], ["maintainers", 57, 5], ["platforms", 58, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["patches", 23, 3], ["buildInputs", 27, 3], ["nativeBuildInputs", 32, 3], ["enableParallelBuilding", 40, 3], ["configureFlags", 42, 3], ["postInstall", 47, 3], ["passthru", 51, 3], ["meta", 53, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, which: false, bison: false, flex: false, libmaa: false, zlib: false, libtool: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["nixos", 51, 18]]);
-const pos$3 = nix.positions(here + "/default.nix", [["tests", 51, 12]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 54, 5], ["homepage", 55, 5], ["license", 56, 5], ["maintainers", 57, 5], ["platforms", 58, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["patches", 23, 3], ["buildInputs", 27, 3], ["nativeBuildInputs", 32, 3], ["enableParallelBuilding", 40, 3], ["configureFlags", 42, 3], ["postInstall", 47, 3], ["passthru", 51, 3], ["meta", 53, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const pname = "dictd";
       const version = "1.13.3";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/dict/dictd-${version}.tar.gz`),
           hash: "sha256-GSEp37OPpyP0ipWGx5xRmPxJBP7BdXF2kXMU3Qc/EXE=",
         }))));
@@ -37,11 +33,11 @@ export default nix.lambda((args) => (() => {
       const postInstall = nix.thunk(() => nix.str`install -Dm444 -t $out/share/doc/${pname} NEWS README
 `);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$2, nixos: nix.thunk(() => nix.sel(nixosTests, "dictd")) })),
+        [nix.POS]: $pos[2],
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[1], nixos: nix.thunk(() => nix.sel(nixosTests, "dictd")) })),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Dict protocol server and client",
         homepage: "http://www.dict.org",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
@@ -52,7 +48,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         src,

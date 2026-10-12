@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]], [["changelog", 63, 5], ["description", 64, 5], ["mainProgram", 65, 5], ["homepage", 66, 5], ["license", 67, 5], ["maintainers", 68, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["vendorHash", 21, 3], ["tags", 23, 3], ["ldflags", 27, 3], ["preCheck", 33, 3], ["checkFlags", 37, 3], ["__darwinAllowLocalNetworking", 55, 3], ["doInstallCheck", 57, 3], ["nativeInstallCheckInputs", 58, 3], ["versionCheckKeepEnvironment", 59, 3], ["versionCheckProgramArg", 60, 3], ["meta", 62, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildGoModule: false, fetchFromGitHub: false, go: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["changelog", 63, 5], ["description", 64, 5], ["mainProgram", 65, 5], ["homepage", 66, 5], ["license", 67, 5], ["maintainers", 68, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["vendorHash", 21, 3], ["tags", 23, 3], ["ldflags", 27, 3], ["preCheck", 33, 3], ["checkFlags", 37, 3], ["__darwinAllowLocalNetworking", 55, 3], ["doInstallCheck", 57, 3], ["nativeInstallCheckInputs", 58, 3], ["versionCheckKeepEnvironment", 59, 3], ["versionCheckProgramArg", 60, 3], ["meta", 62, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const go = nix.arg($, "go");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "kubevpn",
       version: "2.9.11",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "KubeNetworks",
           repo: "kubevpn",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -51,7 +49,7 @@ export default nix.lambda((args) => (() => {
       versionCheckKeepEnvironment: nix.thunk(() => ["HOME"]),
       versionCheckProgramArg: "version",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         changelog: nix.thunk(() => nix.str`https://github.com/KubeNetworks/kubevpn/releases/tag/${nix.sel(finalAttrs, "src", "rev")}`),
         description: "Create a VPN and connect to Kubernetes cluster network, access resources, and more",
         mainProgram: "kubevpn",

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 30, 37], ["sha256", 30, 41]], [["extraBwrapArgs", 43, 7], ["extraBuildCommands", 44, 7], ["runScript", 47, 7]], [["mainProgram", 59, 5], ["description", 60, 5], ["homepage", 61, 5], ["downloadPage", 62, 5], ["changelog", 63, 5], ["license", 64, 5], ["sourceProvenance", 65, 5], ["platforms", 66, 5], ["maintainers", 71, 5]], [["commandLineArgs", 20, 11], ["useVSCodeRipgrep", 20, 27], ["version", 21, 25], ["vscodeVersion", 21, 33], ["pname", 22, 3], ["executableName", 24, 3], ["longName", 25, 3], ["shortName", 26, 3], ["libraryName", 27, 3], ["iconName", 28, 3], ["src", 30, 3], ["sourceRoot", 32, 3], ["tests", 34, 3], ["updateScript", 35, 3], ["customizeFHSEnv", 39, 3], ["meta", 58, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildVscode: false, fetchurl: false, writeShellScript: false, coreutils: false, commandLineArgs: true, useVSCodeRipgrep: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 30, 37], ["sha256", 30, 41]]);
-const pos$2 = nix.positions(here + "/package.nix", [["extraBwrapArgs", 43, 7], ["extraBuildCommands", 44, 7], ["runScript", 47, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["mainProgram", 59, 5], ["description", 60, 5], ["homepage", 61, 5], ["downloadPage", 62, 5], ["changelog", 63, 5], ["license", 64, 5], ["sourceProvenance", 65, 5], ["platforms", 66, 5], ["maintainers", 71, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["commandLineArgs", 20, 11], ["useVSCodeRipgrep", 20, 27], ["version", 21, 25], ["vscodeVersion", 21, 33], ["pname", 22, 3], ["executableName", 24, 3], ["longName", 25, 3], ["shortName", 26, 3], ["libraryName", 27, 3], ["iconName", 28, 3], ["src", 30, 3], ["sourceRoot", 32, 3], ["tests", 34, 3], ["updateScript", 35, 3], ["customizeFHSEnv", 39, 3], ["meta", 58, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,7 +19,7 @@ export default nix.lambda((args) => (() => {
   const information = nix.thunk(() => nix.app(nix.sel(lib, "importJSON"), nix.path(here, "./information.json")));
   const source = nix.thunk(() => nix.selOr(information, () => nix.builtins.throw(nix.thunk(() => nix.str`antigravity-ide: unsupported system ${nix.sel(hostPlatform, "system")}`)), "sources", nix.key(nix.str`${nix.sel(hostPlatform, "system")}`)));
   return nix.app(buildVscode, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       commandLineArgs: commandLineArgs,
       useVSCodeRipgrep: useVSCodeRipgrep,
       version: nix.thunk(() => nix.attr(information, "version")),
@@ -34,7 +31,7 @@ export default nix.lambda((args) => (() => {
       libraryName: "antigravity-ide",
       iconName: "antigravity-ide",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.attr(source, "url")),
           sha256: nix.thunk(() => nix.attr(source, "sha256")),
         })))),
@@ -42,7 +39,7 @@ export default nix.lambda((args) => (() => {
       tests: nix.thunk(() => ({})),
       updateScript: nix.path(here, "./update.js"),
       customizeFHSEnv: (args_1) => nix.update(args_1, {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         extraBwrapArgs: nix.thunk(() => nix.concat(nix.selOr(args_1, () => [], "extraBwrapArgs"), ["--tmpfs /opt/google/chrome"])),
         extraBuildCommands: nix.thunk(() => nix.add(nix.selOr(args_1, () => "", "extraBuildCommands"), "mkdir -p \"$out/opt/google/chrome\"\n")),
         runScript: nix.thunk(() => nix.app(writeShellScript, "antigravity-ide-wrapper", nix.thunk(() => nix.str`for candidate in google-chrome-stable google-chrome chromium-browser chromium; do
@@ -55,7 +52,7 @@ exec ${nix.sel(args_1, "runScript")} "$@"
 `))),
       }),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         mainProgram: "antigravity-ide",
         description: "Agentic development platform, evolving the IDE into the agent-first era",
         homepage: "https://antigravity.google/product/antigravity-ide",

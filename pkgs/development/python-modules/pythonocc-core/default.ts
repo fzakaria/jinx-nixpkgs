@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 26, 5], ["repo", 27, 5], ["rev", 28, 5], ["hash", 29, 5]], [["skipBulkUpdate", 60, 5]], [["description", 64, 5], ["homepage", 65, 5], ["changelog", 66, 5], ["license", 67, 5], ["platforms", 68, 5], ["maintainers", 69, 5]], [["pname", 21, 3], ["version", 23, 3], ["src", 25, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 36, 3], ["cmakeFlags", 51, 3], ["passthru", 57, 3], ["meta", 63, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, python: false, fetchFromGitHub: false, cmake: false, fontconfig: false, freetype: false, libGL: false, libGLU: false, libx11: false, libxext: false, libxi: false, libxmu: false, "opencascade-occt": false, numpy: false, rapidjson: false, swig: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 26, 5], ["repo", 27, 5], ["rev", 28, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["skipBulkUpdate", 60, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 64, 5], ["homepage", 65, 5], ["changelog", 66, 5], ["license", 67, 5], ["platforms", 68, 5], ["maintainers", 69, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 21, 3], ["version", 23, 3], ["src", 25, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 36, 3], ["cmakeFlags", 51, 3], ["passthru", 57, 3], ["meta", 63, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const rapidjson = nix.arg($, "rapidjson");
   const swig = nix.arg($, "swig");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "pythonocc-core",
       version: "7.9.0-unstable-2025-12-31",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "tpaviot",
           repo: "pythonocc-core",
           rev: "2f8f1a7d99312e8b3e81d0bb2adab9b1e717d37b",
@@ -58,9 +55,9 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`-DPYTHONOCC_INSTALL_DIRECTORY=${nix.builtins.placeholder("out")}/${nix.sel(python, "sitePackages")}/OCC`),
         "-DPYTHONOCC_MESHDS_NUMPY=on",
       ]),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, skipBulkUpdate: true })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[1], skipBulkUpdate: true })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Python wrapper for the OpenCASCADE 3D modeling kernel",
         homepage: "https://github.com/tpaviot/pythonocc-core",
         changelog: nix.thunk(() => nix.str`https://github.com/tpaviot/pythonocc-core/blob/${nix.sel(finalAttrs, "src", "rev")}/NEWS`),

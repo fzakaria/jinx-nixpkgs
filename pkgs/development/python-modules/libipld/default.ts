@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 25, 13], ["version", 25, 19], ["hash", 26, 5]], [["src", 30, 13], ["hash", 31, 5]], [["updateScript", 59, 12]], [["description", 62, 5], ["homepage", 63, 5], ["changelog", 64, 5], ["license", 65, 5], ["maintainers", 66, 5]], [["pname", 19, 3], ["version", 20, 3], ["pyproject", 21, 3], ["src", 24, 3], ["cargoDeps", 29, 3], ["build-system", 34, 3], ["nativeBuildInputs", 38, 3], ["nativeCheckInputs", 43, 3], ["pytestFlags", 50, 3], ["disabledTests", 52, 3], ["pythonImportsCheck", 57, 3], ["passthru", 59, 3], ["meta", 61, 3]]]);
 const formals$1 = { args: { lib: false, fetchPypi: false, buildPythonPackage: false, rustPlatform: false, "nix-update-script": false, maturin: false, pytestCheckHook: false, "pytest-benchmark": false, "pytest-codspeed": false, "pytest-xdist": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 25, 13], ["version", 25, 19], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["src", 30, 13], ["hash", 31, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["updateScript", 59, 12]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 62, 5], ["homepage", 63, 5], ["changelog", 64, 5], ["license", 65, 5], ["maintainers", 66, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 19, 3], ["version", 20, 3], ["pyproject", 21, 3], ["src", 24, 3], ["cargoDeps", 29, 3], ["build-system", 34, 3], ["nativeBuildInputs", 38, 3], ["nativeCheckInputs", 43, 3], ["pytestFlags", 50, 3], ["disabledTests", 52, 3], ["pythonImportsCheck", 57, 3], ["passthru", 59, 3], ["meta", 61, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,13 +22,13 @@ export default nix.lambda((args) => (() => {
       const version = "3.4.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-XTT8j5DJVDIPyn/vEg5f6a9Y+2dP9yNfJ4cDZN5sEG8=",
         }))));
       const cargoDeps = nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           src: src,
           hash: "sha256-8DYIiX/lFGYz/4+vWgoYTsV5L3O7rulof6UomrulbeM=",
         }))));
@@ -49,11 +45,11 @@ export default nix.lambda((args) => (() => {
       const disabledTests = nix.thunk(() => ["test_decode_car"]);
       const pythonImportsCheck = nix.thunk(() => ["libipld"]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Fast Python library to work with IPLD: DAG-CBOR, CID, CAR, multibase",
         homepage: "https://github.com/MarshalX/python-libipld",
         changelog: nix.thunk(() => nix.str`https://github.com/MarshalX/python-libipld/releases/tag/v${version}`),
@@ -64,7 +60,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         pyproject,

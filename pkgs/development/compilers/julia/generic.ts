@@ -2,12 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/generic.nix", [[["url", 66, 5], ["hash", 67, 13]], [["NIX_CFLAGS_COMPILE", 182, 5]], [["description", 189, 5], ["mainProgram", 190, 5], ["homepage", 191, 5], ["license", 192, 5], ["maintainers", 193, 5], ["platforms", 199, 5]], [["pname", 61, 3], ["version", 63, 11], ["patches", 63, 19], ["src", 65, 3], ["strictDeps", 70, 3], ["__structuredAttrs", 71, 3], ["nativeBuildInputs", 73, 3], ["buildInputs", 90, 3], ["dontUseCmakeConfigure", 98, 3], ["postPatch", 100, 3], ["preBuild", 118, 3], ["makeFlags", 123, 3], ["preFixup", 140, 3], ["postFixup", 148, 3], ["doInstallCheck", 154, 3], ["preInstallCheck", 158, 3], ["installCheckPhase", 165, 3], ["dontStrip", 177, 3], ["enableParallelBuilding", 179, 3], ["env", 181, 3], ["meta", 188, 3]]]);
 const formals$1 = { args: { version: false, hash: false, patches: true }, ellipsis: false };
 const formals$2 = { args: { lib: false, stdenv: false, fetchurl: false, which: false, python3: false, gfortran: false, cacert: false, cmake: false, perl: false, gnum4: false, openssl: false, libxml2: false, zlib: false, buildPackages: false, darwin: false, unzip: false, ncurses: false, curl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/generic.nix", [["url", 66, 5], ["hash", 67, 13]]);
-const pos$2 = nix.positions(here + "/generic.nix", [["NIX_CFLAGS_COMPILE", 182, 5]]);
-const pos$3 = nix.positions(here + "/generic.nix", [["description", 189, 5], ["mainProgram", 190, 5], ["homepage", 191, 5], ["license", 192, 5], ["maintainers", 193, 5], ["platforms", 199, 5]]);
-const pos$4 = nix.positions(here + "/generic.nix", [["pname", 61, 3], ["version", 63, 11], ["patches", 63, 19], ["src", 65, 3], ["strictDeps", 70, 3], ["__structuredAttrs", 71, 3], ["nativeBuildInputs", 73, 3], ["buildInputs", 90, 3], ["dontUseCmakeConfigure", 98, 3], ["postPatch", 100, 3], ["preBuild", 118, 3], ["makeFlags", 123, 3], ["preFixup", 140, 3], ["postFixup", 148, 3], ["doInstallCheck", 154, 3], ["preInstallCheck", 158, 3], ["installCheckPhase", 165, 3], ["dontStrip", 177, 3], ["enableParallelBuilding", 179, 3], ["env", 181, 3], ["meta", 188, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -40,7 +37,7 @@ export default nix.lambda((args) => (() => {
         const version_1 = version;
         const patches_1 = patches;
         const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             url: nix.thunk(() => nix.str`https://github.com/JuliaLang/julia/releases/download/v${version_1}/julia-${version_1}-full.tar.gz`),
             hash: hash,
           }))));
@@ -94,14 +91,14 @@ runHook postInstallCheck
         const dontStrip = true;
         const enableParallelBuilding = true;
         const env = nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionOlder"), version_1, "1.11")) || nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")))), nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => [
                 "-Wno-error=implicit-function-declaration",
                 "-Wno-error=incompatible-pointer-types",
               ]))),
           }))));
         const meta = nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           description: "High-level performance-oriented dynamical language for technical computing",
           mainProgram: "julia",
           homepage: "https://julialang.org/",
@@ -118,7 +115,7 @@ runHook postInstallCheck
           platforms: nix.thunk(() => ["x86_64-linux", "aarch64-linux", "aarch64-darwin"]),
         }));
         return {
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           pname,
           version: version_1,
           patches: patches_1,

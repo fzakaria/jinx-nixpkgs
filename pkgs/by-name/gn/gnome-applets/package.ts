@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 31, 5], ["hash", 32, 5]], [["PKG_CONFIG_LIBGNOME_PANEL_MODULESDIR", 66, 7]], [["packageName", 70, 7], ["versionPolicy", 71, 7]], [["updateScript", 69, 5]], [["description", 76, 5], ["mainProgram", 77, 5], ["homepage", 78, 5], ["changelog", 79, 5], ["license", 80, 5], ["teams", 81, 5], ["platforms", 82, 5]], [["pname", 27, 3], ["version", 28, 3], ["src", 30, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 43, 3], ["enableParallelBuilding", 61, 3], ["doCheck", 63, 3], ["env", 66, 3], ["passthru", 68, 3], ["meta", 75, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, gettext: false, itstool: false, libxml2: false, "pkg-config": false, "gnome-panel": false, gtk3: false, glib: false, libwnck: false, libgtop: false, libnotify: false, upower: false, wirelesstools: false, linuxPackages: false, "adwaita-icon-theme": false, libgweather: false, gucharmap: false, tinysparql: false, polkit: false, gnome: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 31, 5], ["hash", 32, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["PKG_CONFIG_LIBGNOME_PANEL_MODULESDIR", 66, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["packageName", 70, 7], ["versionPolicy", 71, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 69, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 76, 5], ["mainProgram", 77, 5], ["homepage", 78, 5], ["changelog", 79, 5], ["license", 80, 5], ["teams", 81, 5], ["platforms", 82, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 27, 3], ["version", 28, 3], ["src", 30, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 43, 3], ["enableParallelBuilding", 61, 3], ["doCheck", 63, 3], ["env", 66, 3], ["passthru", 68, 3], ["meta", 75, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -35,11 +30,11 @@ export default nix.lambda((args) => (() => {
   const polkit = nix.arg($, "polkit");
   const gnome = nix.arg($, "gnome");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "gnome-applets",
       version: "3.58.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnome/sources/gnome-applets/${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/gnome-applets-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-5h7bcTRNzV2qbnF137snSnWL6LWEUnc1abs1ZFuFojg=",
         })))),
@@ -64,19 +59,19 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: true,
       doCheck: true,
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         PKG_CONFIG_LIBGNOME_PANEL_MODULESDIR: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/lib/gnome-panel/modules`),
       })),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             packageName: "gnome-applets",
             versionPolicy: "odd-unstable",
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Applets for use with the GNOME panel",
         mainProgram: "cpufreq-selector",
         homepage: "https://gitlab.gnome.org/GNOME/gnome-applets",

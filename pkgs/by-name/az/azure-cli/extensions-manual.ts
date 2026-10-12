@@ -2,57 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/extensions-manual.nix", [[["maintainers", 27, 10]], [["pname", 18, 5], ["version", 19, 5], ["url", 20, 5], ["hash", 21, 5], ["description", 22, 5], ["propagatedBuildInputs", 23, 5], ["meta", 27, 5]], [["maintainers", 40, 10]], [["pname", 31, 5], ["version", 32, 5], ["url", 33, 5], ["hash", 34, 5], ["description", 35, 5], ["propagatedBuildInputs", 36, 5], ["meta", 40, 5]], [["maintainers", 52, 10]], [["pname", 44, 5], ["version", 45, 5], ["url", 46, 5], ["hash", 47, 5], ["description", 48, 5], ["propagatedBuildInputs", 49, 5], ["meta", 52, 5]], [["maintainers", 67, 10]], [["pname", 56, 5], ["version", 57, 5], ["url", 58, 5], ["hash", 59, 5], ["description", 60, 5], ["propagatedBuildInputs", 61, 5], ["meta", 67, 5]], [["maintainers", 78, 10]], [["pname", 71, 5], ["version", 72, 5], ["url", 73, 5], ["hash", 74, 5], ["description", 75, 5], ["pythonRelaxDeps", 76, 5], ["propagatedBuildInputs", 77, 5], ["meta", 78, 5]], [["maintainers", 91, 10]], [["pname", 82, 5], ["version", 83, 5], ["url", 84, 5], ["hash", 85, 5], ["description", 86, 5], ["propagatedBuildInputs", 87, 5], ["meta", 91, 5]], [["maintainers", 111, 10]], [["pname", 95, 5], ["version", 96, 5], ["url", 97, 5], ["hash", 98, 5], ["description", 99, 5], ["propagatedBuildInputs", 100, 5], ["meta", 111, 5]], [["maintainers", 123, 10]], [["pname", 115, 5], ["version", 116, 5], ["url", 117, 5], ["hash", 118, 5], ["description", 119, 5], ["propagatedBuildInputs", 120, 5], ["meta", 123, 5]], [["maintainers", 133, 10]], [["pname", 127, 5], ["version", 128, 5], ["url", 129, 5], ["hash", 130, 5], ["description", 131, 5], ["propagatedBuildInputs", 132, 5], ["meta", 133, 5]], [["maintainers", 160, 10]], [["pname", 137, 5], ["description", 138, 5], ["version", 139, 5], ["url", 140, 5], ["hash", 141, 5], ["propagatedBuildInputs", 142, 5], ["meta", 160, 5]], [["maintainers", 172, 10]], [["pname", 164, 5], ["version", 165, 5], ["url", 166, 5], ["hash", 167, 5], ["description", 168, 5], ["propagatedBuildInputs", 169, 5], ["meta", 172, 5]], [["maintainers", 195, 7], ["platforms", 196, 7]], [["pname", 176, 5], ["version", 177, 5], ["url", 178, 5], ["hash", 179, 5], ["description", 180, 5], ["nativeBuildInputs", 181, 5], ["buildInputs", 182, 5], ["pythonRelaxDeps", 183, 5], ["propagatedBuildInputs", 184, 5], ["postInstall", 191, 5], ["meta", 194, 5]], [["maintainers", 214, 10]], [["pname", 201, 5], ["version", 202, 5], ["url", 203, 5], ["hash", 204, 5], ["description", 205, 5], ["propagatedBuildInputs", 206, 5], ["meta", 214, 5]], [["maintainers", 228, 10]], [["pname", 218, 5], ["version", 219, 5], ["url", 220, 5], ["hash", 221, 5], ["description", 222, 5], ["propagatedBuildInputs", 223, 5], ["meta", 228, 5]], [["maintainers", 241, 10]], [["pname", 232, 5], ["version", 233, 5], ["url", 234, 5], ["hash", 235, 5], ["description", 236, 5], ["propagatedBuildInputs", 237, 5], ["meta", 241, 5]], [["maintainers", 258, 10]], [["pname", 245, 5], ["version", 246, 5], ["url", 247, 5], ["hash", 248, 5], ["description", 249, 5], ["pythonRelaxDeps", 251, 5], ["propagatedBuildInputs", 255, 5], ["meta", 258, 5]], [["maintainers", 271, 10]], [["pname", 262, 5], ["version", 263, 5], ["url", 264, 5], ["hash", 265, 5], ["description", 266, 5], ["propagatedBuildInputs", 267, 5], ["meta", 271, 5]], [["maintainers", 292, 10]], [["pname", 275, 5], ["version", 276, 5], ["url", 277, 5], ["hash", 278, 5], ["description", 279, 5], ["pythonRelaxDeps", 280, 5], ["propagatedBuildInputs", 284, 5], ["meta", 292, 5]], [["pname", 296, 5], ["version", 297, 5], ["url", 298, 5], ["hash", 299, 5], ["description", 300, 5], ["propagatedBuildInputs", 301, 5]], [["maintainers", 316, 10]], [["pname", 308, 5], ["version", 309, 5], ["url", 310, 5], ["hash", 311, 5], ["description", 312, 5], ["propagatedBuildInputs", 313, 5], ["meta", 316, 5]], [["maintainers", 331, 7], ["changelog", 332, 7]], [["pname", 320, 5], ["version", 321, 5], ["url", 322, 5], ["hash", 323, 5], ["description", 324, 5], ["propagatedBuildInputs", 325, 5], ["pythonRelaxDeps", 329, 5], ["meta", 330, 5]], [["maintainers", 343, 10]], [["pname", 337, 5], ["version", 338, 5], ["url", 339, 5], ["hash", 340, 5], ["description", 341, 5], ["propagatedBuildInputs", 342, 5], ["meta", 343, 5]], [["maintainers", 353, 10]], [["pname", 347, 5], ["version", 348, 5], ["url", 349, 5], ["hash", 350, 5], ["description", 351, 5], ["propagatedBuildInputs", 352, 5], ["meta", 353, 5]], [["maintainers", 365, 10]], [["pname", 357, 5], ["version", 358, 5], ["url", 359, 5], ["hash", 360, 5], ["description", 361, 5], ["propagatedBuildInputs", 362, 5], ["meta", 365, 5]], [["pname", 368, 5], ["version", 369, 5], ["url", 370, 5], ["hash", 371, 5], ["description", 372, 5], ["propagatedBuildInputs", 373, 5]], [["acrcssc", 17, 3], ["aksarc", 30, 3], ["alias", 43, 3], ["aosm", 55, 3], ["application-insights", 70, 3], ["arcappliance", 81, 3], ["arcdata", 94, 3], ["attestation", 114, 3], ["azure-devops", 126, 3], ["azure-iot", 136, 3], ["cloud-service", 163, 3], ["confcom", 175, 3], ["connectedk8s", 200, 3], ["containerapp", 217, 3], ["k8s-extension", 231, 3], ["interactive", 244, 3], ["k8s-configuration", 261, 3], ["rdbms-connect", 274, 3], ["redisenterprise", 295, 3], ["serial-console", 307, 3], ["ssh", 319, 3], ["storage-preview", 336, 3], ["vm-repair", 346, 3], ["webpubsub", 356, 3], ["workload-orchestration", 367, 3]], [["adp", 380, 3], ["akshybrid", 381, 3], ["appservice-kube", 382, 3], ["arize-ai", 383, 3], ["astronomer", 384, 3], ["azurestackhci", 385, 3], ["blockchain", 386, 3], ["compute-diagnostic-rp", 387, 3], ["connection-monitor-preview", 388, 3], ["csvmware", 389, 3], ["deidservice", 390, 3], ["fileshares", 391, 3], ["hdinsightonaks", 392, 3], ["lambda-test", 393, 3], ["logz", 394, 3], ["mobile-network", 395, 3], ["neon", 396, 3], ["pinecone", 397, 3], ["playwright-cli-extension", 398, 3], ["sap-hana", 399, 3], ["spring", 400, 3], ["spring-cloud", 401, 3], ["weights-and-biases", 402, 3]]]);
 const formals$1 = { args: { config: false, lib: false, mkAzExtension: false, mycli: false, python3Packages: false, autoPatchelfHook: false, python3: false, openssl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/extensions-manual.nix", [["maintainers", 27, 10]]);
-const pos$2 = nix.positions(here + "/extensions-manual.nix", [["pname", 18, 5], ["version", 19, 5], ["url", 20, 5], ["hash", 21, 5], ["description", 22, 5], ["propagatedBuildInputs", 23, 5], ["meta", 27, 5]]);
-const pos$3 = nix.positions(here + "/extensions-manual.nix", [["maintainers", 40, 10]]);
-const pos$4 = nix.positions(here + "/extensions-manual.nix", [["pname", 31, 5], ["version", 32, 5], ["url", 33, 5], ["hash", 34, 5], ["description", 35, 5], ["propagatedBuildInputs", 36, 5], ["meta", 40, 5]]);
-const pos$5 = nix.positions(here + "/extensions-manual.nix", [["maintainers", 52, 10]]);
-const pos$6 = nix.positions(here + "/extensions-manual.nix", [["pname", 44, 5], ["version", 45, 5], ["url", 46, 5], ["hash", 47, 5], ["description", 48, 5], ["propagatedBuildInputs", 49, 5], ["meta", 52, 5]]);
-const pos$7 = nix.positions(here + "/extensions-manual.nix", [["maintainers", 67, 10]]);
-const pos$8 = nix.positions(here + "/extensions-manual.nix", [["pname", 56, 5], ["version", 57, 5], ["url", 58, 5], ["hash", 59, 5], ["description", 60, 5], ["propagatedBuildInputs", 61, 5], ["meta", 67, 5]]);
-const pos$9 = nix.positions(here + "/extensions-manual.nix", [["maintainers", 78, 10]]);
-const pos$10 = nix.positions(here + "/extensions-manual.nix", [["pname", 71, 5], ["version", 72, 5], ["url", 73, 5], ["hash", 74, 5], ["description", 75, 5], ["pythonRelaxDeps", 76, 5], ["propagatedBuildInputs", 77, 5], ["meta", 78, 5]]);
-const pos$11 = nix.positions(here + "/extensions-manual.nix", [["maintainers", 91, 10]]);
-const pos$12 = nix.positions(here + "/extensions-manual.nix", [["pname", 82, 5], ["version", 83, 5], ["url", 84, 5], ["hash", 85, 5], ["description", 86, 5], ["propagatedBuildInputs", 87, 5], ["meta", 91, 5]]);
-const pos$13 = nix.positions(here + "/extensions-manual.nix", [["maintainers", 111, 10]]);
-const pos$14 = nix.positions(here + "/extensions-manual.nix", [["pname", 95, 5], ["version", 96, 5], ["url", 97, 5], ["hash", 98, 5], ["description", 99, 5], ["propagatedBuildInputs", 100, 5], ["meta", 111, 5]]);
-const pos$15 = nix.positions(here + "/extensions-manual.nix", [["maintainers", 123, 10]]);
-const pos$16 = nix.positions(here + "/extensions-manual.nix", [["pname", 115, 5], ["version", 116, 5], ["url", 117, 5], ["hash", 118, 5], ["description", 119, 5], ["propagatedBuildInputs", 120, 5], ["meta", 123, 5]]);
-const pos$17 = nix.positions(here + "/extensions-manual.nix", [["maintainers", 133, 10]]);
-const pos$18 = nix.positions(here + "/extensions-manual.nix", [["pname", 127, 5], ["version", 128, 5], ["url", 129, 5], ["hash", 130, 5], ["description", 131, 5], ["propagatedBuildInputs", 132, 5], ["meta", 133, 5]]);
-const pos$19 = nix.positions(here + "/extensions-manual.nix", [["maintainers", 160, 10]]);
-const pos$20 = nix.positions(here + "/extensions-manual.nix", [["pname", 137, 5], ["description", 138, 5], ["version", 139, 5], ["url", 140, 5], ["hash", 141, 5], ["propagatedBuildInputs", 142, 5], ["meta", 160, 5]]);
-const pos$21 = nix.positions(here + "/extensions-manual.nix", [["maintainers", 172, 10]]);
-const pos$22 = nix.positions(here + "/extensions-manual.nix", [["pname", 164, 5], ["version", 165, 5], ["url", 166, 5], ["hash", 167, 5], ["description", 168, 5], ["propagatedBuildInputs", 169, 5], ["meta", 172, 5]]);
-const pos$23 = nix.positions(here + "/extensions-manual.nix", [["maintainers", 195, 7], ["platforms", 196, 7]]);
-const pos$24 = nix.positions(here + "/extensions-manual.nix", [["pname", 176, 5], ["version", 177, 5], ["url", 178, 5], ["hash", 179, 5], ["description", 180, 5], ["nativeBuildInputs", 181, 5], ["buildInputs", 182, 5], ["pythonRelaxDeps", 183, 5], ["propagatedBuildInputs", 184, 5], ["postInstall", 191, 5], ["meta", 194, 5]]);
-const pos$25 = nix.positions(here + "/extensions-manual.nix", [["maintainers", 214, 10]]);
-const pos$26 = nix.positions(here + "/extensions-manual.nix", [["pname", 201, 5], ["version", 202, 5], ["url", 203, 5], ["hash", 204, 5], ["description", 205, 5], ["propagatedBuildInputs", 206, 5], ["meta", 214, 5]]);
-const pos$27 = nix.positions(here + "/extensions-manual.nix", [["maintainers", 228, 10]]);
-const pos$28 = nix.positions(here + "/extensions-manual.nix", [["pname", 218, 5], ["version", 219, 5], ["url", 220, 5], ["hash", 221, 5], ["description", 222, 5], ["propagatedBuildInputs", 223, 5], ["meta", 228, 5]]);
-const pos$29 = nix.positions(here + "/extensions-manual.nix", [["maintainers", 241, 10]]);
-const pos$30 = nix.positions(here + "/extensions-manual.nix", [["pname", 232, 5], ["version", 233, 5], ["url", 234, 5], ["hash", 235, 5], ["description", 236, 5], ["propagatedBuildInputs", 237, 5], ["meta", 241, 5]]);
-const pos$31 = nix.positions(here + "/extensions-manual.nix", [["maintainers", 258, 10]]);
-const pos$32 = nix.positions(here + "/extensions-manual.nix", [["pname", 245, 5], ["version", 246, 5], ["url", 247, 5], ["hash", 248, 5], ["description", 249, 5], ["pythonRelaxDeps", 251, 5], ["propagatedBuildInputs", 255, 5], ["meta", 258, 5]]);
-const pos$33 = nix.positions(here + "/extensions-manual.nix", [["maintainers", 271, 10]]);
-const pos$34 = nix.positions(here + "/extensions-manual.nix", [["pname", 262, 5], ["version", 263, 5], ["url", 264, 5], ["hash", 265, 5], ["description", 266, 5], ["propagatedBuildInputs", 267, 5], ["meta", 271, 5]]);
-const pos$35 = nix.positions(here + "/extensions-manual.nix", [["maintainers", 292, 10]]);
-const pos$36 = nix.positions(here + "/extensions-manual.nix", [["pname", 275, 5], ["version", 276, 5], ["url", 277, 5], ["hash", 278, 5], ["description", 279, 5], ["pythonRelaxDeps", 280, 5], ["propagatedBuildInputs", 284, 5], ["meta", 292, 5]]);
-const pos$37 = nix.positions(here + "/extensions-manual.nix", [["pname", 296, 5], ["version", 297, 5], ["url", 298, 5], ["hash", 299, 5], ["description", 300, 5], ["propagatedBuildInputs", 301, 5]]);
-const pos$38 = nix.positions(here + "/extensions-manual.nix", [["maintainers", 316, 10]]);
-const pos$39 = nix.positions(here + "/extensions-manual.nix", [["pname", 308, 5], ["version", 309, 5], ["url", 310, 5], ["hash", 311, 5], ["description", 312, 5], ["propagatedBuildInputs", 313, 5], ["meta", 316, 5]]);
-const pos$40 = nix.positions(here + "/extensions-manual.nix", [["maintainers", 331, 7], ["changelog", 332, 7]]);
-const pos$41 = nix.positions(here + "/extensions-manual.nix", [["pname", 320, 5], ["version", 321, 5], ["url", 322, 5], ["hash", 323, 5], ["description", 324, 5], ["propagatedBuildInputs", 325, 5], ["pythonRelaxDeps", 329, 5], ["meta", 330, 5]]);
-const pos$42 = nix.positions(here + "/extensions-manual.nix", [["maintainers", 343, 10]]);
-const pos$43 = nix.positions(here + "/extensions-manual.nix", [["pname", 337, 5], ["version", 338, 5], ["url", 339, 5], ["hash", 340, 5], ["description", 341, 5], ["propagatedBuildInputs", 342, 5], ["meta", 343, 5]]);
-const pos$44 = nix.positions(here + "/extensions-manual.nix", [["maintainers", 353, 10]]);
-const pos$45 = nix.positions(here + "/extensions-manual.nix", [["pname", 347, 5], ["version", 348, 5], ["url", 349, 5], ["hash", 350, 5], ["description", 351, 5], ["propagatedBuildInputs", 352, 5], ["meta", 353, 5]]);
-const pos$46 = nix.positions(here + "/extensions-manual.nix", [["maintainers", 365, 10]]);
-const pos$47 = nix.positions(here + "/extensions-manual.nix", [["pname", 357, 5], ["version", 358, 5], ["url", 359, 5], ["hash", 360, 5], ["description", 361, 5], ["propagatedBuildInputs", 362, 5], ["meta", 365, 5]]);
-const pos$48 = nix.positions(here + "/extensions-manual.nix", [["pname", 368, 5], ["version", 369, 5], ["url", 370, 5], ["hash", 371, 5], ["description", 372, 5], ["propagatedBuildInputs", 373, 5]]);
-const pos$49 = nix.positions(here + "/extensions-manual.nix", [["acrcssc", 17, 3], ["aksarc", 30, 3], ["alias", 43, 3], ["aosm", 55, 3], ["application-insights", 70, 3], ["arcappliance", 81, 3], ["arcdata", 94, 3], ["attestation", 114, 3], ["azure-devops", 126, 3], ["azure-iot", 136, 3], ["cloud-service", 163, 3], ["confcom", 175, 3], ["connectedk8s", 200, 3], ["containerapp", 217, 3], ["k8s-extension", 231, 3], ["interactive", 244, 3], ["k8s-configuration", 261, 3], ["rdbms-connect", 274, 3], ["redisenterprise", 295, 3], ["serial-console", 307, 3], ["ssh", 319, 3], ["storage-preview", 336, 3], ["vm-repair", 346, 3], ["webpubsub", 356, 3], ["workload-orchestration", 367, 3]]);
-const pos$50 = nix.positions(here + "/extensions-manual.nix", [["adp", 380, 3], ["akshybrid", 381, 3], ["appservice-kube", 382, 3], ["arize-ai", 383, 3], ["astronomer", 384, 3], ["azurestackhci", 385, 3], ["blockchain", 386, 3], ["compute-diagnostic-rp", 387, 3], ["connection-monitor-preview", 388, 3], ["csvmware", 389, 3], ["deidservice", 390, 3], ["fileshares", 391, 3], ["hdinsightonaks", 392, 3], ["lambda-test", 393, 3], ["logz", 394, 3], ["mobile-network", 395, 3], ["neon", 396, 3], ["pinecone", 397, 3], ["playwright-cli-extension", 398, 3], ["sap-hana", 399, 3], ["spring", 400, 3], ["spring-cloud", 401, 3], ["weights-and-biases", 402, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -65,9 +16,9 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const openssl = nix.arg($, "openssl");
   return nix.update({
-    [nix.POS]: pos$49,
+    [nix.POS]: $pos[48],
     acrcssc: nix.thunk(() => nix.app(mkAzExtension, nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         pname: "acrcssc",
         version: "1.0.0b5",
         url: "https://azcliprod.blob.core.windows.net/cli-extensions/acrcssc-1.0.0b5-py3-none-any.whl",
@@ -81,7 +32,7 @@ export default nix.lambda((args) => (() => {
           ];
         })()),
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           maintainers: nix.thunk(() => (() => {
             const w_1 = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
             return [nix.thunk(() => nix.lookup(w_1, "techknowlogick"))];
@@ -89,7 +40,7 @@ export default nix.lambda((args) => (() => {
         })),
       })))),
     aksarc: nix.thunk(() => nix.app(mkAzExtension, nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname: "aksarc",
         version: "1.5.62",
         url: "https://hybridaksstorage.z13.web.core.windows.net/HybridAKS/CLI/aksarc-1.5.62-py3-none-any.whl",
@@ -103,7 +54,7 @@ export default nix.lambda((args) => (() => {
           ];
         })()),
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           maintainers: nix.thunk(() => (() => {
             const w_1 = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
             return [nix.thunk(() => nix.lookup(w_1, "techknowlogick"))];
@@ -121,14 +72,14 @@ export default nix.lambda((args) => (() => {
           return [nix.thunk(() => nix.lookup(w, "jinja2"))];
         })());
         const meta = nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           maintainers: nix.thunk(() => (() => {
             const w_1 = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
             return [nix.thunk(() => nix.lookup(w_1, "techknowlogick"))];
           })()),
         }));
         return {
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           pname,
           version,
           url,
@@ -154,14 +105,14 @@ export default nix.lambda((args) => (() => {
           ];
         })());
         const meta = nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           maintainers: nix.thunk(() => (() => {
             const w_1 = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
             return [nix.thunk(() => nix.lookup(w_1, "techknowlogick"))];
           })()),
         }));
         return {
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           pname,
           version,
           url,
@@ -183,14 +134,14 @@ export default nix.lambda((args) => (() => {
           return [nix.thunk(() => nix.lookup(w, "isodate"))];
         })());
         const meta = nix.thunk(() => ({
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           maintainers: nix.thunk(() => (() => {
             const w_1 = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
             return [nix.thunk(() => nix.lookup(w_1, "andreasvoss"))];
           })()),
         }));
         return {
-          [nix.POS]: pos$10,
+          [nix.POS]: $pos[9],
           pname,
           version,
           url,
@@ -202,7 +153,7 @@ export default nix.lambda((args) => (() => {
         };
       })()))),
     arcappliance: nix.thunk(() => nix.app(mkAzExtension, nix.thunk(() => ({
-        [nix.POS]: pos$12,
+        [nix.POS]: $pos[11],
         pname: "arcappliance",
         version: "1.6.0",
         url: "https://arcplatformcliextprod.z13.web.core.windows.net/arcappliance-1.6.0-py2.py3-none-any.whl",
@@ -216,7 +167,7 @@ export default nix.lambda((args) => (() => {
           ];
         })()),
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$11,
+          [nix.POS]: $pos[10],
           maintainers: nix.thunk(() => (() => {
             const w_1 = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
             return [nix.thunk(() => nix.lookup(w_1, "techknowlogick"))];
@@ -224,7 +175,7 @@ export default nix.lambda((args) => (() => {
         })),
       })))),
     arcdata: nix.thunk(() => nix.app(mkAzExtension, nix.thunk(() => ({
-        [nix.POS]: pos$14,
+        [nix.POS]: $pos[13],
         pname: "arcdata",
         version: "1.5.25",
         url: "https://azurearcdatacli.z13.web.core.windows.net/arcdata-1.5.25-py2.py3-none-any.whl",
@@ -245,7 +196,7 @@ export default nix.lambda((args) => (() => {
           ];
         })()),
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$13,
+          [nix.POS]: $pos[12],
           maintainers: nix.thunk(() => (() => {
             const w_1 = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
             return [nix.thunk(() => nix.lookup(w_1, "techknowlogick"))];
@@ -253,7 +204,7 @@ export default nix.lambda((args) => (() => {
         })),
       })))),
     attestation: nix.thunk(() => nix.app(mkAzExtension, nix.thunk(() => ({
-        [nix.POS]: pos$16,
+        [nix.POS]: $pos[15],
         pname: "attestation",
         version: "1.0.0",
         url: "https://azcliprod.blob.core.windows.net/cli-extensions/attestation-1.0.0-py3-none-any.whl",
@@ -264,7 +215,7 @@ export default nix.lambda((args) => (() => {
           return [nix.thunk(() => nix.lookup(w, "pyjwt"))];
         })()),
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$15,
+          [nix.POS]: $pos[14],
           maintainers: nix.thunk(() => (() => {
             const w_1 = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
             return [nix.thunk(() => nix.lookup(w_1, "techknowlogick"))];
@@ -282,14 +233,14 @@ export default nix.lambda((args) => (() => {
           return [nix.thunk(() => nix.lookup(w, "distro"))];
         })());
         const meta = nix.thunk(() => ({
-          [nix.POS]: pos$17,
+          [nix.POS]: $pos[16],
           maintainers: nix.thunk(() => (() => {
             const w_1 = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
             return [nix.thunk(() => nix.lookup(w_1, "katexochen"))];
           })()),
         }));
         return {
-          [nix.POS]: pos$18,
+          [nix.POS]: $pos[17],
           pname,
           version,
           url,
@@ -324,14 +275,14 @@ export default nix.lambda((args) => (() => {
           ];
         })());
         const meta = nix.thunk(() => ({
-          [nix.POS]: pos$19,
+          [nix.POS]: $pos[18],
           maintainers: nix.thunk(() => (() => {
             const w_1 = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
             return [nix.thunk(() => nix.lookup(w_1, "mikut"))];
           })()),
         }));
         return {
-          [nix.POS]: pos$20,
+          [nix.POS]: $pos[19],
           pname,
           description,
           version,
@@ -342,7 +293,7 @@ export default nix.lambda((args) => (() => {
         };
       })()))),
     "cloud-service": nix.thunk(() => nix.app(mkAzExtension, nix.thunk(() => ({
-        [nix.POS]: pos$22,
+        [nix.POS]: $pos[21],
         pname: "cloud-service",
         version: "1.0.1",
         url: "https://azcliprod.blob.core.windows.net/cli-extensions/cloud_service-1.0.1-py3-none-any.whl",
@@ -353,7 +304,7 @@ export default nix.lambda((args) => (() => {
           return [nix.thunk(() => nix.lookup(w, "azure-mgmt-compute"))];
         })()),
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$21,
+          [nix.POS]: $pos[20],
           maintainers: nix.thunk(() => (() => {
             const w_1 = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
             return [nix.thunk(() => nix.lookup(w_1, "techknowlogick"))];
@@ -382,12 +333,12 @@ export default nix.lambda((args) => (() => {
         const postInstall = nix.thunk(() => nix.str`chmod +x $out/${nix.sel(python3, "sitePackages")}/azext_confcom/bin/genpolicy-linux
 `);
         const meta = nix.thunk(() => ({
-          [nix.POS]: pos$23,
+          [nix.POS]: $pos[22],
           maintainers: [],
           platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
         }));
         return {
-          [nix.POS]: pos$24,
+          [nix.POS]: $pos[23],
           pname,
           version,
           url,
@@ -419,14 +370,14 @@ export default nix.lambda((args) => (() => {
           ];
         })());
         const meta = nix.thunk(() => ({
-          [nix.POS]: pos$25,
+          [nix.POS]: $pos[24],
           maintainers: nix.thunk(() => (() => {
             const w_1 = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
             return [nix.thunk(() => nix.lookup(w_1, "techknowlogick"))];
           })()),
         }));
         return {
-          [nix.POS]: pos$26,
+          [nix.POS]: $pos[25],
           pname,
           version,
           url,
@@ -451,14 +402,14 @@ export default nix.lambda((args) => (() => {
           ];
         })());
         const meta = nix.thunk(() => ({
-          [nix.POS]: pos$27,
+          [nix.POS]: $pos[26],
           maintainers: nix.thunk(() => (() => {
             const w_1 = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
             return [nix.thunk(() => nix.lookup(w_1, "giggio"))];
           })()),
         }));
         return {
-          [nix.POS]: pos$28,
+          [nix.POS]: $pos[27],
           pname,
           version,
           url,
@@ -481,9 +432,9 @@ export default nix.lambda((args) => (() => {
             nix.thunk(() => nix.lookup(w, "oras")),
           ];
         })());
-        const meta = nix.thunk(() => ({ [nix.POS]: pos$29, maintainers: [] }));
+        const meta = nix.thunk(() => ({ [nix.POS]: $pos[28], maintainers: [] }));
         return {
-          [nix.POS]: pos$30,
+          [nix.POS]: $pos[29],
           pname,
           version,
           url,
@@ -494,7 +445,7 @@ export default nix.lambda((args) => (() => {
         };
       })()))),
     interactive: nix.thunk(() => nix.app(mkAzExtension, nix.thunk(() => ({
-        [nix.POS]: pos$32,
+        [nix.POS]: $pos[31],
         pname: "interactive",
         version: "1.0.0b1",
         url: "https://azcliprod.blob.core.windows.net/cli-extensions/interactive-1.0.0b1-py2.py3-none-any.whl",
@@ -506,7 +457,7 @@ export default nix.lambda((args) => (() => {
           return [nix.thunk(() => nix.lookup(w, "prompt-toolkit"))];
         })()),
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$31,
+          [nix.POS]: $pos[30],
           maintainers: nix.thunk(() => (() => {
             const w_1 = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
             return [nix.thunk(() => nix.lookup(w_1, "techknowlogick"))];
@@ -527,14 +478,14 @@ export default nix.lambda((args) => (() => {
           ];
         })());
         const meta = nix.thunk(() => ({
-          [nix.POS]: pos$33,
+          [nix.POS]: $pos[32],
           maintainers: nix.thunk(() => (() => {
             const w_1 = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
             return [nix.thunk(() => nix.lookup(w_1, "techknowlogick"))];
           })()),
         }));
         return {
-          [nix.POS]: pos$34,
+          [nix.POS]: $pos[33],
           pname,
           version,
           url,
@@ -561,14 +512,14 @@ export default nix.lambda((args) => (() => {
           ];
         })(), [mycli]));
         const meta = nix.thunk(() => ({
-          [nix.POS]: pos$35,
+          [nix.POS]: $pos[34],
           maintainers: nix.thunk(() => (() => {
             const w_1 = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
             return [nix.thunk(() => nix.lookup(w_1, "obreitwi"))];
           })()),
         }));
         return {
-          [nix.POS]: pos$36,
+          [nix.POS]: $pos[35],
           pname,
           version,
           url,
@@ -593,7 +544,7 @@ export default nix.lambda((args) => (() => {
           ];
         })());
         return {
-          [nix.POS]: pos$37,
+          [nix.POS]: $pos[36],
           pname,
           version,
           url,
@@ -603,7 +554,7 @@ export default nix.lambda((args) => (() => {
         };
       })()))),
     "serial-console": nix.thunk(() => nix.app(mkAzExtension, nix.thunk(() => ({
-        [nix.POS]: pos$39,
+        [nix.POS]: $pos[38],
         pname: "serial-console",
         version: "1.0.0b2",
         url: "https://azcliprod.blob.core.windows.net/cli-extensions/serial_console-1.0.0b2-py3-none-any.whl",
@@ -614,7 +565,7 @@ export default nix.lambda((args) => (() => {
           return [nix.thunk(() => nix.lookup(w, "websocket-client"))];
         })()),
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$38,
+          [nix.POS]: $pos[37],
           maintainers: nix.thunk(() => (() => {
             const w_1 = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
             return [nix.thunk(() => nix.lookup(w_1, "techknowlogick"))];
@@ -636,7 +587,7 @@ export default nix.lambda((args) => (() => {
         })());
         const pythonRelaxDeps = true;
         const meta = nix.thunk(() => ({
-          [nix.POS]: pos$40,
+          [nix.POS]: $pos[39],
           maintainers: nix.thunk(() => (() => {
             const w_1 = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
             return [nix.thunk(() => nix.lookup(w_1, "gordon-bp"))];
@@ -644,7 +595,7 @@ export default nix.lambda((args) => (() => {
           changelog: nix.thunk(() => nix.str`https://github.com/Azure/azure-cli-extensions/blob/ssh-${version}/src/ssh/HISTORY.md`),
         }));
         return {
-          [nix.POS]: pos$41,
+          [nix.POS]: $pos[40],
           pname,
           version,
           url,
@@ -666,14 +617,14 @@ export default nix.lambda((args) => (() => {
           return [nix.thunk(() => nix.lookup(w, "azure-core"))];
         })());
         const meta = nix.thunk(() => ({
-          [nix.POS]: pos$42,
+          [nix.POS]: $pos[41],
           maintainers: nix.thunk(() => (() => {
             const w_1 = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
             return [nix.thunk(() => nix.lookup(w_1, "katexochen"))];
           })()),
         }));
         return {
-          [nix.POS]: pos$43,
+          [nix.POS]: $pos[42],
           pname,
           version,
           url,
@@ -693,9 +644,9 @@ export default nix.lambda((args) => (() => {
           const w = nix.withScope(python3Packages, null);
           return [nix.thunk(() => nix.lookup(w, "opencensus"))];
         })());
-        const meta = nix.thunk(() => ({ [nix.POS]: pos$44, maintainers: [] }));
+        const meta = nix.thunk(() => ({ [nix.POS]: $pos[43], maintainers: [] }));
         return {
-          [nix.POS]: pos$45,
+          [nix.POS]: $pos[44],
           pname,
           version,
           url,
@@ -706,7 +657,7 @@ export default nix.lambda((args) => (() => {
         };
       })()))),
     webpubsub: nix.thunk(() => nix.app(mkAzExtension, nix.thunk(() => ({
-        [nix.POS]: pos$47,
+        [nix.POS]: $pos[46],
         pname: "webpubsub",
         version: "1.7.2",
         url: "https://azcliprod.blob.core.windows.net/cli-extensions/webpubsub-1.7.2-py3-none-any.whl",
@@ -717,7 +668,7 @@ export default nix.lambda((args) => (() => {
           return [nix.thunk(() => nix.lookup(w, "websockets"))];
         })()),
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$46,
+          [nix.POS]: $pos[45],
           maintainers: nix.thunk(() => (() => {
             const w_1 = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
             return [nix.thunk(() => nix.lookup(w_1, "techknowlogick"))];
@@ -725,7 +676,7 @@ export default nix.lambda((args) => (() => {
         })),
       })))),
     "workload-orchestration": nix.thunk(() => nix.app(mkAzExtension, nix.thunk(() => ({
-        [nix.POS]: pos$48,
+        [nix.POS]: $pos[47],
         pname: "workload-orchestration",
         version: "5.1.1",
         url: "https://azcliprod.blob.core.windows.net/cli-extensions/workload_orchestration-5.1.1-py3-none-any.whl",
@@ -737,7 +688,7 @@ export default nix.lambda((args) => (() => {
         })()),
       })))),
   }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(config, "allowAliases")), nix.thunk(() => ({
-      [nix.POS]: pos$50,
+      [nix.POS]: $pos[49],
       adp: nix.thunk(() => nix.builtins.throw("The 'adp' extension for azure-cli was deprecated upstream")),
       akshybrid: nix.thunk(() => nix.builtins.throw("The 'akshybrid' extension for azure-cli was removed upstream")),
       "appservice-kube": nix.thunk(() => nix.builtins.throw("The 'appservice-kube' extensions for azure-cli was removed upstream")),

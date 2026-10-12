@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]], [["description", 52, 5], ["homepage", 53, 5], ["maintainers", 54, 5], ["license", 55, 5], ["platforms", 56, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["patches", 19, 3], ["postPatch", 23, 3], ["nativeBuildInputs", 35, 3], ["installPhase", 39, 3], ["meta", 51, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 52, 5], ["homepage", 53, 5], ["maintainers", 54, 5], ["license", 55, 5], ["platforms", 56, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["patches", 19, 3], ["postPatch", 23, 3], ["nativeBuildInputs", 35, 3], ["installPhase", 39, 3], ["meta", 51, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const cmake = nix.arg($, "cmake");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "prometheus-cpp-lite",
       version: "1.0-unstable-2023-08-13",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "biaks",
           repo: "prometheus-cpp-lite",
           rev: "48d09c45ee6deb90e02579b03037740e1c01fd27",
@@ -29,7 +27,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [cmake]),
       installPhase: "runHook preInstall\n\nmkdir -p $out/include/prometheus $out/lib\n\ncp ../core/include/prometheus/* $out/include/prometheus\ncp ../simpleapi/include/prometheus/* $out/include/prometheus\ncp simpleapi/libprometheus-cpp-simpleapi.* $out/lib/\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "C++ Header-only Prometheus client library",
         homepage: "https://github.com/biaks/prometheus-cpp-lite",
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "markuskowa"))]),

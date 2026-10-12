@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]], [["grpc", 34, 5]], [["description", 54, 5], ["homepage", 55, 5], ["changelog", 56, 5], ["license", 57, 5], ["maintainers", 58, 5]], [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["src", 19, 3], ["build-system", 26, 3], ["dependencies", 28, 3], ["optional-dependencies", 33, 3], ["nativeCheckInputs", 40, 3], ["preCheck", 47, 3], ["pythonImportsCheck", 51, 3], ["meta", 53, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, "google-api-core": false, "google-auth": false, grpcio: false, "grpcio-status": false, mock: false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["grpc", 34, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 54, 5], ["homepage", 55, 5], ["changelog", 56, 5], ["license", 57, 5], ["maintainers", 58, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["src", 19, 3], ["build-system", 26, 3], ["dependencies", 28, 3], ["optional-dependencies", 33, 3], ["nativeCheckInputs", 40, 3], ["preCheck", 47, 3], ["pythonImportsCheck", 51, 3], ["meta", 53, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.5.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "googleapis",
           repo: "python-cloud-core",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -33,12 +30,12 @@ export default nix.lambda((args) => (() => {
         }))));
       const build_system = nix.thunk(() => [setuptools]);
       const dependencies = nix.thunk(() => [google_auth, google_api_core]);
-      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, grpc: nix.thunk(() => [grpcio, grpcio_status]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: $pos[1], grpc: nix.thunk(() => [grpcio, grpcio_status]) }));
       const nativeCheckInputs = nix.thunk(() => nix.concat([mock, pytestCheckHook], nix.sel(optional_dependencies, "grpc")));
       const preCheck = "rm -r google\n";
       const pythonImportsCheck = nix.thunk(() => ["google.cloud"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "API Client library for Google Cloud: Core Helpers",
         homepage: "https://github.com/googleapis/python-cloud-core",
         changelog: nix.thunk(() => nix.str`https://github.com/googleapis/python-cloud-core/blob/${nix.sel(src, "tag")}/CHANGELOG.md`),
@@ -46,7 +43,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

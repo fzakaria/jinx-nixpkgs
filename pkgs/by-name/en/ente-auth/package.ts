@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 23, 5], ["repo", 24, 5], ["sparseCheckout", 25, 5], ["tag", 26, 5], ["hash", 27, 5]], [["CXXFLAGS", 70, 5], ["LIBSODIUM_USE_PKGCONFIG", 72, 5]], [["name", 86, 7], ["exec", 87, 7], ["icon", 88, 7], ["desktopName", 89, 7], ["genericName", 90, 7], ["comment", 91, 7], ["categories", 92, 7], ["keywords", 93, 7], ["mimeTypes", 97, 7], ["startupNotify", 98, 7]], [["updateScript", 121, 12]], [["description", 124, 5], ["longDescription", 125, 5], ["homepage", 128, 5], ["changelog", 129, 5], ["license", 130, 5], ["maintainers", 131, 5], ["mainProgram", 137, 5], ["platforms", 138, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["sourceRoot", 30, 3], ["pubspecLock", 32, 3], ["gitHashes", 33, 3], ["postPatch", 35, 3], ["preBuild", 40, 3], ["nativeBuildInputs", 52, 3], ["buildInputs", 57, 3], ["env", 68, 3], ["runtimeDependencies", 75, 3], ["flutterBuildFlags", 77, 3], ["desktopItems", 84, 3], ["postInstall", 102, 3], ["passthru", 121, 3], ["meta", 123, 3]]]);
 const formals$1 = { args: { lib: false, flutter338: false, fetchFromGitHub: false, "libayatana-appindicator": false, libsodium: false, makeDesktopItem: false, copyDesktopItems: false, makeWrapper: false, jdk17_headless: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 23, 5], ["repo", 24, 5], ["sparseCheckout", 25, 5], ["tag", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["CXXFLAGS", 70, 5], ["LIBSODIUM_USE_PKGCONFIG", 72, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 86, 7], ["exec", 87, 7], ["icon", 88, 7], ["desktopName", 89, 7], ["genericName", 90, 7], ["comment", 91, 7], ["categories", 92, 7], ["keywords", 93, 7], ["mimeTypes", 97, 7], ["startupNotify", 98, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 121, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 124, 5], ["longDescription", 125, 5], ["homepage", 128, 5], ["changelog", 129, 5], ["license", 130, 5], ["maintainers", 131, 5], ["mainProgram", 137, 5], ["platforms", 138, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["sourceRoot", 30, 3], ["pubspecLock", 32, 3], ["gitHashes", 33, 3], ["postPatch", 35, 3], ["preBuild", 40, 3], ["nativeBuildInputs", 52, 3], ["buildInputs", 57, 3], ["env", 68, 3], ["runtimeDependencies", 75, 3], ["flutterBuildFlags", 77, 3], ["desktopItems", 84, 3], ["postInstall", 102, 3], ["passthru", 121, 3], ["meta", 123, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const pname = "ente-auth";
       const version = "4.4.25";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ente",
           repo: "ente",
           sparseCheckout: nix.thunk(() => ["mobile"]),
@@ -44,7 +39,7 @@ ln -s ${simple_icons} apps/auth/assets/simple-icons
       const nativeBuildInputs = nix.thunk(() => [copyDesktopItems, makeWrapper]);
       const buildInputs = nix.thunk(() => [libayatana_appindicator, libsodium, jdk17_headless]);
       const env = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         CXXFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-Wno-deprecated-literal-operator"]))),
         LIBSODIUM_USE_PKGCONFIG: "1",
       }));
@@ -52,7 +47,7 @@ ln -s ${simple_icons} apps/auth/assets/simple-icons
       const flutterBuildFlags = nix.thunk(() => ["--dart-define=app.flavor=independent"]);
       const desktopItems = nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: desktopId,
             exec: "enteauth",
             icon: "enteauth",
@@ -82,9 +77,9 @@ rm $out/app/ente-auth/lib/libdartjni.so
 # Return to the workspace root so the Dart cache hook can find .dart_tool.
 popd
 `);
-      const passthru = nix.thunk(() => ({ [nix.POS]: pos$4, updateScript: nix.path(here, "./update.sh") }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: $pos[3], updateScript: nix.path(here, "./update.sh") }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "End-to-end encrypted, cross platform and free app for storing your 2FA codes with cloud backups",
         longDescription: "Ente's 2FA app. An end-to-end encrypted, cross platform and free app for storing your 2FA codes with cloud backups. Works offline. You can even use it without signing up for an account if you don't want the cloud backups or multi-device sync.\n",
         homepage: "https://ente.io/auth/",
@@ -103,7 +98,7 @@ popd
         platforms: nix.thunk(() => ["x86_64-linux", "aarch64-linux"]),
       }));
       return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname,
         version,
         src,

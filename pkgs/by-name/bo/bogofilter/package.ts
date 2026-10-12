@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 23, 5], ["hash", 24, 5]], [["homepage", 66, 5], ["longDescription", 67, 5], ["license", 74, 5], ["mainProgram", 75, 5], ["maintainers", 76, 5], ["platforms", 77, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["postPatch", 28, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 35, 3], ["configureFlags", 41, 3], ["nativeCheckInputs", 45, 3], ["doCheck", 49, 3], ["checkFlags", 50, 3], ["postInstall", 56, 3], ["meta", 65, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, db: false, flex: false, gnugrep: false, makeWrapper: false, pax: false, perl: false, valgrind: false, database: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 66, 5], ["longDescription", 67, 5], ["license", 74, 5], ["mainProgram", 75, 5], ["maintainers", 76, 5], ["platforms", 77, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["postPatch", 28, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 35, 3], ["configureFlags", 41, 3], ["nativeCheckInputs", 45, 3], ["doCheck", 49, 3], ["checkFlags", 50, 3], ["postInstall", 56, 3], ["meta", 65, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const database = nix.argOr($, "database", () => nix.force(db));
   const dbName = nix.thunk(() => nix.app(nix.sel(lib, "getName"), database));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: nix.thunk(() => nix.str`bogofilter-${dbName}`),
       version: "1.2.5",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/bogofilter/bogofilter-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-MkihNzv/VSxQCDStvqS2yu4EIkUWrlgfslpMam3uieo=",
         })))),
@@ -42,7 +40,7 @@ export default nix.lambda((args) => (() => {
       postInstall: nix.thunk(() => nix.add(nix.str`wrapProgram "$out/bin/bf_tar" --prefix PATH : "${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [pax]))}"
 `, nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(dbName, "db")), "rm \"$out/bin/bogoupgrade\"\n"))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "http://bogofilter.sourceforge.net/",
         longDescription: "Bogofilter is a mail filter that classifies mail as spam or ham\n(non-spam) by a statistical analysis of the message's header and\ncontent (body).  The program is able to learn from the user's\nclassifications and corrections.  It is based on a Bayesian\nfilter.\n",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

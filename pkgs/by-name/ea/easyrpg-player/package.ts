@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 48, 5], ["repo", 49, 5], ["rev", 50, 5], ["hash", 51, 5]], [["description", 124, 5], ["homepage", 125, 5], ["license", 126, 5], ["maintainers", 127, 5], ["platforms", 128, 5], ["mainProgram", 129, 5]], [["pname", 43, 3], ["version", 45, 3], ["src", 47, 3], ["strictDeps", 54, 3], ["nativeBuildInputs", 56, 3], ["buildInputs", 63, 3], ["cmakeFlags", 99, 3], ["makeFlags", 105, 3], ["buildFlags", 110, 3], ["postInstall", 114, 3], ["enableParallelChecking", 120, 3], ["doCheck", 121, 3], ["meta", 123, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, asciidoctor: false, cmake: false, doxygen: false, "pkg-config": false, "alsa-lib": false, flac: false, fluidsynth: false, fmt: false, freetype: false, glib: false, harfbuzz: false, lhasa: false, libdecor: false, liblcf: false, libpng: false, libsndfile: false, "libsysprof-capture": false, libvorbis: false, libxcursor: false, libxext: false, libxi: false, libxinerama: false, libxmp: false, libxrandr: false, libxscrnsaver: false, libxxf86vm: false, mpg123: false, nlohmann_json: false, opusfile: false, pcre2: false, pixman: false, sdl3: false, speexdsp: false, wildmidi: false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 48, 5], ["repo", 49, 5], ["rev", 50, 5], ["hash", 51, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 124, 5], ["homepage", 125, 5], ["license", 126, 5], ["maintainers", 127, 5], ["platforms", 128, 5], ["mainProgram", 129, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 43, 3], ["version", 45, 3], ["src", 47, 3], ["strictDeps", 54, 3], ["nativeBuildInputs", 56, 3], ["buildInputs", 63, 3], ["cmakeFlags", 99, 3], ["makeFlags", 105, 3], ["buildFlags", 110, 3], ["postInstall", 114, 3], ["enableParallelChecking", 120, 3], ["doCheck", 121, 3], ["meta", 123, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -51,7 +49,7 @@ export default nix.lambda((args) => (() => {
       const pname = "easyrpg-player";
       const version = "0.8.1.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "EasyRPG",
           repo: "Player",
           rev: version,
@@ -103,7 +101,7 @@ export default nix.lambda((args) => (() => {
       const enableParallelChecking = true;
       const doCheck = nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform"))));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "RPG Maker 2000/2003 and EasyRPG games interpreter",
         homepage: "https://easyrpg.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
@@ -112,7 +110,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? "EasyRPG Player" : "easyrpg-player")),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

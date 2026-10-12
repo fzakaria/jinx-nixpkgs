@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]], [["CGO_ENABLED", 22, 7]], [["pname", 42, 7], ["version", 43, 28], ["src", 43, 36], ["sourceRoot", 45, 7], ["npmDepsHash", 47, 7], ["installPhase", 49, 7]], [["package", 57, 7], ["command", 58, 7], ["version", 59, 7]], [["version", 56, 11]], [["htmlReportUI", 41, 5], ["tests", 56, 5]], [["description", 64, 5], ["homepage", 65, 5], ["changelog", 66, 5], ["license", 67, 5], ["mainProgram", 68, 5], ["maintainers", 69, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["vendorHash", 20, 3], ["env", 22, 3], ["ldflags", 23, 3], ["tags", 29, 3], ["preBuild", 31, 3], ["subPackages", 37, 3], ["passthru", 39, 3], ["meta", 63, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, buildNpmPackage: false, fetchFromGitHub: false, testers: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["CGO_ENABLED", 22, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 42, 7], ["version", 43, 28], ["src", 43, 36], ["sourceRoot", 45, 7], ["npmDepsHash", 47, 7], ["installPhase", 49, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["package", 57, 7], ["command", 58, 7], ["version", 59, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["version", 56, 11]]);
-const pos$6 = nix.positions(here + "/package.nix", [["htmlReportUI", 41, 5], ["tests", 56, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["description", 64, 5], ["homepage", 65, 5], ["changelog", 66, 5], ["license", 67, 5], ["mainProgram", 68, 5], ["maintainers", 69, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["vendorHash", 20, 3], ["env", 22, 3], ["ldflags", 23, 3], ["tags", 29, 3], ["preBuild", 31, 3], ["subPackages", 37, 3], ["passthru", 39, 3], ["meta", 63, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,18 +13,18 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const testers = nix.arg($, "testers");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "vacuum-go",
       version: "0.30.6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "daveshanley",
           repo: "vacuum",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-27ZGWy9lblCAlvodpmgyhHaS2uHP5gpM8SDh44agdZ8=",
         })))),
       vendorHash: "sha256-0fKjscF77MubYr+AhvWAk8Oh0OQP948vGW8zbwAS1xw=",
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, CGO_ENABLED: 0n })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], CGO_ENABLED: 0n })),
       ldflags: nix.thunk(() => [
         "-s",
         "-w",
@@ -44,9 +37,9 @@ cp ${nix.sel(finalAttrs, "passthru", "htmlReportUI")}/static/js/hydrate.js html-
 `),
       subPackages: nix.thunk(() => ["./vacuum.go"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         htmlReportUI: nix.thunk(() => nix.app(buildNpmPackage, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             pname: "vacuum-html-report-ui",
             version: nix.thunk(() => nix.attr(finalAttrs, "version")),
             src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -55,9 +48,9 @@ cp ${nix.sel(finalAttrs, "passthru", "htmlReportUI")}/static/js/hydrate.js html-
             installPhase: "runHook preInstall\ncp -r build \"$out\"\nrunHook postInstall\n",
           })))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               command: "vacuum version",
               version: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -65,7 +58,7 @@ cp ${nix.sel(finalAttrs, "passthru", "htmlReportUI")}/static/js/hydrate.js html-
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "World's fastest OpenAPI & Swagger linter",
         homepage: "https://quobix.com/vacuum",
         changelog: nix.thunk(() => nix.str`https://github.com/daveshanley/vacuum/releases/tag/v${nix.sel(finalAttrs, "version")}`),

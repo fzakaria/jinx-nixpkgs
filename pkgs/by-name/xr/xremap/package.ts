@@ -2,20 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["features", 13, 7], ["descriptionSuffix", 14, 7]], [["suffix", 17, 7], ["features", 18, 7], ["descriptionSuffix", 19, 7]], [["suffix", 22, 7], ["features", 23, 7], ["descriptionSuffix", 24, 7]], [["suffix", 27, 7], ["features", 28, 7], ["descriptionSuffix", 29, 7]], [["suffix", 32, 7], ["features", 33, 7], ["descriptionSuffix", 34, 7]], [["suffix", 37, 7], ["features", 38, 7], ["descriptionSuffix", 39, 7]], [["suffix", 42, 7], ["features", 43, 7], ["descriptionSuffix", 44, 7]], [["suffix", 47, 7], ["features", 48, 7], ["descriptionSuffix", 49, 7]], [["x11", 12, 5], ["gnome", 16, 5], ["kde", 21, 5], ["wlroots", 26, 5], ["hyprland", 31, 5], ["niri", 36, 5], ["cosmic", 41, 5], ["socket", 46, 5]], [["owner", 64, 5], ["repo", 65, 5], ["tag", 66, 5], ["hash", 67, 5]], [["withVariant", 77, 63]], [["description", 80, 5], ["homepage", 81, 5], ["changelog", 82, 5], ["license", 83, 5], ["mainProgram", 84, 5], ["maintainers", 85, 5], ["platforms", 86, 5]], [["pname", 60, 3], ["version", 61, 3], ["src", 63, 3], ["nativeBuildInputs", 70, 3], ["buildNoDefaultFeatures", 72, 3], ["buildFeatures", 73, 3], ["cargoHash", 75, 3], ["passthru", 77, 3], ["meta", 79, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchFromGitHub: false, "pkg-config": false, xremap: false, withVariant: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["features", 13, 7], ["descriptionSuffix", 14, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["suffix", 17, 7], ["features", 18, 7], ["descriptionSuffix", 19, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["suffix", 22, 7], ["features", 23, 7], ["descriptionSuffix", 24, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["suffix", 27, 7], ["features", 28, 7], ["descriptionSuffix", 29, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["suffix", 32, 7], ["features", 33, 7], ["descriptionSuffix", 34, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["suffix", 37, 7], ["features", 38, 7], ["descriptionSuffix", 39, 7]]);
-const pos$7 = nix.positions(here + "/package.nix", [["suffix", 42, 7], ["features", 43, 7], ["descriptionSuffix", 44, 7]]);
-const pos$8 = nix.positions(here + "/package.nix", [["suffix", 47, 7], ["features", 48, 7], ["descriptionSuffix", 49, 7]]);
-const pos$9 = nix.positions(here + "/package.nix", [["x11", 12, 5], ["gnome", 16, 5], ["kde", 21, 5], ["wlroots", 26, 5], ["hyprland", 31, 5], ["niri", 36, 5], ["cosmic", 41, 5], ["socket", 46, 5]]);
-const pos$10 = nix.positions(here + "/package.nix", [["owner", 64, 5], ["repo", 65, 5], ["tag", 66, 5], ["hash", 67, 5]]);
-const pos$11 = nix.positions(here + "/package.nix", [["withVariant", 77, 63]]);
-const pos$12 = nix.positions(here + "/package.nix", [["description", 80, 5], ["homepage", 81, 5], ["changelog", 82, 5], ["license", 83, 5], ["mainProgram", 84, 5], ["maintainers", 85, 5], ["platforms", 86, 5]]);
-const pos$13 = nix.positions(here + "/package.nix", [["pname", 60, 3], ["version", 61, 3], ["src", 63, 3], ["nativeBuildInputs", 70, 3], ["buildNoDefaultFeatures", 72, 3], ["buildFeatures", 73, 3], ["cargoHash", 75, 3], ["passthru", 77, 3], ["meta", 79, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,50 +14,50 @@ export default nix.lambda((args) => (() => {
   const xremap = nix.arg($, "xremap");
   const withVariant = nix.argOr($, "withVariant", () => "wlroots");
   const variants = nix.thunk(() => ({
-    [nix.POS]: pos$9,
+    [nix.POS]: $pos[8],
     x11: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       features: nix.thunk(() => ["x11"]),
       descriptionSuffix: "X11",
     })),
     gnome: nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       suffix: "-gnome",
       features: nix.thunk(() => ["gnome"]),
       descriptionSuffix: "Gnome",
     })),
     kde: nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       suffix: "-kde",
       features: nix.thunk(() => ["kde"]),
       descriptionSuffix: "KDE",
     })),
     wlroots: nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       suffix: "-wlroots",
       features: nix.thunk(() => ["wlroots"]),
       descriptionSuffix: "wlroots",
     })),
     hyprland: nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       suffix: "-hyprland",
       features: nix.thunk(() => ["hypr"]),
       descriptionSuffix: "Hyprland",
     })),
     niri: nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       suffix: "-niri",
       features: nix.thunk(() => ["niri"]),
       descriptionSuffix: "Niri",
     })),
     cosmic: nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       suffix: "-cosmic",
       features: nix.thunk(() => ["cosmic"]),
       descriptionSuffix: "Cosmic",
     })),
     socket: nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       suffix: "",
       features: nix.thunk(() => ["socket"]),
       descriptionSuffix: "Socket client",
@@ -78,11 +66,11 @@ export default nix.lambda((args) => (() => {
   const variant = nix.thunk(() => nix.selOr(variants, () => null, nix.key(nix.force(withVariant))));
   nix.assert_(nix.app(nix.sel(lib, "assertMsg"), nix.thunk(() => !nix.eq(variant, null)), nix.thunk(() => nix.str`Unknown variant ${withVariant}: expected one of ${nix.app(nix.sel(lib, "concatStringsSep"), ", ", nix.thunk(() => nix.app(nix.sel(lib, "attrNames"), variants)))}`)), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/xr/xremap/package.nix:55:1");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$13,
+      [nix.POS]: $pos[12],
       pname: nix.thunk(() => nix.str`xremap${nix.selOr(variant, () => "", "suffix")}`),
       version: "0.15.14",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$10,
+          [nix.POS]: $pos[9],
           owner: "xremap",
           repo: "xremap",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -92,9 +80,9 @@ export default nix.lambda((args) => (() => {
       buildNoDefaultFeatures: true,
       buildFeatures: nix.thunk(() => nix.sel(variant, "features")),
       cargoHash: "sha256-lkg1bnTEGUO7ce1Y6a1iK5khoswG3trlSthtp3otem4=",
-      passthru: nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (name) => nix.app(nix.sel(lib, "const"), nix.thunk(() => nix.app(nix.sel(xremap, "override"), nix.thunk(() => ({ [nix.POS]: pos$11, withVariant: name }))))), variants)),
+      passthru: nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (name) => nix.app(nix.sel(lib, "const"), nix.thunk(() => nix.app(nix.sel(xremap, "override"), nix.thunk(() => ({ [nix.POS]: $pos[10], withVariant: name }))))), variants)),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$12,
+        [nix.POS]: $pos[11],
         description: nix.thunk(() => nix.str`Key remapper for X11 and Wayland (${nix.sel(variant, "descriptionSuffix")} support)`),
         homepage: "https://github.com/xremap/xremap",
         changelog: nix.thunk(() => nix.str`https://github.com/xremap/xremap/blob/v${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

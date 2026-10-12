@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["homepage", 58, 7], ["changelog", 59, 7], ["description", 60, 7], ["license", 61, 7], ["maintainers", 63, 5]], [["pname", 20, 3], ["version", 21, 22], ["src", 21, 30], ["pyproject", 22, 3], ["dontUseCmakeConfigure", 24, 3], ["build-system", 26, 3], ["dependencies", 34, 3], ["buildInputs", 38, 3], ["nativeCheckInputs", 43, 3], ["preCheck", 48, 3], ["pythonImportsCheck", 52, 3], ["meta", 56, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, python: false, fetchFromGitHub: false, "scikit-build-core": false, manifold: false, cmake: false, ninja: false, nanobind: false, "pkg-config": false, numpy: false, clipper2: false, onetbb: false, pytestCheckHook: false, trimesh: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["homepage", 58, 7], ["changelog", 59, 7], ["description", 60, 7], ["license", 61, 7], ["maintainers", 63, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 20, 3], ["version", 21, 22], ["src", 21, 30], ["pyproject", 22, 3], ["dontUseCmakeConfigure", 24, 3], ["build-system", 26, 3], ["dependencies", 34, 3], ["buildInputs", 38, 3], ["nativeCheckInputs", 43, 3], ["preCheck", 48, 3], ["pythonImportsCheck", 52, 3], ["meta", 56, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,7 +23,7 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const trimesh = nix.arg($, "trimesh");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "manifold3d",
       version: nix.thunk(() => nix.attr(manifold, "version")),
       src: nix.thunk(() => nix.attr(manifold, "src")),
@@ -40,7 +39,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(manifold, "meta"));
         return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         changelog: nix.thunk(() => nix.attr(from, "changelog")),
         description: nix.thunk(() => nix.attr(from, "description")),

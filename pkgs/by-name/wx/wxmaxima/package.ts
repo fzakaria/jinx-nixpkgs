@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5]], [["description", 50, 5], ["mainProgram", 51, 5], ["license", 52, 5], ["homepage", 53, 5], ["maintainers", 54, 5], ["platforms", 55, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["buildInputs", 26, 3], ["nativeBuildInputs", 35, 3], ["cmakeFlags", 41, 3], ["preConfigure", 45, 3], ["meta", 49, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, wrapGAppsHook3: false, cmake: false, gettext: false, maxima: false, wxwidgets_3_3: false, "adwaita-icon-theme": false, glib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 50, 5], ["mainProgram", 51, 5], ["license", 52, 5], ["homepage", 53, 5], ["maintainers", 54, 5], ["platforms", 55, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["buildInputs", 26, 3], ["nativeBuildInputs", 35, 3], ["cmakeFlags", 41, 3], ["preConfigure", 45, 3], ["meta", 49, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const adwaita_icon_theme = nix.arg($, "adwaita-icon-theme");
   const glib = nix.arg($, "glib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "wxmaxima",
       version: "26.09.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "wxMaxima-developers",
           repo: "wxmaxima",
           rev: nix.thunk(() => nix.str`Version-${nix.sel(finalAttrs, "version")}`),
@@ -36,7 +34,7 @@ export default nix.lambda((args) => (() => {
       preConfigure: nix.thunk(() => nix.str`gappsWrapperArgs+=(--prefix PATH ":" ${maxima}/bin)
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Cross platform GUI for the computer algebra system Maxima",
         mainProgram: "wxmaxima",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),

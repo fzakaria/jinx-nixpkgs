@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["sha256", 20, 5]], [["name", 27, 7], ["url", 28, 7], ["sha256", 29, 7]], [["homepage", 55, 5], ["description", 56, 5], ["mainProgram", 57, 5], ["maintainers", 58, 5], ["platforms", 59, 5], ["license", 60, 5]], [["version", 13, 3], ["pname", 14, 3], ["src", 16, 3], ["patches", 25, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 38, 3], ["hardeningDisable", 40, 3], ["buildFlags", 42, 3], ["installPhase", 44, 3], ["meta", 54, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch: false, makeWrapper: false, perl: false, ncurses5: false, taskwarrior2: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["sha256", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 27, 7], ["url", 28, 7], ["sha256", 29, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 55, 5], ["description", 56, 5], ["mainProgram", 57, 5], ["maintainers", 58, 5], ["platforms", 59, 5], ["license", 60, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["version", 13, 3], ["pname", 14, 3], ["src", 16, 3], ["patches", 25, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 38, 3], ["hardeningDisable", 40, 3], ["buildFlags", 42, 3], ["installPhase", 44, 3], ["meta", 54, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const ncurses5 = nix.arg($, "ncurses5");
   const taskwarrior2 = nix.arg($, "taskwarrior2");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       version: "2020-12-17",
       pname: "tasknc",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "lharding",
           repo: "tasknc",
           rev: "a182661fbcc097a933d5e8cce3922eb1734a563e",
@@ -31,7 +28,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "ncurses-6.3.patch",
             url: "https://github.com/lharding/tasknc/commit/f74ea0641e9bf287acf22fac9f6eeea571b01800.patch",
             sha256: "18a90zj85sw2zfnfcv055nvi0lx3h8lcgsyabdfk94ksn78pygrv",
@@ -50,7 +47,7 @@ DESTDIR=$out PREFIX= MANPREFIX=/share/man make install
 wrapProgram $out/bin/tasknc --prefix PATH : ${taskwarrior2}/bin
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/lharding/tasknc",
         description: "Ncurses wrapper around taskwarrior",
         mainProgram: "tasknc",

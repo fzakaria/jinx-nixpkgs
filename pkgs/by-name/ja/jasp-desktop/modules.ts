@@ -2,25 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/modules.nix", [[["owner", 20, 11], ["repo", 21, 11], ["tag", 22, 11], ["hash", 23, 11]], [["pname", 16, 9], ["version", 17, 9], ["src", 19, 9], ["propagatedBuildInputs", 26, 9]], [["pname", 43, 9], ["version", 44, 9], ["src", 46, 9], ["sourceRoot", 47, 9], ["preConfigure", 49, 9], ["propagatedBuildInputs", 55, 9]], [["owner", 87, 11], ["repo", 88, 11], ["rev", 89, 11], ["hash", 90, 11]], [["pname", 83, 9], ["version", 84, 9], ["src", 86, 9], ["propagatedBuildInputs", 93, 9]], [["owner", 107, 11], ["repo", 108, 11], ["rev", 109, 11], ["hash", 110, 11]], [["pname", 103, 9], ["version", 104, 9], ["src", 106, 9], ["propagatedBuildInputs", 113, 9]], [["owner", 125, 11], ["repo", 126, 11], ["rev", 127, 11], ["hash", 128, 11]], [["pname", 121, 9], ["version", 122, 9], ["src", 124, 9], ["propagatedBuildInputs", 131, 9]], [["owner", 158, 11], ["repo", 159, 11], ["rev", 160, 11], ["hash", 161, 11]], [["pname", 154, 9], ["version", 155, 9], ["src", 157, 9], ["propagatedBuildInputs", 164, 9]], [["owner", 177, 11], ["repo", 178, 11], ["rev", 179, 11], ["hash", 180, 11]], [["pname", 173, 9], ["version", 174, 9], ["src", 176, 9], ["postPatch", 183, 9], ["propagatedBuildInputs", 187, 9]], [["jaspGraphs", 15, 7], ["jaspBase", 42, 7], ["stanova", 82, 7], ["bstats", 102, 7], ["flexplot", 120, 7], ["conting", 153, 7], ["DistributionS7", 172, 7]], [["name", 213, 9], ["owner", 214, 9], ["repo", 215, 9], ["tag", 216, 9], ["hash", 217, 9]], [["pname", 211, 22], ["version", 211, 28], ["src", 212, 7], ["propagatedBuildInputs", 219, 7], ["postPatch", 223, 7]], [["jaspAcceptanceSampling", 230, 5], ["jaspAnova", 243, 5], ["jaspAudit", 267, 5], ["jaspBain", 276, 5], ["jaspBFF", 286, 5], ["jaspBfpack", 291, 5], ["jaspBsts", 300, 5], ["jaspCircular", 309, 5], ["jaspCochrane", 315, 5], ["jaspDescriptives", 321, 5], ["jaspDistributions", 339, 5], ["jaspEquivalenceTTests", 353, 5], ["jaspEsci", 362, 5], ["jaspFactor", 370, 5], ["jaspFrequencies", 384, 5], ["jaspJags", 399, 5], ["jaspLearnBayes", 411, 5], ["jaspLearnStats", 429, 5], ["jaspMachineLearning", 443, 5], ["jaspMetaAnalysis", 477, 5], ["jaspMixedModels", 506, 5], ["jaspNetwork", 520, 5], ["jaspPower", 539, 5], ["jaspPredictiveAnalytics", 545, 5], ["jaspProcess", 561, 5], ["jaspProphet", 571, 5], ["jaspQualityControl", 579, 5], ["jaspRegression", 608, 5], ["jaspReliability", 632, 5], ["jaspRobustTTests", 646, 5], ["jaspSem", 652, 5], ["jaspSummaryStatistics", 669, 5], ["jaspSurvival", 682, 5], ["jaspTTests", 689, 5], ["jaspTestModule", 699, 5], ["jaspTimeSeries", 705, 5], ["jaspVisualModeling", 711, 5]], [["customRPackages", 724, 11], ["jaspModules", 724, 27]]]);
 const formals$1 = { args: { lib: false, rPackages: false, fetchFromGitHub: false, "jasp-src": false, "jasp-version": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/modules.nix", [["owner", 20, 11], ["repo", 21, 11], ["tag", 22, 11], ["hash", 23, 11]]);
-const pos$2 = nix.positions(here + "/modules.nix", [["pname", 16, 9], ["version", 17, 9], ["src", 19, 9], ["propagatedBuildInputs", 26, 9]]);
-const pos$3 = nix.positions(here + "/modules.nix", [["pname", 43, 9], ["version", 44, 9], ["src", 46, 9], ["sourceRoot", 47, 9], ["preConfigure", 49, 9], ["propagatedBuildInputs", 55, 9]]);
-const pos$4 = nix.positions(here + "/modules.nix", [["owner", 87, 11], ["repo", 88, 11], ["rev", 89, 11], ["hash", 90, 11]]);
-const pos$5 = nix.positions(here + "/modules.nix", [["pname", 83, 9], ["version", 84, 9], ["src", 86, 9], ["propagatedBuildInputs", 93, 9]]);
-const pos$6 = nix.positions(here + "/modules.nix", [["owner", 107, 11], ["repo", 108, 11], ["rev", 109, 11], ["hash", 110, 11]]);
-const pos$7 = nix.positions(here + "/modules.nix", [["pname", 103, 9], ["version", 104, 9], ["src", 106, 9], ["propagatedBuildInputs", 113, 9]]);
-const pos$8 = nix.positions(here + "/modules.nix", [["owner", 125, 11], ["repo", 126, 11], ["rev", 127, 11], ["hash", 128, 11]]);
-const pos$9 = nix.positions(here + "/modules.nix", [["pname", 121, 9], ["version", 122, 9], ["src", 124, 9], ["propagatedBuildInputs", 131, 9]]);
-const pos$10 = nix.positions(here + "/modules.nix", [["owner", 158, 11], ["repo", 159, 11], ["rev", 160, 11], ["hash", 161, 11]]);
-const pos$11 = nix.positions(here + "/modules.nix", [["pname", 154, 9], ["version", 155, 9], ["src", 157, 9], ["propagatedBuildInputs", 164, 9]]);
-const pos$12 = nix.positions(here + "/modules.nix", [["owner", 177, 11], ["repo", 178, 11], ["rev", 179, 11], ["hash", 180, 11]]);
-const pos$13 = nix.positions(here + "/modules.nix", [["pname", 173, 9], ["version", 174, 9], ["src", 176, 9], ["postPatch", 183, 9], ["propagatedBuildInputs", 187, 9]]);
-const pos$14 = nix.positions(here + "/modules.nix", [["jaspGraphs", 15, 7], ["jaspBase", 42, 7], ["stanova", 82, 7], ["bstats", 102, 7], ["flexplot", 120, 7], ["conting", 153, 7], ["DistributionS7", 172, 7]]);
-const pos$15 = nix.positions(here + "/modules.nix", [["name", 213, 9], ["owner", 214, 9], ["repo", 215, 9], ["tag", 216, 9], ["hash", 217, 9]]);
-const pos$16 = nix.positions(here + "/modules.nix", [["pname", 211, 22], ["version", 211, 28], ["src", 212, 7], ["propagatedBuildInputs", 219, 7], ["postPatch", 223, 7]]);
-const pos$17 = nix.positions(here + "/modules.nix", [["jaspAcceptanceSampling", 230, 5], ["jaspAnova", 243, 5], ["jaspAudit", 267, 5], ["jaspBain", 276, 5], ["jaspBFF", 286, 5], ["jaspBfpack", 291, 5], ["jaspBsts", 300, 5], ["jaspCircular", 309, 5], ["jaspCochrane", 315, 5], ["jaspDescriptives", 321, 5], ["jaspDistributions", 339, 5], ["jaspEquivalenceTTests", 353, 5], ["jaspEsci", 362, 5], ["jaspFactor", 370, 5], ["jaspFrequencies", 384, 5], ["jaspJags", 399, 5], ["jaspLearnBayes", 411, 5], ["jaspLearnStats", 429, 5], ["jaspMachineLearning", 443, 5], ["jaspMetaAnalysis", 477, 5], ["jaspMixedModels", 506, 5], ["jaspNetwork", 520, 5], ["jaspPower", 539, 5], ["jaspPredictiveAnalytics", 545, 5], ["jaspProcess", 561, 5], ["jaspProphet", 571, 5], ["jaspQualityControl", 579, 5], ["jaspRegression", 608, 5], ["jaspReliability", 632, 5], ["jaspRobustTTests", 646, 5], ["jaspSem", 652, 5], ["jaspSummaryStatistics", 669, 5], ["jaspSurvival", 682, 5], ["jaspTTests", 689, 5], ["jaspTestModule", 699, 5], ["jaspTimeSeries", 705, 5], ["jaspVisualModeling", 711, 5]]);
-const pos$18 = nix.positions(here + "/modules.nix", [["customRPackages", 724, 11], ["jaspModules", 724, 27]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const jasp_version = nix.arg($, "jasp-version");
   const buildRPackage = nix.thunk(() => nix.attr(rPackages, "buildRPackage"));
   const customRPackages = nix.thunk(() => nix.update(rPackages, nix.update(jaspModules, {
-    [nix.POS]: pos$14,
+    [nix.POS]: $pos[13],
     jaspGraphs: nix.thunk(() => nix.app(buildRPackage, nix.thunk(() => (() => {
         const pname = "jaspGraphs";
         const version = "0.96.0";
         const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             owner: "jasp-stats",
             repo: "jaspGraphs",
             tag: nix.thunk(() => nix.str`v${version}`),
@@ -59,10 +42,10 @@ export default nix.lambda((args) => (() => {
             nix.thunk(() => nix.lookup(w, "viridisLite")),
           ];
         })());
-        return { [nix.POS]: pos$2, pname, version, src, propagatedBuildInputs };
+        return { [nix.POS]: $pos[1], pname, version, src, propagatedBuildInputs };
       })()))),
     jaspBase: nix.thunk(() => nix.app(buildRPackage, nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname: "jaspBase",
         version: jasp_version,
         src: jasp_src,
@@ -98,11 +81,11 @@ export default nix.lambda((args) => (() => {
         })()),
       })))),
     stanova: nix.thunk(() => nix.app(buildRPackage, nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname: "stanova",
         version: "0.3-unstable-2021-06-06",
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             owner: "bayesstuff",
             repo: "stanova",
             rev: "988ad8e07cda1674b881570a85502be7795fbd4e",
@@ -120,11 +103,11 @@ export default nix.lambda((args) => (() => {
         })()),
       })))),
     bstats: nix.thunk(() => nix.app(buildRPackage, nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         pname: "bstats",
         version: "0.0.0.9004-unstable-2023-09-08",
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             owner: "AlexanderLyNL",
             repo: "bstats",
             rev: "42d34c18df08d233825bae34fdc0dfa0cd70ce8c",
@@ -140,11 +123,11 @@ export default nix.lambda((args) => (() => {
         })()),
       })))),
     flexplot: nix.thunk(() => nix.app(buildRPackage, nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         pname: "flexplot",
         version: "0.26.3",
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$8,
+            [nix.POS]: $pos[7],
             owner: "dustinfife",
             repo: "flexplot",
             rev: "cae36ba45502ce1794ad35cfeaf0155275db3056",
@@ -174,11 +157,11 @@ export default nix.lambda((args) => (() => {
         })()),
       })))),
     conting: nix.thunk(() => nix.app(buildRPackage, nix.thunk(() => ({
-        [nix.POS]: pos$11,
+        [nix.POS]: $pos[10],
         pname: "conting",
         version: "1.7.9999",
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$10,
+            [nix.POS]: $pos[9],
             owner: "vandenman",
             repo: "conting",
             rev: "03a4eb9a687e015d602022a01d4e638324c110c8",
@@ -195,11 +178,11 @@ export default nix.lambda((args) => (() => {
         })()),
       })))),
     DistributionS7: nix.thunk(() => nix.app(buildRPackage, nix.thunk(() => ({
-        [nix.POS]: pos$13,
+        [nix.POS]: $pos[12],
         pname: "DistributionS7",
         version: "0.1.1",
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$12,
+            [nix.POS]: $pos[11],
             owner: "Kucharssim",
             repo: "DistributionS7",
             rev: "8c5a709c120abc0f26697c6009769e4c2d889b9b",
@@ -228,11 +211,11 @@ export default nix.lambda((args) => (() => {
   })));
   const moduleInfo = nix.thunk(() => nix.app(nix.sel(lib, "importJSON"), nix.path(here, "./module-info.json")));
   const jaspModules = nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (name) => (info) => nix.app(buildRPackage, nix.thunk(() => ({
-        [nix.POS]: pos$16,
+        [nix.POS]: $pos[15],
         pname: nix.thunk(() => nix.attr(info, "pname")),
         version: nix.thunk(() => nix.attr(info, "version")),
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$15,
+            [nix.POS]: $pos[14],
             name: nix.thunk(() => nix.str`${nix.sel(info, "pname")}-${nix.sel(info, "version")}-source`),
             owner: "jasp-stats-modules",
             repo: nix.thunk(() => nix.sel(info, "pname")),
@@ -245,7 +228,7 @@ export default nix.lambda((args) => (() => {
   const moduleDeps = nix.thunk(() => (() => {
     const w = nix.withScope(customRPackages, null);
     return {
-      [nix.POS]: pos$17,
+      [nix.POS]: $pos[16],
       jaspAcceptanceSampling: nix.thunk(() => [
         nix.thunk(() => nix.lookup(w, "abtest")),
         nix.thunk(() => nix.lookup(w, "BayesFactor")),
@@ -737,7 +720,7 @@ export default nix.lambda((args) => (() => {
   })());
   nix.assert_(nix.eq(nix.app(nix.sel(lib, "sort"), nix.thunk(() => nix.sel(lib, "lessThan")), nix.thunk(() => nix.app(nix.sel(lib, "attrNames"), jaspModules))), nix.app(nix.sel(lib, "sort"), nix.thunk(() => nix.sel(lib, "lessThan")), nix.thunk(() => nix.app(nix.sel(lib, "attrNames"), moduleInfo)))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/ja/jasp-desktop/modules.nix:719:1");
   return {
-    [nix.POS]: pos$18,
+    [nix.POS]: $pos[17],
     customRPackages: customRPackages,
     jaspModules: jaspModules,
   };

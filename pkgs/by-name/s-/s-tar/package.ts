@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 11, 5], ["sha256", 12, 5]], [["NIX_CFLAGS_COMPILE", 18, 7]], [["description", 29, 5], ["longDescription", 30, 5], ["homepage", 38, 5], ["license", 39, 5], ["maintainers", 40, 5], ["platforms", 41, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 10, 3], ["preConfigure", 15, 3], ["preBuild", 16, 3], ["makeFlags", 17, 3], ["env", 18, 3], ["installFlags", 19, 3], ["postInstall", 23, 3], ["meta", 28, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 11, 5], ["sha256", 12, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 18, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 29, 5], ["longDescription", 30, 5], ["homepage", 38, 5], ["license", 39, 5], ["maintainers", 40, 5], ["platforms", 41, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 10, 3], ["preConfigure", 15, 3], ["preBuild", 16, 3], ["makeFlags", 17, 3], ["env", 18, 3], ["installFlags", 19, 3], ["postInstall", 23, 3], ["meta", 28, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,22 +11,22 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "s-tar",
       version: "1.6",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/s-tar/star-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           sha256: "0xpp8gf0ghwdgncdwx17fpadxislwrj48gcm42851hz6p8p6c60v",
         })))),
       preConfigure: "rm configure",
       preBuild: "sed 's_/bin/__g' -i RULES/*",
       makeFlags: nix.thunk(() => ["GMAKE_NOWARN=true"]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-std=c89" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], NIX_CFLAGS_COMPILE: "-std=c89" })),
       installFlags: nix.thunk(() => ["DESTDIR=$(out)", "INS_BASE=/"]),
       postInstall: "find $out/bin -type l -delete\nrm -r $out/etc $out/include $out/sbin\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Very fast tar like tape archiver with improved functionality",
         longDescription: "Star archives and extracts multiple files to and from a single file called a tarfile.\nA tarfile is usually a magnetic tape, but it can be any file.\nIn all cases, appearance of a directory name refers to the files and (recursively) sub-directories of that directory.\nStar's actions are controlled by the mandatory command flags from the list below.\nThe way star acts may be modified by additional options.\nNote that unpacking tar archives may be a security risk because star may overwrite existing files.\n",
         homepage: "https://cdrtools.sourceforge.net/private/star.html",

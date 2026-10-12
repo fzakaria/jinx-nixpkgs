@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["hash", 20, 5]], [["url", 24, 5], ["hash", 25, 5]], [["rapidjson", 40, 7], ["libb64", 41, 7]], [["description", 56, 5], ["homepage", 57, 5], ["license", 58, 5], ["platforms", 59, 5], ["maintainers", 60, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["mpack", 23, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 32, 3], ["patches", 37, 3], ["postUnpack", 45, 3], ["nativeInstallCheckInputs", 50, 3], ["versionCheckProgram", 51, 3], ["versionCheckProgramArg", 52, 3], ["doInstallCheck", 53, 3], ["meta", 55, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchurl: false, cmake: false, rapidjson: false, replaceVars: false, libb64: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 24, 5], ["hash", 25, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["rapidjson", 40, 7], ["libb64", 41, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 56, 5], ["homepage", 57, 5], ["license", 58, 5], ["platforms", 59, 5], ["maintainers", 60, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["mpack", 23, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 32, 3], ["patches", 37, 3], ["postUnpack", 45, 3], ["nativeInstallCheckInputs", 50, 3], ["versionCheckProgram", 51, 3], ["versionCheckProgramArg", 52, 3], ["doInstallCheck", 53, 3], ["meta", 55, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,18 +17,18 @@ export default nix.lambda((args) => (() => {
   const libb64 = nix.arg($, "libb64");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "msgpack-tools",
       version: "0.6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ludocode",
           repo: "msgpack-tools",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-RT85vw6QeVkuNC2mtoT/BJyU0rdQVfz6ZBJf+ouY8vk=",
         })))),
       mpack: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: "https://github.com/ludocode/mpack/archive/df17e83f0fa8571b9cd0d8ccf38144fa90e244d1.tar.gz",
           hash: "sha256-hyiXygbAHnNgF4TIg+DemBvtdBnSgJ7fAhknVuL+T/c=",
         })))),
@@ -41,7 +37,7 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [
         nix.path(here, "./cmake-v4.patch"),
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./use-nix-deps.patch"), nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             rapidjson: nix.thunk(() => nix.str`${rapidjson}`),
             libb64: nix.thunk(() => nix.str`${libb64}`),
           })))),
@@ -54,7 +50,7 @@ cp ${nix.sel(finalAttrs, "mpack")} $sourceRoot/contrib/mpack-df17e83f0fa8571b9cd
       versionCheckProgramArg: "-v",
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Command-line tools for converting between MessagePack and JSON",
         homepage: "https://github.com/ludocode/msgpack-tools",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

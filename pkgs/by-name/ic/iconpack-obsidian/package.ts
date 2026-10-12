@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["sha256", 18, 5]], [["description", 57, 5], ["homepage", 58, 5], ["license", 59, 5], ["platforms", 61, 5], ["maintainers", 62, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 21, 3], ["propagatedBuildInputs", 23, 3], ["dontDropIconThemeCache", 29, 3], ["installPhase", 31, 3], ["meta", 56, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchFromGitHub: false, gtk3: false, "mint-x-icons": false, "hicolor-icon-theme": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["sha256", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 57, 5], ["homepage", 58, 5], ["license", 59, 5], ["platforms", 61, 5], ["maintainers", 62, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 21, 3], ["propagatedBuildInputs", 23, 3], ["dontDropIconThemeCache", 29, 3], ["installPhase", 31, 3], ["meta", 56, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname = "iconpack-obsidian";
       const version = "4.15";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "madmaxms",
           repo: "iconpack-obsidian",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -30,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const dontDropIconThemeCache = true;
       const installPhase = "runHook preInstall\n\nmkdir -p $out/share/icons\nmv Obsidian* $out/share/icons\n\nfor theme in $out/share/icons/*; do\n  gtk-update-icon-cache $theme\ndone\n\n# Fix broken symlink only if needed\n# https://github.com/NixOS/nixpkgs/issues/394218\n\nbroken_symlink=\"$out/share/icons/Obsidian/actions/96/lock.svg\"\ntarget_svg=\"$out/share/icons/Obsidian/actions/scalable/system-lock-screen.svg\"\n\nif [ -h \"$broken_symlink\" ] && [ ! -e \"$broken_symlink\" ]; then\n  echo \"=== Fixing broken symlink: $broken_symlink\"\n  rm -f \"$broken_symlink\"\n  ln -s \"$target_svg\" \"$broken_symlink\"\nfi\n\nrunHook postInstall\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Gnome icon pack based upon Faenza",
         homepage: "https://github.com/madmaxms/iconpack-obsidian",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),
@@ -38,7 +36,7 @@ export default nix.lambda((args) => (() => {
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "romildo"))]),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

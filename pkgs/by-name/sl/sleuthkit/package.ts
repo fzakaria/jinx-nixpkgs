@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["hash", 24, 5]], [["name", 29, 5], ["src", 30, 26], ["nativeBuildInputs", 32, 5], ["dontConfigure", 38, 5], ["buildPhase", 40, 5], ["installPhase", 50, 5], ["outputHashMode", 59, 5], ["outputHashAlgo", 60, 5], ["outputHash", 61, 5]], [["description", 105, 5], ["homepage", 106, 5], ["changelog", 107, 5], ["maintainers", 108, 5], ["platforms", 112, 5], ["sourceProvenance", 113, 5], ["license", 117, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["rdeps", 28, 3], ["postUnpack", 64, 3], ["postPatch", 78, 3], ["enableParallelBuilding", 82, 3], ["nativeBuildInputs", 84, 3], ["buildInputs", 92, 3], ["preFixup", 100, 3], ["meta", 104, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, autoreconfHook: false, ant: false, jdk: false, perl: false, stripJavaArchivesHook: false, afflib: false, libewf: false, openssl: false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 29, 5], ["src", 30, 26], ["nativeBuildInputs", 32, 5], ["dontConfigure", 38, 5], ["buildPhase", 40, 5], ["installPhase", 50, 5], ["outputHashMode", 59, 5], ["outputHashAlgo", 60, 5], ["outputHash", 61, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 105, 5], ["homepage", 106, 5], ["changelog", 107, 5], ["maintainers", 108, 5], ["platforms", 112, 5], ["sourceProvenance", 113, 5], ["license", 117, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["rdeps", 28, 3], ["postUnpack", 64, 3], ["postPatch", 78, 3], ["enableParallelBuilding", 82, 3], ["nativeBuildInputs", 84, 3], ["buildInputs", 92, 3], ["preFixup", 100, 3], ["meta", 104, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,18 +20,18 @@ export default nix.lambda((args) => (() => {
   const openssl = nix.arg($, "openssl");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "sleuthkit",
       version: "4.15.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "sleuthkit",
           repo: "sleuthkit",
           rev: nix.thunk(() => nix.str`sleuthkit-${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-11KK7O7V8bMp0YMt9ZPwAJ00n0VeXMooYTbu+By6b2Q=",
         })))),
       rdeps: nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           name: nix.thunk(() => nix.str`sleuthkit-${nix.sel(finalAttrs, "version")}-deps`),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           nativeBuildInputs: nix.thunk(() => [ant, jdk]),
@@ -63,7 +60,7 @@ chmod -R 755 $IVY_HOME
       buildInputs: nix.thunk(() => [afflib, libewf, openssl, zlib]),
       preFixup: "rm -rf */.libs\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Forensic/data recovery tool",
         homepage: "https://www.sleuthkit.org/",
         changelog: nix.thunk(() => nix.str`https://github.com/sleuthkit/sleuthkit/blob/${nix.sel(finalAttrs, "src", "rev")}/NEWS.txt`),

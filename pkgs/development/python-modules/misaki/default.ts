@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 36, 5], ["repo", 37, 5], ["rev", 38, 5], ["hash", 39, 5]], [["name", 44, 7], ["url", 45, 7], ["hash", 46, 7]], [["espeak-library-path", 49, 7], ["espeak-data-path", 50, 7]], [["en", 65, 5], ["ja", 75, 5], ["ko", 82, 5], ["zh", 86, 5], ["vi", 93, 5]], [["optional-dependencies", 64, 12]], [["description", 112, 5], ["homepage", 113, 5], ["license", 114, 5], ["maintainers", 115, 5]], [["pname", 31, 3], ["version", 32, 3], ["pyproject", 33, 3], ["src", 35, 3], ["patches", 42, 3], ["build-system", 54, 3], ["dependencies", 58, 3], ["passthru", 64, 3], ["nativeCheckInputs", 104, 3], ["pythonImportsCheck", 106, 3], ["meta", 111, 3]]]);
 const formals$1 = { args: { addict: false, buildPythonPackage: false, "espeak-ng": false, fetchFromGitHub: false, fetchpatch2: false, fugashi: false, hatchling: false, jaconv: false, jamo: false, jieba: false, lib: false, nltk: false, num2words: false, "ordered-set": false, phonemizer: false, pip: false, pypinyin: false, regex: false, replaceVars: false, "spacy-curated-transformers": false, spacy: false, pytestCheckHook: false, stdenv: false, torch: false, transformers: false, unidic: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 36, 5], ["repo", 37, 5], ["rev", 38, 5], ["hash", 39, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["name", 44, 7], ["url", 45, 7], ["hash", 46, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["espeak-library-path", 49, 7], ["espeak-data-path", 50, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["en", 65, 5], ["ja", 75, 5], ["ko", 82, 5], ["zh", 86, 5], ["vi", 93, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["optional-dependencies", 64, 12]]);
-const pos$6 = nix.positions(here + "/default.nix", [["description", 112, 5], ["homepage", 113, 5], ["license", 114, 5], ["maintainers", 115, 5]]);
-const pos$7 = nix.positions(here + "/default.nix", [["pname", 31, 3], ["version", 32, 3], ["pyproject", 33, 3], ["src", 35, 3], ["patches", 42, 3], ["build-system", 54, 3], ["dependencies", 58, 3], ["passthru", 64, 3], ["nativeCheckInputs", 104, 3], ["pythonImportsCheck", 106, 3], ["meta", 111, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -40,12 +34,12 @@ export default nix.lambda((args) => (() => {
   const transformers = nix.arg($, "transformers");
   const unidic = nix.arg($, "unidic");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "misaki",
       version: "0-unstable-2025-06-16",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "hexgrad",
           repo: "misaki",
           rev: "49ddead831fc1a46beab3f9cb6064d93fd3f6347",
@@ -53,13 +47,13 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "pr82-remove-pip-dependency.patch",
             url: "https://github.com/hexgrad/misaki/commit/7d2fdff9fe046dd52b638bbb1b243fb789f4cb31.patch?full_index=1",
             hash: "sha256-N796YWrGe51FYVdxbQ8omJxeGdvOAiKEUKhhm10TQO8=",
           })))),
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./set-espeak-paths.patch"), nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             "espeak-library-path": nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getLib"), espeak_ng)}/lib/libespeak-ng${nix.sel(stdenv, "hostPlatform", "extensions", "sharedLibrary")}`),
             "espeak-data-path": nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getLib"), espeak_ng)}/share/espeak-ng-data`),
           })))),
@@ -67,9 +61,9 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [hatchling]),
       dependencies: nix.thunk(() => [addict, regex]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         "optional-dependencies": nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           en: nix.thunk(() => [
             num2words,
             spacy,
@@ -87,7 +81,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [phonemizer]),
       pythonImportsCheck: nix.thunk(() => ["misaki", "misaki.espeak"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "G2P engine for TTS",
         homepage: "https://github.com/hexgrad/misaki",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

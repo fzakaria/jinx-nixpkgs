@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["hash", 24, 5]], [["package", 54, 7]], [["version", 53, 11]], [["updateScript", 52, 5], ["tests", 53, 5]], [["description", 59, 5], ["homepage", 60, 5], ["license", 61, 5], ["platforms", 62, 5], ["maintainers", 63, 5], ["longDescription", 64, 5], ["mainProgram", 71, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["projectFile", 27, 3], ["nugetDeps", 28, 3], ["dotnet-sdk", 29, 3], ["dotnet-runtime", 30, 3], ["dotnetInstallFlags", 31, 3], ["executables", 35, 3], ["runtimeDeps", 37, 3], ["makeWrapperArgs", 38, 3], ["passthru", 51, 3], ["meta", 58, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, buildDotnetModule: false, dotnetCorePackages: false, libsecret: false, git: false, "git-credential-manager": false, gnupg: false, pass: false, testers: false, withLibsecretSupport: true, withGpgSupport: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["package", 54, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 53, 11]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 52, 5], ["tests", 53, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 59, 5], ["homepage", 60, 5], ["license", 61, 5], ["platforms", 62, 5], ["maintainers", 63, 5], ["longDescription", 64, 5], ["mainProgram", 71, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["projectFile", 27, 3], ["nugetDeps", 28, 3], ["dotnet-sdk", 29, 3], ["dotnet-runtime", 30, 3], ["dotnetInstallFlags", 31, 3], ["executables", 35, 3], ["runtimeDeps", 37, 3], ["makeWrapperArgs", 38, 3], ["passthru", 51, 3], ["meta", 58, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const pname = "git-credential-manager";
       const version = "2.7.3";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "git-ecosystem",
           repo: "git-credential-manager",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -46,15 +41,15 @@ export default nix.lambda((args) => (() => {
         "--inherit-argv0",
       ]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.path(here, "./update.sh"),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$2, package: git_credential_manager })))),
+          [nix.POS]: $pos[2],
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: $pos[1], package: git_credential_manager })))),
         })),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Secure, cross-platform Git credential storage with authentication to GitHub, Azure Repos, and other popular Git hosting services",
         homepage: "https://github.com/git-ecosystem/git-credential-manager",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -67,7 +62,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "git-credential-manager",
       }));
       return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname,
         version,
         src,

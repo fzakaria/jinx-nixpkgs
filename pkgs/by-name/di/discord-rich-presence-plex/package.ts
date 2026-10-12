@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]], [["pname", 21, 5], ["version", 22, 13], ["src", 22, 21], ["sourceRoot", 23, 5], ["npmDepsHash", 24, 5], ["installPhase", 25, 5]], [["GOEXPERIMENT", 33, 7]], [["homepage", 50, 5], ["description", 51, 5], ["license", 52, 5], ["mainProgram", 53, 5], ["maintainers", 54, 5]], [["version", 31, 11], ["src", 31, 19], ["pname", 31, 23], ["subPackages", 32, 3], ["env", 33, 3], ["vendorHash", 34, 3], ["preBuild", 35, 3], ["ldflags", 40, 3], ["postInstall", 46, 3], ["meta", 49, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, buildGoModule: false, buildNpmPackage: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 21, 5], ["version", 22, 13], ["src", 22, 21], ["sourceRoot", 23, 5], ["npmDepsHash", 24, 5], ["installPhase", 25, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["GOEXPERIMENT", 33, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 50, 5], ["description", 51, 5], ["license", 52, 5], ["mainProgram", 53, 5], ["maintainers", 54, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["version", 31, 11], ["src", 31, 19], ["pname", 31, 23], ["subPackages", 32, 3], ["env", 33, 3], ["vendorHash", 34, 3], ["preBuild", 35, 3], ["ldflags", 40, 3], ["postInstall", 46, 3], ["meta", 49, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,14 +14,14 @@ export default nix.lambda((args) => (() => {
   const version = "3.0.0";
   const pname = "discord-rich-presence-plex";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "phin05",
       repo: "discord-rich-presence-plex",
       rev: nix.thunk(() => nix.str`v${version}`),
       hash: "sha256-RvsS47059YdxKSo6sy+zglY1YxzyJmZTmo/DIKX1xqU=",
     }))));
   const webAssets = nix.thunk(() => nix.app(buildNpmPackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: nix.thunk(() => nix.str`${pname}-web`),
       version: version,
       src: src,
@@ -34,12 +30,12 @@ export default nix.lambda((args) => (() => {
       installPhase: "cp -r dist $out\n",
     }))));
   return nix.app(buildGoModule, nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       version: version,
       src: src,
       pname: pname,
       subPackages: nix.thunk(() => ["server/main"]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$3, GOEXPERIMENT: "jsonv2" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[2], GOEXPERIMENT: "jsonv2" })),
       vendorHash: "sha256-B1XHMqyih3eBlRsU6s5HcGv9WY8OcXj2yGwB2jpP9HI=",
       preBuild: nix.thunk(() => nix.str`mkdir -p web/dist
 cp -r ${webAssets}/* web/dist/
@@ -47,7 +43,7 @@ cp -r ${webAssets}/* web/dist/
       ldflags: nix.thunk(() => ["-s", "-w", nix.thunk(() => nix.str`-X main.version=${version}`)]),
       postInstall: "mv $out/bin/main $out/bin/drpp\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://github.com/phin05/discord-rich-presence-plex",
         description: "Displays your Plex status on Discord using Rich Presence",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

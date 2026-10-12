@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]], [["description", 33, 5], ["longDescription", 34, 5], ["homepage", 40, 5], ["license", 41, 5], ["maintainers", 42, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["nativeBuildInputs", 19, 3], ["dontUnpack", 21, 3], ["buildPhase", 23, 3], ["installPhase", 27, 3], ["meta", 32, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, "prevo-tools": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 33, 5], ["longDescription", 34, 5], ["homepage", 40, 5], ["license", 41, 5], ["maintainers", 42, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["nativeBuildInputs", 19, 3], ["dontUnpack", 21, 3], ["buildPhase", 23, 3], ["installPhase", 27, 3], ["meta", 32, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const prevo_tools = nix.arg($, "prevo-tools");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "prevo-data",
       version: "2020-03-08",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "bpeel",
           repo: "revo",
           rev: "1e8d7197c0bc831e2127909e77e64dfc26906bdd",
@@ -29,7 +27,7 @@ export default nix.lambda((args) => (() => {
       buildPhase: "prevodb -s -i $src -o prevo.db\n",
       installPhase: "mkdir -p $out/share/prevo\ncp prevo.db $out/share/prevo/\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Data for offline version of the Esperanto dictionary Reta Vortaro",
         longDescription: "PReVo is the \"portable\" ReVo, i.e., the offline version\nof the Esperanto dictionary Reta Vortaro.\n\nThis package provides the ReVo database for the prevo command line application.\n",
         homepage: "https://github.com/bpeel/revo",

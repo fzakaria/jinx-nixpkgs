@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 17, 5], ["hash", 18, 5], ["message", 19, 5]], [["name", 42, 7], ["desktopName", 43, 7], ["genericName", 44, 7], ["comment", 45, 7], ["icon", 46, 7], ["exec", 47, 7], ["categories", 48, 7], ["keywords", 52, 7], ["startupWMClass", 59, 7], ["terminal", 60, 7]], [["description", 99, 5], ["homepage", 100, 5], ["license", 101, 5], ["maintainers", 102, 5], ["mainProgram", 103, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["strictDeps", 28, 3], ["nativeBuildInputs", 30, 3], ["dontWrapGApps", 38, 3], ["desktopItems", 40, 3], ["postPatch", 64, 3], ["installPhase", 75, 3], ["postFixup", 91, 3], ["meta", 98, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, requireFile: false, copyDesktopItems: false, makeDesktopItem: false, wrapGAppsHook3: false, asar: false, dpkg: false, electron: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 17, 5], ["hash", 18, 5], ["message", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 42, 7], ["desktopName", 43, 7], ["genericName", 44, 7], ["comment", 45, 7], ["icon", 46, 7], ["exec", 47, 7], ["categories", 48, 7], ["keywords", 52, 7], ["startupWMClass", 59, 7], ["terminal", 60, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 99, 5], ["homepage", 100, 5], ["license", 101, 5], ["maintainers", 102, 5], ["mainProgram", 103, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["strictDeps", 28, 3], ["nativeBuildInputs", 30, 3], ["dontWrapGApps", 38, 3], ["desktopItems", 40, 3], ["postPatch", 64, 3], ["installPhase", 75, 3], ["postFixup", 91, 3], ["meta", 98, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,7 +17,7 @@ export default nix.lambda((args) => (() => {
   const dpkg = nix.arg($, "dpkg");
   const electron = nix.arg($, "electron");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "silverfort-client",
       version: "3.8.0",
       src: nix.thunk(() => nix.app(requireFile, nix.thunk(() => (() => {
@@ -32,14 +29,14 @@ to the Nix store using \`nix-prefetch-url file:///$PWD/${name}\`.
 It is recommended to add this file to the garbage collector root
 to prevent garbage collection.
 `);
-          return { [nix.POS]: pos$1, name, hash, message };
+          return { [nix.POS]: $pos[0], name, hash, message };
         })()))),
       strictDeps: true,
       nativeBuildInputs: nix.thunk(() => [asar, copyDesktopItems, dpkg, wrapGAppsHook3]),
       dontWrapGApps: true,
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "silverfort-client",
             desktopName: "Silverfort Client",
             genericName: "Multi-factor authentication client",
@@ -60,7 +57,7 @@ to prevent garbage collection.
   "\${gappsWrapperArgs[@]}"
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Silverfort multi-factor authentication client",
         homepage: "https://www.silverfort.com/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

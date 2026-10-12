@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 11, 5], ["repo", 12, 5], ["rev", 13, 5], ["sha256", 14, 5]], [["description", 36, 5], ["longDescription", 37, 5], ["license", 42, 5], ["maintainers", 43, 5], ["homepage", 44, 5], ["platforms", 45, 5], ["mainProgram", 46, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 10, 3], ["buildInputs", 17, 3], ["postPatch", 25, 3], ["installPhase", 29, 3], ["meta", 35, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, python3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 11, 5], ["repo", 12, 5], ["rev", 13, 5], ["sha256", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 36, 5], ["longDescription", 37, 5], ["license", 42, 5], ["maintainers", 43, 5], ["homepage", 44, 5], ["platforms", 45, 5], ["mainProgram", 46, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 10, 3], ["buildInputs", 17, 3], ["postPatch", 25, 3], ["installPhase", 29, 3], ["meta", 35, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const python3 = nix.arg($, "python3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "g203-led",
       version: "0-unstable-2021-05-08",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "smasty",
           repo: "g203-led",
           rev: "f9d10ba3aa8f9359f928bbab0a2ea00cefc69f4b",
@@ -33,7 +31,7 @@ export default nix.lambda((args) => (() => {
       postPatch: "patchShebangs g203-led.py\n",
       installPhase: "runHook preInstall\ninstall -D g203-led.py $out/bin/g203-led\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Logitech G203 Prodigy / G203 LightSync Mouse LED control for Linux",
         longDescription: "Allows you to control the LED lighting of your G203 Prodigy\nor G203 LightSync Mouse programmatically.\nInspired by and based on g810-led.\n",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

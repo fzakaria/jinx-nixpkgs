@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["hash", 29, 24], ["url", 29, 29], ["stripRoot", 30, 9]], [["description", 45, 9]], [["pname", 18, 7], ["version", 19, 22], ["nativeBuildInputs", 21, 7], ["outputs", 23, 7], ["src", 28, 7], ["preInstall", 40, 7], ["meta", 44, 7]], [["description", 50, 5], ["homepage", 51, 5], ["license", 52, 5], ["platforms", 53, 5], ["maintainers", 54, 5]], [["updateScript", 68, 5]], [["pname", 64, 3], ["version", 65, 3], ["paths", 66, 3], ["passthru", 67, 3], ["meta", 70, 11]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, symlinkJoin: false, fetchzip: false, installFonts: false, families: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["hash", 29, 24], ["url", 29, 29], ["stripRoot", 30, 9]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 45, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 18, 7], ["version", 19, 22], ["nativeBuildInputs", 21, 7], ["outputs", 23, 7], ["src", 28, 7], ["preInstall", 40, 7], ["meta", 44, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 50, 5], ["homepage", 51, 5], ["license", 52, 5], ["platforms", 53, 5], ["maintainers", 54, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["updateScript", 68, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 64, 3], ["version", 65, 3], ["paths", 66, 3], ["passthru", 67, 3], ["meta", 70, 11]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,23 +19,23 @@ export default nix.lambda((args) => (() => {
   const unknownFamilies = nix.thunk(() => nix.app(nix.sel(lib, "subtractLists"), availableFamilyNames, families));
   const fontsToBuild = nix.thunk(() => nix.app(nix.sel(lib, "filterAttrs"), (name) => (_) => nix.app(nix.sel(lib, "elem"), name, selectedFamilies), allFonts));
   const makeFont = (font) => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: nix.thunk(() => nix.app(nix.sel(lib, "toLower"), nix.thunk(() => nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => [" (", ")", " "]), nix.thunk(() => ["-", "", "-"]), nix.thunk(() => nix.sel(font, "name")))))),
       version: nix.thunk(() => nix.attr(font, "version")),
       nativeBuildInputs: nix.thunk(() => [installFonts]),
       outputs: nix.thunk(() => ["out", "webfont"]),
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           hash: nix.thunk(() => nix.attr(font, "hash")),
           url: nix.thunk(() => nix.attr(font, "url")),
           stripRoot: nix.thunk(() => nix.selOr(font, () => true, "stripRoot")),
         })))),
       preInstall: "find . -type d \\( -name unhinted -or -name split \\) -exec rm -rf {} +\n",
-      meta: nix.thunk(() => nix.update(meta, { [nix.POS]: pos$2, description: nix.thunk(() => nix.sel(font, "name")) })),
+      meta: nix.thunk(() => nix.update(meta, { [nix.POS]: $pos[1], description: nix.thunk(() => nix.sel(font, "name")) })),
     }));
   const fontDerivations = nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (_) => (v) => nix.app(makeFont, v), fontsToBuild));
   const meta = nix.thunk(() => ({
-    [nix.POS]: pos$4,
+    [nix.POS]: $pos[3],
     description: "IBM Plex Typeface",
     homepage: "https://www.ibm.com/plex/",
     license: nix.thunk(() => nix.sel(lib, "licenses", "ofl")),
@@ -57,11 +52,11 @@ export default nix.lambda((args) => (() => {
   }));
   nix.assert_(nix.app(nix.sel(lib, "assertMsg"), nix.thunk(() => nix.eq(unknownFamilies, [])), nix.thunk(() => nix.str`Unknown font(s): ${nix.builtins.toString(unknownFamilies)}`)), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/ib/ibm-plex/package.nix:62:1");
   return nix.app(symlinkJoin, nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "ibm-plex",
       version: "0-unstable-2026-07-30",
       paths: nix.thunk(() => nix.app(nix.sel(lib, "attrValues"), fontDerivations)),
-      passthru: nix.thunk(() => nix.update(fontDerivations, { [nix.POS]: pos$5, updateScript: nix.path(here, "./update.py") })),
+      passthru: nix.thunk(() => nix.update(fontDerivations, { [nix.POS]: $pos[4], updateScript: nix.path(here, "./update.py") })),
       meta: meta,
     })));
 })(), formals$1);

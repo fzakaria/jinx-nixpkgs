@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]], [["description", 82, 5], ["homepage", 83, 5], ["license", 84, 5], ["maintainers", 85, 5], ["mainProgram", 89, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["cargoHash", 24, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 32, 3], ["buildFeatures", 40, 3], ["doCheck", 56, 3], ["nativeCheckInputs", 58, 3], ["postInstall", 66, 3], ["meta", 81, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, rustPlatform: false, fetchFromGitLab: false, installShellFiles: false, "pkg-config": false, nettle: false, openssl: false, sqlite: false, gnupg: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 82, 5], ["homepage", 83, 5], ["license", 84, 5], ["maintainers", 85, 5], ["mainProgram", 89, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["cargoHash", 24, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 32, 3], ["buildFeatures", 40, 3], ["doCheck", 56, 3], ["nativeCheckInputs", 58, 3], ["postInstall", 66, 3], ["meta", 81, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const sqlite = nix.arg($, "sqlite");
   const gnupg = nix.arg($, "gnupg");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "sequoia-wot",
       version: "0.15.0-unstable-2026-02-25",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "sequoia-pgp",
           repo: "sequoia-wot",
           rev: "47a8fe9fe42319cae7a1185a2370e2e07f7e2898",
@@ -44,7 +42,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [gnupg]),
       postInstall: "installShellCompletion --cmd sq-wot \\\n  --bash target/*/release/build/sequoia-wot-*/out/sq-wot.bash \\\n  --fish target/*/release/build/sequoia-wot-*/out/sq-wot.fish \\\n  --zsh  target/*/release/build/sequoia-wot-*/out/_sq-wot\n# Also elv and powershell are generated there\ninstallManPage \\\n  target/*/release/build/sequoia-wot-*/out/sq-wot.1 \\\n  target/*/release/build/sequoia-wot-*/out/sq-wot-authenticate.1 \\\n  target/*/release/build/sequoia-wot-*/out/sq-wot-lookup.1 \\\n  target/*/release/build/sequoia-wot-*/out/sq-wot-identify.1 \\\n  target/*/release/build/sequoia-wot-*/out/sq-wot-list.1 \\\n  target/*/release/build/sequoia-wot-*/out/sq-wot-path.1\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Rust CLI tool for authenticating bindings and exploring a web of trust",
         homepage: "https://gitlab.com/sequoia-pgp/sequoia-wot",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

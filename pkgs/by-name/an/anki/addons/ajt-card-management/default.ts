@@ -2,10 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 11, 5], ["repo", 12, 5], ["rev", 13, 5], ["hash", 14, 5], ["fetchSubmodules", 15, 5]], [["description", 19, 5], ["longDescription", 20, 5], ["homepage", 28, 5], ["downloadPage", 29, 5], ["license", 30, 5], ["maintainers", 31, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 10, 3], ["sourceRoot", 17, 3], ["meta", 18, 3]]]);
 const formals$1 = { args: { lib: false, "anki-utils": false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 11, 5], ["repo", 12, 5], ["rev", 13, 5], ["hash", 14, 5], ["fetchSubmodules", 15, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 19, 5], ["longDescription", 20, 5], ["homepage", 28, 5], ["downloadPage", 29, 5], ["license", 30, 5], ["maintainers", 31, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 10, 3], ["sourceRoot", 17, 3], ["meta", 18, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,11 +11,11 @@ export default nix.lambda((args) => (() => {
   const anki_utils = nix.arg($, "anki-utils");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(anki_utils, "buildAnkiAddon"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "ajt-card-management",
       version: "26.2.21.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Ajatt-Tools",
           repo: "learn-now-button",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -26,7 +24,7 @@ export default nix.lambda((args) => (() => {
         })))),
       sourceRoot: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "name")}/card_management`),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Reset, Learn, and Grade cards from the card browser",
         longDescription: "Reset, Learn, and Grade cards from the card browser\n\nThis addon adds new buttons to the card browser.\n- The Learn now button immediately puts selected new cards in the learning queue.\n- The Grade now button lets you grade selected cards without opening Reviewer.\n- The Reset selected cards button lets you delete scheduling and learning information from selected cards.\n",
         homepage: "https://github.com/Ajatt-Tools/learn-now-button",

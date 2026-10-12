@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 13, 5], ["hash", 14, 5]], [["description", 54, 5], ["homepage", 55, 5], ["maintainers", 56, 5], ["license", 57, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["sourceRoot", 17, 3], ["nativeBuildInputs", 19, 3], ["dontConfigure", 21, 3], ["buildPhase", 23, 3], ["installPhase", 43, 3], ["meta", 53, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, fontforge: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 13, 5], ["hash", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 54, 5], ["homepage", 55, 5], ["maintainers", 56, 5], ["license", 57, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["sourceRoot", 17, 3], ["nativeBuildInputs", 19, 3], ["dontConfigure", 21, 3], ["buildPhase", 23, 3], ["installPhase", 43, 3], ["meta", 53, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const fontforge = nix.arg($, "fontforge");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "linux-libertine",
       version: "5.3.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "mirror://sourceforge/linuxlibertine/5.3.0/LinLibertineSRC_5.3.0_2012_07_02.tgz",
           hash: "sha256-G+xDYKJvHPMzwnktkg9cpNTv9E9d5QFgDjReuKH57HQ=",
         })))),
@@ -28,7 +26,7 @@ export default nix.lambda((args) => (() => {
       buildPhase: "runHook preBuild\nfor i in *.sfd; do\n  fontforge -lang=ff -c \\\n    'Open($1);\n    ScaleToEm(1000);\n    Reencode(\"unicode\");\n    Generate($1:r + \".ttf\");\n    Generate($1:r + \".otf\");\n    Reencode(\"TeX-Base-Encoding\");\n    Generate($1:r + \".afm\");\n    Generate($1:r + \".pfm\");\n    Generate($1:r + \".pfb\");\n    Generate($1:r + \".map\");\n    Generate($1:r + \".enc\");\n    ' $i;\ndone\nrunHook postBuild\n",
       installPhase: "runHook preInstall\ninstall -m444 -Dt $out/share/fonts/opentype/public *.otf\ninstall -m444 -Dt $out/share/fonts/truetype/public *.ttf\ninstall -m444 -Dt $out/share/fonts/type1/public    *.pfb\ninstall -m444 -Dt $out/share/texmf/fonts/enc       *.enc\ninstall -m444 -Dt $out/share/texmf/fonts/map       *.map\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Linux Libertine Fonts",
         homepage: "http://linuxlibertine.sf.net",
         maintainers: nix.thunk(() => (() => {

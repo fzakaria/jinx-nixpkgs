@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/ltc.nix", [[["owner", 34, 5], ["repo", 35, 5], ["rev", 36, 5], ["sha256", 37, 5], ["postFetch", 39, 5]], [["url", 53, 5], ["hash", 54, 5]], [["description", 177, 5], ["mainProgram", 178, 5], ["longDescription", 179, 5], ["homepage", 185, 5], ["license", 186, 5], ["platforms", 187, 5], ["maintainers", 188, 5]], [["pname", 48, 3], ["version", 49, 11], ["format", 50, 3], ["src", 52, 3], ["postUnpack", 57, 3], ["nativeBuildInputs", 62, 3], ["propagatedBuildInputs", 64, 3], ["patches", 95, 3], ["postPatch", 109, 3], ["preBuild", 118, 3], ["postInstall", 135, 3], ["postFixup", 149, 3], ["nativeCheckInputs", 153, 3], ["buildInputs", 158, 3], ["enabledTestPaths", 160, 3], ["disabledTests", 162, 3], ["postCheck", 172, 3], ["meta", 176, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, fetchFromGitHub: false, python3: false, zbar: false, secp256k1: false, enableQt: true, qt5: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/ltc.nix", [["owner", 34, 5], ["repo", 35, 5], ["rev", 36, 5], ["sha256", 37, 5], ["postFetch", 39, 5]]);
-const pos$2 = nix.positions(here + "/ltc.nix", [["url", 53, 5], ["hash", 54, 5]]);
-const pos$3 = nix.positions(here + "/ltc.nix", [["description", 177, 5], ["mainProgram", 178, 5], ["longDescription", 179, 5], ["homepage", 185, 5], ["license", 186, 5], ["platforms", 187, 5], ["maintainers", 188, 5]]);
-const pos$4 = nix.positions(here + "/ltc.nix", [["pname", 48, 3], ["version", 49, 11], ["format", 50, 3], ["src", 52, 3], ["postUnpack", 57, 3], ["nativeBuildInputs", 62, 3], ["propagatedBuildInputs", 64, 3], ["patches", 95, 3], ["postPatch", 109, 3], ["preBuild", 118, 3], ["postInstall", 135, 3], ["postFixup", 149, 3], ["nativeCheckInputs", 153, 3], ["buildInputs", 158, 3], ["enabledTestPaths", 160, 3], ["disabledTests", 162, 3], ["postCheck", 172, 3], ["meta", 176, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,7 +20,7 @@ export default nix.lambda((args) => (() => {
   const libsecp256k1_name = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) ? "libsecp256k1.so.0" : (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? "libsecp256k1.0.dylib" : nix.str`libsecp256k1${nix.sel(stdenv, "hostPlatform", "extensions", "sharedLibrary")}`)));
   const libzbar_name = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) ? "libzbar.so.0" : (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? "libzbar.0.dylib" : nix.str`libzbar${nix.sel(stdenv, "hostPlatform", "extensions", "sharedLibrary")}`)));
   const tests = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "pooler",
       repo: "electrum-ltc",
       rev: version,
@@ -31,12 +28,12 @@ export default nix.lambda((args) => (() => {
       postFetch: "mv $out ./all\nmv ./all/electrum_ltc/tests $out\n",
     }))));
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "electrum-ltc",
       version: version,
       format: "setuptools",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: nix.thunk(() => nix.str`https://electrum-ltc.org/download/Electrum-LTC-${version}.tar.gz`),
           hash: "sha256-7F28cve+HD5JDK5igfkGD/NvTCfA33g+DmQJ5mwPM9Q=",
         })))),
@@ -113,7 +110,7 @@ substituteInPlace $out/share/applications/electrum-ltc.desktop \\
       ]),
       postCheck: "$out/bin/electrum-ltc help >/dev/null\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Lightweight Litecoin Client",
         mainProgram: "electrum-ltc",
         longDescription: "Electrum-LTC is a simple, but powerful Litecoin wallet. A unique secret\nphrase (or “seed”) leaves intruders stranded and your peace of mind\nintact. Keep it on paper, or in your head... and never worry about losing\nyour litecoins to theft or hardware failure.\n",

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/bootstrap.nix", [[["linux-x86_64", 20, 5], ["linux-aarch64", 21, 5], ["osx-arm64", 22, 5]], [["name", 30, 5], ["url", 31, 5], ["hash", 32, 5]], [["description", 61, 5], ["homepage", 62, 5], ["license", 64, 5], ["maintainers", 71, 5], ["platforms", 72, 5]], [["pname", 26, 3], ["version", 27, 11], ["src", 29, 3], ["dontConfigure", 35, 3], ["dontBuild", 36, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 44, 3], ["propagatedBuildInputs", 49, 3], ["installPhase", 54, 3], ["meta", 60, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, curl: false, tzdata: false, autoPatchelfHook: false, fixDarwinDylibNames: false, libxml2: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/bootstrap.nix", [["linux-x86_64", 20, 5], ["linux-aarch64", 21, 5], ["osx-arm64", 22, 5]]);
-const pos$2 = nix.positions(here + "/bootstrap.nix", [["name", 30, 5], ["url", 31, 5], ["hash", 32, 5]]);
-const pos$3 = nix.positions(here + "/bootstrap.nix", [["description", 61, 5], ["homepage", 62, 5], ["license", 64, 5], ["maintainers", 71, 5], ["platforms", 72, 5]]);
-const pos$4 = nix.positions(here + "/bootstrap.nix", [["pname", 26, 3], ["version", 27, 11], ["src", 29, 3], ["dontConfigure", 35, 3], ["dontBuild", 36, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 44, 3], ["propagatedBuildInputs", 49, 3], ["installPhase", 54, 3], ["meta", 60, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,20 +20,20 @@ export default nix.lambda((args) => (() => {
   const ARCH = nix.thunk(() => (nix.asBool((nix.asBool(nix.sel(hostPlatform, "isDarwin")) && nix.asBool(nix.sel(hostPlatform, "isAarch64")))) ? "arm64" : nix.sel(hostPlatform, "parsed", "cpu", "name")));
   const version = "1.42.0";
   const hashes = nix.thunk(() => ({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     "linux-x86_64": "sha256-p7yclWE49VjK35yWI1L1nUHIDfbrOuP4A58lvhSmkwM=",
     "linux-aarch64": "sha256-aHcHw+IP+RBSjrLZLyepjLCWAoTeOwJua/IChKwchRE=",
     "osx-arm64": "sha256-emjiHFMFdmp09HNsyJGnlC23hCqSJmIyCVBLyFxwE4I=",
   }));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "ldc-bootstrap",
       version: version,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => (() => {
           const name = nix.thunk(() => nix.str`ldc2-${version}-${OS}-${ARCH}.tar.xz`);
           const url = nix.thunk(() => nix.str`https://github.com/ldc-developers/ldc/releases/download/v${version}/${name}`);
           const hash = nix.thunk(() => nix.selOr(hashes, () => nix.builtins.throw(nix.thunk(() => nix.str`missing bootstrap hash for ${OS}-${ARCH}`)), nix.key(nix.str`${OS}-${ARCH}`)));
-          return { [nix.POS]: pos$2, name, url, hash };
+          return { [nix.POS]: $pos[1], name, url, hash };
         })()))),
       dontConfigure: true,
       dontBuild: true,
@@ -45,7 +42,7 @@ export default nix.lambda((args) => (() => {
       propagatedBuildInputs: nix.thunk(() => [curl, tzdata]),
       installPhase: "mkdir -p $out\n\nmv bin etc import lib LICENSE README $out/\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "LLVM-based D Compiler",
         homepage: "https://github.com/ldc-developers/ldc",
         license: nix.thunk(() => (() => {

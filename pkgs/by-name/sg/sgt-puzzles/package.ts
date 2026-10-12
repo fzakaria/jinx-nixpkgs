@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 24, 5], ["hash", 25, 5]], [["url", 29, 5], ["hash", 30, 5]], [["NIX_CFLAGS_COMPILE", 43, 7]], [["sgt-puzzles", 79, 11]], [["tests", 79, 5], ["updateScript", 80, 5]], [["description", 92, 5], ["license", 93, 5], ["maintainers", 94, 5], ["platforms", 98, 5], ["homepage", 99, 5]], [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["sgt-puzzles-menu", 28, 3], ["nativeBuildInputs", 33, 3], ["env", 43, 3], ["buildInputs", 45, 3], ["postInstall", 50, 3], ["passthru", 78, 3], ["meta", 91, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, "desktop-file-utils": false, gtk3: false, libx11: false, cmake: false, imagemagick: false, "pkg-config": false, perl: false, wrapGAppsHook3: false, nixosTests: false, writeScript: false, halibut: false, isMobile: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 29, 5], ["hash", 30, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 43, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["sgt-puzzles", 79, 11]]);
-const pos$5 = nix.positions(here + "/package.nix", [["tests", 79, 5], ["updateScript", 80, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 92, 5], ["license", 93, 5], ["maintainers", 94, 5], ["platforms", 98, 5], ["homepage", 99, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["sgt-puzzles-menu", 28, 3], ["nativeBuildInputs", 33, 3], ["env", 43, 3], ["buildInputs", 45, 3], ["postInstall", 50, 3], ["passthru", 78, 3], ["meta", 91, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,16 +23,16 @@ export default nix.lambda((args) => (() => {
   const halibut = nix.arg($, "halibut");
   const isMobile = nix.argOr($, "isMobile", () => false);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "sgt-puzzles",
       version: "20260923.616da16",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://www.chiark.greenend.org.uk/~sgtatham/puzzles/puzzles-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-zEGcgGC04ivjmKoD4wZR+84Ubu5RBkXDA/tvXxt3t44=",
         })))),
       "sgt-puzzles-menu": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: "https://raw.githubusercontent.com/gentoo/gentoo/720e614d0107e86fc1e520bac17726578186843d/games-puzzle/sgt-puzzles/files/sgt-puzzles.menu",
           hash: "sha256-dXbx6C5/uu0S1FxfOLJ8TjdoJ/IW9VjEsRfJ8VIHHCE=",
         })))),
@@ -52,7 +46,7 @@ export default nix.lambda((args) => (() => {
         halibut,
       ]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), isMobile, "-DSTYLUS_BASED")),
       })),
       buildInputs: nix.thunk(() => [gtk3, libx11]),
@@ -83,15 +77,15 @@ desktop-file-install --dir $out/share/desktop-directories \\
 install -Dm644 ${nix.sel(finalAttrs, "sgt-puzzles-menu")} -t $out/etc/xdg/menus/applications-merged/
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           "sgt-puzzles": nix.thunk(() => nix.sel(nixosTests, "sgt-puzzles")),
         })),
         updateScript: nix.thunk(() => nix.app(writeScript, "update-sgt-puzzles", "#!/usr/bin/env nix-shell\n#!nix-shell -i bash -p curl pcre2 common-updater-scripts\n\nset -eu -o pipefail\n\nversion=\"$(curl -sI 'https://www.chiark.greenend.org.uk/~sgtatham/puzzles/puzzles.tar.gz' | grep -Fi Location: | pcre2grep -o1 'puzzles-([0-9a-f.]*).tar.gz')\"\nupdate-source-version sgt-puzzles \"$version\"\n")),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Simon Tatham's portable puzzle collection",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: nix.thunk(() => (() => {

@@ -2,94 +2,9 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/melpa-packages.nix", [[["abridge-diff", 66, 11], ["bufshow", 70, 11], ["speech-tagger", 73, 11], ["textmate", 76, 11], ["window-numbering", 79, 11], ["voca-builder", 82, 11], ["initsplit", 85, 11], ["jsfmt", 88, 11], ["maxframe", 91, 11], ["connection", 94, 11], ["dictionary", 97, 11], ["fold-dwim", 100, 11], ["gl-conf-mode", 104, 11], ["ligo-mode", 108, 11], ["link", 112, 11], ["org-dp", 115, 11], ["revbufs", 118, 11], ["elmine", 121, 11], ["ido-complete-space-or-hyphen", 124, 11]], [["postPatch", 132, 13]], [["powerline", 139, 42]], [["CFLAGS", 148, 19], ["LDFLAGS", 149, 19]], [["buildInputs", 146, 17], ["env", 147, 17]], [["easy-kill", 163, 42]], [["buildInputs", 171, 15], ["postBuild", 173, 15], ["postInstall", 179, 15], ["stripDebugList", 187, 15]], [["buildInputs", 194, 15], ["postBuild", 196, 15], ["postInstall", 202, 15], ["stripDebugList", 210, 15]], [["postPatch", 215, 13]], [["nativeBuildInputs", 222, 13], ["buildInputs", 225, 13]], [["postPatch", 232, 13], ["packageRequires", 236, 13]], [["ess", 240, 42], ["ctable", 240, 46], ["popup", 240, 53]], [["CXXFLAGS", 251, 15]], [["env", 250, 13], ["nativeBuildInputs", 254, 13], ["buildInputs", 260, 13], ["preBuild", 265, 13], ["recipe", 282, 13]], [["packageRequires", 291, 13], ["propagatedUserEnvPkgs", 292, 13]], [["nativeBuildInputs", 298, 13], ["dontUseCmakeBuildDir", 300, 13], ["preBuild", 302, 13], ["postInstall", 306, 13]], [["NIX_CFLAGS_COMPILE", 317, 15]], [["cmakeFlags", 315, 13], ["env", 316, 13], ["preConfigure", 319, 13], ["preBuild", 322, 13], ["checkPhase", 327, 13], ["preFixup", 332, 13], ["dontUseCmakeBuildDir", 335, 13], ["doCheck", 336, 13], ["buildInputs", 337, 13], ["nativeBuildInputs", 338, 13]], [["maintainers", 376, 17]], [["nativeBuildInputs", 355, 15], ["buildInputs", 359, 15], ["postBuild", 361, 15], ["postInstall", 366, 15], ["meta", 375, 15]], [["maintainers", 398, 15]], [["buildInputs", 382, 13], ["postBuild", 384, 13], ["postInstall", 388, 13], ["meta", 397, 13]], [["postPatch", 403, 13]], [["postPatch", 410, 13]], [["postPatch", 426, 13]], [["postPatch", 433, 13]], [["calfw", 442, 42]], [["postPatch", 452, 13]], [["buildInputs", 463, 13], ["preBuild", 464, 13], ["postInstall", 467, 13]], [["propagatedUserEnvPkgs", 479, 17]], [["buildInputs", 487, 13], ["nativeBuildInputs", 491, 13], ["propagatedUserEnvPkgs", 492, 13], ["postPatch", 494, 13], ["postBuild", 505, 13], ["postInstall", 511, 13]], [["postPatch", 521, 13]], [["postPatch", 528, 13]], [["nativeBuildInputs", 536, 13]], [["postPatch", 540, 13]], [["postPatch", 547, 13]], [["nativeBuildInputs", 554, 13]], [["postPatch", 558, 13]], [["enableDrafts", 577, 39]], [["stripDebugList", 565, 13], ["preBuild", 566, 13], ["nativeBuildInputs", 570, 13], ["buildInputs", 576, 13], ["postInstall", 579, 13]], [["propagatedUserEnvPkgs", 624, 13]], [["packageRequires", 629, 13]], [["url", 639, 17], ["sha256", 640, 17]], [["patches", 636, 13]], [["postPatch", 651, 13]], [["powerline", 658, 42]], [["nativeBuildInputs", 662, 13], ["buildInputs", 663, 13], ["cmakeFlags", 667, 13], ["postInstall", 673, 13]], [["prePatch", 689, 19]], [["melpaBuild", 684, 13]], [["postPatch", 703, 13]], [["postPatch", 710, 13]], [["postBuild", 720, 17], ["postInstall", 723, 17]], [["preBuild", 749, 13]], [["preBuild", 764, 15]], [["preBuild", 819, 15]], [["recipe", 876, 15]], [["name", 891, 19], ["url", 892, 19], ["hash", 893, 19]], [["patches", 889, 15]], [["name", 915, 25], ["url", 916, 25], ["hash", 917, 25]], [["patches", 910, 17]], [["propagatedUserEnvPkgs", 951, 15]], [["preBuild", 976, 15]], [["postPatch", 995, 13]], [["postPatch", 1026, 13]], [["postPatch", 1050, 13]], [["name", 1063, 17], ["url", 1064, 17], ["hash", 1065, 17]], [["patches", 1061, 13]], [["postPatch", 1137, 13]], [["preBuild", 1150, 15]], [["name", 1204, 17], ["url", 1205, 17], ["hash", 1206, 17]], [["patches", 1202, 13]], [["recipe", 1283, 13], ["files", 1284, 13]], [["postPatch", 1301, 13]], [["name", 1321, 23], ["url", 1322, 23], ["hash", 1323, 23]], [["patches", 1316, 15]], [["buildInputs", 1351, 15], ["nativeBuildInputs", 1354, 15], ["postBuild", 1357, 15], ["postInstall", 1363, 15]], [["name", 1443, 17], ["url", 1444, 17], ["hash", 1445, 17]], [["patches", 1441, 13]], [["name", 1456, 17], ["url", 1457, 17], ["hash", 1458, 17]], [["patches", 1454, 13]], [["name", 1515, 23], ["url", 1516, 23], ["hash", 1517, 23]], [["patches", 1510, 15]], [["preBuild", 1535, 15]], [["postPatch", 1585, 13]], [["preBuild", 1624, 13]], [["ac-rtags", 129, 11], ["age", 131, 11], ["airline-themes", 138, 11], ["auto-complete-clang-async", 143, 11], ["caml", 154, 11], ["cmake-mode", 158, 11], ["company-rtags", 160, 11], ["easy-kill-extras", 162, 11], ["dune", 166, 11], ["emacsql", 168, 11], ["emacsql-sqlite", 191, 11], ["epkg", 214, 11], ["erlang", 221, 11], ["evil-escape", 231, 11], ["ess-R-data-view", 239, 11], ["flycheck-rtags", 243, 11], ["pdf-tools", 245, 11], ["hindent", 290, 11], ["hotfuzz", 297, 11], ["irony", 314, 11], ["insert-shebang", 345, 11], ["ivy-rtags", 347, 11], ["jinx", 349, 11], ["sqlite3", 381, 11], ["gnuplot", 402, 11], ["gnuplot-mode", 409, 11], ["magit-topgit", 416, 11], ["egg", 418, 11], ["mandoku", 420, 11], ["magit-delta", 423, 11], ["ormolu", 425, 11], ["python-isort", 432, 11], ["mhc", 441, 11], ["nemerle", 446, 11], ["notmuch", 449, 11], ["pikchr-mode", 451, 11], ["rtags", 458, 11], ["rtags-xref", 460, 11], ["rime", 462, 11], ["shm", 473, 11], ["telega", 486, 11], ["tokei", 520, 11], ["treemacs", 527, 11], ["treemacs-magit", 534, 11], ["typst-mode", 539, 11], ["units-mode", 546, 11], ["vdiff-magit", 553, 11], ["zig-mode", 557, 11], ["zmq", 564, 11], ["_0blayout", 590, 11], ["desktop-plus", 591, 11], ["ghub-plus", 592, 11], ["git-gutter-plus", 593, 11], ["git-gutter-fringe-plus", 594, 11], ["ido-completing-read-plus", 595, 11], ["image-plus", 596, 11], ["image-dired-plus", 597, 11], ["markdown-mode-plus", 598, 11], ["package-plus", 599, 11], ["rect-plus", 600, 11], ["instapaper", 603, 11], ["magit-stgit", 606, 11], ["melancholy-theme", 609, 11], ["eterm-256color", 612, 11], ["per-buffer-theme", 615, 11], ["qiita", 618, 11], ["sql-presto", 621, 11], ["editorconfig", 623, 11], ["evil-search-highlight-persist", 628, 11], ["hamlet-mode", 635, 11], ["helm-rtags", 645, 11], ["php-auto-yasnippets", 648, 11], ["racer", 650, 11], ["spaceline", 657, 11], ["vterm", 661, 11], ["w3m", 683, 11], ["wordnut", 702, 11], ["mozc", 709, 11], ["osx-dictionary", 717, 11], ["@", 738, 11], ["git-gutter-fringe+", 740, 11], ["abgaben", 742, 11], ["abl-mode", 745, 11], ["ac-php-core", 747, 11], ["ack-menu", 756, 11], ["airplay", 759, 11], ["alectryon", 761, 11], ["alert-termux", 777, 11], ["angular-snippets", 780, 11], ["asx", 783, 11], ["auctex-cluttex", 785, 11], ["auctex-latexmk", 787, 11], ["auto-complete-auctex", 790, 11], ["auto-complete-distel", 793, 11], ["auto-indent-mode", 795, 11], ["aws-ec2", 797, 11], ["badger-theme", 799, 11], ["bap-mode", 802, 11], ["blog-minimal", 805, 11], ["boa-mode", 807, 11], ["boogie-friends", 811, 11], ["borg", 814, 11], ["bpr", 816, 11], ["brainfuck-mode", 831, 11], ["bts", 833, 11], ["bts-github", 835, 11], ["buffer-buttons", 837, 11], ["calfw-cal", 840, 11], ["calfw-gcal", 843, 11], ["calfw-howm", 846, 11], ["calfw-ical", 852, 11], ["calfw-org", 855, 11], ["cardano-tx", 857, 11], ["cardano-wallet", 859, 11], ["cask-package-toolset", 862, 11], ["chee", 865, 11], ["cheerilee", 867, 11], ["chronometrist", 871, 11], ["chronometrist-key-values", 873, 11], ["clingo-mode", 887, 11], ["clojure-quick-repls", 899, 11], ["cmake-ide", 902, 11], ["code-review", 904, 11], ["codesearch", 907, 11], ["comint-intercept", 927, 11], ["company-auctex", 929, 11], ["company-distel", 932, 11], ["company-qml", 935, 11], ["company-ycm", 938, 11], ["composable", 940, 11], ["conda", 943, 11], ["consult", 946, 11], ["consult-gh", 949, 11], ["consult-gh-embark", 956, 11], ["consult-gh-with-pr-review", 959, 11], ["counsel-gtags", 961, 11], ["counsel-notmuch", 964, 11], ["counsel-spotify", 967, 11], ["creole", 969, 11], ["cssh", 971, 11], ["dap-mode", 973, 11], ["db-pg", 987, 11], ["describe-number", 989, 11], ["dic-lookup-w3m", 992, 11], ["difftastic", 994, 11], ["dionysos", 1002, 11], ["dired-k", 1006, 11], ["distel-completion-lib", 1009, 11], ["django-mode", 1011, 11], ["drupal-mode", 1014, 11], ["e2wm-pkgex4pl", 1016, 11], ["ecb", 1018, 11], ["edit-color-stamp", 1021, 11], ["edts", 1023, 11], ["eimp", 1025, 11], ["ein", 1036, 11], ["ejc-sql", 1039, 11], ["ekg", 1045, 11], ["el-secretario-mu4e", 1047, 11], ["elfeed", 1049, 11], ["elisp-sandbox", 1056, 11], ["elnode", 1058, 11], ["elscreen", 1060, 11], ["emidje", 1071, 11], ["emms-player-mpv-jp-radios", 1073, 11], ["emms-player-simple-mpv", 1076, 11], ["enotify", 1078, 11], ["ercn", 1081, 11], ["eval-in-repl", 1084, 11], ["evalator", 1106, 11], ["evalator-clojure", 1108, 11], ["evil-easymotion", 1111, 11], ["evil-ghostel", 1114, 11], ["evil-mu4e", 1116, 11], ["evil-nl-break-undo", 1119, 11], ["evil-python-movement", 1123, 11], ["evil-tex", 1125, 11], ["ewal-doom-themes", 1128, 11], ["exwm-edit", 1131, 11], ["flymake-elixir", 1134, 11], ["flymake-hadolint", 1136, 11], ["flyparens", 1143, 11], ["fold-dwim-org", 1145, 11], ["frontside-javascript", 1147, 11], ["fxrd-mode", 1162, 11], ["gams-ac", 1164, 11], ["gap-mode", 1167, 11], ["git-commit-insert-issue", 1173, 11], ["gitlab", 1176, 11], ["gitlab-pipeline", 1179, 11], ["global-tags", 1182, 11], ["gnosis", 1184, 11], ["go", 1186, 11], ["graphene", 1188, 11], ["graphviz-dot-mode", 1191, 11], ["greader", 1193, 11], ["guix", 1196, 11], ["gumshoe", 1199, 11], ["helm-chrome-control", 1201, 11], ["helm-chrome-history", 1212, 11], ["helm-cider", 1214, 11], ["helm-ext", 1216, 11], ["helm-flycheck", 1219, 11], ["helm-ghs", 1222, 11], ["helm-git", 1225, 11], ["helm-git-grep", 1231, 11], ["helm-go-package", 1234, 11], ["helm-js-codemod", 1237, 11], ["helm-kythe", 1239, 11], ["helm-migemo", 1242, 11], ["helm-mu", 1244, 11], ["helm-osx-app", 1247, 11], ["helm-rg", 1250, 11], ["helm-spaces", 1253, 11], ["hideshow-org", 1255, 11], ["hippie-expand-slime", 1258, 11], ["hyperbole", 1260, 11], ["ibrowse", 1264, 11], ["identica-mode", 1267, 11], ["idris-mode", 1270, 11], ["imbot", 1272, 11], ["indium", 1274, 11], ["inlineR", 1277, 11], ["insfactor", 1280, 11], ["iregister", 1282, 11], ["ivy-clojuredocs", 1288, 11], ["jack-connect", 1291, 11], ["javap-mode", 1293, 11], ["jdee", 1295, 11], ["jekyll-modes", 1298, 11], ["jq-mode", 1300, 11], ["jss", 1309, 11], ["julia-snail", 1312, 11], ["kanagawa-themes", 1314, 11], ["keystore-mode", 1331, 11], ["kite", 1333, 11], ["laas", 1336, 11], ["latex-change-env", 1338, 11], ["latex-extra", 1340, 11], ["latex-table-wizard", 1342, 11], ["leaf-defaults", 1344, 11], ["liberime", 1346, 11], ["lispy", 1373, 11], ["lsp-origami", 1387, 11], ["magik-mode", 1390, 11], ["magit-gitlab", 1396, 11], ["magnatune", 1399, 11], ["major-mode-icons", 1401, 11], ["malinka", 1403, 11], ["mastodon", 1405, 11], ["metaweblog", 1408, 11], ["mu-cite", 1410, 11], ["mu4e-alert", 1412, 11], ["mu4e-autotask", 1414, 11], ["mu4e-column-faces", 1416, 11], ["mu4e-conversation", 1418, 11], ["mu4e-jump-to-list", 1420, 11], ["mu4e-marker-icons", 1422, 11], ["mu4e-overview", 1424, 11], ["mu4e-query-fragments", 1426, 11], ["mu4e-views", 1428, 11], ["mu4e-walk", 1430, 11], ["multifiles", 1433, 11], ["mykie", 1436, 11], ["myrddin-mode", 1438, 11], ["nand2tetris", 1440, 11], ["navi2ch", 1451, 11], ["navorski", 1453, 11], ["ncl-mode", 1464, 11], ["netease-cloud-music", 1467, 11], ["nim-mode", 1469, 11], ["noctilux-theme", 1471, 11], ["noflet", 1474, 11], ["norns", 1476, 11], ["nu-mode", 1479, 11], ["ob-chatgpt-shell", 1482, 11], ["org-change", 1484, 11], ["org-cite-overlay", 1486, 11], ["org-edit-latex", 1488, 11], ["org-evil", 1493, 11], ["org-gnome", 1495, 11], ["org-gtd", 1497, 11], ["org-kindle", 1500, 11], ["org-link-beautify", 1503, 11], ["org-noter", 1508, 11], ["org-noter-pdftools", 1525, 11], ["org-pdftools", 1527, 11], ["org-present-remote", 1530, 11], ["org-projectile", 1532, 11], ["org-projectile-helm", 1547, 11], ["org-ref", 1550, 11], ["org-roam-bibtex", 1553, 11], ["org-special-block-extras", 1558, 11], ["org-timeblock", 1561, 11], ["org-trello", 1563, 11], ["org-xlatex", 1567, 11], ["orgnav", 1570, 11], ["origami-predef", 1572, 11], ["osx-pseudo-daemon", 1575, 11], ["outlook", 1580, 11], ["pastery", 1582, 11], ["pdf-meta-edit", 1584, 11], ["peek-mode", 1594, 11], ["pgdevenv", 1596, 11], ["pinot", 1598, 11], ["poly-R", 1601, 11], ["poly-gams", 1603, 11], ["pophint", 1606, 11], ["portage-navi", 1608, 11], ["preview-dvisvgm", 1610, 11], ["procress", 1612, 11], ["projectile-trailblazer", 1615, 11], ["projmake-mode", 1617, 11], ["pyim-basedict", 1620, 11], ["realgud-lldb", 1623, 11], ["requirejs", 1633, 11], ["rhtml-mode", 1635, 11], ["roguel-ike", 1637, 11], ["rpm-spec-mode", 1639, 11], ["rustic", 1643, 11], ["sakura-theme", 1646, 11], ["scad-preview", 1648, 11], ["semi", 1652, 11], ["shadchen", 1654, 11], ["shampoo", 1656, 11], ["shexc-ts-mode", 1659, 11], ["shimbun", 1662, 11], ["slack", 1670, 11], ["slurm-mode", 1673, 11], ["smart-tabs-mode", 1678, 11], ["soccer", 1682, 11], ["soundklaus", 1685, 11], ["sparql-mode", 1688, 11], ["speechd-el", 1690, 11], ["spu", 1692, 11], ["ssh-tunnels", 1695, 11], ["stylus-mode", 1698, 11], ["suggest", 1701, 11], ["sx", 1703, 11], ["symex", 1705, 11], ["term-alert", 1707, 11], ["term-manager", 1710, 11], ["texfrag", 1712, 11], ["text-categories", 1715, 11], ["timp", 1717, 11], ["tommyh-theme", 1719, 11], ["tramp-hdfs", 1721, 11], ["twtxt", 1723, 11], ["universal-emotions-emoticons", 1725, 11], ["use-package-el-get", 1727, 11], ["vala-mode", 1729, 11], ["wandbox", 1732, 11], ["wanderlust", 1735, 11], ["weechat", 1737, 11], ["weechat-alert", 1739, 11], ["weibo", 1741, 11], ["workgroups2", 1743, 11], ["xcode-mode", 1746, 11], ["xenops", 1748, 11], ["xmlunicode", 1751, 11], ["xwwp-follow-link-helm", 1754, 11], ["xwwp-follow-link-ivy", 1757, 11], ["yara-mode", 1759, 11], ["yasnippet-lean", 1762, 11], ["yasnippet-snippets", 1764, 11], ["yatex", 1766, 11], ["ycm", 1769, 11], ["zotxt", 1777, 11]]]);
 const formals$1 = { args: { lib: false, pkgs: false }, ellipsis: false };
 const formals$2 = { args: { archiveJson: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/melpa-packages.nix", [["abridge-diff", 66, 11], ["bufshow", 70, 11], ["speech-tagger", 73, 11], ["textmate", 76, 11], ["window-numbering", 79, 11], ["voca-builder", 82, 11], ["initsplit", 85, 11], ["jsfmt", 88, 11], ["maxframe", 91, 11], ["connection", 94, 11], ["dictionary", 97, 11], ["fold-dwim", 100, 11], ["gl-conf-mode", 104, 11], ["ligo-mode", 108, 11], ["link", 112, 11], ["org-dp", 115, 11], ["revbufs", 118, 11], ["elmine", 121, 11], ["ido-complete-space-or-hyphen", 124, 11]]);
-const pos$2 = nix.positions(here + "/melpa-packages.nix", [["postPatch", 132, 13]]);
-const pos$3 = nix.positions(here + "/melpa-packages.nix", [["powerline", 139, 42]]);
-const pos$4 = nix.positions(here + "/melpa-packages.nix", [["CFLAGS", 148, 19], ["LDFLAGS", 149, 19]]);
-const pos$5 = nix.positions(here + "/melpa-packages.nix", [["buildInputs", 146, 17], ["env", 147, 17]]);
-const pos$6 = nix.positions(here + "/melpa-packages.nix", [["easy-kill", 163, 42]]);
-const pos$7 = nix.positions(here + "/melpa-packages.nix", [["buildInputs", 171, 15], ["postBuild", 173, 15], ["postInstall", 179, 15], ["stripDebugList", 187, 15]]);
-const pos$8 = nix.positions(here + "/melpa-packages.nix", [["buildInputs", 194, 15], ["postBuild", 196, 15], ["postInstall", 202, 15], ["stripDebugList", 210, 15]]);
-const pos$9 = nix.positions(here + "/melpa-packages.nix", [["postPatch", 215, 13]]);
-const pos$10 = nix.positions(here + "/melpa-packages.nix", [["nativeBuildInputs", 222, 13], ["buildInputs", 225, 13]]);
-const pos$11 = nix.positions(here + "/melpa-packages.nix", [["postPatch", 232, 13], ["packageRequires", 236, 13]]);
-const pos$12 = nix.positions(here + "/melpa-packages.nix", [["ess", 240, 42], ["ctable", 240, 46], ["popup", 240, 53]]);
-const pos$13 = nix.positions(here + "/melpa-packages.nix", [["CXXFLAGS", 251, 15]]);
-const pos$14 = nix.positions(here + "/melpa-packages.nix", [["env", 250, 13], ["nativeBuildInputs", 254, 13], ["buildInputs", 260, 13], ["preBuild", 265, 13], ["recipe", 282, 13]]);
-const pos$15 = nix.positions(here + "/melpa-packages.nix", [["packageRequires", 291, 13], ["propagatedUserEnvPkgs", 292, 13]]);
-const pos$16 = nix.positions(here + "/melpa-packages.nix", [["nativeBuildInputs", 298, 13], ["dontUseCmakeBuildDir", 300, 13], ["preBuild", 302, 13], ["postInstall", 306, 13]]);
-const pos$17 = nix.positions(here + "/melpa-packages.nix", [["NIX_CFLAGS_COMPILE", 317, 15]]);
-const pos$18 = nix.positions(here + "/melpa-packages.nix", [["cmakeFlags", 315, 13], ["env", 316, 13], ["preConfigure", 319, 13], ["preBuild", 322, 13], ["checkPhase", 327, 13], ["preFixup", 332, 13], ["dontUseCmakeBuildDir", 335, 13], ["doCheck", 336, 13], ["buildInputs", 337, 13], ["nativeBuildInputs", 338, 13]]);
-const pos$19 = nix.positions(here + "/melpa-packages.nix", [["maintainers", 376, 17]]);
-const pos$20 = nix.positions(here + "/melpa-packages.nix", [["nativeBuildInputs", 355, 15], ["buildInputs", 359, 15], ["postBuild", 361, 15], ["postInstall", 366, 15], ["meta", 375, 15]]);
-const pos$21 = nix.positions(here + "/melpa-packages.nix", [["maintainers", 398, 15]]);
-const pos$22 = nix.positions(here + "/melpa-packages.nix", [["buildInputs", 382, 13], ["postBuild", 384, 13], ["postInstall", 388, 13], ["meta", 397, 13]]);
-const pos$23 = nix.positions(here + "/melpa-packages.nix", [["postPatch", 403, 13]]);
-const pos$24 = nix.positions(here + "/melpa-packages.nix", [["postPatch", 410, 13]]);
-const pos$25 = nix.positions(here + "/melpa-packages.nix", [["postPatch", 426, 13]]);
-const pos$26 = nix.positions(here + "/melpa-packages.nix", [["postPatch", 433, 13]]);
-const pos$27 = nix.positions(here + "/melpa-packages.nix", [["calfw", 442, 42]]);
-const pos$28 = nix.positions(here + "/melpa-packages.nix", [["postPatch", 452, 13]]);
-const pos$29 = nix.positions(here + "/melpa-packages.nix", [["buildInputs", 463, 13], ["preBuild", 464, 13], ["postInstall", 467, 13]]);
-const pos$30 = nix.positions(here + "/melpa-packages.nix", [["propagatedUserEnvPkgs", 479, 17]]);
-const pos$31 = nix.positions(here + "/melpa-packages.nix", [["buildInputs", 487, 13], ["nativeBuildInputs", 491, 13], ["propagatedUserEnvPkgs", 492, 13], ["postPatch", 494, 13], ["postBuild", 505, 13], ["postInstall", 511, 13]]);
-const pos$32 = nix.positions(here + "/melpa-packages.nix", [["postPatch", 521, 13]]);
-const pos$33 = nix.positions(here + "/melpa-packages.nix", [["postPatch", 528, 13]]);
-const pos$34 = nix.positions(here + "/melpa-packages.nix", [["nativeBuildInputs", 536, 13]]);
-const pos$35 = nix.positions(here + "/melpa-packages.nix", [["postPatch", 540, 13]]);
-const pos$36 = nix.positions(here + "/melpa-packages.nix", [["postPatch", 547, 13]]);
-const pos$37 = nix.positions(here + "/melpa-packages.nix", [["nativeBuildInputs", 554, 13]]);
-const pos$38 = nix.positions(here + "/melpa-packages.nix", [["postPatch", 558, 13]]);
-const pos$39 = nix.positions(here + "/melpa-packages.nix", [["enableDrafts", 577, 39]]);
-const pos$40 = nix.positions(here + "/melpa-packages.nix", [["stripDebugList", 565, 13], ["preBuild", 566, 13], ["nativeBuildInputs", 570, 13], ["buildInputs", 576, 13], ["postInstall", 579, 13]]);
-const pos$41 = nix.positions(here + "/melpa-packages.nix", [["propagatedUserEnvPkgs", 624, 13]]);
-const pos$42 = nix.positions(here + "/melpa-packages.nix", [["packageRequires", 629, 13]]);
-const pos$43 = nix.positions(here + "/melpa-packages.nix", [["url", 639, 17], ["sha256", 640, 17]]);
-const pos$44 = nix.positions(here + "/melpa-packages.nix", [["patches", 636, 13]]);
-const pos$45 = nix.positions(here + "/melpa-packages.nix", [["postPatch", 651, 13]]);
-const pos$46 = nix.positions(here + "/melpa-packages.nix", [["powerline", 658, 42]]);
-const pos$47 = nix.positions(here + "/melpa-packages.nix", [["nativeBuildInputs", 662, 13], ["buildInputs", 663, 13], ["cmakeFlags", 667, 13], ["postInstall", 673, 13]]);
-const pos$48 = nix.positions(here + "/melpa-packages.nix", [["prePatch", 689, 19]]);
-const pos$49 = nix.positions(here + "/melpa-packages.nix", [["melpaBuild", 684, 13]]);
-const pos$50 = nix.positions(here + "/melpa-packages.nix", [["postPatch", 703, 13]]);
-const pos$51 = nix.positions(here + "/melpa-packages.nix", [["postPatch", 710, 13]]);
-const pos$52 = nix.positions(here + "/melpa-packages.nix", [["postBuild", 720, 17], ["postInstall", 723, 17]]);
-const pos$53 = nix.positions(here + "/melpa-packages.nix", [["preBuild", 749, 13]]);
-const pos$54 = nix.positions(here + "/melpa-packages.nix", [["preBuild", 764, 15]]);
-const pos$55 = nix.positions(here + "/melpa-packages.nix", [["preBuild", 819, 15]]);
-const pos$56 = nix.positions(here + "/melpa-packages.nix", [["recipe", 876, 15]]);
-const pos$57 = nix.positions(here + "/melpa-packages.nix", [["name", 891, 19], ["url", 892, 19], ["hash", 893, 19]]);
-const pos$58 = nix.positions(here + "/melpa-packages.nix", [["patches", 889, 15]]);
-const pos$59 = nix.positions(here + "/melpa-packages.nix", [["name", 915, 25], ["url", 916, 25], ["hash", 917, 25]]);
-const pos$60 = nix.positions(here + "/melpa-packages.nix", [["patches", 910, 17]]);
-const pos$61 = nix.positions(here + "/melpa-packages.nix", [["propagatedUserEnvPkgs", 951, 15]]);
-const pos$62 = nix.positions(here + "/melpa-packages.nix", [["preBuild", 976, 15]]);
-const pos$63 = nix.positions(here + "/melpa-packages.nix", [["postPatch", 995, 13]]);
-const pos$64 = nix.positions(here + "/melpa-packages.nix", [["postPatch", 1026, 13]]);
-const pos$65 = nix.positions(here + "/melpa-packages.nix", [["postPatch", 1050, 13]]);
-const pos$66 = nix.positions(here + "/melpa-packages.nix", [["name", 1063, 17], ["url", 1064, 17], ["hash", 1065, 17]]);
-const pos$67 = nix.positions(here + "/melpa-packages.nix", [["patches", 1061, 13]]);
-const pos$68 = nix.positions(here + "/melpa-packages.nix", [["postPatch", 1137, 13]]);
-const pos$69 = nix.positions(here + "/melpa-packages.nix", [["preBuild", 1150, 15]]);
-const pos$70 = nix.positions(here + "/melpa-packages.nix", [["name", 1204, 17], ["url", 1205, 17], ["hash", 1206, 17]]);
-const pos$71 = nix.positions(here + "/melpa-packages.nix", [["patches", 1202, 13]]);
-const pos$72 = nix.positions(here + "/melpa-packages.nix", [["recipe", 1283, 13], ["files", 1284, 13]]);
-const pos$73 = nix.positions(here + "/melpa-packages.nix", [["postPatch", 1301, 13]]);
-const pos$74 = nix.positions(here + "/melpa-packages.nix", [["name", 1321, 23], ["url", 1322, 23], ["hash", 1323, 23]]);
-const pos$75 = nix.positions(here + "/melpa-packages.nix", [["patches", 1316, 15]]);
-const pos$76 = nix.positions(here + "/melpa-packages.nix", [["buildInputs", 1351, 15], ["nativeBuildInputs", 1354, 15], ["postBuild", 1357, 15], ["postInstall", 1363, 15]]);
-const pos$77 = nix.positions(here + "/melpa-packages.nix", [["name", 1443, 17], ["url", 1444, 17], ["hash", 1445, 17]]);
-const pos$78 = nix.positions(here + "/melpa-packages.nix", [["patches", 1441, 13]]);
-const pos$79 = nix.positions(here + "/melpa-packages.nix", [["name", 1456, 17], ["url", 1457, 17], ["hash", 1458, 17]]);
-const pos$80 = nix.positions(here + "/melpa-packages.nix", [["patches", 1454, 13]]);
-const pos$81 = nix.positions(here + "/melpa-packages.nix", [["name", 1515, 23], ["url", 1516, 23], ["hash", 1517, 23]]);
-const pos$82 = nix.positions(here + "/melpa-packages.nix", [["patches", 1510, 15]]);
-const pos$83 = nix.positions(here + "/melpa-packages.nix", [["preBuild", 1535, 15]]);
-const pos$84 = nix.positions(here + "/melpa-packages.nix", [["postPatch", 1585, 13]]);
-const pos$85 = nix.positions(here + "/melpa-packages.nix", [["preBuild", 1624, 13]]);
-const pos$86 = nix.positions(here + "/melpa-packages.nix", [["ac-rtags", 129, 11], ["age", 131, 11], ["airline-themes", 138, 11], ["auto-complete-clang-async", 143, 11], ["caml", 154, 11], ["cmake-mode", 158, 11], ["company-rtags", 160, 11], ["easy-kill-extras", 162, 11], ["dune", 166, 11], ["emacsql", 168, 11], ["emacsql-sqlite", 191, 11], ["epkg", 214, 11], ["erlang", 221, 11], ["evil-escape", 231, 11], ["ess-R-data-view", 239, 11], ["flycheck-rtags", 243, 11], ["pdf-tools", 245, 11], ["hindent", 290, 11], ["hotfuzz", 297, 11], ["irony", 314, 11], ["insert-shebang", 345, 11], ["ivy-rtags", 347, 11], ["jinx", 349, 11], ["sqlite3", 381, 11], ["gnuplot", 402, 11], ["gnuplot-mode", 409, 11], ["magit-topgit", 416, 11], ["egg", 418, 11], ["mandoku", 420, 11], ["magit-delta", 423, 11], ["ormolu", 425, 11], ["python-isort", 432, 11], ["mhc", 441, 11], ["nemerle", 446, 11], ["notmuch", 449, 11], ["pikchr-mode", 451, 11], ["rtags", 458, 11], ["rtags-xref", 460, 11], ["rime", 462, 11], ["shm", 473, 11], ["telega", 486, 11], ["tokei", 520, 11], ["treemacs", 527, 11], ["treemacs-magit", 534, 11], ["typst-mode", 539, 11], ["units-mode", 546, 11], ["vdiff-magit", 553, 11], ["zig-mode", 557, 11], ["zmq", 564, 11], ["_0blayout", 590, 11], ["desktop-plus", 591, 11], ["ghub-plus", 592, 11], ["git-gutter-plus", 593, 11], ["git-gutter-fringe-plus", 594, 11], ["ido-completing-read-plus", 595, 11], ["image-plus", 596, 11], ["image-dired-plus", 597, 11], ["markdown-mode-plus", 598, 11], ["package-plus", 599, 11], ["rect-plus", 600, 11], ["instapaper", 603, 11], ["magit-stgit", 606, 11], ["melancholy-theme", 609, 11], ["eterm-256color", 612, 11], ["per-buffer-theme", 615, 11], ["qiita", 618, 11], ["sql-presto", 621, 11], ["editorconfig", 623, 11], ["evil-search-highlight-persist", 628, 11], ["hamlet-mode", 635, 11], ["helm-rtags", 645, 11], ["php-auto-yasnippets", 648, 11], ["racer", 650, 11], ["spaceline", 657, 11], ["vterm", 661, 11], ["w3m", 683, 11], ["wordnut", 702, 11], ["mozc", 709, 11], ["osx-dictionary", 717, 11], ["@", 738, 11], ["git-gutter-fringe+", 740, 11], ["abgaben", 742, 11], ["abl-mode", 745, 11], ["ac-php-core", 747, 11], ["ack-menu", 756, 11], ["airplay", 759, 11], ["alectryon", 761, 11], ["alert-termux", 777, 11], ["angular-snippets", 780, 11], ["asx", 783, 11], ["auctex-cluttex", 785, 11], ["auctex-latexmk", 787, 11], ["auto-complete-auctex", 790, 11], ["auto-complete-distel", 793, 11], ["auto-indent-mode", 795, 11], ["aws-ec2", 797, 11], ["badger-theme", 799, 11], ["bap-mode", 802, 11], ["blog-minimal", 805, 11], ["boa-mode", 807, 11], ["boogie-friends", 811, 11], ["borg", 814, 11], ["bpr", 816, 11], ["brainfuck-mode", 831, 11], ["bts", 833, 11], ["bts-github", 835, 11], ["buffer-buttons", 837, 11], ["calfw-cal", 840, 11], ["calfw-gcal", 843, 11], ["calfw-howm", 846, 11], ["calfw-ical", 852, 11], ["calfw-org", 855, 11], ["cardano-tx", 857, 11], ["cardano-wallet", 859, 11], ["cask-package-toolset", 862, 11], ["chee", 865, 11], ["cheerilee", 867, 11], ["chronometrist", 871, 11], ["chronometrist-key-values", 873, 11], ["clingo-mode", 887, 11], ["clojure-quick-repls", 899, 11], ["cmake-ide", 902, 11], ["code-review", 904, 11], ["codesearch", 907, 11], ["comint-intercept", 927, 11], ["company-auctex", 929, 11], ["company-distel", 932, 11], ["company-qml", 935, 11], ["company-ycm", 938, 11], ["composable", 940, 11], ["conda", 943, 11], ["consult", 946, 11], ["consult-gh", 949, 11], ["consult-gh-embark", 956, 11], ["consult-gh-with-pr-review", 959, 11], ["counsel-gtags", 961, 11], ["counsel-notmuch", 964, 11], ["counsel-spotify", 967, 11], ["creole", 969, 11], ["cssh", 971, 11], ["dap-mode", 973, 11], ["db-pg", 987, 11], ["describe-number", 989, 11], ["dic-lookup-w3m", 992, 11], ["difftastic", 994, 11], ["dionysos", 1002, 11], ["dired-k", 1006, 11], ["distel-completion-lib", 1009, 11], ["django-mode", 1011, 11], ["drupal-mode", 1014, 11], ["e2wm-pkgex4pl", 1016, 11], ["ecb", 1018, 11], ["edit-color-stamp", 1021, 11], ["edts", 1023, 11], ["eimp", 1025, 11], ["ein", 1036, 11], ["ejc-sql", 1039, 11], ["ekg", 1045, 11], ["el-secretario-mu4e", 1047, 11], ["elfeed", 1049, 11], ["elisp-sandbox", 1056, 11], ["elnode", 1058, 11], ["elscreen", 1060, 11], ["emidje", 1071, 11], ["emms-player-mpv-jp-radios", 1073, 11], ["emms-player-simple-mpv", 1076, 11], ["enotify", 1078, 11], ["ercn", 1081, 11], ["eval-in-repl", 1084, 11], ["evalator", 1106, 11], ["evalator-clojure", 1108, 11], ["evil-easymotion", 1111, 11], ["evil-ghostel", 1114, 11], ["evil-mu4e", 1116, 11], ["evil-nl-break-undo", 1119, 11], ["evil-python-movement", 1123, 11], ["evil-tex", 1125, 11], ["ewal-doom-themes", 1128, 11], ["exwm-edit", 1131, 11], ["flymake-elixir", 1134, 11], ["flymake-hadolint", 1136, 11], ["flyparens", 1143, 11], ["fold-dwim-org", 1145, 11], ["frontside-javascript", 1147, 11], ["fxrd-mode", 1162, 11], ["gams-ac", 1164, 11], ["gap-mode", 1167, 11], ["git-commit-insert-issue", 1173, 11], ["gitlab", 1176, 11], ["gitlab-pipeline", 1179, 11], ["global-tags", 1182, 11], ["gnosis", 1184, 11], ["go", 1186, 11], ["graphene", 1188, 11], ["graphviz-dot-mode", 1191, 11], ["greader", 1193, 11], ["guix", 1196, 11], ["gumshoe", 1199, 11], ["helm-chrome-control", 1201, 11], ["helm-chrome-history", 1212, 11], ["helm-cider", 1214, 11], ["helm-ext", 1216, 11], ["helm-flycheck", 1219, 11], ["helm-ghs", 1222, 11], ["helm-git", 1225, 11], ["helm-git-grep", 1231, 11], ["helm-go-package", 1234, 11], ["helm-js-codemod", 1237, 11], ["helm-kythe", 1239, 11], ["helm-migemo", 1242, 11], ["helm-mu", 1244, 11], ["helm-osx-app", 1247, 11], ["helm-rg", 1250, 11], ["helm-spaces", 1253, 11], ["hideshow-org", 1255, 11], ["hippie-expand-slime", 1258, 11], ["hyperbole", 1260, 11], ["ibrowse", 1264, 11], ["identica-mode", 1267, 11], ["idris-mode", 1270, 11], ["imbot", 1272, 11], ["indium", 1274, 11], ["inlineR", 1277, 11], ["insfactor", 1280, 11], ["iregister", 1282, 11], ["ivy-clojuredocs", 1288, 11], ["jack-connect", 1291, 11], ["javap-mode", 1293, 11], ["jdee", 1295, 11], ["jekyll-modes", 1298, 11], ["jq-mode", 1300, 11], ["jss", 1309, 11], ["julia-snail", 1312, 11], ["kanagawa-themes", 1314, 11], ["keystore-mode", 1331, 11], ["kite", 1333, 11], ["laas", 1336, 11], ["latex-change-env", 1338, 11], ["latex-extra", 1340, 11], ["latex-table-wizard", 1342, 11], ["leaf-defaults", 1344, 11], ["liberime", 1346, 11], ["lispy", 1373, 11], ["lsp-origami", 1387, 11], ["magik-mode", 1390, 11], ["magit-gitlab", 1396, 11], ["magnatune", 1399, 11], ["major-mode-icons", 1401, 11], ["malinka", 1403, 11], ["mastodon", 1405, 11], ["metaweblog", 1408, 11], ["mu-cite", 1410, 11], ["mu4e-alert", 1412, 11], ["mu4e-autotask", 1414, 11], ["mu4e-column-faces", 1416, 11], ["mu4e-conversation", 1418, 11], ["mu4e-jump-to-list", 1420, 11], ["mu4e-marker-icons", 1422, 11], ["mu4e-overview", 1424, 11], ["mu4e-query-fragments", 1426, 11], ["mu4e-views", 1428, 11], ["mu4e-walk", 1430, 11], ["multifiles", 1433, 11], ["mykie", 1436, 11], ["myrddin-mode", 1438, 11], ["nand2tetris", 1440, 11], ["navi2ch", 1451, 11], ["navorski", 1453, 11], ["ncl-mode", 1464, 11], ["netease-cloud-music", 1467, 11], ["nim-mode", 1469, 11], ["noctilux-theme", 1471, 11], ["noflet", 1474, 11], ["norns", 1476, 11], ["nu-mode", 1479, 11], ["ob-chatgpt-shell", 1482, 11], ["org-change", 1484, 11], ["org-cite-overlay", 1486, 11], ["org-edit-latex", 1488, 11], ["org-evil", 1493, 11], ["org-gnome", 1495, 11], ["org-gtd", 1497, 11], ["org-kindle", 1500, 11], ["org-link-beautify", 1503, 11], ["org-noter", 1508, 11], ["org-noter-pdftools", 1525, 11], ["org-pdftools", 1527, 11], ["org-present-remote", 1530, 11], ["org-projectile", 1532, 11], ["org-projectile-helm", 1547, 11], ["org-ref", 1550, 11], ["org-roam-bibtex", 1553, 11], ["org-special-block-extras", 1558, 11], ["org-timeblock", 1561, 11], ["org-trello", 1563, 11], ["org-xlatex", 1567, 11], ["orgnav", 1570, 11], ["origami-predef", 1572, 11], ["osx-pseudo-daemon", 1575, 11], ["outlook", 1580, 11], ["pastery", 1582, 11], ["pdf-meta-edit", 1584, 11], ["peek-mode", 1594, 11], ["pgdevenv", 1596, 11], ["pinot", 1598, 11], ["poly-R", 1601, 11], ["poly-gams", 1603, 11], ["pophint", 1606, 11], ["portage-navi", 1608, 11], ["preview-dvisvgm", 1610, 11], ["procress", 1612, 11], ["projectile-trailblazer", 1615, 11], ["projmake-mode", 1617, 11], ["pyim-basedict", 1620, 11], ["realgud-lldb", 1623, 11], ["requirejs", 1633, 11], ["rhtml-mode", 1635, 11], ["roguel-ike", 1637, 11], ["rpm-spec-mode", 1639, 11], ["rustic", 1643, 11], ["sakura-theme", 1646, 11], ["scad-preview", 1648, 11], ["semi", 1652, 11], ["shadchen", 1654, 11], ["shampoo", 1656, 11], ["shexc-ts-mode", 1659, 11], ["shimbun", 1662, 11], ["slack", 1670, 11], ["slurm-mode", 1673, 11], ["smart-tabs-mode", 1678, 11], ["soccer", 1682, 11], ["soundklaus", 1685, 11], ["sparql-mode", 1688, 11], ["speechd-el", 1690, 11], ["spu", 1692, 11], ["ssh-tunnels", 1695, 11], ["stylus-mode", 1698, 11], ["suggest", 1701, 11], ["sx", 1703, 11], ["symex", 1705, 11], ["term-alert", 1707, 11], ["term-manager", 1710, 11], ["texfrag", 1712, 11], ["text-categories", 1715, 11], ["timp", 1717, 11], ["tommyh-theme", 1719, 11], ["tramp-hdfs", 1721, 11], ["twtxt", 1723, 11], ["universal-emotions-emoticons", 1725, 11], ["use-package-el-get", 1727, 11], ["vala-mode", 1729, 11], ["wandbox", 1732, 11], ["wanderlust", 1735, 11], ["weechat", 1737, 11], ["weechat-alert", 1739, 11], ["weibo", 1741, 11], ["workgroups2", 1743, 11], ["xcode-mode", 1746, 11], ["xenops", 1748, 11], ["xmlunicode", 1751, 11], ["xwwp-follow-link-helm", 1754, 11], ["xwwp-follow-link-ivy", 1757, 11], ["yara-mode", 1759, 11], ["yasnippet-lean", 1762, 11], ["yasnippet-snippets", 1764, 11], ["yatex", 1766, 11], ["ycm", 1769, 11], ["zotxt", 1777, 11]]);
 
 export default nix.thunk(() => (() => {
   const defaultArchive = nix.thunk(() => nix.builtins.fromJSON(nix.thunk(() => nix.builtins.readFile(nix.path(here, "./recipes-archive-melpa.json")))));
@@ -117,7 +32,7 @@ export default nix.thunk(() => (() => {
           const melpaDerivation = nix.thunk(() => nix.attr(from_1, "melpaDerivation"));
           const super$ = nix.thunk(() => nix.app(nix.sel(lib, "listToAttrs"), nix.thunk(() => nix.builtins.filter((s) => !nix.eq(s, null), nix.thunk(() => nix.builtins.map(nix.thunk(() => nix.app(melpaDerivation, variant)), nix.thunk(() => (nix.asBool(nix.builtins.isList(archiveJson)) ? nix.force(archiveJson) : nix.app(nix.sel(lib, "importJSON"), archiveJson)))))))));
           const overrides = nix.thunk(() => nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.eq(variant, "stable")), nix.thunk(() => ({
-              [nix.POS]: pos$1,
+              [nix.POS]: $pos[0],
               "abridge-diff": nix.thunk(() => (nix.asBool(nix.eq(nix.sel(super$, "abridge-diff", "version"), "0.1")) ? nix.app(markBroken, nix.thunk(() => nix.sel(super$, "abridge-diff"))) : nix.sel(super$, "abridge-diff"))),
               bufshow: nix.thunk(() => nix.app(markBroken, nix.thunk(() => nix.sel(super$, "bufshow")))),
               "speech-tagger": nix.thunk(() => nix.app(markBroken, nix.thunk(() => nix.sel(super$, "speech-tagger")))),
@@ -138,23 +53,26 @@ export default nix.thunk(() => (() => {
               elmine: nix.thunk(() => nix.app(markBroken, nix.thunk(() => nix.sel(super$, "elmine")))),
               "ido-complete-space-or-hyphen": nix.thunk(() => nix.app(markBroken, nix.thunk(() => nix.sel(super$, "ido-complete-space-or-hyphen")))),
             }))), {
-            [nix.POS]: pos$86,
+            [nix.POS]: $pos[85],
             "ac-rtags": nix.thunk(() => nix.app(ignoreCompilationError, nix.thunk(() => nix.app(fix_rtags, nix.thunk(() => nix.sel(super$, "ac-rtags")))))),
             age: nix.thunk(() => nix.app(nix.sel(super$, "age", "overrideAttrs"), (attrs) => ({
-                [nix.POS]: pos$2,
+                [nix.POS]: $pos[1],
                 postPatch: nix.thunk(() => nix.add(nix.selOr(attrs, () => "", "postPatch"), nix.str`substituteInPlace age.el \\
   --replace-fail 'age-program (executable-find "age")' 'age-program "${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgs, "age")))}"'
 `)),
               }))),
             "airline-themes": nix.thunk(() => nix.app(nix.sel(super$, "airline-themes", "override"), nix.thunk(() => (() => {
                 const from_2 = nix.thunk(() => nix.sel(self, "melpaPackages"));
-                return { [nix.POS]: pos$3, powerline: nix.thunk(() => nix.attr(from_2, "powerline")) };
+                return {
+                [nix.POS]: $pos[2],
+                powerline: nix.thunk(() => nix.attr(from_2, "powerline")),
+              };
               })()))),
             "auto-complete-clang-async": nix.thunk(() => nix.app(nix.sel(nix.app(addPackageRequires, nix.thunk(() => nix.sel(super$, "auto-complete-clang-async")), nix.thunk(() => [nix.thunk(() => nix.sel(self, "auto-complete"))])), "overrideAttrs"), (old) => ({
-                [nix.POS]: pos$5,
+                [nix.POS]: $pos[4],
                 buildInputs: nix.thunk(() => nix.concat(nix.sel(old, "buildInputs"), [nix.thunk(() => nix.sel(pkgs, "llvmPackages", "llvm"))])),
                 env: nix.thunk(() => nix.update(nix.selOr(old, () => ({}), "env"), {
-                  [nix.POS]: pos$4,
+                  [nix.POS]: $pos[3],
                   CFLAGS: nix.thunk(() => nix.str`-I${nix.app(nix.sel(lib, "getLib"), nix.thunk(() => nix.sel(pkgs, "llvmPackages", "libclang")))}/include`),
                   LDFLAGS: nix.thunk(() => nix.str`-L${nix.app(nix.sel(lib, "getLib"), nix.thunk(() => nix.sel(pkgs, "llvmPackages", "libclang")))}/lib`),
                 })),
@@ -165,13 +83,13 @@ export default nix.thunk(() => (() => {
             "easy-kill-extras": nix.thunk(() => nix.app(nix.sel(super$, "easy-kill-extras", "override"), nix.thunk(() => (() => {
                 const from_2 = nix.thunk(() => nix.sel(self, "melpaPackages"));
                 return {
-                [nix.POS]: pos$6,
+                [nix.POS]: $pos[5],
                 "easy-kill": nix.thunk(() => nix.attr(from_2, "easy-kill")),
               };
               })()))),
             dune: nix.thunk(() => nix.app(dontConfigure, nix.thunk(() => nix.sel(super$, "dune")))),
             emacsql: nix.thunk(() => nix.app(nix.sel(super$, "emacsql", "overrideAttrs"), (old) => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(old, "version")), "20241115.1939")), nix.thunk(() => ({
-                  [nix.POS]: pos$7,
+                  [nix.POS]: $pos[6],
                   buildInputs: nix.thunk(() => nix.concat(nix.sel(old, "buildInputs"), [nix.thunk(() => nix.sel(pkgs, "sqlite"))])),
                   postBuild: "pushd sqlite\nmake\npopd\n",
                   postInstall: nix.thunk(() => nix.add(nix.add(nix.selOr(old, () => "", "postInstall"), "\n"), nix.str`install -m=755 -D sqlite/emacsql-sqlite \\
@@ -180,7 +98,7 @@ export default nix.thunk(() => (() => {
                   stripDebugList: nix.thunk(() => ["share"]),
                 }))))),
             "emacsql-sqlite": nix.thunk(() => nix.app(nix.sel(super$, "emacsql-sqlite", "overrideAttrs"), (old) => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(old, "version")), "20240808.2016")), nix.thunk(() => ({
-                  [nix.POS]: pos$8,
+                  [nix.POS]: $pos[7],
                   buildInputs: nix.thunk(() => nix.concat(nix.sel(old, "buildInputs"), [nix.thunk(() => nix.sel(pkgs, "sqlite"))])),
                   postBuild: "pushd sqlite\nmake\npopd\n",
                   postInstall: nix.thunk(() => nix.add(nix.add(nix.selOr(old, () => "", "postInstall"), "\n"), nix.str`install -m=755 -D sqlite/emacsql-sqlite \\
@@ -189,18 +107,18 @@ export default nix.thunk(() => (() => {
                   stripDebugList: nix.thunk(() => ["share"]),
                 }))))),
             epkg: nix.thunk(() => nix.app(nix.sel(super$, "epkg", "overrideAttrs"), (old) => ({
-                [nix.POS]: pos$9,
+                [nix.POS]: $pos[8],
                 postPatch: nix.thunk(() => nix.str`substituteInPlace lisp/epkg.el \\
   --replace '(call-process "sqlite3"' '(call-process "${nix.sel(pkgs, "sqlite")}/bin/sqlite3"'
 `),
               }))),
             erlang: nix.thunk(() => nix.app(nix.sel(super$, "erlang", "overrideAttrs"), (attrs) => ({
-                [nix.POS]: pos$10,
+                [nix.POS]: $pos[9],
                 nativeBuildInputs: nix.thunk(() => nix.concat(nix.selOr(attrs, () => [], "nativeBuildInputs"), [nix.thunk(() => nix.sel(pkgs, "perl"))])),
                 buildInputs: nix.thunk(() => nix.concat(nix.selOr(attrs, () => [], "buildInputs"), [nix.thunk(() => nix.sel(pkgs, "ncurses"))])),
               }))),
             "evil-escape": nix.thunk(() => nix.app(nix.sel(super$, "evil-escape", "overrideAttrs"), (attrs) => ({
-                [nix.POS]: pos$11,
+                [nix.POS]: $pos[10],
                 postPatch: "substituteInPlace evil-escape.el \\\n  --replace ' ;;; evil' ';;; evil'\n",
                 packageRequires: nix.thunk(() => (() => {
                   const w = nix.withScope(self, null);
@@ -210,7 +128,7 @@ export default nix.thunk(() => (() => {
             "ess-R-data-view": nix.thunk(() => nix.app(nix.sel(super$, "ess-R-data-view", "override"), nix.thunk(() => (() => {
                 const from_2 = nix.thunk(() => nix.sel(self, "melpaPackages"));
                 return {
-                [nix.POS]: pos$12,
+                [nix.POS]: $pos[11],
                 ess: nix.thunk(() => nix.attr(from_2, "ess")),
                 ctable: nix.thunk(() => nix.attr(from_2, "ctable")),
                 popup: nix.thunk(() => nix.attr(from_2, "popup")),
@@ -218,8 +136,8 @@ export default nix.thunk(() => (() => {
               })()))),
             "flycheck-rtags": nix.thunk(() => nix.app(ignoreCompilationError, nix.thunk(() => nix.app(fix_rtags, nix.thunk(() => nix.sel(super$, "flycheck-rtags")))))),
             "pdf-tools": nix.thunk(() => nix.app(nix.sel(super$, "pdf-tools", "overrideAttrs"), (old) => ({
-                [nix.POS]: pos$14,
-                env: nix.thunk(() => nix.update(nix.selOr(old, () => ({}), "env"), { [nix.POS]: pos$13, CXXFLAGS: "-std=c++17" })),
+                [nix.POS]: $pos[13],
+                env: nix.thunk(() => nix.update(nix.selOr(old, () => ({}), "env"), { [nix.POS]: $pos[12], CXXFLAGS: "-std=c++17" })),
                 nativeBuildInputs: nix.thunk(() => nix.concat(nix.sel(old, "nativeBuildInputs"), [
                   nix.thunk(() => nix.sel(pkgs, "autoconf")),
                   nix.thunk(() => nix.sel(pkgs, "automake")),
@@ -243,21 +161,21 @@ remove-references-to ${nix.app(nix.sel(lib, "concatStringsSep"), " ", nix.thunk(
                 recipe: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "recipe", "(pdf-tools\n:repo \"politza/pdf-tools\" :fetcher github\n:files (\"lisp/pdf-*.el\" \"server/epdfinfo\"))\n")),
               }))),
             hindent: nix.thunk(() => nix.app(nix.sel(nix.app(externalSrc, nix.thunk(() => nix.sel(super$, "hindent")), nix.thunk(() => nix.sel(pkgs, "haskellPackages", "hindent"))), "overrideAttrs"), (attrs) => ({
-                [nix.POS]: pos$15,
+                [nix.POS]: $pos[14],
                 packageRequires: nix.thunk(() => [nix.thunk(() => nix.sel(self, "haskell-mode"))]),
                 propagatedUserEnvPkgs: nix.thunk(() => nix.concat(nix.selOr(attrs, () => [], "propagatedUserEnvPkgs"), [nix.thunk(() => nix.sel(pkgs, "haskellPackages", "hindent"))])),
               }))),
             hotfuzz: nix.thunk(() => nix.app(nix.sel(super$, "hotfuzz", "overrideAttrs"), (old) => ({
-                [nix.POS]: pos$16,
+                [nix.POS]: $pos[15],
                 nativeBuildInputs: nix.thunk(() => nix.concat(nix.selOr(old, () => [], "nativeBuildInputs"), [nix.thunk(() => nix.sel(pkgs, "cmake"))])),
                 dontUseCmakeBuildDir: true,
                 preBuild: "make -j$NIX_BUILD_CORES\n",
                 postInstall: nix.thunk(() => nix.add(nix.add(nix.selOr(old, () => "", "postInstall"), "\n"), "install hotfuzz-module.so $out/share/emacs/site-lisp/elpa/hotfuzz-*\n")),
               }))),
             irony: nix.thunk(() => nix.app(nix.sel(super$, "irony", "overrideAttrs"), (old) => ({
-                [nix.POS]: pos$18,
+                [nix.POS]: $pos[17],
                 cmakeFlags: nix.thunk(() => nix.concat(nix.selOr(old, () => [], "cmakeFlags"), ["-DCMAKE_INSTALL_BINDIR=bin"])),
-                env: nix.thunk(() => nix.update(nix.selOr(old, () => ({}), "env"), { [nix.POS]: pos$17, NIX_CFLAGS_COMPILE: "-UCLANG_RESOURCE_DIR" })),
+                env: nix.thunk(() => nix.update(nix.selOr(old, () => ({}), "env"), { [nix.POS]: $pos[16], NIX_CFLAGS_COMPILE: "-UCLANG_RESOURCE_DIR" })),
                 preConfigure: "pushd server\n",
                 preBuild: "make\ninstall -D bin/irony-server $out/bin/irony-server\npopd\n",
                 checkPhase: "pushd server\nmake check\npopd\n",
@@ -275,7 +193,7 @@ remove-references-to ${nix.app(nix.sel(lib, "concatStringsSep"), " ", nix.thunk(
             jinx: nix.thunk(() => nix.app(nix.sel(super$, "jinx", "overrideAttrs"), (old) => (() => {
                 const libExt = nix.thunk(() => nix.sel(pkgs, "stdenv", "hostPlatform", "extensions", "sharedLibrary"));
                 return {
-                  [nix.POS]: pos$20,
+                  [nix.POS]: $pos[19],
                   nativeBuildInputs: nix.thunk(() => nix.concat(nix.selOr(old, () => [], "nativeBuildInputs"), [nix.thunk(() => nix.sel(pkgs, "pkg-config"))])),
                   buildInputs: nix.thunk(() => nix.concat(nix.selOr(old, () => [], "buildInputs"), [nix.thunk(() => nix.sel(pkgs, "enchant_2"))])),
                   postBuild: nix.thunk(() => nix.str`NIX_CFLAGS_COMPILE="$($PKG_CONFIG --cflags enchant-2) $NIX_CFLAGS_COMPILE"
@@ -286,29 +204,29 @@ install -m444 --target-directory=$outd jinx-mod${libExt}
 rm $outd/jinx-mod.c $outd/emacs-module.h
 `)),
                   meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-                    [nix.POS]: pos$19,
+                    [nix.POS]: $pos[18],
                     maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "DamienCassou"))]),
                   })),
                 };
               })())),
             sqlite3: nix.thunk(() => nix.app(nix.sel(super$, "sqlite3", "overrideAttrs"), (old) => ({
-                [nix.POS]: pos$22,
+                [nix.POS]: $pos[21],
                 buildInputs: nix.thunk(() => nix.concat(nix.selOr(old, () => [], "buildInputs"), [nix.thunk(() => nix.sel(pkgs, "sqlite"))])),
                 postBuild: "make\n",
                 postInstall: nix.thunk(() => nix.add(nix.add(nix.selOr(old, () => "", "postInstall"), "\n"), "outd=$out/share/emacs/site-lisp/elpa/sqlite3-*\ninstall -m444 -t $outd sqlite3-api.so\nrm $outd/*.c $outd/*.h\n")),
                 meta: nix.thunk(() => nix.update(nix.sel(old, "meta"), {
-                  [nix.POS]: pos$21,
+                  [nix.POS]: $pos[20],
                   maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "DamienCassou"))]),
                 })),
               }))),
             gnuplot: nix.thunk(() => nix.app(nix.sel(super$, "gnuplot", "overrideAttrs"), (attrs) => ({
-                [nix.POS]: pos$23,
+                [nix.POS]: $pos[22],
                 postPatch: nix.thunk(() => nix.add(nix.selOr(attrs, () => "", "postPatch"), nix.str`substituteInPlace gnuplot.el \\
   --replace-fail 'gnuplot-program "gnuplot"' 'gnuplot-program "${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgs, "gnuplot")))}"'
 `)),
               }))),
             "gnuplot-mode": nix.thunk(() => nix.app(nix.sel(super$, "gnuplot-mode", "overrideAttrs"), (attrs) => ({
-                [nix.POS]: pos$24,
+                [nix.POS]: $pos[23],
                 postPatch: nix.thunk(() => nix.add(nix.selOr(attrs, () => "", "postPatch"), nix.str`substituteInPlace gnuplot-mode.el \\
   --replace-fail 'gnuplot-program "gnuplot"' 'gnuplot-program "${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgs, "gnuplot")))}"'
 `)),
@@ -318,25 +236,25 @@ rm $outd/jinx-mod.c $outd/emacs-module.h
             mandoku: nix.thunk(() => nix.app(addPackageRequires, nix.thunk(() => nix.sel(super$, "mandoku")), nix.thunk(() => [nix.thunk(() => nix.sel(self, "git"))]))),
             "magit-delta": nix.thunk(() => nix.app(addPackageRequires, nix.thunk(() => nix.sel(super$, "magit-delta")), nix.thunk(() => [nix.thunk(() => nix.sel(self, "dash"))]))),
             ormolu: nix.thunk(() => nix.app(nix.sel(super$, "ormolu", "overrideAttrs"), (attrs) => ({
-                [nix.POS]: pos$25,
+                [nix.POS]: $pos[24],
                 postPatch: nix.thunk(() => nix.add(nix.selOr(attrs, () => "", "postPatch"), nix.str`substituteInPlace ormolu.el \\
   --replace-fail 'ormolu-process-path "ormolu"' 'ormolu-process-path "${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgs, "ormolu")))}"'
 `)),
               }))),
             "python-isort": nix.thunk(() => nix.app(nix.sel(super$, "python-isort", "overrideAttrs"), (attrs) => ({
-                [nix.POS]: pos$26,
+                [nix.POS]: $pos[25],
                 postPatch: nix.thunk(() => nix.add(nix.selOr(attrs, () => "", "postPatch"), nix.str`substituteInPlace python-isort.el \\
   --replace '-isort-command "isort"' '-isort-command "${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgs, "isort")))}"'
 `)),
               }))),
             mhc: nix.thunk(() => nix.app(nix.sel(nix.app(ignoreCompilationError, nix.thunk(() => nix.sel(super$, "mhc"))), "override"), nix.thunk(() => (() => {
                 const from_2 = nix.thunk(() => nix.sel(self, "melpaPackages"));
-                return { [nix.POS]: pos$27, calfw: nix.thunk(() => nix.attr(from_2, "calfw")) };
+                return { [nix.POS]: $pos[26], calfw: nix.thunk(() => nix.attr(from_2, "calfw")) };
               })()))),
             nemerle: nix.thunk(() => nix.app(markBroken, nix.thunk(() => nix.sel(super$, "nemerle")))),
             notmuch: nix.thunk(() => nix.app(dontConfigure, nix.thunk(() => nix.sel(super$, "notmuch")))),
             "pikchr-mode": nix.thunk(() => nix.app(nix.sel(super$, "pikchr-mode", "overrideAttrs"), (attrs) => ({
-                [nix.POS]: pos$28,
+                [nix.POS]: $pos[27],
                 postPatch: nix.thunk(() => nix.add(nix.selOr(attrs, () => "", "postPatch"), nix.str`substituteInPlace pikchr-mode.el \\
   --replace '"pikchr")' '"${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgs, "pikchr")))}")'
 `)),
@@ -344,7 +262,7 @@ rm $outd/jinx-mod.c $outd/emacs-module.h
             rtags: nix.thunk(() => nix.app(ignoreCompilationError, nix.thunk(() => nix.app(fix_rtags, nix.thunk(() => nix.sel(super$, "rtags")))))),
             "rtags-xref": nix.thunk(() => nix.app(dontConfigure, nix.thunk(() => nix.sel(super$, "rtags")))),
             rime: nix.thunk(() => nix.app(nix.sel(super$, "rime", "overrideAttrs"), (old) => ({
-                [nix.POS]: pos$29,
+                [nix.POS]: $pos[28],
                 buildInputs: nix.thunk(() => nix.concat(nix.selOr(old, () => [], "buildInputs"), [nix.thunk(() => nix.sel(pkgs, "librime"))])),
                 preBuild: nix.thunk(() => nix.add(nix.selOr(old, () => "", "preBuild"), nix.str`make lib CC=$CC MODULE_FILE_SUFFIX=${nix.sel(pkgs, "stdenv", "hostPlatform", "extensions", "sharedLibrary")}
 `)),
@@ -354,11 +272,11 @@ rm $outd/jinx-mod.c $outd/emacs-module.h
                 nix.thunk(() => nix.sel(self, "haskell-mode")),
                 nix.thunk(() => nix.sel(self, "hindent")),
               ])), "overrideAttrs"), (attrs) => ({
-                [nix.POS]: pos$30,
+                [nix.POS]: $pos[29],
                 propagatedUserEnvPkgs: nix.thunk(() => nix.concat(nix.selOr(attrs, () => [], "propagatedUserEnvPkgs"), [nix.thunk(() => nix.sel(pkgs, "haskellPackages", "structured-haskell-mode"))])),
               }))),
             telega: nix.thunk(() => nix.app(nix.sel(nix.app(ignoreCompilationError, nix.thunk(() => nix.sel(super$, "telega"))), "overrideAttrs"), (old) => ({
-                [nix.POS]: pos$31,
+                [nix.POS]: $pos[30],
                 buildInputs: nix.thunk(() => nix.concat(nix.sel(old, "buildInputs"), [
                   nix.thunk(() => nix.sel(pkgs, "tdlib")),
                   nix.thunk(() => nix.sel(pkgs, "zlib")),
@@ -378,45 +296,45 @@ substituteInPlace telega-vvnote.el --replace '"ffmpeg' '"${nix.sel(pkgs, "ffmpeg
                 postInstall: nix.thunk(() => nix.add(nix.add(nix.selOr(old, () => "", "postInstall"), "\n"), "mkdir -p $out/bin\ninstall -m755 -Dt $out/bin server/telega-server\n")),
               }))),
             tokei: nix.thunk(() => nix.app(nix.sel(super$, "tokei", "overrideAttrs"), (attrs) => ({
-                [nix.POS]: pos$32,
+                [nix.POS]: $pos[31],
                 postPatch: nix.thunk(() => nix.add(nix.selOr(attrs, () => "", "postPatch"), nix.str`substituteInPlace tokei.el \\
   --replace 'tokei-program "tokei"' 'tokei-program "${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgs, "tokei")))}"'
 `)),
               }))),
             treemacs: nix.thunk(() => nix.app(nix.sel(super$, "treemacs", "overrideAttrs"), (attrs) => ({
-                [nix.POS]: pos$33,
+                [nix.POS]: $pos[32],
                 postPatch: nix.thunk(() => nix.add(nix.selOr(attrs, () => "", "postPatch"), nix.str`substituteInPlace src/elisp/treemacs-customization.el \\
   --replace 'treemacs-python-executable (treemacs--find-python3)' 'treemacs-python-executable "${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgs, "python3")))}"'
 `)),
               }))),
             "treemacs-magit": nix.thunk(() => nix.app(nix.sel(super$, "treemacs-magit", "overrideAttrs"), (attrs) => ({
-                [nix.POS]: pos$34,
+                [nix.POS]: $pos[33],
                 nativeBuildInputs: nix.thunk(() => nix.concat(nix.selOr(attrs, () => [], "nativeBuildInputs"), [nix.thunk(() => nix.sel(pkgs, "git"))])),
               }))),
             "typst-mode": nix.thunk(() => nix.app(nix.sel(super$, "typst-mode", "overrideAttrs"), (attrs) => ({
-                [nix.POS]: pos$35,
+                [nix.POS]: $pos[34],
                 postPatch: nix.thunk(() => nix.add(nix.selOr(attrs, () => "", "postPatch"), nix.str`substituteInPlace typst-mode.el \\
   --replace 'typst-executable-location  "typst"' 'typst-executable-location "${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgs, "typst")))}"'
 `)),
               }))),
             "units-mode": nix.thunk(() => nix.app(nix.sel(super$, "units-mode", "overrideAttrs"), (attrs) => ({
-                [nix.POS]: pos$36,
+                [nix.POS]: $pos[35],
                 postPatch: nix.thunk(() => nix.add(nix.selOr(attrs, () => "", "postPatch"), nix.str`substituteInPlace units-mode.el \\
   --replace-fail 'units-binary-path "units"' 'units-binary-path "${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgs, "units")))}"'
 `)),
               }))),
             "vdiff-magit": nix.thunk(() => nix.app(nix.sel(super$, "vdiff-magit", "overrideAttrs"), (attrs) => ({
-                [nix.POS]: pos$37,
+                [nix.POS]: $pos[36],
                 nativeBuildInputs: nix.thunk(() => nix.concat(nix.selOr(attrs, () => [], "nativeBuildInputs"), [nix.thunk(() => nix.sel(pkgs, "git"))])),
               }))),
             "zig-mode": nix.thunk(() => nix.app(nix.sel(super$, "zig-mode", "overrideAttrs"), (attrs) => ({
-                [nix.POS]: pos$38,
+                [nix.POS]: $pos[37],
                 postPatch: nix.thunk(() => nix.add(nix.selOr(attrs, () => "", "postPatch"), nix.str`substituteInPlace zig-mode.el \\
   --replace-fail 'zig-zig-bin "zig"' 'zig-zig-bin "${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgs, "zig")))}"'
 `)),
               }))),
             zmq: nix.thunk(() => nix.app(nix.sel(super$, "zmq", "overrideAttrs"), (old) => ({
-                [nix.POS]: pos$40,
+                [nix.POS]: $pos[39],
                 stripDebugList: nix.thunk(() => ["share"]),
                 preBuild: "export EZMQ_LIBDIR=$(mktemp -d)\nmake\n",
                 nativeBuildInputs: nix.thunk(() => nix.concat(nix.selOr(old, () => [], "nativeBuildInputs"), [
@@ -426,7 +344,7 @@ substituteInPlace telega-vvnote.el --replace '"ffmpeg' '"${nix.sel(pkgs, "ffmpeg
                   nix.thunk(() => nix.sel(pkgs, "libtool")),
                 ])),
                 buildInputs: nix.thunk(() => nix.concat(nix.selOr(old, () => [], "buildInputs"), [
-                  nix.thunk(() => nix.app(nix.sel(pkgs, "zeromq", "override"), nix.thunk(() => ({ [nix.POS]: pos$39, enableDrafts: true })))),
+                  nix.thunk(() => nix.app(nix.sel(pkgs, "zeromq", "override"), nix.thunk(() => ({ [nix.POS]: $pos[38], enableDrafts: true })))),
                 ])),
                 postInstall: nix.thunk(() => nix.add(nix.add(nix.selOr(old, () => "", "postInstall"), "\n"), "mv $EZMQ_LIBDIR/emacs-zmq.* $out/share/emacs/site-lisp/elpa/zmq-*\nrm -r $out/share/emacs/site-lisp/elpa/zmq-*/src\nrm $out/share/emacs/site-lisp/elpa/zmq-*/Makefile\n")),
               }))),
@@ -449,11 +367,11 @@ substituteInPlace telega-vvnote.el --replace '"ffmpeg' '"${nix.sel(pkgs, "ffmpeg
             qiita: nix.thunk(() => nix.app(markBroken, nix.thunk(() => nix.sel(super$, "qiita")))),
             "sql-presto": nix.thunk(() => nix.app(markBroken, nix.thunk(() => nix.sel(super$, "sql-presto")))),
             editorconfig: nix.thunk(() => nix.app(nix.sel(super$, "editorconfig", "overrideAttrs"), (attrs) => ({
-                [nix.POS]: pos$41,
+                [nix.POS]: $pos[40],
                 propagatedUserEnvPkgs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "editorconfig-core-c"))]),
               }))),
             "evil-search-highlight-persist": nix.thunk(() => nix.app(nix.sel(super$, "evil-search-highlight-persist", "overrideAttrs"), (attrs) => ({
-                [nix.POS]: pos$42,
+                [nix.POS]: $pos[41],
                 packageRequires: nix.thunk(() => (() => {
                   const w = nix.withScope(self, null);
                   return [
@@ -463,10 +381,10 @@ substituteInPlace telega-vvnote.el --replace '"ffmpeg' '"${nix.sel(pkgs, "ffmpeg
                 })()),
               }))),
             "hamlet-mode": nix.thunk(() => nix.app(nix.sel(super$, "hamlet-mode", "overrideAttrs"), (attrs) => ({
-                [nix.POS]: pos$44,
+                [nix.POS]: $pos[43],
                 patches: nix.thunk(() => [
                   nix.thunk(() => nix.app(nix.sel(pkgs, "fetchpatch"), nix.thunk(() => ({
-                      [nix.POS]: pos$43,
+                      [nix.POS]: $pos[42],
                       url: "https://github.com/lightquake/hamlet-mode/commit/253495d1330d6ec88d97fac136c78f57c650aae0.patch",
                       sha256: "dSxS5yuXzCW96CUyvJWwjkhf1FMGBfiKKoBxeDVdz9Y=",
                     })))),
@@ -475,17 +393,20 @@ substituteInPlace telega-vvnote.el --replace '"ffmpeg' '"${nix.sel(pkgs, "ffmpeg
             "helm-rtags": nix.thunk(() => nix.app(ignoreCompilationError, nix.thunk(() => nix.app(fix_rtags, nix.thunk(() => nix.sel(super$, "helm-rtags")))))),
             "php-auto-yasnippets": nix.thunk(() => nix.app(mkHome, nix.thunk(() => nix.sel(super$, "php-auto-yasnippets")))),
             racer: nix.thunk(() => nix.app(nix.sel(super$, "racer", "overrideAttrs"), (attrs) => ({
-                [nix.POS]: pos$45,
+                [nix.POS]: $pos[44],
                 postPatch: nix.thunk(() => nix.add(nix.selOr(attrs, () => "", "postPatch"), nix.str`substituteInPlace racer.el \\
   --replace /usr/local/src/rust/src ${nix.sel(pkgs, "rustPlatform", "rustcSrc")}
 `)),
               }))),
             spaceline: nix.thunk(() => nix.app(nix.sel(super$, "spaceline", "override"), nix.thunk(() => (() => {
                 const from_2 = nix.thunk(() => nix.sel(self, "melpaPackages"));
-                return { [nix.POS]: pos$46, powerline: nix.thunk(() => nix.attr(from_2, "powerline")) };
+                return {
+                [nix.POS]: $pos[45],
+                powerline: nix.thunk(() => nix.attr(from_2, "powerline")),
+              };
               })()))),
             vterm: nix.thunk(() => nix.app(nix.sel(super$, "vterm", "overrideAttrs"), (old) => ({
-                [nix.POS]: pos$47,
+                [nix.POS]: $pos[46],
                 nativeBuildInputs: nix.thunk(() => nix.concat(nix.sel(old, "nativeBuildInputs"), [nix.thunk(() => nix.sel(pkgs, "cmake"))])),
                 buildInputs: nix.thunk(() => nix.concat(nix.sel(old, "buildInputs"), [
                   nix.thunk(() => nix.sel(self, "emacs")),
@@ -498,9 +419,9 @@ substituteInPlace telega-vvnote.el --replace '"ffmpeg' '"${nix.sel(pkgs, "ffmpeg
                 postInstall: nix.thunk(() => nix.add(nix.add(nix.selOr(old, () => "", "postInstall"), "\n"), "make\ninstall -m444 -t $out/share/emacs/site-lisp/elpa/vterm-** ../*.so\nrm -rf $out/share/emacs/site-lisp/elpa/vterm-**/{CMake*,build,*.c,*.h}\n")),
               }))),
             w3m: nix.thunk(() => nix.app(nix.sel(super$, "w3m", "override"), (args_2) => ({
-                [nix.POS]: pos$49,
+                [nix.POS]: $pos[48],
                 melpaBuild: (drv) => nix.app(nix.sel(args_2, "melpaBuild"), nix.thunk(() => nix.update(drv, {
-                    [nix.POS]: pos$48,
+                    [nix.POS]: $pos[47],
                     prePatch: nix.thunk(() => (() => {
                       const w3m = nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getBin"), nix.thunk(() => nix.sel(pkgs, "w3m")))}/bin/w3m`);
                       return nix.str`substituteInPlace w3m.el \\
@@ -511,19 +432,19 @@ substituteInPlace telega-vvnote.el --replace '"ffmpeg' '"${nix.sel(pkgs, "ffmpeg
                   }))),
               }))),
             wordnut: nix.thunk(() => nix.app(nix.sel(super$, "wordnut", "overrideAttrs"), (attrs) => ({
-                [nix.POS]: pos$50,
+                [nix.POS]: $pos[49],
                 postPatch: nix.thunk(() => nix.add(nix.selOr(attrs, () => "", "postPatch"), nix.str`substituteInPlace wordnut.el \\
   --replace 'wordnut-cmd "wn"' 'wordnut-cmd "${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgs, "wordnet")))}"'
 `)),
               }))),
             mozc: nix.thunk(() => nix.app(nix.sel(super$, "mozc", "overrideAttrs"), (attrs) => ({
-                [nix.POS]: pos$51,
+                [nix.POS]: $pos[50],
                 postPatch: nix.thunk(() => nix.add(nix.selOr(attrs, () => "", "postPatch"), nix.str`substituteInPlace src/unix/emacs/mozc.el \\
   --replace '"mozc_emacs_helper"' '"${nix.sel(pkgs, "mozc")}/bin/mozc_emacs_helper"'
 `)),
               }))),
             "osx-dictionary": nix.thunk(() => (nix.asBool(nix.sel(pkgs, "stdenv", "hostPlatform", "isDarwin")) ? nix.app(nix.sel(super$, "osx-dictionary", "overrideAttrs"), (old) => ({
-                [nix.POS]: pos$52,
+                [nix.POS]: $pos[51],
                 postBuild: nix.thunk(() => nix.add(nix.selOr(old, () => "", "postBuild"), "$CXX -O3 -framework CoreServices -framework Foundation osx-dictionary.m -o osx-dictionary-cli\n")),
                 postInstall: nix.thunk(() => nix.add(nix.add(nix.selOr(old, () => "", "postInstall"), "\n"), "outd=$out/share/emacs/site-lisp/elpa/osx-dictionary-*\nmkdir -p $out/bin\ninstall -m444 -t $out/bin osx-dictionary-cli\nrm $outd/osx-dictionary.m\n")),
               })) : nix.sel(super$, "osx-dictionary"))),
@@ -532,13 +453,13 @@ substituteInPlace telega-vvnote.el --replace '"ffmpeg' '"${nix.sel(pkgs, "ffmpeg
             abgaben: nix.thunk(() => nix.app(addPackageRequires, nix.thunk(() => nix.app(mkHome, nix.thunk(() => nix.sel(super$, "abgaben")))), nix.thunk(() => [nix.thunk(() => nix.sel(self, "mu4e"))]))),
             "abl-mode": nix.thunk(() => nix.app(addPackageRequires, nix.thunk(() => nix.sel(super$, "abl-mode")), nix.thunk(() => [nix.thunk(() => nix.sel(self, "f"))]))),
             "ac-php-core": nix.thunk(() => nix.app(nix.sel(super$, "ac-php-core", "overrideAttrs"), (old) => ({
-                [nix.POS]: pos$53,
+                [nix.POS]: $pos[52],
                 preBuild: nix.thunk(() => nix.add("rm --verbose ac-php-comm-tags-data.el\n", nix.selOr(old, () => "", "preBuild"))),
               }))),
             "ack-menu": nix.thunk(() => nix.app(ignoreCompilationError, nix.thunk(() => nix.sel(super$, "ack-menu")))),
             airplay: nix.thunk(() => nix.app(addPackageRequires, nix.thunk(() => nix.sel(super$, "airplay")), nix.thunk(() => [nix.thunk(() => nix.sel(self, "request-deferred"))]))),
             alectryon: nix.thunk(() => nix.app(nix.sel(super$, "alectryon", "overrideAttrs"), (finalAttrs) => (previousAttrs) => ({
-                [nix.POS]: pos$54,
+                [nix.POS]: $pos[53],
                 preBuild: nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(finalAttrs, "version")), "20241006.1902")) ? nix.add(nix.add(nix.selOr(previousAttrs, () => "", "preBuild"), "\n"), "rm --recursive --verbose etc/elisp/screenshot\n") : nix.selOr(previousAttrs, () => "", "preBuild"))),
               }))),
             "alert-termux": nix.thunk(() => nix.app(addPackageRequires, nix.thunk(() => nix.sel(super$, "alert-termux")), nix.thunk(() => [nix.thunk(() => nix.sel(self, "alert"))]))),
@@ -557,7 +478,7 @@ substituteInPlace telega-vvnote.el --replace '"ffmpeg' '"${nix.sel(pkgs, "ffmpeg
             "boogie-friends": nix.thunk(() => nix.app(ignoreCompilationError, nix.thunk(() => nix.app(addPackageRequires, nix.thunk(() => nix.sel(super$, "boogie-friends")), nix.thunk(() => [nix.thunk(() => nix.sel(self, "lsp-mode"))]))))),
             borg: nix.thunk(() => nix.app(ignoreCompilationError, nix.thunk(() => nix.sel(super$, "borg")))),
             bpr: nix.thunk(() => nix.app(nix.sel(super$, "bpr", "overrideAttrs"), (finalAttrs) => (previousAttrs) => ({
-                [nix.POS]: pos$55,
+                [nix.POS]: $pos[54],
                 preBuild: nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(finalAttrs, "version")), "20241013.1803")) ? nix.add(nix.add(nix.selOr(previousAttrs, () => "", "preBuild"), "\n"), "rm --verbose --force test-bpr.el\n") : nix.selOr(previousAttrs, () => "", "preBuild"))),
               }))),
             "brainfuck-mode": nix.thunk(() => nix.app(ignoreCompilationError, nix.thunk(() => nix.sel(super$, "brainfuck-mode")))),
@@ -579,14 +500,14 @@ substituteInPlace telega-vvnote.el --replace '"ffmpeg' '"${nix.sel(pkgs, "ffmpeg
             cheerilee: nix.thunk(() => nix.app(ignoreCompilationError, nix.thunk(() => nix.sel(super$, "cheerilee")))),
             chronometrist: nix.thunk(() => nix.app(ignoreCompilationError, nix.thunk(() => nix.sel(super$, "chronometrist")))),
             "chronometrist-key-values": nix.thunk(() => nix.app(nix.sel(super$, "chronometrist-key-values", "overrideAttrs"), (finalAttrs) => (previousAttrs) => ({
-                [nix.POS]: pos$56,
+                [nix.POS]: $pos[55],
                 recipe: nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(finalAttrs, "version")), "20241006.1831")) ? "(chronometrist-key-values :fetcher git :url \"\"\n :files (:defaults \"elisp/chronometrist-key-values.*\"))\n" : nix.sel(previousAttrs, "recipe"))),
               }))),
             "clingo-mode": nix.thunk(() => nix.app(nix.sel(super$, "clingo-mode", "overrideAttrs"), (finalAttrs) => (previousAttrs) => ({
-                [nix.POS]: pos$58,
+                [nix.POS]: $pos[57],
                 patches: nix.thunk(() => nix.concat(nix.selOr(previousAttrs, () => [], "patches"), [
                   nix.thunk(() => nix.app(nix.sel(pkgs, "fetchpatch"), nix.thunk(() => ({
-                      [nix.POS]: pos$57,
+                      [nix.POS]: $pos[56],
                       name: "add-missing-end-parenthesis.patch",
                       url: "https://github.com/llaisdy/clingo-mode/pull/3/commits/063445a24afb176c3f16af7a2763771dbdc4ecf6.patch",
                       hash: "sha256-OYP5LaZmCUJFgFk1Pf30e7sml8fC+xI4HSyDz7lck7E=",
@@ -597,10 +518,10 @@ substituteInPlace telega-vvnote.el --replace '"ffmpeg' '"${nix.sel(pkgs, "ffmpeg
             "cmake-ide": nix.thunk(() => nix.app(addPackageRequires, nix.thunk(() => nix.sel(super$, "cmake-ide")), nix.thunk(() => [nix.thunk(() => nix.sel(self, "dash"))]))),
             "code-review": nix.thunk(() => nix.app(ignoreCompilationError, nix.thunk(() => nix.sel(super$, "code-review")))),
             codesearch: nix.thunk(() => nix.app(ignoreCompilationError, nix.thunk(() => nix.app(nix.sel(super$, "codesearch", "overrideAttrs"), (finalAttrs) => (previousAttrs) => ({
-                  [nix.POS]: pos$60,
+                  [nix.POS]: $pos[59],
                   patches: nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(finalAttrs, "version")), "20240827.805")) ? nix.concat(nix.selOr(previousAttrs, () => [], "patches"), [
                     nix.thunk(() => nix.app(nix.sel(pkgs, "fetchpatch"), nix.thunk(() => ({
-                        [nix.POS]: pos$59,
+                        [nix.POS]: $pos[58],
                         name: "remove-unused-dash.patch",
                         url: "https://github.com/abingham/emacs-codesearch/commit/bd24a152ab6ea9f69443ae8e5b7351bb2f990fb6.patch",
                         hash: "sha256-cCHY8Ak2fHuuhymjSF7w2MLPDJa84mBUdKg27mB9yto=",
@@ -616,7 +537,7 @@ substituteInPlace telega-vvnote.el --replace '"ffmpeg' '"${nix.sel(pkgs, "ffmpeg
             conda: nix.thunk(() => nix.app(addPackageRequires, nix.thunk(() => nix.sel(super$, "conda")), nix.thunk(() => [nix.thunk(() => nix.sel(self, "projectile"))]))),
             consult: nix.thunk(() => nix.app(addPackageRequires, nix.thunk(() => nix.sel(super$, "consult")), nix.thunk(() => [nix.thunk(() => nix.sel(self, "flymake"))]))),
             "consult-gh": nix.thunk(() => nix.app(ignoreCompilationError, nix.thunk(() => nix.app(nix.sel(super$, "consult-gh", "overrideAttrs"), (old) => ({
-                  [nix.POS]: pos$61,
+                  [nix.POS]: $pos[60],
                   propagatedUserEnvPkgs: nix.thunk(() => nix.concat(nix.selOr(old, () => [], "propagatedUserEnvPkgs"), [nix.thunk(() => nix.sel(pkgs, "gh"))])),
                 }))))),
             "consult-gh-embark": nix.thunk(() => nix.app(ignoreCompilationError, nix.thunk(() => nix.sel(super$, "consult-gh-embark")))),
@@ -627,14 +548,14 @@ substituteInPlace telega-vvnote.el --replace '"ffmpeg' '"${nix.sel(pkgs, "ffmpeg
             creole: nix.thunk(() => nix.app(ignoreCompilationError, nix.thunk(() => nix.sel(super$, "creole")))),
             cssh: nix.thunk(() => nix.app(ignoreCompilationError, nix.thunk(() => nix.sel(super$, "cssh")))),
             "dap-mode": nix.thunk(() => nix.app(nix.sel(super$, "dap-mode", "overrideAttrs"), (finalAttrs) => (previousAttrs) => ({
-                [nix.POS]: pos$62,
+                [nix.POS]: $pos[61],
                 preBuild: nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(finalAttrs, "version")), "20250131.1624")) ? nix.add("rm --verbose dapui.el\n", nix.selOr(previousAttrs, () => "", "preBuild")) : nix.selOr(previousAttrs, () => "", "preBuild"))),
               }))),
             "db-pg": nix.thunk(() => nix.app(ignoreCompilationError, nix.thunk(() => nix.sel(super$, "db-pg")))),
             "describe-number": nix.thunk(() => nix.app(ignoreCompilationError, nix.thunk(() => nix.sel(super$, "describe-number")))),
             "dic-lookup-w3m": nix.thunk(() => nix.app(ignoreCompilationError, nix.thunk(() => nix.sel(super$, "dic-lookup-w3m")))),
             difftastic: nix.thunk(() => nix.app(nix.sel(super$, "difftastic", "overrideAttrs"), (attrs) => ({
-                [nix.POS]: pos$63,
+                [nix.POS]: $pos[62],
                 postPatch: nix.thunk(() => nix.add(nix.selOr(attrs, () => "", "postPatch"), nix.str`substituteInPlace difftastic.el \\
   --replace-fail 'difftastic-executable "difft"' 'difftastic-executable "${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgs, "difftastic")))}"'
 `)),
@@ -649,7 +570,7 @@ substituteInPlace telega-vvnote.el --replace '"ffmpeg' '"${nix.sel(pkgs, "ffmpeg
             "edit-color-stamp": nix.thunk(() => nix.app(ignoreCompilationError, nix.thunk(() => nix.sel(super$, "edit-color-stamp")))),
             edts: nix.thunk(() => nix.app(ignoreCompilationError, nix.thunk(() => nix.app(mkHome, nix.thunk(() => nix.sel(super$, "edts")))))),
             eimp: nix.thunk(() => nix.app(nix.sel(super$, "eimp", "overrideAttrs"), (old) => ({
-                [nix.POS]: pos$64,
+                [nix.POS]: $pos[63],
                 postPatch: nix.thunk(() => nix.add(nix.add(nix.selOr(old, () => "", "postPatch"), "\n"), nix.str`substituteInPlace eimp.el --replace-fail \\
   '(defcustom eimp-mogrify-program "mogrify"' \\
   '(defcustom eimp-mogrify-program "${nix.sel(pkgs, "imagemagick")}/bin/mogrify"'
@@ -663,7 +584,7 @@ substituteInPlace telega-vvnote.el --replace '"ffmpeg' '"${nix.sel(pkgs, "ffmpeg
             ekg: nix.thunk(() => nix.app(addPackageRequires, nix.thunk(() => nix.sel(super$, "ekg")), nix.thunk(() => [nix.thunk(() => nix.sel(self, "denote"))]))),
             "el-secretario-mu4e": nix.thunk(() => nix.app(addPackageRequires, nix.thunk(() => nix.sel(super$, "el-secretario-mu4e")), nix.thunk(() => [nix.thunk(() => nix.sel(self, "mu4e"))]))),
             elfeed: nix.thunk(() => nix.app(nix.sel(super$, "elfeed", "overrideAttrs"), (attrs) => ({
-                [nix.POS]: pos$65,
+                [nix.POS]: $pos[64],
                 postPatch: nix.thunk(() => nix.add(nix.selOr(attrs, () => "", "postPatch"), nix.str`substituteInPlace elfeed-curl.el \\
   --replace-fail 'elfeed-curl-program-name "curl"' 'elfeed-curl-program-name "${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgs, "curl")))}"'
 `)),
@@ -671,10 +592,10 @@ substituteInPlace telega-vvnote.el --replace '"ffmpeg' '"${nix.sel(pkgs, "ffmpeg
             "elisp-sandbox": nix.thunk(() => nix.app(ignoreCompilationError, nix.thunk(() => nix.sel(super$, "elisp-sandbox")))),
             elnode: nix.thunk(() => nix.app(ignoreCompilationError, nix.thunk(() => nix.sel(super$, "elnode")))),
             elscreen: nix.thunk(() => nix.app(nix.sel(super$, "elscreen", "overrideAttrs"), (old) => ({
-                [nix.POS]: pos$67,
+                [nix.POS]: $pos[66],
                 patches: nix.thunk(() => nix.concat(nix.selOr(old, () => [], "patches"), [
                   nix.thunk(() => nix.app(nix.sel(pkgs, "fetchpatch"), nix.thunk(() => ({
-                      [nix.POS]: pos$66,
+                      [nix.POS]: $pos[65],
                       name: "do-not-require-unneeded-wl.patch",
                       url: "https://github.com/knu/elscreen/pull/34/commits/2ffbeb11418d1b98809909c389e7010666d511fd.patch",
                       hash: "sha256-7JoDGtFECZEkB3xmMBXZcx6oStkEV06soiqOkDevWtM=",
@@ -718,7 +639,7 @@ substituteInPlace telega-vvnote.el --replace '"ffmpeg' '"${nix.sel(pkgs, "ffmpeg
             "exwm-edit": nix.thunk(() => nix.app(addPackageRequires, nix.thunk(() => nix.sel(super$, "exwm-edit")), nix.thunk(() => [nix.thunk(() => nix.sel(self, "exwm"))]))),
             "flymake-elixir": nix.thunk(() => nix.app(addPackageRequires, nix.thunk(() => nix.sel(super$, "flymake-elixir")), nix.thunk(() => [nix.thunk(() => nix.sel(self, "flymake-easy"))]))),
             "flymake-hadolint": nix.thunk(() => nix.app(nix.sel(super$, "flymake-hadolint", "overrideAttrs"), (attrs) => ({
-                [nix.POS]: pos$68,
+                [nix.POS]: $pos[67],
                 postPatch: nix.thunk(() => nix.add(nix.selOr(attrs, () => "", "postPatch"), nix.str`substituteInPlace flymake-hadolint.el \\
   --replace-fail 'flymake-hadolint-program "hadolint"' 'flymake-hadolint-program "${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgs, "hadolint")))}"'
 `)),
@@ -726,7 +647,7 @@ substituteInPlace telega-vvnote.el --replace '"ffmpeg' '"${nix.sel(pkgs, "ffmpeg
             flyparens: nix.thunk(() => nix.app(ignoreCompilationError, nix.thunk(() => nix.sel(super$, "flyparens")))),
             "fold-dwim-org": nix.thunk(() => nix.app(ignoreCompilationError, nix.thunk(() => nix.sel(super$, "fold-dwim-org")))),
             "frontside-javascript": nix.thunk(() => nix.app(nix.sel(super$, "frontside-javascript", "overrideAttrs"), (finalAttrs) => (previousAttrs) => ({
-                [nix.POS]: pos$69,
+                [nix.POS]: $pos[68],
                 preBuild: nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(finalAttrs, "version")), "20240929.1858")) ? nix.add(nix.add(nix.selOr(previousAttrs, () => "", "preBuild"), "\n"), "rm --verbose packages/javascript/test-suppport.el\n") : nix.selOr(previousAttrs, () => "", "preBuild"))),
               }))),
             "fxrd-mode": nix.thunk(() => nix.app(ignoreCompilationError, nix.thunk(() => nix.sel(super$, "fxrd-mode")))),
@@ -747,10 +668,10 @@ substituteInPlace telega-vvnote.el --replace '"ffmpeg' '"${nix.sel(pkgs, "ffmpeg
             guix: nix.thunk(() => nix.app(addPackageRequires, nix.thunk(() => nix.sel(super$, "guix")), nix.thunk(() => [nix.thunk(() => nix.sel(self, "geiser-guile"))]))),
             gumshoe: nix.thunk(() => nix.app(addPackageRequires, nix.thunk(() => nix.sel(super$, "gumshoe")), nix.thunk(() => [nix.thunk(() => nix.sel(self, "perspective"))]))),
             "helm-chrome-control": nix.thunk(() => nix.app(nix.sel(super$, "helm-chrome-control", "overrideAttrs"), (old) => ({
-                [nix.POS]: pos$71,
+                [nix.POS]: $pos[70],
                 patches: nix.thunk(() => nix.concat(nix.selOr(old, () => [], "patches"), [
                   nix.thunk(() => nix.app(nix.sel(pkgs, "fetchpatch"), nix.thunk(() => ({
-                      [nix.POS]: pos$70,
+                      [nix.POS]: $pos[69],
                       name: "require-helm-core-instead-of-helm.patch",
                       url: "https://github.com/xuchunyang/helm-chrome-control/pull/2/commits/7765cd2483adef5cfa6cf77f52259ad6e1dd0daf.patch",
                       hash: "sha256-tF+IaICbveYJvd3Tjx52YBBztpjifZdCA4O+Z2r1M3s=",
@@ -786,7 +707,7 @@ substituteInPlace telega-vvnote.el --replace '"ffmpeg' '"${nix.sel(pkgs, "ffmpeg
             inlineR: nix.thunk(() => nix.app(addPackageRequires, nix.thunk(() => nix.sel(super$, "inlineR")), nix.thunk(() => [nix.thunk(() => nix.sel(self, "ess"))]))),
             insfactor: nix.thunk(() => nix.app(addPackageRequires, nix.thunk(() => nix.sel(super$, "insfactor")), nix.thunk(() => [nix.thunk(() => nix.sel(self, "cider"))]))),
             iregister: nix.thunk(() => nix.app(nix.sel(super$, "iregister", "overrideAttrs"), (old) => ({
-                [nix.POS]: pos$72,
+                [nix.POS]: $pos[71],
                 recipe: "",
                 files: "(:defaults (:exclude \".bump-version.el\"))",
               }))),
@@ -796,7 +717,7 @@ substituteInPlace telega-vvnote.el --replace '"ffmpeg' '"${nix.sel(pkgs, "ffmpeg
             jdee: nix.thunk(() => nix.app(ignoreCompilationError, nix.thunk(() => nix.sel(super$, "jdee")))),
             "jekyll-modes": nix.thunk(() => nix.app(addPackageRequires, nix.thunk(() => nix.sel(super$, "jekyll-modes")), nix.thunk(() => [nix.thunk(() => nix.sel(self, "poly-markdown"))]))),
             "jq-mode": nix.thunk(() => nix.app(nix.sel(super$, "jq-mode", "overrideAttrs"), (attrs) => ({
-                [nix.POS]: pos$73,
+                [nix.POS]: $pos[72],
                 postPatch: nix.thunk(() => nix.add(nix.selOr(attrs, () => "", "postPatch"), nix.str`substituteInPlace jq-mode.el \\
   --replace-fail 'jq-interactive-command "jq"' 'jq-interactive-command "${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgs, "jq")))}"'
 substituteInPlace ob-jq.el \\
@@ -806,10 +727,10 @@ substituteInPlace ob-jq.el \\
             jss: nix.thunk(() => nix.app(ignoreCompilationError, nix.thunk(() => nix.sel(super$, "jss")))),
             "julia-snail": nix.thunk(() => nix.app(addPackageRequires, nix.thunk(() => nix.sel(super$, "julia-snail")), nix.thunk(() => [nix.thunk(() => nix.sel(self, "eat"))]))),
             "kanagawa-themes": nix.thunk(() => nix.app(nix.sel(super$, "kanagawa-themes", "overrideAttrs"), (finalAttrs) => (previousAttrs) => ({
-                [nix.POS]: pos$75,
+                [nix.POS]: $pos[74],
                 patches: nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(finalAttrs, "version")), "20241015.2237")) ? nix.concat(nix.selOr(previousAttrs, () => [], "patches"), [
                   nix.thunk(() => nix.app(nix.sel(pkgs, "fetchpatch"), nix.thunk(() => ({
-                      [nix.POS]: pos$74,
+                      [nix.POS]: $pos[73],
                       name: "fix-compilation-error.patch",
                       url: "https://github.com/Fabiokleis/kanagawa-emacs/commit/83c2b5c292198b46a06ec0ad62619d83fd965433.patch",
                       hash: "sha256-pB1ht03XCh+BWKHhxBAp701qt/KWAMJ2SQQaN3FgMjU=",
@@ -826,7 +747,7 @@ substituteInPlace ob-jq.el \\
             liberime: nix.thunk(() => nix.app(nix.sel(super$, "liberime", "overrideAttrs"), nix.thunk(() => (() => {
                 const libExt = nix.thunk(() => nix.sel(pkgs, "stdenv", "hostPlatform", "extensions", "sharedLibrary"));
                 return (prevAttrs) => ({
-                  [nix.POS]: pos$76,
+                  [nix.POS]: $pos[75],
                   buildInputs: nix.thunk(() => nix.concat(nix.sel(prevAttrs, "buildInputs"), [nix.thunk(() => nix.sel(pkgs, "librime"))])),
                   nativeBuildInputs: nix.thunk(() => nix.concat(nix.sel(prevAttrs, "nativeBuildInputs"), [nix.thunk(() => nix.sel(pkgs, "which"))])),
                   postBuild: nix.thunk(() => nix.add(nix.add(nix.selOr(prevAttrs, () => "", "postBuild"), "\n"), nix.str`make CC=$CC SUFFIX=${libExt}
@@ -870,10 +791,10 @@ install src/liberime-core${libExt} $out/share/emacs/site-lisp/elpa/liberime-*
             mykie: nix.thunk(() => nix.app(addPackageRequires, nix.thunk(() => nix.sel(super$, "mykie")), nix.thunk(() => [nix.thunk(() => nix.sel(self, "helm"))]))),
             "myrddin-mode": nix.thunk(() => nix.app(ignoreCompilationError, nix.thunk(() => nix.sel(super$, "myrddin-mode")))),
             nand2tetris: nix.thunk(() => nix.app(nix.sel(super$, "nand2tetris", "overrideAttrs"), (old) => ({
-                [nix.POS]: pos$78,
+                [nix.POS]: $pos[77],
                 patches: nix.thunk(() => nix.concat(nix.selOr(old, () => [], "patches"), [
                   nix.thunk(() => nix.app(nix.sel(pkgs, "fetchpatch"), nix.thunk(() => ({
-                      [nix.POS]: pos$77,
+                      [nix.POS]: $pos[76],
                       name: "remove-unneeded-require.patch",
                       url: "https://github.com/CestDiego/nand2tetris.el/pull/16/commits/d06705bf52f3cf41f55498d88fe15a1064bc2cfa.patch",
                       hash: "sha256-8OJXN9MuwBbL0afus53WroIxtIzHY7Bryv5ZGcS/inI=",
@@ -882,10 +803,10 @@ install src/liberime-core${libExt} $out/share/emacs/site-lisp/elpa/liberime-*
               }))),
             navi2ch: nix.thunk(() => nix.app(ignoreCompilationError, nix.thunk(() => nix.sel(super$, "navi2ch")))),
             navorski: nix.thunk(() => nix.app(nix.sel(super$, "navorski", "overrideAttrs"), (old) => ({
-                [nix.POS]: pos$80,
+                [nix.POS]: $pos[79],
                 patches: nix.thunk(() => nix.concat(nix.selOr(old, () => [], "patches"), [
                   nix.thunk(() => nix.app(nix.sel(pkgs, "fetchpatch"), nix.thunk(() => ({
-                      [nix.POS]: pos$79,
+                      [nix.POS]: $pos[78],
                       name: "stop-using-assoc.patch",
                       url: "https://github.com/roman/navorski.el/pull/12/commits/b7b6c331898cae239c176346ac87c8551b1e0c72.patch",
                       hash: "sha256-CZxOSGuJXATonHMSLGCzO4kOlQqRAOcNNq0i4Qh21y8=",
@@ -912,10 +833,10 @@ install src/liberime-core${libExt} $out/share/emacs/site-lisp/elpa/liberime-*
                 nix.thunk(() => nix.sel(self, "qrencode")),
               ]))),
             "org-noter": nix.thunk(() => nix.app(nix.sel(super$, "org-noter", "overrideAttrs"), (finalAttrs) => (previousAttrs) => ({
-                [nix.POS]: pos$82,
+                [nix.POS]: $pos[81],
                 patches: nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(finalAttrs, "version")), "20240915.344")) ? nix.concat(nix.selOr(previousAttrs, () => [], "patches"), [
                   nix.thunk(() => nix.app(nix.sel(pkgs, "fetchpatch"), nix.thunk(() => ({
-                      [nix.POS]: pos$81,
+                      [nix.POS]: $pos[80],
                       name: "catch-error-for-optional-dep-org-roam.patch",
                       url: "https://github.com/org-noter/org-noter/commit/761c551ecc88fec57e840d346c6af5f5b94591d5.patch",
                       hash: "sha256-Diw9DgjANDWu6CBMOlRaihQLOzeAr7VcJPZT579dpYU=",
@@ -926,7 +847,7 @@ install src/liberime-core${libExt} $out/share/emacs/site-lisp/elpa/liberime-*
             "org-pdftools": nix.thunk(() => nix.app(mkHome, nix.thunk(() => nix.sel(super$, "org-pdftools")))),
             "org-present-remote": nix.thunk(() => nix.app(ignoreCompilationError, nix.thunk(() => nix.sel(super$, "org-present-remote")))),
             "org-projectile": nix.thunk(() => nix.app(nix.sel(super$, "org-projectile", "overrideAttrs"), (finalAttrs) => (previousAttrs) => ({
-                [nix.POS]: pos$83,
+                [nix.POS]: $pos[82],
                 preBuild: nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(finalAttrs, "version")), "20240901.2041")) ? nix.add("rm --verbose org-projectile-helm.el\n", nix.selOr(previousAttrs, () => "", "preBuild")) : nix.selOr(previousAttrs, () => "", "preBuild"))),
               }))),
             "org-projectile-helm": nix.thunk(() => nix.app(addPackageRequires, nix.thunk(() => nix.sel(super$, "org-projectile-helm")), nix.thunk(() => [nix.thunk(() => nix.sel(self, "helm-org"))]))),
@@ -945,7 +866,7 @@ install src/liberime-core${libExt} $out/share/emacs/site-lisp/elpa/liberime-*
             outlook: nix.thunk(() => nix.app(addPackageRequires, nix.thunk(() => nix.sel(super$, "outlook")), nix.thunk(() => [nix.thunk(() => nix.sel(self, "mu4e"))]))),
             pastery: nix.thunk(() => nix.app(ignoreCompilationError, nix.thunk(() => nix.sel(super$, "pastery")))),
             "pdf-meta-edit": nix.thunk(() => nix.app(nix.sel(super$, "pdf-meta-edit", "overrideAttrs"), (attrs) => ({
-                [nix.POS]: pos$84,
+                [nix.POS]: $pos[83],
                 postPatch: nix.thunk(() => nix.add(nix.add(nix.selOr(attrs, () => "", "postPatch"), "\n"), nix.str`substituteInPlace pdf-meta-edit.el \\
     --replace-fail '(executable-find "pdftk")' '"${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgs, "pdftk")))}"'
 `)),
@@ -963,7 +884,7 @@ install src/liberime-core${libExt} $out/share/emacs/site-lisp/elpa/liberime-*
             "projmake-mode": nix.thunk(() => nix.app(ignoreCompilationError, nix.thunk(() => nix.sel(super$, "projmake-mode")))),
             "pyim-basedict": nix.thunk(() => nix.app(addPackageRequires, nix.thunk(() => nix.sel(super$, "pyim-basedict")), nix.thunk(() => [nix.thunk(() => nix.sel(self, "pyim"))]))),
             "realgud-lldb": nix.thunk(() => nix.app(nix.sel(super$, "realgud-lldb", "overrideAttrs"), (old) => ({
-                [nix.POS]: pos$85,
+                [nix.POS]: $pos[84],
                 preBuild: nix.thunk(() => nix.add(nix.add(nix.selOr(old, () => "", "preBuild"), "\n"), "rm --verbose cask-install.el\n")),
               }))),
             requirejs: nix.thunk(() => nix.app(ignoreCompilationError, nix.thunk(() => nix.sel(super$, "requirejs")))),

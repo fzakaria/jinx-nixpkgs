@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/libcusolvermp.nix", [[["message", 53, 11], ["assertion", 56, 11]], [["message", 59, 11], ["assertion", 60, 11]], [["message", 69, 9], ["assertion", 72, 9]], [["message", 75, 9], ["assertion", 78, 9]], [["message", 81, 9], ["assertion", 84, 9]], [["description", 89, 7], ["longDescription", 90, 7], ["homepage", 94, 7], ["changelog", 95, 7]], [["redistName", 22, 5], ["pname", 23, 5], ["outputs", 25, 5], ["buildInputs", 32, 5], ["autoPatchelfIgnoreMissingDeps", 41, 5], ["platformAssertions", 47, 5], ["brokenAssertions", 67, 5], ["meta", 88, 5]]]);
 const formals$1 = { args: { backendStdenv: false, buildRedist: false, cuda_cudart: false, cudaAtLeast: false, cudaMajorMinorPatchVersion: false, cudaMajorVersion: false, lib: false, libcublas: false, libcublasmp: false, libcusolver: false, nccl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/libcusolvermp.nix", [["message", 53, 11], ["assertion", 56, 11]]);
-const pos$2 = nix.positions(here + "/libcusolvermp.nix", [["message", 59, 11], ["assertion", 60, 11]]);
-const pos$3 = nix.positions(here + "/libcusolvermp.nix", [["message", 69, 9], ["assertion", 72, 9]]);
-const pos$4 = nix.positions(here + "/libcusolvermp.nix", [["message", 75, 9], ["assertion", 78, 9]]);
-const pos$5 = nix.positions(here + "/libcusolvermp.nix", [["message", 81, 9], ["assertion", 84, 9]]);
-const pos$6 = nix.positions(here + "/libcusolvermp.nix", [["description", 89, 7], ["longDescription", 90, 7], ["homepage", 94, 7], ["changelog", 95, 7]]);
-const pos$7 = nix.positions(here + "/libcusolvermp.nix", [["redistName", 22, 5], ["pname", 23, 5], ["outputs", 25, 5], ["buildInputs", 32, 5], ["autoPatchelfIgnoreMissingDeps", 41, 5], ["platformAssertions", 47, 5], ["brokenAssertions", 67, 5], ["meta", 88, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const cusolvermpAtLeast = nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(finalAttrs, "version"))));
       const cusolvermpOlder = nix.thunk(() => nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(finalAttrs, "version"))));
       return {
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         redistName: "cusolvermp",
         pname: "libcusolvermp",
         outputs: nix.thunk(() => ["out", "dev", "include", "lib"]),
@@ -39,12 +33,12 @@ export default nix.lambda((args) => (() => {
           const minCudaCapability = nix.thunk(() => (nix.asBool(nix.app(cudaAtLeast, "13.0")) ? "7.5" : "7.0"));
           return [
             nix.thunk(() => ({
-              [nix.POS]: pos$1,
+              [nix.POS]: $pos[0],
               message: nix.thunk(() => nix.add(nix.str`cuSOLVERMp for CUDA ${cudaMajorVersion} supports CUDA compute capabilities ${minCudaCapability} and newer`, nix.str` (found ${nix.builtins.toJSON(cudaCapabilities)})`)),
               assertion: nix.thunk(() => nix.app(nix.sel(lib, "all"), nix.thunk(() => nix.app(nix.sel(lib, "flip"), nix.thunk(() => nix.sel(lib, "versionAtLeast")), minCudaCapability)), cudaCapabilities)),
             })),
             nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               message: "cuSOLVERMp requires NCCL, which is unavailable for this platform",
               assertion: nix.thunk(() => nix.sel(nccl, "meta", "available")),
             })),
@@ -52,23 +46,23 @@ export default nix.lambda((args) => (() => {
         })()),
         brokenAssertions: nix.thunk(() => [
           nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             message: nix.thunk(() => nix.add(nix.str`cuSOLVERMp releases since 0.9.0 (found ${nix.sel(finalAttrs, "version")})`, nix.str` require cuBLASMp 0.9.1 or newer (found ${nix.sel(libcublasmp, "version")})`)),
             assertion: nix.thunk(() => (!nix.asBool(nix.app(cusolvermpAtLeast, "0.9")) || nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(libcublasmp, "version")), "0.9.1")))),
           })),
           nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             message: nix.thunk(() => nix.add(nix.str`cuSOLVERMp releases since 0.9.0 (found ${nix.sel(finalAttrs, "version")})`, nix.str` require NCCL 2.29.2 or newer (found ${nix.sel(nccl, "version")})`)),
             assertion: nix.thunk(() => (!nix.asBool(nix.app(cusolvermpAtLeast, "0.9")) || nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(nccl, "version")), "2.29.2")))),
           })),
           nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             message: nix.thunk(() => nix.add(nix.str`cuSOLVERMp releases before 0.9.0 (found ${nix.sel(finalAttrs, "version")}) under-report device workspace sizes`, nix.str` when used with cuSOLVER from CUDA 13.2 Update 1 and newer (found ${cudaMajorMinorPatchVersion})`)),
             assertion: nix.thunk(() => (!nix.asBool(nix.app(cusolvermpOlder, "0.9")) || nix.asBool(nix.app(nix.sel(lib, "versionOlder"), cudaMajorMinorPatchVersion, "13.2.1")))),
           })),
         ]),
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           description: "High-performance, distributed-memory, GPU-accelerated library that provides tools for solving dense linear systems and eigenvalue problems",
           longDescription: "The NVIDIA cuSOLVERMp library is a high-performance, distributed-memory, GPU-accelerated library that provides\ntools for solving dense linear systems and eigenvalue problems.\n",
           homepage: "https://developer.nvidia.com/cusolver",

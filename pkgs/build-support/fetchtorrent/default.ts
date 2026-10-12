@@ -2,9 +2,9 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["meta", 89, 13], ["nativeBuildInputs", 90, 5], ["outputHashAlgo", 135, 5], ["outputHash", 136, 5], ["outputHashMode", 137, 5], ["url", 142, 13]]]);
 const formals$1 = { args: { lib: false, runCommand: false, transmission_4: false, rqbit: false, writeShellScript: false, formats: false, cacert: false, rsync: false }, ellipsis: false };
 const formals$2 = { args: { url: false, name: true, config: true, hash: false, backend: true, recursiveHash: true, flatten: true, postFetch: true, postUnpack: true, meta: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["meta", 89, 13], ["nativeBuildInputs", 90, 5], ["outputHashAlgo", 135, 5], ["outputHash", 136, 5], ["outputHashMode", 137, 5], ["url", 142, 13]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -48,7 +48,7 @@ kill $PPID
     nix.assert_((nix.asBool((!nix.asBool(!nix.eq(config, {})) || nix.asBool(nix.eq(backend, "transmission")))) || nix.asBool(nix.builtins.throw("json config for configuring fetchtorrent only works with the transmission backend\n"))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/build-support/fetchtorrent/default.nix:77:1");
     nix.assert_((nix.asBool((!nix.asBool(nix.eq(backend, "transmission")) || nix.asBool(flatten$))) || nix.asBool(nix.builtins.throw("`flatten = false` is only supported by the rqbit backend for fetchtorrent\n"))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/build-support/fetchtorrent/default.nix:82:1");
     return nix.app(runCommand, name, nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         meta: meta,
         nativeBuildInputs: nix.thunk(() => nix.concat([cacert], (nix.asBool(nix.eq(backend, "transmission")) ? [transmission_4] : (nix.asBool(nix.eq(backend, "rqbit")) ? nix.app(nix.sel(lib, "warnIf"), nix.thunk(() => !nix.eq(flatten, true)), nix.thunk(() => (nix.asBool(nix.eq(flatten, null)) ? "`fetchtorrent` with the rqbit backend may or may not have the\ndownloaded files stored in a subdirectory of the output directory.\nVerify which behaviour you need, and set the `flatten` argument to\n`fetchtorrent` accordingly.\n\nThe `flatten = false` behaviour will still produce a warning, as this\nbehaviour is deprecated.  It is only available with the \"rqbit\" backend\nto provide temporary support for users who are relying on the\nprevious incorrect behaviour.  For a warning-free evaluation, use\n`flatten = true`.\n" : (nix.asBool(nix.eq(flatten, false)) ? "`fetchtorrent` with `flatten = false` is deprecated and will be\nremoved in a future release.\n" : nix.builtins.throw("invalid value for flatten: must be true, false, or null")))), nix.thunk(() => [rqbit])) : nix.builtins.throw("rqbit or transmission are the only available backends for fetchtorrent"))))),
         outputHashAlgo: nix.thunk(() => (nix.asBool(!nix.eq(hash, "")) ? null : "sha256")),

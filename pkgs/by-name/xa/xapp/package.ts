@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 35, 5], ["repo", 36, 5], ["rev", 37, 5], ["hash", 38, 5]], [["PKG_CONFIG_GTK__3_0_LIBDIR", 97, 7]], [["homepage", 104, 5], ["description", 105, 5], ["license", 106, 5], ["platforms", 107, 5], ["teams", 108, 5]], [["pname", 26, 3], ["version", 27, 3], ["outputs", 29, 3], ["src", 34, 3], ["mesonBuildType", 43, 3], ["nativeBuildInputs", 45, 3], ["buildInputs", 55, 3], ["propagatedBuildInputs", 72, 3], ["mesonFlags", 78, 3], ["postPatch", 82, 3], ["env", 97, 3], ["preFixup", 99, 3], ["meta", 103, 3]]]);
 const formals$1 = { args: { fetchFromGitHub: false, glib: false, "gobject-introspection": false, gtk3: false, libgnomekbd: false, "gdk-pixbuf": false, cairo: false, libxkbfile: false, meson: false, ninja: false, "pkg-config": false, python3: false, lib: false, stdenv: false, vala: false, wrapGAppsHook3: false, file: false, inxi: false, "mate-panel": false, dbus: false, "libdbusmenu-gtk3": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 35, 5], ["repo", 36, 5], ["rev", 37, 5], ["hash", 38, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["PKG_CONFIG_GTK__3_0_LIBDIR", 97, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 104, 5], ["description", 105, 5], ["license", 106, 5], ["platforms", 107, 5], ["teams", 108, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 26, 3], ["version", 27, 3], ["outputs", 29, 3], ["src", 34, 3], ["mesonBuildType", 43, 3], ["nativeBuildInputs", 45, 3], ["buildInputs", 55, 3], ["propagatedBuildInputs", 72, 3], ["mesonFlags", 78, 3], ["postPatch", 82, 3], ["env", 97, 3], ["preFixup", 99, 3], ["meta", 103, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,12 +29,12 @@ export default nix.lambda((args) => (() => {
   const dbus = nix.arg($, "dbus");
   const libdbusmenu_gtk3 = nix.arg($, "libdbusmenu-gtk3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "xapp",
       version: "3.2.3",
       outputs: nix.thunk(() => ["out", "dev"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "linuxmint",
           repo: "xapp",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -86,12 +83,12 @@ substituteInPlace scripts/xfce4-set-wallpaper \\
   --replace-fail "file --mime-type" "${file}/bin/file --mime-type"
 `),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         PKG_CONFIG_GTK__3_0_LIBDIR: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/lib`),
       })),
       preFixup: "wrapGApp $out/lib/xapps/xapp-sn-watcher\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/linuxmint/xapp",
         description: "Cross-desktop libraries and common resources",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3")),

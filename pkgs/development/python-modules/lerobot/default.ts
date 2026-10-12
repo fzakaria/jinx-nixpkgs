@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 42, 5], ["repo", 43, 5], ["tag", 44, 5], ["hash", 45, 5]], [["description", 167, 5], ["homepage", 168, 5], ["changelog", 169, 5], ["license", 170, 5], ["maintainers", 171, 5]], [["pname", 36, 3], ["version", 37, 3], ["pyproject", 38, 3], ["__structuredAttrs", 39, 3], ["src", 41, 3], ["build-system", 48, 3], ["dontUseCmakeConfigure", 52, 3], ["pythonRelaxDeps", 54, 3], ["dependencies", 63, 3], ["pythonImportsCheck", 83, 3], ["nativeCheckInputs", 85, 3], ["disabledTests", 92, 3], ["disabledTestPaths", 155, 3], ["__darwinAllowLocalNetworking", 164, 3], ["meta", 166, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitHub: false, cmake: false, setuptools: false, draccus: false, einops: false, gymnasium: false, "huggingface-hub": false, numpy: false, "opencv-python-headless": false, packaging: false, pillow: false, requests: false, safetensors: false, termcolor: false, torch: false, torchcodec: false, torchvision: false, tqdm: false, av: false, datasets: false, pytestCheckHook: false, writableTmpDirAsHomeHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 42, 5], ["repo", 43, 5], ["tag", 44, 5], ["hash", 45, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 167, 5], ["homepage", 168, 5], ["changelog", 169, 5], ["license", 170, 5], ["maintainers", 171, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 36, 3], ["version", 37, 3], ["pyproject", 38, 3], ["__structuredAttrs", 39, 3], ["src", 41, 3], ["build-system", 48, 3], ["dontUseCmakeConfigure", 52, 3], ["pythonRelaxDeps", 54, 3], ["dependencies", 63, 3], ["pythonImportsCheck", 83, 3], ["nativeCheckInputs", 85, 3], ["disabledTests", 92, 3], ["disabledTestPaths", 155, 3], ["__darwinAllowLocalNetworking", 164, 3], ["meta", 166, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -35,13 +33,13 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "lerobot",
       version: "0.6.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "huggingface",
           repo: "lerobot",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -125,7 +123,7 @@ export default nix.lambda((args) => (() => {
       ]),
       __darwinAllowLocalNetworking: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Making AI for Robotics more accessible with end-to-end learning",
         homepage: "https://github.com/huggingface/lerobot",
         changelog: nix.thunk(() => nix.str`https://github.com/huggingface/lerobot/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

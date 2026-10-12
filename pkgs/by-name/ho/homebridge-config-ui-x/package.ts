@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["nodejs", 14, 28]], [["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]], [["name", 30, 5], ["src", 31, 5], ["hash", 32, 5]], [["updateScript", 68, 12]], [["description", 71, 5], ["homepage", 72, 5], ["license", 73, 5], ["mainProgram", 74, 5], ["platforms", 75, 5], ["maintainers", 76, 5], ["broken", 82, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["npmDepsHash", 26, 3], ["npmDeps_ui", 29, 3], ["preBuild", 36, 3], ["makeCacheWritable", 54, 3], ["npmInstallFlags", 56, 3], ["nativeBuildInputs", 58, 3], ["nativeInstallCheckInputs", 63, 3], ["doInstallCheck", 66, 3], ["passthru", 68, 3], ["meta", 70, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildNpmPackage: false, fetchFromGitHub: false, fetchNpmDeps: false, npmHooks: false, python3: false, cacert: false, versionCheckHook: false, nodejs_24: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["nodejs", 14, 28]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 30, 5], ["src", 31, 5], ["hash", 32, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 68, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 71, 5], ["homepage", 72, 5], ["license", 73, 5], ["mainProgram", 74, 5], ["platforms", 75, 5], ["maintainers", 76, 5], ["broken", 82, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["npmDepsHash", 26, 3], ["npmDeps_ui", 29, 3], ["preBuild", 36, 3], ["makeCacheWritable", 54, 3], ["npmInstallFlags", 56, 3], ["nativeBuildInputs", 58, 3], ["nativeInstallCheckInputs", 63, 3], ["doInstallCheck", 66, 3], ["passthru", 68, 3], ["meta", 70, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const cacert = nix.arg($, "cacert");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const nodejs_24 = nix.arg($, "nodejs_24");
-  return nix.app(nix.sel(buildNpmPackage, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, nodejs: nodejs_24 })), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+  return nix.app(nix.sel(buildNpmPackage, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], nodejs: nodejs_24 })), (finalAttrs) => ({
+      [nix.POS]: $pos[5],
       pname: "homebridge-config-ui-x",
       version: "5.29.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "homebridge",
           repo: "homebridge-config-ui-x",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,7 +30,7 @@ export default nix.lambda((args) => (() => {
         })))),
       npmDepsHash: "sha256-7YhwV+IJsEVxrgir84uP+YwXgovtVxPMCk5Jt57mez8=",
       npmDeps_ui: nix.thunk(() => nix.app(fetchNpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           name: "npm-deps-ui",
           src: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src")}/ui`),
           hash: "sha256-DKDixaXDDovHVnlWvV16p72a3ejMdDsNWaCfUnzMSX0=",
@@ -57,9 +52,9 @@ export CI=true
       nativeBuildInputs: nix.thunk(() => nix.concat([python3], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [cacert])))),
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$4, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[3], updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Configure Homebridge, monitor and backup from a browser",
         homepage: "https://github.com/homebridge/homebridge-config-ui-x",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

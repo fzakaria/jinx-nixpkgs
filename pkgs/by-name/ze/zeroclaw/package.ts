@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]], [["src", 42, 26], ["sourceRoot", 43, 5], ["hash", 44, 5]], [["updateScript", 109, 12]], [["description", 112, 5], ["homepage", 113, 5], ["changelog", 114, 5], ["license", 115, 5], ["maintainers", 116, 5], ["mainProgram", 120, 5]], [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["cargoHash", 30, 3], ["cargoBuildFlags", 33, 3], ["cargoTestFlags", 39, 3], ["npmDeps", 41, 3], ["npmRoot", 46, 3], ["postPatch", 48, 3], ["nativeBuildInputs", 59, 3], ["buildInputs", 67, 3], ["postBuild", 71, 3], ["nativeCheckInputs", 79, 3], ["checkFlags", 87, 3], ["postInstall", 100, 3], ["doInstallCheck", 106, 3], ["nativeInstallCheckInputs", 107, 3], ["passthru", 109, 3], ["meta", 111, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchFromGitHub: false, fetchNpmDeps: false, npmHooks: false, nodejs: false, "pkg-config": false, protobuf: false, sqlite: false, writableTmpDirAsHomeHook: false, gitMinimal: false, jq: false, versionCheckHook: false, makeBinaryWrapper: false, which: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["src", 42, 26], ["sourceRoot", 43, 5], ["hash", 44, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 109, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 112, 5], ["homepage", 113, 5], ["changelog", 114, 5], ["license", 115, 5], ["maintainers", 116, 5], ["mainProgram", 120, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["cargoHash", 30, 3], ["cargoBuildFlags", 33, 3], ["cargoTestFlags", 39, 3], ["npmDeps", 41, 3], ["npmRoot", 46, 3], ["postPatch", 48, 3], ["nativeBuildInputs", 59, 3], ["buildInputs", 67, 3], ["postBuild", 71, 3], ["nativeCheckInputs", 79, 3], ["checkFlags", 87, 3], ["postInstall", 100, 3], ["doInstallCheck", 106, 3], ["nativeInstallCheckInputs", 107, 3], ["passthru", 109, 3], ["meta", 111, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const which = nix.arg($, "which");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "zeroclaw",
       version: "0.8.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "zeroclaw-labs",
           repo: "zeroclaw",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -42,7 +38,7 @@ export default nix.lambda((args) => (() => {
       cargoBuildFlags: nix.thunk(() => ["--package", "zeroclawlabs", "--package", "zerocode"]),
       cargoTestFlags: nix.thunk(() => nix.sel(finalAttrs, "cargoBuildFlags")),
       npmDeps: nix.thunk(() => nix.app(fetchNpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           sourceRoot: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "name")}/web`),
           hash: "sha256-0CsPPy5a/jTr8nImwvTwStTgHm9wZbFBwCZVHKPZCvE=",
@@ -77,11 +73,11 @@ wrapProgram $out/bin/zerocode --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPat
       doInstallCheck: true,
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Fast, small, and fully autonomous AI assistant infrastructure — deploy anywhere, swap anything",
         homepage: "https://github.com/zeroclaw-labs/zeroclaw",
         changelog: nix.thunk(() => nix.str`https://github.com/zeroclaw-labs/zeroclaw/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 11, 5], ["hash", 12, 5], ["rev", 13, 5]], [["description", 21, 5], ["mainProgram", 22, 5], ["homepage", 23, 5], ["license", 24, 5], ["maintainers", 25, 5], ["platforms", 29, 5], ["longDescription", 31, 5]], [["pname", 7, 3], ["version", 8, 3], ["src", 10, 3], ["modRoot", 16, 3], ["vendorHash", 18, 3], ["meta", 20, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchgit: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 11, 5], ["hash", 12, 5], ["rev", 13, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 21, 5], ["mainProgram", 22, 5], ["homepage", 23, 5], ["license", 24, 5], ["maintainers", 25, 5], ["platforms", 29, 5], ["longDescription", 31, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 7, 3], ["version", 8, 3], ["src", 10, 3], ["modRoot", 16, 3], ["vendorHash", 18, 3], ["meta", 20, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,11 +11,11 @@ export default nix.lambda((args) => (() => {
   const buildGoModule = nix.arg($, "buildGoModule");
   const fetchgit = nix.arg($, "fetchgit");
   return nix.app(buildGoModule, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "kontemplate",
       version: "1.8.0-unstable-2024-06-09",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://code.tvl.fyi/depot.git",
           hash: "sha256-Cv/y1Tj+hUKP0gi9ceS1Gml1WRYbUGSeWfJfXyX6dLA=",
           rev: "b16ddb54b0327606cec2df220eaabb1328e18e3e",
@@ -25,7 +23,7 @@ export default nix.lambda((args) => (() => {
       modRoot: "ops/kontemplate",
       vendorHash: "sha256-xPGVM2dq5fAVOiuodOXhDm3v3k+ncNLhlk6aCtF5S9E=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Extremely simple Kubernetes resource templates",
         mainProgram: "kontemplate",
         homepage: "https://code.tvl.fyi/about/ops/kontemplate",

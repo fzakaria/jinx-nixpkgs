@@ -2,16 +2,15 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/nspawn-daemon-reexec-dbus.nix", [[["machine", 18, 14]], [["name", 14, 3], ["containers", 18, 3], ["testScript", 20, 3]]]);
 const formals$1 = { args: {  }, ellipsis: true };
-const pos$1 = nix.positions(here + "/nspawn-daemon-reexec-dbus.nix", [["machine", 18, 14]]);
-const pos$2 = nix.positions(here + "/nspawn-daemon-reexec-dbus.nix", [["name", 14, 3], ["containers", 18, 3], ["testScript", 20, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   return {
-    [nix.POS]: pos$2,
+    [nix.POS]: $pos[1],
     name: "nspawn-daemon-reexec-dbus",
-    containers: nix.thunk(() => ({ [nix.POS]: pos$1, machine: nix.thunk(() => ({})) })),
+    containers: nix.thunk(() => ({ [nix.POS]: $pos[0], machine: nix.thunk(() => ({})) })),
     testScript: "import re\n\nBUS_BROKEN = re.compile(\n    r\"Transport endpoint is not connected|Failed to connect to bus\"\n)\n\n# Without the fix the notify socket's receive buffer fills after 10\n# undrained `READY=1` resends, so PID 1 blocks then.\nREEXECS = 10\n\n\ndef bus_broken():\n    \"\"\"Whether the in-container D-Bus is unusable. A broken bus prints a\n    transport error or hangs until `timeout` kills it (status 124); both\n    count as broken.\"\"\"\n    status, out = machine.execute(\n        \"timeout 10 systemctl show -p ActiveState --value \"\n        \"multi-user.target 2>&1\",\n        check_return=False,\n        timeout=20,\n    )\n    return status != 0 or bool(BUS_BROKEN.search(out)), status, out\n\n\nmachine.start()\nmachine.wait_for_unit(\"multi-user.target\", timeout=120)\n\n# Pre-reexec sanity: the bus works and shows no break.\nbroken, status, out = bus_broken()\nassert not broken, (\n    f\"bus already broken before any reexec: status={status} out={out!r}\"\n)\nmachine.log(f\"pre-reexec sanity OK: {out.strip()!r}\")\n\nbroke_at = None\nfor i in range(1, REEXECS + 1):\n    # The same D-Bus Manager.Reexecute that switch-to-configuration issues\n    # on a systemd change.\n    machine.execute(\n        \"timeout 30 systemctl daemon-reexec\",\n        check_return=False,\n        timeout=45,\n    )\n    broken, status, out = bus_broken()\n    machine.log(f\"[reexec {i}] status={status} out={out.strip()!r}\")\n    if broken:\n        broke_at = i\n        break\n\nassert broke_at is None, (\n    f\"nspawn D-Bus broke after daemon-reexec #{broke_at} of {REEXECS} \"\n    \"(systemctl hung or returned a bus transport error). The re-exec'd \"\n    \"PID 1 never finished re-initialising -- the test driver stopped \"\n    \"draining the notify socket, so PID 1's READY=1 resend blocked. \"\n    \"Never observed on QEMU.\"\n)\n",
   };
 })(), formals$1);

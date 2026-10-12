@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 20, 5], ["tag", 21, 5], ["hash", 22, 5]], [["NIX_LDFLAGS", 41, 7]], [["description", 44, 5], ["homepage", 45, 5], ["license", 46, 5], ["maintainers", 47, 5], ["platforms", 48, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["configureScript", 25, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 34, 3], ["env", 41, 3], ["meta", 43, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchgit: false, automake: false, autoconf: false, libtool: false, libx11: false, libxi: false, libxtst: false, "pkg-config": false, xorgproto: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 20, 5], ["tag", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_LDFLAGS", 41, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 44, 5], ["homepage", 45, 5], ["license", 46, 5], ["maintainers", 47, 5], ["platforms", 48, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["configureScript", 25, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 34, 3], ["env", 41, 3], ["meta", 43, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const xorgproto = nix.arg($, "xorgproto");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "libfakekey",
       version: "0.3",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://git.yoctoproject.org/libfakekey",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-QNJlxZ9uNwNgFWm9qRJdPfusx7dXHZajjFH7wDhpgcs=",
@@ -34,9 +31,9 @@ export default nix.lambda((args) => (() => {
       configureScript: "./autogen.sh",
       nativeBuildInputs: nix.thunk(() => [automake, autoconf, pkg_config, libtool]),
       buildInputs: nix.thunk(() => [libx11, libxi, libxtst, xorgproto]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_LDFLAGS: "-lX11" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], NIX_LDFLAGS: "-lX11" })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "X virtual keyboard library",
         homepage: "https://www.yoctoproject.org/tools-resources/projects/matchbox",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),

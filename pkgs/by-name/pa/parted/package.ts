@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 24, 5], ["sha256", 25, 5]], [["description", 64, 5], ["longDescription", 66, 5], ["homepage", 76, 5], ["license", 77, 5], ["maintainers", 79, 5], ["platforms", 84, 5]], [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["outputs", 28, 3], ["postPatch", 35, 3], ["buildInputs", 39, 3], ["nativeBuildInputs", 46, 3], ["configureFlags", 49, 3], ["enableParallelBuilding", 51, 3], ["doCheck", 53, 3], ["nativeCheckInputs", 54, 3], ["meta", 63, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, "pkg-config": false, lvm2: false, libuuid: false, gettext: false, readline: false, dosfstools: false, e2fsprogs: false, perl: false, python3: false, "util-linux": false, check: false, enableStatic: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 24, 5], ["sha256", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 64, 5], ["longDescription", 66, 5], ["homepage", 76, 5], ["license", 77, 5], ["maintainers", 79, 5], ["platforms", 84, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["outputs", 28, 3], ["postPatch", 35, 3], ["buildInputs", 39, 3], ["nativeBuildInputs", 46, 3], ["configureFlags", 49, 3], ["enableParallelBuilding", 51, 3], ["doCheck", 53, 3], ["nativeCheckInputs", 54, 3], ["meta", 63, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const check = nix.arg($, "check");
   const enableStatic = nix.argOr($, "enableStatic", () => nix.sel(stdenv, "hostPlatform", "isStatic"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "parted",
       version: "3.8",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnu/parted/parted-${nix.sel(finalAttrs, "version")}.tar.xz`),
           sha256: "sha256-oreBH0ew3bH3sdCqRW98EnDacHCM4jHC/gVMcZnq+mM=",
         })))),
@@ -42,7 +40,7 @@ export default nix.lambda((args) => (() => {
       doCheck: nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isMusl"))),
       nativeCheckInputs: nix.thunk(() => [check, dosfstools, e2fsprogs, perl, python3, util_linux]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Create, destroy, resize, check, and copy partitions",
         longDescription: "GNU Parted is an industrial-strength package for creating, destroying,\nresizing, checking and copying partitions, and the file systems on\nthem.  This is useful for creating space for new operating systems,\nreorganising disk usage, copying data on hard disks and disk imaging.\n\nIt contains a library, libparted, and a command-line frontend, parted,\nwhich also serves as a sample implementation and script backend.\n",
         homepage: "https://www.gnu.org/software/parted/",

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]], [["colorthief", 61, 5], ["colorz", 62, 5], ["fast-colorthief", 63, 5], ["haishoku", 64, 5], ["modern_colorthief", 65, 5], ["all", 66, 5]], [["updateScript", 75, 12]], [["description", 78, 5], ["homepage", 79, 5], ["changelog", 80, 5], ["license", 81, 5], ["maintainers", 82, 5], ["mainProgram", 83, 5]], [["pname", 19, 3], ["version", 20, 3], ["pyproject", 21, 3], ["src", 23, 3], ["build-system", 30, 3], ["nativeBuildInputs", 32, 3], ["dependencies", 34, 3], ["nativeCheckInputs", 41, 3], ["makeWrapperArgs", 46, 3], ["postInstall", 50, 3], ["preCheck", 54, 3], ["pythonImportsCheck", 58, 3], ["optional-dependencies", 60, 3], ["passthru", 75, 3], ["meta", 77, 3]]]);
 const formals$1 = { args: { lib: false, python3: false, fetchFromGitHub: false, installShellFiles: false, "nix-update-script": false, imagemagick: false, colorz: false, withColorthief: true, withColorz: true, withFastColorthief: true, withHaishoku: true, withModernColorthief: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["colorthief", 61, 5], ["colorz", 62, 5], ["fast-colorthief", 63, 5], ["haishoku", 64, 5], ["modern_colorthief", 65, 5], ["all", 66, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 75, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 78, 5], ["homepage", 79, 5], ["changelog", 80, 5], ["license", 81, 5], ["maintainers", 82, 5], ["mainProgram", 83, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["pyproject", 21, 3], ["src", 23, 3], ["build-system", 30, 3], ["nativeBuildInputs", 32, 3], ["dependencies", 34, 3], ["nativeCheckInputs", 41, 3], ["makeWrapperArgs", 46, 3], ["postInstall", 50, 3], ["preCheck", 54, 3], ["pythonImportsCheck", 58, 3], ["optional-dependencies", 60, 3], ["passthru", 75, 3], ["meta", 77, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.8.15";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "eylles",
           repo: "pywal16",
           tag: version,
@@ -47,7 +43,7 @@ export default nix.lambda((args) => (() => {
       const optional_dependencies = nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(python3, "pkgs")), null);
         return {
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           colorthief: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "colorthief"))]),
           colorz: nix.thunk(() => [colorz]),
           "fast-colorthief": nix.thunk(() => [nix.thunk(() => nix.lookup(w, "fast-colorthief"))]),
@@ -63,11 +59,11 @@ export default nix.lambda((args) => (() => {
         };
       })());
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "16 colors fork of pywal",
         homepage: "https://github.com/eylles/pywal16",
         changelog: nix.thunk(() => nix.str`https://github.com/eylles/pywal16/blob/refs/tags/${version}/CHANGELOG.md`),
@@ -79,7 +75,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "wal",
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         pyproject,

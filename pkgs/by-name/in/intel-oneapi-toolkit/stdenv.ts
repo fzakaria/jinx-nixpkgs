@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/stdenv.nix", [[["isClang", 34, 7], ["langC", 35, 7], ["langCC", 37, 7]], [["name", 10, 5], ["dontUnpack", 11, 5], ["installPhase", 17, 5], ["passthru", 33, 5], ["hardeningUnsupportedFlags", 41, 5]], [["cc", 49, 5], ["extraPackages", 50, 5], ["extraBuildCommands", 51, 5]]]);
 const formals$1 = { args: { kit: false, stdenvNoCC: false, stdenv: false, overrideCC: false, wrapCCWith: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/stdenv.nix", [["isClang", 34, 7], ["langC", 35, 7], ["langCC", 37, 7]]);
-const pos$2 = nix.positions(here + "/stdenv.nix", [["name", 10, 5], ["dontUnpack", 11, 5], ["installPhase", 17, 5], ["passthru", 33, 5], ["hardeningUnsupportedFlags", 41, 5]]);
-const pos$3 = nix.positions(here + "/stdenv.nix", [["cc", 49, 5], ["extraPackages", 50, 5], ["extraBuildCommands", 51, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const overrideCC = nix.arg($, "overrideCC");
   const wrapCCWith = nix.arg($, "wrapCCWith");
   const unwrappedCC = nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       name: "intel-oneapi-cc-unwrapped",
       dontUnpack: true,
       installPhase: nix.thunk(() => nix.str`mkdir -p $out/bin
@@ -32,11 +30,11 @@ exec ${kit}/compiler/latest/bin/icx "$@"
 EOF
 chmod +x $out/bin/clang
 `),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$1, isClang: true, langC: true, langCC: true })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[0], isClang: true, langC: true, langCC: true })),
       hardeningUnsupportedFlags: nix.thunk(() => ["zerocallusedregs", "pacret", "shadowstack"]),
     }))));
   const wrappedCC = nix.thunk(() => nix.app(wrapCCWith, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       cc: unwrappedCC,
       extraPackages: nix.thunk(() => [kit]),
       extraBuildCommands: nix.thunk(() => nix.str`# Consumers expect the icpx/icx names and might reject clang++/clang.

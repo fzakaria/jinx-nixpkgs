@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 28, 5], ["hash", 29, 5]], [["packageName", 68, 7]], [["updateScript", 67, 5]], [["homepage", 73, 5], ["description", 74, 5], ["mainProgram", 75, 5], ["teams", 76, 5], ["license", 77, 5], ["platforms", 78, 5]], [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 44, 3], ["postPatch", 54, 3], ["passthru", 66, 3], ["meta", 72, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, "desktop-file-utils": false, "pkg-config": false, gnome: false, "adwaita-icon-theme": false, gtk4: false, libadwaita: false, wrapGAppsHook4: false, gjs: false, "gobject-introspection": false, libgweather: false, meson: false, ninja: false, geoclue2: false, python3: false, "gsettings-desktop-schemas": false, typescript_5: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 28, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["packageName", 68, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 67, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 73, 5], ["description", 74, 5], ["mainProgram", 75, 5], ["teams", 76, 5], ["license", 77, 5], ["platforms", 78, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 44, 3], ["postPatch", 54, 3], ["passthru", 66, 3], ["meta", 72, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,11 +27,11 @@ export default nix.lambda((args) => (() => {
   const gsettings_desktop_schemas = nix.arg($, "gsettings-desktop-schemas");
   const typescript_5 = nix.arg($, "typescript_5");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "gnome-weather",
       version: "50.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnome/sources/gnome-weather/${nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/gnome-weather-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-V951eGBfkfmrQAVRznc423UFvIj0KjPHDOenAWf9tRM=",
         })))),
@@ -61,11 +57,11 @@ export default nix.lambda((args) => (() => {
       ]),
       postPatch: "# The .service file is not wrapped with the correct environment\n# so misses GIR files when started. By re-pointing from the gjs\n# entry point to the wrapped binary we get back to a wrapped\n# binary.\nsubstituteInPlace \"data/org.gnome.Weather.service.in\" \\\n    --replace-fail \"Exec=@DATA_DIR@/@APP_ID@\" \"Exec=$out/bin/gnome-weather\"\n\nchmod +x meson_post_install.py\npatchShebangs meson_post_install.py\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$2, packageName: "gnome-weather" })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: $pos[1], packageName: "gnome-weather" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://apps.gnome.org/Weather/",
         description: "Access current weather conditions and forecasts",
         mainProgram: "gnome-weather",

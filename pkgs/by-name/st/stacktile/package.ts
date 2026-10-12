@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]], [["url", 23, 7], ["hash", 24, 7]], [["homepage", 49, 5], ["description", 50, 5], ["license", 51, 5], ["mainProgram", 52, 5], ["maintainers", 53, 5], ["platforms", 54, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["patches", 21, 3], ["outputs", 28, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 37, 3], ["makeFlags", 41, 3], ["strictDeps", 46, 3], ["meta", 48, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromSourcehut: false, fetchpatch: false, wayland: false, "wayland-scanner": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 23, 7], ["hash", 24, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 49, 5], ["description", 50, 5], ["license", 51, 5], ["mainProgram", 52, 5], ["maintainers", 53, 5], ["platforms", 54, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["patches", 21, 3], ["outputs", 28, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 37, 3], ["makeFlags", 41, 3], ["strictDeps", 46, 3], ["meta", 48, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const wayland = nix.arg($, "wayland");
   const wayland_scanner = nix.arg($, "wayland-scanner");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "stacktile",
       version: "1.0.0",
       src: nix.thunk(() => nix.app(fetchFromSourcehut, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "~leon_plickat",
           repo: "stacktile",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -29,7 +26,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://aur.archlinux.org/cgit/aur.git/plain/fix-compilation.patch?h=stacktile&id=388a522b69e34c01cc5d57341d8578470a7dccfb",
             hash: "sha256-y5ArQyjIqT2ICmm8ZYDHZ04DwGgw2d7wsgoH5XJPZf0=",
           })))),
@@ -43,7 +40,7 @@ export default nix.lambda((args) => (() => {
       ]),
       strictDeps: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://sr.ht/~leon_plickat/stacktile/",
         description: "Layout generator for the river Wayland compositor",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 29, 5], ["hash", 30, 5]], [["ulogd", 78, 43]], [["tests", 78, 12]], [["description", 81, 5], ["mainProgram", 82, 5], ["longDescription", 84, 5], ["homepage", 96, 5], ["license", 97, 5], ["platforms", 98, 5], ["maintainers", 99, 5]], [["version", 25, 3], ["pname", 26, 3], ["src", 28, 3], ["outputs", 33, 3], ["postPatch", 39, 3], ["postBuild", 43, 3], ["postInstall", 50, 3], ["buildInputs", 56, 3], ["nativeBuildInputs", 68, 3], ["passthru", 78, 3], ["meta", 80, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, libnetfilter_acct: false, libnetfilter_conntrack: false, libnetfilter_log: false, libmnl: false, libnfnetlink: false, automake: false, autoconf: false, autogen: false, libtool: false, libpq: false, libmysqlclient: false, sqlite: false, "pkg-config": false, libpcap: false, "linuxdoc-tools": false, autoreconfHook: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 29, 5], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["ulogd", 78, 43]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 78, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 81, 5], ["mainProgram", 82, 5], ["longDescription", 84, 5], ["homepage", 96, 5], ["license", 97, 5], ["platforms", 98, 5], ["maintainers", 99, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["version", 25, 3], ["pname", 26, 3], ["src", 28, 3], ["outputs", 33, 3], ["postPatch", 39, 3], ["postBuild", 43, 3], ["postInstall", 50, 3], ["buildInputs", 56, 3], ["nativeBuildInputs", 68, 3], ["passthru", 78, 3], ["meta", 80, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,11 +28,11 @@ export default nix.lambda((args) => (() => {
   const autoreconfHook = nix.arg($, "autoreconfHook");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       version: "2.0.9",
       pname: "ulogd",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://www.netfilter.org/pub/ulogd/ulogd-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-UjplH+Cp8lsM2H1dNfw32Tgufuz89h5I1VBf88+A7aU=",
         })))),
@@ -65,11 +61,11 @@ export default nix.lambda((args) => (() => {
         linuxdoc_tools,
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$2, ulogd: nix.thunk(() => nix.attr(nixosTests, "ulogd")) })),
+        [nix.POS]: $pos[2],
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[1], ulogd: nix.thunk(() => nix.attr(nixosTests, "ulogd")) })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Userspace logging daemon for netfilter/iptables",
         mainProgram: "ulogd",
         longDescription: "Logging daemon that reads event messages coming from the Netfilter\nconnection tracking, the Netfilter packet logging subsystem and from the\nNetfilter accounting subsystem. You have to enable support for connection\ntracking event delivery; ctnetlink and the NFLOG target in your Linux\nkernel 2.6.x or load their respective modules. The deprecated ULOG target\n(which has been superseded by NFLOG) is also supported.\n\nThe received messages can be logged into files or into a MySQL, SQLite3\nor PostgreSQL database. IPFIX and Graphite output are also supported.\n",

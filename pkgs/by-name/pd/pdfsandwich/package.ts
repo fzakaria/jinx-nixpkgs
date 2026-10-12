@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 20, 5], ["rev", 21, 5], ["sha256", 22, 5]], [["description", 50, 5], ["homepage", 51, 5], ["license", 52, 5], ["maintainers", 53, 5], ["platforms", 54, 5], ["mainProgram", 55, 5]], [["version", 16, 3], ["pname", 17, 3], ["src", 19, 3], ["strictDeps", 25, 3], ["nativeBuildInputs", 27, 3], ["installPhase", 32, 3], ["meta", 49, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, ocaml: false, makeWrapper: false, fetchsvn: false, ghostscript: false, imagemagick: false, perl: false, "poppler-utils": false, tesseract: false, unpaper: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 20, 5], ["rev", 21, 5], ["sha256", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 50, 5], ["homepage", 51, 5], ["license", 52, 5], ["maintainers", 53, 5], ["platforms", 54, 5], ["mainProgram", 55, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 16, 3], ["pname", 17, 3], ["src", 19, 3], ["strictDeps", 25, 3], ["nativeBuildInputs", 27, 3], ["installPhase", 32, 3], ["meta", 49, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const tesseract = nix.arg($, "tesseract");
   const unpaper = nix.arg($, "unpaper");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       version: "0.1.7",
       pname: "pdfsandwich",
       src: nix.thunk(() => nix.app(fetchsvn, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "svn://svn.code.sf.net/p/pdfsandwich/code/trunk/src",
           rev: "75",
           sha256: "1420c33divch087xrr61lvyf975bapqkgjqaighl581i69nlzsm6",
@@ -40,7 +38,7 @@ mkdir -p $out/man/man1
 cp -p pdfsandwich.1.gz $out/man/man1
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "OCR tool for scanned PDFs",
         homepage: "http://www.tobias-elze.de/pdfsandwich/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

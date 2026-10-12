@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 56, 5], ["repo", 57, 5], ["tag", 58, 5], ["fetchSubmodules", 59, 5], ["hash", 60, 5]], [["NIX_LDFLAGS", 118, 5], ["GTEST_FILTER", 122, 5]], [["description", 207, 5], ["homepage", 208, 5], ["license", 209, 5], ["mainProgram", 210, 5], ["platforms", 211, 5], ["maintainers", 212, 5]], [["pnameBase", 35, 3], ["pname", 48, 3], ["version", 49, 3], ["strictDeps", 51, 3], ["__structuredAttrs", 52, 3], ["__darwinAllowLocalNetworking", 53, 3], ["src", 55, 3], ["nativeBuildInputs", 63, 3], ["buildInputs", 73, 3], ["propagatedBuildInputs", 84, 3], ["cmakeFlags", 90, 3], ["preConfigure", 103, 3], ["doCheck", 108, 11], ["checkPhase", 112, 3], ["env", 116, 3], ["installPhase", 186, 3], ["postFixup", 200, 3], ["meta", 206, 3]]]);
 const formals$1 = { args: { config: false, stdenv: false, lib: false, fetchFromGitHub: false, cmake: false, gtest: false, doCheck: true, autoAddDriverRunpath: false, cudaSupport: true, ncclSupport: true, rLibrary: true, cudaPackages: false, llvmPackages: false, R: false, rPackages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 56, 5], ["repo", 57, 5], ["tag", 58, 5], ["fetchSubmodules", 59, 5], ["hash", 60, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_LDFLAGS", 118, 5], ["GTEST_FILTER", 122, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 207, 5], ["homepage", 208, 5], ["license", 209, 5], ["mainProgram", 210, 5], ["platforms", 211, 5], ["maintainers", 212, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pnameBase", 35, 3], ["pname", 48, 3], ["version", 49, 3], ["strictDeps", 51, 3], ["__structuredAttrs", 52, 3], ["__darwinAllowLocalNetworking", 53, 3], ["src", 55, 3], ["nativeBuildInputs", 63, 3], ["buildInputs", 73, 3], ["propagatedBuildInputs", 84, 3], ["cmakeFlags", 90, 3], ["preConfigure", 103, 3], ["doCheck", 108, 11], ["checkPhase", 112, 3], ["env", 116, 3], ["installPhase", 186, 3], ["postFixup", 200, 3], ["meta", 206, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,7 +26,7 @@ export default nix.lambda((args) => (() => {
   nix.assert_((!nix.asBool(rLibrary) || nix.asBool(!nix.asBool(doCheck))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/xg/xgboost/package.nix:25:1");
   const effectiveStdenv = nix.thunk(() => (nix.asBool(cudaSupport) ? nix.sel(cudaPackages, "backendStdenv") : nix.force(stdenv)));
   return nix.app(nix.sel(effectiveStdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pnameBase: "xgboost",
       pname: nix.thunk(() => nix.add(nix.app(nix.sel(lib, "optionalString"), rLibrary, "r-"), "xgboost")),
       version: "3.0.5",
@@ -37,7 +34,7 @@ export default nix.lambda((args) => (() => {
       __structuredAttrs: true,
       __darwinAllowLocalNetworking: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "dmlc",
           repo: "xgboost",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -62,7 +59,7 @@ export default nix.lambda((args) => (() => {
       checkPhase: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), cudaSupport, nix.thunk(() => nix.str`ctest --force-new-ctest-process ${nix.app(nix.sel(lib, "optionalString"), cudaSupport, "-E TestXGBoostLib")}
 `))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_LDFLAGS: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), rLibrary, nix.thunk(() => nix.str`-L${R}/lib/R/lib`))),
         GTEST_FILTER: nix.thunk(() => (() => {
           const xsimdTests = nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(effectiveStdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["ThreadGroup.TimerThread", "ThreadGroup.TimerThreadSimple"])));
@@ -125,7 +122,7 @@ export default nix.lambda((args) => (() => {
       installPhase: nix.thunk(() => nix.add(nix.add("runHook preInstall\n", nix.app(nix.sel(lib, "optionalString"), rLibrary, "mkdir -p $out/library\nexport R_LIBS_SITE=\"$out/library:$R_LIBS_SITE${R_LIBS_SITE:+:}\"\n")), "cmake --install .\nrunHook postInstall\n")),
       postFixup: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), rLibrary, "if test -e $out/nix-support/propagated-build-inputs; then\n    ln -s $out/nix-support/propagated-build-inputs $out/nix-support/propagated-user-env-packages\nfi\n")),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Scalable, Portable and Distributed Gradient Boosting (GBDT, GBRT or GBM) Library",
         homepage: "https://github.com/dmlc/xgboost",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

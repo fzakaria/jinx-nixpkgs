@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]], [["xandikos", 43, 18]], [["tests", 43, 12]], [["description", 48, 5], ["homepage", 49, 5], ["license", 50, 5], ["changelog", 51, 5], ["maintainers", 52, 5], ["mainProgram", 53, 5]], [["pname", 10, 3], ["version", 11, 3], ["pyproject", 12, 3], ["src", 14, 3], ["build-system", 21, 3], ["dependencies", 25, 3], ["nativeBuildInputs", 37, 3], ["postInstall", 39, 3], ["passthru", 43, 3], ["nativeCheckInputs", 45, 3], ["meta", 47, 3]]]);
 const formals$1 = { args: { fetchFromGitHub: false, lib: false, nixosTests: false, python3Packages: false, installShellFiles: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["xandikos", 43, 18]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 43, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 48, 5], ["homepage", 49, 5], ["license", 50, 5], ["changelog", 51, 5], ["maintainers", 52, 5], ["mainProgram", 53, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["pyproject", 12, 3], ["src", 14, 3], ["build-system", 21, 3], ["dependencies", 25, 3], ["nativeBuildInputs", 37, 3], ["postInstall", 39, 3], ["passthru", 43, 3], ["nativeCheckInputs", 45, 3], ["meta", 47, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.4.6";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "jelmer",
           repo: "xandikos",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -48,15 +44,18 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [installShellFiles]);
       const postInstall = "installManPage man/xandikos{,-milter}.8\n";
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$2, xandikos: nix.thunk(() => nix.sel(nixosTests, "xandikos")) })),
+        [nix.POS]: $pos[2],
+        tests: nix.thunk(() => ({
+          [nix.POS]: $pos[1],
+          xandikos: nix.thunk(() => nix.sel(nixosTests, "xandikos")),
+        })),
       }));
       const nativeCheckInputs = nix.thunk(() => (() => {
         const w_2 = nix.withScope(python3Packages, null);
         return [nix.thunk(() => nix.lookup(w_2, "pytestCheckHook"))];
       })());
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Lightweight CalDAV/CardDAV server",
         homepage: "https://github.com/jelmer/xandikos",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
@@ -68,7 +67,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "xandikos",
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         pyproject,

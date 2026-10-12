@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 18, 5], ["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]], [["CPP", 39, 7]], [["tests", 46, 12]], [["changelog", 49, 5], ["description", 50, 5], ["homepage", 51, 5], ["license", 52, 5], ["maintainers", 53, 5], ["platforms", 54, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 30, 3], ["patches", 35, 3], ["env", 39, 3], ["configureFlags", 41, 3], ["passthru", 46, 3], ["meta", 48, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, autoreconfHook: false, flex: false, bison: false, readline: false, libssh: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 18, 5], ["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["CPP", 39, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 46, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["changelog", 49, 5], ["description", 50, 5], ["homepage", 51, 5], ["license", 52, 5], ["maintainers", 53, 5], ["platforms", 54, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 30, 3], ["patches", 35, 3], ["env", 39, 3], ["configureFlags", 41, 3], ["passthru", 46, 3], ["meta", 48, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const libssh = nix.arg($, "libssh");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "bird",
       version: "3.3.3",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "gitlab.nic.cz",
           owner: "labs",
           repo: "bird",
@@ -36,13 +32,13 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [readline, libssh]),
       patches: nix.thunk(() => [nix.path(here, "./dont-create-sysconfdir-2.patch")]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         CPP: nix.thunk(() => nix.str`${nix.sel(stdenv, "cc", "targetPrefix")}cpp -E`),
       })),
       configureFlags: nix.thunk(() => ["--localstatedir=/var", "--runstatedir=/run/bird"]),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$3, tests: nix.thunk(() => nix.sel(nixosTests, "bird3")) })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[2], tests: nix.thunk(() => nix.sel(nixosTests, "bird3")) })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         changelog: nix.thunk(() => nix.str`https://gitlab.nic.cz/labs/bird/-/blob/v${nix.sel(finalAttrs, "version")}/NEWS`),
         description: "BIRD Internet Routing Daemon",
         homepage: "https://bird.nic.cz/",

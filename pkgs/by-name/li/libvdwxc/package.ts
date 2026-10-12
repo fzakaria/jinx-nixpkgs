@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["sha256", 20, 5]], [["NIX_CFLAGS_COMPILE", 34, 7]], [["description", 55, 5], ["license", 56, 5], ["homepage", 60, 5], ["platforms", 61, 5], ["maintainers", 62, 5]], [["pname", 12, 3], ["version", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 23, 3], ["buildInputs", 28, 3], ["env", 34, 3], ["preConfigure", 36, 3], ["configureScript", 48, 3], ["hardeningDisable", 50, 3], ["doCheck", 52, 3], ["meta", 54, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitLab: false, gfortran: false, autoreconfHook: false, fftwMpi: false, mpi: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["sha256", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 34, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 55, 5], ["license", 56, 5], ["homepage", 60, 5], ["platforms", 61, 5], ["maintainers", 62, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 23, 3], ["buildInputs", 28, 3], ["env", 34, 3], ["preConfigure", 36, 3], ["configureScript", 48, 3], ["hardeningDisable", 50, 3], ["doCheck", 52, 3], ["meta", 54, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const fftwMpi = nix.arg($, "fftwMpi");
   const mpi = nix.arg($, "mpi");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "libvdwxc",
       version: "unstable-24.02.2020",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "libvdwxc",
           repo: "libvdwxc",
           rev: "92f4910c6ac88e111db2fb3a518089d0510c53b0",
@@ -31,7 +28,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [autoreconfHook, gfortran]),
       buildInputs: nix.thunk(() => [mpi, fftwMpi]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: "-Wno-error=incompatible-pointer-types",
       })),
       preConfigure: nix.thunk(() => nix.str`mkdir build && cd build
@@ -48,7 +45,7 @@ configureFlagsArray+=(
       hardeningDisable: nix.thunk(() => ["format"]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Portable C library of density functionals with van der Waals interactions for density functional theory",
         license: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "licenses")), null);

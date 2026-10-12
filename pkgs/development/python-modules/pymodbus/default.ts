@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]], [["repl", 35, 5], ["serial", 36, 5], ["simulator", 37, 5]], [["description", 77, 5], ["longDescription", 78, 5], ["homepage", 84, 5], ["changelog", 85, 5], ["license", 86, 5], ["maintainers", 87, 5], ["mainProgram", 88, 5]], [["pname", 19, 3], ["version", 20, 3], ["pyproject", 21, 3], ["src", 23, 3], ["__darwinAllowLocalNetworking", 30, 3], ["build-system", 32, 3], ["optional-dependencies", 34, 3], ["nativeCheckInputs", 40, 3], ["preCheck", 51, 3], ["postCheck", 55, 3], ["pythonImportsCheck", 59, 3], ["disabledTests", 61, 3], ["disabledTestPaths", 71, 3], ["meta", 76, 3]]]);
 const formals$1 = { args: { lib: false, aiohttp: false, buildPythonPackage: false, fetchFromGitHub: false, "pymodbus-repl": false, pyserial: false, "pytest-asyncio": false, "pytest-cov-stub": false, "pytest-xdist": false, pytestCheckHook: false, redis: false, setuptools: false, sqlalchemy: false, twisted: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["repl", 35, 5], ["serial", 36, 5], ["simulator", 37, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 77, 5], ["longDescription", 78, 5], ["homepage", 84, 5], ["changelog", 85, 5], ["license", 86, 5], ["maintainers", 87, 5], ["mainProgram", 88, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 19, 3], ["version", 20, 3], ["pyproject", 21, 3], ["src", 23, 3], ["__darwinAllowLocalNetworking", 30, 3], ["build-system", 32, 3], ["optional-dependencies", 34, 3], ["nativeCheckInputs", 40, 3], ["preCheck", 51, 3], ["postCheck", 55, 3], ["pythonImportsCheck", 59, 3], ["disabledTests", 61, 3], ["disabledTestPaths", 71, 3], ["meta", 76, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,12 +22,12 @@ export default nix.lambda((args) => (() => {
   const sqlalchemy = nix.arg($, "sqlalchemy");
   const twisted = nix.arg($, "twisted");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "pymodbus",
       version: "3.15.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "pymodbus-dev",
           repo: "pymodbus",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -39,7 +36,7 @@ export default nix.lambda((args) => (() => {
       __darwinAllowLocalNetworking: true,
       "build-system": nix.thunk(() => [setuptools]),
       "optional-dependencies": nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         repl: nix.thunk(() => [pymodbus_repl]),
         serial: nix.thunk(() => [pyserial]),
         simulator: nix.thunk(() => [aiohttp]),
@@ -59,7 +56,7 @@ export default nix.lambda((args) => (() => {
       disabledTests: nix.thunk(() => nix.concat(["test_connected"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(aiohttp, "version")), "3.9.0")), nix.thunk(() => ["test_split_serial_packet", "test_serial_poll", "test_simulator"])))),
       disabledTestPaths: nix.thunk(() => ["examples/"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Python implementation of the Modbus protocol",
         longDescription: "Pymodbus is a full Modbus protocol implementation using twisted,\ntorndo or asyncio for its asynchronous communications core. It can\nalso be used without any third party dependencies if a more\nlightweight project is needed.\n",
         homepage: "https://github.com/pymodbus-dev/pymodbus",

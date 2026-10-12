@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/database.nix", [[["description", 26, 5]], [["pname", 11, 3], ["version", 12, 19], ["src", 12, 27], ["propagatedBuildInputs", 14, 3], ["doCheck", 16, 3], ["checkInputs", 18, 3], ["meta", 25, 3]]]);
 const formals$1 = { args: { buildDunePackage: false, conan: false, alcotest: false, crowbar: false, fmt: false, rresult: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/database.nix", [["description", 26, 5]]);
-const pos$2 = nix.positions(here + "/database.nix", [["pname", 11, 3], ["version", 12, 19], ["src", 12, 27], ["propagatedBuildInputs", 14, 3], ["doCheck", 16, 3], ["checkInputs", 18, 3], ["meta", 25, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const fmt = nix.arg($, "fmt");
   const rresult = nix.arg($, "rresult");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "conan-database",
       version: nix.thunk(() => nix.attr(conan, "version")),
       src: nix.thunk(() => nix.attr(conan, "src")),
@@ -23,7 +22,7 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       checkInputs: nix.thunk(() => [alcotest, crowbar, fmt, rresult]),
       meta: nix.thunk(() => nix.update(nix.sel(conan, "meta"), {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Database of decision trees to recognize MIME type",
       })),
     })));

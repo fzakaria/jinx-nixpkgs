@@ -2,106 +2,89 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/kernel.nix", [[["structuredExtraConfig", 12, 7]], [["NIXOS_FAKE_USB_DEBUG", 16, 7]], [["NIXOS_FAKE_USB_DEBUG", 17, 7]], [["NIXOS_FAKE_MMC_BLOCK_MINORS", 21, 7]], [["NIXOS_FAKE_MMC_BLOCK_MINORS", 22, 7]], [["NIXOS_TEST_BOOLEAN", 26, 7]], [["NIXOS_TEST_BOOLEAN", 27, 7]], [["NIXOS_FAKE_USB_DEBUG", 31, 7]], [["NIXOS_FAKE_USB_DEBUG", 32, 7]], [["NIXOS_FAKE_USB_DEBUG", 37, 27]], [["tristate", 39, 9], ["optional", 40, 9], ["freeform", 41, 9]], [["expr", 37, 7], ["expected", 38, 7]], [["expr", 47, 7], ["expected", 48, 7]], [["expr", 52, 7], ["expected", 53, 7]], [["expr", 57, 7], ["expected", 58, 7]], [["expr", 69, 9], ["expected", 70, 9]], [["testEasy", 36, 5], ["testMandatoryCheck", 46, 5], ["testYesWinsOverNo", 51, 5], ["testAllOptionalRemainOptional", 56, 5], ["testTreeform", 64, 5]], [["failures", 77, 11], ["description", 78, 3]]]);
 const formals$1 = { args: { lib: false, pkgs: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/kernel.nix", [["structuredExtraConfig", 12, 7]]);
-const pos$2 = nix.positions(here + "/kernel.nix", [["NIXOS_FAKE_USB_DEBUG", 16, 7]]);
-const pos$3 = nix.positions(here + "/kernel.nix", [["NIXOS_FAKE_USB_DEBUG", 17, 7]]);
-const pos$4 = nix.positions(here + "/kernel.nix", [["NIXOS_FAKE_MMC_BLOCK_MINORS", 21, 7]]);
-const pos$5 = nix.positions(here + "/kernel.nix", [["NIXOS_FAKE_MMC_BLOCK_MINORS", 22, 7]]);
-const pos$6 = nix.positions(here + "/kernel.nix", [["NIXOS_TEST_BOOLEAN", 26, 7]]);
-const pos$7 = nix.positions(here + "/kernel.nix", [["NIXOS_TEST_BOOLEAN", 27, 7]]);
-const pos$8 = nix.positions(here + "/kernel.nix", [["NIXOS_FAKE_USB_DEBUG", 31, 7]]);
-const pos$9 = nix.positions(here + "/kernel.nix", [["NIXOS_FAKE_USB_DEBUG", 32, 7]]);
-const pos$10 = nix.positions(here + "/kernel.nix", [["NIXOS_FAKE_USB_DEBUG", 37, 27]]);
-const pos$11 = nix.positions(here + "/kernel.nix", [["tristate", 39, 9], ["optional", 40, 9], ["freeform", 41, 9]]);
-const pos$12 = nix.positions(here + "/kernel.nix", [["expr", 37, 7], ["expected", 38, 7]]);
-const pos$13 = nix.positions(here + "/kernel.nix", [["expr", 47, 7], ["expected", 48, 7]]);
-const pos$14 = nix.positions(here + "/kernel.nix", [["expr", 52, 7], ["expected", 53, 7]]);
-const pos$15 = nix.positions(here + "/kernel.nix", [["expr", 57, 7], ["expected", 58, 7]]);
-const pos$16 = nix.positions(here + "/kernel.nix", [["expr", 69, 9], ["expected", 70, 9]]);
-const pos$17 = nix.positions(here + "/kernel.nix", [["testEasy", 36, 5], ["testMandatoryCheck", 46, 5], ["testYesWinsOverNo", 51, 5], ["testAllOptionalRemainOptional", 56, 5], ["testTreeform", 64, 5]]);
-const pos$18 = nix.positions(here + "/kernel.nix", [["failures", 77, 11], ["description", 78, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   const lts_kernel = nix.thunk(() => nix.sel(pkgs, "linuxPackages", "kernel"));
-  const getConfig = (structuredConfig) => nix.sel(nix.app(nix.sel(lts_kernel, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, structuredExtraConfig: structuredConfig }))), "configfile", "structuredConfig");
+  const getConfig = (structuredConfig) => nix.sel(nix.app(nix.sel(lts_kernel, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], structuredExtraConfig: structuredConfig }))), "configfile", "structuredConfig");
   const mandatoryVsOptionalConfig = nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
       nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIXOS_FAKE_USB_DEBUG: nix.thunk(() => nix.sel(lib, "kernel", "yes")),
       })),
       nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         NIXOS_FAKE_USB_DEBUG: nix.thunk(() => nix.app(nix.sel(lib, "kernel", "option"), nix.thunk(() => nix.sel(lib, "kernel", "yes")))),
       })),
     ])));
   const freeformConfig = nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
       nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         NIXOS_FAKE_MMC_BLOCK_MINORS: nix.thunk(() => nix.app(nix.sel(lib, "kernel", "freeform"), "32")),
       })),
       nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         NIXOS_FAKE_MMC_BLOCK_MINORS: nix.thunk(() => nix.app(nix.sel(lib, "kernel", "freeform"), "64")),
       })),
     ])));
   const mkDefaultWorksConfig = nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
       nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         NIXOS_TEST_BOOLEAN: nix.thunk(() => nix.sel(lib, "kernel", "yes")),
       })),
       nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         NIXOS_TEST_BOOLEAN: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), nix.thunk(() => nix.sel(lib, "kernel", "no")))),
       })),
     ])));
   const allOptionalRemainOptional = nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
       nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         NIXOS_FAKE_USB_DEBUG: nix.thunk(() => nix.app(nix.sel(lib, "kernel", "option"), nix.thunk(() => nix.sel(lib, "kernel", "yes")))),
       })),
       nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         NIXOS_FAKE_USB_DEBUG: nix.thunk(() => nix.app(nix.sel(lib, "kernel", "option"), nix.thunk(() => nix.sel(lib, "kernel", "yes")))),
       })),
     ])));
   const failures = nix.thunk(() => nix.app(nix.sel(lib, "runTests"), nix.thunk(() => ({
-      [nix.POS]: pos$17,
+      [nix.POS]: $pos[16],
       testEasy: nix.thunk(() => ({
-        [nix.POS]: pos$12,
+        [nix.POS]: $pos[11],
         expr: nix.thunk(() => nix.sel(nix.app(getConfig, nix.thunk(() => ({
-            [nix.POS]: pos$10,
+            [nix.POS]: $pos[9],
             NIXOS_FAKE_USB_DEBUG: nix.thunk(() => nix.sel(lib, "kernel", "yes")),
           }))), "NIXOS_FAKE_USB_DEBUG")),
-        expected: nix.thunk(() => ({ [nix.POS]: pos$11, tristate: "y", optional: false, freeform: null })),
+        expected: nix.thunk(() => ({ [nix.POS]: $pos[10], tristate: "y", optional: false, freeform: null })),
       })),
       testMandatoryCheck: nix.thunk(() => ({
-        [nix.POS]: pos$13,
+        [nix.POS]: $pos[12],
         expr: nix.thunk(() => nix.sel(nix.app(getConfig, mandatoryVsOptionalConfig), "NIXOS_FAKE_USB_DEBUG", "optional")),
         expected: false,
       })),
       testYesWinsOverNo: nix.thunk(() => ({
-        [nix.POS]: pos$14,
+        [nix.POS]: $pos[13],
         expr: nix.thunk(() => nix.sel(nix.app(getConfig, mkDefaultWorksConfig), "NIXOS_TEST_BOOLEAN", "tristate")),
         expected: "y",
       })),
       testAllOptionalRemainOptional: nix.thunk(() => ({
-        [nix.POS]: pos$15,
+        [nix.POS]: $pos[14],
         expr: nix.thunk(() => nix.sel(nix.app(getConfig, allOptionalRemainOptional), "NIXOS_FAKE_USB_DEBUG", "optional")),
         expected: true,
       })),
       testTreeform: nix.thunk(() => (() => {
         const res = nix.thunk(() => nix.builtins.tryEval(nix.thunk(() => nix.sel(nix.app(getConfig, freeformConfig), "NIXOS_FAKE_MMC_BLOCK_MINORS", "freeform"))));
         return {
-          [nix.POS]: pos$16,
+          [nix.POS]: $pos[15],
           expr: nix.thunk(() => nix.sel(res, "success")),
           expected: false,
         };
       })()),
     }))));
-  return nix.app(nix.sel(lib, "debug", "throwTestFailures"), nix.thunk(() => ({ [nix.POS]: pos$18, failures: failures, description: "kernel unit tests" })));
+  return nix.app(nix.sel(lib, "debug", "throwTestFailures"), nix.thunk(() => ({ [nix.POS]: $pos[17], failures: failures, description: "kernel unit tests" })));
 })(), formals$1);
 //# sourceMappingURL=kernel.ts.map

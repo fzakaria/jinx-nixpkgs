@@ -2,97 +2,72 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/gancio.nix", [[["maintainers", 9, 8]], [["address", 19, 17], ["prefixLength", 20, 17]], [["addresses", 17, 18]], [["ipv4", 17, 13]], [["eth1", 16, 22]], [["allowedTCPPorts", 25, 20]], [["interfaces", 16, 11], ["extraHosts", 24, 19], ["firewall", 25, 11]], [["systemPackages", 27, 21]], [["dialect", 32, 16]], [["hostname", 31, 13], ["db", 32, 13]], [["description", 38, 17]], [["register", 37, 15]], [["en", 36, 13]], [["enableACME", 43, 13], ["forceSSL", 44, 13]], [["enable", 29, 11], ["settings", 30, 11], ["plugins", 34, 11], ["userLocale", 35, 11], ["nginx", 42, 11]], [["gancio", 28, 18]], [["networking", 15, 9], ["environment", 27, 9], ["services", 28, 9]], [["systemPackages", 52, 21]], [["address", 57, 17], ["prefixLength", 58, 17]], [["addresses", 55, 18]], [["ipv4", 55, 13]], [["eth1", 54, 22]], [["interfaces", 54, 11], ["extraHosts", 62, 19]], [["environment", 52, 9], ["networking", 53, 9]], [["server", 12, 5], ["client", 49, 5]], [["name", 8, 3], ["meta", 9, 3], ["nodes", 11, 3], ["testScript", 67, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/gancio.nix", [["maintainers", 9, 8]]);
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/gancio.nix", [["address", 19, 17], ["prefixLength", 20, 17]]);
-const pos$3 = nix.positions(here + "/gancio.nix", [["addresses", 17, 18]]);
-const pos$4 = nix.positions(here + "/gancio.nix", [["ipv4", 17, 13]]);
-const pos$5 = nix.positions(here + "/gancio.nix", [["eth1", 16, 22]]);
-const pos$6 = nix.positions(here + "/gancio.nix", [["allowedTCPPorts", 25, 20]]);
-const pos$7 = nix.positions(here + "/gancio.nix", [["interfaces", 16, 11], ["extraHosts", 24, 19], ["firewall", 25, 11]]);
-const pos$8 = nix.positions(here + "/gancio.nix", [["systemPackages", 27, 21]]);
-const pos$9 = nix.positions(here + "/gancio.nix", [["dialect", 32, 16]]);
-const pos$10 = nix.positions(here + "/gancio.nix", [["hostname", 31, 13], ["db", 32, 13]]);
-const pos$11 = nix.positions(here + "/gancio.nix", [["description", 38, 17]]);
-const pos$12 = nix.positions(here + "/gancio.nix", [["register", 37, 15]]);
-const pos$13 = nix.positions(here + "/gancio.nix", [["en", 36, 13]]);
-const pos$14 = nix.positions(here + "/gancio.nix", [["enableACME", 43, 13], ["forceSSL", 44, 13]]);
-const pos$15 = nix.positions(here + "/gancio.nix", [["enable", 29, 11], ["settings", 30, 11], ["plugins", 34, 11], ["userLocale", 35, 11], ["nginx", 42, 11]]);
-const pos$16 = nix.positions(here + "/gancio.nix", [["gancio", 28, 18]]);
-const pos$17 = nix.positions(here + "/gancio.nix", [["networking", 15, 9], ["environment", 27, 9], ["services", 28, 9]]);
 const formals$3 = { args: { pkgs: false }, ellipsis: true };
-const pos$18 = nix.positions(here + "/gancio.nix", [["systemPackages", 52, 21]]);
-const pos$19 = nix.positions(here + "/gancio.nix", [["address", 57, 17], ["prefixLength", 58, 17]]);
-const pos$20 = nix.positions(here + "/gancio.nix", [["addresses", 55, 18]]);
-const pos$21 = nix.positions(here + "/gancio.nix", [["ipv4", 55, 13]]);
-const pos$22 = nix.positions(here + "/gancio.nix", [["eth1", 54, 22]]);
-const pos$23 = nix.positions(here + "/gancio.nix", [["interfaces", 54, 11], ["extraHosts", 62, 19]]);
-const pos$24 = nix.positions(here + "/gancio.nix", [["environment", 52, 9], ["networking", 53, 9]]);
-const pos$25 = nix.positions(here + "/gancio.nix", [["server", 12, 5], ["client", 49, 5]]);
-const pos$26 = nix.positions(here + "/gancio.nix", [["name", 8, 3], ["meta", 9, 3], ["nodes", 11, 3], ["testScript", 67, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   const extraHosts = "192.168.13.12 agenda.example.com\n";
   return {
-    [nix.POS]: pos$26,
+    [nix.POS]: $pos[25],
     name: "gancio",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "jbgi"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$25,
+      [nix.POS]: $pos[24],
       server: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$17,
+          [nix.POS]: $pos[16],
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             interfaces: nix.thunk(() => ({
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               eth1: nix.thunk(() => ({
-                [nix.POS]: pos$4,
+                [nix.POS]: $pos[3],
                 ipv4: nix.thunk(() => ({
-                  [nix.POS]: pos$3,
+                  [nix.POS]: $pos[2],
                   addresses: nix.thunk(() => [
-                    nix.thunk(() => ({ [nix.POS]: pos$2, address: "192.168.13.12", prefixLength: 24n })),
+                    nix.thunk(() => ({ [nix.POS]: $pos[1], address: "192.168.13.12", prefixLength: 24n })),
                   ]),
                 })),
               })),
             })),
             extraHosts: extraHosts,
-            firewall: nix.thunk(() => ({ [nix.POS]: pos$6, allowedTCPPorts: nix.thunk(() => [80n]) })),
+            firewall: nix.thunk(() => ({ [nix.POS]: $pos[5], allowedTCPPorts: nix.thunk(() => [80n]) })),
           })),
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$8,
+            [nix.POS]: $pos[7],
             systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs_1, "gancio"))]),
           })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$16,
+            [nix.POS]: $pos[15],
             gancio: nix.thunk(() => ({
-              [nix.POS]: pos$15,
+              [nix.POS]: $pos[14],
               enable: true,
               settings: nix.thunk(() => ({
-                [nix.POS]: pos$10,
+                [nix.POS]: $pos[9],
                 hostname: "agenda.example.com",
-                db: nix.thunk(() => ({ [nix.POS]: pos$9, dialect: "postgres" })),
+                db: nix.thunk(() => ({ [nix.POS]: $pos[8], dialect: "postgres" })),
               })),
               plugins: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs_1, "gancioPlugins", "telegram-bridge"))]),
               userLocale: nix.thunk(() => ({
-                [nix.POS]: pos$13,
+                [nix.POS]: $pos[12],
                 en: nix.thunk(() => ({
-                  [nix.POS]: pos$12,
-                  register: nix.thunk(() => ({ [nix.POS]: pos$11, description: "My new registration page description" })),
+                  [nix.POS]: $pos[11],
+                  register: nix.thunk(() => ({ [nix.POS]: $pos[10], description: "My new registration page description" })),
                 })),
               })),
-              nginx: nix.thunk(() => ({ [nix.POS]: pos$14, enableACME: false, forceSSL: false })),
+              nginx: nix.thunk(() => ({ [nix.POS]: $pos[13], enableACME: false, forceSSL: false })),
             })),
           })),
         };
@@ -101,21 +76,21 @@ export default nix.lambda((args) => (() => {
         const $_1 = nix.formals(args_1, formals$3);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$24,
+          [nix.POS]: $pos[23],
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$18,
+            [nix.POS]: $pos[17],
             systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs_1, "jq"))]),
           })),
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$23,
+            [nix.POS]: $pos[22],
             interfaces: nix.thunk(() => ({
-              [nix.POS]: pos$22,
+              [nix.POS]: $pos[21],
               eth1: nix.thunk(() => ({
-                [nix.POS]: pos$21,
+                [nix.POS]: $pos[20],
                 ipv4: nix.thunk(() => ({
-                  [nix.POS]: pos$20,
+                  [nix.POS]: $pos[19],
                   addresses: nix.thunk(() => [
-                    nix.thunk(() => ({ [nix.POS]: pos$19, address: "192.168.13.1", prefixLength: 24n })),
+                    nix.thunk(() => ({ [nix.POS]: $pos[18], address: "192.168.13.1", prefixLength: 24n })),
                   ]),
                 })),
               })),

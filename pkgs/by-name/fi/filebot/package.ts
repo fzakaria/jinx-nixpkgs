@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 21, 5], ["hash", 22, 5]], [["url", 30, 5], ["hash", 31, 5]], [["versionLister", 88, 5]], [["updateScript", 87, 12]], [["description", 95, 5], ["longDescription", 96, 5], ["homepage", 101, 5], ["changelog", 102, 5], ["sourceProvenance", 103, 5], ["license", 107, 5], ["maintainers", 108, 5], ["platforms", 112, 5], ["mainProgram", 113, 5]], [["pname", 26, 3], ["version", 27, 3], ["src", 29, 3], ["unpackPhase", 34, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 41, 3], ["postPatch", 50, 3], ["dontBuild", 55, 3], ["installPhase", 56, 3], ["passthru", 87, 3], ["meta", 94, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, coreutils: false, openjdk17: false, makeWrapper: false, autoPatchelfHook: false, zlib: false, libzen: false, libmediainfo: false, curlWithGnuTls: false, libmms: false, glib: false, genericUpdater: false, writeShellScript: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 30, 5], ["hash", 31, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["versionLister", 88, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 87, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 95, 5], ["longDescription", 96, 5], ["homepage", 101, 5], ["changelog", 102, 5], ["sourceProvenance", 103, 5], ["license", 107, 5], ["maintainers", 108, 5], ["platforms", 112, 5], ["mainProgram", 113, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 26, 3], ["version", 27, 3], ["src", 29, 3], ["unpackPhase", 34, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 41, 3], ["postPatch", 50, 3], ["dontBuild", 55, 3], ["installPhase", 56, 3], ["passthru", 87, 3], ["meta", 94, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,16 +23,16 @@ export default nix.lambda((args) => (() => {
   const genericUpdater = nix.arg($, "genericUpdater");
   const writeShellScript = nix.arg($, "writeShellScript");
   const lanterna = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: "https://search.maven.org/remotecontent?filepath=com/googlecode/lanterna/lanterna/3.1.3/lanterna-3.1.3.jar",
       hash: "sha256-4EeBz34i9+7iYwnx2IC74SQMLw6ThgNKJD8Hy6eMUOA=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "filebot",
       version: "5.2.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: nix.thunk(() => nix.str`https://web.archive.org/web/20230917142929/https://get.filebot.net/filebot/FileBot_${nix.sel(finalAttrs, "version")}/FileBot_${nix.sel(finalAttrs, "version")}-portable.tar.xz`),
           hash: "sha256-1LYFc76wQOnmlkdGjE7ZuRh4FeM2o8ZM4sfDwx8hyBc=",
         })))),
@@ -78,14 +73,14 @@ wrapProgram $out/opt/filebot.sh \\
 ln -s $out/opt/filebot.sh $out/bin/filebot
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(genericUpdater, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             versionLister: nix.thunk(() => nix.app(writeShellScript, "filebot-versionLister", "curl -s https://www.filebot.net \\\n  | sed -rne 's,^.*FileBot_([0-9]*\\.[0-9]+\\.[0-9]+)-portable.tar.xz.*,\\1,p'\n")),
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Ultimate TV and Movie Renamer",
         longDescription: "FileBot is the ultimate tool for organizing and renaming your Movies, TV\nShows and Anime as well as fetching subtitles and artwork. It's smart and\njust works.\n",
         homepage: "https://filebot.net",

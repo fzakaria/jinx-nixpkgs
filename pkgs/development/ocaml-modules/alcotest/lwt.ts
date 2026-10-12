@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/lwt.nix", [[["description", 32, 5]], [["pname", 12, 3], ["version", 14, 22], ["src", 14, 30], ["duneVersion", 16, 3], ["propagatedBuildInputs", 18, 3], ["doCheck", 25, 3], ["checkInputs", 26, 3], ["meta", 31, 3]]]);
 const formals$1 = { args: { buildDunePackage: false, alcotest: false, logs: false, lwt: false, fmt: false, re: false, cmdliner: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/lwt.nix", [["description", 32, 5]]);
-const pos$2 = nix.positions(here + "/lwt.nix", [["pname", 12, 3], ["version", 14, 22], ["src", 14, 30], ["duneVersion", 16, 3], ["propagatedBuildInputs", 18, 3], ["doCheck", 25, 3], ["checkInputs", 26, 3], ["meta", 31, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const re = nix.arg($, "re");
   const cmdliner = nix.arg($, "cmdliner");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "alcotest-lwt",
       version: nix.thunk(() => nix.attr(alcotest, "version")),
       src: nix.thunk(() => nix.attr(alcotest, "src")),
@@ -24,7 +23,7 @@ export default nix.lambda((args) => (() => {
       propagatedBuildInputs: nix.thunk(() => [alcotest, logs, lwt, fmt]),
       doCheck: true,
       checkInputs: nix.thunk(() => [re, cmdliner]),
-      meta: nix.thunk(() => nix.update(nix.sel(alcotest, "meta"), { [nix.POS]: pos$1, description: "Lwt-based helpers for Alcotest" })),
+      meta: nix.thunk(() => nix.update(nix.sel(alcotest, "meta"), { [nix.POS]: $pos[0], description: "Lwt-based helpers for Alcotest" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=lwt.ts.map

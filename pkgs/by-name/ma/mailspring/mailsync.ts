@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/mailsync.nix", [[["src", 32, 62], ["version", 32, 66]], [["src", 33, 64], ["version", 33, 68], ["mailspring-libetpan", 33, 76]], [["CFLAGS", 83, 7], ["CXXFLAGS", 84, 7]], [["description", 126, 5], ["homepage", 127, 5], ["license", 128, 5], ["platforms", 129, 5]], [["pname", 36, 3], ["src", 37, 11], ["version", 37, 15], ["sourceRoot", 39, 3], ["nativeBuildInputs", 41, 3], ["buildInputs", 49, 3], ["runtimeDependencies", 71, 3], ["env", 75, 3], ["cmakeFlags", 87, 3], ["postPatch", 91, 3], ["installPhase", 115, 3], ["meta", 125, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, callPackage: false, src: false, version: false, autoPatchelfHook: false, cmake: false, "pkg-config": false, "c-ares": false, curl: false, cyrus_sasl: false, glib: false, "html-tidy": false, icu: false, libctemplate: false, libiconv: false, "libsysprof-capture": false, libuuid: false, libxml2: false, pcre2: false, sqlite: false, xz: false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/mailsync.nix", [["src", 32, 62], ["version", 32, 66]]);
-const pos$2 = nix.positions(here + "/mailsync.nix", [["src", 33, 64], ["version", 33, 68], ["mailspring-libetpan", 33, 76]]);
-const pos$3 = nix.positions(here + "/mailsync.nix", [["CFLAGS", 83, 7], ["CXXFLAGS", 84, 7]]);
-const pos$4 = nix.positions(here + "/mailsync.nix", [["description", 126, 5], ["homepage", 127, 5], ["license", 128, 5], ["platforms", 129, 5]]);
-const pos$5 = nix.positions(here + "/mailsync.nix", [["pname", 36, 3], ["src", 37, 11], ["version", 37, 15], ["sourceRoot", 39, 3], ["nativeBuildInputs", 41, 3], ["buildInputs", 49, 3], ["runtimeDependencies", 71, 3], ["env", 75, 3], ["cmakeFlags", 87, 3], ["postPatch", 91, 3], ["installPhase", 115, 3], ["meta", 125, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,15 +30,15 @@ export default nix.lambda((args) => (() => {
   const sqlite = nix.arg($, "sqlite");
   const xz = nix.arg($, "xz");
   const zlib = nix.arg($, "zlib");
-  const mailspring_libetpan = nix.thunk(() => nix.app(callPackage, nix.path(here, "./libetpan.nix"), nix.thunk(() => ({ [nix.POS]: pos$1, src: src, version: version }))));
+  const mailspring_libetpan = nix.thunk(() => nix.app(callPackage, nix.path(here, "./libetpan.nix"), nix.thunk(() => ({ [nix.POS]: $pos[0], src: src, version: version }))));
   const mailspring_mailcore2 = nix.thunk(() => nix.app(callPackage, nix.path(here, "./mailcore2.nix"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       src: src,
       version: version,
       "mailspring-libetpan": mailspring_libetpan,
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "mailspring-sync",
       src: src,
       version: version,
@@ -72,7 +68,7 @@ export default nix.lambda((args) => (() => {
             "-Wno-error=deprecated-declarations",
             "-Wno-error=incompatible-pointer-types",
           ])));
-        return { [nix.POS]: pos$3, CFLAGS: FLAGS, CXXFLAGS: FLAGS };
+        return { [nix.POS]: $pos[2], CFLAGS: FLAGS, CXXFLAGS: FLAGS };
       })()),
       cmakeFlags: nix.thunk(() => [
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeFeature"), "ETPAN_LIB", nix.thunk(() => nix.str`${mailspring_libetpan}/lib/libetpan${nix.sel(stdenv, "hostPlatform", "extensions", "sharedLibrary")}`))),
@@ -87,7 +83,7 @@ substituteInPlace CMakeLists.txt \\
 `, nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "# UUID_LIB is provided by system frameworks\nsubstituteInPlace CMakeLists.txt \\\n  --replace-fail \"find_library(UUID_LIB NAMES libuuid.a uuid REQUIRED)\" \"set(UUID_LIB \\\"\\\")\"\n\n# Remove GCC related linker flags\nsubstituteInPlace CMakeLists.txt \\\n  --replace-fail 'set(CMAKE_EXE_LINKER_FLAGS \"-static-libgcc -static-libstdc++\")' \"\"\n\n# Inject system frameworks and dependencies\nsubstituteInPlace CMakeLists.txt \\\n  --replace-fail 'target_link_libraries(mailsync pthread sasl2 ssl crypto curl dl)' \\\n  'target_link_libraries(mailsync pthread sasl2 ssl crypto curl dl tidy iconv \"-framework Foundation\" \"-framework CoreFoundation\" \"-framework Security\" \"-framework CoreServices\" \"-framework SystemConfiguration\")'\n"))),
       installPhase: "runHook preInstall\n\nmkdir -p $out/bin\n\ncp mailsync $out/bin\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Email synchronization engine for Mailspring",
         homepage: "https://github.com/Foundry376/Mailspring-Sync",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

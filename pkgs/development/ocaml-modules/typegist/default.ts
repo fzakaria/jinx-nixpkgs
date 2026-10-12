@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 15, 5], ["hash", 16, 5]], [["description", 24, 5], ["longDescription", 25, 5], ["homepage", 36, 5], ["license", 37, 5], ["maintainers", 38, 5]], [["pname", 9, 3], ["version", 10, 3], ["minimalOCamlVersion", 12, 3], ["src", 14, 3], ["buildPhase", 19, 3], ["doCheck", 21, 3], ["meta", 23, 3]]]);
 const formals$1 = { args: { lib: false, fetchzip: false, topkg: false, buildTopkgPackage: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 24, 5], ["longDescription", 25, 5], ["homepage", 36, 5], ["license", 37, 5], ["maintainers", 38, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 9, 3], ["version", 10, 3], ["minimalOCamlVersion", 12, 3], ["src", 14, 3], ["buildPhase", 19, 3], ["doCheck", 21, 3], ["meta", 23, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,14 +16,14 @@ export default nix.lambda((args) => (() => {
       const version = "0.0.0";
       const minimalOCamlVersion = "5.5.0";
       const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://erratique.ch/software/typegist/releases/typegist-${version}.tbz`),
           hash: "sha256-zt37VVZnlxvzw7idYw9v34rNiuJkWG37DqaqkzLDRXI=",
         }))));
       const buildPhase = nix.thunk(() => nix.str`${nix.sel(topkg, "run")} build`);
       const doCheck = true;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "The essence of OCaml types as values",
         longDescription: "This dynamic type representation can be used to devise generic\ntype-indexed functions — value serializers, generators, differs, editors,\nFFI glue, etc. Any accessible type can be described up to the limits\ndefined by its public interface.\n\nTypegist does not model OCaml’s type language in full detail. It focuses\non a core structural subset decorated with typed-indexed metadata to\nprovide an ergonomic interface for both producers and processors of the\nrepresentation.\n",
         homepage: "https://erratique.ch/software/typegist",
@@ -36,7 +34,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         minimalOCamlVersion,

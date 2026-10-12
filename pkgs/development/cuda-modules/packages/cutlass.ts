@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/cutlass.nix", [[["owner", 52, 5], ["repo", 53, 5], ["tag", 54, 5], ["hash", 55, 5]], [["pname", 204, 28], ["version", 204, 34], ["rev-prefix", 205, 7]], [["message", 214, 9], ["assertion", 215, 9]], [["updateScript", 203, 5], ["platformAssertions", 212, 5]], [["description", 221, 5], ["homepage", 222, 5], ["license", 223, 5], ["platforms", 224, 5], ["badPlatforms", 228, 5], ["maintainers", 229, 5], ["teams", 230, 5]], [["__structuredAttrs", 43, 3], ["strictDeps", 44, 3], ["name", 47, 3], ["pname", 48, 3], ["version", 49, 3], ["src", 51, 3], ["outputs", 60, 3], ["nativeBuildInputs", 62, 3], ["postPatch", 77, 3], ["enableParallelBuilding", 138, 3], ["buildInputs", 140, 3], ["cmakeFlags", 150, 3], ["postBuild", 175, 3], ["doCheck", 185, 3], ["checkInputs", 187, 3], ["preCheck", 192, 3], ["requiredSystemFeatures", 197, 3], ["passthru", 202, 3], ["meta", 220, 3]]]);
 const formals$1 = { args: { _cuda: false, addDriverRunpath: false, backendStdenv: false, cmake: false, cuda_cudart: false, cuda_nvcc: false, cuda_nvrtc: false, cudaNamePrefix: false, cudnn: false, fetchFromGitHub: false, flags: false, gtest: false, lib: false, libcublas: false, libcurand: false, ninja: false, python3Packages: false, pythonSupport: true, enableF16C: true, enableTools: true, gitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/cutlass.nix", [["owner", 52, 5], ["repo", 53, 5], ["tag", 54, 5], ["hash", 55, 5]]);
-const pos$2 = nix.positions(here + "/cutlass.nix", [["pname", 204, 28], ["version", 204, 34], ["rev-prefix", 205, 7]]);
-const pos$3 = nix.positions(here + "/cutlass.nix", [["message", 214, 9], ["assertion", 215, 9]]);
-const pos$4 = nix.positions(here + "/cutlass.nix", [["updateScript", 203, 5], ["platformAssertions", 212, 5]]);
-const pos$5 = nix.positions(here + "/cutlass.nix", [["description", 221, 5], ["homepage", 222, 5], ["license", 223, 5], ["platforms", 224, 5], ["badPlatforms", 228, 5], ["maintainers", 229, 5], ["teams", 230, 5]]);
-const pos$6 = nix.positions(here + "/cutlass.nix", [["__structuredAttrs", 43, 3], ["strictDeps", 44, 3], ["name", 47, 3], ["pname", 48, 3], ["version", 49, 3], ["src", 51, 3], ["outputs", 60, 3], ["nativeBuildInputs", 62, 3], ["postPatch", 77, 3], ["enableParallelBuilding", 138, 3], ["buildInputs", 140, 3], ["cmakeFlags", 150, 3], ["postBuild", 175, 3], ["doCheck", 185, 3], ["checkInputs", 187, 3], ["preCheck", 192, 3], ["requiredSystemFeatures", 197, 3], ["passthru", 202, 3], ["meta", 220, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -54,14 +49,14 @@ export default nix.lambda((args) => (() => {
   const flip = nix.thunk(() => nix.attr(from_5, "flip"));
   nix.assert_(nix.app(assertMsg, nix.thunk(() => !nix.asBool(enableTools)), "enableTools is not yet implemented"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/development/cuda-modules/packages/cutlass.nix:41:1");
   return nix.app(nix.sel(backendStdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       __structuredAttrs: true,
       strictDeps: true,
       name: nix.thunk(() => nix.str`${cudaNamePrefix}-${nix.sel(finalAttrs, "pname")}-${nix.sel(finalAttrs, "version")}`),
       pname: "cutlass",
       version: "4.7.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "NVIDIA",
           repo: "cutlass",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -118,23 +113,23 @@ substituteInPlace ./python/cutlass_cppgen/backend/compiler.py \\
 `))),
       requiredSystemFeatures: nix.thunk(() => nix.app(optionals, nix.thunk(() => nix.sel(finalAttrs, "finalPackage", "doCheck")), nix.thunk(() => ["big-parallel", "cuda"]))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
             version: nix.thunk(() => nix.attr(finalAttrs, "version")),
             "rev-prefix": "v",
           })))),
         platformAssertions: nix.thunk(() => [
           nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             message: nix.thunk(() => nix.str`all capabilities are >= 7.0 (${nix.builtins.toJSON(nix.thunk(() => nix.sel(flags, "cudaCapabilities")))})`),
             assertion: nix.thunk(() => nix.app(all, nix.thunk(() => nix.app(flip, versionAtLeast, "7.0")), nix.thunk(() => nix.sel(flags, "cudaCapabilities")))),
           })),
         ]),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "CUDA Templates for Linear Algebra Subroutines",
         homepage: "https://github.com/NVIDIA/cutlass",
         license: nix.thunk(() => nix.sel(licenses, "bsd3")),

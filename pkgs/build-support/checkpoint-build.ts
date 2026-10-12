@@ -2,11 +2,8 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/checkpoint-build.nix", [[["preBuild", 31, 7]], [["outputs", 71, 7], ["name", 72, 7], ["preBuild", 78, 7], ["installPhase", 88, 7], ["dontFixup", 96, 7], ["doInstallCheck", 97, 7], ["doDist", 98, 7]], [["mkCheckpointBuild", 48, 11], ["prepareCheckpointBuild", 68, 3]], [["mkCheckpointedBuild", 102, 3]]]);
 const formals$1 = { args: { lib: false, buildPackages: false, config: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/checkpoint-build.nix", [["preBuild", 31, 7]]);
-const pos$2 = nix.positions(here + "/checkpoint-build.nix", [["outputs", 71, 7], ["name", 72, 7], ["preBuild", 78, 7], ["installPhase", 88, 7], ["dontFixup", 96, 7], ["doInstallCheck", 97, 7], ["doDist", 98, 7]]);
-const pos$3 = nix.positions(here + "/checkpoint-build.nix", [["mkCheckpointBuild", 48, 11], ["prepareCheckpointBuild", 68, 3]]);
-const pos$4 = nix.positions(here + "/checkpoint-build.nix", [["mkCheckpointedBuild", 102, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const mktemp = nix.thunk(() => nix.attr(buildPackages, "mktemp"));
   const rsync = nix.thunk(() => nix.attr(buildPackages, "rsync"));
   const mkCheckpointBuild = (drv) => (checkpointArtifacts) => nix.app(nix.sel(drv, "overrideAttrs"), (old) => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       preBuild: nix.thunk(() => nix.add(nix.selOr(old, () => "", "preBuild"), nix.str`set +e
 sourceDifferencePatchFile=$(${mktemp}/bin/mktemp)
 diff -ur ${checkpointArtifacts}/sources ./ > "$sourceDifferencePatchFile"
@@ -31,10 +28,10 @@ rm "$sourceDifferencePatchFile"
 `)),
     }));
   return nix.update({
-    [nix.POS]: pos$3,
+    [nix.POS]: $pos[2],
     mkCheckpointBuild: mkCheckpointBuild,
     prepareCheckpointBuild: (drv) => nix.app(nix.sel(drv, "overrideAttrs"), (old) => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         outputs: nix.thunk(() => ["out"]),
         name: nix.thunk(() => nix.add(nix.sel(drv, "name"), "-checkpointArtifacts")),
         preBuild: nix.thunk(() => nix.add(nix.selOr(old, () => "", "preBuild"), "mkdir -p $out/sources\ncp -r ./* $out/sources/\n")),
@@ -44,7 +41,7 @@ rm "$sourceDifferencePatchFile"
         doDist: false,
       })),
   }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(config, "allowAliases")), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       mkCheckpointedBuild: nix.thunk(() => nix.app(nix.sel(lib, "warn"), "`mkCheckpointedBuild` is deprecated, use `mkCheckpointBuild` instead!", mkCheckpointBuild)),
     }))));
 })(), formals$1);

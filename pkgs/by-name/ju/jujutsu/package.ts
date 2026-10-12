@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]], [["ZSTD_SYS_USE_PKG_CONFIG", 59, 5], ["LIBGIT2_NO_VENDOR", 60, 5], ["LIBSSH2_SYS_USE_PKG_CONFIG", 61, 5]], [["updateScript", 84, 5]], [["description", 88, 5], ["homepage", 89, 5], ["changelog", 90, 5], ["license", 91, 5], ["maintainers", 92, 5], ["mainProgram", 98, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["cargoHash", 26, 3], ["nativeBuildInputs", 28, 3], ["nativeCheckInputs", 32, 3], ["cargoBuildFlags", 38, 3], ["useNextest", 44, 3], ["cargoTestFlags", 46, 3], ["env", 57, 3], ["postInstall", 64, 3], ["doInstallCheck", 79, 3], ["nativeInstallCheckInputs", 80, 3], ["versionCheckProgram", 81, 3], ["passthru", 83, 3], ["meta", 87, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, rustPlatform: false, fetchFromGitHub: false, installShellFiles: false, gitMinimal: false, gnupg: false, openssh: false, buildPackages: false, "nix-update-script": false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["ZSTD_SYS_USE_PKG_CONFIG", 59, 5], ["LIBGIT2_NO_VENDOR", 60, 5], ["LIBSSH2_SYS_USE_PKG_CONFIG", 61, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 84, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 88, 5], ["homepage", 89, 5], ["changelog", 90, 5], ["license", 91, 5], ["maintainers", 92, 5], ["mainProgram", 98, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["cargoHash", 26, 3], ["nativeBuildInputs", 28, 3], ["nativeCheckInputs", 32, 3], ["cargoBuildFlags", 38, 3], ["useNextest", 44, 3], ["cargoTestFlags", 46, 3], ["env", 57, 3], ["postInstall", 64, 3], ["doInstallCheck", 79, 3], ["nativeInstallCheckInputs", 80, 3], ["versionCheckProgram", 81, 3], ["passthru", 83, 3], ["meta", 87, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "jujutsu",
       version: "0.46.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "jj-vcs",
           repo: "jj",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -47,7 +43,7 @@ export default nix.lambda((args) => (() => {
         "!test(test_build_truncated_evolution_graph)",
       ]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         ZSTD_SYS_USE_PKG_CONFIG: "1",
         LIBGIT2_NO_VENDOR: "1",
         LIBSSH2_SYS_USE_PKG_CONFIG: "1",
@@ -68,11 +64,11 @@ installShellCompletion --cmd jj \\
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       versionCheckProgram: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/bin/jj`),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Git-compatible DVCS that is both simple and powerful",
         homepage: "https://jj-vcs.dev/",
         changelog: nix.thunk(() => nix.str`https://github.com/jj-vcs/jj/blob/v${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

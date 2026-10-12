@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]], [["NIX_CFLAGS_COMPILE", 34, 7]], [["blas64", 37, 13]], [["description", 68, 5], ["homepage", 69, 5], ["license", 70, 5], ["maintainers", 71, 5], ["platforms", 72, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["postPatch", 27, 3], ["env", 34, 3], ["passthru", 36, 3], ["nativeBuildInputs", 40, 3], ["buildInputs", 46, 3], ["cmakeFlags", 51, 3], ["postInstall", 62, 3], ["meta", 67, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, gfortran: false, python3: false, "amd-blis": false, "aocl-utils": false, withOpenMP: true, blas64: true, withAMDOpt: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 34, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["blas64", 37, 13]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 68, 5], ["homepage", 69, 5], ["license", 70, 5], ["maintainers", 71, 5], ["platforms", 72, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["postPatch", 27, 3], ["env", 34, 3], ["passthru", 36, 3], ["nativeBuildInputs", 40, 3], ["buildInputs", 46, 3], ["cmakeFlags", 51, 3], ["postInstall", 62, 3], ["meta", 67, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,19 +19,19 @@ export default nix.lambda((args) => (() => {
   const blas64 = nix.argOr($, "blas64", () => false);
   const withAMDOpt = nix.argOr($, "withAMDOpt", () => true);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "amd-libflame",
       version: "5.3.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "amd",
           repo: "libflame",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-Zl9qw8pb2z7+SKJujHg3/NVt0m2gdmFE6cVXS7wGzAI=",
         })))),
       postPatch: "patchShebangs build\n\n# Enforce reproducible build compiler flags\nsubstituteInPlace CMakeLists.txt --replace '-mtune=native' \"\"\n",
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-Wno-implicit-function-declaration" })),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$3, blas64: blas64 })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], NIX_CFLAGS_COMPILE: "-Wno-implicit-function-declaration" })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[2], blas64: blas64 })),
       nativeBuildInputs: nix.thunk(() => [cmake, gfortran, python3]),
       buildInputs: nix.thunk(() => [amd_blis, aocl_utils]),
       cmakeFlags: nix.thunk(() => nix.concat([
@@ -47,7 +43,7 @@ export default nix.lambda((args) => (() => {
       ], nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(withOpenMP)), "-DENABLE_MULTITHREADING=OFF"), nix.concat(nix.app(nix.sel(lib, "optional"), blas64, "-DENABLE_ILP64=ON"), nix.app(nix.sel(lib, "optional"), withAMDOpt, "-DENABLE_AMD_OPT=ON"))))),
       postInstall: "ln -s $out/lib/libflame.so $out/lib/liblapack.so.3\nln -s $out/lib/libflame.so $out/lib/liblapacke.so.3\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "LAPACK-compatible linear algebra library optimized for AMD CPUs",
         homepage: "https://developer.amd.com/amd-aocl/blas-library/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

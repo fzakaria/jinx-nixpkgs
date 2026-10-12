@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 20, 5], ["url", 21, 5], ["hash", 22, 5]], [["name", 46, 5], ["runtimeInputs", 47, 5], ["text", 52, 5]], [["updateScript", 45, 12]], [["description", 69, 5], ["homepage", 70, 5], ["changelog", 71, 5], ["license", 74, 5], ["mainProgram", 75, 5], ["maintainers", 76, 5], ["platforms", 82, 5], ["sourceProvenance", 85, 5]], [["pname", 13, 3], ["version", 14, 3], ["__structuredAttrs", 16, 3], ["strictDeps", 17, 3], ["src", 19, 3], ["dontPatch", 25, 3], ["dontConfigure", 26, 3], ["dontBuild", 27, 3], ["dontFixup", 28, 3], ["nativeBuildInputs", 30, 3], ["sourceRoot", 32, 3], ["installPhase", 34, 3], ["passthru", 45, 3], ["meta", 68, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchurl: false, writeShellApplication: false, cacert: false, curl: false, openssl: false, undmg: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 20, 5], ["url", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 46, 5], ["runtimeInputs", 47, 5], ["text", 52, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 45, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 69, 5], ["homepage", 70, 5], ["changelog", 71, 5], ["license", 74, 5], ["mainProgram", 75, 5], ["maintainers", 76, 5], ["platforms", 82, 5], ["sourceProvenance", 85, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["__structuredAttrs", 16, 3], ["strictDeps", 17, 3], ["src", 19, 3], ["dontPatch", 25, 3], ["dontConfigure", 26, 3], ["dontBuild", 27, 3], ["dontFixup", 28, 3], ["nativeBuildInputs", 30, 3], ["sourceRoot", 32, 3], ["installPhase", 34, 3], ["passthru", 45, 3], ["meta", 68, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,13 +16,13 @@ export default nix.lambda((args) => (() => {
   const openssl = nix.arg($, "openssl");
   const undmg = nix.arg($, "undmg");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "raycast",
       version: "2.6.3.0",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           name: "Raycast.dmg",
           url: "https://x-r2.raycast-releases.com/Raycast_2.6.3.0_2bca862541_arm64.dmg",
           hash: "sha256-s5xIV0SN6mzkLoBWdfoqTu/hUhIXUzQOmRyIygVZCLE=",
@@ -39,16 +35,16 @@ export default nix.lambda((args) => (() => {
       sourceRoot: "Raycast.app",
       installPhase: "runHook preInstall\n\nmkdir -p \"$out/Applications/Raycast.app\"\ncp -R . \"$out/Applications/Raycast.app\"\nmkdir -p \"$out/bin\"\nln -s \"$out/Applications/Raycast.app/Contents/MacOS/Raycast\" \"$out/bin/raycast\"\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.app(writeShellApplication, nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               name: "raycast-update-script",
               runtimeInputs: nix.thunk(() => [cacert, curl, openssl]),
               text: "download_url=\"https://x.raycast-releases.com/download?platform=macos&architecture=arm64\"\nurl=$(curl --fail --silent --show-error --head --output /dev/null --write-out '%{redirect_url}' \"$download_url\")\nfilename=\"${url##*/}\"\nversion=\"${filename#Raycast_}\"\nversion=\"${version%%_*}\"\nhash=\"sha256-$(curl --fail --silent --show-error --location \"$url\" | openssl dgst -sha256 -binary | openssl base64)\"\n\nsed -i -E \\\n  -e 's|(version = )\"[0-9]+\\.[0-9]+\\.[0-9]+\\.[0-9]+\";|\\1\"'\"$version\"'\";|' \\\n  -e 's|url = \"https://x-r2\\.raycast-releases\\.com/Raycast_[^\"]*_arm64\\.dmg\";|url = \"'\"$url\"'\";|' \\\n  -e 's|(hash = )\"sha256-[A-Za-z0-9+/]+=\";|\\1\"'\"$hash\"'\";|' \\\n  ./pkgs/by-name/ra/raycast/package.nix\n",
             })))))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Control your tools with a few keystrokes",
         homepage: "https://www.raycast.com",
         changelog: nix.thunk(() => nix.str`https://www.raycast.com/changelog/macos/${nix.app(nix.sel(lib, "replaceString"), ".", "-", nix.thunk(() => nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))))}`),

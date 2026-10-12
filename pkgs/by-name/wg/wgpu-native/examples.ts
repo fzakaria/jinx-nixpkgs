@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/examples.nix", [[["description", 85, 5], ["mainProgram", 86, 5]], [["version", 20, 11], ["src", 20, 19], ["pname", 21, 3], ["sourceRoot", 23, 3], ["postPatch", 25, 3], ["strictDeps", 30, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 39, 3], ["runtimeInputs", 49, 3], ["makeWrapperArgs", 57, 3], ["installPhase", 61, 3], ["meta", 84, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, cmake: false, "pkg-config": false, ninja: false, makeWrapper: false, "wgpu-native": false, glfw: false, wayland: false, libxrandr: false, libx11: false, "vulkan-loader": false, version: false, src: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/examples.nix", [["description", 85, 5], ["mainProgram", 86, 5]]);
-const pos$2 = nix.positions(here + "/examples.nix", [["version", 20, 11], ["src", 20, 19], ["pname", 21, 3], ["sourceRoot", 23, 3], ["postPatch", 25, 3], ["strictDeps", 30, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 39, 3], ["runtimeInputs", 49, 3], ["makeWrapperArgs", 57, 3], ["installPhase", 61, 3], ["meta", 84, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,7 +22,7 @@ export default nix.lambda((args) => (() => {
   const version = nix.arg($, "version");
   const src = nix.arg($, "src");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       version: version,
       src: src,
       pname: "wgpu-native-examples",
@@ -38,7 +37,7 @@ export default nix.lambda((args) => (() => {
         ]))),
       installPhase: "runHook preInstall\n\nconcatTo makeWrapperArgsArray makeWrapperArgs\n\n# find all executables that have the same name as their directory\nfor executable in $(find . -regex '.*\\(/[^/]*\\)\\1' -type f -executable)\ndo\n  target=\"$(basename \"$(dirname \"$executable\")\")\"\n  install -Dm755 $executable -t $out/bin\n  mkdir -p $out/share/$target\n  wrapProgram $out/bin/$target --chdir $out/share/$target \"${makeWrapperArgsArray[@]}\"\n\n  # The examples expect their shaders in the CWD, so we copy them into the store\n  # and wrap the examples to run in the directory containing the shader.\n  for shader in $(find ../$target -type f -name '*.wgsl'); do\n    install -Dm644 $shader $out/share/$target/\n  done\ndone\n\nrunHook postInstall\n",
       meta: nix.thunk(() => nix.update(nix.sel(wgpu_native, "meta"), {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Examples for the native WebGPU implementation based on wgpu-core",
         mainProgram: "triangle",
       })),

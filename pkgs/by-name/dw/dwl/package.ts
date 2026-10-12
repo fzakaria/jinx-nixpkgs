@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 45, 5], ["repo", 46, 5], ["rev", 47, 5], ["hash", 48, 5]], [["package", 106, 9], ["command", 108, 9]], [["version", 105, 7], ["basic", 110, 7]], [["tests", 104, 5]], [["homepage", 115, 5], ["changelog", 116, 5], ["description", 117, 5], ["longDescription", 118, 5], ["license", 128, 5], ["maintainers", 129, 5], ["platforms", 130, 28], ["mainProgram", 131, 5]], [["pname", 41, 3], ["version", 42, 3], ["src", 44, 3], ["nativeBuildInputs", 51, 3], ["buildInputs", 57, 3], ["outputs", 72, 3], ["postPatch", 77, 3], ["makeFlags", 87, 3], ["strictDeps", 98, 3], ["__structuredAttrs", 101, 3], ["passthru", 103, 3], ["meta", 114, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromCodeberg: false, installShellFiles: false, libx11: false, libinput: false, libxcb: false, libxkbcommon: false, pixman: false, "pkg-config": false, stdenv: false, testers: false, nixosTests: false, wayland: false, "wayland-protocols": false, "wayland-scanner": false, wlroots_0_20: false, writeText: false, "libxcb-wm": false, xwayland: false, enableXWayland: true, withCustomConfigH: true, configH: true, conf: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 45, 5], ["repo", 46, 5], ["rev", 47, 5], ["hash", 48, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["package", 106, 9], ["command", 108, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 105, 7], ["basic", 110, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 104, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["homepage", 115, 5], ["changelog", 116, 5], ["description", 117, 5], ["longDescription", 118, 5], ["license", 128, 5], ["maintainers", 129, 5], ["platforms", 130, 28], ["mainProgram", 131, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 41, 3], ["version", 42, 3], ["src", 44, 3], ["nativeBuildInputs", 51, 3], ["buildInputs", 57, 3], ["outputs", 72, 3], ["postPatch", 77, 3], ["makeFlags", 87, 3], ["strictDeps", 98, 3], ["__structuredAttrs", 101, 3], ["passthru", 103, 3], ["meta", 114, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -37,11 +32,11 @@ export default nix.lambda((args) => (() => {
   const conf = nix.argOr($, "conf", () => null);
   nix.assert_((!nix.asBool(withCustomConfigH) || nix.asBool(!nix.eq(configH, null))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/dw/dwl/package.nix:39:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "dwl",
       version: "0.9",
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "dwl",
           repo: "dwl",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -71,11 +66,11 @@ export default nix.lambda((args) => (() => {
       strictDeps: true,
       __structuredAttrs: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               command: "dwl -v 2>&1; return 0",
             })))),
@@ -85,7 +80,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(wayland, "meta"));
         return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "https://codeberg.org/dwl/dwl",
         changelog: nix.thunk(() => nix.str`https://codeberg.org/dwl/dwl/src/branch/${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),
         description: "Dynamic window manager for Wayland",

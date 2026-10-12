@@ -2,23 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["urls", 17, 5], ["sha256", 21, 5]], [["url", 33, 11], ["sha256", 34, 19]], [["pfile", 39, 11], ["sha256", 40, 11]], [["pfile", 43, 11], ["sha256", 44, 11]], [["pfile", 47, 11], ["sha256", 48, 11]], [["pfile", 51, 11], ["sha256", 52, 11]], [["pfile", 55, 11], ["sha256", 56, 11]], [["pfile", 59, 11], ["sha256", 60, 11]], [["pfile", 63, 11], ["sha256", 64, 11]], [["pfile", 67, 11], ["sha256", 68, 11]], [["pfile", 71, 11], ["sha256", 72, 11]], [["pfile", 75, 11], ["sha256", 76, 11]], [["NIX_CFLAGS_COMPILE", 89, 7]], [["homepage", 99, 5], ["description", 100, 5], ["platforms", 101, 5], ["license", 102, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["patches", 24, 3], ["nativeBuildInputs", 80, 3], ["buildInputs", 81, 3], ["makeFlags", 83, 3], ["env", 89, 3], ["meta", 98, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, fetchpatch: false, cdrtools: false, m4: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["urls", 17, 5], ["sha256", 21, 5]]);
 const formals$2 = { args: { pfile: false, sha256: false }, ellipsis: false };
-const pos$2 = nix.positions(here + "/package.nix", [["url", 33, 11], ["sha256", 34, 19]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pfile", 39, 11], ["sha256", 40, 11]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pfile", 43, 11], ["sha256", 44, 11]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pfile", 47, 11], ["sha256", 48, 11]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pfile", 51, 11], ["sha256", 52, 11]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pfile", 55, 11], ["sha256", 56, 11]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pfile", 59, 11], ["sha256", 60, 11]]);
-const pos$9 = nix.positions(here + "/package.nix", [["pfile", 63, 11], ["sha256", 64, 11]]);
-const pos$10 = nix.positions(here + "/package.nix", [["pfile", 67, 11], ["sha256", 68, 11]]);
-const pos$11 = nix.positions(here + "/package.nix", [["pfile", 71, 11], ["sha256", 72, 11]]);
-const pos$12 = nix.positions(here + "/package.nix", [["pfile", 75, 11], ["sha256", 76, 11]]);
-const pos$13 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 89, 7]]);
-const pos$14 = nix.positions(here + "/package.nix", [["homepage", 99, 5], ["description", 100, 5], ["platforms", 101, 5], ["license", 102, 5]]);
-const pos$15 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["patches", 24, 3], ["nativeBuildInputs", 80, 3], ["buildInputs", 81, 3], ["makeFlags", 83, 3], ["env", 89, 3], ["meta", 98, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const cdrtools = nix.arg($, "cdrtools");
   const m4 = nix.arg($, "m4");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$15,
+      [nix.POS]: $pos[14],
       pname: "dvd+rw-tools",
       version: "7.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           urls: nix.thunk(() => [
             nix.thunk(() => nix.str`https://anduin.linuxfromscratch.org/BLFS/dvd+rw-tools/dvd+rw-tools-${nix.sel(finalAttrs, "version")}.tar.gz`),
             nix.thunk(() => nix.str`https://github.com/openeuler-mirror/dvdplusrw-tools/raw/refs/heads/master/dvd+rw-tools-${nix.sel(finalAttrs, "version")}.tar.gz`),
@@ -45,58 +31,58 @@ export default nix.lambda((args) => (() => {
           const pfile = nix.arg($_1, "pfile");
           const sha256 = nix.arg($_1, "sha256");
           return nix.app(fetchpatch, nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               url: nix.thunk(() => nix.str`https://gitweb.gentoo.org/repo/gentoo.git/plain/app-cdr/dvd+rw-tools/files/${pfile}?id=b510df361241e8f16314b1f14642305f0111dac6`),
               sha256: sha256,
             })));
         })(), formals$2), nix.thunk(() => [
           nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             pfile: "dvd+rw-tools-7.0-dvddl-r1.patch",
             sha256: "12l33jq6405shfwdycrj52qmd07h5bsp1vjaddknfri456azjny5",
           })),
           nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             pfile: "dvd+rw-tools-7.0-glibc2.6.90.patch",
             sha256: "1fb3gap2in782pa4164h1w0ha8ggsq3inissa1k0zn2p2r3rb5ln",
           })),
           nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             pfile: "dvd+rw-tools-7.0-reload.patch",
             sha256: "12v2y2y6ci5hh6lbmsk97dzgznrm4bxwhc81mq684ix0qspb9mq4",
           })),
           nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             pfile: "dvd+rw-tools-7.0-sysmacros.patch",
             sha256: "1rkb26cyhfxklkmna3l9b4797f6gzlxyqqin44jwnq3jmwfrs6v0",
           })),
           nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             pfile: "dvd+rw-tools-7.0-wctomb-r1.patch",
             sha256: "1xg770l0b4bjn30y7nqg619v4m5ickcn2n8hv9k2an6r191daq58",
           })),
           nix.thunk(() => ({
-            [nix.POS]: pos$8,
+            [nix.POS]: $pos[7],
             pfile: "dvd+rw-tools-7.0-wexit.patch",
             sha256: "0sqzlkm19fmjx4lzxkxwn2ymrj9fq0zk0jkys3xm6xvd2ibb6kxl",
           })),
           nix.thunk(() => ({
-            [nix.POS]: pos$9,
+            [nix.POS]: $pos[8],
             pfile: "dvd+rw-tools-7.1-bluray_pow_freespace.patch",
             sha256: "0iscz8fs5002ymk6wl2fz4x06b7bdnc57rfz8kbv3216acqi5rv3",
           })),
           nix.thunk(() => ({
-            [nix.POS]: pos$10,
+            [nix.POS]: $pos[9],
             pfile: "dvd+rw-tools-7.1-bluray_srm+pow.patch",
             sha256: "0sy40m12w987i6g0cyxv8cfmab4vp7cd222lv05apknfi2y7smmw",
           })),
           nix.thunk(() => ({
-            [nix.POS]: pos$11,
+            [nix.POS]: $pos[10],
             pfile: "dvd+rw-tools-7.1-lastshort.patch",
             sha256: "01wspv70sil20khkg5kj086b1x8rrig4yhcq9s88bdjd42nv0vpx",
           })),
           nix.thunk(() => ({
-            [nix.POS]: pos$12,
+            [nix.POS]: $pos[11],
             pfile: "dvd+rw-tools-7.1-noevent.patch",
             sha256: "1kbmxpg15wci33f2h6pxxvf3qm0kpyzx9wj5a3l67sk34hvza3z6",
           })),
@@ -109,11 +95,11 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`CXX=${nix.sel(stdenv, "cc", "targetPrefix")}c++`),
       ]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$13,
+        [nix.POS]: $pos[12],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["-Wno-reserved-user-defined-literal", "-Wno-c++11-narrowing"]))))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$14,
+        [nix.POS]: $pos[13],
         homepage: "https://en.wikipedia.org/wiki/Dvd%2Brw-tools",
         description: "Tools for mastering Blu-ray and DVD+-RW/+-R media",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),

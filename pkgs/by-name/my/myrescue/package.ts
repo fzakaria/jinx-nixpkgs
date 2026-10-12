@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 13, 5], ["hash", 14, 5]], [["description", 33, 5], ["mainProgram", 34, 5], ["homepage", 35, 5], ["maintainers", 36, 5], ["platforms", 37, 5], ["license", 38, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["nativeBuildInputs", 17, 3], ["sourceRoot", 19, 3], ["patches", 21, 3], ["installPhase", 25, 3], ["meta", 32, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, installShellFiles: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 13, 5], ["hash", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 33, 5], ["mainProgram", 34, 5], ["homepage", 35, 5], ["maintainers", 36, 5], ["platforms", 37, 5], ["license", 38, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["nativeBuildInputs", 17, 3], ["sourceRoot", 19, 3], ["patches", 21, 3], ["installPhase", 25, 3], ["meta", 32, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const installShellFiles = nix.arg($, "installShellFiles");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "myrescue",
       version: "0.9.8",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/project/myrescue/myrescue/myrescue-${nix.sel(finalAttrs, "version")}/myrescue-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-tO9gkDpEtmySatzV2Ktw3eq5SybCUGAUmKXiSxnkwdc=",
         })))),
@@ -27,7 +25,7 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [nix.path(here, "./0001-darwin-build-fixes.patch")]),
       installPhase: "runHook preInstall\ninstall -Dm755 myrescue myrescue-bitmap2ppm myrescue-stat -t $out/bin\ninstallManPage ../doc/myrescue.1\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Hard disk recovery tool that reads undamaged regions first",
         mainProgram: "myrescue",
         homepage: "https://myrescue.sourceforge.net",

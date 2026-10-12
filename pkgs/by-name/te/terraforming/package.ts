@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["updateScript", 15, 12]], [["platforms", 18, 25], ["description", 20, 5], ["homepage", 21, 5], ["license", 22, 5], ["maintainers", 23, 5]], [["ruby", 9, 11], ["pname", 11, 3], ["gemdir", 12, 3], ["exes", 13, 3], ["passthru", 15, 3], ["meta", 17, 3]]]);
 const formals$1 = { args: { lib: false, bundlerApp: false, bundlerUpdateScript: false, ruby: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["updateScript", 15, 12]]);
-const pos$2 = nix.positions(here + "/package.nix", [["platforms", 18, 25], ["description", 20, 5], ["homepage", 21, 5], ["license", 22, 5], ["maintainers", 23, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["ruby", 9, 11], ["pname", 11, 3], ["gemdir", 12, 3], ["exes", 13, 3], ["passthru", 15, 3], ["meta", 17, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,13 +17,13 @@ export default nix.lambda((args) => (() => {
       const gemdir = nix.path(here, "./.");
       const exes = nix.thunk(() => ["terraforming"]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         updateScript: nix.thunk(() => nix.app(bundlerUpdateScript, "terraforming")),
       }));
       const meta = nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(ruby_1, "meta"));
         return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         platforms: nix.thunk(() => nix.attr(from, "platforms")),
         description: "Export existing AWS resources to Terraform style (tf, tfstate)",
         homepage: "https://github.com/dtan4/terraforming",
@@ -39,7 +37,7 @@ export default nix.lambda((args) => (() => {
         })()),
       };
       })());
-      return { [nix.POS]: pos$3, ruby: ruby_1, pname, gemdir, exes, passthru, meta };
+      return { [nix.POS]: $pos[2], ruby: ruby_1, pname, gemdir, exes, passthru, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

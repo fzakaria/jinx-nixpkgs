@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 24, 5], ["hash", 25, 5]], [["updateScript", 90, 12]], [["description", 93, 5], ["homepage", 94, 5], ["license", 95, 5], ["mainProgram", 96, 5], ["maintainers", 97, 5], ["platforms", 102, 5]], [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 34, 3], ["appendRunpaths", 44, 3], ["unpackPhase", 48, 3], ["installPhase", 54, 3], ["postFixup", 76, 3], ["passthru", 90, 3], ["meta", 92, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, dpkg: false, autoPatchelfHook: false, makeWrapper: false, "gsettings-desktop-schemas": false, dconf: false, "alsa-lib": false, gtk3: false, libgbm: false, libGL: false, nspr: false, nss: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 90, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 93, 5], ["homepage", 94, 5], ["license", 95, 5], ["mainProgram", 96, 5], ["maintainers", 97, 5], ["platforms", 102, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 34, 3], ["appendRunpaths", 44, 3], ["unpackPhase", 48, 3], ["installPhase", 54, 3], ["postFixup", 76, 3], ["passthru", 90, 3], ["meta", 92, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const nspr = nix.arg($, "nspr");
   const nss = nix.arg($, "nss");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "cider-2",
       version: "4.0.17",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://repo.cider.sh/apt/pool/main/cider-v${nix.sel(finalAttrs, "version")}-linux-x64.deb`),
           hash: "sha256-CanpS0yydWOkGKp/8SIVSJ7EavFUs9xBxUgmL9AUXJU=",
         })))),
@@ -58,9 +55,9 @@ makeWrapper $out/lib/cider/Cider $out/bin/cider-2 \\
 runHook postInstall
 `),
       postFixup: "mv $out/share/applications/cider.desktop $out/share/applications/cider-2.desktop\nsubstituteInPlace $out/share/applications/cider-2.desktop \\\n  --replace-fail Exec=cider Exec=cider-2 \\\n  --replace-fail Icon=cider Icon=cider-2\n\ninstall -Dm444 $out/share/pixmaps/cider.png \\\n  $out/share/icons/hicolor/256x256/apps/cider-2.png\n\nrm -r $out/share/{pixmaps,lintian}\nrm $out/lib/cider/resources/Cider{,.flatpak}.desktop\nrm $out/lib/cider/resources/public/icon{.icns,-osx-previous.icns,.ico}\n",
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, updateScript: nix.path(here, "./updater.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[1], updateScript: nix.path(here, "./updater.sh") })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Powerful music player that allows you listen to your favorite tracks with style",
         homepage: "https://cider.sh",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 25, 5], ["rev", 26, 5], ["hash", 27, 5], ["fetchLFS", 28, 5]], [["yarnLock", 34, 5], ["hash", 35, 5]], [["VERGEN_GIT_DESCRIBE", 65, 5]], [["description", 75, 5], ["homepage", 76, 5], ["license", 77, 5], ["platforms", 78, 5], ["mainProgram", 79, 5], ["maintainers", 80, 5], ["changelog", 81, 5]], [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["cargoHash", 31, 3], ["offlineCache", 33, 3], ["postPatch", 38, 3], ["nativeBuildInputs", 43, 3], ["buildInputs", 51, 3], ["cargoRoot", 61, 3], ["buildAndTestSubdir", 62, 3], ["env", 64, 3], ["postFixup", 69, 3], ["meta", 74, 3]]]);
 const formals$1 = { args: { lib: false, "cargo-tauri": false, dbus: false, fetchgit: false, fetchYarnDeps: false, freetype: false, "gsettings-desktop-schemas": false, yarnConfigHook: false, nodejs: false, openssl: false, "pkg-config": false, rustPlatform: false, webkitgtk_4_1: false, "libayatana-appindicator": false, wrapGAppsHook4: false, sqlite: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 25, 5], ["rev", 26, 5], ["hash", 27, 5], ["fetchLFS", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["yarnLock", 34, 5], ["hash", 35, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["VERGEN_GIT_DESCRIBE", 65, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 75, 5], ["homepage", 76, 5], ["license", 77, 5], ["platforms", 78, 5], ["mainProgram", 79, 5], ["maintainers", 80, 5], ["changelog", 81, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["cargoHash", 31, 3], ["offlineCache", 33, 3], ["postPatch", 38, 3], ["nativeBuildInputs", 43, 3], ["buildInputs", 51, 3], ["cargoRoot", 61, 3], ["buildAndTestSubdir", 62, 3], ["env", 64, 3], ["postFixup", 69, 3], ["meta", 74, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const wrapGAppsHook4 = nix.arg($, "wrapGAppsHook4");
   const sqlite = nix.arg($, "sqlite");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "treedome",
       version: "0.6.1",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://codeberg.org/solver-orgz/treedome",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-qa87pgNHGRhP1G4TEFHYrkiJ9AHWG7PUdgxEF4X9EM8=",
@@ -40,7 +36,7 @@ export default nix.lambda((args) => (() => {
         })))),
       cargoHash: "sha256-Rg65BiHQF7bBBCtc5F+gY31yhcuI0+IDfxr3pFmxT+w=",
       offlineCache: nix.thunk(() => nix.app(fetchYarnDeps, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           yarnLock: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src")}/yarn.lock`),
           hash: "sha256-Q0xsi1xymQne6qN0oxm4YkaDLnGL17iuj70CTdQlxzM=",
         })))),
@@ -66,12 +62,12 @@ export default nix.lambda((args) => (() => {
       cargoRoot: "src-tauri",
       buildAndTestSubdir: nix.thunk(() => nix.sel(finalAttrs, "cargoRoot")),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         VERGEN_GIT_DESCRIBE: nix.thunk(() => nix.sel(finalAttrs, "version")),
       })),
       postFixup: "wrapProgram \"$out/bin/treedome\" \\\n  --set WEBKIT_DISABLE_COMPOSITING_MODE 1\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Local-first, encrypted, note taking application organized in tree-like structures",
         homepage: "https://codeberg.org/solver-orgz/treedome",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Plus")),

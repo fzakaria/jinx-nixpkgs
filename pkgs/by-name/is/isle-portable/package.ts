@@ -2,16 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 14, 5], ["hash", 15, 5], ["message", 16, 5]], [["nativeBuildInputs", 19, 54]], [["diskpath", 30, 9], ["cdpath", 31, 9]], [["isle", 29, 7]], [["diskpath", 64, 9], ["cdpath", 65, 9], ["mediapath", 66, 9], ["savepath", 67, 9], ["flip surfaces", 68, 9], ["full screen", 69, 9], ["exclusive full screen", 70, 9], ["wide view angle", 71, 9], ["3dsound", 72, 9], ["music", 73, 9], ["cursor sensitivity", 74, 9], ["back buffers in video ram", 75, 9], ["island quality", 76, 9], ["island texture", 77, 9], ["max lod", 78, 9], ["max allowed extras", 79, 9], ["transition type", 80, 9], ["touch scheme", 81, 9], ["haptic", 82, 9], ["horizontal resolution", 83, 9], ["vertical resolution", 84, 9], ["exclusive x resolution", 85, 9], ["exclusive y resolution", 86, 9], ["exclusive framerate", 87, 9], ["frame delta", 88, 9], ["msaa", 89, 9], ["anisotropic", 90, 9]], [["texture loader", 94, 9], ["si loader", 95, 9]], [["isle", 63, 7], ["extensions", 93, 7]], [["unwrapped", 60, 14], ["iniConfig", 62, 14]], [["version", 44, 39], ["pname", 45, 5], ["paths", 47, 5], ["nativeBuildInputs", 51, 5], ["postBuild", 55, 5], ["passthru", 60, 5], ["meta", 99, 5]]]);
 const formals$1 = { args: { lib: false, callPackage: false, requireFile: false, runCommand: false, writeText: false, makeBinaryWrapper: false, symlinkJoin: false, "isle-portable-unwrapped": true, _7zz: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 14, 5], ["hash", 15, 5], ["message", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["nativeBuildInputs", 19, 54]]);
-const pos$3 = nix.positions(here + "/package.nix", [["diskpath", 30, 9], ["cdpath", 31, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["isle", 29, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["diskpath", 64, 9], ["cdpath", 65, 9], ["mediapath", 66, 9], ["savepath", 67, 9], ["flip surfaces", 68, 9], ["full screen", 69, 9], ["exclusive full screen", 70, 9], ["wide view angle", 71, 9], ["3dsound", 72, 9], ["music", 73, 9], ["cursor sensitivity", 74, 9], ["back buffers in video ram", 75, 9], ["island quality", 76, 9], ["island texture", 77, 9], ["max lod", 78, 9], ["max allowed extras", 79, 9], ["transition type", 80, 9], ["touch scheme", 81, 9], ["haptic", 82, 9], ["horizontal resolution", 83, 9], ["vertical resolution", 84, 9], ["exclusive x resolution", 85, 9], ["exclusive y resolution", 86, 9], ["exclusive framerate", 87, 9], ["frame delta", 88, 9], ["msaa", 89, 9], ["anisotropic", 90, 9]]);
-const pos$6 = nix.positions(here + "/package.nix", [["texture loader", 94, 9], ["si loader", 95, 9]]);
-const pos$7 = nix.positions(here + "/package.nix", [["isle", 63, 7], ["extensions", 93, 7]]);
-const pos$8 = nix.positions(here + "/package.nix", [["unwrapped", 60, 14], ["iniConfig", 62, 14]]);
-const pos$9 = nix.positions(here + "/package.nix", [["version", 44, 39], ["pname", 45, 5], ["paths", 47, 5], ["nativeBuildInputs", 51, 5], ["postBuild", 55, 5], ["passthru", 60, 5], ["meta", 99, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,19 +17,19 @@ export default nix.lambda((args) => (() => {
   const isle_portable_unwrapped = nix.argOr($, "isle-portable-unwrapped", () => nix.app(callPackage, nix.path(here, "./unwrapped.nix"), nix.thunk(() => ({}))));
   const _7zz = nix.arg($, "_7zz");
   const legoIslandIso = nix.thunk(() => nix.app(requireFile, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: "LEGO_ISLANDI.ISO",
       hash: "sha256-pefu/XcvGKcWYzaFldWeFEYdc7OUBgbmlgWyH2CnZec=",
       message: "ISO file of Lego Island 1.1",
     }))));
-  const unpackedIso = nix.thunk(() => nix.app(runCommand, "LEGO_ISLANDI-unpacked", nix.thunk(() => ({ [nix.POS]: pos$2, nativeBuildInputs: nix.thunk(() => [_7zz]) })), nix.thunk(() => nix.str`mkdir "$out"
+  const unpackedIso = nix.thunk(() => nix.app(runCommand, "LEGO_ISLANDI-unpacked", nix.thunk(() => ({ [nix.POS]: $pos[1], nativeBuildInputs: nix.thunk(() => [_7zz]) })), nix.thunk(() => nix.str`mkdir "$out"
 7zz x ${legoIslandIso} -o"$out"
 `)));
   return nix.app(symlinkJoin, (finalAttrs) => (() => {
       const iniWithDisk = nix.thunk(() => nix.app(nix.sel(lib, "recursiveUpdate"), nix.thunk(() => nix.sel(finalAttrs, "passthru", "iniConfig")), nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           isle: nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             diskpath: nix.thunk(() => nix.str`${unpackedIso}/DATA/disk`),
             cdpath: nix.thunk(() => nix.str`${unpackedIso}`),
           })),
@@ -45,7 +37,7 @@ export default nix.lambda((args) => (() => {
       const quotedIni = nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsRecursiveCond"), (as) => !nix.asBool(nix.app(nix.sel(lib, "isDerivation"), as)), (_) => (value) => nix.str`"${nix.builtins.toString(value)}"`, iniWithDisk));
       const iniFile = nix.thunk(() => nix.app(writeText, "isle.ini", nix.thunk(() => nix.app(nix.sel(lib, "generators", "toINI"), nix.thunk(() => ({})), quotedIni))));
       return {
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         version: nix.thunk(() => nix.attr(isle_portable_unwrapped, "version")),
         pname: "isle-portable-wrapped",
         paths: nix.thunk(() => [isle_portable_unwrapped]),
@@ -54,12 +46,12 @@ export default nix.lambda((args) => (() => {
   --add-flags "--ini ${iniFile}"
 `),
         passthru: nix.thunk(() => ({
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           unwrapped: isle_portable_unwrapped,
           iniConfig: nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             isle: nix.thunk(() => ({
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               diskpath: null,
               cdpath: null,
               mediapath: isle_portable_unwrapped,
@@ -88,7 +80,7 @@ export default nix.lambda((args) => (() => {
               msaa: "0",
               anisotropic: "",
             })),
-            extensions: nix.thunk(() => ({ [nix.POS]: pos$6, "texture loader": "false", "si loader": "false" })),
+            extensions: nix.thunk(() => ({ [nix.POS]: $pos[5], "texture loader": "false", "si loader": "false" })),
           })),
         })),
         meta: nix.thunk(() => nix.builtins.removeAttrs(nix.thunk(() => nix.sel(isle_portable_unwrapped, "meta")), nix.thunk(() => ["position"]))),

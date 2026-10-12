@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 36, 13], ["version", 36, 19], ["hash", 37, 5]], [["async", 56, 5], ["dotenv", 57, 5]], [["flask-limiter", 69, 7], ["flask-restful", 70, 7], ["flask-restx", 71, 7], ["moto", 72, 7]], [["tests", 67, 12]], [["changelog", 77, 5], ["homepage", 80, 5], ["description", 81, 5], ["mainProgram", 82, 5], ["longDescription", 83, 5], ["license", 90, 5], ["maintainers", 91, 5]], [["pname", 31, 3], ["version", 32, 3], ["pyproject", 33, 3], ["src", 35, 3], ["patches", 40, 3], ["build-system", 45, 3], ["dependencies", 47, 3], ["optional-dependencies", 55, 3], ["nativeCheckInputs", 60, 3], ["disabledTests", 62, 3], ["passthru", 67, 3], ["meta", 76, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, "flit-core": false, blinker: false, click: false, itsdangerous: false, jinja2: false, werkzeug: false, asgiref: false, "python-dotenv": false, pytestCheckHook: false, "flask-limiter": false, "flask-restful": false, "flask-restx": false, moto: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 36, 13], ["version", 36, 19], ["hash", 37, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["async", 56, 5], ["dotenv", 57, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["flask-limiter", 69, 7], ["flask-restful", 70, 7], ["flask-restx", 71, 7], ["moto", 72, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["tests", 67, 12]]);
-const pos$5 = nix.positions(here + "/default.nix", [["changelog", 77, 5], ["homepage", 80, 5], ["description", 81, 5], ["mainProgram", 82, 5], ["longDescription", 83, 5], ["license", 90, 5], ["maintainers", 91, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 31, 3], ["version", 32, 3], ["pyproject", 33, 3], ["src", 35, 3], ["patches", 40, 3], ["build-system", 45, 3], ["dependencies", 47, 3], ["optional-dependencies", 55, 3], ["nativeCheckInputs", 60, 3], ["disabledTests", 62, 3], ["passthru", 67, 3], ["meta", 76, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.1.3";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-DvDlK4qc2TKFU3kZfdj5QEezWcoKeGlRRDBMtF+Hyes=",
@@ -42,16 +37,16 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [flit_core]);
       const dependencies = nix.thunk(() => [click, blinker, itsdangerous, jinja2, werkzeug]);
       const optional_dependencies = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         async: nix.thunk(() => [asgiref]),
         dotenv: nix.thunk(() => [python_dotenv]),
       }));
       const nativeCheckInputs = nix.thunk(() => nix.concat([pytestCheckHook], nix.app(nix.sel(lib, "concatAttrValues"), optional_dependencies)));
       const disabledTests = nix.thunk(() => ["test_bad_environ_raises_bad_request"]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           "flask-limiter": flask_limiter,
           "flask-restful": flask_restful,
           "flask-restx": flask_restx,
@@ -59,7 +54,7 @@ export default nix.lambda((args) => (() => {
         })),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         changelog: nix.thunk(() => nix.str`https://flask.palletsprojects.com/en/stable/changes/#version-${nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => ["-"]), version)}`),
         homepage: "https://flask.palletsprojects.com/",
         description: "Python micro framework for building web applications",
@@ -72,7 +67,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname,
         version,
         pyproject,

@@ -2,209 +2,176 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
-const pos$1 = nix.positions(here + "/lts.nix", [["url", 8, 7], ["hash", 9, 7]]);
-const pos$2 = nix.positions(here + "/lts.nix", [["url", 13, 7], ["hash", 14, 7]]);
-const pos$3 = nix.positions(here + "/lts.nix", [["url", 18, 7], ["hash", 19, 7]]);
-const pos$4 = nix.positions(here + "/lts.nix", [["url", 23, 7], ["hash", 24, 7]]);
-const pos$5 = nix.positions(here + "/lts.nix", [["url", 28, 7], ["hash", 29, 7]]);
-const pos$6 = nix.positions(here + "/lts.nix", [["url", 33, 7], ["hash", 34, 7]]);
-const pos$7 = nix.positions(here + "/lts.nix", [["url", 38, 7], ["hash", 39, 7]]);
-const pos$8 = nix.positions(here + "/lts.nix", [["url", 43, 7], ["hash", 44, 7]]);
-const pos$9 = nix.positions(here + "/lts.nix", [["url", 48, 7], ["hash", 49, 7]]);
-const pos$10 = nix.positions(here + "/lts.nix", [["url", 53, 7], ["hash", 54, 7]]);
-const pos$11 = nix.positions(here + "/lts.nix", [["url", 58, 7], ["hash", 59, 7]]);
-const pos$12 = nix.positions(here + "/lts.nix", [["url", 63, 7], ["hash", 64, 7]]);
-const pos$13 = nix.positions(here + "/lts.nix", [["url", 68, 7], ["hash", 69, 7]]);
-const pos$14 = nix.positions(here + "/lts.nix", [["url", 73, 7], ["hash", 74, 7]]);
-const pos$15 = nix.positions(here + "/lts.nix", [["url", 78, 7], ["hash", 79, 7]]);
-const pos$16 = nix.positions(here + "/lts.nix", [["url", 83, 7], ["hash", 84, 7]]);
-const pos$17 = nix.positions(here + "/lts.nix", [["url", 88, 7], ["hash", 89, 7]]);
-const pos$18 = nix.positions(here + "/lts.nix", [["url", 93, 7], ["hash", 94, 7]]);
-const pos$19 = nix.positions(here + "/lts.nix", [["url", 97, 7], ["hash", 98, 7]]);
-const pos$20 = nix.positions(here + "/lts.nix", [["url", 101, 7], ["hash", 102, 7]]);
-const pos$21 = nix.positions(here + "/lts.nix", [["url", 106, 7], ["hash", 107, 7]]);
-const pos$22 = nix.positions(here + "/lts.nix", [["url", 111, 7], ["hash", 112, 7]]);
-const pos$23 = nix.positions(here + "/lts.nix", [["url", 116, 7], ["hash", 117, 7]]);
-const pos$24 = nix.positions(here + "/lts.nix", [["url", 121, 7], ["hash", 122, 7]]);
-const pos$25 = nix.positions(here + "/lts.nix", [["url", 126, 7], ["hash", 127, 7]]);
-const pos$26 = nix.positions(here + "/lts.nix", [["url", 131, 7], ["hash", 132, 7]]);
-const pos$27 = nix.positions(here + "/lts.nix", [["url", 136, 7], ["hash", 137, 7]]);
-const pos$28 = nix.positions(here + "/lts.nix", [["url", 141, 7], ["hash", 142, 7]]);
-const pos$29 = nix.positions(here + "/lts.nix", [["url", 146, 7], ["hash", 147, 7]]);
-const pos$30 = nix.positions(here + "/lts.nix", [["url", 152, 7], ["hash", 153, 7]]);
-const pos$31 = nix.positions(here + "/lts.nix", [["url", 157, 7], ["hash", 158, 7]]);
-const pos$32 = nix.positions(here + "/lts.nix", [["url", 162, 7], ["hash", 163, 7]]);
-const pos$33 = nix.positions(here + "/lts.nix", [["url", 167, 7], ["hash", 168, 7]]);
-const pos$34 = nix.positions(here + "/lts.nix", [["hash", 2, 3], ["version", 3, 3], ["vendorHash", 4, 3], ["patches", 5, 3], ["lts", 171, 3], ["nixUpdateExtraArgs", 172, 3]]);
+const $pos = nix.positions(here + "/lts.nix", [[["url", 8, 7], ["hash", 9, 7]], [["url", 13, 7], ["hash", 14, 7]], [["url", 18, 7], ["hash", 19, 7]], [["url", 23, 7], ["hash", 24, 7]], [["url", 28, 7], ["hash", 29, 7]], [["url", 33, 7], ["hash", 34, 7]], [["url", 38, 7], ["hash", 39, 7]], [["url", 43, 7], ["hash", 44, 7]], [["url", 48, 7], ["hash", 49, 7]], [["url", 53, 7], ["hash", 54, 7]], [["url", 58, 7], ["hash", 59, 7]], [["url", 63, 7], ["hash", 64, 7]], [["url", 68, 7], ["hash", 69, 7]], [["url", 73, 7], ["hash", 74, 7]], [["url", 78, 7], ["hash", 79, 7]], [["url", 83, 7], ["hash", 84, 7]], [["url", 88, 7], ["hash", 89, 7]], [["url", 93, 7], ["hash", 94, 7]], [["url", 97, 7], ["hash", 98, 7]], [["url", 101, 7], ["hash", 102, 7]], [["url", 106, 7], ["hash", 107, 7]], [["url", 111, 7], ["hash", 112, 7]], [["url", 116, 7], ["hash", 117, 7]], [["url", 121, 7], ["hash", 122, 7]], [["url", 126, 7], ["hash", 127, 7]], [["url", 131, 7], ["hash", 132, 7]], [["url", 136, 7], ["hash", 137, 7]], [["url", 141, 7], ["hash", 142, 7]], [["url", 146, 7], ["hash", 147, 7]], [["url", 152, 7], ["hash", 153, 7]], [["url", 157, 7], ["hash", 158, 7]], [["url", 162, 7], ["hash", 163, 7]], [["url", 167, 7], ["hash", 168, 7]], [["hash", 2, 3], ["version", 3, 3], ["vendorHash", 4, 3], ["patches", 5, 3], ["lts", 171, 3], ["nixUpdateExtraArgs", 172, 3]]]);
 
 export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./generic.nix")), nix.thunk(() => ({
-    [nix.POS]: pos$34,
+    [nix.POS]: $pos[33],
     hash: "sha256-Ivj0vWKuhgb4VvyxcuB+CXsJ02zwo65rqxD5/cLUmSk=",
     version: "7.0.1",
     vendorHash: "sha256-F3LhWVjckU0ypgOppHztjR6hDB6enHxoDmRWcSDfwQE=",
     patches: (fetchpatch2) => [
       nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://github.com/lxc/incus/commit/136444d9b65d17a55519f1a86809f030d58c9c79.patch?full_index=1",
           hash: "sha256-mNgcLPq6liRBqLRHwMd3cgolESXx3nzYFPsqqhXtPXQ=",
         })))),
       nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: "https://github.com/lxc/incus/commit/4dc6e1f7935ac13bcff98f6aa213e02815d0dcc8.patch?full_index=1",
           hash: "sha256-t5dM7BGGD8H/PfgDoRgP/0jIB38sK0ez0uYGjb+I9f8=",
         })))),
       nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           url: "https://github.com/lxc/incus/commit/001bd0657f9ea6d73368118a01c5248080f2bbef.patch?full_index=1",
           hash: "sha256-daCtygGZN1C7LIN2FGsajnUjMt/JeefrfxTC/8IhddY=",
         })))),
       nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           url: "https://github.com/lxc/incus/commit/dbc1e36173f8cac74ef276a88ba1e0bc9964002c.patch?full_index=1",
           hash: "sha256-1fOHnNUMdIlzHZRFuAfflRT7ZlZBMlpvAhfCVUDiwls=",
         })))),
       nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           url: "https://github.com/lxc/incus/commit/4f847ad5ab34716efb723e3f46e3d72e472035de.patch?full_index=1",
           hash: "sha256-O/1RoRPTzq5WxnApTE+2KeIVsDT2CSz8yX4/rqRr83Y=",
         })))),
       nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           url: "https://github.com/lxc/incus/commit/7135f0183d9dc0661d2e3eb36779bc2273545266.patch?full_index=1",
           hash: "sha256-K/c03Qlomig8uQz/Sj/eIRNvVZweq7PNJra6ehY1u+M=",
         })))),
       nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           url: "https://github.com/lxc/incus/commit/1bb869273c69cd5d17558a021028c5dee45d82d4.patch?full_index=1",
           hash: "sha256-ckKR8u02s7tQm9bq9sAYC5w0HfZVSZc6q54j0lNoHOA=",
         })))),
       nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           url: "https://github.com/lxc/incus/commit/181ae5c746c718767e8ca6f3edbe3df4a6fc9fbe.patch?full_index=1",
           hash: "sha256-ccAAdn7KKc5y0ZanL78+GBWrQy5y2a/hUX8U1gYTZaQ=",
         })))),
       nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           url: "https://github.com/lxc/incus/commit/3d7246efe5ec4dba476f95ec163eb4a165717863.patch?full_index=1",
           hash: "sha256-2J9T12qFRWaX1l7pyXXucPMN3VRmUoNKoCiQfFFvieI=",
         })))),
       nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-          [nix.POS]: pos$10,
+          [nix.POS]: $pos[9],
           url: "https://github.com/lxc/incus/commit/c7cf33d46a83fd39b59843f0bd406a2c88d2e899.patch?full_index=1",
           hash: "sha256-/cgRwmWNtl2PAgqpYH3BEv6+ZrF7rH8s+yn84+ICYHU=",
         })))),
       nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-          [nix.POS]: pos$11,
+          [nix.POS]: $pos[10],
           url: "https://github.com/lxc/incus/commit/0d21c84dbff03e1a676a94ecbfaafca8b48695ba.patch?full_index=1",
           hash: "sha256-5CcxJgqBssaXcV1GviI297DgygEeJp5ZKUtDmotS3nw=",
         })))),
       nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-          [nix.POS]: pos$12,
+          [nix.POS]: $pos[11],
           url: "https://github.com/lxc/incus/commit/9bc9f9ba5ab61fd5e6c9fa0f5e2440d4ce8495e5.patch?full_index=1",
           hash: "sha256-raNNgdbIw5SzJSfIVaOEy0A7A0B98HogAIRGaX7V/Sk=",
         })))),
       nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-          [nix.POS]: pos$13,
+          [nix.POS]: $pos[12],
           url: "https://github.com/lxc/incus/commit/57c415871256445efa758086e6ef8111464b1c26.patch?full_index=1",
           hash: "sha256-3UJZzY0SgTUJwjeYUFDjzxL/xU5TeYY4ky649BGqy/w=",
         })))),
       nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-          [nix.POS]: pos$14,
+          [nix.POS]: $pos[13],
           url: "https://github.com/lxc/incus/commit/f86f08bfcd36aae7e8f29e83e71e6767ddb3e077.patch?full_index=1",
           hash: "sha256-epqnu2AayZsn/9im7VQJcCfoShRL3/BcUNXIDjJI9kk=",
         })))),
       nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-          [nix.POS]: pos$15,
+          [nix.POS]: $pos[14],
           url: "https://github.com/lxc/incus/commit/038fd13e82c107ed40cad7697eabe45f3395a0cf.patch?full_index=1",
           hash: "sha256-OrArP0PJbBnGd0qVjlTxADTtdhWGLueJqM0Jt1J+1UI=",
         })))),
       nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-          [nix.POS]: pos$16,
+          [nix.POS]: $pos[15],
           url: "https://github.com/lxc/incus/commit/1e09276c318107c21091b9811643ef13e8692824.patch?full_index=1",
           hash: "sha256-5Y/fVAQBwVkOGclVIeYAF2+OJGeJsaldkBIkzqhz6eM=",
         })))),
       nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-          [nix.POS]: pos$17,
+          [nix.POS]: $pos[16],
           url: "https://github.com/lxc/incus/commit/8cdc50343707525e01178b04f11350340b67eaa1.patch?full_index=1",
           hash: "sha256-VGODoJ/cPO+icGUMTgsmaSdudzPHShQDq2Lmp9Hndv0=",
         })))),
       nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-          [nix.POS]: pos$18,
+          [nix.POS]: $pos[17],
           url: "https://github.com/lxc/incus/commit/a89084e2de1548513d349c5305f509ed80d43240.patch?full_index=1",
           hash: "sha256-+zcaHORD+DK9r8dsqTxSm8Khjr/hQBPw9st3K2qD/XA=",
         })))),
       nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-          [nix.POS]: pos$19,
+          [nix.POS]: $pos[18],
           url: "https://raw.githubusercontent.com/zabbly/incus/8834ea357ab4f0fd546077fa7630bd75762a485d/patches/incus-0001-incusd-instance-Confine-OCI-network-writes-to-instan.patch?full_index=1",
           hash: "sha256-/2kY2Us4hV7PemwgBzluF29MHEtM+dITDKsPb+/B3KE=",
         })))),
       nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-          [nix.POS]: pos$20,
+          [nix.POS]: $pos[19],
           url: "https://raw.githubusercontent.com/zabbly/incus/8834ea357ab4f0fd546077fa7630bd75762a485d/patches/incus-0002-incusd-project-Enforce-isolated-restriction-when-idm.patch?full_index=1",
           hash: "sha256-KIrSDgD4AI5F72YySAlPosBEQTZEfSQmkrSn3VUVtLs=",
         })))),
       nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-          [nix.POS]: pos$21,
+          [nix.POS]: $pos[20],
           url: "https://github.com/lxc/incus/commit/83682ab16af5777b2a5650bb7c9878d57d0187f9.patch?full_index=1",
           hash: "sha256-Tz7e1/kHF5uhuTWJWeV74trhTkx8hLjfKuOCM1hpmXo=",
         })))),
       nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-          [nix.POS]: pos$22,
+          [nix.POS]: $pos[21],
           url: "https://github.com/lxc/incus/commit/9e188e31e43c21fa8f2a4cac265aa246d4c947f2.patch?full_index=1",
           hash: "sha256-KFYKB9PJK/U4/jSe3rmMeR9FWevvvi47BRy055Zj8Io=",
         })))),
       nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-          [nix.POS]: pos$23,
+          [nix.POS]: $pos[22],
           url: "https://salsa.debian.org/go-team/packages/incus/-/raw/4992bd88f727414d9f02e9966feb235daf8d755d/debian/patches/126-GHSA-wfvq-qh87-gm4j.patch",
           hash: "sha256-hD7l9/mlUuISLV1hrvuYMyPFYe1XUWnLO15RJyO1ZlA=",
         })))),
       nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-          [nix.POS]: pos$24,
+          [nix.POS]: $pos[23],
           url: "https://github.com/lxc/incus/commit/9afa3d58ef9ffae40eb1980bd33592d00fe1feba.patch?full_index=1",
           hash: "sha256-SJKrTdR/BKNVPa9P7Yowukfm71D3M9yGh1iGQpkhEDE=",
         })))),
       nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-          [nix.POS]: pos$25,
+          [nix.POS]: $pos[24],
           url: "https://github.com/lxc/incus/commit/e59d35263a0e027b4a0344ab8d05c80c622a21e2.patch?full_index=1",
           hash: "sha256-oHM9IGGjPRwsmc5JAYaBY65HV+H3ZC1/ebqQts/tDow=",
         })))),
       nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-          [nix.POS]: pos$26,
+          [nix.POS]: $pos[25],
           url: "https://github.com/lxc/incus/commit/99a8ba3101e91be6cd7013e80ff916f32d495b71.patch?full_index=1",
           hash: "sha256-iwybe/E8Lucwf6ih6gWt3b/jnG3UGYep2GoqL/h4qn8=",
         })))),
       nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-          [nix.POS]: pos$27,
+          [nix.POS]: $pos[26],
           url: "https://github.com/lxc/incus/commit/2ef78c71a5f3c9db4a6ad438563ec99497686d83.patch?full_index=1",
           hash: "sha256-apBgxM15JA+8q/lR5mJRG85rBn+2pEuZdcgOjPn/y8g=",
         })))),
       nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-          [nix.POS]: pos$28,
+          [nix.POS]: $pos[27],
           url: "https://github.com/lxc/incus/commit/10d6ea9a7163c2a7b16f9e9ccf0bd45981c3355e.patch?full_index=1",
           hash: "sha256-5gkMiAb5Ewzsiv9LmZ2oJx+7xTdIbkVnXEkt67metlU=",
         })))),
       nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-          [nix.POS]: pos$29,
+          [nix.POS]: $pos[28],
           url: "https://salsa.debian.org/go-team/packages/incus/-/raw/4992bd88f727414d9f02e9966feb235daf8d755d/debian/patches/123-GHSA-mmj7-8rgf-mx2h.patch",
           hash: "sha256-OHjdOPQ3UyNfucLElKXA4iRYVhOF6fq+m0wUnaYGoiI=",
         })))),
       nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-          [nix.POS]: pos$30,
+          [nix.POS]: $pos[29],
           url: "https://salsa.debian.org/go-team/packages/incus/-/raw/bdec650ea4657450a90300c1e25e4d9b5ba71547/debian/patches/125-GHSA-mfwv-x733-9446.patch",
           hash: "sha256-LMx5sb7rC5U9BLsXYhqN3SaW7K/d4q2H1OvcDQPNm7w=",
         })))),
       nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-          [nix.POS]: pos$31,
+          [nix.POS]: $pos[30],
           url: "https://github.com/lxc/incus/commit/1eaf9b8bfed2b8cf09182c88fd81b10327605ade.patch?full_index=1",
           hash: "sha256-KrQtsS8Ug7K5bMeduV9tPeunHOnCXfNNqlbpVMTNzws=",
         })))),
       nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-          [nix.POS]: pos$32,
+          [nix.POS]: $pos[31],
           url: "https://github.com/lxc/incus/commit/da36896aa8af65080a79fd1a4b8abcf75d46cbd1.patch?full_index=1",
           hash: "sha256-+W+2RXtJO/IGd+ejpkylsaNfH8JtSIMTun9bxbtbPxU=",
         })))),
       nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-          [nix.POS]: pos$33,
+          [nix.POS]: $pos[32],
           url: "https://github.com/lxc/incus/commit/f22d8a92dff8e4cf01260ab85405db754bcfc026.patch?full_index=1",
           hash: "sha256-LwQRWQzZewU0QjdaerKFJb4h99RKuTLBZ80PifJONkM=",
         })))),

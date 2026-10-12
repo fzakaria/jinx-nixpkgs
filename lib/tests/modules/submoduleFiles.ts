@@ -2,41 +2,33 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/submoduleFiles.nix", [[["default", 13, 15]], [["value", 10, 21], ["internalFiles", 12, 21]], [["options", 10, 13]], [["modules", 6, 7]], [["default", 4, 5], ["type", 5, 5]], [["submodule", 3, 11]], [["value", 24, 17]], [["_file", 23, 7], ["submodule", 24, 7]], [["options", 3, 3], ["imports", 21, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
 const formals$2 = { args: { options: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/submoduleFiles.nix", [["default", 13, 15]]);
-const pos$2 = nix.positions(here + "/submoduleFiles.nix", [["value", 10, 21], ["internalFiles", 12, 21]]);
-const pos$3 = nix.positions(here + "/submoduleFiles.nix", [["options", 10, 13]]);
-const pos$4 = nix.positions(here + "/submoduleFiles.nix", [["modules", 6, 7]]);
-const pos$5 = nix.positions(here + "/submoduleFiles.nix", [["default", 4, 5], ["type", 5, 5]]);
-const pos$6 = nix.positions(here + "/submoduleFiles.nix", [["submodule", 3, 11]]);
-const pos$7 = nix.positions(here + "/submoduleFiles.nix", [["value", 24, 17]]);
-const pos$8 = nix.positions(here + "/submoduleFiles.nix", [["_file", 23, 7], ["submodule", 24, 7]]);
-const pos$9 = nix.positions(here + "/submoduleFiles.nix", [["options", 3, 3], ["imports", 21, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$9,
+    [nix.POS]: $pos[8],
     options: nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       submodule: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           default: nix.thunk(() => ({})),
           type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submoduleWith"), nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               modules: nix.thunk(() => [
                 nix.lambda((args_1) => (() => {
                   const $_1 = nix.formals(args_1, formals$2);
                   const options = nix.arg($_1, "options");
                   return {
-                    [nix.POS]: pos$3,
+                    [nix.POS]: $pos[2],
                     options: nix.thunk(() => ({
-                      [nix.POS]: pos$2,
+                      [nix.POS]: $pos[1],
                       value: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({})))),
                       internalFiles: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                          [nix.POS]: pos$1,
+                          [nix.POS]: $pos[0],
                           default: nix.thunk(() => nix.sel(options, "value", "files")),
                         })))),
                     })),
@@ -48,9 +40,9 @@ export default nix.lambda((args) => (() => {
     })),
     imports: nix.thunk(() => [
       nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         _file: "the-file.nix",
-        submodule: nix.thunk(() => ({ [nix.POS]: pos$7, value: 10n })),
+        submodule: nix.thunk(() => ({ [nix.POS]: $pos[6], value: 10n })),
       })),
     ]),
   };

@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/pastel.nix", [[["description", 26, 5], ["downloadPage", 27, 5], ["homepage", 28, 5], ["license", 29, 5], ["maintainers", 30, 5]], [["src", 10, 11], ["pname", 12, 3], ["version", 13, 3], ["minimalOCamlVersion", 15, 3], ["nativeBuildInputs", 17, 3], ["propagatedBuildInputs", 21, 3], ["meta", 25, 3]]]);
 const formals$1 = { args: { lib: false, buildDunePackage: false, reason: false, re: false, src: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/pastel.nix", [["description", 26, 5], ["downloadPage", 27, 5], ["homepage", 28, 5], ["license", 29, 5], ["maintainers", 30, 5]]);
-const pos$2 = nix.positions(here + "/pastel.nix", [["src", 10, 11], ["pname", 12, 3], ["version", 13, 3], ["minimalOCamlVersion", 15, 3], ["nativeBuildInputs", 17, 3], ["propagatedBuildInputs", 21, 3], ["meta", 25, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const re = nix.arg($, "re");
   const src = nix.arg($, "src");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       src: src,
       pname: "pastel",
       version: "0.3.0-unstable-2024-05-07",
@@ -22,7 +21,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [reason]),
       propagatedBuildInputs: nix.thunk(() => [re]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Text formatting library that harnesses Reason JSX to provide intuitive terminal output. Like React but for CLI",
         downloadPage: "https://github.com/reasonml/reason-native/tree/master/src/pastel",
         homepage: "https://reason-native.com/docs/pastel/",

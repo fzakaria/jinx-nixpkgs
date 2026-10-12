@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 39, 5], ["repo", 40, 5], ["tag", 41, 5], ["fetchSubmodules", 42, 5], ["hash", 43, 5]], [["cxx_standard", 101, 23]], [["GTEST_FILTER", 105, 7]], [["description", 132, 5], ["homepage", 133, 5], ["changelog", 134, 5], ["license", 135, 5], ["maintainers", 136, 5], ["platforms", 137, 5]], [["pname", 35, 3], ["version", 36, 3], ["src", 38, 3], ["cmakeFlags", 46, 3], ["nativeBuildInputs", 60, 3], ["buildInputs", 69, 3], ["doCheck", 94, 3], ["nativeCheckInputs", 95, 3], ["env", 105, 3], ["doInstallCheck", 126, 3], ["nativeInstallCheckInputs", 127, 3], ["versionCheckProgram", 128, 3], ["dontMoveSbin", 129, 3], ["meta", 131, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, stdenv: false, bison: false, boost: false, brotli: false, cmake: false, "double-conversion": false, fmt: false, fuse3: false, flac: false, glog: false, gtest: false, jemalloc: false, libarchive: false, libevent: false, libunwind: false, lz4: false, openssl: false, "pkg-config": false, python3: false, "range-v3": false, ronn: false, xxhash: false, utf8cpp: false, zstd: false, "parallel-hashmap": false, nlohmann_json: false, libdwarf: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 39, 5], ["repo", 40, 5], ["tag", 41, 5], ["fetchSubmodules", 42, 5], ["hash", 43, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["cxx_standard", 101, 23]]);
-const pos$3 = nix.positions(here + "/package.nix", [["GTEST_FILTER", 105, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 132, 5], ["homepage", 133, 5], ["changelog", 134, 5], ["license", 135, 5], ["maintainers", 136, 5], ["platforms", 137, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 35, 3], ["version", 36, 3], ["src", 38, 3], ["cmakeFlags", 46, 3], ["nativeBuildInputs", 60, 3], ["buildInputs", 69, 3], ["doCheck", 94, 3], ["nativeCheckInputs", 95, 3], ["env", 105, 3], ["doInstallCheck", 126, 3], ["nativeInstallCheckInputs", 127, 3], ["versionCheckProgram", 128, 3], ["dontMoveSbin", 129, 3], ["meta", 131, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -42,11 +38,11 @@ export default nix.lambda((args) => (() => {
   const libdwarf = nix.arg($, "libdwarf");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "dwarfs",
       version: "0.15.8",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "mhx",
           repo: "dwarfs",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -91,10 +87,10 @@ export default nix.lambda((args) => (() => {
       ]),
       doCheck: true,
       nativeCheckInputs: nix.thunk(() => [
-        nix.thunk(() => nix.app(nix.sel(gtest, "override"), nix.thunk(() => ({ [nix.POS]: pos$2, cxx_standard: "20" })))),
+        nix.thunk(() => nix.app(nix.sel(gtest, "override"), nix.thunk(() => ({ [nix.POS]: $pos[1], cxx_standard: "20" })))),
       ]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         GTEST_FILTER: nix.thunk(() => (() => {
           const disabledTests = nix.thunk(() => [
             "dwarfs/tools_test.end_to_end/*",
@@ -115,7 +111,7 @@ export default nix.lambda((args) => (() => {
       versionCheckProgram: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/bin/dwarfs`),
       dontMoveSbin: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Fast high compression read-only file system",
         homepage: "https://github.com/mhx/dwarfs",
         changelog: nix.thunk(() => nix.str`https://github.com/mhx/dwarfs/blob/v${nix.sel(finalAttrs, "version")}/CHANGES.md`),

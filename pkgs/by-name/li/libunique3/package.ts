@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 26, 5], ["sha256", 27, 5]], [["homepage", 46, 5], ["description", 47, 5], ["license", 48, 5], ["maintainers", 49, 5], ["platforms", 50, 5]], [["majorVer", 19, 3], ["minorVer", 20, 3], ["version", 21, 3], ["pname", 22, 3], ["srcName", 23, 3], ["src", 25, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 34, 3], ["meta", 45, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, "pkg-config": false, dbus: false, "dbus-glib": false, gtk3: false, "gobject-introspection": false, "gtk-doc": false, docbook_xml_dtd_45: false, docbook_xsl: false, libxslt: false, libxml2: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 26, 5], ["sha256", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 46, 5], ["description", 47, 5], ["license", 48, 5], ["maintainers", 49, 5], ["platforms", 50, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["majorVer", 19, 3], ["minorVer", 20, 3], ["version", 21, 3], ["pname", 22, 3], ["srcName", 23, 3], ["src", 25, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 34, 3], ["meta", 45, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const pname = "libunique3";
       const srcName = nix.thunk(() => nix.str`libunique-${version}`);
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://ftp.gnome.org/pub/GNOME/sources/libunique/${majorVer}/${srcName}.tar.xz`),
           sha256: "0f70lkw66v9cj72q0iw1s2546r6bwwcd8idcm3621fg2fgh2rw58",
         }))));
@@ -45,7 +43,7 @@ export default nix.lambda((args) => (() => {
         libxml2,
       ]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://gitlab.gnome.org/Archive/unique",
         description: "Library for writing single instance applications",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21")),
@@ -53,7 +51,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         majorVer,
         minorVer,
         version,

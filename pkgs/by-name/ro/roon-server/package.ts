@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 27, 5], ["hash", 28, 5]], [["updateScript", 101, 12]], [["description", 103, 5], ["changelog", 104, 5], ["homepage", 105, 5], ["sourceProvenance", 106, 5], ["license", 107, 5], ["maintainers", 108, 5], ["platforms", 113, 5], ["mainProgram", 114, 5]], [["pname", 23, 3], ["version", 24, 11], ["src", 26, 3], ["dontConfigure", 31, 3], ["dontBuild", 32, 3], ["buildInputs", 34, 3], ["nativeBuildInputs", 43, 3], ["installPhase", 48, 3], ["passthru", 101, 3], ["meta", 102, 3]]]);
 const formals$1 = { args: { "alsa-lib": false, "alsa-utils": false, autoPatchelfHook: false, "cifs-utils": false, fetchurl: false, ffmpeg: false, freetype: false, icu66: false, krb5: false, lib: false, libtasn1: false, "lttng-ust_2_12": false, makeWrapper: false, openssl: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 101, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 103, 5], ["changelog", 104, 5], ["homepage", 105, 5], ["sourceProvenance", 106, 5], ["license", 107, 5], ["maintainers", 108, 5], ["platforms", 113, 5], ["mainProgram", 114, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 23, 3], ["version", 24, 11], ["src", 26, 3], ["dontConfigure", 31, 3], ["dontBuild", 32, 3], ["buildInputs", 34, 3], ["nativeBuildInputs", 43, 3], ["installPhase", 48, 3], ["passthru", 101, 3], ["meta", 102, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const version = "2.73.1696";
   const urlVersion = nix.thunk(() => nix.builtins.replaceStrings(nix.thunk(() => ["."]), nix.thunk(() => ["0"]), version));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "roon-server",
       version: version,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://download.roonlabs.com/updates/production/RoonServer_linuxx64_${urlVersion}.tar.bz2`),
           hash: "sha256-BD8qBJCsmpx24k003t5QXC658p3ofOSZtQCZHKOypvg=",
         })))),
@@ -80,9 +77,9 @@ makeWrapper "$out/Server/RoonServer" "$out/bin/RoonServer" --chdir "$out"
 runHook postInstall
 `;
       })()),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, updateScript: nix.path(here, "./update.py") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[1], updateScript: nix.path(here, "./update.py") })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Music player for music lovers",
         changelog: "https://community.roonlabs.com/c/roon/software-release-notes/18",
         homepage: "https://roonlabs.com",

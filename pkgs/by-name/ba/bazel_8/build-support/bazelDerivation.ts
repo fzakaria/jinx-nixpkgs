@@ -2,9 +2,9 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/bazelDerivation.nix", [[["preBuildPhases", 24, 5], ["preBuildPhase", 25, 5], ["buildPhase", 44, 5]]]);
 const formals$1 = { args: { stdenv: false, lndir: false, lib: false }, ellipsis: false };
 const formals$2 = { args: { bazel: false, registry: true, bazelRepoCache: true, bazelVendorDeps: true, startupArgs: true, commandArgs: true, bazelPreBuild: true, bazelPostBuild: true, serverJavabase: true, targets: false, command: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/bazelDerivation.nix", [["preBuildPhases", 24, 5], ["preBuildPhase", 25, 5], ["buildPhase", 44, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,7 +26,7 @@ export default nix.lambda((args) => (() => {
     const targets = nix.arg($_1, "targets");
     const command = nix.arg($_1, "command");
     return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => nix.update({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         preBuildPhases: nix.thunk(() => ["preBuildPhase"]),
         preBuildPhase: nix.thunk(() => nix.add(nix.add(nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(bazelRepoCache, null)), nix.thunk(() => nix.str`# repo_cache needs to be writeable even in air-gapped builds
 mkdir repo_cache

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/lib.nix", [[["luv", 38, 5]], [["tests", 36, 12]], [["pname", 12, 3], ["version", 13, 26], ["src", 13, 34], ["meta", 13, 38], ["cmakeFlags", 15, 3], ["prePatch", 25, 3], ["buildInputs", 29, 3], ["nativeBuildInputs", 34, 3], ["passthru", 36, 3]]]);
 const formals$1 = { args: { lib: false, cmake: false, fixDarwinDylibNames: false, isLuaJIT: false, libuv: false, lua: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/lib.nix", [["luv", 38, 5]]);
-const pos$2 = nix.positions(here + "/lib.nix", [["tests", 36, 12]]);
-const pos$3 = nix.positions(here + "/lib.nix", [["pname", 12, 3], ["version", 13, 26], ["src", 13, 34], ["meta", 13, 38], ["cmakeFlags", 15, 3], ["prePatch", 25, 3], ["buildInputs", 29, 3], ["nativeBuildInputs", 34, 3], ["passthru", 36, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,7 +17,7 @@ export default nix.lambda((args) => (() => {
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => (() => {
       const from = nix.thunk(() => nix.sel(lua, "pkgs", "luv"));
       return {
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "libluv",
       version: nix.thunk(() => nix.attr(from, "version")),
       src: nix.thunk(() => nix.attr(from, "src")),
@@ -36,9 +34,9 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [libuv, lua]),
       nativeBuildInputs: nix.thunk(() => nix.concat([cmake], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [fixDarwinDylibNames])))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           luv: nix.thunk(() => nix.sel(lua, "pkgs", "luv", "passthru", "tests", "test")),
         })),
       })),

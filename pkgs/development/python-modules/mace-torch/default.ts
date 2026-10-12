@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 43, 5], ["repo", 44, 5], ["tag", 45, 5], ["hash", 46, 5]], [["CI", 55, 5]], [["description", 137, 5], ["homepage", 138, 5], ["changelog", 139, 5], ["license", 140, 5], ["maintainers", 141, 5]], [["pname", 37, 3], ["version", 38, 3], ["pyproject", 39, 3], ["__structuredAttrs", 40, 3], ["src", 42, 3], ["build-system", 49, 3], ["env", 53, 3], ["pythonRelaxDeps", 58, 3], ["dependencies", 61, 3], ["pythonImportsCheck", 83, 3], ["nativeCheckInputs", 85, 3], ["disabledTests", 90, 3], ["meta", 136, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, ase: false, configargparse: false, e3nn: false, gitpython: false, h5py: false, lmdb: false, matplotlib: false, matscipy: false, numpy: false, "opt-einsum": false, orjson: false, pandas: false, prettytable: false, "python-hostlist": false, pyyaml: false, torch: false, "torch-ema": false, torchmetrics: false, tqdm: false, pytestCheckHook: false, writableTmpDirAsHomeHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 43, 5], ["repo", 44, 5], ["tag", 45, 5], ["hash", 46, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["CI", 55, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 137, 5], ["homepage", 138, 5], ["changelog", 139, 5], ["license", 140, 5], ["maintainers", 141, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 37, 3], ["version", 38, 3], ["pyproject", 39, 3], ["__structuredAttrs", 40, 3], ["src", 42, 3], ["build-system", 49, 3], ["env", 53, 3], ["pythonRelaxDeps", 58, 3], ["dependencies", 61, 3], ["pythonImportsCheck", 83, 3], ["nativeCheckInputs", 85, 3], ["disabledTests", 90, 3], ["meta", 136, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -37,20 +34,20 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "mace-torch",
       version: "0.3.16",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "acesuit",
           repo: "mace",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-sJ/3c7kPe99vkliixUMqqQi2OiL3CCUdlcgpDZ/PUHA=",
         })))),
       "build-system": nix.thunk(() => [setuptools]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, CI: true })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], CI: true })),
       pythonRelaxDeps: nix.thunk(() => ["e3nn"]),
       dependencies: nix.thunk(() => [
         ase,
@@ -109,7 +106,7 @@ export default nix.lambda((args) => (() => {
         "test_run_train_soft_freeze",
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["test_mace", "test_mace_compile_stress"])))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Fast and accurate machine learning interatomic potentials with higher order equivariant message passing",
         homepage: "https://github.com/acesuit/mace",
         changelog: nix.thunk(() => nix.str`https://github.com/acesuit/mace/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

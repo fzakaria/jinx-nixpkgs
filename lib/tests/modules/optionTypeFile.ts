@@ -2,51 +2,44 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/optionTypeFile.nix", [[["type", 7, 5]], [["type", 11, 5], ["default", 12, 5]], [["theType", 6, 11], ["theOption", 10, 11]], [["type", 18, 9]], [["nested", 17, 15]], [["options", 17, 7]], [["type", 24, 9]], [["nested", 23, 15]], [["_file", 22, 7], ["options", 23, 7]], [["theType", 15, 10]], [["_file", 4, 3], ["options", 6, 3], ["config", 15, 3]]]);
 const formals$1 = { args: { config: false, lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/optionTypeFile.nix", [["type", 7, 5]]);
-const pos$2 = nix.positions(here + "/optionTypeFile.nix", [["type", 11, 5], ["default", 12, 5]]);
-const pos$3 = nix.positions(here + "/optionTypeFile.nix", [["theType", 6, 11], ["theOption", 10, 11]]);
-const pos$4 = nix.positions(here + "/optionTypeFile.nix", [["type", 18, 9]]);
-const pos$5 = nix.positions(here + "/optionTypeFile.nix", [["nested", 17, 15]]);
-const pos$6 = nix.positions(here + "/optionTypeFile.nix", [["options", 17, 7]]);
-const pos$7 = nix.positions(here + "/optionTypeFile.nix", [["type", 24, 9]]);
-const pos$8 = nix.positions(here + "/optionTypeFile.nix", [["nested", 23, 15]]);
-const pos$9 = nix.positions(here + "/optionTypeFile.nix", [["_file", 22, 7], ["options", 23, 7]]);
-const pos$10 = nix.positions(here + "/optionTypeFile.nix", [["theType", 15, 10]]);
-const pos$11 = nix.positions(here + "/optionTypeFile.nix", [["_file", 4, 3], ["options", 6, 3], ["config", 15, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const config = nix.arg($, "config");
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$11,
+    [nix.POS]: $pos[10],
     _file: "optionTypeFile.nix",
     options: nix.thunk(() => ({
-      [nix.POS]: pos$3,
-      theType: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({ [nix.POS]: pos$1, type: nix.thunk(() => nix.sel(lib, "types", "optionType")) })))),
+      [nix.POS]: $pos[2],
+      theType: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
+          [nix.POS]: $pos[0],
+          type: nix.thunk(() => nix.sel(lib, "types", "optionType")),
+        })))),
       theOption: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           type: nix.thunk(() => nix.sel(config, "theType")),
           default: nix.thunk(() => ({})),
         })))),
     })),
     config: nix.thunk(() => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       theType: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
           nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-              [nix.POS]: pos$6,
+              [nix.POS]: $pos[5],
               options: nix.thunk(() => ({
-                [nix.POS]: pos$5,
-                nested: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({ [nix.POS]: pos$4, type: nix.thunk(() => nix.sel(lib, "types", "int")) })))),
+                [nix.POS]: $pos[4],
+                nested: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({ [nix.POS]: $pos[3], type: nix.thunk(() => nix.sel(lib, "types", "int")) })))),
               })),
             })))),
           nix.thunk(() => nix.app(nix.sel(lib, "types", "submodule"), nix.thunk(() => ({
-              [nix.POS]: pos$9,
+              [nix.POS]: $pos[8],
               _file: "other.nix",
               options: nix.thunk(() => ({
-                [nix.POS]: pos$8,
-                nested: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({ [nix.POS]: pos$7, type: nix.thunk(() => nix.sel(lib, "types", "str")) })))),
+                [nix.POS]: $pos[7],
+                nested: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({ [nix.POS]: $pos[6], type: nix.thunk(() => nix.sel(lib, "types", "str")) })))),
               })),
             })))),
         ]))),

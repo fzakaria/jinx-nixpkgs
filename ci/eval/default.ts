@@ -2,28 +2,14 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["root", 38, 7], ["fileset", 39, 7]], [["src", 66, 9], ["nativeBuildInputs", 68, 9]], [["evalSystem", 95, 42]], [["evalSystem", 162, 19], ["chunkSize", 162, 30], ["countInstructions", 162, 40]], [["out", 165, 33]], [["nativeBuildInputs", 153, 9], ["env", 161, 9], ["__structuredAttrs", 164, 9], ["unsafeDiscardReferences", 165, 9]], [["nativeBuildInputs", 277, 9]], [["evalSystem", 334, 19], ["countInstructions", 334, 30]], [["name", 330, 7], ["paths", 331, 7]], [["evalSystem", 366, 23], ["countInstructions", 366, 34]], [["evalSystem", 363, 21], ["beforeDir", 364, 13], ["afterDir", 365, 13]], [["name", 359, 9], ["paths", 360, 9]], [["diffDir", 372, 33]], [["combinedDir", 372, 9], ["touchedFilesJson", 373, 17], ["baseBranch", 373, 34]], [["preEval", 381, 5], ["singleSystem", 382, 5], ["diff", 383, 5], ["combine", 384, 5], ["compare", 385, 5], ["baseline", 388, 5], ["full", 389, 5]]]);
 const formals$1 = { args: { callPackage: false, lib: false, runCommand: false, writeShellScript: false, symlinkJoin: false, busybox: false, jq: false, nix: false, perf: false }, ellipsis: false };
 const formals$2 = { args: { chunkSize: true, quickTest: true, includeBroken: true, extraNixpkgsConfig: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["root", 38, 7], ["fileset", 39, 7]]);
 const formals$3 = { args: { evalSystem: false }, ellipsis: false };
-const pos$2 = nix.positions(here + "/default.nix", [["src", 66, 9], ["nativeBuildInputs", 68, 9]]);
 const formals$4 = { args: { evalSystem: true, preEvalFile: true, countInstructions: true }, ellipsis: false };
-const pos$3 = nix.positions(here + "/default.nix", [["evalSystem", 95, 42]]);
-const pos$4 = nix.positions(here + "/default.nix", [["evalSystem", 162, 19], ["chunkSize", 162, 30], ["countInstructions", 162, 40]]);
-const pos$5 = nix.positions(here + "/default.nix", [["out", 165, 33]]);
-const pos$6 = nix.positions(here + "/default.nix", [["nativeBuildInputs", 153, 9], ["env", 161, 9], ["__structuredAttrs", 164, 9], ["unsafeDiscardReferences", 165, 9]]);
 const formals$5 = { args: { diffDir: false }, ellipsis: false };
-const pos$7 = nix.positions(here + "/default.nix", [["nativeBuildInputs", 277, 9]]);
 const formals$6 = { args: { evalSystems: true, countInstructions: true }, ellipsis: false };
-const pos$8 = nix.positions(here + "/default.nix", [["evalSystem", 334, 19], ["countInstructions", 334, 30]]);
-const pos$9 = nix.positions(here + "/default.nix", [["name", 330, 7], ["paths", 331, 7]]);
 const formals$7 = { args: { evalSystems: true, baseline: false, touchedFilesJson: true, baseBranch: true, countInstructions: true }, ellipsis: false };
-const pos$10 = nix.positions(here + "/default.nix", [["evalSystem", 366, 23], ["countInstructions", 366, 34]]);
-const pos$11 = nix.positions(here + "/default.nix", [["evalSystem", 363, 21], ["beforeDir", 364, 13], ["afterDir", 365, 13]]);
-const pos$12 = nix.positions(here + "/default.nix", [["name", 359, 9], ["paths", 360, 9]]);
-const pos$13 = nix.positions(here + "/default.nix", [["diffDir", 372, 33]]);
-const pos$14 = nix.positions(here + "/default.nix", [["combinedDir", 372, 9], ["touchedFilesJson", 373, 17], ["baseBranch", 373, 34]]);
-const pos$15 = nix.positions(here + "/default.nix", [["preEval", 381, 5], ["singleSystem", 382, 5], ["diff", 383, 5], ["combine", 384, 5], ["compare", 385, 5], ["baseline", 388, 5], ["full", 389, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -45,7 +31,7 @@ export default nix.lambda((args) => (() => {
     const nixpkgs = nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(lib, "fileset")), null);
       return nix.app(nix.lookup(w, "toSource"), nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           root: nix.path(here, "../.."),
           fileset: nix.thunk(() => nix.app(nix.lookup(w, "unions"), nix.thunk(() => nix.app(nix.builtins.map, nix.thunk(() => nix.app(nix.sel(lib, "path", "append"), nix.path(here, "../.."))), nix.thunk(() => [
                 ".version",
@@ -67,7 +53,7 @@ export default nix.lambda((args) => (() => {
       const $_2 = nix.formals(args_2, formals$3);
       const evalSystem = nix.arg($_2, "evalSystem");
       return nix.app(runCommand, "pre-eval", nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           src: nixpkgs,
           nativeBuildInputs: nix.thunk(() => nix.builtins.map(nix.thunk(() => nix.sel(lib, "getBin")), nix.thunk(() => [busybox, nix$]))),
         })), nix.thunk(() => nix.str`export NIX_STATE_DIR=$(mktemp -d)
@@ -87,7 +73,7 @@ command time -f "Pre-eval done [%MKB max resident, %Es elapsed] %C" \\
     const singleSystem = nix.lambda((args_2) => (() => {
       const $_2 = nix.formals(args_2, formals$4);
       const evalSystem = nix.argOr($_2, "evalSystem", () => nix.builtins.currentSystem);
-      const preEvalFile = nix.argOr($_2, "preEvalFile", () => nix.str`${nix.app(preEval, nix.thunk(() => ({ [nix.POS]: pos$3, evalSystem: evalSystem })))}/result.json`);
+      const preEvalFile = nix.argOr($_2, "preEvalFile", () => nix.str`${nix.app(preEval, nix.thunk(() => ({ [nix.POS]: $pos[2], evalSystem: evalSystem })))}/result.json`);
       const countInstructions = nix.argOr($_2, "countInstructions", () => false);
       const singleChunk = nix.thunk(() => nix.app(writeShellScript, "single-chunk", nix.thunk(() => nix.str`set -euo pipefail
 chunkSize=$1
@@ -138,16 +124,16 @@ elif [[ -s "$outputDir/stderr/$myChunk" ]]; then
 fi
 `)));
       return nix.app(runCommand, nix.thunk(() => nix.str`nixpkgs-eval-${evalSystem}`), nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           nativeBuildInputs: nix.thunk(() => nix.builtins.map(nix.thunk(() => nix.sel(lib, "getBin")), nix.thunk(() => nix.concat([busybox, jq, nix$], nix.app(nix.sel(lib, "optionals"), countInstructions, nix.thunk(() => [perf])))))),
           env: nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             evalSystem: evalSystem,
             chunkSize: chunkSize,
             countInstructions: countInstructions,
           })),
           __structuredAttrs: true,
-          unsafeDiscardReferences: nix.thunk(() => ({ [nix.POS]: pos$5, out: true })),
+          unsafeDiscardReferences: nix.thunk(() => ({ [nix.POS]: $pos[4], out: true })),
         })), nix.thunk(() => nix.str`export NIX_STATE_DIR=$(mktemp -d)
 nix-store --init
 
@@ -251,7 +237,7 @@ cat "$chunkOutputDirs"/*/result/* | jq -s 'add | map_values(.meta)' > $out/${eva
       const $_2 = nix.formals(args_2, formals$5);
       const diffDir = nix.arg($_2, "diffDir");
       return nix.app(runCommand, "combined-eval", nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           nativeBuildInputs: nix.thunk(() => nix.builtins.map(nix.thunk(() => nix.sel(lib, "getBin")), nix.thunk(() => [jq]))),
         })), nix.thunk(() => nix.str`mkdir -p $out
 
@@ -296,10 +282,10 @@ done
       const evalSystems = nix.argOr($_2, "evalSystems", () => (nix.asBool(quickTest) ? ["x86_64-linux"] : nix.force(supportedSystems)));
       const countInstructions = nix.argOr($_2, "countInstructions", () => false);
       return nix.app(symlinkJoin, nix.thunk(() => ({
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           name: "nixpkgs-eval-baseline",
           paths: nix.thunk(() => nix.builtins.map((evalSystem) => nix.app(singleSystem, nix.thunk(() => ({
-                [nix.POS]: pos$8,
+                [nix.POS]: $pos[7],
                 evalSystem: evalSystem,
                 countInstructions: countInstructions,
               }))), evalSystems)),
@@ -313,29 +299,29 @@ done
       const baseBranch = nix.argOr($_2, "baseBranch", () => "master");
       const countInstructions = nix.argOr($_2, "countInstructions", () => false);
       const diffs = nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({
-          [nix.POS]: pos$12,
+          [nix.POS]: $pos[11],
           name: "nixpkgs-eval-diffs",
           paths: nix.thunk(() => nix.builtins.map((evalSystem) => nix.app(diff, nix.thunk(() => ({
-                [nix.POS]: pos$11,
+                [nix.POS]: $pos[10],
                 evalSystem: evalSystem,
                 beforeDir: baseline_1,
                 afterDir: nix.thunk(() => nix.app(singleSystem, nix.thunk(() => ({
-                    [nix.POS]: pos$10,
+                    [nix.POS]: $pos[9],
                     evalSystem: evalSystem,
                     countInstructions: countInstructions,
                   })))),
               }))), evalSystems)),
         }))));
       const comparisonReport = nix.thunk(() => nix.app(compare, nix.thunk(() => ({
-          [nix.POS]: pos$14,
-          combinedDir: nix.thunk(() => nix.app(combine, nix.thunk(() => ({ [nix.POS]: pos$13, diffDir: diffs })))),
+          [nix.POS]: $pos[13],
+          combinedDir: nix.thunk(() => nix.app(combine, nix.thunk(() => ({ [nix.POS]: $pos[12], diffDir: diffs })))),
           touchedFilesJson: touchedFilesJson,
           baseBranch: baseBranch,
         }))));
       return nix.force(comparisonReport);
     })(), formals$7);
     return {
-      [nix.POS]: pos$15,
+      [nix.POS]: $pos[14],
       preEval: preEval,
       singleSystem: singleSystem,
       diff: diff,

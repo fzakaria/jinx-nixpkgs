@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5], ["fetchSubmodules", 18, 5]], [["updateScript", 43, 12]], [["description", 46, 5], ["homepage", 47, 5], ["sourceProvenance", 48, 5], ["license", 49, 5], ["maintainers", 50, 5], ["platforms", 51, 40]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["dontWrapQtApps", 21, 3], ["buildInputs", 23, 3], ["nativeBuildInputs", 32, 3], ["cmakeFlags", 37, 3], ["passthru", 43, 3], ["meta", 45, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, cmake: false, kdePackages: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5], ["fetchSubmodules", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 43, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 46, 5], ["homepage", 47, 5], ["sourceProvenance", 48, 5], ["license", 49, 5], ["maintainers", 50, 5], ["platforms", 51, 40]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["dontWrapQtApps", 21, 3], ["buildInputs", 23, 3], ["nativeBuildInputs", 32, 3], ["cmakeFlags", 37, 3], ["passthru", 43, 3], ["meta", 45, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const kdePackages = nix.arg($, "kdePackages");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "jetbrains-runner",
       version: "3.0.7",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "alex1701c",
           repo: "JetBrainsRunner",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -43,13 +40,13 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [cmake, nix.thunk(() => nix.sel(kdePackages, "extra-cmake-modules"))]),
       cmakeFlags: nix.thunk(() => ["-DBUILD_TESTING=OFF", "-DBUILD_WITH_QT6=ON", "-DQT_MAJOR_VERSION=6"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(kdePackages, "krunner", "meta"));
         return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Krunner Plugin which allows you to open your recent JetBrains projects",
         homepage: "https://github.com/alex1701c/JetBrainsRunner",
         sourceProvenance: nix.thunk(() => (() => {

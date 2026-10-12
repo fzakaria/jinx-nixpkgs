@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5], ["fetchSubmodules", 20, 5]], [["homepage", 55, 5], ["changelog", 56, 5], ["description", 57, 5], ["mainProgram", 58, 5], ["license", 59, 5], ["maintainers", 60, 5], ["broken", 61, 5]], [["pname", 11, 3], ["version", 12, 3], ["baseVersion", 13, 3], ["src", 15, 3], ["sourceRoot", 23, 3], ["qmakeFlags", 25, 3], ["postFixup", 31, 3], ["nativeBuildInputs", 35, 3], ["dontWrapQtApps", 43, 3], ["buildInputs", 45, 3], ["meta", 54, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromCodeberg: false, qt6: false, udev: false, "pkg-config": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5], ["fetchSubmodules", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 55, 5], ["changelog", 56, 5], ["description", 57, 5], ["mainProgram", 58, 5], ["license", 59, 5], ["maintainers", 60, 5], ["broken", 61, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["baseVersion", 13, 3], ["src", 15, 3], ["sourceRoot", 23, 3], ["qmakeFlags", 25, 3], ["postFixup", 31, 3], ["nativeBuildInputs", 35, 3], ["dontWrapQtApps", 43, 3], ["buildInputs", 45, 3], ["meta", 54, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const udev = nix.arg($, "udev");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "ubpm",
       version: "1.13.0-unstable-2025-10-18",
       baseVersion: nix.thunk(() => nix.app(nix.sel(lib, "head"), nix.thunk(() => nix.app(nix.sel(lib, "splitString"), "-", nix.thunk(() => nix.sel(finalAttrs, "version")))))),
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "LazyT",
           repo: "ubpm",
           rev: "748ce8504185ae96dbdbd1cff5352d1eef2c046d",
@@ -47,7 +45,7 @@ export default nix.lambda((args) => (() => {
         udev,
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://codeberg.org/LazyT/ubpm",
         changelog: nix.thunk(() => nix.str`https://codeberg.org/LazyT/ubpm/releases/tag/${nix.sel(finalAttrs, "baseVersion")}`),
         description: "Universal Blood Pressure Manager",

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 24, 5], ["repo", 25, 5], ["rev", 26, 5], ["hash", 27, 5]], [["description", 59, 5], ["homepage", 60, 5], ["license", 61, 5], ["maintainers", 62, 5]], [["pname", 15, 3], ["version", 16, 3], ["outputs", 18, 3], ["src", 23, 3], ["nativeBuildInputs", 30, 3], ["propagatedBuildInputs", 32, 3], ["cmakeFlags", 40, 3], ["postPatch", 45, 3], ["dontWrapQtApps", 51, 3], ["postInstall", 53, 3], ["meta", 58, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, fetchpatch: false, cmake: false, olm: false, openssl: false, qtbase: false, qtmultimedia: false, qtkeychain: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 24, 5], ["repo", 25, 5], ["rev", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 59, 5], ["homepage", 60, 5], ["license", 61, 5], ["maintainers", 62, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 15, 3], ["version", 16, 3], ["outputs", 18, 3], ["src", 23, 3], ["nativeBuildInputs", 30, 3], ["propagatedBuildInputs", 32, 3], ["cmakeFlags", 40, 3], ["postPatch", 45, 3], ["dontWrapQtApps", 51, 3], ["postInstall", 53, 3], ["meta", 58, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.9.6.1";
       const outputs = nix.thunk(() => ["out", "dev"]);
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "quotient-im",
           repo: "libQuotient",
           rev: version,
@@ -37,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const dontWrapQtApps = true;
       const postInstall = "# causes cyclic dependency but is not used\nrm $out/share/ndk-modules/Android.mk\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Qt5/Qt6 library to write cross-platform clients for Matrix",
         homepage: "https://quotient-im.github.io/libQuotient/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21")),
@@ -47,7 +45,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         outputs,

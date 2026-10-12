@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]], [["description", 56, 5], ["homepage", 57, 5], ["platforms", 58, 5], ["license", 59, 5], ["maintainers", 60, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["prePatch", 22, 3], ["enableParallelBuilding", 30, 3], ["installPhase", 32, 3], ["buildInputs", 43, 3], ["outputs", 50, 3], ["meta", 55, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, sfml_2: false, libffcall: false, "libusb-compat-0_1": false, "libudev-zero": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 56, 5], ["homepage", 57, 5], ["platforms", 58, 5], ["license", 59, 5], ["maintainers", 60, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["prePatch", 22, 3], ["enableParallelBuilding", 30, 3], ["installPhase", 32, 3], ["buildInputs", 43, 3], ["outputs", 50, 3], ["meta", 55, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const libusb_compat_0_1 = nix.arg($, "libusb-compat-0_1");
   const libudev_zero = nix.arg($, "libudev-zero");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "liblapin",
       version: "0-unstable-2024-05-20",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Damdoshi",
           repo: "LibLapin",
           rev: "27955d24f3efd10fe4f556a4f292d731813d3de3",
@@ -33,7 +31,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [sfml_2, libffcall, libusb_compat_0_1, libudev_zero]),
       outputs: nix.thunk(() => ["out", "dev"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Multimedia library for rookies and prototyping",
         homepage: "https://liblapin.org?lan=en",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),

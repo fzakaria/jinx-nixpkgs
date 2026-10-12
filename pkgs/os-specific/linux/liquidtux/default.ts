@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["sha256", 19, 5]], [["description", 40, 5], ["homepage", 41, 5], ["license", 42, 5], ["platforms", 43, 5], ["maintainers", 47, 5], ["broken", 48, 5]], [["name", 11, 3], ["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["hardeningDisable", 22, 3], ["nativeBuildInputs", 24, 3], ["makeFlags", 28, 3], ["installPhase", 32, 3], ["meta", 39, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, kernel: false, kernelModuleMakeFlags: false, python3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["sha256", 19, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 40, 5], ["homepage", 41, 5], ["license", 42, 5], ["platforms", 43, 5], ["maintainers", 47, 5], ["broken", 48, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["name", 11, 3], ["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["hardeningDisable", 22, 3], ["nativeBuildInputs", 24, 3], ["makeFlags", 28, 3], ["installPhase", 32, 3], ["meta", 39, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pname = "liquidtux";
       const version = "0.1.0-unstable-2025-01-16";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "liquidctl",
           repo: "liquidtux",
           rev: "4613127ac6a7f1f0a98009045ea8c16f6b960533",
@@ -37,7 +35,7 @@ install nzxt-grid3.ko nzxt-kraken2.ko nzxt-kraken3.ko nzxt-smart2.ko -Dm444 -t $
 runHook postInstall
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Linux kernel hwmon drivers for AIO liquid coolers and other devices",
         homepage: "https://github.com/liquidctl/liquidtux",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),
@@ -49,7 +47,7 @@ runHook postInstall
         broken: nix.thunk(() => nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(kernel, "version")), "5.10")),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         name,
         pname,
         version,

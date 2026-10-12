@@ -2,30 +2,19 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/pgadmin4.nix", [[["maintainers", 5, 8]], [["systemPackages", 17, 21]], [["enable", 24, 11], ["authentication", 25, 11]], [["port", 31, 11], ["enable", 32, 11], ["initialEmail", 33, 11], ["initialPasswordFile", 34, 11]], [["postgresql", 23, 18], ["pgadmin", 30, 18]], [["imports", 15, 9], ["environment", 17, 9], ["services", 23, 9]], [["enable", 44, 11]], [["enable", 48, 11], ["initialEmail", 49, 11], ["initialPasswordFile", 50, 11], ["minimumPasswordLength", 51, 11]], [["postgresql", 43, 18], ["pgadmin", 47, 18]], [["imports", 41, 9], ["services", 43, 9]], [["machine", 11, 5], ["machine2", 37, 5]], [["name", 4, 3], ["meta", 5, 3], ["nodes", 10, 3], ["testScript", 56, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/pgadmin4.nix", [["maintainers", 5, 8]]);
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/pgadmin4.nix", [["systemPackages", 17, 21]]);
-const pos$3 = nix.positions(here + "/pgadmin4.nix", [["enable", 24, 11], ["authentication", 25, 11]]);
-const pos$4 = nix.positions(here + "/pgadmin4.nix", [["port", 31, 11], ["enable", 32, 11], ["initialEmail", 33, 11], ["initialPasswordFile", 34, 11]]);
-const pos$5 = nix.positions(here + "/pgadmin4.nix", [["postgresql", 23, 18], ["pgadmin", 30, 18]]);
-const pos$6 = nix.positions(here + "/pgadmin4.nix", [["imports", 15, 9], ["environment", 17, 9], ["services", 23, 9]]);
 const formals$3 = { args: { pkgs: false }, ellipsis: true };
-const pos$7 = nix.positions(here + "/pgadmin4.nix", [["enable", 44, 11]]);
-const pos$8 = nix.positions(here + "/pgadmin4.nix", [["enable", 48, 11], ["initialEmail", 49, 11], ["initialPasswordFile", 50, 11], ["minimumPasswordLength", 51, 11]]);
-const pos$9 = nix.positions(here + "/pgadmin4.nix", [["postgresql", 43, 18], ["pgadmin", 47, 18]]);
-const pos$10 = nix.positions(here + "/pgadmin4.nix", [["imports", 41, 9], ["services", 43, 9]]);
-const pos$11 = nix.positions(here + "/pgadmin4.nix", [["machine", 11, 5], ["machine2", 37, 5]]);
-const pos$12 = nix.positions(here + "/pgadmin4.nix", [["name", 4, 3], ["meta", 5, 3], ["nodes", 10, 3], ["testScript", 56, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$12,
+    [nix.POS]: $pos[11],
     name: "pgadmin4",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [
@@ -35,15 +24,15 @@ export default nix.lambda((args) => (() => {
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$11,
+      [nix.POS]: $pos[10],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           imports: nix.thunk(() => [nix.path(here, "./common/user-account.nix")]),
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             systemPackages: nix.thunk(() => (() => {
               const w = nix.withScope(pkgs, null);
               return [
@@ -54,14 +43,14 @@ export default nix.lambda((args) => (() => {
             })()),
           })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             postgresql: nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               enable: true,
               authentication: "host    all             all             localhost               trust\n",
             })),
             pgadmin: nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               port: 5051n,
               enable: true,
               initialEmail: "bruh@localhost.de",
@@ -74,13 +63,13 @@ export default nix.lambda((args) => (() => {
         const $_1 = nix.formals(args_1, formals$3);
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$10,
+          [nix.POS]: $pos[9],
           imports: nix.thunk(() => [nix.path(here, "./common/user-account.nix")]),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$9,
-            postgresql: nix.thunk(() => ({ [nix.POS]: pos$7, enable: true })),
+            [nix.POS]: $pos[8],
+            postgresql: nix.thunk(() => ({ [nix.POS]: $pos[6], enable: true })),
             pgadmin: nix.thunk(() => ({
-              [nix.POS]: pos$8,
+              [nix.POS]: $pos[7],
               enable: true,
               initialEmail: "bruh@localhost.de",
               initialPasswordFile: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "pw", "bruh2012!")),

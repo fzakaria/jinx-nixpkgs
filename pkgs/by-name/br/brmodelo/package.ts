@@ -2,16 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5]], [["name", 39, 7], ["url", 40, 7], ["hash", 41, 7]], [["name", 44, 7], ["url", 45, 7], ["hash", 46, 7]], [["name", 49, 7], ["url", 50, 7], ["hash", 51, 7]], [["name", 54, 7], ["url", 55, 7], ["hash", 56, 7]], [["name", 62, 7], ["url", 63, 7], ["hash", 64, 7]], [["name", 76, 7], ["desktopName", 77, 7], ["genericName", 78, 7], ["exec", 79, 7], ["icon", 80, 7], ["comment", 81, 7], ["categories", 82, 7]], [["description", 126, 5], ["homepage", 127, 5], ["license", 128, 5], ["mainProgram", 129, 5], ["maintainers", 130, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["nativeBuildInputs", 26, 3], ["patches", 35, 3], ["buildPhase", 68, 3], ["desktopItems", 74, 3], ["installPhase", 95, 3], ["preFixup", 121, 3], ["meta", 125, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch: false, ant: false, jdk8: false, makeWrapper: false, makeDesktopItem: false, copyDesktopItems: false, "strip-nondeterminism": false, stripJavaArchivesHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 39, 7], ["url", 40, 7], ["hash", 41, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 44, 7], ["url", 45, 7], ["hash", 46, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["name", 49, 7], ["url", 50, 7], ["hash", 51, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["name", 54, 7], ["url", 55, 7], ["hash", 56, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["name", 62, 7], ["url", 63, 7], ["hash", 64, 7]]);
-const pos$7 = nix.positions(here + "/package.nix", [["name", 76, 7], ["desktopName", 77, 7], ["genericName", 78, 7], ["exec", 79, 7], ["icon", 80, 7], ["comment", 81, 7], ["categories", 82, 7]]);
-const pos$8 = nix.positions(here + "/package.nix", [["description", 126, 5], ["homepage", 127, 5], ["license", 128, 5], ["mainProgram", 129, 5], ["maintainers", 130, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["nativeBuildInputs", 26, 3], ["patches", 35, 3], ["buildPhase", 68, 3], ["desktopItems", 74, 3], ["installPhase", 95, 3], ["preFixup", 121, 3], ["meta", 125, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const strip_nondeterminism = nix.arg($, "strip-nondeterminism");
   const stripJavaArchivesHook = nix.arg($, "stripJavaArchivesHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       pname: "brmodelo",
       version: "3.31",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "chcandido",
           repo: "brmodelo",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -47,31 +39,31 @@ export default nix.lambda((args) => (() => {
       ]),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "fix-self-closing-element-not-allowed.patch",
             url: "https://github.com/yuuyins/brModelo/commit/0d712b74fd5d29d67be07480ed196da28a77893b.patch",
             hash: "sha256-yy03arE6xetotzyvpToi9o9crg3KnMRn1J70jDUvSXE=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "fix-tag-closing.patch",
             url: "https://github.com/yuuyins/brModelo/commit/e8530ff75f024cf6effe0408ed69985405e9709c.patch",
             hash: "sha256-MNuh/ORbaAkB5qDSlA/nPrXN+tqzz4oOglVyEtSangI=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             name: "fix-bad-use-greater-than.patch",
             url: "https://github.com/yuuyins/brModelo/commit/498a6ef8129daff5a472b318f93c8f7f2897fc7f.patch",
             hash: "sha256-MmAwYUmx38DGRsiSxCWCObtpqxk0ykUQiDSC76bCpFc=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             name: "fix-param-errors.patch",
             url: "https://github.com/yuuyins/brModelo/commit/8a508aaba0bcffe13a3f95cff495230beea36bc4.patch",
             hash: "sha256-qME9gZChSMzu1vs9HaosD+snb+jlOrQLY97meNoA8oU=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             name: "add-brmodelo-logo-icons-svg.patch",
             url: "https://github.com/yuuyins/brModelo/commit/f260b82b664fad3325bbf3ebd7a15488d496946b.patch",
             hash: "sha256-UhgcWxsHkNFS1GgaRnmlZohjDR8JwHof2cIb3SBetYs=",
@@ -80,7 +72,7 @@ export default nix.lambda((args) => (() => {
       buildPhase: "runHook postBuild\nant\nrunHook preBuild\n",
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             name: "brmodelo",
             desktopName: "brModelo",
             genericName: "Entity-relationship diagramming tool",
@@ -125,7 +117,7 @@ runHook postInstall
 `),
       preFixup: "find $out/share/doc/brmodelo/javadoc -name \"*.html\" -exec strip-nondeterminism --type javadoc {} +\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         description: "Entity-relationship diagram tool for making conceptual and logical database models",
         homepage: "https://github.com/chcandido/brModelo",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 26, 5], ["repo", 27, 5], ["rev", 28, 5], ["hash", 29, 5]], [["description", 55, 5], ["mainProgram", 56, 5], ["longDescription", 57, 5], ["homepage", 61, 5], ["changelog", 62, 5], ["maintainers", 63, 5], ["license", 64, 5], ["platforms", 65, 5]], [["pname", 20, 3], ["version", 23, 3], ["src", 25, 3], ["preBuild", 36, 3], ["buildInputs", 40, 3], ["nativeBuildInputs", 47, 3], ["meta", 54, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, autoreconfHook: false, glibcLocales: false, "pkg-config": false, curl: false, glib: false, id3lib: false, libxml2: false, taglib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 26, 5], ["repo", 27, 5], ["rev", 28, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 55, 5], ["mainProgram", 56, 5], ["longDescription", 57, 5], ["homepage", 61, 5], ["changelog", 62, 5], ["maintainers", 63, 5], ["license", 64, 5], ["platforms", 65, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 23, 3], ["src", 25, 3], ["preBuild", 36, 3], ["buildInputs", 40, 3], ["nativeBuildInputs", 47, 3], ["meta", 54, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const libxml2 = nix.arg($, "libxml2");
   const taglib = nix.arg($, "taglib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "castget",
       version: "2.0.1-unstable-2026-02-04",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "mlj",
           repo: "castget",
           rev: "218734296e2efc53071e0dbd3c4d59930b571aae",
@@ -35,7 +33,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [curl, glib, id3lib, libxml2, taglib]),
       nativeBuildInputs: nix.thunk(() => [autoreconfHook, glibcLocales, pkg_config]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Simple, command-line based RSS enclosure downloader",
         mainProgram: "castget",
         longDescription: "castget is a simple, command-line based RSS enclosure downloader. It is\nprimarily intended for automatic, unattended downloading of podcasts.\n",

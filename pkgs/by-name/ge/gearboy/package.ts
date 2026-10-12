@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]], [["type", 63, 7], ["name", 64, 7], ["desktopName", 65, 7], ["genericName", 66, 7], ["comment", 67, 7], ["exec", 68, 7], ["categories", 69, 7]], [["updateScript", 103, 12]], [["description", 106, 5], ["homepage", 107, 5], ["license", 108, 5], ["maintainers", 109, 5], ["mainProgram", 110, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["__structuredAttrs", 28, 3], ["strictDeps", 29, 3], ["buildInputs", 31, 3], ["nativeBuildInputs", 36, 3], ["postPatch", 42, 3], ["makeFlags", 54, 3], ["enableParallelBuilding", 59, 3], ["desktopItems", 61, 3], ["installPhase", 76, 3], ["nativeInstallCheckInputs", 98, 3], ["doInstallCheck", 101, 3], ["passthru", 103, 3], ["meta", 105, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, copyDesktopItems: false, fetchFromGitHub: false, libGL: false, makeDesktopItem: false, makeWrapper: false, "nix-update-script": false, "pkg-config": false, sdl3: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["type", 63, 7], ["name", 64, 7], ["desktopName", 65, 7], ["genericName", 66, 7], ["comment", 67, 7], ["exec", 68, 7], ["categories", 69, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 103, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 106, 5], ["homepage", 107, 5], ["license", 108, 5], ["maintainers", 109, 5], ["mainProgram", 110, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["__structuredAttrs", 28, 3], ["strictDeps", 29, 3], ["buildInputs", 31, 3], ["nativeBuildInputs", 36, 3], ["postPatch", 42, 3], ["makeFlags", 54, 3], ["enableParallelBuilding", 59, 3], ["desktopItems", 61, 3], ["installPhase", 76, 3], ["nativeInstallCheckInputs", 98, 3], ["doInstallCheck", 101, 3], ["passthru", 103, 3], ["meta", 105, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const isLinux = nix.thunk(() => nix.attr(from, "isLinux"));
   const isDarwin = nix.thunk(() => nix.attr(from, "isDarwin"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "gearboy",
       version: "3.8.16",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "drhelius",
           repo: "Gearboy",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -48,7 +44,7 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: true,
       desktopItems: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), isLinux, nix.thunk(() => [
           nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               type: "Application",
               name: "Gearboy",
               desktopName: "Gearboy",
@@ -62,11 +58,11 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Game Boy/Game Boy Color/Super Game Boy emulator, debugger and embedded MCP server for macOS, Windows, Linux, BSD and RetroArch",
         homepage: "https://github.com/drhelius/Gearboy",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

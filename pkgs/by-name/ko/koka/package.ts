@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5], ["fetchSubmodules", 19, 5]], [["pname", 23, 5], ["version", 24, 13], ["src", 25, 5], ["nativeBuildInputs", 26, 5], ["outputs", 27, 5], ["postInstall", 31, 5]], [["pname", 46, 3], ["version", 47, 11], ["src", 47, 19], ["isLibrary", 49, 3], ["isExecutable", 50, 3], ["buildTools", 52, 3], ["libraryToolDepends", 54, 3], ["executableHaskellDepends", 58, 3], ["executableToolDepends", 84, 3], ["postInstall", 88, 3], ["doHaddock", 97, 3], ["doCheck", 99, 3], ["prePatch", 101, 3], ["description", 103, 3], ["homepage", 104, 3], ["changelog", 105, 3], ["license", 106, 3], ["maintainers", 107, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, pkgsHostTarget: false, haskellPackages: false, cmake: false, makeWrapper: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5], ["fetchSubmodules", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 23, 5], ["version", 24, 13], ["src", 25, 5], ["nativeBuildInputs", 26, 5], ["outputs", 27, 5], ["postInstall", 31, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 46, 3], ["version", 47, 11], ["src", 47, 19], ["isLibrary", 49, 3], ["isExecutable", 50, 3], ["buildTools", 52, 3], ["libraryToolDepends", 54, 3], ["executableHaskellDepends", 58, 3], ["executableToolDepends", 84, 3], ["postInstall", 88, 3], ["doHaddock", 97, 3], ["doCheck", 99, 3], ["prePatch", 101, 3], ["description", 103, 3], ["homepage", 104, 3], ["changelog", 105, 3], ["license", 106, 3], ["maintainers", 107, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const version = "3.2.9";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "koka-lang",
       repo: "koka",
       tag: nix.thunk(() => nix.str`v${version}`),
@@ -26,7 +24,7 @@ export default nix.lambda((args) => (() => {
       fetchSubmodules: true,
     }))));
   const kklib = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "kklib",
       version: version,
       src: nix.thunk(() => nix.str`${src}/kklib`),
@@ -45,7 +43,7 @@ cp -a ../../kklib \${!outputDev}/share/koka/v${version}
     nix.thunk(() => nix.sel(pkgsHostTarget, "cmake")),
   ]);
   return nix.app(nix.sel(haskellPackages, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "koka",
       version: version,
       src: src,

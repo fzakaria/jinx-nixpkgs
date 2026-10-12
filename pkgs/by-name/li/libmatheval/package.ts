@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 22, 5], ["sha256", 23, 5]], [["url", 30, 7], ["hash", 31, 7]], [["url", 34, 7], ["hash", 35, 7]], [["url", 38, 7], ["hash", 39, 7]], [["NIX_CFLAGS_COMPILE", 43, 7], ["NIX_LDFLAGS", 44, 7]], [["description", 47, 5], ["longDescription", 48, 5], ["homepage", 55, 5], ["license", 56, 5], ["maintainers", 57, 5], ["platforms", 58, 5]], [["version", 12, 3], ["pname", 13, 3], ["nativeBuildInputs", 15, 3], ["buildInputs", 19, 3], ["src", 21, 3], ["patches", 28, 3], ["env", 43, 3], ["meta", 46, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, "pkg-config": false, guile: false, flex: false, fetchpatch: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 22, 5], ["sha256", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 30, 7], ["hash", 31, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 34, 7], ["hash", 35, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["url", 38, 7], ["hash", 39, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 43, 7], ["NIX_LDFLAGS", 44, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 47, 5], ["longDescription", 48, 5], ["homepage", 55, 5], ["license", 56, 5], ["maintainers", 57, 5], ["platforms", 58, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["version", 12, 3], ["pname", 13, 3], ["nativeBuildInputs", 15, 3], ["buildInputs", 19, 3], ["src", 21, 3], ["patches", 28, 3], ["env", 43, 3], ["meta", 46, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,40 +15,40 @@ export default nix.lambda((args) => (() => {
   const flex = nix.arg($, "flex");
   const fetchpatch = nix.arg($, "fetchpatch");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       version: "1.1.11",
       pname: "libmatheval",
       nativeBuildInputs: nix.thunk(() => [pkg_config, flex]),
       buildInputs: nix.thunk(() => [guile]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://ftp.gnu.org/gnu/libmatheval/libmatheval-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "474852d6715ddc3b6969e28de5e1a5fbaff9e8ece6aebb9dc1cc63e9e88e89ab",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://sources.debian.org/data/main/libm/libmatheval/1.1.11%2Bdfsg-5/debian/patches/002-skip-docs.patch",
             hash: "sha256-wjz54FKQq7t9Bz0W3EOu+ZPTt8EcfkMotkZKwlWa09o=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: "https://sources.debian.org/data/main/libm/libmatheval/1.1.11%2Bdfsg-5/debian/patches/003-guile3.0.patch",
             hash: "sha256-H3E/2m4MfQAbjpXbVFyNhikVifi3spVThzaVU5srmjI=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             url: "https://sources.debian.org/data/main/libm/libmatheval/1.1.11%2Bdfsg-5/debian/patches/disable_coth_test.patch",
             hash: "sha256-9XeMXWDTzELWTPcsjAqOlIzp4qY9yupU+e6r0rJEUS0=",
           })))),
       ]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.str`-I${nix.app(nix.sel(lib, "getDev"), guile)}/include/guile/${nix.sel(guile, "effectiveVersion")}`),
         NIX_LDFLAGS: nix.thunk(() => nix.str`-L${guile}/lib -lguile-${nix.sel(guile, "effectiveVersion")}`),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Library to parse and evaluate symbolic expressions input as text",
         longDescription: "GNU libmatheval is a library (callable from C and Fortran) to parse and evaluate symbolic\nexpressions input as text. It supports expressions in any number of variables of arbitrary\nnames, decimal and symbolic constants, basic unary and binary operators, and elementary\nmathematical functions. In addition to parsing and evaluation, libmatheval can also compute\nsymbolic derivatives and output expressions to strings.\n",
         homepage: "https://www.gnu.org/software/libmatheval/",

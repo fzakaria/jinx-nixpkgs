@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["broken", 34, 5], ["description", 35, 5], ["mainProgram", 36, 5]], [["pname", 13, 3], ["version", 14, 18], ["src", 14, 26], ["cargoHash", 16, 3], ["buildAndTestSubdir", 18, 3], ["nativeBuildInputs", 20, 3], ["buildInputs", 26, 3], ["__darwinAllowLocalNetworking", 30, 3], ["meta", 32, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, teos: false, "pkg-config": false, protobuf: false, rustfmt: false, openssl: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["broken", 34, 5], ["description", 35, 5], ["mainProgram", 36, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 18], ["src", 14, 26], ["cargoHash", 16, 3], ["buildAndTestSubdir", 18, 3], ["nativeBuildInputs", 20, 3], ["buildInputs", 26, 3], ["__darwinAllowLocalNetworking", 30, 3], ["meta", 32, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const openssl = nix.arg($, "openssl");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "teos-watchtower-plugin",
       version: nix.thunk(() => nix.attr(teos, "version")),
       src: nix.thunk(() => nix.attr(teos, "src")),
@@ -27,7 +26,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [openssl]),
       __darwinAllowLocalNetworking: true,
       meta: nix.thunk(() => nix.update(nix.sel(teos, "meta"), {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
         description: "Lightning watchtower plugin for clightning",
         mainProgram: "watchtower-client",

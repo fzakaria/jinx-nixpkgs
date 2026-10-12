@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["leaveDotGit", 25, 5], ["postFetch", 26, 5], ["hash", 34, 5]], [["ok", 84, 5], ["fail", 85, 5], ["fail-emptyDirectory", 86, 5], ["fail-rootRelative", 87, 5], ["network", 88, 5]], [["tests", 81, 12]], [["description", 92, 5], ["homepage", 93, 5], ["downloadPage", 94, 5], ["license", 95, 5], ["maintainers", 99, 5], ["mainProgram", 103, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["cargoHash", 37, 3], ["nativeBuildInputs", 39, 3], ["nativeCheckInputs", 43, 3], ["postFixup", 45, 3], ["cargoTestFlags", 55, 3], ["checkFlags", 62, 3], ["passthru", 81, 3], ["meta", 91, 3]]]);
 const formals$1 = { args: { callPackage: false, lib: false, stdenv: false, buildPackages: false, fetchFromGitHub: false, rustPlatform: false, installShellFiles: false, testers: false, cacert: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["leaveDotGit", 25, 5], ["postFetch", 26, 5], ["hash", 34, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["ok", 84, 5], ["fail", 85, 5], ["fail-emptyDirectory", 86, 5], ["fail-rootRelative", 87, 5], ["network", 88, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 81, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 92, 5], ["homepage", 93, 5], ["downloadPage", 94, 5], ["license", 95, 5], ["maintainers", 99, 5], ["mainProgram", 103, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["cargoHash", 37, 3], ["nativeBuildInputs", 39, 3], ["nativeCheckInputs", 43, 3], ["postFixup", 45, 3], ["cargoTestFlags", 55, 3], ["checkFlags", 62, 3], ["passthru", 81, 3], ["meta", 91, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const canRun = nix.thunk(() => nix.app(nix.sel(stdenv, "hostPlatform", "emulatorAvailable"), buildPackages));
   const lychee = nix.thunk(() => nix.str`${nix.app(nix.sel(stdenv, "hostPlatform", "emulator"), buildPackages)} $out/bin/lychee${nix.sel(stdenv, "hostPlatform", "extensions", "executable")}`);
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "lychee",
       version: "0.24.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "lycheeverse",
           repo: "lychee",
           tag: nix.thunk(() => nix.str`lychee-v${nix.sel(finalAttrs, "version")}`),
@@ -63,9 +59,9 @@ installShellCompletion --cmd lychee \\
         "--skip=formatters::response::color::tests::test_format_response_with_ok_status",
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           ok: nix.thunk(() => nix.app(callPackage, nix.path(here, "./tests/ok.nix"), nix.thunk(() => ({})))),
           fail: nix.thunk(() => nix.app(callPackage, nix.path(here, "./tests/fail.nix"), nix.thunk(() => ({})))),
           "fail-emptyDirectory": nix.thunk(() => nix.app(callPackage, nix.path(here, "./tests/fail-emptyDirectory.nix"), nix.thunk(() => ({})))),
@@ -74,7 +70,7 @@ installShellCompletion --cmd lychee \\
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Fast, async, stream-based link checker written in Rust",
         homepage: "https://github.com/lycheeverse/lychee",
         downloadPage: nix.thunk(() => nix.str`https://github.com/lycheeverse/lychee/releases/tag/lychee-v${nix.sel(finalAttrs, "version")}`),

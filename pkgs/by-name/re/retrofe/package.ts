@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 25, 5], ["repo", 26, 5], ["rev", 27, 5], ["sha256", 28, 5]], [["description", 111, 5], ["homepage", 112, 5], ["license", 113, 5], ["platforms", 114, 5]], [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["postPatch", 31, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 43, 3], ["configurePhase", 59, 3], ["buildPhase", 68, 3], ["installPhase", 73, 3], ["postInstall", 104, 3], ["meta", 110, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, glib: false, gst_all_1: false, makeWrapper: false, "pkg-config": false, python3: false, SDL2: false, SDL2_image: false, SDL2_mixer: false, SDL2_ttf: false, sqlite: false, zlib: false, runtimeShell: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 25, 5], ["repo", 26, 5], ["rev", 27, 5], ["sha256", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 111, 5], ["homepage", 112, 5], ["license", 113, 5], ["platforms", 114, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["postPatch", 31, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 43, 3], ["configurePhase", 59, 3], ["buildPhase", 68, 3], ["installPhase", 73, 3], ["postInstall", 104, 3], ["meta", 110, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const zlib = nix.arg($, "zlib");
   const runtimeShell = nix.arg($, "runtimeShell");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "retrofe",
       version: "0.10.31",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "phulshof",
           repo: "RetroFE",
           rev: "2ddd65a76210d241031c4ac9268255f311df25d1",
@@ -84,7 +82,7 @@ runHook postInstall
 `),
       postInstall: "wrapProgram \"$out/bin/retrofe\" \\\n  --prefix GST_PLUGIN_PATH : \"$GST_PLUGIN_SYSTEM_PATH_1_0\" \\\n  --run 'export RETROFE_PATH=${RETROFE_PATH:-$PWD}'\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Frontend for arcade cabinets and media PCs",
         homepage: "http://retrofe.nl/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

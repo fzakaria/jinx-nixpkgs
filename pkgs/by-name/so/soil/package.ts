@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 14, 5], ["sha256", 15, 5]], [["description", 35, 5], ["longDescription", 36, 5], ["license", 40, 5], ["platforms", 41, 5], ["maintainers", 42, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["buildInputs", 18, 3], ["buildPhase", 23, 3], ["installPhase", 28, 3], ["meta", 34, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchzip: false, libGL: false, libx11: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 14, 5], ["sha256", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 35, 5], ["longDescription", 36, 5], ["license", 40, 5], ["platforms", 41, 5], ["maintainers", 42, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["buildInputs", 18, 3], ["buildPhase", 23, 3], ["installPhase", 28, 3], ["meta", 34, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const libGL = nix.arg($, "libGL");
   const libx11 = nix.arg($, "libx11");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "soil",
       version: "unstable-2020-01-04",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://web.archive.org/web/20200104042737id_/http://www.lonesock.net/files/soil.zip",
           sha256: "1c05nwbnfdgwaz8ywn7kg2xrcvrcbpdyhcfkkiiwk69zvil0pbgd",
         })))),
@@ -27,7 +25,7 @@ export default nix.lambda((args) => (() => {
       buildPhase: "cd src\n$CC $NIX_CFLAGS_COMPILE -c *.c\n$AR rcs libSOIL.a *.o\n",
       installPhase: "mkdir -p $out/lib $out/include/SOIL\ncp libSOIL.a $out/lib/\ncp SOIL.h $out/include/SOIL/\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Simple OpenGL Image Library",
         longDescription: "SOIL is a tiny C library used primarily for uploading textures\ninto OpenGL.\n",
         license: nix.thunk(() => nix.sel(lib, "licenses", "publicDomain")),

@@ -2,9 +2,8 @@
 import * as nix from "../../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["description", 30, 5], ["maintainers", 31, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["propagatedUserEnvPkgs", 13, 3], ["dontUnpack", 15, 3], ["postBuild", 19, 3], ["meta", 29, 3]]]);
 const formals$1 = { args: { lib: false, elpaBuild: false, mu: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["description", 30, 5], ["maintainers", 31, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["propagatedUserEnvPkgs", 13, 3], ["dontUnpack", 15, 3], ["postBuild", 19, 3], ["meta", 29, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -12,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const elpaBuild = nix.arg($, "elpaBuild");
   const mu = nix.arg($, "mu");
   return nix.app(elpaBuild, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "mu4e",
       version: nix.thunk(() => nix.sel(mu, "mu4e", "version")),
       src: nix.thunk(() => nix.sel(mu, "mu4e")),
@@ -20,7 +19,7 @@ export default nix.lambda((args) => (() => {
       dontUnpack: false,
       postBuild: "local content_directory=$pname-$version\nmkdir $content_directory\ncp --verbose share/emacs/site-lisp/mu4e/*.el $content_directory/\nrm --verbose --force $content_directory/mu4e-autoloads.el\ncp --verbose share/info/* $content_directory/\nsrc=$PWD/$content_directory.tar\ntar --create --verbose --file=$src $content_directory\n",
       meta: nix.thunk(() => nix.update(nix.builtins.removeAttrs(nix.thunk(() => nix.sel(mu, "meta")), nix.thunk(() => ["mainProgram"])), {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Full-featured e-mail client",
         maintainers: nix.thunk(() => nix.concat(nix.sel(mu, "meta", "maintainers"), (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);

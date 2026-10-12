@@ -2,15 +2,9 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/pgmanage.nix", [[["maintainers", 10, 5]], [["enable", 18, 13], ["initialScript", 19, 13]], [["enable", 24, 13], ["connections", 25, 13]], [["postgresql", 17, 11], ["pgmanage", 23, 11]], [["services", 16, 9]], [["one", 13, 5]], [["name", 8, 3], ["meta", 9, 3], ["nodes", 12, 3], ["testScript", 34, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/pgmanage.nix", [["maintainers", 10, 5]]);
 const formals$2 = { args: { config: false, pkgs: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/pgmanage.nix", [["enable", 18, 13], ["initialScript", 19, 13]]);
-const pos$3 = nix.positions(here + "/pgmanage.nix", [["enable", 24, 13], ["connections", 25, 13]]);
-const pos$4 = nix.positions(here + "/pgmanage.nix", [["postgresql", 17, 11], ["pgmanage", 23, 11]]);
-const pos$5 = nix.positions(here + "/pgmanage.nix", [["services", 16, 9]]);
-const pos$6 = nix.positions(here + "/pgmanage.nix", [["one", 13, 5]]);
-const pos$7 = nix.positions(here + "/pgmanage.nix", [["name", 8, 3], ["meta", 9, 3], ["nodes", 12, 3], ["testScript", 34, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,33 +13,33 @@ export default nix.lambda((args) => (() => {
   const password = "secret";
   const conn = "local";
   return {
-    [nix.POS]: pos$7,
+    [nix.POS]: $pos[6],
     name: "pgmanage",
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
       return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "basvandijk"))]),
       };
     })()),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       one: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config = nix.arg($_1, "config");
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             postgresql: nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               enable: true,
               initialScript: nix.thunk(() => nix.app(nix.sel(pkgs_1, "writeText"), "pg-init-script", nix.thunk(() => nix.str`CREATE ROLE ${role} SUPERUSER LOGIN PASSWORD '${password}';
 `))),
             })),
             pgmanage: nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               enable: true,
               connections: nix.thunk(() => nix.attrsDyn({}, [
                 [conn, nix.thunk(() => nix.str`hostaddr=127.0.0.1 port=${nix.builtins.toString(nix.thunk(() => nix.sel(config, "services", "postgresql", "settings", "port")))} dbname=postgres`)],

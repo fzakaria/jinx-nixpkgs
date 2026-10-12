@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 19, 5], ["sha256", 20, 5]], [["platforms", 45, 5], ["license", 46, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["strictDeps", 23, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 28, 3], ["patches", 37, 3], ["preConfigure", 39, 3], ["meta", 44, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, "pkg-config": false, "libusb-compat-0_1": false, glib: false, "dbus-glib": false, bluez: false, openobex: false, dbus: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 19, 5], ["sha256", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["platforms", 45, 5], ["license", 46, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["strictDeps", 23, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 28, 3], ["patches", 37, 3], ["preConfigure", 39, 3], ["meta", 44, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const openobex = nix.arg($, "openobex");
   const dbus = nix.arg($, "dbus");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "obex-data-server",
       version: "0.4.6",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`http://tadas.dailyda.com/software/obex-data-server-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "0kq940wqs9j8qjnl58d6l3zhx0jaszci356xprx23l6nvdfld6dk",
         })))),
@@ -36,7 +34,7 @@ export default nix.lambda((args) => (() => {
 export PKG_CONFIG_PATH="${nix.sel(dbus, "dev")}/lib/pkgconfig:$PKG_CONFIG_PATH"
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
       })),

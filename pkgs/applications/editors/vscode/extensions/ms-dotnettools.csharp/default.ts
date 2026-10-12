@@ -2,15 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["arch", 20, 9], ["hash", 21, 9]], [["arch", 24, 9], ["hash", 25, 9]], [["arch", 28, 9], ["hash", 29, 9]], [["x86_64-linux", 19, 7], ["aarch64-linux", 23, 7], ["aarch64-darwin", 27, 7]], [["url", 40, 5], ["hash", 41, 5], ["postFetch", 44, 5]], [["name", 51, 5], ["publisher", 52, 5], ["version", 53, 5], ["hash", 54, 23], ["arch", 54, 28]], [["description", 153, 5], ["homepage", 154, 5], ["license", 155, 5], ["maintainers", 156, 5], ["platforms", 157, 5]], [["mktplcRef", 50, 3], ["nativeBuildInputs", 57, 3], ["buildInputs", 62, 3], ["postPatch", 71, 3], ["postInstall", 76, 3], ["preFixup", 80, 3], ["meta", 152, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchzip: false, "vscode-utils": false, autoPatchelfHook: false, icu: false, openssl: false, libz: false, glibc: false, libkrb5: false, coreutils: false, jq: false, patchelf: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["arch", 20, 9], ["hash", 21, 9]]);
-const pos$2 = nix.positions(here + "/default.nix", [["arch", 24, 9], ["hash", 25, 9]]);
-const pos$3 = nix.positions(here + "/default.nix", [["arch", 28, 9], ["hash", 29, 9]]);
-const pos$4 = nix.positions(here + "/default.nix", [["x86_64-linux", 19, 7], ["aarch64-linux", 23, 7], ["aarch64-darwin", 27, 7]]);
-const pos$5 = nix.positions(here + "/default.nix", [["url", 40, 5], ["hash", 41, 5], ["postFetch", 44, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["name", 51, 5], ["publisher", 52, 5], ["version", 53, 5], ["hash", 54, 23], ["arch", 54, 28]]);
-const pos$7 = nix.positions(here + "/default.nix", [["description", 153, 5], ["homepage", 154, 5], ["license", 155, 5], ["maintainers", 156, 5], ["platforms", 157, 5]]);
-const pos$8 = nix.positions(here + "/default.nix", [["mktplcRef", 50, 3], ["nativeBuildInputs", 57, 3], ["buildInputs", 62, 3], ["postPatch", 71, 3], ["postInstall", 76, 3], ["preFixup", 80, 3], ["meta", 152, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,33 +21,33 @@ export default nix.lambda((args) => (() => {
   const jq = nix.arg($, "jq");
   const patchelf = nix.arg($, "patchelf");
   const extInfo = nix.thunk(() => nix.selOr({
-    [nix.POS]: pos$4,
+    [nix.POS]: $pos[3],
     "x86_64-linux": nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       arch: "linux-x64",
       hash: "sha256-NnINb4ywaINKqNagJK6XampTqhBb3ztT/crNe0YV0fg=",
     })),
     "aarch64-linux": nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       arch: "linux-arm64",
       hash: "sha256-ejzWiDT7Ie3rWkfXHUEyIJGh7Tn/vwXAHRz7q7gwjD8=",
     })),
     "aarch64-darwin": nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       arch: "darwin-arm64",
       hash: "sha256-LXAtSvfxEGxt7YHMl8S9imDIb6/Mfi7BsTamwnx9sGE=",
     })),
   }, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenv, "hostPlatform", "system")}`)), nix.key(nix.sel(stdenv, "hostPlatform", "system"))));
   const roslyn_copilot = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       url: "https://roslyn.blob.core.windows.net/releases/Microsoft.VisualStudio.Copilot.Roslyn.LanguageServer-18.3.72-alpha.zip",
       hash: "sha256-vzowJOPp/VVeWkPihvWX2jvTrbFMZMtgX03eLezdanE=",
       postFetch: "touch \"$out/install.Lock\"\n",
     }))));
   return nix.app(nix.sel(vscode_utils, "buildVscodeMarketplaceExtension"), nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       mktplcRef: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         name: "csharp",
         publisher: "ms-dotnettools",
         version: "2.160.4",
@@ -97,7 +90,7 @@ export default nix.lambda((args) => (() => {
 )
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "Official C# support for Visual Studio Code",
         homepage: "https://github.com/dotnet/vscode-csharp",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["cmakeFlags", 32, 5]], [["owner", 63, 5], ["repo", 64, 5], ["tag", 65, 5], ["hash", 66, 5], ["fetchSubmodules", 67, 5], ["leaveDotGit", 68, 5], ["postFetch", 69, 5]], [["NIX_LDFLAGS", 132, 5]], [["podman", 172, 43]], [["tests", 172, 12]], [["changelog", 179, 5], ["description", 180, 5], ["homepage", 181, 5], ["license", 182, 5], ["platforms", 183, 5], ["teams", 184, 5], ["mainProgram", 185, 5]], [["pname", 59, 3], ["version", 60, 3], ["src", 62, 3], ["nativeBuildInputs", 76, 3], ["buildInputs", 83, 3], ["configureFlags", 110, 3], ["enableParallelBuilding", 127, 3], ["strictDeps", 128, 3], ["env", 130, 3], ["postPatch", 137, 3], ["doCheck", 170, 3], ["passthru", 172, 3], ["doInstallCheck", 174, 3], ["nativeInstallCheckInputs", 175, 3], ["versionCheckProgramArg", 176, 3], ["meta", 178, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, autoreconfHook: false, "go-md2man": false, "pkg-config": false, json_c: false, libcap: false, libkrun: false, "libkrun-sev": false, libseccomp: false, python3: false, systemdMinimal: false, nixosTests: false, criu: false, versionCheckHook: false, wamr: false, wasmedge: false, wasmer: false, wasmtime: false, withLibkrun: true, withLibkrunSEV: true, withWamr: true, withWasmedge: true, withWasmer: true, withWasmtime: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["cmakeFlags", 32, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 63, 5], ["repo", 64, 5], ["tag", 65, 5], ["hash", 66, 5], ["fetchSubmodules", 67, 5], ["leaveDotGit", 68, 5], ["postFetch", 69, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["NIX_LDFLAGS", 132, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["podman", 172, 43]]);
-const pos$5 = nix.positions(here + "/package.nix", [["tests", 172, 12]]);
-const pos$6 = nix.positions(here + "/package.nix", [["changelog", 179, 5], ["description", 180, 5], ["homepage", 181, 5], ["license", 182, 5], ["platforms", 183, 5], ["teams", 184, 5], ["mainProgram", 185, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 59, 3], ["version", 60, 3], ["src", 62, 3], ["nativeBuildInputs", 76, 3], ["buildInputs", 83, 3], ["configureFlags", 110, 3], ["enableParallelBuilding", 127, 3], ["strictDeps", 128, 3], ["env", 130, 3], ["postPatch", 137, 3], ["doCheck", 170, 3], ["passthru", 172, 3], ["doInstallCheck", 174, 3], ["nativeInstallCheckInputs", 175, 3], ["versionCheckProgramArg", 176, 3], ["meta", 178, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -40,7 +34,7 @@ export default nix.lambda((args) => (() => {
   const withWasmer = nix.argOr($, "withWasmer", () => false);
   const withWasmtime = nix.argOr($, "withWasmtime", () => false);
   const wamrShared = nix.thunk(() => nix.app(nix.sel(wamr, "overrideAttrs"), (old) => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       cmakeFlags: nix.thunk(() => nix.concat(nix.selOr(old, () => [], "cmakeFlags"), ["-DBUILD_SHARED_LIBS=ON"])),
     })));
   const disabledTests = nix.thunk(() => [
@@ -64,11 +58,11 @@ export default nix.lambda((args) => (() => {
     "tests_libcrun_utils",
   ]);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "crun",
       version: "1.30.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "containers",
           repo: "crun",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -86,7 +80,7 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: true,
       strictDeps: true,
       env: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         NIX_LDFLAGS: nix.thunk(() => nix.add("-lcriu", nix.app(nix.sel(lib, "optionalString"), withWamr, " -liwasm"))),
       })),
       postPatch: nix.thunk(() => nix.add(nix.add(nix.add(nix.add(nix.add(nix.add(nix.str`echo ${nix.sel(finalAttrs, "version")} > .tarball-version
@@ -108,14 +102,14 @@ ${nix.app(nix.sel(lib, "concatMapStringsSep"), "\n", (e) => nix.str`substituteIn
 `)))),
       doCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$4, podman: nix.thunk(() => nix.attr(nixosTests, "podman")) })),
+        [nix.POS]: $pos[4],
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[3], podman: nix.thunk(() => nix.attr(nixosTests, "podman")) })),
       })),
       doInstallCheck: true,
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       versionCheckProgramArg: "--version",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         changelog: nix.thunk(() => nix.str`https://github.com/containers/crun/releases/tag/${nix.sel(finalAttrs, "version")}`),
         description: "Fast and lightweight fully featured OCI runtime and C library for running containers",
         homepage: "https://github.com/containers/crun",

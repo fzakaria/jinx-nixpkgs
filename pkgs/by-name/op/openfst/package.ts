@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 13, 5], ["hash", 14, 5]], [["description", 34, 5], ["longDescription", 35, 5], ["homepage", 40, 5], ["license", 41, 5], ["maintainers", 42, 5], ["platforms", 43, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["configureFlags", 17, 3], ["enableParallelBuilding", 29, 3], ["nativeBuildInputs", 31, 3], ["meta", 33, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, autoreconfHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 13, 5], ["hash", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 34, 5], ["longDescription", 35, 5], ["homepage", 40, 5], ["license", 41, 5], ["maintainers", 42, 5], ["platforms", 43, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["configureFlags", 17, 3], ["enableParallelBuilding", 29, 3], ["nativeBuildInputs", 31, 3], ["meta", 33, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const autoreconfHook = nix.arg($, "autoreconfHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "openfst",
       version: "1.8.4",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`http://www.openfst.org/twiki/pub/FST/FstDownload/openfst-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-qOu7bz2S0H5nFQBYdHJRjPyHy3m5plSlqKuy0OspgBY=",
         })))),
@@ -36,7 +34,7 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: true,
       nativeBuildInputs: nix.thunk(() => [autoreconfHook]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Library for working with finite-state transducers",
         longDescription: "Library for constructing, combining, optimizing, and searching weighted finite-state transducers (FSTs).\nFSTs have key applications in speech recognition and synthesis, machine translation, optical character recognition,\npattern matching, string processing, machine learning, information extraction and retrieval among others\n",
         homepage: "https://www.openfst.org/twiki/bin/view/FST/WebHome",

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 13, 5], ["repo", 14, 5], ["tag", 15, 5], ["hash", 16, 5]], [["description", 36, 5], ["longDescription", 37, 5], ["homepage", 42, 5], ["changelog", 43, 5], ["mainProgram", 44, 5], ["license", 45, 5], ["maintainers", 46, 5]], [["pname", 8, 3], ["version", 9, 3], ["pyproject", 10, 3], ["src", 12, 3], ["build-system", 19, 3], ["pythonImportsCheck", 21, 3], ["doInstallCheck", 24, 3], ["installCheckPhase", 25, 3], ["__structuredAttrs", 33, 3], ["meta", 35, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 13, 5], ["repo", 14, 5], ["tag", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 36, 5], ["longDescription", 37, 5], ["homepage", 42, 5], ["changelog", 43, 5], ["mainProgram", 44, 5], ["license", 45, 5], ["maintainers", 46, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 8, 3], ["version", 9, 3], ["pyproject", 10, 3], ["src", 12, 3], ["build-system", 19, 3], ["pythonImportsCheck", 21, 3], ["doInstallCheck", 24, 3], ["installCheckPhase", 25, 3], ["__structuredAttrs", 33, 3], ["meta", 35, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,12 +12,12 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "ttconv",
       version: "1.2.3",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "sandflow",
           repo: "ttconv",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -31,7 +29,7 @@ export default nix.lambda((args) => (() => {
       installCheckPhase: "runHook preInstallCheck\n\n$out/bin/tt -h\n\nrunHook postInstallCheck\n",
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Timed Text Conversion",
         longDescription: "A library and command line application written in pure Python\nfor converting between timed text formats\nused in the presentations of captions, subtitles, karaoke, etc.\n",
         homepage: "https://github.com/sandflow/ttconv",

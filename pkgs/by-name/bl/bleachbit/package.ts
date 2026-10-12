@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 20, 5], ["sha256", 21, 5]], [["homepage", 64, 5], ["description", 65, 5], ["longDescription", 66, 5], ["license", 67, 5], ["maintainers", 68, 5], ["mainProgram", 72, 5]], [["pname", 14, 3], ["version", 15, 3], ["pyproject", 17, 3], ["src", 19, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 30, 3], ["propagatedBuildInputs", 36, 3], ["postPatch", 43, 3], ["dontBuild", 49, 3], ["installFlags", 51, 3], ["dontWrapGApps", 56, 3], ["makeWrapperArgs", 57, 3], ["strictDeps", 61, 3], ["meta", 63, 3]]]);
 const formals$1 = { args: { lib: false, python3Packages: false, fetchurl: false, gettext: false, "gobject-introspection": false, wrapGAppsHook3: false, glib: false, gtk3: false, libnotify: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 20, 5], ["sha256", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 64, 5], ["description", 65, 5], ["longDescription", 66, 5], ["license", 67, 5], ["maintainers", 68, 5], ["mainProgram", 72, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["pyproject", 17, 3], ["src", 19, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 30, 3], ["propagatedBuildInputs", 36, 3], ["postPatch", 43, 3], ["dontBuild", 49, 3], ["installFlags", 51, 3], ["dontWrapGApps", 56, 3], ["makeWrapperArgs", 57, 3], ["strictDeps", 61, 3], ["meta", 63, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const gtk3 = nix.arg($, "gtk3");
   const libnotify = nix.arg($, "libnotify");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "bleachbit",
       version: "6.0.2",
       pyproject: false,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/bleachbit/bleachbit-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           sha256: "sha256-H7fwg5QdaBduHg5r9z07TIC81Xrf07Uf9gYXbcGQdy4=",
         })))),
@@ -48,7 +46,7 @@ find -type f -exec sed -i -e 's@${nix.builtins.placeholder("out")}/bin/python3@$
       makeWrapperArgs: nix.thunk(() => ["${gappsWrapperArgs[@]}"]),
       strictDeps: false,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://bleachbit.sourceforge.net",
         description: "Program to clean your computer",
         longDescription: "BleachBit helps you easily clean your computer to free space and maintain privacy.",

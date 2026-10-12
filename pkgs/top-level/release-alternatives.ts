@@ -2,18 +2,8 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/release-alternatives.nix", [[["name", 142, 9], ["value", 143, 9]], [["system", 154, 42]], [["allowUnfree", 161, 32]], [["lapackProvider", 166, 19], ["isILP64", 167, 27]], [["blasProvider", 170, 19], ["isILP64", 171, 27]], [["lapack", 165, 17], ["blas", 169, 17]], [["config", 161, 13], ["system", 162, 13], ["overlays", 163, 13]], [["recurseForDerivations", 182, 11]], [["recurseForDerivations", 186, 9]], [["recurseForDerivations", 190, 7]], [["blas", 150, 3], ["recurseForDerivations", 192, 3]]]);
 const formals$1 = { args: { pkgsFun: true, lib: true, supportedSystems: true, allowUnfree: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/release-alternatives.nix", [["name", 142, 9], ["value", 143, 9]]);
-const pos$2 = nix.positions(here + "/release-alternatives.nix", [["system", 154, 42]]);
-const pos$3 = nix.positions(here + "/release-alternatives.nix", [["allowUnfree", 161, 32]]);
-const pos$4 = nix.positions(here + "/release-alternatives.nix", [["lapackProvider", 166, 19], ["isILP64", 167, 27]]);
-const pos$5 = nix.positions(here + "/release-alternatives.nix", [["blasProvider", 170, 19], ["isILP64", 171, 27]]);
-const pos$6 = nix.positions(here + "/release-alternatives.nix", [["lapack", 165, 17], ["blas", 169, 17]]);
-const pos$7 = nix.positions(here + "/release-alternatives.nix", [["config", 161, 13], ["system", 162, 13], ["overlays", 163, 13]]);
-const pos$8 = nix.positions(here + "/release-alternatives.nix", [["recurseForDerivations", 182, 11]]);
-const pos$9 = nix.positions(here + "/release-alternatives.nix", [["recurseForDerivations", 186, 9]]);
-const pos$10 = nix.positions(here + "/release-alternatives.nix", [["recurseForDerivations", 190, 7]]);
-const pos$11 = nix.positions(here + "/release-alternatives.nix", [["blas", 150, 3], ["recurseForDerivations", 192, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -91,39 +81,39 @@ export default nix.lambda((args) => (() => {
   const blasProviders = (system) => nix.concat(["openblasCompat", "lapack-reference", "openblas"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(allowUnfree) && nix.asBool(nix.sel(system, "isx86")))), nix.thunk(() => ["mkl", "mkl64"])));
   const blas64Providers = nix.thunk(() => ["mkl64", "openblas"]);
   const mapListToAttrs = (xs) => (f) => nix.builtins.listToAttrs(nix.thunk(() => nix.builtins.map((name) => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         name: nix.thunk(() => (nix.asBool(nix.builtins.isList(name)) ? nix.builtins.elemAt(name, nix.thunk(() => nix.sub(nix.builtins.length(name), 1n))) : nix.force(name))),
         value: nix.thunk(() => nix.app(f, name)),
       }), xs)));
   return {
-    [nix.POS]: pos$11,
+    [nix.POS]: $pos[10],
     blas: nix.thunk(() => nix.update(nix.app(mapListToAttrs, supportedSystems, (system$) => (() => {
-        const system = nix.thunk(() => nix.app(nix.sel(lib, "systems", "elaborate"), nix.thunk(() => ({ [nix.POS]: pos$2, system: system$ }))));
+        const system = nix.thunk(() => nix.app(nix.sel(lib, "systems", "elaborate"), nix.thunk(() => ({ [nix.POS]: $pos[1], system: system$ }))));
         return nix.update(nix.app(mapListToAttrs, nix.thunk(() => nix.app(blasProviders, system)), (provider) => (() => {
             const isILP64 = nix.thunk(() => nix.builtins.elem(provider, nix.thunk(() => nix.concat(["mkl64"], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(system, "is64bit")), "openblas")))));
             const pkgs = nix.thunk(() => nix.app(pkgsFun, nix.thunk(() => ({
-                [nix.POS]: pos$7,
-                config: nix.thunk(() => ({ [nix.POS]: pos$3, allowUnfree: allowUnfree })),
+                [nix.POS]: $pos[6],
+                config: nix.thunk(() => ({ [nix.POS]: $pos[2], allowUnfree: allowUnfree })),
                 system: system$,
                 overlays: nix.thunk(() => [
                   (self) => (super$) => ({
-                    [nix.POS]: pos$6,
+                    [nix.POS]: $pos[5],
                     lapack: nix.thunk(() => nix.app(nix.sel(super$, "lapack", "override"), nix.thunk(() => ({
-                        [nix.POS]: pos$4,
+                        [nix.POS]: $pos[3],
                         lapackProvider: nix.thunk(() => (nix.asBool(nix.eq(provider, "mkl64")) ? nix.sel(super$, "mkl") : nix.builtins.getAttr(provider, super$))),
                         isILP64: isILP64,
                       })))),
                     blas: nix.thunk(() => nix.app(nix.sel(super$, "blas", "override"), nix.thunk(() => ({
-                        [nix.POS]: pos$5,
+                        [nix.POS]: $pos[4],
                         blasProvider: nix.thunk(() => (nix.asBool(nix.eq(provider, "mkl64")) ? nix.sel(super$, "mkl") : nix.builtins.getAttr(provider, super$))),
                         isILP64: isILP64,
                       })))),
                   }),
                 ]),
               }))));
-            return nix.update(nix.app(mapListToAttrs, nix.thunk(() => (nix.asBool(nix.builtins.elem(provider, blas64Providers)) ? nix.force(blas64Users) : nix.force(blasUsers))), (attr) => (nix.asBool(nix.builtins.isList(attr)) ? nix.app(nix.sel(lib, "getAttrFromPath"), attr, pkgs) : nix.builtins.getAttr(attr, pkgs))), { [nix.POS]: pos$8, recurseForDerivations: true });
-          })()), { [nix.POS]: pos$9, recurseForDerivations: true });
-      })()), { [nix.POS]: pos$10, recurseForDerivations: true })),
+            return nix.update(nix.app(mapListToAttrs, nix.thunk(() => (nix.asBool(nix.builtins.elem(provider, blas64Providers)) ? nix.force(blas64Users) : nix.force(blasUsers))), (attr) => (nix.asBool(nix.builtins.isList(attr)) ? nix.app(nix.sel(lib, "getAttrFromPath"), attr, pkgs) : nix.builtins.getAttr(attr, pkgs))), { [nix.POS]: $pos[7], recurseForDerivations: true });
+          })()), { [nix.POS]: $pos[8], recurseForDerivations: true });
+      })()), { [nix.POS]: $pos[9], recurseForDerivations: true })),
     recurseForDerivations: true,
   };
 })(), formals$1);

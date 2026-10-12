@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 20, 5], ["rev", 21, 5], ["sha256", 22, 5]], [["homepage", 40, 5], ["description", 41, 5], ["mainProgram", 42, 5], ["longDescription", 43, 5], ["license", 47, 5], ["maintainers", 48, 5], ["platforms", 49, 5], ["broken", 50, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 32, 3], ["meta", 39, 3]]]);
 const formals$1 = { args: { lib: false, gcc14Stdenv: false, fetchhg: false, "pkg-config": false, meson: false, ninja: false, gtk3: false, json_c: false, libpulseaudio: false, wayland: false, wrapGAppsHook3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 20, 5], ["rev", 21, 5], ["sha256", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 40, 5], ["description", 41, 5], ["mainProgram", 42, 5], ["longDescription", 43, 5], ["license", 47, 5], ["maintainers", 48, 5], ["platforms", 49, 5], ["broken", 50, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 32, 3], ["meta", 39, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const wayland = nix.arg($, "wayland");
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   return nix.app(nix.sel(gcc14Stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "rootbar",
       version: "unstable-2024-08-07",
       src: nix.thunk(() => nix.app(fetchhg, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://hg.sr.ht/~scoopta/rootbar",
           rev: "36333af9fd8d",
           sha256: "sha256-CpORCSJyHZhcK14EhjxoPt/h0026NU5J/kicL1dX96o=",
@@ -33,7 +31,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [meson, ninja, pkg_config, wrapGAppsHook3]),
       buildInputs: nix.thunk(() => [gtk3, json_c, libpulseaudio, wayland]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://hg.sr.ht/~scoopta/rootbar",
         description: "Bar for wlroots-based Wayland compositors",
         mainProgram: "rootbar",

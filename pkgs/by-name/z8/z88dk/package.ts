@@ -2,22 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 24, 7], ["hash", 25, 7]], [["description", 28, 7], ["license", 29, 7]], [["pname", 21, 5], ["version", 22, 5], ["src", 23, 5], ["meta", 27, 5]], [["url", 40, 7], ["hash", 41, 7]], [["description", 48, 7], ["license", 49, 7]], [["pname", 37, 5], ["version", 38, 5], ["src", 39, 5], ["propagatedBuildInputs", 43, 5], ["meta", 47, 5]], [["url", 60, 7], ["hash", 61, 7]], [["description", 73, 7], ["license", 74, 7]], [["pname", 57, 5], ["version", 58, 5], ["src", 59, 5], ["propagatedBuildInputs", 63, 5], ["meta", 72, 5]], [["url", 85, 7], ["hash", 86, 7]], [["description", 98, 7], ["license", 99, 7]], [["pname", 82, 5], ["version", 83, 5], ["src", 84, 5], ["buildInputs", 88, 5], ["meta", 97, 5]], [["owner", 111, 5], ["repo", 112, 5], ["rev", 113, 5], ["hash", 114, 5], ["fetchSubmodules", 115, 5]], [["homepage", 202, 5], ["description", 203, 5], ["license", 204, 5], ["maintainers", 205, 5], ["platforms", 209, 5]], [["pname", 107, 3], ["version", 108, 3], ["src", 110, 3], ["postPatch", 118, 3], ["hardeningDisable", 141, 3], ["enableParallelBuilding", 145, 3], ["doCheck", 147, 3], ["checkPhase", 148, 3], ["short_rev", 155, 3], ["makeFlags", 156, 3], ["nativeBuildInputs", 163, 3], ["buildInputs", 186, 3], ["preInstall", 192, 3], ["installTargets", 196, 3], ["meta", 201, 3]]]);
 const formals$1 = { args: { fetchFromGitHub: false, lib: false, stdenv: false, unzip: false, libxml2: false, gmp: false, m4: false, uthash: false, which: false, "pkg-config": false, perl: false, perlPackages: false, fetchurl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 24, 7], ["hash", 25, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 28, 7], ["license", 29, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 21, 5], ["version", 22, 5], ["src", 23, 5], ["meta", 27, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["url", 40, 7], ["hash", 41, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 48, 7], ["license", 49, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 37, 5], ["version", 38, 5], ["src", 39, 5], ["propagatedBuildInputs", 43, 5], ["meta", 47, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["url", 60, 7], ["hash", 61, 7]]);
-const pos$8 = nix.positions(here + "/package.nix", [["description", 73, 7], ["license", 74, 7]]);
-const pos$9 = nix.positions(here + "/package.nix", [["pname", 57, 5], ["version", 58, 5], ["src", 59, 5], ["propagatedBuildInputs", 63, 5], ["meta", 72, 5]]);
-const pos$10 = nix.positions(here + "/package.nix", [["url", 85, 7], ["hash", 86, 7]]);
-const pos$11 = nix.positions(here + "/package.nix", [["description", 98, 7], ["license", 99, 7]]);
-const pos$12 = nix.positions(here + "/package.nix", [["pname", 82, 5], ["version", 83, 5], ["src", 84, 5], ["buildInputs", 88, 5], ["meta", 97, 5]]);
-const pos$13 = nix.positions(here + "/package.nix", [["owner", 111, 5], ["repo", 112, 5], ["rev", 113, 5], ["hash", 114, 5], ["fetchSubmodules", 115, 5]]);
-const pos$14 = nix.positions(here + "/package.nix", [["homepage", 202, 5], ["description", 203, 5], ["license", 204, 5], ["maintainers", 205, 5], ["platforms", 209, 5]]);
-const pos$15 = nix.positions(here + "/package.nix", [["pname", 107, 3], ["version", 108, 3], ["src", 110, 3], ["postPatch", 118, 3], ["hardeningDisable", 141, 3], ["enableParallelBuilding", 145, 3], ["doCheck", 147, 3], ["checkPhase", 148, 3], ["short_rev", 155, 3], ["makeFlags", 156, 3], ["nativeBuildInputs", 163, 3], ["buildInputs", 186, 3], ["preInstall", 192, 3], ["installTargets", 196, 3], ["meta", 201, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -35,16 +21,16 @@ export default nix.lambda((args) => (() => {
   const perlPackages = nix.arg($, "perlPackages");
   const fetchurl = nix.arg($, "fetchurl");
   const ObjectTinyRW = nix.thunk(() => nix.app(nix.sel(perlPackages, "buildPerlPackage"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "Object-Tiny-RW",
       version: "1.07",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "mirror://cpan/authors/id/S/SC/SCHWIGON/object-tiny-rw/Object-Tiny-RW-1.07.tar.gz",
           hash: "sha256-NbQIy9d4ZcMnRJJApPBSej+W6e/aJ8rkb5E7rD7GVgs=",
         })))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Date object with as little code as possible (and rw accessors)",
         license: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "licenses")), null);
@@ -56,11 +42,11 @@ export default nix.lambda((args) => (() => {
       })),
     }))));
   const IteratorSimpleLookahead = nix.thunk(() => nix.app(nix.sel(perlPackages, "buildPerlPackage"), nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "Iterator-Simple-Lookahead",
       version: "0.09",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           url: "mirror://cpan/authors/id/P/PS/PSCUST/Iterator-Simple-Lookahead-0.09.tar.gz",
           hash: "sha256-FmPE1xdU8LAXS21+H4DJaQ87qDi4Q4UkLawsUAqseZw=",
         })))),
@@ -72,7 +58,7 @@ export default nix.lambda((args) => (() => {
         ];
       })()),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Simple iterator with lookahead and unget",
         license: nix.thunk(() => (() => {
           const w_1 = nix.withScope(nix.thunk(() => nix.sel(lib, "licenses")), null);
@@ -84,11 +70,11 @@ export default nix.lambda((args) => (() => {
       })),
     }))));
   const AsmPreproc = nix.thunk(() => nix.app(nix.sel(perlPackages, "buildPerlPackage"), nix.thunk(() => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       pname: "Asm-Preproc",
       version: "1.03",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           url: "mirror://cpan/authors/id/P/PS/PSCUST/Asm-Preproc-1.03.tar.gz",
           hash: "sha256-pVTpIqGxZpBxZlAbXuGDapuOxsp3uM/AM5dKUxlej1M=",
         })))),
@@ -102,7 +88,7 @@ export default nix.lambda((args) => (() => {
         ];
       })())),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         description: "Preprocessor to be called from an assembler",
         license: nix.thunk(() => (() => {
           const w_1 = nix.withScope(nix.thunk(() => nix.sel(lib, "licenses")), null);
@@ -114,11 +100,11 @@ export default nix.lambda((args) => (() => {
       })),
     }))));
   const CPUZ80Assembler = nix.thunk(() => nix.app(nix.sel(perlPackages, "buildPerlPackage"), nix.thunk(() => ({
-      [nix.POS]: pos$12,
+      [nix.POS]: $pos[11],
       pname: "CPU-Z80-Assembler",
       version: "2.25",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$10,
+          [nix.POS]: $pos[9],
           url: "mirror://cpan/authors/id/P/PS/PSCUST/CPU-Z80-Assembler-2.25.tar.gz",
           hash: "sha256-cJ8Fl2KZw9/bnBDUzFuwwdw9x23OUvcftk78kw7abdU=",
         })))),
@@ -132,7 +118,7 @@ export default nix.lambda((args) => (() => {
         ];
       })())),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$11,
+        [nix.POS]: $pos[10],
         description: "Functions to assemble a set of Z80 assembly instructions",
         license: nix.thunk(() => (() => {
           const w_1 = nix.withScope(nix.thunk(() => nix.sel(lib, "licenses")), null);
@@ -144,11 +130,11 @@ export default nix.lambda((args) => (() => {
       })),
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$15,
+      [nix.POS]: $pos[14],
       pname: "z88dk",
       version: "2.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$13,
+          [nix.POS]: $pos[12],
           owner: "z88dk",
           repo: "z88dk",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -193,7 +179,7 @@ export default nix.lambda((args) => (() => {
       preInstall: "mkdir -p $out/{bin,share}\n",
       installTargets: nix.thunk(() => ["libs", "install"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$14,
+        [nix.POS]: $pos[13],
         homepage: "https://www.z88dk.org",
         description: "z80 Development Kit",
         license: nix.thunk(() => nix.sel(lib, "licenses", "clArtistic")),

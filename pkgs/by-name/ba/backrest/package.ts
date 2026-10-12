@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5], ["leaveDotGit", 32, 5], ["postFetch", 33, 5]], [["url", 42, 74], ["hash", 42, 78]], [["pname", 61, 28], ["version", 61, 34], ["src", 61, 42], ["pnpm", 62, 15], ["sourceRoot", 63, 7], ["fetcherVersion", 64, 7], ["hash", 65, 7]], [["version", 47, 13], ["src", 47, 21], ["pname", 48, 5], ["sourceRoot", 49, 5], ["__structuredAttrs", 51, 5], ["strictDeps", 52, 5], ["nativeBuildInputs", 54, 5], ["pnpmDeps", 60, 5], ["postPatch", 68, 5], ["buildPhase", 78, 5], ["installPhase", 85, 5]], [["extraArgs", 189, 9]], [["frontend", 186, 13], ["inlang-plugins", 186, 22], ["updateScript", 187, 5]], [["description", 199, 5], ["homepage", 200, 5], ["changelog", 201, 5], ["license", 202, 5], ["maintainers", 203, 5], ["mainProgram", 208, 5], ["platforms", 209, 5]], [["pname", 94, 5], ["src", 95, 5], ["version", 96, 5], ["__structuredAttrs", 99, 3], ["patches", 101, 3], ["postPatch", 110, 3], ["proxyVendor", 117, 3], ["vendorHash", 118, 3], ["subPackages", 120, 3], ["nativeBuildInputs", 122, 3], ["tags", 127, 3], ["ldflags", 129, 3], ["preBuild", 134, 3], ["nativeCheckInputs", 143, 3], ["checkFlags", 148, 3], ["preCheck", 164, 3], ["doCheck", 172, 3], ["postInstall", 174, 3], ["doInstallCheck", 181, 3], ["versionCheckProgramArg", 182, 3], ["nativeInstallCheckInputs", 183, 3], ["passthru", 185, 3], ["meta", 198, 3]]]);
 const formals$1 = { args: { buildGoModule: false, fetchFromGitHub: false, gzip: false, fetchurl: false, "iana-etc": false, lib: false, libredirect: false, nodejs: false, pnpm_11: false, fetchPnpmDeps: false, pnpmConfigHook: false, restic: false, stdenv: false, "util-linux": false, makeBinaryWrapper: false, versionCheckHook: false, "nix-update-script": false, "_experimental-update-script-combinators": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5], ["leaveDotGit", 32, 5], ["postFetch", 33, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 42, 74], ["hash", 42, 78]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 61, 28], ["version", 61, 34], ["src", 61, 42], ["pnpm", 62, 15], ["sourceRoot", 63, 7], ["fetcherVersion", 64, 7], ["hash", 65, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["version", 47, 13], ["src", 47, 21], ["pname", 48, 5], ["sourceRoot", 49, 5], ["__structuredAttrs", 51, 5], ["strictDeps", 52, 5], ["nativeBuildInputs", 54, 5], ["pnpmDeps", 60, 5], ["postPatch", 68, 5], ["buildPhase", 78, 5], ["installPhase", 85, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["extraArgs", 189, 9]]);
-const pos$6 = nix.positions(here + "/package.nix", [["frontend", 186, 13], ["inlang-plugins", 186, 22], ["updateScript", 187, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["description", 199, 5], ["homepage", 200, 5], ["changelog", 201, 5], ["license", 202, 5], ["maintainers", 203, 5], ["mainProgram", 208, 5], ["platforms", 209, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 94, 5], ["src", 95, 5], ["version", 96, 5], ["__structuredAttrs", 99, 3], ["patches", 101, 3], ["postPatch", 110, 3], ["proxyVendor", 117, 3], ["vendorHash", 118, 3], ["subPackages", 120, 3], ["nativeBuildInputs", 122, 3], ["tags", 127, 3], ["ldflags", 129, 3], ["preBuild", 134, 3], ["nativeCheckInputs", 143, 3], ["checkFlags", 148, 3], ["preCheck", 164, 3], ["doCheck", 172, 3], ["postInstall", 174, 3], ["doInstallCheck", 181, 3], ["versionCheckProgramArg", 182, 3], ["nativeInstallCheckInputs", 183, 3], ["passthru", 185, 3], ["meta", 198, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -36,7 +29,7 @@ export default nix.lambda((args) => (() => {
   const pname = "backrest";
   const version = "1.14.1";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "garethgeorge",
       repo: "backrest",
       tag: nix.thunk(() => nix.str`v${version}`),
@@ -45,12 +38,12 @@ export default nix.lambda((args) => (() => {
       postFetch: "cd \"$out\"\ngit rev-parse HEAD > $out/COMMIT\nfind \"$out\" -name .git -print0 | xargs -0 rm -rf\n",
     }))));
   const inlang_plugins = nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (remote) => (info) => nix.app(fetchurl, nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         url: nix.thunk(() => nix.attr(info, "url")),
         hash: nix.thunk(() => nix.attr(info, "hash")),
       }))), nix.thunk(() => nix.app(nix.sel(lib, "importJSON"), nix.path(here, "./inlang-plugins.json")))));
   const frontend = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       version: version,
       src: src,
       pname: "backrest-webui",
@@ -59,7 +52,7 @@ export default nix.lambda((args) => (() => {
       strictDeps: true,
       nativeBuildInputs: nix.thunk(() => [nodejs, pnpmConfigHook, pnpm]),
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -81,7 +74,7 @@ runHook postBuild
       installPhase: "runHook preInstall\nmv dist $out\nrunHook postInstall\n",
     })));
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: pname,
       src: src,
       version: version,
@@ -129,16 +122,16 @@ makeBinaryWrapper $out/bin/backrest $out/bin/backrest-tray \\
       versionCheckProgramArg: "-version",
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         frontend: frontend,
         "inlang-plugins": inlang_plugins,
         updateScript: nix.thunk(() => nix.app(nix.sel(_experimental_update_script_combinators, "sequence"), nix.thunk(() => [
-            nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$5, extraArgs: nix.thunk(() => ["--subpackage", "frontend"]) })))),
+            nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: $pos[4], extraArgs: nix.thunk(() => ["--subpackage", "frontend"]) })))),
             nix.path(here, "./update-inlang-plugins.sh"),
           ]))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "Web UI and orchestrator for restic backup",
         homepage: "https://github.com/garethgeorge/backrest",
         changelog: nix.thunk(() => nix.str`https://github.com/garethgeorge/backrest/releases/tag/${nix.sel(finalAttrs, "src", "rev")}`),

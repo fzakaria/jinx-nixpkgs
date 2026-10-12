@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["kodi", 12, 69]], [["kodi", 16, 11], ["addons", 17, 11]], [["packages", 12, 7], ["withPackages", 13, 7]], [["passthru", 6, 3]]]);
 const formals$1 = { args: { callPackage: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/default.nix", [["kodi", 12, 69]]);
-const pos$2 = nix.positions(here + "/default.nix", [["kodi", 16, 11], ["addons", 17, 11]]);
-const pos$3 = nix.positions(here + "/default.nix", [["packages", 12, 7], ["withPackages", 13, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["passthru", 6, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,14 +11,14 @@ export default nix.lambda((args) => (() => {
   const callPackage = nix.arg($, "callPackage");
   const unwrapped = nix.thunk(() => nix.app(callPackage, nix.path(here, "./unwrapped.nix"), nix.thunk(() => nix.builtins.removeAttrs(args_1, nix.thunk(() => ["callPackage"])))));
   return nix.app(nix.sel(unwrapped, "overrideAttrs"), (oldAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       passthru: nix.thunk(() => (() => {
         const finalKodi = nix.thunk(() => nix.sel(oldAttrs, "passthru", "kodi"));
         return nix.update(nix.sel(oldAttrs, "passthru"), {
-          [nix.POS]: pos$3,
-          packages: nix.thunk(() => nix.app(callPackage, nix.path(here, "../../../top-level/kodi-packages.nix"), nix.thunk(() => ({ [nix.POS]: pos$1, kodi: finalKodi })))),
+          [nix.POS]: $pos[2],
+          packages: nix.thunk(() => nix.app(callPackage, nix.path(here, "../../../top-level/kodi-packages.nix"), nix.thunk(() => ({ [nix.POS]: $pos[0], kodi: finalKodi })))),
           withPackages: (func) => nix.app(callPackage, nix.path(here, "./wrapper.nix"), nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               kodi: finalKodi,
               addons: nix.thunk(() => nix.app(nix.sel(finalKodi, "packages", "requiredKodiAddons"), nix.thunk(() => nix.app(func, nix.thunk(() => nix.sel(finalKodi, "packages")))))),
             }))),

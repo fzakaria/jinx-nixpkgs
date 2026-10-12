@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 23, 11], ["repo", 24, 11], ["tag", 25, 11], ["hash", 26, 11]], [["version", 21, 9], ["src", 22, 9]], [["poetry", 12, 7], ["poetry-core", 20, 7]], [["self", 32, 5], ["packageOverrides", 33, 5]], [["poeblix", 40, 7], ["poetry-audit-plugin", 41, 7], ["poetry-plugin-export", 42, 7], ["poetry-plugin-up", 43, 7], ["poetry-plugin-migrate", 44, 7], ["poetry-plugin-shell", 45, 7]], [["plugins", 69, 11], ["withPlugins", 70, 19], ["python", 70, 31]], [["dependencies", 57, 9], ["doCheck", 60, 9], ["postFixup", 64, 9], ["passthru", 68, 9]]]);
 const formals$1 = { args: { lib: false, python3: false, fetchFromGitHub: false, fetchPypi: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 23, 11], ["repo", 24, 11], ["tag", 25, 11], ["hash", 26, 11]]);
-const pos$2 = nix.positions(here + "/package.nix", [["version", 21, 9], ["src", 22, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["poetry", 12, 7], ["poetry-core", 20, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["self", 32, 5], ["packageOverrides", 33, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["poeblix", 40, 7], ["poetry-audit-plugin", 41, 7], ["poetry-plugin-export", 42, 7], ["poetry-plugin-up", 43, 7], ["poetry-plugin-migrate", 44, 7], ["poetry-plugin-shell", 45, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["plugins", 69, 11], ["withPlugins", 70, 19], ["python", 70, 31]]);
-const pos$7 = nix.positions(here + "/package.nix", [["dependencies", 57, 9], ["doCheck", 60, 9], ["postFixup", 64, 9], ["passthru", 68, 9]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,29 +12,29 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const fetchPypi = nix.arg($, "fetchPypi");
   const newPackageOverrides = (self) => (super$) => nix.update({
-    [nix.POS]: pos$3,
+    [nix.POS]: $pos[2],
     poetry: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./unwrapped.nix"), nix.thunk(() => ({})))),
     "poetry-core": nix.thunk(() => nix.app(nix.sel(super$, "poetry-core", "overridePythonAttrs"), (old) => (() => {
         const version = "2.4.0";
         const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             owner: "python-poetry",
             repo: "poetry-core",
             tag: version,
             hash: "sha256-i9EucMsoX8Z0iyhNDVYaczv1CSY/KaZpMjn/FGzIJU4=",
           }))));
-        return { [nix.POS]: pos$2, version, src };
+        return { [nix.POS]: $pos[1], version, src };
       })())),
   }, nix.app(plugins, self));
   const python = nix.thunk(() => nix.app(nix.sel(python3, "override"), (old) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       self: python,
       packageOverrides: nix.thunk(() => nix.app(nix.sel(lib, "composeManyExtensions"), nix.thunk(() => nix.concat((nix.asBool(nix.has(old, "packageOverrides")) ? [nix.thunk(() => nix.sel(old, "packageOverrides"))] : []), [newPackageOverrides])))),
     })));
   const plugins = (ps) => (() => {
     const w = nix.withScope(ps, null);
     return {
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       poeblix: nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "./plugins/poeblix.nix"), nix.thunk(() => ({})))),
       "poetry-audit-plugin": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "./plugins/poetry-audit-plugin.nix"), nix.thunk(() => ({})))),
       "poetry-plugin-export": nix.thunk(() => nix.app(nix.lookup(w, "callPackage"), nix.path(here, "./plugins/poetry-plugin-export.nix"), nix.thunk(() => ({})))),
@@ -52,12 +46,12 @@ export default nix.lambda((args) => (() => {
   const withPlugins = (selector) => (() => {
     const selected = nix.thunk(() => nix.app(selector, nix.thunk(() => nix.app(plugins, nix.thunk(() => nix.sel(python, "pkgs"))))));
     return nix.app(nix.sel(python, "pkgs", "toPythonApplication"), nix.thunk(() => nix.app(nix.sel(python, "pkgs", "poetry", "overridePythonAttrs"), (old) => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           dependencies: nix.thunk(() => nix.concat(nix.sel(old, "dependencies"), selected)),
           doCheck: nix.thunk(() => nix.eq(selected, [])),
           postFixup: "rm $out/nix-support/propagated-build-inputs\n",
           passthru: nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             plugins: nix.thunk(() => nix.app(plugins, nix.thunk(() => nix.sel(python, "pkgs")))),
             withPlugins: withPlugins,
             python: python,

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]], [["name", 27, 5], ["src", 28, 26], ["sourceRoot", 29, 5], ["hash", 30, 5]], [["RUSTFLAGS", 62, 7], ["RQUICKJS_SYS_NO_WASI_SDK", 65, 7]], [["broken", 74, 5], ["changelog", 75, 5], ["description", 76, 5], ["homepage", 77, 5], ["license", 78, 5], ["maintainers", 79, 5], ["platforms", 83, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["cargoHash", 24, 3], ["npmDeps", 26, 3], ["npmRoot", 32, 3], ["postPatch", 35, 3], ["preBuild", 40, 3], ["preFixup", 47, 3], ["depsBuildBuild", 51, 3], ["nativeBuildInputs", 56, 3], ["env", 62, 3], ["cargoBuildFlags", 67, 3], ["__structuredAttrs", 69, 3], ["meta", 71, 3]]]);
 const formals$1 = { args: { binaryen: false, fetchFromGitHub: false, fetchNpmDeps: false, lib: false, lld: false, nodejs: false, npmHooks: false, rustPlatform: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 27, 5], ["src", 28, 26], ["sourceRoot", 29, 5], ["hash", 30, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["RUSTFLAGS", 62, 7], ["RQUICKJS_SYS_NO_WASI_SDK", 65, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["broken", 74, 5], ["changelog", 75, 5], ["description", 76, 5], ["homepage", 77, 5], ["license", 78, 5], ["maintainers", 79, 5], ["platforms", 83, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["cargoHash", 24, 3], ["npmDeps", 26, 3], ["npmRoot", 32, 3], ["postPatch", 35, 3], ["preBuild", 40, 3], ["preFixup", 47, 3], ["depsBuildBuild", 51, 3], ["nativeBuildInputs", 56, 3], ["env", 62, 3], ["cargoBuildFlags", 67, 3], ["__structuredAttrs", 69, 3], ["meta", 71, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const rustPlatform = nix.arg($, "rustPlatform");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "extism-js-core",
       version: "1.7.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "extism",
           repo: "js-pdk",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -33,7 +29,7 @@ export default nix.lambda((args) => (() => {
         })))),
       cargoHash: "sha256-BBhHTzG0FU4AOuUz7yjp4bpELr1vEVdwT+vyyuITagE=",
       npmDeps: nix.thunk(() => nix.app(fetchNpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           name: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-${nix.sel(finalAttrs, "version")}-npm-deps`),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           sourceRoot: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "name")}/${nix.sel(finalAttrs, "npmRoot")}`),
@@ -51,14 +47,14 @@ popd
       depsBuildBuild: nix.thunk(() => [nodejs, nix.thunk(() => nix.sel(npmHooks, "npmConfigHook"))]),
       nativeBuildInputs: nix.thunk(() => [binaryen, lld, nix.thunk(() => nix.sel(rustPlatform, "bindgenHook"))]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         RUSTFLAGS: "-C linker=wasm-ld",
         RQUICKJS_SYS_NO_WASI_SDK: 1n,
       })),
       cargoBuildFlags: nix.thunk(() => ["--package=js-pdk-core"]),
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         broken: nix.thunk(() => nix.sel(stdenv, "buildPlatform", "isDarwin")),
         changelog: nix.thunk(() => nix.str`https://github.com/extism/js-pdk/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         description: "Write Extism plugins in JavaScript & TypeScript (WASM core)",

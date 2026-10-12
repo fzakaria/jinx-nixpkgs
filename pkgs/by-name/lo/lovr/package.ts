@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 30, 5], ["repo", 31, 5], ["rev", 32, 5], ["hash", 33, 5]], [["owner", 54, 5], ["repo", 55, 5], ["rev", 56, 5], ["hash", 57, 5], ["fetchSubmodules", 58, 5]], [["description", 134, 5], ["homepage", 135, 5], ["license", 136, 5], ["maintainers", 137, 5], ["platforms", 138, 5], ["mainProgram", 139, 5]], [["pname", 50, 3], ["version", 51, 3], ["src", 53, 3], ["nativeBuildInputs", 61, 3], ["buildInputs", 69, 3], ["cmakeFlags", 84, 3], ["installCheckPhase", 90, 3], ["doInstallCheck", 99, 3], ["installPhase", 101, 3], ["dontUseCmakeInstall", 131, 3], ["meta", 133, 3]]]);
 const formals$1 = { args: { lib: false, gcc14Stdenv: false, fetchFromGitHub: false, cmake: false, "pkg-config": false, python3Minimal: false, makeWrapper: false, libx11: false, libxrandr: false, libxinerama: false, libxcursor: false, libxi: false, libxcb: false, libxext: false, libxkbcommon: false, "vulkan-headers": false, "vulkan-loader": false, libGL: false, curl: false, autoPatchelfHook: false, "alsa-lib": false, libpulseaudio: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 30, 5], ["repo", 31, 5], ["rev", 32, 5], ["hash", 33, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 54, 5], ["repo", 55, 5], ["rev", 56, 5], ["hash", 57, 5], ["fetchSubmodules", 58, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 134, 5], ["homepage", 135, 5], ["license", 136, 5], ["maintainers", 137, 5], ["platforms", 138, 5], ["mainProgram", 139, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 50, 3], ["version", 51, 3], ["src", 53, 3], ["nativeBuildInputs", 61, 3], ["buildInputs", 69, 3], ["cmakeFlags", 84, 3], ["installCheckPhase", 90, 3], ["doInstallCheck", 99, 3], ["installPhase", 101, 3], ["dontUseCmakeInstall", 131, 3], ["meta", 133, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,7 +30,7 @@ export default nix.lambda((args) => (() => {
   const alsa_lib = nix.arg($, "alsa-lib");
   const libpulseaudio = nix.arg($, "libpulseaudio");
   const joltphysics_src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "jrouwe",
       repo: "JoltPhysics",
       rev: "c10d9b2a8ee134fb5e72de1a0f26f8c9cc8f6382",
@@ -50,11 +47,11 @@ export default nix.lambda((args) => (() => {
     curl,
   ]);
   return nix.app(nix.sel(gcc14Stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "lovr",
       version: "0.18.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "bjornbytes",
           repo: "lovr",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -113,7 +110,7 @@ runHook postInstall
 `),
       dontUseCmakeInstall: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "An open source framework for rapidly building immersive 3D experiences",
         homepage: "https://lovr.org",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]], [["name", 75, 7], ["desktopName", 76, 7], ["exec", 77, 7], ["icon", 78, 7], ["categories", 79, 7]], [["description", 84, 5], ["license", 85, 5], ["homepage", 86, 5], ["changelog", 87, 5], ["maintainers", 88, 5], ["mainProgram", 89, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["nativeBuildInputs", 26, 3], ["buildPhase", 35, 3], ["installPhase", 44, 3], ["desktopItems", 73, 3], ["meta", 83, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, ant: false, copyDesktopItems: false, jdk: false, jre: false, makeDesktopItem: false, makeWrapper: false, stripJavaArchivesHook: false, wrapGAppsHook4: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 75, 7], ["desktopName", 76, 7], ["exec", 77, 7], ["icon", 78, 7], ["categories", 79, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 84, 5], ["license", 85, 5], ["homepage", 86, 5], ["changelog", 87, 5], ["maintainers", 88, 5], ["mainProgram", 89, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["nativeBuildInputs", 26, 3], ["buildPhase", 35, 3], ["installPhase", 44, 3], ["desktopItems", 73, 3], ["meta", 83, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const stripJavaArchivesHook = nix.arg($, "stripJavaArchivesHook");
   const wrapGAppsHook4 = nix.arg($, "wrapGAppsHook4");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "jailer",
       version: "17.2.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Wisser",
           repo: "Jailer",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -70,7 +67,7 @@ runHook postInstall
 `),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "Jailer",
             desktopName: "Jailer",
             exec: "jailer",
@@ -79,7 +76,7 @@ runHook postInstall
           })))),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Tool for database subsetting and relational data browsing",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
         homepage: "https://github.com/Wisser/Jailer",

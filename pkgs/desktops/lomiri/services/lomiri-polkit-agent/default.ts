@@ -2,12 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]], [["vm", 63, 11]], [["tests", 63, 5], ["updateScript", 64, 5]], [["description", 68, 5], ["homepage", 69, 5], ["changelog", 70, 5], ["license", 73, 5], ["teams", 74, 5], ["platforms", 75, 5]], [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["strictDeps", 30, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 37, 3], ["nativeCheckInputs", 44, 3], ["checkInputs", 49, 3], ["doCheck", 54, 3], ["enableParallelChecking", 57, 3], ["passthru", 59, 3], ["meta", 67, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitLab: false, gitUpdater: false, nixosTests: false, cmake: false, "cmake-extras": false, dbus: false, "dbus-test-runner": false, gtest: false, libnotify: false, "pkg-config": false, polkit: false, "properties-cpp": false, python3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["vm", 63, 11]]);
-const pos$3 = nix.positions(here + "/default.nix", [["tests", 63, 5], ["updateScript", 64, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 68, 5], ["homepage", 69, 5], ["changelog", 70, 5], ["license", 73, 5], ["teams", 74, 5], ["platforms", 75, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["strictDeps", 30, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 37, 3], ["nativeCheckInputs", 44, 3], ["checkInputs", 49, 3], ["doCheck", 54, 3], ["enableParallelChecking", 57, 3], ["passthru", 59, 3], ["meta", 67, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const properties_cpp = nix.arg($, "properties-cpp");
   const python3 = nix.arg($, "python3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "lomiri-polkit-agent",
       version: "0.3.3",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ubports",
           repo: "development/core/lomiri-polkit-agent",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -51,15 +47,15 @@ export default nix.lambda((args) => (() => {
       doCheck: nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))),
       enableParallelChecking: false,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           vm: nix.thunk(() => nix.sel(nixosTests, "lomiri", "desktop-appinteractions")),
         })),
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Policy kit agent for the Lomiri desktop",
         homepage: "https://gitlab.com/ubports/development/core/lomiri-polkit-agent",
         changelog: nix.thunk(() => nix.str`https://gitlab.com/ubports/development/core/lomiri-polkit-agent/-/blob/${(nix.asBool(!nix.asBool(nix.builtins.isNull(nix.thunk(() => nix.sel(finalAttrs, "src", "tag"))))) ? nix.sel(finalAttrs, "src", "tag") : nix.sel(finalAttrs, "src", "rev"))}/ChangeLog`),

@@ -2,42 +2,35 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/your_spotify.nix", [[["maintainers", 5, 5]], [["package", 9, 22]], [["CLIENT_ENDPOINT", 14, 9], ["API_ENDPOINT", 15, 9], ["SPOTIFY_PUBLIC", 16, 9]], [["enable", 11, 7], ["spotifySecretFile", 12, 7], ["settings", 13, 7], ["enableLocalDB", 18, 7], ["nginxVirtualHost", 19, 7]], [["mongodb", 9, 14], ["your_spotify", 10, 14]], [["services", 9, 5]], [["machine", 8, 9]], [["name", 3, 3], ["meta", 4, 3], ["nodes", 8, 3], ["testScript", 23, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/your_spotify.nix", [["maintainers", 5, 5]]);
-const pos$2 = nix.positions(here + "/your_spotify.nix", [["package", 9, 22]]);
-const pos$3 = nix.positions(here + "/your_spotify.nix", [["CLIENT_ENDPOINT", 14, 9], ["API_ENDPOINT", 15, 9], ["SPOTIFY_PUBLIC", 16, 9]]);
-const pos$4 = nix.positions(here + "/your_spotify.nix", [["enable", 11, 7], ["spotifySecretFile", 12, 7], ["settings", 13, 7], ["enableLocalDB", 18, 7], ["nginxVirtualHost", 19, 7]]);
-const pos$5 = nix.positions(here + "/your_spotify.nix", [["mongodb", 9, 14], ["your_spotify", 10, 14]]);
-const pos$6 = nix.positions(here + "/your_spotify.nix", [["services", 9, 5]]);
-const pos$7 = nix.positions(here + "/your_spotify.nix", [["machine", 8, 9]]);
-const pos$8 = nix.positions(here + "/your_spotify.nix", [["name", 3, 3], ["meta", 4, 3], ["nodes", 8, 3], ["testScript", 23, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   return {
-    [nix.POS]: pos$8,
+    [nix.POS]: $pos[7],
     name: "your_spotify",
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
       return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "patrickdag"))]),
       };
     })()),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       machine: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         services: nix.thunk(() => ({
-          [nix.POS]: pos$5,
-          mongodb: nix.thunk(() => ({ [nix.POS]: pos$2, package: nix.thunk(() => nix.sel(pkgs, "mongodb-ce")) })),
+          [nix.POS]: $pos[4],
+          mongodb: nix.thunk(() => ({ [nix.POS]: $pos[1], package: nix.thunk(() => nix.sel(pkgs, "mongodb-ce")) })),
           your_spotify: nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             enable: true,
             spotifySecretFile: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "spotifySecretFile", "deadbeef")),
             settings: nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               CLIENT_ENDPOINT: "http://localhost",
               API_ENDPOINT: "http://localhost:3000",
               SPOTIFY_PUBLIC: "beefdead",

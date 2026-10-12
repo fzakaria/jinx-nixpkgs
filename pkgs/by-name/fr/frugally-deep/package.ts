@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 26, 5], ["repo", 27, 5], ["rev", 28, 5], ["hash", 29, 5]], [["name", 35, 7], ["url", 36, 7], ["hash", 37, 7]], [["frugally-deep", 64, 9]], [["miopen-can-load-models", 61, 18]], [["tests", 61, 12], ["updateScript", 66, 12]], [["description", 69, 5], ["homepage", 70, 5], ["license", 71, 5], ["platforms", 72, 5]], [["pname", 19, 3], ["version", 23, 3], ["src", 25, 3], ["patches", 32, 3], ["nativeBuildInputs", 41, 3], ["buildInputs", 49, 3], ["propagatedBuildInputs", 54, 3], ["cmakeFlags", 60, 3], ["passthru", 61, 3], ["meta", 68, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchpatch: false, fetchFromGitHub: false, gitUpdater: false, cmake: false, functionalplus: false, eigen: false, nlohmann_json: false, python3Packages: false, buildTests: true, doctest: false, rocmPackages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 26, 5], ["repo", 27, 5], ["rev", 28, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 35, 7], ["url", 36, 7], ["hash", 37, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["frugally-deep", 64, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["miopen-can-load-models", 61, 18]]);
-const pos$5 = nix.positions(here + "/package.nix", [["tests", 61, 12], ["updateScript", 66, 12]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 69, 5], ["homepage", 70, 5], ["license", 71, 5], ["platforms", 72, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 23, 3], ["src", 25, 3], ["patches", 32, 3], ["nativeBuildInputs", 41, 3], ["buildInputs", 49, 3], ["propagatedBuildInputs", 54, 3], ["cmakeFlags", 60, 3], ["passthru", 61, 3], ["meta", 68, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const doctest = nix.arg($, "doctest");
   const rocmPackages = nix.arg($, "rocmPackages");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "frugally-deep",
       version: "0.15.24-p0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Dobiasd",
           repo: "frugally-deep",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -39,7 +33,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "update-minimum-cmake4-huntergate.patch",
             url: "https://github.com/Dobiasd/frugally-deep/commit/30a4ce4c932ca810a5a77c4ab943a520bb1048fe.patch",
             hash: "sha256-J5z+jQis8N2mzWu2Qm7J0fPkrplpjgDCOAJT7binz04=",
@@ -53,18 +47,18 @@ export default nix.lambda((args) => (() => {
       propagatedBuildInputs: nix.thunk(() => [functionalplus, eigen, nlohmann_json]),
       cmakeFlags: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), buildTests, nix.thunk(() => ["-DFDEEP_BUILD_UNITTEST=ON"]))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           "miopen-can-load-models": nix.thunk(() => nix.app(nix.sel(rocmPackages, "miopen", "passthru", "tests", "can-load-models", "override"), nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               "frugally-deep": nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         })),
         updateScript: gitUpdater,
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Header-only library for using Keras (TensorFlow) models in C++",
         homepage: "https://github.com/Dobiasd/frugally-deep",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

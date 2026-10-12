@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 41, 5], ["hash", 42, 5]], [["updateScript", 101, 12]], [["description", 126, 5], ["homepage", 127, 5], ["downloadPage", 128, 5], ["license", 129, 5], ["maintainers", 130, 5], ["platforms", 131, 5], ["mainProgram", 132, 5]], [["pname", 37, 3], ["version", 38, 3], ["src", 40, 3], ["nativeBuildInputs", 45, 3], ["buildInputs", 51, 3], ["dontBuild", 76, 3], ["dontConfigure", 77, 3], ["unpackPhase", 79, 3], ["installPhase", 88, 3], ["passthru", 101, 3], ["meta", 125, 3]]]);
 const formals$1 = { args: { stdenvNoCC: false, fetchurl: false, lib: false, makeWrapper: false, autoPatchelfHook: false, dpkg: false, "alsa-lib": false, "at-spi2-atk": false, cairo: false, cups: false, dbus: false, expat: false, ffmpeg: false, glib: false, gtk3: false, libdrm: false, "libudev0-shim": false, libxkbcommon: false, libgbm: false, nspr: false, nss: false, pango: false, libxrandr: false, libxfixes: false, libxext: false, libxdamage: false, libxcomposite: false, libx11: false, libxcb: false, writeScript: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 41, 5], ["hash", 42, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 101, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 126, 5], ["homepage", 127, 5], ["downloadPage", 128, 5], ["license", 129, 5], ["maintainers", 130, 5], ["platforms", 131, 5], ["mainProgram", 132, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 37, 3], ["version", 38, 3], ["src", 40, 3], ["nativeBuildInputs", 45, 3], ["buildInputs", 51, 3], ["dontBuild", 76, 3], ["dontConfigure", 77, 3], ["unpackPhase", 79, 3], ["installPhase", 88, 3], ["passthru", 101, 3], ["meta", 125, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -42,11 +39,11 @@ export default nix.lambda((args) => (() => {
   const writeScript = nix.arg($, "writeScript");
   const id = "518116281";
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "multiviewer-for-f1",
       version: "2.8.4",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://releases.multiviewer.app/download/${id}/multiviewer_${nix.sel(finalAttrs, "version")}_amd64.deb`),
           hash: "sha256-CTaFtxoV8XEBhD9b8dPLPqHloc1MoHKuEBYt7EJy9U0=",
         })))),
@@ -90,7 +87,7 @@ makeWrapper "$out/share/multiviewer/multiviewer" $out/bin/multiviewer \\
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(writeScript, "update-multiviewer-for-f1", nix.thunk(() => nix.str`#!/usr/bin/env nix-shell
 #!nix-shell -i bash -p curl jq common-updater-scripts
 set -eu -o pipefail
@@ -115,7 +112,7 @@ fi
 `))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Unofficial desktop client for F1 TV",
         homepage: "https://multiviewer.app",
         downloadPage: "https://multiviewer.app/download",

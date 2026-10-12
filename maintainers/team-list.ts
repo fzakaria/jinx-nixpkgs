@@ -2,122 +2,17 @@
 import * as nix from "../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/team-list.nix", [[["members", 39, 5], ["scope", 45, 5], ["shortName", 46, 5], ["enableFeatureFreezePing", 47, 5]], [["github", 51, 5]], [["github", 55, 5], ["enableFeatureFreezePing", 56, 5]], [["scope", 60, 5], ["shortName", 61, 5], ["members", 62, 5]], [["members", 70, 5], ["scope", 75, 5], ["shortName", 76, 5], ["enableFeatureFreezePing", 77, 5]], [["github", 81, 5], ["enableFeatureFreezePing", 82, 5]], [["members", 86, 5], ["scope", 90, 5], ["shortName", 91, 5]], [["github", 95, 5]], [["members", 99, 5], ["scope", 103, 5], ["shortName", 104, 5]], [["members", 108, 5], ["scope", 112, 5], ["shortName", 113, 5]], [["members", 117, 5], ["scope", 120, 5], ["shortName", 121, 5], ["enableFeatureFreezePing", 122, 5]], [["github", 126, 5]], [["github", 130, 5]], [["members", 134, 5], ["scope", 138, 5], ["shortName", 139, 5], ["enableFeatureFreezePing", 140, 5]], [["members", 144, 5], ["scope", 149, 5], ["shortName", 150, 5]], [["members", 154, 5], ["scope", 163, 5], ["shortName", 164, 5], ["enableFeatureFreezePing", 165, 5]], [["github", 169, 5], ["enableFeatureFreezePing", 170, 5]], [["members", 174, 5], ["scope", 178, 5], ["shortName", 179, 5]], [["github", 183, 5]], [["members", 187, 5], ["scope", 191, 5], ["shortName", 192, 5]], [["github", 196, 5], ["enableFeatureFreezePing", 197, 5]], [["members", 201, 5], ["scope", 204, 5], ["shortName", 205, 5], ["enableFeatureFreezePing", 206, 5]], [["members", 210, 5], ["scope", 214, 5], ["shortName", 215, 5]], [["github", 219, 5], ["enableFeatureFreezePing", 220, 5]], [["members", 224, 5], ["scope", 232, 5], ["shortName", 233, 5]], [["members", 237, 5], ["scope", 242, 5], ["shortName", 243, 5], ["enableFeatureFreezePing", 244, 5]], [["members", 248, 5], ["scope", 254, 5], ["shortName", 255, 5]], [["github", 259, 5], ["enableFeatureFreezePing", 260, 5]], [["github", 264, 5]], [["enableFeatureFreezePing", 268, 5], ["github", 269, 5]], [["members", 273, 5], ["scope", 282, 5], ["shortName", 283, 5]], [["github", 287, 5]], [["github", 291, 5]], [["github", 295, 5]], [["members", 299, 5], ["scope", 303, 5], ["shortName", 304, 5], ["enableFeatureFreezePing", 305, 5]], [["github", 309, 5], ["enableFeatureFreezePing", 310, 5]], [["members", 314, 5], ["scope", 321, 5], ["shortName", 322, 5]], [["github", 326, 5], ["enableFeatureFreezePing", 327, 5]], [["github", 331, 5]], [["github", 335, 5], ["enableFeatureFreezePing", 336, 5]], [["members", 340, 5], ["scope", 346, 5], ["shortName", 347, 5]], [["github", 351, 5], ["enableFeatureFreezePing", 352, 5]], [["members", 356, 5], ["scope", 360, 5], ["shortName", 361, 5]], [["github", 365, 5], ["enableFeatureFreezePing", 366, 5]], [["members", 370, 5], ["scope", 371, 5], ["shortName", 372, 5]], [["github", 376, 5], ["enableFeatureFreezePing", 377, 5]], [["members", 381, 5], ["shortName", 386, 5], ["scope", 387, 5]], [["members", 391, 5], ["scope", 397, 5], ["shortName", 398, 5]], [["members", 402, 5], ["scope", 408, 5], ["shortName", 409, 5]], [["github", 413, 5]], [["members", 417, 5], ["scope", 425, 5], ["shortName", 426, 5]], [["github", 430, 5]], [["members", 434, 5], ["scope", 439, 5], ["shortName", 440, 5]], [["github", 444, 5]], [["github", 448, 5], ["enableFeatureFreezePing", 449, 5]], [["github", 453, 5], ["enableFeatureFreezePing", 454, 5]], [["github", 458, 5], ["enableFeatureFreezePing", 459, 5]], [["members", 463, 5], ["scope", 464, 5], ["shortName", 465, 5], ["enableFeatureFreezePing", 466, 5]], [["github", 470, 5], ["enableFeatureFreezePing", 471, 5]], [["github", 475, 5], ["enableFeatureFreezePing", 476, 5]], [["github", 480, 5], ["enableFeatureFreezePing", 481, 5]], [["github", 485, 5]], [["github", 489, 5], ["enableFeatureFreezePing", 490, 5]], [["github", 494, 5], ["enableFeatureFreezePing", 495, 5]], [["members", 499, 5], ["scope", 503, 5], ["shortName", 504, 5], ["enableFeatureFreezePing", 505, 5]], [["members", 509, 5], ["scope", 516, 5], ["shortName", 517, 5]], [["members", 521, 5], ["scope", 530, 5], ["shortName", 531, 5]], [["members", 535, 5], ["scope", 539, 5], ["shortName", 540, 5], ["enableFeatureFreezePing", 541, 5]], [["github", 545, 5]], [["members", 549, 5], ["scope", 557, 5], ["shortName", 558, 5], ["enableFeatureFreezePing", 559, 5]], [["members", 563, 5], ["scope", 569, 5], ["shortName", 570, 5]], [["github", 574, 5], ["enableFeatureFreezePing", 575, 5]], [["members", 580, 5], ["scope", 590, 5], ["shortName", 591, 5], ["enableFeatureFreezePing", 592, 5]], [["members", 596, 5], ["scope", 597, 5], ["shortName", 598, 5], ["enableFeatureFreezePing", 599, 5]], [["members", 603, 5], ["scope", 604, 5], ["shortName", 605, 5], ["enableFeatureFreezePing", 606, 5]], [["github", 610, 5], ["enableFeatureFreezePing", 611, 5]], [["members", 615, 5], ["scope", 616, 5], ["shortName", 617, 5]], [["members", 621, 5], ["scope", 626, 5], ["shortName", 627, 5]], [["github", 631, 5], ["enableFeatureFreezePing", 632, 5]], [["members", 636, 5], ["scope", 640, 5], ["shortName", 641, 5], ["enableFeatureFreezePing", 642, 5]], [["github", 646, 5], ["enableFeatureFreezePing", 647, 5]], [["github", 651, 5]], [["github", 655, 5], ["enableFeatureFreezePing", 656, 5]], [["scope", 660, 5], ["shortName", 661, 5], ["members", 662, 5]], [["members", 670, 5], ["scope", 673, 5], ["shortName", 674, 5], ["enableFeatureFreezePing", 675, 5]], [["github", 679, 5], ["enableFeatureFreezePing", 680, 5]], [["members", 684, 5], ["scope", 691, 5], ["shortName", 692, 5], ["enableFeatureFreezePing", 693, 5]], [["github", 697, 5]], [["github", 701, 5]], [["github", 705, 5]], [["github", 709, 5], ["enableFeatureFreezePing", 710, 5]], [["members", 714, 5], ["scope", 718, 5], ["shortName", 719, 5]], [["github", 723, 5], ["enableFeatureFreezePing", 724, 5]], [["github", 728, 5]], [["members", 732, 5], ["scope", 736, 5], ["shortName", 737, 5]], [["enableFeatureFreezePing", 741, 5], ["github", 742, 5]], [["members", 746, 5], ["scope", 751, 5], ["shortName", 752, 5]], [["members", 756, 5], ["scope", 761, 5], ["shortName", 762, 5]], [["github", 766, 5], ["enableFeatureFreezePing", 767, 5]], [["github", 771, 5], ["enableFeatureFreezePing", 772, 5]], [["members", 776, 5], ["scope", 777, 5], ["shortName", 778, 5]], [["members", 782, 5], ["scope", 788, 5], ["shortName", 789, 5]], [["enableFeatureFreezePing", 793, 5], ["github", 794, 5]], [["members", 798, 5], ["scope", 803, 5], ["shortName", 804, 5], ["enableFeatureFreezePing", 805, 5]], [["members", 809, 5], ["scope", 812, 5], ["shortName", 813, 5], ["enableFeatureFreezePing", 814, 5]], [["acme", 38, 3], ["agda", 50, 3], ["android", 54, 3], ["apparmor", 59, 3], ["bazel", 69, 3], ["beam", 80, 3], ["blockchains", 85, 3], ["boot-security", 94, 3], ["budgie", 98, 3], ["buildbot", 107, 3], ["c", 116, 3], ["categorization", 125, 3], ["ci", 129, 3], ["cinnamon", 133, 3], ["cockpit", 143, 3], ["coq", 153, 3], ["cosmic", 168, 3], ["cosmopolitan", 173, 3], ["cuda", 182, 3], ["danklinux", 186, 3], ["darwin", 195, 3], ["dhall", 200, 3], ["docker", 209, 3], ["docs", 218, 3], ["dotnet", 223, 3], ["electron", 236, 3], ["emacs", 247, 3], ["enlightenment", 258, 3], ["feel-co", 263, 3], ["flutter", 267, 3], ["forgejo", 272, 3], ["formatter", 286, 3], ["freedesktop", 290, 3], ["gaming", 294, 3], ["gcc", 298, 3], ["geospatial", 308, 3], ["gitlab", 313, 3], ["gnome", 325, 3], ["gnome-circle", 330, 3], ["golang", 334, 3], ["graalvm-ce", 339, 3], ["haskell", 350, 3], ["home-assistant", 355, 3], ["hyprland", 364, 3], ["infisical", 369, 3], ["java", 375, 3], ["jetbrains", 380, 3], ["jitsi", 390, 3], ["jupyter", 401, 3], ["k3s", 412, 3], ["kodi", 416, 3], ["kubernetes", 429, 3], ["libretro", 433, 3], ["linux-kernel", 443, 3], ["lisp", 447, 3], ["lix", 452, 3], ["llvm", 457, 3], ["lomiri", 462, 3], ["loongarch64", 469, 3], ["lua", 474, 3], ["lumina", 479, 3], ["lxc", 484, 3], ["lxqt", 488, 3], ["marketing", 493, 3], ["mate", 498, 3], ["matrix", 508, 3], ["minimal-bootstrap", 520, 3], ["module-system", 534, 3], ["neovim", 544, 3], ["nextcloud", 548, 3], ["ngi", 562, 3], ["nim", 573, 3], ["nix", 579, 3], ["nixos-rebuild", 595, 3], ["node", 602, 3], ["ocaml", 609, 3], ["octodns", 614, 3], ["openstack", 620, 3], ["pantheon", 630, 3], ["perl", 635, 3], ["php", 645, 3], ["podman", 650, 3], ["postgres", 654, 3], ["pulumi", 659, 3], ["python", 669, 3], ["qt-kde", 678, 3], ["r", 683, 3], ["radicle", 696, 3], ["redis", 700, 3], ["rocm", 704, 3], ["rust", 708, 3], ["sage", 713, 3], ["sdl", 722, 3], ["security-review", 727, 3], ["stardust-xr", 731, 3], ["stdenv", 740, 3], ["steam", 745, 3], ["swift", 755, 3], ["systemd", 765, 3], ["test-driver", 770, 3], ["tts", 775, 3], ["windows", 781, 3], ["xen", 792, 3], ["xfce", 797, 3], ["zig", 808, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/team-list.nix", [["members", 39, 5], ["scope", 45, 5], ["shortName", 46, 5], ["enableFeatureFreezePing", 47, 5]]);
-const pos$2 = nix.positions(here + "/team-list.nix", [["github", 51, 5]]);
-const pos$3 = nix.positions(here + "/team-list.nix", [["github", 55, 5], ["enableFeatureFreezePing", 56, 5]]);
-const pos$4 = nix.positions(here + "/team-list.nix", [["scope", 60, 5], ["shortName", 61, 5], ["members", 62, 5]]);
-const pos$5 = nix.positions(here + "/team-list.nix", [["members", 70, 5], ["scope", 75, 5], ["shortName", 76, 5], ["enableFeatureFreezePing", 77, 5]]);
-const pos$6 = nix.positions(here + "/team-list.nix", [["github", 81, 5], ["enableFeatureFreezePing", 82, 5]]);
-const pos$7 = nix.positions(here + "/team-list.nix", [["members", 86, 5], ["scope", 90, 5], ["shortName", 91, 5]]);
-const pos$8 = nix.positions(here + "/team-list.nix", [["github", 95, 5]]);
-const pos$9 = nix.positions(here + "/team-list.nix", [["members", 99, 5], ["scope", 103, 5], ["shortName", 104, 5]]);
-const pos$10 = nix.positions(here + "/team-list.nix", [["members", 108, 5], ["scope", 112, 5], ["shortName", 113, 5]]);
-const pos$11 = nix.positions(here + "/team-list.nix", [["members", 117, 5], ["scope", 120, 5], ["shortName", 121, 5], ["enableFeatureFreezePing", 122, 5]]);
-const pos$12 = nix.positions(here + "/team-list.nix", [["github", 126, 5]]);
-const pos$13 = nix.positions(here + "/team-list.nix", [["github", 130, 5]]);
-const pos$14 = nix.positions(here + "/team-list.nix", [["members", 134, 5], ["scope", 138, 5], ["shortName", 139, 5], ["enableFeatureFreezePing", 140, 5]]);
-const pos$15 = nix.positions(here + "/team-list.nix", [["members", 144, 5], ["scope", 149, 5], ["shortName", 150, 5]]);
-const pos$16 = nix.positions(here + "/team-list.nix", [["members", 154, 5], ["scope", 163, 5], ["shortName", 164, 5], ["enableFeatureFreezePing", 165, 5]]);
-const pos$17 = nix.positions(here + "/team-list.nix", [["github", 169, 5], ["enableFeatureFreezePing", 170, 5]]);
-const pos$18 = nix.positions(here + "/team-list.nix", [["members", 174, 5], ["scope", 178, 5], ["shortName", 179, 5]]);
-const pos$19 = nix.positions(here + "/team-list.nix", [["github", 183, 5]]);
-const pos$20 = nix.positions(here + "/team-list.nix", [["members", 187, 5], ["scope", 191, 5], ["shortName", 192, 5]]);
-const pos$21 = nix.positions(here + "/team-list.nix", [["github", 196, 5], ["enableFeatureFreezePing", 197, 5]]);
-const pos$22 = nix.positions(here + "/team-list.nix", [["members", 201, 5], ["scope", 204, 5], ["shortName", 205, 5], ["enableFeatureFreezePing", 206, 5]]);
-const pos$23 = nix.positions(here + "/team-list.nix", [["members", 210, 5], ["scope", 214, 5], ["shortName", 215, 5]]);
-const pos$24 = nix.positions(here + "/team-list.nix", [["github", 219, 5], ["enableFeatureFreezePing", 220, 5]]);
-const pos$25 = nix.positions(here + "/team-list.nix", [["members", 224, 5], ["scope", 232, 5], ["shortName", 233, 5]]);
-const pos$26 = nix.positions(here + "/team-list.nix", [["members", 237, 5], ["scope", 242, 5], ["shortName", 243, 5], ["enableFeatureFreezePing", 244, 5]]);
-const pos$27 = nix.positions(here + "/team-list.nix", [["members", 248, 5], ["scope", 254, 5], ["shortName", 255, 5]]);
-const pos$28 = nix.positions(here + "/team-list.nix", [["github", 259, 5], ["enableFeatureFreezePing", 260, 5]]);
-const pos$29 = nix.positions(here + "/team-list.nix", [["github", 264, 5]]);
-const pos$30 = nix.positions(here + "/team-list.nix", [["enableFeatureFreezePing", 268, 5], ["github", 269, 5]]);
-const pos$31 = nix.positions(here + "/team-list.nix", [["members", 273, 5], ["scope", 282, 5], ["shortName", 283, 5]]);
-const pos$32 = nix.positions(here + "/team-list.nix", [["github", 287, 5]]);
-const pos$33 = nix.positions(here + "/team-list.nix", [["github", 291, 5]]);
-const pos$34 = nix.positions(here + "/team-list.nix", [["github", 295, 5]]);
-const pos$35 = nix.positions(here + "/team-list.nix", [["members", 299, 5], ["scope", 303, 5], ["shortName", 304, 5], ["enableFeatureFreezePing", 305, 5]]);
-const pos$36 = nix.positions(here + "/team-list.nix", [["github", 309, 5], ["enableFeatureFreezePing", 310, 5]]);
-const pos$37 = nix.positions(here + "/team-list.nix", [["members", 314, 5], ["scope", 321, 5], ["shortName", 322, 5]]);
-const pos$38 = nix.positions(here + "/team-list.nix", [["github", 326, 5], ["enableFeatureFreezePing", 327, 5]]);
-const pos$39 = nix.positions(here + "/team-list.nix", [["github", 331, 5]]);
-const pos$40 = nix.positions(here + "/team-list.nix", [["github", 335, 5], ["enableFeatureFreezePing", 336, 5]]);
-const pos$41 = nix.positions(here + "/team-list.nix", [["members", 340, 5], ["scope", 346, 5], ["shortName", 347, 5]]);
-const pos$42 = nix.positions(here + "/team-list.nix", [["github", 351, 5], ["enableFeatureFreezePing", 352, 5]]);
-const pos$43 = nix.positions(here + "/team-list.nix", [["members", 356, 5], ["scope", 360, 5], ["shortName", 361, 5]]);
-const pos$44 = nix.positions(here + "/team-list.nix", [["github", 365, 5], ["enableFeatureFreezePing", 366, 5]]);
-const pos$45 = nix.positions(here + "/team-list.nix", [["members", 370, 5], ["scope", 371, 5], ["shortName", 372, 5]]);
-const pos$46 = nix.positions(here + "/team-list.nix", [["github", 376, 5], ["enableFeatureFreezePing", 377, 5]]);
-const pos$47 = nix.positions(here + "/team-list.nix", [["members", 381, 5], ["shortName", 386, 5], ["scope", 387, 5]]);
-const pos$48 = nix.positions(here + "/team-list.nix", [["members", 391, 5], ["scope", 397, 5], ["shortName", 398, 5]]);
-const pos$49 = nix.positions(here + "/team-list.nix", [["members", 402, 5], ["scope", 408, 5], ["shortName", 409, 5]]);
-const pos$50 = nix.positions(here + "/team-list.nix", [["github", 413, 5]]);
-const pos$51 = nix.positions(here + "/team-list.nix", [["members", 417, 5], ["scope", 425, 5], ["shortName", 426, 5]]);
-const pos$52 = nix.positions(here + "/team-list.nix", [["github", 430, 5]]);
-const pos$53 = nix.positions(here + "/team-list.nix", [["members", 434, 5], ["scope", 439, 5], ["shortName", 440, 5]]);
-const pos$54 = nix.positions(here + "/team-list.nix", [["github", 444, 5]]);
-const pos$55 = nix.positions(here + "/team-list.nix", [["github", 448, 5], ["enableFeatureFreezePing", 449, 5]]);
-const pos$56 = nix.positions(here + "/team-list.nix", [["github", 453, 5], ["enableFeatureFreezePing", 454, 5]]);
-const pos$57 = nix.positions(here + "/team-list.nix", [["github", 458, 5], ["enableFeatureFreezePing", 459, 5]]);
-const pos$58 = nix.positions(here + "/team-list.nix", [["members", 463, 5], ["scope", 464, 5], ["shortName", 465, 5], ["enableFeatureFreezePing", 466, 5]]);
-const pos$59 = nix.positions(here + "/team-list.nix", [["github", 470, 5], ["enableFeatureFreezePing", 471, 5]]);
-const pos$60 = nix.positions(here + "/team-list.nix", [["github", 475, 5], ["enableFeatureFreezePing", 476, 5]]);
-const pos$61 = nix.positions(here + "/team-list.nix", [["github", 480, 5], ["enableFeatureFreezePing", 481, 5]]);
-const pos$62 = nix.positions(here + "/team-list.nix", [["github", 485, 5]]);
-const pos$63 = nix.positions(here + "/team-list.nix", [["github", 489, 5], ["enableFeatureFreezePing", 490, 5]]);
-const pos$64 = nix.positions(here + "/team-list.nix", [["github", 494, 5], ["enableFeatureFreezePing", 495, 5]]);
-const pos$65 = nix.positions(here + "/team-list.nix", [["members", 499, 5], ["scope", 503, 5], ["shortName", 504, 5], ["enableFeatureFreezePing", 505, 5]]);
-const pos$66 = nix.positions(here + "/team-list.nix", [["members", 509, 5], ["scope", 516, 5], ["shortName", 517, 5]]);
-const pos$67 = nix.positions(here + "/team-list.nix", [["members", 521, 5], ["scope", 530, 5], ["shortName", 531, 5]]);
-const pos$68 = nix.positions(here + "/team-list.nix", [["members", 535, 5], ["scope", 539, 5], ["shortName", 540, 5], ["enableFeatureFreezePing", 541, 5]]);
-const pos$69 = nix.positions(here + "/team-list.nix", [["github", 545, 5]]);
-const pos$70 = nix.positions(here + "/team-list.nix", [["members", 549, 5], ["scope", 557, 5], ["shortName", 558, 5], ["enableFeatureFreezePing", 559, 5]]);
-const pos$71 = nix.positions(here + "/team-list.nix", [["members", 563, 5], ["scope", 569, 5], ["shortName", 570, 5]]);
-const pos$72 = nix.positions(here + "/team-list.nix", [["github", 574, 5], ["enableFeatureFreezePing", 575, 5]]);
-const pos$73 = nix.positions(here + "/team-list.nix", [["members", 580, 5], ["scope", 590, 5], ["shortName", 591, 5], ["enableFeatureFreezePing", 592, 5]]);
-const pos$74 = nix.positions(here + "/team-list.nix", [["members", 596, 5], ["scope", 597, 5], ["shortName", 598, 5], ["enableFeatureFreezePing", 599, 5]]);
-const pos$75 = nix.positions(here + "/team-list.nix", [["members", 603, 5], ["scope", 604, 5], ["shortName", 605, 5], ["enableFeatureFreezePing", 606, 5]]);
-const pos$76 = nix.positions(here + "/team-list.nix", [["github", 610, 5], ["enableFeatureFreezePing", 611, 5]]);
-const pos$77 = nix.positions(here + "/team-list.nix", [["members", 615, 5], ["scope", 616, 5], ["shortName", 617, 5]]);
-const pos$78 = nix.positions(here + "/team-list.nix", [["members", 621, 5], ["scope", 626, 5], ["shortName", 627, 5]]);
-const pos$79 = nix.positions(here + "/team-list.nix", [["github", 631, 5], ["enableFeatureFreezePing", 632, 5]]);
-const pos$80 = nix.positions(here + "/team-list.nix", [["members", 636, 5], ["scope", 640, 5], ["shortName", 641, 5], ["enableFeatureFreezePing", 642, 5]]);
-const pos$81 = nix.positions(here + "/team-list.nix", [["github", 646, 5], ["enableFeatureFreezePing", 647, 5]]);
-const pos$82 = nix.positions(here + "/team-list.nix", [["github", 651, 5]]);
-const pos$83 = nix.positions(here + "/team-list.nix", [["github", 655, 5], ["enableFeatureFreezePing", 656, 5]]);
-const pos$84 = nix.positions(here + "/team-list.nix", [["scope", 660, 5], ["shortName", 661, 5], ["members", 662, 5]]);
-const pos$85 = nix.positions(here + "/team-list.nix", [["members", 670, 5], ["scope", 673, 5], ["shortName", 674, 5], ["enableFeatureFreezePing", 675, 5]]);
-const pos$86 = nix.positions(here + "/team-list.nix", [["github", 679, 5], ["enableFeatureFreezePing", 680, 5]]);
-const pos$87 = nix.positions(here + "/team-list.nix", [["members", 684, 5], ["scope", 691, 5], ["shortName", 692, 5], ["enableFeatureFreezePing", 693, 5]]);
-const pos$88 = nix.positions(here + "/team-list.nix", [["github", 697, 5]]);
-const pos$89 = nix.positions(here + "/team-list.nix", [["github", 701, 5]]);
-const pos$90 = nix.positions(here + "/team-list.nix", [["github", 705, 5]]);
-const pos$91 = nix.positions(here + "/team-list.nix", [["github", 709, 5], ["enableFeatureFreezePing", 710, 5]]);
-const pos$92 = nix.positions(here + "/team-list.nix", [["members", 714, 5], ["scope", 718, 5], ["shortName", 719, 5]]);
-const pos$93 = nix.positions(here + "/team-list.nix", [["github", 723, 5], ["enableFeatureFreezePing", 724, 5]]);
-const pos$94 = nix.positions(here + "/team-list.nix", [["github", 728, 5]]);
-const pos$95 = nix.positions(here + "/team-list.nix", [["members", 732, 5], ["scope", 736, 5], ["shortName", 737, 5]]);
-const pos$96 = nix.positions(here + "/team-list.nix", [["enableFeatureFreezePing", 741, 5], ["github", 742, 5]]);
-const pos$97 = nix.positions(here + "/team-list.nix", [["members", 746, 5], ["scope", 751, 5], ["shortName", 752, 5]]);
-const pos$98 = nix.positions(here + "/team-list.nix", [["members", 756, 5], ["scope", 761, 5], ["shortName", 762, 5]]);
-const pos$99 = nix.positions(here + "/team-list.nix", [["github", 766, 5], ["enableFeatureFreezePing", 767, 5]]);
-const pos$100 = nix.positions(here + "/team-list.nix", [["github", 771, 5], ["enableFeatureFreezePing", 772, 5]]);
-const pos$101 = nix.positions(here + "/team-list.nix", [["members", 776, 5], ["scope", 777, 5], ["shortName", 778, 5]]);
-const pos$102 = nix.positions(here + "/team-list.nix", [["members", 782, 5], ["scope", 788, 5], ["shortName", 789, 5]]);
-const pos$103 = nix.positions(here + "/team-list.nix", [["enableFeatureFreezePing", 793, 5], ["github", 794, 5]]);
-const pos$104 = nix.positions(here + "/team-list.nix", [["members", 798, 5], ["scope", 803, 5], ["shortName", 804, 5], ["enableFeatureFreezePing", 805, 5]]);
-const pos$105 = nix.positions(here + "/team-list.nix", [["members", 809, 5], ["scope", 812, 5], ["shortName", 813, 5], ["enableFeatureFreezePing", 814, 5]]);
-const pos$106 = nix.positions(here + "/team-list.nix", [["acme", 38, 3], ["agda", 50, 3], ["android", 54, 3], ["apparmor", 59, 3], ["bazel", 69, 3], ["beam", 80, 3], ["blockchains", 85, 3], ["boot-security", 94, 3], ["budgie", 98, 3], ["buildbot", 107, 3], ["c", 116, 3], ["categorization", 125, 3], ["ci", 129, 3], ["cinnamon", 133, 3], ["cockpit", 143, 3], ["coq", 153, 3], ["cosmic", 168, 3], ["cosmopolitan", 173, 3], ["cuda", 182, 3], ["danklinux", 186, 3], ["darwin", 195, 3], ["dhall", 200, 3], ["docker", 209, 3], ["docs", 218, 3], ["dotnet", 223, 3], ["electron", 236, 3], ["emacs", 247, 3], ["enlightenment", 258, 3], ["feel-co", 263, 3], ["flutter", 267, 3], ["forgejo", 272, 3], ["formatter", 286, 3], ["freedesktop", 290, 3], ["gaming", 294, 3], ["gcc", 298, 3], ["geospatial", 308, 3], ["gitlab", 313, 3], ["gnome", 325, 3], ["gnome-circle", 330, 3], ["golang", 334, 3], ["graalvm-ce", 339, 3], ["haskell", 350, 3], ["home-assistant", 355, 3], ["hyprland", 364, 3], ["infisical", 369, 3], ["java", 375, 3], ["jetbrains", 380, 3], ["jitsi", 390, 3], ["jupyter", 401, 3], ["k3s", 412, 3], ["kodi", 416, 3], ["kubernetes", 429, 3], ["libretro", 433, 3], ["linux-kernel", 443, 3], ["lisp", 447, 3], ["lix", 452, 3], ["llvm", 457, 3], ["lomiri", 462, 3], ["loongarch64", 469, 3], ["lua", 474, 3], ["lumina", 479, 3], ["lxc", 484, 3], ["lxqt", 488, 3], ["marketing", 493, 3], ["mate", 498, 3], ["matrix", 508, 3], ["minimal-bootstrap", 520, 3], ["module-system", 534, 3], ["neovim", 544, 3], ["nextcloud", 548, 3], ["ngi", 562, 3], ["nim", 573, 3], ["nix", 579, 3], ["nixos-rebuild", 595, 3], ["node", 602, 3], ["ocaml", 609, 3], ["octodns", 614, 3], ["openstack", 620, 3], ["pantheon", 630, 3], ["perl", 635, 3], ["php", 645, 3], ["podman", 650, 3], ["postgres", 654, 3], ["pulumi", 659, 3], ["python", 669, 3], ["qt-kde", 678, 3], ["r", 683, 3], ["radicle", 696, 3], ["redis", 700, 3], ["rocm", 704, 3], ["rust", 708, 3], ["sage", 713, 3], ["sdl", 722, 3], ["security-review", 727, 3], ["stardust-xr", 731, 3], ["stdenv", 740, 3], ["steam", 745, 3], ["swift", 755, 3], ["systemd", 765, 3], ["test-driver", 770, 3], ["tts", 775, 3], ["windows", 781, 3], ["xen", 792, 3], ["xfce", 797, 3], ["zig", 808, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
   return {
-    [nix.POS]: pos$106,
+    [nix.POS]: $pos[105],
     acme: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       members: nix.thunk(() => [
         nix.thunk(() => nix.lookup(w, "aanderse")),
         nix.thunk(() => nix.lookup(w, "arianvp")),
@@ -128,10 +23,10 @@ export default nix.lambda((args) => (() => {
       shortName: "ACME",
       enableFeatureFreezePing: true,
     })),
-    agda: nix.thunk(() => ({ [nix.POS]: pos$2, github: "agda" })),
-    android: nix.thunk(() => ({ [nix.POS]: pos$3, github: "android", enableFeatureFreezePing: true })),
+    agda: nix.thunk(() => ({ [nix.POS]: $pos[1], github: "agda" })),
+    android: nix.thunk(() => ({ [nix.POS]: $pos[2], github: "android", enableFeatureFreezePing: true })),
     apparmor: nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       scope: "AppArmor-related modules, userspace tool packages and profiles",
       shortName: "apparmor",
       members: nix.thunk(() => [
@@ -141,7 +36,7 @@ export default nix.lambda((args) => (() => {
       ]),
     })),
     bazel: nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       members: nix.thunk(() => [
         nix.thunk(() => nix.lookup(w, "cbley")),
         nix.thunk(() => nix.lookup(w, "groodt")),
@@ -151,9 +46,9 @@ export default nix.lambda((args) => (() => {
       shortName: "Bazel",
       enableFeatureFreezePing: true,
     })),
-    beam: nix.thunk(() => ({ [nix.POS]: pos$6, github: "beam", enableFeatureFreezePing: true })),
+    beam: nix.thunk(() => ({ [nix.POS]: $pos[5], github: "beam", enableFeatureFreezePing: true })),
     blockchains: nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       members: nix.thunk(() => [
         nix.thunk(() => nix.lookup(w, "mmahut")),
         nix.thunk(() => nix.lookup(w, "RaghavSood")),
@@ -161,9 +56,9 @@ export default nix.lambda((args) => (() => {
       scope: "Maintain Blockchain packages and modules.",
       shortName: "Blockchains",
     })),
-    "boot-security": nix.thunk(() => ({ [nix.POS]: pos$8, github: "boot-security" })),
+    "boot-security": nix.thunk(() => ({ [nix.POS]: $pos[7], github: "boot-security" })),
     budgie: nix.thunk(() => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       members: nix.thunk(() => [
         nix.thunk(() => nix.lookup(w, "bobby285271")),
         nix.thunk(() => nix.lookup(w, "getchoo")),
@@ -172,7 +67,7 @@ export default nix.lambda((args) => (() => {
       shortName: "Budgie",
     })),
     buildbot: nix.thunk(() => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       members: nix.thunk(() => [
         nix.thunk(() => nix.lookup(w, "lopsided98")),
         nix.thunk(() => nix.lookup(w, "mic92")),
@@ -181,16 +76,16 @@ export default nix.lambda((args) => (() => {
       shortName: "Buildbot",
     })),
     c: nix.thunk(() => ({
-      [nix.POS]: pos$11,
+      [nix.POS]: $pos[10],
       members: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "mic92"))]),
       scope: "Maintain C libraries and tooling.",
       shortName: "C",
       enableFeatureFreezePing: true,
     })),
-    categorization: nix.thunk(() => ({ [nix.POS]: pos$12, github: "categorization" })),
-    ci: nix.thunk(() => ({ [nix.POS]: pos$13, github: "nixpkgs-ci" })),
+    categorization: nix.thunk(() => ({ [nix.POS]: $pos[11], github: "categorization" })),
+    ci: nix.thunk(() => ({ [nix.POS]: $pos[12], github: "nixpkgs-ci" })),
     cinnamon: nix.thunk(() => ({
-      [nix.POS]: pos$14,
+      [nix.POS]: $pos[13],
       members: nix.thunk(() => [
         nix.thunk(() => nix.lookup(w, "bobby285271")),
         nix.thunk(() => nix.lookup(w, "mkg20001")),
@@ -200,7 +95,7 @@ export default nix.lambda((args) => (() => {
       enableFeatureFreezePing: true,
     })),
     cockpit: nix.thunk(() => ({
-      [nix.POS]: pos$15,
+      [nix.POS]: $pos[14],
       members: nix.thunk(() => [
         nix.thunk(() => nix.lookup(w, "alexandru0-dev")),
         nix.thunk(() => nix.lookup(w, "andre4ik3")),
@@ -210,7 +105,7 @@ export default nix.lambda((args) => (() => {
       shortName: "Cockpit",
     })),
     coq: nix.thunk(() => ({
-      [nix.POS]: pos$16,
+      [nix.POS]: $pos[15],
       members: nix.thunk(() => [
         nix.thunk(() => nix.lookup(w, "cohencyril")),
         nix.thunk(() => nix.lookup(w, "Zimmi48")),
@@ -223,9 +118,9 @@ export default nix.lambda((args) => (() => {
       shortName: "Coq",
       enableFeatureFreezePing: true,
     })),
-    cosmic: nix.thunk(() => ({ [nix.POS]: pos$17, github: "cosmic", enableFeatureFreezePing: true })),
+    cosmic: nix.thunk(() => ({ [nix.POS]: $pos[16], github: "cosmic", enableFeatureFreezePing: true })),
     cosmopolitan: nix.thunk(() => ({
-      [nix.POS]: pos$18,
+      [nix.POS]: $pos[17],
       members: nix.thunk(() => [
         nix.thunk(() => nix.lookup(w, "bbjubjub")),
         nix.thunk(() => nix.lookup(w, "tomberek")),
@@ -233,9 +128,9 @@ export default nix.lambda((args) => (() => {
       scope: "Maintain the Cosmopolitan LibC and related programs.",
       shortName: "Cosmopolitan",
     })),
-    cuda: nix.thunk(() => ({ [nix.POS]: pos$19, github: "cuda-maintainers" })),
+    cuda: nix.thunk(() => ({ [nix.POS]: $pos[18], github: "cuda-maintainers" })),
     danklinux: nix.thunk(() => ({
-      [nix.POS]: pos$20,
+      [nix.POS]: $pos[19],
       members: nix.thunk(() => [
         nix.thunk(() => nix.lookup(w, "luckshiba")),
         nix.thunk(() => nix.lookup(w, "marcusramberg")),
@@ -243,16 +138,16 @@ export default nix.lambda((args) => (() => {
       scope: "Maintain DankMaterialShell and related packages and modules from Dank Linux.",
       shortName: "Dank Linux",
     })),
-    darwin: nix.thunk(() => ({ [nix.POS]: pos$21, github: "darwin-core", enableFeatureFreezePing: true })),
+    darwin: nix.thunk(() => ({ [nix.POS]: $pos[20], github: "darwin-core", enableFeatureFreezePing: true })),
     dhall: nix.thunk(() => ({
-      [nix.POS]: pos$22,
+      [nix.POS]: $pos[21],
       members: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "Gabriella439"))]),
       scope: "Maintain Dhall and related packages.",
       shortName: "Dhall",
       enableFeatureFreezePing: true,
     })),
     docker: nix.thunk(() => ({
-      [nix.POS]: pos$23,
+      [nix.POS]: $pos[22],
       members: nix.thunk(() => [
         nix.thunk(() => nix.lookup(w, "roberth")),
         nix.thunk(() => nix.lookup(w, "utdemir")),
@@ -261,12 +156,12 @@ export default nix.lambda((args) => (() => {
       shortName: "DockerTools",
     })),
     docs: nix.thunk(() => ({
-      [nix.POS]: pos$24,
+      [nix.POS]: $pos[23],
       github: "documentation-team",
       enableFeatureFreezePing: true,
     })),
     dotnet: nix.thunk(() => ({
-      [nix.POS]: pos$25,
+      [nix.POS]: $pos[24],
       members: nix.thunk(() => [
         nix.thunk(() => nix.lookup(w, "mdarocha")),
         nix.thunk(() => nix.lookup(w, "corngood")),
@@ -279,7 +174,7 @@ export default nix.lambda((args) => (() => {
       shortName: "dotnet",
     })),
     electron: nix.thunk(() => ({
-      [nix.POS]: pos$26,
+      [nix.POS]: $pos[25],
       members: nix.thunk(() => [
         nix.thunk(() => nix.lookup(w, "tomasajt")),
         nix.thunk(() => nix.lookup(w, "yayayayaka")),
@@ -290,7 +185,7 @@ export default nix.lambda((args) => (() => {
       enableFeatureFreezePing: true,
     })),
     emacs: nix.thunk(() => ({
-      [nix.POS]: pos$27,
+      [nix.POS]: $pos[26],
       members: nix.thunk(() => [
         nix.thunk(() => nix.lookup(w, "AndersonTorres")),
         nix.thunk(() => nix.lookup(w, "adisbladis")),
@@ -300,11 +195,11 @@ export default nix.lambda((args) => (() => {
       scope: "Maintain the Emacs editor and packages.",
       shortName: "Emacs",
     })),
-    enlightenment: nix.thunk(() => ({ [nix.POS]: pos$28, github: "enlightenment", enableFeatureFreezePing: true })),
-    "feel-co": nix.thunk(() => ({ [nix.POS]: pos$29, github: "feel-co" })),
-    flutter: nix.thunk(() => ({ [nix.POS]: pos$30, enableFeatureFreezePing: false, github: "flutter" })),
+    enlightenment: nix.thunk(() => ({ [nix.POS]: $pos[27], github: "enlightenment", enableFeatureFreezePing: true })),
+    "feel-co": nix.thunk(() => ({ [nix.POS]: $pos[28], github: "feel-co" })),
+    flutter: nix.thunk(() => ({ [nix.POS]: $pos[29], enableFeatureFreezePing: false, github: "flutter" })),
     forgejo: nix.thunk(() => ({
-      [nix.POS]: pos$31,
+      [nix.POS]: $pos[30],
       members: nix.thunk(() => [
         nix.thunk(() => nix.lookup(w, "adamcstephens")),
         nix.thunk(() => nix.lookup(w, "bendlas")),
@@ -317,11 +212,11 @@ export default nix.lambda((args) => (() => {
       scope: "Maintain the Forgejo code forge, packages and modules.",
       shortName: "Forgejo",
     })),
-    formatter: nix.thunk(() => ({ [nix.POS]: pos$32, github: "nix-formatting" })),
-    freedesktop: nix.thunk(() => ({ [nix.POS]: pos$33, github: "freedesktop" })),
-    gaming: nix.thunk(() => ({ [nix.POS]: pos$34, github: "gaming" })),
+    formatter: nix.thunk(() => ({ [nix.POS]: $pos[31], github: "nix-formatting" })),
+    freedesktop: nix.thunk(() => ({ [nix.POS]: $pos[32], github: "freedesktop" })),
+    gaming: nix.thunk(() => ({ [nix.POS]: $pos[33], github: "gaming" })),
     gcc: nix.thunk(() => ({
-      [nix.POS]: pos$35,
+      [nix.POS]: $pos[34],
       members: nix.thunk(() => [
         nix.thunk(() => nix.lookup(w, "vcunat")),
         nix.thunk(() => nix.lookup(w, "ericson2314")),
@@ -330,9 +225,9 @@ export default nix.lambda((args) => (() => {
       shortName: "GCC",
       enableFeatureFreezePing: true,
     })),
-    geospatial: nix.thunk(() => ({ [nix.POS]: pos$36, github: "geospatial", enableFeatureFreezePing: true })),
+    geospatial: nix.thunk(() => ({ [nix.POS]: $pos[35], github: "geospatial", enableFeatureFreezePing: true })),
     gitlab: nix.thunk(() => ({
-      [nix.POS]: pos$37,
+      [nix.POS]: $pos[36],
       members: nix.thunk(() => [
         nix.thunk(() => nix.lookup(w, "gabyx")),
         nix.thunk(() => nix.lookup(w, "krav")),
@@ -343,11 +238,11 @@ export default nix.lambda((args) => (() => {
       scope: "Maintain gitlab packages.",
       shortName: "gitlab",
     })),
-    gnome: nix.thunk(() => ({ [nix.POS]: pos$38, github: "gnome", enableFeatureFreezePing: true })),
-    "gnome-circle": nix.thunk(() => ({ [nix.POS]: pos$39, github: "gnome-circle" })),
-    golang: nix.thunk(() => ({ [nix.POS]: pos$40, github: "golang", enableFeatureFreezePing: true })),
+    gnome: nix.thunk(() => ({ [nix.POS]: $pos[37], github: "gnome", enableFeatureFreezePing: true })),
+    "gnome-circle": nix.thunk(() => ({ [nix.POS]: $pos[38], github: "gnome-circle" })),
+    golang: nix.thunk(() => ({ [nix.POS]: $pos[39], github: "golang", enableFeatureFreezePing: true })),
     "graalvm-ce": nix.thunk(() => ({
-      [nix.POS]: pos$41,
+      [nix.POS]: $pos[40],
       members: nix.thunk(() => [
         nix.thunk(() => nix.lookup(w, "bandresen")),
         nix.thunk(() => nix.lookup(w, "hlolli")),
@@ -357,9 +252,9 @@ export default nix.lambda((args) => (() => {
       scope: "Maintain GraalVM Community Edition packages.",
       shortName: "GraalVM-CE",
     })),
-    haskell: nix.thunk(() => ({ [nix.POS]: pos$42, github: "haskell", enableFeatureFreezePing: true })),
+    haskell: nix.thunk(() => ({ [nix.POS]: $pos[41], github: "haskell", enableFeatureFreezePing: true })),
     "home-assistant": nix.thunk(() => ({
-      [nix.POS]: pos$43,
+      [nix.POS]: $pos[42],
       members: nix.thunk(() => [
         nix.thunk(() => nix.lookup(w, "dotlambda")),
         nix.thunk(() => nix.lookup(w, "hexa")),
@@ -367,16 +262,16 @@ export default nix.lambda((args) => (() => {
       scope: "Maintain the Home Assistant ecosystem",
       shortName: "Home Assistant",
     })),
-    hyprland: nix.thunk(() => ({ [nix.POS]: pos$44, github: "hyprland", enableFeatureFreezePing: true })),
+    hyprland: nix.thunk(() => ({ [nix.POS]: $pos[43], github: "hyprland", enableFeatureFreezePing: true })),
     infisical: nix.thunk(() => ({
-      [nix.POS]: pos$45,
+      [nix.POS]: $pos[44],
       members: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "akhilmhdh"))]),
       scope: "Maintain Infisical",
       shortName: "Infisical",
     })),
-    java: nix.thunk(() => ({ [nix.POS]: pos$46, github: "java", enableFeatureFreezePing: true })),
+    java: nix.thunk(() => ({ [nix.POS]: $pos[45], github: "java", enableFeatureFreezePing: true })),
     jetbrains: nix.thunk(() => ({
-      [nix.POS]: pos$47,
+      [nix.POS]: $pos[46],
       members: nix.thunk(() => [
         nix.thunk(() => nix.lookup(w, "leona")),
         nix.thunk(() => nix.lookup(w, "theCapypara")),
@@ -386,7 +281,7 @@ export default nix.lambda((args) => (() => {
       scope: "Maintainers of the Jetbrains IDEs in nixpkgs",
     })),
     jitsi: nix.thunk(() => ({
-      [nix.POS]: pos$48,
+      [nix.POS]: $pos[47],
       members: nix.thunk(() => [
         nix.thunk(() => nix.lookup(w, "novmar")),
         nix.thunk(() => nix.lookup(w, "ryantm")),
@@ -397,7 +292,7 @@ export default nix.lambda((args) => (() => {
       shortName: "Jitsi",
     })),
     jupyter: nix.thunk(() => ({
-      [nix.POS]: pos$49,
+      [nix.POS]: $pos[48],
       members: nix.thunk(() => [
         nix.thunk(() => nix.lookup(w, "GaetanLepage")),
         nix.thunk(() => nix.lookup(w, "natsukium")),
@@ -407,9 +302,9 @@ export default nix.lambda((args) => (() => {
       scope: "Maintain Jupyter and related packages.",
       shortName: "Jupyter",
     })),
-    k3s: nix.thunk(() => ({ [nix.POS]: pos$50, github: "k3s" })),
+    k3s: nix.thunk(() => ({ [nix.POS]: $pos[49], github: "k3s" })),
     kodi: nix.thunk(() => ({
-      [nix.POS]: pos$51,
+      [nix.POS]: $pos[50],
       members: nix.thunk(() => [
         nix.thunk(() => nix.lookup(w, "aanderse")),
         nix.thunk(() => nix.lookup(w, "cpages")),
@@ -421,9 +316,9 @@ export default nix.lambda((args) => (() => {
       scope: "Maintain Kodi and related packages.",
       shortName: "Kodi",
     })),
-    kubernetes: nix.thunk(() => ({ [nix.POS]: pos$52, github: "kubernetes" })),
+    kubernetes: nix.thunk(() => ({ [nix.POS]: $pos[51], github: "kubernetes" })),
     libretro: nix.thunk(() => ({
-      [nix.POS]: pos$53,
+      [nix.POS]: $pos[52],
       members: nix.thunk(() => [
         nix.thunk(() => nix.lookup(w, "aanderse")),
         nix.thunk(() => nix.lookup(w, "igorcafe")),
@@ -432,25 +327,29 @@ export default nix.lambda((args) => (() => {
       scope: "Maintain Libretro, RetroArch and related packages.",
       shortName: "Libretro",
     })),
-    "linux-kernel": nix.thunk(() => ({ [nix.POS]: pos$54, github: "linux-kernel" })),
-    lisp: nix.thunk(() => ({ [nix.POS]: pos$55, github: "lisp", enableFeatureFreezePing: true })),
-    lix: nix.thunk(() => ({ [nix.POS]: pos$56, github: "lix-maintainers", enableFeatureFreezePing: true })),
-    llvm: nix.thunk(() => ({ [nix.POS]: pos$57, github: "llvm", enableFeatureFreezePing: true })),
+    "linux-kernel": nix.thunk(() => ({ [nix.POS]: $pos[53], github: "linux-kernel" })),
+    lisp: nix.thunk(() => ({ [nix.POS]: $pos[54], github: "lisp", enableFeatureFreezePing: true })),
+    lix: nix.thunk(() => ({
+      [nix.POS]: $pos[55],
+      github: "lix-maintainers",
+      enableFeatureFreezePing: true,
+    })),
+    llvm: nix.thunk(() => ({ [nix.POS]: $pos[56], github: "llvm", enableFeatureFreezePing: true })),
     lomiri: nix.thunk(() => ({
-      [nix.POS]: pos$58,
+      [nix.POS]: $pos[57],
       members: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "OPNA2608"))]),
       scope: "Maintain Lomiri desktop environment and related packages.",
       shortName: "Lomiri",
       enableFeatureFreezePing: true,
     })),
-    loongarch64: nix.thunk(() => ({ [nix.POS]: pos$59, github: "loongarch64", enableFeatureFreezePing: true })),
-    lua: nix.thunk(() => ({ [nix.POS]: pos$60, github: "lua", enableFeatureFreezePing: true })),
-    lumina: nix.thunk(() => ({ [nix.POS]: pos$61, github: "lumina", enableFeatureFreezePing: true })),
-    lxc: nix.thunk(() => ({ [nix.POS]: pos$62, github: "lxc" })),
-    lxqt: nix.thunk(() => ({ [nix.POS]: pos$63, github: "lxqt", enableFeatureFreezePing: true })),
-    marketing: nix.thunk(() => ({ [nix.POS]: pos$64, github: "marketing-team", enableFeatureFreezePing: true })),
+    loongarch64: nix.thunk(() => ({ [nix.POS]: $pos[58], github: "loongarch64", enableFeatureFreezePing: true })),
+    lua: nix.thunk(() => ({ [nix.POS]: $pos[59], github: "lua", enableFeatureFreezePing: true })),
+    lumina: nix.thunk(() => ({ [nix.POS]: $pos[60], github: "lumina", enableFeatureFreezePing: true })),
+    lxc: nix.thunk(() => ({ [nix.POS]: $pos[61], github: "lxc" })),
+    lxqt: nix.thunk(() => ({ [nix.POS]: $pos[62], github: "lxqt", enableFeatureFreezePing: true })),
+    marketing: nix.thunk(() => ({ [nix.POS]: $pos[63], github: "marketing-team", enableFeatureFreezePing: true })),
     mate: nix.thunk(() => ({
-      [nix.POS]: pos$65,
+      [nix.POS]: $pos[64],
       members: nix.thunk(() => [
         nix.thunk(() => nix.lookup(w, "bobby285271")),
         nix.thunk(() => nix.lookup(w, "romildo")),
@@ -460,7 +359,7 @@ export default nix.lambda((args) => (() => {
       enableFeatureFreezePing: true,
     })),
     matrix: nix.thunk(() => ({
-      [nix.POS]: pos$66,
+      [nix.POS]: $pos[65],
       members: nix.thunk(() => [
         nix.thunk(() => nix.lookup(w, "ma27")),
         nix.thunk(() => nix.lookup(w, "nickcao")),
@@ -472,7 +371,7 @@ export default nix.lambda((args) => (() => {
       shortName: "Matrix",
     })),
     "minimal-bootstrap": nix.thunk(() => ({
-      [nix.POS]: pos$67,
+      [nix.POS]: $pos[66],
       members: nix.thunk(() => [
         nix.thunk(() => nix.lookup(w, "alejandrosame")),
         nix.thunk(() => nix.lookup(w, "aleksi")),
@@ -486,7 +385,7 @@ export default nix.lambda((args) => (() => {
       shortName: "Minimal Bootstrap",
     })),
     "module-system": nix.thunk(() => ({
-      [nix.POS]: pos$68,
+      [nix.POS]: $pos[67],
       members: nix.thunk(() => [
         nix.thunk(() => nix.lookup(w, "infinisil")),
         nix.thunk(() => nix.lookup(w, "roberth")),
@@ -495,9 +394,9 @@ export default nix.lambda((args) => (() => {
       shortName: "Module system",
       enableFeatureFreezePing: true,
     })),
-    neovim: nix.thunk(() => ({ [nix.POS]: pos$69, github: "neovim" })),
+    neovim: nix.thunk(() => ({ [nix.POS]: $pos[68], github: "neovim" })),
     nextcloud: nix.thunk(() => ({
-      [nix.POS]: pos$70,
+      [nix.POS]: $pos[69],
       members: nix.thunk(() => [
         nix.thunk(() => nix.lookup(w, "bachp")),
         nix.thunk(() => nix.lookup(w, "britter")),
@@ -511,7 +410,7 @@ export default nix.lambda((args) => (() => {
       enableFeatureFreezePing: true,
     })),
     ngi: nix.thunk(() => ({
-      [nix.POS]: pos$71,
+      [nix.POS]: $pos[70],
       members: nix.thunk(() => [
         nix.thunk(() => nix.lookup(w, "eljamm")),
         nix.thunk(() => nix.lookup(w, "ethancedwards8")),
@@ -521,9 +420,9 @@ export default nix.lambda((args) => (() => {
       scope: "Maintain NGI-supported software.",
       shortName: "NGI",
     })),
-    nim: nix.thunk(() => ({ [nix.POS]: pos$72, github: "nim", enableFeatureFreezePing: true })),
+    nim: nix.thunk(() => ({ [nix.POS]: $pos[71], github: "nim", enableFeatureFreezePing: true })),
     nix: nix.thunk(() => ({
-      [nix.POS]: pos$73,
+      [nix.POS]: $pos[72],
       members: nix.thunk(() => [
         nix.thunk(() => nix.lookup(w, "artturin")),
         nix.thunk(() => nix.lookup(w, "ericson2314")),
@@ -539,28 +438,28 @@ export default nix.lambda((args) => (() => {
       enableFeatureFreezePing: true,
     })),
     "nixos-rebuild": nix.thunk(() => ({
-      [nix.POS]: pos$74,
+      [nix.POS]: $pos[73],
       members: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "thiagokokada"))]),
       scope: "Maintain nixos-rebuild(-ng).",
       shortName: "nixos-rebuild",
       enableFeatureFreezePing: true,
     })),
     node: nix.thunk(() => ({
-      [nix.POS]: pos$75,
+      [nix.POS]: $pos[74],
       members: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "winter"))]),
       scope: "Maintain Node.js runtimes and build tooling.",
       shortName: "Node.js",
       enableFeatureFreezePing: true,
     })),
-    ocaml: nix.thunk(() => ({ [nix.POS]: pos$76, github: "ocaml", enableFeatureFreezePing: true })),
+    ocaml: nix.thunk(() => ({ [nix.POS]: $pos[75], github: "ocaml", enableFeatureFreezePing: true })),
     octodns: nix.thunk(() => ({
-      [nix.POS]: pos$77,
+      [nix.POS]: $pos[76],
       members: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "anthonyroussel"))]),
       scope: "Maintain the ecosystem around OctoDNS",
       shortName: "OctoDNS",
     })),
     openstack: nix.thunk(() => ({
-      [nix.POS]: pos$78,
+      [nix.POS]: $pos[77],
       members: nix.thunk(() => [
         nix.thunk(() => nix.lookup(w, "SuperSandro2000")),
         nix.thunk(() => nix.lookup(w, "anthonyroussel")),
@@ -569,9 +468,9 @@ export default nix.lambda((args) => (() => {
       scope: "Maintain the ecosystem around OpenStack",
       shortName: "OpenStack",
     })),
-    pantheon: nix.thunk(() => ({ [nix.POS]: pos$79, github: "pantheon", enableFeatureFreezePing: true })),
+    pantheon: nix.thunk(() => ({ [nix.POS]: $pos[78], github: "pantheon", enableFeatureFreezePing: true })),
     perl: nix.thunk(() => ({
-      [nix.POS]: pos$80,
+      [nix.POS]: $pos[79],
       members: nix.thunk(() => [
         nix.thunk(() => nix.lookup(w, "sgo")),
         nix.thunk(() => nix.lookup(w, "marcusramberg")),
@@ -580,11 +479,11 @@ export default nix.lambda((args) => (() => {
       shortName: "Perl",
       enableFeatureFreezePing: true,
     })),
-    php: nix.thunk(() => ({ [nix.POS]: pos$81, github: "php", enableFeatureFreezePing: true })),
-    podman: nix.thunk(() => ({ [nix.POS]: pos$82, github: "podman" })),
-    postgres: nix.thunk(() => ({ [nix.POS]: pos$83, github: "postgres", enableFeatureFreezePing: true })),
+    php: nix.thunk(() => ({ [nix.POS]: $pos[80], github: "php", enableFeatureFreezePing: true })),
+    podman: nix.thunk(() => ({ [nix.POS]: $pos[81], github: "podman" })),
+    postgres: nix.thunk(() => ({ [nix.POS]: $pos[82], github: "postgres", enableFeatureFreezePing: true })),
     pulumi: nix.thunk(() => ({
-      [nix.POS]: pos$84,
+      [nix.POS]: $pos[83],
       scope: "Maintains the Pulumi IaC tool and its language-specific SDKs",
       shortName: "Pulumi",
       members: nix.thunk(() => [
@@ -594,15 +493,15 @@ export default nix.lambda((args) => (() => {
       ]),
     })),
     python: nix.thunk(() => ({
-      [nix.POS]: pos$85,
+      [nix.POS]: $pos[84],
       members: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "hexa"))]),
       scope: "Maintain the Python interpreter and related packages.",
       shortName: "Python",
       enableFeatureFreezePing: true,
     })),
-    "qt-kde": nix.thunk(() => ({ [nix.POS]: pos$86, github: "qt-kde", enableFeatureFreezePing: true })),
+    "qt-kde": nix.thunk(() => ({ [nix.POS]: $pos[85], github: "qt-kde", enableFeatureFreezePing: true })),
     r: nix.thunk(() => ({
-      [nix.POS]: pos$87,
+      [nix.POS]: $pos[86],
       members: nix.thunk(() => [
         nix.thunk(() => nix.lookup(w, "b-rodrigues")),
         nix.thunk(() => nix.lookup(w, "bcdarwin")),
@@ -614,12 +513,12 @@ export default nix.lambda((args) => (() => {
       shortName: "R",
       enableFeatureFreezePing: true,
     })),
-    radicle: nix.thunk(() => ({ [nix.POS]: pos$88, github: "radicle" })),
-    redis: nix.thunk(() => ({ [nix.POS]: pos$89, github: "redis" })),
-    rocm: nix.thunk(() => ({ [nix.POS]: pos$90, github: "rocm" })),
-    rust: nix.thunk(() => ({ [nix.POS]: pos$91, github: "rust", enableFeatureFreezePing: true })),
+    radicle: nix.thunk(() => ({ [nix.POS]: $pos[87], github: "radicle" })),
+    redis: nix.thunk(() => ({ [nix.POS]: $pos[88], github: "redis" })),
+    rocm: nix.thunk(() => ({ [nix.POS]: $pos[89], github: "rocm" })),
+    rust: nix.thunk(() => ({ [nix.POS]: $pos[90], github: "rust", enableFeatureFreezePing: true })),
     sage: nix.thunk(() => ({
-      [nix.POS]: pos$92,
+      [nix.POS]: $pos[91],
       members: nix.thunk(() => [
         nix.thunk(() => nix.lookup(w, "raskin")),
         nix.thunk(() => nix.lookup(w, "collares")),
@@ -627,10 +526,10 @@ export default nix.lambda((args) => (() => {
       scope: "Maintain SageMath and the dependencies that are likely to break it.",
       shortName: "SageMath",
     })),
-    sdl: nix.thunk(() => ({ [nix.POS]: pos$93, github: "sdl", enableFeatureFreezePing: true })),
-    "security-review": nix.thunk(() => ({ [nix.POS]: pos$94, github: "security-review" })),
+    sdl: nix.thunk(() => ({ [nix.POS]: $pos[92], github: "sdl", enableFeatureFreezePing: true })),
+    "security-review": nix.thunk(() => ({ [nix.POS]: $pos[93], github: "security-review" })),
     "stardust-xr": nix.thunk(() => ({
-      [nix.POS]: pos$95,
+      [nix.POS]: $pos[94],
       members: nix.thunk(() => [
         nix.thunk(() => nix.lookup(w, "pandapip1")),
         nix.thunk(() => nix.lookup(w, "technobaboo")),
@@ -638,9 +537,9 @@ export default nix.lambda((args) => (() => {
       scope: "Maintain Stardust XR packages",
       shortName: "StardustXR",
     })),
-    stdenv: nix.thunk(() => ({ [nix.POS]: pos$96, enableFeatureFreezePing: true, github: "stdenv" })),
+    stdenv: nix.thunk(() => ({ [nix.POS]: $pos[95], enableFeatureFreezePing: true, github: "stdenv" })),
     steam: nix.thunk(() => ({
-      [nix.POS]: pos$97,
+      [nix.POS]: $pos[96],
       members: nix.thunk(() => [
         nix.thunk(() => nix.lookup(w, "atemu")),
         nix.thunk(() => nix.lookup(w, "k900")),
@@ -650,7 +549,7 @@ export default nix.lambda((args) => (() => {
       shortName: "Steam",
     })),
     swift: nix.thunk(() => ({
-      [nix.POS]: pos$98,
+      [nix.POS]: $pos[97],
       members: nix.thunk(() => [
         nix.thunk(() => nix.lookup(w, "reckenrode")),
         nix.thunk(() => nix.lookup(w, "samasaur")),
@@ -659,16 +558,16 @@ export default nix.lambda((args) => (() => {
       scope: "Maintain Swift compiler suite for NixOS.",
       shortName: "Swift",
     })),
-    systemd: nix.thunk(() => ({ [nix.POS]: pos$99, github: "systemd", enableFeatureFreezePing: true })),
-    "test-driver": nix.thunk(() => ({ [nix.POS]: pos$100, github: "test-driver", enableFeatureFreezePing: true })),
+    systemd: nix.thunk(() => ({ [nix.POS]: $pos[98], github: "systemd", enableFeatureFreezePing: true })),
+    "test-driver": nix.thunk(() => ({ [nix.POS]: $pos[99], github: "test-driver", enableFeatureFreezePing: true })),
     tts: nix.thunk(() => ({
-      [nix.POS]: pos$101,
+      [nix.POS]: $pos[100],
       members: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "mic92"))]),
       scope: "coqui-ai TTS (formerly Mozilla TTS) and leaf packages",
       shortName: "coqui-ai TTS",
     })),
     windows: nix.thunk(() => ({
-      [nix.POS]: pos$102,
+      [nix.POS]: $pos[101],
       members: nix.thunk(() => [
         nix.thunk(() => nix.lookup(w, "RossSmyth")),
         nix.thunk(() => nix.lookup(w, "eveeifyeve")),
@@ -678,9 +577,9 @@ export default nix.lambda((args) => (() => {
       scope: "Maintains the windows package set",
       shortName: "Windows",
     })),
-    xen: nix.thunk(() => ({ [nix.POS]: pos$103, enableFeatureFreezePing: true, github: "xen-project" })),
+    xen: nix.thunk(() => ({ [nix.POS]: $pos[102], enableFeatureFreezePing: true, github: "xen-project" })),
     xfce: nix.thunk(() => ({
-      [nix.POS]: pos$104,
+      [nix.POS]: $pos[103],
       members: nix.thunk(() => [
         nix.thunk(() => nix.lookup(w, "bobby285271")),
         nix.thunk(() => nix.lookup(w, "romildo")),
@@ -691,7 +590,7 @@ export default nix.lambda((args) => (() => {
       enableFeatureFreezePing: true,
     })),
     zig: nix.thunk(() => ({
-      [nix.POS]: pos$105,
+      [nix.POS]: $pos[104],
       members: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "RossComputerGuy"))]),
       scope: "Maintain the Zig compiler toolchain and nixpkgs integration.",
       shortName: "Zig",

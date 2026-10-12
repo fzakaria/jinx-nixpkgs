@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]], [["pname", 31, 26], ["version", 31, 32], ["src", 31, 40], ["hash", 32, 5]], [["GETTEXT_SYSTEM", 36, 5], ["PYO3_USE_ABI3_FORWARD_COMPATIBILITY", 41, 5]], [["description", 62, 5], ["homepage", 63, 5], ["license", 64, 5], ["maintainers", 65, 5]], [["pname", 19, 3], ["version", 20, 3], ["pyproject", 21, 3], ["src", 23, 3], ["cargoDeps", 30, 3], ["env", 35, 3], ["build-system", 44, 3], ["nativeBuildInputs", 48, 3], ["dependencies", 54, 3], ["doCheck", 58, 3], ["pythonImportsCheck", 59, 3], ["meta", 61, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, "setuptools-rust": false, cargo: false, rustPlatform: false, rustc: false, "range-typed-integers": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 31, 26], ["version", 31, 32], ["src", 31, 40], ["hash", 32, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["GETTEXT_SYSTEM", 36, 5], ["PYO3_USE_ABI3_FORWARD_COMPATIBILITY", 41, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 62, 5], ["homepage", 63, 5], ["license", 64, 5], ["maintainers", 65, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 19, 3], ["version", 20, 3], ["pyproject", 21, 3], ["src", 23, 3], ["cargoDeps", 30, 3], ["env", 35, 3], ["build-system", 44, 3], ["nativeBuildInputs", 48, 3], ["dependencies", 54, 3], ["doCheck", 58, 3], ["pythonImportsCheck", 59, 3], ["meta", 61, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,26 +16,26 @@ export default nix.lambda((args) => (() => {
   const rustc = nix.arg($, "rustc");
   const range_typed_integers = nix.arg($, "range-typed-integers");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "skytemple-rust",
       version: "1.8.5",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "SkyTemple",
           repo: "skytemple-rust",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-yJ78P00h4SITVuDnIh5IIlWkoed/VtIw3NB8ETB95bk=",
         })))),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           hash: "sha256-9OgUuuMuo2l4YsZMhBZJBqKqbNwj1W4yidoogjcNgm8=",
         })))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         GETTEXT_SYSTEM: true,
         PYO3_USE_ABI3_FORWARD_COMPATIBILITY: 1n,
       })),
@@ -49,7 +45,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["skytemple_rust"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Binary Rust extensions for SkyTemple",
         homepage: "https://github.com/SkyTemple/skytemple-rust",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 42, 5], ["sha256", 43, 5]], [["owner", 52, 5], ["repo", 53, 5], ["tag", 54, 5], ["hash", 55, 5]], [["dashboard", 117, 13], ["tests", 118, 5]], [["description", 122, 5], ["homepage", 123, 5], ["changelog", 124, 5], ["license", 125, 5], ["maintainers", 126, 5], ["mainProgram", 127, 5]], [["pname", 47, 3], ["version", 48, 3], ["pyproject", 49, 3], ["src", 51, 3], ["postPatch", 58, 3], ["build-system", 63, 3], ["pythonRelaxDeps", 67, 3], ["dependencies", 72, 3], ["nativeCheckInputs", 97, 3], ["preCheck", 101, 3], ["disabledTests", 107, 3], ["pythonImportsCheck", 114, 3], ["passthru", 116, 3], ["meta", 121, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitHub: false, fetchurl: false, hatchling: false, "azure-identity": false, "azure-monitor-ingestion": false, boto3: false, dateparser: false, dnspython: false, "elasticsearch-dsl": false, elasticsearch: false, expiringdict: false, "kafka-python": false, lxml: false, mailsuite: false, maxminddb: false, nixosTests: false, "opensearch-py": false, publicsuffixlist: false, pygelf: false, pyyaml: false, requests: false, tqdm: false, urllib3: false, xmltodict: false, "iana-etc": false, libredirect: false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 42, 5], ["sha256", 43, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["owner", 52, 5], ["repo", 53, 5], ["tag", 54, 5], ["hash", 55, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["dashboard", 117, 13], ["tests", 118, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 122, 5], ["homepage", 123, 5], ["changelog", 124, 5], ["license", 125, 5], ["maintainers", 126, 5], ["mainProgram", 127, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 47, 3], ["version", 48, 3], ["pyproject", 49, 3], ["src", 51, 3], ["postPatch", 58, 3], ["build-system", 63, 3], ["pythonRelaxDeps", 67, 3], ["dependencies", 72, 3], ["nativeCheckInputs", 97, 3], ["preCheck", 101, 3], ["disabledTests", 107, 3], ["pythonImportsCheck", 114, 3], ["passthru", 116, 3], ["meta", 121, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -42,17 +38,17 @@ export default nix.lambda((args) => (() => {
   const libredirect = nix.arg($, "libredirect");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const dashboard = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: "https://raw.githubusercontent.com/domainaware/parsedmarc/77331b55c54cb3269205295bd57d0ab680638964/grafana/Grafana-DMARC_Reports.json",
       sha256: "0wbihyqbb4ndjg79qs8088zgrcg88km8khjhv2474y7nzjzkf43i",
     }))));
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "parsedmarc",
       version: "11.0.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "domainaware",
           repo: "parsedmarc",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -94,12 +90,12 @@ export NIX_REDIRECTS=/etc/protocols=${iana_etc}/etc/protocols:/etc/resolv.conf=$
       ]),
       pythonImportsCheck: nix.thunk(() => ["parsedmarc"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         dashboard: dashboard,
         tests: nix.thunk(() => nix.sel(nixosTests, "parsedmarc")),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Python module and CLI utility for parsing DMARC reports",
         homepage: "https://domainaware.github.io/parsedmarc/",
         changelog: nix.thunk(() => nix.str`https://github.com/domainaware/parsedmarc/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

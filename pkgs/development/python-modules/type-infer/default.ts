@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 37, 5], ["repo", 38, 5], ["tag", 39, 13], ["hash", 40, 5]], [["url", 46, 7], ["hash", 47, 7]], [["NLTK_DATA", 86, 7]], [["changelog", 90, 5], ["description", 91, 5], ["homepage", 92, 5], ["license", 93, 5], ["maintainers", 94, 5]], [["pname", 32, 3], ["version", 33, 11], ["pyproject", 34, 3], ["src", 36, 3], ["patches", 43, 3], ["pythonRelaxDeps", 51, 3], ["build-system", 57, 3], ["dependencies", 59, 3], ["nativeCheckInputs", 74, 3], ["disabledTests", 78, 3], ["env", 86, 3], ["pythonImportsCheck", 87, 3], ["meta", 89, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, fetchpatch: false, "poetry-core": false, colorlog: false, "dataclasses-json": false, nltk: false, numpy: false, pandas: false, psutil: false, py3langid: false, pytestCheckHook: false, "python-dateutil": false, "standard-imghdr": false, "standard-sndhdr": false, scipy: false, toml: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 37, 5], ["repo", 38, 5], ["tag", 39, 13], ["hash", 40, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["url", 46, 7], ["hash", 47, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["NLTK_DATA", 86, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["changelog", 90, 5], ["description", 91, 5], ["homepage", 92, 5], ["license", 93, 5], ["maintainers", 94, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 32, 3], ["version", 33, 11], ["pyproject", 34, 3], ["src", 36, 3], ["patches", 43, 3], ["pythonRelaxDeps", 51, 3], ["build-system", 57, 3], ["dependencies", 59, 3], ["nativeCheckInputs", 74, 3], ["disabledTests", 78, 3], ["env", 86, 3], ["pythonImportsCheck", 87, 3], ["meta", 89, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -37,12 +33,12 @@ export default nix.lambda((args) => (() => {
   const version = "0.0.26";
   const tag = nix.thunk(() => nix.str`v${version}`);
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "type-infer",
       version: version,
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "mindsdb",
           repo: "type_infer",
           tag: tag,
@@ -50,7 +46,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/mindsdb/type_infer/commit/d09f88d5ddbe55125b1fff4506b03165d019d88b.patch",
             hash: "sha256-wNBzb+RxoZC8zn5gdOrtJeXJIIH3DTt1gTZfgN/WnQQ=",
           })))),
@@ -73,10 +69,10 @@ export default nix.lambda((args) => (() => {
       ]),
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
       disabledTests: nix.thunk(() => ["test_1_stack_overflow_survey"]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$3, NLTK_DATA: testNltkData })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[2], NLTK_DATA: testNltkData })),
       pythonImportsCheck: nix.thunk(() => ["type_infer"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         changelog: nix.thunk(() => nix.str`https://github.com/mindsdb/type_infer/releases/tag/${tag}`),
         description: "Automated type inference for Machine Learning pipelines",
         homepage: "https://github.com/mindsdb/type_infer",

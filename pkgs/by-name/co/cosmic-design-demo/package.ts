@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]], [["homepage", 54, 5], ["description", 55, 5], ["license", 56, 5], ["teams", 57, 5], ["platforms", 58, 5], ["mainProgram", 59, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["cargoHash", 24, 3], ["separateDebugInfo", 26, 3], ["__structuredAttrs", 27, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 34, 3], ["dontUseJustBuild", 40, 3], ["dontUseJustCheck", 41, 3], ["justFlags", 43, 3], ["meta", 53, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, rustPlatform: false, just: false, libcosmicAppHook: false, expat: false, fontconfig: false, freetype: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 54, 5], ["description", 55, 5], ["license", 56, 5], ["teams", 57, 5], ["platforms", 58, 5], ["mainProgram", 59, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["cargoHash", 24, 3], ["separateDebugInfo", 26, 3], ["__structuredAttrs", 27, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 34, 3], ["dontUseJustBuild", 40, 3], ["dontUseJustCheck", 41, 3], ["justFlags", 43, 3], ["meta", 53, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const fontconfig = nix.arg($, "fontconfig");
   const freetype = nix.arg($, "freetype");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "cosmic-design-demo",
       version: "0-unstable-2024-01-08",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "pop-os",
           repo: "cosmic-design-demo",
           rev: "d58cfad46f2982982494fce27fb00ad834dc8992",
@@ -46,7 +44,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`target/${nix.sel(stdenv, "hostPlatform", "rust", "cargoShortTarget")}/release/cosmic-design-demo`),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/pop-os/cosmic-design-demo",
         description: "Design Demo for the COSMIC Desktop Environment",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mpl20")),

@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]], [["package", 31, 47]], [["testVersion", 31, 11]], [["tests", 31, 5], ["updateScript", 33, 5]], [["description", 37, 5], ["homepage", 38, 5], ["changelog", 39, 5], ["license", 40, 5], ["maintainers", 41, 5], ["platforms", 45, 5], ["mainProgram", 46, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["buildAndTestSubdir", 24, 3], ["cargoHash", 26, 3], ["nativeBuildInputs", 28, 3], ["passthru", 30, 3], ["meta", 36, 3]]]);
 const formals$1 = { args: { fetchFromGitHub: false, lib: false, "nix-update-script": false, oo7: false, "pkg-config": false, rustPlatform: false, testers: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["package", 31, 47]]);
-const pos$3 = nix.positions(here + "/package.nix", [["testVersion", 31, 11]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 31, 5], ["updateScript", 33, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 37, 5], ["homepage", 38, 5], ["changelog", 39, 5], ["license", 40, 5], ["maintainers", 41, 5], ["platforms", 45, 5], ["mainProgram", 46, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["buildAndTestSubdir", 24, 3], ["cargoHash", 26, 3], ["nativeBuildInputs", 28, 3], ["passthru", 30, 3], ["meta", 36, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const rustPlatform = nix.arg($, "rustPlatform");
   const testers = nix.arg($, "testers");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "oo7",
       version: "0.6.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "linux-credentials",
           repo: "oo7",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -34,15 +29,15 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-79bSlSbDaOtAXsJe1suMhvhsC/LoSDMZ+G/dhTTQ4EA=",
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
-          testVersion: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$2, package: oo7 })))),
+          [nix.POS]: $pos[2],
+          testVersion: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: $pos[1], package: oo7 })))),
         })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "James Bond went on a new mission as a Secret Service provider",
         homepage: "https://github.com/linux-credentials/oo7",
         changelog: nix.thunk(() => nix.str`https://github.com/linux-credentials/oo7/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

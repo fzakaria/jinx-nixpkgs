@@ -2,23 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["cudaSupport", 109, 52]], [["opensubdiv", 109, 5]], [["patches", 114, 5]], [["owner", 119, 5], ["repo", 120, 5], ["tag", 121, 5], ["hash", 122, 5]], [["name", 134, 5], ["url", 135, 5], ["hash", 136, 5]], [["NIX_CFLAGS_COMPILE", 176, 7]], [["cudaSupport", 299, 36]], [["cudaSupport", 319, 80]], [["blender", 417, 9], ["extraModules", 418, 9]], [["nativeBuildInputs", 422, 56]], [["cudaSupport", 455, 45]], [["render", 422, 7], ["tester-cudaAvailable", 451, 7]], [["extraArgs", 468, 7]], [["python", 411, 5], ["pythonPackages", 412, 5], ["withPackages", 414, 5], ["tests", 421, 5], ["updateScript", 467, 5]], [["description", 475, 5], ["homepage", 476, 5], ["license", 478, 5], ["donationPage", 479, 5], ["platforms", 481, 5], ["maintainers", 486, 5], ["mainProgram", 490, 5]], [["pname", 127, 3], ["version", 128, 3], ["strictDeps", 130, 3], ["__structuredAttrs", 131, 3], ["src", 133, 3], ["patches", 139, 3], ["postPatch", 149, 3], ["env", 176, 3], ["cmakeFlags", 178, 3], ["preConfigure", 247, 3], ["nativeBuildInputs", 258, 3], ["buildInputs", 271, 3], ["pythonPath", 362, 3], ["blenderExecutable", 376, 3], ["postInstall", 385, 3], ["postFixup", 400, 3], ["passthru", 410, 3], ["meta", 474, 3]]]);
 const formals$1 = { args: { addDriverRunpath: false, alembic: false, "apple-sdk_15": false, blender: false, boost: false, brotli: false, callPackage: false, "ceres-solver": false, cmake: false, config: false, cudaArches: true, cudaPackages: false, cudaSupport: true, dbus: false, draco: false, embree: false, fetchFromGitHub: false, fetchzip: false, ffmpeg_7: false, fftw: false, fftwFloat: false, freetype: false, gettext: false, glew: false, gmp: false, jackaudioSupport: true, jemalloc: false, lib: false, libdecor: false, libepoxy: false, libffi: false, libGL: false, libGLU: false, libharu: false, libjack2: false, libjpeg: false, libpng: false, libsamplerate: false, libsndfile: false, libspnav: false, libtiff: false, libwebp: false, libx11: false, libxext: false, libxi: false, libxkbcommon: false, libxrender: false, libxxf86vm: false, llvmPackages: false, makeWrapper: false, manifold: false, mesa: false, meshoptimizer: false, "nix-update-script": false, onetbb: false, openal: false, opencolorio: false, openexr: false, openimagedenoise: false, openimageio: false, openjpeg: false, openpgl: false, opensubdiv: false, openUsdSupport: true, openvdb: false, "openxr-loader": false, "pkg-config": false, potrace: false, pugixml: false, python313Packages: false, rocmPackages: false, rocmSupport: true, rubberband: false, runCommand: false, SDL: false, shaderc: false, spaceNavSupport: true, sse2neon: false, stdenv: false, "vulkan-headers": false, "vulkan-loader": false, wayland: false, "wayland-protocols": false, "wayland-scanner": false, waylandSupport: true, zlib: false, zstd: false, "level-zero": false, "intel-compute-runtime": false, "intel-llvm": false, "intel-graphics-compiler": false, oneapiSupport: true, "opencl-headers": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["cudaSupport", 109, 52]]);
-const pos$2 = nix.positions(here + "/package.nix", [["opensubdiv", 109, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["patches", 114, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["owner", 119, 5], ["repo", 120, 5], ["tag", 121, 5], ["hash", 122, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["name", 134, 5], ["url", 135, 5], ["hash", 136, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 176, 7]]);
-const pos$7 = nix.positions(here + "/package.nix", [["cudaSupport", 299, 36]]);
-const pos$8 = nix.positions(here + "/package.nix", [["cudaSupport", 319, 80]]);
-const pos$9 = nix.positions(here + "/package.nix", [["blender", 417, 9], ["extraModules", 418, 9]]);
-const pos$10 = nix.positions(here + "/package.nix", [["nativeBuildInputs", 422, 56]]);
-const pos$11 = nix.positions(here + "/package.nix", [["cudaSupport", 455, 45]]);
-const pos$12 = nix.positions(here + "/package.nix", [["render", 422, 7], ["tester-cudaAvailable", 451, 7]]);
-const pos$13 = nix.positions(here + "/package.nix", [["extraArgs", 468, 7]]);
-const pos$14 = nix.positions(here + "/package.nix", [["python", 411, 5], ["pythonPackages", 412, 5], ["withPackages", 414, 5], ["tests", 421, 5], ["updateScript", 467, 5]]);
-const pos$15 = nix.positions(here + "/package.nix", [["description", 475, 5], ["homepage", 476, 5], ["license", 478, 5], ["donationPage", 479, 5], ["platforms", 481, 5], ["maintainers", 486, 5], ["mainProgram", 490, 5]]);
-const pos$16 = nix.positions(here + "/package.nix", [["pname", 127, 3], ["version", 128, 3], ["strictDeps", 130, 3], ["__structuredAttrs", 131, 3], ["src", 133, 3], ["patches", 139, 3], ["postPatch", 149, 3], ["env", 176, 3], ["cmakeFlags", 178, 3], ["preConfigure", 247, 3], ["nativeBuildInputs", 258, 3], ["buildInputs", 271, 3], ["pythonPath", 362, 3], ["blenderExecutable", 376, 3], ["postInstall", 385, 3], ["postFixup", 400, 3], ["passthru", 410, 3], ["meta", 474, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -122,28 +107,28 @@ export default nix.lambda((args) => (() => {
   const python3Packages = python313Packages;
   const python3 = nix.thunk(() => nix.sel(python3Packages, "python"));
   const pyPkgsOpenusd = nix.thunk(() => nix.app(nix.sel(python3Packages, "openusd", "override"), (old) => ({
-      [nix.POS]: pos$2,
-      opensubdiv: nix.thunk(() => nix.app(nix.sel(old, "opensubdiv", "override"), nix.thunk(() => ({ [nix.POS]: pos$1, cudaSupport: cudaSupport })))),
+      [nix.POS]: $pos[1],
+      opensubdiv: nix.thunk(() => nix.app(nix.sel(old, "opensubdiv", "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], cudaSupport: cudaSupport })))),
     })));
   const libdecor$ = nix.thunk(() => nix.app(nix.sel(libdecor, "overrideAttrs"), (old) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       patches: nix.thunk(() => nix.concat(nix.selOr(old, () => [], "patches"), [nix.path(here, "./libdecor.patch")])),
     })));
   const optix = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       owner: "NVIDIA",
       repo: "optix-dev",
       tag: "v8.0.0",
       hash: "sha256-SXkXZHzQH8JOkXypjjxNvT/lUlWZkCuhh6hNCHE7FkY=",
     }))));
   return nix.app(nix.sel(stdenv$, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$16,
+      [nix.POS]: $pos[15],
       pname: "blender",
       version: "5.2.2",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           name: "source",
           url: nix.thunk(() => nix.str`https://download.blender.org/source/blender-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-r4XT6ZoVwMXieauP5jOC0DdfNOilTmkGu8JPMAFjuDs=",
@@ -163,7 +148,7 @@ substituteInPlace build_files/cmake/platform/platform_apple.cmake \\
 substituteInPlace extern/hipew/src/hipew.c --replace-fail '"opt/rocm/hip/bin"' '"${nix.sel(rocmPackages, "clr")}/bin"'
 `))), nix.app(nix.sel(lib, "optionalString"), oneapiSupport, "substituteInPlace intern/cycles/kernel/device/oneapi/CMakeLists.txt \\\n  --replace-fail '${cycles_kernel_runtime_lib_target_path}' '\"${CMAKE_INSTALL_LIBDIR}\"'\n"))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.str`-I${python3}/include/${nix.sel(python3, "libPrefix")}`),
       })),
       cmakeFlags: nix.thunk(() => nix.concat([
@@ -259,7 +244,7 @@ substituteInPlace extern/hipew/src/hipew.c --replace-fail '"opt/rocm/hip/bin"' '
         openimageio,
         openjpeg,
         openpgl,
-        nix.thunk(() => nix.app(nix.sel(opensubdiv, "override"), nix.thunk(() => ({ [nix.POS]: pos$7, cudaSupport: cudaSupport })))),
+        nix.thunk(() => nix.app(nix.sel(opensubdiv, "override"), nix.thunk(() => ({ [nix.POS]: $pos[6], cudaSupport: cudaSupport })))),
         onetbb,
         openvdb,
         openxr_loader,
@@ -270,7 +255,7 @@ substituteInPlace extern/hipew/src/hipew.c --replace-fail '"opt/rocm/hip/bin"' '
         rubberband,
         zlib,
         zstd,
-      ], nix.concat(nix.app(nix.sel(lib, "optionals"), oneapiSupport, nix.thunk(() => [intel_compute_runtime, intel_llvm, opencl_headers])), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(oneapiSupport)), nix.thunk(() => nix.sel(llvmPackages, "llvm"))), nix.concat(nix.app(nix.sel(lib, "optional"), embreeSupport, embree), nix.concat(nix.app(nix.sel(lib, "optional"), rocmSupport, nix.thunk(() => nix.sel(rocmPackages, "clr"))), nix.concat(nix.app(nix.sel(lib, "optional"), openImageDenoiseSupport, nix.thunk(() => nix.app(nix.sel(openimagedenoise, "override"), nix.thunk(() => ({ [nix.POS]: pos$8, cudaSupport: cudaSupport }))))), nix.concat((nix.asBool(!nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))) ? [libGL, libGLU, libx11, libxext, libxi, libxrender, libxxf86vm, openal] : [SDL, apple_sdk_15, brotli, nix.thunk(() => nix.sel(llvmPackages, "openmp"))]), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isAarch64")), nix.thunk(() => [sse2neon])), nix.concat(nix.app(nix.sel(lib, "optionals"), cudaSupport, nix.thunk(() => [nix.thunk(() => nix.sel(cudaPackages, "cuda_cudart"))])), nix.concat(nix.app(nix.sel(lib, "optionals"), openUsdSupport, nix.thunk(() => [pyPkgsOpenusd])), nix.concat(nix.app(nix.sel(lib, "optionals"), waylandSupport, nix.thunk(() => [
+      ], nix.concat(nix.app(nix.sel(lib, "optionals"), oneapiSupport, nix.thunk(() => [intel_compute_runtime, intel_llvm, opencl_headers])), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(oneapiSupport)), nix.thunk(() => nix.sel(llvmPackages, "llvm"))), nix.concat(nix.app(nix.sel(lib, "optional"), embreeSupport, embree), nix.concat(nix.app(nix.sel(lib, "optional"), rocmSupport, nix.thunk(() => nix.sel(rocmPackages, "clr"))), nix.concat(nix.app(nix.sel(lib, "optional"), openImageDenoiseSupport, nix.thunk(() => nix.app(nix.sel(openimagedenoise, "override"), nix.thunk(() => ({ [nix.POS]: $pos[7], cudaSupport: cudaSupport }))))), nix.concat((nix.asBool(!nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))) ? [libGL, libGLU, libx11, libxext, libxi, libxrender, libxxf86vm, openal] : [SDL, apple_sdk_15, brotli, nix.thunk(() => nix.sel(llvmPackages, "openmp"))]), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isAarch64")), nix.thunk(() => [sse2neon])), nix.concat(nix.app(nix.sel(lib, "optionals"), cudaSupport, nix.thunk(() => [nix.thunk(() => nix.sel(cudaPackages, "cuda_cudart"))])), nix.concat(nix.app(nix.sel(lib, "optionals"), openUsdSupport, nix.thunk(() => [pyPkgsOpenusd])), nix.concat(nix.app(nix.sel(lib, "optionals"), waylandSupport, nix.thunk(() => [
           dbus,
           libdecor$,
           libffi,
@@ -294,18 +279,18 @@ substituteInPlace extern/hipew/src/hipew.c --replace-fail '"opt/rocm/hip/bin"' '
       postInstall: nix.thunk(() => nix.add(nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "mkdir $out/Applications\nmv $out/Blender.app $out/Applications\n"), "buildPythonPath \"${pythonPath[*]}\"\nwrapProgram $blenderExecutable \\\n  --prefix PATH : $program_PATH \\\n  --prefix PYTHONPATH : \"$program_PYTHONPATH\" \\\n  --add-flags '--python-use-system-env'\n")),
       postFixup: nix.thunk(() => nix.add(nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool(cudaSupport) || nix.asBool(oneapiSupport))), "for program in $out/bin/blender $out/bin/.blender-wrapped; do\n  addDriverRunpath \"$program\"\ndone\n"), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "makeWrapper $out/Applications/Blender.app/Contents/MacOS/Blender $out/bin/blender\n"))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$14,
+        [nix.POS]: $pos[13],
         python: python3,
         pythonPackages: python3Packages,
         withPackages: (f) => nix.app(nix.sel(nix.app(callPackage, nix.path(here, "./wrapper.nix"), nix.thunk(() => ({}))), "override"), nix.thunk(() => ({
-            [nix.POS]: pos$9,
+            [nix.POS]: $pos[8],
             blender: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             extraModules: nix.thunk(() => nix.app(f, python3Packages)),
           }))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$12,
+          [nix.POS]: $pos[11],
           render: nix.thunk(() => nix.app(runCommand, nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-test`), nix.thunk(() => ({
-              [nix.POS]: pos$10,
+              [nix.POS]: $pos[9],
               nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(mesa, "llvmpipeHook"))]),
             })), nix.thunk(() => nix.str`set -euo pipefail
 cat <<'PYTHON' > scene-config.py
@@ -337,7 +322,7 @@ done
 `))),
           "tester-cudaAvailable": nix.thunk(() => nix.app(nix.sel(cudaPackages, "writeGpuTestPython"), nix.thunk(() => ({})), nix.thunk(() => nix.str`import subprocess
 subprocess.run([${nix.app(nix.sel(lib, "concatMapStringsSep"), ", ", (x) => nix.str`"${x}"`, nix.thunk(() => [
-                nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.app(nix.sel(blender, "override"), nix.thunk(() => ({ [nix.POS]: pos$11, cudaSupport: true })))))),
+                nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.app(nix.sel(blender, "override"), nix.thunk(() => ({ [nix.POS]: $pos[10], cudaSupport: true })))))),
                 "--background",
                 "-noaudio",
                 "--python-exit-code",
@@ -348,12 +333,12 @@ subprocess.run([${nix.app(nix.sel(lib, "concatMapStringsSep"), ", ", (x) => nix.
 `))),
         })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$13,
+            [nix.POS]: $pos[12],
             extraArgs: nix.thunk(() => ["--url=https://projects.blender.org/blender/blender"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$15,
+        [nix.POS]: $pos[14],
         description: "3D Creation/Animation/Publishing System",
         homepage: "https://www.blender.org",
         license: nix.thunk(() => (() => {

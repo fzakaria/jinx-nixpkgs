@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]], [["CGO_ENABLED", 37, 7]], [["description", 49, 5], ["mainProgram", 50, 5], ["longDescription", 51, 5], ["homepage", 57, 5], ["changelog", 58, 5], ["license", 59, 5], ["maintainers", 60, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["vendorHash", 22, 3], ["proxyVendor", 24, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 30, 3], ["sourceRoot", 35, 3], ["env", 37, 3], ["ldflags", 39, 3], ["postInstall", 44, 3], ["meta", 48, 3]]]);
 const formals$1 = { args: { lib: false, "btrfs-progs": false, buildGoModule: false, fetchFromGitHub: false, lvm2: false, "pkg-config": false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["CGO_ENABLED", 37, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 49, 5], ["mainProgram", 50, 5], ["longDescription", 51, 5], ["homepage", 57, 5], ["changelog", 58, 5], ["license", 59, 5], ["maintainers", 60, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["vendorHash", 22, 3], ["proxyVendor", 24, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 30, 3], ["sourceRoot", 35, 3], ["env", 37, 3], ["ldflags", 39, 3], ["postInstall", 44, 3], ["meta", 48, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "kubeclarity",
       version: "2.23.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "openclarity",
           repo: "kubeclarity",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -33,11 +30,11 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [btrfs_progs, lvm2]))),
       sourceRoot: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "name")}/cli`),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, CGO_ENABLED: "0" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], CGO_ENABLED: "0" })),
       ldflags: nix.thunk(() => ["-s", "-w"]),
       postInstall: "mv $out/bin/cli $out/bin/kubeclarity\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Kubernetes runtime scanner",
         mainProgram: "kubeclarity",
         longDescription: "KubeClarity is a vulnerabilities scanning and CIS Docker benchmark tool that\nallows users to get an accurate and immediate risk assessment of their\nkubernetes clusters. Kubei scans all images that are being used in a\nKubernetes cluster, including images of application pods and system pods.\n",

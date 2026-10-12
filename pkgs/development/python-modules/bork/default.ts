@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]], [["tests", 71, 12]], [["description", 74, 5], ["mainProgram", 75, 5], ["homepage", 76, 5], ["license", 77, 5], ["maintainers", 78, 5]], [["pname", 20, 3], ["version", 21, 3], ["pyproject", 22, 3], ["src", 24, 3], ["build-system", 31, 3], ["pythonRelaxDeps", 35, 3], ["dependencies", 41, 3], ["pythonImportsCheck", 51, 3], ["nativeCheckInputs", 57, 3], ["disabledTestMarks", 61, 3], ["disabledTests", 63, 3], ["passthru", 71, 3], ["meta", 73, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, callPackage: false, fetchFromGitHub: false, pytestCheckHook: false, setuptools: false, build: false, coloredlogs: false, homf: false, packaging: false, pip: false, pydantic: false, urllib3: false, writableTmpDirAsHomeHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["tests", 71, 12]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 74, 5], ["mainProgram", 75, 5], ["homepage", 76, 5], ["license", 77, 5], ["maintainers", 78, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 20, 3], ["version", 21, 3], ["pyproject", 22, 3], ["src", 24, 3], ["build-system", 31, 3], ["pythonRelaxDeps", 35, 3], ["dependencies", 41, 3], ["pythonImportsCheck", 51, 3], ["nativeCheckInputs", 57, 3], ["disabledTestMarks", 61, 3], ["disabledTests", 63, 3], ["passthru", 71, 3], ["meta", 73, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const version = "11.0.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "duckinator",
           repo: "bork",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -43,11 +40,11 @@ export default nix.lambda((args) => (() => {
       const disabledTestMarks = nix.thunk(() => ["network"]);
       const disabledTests = nix.thunk(() => ["test_repo", "test_builder_cwd", "test_builder_order"]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         tests: nix.thunk(() => nix.app(callPackage, nix.path(here, "./tests.nix"), nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Python build and release management tool",
         mainProgram: "bork",
         homepage: "https://github.com/duckinator/bork",
@@ -58,7 +55,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

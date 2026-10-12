@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 19, 5], ["sha256", 20, 5]], [["description", 58, 5], ["homepage", 59, 5], ["license", 60, 5], ["maintainers", 61, 5], ["platforms", 62, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["nativeBuildInputs", 23, 3], ["dontUnpack", 28, 3], ["installPhase", 30, 3], ["meta", 57, 3]]]);
 const formals$1 = { args: { coreutils: false, dpkg: false, fetchurl: false, gnugrep: false, gnused: false, makeWrapper: false, mfcl2700dnlpr: false, perl: false, lib: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 19, 5], ["sha256", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 58, 5], ["homepage", 59, 5], ["license", 60, 5], ["maintainers", 61, 5], ["platforms", 62, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["nativeBuildInputs", 23, 3], ["dontUnpack", 28, 3], ["installPhase", 30, 3], ["meta", 57, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const pname = "mfcl2700dncupswrapper";
       const version = "3.2.0-1";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://download.brother.com/welcome/dlf102086/mfcl2700dncupswrapper-${version}.i386.deb`),
           sha256: "07w48mah0xbv4h8vsh1qd5cd4b463bx8y6gc5x9pfgsxsy6h6da1",
         }))));
@@ -49,7 +47,7 @@ ln $dir/cupswrapper/brother_lpdwrapper_MFCL2700DN $out/lib/cups/filter
 ln $dir/cupswrapper/brother-MFCL2700DN-cups-en.ppd $out/share/cups/model
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Brother MFC-L2700DN CUPS wrapper driver",
         homepage: "http://www.brother.com/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
@@ -57,7 +55,7 @@ ln $dir/cupswrapper/brother-MFCL2700DN-cups-en.ppd $out/share/cups/model
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

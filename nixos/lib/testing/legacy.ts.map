@@ -1,1 +1,1 @@
-{"version":3,"file":"legacy.ts","sources":["../../../nixpkgs/nixos/lib/testing/legacy.nix"],"names":[],"mappings":";;;;;;;;;;;eAAA;;;;;;;;SASA;;8BAOY;;+BACE,mCAAS;;;gCAEL;;;6BAIP;;6BACC,8BAAY,2DACf,QAAA,sCACD,oBAAkB,0NAClB"}
+{"version":3,"file":"legacy.ts","sources":["../../../../../../../../../nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/nixos/lib/testing/legacy.nix"],"names":[],"mappings":";;;;;;;eAAA;;;;;;;;SASA;;8BAOY;;+BACE,mCAAS;;;gCAEL;;;6BAIP;;6BACC,8BAAY,2DACf,QAAA,sCACD,oBAAkB,0NAClB"}

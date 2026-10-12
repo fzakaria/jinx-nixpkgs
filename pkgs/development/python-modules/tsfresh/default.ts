@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 37, 5], ["repo", 38, 5], ["tag", 39, 5], ["hash", 40, 5]], [["description", 103, 5], ["mainProgram", 104, 5], ["homepage", 105, 5], ["changelog", 106, 5], ["license", 107, 5], ["maintainers", 108, 5]], [["pname", 32, 3], ["version", 33, 3], ["pyproject", 34, 3], ["src", 36, 3], ["patches", 43, 3], ["dependencies", 48, 3], ["doCheck", 67, 3], ["nativeCheckInputs", 69, 3], ["disabledTests", 81, 3], ["pythonImportsCheck", 100, 3], ["meta", 102, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, stdenv: false, requests: false, numpy: false, pandas: false, scipy: false, statsmodels: false, patsy: false, "scikit-learn": false, tqdm: false, dask: false, distributed: false, stumpy: false, cloudpickle: false, pytestCheckHook: false, "pytest-cov-stub": false, "pytest-xdist": false, mock: false, matplotlib: false, seaborn: false, ipython: false, notebook: false, "pandas-datareader": false, setuptools: false, pywavelets: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 37, 5], ["repo", 38, 5], ["tag", 39, 5], ["hash", 40, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 103, 5], ["mainProgram", 104, 5], ["homepage", 105, 5], ["changelog", 106, 5], ["license", 107, 5], ["maintainers", 108, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 32, 3], ["version", 33, 3], ["pyproject", 34, 3], ["src", 36, 3], ["patches", 43, 3], ["dependencies", 48, 3], ["doCheck", 67, 3], ["nativeCheckInputs", 69, 3], ["disabledTests", 81, 3], ["pythonImportsCheck", 100, 3], ["meta", 102, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -41,7 +39,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.21.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "blue-yonder",
           repo: "tsfresh",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -92,7 +90,7 @@ export default nix.lambda((args) => (() => {
         ]))));
       const pythonImportsCheck = nix.thunk(() => ["tsfresh"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Automatic extraction of relevant features from time series",
         mainProgram: "run_tsfresh",
         homepage: "https://github.com/blue-yonder/tsfresh",
@@ -101,7 +99,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

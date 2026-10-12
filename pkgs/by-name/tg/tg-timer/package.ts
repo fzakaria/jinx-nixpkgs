@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]], [["description", 72, 5], ["homepage", 73, 5], ["changelog", 74, 5], ["license", 75, 5], ["mainProgram", 76, 5], ["maintainers", 77, 5]], [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["patches", 30, 3], ["strictDeps", 34, 3], ["__structuredAttrs", 35, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 49, 3], ["enableParallelBuilding", 56, 3], ["doCheck", 58, 3], ["nativeCheckInputs", 59, 3], ["checkPhase", 62, 3], ["meta", 71, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, autoreconfHook: false, "pkg-config": false, wrapGAppsHook3: false, gtk3: false, portaudio: false, fftwFloat: false, libjack2: false, python3: false, "xvfb-run": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 72, 5], ["homepage", 73, 5], ["changelog", 74, 5], ["license", 75, 5], ["mainProgram", 76, 5], ["maintainers", 77, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["patches", 30, 3], ["strictDeps", 34, 3], ["__structuredAttrs", 35, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 49, 3], ["enableParallelBuilding", 56, 3], ["doCheck", 58, 3], ["nativeCheckInputs", 59, 3], ["checkPhase", 62, 3], ["meta", 71, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const xvfb_run = nix.arg($, "xvfb-run");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "tg-timer",
       version: "0.7.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "xyzzy42",
           repo: "tg",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}-tpiepho`),
@@ -52,7 +50,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [xvfb_run]),
       checkPhase: "runHook preCheck\n\nxvfb-run -s '-screen 0 800x600x24' \\\nmake -j \"$NIX_BUILD_CORES\" test\n\nrunHook postCheck\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "for timing mechanical watches",
         homepage: "https://github.com/xyzzy42/tg",
         changelog: nix.thunk(() => nix.str`https://github.com/xyzzy42/tg/releases/tag/v${nix.sel(finalAttrs, "version")}-tpiepho`),

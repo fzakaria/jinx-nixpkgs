@@ -2,21 +2,19 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/define-option-dependently.nix", [[["value", 9, 5]], [["enable", 13, 5]], [["config", 8, 3]]]);
 const formals$1 = { args: { lib: false, options: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/define-option-dependently.nix", [["value", 9, 5]]);
-const pos$2 = nix.positions(here + "/define-option-dependently.nix", [["enable", 13, 5]]);
-const pos$3 = nix.positions(here + "/define-option-dependently.nix", [["config", 8, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const options = nix.arg($, "options");
   return {
-    [nix.POS]: pos$3,
+    [nix.POS]: $pos[2],
     config: nix.thunk(() => nix.update({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       value: nix.thunk(() => (nix.asBool(nix.has(options, "enable")) ? 360n : 7n)),
-    }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.has(options, "enable")), nix.thunk(() => ({ [nix.POS]: pos$2, enable: true }))))),
+    }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.has(options, "enable")), nix.thunk(() => ({ [nix.POS]: $pos[1], enable: true }))))),
   };
 })(), formals$1);
 //# sourceMappingURL=define-option-dependently.ts.map

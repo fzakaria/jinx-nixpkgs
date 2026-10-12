@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 29, 5], ["repo", 30, 5], ["rev", 31, 5], ["hash", 32, 5]], [["name", 99, 7], ["desktopName", 100, 7], ["comment", 101, 7], ["icon", 102, 7], ["exec", 103, 7], ["categories", 104, 7], ["keywords", 105, 7]], [["description", 110, 5], ["longDescription", 111, 5], ["homepage", 116, 5], ["downloadPage", 117, 5], ["license", 118, 5], ["mainProgram", 119, 5], ["platforms", 120, 5], ["maintainers", 121, 5]], [["pname", 26, 3], ["version", 27, 3], ["src", 28, 3], ["dontConfigure", 35, 3], ["patches", 37, 3], ["nativeBuildInputs", 48, 3], ["buildInputs", 57, 3], ["buildPhase", 59, 3], ["installPhase", 68, 3], ["desktopItems", 97, 3], ["meta", 109, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, makeDesktopItem: false, copyDesktopItems: false, makeBinaryWrapper: false, jdk17: false, ant: false, stripJavaArchivesHook: false, gettext: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 29, 5], ["repo", 30, 5], ["rev", 31, 5], ["hash", 32, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 99, 7], ["desktopName", 100, 7], ["comment", 101, 7], ["icon", 102, 7], ["exec", 103, 7], ["categories", 104, 7], ["keywords", 105, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 110, 5], ["longDescription", 111, 5], ["homepage", 116, 5], ["downloadPage", 117, 5], ["license", 118, 5], ["mainProgram", 119, 5], ["platforms", 120, 5], ["maintainers", 121, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 26, 3], ["version", 27, 3], ["src", 28, 3], ["dontConfigure", 35, 3], ["patches", 37, 3], ["nativeBuildInputs", 48, 3], ["buildInputs", 57, 3], ["buildPhase", 59, 3], ["installPhase", 68, 3], ["desktopItems", 97, 3], ["meta", 109, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const runTaskScript = "$out/bin/wpcleaner-run-task";
   const extraJavaArgs = nix.thunk(() => ["-Dawt.useSystemAAFontSettings=gasp", "-Xms1g", "-Xmx8g"]);
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "wpcleaner",
       version: "2.0.5-unstable-2026-05-11",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "WPCleaner",
           repo: "wpcleaner",
           rev: "5d94f34e8aeb1d8353ec1981083acbc50eca10ee",
@@ -80,7 +77,7 @@ runHook postInstall
 `),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "wpcleaner",
             desktopName: "WPCleaner",
             comment: "Perform maintenance on Wikipedia",
@@ -91,7 +88,7 @@ runHook postInstall
           })))),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Utility for performing maintenance on Wikipedia",
         longDescription: "WPCleaner is a tool designed to help with various maintenance tasks, especially repairing\nlinks to disambiguation pages, checking Wikipedia, fixing spelling and typography, and\nhelping with translation of articles coming from other wikis.\n",
         homepage: "https://wpcleaner.toolforge.org/",

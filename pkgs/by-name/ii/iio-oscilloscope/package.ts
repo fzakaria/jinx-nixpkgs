@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 29, 5], ["repo", 30, 5], ["rev", 31, 5], ["hash", 32, 5]], [["NIX_CFLAGS_COMPILE", 72, 7]], [["description", 87, 5], ["homepage", 88, 5], ["mainProgram", 89, 5], ["license", 90, 5], ["changelog", 91, 5], ["maintainers", 92, 5], ["platforms", 93, 5]], [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["postPatch", 35, 3], ["nativeBuildInputs", 46, 3], ["buildInputs", 55, 3], ["cmakeFlags", 68, 3], ["env", 72, 3], ["preInstall", 76, 3], ["postInstall", 82, 3], ["meta", 86, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, "pkg-config": false, wrapGAppsHook3: false, desktopToDarwinBundle: false, libiio: false, glib: false, gtk3: false, gtkdatabox: false, matio: false, fftw: false, libxml2: false, curl: false, jansson: false, enable9361: true, libad9361: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 29, 5], ["repo", 30, 5], ["rev", 31, 5], ["hash", 32, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 72, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 87, 5], ["homepage", 88, 5], ["mainProgram", 89, 5], ["license", 90, 5], ["changelog", 91, 5], ["maintainers", 92, 5], ["platforms", 93, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["postPatch", 35, 3], ["nativeBuildInputs", 46, 3], ["buildInputs", 55, 3], ["cmakeFlags", 68, 3], ["env", 72, 3], ["preInstall", 76, 3], ["postInstall", 82, 3], ["meta", 86, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const enable9361 = nix.argOr($, "enable9361", () => true);
   const libad9361 = nix.arg($, "libad9361");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "iio-oscilloscope",
       version: "0.18",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "analogdevicesinc",
           repo: "iio-oscilloscope",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}-main`),
@@ -50,13 +47,13 @@ substituteInPlace CMakeLists.txt \\
         nix.thunk(() => nix.str`-DCMAKE_POLKIT_PREFIX=${nix.builtins.placeholder("out")}`),
       ]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-Wno-error=unused-variable"]))),
       })),
       preInstall: "sed -e 's/Exec=.*/Exec=osc/' \\\n    -e 's/Icon=.*/Icon=osc/' \\\n    -i adi-osc.desktop\n",
       postInstall: "ln -s $out/share/osc/icons/osc.svg $out/share/icons/hicolor/scalable/apps/\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "GTK+ based oscilloscope application for interfacing with various IIO devices",
         homepage: "https://wiki.analog.com/resources/tools-software/linux-software/iio_oscilloscope",
         mainProgram: "osc",

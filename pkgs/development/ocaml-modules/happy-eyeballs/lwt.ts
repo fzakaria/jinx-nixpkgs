@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/lwt.nix", [[["mainProgram", 39, 5], ["description", 40, 5]], [["pname", 16, 3], ["src", 18, 28], ["version", 18, 32], ["buildInputs", 20, 3], ["propagatedBuildInputs", 29, 3], ["doCheck", 36, 3], ["meta", 38, 3]]]);
 const formals$1 = { args: { buildDunePackage: false, "happy-eyeballs": false, cmdliner: false, dns: false, duration: false, "domain-name": false, ipaddr: false, fmt: false, logs: false, lwt: false, mtime: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/lwt.nix", [["mainProgram", 39, 5], ["description", 40, 5]]);
-const pos$2 = nix.positions(here + "/lwt.nix", [["pname", 16, 3], ["src", 18, 28], ["version", 18, 32], ["buildInputs", 20, 3], ["propagatedBuildInputs", 29, 3], ["doCheck", 36, 3], ["meta", 38, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,7 +19,7 @@ export default nix.lambda((args) => (() => {
   const lwt = nix.arg($, "lwt");
   const mtime = nix.arg($, "mtime");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "happy-eyeballs-lwt",
       src: nix.thunk(() => nix.attr(happy_eyeballs, "src")),
       version: nix.thunk(() => nix.attr(happy_eyeballs, "version")),
@@ -28,7 +27,7 @@ export default nix.lambda((args) => (() => {
       propagatedBuildInputs: nix.thunk(() => [mtime, happy_eyeballs, logs, lwt]),
       doCheck: true,
       meta: nix.thunk(() => nix.update(nix.sel(happy_eyeballs, "meta"), {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         mainProgram: "happy_eyeballs_client",
         description: "Connecting to a remote host via IP version 4 or 6 using Lwt_unix",
       })),

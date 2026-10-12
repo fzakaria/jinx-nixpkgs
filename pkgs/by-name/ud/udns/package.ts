@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 19, 5], ["sha256", 20, 5]], [["homepage", 53, 5], ["description", 54, 5], ["license", 55, 5], ["maintainers", 56, 5], ["platforms", 57, 5]], [["pname", 11, 3], ["version", 12, 3], ["configurePhase", 14, 3], ["buildPhase", 16, 3], ["src", 18, 3], ["postPatch", 26, 3], ["installPhase", 31, 3], ["outputDevdoc", 50, 3], ["meta", 52, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 19, 5], ["sha256", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 53, 5], ["description", 54, 5], ["license", 55, 5], ["maintainers", 56, 5], ["platforms", 57, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["configurePhase", 14, 3], ["buildPhase", 16, 3], ["src", 18, 3], ["postPatch", 26, 3], ["installPhase", 31, 3], ["outputDevdoc", 50, 3], ["meta", 52, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,13 +11,13 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "udns",
       version: "0.6",
       configurePhase: "./configure --enable-ipv6",
       buildPhase: "make staticlib sharedlib rblcheck_s dnsget_s",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://www.corpit.ru/mjt/udns/udns-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "sha256-aWotDVGNqYXZdaZeEdFm8/V829HUI3aguFMH9JYBxug=",
         })))),
@@ -27,7 +25,7 @@ export default nix.lambda((args) => (() => {
       installPhase: "runHook preInstall\nmkdir -p $out/bin\nmkdir -p $out/include\nmkdir -p $out/lib\nmkdir -p $out/share/man/man1\nmkdir -p $out/share/man/man3\ncp dnsget_s $out/bin/dnsget\ncp rblcheck_s $out/bin/rblcheck\ncp udns.h $out/include/\ncp libudns.a $out/lib/\ncp libudns.so.0 $out/lib/\nln -rs $out/lib/libudns.so.0 $out/lib/libudns.so\ncp dnsget.1 rblcheck.1 $out/share/man/man1\ncp udns.3 $out/share/man/man3\nrunHook postInstall\n",
       outputDevdoc: "out",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "http://www.corpit.ru/mjt/udns.html",
         description: "Async-capable DNS stub resolver library",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),

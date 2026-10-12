@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 14, 5], ["sha256", 15, 5]], [["description", 30, 5], ["homepage", 31, 5], ["maintainers", 32, 5], ["platforms", 33, 5], ["license", 34, 5], ["mainProgram", 35, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["buildInputs", 18, 3], ["nativeBuildInputs", 20, 3], ["enableParallelBuilding", 22, 3], ["postInstall", 24, 3], ["meta", 29, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, autoreconfHook: false, "net-snmp": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 14, 5], ["sha256", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 30, 5], ["homepage", 31, 5], ["maintainers", 32, 5], ["platforms", 33, 5], ["license", 34, 5], ["mainProgram", 35, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["buildInputs", 18, 3], ["nativeBuildInputs", 20, 3], ["enableParallelBuilding", 22, 3], ["postInstall", 24, 3], ["meta", 29, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const autoreconfHook = nix.arg($, "autoreconfHook");
   const net_snmp = nix.arg($, "net-snmp");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "ifstat-legacy",
       version: "1.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`http://gael.roualland.free.fr/ifstat/ifstat-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "01zmv6vk5kh5xmd563xws8a1qnxjb6b6kv59yzz9r3rrghxhd6c5",
         })))),
@@ -28,7 +26,7 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: true,
       postInstall: "mv $out/bin/ifstat $out/bin/ifstat-legacy\nmv $out/share/man/man1/ifstat.1 $out/share/man/man1/ifstat-legacy.1\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Report network interfaces bandwidth just like vmstat/iostat do for other system counters - legacy version",
         homepage: "http://gael.roualland.free.fr/ifstat/",
         maintainers: nix.thunk(() => (() => {

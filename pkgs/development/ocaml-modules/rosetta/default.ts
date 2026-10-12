@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 15, 5], ["hash", 16, 5]], [["description", 30, 5], ["license", 31, 5], ["homepage", 32, 5], ["maintainers", 33, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["duneVersion", 19, 3], ["propagatedBuildInputs", 21, 3], ["doCheck", 27, 3], ["meta", 29, 3]]]);
 const formals$1 = { args: { buildDunePackage: false, coin: false, fetchzip: false, lib: false, yuscii: false, uuuu: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 30, 5], ["license", 31, 5], ["homepage", 32, 5], ["maintainers", 33, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["duneVersion", 19, 3], ["propagatedBuildInputs", 21, 3], ["doCheck", 27, 3], ["meta", 29, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const yuscii = nix.arg($, "yuscii");
   const uuuu = nix.arg($, "uuuu");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "rosetta",
       version: "0.4.0",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/mirage/rosetta/releases/download/v${nix.sel(finalAttrs, "version")}/rosetta-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-LFdkwHBppDXE5q6mcDPWX1PreSVEsV9msq6rEmCWVwA=",
         })))),
@@ -28,7 +26,7 @@ export default nix.lambda((args) => (() => {
       propagatedBuildInputs: nix.thunk(() => [coin, uuuu, yuscii]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Universal decoder of an encoded flow (UTF-7, ISO-8859 and KOI8) to Unicode",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         homepage: "https://github.com/mirage/rosetta",

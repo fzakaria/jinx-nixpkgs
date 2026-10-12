@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 21, 5], ["sha256", 22, 5]], [["name", 38, 7], ["url", 39, 7], ["sha256", 40, 7]], [["name", 43, 7], ["url", 44, 7], ["sha256", 45, 7]], [["NIX_CFLAGS_COMPILE", 49, 7]], [["description", 52, 5], ["mainProgram", 53, 5], ["homepage", 54, 5], ["license", 55, 5], ["maintainers", 56, 5], ["platforms", 59, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 26, 3], ["patches", 36, 3], ["env", 49, 3], ["meta", 51, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, fetchpatch: false, "pkg-config": false, freetype: false, pango: false, libpng: false, libtiff: false, giflib: false, libjpeg: false, netpbm: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 21, 5], ["sha256", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 38, 7], ["url", 39, 7], ["sha256", 40, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 43, 7], ["url", 44, 7], ["sha256", 45, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 49, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 52, 5], ["mainProgram", 53, 5], ["homepage", 54, 5], ["license", 55, 5], ["maintainers", 56, 5], ["platforms", 59, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 26, 3], ["patches", 36, 3], ["env", 49, 3], ["meta", 51, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const libjpeg = nix.arg($, "libjpeg");
   const netpbm = nix.arg($, "netpbm");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "xplanet",
       version: "1.3.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/xplanet/xplanet-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "1rzc1alph03j67lrr66499zl0wqndiipmj99nqgvh9xzm1qdb023",
         })))),
@@ -37,24 +32,24 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [freetype, pango, libpng, libtiff, giflib, libjpeg, netpbm]),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "giflib6.patch",
             url: "https://raw.githubusercontent.com/archlinux/svntogit-community/ce6f25eb369dc011161613894f01fd0a6ae85a09/trunk/giflib6.patch",
             sha256: "173l0xkqq0v2bpaff7hhwc7y2aw5cclqw8988k1nalhyfbrjb8bl",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "xplanet-c++11.patch",
             url: "https://raw.githubusercontent.com/archlinux/svntogit-community/ce6f25eb369dc011161613894f01fd0a6ae85a09/trunk/xplanet-c++11.patch",
             sha256: "0vldai78ixw49bxch774pps6pq4sp0p33qvkvxywcz7p8kzpg8q2",
           })))),
       ]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), "-Wno-error=c++11-narrowing")),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Renders an image of the earth or other planets into the X root window",
         mainProgram: "xplanet",
         homepage: "https://xplanet.sourceforge.net",

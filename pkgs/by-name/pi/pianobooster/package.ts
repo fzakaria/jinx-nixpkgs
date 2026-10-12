@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 27, 5], ["repo", 28, 5], ["rev", 29, 5], ["hash", 30, 5]], [["possibleSoundFontFolders", 36, 7]], [["description", 93, 5], ["mainProgram", 94, 5], ["homepage", 95, 5], ["license", 96, 5], ["platforms", 97, 5], ["maintainers", 98, 5]], [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["patches", 33, 3], ["postPatch", 42, 3], ["nativeBuildInputs", 46, 3], ["buildInputs", 53, 3], ["cmakeFlags", 65, 3], ["postInstall", 78, 3], ["meta", 92, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, replaceVars: false, fetchFromGitHub: false, cmake: false, "pkg-config": false, "alsa-lib": false, ftgl: false, freetype: false, libGLU: false, rtmidi: false, libjack2: false, fluidsynth: false, "soundfont-fluid": false, soundFonts: true, dejavu_fonts: false, unzip: false, qt6: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 27, 5], ["repo", 28, 5], ["rev", 29, 5], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["possibleSoundFontFolders", 36, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 93, 5], ["mainProgram", 94, 5], ["homepage", 95, 5], ["license", 96, 5], ["platforms", 97, 5], ["maintainers", 98, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["patches", 33, 3], ["postPatch", 42, 3], ["nativeBuildInputs", 46, 3], ["buildInputs", 53, 3], ["cmakeFlags", 65, 3], ["postInstall", 78, 3], ["meta", 92, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const unzip = nix.arg($, "unzip");
   const qt6 = nix.arg($, "qt6");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "pianobooster",
       version: "1.0.0-unstable-2023-01-22",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "pianobooster",
           repo: "PianoBooster",
           rev: "6dafdcbdfc5d35d12cecb051c30632d0f5be5806",
@@ -41,7 +38,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./soundfont.patch"), nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             possibleSoundFontFolders: nix.thunk(() => nix.app(nix.sel(lib, "concatMapStringsSep"), ", ", (p) => nix.str`"${p}/share/soundfonts", "${p}/share/sounds/sf2"`, soundFonts)),
           })))),
       ]),
@@ -80,7 +77,7 @@ export default nix.lambda((args) => (() => {
 ln -s $(readlink -f ${dejavu_fonts}/share/fonts/truetype/DejaVuSans.ttf) $out/share/games/pianobooster/fonts/DejaVuSans.ttf
 `))), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "mkdir -p $out/{Applications,bin}\ncp -r build/pianobooster.app $out/Applications\nln -s $out/Applications/pianobooster.app/Contents/MacOS/pianobooster $out/bin/pianobooster\n"))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "MIDI file player that teaches you how to play the piano",
         mainProgram: "pianobooster",
         homepage: "https://www.pianobooster.org",

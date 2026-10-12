@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["rev", 13, 5], ["owner", 14, 5], ["repo", 15, 5], ["hash", 16, 5]], [["extraArgs", 40, 7]], [["mimir", 46, 28]], [["updateScript", 39, 5], ["tests", 45, 5]], [["description", 63, 5], ["homepage", 64, 5], ["changelog", 65, 5], ["license", 66, 5], ["maintainers", 67, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["vendorHash", 19, 3], ["subPackages", 21, 3], ["passthru", 38, 3], ["ldflags", 50, 3], ["meta", 62, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitHub: false, nixosTests: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["rev", 13, 5], ["owner", 14, 5], ["repo", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["extraArgs", 40, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["mimir", 46, 28]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 39, 5], ["tests", 45, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 63, 5], ["homepage", 64, 5], ["changelog", 65, 5], ["license", 66, 5], ["maintainers", 67, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["vendorHash", 19, 3], ["subPackages", 21, 3], ["passthru", 38, 3], ["ldflags", 50, 3], ["meta", 62, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "mimir",
       version: "3.2.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           rev: nix.thunk(() => nix.str`mimir-${nix.sel(finalAttrs, "version")}`),
           owner: "grafana",
           repo: "mimir",
@@ -42,12 +37,12 @@ export default nix.lambda((args) => (() => {
           "undelete-blocks",
         ])))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             extraArgs: nix.thunk(() => ["--version-regex", "mimir-(3\\.[0-9.]+)"]),
           })))),
-        tests: nix.thunk(() => ({ [nix.POS]: pos$3, mimir: nix.thunk(() => nix.attr(nixosTests, "mimir")) })),
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[2], mimir: nix.thunk(() => nix.attr(nixosTests, "mimir")) })),
       })),
       ldflags: nix.thunk(() => (() => {
         const t = "github.com/grafana/mimir/pkg/util/version";
@@ -60,7 +55,7 @@ export default nix.lambda((args) => (() => {
         ];
       })()),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Grafana Mimir provides horizontally scalable, highly available, multi-tenant, long-term storage for Prometheus. ",
         homepage: "https://github.com/grafana/mimir",
         changelog: nix.thunk(() => nix.str`https://github.com/grafana/mimir/releases/tag/mimir-${nix.sel(finalAttrs, "version")}`),

@@ -2,9 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/growfs.nix", [[["mainProgram", 26, 8]], [["path", 8, 3], ["extraPaths", 9, 3], ["buildInputs", 13, 3], ["outputs", 18, 3], ["MK_TESTS", 24, 3], ["meta", 26, 3]]]);
 const formals$1 = { args: { lib: false, mkDerivation: false, libufs: false, libutil: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/growfs.nix", [["mainProgram", 26, 8]]);
-const pos$2 = nix.positions(here + "/growfs.nix", [["path", 8, 3], ["extraPaths", 9, 3], ["buildInputs", 13, 3], ["outputs", 18, 3], ["MK_TESTS", 24, 3], ["meta", 26, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,13 +12,13 @@ export default nix.lambda((args) => (() => {
   const libufs = nix.arg($, "libufs");
   const libutil = nix.arg($, "libutil");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       path: "sbin/growfs",
       extraPaths: nix.thunk(() => ["sbin/mount"]),
       buildInputs: nix.thunk(() => [libufs, libutil]),
       outputs: nix.thunk(() => ["out", "man", "debug"]),
       MK_TESTS: "no",
-      meta: nix.thunk(() => ({ [nix.POS]: pos$1, mainProgram: "growfs" })),
+      meta: nix.thunk(() => ({ [nix.POS]: $pos[0], mainProgram: "growfs" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=growfs.ts.map

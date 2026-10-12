@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 12, 5], ["hash", 13, 5]], [["ifm", 41, 26]], [["tests", 40, 12]], [["description", 45, 5], ["longDescription", 46, 5], ["homepage", 49, 5], ["changelog", 50, 5], ["license", 51, 5], ["maintainers", 52, 5], ["mainProgram", 53, 5]], [["pname", 27, 3], ["version", 28, 11], ["src", 28, 19], ["dontUnpack", 30, 3], ["installPhase", 32, 3], ["passthru", 40, 3], ["meta", 44, 3]]]);
 const formals$1 = { args: { fetchurl: false, stdenv: false, lib: false, php83: false, writeShellScript: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 12, 5], ["hash", 13, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["ifm", 41, 26]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 40, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 45, 5], ["longDescription", 46, 5], ["homepage", 49, 5], ["changelog", 50, 5], ["license", 51, 5], ["maintainers", 52, 5], ["mainProgram", 53, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 27, 3], ["version", 28, 11], ["src", 28, 19], ["dontUnpack", 30, 3], ["installPhase", 32, 3], ["passthru", 40, 3], ["meta", 44, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const version = "4.1.1";
   const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: nix.thunk(() => nix.str`https://github.com/misterunknown/ifm/releases/download/v${version}/cdn.ifm.php`),
       hash: "sha256-io4HOtOe4J8J9Il+64eboIIwBXLWyXdv2OIBVKW+qS0=",
     }))));
@@ -32,7 +28,7 @@ SERVE_DIR=$(dirname "$0")/../php/
 IFM_ROOT_DIR="$3" ${nix.app(nix.sel(lib, "getExe"), php83)} -S "$1:$2" -t "$SERVE_DIR"
 `)));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "ifm",
       version: version,
       src: src,
@@ -44,11 +40,11 @@ cp ${serve_script} $out/bin/ifm
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$2, ifm: nix.thunk(() => nix.attr(nixosTests, "ifm")) })),
+        [nix.POS]: $pos[2],
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[1], ifm: nix.thunk(() => nix.attr(nixosTests, "ifm")) })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Improved File Manager, a single-file web-based filemanager",
         longDescription: "The IFM is a web-based filemanager, which comes as a single file solution using HTML5, CSS3, JavaScript and PHP.\n",
         homepage: "https://github.com/misterunknown/ifm",

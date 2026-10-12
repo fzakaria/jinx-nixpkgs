@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/requireFile.nix", [[["name", 12, 15], ["url", 13, 7], ["hash", 14, 7]]]);
 const formals$1 = { args: { pkgsStatic: false, lib: false, requireFile: false, emptyFile: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/requireFile.nix", [["name", 12, 15], ["url", 13, 7], ["hash", 14, 7]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const emptyFile = nix.arg($, "emptyFile");
   const name = "this-is-a-test";
   const requireFileTest = (requireFile_1) => nix.app(requireFile_1, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: name,
       url: "this-is-a-test",
       hash: nix.thunk(() => nix.sel(lib, "fakeHash")),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["domain", 18, 5], ["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]], [["description", 42, 5], ["homepage", 43, 5], ["platforms", 44, 5], ["license", 45, 5], ["maintainers", 46, 5], ["mainProgram", 50, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 31, 3], ["cmakeFlags", 37, 3], ["meta", 41, 3]]]);
 const formals$1 = { args: { cmake: false, fetchFromGitLab: false, lib: false, qtbase: false, qtsvg: false, qttools: false, qtwayland: false, stdenv: false, wrapQtAppsHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["domain", 18, 5], ["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 42, 5], ["homepage", 43, 5], ["platforms", 44, 5], ["license", 45, 5], ["maintainers", 46, 5], ["mainProgram", 50, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 31, 3], ["cmakeFlags", 37, 3], ["meta", 41, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const wrapQtAppsHook = nix.arg($, "wrapQtAppsHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "qt6ct",
       version: "0.11",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "www.opencode.net",
           owner: "trialuser",
           repo: "qt6ct",
@@ -36,7 +34,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeFeature"), "PLUGINDIR", nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/${nix.sel(qtbase, "qtPluginPrefix")}`))),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Qt6 Configuration Tool",
         homepage: "https://www.opencode.net/trialuser/qt6ct",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),

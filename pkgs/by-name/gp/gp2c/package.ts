@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 14, 5], ["hash", 15, 5]], [["homepage", 29, 5], ["description", 30, 5], ["downloadPage", 31, 5], ["license", 33, 7], ["maintainers", 34, 7], ["teams", 35, 7], ["platforms", 36, 7], ["broken", 37, 7]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["buildInputs", 18, 3], ["configureFlags", 23, 3], ["meta", 28, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, pari: false, perl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 14, 5], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 29, 5], ["description", 30, 5], ["downloadPage", 31, 5], ["license", 33, 7], ["maintainers", 34, 7], ["teams", 35, 7], ["platforms", 36, 7], ["broken", 37, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["buildInputs", 18, 3], ["configureFlags", 23, 3], ["meta", 28, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "gp2c";
       const version = "0.0.14pl1";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://pari.math.u-bordeaux.fr/pub/pari/GP2C/${pname}-${version}.tar.gz`),
           hash: "sha256-JFzgIP14Ytwoifhmzu8VI6SVPxm/Hl3D20SYi14HJrw=",
         }))));
@@ -30,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const meta = nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(pari, "meta"));
         return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "http://pari.math.u-bordeaux.fr/",
         description: "Compiler to translate GP scripts to PARI programs",
         downloadPage: "http://pari.math.u-bordeaux.fr/download.html",
@@ -41,7 +39,7 @@ export default nix.lambda((args) => (() => {
         broken: nix.thunk(() => nix.attr(from, "broken")),
       };
       })());
-      return { [nix.POS]: pos$3, pname, version, src, buildInputs, configureFlags, meta };
+      return { [nix.POS]: $pos[2], pname, version, src, buildInputs, configureFlags, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

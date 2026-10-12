@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 25, 5], ["version", 26, 13], ["hash", 27, 5]], [["name", 33, 7], ["url", 34, 7], ["hash", 35, 7]], [["description", 73, 5], ["homepage", 74, 5], ["changelog", 75, 5], ["license", 76, 5], ["maintainers", 77, 5]], [["pname", 20, 3], ["version", 21, 3], ["pyproject", 22, 3], ["src", 24, 3], ["patches", 30, 3], ["postPatch", 39, 3], ["build-system", 44, 3], ["dependencies", 46, 3], ["nativeCheckInputs", 51, 3], ["disabledTestPaths", 61, 3], ["postgresqlEnableTCP", 67, 3], ["doCheck", 70, 3], ["meta", 72, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchPypi: false, fetchpatch: false, buildPythonPackage: false, setuptools: false, celery: false, django: false, postgresqlTestHook: false, postgresql: false, pytestCheckHook: false, "pytest-django": false, pytz: false, psycopg: false, psycopg2cffi: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 25, 5], ["version", 26, 13], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["name", 33, 7], ["url", 34, 7], ["hash", 35, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 73, 5], ["homepage", 74, 5], ["changelog", 75, 5], ["license", 76, 5], ["maintainers", 77, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 20, 3], ["version", 21, 3], ["pyproject", 22, 3], ["src", 24, 3], ["patches", 30, 3], ["postPatch", 39, 3], ["build-system", 44, 3], ["dependencies", 46, 3], ["nativeCheckInputs", 51, 3], ["disabledTestPaths", 61, 3], ["postgresqlEnableTCP", 67, 3], ["doCheck", 70, 3], ["meta", 72, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,14 +27,14 @@ export default nix.lambda((args) => (() => {
       const version = "2.6.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "django_celery_results",
           version: version,
           hash: "sha256-mrzYNq5rYQY3eSRNiIeoj+gLv6uhQ98208sHA0ZxJ3w=",
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "fix-attribute-error.patch",
             url: "https://github.com/celery/django-celery-results/commit/067dfc9a857344c833e269f679047d48b938e60d.patch?full_index=1",
             hash: "sha256-IHwzd91rAsgjJblnQ8lLMRVH3GZfPuK8phDAGYj6HUY=",
@@ -59,7 +56,7 @@ export default nix.lambda((args) => (() => {
       const postgresqlEnableTCP = true;
       const doCheck = nix.thunk(() => nix.app(nix.sel(lib, "meta", "availableOn"), nix.thunk(() => nix.sel(stdenv, "buildPlatform")), postgresqlTestHook));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Celery result back end with django",
         homepage: "https://github.com/celery/django-celery-results",
         changelog: nix.thunk(() => nix.str`https://github.com/celery/django-celery-results/blob/v${version}/Changelog`),
@@ -67,7 +64,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

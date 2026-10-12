@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/generic.nix", [[["broken", 105, 5], ["homepage", 112, 5], ["description", 117, 5], ["platforms", 118, 5], ["knownVulnerabilities", 119, 5], ["maintainers", 125, 5], ["license", 129, 5], ["mainProgram", 146, 5]], [["pname", 30, 3], ["version", 31, 11], ["src", 31, 19], ["env", 31, 23], ["strictDeps", 33, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 47, 3], ["configureFlags", 57, 3], ["configurePhase", 63, 3], ["patches", 70, 3], ["preBuild", 73, 3], ["postBuild", 82, 3], ["postInstall", 90, 3], ["enableParallelBuilding", 100, 11], ["meta", 102, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, bison: false, "pkg-config": false, glib: false, gettext: false, perl: false, libgdiplus: false, libx11: false, ncurses: false, zlib: false, bash: false, cacert: false, python3: false, version: false, src: false, autoconf: false, libtool: false, automake: false, cmake: false, which: false, gnumake42: false, enableParallelBuilding: true, extraPatches: true, env: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/generic.nix", [["broken", 105, 5], ["homepage", 112, 5], ["description", 117, 5], ["platforms", 118, 5], ["knownVulnerabilities", 119, 5], ["maintainers", 125, 5], ["license", 129, 5], ["mainProgram", 146, 5]]);
-const pos$2 = nix.positions(here + "/generic.nix", [["pname", 30, 3], ["version", 31, 11], ["src", 31, 19], ["env", 31, 23], ["strictDeps", 33, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 47, 3], ["configureFlags", 57, 3], ["configurePhase", 63, 3], ["patches", 70, 3], ["preBuild", 73, 3], ["postBuild", 82, 3], ["postInstall", 90, 3], ["enableParallelBuilding", 100, 11], ["meta", 102, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,7 +33,7 @@ export default nix.lambda((args) => (() => {
   const extraPatches = nix.argOr($, "extraPatches", () => []);
   const env = nix.argOr($, "env", () => ({}));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "mono",
       version: version,
       src: src,
@@ -70,7 +69,7 @@ $out/bin/cert-sync ${cacert}/etc/ssl/certs/ca-bundle.crt
 `, "ln -s $out/bin/mcs $out/bin/gmcs\n")),
       enableParallelBuilding: enableParallelBuilding,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         broken: nix.thunk(() => (nix.asBool((nix.asBool((nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")))) && nix.asBool(nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(finalAttrs, "version")), "6.12.0.129")))) || nix.asBool(!nix.asBool(nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform"))))))),
         homepage: nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(finalAttrs, "version")), "6.14.0")) ? "https://mono-project.com/" : "https://gitlab.winehq.org/mono/mono")),
         description: "Cross platform, open source .NET development framework",

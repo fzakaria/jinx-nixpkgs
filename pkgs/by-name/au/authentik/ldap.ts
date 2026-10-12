@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/ldap.nix", [[["CGO_ENABLED", 15, 7]], [["description", 20, 5], ["homepage", 21, 5], ["mainProgram", 22, 5]], [["pname", 9, 3], ["version", 10, 23], ["src", 10, 31], ["vendorHash", 11, 11], ["nativeBuildInputs", 13, 3], ["env", 15, 3], ["subPackages", 17, 3], ["meta", 19, 3]]]);
 const formals$1 = { args: { buildGoModule: false, authentik: false, apiGoVendorHook: false, vendorHash: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/ldap.nix", [["CGO_ENABLED", 15, 7]]);
-const pos$2 = nix.positions(here + "/ldap.nix", [["description", 20, 5], ["homepage", 21, 5], ["mainProgram", 22, 5]]);
-const pos$3 = nix.positions(here + "/ldap.nix", [["pname", 9, 3], ["version", 10, 23], ["src", 10, 31], ["vendorHash", 11, 11], ["nativeBuildInputs", 13, 3], ["env", 15, 3], ["subPackages", 17, 3], ["meta", 19, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,16 +12,16 @@ export default nix.lambda((args) => (() => {
   const apiGoVendorHook = nix.arg($, "apiGoVendorHook");
   const vendorHash = nix.arg($, "vendorHash");
   return nix.app(buildGoModule, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "authentik-ldap-outpost",
       version: nix.thunk(() => nix.attr(authentik, "version")),
       src: nix.thunk(() => nix.attr(authentik, "src")),
       vendorHash: vendorHash,
       nativeBuildInputs: nix.thunk(() => [apiGoVendorHook]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$1, CGO_ENABLED: 0n })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[0], CGO_ENABLED: 0n })),
       subPackages: nix.thunk(() => ["cmd/ldap"]),
       meta: nix.thunk(() => nix.update(nix.sel(authentik, "meta"), {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Authentik ldap outpost. Needed for the external ldap API",
         homepage: "https://goauthentik.io/docs/providers/ldap/",
         mainProgram: "ldap",

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 51, 5], ["hash", 56, 13]], [["updateScript", 158, 12]], [["description", 161, 5], ["homepage", 162, 5], ["license", 163, 5], ["maintainers", 164, 5], ["platforms", 165, 5], ["sourceProvenance", 172, 5]], [["pname", 61, 5], ["version", 62, 5], ["format", 63, 5], ["src", 64, 5], ["disabled", 67, 3], ["nativeBuildInputs", 69, 3], ["buildInputs", 74, 3], ["pythonRelaxDeps", 76, 3], ["pythonRemoveDeps", 80, 3], ["dependencies", 99, 3], ["pythonImportsCheck", 112, 3], ["doCheck", 115, 3], ["postFixup", 117, 3], ["passthru", 158, 3], ["meta", 160, 3]]]);
 const formals$1 = { args: { config: false, lib: false, stdenv: false, buildPythonPackage: false, fetchurl: false, python: false, pythonOlder: false, pythonAtLeast: false, autoPatchelfHook: false, bash: false, zlib: false, setuptools: false, cudaSupport: true, cudaPackages: false, addDriverRunpath: false, httpx: false, numpy: false, protobuf: false, pillow: false, networkx: false, "opt-einsum": false, "rdma-core": false, safetensors: false, "typing-extensions": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 51, 5], ["hash", 56, 13]]);
-const pos$2 = nix.positions(here + "/default.nix", [["updateScript", 158, 12]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 161, 5], ["homepage", 162, 5], ["license", 163, 5], ["maintainers", 164, 5], ["platforms", 165, 5], ["sourceProvenance", 172, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 61, 5], ["version", 62, 5], ["format", 63, 5], ["src", 64, 5], ["disabled", 67, 3], ["nativeBuildInputs", 69, 3], ["buildInputs", 74, 3], ["pythonRelaxDeps", 76, 3], ["pythonRemoveDeps", 80, 3], ["dependencies", 99, 3], ["pythonImportsCheck", 112, 3], ["doCheck", 115, 3], ["postFixup", 117, 3], ["passthru", 158, 3], ["meta", 160, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -49,12 +46,12 @@ export default nix.lambda((args) => (() => {
   const hash = nix.thunk(() => nix.selOr(platformSources, () => nix.force(throwPython), nix.key(nix.force(pyShortVersion))));
   const platform = nix.thunk(() => nix.sel(sources, nix.key(nix.sel(stdenv, "hostPlatform", "system")), "platform"));
   const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: nix.thunk(() => nix.str`https://paddle-whl.bj.bcebos.com/stable/${(nix.asBool(cudaSupport) ? nix.force(cudaVersion) : "cpu")}/${pname}/${nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["-"]), nix.thunk(() => ["_"]), pname)}-${version}-${pyShortVersion}-${pyShortVersion}-${platform}.whl`),
       hash: hash,
     }))));
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: pname,
       version: version,
       format: format,
@@ -126,9 +123,9 @@ fixRunPath $out/${nix.sel(python, "sitePackages")}/paddle/libs/lib*.so
 sed -i '/# Check python lib installed or not./,/^fi$/d' $out/bin/paddle
 sed -i 's/^INSTALLED_VERSION=.*/INSTALLED_VERSION="${version}"/' $out/bin/paddle
 `)),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[1], updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Machine Learning Framework from Industrial Practice",
         homepage: "https://github.com/PaddlePaddle/Paddle",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

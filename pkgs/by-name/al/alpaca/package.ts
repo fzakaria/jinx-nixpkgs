@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["bibtexparser", 30, 7]], [["owner", 40, 5], ["repo", 41, 5], ["tag", 42, 5], ["hash", 43, 5]], [["speech-to-text", 99, 5], ["text-to-speech", 103, 5], ["image-tools", 108, 5]], [["updateScript", 123, 12]], [["description", 126, 5], ["longDescription", 127, 5], ["homepage", 137, 5], ["license", 138, 5], ["mainProgram", 139, 5], ["maintainers", 140, 5], ["platforms", 144, 5]], [["pname", 35, 3], ["version", 36, 3], ["pyproject", 37, 3], ["src", 39, 3], ["postPatch", 46, 3], ["nativeBuildInputs", 51, 3], ["buildInputs", 62, 3], ["dependencies", 73, 3], ["optional-dependencies", 98, 3], ["dontWrapGApps", 111, 3], ["makeWrapperArgs", 113, 3], ["passthru", 123, 3], ["meta", 125, 3]]]);
 const formals$1 = { args: { lib: false, python3Packages: false, fetchFromGitHub: false, appstream: false, meson: false, ninja: false, "pkg-config": false, "gobject-introspection": false, wrapGAppsHook4: false, "desktop-file-utils": false, libadwaita: false, gtksourceview5: false, "xdg-utils": false, ollama: false, "vte-gtk4": false, libspelling: false, "nix-update-script": false, "blueprint-compiler": false, libportal: false, webkitgtk_6_0: false, pipewire: false, "glib-networking": false, bash: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["bibtexparser", 30, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 40, 5], ["repo", 41, 5], ["tag", 42, 5], ["hash", 43, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["speech-to-text", 99, 5], ["text-to-speech", 103, 5], ["image-tools", 108, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 123, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 126, 5], ["longDescription", 127, 5], ["homepage", 137, 5], ["license", 138, 5], ["mainProgram", 139, 5], ["maintainers", 140, 5], ["platforms", 144, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 35, 3], ["version", 36, 3], ["pyproject", 37, 3], ["src", 39, 3], ["postPatch", 46, 3], ["nativeBuildInputs", 51, 3], ["buildInputs", 62, 3], ["dependencies", 73, 3], ["optional-dependencies", 98, 3], ["dontWrapGApps", 111, 3], ["makeWrapperArgs", 113, 3], ["passthru", 123, 3], ["meta", 125, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -36,7 +31,7 @@ export default nix.lambda((args) => (() => {
   const glib_networking = nix.arg($, "glib-networking");
   const bash = nix.arg($, "bash");
   const pythonPackages = nix.thunk(() => nix.app(nix.sel(python3Packages, "overrideScope"), (self) => (super$) => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       bibtexparser: nix.thunk(() => nix.sel(self, "bibtexparser_2")),
     })));
   return nix.app(nix.sel(pythonPackages, "buildPythonApplication"), nix.thunk(() => (() => {
@@ -44,7 +39,7 @@ export default nix.lambda((args) => (() => {
       const version = "9.2.5";
       const pyproject = false;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "Jeffser",
           repo: "Alpaca",
           tag: version,
@@ -96,7 +91,7 @@ export default nix.lambda((args) => (() => {
       const optional_dependencies = nix.thunk(() => (() => {
         const w_1 = nix.withScope(pythonPackages, null);
         return {
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           "speech-to-text": nix.thunk(() => [
             nix.thunk(() => nix.lookup(w_1, "openai-whisper")),
             nix.thunk(() => nix.lookup(w_1, "pyaudio")),
@@ -115,11 +110,11 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`--prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [xdg_utils, ollama]))}`),
       ]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Ollama client made with GTK4 and Adwaita",
         longDescription: "To run Alpaca with GPU acceleration enabled, simply override it:\n```nix\npkgs.alpaca.override {\n  ollama = pkgs.ollama-cuda;\n}\n```\nOr using `pkgs.ollama-rocm` for AMD GPUs.\nFor a vendor agnostic solution, use: `pkgs.ollama-vulkan`.\n",
         homepage: "https://jeffser.com/alpaca",
@@ -135,7 +130,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname,
         version,
         pyproject,

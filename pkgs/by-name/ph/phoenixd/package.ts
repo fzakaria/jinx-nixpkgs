@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["aarch64-darwin", 22, 9], ["x86_64-linux", 23, 9], ["aarch64-linux", 24, 9]], [["aarch64-darwin", 30, 9], ["x86_64-linux", 31, 9], ["aarch64-linux", 32, 9]], [["url", 28, 7], ["hash", 29, 7]], [["updateScript", 53, 12]], [["description", 56, 5], ["homepage", 57, 5], ["license", 58, 5], ["maintainers", 59, 5], ["platforms", 60, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 38, 3], ["installPhase", 44, 3], ["passthru", 53, 3], ["meta", 55, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, unzip: false, autoPatchelfHook: false, libgcc: false, "libxcrypt-legacy": false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["aarch64-darwin", 22, 9], ["x86_64-linux", 23, 9], ["aarch64-linux", 24, 9]]);
-const pos$2 = nix.positions(here + "/package.nix", [["aarch64-darwin", 30, 9], ["x86_64-linux", 31, 9], ["aarch64-linux", 32, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 28, 7], ["hash", 29, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 53, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 56, 5], ["homepage", 57, 5], ["license", 58, 5], ["maintainers", 59, 5], ["platforms", 60, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 38, 3], ["installPhase", 44, 3], ["passthru", 53, 3], ["meta", 55, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,22 +16,22 @@ export default nix.lambda((args) => (() => {
   const libxcrypt_legacy = nix.arg($, "libxcrypt-legacy");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "phoenixd",
       version: "0.9.2",
       src: nix.thunk(() => (() => {
         const selectSystem = (attrs) => nix.selOr(attrs, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenv, "hostPlatform", "system")}`)), nix.key(nix.sel(stdenv, "hostPlatform", "system")));
         const suffix = nix.thunk(() => nix.app(selectSystem, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             "aarch64-darwin": "macos-arm64",
             "x86_64-linux": "linux-x64",
             "aarch64-linux": "linux-arm64",
           }))));
         return nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: nix.thunk(() => nix.str`https://github.com/ACINQ/phoenixd/releases/download/v${nix.sel(finalAttrs, "version")}/phoenixd-${nix.sel(finalAttrs, "version")}-${suffix}.zip`),
             hash: nix.thunk(() => nix.app(selectSystem, nix.thunk(() => ({
-                [nix.POS]: pos$2,
+                [nix.POS]: $pos[1],
                 "aarch64-darwin": "sha256-FfAYa4XW3339z7Qa/zNuWmT2aw6cgGgg5ZeNaa0rLk4=",
                 "x86_64-linux": "sha256-yMpNOAEUqmnz/0DsD45jJxjxwSUqAgGNHqBcVBmW2VI=",
                 "aarch64-linux": "sha256-7hm3AMb56nJzk6oR3JkWEBEaWw58TeGCSda9qhiOz+k=",
@@ -46,9 +41,9 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => nix.concat([unzip], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [autoPatchelfHook])))),
       buildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [libgcc, libxcrypt_legacy, zlib]))),
       installPhase: "runHook preInstall\n\ninstall -Dm0755 phoenix-cli $out/bin/phoenix-cli\ninstall -Dm0755 phoenixd $out/bin/phoenixd\n\nrunHook postInstall\n",
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$4, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[3], updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Server equivalent of the popular Phoenix wallet for mobile",
         homepage: "https://phoenix.acinq.co/server",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

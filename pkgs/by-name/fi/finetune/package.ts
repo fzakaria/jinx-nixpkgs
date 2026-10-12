@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 13, 5], ["url", 14, 5], ["hash", 15, 5]], [["description", 35, 5], ["homepage", 36, 5], ["license", 37, 5], ["maintainers", 38, 5], ["platforms", 41, 5], ["sourceProvenance", 44, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["strictDeps", 18, 3], ["__structuredAttrs", 19, 3], ["nativeBuildInputs", 21, 3], ["sourceRoot", 23, 3], ["installPhase", 25, 3], ["meta", 34, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchurl: false, _7zz: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 13, 5], ["url", 14, 5], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 35, 5], ["homepage", 36, 5], ["license", 37, 5], ["maintainers", 38, 5], ["platforms", 41, 5], ["sourceProvenance", 44, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["strictDeps", 18, 3], ["__structuredAttrs", 19, 3], ["nativeBuildInputs", 21, 3], ["sourceRoot", 23, 3], ["installPhase", 25, 3], ["meta", 34, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const _7zz = nix.arg($, "_7zz");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "finetune",
       version: "1.9.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           name: "FineTune.dmg",
           url: nix.thunk(() => nix.str`https://github.com/ronitsingh10/FineTune/releases/download/v${nix.sel(finalAttrs, "version")}/FineTune.dmg`),
           hash: "sha256-K4r5PA8b4YcNSQ/+Pope8uF7yDv0jPxbS4N5GGHN8i4=",
@@ -29,7 +27,7 @@ export default nix.lambda((args) => (() => {
       sourceRoot: "FineTune.app",
       installPhase: "runHook preInstall\n\nmkdir -p \"$out/Applications\"\ncp -R . \"$out/Applications/FineTune.app\"\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Per-app volume control, multi-device output, audio routing, and 10-band EQ",
         homepage: "https://github.com/ronitsingh10/FineTune",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

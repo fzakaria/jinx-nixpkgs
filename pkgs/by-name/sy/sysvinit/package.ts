@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 14, 5], ["sha256", 15, 5]], [["homepage", 49, 5], ["description", 50, 5], ["platforms", 51, 5], ["license", 52, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["prePatch", 18, 3], ["buildInputs", 23, 3], ["makeFlags", 25, 3], ["preInstall", 31, 3], ["postInstall", 35, 3], ["meta", 48, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, libxcrypt: false, withoutInitTools: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 14, 5], ["sha256", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 49, 5], ["description", 50, 5], ["platforms", 51, 5], ["license", 52, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["prePatch", 18, 3], ["buildInputs", 23, 3], ["makeFlags", 25, 3], ["preInstall", 31, 3], ["postInstall", 35, 3], ["meta", 48, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const libxcrypt = nix.arg($, "libxcrypt");
   const withoutInitTools = nix.argOr($, "withoutInitTools", () => false);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: nix.thunk(() => (nix.asBool(withoutInitTools) ? "sysvtools" : "sysvinit")),
       version: "3.04",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://savannah/sysvinit/sysvinit-${nix.sel(finalAttrs, "version")}.tar.xz`),
           sha256: "sha256-KmIf5uRSi8kTCLdIZ92q6733dT8COVwMW66Be9K346U=",
         })))),
@@ -29,7 +27,7 @@ export default nix.lambda((args) => (() => {
       preInstall: "substituteInPlace src/Makefile --replace /usr /\n",
       postInstall: nix.thunk(() => nix.add("mv $out/sbin/killall5 $out/bin\nln -sf killall5 $out/bin/pidof\n", nix.app(nix.sel(lib, "optionalString"), withoutInitTools, "shopt -s extglob\nrm -rf $out/sbin/!(sulogin)\nrm -rf $out/include\nrm -rf $out/share/man/man5\nrm $(for i in $out/share/man/man8/*; do echo $i; done | grep -v 'pidof\\|killall5')\nrm $out/bin/wall $out/share/man/man1/wall.1\n"))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://www.nongnu.org/sysvinit/",
         description: "Utilities related to booting and shutdown",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),

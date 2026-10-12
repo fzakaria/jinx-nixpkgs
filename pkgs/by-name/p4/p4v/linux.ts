@@ -2,10 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/linux.nix", [[["pname", 41, 5], ["version", 42, 13], ["src", 42, 21], ["meta", 42, 25], ["nativeBuildInputs", 44, 5], ["buildInputs", 45, 5], ["dontBuild", 75, 5], ["dontWrapQtApps", 78, 5], ["patches", 80, 5], ["postPatch", 84, 5], ["installPhase", 88, 5], ["preFixup", 95, 5]], [["pname", 101, 11], ["version", 101, 17], ["buildCommand", 107, 3], ["preferLocalBuild", 113, 3], ["meta", 115, 23], ["passthru", 115, 28]]]);
 const formals$1 = { args: { stdenv: false, autoPatchelfHook: false, cups: false, dbus: false, fontconfig: false, gccForLibs: false, libx11: false, libxcomposite: false, libxcursor: false, libxdamage: false, libxext: false, libxi: false, libxrandr: false, libxrender: false, libxtst: false, libinput: false, libxcb: false, libxkbcommon: false, nss: false, qtbase: false, qtmultimedia: false, qtsvg: false, qttools: false, qtwebengine: false, qtwebview: false, "libxcb-image": false, "libxcb-keysyms": false, "libxcb-render-util": false, "libxcb-wm": false }, ellipsis: false };
 const formals$2 = { args: { pname: false, version: false, src: false, meta: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/linux.nix", [["pname", 41, 5], ["version", 42, 13], ["src", 42, 21], ["meta", 42, 25], ["nativeBuildInputs", 44, 5], ["buildInputs", 45, 5], ["dontBuild", 75, 5], ["dontWrapQtApps", 78, 5], ["patches", 80, 5], ["postPatch", 84, 5], ["installPhase", 88, 5], ["preFixup", 95, 5]]);
-const pos$2 = nix.positions(here + "/linux.nix", [["pname", 101, 11], ["version", 101, 17], ["buildCommand", 107, 3], ["preferLocalBuild", 113, 3], ["meta", 115, 23], ["passthru", 115, 28]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -45,7 +44,7 @@ export default nix.lambda((args) => (() => {
     const src = nix.arg($_1, "src");
     const meta = nix.arg($_1, "meta");
     const unwrapped = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         pname: nix.thunk(() => nix.str`${pname}-unwrapped`),
         version: version,
         src: src,
@@ -92,7 +91,7 @@ ln -s "${qtbase}/${nix.sel(qtbase, "qtPluginPrefix")}" $out/lib/plugins
         preFixup: "patchelf --clear-symbol-version close $out/bin/p4{v,admin}.bin\n",
       }))));
     return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         pname: pname,
         version: version,
         buildCommand: nix.thunk(() => nix.str`mkdir -p $out/bin

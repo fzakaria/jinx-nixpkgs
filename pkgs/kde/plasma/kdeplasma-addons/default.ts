@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 20, 13], ["version", 20, 19], ["cargoRoot", 20, 27], ["src", 21, 5], ["hash", 22, 5]], [["pname", 13, 3], ["version", 15, 30], ["cargoRoot", 17, 3], ["cargoDeps", 19, 3], ["extraNativeBuildInputs", 25, 3], ["extraBuildInputs", 32, 3]]]);
 const formals$1 = { args: { mkKdeDerivation: false, sources: false, rustPlatform: false, rustc: false, cargo: false, "pkg-config": false, corrosion: false, qtwebengine: false, hidapi: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 20, 13], ["version", 20, 19], ["cargoRoot", 20, 27], ["src", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 13, 3], ["version", 15, 30], ["cargoRoot", 17, 3], ["cargoDeps", 19, 3], ["extraNativeBuildInputs", 25, 3], ["extraBuildInputs", 32, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = nix.thunk(() => nix.attr(from, "version"));
       const cargoRoot = "kdeds/kameleon/qmk/kameleon-qmk-helper";
       const cargoDeps = nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           cargoRoot: cargoRoot,
@@ -38,7 +37,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const extraBuildInputs = nix.thunk(() => [corrosion, qtwebengine, hidapi]);
       return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         pname,
         version,
         cargoRoot,

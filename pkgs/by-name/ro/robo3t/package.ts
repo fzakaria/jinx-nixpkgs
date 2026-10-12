@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 30, 5], ["sha256", 31, 5]], [["url", 35, 5], ["sha256", 36, 5]], [["name", 40, 5], ["exec", 41, 5], ["icon", 42, 5], ["comment", 43, 5], ["desktopName", 44, 5], ["genericName", 45, 5], ["categories", 46, 5]], [["homepage", 101, 5], ["description", 102, 5], ["platforms", 103, 5], ["sourceProvenance", 104, 5], ["license", 105, 5], ["maintainers", 106, 5], ["mainProgram", 107, 5]], [["pname", 25, 3], ["version", 26, 3], ["rev", 27, 3], ["src", 29, 3], ["icon", 34, 3], ["desktopItem", 39, 3], ["nativeBuildInputs", 52, 3], ["ldLibraryPath", 54, 3], ["installPhase", 72, 3], ["meta", 100, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, curlWithGnuTls: false, zlib: false, glib: false, libxrender: false, libxi: false, libxext: false, libx11: false, libsm: false, libice: false, libxcb: false, dbus: false, fontconfig: false, libGL: false, freetype: false, xkeyboard_config: false, makeDesktopItem: false, makeWrapper: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 30, 5], ["sha256", 31, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 35, 5], ["sha256", 36, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 40, 5], ["exec", 41, 5], ["icon", 42, 5], ["comment", 43, 5], ["desktopName", 44, 5], ["genericName", 45, 5], ["categories", 46, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 101, 5], ["description", 102, 5], ["platforms", 103, 5], ["sourceProvenance", 104, 5], ["license", 105, 5], ["maintainers", 106, 5], ["mainProgram", 107, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 25, 3], ["version", 26, 3], ["rev", 27, 3], ["src", 29, 3], ["icon", 34, 3], ["desktopItem", 39, 3], ["nativeBuildInputs", 52, 3], ["ldLibraryPath", 54, 3], ["installPhase", 72, 3], ["meta", 100, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -36,17 +32,17 @@ export default nix.lambda((args) => (() => {
       const version = "1.4.3";
       const rev = "48f7dfd";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/Studio3T/robomongo/releases/download/v${version}/robo3t-${version}-linux-x86_64-${rev}.tar.gz`),
           sha256: "sha256-pH4q/O3bq45ZZn+s/12iScd0WbfkcLjK4MBdVCMXK00=",
         }))));
       const icon = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: nix.thunk(() => nix.str`https://github.com/Studio3T/robomongo/raw/${rev}/install/macosx/robomongo.iconset/icon_128x128.png`),
           sha256: "sha256-2PkUxBq2ow0wl09k8B6LJJUQ+y4GpnmoAeumKN1u5xg=",
         }))));
       const desktopItem = nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           name: "robo3t",
           exec: "robo3t",
           icon: icon,
@@ -100,7 +96,7 @@ makeWrapper $BASEDIR/bin/robo3t $out/bin/robo3t \\
 runHook postInstall
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://robomongo.org/",
         description: "Query GUI for mongodb. Formerly called Robomongo",
         platforms: nix.thunk(() => ["x86_64-linux"]),
@@ -116,7 +112,7 @@ runHook postInstall
         mainProgram: "robo3t",
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         rev,

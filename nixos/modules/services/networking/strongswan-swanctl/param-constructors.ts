@@ -2,29 +2,17 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
-const pos$1 = nix.positions(here + "/param-constructors.nix", [["type", 51, 7], ["default", 52, 7], ["description", 53, 7]]);
-const pos$2 = nix.positions(here + "/param-constructors.nix", [["_type", 49, 5], ["option", 50, 5], ["render", 55, 5]]);
-const pos$3 = nix.positions(here + "/param-constructors.nix", [["type", 96, 7], ["default", 97, 7], ["description", 98, 7]]);
-const pos$4 = nix.positions(here + "/param-constructors.nix", [["_type", 94, 5], ["option", 95, 5], ["render", 100, 5]]);
-const pos$5 = nix.positions(here + "/param-constructors.nix", [["type", 111, 7], ["default", 112, 7], ["description", 113, 7]]);
-const pos$6 = nix.positions(here + "/param-constructors.nix", [["_type", 109, 5], ["option", 110, 5], ["render", 115, 5]]);
-const pos$7 = nix.positions(here + "/param-constructors.nix", [["options", 118, 65]]);
-const pos$8 = nix.positions(here + "/param-constructors.nix", [["type", 125, 7], ["default", 126, 7], ["description", 127, 7]]);
-const pos$9 = nix.positions(here + "/param-constructors.nix", [["_type", 123, 5], ["option", 124, 5], ["render", 129, 5]]);
-const pos$10 = nix.positions(here + "/param-constructors.nix", [["options", 133, 57]]);
-const pos$11 = nix.positions(here + "/param-constructors.nix", [["type", 140, 7], ["default", 141, 7], ["description", 142, 7]]);
-const pos$12 = nix.positions(here + "/param-constructors.nix", [["_type", 138, 5], ["option", 139, 5], ["render", 144, 5]]);
-const pos$13 = nix.positions(here + "/param-constructors.nix", [["mkParamOfType", 48, 3], ["documentDefault", 58, 3], ["single", 72, 3], ["mkStrParam", 74, 3], ["mkOptionalStrParam", 75, 3], ["mkEnumParam", 77, 3], ["mkIntParam", 79, 3], ["mkOptionalIntParam", 80, 3], ["mkFloatParam", 83, 3], ["mkHexParam", 86, 3], ["mkOptionalHexParam", 87, 3], ["mkDurationParam", 90, 3], ["mkOptionalDurationParam", 91, 3], ["mkYesNoParam", 93, 3], ["yes", 102, 3], ["no", 103, 3], ["mkSpaceSepListParam", 105, 3], ["mkCommaSepListParam", 106, 3], ["mkSepListParam", 108, 3], ["mkAttrsOfParams", 118, 3], ["mkAttrsOfParam", 120, 3], ["mkAttrsOf", 122, 3], ["mkPrefixedAttrsOfParams", 132, 3], ["mkPrefixedAttrsOfParam", 135, 3], ["mkPrefixedAttrsOf", 137, 3]]);
+const $pos = nix.positions(here + "/param-constructors.nix", [[["type", 51, 7], ["default", 52, 7], ["description", 53, 7]], [["_type", 49, 5], ["option", 50, 5], ["render", 55, 5]], [["type", 96, 7], ["default", 97, 7], ["description", 98, 7]], [["_type", 94, 5], ["option", 95, 5], ["render", 100, 5]], [["type", 111, 7], ["default", 112, 7], ["description", 113, 7]], [["_type", 109, 5], ["option", 110, 5], ["render", 115, 5]], [["options", 118, 65]], [["type", 125, 7], ["default", 126, 7], ["description", 127, 7]], [["_type", 123, 5], ["option", 124, 5], ["render", 129, 5]], [["options", 133, 57]], [["type", 140, 7], ["default", 141, 7], ["description", 142, 7]], [["_type", 138, 5], ["option", 139, 5], ["render", 144, 5]], [["mkParamOfType", 48, 3], ["documentDefault", 58, 3], ["single", 72, 3], ["mkStrParam", 74, 3], ["mkOptionalStrParam", 75, 3], ["mkEnumParam", 77, 3], ["mkIntParam", 79, 3], ["mkOptionalIntParam", 80, 3], ["mkFloatParam", 83, 3], ["mkHexParam", 86, 3], ["mkOptionalHexParam", 87, 3], ["mkDurationParam", 90, 3], ["mkOptionalDurationParam", 91, 3], ["mkYesNoParam", 93, 3], ["yes", 102, 3], ["no", 103, 3], ["mkSpaceSepListParam", 105, 3], ["mkCommaSepListParam", 106, 3], ["mkSepListParam", 108, 3], ["mkAttrsOfParams", 118, 3], ["mkAttrsOfParam", 120, 3], ["mkAttrsOf", 122, 3], ["mkPrefixedAttrsOfParams", 132, 3], ["mkPrefixedAttrsOfParam", 135, 3], ["mkPrefixedAttrsOf", 137, 3]]]);
 
 export default (lib) => (() => {
   const w = nix.withScope(lib, null);
   const w_1 = nix.withScope(nix.thunk(() => nix.app(nix.builtins.import, nix.path(here, "./param-lib.nix"), lib)), w);
   return (() => {
     const mkParamOfType = (type) => (strongswanDefault) => (description) => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       _type: "param",
       option: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_1, "types"), "nullOr"), type)),
           default: null,
           description: nix.thunk(() => nix.app(documentDefault, description, strongswanDefault)),
@@ -47,10 +35,10 @@ StrongSwan default: \`\`\`\`${nix.app(nix.sel(nix.builtins, "toJSON"), strongswa
     const mkDurationParam = mkStrParam;
     const mkOptionalDurationParam = mkOptionalStrParam;
     const mkYesNoParam = (strongswanDefault) => (description) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       _type: "param",
       option: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_1, "types"), "nullOr"), nix.thunk(() => nix.sel(nix.lookup(w_1, "types"), "bool")))),
           default: null,
           description: nix.thunk(() => nix.app(documentDefault, description, strongswanDefault)),
@@ -62,10 +50,10 @@ StrongSwan default: \`\`\`\`${nix.app(nix.sel(nix.builtins, "toJSON"), strongswa
     const mkSpaceSepListParam = nix.thunk(() => nix.app(mkSepListParam, " "));
     const mkCommaSepListParam = nix.thunk(() => nix.app(mkSepListParam, ","));
     const mkSepListParam = (sep) => (strongswanDefault) => (description) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       _type: "param",
       option: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_1, "types"), "nullOr"), nix.thunk(() => nix.app(nix.sel(nix.lookup(w_1, "types"), "listOf"), nix.thunk(() => nix.sel(nix.lookup(w_1, "types"), "str")))))),
           default: null,
           description: nix.thunk(() => nix.app(documentDefault, description, strongswanDefault)),
@@ -73,15 +61,15 @@ StrongSwan default: \`\`\`\`${nix.app(nix.sel(nix.builtins, "toJSON"), strongswa
       render: nix.thunk(() => nix.app(single, (value) => nix.app(nix.lookup(w_1, "concatStringsSep"), sep, value))),
     });
     const mkAttrsOfParams = (params) => nix.app(mkAttrsOf, params, nix.thunk(() => nix.app(nix.sel(nix.lookup(w_1, "types"), "submodule"), nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           options: nix.thunk(() => nix.app(nix.lookup(w_1, "paramsToOptions"), params)),
         })))));
     const mkAttrsOfParam = (param) => nix.app(mkAttrsOf, param, nix.thunk(() => nix.sel(param, "option", "type")));
     const mkAttrsOf = (param) => (option) => (description) => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       _type: "param",
       option: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_1, "types"), "attrsOf"), option)),
           default: nix.thunk(() => ({})),
           description: description,
@@ -89,15 +77,15 @@ StrongSwan default: \`\`\`\`${nix.app(nix.sel(nix.builtins, "toJSON"), strongswa
       render: nix.thunk(() => nix.app(single, (attrs) => nix.app(nix.lookup(w_1, "paramsToRenderedStrings"), attrs, nix.thunk(() => nix.app(nix.lookup(w_1, "mapAttrs"), (_n) => (_v) => nix.force(param), attrs))))),
     });
     const mkPrefixedAttrsOfParams = (params) => nix.app(mkPrefixedAttrsOf, params, nix.thunk(() => nix.app(nix.sel(nix.lookup(w_1, "types"), "submodule"), nix.thunk(() => ({
-          [nix.POS]: pos$10,
+          [nix.POS]: $pos[9],
           options: nix.thunk(() => nix.app(nix.lookup(w_1, "paramsToOptions"), params)),
         })))));
     const mkPrefixedAttrsOfParam = (param) => nix.app(mkPrefixedAttrsOf, param, nix.thunk(() => nix.sel(param, "option", "type")));
     const mkPrefixedAttrsOf = (p) => (option) => (description) => ({
-      [nix.POS]: pos$12,
+      [nix.POS]: $pos[11],
       _type: "param",
       option: nix.thunk(() => nix.app(nix.lookup(w_1, "mkOption"), nix.thunk(() => ({
-          [nix.POS]: pos$11,
+          [nix.POS]: $pos[10],
           type: nix.thunk(() => nix.app(nix.sel(nix.lookup(w_1, "types"), "attrsOf"), option)),
           default: nix.thunk(() => ({})),
           description: description,
@@ -108,7 +96,7 @@ StrongSwan default: \`\`\`\`${nix.app(nix.sel(nix.builtins, "toJSON"), strongswa
       })(),
     });
     return {
-      [nix.POS]: pos$13,
+      [nix.POS]: $pos[12],
       mkParamOfType,
       documentDefault,
       single,

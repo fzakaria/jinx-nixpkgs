@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5]], [["name", 54, 7], ["genericName", 55, 7], ["desktopName", 56, 7], ["comment", 57, 7], ["icon", 58, 7], ["exec", 59, 7], ["categories", 60, 7], ["mimeTypes", 61, 7], ["terminal", 65, 7]], [["homepage", 74, 5], ["description", 75, 5], ["mainProgram", 76, 5], ["license", 77, 5], ["platforms", 78, 5], ["maintainers", 79, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 19, 3], ["preConfigure", 28, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 39, 3], ["cmakeFlags", 47, 3], ["desktopItems", 52, 3], ["postInstall", 69, 3], ["meta", 73, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, libsForQt5: false, libraw: false, exiv2: false, zlib: false, alglib: false, "pkg-config": false, makeDesktopItem: false, copyDesktopItems: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 54, 7], ["genericName", 55, 7], ["desktopName", 56, 7], ["comment", 57, 7], ["icon", 58, 7], ["exec", 59, 7], ["categories", 60, 7], ["mimeTypes", 61, 7], ["terminal", 65, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 74, 5], ["description", 75, 5], ["mainProgram", 76, 5], ["license", 77, 5], ["platforms", 78, 5], ["maintainers", 79, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 19, 3], ["preConfigure", 28, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 39, 3], ["cmakeFlags", 47, 3], ["desktopItems", 52, 3], ["postInstall", 69, 3], ["meta", 73, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const makeDesktopItem = nix.arg($, "makeDesktopItem");
   const copyDesktopItems = nix.arg($, "copyDesktopItems");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "hdrmerge",
       version: "0.5.0-unstable-2025-04-26",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "jcelaya",
           repo: "hdrmerge",
           rev: "3bbe43771ba15b899151721bc14aa57e86b60f2f",
@@ -47,7 +44,7 @@ export default nix.lambda((args) => (() => {
       ]),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "HDRMerge",
             genericName: "HDR raw image merge",
             desktopName: "HDRMerge",
@@ -61,7 +58,7 @@ export default nix.lambda((args) => (() => {
       ]),
       postInstall: "install -Dm444 ../data/images/icon.png $out/share/icons/hicolor/128x128/apps/hdrmerge.png\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/jcelaya/hdrmerge",
         description: "Combines two or more raw images into an HDR",
         mainProgram: "hdrmerge",

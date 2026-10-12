@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 64, 5], ["repo", 65, 5], ["tag", 66, 5], ["hash", 67, 5]], [["amuled", 162, 36]], [["updateScript", 161, 5], ["tests", 162, 5]], [["description", 166, 5], ["longDescription", 167, 5], ["homepage", 177, 5], ["changelog", 178, 5], ["license", 179, 5], ["maintainers", 180, 5], ["mainProgram", 181, 13], ["platforms", 182, 5]], [["pname", 54, 3], ["version", 61, 3], ["src", 63, 3], ["patches", 70, 3], ["__structuredAttrs", 76, 3], ["strictDeps", 77, 3], ["nativeBuildInputs", 79, 3], ["postPatch", 86, 3], ["buildInputs", 100, 3], ["cmakeFlags", 132, 3], ["postInstall", 149, 3], ["passthru", 160, 3], ["meta", 165, 3]]]);
 const formals$1 = { args: { monolithic: true, enableDaemon: true, httpServer: true, apiServer: true, client: true, textClient: true, mainProgram: true, fetchFromGitHub: false, stdenv: false, lib: false, cmake: false, zlib: false, wxwidgets_3_2: false, curl: false, cryptopp: false, libupnp: false, boost: false, gettext: false, glib: false, libintl: false, gtk3: false, "libayatana-appindicator": false, "libsysprof-capture": false, libmaxminddb: false, libpng: false, "pkg-config": false, python3: false, readline: false, "nix-update-script": false, nixosTests: false, writeShellScript: false, xcbuild: false, libx11: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 64, 5], ["repo", 65, 5], ["tag", 66, 5], ["hash", 67, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["amuled", 162, 36]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 161, 5], ["tests", 162, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 166, 5], ["longDescription", 167, 5], ["homepage", 177, 5], ["changelog", 178, 5], ["license", 179, 5], ["maintainers", 180, 5], ["mainProgram", 181, 13], ["platforms", 182, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 54, 3], ["version", 61, 3], ["src", 63, 3], ["patches", 70, 3], ["__structuredAttrs", 76, 3], ["strictDeps", 77, 3], ["nativeBuildInputs", 79, 3], ["postPatch", 86, 3], ["buildInputs", 100, 3], ["cmakeFlags", 132, 3], ["postInstall", 149, 3], ["passthru", 160, 3], ["meta", 165, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -50,11 +46,11 @@ exec ${nix.app(nix.sel(lib, "getExe'"), xcbuild, "plutil")} "$@"
 `)));
   nix.assert_((nix.asBool(monolithic) || nix.asBool((nix.asBool(!nix.asBool(monolithic)) && nix.asBool((nix.asBool((nix.asBool((nix.asBool((nix.asBool(enableDaemon) || nix.asBool(client))) || nix.asBool(textClient))) || nix.asBool(httpServer))) || nix.asBool(apiServer)))))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/am/amule/package.nix:50:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: nix.thunk(() => nix.add(nix.add(nix.add(nix.add(nix.add("amule", nix.app(nix.sel(lib, "optionalString"), httpServer, "-web")), nix.app(nix.sel(lib, "optionalString"), apiServer, "-api")), nix.app(nix.sel(lib, "optionalString"), enableDaemon, "-daemon")), nix.app(nix.sel(lib, "optionalString"), client, "-gui")), nix.app(nix.sel(lib, "optionalString"), textClient, "-cmd"))),
       version: "3.1.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "amule-org",
           repo: "amule",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -86,12 +82,12 @@ exec ${nix.app(nix.sel(lib, "getExe'"), xcbuild, "plutil")} "$@"
       ]),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "for app in \"$out\"/*.app; do\n  [ -e \"$app\" ] || continue\n  mkdir -p \"$out/Applications\" \"$out/bin\"\n  mv \"$app\" \"$out/Applications/\"\n  name=$(basename \"$app\" .app)\n  ln -s \"$out/Applications/$name.app/Contents/MacOS/$name\" \\\n    \"$out/bin/$(echo \"$name\" | tr '[:upper:]' '[:lower:]')\"\ndone\n")),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
-        tests: nix.thunk(() => ({ [nix.POS]: pos$2, amuled: nix.thunk(() => nix.attr(nixosTests, "amuled")) })),
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[1], amuled: nix.thunk(() => nix.attr(nixosTests, "amuled")) })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Peer-to-peer client for the eD2K and Kademlia networks",
         longDescription: "aMule is an eMule-like client for the eD2k and Kademlia\nnetworks, supporting multiple platforms.  Currently aMule\n(officially) supports a wide variety of platforms and operating\nsystems, being compatible with more than 60 different\nhardware+OS configurations.  aMule is entirely free, its\nsourcecode released under the GPL just like eMule, and includes\nno adware or spyware as is often found in proprietary P2P\napplications.\n",
         homepage: "https://amule-org.github.io/",

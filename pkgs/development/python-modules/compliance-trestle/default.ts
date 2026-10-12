@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 41, 5], ["repo", 42, 5], ["tag", 43, 5], ["fetchSubmodules", 44, 5], ["hash", 45, 5]], [["description", 123, 5], ["homepage", 124, 5], ["changelog", 125, 5], ["license", 126, 5], ["maintainers", 127, 5], ["mainProgram", 128, 5]], [["pname", 36, 3], ["version", 37, 3], ["pyproject", 38, 3], ["src", 40, 3], ["postPatch", 48, 3], ["build-system", 53, 3], ["dependencies", 57, 3], ["nativeCheckInputs", 80, 3], ["disabledTests", 86, 3], ["disabledTestPaths", 110, 3], ["pythonImportsCheck", 120, 3], ["meta", 122, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, pythonAtLeast: false, hatchling: false, attrs: false, cmarkgfm: false, cryptography: false, defusedxml: false, furl: false, ilcli: false, "importlib-resources": false, jinja2: false, openpyxl: false, orjson: false, paramiko: false, pydantic: false, "python-dotenv": false, "python-frontmatter": false, requests: false, "ruamel-yaml": false, rfc8785: false, securesystemslib: false, "datamodel-code-generator": false, pytestCheckHook: false, mypy: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 41, 5], ["repo", 42, 5], ["tag", 43, 5], ["fetchSubmodules", 44, 5], ["hash", 45, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 123, 5], ["homepage", 124, 5], ["changelog", 125, 5], ["license", 126, 5], ["maintainers", 127, 5], ["mainProgram", 128, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 36, 3], ["version", 37, 3], ["pyproject", 38, 3], ["src", 40, 3], ["postPatch", 48, 3], ["build-system", 53, 3], ["dependencies", 57, 3], ["nativeCheckInputs", 80, 3], ["disabledTests", 86, 3], ["disabledTestPaths", 110, 3], ["pythonImportsCheck", 120, 3], ["meta", 122, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -36,12 +34,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const mypy = nix.arg($, "mypy");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "compliance-trestle",
       version: "5.0.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "oscal-compass",
           repo: "compliance-trestle",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -96,7 +94,7 @@ export default nix.lambda((args) => (() => {
         ])))),
       pythonImportsCheck: nix.thunk(() => ["trestle"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Opinionated tooling platform for managing compliance as code, using continuous integration and NIST's OSCAL standard",
         homepage: "https://github.com/oscal-compass/compliance-trestle",
         changelog: nix.thunk(() => nix.str`https://github.com/oscal-compass/compliance-trestle/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]], [["url", 26, 7], ["hash", 27, 7], ["stripLen", 28, 7], ["extraPrefix", 29, 7]], [["description", 52, 5], ["homepage", 53, 5], ["changelog", 54, 5], ["license", 55, 5], ["maintainers", 56, 5], ["mainProgram", 57, 5], ["platforms", 58, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["sourceRoot", 21, 3], ["patches", 23, 3], ["buildInputs", 33, 3], ["makeFlags", 38, 3], ["postPatch", 43, 3], ["meta", 51, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch: false, ncurses: false, pulseaudio: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 26, 7], ["hash", 27, 7], ["stripLen", 28, 7], ["extraPrefix", 29, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 52, 5], ["homepage", 53, 5], ["changelog", 54, 5], ["license", 55, 5], ["maintainers", 56, 5], ["mainProgram", 57, 5], ["platforms", 58, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["sourceRoot", 21, 3], ["patches", 23, 3], ["buildInputs", 33, 3], ["makeFlags", 38, 3], ["postPatch", 43, 3], ["meta", 51, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const ncurses = nix.arg($, "ncurses");
   const pulseaudio = nix.arg($, "pulseaudio");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "qrq",
       version: "0.3.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "dj1yfk",
           repo: "qrq",
           rev: nix.thunk(() => nix.str`qrq-${nix.sel(finalAttrs, "version")}`),
@@ -30,7 +27,7 @@ export default nix.lambda((args) => (() => {
       sourceRoot: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "name")}/src`),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/dj1yfk/qrq/commit/f17363df923cd9d4607478a7406e0c4d3e044aae.patch",
             hash: "sha256-EzGP6ExqiK30Vb4f8Q06zIP5Bebnw/jWvaAOb3juZMU=",
             stripLen: 2n,
@@ -49,7 +46,7 @@ substituteInPlace Makefile \\
   --replace-fail 'CC=gcc' 'CC=${nix.sel(stdenv, "cc", "targetPrefix")}cc'
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "High Speed Morse trainer - mirror of https://git.fkurz.net/dj1yfk/qrq",
         homepage: "https://github.com/dj1yfk/qrq",
         changelog: nix.thunk(() => nix.str`https://github.com/dj1yfk/qrq/blob/${nix.sel(finalAttrs, "src", "rev")}/ChangeLog`),

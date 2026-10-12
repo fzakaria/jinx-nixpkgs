@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]], [["NIX_CFLAGS_COMPILE", 39, 7]], [["description", 64, 5], ["homepage", 65, 5], ["license", 66, 5], ["maintainers", 67, 5], ["platforms", 68, 5]], [["pname", 24, 3], ["version", 25, 3], ["format", 26, 3], ["src", 28, 3], ["nativeBuildInputs", 35, 3], ["env", 39, 3], ["preConfigure", 41, 3], ["postConfigure", 45, 3], ["preBuild", 50, 3], ["buildInputs", 54, 3], ["makeFlags", 58, 3], ["meta", 63, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, swig: false, buildPythonPackage: true, lgpioWithoutPython: true, pyProject: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 39, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 64, 5], ["homepage", 65, 5], ["license", 66, 5], ["maintainers", 67, 5], ["platforms", 68, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 24, 3], ["version", 25, 3], ["format", 26, 3], ["src", 28, 3], ["nativeBuildInputs", 35, 3], ["env", 39, 3], ["preConfigure", 41, 3], ["postConfigure", 45, 3], ["preBuild", 50, 3], ["buildInputs", 54, 3], ["makeFlags", 58, 3], ["meta", 63, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,19 +16,19 @@ export default nix.lambda((args) => (() => {
   const pyProject = nix.argOr($, "pyProject", () => "");
   const mkDerivation = nix.thunk(() => (nix.asBool(nix.eq(pyProject, "")) ? nix.sel(stdenv, "mkDerivation") : nix.force(buildPythonPackage)));
   return nix.app(mkDerivation, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "lgpio",
       version: "0.2.2",
       format: nix.thunk(() => (nix.asBool(nix.eq(pyProject, "")) ? null : "setuptools")),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "joan2937",
           repo: "lg",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-92lLV+EMuJj4Ul89KIFHkpPxVMr/VvKGEocYSW2tFiE=",
         })))),
       nativeBuildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.eq(pyProject, "PY_LGPIO")), nix.thunk(() => [swig]))),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-std=gnu17" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], NIX_CFLAGS_COMPILE: "-std=gnu17" })),
       preConfigure: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(pyProject, "")), nix.thunk(() => nix.str`cd ${pyProject}
 `))),
       postConfigure: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.eq(pyProject, "")), "substituteInPlace Makefile \\\n  --replace-fail ldconfig 'echo ldconfig'\n")),
@@ -42,7 +39,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`CROSS_PREFIX=${nix.sel(stdenv, "cc", "targetPrefix")}`),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Linux C libraries and Python modules for manipulating GPIO",
         homepage: "https://github.com/joan2937/lg",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unlicense")),

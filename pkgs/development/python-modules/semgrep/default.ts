@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["lib", 57, 42]], [["owner", 66, 5], ["repo", 67, 5], ["tag", 68, 5], ["hash", 69, 5]], [["SEMGREP_SKIP_BIN", 111, 7]], [["common", 200, 13], ["semgrep-core", 200, 20], ["submodulesSubset", 201, 5], ["updateScript", 202, 5]], [["description", 206, 5], ["platforms", 207, 33]], [["pname", 60, 3], ["version", 61, 20], ["pyproject", 62, 3], ["__structuredAttrs", 63, 3], ["src", 65, 3], ["sourceRoot", 72, 3], ["postPatch", 76, 3], ["env", 111, 3], ["pythonRelaxDeps", 113, 3], ["dependencies", 126, 3], ["nativeCheckInputs", 156, 3], ["disabledTestPaths", 172, 3], ["disabledTests", 179, 3], ["passthru", 199, 3], ["meta", 205, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, "semgrep-core": false, addBinToPathHook: false, gitMinimal: false, pytestCheckHook: false, writableTmpDirAsHomeHook: false, attrs: false, boltons: false, click: false, "click-option-group": false, colorama: false, defusedxml: false, exceptiongroup: false, glom: false, jsonschema: false, mcp: false, "opentelemetry-api": false, "opentelemetry-exporter-otlp-proto-http": false, "opentelemetry-instrumentation-requests": false, "opentelemetry-instrumentation-threading": false, "opentelemetry-sdk": false, packaging: false, peewee: false, "python-lsp-jsonrpc": false, requests: false, rich: false, "ruamel-yaml": false, "semantic-version": false, tomli: false, tqdm: false, "typing-extensions": false, urllib3: false, wcmatch: false, flaky: false, "pytest-asyncio": false, "pytest-freezegun": false, "pytest-mock": false, "pytest-snapshot": false, "pytest-timeout": false, "requests-mock": false, "types-freezegun": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["lib", 57, 42]]);
-const pos$2 = nix.positions(here + "/default.nix", [["owner", 66, 5], ["repo", 67, 5], ["tag", 68, 5], ["hash", 69, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["SEMGREP_SKIP_BIN", 111, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["common", 200, 13], ["semgrep-core", 200, 20], ["submodulesSubset", 201, 5], ["updateScript", 202, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["description", 206, 5], ["platforms", 207, 33]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 60, 3], ["version", 61, 20], ["pyproject", 62, 3], ["__structuredAttrs", 63, 3], ["src", 65, 3], ["sourceRoot", 72, 3], ["postPatch", 76, 3], ["env", 111, 3], ["pythonRelaxDeps", 113, 3], ["dependencies", 126, 3], ["nativeCheckInputs", 156, 3], ["disabledTestPaths", 172, 3], ["disabledTests", 179, 3], ["passthru", 199, 3], ["meta", 205, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -55,15 +50,15 @@ export default nix.lambda((args) => (() => {
   const pytest_timeout = nix.arg($, "pytest-timeout");
   const requests_mock = nix.arg($, "requests-mock");
   const types_freezegun = nix.arg($, "types-freezegun");
-  const common = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./common.nix")), nix.thunk(() => ({ [nix.POS]: pos$1, lib: lib }))));
+  const common = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./common.nix")), nix.thunk(() => ({ [nix.POS]: $pos[0], lib: lib }))));
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "semgrep",
       version: nix.thunk(() => nix.attr(common, "version")),
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "semgrep",
           repo: "semgrep",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -88,7 +83,7 @@ substituteInPlace src/semgrep/console_scripts/entrypoint.py \\
     'path = shutil.which(core)' \\
     'path = "${nix.app(nix.sel(lib, "getExe"), semgrep_core)}" if not pro else shutil.which(core)'
 `)),
-      env: nix.thunk(() => ({ [nix.POS]: pos$3, SEMGREP_SKIP_BIN: true })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[2], SEMGREP_SKIP_BIN: true })),
       pythonRelaxDeps: nix.thunk(() => [
         "boltons",
         "click",
@@ -165,7 +160,7 @@ substituteInPlace src/semgrep/console_scripts/entrypoint.py \\
         "test_run_install_version_check_failure_records_error",
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         common: common,
         "semgrep-core": semgrep_core,
         submodulesSubset: nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (_) => (args_1) => nix.app(fetchFromGitHub, args_1), nix.thunk(() => nix.sel(common, "submodules")))),
@@ -174,7 +169,7 @@ substituteInPlace src/semgrep/console_scripts/entrypoint.py \\
       meta: nix.thunk(() => nix.update(nix.sel(common, "meta"), (() => {
         const from = nix.thunk(() => nix.sel(semgrep_core, "meta"));
         return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: nix.thunk(() => nix.add(nix.sel(common, "meta", "description"), " - cli")),
         platforms: nix.thunk(() => nix.attr(from, "platforms")),
       };

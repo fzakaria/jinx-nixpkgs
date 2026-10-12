@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 34, 5], ["repo", 35, 5], ["tag", 36, 5], ["hash", 37, 5]], [["name", 45, 7], ["url", 46, 7], ["hash", 47, 7]], [["NIX_CFLAGS_COMPILE", 69, 7]], [["description", 113, 5], ["homepage", 114, 5], ["changelog", 115, 5], ["license", 116, 5], ["maintainers", 117, 5]], [["pname", 29, 3], ["version", 30, 3], ["pyproject", 31, 3], ["src", 33, 3], ["patches", 40, 3], ["build-system", 51, 3], ["buildInputs", 59, 3], ["dependencies", 61, 3], ["env", 69, 3], ["nativeCheckInputs", 71, 3], ["preCheck", 80, 3], ["disabledTests", 85, 3], ["disabledTestPaths", 105, 3], ["pythonImportsCheck", 110, 3], ["meta", 112, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitHub: false, fetchpatch: false, llvmPackages: false, zlib: false, cython: false, numpy: false, setuptools: false, versioneer: false, wheel: false, astunparse: false, netcdf4: false, packaging: false, pyparsing: false, scipy: false, gsd: false, networkx: false, pandas: false, "pytest-xdist": false, pytestCheckHook: false, tables: false, pythonAtLeast: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 34, 5], ["repo", 35, 5], ["tag", 36, 5], ["hash", 37, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["name", 45, 7], ["url", 46, 7], ["hash", 47, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["NIX_CFLAGS_COMPILE", 69, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 113, 5], ["homepage", 114, 5], ["changelog", 115, 5], ["license", 116, 5], ["maintainers", 117, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 29, 3], ["version", 30, 3], ["pyproject", 31, 3], ["src", 33, 3], ["patches", 40, 3], ["build-system", 51, 3], ["buildInputs", 59, 3], ["dependencies", 61, 3], ["env", 69, 3], ["nativeCheckInputs", 71, 3], ["preCheck", 80, 3], ["disabledTests", 85, 3], ["disabledTestPaths", 105, 3], ["pythonImportsCheck", 110, 3], ["meta", 112, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -40,7 +36,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.11.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "mdtraj",
           repo: "mdtraj",
           tag: version,
@@ -48,7 +44,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "fix-intrinsics-flag.patch",
             url: "https://github.com/mdtraj/mdtraj/commit/d6041c645d51898e2a09030633210213eec7d4c5.patch",
             hash: "sha256-kcnlHMoA/exJzV8iQltH+LWXrvSk7gsUV+yWK6xn0jg=",
@@ -58,7 +54,7 @@ export default nix.lambda((args) => (() => {
       const buildInputs = nix.thunk(() => nix.concat([zlib], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), nix.thunk(() => [nix.thunk(() => nix.sel(llvmPackages, "openmp"))]))));
       const dependencies = nix.thunk(() => [netcdf4, numpy, packaging, pyparsing, scipy]);
       const env = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), "-Wno-incompatible-function-pointer-types")),
       }));
       const nativeCheckInputs = nix.thunk(() => [gsd, networkx, pandas, pytest_xdist, pytestCheckHook, tables]);
@@ -78,7 +74,7 @@ export default nix.lambda((args) => (() => {
       const disabledTestPaths = nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(pythonAtLeast, "3.12")), nix.thunk(() => ["test_mol2.py", "test_netcdf.py"])));
       const pythonImportsCheck = nix.thunk(() => ["mdtraj"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Open library for the analysis of molecular dynamics trajectories",
         homepage: "https://github.com/mdtraj/mdtraj",
         changelog: nix.thunk(() => nix.str`https://github.com/mdtraj/mdtraj/releases/tag/${nix.sel(src, "tag")}`),
@@ -89,7 +85,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         pyproject,

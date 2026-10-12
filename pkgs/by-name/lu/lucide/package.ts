@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["homepage", 18, 5], ["description", 19, 5], ["downloadPage", 20, 5], ["platforms", 21, 5], ["license", 22, 5], ["maintainers", 23, 5], ["sourceProvenance", 24, 5]], [["pname", 3, 3], ["version", 4, 3], ["url", 6, 3], ["hash", 7, 3], ["downloadToTemp", 9, 3], ["recursiveHash", 10, 3], ["postFetch", 12, 3], ["meta", 17, 3]]]);
 const formals$1 = { args: { lib: false, fetchurl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["homepage", 18, 5], ["description", 19, 5], ["downloadPage", 20, 5], ["platforms", 21, 5], ["license", 22, 5], ["maintainers", 23, 5], ["sourceProvenance", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 3, 3], ["version", 4, 3], ["url", 6, 3], ["hash", 7, 3], ["downloadToTemp", 9, 3], ["recursiveHash", 10, 3], ["postFetch", 12, 3], ["meta", 17, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const recursiveHash = true;
       const postFetch = "mkdir -p $out/share/fonts/truetype\ncp -a $downloadedFile $out/share/fonts/truetype/Lucide.ttf\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         homepage: "https://lucide.dev/",
         description: "Open-source icon library that provides 1000+ icons",
         downloadPage: url,
@@ -29,7 +28,7 @@ export default nix.lambda((args) => (() => {
         sourceProvenance: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "sourceTypes", "binaryBytecode"))]),
       }));
       return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         pname,
         version,
         url,

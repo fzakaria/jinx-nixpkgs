@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 35, 5], ["owner", 36, 5], ["repo", 37, 5], ["tag", 38, 5], ["hash", 39, 5]], [["PKG_CONFIG_DBUS_1_INTERFACES_DIR", 84, 5], ["PKG_CONFIG_POLKIT_GOBJECT_1_POLICYDIR", 85, 5], ["PKG_CONFIG_DBUS_1_DATADIR", 86, 5], ["LIBRARY_PATH", 89, 5]], [["homepage", 118, 5], ["description", 119, 5], ["license", 120, 5], ["platforms", 121, 5], ["teams", 122, 5]], [["pname", 27, 3], ["version", 28, 3], ["outputs", 29, 3], ["src", 34, 3], ["nativeBuildInputs", 42, 3], ["buildInputs", 56, 3], ["nativeCheckInputs", 65, 3], ["mesonFlags", 75, 3], ["env", 83, 3], ["mesonCheckFlags", 92, 3], ["patches", 98, 3], ["postPatch", 104, 3], ["meta", 117, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, "pkg-config": false, "gobject-introspection": false, meson: false, ninja: false, perl: false, gettext: false, "gtk-doc": false, libxslt: false, "docbook-xsl-nons": false, docbook_xml_dtd_412: false, glib: false, gusb: false, dbus: false, polkit: false, nss: false, pam: false, systemdLibs: false, libfprint: false, python3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 35, 5], ["owner", 36, 5], ["repo", 37, 5], ["tag", 38, 5], ["hash", 39, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["PKG_CONFIG_DBUS_1_INTERFACES_DIR", 84, 5], ["PKG_CONFIG_POLKIT_GOBJECT_1_POLICYDIR", 85, 5], ["PKG_CONFIG_DBUS_1_DATADIR", 86, 5], ["LIBRARY_PATH", 89, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 118, 5], ["description", 119, 5], ["license", 120, 5], ["platforms", 121, 5], ["teams", 122, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 27, 3], ["version", 28, 3], ["outputs", 29, 3], ["src", 34, 3], ["nativeBuildInputs", 42, 3], ["buildInputs", 56, 3], ["nativeCheckInputs", 65, 3], ["mesonFlags", 75, 3], ["env", 83, 3], ["mesonCheckFlags", 92, 3], ["patches", 98, 3], ["postPatch", 104, 3], ["meta", 117, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,12 +30,12 @@ export default nix.lambda((args) => (() => {
   const libfprint = nix.arg($, "libfprint");
   const python3 = nix.arg($, "python3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "fprintd",
       version: "1.94.5",
       outputs: nix.thunk(() => ["out", "devdoc"]),
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "gitlab.freedesktop.org",
           owner: "libfprint",
           repo: "fprintd",
@@ -79,7 +76,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`-Dsystemd_system_unit_dir=${nix.builtins.placeholder("out")}/lib/systemd/system`),
       ]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         PKG_CONFIG_DBUS_1_INTERFACES_DIR: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/share/dbus-1/interfaces`),
         PKG_CONFIG_POLKIT_GOBJECT_1_POLICYDIR: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/share/polkit-1/actions`),
         PKG_CONFIG_DBUS_1_DATADIR: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/share`),
@@ -89,7 +86,7 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [nix.path(here, "./skip-test-test_removal_during_enroll.patch")]),
       postPatch: "patchShebangs \\\n  po/check-translations.sh \\\n  tests/unittest_inspector.py\n\n# Stop tests from failing due to unhandled GTasks uncovered by GLib 2.76 bump.\n# https://gitlab.freedesktop.org/libfprint/fprintd/-/issues/151\nsubstituteInPlace tests/fprintd.py \\\n  --replace \"env['G_DEBUG'] = 'fatal-criticals'\" \"\"\nsubstituteInPlace tests/meson.build \\\n  --replace \"'G_DEBUG=fatal-criticals',\" \"\"\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://fprint.freedesktop.org/",
         description: "D-Bus daemon that offers libfprint functionality over the D-Bus interprocess communication bus",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

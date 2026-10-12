@@ -2,22 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["seed", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["hash", 33, 5], ["leaveDotGit", 34, 5], ["postFetch", 35, 5]], [["RADICLE_VERSION", 44, 7]], [["nativeBuildInputs", 128, 13]], [["package", 152, 28]], [["radicle", 152, 20]], [["services", 152, 11]], [["module", 151, 9]], [["package", 157, 28]], [["radicle", 157, 20]], [["services", 157, 11]], [["module", 156, 9]], [["basic", 125, 7], ["nixos-run", 150, 7], ["ci-broker", 155, 7]], [["updateScript", 123, 13], ["tests", 124, 5]], [["description", 164, 5], ["longDescription", 165, 5], ["homepage", 170, 5], ["changelog", 171, 5], ["license", 172, 5], ["platforms", 176, 5], ["teams", 177, 5], ["mainProgram", 178, 5], ["knownVulnerabilities", 179, 5]], [["version", 25, 11], ["cargoHash", 25, 19], ["pname", 27, 3], ["src", 29, 3], ["__structuredAttrs", 42, 3], ["env", 44, 3], ["nativeBuildInputs", 46, 3], ["nativeCheckInputs", 51, 3], ["preBuild", 53, 3], ["cargoBuildFlags", 58, 3], ["cargoTestFlags", 64, 3], ["doCheck", 67, 3], ["preCheck", 69, 3], ["checkFlags", 80, 3], ["postInstall", 91, 3], ["nativeInstallCheckInputs", 104, 3], ["doInstallCheck", 105, 3], ["postFixup", 107, 3], ["passthru", 122, 3], ["meta", 163, 3]]]);
 const formals$1 = { args: { asciidoctor: false, fetchFromRadicle: false, gitMinimal: false, installShellFiles: false, jq: false, lib: false, makeBinaryWrapper: false, "man-db": false, nixosTests: false, openssh: false, runCommand: false, rustPlatform: false, stdenv: false, "xdg-utils": false, versionCheckHook: false, version: true, srcHash: true, cargoHash: true, updateScript: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["seed", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["hash", 33, 5], ["leaveDotGit", 34, 5], ["postFetch", 35, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["RADICLE_VERSION", 44, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["nativeBuildInputs", 128, 13]]);
-const pos$4 = nix.positions(here + "/package.nix", [["package", 152, 28]]);
-const pos$5 = nix.positions(here + "/package.nix", [["radicle", 152, 20]]);
-const pos$6 = nix.positions(here + "/package.nix", [["services", 152, 11]]);
-const pos$7 = nix.positions(here + "/package.nix", [["module", 151, 9]]);
-const pos$8 = nix.positions(here + "/package.nix", [["package", 157, 28]]);
-const pos$9 = nix.positions(here + "/package.nix", [["radicle", 157, 20]]);
-const pos$10 = nix.positions(here + "/package.nix", [["services", 157, 11]]);
-const pos$11 = nix.positions(here + "/package.nix", [["module", 156, 9]]);
-const pos$12 = nix.positions(here + "/package.nix", [["basic", 125, 7], ["nixos-run", 150, 7], ["ci-broker", 155, 7]]);
-const pos$13 = nix.positions(here + "/package.nix", [["updateScript", 123, 13], ["tests", 124, 5]]);
-const pos$14 = nix.positions(here + "/package.nix", [["description", 164, 5], ["longDescription", 165, 5], ["homepage", 170, 5], ["changelog", 171, 5], ["license", 172, 5], ["platforms", 176, 5], ["teams", 177, 5], ["mainProgram", 178, 5], ["knownVulnerabilities", 179, 5]]);
-const pos$15 = nix.positions(here + "/package.nix", [["version", 25, 11], ["cargoHash", 25, 19], ["pname", 27, 3], ["src", 29, 3], ["__structuredAttrs", 42, 3], ["env", 44, 3], ["nativeBuildInputs", 46, 3], ["nativeCheckInputs", 51, 3], ["preBuild", 53, 3], ["cargoBuildFlags", 58, 3], ["cargoTestFlags", 64, 3], ["doCheck", 67, 3], ["preCheck", 69, 3], ["checkFlags", 80, 3], ["postInstall", 91, 3], ["nativeInstallCheckInputs", 104, 3], ["doInstallCheck", 105, 3], ["postFixup", 107, 3], ["passthru", 122, 3], ["meta", 163, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -41,12 +27,12 @@ export default nix.lambda((args) => (() => {
   const cargoHash = nix.argOr($, "cargoHash", () => "sha256-zQ6XnDJt3pek0WzC0J8PY111LGuzZeSCZ1QxwYAhPWw=");
   const updateScript = nix.argOr($, "updateScript", () => nix.path(here, "./update.sh"));
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$15,
+      [nix.POS]: $pos[14],
       version: version,
       cargoHash: cargoHash,
       pname: "radicle-node",
       src: nix.thunk(() => nix.app(fetchFromRadicle, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           seed: "seed.radicle.dev",
           repo: "z3gqcJUoA1n9HaHKufZs5FCSGazv5",
           tag: nix.thunk(() => nix.str`releases/${nix.sel(finalAttrs, "version")}`),
@@ -56,7 +42,7 @@ export default nix.lambda((args) => (() => {
         })))),
       __structuredAttrs: true,
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         RADICLE_VERSION: nix.thunk(() => nix.sel(finalAttrs, "version")),
       })),
       nativeBuildInputs: nix.thunk(() => [asciidoctor, installShellFiles, makeBinaryWrapper]),
@@ -97,12 +83,12 @@ do
 done
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$13,
+        [nix.POS]: $pos[12],
         updateScript: updateScript,
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$12,
+          [nix.POS]: $pos[11],
           basic: nix.thunk(() => nix.app(runCommand, "radicle-node-basic-test", nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               nativeBuildInputs: nix.thunk(() => [jq, openssh, nix.thunk(() => nix.sel(finalAttrs, "finalPackage"))]),
             })), nix.thunk(() => nix.str`set -e
 export RAD_HOME="$PWD/.radicle"
@@ -120,26 +106,26 @@ rad debug | jq -e '
 touch $out
 `))),
           "nixos-run": nix.thunk(() => nix.app(nix.sel(nixosTests, "radicle", "extendNixOS"), nix.thunk(() => ({
-              [nix.POS]: pos$7,
+              [nix.POS]: $pos[6],
               module: nix.thunk(() => ({
-                [nix.POS]: pos$6,
+                [nix.POS]: $pos[5],
                 services: nix.thunk(() => ({
-                  [nix.POS]: pos$5,
+                  [nix.POS]: $pos[4],
                   radicle: nix.thunk(() => ({
-                    [nix.POS]: pos$4,
+                    [nix.POS]: $pos[3],
                     package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
                   })),
                 })),
               })),
             })))),
           "ci-broker": nix.thunk(() => nix.app(nix.sel(nixosTests, "radicle-ci-broker", "extendNixOS"), nix.thunk(() => ({
-              [nix.POS]: pos$11,
+              [nix.POS]: $pos[10],
               module: nix.thunk(() => ({
-                [nix.POS]: pos$10,
+                [nix.POS]: $pos[9],
                 services: nix.thunk(() => ({
-                  [nix.POS]: pos$9,
+                  [nix.POS]: $pos[8],
                   radicle: nix.thunk(() => ({
-                    [nix.POS]: pos$8,
+                    [nix.POS]: $pos[7],
                     package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
                   })),
                 })),
@@ -148,7 +134,7 @@ touch $out
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$14,
+        [nix.POS]: $pos[13],
         description: "Radicle node and CLI for decentralized code collaboration",
         longDescription: "Radicle is an open source, peer-to-peer code collaboration stack built on Git.\nUnlike centralized code hosting platforms, there is no single entity controlling the network.\nRepositories are replicated across peers in a decentralized manner, and users are in full control of their data and workflow.\n",
         homepage: "https://radicle.dev",

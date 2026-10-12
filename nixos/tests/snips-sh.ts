@@ -2,32 +2,26 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/snips-sh.nix", [[["SNIPS_HTTP_INTERNAL", 9, 9], ["SNIPS_SSH_INTERNAL", 10, 9]], [["enable", 7, 7], ["settings", 8, 7]], [["snips-sh", 6, 14]], [["services", 6, 5]], [["machine", 5, 9]], [["maintainers", 23, 8]], [["name", 3, 3], ["nodes", 5, 3], ["testScript", 15, 3], ["meta", 23, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/snips-sh.nix", [["SNIPS_HTTP_INTERNAL", 9, 9], ["SNIPS_SSH_INTERNAL", 10, 9]]);
-const pos$2 = nix.positions(here + "/snips-sh.nix", [["enable", 7, 7], ["settings", 8, 7]]);
-const pos$3 = nix.positions(here + "/snips-sh.nix", [["snips-sh", 6, 14]]);
-const pos$4 = nix.positions(here + "/snips-sh.nix", [["services", 6, 5]]);
-const pos$5 = nix.positions(here + "/snips-sh.nix", [["machine", 5, 9]]);
-const pos$6 = nix.positions(here + "/snips-sh.nix", [["maintainers", 23, 8]]);
-const pos$7 = nix.positions(here + "/snips-sh.nix", [["name", 3, 3], ["nodes", 5, 3], ["testScript", 15, 3], ["meta", 23, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$7,
+    [nix.POS]: $pos[6],
     name: "snips-sh",
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       machine: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         services: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           "snips-sh": nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             enable: true,
             settings: nix.thunk(() => ({
-              [nix.POS]: pos$1,
+              [nix.POS]: $pos[0],
               SNIPS_HTTP_INTERNAL: "http://0.0.0.0:8080",
               SNIPS_SSH_INTERNAL: "ssh://0.0.0.0:2222",
             })),
@@ -37,7 +31,7 @@ export default nix.lambda((args) => (() => {
     })),
     testScript: "start_all()\n\nmachine.wait_for_unit(\"snips-sh.service\")\nmachine.wait_for_open_port(8080)\nmachine.succeed(\"curl --fail http://localhost:8080\")\n",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 14, 5], ["hash", 15, 5]], [["homepage", 32, 5], ["description", 33, 5], ["mainProgram", 34, 5], ["license", 35, 5], ["platforms", 36, 24], ["maintainers", 37, 5], ["sourceProvenance", 38, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["dontUnpack", 18, 3], ["nativeBuildInputs", 20, 3], ["installPhase", 22, 3], ["meta", 31, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, jre: false, makeWrapper: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 14, 5], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 32, 5], ["description", 33, 5], ["mainProgram", 34, 5], ["license", 35, 5], ["platforms", 36, 24], ["maintainers", 37, 5], ["sourceProvenance", 38, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["dontUnpack", 18, 3], ["nativeBuildInputs", 20, 3], ["installPhase", 22, 3], ["meta", 31, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const jre = nix.arg($, "jre");
   const makeWrapper = nix.arg($, "makeWrapper");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "kamilalisp",
       version: "0.3.0.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/kspalaiologos/kamilalisp/releases/download/v${nix.sel(finalAttrs, "version")}/kamilalisp-${nix.sel(finalAttrs, "version")}.jar`),
           hash: "sha256-SW0U483eHptkYw+yJV/2cImfK3uEjkl8ma54yeagF6s=",
         })))),
@@ -35,7 +33,7 @@ makeWrapper ${jre}/bin/java $out/bin/kamilalisp \\
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(jre, "meta"));
         return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/kspalaiologos/kamilalisp",
         description: "Functional, flexible, and concise Lisp",
         mainProgram: "kamilalisp",

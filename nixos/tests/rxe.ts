@@ -2,15 +2,9 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/rxe.nix", [[["allowedUDPPorts", 9, 11], ["allowedTCPPorts", 10, 11]], [["enable", 13, 11], ["interfaces", 14, 11]], [["firewall", 8, 9], ["rxe", 12, 9]], [["systemPackages", 18, 19]], [["networking", 7, 7], ["environment", 18, 7]], [["server", 29, 5], ["client", 30, 5]], [["name", 26, 3], ["nodes", 28, 3], ["testScript", 33, 3]]]);
 const formals$1 = { args: {  }, ellipsis: true };
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/rxe.nix", [["allowedUDPPorts", 9, 11], ["allowedTCPPorts", 10, 11]]);
-const pos$2 = nix.positions(here + "/rxe.nix", [["enable", 13, 11], ["interfaces", 14, 11]]);
-const pos$3 = nix.positions(here + "/rxe.nix", [["firewall", 8, 9], ["rxe", 12, 9]]);
-const pos$4 = nix.positions(here + "/rxe.nix", [["systemPackages", 18, 19]]);
-const pos$5 = nix.positions(here + "/rxe.nix", [["networking", 7, 7], ["environment", 18, 7]]);
-const pos$6 = nix.positions(here + "/rxe.nix", [["server", 29, 5], ["client", 30, 5]]);
-const pos$7 = nix.positions(here + "/rxe.nix", [["name", 26, 3], ["nodes", 28, 3], ["testScript", 33, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,18 +12,18 @@ export default nix.lambda((args) => (() => {
     const $_1 = nix.formals(args_1, formals$2);
     const pkgs = nix.arg($_1, "pkgs");
     return {
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       networking: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         firewall: nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           allowedUDPPorts: nix.thunk(() => [4791n]),
           allowedTCPPorts: nix.thunk(() => [4800n]),
         })),
-        rxe: nix.thunk(() => ({ [nix.POS]: pos$2, enable: true, interfaces: nix.thunk(() => ["eth1"]) })),
+        rxe: nix.thunk(() => ({ [nix.POS]: $pos[1], enable: true, interfaces: nix.thunk(() => ["eth1"]) })),
       })),
       environment: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         systemPackages: nix.thunk(() => (() => {
           const w = nix.withScope(pkgs, null);
           return [
@@ -41,9 +35,9 @@ export default nix.lambda((args) => (() => {
     };
   })(), formals$2);
   return {
-    [nix.POS]: pos$7,
+    [nix.POS]: $pos[6],
     name: "rxe",
-    nodes: nix.thunk(() => ({ [nix.POS]: pos$6, server: node, client: node })),
+    nodes: nix.thunk(() => ({ [nix.POS]: $pos[5], server: node, client: node })),
     testScript: "# Test if rxe interface comes up\nserver.wait_for_unit(\"default.target\")\nserver.succeed(\"systemctl status rxe.service\")\nserver.succeed(\"ibv_devices | grep rxe_eth1\")\n\nclient.wait_for_unit(\"default.target\")\n\n# ping pong tests\nfor proto in \"rc\", \"uc\", \"ud\", \"srq\":\n    server.succeed(\n        \"screen -dmS {0}_pingpong ibv_{0}_pingpong -p 4800 -s 1024 -g0\".format(proto)\n    )\n    client.succeed(\"sleep 2; ibv_{}_pingpong -p 4800 -s 1024 -g0 server\".format(proto))\n\nserver.succeed(\"screen -dmS rping rping -s -a server -C 10\")\nclient.succeed(\"sleep 2; rping -c -a server -C 10\")\n",
   };
 })(), formals$1);

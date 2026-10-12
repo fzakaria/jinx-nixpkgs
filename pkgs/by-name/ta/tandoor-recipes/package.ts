@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["django", 9, 7]], [["packageOverrides", 8, 5]], [["tandoor-recipes", 171, 28], ["tandoor-recipes-script-name", 171, 44], ["tandoor-recipes-media", 171, 72]], [["frontend", 166, 13], ["python", 166, 22], ["updateScript", 168, 5], ["tests", 170, 5]], [["description", 176, 5], ["mainProgram", 180, 5]], [["pname", 18, 3], ["version", 20, 20], ["src", 20, 28], ["pyproject", 22, 3], ["patches", 24, 3], ["postPatch", 28, 3], ["propagatedBuildInputs", 41, 3], ["configurePhase", 103, 3], ["buildPhase", 111, 3], ["installPhase", 130, 3], ["nativeCheckInputs", 144, 3], ["disabledTests", 156, 3], ["passthru", 165, 3], ["meta", 175, 3]]]);
 const formals$1 = { args: { callPackage: false, nixosTests: false, python3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["django", 9, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["packageOverrides", 8, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tandoor-recipes", 171, 28], ["tandoor-recipes-script-name", 171, 44], ["tandoor-recipes-media", 171, 72]]);
-const pos$4 = nix.positions(here + "/package.nix", [["frontend", 166, 13], ["python", 166, 22], ["updateScript", 168, 5], ["tests", 170, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 176, 5], ["mainProgram", 180, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 20, 20], ["src", 20, 28], ["pyproject", 22, 3], ["patches", 24, 3], ["postPatch", 28, 3], ["propagatedBuildInputs", 41, 3], ["configurePhase", 103, 3], ["buildPhase", 111, 3], ["installPhase", 130, 3], ["nativeCheckInputs", 144, 3], ["disabledTests", 156, 3], ["passthru", 165, 3], ["meta", 175, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,13 +11,13 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const python3 = nix.arg($, "python3");
   const python = nix.thunk(() => nix.app(nix.sel(python3, "override"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
-      packageOverrides: (final) => (prev) => ({ [nix.POS]: pos$1, django: nix.thunk(() => nix.sel(final, "django_5")) }),
+      [nix.POS]: $pos[1],
+      packageOverrides: (final) => (prev) => ({ [nix.POS]: $pos[0], django: nix.thunk(() => nix.sel(final, "django_5")) }),
     }))));
   const common = nix.thunk(() => nix.app(callPackage, nix.path(here, "./common.nix"), nix.thunk(() => ({}))));
   const frontend = nix.thunk(() => nix.app(callPackage, nix.path(here, "./frontend.nix"), nix.thunk(() => ({}))));
   return nix.app(nix.sel(python, "pkgs", "buildPythonPackage"), nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "tandoor-recipes",
       version: nix.thunk(() => nix.attr(common, "version")),
       src: nix.thunk(() => nix.attr(common, "src")),
@@ -137,19 +132,19 @@ runHook postBuild
         "test_delete",
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         frontend: frontend,
         python: python,
         updateScript: nix.path(here, "./update.sh"),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           "tandoor-recipes": nix.thunk(() => nix.attr(nixosTests, "tandoor-recipes")),
           "tandoor-recipes-script-name": nix.thunk(() => nix.attr(nixosTests, "tandoor-recipes-script-name")),
           "tandoor-recipes-media": nix.thunk(() => nix.attr(nixosTests, "tandoor-recipes-media")),
         })),
       })),
       meta: nix.thunk(() => nix.update(nix.sel(common, "meta"), {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Application for managing recipes, planning meals, building shopping lists\nand much much more!\n",
         mainProgram: "tandoor-recipes",
       })),

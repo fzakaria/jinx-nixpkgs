@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 34, 5], ["repo", 35, 5], ["tag", 36, 5], ["hash", 37, 5]], [["easy", 45, 5]], [["description", 109, 5], ["homepage", 110, 5], ["changelog", 111, 5], ["license", 112, 5], ["mainProgram", 113, 5], ["maintainers", 114, 5]], [["pname", 29, 3], ["version", 30, 3], ["pyproject", 31, 3], ["src", 33, 3], ["build-system", 40, 3], ["dependencies", 42, 3], ["optional-dependencies", 44, 3], ["nativeCheckInputs", 68, 3], ["disabledTests", 78, 3], ["enabledTestPaths", 87, 3], ["pythonImportsCheck", 94, 3], ["meta", 108, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, pytestCheckHook: false, numpy: false, lxml: false, colorlog: false, manifold3d: false, "charset-normalizer": false, jsonschema: false, networkx: false, "svg-path": false, pycollada: false, shapely: false, xxhash: false, rtree: false, httpx: false, scipy: false, pillow: false, "mapbox-earcut": false, embreex: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 34, 5], ["repo", 35, 5], ["tag", 36, 5], ["hash", 37, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["easy", 45, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 109, 5], ["homepage", 110, 5], ["changelog", 111, 5], ["license", 112, 5], ["mainProgram", 113, 5], ["maintainers", 114, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 29, 3], ["version", 30, 3], ["pyproject", 31, 3], ["src", 33, 3], ["build-system", 40, 3], ["dependencies", 42, 3], ["optional-dependencies", 44, 3], ["nativeCheckInputs", 68, 3], ["disabledTests", 78, 3], ["enabledTestPaths", 87, 3], ["pythonImportsCheck", 94, 3], ["meta", 108, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,12 +30,12 @@ export default nix.lambda((args) => (() => {
   const mapbox_earcut = nix.arg($, "mapbox-earcut");
   const embreex = nix.arg($, "embreex");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "trimesh",
       version: "5.1.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "mikedh",
           repo: "trimesh",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -47,7 +44,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [setuptools]),
       dependencies: nix.thunk(() => [numpy]),
       "optional-dependencies": nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         easy: nix.thunk(() => nix.concat([
           colorlog,
           manifold3d,
@@ -83,7 +80,7 @@ export default nix.lambda((args) => (() => {
         "trimesh.interfaces",
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Python library for loading and using triangular meshes",
         homepage: "https://trimesh.org/",
         changelog: nix.thunk(() => nix.str`https://github.com/mikedh/trimesh/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

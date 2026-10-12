@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["urls", 28, 5], ["hash", 32, 5]], [["name", 61, 5], ["desktopName", 62, 5], ["comment", 63, 5], ["icon", 64, 5], ["exec", 65, 5], ["categories", 66, 5]], [["homepage", 75, 5], ["description", 76, 5], ["longDescription", 77, 5], ["license", 90, 5], ["platforms", 94, 5], ["maintainers", 95, 5]], [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["postPatch", 38, 3], ["nativeBuildInputs", 43, 3], ["cmakeFlags", 45, 3], ["buildInputs", 52, 3], ["desktopItem", 60, 3], ["postInstall", 69, 3], ["meta", 74, 3]]]);
 const formals$1 = { args: { enableGUI: true, enablePDFtoPPM: true, enablePrinting: true, lib: false, stdenv: false, fetchzip: false, cmake: false, makeDesktopItem: false, zlib: false, libpng: false, cups: true, freetype: true, qtbase: true, qtsvg: true, wrapQtAppsHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["urls", 28, 5], ["hash", 32, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["name", 61, 5], ["desktopName", 62, 5], ["comment", 63, 5], ["icon", 64, 5], ["exec", 65, 5], ["categories", 66, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["homepage", 75, 5], ["description", 76, 5], ["longDescription", 77, 5], ["license", 90, 5], ["platforms", 94, 5], ["maintainers", 95, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["postPatch", 38, 3], ["nativeBuildInputs", 43, 3], ["cmakeFlags", 45, 3], ["buildInputs", 52, 3], ["desktopItem", 60, 3], ["postInstall", 69, 3], ["meta", 74, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const pname = "xpdf";
       const version = "4.06";
       const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           urls: nix.thunk(() => [
             nix.thunk(() => nix.str`https://dl.xpdfreader.com/xpdf-${version}.tar.gz`),
             nix.thunk(() => nix.str`https://dl.xpdfreader.com/old/xpdf-${version}.tar.gz`),
@@ -44,7 +41,7 @@ export default nix.lambda((args) => (() => {
       const cmakeFlags = nix.thunk(() => nix.concat(["-DSYSTEM_XPDFRC=/etc/xpdfrc", "-DA4_PAPER=ON", "-DOPI_SUPPORT=ON"], nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(enablePrinting)), "-DXPDFWIDGET_PRINTING=OFF")));
       const buildInputs = nix.thunk(() => nix.concat([zlib, libpng], nix.concat(nix.app(nix.sel(lib, "optional"), enableGUI, qtbase), nix.concat(nix.app(nix.sel(lib, "optional"), enablePrinting, cups), nix.app(nix.sel(lib, "optional"), enablePDFtoPPM, freetype)))));
       const desktopItem = nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           name: "xpdf",
           desktopName: "Xpdf",
           comment: "Views Adobe PDF files",
@@ -56,7 +53,7 @@ export default nix.lambda((args) => (() => {
 install -Dm644 $src/xpdf-qt/xpdf-icon.svg $out/share/pixmaps/xpdf.svg
 `)));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://www.xpdfreader.com",
         description: "Viewer for Portable Document Format (PDF) files",
         longDescription: "XPDF includes multiple tools for viewing and processing PDF files.\n  xpdf:      PDF viewer (with Graphical Interface)\n  pdftotext: converts PDF to text\n  pdftops:   converts PDF to PostScript\n  pdftoppm:  converts PDF pages to netpbm (PPM/PGM/PBM) image files\n  pdftopng:  converts PDF pages to PNG image files\n  pdftohtml: converts PDF to HTML\n  pdfinfo:   extracts PDF metadata\n  pdfimages: extracts raw images from PDF files\n  pdffonts:  lists fonts used in PDF files\n  pdfdetach: extracts attached files from PDF files\n",
@@ -74,7 +71,7 @@ install -Dm644 $src/xpdf-qt/xpdf-icon.svg $out/share/pixmaps/xpdf.svg
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

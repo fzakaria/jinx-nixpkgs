@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]], [["description", 66, 5], ["homepage", 67, 5], ["changelog", 68, 5], ["license", 69, 5], ["maintainers", 70, 5]], [["pname", 20, 3], ["version", 21, 3], ["pyproject", 22, 3], ["disabled", 24, 3], ["src", 26, 3], ["build-system", 33, 3], ["dependencies", 38, 3], ["nativeCheckInputs", 45, 3], ["pytestFlags", 53, 3], ["disabledTests", 57, 3], ["pythonImportsCheck", 63, 3], ["meta", 65, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, "pytest-freezer": false, "pytest-mock": false, pytestCheckHook: false, "python-dateutil": false, pythonOlder: false, requests: false, "requests-mock": false, "setuptools-scm": false, setuptools: false, syrupy: false, "websocket-client": false, zeroconf: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 66, 5], ["homepage", 67, 5], ["changelog", 68, 5], ["license", 69, 5], ["maintainers", 70, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 20, 3], ["version", 21, 3], ["pyproject", 22, 3], ["disabled", 24, 3], ["src", 26, 3], ["build-system", 33, 3], ["dependencies", 38, 3], ["nativeCheckInputs", 45, 3], ["pytestFlags", 53, 3], ["disabledTests", 57, 3], ["pythonImportsCheck", 63, 3], ["meta", 65, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const pyproject = true;
       const disabled = nix.thunk(() => nix.app(pythonOlder, "3.12"));
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "2Fake",
           repo: "devolo_home_control_api",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -43,7 +41,7 @@ export default nix.lambda((args) => (() => {
       const disabledTests = nix.thunk(() => ["test__on_pong", "TestMprm"]);
       const pythonImportsCheck = nix.thunk(() => ["devolo_home_control_api"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Python library to work with devolo Home Control",
         homepage: "https://github.com/2Fake/devolo_home_control_api",
         changelog: nix.thunk(() => nix.str`https://github.com/2Fake/devolo_home_control_api/blob/${nix.sel(src, "tag")}/docs/CHANGELOG.md`),
@@ -54,7 +52,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

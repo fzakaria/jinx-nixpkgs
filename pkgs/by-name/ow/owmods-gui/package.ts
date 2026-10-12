@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]], [["VITE_VERSION_SUFFIX", 35, 9]], [["description", 51, 7], ["homepage", 52, 7], ["license", 53, 7]], [["pname", 32, 5], ["version", 33, 13], ["env", 35, 5], ["src", 37, 5], ["packageJSON", 39, 5], ["npmDepsHash", 40, 5], ["postBuild", 42, 5], ["distPhase", 45, 5], ["dontInstall", 46, 5], ["installInPlace", 47, 5], ["distDir", 48, 5], ["meta", 50, 5]], [["extraArgs", 108, 7]], [["frontend", 105, 13], ["updateScript", 107, 5]], [["description", 118, 5], ["homepage", 119, 5], ["downloadPage", 120, 5], ["changelog", 121, 5], ["mainProgram", 122, 5], ["platforms", 123, 5], ["license", 124, 5], ["maintainers", 125, 5]], [["pname", 58, 11], ["version", 58, 17], ["src", 58, 25], ["cargoHash", 60, 3], ["buildNoDefaultFeatures", 62, 3], ["buildFeatures", 63, 3], ["nativeBuildInputs", 67, 3], ["buildInputs", 78, 3], ["buildAndTestSubdir", 87, 3], ["preFixup", 89, 3], ["postPatch", 93, 3], ["postInstall", 99, 3], ["passthru", 104, 3], ["meta", 117, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, libsoup_3: false, dbus: false, glib: false, "glib-networking": false, librsvg: false, webkitgtk_4_1: false, "pkg-config": false, "cargo-tauri": false, wrapGAppsHook3: false, rustPlatform: false, buildNpmPackage: false, fetchFromGitHub: false, makeBinaryWrapper: false, mono: false, jq: false, wrapWithMono: true, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["VITE_VERSION_SUFFIX", 35, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 51, 7], ["homepage", 52, 7], ["license", 53, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 32, 5], ["version", 33, 13], ["env", 35, 5], ["src", 37, 5], ["packageJSON", 39, 5], ["npmDepsHash", 40, 5], ["postBuild", 42, 5], ["distPhase", 45, 5], ["dontInstall", 46, 5], ["installInPlace", 47, 5], ["distDir", 48, 5], ["meta", 50, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["extraArgs", 108, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["frontend", 105, 13], ["updateScript", 107, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["description", 118, 5], ["homepage", 119, 5], ["downloadPage", 120, 5], ["changelog", 121, 5], ["mainProgram", 122, 5], ["platforms", 123, 5], ["license", 124, 5], ["maintainers", 125, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 58, 11], ["version", 58, 17], ["src", 58, 25], ["cargoHash", 60, 3], ["buildNoDefaultFeatures", 62, 3], ["buildFeatures", 63, 3], ["nativeBuildInputs", 67, 3], ["buildInputs", 78, 3], ["buildAndTestSubdir", 87, 3], ["preFixup", 89, 3], ["postPatch", 93, 3], ["postInstall", 99, 3], ["passthru", 104, 3], ["meta", 117, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -36,17 +29,17 @@ export default nix.lambda((args) => (() => {
   const pname = "owmods-gui";
   const version = "0.15.7";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "ow-mods",
       repo: "ow-mod-man",
       tag: nix.thunk(() => nix.str`gui_v${version}`),
       hash: "sha256-xGohK7ki82gvfTnjPUdpamnvPDf8vpuAuC0gjRvx7mQ=",
     }))));
   const frontend = nix.thunk(() => nix.app(buildNpmPackage, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "owmods-gui-ui",
       version: version,
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, VITE_VERSION_SUFFIX: "-nix" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], VITE_VERSION_SUFFIX: "-nix" })),
       src: nix.thunk(() => nix.str`${src}/owmods_gui/frontend`),
       packageJSON: nix.thunk(() => nix.str`${src}/owmods_gui/frontend/package.json`),
       npmDepsHash: "sha256-+2PlfZijwYeGXDYycwgOfjbZCRazHs/O3iDDuKLIwxM=",
@@ -56,14 +49,14 @@ export default nix.lambda((args) => (() => {
       installInPlace: true,
       distDir: "../dist",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Web frontend for the Outer Wilds Mod Manager",
         homepage: "https://github.com/ow-mods/ow-mod-man/tree/main/owmods_gui/frontend",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
       })),
     }))));
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: pname,
       version: version,
       src: src,
@@ -82,15 +75,15 @@ mv owmods_gui/backend/new.tauri.conf.json owmods_gui/backend/tauri.conf.json
 makeWrapper "$out/Applications/Outer Wilds Mod Manager.app/Contents/MacOS/owmods_gui" "$out/bin/owmods_gui" ${nix.app(nix.sel(lib, "optionalString"), wrapWithMono, nix.thunk(() => nix.str`--set MONO_BINARY ${nix.app(nix.sel(lib, "getExe"), mono)}`))}
 `))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         frontend: frontend,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             extraArgs: nix.thunk(() => ["--subpackage", "frontend", "--version-regex", "gui_v(.*)"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "GUI version of the mod manager for Outer Wilds Mod Loader",
         homepage: "https://github.com/ow-mods/ow-mod-man/tree/main/owmods_gui",
         downloadPage: nix.thunk(() => nix.str`https://github.com/ow-mods/ow-mod-man/releases/tag/gui_v${version}`),

@@ -2,23 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/installation-cd-graphical-calamares-cosmic.nix", [[["edition", 11, 12], ["configurationName", 12, 12]], [["pathsToLink", 14, 15]], [["enable", 17, 27]], [["cosmic", 17, 20]], [["enable", 20, 22]], [["enable", 24, 9], ["user", 25, 9]], [["cosmic-greeter", 20, 7], ["autoLogin", 23, 7]], [["desktopManager", 17, 5], ["displayManager", 18, 5]], [["rules", 30, 20]], [["tmpfiles", 30, 11]], [["configurationName", 68, 18]], [["imports", 67, 9], ["isoImage", 68, 9]], [["configuration", 64, 26]], [["cosmic_latest_kernel", 64, 5]], [["imports", 9, 3], ["isoImage", 11, 3], ["environment", 14, 3], ["services", 16, 3], ["systemd", 30, 3], ["specialisation", 63, 3]]]);
 const formals$1 = { args: { config: false, lib: false, pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/installation-cd-graphical-calamares-cosmic.nix", [["edition", 11, 12], ["configurationName", 12, 12]]);
-const pos$2 = nix.positions(here + "/installation-cd-graphical-calamares-cosmic.nix", [["pathsToLink", 14, 15]]);
-const pos$3 = nix.positions(here + "/installation-cd-graphical-calamares-cosmic.nix", [["enable", 17, 27]]);
-const pos$4 = nix.positions(here + "/installation-cd-graphical-calamares-cosmic.nix", [["cosmic", 17, 20]]);
-const pos$5 = nix.positions(here + "/installation-cd-graphical-calamares-cosmic.nix", [["enable", 20, 22]]);
-const pos$6 = nix.positions(here + "/installation-cd-graphical-calamares-cosmic.nix", [["enable", 24, 9], ["user", 25, 9]]);
-const pos$7 = nix.positions(here + "/installation-cd-graphical-calamares-cosmic.nix", [["cosmic-greeter", 20, 7], ["autoLogin", 23, 7]]);
-const pos$8 = nix.positions(here + "/installation-cd-graphical-calamares-cosmic.nix", [["desktopManager", 17, 5], ["displayManager", 18, 5]]);
-const pos$9 = nix.positions(here + "/installation-cd-graphical-calamares-cosmic.nix", [["rules", 30, 20]]);
-const pos$10 = nix.positions(here + "/installation-cd-graphical-calamares-cosmic.nix", [["tmpfiles", 30, 11]]);
 const formals$2 = { args: { config: false }, ellipsis: true };
-const pos$11 = nix.positions(here + "/installation-cd-graphical-calamares-cosmic.nix", [["configurationName", 68, 18]]);
-const pos$12 = nix.positions(here + "/installation-cd-graphical-calamares-cosmic.nix", [["imports", 67, 9], ["isoImage", 68, 9]]);
-const pos$13 = nix.positions(here + "/installation-cd-graphical-calamares-cosmic.nix", [["configuration", 64, 26]]);
-const pos$14 = nix.positions(here + "/installation-cd-graphical-calamares-cosmic.nix", [["cosmic_latest_kernel", 64, 5]]);
-const pos$15 = nix.positions(here + "/installation-cd-graphical-calamares-cosmic.nix", [["imports", 9, 3], ["isoImage", 11, 3], ["environment", 14, 3], ["services", 16, 3], ["systemd", 30, 3], ["specialisation", 63, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,30 +12,30 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   return {
-    [nix.POS]: pos$15,
+    [nix.POS]: $pos[14],
     imports: nix.thunk(() => [nix.path(here, "./installation-cd-graphical-calamares.nix")]),
     isoImage: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       edition: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "cosmic")),
       configurationName: "COSMIC (Linux LTS)",
     })),
-    environment: nix.thunk(() => ({ [nix.POS]: pos$2, pathsToLink: nix.thunk(() => ["/share/calamares"]) })),
+    environment: nix.thunk(() => ({ [nix.POS]: $pos[1], pathsToLink: nix.thunk(() => ["/share/calamares"]) })),
     services: nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       desktopManager: nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        cosmic: nix.thunk(() => ({ [nix.POS]: pos$3, enable: true })),
+        [nix.POS]: $pos[3],
+        cosmic: nix.thunk(() => ({ [nix.POS]: $pos[2], enable: true })),
       })),
       displayManager: nix.thunk(() => ({
-        [nix.POS]: pos$7,
-        "cosmic-greeter": nix.thunk(() => ({ [nix.POS]: pos$5, enable: true })),
-        autoLogin: nix.thunk(() => ({ [nix.POS]: pos$6, enable: true, user: "nixos" })),
+        [nix.POS]: $pos[6],
+        "cosmic-greeter": nix.thunk(() => ({ [nix.POS]: $pos[4], enable: true })),
+        autoLogin: nix.thunk(() => ({ [nix.POS]: $pos[5], enable: true, user: "nixos" })),
       })),
     })),
     systemd: nix.thunk(() => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       tmpfiles: nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         rules: nix.thunk(() => (() => {
           const desktopDir = "/home/nixos/Desktop";
           const filesInHomePerms = "0644 nixos users -";
@@ -71,17 +57,17 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     specialisation: nix.thunk(() => ({
-      [nix.POS]: pos$14,
+      [nix.POS]: $pos[13],
       cosmic_latest_kernel: nix.thunk(() => ({
-        [nix.POS]: pos$13,
+        [nix.POS]: $pos[12],
         configuration: nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$2);
           const config_1 = nix.arg($_1, "config");
           return {
-            [nix.POS]: pos$12,
+            [nix.POS]: $pos[11],
             imports: nix.thunk(() => [nix.path(here, "./latest-kernel.nix")]),
             isoImage: nix.thunk(() => ({
-              [nix.POS]: pos$11,
+              [nix.POS]: $pos[10],
               configurationName: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), nix.thunk(() => nix.str`COSMIC (Linux ${nix.sel(config_1, "boot", "kernelPackages", "kernel", "version")})`))),
             })),
           };

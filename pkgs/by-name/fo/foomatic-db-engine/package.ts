@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 26, 5], ["repo", 27, 5], ["rev", 28, 5], ["hash", 29, 5]], [["changelog", 94, 5], ["description", 95, 5], ["downloadPage", 96, 5], ["homepage", 97, 5], ["license", 98, 5], ["maintainers", 99, 5], ["longDescription", 100, 5]], [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["outputs", 32, 3], ["strictDeps", 34, 3], ["__structuredAttrs", 35, 3], ["propagatedBuildInputs", 37, 3], ["buildInputs", 43, 3], ["nativeBuildInputs", 58, 3], ["prePatch", 68, 3], ["preConfigure", 74, 3], ["configureFlags", 78, 3], ["postFixup", 84, 3], ["doCheck", 91, 3], ["meta", 93, 3]]]);
 const formals$1 = { args: { lib: false, perlPackages: false, fetchFromGitHub: false, withCupsAccess: true, cups: false, "cups-filters": false, curl: false, withSocketAccess: true, "netcat-gnu": false, withSMBAccess: true, samba: false, autoconf: false, automake: false, file: false, makeWrapper: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 26, 5], ["repo", 27, 5], ["rev", 28, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["changelog", 94, 5], ["description", 95, 5], ["downloadPage", 96, 5], ["homepage", 97, 5], ["license", 98, 5], ["maintainers", 99, 5], ["longDescription", 100, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["outputs", 32, 3], ["strictDeps", 34, 3], ["__structuredAttrs", 35, 3], ["propagatedBuildInputs", 37, 3], ["buildInputs", 43, 3], ["nativeBuildInputs", 58, 3], ["prePatch", 68, 3], ["preConfigure", 74, 3], ["configureFlags", 78, 3], ["postFixup", 84, 3], ["doCheck", 91, 3], ["meta", 93, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const pname = "foomatic-db-engine";
       const version = "0-unstable-2026-04-13";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "OpenPrinting",
           repo: "foomatic-db-engine",
           rev: "e4e7b9cd28ba160428f82bc5234559d1f50e5c42",
@@ -58,7 +56,7 @@ done
 `);
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         changelog: nix.thunk(() => nix.str`https://github.com/OpenPrinting/foomatic-db-engine/blob/${nix.sel(src, "rev")}/ChangeLog`),
         description: "OpenPrinting printer support database engine",
         downloadPage: "https://www.openprinting.org/download/foomatic/",
@@ -68,7 +66,7 @@ done
         longDescription: "Foomatic's database engine generates PPD files\nfrom the data in Foomatic's XML database.\nIt also contains scripts to directly\ngenerate print queues and handle jobs.\n",
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

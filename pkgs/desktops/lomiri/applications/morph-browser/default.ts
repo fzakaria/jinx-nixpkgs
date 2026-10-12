@@ -2,13 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 41, 5], ["repo", 42, 5], ["tag", 43, 5], ["hash", 44, 5]], [["updateScript", 160, 5]], [["standalone", 165, 7], ["desktop-basics", 168, 35], ["desktop-appinteractions", 168, 50]], [["tests", 163, 5]], [["description", 173, 5], ["homepage", 174, 5], ["changelog", 175, 5], ["license", 176, 5], ["mainProgram", 180, 5], ["teams", 181, 5], ["platforms", 182, 5]], [["pname", 37, 3], ["version", 38, 3], ["src", 40, 3], ["outputs", 47, 3], ["postPatch", 54, 3], ["strictDeps", 70, 3], ["nativeBuildInputs", 72, 3], ["buildInputs", 82, 3], ["nativeCheckInputs", 108, 3], ["cmakeFlags", 114, 3], ["doCheck", 120, 3], ["disabledTests", 125, 3], ["preCheck", 133, 3], ["postInstall", 152, 3], ["passthru", 159, 3], ["meta", 172, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitLab: false, gitUpdater: false, nixosTests: false, cmake: false, ctestCheckHook: false, gettext: false, libapparmor: false, libpsl: false, "lomiri-action-api": false, "lomiri-content-hub": false, "lomiri-thumbnailer": false, "lomiri-ui-extras": false, "lomiri-ui-toolkit": false, mesa: false, "pkg-config": false, "qqc2-suru-style": false, qt5compat: true, qtbase: false, qtdeclarative: false, qtquickcontrols2: true, qtsystems: true, qttools: false, qtwebengine: false, wrapQtAppsHook: false, "xvfb-run": false, withDocumentation: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 41, 5], ["repo", 42, 5], ["tag", 43, 5], ["hash", 44, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["updateScript", 160, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["standalone", 165, 7], ["desktop-basics", 168, 35], ["desktop-appinteractions", 168, 50]]);
-const pos$4 = nix.positions(here + "/default.nix", [["tests", 163, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["description", 173, 5], ["homepage", 174, 5], ["changelog", 175, 5], ["license", 176, 5], ["mainProgram", 180, 5], ["teams", 181, 5], ["platforms", 182, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 37, 3], ["version", 38, 3], ["src", 40, 3], ["outputs", 47, 3], ["postPatch", 54, 3], ["strictDeps", 70, 3], ["nativeBuildInputs", 72, 3], ["buildInputs", 82, 3], ["nativeCheckInputs", 108, 3], ["cmakeFlags", 114, 3], ["doCheck", 120, 3], ["disabledTests", 125, 3], ["preCheck", 133, 3], ["postInstall", 152, 3], ["passthru", 159, 3], ["meta", 172, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -43,11 +38,11 @@ export default nix.lambda((args) => (() => {
   const withQt6 = nix.thunk(() => nix.app(nix.sel(lib, "strings", "versionAtLeast"), nix.thunk(() => nix.sel(qtbase, "version")), "6"));
   const listToQtVar = (suffix) => nix.app(nix.sel(lib, "makeSearchPathOutput"), "bin", suffix);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "morph-browser",
       version: "1.99.6",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ubports",
           repo: "development/core/morph-browser",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -93,14 +88,14 @@ export QML2_IMPORT_PATH=${nix.app(listToQtVar, nix.thunk(() => nix.sel(qtbase, "
 `),
       postInstall: "mkdir -p $out/share/{icons/hicolor/scalable/apps,lomiri-app-launch/splash}\n\nln -s $out/share/{morph-browser,icons/hicolor/scalable/apps}/morph-browser.svg\nln -s $out/share/{morph-browser/morph-browser-splash.svg,lomiri-app-launch/splash/morph-browser.svg}\n",
       passthru: nix.thunk(() => nix.update({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       }, nix.app(nix.sel(lib, "optionalAttrs"), withQt6, nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           tests: nix.thunk(() => (() => {
             const from = nix.thunk(() => nix.sel(nixosTests, "lomiri"));
             return {
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             standalone: nix.thunk(() => (nix.asBool(withQt6) ? nix.sel(nixosTests, "morph-browser", "qt6") : nix.sel(nixosTests, "morph-browser", "qt5"))),
             "desktop-basics": nix.thunk(() => nix.attr(from, "desktop-basics")),
             "desktop-appinteractions": nix.thunk(() => nix.attr(from, "desktop-appinteractions")),
@@ -108,7 +103,7 @@ export QML2_IMPORT_PATH=${nix.app(listToQtVar, nix.thunk(() => nix.sel(qtbase, "
           })()),
         }))))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Lightweight web browser tailored for Ubuntu Touch",
         homepage: "https://gitlab.com/ubports/development/core/morph-browser",
         changelog: nix.thunk(() => nix.str`https://gitlab.com/ubports/development/core/morph-browser/-/blob/${nix.sel(finalAttrs, "version")}/ChangeLog`),

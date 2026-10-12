@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 22, 5], ["repo", 23, 5], ["fetchSubmodules", 24, 5], ["rev", 25, 5], ["hash", 26, 5]], [["updateScript", 56, 12]], [["description", 59, 5], ["homepage", 60, 5], ["license", 61, 5], ["maintainers", 66, 5]], [["pname", 17, 3], ["version", 18, 3], ["pyproject", 19, 3], ["src", 21, 3], ["build-system", 29, 3], ["pythonRelaxDeps", 31, 3], ["dependencies", 33, 3], ["pythonImportsCheck", 42, 3], ["nativeCheckInputs", 44, 3], ["disabledTests", 48, 3], ["passthru", 56, 3], ["meta", 58, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, dateparser: false, lupa: false, lxml: false, "mediawiki-langcodes": false, psutil: false, requests: false, pytestCheckHook: false, unstableGitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 22, 5], ["repo", 23, 5], ["fetchSubmodules", 24, 5], ["rev", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["updateScript", 56, 12]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 59, 5], ["homepage", 60, 5], ["license", 61, 5], ["maintainers", 66, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 17, 3], ["version", 18, 3], ["pyproject", 19, 3], ["src", 21, 3], ["build-system", 29, 3], ["pythonRelaxDeps", 31, 3], ["dependencies", 33, 3], ["pythonImportsCheck", 42, 3], ["nativeCheckInputs", 44, 3], ["disabledTests", 48, 3], ["passthru", 56, 3], ["meta", 58, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "wikitextprocessor",
       version: "0.4.96-unstable-2026-03-06",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "tatuylonen",
           repo: "wikitextprocessor",
           fetchSubmodules: true,
@@ -42,11 +39,11 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
       disabledTests: nix.thunk(() => ["test_process_dump", "test_fetchlanguage", "test_language_parser_function"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Parser and expander for Wikipedia, Wiktionary etc. dump files, with Lua execution support",
         homepage: "https://github.com/tatuylonen/wikitextprocessor",
         license: nix.thunk(() => (() => {

@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]], [["primesieve", 44, 15]], [["rev-prefix", 46, 33]], [["tests", 43, 5], ["updateScript", 46, 5]], [["homepage", 50, 5], ["description", 51, 5], ["longDescription", 52, 5], ["changelog", 66, 5], ["license", 67, 5], ["mainProgram", 68, 5], ["teams", 69, 31], ["platforms", 69, 37]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["outputs", 21, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 30, 3], ["strictDeps", 32, 3], ["cmakeFlags", 34, 3], ["passthru", 42, 3], ["meta", 49, 3]]]);
 const formals$1 = { args: { lib: false, cmake: false, fetchFromGitHub: false, gitUpdater: false, primesieve: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["primesieve", 44, 15]]);
-const pos$3 = nix.positions(here + "/package.nix", [["rev-prefix", 46, 33]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 43, 5], ["updateScript", 46, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["homepage", 50, 5], ["description", 51, 5], ["longDescription", 52, 5], ["changelog", 66, 5], ["license", 67, 5], ["mainProgram", 68, 5], ["teams", 69, 31], ["platforms", 69, 37]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["outputs", 21, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 30, 3], ["strictDeps", 32, 3], ["cmakeFlags", 34, 3], ["passthru", 42, 3], ["meta", 49, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const primesieve = nix.arg($, "primesieve");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "primecount",
       version: "8.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "kimwalisch",
           repo: "primecount",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -41,14 +36,14 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "BUILD_TESTS", true)),
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$2, primesieve: primesieve })),
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$3, "rev-prefix": "v" })))),
+        [nix.POS]: $pos[3],
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[1], primesieve: primesieve })),
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[2], "rev-prefix": "v" })))),
       })),
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(primesieve, "meta"));
         return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "https://github.com/kimwalisch/primecount",
         description: "Fast prime counting function implementations",
         longDescription: "primecount is a command-line program and C/C++ library that counts the\nprimes below an integer x ≤ 10^31 using highly optimized implementations\nof the combinatorial prime counting algorithms.\n\nprimecount includes implementations of all important combinatorial prime\ncounting algorithms known up to this date all of which have been\nparallelized using OpenMP. primecount contains the first ever open source\nimplementations of the Deleglise-Rivat algorithm and Xavier Gourdon's\nalgorithm (that works). primecount also features a novel load balancer\nthat is shared amongst all implementations and that scales up to hundreds\nof CPU cores. primecount has already been used to compute several prime\ncounting function world records.\n",

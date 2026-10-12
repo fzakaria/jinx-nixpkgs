@@ -2,12 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/vz-vm-file-systems.nix", [[["device", 10, 5], ["fsType", 11, 5], ["neededForBoot", 12, 5], ["options", 13, 5]], [["/", 9, 3]], [["device", 20, 5], ["fsType", 21, 5], ["autoFormat", 22, 5], ["neededForBoot", 23, 5]], [["/nix", 19, 3]], [["device", 30, 7], ["fsType", 31, 7]]]);
 const formals$1 = { args: { diskImage: false, lib: false, sharedDirectories: false, writableStoreUseTmpfs: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/vz-vm-file-systems.nix", [["device", 10, 5], ["fsType", 11, 5], ["neededForBoot", 12, 5], ["options", 13, 5]]);
-const pos$2 = nix.positions(here + "/vz-vm-file-systems.nix", [["/", 9, 3]]);
-const pos$3 = nix.positions(here + "/vz-vm-file-systems.nix", [["device", 20, 5], ["fsType", 21, 5], ["autoFormat", 22, 5], ["neededForBoot", 23, 5]]);
-const pos$4 = nix.positions(here + "/vz-vm-file-systems.nix", [["/nix", 19, 3]]);
-const pos$5 = nix.positions(here + "/vz-vm-file-systems.nix", [["device", 30, 7], ["fsType", 31, 7]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,25 +12,25 @@ export default nix.lambda((args) => (() => {
   const sharedDirectories = nix.arg($, "sharedDirectories");
   const writableStoreUseTmpfs = nix.arg($, "writableStoreUseTmpfs");
   return nix.update({
-    [nix.POS]: pos$2,
+    [nix.POS]: $pos[1],
     "/": nix.thunk(() => nix.app(nix.sel(lib, "mkVMOverride"), nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         device: "tmpfs",
         fsType: "tmpfs",
         neededForBoot: true,
         options: nix.thunk(() => ["mode=0755"]),
       })))),
   }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(!nix.asBool(writableStoreUseTmpfs)) && nix.asBool(!nix.eq(diskImage, null)))), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       "/nix": nix.thunk(() => nix.app(nix.sel(lib, "mkVMOverride"), nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           device: "/dev/vdb",
           fsType: "ext4",
           autoFormat: true,
           neededForBoot: true,
         })))),
     }))), nix.app(nix.sel(lib, "mapAttrs'"), (_) => (share) => nix.app(nix.sel(lib, "nameValuePair"), nix.thunk(() => nix.sel(share, "target")), nix.thunk(() => nix.app(nix.sel(lib, "mkVMOverride"), nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           device: nix.thunk(() => nix.sel(share, "tag")),
           fsType: "virtiofs",
         }))))), sharedDirectories)));

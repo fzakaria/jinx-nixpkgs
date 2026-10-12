@@ -2,16 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["withPrivateFonts", 48, 7], ["withWebKit", 49, 7], ["withEGL", 50, 7]], [["buildInputs", 53, 9], ["configureFlags", 54, 9]], [["owner", 69, 5], ["repo", 70, 5], ["tag", 71, 5], ["hash", 72, 5]], [["enableShared", 88, 7], ["enableStatic", 89, 7], ["extraFeatures", 90, 7]], [["gtkSupport", 114, 44]], [["name", 141, 7], ["url", 142, 7], ["hash", 143, 7]], [["NLOPT", 156, 5], ["NIX_CFLAGS_COMPILE", 158, 5], ["NIX_LDFLAGS", 177, 5]], [["description", 232, 5], ["homepage", 233, 5], ["changelog", 234, 5], ["license", 235, 5], ["maintainers", 236, 5], ["mainProgram", 243, 5], ["platforms", 244, 5]], [["pname", 65, 3], ["version", 66, 3], ["src", 68, 3], ["__structuredAttrs", 75, 3], ["strictDeps", 76, 3], ["nativeBuildInputs", 78, 3], ["buildInputs", 85, 3], ["patches", 133, 3], ["doCheck", 150, 3], ["checkInputs", 151, 3], ["separateDebugInfo", 153, 3], ["env", 155, 3], ["prePatch", 185, 3], ["cmakeFlags", 191, 3], ["postBuild", 207, 3], ["preFixup", 209, 3], ["postInstall", 227, 3], ["meta", 231, 3]]]);
 const formals$1 = { args: { clangStdenv: false, lib: false, binutils: false, fetchFromGitHub: false, fetchpatch: false, cmake: false, "pkg-config": false, wrapGAppsHook3: false, boost186: false, cereal: false, cgal_5: false, curl: false, dbus: false, draco: false, eigen_5: false, expat: false, ffmpeg: false, "gcc-unwrapped": false, glew: false, glfw: false, glib: false, "glib-networking": false, gmp: false, gst_all_1: false, gtest: false, gtk3: false, "hicolor-icon-theme": false, libsecret: false, libpng: false, mpfr: false, nlopt: false, "opencascade-occt_7_6": false, openvdb: false, opencv: false, systemdLibs: false, onetbb: false, webkitgtk_4_1: false, wxwidgets_3_3: false, libx11: false, libnoise: false, withSystemd: true, withNvidiaGLWorkaround: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["withPrivateFonts", 48, 7], ["withWebKit", 49, 7], ["withEGL", 50, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["buildInputs", 53, 9], ["configureFlags", 54, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["owner", 69, 5], ["repo", 70, 5], ["tag", 71, 5], ["hash", 72, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["enableShared", 88, 7], ["enableStatic", 89, 7], ["extraFeatures", 90, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["gtkSupport", 114, 44]]);
-const pos$6 = nix.positions(here + "/package.nix", [["name", 141, 7], ["url", 142, 7], ["hash", 143, 7]]);
-const pos$7 = nix.positions(here + "/package.nix", [["NLOPT", 156, 5], ["NIX_CFLAGS_COMPILE", 158, 5], ["NIX_LDFLAGS", 177, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["description", 232, 5], ["homepage", 233, 5], ["changelog", 234, 5], ["license", 235, 5], ["maintainers", 236, 5], ["mainProgram", 243, 5], ["platforms", 244, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["pname", 65, 3], ["version", 66, 3], ["src", 68, 3], ["__structuredAttrs", 75, 3], ["strictDeps", 76, 3], ["nativeBuildInputs", 78, 3], ["buildInputs", 85, 3], ["patches", 133, 3], ["doCheck", 150, 3], ["checkInputs", 151, 3], ["separateDebugInfo", 153, 3], ["env", 155, 3], ["prePatch", 185, 3], ["cmakeFlags", 191, 3], ["postBuild", 207, 3], ["preFixup", 209, 3], ["postInstall", 227, 3], ["meta", 231, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -57,17 +49,17 @@ export default nix.lambda((args) => (() => {
   const libnoise = nix.arg($, "libnoise");
   const withSystemd = nix.argOr($, "withSystemd", () => nix.sel(clangStdenv, "hostPlatform", "isLinux"));
   const withNvidiaGLWorkaround = nix.argOr($, "withNvidiaGLWorkaround", () => false);
-  const wxGTK$ = nix.thunk(() => nix.app(nix.sel(nix.app(nix.sel(wxwidgets_3_3, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, withPrivateFonts: true, withWebKit: true, withEGL: true }))), "overrideAttrs"), (old) => ({
-      [nix.POS]: pos$2,
+  const wxGTK$ = nix.thunk(() => nix.app(nix.sel(nix.app(nix.sel(wxwidgets_3_3, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], withPrivateFonts: true, withWebKit: true, withEGL: true }))), "overrideAttrs"), (old) => ({
+      [nix.POS]: $pos[1],
       buildInputs: nix.thunk(() => nix.concat(nix.sel(old, "buildInputs"), [libsecret])),
       configureFlags: nix.thunk(() => nix.concat(nix.sel(old, "configureFlags"), ["--enable-debug=no", "--enable-secretstore"])),
     })));
   return nix.app(nix.sel(clangStdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       pname: "orca-slicer",
       version: "2.4.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           owner: "OrcaSlicer",
           repo: "OrcaSlicer",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -79,7 +71,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => nix.concat([
         binutils,
         nix.thunk(() => nix.app(nix.sel(boost186, "override"), nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             enableShared: true,
             enableStatic: false,
             extraFeatures: nix.thunk(() => ["log", "thread", "filesystem"]),
@@ -102,7 +94,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.sel(gst_all_1, "gstreamer")),
         nix.thunk(() => nix.sel(gst_all_1, "gst-plugins-base")),
         nix.thunk(() => nix.sel(gst_all_1, "gst-plugins-bad")),
-        nix.thunk(() => nix.app(nix.sel(gst_all_1, "gst-plugins-good", "override"), nix.thunk(() => ({ [nix.POS]: pos$5, gtkSupport: true })))),
+        nix.thunk(() => nix.app(nix.sel(gst_all_1, "gst-plugins-good", "override"), nix.thunk(() => ({ [nix.POS]: $pos[4], gtkSupport: true })))),
         gtk3,
         hicolor_icon_theme,
         libsecret,
@@ -122,7 +114,7 @@ export default nix.lambda((args) => (() => {
         nix.path(here, "./patches/0001-not-for-upstream-CMakeLists-Link-against-webkit2gtk-.patch"),
         nix.path(here, "./patches/dont-link-opencv-world-orca.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             name: "pr-7650-configurable-update-check.patch",
             url: "https://github.com/OrcaSlicer/OrcaSlicer/commit/300df7c99b0a2173f645c8bf40e8758eb5f2c486.patch",
             hash: "sha256-hgQeagPhS3aNQoFSq0S+Ch60ygm81uHMIvGopw/AZT8=",
@@ -133,7 +125,7 @@ export default nix.lambda((args) => (() => {
       checkInputs: nix.thunk(() => [gtest]),
       separateDebugInfo: true,
       env: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         NLOPT: nlopt,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => [
             "-Wno-ignored-attributes",
@@ -184,7 +176,7 @@ export default nix.lambda((args) => (() => {
 `),
       postInstall: "rm $out/LICENSE.txt\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         description: "G-code generator for 3D printers (Bambu, Prusa, Voron, VzBot, RatRig, Creality, etc.)",
         homepage: "https://github.com/OrcaSlicer/OrcaSlicer",
         changelog: nix.thunk(() => nix.str`https://github.com/OrcaSlicer/OrcaSlicer/releases/tag/v${nix.sel(finalAttrs, "version")}`),

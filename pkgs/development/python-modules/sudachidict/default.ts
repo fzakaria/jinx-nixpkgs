@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]], [["pname", 10, 3], ["version", 11, 25], ["meta", 11, 33], ["pyproject", 12, 3], ["src", 14, 3], ["sourceRoot", 21, 3], ["postPatch", 24, 3], ["build-system", 34, 3], ["dependencies", 36, 3], ["preBuild", 40, 3]]]);
 const formals$1 = { args: { buildPythonPackage: false, fetchFromGitHub: false, sudachidict: false, setuptools: false, sudachipy: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 10, 3], ["version", 11, 25], ["meta", 11, 33], ["pyproject", 12, 3], ["src", 14, 3], ["sourceRoot", 21, 3], ["postPatch", 24, 3], ["build-system", 34, 3], ["dependencies", 36, 3], ["preBuild", 40, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const meta = nix.thunk(() => nix.attr(sudachidict, "meta"));
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "WorksApplications",
           repo: "SudachiDict",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -40,7 +39,7 @@ substituteInPlace INFO.json \\
 touch sudachidict_${nix.sel(sudachidict, "dict-type")}/__init__.py
 `);
       return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         pname,
         version,
         meta,

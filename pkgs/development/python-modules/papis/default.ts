@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 54, 5], ["repo", 55, 5], ["tag", 56, 5], ["hash", 57, 5]], [["complete", 84, 5]], [["description", 125, 5], ["mainProgram", 126, 5], ["homepage", 127, 5], ["changelog", 128, 5], ["license", 129, 5], ["maintainers", 130, 5]], [["pname", 49, 3], ["version", 50, 3], ["pyproject", 51, 3], ["src", 53, 3], ["build-system", 60, 3], ["dependencies", 62, 3], ["optional-dependencies", 83, 3], ["pythonImportsCheck", 93, 3], ["nativeCheckInputs", 95, 3], ["enabledTestPaths", 105, 3], ["disabledTests", 110, 3], ["meta", 124, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, hatchling: false, arxiv: false, beautifulsoup4: false, bibtexparser: false, click: false, colorama: false, dominate: false, filetype: false, habanero: false, lark: false, lxml: false, platformdirs: false, "prompt-toolkit": false, pygments: false, "python-doi": false, "python-slugify": false, pyyaml: false, requests: false, chardet: false, "citeproc-py": false, jinja2: false, markdownify: false, whoosh: false, withOptDeps: true, docutils: false, git: false, pytestCheckHook: false, "pytest-cov-stub": false, sphinx: false, "sphinx-click": false, writableTmpDirAsHomeHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 54, 5], ["repo", 55, 5], ["tag", 56, 5], ["hash", 57, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["complete", 84, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 125, 5], ["mainProgram", 126, 5], ["homepage", 127, 5], ["changelog", 128, 5], ["license", 129, 5], ["maintainers", 130, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 49, 3], ["version", 50, 3], ["pyproject", 51, 3], ["src", 53, 3], ["build-system", 60, 3], ["dependencies", 62, 3], ["optional-dependencies", 83, 3], ["pythonImportsCheck", 93, 3], ["nativeCheckInputs", 95, 3], ["enabledTestPaths", 105, 3], ["disabledTests", 110, 3], ["meta", 124, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -45,12 +42,12 @@ export default nix.lambda((args) => (() => {
   const sphinx_click = nix.arg($, "sphinx-click");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "papis",
       version: "0.16.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "papis",
           repo: "papis",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -77,7 +74,7 @@ export default nix.lambda((args) => (() => {
         requests,
       ], nix.app(nix.sel(lib, "optionals"), withOptDeps, nix.thunk(() => nix.sel(finalAttrs, "passthru", "optional-dependencies", "complete"))))),
       "optional-dependencies": nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         complete: nix.thunk(() => [chardet, citeproc_py, jinja2, markdownify, whoosh]),
       })),
       pythonImportsCheck: nix.thunk(() => ["papis"]),
@@ -100,7 +97,7 @@ export default nix.lambda((args) => (() => {
         "test_yaml_unicode_dump",
       ], nix.app(nix.sel(lib, "optionals"), withOptDeps, nix.thunk(() => ["test_csl_style_download"])))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Powerful command-line document and bibliography manager",
         mainProgram: "papis",
         homepage: "https://papis.readthedocs.io/",

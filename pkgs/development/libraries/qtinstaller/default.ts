@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 21, 5], ["sha256", 22, 5], ["name", 23, 5]], [["NIX_QT_SUBMODULE", 33, 7]], [["description", 57, 5], ["platforms", 58, 27], ["license", 58, 37], ["homepage", 58, 45]], [["pname", 11, 3], ["propagatedBuildInputs", 13, 3], ["nativeBuildInputs", 17, 3], ["version", 19, 3], ["src", 20, 3], ["outputs", 26, 3], ["setOutputFlags", 32, 3], ["env", 33, 3], ["dontWrapQtApps", 34, 3], ["installPhase", 36, 3], ["postFixup", 43, 3], ["meta", 56, 3]]]);
 const formals$1 = { args: { stdenv: false, fetchurl: false, qtdeclarative: false, qttools: false, qtbase: false, qmake: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 21, 5], ["sha256", 22, 5], ["name", 23, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["NIX_QT_SUBMODULE", 33, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 57, 5], ["platforms", 58, 27], ["license", 58, 37], ["homepage", 58, 45]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 11, 3], ["propagatedBuildInputs", 13, 3], ["nativeBuildInputs", 17, 3], ["version", 19, 3], ["src", 20, 3], ["outputs", 26, 3], ["setOutputFlags", 32, 3], ["env", 33, 3], ["dontWrapQtApps", 34, 3], ["installPhase", 36, 3], ["postFixup", 43, 3], ["meta", 56, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,21 +19,21 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [qmake]);
       const version = "2.0.3";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`http://download.qt.io/official_releases/qt-installer-framework/${version}/qt-installer-framework-opensource-${version}-src.tar.gz`),
           sha256: "003gwjg02isw8qjyka377g1ahlisfyi44l6xfa4hvvdgqqq0hy2f",
           name: nix.thunk(() => nix.str`qt-installer-framework-opensource-src-${version}.tar.gz`),
         }))));
       const outputs = nix.thunk(() => ["out", "dev", "doc"]);
       const setOutputFlags = false;
-      const env = nix.thunk(() => ({ [nix.POS]: pos$2, NIX_QT_SUBMODULE: true }));
+      const env = nix.thunk(() => ({ [nix.POS]: $pos[1], NIX_QT_SUBMODULE: true }));
       const dontWrapQtApps = true;
       const installPhase = "mkdir -p $out/{bin,lib,share/qt-installer-framework}\ncp -a bin/{archivegen,binarycreator,devtool,installerbase,repogen} $out/bin\ncp -a lib/{libinstaller.so*,lib7z.a} $out/lib\ncp -a examples $out/share/qt-installer-framework/\n";
       const postFixup = "moveToOutput \"bin/archivegen\" \"$out\"\nmoveToOutput \"bin/binarycreator\" \"$out\"\nmoveToOutput \"bin/devtool\" \"$out\"\nmoveToOutput \"bin/installerbase\" \"$out\"\nmoveToOutput \"bin/repogen\" \"$out\"\nmoveToOutput \"share\" \"$doc\"\nmoveToOutput \"lib/libinstaller.so\" \"$out\"\nmoveToOutput \"lib/libinstaller.so.1\" \"$out\"\nmoveToOutput \"lib/libinstaller.so.1.0\" \"$out\"\nmoveToOutput \"lib/libinstaller.so.1.0.0\" \"$out\"\n";
       const meta = nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(qtbase, "meta"));
         return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Qt installer framework",
         platforms: nix.thunk(() => nix.attr(from, "platforms")),
         license: nix.thunk(() => nix.attr(from, "license")),
@@ -44,7 +41,7 @@ export default nix.lambda((args) => (() => {
       };
       })());
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         propagatedBuildInputs,
         nativeBuildInputs,

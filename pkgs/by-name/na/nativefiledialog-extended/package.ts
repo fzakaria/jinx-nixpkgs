@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]], [["package", 57, 7], ["moduleNames", 58, 7]], [["cmake-config", 56, 5]], [["tests", 55, 12]], [["homepage", 63, 5], ["description", 64, 5], ["longDescription", 65, 5], ["license", 71, 5], ["maintainers", 72, 5], ["platforms", 73, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["outputs", 25, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 35, 3], ["cmakeFlags", 43, 3], ["doCheck", 53, 3], ["passthru", 55, 3], ["meta", 62, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, "pkg-config": false, SDL2: false, SDL2_ttf: false, gtk3: false, testers: false, enableShared: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["package", 57, 7], ["moduleNames", 58, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["cmake-config", 56, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 55, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["homepage", 63, 5], ["description", 64, 5], ["longDescription", 65, 5], ["license", 71, 5], ["maintainers", 72, 5], ["platforms", 73, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["outputs", 25, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 35, 3], ["cmakeFlags", 43, 3], ["doCheck", 53, 3], ["passthru", 55, 3], ["meta", 62, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const enableShared = nix.argOr($, "enableShared", () => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isStatic")));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "nativefiledialog-extended",
       version: "1.3.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "btzy",
           repo: "nativefiledialog-extended",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -45,18 +40,18 @@ export default nix.lambda((args) => (() => {
       ]),
       doCheck: false,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           "cmake-config": nix.thunk(() => nix.app(nix.sel(testers, "hasCmakeConfigModules"), nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               moduleNames: nix.thunk(() => ["nfd"]),
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "https://github.com/btzy/nativefiledialog-extended",
         description: "Cross platform native file dialog library with C and C++ bindings",
         longDescription: "A small C library with that portably invokes native file open, folder\nselect and file save dialogs. Write dialog code once and have it pop up\nnative dialogs on all supported platforms. Avoid linking large\ndependencies like wxWidgets and Qt.\n",

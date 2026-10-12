@@ -2,12 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["description", 15, 5], ["mainProgram", 16, 5], ["longDescription", 17, 5], ["homepage", 20, 5], ["maintainers", 21, 5], ["license", 22, 5]], [["owner", 34, 7], ["repo", 35, 7], ["rev", 36, 7], ["hash", 37, 7]], [["pname", 30, 13], ["version", 31, 5], ["src", 33, 5], ["doCheck", 40, 5], ["meta", 42, 13]], [["owner", 55, 7], ["repo", 56, 7], ["rev", 57, 7], ["sha256", 58, 7]], [["pname", 52, 13], ["version", 52, 19], ["src", 54, 5], ["strictDeps", 61, 5], ["nativeBuildInputs", 63, 5], ["meta", 69, 13], ["createFindlibDestdir", 71, 5], ["makeFlags", 73, 5], ["preBuild", 75, 5]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, ocaml: false, findlib: false, ocamlbuild: false, buildDunePackage: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["description", 15, 5], ["mainProgram", 16, 5], ["longDescription", 17, 5], ["homepage", 20, 5], ["maintainers", 21, 5], ["license", 22, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["owner", 34, 7], ["repo", 35, 7], ["rev", 36, 7], ["hash", 37, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 30, 13], ["version", 31, 5], ["src", 33, 5], ["doCheck", 40, 5], ["meta", 42, 13]]);
-const pos$4 = nix.positions(here + "/default.nix", [["owner", 55, 7], ["repo", 56, 7], ["rev", 57, 7], ["sha256", 58, 7]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 52, 13], ["version", 52, 19], ["src", 54, 5], ["strictDeps", 61, 5], ["nativeBuildInputs", 63, 5], ["meta", 69, 13], ["createFindlibDestdir", 71, 5], ["makeFlags", 73, 5], ["preBuild", 75, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const buildDunePackage = nix.arg($, "buildDunePackage");
   const pname = "cppo";
   const meta = nix.thunk(() => ({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     description: "C preprocessor for OCaml",
     mainProgram: "cppo",
     longDescription: "Cppo is an equivalent of the C preprocessor targeted at the OCaml language and its variants.\n",
@@ -32,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const pname_1 = pname;
       const version = "1.8.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "ocaml-community",
           repo: pname_1,
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -40,15 +36,15 @@ export default nix.lambda((args) => (() => {
         }))));
       const doCheck = true;
       const meta_1 = meta;
-      return { [nix.POS]: pos$3, pname: pname_1, version, src, doCheck, meta: meta_1 };
+      return { [nix.POS]: $pos[2], pname: pname_1, version, src, doCheck, meta: meta_1 };
     })())) : (() => {
     const version = "1.5.0";
     return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname: pname,
         version: version,
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             owner: "mjambon",
             repo: pname,
             rev: nix.thunk(() => nix.str`v${version}`),

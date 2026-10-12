@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 37, 5], ["repo", 38, 5], ["rev", 39, 5], ["hash", 40, 5]], [["homepage", 58, 5], ["description", 59, 5], ["mainProgram", 60, 5], ["license", 61, 5], ["platforms", 62, 5], ["maintainers", 63, 5]], [["pname", 30, 3], ["version", 31, 3], ["strictDeps", 33, 3], ["__structuredAttrs", 34, 3], ["src", 36, 3], ["nativeBuildInputs", 43, 3], ["dontBuild", 45, 3], ["installPhase", 47, 3], ["meta", 57, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, vim: false, makeWrapper: false, jq: false, rofi: false, xrandr: false, xdotool: false, i3: false, gawk: false, libnotify: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 37, 5], ["repo", 38, 5], ["rev", 39, 5], ["hash", 40, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 58, 5], ["description", 59, 5], ["mainProgram", 60, 5], ["license", 61, 5], ["platforms", 62, 5], ["maintainers", 63, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 30, 3], ["version", 31, 3], ["strictDeps", 33, 3], ["__structuredAttrs", 34, 3], ["src", 36, 3], ["nativeBuildInputs", 43, 3], ["dontBuild", 45, 3], ["installPhase", 47, 3], ["meta", 57, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,13 +21,13 @@ export default nix.lambda((args) => (() => {
   const libnotify = nix.arg($, "libnotify");
   const path = nix.thunk(() => nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [vim, jq, rofi, xrandr, xdotool, i3, gawk, libnotify])));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "i3-layout-manager",
       version: "0-unstable-2020-05-03",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "klaxalk",
           repo: "i3-layout-manager",
           rev: "df54826bba351d8bcd7ebeaf26c07c713af7912c",
@@ -46,7 +44,7 @@ wrapProgram $out/bin/layout_manager \\
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/klaxalk/i3-layout-manager",
         description: "Saving, loading and managing layouts for i3wm",
         mainProgram: "layout_manager",

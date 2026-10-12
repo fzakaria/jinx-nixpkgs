@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/0.nix", [[["owner", 50, 5], ["repo", 51, 5], ["tag", 52, 5], ["hash", 53, 5]], [["all", 70, 5], ["cli", 73, 5], ["inference", 76, 5], ["torch", 79, 5], ["hf_transfer", 84, 5], ["fastai", 87, 5], ["tensorflow", 92, 5], ["tensorflow-testing", 97, 5], ["hf_xet", 101, 5]], [["description", 114, 5], ["mainProgram", 115, 5], ["homepage", 116, 5], ["changelog", 117, 5], ["license", 118, 5], ["maintainers", 119, 5]], [["pname", 45, 3], ["version", 46, 3], ["pyproject", 47, 3], ["src", 49, 3], ["build-system", 56, 3], ["dependencies", 58, 3], ["optional-dependencies", 69, 3], ["nativeCheckInputs", 106, 3], ["versionCheckProgramArg", 109, 3], ["pythonImportsCheck", 111, 3], ["meta", 113, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, filelock: false, fsspec: false, "hf-xet": false, packaging: false, pyyaml: false, requests: false, tqdm: false, "typing-extensions": false, inquirerpy: false, aiohttp: false, torch: false, safetensors: false, "hf-transfer": false, toml: false, fastai: false, fastcore: false, tensorflow: false, pydot: false, graphviz: false, keras: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/0.nix", [["owner", 50, 5], ["repo", 51, 5], ["tag", 52, 5], ["hash", 53, 5]]);
-const pos$2 = nix.positions(here + "/0.nix", [["all", 70, 5], ["cli", 73, 5], ["inference", 76, 5], ["torch", 79, 5], ["hf_transfer", 84, 5], ["fastai", 87, 5], ["tensorflow", 92, 5], ["tensorflow-testing", 97, 5], ["hf_xet", 101, 5]]);
-const pos$3 = nix.positions(here + "/0.nix", [["description", 114, 5], ["mainProgram", 115, 5], ["homepage", 116, 5], ["changelog", 117, 5], ["license", 118, 5], ["maintainers", 119, 5]]);
-const pos$4 = nix.positions(here + "/0.nix", [["pname", 45, 3], ["version", 46, 3], ["pyproject", 47, 3], ["src", 49, 3], ["build-system", 56, 3], ["dependencies", 58, 3], ["optional-dependencies", 69, 3], ["nativeCheckInputs", 106, 3], ["versionCheckProgramArg", 109, 3], ["pythonImportsCheck", 111, 3], ["meta", 113, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -40,7 +37,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.36.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "huggingface",
           repo: "huggingface_hub",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -58,7 +55,7 @@ export default nix.lambda((args) => (() => {
         typing_extensions,
       ]);
       const optional_dependencies = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         all: [],
         cli: nix.thunk(() => [inquirerpy]),
         inference: nix.thunk(() => [aiohttp]),
@@ -73,7 +70,7 @@ export default nix.lambda((args) => (() => {
       const versionCheckProgramArg = "version";
       const pythonImportsCheck = nix.thunk(() => ["huggingface_hub"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Download and publish models and other files on the huggingface.co hub",
         mainProgram: "hf",
         homepage: "https://github.com/huggingface/huggingface_hub",
@@ -88,7 +85,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

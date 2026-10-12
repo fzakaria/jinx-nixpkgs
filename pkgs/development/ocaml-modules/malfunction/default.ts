@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 16, 5], ["hash", 17, 5]], [["homepage", 29, 5], ["description", 30, 5], ["license", 31, 5], ["maintainers", 32, 5], ["mainProgram", 33, 5], ["broken", 34, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["propagatedBuildInputs", 20, 3], ["nativeBuildInputs", 24, 3], ["meta", 28, 3]]]);
 const formals$1 = { args: { lib: false, fetchzip: false, buildDunePackage: false, ocaml: false, findlib: false, zarith: false, cppo: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 29, 5], ["description", 30, 5], ["license", 31, 5], ["maintainers", 32, 5], ["mainProgram", 33, 5], ["broken", 34, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["propagatedBuildInputs", 20, 3], ["nativeBuildInputs", 24, 3], ["meta", 28, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,18 +15,18 @@ export default nix.lambda((args) => (() => {
   const zarith = nix.arg($, "zarith");
   const cppo = nix.arg($, "cppo");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "malfunction",
       version: "0.7.1",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/stedolan/malfunction/archive/refs/tags/v${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-Cpe5rSBvsr3pqbucGZelutPoI+bcQPFCbdcKsE/HieY=",
         })))),
       propagatedBuildInputs: nix.thunk(() => [findlib, zarith]),
       nativeBuildInputs: nix.thunk(() => [cppo]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "http://github.com/stedolan/malfunction",
         description: "Malfunction is a high-performance, low-level untyped program representation, designed as a target for compilers of functional programming languages.",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21")),

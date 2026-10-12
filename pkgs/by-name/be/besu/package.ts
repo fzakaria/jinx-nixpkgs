@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 17, 5], ["sha256", 18, 5]], [["package", 38, 7], ["version", 39, 7]], [["platforms", 45, 16]], [["nativeBuildInputs", 44, 11], ["meta", 45, 11]], [["version", 37, 5], ["jemalloc", 41, 5]], [["tests", 36, 12]], [["description", 55, 5], ["homepage", 56, 5], ["changelog", 57, 5], ["license", 58, 5], ["sourceProvenance", 59, 5], ["platforms", 60, 5], ["maintainers", 61, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["buildInputs", 21, 3], ["nativeBuildInputs", 22, 3], ["installPhase", 24, 3], ["passthru", 36, 3], ["meta", 54, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, makeWrapper: false, jemalloc: false, jre: false, runCommand: false, testers: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 17, 5], ["sha256", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["package", 38, 7], ["version", 39, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["platforms", 45, 16]]);
-const pos$4 = nix.positions(here + "/package.nix", [["nativeBuildInputs", 44, 11], ["meta", 45, 11]]);
-const pos$5 = nix.positions(here + "/package.nix", [["version", 37, 5], ["jemalloc", 41, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["tests", 36, 12]]);
-const pos$7 = nix.positions(here + "/package.nix", [["description", 55, 5], ["homepage", 56, 5], ["changelog", 57, 5], ["license", 58, 5], ["sourceProvenance", 59, 5], ["platforms", 60, 5], ["maintainers", 61, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["buildInputs", 21, 3], ["nativeBuildInputs", 22, 3], ["installPhase", 24, 3], ["passthru", 36, 3], ["meta", 54, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const runCommand = nix.arg($, "runCommand");
   const testers = nix.arg($, "testers");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "besu",
       version: "24.1.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://hyperledger.jfrog.io/artifactory/besu-binaries/besu/${nix.sel(finalAttrs, "version")}/besu-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "sha256-CC24z0+2dSeqDddX5dJUs7SX9QJ8Iyh/nAp0pqdDvwg=",
         })))),
@@ -42,19 +35,19 @@ wrapProgram $out/bin/besu \\
   --suffix ${(nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? "DYLD_LIBRARY_PATH" : "LD_LIBRARY_PATH")} : ${nix.app(nix.sel(lib, "makeLibraryPath"), nix.thunk(() => nix.sel(finalAttrs, "buildInputs")))}
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               version: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
             })))),
           jemalloc: nix.thunk(() => nix.app(runCommand, "besu-test-jemalloc", nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(finalAttrs, "finalPackage"))]),
               meta: nix.thunk(() => ({
-                [nix.POS]: pos$3,
+                [nix.POS]: $pos[2],
                 platforms: nix.thunk(() => (() => {
                   const w = nix.withScope(nix.thunk(() => nix.sel(lib, "platforms")), null);
                   return nix.force(nix.lookup(w, "linux"));
@@ -67,7 +60,7 @@ mkdir $out
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "Enterprise-grade Java-based, Apache 2.0 licensed Ethereum client",
         homepage: "https://www.hyperledger.org/projects/besu",
         changelog: nix.thunk(() => nix.str`https://github.com/besu-eth/besu/blob/${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

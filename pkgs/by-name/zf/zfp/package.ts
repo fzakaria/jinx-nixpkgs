@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 35, 5], ["repo", 36, 5], ["tag", 37, 5], ["hash", 38, 5]], [["moduleNames", 94, 7], ["package", 95, 7]], [["cmake-config", 93, 5]], [["tests", 92, 12]], [["homepage", 100, 5], ["description", 101, 5], ["license", 102, 5], ["maintainers", 103, 5], ["platforms", 105, 5], ["mainProgram", 106, 5]], [["pname", 28, 3], ["version", 29, 3], ["__structuredAttrs", 31, 3], ["strictDeps", 32, 3], ["src", 34, 3], ["patches", 41, 3], ["nativeBuildInputs", 47, 3], ["buildInputs", 61, 3], ["propagatedBuildInputs", 63, 3], ["cmakeFlags", 67, 3], ["doCheck", 82, 3], ["checkFlags", 85, 3], ["nativeInstallCheckInputs", 89, 3], ["doInstallCheck", 90, 3], ["passthru", 92, 3], ["meta", 99, 3]]]);
 const formals$1 = { args: { cmake: false, fetchFromGitHub: false, gfortran: false, lib: false, llvmPackages: false, python3Packages: false, cudaPackages: false, stdenv: false, config: false, testers: false, bitStreamWordSize: true, enableCfp: true, enableCuda: true, enableFortran: true, enableOpenMP: true, enablePython: true, enableUtilities: true, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 35, 5], ["repo", 36, 5], ["tag", 37, 5], ["hash", 38, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["moduleNames", 94, 7], ["package", 95, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["cmake-config", 93, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 92, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["homepage", 100, 5], ["description", 101, 5], ["license", 102, 5], ["maintainers", 103, 5], ["platforms", 105, 5], ["mainProgram", 106, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 28, 3], ["version", 29, 3], ["__structuredAttrs", 31, 3], ["strictDeps", 32, 3], ["src", 34, 3], ["patches", 41, 3], ["nativeBuildInputs", 47, 3], ["buildInputs", 61, 3], ["propagatedBuildInputs", 63, 3], ["cmakeFlags", 67, 3], ["doCheck", 82, 3], ["checkFlags", 85, 3], ["nativeInstallCheckInputs", 89, 3], ["doInstallCheck", 90, 3], ["passthru", 92, 3], ["meta", 99, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,13 +29,13 @@ export default nix.lambda((args) => (() => {
   const stdenv_1 = nix.thunk(() => nix.builtins.throw("Use effectiveStdenv instead"));
   const effectiveStdenv = nix.thunk(() => (nix.asBool(enableCuda) ? nix.sel(cudaPackages, "backendStdenv") : nix.sel(inputs, "stdenv")));
   return nix.app(nix.sel(effectiveStdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "zfp",
       version: "1.0.1",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "LLNL",
           repo: "zfp",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -74,18 +69,18 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           "cmake-config": nix.thunk(() => nix.app(nix.sel(testers, "hasCmakeConfigModules"), nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               moduleNames: nix.thunk(() => ["zfp"]),
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "https://computing.llnl.gov/projects/zfp",
         description: "Library for random-access compression of floating-point arrays",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

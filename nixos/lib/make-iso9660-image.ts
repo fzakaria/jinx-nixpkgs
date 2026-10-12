@@ -2,11 +2,8 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/make-iso9660-image.nix", [[["storeContents", 71, 5], ["comp", 72, 5]], [["out", 81, 27]], [["rootPaths", 113, 31]], [["name", 76, 3], ["__structuredAttrs", 77, 3], ["unsafeDiscardReferences", 81, 3], ["buildCommandPath", 83, 3], ["nativeBuildInputs", 84, 3], ["isoName", 93, 5], ["bootable", 94, 5], ["bootImage", 95, 5], ["compressImage", 96, 5], ["volumeID", 97, 5], ["efiBootImage", 98, 5], ["efiBootable", 99, 5], ["isohybridMbrImage", 100, 5], ["usbBootable", 101, 5], ["sources", 104, 3], ["targets", 105, 3], ["objects", 107, 3], ["symlinks", 108, 3], ["squashfsCommand", 110, 3], ["closureInfo", 113, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, callPackage: false, closureInfo: false, xorriso: false, syslinux: false, libossp_uuid: false, "squashfs-tools": false, isoName: true, contents: false, storeContents: true, squashfsContents: true, squashfsCompression: true, bootable: true, efiBootable: true, usbBootable: true, bootImage: true, efiBootImage: true, isohybridMbrImage: true, compressImage: true, zstd: false, volumeID: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/make-iso9660-image.nix", [["storeContents", 71, 5], ["comp", 72, 5]]);
-const pos$2 = nix.positions(here + "/make-iso9660-image.nix", [["out", 81, 27]]);
-const pos$3 = nix.positions(here + "/make-iso9660-image.nix", [["rootPaths", 113, 31]]);
-const pos$4 = nix.positions(here + "/make-iso9660-image.nix", [["name", 76, 3], ["__structuredAttrs", 77, 3], ["unsafeDiscardReferences", 81, 3], ["buildCommandPath", 83, 3], ["nativeBuildInputs", 84, 3], ["isoName", 93, 5], ["bootable", 94, 5], ["bootImage", 95, 5], ["compressImage", 96, 5], ["volumeID", 97, 5], ["efiBootImage", 98, 5], ["efiBootable", 99, 5], ["isohybridMbrImage", 100, 5], ["usbBootable", 101, 5], ["sources", 104, 3], ["targets", 105, 3], ["objects", 107, 3], ["symlinks", 108, 3], ["squashfsCommand", 110, 3], ["closureInfo", 113, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -36,12 +33,16 @@ export default nix.lambda((args) => (() => {
   nix.assert_((!nix.asBool(efiBootable) || nix.asBool(!nix.eq(efiBootImage, ""))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/nixos/lib/make-iso9660-image.nix:65:1");
   nix.assert_((!nix.asBool(usbBootable) || nix.asBool(!nix.eq(isohybridMbrImage, ""))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/nixos/lib/make-iso9660-image.nix:66:1");
   const needSquashfs = nix.thunk(() => !nix.eq(squashfsContents, []));
-  const makeSquashfsDrv = nix.thunk(() => nix.app(callPackage, nix.path(here, "./make-squashfs.nix"), nix.thunk(() => ({ [nix.POS]: pos$1, storeContents: squashfsContents, comp: squashfsCompression }))));
+  const makeSquashfsDrv = nix.thunk(() => nix.app(callPackage, nix.path(here, "./make-squashfs.nix"), nix.thunk(() => ({
+      [nix.POS]: $pos[0],
+      storeContents: squashfsContents,
+      comp: squashfsCompression,
+    }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       name: isoName,
       __structuredAttrs: true,
-      unsafeDiscardReferences: nix.thunk(() => ({ [nix.POS]: pos$2, out: true })),
+      unsafeDiscardReferences: nix.thunk(() => ({ [nix.POS]: $pos[1], out: true })),
       buildCommandPath: nix.path(here, "./make-iso9660-image.sh"),
       nativeBuildInputs: nix.thunk(() => nix.concat([xorriso, syslinux, zstd, libossp_uuid], nix.app(nix.sel(lib, "optionals"), needSquashfs, nix.thunk(() => nix.sel(makeSquashfsDrv, "nativeBuildInputs"))))),
       isoName: isoName,
@@ -59,7 +60,7 @@ export default nix.lambda((args) => (() => {
       symlinks: nix.thunk(() => nix.builtins.map((x) => nix.sel(x, "symlink"), storeContents)),
       squashfsCommand: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), needSquashfs, nix.thunk(() => nix.sel(makeSquashfsDrv, "buildCommand")))),
       closureInfo: nix.thunk(() => nix.app(closureInfo, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           rootPaths: nix.thunk(() => nix.builtins.map((x) => nix.sel(x, "object"), storeContents)),
         })))),
     })));

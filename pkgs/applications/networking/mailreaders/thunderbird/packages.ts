@@ -2,20 +2,9 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/packages.nix", [[["url", 26, 9], ["sha512", 27, 17]], [["url", 37, 13], ["hash", 38, 13]], [["broken", 53, 17], ["changelog", 54, 9], ["description", 55, 9], ["homepage", 56, 9], ["donationPage", 57, 9], ["mainProgram", 58, 9], ["maintainers", 59, 9], ["platforms", 65, 9], ["license", 68, 9]], [["pname", 21, 7], ["version", 22, 15], ["updateScript", 22, 23], ["applicationName", 22, 36], ["application", 23, 7], ["binaryName", 24, 7], ["src", 25, 7], ["extraPatches", 29, 7], ["extraPostPatch", 42, 7], ["meta", 52, 7]], [["enableLocation", 73, 11], ["enableWebRTC", 74, 11], ["enablePGO", 76, 11]], [["enableCrashReporter", 80, 11]], [["attrPath", 93, 7]], [["version", 89, 5], ["sha512", 90, 5], ["updateScript", 92, 5]], [["attrPath", 107, 7], ["versionPrefix", 108, 7], ["versionSuffix", 109, 7]], [["applicationName", 101, 5], ["version", 103, 5], ["sha512", 104, 5], ["updateScript", 106, 5]], [["thunderbird", 86, 3], ["thunderbird-latest", 88, 3], ["thunderbird-esr", 98, 3], ["thunderbird-153", 100, 3]], [["thunderbird-102", 114, 3], ["thunderbird-115", 115, 3], ["thunderbird-128", 116, 3], ["thunderbird-140", 117, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, buildMozillaMach: false, callPackage: false, fetchurl: false, fetchpatch2: false, config: false }, ellipsis: false };
 const formals$2 = { args: { version: false, sha512: false, updateScript: false, applicationName: true, broken: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/packages.nix", [["url", 26, 9], ["sha512", 27, 17]]);
-const pos$2 = nix.positions(here + "/packages.nix", [["url", 37, 13], ["hash", 38, 13]]);
-const pos$3 = nix.positions(here + "/packages.nix", [["broken", 53, 17], ["changelog", 54, 9], ["description", 55, 9], ["homepage", 56, 9], ["donationPage", 57, 9], ["mainProgram", 58, 9], ["maintainers", 59, 9], ["platforms", 65, 9], ["license", 68, 9]]);
-const pos$4 = nix.positions(here + "/packages.nix", [["pname", 21, 7], ["version", 22, 15], ["updateScript", 22, 23], ["applicationName", 22, 36], ["application", 23, 7], ["binaryName", 24, 7], ["src", 25, 7], ["extraPatches", 29, 7], ["extraPostPatch", 42, 7], ["meta", 52, 7]]);
-const pos$5 = nix.positions(here + "/packages.nix", [["enableLocation", 73, 11], ["enableWebRTC", 74, 11], ["enablePGO", 76, 11]]);
-const pos$6 = nix.positions(here + "/packages.nix", [["enableCrashReporter", 80, 11]]);
-const pos$7 = nix.positions(here + "/packages.nix", [["attrPath", 93, 7]]);
-const pos$8 = nix.positions(here + "/packages.nix", [["version", 89, 5], ["sha512", 90, 5], ["updateScript", 92, 5]]);
-const pos$9 = nix.positions(here + "/packages.nix", [["attrPath", 107, 7], ["versionPrefix", 108, 7], ["versionSuffix", 109, 7]]);
-const pos$10 = nix.positions(here + "/packages.nix", [["applicationName", 101, 5], ["version", 103, 5], ["sha512", 104, 5], ["updateScript", 106, 5]]);
-const pos$11 = nix.positions(here + "/packages.nix", [["thunderbird", 86, 3], ["thunderbird-latest", 88, 3], ["thunderbird-esr", 98, 3], ["thunderbird-153", 100, 3]]);
-const pos$12 = nix.positions(here + "/packages.nix", [["thunderbird-102", 114, 3], ["thunderbird-115", 115, 3], ["thunderbird-128", 116, 3], ["thunderbird-140", 117, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -41,20 +30,20 @@ export default nix.lambda((args) => (() => {
         const application = "comm/mail";
         const binaryName = "thunderbird";
         const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             url: nix.thunk(() => nix.str`mirror://mozilla/thunderbird/releases/${version_1}/source/thunderbird-${version_1}.source.tar.xz`),
             sha512: sha512,
           }))));
         const extraPatches = nix.thunk(() => nix.concat([
           nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionOlder"), version_1, "140")) ? nix.path(here, "./no-buildconfig.patch") : nix.path(here, "./no-buildconfig-tb140.patch"))),
         ], nix.app(nix.sel(lib, "optional"), nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), version_1, "154")) && nix.asBool(nix.app(nix.sel(lib, "versionOlder"), version_1, "154.0.1")))), nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               url: "https://github.com/mozilla-firefox/firefox/commit/f0b76eba072821d62e74ebdbd8da9243a2ce3b84.patch",
               hash: "sha256-PCTmv1ZO7ce4q5fp+WPmy5Wga5OMY4hNzqIZ7iYCcp4=",
             })))))));
         const extraPostPatch = nix.thunk(() => nix.add(nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), version_1, "151")) && nix.asBool(nix.app(nix.sel(lib, "versionOlder"), version_1, "152")))), "echo https://hg.mozilla.org/releases/comm-release/rev/becfb8fb2c70f1603882a2787e2170d5d8013949 >> sourcestamp.txt\necho https://hg.mozilla.org/releases/mozilla-release/rev/fc12dc911f904307729760a817deb829cbf8feb4 >> sourcestamp.txt\n"), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), version_1, "140.8")) && nix.asBool(nix.app(nix.sel(lib, "versionOlder"), version_1, "151")))), "find . -name .cargo-checksum.json | xargs sed 's/\"[^\"]*\\.gitmodules\":\"[a-z0-9]*\",//g' -i\n")));
         const meta = nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           broken: broken,
           changelog: nix.thunk(() => nix.str`https://www.thunderbird.net/en-US/thunderbird/${version_1}/releasenotes/`),
           description: "Full-featured e-mail client",
@@ -74,7 +63,7 @@ export default nix.lambda((args) => (() => {
           license: nix.thunk(() => nix.sel(lib, "licenses", "mpl20")),
         }));
         return {
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           pname,
           version: version_1,
           updateScript: updateScript_1,
@@ -87,27 +76,27 @@ export default nix.lambda((args) => (() => {
           meta,
         };
       })())), "override"), nix.thunk(() => nix.update({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         enableLocation: false,
         enableWebRTC: false,
         enablePGO: false,
-      }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), version, "149")), nix.thunk(() => ({ [nix.POS]: pos$6, enableCrashReporter: false }))))));
+      }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), version, "149")), nix.thunk(() => ({ [nix.POS]: $pos[5], enableCrashReporter: false }))))));
   })(), formals$2);
   return nix.update((() => {
     const thunderbird_latest = nix.thunk(() => nix.app(common, nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         version: "157.0.1",
         sha512: "12c6151150cadce68b113720788ff6d4cdcd39ae57131152f92a272a76c2590fd929edd45faed4e81e1f32eb58d0b22ca003a37294b9daf6648d39194f09fd95",
-        updateScript: nix.thunk(() => nix.app(callPackage, nix.path(here, "./update.nix"), nix.thunk(() => ({ [nix.POS]: pos$7, attrPath: "thunderbirdPackages.thunderbird-latest" })))),
+        updateScript: nix.thunk(() => nix.app(callPackage, nix.path(here, "./update.nix"), nix.thunk(() => ({ [nix.POS]: $pos[6], attrPath: "thunderbirdPackages.thunderbird-latest" })))),
       }))));
     const thunderbird = thunderbird_latest;
     const thunderbird_153 = nix.thunk(() => nix.app(common, nix.thunk(() => ({
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         applicationName: "Thunderbird ESR",
         version: "153.4.0esr",
         sha512: "93c43a75010b2edd36c58d054cd2e15a879b9e62e21f419bd8c7f97b8f7f6f29e8aed9d445ab9ccebdc1825dbf0f5e82e6e316c5f817f877d64266a2f2dbf9ec",
         updateScript: nix.thunk(() => nix.app(callPackage, nix.path(here, "./update.nix"), nix.thunk(() => ({
-            [nix.POS]: pos$9,
+            [nix.POS]: $pos[8],
             attrPath: "thunderbirdPackages.thunderbird-153",
             versionPrefix: "153",
             versionSuffix: "esr",
@@ -115,14 +104,14 @@ export default nix.lambda((args) => (() => {
       }))));
     const thunderbird_esr = thunderbird_153;
     return {
-      [nix.POS]: pos$11,
+      [nix.POS]: $pos[10],
       thunderbird,
       "thunderbird-latest": thunderbird_latest,
       "thunderbird-esr": thunderbird_esr,
       "thunderbird-153": thunderbird_153,
     };
   })(), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(config, "allowAliases")), nix.thunk(() => ({
-      [nix.POS]: pos$12,
+      [nix.POS]: $pos[11],
       "thunderbird-102": nix.thunk(() => nix.builtins.throw("Thunderbird 102 support ended in September 2023")),
       "thunderbird-115": nix.thunk(() => nix.builtins.throw("Thunderbird 115 support ended in October 2024")),
       "thunderbird-128": nix.thunk(() => nix.builtins.throw("Thunderbird 128 support ended in August 2025")),

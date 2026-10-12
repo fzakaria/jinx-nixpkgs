@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 35, 5], ["repo", 36, 5], ["rev", 37, 5], ["sha256", 38, 5]], [["installed-tests", 75, 7]], [["tests", 74, 5]], [["description", 80, 5], ["mainProgram", 81, 5], ["homepage", 82, 5], ["license", 83, 5], ["maintainers", 84, 5], ["platforms", 85, 5]], [["pname", 22, 3], ["version", 23, 3], ["outputs", 25, 3], ["src", 34, 3], ["patches", 41, 3], ["nativeBuildInputs", 46, 3], ["buildInputs", 59, 3], ["mesonFlags", 66, 3], ["doCheck", 71, 3], ["passthru", 73, 3], ["meta", 79, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, docbook_xml_dtd_43: false, "docbook-xsl-nons": false, glib: false, "json-glib": false, gnutls: false, gpgme: false, "gobject-introspection": false, vala: false, "gtk-doc": false, meson: false, ninja: false, "pkg-config": false, python3: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 35, 5], ["repo", 36, 5], ["rev", 37, 5], ["sha256", 38, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["installed-tests", 75, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 74, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 80, 5], ["mainProgram", 81, 5], ["homepage", 82, 5], ["license", 83, 5], ["maintainers", 84, 5], ["platforms", 85, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 22, 3], ["version", 23, 3], ["outputs", 25, 3], ["src", 34, 3], ["patches", 41, 3], ["nativeBuildInputs", 46, 3], ["buildInputs", 59, 3], ["mesonFlags", 66, 3], ["doCheck", 71, 3], ["passthru", 73, 3], ["meta", 79, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,12 +25,12 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "libjcat",
       version: "0.2.6",
       outputs: nix.thunk(() => ["bin", "out", "dev", "devdoc", "man", "installedTests"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "hughsie",
           repo: "libjcat",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -60,14 +56,14 @@ export default nix.lambda((args) => (() => {
       ]),
       doCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           "installed-tests": nix.thunk(() => nix.sel(nixosTests, "installed-tests", "libjcat")),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Library for reading and writing Jcat files",
         mainProgram: "jcat-tool",
         homepage: "https://github.com/hughsie/libjcat",

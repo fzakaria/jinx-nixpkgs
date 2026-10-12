@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 15, 5], ["hash", 16, 5]], [["homepage", 32, 5], ["description", 33, 5], ["license", 34, 5], ["maintainers", 35, 40], ["platforms", 35, 52]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["depsBuildBuild", 19, 3], ["nativeBuildInputs", 21, 3], ["buildInputs", 23, 3], ["makeFlags", 25, 3], ["meta", 31, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, "pkg-config": false, buildPackages: false, "netsurf-buildsystem": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 32, 5], ["description", 33, 5], ["license", 34, 5], ["maintainers", 35, 40], ["platforms", 35, 52]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["depsBuildBuild", 19, 3], ["nativeBuildInputs", 21, 3], ["buildInputs", 23, 3], ["makeFlags", 25, 3], ["meta", 31, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const buildPackages = nix.arg($, "buildPackages");
   const netsurf_buildsystem = nix.arg($, "netsurf-buildsystem");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "libnsgif",
       version: "1.0.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://download.netsurf-browser.org/libs/releases/libnsgif-${nix.sel(finalAttrs, "version")}-src.tar.gz`),
           hash: "sha256-YBTIQvYUVNL1oPgkPXqNe96bfaPM/cotNGx8CyxMBhs=",
         })))),
@@ -35,7 +33,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(netsurf_buildsystem, "meta"));
         return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://www.netsurf-browser.org/projects/libnsgif/",
         description: "GIF Decoder for netsurf browser",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -2,12 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["name", 12, 5], ["publisher", 13, 5], ["version", 14, 5], ["hash", 15, 5]], [["extraArgs", 29, 5]], [["updateScript", 28, 12]], [["license", 35, 8]], [["mktplcRef", 11, 3], ["nativeBuildInputs", 18, 3], ["postInstall", 23, 3], ["passthru", 28, 3], ["meta", 35, 3]]]);
 const formals$1 = { args: { lib: false, "clojure-lsp": false, jq: false, moreutils: false, "vscode-utils": false, "vscode-extension-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["name", 12, 5], ["publisher", 13, 5], ["version", 14, 5], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["extraArgs", 29, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["updateScript", 28, 12]]);
-const pos$4 = nix.positions(here + "/default.nix", [["license", 35, 8]]);
-const pos$5 = nix.positions(here + "/default.nix", [["mktplcRef", 11, 3], ["nativeBuildInputs", 18, 3], ["postInstall", 23, 3], ["passthru", 28, 3], ["meta", 35, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,9 +14,9 @@ export default nix.lambda((args) => (() => {
   const vscode_utils = nix.arg($, "vscode-utils");
   const vscode_extension_update_script = nix.arg($, "vscode-extension-update-script");
   return nix.app(nix.sel(vscode_utils, "buildVscodeMarketplaceExtension"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       mktplcRef: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         name: "calva",
         publisher: "betterthantomorrow",
         version: "2.0.599",
@@ -31,16 +27,19 @@ export default nix.lambda((args) => (() => {
 jq '.contributes.configuration[0].properties."calva.clojureLspPath".default = "${clojure_lsp}/bin/clojure-lsp"' package.json | sponge package.json
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(vscode_extension_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             extraArgs: nix.thunk(() => [
               "--override-filename",
               "pkgs/applications/editors/vscode/extensions/betterthantomorrow.calva/default.nix",
             ]),
           })))),
       })),
-      meta: nix.thunk(() => ({ [nix.POS]: pos$4, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
+      meta: nix.thunk(() => ({
+        [nix.POS]: $pos[3],
+        license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
+      })),
     })));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

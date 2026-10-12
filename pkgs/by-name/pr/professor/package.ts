@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5], ["postFetch", 20, 5]], [["PYTHON", 40, 7]], [["description", 71, 5], ["homepage", 72, 5], ["license", 73, 5], ["maintainers", 74, 5], ["platforms", 75, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["postPatch", 25, 3], ["configureFlags", 38, 3], ["env", 40, 3], ["nativeBuildInputs", 42, 3], ["buildInputs", 50, 3], ["propagatedBuildInputs", 54, 3], ["postInstall", 61, 3], ["doInstallCheck", 67, 3], ["installCheckTarget", 68, 3], ["meta", 70, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, eigen: false, makeWrapper: false, python3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5], ["postFetch", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["PYTHON", 40, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 71, 5], ["homepage", 72, 5], ["license", 73, 5], ["maintainers", 74, 5], ["platforms", 75, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["postPatch", 25, 3], ["configureFlags", 38, 3], ["env", 40, 3], ["nativeBuildInputs", 42, 3], ["buildInputs", 50, 3], ["propagatedBuildInputs", 54, 3], ["postInstall", 61, 3], ["doInstallCheck", 67, 3], ["installCheckTarget", 68, 3], ["meta", 70, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const python3 = nix.arg($, "python3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "professor",
       version: "2.5.8",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "hepcedar",
           repo: "professor",
           tag: nix.thunk(() => nix.str`professor-${nix.sel(finalAttrs, "version")}`),
@@ -30,7 +27,7 @@ export default nix.lambda((args) => (() => {
         })))),
       postPatch: nix.thunk(() => nix.add("substituteInPlace configure \\\n  --replace-fail '$(which $PYTHON 2> /dev/null)' '$(command -v $PYTHON)' \\\n  --replace-fail '$(which $CYTHON 2> /dev/null)' '$(command -v $CYTHON)' \\\n  --replace-fail '$(which $ROOTCONFIG 2> /dev/null)' '$(command -v $ROOTCONFIG)'\nsubstituteInPlace Makefile \\\n  --replace-fail 'pip wheel' 'pip wheel --no-build-isolation'\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "substituteInPlace Makefile \\\n  --replace-fail '-shared -o' '-shared -install_name \"$(out)/$@\" -o'\n"))),
       configureFlags: nix.thunk(() => [nix.thunk(() => nix.str`--with-eigen=${eigen}`)]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, PYTHON: "python3" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], PYTHON: "python3" })),
       nativeBuildInputs: nix.thunk(() => [
         python3,
         nix.thunk(() => nix.sel(python3, "pkgs", "cython")),
@@ -53,7 +50,7 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       installCheckTarget: "check",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Tuning tool for Monte Carlo event generators",
         homepage: "https://professor.hepforge.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

@@ -2,33 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/stalwart-config.nix", [[["certificateFiles", 8, 16]], [["pki", 8, 12]], [["certificate", 24, 9], ["enable", 25, 9], ["implicit", 26, 9]], [["bind", 31, 11], ["protocol", 32, 11]], [["bind", 36, 11], ["protocol", 37, 11]], [["bind", 41, 11], ["protocol", 42, 11]], [["smtp-submission", 30, 9], ["imap", 35, 9], ["http", 40, 9]], [["hostname", 16, 14], ["tls", 23, 14], ["listener", 29, 14]], [["cert", 19, 9], ["private-key", 20, 9]], [["snakeoil", 18, 19]], [["mechanisms", 46, 20], ["directory", 47, 20]], [["directory", 55, 20]], [["auth", 46, 15], ["rcpt", 55, 15]], [["directory", 48, 15], ["data", 50, 15], ["fts", 51, 15], ["blob", 52, 15], ["lookup", 53, 15]], [["route", 56, 22]], [["strategy", 56, 13]], [["type", 59, 9], ["path", 60, 9], ["compression", 61, 9]], [["rocksdb", 58, 13]], [["class", 68, 13], ["name", 69, 13], ["secret", 70, 13], ["email", 71, 13]], [["class", 74, 13], ["name", 75, 13], ["secret", 76, 13], ["email", 77, 13]], [["type", 65, 9], ["principals", 66, 9]], [["in-memory", 64, 17]], [["server", 16, 7], ["certificate", 18, 7], ["session", 46, 7], ["storage", 48, 7], ["queue", 56, 7], ["store", 58, 7], ["directory", 64, 7]], [["enable", 11, 5], ["stateVersion", 13, 5], ["settings", 15, 5]], [["stalwart", 10, 12]], [["security", 8, 3], ["services", 10, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/stalwart-config.nix", [["certificateFiles", 8, 16]]);
-const pos$2 = nix.positions(here + "/stalwart-config.nix", [["pki", 8, 12]]);
-const pos$3 = nix.positions(here + "/stalwart-config.nix", [["certificate", 24, 9], ["enable", 25, 9], ["implicit", 26, 9]]);
-const pos$4 = nix.positions(here + "/stalwart-config.nix", [["bind", 31, 11], ["protocol", 32, 11]]);
-const pos$5 = nix.positions(here + "/stalwart-config.nix", [["bind", 36, 11], ["protocol", 37, 11]]);
-const pos$6 = nix.positions(here + "/stalwart-config.nix", [["bind", 41, 11], ["protocol", 42, 11]]);
-const pos$7 = nix.positions(here + "/stalwart-config.nix", [["smtp-submission", 30, 9], ["imap", 35, 9], ["http", 40, 9]]);
-const pos$8 = nix.positions(here + "/stalwart-config.nix", [["hostname", 16, 14], ["tls", 23, 14], ["listener", 29, 14]]);
-const pos$9 = nix.positions(here + "/stalwart-config.nix", [["cert", 19, 9], ["private-key", 20, 9]]);
-const pos$10 = nix.positions(here + "/stalwart-config.nix", [["snakeoil", 18, 19]]);
-const pos$11 = nix.positions(here + "/stalwart-config.nix", [["mechanisms", 46, 20], ["directory", 47, 20]]);
-const pos$12 = nix.positions(here + "/stalwart-config.nix", [["directory", 55, 20]]);
-const pos$13 = nix.positions(here + "/stalwart-config.nix", [["auth", 46, 15], ["rcpt", 55, 15]]);
-const pos$14 = nix.positions(here + "/stalwart-config.nix", [["directory", 48, 15], ["data", 50, 15], ["fts", 51, 15], ["blob", 52, 15], ["lookup", 53, 15]]);
-const pos$15 = nix.positions(here + "/stalwart-config.nix", [["route", 56, 22]]);
-const pos$16 = nix.positions(here + "/stalwart-config.nix", [["strategy", 56, 13]]);
-const pos$17 = nix.positions(here + "/stalwart-config.nix", [["type", 59, 9], ["path", 60, 9], ["compression", 61, 9]]);
-const pos$18 = nix.positions(here + "/stalwart-config.nix", [["rocksdb", 58, 13]]);
-const pos$19 = nix.positions(here + "/stalwart-config.nix", [["class", 68, 13], ["name", 69, 13], ["secret", 70, 13], ["email", 71, 13]]);
-const pos$20 = nix.positions(here + "/stalwart-config.nix", [["class", 74, 13], ["name", 75, 13], ["secret", 76, 13], ["email", 77, 13]]);
-const pos$21 = nix.positions(here + "/stalwart-config.nix", [["type", 65, 9], ["principals", 66, 9]]);
-const pos$22 = nix.positions(here + "/stalwart-config.nix", [["in-memory", 64, 17]]);
-const pos$23 = nix.positions(here + "/stalwart-config.nix", [["server", 16, 7], ["certificate", 18, 7], ["session", 46, 7], ["storage", 48, 7], ["queue", 56, 7], ["store", 58, 7], ["directory", 64, 7]]);
-const pos$24 = nix.positions(here + "/stalwart-config.nix", [["enable", 11, 5], ["stateVersion", 13, 5], ["settings", 15, 5]]);
-const pos$25 = nix.positions(here + "/stalwart-config.nix", [["stalwart", 10, 12]]);
-const pos$26 = nix.positions(here + "/stalwart-config.nix", [["security", 8, 3], ["services", 10, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -36,48 +11,48 @@ export default nix.lambda((args) => (() => {
   const certs = nix.thunk(() => nix.builtins.import(nix.path(here, "../common/acme/server/snakeoil-certs.nix")));
   const domain = nix.thunk(() => nix.sel(certs, "domain"));
   return {
-    [nix.POS]: pos$26,
+    [nix.POS]: $pos[25],
     security: nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pki: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         certificateFiles: nix.thunk(() => [nix.thunk(() => nix.sel(certs, "ca", "cert"))]),
       })),
     })),
     services: nix.thunk(() => ({
-      [nix.POS]: pos$25,
+      [nix.POS]: $pos[24],
       stalwart: nix.thunk(() => ({
-        [nix.POS]: pos$24,
+        [nix.POS]: $pos[23],
         enable: true,
         stateVersion: nix.thunk(() => nix.sel(lib, "trivial", "release")),
         settings: nix.thunk(() => ({
-          [nix.POS]: pos$23,
+          [nix.POS]: $pos[22],
           server: nix.thunk(() => ({
-            [nix.POS]: pos$8,
+            [nix.POS]: $pos[7],
             hostname: domain,
-            tls: nix.thunk(() => ({ [nix.POS]: pos$3, certificate: "snakeoil", enable: true, implicit: false })),
+            tls: nix.thunk(() => ({ [nix.POS]: $pos[2], certificate: "snakeoil", enable: true, implicit: false })),
             listener: nix.thunk(() => ({
-              [nix.POS]: pos$7,
-              "smtp-submission": nix.thunk(() => ({ [nix.POS]: pos$4, bind: nix.thunk(() => ["[::]:587"]), protocol: "smtp" })),
-              imap: nix.thunk(() => ({ [nix.POS]: pos$5, bind: nix.thunk(() => ["[::]:143"]), protocol: "imap" })),
-              http: nix.thunk(() => ({ [nix.POS]: pos$6, bind: nix.thunk(() => ["[::]:80"]), protocol: "http" })),
+              [nix.POS]: $pos[6],
+              "smtp-submission": nix.thunk(() => ({ [nix.POS]: $pos[3], bind: nix.thunk(() => ["[::]:587"]), protocol: "smtp" })),
+              imap: nix.thunk(() => ({ [nix.POS]: $pos[4], bind: nix.thunk(() => ["[::]:143"]), protocol: "imap" })),
+              http: nix.thunk(() => ({ [nix.POS]: $pos[5], bind: nix.thunk(() => ["[::]:80"]), protocol: "http" })),
             })),
           })),
           certificate: nix.thunk(() => ({
-            [nix.POS]: pos$10,
+            [nix.POS]: $pos[9],
             snakeoil: nix.thunk(() => ({
-              [nix.POS]: pos$9,
+              [nix.POS]: $pos[8],
               cert: nix.thunk(() => nix.str`%{file:${nix.sel(certs, nix.key(nix.force(domain)), "cert")}}%`),
               "private-key": nix.thunk(() => nix.str`%{file:${nix.sel(certs, nix.key(nix.force(domain)), "key")}}%`),
             })),
           })),
           session: nix.thunk(() => ({
-            [nix.POS]: pos$13,
-            auth: nix.thunk(() => ({ [nix.POS]: pos$11, mechanisms: "[plain]", directory: "'in-memory'" })),
-            rcpt: nix.thunk(() => ({ [nix.POS]: pos$12, directory: "'in-memory'" })),
+            [nix.POS]: $pos[12],
+            auth: nix.thunk(() => ({ [nix.POS]: $pos[10], mechanisms: "[plain]", directory: "'in-memory'" })),
+            rcpt: nix.thunk(() => ({ [nix.POS]: $pos[11], directory: "'in-memory'" })),
           })),
           storage: nix.thunk(() => ({
-            [nix.POS]: pos$14,
+            [nix.POS]: $pos[13],
             directory: "in-memory",
             data: "rocksdb",
             fts: "rocksdb",
@@ -85,33 +60,33 @@ export default nix.lambda((args) => (() => {
             lookup: "rocksdb",
           })),
           queue: nix.thunk(() => ({
-            [nix.POS]: pos$16,
-            strategy: nix.thunk(() => ({ [nix.POS]: pos$15, route: "'local'" })),
+            [nix.POS]: $pos[15],
+            strategy: nix.thunk(() => ({ [nix.POS]: $pos[14], route: "'local'" })),
           })),
           store: nix.thunk(() => ({
-            [nix.POS]: pos$18,
+            [nix.POS]: $pos[17],
             rocksdb: nix.thunk(() => ({
-              [nix.POS]: pos$17,
+              [nix.POS]: $pos[16],
               type: "rocksdb",
               path: "/var/lib/stalwart/data",
               compression: "lz4",
             })),
           })),
           directory: nix.thunk(() => ({
-            [nix.POS]: pos$22,
+            [nix.POS]: $pos[21],
             "in-memory": nix.thunk(() => ({
-              [nix.POS]: pos$21,
+              [nix.POS]: $pos[20],
               type: "memory",
               principals: nix.thunk(() => [
                 nix.thunk(() => ({
-                  [nix.POS]: pos$19,
+                  [nix.POS]: $pos[18],
                   class: "individual",
                   name: "alice",
                   secret: "foobar",
                   email: nix.thunk(() => [nix.thunk(() => nix.str`alice@${domain}`)]),
                 })),
                 nix.thunk(() => ({
-                  [nix.POS]: pos$20,
+                  [nix.POS]: $pos[19],
                   class: "individual",
                   name: "bob",
                   secret: "foobar",

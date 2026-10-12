@@ -2,24 +2,18 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/base.nix", [[["maintainers", 4, 8]], [["enable", 11, 7], ["package", 12, 15]], [["clickhouse", 10, 14]], [["memorySize", 14, 20]], [["services", 10, 5], ["virtualisation", 14, 5]], [["machine", 9, 9]], [["name", 3, 3], ["meta", 4, 3], ["nodes", 9, 3], ["testScript", 17, 3]]]);
 const formals$1 = { args: { pkgs: false, package: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/base.nix", [["maintainers", 4, 8]]);
-const pos$2 = nix.positions(here + "/base.nix", [["enable", 11, 7], ["package", 12, 15]]);
-const pos$3 = nix.positions(here + "/base.nix", [["clickhouse", 10, 14]]);
-const pos$4 = nix.positions(here + "/base.nix", [["memorySize", 14, 20]]);
-const pos$5 = nix.positions(here + "/base.nix", [["services", 10, 5], ["virtualisation", 14, 5]]);
-const pos$6 = nix.positions(here + "/base.nix", [["machine", 9, 9]]);
-const pos$7 = nix.positions(here + "/base.nix", [["name", 3, 3], ["meta", 4, 3], ["nodes", 9, 3], ["testScript", 17, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   const package$ = nix.arg($, "package");
   return {
-    [nix.POS]: pos$7,
+    [nix.POS]: $pos[6],
     name: nix.thunk(() => nix.str`clickhouse-${nix.sel(package$, "version")}`),
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
         return [
@@ -29,14 +23,14 @@ export default nix.lambda((args) => (() => {
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       machine: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         services: nix.thunk(() => ({
-          [nix.POS]: pos$3,
-          clickhouse: nix.thunk(() => ({ [nix.POS]: pos$2, enable: true, package: package$ })),
+          [nix.POS]: $pos[2],
+          clickhouse: nix.thunk(() => ({ [nix.POS]: $pos[1], enable: true, package: package$ })),
         })),
-        virtualisation: nix.thunk(() => ({ [nix.POS]: pos$4, memorySize: 4096n })),
+        virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[3], memorySize: 4096n })),
       })),
     })),
     testScript: nix.thunk(() => (() => {

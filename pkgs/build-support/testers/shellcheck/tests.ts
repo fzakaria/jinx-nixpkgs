@@ -2,31 +2,27 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/tests.nix", [[["name", 11, 7], ["src", 12, 7]], [["drv", 10, 5], ["expectedBuilderExitCode", 14, 5], ["expectedBuilderLogEntries", 15, 5]], [["name", 25, 7], ["src", 26, 7]], [["drv", 24, 5], ["expectedBuilderExitCode", 28, 5], ["expectedBuilderLogEntries", 29, 5]], [["example-dir", 9, 3], ["example-file", 23, 3]]]);
 const formals$1 = { args: { lib: false, testers: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/tests.nix", [["name", 11, 7], ["src", 12, 7]]);
-const pos$2 = nix.positions(here + "/tests.nix", [["drv", 10, 5], ["expectedBuilderExitCode", 14, 5], ["expectedBuilderLogEntries", 15, 5]]);
-const pos$3 = nix.positions(here + "/tests.nix", [["name", 25, 7], ["src", 26, 7]]);
-const pos$4 = nix.positions(here + "/tests.nix", [["drv", 24, 5], ["expectedBuilderExitCode", 28, 5], ["expectedBuilderLogEntries", 29, 5]]);
-const pos$5 = nix.positions(here + "/tests.nix", [["example-dir", 9, 3], ["example-file", 23, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const testers = nix.arg($, "testers");
   return nix.app(nix.sel(lib, "recurseIntoAttrs"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       "example-dir": nix.thunk(() => nix.app(nix.sel(testers, "testBuildFailure'"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
-          drv: nix.thunk(() => nix.app(nix.sel(testers, "shellcheck"), nix.thunk(() => ({ [nix.POS]: pos$1, name: "example-dir", src: nix.path(here, "./src") })))),
+          [nix.POS]: $pos[1],
+          drv: nix.thunk(() => nix.app(nix.sel(testers, "shellcheck"), nix.thunk(() => ({ [nix.POS]: $pos[0], name: "example-dir", src: nix.path(here, "./src") })))),
           expectedBuilderExitCode: 123n,
           expectedBuilderLogEntries: nix.thunk(() => [
             "echo $@\n     ^-- SC2068 (error): Double quote array expansions to avoid re-splitting elements.\n",
           ]),
         })))),
       "example-file": nix.thunk(() => nix.app(nix.sel(testers, "testBuildFailure'"), nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           drv: nix.thunk(() => nix.app(nix.sel(testers, "shellcheck"), nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               name: "example-file",
               src: nix.path(here, "./src/example.sh"),
             })))),

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 19, 5], ["sha256", 20, 5]], [["name", 24, 5], ["exec", 25, 5], ["icon", 26, 5], ["comment", 27, 5], ["desktopName", 28, 5], ["genericName", 29, 5], ["categories", 30, 5]], [["owner", 34, 5], ["repo", 35, 5], ["tag", 36, 5], ["hash", 37, 5]], [["description", 76, 5], ["homepage", 77, 5], ["platforms", 78, 5], ["hydraPlatforms", 79, 5], ["license", 80, 5], ["downloadPage", 94, 5]], [["pname", 15, 3], ["version", 16, 3], ["icon", 18, 3], ["desktopItem", 23, 3], ["src", 33, 3], ["patches", 40, 3], ["nativeBuildInputs", 45, 3], ["buildInputs", 50, 3], ["buildPhase", 55, 3], ["installPhase", 62, 3], ["meta", 75, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchurl: false, love: false, lua: false, makeWrapper: false, makeDesktopItem: false, "strip-nondeterminism": false, zip: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 19, 5], ["sha256", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 24, 5], ["exec", 25, 5], ["icon", 26, 5], ["comment", 27, 5], ["desktopName", 28, 5], ["genericName", 29, 5], ["categories", 30, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["owner", 34, 5], ["repo", 35, 5], ["tag", 36, 5], ["hash", 37, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 76, 5], ["homepage", 77, 5], ["platforms", 78, 5], ["hydraPlatforms", 79, 5], ["license", 80, 5], ["downloadPage", 94, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["icon", 18, 3], ["desktopItem", 23, 3], ["src", 33, 3], ["patches", 40, 3], ["nativeBuildInputs", 45, 3], ["buildInputs", 50, 3], ["buildPhase", 55, 3], ["installPhase", 62, 3], ["meta", 75, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,12 +21,12 @@ export default nix.lambda((args) => (() => {
       const pname = "duckmarines";
       const version = "1.0c";
       const icon = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "http://tangramgames.dk/img/thumb/duckmarines.png",
           sha256: "07ypbwqcgqc5f117yxy9icix76wlybp1cmykc8f3ivdps66hl0k5",
         }))));
       const desktopItem = nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           name: "duckmarines",
           exec: "duckmarines",
           icon: icon,
@@ -40,7 +36,7 @@ export default nix.lambda((args) => (() => {
           categories: nix.thunk(() => ["Game"]),
         }))));
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           owner: "SimonLarsen",
           repo: "duckmarines",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -62,7 +58,7 @@ mkdir -p $out/share/applications
 ln -s ${desktopItem}/share/applications/* $out/share/applications/
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Duck-themed action puzzle video game",
         homepage: "https://github.com/SimonLarsen/duckmarines",
         platforms: nix.thunk(() => nix.sel(love, "meta", "platforms")),
@@ -80,7 +76,7 @@ ln -s ${desktopItem}/share/applications/* $out/share/applications/
         downloadPage: "http://tangramgames.dk/games/duckmarines",
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         icon,

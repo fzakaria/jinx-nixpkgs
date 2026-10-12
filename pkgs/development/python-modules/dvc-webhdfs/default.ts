@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 18, 26], ["version", 18, 32], ["hash", 19, 5]], [["kerberos", 36, 5]], [["description", 43, 5], ["homepage", 44, 5], ["changelog", 45, 5], ["license", 46, 5], ["maintainers", 47, 5]], [["pname", 13, 3], ["version", 14, 3], ["pyproject", 15, 3], ["src", 17, 3], ["pythonRemoveDeps", 23, 3], ["build-system", 25, 3], ["dependencies", 30, 3], ["optional-dependencies", 35, 3], ["meta", 42, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, "dvc-objects": false, fetchPypi: false, fsspec: false, "requests-kerberos": false, "setuptools-scm": false, setuptools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 18, 26], ["version", 18, 32], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["kerberos", 36, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 43, 5], ["homepage", 44, 5], ["changelog", 45, 5], ["license", 46, 5], ["maintainers", 47, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 13, 3], ["version", 14, 3], ["pyproject", 15, 3], ["src", 17, 3], ["pythonRemoveDeps", 23, 3], ["build-system", 25, 3], ["dependencies", 30, 3], ["optional-dependencies", 35, 3], ["meta", 42, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const setuptools_scm = nix.arg($, "setuptools-scm");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "dvc-webhdfs",
       version: "3.1.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-bolIQ9Fc52agXGFt7anZvDYSSOk7+eozi5lublHqD+o=",
@@ -32,9 +29,9 @@ export default nix.lambda((args) => (() => {
       pythonRemoveDeps: nix.thunk(() => ["dvc"]),
       "build-system": nix.thunk(() => [setuptools, setuptools_scm]),
       dependencies: nix.thunk(() => [dvc_objects, fsspec]),
-      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$2, kerberos: nix.thunk(() => [requests_kerberos]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: $pos[1], kerberos: nix.thunk(() => [requests_kerberos]) })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Webhdfs plugin for dvc",
         homepage: "https://pypi.org/project/dvc-webhdfs/",
         changelog: nix.thunk(() => nix.str`https://github.com/iterative/dvc-webhdfs/releases/tag/${nix.sel(finalAttrs, "version")}`),

@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 34, 5], ["repo", 35, 5], ["rev", 36, 5], ["sha256", 37, 5]], [["package", 79, 7]], [["versionTest", 78, 5]], [["tests", 77, 12]], [["description", 84, 5], ["mainProgram", 85, 5], ["longDescription", 86, 5], ["homepage", 92, 5], ["downloadPage", 93, 5], ["changelog", 94, 5], ["license", 95, 5], ["platforms", 96, 5]], [["pname", 17, 3], ["version", 18, 3], ["nativeBuildInputs", 21, 3], ["buildInputs", 26, 3], ["depsBuildBuild", 31, 3], ["src", 33, 3], ["enableParallelBuilding", 40, 3], ["configureFlags", 42, 3], ["postPatch", 54, 3], ["passthru", 77, 3], ["meta", 83, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, autoconf269: false, autoreconfHook: false, "pkg-config": false, libmysqlclient: false, libaio: false, luajit: false, testers: false, sysbench: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 34, 5], ["repo", 35, 5], ["rev", 36, 5], ["sha256", 37, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["package", 79, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["versionTest", 78, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 77, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 84, 5], ["mainProgram", 85, 5], ["longDescription", 86, 5], ["homepage", 92, 5], ["downloadPage", 93, 5], ["changelog", 94, 5], ["license", 95, 5], ["platforms", 96, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["nativeBuildInputs", 21, 3], ["buildInputs", 26, 3], ["depsBuildBuild", 31, 3], ["src", 33, 3], ["enableParallelBuilding", 40, 3], ["configureFlags", 42, 3], ["postPatch", 54, 3], ["passthru", 77, 3], ["meta", 83, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,14 +19,14 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const sysbench = nix.arg($, "sysbench");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "sysbench",
       version: "1.0.20",
       nativeBuildInputs: nix.thunk(() => [autoconf269, autoreconfHook, pkg_config]),
       buildInputs: nix.thunk(() => nix.concat([libmysqlclient, luajit], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [libaio])))),
       depsBuildBuild: nix.thunk(() => [pkg_config]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "akopytov",
           repo: "sysbench",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -58,14 +53,14 @@ substituteInPlace \\
       "${nix.sel(stdenv, "cc", "targetPrefix")}ar rcs"
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
-          versionTest: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$2, package: sysbench })))),
+          [nix.POS]: $pos[2],
+          versionTest: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: $pos[1], package: sysbench })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Modular, cross-platform and multi-threaded benchmark tool",
         mainProgram: "sysbench",
         longDescription: "sysbench is a scriptable multi-threaded benchmark tool based on LuaJIT.\nIt is most frequently used for database benchmarks, but can also be used\nto create arbitrarily complex workloads that do not involve a database\nserver.\n",

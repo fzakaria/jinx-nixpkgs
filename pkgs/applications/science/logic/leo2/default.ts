@@ -2,12 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 19, 5], ["sha256", 20, 5]], [["url", 36, 7], ["stripLen", 37, 7], ["extraPrefix", 38, 7], ["sha256", 39, 7]], [["NIX_CFLAGS_COMPILE", 52, 7]], [["description", 65, 5], ["mainProgram", 66, 5], ["maintainers", 67, 5], ["platforms", 68, 5], ["license", 69, 5], ["homepage", 70, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["strictDeps", 23, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 32, 3], ["patches", 34, 3], ["preConfigure", 43, 3], ["buildFlags", 50, 3], ["env", 52, 3], ["preInstall", 54, 3], ["postInstall", 56, 3], ["meta", 64, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, fetchpatch: false, makeWrapper: false, eprover: false, ocaml: false, camlp4: false, perl: false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 19, 5], ["sha256", 20, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["url", 36, 7], ["stripLen", 37, 7], ["extraPrefix", 38, 7], ["sha256", 39, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["NIX_CFLAGS_COMPILE", 52, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 65, 5], ["mainProgram", 66, 5], ["maintainers", 67, 5], ["platforms", 68, 5], ["license", 69, 5], ["homepage", 70, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["strictDeps", 23, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 32, 3], ["patches", 34, 3], ["preConfigure", 43, 3], ["buildFlags", 50, 3], ["env", 52, 3], ["preInstall", 54, 3], ["postInstall", 56, 3], ["meta", 64, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const pname = "leo2";
       const version = "1.7.0";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://page.mi.fu-berlin.de/cbenzmueller/leo/leo2_v${version}.tgz`),
           sha256: "sha256:1b2q7vsz6s9ighypsigqjm1mzjiq3xgnz5id5ssb4rh9zm190r82",
         }))));
@@ -34,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const buildInputs = nix.thunk(() => [zlib]);
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/niklasso/minisat/commit/7eb6015313561a2586032574788fcb133eeaa19f.patch",
             stripLen: 1n,
             extraPrefix: "lib/",
@@ -48,7 +44,7 @@ substituteInPlace Makefile.pre \\
 `);
       const buildFlags = nix.thunk(() => ["opt"]);
       const env = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), "-Wno-reserved-user-defined-literal")),
       }));
       const preInstall = "mkdir -p $out/bin";
@@ -59,7 +55,7 @@ wrapProgram $out/bin/leo \\
   --add-flags "--atprc $out/etc/leoatprc"
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "High-performance typed higher order prover",
         mainProgram: "leo",
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "raskin"))]),
@@ -68,7 +64,7 @@ wrapProgram $out/bin/leo \\
         homepage: "http://www.leoprover.org/",
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         src,

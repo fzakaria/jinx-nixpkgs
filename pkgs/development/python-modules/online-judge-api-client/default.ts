@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 35, 5], ["repo", 36, 5], ["tag", 37, 5], ["hash", 38, 5]], [["description", 67, 5], ["mainProgram", 68, 5], ["homepage", 69, 5], ["license", 70, 5], ["maintainers", 71, 5]], [["pname", 30, 3], ["version", 31, 3], ["format", 32, 3], ["src", 34, 3], ["patches", 41, 3], ["postPatch", 42, 3], ["propagatedBuildInputs", 48, 3], ["doCheck", 59, 3], ["pythonImportsCheck", 61, 3], ["meta", 66, 3]]]);
 const formals$1 = { args: { lib: false, appdirs: false, beautifulsoup4: false, buildPythonPackage: false, colorlog: false, fetchFromGitHub: false, git: false, jsonschema: false, lxml: false, markdown: false, python: false, requests: false, toml: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 35, 5], ["repo", 36, 5], ["tag", 37, 5], ["hash", 38, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 67, 5], ["mainProgram", 68, 5], ["homepage", 69, 5], ["license", 70, 5], ["maintainers", 71, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 30, 3], ["version", 31, 3], ["format", 32, 3], ["src", 34, 3], ["patches", 41, 3], ["postPatch", 42, 3], ["propagatedBuildInputs", 48, 3], ["doCheck", 59, 3], ["pythonImportsCheck", 61, 3], ["meta", 66, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const version = "10.10.1";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "online-judge-tools",
           repo: "api-client",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -46,7 +44,7 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["onlinejudge", "onlinejudge_api"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "API client to develop tools for competitive programming",
         mainProgram: "oj-api",
         homepage: "https://github.com/online-judge-tools/api-client",
@@ -57,7 +55,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         format,

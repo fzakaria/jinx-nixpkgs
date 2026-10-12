@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 32, 5], ["repo", 33, 5], ["tag", 34, 5], ["hash", 35, 5]], [["changelog", 71, 5], ["description", 72, 5], ["mainProgram", 73, 5], ["homepage", 74, 5], ["license", 75, 5], ["maintainers", 76, 5]], [["pname", 27, 3], ["version", 28, 3], ["pyproject", 29, 3], ["src", 31, 3], ["postPatch", 38, 3], ["build-system", 44, 3], ["dependencies", 46, 3], ["nativeCheckInputs", 57, 3], ["disabledTests", 63, 3], ["pythonImportsCheck", 68, 3], ["meta", 70, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, aiohttp: false, bellows: false, coloredlogs: false, crc: false, gpiod: false, tqdm: false, "typing-extensions": false, zigpy: false, aioresponses: false, pytestCheckHook: false, "pytest-asyncio": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 32, 5], ["repo", 33, 5], ["tag", 34, 5], ["hash", 35, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["changelog", 71, 5], ["description", 72, 5], ["mainProgram", 73, 5], ["homepage", 74, 5], ["license", 75, 5], ["maintainers", 76, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 27, 3], ["version", 28, 3], ["pyproject", 29, 3], ["src", 31, 3], ["postPatch", 38, 3], ["build-system", 44, 3], ["dependencies", 46, 3], ["nativeCheckInputs", 57, 3], ["disabledTests", 63, 3], ["pythonImportsCheck", 68, 3], ["meta", 70, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.1.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "NabuCasa",
           repo: "universal-silabs-flasher",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -46,7 +44,7 @@ export default nix.lambda((args) => (() => {
       const disabledTests = nix.thunk(() => ["test_xmodem_happy_path"]);
       const pythonImportsCheck = nix.thunk(() => ["universal_silabs_flasher"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         changelog: nix.thunk(() => nix.str`https://github.com/NabuCasa/universal-silabs-flasher/releases/tag/${nix.sel(src, "tag")}`),
         description: "Flashes Silicon Labs radios running EmberZNet or CPC multi-pan firmware",
         mainProgram: "universal-silabs-flasher",
@@ -58,7 +56,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

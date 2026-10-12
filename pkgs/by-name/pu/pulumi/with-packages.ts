@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/with-packages.nix", [[["mainProgram", 29, 10]], [["pulumi", 20, 13], ["makeWrapperArgs", 21, 5], ["__structuredAttrs", 27, 5], ["nativeBuildInputs", 28, 5], ["meta", 29, 5]]]);
 const formals$1 = { args: { lib: false, runCommand: false, pulumi: false, pulumiPackages: false, makeBinaryWrapper: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/with-packages.nix", [["mainProgram", 29, 10]]);
-const pos$2 = nix.positions(here + "/with-packages.nix", [["pulumi", 20, 13], ["makeWrapperArgs", 21, 5], ["__structuredAttrs", 27, 5], ["nativeBuildInputs", 28, 5], ["meta", 29, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const pulumiPackages = nix.arg($, "pulumiPackages");
   const makeBinaryWrapper = nix.arg($, "makeBinaryWrapper");
   return (f) => nix.app(runCommand, "pulumi-with-packages", nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pulumi: pulumi,
       makeWrapperArgs: nix.thunk(() => [
         "--suffix",
@@ -24,7 +23,7 @@ export default nix.lambda((args) => (() => {
       ]),
       __structuredAttrs: true,
       nativeBuildInputs: nix.thunk(() => [makeBinaryWrapper]),
-      meta: nix.thunk(() => ({ [nix.POS]: pos$1, mainProgram: "pulumi" })),
+      meta: nix.thunk(() => ({ [nix.POS]: $pos[0], mainProgram: "pulumi" })),
     })), "mkdir -p \"$out/bin\"\nln -s -t \"$out\" \"$pulumi/share\"\nmakeWrapper \"$pulumi/bin/pulumi\" \"$out/bin/pulumi\" \"${makeWrapperArgs[@]}\"\n");
 })(), formals$1);
 //# sourceMappingURL=with-packages.ts.map

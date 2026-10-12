@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 31, 5], ["repo", 32, 5], ["rev", 33, 5], ["hash", 34, 5]], [["name", 43, 7], ["url", 44, 7], ["hash", 45, 7]], [["name", 48, 7], ["url", 49, 7], ["hash", 50, 7]], [["description", 88, 5], ["homepage", 89, 5], ["license", 90, 5], ["maintainers", 91, 5], ["platforms", 92, 5]], [["pname", 27, 3], ["version", 28, 3], ["src", 30, 3], ["patches", 37, 3], ["blas64", 54, 11], ["nativeBuildInputs", 56, 3], ["doCheck", 64, 3], ["enableParallelBuilding", 66, 3], ["configureFlags", 68, 3], ["postPatch", 75, 3], ["postInstall", 79, 3], ["meta", 87, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch: false, perl: false, python3: false, blas64: true, withArchitecture: true, withOpenMP: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 31, 5], ["repo", 32, 5], ["rev", 33, 5], ["hash", 34, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 43, 7], ["url", 44, 7], ["hash", 45, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 48, 7], ["url", 49, 7], ["hash", 50, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 88, 5], ["homepage", 89, 5], ["license", 90, 5], ["maintainers", 91, 5], ["platforms", 92, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 27, 3], ["version", 28, 3], ["src", 30, 3], ["patches", 37, 3], ["blas64", 54, 11], ["nativeBuildInputs", 56, 3], ["doCheck", 64, 3], ["enableParallelBuilding", 66, 3], ["configureFlags", 68, 3], ["postPatch", 75, 3], ["postInstall", 79, 3], ["meta", 87, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const threadingSuffix = nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), withOpenMP, "-mt"));
   const blasIntSize = nix.thunk(() => (nix.asBool(blas64) ? "64" : "32"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "amd-blis",
       version: "5.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "amd",
           repo: "blis",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -36,13 +32,13 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [
         nix.path(here, "./build-date.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "amd-blis-gcc-15-fix-1.patch",
             url: "https://github.com/amd/blis/commit/14e46ad83bac5fd82569a43c7cbd3e791a1eacc8.patch",
             hash: "sha256-3vk9NSnhT64J6PUabeP58Gn7p1zheGbPxSRjVEX7WNg=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "amd-blis-gcc-15-fix-2.patch",
             url: "https://github.com/amd/blis/commit/30c42202d78fd5ee5e54d50ad57348e5e541a7d5.patch",
             hash: "sha256-FCMWQzfzQxCQqngULoXfh35BFGaNTu732iu3HctNcFM=",
@@ -61,7 +57,7 @@ ln -s $out/lib/libblas.so.3 $out/lib/libblas.so
 ln -s $out/lib/libcblas.so.3 $out/lib/libcblas.so
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "BLAS-compatible library optimized for AMD CPUs",
         homepage: "https://developer.amd.com/amd-aocl/blas-library/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

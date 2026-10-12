@@ -2,65 +2,49 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/pushgateway.nix", [[["systemPackages", 10, 21]], [["allowedTCPPorts", 12, 29]], [["firewall", 12, 20]], [["scrape_interval", 16, 24]], [["targets", 21, 36]], [["job_name", 20, 15], ["static_configs", 21, 15]], [["enable", 15, 11], ["globalConfig", 16, 11], ["scrapeConfigs", 18, 11]], [["prometheus", 14, 18]], [["environment", 10, 9], ["networking", 12, 9], ["services", 14, 9]], [["allowedTCPPorts", 30, 29]], [["firewall", 30, 20]], [["enable", 33, 11]], [["pushgateway", 32, 29]], [["prometheus", 32, 18]], [["networking", 30, 9], ["services", 32, 9]], [["prometheus", 7, 5], ["pushgateway", 27, 5], ["client", 37, 5]], [["name", 4, 3], ["nodes", 6, 3], ["testScript", 40, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
 const formals$2 = { args: { config: false, pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/pushgateway.nix", [["systemPackages", 10, 21]]);
-const pos$2 = nix.positions(here + "/pushgateway.nix", [["allowedTCPPorts", 12, 29]]);
-const pos$3 = nix.positions(here + "/pushgateway.nix", [["firewall", 12, 20]]);
-const pos$4 = nix.positions(here + "/pushgateway.nix", [["scrape_interval", 16, 24]]);
-const pos$5 = nix.positions(here + "/pushgateway.nix", [["targets", 21, 36]]);
-const pos$6 = nix.positions(here + "/pushgateway.nix", [["job_name", 20, 15], ["static_configs", 21, 15]]);
-const pos$7 = nix.positions(here + "/pushgateway.nix", [["enable", 15, 11], ["globalConfig", 16, 11], ["scrapeConfigs", 18, 11]]);
-const pos$8 = nix.positions(here + "/pushgateway.nix", [["prometheus", 14, 18]]);
-const pos$9 = nix.positions(here + "/pushgateway.nix", [["environment", 10, 9], ["networking", 12, 9], ["services", 14, 9]]);
 const formals$3 = { args: { config: false, pkgs: false }, ellipsis: true };
-const pos$10 = nix.positions(here + "/pushgateway.nix", [["allowedTCPPorts", 30, 29]]);
-const pos$11 = nix.positions(here + "/pushgateway.nix", [["firewall", 30, 20]]);
-const pos$12 = nix.positions(here + "/pushgateway.nix", [["enable", 33, 11]]);
-const pos$13 = nix.positions(here + "/pushgateway.nix", [["pushgateway", 32, 29]]);
-const pos$14 = nix.positions(here + "/pushgateway.nix", [["prometheus", 32, 18]]);
-const pos$15 = nix.positions(here + "/pushgateway.nix", [["networking", 30, 9], ["services", 32, 9]]);
 const formals$4 = { args: { config: false, pkgs: false }, ellipsis: true };
-const pos$16 = nix.positions(here + "/pushgateway.nix", [["prometheus", 7, 5], ["pushgateway", 27, 5], ["client", 37, 5]]);
-const pos$17 = nix.positions(here + "/pushgateway.nix", [["name", 4, 3], ["nodes", 6, 3], ["testScript", 40, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   return {
-    [nix.POS]: pos$17,
+    [nix.POS]: $pos[16],
     name: "prometheus-pushgateway",
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$16,
+      [nix.POS]: $pos[15],
       prometheus: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config = nix.arg($_1, "config");
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs_1, "jq"))]),
           })),
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             firewall: nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               allowedTCPPorts: nix.thunk(() => [nix.thunk(() => nix.sel(config, "services", "prometheus", "port"))]),
             })),
           })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$8,
+            [nix.POS]: $pos[7],
             prometheus: nix.thunk(() => ({
-              [nix.POS]: pos$7,
+              [nix.POS]: $pos[6],
               enable: true,
-              globalConfig: nix.thunk(() => ({ [nix.POS]: pos$4, scrape_interval: "2s" })),
+              globalConfig: nix.thunk(() => ({ [nix.POS]: $pos[3], scrape_interval: "2s" })),
               scrapeConfigs: nix.thunk(() => [
                 nix.thunk(() => ({
-                  [nix.POS]: pos$6,
+                  [nix.POS]: $pos[5],
                   job_name: "pushgateway",
                   static_configs: nix.thunk(() => [
-                    nix.thunk(() => ({ [nix.POS]: pos$5, targets: nix.thunk(() => ["pushgateway:9091"]) })),
+                    nix.thunk(() => ({ [nix.POS]: $pos[4], targets: nix.thunk(() => ["pushgateway:9091"]) })),
                   ]),
                 })),
               ]),
@@ -73,16 +57,16 @@ export default nix.lambda((args) => (() => {
         const config = nix.arg($_1, "config");
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$15,
+          [nix.POS]: $pos[14],
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$11,
-            firewall: nix.thunk(() => ({ [nix.POS]: pos$10, allowedTCPPorts: nix.thunk(() => [9091n]) })),
+            [nix.POS]: $pos[10],
+            firewall: nix.thunk(() => ({ [nix.POS]: $pos[9], allowedTCPPorts: nix.thunk(() => [9091n]) })),
           })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$14,
+            [nix.POS]: $pos[13],
             prometheus: nix.thunk(() => ({
-              [nix.POS]: pos$13,
-              pushgateway: nix.thunk(() => ({ [nix.POS]: pos$12, enable: true })),
+              [nix.POS]: $pos[12],
+              pushgateway: nix.thunk(() => ({ [nix.POS]: $pos[11], enable: true })),
             })),
           })),
         };

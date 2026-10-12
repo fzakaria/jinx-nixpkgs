@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 32, 5], ["hash", 33, 5]], [["description", 51, 5], ["homepage", 52, 5], ["license", 53, 5], ["sourceProvenance", 54, 5], ["maintainers", 55, 5], ["platforms", 59, 5], ["mainProgram", 63, 5]], [["useVSCodeRipgrep", 15, 11], ["commandLineArgs", 16, 3], ["version", 18, 3], ["pname", 19, 3], ["vscodeVersion", 23, 3], ["executableName", 25, 3], ["longName", 26, 3], ["shortName", 27, 3], ["libraryName", 28, 3], ["iconName", 29, 3], ["src", 31, 3], ["extraNativeBuildInputs", 37, 3], ["sourceRoot", 39, 3], ["sourceExecutableName", 41, 3], ["dontFixup", 43, 3], ["patchVSCodePath", 45, 3], ["tests", 47, 3], ["updateScript", 48, 3], ["meta", 50, 3]], [["sources", 69, 15]], [["passthru", 68, 5]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildVscode: false, fetchurl: false, extraCommandLineArgs: true, useVSCodeRipgrep: true, _7zz: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 32, 5], ["hash", 33, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 51, 5], ["homepage", 52, 5], ["license", 53, 5], ["sourceProvenance", 54, 5], ["maintainers", 55, 5], ["platforms", 59, 5], ["mainProgram", 63, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["useVSCodeRipgrep", 15, 11], ["commandLineArgs", 16, 3], ["version", 18, 3], ["pname", 19, 3], ["vscodeVersion", 23, 3], ["executableName", 25, 3], ["longName", 26, 3], ["shortName", 27, 3], ["libraryName", 28, 3], ["iconName", 29, 3], ["src", 31, 3], ["extraNativeBuildInputs", 37, 3], ["sourceRoot", 39, 3], ["sourceExecutableName", 41, 3], ["dontFixup", 43, 3], ["patchVSCodePath", 45, 3], ["tests", 47, 3], ["updateScript", 48, 3], ["meta", 50, 3]]);
-const pos$4 = nix.positions(here + "/package.nix", [["sources", 69, 15]]);
-const pos$5 = nix.positions(here + "/package.nix", [["passthru", 68, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const _7zz = nix.arg($, "_7zz");
   const sources = nix.thunk(() => nix.sel(nix.app(nix.sel(lib, "importJSON"), nix.path(here, "./sources.json")), nix.key(nix.sel(stdenv, "hostPlatform", "system"))));
   return nix.app(nix.sel(nix.app(buildVscode, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       useVSCodeRipgrep: useVSCodeRipgrep,
       commandLineArgs: extraCommandLineArgs,
       version: "0.12.333",
@@ -32,7 +28,7 @@ export default nix.lambda((args) => (() => {
       libraryName: "kiro",
       iconName: "kiro",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.sel(sources, "url")),
           hash: nix.thunk(() => nix.sel(sources, "hash")),
         })))),
@@ -44,7 +40,7 @@ export default nix.lambda((args) => (() => {
       tests: nix.thunk(() => ({})),
       updateScript: nix.path(here, "./update.sh"),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "IDE for Agentic AI workflows based on VS Code",
         homepage: "https://kiro.dev",
         license: nix.thunk(() => nix.sel(lib, "licenses", "amazonsl")),
@@ -63,8 +59,8 @@ export default nix.lambda((args) => (() => {
         mainProgram: "kiro",
       })),
     }))), "overrideAttrs"), (oldAttrs) => ({
-      [nix.POS]: pos$5,
-      passthru: nix.thunk(() => nix.update(nix.selOr(oldAttrs, () => ({}), "passthru"), { [nix.POS]: pos$4, sources: sources })),
+      [nix.POS]: $pos[4],
+      passthru: nix.thunk(() => nix.update(nix.selOr(oldAttrs, () => ({}), "passthru"), { [nix.POS]: $pos[3], sources: sources })),
     }));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

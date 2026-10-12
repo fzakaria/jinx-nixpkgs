@@ -2,16 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 33, 5], ["repo", 34, 5], ["rev", 35, 5], ["hash", 36, 5]], [["name", 44, 5], ["url", 45, 5], ["hash", 46, 5]], [["name", 50, 5], ["url", 51, 5], ["hash", 52, 5]], [["owner", 69, 5], ["repo", 70, 5], ["tag", 71, 5], ["hash", 72, 5], ["fetchSubmodules", 73, 5]], [["NIX_CFLAGS_COMPILE", 134, 5], ["PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION", 137, 5], ["SKIP_PYTHON_VENV", 138, 5]], [["extraArgs", 147, 5]], [["updateScript", 146, 12]], [["broken", 154, 5], ["description", 155, 5], ["homepage", 156, 5], ["downloadPage", 157, 5], ["donationPage", 158, 5], ["changelog", 159, 5], ["license", 160, 5], ["maintainers", 161, 5], ["platforms", 162, 5], ["mainProgram", 163, 5]], [["pname", 62, 3], ["version", 63, 3], ["strictDeps", 65, 3], ["__structuredAttrs", 66, 3], ["src", 68, 3], ["patches", 76, 3], ["postPatch", 78, 3], ["nativeBuildInputs", 92, 3], ["buildInputs", 105, 3], ["preConfigure", 124, 3], ["cmakeFlags", 128, 3], ["env", 133, 3], ["postInstall", 141, 3], ["passthru", 146, 3], ["meta", 153, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchurl: false, fetchFromCodeberg: false, cmake: false, boost: false, expat: false, getopt: false, gflags: false, glm: false, gtest: false, icu: false, imgui: false, jansson: false, jq: false, libxcursor: false, libxinerama: false, libxrandr: false, ninja: false, "pkg-config": false, pugixml: false, python3: false, qt6: false, optipng: false, utf8cpp: false, which: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 33, 5], ["repo", 34, 5], ["rev", 35, 5], ["hash", 36, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 44, 5], ["url", 45, 5], ["hash", 46, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 50, 5], ["url", 51, 5], ["hash", 52, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["owner", 69, 5], ["repo", 70, 5], ["tag", 71, 5], ["hash", 72, 5], ["fetchSubmodules", 73, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 134, 5], ["PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION", 137, 5], ["SKIP_PYTHON_VENV", 138, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["extraArgs", 147, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["updateScript", 146, 12]]);
-const pos$8 = nix.positions(here + "/package.nix", [["broken", 154, 5], ["description", 155, 5], ["homepage", 156, 5], ["downloadPage", 157, 5], ["donationPage", 158, 5], ["changelog", 159, 5], ["license", 160, 5], ["maintainers", 161, 5], ["platforms", 162, 5], ["mainProgram", 163, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["pname", 62, 3], ["version", 63, 3], ["strictDeps", 65, 3], ["__structuredAttrs", 66, 3], ["src", 68, 3], ["patches", 76, 3], ["postPatch", 78, 3], ["nativeBuildInputs", 92, 3], ["buildInputs", 105, 3], ["preConfigure", 124, 3], ["cmakeFlags", 128, 3], ["env", 133, 3], ["postInstall", 141, 3], ["passthru", 146, 3], ["meta", 153, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -44,7 +36,7 @@ export default nix.lambda((args) => (() => {
   const which = nix.arg($, "which");
   const nix_update_script = nix.arg($, "nix-update-script");
   const world_feed_integration_tests_data = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "organicmaps",
       repo: "world_feed_integration_tests_data",
       rev: "30ecb0b3fe694a582edfacc2a7425b6f01f9fec6",
@@ -53,13 +45,13 @@ export default nix.lambda((args) => (() => {
   const mapSeries = "2026.06.28";
   const mapRev = 260830n;
   const worldMap = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       name: nix.thunk(() => nix.str`World-${mapSeries}-${nix.builtins.toString(mapRev)}.mwm`),
       url: nix.thunk(() => nix.str`https://mapgen-fi-1.comaps.app/maps/${mapSeries}/${nix.builtins.toString(mapRev)}/World.mwm`),
       hash: "sha256-TcaGJK8xAkceA7wFsCrYt6euOnts0w7LZCKLFPnU3wM=",
     }))));
   const worldCoasts = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       name: nix.thunk(() => nix.str`WorldCoasts-${mapSeries}-${nix.builtins.toString(mapRev)}.mwm`),
       url: nix.thunk(() => nix.str`https://mapgen-fi-1.comaps.app/maps/${mapSeries}/${nix.builtins.toString(mapRev)}/WorldCoasts.mwm`),
       hash: "sha256-pNb0cLGRN6YkliraL+DZyAPh+JJSM6vTzoejeKvi/oc=",
@@ -69,13 +61,13 @@ export default nix.lambda((args) => (() => {
       return [nix.thunk(() => nix.lookup(w, "protobuf"))];
     })()));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       pname: "comaps",
       version: "2026.08.31-14",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           owner: "comaps",
           repo: "comaps",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -130,7 +122,7 @@ substituteInPlace tools/python/{categories/json_to_txt.py,generate_desktop_ui_st
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "WITH_SYSTEM_PROVIDED_3PARTY", true)),
       ]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-I/build/source/3party/fast_double_parser/include"]))),
         PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION: "python",
         SKIP_PYTHON_VENV: 1n,
@@ -139,11 +131,11 @@ substituteInPlace tools/python/{categories/json_to_txt.py,generate_desktop_ui_st
 install -Dm644 ${worldCoasts} $out/share/comaps/data/WorldCoasts.mwm
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$7,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$6, extraArgs: nix.thunk(() => ["-vr", "v(.*)"]) })))),
+        [nix.POS]: $pos[6],
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: $pos[5], extraArgs: nix.thunk(() => ["-vr", "v(.*)"]) })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
         description: "Community-led fork of Organic Maps",
         homepage: "https://comaps.app",

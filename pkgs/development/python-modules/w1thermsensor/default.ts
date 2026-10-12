@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 19, 13], ["version", 19, 19], ["hash", 20, 5]], [["async", 32, 5]], [["W1THERMSENSOR_NO_KERNEL_MODULE", 36, 7]], [["description", 48, 5], ["mainProgram", 49, 5], ["longDescription", 50, 5], ["homepage", 55, 5], ["changelog", 56, 5], ["license", 57, 5], ["maintainers", 58, 5], ["platforms", 59, 5]], [["pname", 14, 3], ["version", 15, 3], ["pyproject", 16, 3], ["src", 18, 3], ["postPatch", 23, 3], ["nativeBuildInputs", 27, 3], ["propagatedBuildInputs", 29, 3], ["optional-dependencies", 31, 3], ["env", 36, 3], ["nativeCheckInputs", 38, 3], ["pythonImportsCheck", 45, 3], ["meta", 47, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, setuptools: false, aiofiles: false, click: false, "pytest-mock": false, "pytest-asyncio": false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 19, 13], ["version", 19, 19], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["async", 32, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["W1THERMSENSOR_NO_KERNEL_MODULE", 36, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 48, 5], ["mainProgram", 49, 5], ["longDescription", 50, 5], ["homepage", 55, 5], ["changelog", 56, 5], ["license", 57, 5], ["maintainers", 58, 5], ["platforms", 59, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 14, 3], ["version", 15, 3], ["pyproject", 16, 3], ["src", 18, 3], ["postPatch", 23, 3], ["nativeBuildInputs", 27, 3], ["propagatedBuildInputs", 29, 3], ["optional-dependencies", 31, 3], ["env", 36, 3], ["nativeCheckInputs", 38, 3], ["pythonImportsCheck", 45, 3], ["meta", 47, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.3.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-n7wK4N1mzZtUxtYu17qyuI4UjJh/59UGD0dvkOgcInA=",
@@ -33,12 +29,12 @@ export default nix.lambda((args) => (() => {
       const postPatch = "sed -i 's/3\\.5\\.\\*/3.5/' setup.py\n";
       const nativeBuildInputs = nix.thunk(() => [setuptools]);
       const propagatedBuildInputs = nix.thunk(() => [click]);
-      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, async: nix.thunk(() => [aiofiles]) }));
-      const env = nix.thunk(() => ({ [nix.POS]: pos$3, W1THERMSENSOR_NO_KERNEL_MODULE: 1n }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: $pos[1], async: nix.thunk(() => [aiofiles]) }));
+      const env = nix.thunk(() => ({ [nix.POS]: $pos[2], W1THERMSENSOR_NO_KERNEL_MODULE: 1n }));
       const nativeCheckInputs = nix.thunk(() => nix.concat([pytest_mock, pytest_asyncio, pytestCheckHook], nix.app(nix.sel(lib, "concatAttrValues"), optional_dependencies)));
       const pythonImportsCheck = nix.thunk(() => ["w1thermsensor"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Python interface to 1-Wire temperature sensors",
         mainProgram: "w1thermsensor",
         longDescription: "A Python package and CLI tool to work with w1 temperature sensors like\nDS1822, DS18S20 & DS18B20 on the Raspberry Pi, Beagle Bone and other\ndevices.\n",
@@ -52,7 +48,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         pyproject,

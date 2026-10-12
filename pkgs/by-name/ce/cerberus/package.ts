@@ -2,16 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["hash", 20, 5]], [["name", 26, 7], ["url", 27, 7], ["hash", 28, 7]], [["OPAM_SWITCH_PREFIX", 68, 7]], [["branch", 109, 41]], [["package", 113, 7]], [["version", 112, 11]], [["updateScript", 109, 5], ["tests", 112, 5]], [["homepage", 118, 5], ["license", 119, 5], ["mainProgram", 134, 5], ["maintainers", 135, 5], ["platforms", 138, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["patches", 23, 3], ["postPatch", 35, 3], ["minimalOCamlVersion", 40, 3], ["depsBuildBuild", 42, 3], ["nativeBuildInputs", 47, 3], ["buildInputs", 52, 3], ["env", 68, 3], ["buildPhase", 71, 3], ["installPhase", 81, 3], ["doInstallCheck", 93, 3], ["installCheckPhase", 94, 3], ["passthru", 108, 3], ["meta", 117, 3]]]);
 const formals$1 = { args: { lib: false, fetchpatch: false, fetchFromGitHub: false, ocamlPackages: false, makeBinaryWrapper: false, writableTmpDirAsHomeHook: false, unstableGitUpdater: false, testers: false, cerberus: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 26, 7], ["url", 27, 7], ["hash", 28, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["OPAM_SWITCH_PREFIX", 68, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["branch", 109, 41]]);
-const pos$5 = nix.positions(here + "/package.nix", [["package", 113, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["version", 112, 11]]);
-const pos$7 = nix.positions(here + "/package.nix", [["updateScript", 109, 5], ["tests", 112, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["homepage", 118, 5], ["license", 119, 5], ["mainProgram", 134, 5], ["maintainers", 135, 5], ["platforms", 138, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["patches", 23, 3], ["postPatch", 35, 3], ["minimalOCamlVersion", 40, 3], ["depsBuildBuild", 42, 3], ["nativeBuildInputs", 47, 3], ["buildInputs", 52, 3], ["env", 68, 3], ["buildPhase", 71, 3], ["installPhase", 81, 3], ["doInstallCheck", 93, 3], ["installCheckPhase", 94, 3], ["passthru", 108, 3], ["meta", 117, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const cerberus = nix.arg($, "cerberus");
   return nix.app(nix.sel(ocamlPackages, "buildDunePackage"), (finalAttrs) => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       pname: "cerberus",
       version: "0-unstable-2025-12-15",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "rems-project",
           repo: "cerberus",
           rev: "50621977ba282ac527e9259f7e9334d2c5bef41c",
@@ -37,7 +29,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "fix-runtime-lookup",
             url: "https://github.com/rems-project/cerberus/commit/262c13331d4809dd3742069dbcd1deedee8227f2.patch",
             hash: "sha256-yPhzswMDkpjvjYyobnqoF3900l4THe0kaGme1eZXLQc=",
@@ -69,7 +61,7 @@ export default nix.lambda((args) => (() => {
         ];
       })()),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         OPAM_SWITCH_PREFIX: nix.thunk(() => nix.builtins.placeholder("out")),
       })),
       buildPhase: "runHook preBuild\n\nmake DUNEFLAGS=\"--profile=release\" Q= -j$NIX_BUILD_CORES cerberus\n\nrunHook postBuild\n",
@@ -86,15 +78,15 @@ runHook postInstall
       doInstallCheck: true,
       installCheckPhase: "runHook preInstallCheck\n\n# Bypass `dune exec` so its stderr warnings don't pollute test output.\nPATH=\"$out/bin\":$PATH\nexport WITH_CERB=cerberus\n\npatchShebangs --build tests\n\ntests/run-ci.sh\n\nrunHook postInstallCheck\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$7,
-        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: pos$4, branch: "master" })))),
+        [nix.POS]: $pos[6],
+        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[3], branch: "master" })))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$6,
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$5, package: cerberus })))),
+          [nix.POS]: $pos[5],
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: $pos[4], package: cerberus })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         homepage: "https://www.cl.cam.ac.uk/~pes20/cerberus/",
         license: nix.thunk(() => (() => {
           const w_1 = nix.withScope(nix.thunk(() => nix.sel(lib, "licenses")), null);

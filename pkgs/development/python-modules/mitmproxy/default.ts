@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 46, 5], ["repo", 47, 5], ["tag", 48, 5], ["hash", 49, 5]], [["mitmproxy", 153, 26]], [["tests", 152, 12]], [["description", 157, 5], ["homepage", 158, 5], ["changelog", 159, 5], ["license", 160, 5], ["maintainers", 161, 5], ["mainProgram", 162, 5]], [["pname", 41, 3], ["version", 42, 3], ["pyproject", 43, 3], ["src", 45, 3], ["pythonRelaxDeps", 53, 3], ["pythonRemoveDeps", 57, 3], ["build-system", 59, 3], ["dependencies", 61, 3], ["nativeCheckInputs", 88, 3], ["__darwinAllowLocalNetworking", 98, 3], ["postPatch", 100, 3], ["preCheck", 106, 3], ["disabledTests", 110, 3], ["disabledTestPaths", 137, 3], ["dontUsePytestXdist", 148, 3], ["pythonImportsCheck", 150, 3], ["passthru", 152, 3], ["meta", 156, 3]]]);
 const formals$1 = { args: { lib: false, aioquic_1_2: false, "argon2-cffi": false, asgiref: false, bcrypt: false, brotli: false, buildPythonPackage: false, certifi: false, cryptography: false, fetchFromGitHub: false, flask: false, h11: false, h2: false, hyperframe: false, hypothesis: false, kaitaistruct: false, ldap3: false, "mitmproxy-rs": false, nixosTests: false, publicsuffix2: false, pyopenssl: false, pyparsing: false, pyperclip: false, "pytest-asyncio": false, "pytest-cov-stub": false, "pytest-timeout": false, "pytest-xdist": false, pytestCheckHook: false, requests: false, "ruamel-yaml": false, setuptools: false, sortedcontainers: false, tornado: false, urwid: false, wsproto: false, zstandard: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 46, 5], ["repo", 47, 5], ["tag", 48, 5], ["hash", 49, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["mitmproxy", 153, 26]]);
-const pos$3 = nix.positions(here + "/default.nix", [["tests", 152, 12]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 157, 5], ["homepage", 158, 5], ["changelog", 159, 5], ["license", 160, 5], ["maintainers", 161, 5], ["mainProgram", 162, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 41, 3], ["version", 42, 3], ["pyproject", 43, 3], ["src", 45, 3], ["pythonRelaxDeps", 53, 3], ["pythonRemoveDeps", 57, 3], ["build-system", 59, 3], ["dependencies", 61, 3], ["nativeCheckInputs", 88, 3], ["__darwinAllowLocalNetworking", 98, 3], ["postPatch", 100, 3], ["preCheck", 106, 3], ["disabledTests", 110, 3], ["disabledTestPaths", 137, 3], ["dontUsePytestXdist", 148, 3], ["pythonImportsCheck", 150, 3], ["passthru", 152, 3], ["meta", 156, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -52,7 +48,7 @@ export default nix.lambda((args) => (() => {
       const version = "12.2.3";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "mitmproxy",
           repo: "mitmproxy",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -128,14 +124,14 @@ export default nix.lambda((args) => (() => {
       const dontUsePytestXdist = true;
       const pythonImportsCheck = nix.thunk(() => ["mitmproxy"]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           mitmproxy: nix.thunk(() => nix.attr(nixosTests, "mitmproxy")),
         })),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Man-in-the-middle proxy",
         homepage: "https://mitmproxy.org/",
         changelog: nix.thunk(() => nix.str`https://github.com/mitmproxy/mitmproxy/blob/${nix.sel(src, "tag")}/CHANGELOG.md`),
@@ -147,7 +143,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "mitmproxy",
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         pyproject,

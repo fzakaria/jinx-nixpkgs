@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]], [["enable", 67, 13], ["propagatedBuildInputs", 68, 13]], [["beetcamp", 66, 11]], [["pluginOverrides", 65, 9]], [["beets-with-beetcamp", 64, 7]], [["updateScript", 62, 5], ["tests", 63, 5]], [["description", 76, 5], ["homepage", 77, 5], ["changelog", 78, 5], ["license", 79, 5], ["maintainers", 80, 5], ["mainProgram", 83, 5]], [["pname", 19, 3], ["version", 20, 3], ["pyproject", 21, 3], ["src", 23, 3], ["patches", 30, 3], ["build-system", 34, 3], ["dependencies", 38, 3], ["nativeBuildInputs", 44, 3], ["nativeCheckInputs", 48, 3], ["disabledTests", 56, 3], ["passthru", 61, 3], ["meta", 75, 3]]]);
 const formals$1 = { args: { lib: false, beets: false, buildPythonPackage: false, fetchFromGitHub: false, httpx: false, packaging: false, "poetry-core": false, pycountry: false, "pytest-cov-stub": false, pytestCheckHook: false, "rich-tables": false, filelock: false, writableTmpDirAsHomeHook: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["enable", 67, 13], ["propagatedBuildInputs", 68, 13]]);
-const pos$3 = nix.positions(here + "/default.nix", [["beetcamp", 66, 11]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pluginOverrides", 65, 9]]);
-const pos$5 = nix.positions(here + "/default.nix", [["beets-with-beetcamp", 64, 7]]);
-const pos$6 = nix.positions(here + "/default.nix", [["updateScript", 62, 5], ["tests", 63, 5]]);
-const pos$7 = nix.positions(here + "/default.nix", [["description", 76, 5], ["homepage", 77, 5], ["changelog", 78, 5], ["license", 79, 5], ["maintainers", 80, 5], ["mainProgram", 83, 5]]);
-const pos$8 = nix.positions(here + "/default.nix", [["pname", 19, 3], ["version", 20, 3], ["pyproject", 21, 3], ["src", 23, 3], ["patches", 30, 3], ["build-system", 34, 3], ["dependencies", 38, 3], ["nativeBuildInputs", 44, 3], ["nativeCheckInputs", 48, 3], ["disabledTests", 56, 3], ["passthru", 61, 3], ["meta", 75, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,12 +22,12 @@ export default nix.lambda((args) => (() => {
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "beetcamp",
       version: "0.24.3",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "snejus",
           repo: "beetcamp",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -53,16 +46,16 @@ export default nix.lambda((args) => (() => {
       ]),
       disabledTests: nix.thunk(() => ["test_get_html"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           "beets-with-beetcamp": nix.thunk(() => nix.app(nix.sel(beets, "override"), nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               pluginOverrides: nix.thunk(() => ({
-                [nix.POS]: pos$3,
+                [nix.POS]: $pos[2],
                 beetcamp: nix.thunk(() => ({
-                  [nix.POS]: pos$2,
+                  [nix.POS]: $pos[1],
                   enable: true,
                   propagatedBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(finalAttrs, "finalPackage"))]),
                 })),
@@ -71,7 +64,7 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "Bandcamp autotagger source for beets (http://beets.io)",
         homepage: "https://github.com/snejus/beetcamp",
         changelog: nix.thunk(() => nix.str`https://github.com/snejus/beetcamp/blob/${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

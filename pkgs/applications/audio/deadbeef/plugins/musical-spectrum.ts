@@ -2,11 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/musical-spectrum.nix", [[["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["sha256", 20, 5]], [["NIX_CFLAGS_COMPILE", 32, 7]], [["description", 44, 5], ["homepage", 45, 5], ["license", 46, 5], ["platforms", 47, 5], ["maintainers", 48, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 23, 3], ["buildInputs", 24, 3], ["makeFlags", 30, 3], ["env", 32, 3], ["installPhase", 34, 3], ["meta", 43, 3]]]);
 const formals$1 = { args: { deadbeef: false, fetchFromGitHub: false, fftw: false, glib: false, gtk3: false, lib: false, "pkg-config": false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/musical-spectrum.nix", [["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["sha256", 20, 5]]);
-const pos$2 = nix.positions(here + "/musical-spectrum.nix", [["NIX_CFLAGS_COMPILE", 32, 7]]);
-const pos$3 = nix.positions(here + "/musical-spectrum.nix", [["description", 44, 5], ["homepage", 45, 5], ["license", 46, 5], ["platforms", 47, 5], ["maintainers", 48, 5]]);
-const pos$4 = nix.positions(here + "/musical-spectrum.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 23, 3], ["buildInputs", 24, 3], ["makeFlags", 30, 3], ["env", 32, 3], ["installPhase", 34, 3], ["meta", 43, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "deadbeef-musical-spectrum-plugin",
       version: "0-unstable-2020-07-01",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "cboxdoerfer",
           repo: "ddb_musical_spectrum",
           rev: "a97fd4e1168509911ab43ba32d815b5489000a06",
@@ -32,10 +29,10 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [deadbeef, fftw, glib, gtk3]),
       makeFlags: nix.thunk(() => ["gtk3"]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-Wno-incompatible-pointer-types" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], NIX_CFLAGS_COMPILE: "-Wno-incompatible-pointer-types" })),
       installPhase: "runHook preInstall\n\nmkdir -p $out/lib/deadbeef\ninstall -v -c -m 644 gtk3/ddb_vis_musical_spectrum_GTK3.so $out/lib/deadbeef/\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Musical spectrum plugin for the DeaDBeeF music player",
         homepage: "https://github.com/cboxdoerfer/ddb_musical_spectrum",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

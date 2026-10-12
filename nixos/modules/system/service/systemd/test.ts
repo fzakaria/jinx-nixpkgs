@@ -2,40 +2,10 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/test.nix", [[["argv", 23, 11]], [["process", 22, 9]], [["argv", 32, 11]], [["X-Bar", 39, 25]], [["serviceConfig", 39, 11]], [["service", 38, 17]], [["argv", 43, 13]], [["RestartSec", 50, 27]], [["serviceConfig", 50, 13]], [["service", 49, 19]], [["process", 42, 11], ["systemd", 49, 11]], [["db", 41, 18]], [["process", 31, 9], ["systemd", 38, 9], ["services", 41, 9]], [["argv", 59, 11]], [["mainExecStart", 65, 17]], [["process", 58, 9], ["systemd", 65, 9]], [["argv", 71, 11]], [["process", 70, 9]], [["argv", 84, 13]], [["mainExecStart", 90, 19]], [["process", 83, 11], ["systemd", 90, 11]], [["foo", 21, 23], ["bar", 30, 23], ["argv-with-subst", 57, 23], ["argv-escaped", 69, 23], ["argv-extended", 80, 23]], [["services", 21, 14], ["stateVersion", 95, 14]], [["device", 97, 9], ["fsType", 98, 9]], [["/", 96, 19]], [["enable", 100, 24]], [["grub", 100, 19]], [["loader", 100, 12]], [["system", 21, 7], ["fileSystems", 96, 7], ["boot", 100, 7]], [["machine", 110, 9], ["toplevel", 111, 9]], [["passthru", 108, 5]]]);
 const formals$1 = { args: { evalSystem: false, runCommand: false, hello: false }, ellipsis: true };
 const formals$2 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/test.nix", [["argv", 23, 11]]);
-const pos$2 = nix.positions(here + "/test.nix", [["process", 22, 9]]);
-const pos$3 = nix.positions(here + "/test.nix", [["argv", 32, 11]]);
-const pos$4 = nix.positions(here + "/test.nix", [["X-Bar", 39, 25]]);
-const pos$5 = nix.positions(here + "/test.nix", [["serviceConfig", 39, 11]]);
-const pos$6 = nix.positions(here + "/test.nix", [["service", 38, 17]]);
-const pos$7 = nix.positions(here + "/test.nix", [["argv", 43, 13]]);
-const pos$8 = nix.positions(here + "/test.nix", [["RestartSec", 50, 27]]);
-const pos$9 = nix.positions(here + "/test.nix", [["serviceConfig", 50, 13]]);
-const pos$10 = nix.positions(here + "/test.nix", [["service", 49, 19]]);
-const pos$11 = nix.positions(here + "/test.nix", [["process", 42, 11], ["systemd", 49, 11]]);
-const pos$12 = nix.positions(here + "/test.nix", [["db", 41, 18]]);
-const pos$13 = nix.positions(here + "/test.nix", [["process", 31, 9], ["systemd", 38, 9], ["services", 41, 9]]);
-const pos$14 = nix.positions(here + "/test.nix", [["argv", 59, 11]]);
-const pos$15 = nix.positions(here + "/test.nix", [["mainExecStart", 65, 17]]);
-const pos$16 = nix.positions(here + "/test.nix", [["process", 58, 9], ["systemd", 65, 9]]);
-const pos$17 = nix.positions(here + "/test.nix", [["argv", 71, 11]]);
-const pos$18 = nix.positions(here + "/test.nix", [["process", 70, 9]]);
 const formals$3 = { args: { config: false }, ellipsis: true };
-const pos$19 = nix.positions(here + "/test.nix", [["argv", 84, 13]]);
-const pos$20 = nix.positions(here + "/test.nix", [["mainExecStart", 90, 19]]);
-const pos$21 = nix.positions(here + "/test.nix", [["process", 83, 11], ["systemd", 90, 11]]);
-const pos$22 = nix.positions(here + "/test.nix", [["foo", 21, 23], ["bar", 30, 23], ["argv-with-subst", 57, 23], ["argv-escaped", 69, 23], ["argv-extended", 80, 23]]);
-const pos$23 = nix.positions(here + "/test.nix", [["services", 21, 14], ["stateVersion", 95, 14]]);
-const pos$24 = nix.positions(here + "/test.nix", [["device", 97, 9], ["fsType", 98, 9]]);
-const pos$25 = nix.positions(here + "/test.nix", [["/", 96, 19]]);
-const pos$26 = nix.positions(here + "/test.nix", [["enable", 100, 24]]);
-const pos$27 = nix.positions(here + "/test.nix", [["grub", 100, 19]]);
-const pos$28 = nix.positions(here + "/test.nix", [["loader", 100, 12]]);
-const pos$29 = nix.positions(here + "/test.nix", [["system", 21, 7], ["fileSystems", 96, 7], ["boot", 100, 7]]);
-const pos$30 = nix.positions(here + "/test.nix", [["machine", 110, 9], ["toplevel", 111, 9]]);
-const pos$31 = nix.positions(here + "/test.nix", [["passthru", 108, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -47,55 +17,55 @@ export default nix.lambda((args) => (() => {
       const lib = nix.arg($_1, "lib");
       const hello$ = nix.thunk(() => nix.app(nix.sel(lib, "getExe"), hello));
       return {
-        [nix.POS]: pos$29,
+        [nix.POS]: $pos[28],
         system: nix.thunk(() => ({
-          [nix.POS]: pos$23,
+          [nix.POS]: $pos[22],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$22,
+            [nix.POS]: $pos[21],
             foo: nix.thunk(() => ({
-              [nix.POS]: pos$2,
-              process: nix.thunk(() => ({ [nix.POS]: pos$1, argv: nix.thunk(() => [hello$, "--greeting", "hoi"]) })),
+              [nix.POS]: $pos[1],
+              process: nix.thunk(() => ({ [nix.POS]: $pos[0], argv: nix.thunk(() => [hello$, "--greeting", "hoi"]) })),
             })),
             bar: nix.thunk(() => ({
-              [nix.POS]: pos$13,
-              process: nix.thunk(() => ({ [nix.POS]: pos$3, argv: nix.thunk(() => [hello$, "--greeting", "hoi"]) })),
+              [nix.POS]: $pos[12],
+              process: nix.thunk(() => ({ [nix.POS]: $pos[2], argv: nix.thunk(() => [hello$, "--greeting", "hoi"]) })),
               systemd: nix.thunk(() => ({
-                [nix.POS]: pos$6,
+                [nix.POS]: $pos[5],
                 service: nix.thunk(() => ({
-                  [nix.POS]: pos$5,
-                  serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$4, "X-Bar": "lol crossbar whatever" })),
+                  [nix.POS]: $pos[4],
+                  serviceConfig: nix.thunk(() => ({ [nix.POS]: $pos[3], "X-Bar": "lol crossbar whatever" })),
                 })),
               })),
               services: nix.thunk(() => ({
-                [nix.POS]: pos$12,
+                [nix.POS]: $pos[11],
                 db: nix.thunk(() => ({
-                  [nix.POS]: pos$11,
+                  [nix.POS]: $pos[10],
                   process: nix.thunk(() => ({
-                    [nix.POS]: pos$7,
+                    [nix.POS]: $pos[6],
                     argv: nix.thunk(() => [hello$, "--greeting", "Hi, I'm a database, would you believe it"]),
                   })),
                   systemd: nix.thunk(() => ({
-                    [nix.POS]: pos$10,
+                    [nix.POS]: $pos[9],
                     service: nix.thunk(() => ({
-                      [nix.POS]: pos$9,
-                      serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$8, RestartSec: "42" })),
+                      [nix.POS]: $pos[8],
+                      serviceConfig: nix.thunk(() => ({ [nix.POS]: $pos[7], RestartSec: "42" })),
                     })),
                   })),
                 })),
               })),
             })),
             "argv-with-subst": nix.thunk(() => ({
-              [nix.POS]: pos$16,
+              [nix.POS]: $pos[15],
               process: nix.thunk(() => ({
-                [nix.POS]: pos$14,
+                [nix.POS]: $pos[13],
                 argv: nix.thunk(() => [hello$, "--greeting", "This should be ignored"]),
               })),
-              systemd: nix.thunk(() => ({ [nix.POS]: pos$15, mainExecStart: "/bin/sh -c \"echo %n and ${HOME}\"" })),
+              systemd: nix.thunk(() => ({ [nix.POS]: $pos[14], mainExecStart: "/bin/sh -c \"echo %n and ${HOME}\"" })),
             })),
             "argv-escaped": nix.thunk(() => ({
-              [nix.POS]: pos$18,
+              [nix.POS]: $pos[17],
               process: nix.thunk(() => ({
-                [nix.POS]: pos$17,
+                [nix.POS]: $pos[16],
                 argv: nix.thunk(() => ["/bin/sh", "-c", "echo %n and ${HOME}"]),
               })),
             })),
@@ -103,13 +73,13 @@ export default nix.lambda((args) => (() => {
               const $_2 = nix.formals(args_2, formals$3);
               const config = nix.arg($_2, "config");
               return {
-                [nix.POS]: pos$21,
+                [nix.POS]: $pos[20],
                 process: nix.thunk(() => ({
-                  [nix.POS]: pos$19,
+                  [nix.POS]: $pos[18],
                   argv: nix.thunk(() => [hello$, "--greeting", "Fun $1 fact, remainder is often expressed as m%n"]),
                 })),
                 systemd: nix.thunk(() => ({
-                  [nix.POS]: pos$20,
+                  [nix.POS]: $pos[19],
                   mainExecStart: nix.thunk(() => nix.add(nix.app(nix.sel(config, "systemd", "lib", "escapeSystemdExecArgs"), nix.thunk(() => nix.sel(config, "process", "argv"))), " --systemd-unit %n")),
                 })),
               };
@@ -118,14 +88,14 @@ export default nix.lambda((args) => (() => {
           stateVersion: "25.05",
         })),
         fileSystems: nix.thunk(() => ({
-          [nix.POS]: pos$25,
-          "/": nix.thunk(() => ({ [nix.POS]: pos$24, device: "/test/dummy", fsType: "auto" })),
+          [nix.POS]: $pos[24],
+          "/": nix.thunk(() => ({ [nix.POS]: $pos[23], device: "/test/dummy", fsType: "auto" })),
         })),
         boot: nix.thunk(() => ({
-          [nix.POS]: pos$28,
+          [nix.POS]: $pos[27],
           loader: nix.thunk(() => ({
-            [nix.POS]: pos$27,
-            grub: nix.thunk(() => ({ [nix.POS]: pos$26, enable: false })),
+            [nix.POS]: $pos[26],
+            grub: nix.thunk(() => ({ [nix.POS]: $pos[25], enable: false })),
           })),
         })),
       };
@@ -133,8 +103,8 @@ export default nix.lambda((args) => (() => {
   const from = nix.thunk(() => nix.sel(machine, "config", "system", "build"));
   const toplevel = nix.thunk(() => nix.attr(from, "toplevel"));
   return nix.app(runCommand, "test-modular-service-systemd-units", nix.thunk(() => ({
-      [nix.POS]: pos$31,
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$30, machine: machine, toplevel: toplevel })),
+      [nix.POS]: $pos[30],
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[29], machine: machine, toplevel: toplevel })),
     })), nix.thunk(() => nix.str`echo ${toplevel}/etc/systemd/system/foo.service:
 cat -n ${toplevel}/etc/systemd/system/foo.service
 (

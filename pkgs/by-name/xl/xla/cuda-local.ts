@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/cuda-local.nix", [[["name", 50, 5], ["paths", 51, 5], ["postBuild", 54, 5]], [["name", 64, 5], ["paths", 65, 5]], [["name", 68, 5], ["paths", 69, 5]], [["cudaRoots", 48, 11], ["cuda", 49, 3], ["cudnn", 63, 3], ["nccl", 67, 3]]]);
 const formals$1 = { args: { lib: false, symlinkJoin: false, cudaPackages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/cuda-local.nix", [["name", 50, 5], ["paths", 51, 5], ["postBuild", 54, 5]]);
-const pos$2 = nix.positions(here + "/cuda-local.nix", [["name", 64, 5], ["paths", 65, 5]]);
-const pos$3 = nix.positions(here + "/cuda-local.nix", [["name", 68, 5], ["paths", 69, 5]]);
-const pos$4 = nix.positions(here + "/cuda-local.nix", [["cudaRoots", 48, 11], ["cuda", 49, 3], ["cudnn", 63, 3], ["nccl", 67, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -39,21 +36,21 @@ export default nix.lambda((args) => (() => {
       nix.thunk(() => nix.app(nix.sel(lib, "getOutput"), "stubs", nix.thunk(() => nix.sel(cudaPackages, "cuda_nvml_dev")))),
     ]))));
   return {
-    [nix.POS]: pos$4,
+    [nix.POS]: $pos[3],
     cudaRoots: cudaRoots,
     cuda: nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         name: "xla-local-cuda",
         paths: cudaRoots,
         postBuild: "for entry in include/cuda/std include/thrust include/cub include/nv/target; do\n  if test -e \"$out/$entry\"; then\n    echo \"unexpected CCCL header in local CUDA view: $entry\" >&2\n    exit 1\n  fi\ndone\n",
       })))),
     cudnn: nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         name: "xla-local-cudnn",
         paths: nix.thunk(() => nix.app(nix.sel(lib, "unique"), nix.thunk(() => nix.app(outputs, nix.thunk(() => ["include", "lib"]), nix.thunk(() => nix.sel(cudaPackages, "cudnn")))))),
       })))),
     nccl: nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         name: "xla-local-nccl",
         paths: nix.thunk(() => nix.app(nix.sel(lib, "unique"), nix.thunk(() => nix.app(outputs, nix.thunk(() => ["dev", "lib"]), nix.thunk(() => nix.sel(cudaPackages, "nccl")))))),
       })))),

@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 17, 5], ["hash", 18, 5]], [["updateScript", 40, 12]], [["vendor", 57, 9], ["product", 58, 9], ["version", 59, 9], ["target_sw", 60, 9]], [["type", 63, 9], ["namespace", 64, 9], ["name", 65, 9], ["version", 66, 9]], [["cpeParts", 56, 7], ["purlParts", 62, 7]], [["description", 43, 5], ["longDescription", 44, 5], ["homepage", 49, 5], ["downloadPage", 50, 5], ["changelog", 51, 5], ["license", 52, 5], ["platforms", 53, 5], ["sourceProvenance", 54, 5], ["identifiers", 55, 5], ["maintainers", 69, 5]], [["pname", 10, 3], ["version", 11, 3], ["__structuredAttrs", 13, 3], ["strictDeps", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 21, 3], ["unpackPhase", 23, 3], ["installPhase", 29, 3], ["dontFixup", 38, 3], ["passthru", 40, 3], ["meta", 42, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchurl: false, undmg: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 40, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["vendor", 57, 9], ["product", 58, 9], ["version", 59, 9], ["target_sw", 60, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["type", 63, 9], ["namespace", 64, 9], ["name", 65, 9], ["version", 66, 9]]);
-const pos$5 = nix.positions(here + "/package.nix", [["cpeParts", 56, 7], ["purlParts", 62, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 43, 5], ["longDescription", 44, 5], ["homepage", 49, 5], ["downloadPage", 50, 5], ["changelog", 51, 5], ["license", 52, 5], ["platforms", 53, 5], ["sourceProvenance", 54, 5], ["identifiers", 55, 5], ["maintainers", 69, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["__structuredAttrs", 13, 3], ["strictDeps", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 21, 3], ["unpackPhase", 23, 3], ["installPhase", 29, 3], ["dontFixup", 38, 3], ["passthru", 40, 3], ["meta", 42, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,13 +13,13 @@ export default nix.lambda((args) => (() => {
   const undmg = nix.arg($, "undmg");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "lulu",
       version: "4.5.1",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/objective-see/LuLu/releases/download/v${nix.sel(finalAttrs, "version")}/LuLu_${nix.sel(finalAttrs, "version")}.dmg`),
           hash: "sha256-mPTTQn9Mb8z5aA/tIoeb6Qpa6B6A64YWwddYdVtrtiQ=",
         })))),
@@ -34,11 +28,11 @@ export default nix.lambda((args) => (() => {
       installPhase: "runHook preInstall\n\nmkdir -p \"$out/Applications\"\ncp -R LuLu.app \"$out/Applications/LuLu.app\"\n\nrunHook postInstall\n",
       dontFixup: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Free open-source macOS firewall that alerts you to outgoing network connections",
         longDescription: "Nearly every application makes network connections. So does malware.\nLuLu is a free, open-source firewall that blocks unknown outgoing\nconnections, protecting your privacy and your Mac.\n",
         homepage: "https://objective-see.org/products/lulu.html",
@@ -51,16 +45,16 @@ export default nix.lambda((args) => (() => {
           return [nix.thunk(() => nix.lookup(w, "binaryNativeCode"))];
         })()),
         identifiers: nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           cpeParts: nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             vendor: "objective-see",
             product: "lulu",
             version: nix.thunk(() => nix.sel(finalAttrs, "version")),
             target_sw: "macos",
           })),
           purlParts: nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             type: "github",
             namespace: "objective-see",
             name: "lulu",

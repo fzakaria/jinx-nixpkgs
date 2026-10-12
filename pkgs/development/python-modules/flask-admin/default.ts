@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 59, 5], ["repo", 60, 5], ["tag", 61, 5], ["hash", 62, 5]], [["sqlalchemy", 76, 5], ["sqlalchemy-lite", 80, 5], ["sqlalchemy-with-utils", 83, 5], ["geoalchemy", 90, 5], ["pymongo", 94, 5], ["mongoengine", 95, 5], ["peewee", 96, 5], ["s3", 100, 5], ["azure-blob-storage", 101, 5], ["images", 102, 5], ["export", 103, 5], ["rediscli", 104, 5], ["translation", 105, 5], ["all", 106, 5]], [["description", 153, 5], ["homepage", 154, 5], ["changelog", 155, 5], ["license", 156, 5], ["maintainers", 157, 5]], [["pname", 54, 3], ["version", 55, 3], ["pyproject", 56, 3], ["src", 58, 3], ["build-system", 65, 3], ["dependencies", 67, 3], ["optional-dependencies", 75, 3], ["nativeCheckInputs", 122, 3], ["disabledTestPaths", 139, 3], ["pythonImportsCheck", 150, 3], ["meta", 152, 3]]]);
 const formals$1 = { args: { buildPythonPackage: false, fetchFromGitHub: false, "flit-core": false, lib: false, flask: false, jinja2: false, markupsafe: false, werkzeug: false, wtforms: false, "flask-sqlalchemy": false, sqlalchemy: false, "flask-sqlalchemy-lite": false, arrow: false, colour: false, "email-validator": false, "sqlalchemy-citext": false, "sqlalchemy-utils": false, geoalchemy2: false, shapely: false, pymongo: false, mongoengine: false, peewee: false, "wtf-peewee": false, boto3: false, "azure-storage-blob": false, pillow: false, tablib: false, redis: false, "flask-babel": false, beautifulsoup4: false, moto: false, psycopg2: false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 59, 5], ["repo", 60, 5], ["tag", 61, 5], ["hash", 62, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["sqlalchemy", 76, 5], ["sqlalchemy-lite", 80, 5], ["sqlalchemy-with-utils", 83, 5], ["geoalchemy", 90, 5], ["pymongo", 94, 5], ["mongoengine", 95, 5], ["peewee", 96, 5], ["s3", 100, 5], ["azure-blob-storage", 101, 5], ["images", 102, 5], ["export", 103, 5], ["rediscli", 104, 5], ["translation", 105, 5], ["all", 106, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 153, 5], ["homepage", 154, 5], ["changelog", 155, 5], ["license", 156, 5], ["maintainers", 157, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 54, 3], ["version", 55, 3], ["pyproject", 56, 3], ["src", 58, 3], ["build-system", 65, 3], ["dependencies", 67, 3], ["optional-dependencies", 75, 3], ["nativeCheckInputs", 122, 3], ["disabledTestPaths", 139, 3], ["pythonImportsCheck", 150, 3], ["meta", 152, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -48,7 +45,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.2.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "flask-admin",
           repo: "flask-admin",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -57,7 +54,7 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [flit_core]);
       const dependencies = nix.thunk(() => [flask, jinja2, markupsafe, werkzeug, wtforms]);
       const optional_dependencies = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         sqlalchemy: nix.thunk(() => [flask_sqlalchemy, sqlalchemy]),
         "sqlalchemy-lite": nix.thunk(() => [flask_sqlalchemy_lite]),
         "sqlalchemy-with-utils": nix.thunk(() => nix.concat(nix.sel(optional_dependencies, "sqlalchemy"), [arrow, colour, email_validator, sqlalchemy_citext, sqlalchemy_utils])),
@@ -106,7 +103,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const pythonImportsCheck = nix.thunk(() => ["flask_admin"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Admin interface framework for Flask",
         homepage: "https://github.com/flask-admin/flask-admin/",
         changelog: nix.thunk(() => nix.str`https://github.com/flask-admin/flask-admin/releases/tag/v${version}`),
@@ -117,7 +114,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["version", 33, 13], ["crateName", 34, 5], ["hash", 35, 5]], [["NIX_LDFLAGS", 90, 7]], [["package", 93, 43]], [["version", 93, 11]], [["tests", 93, 5], ["updateScript", 94, 5]], [["description", 98, 5], ["homepage", 99, 5], ["changelog", 100, 5], ["license", 101, 5], ["maintainers", 105, 5], ["mainProgram", 106, 5]], [["pname", 29, 3], ["version", 30, 3], ["src", 32, 3], ["cargoHash", 38, 3], ["nativeBuildInputs", 40, 3], ["buildInputs", 45, 3], ["buildNoDefaultFeatures", 55, 3], ["buildFeatures", 56, 3], ["checkFlags", 61, 3], ["cargoCheckFeatures", 76, 3], ["doCheck", 79, 3], ["postInstall", 81, 3], ["env", 90, 3], ["passthru", 92, 3], ["meta", 97, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, "diesel-cli": false, fetchCrate: false, installShellFiles: false, libiconv: false, libmysqlclient: false, libpq: false, "nix-update-script": false, openssl: false, "pkg-config": false, rustPlatform: false, sqlite: false, testers: false, zlib: false, sqliteSupport: true, postgresqlSupport: true, mysqlSupport: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["version", 33, 13], ["crateName", 34, 5], ["hash", 35, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_LDFLAGS", 90, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["package", 93, 43]]);
-const pos$4 = nix.positions(here + "/package.nix", [["version", 93, 11]]);
-const pos$5 = nix.positions(here + "/package.nix", [["tests", 93, 5], ["updateScript", 94, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 98, 5], ["homepage", 99, 5], ["changelog", 100, 5], ["license", 101, 5], ["maintainers", 105, 5], ["mainProgram", 106, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 29, 3], ["version", 30, 3], ["src", 32, 3], ["cargoHash", 38, 3], ["nativeBuildInputs", 40, 3], ["buildInputs", 45, 3], ["buildNoDefaultFeatures", 55, 3], ["buildFeatures", 56, 3], ["checkFlags", 61, 3], ["cargoCheckFeatures", 76, 3], ["doCheck", 79, 3], ["postInstall", 81, 3], ["env", 90, 3], ["passthru", 92, 3], ["meta", 97, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -36,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const pname = "diesel-cli";
       const version = "2.3.14";
       const src = nix.thunk(() => nix.app(fetchCrate, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           version: version,
           crateName: "diesel_cli",
           hash: "sha256-kf1vVtcgDnO5jK3kpEcfaokBfeWxrHd8vKPMkVY5MHs=",
@@ -63,19 +57,19 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const postInstall = nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "installShellCompletion --cmd diesel \\\n  --bash <($out/bin/diesel completions bash) \\\n  --fish <($out/bin/diesel completions fish) \\\n  --zsh <($out/bin/diesel completions zsh)\n"));
       const env = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_LDFLAGS: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), mysqlSupport, "-lz -lssl -lcrypto")),
       }));
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$3, package: diesel_cli })))),
+          [nix.POS]: $pos[3],
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: $pos[2], package: diesel_cli })))),
         })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Database tool for working with Rust projects that use Diesel",
         homepage: "https://diesel.rs",
         changelog: nix.thunk(() => nix.str`https://github.com/diesel-rs/diesel/releases/tag/v${version}`),
@@ -93,7 +87,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "diesel",
       }));
       return {
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         pname,
         version,
         src,

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]], [["updateScript", 65, 5]], [["description", 69, 5], ["homepage", 70, 5], ["license", 71, 5], ["maintainers", 72, 5], ["platforms", 73, 5]], [["pname", 18, 3], ["version", 19, 3], ["outputs", 21, 3], ["src", 26, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 38, 3], ["dontWrapQtApps", 52, 3], ["cmakeFlags", 54, 3], ["postPatch", 58, 3], ["passthru", 64, 3], ["meta", 68, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, "nix-update-script": false, cmake: false, ninja: false, qt5: false, qt6: false, libxcb: false, useQt6: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 65, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 69, 5], ["homepage", 70, 5], ["license", 71, 5], ["maintainers", 72, 5], ["platforms", 73, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["outputs", 21, 3], ["src", 26, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 38, 3], ["dontWrapQtApps", 52, 3], ["cmakeFlags", 54, 3], ["postPatch", 58, 3], ["passthru", 64, 3], ["meta", 68, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const useQt6 = nix.argOr($, "useQt6", () => false);
   const qt = nix.thunk(() => (nix.asBool(useQt6) ? nix.force(qt6) : nix.force(qt5)));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "adwaita-qt",
       version: "1.4.2",
       outputs: nix.thunk(() => ["out", "dev"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "FedoraQt",
           repo: "adwaita-qt",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -39,11 +36,11 @@ export default nix.lambda((args) => (() => {
       cmakeFlags: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), useQt6, nix.thunk(() => ["-DUSE_QT6=true"]))),
       postPatch: "# Fix plugin dir\nsubstituteInPlace src/style/CMakeLists.txt \\\n   --replace-fail \"DESTINATION \\\"\\${QT_PLUGINS_DIR}/styles\" \"DESTINATION \\\"$qtPluginPrefix/styles\"\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Style to bend Qt applications to look like they belong into GNOME Shell",
         homepage: "https://github.com/FedoraQt/adwaita-qt",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

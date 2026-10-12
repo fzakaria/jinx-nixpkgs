@@ -2,10 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/mk-vocab.nix", [[["extraLibs", 54, 15], ["extraVocabs", 54, 25], ["extraPaths", 54, 37]], [["vocabName", 22, 13], ["vocabRoot", 22, 23], ["installPhase", 23, 5], ["passthru", 53, 5], ["meta", 57, 5]]]);
 const formals$1 = { args: { stdenv: false }, ellipsis: false };
 const formals$2 = { args: { name: true, vocabName: true, vocabRoot: true, extraLibs: true, extraVocabs: true, extraPaths: true }, ellipsis: true };
-const pos$1 = nix.positions(here + "/mk-vocab.nix", [["extraLibs", 54, 15], ["extraVocabs", 54, 25], ["extraPaths", 54, 37]]);
-const pos$2 = nix.positions(here + "/mk-vocab.nix", [["vocabName", 22, 13], ["vocabRoot", 22, 23], ["installPhase", 23, 5], ["passthru", 53, 5], ["meta", 57, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const extraVocabs = nix.argOr($_1, "extraVocabs", () => []);
       const extraPaths = nix.argOr($_1, "extraPaths", () => []);
       return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         vocabName: vocabName,
         vocabRoot: vocabRoot,
         installPhase: nix.thunk(() => nix.selOr(attrs, () => nix.str`runHook preInstall
@@ -43,7 +42,7 @@ fi
 runHook postInstall
 `, "installPhase")),
         passthru: nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           extraLibs: extraLibs,
           extraVocabs: extraVocabs,
           extraPaths: extraPaths,

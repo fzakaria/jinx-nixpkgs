@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 33, 7], ["repo", 34, 7], ["rev", 35, 7], ["hash", 36, 7]], [["pname", 29, 5], ["version", 30, 5], ["src", 32, 5], ["nativeBuildInputs", 39, 5], ["hardeningDisable", 47, 5]], [["owner", 56, 5], ["repo", 57, 5], ["tag", 58, 5], ["hash", 59, 5], ["fetchSubmodules", 60, 5]], [["doInstallCheck", 128, 7]], [["withInstallChecks", 127, 5]], [["updateScript", 124, 12], ["tests", 126, 12]], [["description", 133, 5], ["homepage", 134, 5], ["license", 135, 5], ["maintainers", 136, 5], ["platforms", 137, 5], ["knownVulnerabilities", 138, 5]], [["pname", 52, 3], ["version", 53, 3], ["src", 55, 3], ["nativeBuildInputs", 63, 3], ["buildInputs", 70, 3], ["cmakeFlags", 79, 3], ["doInstallCheck", 91, 3], ["nativeInstallCheckInputs", 92, 3], ["installCheckPhase", 103, 3], ["passthru", 124, 3], ["meta", 132, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, ninja: false, "pkg-config": false, cyclonedds: false, libmysqlclient: false, mariadb: false, mbedtls: false, sqlite: false, zeromq: false, flex: false, bison: false, "nix-update-script": false, python3: false, mosquitto: false, "netcat-gnu": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 33, 7], ["repo", 34, 7], ["rev", 35, 7], ["hash", 36, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 29, 5], ["version", 30, 5], ["src", 32, 5], ["nativeBuildInputs", 39, 5], ["hardeningDisable", 47, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["owner", 56, 5], ["repo", 57, 5], ["tag", 58, 5], ["hash", 59, 5], ["fetchSubmodules", 60, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["doInstallCheck", 128, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["withInstallChecks", 127, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["updateScript", 124, 12], ["tests", 126, 12]]);
-const pos$7 = nix.positions(here + "/package.nix", [["description", 133, 5], ["homepage", 134, 5], ["license", 135, 5], ["maintainers", 136, 5], ["platforms", 137, 5], ["knownVulnerabilities", 138, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 52, 3], ["version", 53, 3], ["src", 55, 3], ["nativeBuildInputs", 63, 3], ["buildInputs", 70, 3], ["cmakeFlags", 79, 3], ["doInstallCheck", 91, 3], ["nativeInstallCheckInputs", 92, 3], ["installCheckPhase", 103, 3], ["passthru", 124, 3], ["meta", 132, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const mosquitto = nix.arg($, "mosquitto");
   const netcat_gnu = nix.arg($, "netcat-gnu");
   const idl_serial = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "idl-serial",
       version: "0-unstable-2023-09-28",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "nanomq",
           repo: "idl-serial",
           rev: "cf63cb2c4fbe2ecfba569979b89e20e1190b5ed4",
@@ -47,11 +40,11 @@ export default nix.lambda((args) => (() => {
       hardeningDisable: nix.thunk(() => ["fortify3"]),
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "nanomq",
       version: "0.25.6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           owner: "nanomq",
           repo: "nanomq",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -84,15 +77,15 @@ export default nix.lambda((args) => (() => {
       ]),
       installCheckPhase: "runHook preInstallCheck\n\n(\n  cd ..\n\n  # effectively distable this test because it is slow\n  echo > .github/scripts/fuzzy_test.txt\n\n  # even with the correct paho-mqtt version these tests fail, suggesting\n  # websocket support is indeed broken\n  substituteInPlace .github/scripts/test.py \\\n    --replace 'ws_test()' '#ws_test()' \\\n    --replace 'ws_v5_test()' '#ws_v5_test()'\n\n  PATH=\"$PATH:$out/bin\" python .github/scripts/test.py\n)\n\nrunHook postInstallCheck\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$5,
-          withInstallChecks: nix.thunk(() => nix.app(nix.sel(finalAttrs, "finalPackage", "overrideAttrs"), (_) => ({ [nix.POS]: pos$4, doInstallCheck: true }))),
+          [nix.POS]: $pos[4],
+          withInstallChecks: nix.thunk(() => nix.app(nix.sel(finalAttrs, "finalPackage", "overrideAttrs"), (_) => ({ [nix.POS]: $pos[3], doInstallCheck: true }))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "Ultra-lightweight and blazing-fast MQTT broker for IoT edge",
         homepage: "https://nanomq.io/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

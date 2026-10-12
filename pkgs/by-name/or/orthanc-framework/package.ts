@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["NIX_LDFLAGS", 26, 7]], [["description", 34, 5], ["homepage", 35, 5], ["license", 36, 5], ["maintainers", 37, 5], ["platforms", 38, 5]], [["pname", 11, 3], ["src", 13, 5], ["version", 14, 5], ["nativeBuildInputs", 15, 5], ["strictDeps", 16, 5], ["cmakeFlags", 17, 5], ["sourceRoot", 20, 3], ["buildInputs", 22, 3], ["env", 26, 3], ["meta", 33, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, orthanc: false, gtest: false, icu: false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["NIX_LDFLAGS", 26, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 34, 5], ["homepage", 35, 5], ["license", 36, 5], ["maintainers", 37, 5], ["platforms", 38, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["src", 13, 5], ["version", 14, 5], ["nativeBuildInputs", 15, 5], ["strictDeps", 16, 5], ["cmakeFlags", 17, 5], ["sourceRoot", 20, 3], ["buildInputs", 22, 3], ["env", 26, 3], ["meta", 33, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const icu = nix.arg($, "icu");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "orthanc-framework",
       src: nix.thunk(() => nix.attr(orthanc, "src")),
       version: nix.thunk(() => nix.attr(orthanc, "version")),
@@ -26,7 +24,7 @@ export default nix.lambda((args) => (() => {
       sourceRoot: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "name")}/OrthancFramework/SharedLibrary`),
       buildInputs: nix.thunk(() => nix.concat(nix.sel(orthanc, "buildInputs"), [icu])),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         NIX_LDFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => [
             nix.thunk(() => nix.str`-L${nix.app(nix.sel(lib, "getLib"), zlib)}`),
             "-lz",
@@ -35,7 +33,7 @@ export default nix.lambda((args) => (() => {
           ]))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "SDK for building Orthanc plugins and related applications",
         homepage: "https://www.orthanc-server.com/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

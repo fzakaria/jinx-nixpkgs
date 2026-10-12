@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]], [["description", 65, 5], ["mainProgram", 66, 5], ["homepage", 67, 5], ["license", 68, 5], ["maintainers", 69, 5]], [["pname", 21, 3], ["version", 22, 3], ["pyproject", 23, 3], ["src", 26, 3], ["build-system", 33, 3], ["dependencies", 38, 3], ["nativeCheckInputs", 50, 3], ["disabledTests", 56, 3], ["disabledTestPaths", 62, 3], ["meta", 64, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, cu2qu: false, defcon: false, fontfeatures: false, fonttools: false, glyphslib: false, "openstep-plist": false, orjson: false, pytestCheckHook: false, setuptools: false, "setuptools-scm": false, ufolib2: false, ufomerge: false, vfblib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 65, 5], ["mainProgram", 66, 5], ["homepage", 67, 5], ["license", 68, 5], ["maintainers", 69, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 21, 3], ["version", 22, 3], ["pyproject", 23, 3], ["src", 26, 3], ["build-system", 33, 3], ["dependencies", 38, 3], ["nativeCheckInputs", 50, 3], ["disabledTests", 56, 3], ["disabledTestPaths", 62, 3], ["meta", 64, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.1.3";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "simoncozens",
           repo: "babelfont",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -52,7 +50,7 @@ export default nix.lambda((args) => (() => {
       const disabledTests = nix.thunk(() => ["test_rename", "test_rename_nested", "test_rename_contextual"]);
       const disabledTestPaths = nix.thunk(() => ["tests/test_glyphs3_roundtrip.py"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Python library to load, examine, and save fonts in a variety of formats",
         mainProgram: "babelfont",
         homepage: "https://github.com/simoncozens/babelfont",
@@ -63,7 +61,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

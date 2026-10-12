@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]], [["onnx", 46, 5], ["onnxruntime", 49, 5], ["intel", 53, 5], ["openvino", 56, 5], ["nncf", 59, 5], ["neural-compressor", 62, 5], ["graphcore", 65, 5], ["habana", 68, 5], ["neuron", 71, 5], ["neuronx", 74, 5], ["furiosa", 77, 5]], [["description", 88, 5], ["mainProgram", 89, 5], ["homepage", 90, 5], ["changelog", 91, 5], ["license", 92, 5], ["maintainers", 93, 5]], [["pname", 22, 3], ["version", 23, 3], ["pyproject", 24, 3], ["src", 26, 3], ["build-system", 33, 3], ["pythonRelaxDeps", 35, 3], ["dependencies", 37, 3], ["optional-dependencies", 45, 3], ["doCheck", 83, 3], ["pythonImportsCheck", 85, 3], ["meta", 87, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, datasets: false, "huggingface-hub": false, numpy: false, packaging: false, torch: false, transformers: false, "optimum-onnx": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["onnx", 46, 5], ["onnxruntime", 49, 5], ["intel", 53, 5], ["openvino", 56, 5], ["nncf", 59, 5], ["neural-compressor", 62, 5], ["graphcore", 65, 5], ["habana", 68, 5], ["neuron", 71, 5], ["neuronx", 74, 5], ["furiosa", 77, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 88, 5], ["mainProgram", 89, 5], ["homepage", 90, 5], ["changelog", 91, 5], ["license", 92, 5], ["maintainers", 93, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 22, 3], ["version", 23, 3], ["pyproject", 24, 3], ["src", 26, 3], ["build-system", 33, 3], ["pythonRelaxDeps", 35, 3], ["dependencies", 37, 3], ["optional-dependencies", 45, 3], ["doCheck", 83, 3], ["pythonImportsCheck", 85, 3], ["meta", 87, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.1.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "huggingface",
           repo: "optimum",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -36,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const pythonRelaxDeps = nix.thunk(() => ["transformers"]);
       const dependencies = nix.thunk(() => [huggingface_hub, numpy, packaging, torch, transformers]);
       const optional_dependencies = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         onnx: nix.thunk(() => [optimum_onnx]),
         onnxruntime: nix.thunk(() => nix.concat([optimum_onnx], nix.sel(optimum_onnx, "optional-dependencies", "onnxruntime"))),
         intel: [],
@@ -52,7 +49,7 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["optimum"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Accelerate training and inference of Transformers and Diffusers with easy to use hardware optimization tools",
         mainProgram: "optimum-cli",
         homepage: "https://github.com/huggingface/optimum",
@@ -64,7 +61,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

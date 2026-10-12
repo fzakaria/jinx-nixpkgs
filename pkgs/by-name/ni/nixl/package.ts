@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 45, 5], ["repo", 46, 5], ["tag", 47, 5], ["hash", 48, 5]], [["updateScript", 123, 5], ["stdenv", 126, 5], ["pythonPackage", 128, 5]], [["description", 132, 5], ["homepage", 133, 5], ["changelog", 134, 5], ["license", 135, 5], ["maintainers", 136, 5], ["platforms", 137, 5], ["broken", 138, 5]], [["pname", 38, 3], ["version", 39, 3], ["__structuredAttrs", 41, 3], ["strictDeps", 42, 3], ["src", 44, 3], ["postPatch", 51, 3], ["nativeBuildInputs", 67, 3], ["dontUseCmakeConfigure", 78, 3], ["buildInputs", 80, 3], ["mesonFlags", 110, 3], ["passthru", 122, 3], ["meta", 131, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, gitMinimal: false, meson: false, ninja: false, "pkg-config": false, python3Packages: false, "abseil-cpp": false, asio: false, "aws-sdk-cpp": false, hwloc: false, libaio: false, libfabric: false, liburing: false, numactl: false, taskflow: false, tomlplusplus: false, ucx: false, "nix-update-script": false, config: false, cudaPackages: false, cudaSupport: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 45, 5], ["repo", 46, 5], ["tag", 47, 5], ["hash", 48, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 123, 5], ["stdenv", 126, 5], ["pythonPackage", 128, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 132, 5], ["homepage", 133, 5], ["changelog", 134, 5], ["license", 135, 5], ["maintainers", 136, 5], ["platforms", 137, 5], ["broken", 138, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 38, 3], ["version", 39, 3], ["__structuredAttrs", 41, 3], ["strictDeps", 42, 3], ["src", 44, 3], ["postPatch", 51, 3], ["nativeBuildInputs", 67, 3], ["dontUseCmakeConfigure", 78, 3], ["buildInputs", 80, 3], ["mesonFlags", 110, 3], ["passthru", 122, 3], ["meta", 131, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -36,13 +33,13 @@ export default nix.lambda((args) => (() => {
   const cudaSupport = nix.argOr($, "cudaSupport", () => nix.sel(config, "cudaSupport"));
   const effectiveStdenv = nix.thunk(() => (nix.asBool(cudaSupport) ? nix.sel(cudaPackages, "backendStdenv") : nix.force(stdenv)));
   return nix.app(nix.sel(effectiveStdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "nixl",
       version: "1.5.0",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ai-dynamo",
           repo: "nixl",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -87,13 +84,13 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "mesonOption"), "werror", "false")),
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         stdenv: effectiveStdenv,
         pythonPackage: nix.thunk(() => nix.sel(python3Packages, "nixl")),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "NVIDIA Inference Xfer Library",
         homepage: "https://github.com/ai-dynamo/nixl",
         changelog: nix.thunk(() => nix.str`https://github.com/ai-dynamo/nixl/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

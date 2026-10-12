@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 31, 5], ["sha256", 32, 5]], [["osinfo_db_data_dir", 66, 7]], [["url", 71, 7], ["hash", 72, 7]], [["description", 89, 5], ["homepage", 90, 5], ["changelog", 91, 5], ["license", 92, 5], ["platforms", 93, 5], ["maintainers", 94, 5]], [["pname", 27, 3], ["version", 28, 3], ["src", 30, 3], ["outputs", 35, 3], ["nativeBuildInputs", 41, 3], ["buildInputs", 52, 3], ["nativeCheckInputs", 58, 3], ["patches", 64, 3], ["mesonFlags", 76, 3], ["preCheck", 82, 3], ["doCheck", 86, 3], ["meta", 88, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, fetchpatch: false, "pkg-config": false, meson: false, ninja: false, gettext: false, "gobject-introspection": false, "gtk-doc": false, docbook_xsl: false, glib: false, libsoup_3: false, libxml2: false, libxslt: false, check: false, curl: false, perl: false, hwdata: false, "osinfo-db": false, replaceVars: false, vala: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 31, 5], ["sha256", 32, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["osinfo_db_data_dir", 66, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 71, 7], ["hash", 72, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 89, 5], ["homepage", 90, 5], ["changelog", 91, 5], ["license", 92, 5], ["platforms", 93, 5], ["maintainers", 94, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 27, 3], ["version", 28, 3], ["src", 30, 3], ["outputs", 35, 3], ["nativeBuildInputs", 41, 3], ["buildInputs", 52, 3], ["nativeCheckInputs", 58, 3], ["patches", 64, 3], ["mesonFlags", 76, 3], ["preCheck", 82, 3], ["doCheck", 86, 3], ["meta", 88, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,11 +30,11 @@ export default nix.lambda((args) => (() => {
   const replaceVars = nix.arg($, "replaceVars");
   const vala = nix.argOr($, "vala", () => null);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "libosinfo",
       version: "1.12.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://gitlab.com/api/v4/projects/libosinfo%2Flibosinfo/packages/generic/release-assets/v${nix.sel(finalAttrs, "version")}/libosinfo-${nix.sel(finalAttrs, "version")}.tar.xz`),
           sha256: "sha256-rYVX7OJnk9pD0m3lZePWjOLua/uNARO3zH3+B/a/xrY=",
         })))),
@@ -58,11 +54,11 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [check, curl, perl]),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./osinfo-db-data-dir.patch"), nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             osinfo_db_data_dir: nix.thunk(() => nix.str`${osinfo_db}/share`),
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: "https://gitlab.com/libosinfo/libosinfo/-/commit/0adf38535637ec668e658d43f04f60f11f51574f.patch",
             hash: "sha256-NZija5BwevRU7bAe2SPx9GnoGb1P+mXEbJ5EVAFT9Yw=",
           })))),
@@ -75,7 +71,7 @@ export default nix.lambda((args) => (() => {
       preCheck: "patchShebangs ../osinfo/check-symfile.pl ../osinfo/check-symsorting.pl\n",
       doCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "GObject based library API for managing information about operating systems, hypervisors and the (virtual) hardware devices they can support",
         homepage: "https://libosinfo.org/",
         changelog: nix.thunk(() => nix.str`https://gitlab.com/libosinfo/libosinfo/-/blob/v${nix.sel(finalAttrs, "version")}/NEWS`),

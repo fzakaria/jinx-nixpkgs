@@ -2,21 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["case", 20, 37], ["out", 20, 42]], [["sha256", 33, 21]], [["hash", 34, 21]], [["hash", 35, 21]], [["hash", 36, 21]], [["hash", 37, 21]], [["hash", 38, 21]], [["hash", 39, 21]], [["hash", 40, 21]], [["hash", 41, 21]], [["hash", 42, 21]], [["4.5.0", 33, 13], ["4.4.0", 34, 13], ["4.3.0", 35, 13], ["4.2.0", 36, 13], ["4.1.0", 37, 13], ["4.0.0", 38, 13], ["3.6.0", 39, 13], ["3.5.0", 40, 13], ["3.4.0", 41, 13], ["3.3.0", 42, 13]], [["description", 56, 7], ["license", 57, 7], ["maintainers", 58, 7]], [["pname", 11, 5], ["owner", 16, 5], ["version", 17, 13], ["defaultVersion", 18, 5], ["release", 33, 5], ["releaseRev", 43, 5], ["propagatedBuildInputs", 45, 5], ["preBuild", 47, 5], ["useCoqifVersion", 53, 5], ["meta", 55, 5]]]);
 const formals$1 = { args: { lib: false, mkRocqDerivation: false, "rocq-core": false, stdpp: false, version: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["case", 20, 37], ["out", 20, 42]]);
-const pos$2 = nix.positions(here + "/default.nix", [["sha256", 33, 21]]);
-const pos$3 = nix.positions(here + "/default.nix", [["hash", 34, 21]]);
-const pos$4 = nix.positions(here + "/default.nix", [["hash", 35, 21]]);
-const pos$5 = nix.positions(here + "/default.nix", [["hash", 36, 21]]);
-const pos$6 = nix.positions(here + "/default.nix", [["hash", 37, 21]]);
-const pos$7 = nix.positions(here + "/default.nix", [["hash", 38, 21]]);
-const pos$8 = nix.positions(here + "/default.nix", [["hash", 39, 21]]);
-const pos$9 = nix.positions(here + "/default.nix", [["hash", 40, 21]]);
-const pos$10 = nix.positions(here + "/default.nix", [["hash", 41, 21]]);
-const pos$11 = nix.positions(here + "/default.nix", [["hash", 42, 21]]);
-const pos$12 = nix.positions(here + "/default.nix", [["4.5.0", 33, 13], ["4.4.0", 34, 13], ["4.3.0", 35, 13], ["4.2.0", 36, 13], ["4.1.0", 37, 13], ["4.0.0", 38, 13], ["3.6.0", 39, 13], ["3.5.0", 40, 13], ["3.4.0", 41, 13], ["3.3.0", 42, 13]]);
-const pos$13 = nix.positions(here + "/default.nix", [["description", 56, 7], ["license", 57, 7], ["maintainers", 58, 7]]);
-const pos$14 = nix.positions(here + "/default.nix", [["pname", 11, 5], ["owner", 16, 5], ["version", 17, 13], ["defaultVersion", 18, 5], ["release", 33, 5], ["releaseRev", 43, 5], ["propagatedBuildInputs", 45, 5], ["preBuild", 47, 5], ["useCoqifVersion", 53, 5], ["meta", 55, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const stdpp = nix.arg($, "stdpp");
   const version = nix.argOr($, "version", () => null);
   const derivation = nix.thunk(() => nix.app(mkRocqDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$14,
+      [nix.POS]: $pos[13],
       pname: "iris",
       owner: "rocq-iris",
       version: version,
       defaultVersion: nix.thunk(() => (() => {
-        const case$ = (case$_1) => (out) => ({ [nix.POS]: pos$1, case: case$_1, out: out });
+        const case$ = (case$_1) => (out) => ({ [nix.POS]: $pos[0], case: case$_1, out: out });
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "versions")), null);
         return nix.app(nix.sel(lib, "switch"), nix.thunk(() => nix.sel(rocq_core, "rocq-version")), nix.thunk(() => [
             nix.thunk(() => nix.app(case$, nix.thunk(() => nix.app(nix.lookup(w, "range"), "9.0", "9.3")), "4.5.0")),
@@ -45,45 +32,45 @@ export default nix.lambda((args) => (() => {
           ]), null);
       })()),
       release: nix.thunk(() => ({
-        [nix.POS]: pos$12,
+        [nix.POS]: $pos[11],
         "4.5.0": nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           sha256: "sha256-oGqo+W1prLtAwRwo2U15VGhmrkDIPPE6uMbNrTa8iAQ=",
         })),
         "4.4.0": nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           hash: "sha256-zpuaIdH2ScOuZB0Vt1TEHAbsmcT1DyoDsJpftT1M7qw=",
         })),
         "4.3.0": nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           hash: "sha256-3qhjiFI+A3I3fD8rFfJL5Hek77wScfn/FNNbDyGqA1k=",
         })),
         "4.2.0": nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           hash: "sha256-HuiHIe+5letgr1NN1biZZFq0qlWUbFmoVI7Q91+UIfM=",
         })),
         "4.1.0": nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           hash: "sha256-nTZUeZOXiH7HsfGbMKDE7vGrNVCkbMaWxdMWUcTUNlo=",
         })),
         "4.0.0": nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           hash: "sha256-Jc9TmgGvkiDaz9IOoExyeryU1E+Q37GN24NIM397/Gg=",
         })),
         "3.6.0": nix.thunk(() => ({
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           hash: "sha256:02vbq597fjxd5znzxdb54wfp36412wz2d4yash4q8yddgl1kakmj",
         })),
         "3.5.0": nix.thunk(() => ({
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           hash: "sha256:0hh14m0anfcv65rxm982ps2vp95vk9fwrpv4br8bxd9vz0091d70",
         })),
         "3.4.0": nix.thunk(() => ({
-          [nix.POS]: pos$10,
+          [nix.POS]: $pos[9],
           hash: "sha256:0vdc2mdqn5jjd6yz028c0c6blzrvpl0c7apx6xas7ll60136slrb",
         })),
         "3.3.0": nix.thunk(() => ({
-          [nix.POS]: pos$11,
+          [nix.POS]: $pos[10],
           hash: "sha256:0az4gkp5m8sq0p73dlh0r7ckkzhk7zkg5bndw01bdsy5ywj0vilp",
         })),
       })),
@@ -92,7 +79,7 @@ export default nix.lambda((args) => (() => {
       preBuild: "if [[ -f coq-lint.sh ]]\nthen patchShebangs coq-lint.sh\nfi\n",
       useCoqifVersion: (v) => (nix.asBool((nix.asBool(!nix.eq(v, null)) && nix.asBool(!nix.eq(v, "dev")))) && nix.asBool(nix.app(nix.sel(lib, "versions", "isLe"), "4.4.0", v))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$13,
+        [nix.POS]: $pos[12],
         description: "Rocq development of the Iris Project",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
         maintainers: nix.thunk(() => [

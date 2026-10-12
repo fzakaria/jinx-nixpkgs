@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 32, 5], ["group", 33, 5], ["owner", 34, 5], ["repo", 35, 5], ["tag", 36, 5], ["hash", 37, 5]], [["updateScript", 73, 12]], [["homepage", 76, 5], ["description", 77, 5], ["maintainers", 78, 5], ["license", 81, 5], ["platforms", 82, 5], ["mainProgram", 83, 5]], [["pname", 28, 3], ["version", 29, 3], ["src", 31, 3], ["nativeBuildInputs", 40, 3], ["buildInputs", 54, 3], ["preBuild", 65, 3], ["doCheck", 71, 3], ["passthru", 73, 3], ["meta", 75, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitLab: false, "desktop-file-utils": false, "docbook-xsl-nons": false, gettext: false, "gobject-introspection": false, "gtk-doc": false, itstool: false, meson: false, ninja: false, "pkg-config": false, vala: false, wrapGAppsHook3: false, dconf: false, glib: false, "gsettings-desktop-schemas": false, gspell: false, "libgedit-amtk": false, "libgedit-gtksourceview": false, "libgedit-tepl": false, libgee: false, gitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 32, 5], ["group", 33, 5], ["owner", 34, 5], ["repo", 35, 5], ["tag", 36, 5], ["hash", 37, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 73, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 76, 5], ["description", 77, 5], ["maintainers", 78, 5], ["license", 81, 5], ["platforms", 82, 5], ["mainProgram", 83, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 28, 3], ["version", 29, 3], ["src", 31, 3], ["nativeBuildInputs", 40, 3], ["buildInputs", 54, 3], ["preBuild", 65, 3], ["doCheck", 71, 3], ["passthru", 73, 3], ["meta", 75, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,11 +31,11 @@ export default nix.lambda((args) => (() => {
   const libgee = nix.arg($, "libgee");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "enter-tex",
       version: "3.49.0",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "gitlab.gnome.org",
           group: "World",
           owner: "gedit",
@@ -72,11 +69,11 @@ export default nix.lambda((args) => (() => {
       preBuild: "# Workaround the use case of C code mixed with Vala code.\n# https://gitlab.gnome.org/World/gedit/enter-tex/-/blob/3.48.0/docs/more-information.md#install-procedure\nninja src/gtex/Gtex-1.gir\n",
       doCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://gitlab.gnome.org/World/gedit/enter-tex",
         description: "LaTeX editor for the GNOME desktop",
         maintainers: nix.thunk(() => (() => {

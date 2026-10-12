@@ -2,9 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["saxpy", 9, 21], ["cuda-library-samples", 10, 27]], [["cudaPackages", 16, 7], ["cudaPackages_12", 18, 7], ["cudaPackages_12_6", 19, 7], ["cudaPackages_12_8", 20, 7], ["cudaPackages_12_9", 21, 7], ["cudaPackages_13", 23, 7], ["cudaPackages_13_0", 24, 7]]]);
 const formals$1 = { args: { lib: false, pkgs: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["saxpy", 9, 21], ["cuda-library-samples", 10, 27]]);
-const pos$2 = nix.positions(here + "/default.nix", [["cudaPackages", 16, 7], ["cudaPackages_12", 18, 7], ["cudaPackages_12_6", 19, 7], ["cudaPackages_12_8", 20, 7], ["cudaPackages_12_9", 21, 7], ["cudaPackages_13", 23, 7], ["cudaPackages_13_0", 24, 7]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,13 +12,13 @@ export default nix.lambda((args) => (() => {
   const getTests = (cps) => nix.app(nix.sel(lib, "recurseIntoAttrs"), nix.thunk(() => (() => {
       const from = nix.thunk(() => nix.sel(cps, "tests"));
       return {
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       saxpy: nix.thunk(() => nix.attr(cps, "saxpy")),
       "cuda-library-samples": nix.thunk(() => nix.attr(from, "cuda-library-samples")),
     };
     })()));
   return nix.app(nix.sel(lib, "recurseIntoAttrs"), nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (_) => getTests, nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         cudaPackages: nix.thunk(() => nix.attr(pkgs, "cudaPackages")),
         cudaPackages_12: nix.thunk(() => nix.attr(pkgs, "cudaPackages_12")),
         cudaPackages_12_6: nix.thunk(() => nix.attr(pkgs, "cudaPackages_12_6")),

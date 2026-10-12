@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 12, 5], ["repo", 13, 5], ["tag", 14, 5], ["hash", 15, 5]], [["OPENSSL_DIR", 22, 5], ["OPENSSL_LIB_DIR", 23, 5], ["OPENSSL_NO_VENDOR", 24, 5]], [["description", 32, 5], ["license", 33, 5], ["homepage", 34, 5], ["maintainers", 35, 5], ["mainProgram", 36, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 11, 3], ["cargoHash", 18, 3], ["env", 20, 3], ["buildInputs", 27, 3], ["meta", 31, 3]]]);
 const formals$1 = { args: { fetchFromGitHub: false, lib: false, openssl: false, rustPlatform: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 12, 5], ["repo", 13, 5], ["tag", 14, 5], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["OPENSSL_DIR", 22, 5], ["OPENSSL_LIB_DIR", 23, 5], ["OPENSSL_NO_VENDOR", 24, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 32, 5], ["license", 33, 5], ["homepage", 34, 5], ["maintainers", 35, 5], ["mainProgram", 36, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 11, 3], ["cargoHash", 18, 3], ["env", 20, 3], ["buildInputs", 27, 3], ["meta", 31, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const rustPlatform = nix.arg($, "rustPlatform");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "taskchampion-sync-server",
       version: "0.7.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "GothenburgBitFactory",
           repo: "taskchampion-sync-server",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -28,14 +25,14 @@ export default nix.lambda((args) => (() => {
         })))),
       cargoHash: "sha256-1bqZAFKQGTCGUs7EXLwAgUxQU+KmhVGFIATIOb5uOlA=",
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         OPENSSL_DIR: nix.thunk(() => nix.app(nix.sel(lib, "getDev"), openssl)),
         OPENSSL_LIB_DIR: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getLib"), openssl)}/lib`),
         OPENSSL_NO_VENDOR: 1n,
       })),
       buildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [openssl]))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Sync server for Taskwarrior 3",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         homepage: "https://github.com/GothenburgBitFactory/taskchampion-sync-server",

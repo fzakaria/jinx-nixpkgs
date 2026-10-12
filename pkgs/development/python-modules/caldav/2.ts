@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/2.nix", [[["owner", 34, 5], ["repo", 35, 5], ["tag", 36, 5], ["hash", 37, 5]], [["python3", 63, 42]], [["changelog", 79, 5], ["description", 80, 5], ["homepage", 81, 5], ["license", 82, 5], ["maintainers", 83, 5]], [["pname", 29, 3], ["version", 30, 3], ["pyproject", 31, 3], ["src", 33, 3], ["build-system", 40, 3], ["dependencies", 45, 3], ["pythonImportsCheck", 56, 3], ["nativeCheckInputs", 58, 3], ["disabledTests", 69, 3], ["__darwinAllowLocalNetworking", 76, 3], ["meta", 78, 3]]]);
 const formals$1 = { args: { buildPythonPackage: false, dnspython: false, fetchFromGitHub: false, "hatch-vcs": false, hatchling: false, icalendar: false, "icalendar-searcher": false, lib: false, lxml: false, manuel: false, niquests: false, "proxy-py": false, pyfakefs: false, "pytest-asyncio": false, pytestCheckHook: false, python: false, "python-dateutil": false, pyyaml: false, radicale: false, "recurring-ical-events": false, toPythonModule: false, tzlocal: false, vobject: false, writableTmpDirAsHomeHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/2.nix", [["owner", 34, 5], ["repo", 35, 5], ["tag", 36, 5], ["hash", 37, 5]]);
-const pos$2 = nix.positions(here + "/2.nix", [["python3", 63, 42]]);
-const pos$3 = nix.positions(here + "/2.nix", [["changelog", 79, 5], ["description", 80, 5], ["homepage", 81, 5], ["license", 82, 5], ["maintainers", 83, 5]]);
-const pos$4 = nix.positions(here + "/2.nix", [["pname", 29, 3], ["version", 30, 3], ["pyproject", 31, 3], ["src", 33, 3], ["build-system", 40, 3], ["dependencies", 45, 3], ["pythonImportsCheck", 56, 3], ["nativeCheckInputs", 58, 3], ["disabledTests", 69, 3], ["__darwinAllowLocalNetworking", 76, 3], ["meta", 78, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -39,7 +36,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.2.6";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "python-caldav",
           repo: "caldav",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -62,7 +59,7 @@ export default nix.lambda((args) => (() => {
         proxy_py,
         pyfakefs,
         pytestCheckHook,
-        nix.thunk(() => nix.app(toPythonModule, nix.thunk(() => nix.app(nix.sel(radicale, "override"), nix.thunk(() => ({ [nix.POS]: pos$2, python3: python })))))),
+        nix.thunk(() => nix.app(toPythonModule, nix.thunk(() => nix.app(nix.sel(radicale, "override"), nix.thunk(() => ({ [nix.POS]: $pos[1], python3: python })))))),
         tzlocal,
         vobject,
         writableTmpDirAsHomeHook,
@@ -70,7 +67,7 @@ export default nix.lambda((args) => (() => {
       const disabledTests = nix.thunk(() => ["test_rfc8764_test_conf", "testConfigfile"]);
       const __darwinAllowLocalNetworking = true;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         changelog: nix.thunk(() => nix.str`https://github.com/python-caldav/caldav/blob/${nix.sel(src, "tag")}/CHANGELOG.md`),
         description: "CalDAV (RFC4791) client library",
         homepage: "https://github.com/python-caldav/caldav",
@@ -78,7 +75,7 @@ export default nix.lambda((args) => (() => {
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "dotlambda"))]),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

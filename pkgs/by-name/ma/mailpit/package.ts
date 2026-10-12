@@ -2,19 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 28, 5], ["repo", 29, 5], ["rev", 30, 5], ["hash", 31, 5]], [["src", 44, 15], ["hash", 45, 7]], [["NIX_CFLAGS_COMPILE", 49, 9]], [["pname", 40, 5], ["src", 41, 13], ["version", 41, 17], ["npmDeps", 43, 5], ["env", 49, 5], ["nativeBuildInputs", 51, 5], ["buildPhase", 58, 5], ["installPhase", 62, 5]], [["CGO_ENABLED", 73, 7]], [["package", 89, 9], ["command", 90, 9]], [["version", 88, 7]], [["mailpit", 94, 28]], [["supportedFeatures", 98, 7], ["command", 99, 7]], [["tests", 85, 5], ["updateScript", 97, 5], ["ui", 102, 13]], [["changelog", 108, 5], ["description", 109, 5], ["downloadPage", 110, 5], ["homepage", 111, 5], ["license", 112, 5], ["mainProgram", 113, 5], ["maintainers", 114, 5]], [["pname", 70, 3], ["src", 71, 11], ["version", 71, 15], ["vendorHash", 71, 23], ["env", 73, 3], ["ldflags", 75, 3], ["preBuild", 80, 3], ["passthru", 84, 3], ["__darwinAllowLocalNetworking", 105, 3], ["meta", 107, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, buildGoModule: false, fetchNpmDeps: false, npmHooks: false, nodejs: false, python3: false, libtool: false, cctools: false, mailpit: false, nixosTests: false, testers: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 28, 5], ["repo", 29, 5], ["rev", 30, 5], ["hash", 31, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["src", 44, 15], ["hash", 45, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 49, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 40, 5], ["src", 41, 13], ["version", 41, 17], ["npmDeps", 43, 5], ["env", 49, 5], ["nativeBuildInputs", 51, 5], ["buildPhase", 58, 5], ["installPhase", 62, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["CGO_ENABLED", 73, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["package", 89, 9], ["command", 90, 9]]);
-const pos$7 = nix.positions(here + "/package.nix", [["version", 88, 7]]);
-const pos$8 = nix.positions(here + "/package.nix", [["mailpit", 94, 28]]);
-const pos$9 = nix.positions(here + "/package.nix", [["supportedFeatures", 98, 7], ["command", 99, 7]]);
-const pos$10 = nix.positions(here + "/package.nix", [["tests", 85, 5], ["updateScript", 97, 5], ["ui", 102, 13]]);
-const pos$11 = nix.positions(here + "/package.nix", [["changelog", 108, 5], ["description", 109, 5], ["downloadPage", 110, 5], ["homepage", 111, 5], ["license", 112, 5], ["mainProgram", 113, 5], ["maintainers", 114, 5]]);
-const pos$12 = nix.positions(here + "/package.nix", [["pname", 70, 3], ["src", 71, 11], ["version", 71, 15], ["vendorHash", 71, 23], ["env", 73, 3], ["ldflags", 75, 3], ["preBuild", 80, 3], ["passthru", 84, 3], ["__darwinAllowLocalNetworking", 105, 3], ["meta", 107, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -35,7 +24,7 @@ export default nix.lambda((args) => (() => {
   const version = nix.thunk(() => nix.attr(source, "version"));
   const vendorHash = nix.thunk(() => nix.attr(source, "vendorHash"));
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "axllent",
       repo: "mailpit",
       rev: nix.thunk(() => nix.str`v${version}`),
@@ -43,16 +32,16 @@ export default nix.lambda((args) => (() => {
     }))));
   const libtool$ = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? nix.force(cctools) : nix.force(libtool)));
   const ui = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "mailpit-ui",
       src: src,
       version: version,
       npmDeps: nix.thunk(() => nix.app(fetchNpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           src: src,
           hash: nix.thunk(() => nix.sel(source, "npmDepsHash")),
         })))),
-      env: nix.thunk(() => ({ [nix.POS]: pos$3, NIX_CFLAGS_COMPILE: "-std=c++20" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[2], NIX_CFLAGS_COMPILE: "-std=c++20" })),
       nativeBuildInputs: nix.thunk(() => [
         nodejs,
         python3,
@@ -63,12 +52,12 @@ export default nix.lambda((args) => (() => {
       installPhase: "mv server/ui/dist $out\n",
     }))));
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$12,
+      [nix.POS]: $pos[11],
       pname: "mailpit",
       src: src,
       version: version,
       vendorHash: vendorHash,
-      env: nix.thunk(() => ({ [nix.POS]: pos$5, CGO_ENABLED: 0n })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[4], CGO_ENABLED: 0n })),
       ldflags: nix.thunk(() => [
         "-s",
         nix.thunk(() => nix.str`-X github.com/axllent/mailpit/config.Version=${version}`),
@@ -76,17 +65,20 @@ export default nix.lambda((args) => (() => {
       preBuild: nix.thunk(() => nix.str`cp -r ${nix.sel(finalAttrs, "passthru", "ui")} server/ui/dist
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         tests: nix.thunk(() => nix.update({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$6,
+              [nix.POS]: $pos[5],
               package: mailpit,
               command: "mailpit version --no-release-check",
             })))),
-        }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), nix.thunk(() => ({ [nix.POS]: pos$8, mailpit: nix.thunk(() => nix.attr(nixosTests, "mailpit")) }))))),
+        }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), nix.thunk(() => ({
+            [nix.POS]: $pos[7],
+            mailpit: nix.thunk(() => nix.attr(nixosTests, "mailpit")),
+          }))))),
         updateScript: nix.thunk(() => ({
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           supportedFeatures: nix.thunk(() => ["commit"]),
           command: nix.path(here, "./update.sh"),
         })),
@@ -94,7 +86,7 @@ export default nix.lambda((args) => (() => {
       })),
       __darwinAllowLocalNetworking: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$11,
+        [nix.POS]: $pos[10],
         changelog: nix.thunk(() => nix.str`https://github.com/axllent/mailpit/releases/tag/v${version}`),
         description: "Email and SMTP testing tool with API for developers",
         downloadPage: "https://github.com/axllent/mailpit",

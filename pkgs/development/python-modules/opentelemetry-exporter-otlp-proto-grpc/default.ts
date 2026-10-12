@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["homepage", 50, 5], ["description", 51, 5]], [["version", 15, 31], ["src", 15, 39], ["pname", 16, 3], ["pyproject", 17, 3], ["sourceRoot", 19, 3], ["build-system", 21, 3], ["dependencies", 23, 3], ["nativeCheckInputs", 32, 3], ["enabledTestPaths", 37, 3], ["disabledTests", 39, 3], ["pythonImportsCheck", 45, 3], ["__darwinAllowLocalNetworking", 47, 3], ["meta", 49, 3]]]);
 const formals$1 = { args: { buildPythonPackage: false, deprecated: false, "googleapis-common-protos": false, grpcio: false, hatchling: false, "opentelemetry-api": false, "opentelemetry-exporter-otlp-proto-common": false, "opentelemetry-proto": false, "opentelemetry-test-utils": false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["homepage", 50, 5], ["description", 51, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["version", 15, 31], ["src", 15, 39], ["pname", 16, 3], ["pyproject", 17, 3], ["sourceRoot", 19, 3], ["build-system", 21, 3], ["dependencies", 23, 3], ["nativeCheckInputs", 32, 3], ["enabledTestPaths", 37, 3], ["disabledTests", 39, 3], ["pythonImportsCheck", 45, 3], ["__darwinAllowLocalNetworking", 47, 3], ["meta", 49, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,7 +18,7 @@ export default nix.lambda((args) => (() => {
   const opentelemetry_test_utils = nix.arg($, "opentelemetry-test-utils");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       version: nix.thunk(() => nix.attr(opentelemetry_api, "version")),
       src: nix.thunk(() => nix.attr(opentelemetry_api, "src")),
       pname: "opentelemetry-exporter-otlp-proto-grpc",
@@ -40,7 +39,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["opentelemetry.exporter.otlp.proto.grpc"]),
       __darwinAllowLocalNetworking: true,
       meta: nix.thunk(() => nix.update(nix.sel(opentelemetry_api, "meta"), {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         homepage: "https://github.com/open-telemetry/opentelemetry-python/tree/main/exporter/opentelemetry-exporter-otlp-proto-grpc",
         description: "OpenTelemetry Collector Protobuf over gRPC Exporter",
       })),

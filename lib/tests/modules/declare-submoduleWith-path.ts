@@ -2,30 +2,26 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/declare-submoduleWith-path.nix", [[["modules", 5, 7]], [["type", 4, 5], ["default", 9, 5]], [["submodule", 3, 11]], [["submodule", 12, 10]], [["options", 3, 3], ["config", 12, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/declare-submoduleWith-path.nix", [["modules", 5, 7]]);
-const pos$2 = nix.positions(here + "/declare-submoduleWith-path.nix", [["type", 4, 5], ["default", 9, 5]]);
-const pos$3 = nix.positions(here + "/declare-submoduleWith-path.nix", [["submodule", 3, 11]]);
-const pos$4 = nix.positions(here + "/declare-submoduleWith-path.nix", [["submodule", 12, 10]]);
-const pos$5 = nix.positions(here + "/declare-submoduleWith-path.nix", [["options", 3, 3], ["config", 12, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$5,
+    [nix.POS]: $pos[4],
     options: nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       submodule: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           type: nix.thunk(() => nix.app(nix.sel(lib, "types", "submoduleWith"), nix.thunk(() => ({
-              [nix.POS]: pos$1,
+              [nix.POS]: $pos[0],
               modules: nix.thunk(() => [nix.path(here, "./declare-enable.nix")]),
             })))),
           default: nix.thunk(() => ({})),
         })))),
     })),
-    config: nix.thunk(() => ({ [nix.POS]: pos$4, submodule: nix.path(here, "./define-enable.nix") })),
+    config: nix.thunk(() => ({ [nix.POS]: $pos[3], submodule: nix.path(here, "./define-enable.nix") })),
   };
 })(), formals$1);
 //# sourceMappingURL=declare-submoduleWith-path.ts.map

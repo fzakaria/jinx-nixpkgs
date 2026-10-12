@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]], [["asyncio", 43, 5], ["trio", 44, 5]], [["description", 70, 5], ["homepage", 71, 5], ["changelog", 72, 5], ["license", 73, 5], ["maintainers", 74, 5]], [["pname", 23, 3], ["version", 24, 3], ["pyproject", 25, 3], ["src", 27, 3], ["build-system", 34, 3], ["dependencies", 36, 3], ["optional-dependencies", 42, 3], ["__darwinAllowLocalNetworking", 47, 3], ["nativeCheckInputs", 49, 3], ["pythonImportsCheck", 61, 3], ["disabledTests", 63, 3], ["meta", 69, 3]]]);
 const formals$1 = { args: { lib: false, "async-timeout": false, buildPythonPackage: false, fetchFromGitHub: false, flask: false, httpcore: false, httpx: false, hypercorn: false, "pytest-asyncio": false, "pytest-trio": false, pytestCheckHook: false, "python-socks": false, setuptools: false, starlette: false, "tiny-proxy": false, trio: false, trustme: false, yarl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["asyncio", 43, 5], ["trio", 44, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 70, 5], ["homepage", 71, 5], ["changelog", 72, 5], ["license", 73, 5], ["maintainers", 74, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 23, 3], ["version", 24, 3], ["pyproject", 25, 3], ["src", 27, 3], ["build-system", 34, 3], ["dependencies", 36, 3], ["optional-dependencies", 42, 3], ["__darwinAllowLocalNetworking", 47, 3], ["nativeCheckInputs", 49, 3], ["pythonImportsCheck", 61, 3], ["disabledTests", 63, 3], ["meta", 69, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.13.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "romis2012",
           repo: "httpx-socks",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -42,7 +39,7 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [setuptools]);
       const dependencies = nix.thunk(() => [httpx, httpcore, python_socks]);
       const optional_dependencies = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         asyncio: nix.thunk(() => [async_timeout]),
         trio: nix.thunk(() => [trio]),
       }));
@@ -61,7 +58,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["httpx_socks"]);
       const disabledTests = nix.thunk(() => ["test_proxy", "test_secure_proxy"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Proxy (HTTP, SOCKS) transports for httpx",
         homepage: "https://github.com/romis2012/httpx-socks",
         changelog: nix.thunk(() => nix.str`https://github.com/romis2012/httpx-socks/releases/tag/${nix.sel(src, "tag")}`),
@@ -72,7 +69,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

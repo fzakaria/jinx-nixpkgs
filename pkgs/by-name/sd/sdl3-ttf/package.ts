@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]], [["extraArgs", 55, 7]], [["pkg-config", 60, 11]], [["updateScript", 54, 5], ["tests", 60, 5]], [["description", 64, 5], ["homepage", 65, 5], ["changelog", 66, 5], ["license", 67, 5], ["maintainers", 68, 5], ["teams", 72, 5], ["pkgConfigModules", 73, 5], ["platforms", 74, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["strictDeps", 29, 3], ["doCheck", 30, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 39, 3], ["cmakeFlags", 47, 3], ["passthru", 53, 3], ["meta", 63, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, "nix-update-script": false, testers: false, validatePkgConfig: false, sdl3: false, cmake: false, freetype: false, harfbuzz: false, glib: false, ninja: false, plutosvg: false, fixDarwinDylibNames: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["extraArgs", 55, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pkg-config", 60, 11]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 54, 5], ["tests", 60, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 64, 5], ["homepage", 65, 5], ["changelog", 66, 5], ["license", 67, 5], ["maintainers", 68, 5], ["teams", 72, 5], ["pkgConfigModules", 73, 5], ["platforms", 74, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["strictDeps", 29, 3], ["doCheck", 30, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 39, 3], ["cmakeFlags", 47, 3], ["passthru", 53, 3], ["meta", 63, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const plutosvg = nix.arg($, "plutosvg");
   const fixDarwinDylibNames = nix.arg($, "fixDarwinDylibNames");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "sdl3-ttf",
       version: "3.2.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "libsdl-org",
           repo: "SDL_ttf",
           tag: nix.thunk(() => nix.str`release-${nix.sel(finalAttrs, "version")}`),
@@ -47,18 +42,18 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "SDLTTF_PLUTOSVG", true)),
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             extraArgs: nix.thunk(() => ["--version-regex", "release-(3\\..*)"]),
           })))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "testMetaPkgConfig"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "SDL TrueType font library",
         homepage: "https://github.com/libsdl-org/SDL_ttf",
         changelog: nix.thunk(() => nix.str`https://github.com/libsdl-org/SDL_ttf/releases/tag/${nix.builtins.toString(nix.thunk(() => nix.sel(finalAttrs, "src", "tag")))}`),

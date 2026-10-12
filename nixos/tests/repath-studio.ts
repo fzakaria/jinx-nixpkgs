@@ -2,54 +2,41 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/repath-studio.nix", [[["enable", 20, 26]], [["xserver", 20, 18]], [["user", 21, 42]], [["auto", 21, 37]], [["displayManager", 21, 22]], [["systemPackages", 23, 21]], [["options", 31, 29]], [["memorySize", 29, 24], ["cores", 30, 24], ["qemu", 31, 24]], [["imports", 14, 9], ["services", 20, 9], ["test-support", 21, 9], ["environment", 23, 9], ["virtualisation", 29, 9]], [["machine", 11, 5]], [["enable", 43, 27]], [["sshBackdoor", 43, 15]], [["maintainers", 81, 8]], [["name", 8, 3], ["nodes", 10, 3], ["enableOCR", 38, 3], ["interactive", 43, 3], ["testScript", 45, 3], ["meta", 81, 3]]]);
 const formals$1 = { args: { lib: false, pkgs: false }, ellipsis: true };
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/repath-studio.nix", [["enable", 20, 26]]);
-const pos$2 = nix.positions(here + "/repath-studio.nix", [["xserver", 20, 18]]);
-const pos$3 = nix.positions(here + "/repath-studio.nix", [["user", 21, 42]]);
-const pos$4 = nix.positions(here + "/repath-studio.nix", [["auto", 21, 37]]);
-const pos$5 = nix.positions(here + "/repath-studio.nix", [["displayManager", 21, 22]]);
-const pos$6 = nix.positions(here + "/repath-studio.nix", [["systemPackages", 23, 21]]);
-const pos$7 = nix.positions(here + "/repath-studio.nix", [["options", 31, 29]]);
-const pos$8 = nix.positions(here + "/repath-studio.nix", [["memorySize", 29, 24], ["cores", 30, 24], ["qemu", 31, 24]]);
-const pos$9 = nix.positions(here + "/repath-studio.nix", [["imports", 14, 9], ["services", 20, 9], ["test-support", 21, 9], ["environment", 23, 9], ["virtualisation", 29, 9]]);
-const pos$10 = nix.positions(here + "/repath-studio.nix", [["machine", 11, 5]]);
-const pos$11 = nix.positions(here + "/repath-studio.nix", [["enable", 43, 27]]);
-const pos$12 = nix.positions(here + "/repath-studio.nix", [["sshBackdoor", 43, 15]]);
-const pos$13 = nix.positions(here + "/repath-studio.nix", [["maintainers", 81, 8]]);
-const pos$14 = nix.positions(here + "/repath-studio.nix", [["name", 8, 3], ["nodes", 10, 3], ["enableOCR", 38, 3], ["interactive", 43, 3], ["testScript", 45, 3], ["meta", 81, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   return {
-    [nix.POS]: pos$14,
+    [nix.POS]: $pos[13],
     name: "Repath Studio",
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           imports: nix.thunk(() => [
             nix.path(here, "./common/x11.nix"),
             nix.path(here, "./common/user-account.nix"),
           ]),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$2,
-            xserver: nix.thunk(() => ({ [nix.POS]: pos$1, enable: true })),
+            [nix.POS]: $pos[1],
+            xserver: nix.thunk(() => ({ [nix.POS]: $pos[0], enable: true })),
           })),
           "test-support": nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             displayManager: nix.thunk(() => ({
-              [nix.POS]: pos$4,
-              auto: nix.thunk(() => ({ [nix.POS]: pos$3, user: "alice" })),
+              [nix.POS]: $pos[3],
+              auto: nix.thunk(() => ({ [nix.POS]: $pos[2], user: "alice" })),
             })),
           })),
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             systemPackages: nix.thunk(() => (() => {
               const w = nix.withScope(pkgs_1, null);
               return [
@@ -59,11 +46,11 @@ export default nix.lambda((args) => (() => {
             })()),
           })),
           virtualisation: nix.thunk(() => ({
-            [nix.POS]: pos$8,
+            [nix.POS]: $pos[7],
             memorySize: 4096n,
             cores: 4n,
             qemu: nix.thunk(() => ({
-              [nix.POS]: pos$7,
+              [nix.POS]: $pos[6],
               options: nix.thunk(() => ["-vga none -device virtio-gpu-pci,xres=1020,yres=768"]),
             })),
           })),
@@ -72,8 +59,8 @@ export default nix.lambda((args) => (() => {
     })),
     enableOCR: true,
     interactive: nix.thunk(() => ({
-      [nix.POS]: pos$12,
-      sshBackdoor: nix.thunk(() => ({ [nix.POS]: pos$11, enable: true })),
+      [nix.POS]: $pos[11],
+      sshBackdoor: nix.thunk(() => ({ [nix.POS]: $pos[10], enable: true })),
     })),
     testScript: nix.thunk(() => nix.str`start_all()
 
@@ -110,7 +97,7 @@ assert "${nix.sel(pkgs, "repath-studio", "version")}" in machine.succeed("cat /h
 machine.screenshot("Repath-Studio-GUI")
 `),
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$13,
+      [nix.POS]: $pos[12],
       maintainers: nix.thunk(() => nix.sel(lib, "teams", "ngi", "members")),
     })),
   };

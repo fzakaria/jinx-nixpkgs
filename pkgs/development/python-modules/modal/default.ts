@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 49, 5], ["repo", 50, 5], ["tag", 51, 5], ["hash", 52, 5]], [["description", 156, 5], ["homepage", 157, 5], ["changelog", 158, 5], ["mainProgram", 159, 5], ["license", 160, 5], ["maintainers", 161, 5]], [["pname", 42, 3], ["version", 43, 3], ["pyproject", 44, 3], ["__structuredAttrs", 46, 3], ["src", 48, 3], ["sourceRoot", 54, 3], ["postPatch", 56, 3], ["build-system", 63, 3], ["nativeBuildInputs", 67, 3], ["pythonRelaxDeps", 79, 3], ["dependencies", 83, 3], ["nativeCheckInputs", 100, 3], ["preInstall", 116, 3], ["disabledTestPaths", 120, 3], ["disabledTests", 137, 3], ["__darwinAllowLocalNetworking", 151, 3], ["pythonImportsCheck", 153, 3], ["meta", 155, 3]]]);
 const formals$1 = { args: { lib: false, aiohttp: false, buildPythonPackage: false, cbor2: false, certifi: false, click: false, fastapi: false, fetchFromGitHub: false, flaky: false, "grpcio-tools": false, grpclib: false, httpx: false, installAgentSkills: false, invoke: false, ipython: false, mypy: false, "mypy-protobuf": false, protobuf: false, pyjwt: false, "pytest-asyncio": false, "pytest-env": false, "pytest-markdown-docs": false, "pytest-timeout": false, pytestCheckHook: false, "python-dotenv": false, rich: false, ruff: false, setuptools: false, six: false, synchronicity: false, toml: false, typer: false, "types-certifi": false, "types-toml": false, "typing-extensions": false, watchfiles: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 49, 5], ["repo", 50, 5], ["tag", 51, 5], ["hash", 52, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 156, 5], ["homepage", 157, 5], ["changelog", 158, 5], ["mainProgram", 159, 5], ["license", 160, 5], ["maintainers", 161, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 42, 3], ["version", 43, 3], ["pyproject", 44, 3], ["__structuredAttrs", 46, 3], ["src", 48, 3], ["sourceRoot", 54, 3], ["postPatch", 56, 3], ["build-system", 63, 3], ["nativeBuildInputs", 67, 3], ["pythonRelaxDeps", 79, 3], ["dependencies", 83, 3], ["nativeCheckInputs", 100, 3], ["preInstall", 116, 3], ["disabledTestPaths", 120, 3], ["disabledTests", 137, 3], ["__darwinAllowLocalNetworking", 151, 3], ["pythonImportsCheck", 153, 3], ["meta", 155, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -47,13 +45,13 @@ export default nix.lambda((args) => (() => {
   const watchfiles = nix.arg($, "watchfiles");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "modal",
       version: "1.5.5",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "modal-labs",
           repo: "modal-client",
           tag: nix.thunk(() => nix.str`py/v${nix.sel(finalAttrs, "version")}`),
@@ -126,7 +124,7 @@ export default nix.lambda((args) => (() => {
       __darwinAllowLocalNetworking: true,
       pythonImportsCheck: nix.thunk(() => ["modal"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Python client library for Modal (serverless compute provider)",
         homepage: "https://github.com/modal-labs/modal-client",
         changelog: nix.thunk(() => nix.str`https://github.com/modal-labs/modal-client/blob/${nix.sel(finalAttrs, "src", "tag")}/py/CHANGELOG.md`),

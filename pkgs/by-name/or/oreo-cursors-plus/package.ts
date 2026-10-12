@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["rev", 22, 5], ["hash", 23, 5]], [["description", 68, 5], ["homepage", 69, 5], ["license", 70, 5], ["platforms", 71, 5], ["maintainers", 72, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 17, 3], ["nativeBuildInputs", 26, 3], ["configurePhase", 33, 3], ["buildPhase", 45, 3], ["installPhase", 58, 3], ["meta", 67, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchFromGitHub: false, ruby: false, inkscape: false, xcursorgen: false, writeText: false, cursorsConf: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["rev", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 68, 5], ["homepage", 69, 5], ["license", 70, 5], ["platforms", 71, 5], ["maintainers", 72, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 17, 3], ["nativeBuildInputs", 26, 3], ["configurePhase", 33, 3], ["buildPhase", 45, 3], ["installPhase", 58, 3], ["meta", 67, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const cursorsConf = nix.argOr($, "cursorsConf", () => null);
   const newCursorsConf = nix.thunk(() => nix.app(writeText, "oreo-cursors-plus.conf", cursorsConf));
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "oreo-cursors-plus",
       version: "0-unstable-2023-06-05",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Souravgoswami",
           repo: "oreo-cursors",
           rev: "9133204d60ca2c54be0df03b836968a1deac6b20",
@@ -45,7 +43,7 @@ runHook postBuild
 `),
       installPhase: "runHook preInstall\n\nmkdir -p $out/share\nmv ./dist $out/share/icons\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Colored Material cursors with cute animations",
         homepage: "https://github.com/Souravgoswami/oreo-cursors",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 18, 5], ["hash", 19, 5]], [["url", 24, 7], ["hash", 25, 7]], [["description", 46, 5], ["longDescription", 47, 5], ["homepage", 55, 5], ["license", 56, 5], ["maintainers", 57, 5], ["platforms", 58, 5], ["mainProgram", 59, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["patches", 22, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 31, 3], ["makeFlags", 38, 3], ["postInstall", 43, 3], ["meta", 45, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, fetchpatch: false, "pkg-config": false, libx11: false, libxtst: false, xorgproto: false, libxi: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 24, 7], ["hash", 25, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 46, 5], ["longDescription", 47, 5], ["homepage", 55, 5], ["license", 56, 5], ["maintainers", 57, 5], ["platforms", 58, 5], ["mainProgram", 59, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["patches", 22, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 31, 3], ["makeFlags", 38, 3], ["postInstall", 43, 3], ["meta", 45, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,17 +17,17 @@ export default nix.lambda((args) => (() => {
   const xorgproto = nix.arg($, "xorgproto");
   const libxi = nix.arg($, "libxi");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "xcape",
       version: "1.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "http://deb.debian.org/debian/pool/main/x/xcape/xcape_1.2.orig.tar.gz",
           hash: "sha256-on7YhP2U8DBYr2Wjnt/jrz8vj7t2upkgACp2vgf7KCE=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://sources.debian.org/data/main/x/xcape/1.2-3/debian/patches/0001-Fix-cross-building-by-removing-hard-coded-pkg-config.patch",
             hash: "sha256-uQNy7EIQdAO5iHYNA2pBoDltNrn1xrfAAjN/ZdGGa4s=",
           })))),
@@ -40,7 +37,7 @@ export default nix.lambda((args) => (() => {
       makeFlags: nix.thunk(() => ["PREFIX=$(out)", "MANDIR=/share/man/man1"]),
       postInstall: "install -Dm444 --target-directory $out/share/doc README.md",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Utility to configure modifier keys to act as other keys",
         longDescription: "xcape allows you to use a modifier key as another key when\npressed and released on its own.  Note that it is slightly\nslower than pressing the original key, because the pressed event\ndoes not occur until the key is released.  The default behaviour\nis to generate the Escape key when Left Control is pressed and\nreleased on its own.\n",
         homepage: "https://github.com/alols/xcape",

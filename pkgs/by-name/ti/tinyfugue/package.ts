@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 30, 5], ["sha256", 31, 5]], [["url", 37, 7], ["hash", 38, 7]], [["url", 41, 7], ["hash", 42, 7]], [["url", 45, 7], ["hash", 46, 7]], [["NIX_CFLAGS_COMPILE", 68, 7]], [["homepage", 71, 5], ["description", 72, 5], ["mainProgram", 73, 5], ["longDescription", 74, 5], ["license", 78, 5], ["platforms", 79, 5], ["maintainers", 80, 5]], [["pname", 25, 3], ["version", 26, 3], ["verUrl", 27, 3], ["src", 29, 3], ["patches", 34, 3], ["postPatch", 50, 3], ["configureFlags", 55, 3], ["buildInputs", 57, 3], ["env", 68, 3], ["meta", 70, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, fetchpatch: false, ncurses: false, pcre2: false, zlib: false, openssl: false, sslSupport: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 30, 5], ["sha256", 31, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 37, 7], ["hash", 38, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 41, 7], ["hash", 42, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["url", 45, 7], ["hash", 46, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 68, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["homepage", 71, 5], ["description", 72, 5], ["mainProgram", 73, 5], ["longDescription", 74, 5], ["license", 78, 5], ["platforms", 79, 5], ["maintainers", 80, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 25, 3], ["version", 26, 3], ["verUrl", 27, 3], ["src", 29, 3], ["patches", 34, 3], ["postPatch", 50, 3], ["configureFlags", 55, 3], ["buildInputs", 57, 3], ["env", 68, 3], ["meta", 70, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,24 +26,24 @@ export default nix.lambda((args) => (() => {
       const version = "50b8";
       const verUrl = "5.0%20beta%208";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/project/tinyfugue/tinyfugue/${verUrl}/tf-${version}.tar.gz`),
           sha256: "12fra2fdwqj6ilv9wdkc33rkj343rdcf5jyff4yiwywlrwaa2l1p",
         }))));
       const patches = nix.thunk(() => [
         nix.path(here, "./fix-build.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://src.fedoraproject.org/rpms/tinyfugue/raw/ce016e8fb60a51de7c9d0c45dad109b3809de048/f/tinyfigue-configure-c99.patch",
             hash: "sha256-Ge6545PCgcvnSgtDChqUQgf6b3BMjNveBAxQ8fAy8f4=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: "https://src.fedoraproject.org/rpms/tinyfugue/raw/ce016e8fb60a51de7c9d0c45dad109b3809de048/f/tf-50b8.pcre.patch",
             hash: "sha256-T0XiadrviyuvtZZKYG/kXHQSC7RZkLKQGHOMrnfyLVg=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             url: "https://src.fedoraproject.org/rpms/tinyfugue/raw/ce016e8fb60a51de7c9d0c45dad109b3809de048/f/tf-50b8-pcre2.patch",
             hash: "sha256-pTtCUwMBk+t4lK0Z1fKPKaQemdpEdVPe2NScpD8QBS8=",
           })))),
@@ -58,11 +52,11 @@ export default nix.lambda((args) => (() => {
       const configureFlags = nix.thunk(() => nix.app(optional, nix.thunk(() => !nix.asBool(sslSupport)), "--disable-ssl"));
       const buildInputs = nix.thunk(() => nix.concat([ncurses, pcre2, zlib], nix.app(optional, sslSupport, openssl)));
       const env = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         NIX_CFLAGS_COMPILE: "-fcommon -Wno-incompatible-pointer-types -Wno-return-mismatch",
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         homepage: "https://tinyfugue.sourceforge.net/",
         description: "Terminal UI, screen-oriented MUD client",
         mainProgram: "tf",
@@ -72,7 +66,7 @@ export default nix.lambda((args) => (() => {
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(maintainers, "KibaFox"))]),
       }));
       return {
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         pname,
         version,
         verUrl,

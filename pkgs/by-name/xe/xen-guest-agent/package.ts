@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]], [["description", 42, 5], ["homepage", 43, 5], ["license", 44, 5], ["platforms", 45, 5], ["teams", 46, 5], ["mainProgram", 47, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["cargoHash", 19, 3], ["nativeBuildInputs", 21, 3], ["buildInputs", 26, 3], ["postInstall", 28, 3], ["postFixup", 37, 3], ["meta", 41, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitLab: false, rustPlatform: false, "pkg-config": false, xen: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 42, 5], ["homepage", 43, 5], ["license", 44, 5], ["platforms", 45, 5], ["teams", 46, 5], ["mainProgram", 47, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["cargoHash", 19, 3], ["nativeBuildInputs", 21, 3], ["buildInputs", 26, 3], ["postInstall", 28, 3], ["postFixup", 37, 3], ["meta", 41, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const xen = nix.arg($, "xen");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "xen-guest-agent",
       version: "0.4.0-unstable-2024-05-31",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "xen-project",
           repo: "xen-guest-agent",
           rev: "03aaadbe030f303b1503e172ee2abb6d0cab7ac6",
@@ -31,7 +29,7 @@ export default nix.lambda((args) => (() => {
       postInstall: "mkdir --parents $out/lib/systemd/system\ncp $src/startup/xen-guest-agent.service $out/lib/systemd/system\nsubstituteInPlace $out/lib/systemd/system/xen-guest-agent.service \\\n  --replace-fail \"/usr/sbin/xen-guest-agent\" \"$out/bin/xen-guest-agent\"\n",
       postFixup: nix.thunk(() => nix.str`patchelf $out/bin/xen-guest-agent --add-rpath ${xen}/lib`),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Xen agent running in Linux/BSDs (POSIX) VMs",
         homepage: "https://gitlab.com/xen-project/xen-guest-agent",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),

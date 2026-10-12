@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["description", 24, 9]], [["pname", 15, 7], ["version", 16, 28], ["src", 16, 36], ["__structuredAttrs", 17, 7], ["propagatedBuildInputs", 19, 7], ["meta", 23, 7]], [["owner", 36, 7], ["repo", 37, 7], ["domain", 38, 7], ["tag", 39, 7], ["hash", 40, 7]], [["description", 76, 7], ["homepage", 77, 7], ["license", 78, 7], ["maintainers", 79, 7]], [["pname", 30, 5], ["version", 31, 5], ["__structuredAttrs", 33, 5], ["src", 35, 5], ["checkInputs", 43, 5], ["propagatedBuildInputs", 47, 5], ["meta", 75, 5]]]);
 const formals$1 = { args: { lib: false, fetchFromGitLab: false, "ocaml-ng": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["description", 24, 9]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 15, 7], ["version", 16, 28], ["src", 16, 36], ["__structuredAttrs", 17, 7], ["propagatedBuildInputs", 19, 7], ["meta", 23, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["owner", 36, 7], ["repo", 37, 7], ["domain", 38, 7], ["tag", 39, 7], ["hash", 40, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 76, 7], ["homepage", 77, 7], ["license", 78, 7], ["maintainers", 79, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 30, 5], ["version", 31, 5], ["__structuredAttrs", 33, 5], ["src", 35, 5], ["checkInputs", 43, 5], ["propagatedBuildInputs", 47, 5], ["meta", 75, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const ocamlPackages = nix.thunk(() => nix.sel(ocaml_ng, "ocamlPackages_4_14"));
   return nix.app(nix.sel(ocamlPackages, "buildDunePackage"), (finalAttrs) => (() => {
       const colibrilib = nix.thunk(() => nix.app(nix.sel(ocamlPackages, "buildDunePackage"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: "colibrilib",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -27,17 +23,17 @@ export default nix.lambda((args) => (() => {
             return [nix.thunk(() => nix.lookup(w, "zarith"))];
           })()),
           meta: nix.thunk(() => nix.update(nix.sel(finalAttrs, "meta"), {
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             description: "A library of domains and propagators proved in Why3",
           })),
         }))));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname: "colibri2",
         version: "0.6",
         __structuredAttrs: true,
         src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             owner: "pub",
             repo: "colibrics",
             domain: "git.frama-c.com",
@@ -79,7 +75,7 @@ export default nix.lambda((args) => (() => {
           ];
         })()),
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           description: "A CP solver for smtlib",
           homepage: "https://colibri.frama-c.com/",
           license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Only")),

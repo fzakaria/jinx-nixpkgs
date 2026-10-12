@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5], ["leaveDotGit", 21, 5], ["postFetch", 22, 5]], [["homepage", 62, 5], ["description", 63, 5], ["mainProgram", 64, 5], ["license", 65, 5], ["maintainers", 66, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["vendorHash", 31, 3], ["nativeBuildInputs", 33, 3], ["ldflags", 35, 3], ["preBuild", 43, 3], ["postInstall", 48, 3], ["doInstallCheck", 55, 3], ["nativeInstallCheckInputs", 57, 3], ["versionCheckProgramArg", 59, 3], ["meta", 61, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildGoModule: false, fetchFromGitHub: false, installShellFiles: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5], ["leaveDotGit", 21, 5], ["postFetch", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 62, 5], ["description", 63, 5], ["mainProgram", 64, 5], ["license", 65, 5], ["maintainers", 66, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["vendorHash", 31, 3], ["nativeBuildInputs", 33, 3], ["ldflags", 35, 3], ["preBuild", 43, 3], ["postInstall", 48, 3], ["doInstallCheck", 55, 3], ["nativeInstallCheckInputs", 57, 3], ["versionCheckProgramArg", 59, 3], ["meta", 61, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const installShellFiles = nix.arg($, "installShellFiles");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "vexctl",
       version: "0.4.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "openvex",
           repo: "vexctl",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -42,7 +40,7 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       versionCheckProgramArg: "version",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/openvex/vexctl",
         description: "Tool to create, transform and attest VEX metadata",
         mainProgram: "vexctl",

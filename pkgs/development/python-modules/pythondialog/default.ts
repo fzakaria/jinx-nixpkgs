@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 15, 13], ["version", 15, 19], ["sha256", 16, 5]], [["description", 24, 5], ["homepage", 25, 5], ["license", 26, 5]], [["pname", 9, 3], ["version", 10, 3], ["format", 11, 3], ["disabled", 12, 3], ["src", 14, 3], ["patchPhase", 19, 3], ["meta", 23, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, isPy3k: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 15, 13], ["version", 15, 19], ["sha256", 16, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 24, 5], ["homepage", 25, 5], ["license", 26, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 9, 3], ["version", 10, 3], ["format", 11, 3], ["disabled", 12, 3], ["src", 14, 3], ["patchPhase", 19, 3], ["meta", 23, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,19 +17,19 @@ export default nix.lambda((args) => (() => {
       const format = "setuptools";
       const disabled = nix.thunk(() => !nix.asBool(isPy3k));
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           sha256: "b2a34a8af0a6625ccbdf45cd343b854fc6c1a85231dadc80b8805db836756323",
         }))));
       const patchPhase = "substituteInPlace dialog.py --replace \":/bin:/usr/bin\" \":$out/bin\"\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Python interface to the UNIX dialog utility and mostly-compatible programs",
         homepage: "http://pythondialog.sourceforge.net/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3")),
       }));
-      return { [nix.POS]: pos$3, pname, version, format, disabled, src, patchPhase, meta };
+      return { [nix.POS]: $pos[2], pname, version, format, disabled, src, patchPhase, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

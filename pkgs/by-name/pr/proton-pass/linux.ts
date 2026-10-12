@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/linux.nix", [[["pname", 16, 5], ["version", 17, 5], ["passthru", 18, 5], ["meta", 19, 5], ["nativeBuildInputs", 22, 3], ["src", 28, 3], ["dontConfigure", 30, 3], ["dontBuild", 31, 3], ["preInstall", 34, 3], ["installPhase", 43, 3], ["preFixup", 51, 3]]]);
 const formals$1 = { args: { stdenvNoCC: false, dpkg: false, makeWrapper: false, electron: false, asar: false, lib: false, version: false, pname: false, passthru: false, meta: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/linux.nix", [["pname", 16, 5], ["version", 17, 5], ["passthru", 18, 5], ["meta", 19, 5], ["nativeBuildInputs", 22, 3], ["src", 28, 3], ["dontConfigure", 30, 3], ["dontBuild", 31, 3], ["preInstall", 34, 3], ["installPhase", 43, 3], ["preFixup", 51, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
   const passthru = nix.arg($, "passthru");
   const meta = nix.arg($, "meta");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       pname: pname,
       version: version,
       passthru: passthru,

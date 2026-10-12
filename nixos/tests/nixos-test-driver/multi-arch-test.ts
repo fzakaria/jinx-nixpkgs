@@ -2,78 +2,62 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/multi-arch-test.nix", [[["maintainers", 4, 8]], [["pkgsReadOnly", 6, 8]], [["buildPlatform", 13, 15], ["hostPlatform", 14, 15]], [["nixpkgs", 13, 7]], [["buildPlatform", 17, 15], ["hostPlatform", 18, 15]], [["nixpkgs", 17, 7]], [["vmIntel", 12, 5], ["vmArm", 16, 5]], [["enable", 25, 36]], [["guestAgent", 25, 25]], [["qemu", 25, 20]], [["enable", 28, 23]], [["dhcpcd", 28, 16]], [["enable", 32, 33], ["anyInterface", 33, 33]], [["wait-online", 32, 21]], [["network", 32, 13]], [["virtualisation", 25, 5], ["networking", 28, 5], ["systemd", 32, 5]], [["name", 3, 3], ["meta", 4, 3], ["node", 6, 3], ["nodes", 8, 3], ["defaults", 22, 3], ["globalTimeout", 37, 3], ["testScript", 39, 3]]]);
 const formals$1 = { args: { pkgs: false, lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/multi-arch-test.nix", [["maintainers", 4, 8]]);
-const pos$2 = nix.positions(here + "/multi-arch-test.nix", [["pkgsReadOnly", 6, 8]]);
-const pos$3 = nix.positions(here + "/multi-arch-test.nix", [["buildPlatform", 13, 15], ["hostPlatform", 14, 15]]);
-const pos$4 = nix.positions(here + "/multi-arch-test.nix", [["nixpkgs", 13, 7]]);
-const pos$5 = nix.positions(here + "/multi-arch-test.nix", [["buildPlatform", 17, 15], ["hostPlatform", 18, 15]]);
-const pos$6 = nix.positions(here + "/multi-arch-test.nix", [["nixpkgs", 17, 7]]);
-const pos$7 = nix.positions(here + "/multi-arch-test.nix", [["vmIntel", 12, 5], ["vmArm", 16, 5]]);
-const pos$8 = nix.positions(here + "/multi-arch-test.nix", [["enable", 25, 36]]);
-const pos$9 = nix.positions(here + "/multi-arch-test.nix", [["guestAgent", 25, 25]]);
-const pos$10 = nix.positions(here + "/multi-arch-test.nix", [["qemu", 25, 20]]);
-const pos$11 = nix.positions(here + "/multi-arch-test.nix", [["enable", 28, 23]]);
-const pos$12 = nix.positions(here + "/multi-arch-test.nix", [["dhcpcd", 28, 16]]);
-const pos$13 = nix.positions(here + "/multi-arch-test.nix", [["enable", 32, 33], ["anyInterface", 33, 33]]);
-const pos$14 = nix.positions(here + "/multi-arch-test.nix", [["wait-online", 32, 21]]);
-const pos$15 = nix.positions(here + "/multi-arch-test.nix", [["network", 32, 13]]);
-const pos$16 = nix.positions(here + "/multi-arch-test.nix", [["virtualisation", 25, 5], ["networking", 28, 5], ["systemd", 32, 5]]);
 const formals$2 = { args: { nodes: false }, ellipsis: true };
-const pos$17 = nix.positions(here + "/multi-arch-test.nix", [["name", 3, 3], ["meta", 4, 3], ["node", 6, 3], ["nodes", 8, 3], ["defaults", 22, 3], ["globalTimeout", 37, 3], ["testScript", 39, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$17,
+    [nix.POS]: $pos[16],
     name: "multi-arch-test",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "tfc"))];
       })()),
     })),
-    node: nix.thunk(() => ({ [nix.POS]: pos$2, pkgsReadOnly: false })),
+    node: nix.thunk(() => ({ [nix.POS]: $pos[1], pkgsReadOnly: false })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       vmIntel: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         nixpkgs: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           buildPlatform: "x86_64-linux",
           hostPlatform: "x86_64-linux",
         })),
       })),
       vmArm: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         nixpkgs: nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           buildPlatform: "aarch64-linux",
           hostPlatform: "aarch64-linux",
         })),
       })),
     })),
     defaults: nix.thunk(() => ({
-      [nix.POS]: pos$16,
+      [nix.POS]: $pos[15],
       virtualisation: nix.thunk(() => ({
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         qemu: nix.thunk(() => ({
-          [nix.POS]: pos$9,
-          guestAgent: nix.thunk(() => ({ [nix.POS]: pos$8, enable: false })),
+          [nix.POS]: $pos[8],
+          guestAgent: nix.thunk(() => ({ [nix.POS]: $pos[7], enable: false })),
         })),
       })),
       networking: nix.thunk(() => ({
-        [nix.POS]: pos$12,
-        dhcpcd: nix.thunk(() => ({ [nix.POS]: pos$11, enable: false })),
+        [nix.POS]: $pos[11],
+        dhcpcd: nix.thunk(() => ({ [nix.POS]: $pos[10], enable: false })),
       })),
       systemd: nix.thunk(() => ({
-        [nix.POS]: pos$15,
+        [nix.POS]: $pos[14],
         network: nix.thunk(() => ({
-          [nix.POS]: pos$14,
-          "wait-online": nix.thunk(() => ({ [nix.POS]: pos$13, enable: true, anyInterface: true })),
+          [nix.POS]: $pos[13],
+          "wait-online": nix.thunk(() => ({ [nix.POS]: $pos[12], enable: true, anyInterface: true })),
         })),
       })),
     })),

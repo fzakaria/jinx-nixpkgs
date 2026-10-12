@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]], [["pname", 38, 26], ["version", 38, 32], ["src", 38, 40], ["pnpm", 39, 13], ["fetcherVersion", 40, 5], ["hash", 41, 5]], [["OPENSSL_NO_VENDOR", 71, 7]], [["updateScript", 73, 12]], [["description", 76, 5], ["homepage", 77, 5], ["changelog", 78, 5], ["license", 79, 5], ["platforms", 80, 37], ["maintainers", 81, 5], ["mainProgram", 82, 5]], [["pname", 21, 3], ["version", 22, 3], ["__structuredAttrs", 23, 3], ["src", 25, 3], ["cargoRoot", 32, 3], ["buildAndTestSubdir", 33, 3], ["cargoHash", 35, 3], ["pnpmDeps", 37, 3], ["postPatch", 44, 3], ["nativeBuildInputs", 49, 3], ["buildInputs", 60, 3], ["checkFlags", 67, 3], ["env", 71, 3], ["passthru", 73, 3], ["meta", 75, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, rustPlatform: false, fetchFromGitHub: false, fetchPnpmDeps: false, "cargo-tauri": false, nodejs: false, pnpm_10: false, pnpmConfigHook: false, wrapGAppsHook4: false, webkitgtk_4_1: false, "pkg-config": false, openssl: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 38, 26], ["version", 38, 32], ["src", 38, 40], ["pnpm", 39, 13], ["fetcherVersion", 40, 5], ["hash", 41, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["OPENSSL_NO_VENDOR", 71, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 73, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 76, 5], ["homepage", 77, 5], ["changelog", 78, 5], ["license", 79, 5], ["platforms", 80, 37], ["maintainers", 81, 5], ["mainProgram", 82, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 3], ["__structuredAttrs", 23, 3], ["src", 25, 3], ["cargoRoot", 32, 3], ["buildAndTestSubdir", 33, 3], ["cargoHash", 35, 3], ["pnpmDeps", 37, 3], ["postPatch", 44, 3], ["nativeBuildInputs", 49, 3], ["buildInputs", 60, 3], ["checkFlags", 67, 3], ["env", 71, 3], ["passthru", 73, 3], ["meta", 75, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,12 +23,12 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const pnpm = pnpm_10;
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "tabularis",
       version: "0.22.0",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "TabularisDB",
           repo: "tabularis",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -43,7 +38,7 @@ export default nix.lambda((args) => (() => {
       buildAndTestSubdir: nix.thunk(() => nix.sel(finalAttrs, "cargoRoot")),
       cargoHash: "sha256-z3dMc9mnBfyjsSVWh/7nQWmogndl/bfrbvuz7X0JIMM=",
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -63,15 +58,15 @@ export default nix.lambda((args) => (() => {
       checkFlags: nix.thunk(() => [
         "--skip=pool_manager_tests::postgres_tls_connector_tests::test_tls_connector_verify_full",
       ]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$3, OPENSSL_NO_VENDOR: 1n })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[2], OPENSSL_NO_VENDOR: 1n })),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(cargo_tauri, "hook", "meta"));
         return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Lightweight, developer-focused database management tool, built with Tauri and React",
         homepage: "http://tabularis.dev",
         changelog: nix.thunk(() => nix.str`https://github.com/TabularisDB/tabularis/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

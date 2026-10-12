@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 25, 5], ["repo", 26, 5], ["rev", 27, 5], ["hash", 28, 5]], [["package", 62, 42]], [["tests", 62, 12]], [["homepage", 65, 5], ["description", 66, 5], ["license", 67, 5], ["mainProgram", 68, 5], ["maintainers", 69, 5], ["platforms", 70, 5]], [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 33, 3], ["cmakeFlags", 41, 3], ["doCheck", 50, 3], ["strictDeps", 52, 3], ["checkPhase", 56, 3], ["passthru", 62, 3], ["meta", 64, 3]]]);
 const formals$1 = { args: { lib: false, cmake: false, fetchFromGitHub: false, libffi: false, libxml2: false, llvmPackages: false, sphinx: false, stdenv: false, testers: false, zlib: false, withHTML: true, withManual: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 25, 5], ["repo", 26, 5], ["rev", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["package", 62, 42]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 62, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 65, 5], ["description", 66, 5], ["license", 67, 5], ["mainProgram", 68, 5], ["maintainers", 69, 5], ["platforms", 70, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 33, 3], ["cmakeFlags", 41, 3], ["doCheck", 50, 3], ["strictDeps", 52, 3], ["checkPhase", 56, 3], ["passthru", 62, 3], ["meta", 64, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const libclang = nix.thunk(() => nix.attr(llvmPackages, "libclang"));
   const llvm = nix.thunk(() => nix.attr(llvmPackages, "llvm"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "castxml",
       version: "0.7.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "CastXML",
           repo: "CastXML",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -47,14 +43,14 @@ export default nix.lambda((args) => (() => {
       strictDeps: true,
       checkPhase: "runHook preCheck\nctest -E 'cmd.cc-gnu-(src-cxx|c-src-c)-cmd' -j $NIX_BUILD_CORES\nrunHook postCheck\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://github.com/CastXML/CastXML",
         description: "C-family Abstract Syntax Tree XML Output",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

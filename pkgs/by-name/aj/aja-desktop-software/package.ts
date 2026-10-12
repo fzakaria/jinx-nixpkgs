@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["description", 16, 5], ["homepage", 17, 5], ["license", 18, 5], ["maintainers", 19, 5], ["platforms", 20, 5], ["sourceProvenance", 21, 5]], [["url", 32, 7], ["hash", 33, 7]], [["pname", 28, 5], ["version", 29, 13], ["src", 31, 5], ["unpackCmd", 36, 5], ["nativeBuildInputs", 38, 5], ["installPhase", 43, 5], ["dontPatchELF", 62, 5], ["meta", 64, 13]], [["unwrapped", 120, 13]], [["mainProgram", 124, 5]], [["pname", 68, 11], ["version", 68, 17], ["targetPkgs", 70, 3], ["nativeBuildInputs", 95, 3], ["unshareIpc", 99, 3], ["unsharePid", 100, 3], ["runScript", 102, 3], ["extraInstallCommands", 109, 3], ["passthru", 119, 3], ["meta", 123, 3]]]);
 const formals$1 = { args: { stdenvNoCC: false, lib: false, fetchzip: false, dpkg: false, patchelf: false, buildFHSEnv: false, writeShellScript: false, makeBinaryWrapper: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["description", 16, 5], ["homepage", 17, 5], ["license", 18, 5], ["maintainers", 19, 5], ["platforms", 20, 5], ["sourceProvenance", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 32, 7], ["hash", 33, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 28, 5], ["version", 29, 13], ["src", 31, 5], ["unpackCmd", 36, 5], ["nativeBuildInputs", 38, 5], ["installPhase", 43, 5], ["dontPatchELF", 62, 5], ["meta", 64, 13]]);
-const pos$4 = nix.positions(here + "/package.nix", [["unwrapped", 120, 13]]);
-const pos$5 = nix.positions(here + "/package.nix", [["mainProgram", 124, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 68, 11], ["version", 68, 17], ["targetPkgs", 70, 3], ["nativeBuildInputs", 95, 3], ["unshareIpc", 99, 3], ["unsharePid", 100, 3], ["runScript", 102, 3], ["extraInstallCommands", 109, 3], ["passthru", 119, 3], ["meta", 123, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,7 +18,7 @@ export default nix.lambda((args) => (() => {
   const pname = "aja-desktop-software";
   const version = "17.1.3";
   const meta = nix.thunk(() => ({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     description: "Graphical utilities for interacting with AJA desktop video cards",
     homepage: "https://www.aja.com/products/aja-control-room",
     license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
@@ -35,11 +30,11 @@ export default nix.lambda((args) => (() => {
     ]),
   }));
   const unwrapped = nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: nix.thunk(() => nix.str`${pname}-unwrapped`),
       version: version,
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: nix.thunk(() => nix.str`https://www.aja.com/assets/support/files/9895/en/AJA-Desktop-Software-Installer_Linux-Ubuntu_v${version}_Release.zip`),
           hash: "sha256-TxDcYIhEcpPnpoqpey5vSvUltLT/3xwBfOhAP81Q9+E=",
         })))),
@@ -50,7 +45,7 @@ export default nix.lambda((args) => (() => {
       meta: meta,
     }))));
   return nix.app(buildFHSEnv, nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: pname,
       version: version,
       targetPkgs: (pkgs) => nix.concat([unwrapped], (() => {
@@ -93,8 +88,8 @@ for binary in controlpanel controlroom ajanmos systemtest; do
     --add-flags "$binary"
 done
 `),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$4, unwrapped: unwrapped })),
-      meta: nix.thunk(() => nix.update(meta, { [nix.POS]: pos$5, mainProgram: "aja-controlpanel" })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[3], unwrapped: unwrapped })),
+      meta: nix.thunk(() => nix.update(meta, { [nix.POS]: $pos[4], mainProgram: "aja-controlpanel" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

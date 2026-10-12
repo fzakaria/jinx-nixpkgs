@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["arch", 16, 7], ["hash", 17, 7], ["runtime", 18, 7], ["kernel", 19, 7]], [["arch", 22, 7], ["hash", 23, 7], ["runtime", 24, 7], ["kernel", 25, 7]], [["arch", 28, 7], ["hash", 29, 7], ["runtime", 30, 7], ["kernel", 31, 7]], [["x86_64-linux", 15, 5], ["i686-linux", 21, 5], ["armv7l-linux", 27, 5], ["armv6l-linux", 33, 5]], [["url", 45, 5], ["hash", 46, 5]], [["CCL_RUNTIME", 62, 5], ["CCL_KERNEL", 63, 5]], [["description", 108, 5], ["homepage", 109, 5], ["license", 110, 5], ["mainProgram", 111, 5], ["teams", 112, 5], ["platforms", 113, 5]], [["pname", 41, 3], ["version", 42, 3], ["src", 44, 3], ["buildInputs", 49, 3], ["env", 61, 3], ["postPatch", 66, 3], ["buildPhase", 88, 3], ["installPhase", 95, 3], ["hardeningDisable", 105, 3], ["meta", 107, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, bootstrap_cmds: false, coreutils: false, glibc: false, m4: false, runtimeShell: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["arch", 16, 7], ["hash", 17, 7], ["runtime", 18, 7], ["kernel", 19, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["arch", 22, 7], ["hash", 23, 7], ["runtime", 24, 7], ["kernel", 25, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["arch", 28, 7], ["hash", 29, 7], ["runtime", 30, 7], ["kernel", 31, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["x86_64-linux", 15, 5], ["i686-linux", 21, 5], ["armv7l-linux", 27, 5], ["armv6l-linux", 33, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["url", 45, 5], ["hash", 46, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["CCL_RUNTIME", 62, 5], ["CCL_KERNEL", 63, 5]]);
-const pos$7 = nix.positions(here + "/default.nix", [["description", 108, 5], ["homepage", 109, 5], ["license", 110, 5], ["mainProgram", 111, 5], ["teams", 112, 5], ["platforms", 113, 5]]);
-const pos$8 = nix.positions(here + "/default.nix", [["pname", 41, 3], ["version", 42, 3], ["src", 44, 3], ["buildInputs", 49, 3], ["env", 61, 3], ["postPatch", 66, 3], ["buildPhase", 88, 3], ["installPhase", 95, 3], ["hardeningDisable", 105, 3], ["meta", 107, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,21 +17,21 @@ export default nix.lambda((args) => (() => {
   const runtimeShell = nix.arg($, "runtimeShell");
   const options = nix.thunk(() => (() => {
     const x86_64_linux = nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       arch: "linuxx86",
       hash: "sha256-cAae50xvBoXfg+tiJM4i8+eRnheyM0dseE5EDWDia/E=",
       runtime: "lx86cl64",
       kernel: "linuxx8664",
     }));
     const i686_linux = nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       arch: "linuxx86",
       hash: nix.thunk(() => nix.sel(x86_64_linux, "hash")),
       runtime: "lx86cl",
       kernel: "linuxx8632",
     }));
     const armv7l_linux = nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       arch: "linuxarm",
       hash: "sha256-iyUMTDuHbyfEAxAAhjXANjh6HhpLkWG5+diXI6aFUUc=",
       runtime: "armcl",
@@ -46,7 +39,7 @@ export default nix.lambda((args) => (() => {
     }));
     const armv6l_linux = armv7l_linux;
     return {
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       "x86_64-linux": x86_64_linux,
       "i686-linux": i686_linux,
       "armv7l-linux": armv7l_linux,
@@ -55,17 +48,17 @@ export default nix.lambda((args) => (() => {
   })());
   const cfg = nix.thunk(() => nix.selOr(options, () => nix.builtins.throw(nix.thunk(() => nix.str`missing source url for platform ${nix.sel(stdenv, "hostPlatform", "system")}`)), nix.key(nix.sel(stdenv, "hostPlatform", "system"))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "ccl",
       version: "1.13",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           url: nix.thunk(() => nix.str`https://github.com/Clozure/ccl/releases/download/v${nix.sel(finalAttrs, "version")}/ccl-${nix.sel(finalAttrs, "version")}-${nix.sel(cfg, "arch")}.tar.gz`),
           hash: nix.thunk(() => nix.sel(cfg, "hash")),
         })))),
       buildInputs: nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? [bootstrap_cmds, m4] : [glibc, m4])),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         CCL_RUNTIME: nix.thunk(() => nix.sel(cfg, "runtime")),
         CCL_KERNEL: nix.thunk(() => nix.sel(cfg, "kernel")),
       })),
@@ -99,7 +92,7 @@ ln -s "$out"/bin/"${nix.sel(finalAttrs, "env", "CCL_RUNTIME")}" "$out"/bin/ccl
 `),
       hardeningDisable: nix.thunk(() => ["format"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "Clozure Common Lisp",
         homepage: "https://ccl.clozure.com/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

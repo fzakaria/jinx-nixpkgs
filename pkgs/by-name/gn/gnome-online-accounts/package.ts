@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 47, 5], ["hash", 48, 5]], [["versionPolicy", 100, 7], ["packageName", 101, 7]], [["updateScript", 99, 5]], [["homepage", 106, 5], ["description", 107, 5], ["platforms", 108, 5], ["license", 109, 5], ["teams", 110, 5]], [["pname", 34, 3], ["version", 35, 3], ["outputs", 37, 3], ["src", 46, 3], ["mesonFlags", 51, 3], ["nativeBuildInputs", 59, 3], ["buildInputs", 72, 3], ["postFixup", 91, 3], ["separateDebugInfo", 96, 3], ["passthru", 98, 3], ["meta", 105, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, "pkg-config": false, vala: false, glib: false, meson: false, ninja: false, libxslt: false, gtk4: false, enableBackend: true, "json-glib": false, keyutils: false, libadwaita: false, librest: false, libxml2: false, libsecret: false, "gobject-introspection": false, gettext: false, "gi-docgen": false, "glib-networking": false, libsoup_3: false, "docbook-xsl-nons": false, gnome: false, gcr_4: false, libkrb5: false, gvfs: false, dbus: false, wrapGAppsHook4: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 47, 5], ["hash", 48, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["versionPolicy", 100, 7], ["packageName", 101, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 99, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 106, 5], ["description", 107, 5], ["platforms", 108, 5], ["license", 109, 5], ["teams", 110, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 34, 3], ["version", 35, 3], ["outputs", 37, 3], ["src", 46, 3], ["mesonFlags", 51, 3], ["nativeBuildInputs", 59, 3], ["buildInputs", 72, 3], ["postFixup", 91, 3], ["separateDebugInfo", 96, 3], ["passthru", 98, 3], ["meta", 105, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -41,12 +37,12 @@ export default nix.lambda((args) => (() => {
   const dbus = nix.arg($, "dbus");
   const wrapGAppsHook4 = nix.arg($, "wrapGAppsHook4");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "gnome-online-accounts",
       version: "3.58.1",
       outputs: nix.thunk(() => nix.concat(["out", "dev"], nix.app(nix.sel(lib, "optionals"), enableBackend, nix.thunk(() => ["man", "devdoc"])))),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnome/sources/gnome-online-accounts/${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/gnome-online-accounts-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-nsGQDMUUCcIGfAfIKMEL4G/jv2jSmZu3LX1e0yXtm7w=",
         })))),
@@ -87,15 +83,15 @@ export default nix.lambda((args) => (() => {
       postFixup: "# Cannot be in postInstall, otherwise _multioutDocs hook in preFixup will move right back.\nmoveToOutput \"share/doc\" \"$devdoc\"\n",
       separateDebugInfo: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             versionPolicy: "odd-unstable",
             packageName: "gnome-online-accounts",
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://gitlab.gnome.org/GNOME/gnome-online-accounts",
         description: "Single sign-on framework for GNOME",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),

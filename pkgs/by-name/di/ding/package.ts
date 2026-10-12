@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 16, 5], ["paths", 17, 5]], [["url", 29, 5], ["hash", 30, 5]], [["description", 76, 5], ["mainProgram", 77, 5], ["homepage", 78, 5], ["license", 79, 5], ["platforms", 80, 5], ["maintainers", 81, 5]], [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 34, 3], ["patches", 42, 3], ["installPhase", 44, 3], ["meta", 75, 3]]]);
 const formals$1 = { args: { aspell: false, aspellDicts: false, buildEnv: false, fetchurl: false, fortune: false, gnugrep: false, makeWrapper: false, lib: false, stdenv: false, tk: false, tre: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 16, 5], ["paths", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 29, 5], ["hash", 30, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 76, 5], ["mainProgram", 77, 5], ["homepage", 78, 5], ["license", 79, 5], ["platforms", 80, 5], ["maintainers", 81, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 34, 3], ["patches", 42, 3], ["installPhase", 44, 3], ["meta", 75, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,7 +19,7 @@ export default nix.lambda((args) => (() => {
   const tk = nix.arg($, "tk");
   const tre = nix.arg($, "tre");
   const aspellEnv = nix.thunk(() => nix.app(buildEnv, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: "env-ding-aspell",
       paths: nix.thunk(() => [
         aspell,
@@ -31,11 +28,11 @@ export default nix.lambda((args) => (() => {
       ]),
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "ding",
       version: "1.9",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: nix.thunk(() => nix.str`https://ftp.tu-chemnitz.de/pub/Local/urz/ding/ding-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-aabIH894WihsBTo1LzIBzIZxxyhRYVxLcHpDQwmwmOU=",
         })))),
@@ -65,7 +62,7 @@ cp -v ding.desktop $out/share/applications/
 wrapProgram $out/bin/ding --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [gnugrep, aspellEnv, tk, fortune]))} --prefix ASPELL_CONF : "\\"prefix ${aspellEnv};\\""
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Simple and fast dictionary lookup tool",
         mainProgram: "ding",
         homepage: "https://www-user.tu-chemnitz.de/~fri/ding/",

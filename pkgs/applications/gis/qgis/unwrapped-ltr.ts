@@ -2,17 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/unwrapped-ltr.nix", [[["withLocation", 59, 9], ["withSerialPort", 60, 9]], [["pyqt5", 58, 7]], [["self", 56, 5], ["packageOverrides", 57, 5]], [["owner", 93, 5], ["repo", 94, 5], ["rev", 95, 5], ["hash", 96, 5]], [["pythonBuildInputs", 100, 13], ["py", 101, 13]], [["pyQt5PackageDir", 156, 7], ["qsciPackageDir", 157, 7]], [["spatialiteLib", 160, 7]], [["QT_QPA_PLATFORM_PLUGIN_PATH", 166, 7]], [["description", 306, 5], ["homepage", 307, 5], ["license", 308, 5], ["teams", 309, 5], ["platforms", 310, 5]], [["version", 88, 3], ["pname", 89, 3], ["outputs", 90, 3], ["src", 92, 3], ["passthru", 99, 3], ["nativeBuildInputs", 104, 3], ["buildInputs", 119, 3], ["patches", 154, 3], ["env", 166, 3], ["cmakeFlags", 168, 3], ["qtWrapperArgs", 200, 3], ["dontWrapGApps", 204, 3], ["dontWrapQtApps", 205, 3], ["postFixup", 207, 3], ["requiredSystemFeatures", 303, 3], ["meta", 305, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, lndir: false, makeWrapper: false, mkDerivation: false, replaceVars: false, wrapGAppsHook3: false, wrapQtAppsHook: false, withGrass: false, withServer: false, darwin: false, libtasn1: false, bison: false, cmake: false, draco: false, exiv2: false, fcgi: false, flex: false, geos: false, grass: false, gsl: false, hdf5: false, libpq: false, libspatialite: false, libzip: false, netcdf: false, ninja: false, openssl: false, pdal: false, proj: false, protobuf: false, python3: false, "qca-qt5": false, qscintilla: false, qt3d: false, qtbase: false, qtkeychain: false, qtlocation: false, qtmultimedia: false, qtsensors: false, qtserialport: false, qtsvg: false, qtxmlpatterns: false, qwt: false, sqlite: false, txt2tags: false, zstd: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/unwrapped-ltr.nix", [["withLocation", 59, 9], ["withSerialPort", 60, 9]]);
-const pos$2 = nix.positions(here + "/unwrapped-ltr.nix", [["pyqt5", 58, 7]]);
-const pos$3 = nix.positions(here + "/unwrapped-ltr.nix", [["self", 56, 5], ["packageOverrides", 57, 5]]);
-const pos$4 = nix.positions(here + "/unwrapped-ltr.nix", [["owner", 93, 5], ["repo", 94, 5], ["rev", 95, 5], ["hash", 96, 5]]);
-const pos$5 = nix.positions(here + "/unwrapped-ltr.nix", [["pythonBuildInputs", 100, 13], ["py", 101, 13]]);
-const pos$6 = nix.positions(here + "/unwrapped-ltr.nix", [["pyQt5PackageDir", 156, 7], ["qsciPackageDir", 157, 7]]);
-const pos$7 = nix.positions(here + "/unwrapped-ltr.nix", [["spatialiteLib", 160, 7]]);
-const pos$8 = nix.positions(here + "/unwrapped-ltr.nix", [["QT_QPA_PLATFORM_PLUGIN_PATH", 166, 7]]);
-const pos$9 = nix.positions(here + "/unwrapped-ltr.nix", [["description", 306, 5], ["homepage", 307, 5], ["license", 308, 5], ["teams", 309, 5], ["platforms", 310, 5]]);
-const pos$10 = nix.positions(here + "/unwrapped-ltr.nix", [["version", 88, 3], ["pname", 89, 3], ["outputs", 90, 3], ["src", 92, 3], ["passthru", 99, 3], ["nativeBuildInputs", 104, 3], ["buildInputs", 119, 3], ["patches", 154, 3], ["env", 166, 3], ["cmakeFlags", 168, 3], ["qtWrapperArgs", 200, 3], ["dontWrapGApps", 204, 3], ["dontWrapQtApps", 205, 3], ["postFixup", 207, 3], ["requiredSystemFeatures", 303, 3], ["meta", 305, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -65,11 +56,11 @@ export default nix.lambda((args) => (() => {
   const txt2tags = nix.arg($, "txt2tags");
   const zstd = nix.arg($, "zstd");
   const py = nix.thunk(() => nix.app(nix.sel(python3, "override"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       self: py,
       packageOverrides: (self) => (super$) => ({
-        [nix.POS]: pos$2,
-        pyqt5: nix.thunk(() => nix.app(nix.sel(super$, "pyqt5", "override"), nix.thunk(() => ({ [nix.POS]: pos$1, withLocation: true, withSerialPort: true })))),
+        [nix.POS]: $pos[1],
+        pyqt5: nix.thunk(() => nix.app(nix.sel(super$, "pyqt5", "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], withLocation: true, withSerialPort: true })))),
       }),
     }))));
   const pythonBuildInputs = nix.thunk(() => (() => {
@@ -101,13 +92,13 @@ export default nix.lambda((args) => (() => {
       const pname = "qgis-ltr-unwrapped";
       const outputs = nix.thunk(() => nix.concat(["out"], nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), "man")));
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           owner: "qgis",
           repo: "QGIS",
           rev: nix.thunk(() => nix.str`final-${nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => ["_"]), version)}`),
           hash: "sha256-v2BmgSgBgzoeJgypnJ47bTxZzt7kbBc/QmJrmWxZCYI=",
         }))));
-      const passthru = nix.thunk(() => ({ [nix.POS]: pos$5, pythonBuildInputs: pythonBuildInputs, py: py }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: $pos[4], pythonBuildInputs: pythonBuildInputs, py: py }));
       const nativeBuildInputs = nix.thunk(() => nix.concat([makeWrapper, wrapGAppsHook3, wrapQtAppsHook, bison, cmake, flex, ninja], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [nix.thunk(() => nix.sel(darwin, "autoSignDarwinBinariesHook")), lndir]))));
       const buildInputs = nix.thunk(() => nix.concat([
         draco,
@@ -142,17 +133,17 @@ export default nix.lambda((args) => (() => {
       ], nix.concat(nix.app(nix.sel(lib, "optional"), withGrass, grass), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), libtasn1), pythonBuildInputs))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./set-pyqt-package-dirs-ltr.patch"), nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             pyQt5PackageDir: nix.thunk(() => nix.str`${nix.sel(py, "pkgs", "pyqt5")}/${nix.sel(py, "pkgs", "python", "sitePackages")}`),
             qsciPackageDir: nix.thunk(() => nix.str`${nix.sel(py, "pkgs", "qscintilla")}/${nix.sel(py, "pkgs", "python", "sitePackages")}`),
           })))),
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./spatialite-path.patch"), nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             spatialiteLib: nix.thunk(() => nix.str`${libspatialite}/lib/mod_spatialite.so`),
           })))),
       ]);
       const env = nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         QT_QPA_PLATFORM_PLUGIN_PATH: nix.thunk(() => nix.str`${qtbase}/${nix.sel(qtbase, "qtPluginPrefix")}/platforms`),
       }));
       const cmakeFlags = nix.thunk(() => nix.concat([
@@ -257,7 +248,7 @@ EOF
 `))));
       const requiredSystemFeatures = nix.thunk(() => ["big-parallel"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         description: "Free and Open Source Geographic Information System",
         homepage: "https://www.qgis.org",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
@@ -265,7 +256,7 @@ EOF
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         version,
         pname,
         outputs,

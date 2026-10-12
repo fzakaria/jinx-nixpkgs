@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 55, 5], ["repo", 56, 5], ["tag", 57, 5], ["hash", 58, 5]], [["AIOHTTP_USE_SYSTEM_DEPS", 89, 7]], [["speedups", 102, 25]], [["changelog", 168, 5], ["description", 169, 5], ["license", 170, 5], ["homepage", 171, 5], ["maintainers", 172, 5]], [["pname", 50, 3], ["version", 51, 3], ["pyproject", 52, 3], ["src", 54, 3], ["postPatch", 61, 3], ["build-system", 75, 3], ["preBuild", 81, 3], ["buildInputs", 85, 3], ["env", 89, 3], ["dependencies", 91, 3], ["optional-dependencies", 102, 3], ["nativeCheckInputs", 110, 3], ["disabledTests", 127, 3], ["__darwinAllowLocalNetworking", 153, 3], ["preCheck", 155, 3], ["meta", 167, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitHub: false, isPyPy: false, pythonOlder: false, cython: false, pkgconfig: false, setuptools: false, llhttp: false, aiohappyeyeballs: false, aiosignal: false, attrs: false, "backports-zstd": false, frozenlist: false, multidict: false, propcache: false, yarl: false, aiodns: false, brotli: false, brotlicffi: false, blockbuster: false, freezegun: false, gunicorn: false, isal: false, "proxy-py": false, "pytest-codspeed": false, "pytest-cov-stub": false, "pytest-mock": false, "pytest-timeout": false, "pytest-xdist": false, pytestCheckHook: false, "re-assert": false, trustme: false, "zlib-ng": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 55, 5], ["repo", 56, 5], ["tag", 57, 5], ["hash", 58, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["AIOHTTP_USE_SYSTEM_DEPS", 89, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["speedups", 102, 25]]);
-const pos$4 = nix.positions(here + "/default.nix", [["changelog", 168, 5], ["description", 169, 5], ["license", 170, 5], ["homepage", 171, 5], ["maintainers", 172, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 50, 3], ["version", 51, 3], ["pyproject", 52, 3], ["src", 54, 3], ["postPatch", 61, 3], ["build-system", 75, 3], ["preBuild", 81, 3], ["buildInputs", 85, 3], ["env", 89, 3], ["dependencies", 91, 3], ["optional-dependencies", 102, 3], ["nativeCheckInputs", 110, 3], ["disabledTests", 127, 3], ["__darwinAllowLocalNetworking", 153, 3], ["preCheck", 155, 3], ["meta", 167, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -47,12 +43,12 @@ export default nix.lambda((args) => (() => {
   const trustme = nix.arg($, "trustme");
   const zlib_ng = nix.arg($, "zlib-ng");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "aiohttp",
       version: "3.14.3",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "aio-libs",
           repo: "aiohttp",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -62,10 +58,10 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [cython, pkgconfig, setuptools]),
       preBuild: "make cythonize\n",
       buildInputs: nix.thunk(() => [llhttp]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, AIOHTTP_USE_SYSTEM_DEPS: true })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], AIOHTTP_USE_SYSTEM_DEPS: true })),
       dependencies: nix.thunk(() => nix.concat([aiohappyeyeballs, aiosignal, attrs, frozenlist, multidict, propcache, yarl], nix.sel(finalAttrs, "passthru", "optional-dependencies", "speedups"))),
       "optional-dependencies": nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         speedups: nix.thunk(() => nix.concat([
           aiodns,
           nix.thunk(() => (nix.asBool(isPyPy) ? nix.force(brotlicffi) : nix.force(brotli))),
@@ -105,7 +101,7 @@ export default nix.lambda((args) => (() => {
       __darwinAllowLocalNetworking: true,
       preCheck: nix.thunk(() => nix.add("# aiohttp in current folder shadows installed version\nrm -r aiohttp\ntouch tests/data.unknown_mime_type # has to be modified after 1 Jan 1990\n\nexport HOME=$(mktemp -d)\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "# Work around \"OSError: AF_UNIX path too long\"\nexport TMPDIR=\"/tmp\"\n"))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         changelog: nix.thunk(() => nix.str`https://docs.aiohttp.org/en/${nix.sel(finalAttrs, "src", "tag")}/changes.html`),
         description: "Asynchronous HTTP Client/Server for Python and asyncio",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

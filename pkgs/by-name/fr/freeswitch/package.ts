@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 114, 5], ["repo", 115, 5], ["rev", 116, 5], ["hash", 117, 5]], [["NIX_CFLAGS_COMPILE", 163, 5], ["CXXFLAGS", 171, 5], ["CFLAGS", 173, 5]], [["freeswitch", 190, 18]], [["tests", 190, 12]], [["description", 193, 5], ["homepage", 194, 5], ["license", 195, 5], ["maintainers", 196, 5], ["platforms", 197, 5], ["broken", 198, 5]], [["pname", 111, 3], ["version", 112, 3], ["src", 113, 3], ["postPatch", 120, 3], ["strictDeps", 134, 3], ["nativeBuildInputs", 135, 3], ["buildInputs", 142, 3], ["enableParallelBuilding", 160, 3], ["env", 162, 3], ["hardeningDisable", 176, 3], ["preConfigure", 178, 3], ["postInstall", 183, 3], ["passthru", 190, 3], ["meta", 192, 3]]]);
 const formals$1 = { args: { fetchFromGitHub: false, stdenv: false, lib: false, "pkg-config": false, autoreconfHook: false, ncurses: false, gnutls: false, readline: false, openssl: false, perl: false, sqlite: false, libjpeg: false, speex: false, pcre2: false, libuuid: false, ldns: false, libedit: false, yasm: false, which: false, libsndfile: false, libtiff: false, libxcrypt: false, callPackage: false, modules: true, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 114, 5], ["repo", 115, 5], ["rev", 116, 5], ["hash", 117, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 163, 5], ["CXXFLAGS", 171, 5], ["CFLAGS", 173, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["freeswitch", 190, 18]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 190, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 193, 5], ["homepage", 194, 5], ["license", 195, 5], ["maintainers", 196, 5], ["platforms", 197, 5], ["broken", 198, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 111, 3], ["version", 112, 3], ["src", 113, 3], ["postPatch", 120, 3], ["strictDeps", 134, 3], ["nativeBuildInputs", 135, 3], ["buildInputs", 142, 3], ["enableParallelBuilding", 160, 3], ["env", 162, 3], ["hardeningDisable", 176, 3], ["preConfigure", 178, 3], ["postInstall", 183, 3], ["passthru", 190, 3], ["meta", 192, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -97,11 +92,11 @@ export default nix.lambda((args) => (() => {
     return nix.builtins.toFile("modules.conf", str);
   })());
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "freeswitch",
       version: "1.11.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "signalwire",
           repo: "freeswitch",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -128,7 +123,7 @@ export default nix.lambda((args) => (() => {
       ], nix.app(nix.sel(lib, "unique"), nix.thunk(() => nix.app(nix.sel(lib, "concatMap"), (mod) => nix.sel(mod, "inputs"), enabledModules))))),
       enableParallelBuilding: true,
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-Wno-error", "-Wno-incompatible-pointer-types"]))),
         CXXFLAGS: "-std=c++14",
         CFLAGS: "-D_ANSI_SOURCE",
@@ -139,14 +134,14 @@ cp "${modulesConf}" modules.conf
 `),
       postInstall: "# helper for compiling modules... not generally useful; also pulls in perl dependency\nrm \"$out\"/bin/fsxs\n# include configuration templates\ncp -r conf $out/share/freeswitch/\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           freeswitch: nix.thunk(() => nix.sel(nixosTests, "freeswitch")),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Cross-Platform Scalable FREE Multi-Protocol Soft Switch",
         homepage: "https://freeswitch.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mpl11")),

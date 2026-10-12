@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 36, 5], ["repo", 37, 5], ["tag", 38, 5], ["hash", 39, 5]], [["tlp-pd", 148, 13]], [["tests", 147, 12]], [["description", 152, 5], ["homepage", 153, 5], ["changelog", 154, 5], ["platforms", 155, 5], ["mainProgram", 156, 5], ["maintainers", 157, 5], ["license", 160, 5]], [["pname", 32, 3], ["version", 33, 3], ["src", 35, 3], ["patches", 43, 3], ["postPatch", 48, 3], ["buildInputs", 52, 3], ["nativeBuildInputs", 53, 3], ["makeFlags", 65, 3], ["installTargets", 73, 3], ["doCheck", 82, 3], ["nativeCheckInputs", 83, 3], ["checkTarget", 88, 3], ["doInstallCheck", 90, 3], ["postInstall", 93, 3], ["strictDeps", 144, 3], ["__structuredAttrs", 145, 3], ["passthru", 147, 3], ["meta", 151, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, checkbashisms: false, coreutils: false, ethtool: false, fetchFromGitHub: false, gawk: false, gnugrep: false, gnused: false, hdparm: false, iw: false, kmod: false, makeWrapper: false, pciutils: false, perl: false, perlcritic: false, shellcheck: false, smartmontools: false, systemd: false, udevCheckHook: false, usbutils: false, "util-linux": false, glib: false, x86_energy_perf_policy: false, enableRDW: true, networkmanager: false, "tlp-pd": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 36, 5], ["repo", 37, 5], ["tag", 38, 5], ["hash", 39, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["tlp-pd", 148, 13]]);
-const pos$3 = nix.positions(here + "/default.nix", [["tests", 147, 12]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 152, 5], ["homepage", 153, 5], ["changelog", 154, 5], ["platforms", 155, 5], ["mainProgram", 156, 5], ["maintainers", 157, 5], ["license", 160, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 32, 3], ["version", 33, 3], ["src", 35, 3], ["patches", 43, 3], ["postPatch", 48, 3], ["buildInputs", 52, 3], ["nativeBuildInputs", 53, 3], ["makeFlags", 65, 3], ["installTargets", 73, 3], ["doCheck", 82, 3], ["nativeCheckInputs", 83, 3], ["checkTarget", 88, 3], ["doInstallCheck", 90, 3], ["postInstall", 93, 3], ["strictDeps", 144, 3], ["__structuredAttrs", 145, 3], ["passthru", 147, 3], ["meta", 151, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -39,11 +35,11 @@ export default nix.lambda((args) => (() => {
   const networkmanager = nix.arg($, "networkmanager");
   const tlp_pd = nix.arg($, "tlp-pd");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "tlp",
       version: "1.10.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "linrunner",
           repo: "TLP",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -114,11 +110,11 @@ rm -rf $out/share/metainfo
       strictDeps: true,
       __structuredAttrs: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$2, "tlp-pd": tlp_pd })),
+        [nix.POS]: $pos[2],
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[1], "tlp-pd": tlp_pd })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Advanced Power Management for Linux",
         homepage: "https://linrunner.de/en/tlp/docs/tlp-linux-advanced-power-management.html",
         changelog: nix.thunk(() => nix.str`https://github.com/linrunner/TLP/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

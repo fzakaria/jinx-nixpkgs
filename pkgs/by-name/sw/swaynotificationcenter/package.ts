@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 42, 5], ["repo", 43, 5], ["tag", 44, 5], ["hash", 45, 5]], [["package", 96, 5], ["command", 97, 5]], [["version", 95, 18]], [["tests", 95, 12], ["updateScript", 99, 12]], [["description", 102, 5], ["homepage", 103, 5], ["changelog", 104, 5], ["license", 105, 5], ["platforms", 106, 5], ["mainProgram", 107, 5], ["maintainers", 108, 5]], [["pname", 38, 3], ["version", 39, 3], ["src", 41, 3], ["depsBuildBuild", 49, 3], ["nativeBuildInputs", 51, 3], ["buildInputs", 69, 3], ["postPatch", 87, 3], ["strictDeps", 93, 3], ["passthru", 95, 3], ["meta", 101, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, testers: false, wrapGAppsHook3: false, "bash-completion": false, "blueprint-compiler": false, dbus: false, "dbus-glib": false, fish: false, "gdk-pixbuf": false, glib: false, "gobject-introspection": false, "gtk4-layer-shell": false, gtk4: false, gvfs: false, "json-glib": false, libadwaita: false, libgee: false, libnotify: false, libpulseaudio: false, librsvg: false, meson: false, ninja: false, "pkg-config": false, python3: false, scdoc: false, vala: false, "wayland-scanner": false, "xvfb-run": false, sassc: false, pantheon: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 42, 5], ["repo", 43, 5], ["tag", 44, 5], ["hash", 45, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["package", 96, 5], ["command", 97, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 95, 18]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 95, 12], ["updateScript", 99, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 102, 5], ["homepage", 103, 5], ["changelog", 104, 5], ["license", 105, 5], ["platforms", 106, 5], ["mainProgram", 107, 5], ["maintainers", 108, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 38, 3], ["version", 39, 3], ["src", 41, 3], ["depsBuildBuild", 49, 3], ["nativeBuildInputs", 51, 3], ["buildInputs", 69, 3], ["postPatch", 87, 3], ["strictDeps", 93, 3], ["passthru", 95, 3], ["meta", 101, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -46,11 +41,11 @@ export default nix.lambda((args) => (() => {
   const pantheon = nix.arg($, "pantheon");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "SwayNotificationCenter",
       version: "0.12.6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ErikReider",
           repo: "SwayNotificationCenter",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -92,11 +87,11 @@ export default nix.lambda((args) => (() => {
       postPatch: "chmod +x build-aux/meson/postinstall.py\npatchShebangs build-aux/meson/postinstall.py\nsubstituteInPlace src/functions.vala --replace \"/usr/local/etc/xdg/swaync\" \"$out/etc/xdg/swaync\"\n",
       strictDeps: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               command: nix.thunk(() => nix.str`${xvfb_run}/bin/xvfb-run swaync --version`),
             })))),
@@ -104,7 +99,7 @@ export default nix.lambda((args) => (() => {
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Simple notification daemon with a GUI built for Sway",
         homepage: "https://github.com/ErikReider/SwayNotificationCenter",
         changelog: nix.thunk(() => nix.str`https://github.com/ErikReider/SwayNotificationCenter/releases/tag/v${nix.sel(finalAttrs, "version")}`),

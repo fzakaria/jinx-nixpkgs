@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]], [["description", 37, 5], ["mainProgram", 38, 5], ["homepage", 39, 5], ["changelog", 40, 5], ["license", 41, 5], ["maintainers", 42, 5]], [["pname", 15, 11], ["version", 15, 17], ["mvnHash", 16, 3], ["src", 18, 3], ["doCheck", 25, 3], ["nativeBuildInputs", 27, 3], ["installPhase", 29, 3], ["meta", 36, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, jre: false, makeWrapper: false, maven: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 37, 5], ["mainProgram", 38, 5], ["homepage", 39, 5], ["changelog", 40, 5], ["license", 41, 5], ["maintainers", 42, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 15, 11], ["version", 15, 17], ["mvnHash", 16, 3], ["src", 18, 3], ["doCheck", 25, 3], ["nativeBuildInputs", 27, 3], ["installPhase", 29, 3], ["meta", 36, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const pname = "s3proxy";
   const version = "2.6.0";
   return nix.app(nix.sel(maven, "buildMavenPackage"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: pname,
       version: version,
       mvnHash: "sha256-OCFs1Q4NL5heP8AVvkQ+ZdhmPD2SNZMCF2gxjXpbfW4=",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "gaul",
           repo: "s3proxy",
           rev: nix.thunk(() => nix.str`s3proxy-${version}`),
@@ -37,7 +35,7 @@ makeWrapper ${jre}/bin/java $out/bin/s3proxy \\
   --add-flags "-jar $out/share/s3proxy/s3proxy-${version}-jar-with-dependencies.jar"
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Access other storage backends via the S3 API",
         mainProgram: "s3proxy",
         homepage: "https://github.com/gaul/s3proxy",

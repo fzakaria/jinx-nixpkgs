@@ -2,23 +2,9 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/network.nix", [[["site", 15, 5]], [["site", 18, 5], ["extraArgs", 19, 5]], [["systemPackages", 30, 19]], [["environment", 30, 7]], [["allowedTCPPorts", 33, 25]], [["firewall", 33, 16]], [["root", 38, 11], ["index", 39, 11]], [["/", 37, 19]], [["locations", 37, 9]], [["example", 36, 20]], [["enable", 35, 7], ["virtualHosts", 36, 7]], [["nginx", 34, 14]], [["networking", 33, 5], ["services", 34, 5]], [["client", 27, 9], ["example", 32, 9]], [["name", 26, 3], ["nodes", 27, 3], ["testScript", 45, 3]]]);
 const formals$1 = { args: { config: false, hostPkgs: false, lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/network.nix", [["site", 15, 5]]);
-const pos$2 = nix.positions(here + "/network.nix", [["site", 18, 5], ["extraArgs", 19, 5]]);
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$3 = nix.positions(here + "/network.nix", [["systemPackages", 30, 19]]);
-const pos$4 = nix.positions(here + "/network.nix", [["environment", 30, 7]]);
-const pos$5 = nix.positions(here + "/network.nix", [["allowedTCPPorts", 33, 25]]);
-const pos$6 = nix.positions(here + "/network.nix", [["firewall", 33, 16]]);
-const pos$7 = nix.positions(here + "/network.nix", [["root", 38, 11], ["index", 39, 11]]);
-const pos$8 = nix.positions(here + "/network.nix", [["/", 37, 19]]);
-const pos$9 = nix.positions(here + "/network.nix", [["locations", 37, 9]]);
-const pos$10 = nix.positions(here + "/network.nix", [["example", 36, 20]]);
-const pos$11 = nix.positions(here + "/network.nix", [["enable", 35, 7], ["virtualHosts", 36, 7]]);
-const pos$12 = nix.positions(here + "/network.nix", [["nginx", 34, 14]]);
-const pos$13 = nix.positions(here + "/network.nix", [["networking", 33, 5], ["services", 34, 5]]);
-const pos$14 = nix.positions(here + "/network.nix", [["client", 27, 9], ["example", 32, 9]]);
-const pos$15 = nix.positions(here + "/network.nix", [["name", 26, 3], ["nodes", 27, 3], ["testScript", 45, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,46 +12,46 @@ export default nix.lambda((args) => (() => {
   const hostPkgs = nix.arg($, "hostPkgs");
   const lib = nix.arg($, "lib");
   const sitePkg = nix.thunk(() => nix.app(nix.sel(hostPkgs, "runCommand"), "site", nix.thunk(() => ({})), "dist=$out/dist\nmkdir -p $dist\necho \"<html><body><a href=\\\"http://example/foo.html\\\">foo</a></body></html>\" > $dist/index.html\necho \"<html><body><a href=\\\".\\\">index</a></body></html>\" > $dist/foo.html\n"));
-  const check = nix.thunk(() => nix.app(nix.sel(config, "node", "pkgs", "testers", "lycheeLinkCheck"), nix.thunk(() => ({ [nix.POS]: pos$1, site: sitePkg }))));
+  const check = nix.thunk(() => nix.app(nix.sel(config, "node", "pkgs", "testers", "lycheeLinkCheck"), nix.thunk(() => ({ [nix.POS]: $pos[0], site: sitePkg }))));
   const checkJson = nix.thunk(() => nix.app(nix.sel(config, "node", "pkgs", "testers", "lycheeLinkCheck"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       site: sitePkg,
       extraArgs: nix.thunk(() => ["--format", "json"]),
     }))));
   return {
-    [nix.POS]: pos$15,
+    [nix.POS]: $pos[14],
     name: "testers-lychee-link-check-run",
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$14,
+      [nix.POS]: $pos[13],
       client: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "jq"))]),
           })),
         };
       })(), formals$2),
       example: nix.thunk(() => ({
-        [nix.POS]: pos$13,
+        [nix.POS]: $pos[12],
         networking: nix.thunk(() => ({
-          [nix.POS]: pos$6,
-          firewall: nix.thunk(() => ({ [nix.POS]: pos$5, allowedTCPPorts: nix.thunk(() => [80n]) })),
+          [nix.POS]: $pos[5],
+          firewall: nix.thunk(() => ({ [nix.POS]: $pos[4], allowedTCPPorts: nix.thunk(() => [80n]) })),
         })),
         services: nix.thunk(() => ({
-          [nix.POS]: pos$12,
+          [nix.POS]: $pos[11],
           nginx: nix.thunk(() => ({
-            [nix.POS]: pos$11,
+            [nix.POS]: $pos[10],
             enable: true,
             virtualHosts: nix.thunk(() => ({
-              [nix.POS]: pos$10,
+              [nix.POS]: $pos[9],
               example: nix.thunk(() => ({
-                [nix.POS]: pos$9,
+                [nix.POS]: $pos[8],
                 locations: nix.thunk(() => ({
-                  [nix.POS]: pos$8,
-                  "/": nix.thunk(() => ({ [nix.POS]: pos$7, root: "/var/www/example", index: "index.html" })),
+                  [nix.POS]: $pos[7],
+                  "/": nix.thunk(() => ({ [nix.POS]: $pos[6], root: "/var/www/example", index: "index.html" })),
                 })),
               })),
             })),

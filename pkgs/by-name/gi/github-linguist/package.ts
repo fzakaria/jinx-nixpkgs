@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["tag", 15, 5], ["hash", 16, 5]], [["name", 20, 5], ["gemfile", 21, 5], ["lockfile", 22, 5], ["gemset", 23, 5], ["ruby", 24, 13]], [["ruby", 55, 13], ["deps", 55, 18]], [["description", 59, 5], ["longDescription", 60, 5], ["homepage", 63, 5], ["license", 64, 5], ["maintainers", 65, 5], ["platforms", 66, 5]], [["name", 31, 3], ["gemName", 33, 5], ["version", 34, 5], ["src", 35, 5], ["ruby", 36, 5], ["doInstallCheck", 39, 3], ["dontBuild", 40, 3], ["postInstall", 42, 3], ["passthru", 54, 3], ["meta", 58, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, buildRubyGem: false, bundlerEnv: false, ruby_3_4: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["tag", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 20, 5], ["gemfile", 21, 5], ["lockfile", 22, 5], ["gemset", 23, 5], ["ruby", 24, 13]]);
-const pos$3 = nix.positions(here + "/package.nix", [["ruby", 55, 13], ["deps", 55, 18]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 59, 5], ["longDescription", 60, 5], ["homepage", 63, 5], ["license", 64, 5], ["maintainers", 65, 5], ["platforms", 66, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["name", 31, 3], ["gemName", 33, 5], ["version", 34, 5], ["src", 35, 5], ["ruby", 36, 5], ["doInstallCheck", 39, 3], ["dontBuild", 40, 3], ["postInstall", 42, 3], ["passthru", 54, 3], ["meta", 58, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,14 +15,14 @@ export default nix.lambda((args) => (() => {
   const gemName = "github-linguist";
   const version = "9.5.0";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "github-linguist",
       repo: "linguist",
       tag: nix.thunk(() => nix.str`v${version}`),
       hash: "sha256-kxPiHsWrd+iwvasXfHiwZYAJFMmzZGOsZtsor5Jf1fg=",
     }))));
   const deps = nix.thunk(() => nix.app(bundlerEnv, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       name: "github-linguist-dep",
       gemfile: nix.thunk(() => nix.str`${src}/Gemfile`),
       lockfile: nix.path(here, "./Gemfile.lock"),
@@ -52,9 +48,9 @@ wrapProgram "$out/bin/github-linguist" \\
 wrapProgram "$out/bin/git-linguist" \\
   --set GEM_PATH "${deps}/lib/ruby/gems/${nix.sel(ruby_1, "version", "libDir")}"
 `);
-      const passthru = nix.thunk(() => ({ [nix.POS]: pos$3, ruby: ruby_1, deps: deps }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: $pos[2], ruby: ruby_1, deps: deps }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Language savant Ruby library",
         longDescription: "A Ruby library that is used on GitHub.com to detect blob languages, ignore binary or vendored files, suppress generated files in diffs, and generate language breakdown graphs.\n",
         homepage: "https://github.com/github-linguist/linguist",
@@ -69,7 +65,7 @@ wrapProgram "$out/bin/git-linguist" \\
         })()),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         name,
         gemName: gemName_1,
         version: version_1,

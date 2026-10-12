@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 29, 5], ["repo", 30, 5], ["rev", 31, 5], ["sha256", 32, 5]], [["homepage", 53, 5], ["description", 54, 5], ["license", 55, 5], ["platforms", 56, 5], ["maintainers", 57, 5]], [["pname", 16, 3], ["version", 17, 3], ["postPatch", 19, 3], ["src", 28, 3], ["preConfigure", 35, 3], ["buildInputs", 37, 3], ["nativeBuildInputs", 43, 3], ["meta", 52, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, autoconf: false, automake: false, gettext: false, libtool: false, perl: false, "pkg-config": false, glib: false, libxrandr: false, libx11: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 29, 5], ["repo", 30, 5], ["rev", 31, 5], ["sha256", 32, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 53, 5], ["description", 54, 5], ["license", 55, 5], ["platforms", 56, 5], ["maintainers", 57, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["postPatch", 19, 3], ["src", 28, 3], ["preConfigure", 35, 3], ["buildInputs", 37, 3], ["nativeBuildInputs", 43, 3], ["meta", 52, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const libxrandr = nix.arg($, "libxrandr");
   const libx11 = nix.arg($, "libx11");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "xdg-launch",
       version: "1.12",
       postPatch: "# fix gettext configuration\necho 'AM_GNU_GETTEXT_VERSION' >> configure.ac\necho 'AM_GNU_GETTEXT([external])' >> configure.ac\n\nsed -i data/*.desktop \\\n  -e \"s,/usr/bin,/$out/bin,g\"\n",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "bbidulock",
           repo: "xdg-launch",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -37,7 +35,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [libx11, libxrandr, glib]),
       nativeBuildInputs: nix.thunk(() => [autoconf, automake, gettext, libtool, perl, pkg_config]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/bbidulock/xdg-launch",
         description: "Command line XDG compliant launcher and tools",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

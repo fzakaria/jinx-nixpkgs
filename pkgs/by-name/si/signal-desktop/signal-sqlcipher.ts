@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/signal-sqlcipher.nix", [[["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]], [["pname", 29, 26], ["version", 29, 32], ["src", 29, 40], ["pnpm", 30, 13], ["fetcherVersion", 31, 5], ["hash", 32, 5]], [["name", 37, 5], ["src", 38, 26], ["cargoRoot", 38, 30], ["hash", 39, 5]], [["description", 78, 5], ["homepage", 79, 5], ["license", 80, 5], ["platforms", 86, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["pnpmDeps", 28, 3], ["cargoRoot", 35, 3], ["cargoDeps", 36, 3], ["strictDeps", 42, 3], ["nativeBuildInputs", 43, 3], ["preBuild", 58, 3], ["pnpmBuildScript", 64, 3], ["installPhase", 66, 3], ["meta", 77, 3]]]);
 const formals$1 = { args: { stdenv: false, pnpm: false, lib: false, fetchFromGitHub: false, fetchPnpmDeps: false, pnpmConfigHook: false, pnpmBuildHook: false, nodejs: false, rustPlatform: false, cargo: false, dump_syms: false, python3: false, xcodebuild: false, cctools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/signal-sqlcipher.nix", [["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/signal-sqlcipher.nix", [["pname", 29, 26], ["version", 29, 32], ["src", 29, 40], ["pnpm", 30, 13], ["fetcherVersion", 31, 5], ["hash", 32, 5]]);
-const pos$3 = nix.positions(here + "/signal-sqlcipher.nix", [["name", 37, 5], ["src", 38, 26], ["cargoRoot", 38, 30], ["hash", 39, 5]]);
-const pos$4 = nix.positions(here + "/signal-sqlcipher.nix", [["description", 78, 5], ["homepage", 79, 5], ["license", 80, 5], ["platforms", 86, 5]]);
-const pos$5 = nix.positions(here + "/signal-sqlcipher.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["pnpmDeps", 28, 3], ["cargoRoot", 35, 3], ["cargoDeps", 36, 3], ["strictDeps", 42, 3], ["nativeBuildInputs", 43, 3], ["preBuild", 58, 3], ["pnpmBuildScript", 64, 3], ["installPhase", 66, 3], ["meta", 77, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,18 +22,18 @@ export default nix.lambda((args) => (() => {
   const xcodebuild = nix.arg($, "xcodebuild");
   const cctools = nix.arg($, "cctools");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "node-sqlcipher",
       version: "4.1.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "signalapp",
           repo: "node-sqlcipher",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-llNSPeZG3gpajxdu+RAyoNhMQThhl9qPFdS9SfipYHs=",
         })))),
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -47,7 +43,7 @@ export default nix.lambda((args) => (() => {
         })))),
       cargoRoot: "deps/extension",
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           name: "sqlcipher-signal-exentsion",
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           cargoRoot: nix.thunk(() => nix.attr(finalAttrs, "cargoRoot")),
@@ -71,7 +67,7 @@ pnpm run prebuildify --strip false --arch "${nix.sel(stdenv, "hostPlatform", "no
       pnpmBuildScript: "build",
       installPhase: "runHook preInstall\n\nmkdir $out\ncp -r dist $out\ncp -r prebuilds $out\ncp package.json $out\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Fast N-API-based Node.js addon wrapping sqlcipher and FTS5 segmenting APIs",
         homepage: "https://github.com/signalapp/node-sqlcipher/tree/main",
         license: nix.thunk(() => (() => {

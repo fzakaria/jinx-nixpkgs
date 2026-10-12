@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 99, 5], ["hash", 100, 5]], [["updateScript", 151, 12]], [["homepage", 174, 5], ["description", 175, 5], ["license", 176, 5], ["mainProgram", 177, 5], ["maintainers", 178, 5], ["platforms", 179, 5]], [["pname", 94, 3], ["version", 95, 3], ["rev", 96, 3], ["src", 98, 3], ["nativeBuildInputs", 103, 3], ["buildInputs", 111, 3], ["unpackPhase", 113, 3], ["installPhase", 120, 3], ["postInstall", 144, 3], ["passthru", 151, 3], ["meta", 173, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, "squashfs-tools": false, makeWrapper: false, autoPatchelfHook: false, "c-ares": false, "gtk3-x11": false, glib: false, imagemagick: false, libevent: false, libdrm: false, libvpx: false, libxslt: false, libnotify: false, libappindicator: false, libxkbcommon: false, libGL: false, wrapGAppsHook3: false, writeScript: false, atk: false, libgbm: false, cups: false, systemd: false, "alsa-lib": false, "at-spi2-atk": false, "at-spi2-core": false, "gdk-pixbuf": false, pango: false, cairo: false, libxtst: false, libxrender: false, libxrandr: false, libxi: false, libxfixes: false, libxext: false, libxdamage: false, libxcursor: false, libxcomposite: false, libx11: false, libxcb: false, ffmpeg: false, "http-parser": false, nss: false, nspr: false, dbus: false, expat: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 99, 5], ["hash", 100, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 151, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 174, 5], ["description", 175, 5], ["license", 176, 5], ["mainProgram", 177, 5], ["maintainers", 178, 5], ["platforms", 179, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 94, 3], ["version", 95, 3], ["rev", 96, 3], ["src", 98, 3], ["nativeBuildInputs", 103, 3], ["buildInputs", 111, 3], ["unpackPhase", 113, 3], ["installPhase", 120, 3], ["postInstall", 144, 3], ["passthru", 151, 3], ["meta", 173, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -99,12 +96,12 @@ export default nix.lambda((args) => (() => {
     nix.thunk(() => nix.sel(stdenv, "cc", "cc")),
   ]);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "hey-mail",
       version: "1.3.7",
       rev: "34",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://api.snapcraft.io/api/v1/snaps/download/lfWUNpR7PrPGsDfuxIhVxbj0wZHoH7bK_${nix.sel(finalAttrs, "rev")}.snap`),
           hash: "sha512-c9Zu8lg3mAazvwqAs2VGWTmgZllK2Cgxym8RzalxrxOOvt6X0FDSgu8t6tgv5VCO0qjj9REkiebR3MS4TMamAA==",
         })))),
@@ -135,11 +132,11 @@ runHook postInstall
 `),
       postInstall: "for i in 16 24 32 48 64 96 128 256 512; do\n  mkdir -p $out/share/icons/hicolor/${i}x${i}/apps\n  magick $out/meta/gui/icon.png -background none -resize ${i}x${i} $out/share/icons/hicolor/${i}x${i}/apps/hey-mail.png\ndone\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(writeScript, "update-hey-mail", "#!/usr/bin/env nix-shell\n#!nix-shell -i bash -p common-updater-scripts curl jq\n\nset -eu -o pipefail\n\ndata=$(curl -H 'X-Ubuntu-Series: 16' \\\n'https://api.snapcraft.io/api/v1/snaps/details/hey-mail?fields=download_sha512,revision,version')\n\nversion=$(jq -r .version <<<\"$data\")\n\nif [[ \"x$UPDATE_NIX_OLD_VERSION\" != \"x$version\" ]]; then\n\n    revision=$(jq -r .revision <<<\"$data\")\n    hash=$(nix --extra-experimental-features nix-command hash to-sri \"sha512:$(jq -r .download_sha512 <<<\"$data\")\")\n\n    update-source-version \"$UPDATE_NIX_ATTR_PATH\" \"$version\" \"$hash\"\n    update-source-version --ignore-same-hash --version-key=rev \"$UPDATE_NIX_ATTR_PATH\" \"$revision\" \"$hash\"\n\nfi\n")),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://hey.com",
         description: "Desktop client for HEY email",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

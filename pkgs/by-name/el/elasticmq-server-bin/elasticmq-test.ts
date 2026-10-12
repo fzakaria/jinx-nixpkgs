@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/elasticmq-test.nix", [[["buildInputs", 25, 7], ["emqConfig", 29, 7], ["putMessagePy", 36, 7], ["checkMessagePy", 40, 7]]]);
 const formals$1 = { args: { "elasticmq-server": false, python3Packages: false, runCommand: false, writeText: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/elasticmq-test.nix", [["buildInputs", 25, 7], ["emqConfig", 29, 7], ["putMessagePy", 36, 7], ["checkMessagePy", 40, 7]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
   return nix.app(runCommand, nix.thunk(() => nix.str`${nix.sel(elasticmq_server, "name")}-tests`), nix.thunk(() => (() => {
       const commonPy = "import boto3\nclient = boto3.resource(\n  \"sqs\",\n  endpoint_url=\"http://localhost:9324\",\n  region_name=\"elasticmq\",\n  aws_secret_access_key=\"x\",\n  aws_access_key_id=\"x\",\n  use_ssl=False,\n)\nqueue = client.get_queue_by_name(QueueName=\"foobar\")\n";
       return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         buildInputs: nix.thunk(() => (() => {
           const w = nix.withScope(python3Packages, null);
           return [

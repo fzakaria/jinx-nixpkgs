@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 17, 5], ["rev", 18, 5], ["hash", 19, 5], ["sparseCheckout", 20, 5]], [["description", 41, 5], ["longDescription", 42, 5], ["homepage", 50, 5], ["license", 51, 5], ["maintainers", 52, 5], ["platforms", 53, 5], ["broken", 54, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["sourceRoot", 23, 3], ["hardeningDisable", 24, 3], ["nativeBuildInputs", 28, 3], ["postPatch", 30, 3], ["makeFlags", 34, 3], ["meta", 40, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchgit: false, kernel: false, kernelModuleMakeFlags: false, kmod: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 17, 5], ["rev", 18, 5], ["hash", 19, 5], ["sparseCheckout", 20, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 41, 5], ["longDescription", 42, 5], ["homepage", 50, 5], ["license", 51, 5], ["maintainers", 52, 5], ["platforms", 53, 5], ["broken", 54, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["sourceRoot", 23, 3], ["hardeningDisable", 24, 3], ["nativeBuildInputs", 28, 3], ["postPatch", 30, 3], ["makeFlags", 34, 3], ["meta", 40, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const kmod = nix.arg($, "kmod");
   const version = "22.03.5";
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "trelay",
       version: nix.thunk(() => nix.str`${version}-${nix.sel(kernel, "version")}`),
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://git.openwrt.org/openwrt/openwrt.git",
           rev: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-5f9LvaZUxtfTpTR268QMkEmHUpn/nct+MVa44SBGT5c=",
@@ -38,7 +36,7 @@ export default nix.lambda((args) => (() => {
         "INSTALL_MOD_PATH=$(out)",
       ])),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "For relaying IP packets between two devices to build an IP bridge between them",
         longDescription: "A kernel module that relays ethernet packets between two devices (similar to a bridge),\nbut without any MAC address checks.\n\nThis makes it possible to bridge client mode or ad-hoc mode wifi devices to ethernet VLANs,\nassuming the remote end uses the same source MAC address as the device that packets are\nsupposed to exit from.\n",
         homepage: "https://github.com/openwrt/openwrt/tree/main/package/kernel/trelay",

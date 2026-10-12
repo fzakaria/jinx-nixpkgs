@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 19, 5], ["hash", 20, 5]], [["description", 72, 5], ["homepage", 73, 5], ["license", 74, 5], ["maintainers", 78, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["nativeBuildInputs", 23, 3], ["preConfigure", 32, 3], ["configurePhase", 61, 3], ["meta", 71, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, perl: false, bdftopcf: false, bdf2psf: false, mkfontscale: false, fonttosfnt: false, targetsDat: true, variantsDat: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 72, 5], ["homepage", 73, 5], ["license", 74, 5], ["maintainers", 78, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["nativeBuildInputs", 23, 3], ["preConfigure", 32, 3], ["configurePhase", 61, 3], ["meta", 71, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const targetsDat = nix.argOr($, "targetsDat", () => null);
   const variantsDat = nix.argOr($, "variantsDat", () => null);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "uw-ttyp0",
       version: "2.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://people.mpi-inf.mpg.de/~uwe/misc/uw-ttyp0/uw-ttyp0-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-mVBt2HlOGl1c1YEebB5V7u+Yn4w1Af25Jlvalyq6FjA=",
         })))),
@@ -32,7 +30,7 @@ export default nix.lambda((args) => (() => {
       preConfigure: nix.thunk(() => nix.add((nix.asBool(nix.eq(targetsDat, null)) ? "cat << EOF > TARGETS.dat\nSIZES = 11 12 13 14 15 16 17 18 22 \\\n11b 12b 13b 14b 15b 16b 17b 18b 22b 15i 16i 17i 18i\nENCODINGS = uni\nGEN_PCF = 1\nGEN_OTB = 1\nGEN_CONS_LINUX = 1\nEOF\n" : nix.str`cp "${targetsDat}" TARGETS.dat`), (nix.asBool(nix.eq(variantsDat, null)) ? "cat << EOF > VARIANTS.dat\nCOPYTO AccStress PApostropheAscii\nCOPYTO PAmComma AccGraveAscii\nCOPYTO Digit0Slashed Digit0\nEOF\n" : nix.str`cp "${variantsDat}" VARIANTS.dat`))),
       configurePhase: "runHook preConfigure\n./configure \\\n  --prefix=\"$out\" \\\n  --otbdir=\"$out/share/fonts/X11/misc\" \\\n  --pcfdir=\"$out/share/fonts/X11/misc\" \\\n  --conslinuxdir=\"$out/share/consolefonts\"\nrunHook postConfigure\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Monospace bitmap screen fonts for X11",
         homepage: "https://people.mpi-inf.mpg.de/~uwe/misc/uw-ttyp0/",
         license: nix.thunk(() => (() => {

@@ -2,12 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/pltcl.nix", [[["finalPackage", 25, 13], ["sql", 29, 13]], [["extension", 24, 17]], [["withPackages", 20, 19], ["wrapperArgs", 21, 11], ["tests", 24, 11]], [["homepage", 41, 13], ["license", 42, 13], ["changelog", 43, 13], ["teams", 44, 13], ["platforms", 45, 13], ["description", 47, 11]], [["pname", 16, 9], ["version", 17, 30], ["paths", 18, 9], ["passthru", 19, 9], ["meta", 39, 9]]]);
 const formals$1 = { args: { buildEnv: false, lib: false, postgresql: false, postgresqlTestExtension: false, tclPackages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/pltcl.nix", [["finalPackage", 25, 13], ["sql", 29, 13]]);
-const pos$2 = nix.positions(here + "/pltcl.nix", [["extension", 24, 17]]);
-const pos$3 = nix.positions(here + "/pltcl.nix", [["withPackages", 20, 19], ["wrapperArgs", 21, 11], ["tests", 24, 11]]);
-const pos$4 = nix.positions(here + "/pltcl.nix", [["homepage", 41, 13], ["license", 42, 13], ["changelog", 43, 13], ["teams", 44, 13], ["platforms", 45, 13], ["description", 47, 11]]);
-const pos$5 = nix.positions(here + "/pltcl.nix", [["pname", 16, 9], ["version", 17, 30], ["paths", 18, 9], ["passthru", 19, 9], ["meta", 39, 9]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,18 +16,18 @@ export default nix.lambda((args) => (() => {
     const pkgs = nix.thunk(() => nix.app(f, tclPackages));
     const paths = nix.thunk(() => nix.app(nix.sel(lib, "concatMapStringsSep"), " ", (pkg) => nix.str`${pkg}/lib`, pkgs));
     const finalPackage = nix.thunk(() => nix.app(buildEnv, nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname: nix.thunk(() => nix.str`${nix.sel(postgresql, "pname")}-pltcl`),
         version: nix.thunk(() => nix.attr(postgresql, "version")),
         paths: nix.thunk(() => [nix.thunk(() => nix.sel(postgresql, "pltcl"))]),
         passthru: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           withPackages: withPackages,
           wrapperArgs: nix.thunk(() => [nix.thunk(() => nix.str`--set TCLLIBPATH "${paths}"`)]),
           tests: nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             extension: nix.thunk(() => nix.app(postgresqlTestExtension, nix.thunk(() => ({
-                [nix.POS]: pos$1,
+                [nix.POS]: $pos[0],
                 finalPackage: nix.thunk(() => nix.app(nix.sel(finalPackage, "withPackages"), (ps) => [
                     nix.thunk(() => nix.sel(ps, "mustache-tcl")),
                     nix.thunk(() => nix.sel(ps, "tcllib")),
@@ -43,7 +39,7 @@ export default nix.lambda((args) => (() => {
         meta: nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(postgresql, "meta"));
           return {
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           homepage: nix.thunk(() => nix.attr(from, "homepage")),
           license: nix.thunk(() => nix.attr(from, "license")),
           changelog: nix.thunk(() => nix.attr(from, "changelog")),

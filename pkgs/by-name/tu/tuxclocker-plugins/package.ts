@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["src", 15, 24], ["version", 15, 28], ["meta", 15, 36], ["pname", 17, 3], ["nativeBuildInputs", 19, 3], ["buildInputs", 27, 3], ["mesonFlags", 33, 3]]]);
 const formals$1 = { args: { stdenv: false, boost: false, gettext: false, libdrm: false, meson: false, ninja: false, openssl: false, "pkg-config": false, python3: false, tuxclocker: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["src", 15, 24], ["version", 15, 28], ["meta", 15, 36], ["pname", 17, 3], ["nativeBuildInputs", 19, 3], ["buildInputs", 27, 3], ["mesonFlags", 33, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,7 +18,7 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const tuxclocker = nix.arg($, "tuxclocker");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       src: nix.thunk(() => nix.attr(tuxclocker, "src")),
       version: nix.thunk(() => nix.attr(tuxclocker, "version")),
       meta: nix.thunk(() => nix.attr(tuxclocker, "meta")),

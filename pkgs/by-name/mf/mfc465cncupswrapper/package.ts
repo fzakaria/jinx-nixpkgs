@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 20, 5], ["sha256", 21, 5]], [["description", 82, 5], ["homepage", 83, 5], ["sourceProvenance", 84, 5], ["license", 85, 5], ["platforms", 86, 5], ["maintainers", 87, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["unpackPhase", 24, 3], ["nativeBuildInputs", 28, 3], ["dontBuild", 33, 3], ["installPhase", 35, 3], ["meta", 81, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, dpkg: false, makeWrapper: false, coreutils: false, gnugrep: false, gnused: false, mfc465cnlpr: false, pkgsi686Linux: false, psutils: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 20, 5], ["sha256", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 82, 5], ["homepage", 83, 5], ["sourceProvenance", 84, 5], ["license", 85, 5], ["platforms", 86, 5], ["maintainers", 87, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["unpackPhase", 24, 3], ["nativeBuildInputs", 28, 3], ["dontBuild", 33, 3], ["installPhase", 35, 3], ["meta", 81, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const pname = "mfc465cncupswrapper";
       const version = "1.0.1-1";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://download.brother.com/welcome/dlf006134/${pname}-${version}.i386.deb`),
           sha256: "59a62ed3cf10f1565c08ace55832bd48bd5034f7067662870edf7ff3bf0cb76a",
         }))));
@@ -70,7 +68,7 @@ sed -i "/#! \\/bin\\/sh/a PATH=${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(
 chmod 755 $out/lib/cups/filter/brlpdwrappermfc465cn
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Brother MFC-465CN CUPS wrapper driver",
         homepage: "http://www.brother.com/",
         sourceProvenance: nix.thunk(() => (() => {
@@ -85,7 +83,7 @@ chmod 755 $out/lib/cups/filter/brlpdwrappermfc465cn
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

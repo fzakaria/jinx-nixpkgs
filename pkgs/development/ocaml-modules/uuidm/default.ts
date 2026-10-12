@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["0.9.10", 21, 9], ["0.9.8", 22, 9]], [["url", 18, 5], ["hash", 19, 5]], [["description", 44, 5], ["homepage", 45, 5], ["license", 46, 5], ["maintainers", 47, 5], ["mainProgram", 48, 5], ["platforms", 49, 26], ["broken", 50, 5]], [["version", 15, 11], ["pname", 16, 3], ["src", 17, 3], ["strictDeps", 27, 3], ["nativeBuildInputs", 29, 3], ["configurePlatforms", 35, 3], ["buildInputs", 36, 3], ["buildPhase", 41, 19], ["installPhase", 41, 30], ["meta", 43, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, ocaml: false, findlib: false, ocamlbuild: false, topkg: false, cmdliner: false, cmdliner_1: false, version: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["0.9.10", 21, 9], ["0.9.8", 22, 9]]);
-const pos$2 = nix.positions(here + "/default.nix", [["url", 18, 5], ["hash", 19, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 44, 5], ["homepage", 45, 5], ["license", 46, 5], ["maintainers", 47, 5], ["mainProgram", 48, 5], ["platforms", 49, 26], ["broken", 50, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["version", 15, 11], ["pname", 16, 3], ["src", 17, 3], ["strictDeps", 27, 3], ["nativeBuildInputs", 29, 3], ["configurePlatforms", 35, 3], ["buildInputs", 36, 3], ["buildPhase", 41, 19], ["installPhase", 41, 30], ["meta", 43, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,14 +18,14 @@ export default nix.lambda((args) => (() => {
   const cmdliner_1 = nix.arg($, "cmdliner_1");
   const version = nix.argOr($, "version", () => (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(ocaml, "version")), "4.14")) ? "0.9.10" : "0.9.8"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       version: version,
       pname: "uuidm",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: nix.thunk(() => nix.str`https://erratique.ch/software/uuidm/releases/uuidm-${version}.tbz`),
           hash: nix.thunk(() => nix.sel({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             "0.9.10": "sha256-kWVZSofWMyky5nAuxoh1xNhwMKZ2qUahL3Dh27J36Vc=",
             "0.9.8": "sha256-/GZbkJVDQu1UY8SliK282kUWAVMfOnpQadUlRT/tJrM=",
           }, nix.key(nix.str`${version}`))),
@@ -45,7 +42,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(ocaml, "meta"));
         return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "OCaml module implementing 128 bits universally unique identifiers version 3, 5 (name based with MD5, SHA-1 hashing) and 4 (random based) according to RFC 4122",
         homepage: "https://erratique.ch/software/uuidm",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

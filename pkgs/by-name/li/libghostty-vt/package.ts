@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["hash", 26, 5]], [["name", 35, 5], ["linkFarm", 36, 5]], [["description", 107, 5], ["homepage", 108, 5], ["license", 109, 5], ["pkgConfigModules", 110, 5], ["maintainers", 114, 5], ["platforms", 115, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["deps", 34, 3], ["__structuredAttrs", 46, 3], ["strictDeps", 47, 3], ["nativeBuildInputs", 49, 3], ["buildInputs", 61, 3], ["postPatch", 63, 3], ["dontSetZigDefaultFlags", 73, 3], ["zigBuildFlags", 75, 3], ["doCheck", 89, 3], ["outputs", 91, 3], ["postInstall", 96, 3], ["postFixup", 101, 3], ["meta", 106, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, callPackage: false, cctools: false, fetchFromGitHub: false, fixDarwinDylibNames: false, gitMinimal: false, ncurses: false, "pkg-config": false, runCommand: false, xcbuild: false, zig_0_16: false, optimize: true, simd: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 35, 5], ["linkFarm", 36, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 107, 5], ["homepage", 108, 5], ["license", 109, 5], ["pkgConfigModules", 110, 5], ["maintainers", 114, 5], ["platforms", 115, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["deps", 34, 3], ["__structuredAttrs", 46, 3], ["strictDeps", 47, 3], ["nativeBuildInputs", 49, 3], ["buildInputs", 61, 3], ["postPatch", 63, 3], ["dontSetZigDefaultFlags", 73, 3], ["zigBuildFlags", 75, 3], ["doCheck", 89, 3], ["outputs", 91, 3], ["postInstall", 96, 3], ["postFixup", 101, 3], ["meta", 106, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,18 +22,18 @@ export default nix.lambda((args) => (() => {
   const optimize = nix.argOr($, "optimize", () => "ReleaseFast");
   const simd = nix.argOr($, "simd", () => true);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "libghostty-vt",
       version: "0.1.0-unstable-2026-08-06",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ghostty-org",
           repo: "ghostty",
           rev: "22d13172cde98a0a4dda05d3d6a3fcb0dd8ed018",
           hash: "sha256-tRtgTg/i3w1nFdRHU2IGekfJN8EyP+HARW4MtoUZyqk=",
         })))),
       deps: nix.thunk(() => nix.app(callPackage, nix.path(here, "./deps.nix"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           name: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-cache-${nix.sel(finalAttrs, "version")}`),
           linkFarm: (name) => (entries) => nix.app(runCommand, name, nix.thunk(() => ({})), nix.thunk(() => nix.str`mkdir -p $out
 ${nix.app(nix.sel(lib, "concatMapStringsSep"), "\n", (e) => nix.str`cp -rL ${nix.sel(e, "path")} $out/${nix.sel(e, "name")}
@@ -64,7 +61,7 @@ ${nix.app(nix.sel(lib, "concatMapStringsSep"), "\n", (e) => nix.str`cp -rL ${nix
       postInstall: "mkdir -p \"$dev/lib\"\nmv \"$out/lib/libghostty-vt.a\" \"$dev/lib/\"\n",
       postFixup: "substituteInPlace \"$dev/share/pkgconfig/libghostty-vt-static.pc\" \\\n  --replace-fail \"$out\" \"$dev\"\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Ghostty's VT (terminal sequence) parsing library",
         homepage: "https://ghostty.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

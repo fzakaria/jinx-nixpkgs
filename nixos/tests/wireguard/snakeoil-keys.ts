@@ -2,20 +2,18 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
-const pos$1 = nix.positions(here + "/snakeoil-keys.nix", [["privateKey", 5, 5], ["publicKey", 6, 5]]);
-const pos$2 = nix.positions(here + "/snakeoil-keys.nix", [["privateKey", 10, 5], ["publicKey", 12, 5]]);
-const pos$3 = nix.positions(here + "/snakeoil-keys.nix", [["presharedKey", 2, 3], ["peer0", 4, 3], ["peer1", 9, 3]]);
+const $pos = nix.positions(here + "/snakeoil-keys.nix", [[["privateKey", 5, 5], ["publicKey", 6, 5]], [["privateKey", 10, 5], ["publicKey", 12, 5]], [["presharedKey", 2, 3], ["peer0", 4, 3], ["peer1", 9, 3]]]);
 
 export default nix.thunk(() => ({
-  [nix.POS]: pos$3,
+  [nix.POS]: $pos[2],
   presharedKey: "7myEJlGAWLTg83y7Py29pp7REQBVmZfI4xcawjcZpjg=",
   peer0: nix.thunk(() => ({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     privateKey: "OPuVRS2T0/AtHDp3PXkNuLQYDiqJaBEEnYe42BSnJnQ=",
     publicKey: "IujkG119YPr2cVQzJkSLYCdjpHIDjvr/qH1w1tdKswY=",
   })),
   peer1: nix.thunk(() => ({
-    [nix.POS]: pos$2,
+    [nix.POS]: $pos[1],
     privateKey: "uO8JVo/sanx2DOM0L9GUEtzKZ82RGkRnYgpaYc7iXmg=",
     publicKey: "Ks9yRJIi/0vYgRmn14mIOQRwkcUGBujYINbMpik2SBI=\n",
   })),

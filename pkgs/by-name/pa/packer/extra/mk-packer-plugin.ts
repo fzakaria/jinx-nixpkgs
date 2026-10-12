@@ -2,17 +2,13 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
-const pos$1 = nix.positions(here + "/mk-packer-plugin.nix", [["x86_64-linux", 3, 5], ["aarch64-linux", 4, 5], ["aarch64-darwin", 5, 5]]);
+const $pos = nix.positions(here + "/mk-packer-plugin.nix", [[["x86_64-linux", 3, 5], ["aarch64-linux", 4, 5], ["aarch64-darwin", 5, 5]], [["mainProgram", 92, 12]], [["pluginPath", 95, 9], ["updateScript", 96, 9]], [["subPackages", 60, 9], ["doInstallCheck", 61, 9], ["versionCheckProgramArg", 62, 9], ["__structuredAttrs", 65, 7], ["strictDeps", 66, 7], ["ldflags", 68, 7], ["versionCheckProgram", 82, 7], ["nativeInstallCheckInputs", 84, 7], ["postFixup", 87, 7], ["meta", 92, 7], ["passthru", 94, 7]], [["constructDrv", 18, 3], ["excludeDrvArgNames", 20, 3], ["extendDrvArgs", 24, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, buildGoModule: false, versionCheckHook: false, "nix-update-script": false }, ellipsis: false };
 const formals$2 = { args: { pname: false, version: false, src: false, ldflags: true, nativeInstallCheckInputs: true, postFixup: true, subPackages: true, apiVersion: true, versionCheckProgramArg: true, doInstallCheck: true }, ellipsis: true };
-const pos$2 = nix.positions(here + "/mk-packer-plugin.nix", [["mainProgram", 92, 12]]);
-const pos$3 = nix.positions(here + "/mk-packer-plugin.nix", [["pluginPath", 95, 9], ["updateScript", 96, 9]]);
-const pos$4 = nix.positions(here + "/mk-packer-plugin.nix", [["subPackages", 60, 9], ["doInstallCheck", 61, 9], ["versionCheckProgramArg", 62, 9], ["__structuredAttrs", 65, 7], ["strictDeps", 66, 7], ["ldflags", 68, 7], ["versionCheckProgram", 82, 7], ["nativeInstallCheckInputs", 84, 7], ["postFixup", 87, 7], ["meta", 92, 7], ["passthru", 94, 7]]);
-const pos$5 = nix.positions(here + "/mk-packer-plugin.nix", [["constructDrv", 18, 3], ["excludeDrvArgNames", 20, 3], ["extendDrvArgs", 24, 3]]);
 
 export default nix.thunk(() => (() => {
   const platformSuffix = nix.thunk(() => ({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     "x86_64-linux": "linux_amd64",
     "aarch64-linux": "linux_arm64",
     "aarch64-darwin": "darwin_arm64",
@@ -25,7 +21,7 @@ export default nix.thunk(() => (() => {
     const versionCheckHook = nix.arg($, "versionCheckHook");
     const nix_update_script = nix.arg($, "nix-update-script");
     return nix.app(nix.sel(lib, "extendMkDerivation"), nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         constructDrv: buildGoModule,
         excludeDrvArgNames: nix.thunk(() => ["apiVersion"]),
         extendDrvArgs: (finalAttrs) => nix.lambda((args_1) => (() => {
@@ -45,7 +41,7 @@ export default nix.thunk(() => (() => {
           const suffix = nix.thunk(() => nix.selOr(platformSuffix, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenv, "hostPlatform", "system")}`)), nix.key(nix.str`${nix.sel(stdenv, "hostPlatform", "system")}`)));
           const binName = nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "repo")}_v${nix.sel(finalAttrs, "version")}_${apiVersion}_${suffix}`);
           return {
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             subPackages: subPackages,
             doInstallCheck: doInstallCheck,
             versionCheckProgramArg: versionCheckProgramArg,
@@ -65,9 +61,9 @@ export default nix.thunk(() => (() => {
             postFixup: nix.thunk(() => nix.add(postFixup, nix.str`mv "$out/bin/${nix.sel(finalAttrs, "src", "repo")}" "$out/bin/${binName}"
 sha256sum "$out/bin/${binName}" | cut -d' ' -f1 > "$out/bin/${binName}_SHA256SUM"
 `)),
-            meta: nix.thunk(() => ({ [nix.POS]: pos$2, mainProgram: binName })),
+            meta: nix.thunk(() => ({ [nix.POS]: $pos[1], mainProgram: binName })),
             passthru: nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               pluginPath: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "githubBase")}/${nix.sel(finalAttrs, "src", "owner")}/${nix.app(nix.sel(lib, "removePrefix"), "packer-plugin-", nix.thunk(() => nix.sel(finalAttrs, "src", "repo")))}/${binName}`),
               updateScript: nix.thunk(() => nix.selOr(prevAttrs, () => nix.app(nix_update_script, nix.thunk(() => ({}))), "passthru", "updateScript")),
             })),

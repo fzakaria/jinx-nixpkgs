@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 36, 5], ["repo", 37, 5], ["tag", 38, 5], ["hash", 39, 5]], [["VERGEN_IDEMPOTENT", 63, 7], ["VERGEN_GIT_SHA", 64, 7], ["VERGEN_GIT_COMMIT_DATE", 65, 7], ["VERGEN_GIT_COMMIT_TIMESTAMP", 66, 7]], [["name", 123, 7], ["runtimeInputs", 124, 7], ["text", 129, 7]], [["updateScript", 122, 5]], [["description", 140, 5], ["longDescription", 141, 5], ["homepage", 151, 5], ["downloadPage", 152, 5], ["license", 153, 5], ["changelog", 157, 5], ["maintainers", 158, 5], ["mainProgram", 161, 5], ["platforms", 162, 5]], [["pname", 32, 3], ["version", 33, 3], ["src", 35, 3], ["postPatch", 42, 3], ["cargoHash", 55, 3], ["cargoBuildFlags", 56, 3], ["env", 58, 3], ["nativeBuildInputs", 69, 3], ["buildInputs", 78, 3], ["runtimeDependencies", 88, 3], ["postInstall", 105, 3], ["passthru", 121, 3], ["meta", 139, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, rustPlatform: false, fetchFromGitHub: false, jre_minimal: false, "pkg-config": false, autoPatchelfHook: false, "alsa-lib": false, dbus: false, fontconfig: false, wayland: false, libxcursor: false, libxrandr: false, libxi: false, libx11: false, libxcb: false, "vulkan-loader": false, udev: false, libxkbcommon: false, openh264: false, openssl: false, writeShellApplication: false, curl: false, jq: false, "nix-update": false, withX11: true, withRuffleTools: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 36, 5], ["repo", 37, 5], ["tag", 38, 5], ["hash", 39, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["VERGEN_IDEMPOTENT", 63, 7], ["VERGEN_GIT_SHA", 64, 7], ["VERGEN_GIT_COMMIT_DATE", 65, 7], ["VERGEN_GIT_COMMIT_TIMESTAMP", 66, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 123, 7], ["runtimeInputs", 124, 7], ["text", 129, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 122, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 140, 5], ["longDescription", 141, 5], ["homepage", 151, 5], ["downloadPage", 152, 5], ["license", 153, 5], ["changelog", 157, 5], ["maintainers", 158, 5], ["mainProgram", 161, 5], ["platforms", 162, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 32, 3], ["version", 33, 3], ["src", 35, 3], ["postPatch", 42, 3], ["cargoHash", 55, 3], ["cargoBuildFlags", 56, 3], ["env", 58, 3], ["nativeBuildInputs", 69, 3], ["buildInputs", 78, 3], ["runtimeDependencies", 88, 3], ["postInstall", 105, 3], ["passthru", 121, 3], ["meta", 139, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -40,11 +35,11 @@ export default nix.lambda((args) => (() => {
   const withX11 = nix.argOr($, "withX11", () => true);
   const withRuffleTools = nix.argOr($, "withRuffleTools", () => false);
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "ruffle",
       version: "0.6.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ruffle-rs",
           repo: "ruffle",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -65,7 +60,7 @@ export default nix.lambda((args) => (() => {
       env: nix.thunk(() => (() => {
         const commitDate = "2026-09-06";
         return {
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           VERGEN_IDEMPOTENT: "1",
           VERGEN_GIT_SHA: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           VERGEN_GIT_COMMIT_DATE: commitDate,
@@ -88,16 +83,16 @@ export default nix.lambda((args) => (() => {
         ], nix.app(nix.sel(lib, "optionals"), withX11, nix.thunk(() => [libxcursor, libxrandr, libxi, libx11, libxcb])))))),
       postInstall: nix.thunk(() => nix.add("mv $out/bin/ruffle_desktop $out/bin/ruffle\ninstall -Dm644 LICENSE.md -t $out/share/doc/ruffle\ninstall -Dm644 README.md -t $out/share/doc/ruffle\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), "install -Dm644 desktop/packages/linux/rs.ruffle.Ruffle.desktop \\\n               -t $out/share/applications/\n\ninstall -Dm644 desktop/packages/linux/rs.ruffle.Ruffle.svg \\\n               -t $out/share/icons/hicolor/scalable/apps/\n\ninstall -Dm644 desktop/packages/linux/rs.ruffle.Ruffle.metainfo.xml \\\n               -t $out/share/metainfo/\n"))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.app(writeShellApplication, nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               name: "ruffle-update",
               runtimeInputs: nix.thunk(() => [curl, jq, nix_update]),
               text: "version=\"$( \\\n  curl https://api.github.com/repos/ruffle-rs/ruffle/releases/latest | \\\n  jq -r \".tag_name\" \\\n)\"\nexec nix-update --version \"${version#v}\" ruffle\n",
             })))))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Cross platform Adobe Flash Player emulator",
         longDescription: "Ruffle is a cross platform emulator for running and preserving\nAdobe Flash content. It is capable of running ActionScript 1, 2\nand 3 programs with machine-native performance thanks to being\nwritten in the Rust programming language.\n\nAdditionally, overriding the `withRuffleTools` input to\n`true` will build all the available packages in the ruffle\nproject, including the `exporter` and `scanner` utilities.\n",
         homepage: "https://ruffle.rs/",

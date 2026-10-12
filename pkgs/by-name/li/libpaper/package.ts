@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 13, 5], ["hash", 14, 5]], [["changelog", 41, 5], ["description", 42, 5], ["homepage", 43, 5], ["license", 44, 5], ["platforms", 50, 5]], [["version", 9, 3], ["pname", 10, 3], ["src", 12, 3], ["nativeBuildInputs", 17, 3], ["strictDeps", 19, 3], ["configureFlags", 26, 3], ["postInstall", 33, 3], ["__structuredAttrs", 38, 3], ["meta", 40, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, autoreconfHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 13, 5], ["hash", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["changelog", 41, 5], ["description", 42, 5], ["homepage", 43, 5], ["license", 44, 5], ["platforms", 50, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 9, 3], ["pname", 10, 3], ["src", 12, 3], ["nativeBuildInputs", 17, 3], ["strictDeps", 19, 3], ["configureFlags", 26, 3], ["postInstall", 33, 3], ["__structuredAttrs", 38, 3], ["meta", 40, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const autoreconfHook = nix.arg($, "autoreconfHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       version: "2.2.8",
       pname: "libpaper",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/rrthomas/libpaper/releases/download/v${nix.sel(finalAttrs, "version")}/libpaper-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-HjMFcWkBkYdOykFex2iJ3RG6uYh6IwLWo2Zc0IHE13s=",
         })))),
@@ -30,7 +28,7 @@ export default nix.lambda((args) => (() => {
       postInstall: "mkdir -p $out/etc\necho letter > $out/etc/papersize\n",
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         changelog: nix.thunk(() => nix.str`https://github.com/rrthomas/libpaper/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "Library for handling paper characteristics",
         homepage: "https://github.com/rrthomas/libpaper",

@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5], ["fetchSubmodules", 33, 5]], [["pname", 46, 26], ["version", 46, 32], ["src", 46, 40], ["pnpm", 47, 5], ["fetcherVersion", 48, 5], ["hash", 49, 5], ["pnpmInstallFlags", 50, 5]], [["pname", 129, 5], ["version", 130, 5], ["src", 131, 5], ["pnpm", 132, 5], ["fetcherVersion", 133, 5], ["hash", 134, 5]], [["pname", 138, 5], ["version", 139, 5], ["src", 140, 5], ["nativeBuildInputs", 142, 5], ["pnpmDeps", 148, 5], ["buildPhase", 150, 5], ["installPhase", 154, 5]], [["updateScript", 126, 12], ["tursoPluginDeps", 128, 12], ["tursoPlugin", 137, 12]], [["description", 160, 5], ["homepage", 161, 5], ["changelog", 162, 5], ["mainProgram", 163, 5], ["license", 164, 5], ["maintainers", 165, 5], ["platforms", 169, 5]], [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["postUnpack", 36, 3], ["sourceRoot", 42, 3], ["pnpmRoot", 44, 3], ["pnpmDeps", 45, 3], ["cargoRoot", 61, 3], ["cargoHash", 62, 3], ["buildAndTestSubdir", 64, 3], ["postPatch", 66, 3], ["nativeBuildInputs", 87, 3], ["buildInputs", 99, 3], ["preBuild", 112, 3], ["passthru", 126, 3], ["meta", 159, 3]]]);
 const formals$1 = { args: { stdenv: false, rustPlatform: false, pnpm_11: false, fetchPnpmDeps: false, pnpmConfigHook: false, "cargo-tauri": false, nodejs: false, "pkg-config": false, webkitgtk_4_1: false, wrapGAppsHook3: false, fetchFromGitHub: false, gtk3: false, librsvg: false, openssl: false, "glib-networking": false, autoPatchelfHook: false, lib: false, "nix-update-script": false, moreutils: false, jq: false, gst_all_1: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5], ["fetchSubmodules", 33, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 46, 26], ["version", 46, 32], ["src", 46, 40], ["pnpm", 47, 5], ["fetcherVersion", 48, 5], ["hash", 49, 5], ["pnpmInstallFlags", 50, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 129, 5], ["version", 130, 5], ["src", 131, 5], ["pnpm", 132, 5], ["fetcherVersion", 133, 5], ["hash", 134, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 138, 5], ["version", 139, 5], ["src", 140, 5], ["nativeBuildInputs", 142, 5], ["pnpmDeps", 148, 5], ["buildPhase", 150, 5], ["installPhase", 154, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["updateScript", 126, 12], ["tursoPluginDeps", 128, 12], ["tursoPlugin", 137, 12]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 160, 5], ["homepage", 161, 5], ["changelog", 162, 5], ["mainProgram", 163, 5], ["license", 164, 5], ["maintainers", 165, 5], ["platforms", 169, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["postUnpack", 36, 3], ["sourceRoot", 42, 3], ["pnpmRoot", 44, 3], ["pnpmDeps", 45, 3], ["cargoRoot", 61, 3], ["cargoHash", 62, 3], ["buildAndTestSubdir", 64, 3], ["postPatch", 66, 3], ["nativeBuildInputs", 87, 3], ["buildInputs", 99, 3], ["preBuild", 112, 3], ["passthru", 126, 3], ["meta", 159, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -35,11 +29,11 @@ export default nix.lambda((args) => (() => {
   const jq = nix.arg($, "jq");
   const gst_all_1 = nix.arg($, "gst_all_1");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "readest",
       version: "0.12.12",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "readest",
           repo: "readest",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -50,7 +44,7 @@ export default nix.lambda((args) => (() => {
       sourceRoot: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "name")}/apps/readest-app`),
       pnpmRoot: "../..",
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -105,10 +99,10 @@ jq '.scripts.build = "true"' \\
       ]),
       preBuild: "# set up pdfjs and simplecc\npnpm setup-vendors\n\n# `tauri-plugin-turso` expects frontend files to exist before the build, else it fails with:\n#\n# > > tauri-plugin-turso-api@0.1.0 build /build/source/apps/readest-app/src-tauri/plugins/tauri-plugin-turso\n# > > true\n# >\n# >   Error Unable to find your web assets, did you forget to build your web app?\n#     Your frontendDist is set to \"../out\" (which is `/build/source/apps/readest-app/out`).\npnpm --filter @readest/readest-app build\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tursoPluginDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             pname: "tauri-plugin-turso",
             version: nix.thunk(() => nix.sel(finalAttrs, "version")),
             src: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src")}/apps/readest-app/src-tauri/plugins/tauri-plugin-turso`),
@@ -117,7 +111,7 @@ jq '.scripts.build = "true"' \\
             hash: "sha256-quVUYsT3u4UBhuJ75QQ4SEuW8MhGQ0vGhtwtUj/eKHs=",
           })))),
         tursoPlugin: nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             pname: "tauri-plugin-turso",
             version: nix.thunk(() => nix.sel(finalAttrs, "version")),
             src: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src")}/apps/readest-app/src-tauri/plugins/tauri-plugin-turso`),
@@ -128,7 +122,7 @@ jq '.scripts.build = "true"' \\
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Modern, feature-rich ebook reader",
         homepage: "https://github.com/readest/readest",
         changelog: nix.thunk(() => nix.str`https://github.com/readest/readest/releases/tag/v${nix.sel(finalAttrs, "version")}`),

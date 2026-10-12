@@ -2,18 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 100, 5], ["hash", 101, 5]], [["coreutils", 127, 9], ["gettext", 128, 9], ["gtk3", 129, 9], ["socat", 130, 9], ["dfu", 132, 7], ["hicolorIconTheme", 133, 7], ["smi", 134, 7]], [["p11kit", 141, 7]], [["storeDir", 272, 26]], [["package", 278, 50]], [["package", 288, 39]], [["cross-aarch64", 276, 7], ["pkg-config", 278, 7], ["validate-icon", 280, 7], ["version", 288, 7]], [["extraArgs", 291, 40]], [["icon-validator-patch", 271, 5], ["tests", 275, 5], ["updateScript", 291, 5]], [["description", 295, 5], ["homepage", 296, 5], ["changelog", 297, 5], ["license", 298, 5], ["maintainers", 299, 5], ["mainProgram", 300, 5], ["platforms", 301, 5], ["pkgConfigModules", 302, 5]], [["pname", 82, 3], ["version", 83, 3], ["outputs", 86, 3], ["src", 99, 3], ["patches", 104, 3], ["postPatch", 148, 3], ["postInstall", 160, 3], ["strictDeps", 181, 3], ["depsBuildBuild", 183, 3], ["nativeBuildInputs", 185, 3], ["buildInputs", 206, 3], ["propagatedBuildInputs", 232, 3], ["mesonFlags", 237, 3], ["nativeCheckInputs", 259, 3], ["doCheck", 266, 3], ["separateDebugInfo", 268, 3], ["passthru", 270, 3], ["meta", 294, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, pkgsCross: false, appstream: false, bison: false, bubblewrap: false, buildPackages: false, bzip2: false, coreutils: false, curl: false, dconf: false, "desktop-file-utils": false, "docbook-xsl-nons": false, docbook_xml_dtd_45: false, fetchurl: false, fuse3: false, "gdk-pixbuf": false, gettext: false, glib: false, "glib-networking": false, "gobject-introspection": false, gpgme: false, "gsettings-desktop-schemas": false, "gtk-doc": false, gtk3: false, "hicolor-icon-theme": false, "json-glib": false, libarchive: false, libcap: false, librsvg: false, libseccomp: false, libxml2: false, libxslt: false, malcontent: false, meson: false, ninja: false, "nix-update-script": false, "nixos-icons": false, ostree: false, "p11-kit": false, "pkg-config": false, polkit: false, python3: false, runCommand: false, "shared-mime-info": false, socat: false, replaceVars: false, systemdLibs: false, testers: false, valgrind: false, validatePkgConfig: false, wayland: false, "wayland-protocols": false, "wayland-scanner": false, wrapGAppsNoGuiHook: false, "xdg-dbus-proxy": false, xmlto: false, libxau: false, zstd: false, withAutoSideloading: true, withDconf: true, withDocbookDocs: true, withGlibNetworking: true, withGtkDoc: true, withIntrospection: true, withMalcontent: true, withMan: true, withP11Kit: true, withPolkit: true, withSELinuxModule: true, withSystemd: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 100, 5], ["hash", 101, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["coreutils", 127, 9], ["gettext", 128, 9], ["gtk3", 129, 9], ["socat", 130, 9], ["dfu", 132, 7], ["hicolorIconTheme", 133, 7], ["smi", 134, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["p11kit", 141, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["storeDir", 272, 26]]);
-const pos$5 = nix.positions(here + "/package.nix", [["package", 278, 50]]);
-const pos$6 = nix.positions(here + "/package.nix", [["package", 288, 39]]);
-const pos$7 = nix.positions(here + "/package.nix", [["cross-aarch64", 276, 7], ["pkg-config", 278, 7], ["validate-icon", 280, 7], ["version", 288, 7]]);
-const pos$8 = nix.positions(here + "/package.nix", [["extraArgs", 291, 40]]);
-const pos$9 = nix.positions(here + "/package.nix", [["icon-validator-patch", 271, 5], ["tests", 275, 5], ["updateScript", 291, 5]]);
-const pos$10 = nix.positions(here + "/package.nix", [["description", 295, 5], ["homepage", 296, 5], ["changelog", 297, 5], ["license", 298, 5], ["maintainers", 299, 5], ["mainProgram", 300, 5], ["platforms", 301, 5], ["pkgConfigModules", 302, 5]]);
-const pos$11 = nix.positions(here + "/package.nix", [["pname", 82, 3], ["version", 83, 3], ["outputs", 86, 3], ["src", 99, 3], ["patches", 104, 3], ["postPatch", 148, 3], ["postInstall", 160, 3], ["strictDeps", 181, 3], ["depsBuildBuild", 183, 3], ["nativeBuildInputs", 185, 3], ["buildInputs", 206, 3], ["propagatedBuildInputs", 232, 3], ["mesonFlags", 237, 3], ["nativeCheckInputs", 259, 3], ["doCheck", 266, 3], ["separateDebugInfo", 268, 3], ["passthru", 270, 3], ["meta", 294, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -89,12 +79,12 @@ export default nix.lambda((args) => (() => {
   const withSELinuxModule = nix.argOr($, "withSELinuxModule", () => false);
   const withSystemd = nix.argOr($, "withSystemd", () => nix.app(nix.sel(lib, "meta", "availableOn"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")), systemdLibs));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$11,
+      [nix.POS]: $pos[10],
       pname: "flatpak",
       version: "1.18.4",
       outputs: nix.thunk(() => nix.concat(["out", "dev"], nix.concat(nix.app(nix.sel(lib, "optionals"), withDocbookDocs, nix.thunk(() => ["doc"])), nix.concat(nix.app(nix.sel(lib, "optionals"), withGtkDoc, nix.thunk(() => ["devdoc"])), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(finalAttrs, "doCheck")), "installedTests"), nix.app(nix.sel(lib, "optional"), withMan, "man")))))),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/flatpak/flatpak/releases/download/${nix.sel(finalAttrs, "version")}/flatpak-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-uJmnoAxI0sYmy47DP+VWcgs3bCWAXXIiQwwP3KTGrI0=",
         })))),
@@ -105,7 +95,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.sel(finalAttrs, "passthru", "icon-validator-patch")),
       ], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage", "doCheck")), nix.thunk(() => [
           nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix-test-paths.patch"), nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               coreutils: coreutils,
               gettext: gettext,
               gtk3: gtk3,
@@ -116,7 +106,7 @@ export default nix.lambda((args) => (() => {
             })))),
         ])), nix.app(nix.sel(lib, "optionals"), withP11Kit, nix.thunk(() => [
           nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix-paths.patch"), nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               p11kit: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), p11_kit)),
             })))),
         ]))))),
@@ -185,16 +175,16 @@ wrapProgram $out/share/flatpak/triggers/mime-database.trigger --prefix PATH : ${
       doCheck: false,
       separateDebugInfo: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         "icon-validator-patch": nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix-icon-validation.patch"), nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             storeDir: nix.thunk(() => nix.attr(nix.builtins, "storeDir")),
           })))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           "cross-aarch64": nix.thunk(() => nix.sel(pkgsCross, "aarch64-multiplatform", "flatpak")),
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "hasPkgConfigModules"), nix.thunk(() => ({
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
           "validate-icon": nix.thunk(() => nix.app(runCommand, "test-icon-validation", nix.thunk(() => ({})), nix.thunk(() => nix.str`${nix.sel(finalAttrs, "finalPackage")}/libexec/flatpak-validate-icon \\
@@ -204,14 +194,14 @@ wrapProgram $out/share/flatpak/triggers/mime-database.trigger --prefix PATH : ${
 grep format=png "$out"
 `))),
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$6,
+              [nix.POS]: $pos[5],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         })),
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$8, extraArgs: nix.thunk(() => ["--use-github-releases"]) })))),
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: $pos[7], extraArgs: nix.thunk(() => ["--use-github-releases"]) })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         description: "Linux application sandboxing and distribution framework",
         homepage: "https://flatpak.org/",
         changelog: nix.thunk(() => nix.str`https://github.com/flatpak/flatpak/releases/tag/${nix.sel(finalAttrs, "version")}`),

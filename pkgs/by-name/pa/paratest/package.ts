@@ -2,12 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 7], ["repo", 15, 7], ["tag", 16, 7], ["hash", 17, 7]], [["updateScript", 23, 14]], [["changelog", 31, 7], ["description", 32, 7], ["homepage", 33, 7], ["license", 34, 7], ["mainProgram", 35, 7], ["maintainers", 36, 7]], [["pname", 10, 5], ["version", 11, 5], ["src", 13, 5], ["composerLock", 20, 5], ["vendorHash", 21, 5], ["passthru", 23, 5], ["nativeInstallCheckInputs", 25, 5], ["doInstallCheck", 28, 5], ["meta", 30, 5]]]);
 const formals$1 = { args: { php: false, fetchFromGitHub: false, lib: false, versionCheckHook: false }, ellipsis: false };
 const formals$2 = { args: { enabled: false, all: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 7], ["repo", 15, 7], ["tag", 16, 7], ["hash", 17, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 23, 14]]);
-const pos$3 = nix.positions(here + "/package.nix", [["changelog", 31, 7], ["description", 32, 7], ["homepage", 33, 7], ["license", 34, 7], ["mainProgram", 35, 7], ["maintainers", 36, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 10, 5], ["version", 11, 5], ["src", 13, 5], ["composerLock", 20, 5], ["vendorHash", 21, 5], ["passthru", 23, 5], ["nativeInstallCheckInputs", 25, 5], ["doInstallCheck", 28, 5], ["meta", 30, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +18,11 @@ export default nix.lambda((args) => (() => {
       const all = nix.arg($_1, "all");
       return nix.concat(enabled, [nix.thunk(() => nix.sel(all, "pcov"))]);
     })(), formals$2)), "buildComposerProject2"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "paratest",
       version: "7.26.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "paratestphp",
           repo: "paratest",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -33,11 +30,11 @@ export default nix.lambda((args) => (() => {
         })))),
       composerLock: nix.path(here, "./composer.lock"),
       vendorHash: "sha256-sl2pdV5ABqLY5nu8JCE5pfOUatBHA4yjhCy82K6VL28=",
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[1], updateScript: nix.path(here, "./update.sh") })),
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         changelog: nix.thunk(() => nix.str`https://github.com/paratestphp/paratest/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "Parallel testing for PHPUnit",
         homepage: "https://github.com/paratestphp/paratest",

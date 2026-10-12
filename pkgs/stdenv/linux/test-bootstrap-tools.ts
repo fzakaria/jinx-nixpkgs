@@ -2,8 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/test-bootstrap-tools.nix", [[["name", 11, 3], ["system", 12, 33], ["builder", 13, 3], ["args", 14, 3], ["buildCommand", 21, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, binutils: false, busybox: false, bootstrapTools: false, hello: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/test-bootstrap-tools.nix", [["name", 11, 3], ["system", 12, 33], ["builder", 13, 3], ["args", 14, 3], ["buildCommand", 21, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
   return nix.app(nix.builtins.derivation, nix.thunk(() => (() => {
       const from = nix.thunk(() => nix.sel(stdenv, "hostPlatform"));
       return {
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: "test-bootstrap-tools",
       system: nix.thunk(() => nix.attr(from, "system")),
       builder: busybox,

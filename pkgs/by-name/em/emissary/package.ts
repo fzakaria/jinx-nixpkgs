@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]], [["changelog", 33, 5], ["description", 34, 5], ["homepage", 35, 5], ["license", 36, 5], ["mainProgram", 37, 5], ["maintainers", 38, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["cargoHash", 19, 3], ["nativeBuildInputs", 21, 3], ["buildInputs", 25, 3], ["__darwinAllowLocalNetworking", 30, 3], ["meta", 32, 3]]]);
 const formals$1 = { args: { rustPlatform: false, fetchFromGitHub: false, lib: false, "pkg-config": false, openssl: false, fontconfig: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["changelog", 33, 5], ["description", 34, 5], ["homepage", 35, 5], ["license", 36, 5], ["mainProgram", 37, 5], ["maintainers", 38, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["cargoHash", 19, 3], ["nativeBuildInputs", 21, 3], ["buildInputs", 25, 3], ["__darwinAllowLocalNetworking", 30, 3], ["meta", 32, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const openssl = nix.arg($, "openssl");
   const fontconfig = nix.arg($, "fontconfig");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "emissary",
       version: "0.3.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "eepnet",
           repo: "emissary",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -31,7 +29,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [openssl, fontconfig]),
       __darwinAllowLocalNetworking: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         changelog: nix.thunk(() => nix.str`https://github.com/eepnet/emissary/releases/tag/${nix.sel(finalAttrs, "version")}`),
         description: "Rust implementation of the I2P protocol stack",
         homepage: "https://altonen.github.io/emissary/",

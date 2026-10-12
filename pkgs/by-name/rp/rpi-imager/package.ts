@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]], [["LANG", 110, 7]], [["package", 114, 7], ["command", 115, 7], ["version", 116, 7]], [["version", 113, 11]], [["tests", 113, 5], ["updateScript", 118, 5]], [["description", 122, 5], ["homepage", 123, 5], ["changelog", 124, 5], ["license", 125, 5], ["mainProgram", 126, 5], ["maintainers", 127, 5], ["platforms", 131, 5], ["badPlatforms", 133, 5]], [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["patches", 35, 3], ["postPatch", 37, 3], ["preConfigure", 45, 3], ["nativeBuildInputs", 49, 3], ["buildInputs", 71, 3], ["cmakeFlags", 89, 3], ["qtWrapperArgs", 99, 3], ["dontWrapGApps", 104, 3], ["preFixup", 106, 3], ["env", 110, 3], ["passthru", 112, 3], ["meta", 121, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, cmake: false, curl: false, fetchFromGitHub: false, gnutls: false, libarchive: false, libtasn1: false, libusb1: false, liburing: false, "nix-update-script": false, "pkg-config": false, qt6: false, testers: false, wrapGAppsHook4: false, writeShellScriptBin: false, xz: false, zstd: false, enableTelemetry: true, enableUring: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["LANG", 110, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["package", 114, 7], ["command", 115, 7], ["version", 116, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["version", 113, 11]]);
-const pos$5 = nix.positions(here + "/package.nix", [["tests", 113, 5], ["updateScript", 118, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 122, 5], ["homepage", 123, 5], ["changelog", 124, 5], ["license", 125, 5], ["mainProgram", 126, 5], ["maintainers", 127, 5], ["platforms", 131, 5], ["badPlatforms", 133, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["patches", 35, 3], ["postPatch", 37, 3], ["preConfigure", 45, 3], ["nativeBuildInputs", 49, 3], ["buildInputs", 71, 3], ["cmakeFlags", 89, 3], ["qtWrapperArgs", 99, 3], ["dontWrapGApps", 104, 3], ["preFixup", 106, 3], ["env", 110, 3], ["passthru", 112, 3], ["meta", 121, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,11 +28,11 @@ export default nix.lambda((args) => (() => {
   const enableTelemetry = nix.argOr($, "enableTelemetry", () => false);
   const enableUring = nix.argOr($, "enableUring", () => nix.sel(stdenv, "hostPlatform", "isLinux"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "rpi-imager",
       version: "2.0.11.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "raspberrypi",
           repo: "rpi-imager",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -83,13 +77,13 @@ export default nix.lambda((args) => (() => {
       qtWrapperArgs: nix.thunk(() => ["--unset QT_QPA_PLATFORMTHEME", "--unset QT_STYLE_OVERRIDE"]),
       dontWrapGApps: true,
       preFixup: "qtWrapperArgs+=(\"${gappsWrapperArgs[@]}\")\n",
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, LANG: "C.UTF-8" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], LANG: "C.UTF-8" })),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               command: "QT_QPA_PLATFORM=offscreen rpi-imager --version",
               version: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -98,7 +92,7 @@ export default nix.lambda((args) => (() => {
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Raspberry Pi Imaging Utility",
         homepage: "https://github.com/raspberrypi/rpi-imager/",
         changelog: nix.thunk(() => nix.str`https://github.com/raspberrypi/rpi-imager/releases/tag/v${nix.sel(finalAttrs, "version")}`),

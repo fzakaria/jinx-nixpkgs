@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 18, 5], ["hash", 19, 5]], [["url", 23, 5], ["hash", 24, 5]], [["X-GNOME-SingleWindow", 67, 19]], [["name", 53, 7], ["comment", 54, 7], ["desktopName", 55, 7], ["categories", 56, 7], ["exec", 60, 7], ["icon", 61, 7], ["keywords", 62, 7], ["extraConfig", 67, 7]], [["updateScript", 71, 12]], [["description", 74, 5], ["mainProgram", 75, 5], ["homepage", 76, 5], ["license", 77, 5], ["maintainers", 78, 5], ["platforms", 82, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["icon", 22, 3], ["dontUnpack", 27, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 35, 3], ["dontBuild", 37, 3], ["installPhase", 39, 3], ["desktopItems", 51, 3], ["passthru", 71, 3], ["meta", 73, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, makeWrapper: false, mono: false, imagemagick: false, copyDesktopItems: false, makeDesktopItem: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 23, 5], ["hash", 24, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["X-GNOME-SingleWindow", 67, 19]]);
-const pos$4 = nix.positions(here + "/package.nix", [["name", 53, 7], ["comment", 54, 7], ["desktopName", 55, 7], ["categories", 56, 7], ["exec", 60, 7], ["icon", 61, 7], ["keywords", 62, 7], ["extraConfig", 67, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["updateScript", 71, 12]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 74, 5], ["mainProgram", 75, 5], ["homepage", 76, 5], ["license", 77, 5], ["maintainers", 78, 5], ["platforms", 82, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["icon", 22, 3], ["dontUnpack", 27, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 35, 3], ["dontBuild", 37, 3], ["installPhase", 39, 3], ["desktopItems", 51, 3], ["passthru", 71, 3], ["meta", 73, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,12 +20,12 @@ export default nix.lambda((args) => (() => {
       const pname = "ckan";
       const version = "1.36.4";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/KSP-CKAN/CKAN/releases/download/v${version}/ckan.exe`),
           hash: "sha256-d0gILN/PLbtfUCJhsYr8hQAxk4lMYEJ9BLCseo3+994=",
         }))));
       const icon = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: "https://raw.githubusercontent.com/KSP-CKAN/CKAN/450e2f960e1a3fee4ab7cf74ad56bddc5296fc7e/assets/ckan-256.png",
           hash: "sha256-BJvuOz8NWmzpYzzhveeq6rcuqXIxQqxtBIcRvobx+TY=",
         }))));
@@ -51,7 +45,7 @@ runHook postInstall
 `);
       const desktopItems = nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             name: "ckan",
             comment: "The Comprehensive Kerbal Archive Network Client",
             desktopName: "CKAN",
@@ -59,15 +53,15 @@ runHook postInstall
             exec: "ckan",
             icon: "ckan",
             keywords: nix.thunk(() => ["Kerbal Space Program", "KSP", "Mod"]),
-            extraConfig: nix.thunk(() => ({ [nix.POS]: pos$3, "X-GNOME-SingleWindow": "true" })),
+            extraConfig: nix.thunk(() => ({ [nix.POS]: $pos[2], "X-GNOME-SingleWindow": "true" })),
           })))),
       ]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Mod manager for Kerbal Space Program",
         mainProgram: "ckan",
         homepage: "https://github.com/KSP-CKAN/CKAN",
@@ -82,7 +76,7 @@ runHook postInstall
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
       return {
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         pname,
         version,
         src,

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/core.nix", [[["owner", 41, 5], ["repo", 42, 5], ["tag", 43, 5], ["hash", 44, 5]], [["changelog", 106, 5], ["description", 107, 5], ["homepage", 108, 5], ["license", 109, 5], ["maintainers", 110, 5]], [["pname", 34, 3], ["version", 35, 3], ["pyproject", 36, 3], ["disabled", 38, 3], ["src", 40, 3], ["postPatch", 47, 3], ["nativeBuildInputs", 58, 3], ["build-system", 63, 3], ["dependencies", 65, 3], ["pythonRelaxDeps", 90, 3], ["postInstall", 92, 3], ["postFixup", 98, 3], ["doCheck", 103, 3], ["meta", 105, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, python: false, pythonOlder: false, installShellFiles: false, docutils: false, setuptools: false, ansible: false, cryptography: false, jinja2: false, "junit-xml": false, lxml: false, ncclient: false, packaging: false, paramiko: false, "ansible-pylibssh": false, pexpect: false, psutil: false, pycrypto: false, pyyaml: false, requests: false, resolvelib: false, scp: false, windowsSupport: true, pywinrm: false, xmltodict: false, extraPackages: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/core.nix", [["owner", 41, 5], ["repo", 42, 5], ["tag", 43, 5], ["hash", 44, 5]]);
-const pos$2 = nix.positions(here + "/core.nix", [["changelog", 106, 5], ["description", 107, 5], ["homepage", 108, 5], ["license", 109, 5], ["maintainers", 110, 5]]);
-const pos$3 = nix.positions(here + "/core.nix", [["pname", 34, 3], ["version", 35, 3], ["pyproject", 36, 3], ["disabled", 38, 3], ["src", 40, 3], ["postPatch", 47, 3], ["nativeBuildInputs", 58, 3], ["build-system", 63, 3], ["dependencies", 65, 3], ["pythonRelaxDeps", 90, 3], ["postInstall", 92, 3], ["postFixup", 98, 3], ["doCheck", 103, 3], ["meta", 105, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -38,13 +36,13 @@ export default nix.lambda((args) => (() => {
   const xmltodict = nix.arg($, "xmltodict");
   const extraPackages = nix.argOr($, "extraPackages", () => (_) => []);
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "ansible-core",
       version: "2.21.4",
       pyproject: true,
       disabled: nix.thunk(() => nix.app(pythonOlder, "3.12")),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ansible",
           repo: "ansible",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -78,7 +76,7 @@ export default nix.lambda((args) => (() => {
 `),
       doCheck: false,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         changelog: nix.thunk(() => nix.str`https://github.com/ansible/ansible/blob/v${nix.sel(finalAttrs, "version")}/changelogs/CHANGELOG-v${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}.rst`),
         description: "Radically simple IT automation",
         homepage: "https://www.ansible.com",

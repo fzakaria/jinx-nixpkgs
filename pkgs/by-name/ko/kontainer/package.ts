@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]], [["updateScript", 51, 12]], [["description", 54, 5], ["longDescription", 55, 5], ["homepage", 66, 5], ["changelog", 67, 5], ["mainProgram", 68, 5], ["license", 69, 5], ["maintainers", 70, 5], ["platforms", 74, 5]], [["pname", 13, 3], ["version", 14, 3], ["strictDeps", 16, 3], ["src", 18, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 34, 3], ["qtWrapperArgs", 49, 3], ["passthru", 51, 3], ["meta", 53, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, ninja: false, kdePackages: false, "nix-update-script": false, git: false, distrobox: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 51, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 54, 5], ["longDescription", 55, 5], ["homepage", 66, 5], ["changelog", 67, 5], ["mainProgram", 68, 5], ["license", 69, 5], ["maintainers", 70, 5], ["platforms", 74, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["strictDeps", 16, 3], ["src", 18, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 34, 3], ["qtWrapperArgs", 49, 3], ["passthru", 51, 3], ["meta", 53, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const git = nix.arg($, "git");
   const distrobox = nix.arg($, "distrobox");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "kontainer",
       version: "1.6.2",
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "DenysMb",
           repo: "Kontainer",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -56,11 +53,11 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`--prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [distrobox]))}`),
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Graphical management application for Distrobox containers",
         longDescription: "Kontainer is a graphical user interface (GUI) application built with KDE Kirigami that provides a user-friendly way to manage Distrobox containers.\n\n*Container Management*: Create new containers from various Linux distributions, delete existing containers, upgrade containers and list and view all containers.\n\n*Terminal Integration*: Open terminal sessions inside containers using the system default terminal emulator and execute commands within containers.\n\n*Package Management*: Install package files inside containers and automatic detection of appropriate package managers based on container distribution.\n\n*Desktop Integration*: Generate desktop shortcuts for containers, full integration with the host system through Distrobox and color-coded container listing based on distribution.\n",
         homepage: "https://github.com/DenysMb/Kontainer",

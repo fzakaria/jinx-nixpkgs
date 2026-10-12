@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]], [["package", 48, 50]], [["version", 48, 18]], [["tests", 48, 12]], [["homepage", 51, 5], ["changelog", 52, 5], ["description", 53, 5], ["license", 54, 5], ["maintainers", 55, 5], ["mainProgram", 59, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["vendorHash", 21, 3], ["subPackages", 23, 3], ["nativeBuildInputs", 28, 3], ["nativeCheckInputs", 29, 3], ["ldflags", 31, 3], ["preCheck", 37, 3], ["postInstall", 42, 3], ["passthru", 48, 3], ["meta", 50, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitHub: false, makeWrapper: false, gitMinimal: false, testers: false, gitsign: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["package", 48, 50]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 48, 18]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 48, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["homepage", 51, 5], ["changelog", 52, 5], ["description", 53, 5], ["license", 54, 5], ["maintainers", 55, 5], ["mainProgram", 59, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["vendorHash", 21, 3], ["subPackages", 23, 3], ["nativeBuildInputs", 28, 3], ["nativeCheckInputs", 29, 3], ["ldflags", 31, 3], ["preCheck", 37, 3], ["postInstall", 42, 3], ["passthru", 48, 3], ["meta", 50, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const gitsign = nix.arg($, "gitsign");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "gitsign",
       version: "0.17.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "sigstore",
           repo: "gitsign",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -45,14 +40,14 @@ export default nix.lambda((args) => (() => {
 done
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$2, package: gitsign })))),
+          [nix.POS]: $pos[2],
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: $pos[1], package: gitsign })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "https://github.com/sigstore/gitsign",
         changelog: nix.thunk(() => nix.str`https://github.com/sigstore/gitsign/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "Keyless Git signing using Sigstore",

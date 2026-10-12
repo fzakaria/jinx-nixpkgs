@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/generator.nix", [[["pname", 9, 3], ["version", 10, 11], ["dontUnpack", 12, 3], ["nativeBuildInputs", 14, 3], ["propagatedBuildInputs", 16, 3], ["installPhase", 21, 3]]]);
 const formals$1 = { args: { python3: false, stdenvNoCC: false, protobuf: false, version: false, "generator-out": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/generator.nix", [["pname", 9, 3], ["version", 10, 11], ["dontUnpack", 12, 3], ["nativeBuildInputs", 14, 3], ["propagatedBuildInputs", 16, 3], ["installPhase", 21, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const version = nix.arg($, "version");
   const generator_out = nix.arg($, "generator-out");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       pname: "nanopb-generator",
       version: version,
       dontUnpack: true,

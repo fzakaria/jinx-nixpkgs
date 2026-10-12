@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 78, 5], ["repo", 79, 5], ["tag", 80, 5], ["hash", 81, 5]], [["BUILD_TESTING", 179, 7], ["CHANNEL_RDPEWA", 180, 7], ["CHANNEL_RDPEWA_CLIENT", 181, 7], ["WITH_CAIRO", 182, 7], ["WITH_CUPS", 183, 7], ["WITH_FAAC", 184, 7], ["WITH_FAAD2", 185, 7], ["WITH_FUSE", 186, 7], ["WITH_JPEG", 187, 7], ["WITH_KRB5", 188, 7], ["WITH_OPENH264", 189, 7], ["WITH_OPUS", 190, 7], ["WITH_OSS", 191, 7], ["WITH_MANPAGES", 192, 7], ["WITH_PCSC", 193, 7], ["WITH_PULSE", 194, 7], ["WITH_SERVER", 195, 7], ["WITH_WEBVIEW", 196, 7], ["WITH_VAAPI", 197, 7]], [["WITH_X11", 201, 7], ["WITH_WAYLAND", 202, 7]], [["NIX_CFLAGS_COMPILE", 209, 7]], [["gnome-remote-desktop", 225, 15], ["remmina", 225, 36]], [["tests", 224, 5], ["updateScript", 227, 5]], [["description", 231, 5], ["longDescription", 232, 5], ["changelog", 236, 5], ["homepage", 237, 5], ["license", 238, 5], ["maintainers", 239, 5], ["platforms", 243, 5]], [["pname", 74, 3], ["version", 75, 3], ["src", 77, 3], ["postPatch", 84, 3], ["nativeBuildInputs", 104, 3], ["buildInputs", 114, 3], ["cmakeFlags", 172, 3], ["env", 209, 3], ["postFixup", 218, 3], ["passthru", 223, 3], ["meta", 230, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, cmake: false, writableTmpDirAsHomeHook: false, "docbook-xsl-nons": false, libxslt: false, "pkg-config": false, "alsa-lib": false, faac: false, faad2: false, ffmpeg: false, fuse3: false, glib: false, openh264: false, openssl: false, pcre2: false, pkcs11helper: false, uriparser: false, zlib: false, libx11: false, libxcursor: false, libxdamage: false, libxdmcp: false, libxext: false, libxi: false, libxinerama: false, libxrandr: false, libxrender: false, libxtst: false, libxv: false, libxkbcommon: false, libxkbfile: false, wayland: false, "wayland-scanner": false, icu: false, libunwind: false, orc: false, cairo: false, cjson: false, libcbor: false, libfido2: false, libusb1: false, libpulseaudio: false, cups: false, pcsclite: false, SDL2: false, SDL2_ttf: false, SDL2_image: false, sdl3: false, "sdl3-ttf": false, "sdl3-image": false, systemd: false, libjpeg_turbo: false, libkrb5: false, libopus: false, buildServer: true, nocaps: true, withUnfree: true, withWaylandSupport: true, withSDL2: true, makeWrapper: false, withManPages: true, "gnome-remote-desktop": false, remmina: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 78, 5], ["repo", 79, 5], ["tag", 80, 5], ["hash", 81, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["BUILD_TESTING", 179, 7], ["CHANNEL_RDPEWA", 180, 7], ["CHANNEL_RDPEWA_CLIENT", 181, 7], ["WITH_CAIRO", 182, 7], ["WITH_CUPS", 183, 7], ["WITH_FAAC", 184, 7], ["WITH_FAAD2", 185, 7], ["WITH_FUSE", 186, 7], ["WITH_JPEG", 187, 7], ["WITH_KRB5", 188, 7], ["WITH_OPENH264", 189, 7], ["WITH_OPUS", 190, 7], ["WITH_OSS", 191, 7], ["WITH_MANPAGES", 192, 7], ["WITH_PCSC", 193, 7], ["WITH_PULSE", 194, 7], ["WITH_SERVER", 195, 7], ["WITH_WEBVIEW", 196, 7], ["WITH_VAAPI", 197, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["WITH_X11", 201, 7], ["WITH_WAYLAND", 202, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 209, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["gnome-remote-desktop", 225, 15], ["remmina", 225, 36]]);
-const pos$6 = nix.positions(here + "/package.nix", [["tests", 224, 5], ["updateScript", 227, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["description", 231, 5], ["longDescription", 232, 5], ["changelog", 236, 5], ["homepage", 237, 5], ["license", 238, 5], ["maintainers", 239, 5], ["platforms", 243, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 74, 3], ["version", 75, 3], ["src", 77, 3], ["postPatch", 84, 3], ["nativeBuildInputs", 104, 3], ["buildInputs", 114, 3], ["cmakeFlags", 172, 3], ["env", 209, 3], ["postFixup", 218, 3], ["passthru", 223, 3], ["meta", 230, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -81,11 +74,11 @@ export default nix.lambda((args) => (() => {
   const remmina = nix.arg($, "remmina");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "freerdp",
       version: "3.32.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "FreeRDP",
           repo: "FreeRDP",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -149,7 +142,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeFeature"), "CMAKE_INSTALL_LIBDIR", "lib")),
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeFeature"), "DOCBOOKXSL_DIR", nix.thunk(() => nix.str`${docbook_xsl_nons}/xml/xsl/docbook`))),
       ], nix.concat(nix.app(nix.sel(lib, "mapAttrsToList"), nix.thunk(() => nix.sel(lib, "cmakeBool")), nix.thunk(() => nix.update({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           BUILD_TESTING: false,
           CHANNEL_RDPEWA: true,
           CHANNEL_RDPEWA_CLIENT: true,
@@ -170,28 +163,28 @@ export default nix.lambda((args) => (() => {
           WITH_WEBVIEW: false,
           WITH_VAAPI: false,
         }, nix.app(nix.sel(lib, "filterAttrs"), (name) => (value) => nix.force(value), nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             WITH_X11: nix.thunk(() => !nix.asBool(withWaylandSupport)),
             WITH_WAYLAND: withWaylandSupport,
           })))))), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform"))))), nix.thunk(() => [
           nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "SDL_USE_COMPILED_RESOURCES", false)),
         ]))))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["-include AudioToolbox/AudioToolbox.h"])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), nix.thunk(() => ["-Wno-error=incompatible-function-pointer-types"])))))),
       })),
       postFixup: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool(withWaylandSupport) && nix.asBool(withSDL2))), "wrapProgram $out/bin/sdl2-freerdp \\\n  --set SDL_VIDEODRIVER wayland\n")),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           "gnome-remote-desktop": gnome_remote_desktop,
           remmina: remmina,
         })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "Remote Desktop Protocol Client",
         longDescription: "FreeRDP is a client-side implementation of the Remote Desktop Protocol (RDP)\nfollowing the Microsoft Open Specifications.\n",
         changelog: nix.thunk(() => nix.str`https://github.com/FreeRDP/FreeRDP/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

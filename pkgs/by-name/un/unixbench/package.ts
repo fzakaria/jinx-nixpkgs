@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]], [["NIX_CFLAGS_COMPILE", 83, 7]], [["description", 115, 5], ["homepage", 116, 5], ["license", 117, 5], ["mainProgram", 118, 5], ["maintainers", 119, 5], ["platforms", 120, 5]], [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["patches", 33, 3], ["patchFlags", 37, 3], ["sourceRoot", 39, 3], ["postPatch", 41, 3], ["nativeBuildInputs", 49, 3], ["buildInputs", 55, 3], ["runtimeDependencies", 64, 3], ["makeFlags", 76, 3], ["env", 83, 3], ["installPhase", 85, 3], ["postInstall", 94, 3], ["preFixup", 103, 3], ["meta", 114, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, makeWrapper: false, pandoc: false, installShellFiles: false, perl: false, libxext: false, libx11: false, x11perf: false, libGLX: false, coreutils: false, unixtools: false, runtimeShell: false, targetPackages: false, gnugrep: false, gawk: false, withGL: true, withX11perf: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 83, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 115, 5], ["homepage", 116, 5], ["license", 117, 5], ["mainProgram", 118, 5], ["maintainers", 119, 5], ["platforms", 120, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["patches", 33, 3], ["patchFlags", 37, 3], ["sourceRoot", 39, 3], ["postPatch", 41, 3], ["nativeBuildInputs", 49, 3], ["buildInputs", 55, 3], ["runtimeDependencies", 64, 3], ["makeFlags", 76, 3], ["env", 83, 3], ["installPhase", 85, 3], ["postInstall", 94, 3], ["preFixup", 103, 3], ["meta", 114, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,11 +27,11 @@ export default nix.lambda((args) => (() => {
   const withGL = nix.argOr($, "withGL", () => true);
   const withX11perf = nix.argOr($, "withX11perf", () => true);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "unixbench",
       version: "6.0.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "kdlucas",
           repo: "byte-unixbench",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -60,7 +57,7 @@ substituteInPlace src/syscall.c \\
         gawk,
       ], nix.app(nix.sel(lib, "optionals"), withX11perf, nix.thunk(() => [x11perf])))),
       makeFlags: nix.thunk(() => nix.concat([nix.thunk(() => nix.str`CC=${nix.sel(stdenv, "cc", "targetPrefix")}cc`)], nix.app(nix.sel(lib, "optionals"), withGL, nix.thunk(() => ["GRAPHIC_TESTS=defined"])))),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-std=gnu89" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], NIX_CFLAGS_COMPILE: "-std=gnu89" })),
       installPhase: "runHook preInstall\nmkdir -p $out/{bin,libexec,share}\ninstall -D Run $out/bin/ubench\ncp -r pgms $out/libexec/\ncp -r testdir $out/share/\nrunHook postInstall\n",
       postInstall: "substituteInPlace USAGE \\\n  --replace-fail 'Run\"' 'ubench\"' \\\n  --replace-fail './Run' 'ubench' \\\n  --replace-fail 'Run ' 'ubench '\npandoc -f rst -t man USAGE -o ubench.1\ninstallManPage ubench.1\n",
       preFixup: nix.thunk(() => nix.str`substituteInPlace $out/libexec/pgms/multi.sh \\
@@ -73,7 +70,7 @@ wrapProgram $out/bin/ubench \\
   --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => nix.sel(finalAttrs, "runtimeDependencies")))}
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Basic indicator of the performance of a Unix-like system",
         homepage: "https://github.com/kdlucas/byte-unixbench",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/lwt.nix", [[["description", 21, 5]], [["pname", 9, 3], ["version", 10, 17], ["src", 10, 25], ["propagatedBuildInputs", 12, 3], ["doCheck", 18, 3], ["meta", 20, 3]]]);
 const formals$1 = { args: { buildDunePackage: false, logs: false, lwt: false, pgx: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/lwt.nix", [["description", 21, 5]]);
-const pos$2 = nix.positions(here + "/lwt.nix", [["pname", 9, 3], ["version", 10, 17], ["src", 10, 25], ["propagatedBuildInputs", 12, 3], ["doCheck", 18, 3], ["meta", 20, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,13 +12,13 @@ export default nix.lambda((args) => (() => {
   const lwt = nix.arg($, "lwt");
   const pgx = nix.arg($, "pgx");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "pgx_lwt",
       version: nix.thunk(() => nix.attr(pgx, "version")),
       src: nix.thunk(() => nix.attr(pgx, "src")),
       propagatedBuildInputs: nix.thunk(() => [logs, lwt, pgx]),
       doCheck: true,
-      meta: nix.thunk(() => nix.update(nix.sel(pgx, "meta"), { [nix.POS]: pos$1, description: "Pgx using Lwt for IO" })),
+      meta: nix.thunk(() => nix.update(nix.sel(pgx, "meta"), { [nix.POS]: $pos[0], description: "Pgx using Lwt for IO" })),
     }));
 })(), formals$1);
 //# sourceMappingURL=lwt.ts.map

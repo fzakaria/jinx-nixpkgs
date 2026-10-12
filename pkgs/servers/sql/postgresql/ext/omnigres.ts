@@ -2,14 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/omnigres.nix", [[["owner", 27, 5], ["repo", 28, 5], ["rev", 29, 5], ["hash", 30, 5]], [["finalPackage", 94, 26], ["sql", 95, 5]], [["extension", 93, 18]], [["hardcodeZeroVersion", 104, 5]], [["tests", 93, 12], ["updateScript", 103, 12]], [["description", 108, 5], ["homepage", 109, 5], ["maintainers", 110, 5], ["platforms", 111, 5], ["license", 112, 5], ["broken", 113, 5]], [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["postPatch", 33, 3], ["strictDeps", 58, 3], ["nativeBuildInputs", 60, 3], ["buildInputs", 70, 3], ["cmakeFlags", 74, 3], ["enableParallelBuilding", 81, 3], ["doCheck", 82, 3], ["preInstall", 84, 3], ["installTargets", 91, 3], ["passthru", 93, 3], ["meta", 107, 3]]]);
 const formals$1 = { args: { brotli: false, clang: false, cmake: false, fetchFromGitHub: false, flex: false, lib: false, netcat: false, perl: false, "pkg-config": false, postgresql: false, postgresqlBuildExtension: false, postgresqlTestExtension: false, python3: false, stdenv: false, unstableGitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/omnigres.nix", [["owner", 27, 5], ["repo", 28, 5], ["rev", 29, 5], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/omnigres.nix", [["finalPackage", 94, 26], ["sql", 95, 5]]);
-const pos$3 = nix.positions(here + "/omnigres.nix", [["extension", 93, 18]]);
-const pos$4 = nix.positions(here + "/omnigres.nix", [["hardcodeZeroVersion", 104, 5]]);
-const pos$5 = nix.positions(here + "/omnigres.nix", [["tests", 93, 12], ["updateScript", 103, 12]]);
-const pos$6 = nix.positions(here + "/omnigres.nix", [["description", 108, 5], ["homepage", 109, 5], ["maintainers", 110, 5], ["platforms", 111, 5], ["license", 112, 5], ["broken", 113, 5]]);
-const pos$7 = nix.positions(here + "/omnigres.nix", [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["postPatch", 33, 3], ["strictDeps", 58, 3], ["nativeBuildInputs", 60, 3], ["buildInputs", 70, 3], ["cmakeFlags", 74, 3], ["enableParallelBuilding", 81, 3], ["doCheck", 82, 3], ["preInstall", 84, 3], ["installTargets", 91, 3], ["passthru", 93, 3], ["meta", 107, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   const pgWithExtensions = nix.thunk(() => nix.app(nix.sel(postgresql, "withPackages"), (ps) => [nix.thunk(() => nix.sel(ps, "plpython3"))]));
   return nix.app(postgresqlBuildExtension, (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "omnigres",
       version: "0-unstable-2025-09-26",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "omnigres",
           repo: "omnigres",
           rev: "247383198a95d045df0d97ece5a81adffb5c08e8",
@@ -57,19 +51,19 @@ export default nix.lambda((args) => (() => {
       preInstall: "patchShebangs script_omni*\nmkdir -p $out/lib/\nmkdir -p $out/share/postgresql/extension/\n",
       installTargets: nix.thunk(() => ["install_extensions"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           extension: nix.thunk(() => nix.app(postgresqlTestExtension, nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               finalPackage: nix.thunk(() => nix.attr(finalAttrs, "finalPackage")),
               sql: "-- https://docs.omnigres.org/omni_id/identity_type/#usage\nCREATE EXTENSION omni_id;\n\nSELECT identity_type('user_id');\n",
             })))),
         })),
-        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: pos$4, hardcodeZeroVersion: true })))),
+        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[3], hardcodeZeroVersion: true })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Postgres as a Business Operating System",
         homepage: "https://docs.omnigres.org",
         maintainers: nix.thunk(() => (() => {

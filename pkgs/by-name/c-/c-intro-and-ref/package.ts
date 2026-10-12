@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 14, 5], ["hash", 15, 5]], [["description", 53, 5], ["longDescription", 54, 5], ["homepage", 60, 5], ["license", 61, 5], ["maintainers", 62, 5], ["platforms", 65, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 18, 3], ["postConfigure", 25, 3], ["buildFlags", 29, 3], ["postBuild", 35, 3], ["postInstall", 45, 3], ["meta", 52, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, autoreconfHook: false, texinfo: false, texliveBasic: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 14, 5], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 53, 5], ["longDescription", 54, 5], ["homepage", 60, 5], ["license", 61, 5], ["maintainers", 62, 5], ["platforms", 65, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 18, 3], ["postConfigure", 25, 3], ["buildFlags", 29, 3], ["postBuild", 35, 3], ["postInstall", 45, 3], ["meta", 52, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const texinfo = nix.arg($, "texinfo");
   const texliveBasic = nix.arg($, "texliveBasic");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "c-intro-and-ref",
       version: "0.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnu/${nix.sel(finalAttrs, "pname")}/${nix.sel(finalAttrs, "pname")}-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-45mtnlyz2RuYUk4Jza+lZGGBxezpiRS/v70xx1iKxEQ=",
         })))),
@@ -30,7 +28,7 @@ export default nix.lambda((args) => (() => {
       postBuild: "makeinfo --html --no-split c.texi -o c.htm\nmakeinfo --plaintext c.texi -o c.txt\n",
       postInstall: "install -Dm644 c.htm $out/share/doc/c-intro-and-ref/c.html\ninstall -Dm644 c.txt -t $out/share/doc/c-intro-and-ref/\ninstall -Dm644 c.html/* -t $out/share/doc/c-intro-and-ref/c.html.d/\ninstall -Dm644 c.dvi -t $out/share/doc/c-intro-and-ref/\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "GNU C Language Intro and Reference Manual",
         longDescription: "This manual explains the C language for use with the GNU Compiler\nCollection (GCC) on the GNU/Linux operating system and other systems. We\nrefer to this dialect as GNU C. If you already know C, you can use this as\na reference manual.\n",
         homepage: "https://www.gnu.org/software/c-intro-and-ref/",

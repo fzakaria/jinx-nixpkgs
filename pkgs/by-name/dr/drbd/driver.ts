@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/driver.nix", [[["url", 18, 5], ["hash", 19, 5]], [["drbd-driver", 47, 18]], [["tests", 47, 12]], [["homepage", 50, 5], ["description", 51, 5], ["license", 52, 5], ["platforms", 53, 5], ["maintainers", 54, 5], ["longDescription", 55, 5], ["broken", 59, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["hardeningDisable", 22, 3], ["nativeBuildInputs", 24, 3], ["enableParallelBuilding", 30, 3], ["makeFlags", 32, 3], ["installFlags", 40, 3], ["postPatch", 42, 3], ["passthru", 47, 3], ["meta", 49, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, kernel: false, kernelModuleMakeFlags: false, nixosTests: false, flex: false, coccinelle: false, python3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/driver.nix", [["url", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/driver.nix", [["drbd-driver", 47, 18]]);
-const pos$3 = nix.positions(here + "/driver.nix", [["tests", 47, 12]]);
-const pos$4 = nix.positions(here + "/driver.nix", [["homepage", 50, 5], ["description", 51, 5], ["license", 52, 5], ["platforms", 53, 5], ["maintainers", 54, 5], ["longDescription", 55, 5], ["broken", 59, 5]]);
-const pos$5 = nix.positions(here + "/driver.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["hardeningDisable", 22, 3], ["nativeBuildInputs", 24, 3], ["enableParallelBuilding", 30, 3], ["makeFlags", 32, 3], ["installFlags", 40, 3], ["postPatch", 42, 3], ["passthru", 47, 3], ["meta", 49, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const coccinelle = nix.arg($, "coccinelle");
   const python3 = nix.arg($, "python3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "drbd",
       version: "9.3.3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://pkg.linbit.com//downloads/drbd/9/drbd-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-p7+wFgcMMd8cc4VpyozF5fwzfdRJFH979i50bYfTjyE=",
         })))),
@@ -46,14 +42,14 @@ export default nix.lambda((args) => (() => {
 substituteInPlace Makefile --replace 'SHELL=/bin/bash' 'SHELL=${nix.builtins.getEnv("SHELL")}'
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           "drbd-driver": nix.thunk(() => nix.sel(nixosTests, "drbd-driver")),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://github.com/LINBIT/drbd",
         description: "LINBIT DRBD kernel module",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]], [["pairdrop", 42, 28]], [["tests", 41, 5]], [["description", 47, 5], ["mainProgram", 48, 5], ["longDescription", 49, 5], ["homepage", 53, 5], ["license", 54, 5], ["maintainers", 55, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["npmDepsHash", 20, 3], ["dontNpmBuild", 22, 3], ["installPhase", 24, 3], ["passthru", 40, 3], ["meta", 46, 3]]]);
 const formals$1 = { args: { lib: false, buildNpmPackage: false, fetchFromGitHub: false, nixosTests: false, nodejs: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pairdrop", 42, 28]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 41, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 47, 5], ["mainProgram", 48, 5], ["longDescription", 49, 5], ["homepage", 53, 5], ["license", 54, 5], ["maintainers", 55, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["npmDepsHash", 20, 3], ["dontNpmBuild", 22, 3], ["installPhase", 24, 3], ["passthru", 40, 3], ["meta", 46, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "pairdrop";
       const version = "1.11.2";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "schlagmichdoch",
           repo: "PairDrop",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -43,14 +39,14 @@ makeWrapper ${nodejs}/bin/node "$out/bin/pairdrop" \\
 runHook postInstall
 `);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pairdrop: nix.thunk(() => nix.attr(nixosTests, "pairdrop")),
         })),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Local file sharing in your browser",
         mainProgram: "pairdrop",
         longDescription: "PairDrop is a sublime alternative to AirDrop that works on all platforms.\nSend images, documents or text via peer to peer connection to devices in the same local network/Wi-Fi or to paired devices.\n",
@@ -62,7 +58,7 @@ runHook postInstall
         })()),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         src,

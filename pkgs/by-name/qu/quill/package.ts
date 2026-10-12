@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]], [["owner", 26, 5], ["repo", 27, 5], ["rev", 28, 5], ["hash", 29, 5]], [["homepage", 62, 5], ["changelog", 63, 5], ["description", 64, 5], ["mainProgram", 65, 5], ["license", 66, 5], ["maintainers", 67, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["ic", 25, 3], ["registry", 32, 3], ["preBuild", 34, 3], ["cargoHash", 47, 3], ["nativeBuildInputs", 49, 3], ["buildInputs", 53, 3], ["meta", 61, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, rustPlatform: false, fetchFromGitHub: false, openssl: false, libiconv: false, udev: false, "pkg-config": false, protobuf: false, buildPackages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 26, 5], ["repo", 27, 5], ["rev", 28, 5], ["hash", 29, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 62, 5], ["changelog", 63, 5], ["description", 64, 5], ["mainProgram", 65, 5], ["license", 66, 5], ["maintainers", 67, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["ic", 25, 3], ["registry", 32, 3], ["preBuild", 34, 3], ["cargoHash", 47, 3], ["nativeBuildInputs", 49, 3], ["buildInputs", 53, 3], ["meta", 61, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,14 +21,14 @@ export default nix.lambda((args) => (() => {
       const pname = "quill";
       const version = "0.5.3";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "dfinity",
           repo: "quill",
           rev: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-lCDKM9zzGcey4oWp6imiHvGSNRor0xhlmlhRkSXFLlU=",
         }))));
       const ic = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "dfinity",
           repo: "ic",
           rev: "2f9ae6bf5eafed03599fd29475100aca9f78ae81",
@@ -53,7 +50,7 @@ export OPENSSL_LIB_DIR=${nix.app(nix.sel(lib, "getLib"), openssl)}/lib
       const nativeBuildInputs = nix.thunk(() => [pkg_config, protobuf]);
       const buildInputs = nix.thunk(() => nix.concat([openssl, udev], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [libiconv]))));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/dfinity/quill",
         changelog: nix.thunk(() => nix.str`https://github.com/dfinity/quill/releases/tag/v${version}`),
         description: "Minimalistic ledger and governance toolkit for cold wallets on the Internet Computer",
@@ -65,7 +62,7 @@ export OPENSSL_LIB_DIR=${nix.app(nix.sel(lib, "getLib"), openssl)}/lib
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

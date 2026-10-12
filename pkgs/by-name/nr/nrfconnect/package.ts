@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 14, 5], ["hash", 15, 5], ["name", 16, 5]], [["pname", 20, 13], ["version", 20, 19], ["src", 20, 27]], [["description", 40, 5], ["homepage", 41, 5], ["license", 42, 5], ["platforms", 43, 5], ["maintainers", 44, 5], ["mainProgram", 45, 5]], [["pname", 25, 11], ["version", 25, 17], ["src", 25, 25], ["extraPkgs", 27, 3], ["extraInstallCommands", 31, 3], ["meta", 39, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, appimageTools: false, "segger-jlink-headless": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 14, 5], ["hash", 15, 5], ["name", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 20, 13], ["version", 20, 19], ["src", 20, 27]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 40, 5], ["homepage", 41, 5], ["license", 42, 5], ["platforms", 43, 5], ["maintainers", 44, 5], ["mainProgram", 45, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 25, 11], ["version", 25, 17], ["src", 25, 25], ["extraPkgs", 27, 3], ["extraInstallCommands", 31, 3], ["meta", 39, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,14 +15,14 @@ export default nix.lambda((args) => (() => {
   const pname = "nrfconnect";
   const version = "5.3.1";
   const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: nix.thunk(() => nix.str`https://eu.files.nordicsemi.com/ui/api/v1/download?repoKey=web-assets-com_nordicsemi&path=external%2fswtools%2fncd%2flauncher%2fv${version}%2fnrfconnect-${version}-x86_64.AppImage`),
       hash: "sha256-IRpY8D9jigQjWvBVEfFshqTV4h9/6OaJf9T178B2m/c=",
       name: nix.thunk(() => nix.str`${pname}-${version}.AppImage`),
     }))));
-  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: pos$2, pname: pname, version: version, src: src }))));
+  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: $pos[1], pname: pname, version: version, src: src }))));
   return nix.app(nix.sel(appimageTools, "wrapType2"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: pname,
       version: version,
       src: src,
@@ -37,7 +34,7 @@ substituteInPlace $out/share/applications/nrfconnect.desktop \\
   --replace-fail 'Exec=AppRun' 'Exec=nrfconnect'
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Nordic Semiconductor nRF Connect for Desktop",
         homepage: "https://www.nordicsemi.com/Products/Development-tools/nRF-Connect-for-desktop",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

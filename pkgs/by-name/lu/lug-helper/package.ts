@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]], [["name", 40, 7], ["exec", 41, 7], ["icon", 42, 7], ["comment", 43, 7], ["desktopName", 44, 7], ["categories", 45, 7], ["mimeTypes", 46, 7]], [["updateScript", 71, 12]], [["description", 73, 5], ["homepage", 74, 5], ["changelog", 75, 5], ["license", 76, 5], ["maintainers", 77, 5], ["platforms", 78, 5], ["mainProgram", 79, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 20, 3], ["buildInputs", 27, 3], ["nativeBuildInputs", 33, 3], ["desktopItems", 38, 3], ["postInstall", 50, 3], ["passthru", 71, 3], ["meta", 72, 3]]]);
 const formals$1 = { args: { stdenvNoCC: false, lib: false, makeDesktopItem: false, makeWrapper: false, copyDesktopItems: false, coreutils: false, findutils: false, zenity: false, unzip: false, cabextract: false, libnotify: false, winetricks: false, fetchFromGitHub: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 40, 7], ["exec", 41, 7], ["icon", 42, 7], ["comment", 43, 7], ["desktopName", 44, 7], ["categories", 45, 7], ["mimeTypes", 46, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 71, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 73, 5], ["homepage", 74, 5], ["changelog", 75, 5], ["license", 76, 5], ["maintainers", 77, 5], ["platforms", 78, 5], ["mainProgram", 79, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 20, 3], ["buildInputs", 27, 3], ["nativeBuildInputs", 33, 3], ["desktopItems", 38, 3], ["postInstall", 50, 3], ["passthru", 71, 3], ["meta", 72, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "lug-helper",
       version: "4.14",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "starcitizen-lug",
           repo: "lug-helper",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -40,7 +36,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [copyDesktopItems, makeWrapper]),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "lug-helper",
             exec: "lug-helper",
             icon: "lug-logo",
@@ -61,11 +57,11 @@ wrapProgram $out/bin/lug-helper \\
 
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Script to manage and optimize Star Citizen on Linux",
         homepage: "https://github.com/starcitizen-lug/lug-helper",
         changelog: nix.thunk(() => nix.str`https://github.com/starcitizen-lug/lug-helper/releases/tag/v${nix.sel(finalAttrs, "version")}`),

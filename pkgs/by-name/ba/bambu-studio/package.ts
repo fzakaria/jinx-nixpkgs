@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["withCurl", 53, 7], ["withPrivateFonts", 54, 7], ["withWebKit", 55, 7]], [["buildInputs", 58, 9], ["configureFlags", 59, 9]], [["fontDirectories", 66, 31]], [["owner", 75, 5], ["repo", 76, 5], ["tag", 77, 5], ["hash", 78, 5]], [["NLOPT", 167, 5], ["NIX_CFLAGS_COMPILE", 169, 5], ["NIX_LDFLAGS", 179, 5]], [["description", 238, 5], ["homepage", 239, 5], ["changelog", 240, 5], ["license", 241, 5], ["maintainers", 250, 5], ["mainProgram", 255, 5], ["platforms", 256, 5]], [["pname", 71, 3], ["version", 72, 3], ["src", 74, 3], ["nativeBuildInputs", 81, 3], ["buildInputs", 88, 3], ["patches", 127, 3], ["postPatch", 142, 3], ["doCheck", 157, 3], ["checkInputs", 158, 3], ["separateDebugInfo", 160, 3], ["env", 162, 3], ["cmakeFlags", 182, 3], ["preFixup", 201, 3], ["postInstall", 232, 3], ["meta", 237, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, cmake: false, ninja: false, "pkg-config": false, wrapGAppsHook3: false, assimp: false, boost183: false, cacert: false, cereal: false, cgal_5: false, curl: false, dbus: false, eigen: false, expat: false, ffmpeg: false, glew: false, glfw: false, glib: false, "glib-networking": false, gmp: false, gst_all_1: false, gtest: false, gtk3: false, "hicolor-icon-theme": false, libpng: false, libsecret: false, makeFontsConf: false, libnoise: false, mpfr: false, nanum: false, nlopt: false, "opencascade-occt_7_6": false, openvdb: false, openexr: false, opencv: false, systemdLibs: false, onetbb: false, webkitgtk_4_1: false, wxwidgets_3_1: false, libx11: false, libharu: false, withSystemd: true, withNvidiaGLWorkaround: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["withCurl", 53, 7], ["withPrivateFonts", 54, 7], ["withWebKit", 55, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["buildInputs", 58, 9], ["configureFlags", 59, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["fontDirectories", 66, 31]]);
-const pos$4 = nix.positions(here + "/package.nix", [["owner", 75, 5], ["repo", 76, 5], ["tag", 77, 5], ["hash", 78, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["NLOPT", 167, 5], ["NIX_CFLAGS_COMPILE", 169, 5], ["NIX_LDFLAGS", 179, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 238, 5], ["homepage", 239, 5], ["changelog", 240, 5], ["license", 241, 5], ["maintainers", 250, 5], ["mainProgram", 255, 5], ["platforms", 256, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 71, 3], ["version", 72, 3], ["src", 74, 3], ["nativeBuildInputs", 81, 3], ["buildInputs", 88, 3], ["patches", 127, 3], ["postPatch", 142, 3], ["doCheck", 157, 3], ["checkInputs", 158, 3], ["separateDebugInfo", 160, 3], ["env", 162, 3], ["cmakeFlags", 182, 3], ["preFixup", 201, 3], ["postInstall", 232, 3], ["meta", 237, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -58,19 +52,19 @@ export default nix.lambda((args) => (() => {
   const libharu = nix.arg($, "libharu");
   const withSystemd = nix.argOr($, "withSystemd", () => nix.sel(stdenv, "hostPlatform", "isLinux"));
   const withNvidiaGLWorkaround = nix.argOr($, "withNvidiaGLWorkaround", () => false);
-  const wxGTK$ = nix.thunk(() => nix.app(nix.sel(nix.app(nix.sel(wxwidgets_3_1, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, withCurl: true, withPrivateFonts: true, withWebKit: true }))), "overrideAttrs"), (old) => ({
-      [nix.POS]: pos$2,
+  const wxGTK$ = nix.thunk(() => nix.app(nix.sel(nix.app(nix.sel(wxwidgets_3_1, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], withCurl: true, withPrivateFonts: true, withWebKit: true }))), "overrideAttrs"), (old) => ({
+      [nix.POS]: $pos[1],
       buildInputs: nix.thunk(() => nix.concat(nix.sel(old, "buildInputs"), [libsecret])),
       configureFlags: nix.thunk(() => nix.concat(nix.sel(old, "configureFlags"), ["--enable-debug=no", "--enable-secretstore"])),
     })));
-  const fontsConf = nix.thunk(() => nix.app(makeFontsConf, nix.thunk(() => ({ [nix.POS]: pos$3, fontDirectories: nix.thunk(() => [nanum]) }))));
+  const fontsConf = nix.thunk(() => nix.app(makeFontsConf, nix.thunk(() => ({ [nix.POS]: $pos[2], fontDirectories: nix.thunk(() => [nanum]) }))));
   const caBundle = nix.thunk(() => nix.str`${cacert}/etc/ssl/certs/ca-bundle.crt`);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "bambu-studio",
       version: "02.08.00.50",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           owner: "bambulab",
           repo: "BambuStudio",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -126,7 +120,7 @@ export default nix.lambda((args) => (() => {
       checkInputs: nix.thunk(() => [gtest]),
       separateDebugInfo: true,
       env: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         NLOPT: nlopt,
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => [
             "-DBOOST_TIMER_ENABLE_DEPRECATED",
@@ -172,7 +166,7 @@ export default nix.lambda((args) => (() => {
 `),
       postInstall: "mv $out/LICENSE.txt $out/share/BambuStudio/LICENSE.txt\nmv $out/README.md $out/share/BambuStudio/README.md\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "PC Software for BambuLab's 3D printers",
         homepage: "https://github.com/bambulab/BambuStudio",
         changelog: nix.thunk(() => nix.str`https://github.com/bambulab/BambuStudio/releases/tag/v${nix.sel(finalAttrs, "version")}`),

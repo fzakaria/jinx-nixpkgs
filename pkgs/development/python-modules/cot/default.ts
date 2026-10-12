@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 28, 5], ["version", 29, 26], ["hash", 30, 5]], [["homepage", 85, 5], ["description", 86, 5], ["mainProgram", 87, 5], ["longDescription", 88, 5], ["license", 93, 5], ["maintainers", 94, 5]], [["pname", 21, 3], ["version", 22, 3], ["pyproject", 23, 3], ["__structuredAttrs", 25, 3], ["src", 27, 3], ["build-system", 33, 3], ["dependencies", 38, 3], ["nativeCheckInputs", 47, 3], ["prePatch", 54, 3], ["disabledTests", 61, 3], ["pythonImportsCheck", 82, 3], ["meta", 84, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, colorlog: false, fetchPypi: false, mock: false, "pytest-mock": false, pytestCheckHook: false, pyvmomi: false, qemu: false, requests: false, distutils: false, setuptools: false, "standard-pkg-resources": false, stdenv: false, verboselogs: false, versioneer: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 28, 5], ["version", 29, 26], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 85, 5], ["description", 86, 5], ["mainProgram", 87, 5], ["longDescription", 88, 5], ["license", 93, 5], ["maintainers", 94, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 21, 3], ["version", 22, 3], ["pyproject", 23, 3], ["__structuredAttrs", 25, 3], ["src", 27, 3], ["build-system", 33, 3], ["dependencies", 38, 3], ["nativeCheckInputs", 47, 3], ["prePatch", 54, 3], ["disabledTests", 61, 3], ["pythonImportsCheck", 82, 3], ["meta", 84, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,13 +24,13 @@ export default nix.lambda((args) => (() => {
   const verboselogs = nix.arg($, "verboselogs");
   const versioneer = nix.arg($, "versioneer");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "cot",
       version: "2.2.1",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "cot",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-9LNVNBX5DarGVvidPoLnmz11F5Mjm7FzpoO0zAzrJjU=",
@@ -58,7 +56,7 @@ export default nix.lambda((args) => (() => {
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["test_serial_fixup_invalid_host"])))),
       pythonImportsCheck: nix.thunk(() => ["COT"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/glennmatthews/cot",
         description: "Common OVF Tool",
         mainProgram: "cot",

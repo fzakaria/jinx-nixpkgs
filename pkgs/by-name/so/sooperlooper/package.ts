@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 28, 5], ["repo", 29, 5], ["rev", 30, 5], ["sha256", 31, 5]], [["CPPFLAGS", 62, 7]], [["description", 67, 5], ["longDescription", 68, 5], ["homepage", 75, 5], ["downloadPage", 76, 5], ["license", 77, 5], ["maintainers", 78, 5], ["platforms", 79, 5]], [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["autoreconfPhase", 34, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 46, 3], ["env", 62, 3], ["enableParallelBuilding", 64, 3], ["meta", 66, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, autoreconfHook: false, "pkg-config": false, which: false, libtool: false, liblo: false, libxml2: false, libjack2: false, libsndfile: false, wxwidgets_3_2: false, libsigcxx_2_0: false, libsamplerate: false, rubberband: false, gettext: false, ncurses: false, "alsa-lib": false, fftw: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 28, 5], ["repo", 29, 5], ["rev", 30, 5], ["sha256", 31, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["CPPFLAGS", 62, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 67, 5], ["longDescription", 68, 5], ["homepage", 75, 5], ["downloadPage", 76, 5], ["license", 77, 5], ["maintainers", 78, 5], ["platforms", 79, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["autoreconfPhase", 34, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 46, 3], ["env", 62, 3], ["enableParallelBuilding", 64, 3], ["meta", 66, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,11 +27,11 @@ export default nix.lambda((args) => (() => {
   const alsa_lib = nix.arg($, "alsa-lib");
   const fftw = nix.arg($, "fftw");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "sooperlooper",
       version: "1.7.9",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "essej",
           repo: "sooperlooper",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -56,10 +53,10 @@ export default nix.lambda((args) => (() => {
         alsa_lib,
         fftw,
       ]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, CPPFLAGS: "-fpermissive" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], CPPFLAGS: "-fpermissive" })),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Live looping sampler capable of immediate loop recording, overdubbing, multiplying, reversing and more",
         longDescription: "It allows for multiple simultaneous multi-channel loops limited only by your computer's available memory.\nThe application is a standalone JACK client with an engine controllable via OSC and MIDI.\nIt also includes a GUI which communicates with the engine via OSC (even over a network) for user-friendly control on a desktop.\nHowever, this kind of live performance looping tool is most effectively used via hardware (midi footpedals, etc)\nand the engine can be run standalone on a computer without a monitor.\n",
         homepage: "https://sonosaurus.com/sooperlooper/",

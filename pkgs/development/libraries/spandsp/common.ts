@@ -2,12 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/common.nix", [[["url", 34, 7], ["hash", 35, 7]], [["NIX_CFLAGS_COMPILE", 121, 7]], [["description", 224, 5], ["homepage", 225, 5], ["platforms", 226, 5], ["maintainers", 227, 5], ["teams", 228, 5], ["license", 229, 5], ["downloadPage", 230, 5]], [["pname", 28, 3], ["version", 29, 11], ["src", 29, 19], ["patches", 31, 3], ["postPatch", 49, 3], ["outputs", 65, 3], ["strictDeps", 70, 3], ["nativeBuildInputs", 72, 3], ["depsBuildBuild", 80, 3], ["propagatedBuildInputs", 82, 3], ["nativeCheckInputs", 87, 3], ["checkInputs", 93, 3], ["preConfigure", 100, 3], ["configureFlags", 104, 3], ["enableParallelBuilding", 114, 3], ["makeFlags", 116, 3], ["env", 121, 3], ["hardeningDisable", 126, 3], ["doCheck", 130, 3], ["disabledTests", 135, 3], ["checkPhase", 185, 3], ["meta", 223, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, audiofile: false, libtiff: false, buildPackages: false, fetchpatch: false, autoconf: false, automake: false, fftw: false, libpcap: false, libsndfile: false, libtool: false, libxml2: false, netpbm: false, sox: false, "util-linux": false, which: false }, ellipsis: false };
 const formals$2 = { args: { version: false, src: false, patches: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/common.nix", [["url", 34, 7], ["hash", 35, 7]]);
-const pos$2 = nix.positions(here + "/common.nix", [["NIX_CFLAGS_COMPILE", 121, 7]]);
-const pos$3 = nix.positions(here + "/common.nix", [["description", 224, 5], ["homepage", 225, 5], ["platforms", 226, 5], ["maintainers", 227, 5], ["teams", 228, 5], ["license", 229, 5], ["downloadPage", 230, 5]]);
-const pos$4 = nix.positions(here + "/common.nix", [["pname", 28, 3], ["version", 29, 11], ["src", 29, 19], ["patches", 31, 3], ["postPatch", 49, 3], ["outputs", 65, 3], ["strictDeps", 70, 3], ["nativeBuildInputs", 72, 3], ["depsBuildBuild", 80, 3], ["propagatedBuildInputs", 82, 3], ["nativeCheckInputs", 87, 3], ["checkInputs", 93, 3], ["preConfigure", 100, 3], ["configureFlags", 104, 3], ["enableParallelBuilding", 114, 3], ["makeFlags", 116, 3], ["env", 121, 3], ["hardeningDisable", 126, 3], ["doCheck", 130, 3], ["disabledTests", 135, 3], ["checkPhase", 185, 3], ["meta", 223, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,13 +31,13 @@ export default nix.lambda((args) => (() => {
     const src = nix.arg($_1, "src");
     const patches = nix.argOr($_1, "patches", () => []);
     return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname: "spandsp",
         version: version,
         src: src,
         patches: nix.thunk(() => nix.concat([
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              [nix.POS]: pos$1,
+              [nix.POS]: $pos[0],
               url: "https://github.com/freeswitch/spandsp/commit/1f810894804d3fa61ab3fc2f3feb0599145a3436.patch",
               hash: "sha256-Cf8aaoriAvchh5cMb75yP2gsZbZaOLha/j5mq3xlkVA=",
             })))),
@@ -70,7 +67,7 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.str`CC_FOR_BUILD=${nix.sel(buildPackages, "stdenv", "cc")}/bin/cc`),
         ]),
         env: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-Wno-error=incompatible-pointer-types"]))),
         })),
         hardeningDisable: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(nix.sel(lib, "strings", "versionOlder"), nix.thunk(() => nix.sel(finalAttrs, "version")), "3.0.0")), nix.thunk(() => ["format"]))),
@@ -135,7 +132,7 @@ popd
 runHook postCheck
 `),
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           description: "Portable and modular SIP User-Agent with audio and video support",
           homepage: "https://github.com/freeswitch/spandsp",
           platforms: nix.thunk(() => (() => {

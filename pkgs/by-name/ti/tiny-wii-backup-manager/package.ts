@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 33, 5], ["repo", 34, 5], ["tag", 35, 5], ["hash", 36, 5]], [["updateScript", 109, 12]], [["description", 114, 5], ["homepage", 115, 5], ["changelog", 116, 5], ["license", 117, 5], ["maintainers", 118, 5], ["mainProgram", 119, 5], ["platforms", 120, 5]], [["pname", 29, 3], ["version", 30, 3], ["src", 32, 3], ["cargoHash", 39, 3], ["cargoBuildFlags", 41, 3], ["nativeBuildInputs", 46, 3], ["buildInputs", 51, 3], ["doCheck", 69, 3], ["postInstall", 71, 3], ["passthru", 109, 3], ["__structuredAttrs", 111, 3], ["meta", 113, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, rustPlatform: false, makeWrapper: false, "pkg-config": false, dbus: false, fontconfig: false, libGL: false, libx11: false, libxcb: false, libxcursor: false, libxext: false, libxi: false, libxinerama: false, libxkbcommon: false, libxrandr: false, openssl: false, "vulkan-loader": false, wayland: false, "xdg-utils": false, zenity: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 33, 5], ["repo", 34, 5], ["tag", 35, 5], ["hash", 36, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 109, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 114, 5], ["homepage", 115, 5], ["changelog", 116, 5], ["license", 117, 5], ["maintainers", 118, 5], ["mainProgram", 119, 5], ["platforms", 120, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 29, 3], ["version", 30, 3], ["src", 32, 3], ["cargoHash", 39, 3], ["cargoBuildFlags", 41, 3], ["nativeBuildInputs", 46, 3], ["buildInputs", 51, 3], ["doCheck", 69, 3], ["postInstall", 71, 3], ["passthru", 109, 3], ["__structuredAttrs", 111, 3], ["meta", 113, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,11 +30,11 @@ export default nix.lambda((args) => (() => {
   const zenity = nix.arg($, "zenity");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "tiny-wii-backup-manager",
       version: "6.0.8",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "mq1",
           repo: "TinyWiiBackupManager",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -93,12 +90,12 @@ wrapProgram $out/bin/TinyWiiBackupManager \\
         ]))}
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Tiny game backup and homebrew app manager for the Wii",
         homepage: "https://github.com/mq1/TinyWiiBackupManager",
         changelog: nix.thunk(() => nix.str`https://github.com/mq1/TinyWiiBackupManager/releases/tag/v${nix.sel(finalAttrs, "version")}`),

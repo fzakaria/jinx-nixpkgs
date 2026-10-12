@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["sha256", 18, 5]], [["shortName", 78, 9], ["free", 79, 9], ["url", 80, 9]], [["description", 54, 5], ["homepage", 55, 5], ["license", 58, 5], ["maintainers", 95, 5], ["platforms", 96, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 21, 3], ["patches", 29, 3], ["buildPhase", 31, 3], ["installPhase", 39, 3], ["meta", 53, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, makeWrapper: false, jdk: false, jre: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["sha256", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["shortName", 78, 9], ["free", 79, 9], ["url", 80, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 54, 5], ["homepage", 55, 5], ["license", 58, 5], ["maintainers", 95, 5], ["platforms", 96, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 21, 3], ["patches", 29, 3], ["buildPhase", 31, 3], ["installPhase", 39, 3], ["meta", 53, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const jdk = nix.arg($, "jdk");
   const jre = nix.arg($, "jre");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "remnants-of-the-precursors",
       version: "1.04",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "rayfowler",
           repo: "rotp-public",
           rev: "e3726fc22c2c44316306c50c79779e3da1c4c140",
@@ -43,7 +40,7 @@ makeWrapper ${jre}/bin/java $out/bin/rotp \\
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Open-source modernization of the 1993 classic \"Master of Orion\", written in Java",
         homepage: "https://github.com/rayfowler/rotp-public",
         license: nix.thunk(() => (() => {
@@ -52,7 +49,7 @@ runHook postInstall
             nix.thunk(() => nix.lookup(w, "gpl3Only")),
             nix.thunk(() => nix.lookup(w, "asl20")),
             nix.thunk(() => nix.app(nix.lookup(w, "mkLicense"), nix.thunk(() => ({
-                [nix.POS]: pos$2,
+                [nix.POS]: $pos[1],
                 shortName: "planetGenerator",
                 free: true,
                 url: "http://hjemmesider.diku.dk/~torbenm/Planet",

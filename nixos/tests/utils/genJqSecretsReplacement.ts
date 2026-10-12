@@ -2,53 +2,9 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/genJqSecretsReplacement.nix", [[["a", 7, 9]], [["b", 8, 9]], [["irrelevant", 17, 13]], [["_secret", 23, 17]], [["secret", 22, 15]], [["ignored", 20, 13], ["relevant", 21, 13]], [["example", 15, 9]], [["irrelevant", 32, 13]], [["secret", 37, 15]], [["ignored", 35, 13], ["relevant", 36, 13]], [["example", 30, 9]], [["set", 14, 7], ["expect", 29, 7]], [["irrelevant", 48, 13]], [["_secret", 54, 17], ["quote", 55, 17]], [["secret", 53, 15]], [["ignored", 51, 13], ["relevant", 52, 13]], [["example", 46, 9]], [["irrelevant", 64, 13]], [["a", 70, 19]], [["b", 71, 19]], [["secret", 69, 15]], [["ignored", 67, 13], ["relevant", 68, 13]], [["example", 62, 9]], [["set", 45, 7], ["expect", 61, 7]], [["irrelevant", 83, 13]], [["_secret", 89, 17], ["quote", 90, 17]], [["secret", 88, 15]], [["ignored", 86, 13], ["relevant", 87, 13]], [["example", 81, 9]], [["loadCredential", 97, 9]], [["irrelevant", 102, 13]], [["a", 108, 19]], [["b", 109, 19]], [["secret", 107, 15]], [["ignored", 105, 13], ["relevant", 106, 13]], [["example", 100, 9]], [["set", 80, 7], ["opts", 96, 7], ["expect", 99, 7]], [["simple", 13, 5], ["structured", 44, 5], ["loadCredentials", 79, 5]], [["maintainers", 120, 8]], [["Type", 136, 13], ["RemainAfterExit", 137, 13], ["LoadCredential", 138, 13]], [["wantedBy", 134, 11], ["serviceConfig", 135, 11], ["script", 140, 11], ["preStart", 141, 11]], [["services", 131, 15]], [["systemd", 131, 7]], [["machine", 122, 9]], [["name", 119, 3], ["meta", 120, 3], ["nodes", 122, 3], ["testScript", 149, 3]]]);
 const formals$1 = { args: { lib: false, pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/genJqSecretsReplacement.nix", [["a", 7, 9]]);
-const pos$2 = nix.positions(here + "/genJqSecretsReplacement.nix", [["b", 8, 9]]);
-const pos$3 = nix.positions(here + "/genJqSecretsReplacement.nix", [["irrelevant", 17, 13]]);
-const pos$4 = nix.positions(here + "/genJqSecretsReplacement.nix", [["_secret", 23, 17]]);
-const pos$5 = nix.positions(here + "/genJqSecretsReplacement.nix", [["secret", 22, 15]]);
-const pos$6 = nix.positions(here + "/genJqSecretsReplacement.nix", [["ignored", 20, 13], ["relevant", 21, 13]]);
-const pos$7 = nix.positions(here + "/genJqSecretsReplacement.nix", [["example", 15, 9]]);
-const pos$8 = nix.positions(here + "/genJqSecretsReplacement.nix", [["irrelevant", 32, 13]]);
-const pos$9 = nix.positions(here + "/genJqSecretsReplacement.nix", [["secret", 37, 15]]);
-const pos$10 = nix.positions(here + "/genJqSecretsReplacement.nix", [["ignored", 35, 13], ["relevant", 36, 13]]);
-const pos$11 = nix.positions(here + "/genJqSecretsReplacement.nix", [["example", 30, 9]]);
-const pos$12 = nix.positions(here + "/genJqSecretsReplacement.nix", [["set", 14, 7], ["expect", 29, 7]]);
-const pos$13 = nix.positions(here + "/genJqSecretsReplacement.nix", [["irrelevant", 48, 13]]);
-const pos$14 = nix.positions(here + "/genJqSecretsReplacement.nix", [["_secret", 54, 17], ["quote", 55, 17]]);
-const pos$15 = nix.positions(here + "/genJqSecretsReplacement.nix", [["secret", 53, 15]]);
-const pos$16 = nix.positions(here + "/genJqSecretsReplacement.nix", [["ignored", 51, 13], ["relevant", 52, 13]]);
-const pos$17 = nix.positions(here + "/genJqSecretsReplacement.nix", [["example", 46, 9]]);
-const pos$18 = nix.positions(here + "/genJqSecretsReplacement.nix", [["irrelevant", 64, 13]]);
-const pos$19 = nix.positions(here + "/genJqSecretsReplacement.nix", [["a", 70, 19]]);
-const pos$20 = nix.positions(here + "/genJqSecretsReplacement.nix", [["b", 71, 19]]);
-const pos$21 = nix.positions(here + "/genJqSecretsReplacement.nix", [["secret", 69, 15]]);
-const pos$22 = nix.positions(here + "/genJqSecretsReplacement.nix", [["ignored", 67, 13], ["relevant", 68, 13]]);
-const pos$23 = nix.positions(here + "/genJqSecretsReplacement.nix", [["example", 62, 9]]);
-const pos$24 = nix.positions(here + "/genJqSecretsReplacement.nix", [["set", 45, 7], ["expect", 61, 7]]);
-const pos$25 = nix.positions(here + "/genJqSecretsReplacement.nix", [["irrelevant", 83, 13]]);
-const pos$26 = nix.positions(here + "/genJqSecretsReplacement.nix", [["_secret", 89, 17], ["quote", 90, 17]]);
-const pos$27 = nix.positions(here + "/genJqSecretsReplacement.nix", [["secret", 88, 15]]);
-const pos$28 = nix.positions(here + "/genJqSecretsReplacement.nix", [["ignored", 86, 13], ["relevant", 87, 13]]);
-const pos$29 = nix.positions(here + "/genJqSecretsReplacement.nix", [["example", 81, 9]]);
-const pos$30 = nix.positions(here + "/genJqSecretsReplacement.nix", [["loadCredential", 97, 9]]);
-const pos$31 = nix.positions(here + "/genJqSecretsReplacement.nix", [["irrelevant", 102, 13]]);
-const pos$32 = nix.positions(here + "/genJqSecretsReplacement.nix", [["a", 108, 19]]);
-const pos$33 = nix.positions(here + "/genJqSecretsReplacement.nix", [["b", 109, 19]]);
-const pos$34 = nix.positions(here + "/genJqSecretsReplacement.nix", [["secret", 107, 15]]);
-const pos$35 = nix.positions(here + "/genJqSecretsReplacement.nix", [["ignored", 105, 13], ["relevant", 106, 13]]);
-const pos$36 = nix.positions(here + "/genJqSecretsReplacement.nix", [["example", 100, 9]]);
-const pos$37 = nix.positions(here + "/genJqSecretsReplacement.nix", [["set", 80, 7], ["opts", 96, 7], ["expect", 99, 7]]);
-const pos$38 = nix.positions(here + "/genJqSecretsReplacement.nix", [["simple", 13, 5], ["structured", 44, 5], ["loadCredentials", 79, 5]]);
-const pos$39 = nix.positions(here + "/genJqSecretsReplacement.nix", [["maintainers", 120, 8]]);
 const formals$2 = { args: { lib: false, utils: false }, ellipsis: true };
-const pos$40 = nix.positions(here + "/genJqSecretsReplacement.nix", [["Type", 136, 13], ["RemainAfterExit", 137, 13], ["LoadCredential", 138, 13]]);
-const pos$41 = nix.positions(here + "/genJqSecretsReplacement.nix", [["wantedBy", 134, 11], ["serviceConfig", 135, 11], ["script", 140, 11], ["preStart", 141, 11]]);
-const pos$42 = nix.positions(here + "/genJqSecretsReplacement.nix", [["services", 131, 15]]);
-const pos$43 = nix.positions(here + "/genJqSecretsReplacement.nix", [["systemd", 131, 7]]);
-const pos$44 = nix.positions(here + "/genJqSecretsReplacement.nix", [["machine", 122, 9]]);
-const pos$45 = nix.positions(here + "/genJqSecretsReplacement.nix", [["name", 119, 3], ["meta", 120, 3], ["nodes", 122, 3], ["testScript", 149, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -56,67 +12,67 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const secretA = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "secretA", "AAAAA"));
   const secretJSON = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "secretA", nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => [
-        nix.thunk(() => ({ [nix.POS]: pos$1, a: "topsecretpassword1234" })),
-        nix.thunk(() => ({ [nix.POS]: pos$2, b: "topsecretpassword5678" })),
+        nix.thunk(() => ({ [nix.POS]: $pos[0], a: "topsecretpassword1234" })),
+        nix.thunk(() => ({ [nix.POS]: $pos[1], b: "topsecretpassword5678" })),
       ])))));
   const tests = nix.thunk(() => ({
-    [nix.POS]: pos$38,
+    [nix.POS]: $pos[37],
     simple: nix.thunk(() => ({
-      [nix.POS]: pos$12,
+      [nix.POS]: $pos[11],
       set: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         example: nix.thunk(() => [
-          nix.thunk(() => ({ [nix.POS]: pos$3, irrelevant: "not interesting" })),
+          nix.thunk(() => ({ [nix.POS]: $pos[2], irrelevant: "not interesting" })),
           nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             ignored: "ignored attr",
             relevant: nix.thunk(() => ({
-              [nix.POS]: pos$5,
-              secret: nix.thunk(() => ({ [nix.POS]: pos$4, _secret: secretA })),
+              [nix.POS]: $pos[4],
+              secret: nix.thunk(() => ({ [nix.POS]: $pos[3], _secret: secretA })),
             })),
           })),
         ]),
       })),
       expect: nix.thunk(() => ({
-        [nix.POS]: pos$11,
+        [nix.POS]: $pos[10],
         example: nix.thunk(() => [
-          nix.thunk(() => ({ [nix.POS]: pos$8, irrelevant: "not interesting" })),
+          nix.thunk(() => ({ [nix.POS]: $pos[7], irrelevant: "not interesting" })),
           nix.thunk(() => ({
-            [nix.POS]: pos$10,
+            [nix.POS]: $pos[9],
             ignored: "ignored attr",
-            relevant: nix.thunk(() => ({ [nix.POS]: pos$9, secret: "AAAAA" })),
+            relevant: nix.thunk(() => ({ [nix.POS]: $pos[8], secret: "AAAAA" })),
           })),
         ]),
       })),
     })),
     structured: nix.thunk(() => ({
-      [nix.POS]: pos$24,
+      [nix.POS]: $pos[23],
       set: nix.thunk(() => ({
-        [nix.POS]: pos$17,
+        [nix.POS]: $pos[16],
         example: nix.thunk(() => [
-          nix.thunk(() => ({ [nix.POS]: pos$13, irrelevant: "not interesting" })),
+          nix.thunk(() => ({ [nix.POS]: $pos[12], irrelevant: "not interesting" })),
           nix.thunk(() => ({
-            [nix.POS]: pos$16,
+            [nix.POS]: $pos[15],
             ignored: "ignored attr",
             relevant: nix.thunk(() => ({
-              [nix.POS]: pos$15,
-              secret: nix.thunk(() => ({ [nix.POS]: pos$14, _secret: secretJSON, quote: false })),
+              [nix.POS]: $pos[14],
+              secret: nix.thunk(() => ({ [nix.POS]: $pos[13], _secret: secretJSON, quote: false })),
             })),
           })),
         ]),
       })),
       expect: nix.thunk(() => ({
-        [nix.POS]: pos$23,
+        [nix.POS]: $pos[22],
         example: nix.thunk(() => [
-          nix.thunk(() => ({ [nix.POS]: pos$18, irrelevant: "not interesting" })),
+          nix.thunk(() => ({ [nix.POS]: $pos[17], irrelevant: "not interesting" })),
           nix.thunk(() => ({
-            [nix.POS]: pos$22,
+            [nix.POS]: $pos[21],
             ignored: "ignored attr",
             relevant: nix.thunk(() => ({
-              [nix.POS]: pos$21,
+              [nix.POS]: $pos[20],
               secret: nix.thunk(() => [
-                nix.thunk(() => ({ [nix.POS]: pos$19, a: "topsecretpassword1234" })),
-                nix.thunk(() => ({ [nix.POS]: pos$20, b: "topsecretpassword5678" })),
+                nix.thunk(() => ({ [nix.POS]: $pos[18], a: "topsecretpassword1234" })),
+                nix.thunk(() => ({ [nix.POS]: $pos[19], b: "topsecretpassword5678" })),
               ]),
             })),
           })),
@@ -124,34 +80,34 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     loadCredentials: nix.thunk(() => ({
-      [nix.POS]: pos$37,
+      [nix.POS]: $pos[36],
       set: nix.thunk(() => ({
-        [nix.POS]: pos$29,
+        [nix.POS]: $pos[28],
         example: nix.thunk(() => [
-          nix.thunk(() => ({ [nix.POS]: pos$25, irrelevant: "not interesting" })),
+          nix.thunk(() => ({ [nix.POS]: $pos[24], irrelevant: "not interesting" })),
           nix.thunk(() => ({
-            [nix.POS]: pos$28,
+            [nix.POS]: $pos[27],
             ignored: "ignored attr",
             relevant: nix.thunk(() => ({
-              [nix.POS]: pos$27,
-              secret: nix.thunk(() => ({ [nix.POS]: pos$26, _secret: secretJSON, quote: false })),
+              [nix.POS]: $pos[26],
+              secret: nix.thunk(() => ({ [nix.POS]: $pos[25], _secret: secretJSON, quote: false })),
             })),
           })),
         ]),
       })),
-      opts: nix.thunk(() => ({ [nix.POS]: pos$30, loadCredential: true })),
+      opts: nix.thunk(() => ({ [nix.POS]: $pos[29], loadCredential: true })),
       expect: nix.thunk(() => ({
-        [nix.POS]: pos$36,
+        [nix.POS]: $pos[35],
         example: nix.thunk(() => [
-          nix.thunk(() => ({ [nix.POS]: pos$31, irrelevant: "not interesting" })),
+          nix.thunk(() => ({ [nix.POS]: $pos[30], irrelevant: "not interesting" })),
           nix.thunk(() => ({
-            [nix.POS]: pos$35,
+            [nix.POS]: $pos[34],
             ignored: "ignored attr",
             relevant: nix.thunk(() => ({
-              [nix.POS]: pos$34,
+              [nix.POS]: $pos[33],
               secret: nix.thunk(() => [
-                nix.thunk(() => ({ [nix.POS]: pos$32, a: "topsecretpassword1234" })),
-                nix.thunk(() => ({ [nix.POS]: pos$33, b: "topsecretpassword5678" })),
+                nix.thunk(() => ({ [nix.POS]: $pos[31], a: "topsecretpassword1234" })),
+                nix.thunk(() => ({ [nix.POS]: $pos[32], b: "topsecretpassword5678" })),
               ]),
             })),
           })),
@@ -160,28 +116,28 @@ export default nix.lambda((args) => (() => {
     })),
   }));
   return {
-    [nix.POS]: pos$45,
+    [nix.POS]: $pos[44],
     name: "utils-genJqSecretsReplacement",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$39,
+      [nix.POS]: $pos[38],
       maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "lib", "maintainers", "ibizaman"))]),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$44,
+      [nix.POS]: $pos[43],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const lib_1 = nix.arg($_1, "lib");
         const utils = nix.arg($_1, "utils");
         const secretsReplacements = nix.thunk(() => nix.app(nix.sel(lib_1, "mapAttrs"), (name) => (test) => nix.app(nix.sel(utils, "genJqSecretsReplacement"), nix.thunk(() => nix.selOr(test, () => ({}), "opts")), nix.thunk(() => nix.sel(test, "set")), nix.thunk(() => nix.str`/var/lib/genJqTest-${name}/file`)), tests));
         return {
-          [nix.POS]: pos$43,
+          [nix.POS]: $pos[42],
           systemd: nix.thunk(() => ({
-            [nix.POS]: pos$42,
+            [nix.POS]: $pos[41],
             services: nix.thunk(() => nix.app(nix.sel(lib_1, "mapAttrs'"), (name) => (secretsReplacement) => nix.app(nix.sel(lib_1, "nameValuePair"), nix.thunk(() => nix.str`genJqTest-${name}`), nix.thunk(() => ({
-                  [nix.POS]: pos$41,
+                  [nix.POS]: $pos[40],
                   wantedBy: nix.thunk(() => ["multi-user.target"]),
                   serviceConfig: nix.thunk(() => ({
-                    [nix.POS]: pos$40,
+                    [nix.POS]: $pos[39],
                     Type: "oneshot",
                     RemainAfterExit: true,
                     LoadCredential: nix.thunk(() => nix.sel(secretsReplacement, "credentials")),

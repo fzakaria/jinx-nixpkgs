@@ -2,9 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/data-dir.nix", [[["meta", 10, 36], ["name", 11, 5], ["paths", 13, 5]]]);
 const formals$1 = { args: { lib: false, pkgs: false, python3Packages: false }, ellipsis: false };
 const formals$2 = { args: {  }, ellipsis: true };
-const pos$1 = nix.positions(here + "/data-dir.nix", [["meta", 10, 36], ["name", 11, 5], ["paths", 13, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
       return (f) => nix.app(nix.sel(pkgs, "symlinkJoin"), nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(python3Packages, "nltk"));
           return {
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           meta: nix.thunk(() => nix.attr(from, "meta")),
           name: "nltk-data-dir",
           paths: nix.thunk(() => nix.app(f, nltkDataPkgs)),

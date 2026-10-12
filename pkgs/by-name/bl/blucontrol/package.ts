@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["description", 27, 5], ["mainProgram", 28, 5], ["longDescription", 29, 5], ["license", 34, 5], ["homepage", 35, 5], ["platforms", 36, 5], ["maintainers", 37, 5]], [["pname", 12, 3], ["version", 13, 3], ["nativeBuildInputs", 15, 3], ["buildCommand", 17, 3], ["preferLocalBuild", 23, 3], ["allowSubstitutes", 24, 3], ["meta", 26, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, makeWrapper: false, haskellPackages: false, packages: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["description", 27, 5], ["mainProgram", 28, 5], ["longDescription", 29, 5], ["license", 34, 5], ["homepage", 35, 5], ["platforms", 36, 5], ["maintainers", 37, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["nativeBuildInputs", 15, 3], ["buildCommand", 17, 3], ["preferLocalBuild", 23, 3], ["allowSubstitutes", 24, 3], ["meta", 26, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const packages = nix.argOr($, "packages", () => (_) => []);
   const blucontrolEnv = nix.thunk(() => nix.app(nix.sel(haskellPackages, "ghcWithPackages"), (self) => nix.concat([nix.thunk(() => nix.sel(self, "blucontrol"))], nix.app(packages, self))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "blucontrol-with-packages",
       version: nix.thunk(() => nix.sel(blucontrolEnv, "version")),
       nativeBuildInputs: nix.thunk(() => [makeWrapper]),
@@ -25,7 +24,7 @@ export default nix.lambda((args) => (() => {
       preferLocalBuild: true,
       allowSubstitutes: false,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Configurable blue light filter",
         mainProgram: "blucontrol",
         longDescription: "This application is a blue light filter, with the main focus on configurability.\nConfiguration is done in Haskell in the style of xmonad.\nBlucontrol makes use of monad transformers and allows monadic calculation of gamma values and recoloring. The user chooses, what will be captured in the monadic state.\n",

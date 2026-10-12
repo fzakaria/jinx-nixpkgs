@@ -2,11 +2,10 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["AWS_ACCESS_KEY_ID", 26, 9], ["AWS_SECRET_ACCESS_KEY", 27, 9], ["AWS_SESSION_TOKEN", 28, 9]], [["nativeBuildInputs", 36, 9], ["outputHash", 38, 17], ["outputHashAlgo", 38, 28], ["outputHashMode", 39, 9], ["preferLocalBuild", 41, 9], ["AWS_DEFAULT_REGION", 43, 9]]]);
 const formals$1 = { args: { lib: false, runCommand: false, awscli2: false }, ellipsis: false };
 const formals$2 = { args: { s3url: false, name: true, outputHash: false, outputHashAlgo: false, region: true, credentials: true, recursiveHash: true, postFetch: true }, ellipsis: false };
 const formals$3 = { args: { access_key_id: false, secret_access_key: false, session_token: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["AWS_ACCESS_KEY_ID", 26, 9], ["AWS_SECRET_ACCESS_KEY", 27, 9], ["AWS_SESSION_TOKEN", 28, 9]]);
-const pos$2 = nix.positions(here + "/default.nix", [["nativeBuildInputs", 36, 9], ["outputHash", 38, 17], ["outputHashAlgo", 38, 28], ["outputHashMode", 39, 9], ["preferLocalBuild", 41, 9], ["AWS_DEFAULT_REGION", 43, 9]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,7 +28,7 @@ export default nix.lambda((args) => (() => {
         const secret_access_key = nix.arg($_2, "secret_access_key");
         const session_token = nix.argOr($_2, "session_token", () => null);
         return {
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           AWS_ACCESS_KEY_ID: access_key_id,
           AWS_SECRET_ACCESS_KEY: secret_access_key,
           AWS_SESSION_TOKEN: session_token,
@@ -37,7 +36,7 @@ export default nix.lambda((args) => (() => {
       })(), formals$3);
       const credentialAttrs = nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(credentials, null)), nix.thunk(() => nix.app(mkCredentials, credentials))));
       return nix.app(runCommand, name, nix.thunk(() => nix.update({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           nativeBuildInputs: nix.thunk(() => [awscli2]),
           outputHash: outputHash,
           outputHashAlgo: outputHashAlgo,

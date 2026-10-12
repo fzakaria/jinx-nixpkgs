@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["description", 48, 5], ["homepage", 49, 5]], [["pname", 15, 3], ["version", 16, 26], ["src", 16, 34], ["sourceRoot", 17, 3], ["pyproject", 19, 3], ["nativeBuildInputs", 21, 3], ["buildInputs", 28, 3], ["propagatedBuildInputs", 30, 3], ["nativeCheckInputs", 37, 3], ["pythonImportsCheck", 39, 3], ["meta", 47, 3]]]);
 const formals$1 = { args: { buildPythonPackage: false, "pkg-config": false, pkgconfig: false, "setuptools-scm": false, libdeltachat: false, cffi: false, "imap-tools": false, requests: false, pluggy: false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["description", 48, 5], ["homepage", 49, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 15, 3], ["version", 16, 26], ["src", 16, 34], ["sourceRoot", 17, 3], ["pyproject", 19, 3], ["nativeBuildInputs", 21, 3], ["buildInputs", 28, 3], ["propagatedBuildInputs", 30, 3], ["nativeCheckInputs", 37, 3], ["pythonImportsCheck", 39, 3], ["meta", 47, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -36,12 +35,12 @@ export default nix.lambda((args) => (() => {
         "deltachat.message",
       ]);
       const meta = nix.thunk(() => nix.update(nix.sel(libdeltachat, "meta"), {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Python bindings for the Delta Chat Core library",
         homepage: "https://github.com/deltachat/deltachat-core-rust/tree/master/python",
       }));
       return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         pname,
         version,
         src,

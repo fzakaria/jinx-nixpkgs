@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["description", 41, 5], ["longDescription", 42, 5], ["homepage", 46, 5], ["license", 47, 5], ["platforms", 48, 5], ["maintainers", 49, 5]], [["pname", 12, 3], ["src", 13, 42], ["version", 13, 46], ["patches", 15, 3], ["buildInputs", 16, 3], ["nativeBuildInputs", 22, 3], ["dontBuild", 24, 3], ["installPhase", 26, 3], ["meta", 40, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, clang: false, llvmPackages: false, perl: false, makeWrapper: false, python3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["description", 41, 5], ["longDescription", 42, 5], ["homepage", 46, 5], ["license", 47, 5], ["platforms", 48, 5], ["maintainers", 49, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["src", 13, 42], ["version", 13, 46], ["patches", 15, 3], ["buildInputs", 16, 3], ["nativeBuildInputs", 22, 3], ["dontBuild", 24, 3], ["installPhase", 26, 3], ["meta", 40, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,7 +17,7 @@ export default nix.lambda((args) => (() => {
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => (() => {
       const from = nix.thunk(() => nix.sel(llvmPackages, "clang-unwrapped"));
       return {
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "clang-analyzer",
       src: nix.thunk(() => nix.attr(from, "src")),
       version: nix.thunk(() => nix.attr(from, "version")),
@@ -39,7 +38,7 @@ wrapProgram $out/bin/scan-build \\
   --add-flags "--use-analyzer='${nix.sel(llvmPackages, "clang")}/bin/clang'"
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Clang Static Analyzer",
         longDescription: "The Clang Static Analyzer is a source code analysis tool that finds bugs\nin C, C++, and Objective-C programs.\n",
         homepage: "https://clang-analyzer.llvm.org/",

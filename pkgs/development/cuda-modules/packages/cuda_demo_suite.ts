@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/cuda_demo_suite.nix", [[["description", 24, 5], ["longDescription", 25, 5], ["homepage", 29, 5]], [["redistName", 10, 3], ["pname", 11, 3], ["buildInputs", 13, 3], ["outputs", 21, 3], ["meta", 23, 3]]]);
 const formals$1 = { args: { buildRedist: false, libcufft: false, libcurand: false, libGLU: false, libglut: false, libglvnd: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/cuda_demo_suite.nix", [["description", 24, 5], ["longDescription", 25, 5], ["homepage", 29, 5]]);
-const pos$2 = nix.positions(here + "/cuda_demo_suite.nix", [["redistName", 10, 3], ["pname", 11, 3], ["buildInputs", 13, 3], ["outputs", 21, 3], ["meta", 23, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,13 +14,13 @@ export default nix.lambda((args) => (() => {
   const libglut = nix.arg($, "libglut");
   const libglvnd = nix.arg($, "libglvnd");
   return nix.app(buildRedist, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       redistName: "cuda",
       pname: "cuda_demo_suite",
       buildInputs: nix.thunk(() => [libcufft, libcurand, libGLU, libglut, libglvnd]),
       outputs: nix.thunk(() => ["out"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Pre-built applications which use CUDA",
         longDescription: "The CUDA Demo Suite contains pre-built applications which use CUDA. These applications demonstrate the\ncapabilities and details of NVIDIA GPUs.\n",
         homepage: "https://docs.nvidia.com/cuda/demo-suite",

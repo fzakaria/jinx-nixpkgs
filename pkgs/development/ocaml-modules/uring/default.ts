@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["minimalOCamlVersion", 25, 9], ["hash", 26, 9]], [["minimalOCamlVersion", 29, 9], ["hash", 30, 9]], [["minimalOCamlVersion", 33, 9], ["hash", 34, 9]], [["0.9", 24, 7], ["2.14.0", 28, 7], ["2.15.0", 32, 7]], [["url", 45, 5], ["hash", 46, 21]], [["homepage", 78, 5], ["changelog", 79, 5], ["description", 80, 5], ["license", 81, 5], ["platforms", 85, 5], ["maintainers", 86, 5]], [["pname", 40, 3], ["version", 41, 11], ["minimalOCamlVersion", 42, 19], ["src", 44, 3], ["nativeBuildInputs", 49, 3], ["buildInputs", 53, 3], ["propagatedBuildInputs", 57, 3], ["checkInputs", 63, 3], ["nativeCheckInputs", 67, 3], ["doCheck", 73, 3], ["dontStrip", 75, 3], ["meta", 77, 3]]]);
 const formals$1 = { args: { lib: false, ocaml: false, version: true, fetchurl: false, "pkg-config": false, buildDunePackage: false, cstruct: false, "dune-configurator": false, fmt: false, optint: false, mdx: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["minimalOCamlVersion", 25, 9], ["hash", 26, 9]]);
-const pos$2 = nix.positions(here + "/default.nix", [["minimalOCamlVersion", 29, 9], ["hash", 30, 9]]);
-const pos$3 = nix.positions(here + "/default.nix", [["minimalOCamlVersion", 33, 9], ["hash", 34, 9]]);
-const pos$4 = nix.positions(here + "/default.nix", [["0.9", 24, 7], ["2.14.0", 28, 7], ["2.15.0", 32, 7]]);
-const pos$5 = nix.positions(here + "/default.nix", [["url", 45, 5], ["hash", 46, 21]]);
-const pos$6 = nix.positions(here + "/default.nix", [["homepage", 78, 5], ["changelog", 79, 5], ["description", 80, 5], ["license", 81, 5], ["platforms", 85, 5], ["maintainers", 86, 5]]);
-const pos$7 = nix.positions(here + "/default.nix", [["pname", 40, 3], ["version", 41, 11], ["minimalOCamlVersion", 42, 19], ["src", 44, 3], ["nativeBuildInputs", 49, 3], ["buildInputs", 53, 3], ["propagatedBuildInputs", 57, 3], ["checkInputs", 63, 3], ["nativeCheckInputs", 67, 3], ["doCheck", 73, 3], ["dontStrip", 75, 3], ["meta", 77, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,30 +19,30 @@ export default nix.lambda((args) => (() => {
   const optint = nix.arg($, "optint");
   const mdx = nix.arg($, "mdx");
   const param = nix.thunk(() => nix.sel({
-    [nix.POS]: pos$4,
+    [nix.POS]: $pos[3],
     "0.9": nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       minimalOCamlVersion: "4.12",
       hash: "sha256-eXWIxfL9UsKKf4sanBjKfr6Od4fPDctVnkU+wjIXW0M=",
     })),
     "2.14.0": nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       minimalOCamlVersion: "5.1.0",
       hash: "sha256-U6B3/ExryC7WLYj1iIUHoXZQluFE56Rf3dwOpux/qIE=",
     })),
     "2.15.0": nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       minimalOCamlVersion: "5.2.0",
       hash: "sha256-MK1F5tTbvZT5MkyZrz28+nj4+Yo8VxdxCBDHghUdMYY=",
     })),
   }, nix.key(nix.force(version))));
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "uring",
       version: version,
       minimalOCamlVersion: nix.thunk(() => nix.attr(param, "minimalOCamlVersion")),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           url: nix.thunk(() => nix.str`https://github.com/ocaml-multicore/ocaml-uring/releases/download/v${nix.sel(finalAttrs, "version")}/uring-${version}.tbz`),
           hash: nix.thunk(() => nix.attr(param, "hash")),
         })))),
@@ -60,7 +54,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       dontStrip: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         homepage: "https://github.com/ocaml-multicore/ocaml-uring",
         changelog: nix.thunk(() => nix.str`https://raw.githubusercontent.com/ocaml-multicore/ocaml-uring/v${nix.sel(finalAttrs, "version")}/CHANGES.md`),
         description: "Bindings to io_uring for OCaml",

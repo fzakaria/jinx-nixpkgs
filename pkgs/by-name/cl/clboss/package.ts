@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 20, 5], ["hash", 21, 5]], [["description", 37, 5], ["homepage", 38, 5], ["license", 39, 5], ["maintainers", 40, 5], ["platforms", 41, 5], ["mainProgram", 42, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 19, 3], ["nativeBuildInputs", 24, 3], ["enableParallelBuilding", 34, 3], ["meta", 36, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchzip: false, "autoconf-archive": false, autoreconfHook: false, "pkg-config": false, curlWithGnuTls: false, libev: false, libunwind: false, sqlite: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 37, 5], ["homepage", 38, 5], ["license", 39, 5], ["maintainers", 40, 5], ["platforms", 41, 5], ["mainProgram", 42, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 19, 3], ["nativeBuildInputs", 24, 3], ["enableParallelBuilding", 34, 3], ["meta", 36, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const libunwind = nix.arg($, "libunwind");
   const sqlite = nix.arg($, "sqlite");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "clboss",
       version: "0.17.1",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/ZmnSCPxj/clboss/releases/download/v${nix.sel(finalAttrs, "version")}/clboss-v${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-T5MENKxAPeH0gz9dvnyRb+8/dOzcCg1HO8ZWgwz133M=",
         })))),
@@ -39,7 +37,7 @@ export default nix.lambda((args) => (() => {
       ]),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Automated C-Lightning Node Manager",
         homepage: "https://github.com/ZmnSCPxj/clboss",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

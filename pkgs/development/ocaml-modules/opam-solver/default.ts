@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["description", 32, 5], ["maintainers", 33, 5]], [["pname", 15, 3], ["src", 17, 18], ["version", 17, 22], ["configureFlags", 19, 3], ["propagatedBuildInputs", 21, 3], ["meta", 31, 3]]]);
 const formals$1 = { args: { lib: false, buildDunePackage: false, cudf: false, dose3: false, mccs: false, opam: false, "opam-0install-cudf": false, "opam-format": false, re: false, z3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["description", 32, 5], ["maintainers", 33, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 15, 3], ["src", 17, 18], ["version", 17, 22], ["configureFlags", 19, 3], ["propagatedBuildInputs", 21, 3], ["meta", 31, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,14 +18,14 @@ export default nix.lambda((args) => (() => {
   const re = nix.arg($, "re");
   const z3 = nix.arg($, "z3");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "opam-solver",
       src: nix.thunk(() => nix.attr(opam, "src")),
       version: nix.thunk(() => nix.attr(opam, "version")),
       configureFlags: nix.thunk(() => ["--disable-checks"]),
       propagatedBuildInputs: nix.thunk(() => [cudf, dose3, mccs, opam_0install_cudf, opam_format, re, z3]),
       meta: nix.thunk(() => nix.update(nix.sel(opam, "meta"), {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "This library is based on the Cudf and Dose libraries, and handles calls to the external solver from opam",
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);

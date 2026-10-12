@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 31, 9], ["message", 32, 9], ["hash", 39, 9]], [["owner", 49, 5], ["repo", 50, 5], ["tag", 51, 5], ["hash", 52, 5], ["fetchSubmodules", 53, 5]], [["name", 62, 7], ["url", 63, 7], ["stripLen", 64, 7], ["extraPrefix", 65, 7], ["hash", 66, 7]], [["name", 89, 7], ["icon", 90, 7], ["exec", 91, 7], ["comment", 92, 7], ["desktopName", 93, 7], ["categories", 94, 7]], [["description", 152, 5], ["homepage", 153, 5], ["license", 154, 5], ["maintainers", 164, 5], ["mainProgram", 165, 5], ["platforms", 166, 5]], [["pname", 45, 3], ["version", 46, 3], ["src", 48, 3], ["strictDeps", 56, 3], ["__structuredAttrs", 57, 3], ["patches", 59, 3], ["nativeBuildInputs", 70, 3], ["buildInputs", 81, 3], ["desktopItems", 87, 3], ["preConfigure", 98, 3], ["hardeningDisable", 119, 3], ["installPhase", 126, 3], ["preFixup", 141, 3], ["postFixup", 147, 3], ["meta", 151, 3]]]);
 const formals$1 = { args: { lib: false, banjobaserom: true, requireFile: false, fetchFromGitHub: false, llvmPackages_21: false, cmake: false, copyDesktopItems: false, installShellFiles: false, makeWrapper: false, ninja: false, "pkg-config": false, wrapGAppsHook3: false, SDL2: false, gtk3: false, "vulkan-loader": false, makeDesktopItem: false, n64recomp: false, "directx-shader-compiler": false, bk_rom_compressor: false, fetchpatch: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 31, 9], ["message", 32, 9], ["hash", 39, 9]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 49, 5], ["repo", 50, 5], ["tag", 51, 5], ["hash", 52, 5], ["fetchSubmodules", 53, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 62, 7], ["url", 63, 7], ["stripLen", 64, 7], ["extraPrefix", 65, 7], ["hash", 66, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["name", 89, 7], ["icon", 90, 7], ["exec", 91, 7], ["comment", 92, 7], ["desktopName", 93, 7], ["categories", 94, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 152, 5], ["homepage", 153, 5], ["license", 154, 5], ["maintainers", 164, 5], ["mainProgram", 165, 5], ["platforms", 166, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 45, 3], ["version", 46, 3], ["src", 48, 3], ["strictDeps", 56, 3], ["__structuredAttrs", 57, 3], ["patches", 59, 3], ["nativeBuildInputs", 70, 3], ["buildInputs", 81, 3], ["desktopItems", 87, 3], ["preConfigure", 98, 3], ["hardeningDisable", 119, 3], ["installPhase", 126, 3], ["preFixup", 141, 3], ["postFixup", 147, 3], ["meta", 151, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,17 +28,17 @@ export default nix.lambda((args) => (() => {
   const bk_rom_compressor = nix.arg($, "bk_rom_compressor");
   const fetchpatch = nix.arg($, "fetchpatch");
   const baseRom = nix.thunk(() => (nix.asBool(!nix.eq(banjobaserom, null)) ? nix.force(banjobaserom) : nix.app(requireFile, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: "baserom.us.v10.z64",
       message: "banjorecomp only supports the US 1.0 version of Banjo-Kazooie.\nPlease dump your copy and rename it to baserom.us.v10.z64\nand add it to the nix store using\nnix-store --add-fixed sha256 baserom.us.v10.z64\nSee https://dumping.guide/carts/nintendo/n64 for more details.\n",
       hash: "sha256-WYdYNbmlEouwBUMVp/kp4gccIAHlKNcL9UPh1mgObv8=",
     })))));
   return nix.app(nix.sel(llvmPackages_21, "stdenv", "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "banjorecomp",
       version: "1.0.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "BanjoRecomp",
           repo: "BanjoRecomp",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -54,7 +49,7 @@ export default nix.lambda((args) => (() => {
       __structuredAttrs: true,
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "rmlui-cstdint.patch",
             url: "https://github.com/mikke89/RmlUi/commit/8c27b0a5cb601a3c57ecddc6ce8769ca93a97cb8.patch",
             stripLen: 1n,
@@ -75,7 +70,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [SDL2, gtk3, vulkan_loader]),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             name: "BanjoRecompiled",
             icon: "BanjoRecompiled",
             exec: "BanjoRecompiled",
@@ -110,7 +105,7 @@ substituteInPlace CMakeLists.txt \\
 `),
       postFixup: "wrapProgram $out/bin/BanjoRecompiled --chdir \"$out/share/banjorecomp\"\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "PC Port of Banjo-Kazooie made using N64: Recompiled",
         homepage: "https://github.com/BanjoRecomp/BanjoRecomp",
         license: nix.thunk(() => (() => {

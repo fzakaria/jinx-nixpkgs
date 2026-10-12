@@ -2,11 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 14, 5], ["sha256", 15, 5]], [["perlPackages", 28, 12]], [["description", 31, 5], ["homepage", 32, 5], ["maintainers", 33, 5], ["platforms", 34, 5], ["license", 37, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 18, 3], ["buildInputs", 22, 3], ["postInstall", 24, 3], ["passthru", 28, 3], ["meta", 30, 3]]]);
 const formals$1 = { args: { lib: false, fetchurl: false, perlPackages: false, "pkg-config": false, fribidi: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 14, 5], ["sha256", 15, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["perlPackages", 28, 12]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 31, 5], ["homepage", 32, 5], ["maintainers", 33, 5], ["platforms", 34, 5], ["license", 37, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 18, 3], ["buildInputs", 22, 3], ["postInstall", 24, 3], ["passthru", 28, 3], ["meta", 30, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,16 +16,16 @@ export default nix.lambda((args) => (() => {
       const pname = "urxvt-bidi";
       const version = "2.15";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://cpan/authors/id/K/KA/KAMENSKY/Text-Bidi-${version}.tar.gz`),
           sha256: "1w65xbi4mw5acsrpv3phyzv82ghb29kpbb3b1b1gcinlfxl6f61m",
         }))));
       const nativeBuildInputs = nix.thunk(() => [pkg_config, nix.thunk(() => nix.sel(perlPackages, "ExtUtilsPkgConfig"))]);
       const buildInputs = nix.thunk(() => [fribidi]);
       const postInstall = "install -Dm555 misc/bidi \"$out/lib/urxvt/perl/bidi\"\n";
-      const passthru = nix.thunk(() => ({ [nix.POS]: pos$2, perlPackages: nix.thunk(() => ["self"]) }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: $pos[1], perlPackages: nix.thunk(() => ["self"]) }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Text::Bidi Perl package using fribidi, providing a urxvt plugin",
         homepage: "https://github.com/mkamensky/Text-Bidi",
         maintainers: nix.thunk(() => (() => {
@@ -42,7 +39,7 @@ export default nix.lambda((args) => (() => {
         license: nix.thunk(() => nix.sel(perlPackages, "perl", "meta", "license")),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

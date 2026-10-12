@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 38, 5], ["repo", 39, 5], ["rev", 40, 5], ["hash", 41, 5]], [["updateScript", 90, 12]], [["description", 112, 5], ["homepage", 113, 5], ["changelog", 114, 5], ["license", 115, 5], ["maintainers", 116, 5]], [["pname", 33, 3], ["version", 34, 3], ["pyproject", 35, 3], ["src", 37, 3], ["build-system", 44, 3], ["pythonRelaxDeps", 46, 3], ["dependencies", 55, 3], ["nativeCheckInputs", 72, 3], ["disabledTests", 78, 3], ["pythonImportsCheck", 88, 3], ["passthru", 90, 3], ["meta", 111, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, pythonAtLeast: false, writeScript: false, hatchling: false, "dbt-protos": false, agate: false, colorama: false, deepdiff: false, isodate: false, jinja2: false, jsonschema: false, mashumaro: false, pathspec: false, protobuf: false, "python-dateutil": false, requests: false, "typing-extensions": false, pytestCheckHook: false, "pytest-mock": false, "pytest-xdist": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 38, 5], ["repo", 39, 5], ["rev", 40, 5], ["hash", 41, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["updateScript", 90, 12]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 112, 5], ["homepage", 113, 5], ["changelog", 114, 5], ["license", 115, 5], ["maintainers", 116, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 33, 3], ["version", 34, 3], ["pyproject", 35, 3], ["src", 37, 3], ["build-system", 44, 3], ["pythonRelaxDeps", 46, 3], ["dependencies", 55, 3], ["nativeCheckInputs", 72, 3], ["disabledTests", 78, 3], ["pythonImportsCheck", 88, 3], ["passthru", 90, 3], ["meta", 111, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,12 +30,12 @@ export default nix.lambda((args) => (() => {
   const pytest_mock = nix.arg($, "pytest-mock");
   const pytest_xdist = nix.arg($, "pytest-xdist");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "dbt-common",
       version: "1.37.3-unstable-2026-03-27",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "dbt-labs",
           repo: "dbt-common",
           rev: "db4a7b70486b5337bf0e387260211a418ac36936",
@@ -68,7 +65,7 @@ export default nix.lambda((args) => (() => {
         ])))),
       pythonImportsCheck: nix.thunk(() => ["dbt_common"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(writeScript, "update-dbt-common", nix.thunk(() => nix.str`#!/usr/bin/env nix-shell
 #!nix-shell -i bash -p git common-updater-scripts perl
 
@@ -90,7 +87,7 @@ perl -pe 's/^(.*version = ")([\\d\\.]+)(.*)$/\${1}'"\${newVersion}"'";/' \\
 `))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Shared common utilities for dbt-core and adapter implementations use",
         homepage: "https://github.com/dbt-labs/dbt-common",
         changelog: "https://github.com/dbt-labs/dbt-common/blob/main/CHANGELOG.md",

@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["homepage", 44, 5], ["description", 45, 5], ["longDescription", 46, 5], ["maintainers", 52, 5], ["license", 53, 5], ["platforms", 54, 5], ["mainProgram", 55, 5]], [["name", 58, 5], ["desktopName", 59, 5], ["exec", 60, 5], ["icon", 61, 5], ["terminal", 62, 5], ["categories", 63, 5], ["startupWMClass", 64, 5]], [["url", 70, 7], ["hash", 71, 7]], [["pname", 67, 13], ["version", 67, 19], ["meta", 67, 27], ["src", 69, 5], ["nativeBuildInputs", 74, 5], ["buildInputs", 80, 5], ["strictDeps", 107, 5], ["unpackPhase", 109, 5], ["dontWrapQtApps", 116, 5], ["installPhase", 118, 5]], [["updateScript", 184, 12]], [["pname", 150, 11], ["version", 150, 17], ["meta", 150, 25], ["targetPkgs", 151, 3], ["extraInstallCommands", 157, 3], ["runScript", 163, 3], ["passthru", 184, 3]]]);
 const formals$1 = { args: { "alsa-lib": false, autoPatchelfHook: false, buildFHSEnv: false, elfutils: false, extraEnv: true, fetchurl: false, "ffmpeg_6-headless": false, lib: false, libdrm: false, libdeflate: false, libedit: false, libgbm: false, libpulseaudio: false, libva: false, libxkbcommon: false, libxml2_13: false, makeDesktopItem: false, makeShellWrapper: false, minizip: false, nss: false, "squashfs-tools": false, stdenv: false, writeShellScript: false, xkeyboard_config: false, "libxcb-wm": false, "libxcb-render-util": false, "libxcb-keysyms": false, "libxcb-image": false, libxtst: false, libxrender: false, libxrandr: false, libxinerama: false, libxdamage: false, libxcomposite: false, xrandr: false, libxshmfence: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["homepage", 44, 5], ["description", 45, 5], ["longDescription", 46, 5], ["maintainers", 52, 5], ["license", 53, 5], ["platforms", 54, 5], ["mainProgram", 55, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 58, 5], ["desktopName", 59, 5], ["exec", 60, 5], ["icon", 61, 5], ["terminal", 62, 5], ["categories", 63, 5], ["startupWMClass", 64, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 70, 7], ["hash", 71, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 67, 13], ["version", 67, 19], ["meta", 67, 27], ["src", 69, 5], ["nativeBuildInputs", 74, 5], ["buildInputs", 80, 5], ["strictDeps", 107, 5], ["unpackPhase", 109, 5], ["dontWrapQtApps", 116, 5], ["installPhase", 118, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["updateScript", 184, 12]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 150, 11], ["version", 150, 17], ["meta", 150, 25], ["targetPkgs", 151, 3], ["extraInstallCommands", 157, 3], ["runScript", 163, 3], ["passthru", 184, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -52,7 +47,7 @@ export default nix.lambda((args) => (() => {
   const version = "1.115.0";
   const rev = "88";
   const meta = nix.thunk(() => ({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     homepage: "https://plex.tv/",
     description: "Streaming media player for Plex",
     longDescription: "Plex for Linux is your client for playback on the Linux\ndesktop. It features the point and click interface you see in your browser\nbut uses a more powerful playback engine as well as\nsome other advance features.\n",
@@ -65,7 +60,7 @@ export default nix.lambda((args) => (() => {
     mainProgram: "plex-desktop",
   }));
   const desktopItem = nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       name: "plex-desktop",
       desktopName: "Plex",
       exec: "plex-desktop",
@@ -75,12 +70,12 @@ export default nix.lambda((args) => (() => {
       startupWMClass: "Plex",
     }))));
   const plex_desktop = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: pname,
       version: version,
       meta: meta,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           url: nix.thunk(() => nix.str`https://api.snapcraft.io/api/v1/snaps/download/qc6MFRM433ZhI1XjVzErdHivhSOhlpf0_${rev}.snap`),
           hash: "sha512-ofqr1B31aVpymFD381zlB66Dh93G9WqqRZjTPDTlG7IV90BPiPNgDSxdbci60HARP0zD6XnZa5kuqERqbupwZw==",
         })))),
@@ -117,7 +112,7 @@ export default nix.lambda((args) => (() => {
       installPhase: "runHook preInstall\n\ncp -r . $out\nrm -r $out/etc\nrm -r $out/usr\n\n# flatpak removes these during installation.\nrm -r $out/lib/dri\nrm $out/lib/libpciaccess.so*\nrm $out/lib/libswresample.so*\nrm $out/lib/libva-*.so*\nrm $out/lib/libva.so*\nrm $out/lib/libdrm.so*\n\n# Keep dependencies where the version from nixpkgs is higher.\ncp usr/lib/x86_64-linux-gnu/libasound.so.2 $out/lib/libasound.so.2\ncp usr/lib/x86_64-linux-gnu/libjbig.so.0 $out/lib/libjbig.so.0\ncp usr/lib/x86_64-linux-gnu/libjpeg.so.8 $out/lib/libjpeg.so.8\ncp usr/lib/x86_64-linux-gnu/liblcms2.so.2 $out/lib/liblcms2.so.2\ncp usr/lib/x86_64-linux-gnu/libpci.so.3.7.0 $out/lib/libpci.so.3\ncp usr/lib/x86_64-linux-gnu/libsnappy.so.1.1.8 $out/lib/libsnappy.so.1\ncp usr/lib/x86_64-linux-gnu/libtiff.so.5 $out/lib/libtiff.so.5\ncp usr/lib/x86_64-linux-gnu/libwebp.so.7 $out/lib/libwebp.so.7\ncp usr/lib/x86_64-linux-gnu/libxkbfile.so.1.0.2 $out/lib/libxkbfile.so.1\ncp usr/lib/x86_64-linux-gnu/libxslt.so.1.1.34 $out/lib/libxslt.so.1\n\nrunHook postInstall\n",
     }))));
   return nix.app(buildFHSEnv, nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: pname,
       version: version,
       meta: meta,
@@ -146,7 +141,7 @@ set -o allexport
 ${nix.app(nix.sel(lib, "toShellVars"), extraEnv)}
 exec ${plex_desktop}/Plex.sh
 `))),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$5, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[4], updateScript: nix.path(here, "./update.sh") })),
     })));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

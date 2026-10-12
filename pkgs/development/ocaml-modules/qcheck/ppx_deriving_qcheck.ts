@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/ppx_deriving_qcheck.nix", [[["version", 14, 9], ["tag", 15, 9], ["hash", 16, 9]], [["version", 20, 9], ["tag", 21, 9], ["hash", 22, 9]], [["owner", 31, 5], ["repo", 32, 5], ["tag", 33, 21], ["hash", 33, 25]], [["description", 43, 5]], [["pname", 27, 3], ["version", 28, 19], ["src", 30, 3], ["propagatedBuildInputs", 36, 3], ["meta", 42, 3]]]);
 const formals$1 = { args: { lib: false, buildDunePackage: false, fetchFromGitHub: false, qcheck: false, ppxlib: false, ppx_deriving: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/ppx_deriving_qcheck.nix", [["version", 14, 9], ["tag", 15, 9], ["hash", 16, 9]]);
-const pos$2 = nix.positions(here + "/ppx_deriving_qcheck.nix", [["version", 20, 9], ["tag", 21, 9], ["hash", 22, 9]]);
-const pos$3 = nix.positions(here + "/ppx_deriving_qcheck.nix", [["owner", 31, 5], ["repo", 32, 5], ["tag", 33, 21], ["hash", 33, 25]]);
-const pos$4 = nix.positions(here + "/ppx_deriving_qcheck.nix", [["description", 43, 5]]);
-const pos$5 = nix.positions(here + "/ppx_deriving_qcheck.nix", [["pname", 27, 3], ["version", 28, 19], ["src", 30, 3], ["propagatedBuildInputs", 36, 3], ["meta", 42, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,29 +14,29 @@ export default nix.lambda((args) => (() => {
   const ppxlib = nix.arg($, "ppxlib");
   const ppx_deriving = nix.arg($, "ppx_deriving");
   const param = nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(ppxlib, "version")), "0.36")) ? {
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     version: "0.9",
     tag: "v0.91",
     hash: "sha256-ToF+bRbiq1P5YaGOKiW//onJDhxaxmnaz9/JbJ82OWM=",
   } : {
-    [nix.POS]: pos$2,
+    [nix.POS]: $pos[1],
     version: "0.6",
     tag: "v0.24",
     hash: "sha256-iuFlmSeUhumeWhqHlaNqDjReRf8c4e76hhT27DK3+/g=",
   }));
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "ppx_deriving_qcheck",
       version: nix.thunk(() => nix.attr(param, "version")),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           owner: "c-cube",
           repo: "qcheck",
           tag: nix.thunk(() => nix.attr(param, "tag")),
           hash: nix.thunk(() => nix.attr(param, "hash")),
         })))),
       propagatedBuildInputs: nix.thunk(() => [qcheck, ppxlib, ppx_deriving]),
-      meta: nix.thunk(() => nix.update(nix.sel(qcheck, "meta"), { [nix.POS]: pos$4, description: "PPX Deriver for QCheck" })),
+      meta: nix.thunk(() => nix.update(nix.sel(qcheck, "meta"), { [nix.POS]: $pos[3], description: "PPX Deriver for QCheck" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=ppx_deriving_qcheck.ts.map

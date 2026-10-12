@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 29, 5], ["repo", 30, 5], ["rev", 31, 5], ["hash", 32, 5]], [["doCheck", 79, 53]], [["libwacom-surface", 78, 13], ["tests", 79, 5]], [["tests", 77, 12]], [["platforms", 83, 5], ["homepage", 84, 5], ["changelog", 85, 5], ["description", 86, 5], ["teams", 87, 5], ["license", 88, 5], ["badPlatforms", 89, 5]], [["pname", 19, 3], ["version", 20, 3], ["outputs", 22, 3], ["src", 28, 3], ["postPatch", 35, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 47, 3], ["mesonFlags", 58, 3], ["doCheck", 65, 3], ["doInstallCheck", 66, 3], ["nativeCheckInputs", 68, 3], ["passthru", 77, 3], ["meta", 82, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, meson: false, ninja: false, glib: false, "pkg-config": false, udev: false, udevCheckHook: false, libevdev: false, libgudev: false, python3: false, valgrind: false, "libwacom-surface": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 29, 5], ["repo", 30, 5], ["rev", 31, 5], ["hash", 32, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["doCheck", 79, 53]]);
-const pos$3 = nix.positions(here + "/package.nix", [["libwacom-surface", 78, 13], ["tests", 79, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 77, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["platforms", 83, 5], ["homepage", 84, 5], ["changelog", 85, 5], ["description", 86, 5], ["teams", 87, 5], ["license", 88, 5], ["badPlatforms", 89, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["outputs", 22, 3], ["src", 28, 3], ["postPatch", 35, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 47, 3], ["mesonFlags", 58, 3], ["doCheck", 65, 3], ["doInstallCheck", 66, 3], ["nativeCheckInputs", 68, 3], ["passthru", 77, 3], ["meta", 82, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,12 +22,12 @@ export default nix.lambda((args) => (() => {
   const valgrind = nix.arg($, "valgrind");
   const libwacom_surface = nix.arg($, "libwacom-surface");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "libwacom",
       version: "2.20.0",
       outputs: nix.thunk(() => ["bin", "out", "dev"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "linuxwacom",
           repo: "libwacom",
           rev: nix.thunk(() => nix.str`libwacom-${nix.sel(finalAttrs, "version")}`),
@@ -65,15 +60,15 @@ export default nix.lambda((args) => (() => {
           ])),
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           "libwacom-surface": libwacom_surface,
-          tests: nix.thunk(() => nix.app(nix.sel(finalAttrs, "finalPackage", "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: pos$2, doCheck: true })))),
+          tests: nix.thunk(() => nix.app(nix.sel(finalAttrs, "finalPackage", "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: $pos[1], doCheck: true })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
         homepage: "https://linuxwacom.github.io/",
         changelog: nix.thunk(() => nix.str`https://github.com/linuxwacom/libwacom/blob/${nix.sel(finalAttrs, "src", "rev")}/NEWS`),

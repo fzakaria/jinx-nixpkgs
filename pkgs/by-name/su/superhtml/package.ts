@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]], [["description", 31, 5], ["homepage", 32, 5], ["license", 33, 5], ["mainProgram", 34, 5], ["maintainers", 35, 5], ["platforms", 36, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["nativeBuildInputs", 22, 3], ["postConfigure", 26, 3], ["meta", 30, 3]]]);
 const formals$1 = { args: { lib: false, callPackage: false, fetchFromGitHub: false, stdenv: false, zig_0_15: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 31, 5], ["homepage", 32, 5], ["license", 33, 5], ["mainProgram", 34, 5], ["maintainers", 35, 5], ["platforms", 36, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["nativeBuildInputs", 22, 3], ["postConfigure", 26, 3], ["meta", 30, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const zig_0_15 = nix.arg($, "zig_0_15");
   const zig = zig_0_15;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "superhtml",
       version: "0.6.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "kristoff-it",
           repo: "superhtml",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -30,7 +28,7 @@ export default nix.lambda((args) => (() => {
       postConfigure: nix.thunk(() => nix.str`ln -s ${nix.app(callPackage, nix.path(here, "./deps.nix"), nix.thunk(() => ({})))} $ZIG_GLOBAL_CACHE_DIR/p
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "HTML Language Server and Templating Language Library",
         homepage: "https://github.com/kristoff-it/superhtml",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

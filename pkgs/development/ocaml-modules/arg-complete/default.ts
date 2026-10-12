@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 15, 5], ["hash", 16, 5]], [["description", 25, 5], ["homepage", 26, 5], ["changelog", 27, 5], ["license", 28, 5], ["maintainers", 29, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 19, 3], ["doCheck", 21, 3], ["checkInputs", 22, 3], ["meta", 24, 3]]]);
 const formals$1 = { args: { lib: false, fetchurl: false, ocaml: false, buildDunePackage: false, cppo: false, ounit2: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 25, 5], ["homepage", 26, 5], ["changelog", 27, 5], ["license", 28, 5], ["maintainers", 29, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 19, 3], ["doCheck", 21, 3], ["checkInputs", 22, 3], ["meta", 24, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const cppo = nix.arg($, "cppo");
   const ounit2 = nix.arg($, "ounit2");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "arg-complete",
       version: "0.2.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/sim642/ocaml-arg-complete/releases/download/${nix.sel(finalAttrs, "version")}/arg-complete-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-SZvLaeeqY3j2LUvqxGs0Vw57JnnpdvAk1jnE3pk27QU=",
         })))),
@@ -28,7 +26,7 @@ export default nix.lambda((args) => (() => {
       doCheck: nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(ocaml, "version")), "4.08")),
       checkInputs: nix.thunk(() => [ounit2]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Bash completion support for OCaml Stdlib.Arg",
         homepage: "https://sim642.github.io/ocaml-arg-complete/",
         changelog: nix.thunk(() => nix.str`https://raw.githubusercontent.com/sim642/ocaml-arg-complete/refs/tags/${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

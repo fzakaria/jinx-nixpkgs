@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 47, 5], ["repo", 48, 5], ["tag", 49, 5], ["hash", 50, 5]], [["updateScript", 157, 5]], [["description", 161, 5], ["mainProgram", 162, 5], ["longDescription", 164, 5], ["license", 174, 5], ["homepage", 176, 5], ["changelog", 177, 5], ["maintainers", 179, 5], ["platforms", 183, 5]], [["pname", 43, 3], ["version", 44, 3], ["src", 46, 3], ["postPatch", 53, 3], ["nativeBuildInputs", 57, 3], ["buildInputs", 68, 3], ["postInstall", 91, 3], ["enableParallelBuilding", 154, 3], ["passthru", 156, 3], ["meta", 160, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, "pkg-config": false, meson: false, ninja: false, xxd: false, gettext: false, intltool: false, gtk3: false, lcms2: false, exiv2: false, libchamplain_libsoup3: false, "clutter-gtk": false, ffmpegthumbnailer: false, fbida: false, libarchive: false, djvulibre: false, libheif: false, openjpeg: false, libjxl: false, libraw: false, lua5_3: false, poppler: false, gspell: false, libtiff: false, libwebp: false, gphoto2: false, imagemagick: false, yad: false, exiftool: false, zenity: false, libnotify: false, wrapGAppsHook3: false, doxygen: false, "nix-update-script": false, openexr: false, cfitsio: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 47, 5], ["repo", 48, 5], ["tag", 49, 5], ["hash", 50, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 157, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 161, 5], ["mainProgram", 162, 5], ["longDescription", 164, 5], ["license", 174, 5], ["homepage", 176, 5], ["changelog", 177, 5], ["maintainers", 179, 5], ["platforms", 183, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 43, 3], ["version", 44, 3], ["src", 46, 3], ["postPatch", 53, 3], ["nativeBuildInputs", 57, 3], ["buildInputs", 68, 3], ["postInstall", 91, 3], ["enableParallelBuilding", 154, 3], ["passthru", 156, 3], ["meta", 160, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -49,11 +46,11 @@ export default nix.lambda((args) => (() => {
   const openexr = nix.arg($, "openexr");
   const cfitsio = nix.arg($, "cfitsio");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "geeqie",
       version: "2.9",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "BestImageViewer",
           repo: "geeqie",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -111,11 +108,11 @@ sed -i $out/lib/geeqie/geeqie-export-jpeg \\
 `),
       enableParallelBuilding: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Lightweight GTK based image viewer",
         mainProgram: "geeqie",
         longDescription: "Geeqie is a lightweight GTK based image viewer for Unix like\noperating systems.  It features: EXIF, IPTC and XMP metadata\nbrowsing and editing interoperability; easy integration with other\nsoftware; geeqie works on files and directories, there is no need to\nimport images; fast preview for many raw image formats; tools for\nimage comparison, sorting and managing photo collection.  Geeqie was\ninitially based on GQview.\n",

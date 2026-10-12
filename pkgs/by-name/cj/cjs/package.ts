@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]], [["homepage", 75, 5], ["description", 76, 5], ["longDescription", 78, 5], ["license", 82, 5], ["platforms", 89, 5], ["teams", 90, 5]], [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["outputs", 31, 3], ["strictDeps", 36, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 51, 3], ["propagatedBuildInputs", 58, 3], ["mesonFlags", 62, 3], ["postPatch", 70, 3], ["meta", 74, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, "gobject-introspection": false, "pkg-config": false, cairo: false, glib: false, readline: false, "libsysprof-capture": false, spidermonkey_140: false, meson: false, mesonEmulatorHook: false, dbus: false, ninja: false, which: false, libxml2: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 75, 5], ["description", 76, 5], ["longDescription", 78, 5], ["license", 82, 5], ["platforms", 89, 5], ["teams", 90, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["outputs", 31, 3], ["strictDeps", 36, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 51, 3], ["propagatedBuildInputs", 58, 3], ["mesonFlags", 62, 3], ["postPatch", 70, 3], ["meta", 74, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const which = nix.arg($, "which");
   const libxml2 = nix.arg($, "libxml2");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "cjs",
       version: "140.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "linuxmint",
           repo: "cjs",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -44,7 +42,7 @@ export default nix.lambda((args) => (() => {
       mesonFlags: nix.thunk(() => nix.concat(["-Dskip_gtk_tests=true"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isMusl")), nix.thunk(() => ["-Dprofiler=disabled"])))),
       postPatch: "patchShebangs --build build/choose-tests-locale.sh\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/linuxmint/cjs",
         description: "JavaScript bindings for Cinnamon",
         longDescription: "This module contains JavaScript bindings based on gobject-introspection.\n",

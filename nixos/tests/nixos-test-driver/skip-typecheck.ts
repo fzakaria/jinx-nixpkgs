@@ -2,16 +2,14 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
-const pos$1 = nix.positions(here + "/skip-typecheck.nix", [["maintainers", 9, 5]]);
-const pos$2 = nix.positions(here + "/skip-typecheck.nix", [["machine", 14, 9]]);
-const pos$3 = nix.positions(here + "/skip-typecheck.nix", [["name", 7, 3], ["meta", 8, 3], ["skipTypeCheck", 12, 3], ["nodes", 14, 3], ["testScript", 16, 3]]);
+const $pos = nix.positions(here + "/skip-typecheck.nix", [[["maintainers", 9, 5]], [["machine", 14, 9]], [["name", 7, 3], ["meta", 8, 3], ["skipTypeCheck", 12, 3], ["nodes", 14, 3], ["testScript", 16, 3]]]);
 
 export default nix.thunk(() => ({
-  [nix.POS]: pos$3,
+  [nix.POS]: $pos[2],
   name: "skip-typecheck",
-  meta: nix.thunk(() => ({ [nix.POS]: pos$1, maintainers: [] })),
+  meta: nix.thunk(() => ({ [nix.POS]: $pos[0], maintainers: [] })),
   skipTypeCheck: true,
-  nodes: nix.thunk(() => ({ [nix.POS]: pos$2, machine: nix.thunk(() => ({})) })),
+  nodes: nix.thunk(() => ({ [nix.POS]: $pos[1], machine: nix.thunk(() => ({})) })),
   testScript: "start_all()\nmachine.wait_for_unit(\"multi-user.target\")\nmachine.shutdown()\n",
 }));
 //# sourceMappingURL=skip-typecheck.ts.map

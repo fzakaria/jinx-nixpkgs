@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["x86_64-linux", 23, 7], ["aarch64-linux", 24, 7], ["aarch64-darwin", 25, 7]], [["x86_64-linux", 31, 7], ["aarch64-linux", 32, 7], ["aarch64-darwin", 33, 7]], [["url", 42, 13], ["hash", 42, 17]], [["updateScript", 45, 12]], [["shortName", 99, 7], ["fullName", 100, 7], ["url", 101, 7], ["free", 102, 7]], [["description", 89, 5], ["homepage", 90, 5], ["changelog", 91, 5], ["maintainers", 92, 5], ["platforms", 93, 5], ["license", 98, 5], ["sourceProvenance", 104, 5]], [["pname", 38, 3], ["version", 39, 11], ["src", 41, 3], ["passthru", 45, 3], ["nativeBuildInputs", 47, 3], ["buildInputs", 57, 3], ["installPhase", 68, 3], ["meta", 88, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, undmg: false, autoPatchelfHook: false, makeWrapper: false, cairo: false, "gdk-pixbuf": false, gtk3: false, libz: false, pango: false, harfbuzz: false, atkmm: false, libcxx: false, "mpv-unwrapped": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["x86_64-linux", 23, 7], ["aarch64-linux", 24, 7], ["aarch64-darwin", 25, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["x86_64-linux", 31, 7], ["aarch64-linux", 32, 7], ["aarch64-darwin", 33, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 42, 13], ["hash", 42, 17]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 45, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["shortName", 99, 7], ["fullName", 100, 7], ["url", 101, 7], ["free", 102, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 89, 5], ["homepage", 90, 5], ["changelog", 91, 5], ["maintainers", 92, 5], ["platforms", 93, 5], ["license", 98, 5], ["sourceProvenance", 104, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 38, 3], ["version", 39, 11], ["src", 41, 3], ["passthru", 45, 3], ["nativeBuildInputs", 47, 3], ["buildInputs", 57, 3], ["installPhase", 68, 3], ["meta", 88, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,23 +25,23 @@ export default nix.lambda((args) => (() => {
   const version = "0.3.32";
   const url_base = nix.thunk(() => nix.str`https://github.com/alexmercerind2/harmonoid-releases/releases/download/v${version}`);
   const url = nix.thunk(() => nix.selOr({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     "x86_64-linux": nix.thunk(() => nix.str`${url_base}/harmonoid-linux-x86_64.tar.gz`),
     "aarch64-linux": nix.thunk(() => nix.str`${url_base}/harmonoid-linux-aarch64.tar.gz`),
     "aarch64-darwin": nix.thunk(() => nix.str`${url_base}/harmonoid-macos-universal.dmg`),
   }, () => nix.builtins.throw(nix.thunk(() => nix.str`${nix.sel(stdenv, "hostPlatform", "system")} is an unsupported platform`)), nix.key(nix.sel(stdenv, "hostPlatform", "system"))));
   const hash = nix.thunk(() => nix.sel({
-    [nix.POS]: pos$2,
+    [nix.POS]: $pos[1],
     "x86_64-linux": "sha256-ICnghYC25CLf5kzB6tUC/ocKI+J5HA7zyK9dEkLOWWE=",
     "aarch64-linux": "sha256-j9Pveq7iULBUVF7ochHWS9VynlJlk14m3KLRyAcNKiA=",
     "aarch64-darwin": "sha256-BrhumTPD7SjK9LRUp5giy5h7LdSrhQyVUXE1Crr0LXI=",
   }, nix.key(nix.sel(stdenv, "hostPlatform", "system"))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "harmonoid",
       version: version,
-      src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({ [nix.POS]: pos$3, url: url, hash: hash })))),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$4, updateScript: nix.path(here, "./update.sh") })),
+      src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({ [nix.POS]: $pos[2], url: url, hash: hash })))),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[3], updateScript: nix.path(here, "./update.sh") })),
       nativeBuildInputs: nix.thunk(() => nix.concat([makeWrapper], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [autoPatchelfHook])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [undmg]))))),
       buildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [cairo, gdk_pixbuf, gtk3, libz, pango, harfbuzz, atkmm, libcxx]))),
       installPhase: nix.thunk(() => nix.add(nix.add(nix.add("runHook preInstall\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => nix.str`mkdir -p $out
@@ -57,7 +51,7 @@ cp -r share $out
 wrapProgram $out/bin/harmonoid --prefix LD_LIBRARY_PATH : $out/share/harmonoid/lib:${nix.app(nix.sel(lib, "makeLibraryPath"), nix.thunk(() => [mpv_unwrapped]))}
 `))), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "mkdir -p $out/Applications\ncp -r . $out/Applications/Harmonoid.app\n")), "runHook postInstall\n")),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Plays & manages your music library",
         homepage: "https://harmonoid.com/",
         changelog: nix.thunk(() => nix.str`https://github.com/harmonoid/harmonoid/releases/tag/v${nix.sel(finalAttrs, "version")}`),
@@ -67,7 +61,7 @@ wrapProgram $out/bin/harmonoid --prefix LD_LIBRARY_PATH : $out/share/harmonoid/l
         })()),
         platforms: nix.thunk(() => ["x86_64-linux", "aarch64-linux", "aarch64-darwin"]),
         license: nix.thunk(() => nix.app(nix.sel(lib, "licenses", "mkLicense"), nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             shortName: "polyFormStrict100",
             fullName: "PolyForm Strict License 1.0.0",
             url: "https://polyformproject.org/licenses/strict/1.0.0/",

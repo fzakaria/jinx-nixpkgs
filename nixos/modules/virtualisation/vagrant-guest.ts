@@ -2,21 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/vagrant-guest.nix", [[["enable", 20, 20]], [["openssh", 20, 12]], [["systemPackages", 23, 15]], [["isNormalUser", 33, 5], ["createHome", 34, 5], ["description", 35, 5], ["extraGroups", 36, 5], ["home", 40, 5], ["password", 41, 5], ["useDefaultShell", 42, 5], ["uid", 43, 5]], [["vagrant", 32, 20]], [["extraUsers", 32, 9]], [["ExecStart", 52, 7], ["User", 53, 7], ["RemainAfterExit", 55, 7]], [["description", 47, 5], ["after", 48, 5], ["wants", 49, 5], ["wantedBy", 50, 5], ["serviceConfig", 51, 5]], [["install-vagrant-ssh-key", 46, 20]], [["services", 46, 11]], [["wheelNeedsPassword", 59, 17]], [["wheelNeedsPassword", 60, 20]], [["sudo", 59, 12], ["sudo-rs", 60, 12]], [["services", 20, 3], ["environment", 23, 3], ["users", 32, 3], ["systemd", 46, 3], ["security", 59, 3]]]);
 const formals$1 = { args: { config: false, pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/vagrant-guest.nix", [["enable", 20, 20]]);
-const pos$2 = nix.positions(here + "/vagrant-guest.nix", [["openssh", 20, 12]]);
-const pos$3 = nix.positions(here + "/vagrant-guest.nix", [["systemPackages", 23, 15]]);
-const pos$4 = nix.positions(here + "/vagrant-guest.nix", [["isNormalUser", 33, 5], ["createHome", 34, 5], ["description", 35, 5], ["extraGroups", 36, 5], ["home", 40, 5], ["password", 41, 5], ["useDefaultShell", 42, 5], ["uid", 43, 5]]);
-const pos$5 = nix.positions(here + "/vagrant-guest.nix", [["vagrant", 32, 20]]);
-const pos$6 = nix.positions(here + "/vagrant-guest.nix", [["extraUsers", 32, 9]]);
-const pos$7 = nix.positions(here + "/vagrant-guest.nix", [["ExecStart", 52, 7], ["User", 53, 7], ["RemainAfterExit", 55, 7]]);
-const pos$8 = nix.positions(here + "/vagrant-guest.nix", [["description", 47, 5], ["after", 48, 5], ["wants", 49, 5], ["wantedBy", 50, 5], ["serviceConfig", 51, 5]]);
-const pos$9 = nix.positions(here + "/vagrant-guest.nix", [["install-vagrant-ssh-key", 46, 20]]);
-const pos$10 = nix.positions(here + "/vagrant-guest.nix", [["services", 46, 11]]);
-const pos$11 = nix.positions(here + "/vagrant-guest.nix", [["wheelNeedsPassword", 59, 17]]);
-const pos$12 = nix.positions(here + "/vagrant-guest.nix", [["wheelNeedsPassword", 60, 20]]);
-const pos$13 = nix.positions(here + "/vagrant-guest.nix", [["sudo", 59, 12], ["sudo-rs", 60, 12]]);
-const pos$14 = nix.positions(here + "/vagrant-guest.nix", [["services", 20, 3], ["environment", 23, 3], ["users", 32, 3], ["systemd", 46, 3], ["security", 59, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,13 +16,13 @@ if [ ! -e ~/.ssh/authorized_keys ]; then
 fi
 `)));
   return {
-    [nix.POS]: pos$14,
+    [nix.POS]: $pos[13],
     services: nix.thunk(() => ({
-      [nix.POS]: pos$2,
-      openssh: nix.thunk(() => ({ [nix.POS]: pos$1, enable: true })),
+      [nix.POS]: $pos[1],
+      openssh: nix.thunk(() => ({ [nix.POS]: $pos[0], enable: true })),
     })),
     environment: nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       systemPackages: nix.thunk(() => (() => {
         const w = nix.withScope(pkgs, null);
         return [
@@ -49,11 +36,11 @@ fi
       })()),
     })),
     users: nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       extraUsers: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         vagrant: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           isNormalUser: true,
           createHome: true,
           description: "Vagrant user account",
@@ -66,17 +53,17 @@ fi
       })),
     })),
     systemd: nix.thunk(() => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       services: nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         "install-vagrant-ssh-key": nix.thunk(() => ({
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           description: "Vagrant SSH key install (if needed)",
           after: nix.thunk(() => ["fs.target"]),
           wants: nix.thunk(() => ["fs.target"]),
           wantedBy: nix.thunk(() => ["multi-user.target"]),
           serviceConfig: nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             ExecStart: nix.thunk(() => nix.str`${install_vagrant_ssh_key}/bin/install-vagrant-ssh-key`),
             User: "vagrant",
             RemainAfterExit: true,
@@ -85,9 +72,9 @@ fi
       })),
     })),
     security: nix.thunk(() => ({
-      [nix.POS]: pos$13,
-      sudo: nix.thunk(() => ({ [nix.POS]: pos$11, wheelNeedsPassword: false })),
-      "sudo-rs": nix.thunk(() => ({ [nix.POS]: pos$12, wheelNeedsPassword: false })),
+      [nix.POS]: $pos[12],
+      sudo: nix.thunk(() => ({ [nix.POS]: $pos[10], wheelNeedsPassword: false })),
+      "sudo-rs": nix.thunk(() => ({ [nix.POS]: $pos[11], wheelNeedsPassword: false })),
     })),
   };
 })(), formals$1);

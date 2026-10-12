@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 27, 5], ["repo", 28, 5], ["rev", 29, 5], ["hash", 30, 5]], [["AIRSPY", 59, 7], ["SDRPLAY_V3", 60, 7], ["HACKRF", 61, 7], ["LIME", 62, 7], ["PLUTO", 63, 7], ["RTLSDR", 64, 7]], [["features", 56, 5], ["runtimeDependencies", 69, 5]], [["description", 91, 5], ["homepage", 92, 5], ["license", 93, 5], ["maintainers", 94, 5], ["platforms", 97, 5], ["mainProgram", 98, 5]], [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 39, 3], ["cmakeFlags", 49, 3], ["passthru", 55, 3], ["postInstall", 78, 3], ["meta", 90, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, "pkg-config": false, qt5: false, libsForQt5: false, fftwFloat: false, libsamplerate: false, portaudio: false, libusb1: false, libsndfile: false, featuresOverride: true, airspy: false, hackrf: false, libiio: false, limesuite: false, "rtl-sdr": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 27, 5], ["repo", 28, 5], ["rev", 29, 5], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["AIRSPY", 59, 7], ["SDRPLAY_V3", 60, 7], ["HACKRF", 61, 7], ["LIME", 62, 7], ["PLUTO", 63, 7], ["RTLSDR", 64, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["features", 56, 5], ["runtimeDependencies", 69, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 91, 5], ["homepage", 92, 5], ["license", 93, 5], ["maintainers", 94, 5], ["platforms", 97, 5], ["mainProgram", 98, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 39, 3], ["cmakeFlags", 49, 3], ["passthru", 55, 3], ["postInstall", 78, 3], ["meta", 90, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const limesuite = nix.arg($, "limesuite");
   const rtl_sdr = nix.arg($, "rtl-sdr");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "sdr-j-fm",
       version: "3.20-unstable-2025-10-07",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "JvanKatwijk",
           repo: "sdr-j-fm",
           rev: "e348cc0a4b4b16f716f36115400dfd861b9a0bd5",
@@ -55,9 +51,9 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeFeature"), "CMAKE_POLICY_VERSION_MINIMUM", "3.5")),
       ])),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         features: nix.thunk(() => nix.update({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           AIRSPY: true,
           SDRPLAY_V3: true,
           HACKRF: true,
@@ -78,7 +74,7 @@ wrapProgram $out/bin/fmreceiver \\
   --prefix LD_LIBRARY_PATH : ${nix.app(nix.sel(lib, "makeLibraryPath"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage", "passthru", "runtimeDependencies")))}
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "SDR based FM radio receiver software",
         homepage: "https://github.com/JvanKatwijk/sdr-j-fm",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

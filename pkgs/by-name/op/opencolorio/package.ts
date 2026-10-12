@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 29, 5], ["repo", 30, 5], ["rev", 31, 5], ["hash", 32, 5]], [["CXXFLAGS", 79, 7]], [["homepage", 96, 5], ["description", 97, 5], ["license", 98, 5], ["maintainers", 99, 5], ["platforms", 100, 5]], [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["postPatch", 38, 3], ["nativeBuildInputs", 55, 3], ["buildInputs", 56, 3], ["env", 79, 3], ["cmakeFlags", 80, 3], ["doCheck", 91, 3], ["enableParallelChecking", 93, 3], ["meta", 95, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, cmake: false, expat: false, "yaml-cpp": false, pystring: false, imath: false, "minizip-ng": false, zlib: false, glew: false, libglut: false, pythonBindings: true, python3Packages: false, buildApps: true, lcms2: false, openexr: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 29, 5], ["repo", 30, 5], ["rev", 31, 5], ["hash", 32, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["CXXFLAGS", 79, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 96, 5], ["description", 97, 5], ["license", 98, 5], ["maintainers", 99, 5], ["platforms", 100, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["postPatch", 38, 3], ["nativeBuildInputs", 55, 3], ["buildInputs", 56, 3], ["env", 79, 3], ["cmakeFlags", 80, 3], ["doCheck", 91, 3], ["enableParallelChecking", 93, 3], ["meta", 95, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const pname = "opencolorio";
       const version = "2.5.2";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "AcademySoftwareFoundation",
           repo: "OpenColorIO",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -43,7 +40,7 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.sel(python3Packages, "python")),
           nix.thunk(() => nix.sel(python3Packages, "pybind11")),
         ])), nix.app(nix.sel(lib, "optionals"), buildApps, nix.thunk(() => [lcms2, openexr]))))));
-      const env = nix.thunk(() => ({ [nix.POS]: pos$2, CXXFLAGS: "-ffp-contract=on" }));
+      const env = nix.thunk(() => ({ [nix.POS]: $pos[1], CXXFLAGS: "-ffp-contract=on" }));
       const cmakeFlags = nix.thunk(() => nix.concat([
         "-DOCIO_INSTALL_EXT_PACKAGES=NONE",
         "-DOCIO_USE_SSE2NEON=OFF",
@@ -53,7 +50,7 @@ export default nix.lambda((args) => (() => {
       const doCheck = nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isx86_64"));
       const enableParallelChecking = false;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://opencolorio.org",
         description: "Color management framework for visual effects and animation",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
@@ -61,7 +58,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

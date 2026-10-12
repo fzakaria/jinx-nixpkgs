@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 29, 5], ["hash", 30, 5]], [["distroav", 68, 34]], [["tests", 67, 12], ["updateScript", 71, 12]], [["homepage", 74, 5], ["description", 75, 5], ["platforms", 76, 5], ["sourceProvenance", 82, 5], ["license", 83, 5], ["maintainers", 84, 5]], [["pname", 23, 3], ["version", 24, 3], ["majorVersion", 25, 3], ["installerName", 26, 3], ["src", 28, 3], ["unpackPhase", 33, 3], ["installPhase", 39, 3], ["dontPatchELF", 50, 3], ["fixupPhase", 52, 3], ["dontStrip", 65, 3], ["passthru", 67, 3], ["meta", 73, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, avahi: false, ffmpeg_7: false, "obs-studio-plugins": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 29, 5], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["distroav", 68, 34]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 67, 12], ["updateScript", 71, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 74, 5], ["description", 75, 5], ["platforms", 76, 5], ["sourceProvenance", 82, 5], ["license", 83, 5], ["maintainers", 84, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 23, 3], ["version", 24, 3], ["majorVersion", 25, 3], ["installerName", 26, 3], ["src", 28, 3], ["unpackPhase", 33, 3], ["installPhase", 39, 3], ["dontPatchELF", 50, 3], ["fixupPhase", 52, 3], ["dontStrip", 65, 3], ["passthru", 67, 3], ["meta", 73, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const majorVersion = nix.thunk(() => nix.app(nix.sel(lib, "versions", "major"), version));
       const installerName = nix.thunk(() => nix.str`Install_NDI_SDK_v${majorVersion}_Linux`);
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://downloads.ndi.tv/SDK/NDI_SDK_Linux/${installerName}.tar.gz`),
           hash: nix.thunk(() => nix.sel(versionJSON, "hash")),
         }))));
@@ -55,15 +51,15 @@ done
 `);
       const dontStrip = true;
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           distroav: nix.thunk(() => nix.attr(obs_studio_plugins, "distroav")),
         })),
         updateScript: nix.path(here, "./update.py"),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://ndi.video/ndi-sdk/",
         description: "NDI Software Developer Kit",
         platforms: nix.thunk(() => ["x86_64-linux", "i686-linux", "aarch64-linux", "armv7l-linux"]),
@@ -81,7 +77,7 @@ done
         })()),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         majorVersion,

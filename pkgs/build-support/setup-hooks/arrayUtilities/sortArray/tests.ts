@@ -2,22 +2,10 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/tests.nix", [[["name", 17, 15], ["valuesArray", 17, 20], ["expectedArray", 17, 32], ["script", 18, 7]], [["nativeBuildInputs", 25, 9]], [["name", 35, 15], ["valuesArray", 35, 20], ["expectedArray", 35, 32], ["script", 36, 7]], [["nativeBuildInputs", 45, 9]], [["name", 50, 5], ["src", 51, 5]], [["name", 55, 5], ["src", 56, 5]], [["name", 60, 5], ["valuesArray", 61, 5], ["expectedArray", 62, 5]], [["name", 66, 5], ["valuesArray", 67, 5], ["expectedArray", 68, 5]], [["name", 72, 5], ["valuesArray", 73, 5], ["expectedArray", 77, 5]], [["name", 84, 5], ["valuesArray", 85, 5], ["expectedArray", 90, 5]], [["name", 98, 5], ["valuesArray", 99, 5], ["expectedArray", 117, 5]], [["name", 139, 5], ["valuesArray", 140, 5], ["expectedArray", 158, 5]], [["shellcheck", 49, 3], ["shfmt", 54, 3], ["empty", 59, 3], ["singleton", 65, 3], ["oneDuplicate", 71, 3], ["oneUnique", 83, 3], ["duplicatesWithSpacesAndLineBreaks", 97, 3], ["duplicatesWithSpacesAndLineBreaksInPlace", 138, 3]]]);
 const formals$1 = { args: { lib: false, sortArray: false, testers: false }, ellipsis: false };
 const formals$2 = { args: { name: false, valuesArray: false, expectedArray: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/tests.nix", [["name", 17, 15], ["valuesArray", 17, 20], ["expectedArray", 17, 32], ["script", 18, 7]]);
-const pos$2 = nix.positions(here + "/tests.nix", [["nativeBuildInputs", 25, 9]]);
 const formals$3 = { args: { name: false, valuesArray: false, expectedArray: false }, ellipsis: false };
-const pos$3 = nix.positions(here + "/tests.nix", [["name", 35, 15], ["valuesArray", 35, 20], ["expectedArray", 35, 32], ["script", 36, 7]]);
-const pos$4 = nix.positions(here + "/tests.nix", [["nativeBuildInputs", 45, 9]]);
-const pos$5 = nix.positions(here + "/tests.nix", [["name", 50, 5], ["src", 51, 5]]);
-const pos$6 = nix.positions(here + "/tests.nix", [["name", 55, 5], ["src", 56, 5]]);
-const pos$7 = nix.positions(here + "/tests.nix", [["name", 60, 5], ["valuesArray", 61, 5], ["expectedArray", 62, 5]]);
-const pos$8 = nix.positions(here + "/tests.nix", [["name", 66, 5], ["valuesArray", 67, 5], ["expectedArray", 68, 5]]);
-const pos$9 = nix.positions(here + "/tests.nix", [["name", 72, 5], ["valuesArray", 73, 5], ["expectedArray", 77, 5]]);
-const pos$10 = nix.positions(here + "/tests.nix", [["name", 84, 5], ["valuesArray", 85, 5], ["expectedArray", 90, 5]]);
-const pos$11 = nix.positions(here + "/tests.nix", [["name", 98, 5], ["valuesArray", 99, 5], ["expectedArray", 117, 5]]);
-const pos$12 = nix.positions(here + "/tests.nix", [["name", 139, 5], ["valuesArray", 140, 5], ["expectedArray", 158, 5]]);
-const pos$13 = nix.positions(here + "/tests.nix", [["shellcheck", 49, 3], ["shfmt", 54, 3], ["empty", 59, 3], ["singleton", 65, 3], ["oneDuplicate", 71, 3], ["oneUnique", 83, 3], ["duplicatesWithSpacesAndLineBreaks", 97, 3], ["duplicatesWithSpacesAndLineBreaksInPlace", 138, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -35,13 +23,13 @@ export default nix.lambda((args) => (() => {
     const valuesArray = nix.arg($_1, "valuesArray");
     const expectedArray = nix.arg($_1, "expectedArray");
     return nix.app(nix.sel(nix.app(testEqualArrayOrMap, nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         name: name,
         valuesArray: valuesArray,
         expectedArray: expectedArray,
         script: "set -eu\nnixLog \"running sortArray with valuesArray to populate actualArray\"\nsortArray valuesArray actualArray\n",
       }))), "overrideAttrs"), (prevAttrs) => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         nativeBuildInputs: nix.thunk(() => nix.concat(nix.selOr(prevAttrs, () => [], "nativeBuildInputs"), [sortArray])),
       }));
   })(), formals$2);
@@ -51,41 +39,49 @@ export default nix.lambda((args) => (() => {
     const valuesArray = nix.arg($_1, "valuesArray");
     const expectedArray = nix.arg($_1, "expectedArray");
     return nix.app(nix.sel(nix.app(testEqualArrayOrMap, nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         name: name,
         valuesArray: valuesArray,
         expectedArray: expectedArray,
         script: "set -eu\nnixLog \"running sortArray with valuesArray as input and output\"\nsortArray valuesArray valuesArray\nnixLog \"copying valuesArray to actualArray\"\nactualArray=(\"${valuesArray[@]}\")\n",
       }))), "overrideAttrs"), (prevAttrs) => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         nativeBuildInputs: nix.thunk(() => nix.concat(nix.selOr(prevAttrs, () => [], "nativeBuildInputs"), [sortArray])),
       }));
   })(), formals$3);
   return nix.app(recurseIntoAttrs, nix.thunk(() => ({
-      [nix.POS]: pos$13,
-      shellcheck: nix.thunk(() => nix.app(shellcheck, nix.thunk(() => ({ [nix.POS]: pos$5, name: "sortArray", src: nix.path(here, "./sortArray.bash") })))),
-      shfmt: nix.thunk(() => nix.app(shfmt, nix.thunk(() => ({ [nix.POS]: pos$6, name: "sortArray", src: nix.path(here, "./sortArray.bash") })))),
-      empty: nix.thunk(() => nix.app(check, nix.thunk(() => ({ [nix.POS]: pos$7, name: "empty", valuesArray: [], expectedArray: [] })))),
+      [nix.POS]: $pos[12],
+      shellcheck: nix.thunk(() => nix.app(shellcheck, nix.thunk(() => ({
+          [nix.POS]: $pos[4],
+          name: "sortArray",
+          src: nix.path(here, "./sortArray.bash"),
+        })))),
+      shfmt: nix.thunk(() => nix.app(shfmt, nix.thunk(() => ({
+          [nix.POS]: $pos[5],
+          name: "sortArray",
+          src: nix.path(here, "./sortArray.bash"),
+        })))),
+      empty: nix.thunk(() => nix.app(check, nix.thunk(() => ({ [nix.POS]: $pos[6], name: "empty", valuesArray: [], expectedArray: [] })))),
       singleton: nix.thunk(() => nix.app(check, nix.thunk(() => ({
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           name: "singleton",
           valuesArray: nix.thunk(() => ["apple"]),
           expectedArray: nix.thunk(() => ["apple"]),
         })))),
       oneDuplicate: nix.thunk(() => nix.app(check, nix.thunk(() => ({
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           name: "oneDuplicate",
           valuesArray: nix.thunk(() => ["apple", "apple"]),
           expectedArray: nix.thunk(() => ["apple", "apple"]),
         })))),
       oneUnique: nix.thunk(() => nix.app(check, nix.thunk(() => ({
-          [nix.POS]: pos$10,
+          [nix.POS]: $pos[9],
           name: "oneUnique",
           valuesArray: nix.thunk(() => ["bee", "apple", "bee"]),
           expectedArray: nix.thunk(() => ["apple", "bee", "bee"]),
         })))),
       duplicatesWithSpacesAndLineBreaks: nix.thunk(() => nix.app(check, nix.thunk(() => ({
-          [nix.POS]: pos$11,
+          [nix.POS]: $pos[10],
           name: "duplicatesWithSpacesAndLineBreaks",
           valuesArray: nix.thunk(() => [
             "dog",
@@ -113,7 +109,7 @@ export default nix.lambda((args) => (() => {
           ]),
         })))),
       duplicatesWithSpacesAndLineBreaksInPlace: nix.thunk(() => nix.app(checkInPlace, nix.thunk(() => ({
-          [nix.POS]: pos$12,
+          [nix.POS]: $pos[11],
           name: "duplicatesWithSpacesAndLineBreaksInPlace",
           valuesArray: nix.thunk(() => [
             "dog",

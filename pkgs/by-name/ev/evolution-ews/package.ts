@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 29, 5], ["hash", 30, 5]], [["evo", 39, 7]], [["org.gnome.evolution.mail", 71, 9], ["org.gnome.evolution.calendar", 72, 9]], [["src", 69, 28], ["schemaIdToVariableMapping", 70, 7], ["schemaExistsFunction", 74, 7]], [["packageName", 80, 11], ["versionPolicy", 81, 11]], [["hardcodeGsettingsPatch", 68, 5], ["updateScript", 77, 5]], [["description", 92, 5], ["homepage", 93, 5], ["license", 94, 5], ["maintainers", 95, 5], ["platforms", 96, 5]], [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["patches", 33, 3], ["nativeBuildInputs", 43, 3], ["buildInputs", 50, 3], ["cmakeFlags", 62, 3], ["passthru", 67, 3], ["meta", 91, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, gnome: false, cmake: false, gettext: false, intltool: false, "pkg-config": false, "evolution-data-server": false, evolution: false, gtk3: false, libsoup_3: false, libical: false, "json-glib": false, libmspack: false, webkitgtk_4_1: false, replaceVars: false, "_experimental-update-script-combinators": false, glib: false, makeHardcodeGsettingsPatch: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 29, 5], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["evo", 39, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["org.gnome.evolution.mail", 71, 9], ["org.gnome.evolution.calendar", 72, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["src", 69, 28], ["schemaIdToVariableMapping", 70, 7], ["schemaExistsFunction", 74, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["packageName", 80, 11], ["versionPolicy", 81, 11]]);
-const pos$6 = nix.positions(here + "/package.nix", [["hardcodeGsettingsPatch", 68, 5], ["updateScript", 77, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["description", 92, 5], ["homepage", 93, 5], ["license", 94, 5], ["maintainers", 95, 5], ["platforms", 96, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["patches", 33, 3], ["nativeBuildInputs", 43, 3], ["buildInputs", 50, 3], ["cmakeFlags", 62, 3], ["passthru", 67, 3], ["meta", 91, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -35,17 +28,17 @@ export default nix.lambda((args) => (() => {
   const glib = nix.arg($, "glib");
   const makeHardcodeGsettingsPatch = nix.arg($, "makeHardcodeGsettingsPatch");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "evolution-ews",
       version: "3.60.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnome/sources/evolution-ews/${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/evolution-ews-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-lAIFgY9piEEUV931gE0hDzUVwm4zQV3r2Puycxsdrys=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./hardcode-gsettings.patch"), nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             evo: nix.thunk(() => nix.app(nix.sel(glib, "makeSchemaPath"), evolution, nix.thunk(() => nix.sel(evolution, "name")))),
           })))),
       ]),
@@ -62,12 +55,12 @@ export default nix.lambda((args) => (() => {
       ]),
       cmakeFlags: nix.thunk(() => ["-DFORCE_INSTALL_PREFIX=ON"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         hardcodeGsettingsPatch: nix.thunk(() => nix.app(makeHardcodeGsettingsPatch, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             src: nix.thunk(() => nix.attr(finalAttrs, "src")),
             schemaIdToVariableMapping: nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               "org.gnome.evolution.mail": "evo",
               "org.gnome.evolution.calendar": "evo",
             })),
@@ -75,7 +68,7 @@ export default nix.lambda((args) => (() => {
           })))),
         updateScript: nix.thunk(() => (() => {
           const updateSource = nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               packageName: "evolution-ews",
               versionPolicy: "odd-unstable",
             }))));
@@ -84,7 +77,7 @@ export default nix.lambda((args) => (() => {
         })()),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "Evolution connector for Microsoft Exchange Server protocols",
         homepage: "https://gitlab.gnome.org/GNOME/evolution-ews",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),

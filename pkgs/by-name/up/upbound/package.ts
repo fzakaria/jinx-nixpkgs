@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 24, 7], ["sha256", 25, 7]], [["url", 29, 7], ["sha256", 30, 7]], [["updateScript", 68, 12]], [["description", 74, 5], ["changelog", 75, 5], ["homepage", 76, 5], ["license", 77, 5], ["maintainers", 78, 5], ["mainProgram", 82, 5], ["platforms", 83, 5]], [["pname", 20, 3], ["version", 21, 3], ["srcs", 22, 3], ["sourceRoot", 34, 3], ["nativeBuildInputs", 36, 3], ["installPhase", 38, 3], ["postInstall", 52, 3], ["doInstallCheck", 58, 3], ["versionCheckProgram", 59, 3], ["versionCheckProgramArg", 60, 3], ["nativeInstallCheckInputs", 62, 3], ["doCheck", 66, 3], ["passthru", 68, 3], ["meta", 73, 3]]]);
 const formals$1 = { args: { lib: false, fetchurl: false, installShellFiles: false, versionCheckHook: false, stdenvNoCC: false, "version-channel": true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 24, 7], ["sha256", 25, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 29, 7], ["sha256", 30, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 68, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 74, 5], ["changelog", 75, 5], ["homepage", 76, 5], ["license", 77, 5], ["maintainers", 78, 5], ["mainProgram", 82, 5], ["platforms", 83, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["srcs", 22, 3], ["sourceRoot", 34, 3], ["nativeBuildInputs", 36, 3], ["installPhase", 38, 3], ["postInstall", 52, 3], ["doInstallCheck", 58, 3], ["versionCheckProgram", 59, 3], ["versionCheckProgramArg", 60, 3], ["nativeInstallCheckInputs", 62, 3], ["doCheck", 66, 3], ["passthru", 68, 3], ["meta", 73, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,17 +18,17 @@ export default nix.lambda((args) => (() => {
   const sources = nix.thunk(() => (nix.asBool(nix.eq(nix.str`${version_channel}`, "main")) ? nix.app(nix.sel(lib, "importJSON"), nix.path(here, "./sources-main.json")) : nix.app(nix.sel(lib, "importJSON"), nix.path(here, "./sources-stable.json"))));
   const arch = nix.thunk(() => nix.sel(sources, "archMap", nix.key(nix.force(system))));
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: nix.thunk(() => (nix.asBool(nix.eq(nix.str`${version_channel}`, "main")) ? "upbound-main" : "upbound")),
       version: nix.thunk(() => nix.sel(sources, "version")),
       srcs: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             url: nix.thunk(() => nix.sel(sources, "fetchurlAttrSet", "docker-credential-up", nix.key(nix.force(system)), "url")),
             sha256: nix.thunk(() => nix.sel(sources, "fetchurlAttrSet", "docker-credential-up", nix.key(nix.force(system)), "hash")),
           })))),
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: nix.thunk(() => nix.sel(sources, "fetchurlAttrSet", "up", nix.key(nix.force(system)), "url")),
             sha256: nix.thunk(() => nix.sel(sources, "fetchurlAttrSet", "up", nix.key(nix.force(system)), "hash")),
           })))),
@@ -58,11 +54,11 @@ runHook postInstall
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doCheck: false,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => [nix.path(here, "./update"), nix.thunk(() => nix.str`${version_channel}`)]),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "CLI for interacting with Upbound Cloud, Upbound Enterprise, and Universal Crossplane (UXP)",
         changelog: "https://docs.upbound.io/reference/release-notes/up-cli",
         homepage: "https://upbound.io",

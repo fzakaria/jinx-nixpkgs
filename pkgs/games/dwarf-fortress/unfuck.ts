@@ -2,16 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/unfuck.nix", [[["unfuckRelease", 36, 7], ["owner", 37, 7], ["rev", 38, 7], ["hash", 39, 7]], [["unfuckRelease", 42, 7], ["owner", 43, 7], ["rev", 44, 7], ["hash", 45, 7]], [["0.44.12", 35, 5], ["0.47.05", 41, 5]], [["repo", 61, 5], ["owner", 62, 23], ["rev", 62, 29], ["hash", 62, 33]], [["name", 67, 7], ["url", 68, 7], ["hash", 69, 7]], [["name", 72, 7], ["url", 73, 7], ["hash", 74, 7]], [["dfVersion", 128, 24]], [["description", 131, 5], ["homepage", 132, 5], ["license", 133, 5], ["platforms", 134, 5], ["maintainers", 135, 5]], [["pname", 57, 3], ["version", 58, 3], ["src", 60, 3], ["patches", 65, 3], ["postPatch", 78, 3], ["cmakeFlags", 85, 3], ["nativeBuildInputs", 90, 3], ["buildInputs", 94, 3], ["dontStrip", 119, 3], ["installPhase", 121, 3], ["hardeningDisable", 126, 3], ["passthru", 128, 3], ["meta", 130, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, fetchpatch: false, cmake: false, libGL: false, libsm: false, SDL: false, SDL_image: false, SDL_ttf: false, glew: false, "openal-soft": false, ncurses: false, glib: false, gtk2: false, gtk3: false, libsndfile: false, zlib: false, dfVersion: false, "pkg-config": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/unfuck.nix", [["unfuckRelease", 36, 7], ["owner", 37, 7], ["rev", 38, 7], ["hash", 39, 7]]);
-const pos$2 = nix.positions(here + "/unfuck.nix", [["unfuckRelease", 42, 7], ["owner", 43, 7], ["rev", 44, 7], ["hash", 45, 7]]);
-const pos$3 = nix.positions(here + "/unfuck.nix", [["0.44.12", 35, 5], ["0.47.05", 41, 5]]);
-const pos$4 = nix.positions(here + "/unfuck.nix", [["repo", 61, 5], ["owner", 62, 23], ["rev", 62, 29], ["hash", 62, 33]]);
-const pos$5 = nix.positions(here + "/unfuck.nix", [["name", 67, 7], ["url", 68, 7], ["hash", 69, 7]]);
-const pos$6 = nix.positions(here + "/unfuck.nix", [["name", 72, 7], ["url", 73, 7], ["hash", 74, 7]]);
-const pos$7 = nix.positions(here + "/unfuck.nix", [["dfVersion", 128, 24]]);
-const pos$8 = nix.positions(here + "/unfuck.nix", [["description", 131, 5], ["homepage", 132, 5], ["license", 133, 5], ["platforms", 134, 5], ["maintainers", 135, 5]]);
-const pos$9 = nix.positions(here + "/unfuck.nix", [["pname", 57, 3], ["version", 58, 3], ["src", 60, 3], ["patches", 65, 3], ["postPatch", 78, 3], ["cmakeFlags", 85, 3], ["nativeBuildInputs", 90, 3], ["buildInputs", 94, 3], ["dontStrip", 119, 3], ["installPhase", 121, 3], ["hardeningDisable", 126, 3], ["passthru", 128, 3], ["meta", 130, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -42,16 +34,16 @@ export default nix.lambda((args) => (() => {
   const platforms = nix.thunk(() => nix.attr(lib, "platforms"));
   const versionOlder = nix.thunk(() => nix.attr(lib, "versionOlder"));
   const unfuck_releases = nix.thunk(() => ({
-    [nix.POS]: pos$3,
+    [nix.POS]: $pos[2],
     "0.44.12": nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       unfuckRelease: "0.44.12",
       owner: "svenstaro",
       rev: "0.44.12",
       hash: "sha256-f9vDe3Q3Vl2hFLCPSzYtqyv9rLKBKEnARZTu0MKaX88=",
     })),
     "0.47.05": nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       unfuckRelease: "0.47.05-final",
       owner: "cizra",
       rev: "29fddba2ad92039b95d8873b9b05bbded7111fd0",
@@ -60,11 +52,11 @@ export default nix.lambda((args) => (() => {
   }));
   const release = nix.thunk(() => (nix.asBool(nix.app(hasAttr, dfVersion, unfuck_releases)) ? nix.app(getAttr, dfVersion, unfuck_releases) : nix.builtins.throw(nix.thunk(() => nix.str`[unfuck] Unknown Dwarf Fortress version: ${dfVersion}`))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       pname: "dwarf_fortress_unfuck",
       version: nix.thunk(() => nix.sel(release, "unfuckRelease")),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           repo: "dwarf_fortress_unfuck",
           owner: nix.thunk(() => nix.attr(release, "owner")),
           rev: nix.thunk(() => nix.attr(release, "rev")),
@@ -72,13 +64,13 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(versionOlder, nix.thunk(() => nix.sel(release, "unfuckRelease")), "0.47.05")), nix.thunk(() => [
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               name: "fix-noreturn-returning.patch",
               url: "https://github.com/svenstaro/dwarf_fortress_unfuck/commit/6dcfe5ae869fddd51940c6c37a95f7bc639f4389.patch",
               hash: "sha256-b9eI3iR7dmFqCrktPyn6QJ9U2A/7LvfYRS+vE3BOaqk=",
             })))),
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              [nix.POS]: pos$6,
+              [nix.POS]: $pos[5],
               name: "use-the-glew-cmake-target.patch",
               url: "https://github.com/svenstaro/dwarf_fortress_unfuck/commit/abd2961836ace8cf6277ceff997b02704c6edd7a.patch",
               hash: "sha256-2VS/Mvhl6oLoMcH4x3hX9RO0VrHha8hhkdKwN0ZfUTs=",
@@ -105,9 +97,9 @@ export default nix.lambda((args) => (() => {
       dontStrip: true,
       installPhase: "install -D -m755 ../build/libgraphics.so $out/lib/libgraphics.so\n",
       hardeningDisable: nix.thunk(() => ["fortify"]),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$7, dfVersion: dfVersion })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[6], dfVersion: dfVersion })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         description: "Unfucked multimedia layer for Dwarf Fortress",
         homepage: "https://github.com/svenstaro/dwarf_fortress_unfuck",
         license: nix.thunk(() => nix.sel(licenses, "free")),

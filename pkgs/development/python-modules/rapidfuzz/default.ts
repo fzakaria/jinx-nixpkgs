@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]], [["name", 35, 7], ["url", 36, 7], ["hash", 37, 7]], [["RAPIDFUZZ_BUILD_EXTENSION", 63, 7]], [["all", 70, 5]], [["description", 91, 5], ["homepage", 92, 5], ["changelog", 93, 5], ["license", 94, 5], ["maintainers", 95, 5]], [["pname", 21, 3], ["version", 22, 3], ["pyproject", 23, 3], ["src", 25, 3], ["patches", 32, 3], ["postPatch", 41, 3], ["build-system", 46, 3], ["dontUseCmakeConfigure", 56, 3], ["buildInputs", 58, 3], ["env", 63, 3], ["preBuild", 65, 3], ["optional-dependencies", 69, 3], ["preCheck", 73, 3], ["nativeCheckInputs", 77, 3], ["pythonImportsCheck", 83, 3], ["meta", 90, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitHub: false, fetchpatch: false, "clang-tools": false, cmake: false, cython: false, ninja: false, "scikit-build-core": false, numpy: false, hypothesis: false, pandas: false, pytestCheckHook: false, "rapidfuzz-cpp": false, taskflow: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["name", 35, 7], ["url", 36, 7], ["hash", 37, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["RAPIDFUZZ_BUILD_EXTENSION", 63, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["all", 70, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["description", 91, 5], ["homepage", 92, 5], ["changelog", 93, 5], ["license", 94, 5], ["maintainers", 95, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 21, 3], ["version", 22, 3], ["pyproject", 23, 3], ["src", 25, 3], ["patches", 32, 3], ["postPatch", 41, 3], ["build-system", 46, 3], ["dontUseCmakeConfigure", 56, 3], ["buildInputs", 58, 3], ["env", 63, 3], ["preBuild", 65, 3], ["optional-dependencies", 69, 3], ["preCheck", 73, 3], ["nativeCheckInputs", 77, 3], ["pythonImportsCheck", 83, 3], ["meta", 90, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.14.5";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "maxbachmann",
           repo: "RapidFuzz",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -41,7 +36,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "support-taskflow-4.1.0.patch",
             url: "https://github.com/rapidfuzz/RapidFuzz/commit/76fa54bf8c3f2d24879ca1966ea98bbba7b3c9d6.patch",
             hash: "sha256-hJZtYNLSqK5NgcBAcvrf9NPh3Z0+pSlyy0W+uJ96kBQ=",
@@ -51,9 +46,9 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => nix.concat([cmake, cython, ninja, scikit_build_core], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), nix.thunk(() => [clang_tools]))));
       const dontUseCmakeConfigure = true;
       const buildInputs = nix.thunk(() => [rapidfuzz_cpp, taskflow]);
-      const env = nix.thunk(() => ({ [nix.POS]: pos$3, RAPIDFUZZ_BUILD_EXTENSION: 1n }));
+      const env = nix.thunk(() => ({ [nix.POS]: $pos[2], RAPIDFUZZ_BUILD_EXTENSION: 1n }));
       const preBuild = nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isx86_64")))), "export CMAKE_ARGS=\"-DCMAKE_CXX_COMPILER_AR=$AR -DCMAKE_CXX_COMPILER_RANLIB=$RANLIB\"\n"));
-      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$4, all: nix.thunk(() => [numpy]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: $pos[3], all: nix.thunk(() => [numpy]) }));
       const preCheck = "export RAPIDFUZZ_IMPLEMENTATION=cpp\n";
       const nativeCheckInputs = nix.thunk(() => [hypothesis, pandas, pytestCheckHook]);
       const pythonImportsCheck = nix.thunk(() => [
@@ -63,7 +58,7 @@ export default nix.lambda((args) => (() => {
         "rapidfuzz.utils",
       ]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Rapid fuzzy string matching",
         homepage: "https://github.com/maxbachmann/RapidFuzz",
         changelog: nix.thunk(() => nix.str`https://github.com/maxbachmann/RapidFuzz/blob/${nix.sel(src, "tag")}/CHANGELOG.rst`),
@@ -74,7 +69,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname,
         version,
         pyproject,

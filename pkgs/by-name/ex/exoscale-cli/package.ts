@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["sha256", 16, 5]], [["description", 55, 5], ["homepage", 56, 5], ["license", 57, 5], ["maintainers", 58, 5], ["mainProgram", 59, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["vendorHash", 19, 3], ["nativeBuildInputs", 21, 3], ["excludedPackages", 23, 3], ["ldflags", 28, 3], ["postBuild", 37, 3], ["postInstall", 49, 3], ["meta", 54, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitHub: false, installShellFiles: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["sha256", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 55, 5], ["homepage", 56, 5], ["license", 57, 5], ["maintainers", 58, 5], ["mainProgram", 59, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["vendorHash", 19, 3], ["nativeBuildInputs", 21, 3], ["excludedPackages", 23, 3], ["ldflags", 28, 3], ["postBuild", 37, 3], ["postInstall", 49, 3], ["meta", 54, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const installShellFiles = nix.arg($, "installShellFiles");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "exoscale-cli",
       version: "1.101.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "exoscale",
           repo: "cli",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,7 +34,7 @@ export default nix.lambda((args) => (() => {
       postBuild: "mv $GOPATH/bin/cli $GOPATH/bin/exo\n\nmkdir -p manpage\n$GOPATH/bin/docs --man-page\nrm $GOPATH/bin/docs\n\n$GOPATH/bin/completion bash\n$GOPATH/bin/completion zsh\nrm $GOPATH/bin/completion\n",
       postInstall: "installManPage manpage/*\ninstallShellCompletion --cmd exo --bash bash_completion --zsh zsh_completion\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Command-line tool for everything at Exoscale: compute, storage, dns",
         homepage: "https://github.com/exoscale/cli",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

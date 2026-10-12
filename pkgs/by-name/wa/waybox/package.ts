@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 28, 5], ["repo", 29, 5], ["rev", 30, 5], ["hash", 31, 5]], [["providedSessions", 64, 12]], [["homepage", 67, 5], ["description", 68, 5], ["license", 69, 5], ["mainProgram", 70, 5], ["maintainers", 71, 5], ["platforms", 72, 28]], [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["depsBuildBuild", 34, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 46, 3], ["strictDeps", 60, 3], ["dontUseCmakeConfigure", 62, 3], ["passthru", 64, 3], ["meta", 66, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, libGL: false, libxkbcommon: false, libxml2: false, libevdev: false, libinput: false, libgbm: false, meson: false, ninja: false, pixman: false, "pkg-config": false, udev: false, wayland: false, "wayland-protocols": false, "wayland-scanner": false, wlroots_0_19: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 28, 5], ["repo", 29, 5], ["rev", 30, 5], ["hash", 31, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["providedSessions", 64, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 67, 5], ["description", 68, 5], ["license", 69, 5], ["mainProgram", 70, 5], ["maintainers", 71, 5], ["platforms", 72, 28]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["depsBuildBuild", 34, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 46, 3], ["strictDeps", 60, 3], ["dontUseCmakeConfigure", 62, 3], ["passthru", 64, 3], ["meta", 66, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,11 +27,11 @@ export default nix.lambda((args) => (() => {
   const wayland_scanner = nix.arg($, "wayland-scanner");
   const wlroots_0_19 = nix.arg($, "wlroots_0_19");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "waybox",
       version: "0.2.2-unstable-2026-01-03",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "wizbright",
           repo: "waybox",
           rev: "044ce8f7c05720a319984eb569ee713923637940",
@@ -57,11 +54,11 @@ export default nix.lambda((args) => (() => {
       ]),
       strictDeps: true,
       dontUseCmakeConfigure: true,
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, providedSessions: nix.thunk(() => ["waybox"]) })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[1], providedSessions: nix.thunk(() => ["waybox"]) })),
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(wayland, "meta"));
         return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/wizbright/waybox",
         description: "Openbox clone on Wayland",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

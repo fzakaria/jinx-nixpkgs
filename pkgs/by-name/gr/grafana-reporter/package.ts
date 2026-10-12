@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["rev", 14, 5], ["owner", 15, 5], ["repo", 16, 5], ["hash", 17, 5]], [["name", 26, 7], ["url", 27, 7], ["hash", 28, 7]], [["description", 38, 5], ["mainProgram", 39, 5], ["homepage", 40, 5], ["license", 41, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 20, 3], ["vendorHash", 22, 3], ["patches", 24, 3], ["postInstall", 32, 3], ["meta", 37, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitHub: false, fetchpatch2: false, tetex: false, makeWrapper: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["rev", 14, 5], ["owner", 15, 5], ["repo", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 26, 7], ["url", 27, 7], ["hash", 28, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 38, 5], ["mainProgram", 39, 5], ["homepage", 40, 5], ["license", 41, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 20, 3], ["vendorHash", 22, 3], ["patches", 24, 3], ["postInstall", 32, 3], ["meta", 37, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const tetex = nix.arg($, "tetex");
   const makeWrapper = nix.arg($, "makeWrapper");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "reporter",
       version: "2.3.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           owner: "IzakMarais",
           repo: "reporter",
@@ -31,7 +28,7 @@ export default nix.lambda((args) => (() => {
       vendorHash: "sha256-QlNOx2jm1LVz066t9khppf//T5c9z3YUrSOr6qzbUzI=",
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "use-go-mod-and-remove-vendor-dirs",
             url: "https://github.com/IzakMarais/reporter/commit/e844b3f624e0da3a960f98cade427fe54f595504.patch",
             hash: "sha256-CdI7/mkYG6t6H6ydGu7atwk18DpagdP7uzfrZVKKlhA=",
@@ -41,7 +38,7 @@ export default nix.lambda((args) => (() => {
   --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [tetex]))}
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "PDF report generator from a Grafana dashboard",
         mainProgram: "grafana-reporter",
         homepage: "https://github.com/IzakMarais/reporter",

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["black", 24, 5], ["color", 25, 5]], [["owner", 48, 5], ["repo", 49, 5], ["rev", 50, 5], ["hash", 51, 5]], [["license", 99, 5], ["maintainers", 100, 5], ["platforms", 104, 5], ["homepage", 105, 5], ["downloadPage", 106, 5], ["description", 107, 5]], [["pname", 44, 3], ["version", 45, 3], ["src", 47, 3], ["patches", 54, 3], ["nativeBuildInputs", 59, 3], ["methods_black", 66, 3], ["methods_color", 67, 3], ["saturations", 68, 3], ["maximumColorVersions", 70, 3], ["postPatch", 75, 3], ["buildPhase", 80, 3], ["installPhase", 88, 3], ["meta", 98, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchFromGitHub: false, nanoemoji: false, python3Packages: false, woff2: false, xmlstarlet: false, fontFormats: true, buildMaximumColorFonts: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["black", 24, 5], ["color", 25, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["owner", 48, 5], ["repo", 49, 5], ["rev", 50, 5], ["hash", 51, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["license", 99, 5], ["maintainers", 100, 5], ["platforms", 104, 5], ["homepage", 105, 5], ["downloadPage", 106, 5], ["description", 107, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 44, 3], ["version", 45, 3], ["src", 47, 3], ["patches", 54, 3], ["nativeBuildInputs", 59, 3], ["methods_black", 66, 3], ["methods_color", 67, 3], ["saturations", 68, 3], ["maximumColorVersions", 70, 3], ["postPatch", 75, 3], ["buildPhase", 80, 3], ["installPhase", 88, 3], ["meta", 98, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,7 +17,7 @@ export default nix.lambda((args) => (() => {
   const fontFormats = nix.argOr($, "fontFormats", () => ["glyf", "cbdt", "glyf_colr_0", "glyf_colr_1"]);
   const buildMaximumColorFonts = nix.argOr($, "buildMaximumColorFonts", () => "bitmap");
   const methods = nix.thunk(() => ({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     black: nix.thunk(() => ["glyf"]),
     color: nix.thunk(() => ["cbdt", "glyf_colr_0", "glyf_colr_1", "sbix", "picosvgz", "untouchedsvgz"]),
   }));
@@ -30,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const pname = "openmoji";
       const version = "17.0.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "hfg-gmuend",
           repo: "openmoji",
           rev: version,
@@ -56,7 +53,7 @@ runHook postBuild
 `);
       const installPhase = "runHook preInstall\n\nmkdir -p $out/share/fonts/truetype $out/share/fonts/woff2\ncp build/fonts/*/*.ttf $out/share/fonts/truetype/\ncp build/fonts/*/*.woff2 $out/share/fonts/woff2/\n\nrunHook postInstall\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         license: nix.thunk(() => nix.sel(lib, "licenses", "cc-by-sa-40")),
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -71,7 +68,7 @@ runHook postBuild
         description: "Open-source emojis for designers, developers and everyone else",
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

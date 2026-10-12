@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["CGO_ENABLED", 19, 7]], [["orbit", 48, 26]], [["tests", 47, 12]], [["description", 52, 5], ["homepage", 53, 5], ["changelog", 54, 5], ["license", 55, 5], ["mainProgram", 56, 5], ["maintainers", 57, 5], ["platforms", 61, 5], ["sourceProvenance", 62, 5]], [["pname", 13, 3], ["version", 14, 25], ["src", 14, 33], ["__structuredAttrs", 15, 3], ["vendorHash", 17, 3], ["env", 19, 3], ["subPackages", 21, 3], ["goFlags", 23, 3], ["ldflags", 25, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 35, 3], ["postInstall", 40, 3], ["doInstallCheck", 44, 3], ["nativeInstallCheckInputs", 45, 3], ["passthru", 47, 3], ["meta", 51, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, "fleet-orbit": false, gtk3: false, "libayatana-appindicator": false, nixosTests: false, "pkg-config": false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["CGO_ENABLED", 19, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["orbit", 48, 26]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 47, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 52, 5], ["homepage", 53, 5], ["changelog", 54, 5], ["license", 55, 5], ["mainProgram", 56, 5], ["maintainers", 57, 5], ["platforms", 61, 5], ["sourceProvenance", 62, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 25], ["src", 14, 33], ["__structuredAttrs", 15, 3], ["vendorHash", 17, 3], ["env", 19, 3], ["subPackages", 21, 3], ["goFlags", 23, 3], ["ldflags", 25, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 35, 3], ["postInstall", 40, 3], ["doInstallCheck", 44, 3], ["nativeInstallCheckInputs", 45, 3], ["passthru", 47, 3], ["meta", 51, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,13 +16,13 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(buildGoModule, nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "fleet-desktop",
       version: nix.thunk(() => nix.attr(fleet_orbit, "version")),
       src: nix.thunk(() => nix.attr(fleet_orbit, "src")),
       __structuredAttrs: true,
       vendorHash: "sha256-fhACxmzJY0PEQmMbjQxlfQh5ZJ+7a4um0s8xFQq+57w=",
-      env: nix.thunk(() => ({ [nix.POS]: pos$1, CGO_ENABLED: "1" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[0], CGO_ENABLED: "1" })),
       subPackages: nix.thunk(() => ["orbit/cmd/desktop"]),
       goFlags: nix.thunk(() => ["-buildvcs=false"]),
       ldflags: nix.thunk(() => [
@@ -40,11 +36,11 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$2, orbit: nix.thunk(() => nix.attr(nixosTests, "orbit")) })),
+        [nix.POS]: $pos[2],
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[1], orbit: nix.thunk(() => nix.attr(nixosTests, "orbit")) })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Fleet's desktop tray application",
         homepage: "https://github.com/fleetdm/fleet",
         changelog: nix.thunk(() => nix.str`https://github.com/fleetdm/fleet/releases/tag/orbit-v${nix.sel(fleet_orbit, "version")}`),

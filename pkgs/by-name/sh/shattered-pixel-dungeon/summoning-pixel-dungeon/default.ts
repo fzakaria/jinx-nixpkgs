@@ -2,12 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 13, 5], ["repo", 14, 5], ["rev", 16, 5], ["hash", 17, 5]], [["src", 22, 7], ["substitutions", 23, 7]], [["name", 31, 7], ["url", 32, 7], ["hash", 33, 7]], [["homepage", 48, 5], ["downloadPage", 49, 5], ["description", 50, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["patches", 20, 3], ["postPatch", 37, 3], ["desktopName", 45, 3], ["meta", 47, 3]]]);
 const formals$1 = { args: { callPackage: false, fetchFromGitHub: false, fetchpatch: false, substitute: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 13, 5], ["repo", 14, 5], ["rev", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["src", 22, 7], ["substitutions", 23, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["name", 31, 7], ["url", 32, 7], ["hash", 33, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["homepage", 48, 5], ["downloadPage", 49, 5], ["description", 50, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["patches", 20, 3], ["postPatch", 37, 3], ["desktopName", 45, 3], ["meta", 47, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,7 +15,7 @@ export default nix.lambda((args) => (() => {
       const pname = "summoning-pixel-dungeon";
       const version = "1.2.5a";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "TrashboxBobylev",
           repo: "Summoning-Pixel-Dungeon",
           rev: "89ff59e7f42abcc88b7a1f24391f95ddc30f9d29",
@@ -27,12 +23,12 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(substitute, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             src: nix.path(here, "./disable-git-version.patch"),
             substitutions: nix.thunk(() => ["--subst-var-by", "version", version]),
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "Update-desktop-build-script-for-Gradle-7.0+",
             url: "https://github.com/TrashboxBobylev/Summoning-Pixel-Dungeon/commit/5610142126e161cbdc78a07c5d5abfbcd6eaf8a6.patch",
             hash: "sha256-zAiOz/Cu89Y+VmAyLCf7fzq0Mr0sYFZu14sqBZ/XvZU=",
@@ -41,12 +37,21 @@ export default nix.lambda((args) => (() => {
       const postPatch = "# Upstream patched this in https://github.com/TrashboxBobylev/Summoning-Pixel-Dungeon/commit/c8a6fdd57c49fd91bf65be48679ae6a77578ef9f,\n# but the patch fails to apply cleanly. Manually replace the deprecated option instead.\n# FIXME: Remove after next release\nsubstituteInPlace gradle.properties \\\n  --replace-fail \"-XX:MaxPermSize\" \"-XX:MaxMetaspaceSize\"\n";
       const desktopName = "Summoning Pixel Dungeon";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://github.com/TrashboxBobylev/Summoning-Pixel-Dungeon",
         downloadPage: "https://github.com/TrashboxBobylev/Summoning-Pixel-Dungeon/releases",
         description: "Fork of the Shattered Pixel Dungeon roguelike with added summoning mechanics",
       }));
-      return { [nix.POS]: pos$5, pname, version, src, patches, postPatch, desktopName, meta };
+      return {
+        [nix.POS]: $pos[4],
+        pname,
+        version,
+        src,
+        patches,
+        postPatch,
+        desktopName,
+        meta,
+      };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 91, 5], ["message", 92, 5], ["hash", 97, 24]], [["description", 112, 5], ["homepage", 113, 5], ["license", 114, 5], ["sourceProvenance", 115, 5], ["maintainers", 116, 5], ["platforms", 120, 5]], [["cudaSupport", 103, 11], ["cudaPackages", 103, 23], ["pname", 105, 3], ["version", 107, 22], ["lang", 107, 30], ["src", 109, 3], ["meta", 111, 3]]]);
 const formals$1 = { args: { callPackage: false, requireFile: false, config: false, lib: false, cudaPackages: false, cudaSupport: true, lang: true, webdoc: true, version: true, versionInfo: true, source: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 91, 5], ["message", 92, 5], ["hash", 97, 24]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 112, 5], ["homepage", 113, 5], ["license", 114, 5], ["sourceProvenance", 115, 5], ["maintainers", 116, 5], ["platforms", 120, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["cudaSupport", 103, 11], ["cudaPackages", 103, 23], ["pname", 105, 3], ["version", 107, 22], ["lang", 107, 30], ["src", 109, 3], ["meta", 111, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,7 +31,7 @@ export default nix.lambda((args) => (() => {
   const matchesDoc = (v) => nix.eq(!nix.eq(nix.builtins.match(".*[0-9]_LIN(UX)?.sh", nix.thunk(() => nix.sel(v, "installer"))), null), webdoc);
   const selected = nix.thunk(() => nix.app(nix.sel(lib, "defaultTo"), found_version, versionInfo));
   const defaultSource = nix.thunk(() => nix.app(requireFile, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: nix.thunk(() => nix.sel(selected, "installer")),
       message: nix.thunk(() => nix.str`This nix expression requires that ${nix.sel(selected, "installer")} is
 already part of the store. Find the file on your Mathematica CD
@@ -42,7 +40,7 @@ and add it to the nix store with nix-store --add-fixed sha256 <FILE>.
       hash: nix.thunk(() => nix.attr(selected, "hash")),
     }))));
   return nix.app(callPackage, nix.path(here, "./generic.nix"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       cudaSupport: cudaSupport,
       cudaPackages: cudaPackages,
       pname: "mathematica",
@@ -50,7 +48,7 @@ and add it to the nix store with nix-store --add-fixed sha256 <FILE>.
       lang: nix.thunk(() => nix.attr(selected, "lang")),
       src: nix.thunk(() => nix.app(nix.sel(lib, "defaultTo"), defaultSource, source)),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Wolfram Mathematica computational software system",
         homepage: "https://www.wolfram.com/mathematica/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

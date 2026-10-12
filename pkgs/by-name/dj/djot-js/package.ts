@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]], [["description", 40, 5], ["homepage", 41, 5], ["changelog", 42, 5], ["license", 43, 5], ["maintainers", 44, 5], ["mainProgram", 45, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["npmDepsHash", 19, 3], ["nativeBuildInputs", 21, 3], ["doCheck", 25, 3], ["checkPhase", 27, 3], ["postInstall", 35, 3], ["meta", 39, 3]]]);
 const formals$1 = { args: { lib: false, buildNpmPackage: false, fetchFromGitHub: false, installShellFiles: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 40, 5], ["homepage", 41, 5], ["changelog", 42, 5], ["license", 43, 5], ["maintainers", 44, 5], ["mainProgram", 45, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["npmDepsHash", 19, 3], ["nativeBuildInputs", 21, 3], ["doCheck", 25, 3], ["checkPhase", 27, 3], ["postInstall", 35, 3], ["meta", 39, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,7 +15,7 @@ export default nix.lambda((args) => (() => {
       const pname = "djot-js";
       const version = "0.3.2";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "jgm",
           repo: "djot.js",
           rev: nix.thunk(() => nix.str`@djot/djot@${version}`),
@@ -29,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const checkPhase = "runHook preCheck\n\nnpm run test\n\nrunHook postCheck\n";
       const postInstall = "installManPage doc/djot.1\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "JavaScript implementation of djot",
         homepage: "https://github.com/jgm/djot.js",
         changelog: nix.thunk(() => nix.str`https://github.com/jgm/djot.js/blob/${nix.sel(src, "rev")}/CHANGELOG.md`),
@@ -41,7 +39,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "djot",
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

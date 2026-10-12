@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["aarch64-darwin", 23, 7], ["aarch64-linux", 24, 7], ["x86_64-darwin", 25, 7], ["x86_64-linux", 26, 7]], [["owner", 38, 5], ["repo", 39, 5], ["tag", 40, 5], ["hash", 41, 5]], [["url", 45, 5], ["hash", 46, 5]], [["pname", 53, 7], ["version", 54, 7], ["src", 55, 7], ["sourceRoot", 56, 7], ["pnpm", 58, 5], ["fetcherVersion", 59, 5], ["hash", 60, 5]], [["extraArgs", 127, 5]], [["updateScript", 126, 12]], [["description", 134, 5], ["homepage", 135, 5], ["changelog", 136, 5], ["license", 137, 5], ["maintainers", 138, 5], ["mainProgram", 139, 5], ["platforms", 140, 5], ["sourceProvenance", 146, 5]], [["pname", 31, 3], ["version", 32, 3], ["__structuredAttrs", 34, 3], ["strictDeps", 35, 3], ["src", 37, 3], ["npmPackage", 44, 3], ["sourceRoot", 49, 3], ["pnpmDeps", 51, 3], ["nativeBuildInputs", 63, 3], ["buildInputs", 71, 3], ["buildPhase", 76, 3], ["installPhase", 84, 3], ["doInstallCheck", 119, 3], ["nativeInstallCheckInputs", 120, 3], ["versionCheckProgramArg", 124, 3], ["passthru", 126, 3], ["meta", 133, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchurl: false, fetchPnpmDeps: false, pnpm_11: false, nodejs: false, pnpmConfigHook: false, makeWrapper: false, autoPatchelfHook: false, git: false, ncurses: false, python3: false, versionCheckHook: false, writableTmpDirAsHomeHook: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["aarch64-darwin", 23, 7], ["aarch64-linux", 24, 7], ["x86_64-darwin", 25, 7], ["x86_64-linux", 26, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 38, 5], ["repo", 39, 5], ["tag", 40, 5], ["hash", 41, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 45, 5], ["hash", 46, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 53, 7], ["version", 54, 7], ["src", 55, 7], ["sourceRoot", 56, 7], ["pnpm", 58, 5], ["fetcherVersion", 59, 5], ["hash", 60, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["extraArgs", 127, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["updateScript", 126, 12]]);
-const pos$7 = nix.positions(here + "/package.nix", [["description", 134, 5], ["homepage", 135, 5], ["changelog", 136, 5], ["license", 137, 5], ["maintainers", 138, 5], ["mainProgram", 139, 5], ["platforms", 140, 5], ["sourceProvenance", 146, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 31, 3], ["version", 32, 3], ["__structuredAttrs", 34, 3], ["strictDeps", 35, 3], ["src", 37, 3], ["npmPackage", 44, 3], ["sourceRoot", 49, 3], ["pnpmDeps", 51, 3], ["nativeBuildInputs", 63, 3], ["buildInputs", 71, 3], ["buildPhase", 76, 3], ["installPhase", 84, 3], ["doInstallCheck", 119, 3], ["nativeInstallCheckInputs", 120, 3], ["versionCheckProgramArg", 124, 3], ["passthru", 126, 3], ["meta", 133, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,33 +24,33 @@ export default nix.lambda((args) => (() => {
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   const nix_update_script = nix.arg($, "nix-update-script");
   const nativePluginTarget = nix.thunk(() => nix.sel({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     "aarch64-darwin": "darwin-arm64",
     "aarch64-linux": "linux-arm64-gnu",
     "x86_64-darwin": "darwin-x64",
     "x86_64-linux": "linux-x64-gnu",
   }, nix.key(nix.sel(stdenv, "hostPlatform", "system"))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "codex-security",
       version: "0.1.31",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "openai",
           repo: "codex-security",
           tag: nix.thunk(() => nix.str`npm-v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-TA0dxV9VYvvmPU2ZqI5i0XGHaIzNYhqlkLPztZMbtCQ=",
         })))),
       npmPackage: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           url: nix.thunk(() => nix.str`https://registry.npmjs.org/@openai/codex-security/-/codex-security-${nix.sel(finalAttrs, "version")}.tgz`),
           hash: "sha512-XdxIQ+JQH3iysFPW2VdFcKAJJo+M+G4hR9x/KlVimMcbmocDVtQT+trjjfNPqZUdb2ZHrW7HHGepeRhMbMvCHQ==",
         })))),
       sourceRoot: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "name")}/sdk/typescript`),
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -101,14 +94,14 @@ runHook postInstall
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook, writableTmpDirAsHomeHook]),
       versionCheckProgramArg: "--version",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             extraArgs: nix.thunk(() => ["--version-regex", "npm-v(.*)"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "CLI and TypeScript SDK for finding, validating, and fixing security vulnerabilities in your code",
         homepage: "https://github.com/openai/codex-security",
         changelog: nix.thunk(() => nix.str`https://github.com/openai/codex-security/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

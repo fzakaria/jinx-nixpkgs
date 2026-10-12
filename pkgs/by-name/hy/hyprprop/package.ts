@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5]], [["name", 54, 9], ["exec", 55, 9], ["desktopName", 56, 9], ["terminal", 57, 9], ["startupNotify", 58, 9]], [["extraArgs", 63, 47]], [["updateScript", 63, 12]], [["description", 65, 5], ["homepage", 66, 5], ["license", 67, 5], ["platforms", 68, 5], ["teams", 69, 5], ["mainProgram", 70, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["sourceRoot", 26, 3], ["buildInputs", 28, 3], ["makeFlags", 33, 3], ["nativeBuildInputs", 35, 3], ["postInstall", 40, 3], ["desktopItems", 51, 3], ["passthru", 63, 3], ["meta", 64, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, bash: false, copyDesktopItems: false, coreutils: false, fetchFromGitHub: false, jq: false, makeDesktopItem: false, makeWrapper: false, "nix-update-script": false, scdoc: false, slurp: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 54, 9], ["exec", 55, 9], ["desktopName", 56, 9], ["terminal", 57, 9], ["startupNotify", 58, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["extraArgs", 63, 47]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 63, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 65, 5], ["homepage", 66, 5], ["license", 67, 5], ["platforms", 68, 5], ["teams", 69, 5], ["mainProgram", 70, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["sourceRoot", 26, 3], ["buildInputs", 28, 3], ["makeFlags", 33, 3], ["nativeBuildInputs", 35, 3], ["postInstall", 40, 3], ["desktopItems", 51, 3], ["passthru", 63, 3], ["meta", 64, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const scdoc = nix.arg($, "scdoc");
   const slurp = nix.arg($, "slurp");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "hyprprop",
       version: "0.1-unstable-2026-02-19",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "hyprwm",
           repo: "contrib",
           rev: "918f266dddae39fa4184a1b8bf51ec5381cf29f7",
@@ -44,7 +39,7 @@ export default nix.lambda((args) => (() => {
 `),
       desktopItems: nix.thunk(() => (() => {
         const desktopItem = nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "hyprprop",
             exec: "hyprprop",
             desktopName: "Hyprprop",
@@ -54,11 +49,11 @@ export default nix.lambda((args) => (() => {
         return [desktopItem];
       })()),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$3, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
+        [nix.POS]: $pos[3],
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: $pos[2], extraArgs: nix.thunk(() => ["--version=branch"]) })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Xprop replacement for Hyprland",
         homepage: "https://github.com/hyprwm/contrib",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

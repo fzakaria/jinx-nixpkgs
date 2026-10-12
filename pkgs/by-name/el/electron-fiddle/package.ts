@@ -2,16 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["src", 33, 11], ["substitutions", 34, 11]], [["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5], ["postFetch", 29, 5]], [["src", 64, 15], ["patches", 64, 19], ["missingHashes", 64, 27], ["hash", 65, 7]], [["CI", 100, 9]], [["pname", 55, 5], ["version", 57, 7], ["src", 58, 7], ["patches", 59, 7], ["missingHashes", 60, 7], ["offlineCache", 63, 5], ["nativeBuildInputs", 68, 5], ["buildPhase", 77, 5], ["env", 100, 5], ["installPhase", 102, 5]], [["name", 115, 5], ["desktopName", 116, 5], ["comment", 117, 5], ["genericName", 118, 5], ["exec", 119, 5], ["icon", 120, 5], ["startupNotify", 121, 5], ["categories", 122, 5], ["mimeTypes", 127, 5]], [["unwrapped", 135, 24]], [["description", 202, 5], ["homepage", 203, 5], ["license", 204, 5], ["mainProgram", 205, 5], ["maintainers", 206, 5], ["platforms", 210, 5]], [["pname", 132, 11], ["version", 132, 17], ["runScript", 133, 3], ["passthru", 135, 3], ["extraInstallCommands", 137, 3], ["targetPkgs", 144, 3], ["meta", 201, 3]]]);
 const formals$1 = { args: { buildFHSEnv: false, fetchFromGitHub: false, electron: false, git: false, lib: false, makeDesktopItem: false, nodejs: false, stdenvNoCC: false, "util-linux": false, "yarn-berry_4": false, substitute: false, zip: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["src", 33, 11], ["substitutions", 34, 11]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5], ["postFetch", 29, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["src", 64, 15], ["patches", 64, 19], ["missingHashes", 64, 27], ["hash", 65, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["CI", 100, 9]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 55, 5], ["version", 57, 7], ["src", 58, 7], ["patches", 59, 7], ["missingHashes", 60, 7], ["offlineCache", 63, 5], ["nativeBuildInputs", 68, 5], ["buildPhase", 77, 5], ["env", 100, 5], ["installPhase", 102, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["name", 115, 5], ["desktopName", 116, 5], ["comment", 117, 5], ["genericName", 118, 5], ["exec", 119, 5], ["icon", 120, 5], ["startupNotify", 121, 5], ["categories", 122, 5], ["mimeTypes", 127, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["unwrapped", 135, 24]]);
-const pos$8 = nix.positions(here + "/package.nix", [["description", 202, 5], ["homepage", 203, 5], ["license", 204, 5], ["mainProgram", 205, 5], ["maintainers", 206, 5], ["platforms", 210, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["pname", 132, 11], ["version", 132, 17], ["runScript", 133, 3], ["passthru", 135, 3], ["extraInstallCommands", 137, 3], ["targetPkgs", 144, 3], ["meta", 201, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,14 +23,14 @@ export default nix.lambda((args) => (() => {
   const version = "0.40.1";
   const yarn_berry = yarn_berry_4;
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       owner: "electron",
       repo: "fiddle",
       tag: nix.thunk(() => nix.str`v${version}`),
       hash: "sha256-5Pw889lHRwWoTUVbLmToPF8/bDz382qFMO9mL/EKLo0=",
       postFetch: nix.thunk(() => nix.str`cd $out
 patch -p1 < ${nix.app(substitute, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           src: nix.path(here, "./yarn-fix.patch"),
           substitutions: nix.thunk(() => [
             "--replace-fail",
@@ -55,14 +47,14 @@ patch -p1 < ${nix.app(substitute, nix.thunk(() => ({
   ]);
   const missingHashes = nix.path(here, "./missing-hashes.json");
   const unwrapped = nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: nix.thunk(() => nix.str`${pname}-unwrapped`),
       version: version,
       src: src,
       patches: patches,
       missingHashes: missingHashes,
       offlineCache: nix.thunk(() => nix.app(nix.sel(yarn_berry, "fetchYarnBerryDeps"), nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           src: src,
           patches: patches,
           missingHashes: missingHashes,
@@ -96,11 +88,11 @@ node --run package
 
 runHook postBuild
 `),
-      env: nix.thunk(() => ({ [nix.POS]: pos$4, CI: "1" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[3], CI: "1" })),
       installPhase: "runHook preInstall\n\nmkdir -p \"$out/lib/electron-fiddle/resources\"\ncp \"out/Electron Fiddle-\"*/resources/app.asar \"$out/lib/electron-fiddle/resources/\"\nmkdir -p \"$out/share/icons/hicolor/scalable/apps\"\ncp assets/icons/fiddle.svg \"$out/share/icons/hicolor/scalable/apps/electron-fiddle.svg\"\n\nrunHook postInstall\n",
     }))));
   const desktopItem = nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       name: "electron-fiddle",
       desktopName: "Electron Fiddle",
       comment: "The easiest way to get started with Electron",
@@ -112,11 +104,11 @@ runHook postBuild
       mimeTypes: nix.thunk(() => ["x-scheme-handler/electron-fiddle"]),
     }))));
   return nix.app(buildFHSEnv, nix.thunk(() => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       pname: pname,
       version: version,
       runScript: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), electron)} ${unwrapped}/lib/electron-fiddle/resources/app.asar`),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$7, unwrapped: unwrapped })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[6], unwrapped: unwrapped })),
       extraInstallCommands: nix.thunk(() => nix.str`mkdir -p "$out/share/icons/hicolor/scalable/apps"
 ln -s "${unwrapped}/share/icons/hicolor/scalable/apps/electron-fiddle.svg" "$out/share/icons/hicolor/scalable/apps/"
 mkdir -p "$out/share/applications"
@@ -161,7 +153,7 @@ cp "${desktopItem}/share/applications"/*.desktop "$out/share/applications/"
           ]));
       })(),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         description: "Easiest way to get started with Electron",
         homepage: "https://www.electronjs.org/fiddle",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

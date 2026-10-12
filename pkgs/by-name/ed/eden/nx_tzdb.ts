@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/nx_tzdb.nix", [[["domain", 14, 5], ["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]], [["description", 42, 5], ["homepage", 43, 5], ["maintainers", 44, 5], ["license", 45, 5], ["platforms", 52, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 21, 3], ["cmakeFlags", 26, 3], ["ninjaFlags", 31, 3], ["installPhase", 33, 3], ["meta", 41, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitea: false, cmake: false, ninja: false, tzdata: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/nx_tzdb.nix", [["domain", 14, 5], ["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/nx_tzdb.nix", [["description", 42, 5], ["homepage", 43, 5], ["maintainers", 44, 5], ["license", 45, 5], ["platforms", 52, 5]]);
-const pos$3 = nix.positions(here + "/nx_tzdb.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 21, 3], ["cmakeFlags", 26, 3], ["ninjaFlags", 31, 3], ["installPhase", 33, 3], ["meta", 41, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const ninja = nix.arg($, "ninja");
   const tzdata = nix.arg($, "tzdata");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "tzdb_to_nx",
       version: "230326",
       src: nix.thunk(() => nix.app(fetchFromGitea, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "git.eden-emu.dev",
           owner: "eden-emu",
           repo: "tzdb_to_nx",
@@ -35,7 +33,7 @@ export default nix.lambda((args) => (() => {
       ninjaFlags: nix.thunk(() => ["x80e"]),
       installPhase: "runHook preInstall\n\ncp -r src/tzdb/nx $out\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "RFC 8536 time zone data converted to the Nintendo Switch format",
         homepage: "https://git.crueter.xyz/misc/tzdb_to_nx",
         maintainers: nix.thunk(() => (() => {

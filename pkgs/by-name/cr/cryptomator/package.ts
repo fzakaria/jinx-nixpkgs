@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["enableJavaFX", 17, 27]], [["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]], [["SOURCE_DATE_EPOCH", 39, 19]], [["env", 38, 21]], [["SOURCE_DATE_EPOCH", 43, 7]], [["updateScript", 127, 12]], [["description", 130, 5], ["homepage", 131, 5], ["changelog", 132, 5], ["license", 133, 5], ["mainProgram", 134, 5], ["maintainers", 135, 5], ["platforms", 139, 5], ["sourceProvenance", 140, 5]], [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["patches", 30, 3], ["mvnJdk", 35, 3], ["mvnParameters", 36, 3], ["mvnHash", 37, 3], ["mvnFetchExtraArgs", 38, 3], ["env", 43, 3], ["preBuild", 45, 3], ["installPhase", 51, 3], ["nativeBuildInputs", 113, 3], ["buildInputs", 119, 3], ["passthru", 127, 3], ["meta", 129, 3]]]);
 const formals$1 = { args: { autoPatchelfHook: false, fetchFromGitHub: false, fuse3: false, glib: false, zulu25: false, lib: false, "libayatana-appindicator": false, makeShellWrapper: false, maven: false, wrapGAppsHook3: false, "nix-update-script": false, freetype: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["enableJavaFX", 17, 27]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["SOURCE_DATE_EPOCH", 39, 19]]);
-const pos$4 = nix.positions(here + "/package.nix", [["env", 38, 21]]);
-const pos$5 = nix.positions(here + "/package.nix", [["SOURCE_DATE_EPOCH", 43, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["updateScript", 127, 12]]);
-const pos$7 = nix.positions(here + "/package.nix", [["description", 130, 5], ["homepage", 131, 5], ["changelog", 132, 5], ["license", 133, 5], ["mainProgram", 134, 5], ["maintainers", 135, 5], ["platforms", 139, 5], ["sourceProvenance", 140, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["patches", 30, 3], ["mvnJdk", 35, 3], ["mvnParameters", 36, 3], ["mvnHash", 37, 3], ["mvnFetchExtraArgs", 38, 3], ["env", 43, 3], ["preBuild", 45, 3], ["installPhase", 51, 3], ["nativeBuildInputs", 113, 3], ["buildInputs", 119, 3], ["passthru", 127, 3], ["meta", 129, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   const nix_update_script = nix.arg($, "nix-update-script");
   const freetype = nix.arg($, "freetype");
-  const jdk = nix.thunk(() => nix.app(nix.sel(zulu25, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, enableJavaFX: true }))));
+  const jdk = nix.thunk(() => nix.app(nix.sel(zulu25, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], enableJavaFX: true }))));
   return nix.app(nix.sel(maven, "buildMavenPackage"), nix.thunk(() => (() => {
       const pname = "cryptomator";
       const version = "1.19.2";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "cryptomator",
           repo: "cryptomator",
           tag: version,
@@ -42,13 +35,13 @@ export default nix.lambda((args) => (() => {
       const mvnParameters = "-Dmaven.test.skip=true -Plinux";
       const mvnHash = "sha256-IVOcDFW5YKgUHJKX3ZXYVnOevwmOwN5yEU8jfPtCY1I=";
       const mvnFetchExtraArgs = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         env: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           SOURCE_DATE_EPOCH: nix.thunk(() => nix.attr(env, "SOURCE_DATE_EPOCH")),
         })),
       }));
-      const env = nix.thunk(() => ({ [nix.POS]: pos$5, SOURCE_DATE_EPOCH: 315532802n }));
+      const env = nix.thunk(() => ({ [nix.POS]: $pos[4], SOURCE_DATE_EPOCH: 315532802n }));
       const preBuild = nix.thunk(() => nix.str`VERSION=${version}
 SEMVER_STR=${version}
 `);
@@ -104,11 +97,11 @@ runHook postInstall
       const nativeBuildInputs = nix.thunk(() => [autoPatchelfHook, jdk, makeShellWrapper, wrapGAppsHook3]);
       const buildInputs = nix.thunk(() => [fuse3, glib, jdk, libayatana_appindicator, freetype]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "Free client-side encryption for your cloud files",
         homepage: "https://cryptomator.org",
         changelog: nix.thunk(() => nix.str`https://github.com/cryptomator/cryptomator/releases/tag/${version}`),
@@ -131,7 +124,7 @@ runHook postInstall
         })()),
       }));
       return {
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         pname,
         version,
         src,

@@ -2,16 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["cxxStandard", 46, 39]], [["owner", 81, 5], ["repo", 82, 5], ["tag", 83, 5], ["hash", 84, 5]], [["LDFLAGS", 125, 7]], [["migraphx", 196, 7]], [["migraphx-driver", 195, 5]], [["finalAttrs", 199, 54]], [["impureTests", 193, 12], ["updateScript", 199, 12]], [["description", 202, 5], ["homepage", 203, 5], ["license", 204, 5], ["teams", 205, 5], ["platforms", 206, 5]], [["pname", 67, 3], ["version", 68, 3], ["outputs", 70, 3], ["src", 80, 3], ["nativeBuildInputs", 87, 3], ["buildInputs", 105, 3], ["env", 125, 3], ["cmakeFlags", 127, 3], ["postPatch", 151, 3], ["preInstall", 175, 3], ["postInstall", 182, 3], ["passthru", 193, 3], ["meta", 201, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, callPackage: false, fetchFromGitHub: false, rocmUpdateScript: false, "pkg-config": false, cmake: false, "rocm-cmake": false, clr: false, openmp: false, rocblas: false, "hipblas-common": false, hipblas: false, hipblaslt: false, rocmlir: false, miopen: false, protobuf: false, "abseil-cpp": false, half: false, nlohmann_json: false, boost: false, "msgpack-cxx": false, sqlite: false, onednn_2: false, blaze: false, texliveSmall: false, doxygen: false, sphinx: false, docutils: false, ghostscript: false, python3Packages: false, writableTmpDirAsHomeHook: false, buildDocs: true, buildTests: true, gpuTargets: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["cxxStandard", 46, 39]]);
-const pos$2 = nix.positions(here + "/default.nix", [["owner", 81, 5], ["repo", 82, 5], ["tag", 83, 5], ["hash", 84, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["LDFLAGS", 125, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["migraphx", 196, 7]]);
-const pos$5 = nix.positions(here + "/default.nix", [["migraphx-driver", 195, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["finalAttrs", 199, 54]]);
-const pos$7 = nix.positions(here + "/default.nix", [["impureTests", 193, 12], ["updateScript", 199, 12]]);
-const pos$8 = nix.positions(here + "/default.nix", [["description", 202, 5], ["homepage", 203, 5], ["license", 204, 5], ["teams", 205, 5], ["platforms", 206, 5]]);
-const pos$9 = nix.positions(here + "/default.nix", [["pname", 67, 3], ["version", 68, 3], ["outputs", 70, 3], ["src", 80, 3], ["nativeBuildInputs", 87, 3], ["buildInputs", 105, 3], ["env", 125, 3], ["cmakeFlags", 127, 3], ["postPatch", 151, 3], ["preInstall", 175, 3], ["postInstall", 182, 3], ["passthru", 193, 3], ["meta", 201, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -50,7 +42,7 @@ export default nix.lambda((args) => (() => {
   const buildDocs = nix.argOr($, "buildDocs", () => false);
   const buildTests = nix.argOr($, "buildTests", () => false);
   const gpuTargets = nix.argOr($, "gpuTargets", () => nix.selOr(clr, () => nix.sel(clr, "gpuTargets"), "localGpuTargets"));
-  const abseil_cpp$ = nix.thunk(() => nix.app(nix.sel(abseil_cpp, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, cxxStandard: "17" }))));
+  const abseil_cpp$ = nix.thunk(() => nix.app(nix.sel(abseil_cpp, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], cxxStandard: "17" }))));
   const latex = nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), buildDocs, nix.thunk(() => nix.app(nix.sel(texliveSmall, "withPackages"), (ps) => (() => {
         const w = nix.withScope(ps, null);
         return [
@@ -68,12 +60,12 @@ export default nix.lambda((args) => (() => {
         ];
       })()))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       pname: "migraphx",
       version: "7.2.3",
       outputs: nix.thunk(() => nix.concat(["out"], nix.concat(nix.app(nix.sel(lib, "optionals"), buildDocs, nix.thunk(() => ["doc"])), nix.app(nix.sel(lib, "optionals"), buildTests, nix.thunk(() => ["test"]))))),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "ROCm",
           repo: "AMDMIGraphX",
           tag: nix.thunk(() => nix.str`rocm-${nix.sel(finalAttrs, "version")}`),
@@ -114,7 +106,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.sel(python3Packages, "pybind11")),
         nix.thunk(() => nix.sel(python3Packages, "onnx")),
       ]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$3, LDFLAGS: "-Wl,--allow-shlib-undefined" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[2], LDFLAGS: "-Wl,--allow-shlib-undefined" })),
       cmakeFlags: nix.thunk(() => [
         "-DMIGRAPHX_ENABLE_GPU=ON",
         "-DMIGRAPHX_ENABLE_CPU=ON",
@@ -149,18 +141,18 @@ substituteInPlace src/targets/gpu/kernels/include/migraphx/kernels/bit.hpp \\
       preInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), buildDocs, "make -j$NIX_BUILD_CORES doc\ncd ../doc/pdf\nmake -j$NIX_BUILD_CORES\ncd -\n")),
       postInstall: nix.thunk(() => nix.add(nix.app(nix.sel(lib, "optionalString"), buildDocs, "mv ../doc/html $out/share/doc/migraphx\nmv ../doc/pdf/MIGraphX.pdf $out/share/doc/migraphx\n"), nix.app(nix.sel(lib, "optionalString"), buildTests, "mkdir -p $test/bin\nmv bin/test_* $test/bin\npatchelf $test/bin/test_* --shrink-rpath --allowed-rpath-prefixes \"$NIX_STORE\"\n"))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         impureTests: nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           "migraphx-driver": nix.thunk(() => nix.app(callPackage, nix.path(here, "./test-migraphx-driver.nix"), nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               migraphx: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         })),
-        updateScript: nix.thunk(() => nix.app(rocmUpdateScript, nix.thunk(() => ({ [nix.POS]: pos$6, finalAttrs: finalAttrs })))),
+        updateScript: nix.thunk(() => nix.app(rocmUpdateScript, nix.thunk(() => ({ [nix.POS]: $pos[5], finalAttrs: finalAttrs })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         description: "AMD's graph optimization engine",
         homepage: "https://github.com/ROCm/AMDMIGraphX",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

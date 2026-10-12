@@ -2,9 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/legacy_samples.nix", [[["__structuredAttrs", 13, 5], ["strictDeps", 14, 5]], [["derivationArgs", 12, 3], ["name", 16, 3], ["runtimeInputs", 17, 3], ["text", 21, 3]]]);
 const formals$1 = { args: { cudaNamePrefix: false, "cudnn-frontend": false, jq: false, lib: false, writeShellApplication: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/legacy_samples.nix", [["__structuredAttrs", 13, 5], ["strictDeps", 14, 5]]);
-const pos$2 = nix.positions(here + "/legacy_samples.nix", [["derivationArgs", 12, 3], ["name", 16, 3], ["runtimeInputs", 17, 3], ["text", 21, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,8 +15,8 @@ export default nix.lambda((args) => (() => {
   const from = nix.thunk(() => nix.sel(lib, "meta"));
   const getExe$ = nix.thunk(() => nix.attr(from, "getExe'"));
   return nix.app(writeShellApplication, nix.thunk(() => ({
-      [nix.POS]: pos$2,
-      derivationArgs: nix.thunk(() => ({ [nix.POS]: pos$1, __structuredAttrs: true, strictDeps: true })),
+      [nix.POS]: $pos[1],
+      derivationArgs: nix.thunk(() => ({ [nix.POS]: $pos[0], __structuredAttrs: true, strictDeps: true })),
       name: nix.thunk(() => nix.str`${cudaNamePrefix}-tests-cudnn-frontend-legacy-samples`),
       runtimeInputs: nix.thunk(() => [nix.thunk(() => nix.sel(cudnn_frontend, "legacy_samples")), jq]),
       text: nix.thunk(() => nix.str`args=( "${nix.app(getExe$, nix.thunk(() => nix.sel(cudnn_frontend, "legacy_samples")), "legacy_samples")}" )

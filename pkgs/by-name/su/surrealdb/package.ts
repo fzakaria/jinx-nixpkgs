@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]], [["PROTOC", 53, 5], ["PROTOC_INCLUDE", 54, 5]], [["ROCKSDB_INCLUDE_DIR", 57, 5], ["ROCKSDB_LIB_DIR", 58, 5]], [["package", 80, 5], ["command", 81, 5]], [["version", 79, 18]], [["tests", 79, 12]], [["description", 85, 5], ["homepage", 90, 5], ["mainProgram", 91, 5], ["license", 92, 5], ["maintainers", 93, 5]], [["pname", 20, 3], ["version", 21, 3], ["__structuredAttrs", 23, 3], ["src", 25, 3], ["cargoHash", 32, 3], ["postPatch", 36, 3], ["buildNoDefaultFeatures", 41, 3], ["buildFeatures", 42, 3], ["env", 52, 3], ["nativeBuildInputs", 61, 3], ["buildInputs", 66, 3], ["doCheck", 70, 3], ["checkFlags", 72, 3], ["__darwinAllowLocalNetworking", 77, 3], ["passthru", 79, 3], ["meta", 84, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchFromGitHub: false, "pkg-config": false, openssl: false, rocksdb: false, testers: false, protobuf: false, backend: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["PROTOC", 53, 5], ["PROTOC_INCLUDE", 54, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["ROCKSDB_INCLUDE_DIR", 57, 5], ["ROCKSDB_LIB_DIR", 58, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["package", 80, 5], ["command", 81, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["version", 79, 18]]);
-const pos$6 = nix.positions(here + "/package.nix", [["tests", 79, 12]]);
-const pos$7 = nix.positions(here + "/package.nix", [["description", 85, 5], ["homepage", 90, 5], ["mainProgram", 91, 5], ["license", 92, 5], ["maintainers", 93, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["__structuredAttrs", 23, 3], ["src", 25, 3], ["cargoHash", 32, 3], ["postPatch", 36, 3], ["buildNoDefaultFeatures", 41, 3], ["buildFeatures", 42, 3], ["env", 52, 3], ["nativeBuildInputs", 61, 3], ["buildInputs", 66, 3], ["doCheck", 70, 3], ["checkFlags", 72, 3], ["__darwinAllowLocalNetworking", 77, 3], ["passthru", 79, 3], ["meta", 84, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const hasRocksDB = nix.thunk(() => nix.eq(backend, "rocksdb"));
   nix.assert_(nix.app(nix.sel(lib, "assertMsg"), nix.thunk(() => nix.builtins.elem(backend, nix.thunk(() => ["rocksdb", "surrealkv"]))), "surrealdb: backend must be one of [ \"rocksdb\" \"surrealkv\" ]"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/su/surrealdb/package.nix:15:1");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: nix.thunk(() => (nix.asBool(hasRocksDB) ? "surrealdb" : "surrealdb-surrealkv")),
       version: "3.0.0",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "surrealdb",
           repo: "surrealdb",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -49,11 +42,11 @@ export default nix.lambda((args) => (() => {
         "storage-surrealkv",
       ], nix.app(nix.sel(lib, "optional"), hasRocksDB, "storage-rocksdb"))),
       env: nix.thunk(() => nix.update({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         PROTOC: nix.thunk(() => nix.str`${protobuf}/bin/protoc`),
         PROTOC_INCLUDE: nix.thunk(() => nix.str`${protobuf}/include`),
       }, nix.app(nix.sel(lib, "optionalAttrs"), hasRocksDB, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           ROCKSDB_INCLUDE_DIR: nix.thunk(() => nix.str`${rocksdb}/include`),
           ROCKSDB_LIB_DIR: nix.thunk(() => nix.str`${rocksdb}/lib`),
         }))))),
@@ -63,18 +56,18 @@ export default nix.lambda((args) => (() => {
       checkFlags: nix.thunk(() => ["--skip=database_upgrade"]),
       __darwinAllowLocalNetworking: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               command: "surreal version",
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: nix.thunk(() => (nix.asBool(hasRocksDB) ? "Scalable, distributed, collaborative, document-graph database, for the realtime web" : "SurrealDB with the SurrealKV storage backend")),
         homepage: "https://surrealdb.com/",
         mainProgram: "surreal",

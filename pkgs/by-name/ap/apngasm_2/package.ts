@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 15, 5], ["stripRoot", 16, 5], ["sha256", 17, 5]], [["NIX_CFLAGS_LINK", 30, 7]], [["description", 41, 5], ["mainProgram", 42, 5], ["homepage", 43, 5], ["license", 44, 5], ["maintainers", 45, 5], ["platforms", 46, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["buildInputs", 20, 3], ["postPatch", 26, 3], ["env", 30, 3], ["installPhase", 32, 3], ["enableParallelBuilding", 38, 3], ["meta", 40, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchzip: false, libpng: false, zlib: false, zopfli: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 15, 5], ["stripRoot", 16, 5], ["sha256", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_LINK", 30, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 41, 5], ["mainProgram", 42, 5], ["homepage", 43, 5], ["license", 44, 5], ["maintainers", 45, 5], ["platforms", 46, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["buildInputs", 20, 3], ["postPatch", 26, 3], ["env", 30, 3], ["installPhase", 32, 3], ["enableParallelBuilding", 38, 3], ["meta", 40, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,18 +17,18 @@ export default nix.lambda((args) => (() => {
       const pname = "apngasm";
       const version = "2.91";
       const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/${pname}/${pname}-${version}-src.zip`),
           stripRoot: false,
           sha256: "0qhljqql159xkn1l83vz0q8wvzr7rjz4jnhiy0zn36pgvacg0zn1",
         }))));
       const buildInputs = nix.thunk(() => [libpng, zlib, zopfli]);
       const postPatch = "rm -rf libpng zlib zopfli\n";
-      const env = nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_LINK: "-lzopfli" }));
+      const env = nix.thunk(() => ({ [nix.POS]: $pos[1], NIX_CFLAGS_LINK: "-lzopfli" }));
       const installPhase = "runHook preInstall\ninstall -Dt $out/bin apngasm\nrunHook postInstall\n";
       const enableParallelBuilding = true;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Create highly optimized Animated PNG files from PNG/TGA images",
         mainProgram: "apngasm",
         homepage: "https://apngasm.sourceforge.net/",
@@ -40,7 +37,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]], [["updateScript", 40, 12]], [["homepage", 53, 5], ["description", 54, 5], ["license", 55, 5], ["maintainers", 56, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["strictDeps", 22, 3], ["__structuredAttrs", 23, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 27, 3], ["cmakeFlags", 32, 3], ["passthru", 40, 3], ["meta", 52, 3]]]);
 const formals$1 = { args: { lib: false, buildLuaPackage: false, writeScript: false, fetchFromGitHub: false, cmake: false, lua: false, curl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["updateScript", 40, 12]]);
-const pos$3 = nix.positions(here + "/default.nix", [["homepage", 53, 5], ["description", 54, 5], ["license", 55, 5], ["maintainers", 56, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["strictDeps", 22, 3], ["__structuredAttrs", 23, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 27, 3], ["cmakeFlags", 32, 3], ["passthru", 40, 3], ["meta", 52, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pname = "lua-https";
       const version = "0-unstable-2025-02-28";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "love2d",
           repo: "lua-https",
           rev: "e1b77046dd3cf1a9f61ddeb63cb39d47c844c089",
@@ -39,7 +36,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "USE_NSURL_BACKEND", false)),
       ]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(writeScript, "update.sh", nix.thunk(() => nix.str`#!/usr/bin/env nix-shell
 #!nix-shell -i bash -p curl jq common-updater-scripts
 
@@ -52,7 +49,7 @@ update-source-version luaPackages.lua-https 0-unstable-$date --rev=$rev
 `))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://love2d.org/wiki/lua-https",
         description: "Simple Lua HTTPS module using native platform backends specifically written for LÖVE 12.0",
         license: nix.thunk(() => nix.sel(lib, "licenses", "zlib")),
@@ -62,7 +59,7 @@ update-source-version luaPackages.lua-https 0-unstable-$date --rev=$rev
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

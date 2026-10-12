@@ -2,13 +2,13 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/dmesg.nix", [[["path", 3, 3]]]);
 const formals$1 = { args: { mkDerivation: false, lib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/dmesg.nix", [["path", 3, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const mkDerivation = nix.arg($, "mkDerivation");
   const lib = nix.arg($, "lib");
-  return nix.app(mkDerivation, nix.thunk(() => ({ [nix.POS]: pos$1, path: "sbin/dmesg" })));
+  return nix.app(mkDerivation, nix.thunk(() => ({ [nix.POS]: $pos[0], path: "sbin/dmesg" })));
 })(), formals$1);
 //# sourceMappingURL=dmesg.ts.map

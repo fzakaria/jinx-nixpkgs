@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 25, 13], ["version", 25, 19], ["hash", 26, 5]], [["description", 52, 5], ["homepage", 53, 5], ["license", 54, 5], ["maintainers", 55, 5]], [["pname", 21, 11], ["version", 21, 17], ["pyproject", 22, 3], ["src", 24, 3], ["build-system", 29, 3], ["dependencies", 39, 3], ["nativeCheckInputs", 41, 3], ["disabledTestPaths", 44, 3], ["pythonImportsCheck", 49, 3], ["meta", 51, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, hatchling: false, "hatch-requirements-txt": false, "hatch-sphinx": false, "hatch-vcs": false, h5py: false, lxml: false, numpy: false, columnize: false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 25, 13], ["version", 25, 19], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 52, 5], ["homepage", 53, 5], ["license", 54, 5], ["maintainers", 55, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 21, 11], ["version", 21, 17], ["pyproject", 22, 3], ["src", 24, 3], ["build-system", 29, 3], ["dependencies", 39, 3], ["nativeCheckInputs", 41, 3], ["disabledTestPaths", 44, 3], ["pythonImportsCheck", 49, 3], ["meta", 51, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,12 +22,12 @@ export default nix.lambda((args) => (() => {
   const pname = "sasdata";
   const version = "0.11.0";
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: pname,
       version: version,
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-HIqEFN0Y+A4C6oF8NcI1puBt4SmyoNoAFobHQcYepnI=",
@@ -51,7 +49,7 @@ export default nix.lambda((args) => (() => {
       ]),
       pythonImportsCheck: nix.thunk(() => ["sasdata"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Package for loading and handling SAS data",
         homepage: "https://github.com/SasView/sasdata",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

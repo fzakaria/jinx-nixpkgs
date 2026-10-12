@@ -2,15 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 37, 33]], [["sources", 37, 19]], [["failure_level", 38, 23]], [["log", 38, 19]], [["content", 37, 11], ["runtime", 38, 11]], [["cache-dir", 47, 11], ["extension", 48, 11], ["to-dir", 49, 11], ["ui-bundle-url", 50, 11]], [["description", 61, 5], ["license", 62, 5], ["maintainers", 63, 5], ["platforms", 64, 5]], [["name", 11, 3], ["src", 12, 3], ["postPatch", 14, 3], ["buildPhase", 33, 3], ["nativeBuildInputs", 55, 3], ["meta", 60, 3]]]);
 const formals$1 = { args: { antora: false, "antora-lunr-extension": false, "antora-lunr-extension-test": true, "antora-ui-default": false, gitMinimal: false, lib: false, stdenvNoCC: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 37, 33]]);
-const pos$2 = nix.positions(here + "/default.nix", [["sources", 37, 19]]);
-const pos$3 = nix.positions(here + "/default.nix", [["failure_level", 38, 23]]);
-const pos$4 = nix.positions(here + "/default.nix", [["log", 38, 19]]);
-const pos$5 = nix.positions(here + "/default.nix", [["content", 37, 11], ["runtime", 38, 11]]);
-const pos$6 = nix.positions(here + "/default.nix", [["cache-dir", 47, 11], ["extension", 48, 11], ["to-dir", 49, 11], ["ui-bundle-url", 50, 11]]);
-const pos$7 = nix.positions(here + "/default.nix", [["description", 61, 5], ["license", 62, 5], ["maintainers", 63, 5], ["platforms", 64, 5]]);
-const pos$8 = nix.positions(here + "/default.nix", [["name", 11, 3], ["src", 12, 3], ["postPatch", 14, 3], ["buildPhase", 33, 3], ["nativeBuildInputs", 55, 3], ["meta", 60, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       name: nix.thunk(() => nix.str`${nix.sel(antora, "pname")}${nix.app(nix.sel(lib, "optionalString"), antora_lunr_extension_test, nix.thunk(() => nix.str`-${nix.sel(antora_lunr_extension, "pname")}`))}-test`),
       src: nix.path(here, "./minimal_working_example"),
       postPatch: nix.thunk(() => (() => {
@@ -43,20 +36,20 @@ git init &&
       })()),
       buildPhase: nix.thunk(() => (() => {
         const playbook = nix.thunk(() => nix.builtins.toFile("antora-playbook.json", nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => ({
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               content: nix.thunk(() => ({
-                [nix.POS]: pos$2,
-                sources: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$1, url: "~+" }))]),
+                [nix.POS]: $pos[1],
+                sources: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: $pos[0], url: "~+" }))]),
               })),
               runtime: nix.thunk(() => ({
-                [nix.POS]: pos$4,
-                log: nix.thunk(() => ({ [nix.POS]: pos$3, failure_level: "warn" })),
+                [nix.POS]: $pos[3],
+                log: nix.thunk(() => ({ [nix.POS]: $pos[2], failure_level: "warn" })),
               })),
             }))))));
         return nix.str`# The --to-dir and --ui-bundle-url options are not included in the
 # playbook due to Antora and Nix limitations.
 antora ${nix.app(nix.sel(lib, "cli", "toCommandLineShellGNU"), nix.thunk(() => ({})), nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             "cache-dir": "$(mktemp --directory)",
             extension: nix.thunk(() => (nix.asBool(antora_lunr_extension_test) ? nix.force(antora_lunr_extension) : false)),
             "to-dir": nix.thunk(() => nix.builtins.placeholder("out")),
@@ -66,7 +59,7 @@ antora ${nix.app(nix.sel(lib, "cli", "toCommandLineShellGNU"), nix.thunk(() => (
       })()),
       nativeBuildInputs: nix.thunk(() => [antora, gitMinimal]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "Reproducible Antora test framework",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "noahbiewesch"))]),

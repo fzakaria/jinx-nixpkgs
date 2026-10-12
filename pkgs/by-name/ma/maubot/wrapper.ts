@@ -2,17 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/wrapper.nix", [[["load", 40, 19]], [["override_resource_path", 48, 24]], [["plugin_directories", 39, 17], ["server", 48, 17]], [["pythonPackages", 72, 13], ["plugins", 73, 21], ["baseConfig", 73, 29]], [["plugins", 78, 13], ["pythonPackages", 79, 21], ["baseConfig", 79, 36]], [["baseConfig", 84, 21], ["pythonPackages", 84, 32], ["plugins", 84, 47]], [["unwrapped", 67, 17], ["python", 68, 9], ["withPythonPackages", 69, 9], ["withPlugins", 75, 9], ["withBaseConfig", 81, 9]], [["priority", 88, 12]], [["name", 22, 7], ["unwrapped", 24, 15], ["paths", 25, 7], ["pythonPath", 26, 7], ["nativeBuildInputs", 29, 7], ["postBuild", 31, 7], ["passthru", 66, 7], ["meta", 88, 7]]]);
 const formals$1 = { args: { lib: false, symlinkJoin: false, runCommand: false, unwrapped: false, python3: false, formats: false }, ellipsis: false };
 const formals$2 = { args: { pythonPackages: true, plugins: true, baseConfig: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/wrapper.nix", [["load", 40, 19]]);
-const pos$2 = nix.positions(here + "/wrapper.nix", [["override_resource_path", 48, 24]]);
-const pos$3 = nix.positions(here + "/wrapper.nix", [["plugin_directories", 39, 17], ["server", 48, 17]]);
-const pos$4 = nix.positions(here + "/wrapper.nix", [["pythonPackages", 72, 13], ["plugins", 73, 21], ["baseConfig", 73, 29]]);
-const pos$5 = nix.positions(here + "/wrapper.nix", [["plugins", 78, 13], ["pythonPackages", 79, 21], ["baseConfig", 79, 36]]);
-const pos$6 = nix.positions(here + "/wrapper.nix", [["baseConfig", 84, 21], ["pythonPackages", 84, 32], ["plugins", 84, 47]]);
-const pos$7 = nix.positions(here + "/wrapper.nix", [["unwrapped", 67, 17], ["python", 68, 9], ["withPythonPackages", 69, 9], ["withPlugins", 75, 9], ["withBaseConfig", 81, 9]]);
-const pos$8 = nix.positions(here + "/wrapper.nix", [["priority", 88, 12]]);
-const pos$9 = nix.positions(here + "/wrapper.nix", [["name", 22, 7], ["unwrapped", 24, 15], ["paths", 25, 7], ["pythonPath", 26, 7], ["nativeBuildInputs", 29, 7], ["postBuild", 31, 7], ["passthru", 66, 7], ["meta", 88, 7]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,7 +22,7 @@ export default nix.lambda((args) => (() => {
     const plugins$ = nix.thunk(() => nix.app(plugins, nix.thunk(() => nix.sel(unwrapped, "plugins"))));
     const extraPythonPackages = nix.thunk(() => nix.builtins.concatLists(nix.thunk(() => nix.builtins.map((p) => nix.selOr(p, () => [], "propagatedBuildInputs"), plugins$))));
     return nix.app(symlinkJoin, nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         name: nix.thunk(() => nix.str`${nix.sel(unwrapped, "pname")}-with-plugins-${nix.sel(unwrapped, "version")}`),
         unwrapped: unwrapped,
         paths: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(baseConfig, null)), unwrapped), plugins$)),
@@ -40,13 +32,13 @@ export default nix.lambda((args) => (() => {
 rmdir $out/nix-support || true
 ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(baseConfig, null)), nix.thunk(() => nix.str`rm $out/${nix.sel(python3, "sitePackages")}/maubot/example-config.yaml
 substituteAll ${nix.app(nix.sel(nix.app(nix.sel(formats, "yaml"), nix.thunk(() => ({}))), "generate"), "example-config.yaml", nix.thunk(() => nix.app(nix.sel(lib, "recursiveUpdate"), baseConfig, nix.thunk(() => ({
-                [nix.POS]: pos$3,
+                [nix.POS]: $pos[2],
                 plugin_directories: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(plugins$, [])), nix.thunk(() => ({
-                    [nix.POS]: pos$1,
+                    [nix.POS]: $pos[0],
                     load: nix.thunk(() => nix.concat(["@out@/lib/maubot-plugins"], nix.selOr(baseConfig, () => [], "plugin_directories", "load"))),
                   })))),
                 server: nix.thunk(() => ({
-                  [nix.POS]: pos$2,
+                  [nix.POS]: $pos[1],
                   override_resource_path: nix.thunk(() => (nix.asBool(nix.builtins.isNull(nix.thunk(() => nix.selOr(baseConfig, () => null, "server", "override_resource_path")))) ? nix.str`${unwrapped}/${nix.sel(python3, "sitePackages")}/maubot/management/frontend/build` : nix.sel(baseConfig, "server", "override_resource_path"))),
                 })),
               })))))} $out/${nix.sel(python3, "sitePackages")}/maubot/example-config.yaml
@@ -58,30 +50,30 @@ cp $unwrapped/bin/.maubot-wrapped $out/bin/maubot
 wrapPythonProgramsIn "$out/bin" "${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(baseConfig, null)), "$out ")}\${pythonPath[*]}"
 `),
         passthru: nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           unwrapped: unwrapped,
           python: python3,
           withPythonPackages: (filter) => nix.app(wrapper, nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               pythonPackages: (pkgs) => nix.concat(nix.app(pythonPackages, pkgs), nix.app(filter, pkgs)),
               plugins: plugins,
               baseConfig: baseConfig,
             }))),
           withPlugins: (filter) => nix.app(wrapper, nix.thunk(() => ({
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               plugins: (pkgs) => nix.concat(nix.app(plugins, pkgs), nix.app(filter, pkgs)),
               pythonPackages: pythonPackages,
               baseConfig: baseConfig,
             }))),
           withBaseConfig: (baseConfig_1) => nix.app(wrapper, nix.thunk(() => ({
-              [nix.POS]: pos$6,
+              [nix.POS]: $pos[5],
               baseConfig: baseConfig_1,
               pythonPackages: pythonPackages,
               plugins: plugins,
             }))),
         })),
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           priority: nix.thunk(() => nix.sub(nix.selOr(unwrapped, () => nix.sel(lib, "meta", "defaultPriority"), "meta", "priority"), 1n)),
         })),
       })));

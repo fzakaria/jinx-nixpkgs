@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["version", 13, 13], ["pname", 14, 5], ["hash", 15, 5]], [["description", 28, 5], ["mainProgram", 29, 5], ["homepage", 30, 5], ["license", 31, 5], ["maintainers", 32, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["cargoHash", 18, 3], ["cargoBuildFlags", 20, 3], ["nativeBuildInputs", 25, 3], ["meta", 27, 3]]]);
 const formals$1 = { args: { fetchCrate: false, lib: false, rustPlatform: false, protobuf: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["version", 13, 13], ["pname", 14, 5], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 28, 5], ["mainProgram", 29, 5], ["homepage", 30, 5], ["license", 31, 5], ["maintainers", 32, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["cargoHash", 18, 3], ["cargoBuildFlags", 20, 3], ["nativeBuildInputs", 25, 3], ["meta", 27, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,7 +15,7 @@ export default nix.lambda((args) => (() => {
       const pname = "protoc-gen-rust";
       const version = "3.5.0";
       const src = nix.thunk(() => nix.app(fetchCrate, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           version: version,
           pname: "protobuf-codegen",
           hash: "sha256-yGZ4auZHGtcsN6n4/FEzabsSXproyhNTJHIwujt7ijg=",
@@ -26,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const cargoBuildFlags = nix.thunk(() => ["--bin", pname]);
       const nativeBuildInputs = nix.thunk(() => [protobuf]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Protobuf plugin for generating Rust code",
         mainProgram: "protoc-gen-rust",
         homepage: "https://github.com/stepancheg/rust-protobuf",
@@ -37,7 +35,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

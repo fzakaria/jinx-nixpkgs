@@ -2,18 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["runtimeIds", 41, 9], ["buildInputs", 42, 9]], [["nugetDeps", 39, 7], ["overrideFetchAttrs", 40, 7]], [["owner", 52, 9], ["repo", 53, 9], ["tag", 54, 9], ["fetchSubmodules", 55, 9], ["hash", 56, 9]], [["url", 76, 11], ["hash", 77, 11], ["stripRoot", 78, 11]], [["fontDirectories", 82, 34]], [["UNICODE_CHARACTER_DATABASE", 75, 9], ["FONTCONFIG_FILE", 80, 9]], [["src", 118, 15], ["hash", 119, 23]], [["updateScript", 200, 9], ["npmDepsFile", 201, 17]], [["homepage", 205, 9], ["license", 206, 9], ["maintainers", 207, 9], ["description", 208, 9], ["sourceProvenance", 209, 9], ["platforms", 213, 9], ["broken", 214, 9]], [["pname", 48, 7], ["version", 49, 7], ["src", 51, 7], ["patches", 59, 7], ["env", 73, 7], ["postPatch", 90, 7], ["makeCacheWritable", 142, 7], ["linkNugetPackages", 145, 7], ["linkNuGetPackagesAndSources", 153, 7], ["preConfigure", 155, 7], ["runtimeIds", 165, 7], ["configurePhase", 167, 7], ["nativeBuildInputs", 177, 7], ["buildInputs", 181, 7], ["buildTarget", 183, 7], ["buildPhase", 185, 7], ["installPhase", 192, 7], ["passthru", 199, 7], ["meta", 204, 7]]]);
 const formals$1 = { args: { dotnetCorePackages: false, fetchFromGitHub: false, fetchNpmDeps: false, fetchzip: false, fontconfig: false, lib: false, libice: false, libsm: false, libx11: false, libxcursor: false, libxext: false, libxi: false, libxrandr: false, liberation_ttf: false, makeFontsConf: false, nodejs: false, npmHooks: false, runCommand: false, stdenvNoCC: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["runtimeIds", 41, 9], ["buildInputs", 42, 9]]);
-const pos$2 = nix.positions(here + "/package.nix", [["nugetDeps", 39, 7], ["overrideFetchAttrs", 40, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["owner", 52, 9], ["repo", 53, 9], ["tag", 54, 9], ["fetchSubmodules", 55, 9], ["hash", 56, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["url", 76, 11], ["hash", 77, 11], ["stripRoot", 78, 11]]);
-const pos$5 = nix.positions(here + "/package.nix", [["fontDirectories", 82, 34]]);
-const pos$6 = nix.positions(here + "/package.nix", [["UNICODE_CHARACTER_DATABASE", 75, 9], ["FONTCONFIG_FILE", 80, 9]]);
 const formals$2 = { args: { path: false, hash: false }, ellipsis: false };
-const pos$7 = nix.positions(here + "/package.nix", [["src", 118, 15], ["hash", 119, 23]]);
-const pos$8 = nix.positions(here + "/package.nix", [["updateScript", 200, 9], ["npmDepsFile", 201, 17]]);
-const pos$9 = nix.positions(here + "/package.nix", [["homepage", 205, 9], ["license", 206, 9], ["maintainers", 207, 9], ["description", 208, 9], ["sourceProvenance", 209, 9], ["platforms", 213, 9], ["broken", 214, 9]]);
-const pos$10 = nix.positions(here + "/package.nix", [["pname", 48, 7], ["version", 49, 7], ["src", 51, 7], ["patches", 59, 7], ["env", 73, 7], ["postPatch", 90, 7], ["makeCacheWritable", 142, 7], ["linkNugetPackages", 145, 7], ["linkNuGetPackagesAndSources", 153, 7], ["preConfigure", 155, 7], ["runtimeIds", 165, 7], ["configurePhase", 167, 7], ["nativeBuildInputs", 177, 7], ["buildInputs", 181, 7], ["buildTarget", 183, 7], ["buildPhase", 185, 7], ["installPhase", 192, 7], ["passthru", 199, 7], ["meta", 204, 7]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -43,18 +34,18 @@ export default nix.lambda((args) => (() => {
   })());
   const npmDepsFile = nix.path(here, "./npm-deps.nix");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => nix.app(nix.sel(dotnetCorePackages, "addNuGetDeps"), nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         nugetDeps: nix.path(here, "./deps.json"),
         overrideFetchAttrs: (old) => (() => {
           const runtimeIds = nix.thunk(() => nix.builtins.map((system) => nix.app(nix.sel(dotnetCorePackages, "systemToDotnetRid"), system), nix.thunk(() => nix.sel(old, "meta", "platforms"))));
           const buildInputs = nix.thunk(() => nix.concat(nix.sel(old, "buildInputs"), nix.app(nix.sel(lib, "concatLists"), nix.thunk(() => nix.app(nix.sel(lib, "attrValues"), nix.thunk(() => nix.app(nix.sel(lib, "getAttrs"), runtimeIds, nix.thunk(() => nix.sel(dotnet_sdk, "targetPackages")))))))));
-          return { [nix.POS]: pos$1, runtimeIds, buildInputs };
+          return { [nix.POS]: $pos[0], runtimeIds, buildInputs };
         })(),
       })), nix.thunk(() => (() => {
         const pname = "Avalonia";
         const version = "11.3.13";
         const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             owner: "AvaloniaUI",
             repo: "Avalonia",
             tag: version,
@@ -68,15 +59,15 @@ export default nix.lambda((args) => (() => {
           nix.path(here, "./0004-disable-windows-desktop.patch"),
         ]);
         const env = nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           UNICODE_CHARACTER_DATABASE: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               url: "https://www.unicode.org/Public/15.0.0/ucd/UCD.zip",
               hash: "sha256-jj6bX46VcnH7vpc9GwM9gArG+hSPbOGL6E4SaVd0s60=",
               stripRoot: false,
             })))),
           FONTCONFIG_FILE: nix.thunk(() => (() => {
-            const fc = nix.thunk(() => nix.app(makeFontsConf, nix.thunk(() => ({ [nix.POS]: pos$5, fontDirectories: nix.thunk(() => [liberation_ttf]) }))));
+            const fc = nix.thunk(() => nix.app(makeFontsConf, nix.thunk(() => ({ [nix.POS]: $pos[4], fontDirectories: nix.thunk(() => [liberation_ttf]) }))));
             return nix.app(runCommand, "fonts.conf", nix.thunk(() => ({})), nix.thunk(() => nix.str`substitute ${fc} $out \\
 --replace-fail "/etc/" "${nix.sel(fontconfig, "out")}/etc/"
 `));
@@ -106,7 +97,11 @@ dotnet nuget add source https://pkgs.dev.azure.com/dnceng/public/_packaging/dotn
             const $_1 = nix.formals(args_1, formals$2);
             const path = nix.arg($_1, "path");
             const hash = nix.arg($_1, "hash");
-            const deps = nix.thunk(() => nix.app(fetchNpmDeps, nix.thunk(() => ({ [nix.POS]: pos$7, src: nix.thunk(() => nix.str`${src}/${path}`), hash: hash }))));
+            const deps = nix.thunk(() => nix.app(fetchNpmDeps, nix.thunk(() => ({
+                [nix.POS]: $pos[6],
+                src: nix.thunk(() => nix.str`${src}/${path}`),
+                hash: hash,
+              }))));
             return nix.str`npmRoot=${path} npmDeps="${deps}" npmConfigHook
 rm -rf "$TMPDIR/cache"
 `;
@@ -125,12 +120,12 @@ rm -rf "$TMPDIR/cache"
         const buildPhase = "runHook preBuild\n# ValidateApiDiff requires a network connection\n./build.sh --target $buildTarget --verbosity Verbose --skip ValidateApiDiff\nrunHook postBuild\n";
         const installPhase = "runHook preInstall\nmkdir -p \"$out/share/nuget/source\"\ncp artifacts/nuget/* \"$out/share/nuget/source\"\nrunHook postInstall\n";
         const passthru = nix.thunk(() => ({
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           updateScript: nix.path(here, "./update.bash"),
           npmDepsFile: npmDepsFile,
         }));
         const meta = nix.thunk(() => ({
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           homepage: "https://avaloniaui.net/",
           license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
           maintainers: nix.thunk(() => (() => {
@@ -149,7 +144,7 @@ rm -rf "$TMPDIR/cache"
           broken: nix.thunk(() => nix.sel(stdenvNoCC, "hostPlatform", "isDarwin")),
         }));
         return {
-          [nix.POS]: pos$10,
+          [nix.POS]: $pos[9],
           pname,
           version,
           src,

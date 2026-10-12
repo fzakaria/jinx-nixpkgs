@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]], [["pname", 34, 26], ["version", 34, 32], ["src", 34, 40], ["hash", 35, 5]], [["GETTEXT_LIB_DIR", 73, 5], ["GETTEXT_INCLUDE_DIR", 74, 5], ["GETTEXT_BIN_DIR", 75, 5]], [["updateScript", 91, 5]], [["homepage", 95, 5], ["changelog", 96, 5], ["description", 97, 5], ["maintainers", 98, 5], ["license", 102, 5], ["platforms", 103, 5], ["mainProgram", 104, 5]], [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["cargoDeps", 33, 3], ["postPatch", 39, 3], ["nativeBuildInputs", 43, 3], ["buildInputs", 56, 3], ["env", 69, 3], ["makeFlags", 78, 3], ["enableParallelBuilding", 79, 3], ["doCheck", 81, 3], ["checkTarget", 82, 3], ["postInstall", 84, 3], ["passthru", 90, 3], ["meta", 94, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, rustPlatform: false, fetchFromGitHub: false, cargo: false, rustc: false, stfl: false, sqlite: false, curl: false, gettext: false, "pkg-config": false, libxml2: false, json_c: false, ncurses: false, asciidoctor: false, libiconv: false, makeWrapper: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 34, 26], ["version", 34, 32], ["src", 34, 40], ["hash", 35, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["GETTEXT_LIB_DIR", 73, 5], ["GETTEXT_INCLUDE_DIR", 74, 5], ["GETTEXT_BIN_DIR", 75, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 91, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["homepage", 95, 5], ["changelog", 96, 5], ["description", 97, 5], ["maintainers", 98, 5], ["license", 102, 5], ["platforms", 103, 5], ["mainProgram", 104, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["cargoDeps", 33, 3], ["postPatch", 39, 3], ["nativeBuildInputs", 43, 3], ["buildInputs", 56, 3], ["env", 69, 3], ["makeFlags", 78, 3], ["enableParallelBuilding", 79, 3], ["doCheck", 81, 3], ["checkTarget", 82, 3], ["postInstall", 84, 3], ["passthru", 90, 3], ["meta", 94, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,18 +26,18 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "newsboat",
       version: "2.44",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "newsboat",
           repo: "newsboat",
           tag: nix.thunk(() => nix.str`r${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-OV7WpM0NBfqOtFv9Co728UwHut4HhT2u5qgvamy/FAg=",
         })))),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -59,7 +54,7 @@ export default nix.lambda((args) => (() => {
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [makeWrapper, ncurses])))),
       buildInputs: nix.thunk(() => nix.concat([stfl, sqlite, curl, libxml2, json_c, ncurses], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [libiconv, gettext])))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         GETTEXT_LIB_DIR: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getLib"), gettext)}/lib`),
         GETTEXT_INCLUDE_DIR: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getDev"), gettext)}/include`),
         GETTEXT_BIN_DIR: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getBin"), gettext)}/bin`),
@@ -73,11 +68,11 @@ export default nix.lambda((args) => (() => {
 done
 `))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "https://newsboat.org/",
         changelog: nix.thunk(() => nix.str`https://github.com/newsboat/newsboat/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),
         description: "Fork of Newsbeuter, an RSS/Atom feed reader for the text console",

@@ -2,16 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/5.nix", [[["owner", 48, 5], ["repo", 49, 5], ["tag", 50, 5], ["hash", 51, 5]], [["zoneinfo", 56, 7]], [["geos", 67, 7], ["gdal", 68, 7], ["extension", 69, 7]], [["argon2", 86, 5], ["bcrypt", 87, 5]], [["version", 141, 30], ["product", 142, 9], ["update", 143, 9], ["vendor", 144, 9]], [["type", 147, 9], ["spec", 148, 9]], [["cpeParts", 140, 7], ["purlParts", 146, 7]], [["changelog", 136, 5], ["description", 137, 5], ["homepage", 138, 5], ["identifiers", 139, 5], ["license", 151, 5], ["maintainers", 152, 5]], [["pname", 43, 3], ["version", 44, 3], ["pyproject", 45, 3], ["src", 47, 3], ["patches", 54, 3], ["postPatch", 73, 3], ["build-system", 78, 3], ["dependencies", 80, 3], ["optional-dependencies", 85, 3], ["nativeCheckInputs", 90, 3], ["preCheck", 109, 3], ["checkPhase", 122, 3], ["__darwinAllowLocalNetworking", 133, 3], ["meta", 135, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitHub: false, replaceVars: false, setuptools: false, geos: false, gdal: false, withGdal: true, asgiref: false, sqlparse: false, "argon2-cffi": false, bcrypt: false, aiosmtpd: false, docutils: false, geoip2: false, jinja2: false, numpy: false, pillow: false, pylibmc: false, pymemcache: false, python: false, pyyaml: false, pytz: false, redis: false, selenium: false, tblib: false, tzdata: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/5.nix", [["owner", 48, 5], ["repo", 49, 5], ["tag", 50, 5], ["hash", 51, 5]]);
-const pos$2 = nix.positions(here + "/5.nix", [["zoneinfo", 56, 7]]);
-const pos$3 = nix.positions(here + "/5.nix", [["geos", 67, 7], ["gdal", 68, 7], ["extension", 69, 7]]);
-const pos$4 = nix.positions(here + "/5.nix", [["argon2", 86, 5], ["bcrypt", 87, 5]]);
-const pos$5 = nix.positions(here + "/5.nix", [["version", 141, 30], ["product", 142, 9], ["update", 143, 9], ["vendor", 144, 9]]);
-const pos$6 = nix.positions(here + "/5.nix", [["type", 147, 9], ["spec", 148, 9]]);
-const pos$7 = nix.positions(here + "/5.nix", [["cpeParts", 140, 7], ["purlParts", 146, 7]]);
-const pos$8 = nix.positions(here + "/5.nix", [["changelog", 136, 5], ["description", 137, 5], ["homepage", 138, 5], ["identifiers", 139, 5], ["license", 151, 5], ["maintainers", 152, 5]]);
-const pos$9 = nix.positions(here + "/5.nix", [["pname", 43, 3], ["version", 44, 3], ["pyproject", 45, 3], ["src", 47, 3], ["patches", 54, 3], ["postPatch", 73, 3], ["build-system", 78, 3], ["dependencies", 80, 3], ["optional-dependencies", 85, 3], ["nativeCheckInputs", 90, 3], ["preCheck", 109, 3], ["checkPhase", 122, 3], ["__darwinAllowLocalNetworking", 133, 3], ["meta", 135, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -44,12 +36,12 @@ export default nix.lambda((args) => (() => {
   const tblib = nix.arg($, "tblib");
   const tzdata = nix.arg($, "tzdata");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       pname: "django",
       version: "5.2.17",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "django",
           repo: "django",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -57,7 +49,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => nix.concat([
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./5.2/zoneinfo.patch"), nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             zoneinfo: nix.thunk(() => nix.add(tzdata, "/share/zoneinfo")),
           })))),
         nix.path(here, "./5.2/pythonpath.patch"),
@@ -65,7 +57,7 @@ export default nix.lambda((args) => (() => {
         nix.path(here, "./6.0/skip-flaky-tests.patch"),
       ], nix.app(nix.sel(lib, "optionals"), withGdal, nix.thunk(() => [
           nix.thunk(() => nix.app(replaceVars, nix.path(here, "./5.2/gdal.patch"), nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               geos: geos,
               gdal: gdal,
               extension: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "extensions", "sharedLibrary")),
@@ -77,7 +69,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [setuptools]),
       dependencies: nix.thunk(() => [asgiref, sqlparse]),
       "optional-dependencies": nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         argon2: nix.thunk(() => [argon2_cffi]),
         bcrypt: nix.thunk(() => [bcrypt]),
       })),
@@ -119,21 +111,21 @@ runHook postCheck
 `),
       __darwinAllowLocalNetworking: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         changelog: nix.thunk(() => nix.str`https://docs.djangoproject.com/en/${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/releases/${nix.sel(finalAttrs, "version")}/`),
         description: "High-level Python Web framework that encourages rapid development and clean, pragmatic design",
         homepage: "https://www.djangoproject.com",
         identifiers: nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           cpeParts: nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             version: nix.thunk(() => nix.attr(finalAttrs, "version")),
             product: "django",
             update: "*",
             vendor: "djangoproject",
           })),
           purlParts: nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             type: "pypi",
             spec: nix.thunk(() => nix.str`django@${nix.sel(finalAttrs, "version")}`),
           })),

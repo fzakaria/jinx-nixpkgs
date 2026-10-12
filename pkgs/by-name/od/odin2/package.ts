@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["fetchSubmodules", 31, 5], ["hash", 32, 5]], [["NIX_LDFLAGS", 55, 7]], [["name", 88, 7], ["desktopName", 89, 7], ["comment", 90, 7], ["icon", 91, 7], ["startupNotify", 92, 7], ["categories", 93, 7], ["dbusActivatable", 99, 7], ["exec", 100, 7]], [["updateScript", 104, 12]], [["description", 107, 5], ["homepage", 108, 5], ["license", 109, 5], ["platforms", 110, 5], ["maintainers", 111, 5], ["mainProgram", 112, 5]], [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 41, 3], ["env", 55, 3], ["preConfigure", 64, 3], ["cmakeFlags", 68, 3], ["installPhase", 74, 3], ["desktopItems", 86, 3], ["passthru", 104, 3], ["meta", 106, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, cmake: false, "pkg-config": false, "alsa-lib": false, freetype: false, libjack2: false, lv2: false, libx11: false, libxcursor: false, libxext: false, libxinerama: false, libxrandr: false, libGL: false, "gcc-unwrapped": false, copyDesktopItems: false, makeDesktopItem: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["fetchSubmodules", 31, 5], ["hash", 32, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_LDFLAGS", 55, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 88, 7], ["desktopName", 89, 7], ["comment", 90, 7], ["icon", 91, 7], ["startupNotify", 92, 7], ["categories", 93, 7], ["dbusActivatable", 99, 7], ["exec", 100, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 104, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 107, 5], ["homepage", 108, 5], ["license", 109, 5], ["platforms", 110, 5], ["maintainers", 111, 5], ["mainProgram", 112, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 41, 3], ["env", 55, 3], ["preConfigure", 64, 3], ["cmakeFlags", 68, 3], ["installPhase", 74, 3], ["desktopItems", 86, 3], ["passthru", 104, 3], ["meta", 106, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,11 +27,11 @@ export default nix.lambda((args) => (() => {
   const makeDesktopItem = nix.arg($, "makeDesktopItem");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "odin2",
       version: "2.4.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "TheWaveWarden",
           repo: "odin2",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -57,7 +52,7 @@ export default nix.lambda((args) => (() => {
         libGL,
       ]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_LDFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-lX11", "-lXext", "-lXcursor", "-lXinerama", "-lXrandr"]))),
       })),
       preConfigure: "export HOME=\"$TMPDIR\"\n",
@@ -69,7 +64,7 @@ export default nix.lambda((args) => (() => {
       installPhase: "mkdir -p $out/bin $out/lib/vst3 $out/lib/lv2 $out/lib/clap $out/share/icons/hicolor/512x512/apps\ncd Odin2_artefacts/Release\ncp Standalone/Odin2 $out/bin\ncp -r VST3/Odin2.vst3 $out/lib/vst3\ncp -r LV2/Odin2.lv2 $out/lib/lv2\ncp -r CLAP/Odin2.clap $out/lib/clap\n# There’s no application icon, so the vendor’s logo will have to do.\ncp $src/manual/graphics/logo.png $out/share/icons/hicolor/512x512/apps/odin2.png\ncopyDesktopItems\n",
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "Odin2",
             desktopName: "Odin 2",
             comment: "Odin 2 Free Synthesizer",
@@ -81,11 +76,11 @@ export default nix.lambda((args) => (() => {
           })))),
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Odin 2 Synthesizer Plugin",
         homepage: "https://thewavewarden.com/odin2",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

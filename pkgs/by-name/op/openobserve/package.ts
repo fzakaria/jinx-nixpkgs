@@ -2,23 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["rev-prefix", 27, 5], ["ignoredVersions", 28, 5]], [["description", 31, 5], ["mainProgram", 32, 5], ["maintainers", 33, 5]], [["url", 49, 7], ["hash", 50, 7]], [["updateScript", 70, 14]], [["shortName", 76, 9], ["fullName", 77, 9], ["url", 78, 9], ["free", 79, 9], ["redistributable", 80, 9]], [["homepage", 73, 7], ["sourceProvenance", 74, 7], ["license", 75, 7], ["platforms", 82, 7]], [["pname", 43, 5], ["version", 44, 13], ["strictDeps", 45, 5], ["__structuredAttrs", 46, 5], ["src", 48, 5], ["sourceRoot", 54, 5], ["dontConfigure", 56, 5], ["dontBuild", 57, 5], ["nativeBuildInputs", 59, 5], ["installPhase", 61, 5], ["doInstallCheck", 67, 5], ["nativeInstallCheckInputs", 68, 5], ["passthru", 70, 5], ["meta", 72, 5]], [["owner", 90, 9], ["repo", 91, 9], ["rev", 92, 9], ["hash", 93, 9]], [["NODE_OPTIONS", 120, 11], ["CYPRESS_INSTALL_BINARY", 122, 11], ["DS_CONTENT_FORCE", 124, 11]], [["src", 97, 30], ["version", 97, 34], ["pname", 98, 9], ["sourceRoot", 100, 9], ["npmDepsHash", 102, 9], ["preBuild", 104, 9], ["env", 119, 9], ["installPhase", 127, 9]], [["owner", 140, 9], ["repo", 141, 9], ["tag", 142, 9], ["hash", 143, 9]], [["url", 206, 15], ["hash", 207, 15]], [["LIBCLANG_PATH", 183, 9], ["RUSTONIG_SYSTEM_LIBONIG", 185, 9], ["ZSTD_SYS_USE_PKG_CONFIG", 186, 9], ["RUSTC_BOOTSTRAP", 188, 9], ["GIT_VERSION", 191, 9], ["GIT_COMMIT_HASH", 192, 9], ["GIT_BUILD_DATE", 193, 9], ["RUSTFLAGS", 195, 9], ["SWAGGER_UI_DOWNLOAD_URL", 197, 9]], [["updateScript", 251, 16]], [["homepage", 254, 9], ["changelog", 255, 9], ["license", 256, 9], ["platforms", 257, 9]], [["pname", 136, 7], ["version", 137, 15], ["src", 139, 7], ["patches", 146, 7], ["prePatch", 151, 7], ["preBuild", 162, 7], ["cargoHash", 166, 7], ["nativeBuildInputs", 168, 7], ["buildInputs", 173, 7], ["env", 182, 7], ["preCheck", 215, 7], ["cargoTestFlags", 221, 7], ["checkFlags", 229, 7], ["doInstallCheck", 248, 7], ["nativeInstallCheckInputs", 249, 7], ["passthru", 251, 7], ["meta", 253, 7]]]);
 const formals$1 = { args: { lib: false, stdenv: false, rustPlatform: false, fetchFromGitHub: false, fetchurl: false, "pkg-config": false, protobuf: false, bzip2: false, libclang: false, oniguruma: false, sqlite: false, xz: false, zlib: false, zstd: false, versionCheckHook: false, buildNpmPackage: false, gitUpdater: false, installShellFiles: false, enableEnterprise: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["rev-prefix", 27, 5], ["ignoredVersions", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 31, 5], ["mainProgram", 32, 5], ["maintainers", 33, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 49, 7], ["hash", 50, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 70, 14]]);
-const pos$5 = nix.positions(here + "/package.nix", [["shortName", 76, 9], ["fullName", 77, 9], ["url", 78, 9], ["free", 79, 9], ["redistributable", 80, 9]]);
-const pos$6 = nix.positions(here + "/package.nix", [["homepage", 73, 7], ["sourceProvenance", 74, 7], ["license", 75, 7], ["platforms", 82, 7]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 43, 5], ["version", 44, 13], ["strictDeps", 45, 5], ["__structuredAttrs", 46, 5], ["src", 48, 5], ["sourceRoot", 54, 5], ["dontConfigure", 56, 5], ["dontBuild", 57, 5], ["nativeBuildInputs", 59, 5], ["installPhase", 61, 5], ["doInstallCheck", 67, 5], ["nativeInstallCheckInputs", 68, 5], ["passthru", 70, 5], ["meta", 72, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["owner", 90, 9], ["repo", 91, 9], ["rev", 92, 9], ["hash", 93, 9]]);
-const pos$9 = nix.positions(here + "/package.nix", [["NODE_OPTIONS", 120, 11], ["CYPRESS_INSTALL_BINARY", 122, 11], ["DS_CONTENT_FORCE", 124, 11]]);
-const pos$10 = nix.positions(here + "/package.nix", [["src", 97, 30], ["version", 97, 34], ["pname", 98, 9], ["sourceRoot", 100, 9], ["npmDepsHash", 102, 9], ["preBuild", 104, 9], ["env", 119, 9], ["installPhase", 127, 9]]);
-const pos$11 = nix.positions(here + "/package.nix", [["owner", 140, 9], ["repo", 141, 9], ["tag", 142, 9], ["hash", 143, 9]]);
-const pos$12 = nix.positions(here + "/package.nix", [["url", 206, 15], ["hash", 207, 15]]);
-const pos$13 = nix.positions(here + "/package.nix", [["LIBCLANG_PATH", 183, 9], ["RUSTONIG_SYSTEM_LIBONIG", 185, 9], ["ZSTD_SYS_USE_PKG_CONFIG", 186, 9], ["RUSTC_BOOTSTRAP", 188, 9], ["GIT_VERSION", 191, 9], ["GIT_COMMIT_HASH", 192, 9], ["GIT_BUILD_DATE", 193, 9], ["RUSTFLAGS", 195, 9], ["SWAGGER_UI_DOWNLOAD_URL", 197, 9]]);
-const pos$14 = nix.positions(here + "/package.nix", [["updateScript", 251, 16]]);
-const pos$15 = nix.positions(here + "/package.nix", [["homepage", 254, 9], ["changelog", 255, 9], ["license", 256, 9], ["platforms", 257, 9]]);
-const pos$16 = nix.positions(here + "/package.nix", [["pname", 136, 7], ["version", 137, 15], ["src", 139, 7], ["patches", 146, 7], ["prePatch", 151, 7], ["preBuild", 162, 7], ["cargoHash", 166, 7], ["nativeBuildInputs", 168, 7], ["buildInputs", 173, 7], ["env", 182, 7], ["preCheck", 215, 7], ["cargoTestFlags", 221, 7], ["checkFlags", 229, 7], ["doInstallCheck", 248, 7], ["nativeInstallCheckInputs", 249, 7], ["passthru", 251, 7], ["meta", 253, 7]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -42,9 +27,9 @@ export default nix.lambda((args) => (() => {
   const installShellFiles = nix.arg($, "installShellFiles");
   const enableEnterprise = nix.argOr($, "enableEnterprise", () => false);
   const version = "1.0.4";
-  const updateScript = nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$1, "rev-prefix": "v", ignoredVersions: "rc" }))));
+  const updateScript = nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[0], "rev-prefix": "v", ignoredVersions: "rc" }))));
   const commonMeta = nix.thunk(() => ({
-    [nix.POS]: pos$2,
+    [nix.POS]: $pos[1],
     description: "Cloud-native observability platform built specifically for logs, metrics, traces, analytics & realtime user-monitoring",
     mainProgram: "openobserve",
     maintainers: nix.thunk(() => (() => {
@@ -57,13 +42,13 @@ export default nix.lambda((args) => (() => {
     })()),
   }));
   return (nix.asBool(enableEnterprise) ? nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "openobserve-ee",
       version: version,
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           url: nix.thunk(() => nix.str`https://downloads.openobserve.ai/releases/o2-enterprise/v${nix.sel(finalAttrs, "version")}/openobserve-ee-v${nix.sel(finalAttrs, "version")}-linux-amd64-musl.tar.gz`),
           hash: "sha256-vp/l/22a2bgN9pWJ9ZlLZFz+D6HMNCZGnWx/Q69KsM4=",
         })))),
@@ -74,16 +59,16 @@ export default nix.lambda((args) => (() => {
       installPhase: "runHook preInstall\ninstallBin openobserve\nrunHook postInstall\n",
       doInstallCheck: true,
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$4, updateScript: updateScript })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[3], updateScript: updateScript })),
       meta: nix.thunk(() => nix.update(commonMeta, {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         homepage: "https://openobserve.ai/",
         sourceProvenance: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "sourceTypes")), null);
           return [nix.thunk(() => nix.lookup(w, "binaryNativeCode"))];
         })()),
         license: nix.thunk(() => nix.app(nix.sel(lib, "licenses", "mkLicense"), nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             shortName: "openObserveEE",
             fullName: "OpenObserve Enterprise Edition License Agreement",
             url: "https://openobserve.ai/legal/enterprise-license/",
@@ -94,14 +79,14 @@ export default nix.lambda((args) => (() => {
       })),
     })) : nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => (() => {
       const o2Datasource = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           owner: "openobserve",
           repo: "o2-datasource",
           rev: "7ea74ba2b8eabe5758c81b928a835144dc1f7f60",
           hash: "sha256-vORes6FEbhijRLTWjEaB+KHOUls2CGBED6WzLF3stnM=",
         }))));
       const web = nix.thunk(() => nix.app(buildNpmPackage, nix.thunk(() => ({
-          [nix.POS]: pos$10,
+          [nix.POS]: $pos[9],
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           pname: "openobserve-ui",
@@ -121,7 +106,7 @@ cat > src/assets/ai-datasource-content/generated/.fetch.json <<EOF
 EOF
 `),
           env: nix.thunk(() => ({
-            [nix.POS]: pos$9,
+            [nix.POS]: $pos[8],
             NODE_OPTIONS: "--max-old-space-size=8192",
             CYPRESS_INSTALL_BINARY: 0n,
             DS_CONTENT_FORCE: "",
@@ -129,11 +114,11 @@ EOF
           installPhase: "runHook preInstall\nmkdir -p $out/share\ncp -R dist $out/share/openobserve-ui\nrunHook postInstall\n",
         }))));
       return {
-        [nix.POS]: pos$16,
+        [nix.POS]: $pos[15],
         pname: "openobserve",
         version: version,
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$11,
+            [nix.POS]: $pos[10],
             owner: "openobserve",
             repo: "openobserve",
             tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -147,7 +132,7 @@ EOF
         nativeBuildInputs: nix.thunk(() => [pkg_config, protobuf]),
         buildInputs: nix.thunk(() => [bzip2, oniguruma, sqlite, xz, zlib, zstd]),
         env: nix.thunk(() => ({
-          [nix.POS]: pos$13,
+          [nix.POS]: $pos[12],
           LIBCLANG_PATH: nix.thunk(() => nix.app(nix.sel(lib, "makeLibraryPath"), nix.thunk(() => [libclang]))),
           RUSTONIG_SYSTEM_LIBONIG: true,
           ZSTD_SYS_USE_PKG_CONFIG: true,
@@ -159,7 +144,7 @@ EOF
           SWAGGER_UI_DOWNLOAD_URL: nix.thunk(() => (() => {
             const swaggerUiVersion = "5.17.14";
             const swaggerUi = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$12,
+                [nix.POS]: $pos[11],
                 url: nix.thunk(() => nix.str`https://github.com/swagger-api/swagger-ui/archive/refs/tags/v${swaggerUiVersion}.zip`),
                 hash: "sha256-SBJE0IEgl7Efuu73n3HZQrFxYX+cn5UU5jrL4T5xzNw=",
               }))));
@@ -185,9 +170,9 @@ EOF
         ]),
         doInstallCheck: true,
         nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
-        passthru: nix.thunk(() => ({ [nix.POS]: pos$14, updateScript: updateScript })),
+        passthru: nix.thunk(() => ({ [nix.POS]: $pos[13], updateScript: updateScript })),
         meta: nix.thunk(() => nix.update(commonMeta, {
-          [nix.POS]: pos$15,
+          [nix.POS]: $pos[14],
           homepage: "https://github.com/openobserve/openobserve",
           changelog: nix.thunk(() => nix.str`https://github.com/openobserve/openobserve/releases/tag/v${nix.sel(finalAttrs, "version")}`),
           license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Plus")),

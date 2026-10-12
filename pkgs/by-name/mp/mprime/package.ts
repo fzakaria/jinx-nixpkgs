@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["x86_64-linux", 16, 7], ["i686-linux", 17, 7]], [["x86_64-linux", 23, 7], ["i686-linux", 24, 7]], [["url", 37, 5], ["hash", 40, 5], ["stripRoot", 41, 5]], [["NIX_CFLAGS_COMPILE", 71, 5]], [["description", 97, 5], ["longDescription", 98, 5], ["homepage", 104, 5], ["license", 107, 5], ["platforms", 109, 5], ["maintainers", 113, 5], ["mainProgram", 114, 5]], [["pname", 33, 3], ["version", 34, 3], ["src", 36, 3], ["postPatch", 44, 3], ["buildInputs", 63, 3], ["env", 70, 3], ["enableParallelBuilding", 79, 3], ["buildPhase", 81, 3], ["installPhase", 88, 3], ["meta", 96, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchzip: false, boost: false, curl: false, hwloc: false, gmp: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["x86_64-linux", 16, 7], ["i686-linux", 17, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["x86_64-linux", 23, 7], ["i686-linux", 24, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 37, 5], ["hash", 40, 5], ["stripRoot", 41, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 71, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 97, 5], ["longDescription", 98, 5], ["homepage", 104, 5], ["license", 107, 5], ["platforms", 109, 5], ["maintainers", 113, 5], ["mainProgram", 114, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 33, 3], ["version", 34, 3], ["src", 36, 3], ["postPatch", 44, 3], ["buildInputs", 63, 3], ["env", 70, 3], ["enableParallelBuilding", 79, 3], ["buildPhase", 81, 3], ["installPhase", 88, 3], ["meta", 96, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,16 +15,16 @@ export default nix.lambda((args) => (() => {
   const hwloc = nix.arg($, "hwloc");
   const gmp = nix.arg($, "gmp");
   const throwSystem = nix.thunk(() => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenv, "hostPlatform", "system")}`)));
-  const srcDir = nix.thunk(() => nix.selOr({ [nix.POS]: pos$1, "x86_64-linux": "linux64", "i686-linux": "linux" }, () => nix.force(throwSystem), nix.key(nix.str`${nix.sel(stdenv, "hostPlatform", "system")}`)));
-  const gwnum = nix.thunk(() => nix.selOr({ [nix.POS]: pos$2, "x86_64-linux": "make64", "i686-linux": "makefile" }, () => nix.force(throwSystem), nix.key(nix.str`${nix.sel(stdenv, "hostPlatform", "system")}`)));
+  const srcDir = nix.thunk(() => nix.selOr({ [nix.POS]: $pos[0], "x86_64-linux": "linux64", "i686-linux": "linux" }, () => nix.force(throwSystem), nix.key(nix.str`${nix.sel(stdenv, "hostPlatform", "system")}`)));
+  const gwnum = nix.thunk(() => nix.selOr({ [nix.POS]: $pos[1], "x86_64-linux": "make64", "i686-linux": "makefile" }, () => nix.force(throwSystem), nix.key(nix.str`${nix.sel(stdenv, "hostPlatform", "system")}`)));
   const docDir = "share/mprime/doc";
   const ccArch = nix.thunk(() => nix.selOr(stdenv, () => "x86-64", "hostPlatform", "gcc", "arch"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "mprime",
       version: "31.04b02",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           url: nix.thunk(() => nix.str`https://www.mersenne.org/download/software/v31/31.04/p95v${nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => [""]), nix.thunk(() => nix.sel(finalAttrs, "version")))}.source.zip`),
           hash: "sha256-W8ic709bgm9KbVxe1fvIEC8J8LrwwMfAajX1bKhv6EM=",
           stripRoot: false,
@@ -49,7 +44,7 @@ substituteInPlace commonb.c \\
 `)),
       buildInputs: nix.thunk(() => [boost, curl, hwloc, gmp]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isx86_64")) && nix.asBool(!nix.eq(ccArch, "x86-64")))), "-march=x86-64")))),
       })),
       enableParallelBuilding: true,
@@ -65,7 +60,7 @@ install -Dm444 -t $out/${docDir} license.txt readme.txt stress.txt undoc.txt
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Mersenne prime search / System stability tester",
         longDescription: "MPrime is the Linux command-line interface version of Prime95, to be run\nin a text terminal or in a terminal emulator window as a remote shell\nclient. It is identical to Prime95 in functionality, except it lacks a\ngraphical user interface.\n",
         homepage: "https://www.mersenne.org/",

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]], [["homepage", 55, 5], ["description", 56, 5], ["changelog", 57, 5], ["license", 58, 5], ["maintainers", 59, 5]], [["pname", 17, 3], ["version", 18, 3], ["strictDeps", 20, 3], ["__structuredAttrs", 21, 3], ["src", 23, 3], ["patches", 30, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 41, 3], ["postFixup", 50, 3], ["meta", 54, 3]]]);
 const formals$1 = { args: { stdenv: false, fetchFromGitHub: false, lib: false, meson: false, ninja: false, "pkg-config": false, libdrm: false, libGL: false, gst_all_1: false, "nv-codec-headers-11": false, libva: false, addDriverRunpath: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 55, 5], ["description", 56, 5], ["changelog", 57, 5], ["license", 58, 5], ["maintainers", 59, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 17, 3], ["version", 18, 3], ["strictDeps", 20, 3], ["__structuredAttrs", 21, 3], ["src", 23, 3], ["patches", 30, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 41, 3], ["postFixup", 50, 3], ["meta", 54, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,13 +20,13 @@ export default nix.lambda((args) => (() => {
   const libva = nix.arg($, "libva");
   const addDriverRunpath = nix.arg($, "addDriverRunpath");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "nvidia-vaapi-driver",
       version: "0.0.18",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "elFarto",
           repo: "nvidia-vaapi-driver",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -46,7 +44,7 @@ export default nix.lambda((args) => (() => {
       ]),
       postFixup: "addDriverRunpath \"$out/lib/dri/nvidia_drv_video.so\"\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/elFarto/nvidia-vaapi-driver",
         description: "VA-API implementation using NVIDIA's NVDEC",
         changelog: nix.thunk(() => nix.str`https://github.com/elFarto/nvidia-vaapi-driver/releases/tag/v${nix.sel(finalAttrs, "version")}`),

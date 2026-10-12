@@ -2,43 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["default", 14, 9], ["addSSL", 15, 9], ["useACMEHost", 16, 9], ["acmeFallbackHost", 17, 9]], [["default", 13, 20]], [["enable", 6, 7], ["logError", 7, 7], ["virtualHosts", 13, 7]], [["nginx", 5, 14]], [["acmeFallbackHost", 21, 56]], [["virtualHosts", 21, 22]], [["nginx", 21, 16]], [["services", 21, 7]], [["configuration", 20, 29]], [["nullroot", 20, 20]], [["services", 5, 5], ["specialisation", 20, 5]], [["enableReload", 35, 24]], [["nginx", 35, 18]], [["services", 35, 9]], [["domain", 31, 15], ["serverName", 32, 7], ["group", 33, 7], ["baseModule", 34, 7]], [["enableReload", 45, 24]], [["nginx", 45, 18]], [["services", 45, 9]], [["domain", 41, 15], ["serverName", 42, 7], ["group", 43, 7], ["baseModule", 44, 7]], [["proxyPass", 62, 15], ["extraConfig", 63, 15]], [["/.well-known/acme-challenge", 61, 23]], [["addSSL", 59, 13], ["useACMEHost", 60, 13], ["locations", 61, 13]], [["default", 58, 24]], [["enable", 56, 11], ["virtualHosts", 58, 11]], [["httpd", 55, 18]], [["proxyPass", 72, 15], ["extraConfig", 73, 15]], [["/.well-known/acme-challenge", 71, 23]], [["locations", 71, 13]], [["virtualHosts", 70, 26]], [["httpd", 70, 20]], [["services", 70, 11]], [["configuration", 69, 33]], [["nullroot", 69, 24]], [["services", 55, 9], ["specialisation", 69, 9]], [["domain", 51, 15], ["serverName", 52, 7], ["group", 53, 7], ["baseModule", 54, 7]], [["http01-builtin", 26, 3], ["dns01", 27, 3], ["caddy", 28, 3], ["nginx", 29, 3], ["nginx-without-reload", 39, 3], ["httpd", 49, 3]]]);
 const formals$1 = { args: { lib: false, runTest: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["default", 14, 9], ["addSSL", 15, 9], ["useACMEHost", 16, 9], ["acmeFallbackHost", 17, 9]]);
-const pos$2 = nix.positions(here + "/default.nix", [["default", 13, 20]]);
-const pos$3 = nix.positions(here + "/default.nix", [["enable", 6, 7], ["logError", 7, 7], ["virtualHosts", 13, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["nginx", 5, 14]]);
-const pos$5 = nix.positions(here + "/default.nix", [["acmeFallbackHost", 21, 56]]);
-const pos$6 = nix.positions(here + "/default.nix", [["virtualHosts", 21, 22]]);
-const pos$7 = nix.positions(here + "/default.nix", [["nginx", 21, 16]]);
-const pos$8 = nix.positions(here + "/default.nix", [["services", 21, 7]]);
-const pos$9 = nix.positions(here + "/default.nix", [["configuration", 20, 29]]);
-const pos$10 = nix.positions(here + "/default.nix", [["nullroot", 20, 20]]);
-const pos$11 = nix.positions(here + "/default.nix", [["services", 5, 5], ["specialisation", 20, 5]]);
-const pos$12 = nix.positions(here + "/default.nix", [["enableReload", 35, 24]]);
-const pos$13 = nix.positions(here + "/default.nix", [["nginx", 35, 18]]);
-const pos$14 = nix.positions(here + "/default.nix", [["services", 35, 9]]);
-const pos$15 = nix.positions(here + "/default.nix", [["domain", 31, 15], ["serverName", 32, 7], ["group", 33, 7], ["baseModule", 34, 7]]);
-const pos$16 = nix.positions(here + "/default.nix", [["enableReload", 45, 24]]);
-const pos$17 = nix.positions(here + "/default.nix", [["nginx", 45, 18]]);
-const pos$18 = nix.positions(here + "/default.nix", [["services", 45, 9]]);
-const pos$19 = nix.positions(here + "/default.nix", [["domain", 41, 15], ["serverName", 42, 7], ["group", 43, 7], ["baseModule", 44, 7]]);
-const pos$20 = nix.positions(here + "/default.nix", [["proxyPass", 62, 15], ["extraConfig", 63, 15]]);
-const pos$21 = nix.positions(here + "/default.nix", [["/.well-known/acme-challenge", 61, 23]]);
-const pos$22 = nix.positions(here + "/default.nix", [["addSSL", 59, 13], ["useACMEHost", 60, 13], ["locations", 61, 13]]);
-const pos$23 = nix.positions(here + "/default.nix", [["default", 58, 24]]);
-const pos$24 = nix.positions(here + "/default.nix", [["enable", 56, 11], ["virtualHosts", 58, 11]]);
-const pos$25 = nix.positions(here + "/default.nix", [["httpd", 55, 18]]);
-const pos$26 = nix.positions(here + "/default.nix", [["proxyPass", 72, 15], ["extraConfig", 73, 15]]);
-const pos$27 = nix.positions(here + "/default.nix", [["/.well-known/acme-challenge", 71, 23]]);
-const pos$28 = nix.positions(here + "/default.nix", [["locations", 71, 13]]);
-const pos$29 = nix.positions(here + "/default.nix", [["virtualHosts", 70, 26]]);
-const pos$30 = nix.positions(here + "/default.nix", [["httpd", 70, 20]]);
-const pos$31 = nix.positions(here + "/default.nix", [["services", 70, 11]]);
-const pos$32 = nix.positions(here + "/default.nix", [["configuration", 69, 33]]);
-const pos$33 = nix.positions(here + "/default.nix", [["nullroot", 69, 24]]);
-const pos$34 = nix.positions(here + "/default.nix", [["services", 55, 9], ["specialisation", 69, 9]]);
-const pos$35 = nix.positions(here + "/default.nix", [["domain", 51, 15], ["serverName", 52, 7], ["group", 53, 7], ["baseModule", 54, 7]]);
-const pos$36 = nix.positions(here + "/default.nix", [["http01-builtin", 26, 3], ["dns01", 27, 3], ["caddy", 28, 3], ["nginx", 29, 3], ["nginx-without-reload", 39, 3], ["httpd", 49, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -46,17 +11,17 @@ export default nix.lambda((args) => (() => {
   const runTest = nix.arg($, "runTest");
   const domain = "example.test";
   const nginxBaseModule = nix.thunk(() => ({
-    [nix.POS]: pos$11,
+    [nix.POS]: $pos[10],
     services: nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       nginx: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         enable: true,
         logError: "stderr info",
         virtualHosts: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           default: nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             default: true,
             addSSL: true,
             useACMEHost: "proxied.example.test",
@@ -66,17 +31,17 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     specialisation: nix.thunk(() => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       nullroot: nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         configuration: nix.thunk(() => ({
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             nginx: nix.thunk(() => ({
-              [nix.POS]: pos$6,
+              [nix.POS]: $pos[5],
               virtualHosts: nix.thunk(() => nix.attrsDyn({}, [
-                [nix.str`nullroot.${domain}`, nix.thunk(() => ({ [nix.POS]: pos$5, acmeFallbackHost: "localhost:8081" }))],
+                [nix.str`nullroot.${domain}`, nix.thunk(() => ({ [nix.POS]: $pos[4], acmeFallbackHost: "localhost:8081" }))],
               ])),
             })),
           })),
@@ -85,58 +50,58 @@ export default nix.lambda((args) => (() => {
     })),
   }));
   return {
-    [nix.POS]: pos$36,
+    [nix.POS]: $pos[35],
     "http01-builtin": nix.thunk(() => nix.app(runTest, nix.path(here, "./http01-builtin.nix"))),
     dns01: nix.thunk(() => nix.app(runTest, nix.path(here, "./dns01.nix"))),
     caddy: nix.thunk(() => nix.app(runTest, nix.path(here, "./caddy.nix"))),
     nginx: nix.thunk(() => nix.app(runTest, nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./webserver.nix")), nix.thunk(() => ({
-          [nix.POS]: pos$15,
+          [nix.POS]: $pos[14],
           domain: domain,
           serverName: "nginx",
           group: "nginx",
           baseModule: nix.thunk(() => nix.app(nix.sel(lib, "recursiveUpdate"), nginxBaseModule, nix.thunk(() => ({
-              [nix.POS]: pos$14,
+              [nix.POS]: $pos[13],
               services: nix.thunk(() => ({
-                [nix.POS]: pos$13,
-                nginx: nix.thunk(() => ({ [nix.POS]: pos$12, enableReload: true })),
+                [nix.POS]: $pos[12],
+                nginx: nix.thunk(() => ({ [nix.POS]: $pos[11], enableReload: true })),
               })),
             })))),
         })))))),
     "nginx-without-reload": nix.thunk(() => nix.app(runTest, nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./webserver.nix")), nix.thunk(() => ({
-          [nix.POS]: pos$19,
+          [nix.POS]: $pos[18],
           domain: domain,
           serverName: "nginx",
           group: "nginx",
           baseModule: nix.thunk(() => nix.app(nix.sel(lib, "recursiveUpdate"), nginxBaseModule, nix.thunk(() => ({
-              [nix.POS]: pos$18,
+              [nix.POS]: $pos[17],
               services: nix.thunk(() => ({
-                [nix.POS]: pos$17,
-                nginx: nix.thunk(() => ({ [nix.POS]: pos$16, enableReload: false })),
+                [nix.POS]: $pos[16],
+                nginx: nix.thunk(() => ({ [nix.POS]: $pos[15], enableReload: false })),
               })),
             })))),
         })))))),
     httpd: nix.thunk(() => nix.app(runTest, nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./webserver.nix")), nix.thunk(() => ({
-          [nix.POS]: pos$35,
+          [nix.POS]: $pos[34],
           domain: domain,
           serverName: "httpd",
           group: "wwwrun",
           baseModule: nix.thunk(() => ({
-            [nix.POS]: pos$34,
+            [nix.POS]: $pos[33],
             services: nix.thunk(() => ({
-              [nix.POS]: pos$25,
+              [nix.POS]: $pos[24],
               httpd: nix.thunk(() => ({
-                [nix.POS]: pos$24,
+                [nix.POS]: $pos[23],
                 enable: true,
                 virtualHosts: nix.thunk(() => ({
-                  [nix.POS]: pos$23,
+                  [nix.POS]: $pos[22],
                   default: nix.thunk(() => ({
-                    [nix.POS]: pos$22,
+                    [nix.POS]: $pos[21],
                     addSSL: true,
                     useACMEHost: "proxied.example.test",
                     locations: nix.thunk(() => ({
-                      [nix.POS]: pos$21,
+                      [nix.POS]: $pos[20],
                       "/.well-known/acme-challenge": nix.thunk(() => ({
-                        [nix.POS]: pos$20,
+                        [nix.POS]: $pos[19],
                         proxyPass: "http://localhost:8080/.well-known/acme-challenge",
                         extraConfig: "ProxyPreserveHost On\n",
                       })),
@@ -146,22 +111,22 @@ export default nix.lambda((args) => (() => {
               })),
             })),
             specialisation: nix.thunk(() => ({
-              [nix.POS]: pos$33,
+              [nix.POS]: $pos[32],
               nullroot: nix.thunk(() => ({
-                [nix.POS]: pos$32,
+                [nix.POS]: $pos[31],
                 configuration: nix.thunk(() => ({
-                  [nix.POS]: pos$31,
+                  [nix.POS]: $pos[30],
                   services: nix.thunk(() => ({
-                    [nix.POS]: pos$30,
+                    [nix.POS]: $pos[29],
                     httpd: nix.thunk(() => ({
-                      [nix.POS]: pos$29,
+                      [nix.POS]: $pos[28],
                       virtualHosts: nix.thunk(() => nix.attrsDyn({}, [
                         [nix.str`nullroot.${domain}`, nix.thunk(() => ({
-                          [nix.POS]: pos$28,
+                          [nix.POS]: $pos[27],
                           locations: nix.thunk(() => ({
-                            [nix.POS]: pos$27,
+                            [nix.POS]: $pos[26],
                             "/.well-known/acme-challenge": nix.thunk(() => ({
-                              [nix.POS]: pos$26,
+                              [nix.POS]: $pos[25],
                               proxyPass: "http://localhost:8081/.well-known/acme-challenge",
                               extraConfig: "ProxyPreserveHost On\n",
                             })),

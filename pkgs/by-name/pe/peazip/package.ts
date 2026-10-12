@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 30, 5], ["repo", 31, 5], ["rev", 32, 5], ["hash", 33, 5]], [["NIX_LDFLAGS", 58, 7]], [["description", 127, 5], ["longDescription", 128, 5], ["license", 135, 5], ["homepage", 136, 5], ["platforms", 137, 5], ["maintainers", 138, 5], ["mainProgram", 142, 5]], [["pname", 26, 3], ["version", 27, 3], ["src", 29, 3], ["sourceRoot", 35, 3], ["postPatch", 37, 3], ["nativeBuildInputs", 42, 3], ["buildInputs", 50, 3], ["env", 58, 3], ["buildPhase", 60, 3], ["installPhase", 68, 3], ["dontWrapQtApps", 124, 3], ["meta", 126, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, qt6Packages: false, fpc: false, lazarus: false, libx11: false, runCommand: false, _7zz: false, brotli: false, upx: false, zpaq: false, zstd: false, writableTmpDirAsHomeHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 30, 5], ["repo", 31, 5], ["rev", 32, 5], ["hash", 33, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_LDFLAGS", 58, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 127, 5], ["longDescription", 128, 5], ["license", 135, 5], ["homepage", 136, 5], ["platforms", 137, 5], ["maintainers", 138, 5], ["mainProgram", 142, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 26, 3], ["version", 27, 3], ["src", 29, 3], ["sourceRoot", 35, 3], ["postPatch", 37, 3], ["nativeBuildInputs", 42, 3], ["buildInputs", 50, 3], ["env", 58, 3], ["buildPhase", 60, 3], ["installPhase", 68, 3], ["dontWrapQtApps", 124, 3], ["meta", 126, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,11 +25,11 @@ export default nix.lambda((args) => (() => {
 ln -s ${_7zz}/bin/7zz $out/bin/7z
 `)));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "peazip",
       version: "11.3.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "peazip",
           repo: "peazip",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -54,7 +51,7 @@ ln -s ${_7zz}/bin/7zz $out/bin/7z
         ];
       })())),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_LDFLAGS: nix.thunk(() => nix.str`--as-needed -rpath ${nix.app(nix.sel(lib, "makeLibraryPath"), nix.thunk(() => nix.sel(finalAttrs, "buildInputs")))}`),
       })),
       buildPhase: nix.thunk(() => nix.str`pushd dev
@@ -111,7 +108,7 @@ runHook postInstall
 `),
       dontWrapQtApps: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "File and archive manager",
         longDescription: "Free Zip / Unzip software and Rar file extractor. File and archive manager.\n\nFeatures volume spanning, compression, authenticated encryption.\n\nSupports 7Z, 7-Zip sfx, ACE, ARJ, Brotli, BZ2, CAB, CHM, CPIO, DEB, GZ, ISO, JAR, LHA/LZH, NSIS, OOo, PEA, RAR, RPM, split, TAR, Z, ZIP, ZIPX, Zstandard.\n",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3Plus")),

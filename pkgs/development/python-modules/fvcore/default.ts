@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["all", 22, 5]], [["pname", 30, 13], ["version", 30, 19], ["hash", 31, 5]], [["description", 55, 5], ["homepage", 56, 5], ["license", 57, 5], ["maintainers", 58, 5]], [["pname", 26, 11], ["version", 26, 17], ["format", 27, 3], ["src", 29, 3], ["propagatedBuildInputs", 34, 3], ["nativeCheckInputs", 45, 3], ["doCheck", 48, 3], ["pythonImportsCheck", 50, 3], ["optional-dependencies", 52, 3], ["meta", 54, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, numpy: false, yacs: false, pyyaml: false, tqdm: false, termcolor: false, pillow: false, tabulate: false, iopath: false, shapely: false, torch: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["all", 22, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 30, 13], ["version", 30, 19], ["hash", 31, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 55, 5], ["homepage", 56, 5], ["license", 57, 5], ["maintainers", 58, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 26, 11], ["version", 26, 17], ["format", 27, 3], ["src", 29, 3], ["propagatedBuildInputs", 34, 3], ["nativeCheckInputs", 45, 3], ["doCheck", 48, 3], ["pythonImportsCheck", 50, 3], ["optional-dependencies", 52, 3], ["meta", 54, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,14 +22,14 @@ export default nix.lambda((args) => (() => {
   const torch = nix.arg($, "torch");
   const pname = "fvcore";
   const version = "0.1.5.post20221221";
-  const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$1, all: nix.thunk(() => [shapely]) }));
+  const optional_dependencies = nix.thunk(() => ({ [nix.POS]: $pos[0], all: nix.thunk(() => [shapely]) }));
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: pname,
       version: version,
       format: "setuptools",
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: pname,
           version: version,
           hash: "sha256-8vsLuQVyrmUcEceOIEk+0ZsiQFUKfku7LW3oe90DeGA=",
@@ -43,7 +40,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["fvcore"]),
       "optional-dependencies": optional_dependencies,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Collection of common code that's shared among different research projects in FAIR computer vision team",
         homepage: "https://github.com/facebookresearch/fvcore",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["sha256", 24, 5]], [["name", 29, 7], ["url", 30, 7], ["hash", 31, 7]], [["homepage", 64, 5], ["description", 65, 5], ["longDescription", 66, 5], ["license", 79, 5], ["platforms", 80, 5], ["maintainers", 81, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["patches", 27, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 43, 3], ["wafConfigureFlags", 49, 3], ["doCheck", 56, 3], ["checkPhase", 57, 3], ["meta", 63, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch: false, doxygen: false, "pkg-config": false, python3: false, python3Packages: false, wafHook: false, boost: false, openssl: false, sqlite: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["sha256", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 29, 7], ["url", 30, 7], ["hash", 31, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 64, 5], ["description", 65, 5], ["longDescription", 66, 5], ["license", 79, 5], ["platforms", 80, 5], ["maintainers", 81, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["patches", 27, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 43, 3], ["wafConfigureFlags", 49, 3], ["doCheck", 56, 3], ["checkPhase", 57, 3], ["meta", 63, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const openssl = nix.arg($, "openssl");
   const sqlite = nix.arg($, "sqlite");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "ndn-cxx",
       version: "0.9.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "named-data",
           repo: "ndn-cxx",
           rev: nix.thunk(() => nix.str`ndn-cxx-${nix.sel(finalAttrs, "version")}`),
@@ -35,7 +32,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "fix-gcc15.patch",
             url: "https://github.com/named-data/ndn-cxx/commit/0ba3d3a9d9701be4baa3969fe50e97e89d11249b.patch",
             hash: "sha256-ikVIJ8Jza17k/sa/wtu2EUGLEhUMloMOkBrMN9W9BPY=",
@@ -58,7 +55,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       checkPhase: "runHook preCheck\nLD_PRELOAD=build/libndn-cxx.so build/unit-tests\nrunHook postCheck\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://named-data.net/",
         description: "Named Data Networking (NDN) or Content Centric Networking (CCN) abstraction",
         longDescription: "ndn-cxx is a C++ library, implementing Named Data Networking (NDN)\nprimitives that can be used to implement various NDN applications.\nNDN operates by addressing and delivering Content Objects directly\nby Name instead of merely addressing network end-points. In addition,\nthe NDN security model explicitly secures individual Content Objects\nrather than securing the connection or “pipe”. Named and secured\ncontent resides in distributed caches automatically populated on\ndemand or selectively pre-populated. When requested by name, NDN\ndelivers named content to the user from the nearest cache, thereby\ntraversing fewer network hops, eliminating redundant requests,\nand consuming less resources overall.\n",

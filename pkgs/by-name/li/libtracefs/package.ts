@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 24, 5], ["hash", 25, 5]], [["url", 62, 5], ["rev-prefix", 63, 5]], [["updateScript", 60, 12]], [["description", 67, 5], ["mainProgram", 68, 5], ["homepage", 69, 5], ["license", 70, 5], ["platforms", 71, 5], ["maintainers", 72, 5]], [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["postPatch", 28, 3], ["outputs", 33, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 51, 3], ["ninjaFlags", 53, 3], ["doCheck", 58, 3], ["passthru", 60, 3], ["meta", 66, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchzip: false, "pkg-config": false, libtraceevent: false, asciidoc: false, xmlto: false, docbook_xml_dtd_45: false, docbook_xsl: false, sourceHighlight: false, meson: false, flex: false, bison: false, ninja: false, gitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 62, 5], ["rev-prefix", 63, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 60, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 67, 5], ["mainProgram", 68, 5], ["homepage", 69, 5], ["license", 70, 5], ["platforms", 71, 5], ["maintainers", 72, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["postPatch", 28, 3], ["outputs", 33, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 51, 3], ["ninjaFlags", 53, 3], ["doCheck", 58, 3], ["passthru", 60, 3], ["meta", 66, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const ninja = nix.arg($, "ninja");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "libtracefs",
       version: "1.8.3",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://git.kernel.org/pub/scm/libs/libtrace/libtracefs.git/snapshot/libtracefs-libtracefs-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-uN4alsOmj7IFUL2IJSHbgBiztv2Sq0+MktQiRByvhK0=",
         })))),
@@ -53,15 +49,15 @@ export default nix.lambda((args) => (() => {
       ninjaFlags: nix.thunk(() => ["all", "docs"]),
       doCheck: false,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://git.kernel.org/pub/scm/libs/libtrace/libtracefs.git",
             "rev-prefix": "libtracefs-",
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Linux kernel trace file system library",
         mainProgram: "sqlhist",
         homepage: "https://git.kernel.org/pub/scm/libs/libtrace/libtracefs.git/",

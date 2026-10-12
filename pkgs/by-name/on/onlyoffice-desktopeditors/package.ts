@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 84, 7], ["hash", 85, 7]], [["pname", 80, 5], ["version", 81, 5], ["minor", 82, 5], ["src", 83, 5], ["nativeBuildInputs", 88, 5], ["buildInputs", 95, 5], ["dontWrapQtApps", 134, 5], ["installPhase", 136, 5], ["preFixup", 160, 5]], [["updateScript", 195, 12]], [["description", 198, 5], ["homepage", 199, 5], ["downloadPage", 200, 5], ["changelog", 201, 5], ["platforms", 202, 5], ["sourceProvenance", 203, 5], ["license", 204, 5], ["maintainers", 205, 5]], [["pname", 177, 24], ["version", 177, 30], ["targetPkgs", 179, 3], ["runScript", 185, 3], ["extraInstallCommands", 187, 3], ["passthru", 195, 3], ["meta", 197, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, buildFHSEnv: false, "alsa-lib": false, "at-spi2-atk": false, atk: false, autoPatchelfHook: false, cairo: false, curl: false, dbus: false, dconf: false, dpkg: false, fontconfig: false, "gcc-unwrapped": false, "gdk-pixbuf": false, glib: false, glibc: false, "gsettings-desktop-schemas": false, gst_all_1: false, gtk2: false, gtk3: false, libnotify: false, libpulseaudio: false, "libudev0-shim": false, libdrm: false, makeWrapper: false, libgbm: false, "noto-fonts-cjk-sans": false, nspr: false, nss: false, pulseaudio: false, qt5: false, wrapGAppsHook3: false, xkeyboard_config: false, libxtst: false, libxscrnsaver: false, libxrender: false, libxrandr: false, libxi: false, libxfixes: false, libxext: false, libxdamage: false, libxcursor: false, libxcomposite: false, libx11: false, libxcb: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 84, 7], ["hash", 85, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 80, 5], ["version", 81, 5], ["minor", 82, 5], ["src", 83, 5], ["nativeBuildInputs", 88, 5], ["buildInputs", 95, 5], ["dontWrapQtApps", 134, 5], ["installPhase", 136, 5], ["preFixup", 160, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 195, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 198, 5], ["homepage", 199, 5], ["downloadPage", 200, 5], ["changelog", 201, 5], ["platforms", 202, 5], ["sourceProvenance", 203, 5], ["license", 204, 5], ["maintainers", 205, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 177, 24], ["version", 177, 30], ["targetPkgs", 179, 3], ["runScript", 185, 3], ["extraInstallCommands", 187, 3], ["passthru", 195, 3], ["meta", 197, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -70,7 +66,7 @@ export default nix.lambda((args) => (() => {
       const version = "9.1.0";
       const minor = null;
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/ONLYOFFICE/DesktopEditors/releases/download/v${version}/onlyoffice-desktopeditors_amd64.deb`),
           hash: "sha256-D36E7hYCTJ9Lw9XnB8nxMGMJDJRhM+K+bviuM9uuzhk=",
         }))));
@@ -124,7 +120,7 @@ export default nix.lambda((args) => (() => {
 )
 `);
       return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         pname,
         version,
         minor,
@@ -137,7 +133,7 @@ export default nix.lambda((args) => (() => {
       };
     })())));
   return nix.app(buildFHSEnv, nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: nix.thunk(() => nix.attr(derivation, "pname")),
       version: nix.thunk(() => nix.attr(derivation, "version")),
       targetPkgs: (pkgs$) => [curl, derivation, noto_fonts_cjk_sans],
@@ -148,9 +144,9 @@ cp -r ${derivation}/share/applications $out/share
 substituteInPlace $out/share/applications/onlyoffice-desktopeditors.desktop \\
     --replace-fail "/usr/bin/onlyoffice-desktopeditors" "$out/bin/onlyoffice-desktopeditors"
 `),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$3, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[2], updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Office suite that combines text, spreadsheet and presentation editors allowing to create, view and edit local documents",
         homepage: "https://www.onlyoffice.com/",
         downloadPage: "https://github.com/ONLYOFFICE/DesktopEditors/releases",

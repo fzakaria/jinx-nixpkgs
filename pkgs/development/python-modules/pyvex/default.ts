@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 19, 26], ["version", 19, 32], ["hash", 20, 5]], [["description", 58, 5], ["homepage", 59, 5], ["license", 60, 5], ["maintainers", 65, 5]], [["pname", 14, 3], ["version", 15, 3], ["pyproject", 16, 3], ["src", 18, 3], ["build-system", 23, 3], ["dependencies", 25, 3], ["depsBuildBuild", 31, 3], ["nativeBuildInputs", 33, 3], ["postPatch", 35, 3], ["setupPyBuildFlags", 40, 3], ["preBuild", 45, 3], ["doCheck", 53, 3], ["pythonImportsCheck", 55, 3], ["meta", 57, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, bitstring: false, buildPythonPackage: false, buildPackages: false, cffi: false, fetchPypi: false, pycparser: false, setuptools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 19, 26], ["version", 19, 32], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 58, 5], ["homepage", 59, 5], ["license", 60, 5], ["maintainers", 65, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 14, 3], ["version", 15, 3], ["pyproject", 16, 3], ["src", 18, 3], ["build-system", 23, 3], ["dependencies", 25, 3], ["depsBuildBuild", 31, 3], ["nativeBuildInputs", 33, 3], ["postPatch", 35, 3], ["setupPyBuildFlags", 40, 3], ["preBuild", 45, 3], ["doCheck", 53, 3], ["pythonImportsCheck", 55, 3], ["meta", 57, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const pycparser = nix.arg($, "pycparser");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "pyvex",
       version: "9.2.154",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-a3ei2w66v18QKAofpPvDUoM42zHRHPrNQic+FE+rLKY=",
@@ -42,7 +40,7 @@ substituteInPlace pyvex_c/Makefile \\
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["pyvex"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Python interface to libVEX and VEX IR",
         homepage: "https://github.com/angr/pyvex",
         license: nix.thunk(() => (() => {

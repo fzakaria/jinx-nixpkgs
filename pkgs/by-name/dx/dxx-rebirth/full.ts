@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/full.nix", [[["description", 27, 9], ["homepage", 28, 9], ["license", 29, 9], ["maintainers", 33, 9], ["platforms", 34, 9], ["hydraPlatforms", 35, 9]], [["pname", 14, 7], ["version", 15, 24], ["nativeBuildInputs", 17, 7], ["buildCommand", 19, 7], ["meta", 26, 7]], [["d1x-rebirth-full", 41, 3], ["d2x-rebirth-full", 42, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, makeWrapper: false, "dxx-rebirth": false, "descent1-assets": false, "descent2-assets": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/full.nix", [["description", 27, 9], ["homepage", 28, 9], ["license", 29, 9], ["maintainers", 33, 9], ["platforms", 34, 9], ["hydraPlatforms", 35, 9]]);
-const pos$2 = nix.positions(here + "/full.nix", [["pname", 14, 7], ["version", 15, 24], ["nativeBuildInputs", 17, 7], ["buildCommand", 19, 7], ["meta", 26, 7]]);
-const pos$3 = nix.positions(here + "/full.nix", [["d1x-rebirth-full", 41, 3], ["d2x-rebirth-full", 42, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const descent1_assets = nix.arg($, "descent1-assets");
   const descent2_assets = nix.arg($, "descent2-assets");
   const generic = (ver) => (assets) => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: nix.thunk(() => nix.str`d${nix.builtins.toString(ver)}x-rebirth-full`),
       version: nix.thunk(() => nix.attr(assets, "version")),
       nativeBuildInputs: nix.thunk(() => [makeWrapper]),
@@ -26,7 +24,7 @@ makeWrapper ${dxx_rebirth}/bin/d${nix.builtins.toString(ver)}x-rebirth $out/bin/
   --add-flags "-hogdir ${assets}/share/games/descent${nix.builtins.toString(ver)}"
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: nix.thunk(() => nix.str`Descent ${nix.builtins.toString(ver)} using the DXX-Rebirth project engine and game assets from GOG`),
         homepage: "https://www.dxx-rebirth.com/",
         license: nix.thunk(() => (() => {
@@ -48,7 +46,7 @@ makeWrapper ${dxx_rebirth}/bin/d${nix.builtins.toString(ver)}x-rebirth $out/bin/
       })),
     })));
   return {
-    [nix.POS]: pos$3,
+    [nix.POS]: $pos[2],
     "d1x-rebirth-full": nix.thunk(() => nix.app(generic, 1n, descent1_assets)),
     "d2x-rebirth-full": nix.thunk(() => nix.app(generic, 2n, descent2_assets)),
   };

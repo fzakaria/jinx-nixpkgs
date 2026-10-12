@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]], [["description", 80, 5], ["homepage", 81, 5], ["changelog", 82, 5], ["license", 83, 5]], [["pname", 22, 3], ["version", 23, 3], ["pyproject", 24, 3], ["src", 26, 3], ["postPatch", 34, 3], ["build-system", 39, 3], ["dependencies", 43, 3], ["nativeCheckInputs", 49, 3], ["disabledTestPaths", 54, 3], ["doCheck", 75, 3], ["pythonImportsCheck", 77, 3], ["meta", 79, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, astor: false, dill: false, filelock: false, pytestCheckHook: false, torch: false, pythonAtLeast: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 80, 5], ["homepage", 81, 5], ["changelog", 82, 5], ["license", 83, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 22, 3], ["version", 23, 3], ["pyproject", 24, 3], ["src", 26, 3], ["postPatch", 34, 3], ["build-system", 39, 3], ["dependencies", 43, 3], ["nativeCheckInputs", 49, 3], ["disabledTestPaths", 54, 3], ["doCheck", 75, 3], ["pythonImportsCheck", 77, 3], ["meta", 79, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.20.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "thuml",
           repo: "depyf",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -43,14 +41,14 @@ export default nix.lambda((args) => (() => {
       const doCheck = nix.thunk(() => !nix.asBool(nix.app(pythonAtLeast, "3.13")));
       const pythonImportsCheck = nix.thunk(() => ["depyf"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Decompile python functions, from bytecode to source code",
         homepage: "https://github.com/thuml/depyf",
         changelog: nix.thunk(() => nix.str`https://github.com/thuml/depyf/releases/tag/v${version}`),
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

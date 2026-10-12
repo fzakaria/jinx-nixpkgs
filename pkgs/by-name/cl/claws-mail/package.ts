@@ -2,47 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["flags", 98, 7], ["enabled", 99, 7]], [["flags", 102, 7], ["enabled", 103, 7]], [["flags", 106, 7], ["enabled", 107, 7], ["deps", 108, 7]], [["flags", 111, 7], ["enabled", 112, 7]], [["flags", 115, 7], ["enabled", 116, 7]], [["flags", 119, 7], ["enabled", 120, 7]], [["flags", 123, 7], ["enabled", 124, 7]], [["flags", 127, 7], ["enabled", 128, 7]], [["flags", 131, 7], ["enabled", 132, 7], ["deps", 133, 7]], [["flags", 139, 7], ["enabled", 140, 7]], [["flags", 143, 7], ["enabled", 144, 7], ["deps", 145, 7]], [["flags", 148, 7], ["enabled", 149, 7], ["deps", 150, 7]], [["flags", 153, 7], ["enabled", 154, 7]], [["flags", 157, 7], ["enabled", 158, 7]], [["flags", 161, 7], ["enabled", 162, 7], ["deps", 163, 7]], [["flags", 166, 7], ["enabled", 167, 7], ["deps", 168, 7]], [["flags", 171, 7], ["enabled", 172, 7], ["deps", 173, 7]], [["flags", 176, 7], ["enabled", 177, 7]], [["flags", 180, 7], ["enabled", 181, 7], ["deps", 182, 7]], [["flags", 185, 7], ["enabled", 186, 7], ["deps", 187, 7]], [["flags", 190, 7], ["enabled", 191, 7]], [["flags", 194, 7], ["enabled", 195, 7]], [["flags", 198, 7], ["enabled", 199, 7], ["deps", 200, 7]], [["flags", 203, 7], ["enabled", 204, 7]], [["flags", 207, 7], ["enabled", 208, 7], ["deps", 209, 7]], [["flags", 212, 7], ["enabled", 213, 7], ["deps", 214, 7]], [["flags", 217, 7], ["enabled", 218, 7], ["deps", 219, 7]], [["flags", 222, 7], ["enabled", 227, 7], ["deps", 228, 7]], [["flags", 234, 7], ["enabled", 235, 7]], [["flags", 238, 7], ["enabled", 239, 7], ["deps", 240, 7]], [["flags", 243, 7], ["enabled", 244, 7]], [["flags", 247, 7], ["enabled", 248, 7]], [["flags", 251, 7], ["enabled", 252, 7]], [["flags", 255, 7], ["enabled", 256, 7], ["deps", 257, 7]], [["flags", 260, 7], ["enabled", 261, 7], ["deps", 262, 7]], [["flags", 265, 7], ["enabled", 266, 7], ["deps", 267, 7]], [["flags", 270, 7], ["enabled", 271, 7], ["deps", 272, 7]], [["url", 281, 5], ["hash", 282, 5]], [["description", 347, 5], ["mainProgram", 348, 5], ["homepage", 349, 5], ["license", 350, 5], ["platforms", 351, 5], ["maintainers", 352, 5]], [["pname", 277, 3], ["version", 278, 3], ["src", 280, 3], ["outputs", 285, 3], ["patches", 290, 3], ["preConfigure", 294, 3], ["postPatch", 301, 3], ["nativeBuildInputs", 308, 3], ["propagatedBuildInputs", 315, 3], ["buildInputs", 317, 3], ["configureFlags", 325, 3], ["enableParallelBuilding", 334, 3], ["preFixup", 336, 3], ["postInstall", 341, 3], ["meta", 346, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, wrapGAppsHook3: false, autoreconfHook: false, bison: false, flex: false, curl: false, gtk3: false, "pkg-config": false, python3: false, "shared-mime-info": false, "glib-networking": false, "gsettings-desktop-schemas": false, enablePgp: true, enablePluginNotificationDialogs: true, enablePluginNotificationSounds: true, enablePluginPdf: true, enablePluginRavatar: true, enableSpellcheck: true, enableLibSM: true, libsm: false, enableGnuTLS: true, gnutls: false, enableEnchant: true, enchant: false, enableDbus: true, dbus: false, "dbus-glib": false, enableLdap: true, openldap: false, enableNetworkManager: true, networkmanager: false, enableLibetpan: true, libetpan: false, enableValgrind: true, valgrind: false, enableSvg: true, librsvg: false, enablePluginAcpiNotifier: true, enablePluginAddressKeeper: true, enablePluginArchive: true, libarchive: false, enablePluginAttRemover: true, enablePluginAttachWarner: true, enablePluginBogofilter: true, enablePluginBsfilter: true, enablePluginClamd: true, enablePluginDillo: true, enablePluginFancy: true, webkitgtk_4_1: false, enablePluginFetchInfo: true, enablePluginKeywordWarner: true, enablePluginLibravatar: true, enablePluginLitehtmlViewer: true, gumbo: false, enablePluginMailmbox: true, enablePluginManageSieve: true, enablePluginNewMail: true, enablePluginNotification: true, "libcanberra-gtk3": false, libnotify: false, enablePluginPdfViewer: true, poppler: false, enablePluginPerl: true, perl: false, enablePluginPython: true, enablePluginPgp: true, gnupg: false, gpgme: false, enablePluginRssyl: true, libxml2: false, enablePluginSmime: true, enablePluginSpamassassin: true, enablePluginSpamReport: true, enablePluginTnefParse: true, libytnef: false, enablePluginVcalendar: true, libical: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["flags", 98, 7], ["enabled", 99, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["flags", 102, 7], ["enabled", 103, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["flags", 106, 7], ["enabled", 107, 7], ["deps", 108, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["flags", 111, 7], ["enabled", 112, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["flags", 115, 7], ["enabled", 116, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["flags", 119, 7], ["enabled", 120, 7]]);
-const pos$7 = nix.positions(here + "/package.nix", [["flags", 123, 7], ["enabled", 124, 7]]);
-const pos$8 = nix.positions(here + "/package.nix", [["flags", 127, 7], ["enabled", 128, 7]]);
-const pos$9 = nix.positions(here + "/package.nix", [["flags", 131, 7], ["enabled", 132, 7], ["deps", 133, 7]]);
-const pos$10 = nix.positions(here + "/package.nix", [["flags", 139, 7], ["enabled", 140, 7]]);
-const pos$11 = nix.positions(here + "/package.nix", [["flags", 143, 7], ["enabled", 144, 7], ["deps", 145, 7]]);
-const pos$12 = nix.positions(here + "/package.nix", [["flags", 148, 7], ["enabled", 149, 7], ["deps", 150, 7]]);
-const pos$13 = nix.positions(here + "/package.nix", [["flags", 153, 7], ["enabled", 154, 7]]);
-const pos$14 = nix.positions(here + "/package.nix", [["flags", 157, 7], ["enabled", 158, 7]]);
-const pos$15 = nix.positions(here + "/package.nix", [["flags", 161, 7], ["enabled", 162, 7], ["deps", 163, 7]]);
-const pos$16 = nix.positions(here + "/package.nix", [["flags", 166, 7], ["enabled", 167, 7], ["deps", 168, 7]]);
-const pos$17 = nix.positions(here + "/package.nix", [["flags", 171, 7], ["enabled", 172, 7], ["deps", 173, 7]]);
-const pos$18 = nix.positions(here + "/package.nix", [["flags", 176, 7], ["enabled", 177, 7]]);
-const pos$19 = nix.positions(here + "/package.nix", [["flags", 180, 7], ["enabled", 181, 7], ["deps", 182, 7]]);
-const pos$20 = nix.positions(here + "/package.nix", [["flags", 185, 7], ["enabled", 186, 7], ["deps", 187, 7]]);
-const pos$21 = nix.positions(here + "/package.nix", [["flags", 190, 7], ["enabled", 191, 7]]);
-const pos$22 = nix.positions(here + "/package.nix", [["flags", 194, 7], ["enabled", 195, 7]]);
-const pos$23 = nix.positions(here + "/package.nix", [["flags", 198, 7], ["enabled", 199, 7], ["deps", 200, 7]]);
-const pos$24 = nix.positions(here + "/package.nix", [["flags", 203, 7], ["enabled", 204, 7]]);
-const pos$25 = nix.positions(here + "/package.nix", [["flags", 207, 7], ["enabled", 208, 7], ["deps", 209, 7]]);
-const pos$26 = nix.positions(here + "/package.nix", [["flags", 212, 7], ["enabled", 213, 7], ["deps", 214, 7]]);
-const pos$27 = nix.positions(here + "/package.nix", [["flags", 217, 7], ["enabled", 218, 7], ["deps", 219, 7]]);
-const pos$28 = nix.positions(here + "/package.nix", [["flags", 222, 7], ["enabled", 227, 7], ["deps", 228, 7]]);
-const pos$29 = nix.positions(here + "/package.nix", [["flags", 234, 7], ["enabled", 235, 7]]);
-const pos$30 = nix.positions(here + "/package.nix", [["flags", 238, 7], ["enabled", 239, 7], ["deps", 240, 7]]);
-const pos$31 = nix.positions(here + "/package.nix", [["flags", 243, 7], ["enabled", 244, 7]]);
-const pos$32 = nix.positions(here + "/package.nix", [["flags", 247, 7], ["enabled", 248, 7]]);
-const pos$33 = nix.positions(here + "/package.nix", [["flags", 251, 7], ["enabled", 252, 7]]);
-const pos$34 = nix.positions(here + "/package.nix", [["flags", 255, 7], ["enabled", 256, 7], ["deps", 257, 7]]);
-const pos$35 = nix.positions(here + "/package.nix", [["flags", 260, 7], ["enabled", 261, 7], ["deps", 262, 7]]);
-const pos$36 = nix.positions(here + "/package.nix", [["flags", 265, 7], ["enabled", 266, 7], ["deps", 267, 7]]);
-const pos$37 = nix.positions(here + "/package.nix", [["flags", 270, 7], ["enabled", 271, 7], ["deps", 272, 7]]);
-const pos$38 = nix.positions(here + "/package.nix", [["url", 281, 5], ["hash", 282, 5]]);
-const pos$39 = nix.positions(here + "/package.nix", [["description", 347, 5], ["mainProgram", 348, 5], ["homepage", 349, 5], ["license", 350, 5], ["platforms", 351, 5], ["maintainers", 352, 5]]);
-const pos$40 = nix.positions(here + "/package.nix", [["pname", 277, 3], ["version", 278, 3], ["src", 280, 3], ["outputs", 285, 3], ["patches", 290, 3], ["preConfigure", 294, 3], ["postPatch", 301, 3], ["nativeBuildInputs", 308, 3], ["propagatedBuildInputs", 315, 3], ["buildInputs", 317, 3], ["configureFlags", 325, 3], ["enableParallelBuilding", 334, 3], ["preFixup", 336, 3], ["postInstall", 341, 3], ["meta", 346, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -135,216 +96,216 @@ export default nix.lambda((args) => (() => {
   })());
   const features = nix.thunk(() => [
     nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       flags: nix.thunk(() => ["acpi_notifier-plugin"]),
       enabled: enablePluginAcpiNotifier,
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       flags: nix.thunk(() => ["address_keeper-plugin"]),
       enabled: enablePluginAddressKeeper,
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       flags: nix.thunk(() => ["archive-plugin"]),
       enabled: enablePluginArchive,
       deps: nix.thunk(() => [libarchive]),
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       flags: nix.thunk(() => ["att_remover-plugin"]),
       enabled: enablePluginAttRemover,
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       flags: nix.thunk(() => ["attachwarner-plugin"]),
       enabled: enablePluginAttachWarner,
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       flags: nix.thunk(() => ["bogofilter-plugin"]),
       enabled: enablePluginBogofilter,
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       flags: nix.thunk(() => ["bsfilter-plugin"]),
       enabled: enablePluginBsfilter,
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       flags: nix.thunk(() => ["clamd-plugin"]),
       enabled: enablePluginClamd,
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       flags: nix.thunk(() => ["dbus"]),
       enabled: enableDbus,
       deps: nix.thunk(() => [dbus, dbus_glib]),
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       flags: nix.thunk(() => ["dillo-plugin"]),
       enabled: enablePluginDillo,
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$11,
+      [nix.POS]: $pos[10],
       flags: nix.thunk(() => ["enchant"]),
       enabled: enableEnchant,
       deps: nix.thunk(() => [enchant]),
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$12,
+      [nix.POS]: $pos[11],
       flags: nix.thunk(() => ["fancy-plugin"]),
       enabled: enablePluginFancy,
       deps: nix.thunk(() => [webkitgtk_4_1]),
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$13,
+      [nix.POS]: $pos[12],
       flags: nix.thunk(() => ["fetchinfo-plugin"]),
       enabled: enablePluginFetchInfo,
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$14,
+      [nix.POS]: $pos[13],
       flags: nix.thunk(() => ["keyword_warner-plugin"]),
       enabled: enablePluginKeywordWarner,
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$15,
+      [nix.POS]: $pos[14],
       flags: nix.thunk(() => ["gnutls"]),
       enabled: enableGnuTLS,
       deps: nix.thunk(() => [gnutls]),
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$16,
+      [nix.POS]: $pos[15],
       flags: nix.thunk(() => ["ldap"]),
       enabled: enableLdap,
       deps: nix.thunk(() => [openldap]),
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$17,
+      [nix.POS]: $pos[16],
       flags: nix.thunk(() => ["libetpan"]),
       enabled: enableLibetpan,
       deps: nix.thunk(() => [libetpan]),
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$18,
+      [nix.POS]: $pos[17],
       flags: nix.thunk(() => ["libravatar-plugin"]),
       enabled: enablePluginLibravatar,
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$19,
+      [nix.POS]: $pos[18],
       flags: nix.thunk(() => ["libsm"]),
       enabled: enableLibSM,
       deps: nix.thunk(() => [libsm]),
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$20,
+      [nix.POS]: $pos[19],
       flags: nix.thunk(() => ["litehtml_viewer-plugin"]),
       enabled: enablePluginLitehtmlViewer,
       deps: nix.thunk(() => [gumbo]),
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$21,
+      [nix.POS]: $pos[20],
       flags: nix.thunk(() => ["mailmbox-plugin"]),
       enabled: enablePluginMailmbox,
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$22,
+      [nix.POS]: $pos[21],
       flags: nix.thunk(() => ["managesieve-plugin"]),
       enabled: enablePluginManageSieve,
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$23,
+      [nix.POS]: $pos[22],
       flags: nix.thunk(() => ["networkmanager"]),
       enabled: enableNetworkManager,
       deps: nix.thunk(() => [networkmanager]),
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$24,
+      [nix.POS]: $pos[23],
       flags: nix.thunk(() => ["newmail-plugin"]),
       enabled: enablePluginNewMail,
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$25,
+      [nix.POS]: $pos[24],
       flags: nix.thunk(() => ["notification-plugin"]),
       enabled: enablePluginNotification,
       deps: nix.thunk(() => nix.concat([libnotify], [libcanberra_gtk3])),
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$26,
+      [nix.POS]: $pos[25],
       flags: nix.thunk(() => ["pdf_viewer-plugin"]),
       enabled: enablePluginPdfViewer,
       deps: nix.thunk(() => [poppler]),
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$27,
+      [nix.POS]: $pos[26],
       flags: nix.thunk(() => ["perl-plugin"]),
       enabled: enablePluginPerl,
       deps: nix.thunk(() => [perl]),
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$28,
+      [nix.POS]: $pos[27],
       flags: nix.thunk(() => ["pgpcore-plugin", "pgpinline-plugin", "pgpmime-plugin"]),
       enabled: enablePluginPgp,
       deps: nix.thunk(() => [gnupg, gpgme]),
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$29,
+      [nix.POS]: $pos[28],
       flags: nix.thunk(() => ["python-plugin"]),
       enabled: enablePluginPython,
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$30,
+      [nix.POS]: $pos[29],
       flags: nix.thunk(() => ["rssyl-plugin"]),
       enabled: enablePluginRssyl,
       deps: nix.thunk(() => [libxml2]),
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$31,
+      [nix.POS]: $pos[30],
       flags: nix.thunk(() => ["smime-plugin"]),
       enabled: enablePluginSmime,
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$32,
+      [nix.POS]: $pos[31],
       flags: nix.thunk(() => ["spam_report-plugin"]),
       enabled: enablePluginSpamReport,
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$33,
+      [nix.POS]: $pos[32],
       flags: nix.thunk(() => ["spamassassin-plugin"]),
       enabled: enablePluginSpamassassin,
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$34,
+      [nix.POS]: $pos[33],
       flags: nix.thunk(() => ["svg"]),
       enabled: enableSvg,
       deps: nix.thunk(() => [librsvg]),
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$35,
+      [nix.POS]: $pos[34],
       flags: nix.thunk(() => ["tnef_parse-plugin"]),
       enabled: enablePluginTnefParse,
       deps: nix.thunk(() => [libytnef]),
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$36,
+      [nix.POS]: $pos[35],
       flags: nix.thunk(() => ["valgrind"]),
       enabled: enableValgrind,
       deps: nix.thunk(() => [valgrind]),
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$37,
+      [nix.POS]: $pos[36],
       flags: nix.thunk(() => ["vcalendar-plugin"]),
       enabled: enablePluginVcalendar,
       deps: nix.thunk(() => [libical]),
     })),
   ]);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$40,
+      [nix.POS]: $pos[39],
       pname: "claws-mail",
       version: "4.4.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$38,
+          [nix.POS]: $pos[37],
           url: nix.thunk(() => nix.str`https://claws-mail.org/download.php?file=releases/claws-mail-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-A+BUnV8PzXpZgEGGUkEF0F67XlNNQqS4apqQ9ynKJVs=",
         })))),
@@ -370,7 +331,7 @@ gappsWrapperArgs+=(--prefix XDG_DATA_DIRS : "${shared_mime_info}/share" --prefix
 `),
       postInstall: "mkdir -p $out/share/applications\ncp claws-mail.desktop $out/share/applications\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$39,
+        [nix.POS]: $pos[38],
         description: "User-friendly, lightweight, and fast email client",
         mainProgram: "claws-mail",
         homepage: "https://www.claws-mail.org/",

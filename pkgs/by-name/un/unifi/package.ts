@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 21, 5], ["hash", 22, 5]], [["unifi", 47, 28]], [["jrePackage", 44, 5], ["tests", 46, 5]], [["homepage", 52, 5], ["description", 53, 5], ["sourceProvenance", 54, 5], ["license", 55, 5], ["platforms", 56, 5], ["maintainers", 60, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 20, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 30, 3], ["installPhase", 34, 3], ["passthru", 43, 3], ["meta", 51, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, dpkg: false, fetchurl: false, nixosTests: false, systemd: false, autoPatchelfHook: false, jdk25_headless: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["unifi", 47, 28]]);
-const pos$3 = nix.positions(here + "/package.nix", [["jrePackage", 44, 5], ["tests", 46, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 52, 5], ["description", 53, 5], ["sourceProvenance", 54, 5], ["license", 55, 5], ["platforms", 56, 5], ["maintainers", 60, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 20, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 30, 3], ["installPhase", 34, 3], ["passthru", 43, 3], ["meta", 51, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const autoPatchelfHook = nix.arg($, "autoPatchelfHook");
   const jdk25_headless = nix.arg($, "jdk25_headless");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "unifi-controller",
       version: "10.6.106",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://dl.ui.com/unifi/${nix.sel(finalAttrs, "version")}/unifi_sysvinit_all.deb`),
           hash: "sha256-6Ttw5zuZg8Xk0KjMwtXRm4bbBeePmowYUMr4msBpskA=",
         })))),
@@ -32,12 +28,12 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [systemd]),
       installPhase: "runHook preInstall\n\nmkdir -p $out\ncp -ar usr/lib/unifi/{dl,lib,webapps} $out\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         jrePackage: jdk25_headless,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$2, unifi: nix.thunk(() => nix.attr(nixosTests, "unifi")) })),
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[1], unifi: nix.thunk(() => nix.attr(nixosTests, "unifi")) })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://www.ui.com",
         description: "Controller for Ubiquiti UniFi access points",
         sourceProvenance: nix.thunk(() => (() => {

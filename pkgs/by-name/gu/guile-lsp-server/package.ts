@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]], [["homepage", 59, 5], ["description", 60, 5], ["mainProgram", 61, 5], ["license", 62, 5], ["maintainers", 63, 5], ["platforms", 64, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["strictDeps", 22, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 30, 3], ["propagatedBuildInputs", 34, 3], ["makeFlags", 38, 3], ["preConfigure", 40, 3], ["postInstall", 44, 3], ["meta", 58, 3]]]);
 const formals$1 = { args: { lib: false, guile: false, stdenv: false, fetchFromCodeberg: false, "pkg-config": false, bash: false, makeWrapper: false, "guile-json-rpc": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 59, 5], ["description", 60, 5], ["mainProgram", 61, 5], ["license", 62, 5], ["maintainers", 63, 5], ["platforms", 64, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["strictDeps", 22, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 30, 3], ["propagatedBuildInputs", 34, 3], ["makeFlags", 38, 3], ["preConfigure", 40, 3], ["postInstall", 44, 3], ["meta", 58, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const guile_json_rpc = nix.arg($, "guile-json-rpc");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "guile-lsp-server",
       version: "0.4.8",
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "rgherdt",
           repo: "scheme-lsp-server",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -42,7 +40,7 @@ export default nix.lambda((args) => (() => {
   --argv0 $out/bin/guile-lsp-server
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://codeberg.org/rgherdt/scheme-lsp-server",
         description: "LSP server for Guile",
         mainProgram: "guile-lsp-server",

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 31, 5], ["hash", 32, 5]], [["packageName", 84, 7], ["versionPolicy", 85, 7]], [["updateScript", 83, 5]], [["description", 90, 5], ["homepage", 91, 5], ["teams", 92, 5], ["platforms", 93, 5], ["license", 94, 5]], [["pname", 22, 3], ["version", 23, 3], ["outputs", 25, 3], ["src", 30, 3], ["patches", 35, 3], ["postPatch", 41, 3], ["strictDeps", 47, 3], ["nativeBuildInputs", 49, 3], ["buildInputs", 60, 3], ["checkInputs", 65, 3], ["doCheck", 70, 3], ["mesonFlags", 71, 3], ["preCheck", 78, 3], ["passthru", 82, 3], ["meta", 89, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, "pkg-config": false, meson: false, ninja: false, udev: false, glib: false, glibcLocales: false, umockdev: false, gnome: false, vala: false, "gobject-introspection": false, buildPackages: false, withIntrospection: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 31, 5], ["hash", 32, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["packageName", 84, 7], ["versionPolicy", 85, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 83, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 90, 5], ["homepage", 91, 5], ["teams", 92, 5], ["platforms", 93, 5], ["license", 94, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 22, 3], ["version", 23, 3], ["outputs", 25, 3], ["src", 30, 3], ["patches", 35, 3], ["postPatch", 41, 3], ["strictDeps", 47, 3], ["nativeBuildInputs", 49, 3], ["buildInputs", 60, 3], ["checkInputs", 65, 3], ["doCheck", 70, 3], ["mesonFlags", 71, 3], ["preCheck", 78, 3], ["passthru", 82, 3], ["meta", 89, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,12 +23,12 @@ export default nix.lambda((args) => (() => {
   const buildPackages = nix.arg($, "buildPackages");
   const withIntrospection = nix.argOr($, "withIntrospection", () => (nix.asBool(nix.app(nix.sel(lib, "meta", "availableOn"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")), gobject_introspection)) && nix.asBool(nix.app(nix.sel(stdenv, "hostPlatform", "emulatorAvailable"), buildPackages))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "libgudev",
       version: "238",
       outputs: nix.thunk(() => ["out", "dev"]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnome/sources/libgudev/${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/libgudev-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-YSZqsa/J1z28YKiyr3PpnS/f9H2ZVE0IV2Dk+mZ7XdE=",
         })))),
@@ -53,11 +49,11 @@ substituteInPlace tests/meson.build \\
       ]),
       preCheck: "mesonCheckFlagsArray=( $(meson test --list | grep -v libgudev:test-gudevdevice) )\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$2, packageName: "libgudev", versionPolicy: "none" })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: $pos[1], packageName: "libgudev", versionPolicy: "none" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Library that provides GObject bindings for libudev",
         homepage: "https://gitlab.gnome.org/GNOME/libgudev",
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "gnome"))]),

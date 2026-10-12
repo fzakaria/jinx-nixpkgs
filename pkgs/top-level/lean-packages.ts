@@ -2,8 +2,8 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/lean-packages.nix", [[["lean4", 11, 3], ["buildLakePackage", 13, 3], ["batteries", 15, 3], ["aesop", 16, 3], ["Qq", 17, 3], ["proofwidgets", 18, 3], ["plausible", 19, 3], ["LeanSearchClient", 20, 3], ["Cli", 21, 3], ["importGraph", 22, 3], ["mathlib", 23, 3], ["mathlib__archive", 24, 35]]]);
 const formals$1 = { args: { lib: false, newScope: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/lean-packages.nix", [["lean4", 11, 3], ["buildLakePackage", 13, 3], ["batteries", 15, 3], ["aesop", 16, 3], ["Qq", 17, 3], ["proofwidgets", 18, 3], ["plausible", 19, 3], ["LeanSearchClient", 20, 3], ["Cli", 21, 3], ["importGraph", 22, 3], ["mathlib", 23, 3], ["mathlib__archive", 24, 35]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   return nix.app(nix.sel(lib, "makeScope"), newScope, (self) => (() => {
       const from = nix.thunk(() => nix.sel(self, "mathlib", "passthru"));
       return {
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       lean4: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "../development/lean-modules/lean4"), nix.thunk(() => ({})))),
       buildLakePackage: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "../build-support/lake"), nix.thunk(() => ({})))),
       batteries: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "../development/lean-modules/batteries"), nix.thunk(() => ({})))),

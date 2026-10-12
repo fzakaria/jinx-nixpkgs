@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]], [["GOWORK", 24, 7]], [["nativeBuildInputs", 39, 11]], [["smoketest", 36, 11]], [["tests", 36, 5]], [["description", 66, 5], ["homepage", 67, 5], ["license", 68, 5], ["maintainers", 69, 5], ["mainProgram", 70, 5], ["platforms", 71, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["sourceRoot", 23, 3], ["env", 24, 3], ["vendorHash", 26, 3], ["subPackages", 28, 3], ["postInstall", 30, 3], ["passthru", 34, 3], ["meta", 65, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitHub: false, runCommand: false, cbtemulator: false, "google-cloud-bigtable-tool": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["GOWORK", 24, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["nativeBuildInputs", 39, 11]]);
-const pos$4 = nix.positions(here + "/package.nix", [["smoketest", 36, 11]]);
-const pos$5 = nix.positions(here + "/package.nix", [["tests", 36, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 66, 5], ["homepage", 67, 5], ["license", 68, 5], ["maintainers", 69, 5], ["mainProgram", 70, 5], ["platforms", 71, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["sourceRoot", 23, 3], ["env", 24, 3], ["vendorHash", 26, 3], ["subPackages", 28, 3], ["postInstall", 30, 3], ["passthru", 34, 3], ["meta", 65, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,27 +14,27 @@ export default nix.lambda((args) => (() => {
   const cbtemulator = nix.arg($, "cbtemulator");
   const google_cloud_bigtable_tool = nix.arg($, "google-cloud-bigtable-tool");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "cbtemulator",
       version: "1.29.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "googleapis",
           repo: "google-cloud-go",
           rev: nix.thunk(() => nix.str`bigtable/v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-prDwy65pxWDrIJOURe2JHo4sY4yP8IE1Rp1pLUL/IAA=",
         })))),
       sourceRoot: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "name")}/bigtable`),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, GOWORK: "off" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], GOWORK: "off" })),
       vendorHash: "sha256-EDfxT56LKEu/iXPp5RJXb4UIRV2jFFNxh3ZINPbwKTM=",
       subPackages: nix.thunk(() => ["cmd/emulator"]),
       postInstall: "mv $out/bin/emulator $out/bin/cbtemulator\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           smoketest: nix.thunk(() => nix.app(runCommand, "cbtemulator-smoketest", nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               nativeBuildInputs: nix.thunk(() => [google_cloud_bigtable_tool]),
             })), nix.thunk(() => nix.str`# Start the emulator
 ${nix.app(nix.sel(lib, "getExe"), cbtemulator)} &
@@ -66,7 +60,7 @@ touch $out;
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "In-memory Google Cloud Bigtable server",
         homepage: nix.thunk(() => nix.str`https://github.com/googleapis/google-cloud-go/blob/bigtable/v${nix.sel(finalAttrs, "version")}/bigtable/cmd/emulator/cbtemulator.go`),
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

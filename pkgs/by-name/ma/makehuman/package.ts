@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5], ["name", 27, 5]], [["owner", 31, 5], ["repo", 32, 5], ["tag", 33, 5], ["hash", 34, 5], ["name", 35, 5]], [["description", 97, 5], ["homepage", 98, 5], ["license", 99, 5], ["longDescription", 103, 5], ["mainProgram", 107, 5], ["maintainers", 108, 5], ["platforms", 109, 5], ["broken", 110, 5]], [["pname", 19, 3], ["version", 20, 3], ["source", 22, 3], ["assets", 30, 3], ["srcs", 38, 3], ["sourceRoot", 43, 3], ["nativeBuildInputs", 45, 3], ["buildInputs", 52, 3], ["propagatedBuildInputs", 57, 3], ["finalSource", 59, 3], ["postUnpack", 61, 3], ["configurePhase", 70, 3], ["buildPhase", 82, 3], ["preFixup", 92, 3], ["meta", 96, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, python3: false, "git-lfs": false, libsForQt5: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5], ["name", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 31, 5], ["repo", 32, 5], ["tag", 33, 5], ["hash", 34, 5], ["name", 35, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 97, 5], ["homepage", 98, 5], ["license", 99, 5], ["longDescription", 103, 5], ["mainProgram", 107, 5], ["maintainers", 108, 5], ["platforms", 109, 5], ["broken", 110, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["source", 22, 3], ["assets", 30, 3], ["srcs", 38, 3], ["sourceRoot", 43, 3], ["nativeBuildInputs", 45, 3], ["buildInputs", 52, 3], ["propagatedBuildInputs", 57, 3], ["finalSource", 59, 3], ["postUnpack", 61, 3], ["configurePhase", 70, 3], ["buildPhase", 82, 3], ["preFixup", 92, 3], ["meta", 96, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,11 +23,11 @@ export default nix.lambda((args) => (() => {
   })());
   const python = nix.thunk(() => nix.app(nix.sel(python3, "withPackages"), (pkgs) => nix.force(pydeps)));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "makehuman",
       version: "1.3.0",
       source: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "makehumancommunity",
           repo: "makehuman",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,7 +35,7 @@ export default nix.lambda((args) => (() => {
           name: "makehuman-source",
         })))),
       assets: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "makehumancommunity",
           repo: "makehuman-assets",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -67,7 +64,7 @@ export default nix.lambda((args) => (() => {
       buildPhase: "runHook preBuild\nmkdir -p $out/opt $out/bin\ncp -r * $out/opt\npython -m compileall -o 0 -o 2 $out/opt\nln -s $out/opt/makehuman/makehuman.py $out/bin/makehuman\nchmod +x $out/bin/makehuman\nrunHook postBuild\n",
       preFixup: "wrapQtApp $out/bin/makehuman\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Software to create realistic humans",
         homepage: "http://www.makehumancommunity.org/",
         license: nix.thunk(() => (() => {

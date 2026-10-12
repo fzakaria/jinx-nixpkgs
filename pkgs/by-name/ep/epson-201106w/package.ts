@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["urls", 23, 5], ["sha256", 28, 5]], [["homepage", 68, 5], ["description", 69, 5], ["longDescription", 70, 5], ["license", 89, 5], ["platforms", 93, 5], ["maintainers", 94, 5]], [["pname", 18, 3], ["version", 19, 11], ["src", 21, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 37, 3], ["unpackPhase", 42, 3], ["preConfigure", 53, 3], ["postInstall", 58, 3], ["meta", 67, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, rpmextract: false, autoreconfHook: false, file: false, libjpeg: false, cups: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["urls", 23, 5], ["sha256", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 68, 5], ["description", 69, 5], ["longDescription", 70, 5], ["license", 89, 5], ["platforms", 93, 5], ["maintainers", 94, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 11], ["src", 21, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 37, 3], ["unpackPhase", 42, 3], ["preConfigure", 53, 3], ["postInstall", 58, 3], ["meta", 67, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const version = "1.0.1";
   const filterVersion = "1.0.0";
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "epson-201106w",
       version: version,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           urls: nix.thunk(() => [
             nix.thunk(() => nix.str`https://download.ebz.epson.net/dsc/op/stable/SRPMS/epson-inkjet-printer-201106w-${version}-1lsb3.2.src.rpm`),
             nix.thunk(() => nix.str`https://web.archive.org/web/https://download.ebz.epson.net/dsc/op/stable/SRPMS/epson-inkjet-printer-201106w-${version}-1lsb3.2.src.rpm`),
@@ -51,7 +49,7 @@ cp -a Manual.txt $out/doc/
 cp -a README $out/doc/README.driver
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://www.openprinting.org/driver/epson-201106w",
         description: "Epson printer driver (BX535WD, BX630FW, BX635FWD, ME940FW, NX530, NX635, NX635, SX535WD, WorkForce 545, WorkForce 645",
         longDescription: "This software is a filter program used with the Common UNIX Printing\nSystem (CUPS) under Linux. It supplies high quality printing with\nSeiko Epson Color Ink Jet Printers.\nList of printers supported by this package:\n  Epson BX535WD Series\n  Epson BX630FW Series\n  Epson BX635FWD Series\n  Epson ME940FW Series\n  Epson NX530 Series\n  Epson SX535WD Series\n  Epson WorkForce 545 Series\n  Epson WorkForce 645 Series\nTo use the driver adjust your configuration.nix file:\n  services.printing = {\n    enable = true;\n    drivers = [ pkgs.epson-201106w ];\n  };\n",

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 12, 5], ["hash", 13, 5]], [["pname", 17, 13], ["version", 17, 19], ["src", 17, 27]], [["description", 33, 5], ["longDescription", 34, 5], ["homepage", 39, 5], ["license", 40, 5], ["maintainers", 41, 5], ["platforms", 42, 5], ["mainProgram", 43, 5]], [["pname", 21, 11], ["version", 21, 17], ["src", 21, 25], ["extraPkgs", 23, 3], ["extraInstallCommands", 25, 3], ["meta", 32, 3]]]);
 const formals$1 = { args: { lib: false, fetchurl: false, appimageTools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 12, 5], ["hash", 13, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 17, 13], ["version", 17, 19], ["src", 17, 27]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 33, 5], ["longDescription", 34, 5], ["homepage", 39, 5], ["license", 40, 5], ["maintainers", 41, 5], ["platforms", 42, 5], ["mainProgram", 43, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 21, 11], ["version", 21, 17], ["src", 21, 25], ["extraPkgs", 23, 3], ["extraInstallCommands", 25, 3], ["meta", 32, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const version = "6.9.1";
   const pname = "timeular";
   const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: nix.thunk(() => nix.str`https://s3.amazonaws.com/timeular-desktop-packages/linux/production/Timeular-${version}.AppImage`),
       hash: "sha256-oXdalYfysZ4Jb46eHABSkiWThMuc2JGCmP/mk0vCjkE=",
     }))));
-  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: pos$2, pname: pname, version: version, src: src }))));
+  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: $pos[1], pname: pname, version: version, src: src }))));
   return nix.app(nix.sel(appimageTools, "wrapType2"), nix.thunk(() => (() => {
       const pname_1 = pname;
       const version_1 = version;
@@ -32,7 +29,7 @@ substituteInPlace $out/share/applications/timeular.desktop \\
   --replace "Exec=AppRun --no-sandbox %U" "Exec=$out/bin/${pname_1}"
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Timetracking by flipping 8-sided dice",
         longDescription: "The Timeular Tracker is an 8-sided dice that sits on your desk.\nAssign an activity to each side and flip to start tracking your time.\nThe desktop app tell you where every minute of your day is spent.\n",
         homepage: "https://timeular.com",
@@ -45,7 +42,7 @@ substituteInPlace $out/share/applications/timeular.desktop \\
         mainProgram: "timeular",
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname: pname_1,
         version: version_1,
         src: src_1,

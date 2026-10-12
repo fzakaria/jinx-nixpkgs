@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]], [["description", 158, 5], ["homepage", 159, 5], ["license", 160, 5], ["mainProgram", 161, 5], ["maintainers", 162, 5], ["platforms", 163, 5]], [["pname", 12, 3], ["version", 13, 3], ["enableParallelBuilding", 15, 3], ["src", 17, 3], ["postPatch", 24, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 33, 3], ["buildPhase", 35, 3], ["doCheck", 44, 3], ["checkPhase", 46, 3], ["installPhase", 149, 3], ["meta", 157, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, curl: false, ldc: false, libevent: false, rsync: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 158, 5], ["homepage", 159, 5], ["license", 160, 5], ["mainProgram", 161, 5], ["maintainers", 162, 5], ["platforms", 163, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["enableParallelBuilding", 15, 3], ["src", 17, 3], ["postPatch", 24, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 33, 3], ["buildPhase", 35, 3], ["doCheck", 44, 3], ["checkPhase", 46, 3], ["installPhase", 149, 3], ["meta", 157, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const libevent = nix.arg($, "libevent");
   const rsync = nix.arg($, "rsync");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "dub",
       version: "1.42.0",
       enableParallelBuilding: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "dlang",
           repo: "dub",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -142,7 +140,7 @@ runHook postCheck
 `),
       installPhase: "runHook preInstall\n\ninstall -Dm755 bin/dub $out/bin/dub\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Package and build manager for D programs and libraries",
         homepage: "https://code.dlang.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

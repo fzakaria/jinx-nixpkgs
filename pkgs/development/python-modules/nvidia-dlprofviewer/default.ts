@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 22, 5], ["hash", 23, 5]], [["description", 53, 5], ["homepage", 54, 5], ["license", 55, 5], ["maintainers", 56, 5]], [["pname", 16, 3], ["version", 17, 3], ["__structuredAttrs", 18, 3], ["format", 19, 3], ["src", 21, 3], ["pythonImportsCheck", 26, 3], ["nativeBuildInputs", 30, 3], ["autoPatchelfIgnoreMissingDeps", 35, 3], ["propagatedBuildInputs", 39, 3], ["pythonRelaxDeps", 48, 3], ["meta", 52, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchurl: false, autoAddDriverRunpath: false, autoPatchelfHook: false, django: false, gunicorn: false, setuptools: false, sqlite: false, uvicorn: false, whitenoise: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 53, 5], ["homepage", 54, 5], ["license", 55, 5], ["maintainers", 56, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 16, 3], ["version", 17, 3], ["__structuredAttrs", 18, 3], ["format", 19, 3], ["src", 21, 3], ["pythonImportsCheck", 26, 3], ["nativeBuildInputs", 30, 3], ["autoPatchelfIgnoreMissingDeps", 35, 3], ["propagatedBuildInputs", 39, 3], ["pythonRelaxDeps", 48, 3], ["meta", 52, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,13 +19,13 @@ export default nix.lambda((args) => (() => {
   const uvicorn = nix.arg($, "uvicorn");
   const whitenoise = nix.arg($, "whitenoise");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "nvidia-dlprofviewer",
       version: "1.8.0",
       __structuredAttrs: true,
       format: "wheel",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://pypi.nvidia.com/nvidia-dlprofviewer/nvidia_dlprofviewer-${nix.sel(finalAttrs, "version")}-py3-none-any.whl`),
           hash: "sha256-KrfLZ6NdP31qfSfOBl8944ZE2xZ+kgjkyt+QPUblYVA=",
         })))),
@@ -37,7 +35,7 @@ export default nix.lambda((args) => (() => {
       propagatedBuildInputs: nix.thunk(() => [django, gunicorn, setuptools, sqlite, uvicorn, whitenoise]),
       pythonRelaxDeps: nix.thunk(() => ["django"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "NVIDIA DLProf Viewer",
         homepage: "https://docs.nvidia.com/deeplearning/frameworks/dlprof-user-guide/index.html",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

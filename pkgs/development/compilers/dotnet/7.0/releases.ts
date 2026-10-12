@@ -2,170 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/releases.nix", [[["pname", 13, 7], ["version", 14, 7], ["hash", 15, 7]], [["pname", 18, 7], ["version", 19, 7], ["hash", 20, 7]], [["pname", 23, 7], ["version", 24, 7], ["hash", 25, 7]], [["pname", 28, 7], ["version", 29, 7], ["hash", 30, 7]], [["pname", 33, 7], ["version", 34, 7], ["hash", 35, 7]], [["pname", 38, 7], ["version", 39, 7], ["hash", 40, 7]], [["pname", 43, 7], ["version", 44, 7], ["hash", 45, 7]], [["pname", 52, 9], ["version", 53, 9], ["hash", 54, 9]], [["pname", 59, 9], ["version", 60, 9], ["hash", 61, 9]], [["pname", 64, 9], ["version", 65, 9], ["hash", 66, 9]], [["pname", 71, 9], ["version", 72, 9], ["hash", 73, 9]], [["pname", 76, 9], ["version", 77, 9], ["hash", 78, 9]], [["pname", 83, 9], ["version", 84, 9], ["hash", 85, 9]], [["pname", 90, 9], ["version", 91, 9], ["hash", 92, 9]], [["pname", 95, 9], ["version", 96, 9], ["hash", 97, 9]], [["pname", 102, 9], ["version", 103, 9], ["hash", 104, 9]], [["pname", 107, 9], ["version", 108, 9], ["hash", 109, 9]], [["pname", 114, 9], ["version", 115, 9], ["hash", 116, 9]], [["pname", 121, 9], ["version", 122, 9], ["hash", 123, 9]], [["pname", 126, 9], ["version", 127, 9], ["hash", 128, 9]], [["pname", 133, 9], ["version", 134, 9], ["hash", 135, 9]], [["pname", 138, 9], ["version", 139, 9], ["hash", 140, 9]], [["pname", 145, 9], ["version", 146, 9], ["hash", 147, 9]], [["pname", 150, 9], ["version", 151, 9], ["hash", 152, 9]], [["pname", 157, 9], ["version", 158, 9], ["hash", 159, 9]], [["linux-arm", 50, 5], ["linux-arm64", 57, 5], ["linux-x64", 69, 5], ["linux-musl-arm", 81, 5], ["linux-musl-arm64", 88, 5], ["linux-musl-x64", 100, 5], ["osx-arm64", 112, 5], ["osx-x64", 119, 5], ["win-arm64", 131, 5], ["win-x64", 143, 5], ["win-x86", 155, 5]], [["pname", 167, 9], ["version", 168, 9], ["hash", 169, 9]], [["pname", 172, 9], ["version", 173, 9], ["hash", 174, 9]], [["pname", 177, 9], ["version", 178, 9], ["hash", 179, 9]], [["pname", 182, 9], ["version", 183, 9], ["hash", 184, 9]], [["pname", 187, 9], ["version", 188, 9], ["hash", 189, 9]], [["pname", 192, 9], ["version", 193, 9], ["hash", 194, 9]], [["pname", 197, 9], ["version", 198, 9], ["hash", 199, 9]], [["pname", 202, 9], ["version", 203, 9], ["hash", 204, 9]], [["pname", 209, 9], ["version", 210, 9], ["hash", 211, 9]], [["pname", 214, 9], ["version", 215, 9], ["hash", 216, 9]], [["pname", 219, 9], ["version", 220, 9], ["hash", 221, 9]], [["pname", 224, 9], ["version", 225, 9], ["hash", 226, 9]], [["pname", 229, 9], ["version", 230, 9], ["hash", 231, 9]], [["pname", 234, 9], ["version", 235, 9], ["hash", 236, 9]], [["pname", 239, 9], ["version", 240, 9], ["hash", 241, 9]], [["pname", 244, 9], ["version", 245, 9], ["hash", 246, 9]], [["pname", 251, 9], ["version", 252, 9], ["hash", 253, 9]], [["pname", 256, 9], ["version", 257, 9], ["hash", 258, 9]], [["pname", 261, 9], ["version", 262, 9], ["hash", 263, 9]], [["pname", 266, 9], ["version", 267, 9], ["hash", 268, 9]], [["pname", 271, 9], ["version", 272, 9], ["hash", 273, 9]], [["pname", 276, 9], ["version", 277, 9], ["hash", 278, 9]], [["pname", 281, 9], ["version", 282, 9], ["hash", 283, 9]], [["pname", 286, 9], ["version", 287, 9], ["hash", 288, 9]], [["pname", 293, 9], ["version", 294, 9], ["hash", 295, 9]], [["pname", 298, 9], ["version", 299, 9], ["hash", 300, 9]], [["pname", 303, 9], ["version", 304, 9], ["hash", 305, 9]], [["pname", 308, 9], ["version", 309, 9], ["hash", 310, 9]], [["pname", 313, 9], ["version", 314, 9], ["hash", 315, 9]], [["pname", 318, 9], ["version", 319, 9], ["hash", 320, 9]], [["pname", 323, 9], ["version", 324, 9], ["hash", 325, 9]], [["pname", 330, 9], ["version", 331, 9], ["hash", 332, 9]], [["pname", 335, 9], ["version", 336, 9], ["hash", 337, 9]], [["pname", 340, 9], ["version", 341, 9], ["hash", 342, 9]], [["pname", 345, 9], ["version", 346, 9], ["hash", 347, 9]], [["pname", 350, 9], ["version", 351, 9], ["hash", 352, 9]], [["pname", 355, 9], ["version", 356, 9], ["hash", 357, 9]], [["pname", 360, 9], ["version", 361, 9], ["hash", 362, 9]], [["pname", 367, 9], ["version", 368, 9], ["hash", 369, 9]], [["pname", 372, 9], ["version", 373, 9], ["hash", 374, 9]], [["pname", 377, 9], ["version", 378, 9], ["hash", 379, 9]], [["pname", 382, 9], ["version", 383, 9], ["hash", 384, 9]], [["pname", 387, 9], ["version", 388, 9], ["hash", 389, 9]], [["pname", 392, 9], ["version", 393, 9], ["hash", 394, 9]], [["pname", 397, 9], ["version", 398, 9], ["hash", 399, 9]], [["pname", 402, 9], ["version", 403, 9], ["hash", 404, 9]], [["pname", 409, 9], ["version", 410, 9], ["hash", 411, 9]], [["pname", 414, 9], ["version", 415, 9], ["hash", 416, 9]], [["pname", 419, 9], ["version", 420, 9], ["hash", 421, 9]], [["pname", 424, 9], ["version", 425, 9], ["hash", 426, 9]], [["pname", 429, 9], ["version", 430, 9], ["hash", 431, 9]], [["pname", 434, 9], ["version", 435, 9], ["hash", 436, 9]], [["pname", 439, 9], ["version", 440, 9], ["hash", 441, 9]], [["pname", 444, 9], ["version", 445, 9], ["hash", 446, 9]], [["pname", 451, 9], ["version", 452, 9], ["hash", 453, 9]], [["pname", 456, 9], ["version", 457, 9], ["hash", 458, 9]], [["pname", 461, 9], ["version", 462, 9], ["hash", 463, 9]], [["pname", 466, 9], ["version", 467, 9], ["hash", 468, 9]], [["pname", 471, 9], ["version", 472, 9], ["hash", 473, 9]], [["pname", 476, 9], ["version", 477, 9], ["hash", 478, 9]], [["pname", 481, 9], ["version", 482, 9], ["hash", 483, 9]], [["pname", 486, 9], ["version", 487, 9], ["hash", 488, 9]], [["pname", 493, 9], ["version", 494, 9], ["hash", 495, 9]], [["pname", 498, 9], ["version", 499, 9], ["hash", 500, 9]], [["pname", 503, 9], ["version", 504, 9], ["hash", 505, 9]], [["pname", 508, 9], ["version", 509, 9], ["hash", 510, 9]], [["pname", 513, 9], ["version", 514, 9], ["hash", 515, 9]], [["pname", 518, 9], ["version", 519, 9], ["hash", 520, 9]], [["pname", 523, 9], ["version", 524, 9], ["hash", 525, 9]], [["pname", 530, 9], ["version", 531, 9], ["hash", 532, 9]], [["pname", 535, 9], ["version", 536, 9], ["hash", 537, 9]], [["pname", 540, 9], ["version", 541, 9], ["hash", 542, 9]], [["pname", 545, 9], ["version", 546, 9], ["hash", 547, 9]], [["pname", 550, 9], ["version", 551, 9], ["hash", 552, 9]], [["pname", 555, 9], ["version", 556, 9], ["hash", 557, 9]], [["pname", 560, 9], ["version", 561, 9], ["hash", 562, 9]], [["pname", 565, 9], ["version", 566, 9], ["hash", 567, 9]], [["pname", 572, 9], ["version", 573, 9], ["hash", 574, 9]], [["pname", 577, 9], ["version", 578, 9], ["hash", 579, 9]], [["pname", 582, 9], ["version", 583, 9], ["hash", 584, 9]], [["pname", 587, 9], ["version", 588, 9], ["hash", 589, 9]], [["pname", 592, 9], ["version", 593, 9], ["hash", 594, 9]], [["pname", 597, 9], ["version", 598, 9], ["hash", 599, 9]], [["pname", 602, 9], ["version", 603, 9], ["hash", 604, 9]], [["pname", 607, 9], ["version", 608, 9], ["hash", 609, 9]], [["linux-arm", 165, 5], ["linux-arm64", 207, 5], ["linux-x64", 249, 5], ["linux-musl-arm", 291, 5], ["linux-musl-arm64", 328, 5], ["linux-musl-x64", 365, 5], ["osx-arm64", 407, 5], ["osx-x64", 449, 5], ["win-arm64", 491, 5], ["win-x64", 528, 5], ["win-x86", 570, 5]], [["url", 622, 9], ["hash", 623, 9]], [["url", 626, 9], ["hash", 627, 9]], [["url", 630, 9], ["hash", 631, 9]], [["url", 634, 9], ["hash", 635, 9]], [["url", 638, 9], ["hash", 639, 9]], [["url", 642, 9], ["hash", 643, 9]], [["url", 646, 9], ["hash", 647, 9]], [["url", 650, 9], ["hash", 651, 9]], [["linux-arm", 621, 7], ["linux-arm64", 625, 7], ["linux-x64", 629, 7], ["linux-musl-arm", 633, 7], ["linux-musl-arm64", 637, 7], ["linux-musl-x64", 641, 7], ["osx-arm64", 645, 7], ["osx-x64", 649, 7]], [["version", 619, 5], ["srcs", 620, 5]], [["url", 660, 9], ["hash", 661, 9]], [["url", 664, 9], ["hash", 665, 9]], [["url", 668, 9], ["hash", 669, 9]], [["url", 672, 9], ["hash", 673, 9]], [["url", 676, 9], ["hash", 677, 9]], [["url", 680, 9], ["hash", 681, 9]], [["url", 684, 9], ["hash", 685, 9]], [["url", 688, 9], ["hash", 689, 9]], [["linux-arm", 659, 7], ["linux-arm64", 663, 7], ["linux-x64", 667, 7], ["linux-musl-arm", 671, 7], ["linux-musl-arm64", 675, 7], ["linux-musl-x64", 679, 7], ["osx-arm64", 683, 7], ["osx-x64", 687, 7]], [["version", 657, 5], ["srcs", 658, 5]], [["url", 698, 9], ["hash", 699, 9]], [["url", 702, 9], ["hash", 703, 9]], [["url", 706, 9], ["hash", 707, 9]], [["url", 710, 9], ["hash", 711, 9]], [["url", 714, 9], ["hash", 715, 9]], [["url", 718, 9], ["hash", 719, 9]], [["url", 722, 9], ["hash", 723, 9]], [["url", 726, 9], ["hash", 727, 9]], [["linux-arm", 697, 7], ["linux-arm64", 701, 7], ["linux-x64", 705, 7], ["linux-musl-arm", 709, 7], ["linux-musl-arm64", 713, 7], ["linux-musl-x64", 717, 7], ["osx-arm64", 721, 7], ["osx-x64", 725, 7]], [["version", 695, 5], ["srcs", 696, 5], ["commonPackages", 730, 13], ["hostPackages", 730, 28], ["targetPackages", 730, 41], ["runtime", 731, 5], ["aspnetcore", 732, 5]], [["url", 739, 9], ["hash", 740, 9]], [["url", 743, 9], ["hash", 744, 9]], [["url", 747, 9], ["hash", 748, 9]], [["url", 751, 9], ["hash", 752, 9]], [["url", 755, 9], ["hash", 756, 9]], [["url", 759, 9], ["hash", 760, 9]], [["url", 763, 9], ["hash", 764, 9]], [["url", 767, 9], ["hash", 768, 9]], [["linux-arm", 738, 7], ["linux-arm64", 742, 7], ["linux-x64", 746, 7], ["linux-musl-arm", 750, 7], ["linux-musl-arm64", 754, 7], ["linux-musl-x64", 758, 7], ["osx-arm64", 762, 7], ["osx-x64", 766, 7]], [["version", 736, 5], ["srcs", 737, 5], ["commonPackages", 771, 13], ["hostPackages", 771, 28], ["targetPackages", 771, 41], ["runtime", 772, 5], ["aspnetcore", 773, 5]], [["url", 780, 9], ["hash", 781, 9]], [["url", 784, 9], ["hash", 785, 9]], [["url", 788, 9], ["hash", 789, 9]], [["url", 792, 9], ["hash", 793, 9]], [["url", 796, 9], ["hash", 797, 9]], [["url", 800, 9], ["hash", 801, 9]], [["url", 804, 9], ["hash", 805, 9]], [["url", 808, 9], ["hash", 809, 9]], [["linux-arm", 779, 7], ["linux-arm64", 783, 7], ["linux-x64", 787, 7], ["linux-musl-arm", 791, 7], ["linux-musl-arm64", 795, 7], ["linux-musl-x64", 799, 7], ["osx-arm64", 803, 7], ["osx-x64", 807, 7]], [["version", 777, 5], ["srcs", 778, 5], ["commonPackages", 812, 13], ["hostPackages", 812, 28], ["targetPackages", 812, 41], ["runtime", 813, 5], ["aspnetcore", 814, 5]], [["release_7_0", 616, 3], ["aspnetcore_7_0", 618, 3], ["runtime_7_0", 656, 3], ["sdk_7_0_4xx", 694, 3], ["sdk_7_0_3xx", 735, 3], ["sdk_7_0_1xx", 776, 3], ["sdk_7_0", 817, 3]]]);
 const formals$1 = { args: { buildAspNetCore: false, buildNetRuntime: false, buildNetSdk: false, fetchNupkg: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/releases.nix", [["pname", 13, 7], ["version", 14, 7], ["hash", 15, 7]]);
-const pos$2 = nix.positions(here + "/releases.nix", [["pname", 18, 7], ["version", 19, 7], ["hash", 20, 7]]);
-const pos$3 = nix.positions(here + "/releases.nix", [["pname", 23, 7], ["version", 24, 7], ["hash", 25, 7]]);
-const pos$4 = nix.positions(here + "/releases.nix", [["pname", 28, 7], ["version", 29, 7], ["hash", 30, 7]]);
-const pos$5 = nix.positions(here + "/releases.nix", [["pname", 33, 7], ["version", 34, 7], ["hash", 35, 7]]);
-const pos$6 = nix.positions(here + "/releases.nix", [["pname", 38, 7], ["version", 39, 7], ["hash", 40, 7]]);
-const pos$7 = nix.positions(here + "/releases.nix", [["pname", 43, 7], ["version", 44, 7], ["hash", 45, 7]]);
-const pos$8 = nix.positions(here + "/releases.nix", [["pname", 52, 9], ["version", 53, 9], ["hash", 54, 9]]);
-const pos$9 = nix.positions(here + "/releases.nix", [["pname", 59, 9], ["version", 60, 9], ["hash", 61, 9]]);
-const pos$10 = nix.positions(here + "/releases.nix", [["pname", 64, 9], ["version", 65, 9], ["hash", 66, 9]]);
-const pos$11 = nix.positions(here + "/releases.nix", [["pname", 71, 9], ["version", 72, 9], ["hash", 73, 9]]);
-const pos$12 = nix.positions(here + "/releases.nix", [["pname", 76, 9], ["version", 77, 9], ["hash", 78, 9]]);
-const pos$13 = nix.positions(here + "/releases.nix", [["pname", 83, 9], ["version", 84, 9], ["hash", 85, 9]]);
-const pos$14 = nix.positions(here + "/releases.nix", [["pname", 90, 9], ["version", 91, 9], ["hash", 92, 9]]);
-const pos$15 = nix.positions(here + "/releases.nix", [["pname", 95, 9], ["version", 96, 9], ["hash", 97, 9]]);
-const pos$16 = nix.positions(here + "/releases.nix", [["pname", 102, 9], ["version", 103, 9], ["hash", 104, 9]]);
-const pos$17 = nix.positions(here + "/releases.nix", [["pname", 107, 9], ["version", 108, 9], ["hash", 109, 9]]);
-const pos$18 = nix.positions(here + "/releases.nix", [["pname", 114, 9], ["version", 115, 9], ["hash", 116, 9]]);
-const pos$19 = nix.positions(here + "/releases.nix", [["pname", 121, 9], ["version", 122, 9], ["hash", 123, 9]]);
-const pos$20 = nix.positions(here + "/releases.nix", [["pname", 126, 9], ["version", 127, 9], ["hash", 128, 9]]);
-const pos$21 = nix.positions(here + "/releases.nix", [["pname", 133, 9], ["version", 134, 9], ["hash", 135, 9]]);
-const pos$22 = nix.positions(here + "/releases.nix", [["pname", 138, 9], ["version", 139, 9], ["hash", 140, 9]]);
-const pos$23 = nix.positions(here + "/releases.nix", [["pname", 145, 9], ["version", 146, 9], ["hash", 147, 9]]);
-const pos$24 = nix.positions(here + "/releases.nix", [["pname", 150, 9], ["version", 151, 9], ["hash", 152, 9]]);
-const pos$25 = nix.positions(here + "/releases.nix", [["pname", 157, 9], ["version", 158, 9], ["hash", 159, 9]]);
-const pos$26 = nix.positions(here + "/releases.nix", [["linux-arm", 50, 5], ["linux-arm64", 57, 5], ["linux-x64", 69, 5], ["linux-musl-arm", 81, 5], ["linux-musl-arm64", 88, 5], ["linux-musl-x64", 100, 5], ["osx-arm64", 112, 5], ["osx-x64", 119, 5], ["win-arm64", 131, 5], ["win-x64", 143, 5], ["win-x86", 155, 5]]);
-const pos$27 = nix.positions(here + "/releases.nix", [["pname", 167, 9], ["version", 168, 9], ["hash", 169, 9]]);
-const pos$28 = nix.positions(here + "/releases.nix", [["pname", 172, 9], ["version", 173, 9], ["hash", 174, 9]]);
-const pos$29 = nix.positions(here + "/releases.nix", [["pname", 177, 9], ["version", 178, 9], ["hash", 179, 9]]);
-const pos$30 = nix.positions(here + "/releases.nix", [["pname", 182, 9], ["version", 183, 9], ["hash", 184, 9]]);
-const pos$31 = nix.positions(here + "/releases.nix", [["pname", 187, 9], ["version", 188, 9], ["hash", 189, 9]]);
-const pos$32 = nix.positions(here + "/releases.nix", [["pname", 192, 9], ["version", 193, 9], ["hash", 194, 9]]);
-const pos$33 = nix.positions(here + "/releases.nix", [["pname", 197, 9], ["version", 198, 9], ["hash", 199, 9]]);
-const pos$34 = nix.positions(here + "/releases.nix", [["pname", 202, 9], ["version", 203, 9], ["hash", 204, 9]]);
-const pos$35 = nix.positions(here + "/releases.nix", [["pname", 209, 9], ["version", 210, 9], ["hash", 211, 9]]);
-const pos$36 = nix.positions(here + "/releases.nix", [["pname", 214, 9], ["version", 215, 9], ["hash", 216, 9]]);
-const pos$37 = nix.positions(here + "/releases.nix", [["pname", 219, 9], ["version", 220, 9], ["hash", 221, 9]]);
-const pos$38 = nix.positions(here + "/releases.nix", [["pname", 224, 9], ["version", 225, 9], ["hash", 226, 9]]);
-const pos$39 = nix.positions(here + "/releases.nix", [["pname", 229, 9], ["version", 230, 9], ["hash", 231, 9]]);
-const pos$40 = nix.positions(here + "/releases.nix", [["pname", 234, 9], ["version", 235, 9], ["hash", 236, 9]]);
-const pos$41 = nix.positions(here + "/releases.nix", [["pname", 239, 9], ["version", 240, 9], ["hash", 241, 9]]);
-const pos$42 = nix.positions(here + "/releases.nix", [["pname", 244, 9], ["version", 245, 9], ["hash", 246, 9]]);
-const pos$43 = nix.positions(here + "/releases.nix", [["pname", 251, 9], ["version", 252, 9], ["hash", 253, 9]]);
-const pos$44 = nix.positions(here + "/releases.nix", [["pname", 256, 9], ["version", 257, 9], ["hash", 258, 9]]);
-const pos$45 = nix.positions(here + "/releases.nix", [["pname", 261, 9], ["version", 262, 9], ["hash", 263, 9]]);
-const pos$46 = nix.positions(here + "/releases.nix", [["pname", 266, 9], ["version", 267, 9], ["hash", 268, 9]]);
-const pos$47 = nix.positions(here + "/releases.nix", [["pname", 271, 9], ["version", 272, 9], ["hash", 273, 9]]);
-const pos$48 = nix.positions(here + "/releases.nix", [["pname", 276, 9], ["version", 277, 9], ["hash", 278, 9]]);
-const pos$49 = nix.positions(here + "/releases.nix", [["pname", 281, 9], ["version", 282, 9], ["hash", 283, 9]]);
-const pos$50 = nix.positions(here + "/releases.nix", [["pname", 286, 9], ["version", 287, 9], ["hash", 288, 9]]);
-const pos$51 = nix.positions(here + "/releases.nix", [["pname", 293, 9], ["version", 294, 9], ["hash", 295, 9]]);
-const pos$52 = nix.positions(here + "/releases.nix", [["pname", 298, 9], ["version", 299, 9], ["hash", 300, 9]]);
-const pos$53 = nix.positions(here + "/releases.nix", [["pname", 303, 9], ["version", 304, 9], ["hash", 305, 9]]);
-const pos$54 = nix.positions(here + "/releases.nix", [["pname", 308, 9], ["version", 309, 9], ["hash", 310, 9]]);
-const pos$55 = nix.positions(here + "/releases.nix", [["pname", 313, 9], ["version", 314, 9], ["hash", 315, 9]]);
-const pos$56 = nix.positions(here + "/releases.nix", [["pname", 318, 9], ["version", 319, 9], ["hash", 320, 9]]);
-const pos$57 = nix.positions(here + "/releases.nix", [["pname", 323, 9], ["version", 324, 9], ["hash", 325, 9]]);
-const pos$58 = nix.positions(here + "/releases.nix", [["pname", 330, 9], ["version", 331, 9], ["hash", 332, 9]]);
-const pos$59 = nix.positions(here + "/releases.nix", [["pname", 335, 9], ["version", 336, 9], ["hash", 337, 9]]);
-const pos$60 = nix.positions(here + "/releases.nix", [["pname", 340, 9], ["version", 341, 9], ["hash", 342, 9]]);
-const pos$61 = nix.positions(here + "/releases.nix", [["pname", 345, 9], ["version", 346, 9], ["hash", 347, 9]]);
-const pos$62 = nix.positions(here + "/releases.nix", [["pname", 350, 9], ["version", 351, 9], ["hash", 352, 9]]);
-const pos$63 = nix.positions(here + "/releases.nix", [["pname", 355, 9], ["version", 356, 9], ["hash", 357, 9]]);
-const pos$64 = nix.positions(here + "/releases.nix", [["pname", 360, 9], ["version", 361, 9], ["hash", 362, 9]]);
-const pos$65 = nix.positions(here + "/releases.nix", [["pname", 367, 9], ["version", 368, 9], ["hash", 369, 9]]);
-const pos$66 = nix.positions(here + "/releases.nix", [["pname", 372, 9], ["version", 373, 9], ["hash", 374, 9]]);
-const pos$67 = nix.positions(here + "/releases.nix", [["pname", 377, 9], ["version", 378, 9], ["hash", 379, 9]]);
-const pos$68 = nix.positions(here + "/releases.nix", [["pname", 382, 9], ["version", 383, 9], ["hash", 384, 9]]);
-const pos$69 = nix.positions(here + "/releases.nix", [["pname", 387, 9], ["version", 388, 9], ["hash", 389, 9]]);
-const pos$70 = nix.positions(here + "/releases.nix", [["pname", 392, 9], ["version", 393, 9], ["hash", 394, 9]]);
-const pos$71 = nix.positions(here + "/releases.nix", [["pname", 397, 9], ["version", 398, 9], ["hash", 399, 9]]);
-const pos$72 = nix.positions(here + "/releases.nix", [["pname", 402, 9], ["version", 403, 9], ["hash", 404, 9]]);
-const pos$73 = nix.positions(here + "/releases.nix", [["pname", 409, 9], ["version", 410, 9], ["hash", 411, 9]]);
-const pos$74 = nix.positions(here + "/releases.nix", [["pname", 414, 9], ["version", 415, 9], ["hash", 416, 9]]);
-const pos$75 = nix.positions(here + "/releases.nix", [["pname", 419, 9], ["version", 420, 9], ["hash", 421, 9]]);
-const pos$76 = nix.positions(here + "/releases.nix", [["pname", 424, 9], ["version", 425, 9], ["hash", 426, 9]]);
-const pos$77 = nix.positions(here + "/releases.nix", [["pname", 429, 9], ["version", 430, 9], ["hash", 431, 9]]);
-const pos$78 = nix.positions(here + "/releases.nix", [["pname", 434, 9], ["version", 435, 9], ["hash", 436, 9]]);
-const pos$79 = nix.positions(here + "/releases.nix", [["pname", 439, 9], ["version", 440, 9], ["hash", 441, 9]]);
-const pos$80 = nix.positions(here + "/releases.nix", [["pname", 444, 9], ["version", 445, 9], ["hash", 446, 9]]);
-const pos$81 = nix.positions(here + "/releases.nix", [["pname", 451, 9], ["version", 452, 9], ["hash", 453, 9]]);
-const pos$82 = nix.positions(here + "/releases.nix", [["pname", 456, 9], ["version", 457, 9], ["hash", 458, 9]]);
-const pos$83 = nix.positions(here + "/releases.nix", [["pname", 461, 9], ["version", 462, 9], ["hash", 463, 9]]);
-const pos$84 = nix.positions(here + "/releases.nix", [["pname", 466, 9], ["version", 467, 9], ["hash", 468, 9]]);
-const pos$85 = nix.positions(here + "/releases.nix", [["pname", 471, 9], ["version", 472, 9], ["hash", 473, 9]]);
-const pos$86 = nix.positions(here + "/releases.nix", [["pname", 476, 9], ["version", 477, 9], ["hash", 478, 9]]);
-const pos$87 = nix.positions(here + "/releases.nix", [["pname", 481, 9], ["version", 482, 9], ["hash", 483, 9]]);
-const pos$88 = nix.positions(here + "/releases.nix", [["pname", 486, 9], ["version", 487, 9], ["hash", 488, 9]]);
-const pos$89 = nix.positions(here + "/releases.nix", [["pname", 493, 9], ["version", 494, 9], ["hash", 495, 9]]);
-const pos$90 = nix.positions(here + "/releases.nix", [["pname", 498, 9], ["version", 499, 9], ["hash", 500, 9]]);
-const pos$91 = nix.positions(here + "/releases.nix", [["pname", 503, 9], ["version", 504, 9], ["hash", 505, 9]]);
-const pos$92 = nix.positions(here + "/releases.nix", [["pname", 508, 9], ["version", 509, 9], ["hash", 510, 9]]);
-const pos$93 = nix.positions(here + "/releases.nix", [["pname", 513, 9], ["version", 514, 9], ["hash", 515, 9]]);
-const pos$94 = nix.positions(here + "/releases.nix", [["pname", 518, 9], ["version", 519, 9], ["hash", 520, 9]]);
-const pos$95 = nix.positions(here + "/releases.nix", [["pname", 523, 9], ["version", 524, 9], ["hash", 525, 9]]);
-const pos$96 = nix.positions(here + "/releases.nix", [["pname", 530, 9], ["version", 531, 9], ["hash", 532, 9]]);
-const pos$97 = nix.positions(here + "/releases.nix", [["pname", 535, 9], ["version", 536, 9], ["hash", 537, 9]]);
-const pos$98 = nix.positions(here + "/releases.nix", [["pname", 540, 9], ["version", 541, 9], ["hash", 542, 9]]);
-const pos$99 = nix.positions(here + "/releases.nix", [["pname", 545, 9], ["version", 546, 9], ["hash", 547, 9]]);
-const pos$100 = nix.positions(here + "/releases.nix", [["pname", 550, 9], ["version", 551, 9], ["hash", 552, 9]]);
-const pos$101 = nix.positions(here + "/releases.nix", [["pname", 555, 9], ["version", 556, 9], ["hash", 557, 9]]);
-const pos$102 = nix.positions(here + "/releases.nix", [["pname", 560, 9], ["version", 561, 9], ["hash", 562, 9]]);
-const pos$103 = nix.positions(here + "/releases.nix", [["pname", 565, 9], ["version", 566, 9], ["hash", 567, 9]]);
-const pos$104 = nix.positions(here + "/releases.nix", [["pname", 572, 9], ["version", 573, 9], ["hash", 574, 9]]);
-const pos$105 = nix.positions(here + "/releases.nix", [["pname", 577, 9], ["version", 578, 9], ["hash", 579, 9]]);
-const pos$106 = nix.positions(here + "/releases.nix", [["pname", 582, 9], ["version", 583, 9], ["hash", 584, 9]]);
-const pos$107 = nix.positions(here + "/releases.nix", [["pname", 587, 9], ["version", 588, 9], ["hash", 589, 9]]);
-const pos$108 = nix.positions(here + "/releases.nix", [["pname", 592, 9], ["version", 593, 9], ["hash", 594, 9]]);
-const pos$109 = nix.positions(here + "/releases.nix", [["pname", 597, 9], ["version", 598, 9], ["hash", 599, 9]]);
-const pos$110 = nix.positions(here + "/releases.nix", [["pname", 602, 9], ["version", 603, 9], ["hash", 604, 9]]);
-const pos$111 = nix.positions(here + "/releases.nix", [["pname", 607, 9], ["version", 608, 9], ["hash", 609, 9]]);
-const pos$112 = nix.positions(here + "/releases.nix", [["linux-arm", 165, 5], ["linux-arm64", 207, 5], ["linux-x64", 249, 5], ["linux-musl-arm", 291, 5], ["linux-musl-arm64", 328, 5], ["linux-musl-x64", 365, 5], ["osx-arm64", 407, 5], ["osx-x64", 449, 5], ["win-arm64", 491, 5], ["win-x64", 528, 5], ["win-x86", 570, 5]]);
-const pos$113 = nix.positions(here + "/releases.nix", [["url", 622, 9], ["hash", 623, 9]]);
-const pos$114 = nix.positions(here + "/releases.nix", [["url", 626, 9], ["hash", 627, 9]]);
-const pos$115 = nix.positions(here + "/releases.nix", [["url", 630, 9], ["hash", 631, 9]]);
-const pos$116 = nix.positions(here + "/releases.nix", [["url", 634, 9], ["hash", 635, 9]]);
-const pos$117 = nix.positions(here + "/releases.nix", [["url", 638, 9], ["hash", 639, 9]]);
-const pos$118 = nix.positions(here + "/releases.nix", [["url", 642, 9], ["hash", 643, 9]]);
-const pos$119 = nix.positions(here + "/releases.nix", [["url", 646, 9], ["hash", 647, 9]]);
-const pos$120 = nix.positions(here + "/releases.nix", [["url", 650, 9], ["hash", 651, 9]]);
-const pos$121 = nix.positions(here + "/releases.nix", [["linux-arm", 621, 7], ["linux-arm64", 625, 7], ["linux-x64", 629, 7], ["linux-musl-arm", 633, 7], ["linux-musl-arm64", 637, 7], ["linux-musl-x64", 641, 7], ["osx-arm64", 645, 7], ["osx-x64", 649, 7]]);
-const pos$122 = nix.positions(here + "/releases.nix", [["version", 619, 5], ["srcs", 620, 5]]);
-const pos$123 = nix.positions(here + "/releases.nix", [["url", 660, 9], ["hash", 661, 9]]);
-const pos$124 = nix.positions(here + "/releases.nix", [["url", 664, 9], ["hash", 665, 9]]);
-const pos$125 = nix.positions(here + "/releases.nix", [["url", 668, 9], ["hash", 669, 9]]);
-const pos$126 = nix.positions(here + "/releases.nix", [["url", 672, 9], ["hash", 673, 9]]);
-const pos$127 = nix.positions(here + "/releases.nix", [["url", 676, 9], ["hash", 677, 9]]);
-const pos$128 = nix.positions(here + "/releases.nix", [["url", 680, 9], ["hash", 681, 9]]);
-const pos$129 = nix.positions(here + "/releases.nix", [["url", 684, 9], ["hash", 685, 9]]);
-const pos$130 = nix.positions(here + "/releases.nix", [["url", 688, 9], ["hash", 689, 9]]);
-const pos$131 = nix.positions(here + "/releases.nix", [["linux-arm", 659, 7], ["linux-arm64", 663, 7], ["linux-x64", 667, 7], ["linux-musl-arm", 671, 7], ["linux-musl-arm64", 675, 7], ["linux-musl-x64", 679, 7], ["osx-arm64", 683, 7], ["osx-x64", 687, 7]]);
-const pos$132 = nix.positions(here + "/releases.nix", [["version", 657, 5], ["srcs", 658, 5]]);
-const pos$133 = nix.positions(here + "/releases.nix", [["url", 698, 9], ["hash", 699, 9]]);
-const pos$134 = nix.positions(here + "/releases.nix", [["url", 702, 9], ["hash", 703, 9]]);
-const pos$135 = nix.positions(here + "/releases.nix", [["url", 706, 9], ["hash", 707, 9]]);
-const pos$136 = nix.positions(here + "/releases.nix", [["url", 710, 9], ["hash", 711, 9]]);
-const pos$137 = nix.positions(here + "/releases.nix", [["url", 714, 9], ["hash", 715, 9]]);
-const pos$138 = nix.positions(here + "/releases.nix", [["url", 718, 9], ["hash", 719, 9]]);
-const pos$139 = nix.positions(here + "/releases.nix", [["url", 722, 9], ["hash", 723, 9]]);
-const pos$140 = nix.positions(here + "/releases.nix", [["url", 726, 9], ["hash", 727, 9]]);
-const pos$141 = nix.positions(here + "/releases.nix", [["linux-arm", 697, 7], ["linux-arm64", 701, 7], ["linux-x64", 705, 7], ["linux-musl-arm", 709, 7], ["linux-musl-arm64", 713, 7], ["linux-musl-x64", 717, 7], ["osx-arm64", 721, 7], ["osx-x64", 725, 7]]);
-const pos$142 = nix.positions(here + "/releases.nix", [["version", 695, 5], ["srcs", 696, 5], ["commonPackages", 730, 13], ["hostPackages", 730, 28], ["targetPackages", 730, 41], ["runtime", 731, 5], ["aspnetcore", 732, 5]]);
-const pos$143 = nix.positions(here + "/releases.nix", [["url", 739, 9], ["hash", 740, 9]]);
-const pos$144 = nix.positions(here + "/releases.nix", [["url", 743, 9], ["hash", 744, 9]]);
-const pos$145 = nix.positions(here + "/releases.nix", [["url", 747, 9], ["hash", 748, 9]]);
-const pos$146 = nix.positions(here + "/releases.nix", [["url", 751, 9], ["hash", 752, 9]]);
-const pos$147 = nix.positions(here + "/releases.nix", [["url", 755, 9], ["hash", 756, 9]]);
-const pos$148 = nix.positions(here + "/releases.nix", [["url", 759, 9], ["hash", 760, 9]]);
-const pos$149 = nix.positions(here + "/releases.nix", [["url", 763, 9], ["hash", 764, 9]]);
-const pos$150 = nix.positions(here + "/releases.nix", [["url", 767, 9], ["hash", 768, 9]]);
-const pos$151 = nix.positions(here + "/releases.nix", [["linux-arm", 738, 7], ["linux-arm64", 742, 7], ["linux-x64", 746, 7], ["linux-musl-arm", 750, 7], ["linux-musl-arm64", 754, 7], ["linux-musl-x64", 758, 7], ["osx-arm64", 762, 7], ["osx-x64", 766, 7]]);
-const pos$152 = nix.positions(here + "/releases.nix", [["version", 736, 5], ["srcs", 737, 5], ["commonPackages", 771, 13], ["hostPackages", 771, 28], ["targetPackages", 771, 41], ["runtime", 772, 5], ["aspnetcore", 773, 5]]);
-const pos$153 = nix.positions(here + "/releases.nix", [["url", 780, 9], ["hash", 781, 9]]);
-const pos$154 = nix.positions(here + "/releases.nix", [["url", 784, 9], ["hash", 785, 9]]);
-const pos$155 = nix.positions(here + "/releases.nix", [["url", 788, 9], ["hash", 789, 9]]);
-const pos$156 = nix.positions(here + "/releases.nix", [["url", 792, 9], ["hash", 793, 9]]);
-const pos$157 = nix.positions(here + "/releases.nix", [["url", 796, 9], ["hash", 797, 9]]);
-const pos$158 = nix.positions(here + "/releases.nix", [["url", 800, 9], ["hash", 801, 9]]);
-const pos$159 = nix.positions(here + "/releases.nix", [["url", 804, 9], ["hash", 805, 9]]);
-const pos$160 = nix.positions(here + "/releases.nix", [["url", 808, 9], ["hash", 809, 9]]);
-const pos$161 = nix.positions(here + "/releases.nix", [["linux-arm", 779, 7], ["linux-arm64", 783, 7], ["linux-x64", 787, 7], ["linux-musl-arm", 791, 7], ["linux-musl-arm64", 795, 7], ["linux-musl-x64", 799, 7], ["osx-arm64", 803, 7], ["osx-x64", 807, 7]]);
-const pos$162 = nix.positions(here + "/releases.nix", [["version", 777, 5], ["srcs", 778, 5], ["commonPackages", 812, 13], ["hostPackages", 812, 28], ["targetPackages", 812, 41], ["runtime", 813, 5], ["aspnetcore", 814, 5]]);
-const pos$163 = nix.positions(here + "/releases.nix", [["release_7_0", 616, 3], ["aspnetcore_7_0", 618, 3], ["runtime_7_0", 656, 3], ["sdk_7_0_4xx", 694, 3], ["sdk_7_0_3xx", 735, 3], ["sdk_7_0_1xx", 776, 3], ["sdk_7_0", 817, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -175,53 +13,53 @@ export default nix.lambda((args) => (() => {
   const fetchNupkg = nix.arg($, "fetchNupkg");
   const commonPackages = nix.thunk(() => [
     nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         pname: "Microsoft.AspNetCore.App.Ref",
         version: "7.0.20",
         hash: "sha512-ySX6TZFi1eSJj3c3JIroCLzHbZkLmr+fgeQ78AUYsOUhjKKw7qliqRoMKx9Uqc/qMMkyRpSBcwfJ7X7vWYbPeQ==",
       })))),
     nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         pname: "Microsoft.NETCore.DotNetAppHost",
         version: "7.0.20",
         hash: "sha512-zIPVUsCfS9EbdvNxJ0tkV7Insj7CTpIMA+ILK9y6Tr7qqG56sgMIW+0KOJg/UPlWH/2epqsIhMWoBZWt8bZtuA==",
       })))),
     nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname: "Microsoft.NETCore.App.Ref",
         version: "7.0.20",
         hash: "sha512-dk6z/ZqMpZ4lxVisgnPX1H+MwiUTRQHhwq3e9VMSIRL5loVdqHlZ9fRFfAejEz3U8EbvGV43Vp3OwF5R7mlTTw==",
       })))),
     nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname: "Microsoft.NETCore.DotNetHost",
         version: "7.0.20",
         hash: "sha512-H4RtRdwUQpBk7tJFT3C/c9WNGGdAVDq9S3Mz6qYP5Sasov7NPcR2rkoTNIoo4jTt3p26vsNcb5lAiQBBptaveA==",
       })))),
     nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname: "Microsoft.NETCore.DotNetHostPolicy",
         version: "7.0.20",
         hash: "sha512-puv59sewO3+HudFk/Fpt8x3IJuEDk5TvTSJdn/EM00P8j5AmA3WyjHA1bSSUOuyGwjxPDe9t5iYoaYDysa97mw==",
       })))),
     nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname: "Microsoft.NETCore.DotNetHostResolver",
         version: "7.0.20",
         hash: "sha512-7xdJGNmwiuEV8vRizwuX34ETFRuxNZZk4t+o8JmGrGDecZ1JNgzip8CUz44/AYaLztUdXv3O7xZB7OQO8AO5Kg==",
       })))),
     nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         pname: "Microsoft.DotNet.ILCompiler",
         version: "7.0.20",
         hash: "sha512-4WZbJ4WKpN7BzXKIQhzNz3Srp3zhDHiv98SFGQlAzFiYp+viQ6nzD4jzax9yOkx6mDCuOsJfscEq2U/pXL+2dw==",
       })))),
   ]);
   const hostPackages = nix.thunk(() => ({
-    [nix.POS]: pos$26,
+    [nix.POS]: $pos[25],
     "linux-arm": nix.thunk(() => [
       nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           pname: "Microsoft.NETCore.App.Crossgen2.linux-arm",
           version: "7.0.20",
           hash: "sha512-GJMG2UNQPuSxxStN/x1Seee4JUXwhYmn4h6/dV7xuCg7zexC6S350W5GEBqKc1kU92rD2oV75UdUkqZGimU4ug==",
@@ -229,13 +67,13 @@ export default nix.lambda((args) => (() => {
     ]),
     "linux-arm64": nix.thunk(() => [
       nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           pname: "Microsoft.NETCore.App.Crossgen2.linux-arm64",
           version: "7.0.20",
           hash: "sha512-hR6BQ19osMSIzMMaBC/XF9VU4yKhjjAwEp9nEBwNmOrAQfkVRwG5Td+gLhRiOMW0pY5/GjXLlwziiFQ2ksZqaQ==",
         })))),
       nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-          [nix.POS]: pos$10,
+          [nix.POS]: $pos[9],
           pname: "runtime.linux-arm64.Microsoft.DotNet.ILCompiler",
           version: "7.0.20",
           hash: "sha512-oGiO7TutJZb4JVoPyqGLMaDQ9oWMYg6rp+dughnnNhD4bU3xy189hWfxfMYTHZbct2vlPbSX1OlTCkhjENgpww==",
@@ -243,13 +81,13 @@ export default nix.lambda((args) => (() => {
     ]),
     "linux-x64": nix.thunk(() => [
       nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-          [nix.POS]: pos$11,
+          [nix.POS]: $pos[10],
           pname: "Microsoft.NETCore.App.Crossgen2.linux-x64",
           version: "7.0.20",
           hash: "sha512-Ydi2yUhYl//LrXMYWtr4YKxwbz/M+qNI4VJG1zgLRBBu2ZLvHULKOMMtiUJYYHV692jbkENGGFUUu3E6JiCrYQ==",
         })))),
       nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-          [nix.POS]: pos$12,
+          [nix.POS]: $pos[11],
           pname: "runtime.linux-x64.Microsoft.DotNet.ILCompiler",
           version: "7.0.20",
           hash: "sha512-sOSigEu2JZ8SuVT/34zUHiw0xiDxjsX+pRvbvXa8aXWAJwfy/CFOow2S7wD6foZA/WCg0wPeaV3ny8vWE8Nt1g==",
@@ -257,7 +95,7 @@ export default nix.lambda((args) => (() => {
     ]),
     "linux-musl-arm": nix.thunk(() => [
       nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-          [nix.POS]: pos$13,
+          [nix.POS]: $pos[12],
           pname: "Microsoft.NETCore.App.Crossgen2.linux-musl-arm",
           version: "7.0.20",
           hash: "sha512-s1fmr6tneGoM1Kx6Bd3ZXHpCBP5L24uZStqZpstEamz9SLzWAYouDgclk2hS1vrxkTEbM3tzHUtMPzBGaB0FWg==",
@@ -265,13 +103,13 @@ export default nix.lambda((args) => (() => {
     ]),
     "linux-musl-arm64": nix.thunk(() => [
       nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-          [nix.POS]: pos$14,
+          [nix.POS]: $pos[13],
           pname: "Microsoft.NETCore.App.Crossgen2.linux-musl-arm64",
           version: "7.0.20",
           hash: "sha512-O1I5IR+Bn3zADNEc3H6mG48hW934vx6qDb09UlBVuDHlOjkQorm99IEktZZNaWxcuOqhtEi8+1eIAVmyBy3maw==",
         })))),
       nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-          [nix.POS]: pos$15,
+          [nix.POS]: $pos[14],
           pname: "runtime.linux-musl-arm64.Microsoft.DotNet.ILCompiler",
           version: "7.0.20",
           hash: "sha512-Cf37Af+mBJseV7N6gV1mVPVu5ldPF9jkQUsu+EZNwDCrzKLslkQz06E3UiEIM3LHWh/TtIYZe393Y7M7OwKUQA==",
@@ -279,13 +117,13 @@ export default nix.lambda((args) => (() => {
     ]),
     "linux-musl-x64": nix.thunk(() => [
       nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-          [nix.POS]: pos$16,
+          [nix.POS]: $pos[15],
           pname: "Microsoft.NETCore.App.Crossgen2.linux-musl-x64",
           version: "7.0.20",
           hash: "sha512-3yOYRm4dt6x8CM9xQ153CVLQc/f5tWJSKs6t/Shq9Q8E4kE0S1hYP3i90zorOlrvwHO08wcb8pxYOo2l6PPYxw==",
         })))),
       nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-          [nix.POS]: pos$17,
+          [nix.POS]: $pos[16],
           pname: "runtime.linux-musl-x64.Microsoft.DotNet.ILCompiler",
           version: "7.0.20",
           hash: "sha512-GYaw401lDpfW87lbZzoLiZmEG+WjCXnxkEfFi4Gs8+5YHZBAxJLV67r4ifCGt0n/TdXbxDZbZCXBT/lLzij8Pg==",
@@ -293,7 +131,7 @@ export default nix.lambda((args) => (() => {
     ]),
     "osx-arm64": nix.thunk(() => [
       nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-          [nix.POS]: pos$18,
+          [nix.POS]: $pos[17],
           pname: "Microsoft.NETCore.App.Crossgen2.osx-arm64",
           version: "7.0.20",
           hash: "sha512-Qzruh84k89DwZQaHiIrK5WqRD+ScoNGbX0xvG1d5OPO0fnJod/nmPhdYo/9AXobTpY9WYpfEVTcGGMjGncwfMg==",
@@ -301,13 +139,13 @@ export default nix.lambda((args) => (() => {
     ]),
     "osx-x64": nix.thunk(() => [
       nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-          [nix.POS]: pos$19,
+          [nix.POS]: $pos[18],
           pname: "Microsoft.NETCore.App.Crossgen2.osx-x64",
           version: "7.0.20",
           hash: "sha512-H2xNMKpVvdUDRDGnEecDq84wPWhhjL+ls4W6QUOGwp6hoSMDOIXqUMPKm7gYlO4O0VCy93DYXx5aRXf9tVMVlA==",
         })))),
       nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-          [nix.POS]: pos$20,
+          [nix.POS]: $pos[19],
           pname: "runtime.osx-x64.Microsoft.DotNet.ILCompiler",
           version: "7.0.20",
           hash: "sha512-sa86jqaVkMxX80lCyNczLAs7MlIp6ZEba7kdWL3WUviPzfG38NT+KGuG4ruV0NEQZSIlrCrQzeu6iHhirIhDhA==",
@@ -315,13 +153,13 @@ export default nix.lambda((args) => (() => {
     ]),
     "win-arm64": nix.thunk(() => [
       nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-          [nix.POS]: pos$21,
+          [nix.POS]: $pos[20],
           pname: "Microsoft.NETCore.App.Crossgen2.win-arm64",
           version: "7.0.20",
           hash: "sha512-jbKk+MEWwNJ4l/ueJ8xoc/WOAnYawTohaMuRI67dMMldbsFMjtjNJXBqANioRgEJ/6648fiysvgat39io0KlBQ==",
         })))),
       nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-          [nix.POS]: pos$22,
+          [nix.POS]: $pos[21],
           pname: "runtime.win-arm64.Microsoft.DotNet.ILCompiler",
           version: "7.0.20",
           hash: "sha512-38BRd1Vma9n8ggDVTJOVgJwNvLhnwvy3fOgdeLeDtwtEZ1QhE+CAgQwzuH6VNi8H10WGCP9D18f1+dw+/Wegnw==",
@@ -329,13 +167,13 @@ export default nix.lambda((args) => (() => {
     ]),
     "win-x64": nix.thunk(() => [
       nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-          [nix.POS]: pos$23,
+          [nix.POS]: $pos[22],
           pname: "Microsoft.NETCore.App.Crossgen2.win-x64",
           version: "7.0.20",
           hash: "sha512-3xM+swE86Z5Adp4LM+CeadMROSgoCdQ3i+aiiwKv5JwXESeN/1cFQgIJjuXtZAmSeaop3eu64Om1+poD2YtWbA==",
         })))),
       nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-          [nix.POS]: pos$24,
+          [nix.POS]: $pos[23],
           pname: "runtime.win-x64.Microsoft.DotNet.ILCompiler",
           version: "7.0.20",
           hash: "sha512-aoVzNoDMrYlaBnBqsdXzpHFgzPR88j5foFnqa9w2VWyeQqqSxvBv7PCOc7yWSU+2yr5tIIr4fa1h8Ahn4+9uZQ==",
@@ -343,7 +181,7 @@ export default nix.lambda((args) => (() => {
     ]),
     "win-x86": nix.thunk(() => [
       nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-          [nix.POS]: pos$25,
+          [nix.POS]: $pos[24],
           pname: "Microsoft.NETCore.App.Crossgen2.win-x86",
           version: "7.0.20",
           hash: "sha512-/ikA96hY3FQhOkrO7lcWmlry8e2Dq0gvDMSJ5M8A7lFFTshHL8+maXxitWXb/JGRWmA2F7s8NlIkUZOXmblV3Q==",
@@ -351,52 +189,52 @@ export default nix.lambda((args) => (() => {
     ]),
   }));
   const targetPackages = nix.thunk(() => ({
-    [nix.POS]: pos$112,
+    [nix.POS]: $pos[111],
     "linux-arm": nix.thunk(() => [
       nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-          [nix.POS]: pos$27,
+          [nix.POS]: $pos[26],
           pname: "Microsoft.AspNetCore.App.Runtime.linux-arm",
           version: "7.0.20",
           hash: "sha512-XHwBlrABxZA5+Fny0zs0gQa8OLHqWU2dCT5gtj0B3O9B5696yiH0WjSu4Af1cf9q9zBTfVOPkVh4h5etf3VUOg==",
         })))),
       nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-          [nix.POS]: pos$28,
+          [nix.POS]: $pos[27],
           pname: "Microsoft.NETCore.App.Host.linux-arm",
           version: "7.0.20",
           hash: "sha512-c+P8/CGPeinx/ch69USopX0t4nux/JvSExuJzhlcgNoraYWJd+qfR44qZN0gdYBKIwCPem/xATze8FwxKcG4cQ==",
         })))),
       nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-          [nix.POS]: pos$29,
+          [nix.POS]: $pos[28],
           pname: "Microsoft.NETCore.App.Runtime.linux-arm",
           version: "7.0.20",
           hash: "sha512-y9Egnw0qVXdKRNOPKZ0amu0B0ojk95f838nEmt0A0jGyTXHHo5uXCK+DOGH7pCbeiaaZifWo5Va8CtDXSH64Qg==",
         })))),
       nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-          [nix.POS]: pos$30,
+          [nix.POS]: $pos[29],
           pname: "runtime.linux-arm.Microsoft.NETCore.DotNetAppHost",
           version: "7.0.20",
           hash: "sha512-XhbUBpTDP+MVdtwLWCcTRJlhuJBHQYMvDpBAt5TvSlkZgUNeTnGTKGRjaehrA9refSi440eYlR20fDONE3RcGg==",
         })))),
       nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-          [nix.POS]: pos$31,
+          [nix.POS]: $pos[30],
           pname: "runtime.linux-arm.Microsoft.NETCore.DotNetHost",
           version: "7.0.20",
           hash: "sha512-oRBtuytqfo8feMpWAIajol/mp0Q5clXtccQ5YiGDOvhf/OKzDquVKuLWXnoLUBPrz3wdJyfcPa/hGZZjbexKWQ==",
         })))),
       nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-          [nix.POS]: pos$32,
+          [nix.POS]: $pos[31],
           pname: "runtime.linux-arm.Microsoft.NETCore.DotNetHostPolicy",
           version: "7.0.20",
           hash: "sha512-m7921DXQMDfqRICavvcOYnH+LEAS3JqE6+jOlI9lST624PLO8oWac0GrljwKkhA2QPPjNZEw8+QtACkiJ0KnYQ==",
         })))),
       nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-          [nix.POS]: pos$33,
+          [nix.POS]: $pos[32],
           pname: "runtime.linux-arm.Microsoft.NETCore.DotNetHostResolver",
           version: "7.0.20",
           hash: "sha512-JL9ppjzSerw1dmYJ1SDJ92Hfbg6G/kBRFZ3r0H+JMo0fjE03TSPmmMRPNbeaWbqeBLEOsoD9CnvVg6djdOEvTA==",
         })))),
       nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-          [nix.POS]: pos$34,
+          [nix.POS]: $pos[33],
           pname: "Microsoft.NETCore.App.Runtime.Mono.linux-arm",
           version: "7.0.20",
           hash: "sha512-V6EHnxIh8o/MG/VEtWYF5yKGB4ZoXZsgMg9oSfummwThV/qP4vclU68HtoINgpJsjl01/D6q2e9eccElLCPt0A==",
@@ -404,49 +242,49 @@ export default nix.lambda((args) => (() => {
     ]),
     "linux-arm64": nix.thunk(() => [
       nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-          [nix.POS]: pos$35,
+          [nix.POS]: $pos[34],
           pname: "Microsoft.AspNetCore.App.Runtime.linux-arm64",
           version: "7.0.20",
           hash: "sha512-7alEgdaS+JmhsfvgZWcOGEOWfL20TFShwkbpbRtiyXjXzMV6JHVER8s3n+tV+Bep85ME+FRwZh21YK+Nx33aZg==",
         })))),
       nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-          [nix.POS]: pos$36,
+          [nix.POS]: $pos[35],
           pname: "Microsoft.NETCore.App.Host.linux-arm64",
           version: "7.0.20",
           hash: "sha512-a+SvJNNVQMGWbTKKmDRS4Dc83WzP4REEk2doI3UjEMkFdsLbEm2Lep3vCUpb7mkkFvjYPMiFqNiNG6OGTuVaVA==",
         })))),
       nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-          [nix.POS]: pos$37,
+          [nix.POS]: $pos[36],
           pname: "Microsoft.NETCore.App.Runtime.linux-arm64",
           version: "7.0.20",
           hash: "sha512-gxR7jFMvYM0IDe77zAE9OnCveUM5eW2poCOayo88FD82f//4/BK6sHY/gked0cu5cUMhygTmXEwr3klKrRnxgA==",
         })))),
       nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-          [nix.POS]: pos$38,
+          [nix.POS]: $pos[37],
           pname: "runtime.linux-arm64.Microsoft.NETCore.DotNetAppHost",
           version: "7.0.20",
           hash: "sha512-4q9Mo/KPoOkeX2gvUbgIR5Oyo+YCozXFd0rLk1+uJrZabBrzyxqs1Wdx9Iya2KrM4b5X+rSqjEZcLPZ2h2KpEQ==",
         })))),
       nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-          [nix.POS]: pos$39,
+          [nix.POS]: $pos[38],
           pname: "runtime.linux-arm64.Microsoft.NETCore.DotNetHost",
           version: "7.0.20",
           hash: "sha512-wB7JHQS6vd0aRwFVsLGwzjMs4n6nmt/Z5EhmESdrOoFAtRm0e3UI8nerzUa+JGInlCrZ5RT+1VAtwNNoUJ1yEg==",
         })))),
       nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-          [nix.POS]: pos$40,
+          [nix.POS]: $pos[39],
           pname: "runtime.linux-arm64.Microsoft.NETCore.DotNetHostPolicy",
           version: "7.0.20",
           hash: "sha512-krhZ6dclekB1enWxYcCeboGgk2yaJEBV5Cn5thj6Lv6KTMfpcqkIJobtAxcb6eg8qJVqRTN0DebTedR4lSFQKw==",
         })))),
       nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-          [nix.POS]: pos$41,
+          [nix.POS]: $pos[40],
           pname: "runtime.linux-arm64.Microsoft.NETCore.DotNetHostResolver",
           version: "7.0.20",
           hash: "sha512-2gAdw0/KO7sqhe4B5bcs++sJQhv5DlNK8QFXehXVjd3P8u2wse8nSuquN9iYi/P3ztnFaJAi5yJvzNEwF+fRQw==",
         })))),
       nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-          [nix.POS]: pos$42,
+          [nix.POS]: $pos[41],
           pname: "Microsoft.NETCore.App.Runtime.Mono.linux-arm64",
           version: "7.0.20",
           hash: "sha512-s3xEcytFnFKyBXUWrh5GehbZ/kG5thQKn9Q6J1iNaigIEzxbaNO5vrtPSb0patwnrsltzHC7e1ETrkY6E9/jGA==",
@@ -454,49 +292,49 @@ export default nix.lambda((args) => (() => {
     ]),
     "linux-x64": nix.thunk(() => [
       nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-          [nix.POS]: pos$43,
+          [nix.POS]: $pos[42],
           pname: "Microsoft.AspNetCore.App.Runtime.linux-x64",
           version: "7.0.20",
           hash: "sha512-DC+IasSvYfnFkrcT3gnq08t0iVKmIPmxEFrvITw3qdwH9Y5kz9ZEI4xgcQBIbrzUcE+z/5rwWVhATcxNHgaAWw==",
         })))),
       nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-          [nix.POS]: pos$44,
+          [nix.POS]: $pos[43],
           pname: "Microsoft.NETCore.App.Host.linux-x64",
           version: "7.0.20",
           hash: "sha512-abPlEkse/tu8w/F9YPG7fzIP+NbtfhfBrkTjCgnRUnL+HXRkn7ysrUQJ63zWlhVYWilzwTAmUlnjqBsZ+Psnzg==",
         })))),
       nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-          [nix.POS]: pos$45,
+          [nix.POS]: $pos[44],
           pname: "Microsoft.NETCore.App.Runtime.linux-x64",
           version: "7.0.20",
           hash: "sha512-swLcwMoZuUvAWukwmEbjr+YXYtRyeDR/hiYALZ5SVFjtyfS/FSE3IY/xbVtkEyfMFPEcRdErlDVYcJEEq0kPaQ==",
         })))),
       nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-          [nix.POS]: pos$46,
+          [nix.POS]: $pos[45],
           pname: "runtime.linux-x64.Microsoft.NETCore.DotNetAppHost",
           version: "7.0.20",
           hash: "sha512-6VO37nmADf3894eVUQDS2rK2+pNC2QMgWaeVrKL4iKexXDPqa8NC+Qy+FeU2j0Ugp3+V13WFrl1+MXDXIDflcg==",
         })))),
       nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-          [nix.POS]: pos$47,
+          [nix.POS]: $pos[46],
           pname: "runtime.linux-x64.Microsoft.NETCore.DotNetHost",
           version: "7.0.20",
           hash: "sha512-HMRw00L72Ey4bWder1PBZ9VePtd4pJThOMv2bobZrnwzav5s3dlgGjxYc1xxbhmUq0vRZVJrjNkjcM0sAVxIeA==",
         })))),
       nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-          [nix.POS]: pos$48,
+          [nix.POS]: $pos[47],
           pname: "runtime.linux-x64.Microsoft.NETCore.DotNetHostPolicy",
           version: "7.0.20",
           hash: "sha512-1CHk19oIgLW9RKP3LX8M7SoMhdYVsQP7nnA5iuKryGeBPvpGsxGcuB50nzQgUc++PfKfKS9CNPfVGrwKhGGo6g==",
         })))),
       nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-          [nix.POS]: pos$49,
+          [nix.POS]: $pos[48],
           pname: "runtime.linux-x64.Microsoft.NETCore.DotNetHostResolver",
           version: "7.0.20",
           hash: "sha512-lKM4wOtXytPXxf6kQ+68Xmp2WNddKsnJw40MPuWgSYki2SnTccCaP/jI2s+9A78wqx2ycoSOhMTXM37Ee8v6wA==",
         })))),
       nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-          [nix.POS]: pos$50,
+          [nix.POS]: $pos[49],
           pname: "Microsoft.NETCore.App.Runtime.Mono.linux-x64",
           version: "7.0.20",
           hash: "sha512-Co4sV6mPzPF3nh5YFe5RMDmcW7x2nluyN9hAP5zBd4w0lmyeLRxc4BxUH6aq+vgtOjjoS96nV2p2c+zS/MSiZw==",
@@ -504,43 +342,43 @@ export default nix.lambda((args) => (() => {
     ]),
     "linux-musl-arm": nix.thunk(() => [
       nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-          [nix.POS]: pos$51,
+          [nix.POS]: $pos[50],
           pname: "Microsoft.AspNetCore.App.Runtime.linux-musl-arm",
           version: "7.0.20",
           hash: "sha512-MEK4A+6U5zcx4iE+D6iBWHoIX/kJSSUXlXMeWNfMrE8kz2y0Rzck5/zeIXyj39vPCJmuNgmkNqJ0Bd98k94sfg==",
         })))),
       nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-          [nix.POS]: pos$52,
+          [nix.POS]: $pos[51],
           pname: "Microsoft.NETCore.App.Host.linux-musl-arm",
           version: "7.0.20",
           hash: "sha512-vLWNiWcEUx2WSIcM5U5kHDzxm+ITpE746cIzFc0IXY2UgLac2MNEMxmyNC+kI6rXYGwUEJwygIjZhugGanvDsA==",
         })))),
       nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-          [nix.POS]: pos$53,
+          [nix.POS]: $pos[52],
           pname: "Microsoft.NETCore.App.Runtime.linux-musl-arm",
           version: "7.0.20",
           hash: "sha512-U0enhz5LmGi8FK4Zue36ikxFnoUeBM9nH3ZUmrnyWSYT9m5+wp8Bd8I6ubebW1j8K5d744I9b5oUnNWeGLVkow==",
         })))),
       nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-          [nix.POS]: pos$54,
+          [nix.POS]: $pos[53],
           pname: "runtime.linux-musl-arm.Microsoft.NETCore.DotNetAppHost",
           version: "7.0.20",
           hash: "sha512-+mXIZIE4bpGkhlJjBKKCBIm3dJzP4n4LXpsT5Kz3WuasxdNhJ5TVVthIuLz6KKoWEpuRyplrf/rJp0RU8FqmdA==",
         })))),
       nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-          [nix.POS]: pos$55,
+          [nix.POS]: $pos[54],
           pname: "runtime.linux-musl-arm.Microsoft.NETCore.DotNetHost",
           version: "7.0.20",
           hash: "sha512-ywvN5Qmbl94w5ZEAllIpzfHbKLdrjDz626vnr1gaocQNE3BQOi2gt8v3KgOGxevGLrQOocJ+zb1U8GYmxl/g/Q==",
         })))),
       nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-          [nix.POS]: pos$56,
+          [nix.POS]: $pos[55],
           pname: "runtime.linux-musl-arm.Microsoft.NETCore.DotNetHostPolicy",
           version: "7.0.20",
           hash: "sha512-5HVoAWI+7YnneMvF5n62Hp0V45YKONOvHInBQ6gw9TP89Ykf1gjwEE6zQHlpu8+lX1qcTfqWu1iC/GOoo3BshA==",
         })))),
       nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-          [nix.POS]: pos$57,
+          [nix.POS]: $pos[56],
           pname: "runtime.linux-musl-arm.Microsoft.NETCore.DotNetHostResolver",
           version: "7.0.20",
           hash: "sha512-Ji7Q25uFyIEAk8/+4sOmPFDa1UQmnM9bv8ROtH91vyPCZ/RHxU7qo9APSqQAkkK64jHVIDe+BSM2jlowvoGMEg==",
@@ -548,43 +386,43 @@ export default nix.lambda((args) => (() => {
     ]),
     "linux-musl-arm64": nix.thunk(() => [
       nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-          [nix.POS]: pos$58,
+          [nix.POS]: $pos[57],
           pname: "Microsoft.AspNetCore.App.Runtime.linux-musl-arm64",
           version: "7.0.20",
           hash: "sha512-/Ht9KgYt/xsW8cgzCbvFjsjGElx24r55BVGsrQSA6VLJMRvrZLwU6lLFuY1x0CfF5ALs0Uva/jCxTtt+zggaYA==",
         })))),
       nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-          [nix.POS]: pos$59,
+          [nix.POS]: $pos[58],
           pname: "Microsoft.NETCore.App.Host.linux-musl-arm64",
           version: "7.0.20",
           hash: "sha512-bCcmlaXLBmlScQ/HXkkLf1DYQtOjqet/dI8y2sNx1hu89BwEQc28inzi24PZ9GjYo3KyKvy7U17aldK8b2uYAw==",
         })))),
       nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-          [nix.POS]: pos$60,
+          [nix.POS]: $pos[59],
           pname: "Microsoft.NETCore.App.Runtime.linux-musl-arm64",
           version: "7.0.20",
           hash: "sha512-4Ok+e3bc2OJ2YisrmLCMFXKZ/WD5Gyxchryl5clC4s2w2ci/kiDnKI83WL1ibNvEk5wIDRsrCQ5KXA7vYn8wyw==",
         })))),
       nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-          [nix.POS]: pos$61,
+          [nix.POS]: $pos[60],
           pname: "runtime.linux-musl-arm64.Microsoft.NETCore.DotNetAppHost",
           version: "7.0.20",
           hash: "sha512-itRU+NUtQU4Oe1o11E4jRkbR/DWYKn6XK52n3f50WyblkBk/wCj6C3fxZ6mMbXqcJhARy5p8X2Zs5sFJJmv43A==",
         })))),
       nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-          [nix.POS]: pos$62,
+          [nix.POS]: $pos[61],
           pname: "runtime.linux-musl-arm64.Microsoft.NETCore.DotNetHost",
           version: "7.0.20",
           hash: "sha512-IztYZXvLb2W4eC9foR4RFkGujR/LUdDx4UEh1Dab4ImDGj4qO4eZ7OnVCYUONTudFpLGakcQj7Faaq8rA0ye5g==",
         })))),
       nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-          [nix.POS]: pos$63,
+          [nix.POS]: $pos[62],
           pname: "runtime.linux-musl-arm64.Microsoft.NETCore.DotNetHostPolicy",
           version: "7.0.20",
           hash: "sha512-DfsYyPXF4XSnyvxsoPUsKc4S2hM3c11WxUGMJJoxuD/5AaMcaAvhkObqxXSfTXhUPHj4Jat7CxIqPMQatVLTcw==",
         })))),
       nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-          [nix.POS]: pos$64,
+          [nix.POS]: $pos[63],
           pname: "runtime.linux-musl-arm64.Microsoft.NETCore.DotNetHostResolver",
           version: "7.0.20",
           hash: "sha512-/aMTfk42LwVNm6HxNk8ZR6yPPjIyDdNH5/zWs6uHdGL9/9U9Tx2P0ZaKmk9azt5NwDtWZqMpqyDVDb1HJbxyIg==",
@@ -592,49 +430,49 @@ export default nix.lambda((args) => (() => {
     ]),
     "linux-musl-x64": nix.thunk(() => [
       nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-          [nix.POS]: pos$65,
+          [nix.POS]: $pos[64],
           pname: "Microsoft.AspNetCore.App.Runtime.linux-musl-x64",
           version: "7.0.20",
           hash: "sha512-wh25bBNZosflPj2pcbIMB/fttuSFCvWn4N8XmDYd6XA91RpRk4GkZx505PmC+kpfU2FgM0N4zWgqnjcrifp6Ng==",
         })))),
       nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-          [nix.POS]: pos$66,
+          [nix.POS]: $pos[65],
           pname: "Microsoft.NETCore.App.Host.linux-musl-x64",
           version: "7.0.20",
           hash: "sha512-9k+5qHlL2/uiC5/crfn+Shv/93FV1E9oLFFK6nAs+/tUXL0olwsqpyEMUAdKdAoCgiTv50GnBjX/7jlp9bMmlg==",
         })))),
       nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-          [nix.POS]: pos$67,
+          [nix.POS]: $pos[66],
           pname: "Microsoft.NETCore.App.Runtime.linux-musl-x64",
           version: "7.0.20",
           hash: "sha512-J/bFX9ai9i8S0ux0ZdnBhN+s+IFLosIBgnFvTBHuNfblPQ6R1YFsfYww5LQFI+plL8A2NcIdnBxLACrN22jwNQ==",
         })))),
       nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-          [nix.POS]: pos$68,
+          [nix.POS]: $pos[67],
           pname: "runtime.linux-musl-x64.Microsoft.NETCore.DotNetAppHost",
           version: "7.0.20",
           hash: "sha512-IAhdRGfxbYD1lF51SqBfDWIEvsysVWLPWELOpYPyY1CvmTPlGBh5QNanw2TLPu29eKb8k/peSVHJSOLKL8EF0w==",
         })))),
       nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-          [nix.POS]: pos$69,
+          [nix.POS]: $pos[68],
           pname: "runtime.linux-musl-x64.Microsoft.NETCore.DotNetHost",
           version: "7.0.20",
           hash: "sha512-LuFx7q7tmDBcHce9C460IbL6Dp78jqsxUvSUC00XfB0D4uFhBVroWhHv4BPfFQ+cU3+/XEAOgW+H388kXuwEEA==",
         })))),
       nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-          [nix.POS]: pos$70,
+          [nix.POS]: $pos[69],
           pname: "runtime.linux-musl-x64.Microsoft.NETCore.DotNetHostPolicy",
           version: "7.0.20",
           hash: "sha512-TexO+i9DBf7QLW+JVnraEDFa3/7szqJWq5jLOskvEUBn/jrC7rLodIBr9Xm9qYeyPy2K6b31oXmVlGkPplX8PQ==",
         })))),
       nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-          [nix.POS]: pos$71,
+          [nix.POS]: $pos[70],
           pname: "runtime.linux-musl-x64.Microsoft.NETCore.DotNetHostResolver",
           version: "7.0.20",
           hash: "sha512-Y2Jlv9Eq2tk2V7cyHW2uqVDxFlDFwANAtp0Ue3b1zxIOmI51bnXOh5d5Pjd8MYqNOsEF+Vq2xD1Sk79T/iiQZg==",
         })))),
       nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-          [nix.POS]: pos$72,
+          [nix.POS]: $pos[71],
           pname: "Microsoft.NETCore.App.Runtime.Mono.linux-musl-x64",
           version: "7.0.20",
           hash: "sha512-wIQ8KfpMjg7QOZapQ8FvJeqgzI8iyyvvdlBoibsQeuYJP9p7jc9O2BmDBolbn9fgdtKfyCIiwY2vf60Iz5SHtQ==",
@@ -642,49 +480,49 @@ export default nix.lambda((args) => (() => {
     ]),
     "osx-arm64": nix.thunk(() => [
       nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-          [nix.POS]: pos$73,
+          [nix.POS]: $pos[72],
           pname: "Microsoft.AspNetCore.App.Runtime.osx-arm64",
           version: "7.0.20",
           hash: "sha512-PnxpVZP/vcYJrJFxyAafetPeEcG+jzyT7LnKkWPPDLK7geSktcfefPYsZ96AIMhs8MUeOXYUrQd3luOZUo2tJw==",
         })))),
       nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-          [nix.POS]: pos$74,
+          [nix.POS]: $pos[73],
           pname: "Microsoft.NETCore.App.Host.osx-arm64",
           version: "7.0.20",
           hash: "sha512-zskULQ4seV5+Aqj/hG1VQ5RKqGcjZi7T1ceCUHbfAJOxcVQOOcSzxGxy7+Ys2wQnhQsIjWYNIji58c5tnv/6vA==",
         })))),
       nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-          [nix.POS]: pos$75,
+          [nix.POS]: $pos[74],
           pname: "Microsoft.NETCore.App.Runtime.osx-arm64",
           version: "7.0.20",
           hash: "sha512-+fCP5RM7V7wOodSFtnIzEsrnJUAwnVsySDZ3rR8QTn71r9L8e04rlDicaFiphr5j537pMbGvLttPBt8NbIdCgw==",
         })))),
       nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-          [nix.POS]: pos$76,
+          [nix.POS]: $pos[75],
           pname: "runtime.osx-arm64.Microsoft.NETCore.DotNetAppHost",
           version: "7.0.20",
           hash: "sha512-aMnnB6pgXohUYPJAkZ2tZeDVrawKTjMINz618Hcj+4m7WBYvwc31/LYIhKZ0Zb3Z/6VJkmtBvKalfbkgyDGcjA==",
         })))),
       nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-          [nix.POS]: pos$77,
+          [nix.POS]: $pos[76],
           pname: "runtime.osx-arm64.Microsoft.NETCore.DotNetHost",
           version: "7.0.20",
           hash: "sha512-YYVXKrKtuFfQSnxBvrNgvWpe2FGcazsEt8P2EsyjJC7JN9DfhJtXsFz8UXCtxMlKDBYylB6UN2ROoskPQ6M+Xg==",
         })))),
       nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-          [nix.POS]: pos$78,
+          [nix.POS]: $pos[77],
           pname: "runtime.osx-arm64.Microsoft.NETCore.DotNetHostPolicy",
           version: "7.0.20",
           hash: "sha512-W6XgW92qL2uwiD+JhS7BnepRaFzm4HfbzjPKGZMjtNsBzzkVKmZe0eKsTsIdS2D+eBGy9bmM610rFxyzFSLDRw==",
         })))),
       nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-          [nix.POS]: pos$79,
+          [nix.POS]: $pos[78],
           pname: "runtime.osx-arm64.Microsoft.NETCore.DotNetHostResolver",
           version: "7.0.20",
           hash: "sha512-8JJEwVHZRNmd+kiXA3lazbouUa4Y7TavnB3yjY3xHwYl+XKpCqD5OrLc5lKz49viVatasmUVfAfruCbmBxepOw==",
         })))),
       nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-          [nix.POS]: pos$80,
+          [nix.POS]: $pos[79],
           pname: "Microsoft.NETCore.App.Runtime.Mono.osx-arm64",
           version: "7.0.20",
           hash: "sha512-SWxn7D93qwCx9OGmKmXZu0YZ8h2hLgLyHme6dpwje1u2N3M0qffP6kHgGzR7o1ynFh/GEbkuCe0CTqbNDcHWKQ==",
@@ -692,49 +530,49 @@ export default nix.lambda((args) => (() => {
     ]),
     "osx-x64": nix.thunk(() => [
       nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-          [nix.POS]: pos$81,
+          [nix.POS]: $pos[80],
           pname: "Microsoft.AspNetCore.App.Runtime.osx-x64",
           version: "7.0.20",
           hash: "sha512-MJkvhC9b1UXuA2C546UKTJ+wIV5z7QQk+lsXLe8R6g9BjVvN/NUItu9H3hylGkL5Yf/oBLmlPYVUjYuy3x5/1Q==",
         })))),
       nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-          [nix.POS]: pos$82,
+          [nix.POS]: $pos[81],
           pname: "Microsoft.NETCore.App.Host.osx-x64",
           version: "7.0.20",
           hash: "sha512-aQuov94b4ppO3l5CVG0z+VDCFVNHeklnwLS7XT/AbvSyBJ6+9BFqoSWg2uZz0MGjRl0tSA9eK9A6bkoVkPi1bQ==",
         })))),
       nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-          [nix.POS]: pos$83,
+          [nix.POS]: $pos[82],
           pname: "Microsoft.NETCore.App.Runtime.osx-x64",
           version: "7.0.20",
           hash: "sha512-+wNTFv4sHMdAc6G9qlx0GaRNbBhwW/DmN4OMQVkEDgTVCiCWg+DiFON2mffojexy7trJUl6Y3MoxYMJV9/1TUw==",
         })))),
       nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-          [nix.POS]: pos$84,
+          [nix.POS]: $pos[83],
           pname: "runtime.osx-x64.Microsoft.NETCore.DotNetAppHost",
           version: "7.0.20",
           hash: "sha512-h3/RxhzpnpcVMNTHQ3hsprK/SrMMirLmyY2ynnUKJ6qAXEP8EUiHl8nlZ1bNGvansSbCltdRPO7pogiNJAEFZw==",
         })))),
       nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-          [nix.POS]: pos$85,
+          [nix.POS]: $pos[84],
           pname: "runtime.osx-x64.Microsoft.NETCore.DotNetHost",
           version: "7.0.20",
           hash: "sha512-moo/V26Rwf4Hq3/NH6NpWy8Y5BPHVhv7V9KILHZphxM11RpKMMAsKxGkiuNWlva6l38+W8SCIP1oBePe6FBOvA==",
         })))),
       nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-          [nix.POS]: pos$86,
+          [nix.POS]: $pos[85],
           pname: "runtime.osx-x64.Microsoft.NETCore.DotNetHostPolicy",
           version: "7.0.20",
           hash: "sha512-QxXZyylVqNbTBD5uUkrxJyHPz+qylX7xXnYuiE21UqCEVG0lI78O0X/dHYY8+35sRdU13rr0vmTszB2T1soSYg==",
         })))),
       nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-          [nix.POS]: pos$87,
+          [nix.POS]: $pos[86],
           pname: "runtime.osx-x64.Microsoft.NETCore.DotNetHostResolver",
           version: "7.0.20",
           hash: "sha512-RICnRJ9rjyZ6ng3mQCTzKL898luIl24sUw+tm7Up27j5vieglx1gey6a1PLUBfcIVrQie9uM7tYD4oKxwn6HDw==",
         })))),
       nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-          [nix.POS]: pos$88,
+          [nix.POS]: $pos[87],
           pname: "Microsoft.NETCore.App.Runtime.Mono.osx-x64",
           version: "7.0.20",
           hash: "sha512-QYu8SGNtLOlj3PKOgSOml4qLadJnfv0hG1jH2m+Si1TewLmQKjpvI0ZljoqTAOoe8U7vpSumiyqB+bPFiRvhmQ==",
@@ -742,43 +580,43 @@ export default nix.lambda((args) => (() => {
     ]),
     "win-arm64": nix.thunk(() => [
       nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-          [nix.POS]: pos$89,
+          [nix.POS]: $pos[88],
           pname: "Microsoft.AspNetCore.App.Runtime.win-arm64",
           version: "7.0.20",
           hash: "sha512-tt3EyI0qpyqwaFqtbG9+4BP7sukzjjheZ9/Cb/uO+CXxcep/LrKJW/Wc/wBKmkkIY/NnhJQ+Kwdjs6xcHVVO+w==",
         })))),
       nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-          [nix.POS]: pos$90,
+          [nix.POS]: $pos[89],
           pname: "Microsoft.NETCore.App.Host.win-arm64",
           version: "7.0.20",
           hash: "sha512-15hmpDKa0ap3bWF4rvM01Dy+Zn09h2h2MgeOj609P5iNZlsh7Eu8J7mQDdband/jPFZXWCV9CM4GYGPFEtKTIg==",
         })))),
       nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-          [nix.POS]: pos$91,
+          [nix.POS]: $pos[90],
           pname: "Microsoft.NETCore.App.Runtime.win-arm64",
           version: "7.0.20",
           hash: "sha512-qpAjc0CKz+vt3d0eoeZsjmcnb6S6IQmGnXXjv/sfqYqkYErDlBFq448CYOcLUYWdEotInD2Qc6V7wnhs9hVgoQ==",
         })))),
       nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-          [nix.POS]: pos$92,
+          [nix.POS]: $pos[91],
           pname: "runtime.win-arm64.Microsoft.NETCore.DotNetAppHost",
           version: "7.0.20",
           hash: "sha512-na9EJ1Gk0qpCwiDQaIWFuA3n3fhav5phIoCfN9u9WKg2TQCPGigJ5qfopqb1iHeo8q/G0CT7QtV/DdoILZFqaw==",
         })))),
       nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-          [nix.POS]: pos$93,
+          [nix.POS]: $pos[92],
           pname: "runtime.win-arm64.Microsoft.NETCore.DotNetHost",
           version: "7.0.20",
           hash: "sha512-MuLMyS3eKS2ajo5L971Lfd2vwq7X/oFd8gAZFvPCyHGBkvCwsgJacNhujz+vIdgq3nSVqTullR03BSRPGZNddg==",
         })))),
       nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-          [nix.POS]: pos$94,
+          [nix.POS]: $pos[93],
           pname: "runtime.win-arm64.Microsoft.NETCore.DotNetHostPolicy",
           version: "7.0.20",
           hash: "sha512-Di92c6M5r+E9UYkOhKsdPYV+w/QjmTrdS4CIooRlsSjfm3h75AsS5+0nApBnct/GJYQ4t9ZVVnbP+njoyhTXeA==",
         })))),
       nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-          [nix.POS]: pos$95,
+          [nix.POS]: $pos[94],
           pname: "runtime.win-arm64.Microsoft.NETCore.DotNetHostResolver",
           version: "7.0.20",
           hash: "sha512-Qds42bScEWkFo+bHjyFG1PcsU8/n0phSa4LMAQBMT2CTs1/kW2o5uvPdQvnwIJ2m2qNY6vL7J/W/oePh6hGmFw==",
@@ -786,49 +624,49 @@ export default nix.lambda((args) => (() => {
     ]),
     "win-x64": nix.thunk(() => [
       nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-          [nix.POS]: pos$96,
+          [nix.POS]: $pos[95],
           pname: "Microsoft.AspNetCore.App.Runtime.win-x64",
           version: "7.0.20",
           hash: "sha512-H9YZkbflMTqW04B9XpumTZwyNaFgtNnBxCTzM93XYNFPZbE6nbhuCUz7c2bdF9M3cZJzbm/4ITWFqBLoTMrqbg==",
         })))),
       nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-          [nix.POS]: pos$97,
+          [nix.POS]: $pos[96],
           pname: "Microsoft.NETCore.App.Host.win-x64",
           version: "7.0.20",
           hash: "sha512-j7IIiyW2m2BNTt0MgcmhX3f4rl3F98mnStnY+13nlMzr+YC7ewI9khfIXv+bzUA3R2lyz7KghSZx9SaQGPuRbQ==",
         })))),
       nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-          [nix.POS]: pos$98,
+          [nix.POS]: $pos[97],
           pname: "Microsoft.NETCore.App.Runtime.win-x64",
           version: "7.0.20",
           hash: "sha512-eiJuU57LsGAsxxkbDS4iDsSWKIJH08FcJtEIiSfPtUVN4aExj1IoLp+MWFa60QA4+hkNpqs49R+g92ye8oGoxQ==",
         })))),
       nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-          [nix.POS]: pos$99,
+          [nix.POS]: $pos[98],
           pname: "runtime.win-x64.Microsoft.NETCore.DotNetAppHost",
           version: "7.0.20",
           hash: "sha512-d54yoCNVF93swJiCHU2Kc8yD1TLZKPBcnQAgfF1+BOXkUw3nr7uKC+pwqiaWtXXwBXBiVev0lL/qmjCxBG2p/Q==",
         })))),
       nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-          [nix.POS]: pos$100,
+          [nix.POS]: $pos[99],
           pname: "runtime.win-x64.Microsoft.NETCore.DotNetHost",
           version: "7.0.20",
           hash: "sha512-BUi8cUz+UpLC8fZmN4qhXHHvn7FaA6iTWXHtnXodSmN3ZsNtYHbB19F5ra+LfoJZ61zThEy3Nsf6/9qY4E3qew==",
         })))),
       nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-          [nix.POS]: pos$101,
+          [nix.POS]: $pos[100],
           pname: "runtime.win-x64.Microsoft.NETCore.DotNetHostPolicy",
           version: "7.0.20",
           hash: "sha512-yiA3VeELW4zI+7yetMzUWkTiW+pb1nLjJY3hEZXDpVBxSgHcxdkvS4pWnBK97tS9Hujt6tfQOqDbWIj1XfBEfw==",
         })))),
       nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-          [nix.POS]: pos$102,
+          [nix.POS]: $pos[101],
           pname: "runtime.win-x64.Microsoft.NETCore.DotNetHostResolver",
           version: "7.0.20",
           hash: "sha512-Q0NF8q0UKGD3V+95GvErCff7jyJPuyk8/EO3T72PNCfPr2AIGPZtqCuDYTt4xnLyXoYUxyKEqALn2mmVvO+t0w==",
         })))),
       nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-          [nix.POS]: pos$103,
+          [nix.POS]: $pos[102],
           pname: "Microsoft.NETCore.App.Runtime.Mono.win-x64",
           version: "7.0.20",
           hash: "sha512-BLtlpQCuwfaoMmOYG1VUb16L1DX+ZrKFpJ5eQ0MW36MqrzR8Id9nkyZ161xneeyhxBUfi/m5zXfP20AFQQ1uXg==",
@@ -836,49 +674,49 @@ export default nix.lambda((args) => (() => {
     ]),
     "win-x86": nix.thunk(() => [
       nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-          [nix.POS]: pos$104,
+          [nix.POS]: $pos[103],
           pname: "Microsoft.AspNetCore.App.Runtime.win-x86",
           version: "7.0.20",
           hash: "sha512-s9lK1tQca5Qb4aZjEBPSGHZhDSksvfp/aj3xv8q39UqBKGtWdIAdrtcgq8qgM5nWavaCiWWW+CAEgmzFRIRpOw==",
         })))),
       nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-          [nix.POS]: pos$105,
+          [nix.POS]: $pos[104],
           pname: "Microsoft.NETCore.App.Host.win-x86",
           version: "7.0.20",
           hash: "sha512-/TLX02L88IqbQDFZlGVPb/KKkGf43Q7wMGTscU1LNtNSd3YNSlj+K9E8bWY+bzFSaf05qJ7Oru0npYB+5opnGg==",
         })))),
       nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-          [nix.POS]: pos$106,
+          [nix.POS]: $pos[105],
           pname: "Microsoft.NETCore.App.Runtime.win-x86",
           version: "7.0.20",
           hash: "sha512-RHIstT/YHVs1wHxZIPl16RicfJChzChOOqIdGP+UDC3Uc55E4IQ+aEJgrHTXi3xOw4RLp5zman0G0MmXCl5q3A==",
         })))),
       nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-          [nix.POS]: pos$107,
+          [nix.POS]: $pos[106],
           pname: "runtime.win-x86.Microsoft.NETCore.DotNetAppHost",
           version: "7.0.20",
           hash: "sha512-x5KTZwR2UaFx+IvULmbSwEuiXfvpCZUYlm5KtRltd+M3yeFCJDqK+sLPUDnB2kywKDCJYwOdasfzjAhRa1yAeg==",
         })))),
       nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-          [nix.POS]: pos$108,
+          [nix.POS]: $pos[107],
           pname: "runtime.win-x86.Microsoft.NETCore.DotNetHost",
           version: "7.0.20",
           hash: "sha512-CiWFBDlRFKu8sXeXrij7oLRTd2KcGkADb5MVGG+7xt5TIgiXZSfDEummipoK3v15cK3Z6eecVSulFZgEySVbwQ==",
         })))),
       nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-          [nix.POS]: pos$109,
+          [nix.POS]: $pos[108],
           pname: "runtime.win-x86.Microsoft.NETCore.DotNetHostPolicy",
           version: "7.0.20",
           hash: "sha512-1ly66dLhrDCgk8BiO/rxDRwUT+DbOXH3kIwnO+TiMJfID+dyqfpw3ZIbeHbIxW1A5Ukexh3mcv6ndMTkbnZgog==",
         })))),
       nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-          [nix.POS]: pos$110,
+          [nix.POS]: $pos[109],
           pname: "runtime.win-x86.Microsoft.NETCore.DotNetHostResolver",
           version: "7.0.20",
           hash: "sha512-DrzZfs6NkL7Kqnnq3HTcl8oGnvfu6oYPKVoAgA4eXdrEIWuiDIalaD/c7lSfg13ei53tzACUTlKSy1dHGErXiA==",
         })))),
       nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-          [nix.POS]: pos$111,
+          [nix.POS]: $pos[110],
           pname: "Microsoft.NETCore.App.Runtime.Mono.win-x86",
           version: "7.0.20",
           hash: "sha512-GLCsBKRie1giQ6YrjELcvSmdEG1eeKFKn5YweCEm0e67DSZuqtJX2RxIojRV+TUvWObRPhZMM708CZ258qMr9g==",
@@ -888,141 +726,141 @@ export default nix.lambda((args) => (() => {
   return (() => {
     const release_7_0 = "7.0.20";
     const aspnetcore_7_0 = nix.thunk(() => nix.app(buildAspNetCore, nix.thunk(() => ({
-        [nix.POS]: pos$122,
+        [nix.POS]: $pos[121],
         version: "7.0.20",
         srcs: nix.thunk(() => ({
-          [nix.POS]: pos$121,
+          [nix.POS]: $pos[120],
           "linux-arm": nix.thunk(() => ({
-            [nix.POS]: pos$113,
+            [nix.POS]: $pos[112],
             url: "https://builds.dotnet.microsoft.com/dotnet/aspnetcore/Runtime/7.0.20/aspnetcore-runtime-7.0.20-linux-arm.tar.gz",
             hash: "sha512-6Cuw8dUtkf6mvtQZoYVhKC7Q6d425WTmQeKWyRf39l/HVVzMBG/tZ1rWe058UKcPD0joVZ/08qm7rSvGLc9qsw==",
           })),
           "linux-arm64": nix.thunk(() => ({
-            [nix.POS]: pos$114,
+            [nix.POS]: $pos[113],
             url: "https://builds.dotnet.microsoft.com/dotnet/aspnetcore/Runtime/7.0.20/aspnetcore-runtime-7.0.20-linux-arm64.tar.gz",
             hash: "sha512-37HBvvTYJt79PZlVmaXAPhvxpkxl2YtnXWwF27c4DZgjOVPmjVP8Xr7GCtTvdUFwc/sfsyVqAXa7lk8OARYfbA==",
           })),
           "linux-x64": nix.thunk(() => ({
-            [nix.POS]: pos$115,
+            [nix.POS]: $pos[114],
             url: "https://builds.dotnet.microsoft.com/dotnet/aspnetcore/Runtime/7.0.20/aspnetcore-runtime-7.0.20-linux-x64.tar.gz",
             hash: "sha512-Yu2XQ5cgQ6cuSNWqL3/fNIPPaEoysFExUATRx3jpcSv2bl56l6WlOZP6jpLa9brK8s2z6uRLuaniVTK5qA9PcA==",
           })),
           "linux-musl-arm": nix.thunk(() => ({
-            [nix.POS]: pos$116,
+            [nix.POS]: $pos[115],
             url: "https://builds.dotnet.microsoft.com/dotnet/aspnetcore/Runtime/7.0.20/aspnetcore-runtime-7.0.20-linux-musl-arm.tar.gz",
             hash: "sha512-yoTg7/BS1Ft/qa/Ypo8dViZBVbUHiBEF0gaWmSIFe/MyiVo8OioXAmSORnEvAiV02Trhh8j9JhD4OSkJVoq/Vg==",
           })),
           "linux-musl-arm64": nix.thunk(() => ({
-            [nix.POS]: pos$117,
+            [nix.POS]: $pos[116],
             url: "https://builds.dotnet.microsoft.com/dotnet/aspnetcore/Runtime/7.0.20/aspnetcore-runtime-7.0.20-linux-musl-arm64.tar.gz",
             hash: "sha512-ZUBuFxSjEX2qNCs/0NvNXDIUMVYR6su9hYCCf2mgepSAUwMgukBpKj1tv/gy2SmhQgB58dswyj/Wem/QNRSdBA==",
           })),
           "linux-musl-x64": nix.thunk(() => ({
-            [nix.POS]: pos$118,
+            [nix.POS]: $pos[117],
             url: "https://builds.dotnet.microsoft.com/dotnet/aspnetcore/Runtime/7.0.20/aspnetcore-runtime-7.0.20-linux-musl-x64.tar.gz",
             hash: "sha512-qA8xGTr3DVVujQJtOdeYY8g4mwZf4HeOe0Ng99H202UDulJzbEDnSnFsPDBQCxhYFu1g15sGrilXVLZzdKH6RQ==",
           })),
           "osx-arm64": nix.thunk(() => ({
-            [nix.POS]: pos$119,
+            [nix.POS]: $pos[118],
             url: "https://builds.dotnet.microsoft.com/dotnet/aspnetcore/Runtime/7.0.20/aspnetcore-runtime-7.0.20-osx-arm64.tar.gz",
             hash: "sha512-feFh6kX673aT14ykS1hatz/BgyMtP40in949BdaWgY2NZAKseshs4jmgps2uj8Lq+7RF6ZRD0MekqrN4HfNb5g==",
           })),
           "osx-x64": nix.thunk(() => ({
-            [nix.POS]: pos$120,
+            [nix.POS]: $pos[119],
             url: "https://builds.dotnet.microsoft.com/dotnet/aspnetcore/Runtime/7.0.20/aspnetcore-runtime-7.0.20-osx-x64.tar.gz",
             hash: "sha512-AGd4GUUNFNmtwrZfJbmgabwrQ/cuTbZR53/g5IMgvo63xVUncoHelo510PsZvvlg1NyycWG4xXvOB27hi7XKmA==",
           })),
         })),
       }))));
     const runtime_7_0 = nix.thunk(() => nix.app(buildNetRuntime, nix.thunk(() => ({
-        [nix.POS]: pos$132,
+        [nix.POS]: $pos[131],
         version: "7.0.20",
         srcs: nix.thunk(() => ({
-          [nix.POS]: pos$131,
+          [nix.POS]: $pos[130],
           "linux-arm": nix.thunk(() => ({
-            [nix.POS]: pos$123,
+            [nix.POS]: $pos[122],
             url: "https://builds.dotnet.microsoft.com/dotnet/Runtime/7.0.20/dotnet-runtime-7.0.20-linux-arm.tar.gz",
             hash: "sha512-okqnr+R45ir052xA5j5eXoMkqwHZrZz/MYMkXN63CGH/wRjJq9qfLy/tQjc1yieqwVvsjMX8NS8FvVtyYmWEmg==",
           })),
           "linux-arm64": nix.thunk(() => ({
-            [nix.POS]: pos$124,
+            [nix.POS]: $pos[123],
             url: "https://builds.dotnet.microsoft.com/dotnet/Runtime/7.0.20/dotnet-runtime-7.0.20-linux-arm64.tar.gz",
             hash: "sha512-wkUSXuJwglIRmhVEVW4aqeAKoYsjA95ph32hDGwX4/JQJLdJypO1O+du4Ojkp11AP3AZuLwuUO0SePZWyy9+Bg==",
           })),
           "linux-x64": nix.thunk(() => ({
-            [nix.POS]: pos$125,
+            [nix.POS]: $pos[124],
             url: "https://builds.dotnet.microsoft.com/dotnet/Runtime/7.0.20/dotnet-runtime-7.0.20-linux-x64.tar.gz",
             hash: "sha512-h4VSlzOFVae1d9fjFOXb8sI1D4yGekic0eU1Y0utXBI6GHFGTTf8lCGDf/XUJsLq3svg9gu/P9MrwkYfR3kKQA==",
           })),
           "linux-musl-arm": nix.thunk(() => ({
-            [nix.POS]: pos$126,
+            [nix.POS]: $pos[125],
             url: "https://builds.dotnet.microsoft.com/dotnet/Runtime/7.0.20/dotnet-runtime-7.0.20-linux-musl-arm.tar.gz",
             hash: "sha512-JczDc9HEwOt0HgSMb9SDZjELNqxvBoxQ9rwBNCoABGQUToRX5+G2zPbZlUTUkUAi78uCTnVjZRe79hyUhSzddA==",
           })),
           "linux-musl-arm64": nix.thunk(() => ({
-            [nix.POS]: pos$127,
+            [nix.POS]: $pos[126],
             url: "https://builds.dotnet.microsoft.com/dotnet/Runtime/7.0.20/dotnet-runtime-7.0.20-linux-musl-arm64.tar.gz",
             hash: "sha512-VSynNGf4BD01HCDXHflbqWOzLox1cG329dP85SXz798TFN8pbET77a1VdXguN2M5mKebLCP390IPgU7iSI8wog==",
           })),
           "linux-musl-x64": nix.thunk(() => ({
-            [nix.POS]: pos$128,
+            [nix.POS]: $pos[127],
             url: "https://builds.dotnet.microsoft.com/dotnet/Runtime/7.0.20/dotnet-runtime-7.0.20-linux-musl-x64.tar.gz",
             hash: "sha512-MbnaCNYzzQAo6wjDbuLFw8sb5tPF4BDIWuKRSW/l6Bi1vln11Hr/hu2TnCYPdi5X/waTSk0JVDdpNbGtx5nxvw==",
           })),
           "osx-arm64": nix.thunk(() => ({
-            [nix.POS]: pos$129,
+            [nix.POS]: $pos[128],
             url: "https://builds.dotnet.microsoft.com/dotnet/Runtime/7.0.20/dotnet-runtime-7.0.20-osx-arm64.tar.gz",
             hash: "sha512-rxy2LinGlkjr4zTmUcJwPNXof6C7KMZwuss7PdFgiurjWuU0AsXrTti/NKvYMaCMy174Tl7HBhfZ+NmWn+e4+g==",
           })),
           "osx-x64": nix.thunk(() => ({
-            [nix.POS]: pos$130,
+            [nix.POS]: $pos[129],
             url: "https://builds.dotnet.microsoft.com/dotnet/Runtime/7.0.20/dotnet-runtime-7.0.20-osx-x64.tar.gz",
             hash: "sha512-rNzekvLy5DWE7lm+RH93j0oVLDCJdce9xcI3K1u9MJLrnSIzrsO4J1a6HjUqCHf/wX5MjPsgqd6Rym21TXm1kQ==",
           })),
         })),
       }))));
     const sdk_7_0_4xx = nix.thunk(() => nix.app(buildNetSdk, nix.thunk(() => ({
-        [nix.POS]: pos$142,
+        [nix.POS]: $pos[141],
         version: "7.0.410",
         srcs: nix.thunk(() => ({
-          [nix.POS]: pos$141,
+          [nix.POS]: $pos[140],
           "linux-arm": nix.thunk(() => ({
-            [nix.POS]: pos$133,
+            [nix.POS]: $pos[132],
             url: "https://builds.dotnet.microsoft.com/dotnet/Sdk/7.0.410/dotnet-sdk-7.0.410-linux-arm.tar.gz",
             hash: "sha512-lbY5oUddm3Y31BoUwMqzmTs6K0vmPb8lH/74QEYcUdnV7NeO8JyFf+KDmRVfekBEngjHozzgiFDE4Y76q6tFrA==",
           })),
           "linux-arm64": nix.thunk(() => ({
-            [nix.POS]: pos$134,
+            [nix.POS]: $pos[133],
             url: "https://builds.dotnet.microsoft.com/dotnet/Sdk/7.0.410/dotnet-sdk-7.0.410-linux-arm64.tar.gz",
             hash: "sha512-LbajuaUy0vWaK0WeY0IGkTqVhcgh8/V4pCHjuuNGqS3ZuFt26940PKMFcnX37E0LynHLt/K6223NtRYkToTaRg==",
           })),
           "linux-x64": nix.thunk(() => ({
-            [nix.POS]: pos$135,
+            [nix.POS]: $pos[134],
             url: "https://builds.dotnet.microsoft.com/dotnet/Sdk/7.0.410/dotnet-sdk-7.0.410-linux-x64.tar.gz",
             hash: "sha512-ILjgKXkyjkxKFEk/d5HtQZqr0BdSM9uAzWDiwAS4KbPoMBKB6oaye6gYNyRzrM9abVU+U1TFSRfI6E0l9YVcqg==",
           })),
           "linux-musl-arm": nix.thunk(() => ({
-            [nix.POS]: pos$136,
+            [nix.POS]: $pos[135],
             url: "https://builds.dotnet.microsoft.com/dotnet/Sdk/7.0.410/dotnet-sdk-7.0.410-linux-musl-arm.tar.gz",
             hash: "sha512-x7Gc3yExJkVv5/IBcf+/XMQXcjBbR9jQbGRhKlCeiRMSZAXKjqW2T5P/TSz+op+hKGcdQO8jrWadi0coIjjfwQ==",
           })),
           "linux-musl-arm64": nix.thunk(() => ({
-            [nix.POS]: pos$137,
+            [nix.POS]: $pos[136],
             url: "https://builds.dotnet.microsoft.com/dotnet/Sdk/7.0.410/dotnet-sdk-7.0.410-linux-musl-arm64.tar.gz",
             hash: "sha512-O+6089U2DMm8Fzm2kCj1grZqajhMlmj/EqD9ucKfktx1e3sXs9/MgeVQP5razNe56lSQ+OFinN2Y4bRZKbaS3Q==",
           })),
           "linux-musl-x64": nix.thunk(() => ({
-            [nix.POS]: pos$138,
+            [nix.POS]: $pos[137],
             url: "https://builds.dotnet.microsoft.com/dotnet/Sdk/7.0.410/dotnet-sdk-7.0.410-linux-musl-x64.tar.gz",
             hash: "sha512-Y0W6gTmvQteoMwtaXhfHGz4GgGZWEAbGi/4r+1wavSiS8NkD+3rrwqU22Ee8End4DNZR+lMTMMFvowKgdstUFQ==",
           })),
           "osx-arm64": nix.thunk(() => ({
-            [nix.POS]: pos$139,
+            [nix.POS]: $pos[138],
             url: "https://builds.dotnet.microsoft.com/dotnet/Sdk/7.0.410/dotnet-sdk-7.0.410-osx-arm64.tar.gz",
             hash: "sha512-wO8ZFPKymFBEM7ypzasC3PMkQh7OOWV7ZlI/E7enFm5yZ4NnOmAvtGLz21xT9ZqJOBuRjnZY1JpXdjtDz3XO3A==",
           })),
           "osx-x64": nix.thunk(() => ({
-            [nix.POS]: pos$140,
+            [nix.POS]: $pos[139],
             url: "https://builds.dotnet.microsoft.com/dotnet/Sdk/7.0.410/dotnet-sdk-7.0.410-osx-x64.tar.gz",
             hash: "sha512-eC4VwZziCqgzNWbyPC08246Jx2Jt5jMN32cMRCbjDMhU5E/zNBV4Yirs8hD6Zt3LY6fSrWKe2Sy1WCq2cPlT0g==",
           })),
@@ -1034,47 +872,47 @@ export default nix.lambda((args) => (() => {
         aspnetcore: aspnetcore_7_0,
       }))));
     const sdk_7_0_3xx = nix.thunk(() => nix.app(buildNetSdk, nix.thunk(() => ({
-        [nix.POS]: pos$152,
+        [nix.POS]: $pos[151],
         version: "7.0.317",
         srcs: nix.thunk(() => ({
-          [nix.POS]: pos$151,
+          [nix.POS]: $pos[150],
           "linux-arm": nix.thunk(() => ({
-            [nix.POS]: pos$143,
+            [nix.POS]: $pos[142],
             url: "https://builds.dotnet.microsoft.com/dotnet/Sdk/7.0.317/dotnet-sdk-7.0.317-linux-arm.tar.gz",
             hash: "sha512-S1DHTRWHGrRc9/0Bb6BR8Dg/AJX5G07ycQUCgY4vn2kCO00A1YTvd9gYeujpWo0pI7PQPr4qP/cKkQntEvdI/w==",
           })),
           "linux-arm64": nix.thunk(() => ({
-            [nix.POS]: pos$144,
+            [nix.POS]: $pos[143],
             url: "https://builds.dotnet.microsoft.com/dotnet/Sdk/7.0.317/dotnet-sdk-7.0.317-linux-arm64.tar.gz",
             hash: "sha512-Irrc2yy6Dxvtsfy9yZJppmoBojIZPgC0KCOAbO5dRhlLjdAIpT4XRVBypBD3e9NRZ281FnC+lsE1ctjjDPrRgA==",
           })),
           "linux-x64": nix.thunk(() => ({
-            [nix.POS]: pos$145,
+            [nix.POS]: $pos[144],
             url: "https://builds.dotnet.microsoft.com/dotnet/Sdk/7.0.317/dotnet-sdk-7.0.317-linux-x64.tar.gz",
             hash: "sha512-kG7L+jGxCuXiqLpxPRE8zYPjqbnk0+MiSCaSiRVClZ52xR213Tgl+0os8elRc3AGqZvnKQ8wnWgiVn06Uzp6ng==",
           })),
           "linux-musl-arm": nix.thunk(() => ({
-            [nix.POS]: pos$146,
+            [nix.POS]: $pos[145],
             url: "https://builds.dotnet.microsoft.com/dotnet/Sdk/7.0.317/dotnet-sdk-7.0.317-linux-musl-arm.tar.gz",
             hash: "sha512-fKoRN8pHJHGrlZ3s634+KCigjbX7Dhxrlz8kcKHLbIv60zLMrDH2bhGYLkc6/4KAmzX6XANkF4J66DcTe+NPOQ==",
           })),
           "linux-musl-arm64": nix.thunk(() => ({
-            [nix.POS]: pos$147,
+            [nix.POS]: $pos[146],
             url: "https://builds.dotnet.microsoft.com/dotnet/Sdk/7.0.317/dotnet-sdk-7.0.317-linux-musl-arm64.tar.gz",
             hash: "sha512-7US11MyzefQoaSLiJtGC5eubwS9M7bYALwbleUt5XT6/GajlqOmQxFfff566mUe8HHIQr2qN/yxnItZMnmHwQA==",
           })),
           "linux-musl-x64": nix.thunk(() => ({
-            [nix.POS]: pos$148,
+            [nix.POS]: $pos[147],
             url: "https://builds.dotnet.microsoft.com/dotnet/Sdk/7.0.317/dotnet-sdk-7.0.317-linux-musl-x64.tar.gz",
             hash: "sha512-Wn1fIXAQs1QfqdC9tD12lJaFW54RQ4TPZ4jtR3G4NUZqsYeMU3nIkUk7VLh8FHB3j1CTHFpsiZr2E0gZO7lj1A==",
           })),
           "osx-arm64": nix.thunk(() => ({
-            [nix.POS]: pos$149,
+            [nix.POS]: $pos[148],
             url: "https://builds.dotnet.microsoft.com/dotnet/Sdk/7.0.317/dotnet-sdk-7.0.317-osx-arm64.tar.gz",
             hash: "sha512-tfNn4eINco1xZ8geQUY1jnYPE2ue4PxBDYE8FDZuOLCaBpAxqoym2N9DhDW2q04umJvjCeCXFpRZNl1L76+fWg==",
           })),
           "osx-x64": nix.thunk(() => ({
-            [nix.POS]: pos$150,
+            [nix.POS]: $pos[149],
             url: "https://builds.dotnet.microsoft.com/dotnet/Sdk/7.0.317/dotnet-sdk-7.0.317-osx-x64.tar.gz",
             hash: "sha512-09vQ/ny8YjiPFQrbpdgYq+45hoY9dXzmMIj0/qv4AQUsCKYIrNUDb5cZFDX+mSJKyxLHNlvn933vKFU6IxrDyQ==",
           })),
@@ -1086,47 +924,47 @@ export default nix.lambda((args) => (() => {
         aspnetcore: aspnetcore_7_0,
       }))));
     const sdk_7_0_1xx = nix.thunk(() => nix.app(buildNetSdk, nix.thunk(() => ({
-        [nix.POS]: pos$162,
+        [nix.POS]: $pos[161],
         version: "7.0.120",
         srcs: nix.thunk(() => ({
-          [nix.POS]: pos$161,
+          [nix.POS]: $pos[160],
           "linux-arm": nix.thunk(() => ({
-            [nix.POS]: pos$153,
+            [nix.POS]: $pos[152],
             url: "https://builds.dotnet.microsoft.com/dotnet/Sdk/7.0.120/dotnet-sdk-7.0.120-linux-arm.tar.gz",
             hash: "sha512-epZI3jwx+NElfZiYL0rivTusMkQLz8uAQCdShZkJNK7ocZASoso/VkZUblZtKWP2O/idGbVordxNMkzpdOpLxw==",
           })),
           "linux-arm64": nix.thunk(() => ({
-            [nix.POS]: pos$154,
+            [nix.POS]: $pos[153],
             url: "https://builds.dotnet.microsoft.com/dotnet/Sdk/7.0.120/dotnet-sdk-7.0.120-linux-arm64.tar.gz",
             hash: "sha512-9TD3lK/jw7m9h7jtUJoaE7HI/m8rxubM4+jNa1YyfA/yf8E4EiwtrWh3DMUBVzfgB+9XBlmcGJ7wzHUhy/C2VA==",
           })),
           "linux-x64": nix.thunk(() => ({
-            [nix.POS]: pos$155,
+            [nix.POS]: $pos[154],
             url: "https://builds.dotnet.microsoft.com/dotnet/Sdk/7.0.120/dotnet-sdk-7.0.120-linux-x64.tar.gz",
             hash: "sha512-y5+rqDqydsk17zWzHwFspGF/DZZ8W0vx6ZPCFZmS+1nR3SXc4JkokVuf9Ybq16z5LsHdlpN8kzF6mcoMkrYWyQ==",
           })),
           "linux-musl-arm": nix.thunk(() => ({
-            [nix.POS]: pos$156,
+            [nix.POS]: $pos[155],
             url: "https://builds.dotnet.microsoft.com/dotnet/Sdk/7.0.120/dotnet-sdk-7.0.120-linux-musl-arm.tar.gz",
             hash: "sha512-HNomb4ipUPRUT9/M8ezCaBa3XCn0hmv9mFiSkJQtmCp0zhfy9QfGKAsPM3t0OprQHlOjwQAcdHe91K3VO7BhXw==",
           })),
           "linux-musl-arm64": nix.thunk(() => ({
-            [nix.POS]: pos$157,
+            [nix.POS]: $pos[156],
             url: "https://builds.dotnet.microsoft.com/dotnet/Sdk/7.0.120/dotnet-sdk-7.0.120-linux-musl-arm64.tar.gz",
             hash: "sha512-XTEkw9rx7RzvDIOOdTY3rx5SAws2Ywu/p9uhdqfsok/p5cTfnv8hcPqWz2PgBV30LwlQs7WQDesoJZDkthLz+w==",
           })),
           "linux-musl-x64": nix.thunk(() => ({
-            [nix.POS]: pos$158,
+            [nix.POS]: $pos[157],
             url: "https://builds.dotnet.microsoft.com/dotnet/Sdk/7.0.120/dotnet-sdk-7.0.120-linux-musl-x64.tar.gz",
             hash: "sha512-xQirUxDXQ/V+p4YR/+NUJo/og+fGc+6Ajaqm3eMLpFTV1w+BkcSetSrkqAwGLtZJC6HWt1L8xUGw63g19O7ofw==",
           })),
           "osx-arm64": nix.thunk(() => ({
-            [nix.POS]: pos$159,
+            [nix.POS]: $pos[158],
             url: "https://builds.dotnet.microsoft.com/dotnet/Sdk/7.0.120/dotnet-sdk-7.0.120-osx-arm64.tar.gz",
             hash: "sha512-3AaAHY3jTfaY+T46qHLVcTHdPjOsT3zdvJYiORHg/zL9zqeDMtp74AEzYskM0k2y2GweJ1KXvm3RYpSPK9OMvA==",
           })),
           "osx-x64": nix.thunk(() => ({
-            [nix.POS]: pos$160,
+            [nix.POS]: $pos[159],
             url: "https://builds.dotnet.microsoft.com/dotnet/Sdk/7.0.120/dotnet-sdk-7.0.120-osx-x64.tar.gz",
             hash: "sha512-lN65mIUJ/L//w1cRTQ9WRfxrb2FWZkBAzVZDoZG+8Qri+6QWiqaJ/32hobb6d5605Tp3p4R77Ot/C6RR0sINVw==",
           })),
@@ -1139,7 +977,7 @@ export default nix.lambda((args) => (() => {
       }))));
     const sdk_7_0 = sdk_7_0_4xx;
     return {
-      [nix.POS]: pos$163,
+      [nix.POS]: $pos[162],
       release_7_0,
       aspnetcore_7_0,
       runtime_7_0,

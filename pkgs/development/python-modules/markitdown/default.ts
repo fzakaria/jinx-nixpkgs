@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 48, 5], ["repo", 49, 5], ["tag", 50, 5], ["hash", 51, 5]], [["all", 65, 5], ["pptx", 81, 5], ["docx", 82, 5], ["xlsx", 86, 5], ["xls", 90, 5], ["pdf", 94, 5], ["outlook", 98, 5], ["audio-transcription", 99, 5], ["youtube-transcription", 103, 5], ["az-doc-intel", 104, 5]], [["rev-prefix", 143, 5], ["ignoredVersions", 145, 5]], [["updateScript", 141, 12]], [["description", 149, 5], ["homepage", 150, 5], ["changelog", 151, 5], ["license", 152, 5], ["maintainers", 153, 5]], [["pname", 43, 3], ["version", 44, 3], ["pyproject", 45, 3], ["src", 47, 3], ["sourceRoot", 54, 3], ["build-system", 56, 3], ["pythonRelaxDeps", 58, 3], ["optional-dependencies", 64, 3], ["dependencies", 110, 3], ["pythonImportsCheck", 123, 3], ["doCheck", 124, 3], ["nativeCheckInputs", 126, 3], ["disabledTests", 128, 3], ["passthru", 141, 3], ["meta", 148, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitHub: false, hatchling: false, "azure-ai-documentintelligence": false, "azure-identity": false, beautifulsoup4: false, "charset-normalizer": false, defusedxml: false, lxml: false, magika: false, mammoth: false, markdownify: false, olefile: false, openpyxl: false, pandas: false, "pdfminer-six": false, pdfplumber: false, pydub: false, "python-pptx": false, requests: false, speechrecognition: false, xlrd: false, "youtube-transcript-api": false, pytestCheckHook: false, gitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 48, 5], ["repo", 49, 5], ["tag", 50, 5], ["hash", 51, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["all", 65, 5], ["pptx", 81, 5], ["docx", 82, 5], ["xlsx", 86, 5], ["xls", 90, 5], ["pdf", 94, 5], ["outlook", 98, 5], ["audio-transcription", 99, 5], ["youtube-transcription", 103, 5], ["az-doc-intel", 104, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["rev-prefix", 143, 5], ["ignoredVersions", 145, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["updateScript", 141, 12]]);
-const pos$5 = nix.positions(here + "/default.nix", [["description", 149, 5], ["homepage", 150, 5], ["changelog", 151, 5], ["license", 152, 5], ["maintainers", 153, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 43, 3], ["version", 44, 3], ["pyproject", 45, 3], ["src", 47, 3], ["sourceRoot", 54, 3], ["build-system", 56, 3], ["pythonRelaxDeps", 58, 3], ["optional-dependencies", 64, 3], ["dependencies", 110, 3], ["pythonImportsCheck", 123, 3], ["doCheck", 124, 3], ["nativeCheckInputs", 126, 3], ["disabledTests", 128, 3], ["passthru", 141, 3], ["meta", 148, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -41,12 +36,12 @@ export default nix.lambda((args) => (() => {
   const gitUpdater = nix.arg($, "gitUpdater");
   const isNotAarch64Linux = nix.thunk(() => !nix.asBool((nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")))));
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "markitdown",
       version: "0.1.7",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "microsoft",
           repo: "markitdown",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -56,7 +51,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [hatchling]),
       pythonRelaxDeps: nix.thunk(() => ["magika", "mammoth", "youtube-transcript-api"]),
       "optional-dependencies": nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         all: nix.thunk(() => [
           python_pptx,
           mammoth,
@@ -103,11 +98,11 @@ export default nix.lambda((args) => (() => {
         "test_cu_registered_before_docintel",
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$3, "rev-prefix": "v", ignoredVersions: "(a|b|rc)[0-9]+$" })))),
+        [nix.POS]: $pos[3],
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[2], "rev-prefix": "v", ignoredVersions: "(a|b|rc)[0-9]+$" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Python tool for converting files and office documents to Markdown",
         homepage: "https://github.com/microsoft/markitdown",
         changelog: nix.thunk(() => nix.str`https://github.com/microsoft/markitdown/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

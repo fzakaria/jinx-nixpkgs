@@ -2,43 +2,37 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/sgt-puzzles.nix", [[["maintainers", 5, 5]], [["enable", 16, 24]], [["xserver", 16, 16]], [["systemPackages", 17, 19]], [["imports", 12, 7], ["services", 16, 7], ["environment", 17, 7]], [["machine", 8, 9]], [["name", 3, 3], ["meta", 4, 3], ["nodes", 8, 3], ["enableOCR", 22, 3], ["testScript", 24, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/sgt-puzzles.nix", [["maintainers", 5, 5]]);
 const formals$2 = { args: {  }, ellipsis: true };
-const pos$2 = nix.positions(here + "/sgt-puzzles.nix", [["enable", 16, 24]]);
-const pos$3 = nix.positions(here + "/sgt-puzzles.nix", [["xserver", 16, 16]]);
-const pos$4 = nix.positions(here + "/sgt-puzzles.nix", [["systemPackages", 17, 19]]);
-const pos$5 = nix.positions(here + "/sgt-puzzles.nix", [["imports", 12, 7], ["services", 16, 7], ["environment", 17, 7]]);
-const pos$6 = nix.positions(here + "/sgt-puzzles.nix", [["machine", 8, 9]]);
 const formals$3 = { args: { nodes: false }, ellipsis: true };
-const pos$7 = nix.positions(here + "/sgt-puzzles.nix", [["name", 3, 3], ["meta", 4, 3], ["nodes", 8, 3], ["enableOCR", 22, 3], ["testScript", 24, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   return {
-    [nix.POS]: pos$7,
+    [nix.POS]: $pos[6],
     name: "sgt-puzzles",
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
       return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "tomfitzhenry"))]),
       };
     })()),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           imports: nix.thunk(() => [nix.path(here, "./common/x11.nix")]),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$3,
-            xserver: nix.thunk(() => ({ [nix.POS]: pos$2, enable: true })),
+            [nix.POS]: $pos[2],
+            xserver: nix.thunk(() => ({ [nix.POS]: $pos[1], enable: true })),
           })),
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             systemPackages: nix.thunk(() => (() => {
               const w_1 = nix.withScope(pkgs, null);
               return [nix.thunk(() => nix.lookup(w_1, "sgt-puzzles"))];

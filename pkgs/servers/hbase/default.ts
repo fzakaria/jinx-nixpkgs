@@ -2,21 +2,9 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 23, 9], ["hash", 24, 17]], [["tests", 36, 28]], [["description", 39, 9], ["homepage", 40, 9], ["license", 41, 9], ["maintainers", 42, 9], ["platforms", 43, 9]], [["pname", 19, 7], ["version", 20, 15], ["src", 22, 7], ["nativeBuildInputs", 27, 7], ["installPhase", 28, 7], ["passthru", 36, 7], ["meta", 38, 7]], [["standalone", 51, 11]], [["version", 49, 5], ["hash", 50, 5], ["tests", 51, 5]], [["standalone", 56, 11]], [["version", 54, 5], ["hash", 55, 5], ["tests", 56, 5]], [["standalone", 61, 11]], [["version", 59, 5], ["hash", 60, 5], ["tests", 61, 5]], [["standalone", 66, 11]], [["version", 64, 5], ["hash", 65, 5], ["tests", 66, 5]], [["hbase_2_4", 48, 3], ["hbase_2_5", 53, 3], ["hbase_2_6", 58, 3], ["hbase_3_0", 63, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, makeWrapper: false, jdk11_headless: false, nixosTests: false }, ellipsis: false };
 const formals$2 = { args: { version: false, hash: false, jdk: true, tests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 23, 9], ["hash", 24, 17]]);
-const pos$2 = nix.positions(here + "/default.nix", [["tests", 36, 28]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 39, 9], ["homepage", 40, 9], ["license", 41, 9], ["maintainers", 42, 9], ["platforms", 43, 9]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 19, 7], ["version", 20, 15], ["src", 22, 7], ["nativeBuildInputs", 27, 7], ["installPhase", 28, 7], ["passthru", 36, 7], ["meta", 38, 7]]);
-const pos$5 = nix.positions(here + "/default.nix", [["standalone", 51, 11]]);
-const pos$6 = nix.positions(here + "/default.nix", [["version", 49, 5], ["hash", 50, 5], ["tests", 51, 5]]);
-const pos$7 = nix.positions(here + "/default.nix", [["standalone", 56, 11]]);
-const pos$8 = nix.positions(here + "/default.nix", [["version", 54, 5], ["hash", 55, 5], ["tests", 56, 5]]);
-const pos$9 = nix.positions(here + "/default.nix", [["standalone", 61, 11]]);
-const pos$10 = nix.positions(here + "/default.nix", [["version", 59, 5], ["hash", 60, 5], ["tests", 61, 5]]);
-const pos$11 = nix.positions(here + "/default.nix", [["standalone", 66, 11]]);
-const pos$12 = nix.positions(here + "/default.nix", [["version", 64, 5], ["hash", 65, 5], ["tests", 66, 5]]);
-const pos$13 = nix.positions(here + "/default.nix", [["hbase_2_4", 48, 3], ["hbase_2_5", 53, 3], ["hbase_2_6", 58, 3], ["hbase_3_0", 63, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -36,7 +24,7 @@ export default nix.lambda((args) => (() => {
         const pname = "hbase";
         const version_1 = version;
         const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             url: nix.thunk(() => nix.str`mirror://apache/hbase/${version_1}/hbase-${version_1}-bin.tar.gz`),
             hash: hash,
           }))));
@@ -47,9 +35,9 @@ wrapProgram $out/bin/hbase --set-default JAVA_HOME ${nix.sel(jdk, "home")} \\
   --run "test -d /etc/hadoop-conf && export HBASE_CONF_DIR=\\\${HBASE_CONF_DIR-'/etc/hadoop-conf/'}" \\
   --set-default HBASE_CONF_DIR "$out/conf/"
 `);
-        const passthru = nix.thunk(() => ({ [nix.POS]: pos$2, tests: tests }));
+        const passthru = nix.thunk(() => ({ [nix.POS]: $pos[1], tests: tests }));
         const meta = nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           description: "Distributed, scalable, big data store",
           homepage: "https://hbase.apache.org",
           license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -60,7 +48,7 @@ wrapProgram $out/bin/hbase --set-default JAVA_HOME ${nix.sel(jdk, "home")} \\
           platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
         }));
         return {
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           pname,
           version: version_1,
           src,
@@ -72,37 +60,40 @@ wrapProgram $out/bin/hbase --set-default JAVA_HOME ${nix.sel(jdk, "home")} \\
       })()));
   })(), formals$2);
   return {
-    [nix.POS]: pos$13,
+    [nix.POS]: $pos[12],
     hbase_2_4: nix.thunk(() => nix.app(common, nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         version: "2.4.18",
         hash: "sha256-zYrHAxzlPRrRchHGVp3fhQT0BD0+wavZ4cAWncrv+MQ=",
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           standalone: nix.thunk(() => nix.sel(nixosTests, "hbase_2_4")),
         })),
       })))),
     hbase_2_5: nix.thunk(() => nix.app(common, nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         version: "2.5.11",
         hash: "sha256-W3o8J+aY2bQoiu1Lr1n5EQWDVoS1OwWTNIUAU03a5Es=",
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           standalone: nix.thunk(() => nix.sel(nixosTests, "hbase_2_5")),
         })),
       })))),
     hbase_2_6: nix.thunk(() => nix.app(common, nix.thunk(() => ({
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         version: "2.6.2",
         hash: "sha256-X/mjmTAx9anh2U/Xlfuf+O4AO5BXDkdsY69tPddEpYM=",
-        tests: nix.thunk(() => ({ [nix.POS]: pos$9, standalone: nix.thunk(() => nix.sel(nixosTests, "hbase2")) })),
+        tests: nix.thunk(() => ({
+          [nix.POS]: $pos[8],
+          standalone: nix.thunk(() => nix.sel(nixosTests, "hbase2")),
+        })),
       })))),
     hbase_3_0: nix.thunk(() => nix.app(common, nix.thunk(() => ({
-        [nix.POS]: pos$12,
+        [nix.POS]: $pos[11],
         version: "3.0.0-beta-1",
         hash: "sha256-lmeaH2gDP6sBwZpzROKhR2Je7dcrwnq7qlMUh0B5fZs=",
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$11,
+          [nix.POS]: $pos[10],
           standalone: nix.thunk(() => nix.sel(nixosTests, "hbase3")),
         })),
       })))),

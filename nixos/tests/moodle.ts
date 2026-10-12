@@ -2,43 +2,36 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/moodle.nix", [[["maintainers", 4, 8]], [["hostName", 10, 35], ["adminAddr", 11, 35]], [["enable", 9, 23], ["virtualHost", 10, 23], ["initialPassword", 12, 23]], [["moodle", 9, 16]], [["memorySize", 16, 22]], [["services", 9, 7], ["virtualisation", 16, 7]], [["machine", 6, 9]], [["name", 3, 3], ["meta", 4, 3], ["nodes", 6, 3], ["testScript", 19, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/moodle.nix", [["maintainers", 4, 8]]);
 const formals$2 = { args: {  }, ellipsis: true };
-const pos$2 = nix.positions(here + "/moodle.nix", [["hostName", 10, 35], ["adminAddr", 11, 35]]);
-const pos$3 = nix.positions(here + "/moodle.nix", [["enable", 9, 23], ["virtualHost", 10, 23], ["initialPassword", 12, 23]]);
-const pos$4 = nix.positions(here + "/moodle.nix", [["moodle", 9, 16]]);
-const pos$5 = nix.positions(here + "/moodle.nix", [["memorySize", 16, 22]]);
-const pos$6 = nix.positions(here + "/moodle.nix", [["services", 9, 7], ["virtualisation", 16, 7]]);
-const pos$7 = nix.positions(here + "/moodle.nix", [["machine", 6, 9]]);
-const pos$8 = nix.positions(here + "/moodle.nix", [["name", 3, 3], ["meta", 4, 3], ["nodes", 6, 3], ["testScript", 19, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$8,
+    [nix.POS]: $pos[7],
     name: "moodle",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "aanderse"))]),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             moodle: nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               enable: true,
-              virtualHost: nix.thunk(() => ({ [nix.POS]: pos$2, hostName: "localhost", adminAddr: "root@example.com" })),
+              virtualHost: nix.thunk(() => ({ [nix.POS]: $pos[1], hostName: "localhost", adminAddr: "root@example.com" })),
               initialPassword: "correcthorsebatterystaple",
             })),
           })),
-          virtualisation: nix.thunk(() => ({ [nix.POS]: pos$5, memorySize: 2000n })),
+          virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[4], memorySize: 2000n })),
         };
       })(), formals$2),
     })),

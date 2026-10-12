@@ -2,54 +2,45 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/httpd.nix", [[["maintainers", 8, 8]], [["index", 27, 15]], [["/", 26, 23]], [["documentRoot", 25, 13], ["locations", 26, 13]], [["phpfpm", 20, 22]], [["enable", 18, 9], ["adminAddr", 19, 9], ["virtualHosts", 20, 9], ["phpPackage", 30, 9], ["enablePHP", 31, 9]], [["httpd", 17, 16]], [["services", 17, 7]], [["machine", 10, 14]], [["name", 7, 3], ["meta", 8, 3], ["containers", 10, 3], ["testScript", 34, 3]]]);
 const formals$1 = { args: { lib: false, php: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/httpd.nix", [["maintainers", 8, 8]]);
 const formals$2 = { args: { config: false, pkgs: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/httpd.nix", [["index", 27, 15]]);
-const pos$3 = nix.positions(here + "/httpd.nix", [["/", 26, 23]]);
-const pos$4 = nix.positions(here + "/httpd.nix", [["documentRoot", 25, 13], ["locations", 26, 13]]);
-const pos$5 = nix.positions(here + "/httpd.nix", [["phpfpm", 20, 22]]);
-const pos$6 = nix.positions(here + "/httpd.nix", [["enable", 18, 9], ["adminAddr", 19, 9], ["virtualHosts", 20, 9], ["phpPackage", 30, 9], ["enablePHP", 31, 9]]);
-const pos$7 = nix.positions(here + "/httpd.nix", [["httpd", 17, 16]]);
-const pos$8 = nix.positions(here + "/httpd.nix", [["services", 17, 7]]);
-const pos$9 = nix.positions(here + "/httpd.nix", [["machine", 10, 14]]);
-const pos$10 = nix.positions(here + "/httpd.nix", [["name", 7, 3], ["meta", 8, 3], ["containers", 10, 3], ["testScript", 34, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const php = nix.arg($, "php");
   return {
-    [nix.POS]: pos$10,
+    [nix.POS]: $pos[9],
     name: nix.thunk(() => nix.str`php-${nix.sel(php, "version")}-httpd-test`),
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => nix.sel(lib, "teams", "php", "members")),
     })),
     containers: nix.thunk(() => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config = nix.arg($_1, "config");
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             httpd: nix.thunk(() => ({
-              [nix.POS]: pos$6,
+              [nix.POS]: $pos[5],
               enable: true,
               adminAddr: "admin@phpfpm",
               virtualHosts: nix.thunk(() => ({
-                [nix.POS]: pos$5,
+                [nix.POS]: $pos[4],
                 phpfpm: nix.thunk(() => (() => {
                   const testdir = nix.thunk(() => nix.app(nix.sel(pkgs, "writeTextDir"), "web/index.php", "<?php phpinfo();"));
                   return {
-                    [nix.POS]: pos$4,
+                    [nix.POS]: $pos[3],
                     documentRoot: nix.thunk(() => nix.str`${testdir}/web`),
                     locations: nix.thunk(() => ({
-                      [nix.POS]: pos$3,
-                      "/": nix.thunk(() => ({ [nix.POS]: pos$2, index: "index.php index.html" })),
+                      [nix.POS]: $pos[2],
+                      "/": nix.thunk(() => ({ [nix.POS]: $pos[1], index: "index.php index.html" })),
                     })),
                   };
                 })()),

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]], [["url", 34, 7], ["hash", 35, 7]], [["protobuf", 57, 40]], [["broken", 66, 5], ["description", 67, 5], ["homepage", 68, 5], ["maintainers", 69, 5], ["license", 70, 5], ["platforms", 74, 5]], [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["patches", 31, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 45, 3], ["propagatedBuildInputs", 56, 3], ["configureFlags", 61, 3], ["enableParallelBuilding", 63, 3], ["meta", 65, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, autoreconfHook: false, bison: false, flex: false, "pkg-config": false, libftdi1: false, libuuid: false, cppunit: false, protobuf_21: false, zlib: false, avahi: false, libmicrohttpd: false, perl: false, python3: false, fetchpatch: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 34, 7], ["hash", 35, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["protobuf", 57, 40]]);
-const pos$4 = nix.positions(here + "/package.nix", [["broken", 66, 5], ["description", 67, 5], ["homepage", 68, 5], ["maintainers", 69, 5], ["license", 70, 5], ["platforms", 74, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["patches", 31, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 45, 3], ["propagatedBuildInputs", 56, 3], ["configureFlags", 61, 3], ["enableParallelBuilding", 63, 3], ["meta", 65, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const fetchpatch = nix.arg($, "fetchpatch");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "ola",
       version: "0.10.9",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "OpenLightingProject",
           repo: "ola",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -41,7 +37,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/OpenLightingProject/ola/commit/d9b9c78645c578adb7c07b692842e841c48310be.patch",
             hash: "sha256-BplSqQv8ztWMpiX/M3/3wvf6LsPTBglh48gHlUoM6rw=",
           })))),
@@ -49,13 +45,13 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [autoreconfHook, bison, flex, pkg_config, perl]),
       buildInputs: nix.thunk(() => [libftdi1, libuuid, cppunit, protobuf_21, zlib, avahi, libmicrohttpd, python3]),
       propagatedBuildInputs: nix.thunk(() => [
-        nix.thunk(() => nix.app(nix.sel(python3, "pkgs", "protobuf4", "override"), nix.thunk(() => ({ [nix.POS]: pos$3, protobuf: protobuf_21 })))),
+        nix.thunk(() => nix.app(nix.sel(python3, "pkgs", "protobuf4", "override"), nix.thunk(() => ({ [nix.POS]: $pos[2], protobuf: protobuf_21 })))),
         nix.thunk(() => nix.sel(python3, "pkgs", "numpy")),
       ]),
       configureFlags: nix.thunk(() => ["--enable-python-libs"]),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
         description: "Framework for controlling entertainment lighting equipment",
         homepage: "https://www.openlighting.org/ola/",

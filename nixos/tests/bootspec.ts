@@ -2,220 +2,161 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/bootspec.nix", [[["system", 4, 33], ["config", 4, 40]], [["system", 7, 49], ["pkgs", 7, 56]], [["useBootLoader", 12, 20]], [["virtualisation", 12, 5]], [["enable", 15, 22]], [["grub", 15, 17]], [["loader", 15, 10]], [["boot", 15, 5]], [["enable", 18, 30]], [["systemd-boot", 18, 17]], [["loader", 18, 10]], [["boot", 18, 5]], [["useEFIBoot", 21, 20]], [["canTouchEfiVariables", 22, 21]], [["efiSupport", 23, 22]], [["efi", 22, 17], ["grub", 23, 17]], [["loader", 22, 10]], [["systemPackages", 24, 17]], [["virtualisation", 21, 5], ["boot", 22, 5], ["environment", 24, 5]], [["imports", 27, 5]], [["maintainers", 37, 10]], [["machine", 39, 11]], [["name", 36, 5], ["meta", 37, 5], ["nodes", 39, 5], ["testScript", 41, 5]], [["maintainers", 51, 10]], [["imports", 54, 7]], [["machine", 53, 11]], [["name", 50, 5], ["meta", 51, 5], ["nodes", 53, 5], ["testScript", 61, 5]], [["maintainers", 71, 10]], [["imports", 74, 7]], [["machine", 73, 11]], [["name", 70, 5], ["meta", 71, 5], ["nodes", 73, 5], ["testScript", 80, 5]], [["maintainers", 91, 10]], [["systemPackages", 95, 19]], [["enable", 97, 19]], [["initrd", 97, 12]], [["imports", 94, 7], ["environment", 95, 7], ["boot", 97, 7]], [["machine", 93, 11]], [["name", 90, 5], ["meta", 91, 5], ["nodes", 93, 5], ["testScript", 100, 5]], [["maintainers", 118, 10]], [["systemPackages", 122, 19]], [["/some/example", 125, 27]], [["enable", 124, 19], ["secrets", 125, 19]], [["initrd", 124, 12]], [["imports", 121, 7], ["environment", 122, 7], ["boot", 124, 7]], [["machine", 120, 11]], [["name", 117, 5], ["meta", 118, 5], ["nodes", 120, 5], ["testScript", 128, 5]], [["maintainers", 145, 10]], [["systemPackages", 149, 19]], [["configuration", 150, 32]], [["something", 150, 22]], [["imports", 148, 7], ["environment", 149, 7], ["specialisation", 150, 7]], [["machine", 147, 11]], [["name", 144, 5], ["meta", 145, 5], ["nodes", 147, 5], ["testScript", 153, 5]], [["maintainers", 172, 10]], [["systemPackages", 178, 21]], [["osRelease", 181, 13]], [["org.nix-tests.product", 180, 11]], [["extensions", 179, 23]], [["bootspec", 179, 14]], [["imports", 177, 9], ["environment", 178, 9], ["boot", 179, 9]], [["machine", 174, 11]], [["name", 171, 5], ["meta", 172, 5], ["nodes", 174, 5], ["testScript", 186, 5]], [["basic", 35, 3], ["grub", 49, 3], ["legacy-boot", 69, 3], ["initrd", 89, 3], ["initrd-secrets", 116, 3], ["specialisation", 143, 3], ["extensions", 170, 3]]]);
 const formals$1 = { args: { system: true, config: true, pkgs: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/bootspec.nix", [["system", 4, 33], ["config", 4, 40]]);
-const pos$2 = nix.positions(here + "/bootspec.nix", [["system", 7, 49], ["pkgs", 7, 56]]);
-const pos$3 = nix.positions(here + "/bootspec.nix", [["useBootLoader", 12, 20]]);
-const pos$4 = nix.positions(here + "/bootspec.nix", [["virtualisation", 12, 5]]);
-const pos$5 = nix.positions(here + "/bootspec.nix", [["enable", 15, 22]]);
-const pos$6 = nix.positions(here + "/bootspec.nix", [["grub", 15, 17]]);
-const pos$7 = nix.positions(here + "/bootspec.nix", [["loader", 15, 10]]);
-const pos$8 = nix.positions(here + "/bootspec.nix", [["boot", 15, 5]]);
-const pos$9 = nix.positions(here + "/bootspec.nix", [["enable", 18, 30]]);
-const pos$10 = nix.positions(here + "/bootspec.nix", [["systemd-boot", 18, 17]]);
-const pos$11 = nix.positions(here + "/bootspec.nix", [["loader", 18, 10]]);
-const pos$12 = nix.positions(here + "/bootspec.nix", [["boot", 18, 5]]);
-const pos$13 = nix.positions(here + "/bootspec.nix", [["useEFIBoot", 21, 20]]);
-const pos$14 = nix.positions(here + "/bootspec.nix", [["canTouchEfiVariables", 22, 21]]);
-const pos$15 = nix.positions(here + "/bootspec.nix", [["efiSupport", 23, 22]]);
-const pos$16 = nix.positions(here + "/bootspec.nix", [["efi", 22, 17], ["grub", 23, 17]]);
-const pos$17 = nix.positions(here + "/bootspec.nix", [["loader", 22, 10]]);
-const pos$18 = nix.positions(here + "/bootspec.nix", [["systemPackages", 24, 17]]);
-const pos$19 = nix.positions(here + "/bootspec.nix", [["virtualisation", 21, 5], ["boot", 22, 5], ["environment", 24, 5]]);
-const pos$20 = nix.positions(here + "/bootspec.nix", [["imports", 27, 5]]);
-const pos$21 = nix.positions(here + "/bootspec.nix", [["maintainers", 37, 10]]);
-const pos$22 = nix.positions(here + "/bootspec.nix", [["machine", 39, 11]]);
-const pos$23 = nix.positions(here + "/bootspec.nix", [["name", 36, 5], ["meta", 37, 5], ["nodes", 39, 5], ["testScript", 41, 5]]);
-const pos$24 = nix.positions(here + "/bootspec.nix", [["maintainers", 51, 10]]);
-const pos$25 = nix.positions(here + "/bootspec.nix", [["imports", 54, 7]]);
-const pos$26 = nix.positions(here + "/bootspec.nix", [["machine", 53, 11]]);
-const pos$27 = nix.positions(here + "/bootspec.nix", [["name", 50, 5], ["meta", 51, 5], ["nodes", 53, 5], ["testScript", 61, 5]]);
-const pos$28 = nix.positions(here + "/bootspec.nix", [["maintainers", 71, 10]]);
-const pos$29 = nix.positions(here + "/bootspec.nix", [["imports", 74, 7]]);
-const pos$30 = nix.positions(here + "/bootspec.nix", [["machine", 73, 11]]);
-const pos$31 = nix.positions(here + "/bootspec.nix", [["name", 70, 5], ["meta", 71, 5], ["nodes", 73, 5], ["testScript", 80, 5]]);
-const pos$32 = nix.positions(here + "/bootspec.nix", [["maintainers", 91, 10]]);
-const pos$33 = nix.positions(here + "/bootspec.nix", [["systemPackages", 95, 19]]);
-const pos$34 = nix.positions(here + "/bootspec.nix", [["enable", 97, 19]]);
-const pos$35 = nix.positions(here + "/bootspec.nix", [["initrd", 97, 12]]);
-const pos$36 = nix.positions(here + "/bootspec.nix", [["imports", 94, 7], ["environment", 95, 7], ["boot", 97, 7]]);
-const pos$37 = nix.positions(here + "/bootspec.nix", [["machine", 93, 11]]);
-const pos$38 = nix.positions(here + "/bootspec.nix", [["name", 90, 5], ["meta", 91, 5], ["nodes", 93, 5], ["testScript", 100, 5]]);
-const pos$39 = nix.positions(here + "/bootspec.nix", [["maintainers", 118, 10]]);
-const pos$40 = nix.positions(here + "/bootspec.nix", [["systemPackages", 122, 19]]);
-const pos$41 = nix.positions(here + "/bootspec.nix", [["/some/example", 125, 27]]);
-const pos$42 = nix.positions(here + "/bootspec.nix", [["enable", 124, 19], ["secrets", 125, 19]]);
-const pos$43 = nix.positions(here + "/bootspec.nix", [["initrd", 124, 12]]);
-const pos$44 = nix.positions(here + "/bootspec.nix", [["imports", 121, 7], ["environment", 122, 7], ["boot", 124, 7]]);
-const pos$45 = nix.positions(here + "/bootspec.nix", [["machine", 120, 11]]);
-const pos$46 = nix.positions(here + "/bootspec.nix", [["name", 117, 5], ["meta", 118, 5], ["nodes", 120, 5], ["testScript", 128, 5]]);
-const pos$47 = nix.positions(here + "/bootspec.nix", [["maintainers", 145, 10]]);
-const pos$48 = nix.positions(here + "/bootspec.nix", [["systemPackages", 149, 19]]);
-const pos$49 = nix.positions(here + "/bootspec.nix", [["configuration", 150, 32]]);
-const pos$50 = nix.positions(here + "/bootspec.nix", [["something", 150, 22]]);
-const pos$51 = nix.positions(here + "/bootspec.nix", [["imports", 148, 7], ["environment", 149, 7], ["specialisation", 150, 7]]);
-const pos$52 = nix.positions(here + "/bootspec.nix", [["machine", 147, 11]]);
-const pos$53 = nix.positions(here + "/bootspec.nix", [["name", 144, 5], ["meta", 145, 5], ["nodes", 147, 5], ["testScript", 153, 5]]);
-const pos$54 = nix.positions(here + "/bootspec.nix", [["maintainers", 172, 10]]);
 const formals$2 = { args: { config: false }, ellipsis: true };
-const pos$55 = nix.positions(here + "/bootspec.nix", [["systemPackages", 178, 21]]);
-const pos$56 = nix.positions(here + "/bootspec.nix", [["osRelease", 181, 13]]);
-const pos$57 = nix.positions(here + "/bootspec.nix", [["org.nix-tests.product", 180, 11]]);
-const pos$58 = nix.positions(here + "/bootspec.nix", [["extensions", 179, 23]]);
-const pos$59 = nix.positions(here + "/bootspec.nix", [["bootspec", 179, 14]]);
-const pos$60 = nix.positions(here + "/bootspec.nix", [["imports", 177, 9], ["environment", 178, 9], ["boot", 179, 9]]);
-const pos$61 = nix.positions(here + "/bootspec.nix", [["machine", 174, 11]]);
-const pos$62 = nix.positions(here + "/bootspec.nix", [["name", 171, 5], ["meta", 172, 5], ["nodes", 174, 5], ["testScript", 186, 5]]);
-const pos$63 = nix.positions(here + "/bootspec.nix", [["basic", 35, 3], ["grub", 49, 3], ["legacy-boot", 69, 3], ["initrd", 89, 3], ["initrd-secrets", 116, 3], ["specialisation", 143, 3], ["extensions", 170, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const system = nix.argOr($, "system", () => nix.builtins.currentSystem);
   const config = nix.argOr($, "config", () => ({}));
-  const pkgs = nix.argOr($, "pkgs", () => nix.app(nix.builtins.import(nix.path(here, "../..")), nix.thunk(() => ({ [nix.POS]: pos$1, system: system, config: config }))));
-  const w = nix.withScope(nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../lib/testing-python.nix")), nix.thunk(() => ({ [nix.POS]: pos$2, system: system, pkgs: pkgs })))), null);
+  const pkgs = nix.argOr($, "pkgs", () => nix.app(nix.builtins.import(nix.path(here, "../..")), nix.thunk(() => ({ [nix.POS]: $pos[0], system: system, config: config }))));
+  const w = nix.withScope(nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../lib/testing-python.nix")), nix.thunk(() => ({ [nix.POS]: $pos[1], system: system, pkgs: pkgs })))), null);
   const w_1 = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib")), w);
   const baseline = nix.thunk(() => ({
-    [nix.POS]: pos$4,
-    virtualisation: nix.thunk(() => ({ [nix.POS]: pos$3, useBootLoader: true })),
+    [nix.POS]: $pos[3],
+    virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[2], useBootLoader: true })),
   }));
   const grub = nix.thunk(() => ({
-    [nix.POS]: pos$8,
+    [nix.POS]: $pos[7],
     boot: nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       loader: nix.thunk(() => ({
-        [nix.POS]: pos$6,
-        grub: nix.thunk(() => ({ [nix.POS]: pos$5, enable: true })),
+        [nix.POS]: $pos[5],
+        grub: nix.thunk(() => ({ [nix.POS]: $pos[4], enable: true })),
       })),
     })),
   }));
   const systemd_boot = nix.thunk(() => ({
-    [nix.POS]: pos$12,
+    [nix.POS]: $pos[11],
     boot: nix.thunk(() => ({
-      [nix.POS]: pos$11,
+      [nix.POS]: $pos[10],
       loader: nix.thunk(() => ({
-        [nix.POS]: pos$10,
-        "systemd-boot": nix.thunk(() => ({ [nix.POS]: pos$9, enable: true })),
+        [nix.POS]: $pos[9],
+        "systemd-boot": nix.thunk(() => ({ [nix.POS]: $pos[8], enable: true })),
       })),
     })),
   }));
   const uefi = nix.thunk(() => ({
-    [nix.POS]: pos$19,
-    virtualisation: nix.thunk(() => ({ [nix.POS]: pos$13, useEFIBoot: true })),
+    [nix.POS]: $pos[18],
+    virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[12], useEFIBoot: true })),
     boot: nix.thunk(() => ({
-      [nix.POS]: pos$17,
+      [nix.POS]: $pos[16],
       loader: nix.thunk(() => ({
-        [nix.POS]: pos$16,
-        efi: nix.thunk(() => ({ [nix.POS]: pos$14, canTouchEfiVariables: true })),
-        grub: nix.thunk(() => ({ [nix.POS]: pos$15, efiSupport: true })),
+        [nix.POS]: $pos[15],
+        efi: nix.thunk(() => ({ [nix.POS]: $pos[13], canTouchEfiVariables: true })),
+        grub: nix.thunk(() => ({ [nix.POS]: $pos[14], efiSupport: true })),
       })),
     })),
     environment: nix.thunk(() => ({
-      [nix.POS]: pos$18,
+      [nix.POS]: $pos[17],
       systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "efibootmgr"))]),
     })),
   }));
-  const standard = nix.thunk(() => ({ [nix.POS]: pos$20, imports: nix.thunk(() => [baseline, systemd_boot, uefi]) }));
+  const standard = nix.thunk(() => ({
+    [nix.POS]: $pos[19],
+    imports: nix.thunk(() => [baseline, systemd_boot, uefi]),
+  }));
   return {
-    [nix.POS]: pos$63,
+    [nix.POS]: $pos[62],
     basic: nix.thunk(() => nix.app(nix.lookup(w_1, "makeTest"), nix.thunk(() => ({
-        [nix.POS]: pos$23,
+        [nix.POS]: $pos[22],
         name: "systemd-boot-with-bootspec",
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$21,
+          [nix.POS]: $pos[20],
           maintainers: nix.thunk(() => (() => {
             const w_2 = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), w_1);
             return [nix.thunk(() => nix.lookup(w_2, "raitobezarius"))];
           })()),
         })),
-        nodes: nix.thunk(() => ({ [nix.POS]: pos$22, machine: standard })),
+        nodes: nix.thunk(() => ({ [nix.POS]: $pos[21], machine: standard })),
         testScript: "machine.start()\nmachine.wait_for_unit(\"multi-user.target\")\n\nmachine.succeed(\"test -e /run/current-system/boot.json\")\n",
       })))),
     grub: nix.thunk(() => nix.app(nix.lookup(w_1, "makeTest"), nix.thunk(() => ({
-        [nix.POS]: pos$27,
+        [nix.POS]: $pos[26],
         name: "grub-with-bootspec",
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$24,
+          [nix.POS]: $pos[23],
           maintainers: nix.thunk(() => (() => {
             const w_2 = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), w_1);
             return [nix.thunk(() => nix.lookup(w_2, "raitobezarius"))];
           })()),
         })),
         nodes: nix.thunk(() => ({
-          [nix.POS]: pos$26,
-          machine: nix.thunk(() => ({ [nix.POS]: pos$25, imports: nix.thunk(() => [baseline, grub, uefi]) })),
+          [nix.POS]: $pos[25],
+          machine: nix.thunk(() => ({ [nix.POS]: $pos[24], imports: nix.thunk(() => [baseline, grub, uefi]) })),
         })),
         testScript: "machine.start()\nmachine.wait_for_unit(\"multi-user.target\")\n\nmachine.succeed(\"test -e /run/current-system/boot.json\")\n",
       })))),
     "legacy-boot": nix.thunk(() => nix.app(nix.lookup(w_1, "makeTest"), nix.thunk(() => ({
-        [nix.POS]: pos$31,
+        [nix.POS]: $pos[30],
         name: "legacy-boot-with-bootspec",
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$28,
+          [nix.POS]: $pos[27],
           maintainers: nix.thunk(() => (() => {
             const w_2 = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), w_1);
             return [nix.thunk(() => nix.lookup(w_2, "raitobezarius"))];
           })()),
         })),
         nodes: nix.thunk(() => ({
-          [nix.POS]: pos$30,
-          machine: nix.thunk(() => ({ [nix.POS]: pos$29, imports: nix.thunk(() => [baseline, grub]) })),
+          [nix.POS]: $pos[29],
+          machine: nix.thunk(() => ({ [nix.POS]: $pos[28], imports: nix.thunk(() => [baseline, grub]) })),
         })),
         testScript: "machine.start()\nmachine.wait_for_unit(\"multi-user.target\")\n\nmachine.succeed(\"test -e /run/current-system/boot.json\")\n",
       })))),
     initrd: nix.thunk(() => nix.app(nix.lookup(w_1, "makeTest"), nix.thunk(() => ({
-        [nix.POS]: pos$38,
+        [nix.POS]: $pos[37],
         name: "bootspec-with-initrd",
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$32,
+          [nix.POS]: $pos[31],
           maintainers: nix.thunk(() => (() => {
             const w_2 = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), w_1);
             return [nix.thunk(() => nix.lookup(w_2, "raitobezarius"))];
           })()),
         })),
         nodes: nix.thunk(() => ({
-          [nix.POS]: pos$37,
+          [nix.POS]: $pos[36],
           machine: nix.thunk(() => ({
-            [nix.POS]: pos$36,
+            [nix.POS]: $pos[35],
             imports: nix.thunk(() => [standard]),
             environment: nix.thunk(() => ({
-              [nix.POS]: pos$33,
+              [nix.POS]: $pos[32],
               systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "jq"))]),
             })),
             boot: nix.thunk(() => ({
-              [nix.POS]: pos$35,
-              initrd: nix.thunk(() => ({ [nix.POS]: pos$34, enable: true })),
+              [nix.POS]: $pos[34],
+              initrd: nix.thunk(() => ({ [nix.POS]: $pos[33], enable: true })),
             })),
           })),
         })),
         testScript: "import json\n\nmachine.start()\nmachine.wait_for_unit(\"multi-user.target\")\n\nmachine.succeed(\"test -e /run/current-system/boot.json\")\n\nbootspec = json.loads(machine.succeed(\"jq -r '.\\\"org.nixos.bootspec.v1\\\"' /run/current-system/boot.json\"))\n\nassert 'initrd' in bootspec, \"Bootspec should contain initrd field when initrd is enabled\"\nassert 'initrdSecrets' not in bootspec, \"Bootspec should not contain initrdSecrets when there's no initrdSecrets\"\n",
       })))),
     "initrd-secrets": nix.thunk(() => nix.app(nix.lookup(w_1, "makeTest"), nix.thunk(() => ({
-        [nix.POS]: pos$46,
+        [nix.POS]: $pos[45],
         name: "bootspec-with-initrd-secrets",
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$39,
+          [nix.POS]: $pos[38],
           maintainers: nix.thunk(() => (() => {
             const w_2 = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), w_1);
             return [nix.thunk(() => nix.lookup(w_2, "raitobezarius"))];
           })()),
         })),
         nodes: nix.thunk(() => ({
-          [nix.POS]: pos$45,
+          [nix.POS]: $pos[44],
           machine: nix.thunk(() => ({
-            [nix.POS]: pos$44,
+            [nix.POS]: $pos[43],
             imports: nix.thunk(() => [standard]),
             environment: nix.thunk(() => ({
-              [nix.POS]: pos$40,
+              [nix.POS]: $pos[39],
               systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "jq"))]),
             })),
             boot: nix.thunk(() => ({
-              [nix.POS]: pos$43,
+              [nix.POS]: $pos[42],
               initrd: nix.thunk(() => ({
-                [nix.POS]: pos$42,
+                [nix.POS]: $pos[41],
                 enable: true,
                 secrets: nix.thunk(() => ({
-                  [nix.POS]: pos$41,
+                  [nix.POS]: $pos[40],
                   "/some/example": nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "example-secret", "test")),
                 })),
               })),
@@ -225,62 +166,62 @@ export default nix.lambda((args) => (() => {
         testScript: "import json\n\nmachine.start()\nmachine.wait_for_unit(\"multi-user.target\")\n\nmachine.succeed(\"test -e /run/current-system/boot.json\")\n\nbootspec = json.loads(machine.succeed(\"jq -r '.\\\"org.nixos.bootspec.v1\\\"' /run/current-system/boot.json\"))\n\nassert 'initrdSecrets' in bootspec, \"Bootspec should contain an 'initrdSecrets' field given there's an initrd secret\"\n",
       })))),
     specialisation: nix.thunk(() => nix.app(nix.lookup(w_1, "makeTest"), nix.thunk(() => ({
-        [nix.POS]: pos$53,
+        [nix.POS]: $pos[52],
         name: "bootspec-with-specialisation",
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$47,
+          [nix.POS]: $pos[46],
           maintainers: nix.thunk(() => (() => {
             const w_2 = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), w_1);
             return [nix.thunk(() => nix.lookup(w_2, "raitobezarius"))];
           })()),
         })),
         nodes: nix.thunk(() => ({
-          [nix.POS]: pos$52,
+          [nix.POS]: $pos[51],
           machine: nix.thunk(() => ({
-            [nix.POS]: pos$51,
+            [nix.POS]: $pos[50],
             imports: nix.thunk(() => [standard]),
             environment: nix.thunk(() => ({
-              [nix.POS]: pos$48,
+              [nix.POS]: $pos[47],
               systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "jq"))]),
             })),
             specialisation: nix.thunk(() => ({
-              [nix.POS]: pos$50,
-              something: nix.thunk(() => ({ [nix.POS]: pos$49, configuration: nix.thunk(() => ({})) })),
+              [nix.POS]: $pos[49],
+              something: nix.thunk(() => ({ [nix.POS]: $pos[48], configuration: nix.thunk(() => ({})) })),
             })),
           })),
         })),
         testScript: "import json\n\nmachine.start()\nmachine.wait_for_unit(\"multi-user.target\")\n\nmachine.succeed(\"test -e /run/current-system/boot.json\")\nmachine.succeed(\"test -e /run/current-system/specialisation/something/boot.json\")\n\nsp_in_parent = json.loads(machine.succeed(\"jq -r '.\\\"org.nixos.specialisation.v1\\\".something' /run/current-system/boot.json\"))\nsp_in_fs = json.loads(machine.succeed(\"cat /run/current-system/specialisation/something/boot.json\"))\n\nassert sp_in_parent['org.nixos.bootspec.v1'] == sp_in_fs['org.nixos.bootspec.v1'], \"Bootspecs of the same specialisation are different!\"\n",
       })))),
     extensions: nix.thunk(() => nix.app(nix.lookup(w_1, "makeTest"), nix.thunk(() => ({
-        [nix.POS]: pos$62,
+        [nix.POS]: $pos[61],
         name: "bootspec-with-extensions",
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$54,
+          [nix.POS]: $pos[53],
           maintainers: nix.thunk(() => (() => {
             const w_2 = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), w_1);
             return [nix.thunk(() => nix.lookup(w_2, "raitobezarius"))];
           })()),
         })),
         nodes: nix.thunk(() => ({
-          [nix.POS]: pos$61,
+          [nix.POS]: $pos[60],
           machine: nix.lambda((args_1) => (() => {
             const $_1 = nix.formals(args_1, formals$2);
             const config_1 = nix.arg($_1, "config");
             return {
-              [nix.POS]: pos$60,
+              [nix.POS]: $pos[59],
               imports: nix.thunk(() => [standard]),
               environment: nix.thunk(() => ({
-                [nix.POS]: pos$55,
+                [nix.POS]: $pos[54],
                 systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "jq"))]),
               })),
               boot: nix.thunk(() => ({
-                [nix.POS]: pos$59,
+                [nix.POS]: $pos[58],
                 bootspec: nix.thunk(() => ({
-                  [nix.POS]: pos$58,
+                  [nix.POS]: $pos[57],
                   extensions: nix.thunk(() => ({
-                    [nix.POS]: pos$57,
+                    [nix.POS]: $pos[56],
                     "org.nix-tests.product": nix.thunk(() => ({
-                      [nix.POS]: pos$56,
+                      [nix.POS]: $pos[55],
                       osRelease: nix.thunk(() => nix.sel(config_1, "environment", "etc", "os-release", "source")),
                     })),
                   })),

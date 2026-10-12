@@ -2,16 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 30, 7], ["repo", 31, 7], ["rev", 32, 7], ["hash", 33, 7], ["fetchSubmodules", 34, 7]], [["homepage", 61, 7], ["description", 62, 7], ["maintainers", 63, 7], ["license", 64, 7], ["platforms", 65, 7]], [["pname", 39, 5], ["version", 40, 13], ["src", 42, 5], ["sourceRoot", 44, 5], ["nativeBuildInputs", 46, 5], ["buildInputs", 51, 5], ["enableParallelBuilding", 58, 5], ["meta", 60, 5]], [["owner", 74, 7], ["repo", 75, 7], ["rev", 76, 7], ["hash", 77, 7]], [["homepage", 100, 26], ["description", 101, 7], ["maintainers", 102, 7], ["license", 103, 7], ["platforms", 104, 7]], [["pname", 70, 5], ["version", 71, 5], ["src", 73, 5], ["nativeBuildInputs", 80, 5], ["buildInputs", 82, 5], ["dontWrapQtApps", 88, 5], ["pluginsSubdir", 90, 5], ["installPhase", 92, 5], ["meta", 99, 5]], [["version", 153, 13], ["libdc", 153, 21], ["googlemaps", 153, 27], ["updateScript", 154, 5]], [["description", 174, 5], ["mainProgram", 175, 5], ["longDescription", 176, 5], ["homepage", 182, 5], ["license", 183, 5], ["maintainers", 184, 5], ["platforms", 185, 5]], [["pname", 114, 3], ["version", 115, 11], ["src", 117, 3], ["postPatch", 119, 3], ["buildInputs", 123, 3], ["nativeBuildInputs", 141, 3], ["cmakeFlags", 147, 3], ["passthru", 152, 3], ["meta", 173, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, autoreconfHook: false, writeShellScriptBin: false, cmake: false, "pkg-config": false, curl: false, grantlee: false, hidapi: false, libgit2: false, libssh2: false, libusb1: false, libxml2: false, libxslt: false, libzip: false, zlib: false, libsForQt5: false, libxcomposite: false, bluez: false, writeScript: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 30, 7], ["repo", 31, 7], ["rev", 32, 7], ["hash", 33, 7], ["fetchSubmodules", 34, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 61, 7], ["description", 62, 7], ["maintainers", 63, 7], ["license", 64, 7], ["platforms", 65, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 39, 5], ["version", 40, 13], ["src", 42, 5], ["sourceRoot", 44, 5], ["nativeBuildInputs", 46, 5], ["buildInputs", 51, 5], ["enableParallelBuilding", 58, 5], ["meta", 60, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["owner", 74, 7], ["repo", 75, 7], ["rev", 76, 7], ["hash", 77, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["homepage", 100, 26], ["description", 101, 7], ["maintainers", 102, 7], ["license", 103, 7], ["platforms", 104, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 70, 5], ["version", 71, 5], ["src", 73, 5], ["nativeBuildInputs", 80, 5], ["buildInputs", 82, 5], ["dontWrapQtApps", 88, 5], ["pluginsSubdir", 90, 5], ["installPhase", 92, 5], ["meta", 99, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["version", 153, 13], ["libdc", 153, 21], ["googlemaps", 153, 27], ["updateScript", 154, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["description", 174, 5], ["mainProgram", 175, 5], ["longDescription", 176, 5], ["homepage", 182, 5], ["license", 183, 5], ["maintainers", 184, 5], ["platforms", 185, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["pname", 114, 3], ["version", 115, 11], ["src", 117, 3], ["postPatch", 119, 3], ["buildInputs", 123, 3], ["nativeBuildInputs", 141, 3], ["cmakeFlags", 147, 3], ["passthru", 152, 3], ["meta", 173, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -38,7 +30,7 @@ export default nix.lambda((args) => (() => {
   const writeScript = nix.arg($, "writeScript");
   const version = "6.0.5707";
   const subsurfaceSrc = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "Subsurface",
       repo: "subsurface",
       rev: "bb47bfa2834dea073e5a709051dbda8405e3de16",
@@ -46,7 +38,7 @@ export default nix.lambda((args) => (() => {
       fetchSubmodules: true,
     }))));
   const libdc = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "libdivecomputer-ssrf",
       version: version,
       src: subsurfaceSrc,
@@ -55,7 +47,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [zlib, libusb1, bluez, hidapi]),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://www.libdivecomputer.org",
         description: "Cross-platform and open source library for communication with dive computers from various manufacturers",
         maintainers: nix.thunk(() => (() => {
@@ -70,7 +62,7 @@ export default nix.lambda((args) => (() => {
       const pname = "googlemaps";
       const version_1 = "0.0.0.2";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           owner: "vladest",
           repo: "googlemaps",
           rev: nix.thunk(() => nix.str`v.${version_1}`),
@@ -92,7 +84,7 @@ mv lib $out/
       const meta = nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(src, "meta"));
         return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         description: "QtLocation plugin for Google maps tile API",
         maintainers: [],
@@ -101,7 +93,7 @@ mv lib $out/
       };
       })());
       return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname,
         version: version_1,
         src,
@@ -116,7 +108,7 @@ mv lib $out/
   const get_version = nix.thunk(() => nix.app(writeShellScriptBin, "get-version", nix.thunk(() => nix.str`echo -n ${version}
 `)));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       pname: "subsurface",
       version: version,
       src: subsurfaceSrc,
@@ -142,14 +134,14 @@ mv lib $out/
       nativeBuildInputs: nix.thunk(() => [cmake, nix.thunk(() => nix.sel(libsForQt5, "wrapQtAppsHook")), pkg_config]),
       cmakeFlags: nix.thunk(() => ["-DLIBDC_FROM_PKGCONFIG=ON", "-DNO_PRINTING=OFF"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         version: version,
         libdc: libdc,
         googlemaps: googlemaps,
         updateScript: nix.thunk(() => nix.app(writeScript, "update-subsurface", "#!/usr/bin/env nix-shell\n#!nix-shell -i bash -p git common-updater-scripts\n\nset -eu -o pipefail\ntmpdir=$(mktemp -d)\npushd $tmpdir\ngit clone -b current https://github.com/subsurface/subsurface.git\ncd subsurface\nsed -i '1s/#!\\/bin\\/bash/#!\\/usr\\/bin\\/env bash/' ./scripts/get-version.sh\n# this returns 6.0.????-local\nnew_version=$(./scripts/get-version.sh | cut -d '-' -f 1)\nnew_rev=$(git rev-list -1 HEAD)\npopd\nupdate-source-version subsurface \"$new_version\" --rev=\"$new_rev\"\nrm -rf $tmpdir\n")),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         description: "Divelog program",
         mainProgram: "subsurface",
         longDescription: "Subsurface can track single- and multi-tank dives using air, Nitrox or TriMix.\nIt allows tracking of dive locations including GPS coordinates (which can also\nconveniently be entered using a map interface), logging of equipment used and\nnames of other divers, and lets users rate dives and provide additional notes.\n",

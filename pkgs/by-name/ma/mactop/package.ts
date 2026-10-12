@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]], [["updateScript", 33, 12]], [["description", 37, 5], ["homepage", 38, 5], ["changelog", 39, 5], ["license", 40, 5], ["maintainers", 41, 5], ["mainProgram", 42, 5], ["platforms", 43, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["vendorHash", 20, 3], ["proxyVendor", 22, 3], ["ldflags", 24, 3], ["doInstallCheck", 29, 3], ["doCheck", 30, 3], ["nativeInstallCheckInputs", 31, 3], ["passthru", 33, 3], ["versionCheckProgramArg", 34, 3], ["meta", 36, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitHub: false, versionCheckHook: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 33, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 37, 5], ["homepage", 38, 5], ["changelog", 39, 5], ["license", 40, 5], ["maintainers", 41, 5], ["mainProgram", 42, 5], ["platforms", 43, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["vendorHash", 20, 3], ["proxyVendor", 22, 3], ["ldflags", 24, 3], ["doInstallCheck", 29, 3], ["doCheck", 30, 3], ["nativeInstallCheckInputs", 31, 3], ["passthru", 33, 3], ["versionCheckProgramArg", 34, 3], ["meta", 36, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "mactop";
       const version = "2.1.5";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "metaspartan",
           repo: "mactop",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -32,12 +29,12 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const nativeInstallCheckInputs = nix.thunk(() => [versionCheckHook]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const versionCheckProgramArg = "--version";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Terminal-based monitoring tool 'top' designed to display real-time metrics for Apple Silicon chips",
         homepage: "https://github.com/metaspartan/mactop",
         changelog: nix.thunk(() => nix.str`https://github.com/metaspartan/mactop/releases/tag/${nix.sel(src, "tag")}`),
@@ -50,7 +47,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => ["aarch64-darwin"]),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

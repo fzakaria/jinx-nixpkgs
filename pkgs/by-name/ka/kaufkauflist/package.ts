@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 13], ["repo", 20, 13], ["rev", 21, 13], ["hash", 22, 13]], [["version", 17, 11], ["src", 18, 11], ["vendorHash", 24, 11]], [["buildGoModule", 12, 5]], [["owner", 34, 5], ["repo", 35, 5], ["rev", 36, 5], ["hash", 37, 5]], [["ESBUILD_BINARY_PATH", 42, 7]], [["updateScript", 50, 12]], [["homepage", 53, 5], ["description", 54, 5], ["license", 55, 5], ["maintainers", 56, 5], ["mainProgram", 57, 5]], [["pname", 30, 3], ["version", 31, 3], ["src", 33, 3], ["npmDepsHash", 40, 3], ["env", 42, 3], ["postInstall", 44, 3], ["passthru", 50, 3], ["meta", 52, 3]]]);
 const formals$1 = { args: { lib: false, buildPackages: false, fetchFromGitHub: false, buildNpmPackage: false, fetchFromCodeberg: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 13], ["repo", 20, 13], ["rev", 21, 13], ["hash", 22, 13]]);
-const pos$2 = nix.positions(here + "/package.nix", [["version", 17, 11], ["src", 18, 11], ["vendorHash", 24, 11]]);
-const pos$3 = nix.positions(here + "/package.nix", [["buildGoModule", 12, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["owner", 34, 5], ["repo", 35, 5], ["rev", 36, 5], ["hash", 37, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["ESBUILD_BINARY_PATH", 42, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["updateScript", 50, 12]]);
-const pos$7 = nix.positions(here + "/package.nix", [["homepage", 53, 5], ["description", 54, 5], ["license", 55, 5], ["maintainers", 56, 5], ["mainProgram", 57, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 30, 3], ["version", 31, 3], ["src", 33, 3], ["npmDepsHash", 40, 3], ["env", 42, 3], ["postInstall", 44, 3], ["passthru", 50, 3], ["meta", 52, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,25 +14,25 @@ export default nix.lambda((args) => (() => {
   const fetchFromCodeberg = nix.arg($, "fetchFromCodeberg");
   const nix_update_script = nix.arg($, "nix-update-script");
   const esbuild$ = nix.thunk(() => nix.app(nix.sel(buildPackages, "esbuild", "override"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       buildGoModule: (args_1) => nix.app(nix.sel(buildPackages, "buildGoModule"), nix.thunk(() => nix.update(args_1, (() => {
           const version = "0.21.5";
           const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-              [nix.POS]: pos$1,
+              [nix.POS]: $pos[0],
               owner: "evanw",
               repo: "esbuild",
               rev: nix.thunk(() => nix.str`v${version}`),
               hash: "sha256-FpvXWIlt67G8w3pBKZo/mcp57LunxDmRUaCU/Ne89B8=",
             }))));
           const vendorHash = "sha256-+BfxCyg0KkDQpHt/wycy/8CTG6YBA/VJvJFhhzUnSiQ=";
-          return { [nix.POS]: pos$2, version, src, vendorHash };
+          return { [nix.POS]: $pos[1], version, src, vendorHash };
         })()))),
     }))));
   return nix.app(buildNpmPackage, nix.thunk(() => (() => {
       const pname = "kaufkauflist";
       const version = "4.0.2";
       const src = nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           owner: "annaaurora",
           repo: "kaufkauflist",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -47,16 +40,16 @@ export default nix.lambda((args) => (() => {
         }))));
       const npmDepsHash = "sha256-HDv6sW6FmKZpUjymrUjz/WG9XrKgLmM6qHMAxP6gBtU=";
       const env = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         ESBUILD_BINARY_PATH: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), esbuild$)),
       }));
       const postInstall = "mkdir -p $out/share/kaufkauflist $out/share/pocketbase\ncp -vr build/* $out/share/kaufkauflist/\ncp -v pb_schema.json $out/share/pocketbase/\n";
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         homepage: "https://codeberg.org/annaaurora/kaufkauflist",
         description: "To-do list for shopping or other use cases",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -67,7 +60,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "kaufdbclean",
       }));
       return {
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         pname,
         version,
         src,

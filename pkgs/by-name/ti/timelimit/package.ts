@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]], [["INSTALL_PROGRAM", 25, 5], ["INSTALL_DATA", 26, 5]], [["description", 30, 5], ["homepage", 31, 5], ["license", 32, 5], ["platforms", 33, 5], ["maintainers", 34, 5], ["mainProgram", 37, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["nativeCheckInputs", 19, 3], ["doCheck", 20, 3], ["installFlags", 22, 3], ["env", 24, 3], ["meta", 29, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, perl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["INSTALL_PROGRAM", 25, 5], ["INSTALL_DATA", 26, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 30, 5], ["homepage", 31, 5], ["license", 32, 5], ["platforms", 33, 5], ["maintainers", 34, 5], ["mainProgram", 37, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["nativeCheckInputs", 19, 3], ["doCheck", 20, 3], ["installFlags", 22, 3], ["env", 24, 3], ["meta", 29, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitLab = nix.arg($, "fetchFromGitLab");
   const perl = nix.arg($, "perl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "timelimit",
       version: "1.9.5",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "timelimit",
           repo: "timelimit",
           rev: nix.thunk(() => nix.str`release/${nix.sel(finalAttrs, "version")}`),
@@ -29,12 +26,12 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       installFlags: nix.thunk(() => ["PREFIX=$(out)"]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         INSTALL_PROGRAM: "install -m755",
         INSTALL_DATA: "install -m644",
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Execute a command and terminates the spawned process after a given time with a given signal",
         homepage: "https://devel.ringlet.net/sysutils/timelimit/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

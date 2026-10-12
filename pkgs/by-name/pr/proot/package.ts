@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["repo", 20, 5], ["owner", 21, 5], ["rev", 22, 5], ["sha256", 23, 5]], [["homepage", 62, 5], ["description", 63, 5], ["platforms", 64, 5], ["license", 65, 5], ["maintainers", 66, 5], ["mainProgram", 71, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["postPatch", 26, 3], ["buildInputs", 33, 3], ["nativeBuildInputs", 38, 3], ["enableParallelBuilding", 44, 3], ["makeFlags", 46, 3], ["postBuild", 48, 3], ["installFlags", 52, 3], ["postInstall", 54, 3], ["doCheck", 59, 3], ["meta", 61, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, talloc: false, "pkg-config": false, ncurses: false, docutils: false, swig: false, python3: false, coreutils: false, enablePython: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["repo", 20, 5], ["owner", 21, 5], ["rev", 22, 5], ["sha256", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 62, 5], ["description", 63, 5], ["platforms", 64, 5], ["license", 65, 5], ["maintainers", 66, 5], ["mainProgram", 71, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["postPatch", 26, 3], ["buildInputs", 33, 3], ["nativeBuildInputs", 38, 3], ["enableParallelBuilding", 44, 3], ["makeFlags", 46, 3], ["postBuild", 48, 3], ["installFlags", 52, 3], ["postInstall", 54, 3], ["doCheck", 59, 3], ["meta", 61, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const coreutils = nix.arg($, "coreutils");
   const enablePython = nix.argOr($, "enablePython", () => true);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "proot",
       version: "5.4.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           repo: "proot",
           owner: "proot-me",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -45,7 +43,7 @@ sed -i /CROSS_COMPILE/d src/GNUmakefile
       postInstall: "install -Dm644 doc/proot/man.1 $out/share/man/man1/proot.1\n",
       doCheck: false,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://proot-me.github.io",
         description: "User-space implementation of chroot, mount --bind and binfmt_misc",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),

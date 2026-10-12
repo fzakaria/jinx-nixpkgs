@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["sha256", 20, 5]], [["homepage", 36, 5], ["description", 37, 5], ["longDescription", 38, 5], ["license", 46, 5], ["maintainers", 47, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["minimalOCamlVersion", 23, 3], ["propagatedBuildInputs", 25, 3], ["nativeCheckInputs", 29, 3], ["doCheck", 33, 3], ["meta", 35, 3]]]);
 const formals$1 = { args: { buildDunePackage: false, ocaml: false, lib: false, ppxlib: false, fetchFromGitHub: false, ojs: false, "js_of_ocaml-compiler": false, nodejs: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["sha256", 20, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 36, 5], ["description", 37, 5], ["longDescription", 38, 5], ["license", 46, 5], ["maintainers", 47, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["minimalOCamlVersion", 23, 3], ["propagatedBuildInputs", 25, 3], ["nativeCheckInputs", 29, 3], ["doCheck", 33, 3], ["meta", 35, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const js_of_ocaml_compiler = nix.arg($, "js_of_ocaml-compiler");
   const nodejs = nix.arg($, "nodejs");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "gen_js_api",
       version: "1.1.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "LexiFi",
           repo: "gen_js_api",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -33,7 +31,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [js_of_ocaml_compiler, nodejs]),
       doCheck: nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(ocaml, "version")), "4.13")) && nix.asBool(!nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(ppxlib, "version")), "0.36"))))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/LexiFi/gen_js_api",
         description: "Easy OCaml bindings for JavaScript libraries",
         longDescription: "gen_js_api aims at simplifying the creation of OCaml bindings for\nJavaScript libraries. Authors of bindings write OCaml signatures for\nJavaScript libraries and the tool generates the actual binding code with a\ncombination of implicit conventions and explicit annotations.\n\ngen_js_api is to be used with the js_of_ocaml compiler.\n",

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 24, 5], ["repo", 25, 5], ["rev", 26, 5], ["hash", 27, 5]], [["rev-prefix", 65, 5]], [["updateScript", 64, 12]], [["description", 70, 5], ["longDescription", 71, 5], ["homepage", 76, 5], ["mainProgram", 77, 5], ["license", 78, 5], ["platforms", 79, 5]], [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 32, 3], ["dontBuild", 38, 3], ["installPhase", 40, 3], ["passthru", 64, 3], ["meta", 69, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, gitUpdater: false, makeWrapper: false, gawk: false, bc: false, jq: false, wireplumber: false, pipewire: false, coreutils: false, gnugrep: false, libpulseaudio: false, "alsa-lib": false, libnotify: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 24, 5], ["repo", 25, 5], ["rev", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["rev-prefix", 65, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 64, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 70, 5], ["longDescription", 71, 5], ["homepage", 76, 5], ["mainProgram", 77, 5], ["license", 78, 5], ["platforms", 79, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 32, 3], ["dontBuild", 38, 3], ["installPhase", 40, 3], ["passthru", 64, 3], ["meta", 69, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const pname = "i3-volume";
       const version = "4.0.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "hastinbe",
           repo: "i3-volume",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -52,11 +48,11 @@ wrapProgram "$out/bin/i3-volume" \\
 runHook postInstall
 `);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, "rev-prefix": "v" })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[1], "rev-prefix": "v" })))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Volume control with on-screen display notifications",
         longDescription: "Use keyboard volume keys to mute, increase, or decrease the volume. Volume indicators in status lines will be updated and, when notifications are enabled, a popup will display the volume level.\n\nWorks with any window manager, such as [i3wm](https://i3wm.org/), [bspwm](https://github.com/baskerville/bspwm), and [KDE](https://kde.org/), as a standalone script, or with statusbars such as [polybar](https://github.com/polybar/polybar), [i3blocks](https://github.com/vivien/i3blocks), [i3status](https://github.com/i3/i3status), and more.\n",
         homepage: "https://github.com/hastinbe/i3-volume",
@@ -65,7 +61,7 @@ runHook postInstall
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         src,

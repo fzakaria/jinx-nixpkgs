@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 11], ["repo", 19, 11], ["tag", 20, 11], ["hash", 21, 11]], [["version", 16, 9], ["src", 17, 9], ["doCheck", 23, 9]], [["urwid", 15, 7]], [["self", 11, 5], ["packageOverrides", 12, 5]], [["owner", 36, 5], ["repo", 37, 5], ["rev", 38, 5], ["hash", 39, 5]], [["description", 98, 5], ["homepage", 99, 5], ["changelog", 100, 5], ["license", 101, 5], ["maintainers", 102, 5]], [["pname", 31, 3], ["version", 32, 3], ["pyproject", 33, 3], ["src", 35, 3], ["patches", 42, 3], ["build-system", 46, 3], ["pythonRelaxDeps", 50, 3], ["dependencies", 60, 3], ["nativeCheckInputs", 74, 3], ["disabledTests", 83, 3], ["makeWrapperArgs", 90, 3], ["meta", 97, 3]]]);
 const formals$1 = { args: { lib: false, python3: false, fetchFromGitHub: false, glibcLocales: false, libnotify: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 11], ["repo", 19, 11], ["tag", 20, 11], ["hash", 21, 11]]);
-const pos$2 = nix.positions(here + "/package.nix", [["version", 16, 9], ["src", 17, 9], ["doCheck", 23, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["urwid", 15, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["self", 11, 5], ["packageOverrides", 12, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["owner", 36, 5], ["repo", 37, 5], ["rev", 38, 5], ["hash", 39, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 98, 5], ["homepage", 99, 5], ["changelog", 100, 5], ["license", 101, 5], ["maintainers", 102, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 31, 3], ["version", 32, 3], ["pyproject", 33, 3], ["src", 35, 3], ["patches", 42, 3], ["build-system", 46, 3], ["pythonRelaxDeps", 50, 3], ["dependencies", 60, 3], ["nativeCheckInputs", 74, 3], ["disabledTests", 83, 3], ["makeWrapperArgs", 90, 3], ["meta", 97, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,21 +13,21 @@ export default nix.lambda((args) => (() => {
   const glibcLocales = nix.arg($, "glibcLocales");
   const libnotify = nix.arg($, "libnotify");
   const py = nix.thunk(() => nix.app(nix.sel(python3, "override"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       self: py,
       packageOverrides: (self) => (super$) => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         urwid: nix.thunk(() => nix.app(nix.sel(super$, "urwid", "overridePythonAttrs"), (oldAttrs) => (() => {
             const version = "2.1.2";
             const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                [nix.POS]: pos$1,
+                [nix.POS]: $pos[0],
                 owner: "urwid",
                 repo: "urwid",
                 tag: version,
                 hash: "sha256-oPb2h/+gaqkZTXIiESjExMfBNnOzDvoMkXvkZ/+KVwo=",
               }))));
             const doCheck = false;
-            return { [nix.POS]: pos$2, version, src, doCheck };
+            return { [nix.POS]: $pos[1], version, src, doCheck };
           })())),
       }),
     }))));
@@ -43,7 +37,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.7.0-unstable-2026-02-10";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           owner: "zulip",
           repo: "zulip-terminal",
           rev: "6a799870eccc00d612e25ff881d18f4ff66d92fa",
@@ -94,7 +88,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [libnotify]))),
       ]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Zulip's official terminal client",
         homepage: "https://github.com/zulip/zulip-terminal",
         changelog: nix.thunk(() => nix.str`https://github.com/zulip/zulip-terminal/releases/tag/${version}`),
@@ -108,7 +102,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         pname,
         version,
         pyproject,

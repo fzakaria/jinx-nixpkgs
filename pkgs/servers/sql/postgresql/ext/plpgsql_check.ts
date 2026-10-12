@@ -2,13 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/plpgsql_check.nix", [[["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]], [["finalPackage", 21, 26], ["sql", 22, 5]], [["extension", 20, 18]], [["tests", 20, 12]], [["description", 26, 5], ["homepage", 27, 5], ["changelog", 28, 5], ["platforms", 29, 5], ["license", 30, 5], ["maintainers", 31, 5], ["broken", 32, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["passthru", 20, 3], ["meta", 25, 3]]]);
 const formals$1 = { args: { fetchFromGitHub: false, lib: false, postgresql: false, postgresqlBuildExtension: false, postgresqlTestExtension: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/plpgsql_check.nix", [["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/plpgsql_check.nix", [["finalPackage", 21, 26], ["sql", 22, 5]]);
-const pos$3 = nix.positions(here + "/plpgsql_check.nix", [["extension", 20, 18]]);
-const pos$4 = nix.positions(here + "/plpgsql_check.nix", [["tests", 20, 12]]);
-const pos$5 = nix.positions(here + "/plpgsql_check.nix", [["description", 26, 5], ["homepage", 27, 5], ["changelog", 28, 5], ["platforms", 29, 5], ["license", 30, 5], ["maintainers", 31, 5], ["broken", 32, 5]]);
-const pos$6 = nix.positions(here + "/plpgsql_check.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["passthru", 20, 3], ["meta", 25, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,29 +13,29 @@ export default nix.lambda((args) => (() => {
   const postgresqlBuildExtension = nix.arg($, "postgresqlBuildExtension");
   const postgresqlTestExtension = nix.arg($, "postgresqlTestExtension");
   return nix.app(postgresqlBuildExtension, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "plpgsql-check",
       version: "2.10.11",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "okbob",
           repo: "plpgsql_check",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-X6575sEPD356yhB/ltXENF+gQkDCRe8vipvXFY1vNRY=",
         })))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           extension: nix.thunk(() => nix.app(postgresqlTestExtension, nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               finalPackage: nix.thunk(() => nix.attr(finalAttrs, "finalPackage")),
               sql: "CREATE EXTENSION plpgsql_check;",
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Linter tool for language PL/pgSQL",
         homepage: "https://github.com/okbob/plpgsql_check",
         changelog: nix.thunk(() => nix.str`https://github.com/okbob/plpgsql_check/releases/tag/v${nix.sel(finalAttrs, "version")}`),

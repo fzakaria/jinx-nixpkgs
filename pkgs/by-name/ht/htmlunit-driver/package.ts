@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 12, 5], ["sha256", 13, 5]], [["homepage", 21, 5], ["description", 22, 5], ["maintainers", 23, 5], ["platforms", 24, 5], ["sourceProvenance", 25, 5], ["license", 26, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["dontUnpack", 16, 3], ["installPhase", 18, 3], ["meta", 20, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 12, 5], ["sha256", 13, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 21, 5], ["description", 22, 5], ["maintainers", 23, 5], ["platforms", 24, 5], ["sourceProvenance", 25, 5], ["license", 26, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["dontUnpack", 16, 3], ["installPhase", 18, 3], ["meta", 20, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,14 +14,14 @@ export default nix.lambda((args) => (() => {
       const pname = "htmlunit-driver-standalone";
       const version = "2.27";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/SeleniumHQ/htmlunit-driver/releases/download/${version}/htmlunit-driver-${version}-with-dependencies.jar`),
           sha256: "1sd3cwpamcbq9pv0mvcm8x6minqrlb4i0r12q3jg91girqswm2dp",
         }))));
       const dontUnpack = true;
       const installPhase = nix.thunk(() => nix.str`install -D $src $out/share/lib/${pname}-${version}/${pname}-${version}.jar`);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/SeleniumHQ/htmlunit-driver",
         description: "WebDriver server for running Selenium tests on the HtmlUnit headless browser",
         maintainers: [],
@@ -34,7 +32,7 @@ export default nix.lambda((args) => (() => {
         })()),
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
       }));
-      return { [nix.POS]: pos$3, pname, version, src, dontUnpack, installPhase, meta };
+      return { [nix.POS]: $pos[2], pname, version, src, dontUnpack, installPhase, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

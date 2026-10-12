@@ -2,91 +2,58 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/nomad.nix", [[["address", 11, 15], ["prefixLength", 12, 15]], [["addresses", 9, 32]], [["ipv4", 9, 27]], [["eth1", 9, 22]], [["interfaces", 9, 11]], [["region", 18, 11], ["datacenter", 19, 11]], [["source", 17, 45]], [["nomad.custom.json", 17, 25]], [["etc", 17, 21]], [["enabled", 27, 15], ["bootstrap_expect", 28, 15]], [["server", 26, 13]], [["enable", 23, 11], ["settings", 25, 11], ["extraSettingsPaths", 32, 11], ["enableDocker", 33, 11]], [["nomad", 22, 18]], [["networking", 8, 9], ["environment", 17, 9], ["services", 22, 9]], [["address", 43, 15], ["prefixLength", 44, 15]], [["addresses", 41, 32]], [["ipv4", 41, 27]], [["eth1", 41, 22]], [["interfaces", 41, 11]], [["region", 50, 11], ["datacenter", 51, 11]], [["source", 49, 45]], [["nomad.custom.json", 49, 25]], [["etc", 49, 21]], [["enabled", 61, 15], ["bootstrap_expect", 62, 15]], [["data_dir", 59, 13], ["server", 60, 13]], [["enable", 55, 11], ["dropPrivileges", 56, 11], ["settings", 58, 11], ["extraSettingsPaths", 66, 11], ["enableDocker", 67, 11]], [["nomad", 54, 18]], [["ExecStartPre", 70, 46]], [["serviceConfig", 70, 32]], [["nomad", 70, 26]], [["services", 70, 17]], [["networking", 40, 9], ["environment", 49, 9], ["services", 54, 9], ["systemd", 70, 9]], [["default_server", 5, 5], ["custom_state_dir_server", 37, 5]], [["name", 3, 3], ["nodes", 4, 3], ["testScript", 78, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
 const formals$2 = { args: { pkgs: false, lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/nomad.nix", [["address", 11, 15], ["prefixLength", 12, 15]]);
-const pos$2 = nix.positions(here + "/nomad.nix", [["addresses", 9, 32]]);
-const pos$3 = nix.positions(here + "/nomad.nix", [["ipv4", 9, 27]]);
-const pos$4 = nix.positions(here + "/nomad.nix", [["eth1", 9, 22]]);
-const pos$5 = nix.positions(here + "/nomad.nix", [["interfaces", 9, 11]]);
-const pos$6 = nix.positions(here + "/nomad.nix", [["region", 18, 11], ["datacenter", 19, 11]]);
-const pos$7 = nix.positions(here + "/nomad.nix", [["source", 17, 45]]);
-const pos$8 = nix.positions(here + "/nomad.nix", [["nomad.custom.json", 17, 25]]);
-const pos$9 = nix.positions(here + "/nomad.nix", [["etc", 17, 21]]);
-const pos$10 = nix.positions(here + "/nomad.nix", [["enabled", 27, 15], ["bootstrap_expect", 28, 15]]);
-const pos$11 = nix.positions(here + "/nomad.nix", [["server", 26, 13]]);
-const pos$12 = nix.positions(here + "/nomad.nix", [["enable", 23, 11], ["settings", 25, 11], ["extraSettingsPaths", 32, 11], ["enableDocker", 33, 11]]);
-const pos$13 = nix.positions(here + "/nomad.nix", [["nomad", 22, 18]]);
-const pos$14 = nix.positions(here + "/nomad.nix", [["networking", 8, 9], ["environment", 17, 9], ["services", 22, 9]]);
 const formals$3 = { args: { pkgs: false, lib: false }, ellipsis: true };
-const pos$15 = nix.positions(here + "/nomad.nix", [["address", 43, 15], ["prefixLength", 44, 15]]);
-const pos$16 = nix.positions(here + "/nomad.nix", [["addresses", 41, 32]]);
-const pos$17 = nix.positions(here + "/nomad.nix", [["ipv4", 41, 27]]);
-const pos$18 = nix.positions(here + "/nomad.nix", [["eth1", 41, 22]]);
-const pos$19 = nix.positions(here + "/nomad.nix", [["interfaces", 41, 11]]);
-const pos$20 = nix.positions(here + "/nomad.nix", [["region", 50, 11], ["datacenter", 51, 11]]);
-const pos$21 = nix.positions(here + "/nomad.nix", [["source", 49, 45]]);
-const pos$22 = nix.positions(here + "/nomad.nix", [["nomad.custom.json", 49, 25]]);
-const pos$23 = nix.positions(here + "/nomad.nix", [["etc", 49, 21]]);
-const pos$24 = nix.positions(here + "/nomad.nix", [["enabled", 61, 15], ["bootstrap_expect", 62, 15]]);
-const pos$25 = nix.positions(here + "/nomad.nix", [["data_dir", 59, 13], ["server", 60, 13]]);
-const pos$26 = nix.positions(here + "/nomad.nix", [["enable", 55, 11], ["dropPrivileges", 56, 11], ["settings", 58, 11], ["extraSettingsPaths", 66, 11], ["enableDocker", 67, 11]]);
-const pos$27 = nix.positions(here + "/nomad.nix", [["nomad", 54, 18]]);
-const pos$28 = nix.positions(here + "/nomad.nix", [["ExecStartPre", 70, 46]]);
-const pos$29 = nix.positions(here + "/nomad.nix", [["serviceConfig", 70, 32]]);
-const pos$30 = nix.positions(here + "/nomad.nix", [["nomad", 70, 26]]);
-const pos$31 = nix.positions(here + "/nomad.nix", [["services", 70, 17]]);
-const pos$32 = nix.positions(here + "/nomad.nix", [["networking", 40, 9], ["environment", 49, 9], ["services", 54, 9], ["systemd", 70, 9]]);
-const pos$33 = nix.positions(here + "/nomad.nix", [["default_server", 5, 5], ["custom_state_dir_server", 37, 5]]);
-const pos$34 = nix.positions(here + "/nomad.nix", [["name", 3, 3], ["nodes", 4, 3], ["testScript", 78, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$34,
+    [nix.POS]: $pos[33],
     name: "nomad",
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$33,
+      [nix.POS]: $pos[32],
       default_server: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs = nix.arg($_1, "pkgs");
         const lib_1 = nix.arg($_1, "lib");
         return {
-          [nix.POS]: pos$14,
+          [nix.POS]: $pos[13],
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             interfaces: nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               eth1: nix.thunk(() => ({
-                [nix.POS]: pos$3,
+                [nix.POS]: $pos[2],
                 ipv4: nix.thunk(() => ({
-                  [nix.POS]: pos$2,
+                  [nix.POS]: $pos[1],
                   addresses: nix.thunk(() => nix.app(nix.sel(lib_1, "mkOverride"), 0n, nix.thunk(() => [
-                      nix.thunk(() => ({ [nix.POS]: pos$1, address: "192.168.1.1", prefixLength: 16n })),
+                      nix.thunk(() => ({ [nix.POS]: $pos[0], address: "192.168.1.1", prefixLength: 16n })),
                     ]))),
                 })),
               })),
             })),
           })),
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$9,
+            [nix.POS]: $pos[8],
             etc: nix.thunk(() => ({
-              [nix.POS]: pos$8,
+              [nix.POS]: $pos[7],
               "nomad.custom.json": nix.thunk(() => ({
-                [nix.POS]: pos$7,
-                source: nix.thunk(() => nix.app(nix.sel(nix.app(nix.sel(pkgs, "formats", "json"), nix.thunk(() => ({}))), "generate"), "nomad.custom.json", nix.thunk(() => ({ [nix.POS]: pos$6, region: "universe", datacenter: "earth" })))),
+                [nix.POS]: $pos[6],
+                source: nix.thunk(() => nix.app(nix.sel(nix.app(nix.sel(pkgs, "formats", "json"), nix.thunk(() => ({}))), "generate"), "nomad.custom.json", nix.thunk(() => ({ [nix.POS]: $pos[5], region: "universe", datacenter: "earth" })))),
               })),
             })),
           })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$13,
+            [nix.POS]: $pos[12],
             nomad: nix.thunk(() => ({
-              [nix.POS]: pos$12,
+              [nix.POS]: $pos[11],
               enable: true,
               settings: nix.thunk(() => ({
-                [nix.POS]: pos$11,
-                server: nix.thunk(() => ({ [nix.POS]: pos$10, enabled: true, bootstrap_expect: 1n })),
+                [nix.POS]: $pos[10],
+                server: nix.thunk(() => ({ [nix.POS]: $pos[9], enabled: true, bootstrap_expect: 1n })),
               })),
               extraSettingsPaths: nix.thunk(() => ["/etc/nomad.custom.json"]),
               enableDocker: false,
@@ -99,55 +66,55 @@ export default nix.lambda((args) => (() => {
         const pkgs = nix.arg($_1, "pkgs");
         const lib_1 = nix.arg($_1, "lib");
         return {
-          [nix.POS]: pos$32,
+          [nix.POS]: $pos[31],
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$19,
+            [nix.POS]: $pos[18],
             interfaces: nix.thunk(() => ({
-              [nix.POS]: pos$18,
+              [nix.POS]: $pos[17],
               eth1: nix.thunk(() => ({
-                [nix.POS]: pos$17,
+                [nix.POS]: $pos[16],
                 ipv4: nix.thunk(() => ({
-                  [nix.POS]: pos$16,
+                  [nix.POS]: $pos[15],
                   addresses: nix.thunk(() => nix.app(nix.sel(lib_1, "mkOverride"), 0n, nix.thunk(() => [
-                      nix.thunk(() => ({ [nix.POS]: pos$15, address: "192.168.1.1", prefixLength: 16n })),
+                      nix.thunk(() => ({ [nix.POS]: $pos[14], address: "192.168.1.1", prefixLength: 16n })),
                     ]))),
                 })),
               })),
             })),
           })),
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$23,
+            [nix.POS]: $pos[22],
             etc: nix.thunk(() => ({
-              [nix.POS]: pos$22,
+              [nix.POS]: $pos[21],
               "nomad.custom.json": nix.thunk(() => ({
-                [nix.POS]: pos$21,
-                source: nix.thunk(() => nix.app(nix.sel(nix.app(nix.sel(pkgs, "formats", "json"), nix.thunk(() => ({}))), "generate"), "nomad.custom.json", nix.thunk(() => ({ [nix.POS]: pos$20, region: "universe", datacenter: "earth" })))),
+                [nix.POS]: $pos[20],
+                source: nix.thunk(() => nix.app(nix.sel(nix.app(nix.sel(pkgs, "formats", "json"), nix.thunk(() => ({}))), "generate"), "nomad.custom.json", nix.thunk(() => ({ [nix.POS]: $pos[19], region: "universe", datacenter: "earth" })))),
               })),
             })),
           })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$27,
+            [nix.POS]: $pos[26],
             nomad: nix.thunk(() => ({
-              [nix.POS]: pos$26,
+              [nix.POS]: $pos[25],
               enable: true,
               dropPrivileges: false,
               settings: nix.thunk(() => ({
-                [nix.POS]: pos$25,
+                [nix.POS]: $pos[24],
                 data_dir: "/nomad/data/dir",
-                server: nix.thunk(() => ({ [nix.POS]: pos$24, enabled: true, bootstrap_expect: 1n })),
+                server: nix.thunk(() => ({ [nix.POS]: $pos[23], enabled: true, bootstrap_expect: 1n })),
               })),
               extraSettingsPaths: nix.thunk(() => ["/etc/nomad.custom.json"]),
               enableDocker: false,
             })),
           })),
           systemd: nix.thunk(() => ({
-            [nix.POS]: pos$31,
+            [nix.POS]: $pos[30],
             services: nix.thunk(() => ({
-              [nix.POS]: pos$30,
+              [nix.POS]: $pos[29],
               nomad: nix.thunk(() => ({
-                [nix.POS]: pos$29,
+                [nix.POS]: $pos[28],
                 serviceConfig: nix.thunk(() => ({
-                  [nix.POS]: pos$28,
+                  [nix.POS]: $pos[27],
                   ExecStartPre: nix.thunk(() => nix.str`${nix.app(nix.sel(pkgs, "writeShellScript"), "mk_data_dir", nix.thunk(() => nix.str`set -euxo pipefail
 
 ${nix.sel(pkgs, "coreutils")}/bin/mkdir -p /nomad/data/dir

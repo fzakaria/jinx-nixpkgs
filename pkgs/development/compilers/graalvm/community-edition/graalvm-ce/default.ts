@@ -2,9 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["platforms", 12, 8]], [["useMusl", 9, 11], ["src", 10, 3], ["version", 11, 3], ["meta", 12, 3]]]);
 const formals$1 = { args: { stdenv: false, fetchurl: false, graalvmPackages: false, useMusl: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["platforms", 12, 8]]);
-const pos$2 = nix.positions(here + "/default.nix", [["useMusl", 9, 11], ["src", 10, 3], ["version", 11, 3], ["meta", 12, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,12 +12,12 @@ export default nix.lambda((args) => (() => {
   const graalvmPackages = nix.arg($, "graalvmPackages");
   const useMusl = nix.argOr($, "useMusl", () => false);
   return nix.app(nix.sel(graalvmPackages, "buildGraalvm"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       useMusl: useMusl,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => nix.sel(nix.builtins.import(nix.path(here, "./hashes.nix")), "hashes", nix.key(nix.sel(stdenv, "system")))))),
       version: nix.thunk(() => nix.sel(nix.builtins.import(nix.path(here, "./hashes.nix")), "version")),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         platforms: nix.thunk(() => nix.builtins.attrNames(nix.thunk(() => nix.sel(nix.builtins.import(nix.path(here, "./hashes.nix")), "hashes")))),
       })),
     })));

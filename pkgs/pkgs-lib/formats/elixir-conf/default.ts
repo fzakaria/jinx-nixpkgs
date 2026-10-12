@@ -2,26 +2,11 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["description", 169, 15]], [["value", 177, 21], ["_elixirType", 178, 13]], [["value", 199, 21], ["_elixirType", 200, 13]], [["value", 205, 21], ["_elixirType", 206, 13]], [["value", 211, 21], ["_elixirType", 212, 13]], [["value", 217, 21], ["_elixirType", 218, 13]], [["name", 233, 17], ["description", 234, 17], ["check", 235, 17]], [["name", 244, 17], ["description", 245, 17], ["check", 246, 17]], [["name", 250, 17], ["description", 251, 17], ["check", 252, 17]], [["name", 256, 17], ["description", 257, 17], ["check", 258, 17]], [["name", 262, 17], ["description", 263, 17], ["check", 264, 17]], [["rawElixir", 241, 23], ["elixirOr", 241, 33], ["atom", 243, 15], ["charlist", 249, 15], ["tuple", 255, 15], ["map", 261, 15]], [["mkRaw", 183, 19], ["mkGetEnv", 186, 11], ["mkAtom", 198, 11], ["mkCharlist", 204, 11], ["mkTuple", 210, 11], ["mkMap", 216, 11], ["types", 228, 11]], [["value", 276, 13], ["nativeBuildInputs", 277, 13], ["preferLocalBuild", 278, 13], ["__structuredAttrs", 279, 13]], [["type", 157, 7], ["lib", 174, 7], ["generate", 272, 7]], [["format", 66, 3]]]);
 const formals$1 = { args: { lib: false, pkgs: false }, ellipsis: false };
 const formals$2 = { args: { value: false, _elixirType: false }, ellipsis: false };
 const formals$3 = { args: { elixir: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["description", 169, 15]]);
-const pos$2 = nix.positions(here + "/default.nix", [["value", 177, 21], ["_elixirType", 178, 13]]);
 const formals$4 = { args: { envVariable: false, fallback: true }, ellipsis: false };
-const pos$3 = nix.positions(here + "/default.nix", [["value", 199, 21], ["_elixirType", 200, 13]]);
-const pos$4 = nix.positions(here + "/default.nix", [["value", 205, 21], ["_elixirType", 206, 13]]);
-const pos$5 = nix.positions(here + "/default.nix", [["value", 211, 21], ["_elixirType", 212, 13]]);
-const pos$6 = nix.positions(here + "/default.nix", [["value", 217, 21], ["_elixirType", 218, 13]]);
-const pos$7 = nix.positions(here + "/default.nix", [["name", 233, 17], ["description", 234, 17], ["check", 235, 17]]);
-const pos$8 = nix.positions(here + "/default.nix", [["name", 244, 17], ["description", 245, 17], ["check", 246, 17]]);
-const pos$9 = nix.positions(here + "/default.nix", [["name", 250, 17], ["description", 251, 17], ["check", 252, 17]]);
-const pos$10 = nix.positions(here + "/default.nix", [["name", 256, 17], ["description", 257, 17], ["check", 258, 17]]);
-const pos$11 = nix.positions(here + "/default.nix", [["name", 262, 17], ["description", 263, 17], ["check", 264, 17]]);
-const pos$12 = nix.positions(here + "/default.nix", [["rawElixir", 241, 23], ["elixirOr", 241, 33], ["atom", 243, 15], ["charlist", 249, 15], ["tuple", 255, 15], ["map", 261, 15]]);
-const pos$13 = nix.positions(here + "/default.nix", [["mkRaw", 183, 19], ["mkGetEnv", 186, 11], ["mkAtom", 198, 11], ["mkCharlist", 204, 11], ["mkTuple", 210, 11], ["mkMap", 216, 11], ["types", 228, 11]]);
-const pos$14 = nix.positions(here + "/default.nix", [["value", 276, 13], ["nativeBuildInputs", 277, 13], ["preferLocalBuild", 278, 13], ["__structuredAttrs", 279, 13]]);
-const pos$15 = nix.positions(here + "/default.nix", [["type", 157, 7], ["lib", 174, 7], ["generate", 272, 7]]);
-const pos$16 = nix.positions(here + "/default.nix", [["format", 66, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -49,7 +34,7 @@ export default nix.lambda((args) => (() => {
   const oneOf = nix.thunk(() => nix.attr(types, "oneOf"));
   const str = nix.thunk(() => nix.attr(types, "str"));
   return {
-    [nix.POS]: pos$16,
+    [nix.POS]: $pos[15],
     format: nix.thunk(() => (() => {
       const toElixir = (value) => (nix.asBool(nix.eq(value, null)) ? "nil" : (nix.asBool(nix.eq(value, true)) ? "true" : (nix.asBool(nix.eq(value, false)) ? "false" : (nix.asBool((nix.asBool(nix.app(isInt, value)) || nix.asBool(nix.app(isFloat, value)))) ? nix.builtins.toString(value) : (nix.asBool(nix.app(isString, value)) ? nix.app(string, value) : (nix.asBool(nix.app(isAttrs, value)) ? nix.app(attrs, value) : (nix.asBool(nix.app(isList, value)) ? nix.app(list, value) : nix.builtins.abort(nix.thunk(() => nix.str`formats.elixirConf: should never happen (value = ${value})`)))))))));
       const escapeElixir = nix.thunk(() => nix.app(escape, nix.thunk(() => ["\\", "#", "\""])));
@@ -89,7 +74,7 @@ ${nix.app(concatStringsSep, "\n", rootConfigs)}
         const $_1 = nix.formals(args_1, formals$3);
         const elixir = nix.argOr($_1, "elixir", () => nix.sel(pkgs, "elixir"));
         return {
-          [nix.POS]: pos$15,
+          [nix.POS]: $pos[14],
           type: nix.thunk(() => (() => {
             const valueType = nix.thunk(() => nix.update(nix.app(nullOr, nix.thunk(() => nix.app(oneOf, nix.thunk(() => [
                   bool,
@@ -98,13 +83,13 @@ ${nix.app(concatStringsSep, "\n", rootConfigs)}
                   str,
                   nix.thunk(() => nix.app(attrsOf, valueType)),
                   nix.thunk(() => nix.app(listOf, valueType)),
-                ])))), { [nix.POS]: pos$1, description: "Elixir value" }));
+                ])))), { [nix.POS]: $pos[0], description: "Elixir value" }));
             return nix.app(attrsOf, nix.thunk(() => nix.app(attrsOf, valueType)));
           })()),
           lib: nix.thunk(() => (() => {
-            const mkRaw = (value) => ({ [nix.POS]: pos$2, value: value, _elixirType: "raw" });
+            const mkRaw = (value) => ({ [nix.POS]: $pos[1], value: value, _elixirType: "raw" });
             return {
-              [nix.POS]: pos$13,
+              [nix.POS]: $pos[12],
               mkRaw: mkRaw,
               mkGetEnv: nix.lambda((args_2) => (() => {
                 const $_2 = nix.formals(args_2, formals$4);
@@ -112,43 +97,43 @@ ${nix.app(concatStringsSep, "\n", rootConfigs)}
                 const fallback = nix.argOr($_2, "fallback", () => null);
                 return nix.app(mkRaw, nix.thunk(() => nix.str`System.get_env(${nix.app(toElixir, envVariable)}, ${nix.app(toElixir, fallback)})`));
               })(), formals$4),
-              mkAtom: (value) => ({ [nix.POS]: pos$3, value: value, _elixirType: "atom" }),
-              mkCharlist: (value) => ({ [nix.POS]: pos$4, value: value, _elixirType: "charlist" }),
-              mkTuple: (value) => ({ [nix.POS]: pos$5, value: value, _elixirType: "tuple" }),
-              mkMap: (value) => ({ [nix.POS]: pos$6, value: value, _elixirType: "map" }),
+              mkAtom: (value) => ({ [nix.POS]: $pos[2], value: value, _elixirType: "atom" }),
+              mkCharlist: (value) => ({ [nix.POS]: $pos[3], value: value, _elixirType: "charlist" }),
+              mkTuple: (value) => ({ [nix.POS]: $pos[4], value: value, _elixirType: "tuple" }),
+              mkMap: (value) => ({ [nix.POS]: $pos[5], value: value, _elixirType: "map" }),
               types: nix.thunk(() => (() => {
                 const isElixirType = (type) => (x) => nix.eq(nix.selOr(x, () => "", "_elixirType"), type);
                 const rawElixir = nix.thunk(() => nix.app(mkOptionType, nix.thunk(() => ({
-                    [nix.POS]: pos$7,
+                    [nix.POS]: $pos[6],
                     name: "rawElixir",
                     description: "raw elixir",
                     check: nix.thunk(() => nix.app(isElixirType, "raw")),
                   }))));
                 const elixirOr = (other) => nix.app(either, other, rawElixir);
                 return nix.update({
-                  [nix.POS]: pos$12,
+                  [nix.POS]: $pos[11],
                   rawElixir: rawElixir,
                   elixirOr: elixirOr,
                   atom: nix.thunk(() => nix.app(elixirOr, nix.thunk(() => nix.app(mkOptionType, nix.thunk(() => ({
-                        [nix.POS]: pos$8,
+                        [nix.POS]: $pos[7],
                         name: "elixirAtom",
                         description: "elixir atom",
                         check: nix.thunk(() => nix.app(isElixirType, "atom")),
                       })))))),
                   charlist: nix.thunk(() => nix.app(elixirOr, nix.thunk(() => nix.app(mkOptionType, nix.thunk(() => ({
-                        [nix.POS]: pos$9,
+                        [nix.POS]: $pos[8],
                         name: "elixirCharlist",
                         description: "elixir charlist",
                         check: nix.thunk(() => nix.app(isElixirType, "charlist")),
                       })))))),
                   tuple: nix.thunk(() => nix.app(elixirOr, nix.thunk(() => nix.app(mkOptionType, nix.thunk(() => ({
-                        [nix.POS]: pos$10,
+                        [nix.POS]: $pos[9],
                         name: "elixirTuple",
                         description: "elixir tuple",
                         check: nix.thunk(() => nix.app(isElixirType, "tuple")),
                       })))))),
                   map: nix.thunk(() => nix.app(elixirOr, nix.thunk(() => nix.app(mkOptionType, nix.thunk(() => ({
-                        [nix.POS]: pos$11,
+                        [nix.POS]: $pos[10],
                         name: "elixirMap",
                         description: "elixir map",
                         check: nix.thunk(() => nix.app(isElixirType, "map")),
@@ -158,7 +143,7 @@ ${nix.app(concatStringsSep, "\n", rootConfigs)}
             };
           })()),
           generate: (name) => (value) => nix.app(nix.sel(pkgs, "runCommand"), name, nix.thunk(() => ({
-              [nix.POS]: pos$14,
+              [nix.POS]: $pos[13],
               value: nix.thunk(() => nix.app(toConf, value)),
               nativeBuildInputs: nix.thunk(() => [elixir]),
               preferLocalBuild: true,

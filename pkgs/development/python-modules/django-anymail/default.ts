@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]], [["amazon-ses", 40, 5], ["postal", 41, 5], ["sendgrid", 42, 5]], [["description", 76, 5], ["homepage", 77, 5], ["changelog", 78, 5], ["license", 79, 5], ["maintainers", 80, 5]], [["pname", 19, 3], ["version", 20, 3], ["pyproject", 21, 3], ["src", 23, 3], ["build-system", 30, 3], ["dependencies", 32, 3], ["optional-dependencies", 39, 3], ["nativeCheckInputs", 48, 3], ["disabledTestMarks", 56, 3], ["disabledTests", 58, 3], ["disabledTestPaths", 63, 3], ["preCheck", 68, 3], ["pythonImportsCheck", 73, 3], ["meta", 75, 3]]]);
 const formals$1 = { args: { lib: false, boto3: false, buildPythonPackage: false, cryptography: false, django: false, fetchFromGitHub: false, hatchling: false, idna: false, mock: false, "pytest-django": false, pytestCheckHook: false, requests: false, responses: false, urllib3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["amazon-ses", 40, 5], ["postal", 41, 5], ["sendgrid", 42, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 76, 5], ["homepage", 77, 5], ["changelog", 78, 5], ["license", 79, 5], ["maintainers", 80, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 19, 3], ["version", 20, 3], ["pyproject", 21, 3], ["src", 23, 3], ["build-system", 30, 3], ["dependencies", 32, 3], ["optional-dependencies", 39, 3], ["nativeCheckInputs", 48, 3], ["disabledTestMarks", 56, 3], ["disabledTests", 58, 3], ["disabledTestPaths", 63, 3], ["preCheck", 68, 3], ["pythonImportsCheck", 73, 3], ["meta", 75, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,12 +22,12 @@ export default nix.lambda((args) => (() => {
   const responses = nix.arg($, "responses");
   const urllib3 = nix.arg($, "urllib3");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "django-anymail",
       version: "15.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "anymail",
           repo: "django-anymail",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -39,7 +36,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [hatchling]),
       dependencies: nix.thunk(() => [django, idna, requests, urllib3]),
       "optional-dependencies": nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         "amazon-ses": nix.thunk(() => [boto3]),
         postal: nix.thunk(() => [cryptography]),
         sendgrid: nix.thunk(() => [cryptography]),
@@ -55,7 +52,7 @@ export DJANGO_SETTINGS_MODULE=tests.test_settings.settings_${nix.app(nix.sel(lib
 `),
       pythonImportsCheck: nix.thunk(() => ["anymail"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Django email backends and webhooks for Mailgun",
         homepage: "https://github.com/anymail/django-anymail",
         changelog: nix.thunk(() => nix.str`https://github.com/anymail/django-anymail/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.rst`),

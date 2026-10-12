@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["stdenv", 15, 50]], [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]], [["RUSTFLAGS", 33, 7]], [["description", 55, 5], ["homepage", 56, 5], ["changelog", 57, 5], ["license", 58, 5], ["mainProgram", 59, 5], ["maintainers", 60, 5], ["platforms", 61, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["cargoHash", 26, 3], ["postPatch", 29, 3], ["env", 33, 3], ["cargoBuildFlags", 34, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 44, 3], ["doCheck", 49, 3], ["doInstallCheck", 51, 3], ["nativeInstallCheckInputs", 52, 3], ["meta", 54, 3]]]);
 const formals$1 = { args: { lib: false, clangStdenv: false, fetchFromGitHub: false, openssl: false, "pkg-config": false, rustPlatform: false, useMoldLinker: false, versionCheckHook: false, withMold: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["stdenv", 15, 50]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["RUSTFLAGS", 33, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 55, 5], ["homepage", 56, 5], ["changelog", 57, 5], ["license", 58, 5], ["mainProgram", 59, 5], ["maintainers", 60, 5], ["platforms", 61, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["cargoHash", 26, 3], ["postPatch", 29, 3], ["env", 33, 3], ["cargoBuildFlags", 34, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 44, 3], ["doCheck", 49, 3], ["doInstallCheck", 51, 3], ["nativeInstallCheckInputs", 52, 3], ["meta", 54, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,12 +20,12 @@ export default nix.lambda((args) => (() => {
     return nix.force(nix.lookup(w, "isLinux"));
   })());
   const stdenv = nix.thunk(() => (nix.asBool(withMold) ? nix.app(useMoldLinker, clangStdenv) : nix.force(clangStdenv)));
-  return nix.app(nix.sel(rustPlatform, "buildRustPackage", "override"), nix.thunk(() => ({ [nix.POS]: pos$1, stdenv: stdenv })), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+  return nix.app(nix.sel(rustPlatform, "buildRustPackage", "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], stdenv: stdenv })), (finalAttrs) => ({
+      [nix.POS]: $pos[4],
       pname: "pgdog",
       version: "0.1.60",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "pgdogdev",
           repo: "pgdog",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -37,7 +33,7 @@ export default nix.lambda((args) => (() => {
         })))),
       cargoHash: "sha256-clq0rz7yi0XSXPzFjOGDcCwwndRq29KgtvUwpvEZoYA=",
       postPatch: "rm .cargo/config.toml\n",
-      env: nix.thunk(() => ({ [nix.POS]: pos$3, RUSTFLAGS: "--cfg tokio_unstable" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[2], RUSTFLAGS: "--cfg tokio_unstable" })),
       cargoBuildFlags: nix.thunk(() => ["--package", "pgdog"]),
       nativeBuildInputs: nix.thunk(() => [pkg_config, nix.thunk(() => nix.sel(rustPlatform, "bindgenHook"))]),
       buildInputs: nix.thunk(() => [openssl]),
@@ -45,7 +41,7 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "PostgreSQL connection pooler, load balancer, and database sharder",
         homepage: "https://pgdog.dev/",
         changelog: nix.thunk(() => nix.str`https://github.com/pgdogdev/pgdog/releases/tag/v${nix.sel(finalAttrs, "version")}`),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 21, 5], ["hash", 22, 5]], [["description", 59, 5], ["longDescription", 60, 5], ["homepage", 68, 5], ["license", 69, 5], ["maintainers", 70, 5], ["platforms", 73, 5]], [["pname", 15, 3], ["version", 18, 3], ["src", 20, 3], ["postPatch", 25, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 35, 3], ["clang", 41, 3], ["cmakeFlags", 43, 3], ["postInstall", 45, 3], ["meta", 58, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, cmake: false, llvmPackages_22: false, python3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 59, 5], ["longDescription", 60, 5], ["homepage", 68, 5], ["license", 69, 5], ["maintainers", 70, 5], ["platforms", 73, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 18, 3], ["src", 20, 3], ["postPatch", 25, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 35, 3], ["clang", 41, 3], ["cmakeFlags", 43, 3], ["postInstall", 45, 3], ["meta", 58, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pname = "include-what-you-use";
       const version = "0.26";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`${nix.sel(meta, "homepage")}/downloads/${pname}-${version}.src.tar.gz`),
           hash: "sha256-UkfAyaWd+dFOiqdAj/7EE0xqSu8S9ZCSkRH7/qyTCgg=",
         }))));
@@ -58,7 +56,7 @@ chmod +x $out/bin/include-what-you-use
 patchShebangs $out/bin/include-what-you-use
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Analyze #includes in C/C++ source files with clang",
         longDescription: "For every symbol (type, function variable, or macro) that you use in\nfoo.cc, either foo.cc or foo.h should #include a .h file that exports the\ndeclaration of that symbol.  The main goal of include-what-you-use is to\nremove superfluous #includes, both by figuring out what #includes are not\nactually needed for this file (for both .cc and .h files), and by\nreplacing #includes with forward-declares when possible.\n",
         homepage: "https://include-what-you-use.org",
@@ -67,7 +65,7 @@ patchShebangs $out/bin/include-what-you-use
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

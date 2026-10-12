@@ -2,47 +2,38 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/nginx-variants.nix", [[["return", 14, 52]], [["/", 14, 48]], [["locations", 14, 38]], [["localhost", 14, 28]], [["enable", 13, 15], ["virtualHosts", 14, 15], ["package", 15, 15]], [["nginx", 12, 22]], [["services", 12, 13]], [["machine", 9, 15]], [["name", 7, 9], ["nodes", 9, 9], ["testScript", 19, 9]], [["name", 5, 7], ["value", 6, 7]]]);
 const formals$1 = { args: { runTest: false }, ellipsis: false };
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/nginx-variants.nix", [["return", 14, 52]]);
-const pos$2 = nix.positions(here + "/nginx-variants.nix", [["/", 14, 48]]);
-const pos$3 = nix.positions(here + "/nginx-variants.nix", [["locations", 14, 38]]);
-const pos$4 = nix.positions(here + "/nginx-variants.nix", [["localhost", 14, 28]]);
-const pos$5 = nix.positions(here + "/nginx-variants.nix", [["enable", 13, 15], ["virtualHosts", 14, 15], ["package", 15, 15]]);
-const pos$6 = nix.positions(here + "/nginx-variants.nix", [["nginx", 12, 22]]);
-const pos$7 = nix.positions(here + "/nginx-variants.nix", [["services", 12, 13]]);
-const pos$8 = nix.positions(here + "/nginx-variants.nix", [["machine", 9, 15]]);
-const pos$9 = nix.positions(here + "/nginx-variants.nix", [["name", 7, 9], ["nodes", 9, 9], ["testScript", 19, 9]]);
-const pos$10 = nix.positions(here + "/nginx-variants.nix", [["name", 5, 7], ["value", 6, 7]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const runTest = nix.arg($, "runTest");
   return nix.builtins.listToAttrs(nix.thunk(() => nix.builtins.map((packageName) => ({
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         name: packageName,
         value: nix.thunk(() => nix.app(runTest, nix.thunk(() => ({
-            [nix.POS]: pos$9,
+            [nix.POS]: $pos[8],
             name: nix.thunk(() => nix.str`nginx-variant-${packageName}`),
             nodes: nix.thunk(() => ({
-              [nix.POS]: pos$8,
+              [nix.POS]: $pos[7],
               machine: nix.lambda((args_1) => (() => {
                 const $_1 = nix.formals(args_1, formals$2);
                 const pkgs = nix.arg($_1, "pkgs");
                 return {
-                  [nix.POS]: pos$7,
+                  [nix.POS]: $pos[6],
                   services: nix.thunk(() => ({
-                    [nix.POS]: pos$6,
+                    [nix.POS]: $pos[5],
                     nginx: nix.thunk(() => ({
-                      [nix.POS]: pos$5,
+                      [nix.POS]: $pos[4],
                       enable: true,
                       virtualHosts: nix.thunk(() => ({
-                        [nix.POS]: pos$4,
+                        [nix.POS]: $pos[3],
                         localhost: nix.thunk(() => ({
-                          [nix.POS]: pos$3,
+                          [nix.POS]: $pos[2],
                           locations: nix.thunk(() => ({
-                            [nix.POS]: pos$2,
-                            "/": nix.thunk(() => ({ [nix.POS]: pos$1, return: "200 'foo'" })),
+                            [nix.POS]: $pos[1],
+                            "/": nix.thunk(() => ({ [nix.POS]: $pos[0], return: "200 'foo'" })),
                           })),
                         })),
                       })),

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 22, 5], ["sha256", 23, 5]], [["packageName", 52, 7]], [["updateScript", 51, 5]], [["homepage", 57, 5], ["description", 58, 5], ["maintainers", 59, 5], ["teams", 60, 5], ["license", 61, 5], ["platforms", 62, 5]], [["pname", 16, 3], ["version", 17, 3], ["pyproject", 19, 3], ["src", 21, 3], ["nativeBuildInputs", 26, 3], ["propagatedBuildInputs", 32, 3], ["buildInputs", 37, 3], ["pythonPath", 42, 3], ["strictDeps", 46, 3], ["doCheck", 48, 3], ["passthru", 50, 3], ["meta", 56, 3]]]);
 const formals$1 = { args: { lib: false, fetchurl: false, libxml2: false, libxslt: false, itstool: false, gnome: false, "pkg-config": false, meson: false, ninja: false, python3: false, "yelp-xsl": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 22, 5], ["sha256", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["packageName", 52, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 51, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 57, 5], ["description", 58, 5], ["maintainers", 59, 5], ["teams", 60, 5], ["license", 61, 5], ["platforms", 62, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["pyproject", 19, 3], ["src", 21, 3], ["nativeBuildInputs", 26, 3], ["propagatedBuildInputs", 32, 3], ["buildInputs", 37, 3], ["pythonPath", 42, 3], ["strictDeps", 46, 3], ["doCheck", 48, 3], ["passthru", 50, 3], ["meta", 56, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = "42.1";
       const pyproject = false;
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnome/sources/yelp-tools/${nix.app(nix.sel(lib, "versions", "major"), version)}/yelp-tools-${version}.tar.xz`),
           sha256: "PklqQCDUFFuZ/VCKJfoJM2pQOk6JAAKEIecsaksR+QU=",
         }))));
@@ -38,11 +34,11 @@ export default nix.lambda((args) => (() => {
       const strictDeps = false;
       const doCheck = true;
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$2, packageName: pname })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: $pos[1], packageName: pname })))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://gitlab.gnome.org/GNOME/yelp-tools",
         description: "Small programs that help you create, edit, manage, and publish your Mallard or DocBook documentation",
         maintainers: [],
@@ -51,7 +47,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         pyproject,

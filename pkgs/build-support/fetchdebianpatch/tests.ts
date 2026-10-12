@@ -2,19 +2,17 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/tests.nix", [[["pname", 5, 5], ["version", 6, 5], ["debianRevision", 7, 5], ["patch", 8, 5], ["hash", 9, 5]], [["pname", 13, 5], ["version", 14, 5], ["debianRevision", 15, 5], ["patch", 16, 5], ["hash", 17, 5]], [["simple", 4, 3], ["libPackage", 12, 3]]]);
 const formals$1 = { args: { testers: false, fetchDebianPatch: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/tests.nix", [["pname", 5, 5], ["version", 6, 5], ["debianRevision", 7, 5], ["patch", 8, 5], ["hash", 9, 5]]);
-const pos$2 = nix.positions(here + "/tests.nix", [["pname", 13, 5], ["version", 14, 5], ["debianRevision", 15, 5], ["patch", 16, 5], ["hash", 17, 5]]);
-const pos$3 = nix.positions(here + "/tests.nix", [["simple", 4, 3], ["libPackage", 12, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const testers = nix.arg($, "testers");
   const fetchDebianPatch = nix.arg($, "fetchDebianPatch");
   return {
-    [nix.POS]: pos$3,
+    [nix.POS]: $pos[2],
     simple: nix.thunk(() => nix.app(nix.sel(testers, "invalidateFetcherByDrvHash"), fetchDebianPatch, nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         pname: "pysimplesoap",
         version: "1.16.2",
         debianRevision: "5",
@@ -22,7 +20,7 @@ export default nix.lambda((args) => (() => {
         hash: "sha256-xA8Wnrpr31H8wy3zHSNfezFNjUJt1HbSXn3qUMzeKc0=",
       })))),
     libPackage: nix.thunk(() => nix.app(nix.sel(testers, "invalidateFetcherByDrvHash"), fetchDebianPatch, nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         pname: "libfile-pid-perl",
         version: "1.01",
         debianRevision: "2",

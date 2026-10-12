@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 22, 5], ["sha256", 23, 5]], [["name", 45, 7], ["url", 46, 7], ["sha256", 49, 7]], [["url", 52, 7], ["sha256", 53, 7]], [["description", 58, 5], ["homepage", 59, 5], ["license", 60, 5], ["maintainers", 61, 5], ["platforms", 62, 5]], [["pname", 16, 3], ["version", 17, 3], ["enableParallelBuilding", 19, 3], ["src", 21, 3], ["configureFlags", 26, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 32, 3], ["patches", 42, 3], ["meta", 57, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, fetchpatch: false, bzip2: false, zlib: false, newt: false, openssl: false, "pkg-config": false, slang: false, libxcrypt: false, autoreconfHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 22, 5], ["sha256", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 45, 7], ["url", 46, 7], ["sha256", 49, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 52, 7], ["sha256", 53, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 58, 5], ["homepage", 59, 5], ["license", 60, 5], ["maintainers", 61, 5], ["platforms", 62, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["enableParallelBuilding", 19, 3], ["src", 21, 3], ["configureFlags", 26, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 32, 3], ["patches", 42, 3], ["meta", 57, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const libxcrypt = nix.arg($, "libxcrypt");
   const autoreconfHook = nix.arg($, "autoreconfHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "partimage",
       version: "0.6.9",
       enableParallelBuilding: true,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/partimage/partimage-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           sha256: "0db6xiphk6xnlpbxraiy31c5xzj0ql6k4rfkmqzh665yyj0nqfkm",
         })))),
@@ -41,19 +37,19 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [
         nix.path(here, "./gentoos-zlib.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "openssl-1.1.patch",
             url: nix.thunk(() => nix.add("https://gitweb.gentoo.org/repo/gentoo.git/plain/sys-block/partimage/files/", "partimage-0.6.9-openssl-1.1-compatibility.patch?id=3fe8e9910002b6523d995512a646b063565d0447")),
             sha256: "1hs0krxrncxq1w36bhad02yk8yx71zcfs35cw87c82sl2sfwasjg",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: "https://sources.debian.org/data/main/p/partimage/0.6.9-8/debian/patches/04-fix-FTBFS-glic-2.28.patch",
             sha256: "0xid5636g58sxbhxnjmfjdy7y8rf3c77zmmpfbbqv4lv9jd2gmxm",
           })))),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Opensource disk backup software",
         homepage: "https://www.partimage.org",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

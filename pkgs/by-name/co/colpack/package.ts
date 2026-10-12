@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["sha256", 17, 5]], [["description", 41, 5], ["homepage", 43, 5], ["license", 44, 5], ["platforms", 45, 5], ["maintainers", 46, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 20, 3], ["configureFlags", 22, 3], ["postInstall", 27, 3], ["meta", 40, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, autoreconfHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["sha256", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 41, 5], ["homepage", 43, 5], ["license", 44, 5], ["platforms", 45, 5], ["maintainers", 46, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 20, 3], ["configureFlags", 22, 3], ["postInstall", 27, 3], ["meta", 40, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const autoreconfHook = nix.arg($, "autoreconfHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "ColPack",
       version: "1.0.10",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "CSCsw",
           repo: "ColPack",
           rev: nix.thunk(() => nix.add("v", nix.sel(finalAttrs, "version"))),
@@ -31,7 +29,7 @@ export default nix.lambda((args) => (() => {
       ]),
       postInstall: "# Remove libtool archive\nrm $out/lib/*.la\n\n# Remove compiled examples (Basic examples get compiled anyway)\nrm -r $out/examples\n\n# Copy the example sources (Basic tree contains scripts and object files)\nmkdir -p $out/share/ColPack/examples/Basic\ncp SampleDrivers/Basic/*.cpp $out/share/ColPack/examples/Basic\ncp -r SampleDrivers/Matrix* $out/share/ColPack/examples\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Package comprising of implementations of algorithms for\n    vertex coloring and derivative computation",
         homepage: "https://cscapes.cs.purdue.edu/coloringpage/software.htm#functionalities",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3Plus")),

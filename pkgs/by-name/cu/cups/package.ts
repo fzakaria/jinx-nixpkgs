@@ -2,17 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 33, 5], ["hash", 34, 5]], [["name", 49, 7], ["url", 50, 7], ["excludes", 51, 7], ["hash", 52, 7]], [["url", 55, 7], ["hash", 56, 7]], [["url", 59, 7], ["hash", 60, 7]], [["name", 63, 7], ["url", 64, 7], ["excludes", 65, 7], ["hash", 66, 7]], [["package", 207, 7], ["versionCheck", 208, 7]], [["cups-pdf", 199, 7], ["printing-service", 200, 7], ["printing-socket", 201, 7], ["printing-service-notcp", 202, 7], ["printing-socket-notcp", 203, 7], ["pkg-config", 206, 5]], [["tests", 197, 12]], [["homepage", 213, 5], ["description", 214, 5], ["license", 215, 5], ["maintainers", 216, 5], ["platforms", 217, 5], ["pkgConfigModules", 218, 5]], [["pname", 29, 3], ["version", 30, 3], ["src", 32, 3], ["__structuredAttrs", 37, 3], ["strictDeps", 38, 3], ["outputs", 40, 3], ["patches", 47, 3], ["postPatch", 70, 3], ["nativeBuildInputs", 87, 3], ["buildInputs", 92, 3], ["propagatedBuildInputs", 109, 3], ["configurePlatforms", 111, 3], ["configureFlags", 115, 3], ["preConfigure", 132, 3], ["installFlags", 150, 3], ["enableParallelBuilding", 168, 3], ["postInstall", 170, 3], ["passthru", 197, 3], ["meta", 212, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, fetchpatch: false, "pkg-config": false, removeReferencesTo: false, testers: false, zlib: false, libjpeg: false, libpng: false, libtiff: false, pam: false, dbus: false, enableSystemd: true, systemdLibs: false, acl: false, gmp: false, darwin: false, libusb1: true, gnutls: true, avahi: true, libpaper: true, coreutils: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 33, 5], ["hash", 34, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 49, 7], ["url", 50, 7], ["excludes", 51, 7], ["hash", 52, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 55, 7], ["hash", 56, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["url", 59, 7], ["hash", 60, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["name", 63, 7], ["url", 64, 7], ["excludes", 65, 7], ["hash", 66, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["package", 207, 7], ["versionCheck", 208, 7]]);
-const pos$7 = nix.positions(here + "/package.nix", [["cups-pdf", 199, 7], ["printing-service", 200, 7], ["printing-socket", 201, 7], ["printing-service-notcp", 202, 7], ["printing-socket-notcp", 203, 7], ["pkg-config", 206, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["tests", 197, 12]]);
-const pos$9 = nix.positions(here + "/package.nix", [["homepage", 213, 5], ["description", 214, 5], ["license", 215, 5], ["maintainers", 216, 5], ["platforms", 217, 5], ["pkgConfigModules", 218, 5]]);
-const pos$10 = nix.positions(here + "/package.nix", [["pname", 29, 3], ["version", 30, 3], ["src", 32, 3], ["__structuredAttrs", 37, 3], ["strictDeps", 38, 3], ["outputs", 40, 3], ["patches", 47, 3], ["postPatch", 70, 3], ["nativeBuildInputs", 87, 3], ["buildInputs", 92, 3], ["propagatedBuildInputs", 109, 3], ["configurePlatforms", 111, 3], ["configureFlags", 115, 3], ["preConfigure", 132, 3], ["installFlags", 150, 3], ["enableParallelBuilding", 168, 3], ["postInstall", 170, 3], ["passthru", 197, 3], ["meta", 212, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -41,11 +32,11 @@ export default nix.lambda((args) => (() => {
   const coreutils = nix.arg($, "coreutils");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       pname: "cups",
       version: "2.4.19",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/OpenPrinting/cups/releases/download/v${nix.sel(finalAttrs, "version")}/cups-${nix.sel(finalAttrs, "version")}-source.tar.gz`),
           hash: "sha256-ggmEsSpn+YcFeFquLdE0f+CsCXgoAB1Fg/9kV0rtY4k=",
         })))),
@@ -54,24 +45,24 @@ export default nix.lambda((args) => (() => {
       outputs: nix.thunk(() => ["out", "lib", "dev", "man"]),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "CVE-2026-87875.patch",
             url: "https://github.com/OpenPrinting/cups/commit/2b1dc178a2d2325135b855142e384f4e8c42d8e4.patch",
             excludes: nix.thunk(() => ["CHANGES.md"]),
             hash: "sha256-WHw/UWyUuYEBC6TRADpw+BBCaCts9Nd0jS9qsQHTBMo=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: "https://github.com/OpenPrinting/cups/commit/76b515154ce6264dae6d7cc44915d85e0e5fa0f4.patch",
             hash: "sha256-KtwcB4KrFmsLbtAz6u593qxbnozW2Vb/I9yX36gZTd0=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             url: "https://github.com/OpenPrinting/cups/commit/526adb34fe87f7f0cf5f63ae26751c1afa36a5d6.patch",
             hash: "sha256-Pg2xbCXalbvDvv5iI19MrjpOTW03XLKfEHN+lhImG1U=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             name: "CVE-2026-87876.patch",
             url: "https://github.com/OpenPrinting/cups/commit/88e67c00c130a45f3a1edf36686f7a0b2982fef8.patch",
             excludes: nix.thunk(() => ["CHANGES.md"]),
@@ -149,23 +140,23 @@ for f in "$out"/lib/systemd/system/*; do
 done
 `, nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), "# Use xdg-open when on Linux\nsubstituteInPlace \"$out\"/share/applications/cups.desktop \\\n  --replace \"Exec=htmlview\" \"Exec=xdg-open\"\n"))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           "cups-pdf": nix.thunk(() => nix.attr(nixosTests, "cups-pdf")),
           "printing-service": nix.thunk(() => nix.attr(nixosTests, "printing-service")),
           "printing-socket": nix.thunk(() => nix.attr(nixosTests, "printing-socket")),
           "printing-service-notcp": nix.thunk(() => nix.attr(nixosTests, "printing-service-notcp")),
           "printing-socket-notcp": nix.thunk(() => nix.attr(nixosTests, "printing-socket-notcp")),
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "hasPkgConfigModules"), nix.thunk(() => ({
-              [nix.POS]: pos$6,
+              [nix.POS]: $pos[5],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               versionCheck: true,
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         homepage: "https://openprinting.github.io/cups/",
         description: "Standards-based printing system for UNIX",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

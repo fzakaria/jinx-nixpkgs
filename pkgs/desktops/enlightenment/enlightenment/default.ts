@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 33, 5], ["sha256", 34, 5]], [["providedSessions", 80, 12], ["updateScript", 82, 12]], [["description", 85, 5], ["homepage", 86, 5], ["license", 87, 5], ["platforms", 88, 5], ["maintainers", 89, 5], ["teams", 92, 5]], [["pname", 29, 3], ["version", 30, 3], ["src", 32, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 44, 3], ["patches", 62, 3], ["postPatch", 70, 3], ["mesonFlags", 75, 3], ["passthru", 80, 3], ["meta", 84, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, meson: false, ninja: false, "pkg-config": false, gettext: false, "alsa-lib": false, acpid: false, bc: false, ddcutil: false, efl: false, libexif: false, pam: false, xkeyboard_config: false, udisks: false, waylandSupport: true, "wayland-protocols": false, xwayland: false, bluetoothSupport: true, bluez5: false, pulseSupport: true, libpulseaudio: false, directoryListingUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 33, 5], ["sha256", 34, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["providedSessions", 80, 12], ["updateScript", 82, 12]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 85, 5], ["homepage", 86, 5], ["license", 87, 5], ["platforms", 88, 5], ["maintainers", 89, 5], ["teams", 92, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 29, 3], ["version", 30, 3], ["src", 32, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 44, 3], ["patches", 62, 3], ["postPatch", 70, 3], ["mesonFlags", 75, 3], ["passthru", 80, 3], ["meta", 84, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -38,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const pname = "enlightenment";
       const version = "0.27.1";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://download.enlightenment.org/rel/apps/${pname}/${pname}-${version}.tar.xz`),
           sha256: "sha256-tB34dx9g47lqGXOuVm10JcU6gznxjlTjEjAhh4HaL6k=",
         }))));
@@ -53,12 +50,12 @@ export default nix.lambda((args) => (() => {
 `);
       const mesonFlags = nix.thunk(() => nix.concat(["-D systemdunitdir=lib/systemd/user"], nix.app(nix.sel(lib, "optional"), waylandSupport, "-Dwl=true")));
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         providedSessions: nix.thunk(() => ["enlightenment"]),
         updateScript: nix.thunk(() => nix.app(directoryListingUpdater, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Compositing Window Manager and Desktop Shell",
         homepage: "https://www.enlightenment.org",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),
@@ -70,7 +67,7 @@ export default nix.lambda((args) => (() => {
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "enlightenment"))]),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 41, 7], ["repo", 42, 7], ["tag", 43, 7], ["hash", 44, 15]], [["description", 91, 7], ["longDescription", 92, 7], ["homepage", 98, 7], ["downloadPage", 99, 7], ["changelog", 100, 7], ["license", 102, 7], ["teams", 103, 7], ["platforms", 104, 7]], [["name", 37, 5], ["version", 38, 13], ["src", 40, 5], ["patches", 47, 5], ["nativeBuildInputs", 52, 5], ["installPhase", 58, 5], ["doCheck", 64, 5], ["checkTarget", 65, 5], ["doInstallCheck", 67, 5], ["installCheckPhase", 68, 5], ["postFixup", 74, 5], ["meta", 90, 5]]]);
 const formals$1 = { args: { bash: false, buildRebar3: false, config: false, coreutils: false, erlang: false, fetchFromGitHub: false, lib: false, makeWrapper: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 41, 7], ["repo", 42, 7], ["tag", 43, 7], ["hash", 44, 15]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 91, 7], ["longDescription", 92, 7], ["homepage", 98, 7], ["downloadPage", 99, 7], ["changelog", 100, 7], ["license", 102, 7], ["teams", 103, 7], ["platforms", 104, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["name", 37, 5], ["version", 38, 13], ["src", 40, 5], ["patches", 47, 5], ["nativeBuildInputs", 52, 5], ["installPhase", 58, 5], ["doCheck", 64, 5], ["checkTarget", 65, 5], ["doInstallCheck", 67, 5], ["installCheckPhase", 68, 5], ["postFixup", 74, 5], ["meta", 90, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,11 +29,11 @@ export default nix.lambda((args) => (() => {
     nix.assert_(nix.app(assertMsg, maxAssert, nix.thunk(() => nix.str`LFE ${version} is supported on OTP <=${maximumOTPVersion}, not ${mainVersion}.
 `)), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/development/interpreters/lfe/default.nix:33:3");
     return nix.app(buildRebar3, nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         name: "lfe",
         version: version,
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             owner: "lfe",
             repo: "lfe",
             tag: nix.thunk(() => nix.str`v${version}`),
@@ -60,7 +58,7 @@ for f in $out/bin/*; do
 done
 `),
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           description: "Best of Erlang and of Lisp; at the same time",
           longDescription: "LFE, Lisp Flavoured Erlang, is a lisp syntax front-end to the Erlang\ncompiler. Code produced with it is compatible with \"normal\" Erlang\ncode. An LFE evaluator and shell is also included.\n",
           homepage: "https://lfe.io",

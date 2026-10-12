@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 33, 5], ["repo", 34, 5], ["tag", 35, 5], ["hash", 36, 5]], [["s3", 47, 5], ["gcs", 48, 5], ["azure", 49, 5], ["http", 54, 5], ["webhdfs", 55, 5], ["ssh", 56, 5], ["zst", 57, 5]], [["changelog", 87, 5], ["description", 88, 5], ["homepage", 89, 5], ["license", 90, 5]], [["pname", 28, 3], ["version", 29, 3], ["pyproject", 30, 3], ["src", 32, 3], ["build-system", 39, 3], ["dependencies", 44, 3], ["optional-dependencies", 46, 3], ["pythonImportsCheck", 60, 3], ["nativeCheckInputs", 62, 3], ["enabledTestPaths", 76, 3], ["disabledTests", 78, 3], ["meta", 86, 3]]]);
 const formals$1 = { args: { lib: false, "backports-zstd": false, buildPythonPackage: false, fetchFromGitHub: false, awscli2: false, "azure-common": false, "azure-core": false, "azure-storage-blob": false, boto3: false, "google-cloud-storage": false, requests: false, moto: false, numpy: false, paramiko: false, "pytest-cov-stub": false, "pytest-timeout": false, "pytest-xdist": false, pytestCheckHook: false, pyopenssl: false, responses: false, setuptools: false, "setuptools-scm": false, wrapt: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 33, 5], ["repo", 34, 5], ["tag", 35, 5], ["hash", 36, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["s3", 47, 5], ["gcs", 48, 5], ["azure", 49, 5], ["http", 54, 5], ["webhdfs", 55, 5], ["ssh", 56, 5], ["zst", 57, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["changelog", 87, 5], ["description", 88, 5], ["homepage", 89, 5], ["license", 90, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 28, 3], ["version", 29, 3], ["pyproject", 30, 3], ["src", 32, 3], ["build-system", 39, 3], ["dependencies", 44, 3], ["optional-dependencies", 46, 3], ["pythonImportsCheck", 60, 3], ["nativeCheckInputs", 62, 3], ["enabledTestPaths", 76, 3], ["disabledTests", 78, 3], ["meta", 86, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -38,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const version = "7.5.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "RaRe-Technologies",
           repo: "smart_open",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -47,7 +44,7 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [setuptools, setuptools_scm]);
       const dependencies = nix.thunk(() => [wrapt]);
       const optional_dependencies = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         s3: nix.thunk(() => [boto3]),
         gcs: nix.thunk(() => [google_cloud_storage]),
         azure: nix.thunk(() => [azure_storage_blob, azure_common, azure_core]),
@@ -76,14 +73,14 @@ export default nix.lambda((args) => (() => {
         "test_seek_from_start",
       ]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         changelog: nix.thunk(() => nix.str`https://github.com/piskvorky/smart_open/releases/tag/${nix.sel(src, "tag")}`),
         description: "Library for efficient streaming of very large file",
         homepage: "https://github.com/piskvorky/smart_open",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

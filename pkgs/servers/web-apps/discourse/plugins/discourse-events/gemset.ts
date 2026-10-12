@@ -2,35 +2,17 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
-const pos$1 = nix.positions(here + "/gemset.nix", [["remotes", 7, 7], ["sha256", 8, 7], ["type", 9, 7]]);
-const pos$2 = nix.positions(here + "/gemset.nix", [["dependencies", 3, 5], ["groups", 4, 5], ["platforms", 5, 5], ["source", 6, 5], ["version", 11, 5]]);
-const pos$3 = nix.positions(here + "/gemset.nix", [["remotes", 21, 7], ["sha256", 22, 7], ["type", 23, 7]]);
-const pos$4 = nix.positions(here + "/gemset.nix", [["dependencies", 14, 5], ["groups", 18, 5], ["platforms", 19, 5], ["source", 20, 5], ["version", 25, 5]]);
-const pos$5 = nix.positions(here + "/gemset.nix", [["remotes", 31, 7], ["sha256", 32, 7], ["type", 33, 7]]);
-const pos$6 = nix.positions(here + "/gemset.nix", [["groups", 28, 5], ["platforms", 29, 5], ["source", 30, 5], ["version", 35, 5]]);
-const pos$7 = nix.positions(here + "/gemset.nix", [["remotes", 41, 7], ["sha256", 42, 7], ["type", 43, 7]]);
-const pos$8 = nix.positions(here + "/gemset.nix", [["groups", 38, 5], ["platforms", 39, 5], ["source", 40, 5], ["version", 45, 5]]);
-const pos$9 = nix.positions(here + "/gemset.nix", [["remotes", 51, 7], ["sha256", 52, 7], ["type", 53, 7]]);
-const pos$10 = nix.positions(here + "/gemset.nix", [["groups", 48, 5], ["platforms", 49, 5], ["source", 50, 5], ["version", 55, 5]]);
-const pos$11 = nix.positions(here + "/gemset.nix", [["remotes", 62, 7], ["sha256", 63, 7], ["type", 64, 7]]);
-const pos$12 = nix.positions(here + "/gemset.nix", [["dependencies", 58, 5], ["groups", 59, 5], ["platforms", 60, 5], ["source", 61, 5], ["version", 66, 5]]);
-const pos$13 = nix.positions(here + "/gemset.nix", [["remotes", 76, 7], ["sha256", 77, 7], ["type", 78, 7]]);
-const pos$14 = nix.positions(here + "/gemset.nix", [["dependencies", 69, 5], ["groups", 73, 5], ["platforms", 74, 5], ["source", 75, 5], ["version", 80, 5]]);
-const pos$15 = nix.positions(here + "/gemset.nix", [["remotes", 87, 7], ["sha256", 88, 7], ["type", 89, 7]]);
-const pos$16 = nix.positions(here + "/gemset.nix", [["dependencies", 83, 5], ["groups", 84, 5], ["platforms", 85, 5], ["source", 86, 5], ["version", 91, 5]]);
-const pos$17 = nix.positions(here + "/gemset.nix", [["remotes", 101, 7], ["sha256", 102, 7], ["type", 103, 7]]);
-const pos$18 = nix.positions(here + "/gemset.nix", [["dependencies", 94, 5], ["groups", 98, 5], ["platforms", 99, 5], ["source", 100, 5], ["version", 105, 5]]);
-const pos$19 = nix.positions(here + "/gemset.nix", [["icalendar", 2, 3], ["icalendar-recurrence", 13, 3], ["ice_cube", 27, 3], ["iso-639", 37, 3], ["omnievent", 47, 3], ["omnievent-api", 57, 3], ["omnievent-google", 68, 3], ["omnievent-icalendar", 82, 3], ["omnievent-outlook", 93, 3]]);
+const $pos = nix.positions(here + "/gemset.nix", [[["remotes", 7, 7], ["sha256", 8, 7], ["type", 9, 7]], [["dependencies", 3, 5], ["groups", 4, 5], ["platforms", 5, 5], ["source", 6, 5], ["version", 11, 5]], [["remotes", 21, 7], ["sha256", 22, 7], ["type", 23, 7]], [["dependencies", 14, 5], ["groups", 18, 5], ["platforms", 19, 5], ["source", 20, 5], ["version", 25, 5]], [["remotes", 31, 7], ["sha256", 32, 7], ["type", 33, 7]], [["groups", 28, 5], ["platforms", 29, 5], ["source", 30, 5], ["version", 35, 5]], [["remotes", 41, 7], ["sha256", 42, 7], ["type", 43, 7]], [["groups", 38, 5], ["platforms", 39, 5], ["source", 40, 5], ["version", 45, 5]], [["remotes", 51, 7], ["sha256", 52, 7], ["type", 53, 7]], [["groups", 48, 5], ["platforms", 49, 5], ["source", 50, 5], ["version", 55, 5]], [["remotes", 62, 7], ["sha256", 63, 7], ["type", 64, 7]], [["dependencies", 58, 5], ["groups", 59, 5], ["platforms", 60, 5], ["source", 61, 5], ["version", 66, 5]], [["remotes", 76, 7], ["sha256", 77, 7], ["type", 78, 7]], [["dependencies", 69, 5], ["groups", 73, 5], ["platforms", 74, 5], ["source", 75, 5], ["version", 80, 5]], [["remotes", 87, 7], ["sha256", 88, 7], ["type", 89, 7]], [["dependencies", 83, 5], ["groups", 84, 5], ["platforms", 85, 5], ["source", 86, 5], ["version", 91, 5]], [["remotes", 101, 7], ["sha256", 102, 7], ["type", 103, 7]], [["dependencies", 94, 5], ["groups", 98, 5], ["platforms", 99, 5], ["source", 100, 5], ["version", 105, 5]], [["icalendar", 2, 3], ["icalendar-recurrence", 13, 3], ["ice_cube", 27, 3], ["iso-639", 37, 3], ["omnievent", 47, 3], ["omnievent-api", 57, 3], ["omnievent-google", 68, 3], ["omnievent-icalendar", 82, 3], ["omnievent-outlook", 93, 3]]]);
 
 export default nix.thunk(() => ({
-  [nix.POS]: pos$19,
+  [nix.POS]: $pos[18],
   icalendar: nix.thunk(() => ({
-    [nix.POS]: pos$2,
+    [nix.POS]: $pos[1],
     dependencies: nix.thunk(() => ["ice_cube"]),
     groups: nix.thunk(() => ["default"]),
     platforms: [],
     source: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       remotes: nix.thunk(() => ["https://rubygems.org"]),
       sha256: "11zfs0l8y2a6gpf0krm91d0ap2mnf04qky89dyzxwaspqxqgj174",
       type: "gem",
@@ -38,12 +20,12 @@ export default nix.thunk(() => ({
     version: "2.8.0",
   })),
   "icalendar-recurrence": nix.thunk(() => ({
-    [nix.POS]: pos$4,
+    [nix.POS]: $pos[3],
     dependencies: nix.thunk(() => ["icalendar", "ice_cube"]),
     groups: nix.thunk(() => ["default"]),
     platforms: [],
     source: nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       remotes: nix.thunk(() => ["https://rubygems.org"]),
       sha256: "06li3cdbwkd9y2sadjlbwj54blqdaa056yx338s4ddfxywrngigh",
       type: "gem",
@@ -51,11 +33,11 @@ export default nix.thunk(() => ({
     version: "1.1.3",
   })),
   ice_cube: nix.thunk(() => ({
-    [nix.POS]: pos$6,
+    [nix.POS]: $pos[5],
     groups: nix.thunk(() => ["default"]),
     platforms: [],
     source: nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       remotes: nix.thunk(() => ["https://rubygems.org"]),
       sha256: "1dri4mcya1fwzrr9nzic8hj1jr28a2szjag63f9k7p2bw9fpw4fs",
       type: "gem",
@@ -63,11 +45,11 @@ export default nix.thunk(() => ({
     version: "0.16.4",
   })),
   "iso-639": nix.thunk(() => ({
-    [nix.POS]: pos$8,
+    [nix.POS]: $pos[7],
     groups: nix.thunk(() => ["default"]),
     platforms: [],
     source: nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       remotes: nix.thunk(() => ["https://rubygems.org"]),
       sha256: "1k1r8wgk6syvpsl3j5qfh5az5w4zdvk0pvpjl7qspznfdbp2mn71",
       type: "gem",
@@ -75,11 +57,11 @@ export default nix.thunk(() => ({
     version: "0.3.5",
   })),
   omnievent: nix.thunk(() => ({
-    [nix.POS]: pos$10,
+    [nix.POS]: $pos[9],
     groups: nix.thunk(() => ["default"]),
     platforms: [],
     source: nix.thunk(() => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       remotes: nix.thunk(() => ["https://rubygems.org"]),
       sha256: "0xiz1jag2z8agjk1mycw44lkgrq7nfj2m6gx2v1zr8c6p2wvk4lj",
       type: "gem",
@@ -87,12 +69,12 @@ export default nix.thunk(() => ({
     version: "0.1.0.pre11",
   })),
   "omnievent-api": nix.thunk(() => ({
-    [nix.POS]: pos$12,
+    [nix.POS]: $pos[11],
     dependencies: nix.thunk(() => ["omnievent"]),
     groups: nix.thunk(() => ["default"]),
     platforms: [],
     source: nix.thunk(() => ({
-      [nix.POS]: pos$11,
+      [nix.POS]: $pos[10],
       remotes: nix.thunk(() => ["https://rubygems.org"]),
       sha256: "1nlp8vmsachbc8s8h6h34h9gw5i3yd6zbcs7sdkbhdwsqaf61ypp",
       type: "gem",
@@ -100,12 +82,12 @@ export default nix.thunk(() => ({
     version: "0.1.0.pre5",
   })),
   "omnievent-google": nix.thunk(() => ({
-    [nix.POS]: pos$14,
+    [nix.POS]: $pos[13],
     dependencies: nix.thunk(() => ["omnievent", "omnievent-api"]),
     groups: nix.thunk(() => ["default"]),
     platforms: [],
     source: nix.thunk(() => ({
-      [nix.POS]: pos$13,
+      [nix.POS]: $pos[12],
       remotes: nix.thunk(() => ["https://rubygems.org"]),
       sha256: "1ma15ijrf0dq4mlghg3vrhz62llhfp7k6cq7nfwy12h229gnzdrx",
       type: "gem",
@@ -113,12 +95,12 @@ export default nix.thunk(() => ({
     version: "0.1.0.pre8",
   })),
   "omnievent-icalendar": nix.thunk(() => ({
-    [nix.POS]: pos$16,
+    [nix.POS]: $pos[15],
     dependencies: nix.thunk(() => ["omnievent"]),
     groups: nix.thunk(() => ["default"]),
     platforms: [],
     source: nix.thunk(() => ({
-      [nix.POS]: pos$15,
+      [nix.POS]: $pos[14],
       remotes: nix.thunk(() => ["https://rubygems.org"]),
       sha256: "0dl634wgah2dv851dhv18hkmg1p6a1laa2f9blizlizvnvi5g1g5",
       type: "gem",
@@ -126,12 +108,12 @@ export default nix.thunk(() => ({
     version: "0.1.0.pre9",
   })),
   "omnievent-outlook": nix.thunk(() => ({
-    [nix.POS]: pos$18,
+    [nix.POS]: $pos[17],
     dependencies: nix.thunk(() => ["omnievent", "omnievent-api"]),
     groups: nix.thunk(() => ["default"]),
     platforms: [],
     source: nix.thunk(() => ({
-      [nix.POS]: pos$17,
+      [nix.POS]: $pos[16],
       remotes: nix.thunk(() => ["https://rubygems.org"]),
       sha256: "072aycqq94w5bfj9nda8inxpc88a4bqn1l1jar0c4dcpyadqnd5r",
       type: "gem",

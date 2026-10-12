@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]], [["name", 35, 7], ["url", 36, 7], ["hash", 37, 7]], [["updateScript", 64, 12]], [["description", 67, 5], ["longDescription", 68, 5], ["homepage", 72, 5], ["changelog", 73, 5], ["license", 74, 5], ["maintainers", 78, 5], ["mainProgram", 79, 5], ["platforms", 80, 5]], [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["patches", 33, 3], ["postFixup", 41, 3], ["nativeBuildInputs", 45, 3], ["buildInputs", 51, 3], ["passthru", 64, 3], ["meta", 66, 3]]]);
 const formals$1 = { args: { stdenv: false, fetchFromGitHub: false, fetchpatch: false, flac: false, lib: false, libGL: false, libpng: false, libpulseaudio: false, lz4: false, luajit: false, meson: false, minizip: false, ninja: false, "nix-update-script": false, "pkg-config": false, SDL2: false, SDL2_image: false, onetbb: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 35, 7], ["url", 36, 7], ["hash", 37, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 64, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 67, 5], ["longDescription", 68, 5], ["homepage", 72, 5], ["changelog", 73, 5], ["license", 74, 5], ["maintainers", 78, 5], ["mainProgram", 79, 5], ["platforms", 80, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["patches", 33, 3], ["postFixup", 41, 3], ["nativeBuildInputs", 45, 3], ["buildInputs", 51, 3], ["passthru", 64, 3], ["meta", 66, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const pname = "cortex-command-community-project";
       const version = "6.2.2";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "cortex-command-community",
           repo: "Cortex-Command-Community-Project",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -41,7 +37,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "runner.patch",
             url: "https://github.com/cortex-command-community/Cortex-Command-Community-Project/commit/0aa22156567d48cb12ac39e31aec8aeb0ea7fb83.patch",
             hash: "sha256-2rpJtKjRebjVOjj3wlNfFBQjbn9UdEcIBWCkyZgzd+8=",
@@ -63,11 +59,11 @@ export default nix.lambda((args) => (() => {
         onetbb,
       ]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Cortex Command Community Project",
         longDescription: "The Cortex Command Community Project is Free/Libre and Open Source under GNU AGPL v3.\nThis is a community-driven effort to continue the development of Cortex Command.\n",
         homepage: "https://cortex-command-community.github.io/",
@@ -87,7 +83,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => ["x86_64-linux"]),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         src,

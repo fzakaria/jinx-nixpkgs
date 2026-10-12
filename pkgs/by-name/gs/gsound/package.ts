@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 21, 5], ["sha256", 22, 5]], [["packageName", 42, 7], ["versionPolicy", 43, 7]], [["updateScript", 41, 5]], [["homepage", 48, 5], ["description", 49, 5], ["mainProgram", 50, 5], ["teams", 51, 5], ["license", 52, 5], ["platforms", 53, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["strictDeps", 25, 3], ["depsBuildBuild", 26, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 35, 3], ["passthru", 40, 3], ["meta", 47, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, "pkg-config": false, glib: false, vala: false, libcanberra: false, "gobject-introspection": false, libtool: false, gnome: false, meson: false, ninja: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 21, 5], ["sha256", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["packageName", 42, 7], ["versionPolicy", 43, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 41, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 48, 5], ["description", 49, 5], ["mainProgram", 50, 5], ["teams", 51, 5], ["license", 52, 5], ["platforms", 53, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["strictDeps", 25, 3], ["depsBuildBuild", 26, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 35, 3], ["passthru", 40, 3], ["meta", 47, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const pname = "gsound";
       const version = "1.0.3";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnome/sources/gsound/${nix.app(nix.sel(lib, "versions", "majorMinor"), version)}/gsound-${version}.tar.xz`),
           sha256: "06l80xgykj7x1kqkjvcq06pwj2rmca458zvs053qc55x3sg06bfa",
         }))));
@@ -36,11 +32,11 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [pkg_config, meson, ninja, gobject_introspection, libtool, vala]);
       const buildInputs = nix.thunk(() => [glib, libcanberra]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$2, packageName: pname, versionPolicy: "odd-unstable" })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: $pos[1], packageName: pname, versionPolicy: "odd-unstable" })))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://gitlab.gnome.org/GNOME/gsound",
         description: "Small library for playing system sounds",
         mainProgram: "gsound-play",
@@ -49,7 +45,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         src,

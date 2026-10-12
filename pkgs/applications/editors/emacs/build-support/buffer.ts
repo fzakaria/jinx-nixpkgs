@@ -2,10 +2,10 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/buffer.nix", [[["withPackages", 11, 3], ["haskellMonoRepo", 68, 3]]]);
 const formals$1 = { args: { lib: false, writeText: false, "inherit-local": false }, ellipsis: false };
 const formals$2 = { args: { "project-root": false, haskellPackages: false }, ellipsis: false };
 const formals$3 = { args: { root: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/buffer.nix", [["withPackages", 11, 3], ["haskellMonoRepo", 68, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -79,7 +79,7 @@ ${nix.app(nix.sel(lib, "concatStringsSep"), "\n", extras)}
         return nix.app(nix.sel(lib, "optionalAttrs"), is_haskell_package, nix.thunk(() => nix.app(withPackages, nix.thunk(() => [haskell_package_env]))));
       })(), formals$3);
     })(), formals$2);
-    return { [nix.POS]: pos$1, withPackages, haskellMonoRepo };
+    return { [nix.POS]: $pos[0], withPackages, haskellMonoRepo };
   })();
 })(), formals$1);
 //# sourceMappingURL=buffer.ts.map

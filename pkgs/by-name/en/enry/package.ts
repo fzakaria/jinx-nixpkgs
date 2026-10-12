@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]], [["updateScript", 31, 12]], [["description", 50, 5], ["mainProgram", 51, 5], ["homepage", 52, 5], ["changelog", 53, 5], ["license", 54, 5], ["maintainers", 55, 5]], [["pname", 10, 3], ["version", 11, 3], ["commitSha", 12, 3], ["src", 14, 3], ["vendorHash", 21, 3], ["ldflags", 23, 3], ["nativeInstallCheckInputs", 28, 3], ["doInstallCheck", 29, 3], ["passthru", 31, 3], ["meta", 49, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitHub: false, versionCheckHook: false, writeScript: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 31, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 50, 5], ["mainProgram", 51, 5], ["homepage", 52, 5], ["changelog", 53, 5], ["license", 54, 5], ["maintainers", 55, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["commitSha", 12, 3], ["src", 14, 3], ["vendorHash", 21, 3], ["ldflags", 23, 3], ["nativeInstallCheckInputs", 28, 3], ["doInstallCheck", 29, 3], ["passthru", 31, 3], ["meta", 49, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const writeScript = nix.arg($, "writeScript");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "enry",
       version: "1.3.0",
       commitSha: "f10711437bfbb25b15506eb69dde24bb7decd222",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "go-enry",
           repo: "enry",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,11 +32,11 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(writeScript, "update-enry", "#!/usr/bin/env nix-shell\n#!nix-shell -i bash -p curl jq nix-prefetch-github gnused\n\nset -eu -o pipefail\n\nlatest_tag=\"$(curl -sS https://api.github.com/repos/go-enry/enry/releases/latest | jq -r '.tag_name')\"\nprefetch_output=\"$(nix-prefetch-github --rev \"$latest_tag\" go-enry enry)\"\ncommit_sha=\"$(jq -r '.rev' <<< \"$prefetch_output\")\"\nsource_hash=\"$(jq -r '.hash' <<< \"$prefetch_output\")\"\n\nnixfile=\"$(nix-instantiate --eval -E \"with import ./. {}; (builtins.unsafeGetAttrPos \\\"version\\\" enry).file\" | tr -d '\"')\"\nsed -i \"$nixfile\" \\\n  -e \"s|version = \\\".*\\\";|version = \\\"${latest_tag#v}\\\";|\" \\\n  -e \"s|commitSha = \\\".*\\\"; # matches version|commitSha = \\\"$commit_sha\\\"; # matches version|\" \\\n  -e \"s|hash = \\\"sha256-.*\\\";|hash = \\\"$source_hash\\\";|\"\n")),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Programming language detector based on go-enry/go-enry/v2 library",
         mainProgram: "enry",
         homepage: "https://github.com/go-enry/enry",

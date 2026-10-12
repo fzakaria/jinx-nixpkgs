@@ -2,35 +2,10 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/integration.nix", [[["systemPackages", 29, 19]], [["allowedTCPPorts", 35, 27]], [["firewall", 35, 18], ["extraHosts", 39, 18]], [["enable", 44, 9], ["setSendmail", 45, 9]], [["enable", 62, 24]], [["nopassword", 78, 15], ["allow_nets", 79, 15]], [["fields", 77, 13]], [["dovecot_config_version", 66, 11], ["dovecot_storage_version", 67, 11], ["mail_uid", 68, 11], ["mail_gid", 69, 11], ["protocols", 70, 11], ["mail_driver", 74, 11], ["mail_home", 75, 11], ["passdb static", 76, 11]], [["enable", 64, 9], ["settings", 65, 9]], [["_secret", 92, 19]], [["APP_KEY", 92, 11], ["APP_FORCE_HTTPS", 93, 11], ["APP_URL", 94, 11], ["APP_REMOTE_HOST_WHITE_LIST", 95, 11], ["APP_DEBUG", 96, 11]], [["enable", 89, 9], ["domain", 90, 9], ["settings", 91, 9]], [["mailhog", 43, 16], ["postfix", 62, 16], ["dovecot2", 63, 16], ["freescout", 88, 16]], [["isNormalUser", 49, 9], ["description", 50, 9], ["password", 51, 9], ["uid", 52, 9]], [["isNormalUser", 56, 9], ["description", 57, 9], ["password", 58, 9]], [["password", 85, 9]], [["alice", 48, 19], ["bob", 55, 19], ["freescout", 84, 19]], [["users", 48, 13]], [["environment", 29, 7], ["networking", 35, 7], ["services", 43, 7], ["users", 48, 7]], [["enable", 109, 9], ["kind", 110, 9]], [["databaseSetup", 108, 26]], [["freescout", 108, 16]], [["imports", 105, 7], ["services", 108, 7]], [["maintainers", 116, 8]], [["freescout-pgsql", 124, 5], ["freescout-mysql", 127, 5]], [["name", 115, 3], ["meta", 116, 3], ["containers", 120, 3], ["testScript", 130, 3]]]);
 const formals$1 = { args: { pkgs: false, lib: false }, ellipsis: true };
 const formals$2 = { args: { config: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/integration.nix", [["systemPackages", 29, 19]]);
-const pos$2 = nix.positions(here + "/integration.nix", [["allowedTCPPorts", 35, 27]]);
-const pos$3 = nix.positions(here + "/integration.nix", [["firewall", 35, 18], ["extraHosts", 39, 18]]);
-const pos$4 = nix.positions(here + "/integration.nix", [["enable", 44, 9], ["setSendmail", 45, 9]]);
-const pos$5 = nix.positions(here + "/integration.nix", [["enable", 62, 24]]);
-const pos$6 = nix.positions(here + "/integration.nix", [["nopassword", 78, 15], ["allow_nets", 79, 15]]);
-const pos$7 = nix.positions(here + "/integration.nix", [["fields", 77, 13]]);
-const pos$8 = nix.positions(here + "/integration.nix", [["dovecot_config_version", 66, 11], ["dovecot_storage_version", 67, 11], ["mail_uid", 68, 11], ["mail_gid", 69, 11], ["protocols", 70, 11], ["mail_driver", 74, 11], ["mail_home", 75, 11], ["passdb static", 76, 11]]);
-const pos$9 = nix.positions(here + "/integration.nix", [["enable", 64, 9], ["settings", 65, 9]]);
-const pos$10 = nix.positions(here + "/integration.nix", [["_secret", 92, 19]]);
-const pos$11 = nix.positions(here + "/integration.nix", [["APP_KEY", 92, 11], ["APP_FORCE_HTTPS", 93, 11], ["APP_URL", 94, 11], ["APP_REMOTE_HOST_WHITE_LIST", 95, 11], ["APP_DEBUG", 96, 11]]);
-const pos$12 = nix.positions(here + "/integration.nix", [["enable", 89, 9], ["domain", 90, 9], ["settings", 91, 9]]);
-const pos$13 = nix.positions(here + "/integration.nix", [["mailhog", 43, 16], ["postfix", 62, 16], ["dovecot2", 63, 16], ["freescout", 88, 16]]);
-const pos$14 = nix.positions(here + "/integration.nix", [["isNormalUser", 49, 9], ["description", 50, 9], ["password", 51, 9], ["uid", 52, 9]]);
-const pos$15 = nix.positions(here + "/integration.nix", [["isNormalUser", 56, 9], ["description", 57, 9], ["password", 58, 9]]);
-const pos$16 = nix.positions(here + "/integration.nix", [["password", 85, 9]]);
-const pos$17 = nix.positions(here + "/integration.nix", [["alice", 48, 19], ["bob", 55, 19], ["freescout", 84, 19]]);
-const pos$18 = nix.positions(here + "/integration.nix", [["users", 48, 13]]);
-const pos$19 = nix.positions(here + "/integration.nix", [["environment", 29, 7], ["networking", 35, 7], ["services", 43, 7], ["users", 48, 7]]);
 const formals$3 = { args: { config: false, pkgs: false }, ellipsis: true };
-const pos$20 = nix.positions(here + "/integration.nix", [["enable", 109, 9], ["kind", 110, 9]]);
-const pos$21 = nix.positions(here + "/integration.nix", [["databaseSetup", 108, 26]]);
-const pos$22 = nix.positions(here + "/integration.nix", [["freescout", 108, 16]]);
-const pos$23 = nix.positions(here + "/integration.nix", [["imports", 105, 7], ["services", 108, 7]]);
-const pos$24 = nix.positions(here + "/integration.nix", [["maintainers", 116, 8]]);
-const pos$25 = nix.positions(here + "/integration.nix", [["freescout-pgsql", 124, 5], ["freescout-mysql", 127, 5]]);
-const pos$26 = nix.positions(here + "/integration.nix", [["name", 115, 3], ["meta", 116, 3], ["containers", 120, 3], ["testScript", 130, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -52,9 +27,9 @@ MAIL
     const $_1 = nix.formals(args_1, formals$2);
     const config = nix.arg($_1, "config");
     return {
-      [nix.POS]: pos$19,
+      [nix.POS]: $pos[18],
       environment: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         systemPackages: nix.thunk(() => (() => {
           const w = nix.withScope(pkgs, null);
           return [
@@ -65,20 +40,20 @@ MAIL
         })()),
       })),
       networking: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        firewall: nix.thunk(() => ({ [nix.POS]: pos$2, allowedTCPPorts: nix.thunk(() => [80n, 8025n]) })),
+        [nix.POS]: $pos[2],
+        firewall: nix.thunk(() => ({ [nix.POS]: $pos[1], allowedTCPPorts: nix.thunk(() => [80n, 8025n]) })),
         extraHosts: nix.thunk(() => nix.str`127.0.0.1 ${mailDomain} ${freescoutDomain}
 `),
       })),
       services: nix.thunk(() => ({
-        [nix.POS]: pos$13,
-        mailhog: nix.thunk(() => ({ [nix.POS]: pos$4, enable: true, setSendmail: false })),
-        postfix: nix.thunk(() => ({ [nix.POS]: pos$5, enable: true })),
+        [nix.POS]: $pos[12],
+        mailhog: nix.thunk(() => ({ [nix.POS]: $pos[3], enable: true, setSendmail: false })),
+        postfix: nix.thunk(() => ({ [nix.POS]: $pos[4], enable: true })),
         dovecot2: nix.thunk(() => ({
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           enable: true,
           settings: nix.thunk(() => ({
-            [nix.POS]: pos$8,
+            [nix.POS]: $pos[7],
             dovecot_config_version: "2.4.4",
             dovecot_storage_version: "2.4.4",
             mail_uid: "vmail",
@@ -87,18 +62,18 @@ MAIL
             mail_driver: "maildir",
             mail_home: nix.thunk(() => nix.str`${nix.sel(config, "services", "postfix", "settings", "main", "mail_spool_directory")}/{user}`),
             "passdb static": nix.thunk(() => ({
-              [nix.POS]: pos$7,
-              fields: nix.thunk(() => ({ [nix.POS]: pos$6, nopassword: true, allow_nets: "local,0.0.0.0/0,::/0" })),
+              [nix.POS]: $pos[6],
+              fields: nix.thunk(() => ({ [nix.POS]: $pos[5], nopassword: true, allow_nets: "local,0.0.0.0/0,::/0" })),
             })),
           })),
         })),
         freescout: nix.thunk(() => ({
-          [nix.POS]: pos$12,
+          [nix.POS]: $pos[11],
           enable: true,
           domain: freescoutDomain,
           settings: nix.thunk(() => ({
-            [nix.POS]: pos$11,
-            APP_KEY: nix.thunk(() => ({ [nix.POS]: pos$10, _secret: nix.thunk(() => nix.builtins.toString(keyFile)) })),
+            [nix.POS]: $pos[10],
+            APP_KEY: nix.thunk(() => ({ [nix.POS]: $pos[9], _secret: nix.thunk(() => nix.builtins.toString(keyFile)) })),
             APP_FORCE_HTTPS: false,
             APP_URL: nix.thunk(() => nix.str`http://${freescoutDomain}`),
             APP_REMOTE_HOST_WHITE_LIST: "localhost,127.0.0.1,::1",
@@ -107,23 +82,23 @@ MAIL
         })),
       })),
       users: nix.thunk(() => ({
-        [nix.POS]: pos$18,
+        [nix.POS]: $pos[17],
         users: nix.thunk(() => ({
-          [nix.POS]: pos$17,
+          [nix.POS]: $pos[16],
           alice: nix.thunk(() => ({
-            [nix.POS]: pos$14,
+            [nix.POS]: $pos[13],
             isNormalUser: true,
             description: "Alice Foobar",
             password: "foobar",
             uid: 1000n,
           })),
           bob: nix.thunk(() => ({
-            [nix.POS]: pos$15,
+            [nix.POS]: $pos[14],
             isNormalUser: true,
             description: "Bob Foobar",
             password: "foobar",
           })),
-          freescout: nix.thunk(() => ({ [nix.POS]: pos$16, password: "foobar2342" })),
+          freescout: nix.thunk(() => ({ [nix.POS]: $pos[15], password: "foobar2342" })),
         })),
       })),
     };
@@ -133,29 +108,29 @@ MAIL
     const config = nix.arg($_1, "config");
     const pkgs_1 = nix.arg($_1, "pkgs");
     return {
-      [nix.POS]: pos$23,
+      [nix.POS]: $pos[22],
       imports: nix.thunk(() => [baseTestNode]),
       services: nix.thunk(() => ({
-        [nix.POS]: pos$22,
+        [nix.POS]: $pos[21],
         freescout: nix.thunk(() => ({
-          [nix.POS]: pos$21,
-          databaseSetup: nix.thunk(() => ({ [nix.POS]: pos$20, enable: true, kind: dbType })),
+          [nix.POS]: $pos[20],
+          databaseSetup: nix.thunk(() => ({ [nix.POS]: $pos[19], enable: true, kind: dbType })),
         })),
       })),
     };
   })(), formals$3);
   return {
-    [nix.POS]: pos$26,
+    [nix.POS]: $pos[25],
     name: "freescout-integration",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$24,
+      [nix.POS]: $pos[23],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "e1mo"))];
       })()),
     })),
     containers: nix.thunk(() => ({
-      [nix.POS]: pos$25,
+      [nix.POS]: $pos[24],
       "freescout-pgsql": nix.thunk(() => nix.app(mkContainer, "pgsql")),
       "freescout-mysql": nix.thunk(() => nix.app(mkContainer, "mysql")),
     })),

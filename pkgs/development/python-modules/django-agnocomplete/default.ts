@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["hash", 25, 5]], [["description", 74, 5], ["homepage", 75, 5], ["changelog", 76, 5], ["license", 77, 5], ["maintainers", 78, 5]], [["pname", 17, 3], ["version", 18, 3], ["pyproject", 19, 3], ["src", 21, 3], ["build-system", 28, 3], ["dependencies", 33, 3], ["pythonImportsCheck", 39, 3], ["nativeCheckInputs", 43, 3], ["postPatch", 51, 3], ["disabledTests", 64, 3], ["__darwinAllowLocalNetworking", 71, 3], ["meta", 73, 3]]]);
 const formals$1 = { args: { lib: false, django: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, "setuptools-scm": false, requests: false, six: false, pytestCheckHook: false, "pytest-cov-stub": false, "pytest-django": false, mock: false, pyyaml: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 74, 5], ["homepage", 75, 5], ["changelog", 76, 5], ["license", 77, 5], ["maintainers", 78, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 17, 3], ["version", 18, 3], ["pyproject", 19, 3], ["src", 21, 3], ["build-system", 28, 3], ["dependencies", 33, 3], ["pythonImportsCheck", 39, 3], ["nativeCheckInputs", 43, 3], ["postPatch", 51, 3], ["disabledTests", 64, 3], ["__darwinAllowLocalNetworking", 71, 3], ["meta", 73, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.2.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "peopledoc",
           repo: "django-agnocomplete",
           rev: version,
@@ -41,7 +39,7 @@ export default nix.lambda((args) => (() => {
       const disabledTests = nix.thunk(() => ["test_AgnocompleteBase", "test_AgnocompleteModel"]);
       const __darwinAllowLocalNetworking = true;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "front-end agnostic toolbox for autocompletion fields",
         homepage: "https://github.com/peopledoc/django-agnocomplete",
         changelog: nix.thunk(() => nix.str`https://github.com/peopledoc/django-agnocomplete/blob/${nix.sel(src, "rev")}/CHANGELOG.rst`),
@@ -55,7 +53,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 31, 5], ["repo", 32, 5], ["tag", 33, 5], ["hash", 34, 5]], [["dev", 52, 5], ["docs", 55, 5]], [["doCheck", 75, 5]], [["jupytext", 73, 17]], [["deps", 73, 12]], [["description", 79, 5], ["homepage", 80, 5], ["changelog", 81, 5], ["license", 82, 5], ["maintainers", 83, 5], ["teams", 84, 5]], [["pname", 25, 3], ["version", 26, 3], ["pyproject", 27, 3], ["__structuredAttrs", 28, 3], ["src", 30, 3], ["build-system", 37, 3], ["dependencies", 41, 3], ["optional-dependencies", 51, 3], ["pythonRelaxDeps", 62, 3], ["doCheck", 67, 3], ["pythonImportsCheck", 69, 3], ["passthru", 73, 3], ["meta", 78, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, hatchling: false, docutils: false, "jupyter-server": false, "jupyterlab-server": false, "jupyterlite-core": false, jupytext: false, nbformat: false, sphinx: false, hatch: false, "myst-parser": false, "pydata-sphinx-theme": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 31, 5], ["repo", 32, 5], ["tag", 33, 5], ["hash", 34, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["dev", 52, 5], ["docs", 55, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["doCheck", 75, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["jupytext", 73, 17]]);
-const pos$5 = nix.positions(here + "/default.nix", [["deps", 73, 12]]);
-const pos$6 = nix.positions(here + "/default.nix", [["description", 79, 5], ["homepage", 80, 5], ["changelog", 81, 5], ["license", 82, 5], ["maintainers", 83, 5], ["teams", 84, 5]]);
-const pos$7 = nix.positions(here + "/default.nix", [["pname", 25, 3], ["version", 26, 3], ["pyproject", 27, 3], ["__structuredAttrs", 28, 3], ["src", 30, 3], ["build-system", 37, 3], ["dependencies", 41, 3], ["optional-dependencies", 51, 3], ["pythonRelaxDeps", 62, 3], ["doCheck", 67, 3], ["pythonImportsCheck", 69, 3], ["passthru", 73, 3], ["meta", 78, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,13 +22,13 @@ export default nix.lambda((args) => (() => {
   const myst_parser = nix.arg($, "myst-parser");
   const pydata_sphinx_theme = nix.arg($, "pydata-sphinx-theme");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "jupyterlite-sphinx",
       version: "0.23.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "jupyterlite",
           repo: "jupyterlite-sphinx",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -51,7 +45,7 @@ export default nix.lambda((args) => (() => {
         sphinx,
       ]),
       "optional-dependencies": nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         dev: nix.thunk(() => [hatch]),
         docs: nix.thunk(() => [myst_parser, pydata_sphinx_theme]),
       })),
@@ -59,14 +53,14 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["jupyterlite_sphinx"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         deps: nix.thunk(() => ({
-          [nix.POS]: pos$4,
-          jupytext: nix.thunk(() => nix.app(nix.sel(jupytext, "overridePythonAttrs"), (oldAttrs) => ({ [nix.POS]: pos$3, doCheck: false }))),
+          [nix.POS]: $pos[3],
+          jupytext: nix.thunk(() => nix.app(nix.sel(jupytext, "overridePythonAttrs"), (oldAttrs) => ({ [nix.POS]: $pos[2], doCheck: false }))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Sphinx extension that integrates JupyterLite within your Sphinx documentation",
         homepage: "https://github.com/jupyterlite/jupyterlite-sphinx",
         changelog: nix.thunk(() => nix.str`https://github.com/jupyterlite/jupyterlite-sphinx/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG.md`),

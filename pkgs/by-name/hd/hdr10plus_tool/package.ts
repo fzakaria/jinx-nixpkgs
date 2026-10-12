@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]], [["name", 38, 5], ["runtimeInputs", 39, 5], ["text", 45, 5]], [["updateScript", 37, 12]], [["description", 54, 5], ["homepage", 55, 5], ["changelog", 56, 5], ["license", 57, 5], ["maintainers", 58, 5], ["mainProgram", 59, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["cargoHash", 26, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 30, 3], ["nativeCheckInputs", 32, 3], ["preCheck", 33, 3], ["passthru", 37, 3], ["meta", 53, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, rustPlatform: false, "pkg-config": false, fontconfig: false, writableTmpDirAsHomeHook: false, writeShellApplication: false, hdr10plus: false, nixVersions: false, "nix-update": false, tomlq: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 38, 5], ["runtimeInputs", 39, 5], ["text", 45, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 37, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 54, 5], ["homepage", 55, 5], ["changelog", 56, 5], ["license", 57, 5], ["maintainers", 58, 5], ["mainProgram", 59, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["cargoHash", 26, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 30, 3], ["nativeCheckInputs", 32, 3], ["preCheck", 33, 3], ["passthru", 37, 3], ["meta", 53, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const nix_update = nix.arg($, "nix-update");
   const tomlq = nix.arg($, "tomlq");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "hdr10plus_tool",
       version: "1.7.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "quietvoid",
           repo: "hdr10plus_tool",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -40,9 +36,9 @@ export default nix.lambda((args) => (() => {
       preCheck: nix.thunk(() => nix.str`export FONTCONFIG_FILE="${nix.sel(fontconfig, "out")}/etc/fonts/fonts.conf";
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.app(writeShellApplication, nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               name: nix.thunk(() => nix.str`update-${nix.sel(finalAttrs, "pname")}`),
               runtimeInputs: nix.thunk(() => [nix.thunk(() => nix.sel(nixVersions, "latest")), nix_update, tomlq]),
               text: nix.thunk(() => nix.str`nix-update ${nix.sel(finalAttrs, "pname")}
@@ -53,7 +49,7 @@ nix-update ${nix.sel(hdr10plus, "pname")} --version "$libver"
             })))))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "CLI utility to work with HDR10+ in HEVC files",
         homepage: "https://github.com/quietvoid/hdr10plus_tool",
         changelog: nix.thunk(() => nix.str`https://github.com/quietvoid/hdr10plus_tool/releases/tag/${nix.sel(finalAttrs, "version")}`),

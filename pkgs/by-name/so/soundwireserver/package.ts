@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 15, 5], ["hash", 16, 5]], [["description", 35, 5], ["homepage", 36, 5], ["maintainers", 37, 5], ["platforms", 38, 5], ["sourceProvenance", 39, 5], ["license", 40, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 19, 3], ["buildInputs", 24, 3], ["installPhase", 28, 3], ["meta", 34, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, qt5: false, autoPatchelfHook: false, fetchzip: false, portaudio: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 35, 5], ["homepage", 36, 5], ["maintainers", 37, 5], ["platforms", 38, 5], ["sourceProvenance", 39, 5], ["license", 40, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 19, 3], ["buildInputs", 24, 3], ["installPhase", 28, 3], ["meta", 34, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchzip = nix.arg($, "fetchzip");
   const portaudio = nix.arg($, "portaudio");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "soundwire",
       version: "3.0",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://web.archive.org/web/20211120182526/https://georgielabs.net/SoundWire_Server_linux64.tar.gz",
           hash: "sha256-TECuQ5WXpeikc9tXEE/wVBnRbdYd0OaIFFhsBRmaukA=",
         })))),
@@ -28,7 +26,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [portaudio]),
       installPhase: "install -D SoundWire-Server.desktop $out/share/applications/SoundWireServer.desktop\ninstall -D SoundWireServer $out/bin/SoundWireServer\ninstall -D sw-icon.xpm $out/share/icons/hicolor/256x256/apps/sw-icon.xpm\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Turn your Android device into wireless headphones / wireless speaker",
         homepage: "https://georgielabs.net/",
         maintainers: nix.thunk(() => (() => {

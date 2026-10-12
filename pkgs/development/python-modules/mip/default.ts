@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 30, 13], ["version", 30, 19], ["hash", 31, 5]], [["gurobipy", 81, 13], ["numpy", 81, 22]], [["homepage", 85, 5], ["description", 86, 5], ["downloadPage", 87, 5], ["changelog", 88, 5], ["license", 89, 5], ["broken", 90, 5], ["maintainers", 91, 5]], [["pname", 25, 3], ["version", 26, 3], ["pyproject", 27, 3], ["src", 29, 3], ["nativeCheckInputs", 34, 3], ["nativeBuildInputs", 41, 3], ["propagatedBuildInputs", 48, 3], ["prePatch", 55, 3], ["patches", 59, 3], ["postPatch", 67, 3], ["makeWrapperArgs", 73, 3], ["disabledTests", 78, 3], ["optional-dependencies", 80, 3], ["meta", 84, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, cffi: false, dos2unix: false, fetchPypi: false, matplotlib: false, networkx: false, numpy: false, pytestCheckHook: false, setuptools: false, "setuptools-scm": false, wheel: false, gurobi: false, gurobipy: false, gurobiSupport: true, gurobiHome: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 30, 13], ["version", 30, 19], ["hash", 31, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["gurobipy", 81, 13], ["numpy", 81, 22]]);
-const pos$3 = nix.positions(here + "/default.nix", [["homepage", 85, 5], ["description", 86, 5], ["downloadPage", 87, 5], ["changelog", 88, 5], ["license", 89, 5], ["broken", 90, 5], ["maintainers", 91, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 25, 3], ["version", 26, 3], ["pyproject", 27, 3], ["src", 29, 3], ["nativeCheckInputs", 34, 3], ["nativeBuildInputs", 41, 3], ["propagatedBuildInputs", 48, 3], ["prePatch", 55, 3], ["patches", 59, 3], ["postPatch", 67, 3], ["makeWrapperArgs", 73, 3], ["disabledTests", 78, 3], ["optional-dependencies", 80, 3], ["meta", 84, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.15.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-f28Dgc/ixSwbhkAgPaLLVpdLJuI5UN37GnazfZFvGX4=",
@@ -46,9 +43,9 @@ export default nix.lambda((args) => (() => {
       const postPatch = "# Allow newer cffi versions to be used\nsubstituteInPlace pyproject.toml --replace \"cffi==1.15.*\" \"cffi>=1.15\"\n";
       const makeWrapperArgs = nix.thunk(() => nix.app(nix.sel(lib, "optional"), gurobiSupport, nix.thunk(() => nix.str`--set GUROBI_HOME ${(nix.asBool(nix.eq(gurobiHome, null)) ? nix.sel(gurobi, "outPath") : nix.force(gurobiHome))}`)));
       const disabledTests = nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(gurobiSupport)), "gurobi"));
-      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, gurobipy: gurobipy, numpy: numpy }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: $pos[1], gurobipy: gurobipy, numpy: numpy }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://python-mip.com/",
         description: "Collection of Python tools for the modeling and solution of Mixed-Integer Linear programs (MIPs)",
         downloadPage: "https://github.com/coin-or/python-mip/releases",
@@ -61,7 +58,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

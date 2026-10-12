@@ -2,10 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 47, 5], ["hash", 48, 5]], [["description", 95, 5], ["mainProgram", 96, 5], ["homepage", 97, 5], ["changelog", 98, 5], ["license", 99, 5], ["maintainers", 100, 5]], [["pname", 43, 3], ["version", 44, 3], ["src", 46, 3], ["nativeBuildInputs", 51, 3], ["buildInputs", 52, 3], ["nativeCheckInputs", 67, 3], ["checkInputs", 70, 3], ["doCheck", 71, 3], ["postPatch", 73, 3], ["preCheck", 79, 3], ["preFixup", 89, 3], ["meta", 94, 3]]]);
 const formals$1 = { args: { lib: false, buildDunePackage: false, fetchurl: false, makeWrapper: false, curly: false, fmt: false, bos: false, cmdliner: false, re: false, rresult: false, logs: false, fpath: false, "opam-format": false, "opam-core": false, "opam-state": false, yojson: false, astring: false, opam: false, gitMinimal: false, findlib: false, mercurial: false, bzip2: false, gnutar: false, coreutils: false, alcotest: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 47, 5], ["hash", 48, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 95, 5], ["mainProgram", 96, 5], ["homepage", 97, 5], ["changelog", 98, 5], ["license", 99, 5], ["maintainers", 100, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 43, 3], ["version", 44, 3], ["src", 46, 3], ["nativeBuildInputs", 51, 3], ["buildInputs", 52, 3], ["nativeCheckInputs", 67, 3], ["checkInputs", 70, 3], ["doCheck", 71, 3], ["postPatch", 73, 3], ["preCheck", 79, 3], ["preFixup", 89, 3], ["meta", 94, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -36,11 +34,11 @@ export default nix.lambda((args) => (() => {
   const alcotest = nix.arg($, "alcotest");
   const runtimeInputs = nix.thunk(() => [opam, findlib, gitMinimal, mercurial, bzip2, gnutar, coreutils]);
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "dune-release",
       version: "2.2.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/ocamllabs/dune-release/releases/download/${nix.sel(finalAttrs, "version")}/dune-release-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-A0es0mk6aEMdKvweVfffkaezfgIi1DWAr3dLmNwGOTo=",
         })))),
@@ -69,7 +67,7 @@ export default nix.lambda((args) => (() => {
   --prefix PATH : "${nix.app(nix.sel(lib, "makeBinPath"), runtimeInputs)}"
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Release dune packages in opam",
         mainProgram: "dune-release",
         homepage: "https://github.com/ocamllabs/dune-release",

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 21, 5], ["hash", 22, 5], ["extension", 23, 5]], [["description", 42, 5], ["homepage", 43, 5], ["license", 44, 5], ["platforms", 45, 5], ["mainProgram", 46, 5], ["maintainers", 47, 5], ["sourceProvenance", 48, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 20, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 30, 3], ["installPhase", 32, 3], ["meta", 41, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchzip: false, autoPatchelfHook: false, SDL2: false, practiceMod: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 21, 5], ["hash", 22, 5], ["extension", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 42, 5], ["homepage", 43, 5], ["license", 44, 5], ["platforms", 45, 5], ["mainProgram", 46, 5], ["maintainers", 47, 5], ["sourceProvenance", 48, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 20, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 30, 3], ["installPhase", 32, 3], ["meta", 41, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const srcbin = nix.thunk(() => (nix.asBool(practiceMod) ? "celeste_practice_mod" : "celeste"));
   const outbin = nix.thunk(() => (nix.asBool(practiceMod) ? "celeste-classic-pm" : "celeste-classic"));
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: outbin,
       version: "unstable-2020-12-08",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://www.speedrun.com/static/resource/174ye.zip?v=f3dc98f",
           hash: "sha256-GANHqKB0N905QJOLaePKWkUuPl9UlL1iqvkMMvw/CC8=",
           extension: "zip",
@@ -38,7 +36,7 @@ ln -s $out/lib/${outbin}/${outbin} $out/bin/
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: nix.thunk(() => nix.str`PICO-8 platformer about climbing a mountain, made in four days${nix.app(nix.sel(lib, "optionalString"), practiceMod, " (Practice Mod)")}`),
         homepage: "https://celesteclassic.github.io/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

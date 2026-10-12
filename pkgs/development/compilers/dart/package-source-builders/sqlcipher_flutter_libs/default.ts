@@ -2,13 +2,9 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 14, 19], ["hash", 14, 23]], [["file", 13, 9], ["url", 16, 9]], [["v4_10_0", 23, 9], ["v4_9_0", 24, 9], ["v4_8_0", 25, 9], ["v4_6_1", 26, 9], ["v4_5_7", 27, 9], ["v4_5_6", 28, 9]], [["sourceProvenance", 55, 8]], [["pname", 32, 3], ["version", 33, 11], ["src", 33, 19], ["passthru", 34, 17], ["installPhase", 36, 3], ["meta", 55, 3]]]);
 const formals$1 = { args: { stdenv: false, fetchurl: false, lib: false }, ellipsis: false };
 const formals$2 = { args: { version: false, src: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 14, 19], ["hash", 14, 23]]);
-const pos$2 = nix.positions(here + "/default.nix", [["file", 13, 9], ["url", 16, 9]]);
-const pos$3 = nix.positions(here + "/default.nix", [["v4_10_0", 23, 9], ["v4_9_0", 24, 9], ["v4_8_0", 25, 9], ["v4_6_1", 26, 9], ["v4_5_7", 27, 9], ["v4_5_6", 28, 9]]);
-const pos$4 = nix.positions(here + "/default.nix", [["sourceProvenance", 55, 8]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 32, 3], ["version", 33, 11], ["src", 33, 19], ["passthru", 34, 17], ["installPhase", 36, 3], ["meta", 55, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +16,11 @@ export default nix.lambda((args) => (() => {
     const version = nix.arg($_1, "version");
     const src = nix.arg($_1, "src");
     const artifacts = nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (version_1) => (hash) => (() => {
-        const file = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({ [nix.POS]: pos$1, url: url, hash: hash }))));
+        const file = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({ [nix.POS]: $pos[0], url: url, hash: hash }))));
         const url = nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionOlder"), version_1, "v4_6_1")) ? nix.str`https://storage.googleapis.com/simon-public-euw3/assets/sqlcipher/${version_1}.c` : nix.str`https://fsn1.your-objectstorage.com/simon-public/assets/sqlcipher/${version_1}.c`));
-        return { [nix.POS]: pos$2, file, url };
+        return { [nix.POS]: $pos[1], file, url };
       })(), nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         v4_10_0: "sha256-3njvCHy8Juj+WE3gXxeQ8+NIl9uHMegVTcZ00/LfKMs=",
         v4_9_0: "sha256-uqvW5BgMjCS0GzeEDeGskb4It0NkWjNUpyXpGlBSIlc=",
         v4_8_0: "sha256-nfYmi9PJlMbLqiFRksOIUXYHgD8LL2AVey9GCUc03Jw=",
@@ -55,11 +51,11 @@ ${nix.app(nix.sel(lib, "concatMapAttrsStringSep"), " || ", (_) => (v) => nix.str
 runHook postInstall
 `);
         const meta = nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           sourceProvenance: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "sourceTypes", "binaryBytecode"))]),
         }));
         return {
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           pname,
           version: version_1,
           src: src_1,

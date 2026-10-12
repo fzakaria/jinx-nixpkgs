@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/tests.nix", [[["format", 11, 3], ["pname", 12, 3], ["version", 13, 20], ["src", 15, 3], ["dontBuild", 17, 3], ["dontInstall", 18, 3], ["nativeCheckInputs", 20, 3]]]);
 const formals$1 = { args: { buildPythonPackage: false, wasmer: false, pytestCheckHook: false, "wasmer-compiler-cranelift": false, "wasmer-compiler-llvm": false, "wasmer-compiler-singlepass": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/tests.nix", [["format", 11, 3], ["pname", 12, 3], ["version", 13, 20], ["src", 15, 3], ["dontBuild", 17, 3], ["dontInstall", 18, 3], ["nativeCheckInputs", 20, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const wasmer_compiler_llvm = nix.arg($, "wasmer-compiler-llvm");
   const wasmer_compiler_singlepass = nix.arg($, "wasmer-compiler-singlepass");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       format: "setuptools",
       pname: "wasmer-tests",
       version: nix.thunk(() => nix.attr(wasmer, "version")),

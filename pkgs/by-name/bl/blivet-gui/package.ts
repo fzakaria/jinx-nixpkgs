@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]], [["package", 69, 50]], [["version", 69, 18]], [["tests", 69, 12]], [["description", 72, 5], ["homepage", 73, 5], ["license", 74, 5], ["mainProgram", 75, 5], ["maintainers", 76, 5], ["platforms", 77, 5]], [["pname", 23, 3], ["version", 24, 3], ["pyproject", 25, 3], ["src", 27, 3], ["postPatch", 34, 3], ["nativeBuildInputs", 42, 3], ["buildInputs", 48, 3], ["build-system", 50, 3], ["dependencies", 54, 3], ["dontWrapGApps", 60, 3], ["preFixup", 62, 3], ["passthru", 69, 3], ["meta", 71, 3]]]);
 const formals$1 = { args: { lib: false, python3: false, fetchFromGitHub: false, gtk3: false, "util-linux": false, "gobject-introspection": false, "adwaita-icon-theme": false, "hicolor-icon-theme": false, wrapGAppsHook3: false, pkexecPath: true, testers: false, "blivet-gui": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["package", 69, 50]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 69, 18]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 69, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 72, 5], ["homepage", 73, 5], ["license", 74, 5], ["mainProgram", 75, 5], ["maintainers", 76, 5], ["platforms", 77, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 23, 3], ["version", 24, 3], ["pyproject", 25, 3], ["src", 27, 3], ["postPatch", 34, 3], ["nativeBuildInputs", 42, 3], ["buildInputs", 48, 3], ["build-system", 50, 3], ["dependencies", 54, 3], ["dontWrapGApps", 60, 3], ["preFixup", 62, 3], ["passthru", 69, 3], ["meta", 71, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.6.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "storaged-project",
           repo: "blivet-gui",
           tag: version,
@@ -56,14 +51,14 @@ substituteInPlace org.fedoraproject.pkexec.blivet-gui.policy --replace-fail /usr
 )
 `);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$2, package: blivet_gui })))),
+          [nix.POS]: $pos[2],
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: $pos[1], package: blivet_gui })))),
         })),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "GUI tool for storage configuration using blivet library",
         homepage: "https://fedoraproject.org/wiki/Blivet",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
@@ -75,7 +70,7 @@ substituteInPlace org.fedoraproject.pkexec.blivet-gui.policy --replace-fail /usr
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname,
         version,
         pyproject,

@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 21, 5], ["hash", 22, 5]], [["package", 54, 5], ["version", 55, 5]], [["version", 53, 18]], [["tests", 53, 12]], [["shortName", 61, 7], ["fullName", 62, 7], ["url", 63, 7], ["free", 64, 7]], [["description", 59, 5], ["license", 60, 5], ["homepage", 66, 5], ["changelog", 67, 5], ["maintainers", 68, 5], ["platforms", 72, 5], ["broken", 73, 5], ["mainProgram", 74, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 29, 3], ["dontConfigure", 35, 3], ["dontBuild", 36, 3], ["installPhase", 38, 3], ["passthru", 53, 3], ["meta", 58, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, autoPatchelfHook: false, "alsa-lib": false, libx11: false, pcsclite: false, testers: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["package", 54, 5], ["version", 55, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 53, 18]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 53, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["shortName", 61, 7], ["fullName", 62, 7], ["url", 63, 7], ["free", 64, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 59, 5], ["license", 60, 5], ["homepage", 66, 5], ["changelog", 67, 5], ["maintainers", 68, 5], ["platforms", 72, 5], ["broken", 73, 5], ["mainProgram", 74, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 29, 3], ["dontConfigure", 35, 3], ["dontBuild", 36, 3], ["installPhase", 38, 3], ["passthru", 53, 3], ["meta", 58, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const version = "4.20.0";
   const buildNum = "4284";
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "tlclient",
       version: nix.thunk(() => nix.str`${version}-${buildNum}`),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://www.cendio.com/downloads/clients/tl-${nix.sel(finalAttrs, "version")}-client-linux-dynamic-x86_64.tar.gz`),
           hash: "sha256-iq1OUFyMZwYWqEI57zSwj1RDh5OZ8qNu8knpe6Hbdeo=",
         })))),
@@ -38,21 +32,21 @@ export default nix.lambda((args) => (() => {
       dontBuild: true,
       installPhase: "runHook preInstall\n\nrm etc/ssh_known_hosts\nrm --recursive lib/tlclient/lib\nsubstituteInPlace lib/tlclient/share/applications/thinlinc-client.desktop \\\n  --replace-fail \"/opt/thinlinc/bin/\" \"\"\ncp --recursive . $out\ncp --recursive $out/lib/tlclient/share $out/share\ninstall -D --mode=0644 $out/lib/tlclient/EULA.txt $out/share/licenses/tlclient/EULA.txt\ninstall -D --mode=0644 $out/lib/tlclient/open_source_licenses.txt $out/share/licenses/tlclient/open_source_licenses.txt\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               version: nix.thunk(() => nix.str`${version} build ${buildNum}`),
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Linux remote desktop client built on open source technology",
         license: nix.thunk(() => nix.app(nix.sel(lib, "licenses", "mkLicense"), nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             shortName: "cendio",
             fullName: "Cendio end-user license agreement",
             url: "https://www.cendio.com/thinlinc/docs/legal/eula",

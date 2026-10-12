@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 13, 5], ["sha256", 14, 5]], [["homepage", 33, 5], ["license", 34, 5], ["description", 35, 5], ["mainProgram", 36, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 12, 3], ["makeFlags", 17, 3], ["installPhase", 22, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 30, 3], ["meta", 32, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, "libusb-compat-0_1": false, makeWrapper: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 13, 5], ["sha256", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 33, 5], ["license", 34, 5], ["description", 35, 5], ["mainProgram", 36, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 12, 3], ["makeFlags", 17, 3], ["installPhase", 22, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 30, 3], ["meta", 32, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "pk2cmd";
       const version = "1.20";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://ww1.microchip.com/downloads/en/DeviceDoc/pk2cmdv${version}LinuxMacSource.tar.gz`),
           sha256: "1yjpi2qshnqfpan4w3ggakkr3znfrx5cxkny92ka7v9na3g2fc4h",
         }))));
@@ -30,14 +28,14 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [makeWrapper]);
       const buildInputs = nix.thunk(() => [libusb_compat_0_1]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://www.microchip.com/pickit2",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
         description: "Microchip PIC programming software for the PICKit2 programmer",
         mainProgram: "pk2cmd",
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

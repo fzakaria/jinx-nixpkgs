@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 24, 5], ["sha256", 25, 5]], [["url", 56, 5], ["odd-unstable", 57, 5], ["rev-prefix", 58, 5]], [["updateScript", 55, 12]], [["description", 62, 5], ["mainProgram", 63, 5], ["homepage", 64, 5], ["license", 65, 5], ["platforms", 66, 5], ["teams", 67, 5]], [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["strictDeps", 28, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 38, 3], ["postPatch", 47, 3], ["enableParallelBuilding", 53, 3], ["passthru", 55, 3], ["meta", 61, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, "pkg-config": false, gettext: false, itstool: false, gtkmm3: false, libxml2: false, libgtop: false, librsvg: false, polkit: false, systemdLibs: false, wrapGAppsHook3: false, "mate-desktop": false, gitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 24, 5], ["sha256", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 56, 5], ["odd-unstable", 57, 5], ["rev-prefix", 58, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 55, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 62, 5], ["mainProgram", 63, 5], ["homepage", 64, 5], ["license", 65, 5], ["platforms", 66, 5], ["teams", 67, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["strictDeps", 28, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 38, 3], ["postPatch", 47, 3], ["enableParallelBuilding", 53, 3], ["passthru", 55, 3], ["meta", 61, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const mate_desktop = nix.arg($, "mate-desktop");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "mate-system-monitor",
       version: "1.28.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://pub.mate-desktop.org/releases/${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/mate-system-monitor-${nix.sel(finalAttrs, "version")}.tar.xz`),
           sha256: "QtZj1rkPtTYevBP2VHmD1vHirHXcKuTxysbqYymWWiU=",
         })))),
@@ -44,16 +40,16 @@ substituteInPlace src/sysinfo.cpp \\
 `),
       enableParallelBuilding: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://git.mate-desktop.org/mate-system-monitor",
             "odd-unstable": true,
             "rev-prefix": "v",
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "System monitor for the MATE desktop",
         mainProgram: "mate-system-monitor",
         homepage: "https://mate-desktop.org",

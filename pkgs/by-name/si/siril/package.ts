@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 46, 5], ["repo", 47, 5], ["tag", 48, 5], ["hash", 49, 5]], [["updateScript", 100, 5]], [["homepage", 104, 5], ["description", 105, 5], ["license", 106, 5], ["changelog", 107, 5], ["maintainers", 108, 5], ["platforms", 111, 5], ["mainProgram", 112, 5]], [["pname", 42, 3], ["version", 43, 3], ["src", 45, 3], ["nativeBuildInputs", 52, 3], ["buildInputs", 62, 3], ["propagatedBuildInputs", 89, 3], ["mesonBuildDir", 92, 3], ["nativeInstallCheckInputs", 94, 3], ["doInstallCheck", 97, 3], ["passthru", 99, 3], ["meta", 103, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, "pkg-config": false, meson: false, ninja: false, cmake: false, git: false, criterion: false, gtk3: false, gtksourceview4: false, libconfig: false, gnuplot: false, opencv: false, python3: false, "json-glib": false, fftwFloat: false, cfitsio: false, gsl: false, exiv2: false, librtprocess: false, wcslib: false, ffmpeg: false, libraw: false, libtiff: false, libpng: false, libgit2: false, libjpeg: false, libjxl: false, libheif: false, libxisf: false, ffms: false, wrapGAppsHook3: false, curl: false, yyjson: false, versionCheckHook: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 46, 5], ["repo", 47, 5], ["tag", 48, 5], ["hash", 49, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 100, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 104, 5], ["description", 105, 5], ["license", 106, 5], ["changelog", 107, 5], ["maintainers", 108, 5], ["platforms", 111, 5], ["mainProgram", 112, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 42, 3], ["version", 43, 3], ["src", 45, 3], ["nativeBuildInputs", 52, 3], ["buildInputs", 62, 3], ["propagatedBuildInputs", 89, 3], ["mesonBuildDir", 92, 3], ["nativeInstallCheckInputs", 94, 3], ["doInstallCheck", 97, 3], ["passthru", 99, 3], ["meta", 103, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -48,11 +45,11 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "siril",
       version: "1.4.4",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "free-astro",
           repo: "siril",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -90,11 +87,11 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://www.siril.org/",
         description: "Astrophotographic image processing tool",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

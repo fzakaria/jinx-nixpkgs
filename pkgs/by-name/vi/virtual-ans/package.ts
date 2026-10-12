@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 18, 5], ["hash", 19, 5]], [["description", 66, 5], ["longDescription", 67, 5], ["homepage", 92, 5], ["sourceProvenance", 93, 5], ["license", 94, 5], ["platforms", 96, 5], ["maintainers", 100, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 22, 3], ["buildInputs", 26, 3], ["installPhase", 35, 3], ["startScript", 48, 3], ["linuxExecutable", 57, 3], ["meta", 65, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchzip: false, libx11: false, libxi: false, libGL: false, "alsa-lib": false, SDL2: false, autoPatchelfHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 66, 5], ["longDescription", 67, 5], ["homepage", 92, 5], ["sourceProvenance", 93, 5], ["license", 94, 5], ["platforms", 96, 5], ["maintainers", 100, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 22, 3], ["buildInputs", 26, 3], ["installPhase", 35, 3], ["startScript", 48, 3], ["linuxExecutable", 57, 3], ["meta", 65, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const pname = "virtual-ans";
       const version = "3.0.3";
       const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://warmplace.ru/soft/ans/virtual_ans-${version}.zip`),
           hash: "sha256-QrYWTRYCh1YYJFtBukC2kUNoiRlsAJOD1NdB9rcx7yM=",
         }))));
@@ -49,7 +47,7 @@ ln -s $out/${startScript} $out/bin/virtual-ans
       const startScript = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isx86_32")) ? "START_LINUX_X86" : (nix.asBool(nix.sel(stdenv, "hostPlatform", "isx86_64")) ? "START_LINUX_X86_64" : nix.builtins.throw(nix.thunk(() => nix.str`Unsupported platform: ${nix.sel(stdenv, "hostPlatform", "linuxArch")}.`)))));
       const linuxExecutable = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isx86_32")) ? "pixilang_linux_x86" : (nix.asBool(nix.sel(stdenv, "hostPlatform", "isx86_64")) ? "pixilang_linux_x86_64" : "")));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Photoelectronic microtonal/spectral musical instrument",
         longDescription: "Virtual ANS is a software simulator of the unique Russian synthesizer ANS\n- photoelectronic musical instrument created by Evgeny Murzin from 1938 to\n1958. The ANS made it possible to draw music in the form of a spectrogram\n(sonogram), without live instruments and performers. It was used by\nStanislav Kreichi, Alfred Schnittke, Edward Artemiev and other Soviet\ncomposers in their experimental works. You can also hear the sound of the\nANS in Andrei Tarkovsky's movies Solaris, The Mirror, Stalker.\n\nThe simulator extends the capabilities of the original instrument. Now\nit's a full-featured graphics editor where you can convert sound into an\nimage, load and play pictures, draw microtonal/spectral music and create\nsome unusual deep atmospheric sounds. This app is for everyone who loves\nexperiments and is looking for something new.\n\nKey features:\n\n+ unlimited number of pure tone generators;\n+ powerful sonogram editor - you can draw the spectrum and play it at the same time;\n+ any sound (from a WAV file or a Microphone/Line-in) can be converted to image (sonogram) and vice versa;\n+ support for MIDI devices;\n+ polyphonic synth mode with MIDI mapping;\n+ supported file formats: WAV, AIFF, PNG, JPEG, GIF;\n+ supported sound systems: ASIO, DirectSound, MME, ALSA, OSS, JACK, Audiobus, IAA.\n",
         homepage: "https://warmplace.ru/soft/ans/",
@@ -65,7 +63,7 @@ ln -s $out/${startScript} $out/bin/virtual-ans
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

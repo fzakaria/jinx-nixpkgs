@@ -2,20 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["description", 49, 9], ["license", 50, 9], ["maintainers", 51, 9]], [["pname", 22, 7], ["postPatch", 24, 7], ["dontUseCmakeConfigure", 31, 7], ["buildPhase", 33, 7], ["nativeBuildInputs", 44, 7], ["enableParallelBuilding", 46, 7], ["meta", 48, 7]], [["owner", 62, 7], ["repo", 63, 7], ["rev", 64, 7], ["hash", 65, 7]], [["version", 60, 5], ["src", 61, 5]], [["owner", 72, 7], ["repo", 73, 7], ["rev", 74, 7], ["hash", 75, 7]], [["version", 70, 5], ["src", 71, 5]], [["owner", 82, 7], ["repo", 83, 7], ["rev", 84, 7], ["hash", 85, 7]], [["version", 80, 5], ["src", 81, 5]], [["owner", 92, 7], ["repo", 93, 7], ["rev", 94, 7], ["hash", 95, 7]], [["version", 90, 5], ["src", 91, 5]], [["owner", 114, 5], ["repo", 115, 5], ["rev", 116, 5], ["hash", 117, 5]], [["homepage", 147, 5], ["description", 148, 5], ["longDescription", 149, 5], ["license", 155, 5], ["maintainers", 156, 5]], [["pname", 110, 3], ["version", 111, 3], ["src", 113, 3], ["postPatch", 120, 3], ["nativeBuildInputs", 124, 3], ["buildInputs", 125, 3], ["configureFlags", 135, 3], ["meta", 146, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, runCommand: false, libtool: false, cmake: false, zlib: false, bzip2: false, enableRexx: true, regina: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["description", 49, 9], ["license", 50, 9], ["maintainers", 51, 9]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 22, 7], ["postPatch", 24, 7], ["dontUseCmakeConfigure", 31, 7], ["buildPhase", 33, 7], ["nativeBuildInputs", 44, 7], ["enableParallelBuilding", 46, 7], ["meta", 48, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["owner", 62, 7], ["repo", 63, 7], ["rev", 64, 7], ["hash", 65, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["version", 60, 5], ["src", 61, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["owner", 72, 7], ["repo", 73, 7], ["rev", 74, 7], ["hash", 75, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["version", 70, 5], ["src", 71, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["owner", 82, 7], ["repo", 83, 7], ["rev", 84, 7], ["hash", 85, 7]]);
-const pos$8 = nix.positions(here + "/package.nix", [["version", 80, 5], ["src", 81, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["owner", 92, 7], ["repo", 93, 7], ["rev", 94, 7], ["hash", 95, 7]]);
-const pos$10 = nix.positions(here + "/package.nix", [["version", 90, 5], ["src", 91, 5]]);
-const pos$11 = nix.positions(here + "/package.nix", [["owner", 114, 5], ["repo", 115, 5], ["rev", 116, 5], ["hash", 117, 5]]);
-const pos$12 = nix.positions(here + "/package.nix", [["homepage", 147, 5], ["description", 148, 5], ["longDescription", 149, 5], ["license", 155, 5], ["maintainers", 156, 5]]);
-const pos$13 = nix.positions(here + "/package.nix", [["pname", 110, 3], ["version", 111, 3], ["src", 113, 3], ["postPatch", 120, 3], ["nativeBuildInputs", 124, 3], ["buildInputs", 125, 3], ["configureFlags", 135, 3], ["meta", 146, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,7 +21,7 @@ export default nix.lambda((args) => (() => {
   const herculesBits = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "is32bit")) ? "32" : "64"));
   const herculesLibDir = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isx86")) ? "lib" : nix.str`lib/${herculesCpu}`));
   const mkExtPkg = (depName) => (attrFn) => nix.app(nix.sel(nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: nix.thunk(() => nix.str`hercules-${depName}`),
       postPatch: nix.thunk(() => nix.str`patchShebangs build
 sed -i build \\
@@ -53,7 +41,7 @@ cd ../build
       nativeBuildInputs: nix.thunk(() => [cmake]),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: nix.thunk(() => nix.str`Hercules ${depName} library`),
         license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
         maintainers: nix.thunk(() => (() => {
@@ -66,10 +54,10 @@ cd ../build
       })),
     }))), "overrideAttrs"), (default$) => nix.app(attrFn, default$));
   const crypto = nix.thunk(() => nix.app(mkExtPkg, "crypto", (default$) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       version: "1.0.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           owner: "SDL-Hercules-390",
           repo: "crypto",
           rev: "9ac58405c2b91fb7cd230aed474dc7059f0fcad9",
@@ -77,10 +65,10 @@ cd ../build
         })))),
     })));
   const decNumber = nix.thunk(() => nix.app(mkExtPkg, "decNumber", (default$) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       version: "3.68.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           owner: "SDL-Hercules-390",
           repo: "decNumber",
           rev: "995184583107625015bb450228a5f3fb781d9502",
@@ -88,10 +76,10 @@ cd ../build
         })))),
     })));
   const softFloat = nix.thunk(() => nix.app(mkExtPkg, "SoftFloat", (default$) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       version: "3.5.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           owner: "SDL-Hercules-390",
           repo: "SoftFloat",
           rev: "e053494d988ec0648c92f683abce52597bfae745",
@@ -99,10 +87,10 @@ cd ../build
         })))),
     })));
   const telnet = nix.thunk(() => nix.app(mkExtPkg, "telnet", (default$) => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       version: "1.0.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           owner: "SDL-Hercules-390",
           repo: "telnet",
           rev: "384b2542dfc9af67ca078e2bc13487a8fc234a3f",
@@ -118,11 +106,11 @@ for dep in "${crypto}" "${decNumber}" "${softFloat}" "${telnet}"; do
 done
 `)));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$13,
+      [nix.POS]: $pos[12],
       pname: "hercules",
       version: "4.9.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$11,
+          [nix.POS]: $pos[10],
           owner: "SDL-Hercules-390",
           repo: "hyperion",
           rev: nix.thunk(() => nix.str`Release_${nix.sel(finalAttrs, "version")}`),
@@ -144,7 +132,7 @@ done
         "--enable-het-bzip2",
       ], nix.app(nix.sel(lib, "optionals"), enableRexx, nix.thunk(() => ["--enable-regina-rexx"])))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$12,
+        [nix.POS]: $pos[11],
         homepage: "https://sdl-hercules-390.github.io/html/",
         description: "IBM mainframe emulator",
         longDescription: "Hercules is an open source software implementation of the mainframe\nSystem/370 and ESA/390 architectures, in addition to the latest 64-bit\nz/Architecture. Hercules runs under Linux, Windows, Solaris, FreeBSD, and\nMac OS X.\n",

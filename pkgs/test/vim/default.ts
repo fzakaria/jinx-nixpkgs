@@ -2,20 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["beforePlugins", 11, 5], ["customRC", 12, 5]], [["plugins", 20, 22]], [["plug", 20, 17]], [["name", 19, 5], ["vimrcConfig", 20, 5]], [["start", 25, 39]], [["myVimPackage", 25, 26]], [["packages", 25, 17]], [["name", 24, 5], ["vimrcConfig", 25, 5]], [["pname", 31, 9], ["version", 32, 9], ["src", 33, 9], ["dontUnpack", 34, 9], ["buildPhase", 35, 9]], [["allowAliases", 56, 15]], [["config", 55, 13]], [["pname", 80, 9], ["version", 81, 9], ["src", 82, 9], ["installPhase", 86, 9]], [["vim_empty_config", 10, 3], ["test_vim_with_vim_nix_using_plug", 18, 3], ["test_vim_with_vim_nix", 23, 3], ["test_vim_plugin_dont_unpack", 28, 3], ["test-all-plugins-have-vimPlugin-true", 49, 3], ["test_vim_plugin_install_phase", 77, 3]]]);
 const formals$1 = { args: { lib: false, vimUtils: false, "vim-full": false, vimPlugins: false, pkgs: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["beforePlugins", 11, 5], ["customRC", 12, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["plugins", 20, 22]]);
-const pos$3 = nix.positions(here + "/default.nix", [["plug", 20, 17]]);
-const pos$4 = nix.positions(here + "/default.nix", [["name", 19, 5], ["vimrcConfig", 20, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["start", 25, 39]]);
-const pos$6 = nix.positions(here + "/default.nix", [["myVimPackage", 25, 26]]);
-const pos$7 = nix.positions(here + "/default.nix", [["packages", 25, 17]]);
-const pos$8 = nix.positions(here + "/default.nix", [["name", 24, 5], ["vimrcConfig", 25, 5]]);
-const pos$9 = nix.positions(here + "/default.nix", [["pname", 31, 9], ["version", 32, 9], ["src", 33, 9], ["dontUnpack", 34, 9], ["buildPhase", 35, 9]]);
-const pos$10 = nix.positions(here + "/default.nix", [["allowAliases", 56, 15]]);
-const pos$11 = nix.positions(here + "/default.nix", [["config", 55, 13]]);
-const pos$12 = nix.positions(here + "/default.nix", [["pname", 80, 9], ["version", 81, 9], ["src", 82, 9], ["installPhase", 86, 9]]);
-const pos$13 = nix.positions(here + "/default.nix", [["vim_empty_config", 10, 3], ["test_vim_with_vim_nix_using_plug", 18, 3], ["test_vim_with_vim_nix", 23, 3], ["test_vim_plugin_dont_unpack", 28, 3], ["test-all-plugins-have-vimPlugin-true", 49, 3], ["test_vim_plugin_install_phase", 77, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,15 +13,15 @@ export default nix.lambda((args) => (() => {
   const vimPlugins = nix.arg($, "vimPlugins");
   const pkgs = nix.arg($, "pkgs");
   return nix.app(nix.sel(lib, "recurseIntoAttrs"), nix.thunk(() => ({
-      [nix.POS]: pos$13,
-      vim_empty_config: nix.thunk(() => nix.app(nix.sel(vimUtils, "vimrcFile"), nix.thunk(() => ({ [nix.POS]: pos$1, beforePlugins: "", customRC: "" })))),
+      [nix.POS]: $pos[12],
+      vim_empty_config: nix.thunk(() => nix.app(nix.sel(vimUtils, "vimrcFile"), nix.thunk(() => ({ [nix.POS]: $pos[0], beforePlugins: "", customRC: "" })))),
       test_vim_with_vim_nix_using_plug: nix.thunk(() => nix.app(nix.sel(vim_full, "customize"), nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           name: "vim-with-vim-addon-nix-using-plug",
           vimrcConfig: nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             plug: nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               plugins: nix.thunk(() => (() => {
                 const w = nix.withScope(vimPlugins, null);
                 return [nix.thunk(() => nix.lookup(w, "vim-nix"))];
@@ -42,14 +30,14 @@ export default nix.lambda((args) => (() => {
           })),
         })))),
       test_vim_with_vim_nix: nix.thunk(() => nix.app(nix.sel(vim_full, "customize"), nix.thunk(() => ({
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           name: "vim-with-vim-addon-nix",
           vimrcConfig: nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             packages: nix.thunk(() => ({
-              [nix.POS]: pos$6,
+              [nix.POS]: $pos[5],
               myVimPackage: nix.thunk(() => ({
-                [nix.POS]: pos$5,
+                [nix.POS]: $pos[4],
                 start: nix.thunk(() => (() => {
                   const w = nix.withScope(vimPlugins, null);
                   return [nix.thunk(() => nix.lookup(w, "vim-nix"))];
@@ -60,7 +48,7 @@ export default nix.lambda((args) => (() => {
         })))),
       test_vim_plugin_dont_unpack: nix.thunk(() => (() => {
         const plugin = nix.thunk(() => nix.app(nix.sel(vimUtils, "buildVimPlugin"), nix.thunk(() => ({
-            [nix.POS]: pos$9,
+            [nix.POS]: $pos[8],
             pname: "vim-plugin-dont-unpack-test",
             version: "0",
             src: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "probe.vim", "")),
@@ -76,8 +64,8 @@ mkdir -p "$out"
       })()),
       "test-all-plugins-have-vimPlugin-true": nix.thunk(() => (() => {
         const pkgsNoAliases = nix.thunk(() => nix.app(nix.sel(pkgs, "extend"), (self) => (prev) => ({
-            [nix.POS]: pos$11,
-            config: nix.thunk(() => nix.update(nix.sel(prev, "config"), { [nix.POS]: pos$10, allowAliases: false })),
+            [nix.POS]: $pos[10],
+            config: nix.thunk(() => nix.update(nix.sel(prev, "config"), { [nix.POS]: $pos[9], allowAliases: false })),
           })));
         const vimPluginsNoAliases = nix.thunk(() => nix.sel(pkgsNoAliases, "vimPlugins"));
         nix.assert_(nix.eq(nix.app(nix.sel(lib, "attrNames"), nix.thunk(() => nix.app(nix.sel(lib, "filterAttrs"), (name) => (elem) => (nix.asBool((nix.asBool(nix.app(nix.sel(lib, "isDerivation"), elem)) && nix.asBool(!nix.eq(name, "corePlugins")))) && nix.asBool(!nix.eq(nix.selOr(elem, () => false, "passthru", "vimPlugin"), true))), vimPluginsNoAliases))), []), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/test/vim/default.nix:63:5");
@@ -85,7 +73,7 @@ mkdir -p "$out"
       })()),
       test_vim_plugin_install_phase: nix.thunk(() => (() => {
         const plugin = nix.thunk(() => nix.app(nix.sel(vimUtils, "buildVimPlugin"), nix.thunk(() => ({
-            [nix.POS]: pos$12,
+            [nix.POS]: $pos[11],
             pname: "vim-plugin-install-phase-test",
             version: "0",
             src: nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "vim-plugin-install-phase-test-src", nix.thunk(() => ({})), "mkdir -p $out/plugin $out/extra\ntouch $out/plugin/probe.vim $out/extra/unwanted\n")),

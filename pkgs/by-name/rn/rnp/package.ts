@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["hash", 26, 5]], [["homepage", 75, 5], ["description", 76, 5], ["license", 77, 5], ["platforms", 78, 5], ["maintainers", 79, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["buildInputs", 29, 3], ["patches", 37, 3], ["cmakeFlags", 42, 3], ["nativeBuildInputs", 51, 3], ["outputs", 64, 3], ["preConfigure", 70, 3], ["meta", 74, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, asciidoctor: false, botan3: false, bzip2: false, cmake: false, fetchFromGitHub: false, gnupg: false, gtest: false, json_c: false, "pkg-config": false, python3: false, sexpp: false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 75, 5], ["description", 76, 5], ["license", 77, 5], ["platforms", 78, 5], ["maintainers", 79, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["buildInputs", 29, 3], ["patches", 37, 3], ["cmakeFlags", 42, 3], ["nativeBuildInputs", 51, 3], ["outputs", 64, 3], ["preConfigure", 70, 3], ["meta", 74, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const sexpp = nix.arg($, "sexpp");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "rnp",
       version: "0.18.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "rnpgp",
           repo: "rnp",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -49,7 +47,7 @@ export default nix.lambda((args) => (() => {
       preConfigure: nix.thunk(() => nix.str`echo "v${nix.sel(finalAttrs, "version")}" > version.txt
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/rnpgp/rnp",
         description: "High performance C++ OpenPGP library, fully compliant to RFC 4880",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

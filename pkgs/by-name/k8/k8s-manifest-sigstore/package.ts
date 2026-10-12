@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["hash", 20, 5]], [["rev-prefix", 51, 33]], [["package", 53, 7], ["command", 54, 7], ["version", 55, 7]], [["version", 52, 11]], [["updateScript", 51, 5], ["tests", 52, 5]], [["homepage", 60, 5], ["changelog", 61, 5], ["description", 62, 5], ["mainProgram", 63, 5], ["license", 64, 5], ["maintainers", 65, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 23, 3], ["vendorHash", 25, 3], ["subPackages", 27, 3], ["ldflags", 29, 3], ["postInstall", 43, 3], ["passthru", 50, 3], ["meta", 59, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildGoModule: false, fetchFromGitHub: false, installShellFiles: false, testers: false, "k8s-manifest-sigstore": false, gitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["rev-prefix", 51, 33]]);
-const pos$3 = nix.positions(here + "/package.nix", [["package", 53, 7], ["command", 54, 7], ["version", 55, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["version", 52, 11]]);
-const pos$5 = nix.positions(here + "/package.nix", [["updateScript", 51, 5], ["tests", 52, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["homepage", 60, 5], ["changelog", 61, 5], ["description", 62, 5], ["mainProgram", 63, 5], ["license", 64, 5], ["maintainers", 65, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 23, 3], ["vendorHash", 25, 3], ["subPackages", 27, 3], ["ldflags", 29, 3], ["postInstall", 43, 3], ["passthru", 50, 3], ["meta", 59, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const k8s_manifest_sigstore = nix.arg($, "k8s-manifest-sigstore");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "k8s-manifest-sigstore",
       version: "0.5.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "sigstore",
           repo: "k8s-manifest-sigstore",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -48,12 +42,12 @@ export default nix.lambda((args) => (() => {
       })()),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "installShellCompletion --cmd kubectl-sigstore \\\n  --bash <($out/bin/kubectl-sigstore completion bash) \\\n  --fish <($out/bin/kubectl-sigstore completion fish) \\\n  --zsh <($out/bin/kubectl-sigstore completion zsh)\n")),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, "rev-prefix": "v" })))),
+        [nix.POS]: $pos[4],
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[1], "rev-prefix": "v" })))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               package: k8s_manifest_sigstore,
               command: "kubectl-sigstore version",
               version: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -61,7 +55,7 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         homepage: "https://github.com/sigstore/k8s-manifest-sigstore",
         changelog: nix.thunk(() => nix.str`https://github.com/sigstore/k8s-manifest-sigstore/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "Kubectl plugin for signing Kubernetes manifest YAML files with sigstore",

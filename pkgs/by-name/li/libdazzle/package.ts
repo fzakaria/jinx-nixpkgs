@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 34, 5], ["sha256", 35, 5]], [["packageName", 77, 7]], [["updateScript", 76, 5]], [["description", 82, 5], ["mainProgram", 83, 5], ["longDescription", 84, 5], ["homepage", 91, 5], ["license", 92, 5], ["teams", 93, 5], ["platforms", 94, 5]], [["pname", 23, 3], ["version", 24, 3], ["outputs", 26, 3], ["outputBin", 31, 3], ["src", 33, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 58, 3], ["mesonFlags", 63, 3], ["doCheck", 67, 3], ["checkPhase", 69, 3], ["passthru", 75, 3], ["meta", 81, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, ninja: false, meson: false, mesonEmulatorHook: false, "pkg-config": false, vala: false, "gobject-introspection": false, libxml2: false, "gtk-doc": false, docbook_xsl: false, docbook_xml_dtd_43: false, dbus: false, "xvfb-run": false, glib: false, gtk3: false, gnome: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 34, 5], ["sha256", 35, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["packageName", 77, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 76, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 82, 5], ["mainProgram", 83, 5], ["longDescription", 84, 5], ["homepage", 91, 5], ["license", 92, 5], ["teams", 93, 5], ["platforms", 94, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 23, 3], ["version", 24, 3], ["outputs", 26, 3], ["outputBin", 31, 3], ["src", 33, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 58, 3], ["mesonFlags", 63, 3], ["doCheck", 67, 3], ["checkPhase", 69, 3], ["passthru", 75, 3], ["meta", 81, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -35,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const outputs = nix.thunk(() => ["out", "dev", "devdoc"]);
       const outputBin = "dev";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnome/sources/libdazzle/${nix.app(nix.sel(lib, "versions", "majorMinor"), version)}/libdazzle-${version}.tar.xz`),
           sha256: "PNPkXrbiaAywXVLh6A3Y+dWdR2UhLw4o945sF4PRjq4=",
         }))));
@@ -60,11 +56,11 @@ export default nix.lambda((args) => (() => {
   meson test --print-errorlogs
 `);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$2, packageName: pname })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: $pos[1], packageName: pname })))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Library to delight your users with fancy features",
         mainProgram: "dazzle-list-counters",
         longDescription: "The libdazzle library is a companion library to GObject and GTK. It\nprovides various features that we wish were in the underlying library but\ncannot for various reasons. In most cases, they are wildly out of scope\nfor those libraries. In other cases, our design isn't quite generic\nenough to work for everyone.\n",
@@ -74,7 +70,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         outputs,

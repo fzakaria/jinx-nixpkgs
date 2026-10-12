@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 65, 7], ["hash", 66, 7]], [["pname", 62, 5], ["version", 63, 5], ["src", 64, 5], ["nativeBuildInputs", 69, 5], ["dontFixup", 72, 5], ["unpackPhase", 74, 5], ["buildPhase", 78, 5], ["installPhase", 85, 5]], [["pname", 100, 5], ["version", 101, 24], ["targetPkgs", 102, 5], ["runScript", 103, 5], ["unshareUser", 104, 5], ["unshareIpc", 105, 5], ["unsharePid", 106, 5], ["unshareNet", 107, 5], ["unshareUts", 108, 5], ["unshareCgroup", 109, 5]], [["mpv", 126, 12]], [["name", 130, 7], ["exec", 131, 7], ["desktopName", 132, 7], ["genericName", 133, 7], ["icon", 134, 7], ["categories", 135, 7], ["mimeTypes", 140, 7], ["terminal", 147, 7], ["startupNotify", 148, 7]], [["mainProgram", 153, 5], ["description", 154, 5], ["homepage", 155, 5], ["platforms", 156, 5], ["license", 157, 5], ["sourceProvenance", 158, 5], ["maintainers", 159, 5]], [["pname", 113, 3], ["version", 114, 22], ["dontUnpack", 116, 3], ["nativeBuildInputs", 118, 3], ["postInstall", 120, 3], ["passthru", 126, 3], ["desktopItems", 128, 3], ["meta", 152, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, buildFHSEnv: false, writeShellScriptBin: false, fetchurl: false, callPackage: false, makeDesktopItem: false, copyDesktopItems: false, socat: false, jq: false, kdePackages: false, ffmpeg: false, libmediainfo: false, libusb1: false, vapoursynth: false, libx11: false, systemdLibs: false, openssl: false, p7zip: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 65, 7], ["hash", 66, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 62, 5], ["version", 63, 5], ["src", 64, 5], ["nativeBuildInputs", 69, 5], ["dontFixup", 72, 5], ["unpackPhase", 74, 5], ["buildPhase", 78, 5], ["installPhase", 85, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 100, 5], ["version", 101, 24], ["targetPkgs", 102, 5], ["runScript", 103, 5], ["unshareUser", 104, 5], ["unshareIpc", 105, 5], ["unsharePid", 106, 5], ["unshareNet", 107, 5], ["unshareUts", 108, 5], ["unshareCgroup", 109, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["mpv", 126, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["name", 130, 7], ["exec", 131, 7], ["desktopName", 132, 7], ["genericName", 133, 7], ["icon", 134, 7], ["categories", 135, 7], ["mimeTypes", 140, 7], ["terminal", 147, 7], ["startupNotify", 148, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["mainProgram", 153, 5], ["description", 154, 5], ["homepage", 155, 5], ["platforms", 156, 5], ["license", 157, 5], ["sourceProvenance", 158, 5], ["maintainers", 159, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 113, 3], ["version", 114, 22], ["dontUnpack", 116, 3], ["nativeBuildInputs", 118, 3], ["postInstall", 120, 3], ["passthru", 126, 3], ["desktopItems", 128, 3], ["meta", 152, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -60,11 +54,11 @@ done
     openssl,
   ]);
   const svp_dist = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "svp-dist",
       version: "4.7.305",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://www.svp-team.com/files/svp4-linux.${nix.sel(finalAttrs, "version")}.tar.bz2`),
           hash: "sha256-PWAcm/hIA4JH2QtJPP+gSJdJLRdfdbZXIVdWELazbxQ=",
         })))),
@@ -76,7 +70,7 @@ done
       installPhase: "mkdir -p $out/opt\nfor f in \"installer/\"*.7z; do\n  7z -bd -bb0 -y x -o\"$out/opt/\" \"$f\" || true\ndone\n\nfor SIZE in 32 48 64 128; do\n  mkdir -p \"$out/share/icons/hicolor/${SIZE}x${SIZE}/apps\"\n  mv \"$out/opt/svp-manager4-${SIZE}.png\" \"$out/share/icons/hicolor/${SIZE}x${SIZE}/apps/svp-manager4.png\"\ndone\nrm -f $out/opt/{add,remove}-menuitem.sh\n",
     })));
   const fhs = nix.thunk(() => nix.app(buildFHSEnv, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "SVPManager",
       version: nix.thunk(() => nix.attr(svp_dist, "version")),
       targetPkgs: (pkgs) => nix.force(libraries),
@@ -89,7 +83,7 @@ done
       unshareCgroup: false,
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "svp",
       version: nix.thunk(() => nix.attr(svp_dist, "version")),
       dontUnpack: true,
@@ -98,10 +92,10 @@ done
 ln -s ${fhs}/bin/SVPManager $out/bin/SVPManager
 ln -s ${svp_dist}/share/icons $out/share/icons
 `),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$4, mpv: mpvForSVP })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[3], mpv: mpvForSVP })),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             name: "svp-manager4",
             exec: nix.thunk(() => nix.str`${fhs}/bin/SVPManager %f`),
             desktopName: "SVP 4 Linux",
@@ -120,7 +114,7 @@ ln -s ${svp_dist}/share/icons $out/share/icons
           })))),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         mainProgram: "SVPManager",
         description: "SmoothVideo Project 4 (SVP4) converts any video to 60 fps (and even higher) and performs this in real time right in your favorite video player",
         homepage: "https://www.svp-team.com/wiki/SVP:Linux",

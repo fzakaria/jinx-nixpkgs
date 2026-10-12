@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]], [["name", 28, 7], ["url", 29, 7], ["hash", 30, 7]], [["name", 34, 7], ["url", 35, 7], ["hash", 36, 7]], [["broken", 68, 5], ["description", 69, 5], ["homepage", 70, 5], ["license", 71, 5], ["maintainers", 72, 5], ["platforms", 73, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["patches", 25, 3], ["strictDeps", 40, 3], ["nativeBuildInputs", 41, 3], ["buildInputs", 47, 3], ["propagatedBuildInputs", 50, 3], ["doCheck", 54, 3], ["makeFlags", 55, 3], ["enableParallelBuilding", 57, 3], ["postConfigure", 60, 3], ["__darwinAllowLocalNetworking", 64, 3], ["meta", 66, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, fetchpatch: false, guile: false, libgit2: false, "scheme-bytestructures": false, autoreconfHook: false, "pkg-config": false, texinfo: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 28, 7], ["url", 29, 7], ["hash", 30, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 34, 7], ["url", 35, 7], ["hash", 36, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["broken", 68, 5], ["description", 69, 5], ["homepage", 70, 5], ["license", 71, 5], ["maintainers", 72, 5], ["platforms", 73, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["patches", 25, 3], ["strictDeps", 40, 3], ["nativeBuildInputs", 41, 3], ["buildInputs", 47, 3], ["propagatedBuildInputs", 50, 3], ["doCheck", 54, 3], ["makeFlags", 55, 3], ["enableParallelBuilding", 57, 3], ["postConfigure", 60, 3], ["__darwinAllowLocalNetworking", 64, 3], ["meta", 66, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const texinfo = nix.arg($, "texinfo");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "guile-git",
       version: "0.10.0",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "guile-git",
           repo: "guile-git",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,13 +30,13 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "catch-git-error-guile",
             url: "https://gitlab.com/guile-git/guile-git/-/commit/9c76c6b31e217c470c8576172b123be9c373dc9b.diff",
             hash: "sha256-H0s7Ebl+HNL8Zak58kJmFETWZJcNq+Z5gTGRqU9gj58=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "test-typo",
             url: "https://gitlab.com/guile-git/guile-git/-/commit/4451c0808fbdf8cd13d486a18b03881f998f6e88.diff",
             hash: "sha256-K2f67WXUBLI/09eF8Xg3JMX7gkISFTZK3yHu0VDVQ4E=",
@@ -56,7 +52,7 @@ export default nix.lambda((args) => (() => {
       postConfigure: "sed -i -e '94i (test-skip 1)' ./tests/proxy.scm\n",
       __darwinAllowLocalNetworking: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
         description: "Bindings to Libgit2 for GNU Guile",
         homepage: "https://gitlab.com/guile-git/guile-git",

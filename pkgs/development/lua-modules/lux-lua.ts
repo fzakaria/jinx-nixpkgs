@@ -2,10 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/lux-lua.nix", [[["LIBSSH2_SYS_USE_PKG_CONFIG", 61, 7], ["LUX_SKIP_IMPURE_TESTS", 62, 7], ["RUSTFLAGS", 64, 7]], [["description", 88, 7], ["homepage", 89, 7], ["changelog", 90, 7], ["license", 91, 7], ["maintainers", 92, 7], ["platforms", 95, 7]], [["pname", 25, 5], ["version", 27, 5], ["src", 29, 5], ["buildAndTestSubdir", 31, 5], ["buildNoDefaultFeatures", 32, 5], ["buildFeatures", 33, 5], ["cargoHash", 35, 5], ["nativeBuildInputs", 37, 5], ["buildInputs", 42, 5], ["propagatedBuildInputs", 49, 5], ["doCheck", 53, 5], ["useNextest", 54, 5], ["nativeCheckInputs", 55, 5], ["env", 60, 5], ["buildPhase", 67, 5], ["installPhase", 74, 5], ["cargoTestFlags", 83, 5], ["meta", 87, 5]]]);
 const formals$1 = { args: { gnupg: false, gpgme: false, isLuaJIT: false, lib: false, "libgpg-error": false, lua: false, "lux-cli": false, nix: false, openssl: false, perl: false, "pkg-config": false, rustPlatform: false, toLuaModule: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/lux-lua.nix", [["LIBSSH2_SYS_USE_PKG_CONFIG", 61, 7], ["LUX_SKIP_IMPURE_TESTS", 62, 7], ["RUSTFLAGS", 64, 7]]);
-const pos$2 = nix.positions(here + "/lux-lua.nix", [["description", 88, 7], ["homepage", 89, 7], ["changelog", 90, 7], ["license", 91, 7], ["maintainers", 92, 7], ["platforms", 95, 7]]);
-const pos$3 = nix.positions(here + "/lux-lua.nix", [["pname", 25, 5], ["version", 27, 5], ["src", 29, 5], ["buildAndTestSubdir", 31, 5], ["buildNoDefaultFeatures", 32, 5], ["buildFeatures", 33, 5], ["cargoHash", 35, 5], ["nativeBuildInputs", 37, 5], ["buildInputs", 42, 5], ["propagatedBuildInputs", 49, 5], ["doCheck", 53, 5], ["useNextest", 54, 5], ["nativeCheckInputs", 55, 5], ["env", 60, 5], ["buildPhase", 67, 5], ["installPhase", 74, 5], ["cargoTestFlags", 83, 5], ["meta", 87, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -42,7 +40,7 @@ export default nix.lambda((args) => (() => {
         const useNextest = true;
         const nativeCheckInputs = nix.thunk(() => [lua, nix$]);
         const env = nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           LIBSSH2_SYS_USE_PKG_CONFIG: 1n,
           LUX_SKIP_IMPURE_TESTS: 1n,
           RUSTFLAGS: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "-C link-arg=-undefined -C link-arg=dynamic_lookup")),
@@ -61,7 +59,7 @@ runHook postInstall
 `);
         const cargoTestFlags = nix.thunk(() => ["--lib"]);
         const meta = nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           description: "Lua API for the Lux package manager",
           homepage: "https://lux.lumen-labs.org/",
           changelog: nix.thunk(() => nix.str`https://github.com/lumen-oss/lux/blob/${nix.sel(src, "tag")}/CHANGELOG.md`),
@@ -73,7 +71,7 @@ runHook postInstall
           platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
         }));
         return {
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           pname,
           version,
           src,

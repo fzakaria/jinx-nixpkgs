@@ -2,134 +2,99 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/systemd-networkd-dhcpserver-static-leases.nix", [[["maintainers", 7, 5]], [["vlans", 11, 22]], [["SYSTEMD_LOG_LEVEL", 12, 53]], [["environment", 12, 41]], [["systemd-networkd", 12, 24]], [["DHCPServer", 28, 15], ["Address", 29, 15]], [["MACAddress", 33, 17], ["Address", 34, 17]], [["name", 26, 13], ["networkConfig", 27, 13], ["dhcpServerStaticLeases", 31, 13]], [["01-eth1", 25, 11]], [["networks", 19, 9]], [["services", 12, 15], ["network", 18, 15]], [["enable", 16, 18]], [["useNetworkd", 14, 9], ["useDHCP", 15, 9], ["firewall", 16, 9]], [["virtualisation", 11, 7], ["systemd", 12, 7], ["networking", 13, 7]], [["vlans", 43, 22]], [["SYSTEMD_LOG_LEVEL", 44, 53]], [["environment", 44, 41]], [["systemd-networkd", 44, 24]], [["OriginalName", 48, 23]], [["MACAddress", 49, 22]], [["matchConfig", 48, 11], ["linkConfig", 49, 11]], [["10-eth1", 47, 15]], [["Name", 52, 23]], [["DHCP", 54, 13], ["IPv6AcceptRA", 55, 13]], [["ClientIdentifier", 60, 24]], [["RequiredForOnline", 61, 22]], [["matchConfig", 52, 11], ["networkConfig", 53, 11], ["dhcpV4Config", 60, 11], ["linkConfig", 61, 11]], [["40-eth1", 51, 18]], [["enable", 46, 9], ["links", 47, 9], ["networks", 51, 9]], [["services", 44, 15], ["network", 45, 15]], [["enable", 66, 18]], [["eth1", 67, 20]], [["useDHCP", 65, 9], ["firewall", 66, 9], ["interfaces", 67, 9]], [["virtualisation", 43, 7], ["systemd", 44, 7], ["networking", 64, 7]], [["router", 10, 5], ["client", 42, 5]], [["name", 5, 3], ["meta", 6, 3], ["nodes", 9, 3], ["testScript", 71, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/systemd-networkd-dhcpserver-static-leases.nix", [["maintainers", 7, 5]]);
-const pos$2 = nix.positions(here + "/systemd-networkd-dhcpserver-static-leases.nix", [["vlans", 11, 22]]);
-const pos$3 = nix.positions(here + "/systemd-networkd-dhcpserver-static-leases.nix", [["SYSTEMD_LOG_LEVEL", 12, 53]]);
-const pos$4 = nix.positions(here + "/systemd-networkd-dhcpserver-static-leases.nix", [["environment", 12, 41]]);
-const pos$5 = nix.positions(here + "/systemd-networkd-dhcpserver-static-leases.nix", [["systemd-networkd", 12, 24]]);
-const pos$6 = nix.positions(here + "/systemd-networkd-dhcpserver-static-leases.nix", [["DHCPServer", 28, 15], ["Address", 29, 15]]);
-const pos$7 = nix.positions(here + "/systemd-networkd-dhcpserver-static-leases.nix", [["MACAddress", 33, 17], ["Address", 34, 17]]);
-const pos$8 = nix.positions(here + "/systemd-networkd-dhcpserver-static-leases.nix", [["name", 26, 13], ["networkConfig", 27, 13], ["dhcpServerStaticLeases", 31, 13]]);
-const pos$9 = nix.positions(here + "/systemd-networkd-dhcpserver-static-leases.nix", [["01-eth1", 25, 11]]);
-const pos$10 = nix.positions(here + "/systemd-networkd-dhcpserver-static-leases.nix", [["networks", 19, 9]]);
-const pos$11 = nix.positions(here + "/systemd-networkd-dhcpserver-static-leases.nix", [["services", 12, 15], ["network", 18, 15]]);
-const pos$12 = nix.positions(here + "/systemd-networkd-dhcpserver-static-leases.nix", [["enable", 16, 18]]);
-const pos$13 = nix.positions(here + "/systemd-networkd-dhcpserver-static-leases.nix", [["useNetworkd", 14, 9], ["useDHCP", 15, 9], ["firewall", 16, 9]]);
-const pos$14 = nix.positions(here + "/systemd-networkd-dhcpserver-static-leases.nix", [["virtualisation", 11, 7], ["systemd", 12, 7], ["networking", 13, 7]]);
-const pos$15 = nix.positions(here + "/systemd-networkd-dhcpserver-static-leases.nix", [["vlans", 43, 22]]);
-const pos$16 = nix.positions(here + "/systemd-networkd-dhcpserver-static-leases.nix", [["SYSTEMD_LOG_LEVEL", 44, 53]]);
-const pos$17 = nix.positions(here + "/systemd-networkd-dhcpserver-static-leases.nix", [["environment", 44, 41]]);
-const pos$18 = nix.positions(here + "/systemd-networkd-dhcpserver-static-leases.nix", [["systemd-networkd", 44, 24]]);
-const pos$19 = nix.positions(here + "/systemd-networkd-dhcpserver-static-leases.nix", [["OriginalName", 48, 23]]);
-const pos$20 = nix.positions(here + "/systemd-networkd-dhcpserver-static-leases.nix", [["MACAddress", 49, 22]]);
-const pos$21 = nix.positions(here + "/systemd-networkd-dhcpserver-static-leases.nix", [["matchConfig", 48, 11], ["linkConfig", 49, 11]]);
-const pos$22 = nix.positions(here + "/systemd-networkd-dhcpserver-static-leases.nix", [["10-eth1", 47, 15]]);
-const pos$23 = nix.positions(here + "/systemd-networkd-dhcpserver-static-leases.nix", [["Name", 52, 23]]);
-const pos$24 = nix.positions(here + "/systemd-networkd-dhcpserver-static-leases.nix", [["DHCP", 54, 13], ["IPv6AcceptRA", 55, 13]]);
-const pos$25 = nix.positions(here + "/systemd-networkd-dhcpserver-static-leases.nix", [["ClientIdentifier", 60, 24]]);
-const pos$26 = nix.positions(here + "/systemd-networkd-dhcpserver-static-leases.nix", [["RequiredForOnline", 61, 22]]);
-const pos$27 = nix.positions(here + "/systemd-networkd-dhcpserver-static-leases.nix", [["matchConfig", 52, 11], ["networkConfig", 53, 11], ["dhcpV4Config", 60, 11], ["linkConfig", 61, 11]]);
-const pos$28 = nix.positions(here + "/systemd-networkd-dhcpserver-static-leases.nix", [["40-eth1", 51, 18]]);
-const pos$29 = nix.positions(here + "/systemd-networkd-dhcpserver-static-leases.nix", [["enable", 46, 9], ["links", 47, 9], ["networks", 51, 9]]);
-const pos$30 = nix.positions(here + "/systemd-networkd-dhcpserver-static-leases.nix", [["services", 44, 15], ["network", 45, 15]]);
-const pos$31 = nix.positions(here + "/systemd-networkd-dhcpserver-static-leases.nix", [["enable", 66, 18]]);
-const pos$32 = nix.positions(here + "/systemd-networkd-dhcpserver-static-leases.nix", [["eth1", 67, 20]]);
-const pos$33 = nix.positions(here + "/systemd-networkd-dhcpserver-static-leases.nix", [["useDHCP", 65, 9], ["firewall", 66, 9], ["interfaces", 67, 9]]);
-const pos$34 = nix.positions(here + "/systemd-networkd-dhcpserver-static-leases.nix", [["virtualisation", 43, 7], ["systemd", 44, 7], ["networking", 64, 7]]);
-const pos$35 = nix.positions(here + "/systemd-networkd-dhcpserver-static-leases.nix", [["router", 10, 5], ["client", 42, 5]]);
-const pos$36 = nix.positions(here + "/systemd-networkd-dhcpserver-static-leases.nix", [["name", 5, 3], ["meta", 6, 3], ["nodes", 9, 3], ["testScript", 71, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$36,
+    [nix.POS]: $pos[35],
     name: "systemd-networkd-dhcpserver-static-leases",
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
       return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "veehaitch"))]),
       };
     })()),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$35,
+      [nix.POS]: $pos[34],
       router: nix.thunk(() => ({
-        [nix.POS]: pos$14,
-        virtualisation: nix.thunk(() => ({ [nix.POS]: pos$2, vlans: nix.thunk(() => [1n]) })),
+        [nix.POS]: $pos[13],
+        virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[1], vlans: nix.thunk(() => [1n]) })),
         systemd: nix.thunk(() => ({
-          [nix.POS]: pos$11,
+          [nix.POS]: $pos[10],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             "systemd-networkd": nix.thunk(() => ({
-              [nix.POS]: pos$4,
-              environment: nix.thunk(() => ({ [nix.POS]: pos$3, SYSTEMD_LOG_LEVEL: "debug" })),
+              [nix.POS]: $pos[3],
+              environment: nix.thunk(() => ({ [nix.POS]: $pos[2], SYSTEMD_LOG_LEVEL: "debug" })),
             })),
           })),
           network: nix.thunk(() => ({
-            [nix.POS]: pos$10,
+            [nix.POS]: $pos[9],
             networks: nix.thunk(() => ({
-              [nix.POS]: pos$9,
+              [nix.POS]: $pos[8],
               "01-eth1": nix.thunk(() => ({
-                [nix.POS]: pos$8,
+                [nix.POS]: $pos[7],
                 name: "eth1",
-                networkConfig: nix.thunk(() => ({ [nix.POS]: pos$6, DHCPServer: true, Address: "10.0.0.1/24" })),
+                networkConfig: nix.thunk(() => ({ [nix.POS]: $pos[5], DHCPServer: true, Address: "10.0.0.1/24" })),
                 dhcpServerStaticLeases: nix.thunk(() => [
-                  nix.thunk(() => ({ [nix.POS]: pos$7, MACAddress: "02:de:ad:be:ef:01", Address: "10.0.0.10" })),
+                  nix.thunk(() => ({ [nix.POS]: $pos[6], MACAddress: "02:de:ad:be:ef:01", Address: "10.0.0.10" })),
                 ]),
               })),
             })),
           })),
         })),
         networking: nix.thunk(() => ({
-          [nix.POS]: pos$13,
+          [nix.POS]: $pos[12],
           useNetworkd: true,
           useDHCP: false,
-          firewall: nix.thunk(() => ({ [nix.POS]: pos$12, enable: false })),
+          firewall: nix.thunk(() => ({ [nix.POS]: $pos[11], enable: false })),
         })),
       })),
       client: nix.thunk(() => ({
-        [nix.POS]: pos$34,
-        virtualisation: nix.thunk(() => ({ [nix.POS]: pos$15, vlans: nix.thunk(() => [1n]) })),
+        [nix.POS]: $pos[33],
+        virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[14], vlans: nix.thunk(() => [1n]) })),
         systemd: nix.thunk(() => ({
-          [nix.POS]: pos$30,
+          [nix.POS]: $pos[29],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$18,
+            [nix.POS]: $pos[17],
             "systemd-networkd": nix.thunk(() => ({
-              [nix.POS]: pos$17,
-              environment: nix.thunk(() => ({ [nix.POS]: pos$16, SYSTEMD_LOG_LEVEL: "debug" })),
+              [nix.POS]: $pos[16],
+              environment: nix.thunk(() => ({ [nix.POS]: $pos[15], SYSTEMD_LOG_LEVEL: "debug" })),
             })),
           })),
           network: nix.thunk(() => ({
-            [nix.POS]: pos$29,
+            [nix.POS]: $pos[28],
             enable: true,
             links: nix.thunk(() => ({
-              [nix.POS]: pos$22,
+              [nix.POS]: $pos[21],
               "10-eth1": nix.thunk(() => ({
-                [nix.POS]: pos$21,
-                matchConfig: nix.thunk(() => ({ [nix.POS]: pos$19, OriginalName: "eth1" })),
-                linkConfig: nix.thunk(() => ({ [nix.POS]: pos$20, MACAddress: "02:de:ad:be:ef:01" })),
+                [nix.POS]: $pos[20],
+                matchConfig: nix.thunk(() => ({ [nix.POS]: $pos[18], OriginalName: "eth1" })),
+                linkConfig: nix.thunk(() => ({ [nix.POS]: $pos[19], MACAddress: "02:de:ad:be:ef:01" })),
               })),
             })),
             networks: nix.thunk(() => ({
-              [nix.POS]: pos$28,
+              [nix.POS]: $pos[27],
               "40-eth1": nix.thunk(() => ({
-                [nix.POS]: pos$27,
-                matchConfig: nix.thunk(() => ({ [nix.POS]: pos$23, Name: "eth1" })),
-                networkConfig: nix.thunk(() => ({ [nix.POS]: pos$24, DHCP: "ipv4", IPv6AcceptRA: false })),
-                dhcpV4Config: nix.thunk(() => ({ [nix.POS]: pos$25, ClientIdentifier: "mac" })),
-                linkConfig: nix.thunk(() => ({ [nix.POS]: pos$26, RequiredForOnline: "routable" })),
+                [nix.POS]: $pos[26],
+                matchConfig: nix.thunk(() => ({ [nix.POS]: $pos[22], Name: "eth1" })),
+                networkConfig: nix.thunk(() => ({ [nix.POS]: $pos[23], DHCP: "ipv4", IPv6AcceptRA: false })),
+                dhcpV4Config: nix.thunk(() => ({ [nix.POS]: $pos[24], ClientIdentifier: "mac" })),
+                linkConfig: nix.thunk(() => ({ [nix.POS]: $pos[25], RequiredForOnline: "routable" })),
               })),
             })),
           })),
         })),
         networking: nix.thunk(() => ({
-          [nix.POS]: pos$33,
+          [nix.POS]: $pos[32],
           useDHCP: false,
-          firewall: nix.thunk(() => ({ [nix.POS]: pos$31, enable: false })),
+          firewall: nix.thunk(() => ({ [nix.POS]: $pos[30], enable: false })),
           interfaces: nix.thunk(() => ({
-            [nix.POS]: pos$32,
+            [nix.POS]: $pos[31],
             eth1: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), nix.thunk(() => ({})))),
           })),
         })),

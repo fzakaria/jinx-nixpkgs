@@ -2,16 +2,9 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/build-skaware-package.nix", [[["url", 62, 9], ["sha256", 63, 17]], [["noiseFiles", 110, 13], ["docFiles", 111, 13]], [["extraArgs", 140, 11]], [["updateScript", 139, 9]], [["manpages", 149, 55]], [["homepage", 151, 9], ["platforms", 152, 9], ["license", 153, 9], ["maintainers", 154, 9]], [["src", 61, 7], ["outputs", 65, 7], ["dontDisableStatic", 81, 7], ["enableParallelBuilding", 82, 7], ["nativeBuildInputs", 83, 7], ["configureFlags", 84, 7], ["makeFlags", 102, 7], ["postInstall", 106, 7], ["postFixup", 127, 7], ["passthru", 138, 7], ["meta", 150, 7]], [["constructDrv", 10, 3], ["excludeDrvArgNames", 11, 3], ["extendDrvArgs", 15, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, cleanPackaging: false, fetchurl: false, "nix-update-script": false, "pkg-config": false }, ellipsis: false };
 const formals$2 = { args: { sha256: true, manpages: true, meta: true, outputs: true, nativeBuildInputs: true, configureFlags: false, passthru: true }, ellipsis: true };
-const pos$1 = nix.positions(here + "/build-skaware-package.nix", [["url", 62, 9], ["sha256", 63, 17]]);
-const pos$2 = nix.positions(here + "/build-skaware-package.nix", [["noiseFiles", 110, 13], ["docFiles", 111, 13]]);
-const pos$3 = nix.positions(here + "/build-skaware-package.nix", [["extraArgs", 140, 11]]);
-const pos$4 = nix.positions(here + "/build-skaware-package.nix", [["updateScript", 139, 9]]);
-const pos$5 = nix.positions(here + "/build-skaware-package.nix", [["manpages", 149, 55]]);
-const pos$6 = nix.positions(here + "/build-skaware-package.nix", [["homepage", 151, 9], ["platforms", 152, 9], ["license", 153, 9], ["maintainers", 154, 9]]);
-const pos$7 = nix.positions(here + "/build-skaware-package.nix", [["src", 61, 7], ["outputs", 65, 7], ["dontDisableStatic", 81, 7], ["enableParallelBuilding", 82, 7], ["nativeBuildInputs", 83, 7], ["configureFlags", 84, 7], ["makeFlags", 102, 7], ["postInstall", 106, 7], ["postFixup", 127, 7], ["passthru", 138, 7], ["meta", 150, 7]]);
-const pos$8 = nix.positions(here + "/build-skaware-package.nix", [["constructDrv", 10, 3], ["excludeDrvArgNames", 11, 3], ["extendDrvArgs", 15, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(lib, "extendMkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       constructDrv: nix.thunk(() => nix.sel(stdenv, "mkDerivation")),
       excludeDrvArgNames: nix.thunk(() => ["sha256", "manpages"]),
       extendDrvArgs: (finalAttrs) => nix.lambda((args_1) => (() => {
@@ -59,9 +52,9 @@ export default nix.lambda((args) => (() => {
         ]);
         const libraryOutput = nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "elem"), "lib", outputs)) ? "lib" : "out"));
         return {
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              [nix.POS]: pos$1,
+              [nix.POS]: $pos[0],
               url: nix.thunk(() => nix.str`https://skarnet.org/software/${nix.sel(finalAttrs, "pname")}/${nix.sel(finalAttrs, "pname")}-${nix.sel(finalAttrs, "version")}.tar.gz`),
               sha256: sha256,
             })))),
@@ -84,7 +77,7 @@ export default nix.lambda((args) => (() => {
               nix.thunk(() => nix.str`RANLIB=${nix.sel(stdenv, "cc", "targetPrefix")}ranlib`),
             ]))),
           postInstall: nix.thunk(() => nix.str`echo "Cleaning & moving common files"
-${nix.app(nix.sel(cleanPackaging, "commonFileActions"), nix.thunk(() => ({ [nix.POS]: pos$2, noiseFiles: commonNoiseFiles, docFiles: commonMetaFiles })))} $doc/share/doc/${nix.sel(finalAttrs, "pname")}
+${nix.app(nix.sel(cleanPackaging, "commonFileActions"), nix.thunk(() => ({ [nix.POS]: $pos[1], noiseFiles: commonNoiseFiles, docFiles: commonMetaFiles })))} $doc/share/doc/${nix.sel(finalAttrs, "pname")}
 
 ${(nix.asBool(nix.eq(manpages, null)) ? "echo \"no manpages for this package\"" : nix.str`echo "copying manpages"
 cp -vr ${manpages} $man
@@ -103,9 +96,9 @@ fi
 ${nix.sel(cleanPackaging, "checkForRemainingFiles")}
 `),
           passthru: nix.thunk(() => nix.update({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-                [nix.POS]: pos$3,
+                [nix.POS]: $pos[2],
                 extraArgs: nix.thunk(() => [
                   "--url",
                   nix.thunk(() => nix.str`https://github.com/skarnet/${nix.sel(finalAttrs, "pname")}`),
@@ -113,9 +106,9 @@ ${nix.sel(cleanPackaging, "checkForRemainingFiles")}
                   nix.thunk(() => nix.str`pkgs/development/skaware-packages/${nix.sel(finalAttrs, "pname")}/default.nix`),
                 ]),
               })))),
-          }, nix.update(passthru, (nix.asBool(nix.eq(manpages, null)) ? {} : { [nix.POS]: pos$5, manpages: manpages })))),
+          }, nix.update(passthru, (nix.asBool(nix.eq(manpages, null)) ? {} : { [nix.POS]: $pos[4], manpages: manpages })))),
           meta: nix.thunk(() => nix.update({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             homepage: nix.thunk(() => nix.str`https://skarnet.org/software/${nix.sel(finalAttrs, "pname")}/`),
             platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
             license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),

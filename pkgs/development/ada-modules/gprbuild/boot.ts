@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/boot.nix", [[["name", 15, 5], ["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["sha256", 19, 5]], [["name", 28, 5], ["owner", 29, 5], ["repo", 30, 5], ["rev", 31, 5], ["sha256", 32, 5]], [["url", 44, 7], ["hash", 45, 7]], [["url", 49, 7], ["hash", 50, 7]], [["description", 108, 5], ["homepage", 109, 5], ["license", 110, 5], ["maintainers", 111, 5], ["platforms", 112, 5], ["broken", 118, 5]], [["pname", 24, 3], ["version", 25, 11], ["src", 27, 3], ["nativeBuildInputs", 35, 3], ["patches", 41, 3], ["postPatch", 54, 3], ["setupHooks", 72, 3], ["installPhase", 82, 3], ["meta", 107, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, fetchpatch2: false, gnat: false, which: false, xmlada: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/boot.nix", [["name", 15, 5], ["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["sha256", 19, 5]]);
-const pos$2 = nix.positions(here + "/boot.nix", [["name", 28, 5], ["owner", 29, 5], ["repo", 30, 5], ["rev", 31, 5], ["sha256", 32, 5]]);
-const pos$3 = nix.positions(here + "/boot.nix", [["url", 44, 7], ["hash", 45, 7]]);
-const pos$4 = nix.positions(here + "/boot.nix", [["url", 49, 7], ["hash", 50, 7]]);
-const pos$5 = nix.positions(here + "/boot.nix", [["description", 108, 5], ["homepage", 109, 5], ["license", 110, 5], ["maintainers", 111, 5], ["platforms", 112, 5], ["broken", 118, 5]]);
-const pos$6 = nix.positions(here + "/boot.nix", [["pname", 24, 3], ["version", 25, 11], ["src", 27, 3], ["nativeBuildInputs", 35, 3], ["patches", 41, 3], ["postPatch", 54, 3], ["setupHooks", 72, 3], ["installPhase", 82, 3], ["meta", 107, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const xmlada = nix.arg($, "xmlada");
   const version = "25.0.0";
   const gprConfigKbSrc = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: nix.thunk(() => nix.str`gprconfig-kb-${version}-src`),
       owner: "AdaCore",
       repo: "gprconfig_kb",
@@ -29,11 +24,11 @@ export default nix.lambda((args) => (() => {
       sha256: "09x1njq0i0z7fbwg0mg39r5ghy7369avbqvdycfj67lpmw17gb1r",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "gprbuild-boot",
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           name: nix.thunk(() => nix.str`gprbuild-${version}`),
           owner: "AdaCore",
           repo: "gprbuild",
@@ -43,12 +38,12 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [gnat, which]),
       patches: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(gnat, "version")), "16")), nix.thunk(() => [
           nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               url: "https://github.com/AdaCore/gprbuild/commit/6421e350274b3018a26bd058b1c90d033b053f71.patch?full_index=1",
               hash: "sha256-u9bmr8abmthlyHoeqW5nS2CnaxXmbx6WVwhemxVtw+0=",
             })))),
           nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               url: "https://github.com/AdaCore/gprbuild/commit/6b6be939d69d534beb7faca17664d7a1ffa9c81e.patch?full_index=1",
               hash: "sha256-YUjBvA4bBsrCB46o5WVHOZR6qOf2bkMg+A9qlystDbc=",
             })))),
@@ -79,7 +74,7 @@ install -m644 ${nix.path(here, "./nixpkgs-gnat.xml")} $out/share/gprconfig/nixpk
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Multi-language extensible build tool",
         homepage: "https://github.com/AdaCore/gprbuild",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

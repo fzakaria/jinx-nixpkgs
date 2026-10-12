@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["sha256", 23, 5]], [["name", 30, 7], ["url", 31, 7], ["hash", 32, 7]], [["CFLAGS", 46, 7]], [["homepage", 49, 5], ["description", 50, 5], ["platforms", 51, 5], ["license", 52, 5], ["maintainers", 53, 5], ["downloadPage", 54, 5]], [["version", 16, 3], ["pname", 17, 3], ["src", 19, 3], ["patches", 26, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 37, 3], ["env", 46, 3], ["meta", 48, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch: false, zlib: false, curl: false, expat: false, fuse3: false, openssl: false, autoreconfHook: false, python3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["sha256", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 30, 7], ["url", 31, 7], ["hash", 32, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["CFLAGS", 46, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 49, 5], ["description", 50, 5], ["platforms", 51, 5], ["license", 52, 5], ["maintainers", 53, 5], ["downloadPage", 54, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["version", 16, 3], ["pname", 17, 3], ["src", 19, 3], ["patches", 26, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 37, 3], ["env", 46, 3], ["meta", 48, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const autoreconfHook = nix.arg($, "autoreconfHook");
   const python3 = nix.arg($, "python3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       version: "3.7.22",
       pname: "afflib",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "sshock",
           repo: "AFFLIBv3",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,7 +31,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "gcc16-missing-declarations.patch",
             url: "https://github.com/sshock/AFFLIBv3/commit/f35df6c1d2610e3233c30d50054c00e29d7d5a23.patch",
             hash: "sha256-D7/PnePwb7ikuHIo+3MBPp4PI8uN8vNJ1rZykeXDdxU=",
@@ -44,11 +40,11 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [autoreconfHook]),
       buildInputs: nix.thunk(() => [zlib, curl, expat, openssl, python3, fuse3]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         CFLAGS: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "-DFUSE_DARWIN_ENABLE_EXTENSIONS=0")),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "http://afflib.sourceforge.net/",
         description: "Advanced forensic format library",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),

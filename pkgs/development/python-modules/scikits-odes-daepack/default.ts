@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["NIX_CFLAGS_COMPILE", 36, 7]], [["description", 39, 5], ["homepage", 40, 5]], [["version", 11, 31], ["src", 11, 39], ["pname", 12, 3], ["pyproject", 13, 3], ["sourceRoot", 15, 3], ["build-system", 17, 3], ["nativeBuildInputs", 23, 3], ["dependencies", 25, 3], ["pythonImportsCheck", 30, 3], ["doCheck", 33, 3], ["env", 36, 3], ["meta", 38, 3]]]);
 const formals$1 = { args: { buildPythonPackage: false, gfortran: false, "meson-python": false, numpy: false, pyprojectVersionPatchHook: false, "scikits-odes-core": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["NIX_CFLAGS_COMPILE", 36, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 39, 5], ["homepage", 40, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["version", 11, 31], ["src", 11, 39], ["pname", 12, 3], ["pyproject", 13, 3], ["sourceRoot", 15, 3], ["build-system", 17, 3], ["nativeBuildInputs", 23, 3], ["dependencies", 25, 3], ["pythonImportsCheck", 30, 3], ["doCheck", 33, 3], ["env", 36, 3], ["meta", 38, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,14 +24,14 @@ export default nix.lambda((args) => (() => {
       const dependencies = nix.thunk(() => [numpy, scikits_odes_core]);
       const pythonImportsCheck = nix.thunk(() => ["scikits_odes_daepack"]);
       const doCheck = false;
-      const env = nix.thunk(() => ({ [nix.POS]: pos$1, NIX_CFLAGS_COMPILE: "-std=gnu17" }));
+      const env = nix.thunk(() => ({ [nix.POS]: $pos[0], NIX_CFLAGS_COMPILE: "-std=gnu17" }));
       const meta = nix.thunk(() => nix.update(nix.sel(scikits_odes_core, "meta"), {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Wrapper around daepack",
         homepage: "https://github.com/bmcage/odes/blob/master/packages/scikits-odes-daepack",
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         version,
         src,
         pname,

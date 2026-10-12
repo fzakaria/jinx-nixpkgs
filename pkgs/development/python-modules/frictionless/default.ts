@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pytest", 70, 5], ["pytestCheckHook", 71, 5]], [["owner", 81, 5], ["repo", 82, 5], ["tag", 83, 5], ["hash", 84, 5]], [["aws", 116, 5], ["bigquery", 119, 5], ["datasette", 125, 5], ["duckdb", 128, 5], ["github", 139, 5], ["html", 145, 5], ["json", 148, 5], ["mysql", 152, 5], ["ods", 156, 5], ["pandas", 160, 5], ["parquet", 164, 5], ["postgresql", 167, 5], ["sql", 175, 5], ["visidata", 178, 5], ["wkt", 183, 5]], [["description", 224, 5], ["homepage", 225, 5], ["changelog", 226, 5], ["license", 227, 5], ["maintainers", 228, 5], ["mainProgram", 229, 5]], [["pname", 75, 3], ["version", 76, 3], ["pyproject", 77, 3], ["__structuredAttrs", 78, 3], ["src", 80, 3], ["build-system", 87, 3], ["dependencies", 91, 3], ["optional-dependencies", 113, 3], ["nativeCheckInputs", 191, 3], ["disabledTestPaths", 206, 3], ["disabledTests", 213, 3], ["pythonImportsCheck", 221, 3], ["meta", 223, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, hatchling: false, attrs: false, chardet: false, humanize: false, isodate: false, jinja2: false, jsonschema: false, marko: false, petl: false, pydantic: false, "python-dateutil": false, "python-slugify": false, pyyaml: false, requests: false, rfc3986: false, simpleeval: false, tabulate: false, typer: false, "typing-extensions": false, validators: false, boto3: false, "google-api-python-client": false, datasette: false, duckdb: false, "duckdb-engine": false, sqlalchemy: false, pygithub: false, pyquery: false, ijson: false, jsonlines: false, pymysql: false, ezodf: false, lxml: false, pandas: false, pyarrow: false, fastparquet: false, psycopg: false, psycopg2: false, visidata: false, tatsu: false, moto: false, openpyxl: false, "pytest-lazy-fixtures": false, "pytest-mock": false, "pytest-timeout": false, "pytest-vcr": false, pytest_9_0: false, pytest9_0CheckHook: false, "requests-mock": false, xlrd: false, yattag: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pytest", 70, 5], ["pytestCheckHook", 71, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["owner", 81, 5], ["repo", 82, 5], ["tag", 83, 5], ["hash", 84, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["aws", 116, 5], ["bigquery", 119, 5], ["datasette", 125, 5], ["duckdb", 128, 5], ["github", 139, 5], ["html", 145, 5], ["json", 148, 5], ["mysql", 152, 5], ["ods", 156, 5], ["pandas", 160, 5], ["parquet", 164, 5], ["postgresql", 167, 5], ["sql", 175, 5], ["visidata", 178, 5], ["wkt", 183, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 224, 5], ["homepage", 225, 5], ["changelog", 226, 5], ["license", 227, 5], ["maintainers", 228, 5], ["mainProgram", 229, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 75, 3], ["version", 76, 3], ["pyproject", 77, 3], ["__structuredAttrs", 78, 3], ["src", 80, 3], ["build-system", 87, 3], ["dependencies", 91, 3], ["optional-dependencies", 113, 3], ["nativeCheckInputs", 191, 3], ["disabledTestPaths", 206, 3], ["disabledTests", 213, 3], ["pythonImportsCheck", 221, 3], ["meta", 223, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -67,15 +63,15 @@ export default nix.lambda((args) => (() => {
   const xlrd = nix.arg($, "xlrd");
   const yattag = nix.arg($, "yattag");
   const pytestCheckHook = pytest9_0CheckHook;
-  const pytest_lazy_fixtures_1 = nix.thunk(() => nix.app(nix.sel(args_1, "pytest-lazy-fixtures", "override"), nix.thunk(() => ({ [nix.POS]: pos$1, pytest: pytest_9_0, pytestCheckHook: pytest9_0CheckHook }))));
+  const pytest_lazy_fixtures_1 = nix.thunk(() => nix.app(nix.sel(args_1, "pytest-lazy-fixtures", "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], pytest: pytest_9_0, pytestCheckHook: pytest9_0CheckHook }))));
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "frictionless",
       version: "5.19.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "frictionlessdata",
           repo: "frictionless-py",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -104,7 +100,7 @@ export default nix.lambda((args) => (() => {
         validators,
       ]),
       "optional-dependencies": nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         aws: nix.thunk(() => [boto3]),
         bigquery: nix.thunk(() => [google_api_python_client]),
         datasette: nix.thunk(() => [datasette]),
@@ -140,7 +136,7 @@ export default nix.lambda((args) => (() => {
       disabledTests: nix.thunk(() => ["test_resource_encoding_detection_accent", "test_remote_loader_latin1"]),
       pythonImportsCheck: nix.thunk(() => ["frictionless"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Data management framework for Python that provides functionality to describe, extract, validate, and transform tabular data",
         homepage: "https://github.com/frictionlessdata/frictionless-py",
         changelog: nix.thunk(() => nix.str`https://github.com/frictionlessdata/frictionless-py/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

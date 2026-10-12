@@ -2,9 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["graph", 11, 27]], [["exportReferencesGraph", 11, 5], ["__structuredAttrs", 12, 5], ["preferLocalBuild", 13, 5], ["nativeBuildInputs", 14, 5]]]);
 const formals$1 = { args: { runCommand: false, python3: false, coreutils: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["graph", 11, 27]]);
-const pos$2 = nix.positions(here + "/default.nix", [["exportReferencesGraph", 11, 5], ["__structuredAttrs", 12, 5], ["preferLocalBuild", 13, 5], ["nativeBuildInputs", 14, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -12,8 +11,8 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const coreutils = nix.arg($, "coreutils");
   return (path) => nix.app(runCommand, "closure-paths", nix.thunk(() => ({
-      [nix.POS]: pos$2,
-      exportReferencesGraph: nix.thunk(() => ({ [nix.POS]: pos$1, graph: path })),
+      [nix.POS]: $pos[1],
+      exportReferencesGraph: nix.thunk(() => ({ [nix.POS]: $pos[0], graph: path })),
       __structuredAttrs: true,
       preferLocalBuild: true,
       nativeBuildInputs: nix.thunk(() => [coreutils, python3]),

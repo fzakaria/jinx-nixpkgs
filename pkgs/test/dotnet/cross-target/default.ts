@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["sdk_10_0", 12, 7], ["sdk_9_0", 13, 7], ["sdk_8_0", 14, 7]], [["name", 41, 7], ["nativeBuildInputs", 43, 7], ["unpackPhase", 51, 7], ["installPhase", 60, 7]]]);
 const formals$1 = { args: { lib: false, "dotnet-sdk": false, dotnetCorePackages: false, stdenv: false, writeText: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["sdk_10_0", 12, 7], ["sdk_9_0", 13, 7], ["sdk_8_0", 14, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["name", 41, 7], ["nativeBuildInputs", 43, 7], ["unpackPhase", 51, 7], ["installPhase", 60, 7]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const writeText = nix.arg($, "writeText");
   const sdks = nix.thunk(() => ({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     sdk_10_0: nix.thunk(() => nix.attr(dotnetCorePackages, "sdk_10_0")),
     sdk_9_0: nix.thunk(() => nix.attr(dotnetCorePackages, "sdk_9_0")),
     sdk_8_0: nix.thunk(() => nix.attr(dotnetCorePackages, "sdk_8_0")),
@@ -34,7 +33,7 @@ export default nix.lambda((args) => (() => {
 </Project>
 `)));
     return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         name: nix.thunk(() => nix.str`dotnet-cross-target-${nix.sel(runtime, "version")}-from-${nix.sel(dotnet_sdk, "version")}-test`),
         nativeBuildInputs: nix.thunk(() => nix.concat([
           nix.thunk(() => nix.app(nix.sel(dotnetCorePackages, "combinePackages"), nix.thunk(() => [dotnet_sdk, runtime]))),

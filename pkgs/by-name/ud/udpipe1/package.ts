@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]], [["package", 55, 37]], [["udpipe1", 56, 36]], [["version", 55, 5], ["run", 56, 5]], [["tests", 54, 12]], [["description", 60, 5], ["homepage", 61, 5], ["changelog", 62, 5], ["license", 63, 5], ["maintainers", 64, 5], ["mainProgram", 65, 5], ["platforms", 66, 5], ["badPlatforms", 67, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["doCheck", 23, 3], ["doInstallCheck", 24, 3], ["nativeInstallCheckInputs", 25, 3], ["sourceRoot", 29, 3], ["strictDeps", 31, 3], ["__structuredAttrs", 32, 3], ["makeFlags", 34, 3], ["buildFlags", 38, 3], ["enableParallelBuilding", 43, 3], ["installPhase", 45, 3], ["passthru", 54, 3], ["meta", 59, 3]]]);
 const formals$1 = { args: { callPackage: false, lib: false, stdenv: false, fetchFromGitHub: false, testers: false, versionCheckHook: false, udpipe1: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["package", 55, 37]]);
-const pos$3 = nix.positions(here + "/package.nix", [["udpipe1", 56, 36]]);
-const pos$4 = nix.positions(here + "/package.nix", [["version", 55, 5], ["run", 56, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["tests", 54, 12]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 60, 5], ["homepage", 61, 5], ["changelog", 62, 5], ["license", 63, 5], ["maintainers", 64, 5], ["mainProgram", 65, 5], ["platforms", 66, 5], ["badPlatforms", 67, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["doCheck", 23, 3], ["doInstallCheck", 24, 3], ["nativeInstallCheckInputs", 25, 3], ["sourceRoot", 29, 3], ["strictDeps", 31, 3], ["__structuredAttrs", 32, 3], ["makeFlags", 34, 3], ["buildFlags", 38, 3], ["enableParallelBuilding", 43, 3], ["installPhase", 45, 3], ["passthru", 54, 3], ["meta", 59, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const udpipe1 = nix.arg($, "udpipe1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "udpipe1",
       version: "1.4.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ufal",
           repo: "udpipe",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -42,18 +36,18 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: true,
       installPhase: "runHook preInstall\nmkdir -p $out/{bin,lib}\ncp -v udpipe $out/bin\ncp -v rest_server/udpipe_server $out/bin\ncp -v libudpipe.a $out/lib/\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$2, package: udpipe1 })))),
+          [nix.POS]: $pos[3],
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: $pos[1], package: udpipe1 })))),
           run: nix.thunk(() => nix.app(callPackage, nix.path(here, "./test.nix"), nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               udpipe1: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Trainable pipeline for tokenizing, tagging, lemmatizing and parsing Universal Treebanks and other CoNLL-U files",
         homepage: "https://github.com/ufal/udpipe",
         changelog: nix.thunk(() => nix.str`https://github.com/ufal/udpipe/blob/${nix.sel(finalAttrs, "version")}/CHANGES.md`),

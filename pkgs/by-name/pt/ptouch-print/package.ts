@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 22, 5], ["rev", 23, 5], ["hash", 24, 5]], [["description", 55, 5], ["homepage", 56, 5], ["license", 57, 5], ["mainProgram", 58, 5], ["platforms", 59, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 33, 3], ["installPhase", 45, 3], ["meta", 54, 3]]]);
 const formals$1 = { args: { "argp-standalone": false, cmake: false, fetchgit: false, gd: false, gettext: false, git: false, lib: false, libjpeg: false, libpng: false, libusb1: false, "pkg-config": false, stdenv: false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 22, 5], ["rev", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 55, 5], ["homepage", 56, 5], ["license", 57, 5], ["mainProgram", 58, 5], ["platforms", 59, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 33, 3], ["installPhase", 45, 3], ["meta", 54, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "ptouch-print",
       version: "1.7-unstable-2026-01-23",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://git.familie-radermacher.ch/linux/ptouch-print.git",
           rev: "3e026ef26b48dda338bb983132494935d6aeb626",
           hash: "sha256-LpBgZWpbOiEf+yA/fDNwsSPxkgMVLnOsrE65Q3lvhwg",
@@ -36,7 +34,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => nix.concat([gd, gettext, libjpeg, libpng, zlib, libusb1], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) || nix.asBool(nix.sel(stdenv, "hostPlatform", "isMusl")))), nix.thunk(() => [argp_standalone])))),
       installPhase: "runHook preInstall\n\nmkdir -p $out/bin\nmv ptouch-print $out/bin\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Command line tool to print labels on Brother P-Touch printers on Linux",
         homepage: "https://dominic.familie-radermacher.ch/projekte/ptouch-print/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

@@ -2,26 +2,10 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/suwayomi-server.nix", [[["maintainers", 7, 10]], [["port", 13, 27]], [["server", 13, 20]], [["enable", 12, 11], ["settings", 13, 11]], [["suwayomi-server", 11, 18]], [["services", 11, 9]], [["machine", 8, 11]], [["meta", 7, 5], ["nodes", 8, 5]], [["name", 22, 7], ["testScript", 24, 7]], [["port", 43, 15], ["basicAuthEnabled", 44, 15], ["basicAuthUsername", 45, 15], ["basicAuthPasswordFile", 46, 15]], [["server", 42, 22]], [["enable", 40, 13], ["settings", 42, 13]], [["suwayomi-server", 39, 20]], [["services", 39, 11]], [["machine", 36, 13]], [["name", 34, 7], ["nodes", 36, 7], ["testScript", 51, 7]], [["without-auth", 20, 3], ["with-auth", 32, 3]]]);
 const formals$1 = { args: { lib: false, runTest: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/suwayomi-server.nix", [["maintainers", 7, 10]]);
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/suwayomi-server.nix", [["port", 13, 27]]);
-const pos$3 = nix.positions(here + "/suwayomi-server.nix", [["server", 13, 20]]);
-const pos$4 = nix.positions(here + "/suwayomi-server.nix", [["enable", 12, 11], ["settings", 13, 11]]);
-const pos$5 = nix.positions(here + "/suwayomi-server.nix", [["suwayomi-server", 11, 18]]);
-const pos$6 = nix.positions(here + "/suwayomi-server.nix", [["services", 11, 9]]);
-const pos$7 = nix.positions(here + "/suwayomi-server.nix", [["machine", 8, 11]]);
-const pos$8 = nix.positions(here + "/suwayomi-server.nix", [["meta", 7, 5], ["nodes", 8, 5]]);
-const pos$9 = nix.positions(here + "/suwayomi-server.nix", [["name", 22, 7], ["testScript", 24, 7]]);
 const formals$3 = { args: { pkgs: false }, ellipsis: true };
-const pos$10 = nix.positions(here + "/suwayomi-server.nix", [["port", 43, 15], ["basicAuthEnabled", 44, 15], ["basicAuthUsername", 45, 15], ["basicAuthPasswordFile", 46, 15]]);
-const pos$11 = nix.positions(here + "/suwayomi-server.nix", [["server", 42, 22]]);
-const pos$12 = nix.positions(here + "/suwayomi-server.nix", [["enable", 40, 13], ["settings", 42, 13]]);
-const pos$13 = nix.positions(here + "/suwayomi-server.nix", [["suwayomi-server", 39, 20]]);
-const pos$14 = nix.positions(here + "/suwayomi-server.nix", [["services", 39, 11]]);
-const pos$15 = nix.positions(here + "/suwayomi-server.nix", [["machine", 36, 13]]);
-const pos$16 = nix.positions(here + "/suwayomi-server.nix", [["name", 34, 7], ["nodes", 36, 7], ["testScript", 51, 7]]);
-const pos$17 = nix.positions(here + "/suwayomi-server.nix", [["without-auth", 20, 3], ["with-auth", 32, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,29 +13,29 @@ export default nix.lambda((args) => (() => {
   const runTest = nix.arg($, "runTest");
   const recursiveUpdate = nix.thunk(() => nix.attr(lib, "recursiveUpdate"));
   const baseTestConfig = nix.thunk(() => ({
-    [nix.POS]: pos$8,
+    [nix.POS]: $pos[7],
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "ratcornu"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             "suwayomi-server": nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               enable: true,
               settings: nix.thunk(() => ({
-                [nix.POS]: pos$3,
-                server: nix.thunk(() => ({ [nix.POS]: pos$2, port: 1234n })),
+                [nix.POS]: $pos[2],
+                server: nix.thunk(() => ({ [nix.POS]: $pos[1], port: 1234n })),
               })),
             })),
           })),
@@ -60,31 +44,31 @@ export default nix.lambda((args) => (() => {
     })),
   }));
   return {
-    [nix.POS]: pos$17,
+    [nix.POS]: $pos[16],
     "without-auth": nix.thunk(() => nix.app(runTest, nix.thunk(() => nix.app(recursiveUpdate, baseTestConfig, nix.thunk(() => ({
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           name: "suwayomi-server-without-auth",
           testScript: "machine.wait_for_unit(\"suwayomi-server.service\")\nmachine.wait_for_open_port(1234)\nmachine.succeed(\"curl --fail http://localhost:1234/\")\n",
         })))))),
     "with-auth": nix.thunk(() => nix.app(runTest, nix.thunk(() => nix.app(recursiveUpdate, baseTestConfig, nix.thunk(() => ({
-          [nix.POS]: pos$16,
+          [nix.POS]: $pos[15],
           name: "suwayomi-server-with-auth",
           nodes: nix.thunk(() => ({
-            [nix.POS]: pos$15,
+            [nix.POS]: $pos[14],
             machine: nix.lambda((args_1) => (() => {
               const $_1 = nix.formals(args_1, formals$3);
               const pkgs = nix.arg($_1, "pkgs");
               return {
-                [nix.POS]: pos$14,
+                [nix.POS]: $pos[13],
                 services: nix.thunk(() => ({
-                  [nix.POS]: pos$13,
+                  [nix.POS]: $pos[12],
                   "suwayomi-server": nix.thunk(() => ({
-                    [nix.POS]: pos$12,
+                    [nix.POS]: $pos[11],
                     enable: true,
                     settings: nix.thunk(() => ({
-                      [nix.POS]: pos$11,
+                      [nix.POS]: $pos[10],
                       server: nix.thunk(() => ({
-                        [nix.POS]: pos$10,
+                        [nix.POS]: $pos[9],
                         port: 1234n,
                         basicAuthEnabled: true,
                         basicAuthUsername: "alice",

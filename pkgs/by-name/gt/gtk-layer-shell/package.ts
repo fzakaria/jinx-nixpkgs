@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 30, 5], ["repo", 31, 5], ["rev", 32, 5], ["hash", 33, 5]], [["description", 66, 5], ["mainProgram", 67, 5], ["homepage", 68, 5], ["license", 69, 5], ["maintainers", 70, 5], ["platforms", 74, 5]], [["pname", 19, 3], ["version", 20, 3], ["outputs", 22, 3], ["outputBin", 27, 3], ["src", 29, 3], ["strictDeps", 36, 3], ["depsBuildBuild", 38, 3], ["nativeBuildInputs", 42, 3], ["buildInputs", 55, 3], ["mesonFlags", 60, 3], ["meta", 65, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, meson: false, ninja: false, "pkg-config": false, "gtk-doc": false, "docbook-xsl-nons": false, docbook_xml_dtd_43: false, "wayland-scanner": false, wayland: false, gtk3: false, "gobject-introspection": false, vala: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 30, 5], ["repo", 31, 5], ["rev", 32, 5], ["hash", 33, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 66, 5], ["mainProgram", 67, 5], ["homepage", 68, 5], ["license", 69, 5], ["maintainers", 70, 5], ["platforms", 74, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["outputs", 22, 3], ["outputBin", 27, 3], ["src", 29, 3], ["strictDeps", 36, 3], ["depsBuildBuild", 38, 3], ["nativeBuildInputs", 42, 3], ["buildInputs", 55, 3], ["mesonFlags", 60, 3], ["meta", 65, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,13 +22,13 @@ export default nix.lambda((args) => (() => {
   const gobject_introspection = nix.arg($, "gobject-introspection");
   const vala = nix.arg($, "vala");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "gtk-layer-shell",
       version: "0.10.1",
       outputs: nix.thunk(() => ["out", "dev", "devdoc"]),
       outputBin: "devdoc",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "wmww",
           repo: "gtk-layer-shell",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -53,7 +51,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [wayland, gtk3]),
       mesonFlags: nix.thunk(() => ["-Ddocs=true", "-Dexamples=true"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Library to create panels and other desktop components for Wayland using the Layer Shell protocol",
         mainProgram: "gtk-layer-demo",
         homepage: "https://github.com/wmww/gtk-layer-shell",

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]], [["description", 45, 5], ["longDescription", 46, 5], ["homepage", 54, 5], ["platforms", 55, 5], ["license", 56, 5], ["maintainers", 57, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["postPatch", 22, 3], ["nativeBuildInputs", 27, 3], ["enableParallelBuilding", 28, 3], ["buildInputs", 29, 3], ["configurePhase", 35, 3], ["meta", 44, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, gklib: false, metis: false, mpi: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 45, 5], ["longDescription", 46, 5], ["homepage", 54, 5], ["platforms", 55, 5], ["license", 56, 5], ["maintainers", 57, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["postPatch", 22, 3], ["nativeBuildInputs", 27, 3], ["enableParallelBuilding", 28, 3], ["buildInputs", 29, 3], ["configurePhase", 35, 3], ["meta", 44, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const metis = nix.arg($, "metis");
   const mpi = nix.arg($, "mpi");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "parmetis",
       version: "4.0.3-unstable-2023-03-26",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "KarypisLab",
           repo: "ParMETIS",
           rev: "8ee6a372ca703836f593e3c450ca903f04be14df",
@@ -39,7 +37,7 @@ make config metis_path=${metis} gklib_path=${gklib} prefix=$out \\
 runHook postConfigure
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Parallel Graph Partitioning and Fill-reducing Matrix Ordering",
         longDescription: "MPI-based parallel library that implements a variety of algorithms for\npartitioning unstructured graphs, meshes, and for computing fill-reducing\norderings of sparse matrices.\nThe algorithms implemented in ParMETIS are based on the multilevel\nrecursive-bisection, multilevel k-way, and multi-constraint partitioning\nschemes\n",
         homepage: "https://github.com/KarypisLab/ParMETIS",

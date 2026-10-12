@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 29, 5], ["repo", 30, 5], ["rev", 31, 5], ["hash", 32, 5]], [["RUSTFLAGS", 38, 7]], [["changelog", 55, 5], ["description", 56, 5], ["longDescription", 57, 5], ["homepage", 64, 5], ["license", 65, 5], ["maintainers", 66, 5], ["mainProgram", 70, 5]], [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["cargoHash", 35, 3], ["env", 38, 3], ["nativeBuildInputs", 40, 3], ["nativeCheckInputs", 45, 3], ["postInstall", 47, 3], ["meta", 54, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, rustPlatform: false, makeWrapper: false, ffmpeg: false, pandoc: false, "poppler-utils": false, ripgrep: false, zip: false, fzf: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 29, 5], ["repo", 30, 5], ["rev", 31, 5], ["hash", 32, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["RUSTFLAGS", 38, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["changelog", 55, 5], ["description", 56, 5], ["longDescription", 57, 5], ["homepage", 64, 5], ["license", 65, 5], ["maintainers", 66, 5], ["mainProgram", 70, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["cargoHash", 35, 3], ["env", 38, 3], ["nativeBuildInputs", 40, 3], ["nativeCheckInputs", 45, 3], ["postInstall", 47, 3], ["meta", 54, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,18 +19,18 @@ export default nix.lambda((args) => (() => {
   const fzf = nix.arg($, "fzf");
   const path = nix.thunk(() => [ffmpeg, pandoc, poppler_utils, ripgrep, zip, fzf]);
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "ripgrep-all",
       version: "0.10.10",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "phiresky",
           repo: "ripgrep-all",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-fDSetB2UGzth+3KkCKsXUHj3y08RSfQ2nCKDa8OurW4=",
         })))),
       cargoHash: "sha256-v+lLCI2ti/xL8hcGkm/xDDN9qk0G9MgtijE8xYnhC68=",
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, RUSTFLAGS: "-C debuginfo=none" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], RUSTFLAGS: "-C debuginfo=none" })),
       nativeBuildInputs: nix.thunk(() => [makeWrapper, poppler_utils]),
       nativeCheckInputs: path,
       postInstall: nix.thunk(() => nix.str`for bin in $out/bin/*; do
@@ -42,7 +39,7 @@ export default nix.lambda((args) => (() => {
 done
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         changelog: nix.thunk(() => nix.str`https://github.com/phiresky/ripgrep-all/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG.md`),
         description: "Ripgrep, but also search in PDFs, E-Books, Office documents, zip, tar.gz, and more",
         longDescription: "Ripgrep, but also search in PDFs, E-Books, Office documents, zip, tar.gz, etc.\n\nrga is a line-oriented search tool that allows you to look for a regex in\na multitude of file types. rga wraps the awesome ripgrep and enables it\nto search in pdf, docx, sqlite, jpg, movie subtitles (mkv, mp4), etc.\n",

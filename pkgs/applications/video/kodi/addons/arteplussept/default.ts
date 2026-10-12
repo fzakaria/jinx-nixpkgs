@@ -2,12 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 18, 5], ["hash", 19, 5]], [["attrPath", 30, 7]], [["updateScript", 29, 5]], [["homepage", 35, 5], ["description", 36, 5], ["license", 37, 5], ["teams", 38, 5]], [["pname", 13, 3], ["namespace", 14, 3], ["version", 15, 3], ["src", 17, 3], ["propagatedBuildInputs", 22, 3], ["passthru", 28, 3], ["meta", 34, 3]]]);
 const formals$1 = { args: { lib: false, rel: false, buildKodiAddon: false, fetchzip: false, addonUpdateScript: false, dateutil: false, requests: false, xbmcswift2: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["attrPath", 30, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["updateScript", 29, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["homepage", 35, 5], ["description", 36, 5], ["license", 37, 5], ["teams", 38, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 13, 3], ["namespace", 14, 3], ["version", 15, 3], ["src", 17, 3], ["propagatedBuildInputs", 22, 3], ["passthru", 28, 3], ["meta", 34, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,24 +20,24 @@ export default nix.lambda((args) => (() => {
       const namespace = "plugin.video.arteplussept";
       const version = "2.0.1";
       const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://mirrors.kodi.tv/addons/${nix.app(nix.sel(lib, "toLower"), rel)}/${namespace}/${namespace}-${version}.zip`),
           hash: "sha256-gXILzHuenRgEapkVYhcL0TVKkoWup7pTdaICLJikkro=",
         }))));
       const propagatedBuildInputs = nix.thunk(() => [dateutil, requests, xbmcswift2]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(addonUpdateScript, nix.thunk(() => ({ [nix.POS]: pos$2, attrPath: "kodi.packages.arteplussept" })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(addonUpdateScript, nix.thunk(() => ({ [nix.POS]: $pos[1], attrPath: "kodi.packages.arteplussept" })))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://github.com/thomas-ernest/plugin.video.arteplussept",
         description: "Watch videos available on Arte+7",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "kodi"))]),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         namespace,
         version,

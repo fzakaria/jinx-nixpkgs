@@ -2,10 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/swanstation.nix", [[["owner", 12, 5], ["repo", 13, 5], ["rev", 14, 5], ["hash", 15, 5]], [["description", 25, 5], ["homepage", 26, 5], ["license", 27, 5]], [["core", 8, 3], ["version", 9, 3], ["src", 11, 3], ["extraNativeBuildInputs", 18, 3], ["makefile", 19, 3], ["cmakeFlags", 20, 3], ["meta", 24, 3]]]);
 const formals$1 = { args: { lib: false, cmake: false, fetchFromGitHub: false, mkLibretroCore: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/swanstation.nix", [["owner", 12, 5], ["repo", 13, 5], ["rev", 14, 5], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/swanstation.nix", [["description", 25, 5], ["homepage", 26, 5], ["license", 27, 5]]);
-const pos$3 = nix.positions(here + "/swanstation.nix", [["core", 8, 3], ["version", 9, 3], ["src", 11, 3], ["extraNativeBuildInputs", 18, 3], ["makefile", 19, 3], ["cmakeFlags", 20, 3], ["meta", 24, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const mkLibretroCore = nix.arg($, "mkLibretroCore");
   return nix.app(mkLibretroCore, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       core: "swanstation",
       version: "0-unstable-2026-10-08",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "libretro",
           repo: "swanstation",
           rev: "1db8c9b6866d9d22ee79447762e943a1635d2133",
@@ -28,7 +26,7 @@ export default nix.lambda((args) => (() => {
       makefile: "Makefile",
       cmakeFlags: nix.thunk(() => ["-DBUILD_LIBRETRO_CORE=ON"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Port of SwanStation (a fork of DuckStation) to libretro",
         homepage: "https://github.com/libretro/swanstation",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 13], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]], [["description", 25, 5], ["homepage", 26, 5], ["changelog", 27, 5], ["maintainers", 28, 5]], [["owner", 9, 3], ["domain", 10, 3], ["version", 11, 3], ["src", 13, 3], ["dependencies", 20, 3], ["meta", 24, 3]]]);
 const formals$1 = { args: { lib: false, buildHomeAssistantComponent: false, fetchFromGitHub: false, "python-miio": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 13], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 25, 5], ["homepage", 26, 5], ["changelog", 27, 5], ["maintainers", 28, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["owner", 9, 3], ["domain", 10, 3], ["version", 11, 3], ["src", 13, 3], ["dependencies", 20, 3], ["meta", 24, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const domain = "miheater";
       const version = "2.1.2";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: owner,
           repo: "homeassistant-mi-heater",
           tag: version,
@@ -26,7 +24,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const dependencies = nix.thunk(() => [python_miio]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Home Assistant integration for MiHeaters",
         homepage: "https://github.com/ee02217/homeassistant-mi-heater",
         changelog: nix.thunk(() => nix.str`https://github.com/ee02217/homeassistant-mi-heater/releases/tag/${version}`),
@@ -35,7 +33,7 @@ export default nix.lambda((args) => (() => {
           return [nix.thunk(() => nix.lookup(w, "baksa"))];
         })()),
       }));
-      return { [nix.POS]: pos$3, owner, domain, version, src, dependencies, meta };
+      return { [nix.POS]: $pos[2], owner, domain, version, src, dependencies, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

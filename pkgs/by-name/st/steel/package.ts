@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]], [["OPENSSL_NO_VENDOR", 103, 5], ["RUSTONIG_SYSTEM_LIBONIG", 104, 5], ["STEEL_HOME", 105, 5]], [["extraArgs", 109, 5]], [["updateScript", 108, 12]], [["description", 116, 5], ["homepage", 117, 5], ["license", 118, 5], ["maintainers", 122, 5], ["mainProgram", 123, 5], ["platforms", 124, 5], ["sourceProvenance", 125, 5]], [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["cargoHash", 31, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 41, 3], ["postPatch", 50, 3], ["cargoBuildFlags", 54, 3], ["doCheck", 70, 3], ["postInstall", 72, 3], ["postFixup", 92, 3], ["env", 102, 3], ["passthru", 108, 3], ["meta", 115, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, rustPlatform: false, fetchFromGitHub: false, curl: false, "pkg-config": false, makeBinaryWrapper: false, installShellFiles: false, libgit2: false, oniguruma: false, openssl: false, sqlite: false, zlib: false, "nix-update-script": false, includeLSP: true, includeForge: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["OPENSSL_NO_VENDOR", 103, 5], ["RUSTONIG_SYSTEM_LIBONIG", 104, 5], ["STEEL_HOME", 105, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["extraArgs", 109, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 108, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 116, 5], ["homepage", 117, 5], ["license", 118, 5], ["maintainers", 122, 5], ["mainProgram", 123, 5], ["platforms", 124, 5], ["sourceProvenance", 125, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["cargoHash", 31, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 41, 3], ["postPatch", 50, 3], ["cargoBuildFlags", 54, 3], ["doCheck", 70, 3], ["postInstall", 72, 3], ["postFixup", 92, 3], ["env", 102, 3], ["passthru", 108, 3], ["meta", 115, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const includeLSP = nix.argOr($, "includeLSP", () => true);
   const includeForge = nix.argOr($, "includeForge", () => true);
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "steel",
       version: "0.8.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "mattwparas",
           repo: "steel",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -54,17 +49,20 @@ export default nix.lambda((args) => (() => {
       postInstall: nix.thunk(() => nix.add("mkdir -p $out/lib/steel\n\nsubstituteInPlace crates/forge/installer/download.scm \\\n  --replace-fail '\"cargo-steel-lib\"' '\"$out/bin/cargo-steel-lib\"'\n\npushd cogs\n$out/bin/steel install.scm\npopd\n\nmv $out/lib/steel/bin/repl-connect $out/bin\nrm -rf $out/lib/steel/bin\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "installShellCompletion --cmd steel \\\n  --bash <($out/bin/steel completions bash) \\\n  --fish <($out/bin/steel completions fish) \\\n  --zsh <($out/bin/steel completions zsh)\n"))),
       postFixup: nix.thunk(() => nix.app(nix.sel(lib, "concatMapStringsSep"), "\n", (bin) => nix.str`wrapProgram "$out/bin/${bin}" --prefix SEARCH_STEEL_PATHS : "$out/lib/steel/cogs"`, nix.thunk(() => ["cargo-steel-lib", "forge", "steel", "steel-language-server"]))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         OPENSSL_NO_VENDOR: true,
         RUSTONIG_SYSTEM_LIBONIG: true,
         STEEL_HOME: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/lib/steel`),
       })),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$3, extraArgs: nix.thunk(() => ["--version-regex", "^v(.*)"]) })))),
+        [nix.POS]: $pos[3],
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
+            [nix.POS]: $pos[2],
+            extraArgs: nix.thunk(() => ["--version-regex", "^v(.*)"]),
+          })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Embedded scheme interpreter in Rust",
         homepage: "https://github.com/mattwparas/steel",
         license: nix.thunk(() => (() => {

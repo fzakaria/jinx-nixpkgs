@@ -2,43 +2,36 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/krill.nix", [[["maintainers", 7, 5], ["teams", 8, 5]], [["ta_aia", 20, 11], ["ta_uri", 21, 11], ["rrdp_base_uri", 22, 11], ["rsync_jail", 23, 11]], [["admin_token", 15, 9], ["bgp_riswhois_enabled", 17, 9], ["testbed", 19, 9]], [["enable", 13, 7], ["settings", 14, 7]], [["krill", 12, 14]], [["services", 12, 5]], [["machine", 11, 9]], [["name", 4, 3], ["meta", 6, 3], ["nodes", 11, 3], ["testScript", 29, 3]]]);
 const formals$1 = { args: { pkgs: false, lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/krill.nix", [["maintainers", 7, 5], ["teams", 8, 5]]);
-const pos$2 = nix.positions(here + "/krill.nix", [["ta_aia", 20, 11], ["ta_uri", 21, 11], ["rrdp_base_uri", 22, 11], ["rsync_jail", 23, 11]]);
-const pos$3 = nix.positions(here + "/krill.nix", [["admin_token", 15, 9], ["bgp_riswhois_enabled", 17, 9], ["testbed", 19, 9]]);
-const pos$4 = nix.positions(here + "/krill.nix", [["enable", 13, 7], ["settings", 14, 7]]);
-const pos$5 = nix.positions(here + "/krill.nix", [["krill", 12, 14]]);
-const pos$6 = nix.positions(here + "/krill.nix", [["services", 12, 5]]);
-const pos$7 = nix.positions(here + "/krill.nix", [["machine", 11, 9]]);
-const pos$8 = nix.positions(here + "/krill.nix", [["name", 4, 3], ["meta", 6, 3], ["nodes", 11, 3], ["testScript", 29, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$8,
+    [nix.POS]: $pos[7],
     name: "krill",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "stepbrobd"))]),
       teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "ngi"))]),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       machine: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         services: nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           krill: nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             enable: true,
             settings: nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               admin_token: "krill-nixos-test",
               bgp_riswhois_enabled: false,
               testbed: nix.thunk(() => ({
-                [nix.POS]: pos$2,
+                [nix.POS]: $pos[1],
                 ta_aia: "rsync://krill.test/ta/ta.cer",
                 ta_uri: "https://krill.test/ta/ta.cer",
                 rrdp_base_uri: "https://krill.test/rrdp/",

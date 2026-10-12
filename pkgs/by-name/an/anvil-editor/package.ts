@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 27, 5], ["hash", 28, 5]], [["pname", 36, 5], ["version", 37, 26], ["src", 37, 34], ["meta", 37, 38], ["vendorHash", 38, 5], ["modRoot", 39, 5], ["postPatch", 41, 5]], [["name", 74, 7], ["exec", 75, 7], ["icon", 76, 7], ["desktopName", 77, 7], ["comment", 78, 7], ["categories", 79, 7], ["startupWMClass", 83, 7]], [["description", 93, 5], ["homepage", 94, 5], ["license", 95, 5], ["mainProgram", 96, 5], ["maintainers", 97, 5], ["platforms", 98, 5]], [["pname", 21, 3], ["version", 22, 3], ["src", 26, 3], ["modRoot", 31, 3], ["vendorHash", 33, 3], ["anvilExtras", 35, 3], ["nativeBuildInputs", 50, 3], ["buildInputs", 58, 3], ["checkFlags", 70, 3], ["desktopItems", 72, 3], ["postInstall", 87, 3], ["meta", 92, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildGoModule: false, fetchzip: false, "pkg-config": false, copyDesktopItems: false, makeDesktopItem: false, desktopToDarwinBundle: false, wayland: false, libxkbcommon: false, "vulkan-headers": false, libGL: false, libxfixes: false, libxcursor: false, libx11: false, libxcb: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 36, 5], ["version", 37, 26], ["src", 37, 34], ["meta", 37, 38], ["vendorHash", 38, 5], ["modRoot", 39, 5], ["postPatch", 41, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 74, 7], ["exec", 75, 7], ["icon", 76, 7], ["desktopName", 77, 7], ["comment", 78, 7], ["categories", 79, 7], ["startupWMClass", 83, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 93, 5], ["homepage", 94, 5], ["license", 95, 5], ["mainProgram", 96, 5], ["maintainers", 97, 5], ["platforms", 98, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 3], ["src", 26, 3], ["modRoot", 31, 3], ["vendorHash", 33, 3], ["anvilExtras", 35, 3], ["nativeBuildInputs", 50, 3], ["buildInputs", 58, 3], ["checkFlags", 70, 3], ["desktopItems", 72, 3], ["postInstall", 87, 3], ["meta", 92, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,18 +24,18 @@ export default nix.lambda((args) => (() => {
   const libx11 = nix.arg($, "libx11");
   const libxcb = nix.arg($, "libxcb");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "anvil-editor",
       version: "0.7",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://anvil-editor.net/releases/anvil-src-v${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-9lJg8IMt6+GJm5a7j7ZyhbwvAmlBKvtdOv9FD9MQdrA=",
         })))),
       modRoot: "anvil/editor",
       vendorHash: "sha256-Q2iVB5pvP2/VXjdSwWVkdqrVUj/nIiC/VHyD5nP9ilE=",
       anvilExtras: nix.thunk(() => nix.app(buildGoModule, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: "anvil-editor-extras",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -67,7 +63,7 @@ popd
       checkFlags: nix.thunk(() => ["-skip=^TestClearAfter$"]),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "anvil",
             exec: "anvil",
             icon: "anvil",
@@ -81,7 +77,7 @@ popd
 cp ${nix.sel(finalAttrs, "anvilExtras")}/bin/* $out/bin
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Graphical, multi-pane tiling editor inspired by Acme",
         homepage: "https://anvil-editor.net",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

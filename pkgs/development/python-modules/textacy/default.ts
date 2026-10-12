@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 31, 5], ["repo", 32, 5], ["tag", 33, 5], ["hash", 34, 5]], [["vis", 56, 5]], [["description", 73, 5], ["homepage", 74, 5], ["changelog", 75, 5], ["license", 76, 5], ["maintainers", 77, 5]], [["pname", 25, 3], ["version", 26, 3], ["pyproject", 27, 3], ["__structuredAttrs", 28, 3], ["src", 30, 3], ["build-system", 37, 3], ["dependencies", 39, 3], ["optional-dependencies", 55, 3], ["nativeCheckInputs", 59, 3], ["enabledTestPaths", 61, 3], ["pythonImportsCheck", 70, 3], ["meta", 72, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, cachetools: false, cytoolz: false, fetchPypi: false, floret: false, jellyfish: false, joblib: false, matplotlib: false, networkx: false, numpy: false, pyphen: false, pytestCheckHook: false, requests: false, "scikit-learn": false, scipy: false, spacy: false, tqdm: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 31, 5], ["repo", 32, 5], ["tag", 33, 5], ["hash", 34, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["vis", 56, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 73, 5], ["homepage", 74, 5], ["changelog", 75, 5], ["license", 76, 5], ["maintainers", 77, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 25, 3], ["version", 26, 3], ["pyproject", 27, 3], ["__structuredAttrs", 28, 3], ["src", 30, 3], ["build-system", 37, 3], ["dependencies", 39, 3], ["optional-dependencies", 55, 3], ["nativeCheckInputs", 59, 3], ["enabledTestPaths", 61, 3], ["pythonImportsCheck", 70, 3], ["meta", 72, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,13 +28,13 @@ export default nix.lambda((args) => (() => {
   const spacy = nix.arg($, "spacy");
   const tqdm = nix.arg($, "tqdm");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "textacy",
       version: "0.13.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "chartbeat-labs",
           repo: "textacy",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -59,7 +56,7 @@ export default nix.lambda((args) => (() => {
         spacy,
         tqdm,
       ]),
-      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$2, vis: nix.thunk(() => [matplotlib]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: $pos[1], vis: nix.thunk(() => [matplotlib]) })),
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
       enabledTestPaths: nix.thunk(() => [
         "tests/test_constants.py",
@@ -70,7 +67,7 @@ export default nix.lambda((args) => (() => {
       ]),
       pythonImportsCheck: nix.thunk(() => ["textacy"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Higher-level text processing, built on spaCy",
         homepage: "https://textacy.readthedocs.io/",
         changelog: nix.thunk(() => nix.str`https://github.com/chartbeat-labs/textacy/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

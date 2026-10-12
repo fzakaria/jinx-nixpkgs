@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["vtk", 40, 25]], [["owner", 55, 5], ["repo", 56, 5], ["tag", 57, 5], ["hash", 58, 5]], [["NIX_CFLAGS_COMPILE", 114, 7]], [["updateScript", 125, 5]], [["description", 129, 5], ["homepage", 130, 5], ["changelog", 131, 5], ["license", 132, 5], ["maintainers", 133, 5], ["platforms", 134, 5]], [["pname", 43, 3], ["version", 44, 3], ["outputs", 46, 3], ["__structuredAttrs", 51, 3], ["strictDeps", 52, 3], ["src", 54, 3], ["postPatch", 61, 3], ["nativeBuildInputs", 78, 3], ["buildInputs", 84, 3], ["env", 114, 3], ["cmakeFlags", 116, 3], ["postInstall", 120, 3], ["passthru", 124, 3], ["meta", 128, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, qt6: false, "pkg-config": false, wrapGAppsHook3: false, opencv: false, pcl: false, liblapack: false, libxt: false, libsm: false, libice: false, libusb1: false, "yaml-cpp": false, libnabo: false, libpointmatcher: false, eigen: false, g2o: false, "ceres-solver": false, octomap: false, freenect: false, libdc1394: false, libGL: false, libGLU: false, librealsense: false, vtkWithQt6: false, "zed-open-capture": false, hidapi: false, gitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["vtk", 40, 25]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 55, 5], ["repo", 56, 5], ["tag", 57, 5], ["hash", 58, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 114, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 125, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 129, 5], ["homepage", 130, 5], ["changelog", 131, 5], ["license", 132, 5], ["maintainers", 133, 5], ["platforms", 134, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 43, 3], ["version", 44, 3], ["outputs", 46, 3], ["__structuredAttrs", 51, 3], ["strictDeps", 52, 3], ["src", 54, 3], ["postPatch", 61, 3], ["nativeBuildInputs", 78, 3], ["buildInputs", 84, 3], ["env", 114, 3], ["cmakeFlags", 116, 3], ["postInstall", 120, 3], ["passthru", 124, 3], ["meta", 128, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -42,16 +37,16 @@ export default nix.lambda((args) => (() => {
   const zed_open_capture = nix.arg($, "zed-open-capture");
   const hidapi = nix.arg($, "hidapi");
   const gitUpdater = nix.arg($, "gitUpdater");
-  const pcl$ = nix.thunk(() => nix.app(nix.sel(pcl, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, vtk: vtkWithQt6 }))));
+  const pcl$ = nix.thunk(() => nix.app(nix.sel(pcl, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], vtk: vtkWithQt6 }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "rtabmap",
       version: "0.23.8",
       outputs: nix.thunk(() => ["out", "dev"]),
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "introlab",
           repo: "rtabmap",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -89,17 +84,17 @@ export default nix.lambda((args) => (() => {
         zed_open_capture,
         hidapi,
       ]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$3, NIX_CFLAGS_COMPILE: "-Wno-c++20-extensions" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[2], NIX_CFLAGS_COMPILE: "-Wno-c++20-extensions" })),
       cmakeFlags: nix.thunk(() => [
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeFeature"), "CMAKE_INCLUDE_PATH", nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getDev"), pcl$)}/include/pcl-${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(pcl$, "version")))}`))),
       ]),
       postInstall: "moveToOutput \"lib/*/*.cmake\" \"${!outputDev}\"\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Real-Time Appearance-Based 3D Mapping",
         homepage: "https://introlab.github.io/rtabmap/",
         changelog: nix.thunk(() => nix.str`https://github.com/introlab/rtabmap/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

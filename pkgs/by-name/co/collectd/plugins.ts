@@ -2,60 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/plugins.nix", [[["buildInputs", 54, 10]], [["buildInputs", 58, 12]], [["buildInputs", 59, 12]], [["buildInputs", 63, 10]], [["buildInputs", 67, 10]], [["buildInputs", 68, 10]], [["buildInputs", 69, 15]], [["buildInputs", 73, 14]], [["buildInputs", 77, 9]], [["buildInputs", 78, 10]], [["buildInputs", 81, 9]], [["buildInputs", 82, 10]], [["buildInputs", 83, 14]], [["buildInputs", 90, 10]], [["buildInputs", 95, 18]], [["buildInputs", 96, 9]], [["buildInputs", 97, 15]], [["buildInputs", 101, 12]], [["buildInputs", 102, 10]], [["buildInputs", 103, 11]], [["buildInputs", 106, 13]], [["buildInputs", 112, 13]], [["buildInputs", 113, 11]], [["buildInputs", 114, 20]], [["buildInputs", 118, 18]], [["buildInputs", 119, 14]], [["buildInputs", 120, 16]], [["buildInputs", 121, 15]], [["buildInputs", 122, 10]], [["buildInputs", 123, 11]], [["buildInputs", 124, 10]], [["buildInputs", 125, 16]], [["buildInputs", 126, 12]], [["buildInputs", 127, 11]], [["buildInputs", 128, 15]], [["buildInputs", 132, 13]], [["buildInputs", 136, 13]], [["buildInputs", 137, 12]], [["buildInputs", 141, 11]], [["buildInputs", 145, 10]], [["buildInputs", 146, 16]], [["buildInputs", 147, 13]], [["buildInputs", 151, 10]], [["buildInputs", 160, 16]], [["buildInputs", 164, 17]], [["buildInputs", 168, 15]], [["buildInputs", 169, 19]], [["buildInputs", 170, 22]], [["buildInputs", 174, 17]], [["buildInputs", 175, 19]], [["buildInputs", 179, 12]], [["amqp", 54, 5], ["apache", 58, 5], ["ascent", 59, 5], ["bind", 63, 5], ["ceph", 67, 5], ["curl", 68, 5], ["curl_json", 69, 5], ["curl_xml", 73, 5], ["dbi", 77, 5], ["disk", 78, 5], ["dns", 81, 5], ["ipmi", 82, 5], ["iptables", 83, 5], ["java", 90, 5], ["log_logstash", 95, 5], ["lua", 96, 5], ["memcachec", 97, 5], ["modbus", 101, 5], ["mqtt", 102, 5], ["mysql", 103, 5], ["netlink", 106, 5], ["network", 112, 5], ["nginx", 113, 5], ["notify_desktop", 114, 5], ["notify_email", 118, 5], ["openldap", 119, 5], ["ovs_events", 120, 5], ["ovs_stats", 121, 5], ["perl", 122, 5], ["pinba", 123, 5], ["ping", 124, 5], ["postgresql", 125, 5], ["python", 126, 5], ["redis", 127, 5], ["rrdcached", 128, 5], ["rrdtool", 132, 5], ["sensors", 136, 5], ["sigrok", 137, 5], ["smart", 141, 5], ["snmp", 145, 5], ["snmp_agent", 146, 5], ["varnish", 147, 5], ["virt", 151, 5], ["write_http", 160, 5], ["write_kafka", 164, 5], ["write_log", 168, 5], ["write_mongodb", 169, 5], ["write_prometheus", 170, 5], ["write_redis", 174, 5], ["write_riemann", 175, 5], ["xencpu", 179, 5]], [["configureFlags", 199, 11], ["buildInputs", 199, 26]]]);
 const formals$1 = { args: { lib: false, stdenv: false, curl: false, hiredis: false, iptables: false, jdk: false, libatasmart: false, libdbi: false, libesmtp: false, libgcrypt: false, libmemcached: false, cyrus_sasl: false, libmodbus: false, libmicrohttpd: false, libmnl: false, libmysqlclient: false, libnotify: false, "gdk-pixbuf": false, liboping: false, libpcap: false, libpq: false, libsigrok: false, libvirt: false, libxml2: false, lua: false, lvm2: false, lm_sensors: false, mongoc: false, mosquitto: false, "net-snmp": false, openldap: false, openipmi: false, perl: false, protobufc: false, python3: false, "rabbitmq-c": false, rdkafka: false, riemann_c_client: false, rrdtool: false, udev: false, varnish: false, xen: false, yajl: false, enabledPlugins: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/plugins.nix", [["buildInputs", 54, 10]]);
-const pos$2 = nix.positions(here + "/plugins.nix", [["buildInputs", 58, 12]]);
-const pos$3 = nix.positions(here + "/plugins.nix", [["buildInputs", 59, 12]]);
-const pos$4 = nix.positions(here + "/plugins.nix", [["buildInputs", 63, 10]]);
-const pos$5 = nix.positions(here + "/plugins.nix", [["buildInputs", 67, 10]]);
-const pos$6 = nix.positions(here + "/plugins.nix", [["buildInputs", 68, 10]]);
-const pos$7 = nix.positions(here + "/plugins.nix", [["buildInputs", 69, 15]]);
-const pos$8 = nix.positions(here + "/plugins.nix", [["buildInputs", 73, 14]]);
-const pos$9 = nix.positions(here + "/plugins.nix", [["buildInputs", 77, 9]]);
-const pos$10 = nix.positions(here + "/plugins.nix", [["buildInputs", 78, 10]]);
-const pos$11 = nix.positions(here + "/plugins.nix", [["buildInputs", 81, 9]]);
-const pos$12 = nix.positions(here + "/plugins.nix", [["buildInputs", 82, 10]]);
-const pos$13 = nix.positions(here + "/plugins.nix", [["buildInputs", 83, 14]]);
-const pos$14 = nix.positions(here + "/plugins.nix", [["buildInputs", 90, 10]]);
-const pos$15 = nix.positions(here + "/plugins.nix", [["buildInputs", 95, 18]]);
-const pos$16 = nix.positions(here + "/plugins.nix", [["buildInputs", 96, 9]]);
-const pos$17 = nix.positions(here + "/plugins.nix", [["buildInputs", 97, 15]]);
-const pos$18 = nix.positions(here + "/plugins.nix", [["buildInputs", 101, 12]]);
-const pos$19 = nix.positions(here + "/plugins.nix", [["buildInputs", 102, 10]]);
-const pos$20 = nix.positions(here + "/plugins.nix", [["buildInputs", 103, 11]]);
-const pos$21 = nix.positions(here + "/plugins.nix", [["buildInputs", 106, 13]]);
-const pos$22 = nix.positions(here + "/plugins.nix", [["buildInputs", 112, 13]]);
-const pos$23 = nix.positions(here + "/plugins.nix", [["buildInputs", 113, 11]]);
-const pos$24 = nix.positions(here + "/plugins.nix", [["buildInputs", 114, 20]]);
-const pos$25 = nix.positions(here + "/plugins.nix", [["buildInputs", 118, 18]]);
-const pos$26 = nix.positions(here + "/plugins.nix", [["buildInputs", 119, 14]]);
-const pos$27 = nix.positions(here + "/plugins.nix", [["buildInputs", 120, 16]]);
-const pos$28 = nix.positions(here + "/plugins.nix", [["buildInputs", 121, 15]]);
-const pos$29 = nix.positions(here + "/plugins.nix", [["buildInputs", 122, 10]]);
-const pos$30 = nix.positions(here + "/plugins.nix", [["buildInputs", 123, 11]]);
-const pos$31 = nix.positions(here + "/plugins.nix", [["buildInputs", 124, 10]]);
-const pos$32 = nix.positions(here + "/plugins.nix", [["buildInputs", 125, 16]]);
-const pos$33 = nix.positions(here + "/plugins.nix", [["buildInputs", 126, 12]]);
-const pos$34 = nix.positions(here + "/plugins.nix", [["buildInputs", 127, 11]]);
-const pos$35 = nix.positions(here + "/plugins.nix", [["buildInputs", 128, 15]]);
-const pos$36 = nix.positions(here + "/plugins.nix", [["buildInputs", 132, 13]]);
-const pos$37 = nix.positions(here + "/plugins.nix", [["buildInputs", 136, 13]]);
-const pos$38 = nix.positions(here + "/plugins.nix", [["buildInputs", 137, 12]]);
-const pos$39 = nix.positions(here + "/plugins.nix", [["buildInputs", 141, 11]]);
-const pos$40 = nix.positions(here + "/plugins.nix", [["buildInputs", 145, 10]]);
-const pos$41 = nix.positions(here + "/plugins.nix", [["buildInputs", 146, 16]]);
-const pos$42 = nix.positions(here + "/plugins.nix", [["buildInputs", 147, 13]]);
-const pos$43 = nix.positions(here + "/plugins.nix", [["buildInputs", 151, 10]]);
-const pos$44 = nix.positions(here + "/plugins.nix", [["buildInputs", 160, 16]]);
-const pos$45 = nix.positions(here + "/plugins.nix", [["buildInputs", 164, 17]]);
-const pos$46 = nix.positions(here + "/plugins.nix", [["buildInputs", 168, 15]]);
-const pos$47 = nix.positions(here + "/plugins.nix", [["buildInputs", 169, 19]]);
-const pos$48 = nix.positions(here + "/plugins.nix", [["buildInputs", 170, 22]]);
-const pos$49 = nix.positions(here + "/plugins.nix", [["buildInputs", 174, 17]]);
-const pos$50 = nix.positions(here + "/plugins.nix", [["buildInputs", 175, 19]]);
-const pos$51 = nix.positions(here + "/plugins.nix", [["buildInputs", 179, 12]]);
-const pos$52 = nix.positions(here + "/plugins.nix", [["amqp", 54, 5], ["apache", 58, 5], ["ascent", 59, 5], ["bind", 63, 5], ["ceph", 67, 5], ["curl", 68, 5], ["curl_json", 69, 5], ["curl_xml", 73, 5], ["dbi", 77, 5], ["disk", 78, 5], ["dns", 81, 5], ["ipmi", 82, 5], ["iptables", 83, 5], ["java", 90, 5], ["log_logstash", 95, 5], ["lua", 96, 5], ["memcachec", 97, 5], ["modbus", 101, 5], ["mqtt", 102, 5], ["mysql", 103, 5], ["netlink", 106, 5], ["network", 112, 5], ["nginx", 113, 5], ["notify_desktop", 114, 5], ["notify_email", 118, 5], ["openldap", 119, 5], ["ovs_events", 120, 5], ["ovs_stats", 121, 5], ["perl", 122, 5], ["pinba", 123, 5], ["ping", 124, 5], ["postgresql", 125, 5], ["python", 126, 5], ["redis", 127, 5], ["rrdcached", 128, 5], ["rrdtool", 132, 5], ["sensors", 136, 5], ["sigrok", 137, 5], ["smart", 141, 5], ["snmp", 145, 5], ["snmp_agent", 146, 5], ["varnish", 147, 5], ["virt", 151, 5], ["write_http", 160, 5], ["write_kafka", 164, 5], ["write_log", 168, 5], ["write_mongodb", 169, 5], ["write_prometheus", 170, 5], ["write_redis", 174, 5], ["write_riemann", 175, 5], ["xencpu", 179, 5]]);
-const pos$53 = nix.positions(here + "/plugins.nix", [["configureFlags", 199, 11], ["buildInputs", 199, 26]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -104,101 +52,111 @@ export default nix.lambda((args) => (() => {
   const yajl = nix.arg($, "yajl");
   const enabledPlugins = nix.argOr($, "enabledPlugins", () => null);
   const plugins = nix.thunk(() => ({
-    [nix.POS]: pos$52,
+    [nix.POS]: $pos[51],
     amqp: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       buildInputs: nix.thunk(() => nix.concat([yajl], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [rabbitmq_c])))),
     })),
-    apache: nix.thunk(() => ({ [nix.POS]: pos$2, buildInputs: nix.thunk(() => [curl]) })),
-    ascent: nix.thunk(() => ({ [nix.POS]: pos$3, buildInputs: nix.thunk(() => [curl, libxml2]) })),
-    bind: nix.thunk(() => ({ [nix.POS]: pos$4, buildInputs: nix.thunk(() => [curl, libxml2]) })),
-    ceph: nix.thunk(() => ({ [nix.POS]: pos$5, buildInputs: nix.thunk(() => [yajl]) })),
-    curl: nix.thunk(() => ({ [nix.POS]: pos$6, buildInputs: nix.thunk(() => [curl]) })),
-    curl_json: nix.thunk(() => ({ [nix.POS]: pos$7, buildInputs: nix.thunk(() => [curl, yajl]) })),
-    curl_xml: nix.thunk(() => ({ [nix.POS]: pos$8, buildInputs: nix.thunk(() => [curl, libxml2]) })),
-    dbi: nix.thunk(() => ({ [nix.POS]: pos$9, buildInputs: nix.thunk(() => [libdbi]) })),
+    apache: nix.thunk(() => ({ [nix.POS]: $pos[1], buildInputs: nix.thunk(() => [curl]) })),
+    ascent: nix.thunk(() => ({ [nix.POS]: $pos[2], buildInputs: nix.thunk(() => [curl, libxml2]) })),
+    bind: nix.thunk(() => ({ [nix.POS]: $pos[3], buildInputs: nix.thunk(() => [curl, libxml2]) })),
+    ceph: nix.thunk(() => ({ [nix.POS]: $pos[4], buildInputs: nix.thunk(() => [yajl]) })),
+    curl: nix.thunk(() => ({ [nix.POS]: $pos[5], buildInputs: nix.thunk(() => [curl]) })),
+    curl_json: nix.thunk(() => ({ [nix.POS]: $pos[6], buildInputs: nix.thunk(() => [curl, yajl]) })),
+    curl_xml: nix.thunk(() => ({ [nix.POS]: $pos[7], buildInputs: nix.thunk(() => [curl, libxml2]) })),
+    dbi: nix.thunk(() => ({ [nix.POS]: $pos[8], buildInputs: nix.thunk(() => [libdbi]) })),
     disk: nix.thunk(() => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       buildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [udev]))),
     })),
-    dns: nix.thunk(() => ({ [nix.POS]: pos$11, buildInputs: nix.thunk(() => [libpcap]) })),
-    ipmi: nix.thunk(() => ({ [nix.POS]: pos$12, buildInputs: nix.thunk(() => [openipmi]) })),
+    dns: nix.thunk(() => ({ [nix.POS]: $pos[10], buildInputs: nix.thunk(() => [libpcap]) })),
+    ipmi: nix.thunk(() => ({ [nix.POS]: $pos[11], buildInputs: nix.thunk(() => [openipmi]) })),
     iptables: nix.thunk(() => ({
-      [nix.POS]: pos$13,
+      [nix.POS]: $pos[12],
       buildInputs: nix.thunk(() => nix.concat([libpcap], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [iptables, libmnl])))),
     })),
-    java: nix.thunk(() => ({ [nix.POS]: pos$14, buildInputs: nix.thunk(() => [jdk, libgcrypt, libxml2]) })),
-    log_logstash: nix.thunk(() => ({ [nix.POS]: pos$15, buildInputs: nix.thunk(() => [yajl]) })),
-    lua: nix.thunk(() => ({ [nix.POS]: pos$16, buildInputs: nix.thunk(() => [lua]) })),
-    memcachec: nix.thunk(() => ({ [nix.POS]: pos$17, buildInputs: nix.thunk(() => [libmemcached, cyrus_sasl]) })),
+    java: nix.thunk(() => ({ [nix.POS]: $pos[13], buildInputs: nix.thunk(() => [jdk, libgcrypt, libxml2]) })),
+    log_logstash: nix.thunk(() => ({ [nix.POS]: $pos[14], buildInputs: nix.thunk(() => [yajl]) })),
+    lua: nix.thunk(() => ({ [nix.POS]: $pos[15], buildInputs: nix.thunk(() => [lua]) })),
+    memcachec: nix.thunk(() => ({
+      [nix.POS]: $pos[16],
+      buildInputs: nix.thunk(() => [libmemcached, cyrus_sasl]),
+    })),
     modbus: nix.thunk(() => ({
-      [nix.POS]: pos$18,
+      [nix.POS]: $pos[17],
       buildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [libmodbus]))),
     })),
-    mqtt: nix.thunk(() => ({ [nix.POS]: pos$19, buildInputs: nix.thunk(() => [mosquitto]) })),
+    mqtt: nix.thunk(() => ({ [nix.POS]: $pos[18], buildInputs: nix.thunk(() => [mosquitto]) })),
     mysql: nix.thunk(() => ({
-      [nix.POS]: pos$20,
+      [nix.POS]: $pos[19],
       buildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.eq(libmysqlclient, null)), nix.thunk(() => [libmysqlclient]))),
     })),
     netlink: nix.thunk(() => ({
-      [nix.POS]: pos$21,
+      [nix.POS]: $pos[20],
       buildInputs: nix.thunk(() => nix.concat([libpcap], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [libmnl])))),
     })),
-    network: nix.thunk(() => ({ [nix.POS]: pos$22, buildInputs: nix.thunk(() => [libgcrypt]) })),
-    nginx: nix.thunk(() => ({ [nix.POS]: pos$23, buildInputs: nix.thunk(() => [curl]) })),
-    notify_desktop: nix.thunk(() => ({ [nix.POS]: pos$24, buildInputs: nix.thunk(() => [libnotify, gdk_pixbuf]) })),
-    notify_email: nix.thunk(() => ({ [nix.POS]: pos$25, buildInputs: nix.thunk(() => [libesmtp]) })),
-    openldap: nix.thunk(() => ({ [nix.POS]: pos$26, buildInputs: nix.thunk(() => [openldap]) })),
-    ovs_events: nix.thunk(() => ({ [nix.POS]: pos$27, buildInputs: nix.thunk(() => [yajl]) })),
-    ovs_stats: nix.thunk(() => ({ [nix.POS]: pos$28, buildInputs: nix.thunk(() => [yajl]) })),
-    perl: nix.thunk(() => ({ [nix.POS]: pos$29, buildInputs: nix.thunk(() => [perl]) })),
-    pinba: nix.thunk(() => ({ [nix.POS]: pos$30, buildInputs: nix.thunk(() => [protobufc]) })),
-    ping: nix.thunk(() => ({ [nix.POS]: pos$31, buildInputs: nix.thunk(() => [liboping]) })),
-    postgresql: nix.thunk(() => ({ [nix.POS]: pos$32, buildInputs: nix.thunk(() => [libpq]) })),
-    python: nix.thunk(() => ({ [nix.POS]: pos$33, buildInputs: nix.thunk(() => [python3]) })),
-    redis: nix.thunk(() => ({ [nix.POS]: pos$34, buildInputs: nix.thunk(() => [hiredis]) })),
-    rrdcached: nix.thunk(() => ({ [nix.POS]: pos$35, buildInputs: nix.thunk(() => [rrdtool, libxml2]) })),
-    rrdtool: nix.thunk(() => ({ [nix.POS]: pos$36, buildInputs: nix.thunk(() => [rrdtool, libxml2]) })),
+    network: nix.thunk(() => ({ [nix.POS]: $pos[21], buildInputs: nix.thunk(() => [libgcrypt]) })),
+    nginx: nix.thunk(() => ({ [nix.POS]: $pos[22], buildInputs: nix.thunk(() => [curl]) })),
+    notify_desktop: nix.thunk(() => ({ [nix.POS]: $pos[23], buildInputs: nix.thunk(() => [libnotify, gdk_pixbuf]) })),
+    notify_email: nix.thunk(() => ({ [nix.POS]: $pos[24], buildInputs: nix.thunk(() => [libesmtp]) })),
+    openldap: nix.thunk(() => ({ [nix.POS]: $pos[25], buildInputs: nix.thunk(() => [openldap]) })),
+    ovs_events: nix.thunk(() => ({ [nix.POS]: $pos[26], buildInputs: nix.thunk(() => [yajl]) })),
+    ovs_stats: nix.thunk(() => ({ [nix.POS]: $pos[27], buildInputs: nix.thunk(() => [yajl]) })),
+    perl: nix.thunk(() => ({ [nix.POS]: $pos[28], buildInputs: nix.thunk(() => [perl]) })),
+    pinba: nix.thunk(() => ({ [nix.POS]: $pos[29], buildInputs: nix.thunk(() => [protobufc]) })),
+    ping: nix.thunk(() => ({ [nix.POS]: $pos[30], buildInputs: nix.thunk(() => [liboping]) })),
+    postgresql: nix.thunk(() => ({ [nix.POS]: $pos[31], buildInputs: nix.thunk(() => [libpq]) })),
+    python: nix.thunk(() => ({ [nix.POS]: $pos[32], buildInputs: nix.thunk(() => [python3]) })),
+    redis: nix.thunk(() => ({ [nix.POS]: $pos[33], buildInputs: nix.thunk(() => [hiredis]) })),
+    rrdcached: nix.thunk(() => ({ [nix.POS]: $pos[34], buildInputs: nix.thunk(() => [rrdtool, libxml2]) })),
+    rrdtool: nix.thunk(() => ({ [nix.POS]: $pos[35], buildInputs: nix.thunk(() => [rrdtool, libxml2]) })),
     sensors: nix.thunk(() => ({
-      [nix.POS]: pos$37,
+      [nix.POS]: $pos[36],
       buildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [lm_sensors]))),
     })),
     sigrok: nix.thunk(() => ({
-      [nix.POS]: pos$38,
+      [nix.POS]: $pos[37],
       buildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [libsigrok, udev]))),
     })),
     smart: nix.thunk(() => ({
-      [nix.POS]: pos$39,
+      [nix.POS]: $pos[38],
       buildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [libatasmart, udev]))),
     })),
     snmp: nix.thunk(() => ({
-      [nix.POS]: pos$40,
+      [nix.POS]: $pos[39],
       buildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [net_snmp]))),
     })),
     snmp_agent: nix.thunk(() => ({
-      [nix.POS]: pos$41,
+      [nix.POS]: $pos[40],
       buildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [net_snmp]))),
     })),
-    varnish: nix.thunk(() => ({ [nix.POS]: pos$42, buildInputs: nix.thunk(() => [curl, varnish]) })),
+    varnish: nix.thunk(() => ({ [nix.POS]: $pos[41], buildInputs: nix.thunk(() => [curl, varnish]) })),
     virt: nix.thunk(() => ({
-      [nix.POS]: pos$43,
+      [nix.POS]: $pos[42],
       buildInputs: nix.thunk(() => nix.concat([libvirt, libxml2, yajl], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [lvm2, udev])))),
     })),
-    write_http: nix.thunk(() => ({ [nix.POS]: pos$44, buildInputs: nix.thunk(() => [curl, yajl]) })),
-    write_kafka: nix.thunk(() => ({ [nix.POS]: pos$45, buildInputs: nix.thunk(() => [yajl, rdkafka]) })),
-    write_log: nix.thunk(() => ({ [nix.POS]: pos$46, buildInputs: nix.thunk(() => [yajl]) })),
-    write_mongodb: nix.thunk(() => ({ [nix.POS]: pos$47, buildInputs: nix.thunk(() => [mongoc]) })),
-    write_prometheus: nix.thunk(() => ({ [nix.POS]: pos$48, buildInputs: nix.thunk(() => [protobufc, libmicrohttpd]) })),
-    write_redis: nix.thunk(() => ({ [nix.POS]: pos$49, buildInputs: nix.thunk(() => [hiredis]) })),
+    write_http: nix.thunk(() => ({ [nix.POS]: $pos[43], buildInputs: nix.thunk(() => [curl, yajl]) })),
+    write_kafka: nix.thunk(() => ({ [nix.POS]: $pos[44], buildInputs: nix.thunk(() => [yajl, rdkafka]) })),
+    write_log: nix.thunk(() => ({ [nix.POS]: $pos[45], buildInputs: nix.thunk(() => [yajl]) })),
+    write_mongodb: nix.thunk(() => ({ [nix.POS]: $pos[46], buildInputs: nix.thunk(() => [mongoc]) })),
+    write_prometheus: nix.thunk(() => ({
+      [nix.POS]: $pos[47],
+      buildInputs: nix.thunk(() => [protobufc, libmicrohttpd]),
+    })),
+    write_redis: nix.thunk(() => ({ [nix.POS]: $pos[48], buildInputs: nix.thunk(() => [hiredis]) })),
     write_riemann: nix.thunk(() => ({
-      [nix.POS]: pos$50,
+      [nix.POS]: $pos[49],
       buildInputs: nix.thunk(() => [protobufc, riemann_c_client]),
     })),
-    xencpu: nix.thunk(() => ({ [nix.POS]: pos$51, buildInputs: nix.thunk(() => [xen]) })),
+    xencpu: nix.thunk(() => ({ [nix.POS]: $pos[50], buildInputs: nix.thunk(() => [xen]) })),
   }));
   const configureFlags = nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.eq(enabledPlugins, null)), nix.thunk(() => nix.concat(["--disable-all-plugins"], nix.builtins.map((plugin) => nix.str`--enable-${plugin}`, enabledPlugins)))));
   const pluginBuildInputs = (plugin) => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(nix.has(plugins, nix.key(nix.force(plugin)))) && nix.asBool(nix.has(nix.sel(plugins, nix.key(nix.force(plugin))), "buildInputs")))), nix.thunk(() => nix.sel(plugins, nix.key(nix.force(plugin)), "buildInputs")));
   const buildInputs = nix.thunk(() => (nix.asBool(nix.eq(enabledPlugins, null)) ? nix.builtins.concatMap(pluginBuildInputs, nix.thunk(() => nix.builtins.attrNames(nix.thunk(() => nix.builtins.removeAttrs(plugins, nix.thunk(() => ["xencpu"])))))) : nix.builtins.concatMap(pluginBuildInputs, enabledPlugins)));
-  return { [nix.POS]: pos$53, configureFlags: configureFlags, buildInputs: buildInputs };
+  return {
+    [nix.POS]: $pos[52],
+    configureFlags: configureFlags,
+    buildInputs: buildInputs,
+  };
 })(), formals$1);
 //# sourceMappingURL=plugins.ts.map

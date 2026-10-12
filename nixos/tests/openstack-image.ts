@@ -2,48 +2,38 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/openstack-image.nix", [[["system", 4, 33], ["config", 4, 40]], [["system", 7, 49], ["pkgs", 7, 56]], [["makeTest", 10, 38], ["pkgs", 10, 47]], [["extraDependencies", 22, 18]], [["pkgs", 26, 19]], [["system", 22, 11], ["nixpkgs", 26, 11]], [["system", 15, 7], ["modules", 16, 7]], [["name", 40, 5], ["image", 41, 13], ["sshPublicKey", 42, 5], ["userData", 43, 5], ["script", 47, 5]], [["broken", 83, 10]], [["name", 82, 5], ["meta", 83, 5], ["image", 84, 13], ["sshPublicKey", 85, 5], ["userData", 86, 5], ["script", 99, 5]], [["metadata", 39, 3], ["userdata", 81, 3]]]);
 const formals$1 = { args: { system: true, config: true, pkgs: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/openstack-image.nix", [["system", 4, 33], ["config", 4, 40]]);
-const pos$2 = nix.positions(here + "/openstack-image.nix", [["system", 7, 49], ["pkgs", 7, 56]]);
-const pos$3 = nix.positions(here + "/openstack-image.nix", [["makeTest", 10, 38], ["pkgs", 10, 47]]);
-const pos$4 = nix.positions(here + "/openstack-image.nix", [["extraDependencies", 22, 18]]);
-const pos$5 = nix.positions(here + "/openstack-image.nix", [["pkgs", 26, 19]]);
-const pos$6 = nix.positions(here + "/openstack-image.nix", [["system", 22, 11], ["nixpkgs", 26, 11]]);
-const pos$7 = nix.positions(here + "/openstack-image.nix", [["system", 15, 7], ["modules", 16, 7]]);
-const pos$8 = nix.positions(here + "/openstack-image.nix", [["name", 40, 5], ["image", 41, 13], ["sshPublicKey", 42, 5], ["userData", 43, 5], ["script", 47, 5]]);
-const pos$9 = nix.positions(here + "/openstack-image.nix", [["broken", 83, 10]]);
-const pos$10 = nix.positions(here + "/openstack-image.nix", [["name", 82, 5], ["meta", 83, 5], ["image", 84, 13], ["sshPublicKey", 85, 5], ["userData", 86, 5], ["script", 99, 5]]);
-const pos$11 = nix.positions(here + "/openstack-image.nix", [["metadata", 39, 3], ["userdata", 81, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const system = nix.argOr($, "system", () => nix.builtins.currentSystem);
   const config = nix.argOr($, "config", () => ({}));
-  const pkgs = nix.argOr($, "pkgs", () => nix.app(nix.builtins.import(nix.path(here, "../..")), nix.thunk(() => ({ [nix.POS]: pos$1, system: system, config: config }))));
-  const w = nix.withScope(nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../lib/testing-python.nix")), nix.thunk(() => ({ [nix.POS]: pos$2, system: system, pkgs: pkgs })))), null);
+  const pkgs = nix.argOr($, "pkgs", () => nix.app(nix.builtins.import(nix.path(here, "../..")), nix.thunk(() => ({ [nix.POS]: $pos[0], system: system, config: config }))));
+  const w = nix.withScope(nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../lib/testing-python.nix")), nix.thunk(() => ({ [nix.POS]: $pos[1], system: system, pkgs: pkgs })))), null);
   const w_1 = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib")), w);
   const w_2 = nix.withScope(nix.thunk(() => nix.app(nix.builtins.import, nix.path(here, "common/ec2.nix"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       makeTest: nix.thunk(() => nix.lookup(w_1, "makeTest")),
       pkgs: pkgs,
     })))), w_1);
   const imageCfg = nix.thunk(() => nix.sel(nix.app(nix.builtins.import, nix.path(here, "../lib/eval-config.nix"), nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       system: null,
       modules: nix.thunk(() => [
         nix.path(here, "../maintainers/scripts/openstack/openstack-image.nix"),
         nix.path(here, "../modules/testing/test-instrumentation.nix"),
         nix.path(here, "../modules/profiles/qemu-guest.nix"),
         nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           system: nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             extraDependencies: nix.thunk(() => (() => {
               const w_3 = nix.withScope(pkgs, w_2);
               return [nix.thunk(() => nix.lookup(w_3, "stdenv"))];
             })()),
           })),
-          nixpkgs: nix.thunk(() => ({ [nix.POS]: pos$5, pkgs: pkgs })),
+          nixpkgs: nix.thunk(() => ({ [nix.POS]: $pos[4], pkgs: pkgs })),
         })),
       ]),
     }))), "config"));
@@ -53,9 +43,9 @@ export default nix.lambda((args) => (() => {
   const snakeOilPrivateKeyFile = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "private-key", snakeOilPrivateKey));
   const snakeOilPublicKey = nix.thunk(() => nix.sel(sshKeys, "snakeOilPublicKey"));
   return {
-    [nix.POS]: pos$11,
+    [nix.POS]: $pos[10],
     metadata: nix.thunk(() => nix.app(nix.lookup(w_2, "makeEc2Test"), nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         name: "openstack-ec2-metadata",
         image: image,
         sshPublicKey: snakeOilPublicKey,
@@ -95,9 +85,9 @@ machine.wait_for_file("/etc/ec2-metadata/user-data")
 `),
       })))),
     userdata: nix.thunk(() => nix.app(nix.lookup(w_2, "makeEc2Test"), nix.thunk(() => ({
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         name: "openstack-ec2-metadata",
-        meta: nix.thunk(() => ({ [nix.POS]: pos$9, broken: true })),
+        meta: nix.thunk(() => ({ [nix.POS]: $pos[8], broken: true })),
         image: image,
         sshPublicKey: snakeOilPublicKey,
         userData: "{ pkgs, ... }:\n{\n  imports = [\n    <nixpkgs/nixos/modules/virtualisation/openstack-config.nix>\n    <nixpkgs/nixos/modules/testing/test-instrumentation.nix>\n    <nixpkgs/nixos/modules/profiles/qemu-guest.nix>\n  ];\n  environment.etc.testFile = {\n    text = \"whoa\";\n  };\n}\n",

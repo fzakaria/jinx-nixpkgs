@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["fetchurl", 11, 44], ["fetchzip", 11, 53]], [["updateScript", 17, 12]], [["description", 20, 5], ["homepage", 21, 5], ["license", 22, 5], ["sourceProvenance", 23, 5], ["maintainers", 24, 5], ["platforms", 29, 5]], [["pname", 14, 3], ["version", 15, 74], ["src", 15, 82], ["passthru", 17, 3], ["meta", 19, 3]]]);
 const formals$1 = { args: { lib: false, callPackage: false, stdenvNoCC: false, fetchurl: false, fetchzip: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["fetchurl", 11, 44], ["fetchzip", 11, 53]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 17, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 20, 5], ["homepage", 21, 5], ["license", 22, 5], ["sourceProvenance", 23, 5], ["maintainers", 24, 5], ["platforms", 29, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 74], ["src", 15, 82], ["passthru", 17, 3], ["meta", 19, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,17 +15,17 @@ export default nix.lambda((args) => (() => {
   const from = nix.thunk(() => nix.sel(stdenvNoCC, "hostPlatform"));
   const isDarwin = nix.thunk(() => nix.attr(from, "isDarwin"));
   const system = nix.thunk(() => nix.attr(from, "system"));
-  const sources = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./sources.nix")), nix.thunk(() => ({ [nix.POS]: pos$1, fetchurl: fetchurl, fetchzip: fetchzip }))));
+  const sources = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./sources.nix")), nix.thunk(() => ({ [nix.POS]: $pos[0], fetchurl: fetchurl, fetchzip: fetchzip }))));
   return nix.app(callPackage, nix.thunk(() => (nix.asBool(isDarwin) ? nix.path(here, "./darwin.nix") : nix.path(here, "./linux.nix"))), nix.thunk(() => (() => {
       const from_1 = nix.thunk(() => nix.selOr(sources, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${system}`)), nix.key(nix.force(system))));
       return {
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "fastmail-desktop",
       version: nix.thunk(() => nix.attr(from_1, "version")),
       src: nix.thunk(() => nix.attr(from_1, "src")),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[1], updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Dedicated desktop app for Fastmail",
         homepage: "https://www.fastmail.com/blog/desktop-app/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

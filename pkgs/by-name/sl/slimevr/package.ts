@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5], ["fetchSubmodules", 27, 5]], [["pname", 31, 5], ["version", 32, 26], ["src", 32, 34], ["pnpm", 33, 5], ["fetcherVersion", 34, 5], ["hash", 35, 5]], [["version", 41, 7]], [["ELECTRON_SKIP_BINARY_DOWNLOAD", 69, 7]], [["name", 108, 7], ["desktopName", 109, 7], ["genericName", 110, 7], ["comment", 111, 7], ["categories", 112, 7], ["keywords", 113, 7], ["icon", 120, 7], ["exec", 121, 7]], [["updateScript", 125, 12]], [["homepage", 128, 5], ["changelog", 129, 5], ["description", 130, 5], ["longDescription", 131, 5], ["license", 149, 5], ["maintainers", 153, 5], ["platforms", 157, 5], ["broken", 158, 5], ["mainProgram", 159, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["pnpmDeps", 30, 3], ["patches", 38, 3], ["strictDeps", 49, 3], ["nativeBuildInputs", 51, 3], ["preBuild", 62, 3], ["doCheck", 66, 3], ["doInstallCheck", 67, 3], ["env", 69, 3], ["buildPhase", 71, 3], ["installPhase", 85, 3], ["desktopItems", 106, 3], ["passthru", 125, 3], ["meta", 127, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchPnpmDeps: false, replaceVars: false, nodejs: false, pnpmConfigHook: false, pnpm_10: false, electron: false, makeWrapper: false, "slimevr-server": false, copyDesktopItems: false, makeDesktopItem: false, udevCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5], ["fetchSubmodules", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 31, 5], ["version", 32, 26], ["src", 32, 34], ["pnpm", 33, 5], ["fetcherVersion", 34, 5], ["hash", 35, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 41, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["ELECTRON_SKIP_BINARY_DOWNLOAD", 69, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["name", 108, 7], ["desktopName", 109, 7], ["genericName", 110, 7], ["comment", 111, 7], ["categories", 112, 7], ["keywords", 113, 7], ["icon", 120, 7], ["exec", 121, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["updateScript", 125, 12]]);
-const pos$7 = nix.positions(here + "/package.nix", [["homepage", 128, 5], ["changelog", 129, 5], ["description", 130, 5], ["longDescription", 131, 5], ["license", 149, 5], ["maintainers", 153, 5], ["platforms", 157, 5], ["broken", 158, 5], ["mainProgram", 159, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["pnpmDeps", 30, 3], ["patches", 38, 3], ["strictDeps", 49, 3], ["nativeBuildInputs", 51, 3], ["preBuild", 62, 3], ["doCheck", 66, 3], ["doInstallCheck", 67, 3], ["env", 69, 3], ["buildPhase", 71, 3], ["installPhase", 85, 3], ["desktopItems", 106, 3], ["passthru", 125, 3], ["meta", 127, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const makeDesktopItem = nix.arg($, "makeDesktopItem");
   const udevCheckHook = nix.arg($, "udevCheckHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "slimevr",
       version: "21.1.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "SlimeVR",
           repo: "SlimeVR-Server",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -41,7 +34,7 @@ export default nix.lambda((args) => (() => {
           fetchSubmodules: true,
         })))),
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-pnpm-deps`),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -51,7 +44,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./gui-no-git.patch"), nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             version: nix.thunk(() => nix.sel(finalAttrs, "src", "tag")),
           })))),
         nix.path(here, "./no-java-tool-options-warning.patch"),
@@ -69,7 +62,7 @@ export default nix.lambda((args) => (() => {
       preBuild: "pnpm --filter solarxr-protocol build\n",
       doCheck: false,
       doInstallCheck: true,
-      env: nix.thunk(() => ({ [nix.POS]: pos$4, ELECTRON_SKIP_BINARY_DOWNLOAD: "1" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[3], ELECTRON_SKIP_BINARY_DOWNLOAD: "1" })),
       buildPhase: nix.thunk(() => nix.str`runHook preBuild
 
 pushd gui
@@ -103,7 +96,7 @@ runHook postInstall
 `),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             name: "slimevr",
             desktopName: "SlimeVR",
             genericName: "Full-body tracking",
@@ -114,9 +107,9 @@ runHook postInstall
             exec: "slimevr",
           })))),
       ]),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$6, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[5], updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         homepage: "https://slimevr.dev",
         changelog: nix.thunk(() => nix.str`https://github.com/SlimeVR/SlimeVR-Server/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "App for facilitating full-body tracking in virtual reality",

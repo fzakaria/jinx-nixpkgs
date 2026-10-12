@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 26, 5], ["hash", 27, 5]], [["homepage", 65, 5], ["description", 66, 5], ["platforms", 67, 5], ["maintainers", 68, 5], ["license", 69, 5]], [["version", 16, 3], ["pname", 17, 3], ["nativeBuildInputs", 19, 3], ["buildInputs", 23, 3], ["src", 25, 3], ["enableParallelBuilding", 30, 3], ["preBuild", 32, 3], ["postInstall", 37, 3], ["doCheck", 58, 3], ["preCheck", 60, 3], ["meta", 64, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, makeWrapper: false, "pkg-config": false, cabextract: true, cdrkit: true, mtools: true, fuse3: true, ntfs3g: true, syslinux: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 65, 5], ["description", 66, 5], ["platforms", 67, 5], ["maintainers", 68, 5], ["license", 69, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 16, 3], ["pname", 17, 3], ["nativeBuildInputs", 19, 3], ["buildInputs", 23, 3], ["src", 25, 3], ["enableParallelBuilding", 30, 3], ["preBuild", 32, 3], ["postInstall", 37, 3], ["doCheck", 58, 3], ["preCheck", 60, 3], ["meta", 64, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,13 +19,13 @@ export default nix.lambda((args) => (() => {
   const ntfs3g = nix.argOr($, "ntfs3g", () => null);
   const syslinux = nix.argOr($, "syslinux", () => null);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       version: "1.14.5",
       pname: "wimlib",
       nativeBuildInputs: nix.thunk(() => [pkg_config, makeWrapper]),
       buildInputs: nix.thunk(() => nix.concat([ntfs3g], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), nix.thunk(() => [fuse3])))),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://wimlib.net/downloads/wimlib-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-hCIaOr1bkSKPFfjmBlwzWjNiN7VzgZe3W/QZ7qVhoZQ=",
         })))),
@@ -45,7 +43,7 @@ done
       doCheck: nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))),
       preCheck: "patchShebangs tests\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://wimlib.net",
         description: "Library and program to extract, create, and modify WIM files",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),

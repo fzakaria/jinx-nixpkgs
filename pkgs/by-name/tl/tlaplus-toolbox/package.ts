@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 22, 5], ["hash", 23, 5]], [["name", 39, 7], ["exec", 40, 7], ["icon", 41, 7], ["comment", 42, 7], ["desktopName", 43, 7], ["genericName", 44, 7], ["categories", 45, 7], ["startupWMClass", 46, 7]], [["homepage", 91, 5], ["description", 92, 5], ["mainProgram", 93, 5], ["longDescription", 94, 5], ["license", 100, 5], ["sourceProvenance", 101, 5], ["platforms", 102, 5], ["maintainers", 103, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 33, 3], ["dontWrapGApps", 35, 3], ["desktopItems", 37, 3], ["installPhase", 50, 3], ["meta", 90, 3]]]);
 const formals$1 = { args: { lib: false, fetchurl: false, makeShellWrapper: false, makeDesktopItem: false, stdenv: false, gtk3: false, libxtst: false, glib: false, zlib: false, wrapGAppsHook3: false, copyDesktopItems: false, bintools: false, unzip: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 39, 7], ["exec", 40, 7], ["icon", 41, 7], ["comment", 42, 7], ["desktopName", 43, 7], ["genericName", 44, 7], ["categories", 45, 7], ["startupWMClass", 46, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 91, 5], ["description", 92, 5], ["mainProgram", 93, 5], ["longDescription", 94, 5], ["license", 100, 5], ["sourceProvenance", 101, 5], ["platforms", 102, 5], ["maintainers", 103, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 33, 3], ["dontWrapGApps", 35, 3], ["desktopItems", 37, 3], ["installPhase", 50, 3], ["meta", 90, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const bintools = nix.arg($, "bintools");
   const unzip = nix.arg($, "unzip");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "tlaplus-toolbox",
       version: "1.7.4",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://tla.msr-inria.inria.fr/tlatoolbox/branches/${nix.sel(finalAttrs, "version")}/products/TLAToolbox-${nix.sel(finalAttrs, "version")}-linux.gtk.x86_64.zip`),
           hash: "sha256-eYK2cXJvLIQfkK+onromwhNfAmzWSyCZXCsEORxkjaU=",
         })))),
@@ -37,7 +34,7 @@ export default nix.lambda((args) => (() => {
       dontWrapGApps: true,
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "TLA+Toolbox",
             exec: "tla-toolbox",
             icon: "tla-toolbox",
@@ -80,7 +77,7 @@ done
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "http://research.microsoft.com/en-us/um/people/lamport/tla/toolbox.html",
         description: "IDE for the TLA+ tools",
         mainProgram: "tla-toolbox",

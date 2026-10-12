@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 38, 5], ["repo", 39, 5], ["tag", 40, 5], ["fetchSubmodules", 41, 5], ["hash", 42, 5]], [["NIX_CFLAGS_COMPILE", 86, 7]], [["odd-unstable", 91, 5], ["rev-prefix", 92, 5]], [["updateScript", 90, 12]], [["description", 96, 5], ["homepage", 97, 5], ["license", 98, 5], ["platforms", 102, 5], ["teams", 103, 5]], [["pname", 30, 3], ["version", 31, 3], ["outputs", 32, 3], ["src", 37, 3], ["nativeBuildInputs", 45, 3], ["buildInputs", 58, 3], ["postPatch", 71, 3], ["configureFlags", 84, 3], ["env", 86, 3], ["enableParallelBuilding", 88, 3], ["passthru", 90, 3], ["meta", 95, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, "pkg-config": false, "autoconf-archive": false, autoreconfHook: false, gettext: false, "gtk-doc": false, itstool: false, glib: false, "gtk-layer-shell": false, gtk3: false, libxml2: false, libgtop: false, "libcanberra-gtk3": false, inkscape: false, udisks: false, "mate-common": false, "mate-desktop": false, "mate-panel": false, "hicolor-icon-theme": false, wayland: false, wrapGAppsHook3: false, "yelp-tools": false, gitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 38, 5], ["repo", 39, 5], ["tag", 40, 5], ["fetchSubmodules", 41, 5], ["hash", 42, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 86, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["odd-unstable", 91, 5], ["rev-prefix", 92, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 90, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 96, 5], ["homepage", 97, 5], ["license", 98, 5], ["platforms", 102, 5], ["teams", 103, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 30, 3], ["version", 31, 3], ["outputs", 32, 3], ["src", 37, 3], ["nativeBuildInputs", 45, 3], ["buildInputs", 58, 3], ["postPatch", 71, 3], ["configureFlags", 84, 3], ["env", 86, 3], ["enableParallelBuilding", 88, 3], ["passthru", 90, 3], ["meta", 95, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -38,12 +33,12 @@ export default nix.lambda((args) => (() => {
   const yelp_tools = nix.arg($, "yelp-tools");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "mate-utils",
       version: "1.28.3",
       outputs: nix.thunk(() => ["out", "man"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "mate-desktop",
           repo: "mate-utils",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -77,16 +72,16 @@ export default nix.lambda((args) => (() => {
       postPatch: "# Workaround undefined version requirements\n# https://github.com/mate-desktop/mate-utils/issues/361\nsubstituteInPlace configure.ac \\\n  --replace-fail '>= $GTK_LAYER_SHELL_REQUIRED_VERSION' \"\" \\\n  --replace-fail '>= $GDK_WAYLAND_REQUIRED_VERSION' \"\"\n\n# Do not build gsearchtool help translations\n# https://github.com/mate-desktop/mate-utils/issues/210\nsubstituteInPlace gsearchtool/help/Makefile.am \\\n  --replace 'if USE_NLS' 'if FALSE'\n",
       configureFlags: nix.thunk(() => ["--enable-wayland"]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.str`-I${nix.sel(glib, "dev")}/include/gio-unix-2.0`),
       })),
       enableParallelBuilding: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$3, "odd-unstable": true, "rev-prefix": "v" })))),
+        [nix.POS]: $pos[3],
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[2], "odd-unstable": true, "rev-prefix": "v" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Utilities for the MATE desktop",
         homepage: "https://mate-desktop.org",
         license: nix.thunk(() => (() => {

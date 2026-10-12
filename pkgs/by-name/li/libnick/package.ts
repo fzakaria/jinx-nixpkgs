@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]], [["package", 71, 54]], [["pkg-config", 71, 11]], [["tests", 71, 5], ["updateScript", 72, 5]], [["description", 76, 5], ["homepage", 77, 5], ["license", 78, 5], ["maintainers", 79, 5], ["platforms", 80, 5], ["pkgConfigModules", 81, 5]], [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 41, 3], ["propagatedBuildInputs", 49, 3], ["cmakeFlags", 57, 3], ["postPatch", 62, 3], ["passthru", 70, 3], ["meta", 75, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, ninja: false, "pkg-config": false, validatePkgConfig: false, openssl: false, sqlcipher: false, boost: false, curl: false, glib: false, libcpr: false, libsecret: false, "libmaddy-markdown": false, testers: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["package", 71, 54]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pkg-config", 71, 11]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 71, 5], ["updateScript", 72, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 76, 5], ["homepage", 77, 5], ["license", 78, 5], ["maintainers", 79, 5], ["platforms", 80, 5], ["pkgConfigModules", 81, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 41, 3], ["propagatedBuildInputs", 49, 3], ["cmakeFlags", 57, 3], ["postPatch", 62, 3], ["passthru", 70, 3], ["meta", 75, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "libnick",
       version: "2025.10.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "NickvisionApps",
           repo: "libnick",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -49,18 +44,18 @@ export default nix.lambda((args) => (() => {
       ]),
       postPatch: "substituteInPlace cmake/libnick.pc.in \\\n--replace-fail 'libdir=${exec_prefix}/@CMAKE_INSTALL_LIBDIR@' \\\n               'libdir=@CMAKE_INSTALL_FULL_LIBDIR@' \\\n--replace-fail 'includedir=${prefix}/@CMAKE_INSTALL_INCLUDEDIR@' \\\n               'includedir=@CMAKE_INSTALL_FULL_INCLUDEDIR@'\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "hasPkgConfigModules"), nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Cross-platform development base for native Nickvision applications",
         homepage: "https://github.com/NickvisionApps/libnick",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

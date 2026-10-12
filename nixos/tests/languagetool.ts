@@ -2,14 +2,9 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/languagetool.nix", [[["maintainers", 8, 5]], [["enable", 14, 29], ["port", 15, 29]], [["languagetool", 14, 16]], [["services", 14, 7]], [["machine", 11, 9]], [["name", 6, 3], ["meta", 7, 3], ["nodes", 11, 3], ["testScript", 18, 3]]]);
 const formals$1 = { args: { pkgs: false, lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/languagetool.nix", [["maintainers", 8, 5]]);
 const formals$2 = { args: {  }, ellipsis: true };
-const pos$2 = nix.positions(here + "/languagetool.nix", [["enable", 14, 29], ["port", 15, 29]]);
-const pos$3 = nix.positions(here + "/languagetool.nix", [["languagetool", 14, 16]]);
-const pos$4 = nix.positions(here + "/languagetool.nix", [["services", 14, 7]]);
-const pos$5 = nix.positions(here + "/languagetool.nix", [["machine", 11, 9]]);
-const pos$6 = nix.positions(here + "/languagetool.nix", [["name", 6, 3], ["meta", 7, 3], ["nodes", 11, 3], ["testScript", 18, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,24 +12,24 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const port = 8082n;
   return {
-    [nix.POS]: pos$6,
+    [nix.POS]: $pos[5],
     name: "languagetool",
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
       return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "fbeffa"))]),
       };
     })()),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$3,
-            languagetool: nix.thunk(() => ({ [nix.POS]: pos$2, enable: true, port: port })),
+            [nix.POS]: $pos[2],
+            languagetool: nix.thunk(() => ({ [nix.POS]: $pos[1], enable: true, port: port })),
           })),
         };
       })(), formals$2),

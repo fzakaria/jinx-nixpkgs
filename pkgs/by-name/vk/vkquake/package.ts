@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["hash", 33, 5]], [["NIX_CFLAGS_COMPILE", 65, 5]], [["exec", 84, 7], ["name", 85, 7], ["icon", 86, 7], ["comment", 87, 7], ["desktopName", 88, 7], ["categories", 89, 7]], [["description", 99, 5], ["homepage", 100, 5], ["changelog", 101, 5], ["longDescription", 102, 5], ["platforms", 111, 5], ["maintainers", 112, 5], ["mainProgram", 116, 5], ["license", 117, 5]], [["pname", 26, 3], ["version", 27, 3], ["src", 29, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 46, 3], ["mesonFlags", 62, 3], ["env", 64, 3], ["installPhase", 71, 3], ["desktopItems", 82, 3], ["postFixup", 93, 3], ["meta", 98, 3]]]);
 const formals$1 = { args: { sdl3: false, fetchFromGitHub: false, flac: false, glslang: false, gzip: false, lib: false, libmpg123: false, libopus: false, libvorbis: false, libx11: false, makeWrapper: false, meson: false, moltenvk: false, ninja: false, opusfile: false, "pkg-config": false, stdenv: false, "vulkan-headers": false, "vulkan-loader": false, copyDesktopItems: false, makeDesktopItem: false, "spirv-tools": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["hash", 33, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 65, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["exec", 84, 7], ["name", 85, 7], ["icon", 86, 7], ["comment", 87, 7], ["desktopName", 88, 7], ["categories", 89, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 99, 5], ["homepage", 100, 5], ["changelog", 101, 5], ["longDescription", 102, 5], ["platforms", 111, 5], ["maintainers", 112, 5], ["mainProgram", 116, 5], ["license", 117, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 26, 3], ["version", 27, 3], ["src", 29, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 46, 3], ["mesonFlags", 62, 3], ["env", 64, 3], ["installPhase", 71, 3], ["desktopItems", 82, 3], ["postFixup", 93, 3], ["meta", 98, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,11 +30,11 @@ export default nix.lambda((args) => (() => {
   const makeDesktopItem = nix.arg($, "makeDesktopItem");
   const spirv_tools = nix.arg($, "spirv-tools");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "vkquake",
       version: "1.36.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Novum",
           repo: "vkQuake",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -66,7 +62,7 @@ export default nix.lambda((args) => (() => {
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [moltenvk, vulkan_headers])))),
       mesonFlags: nix.thunk(() => ["-Ddo_userdirs=enabled"]),
       env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), " ", nix.thunk(() => [
               "-Wno-error=unused-but-set-variable",
               "-Wno-error=implicit-const-int-float-conversion",
@@ -75,7 +71,7 @@ export default nix.lambda((args) => (() => {
       installPhase: "runHook preInstall\n\nmkdir -p \"$out/bin\"\ncp vkquake \"$out/bin\"\n\ninstall -D ../Misc/vkQuake_256.png \"$out/share/icons/hicolor/256x256/apps/vkquake.png\"\n\nrunHook postInstall\n",
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             exec: nix.thunk(() => nix.sel(finalAttrs, "meta", "mainProgram")),
             name: "vkquake",
             icon: "vkquake",
@@ -88,7 +84,7 @@ export default nix.lambda((args) => (() => {
   --add-rpath ${nix.app(nix.sel(lib, "makeLibraryPath"), nix.thunk(() => [vulkan_loader]))}
 `))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Vulkan Quake port based on QuakeSpasm",
         homepage: "https://github.com/Novum/vkQuake",
         changelog: "https://github.com/Novum/vkQuake/releases",

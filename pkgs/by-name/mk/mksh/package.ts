@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["urls", 13, 5], ["hash", 17, 5]], [["shellPath", 43, 5]], [["homepage", 47, 5], ["changelog", 48, 5], ["description", 49, 5], ["mainProgram", 50, 5], ["longDescription", 51, 5], ["license", 58, 5], ["maintainers", 63, 5], ["platforms", 64, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["strictDeps", 20, 3], ["nativeBuildInputs", 22, 3], ["dontConfigure", 26, 3], ["buildPhase", 28, 3], ["installPhase", 34, 3], ["passthru", 42, 3], ["meta", 46, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, installShellFiles: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["urls", 13, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["shellPath", 43, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 47, 5], ["changelog", 48, 5], ["description", 49, 5], ["mainProgram", 50, 5], ["longDescription", 51, 5], ["license", 58, 5], ["maintainers", 63, 5], ["platforms", 64, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["strictDeps", 20, 3], ["nativeBuildInputs", 22, 3], ["dontConfigure", 26, 3], ["buildPhase", 28, 3], ["installPhase", 34, 3], ["passthru", 42, 3], ["meta", 46, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const installShellFiles = nix.arg($, "installShellFiles");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "mksh",
       version: "59c",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           urls: nix.thunk(() => [
             nix.thunk(() => nix.str`http://www.mirbsd.org/MirOS/dist/mir/mksh/mksh-R${nix.sel(finalAttrs, "version")}.tgz`),
             nix.thunk(() => nix.str`http://pub.allbsd.org/MirOS/dist/mir/mksh/mksh-R${nix.sel(finalAttrs, "version")}.tgz`),
@@ -31,9 +28,9 @@ export default nix.lambda((args) => (() => {
       dontConfigure: true,
       buildPhase: "runHook preBuild\nsh ./Build.sh -r\nrunHook postBuild\n",
       installPhase: "runHook preInstall\ninstall -D mksh $out/bin/mksh\ninstall -D dot.mkshrc $out/share/mksh/mkshrc\ninstallManPage mksh.1\nrunHook postInstall\n",
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, shellPath: "/bin/mksh" })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[1], shellPath: "/bin/mksh" })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "http://www.mirbsd.org/mksh.htm",
         changelog: "http://www.mirbsd.org/mksh.htm#clog",
         description: "MirBSD Korn Shell",

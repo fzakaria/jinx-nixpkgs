@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 36, 5], ["repo", 37, 5], ["tag", 38, 5], ["hash", 39, 5], ["fetchSubmodules", 40, 5]], [["NIX_LDFLAGS", 73, 5], ["NIX_CFLAGS_COMPILE", 80, 5]], [["homepage", 136, 5], ["description", 137, 5], ["license", 138, 5], ["maintainers", 139, 5], ["platforms", 142, 5]], [["pname", 32, 3], ["version", 33, 3], ["src", 35, 3], ["nativeBuildInputs", 43, 3], ["buildInputs", 52, 3], ["env", 72, 3], ["cmakeFlags", 92, 3], ["installPhase", 116, 3], ["meta", 135, 3]]]);
 const formals$1 = { args: { lib: false, clangStdenv: false, fetchFromGitHub: false, cmake: false, darwin: false, ninja: false, "pkg-config": false, python3: false, writableTmpDirAsHomeHook: false, "alsa-lib": false, curl: false, expat: false, fontconfig: false, freetype: false, libGL: false, libxcursor: false, libxext: false, libxinerama: false, libxrandr: false, libepoxy: false, libjack2: false, libxkbcommon: false, lv2: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 36, 5], ["repo", 37, 5], ["tag", 38, 5], ["hash", 39, 5], ["fetchSubmodules", 40, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_LDFLAGS", 73, 5], ["NIX_CFLAGS_COMPILE", 80, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 136, 5], ["description", 137, 5], ["license", 138, 5], ["maintainers", 139, 5], ["platforms", 142, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 32, 3], ["version", 33, 3], ["src", 35, 3], ["nativeBuildInputs", 43, 3], ["buildInputs", 52, 3], ["env", 72, 3], ["cmakeFlags", 92, 3], ["installPhase", 116, 3], ["meta", 135, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,11 +31,11 @@ export default nix.lambda((args) => (() => {
   const libxkbcommon = nix.arg($, "libxkbcommon");
   const lv2 = nix.arg($, "lv2");
   return nix.app(nix.sel(clangStdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "zlcompressor",
       version: "0.5.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ZL-Audio",
           repo: "ZLCompressor",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -58,7 +55,7 @@ export default nix.lambda((args) => (() => {
           libxkbcommon,
         ])))),
       env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(clangStdenv, "hostPlatform", "isLinux")), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           NIX_LDFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-lX11", "-lXext", "-lXcursor", "-lXinerama", "-lXrandr"]))),
           NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-ffat-lto-objects"]))),
         })))),
@@ -70,7 +67,7 @@ export default nix.lambda((args) => (() => {
       ]),
       installPhase: nix.thunk(() => nix.add(nix.add(nix.add("runHook preInstall\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(clangStdenv, "hostPlatform", "isLinux")), "mkdir -p $out/lib/{lv2,vst3}\nmkdir -p $out/bin/\ncp -r \"ZLCompressor_artefacts/Release/LV2/ZL Compressor.lv2\" $out/lib/lv2/\ncp -r \"ZLCompressor_artefacts/Release/VST3/ZL Compressor.vst3\" $out/lib/vst3/\ninstall -Dm755 \"ZLCompressor_artefacts/Release/Standalone/ZL Compressor\" $out/bin/\n")), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(clangStdenv, "hostPlatform", "isDarwin")), "mkdir -p $out/Applications\ncp -r ZLCompressor_artefacts/Release/{AU,VST3} $out/\ncp -r ZLCompressor_artefacts/Release/Standalone/* $out/Applications/\n")), "runHook postInstall\n")),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://zl-audio.github.io/plugins/zlcompressor/",
         description: "Versatile compressor plugin for VST3, LV2 and standalone",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Plus")),

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 48, 5], ["repo", 49, 5], ["tag", 50, 5], ["hash", 51, 5]], [["NIX_CFLAGS_COMPILE", 104, 7]], [["homepage", 113, 5], ["changelog", 114, 5], ["description", 115, 5], ["longDescription", 116, 5], ["license", 129, 5], ["maintainers", 130, 5], ["platforms", 131, 5]], [["pname", 44, 3], ["version", 45, 3], ["src", 47, 3], ["strictDeps", 54, 3], ["nativeBuildInputs", 56, 3], ["buildInputs", 63, 3], ["cmakeFlags", 99, 3], ["env", 104, 3], ["postInstall", 107, 3], ["meta", 112, 3]]]);
 const formals$1 = { args: { lib: false, gccStdenv: false, fetchFromGitHub: false, cmake: false, expat: false, flac: false, fontconfig: false, freetype: false, fribidi: false, "gdk-pixbuf": false, "gdk-pixbuf-xlib": false, gettext: false, giflib: false, glib: false, imlib2: false, libice: false, libsm: false, libx11: false, libxcomposite: false, libxdamage: false, libxdmcp: false, libxext: false, libxfixes: false, libxft: false, libxinerama: false, libxpm: false, libxrandr: false, libjpeg: false, libogg: false, libpng: false, "libpthread-stubs": false, libsndfile: false, libtiff: false, libxcb: false, libxcursor: false, mkfontdir: false, pcre2: false, perl: false, "pkg-config": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 48, 5], ["repo", 49, 5], ["tag", 50, 5], ["hash", 51, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 104, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 113, 5], ["changelog", 114, 5], ["description", 115, 5], ["longDescription", 116, 5], ["license", 129, 5], ["maintainers", 130, 5], ["platforms", 131, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 44, 3], ["version", 45, 3], ["src", 47, 3], ["strictDeps", 54, 3], ["nativeBuildInputs", 56, 3], ["buildInputs", 63, 3], ["cmakeFlags", 99, 3], ["env", 104, 3], ["postInstall", 107, 3], ["meta", 112, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -50,11 +47,11 @@ export default nix.lambda((args) => (() => {
   const perl = nix.arg($, "perl");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(gccStdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "icewm",
       version: "4.1.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ice-wm",
           repo: "icewm",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -99,12 +96,12 @@ export default nix.lambda((args) => (() => {
       ]),
       cmakeFlags: nix.thunk(() => ["-DPREFIX=$out", "-DCFGDIR=/etc/icewm"]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(gccStdenv, "hostPlatform", "isDarwin")), "-D_DARWIN_C_SOURCE")),
       })),
       postInstall: "cp -r ../lib/themes/{gtk2,Natural,nice,nice2,warp3,warp4,yellowmotif} \\\n  $out/share/icewm/themes/\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://ice-wm.org/",
         changelog: nix.thunk(() => nix.str`https://github.com/ice-wm/icewm/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         description: "Simple, lightweight X window manager",

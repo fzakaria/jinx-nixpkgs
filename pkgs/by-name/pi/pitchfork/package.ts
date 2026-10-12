@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["pname", 19, 7], ["version", 20, 28], ["src", 20, 36], ["sourceRoot", 22, 7], ["pnpmDeps", 23, 7], ["nativeBuildInputs", 25, 7], ["buildPhase", 31, 7], ["installPhase", 39, 7]], [["owner", 56, 7], ["repo", 57, 7], ["tag", 58, 7], ["hash", 59, 7]], [["pname", 65, 28], ["src", 65, 34], ["version", 65, 38], ["hash", 66, 7]], [["pname", 70, 28], ["version", 70, 34], ["src", 70, 42], ["pnpm", 71, 15], ["sourceRoot", 72, 7], ["fetcherVersion", 73, 7], ["hash", 74, 7]], [["homepage", 85, 7], ["description", 86, 7], ["changelog", 87, 7], ["license", 88, 7], ["mainProgram", 89, 7], ["maintainers", 90, 7]], [["pname", 50, 5], ["version", 51, 5], ["__structuredAttrs", 53, 5], ["src", 55, 5], ["cargoHash", 62, 5], ["cargoDeps", 64, 5], ["pnpmDeps", 69, 5], ["preBuild", 77, 5], ["doCheck", 82, 5], ["meta", 84, 5]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, fetchPnpmDeps: false, nodejs: false, pnpm_10: false, pnpmConfigHook: false, rustPlatform: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["pname", 19, 7], ["version", 20, 28], ["src", 20, 36], ["sourceRoot", 22, 7], ["pnpmDeps", 23, 7], ["nativeBuildInputs", 25, 7], ["buildPhase", 31, 7], ["installPhase", 39, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 56, 7], ["repo", 57, 7], ["tag", 58, 7], ["hash", 59, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 65, 28], ["src", 65, 34], ["version", 65, 38], ["hash", 66, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 70, 28], ["version", 70, 34], ["src", 70, 42], ["pnpm", 71, 15], ["sourceRoot", 72, 7], ["fetcherVersion", 73, 7], ["hash", 74, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["homepage", 85, 7], ["description", 86, 7], ["changelog", 87, 7], ["license", 88, 7], ["mainProgram", 89, 7], ["maintainers", 90, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 50, 5], ["version", 51, 5], ["__structuredAttrs", 53, 5], ["src", 55, 5], ["cargoHash", 62, 5], ["cargoDeps", 64, 5], ["pnpmDeps", 69, 5], ["preBuild", 77, 5], ["doCheck", 82, 5], ["meta", 84, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,7 +18,7 @@ export default nix.lambda((args) => (() => {
   const pnpm = pnpm_10;
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => (() => {
       const webui = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-webui`),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -34,12 +29,12 @@ export default nix.lambda((args) => (() => {
           installPhase: "runHook preInstall\n\nmkdir -p $out\ncp -r dist/. $out/\n\nrunHook postInstall\n",
         }))));
       return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname: "pitchfork",
         version: "2.24.0",
         __structuredAttrs: true,
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             owner: "jdx",
             repo: "pitchfork",
             tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -47,14 +42,14 @@ export default nix.lambda((args) => (() => {
           })))),
         cargoHash: "sha256-01rGoLun4cfyBn5rPwTPd2iGDUlyBJV2e1/5Xbsfobc=",
         cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
             src: nix.thunk(() => nix.attr(finalAttrs, "src")),
             version: nix.thunk(() => nix.attr(finalAttrs, "version")),
             hash: nix.thunk(() => nix.sel(finalAttrs, "cargoHash")),
           })))),
         pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
             version: nix.thunk(() => nix.attr(finalAttrs, "version")),
             src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -68,7 +63,7 @@ cp -r ${webui}/. ui/dist/
 `),
         doCheck: false,
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           homepage: "https://pitchfork.jdx.dev",
           description: "Daemons with DX",
           changelog: nix.thunk(() => nix.str`https://github.com/jdx/pitchfork/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

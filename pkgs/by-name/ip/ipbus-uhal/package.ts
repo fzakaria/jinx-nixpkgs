@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["hash", 20, 5]], [["description", 61, 5], ["longDescription", 62, 5], ["platforms", 69, 5], ["homepage", 70, 5], ["maintainers", 71, 5], ["mainProgram", 72, 5], ["license", 73, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 16, 3], ["nativeBuildInputs", 23, 3], ["buildInputs", 30, 3], ["postPatch", 36, 3], ["enableParallelBuilding", 46, 3], ["makeFlags", 48, 3], ["installPhase", 53, 3], ["meta", 60, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, bash: false, cacert: false, boost186: false, pugixml: false, python3: false, python3Packages: false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 61, 5], ["longDescription", 62, 5], ["platforms", 69, 5], ["homepage", 70, 5], ["maintainers", 71, 5], ["mainProgram", 72, 5], ["license", 73, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 16, 3], ["nativeBuildInputs", 23, 3], ["buildInputs", 30, 3], ["postPatch", 36, 3], ["enableParallelBuilding", 46, 3], ["makeFlags", 48, 3], ["installPhase", 53, 3], ["meta", 60, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const python3Packages = nix.arg($, "python3Packages");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "ipbus-uhal",
       version: "2.8.16",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ipbus",
           repo: "ipbus-software",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -50,7 +48,7 @@ export default nix.lambda((args) => (() => {
       ]),
       installPhase: "runHook preInstall\nmkdir -p $out/{bin,include}\nmake Set=uhal install prefix=$out/bin includedir=$out/include\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Software which pairs with ipbus-firmware",
         longDescription: "Software that provide a reliable high-performance\ncontrol link for particle-physics or other electronics,\nby implementing a simple A32/D32 control protocol\nfor reading and modifying memory-mapped resources\nwithin FPGA-based hardware devices.\n",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),

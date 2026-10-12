@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 45, 5], ["repo", 46, 5], ["tag", 47, 5], ["hash", 48, 5]], [["description", 136, 5], ["homepage", 137, 5], ["license", 138, 5], ["maintainers", 139, 5]], [["pname", 39, 3], ["version", 40, 3], ["pyproject", 41, 3], ["__structuredAttrs", 42, 3], ["src", 44, 3], ["patches", 51, 3], ["postPatch", 57, 3], ["build-system", 73, 3], ["dependencies", 77, 3], ["nativeCheckInputs", 99, 3], ["disabledTests", 107, 3], ["disabledTestPaths", 128, 3], ["pythonImportsCheck", 133, 3], ["meta", 135, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, hatchling: false, "absl-py": false, etils: false, flask: false, "flask-cors": false, flax: false, jax: false, jaxlib: false, jaxopt: false, jinja2: false, "ml-collections": false, mujoco: false, "mujoco-mjx": false, numpy: false, optax: false, "orbax-checkpoint": false, pillow: false, scipy: false, tensorboardx: false, "typing-extensions": false, "dm-env": false, gym: false, pytestCheckHook: false, "pytest-xdist": false, transforms3d: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 45, 5], ["repo", 46, 5], ["tag", 47, 5], ["hash", 48, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 136, 5], ["homepage", 137, 5], ["license", 138, 5], ["maintainers", 139, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 39, 3], ["version", 40, 3], ["pyproject", 41, 3], ["__structuredAttrs", 42, 3], ["src", 44, 3], ["patches", 51, 3], ["postPatch", 57, 3], ["build-system", 73, 3], ["dependencies", 77, 3], ["nativeCheckInputs", 99, 3], ["disabledTests", 107, 3], ["disabledTestPaths", 128, 3], ["pythonImportsCheck", 133, 3], ["meta", 135, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -38,13 +36,13 @@ export default nix.lambda((args) => (() => {
   const pytest_xdist = nix.arg($, "pytest-xdist");
   const transforms3d = nix.arg($, "transforms3d");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "brax",
       version: "0.14.2",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "google",
           repo: "brax",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -90,7 +88,7 @@ export default nix.lambda((args) => (() => {
       disabledTestPaths: nix.thunk(() => ["brax/generalized/constraint_test.py"]),
       pythonImportsCheck: nix.thunk(() => ["brax"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Massively parallel rigidbody physics simulation on accelerator hardware",
         homepage: "https://github.com/google/brax",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

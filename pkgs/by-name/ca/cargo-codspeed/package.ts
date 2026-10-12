@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]], [["LIBGIT2_NO_VENDOR", 52, 5]], [["changelog", 56, 5], ["description", 57, 5], ["homepage", 58, 5], ["license", 59, 5], ["mainProgram", 63, 5], ["maintainers", 64, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["cargoHash", 23, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 30, 3], ["cargoBuildFlags", 37, 3], ["cargoTestFlags", 38, 3], ["checkFlags", 39, 3], ["env", 51, 3], ["meta", 55, 3]]]);
 const formals$1 = { args: { curl: false, fetchFromGitHub: false, lib: false, libgit2: false, openssl: false, "pkg-config": false, rustPlatform: false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["LIBGIT2_NO_VENDOR", 52, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["changelog", 56, 5], ["description", 57, 5], ["homepage", 58, 5], ["license", 59, 5], ["mainProgram", 63, 5], ["maintainers", 64, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["cargoHash", 23, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 30, 3], ["cargoBuildFlags", 37, 3], ["cargoTestFlags", 38, 3], ["checkFlags", 39, 3], ["env", 51, 3], ["meta", 55, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const rustPlatform = nix.arg($, "rustPlatform");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "cargo-codspeed",
       version: "5.0.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "CodSpeedHQ",
           repo: "codspeed-rust",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -40,9 +37,9 @@ export default nix.lambda((args) => (() => {
         "--skip=test_criterion_build_and_run_filtered_by_name",
         "--skip=test_criterion_build_and_run_filtered_by_name_single",
       ]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, LIBGIT2_NO_VENDOR: 1n })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], LIBGIT2_NO_VENDOR: 1n })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         changelog: nix.thunk(() => nix.str`https://github.com/CodSpeedHQ/codspeed-rust/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "Cargo extension to build & run your codspeed benchmarks",
         homepage: "https://github.com/CodSpeedHQ/codspeed-rust",

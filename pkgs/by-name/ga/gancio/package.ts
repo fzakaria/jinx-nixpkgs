@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["nodejs", 26, 36]], [["yarn", 26, 5]], [["domain", 35, 5], ["owner", 36, 5], ["repo", 37, 5], ["rev", 38, 5], ["hash", 39, 5]], [["yarnLock", 43, 5], ["hash", 44, 5]], [["gancio", 82, 28]], [["nodejs", 80, 13], ["tests", 81, 5], ["updateScript", 84, 5]], [["description", 88, 5], ["homepage", 89, 5], ["changelog", 90, 5], ["license", 91, 5], ["platforms", 92, 5], ["mainProgram", 93, 5], ["maintainers", 94, 5]], [["pname", 31, 3], ["version", 32, 3], ["src", 34, 3], ["offlineCache", 42, 3], ["nativeBuildInputs", 47, 3], ["buildInputs", 57, 3], ["preBuild", 63, 3], ["preInstall", 68, 3], ["postInstall", 74, 3], ["passthru", 79, 3], ["meta", 87, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, fetchYarnDeps: false, yarn: false, yarnConfigHook: false, yarnBuildHook: false, yarnInstallHook: false, "nodejs-slim_22": false, "pkg-config": false, vips: false, sqlite: false, nixosTests: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["nodejs", 26, 36]]);
-const pos$2 = nix.positions(here + "/package.nix", [["yarn", 26, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["domain", 35, 5], ["owner", 36, 5], ["repo", 37, 5], ["rev", 38, 5], ["hash", 39, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["yarnLock", 43, 5], ["hash", 44, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["gancio", 82, 28]]);
-const pos$6 = nix.positions(here + "/package.nix", [["nodejs", 80, 13], ["tests", 81, 5], ["updateScript", 84, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["description", 88, 5], ["homepage", 89, 5], ["changelog", 90, 5], ["license", 91, 5], ["platforms", 92, 5], ["mainProgram", 93, 5], ["maintainers", 94, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 31, 3], ["version", 32, 3], ["src", 34, 3], ["offlineCache", 42, 3], ["nativeBuildInputs", 47, 3], ["buildInputs", 57, 3], ["preBuild", 63, 3], ["preInstall", 68, 3], ["postInstall", 74, 3], ["passthru", 79, 3], ["meta", 87, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,15 +23,15 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const nodejs = nodejs_slim_22;
   const yarnConfigHook$ = nix.thunk(() => nix.app(nix.sel(yarnConfigHook, "override"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
-      yarn: nix.thunk(() => nix.app(nix.sel(yarn, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, nodejs: nodejs })))),
+      [nix.POS]: $pos[1],
+      yarn: nix.thunk(() => nix.app(nix.sel(yarn, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], nodejs: nodejs })))),
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "gancio",
       version: "1.28.2",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           domain: "framagit.org",
           owner: "les",
           repo: "gancio",
@@ -46,7 +39,7 @@ export default nix.lambda((args) => (() => {
           hash: "sha256-2WXibjUHKK1jM5FEwgY9QpgIINQ6bG6KC3FV2Q9JlwQ=",
         })))),
       offlineCache: nix.thunk(() => nix.app(fetchYarnDeps, nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           yarnLock: nix.thunk(() => nix.add(nix.sel(finalAttrs, "src"), "/yarn.lock")),
           hash: "sha256-N53GctXhKH04rO+N8Tshln6bU+QuOyZPEuJf8hC0wHk=",
         })))),
@@ -65,13 +58,13 @@ export default nix.lambda((args) => (() => {
       preInstall: "cp node_modules/sharp/build/Release/sharp.node .\ncp node_modules/sqlite3/build/Release/node_sqlite3.node .\n",
       postInstall: "install -Dm755 sharp.node -t $out/lib/node_modules/gancio/node_modules/sharp/build/Release\ninstall -Dm755 node_sqlite3.node -t $out/lib/node_modules/gancio/node_modules/sqlite3/build/Release\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         nodejs: nodejs,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$5, gancio: nix.thunk(() => nix.attr(nixosTests, "gancio")) })),
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[4], gancio: nix.thunk(() => nix.attr(nixosTests, "gancio")) })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "Shared agenda for local communities, running on nodejs",
         homepage: "https://gancio.org/",
         changelog: "https://framagit.org/les/gancio/-/raw/master/CHANGELOG.md",

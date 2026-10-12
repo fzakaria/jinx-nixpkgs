@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 28, 5], ["rev", 29, 5], ["hash", 30, 5]], [["name", 36, 7], ["url", 37, 7], ["sha256", 38, 7]], [["NIX_CFLAGS_COMPILE", 64, 7]], [["description", 69, 5], ["mainProgram", 70, 5], ["homepage", 71, 5], ["license", 72, 5], ["platforms", 73, 5], ["maintainers", 74, 5]], [["pname", 18, 3], ["version", 19, 3], ["outputs", 21, 3], ["src", 27, 3], ["patches", 33, 3], ["nativeBuildInputs", 42, 3], ["buildInputs", 51, 3], ["configureFlags", 57, 3], ["env", 64, 3], ["enableParallelBuilding", 66, 3], ["meta", 68, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchgit: false, fetchpatch: false, "pkg-config": false, glib: false, icu: false, "gobject-introspection": false, "dbus-glib": false, vala: false, python3: false, autoreconfHook: false, "gtk-doc": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 28, 5], ["rev", 29, 5], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 36, 7], ["url", 37, 7], ["sha256", 38, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 64, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 69, 5], ["mainProgram", 70, 5], ["homepage", 71, 5], ["license", 72, 5], ["platforms", 73, 5], ["maintainers", 74, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["outputs", 21, 3], ["src", 27, 3], ["patches", 33, 3], ["nativeBuildInputs", 42, 3], ["buildInputs", 51, 3], ["configureFlags", 57, 3], ["env", 64, 3], ["enableParallelBuilding", 66, 3], ["meta", 68, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,19 +21,19 @@ export default nix.lambda((args) => (() => {
   const autoreconfHook = nix.arg($, "autoreconfHook");
   const gtk_doc = nix.arg($, "gtk-doc");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "dee",
       version: "1.2.7-unstable-2017-06-16",
       outputs: nix.thunk(() => ["out", "dev", "py"]),
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://git.launchpad.net/ubuntu/+source/dee",
           rev: "applied/1.2.7+17.10.20170616-8build1",
           hash: "sha256-ttfppqb0t8cOhWaB97uyD9heVZKlBKYF2zD6yRwPyos=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "dee-1.2.7-deprecated-g_type_class_add_private.patch",
             url: "https://src.fedoraproject.org/rpms/dee/raw/1a9a4ce3377074fabfca653ffe0287cd73aef82f/f/dee-1.2.7-deprecated-g_type_class_add_private.patch",
             sha256: "13nyprq7bb7lnzkcb7frcpzidbl836ycn5bvmwa2k0nhmj6ycbx5",
@@ -49,10 +45,10 @@ export default nix.lambda((args) => (() => {
         "--disable-gtk-doc",
         nix.thunk(() => nix.str`--with-pygi-overrides-dir=${nix.builtins.placeholder("py")}/${nix.sel(python3, "sitePackages")}/gi/overrides`),
       ]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$3, NIX_CFLAGS_COMPILE: "-Wno-error=unused-result" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[2], NIX_CFLAGS_COMPILE: "-Wno-error=unused-result" })),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Library that uses DBus to provide objects allowing you to create Model-View-Controller type programs across DBus",
         mainProgram: "dee-tool",
         homepage: "https://launchpad.net/dee",

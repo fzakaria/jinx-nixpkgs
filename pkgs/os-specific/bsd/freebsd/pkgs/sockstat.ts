@@ -2,9 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/sockstat.nix", [[["mainProgram", 22, 8]], [["path", 9, 3], ["outputs", 10, 3], ["buildInputs", 14, 3], ["MK_TESTS", 20, 3], ["meta", 22, 3]]]);
 const formals$1 = { args: { mkDerivation: false, libjail: false, libxo: false, libcasper: false, libcapsicum: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/sockstat.nix", [["mainProgram", 22, 8]]);
-const pos$2 = nix.positions(here + "/sockstat.nix", [["path", 9, 3], ["outputs", 10, 3], ["buildInputs", 14, 3], ["MK_TESTS", 20, 3], ["meta", 22, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,12 +13,12 @@ export default nix.lambda((args) => (() => {
   const libcasper = nix.arg($, "libcasper");
   const libcapsicum = nix.arg($, "libcapsicum");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       path: "usr.bin/sockstat",
       outputs: nix.thunk(() => ["out", "debug"]),
       buildInputs: nix.thunk(() => [libjail, libxo, libcasper, libcapsicum]),
       MK_TESTS: "no",
-      meta: nix.thunk(() => ({ [nix.POS]: pos$1, mainProgram: "sockstat" })),
+      meta: nix.thunk(() => ({ [nix.POS]: $pos[0], mainProgram: "sockstat" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=sockstat.ts.map

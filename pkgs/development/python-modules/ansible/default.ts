@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 34, 13], ["version", 34, 19], ["hash", 35, 5]], [["description", 94, 5], ["mainProgram", 95, 5], ["homepage", 96, 5], ["changelog", 97, 5], ["license", 98, 5], ["maintainers", 99, 5]], [["pname", 30, 11], ["version", 30, 17], ["pyproject", 31, 3], ["src", 33, 3], ["pythonRemoveDeps", 41, 3], ["build-system", 43, 3], ["dependencies", 45, 3], ["dontStrip", 88, 3], ["doCheck", 91, 3], ["meta", 93, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, setuptools: false, jmespath: false, jsonschema: false, jxmlease: false, ncclient: false, netaddr: false, paramiko: false, "ansible-pylibssh": false, pynetbox: false, scp: false, textfsm: false, ttp: false, xmltodict: false, passlib: false, withJunos: true, withNetbox: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 34, 13], ["version", 34, 19], ["hash", 35, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 94, 5], ["mainProgram", 95, 5], ["homepage", 96, 5], ["changelog", 97, 5], ["license", 98, 5], ["maintainers", 99, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 30, 11], ["version", 30, 17], ["pyproject", 31, 3], ["src", 33, 3], ["pythonRemoveDeps", 41, 3], ["build-system", 43, 3], ["dependencies", 45, 3], ["dontStrip", 88, 3], ["doCheck", 91, 3], ["meta", 93, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,12 +29,12 @@ export default nix.lambda((args) => (() => {
   const pname = "ansible";
   const version = "14.4.0";
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: pname,
       version: version,
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-8LO4hx1vTk7dfkd2OxgUSjLCFfc1VpvkTEmnDgSJNRk=",
@@ -60,7 +58,7 @@ export default nix.lambda((args) => (() => {
       dontStrip: true,
       doCheck: false,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Radically simple IT automation",
         mainProgram: "ansible-community",
         homepage: "https://www.ansible.com",

@@ -2,16 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["hash", 17, 5], ["rev", 18, 5], ["repo", 19, 5], ["owner", 20, 5]], [["name", 26, 7], ["url", 27, 7], ["hash", 28, 7]], [["name", 32, 7], ["url", 33, 7], ["hash", 34, 7]], [["name", 37, 7], ["url", 38, 7], ["hash", 39, 7]], [["name", 42, 7], ["url", 43, 7], ["hash", 44, 7]], [["tinyproxy", 55, 43]], [["tests", 55, 12]], [["homepage", 58, 5], ["description", 59, 5], ["license", 60, 5], ["platforms", 61, 5], ["maintainers", 62, 5], ["mainProgram", 63, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["patches", 23, 3], ["nativeBuildInputs", 49, 3], ["configureFlags", 54, 3], ["passthru", 55, 3], ["meta", 57, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch: false, autoreconfHook: false, perl: false, nixosTests: false, withDebug: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["hash", 17, 5], ["rev", 18, 5], ["repo", 19, 5], ["owner", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 26, 7], ["url", 27, 7], ["hash", 28, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 32, 7], ["url", 33, 7], ["hash", 34, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["name", 37, 7], ["url", 38, 7], ["hash", 39, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["name", 42, 7], ["url", 43, 7], ["hash", 44, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["tinyproxy", 55, 43]]);
-const pos$7 = nix.positions(here + "/package.nix", [["tests", 55, 12]]);
-const pos$8 = nix.positions(here + "/package.nix", [["homepage", 58, 5], ["description", 59, 5], ["license", 60, 5], ["platforms", 61, 5], ["maintainers", 62, 5], ["mainProgram", 63, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["patches", 23, 3], ["nativeBuildInputs", 49, 3], ["configureFlags", 54, 3], ["passthru", 55, 3], ["meta", 57, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const withDebug = nix.argOr($, "withDebug", () => false);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       pname: "tinyproxy",
       version: "1.11.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           hash: "sha256-In/ZG50i2jKl0x7yfSs3KHlBdm8NdXtspMJPiv4BW6g=",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
           repo: "tinyproxy",
@@ -36,25 +28,25 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "fix-chunked-case-sensitivity.patch",
             url: "https://github.com/tinyproxy/tinyproxy/commit/879bf844abffa0bf5fae6aff0c73179024dd9f98.patch",
             hash: "sha256-kU9Vqf2YtnKNJU4eQlau/ijtXkGPS/n+YSeficfu7JM=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "CVE-2026-54387.patch",
             url: "https://github.com/tinyproxy/tinyproxy/commit/623bfc093df009296f0b85d40bc677ef9d5c09bb.patch",
             hash: "sha256-BSnK3XkBFW43cnD937RKr7FJzQT90BxJkILXz/QPZo8=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             name: "CVE-2026-54388.patch",
             url: "https://github.com/tinyproxy/tinyproxy/commit/364cdb67e0ea00a8e4a7037e2693e0711e816adb.patch",
             hash: "sha256-+Z/Rj/zNldfOPVzWUlFHa37LEfSh/PtXOaN8z++ONJQ=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             name: "CVE-2026-55202.patch",
             url: "https://github.com/tinyproxy/tinyproxy/commit/09312a185ae25cc486b4ff5987638a7917a48bce.patch",
             hash: "sha256-kwYk5E95KQK42ebLV0nHB706VynDnjHB/5eENKO7Eaw=",
@@ -63,14 +55,14 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [autoreconfHook, perl]),
       configureFlags: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), withDebug, nix.thunk(() => ["--enable-debug"]))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           tinyproxy: nix.thunk(() => nix.attr(nixosTests, "tinyproxy")),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         homepage: "https://tinyproxy.github.io/",
         description: "Light-weight HTTP/HTTPS proxy daemon for POSIX operating systems",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/7.nix", [[["pname", 17, 26], ["version", 17, 32], ["hash", 18, 5]], [["description", 51, 5], ["homepage", 52, 5], ["changelog", 53, 5], ["license", 56, 5], ["maintainers", 57, 5]], [["pname", 11, 3], ["version", 12, 3], ["pyproject", 13, 3], ["__structuredAttrs", 14, 3], ["src", 16, 3], ["build-system", 21, 3], ["propagatedNativeBuildInputs", 23, 3], ["doCheck", 27, 3], ["pythonImportsCheck", 34, 3], ["postInstall", 46, 3], ["meta", 50, 3]]]);
 const formals$1 = { args: { buildPythonPackage: false, fetchPypi: false, lib: false, python: false, setuptools: false, protobuf: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/7.nix", [["pname", 17, 26], ["version", 17, 32], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/7.nix", [["description", 51, 5], ["homepage", 52, 5], ["changelog", 53, 5], ["license", 56, 5], ["maintainers", 57, 5]]);
-const pos$3 = nix.positions(here + "/7.nix", [["pname", 11, 3], ["version", 12, 3], ["pyproject", 13, 3], ["__structuredAttrs", 14, 3], ["src", 16, 3], ["build-system", 21, 3], ["propagatedNativeBuildInputs", 23, 3], ["doCheck", 27, 3], ["pythonImportsCheck", 34, 3], ["postInstall", 46, 3], ["meta", 50, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,13 +14,13 @@ export default nix.lambda((args) => (() => {
   const setuptools = nix.arg($, "setuptools");
   const protobuf = nix.arg($, "protobuf");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "protobuf",
       version: "7.36.2",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-SX0EY/8zFmgdpsC56NBstGXWGrzgC2E6tCImF1ZE0bs=",
@@ -45,7 +43,7 @@ export default nix.lambda((args) => (() => {
       postInstall: nix.thunk(() => nix.str`rm $out/${nix.sel(python, "sitePackages")}/google/__init__.py
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Protocol Buffers are Google's data interchange format",
         homepage: "https://developers.google.com/protocol-buffers/",
         changelog: nix.thunk(() => nix.str`https://github.com/protocolbuffers/protobuf/releases/v${nix.builtins.substring(2n, nix.thunk(() => nix.neg(1n)), nix.thunk(() => nix.sel(finalAttrs, "version")))}`),

@@ -2,9 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/include.nix", [[["platforms", 48, 8]], [["noLibc", 17, 3], ["path", 18, 3], ["nativeBuildInputs", 19, 3], ["postPatch", 33, 3], ["postConfigure", 41, 3], ["extraPaths", 45, 3], ["headersOnly", 46, 3], ["noCC", 47, 3], ["meta", 48, 3], ["makeFlags", 49, 3]]]);
 const formals$1 = { args: { lib: false, mkDerivation: false, bsdSetupHook: false, netbsdSetupHook: false, makeMinimal: false, install: false, mandoc: false, groff: false, nbperf: false, rpcgen: false, defaultMakeFlags: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/include.nix", [["platforms", 48, 8]]);
-const pos$2 = nix.positions(here + "/include.nix", [["noLibc", 17, 3], ["path", 18, 3], ["nativeBuildInputs", 19, 3], ["postPatch", 33, 3], ["postConfigure", 41, 3], ["extraPaths", 45, 3], ["headersOnly", 46, 3], ["noCC", 47, 3], ["meta", 48, 3], ["makeFlags", 49, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,7 +20,7 @@ export default nix.lambda((args) => (() => {
   const defaultMakeFlags = nix.arg($, "defaultMakeFlags");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       noLibc: true,
       path: "include",
       nativeBuildInputs: nix.thunk(() => [
@@ -40,7 +39,7 @@ export default nix.lambda((args) => (() => {
       headersOnly: true,
       noCC: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "netbsd")),
       })),
       makeFlags: nix.thunk(() => nix.concat(defaultMakeFlags, [nix.thunk(() => nix.str`RPCGEN_CPP=${nix.sel(stdenv, "cc", "cc")}/bin/cpp`)])),

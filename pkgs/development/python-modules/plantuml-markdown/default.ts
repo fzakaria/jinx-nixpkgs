@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]], [["nativeBuildInputs", 53, 50]], [["example-doc", 45, 18]], [["tests", 45, 12]], [["description", 60, 5], ["longDescription", 61, 5], ["homepage", 65, 5], ["changelog", 66, 5], ["license", 67, 5]], [["pname", 16, 3], ["version", 17, 3], ["format", 18, 3], ["src", 20, 3], ["postPatch", 27, 3], ["propagatedBuildInputs", 32, 3], ["doCheck", 41, 3], ["pythonImportsCheck", 43, 3], ["passthru", 45, 3], ["meta", 59, 3]]]);
 const formals$1 = { args: { buildPythonPackage: false, fetchFromGitHub: false, pkgs: false, lib: false, plantuml: false, markdown: false, requests: false, six: false, runCommand: false, writeText: false, "plantuml-markdown": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["nativeBuildInputs", 53, 50]]);
-const pos$3 = nix.positions(here + "/default.nix", [["example-doc", 45, 18]]);
-const pos$4 = nix.positions(here + "/default.nix", [["tests", 45, 12]]);
-const pos$5 = nix.positions(here + "/default.nix", [["description", 60, 5], ["longDescription", 61, 5], ["homepage", 65, 5], ["changelog", 66, 5], ["license", 67, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 16, 3], ["version", 17, 3], ["format", 18, 3], ["src", 20, 3], ["postPatch", 27, 3], ["propagatedBuildInputs", 32, 3], ["doCheck", 41, 3], ["pythonImportsCheck", 43, 3], ["passthru", 45, 3], ["meta", 59, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.11.2";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "mikitex70",
           repo: "plantuml-markdown",
           tag: version,
@@ -41,12 +36,12 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["plantuml_markdown"]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           "example-doc": nix.thunk(() => (() => {
             const exampleDoc = nix.thunk(() => nix.app(writeText, "plantuml-markdown-example-doc.md", "```plantuml\n  Bob -> Alice: Hello\n```\n"));
-            return nix.app(runCommand, "plantuml-markdown-example-doc", nix.thunk(() => ({ [nix.POS]: pos$2, nativeBuildInputs: nix.thunk(() => [plantuml_markdown]) })), nix.thunk(() => nix.str`markdown_py -x plantuml_markdown ${exampleDoc} > $out
+            return nix.app(runCommand, "plantuml-markdown-example-doc", nix.thunk(() => ({ [nix.POS]: $pos[1], nativeBuildInputs: nix.thunk(() => [plantuml_markdown]) })), nix.thunk(() => nix.str`markdown_py -x plantuml_markdown ${exampleDoc} > $out
 
 ! grep -q "Error" $out
 `));
@@ -54,7 +49,7 @@ export default nix.lambda((args) => (() => {
         })),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "PlantUML plugin for Python-Markdown",
         longDescription: "This plugin implements a block extension which can be used to specify a PlantUML\ndiagram which will be converted into an image and inserted in the document.\n",
         homepage: "https://github.com/mikitex70/plantuml-markdown",
@@ -62,7 +57,7 @@ export default nix.lambda((args) => (() => {
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),
       }));
       return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname,
         version,
         format,

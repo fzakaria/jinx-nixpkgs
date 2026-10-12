@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 12, 5], ["sha256", 13, 5]], [["description", 25, 5], ["homepage", 26, 5], ["sourceProvenance", 27, 5], ["license", 28, 5], ["platforms", 29, 5], ["maintainers", 30, 5], ["mainProgram", 31, 5]], [["version", 9, 3], ["pname", 10, 3], ["src", 11, 3], ["nativeBuildInputs", 15, 3], ["buildCommand", 17, 3], ["meta", 24, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, makeWrapper: false, jre: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 12, 5], ["sha256", 13, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 25, 5], ["homepage", 26, 5], ["sourceProvenance", 27, 5], ["license", 28, 5], ["platforms", 29, 5], ["maintainers", 30, 5], ["mainProgram", 31, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 9, 3], ["pname", 10, 3], ["src", 11, 3], ["nativeBuildInputs", 15, 3], ["buildCommand", 17, 3], ["meta", 24, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const jre = nix.arg($, "jre");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       version: "1.28.1",
       pname: "zipkin-server",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://search.maven.org/remotecontent?filepath=io/zipkin/java/zipkin-server/${nix.sel(finalAttrs, "version")}/zipkin-server-${nix.sel(finalAttrs, "version")}-exec.jar`),
           sha256: "02369fkv0kbl1isq6y26fh2zj5wxv3zck522m5wypsjlcfcw2apa",
         })))),
@@ -31,7 +29,7 @@ makeWrapper ${jre}/bin/java $out/bin/zipkin-server \\
   --add-flags "-cp $out/share/java/zipkin-server-${nix.sel(finalAttrs, "version")}-exec.jar org.springframework.boot.loader.JarLauncher"
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Distributed tracing system",
         homepage: "https://zipkin.io/",
         sourceProvenance: nix.thunk(() => (() => {

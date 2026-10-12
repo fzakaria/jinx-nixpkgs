@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 58, 9], ["repo", 59, 9], ["tag", 60, 9], ["hash", 61, 9]], [["owner", 66, 9], ["repo", 67, 9], ["tag", 68, 9], ["hash", 69, 9]], [["test", 146, 11]], [["tests", 146, 5], ["updateScript", 147, 5]], [["description", 156, 5], ["homepage", 157, 5], ["license", 162, 5], ["mainProgram", 163, 5], ["maintainers", 164, 5], ["platforms", 174, 5], ["changelog", 175, 5]], [["pname", 51, 3], ["version", 52, 3], ["src", 54, 3], ["cargoHash", 72, 3], ["nativeBuildInputs", 78, 3], ["buildInputs", 88, 3], ["outputs", 90, 3], ["postPatch", 95, 3], ["checkFlags", 100, 3], ["postInstall", 102, 3], ["dontPatchELF", 143, 3], ["passthru", 145, 3], ["nativeInstallCheckInputs", 150, 3], ["doInstallCheck", 153, 3], ["meta", 155, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, rustPlatform: false, nixosTests: false, cmake: false, installShellFiles: false, makeWrapper: false, ncurses: false, "pkg-config": false, python3: false, scdoc: false, expat: false, fontconfig: false, freetype: false, libGL: false, libxxf86vm: false, libxi: false, libxcursor: false, libx11: false, libxcb: false, libxkbcommon: false, wayland: false, "xdg-utils": false, "nix-update-script": false, withGraphics: true, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 58, 9], ["repo", 59, 9], ["tag", 60, 9], ["hash", 61, 9]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 66, 9], ["repo", 67, 9], ["tag", 68, 9], ["hash", 69, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["test", 146, 11]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 146, 5], ["updateScript", 147, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 156, 5], ["homepage", 157, 5], ["license", 162, 5], ["mainProgram", 163, 5], ["maintainers", 164, 5], ["platforms", 174, 5], ["changelog", 175, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 51, 3], ["version", 52, 3], ["src", 54, 3], ["cargoHash", 72, 3], ["nativeBuildInputs", 78, 3], ["buildInputs", 88, 3], ["outputs", 90, 3], ["postPatch", 95, 3], ["checkFlags", 100, 3], ["postInstall", 102, 3], ["dontPatchELF", 143, 3], ["passthru", 145, 3], ["nativeInstallCheckInputs", 150, 3], ["doInstallCheck", 153, 3], ["meta", 155, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -41,17 +36,17 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const rpathLibs = nix.thunk(() => nix.concat([expat, fontconfig, freetype], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [libGL, libx11, libxcursor, libxi, libxxf86vm, libxcb, libxkbcommon, wayland]))));
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: nix.thunk(() => nix.str`alacritty${nix.app(nix.sel(lib, "optionalString"), withGraphics, "-graphics")}`),
       version: "0.17.0",
       src: nix.thunk(() => (nix.asBool(!nix.asBool(withGraphics)) ? nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "alacritty",
           repo: "alacritty",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-iZtCH2DrSs6o3AG2koI2TyC3116aMlawHFkCd0TYhas=",
         }))) : nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "ayosec",
           repo: "alacritty",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}-graphics`),
@@ -78,9 +73,9 @@ patchelf --add-rpath "${nix.app(nix.sel(lib, "makeLibraryPath"), rpathLibs)}" $o
 `), "installShellCompletion --zsh extra/completions/_alacritty\ninstallShellCompletion --bash extra/completions/alacritty.bash\ninstallShellCompletion --fish extra/completions/alacritty.fish\n\ninstall -dm 755 \"$out/share/man/man1\"\ninstall -dm 755 \"$out/share/man/man5\"\n\nscdoc < extra/man/alacritty.1.scd | gzip -c > $out/share/man/man1/alacritty.1.gz\nscdoc < extra/man/alacritty-msg.1.scd | gzip -c > $out/share/man/man1/alacritty-msg.1.gz\nscdoc < extra/man/alacritty.5.scd | gzip -c > $out/share/man/man5/alacritty.5.gz\nscdoc < extra/man/alacritty-bindings.5.scd | gzip -c > $out/share/man/man5/alacritty-bindings.5.gz\n\ninstall -dm 755 \"$terminfo/share/terminfo/a/\"\ntic -xe alacritty,alacritty-direct -o \"$terminfo/share/terminfo\" extra/alacritty.info\nmkdir -p $out/nix-support\necho \"$terminfo\" >> $out/nix-support/propagated-user-env-packages\n")),
       dontPatchELF: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           test: nix.thunk(() => nix.sel(nixosTests, "terminal-emulators", "alacritty")),
         })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
@@ -88,7 +83,7 @@ patchelf --add-rpath "${nix.app(nix.sel(lib, "makeLibraryPath"), rpathLibs)}" $o
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Cross-platform, GPU-accelerated terminal emulator",
         homepage: nix.thunk(() => (nix.asBool(!nix.asBool(withGraphics)) ? "https://github.com/alacritty/alacritty" : "https://github.com/ayosec/alacritty")),
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

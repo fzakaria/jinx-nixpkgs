@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 16, 5], ["hash", 17, 5]], [["SHARNESS_TEST_SRCDIR", 33, 24]], [["outputsToInstall", 65, 5], ["description", 66, 5], ["homepage", 67, 5], ["license", 68, 5], ["maintainers", 69, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["patches", 20, 3], ["nativeBuildInputs", 25, 3], ["nativeCheckInputs", 27, 3], ["env", 32, 3], ["vendorHash", 36, 3], ["modRoot", 38, 3], ["subPackages", 39, 3], ["postBuild", 41, 3], ["doCheck", 46, 3], ["checkPhase", 47, 3], ["postInstall", 54, 3], ["outputs", 59, 3], ["meta", 64, 3]]]);
 const formals$1 = { args: { buildGoModule: false, fetchurl: false, lib: false, zstd: false, sharness: false, python3: false, perl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["SHARNESS_TEST_SRCDIR", 33, 24]]);
-const pos$3 = nix.positions(here + "/package.nix", [["outputsToInstall", 65, 5], ["description", 66, 5], ["homepage", 67, 5], ["license", 68, 5], ["maintainers", 69, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["patches", 20, 3], ["nativeBuildInputs", 25, 3], ["nativeCheckInputs", 27, 3], ["env", 32, 3], ["vendorHash", 36, 3], ["modRoot", 38, 3], ["subPackages", 39, 3], ["postBuild", 41, 3], ["doCheck", 46, 3], ["checkPhase", 47, 3], ["postInstall", 54, 3], ["outputs", 59, 3], ["meta", 64, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const perl = nix.arg($, "perl");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "goredo",
       version: "2.6.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`http://www.goredo.cypherpunks.ru/download/goredo-${nix.sel(finalAttrs, "version")}.tar.zst`),
           hash: "sha256-XTL/otfCKC55TsUBBVors2kgFpOFh+6oekOOafOhcUs=",
         })))),
@@ -30,7 +27,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [zstd]),
       nativeCheckInputs: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage", "doCheck")), nix.thunk(() => [python3, perl]))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         SHARNESS_TEST_SRCDIR: nix.thunk(() => nix.attr(sharness, "SHARNESS_TEST_SRCDIR")),
       })),
       vendorHash: null,
@@ -42,7 +39,7 @@ export default nix.lambda((args) => (() => {
       postInstall: "mkdir -p \"$out/share/info\"\ncp goredo.info \"$out/share/info\"\n",
       outputs: nix.thunk(() => ["out", "info"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         outputsToInstall: nix.thunk(() => ["out"]),
         description: "Makefile replacement that sucks less",
         homepage: "https://www.goredo.cypherpunks.ru",

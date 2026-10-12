@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5], ["leaveDotGit", 29, 5]], [["NIX_CFLAGS_COMPILE", 93, 7], ["NIX_LDFLAGS", 94, 7]], [["updateScript", 96, 12]], [["description", 99, 5], ["homepage", 100, 5], ["license", 101, 5], ["maintainers", 102, 5]], [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["hardeningDisable", 32, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 42, 3], ["enableParallelBuilding", 53, 3], ["configureFlags", 55, 3], ["postPatch", 61, 3], ["postInstall", 65, 3], ["postFixup", 84, 3], ["env", 93, 3], ["passthru", 96, 3], ["meta", 98, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, gitMinimal: false, python3: false, m4: false, cairo: false, libx11: false, mesa: false, mesa_glu: false, ncurses: false, tcl: false, tcsh: false, tk: false, fixDarwinDylibNames: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5], ["leaveDotGit", 29, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 93, 7], ["NIX_LDFLAGS", 94, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 96, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 99, 5], ["homepage", 100, 5], ["license", 101, 5], ["maintainers", 102, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["hardeningDisable", 32, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 42, 3], ["enableParallelBuilding", 53, 3], ["configureFlags", 55, 3], ["postPatch", 61, 3], ["postInstall", 65, 3], ["postFixup", 84, 3], ["env", 93, 3], ["passthru", 96, 3], ["meta", 98, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const fixDarwinDylibNames = nix.arg($, "fixDarwinDylibNames");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "magic-vlsi",
       version: "8.3.681",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "RTimothyEdwards",
           repo: "magic",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -57,16 +53,16 @@ install_name_tool -add_rpath ${nix.sel(mesa, "out")}/lib $out/lib/magic/tcl/magi
 install_name_tool -add_rpath ${nix.sel(mesa_glu, "out")}/lib $out/lib/magic/tcl/magicexec
 `))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: "-std=gnu89 -Wno-implicit-function-declaration",
         NIX_LDFLAGS: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "-headerpad_max_install_names")),
       })),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "VLSI layout tool written in Tcl",
         homepage: "http://opencircuitdesign.com/magic/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

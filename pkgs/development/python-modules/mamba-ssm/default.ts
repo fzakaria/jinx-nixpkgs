@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]], [["MAMBA_FORCE_BUILD", 61, 5]], [["CUDA_HOME", 63, 38]], [["description", 69, 5], ["homepage", 70, 5], ["license", 71, 5], ["broken", 74, 5]], [["pname", 19, 3], ["version", 20, 3], ["pyproject", 21, 3], ["src", 23, 3], ["build-system", 30, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 38, 3], ["dependencies", 52, 3], ["env", 60, 3], ["pythonImportsCheck", 66, 3], ["meta", 68, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, "causal-conv1d": false, einops: false, ninja: false, setuptools: false, torch: false, transformers: false, triton: false, cudaPackages: false, config: false, cudaSupport: true, which: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["MAMBA_FORCE_BUILD", 61, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["CUDA_HOME", 63, 38]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 69, 5], ["homepage", 70, 5], ["license", 71, 5], ["broken", 74, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 19, 3], ["version", 20, 3], ["pyproject", 21, 3], ["src", 23, 3], ["build-system", 30, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 38, 3], ["dependencies", 52, 3], ["env", 60, 3], ["pythonImportsCheck", 66, 3], ["meta", 68, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.2.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "state-spaces",
           repo: "mamba",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -50,20 +46,20 @@ export default nix.lambda((args) => (() => {
           ];
         })())));
       const dependencies = nix.thunk(() => [causal_conv1d, einops, torch, transformers, triton]);
-      const env = nix.thunk(() => nix.update({ [nix.POS]: pos$2, MAMBA_FORCE_BUILD: "TRUE" }, nix.app(nix.sel(lib, "optionalAttrs"), cudaSupport, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+      const env = nix.thunk(() => nix.update({ [nix.POS]: $pos[1], MAMBA_FORCE_BUILD: "TRUE" }, nix.app(nix.sel(lib, "optionalAttrs"), cudaSupport, nix.thunk(() => ({
+          [nix.POS]: $pos[2],
           CUDA_HOME: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getDev"), nix.thunk(() => nix.sel(cudaPackages, "cuda_nvcc")))}`),
         })))));
       const pythonImportsCheck = nix.thunk(() => ["mamba_ssm"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Linear-Time Sequence Modeling with Selective State Spaces",
         homepage: "https://github.com/state-spaces/mamba",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
         broken: nix.thunk(() => !nix.asBool(cudaSupport)),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         pyproject,

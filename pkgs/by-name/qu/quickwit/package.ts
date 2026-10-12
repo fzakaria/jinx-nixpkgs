@@ -2,17 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["yarnLock", 21, 5], ["hash", 22, 5]], [["owner", 26, 5], ["repo", 27, 5], ["rev", 28, 5], ["hash", 29, 5]], [["name", 33, 5], ["src", 34, 5], ["nativeBuildInputs", 36, 5], ["configurePhase", 42, 5], ["buildPhase", 46, 5], ["installPhase", 58, 5]], [["chitchat-0.8.0", 91, 7], ["mrecordlog-0.4.0", 92, 7], ["ownedbytes-0.6.0", 93, 7], ["pulsar-5.0.2", 94, 7], ["sasl2-sys-0.1.20+2.1.28", 95, 7], ["whichlang-0.1.0", 96, 7]], [["lockFile", 89, 5], ["outputHashes", 90, 5]], [["CARGO_PROFILE_RELEASE_LTO", 101, 5], ["CARGO_PROFILE_RELEASE_CODEGEN_UNITS", 102, 5], ["PROTOC", 105, 5], ["PROTOC_INCLUDE", 106, 5]], [["quickwit", 111, 28]], [["tests", 110, 5], ["updateScript", 113, 5]], [["broken", 145, 5], ["description", 146, 5], ["homepage", 147, 5], ["license", 148, 5], ["maintainers", 149, 5], ["platforms", 150, 5]], [["pname", 65, 11], ["version", 65, 17], ["src", 65, 25], ["postPatch", 67, 3], ["sourceRoot", 77, 3], ["preBuild", 79, 3], ["buildInputs", 84, 3], ["cargoLock", 88, 3], ["env", 100, 3], ["passthru", 109, 3], ["checkFlags", 116, 3], ["meta", 143, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, rustPlatform: false, nixosTests: false, "nix-update-script": false, protobuf: false, "rust-jemalloc-sys": false, nodejs: false, yarn: false, fetchYarnDeps: false, "fixup-yarn-lock": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["yarnLock", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 26, 5], ["repo", 27, 5], ["rev", 28, 5], ["hash", 29, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 33, 5], ["src", 34, 5], ["nativeBuildInputs", 36, 5], ["configurePhase", 42, 5], ["buildPhase", 46, 5], ["installPhase", 58, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["chitchat-0.8.0", 91, 7], ["mrecordlog-0.4.0", 92, 7], ["ownedbytes-0.6.0", 93, 7], ["pulsar-5.0.2", 94, 7], ["sasl2-sys-0.1.20+2.1.28", 95, 7], ["whichlang-0.1.0", 96, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["lockFile", 89, 5], ["outputHashes", 90, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["CARGO_PROFILE_RELEASE_LTO", 101, 5], ["CARGO_PROFILE_RELEASE_CODEGEN_UNITS", 102, 5], ["PROTOC", 105, 5], ["PROTOC_INCLUDE", 106, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["quickwit", 111, 28]]);
-const pos$8 = nix.positions(here + "/package.nix", [["tests", 110, 5], ["updateScript", 113, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["broken", 145, 5], ["description", 146, 5], ["homepage", 147, 5], ["license", 148, 5], ["maintainers", 149, 5], ["platforms", 150, 5]]);
-const pos$10 = nix.positions(here + "/package.nix", [["pname", 65, 11], ["version", 65, 17], ["src", 65, 25], ["postPatch", 67, 3], ["sourceRoot", 77, 3], ["preBuild", 79, 3], ["buildInputs", 84, 3], ["cargoLock", 88, 3], ["env", 100, 3], ["passthru", 109, 3], ["checkFlags", 116, 3], ["meta", 143, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,19 +22,19 @@ export default nix.lambda((args) => (() => {
   const pname = "quickwit";
   const version = "0.8.2";
   const yarnOfflineCache = nix.thunk(() => nix.app(fetchYarnDeps, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       yarnLock: nix.thunk(() => nix.str`${src}/quickwit/quickwit-ui/yarn.lock`),
       hash: "sha256-HppK9ycUxCOIagvzCmE+VfcmfMQfPIC8WeWM6WbA6fQ=",
     }))));
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       owner: "quickwit-oss",
       repo: "quickwit",
       rev: nix.thunk(() => nix.str`v${version}`),
       hash: "sha256-OrCO0mCFmhYBdpr4Gps56KJJ37uuJpV6ZJHWspOScyw=",
     }))));
   const quickwit_ui = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       name: "quickwit-ui",
       src: nix.thunk(() => nix.str`${src}/quickwit/quickwit-ui`),
       nativeBuildInputs: nix.thunk(() => [nodejs, yarn, fixup_yarn_lock]),
@@ -71,10 +62,10 @@ cp -r ${quickwit_ui}/* quickwit-ui/build
 `);
       const buildInputs = nix.thunk(() => [rust_jemalloc_sys]);
       const cargoLock = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         lockFile: nix.path(here, "./Cargo.lock"),
         outputHashes: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           "chitchat-0.8.0": "sha256-6K2noPoFaDnOxQIEV1WbmVPfRGwlI/WS1OWSBH2qb1Q=",
           "mrecordlog-0.4.0": "sha256-9LIVs+BqK9FLSfHL3vm9LL+/FXIXJ6v617QLv4luQik=",
           "ownedbytes-0.6.0": "sha256-in18/NYYIgUiZ9sm8NgJlebWidRp34DR7AhOD1Nh0aw=",
@@ -84,16 +75,16 @@ cp -r ${quickwit_ui}/* quickwit-ui/build
         })),
       }));
       const env = nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         CARGO_PROFILE_RELEASE_LTO: "fat",
         CARGO_PROFILE_RELEASE_CODEGEN_UNITS: "1",
         PROTOC: nix.thunk(() => nix.str`${protobuf}/bin/protoc`),
         PROTOC_INCLUDE: nix.thunk(() => nix.str`${protobuf}/include`),
       }));
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           quickwit: nix.thunk(() => nix.attr(nixosTests, "quickwit")),
         })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
@@ -122,7 +113,7 @@ cp -r ${quickwit_ui}/* quickwit-ui/build
         "--skip=io::tests::test_controlled_writer_limited_sync",
       ]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         broken: true,
         description: "Sub-second search & analytics engine on cloud storage",
         homepage: "https://quickwit.io/",
@@ -134,7 +125,7 @@ cp -r ${quickwit_ui}/* quickwit-ui/build
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
       return {
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         pname: pname_1,
         version: version_1,
         src: src_1,

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]], [["LIBGIT2_NO_VENDOR", 29, 7]], [["description", 89, 5], ["homepage", 90, 5], ["changelog", 91, 5], ["license", 92, 5], ["mainProgram", 96, 5], ["maintainers", 97, 5]], [["pname", 15, 3], ["version", 16, 3], ["__structuredAttrs", 18, 3], ["src", 20, 3], ["cargoHash", 27, 3], ["env", 29, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 37, 3], ["postInstall", 42, 3], ["postFixup", 49, 3], ["checkFlags", 55, 3], ["nativeInstallCheckInputs", 72, 3], ["doInstallCheck", 75, 3], ["installCheckPhase", 76, 3], ["meta", 88, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchFromGitHub: false, "pkg-config": false, less: false, installShellFiles: false, makeWrapper: false, libgit2: false, zlib: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["LIBGIT2_NO_VENDOR", 29, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 89, 5], ["homepage", 90, 5], ["changelog", 91, 5], ["license", 92, 5], ["mainProgram", 96, 5], ["maintainers", 97, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["__structuredAttrs", 18, 3], ["src", 20, 3], ["cargoHash", 27, 3], ["env", 29, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 37, 3], ["postInstall", 42, 3], ["postFixup", 49, 3], ["checkFlags", 55, 3], ["nativeInstallCheckInputs", 72, 3], ["doInstallCheck", 75, 3], ["installCheckPhase", 76, 3], ["meta", 88, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,19 +18,19 @@ export default nix.lambda((args) => (() => {
   const zlib = nix.arg($, "zlib");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "bat",
       version: "0.26.1",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "sharkdp",
           repo: "bat",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-IbTvFT37BFo0tKOiApDL9sT+/nMD33MO3TXuho+lF2c=",
         })))),
       cargoHash: "sha256-WRLCs1hrwFT3tya9CzKUuh5g+6fYqKDtv3yvDx8Wws8=",
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, LIBGIT2_NO_VENDOR: 1n })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], LIBGIT2_NO_VENDOR: 1n })),
       nativeBuildInputs: nix.thunk(() => [pkg_config, installShellFiles, makeWrapper]),
       buildInputs: nix.thunk(() => [libgit2, zlib]),
       postInstall: "installManPage $releaseDir/build/bat-*/out/assets/manual/bat.1\ninstallShellCompletion $releaseDir/build/bat-*/out/assets/completions/bat.{bash,fish,zsh}\n",
@@ -59,7 +56,7 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       installCheckPhase: "runHook preInstallCheck\n\ntestFile=$(mktemp /tmp/bat-test.XXXX)\necho -ne 'Foobar\\n\\n\\n42' > $testFile\n$out/bin/bat -p $testFile | grep \"Foobar\"\n$out/bin/bat -p $testFile -r 4:4 | grep 42\nrm $testFile\n\nrunHook postInstallCheck\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Cat(1) clone with syntax highlighting and Git integration",
         homepage: "https://github.com/sharkdp/bat",
         changelog: nix.thunk(() => nix.str`https://github.com/sharkdp/bat/raw/v${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

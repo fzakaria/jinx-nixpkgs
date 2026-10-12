@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 31, 5], ["exec", 32, 5], ["icon", 33, 5], ["comment", 34, 5], ["desktopName", 35, 5], ["categories", 36, 5]], [["url", 52, 5], ["hash", 53, 5]], [["timeout", 126, 12]], [["name", 121, 7], ["nativeBuildInputs", 122, 7], ["meta", 126, 7], ["script", 127, 7]], [["smoke", 120, 11]], [["updateScript", 119, 5], ["tests", 120, 5]], [["description", 167, 5], ["longDescription", 168, 5], ["homepage", 173, 5], ["changelog", 174, 5], ["sourceProvenance", 175, 5], ["license", 176, 5], ["maintainers", 177, 5], ["platforms", 178, 5], ["mainProgram", 179, 5]], [["pname", 43, 3], ["version", 44, 11], ["strictDeps", 46, 3], ["__structuredAttrs", 47, 3], ["src", 51, 3], ["sourceRoot", 56, 3], ["nativeBuildInputs", 58, 3], ["postPatch", 63, 3], ["dontBuild", 70, 3], ["dontConfigure", 71, 3], ["installPhase", 73, 3], ["passthru", 118, 3], ["meta", 166, 3]]]);
 const formals$1 = { args: { coreutils: false, fetchurl: false, fontconfig: false, freetype: false, glib: false, "gsettings-desktop-schemas": false, gtk3: false, jdk21: false, lib: false, libx11: false, libxrender: false, libxtst: false, makeDesktopItem: false, makeWrapper: false, imagemagick: false, "shared-mime-info": false, stdenv: false, testers: false, webkitgtk_4_1: false, "xvfb-run": false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 31, 5], ["exec", 32, 5], ["icon", 33, 5], ["comment", 34, 5], ["desktopName", 35, 5], ["categories", 36, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 52, 5], ["hash", 53, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["timeout", 126, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["name", 121, 7], ["nativeBuildInputs", 122, 7], ["meta", 126, 7], ["script", 127, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["smoke", 120, 11]]);
-const pos$6 = nix.positions(here + "/package.nix", [["updateScript", 119, 5], ["tests", 120, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["description", 167, 5], ["longDescription", 168, 5], ["homepage", 173, 5], ["changelog", 174, 5], ["sourceProvenance", 175, 5], ["license", 176, 5], ["maintainers", 177, 5], ["platforms", 178, 5], ["mainProgram", 179, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 43, 3], ["version", 44, 11], ["strictDeps", 46, 3], ["__structuredAttrs", 47, 3], ["src", 51, 3], ["sourceRoot", 56, 3], ["nativeBuildInputs", 58, 3], ["postPatch", 63, 3], ["dontBuild", 70, 3], ["dontConfigure", 71, 3], ["installPhase", 73, 3], ["passthru", 118, 3], ["meta", 166, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -39,7 +32,7 @@ export default nix.lambda((args) => (() => {
   const buildId = "20251212-2003";
   const archiveName = nix.thunk(() => nix.str`trace-compass-${version}-${buildId}-linux.gtk.x86_64.tar.gz`);
   const desktopItem = nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: "tracecompass",
       exec: "tracecompass",
       icon: "tracecompass",
@@ -53,7 +46,7 @@ export default nix.lambda((args) => (() => {
       const strictDeps = true;
       const __structuredAttrs = true;
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: nix.thunk(() => nix.str`https://download.eclipse.org/tracecompass/releases/${version_1}/rcp/${archiveName}`),
           hash: "sha256-QNJAJkgpV8v94IJx/jnQQ5HhX0kuASET3ywa/nfhsEs=",
         }))));
@@ -108,15 +101,15 @@ done
 runHook postInstall
 `);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         updateScript: nix.path(here, "./update.sh"),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           smoke: nix.thunk(() => nix.app(nix.sel(testers, "runCommand"), nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               name: "tracecompass-smoke-test",
               nativeBuildInputs: nix.thunk(() => [coreutils, xvfb_run]),
-              meta: nix.thunk(() => ({ [nix.POS]: pos$3, timeout: 120n })),
+              meta: nix.thunk(() => ({ [nix.POS]: $pos[2], timeout: 120n })),
               script: nix.thunk(() => nix.str`export HOME=$(mktemp -d)
 export XDG_CACHE_HOME="$HOME/.cache"
 export XDG_CONFIG_HOME="$HOME/.config"
@@ -158,7 +151,7 @@ touch $out
       const meta = nix.thunk(() => (() => {
         const w = nix.withScope(lib, null);
         return {
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           description: "Eclipse Trace Compass trace event analyzer",
           longDescription: "Trace Compass is an Eclipse application for analyzing and visualizing traces and logs.\nIt helps diagnose performance issues in the Linux kernel, Android, and other systems\nby understanding what the system is doing over time.\n",
           homepage: "https://www.eclipse.org/tracecompass/",
@@ -177,7 +170,7 @@ touch $out
         };
       })());
       return {
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         pname,
         version: version_1,
         strictDeps,

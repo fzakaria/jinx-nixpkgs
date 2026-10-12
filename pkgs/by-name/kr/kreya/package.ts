@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 29, 5], ["hash", 30, 5]], [["description", 61, 5], ["homepage", 62, 5], ["license", 63, 5], ["platforms", 64, 5], ["sourceProvenance", 65, 5], ["maintainers", 66, 5]], [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["sourceRoot", 32, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 40, 3], ["installPhase", 42, 3], ["dontStrip", 58, 3], ["meta", 60, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, makeWrapper: false, wrapGAppsHook4: false, autoPatchelfHook: false, btar: false, icu: false, gtk4: false, webkitgtk_6_0: false, openssl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 29, 5], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 61, 5], ["homepage", 62, 5], ["license", 63, 5], ["platforms", 64, 5], ["sourceProvenance", 65, 5], ["maintainers", 66, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["sourceRoot", 32, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 40, 3], ["installPhase", 42, 3], ["dontStrip", 58, 3], ["meta", 60, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,11 +26,11 @@ export default nix.lambda((args) => (() => {
     openssl,
   ]);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "kreya",
       version: "1.21.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://stable-downloads.kreya.app/${nix.sel(finalAttrs, "version")}/Kreya-linux-x64.tar.gz`),
           hash: "sha256-ZNSK+L9hLDZi1YuWtlKfjRaX/4CqPHWI9jfNDU6tjmw=",
         })))),
@@ -55,7 +53,7 @@ runHook postInstall
 `),
       dontStrip: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Kreya is a GUI client for gRPC and REST APIs",
         homepage: "https://kreya.app/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

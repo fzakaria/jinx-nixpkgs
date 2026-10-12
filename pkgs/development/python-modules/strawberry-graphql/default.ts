@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 53, 5], ["repo", 54, 5], ["tag", 55, 5], ["hash", 56, 5]], [["aiohttp", 78, 5], ["asgi", 82, 5], ["apollo-federation", 86, 5], ["debug", 87, 5], ["debug-server", 91, 5], ["django", 100, 5], ["channels", 105, 5], ["flask", 109, 5], ["opentelemetry", 113, 5], ["pydantic", 117, 5], ["sanic", 118, 5], ["fastapi", 119, 5], ["chalice", 123, 5], ["cli", 124, 5], ["pyinstrument", 133, 5]], [["description", 171, 5], ["homepage", 172, 5], ["changelog", 173, 5], ["license", 174, 5], ["maintainers", 175, 5], ["mainProgram", 176, 5]], [["pname", 48, 3], ["version", 49, 3], ["pyproject", 50, 3], ["src", 52, 3], ["postPatch", 59, 3], ["nativeBuildInputs", 66, 3], ["build-system", 68, 3], ["dependencies", 70, 3], ["optional-dependencies", 77, 3], ["nativeCheckInputs", 136, 3], ["pythonImportsCheck", 150, 3], ["disabledTestPaths", 152, 3], ["__darwinAllowLocalNetworking", 168, 3], ["meta", 170, 3]]]);
 const formals$1 = { args: { lib: false, aiohttp: false, asgiref: false, buildPythonPackage: false, chalice: false, channels: false, "cross-web": false, daphne: false, django: false, "email-validator": false, fastapi: false, fetchFromGitHub: false, flask: false, freezegun: false, "graphlib-backport": false, "graphql-core": false, "inline-snapshot": false, libcst: false, "opentelemetry-api": false, "opentelemetry-sdk": false, protobuf: false, pydantic: false, pygments: false, pyinstrument: false, pyprojectVersionPatchHook: false, "pytest-aiohttp": false, "pytest-asyncio": false, "pytest-django": false, "pytest-emoji": false, "pytest-flask": false, "pytest-mock": false, "pytest-snapshot": false, pytestCheckHook: false, "python-dateutil": false, "python-multipart": false, rich: false, "sanic-testing": false, sanic: false, starlette: false, typer: false, "typing-extensions": false, "uv-build": false, uvicorn: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 53, 5], ["repo", 54, 5], ["tag", 55, 5], ["hash", 56, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["aiohttp", 78, 5], ["asgi", 82, 5], ["apollo-federation", 86, 5], ["debug", 87, 5], ["debug-server", 91, 5], ["django", 100, 5], ["channels", 105, 5], ["flask", 109, 5], ["opentelemetry", 113, 5], ["pydantic", 117, 5], ["sanic", 118, 5], ["fastapi", 119, 5], ["chalice", 123, 5], ["cli", 124, 5], ["pyinstrument", 133, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 171, 5], ["homepage", 172, 5], ["changelog", 173, 5], ["license", 174, 5], ["maintainers", 175, 5], ["mainProgram", 176, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 48, 3], ["version", 49, 3], ["pyproject", 50, 3], ["src", 52, 3], ["postPatch", 59, 3], ["nativeBuildInputs", 66, 3], ["build-system", 68, 3], ["dependencies", 70, 3], ["optional-dependencies", 77, 3], ["nativeCheckInputs", 136, 3], ["pythonImportsCheck", 150, 3], ["disabledTestPaths", 152, 3], ["__darwinAllowLocalNetworking", 168, 3], ["meta", 170, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -54,12 +51,12 @@ export default nix.lambda((args) => (() => {
   const uv_build = nix.arg($, "uv-build");
   const uvicorn = nix.arg($, "uvicorn");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "strawberry-graphql",
       version: "0.319.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "strawberry-graphql",
           repo: "strawberry",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -70,7 +67,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [uv_build]),
       dependencies: nix.thunk(() => [cross_web, graphql_core, python_dateutil, typing_extensions]),
       "optional-dependencies": nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         aiohttp: nix.thunk(() => [aiohttp, pytest_aiohttp]),
         asgi: nix.thunk(() => [starlette, python_multipart]),
         "apollo-federation": nix.thunk(() => [protobuf]),
@@ -117,7 +114,7 @@ export default nix.lambda((args) => (() => {
       ]),
       __darwinAllowLocalNetworking: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "GraphQL library for Python that leverages type annotations",
         homepage: "https://strawberry.rocks",
         changelog: nix.thunk(() => nix.str`https://github.com/strawberry-graphql/strawberry/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

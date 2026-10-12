@@ -2,11 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["libcudaPath", 23, 5]], [["enableHook", 27, 13]], [["license", 30, 8]], [["name", 19, 3], ["propagatedBuildInputs", 20, 3], ["substitutions", 22, 3], ["passthru", 26, 3], ["meta", 30, 3]]]);
 const formals$1 = { args: { autoFixElfFiles: false, cuda_compat: false, lib: false, makeSetupHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["libcudaPath", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["enableHook", 27, 13]]);
-const pos$3 = nix.positions(here + "/package.nix", [["license", 30, 8]]);
-const pos$4 = nix.positions(here + "/package.nix", [["name", 19, 3], ["propagatedBuildInputs", 20, 3], ["substitutions", 22, 3], ["passthru", 26, 3], ["meta", 30, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,15 +13,18 @@ export default nix.lambda((args) => (() => {
   const makeSetupHook = nix.arg($, "makeSetupHook");
   const enableHook = nix.thunk(() => nix.selOr(cuda_compat, () => false, "meta", "available"));
   return nix.app(makeSetupHook, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       name: "auto-add-cuda-compat-runpath-hook",
       propagatedBuildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), enableHook, nix.thunk(() => [autoFixElfFiles]))),
       substitutions: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         libcudaPath: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), enableHook, nix.thunk(() => nix.str`${cuda_compat}/compat`))),
       })),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, enableHook: enableHook })),
-      meta: nix.thunk(() => ({ [nix.POS]: pos$3, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[1], enableHook: enableHook })),
+      meta: nix.thunk(() => ({
+        [nix.POS]: $pos[2],
+        license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
+      })),
     })), nix.path(here, "./auto-add-cuda-compat-runpath.sh"));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

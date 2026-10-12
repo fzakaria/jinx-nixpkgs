@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 38, 5], ["repo", 39, 5], ["rev", 40, 5], ["hash", 41, 5]], [["owner", 46, 5], ["repo", 47, 5], ["rev", 48, 5], ["hash", 49, 5]], [["owner", 59, 5], ["repo", 60, 5], ["tag", 61, 5], ["hash", 62, 5]], [["owner", 104, 9], ["repo", 105, 9], ["rev", 106, 9], ["hash", 107, 9]], [["NIX_CFLAGS_COMPILE", 139, 7]], [["description", 182, 5], ["license", 183, 5], ["maintainers", 188, 5], ["platforms", 189, 5], ["broken", 190, 5], ["homepage", 191, 5], ["downloadPage", 192, 5]], [["pname", 55, 3], ["version", 56, 11], ["src", 58, 3], ["nativeBuildInputs", 65, 3], ["buildInputs", 71, 3], ["hardeningDisable", 96, 3], ["postUnpack", 101, 3], ["cmakeFlags", 125, 3], ["env", 139, 3], ["preConfigure", 143, 3], ["postInstall", 155, 3], ["meta", 181, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, kernel: false, installShellFiles: false, "pkg-config": false, luajit: false, ncurses: false, perl: false, jsoncpp: false, openssl: false, curl: false, jq: false, gcc: false, elfutils: false, onetbb: false, protobuf: false, grpc: false, "yaml-cpp": false, nlohmann_json: false, re2: false, zstd: false, uthash: false, clang: false, libbpf: false, bpftools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 38, 5], ["repo", 39, 5], ["rev", 40, 5], ["hash", 41, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["owner", 46, 5], ["repo", 47, 5], ["rev", 48, 5], ["hash", 49, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["owner", 59, 5], ["repo", 60, 5], ["tag", 61, 5], ["hash", 62, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["owner", 104, 9], ["repo", 105, 9], ["rev", 106, 9], ["hash", 107, 9]]);
-const pos$5 = nix.positions(here + "/default.nix", [["NIX_CFLAGS_COMPILE", 139, 7]]);
-const pos$6 = nix.positions(here + "/default.nix", [["description", 182, 5], ["license", 183, 5], ["maintainers", 188, 5], ["platforms", 189, 5], ["broken", 190, 5], ["homepage", 191, 5], ["downloadPage", 192, 5]]);
-const pos$7 = nix.positions(here + "/default.nix", [["pname", 55, 3], ["version", 56, 11], ["src", 58, 3], ["nativeBuildInputs", 65, 3], ["buildInputs", 71, 3], ["hardeningDisable", 96, 3], ["postUnpack", 101, 3], ["cmakeFlags", 125, 3], ["env", 139, 3], ["preConfigure", 143, 3], ["postInstall", 155, 3], ["meta", 181, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -43,14 +37,14 @@ export default nix.lambda((args) => (() => {
   const libsRev = "0.20.0";
   const libsHash = "sha256-G5MMVNceNa1y7CczfoaRBektc//uUN6ijmcTMnnKMRA=";
   const valijson = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "tristanpenman",
       repo: "valijson",
       rev: "v1.0.2",
       hash: "sha256-wvFdjsDtKH7CpbEpQjzWtLC4RVOU9+D2rSK0Xo1cJqo=",
     }))));
   const driver = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       owner: "falcosecurity",
       repo: "libs",
       rev: "8.0.0+driver",
@@ -58,11 +52,11 @@ export default nix.lambda((args) => (() => {
     }))));
   const version = "0.40.1";
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "sysdig",
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           owner: "draios",
           repo: "sysdig",
           tag: version,
@@ -87,7 +81,7 @@ export default nix.lambda((args) => (() => {
       ], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [bpftools, elfutils, libbpf, clang, gcc])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.eq(kernel, null)), nix.thunk(() => nix.sel(kernel, "moduleBuildDependencies")))))),
       hardeningDisable: nix.thunk(() => ["pic", "zerocallusedregs"]),
       postUnpack: nix.thunk(() => nix.str`cp -r ${nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           owner: "falcosecurity",
           repo: "libs",
           rev: libsRev,
@@ -119,7 +113,7 @@ cmakeFlagsArray+=(
         nix.thunk(() => nix.str`-DUTHASH_INCLUDE=${uthash}/include`),
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "USE_BUNDLED_FALCOSECURITY_LIBS", true)),
       ], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.eq(kernel, null)), "-DBUILD_DRIVER=OFF"))),
-      env: nix.thunk(() => ({ [nix.POS]: pos$5, NIX_CFLAGS_COMPILE: "-Wno-error" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[4], NIX_CFLAGS_COMPILE: "-Wno-error" })),
       preConfigure: nix.thunk(() => nix.add(nix.str`if ! grep -q "${libsRev}" cmake/modules/falcosecurity-libs.cmake; then
   echo "falcosecurity-libs checksum needs to be updated!"
   exit 1
@@ -145,7 +139,7 @@ else
 fi
 `)))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Tracepoint-based system tracing tool for Linux (with clients for other OSes)",
         license: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "licenses")), null);

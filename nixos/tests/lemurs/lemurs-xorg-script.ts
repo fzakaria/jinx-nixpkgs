@@ -2,30 +2,20 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/lemurs-xorg-script.nix", [[["maintainers", 5, 5]], [["enable", 16, 38]], [["lemurs", 16, 31]], [["enable", 18, 24]], [["displayManager", 16, 16], ["xserver", 18, 16]], [["mode", 21, 9], ["text", 22, 9]], [["lemurs/wms/icewm", 20, 23]], [["etc", 20, 19]], [["imports", 14, 7], ["services", 16, 7], ["environment", 20, 7]], [["machine", 11, 9]], [["name", 3, 3], ["meta", 4, 3], ["nodes", 11, 3], ["testScript", 29, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/lemurs-xorg-script.nix", [["maintainers", 5, 5]]);
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/lemurs-xorg-script.nix", [["enable", 16, 38]]);
-const pos$3 = nix.positions(here + "/lemurs-xorg-script.nix", [["lemurs", 16, 31]]);
-const pos$4 = nix.positions(here + "/lemurs-xorg-script.nix", [["enable", 18, 24]]);
-const pos$5 = nix.positions(here + "/lemurs-xorg-script.nix", [["displayManager", 16, 16], ["xserver", 18, 16]]);
-const pos$6 = nix.positions(here + "/lemurs-xorg-script.nix", [["mode", 21, 9], ["text", 22, 9]]);
-const pos$7 = nix.positions(here + "/lemurs-xorg-script.nix", [["lemurs/wms/icewm", 20, 23]]);
-const pos$8 = nix.positions(here + "/lemurs-xorg-script.nix", [["etc", 20, 19]]);
-const pos$9 = nix.positions(here + "/lemurs-xorg-script.nix", [["imports", 14, 7], ["services", 16, 7], ["environment", 20, 7]]);
-const pos$10 = nix.positions(here + "/lemurs-xorg-script.nix", [["machine", 11, 9]]);
-const pos$11 = nix.positions(here + "/lemurs-xorg-script.nix", [["name", 3, 3], ["meta", 4, 3], ["nodes", 11, 3], ["testScript", 29, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$11,
+    [nix.POS]: $pos[10],
     name: "lemurs-xorg-script",
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
       return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         maintainers: nix.thunk(() => [
           nix.thunk(() => nix.lookup(w, "nullcube")),
           nix.thunk(() => nix.lookup(w, "stunkymonkey")),
@@ -33,27 +23,27 @@ export default nix.lambda((args) => (() => {
       };
     })()),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           imports: nix.thunk(() => [nix.path(here, "../common/user-account.nix")]),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             displayManager: nix.thunk(() => ({
-              [nix.POS]: pos$3,
-              lemurs: nix.thunk(() => ({ [nix.POS]: pos$2, enable: true })),
+              [nix.POS]: $pos[2],
+              lemurs: nix.thunk(() => ({ [nix.POS]: $pos[1], enable: true })),
             })),
-            xserver: nix.thunk(() => ({ [nix.POS]: pos$4, enable: true })),
+            xserver: nix.thunk(() => ({ [nix.POS]: $pos[3], enable: true })),
           })),
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$8,
+            [nix.POS]: $pos[7],
             etc: nix.thunk(() => ({
-              [nix.POS]: pos$7,
+              [nix.POS]: $pos[6],
               "lemurs/wms/icewm": nix.thunk(() => ({
-                [nix.POS]: pos$6,
+                [nix.POS]: $pos[5],
                 mode: "755",
                 text: nix.thunk(() => nix.str`#! /bin/sh
 exec ${nix.sel(pkgs, "icewm")}/bin/icewm-session

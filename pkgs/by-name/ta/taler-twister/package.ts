@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 20, 5], ["tag", 21, 5], ["hash", 22, 5]], [["homepage", 42, 5], ["description", 43, 5], ["teams", 44, 5], ["maintainers", 45, 5], ["license", 46, 5], ["mainProgram", 47, 5], ["platforms", 48, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 30, 3], ["doInstallCheck", 39, 3], ["meta", 41, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchgit: false, autoreconfHook: false, "pkg-config": false, curl: false, gnunet: false, jansson: false, libgcrypt: false, libmicrohttpd: false, libsodium: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 20, 5], ["tag", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 42, 5], ["description", 43, 5], ["teams", 44, 5], ["maintainers", 45, 5], ["license", 46, 5], ["mainProgram", 47, 5], ["platforms", 48, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 30, 3], ["doInstallCheck", 39, 3], ["meta", 41, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const libmicrohttpd = nix.arg($, "libmicrohttpd");
   const libsodium = nix.arg($, "libsodium");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "taler-twister",
       version: "1.0.0",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://git-www.taler.net/twister.git",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-ir+kU9bCWwhqR88hmNHB5cm1DXOQowI5y6GdhWpX/L0=",
@@ -34,7 +32,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [curl, gnunet, jansson, libgcrypt, libmicrohttpd, libsodium]),
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://git-www.taler.net/twister.git",
         description: "Fault injector for HTTP traffic",
         teams: nix.thunk(() => (() => {

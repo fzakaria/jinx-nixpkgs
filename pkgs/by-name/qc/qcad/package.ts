@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 18, 5], ["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]], [["description", 126, 5], ["homepage", 127, 5], ["license", 128, 5], ["mainProgram", 129, 5], ["maintainers", 130, 5], ["platforms", 131, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["patches", 25, 3], ["postPatch", 30, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 47, 3], ["qmakeFlags", 60, 3], ["qtWrapperArgs", 67, 3], ["installPhase", 75, 3], ["meta", 125, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, installShellFiles: false, "pkg-config": false, qt5: false, boost: false, libGLU: false, muparser: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 18, 5], ["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 126, 5], ["homepage", 127, 5], ["license", 128, 5], ["mainProgram", 129, 5], ["maintainers", 130, 5], ["platforms", 131, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["patches", 25, 3], ["postPatch", 30, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 47, 3], ["qmakeFlags", 60, 3], ["qtWrapperArgs", 67, 3], ["installPhase", 75, 3], ["meta", 125, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const libGLU = nix.arg($, "libGLU");
   const muparser = nix.arg($, "muparser");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "qcad",
       version: "3.32.6.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           name: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-${nix.sel(finalAttrs, "version")}-src`),
           owner: "qcad",
           repo: "qcad",
@@ -103,7 +101,7 @@ installManPage qcad.1
 runHook postInstall
 `)),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "2D CAD package based on Qt",
         homepage: "https://qcad.org",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 22, 7], ["version", 23, 7], ["src", 24, 7], ["sourceRoot", 25, 7], ["hash", 27, 5]], [["description", 50, 7], ["homepage", 51, 7], ["license", 52, 7], ["platforms", 53, 7], ["maintainers", 54, 7], ["teams", 55, 7]], [["pname", 10, 3], ["pyproject", 11, 3], ["version", 14, 5], ["src", 15, 5], ["sourceRoot", 18, 3], ["cargoDeps", 20, 3], ["nativeBuildInputs", 30, 3], ["nativeCheckInputs", 35, 3], ["preCheck", 39, 3], ["pythonImportsCheck", 44, 3], ["meta", 48, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, rustPlatform: false, arwen: false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 22, 7], ["version", 23, 7], ["src", 24, 7], ["sourceRoot", 25, 7], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 50, 7], ["homepage", 51, 7], ["license", 52, 7], ["platforms", 53, 7], ["maintainers", 54, 7], ["teams", 55, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 10, 3], ["pyproject", 11, 3], ["version", 14, 5], ["src", 15, 5], ["sourceRoot", 18, 3], ["cargoDeps", 20, 3], ["nativeBuildInputs", 30, 3], ["nativeCheckInputs", 35, 3], ["preCheck", 39, 3], ["pythonImportsCheck", 44, 3], ["meta", 48, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,14 +13,14 @@ export default nix.lambda((args) => (() => {
   const arwen = nix.arg($, "arwen");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "py-arwen",
       pyproject: true,
       version: nix.thunk(() => nix.attr(arwen, "version")),
       src: nix.thunk(() => nix.attr(arwen, "src")),
       sourceRoot: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "name")}/py-arwen`),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -42,7 +40,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(arwen, "meta"));
         return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: nix.thunk(() => nix.attr(from, "description")),
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         license: nix.thunk(() => nix.attr(from, "license")),

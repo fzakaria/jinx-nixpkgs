@@ -2,7 +2,7 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
-const pos$1 = nix.positions(here + "/src-for-default.nix", [["pname", 2, 3], ["version", 3, 3], ["hash", 4, 3], ["url", 5, 3], ["advertisedUrl", 6, 3]]);
+const $pos = nix.positions(here + "/src-for-default.nix", [[["pname", 2, 3], ["version", 3, 3], ["hash", 4, 3], ["url", 5, 3], ["advertisedUrl", 6, 3]]]);
 
 export default nix.thunk(() => (() => {
   const pname = "libx86";
@@ -10,6 +10,6 @@ export default nix.thunk(() => (() => {
   const hash = "0j6h6bc02c6qi0q7c1ncraz4d1hkm5936r35rfsp4x1jrc233wav";
   const url = nix.thunk(() => nix.str`http://www.codon.org.uk/~mjg59/libx86/downloads/libx86-${version}.tar.gz`);
   const advertisedUrl = nix.thunk(() => nix.str`http://www.codon.org.uk/~mjg59/libx86/downloads/libx86-${version}.tar.gz`);
-  return { [nix.POS]: pos$1, pname, version, hash, url, advertisedUrl };
+  return { [nix.POS]: $pos[0], pname, version, hash, url, advertisedUrl };
 })());
 //# sourceMappingURL=src-for-default.ts.map

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 35, 5], ["sha256", 36, 5]], [["description", 53, 5], ["homepage", 54, 5], ["license", 55, 5], ["maintainers", 56, 5], ["platforms", 57, 5], ["mainProgram", 58, 5]], [["pname", 32, 3], ["version", 33, 11], ["src", 34, 3], ["unpackCmd", 39, 3], ["patches", 40, 3], ["nativeBuildInputs", 41, 3], ["dejavu_fonts", 43, 11], ["installPhase", 44, 3], ["meta", 52, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, makeWrapper: false, coreutils: false, ffmpeg: false, gawk: false, gnugrep: false, gnused: false, imagemagick: false, mplayer: false, "util-linux": false, getopt: false, dejavu_fonts: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 35, 5], ["sha256", 36, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 53, 5], ["homepage", 54, 5], ["license", 55, 5], ["maintainers", 56, 5], ["platforms", 57, 5], ["mainProgram", 58, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 32, 3], ["version", 33, 11], ["src", 34, 3], ["unpackCmd", 39, 3], ["patches", 40, 3], ["nativeBuildInputs", 41, 3], ["dejavu_fonts", 43, 11], ["installPhase", 44, 3], ["meta", 52, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const gopt = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) ? nix.force(util_linux) : nix.force(getopt)));
   const runtimeDeps = nix.thunk(() => [coreutils, ffmpeg, gawk, gnugrep, gnused, imagemagick, mplayer, gopt]);
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "vcs",
       version: version,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`http://p.outlyer.net/files/vcs/vcs-${version}.bash`),
           sha256: "0nhwcpffp3skz24kdfg4445i6j37ks6a0qsbpfd3dbi4vnpa60a0",
         })))),
@@ -46,7 +44,7 @@ chmod +x $out/bin/vcs
 wrapProgram $out/bin/vcs --argv0 vcs --set PATH "${nix.app(nix.sel(lib, "makeBinPath"), runtimeDeps)}"
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Generates contact sheets from video files",
         homepage: "http://p.outlyer.net/vcs",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),

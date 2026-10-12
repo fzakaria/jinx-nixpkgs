@@ -2,22 +2,21 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/simple.nix", [[["timeout", 25, 8]], [["pname", 7, 3], ["version", 8, 17], ["nativeBuildInputs", 10, 3], ["dontInstall", 12, 3], ["buildCommand", 14, 3], ["meta", 25, 3]]]);
 const formals$1 = { args: { stdenv: false, ucg: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/simple.nix", [["timeout", 25, 8]]);
-const pos$2 = nix.positions(here + "/simple.nix", [["pname", 7, 3], ["version", 8, 17], ["nativeBuildInputs", 10, 3], ["dontInstall", 12, 3], ["buildCommand", 14, 3], ["meta", 25, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const stdenv = nix.arg($, "stdenv");
   const ucg = nix.arg($, "ucg");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "ucg-test",
       version: nix.thunk(() => nix.attr(ucg, "version")),
       nativeBuildInputs: nix.thunk(() => [ucg]),
       dontInstall: true,
       buildCommand: "testFile=$(mktemp /tmp/ucg-test.XXXX)\necho -ne 'Lorem ipsum dolor sit amet\\n2.7182818284590' > $testFile\nucg 'dolor' $testFile || { rm $testFile; exit -1; }\nucg --ignore-case 'lorem' $testFile || { rm $testFile; exit -1; }\nucg --word-regexp '2718' $testFile && { rm $testFile; exit -1; }\nucg 'pisum' $testFile && { rm $testFile; exit -1; }\nrm $testFile\ntouch $out\n",
-      meta: nix.thunk(() => ({ [nix.POS]: pos$1, timeout: 10n })),
+      meta: nix.thunk(() => ({ [nix.POS]: $pos[0], timeout: 10n })),
     })));
 })(), formals$1);
 //# sourceMappingURL=simple.ts.map

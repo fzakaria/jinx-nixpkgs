@@ -2,41 +2,9 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/test.nix", [[["expected", 83, 7], ["actual", 84, 7], ["assertion", 85, 7]], [["libraries", 131, 52]], [["libraries", 151, 42]], [["libraries", 164, 46]], [["libraries", 171, 52]], [["bash", 90, 5], ["dash", 96, 5], ["fish", 102, 5], ["babashka", 110, 5], ["guile", 116, 5], ["rust", 122, 5], ["haskell", 130, 5], ["nim", 144, 5], ["js", 150, 5], ["perl", 163, 5], ["python3", 170, 5]], [["libraries", 283, 11], ["srfi", 284, 11]], [["r6rs", 297, 11], ["libraries", 298, 11]], [["r7rs", 313, 11]], [["libraries", 326, 45]], [["libraries", 340, 35]], [["libraries", 353, 39]], [["libraries", 360, 45]], [["bash", 225, 5], ["dash", 231, 5], ["fish", 237, 5], ["nim", 245, 5], ["nu", 251, 5], ["nuDocComment", 257, 5], ["babashka", 274, 5], ["guile", 280, 5], ["guileR6RS", 294, 5], ["guileR7RS", 310, 5], ["haskell", 325, 5], ["js", 339, 5], ["perl", 352, 5], ["python3", 359, 5], ["python3NoLibs", 421, 5], ["pypy3NoLibs", 427, 5], ["fsharpNoNugetDeps", 433, 5], ["luaNoLibs", 439, 5], ["rubyNoLibs", 445, 5]], [["libraries", 462, 50]], [["bash", 453, 5], ["haskell", 461, 5], ["nuDocComment", 477, 5]], [["hello", 499, 38]], [["file", 499, 7], ["expected", 500, 7]], [["hello", 508, 38]], [["file", 508, 7], ["expected", 509, 7]], [["hello", 515, 38]], [["file", 515, 7], ["expected", 516, 7]], [["json", 498, 5], ["toml", 507, 5], ["yaml", 514, 5]], [["makeWrapperArgs", 528, 11]], [["makeWrapperArgs", 544, 11]], [["makeWrapperArgs", 560, 11]], [["makeWrapperArgs", 575, 11]], [["makeWrapperArgs", 590, 11]], [["makeWrapperArgs", 607, 11]], [["makeWrapperArgs", 624, 11]], [["makeWrapperArgs", 641, 36]], [["bash-bin", 525, 5], ["bash", 541, 5], ["babashka-bin", 557, 5], ["babashka", 572, 5], ["nim", 587, 5], ["python", 604, 5], ["rust", 621, 5], ["no-empty-wrapper", 639, 5]], [["bin", 89, 3], ["simple", 224, 3], ["path", 452, 3], ["data", 497, 3], ["wrapping", 524, 3]]]);
 const formals$1 = { args: { haskellPackages: false, lib: false, "guile-lib": false, akkuPackages: false, katex: false, perlPackages: false, python3Packages: false, runCommand: false, testers: false, writers: false, writeText: false }, ellipsis: false };
 const formals$2 = { args: { file: false, expected: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/test.nix", [["expected", 83, 7], ["actual", 84, 7], ["assertion", 85, 7]]);
-const pos$2 = nix.positions(here + "/test.nix", [["libraries", 131, 52]]);
-const pos$3 = nix.positions(here + "/test.nix", [["libraries", 151, 42]]);
-const pos$4 = nix.positions(here + "/test.nix", [["libraries", 164, 46]]);
-const pos$5 = nix.positions(here + "/test.nix", [["libraries", 171, 52]]);
-const pos$6 = nix.positions(here + "/test.nix", [["bash", 90, 5], ["dash", 96, 5], ["fish", 102, 5], ["babashka", 110, 5], ["guile", 116, 5], ["rust", 122, 5], ["haskell", 130, 5], ["nim", 144, 5], ["js", 150, 5], ["perl", 163, 5], ["python3", 170, 5]]);
-const pos$7 = nix.positions(here + "/test.nix", [["libraries", 283, 11], ["srfi", 284, 11]]);
-const pos$8 = nix.positions(here + "/test.nix", [["r6rs", 297, 11], ["libraries", 298, 11]]);
-const pos$9 = nix.positions(here + "/test.nix", [["r7rs", 313, 11]]);
-const pos$10 = nix.positions(here + "/test.nix", [["libraries", 326, 45]]);
-const pos$11 = nix.positions(here + "/test.nix", [["libraries", 340, 35]]);
-const pos$12 = nix.positions(here + "/test.nix", [["libraries", 353, 39]]);
-const pos$13 = nix.positions(here + "/test.nix", [["libraries", 360, 45]]);
-const pos$14 = nix.positions(here + "/test.nix", [["bash", 225, 5], ["dash", 231, 5], ["fish", 237, 5], ["nim", 245, 5], ["nu", 251, 5], ["nuDocComment", 257, 5], ["babashka", 274, 5], ["guile", 280, 5], ["guileR6RS", 294, 5], ["guileR7RS", 310, 5], ["haskell", 325, 5], ["js", 339, 5], ["perl", 352, 5], ["python3", 359, 5], ["python3NoLibs", 421, 5], ["pypy3NoLibs", 427, 5], ["fsharpNoNugetDeps", 433, 5], ["luaNoLibs", 439, 5], ["rubyNoLibs", 445, 5]]);
-const pos$15 = nix.positions(here + "/test.nix", [["libraries", 462, 50]]);
-const pos$16 = nix.positions(here + "/test.nix", [["bash", 453, 5], ["haskell", 461, 5], ["nuDocComment", 477, 5]]);
-const pos$17 = nix.positions(here + "/test.nix", [["hello", 499, 38]]);
-const pos$18 = nix.positions(here + "/test.nix", [["file", 499, 7], ["expected", 500, 7]]);
-const pos$19 = nix.positions(here + "/test.nix", [["hello", 508, 38]]);
-const pos$20 = nix.positions(here + "/test.nix", [["file", 508, 7], ["expected", 509, 7]]);
-const pos$21 = nix.positions(here + "/test.nix", [["hello", 515, 38]]);
-const pos$22 = nix.positions(here + "/test.nix", [["file", 515, 7], ["expected", 516, 7]]);
-const pos$23 = nix.positions(here + "/test.nix", [["json", 498, 5], ["toml", 507, 5], ["yaml", 514, 5]]);
-const pos$24 = nix.positions(here + "/test.nix", [["makeWrapperArgs", 528, 11]]);
-const pos$25 = nix.positions(here + "/test.nix", [["makeWrapperArgs", 544, 11]]);
-const pos$26 = nix.positions(here + "/test.nix", [["makeWrapperArgs", 560, 11]]);
-const pos$27 = nix.positions(here + "/test.nix", [["makeWrapperArgs", 575, 11]]);
-const pos$28 = nix.positions(here + "/test.nix", [["makeWrapperArgs", 590, 11]]);
-const pos$29 = nix.positions(here + "/test.nix", [["makeWrapperArgs", 607, 11]]);
-const pos$30 = nix.positions(here + "/test.nix", [["makeWrapperArgs", 624, 11]]);
-const pos$31 = nix.positions(here + "/test.nix", [["makeWrapperArgs", 641, 36]]);
-const pos$32 = nix.positions(here + "/test.nix", [["bash-bin", 525, 5], ["bash", 541, 5], ["babashka-bin", 557, 5], ["babashka", 572, 5], ["nim", 587, 5], ["python", 604, 5], ["rust", 621, 5], ["no-empty-wrapper", 639, 5]]);
-const pos$33 = nix.positions(here + "/test.nix", [["bin", 89, 3], ["simple", 224, 3], ["path", 452, 3], ["data", 497, 3], ["wrapping", 524, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -105,16 +73,16 @@ touch $out
     const expected = nix.arg($_1, "expected");
     const expectedFile = nix.thunk(() => nix.app(writeText_1, nix.thunk(() => nix.str`${nix.sel(file, "name")}-expected`), expected));
     return nix.app(nix.sel(testers, "testEqualContents"), nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         expected: expectedFile,
         actual: file,
         assertion: nix.thunk(() => nix.str`${nix.sel(file, "name")} matches`),
       })));
   })(), formals$2);
   return nix.app(recurseIntoAttrs, nix.thunk(() => ({
-      [nix.POS]: pos$33,
+      [nix.POS]: $pos[32],
       bin: nix.thunk(() => nix.app(recurseIntoAttrs, nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           bash: nix.thunk(() => nix.app(expectSuccessBin, nix.thunk(() => nix.app(writeBashBin, "test-writers-bash-bin", "if [[ \"test\" == \"test\" ]]; then echo \"success\"; fi\n")))),
           dash: nix.thunk(() => nix.app(expectSuccessBin, nix.thunk(() => nix.app(writeDashBin, "test-writers-dash-bin", "test '~' = '~' && echo 'success'\n")))),
           fish: nix.thunk(() => nix.app(expectSuccessBin, nix.thunk(() => nix.app(writeFishBin, "test-writers-fish-bin", "if test \"test\" = \"test\"\n  echo \"success\"\nend\n")))),
@@ -122,22 +90,22 @@ touch $out
           guile: nix.thunk(() => nix.app(expectSuccessBin, nix.thunk(() => nix.app(writeGuileBin, "test-writers-guile-bin", nix.thunk(() => ({})), "(display \"success\\n\")\n")))),
           rust: nix.thunk(() => nix.app(expectSuccessBin, nix.thunk(() => nix.app(writeRustBin, "test-writers-rust-bin", nix.thunk(() => ({})), "fn main(){\n  println!(\"success\")\n}\n")))),
           haskell: nix.thunk(() => nix.app(expectSuccessBin, nix.thunk(() => nix.app(writeHaskellBin, "test-writers-haskell-bin", nix.thunk(() => ({
-                [nix.POS]: pos$2,
+                [nix.POS]: $pos[1],
                 libraries: nix.thunk(() => [nix.thunk(() => nix.sel(haskellPackages, "acme-default"))]),
               })), "import Data.Default\n\nint :: Int\nint = def\n\nmain :: IO ()\nmain = case int of\n  18871 -> putStrLn $ id \"success\"\n  _ -> print \"fail\"\n")))),
           nim: nix.thunk(() => nix.app(expectSuccessBin, nix.thunk(() => nix.app(writeNimBin, "test-writers-nim-bin", nix.thunk(() => ({})), "echo \"success\"\n")))),
-          js: nix.thunk(() => nix.app(expectSuccessBin, nix.thunk(() => nix.app(writeJSBin, "test-writers-js-bin", nix.thunk(() => ({ [nix.POS]: pos$3, libraries: nix.thunk(() => [katex]) })), "var katex = require('katex');\n\nvar html = katex.renderToString(\"c = \\\\pm\\\\sqrt{a^2 + b^2}\");\nif (html instanceof katex.ParseError) {\n  console.log(\"fail\")\n} else {\n  console.log(\"success\")\n}\n")))),
+          js: nix.thunk(() => nix.app(expectSuccessBin, nix.thunk(() => nix.app(writeJSBin, "test-writers-js-bin", nix.thunk(() => ({ [nix.POS]: $pos[2], libraries: nix.thunk(() => [katex]) })), "var katex = require('katex');\n\nvar html = katex.renderToString(\"c = \\\\pm\\\\sqrt{a^2 + b^2}\");\nif (html instanceof katex.ParseError) {\n  console.log(\"fail\")\n} else {\n  console.log(\"success\")\n}\n")))),
           perl: nix.thunk(() => nix.app(expectSuccessBin, nix.thunk(() => nix.app(writePerlBin, "test-writers-perl-bin", nix.thunk(() => ({
-                [nix.POS]: pos$4,
+                [nix.POS]: $pos[3],
                 libraries: nix.thunk(() => [nix.thunk(() => nix.sel(perlPackages, "boolean"))]),
               })), "use boolean;\nprint \"success\\n\" if true;\n")))),
           python3: nix.thunk(() => nix.app(expectSuccessBin, nix.thunk(() => nix.app(writePython3Bin, "test-writers-python3-bin", nix.thunk(() => ({
-                [nix.POS]: pos$5,
+                [nix.POS]: $pos[4],
                 libraries: nix.thunk(() => [nix.thunk(() => nix.sel(python3Packages, "pyyaml"))]),
               })), "import yaml\n\ny = yaml.safe_load(\"\"\"\n  - test: success\n\"\"\")\nprint(y[0]['test'])\n")))),
         })))),
       simple: nix.thunk(() => nix.app(recurseIntoAttrs, nix.thunk(() => ({
-          [nix.POS]: pos$14,
+          [nix.POS]: $pos[13],
           bash: nix.thunk(() => nix.app(expectSuccess, nix.thunk(() => nix.app(writeBash, "test-writers-bash", "if [[ \"test\" == \"test\" ]]; then echo \"success\"; fi\n")))),
           dash: nix.thunk(() => nix.app(expectSuccess, nix.thunk(() => nix.app(writeDash, "test-writers-dash", "test '~' = '~' && echo 'success'\n")))),
           fish: nix.thunk(() => nix.app(expectSuccess, nix.thunk(() => nix.app(writeFish, "test-writers-fish", "if test \"test\" = \"test\"\n  echo \"success\"\nend\n")))),
@@ -156,30 +124,30 @@ touch $out
           })()),
           babashka: nix.thunk(() => nix.app(expectSuccess, nix.thunk(() => nix.app(writeBabashka, "test-writers-babashka", nix.thunk(() => ({})), "(println \"success\")\n")))),
           guile: nix.thunk(() => nix.app(expectSuccess, nix.thunk(() => nix.app(writeGuile, "test-writers-guile", nix.thunk(() => ({
-                [nix.POS]: pos$7,
+                [nix.POS]: $pos[6],
                 libraries: nix.thunk(() => [guile_lib]),
                 srfi: nix.thunk(() => [1n]),
               })), "(use-modules (unit-test))\n(assert-true (= (second '(1 2 3))\n             2))\n(display \"success\\n\")\n")))),
           guileR6RS: nix.thunk(() => nix.app(expectSuccess, nix.thunk(() => nix.app(writeGuile, "test-writers-guile-r6rs", nix.thunk(() => ({
-                [nix.POS]: pos$8,
+                [nix.POS]: $pos[7],
                 r6rs: true,
                 libraries: nix.thunk(() => (() => {
                   const w = nix.withScope(akkuPackages, null);
                   return [nix.thunk(() => nix.lookup(w, "r6rs-slice"))];
                 })()),
               })), "(import (rnrs base (6))\n        (rnrs io simple (6))\n        (slice))\n(assert (equal? (slice '(1 2 3) 0 2)\n                '(1 2)))\n(display \"success\\n\")\n")))),
-          guileR7RS: nix.thunk(() => nix.app(expectSuccess, nix.thunk(() => nix.app(writeGuile, "test-writers-guile-r7rs", nix.thunk(() => ({ [nix.POS]: pos$9, r7rs: true })), "(import (scheme write)\n        (srfi 1))\n(unless (= (second '(1 2 3))\n           2)\n        (error \"The value should be 2.\"))\n(display \"success\\n\")\n")))),
+          guileR7RS: nix.thunk(() => nix.app(expectSuccess, nix.thunk(() => nix.app(writeGuile, "test-writers-guile-r7rs", nix.thunk(() => ({ [nix.POS]: $pos[8], r7rs: true })), "(import (scheme write)\n        (srfi 1))\n(unless (= (second '(1 2 3))\n           2)\n        (error \"The value should be 2.\"))\n(display \"success\\n\")\n")))),
           haskell: nix.thunk(() => nix.app(expectSuccess, nix.thunk(() => nix.app(writeHaskell, "test-writers-haskell", nix.thunk(() => ({
-                [nix.POS]: pos$10,
+                [nix.POS]: $pos[9],
                 libraries: nix.thunk(() => [nix.thunk(() => nix.sel(haskellPackages, "acme-default"))]),
               })), "import Data.Default\n\nint :: Int\nint = def\n\nmain :: IO ()\nmain = case int of\n  18871 -> putStrLn $ id \"success\"\n  _ -> print \"fail\"\n")))),
-          js: nix.thunk(() => nix.app(expectSuccess, nix.thunk(() => nix.app(writeJS, "test-writers-js", nix.thunk(() => ({ [nix.POS]: pos$11, libraries: nix.thunk(() => [katex]) })), "var katex = require('katex');\n\nvar html = katex.renderToString(\"c = \\\\pm\\\\sqrt{a^2 + b^2}\");\nif (html instanceof katex.ParseError) {\n  console.log(\"fail\")\n} else {\n  console.log(\"success\")\n}\n")))),
+          js: nix.thunk(() => nix.app(expectSuccess, nix.thunk(() => nix.app(writeJS, "test-writers-js", nix.thunk(() => ({ [nix.POS]: $pos[10], libraries: nix.thunk(() => [katex]) })), "var katex = require('katex');\n\nvar html = katex.renderToString(\"c = \\\\pm\\\\sqrt{a^2 + b^2}\");\nif (html instanceof katex.ParseError) {\n  console.log(\"fail\")\n} else {\n  console.log(\"success\")\n}\n")))),
           perl: nix.thunk(() => nix.app(expectSuccess, nix.thunk(() => nix.app(writePerl, "test-writers-perl", nix.thunk(() => ({
-                [nix.POS]: pos$12,
+                [nix.POS]: $pos[11],
                 libraries: nix.thunk(() => [nix.thunk(() => nix.sel(perlPackages, "boolean"))]),
               })), "use boolean;\nprint \"success\\n\" if true;\n")))),
           python3: nix.thunk(() => nix.app(expectSuccess, nix.thunk(() => nix.app(writePython3, "test-writers-python3", nix.thunk(() => ({
-                [nix.POS]: pos$13,
+                [nix.POS]: $pos[12],
                 libraries: nix.thunk(() => [nix.thunk(() => nix.sel(python3Packages, "pyyaml"))]),
               })), "import yaml\n\ny = yaml.safe_load(\"\"\"\n  - test: success\n\"\"\")\nprint(y[0]['test'])\n")))),
           python3NoLibs: nix.thunk(() => nix.app(expectSuccess, nix.thunk(() => nix.app(writePython3, "test-writers-python3-no-libs", nix.thunk(() => ({})), "print(\"success\")\n")))),
@@ -189,10 +157,10 @@ touch $out
           rubyNoLibs: nix.thunk(() => nix.app(expectSuccess, nix.thunk(() => nix.app(writeRuby, "test-writers-ruby-no-libs", nix.thunk(() => ({})), "puts \"success\"\n")))),
         })))),
       path: nix.thunk(() => nix.app(recurseIntoAttrs, nix.thunk(() => ({
-          [nix.POS]: pos$16,
+          [nix.POS]: $pos[15],
           bash: nix.thunk(() => nix.app(expectSuccess, nix.thunk(() => nix.app(writeBash, "test-writers-bash-path", nix.thunk(() => nix.app(writeText_1, "test", "if [[ \"test\" == \"test\" ]]; then echo \"success\"; fi\n")))))),
           haskell: nix.thunk(() => nix.app(expectSuccess, nix.thunk(() => nix.app(writeHaskell, "test-writers-haskell-path", nix.thunk(() => ({
-                [nix.POS]: pos$15,
+                [nix.POS]: $pos[14],
                 libraries: nix.thunk(() => [nix.thunk(() => nix.sel(haskellPackages, "acme-default"))]),
               })), nix.thunk(() => nix.app(writeText_1, "test", "import Data.Default\n\nint :: Int\nint = def\n\nmain :: IO ()\nmain = case int of\n  18871 -> putStrLn $ id \"success\"\n  _ -> print \"fail\"\n")))))),
           nuDocComment: nix.thunk(() => (() => {
@@ -208,55 +176,55 @@ touch $out
           })()),
         })))),
       data: nix.thunk(() => nix.app(recurseIntoAttrs, nix.thunk(() => ({
-          [nix.POS]: pos$23,
+          [nix.POS]: $pos[22],
           json: nix.thunk(() => nix.app(expectDataEqual, nix.thunk(() => ({
-              [nix.POS]: pos$18,
-              file: nix.thunk(() => nix.app(writeJSON, "data.json", nix.thunk(() => ({ [nix.POS]: pos$17, hello: "world" })))),
+              [nix.POS]: $pos[17],
+              file: nix.thunk(() => nix.app(writeJSON, "data.json", nix.thunk(() => ({ [nix.POS]: $pos[16], hello: "world" })))),
               expected: "{\n  \"hello\": \"world\"\n}\n",
             })))),
           toml: nix.thunk(() => nix.app(expectDataEqual, nix.thunk(() => ({
-              [nix.POS]: pos$20,
-              file: nix.thunk(() => nix.app(writeTOML, "data.toml", nix.thunk(() => ({ [nix.POS]: pos$19, hello: "world" })))),
+              [nix.POS]: $pos[19],
+              file: nix.thunk(() => nix.app(writeTOML, "data.toml", nix.thunk(() => ({ [nix.POS]: $pos[18], hello: "world" })))),
               expected: "hello = \"world\"\n",
             })))),
           yaml: nix.thunk(() => nix.app(expectDataEqual, nix.thunk(() => ({
-              [nix.POS]: pos$22,
-              file: nix.thunk(() => nix.app(writeYAML, "data.yaml", nix.thunk(() => ({ [nix.POS]: pos$21, hello: "world" })))),
+              [nix.POS]: $pos[21],
+              file: nix.thunk(() => nix.app(writeYAML, "data.yaml", nix.thunk(() => ({ [nix.POS]: $pos[20], hello: "world" })))),
               expected: "%YAML 1.1\n---\nhello: world\n",
             })))),
         })))),
       wrapping: nix.thunk(() => nix.app(recurseIntoAttrs, nix.thunk(() => ({
-          [nix.POS]: pos$32,
+          [nix.POS]: $pos[31],
           "bash-bin": nix.thunk(() => nix.app(expectSuccessBin, nix.thunk(() => nix.app(writeBashBin, "test-writers-wrapping-bash-bin", nix.thunk(() => ({
-                [nix.POS]: pos$24,
+                [nix.POS]: $pos[23],
                 makeWrapperArgs: nix.thunk(() => ["--set", "ThaigerSprint", "Thailand"]),
               })), "if [[ \"$ThaigerSprint\" == \"Thailand\" ]]; then\n  echo \"success\"\nfi\n")))),
           bash: nix.thunk(() => nix.app(expectSuccess, nix.thunk(() => nix.app(writeBash, "test-writers-wrapping-bash", nix.thunk(() => ({
-                [nix.POS]: pos$25,
+                [nix.POS]: $pos[24],
                 makeWrapperArgs: nix.thunk(() => ["--set", "ThaigerSprint", "Thailand"]),
               })), "if [[ \"$ThaigerSprint\" == \"Thailand\" ]]; then\n  echo \"success\"\nfi\n")))),
           "babashka-bin": nix.thunk(() => nix.app(expectSuccessBin, nix.thunk(() => nix.app(writeBabashkaBin, "test-writers-wrapping-babashka-bin", nix.thunk(() => ({
-                [nix.POS]: pos$26,
+                [nix.POS]: $pos[25],
                 makeWrapperArgs: nix.thunk(() => ["--set", "ThaigerSprint", "Thailand"]),
               })), "(when (= (System/getenv \"ThaigerSprint\") \"Thailand\")\n  (println \"success\"))\n")))),
           babashka: nix.thunk(() => nix.app(expectSuccess, nix.thunk(() => nix.app(writeBabashka, "test-writers-wrapping-babashka", nix.thunk(() => ({
-                [nix.POS]: pos$27,
+                [nix.POS]: $pos[26],
                 makeWrapperArgs: nix.thunk(() => ["--set", "ThaigerSprint", "Thailand"]),
               })), "(when (= (System/getenv \"ThaigerSprint\") \"Thailand\")\n  (println \"success\"))\n")))),
           nim: nix.thunk(() => nix.app(expectSuccess, nix.thunk(() => nix.app(writeNim, "test-writers-wrapping-nim", nix.thunk(() => ({
-                [nix.POS]: pos$28,
+                [nix.POS]: $pos[27],
                 makeWrapperArgs: nix.thunk(() => ["--set", "ThaigerSprint", "Thailand"]),
               })), "import os\n\nif getEnv(\"ThaigerSprint\") == \"Thailand\":\n  echo \"success\"\n")))),
           python: nix.thunk(() => nix.app(expectSuccess, nix.thunk(() => nix.app(writePython3, "test-writers-wrapping-python", nix.thunk(() => ({
-                [nix.POS]: pos$29,
+                [nix.POS]: $pos[28],
                 makeWrapperArgs: nix.thunk(() => ["--set", "ThaigerSprint", "Thailand"]),
               })), "import os\n\nif os.environ.get(\"ThaigerSprint\") == \"Thailand\":\n    print(\"success\")\n")))),
           rust: nix.thunk(() => nix.app(expectSuccess, nix.thunk(() => nix.app(writeRust, "test-writers-wrapping-rust", nix.thunk(() => ({
-                [nix.POS]: pos$30,
+                [nix.POS]: $pos[29],
                 makeWrapperArgs: nix.thunk(() => ["--set", "ThaigerSprint", "Thailand"]),
               })), "fn main(){\n  if std::env::var(\"ThaigerSprint\").unwrap() == \"Thailand\" {\n    println!(\"success\")\n  }\n}\n")))),
           "no-empty-wrapper": nix.thunk(() => (() => {
-            const bin = nix.thunk(() => nix.app(writeBashBin, "bin", nix.thunk(() => ({ [nix.POS]: pos$31, makeWrapperArgs: [] })), "true"));
+            const bin = nix.thunk(() => nix.app(writeBashBin, "bin", nix.thunk(() => ({ [nix.POS]: $pos[30], makeWrapperArgs: [] })), "true"));
             return nix.app(runCommand, "run-test-writers-wrapping-no-empty-wrapper", nix.thunk(() => ({})), nix.thunk(() => nix.str`ls -A ${bin}/bin
 if [ $(ls -A ${bin}/bin | wc -l) -eq 1 ]; then
   touch $out

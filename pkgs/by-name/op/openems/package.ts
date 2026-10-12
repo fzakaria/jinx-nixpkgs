@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 28, 5], ["repo", 29, 5], ["rev", 30, 5], ["sha256", 31, 5]], [["name", 37, 7], ["url", 38, 7], ["hash", 39, 7]], [["name", 43, 7], ["url", 44, 7], ["hash", 45, 7]], [["hdf5", 65, 32]], [["description", 82, 5], ["homepage", 83, 5], ["license", 84, 5], ["maintainers", 85, 5], ["platforms", 86, 5]], [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["patches", 34, 3], ["nativeBuildInputs", 51, 3], ["cmakeFlags", 55, 3], ["buildInputs", 57, 3], ["postFixup", 71, 3], ["meta", 81, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, fetchpatch: false, csxcad: false, fparser: false, tinyxml: false, hdf5: false, vtk: false, boost: false, zlib: false, cmake: false, octave: false, mpi: false, withQcsxcad: true, withMPI: true, withHyp2mat: true, qcsxcad: false, hyp2mat: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 28, 5], ["repo", 29, 5], ["rev", 30, 5], ["sha256", 31, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 37, 7], ["url", 38, 7], ["hash", 39, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 43, 7], ["url", 44, 7], ["hash", 45, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["hdf5", 65, 32]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 82, 5], ["homepage", 83, 5], ["license", 84, 5], ["maintainers", 85, 5], ["platforms", 86, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["patches", 34, 3], ["nativeBuildInputs", 51, 3], ["cmakeFlags", 55, 3], ["buildInputs", 57, 3], ["postFixup", 71, 3], ["meta", 81, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,11 +27,11 @@ export default nix.lambda((args) => (() => {
   const qcsxcad = nix.arg($, "qcsxcad");
   const hyp2mat = nix.arg($, "hyp2mat");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "openems",
       version: "0.0.36",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "thliebig",
           repo: "openEMS",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -44,13 +39,13 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "update-cmake-minimum-required.patch",
             url: "https://github.com/thliebig/openEMS/commit/0fa7ba3aebc8ee531077973cfa136ead8e887872.patch",
             hash: "sha256-q/ax7MZHwqSKAjx22uyV13YO/TXZa4bwikoQyItMB7E=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "update-nf2ff-cmake-minimum-required.patch",
             url: "https://github.com/thliebig/openEMS/commit/e02e2a8414355482145240e4c2b2464d7a26dd9e.patch",
             hash: "sha256-y3pvim/8XUKF5k7shj0D+8P6tdfSZ3E/gxTogbRtxdo=",
@@ -67,7 +62,7 @@ export default nix.lambda((args) => (() => {
         boost,
         zlib,
         csxcad,
-        nix.thunk(() => nix.app(nix.sel(octave, "override"), nix.thunk(() => ({ [nix.POS]: pos$4, hdf5: hdf5 })))),
+        nix.thunk(() => nix.app(nix.sel(octave, "override"), nix.thunk(() => ({ [nix.POS]: $pos[3], hdf5: hdf5 })))),
       ], nix.concat(nix.app(nix.sel(lib, "optionals"), withQcsxcad, nix.thunk(() => [qcsxcad])), nix.concat(nix.app(nix.sel(lib, "optionals"), withMPI, nix.thunk(() => [mpi])), nix.app(nix.sel(lib, "optionals"), withHyp2mat, nix.thunk(() => [hyp2mat])))))),
       postFixup: nix.thunk(() => nix.str`substituteInPlace $out/share/openEMS/matlab/setup.m \\
   --replace /usr/lib ${hdf5}/lib \\
@@ -78,7 +73,7 @@ ${octave}/bin/mkoctfile -L${hdf5}/lib -I${hdf5}/include \\
   -o $out/share/openEMS/matlab/h5readatt_octave.oct
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Open Source Electromagnetic Field Solver",
         homepage: "https://wiki.openems.de/index.php/Main_Page.html",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

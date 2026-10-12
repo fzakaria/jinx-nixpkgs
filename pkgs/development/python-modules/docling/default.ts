@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["description", 40, 5], ["homepage", 41, 5], ["changelog", 42, 5], ["license", 43, 5], ["maintainers", 44, 5], ["mainProgram", 45, 5]], [["pname", 14, 3], ["version", 15, 26], ["src", 15, 34], ["pyproject", 16, 3], ["__structuredAttrs", 17, 3], ["sourceRoot", 19, 3], ["build-system", 21, 3], ["dependencies", 27, 3], ["pythonImportsCheck", 32, 3], ["nativeCheckInputs", 35, 3], ["meta", 39, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, "docling-slim": false, hatchling: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["description", 40, 5], ["homepage", 41, 5], ["changelog", 42, 5], ["license", 43, 5], ["maintainers", 44, 5], ["mainProgram", 45, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 14, 3], ["version", 15, 26], ["src", 15, 34], ["pyproject", 16, 3], ["__structuredAttrs", 17, 3], ["sourceRoot", 19, 3], ["build-system", 21, 3], ["dependencies", 27, 3], ["pythonImportsCheck", 32, 3], ["nativeCheckInputs", 35, 3], ["meta", 39, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const hatchling = nix.arg($, "hatchling");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "docling",
       version: nix.thunk(() => nix.attr(docling_slim, "version")),
       src: nix.thunk(() => nix.attr(docling_slim, "src")),
@@ -26,7 +25,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["docling"]),
       nativeCheckInputs: nix.thunk(() => [versionCheckHook]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "SDK and CLI for parsing PDF, DOCX, HTML, and more, to a unified document representation for powering downstream workflows such as gen AI applications",
         homepage: "https://github.com/DS4SD/docling",
         changelog: nix.thunk(() => nix.str`https://github.com/DS4SD/docling/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 34, 5], ["repo", 35, 5], ["tag", 36, 5], ["hash", 37, 5]], [["RELEASE_FULL_FLAG", 64, 5]], [["changelog", 98, 5], ["description", 99, 5], ["homepage", 100, 5], ["license", 101, 5], ["maintainers", 105, 5]], [["pname", 29, 3], ["version", 30, 3], ["pyproject", 31, 3], ["src", 33, 3], ["postPatch", 40, 3], ["nativeBuildInputs", 46, 3], ["build-system", 52, 3], ["dontUseCmakeConfigure", 54, 3], ["buildInputs", 56, 3], ["env", 63, 3], ["dependencies", 67, 3], ["pythonImportsCheck", 69, 3], ["nativeCheckInputs", 71, 3], ["disabledTests", 77, 3], ["meta", 97, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitHub: false, cmake: false, nasm: false, "pkg-config": false, setuptools: false, libheif: false, libaom: false, libde265: false, x265: false, pillow: false, opencv4: false, numpy: false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 34, 5], ["repo", 35, 5], ["tag", 36, 5], ["hash", 37, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["RELEASE_FULL_FLAG", 64, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["changelog", 98, 5], ["description", 99, 5], ["homepage", 100, 5], ["license", 101, 5], ["maintainers", 105, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 29, 3], ["version", 30, 3], ["pyproject", 31, 3], ["src", 33, 3], ["postPatch", 40, 3], ["nativeBuildInputs", 46, 3], ["build-system", 52, 3], ["dontUseCmakeConfigure", 54, 3], ["buildInputs", 56, 3], ["env", 63, 3], ["dependencies", 67, 3], ["pythonImportsCheck", 69, 3], ["nativeCheckInputs", 71, 3], ["disabledTests", 77, 3], ["meta", 97, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.4.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "bigcat88",
           repo: "pillow_heif",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -42,7 +39,7 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [setuptools]);
       const dontUseCmakeConfigure = true;
       const buildInputs = nix.thunk(() => [libaom, libde265, libheif, x265]);
-      const env = nix.thunk(() => ({ [nix.POS]: pos$2, RELEASE_FULL_FLAG: 1n }));
+      const env = nix.thunk(() => ({ [nix.POS]: $pos[1], RELEASE_FULL_FLAG: 1n }));
       const dependencies = nix.thunk(() => [pillow]);
       const pythonImportsCheck = nix.thunk(() => ["pillow_heif"]);
       const nativeCheckInputs = nix.thunk(() => [opencv4, numpy, pytestCheckHook]);
@@ -56,7 +53,7 @@ export default nix.lambda((args) => (() => {
           "test_I_color_modes_to_10_12_bit",
         ])))));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         changelog: nix.thunk(() => nix.str`https://github.com/bigcat88/pillow_heif/releases/tag/${nix.sel(src, "tag")}`),
         description: "Python library for working with HEIF images and plugin for Pillow",
         homepage: "https://github.com/bigcat88/pillow_heif",
@@ -76,7 +73,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

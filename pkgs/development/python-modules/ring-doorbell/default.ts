@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 30, 5], ["version", 31, 26], ["hash", 32, 5]], [["name", 38, 7], ["url", 39, 7], ["excludes", 40, 7], ["hash", 44, 7]], [["description", 76, 5], ["homepage", 77, 5], ["changelog", 78, 5], ["license", 79, 5], ["maintainers", 80, 5], ["mainProgram", 81, 5]], [["pname", 25, 3], ["version", 26, 3], ["pyproject", 27, 3], ["src", 29, 3], ["patches", 35, 3], ["pythonRelaxDeps", 48, 3], ["build-system", 50, 3], ["dependencies", 52, 3], ["nativeCheckInputs", 63, 3], ["pythonImportsCheck", 73, 3], ["meta", 75, 3]]]);
 const formals$1 = { args: { lib: false, aiofiles: false, aiohttp: false, aioresponses: false, asyncclick: false, buildPythonPackage: false, fetchpatch: false, fetchPypi: false, "firebase-messaging": false, freezegun: false, hatchling: false, oauthlib: false, "pytest-asyncio": false, "pytest-freezer": false, "pytest-mock": false, "pytest-socket": false, pytestCheckHook: false, pytz: false, "typing-extensions": false, websockets: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 30, 5], ["version", 31, 26], ["hash", 32, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["name", 38, 7], ["url", 39, 7], ["excludes", 40, 7], ["hash", 44, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 76, 5], ["homepage", 77, 5], ["changelog", 78, 5], ["license", 79, 5], ["maintainers", 80, 5], ["mainProgram", 81, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 25, 3], ["version", 26, 3], ["pyproject", 27, 3], ["src", 29, 3], ["patches", 35, 3], ["pythonRelaxDeps", 48, 3], ["build-system", 50, 3], ["dependencies", 52, 3], ["nativeCheckInputs", 63, 3], ["pythonImportsCheck", 73, 3], ["meta", 75, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,19 +28,19 @@ export default nix.lambda((args) => (() => {
   const typing_extensions = nix.arg($, "typing-extensions");
   const websockets = nix.arg($, "websockets");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "ring-doorbell",
       version: "0.9.14",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "ring_doorbell",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-M99nwMuo0OziuJpNzuZgK69HtE+/wbOgheij1UwBaRc=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "replace-async-timeout-with-asyncio.timeout.patch",
             url: "https://github.com/python-ring-doorbell/python-ring-doorbell/commit/771243153921ec2cfb5f103b08ed08cccbe2e760.patch",
             excludes: nix.thunk(() => [".github/workflows/ci.yml", "uv.lock"]),
@@ -73,7 +70,7 @@ export default nix.lambda((args) => (() => {
       ]),
       pythonImportsCheck: nix.thunk(() => ["ring_doorbell"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Library to communicate with Ring Door Bell",
         homepage: "https://github.com/tchellomello/python-ring-doorbell",
         changelog: nix.thunk(() => nix.str`https://github.com/tchellomello/python-ring-doorbell/blob/${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

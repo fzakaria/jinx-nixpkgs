@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]], [["src", 23, 26], ["pname", 23, 30], ["version", 23, 36], ["fetchAll", 24, 5], ["hash", 25, 5]], [["updateScript", 30, 12]], [["VERSION", 40, 7]], [["description", 46, 5], ["homepage", 47, 5], ["changelog", 48, 5], ["license", 49, 5], ["maintainers", 50, 5], ["mainProgram", 51, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["zigDeps", 22, 3], ["nativeBuildInputs", 28, 3], ["passthru", 30, 3], ["dontSetZigDefaultFlags", 32, 3], ["zigBuildFlags", 33, 3], ["env", 40, 3], ["__structuredAttrs", 42, 3], ["strictDeps", 43, 3], ["meta", 45, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, stdenv: false, zig_0_15: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["src", 23, 26], ["pname", 23, 30], ["version", 23, 36], ["fetchAll", 24, 5], ["hash", 25, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 30, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["VERSION", 40, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 46, 5], ["homepage", 47, 5], ["changelog", 48, 5], ["license", 49, 5], ["maintainers", 50, 5], ["mainProgram", 51, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["zigDeps", 22, 3], ["nativeBuildInputs", 28, 3], ["passthru", 30, 3], ["dontSetZigDefaultFlags", 32, 3], ["zigBuildFlags", 33, 3], ["env", 40, 3], ["__structuredAttrs", 42, 3], ["strictDeps", 43, 3], ["meta", 45, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,18 +14,18 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const zig = zig_0_15;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "flow-control",
       version: "0.7.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "neurocyte",
           repo: "flow",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-5+F0DKb4LXtcMXNutUSJuIe7cdBoFUoJhCs8vbm20jg=",
         })))),
       zigDeps: nix.thunk(() => nix.app(nix.sel(zig, "fetchDeps"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
@@ -39,7 +34,7 @@ export default nix.lambda((args) => (() => {
         })))),
       nativeBuildInputs: nix.thunk(() => [zig]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       dontSetZigDefaultFlags: true,
@@ -49,11 +44,11 @@ export default nix.lambda((args) => (() => {
         "-Dcpu=baseline",
         "-Doptimize=ReleaseFast",
       ]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$4, VERSION: nix.thunk(() => nix.sel(finalAttrs, "version")) })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[3], VERSION: nix.thunk(() => nix.sel(finalAttrs, "version")) })),
       __structuredAttrs: true,
       strictDeps: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Programmer's text editor",
         homepage: "https://github.com/neurocyte/flow",
         changelog: nix.thunk(() => nix.str`https://github.com/neurocyte/flow/releases/tag/v${nix.sel(finalAttrs, "version")}`),

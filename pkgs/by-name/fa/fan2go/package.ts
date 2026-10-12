@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5], ["leaveDotGit", 20, 5], ["postFetch", 21, 5]], [["description", 69, 5], ["mainProgram", 70, 5], ["homepage", 71, 5], ["license", 72, 5], ["maintainers", 73, 5], ["platforms", 74, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["vendorHash", 28, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 34, 3], ["postConfigure", 36, 3], ["buildPhase", 46, 3], ["postFixup", 58, 3], ["checkPhase", 62, 3], ["meta", 68, 3]]]);
 const formals$1 = { args: { config: false, buildGoModule: false, fetchFromGitHub: false, lib: false, lm_sensors: false, autoAddDriverRunpath: false, enableNVML: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5], ["leaveDotGit", 20, 5], ["postFetch", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 69, 5], ["mainProgram", 70, 5], ["homepage", 71, 5], ["license", 72, 5], ["maintainers", 73, 5], ["platforms", 74, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["vendorHash", 28, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 34, 3], ["postConfigure", 36, 3], ["buildPhase", 46, 3], ["postFixup", 58, 3], ["checkPhase", 62, 3], ["meta", 68, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const autoAddDriverRunpath = nix.arg($, "autoAddDriverRunpath");
   const enableNVML = nix.argOr($, "enableNVML", () => nix.sel(config, "cudaSupport"));
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "fan2go",
       version: "0.15.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "markusressel",
           repo: "fan2go",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -53,7 +51,7 @@ runHook postBuild
       postFixup: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), enableNVML, "patchelf --add-needed libnvidia-ml.so \"$out/bin/fan2go\"\n")),
       checkPhase: "runHook preCheck\nmake test\nrunHook postCheck\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Simple daemon providing dynamic fan speed control based on temperature sensors",
         mainProgram: "fan2go",
         homepage: "https://github.com/markusressel/fan2go",

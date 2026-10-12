@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/wrapper.nix", [[["pname", 13, 33], ["version", 13, 39], ["outputs", 13, 47], ["dontUnpack", 15, 3], ["nativeBuildInputs", 17, 3], ["installPhase", 22, 3], ["dontWrapGApps", 33, 3], ["preFixup", 35, 3], ["meta", 59, 33]]]);
 const formals$1 = { args: { stdenvNoCC: false, lib: false, wrapGAppsHook3: false, "gdk-pixbuf": false, librsvg: false, lndir: false, "shared-mime-info": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/wrapper.nix", [["pname", 13, 33], ["version", 13, 39], ["outputs", 13, 47], ["dontUnpack", 15, 3], ["nativeBuildInputs", 17, 3], ["installPhase", 22, 3], ["dontWrapGApps", 33, 3], ["preFixup", 35, 3], ["meta", 59, 33]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const lndir = nix.arg($, "lndir");
   const shared_mime_info = nix.arg($, "shared-mime-info");
   return (timeshift_unwrapped) => (runtimeDeps) => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       pname: nix.thunk(() => nix.attr(timeshift_unwrapped, "pname")),
       version: nix.thunk(() => nix.attr(timeshift_unwrapped, "version")),
       outputs: nix.thunk(() => nix.attr(timeshift_unwrapped, "outputs")),

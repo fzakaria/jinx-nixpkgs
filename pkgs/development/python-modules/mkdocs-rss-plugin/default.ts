@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]], [["description", 70, 5], ["homepage", 71, 5], ["changelog", 72, 5], ["license", 73, 5], ["maintainers", 74, 5]], [["pname", 18, 3], ["version", 19, 3], ["pyproject", 20, 3], ["src", 22, 3], ["build-system", 29, 3], ["dependencies", 34, 3], ["nativeCheckInputs", 41, 3], ["pythonImportsCheck", 49, 3], ["disabledTests", 51, 3], ["disabledTestPaths", 62, 3], ["meta", 69, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, cachecontrol: false, feedparser: false, fetchFromGitHub: false, gitpython: false, jsonfeed: false, mkdocs: false, "pytest-cov-stub": false, pytestCheckHook: false, setuptools: false, "setuptools-scm": false, "validator-collection": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 70, 5], ["homepage", 71, 5], ["changelog", 72, 5], ["license", 73, 5], ["maintainers", 74, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 18, 3], ["version", 19, 3], ["pyproject", 20, 3], ["src", 22, 3], ["build-system", 29, 3], ["dependencies", 34, 3], ["nativeCheckInputs", 41, 3], ["pythonImportsCheck", 49, 3], ["disabledTests", 51, 3], ["disabledTestPaths", 62, 3], ["meta", 69, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const setuptools_scm = nix.arg($, "setuptools-scm");
   const validator_collection = nix.arg($, "validator-collection");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "mkdocs-rss-plugin",
       version: "1.17.9",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Guts",
           repo: "mkdocs-rss-plugin",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -52,7 +50,7 @@ export default nix.lambda((args) => (() => {
         "tests/test_build.py",
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "MkDocs plugin to generate a RSS feeds for created and updated pages, using git log and YAML frontmatter",
         homepage: "https://github.com/Guts/mkdocs-rss-plugin",
         changelog: nix.thunk(() => nix.str`https://github.com/Guts/mkdocs-rss-plugin/blob/${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

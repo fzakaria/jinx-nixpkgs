@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 23, 5], ["repo", 24, 5], ["rev", 27, 5], ["sha256", 28, 5]], [["description", 57, 5], ["homepage", 58, 5], ["license", 59, 5], ["maintainers", 60, 5]], [["pname", 18, 3], ["version", 19, 3], ["pyproject", 20, 3], ["src", 22, 3], ["nativeBuildInputs", 31, 3], ["propagatedBuildInputs", 33, 3], ["buildInputs", 43, 3], ["nativeCheckInputs", 45, 3], ["pythonImportsCheck", 47, 3], ["disabledTests", 49, 3], ["meta", 56, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, commonmark: false, fetchFromGitHub: false, markdown: false, pydash: false, pytestCheckHook: false, pyyaml: false, recommonmark: false, setuptools: false, sphinx: false, unify: false, yapf: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 23, 5], ["repo", 24, 5], ["rev", 27, 5], ["sha256", 28, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 57, 5], ["homepage", 58, 5], ["license", 59, 5], ["maintainers", 60, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 18, 3], ["version", 19, 3], ["pyproject", 20, 3], ["src", 22, 3], ["nativeBuildInputs", 31, 3], ["propagatedBuildInputs", 33, 3], ["buildInputs", 43, 3], ["nativeCheckInputs", 45, 3], ["pythonImportsCheck", 47, 3], ["disabledTests", 49, 3], ["meta", 56, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const unify = nix.arg($, "unify");
   const yapf = nix.arg($, "yapf");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "sphinx-markdown-parser",
       version: "0.2.4",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "clayrisser",
           repo: "sphinx-markdown-parser",
           rev: "2fd54373770882d1fb544dc6524c581c82eedc9e",
@@ -41,7 +39,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["sphinx_markdown_parser"]),
       disabledTests: nix.thunk(() => ["test_heading", "test_headings", "test_integration"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Write markdown inside of docutils & sphinx projects",
         homepage: "https://github.com/clayrisser/sphinx-markdown-parser",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

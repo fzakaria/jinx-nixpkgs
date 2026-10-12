@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 16, 13], ["version", 16, 19], ["hash", 17, 5]], [["description", 32, 5], ["mainProgram", 33, 5], ["homepage", 34, 5], ["license", 35, 5], ["maintainers", 36, 5], ["longDescription", 38, 5]], [["version", 11, 3], ["format", 12, 3], ["pname", 13, 3], ["src", 15, 3], ["propagatedBuildInputs", 20, 3], ["nativeCheckInputs", 22, 3], ["checkPhase", 27, 3], ["meta", 31, 3]]]);
 const formals$1 = { args: { buildPythonPackage: false, lib: false, fetchPypi: false, docopt: false, "delegator-py": false, pytest: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 16, 13], ["version", 16, 19], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 32, 5], ["mainProgram", 33, 5], ["homepage", 34, 5], ["license", 35, 5], ["maintainers", 36, 5], ["longDescription", 38, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["version", 11, 3], ["format", 12, 3], ["pname", 13, 3], ["src", 15, 3], ["propagatedBuildInputs", 20, 3], ["nativeCheckInputs", 22, 3], ["checkPhase", 27, 3], ["meta", 31, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const format = "setuptools";
       const pname = "num2words";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-sGbsGOVrZhajs4CGtXR9qvuqiGiyJqNhJ+BFHAzzecY=",
@@ -29,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [delegator_py, pytest]);
       const checkPhase = "pytest -k 'not cli_with_lang'\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Modules to convert numbers to words. 42 --> forty-two",
         mainProgram: "num2words",
         homepage: "https://github.com/savoirfairelinux/num2words",
@@ -38,7 +36,7 @@ export default nix.lambda((args) => (() => {
         longDescription: "num2words is a library that converts numbers like 42 to words like forty-two. It supports multiple languages (see the list below for full list of languages) and can even generate ordinal numbers like forty-second",
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         version,
         format,
         pname,

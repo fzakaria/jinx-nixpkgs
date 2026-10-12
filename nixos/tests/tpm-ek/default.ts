@@ -2,18 +2,9 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["maintainers", 45, 7]], [["systemPackages", 51, 21]], [["enable", 58, 27]], [["enable", 57, 11], ["tctiEnvironment", 58, 11]], [["tpm2", 56, 18]], [["enable", 62, 11], ["provisioning", 63, 11]], [["tpm", 61, 24]], [["environment", 51, 9], ["security", 56, 9], ["virtualisation", 61, 9]], [["machine", 48, 11]], [["name", 42, 5], ["meta", 44, 5], ["nodes", 48, 5], ["testScript", 99, 5]]]);
 const formals$1 = { args: { lib: false, pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/default.nix", [["maintainers", 45, 7]]);
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/default.nix", [["systemPackages", 51, 21]]);
-const pos$3 = nix.positions(here + "/default.nix", [["enable", 58, 27]]);
-const pos$4 = nix.positions(here + "/default.nix", [["enable", 57, 11], ["tctiEnvironment", 58, 11]]);
-const pos$5 = nix.positions(here + "/default.nix", [["tpm2", 56, 18]]);
-const pos$6 = nix.positions(here + "/default.nix", [["enable", 62, 11], ["provisioning", 63, 11]]);
-const pos$7 = nix.positions(here + "/default.nix", [["tpm", 61, 24]]);
-const pos$8 = nix.positions(here + "/default.nix", [["environment", 51, 9], ["security", 56, 9], ["virtualisation", 61, 9]]);
-const pos$9 = nix.positions(here + "/default.nix", [["machine", 48, 11]]);
-const pos$10 = nix.positions(here + "/default.nix", [["name", 42, 5], ["meta", 44, 5], ["nodes", 48, 5], ["testScript", 99, 5]]);
 
 export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../make-test-python.nix")), nix.lambda((args) => (() => {
     const $ = nix.formals(args, formals$1);
@@ -24,35 +15,35 @@ export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../ma
     const openssl = nix.thunk(() => nix.attr(pkgs, "openssl"));
     const ek_config = nix.thunk(() => nix.app(writeText, "ek-sign.cnf", "[ tpm_policy ]\nbasicConstraints = CA:FALSE\n\nkeyUsage = keyEncipherment\ncertificatePolicies = 2.23.133.2.1\nextendedKeyUsage = 2.23.133.8.1\n\nsubjectAltName = ASN1:SEQUENCE:dirname_tpm\n\n[ dirname_tpm ]\nseq = EXPLICIT:4,SEQUENCE:dirname_tpm_seq\n\n[ dirname_tpm_seq ]\nset = SET:dirname_tpm_set\n\n[ dirname_tpm_set ]\nseq.1 = SEQUENCE:dirname_tpm_seq_manufacturer\nseq.2 = SEQUENCE:dirname_tpm_seq_model\nseq.3 = SEQUENCE:dirname_tpm_seq_version\n\n# We're going to mock up an STM TPM here\n[dirname_tpm_seq_manufacturer]\noid = OID:2.23.133.2.1\nstr = UTF8:\"id:53544D20\"\n\n[dirname_tpm_seq_model]\noid = OID:2.23.133.2.2\nstr = UTF8:\"ST33HTPHAHD4\n\n[dirname_tpm_seq_version]\noid = OID:2.23.133.2.3\nstr = UTF8:\"id:00010101\"\n"));
     return {
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       name: "tpm-ek",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
           return [nix.thunk(() => nix.lookup(w, "baloo"))];
         })()),
       })),
       nodes: nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         machine: nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$2);
           const pkgs_1 = nix.arg($_1, "pkgs");
           return {
-            [nix.POS]: pos$8,
-            environment: nix.thunk(() => ({ [nix.POS]: pos$2, systemPackages: nix.thunk(() => [openssl, tpm2_tools]) })),
+            [nix.POS]: $pos[7],
+            environment: nix.thunk(() => ({ [nix.POS]: $pos[1], systemPackages: nix.thunk(() => [openssl, tpm2_tools]) })),
             security: nix.thunk(() => ({
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               tpm2: nix.thunk(() => ({
-                [nix.POS]: pos$4,
+                [nix.POS]: $pos[3],
                 enable: true,
-                tctiEnvironment: nix.thunk(() => ({ [nix.POS]: pos$3, enable: true })),
+                tctiEnvironment: nix.thunk(() => ({ [nix.POS]: $pos[2], enable: true })),
               })),
             })),
             virtualisation: nix.thunk(() => ({
-              [nix.POS]: pos$7,
+              [nix.POS]: $pos[6],
               tpm: nix.thunk(() => ({
-                [nix.POS]: pos$6,
+                [nix.POS]: $pos[5],
                 enable: true,
                 provisioning: nix.thunk(() => nix.str`export PATH=${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [openssl]))}:$PATH
 

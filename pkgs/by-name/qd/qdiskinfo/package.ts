@@ -2,17 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["rightCharacter", 19, 9]], [["rightCharacter", 23, 9]], [["owner", 42, 5], ["repo", 43, 5], ["tag", 44, 5], ["hash", 45, 5]], [["fetchzip", 98, 53]], [["themeSources", 101, 52]], [["themeBundle", 104, 39]], [["pname", 104, 71]], [["themeBundles", 101, 7], ["tests", 102, 7], ["updateScript", 106, 7]], [["description", 110, 5], ["homepage", 111, 5], ["license", 112, 5], ["maintainers", 113, 5], ["platforms", 117, 5], ["mainProgram", 118, 5]], [["pname", 38, 3], ["version", 39, 3], ["src", 41, 3], ["nativeBuildInputs", 48, 3], ["buildInputs", 53, 3], ["cmakeBuildType", 59, 3], ["cmakeFlags", 61, 3], ["postUnpack", 72, 3], ["patchPhase", 76, 3], ["postInstall", 91, 3], ["passthru", 96, 3], ["meta", 109, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, smartmontools: false, fetchFromGitHub: false, fetchzip: false, cmake: false, qt6: false, qdiskinfo: false, themeBundle: true, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["rightCharacter", 19, 9]]);
-const pos$2 = nix.positions(here + "/package.nix", [["rightCharacter", 23, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["owner", 42, 5], ["repo", 43, 5], ["tag", 44, 5], ["hash", 45, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["fetchzip", 98, 53]]);
-const pos$5 = nix.positions(here + "/package.nix", [["themeSources", 101, 52]]);
-const pos$6 = nix.positions(here + "/package.nix", [["themeBundle", 104, 39]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 104, 71]]);
-const pos$8 = nix.positions(here + "/package.nix", [["themeBundles", 101, 7], ["tests", 102, 7], ["updateScript", 106, 7]]);
-const pos$9 = nix.positions(here + "/package.nix", [["description", 110, 5], ["homepage", 111, 5], ["license", 112, 5], ["maintainers", 113, 5], ["platforms", 117, 5], ["mainProgram", 118, 5]]);
-const pos$10 = nix.positions(here + "/package.nix", [["pname", 38, 3], ["version", 39, 3], ["src", 41, 3], ["nativeBuildInputs", 48, 3], ["buildInputs", 53, 3], ["cmakeBuildType", 59, 3], ["cmakeFlags", 61, 3], ["postUnpack", 72, 3], ["patchPhase", 76, 3], ["postInstall", 91, 3], ["passthru", 96, 3], ["meta", 109, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,14 +18,14 @@ export default nix.lambda((args) => (() => {
   const themeBundle = nix.argOr($, "themeBundle", () => null);
   const nix_update_script = nix.arg($, "nix-update-script");
   const isThemed = nix.thunk(() => (nix.asBool(!nix.eq(themeBundle, null)) && nix.asBool(!nix.eq(themeBundle, {}))));
-  const themeBundle$ = nix.thunk(() => (nix.asBool(isThemed) ? nix.update({ [nix.POS]: pos$1, rightCharacter: false }, themeBundle) : { [nix.POS]: pos$2, rightCharacter: false }));
+  const themeBundle$ = nix.thunk(() => (nix.asBool(isThemed) ? nix.update({ [nix.POS]: $pos[0], rightCharacter: false }, themeBundle) : { [nix.POS]: $pos[1], rightCharacter: false }));
   nix.assert_((!nix.asBool(isThemed) || nix.asBool((nix.asBool((nix.asBool((nix.asBool((nix.asBool(nix.has(themeBundle$, "src")) && nix.asBool(nix.has(themeBundle$, "paths", "bgDark")))) && nix.asBool(nix.has(themeBundle$, "paths", "bgLight")))) && nix.asBool(nix.has(themeBundle$, "paths", "status")))) && nix.asBool(nix.has(themeBundle$, "rightCharacter"))))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/qd/qdiskinfo/package.nix:27:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       pname: "qdiskinfo",
       version: "0.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           owner: "edisionnano",
           repo: "QDiskInfo",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -67,16 +58,16 @@ cp $SRCPATH/${nix.sel(themeBundle$, "paths", "status")}/SDdiskStatusUnknown-300.
   --suffix PATH : ${smartmontools}/bin
 `),
       passthru: nix.thunk(() => (() => {
-        const themeSources = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./sources.nix")), nix.thunk(() => ({ [nix.POS]: pos$4, fetchzip: fetchzip }))));
+        const themeSources = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./sources.nix")), nix.thunk(() => ({ [nix.POS]: $pos[3], fetchzip: fetchzip }))));
         return (() => {
-          const themeBundles = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./themes.nix")), nix.thunk(() => ({ [nix.POS]: pos$5, themeSources: themeSources }))));
-          const tests = nix.thunk(() => nix.app(nix.sel(lib, "flip"), nix.thunk(() => nix.sel(lib, "mapAttrs")), themeBundles, (themeName) => (themeBundle_1) => nix.app(nix.sel(nix.app(nix.sel(qdiskinfo, "override"), nix.thunk(() => ({ [nix.POS]: pos$6, themeBundle: themeBundle_1 }))), "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: pos$7, pname: nix.thunk(() => nix.str`qdiskinfo-${themeName}`) })))));
+          const themeBundles = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./themes.nix")), nix.thunk(() => ({ [nix.POS]: $pos[4], themeSources: themeSources }))));
+          const tests = nix.thunk(() => nix.app(nix.sel(lib, "flip"), nix.thunk(() => nix.sel(lib, "mapAttrs")), themeBundles, (themeName) => (themeBundle_1) => nix.app(nix.sel(nix.app(nix.sel(qdiskinfo, "override"), nix.thunk(() => ({ [nix.POS]: $pos[5], themeBundle: themeBundle_1 }))), "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: $pos[6], pname: nix.thunk(() => nix.str`qdiskinfo-${themeName}`) })))));
           const updateScript = nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({}))));
-          return { [nix.POS]: pos$8, themeBundles, tests, updateScript };
+          return { [nix.POS]: $pos[7], themeBundles, tests, updateScript };
         })();
       })()),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         description: "CrystalDiskInfo alternative for Linux",
         homepage: "https://github.com/edisionnano/QDiskInfo",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

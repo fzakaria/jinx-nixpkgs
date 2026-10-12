@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 26, 5], ["repo", 27, 5], ["rev", 28, 5], ["fetchSubmodules", 29, 5], ["hash", 30, 5]], [["description", 81, 5], ["mainProgram", 82, 5], ["license", 83, 5], ["homepage", 84, 5], ["maintainers", 85, 5]], [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["src-new-pybind11", 33, 3], ["postPatch", 35, 3], ["patches", 55, 3], ["nativeBuildInputs", 57, 3], ["buildInputs", 59, 3], ["propagatedBuildInputs", 61, 3], ["cmakeFlags", 63, 3], ["postInstall", 68, 3], ["doCheck", 74, 3], ["dontFixup", 78, 3], ["meta", 80, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, cmake: false, python3: false, llvmPackages: false, enablePython: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 26, 5], ["repo", 27, 5], ["rev", 28, 5], ["fetchSubmodules", 29, 5], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 81, 5], ["mainProgram", 82, 5], ["license", 83, 5], ["homepage", 84, 5], ["maintainers", 85, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["src-new-pybind11", 33, 3], ["postPatch", 35, 3], ["patches", 55, 3], ["nativeBuildInputs", 57, 3], ["buildInputs", 59, 3], ["propagatedBuildInputs", 61, 3], ["cmakeFlags", 63, 3], ["postInstall", 68, 3], ["doCheck", 74, 3], ["dontFixup", 78, 3], ["meta", 80, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,11 +23,11 @@ export default nix.lambda((args) => (() => {
       ];
     })()));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "taco",
       version: "0-unstable-2025-04-14",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "tensor-compiler",
           repo: "taco",
           rev: "0e79acb56cb5f3d1785179536256e206790b2a9e",
@@ -65,7 +63,7 @@ cp -r lib/pytaco $out/${nix.sel(python3, "sitePackages")}/.
       doCheck: false,
       dontFixup: enablePython,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Computes sparse tensor expressions on CPUs and GPUs",
         mainProgram: "taco",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

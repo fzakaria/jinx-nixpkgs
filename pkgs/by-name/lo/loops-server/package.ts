@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]], [["src", 36, 26], ["hash", 37, 5]], [["loops-server", 81, 36]], [["tests", 81, 5], ["updateScript", 82, 5]], [["description", 86, 5], ["changelog", 87, 5], ["homepage", 88, 5], ["license", 89, 5], ["maintainers", 90, 5], ["teams", 91, 5], ["platforms", 92, 5]], [["pname", 13, 3], ["version", 14, 3], ["__structuredAttrs", 16, 3], ["src", 18, 3], ["patches", 25, 3], ["vendorHash", 33, 3], ["npmDeps", 35, 3], ["nativeBuildInputs", 40, 3], ["postBuild", 48, 3], ["postInstall", 52, 3], ["passthru", 80, 3], ["meta", 85, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, php: false, fetchNpmDeps: false, npmHooks: false, nodejs: false, "nix-update-script": false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["src", 36, 26], ["hash", 37, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["loops-server", 81, 36]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 81, 5], ["updateScript", 82, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 86, 5], ["changelog", 87, 5], ["homepage", 88, 5], ["license", 89, 5], ["maintainers", 90, 5], ["teams", 91, 5], ["platforms", 92, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["__structuredAttrs", 16, 3], ["src", 18, 3], ["patches", 25, 3], ["vendorHash", 33, 3], ["npmDeps", 35, 3], ["nativeBuildInputs", 40, 3], ["postBuild", 48, 3], ["postInstall", 52, 3], ["passthru", 80, 3], ["meta", 85, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(php, "buildComposerProject2"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "loops-server",
       version: "1.0.0-beta.14",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "joinloops",
           repo: "loops-server",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,7 +33,7 @@ export default nix.lambda((args) => (() => {
       ]),
       vendorHash: "sha256-fUsGb5ljj48SuFHWUHZsalXhurWsWtgI+eVEZvB799k=",
       npmDeps: nix.thunk(() => nix.app(fetchNpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           hash: "sha256-5kl0qsn9c94wL02loFZKwy42AZijYNMRljK26n52MjI=",
         })))),
@@ -50,15 +45,15 @@ export default nix.lambda((args) => (() => {
       postBuild: "npm run build\n",
       postInstall: "srcDir=\"$out/share/php/loops-server\"\nmkdir -p $out\nfor item in \\\n  app \\\n  config \\\n  database \\\n  lang \\\n  public \\\n  resources \\\n  routes \\\n  vendor \\\n  artisan \\\n  composer.json\ndo\n  cp -r \"$srcDir/$item\" \"$out/$item\"\ndone\n\ncp -r $srcDir/bootstrap $out/bootstrap-static\ncp -r $srcDir/storage $out/storage-static\n\nln -s /run/loops-server/storage $out/storage\nln -s /run/loops-server/storage/app/public $out/public/storage\nln -s /run/loops-server/storage/app/public/videos $out/public/videos\nln -s /run/loops-server/.env $out/.env\nln -s /run/loops-server $out/bootstrap\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           "loops-server": nix.thunk(() => nix.attr(nixosTests, "loops-server")),
         })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Federated short video sharing platform",
         changelog: nix.thunk(() => nix.str`https://github.com/joinloops/loops-server/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         homepage: "https://joinloops.org",

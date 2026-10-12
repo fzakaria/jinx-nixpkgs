@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]], [["breseq_works", 81, 5], ["gdtools_works", 82, 5]], [["tests", 80, 12], ["updateScript", 84, 12]], [["description", 87, 5], ["mainProgram", 88, 5], ["homepage", 89, 5], ["license", 90, 5], ["maintainers", 93, 5], ["platforms", 94, 5]], [["pname", 21, 3], ["version", 22, 3], ["strictDeps", 24, 3], ["__structuredAttrs", 25, 3], ["src", 27, 3], ["buildInputs", 34, 3], ["nativeBuildInputs", 41, 3], ["postInstall", 46, 3], ["nativeInstallCheckInputs", 75, 3], ["doInstallCheck", 78, 3], ["passthru", 80, 3], ["meta", 86, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, callPackage: false, "nix-update-script": false, libz: false, libtool: false, bash: false, perl: false, R: false, bowtie2: false, which: false, ghostscript: false, makeWrapper: false, autoreconfHook: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["breseq_works", 81, 5], ["gdtools_works", 82, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 80, 12], ["updateScript", 84, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 87, 5], ["mainProgram", 88, 5], ["homepage", 89, 5], ["license", 90, 5], ["maintainers", 93, 5], ["platforms", 94, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 3], ["strictDeps", 24, 3], ["__structuredAttrs", 25, 3], ["src", 27, 3], ["buildInputs", 34, 3], ["nativeBuildInputs", 41, 3], ["postInstall", 46, 3], ["nativeInstallCheckInputs", 75, 3], ["doInstallCheck", 78, 3], ["passthru", 80, 3], ["meta", 86, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,13 +24,13 @@ export default nix.lambda((args) => (() => {
   const autoreconfHook = nix.arg($, "autoreconfHook");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "breseq",
       version: "0.40.3",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "barricklab",
           repo: "breseq",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -58,16 +54,16 @@ cp tests/gdtools_compare_1 $out/tests/gdtools_compare_1 -r
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           breseq_works: nix.thunk(() => nix.app(callPackage, nix.path(here, "./tests/breseq.nix"), nix.thunk(() => ({})))),
           gdtools_works: nix.thunk(() => nix.app(callPackage, nix.path(here, "./tests/gdtools.nix"), nix.thunk(() => ({})))),
         })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Computational pipeline for finding mutations relative to a reference sequence in short-read DNA re-sequencing data",
         mainProgram: "breseq",
         homepage: "https://github.com/barricklab/breseq",

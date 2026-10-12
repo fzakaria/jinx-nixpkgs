@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]], [["updateScript", 63, 5]], [["description", 67, 5], ["homepage", 68, 5], ["maintainers", 69, 5], ["teams", 73, 5], ["platforms", 74, 5], ["license", 76, 5], ["mainProgram", 77, 5]], [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 41, 3], ["postPatch", 54, 3], ["passthru", 62, 3], ["meta", 66, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, "nix-update-script": false, meson: false, ninja: false, "pkg-config": false, python3: false, vala: false, wrapGAppsHook3: false, glib: false, gtk3: false, "json-glib": false, libevdev: false, libgee: false, libgudev: false, pantheon: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 63, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 67, 5], ["homepage", 68, 5], ["maintainers", 69, 5], ["teams", 73, 5], ["platforms", 74, 5], ["license", 76, 5], ["mainProgram", 77, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 41, 3], ["postPatch", 54, 3], ["passthru", 62, 3], ["meta", 66, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const libgudev = nix.arg($, "libgudev");
   const pantheon = nix.arg($, "pantheon");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "spice-up",
       version: "1.9.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Philip-Scott",
           repo: "Spice-up",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -50,11 +47,11 @@ export default nix.lambda((args) => (() => {
       ]),
       postPatch: "substituteInPlace meson.build --replace-fail \"soup_dep = dependency('libsoup-2.4')\" \"\"\nsubstituteInPlace src/meson.build --replace-fail \"soup_dep,\" \"\"\n\nchmod +x meson/post_install.py\npatchShebangs meson/post_install.py\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Create simple and beautiful presentations",
         homepage: "https://github.com/Philip-Scott/Spice-up",
         maintainers: nix.thunk(() => (() => {

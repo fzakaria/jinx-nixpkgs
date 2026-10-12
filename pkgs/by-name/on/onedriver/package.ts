@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]], [["description", 70, 5], ["longDescription", 71, 5], ["homepage", 77, 24], ["license", 78, 5], ["maintainers", 79, 5], ["platforms", 83, 5]], [["pname", 26, 11], ["version", 26, 17], ["src", 26, 25], ["vendorHash", 27, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 34, 3], ["ldflags", 41, 3], ["subPackages", 43, 3], ["postInstall", 48, 3], ["meta", 69, 3]]]);
 const formals$1 = { args: { buildGoModule: false, fetchFromGitHub: false, lib: false, "pkg-config": false, webkitgtk_4_1: false, glib: false, fuse3: false, installShellFiles: false, wrapGAppsHook3: false, "glib-networking": false, wrapperDir: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 70, 5], ["longDescription", 71, 5], ["homepage", 77, 24], ["license", 78, 5], ["maintainers", 79, 5], ["platforms", 83, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 26, 11], ["version", 26, 17], ["src", 26, 25], ["vendorHash", 27, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 34, 3], ["ldflags", 41, 3], ["subPackages", 43, 3], ["postInstall", 48, 3], ["meta", 69, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,14 +21,14 @@ export default nix.lambda((args) => (() => {
   const pname = "onedriver";
   const version = "0.15.0";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "jstaf",
       repo: "onedriver",
       rev: nix.thunk(() => nix.str`v${version}`),
       hash: "sha256-DCxF52CtA9KAP+yz5Rgzc/nUAXtZwfYAVU7oHREJlRY=",
     }))));
   return nix.app(buildGoModule, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: pname,
       version: version,
       src: src,
@@ -63,7 +61,7 @@ substituteInPlace $out/lib/systemd/user/onedriver@.service \\
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(src, "meta"));
         return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Network filesystem for Linux",
         longDescription: "onedriver is a network filesystem that gives your computer direct access to your files on Microsoft OneDrive.\nThis is not a sync client. Instead of syncing files, onedriver performs an on-demand download of files when\nyour computer attempts to use them. onedriver allows you to use files on OneDrive as if they were files on\nyour local computer.\n",
         homepage: nix.thunk(() => nix.attr(from, "homepage")),

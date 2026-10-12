@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 43, 5], ["repo", 44, 5], ["tag", 45, 5], ["sha256", 46, 5]], [["incus-lts", 72, 7]], [["src", 75, 68], ["version", 75, 72]], [["tests", 71, 5], ["generator", 75, 5], ["updateScript", 77, 5]], [["description", 81, 5], ["homepage", 82, 5], ["changelog", 83, 5], ["license", 84, 5], ["teams", 85, 5], ["platforms", 86, 5], ["mainProgram", 87, 5]], [["pname", 37, 3], ["version", 38, 3], ["vendorHash", 40, 3], ["src", 42, 3], ["buildInputs", 49, 3], ["doCheck", 52, 3], ["nativeBuildInputs", 54, 3], ["preBuild", 62, 3], ["postInstall", 66, 3], ["passthru", 70, 3], ["meta", 80, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, callPackage: false, cdrkit: false, coreutils: false, debootstrap: false, fetchFromGitHub: false, gnupg: false, gnutar: false, hivex: false, makeWrapper: false, "nix-update-script": false, nixosTests: false, "pkg-config": false, "squashfs-tools": false, stdenv: false, wimlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 43, 5], ["repo", 44, 5], ["tag", 45, 5], ["sha256", 46, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["incus-lts", 72, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["src", 75, 68], ["version", 75, 72]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 71, 5], ["generator", 75, 5], ["updateScript", 77, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 81, 5], ["homepage", 82, 5], ["changelog", 83, 5], ["license", 84, 5], ["teams", 85, 5], ["platforms", 86, 5], ["mainProgram", 87, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 37, 3], ["version", 38, 3], ["vendorHash", 40, 3], ["src", 42, 3], ["buildInputs", 49, 3], ["doCheck", 52, 3], ["nativeBuildInputs", 54, 3], ["preBuild", 62, 3], ["postInstall", 66, 3], ["passthru", 70, 3], ["meta", 80, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,12 +26,12 @@ export default nix.lambda((args) => (() => {
   const wimlib = nix.arg($, "wimlib");
   const bins = nix.thunk(() => nix.concat([coreutils, debootstrap, gnupg, gnutar, squashfs_tools], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isx86_64")), nix.thunk(() => [cdrkit, hivex, wimlib]))));
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "distrobuilder",
       version: "3.4.0",
       vendorHash: "sha256-ipKwCeUNVgtkQTPOB5lze2SFaktClUr+4+c0uLX5J/w=",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "lxc",
           repo: "distrobuilder",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -49,20 +44,20 @@ export default nix.lambda((args) => (() => {
       postInstall: nix.thunk(() => nix.str`wrapProgram $out/bin/distrobuilder --prefix PATH ":" ${nix.app(nix.sel(lib, "makeBinPath"), bins)}
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           "incus-lts": nix.thunk(() => nix.sel(nixosTests, "incus-lts", "container")),
         })),
         generator: nix.thunk(() => nix.app(callPackage, nix.path(here, "./generator.nix"), nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             src: nix.thunk(() => nix.attr(finalAttrs, "src")),
             version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           })))),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "System container image builder for LXC and LXD",
         homepage: "https://github.com/lxc/distrobuilder",
         changelog: nix.thunk(() => nix.str`https://github.com/lxc/distrobuilder/releases/tag/v${nix.sel(finalAttrs, "version")}`),

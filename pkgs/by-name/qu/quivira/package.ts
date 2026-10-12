@@ -2,16 +2,15 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["description", 19, 5], ["homepage", 20, 5], ["license", 21, 5], ["maintainers", 22, 5], ["platforms", 26, 5]], [["pname", 3, 3], ["version", 4, 3], ["url", 6, 3], ["downloadToTemp", 10, 3], ["recursiveHash", 12, 3], ["postFetch", 13, 3], ["sha256", 17, 3], ["meta", 18, 3]]]);
 const formals$1 = { args: { lib: false, fetchurl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["description", 19, 5], ["homepage", 20, 5], ["license", 21, 5], ["maintainers", 22, 5], ["platforms", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 3, 3], ["version", 4, 3], ["url", 6, 3], ["downloadToTemp", 10, 3], ["recursiveHash", 12, 3], ["postFetch", 13, 3], ["sha256", 17, 3], ["meta", 18, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "quivira",
       version: "4.1",
       url: "http://www.quivira-font.com/files/Quivira.otf",
@@ -20,7 +19,7 @@ export default nix.lambda((args) => (() => {
       postFetch: "install -D $downloadedFile $out/share/fonts/opentype/Quivira.otf\n",
       sha256: "Hhl+0Oc5DDohOpBbEARMunMYCpr6nn4X6RgpQeEksNo=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Free Unicode font in the OpenType format which is supported by every usual office program or printer",
         homepage: "http://www.quivira-font.com/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "publicDomain")),

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["message", 18, 7], ["name", 22, 7], ["sha256", 23, 7]], [["name", 16, 5], ["src", 17, 5], ["nativeBuildInputs", 25, 5], ["buildCommand", 26, 5]], [["description", 29, 5], ["license", 30, 5], ["mainProgram", 31, 5], ["maintainers", 32, 5], ["platforms", 33, 5]], [["meta", 41, 13], ["pname", 41, 18], ["version", 41, 24], ["targetPkgs", 42, 5], ["runScript", 43, 5]], [["meta", 46, 30], ["pname", 46, 35], ["version", 46, 41]]]);
 const formals$1 = { args: { buildFHSEnv: false, lib: false, requireFile: false, runCommand: false, stdenv: false, unzip: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["message", 18, 7], ["name", 22, 7], ["sha256", 23, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 16, 5], ["src", 17, 5], ["nativeBuildInputs", 25, 5], ["buildCommand", 26, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 29, 5], ["license", 30, 5], ["mainProgram", 31, 5], ["maintainers", 32, 5], ["platforms", 33, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["meta", 41, 13], ["pname", 41, 18], ["version", 41, 24], ["targetPkgs", 42, 5], ["runScript", 43, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["meta", 46, 30], ["pname", 46, 35], ["version", 46, 41]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,10 +19,10 @@ export default nix.lambda((args) => (() => {
   const version = nix.thunk(() => nix.str`0.${minor}.${patch}`);
   const zipName = nix.thunk(() => nix.str`jai-beta-${minor}-${patch}.zip`);
   const jai = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       name: "jai",
       src: nix.thunk(() => nix.app(requireFile, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           message: nix.thunk(() => nix.str`The language is not yet public. If you are in the closed beta, download the zip file and run the following command:
   nix-store --add-fixed sha256 ${zipName}
 `),
@@ -37,7 +33,7 @@ export default nix.lambda((args) => (() => {
       buildCommand: "unzip $src -d $out",
     }))));
   const meta = nix.thunk(() => ({
-    [nix.POS]: pos$3,
+    [nix.POS]: $pos[2],
     description: "Powerful language to write efficient reliable software in simple ways",
     license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
     mainProgram: "jai",
@@ -48,13 +44,13 @@ export default nix.lambda((args) => (() => {
     platforms: nix.thunk(() => ["x86_64-linux", "aarch64-darwin"]),
   }));
   return (nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) ? nix.app(buildFHSEnv, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       meta: meta,
       pname: pname,
       version: version,
       targetPkgs: (pkgs) => [nix.thunk(() => nix.sel(pkgs, "zlib"))],
       runScript: nix.thunk(() => nix.str`${jai}/jai/bin/jai-linux`),
-    }))) : nix.app(runCommand, "jai", nix.thunk(() => ({ [nix.POS]: pos$5, meta: meta, pname: pname, version: version })), nix.thunk(() => nix.str`mkdir -p $out/bin
+    }))) : nix.app(runCommand, "jai", nix.thunk(() => ({ [nix.POS]: $pos[4], meta: meta, pname: pname, version: version })), nix.thunk(() => nix.str`mkdir -p $out/bin
 ln -s ${jai}/jai/bin/jai-macos $out/bin/jai
 `)));
 })(), formals$1);

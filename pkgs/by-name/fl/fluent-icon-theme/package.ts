@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 36, 7], ["repo", 37, 7], ["tag", 38, 7], ["hash", 39, 7]], [["description", 74, 7], ["homepage", 75, 7], ["license", 76, 7], ["platforms", 77, 7], ["maintainers", 78, 7]], [["pname", 32, 13], ["version", 33, 5], ["src", 35, 5], ["nativeBuildInputs", 42, 5], ["buildInputs", 47, 5], ["dontPatchELF", 50, 5], ["dontRewriteSymlinks", 51, 5], ["dontDropIconThemeCache", 52, 5], ["postPatch", 54, 5], ["installPhase", 58, 5], ["meta", 73, 5]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchFromGitHub: false, gtk3: false, "hicolor-icon-theme": false, jdupes: false, roundedIcons: true, blackPanelIcons: true, allColorVariants: true, colorVariants: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 36, 7], ["repo", 37, 7], ["tag", 38, 7], ["hash", 39, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 74, 7], ["homepage", 75, 7], ["license", 76, 7], ["platforms", 77, 7], ["maintainers", 78, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 32, 13], ["version", 33, 5], ["src", 35, 5], ["nativeBuildInputs", 42, 5], ["buildInputs", 47, 5], ["dontPatchELF", 50, 5], ["dontRewriteSymlinks", 51, 5], ["dontDropIconThemeCache", 52, 5], ["postPatch", 54, 5], ["installPhase", 58, 5], ["meta", 73, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const pname_1 = pname;
       const version = "2025-08-21";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "vinceliuice",
           repo: "Fluent-icon-theme",
           tag: version,
@@ -60,7 +58,7 @@ jdupes --quiet --link-soft --recurse $out/share
 runHook postInstall
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Fluent icon theme for linux desktops",
         homepage: "https://github.com/vinceliuice/Fluent-icon-theme",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
@@ -71,7 +69,7 @@ runHook postInstall
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname: pname_1,
         version,
         src,

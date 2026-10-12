@@ -2,11 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]], [["pluginName", 35, 12]], [["description", 38, 5], ["homepage", 39, 5], ["changelog", 40, 5], ["license", 41, 5], ["maintainers", 42, 5]], [["__structuredAttrs", 11, 3], ["pname", 13, 3], ["version", 14, 3], ["pyproject", 15, 3], ["src", 17, 3], ["build-system", 24, 3], ["nativeCheckInputs", 26, 3], ["preFixup", 28, 3], ["dontUsePythonImportsCheck", 32, 3], ["pythonImportsCheck", 33, 3], ["passthru", 35, 3], ["meta", 37, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, hatchling: false, netbox: false, python: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pluginName", 35, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 38, 5], ["homepage", 39, 5], ["changelog", 40, 5], ["license", 41, 5], ["maintainers", 42, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["__structuredAttrs", 11, 3], ["pname", 13, 3], ["version", 14, 3], ["pyproject", 15, 3], ["src", 17, 3], ["build-system", 24, 3], ["nativeCheckInputs", 26, 3], ["preFixup", 28, 3], ["dontUsePythonImportsCheck", 32, 3], ["pythonImportsCheck", 33, 3], ["passthru", 35, 3], ["meta", 37, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,13 +14,13 @@ export default nix.lambda((args) => (() => {
   const netbox = nix.arg($, "netbox");
   const python = nix.arg($, "python");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       __structuredAttrs: true,
       pname: "netbox-lists",
       version: "4.0.4",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "devon-mar",
           repo: "netbox-lists",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,9 +32,9 @@ export default nix.lambda((args) => (() => {
 `),
       dontUsePythonImportsCheck: nix.thunk(() => !nix.eq(nix.sel(python, "pythonVersion"), nix.sel(netbox, "python", "pythonVersion"))),
       pythonImportsCheck: nix.thunk(() => ["netbox_lists"]),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, pluginName: "netbox_lists" })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[1], pluginName: "netbox_lists" })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "NetBox plugin to generate IP and prefix lists. Integrates with Ansible, Terraform, Prometheus, Oxidized and more",
         homepage: "https://github.com/devon-mar/netbox-lists",
         changelog: nix.thunk(() => nix.str`https://github.com/devon-mar/netbox-lists/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["sha256", 24, 5]], [["updateScript", 64, 12]], [["description", 67, 5], ["homepage", 68, 5], ["license", 69, 5], ["maintainers", 70, 5], ["platforms", 73, 5], ["changelog", 74, 5], ["mainProgram", 75, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["cargoPatches", 27, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 36, 3], ["cargoHash", 46, 3], ["preBuild", 48, 3], ["postInstall", 53, 3], ["passthru", 64, 3], ["meta", 66, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchFromGitHub: false, "pkg-config": false, atk: false, cairo: false, "gdk-pixbuf": false, glib: false, gtk3: false, openssl: false, pango: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["sha256", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 64, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 67, 5], ["homepage", 68, 5], ["license", 69, 5], ["maintainers", 70, 5], ["platforms", 73, 5], ["changelog", 74, 5], ["mainProgram", 75, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["cargoPatches", 27, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 36, 3], ["cargoHash", 46, 3], ["preBuild", 48, 3], ["postInstall", 53, 3], ["passthru", 64, 3], ["meta", 66, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const pango = nix.arg($, "pango");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "noaa-apt",
       version: "1.4.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "martinber",
           repo: "noaa-apt",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -40,11 +37,11 @@ export default nix.lambda((args) => (() => {
       preBuild: "# Used by macro pointing to resource location at compile time.\nexport NOAA_APT_RES_DIR=$out/share/noaa-apt\n",
       postInstall: "# Resources.\nmkdir -p $out/share/noaa-apt\ncp -R $src/res/* $out/share/noaa-apt/\n\n# Desktop icon.\ninstall -Dm644 -t $out/share/applications $src/debian/ar.com.mbernardi.noaa-apt.desktop\ninstall -Dm644 -t $out/share/icons/hicolor/48x48/apps $src/debian/ar.com.mbernardi.noaa-apt.png\ninstall -Dm644 -t $out/share/icons/hicolor/scalable/apps $src/debian/ar.com.mbernardi.noaa-apt.svg\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "NOAA APT image decoder",
         homepage: "https://noaa-apt.mbernardi.com.ar/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

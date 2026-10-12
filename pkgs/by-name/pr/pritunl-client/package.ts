@@ -2,16 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 26, 5], ["repo", 27, 5], ["rev", 28, 5], ["sha256", 29, 5]], [["updateScript", 42, 14]], [["pname", 33, 5], ["version", 34, 13], ["src", 34, 21], ["modRoot", 36, 5], ["vendorHash", 37, 5], ["postInstall", 39, 5], ["passthru", 42, 5]], [["nativeBuildInputs", 91, 15]], [["updateScript", 112, 14]], [["pname", 46, 5], ["version", 47, 13], ["src", 47, 21], ["modRoot", 49, 5], ["vendorHash", 50, 5], ["nativeBuildInputs", 52, 5], ["postPatch", 54, 5], ["postInstall", 65, 5], ["postFixup", 75, 5], ["passthru", 112, 5]], [["updateScript", 163, 12]], [["description", 165, 5], ["homepage", 166, 5], ["license", 167, 5], ["maintainers", 168, 5]], [["pname", 116, 3], ["version", 117, 11], ["src", 117, 19], ["dontBuild", 119, 3], ["dontConfigure", 120, 3], ["nativeBuildInputs", 122, 3], ["installPhase", 127, 3], ["passthru", 163, 3], ["meta", 164, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, "nix-update-script": false, runtimeShell: false, runCommand: false, makeWrapper: false, installShellFiles: false, buildGoModule: false, coreutils: false, which: false, gnugrep: false, gnused: false, openresolv: false, systemd: false, iproute2: false, openvpn: false, electron: false, "wireguard-tools": false, withWireguard: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 26, 5], ["repo", 27, 5], ["rev", 28, 5], ["sha256", 29, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 42, 14]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 33, 5], ["version", 34, 13], ["src", 34, 21], ["modRoot", 36, 5], ["vendorHash", 37, 5], ["postInstall", 39, 5], ["passthru", 42, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["nativeBuildInputs", 91, 15]]);
-const pos$5 = nix.positions(here + "/package.nix", [["updateScript", 112, 14]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 46, 5], ["version", 47, 13], ["src", 47, 21], ["modRoot", 49, 5], ["vendorHash", 50, 5], ["nativeBuildInputs", 52, 5], ["postPatch", 54, 5], ["postInstall", 65, 5], ["postFixup", 75, 5], ["passthru", 112, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["updateScript", 163, 12]]);
-const pos$8 = nix.positions(here + "/package.nix", [["description", 165, 5], ["homepage", 166, 5], ["license", 167, 5], ["maintainers", 168, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["pname", 116, 3], ["version", 117, 11], ["src", 117, 19], ["dontBuild", 119, 3], ["dontConfigure", 120, 3], ["nativeBuildInputs", 122, 3], ["installPhase", 127, 3], ["passthru", 163, 3], ["meta", 164, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -37,14 +29,14 @@ export default nix.lambda((args) => (() => {
   const withWireguard = nix.argOr($, "withWireguard", () => nix.sel(stdenv, "hostPlatform", "isLinux"));
   const version = "1.4.4752.50";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "pritunl",
       repo: "pritunl-client",
       rev: version,
       sha256: "sha256-BJWm+nuqt9+wqmFsYqJap9vHvMQIusCnH4k8UzBjfbs=",
     }))));
   const cli = nix.thunk(() => nix.app(buildGoModule, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "pritunl-cli",
       version: version,
       src: src,
@@ -52,12 +44,12 @@ export default nix.lambda((args) => (() => {
       vendorHash: "sha256-2QR6WDg/y4fScK5Z/Z+M3H8G5Rlwi2RlrkhNBv6mYM0=",
       postInstall: "mv $out/bin/cli $out/bin/pritunl-client\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
     }))));
   const service = nix.thunk(() => nix.app(buildGoModule, nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "pritunl-client-service",
       version: version,
       src: src,
@@ -70,7 +62,7 @@ export default nix.lambda((args) => (() => {
       postInstall: nix.thunk(() => nix.add("mv $out/bin/service $out/bin/pritunl-client-service\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), "mkdir -p $out/lib/systemd/system/\ncp $src/resources_linux/pritunl-client.service $out/lib/systemd/system/\nsubstituteInPlace $out/lib/systemd/system/pritunl-client.service \\\n  --replace-warn \"/usr\" \"$out\"\n"))),
       postFixup: nix.thunk(() => (() => {
         const hookScriptsDeps = nix.thunk(() => nix.concat([coreutils, which, gnused, gnugrep], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [openresolv, systemd, iproute2]))));
-        const openvpn_wrapped = nix.thunk(() => nix.app(runCommand, "openvpn-wrapped", nix.thunk(() => ({ [nix.POS]: pos$4, nativeBuildInputs: nix.thunk(() => [makeWrapper]) })), nix.thunk(() => nix.str`mkdir -p $out/bin
+        const openvpn_wrapped = nix.thunk(() => nix.app(runCommand, "openvpn-wrapped", nix.thunk(() => ({ [nix.POS]: $pos[3], nativeBuildInputs: nix.thunk(() => [makeWrapper]) })), nix.thunk(() => nix.str`mkdir -p $out/bin
 makeWrapper ${openvpn}/bin/openvpn $out/bin/openvpn \\
   --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), hookScriptsDeps)} \\
   --add-flags "--setenv PATH \\$PATH"
@@ -81,12 +73,12 @@ makeWrapper ${openvpn}/bin/openvpn $out/bin/openvpn \\
 `));
       })()),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       pname: "pritunl-client",
       version: version,
       src: src,
@@ -117,11 +109,11 @@ substituteInPlace $out/share/applications/pritunl-client-electron.desktop \\
   --replace-fail "/usr/lib/pritunl_client_electron/Pritunl" "$out/bin/pritunl-client-electron"
 `))), "# install shell completions for pritunl-client\ninstallShellCompletion --cmd pritunl-client \\\n  --bash <($out/bin/pritunl-client completion bash) \\\n  --fish <($out/bin/pritunl-client completion fish) \\\n  --zsh <($out/bin/pritunl-client completion zsh)\n\nrunHook postInstall\n")),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         description: "Pritunl OpenVPN client",
         homepage: "https://client.pritunl.com/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

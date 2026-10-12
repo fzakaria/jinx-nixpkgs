@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/moony.nix", [[["pname", 13, 5], ["version", 14, 5], ["sha256", 16, 5], ["additionalBuildInputs", 18, 5], ["description", 25, 5]]]);
 const formals$1 = { args: { callPackage: false, cairo: false, "libvterm-neovim": false, robodoc: false, cmake: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/moony.nix", [["pname", 13, 5], ["version", 14, 5], ["sha256", 16, 5], ["additionalBuildInputs", 18, 5], ["description", 25, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const robodoc = nix.arg($, "robodoc");
   const cmake = nix.arg($, "cmake");
   return nix.app(callPackage, nix.path(here, "./generic.nix"), nix.thunk(() => nix.update(args_1, {
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       pname: "moony",
       version: "0.40.0",
       sha256: "sha256-9a3gR3lV8xFFTDZD+fJPCALVztgmggzyIpsPZCOw/uY=",

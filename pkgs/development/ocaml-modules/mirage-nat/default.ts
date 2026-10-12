@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 22, 5], ["hash", 23, 5]], [["description", 42, 5], ["homepage", 43, 5], ["license", 44, 5], ["maintainers", 45, 5]], [["pname", 16, 3], ["version", 17, 3], ["minimalOCamlVersion", 19, 3], ["src", 21, 3], ["propagatedBuildInputs", 26, 3], ["doCheck", 35, 3], ["checkInputs", 36, 3], ["meta", 41, 3]]]);
 const formals$1 = { args: { lib: false, buildDunePackage: false, fetchurl: false, ipaddr: false, cstruct: false, logs: false, lru: false, tcpip: false, ethernet: false, alcotest: false, "mirage-clock-unix": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 42, 5], ["homepage", 43, 5], ["license", 44, 5], ["maintainers", 45, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 16, 3], ["version", 17, 3], ["minimalOCamlVersion", 19, 3], ["src", 21, 3], ["propagatedBuildInputs", 26, 3], ["doCheck", 35, 3], ["checkInputs", 36, 3], ["meta", 41, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const alcotest = nix.arg($, "alcotest");
   const mirage_clock_unix = nix.arg($, "mirage-clock-unix");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "mirage-nat",
       version: "3.0.2",
       minimalOCamlVersion: "4.08",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/mirage/mirage-nat/releases/download/v${nix.sel(finalAttrs, "version")}/mirage-nat-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-Z1g3qb26x/S6asYv6roTW77r41SHy7OGN7MoZJ/E8Is=",
         })))),
@@ -34,7 +32,7 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       checkInputs: nix.thunk(() => [alcotest, mirage_clock_unix]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Mirage-nat is a library for network address translation to be used with MirageOS",
         homepage: "https://github.com/mirage/mirage-nat",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),

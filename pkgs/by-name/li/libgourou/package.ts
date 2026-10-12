@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 18, 5], ["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]], [["description", 61, 5], ["homepage", 62, 5], ["license", 63, 5], ["maintainers", 64, 5], ["platforms", 65, 5], ["broken", 66, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["postPatch", 25, 3], ["postConfigure", 29, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 35, 3], ["makeFlags", 43, 3], ["installPhase", 48, 3], ["meta", 60, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitea: false, pugixml: false, updfparser: false, curl: false, openssl: false, libzip: false, installShellFiles: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 18, 5], ["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 61, 5], ["homepage", 62, 5], ["license", 63, 5], ["maintainers", 64, 5], ["platforms", 65, 5], ["broken", 66, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["postPatch", 25, 3], ["postConfigure", 29, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 35, 3], ["makeFlags", 43, 3], ["installPhase", 48, 3], ["meta", 60, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const libzip = nix.arg($, "libzip");
   const installShellFiles = nix.arg($, "installShellFiles");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "libgourou",
       version: "0.8.9",
       src: nix.thunk(() => nix.app(fetchFromGitea, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "forge.soutade.fr",
           owner: "soutade",
           repo: "libgourou",
@@ -48,7 +46,7 @@ installManPage utils/man/*.1
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Implementation of Adobe's ADEPT protocol for ePub/PDF DRM",
         homepage: "https://forge.soutade.fr/soutade/libgourou",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3Plus")),

@@ -2,16 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/python.nix", [[["pname", 34, 15], ["version", 34, 21], ["hash", 35, 7]], [["pname", 29, 5], ["version", 30, 13], ["pyproject", 31, 5], ["src", 33, 5], ["build-system", 38, 5], ["checkPhase", 42, 5], ["pythonImportsCheck", 47, 5]], [["pname", 56, 15], ["version", 56, 21], ["hash", 57, 7]], [["pname", 51, 5], ["version", 52, 13], ["pyproject", 53, 5], ["src", 55, 5], ["build-system", 60, 5], ["dependencies", 64, 5], ["pythonImportsCheck", 72, 5]], [["pname", 100, 17], ["version", 100, 23], ["hash", 101, 9]], [["pname", 95, 7], ["version", 96, 15], ["pyproject", 97, 7], ["src", 99, 7], ["patches", 104, 7], ["patchFlags", 107, 7], ["build-system", 113, 7], ["nativeBuildInputs", 117, 7], ["dependencies", 119, 7], ["preFixup", 131, 7]], [["pname", 142, 15], ["version", 142, 21], ["hash", 143, 7]], [["pname", 137, 5], ["version", 138, 13], ["pyproject", 139, 5], ["src", 141, 5], ["build-system", 146, 5], ["dependencies", 150, 5]], [["u_boot_pylib", 28, 3], ["dtoc", 50, 3], ["binman", 75, 3], ["patman", 136, 3]]]);
 const formals$1 = { args: { lib: false, python3Packages: false, fetchPypi: false, makeWrapper: false, armTrustedFirmwareTools: false, bzip2: false, cbfstool: false, gzip: false, lz4: false, lzop: false, openssl: false, ubootTools: false, "vboot-utils": false, "xilinx-bootgen": false, xz: false, zstd: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/python.nix", [["pname", 34, 15], ["version", 34, 21], ["hash", 35, 7]]);
-const pos$2 = nix.positions(here + "/python.nix", [["pname", 29, 5], ["version", 30, 13], ["pyproject", 31, 5], ["src", 33, 5], ["build-system", 38, 5], ["checkPhase", 42, 5], ["pythonImportsCheck", 47, 5]]);
-const pos$3 = nix.positions(here + "/python.nix", [["pname", 56, 15], ["version", 56, 21], ["hash", 57, 7]]);
-const pos$4 = nix.positions(here + "/python.nix", [["pname", 51, 5], ["version", 52, 13], ["pyproject", 53, 5], ["src", 55, 5], ["build-system", 60, 5], ["dependencies", 64, 5], ["pythonImportsCheck", 72, 5]]);
-const pos$5 = nix.positions(here + "/python.nix", [["pname", 100, 17], ["version", 100, 23], ["hash", 101, 9]]);
-const pos$6 = nix.positions(here + "/python.nix", [["pname", 95, 7], ["version", 96, 15], ["pyproject", 97, 7], ["src", 99, 7], ["patches", 104, 7], ["patchFlags", 107, 7], ["build-system", 113, 7], ["nativeBuildInputs", 117, 7], ["dependencies", 119, 7], ["preFixup", 131, 7]]);
-const pos$7 = nix.positions(here + "/python.nix", [["pname", 142, 15], ["version", 142, 21], ["hash", 143, 7]]);
-const pos$8 = nix.positions(here + "/python.nix", [["pname", 137, 5], ["version", 138, 13], ["pyproject", 139, 5], ["src", 141, 5], ["build-system", 146, 5], ["dependencies", 150, 5]]);
-const pos$9 = nix.positions(here + "/python.nix", [["u_boot_pylib", 28, 3], ["dtoc", 50, 3], ["binman", 75, 3], ["patman", 136, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -38,7 +30,7 @@ export default nix.lambda((args) => (() => {
         const version_1 = version;
         const pyproject = true;
         const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             pname: pname,
             version: version_1,
             hash: "sha256-A5r20Y8mgxhOhaKMpd5MJN5ubzPbkodAO0Tr0RN1SRA=",
@@ -52,7 +44,7 @@ export default nix.lambda((args) => (() => {
 `);
         const pythonImportsCheck = nix.thunk(() => ["u_boot_pylib"]);
         return {
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname,
           version: version_1,
           pyproject,
@@ -67,7 +59,7 @@ export default nix.lambda((args) => (() => {
         const version_1 = version;
         const pyproject = true;
         const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             pname: pname,
             version: version_1,
             hash: "sha256-NA96CznIxjqpw2Ik8AJpJkJ/ei+kQTCUExwFgssV+CM=",
@@ -82,7 +74,7 @@ export default nix.lambda((args) => (() => {
         })(), [u_boot_pylib]));
         const pythonImportsCheck = nix.thunk(() => ["dtoc"]);
         return {
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           pname,
           version: version_1,
           pyproject,
@@ -112,7 +104,7 @@ export default nix.lambda((args) => (() => {
           const version_1 = version;
           const pyproject = true;
           const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               pname: pname,
               version: version_1,
               hash: "sha256-llEBBhUoW5jTEQeoaTCjZN8y6Kj+PGNUSB3cKpgD06w=",
@@ -136,7 +128,7 @@ export default nix.lambda((args) => (() => {
           const preFixup = nix.thunk(() => nix.str`wrapProgram "$out/bin/binman" --prefix PATH : "${nix.app(nix.sel(lib, "makeBinPath"), btools)}"
 `);
           return {
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             pname,
             version: version_1,
             pyproject,
@@ -155,7 +147,7 @@ export default nix.lambda((args) => (() => {
         const version_1 = version;
         const pyproject = true;
         const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             pname: pname,
             version: version_1,
             hash: "sha256-zD9e87fpWKynpUcfxobbdk6wbM6Ja3f8hEVHS7DGIKQ=",
@@ -172,7 +164,7 @@ export default nix.lambda((args) => (() => {
           ];
         })(), [u_boot_pylib]));
         return {
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           pname,
           version: version_1,
           pyproject,
@@ -181,7 +173,7 @@ export default nix.lambda((args) => (() => {
           dependencies,
         };
       })())));
-    return { [nix.POS]: pos$9, u_boot_pylib, dtoc, binman, patman };
+    return { [nix.POS]: $pos[8], u_boot_pylib, dtoc, binman, patman };
   })();
 })(), formals$1);
 //# sourceMappingURL=python.ts.map

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 12, 5], ["repo", 13, 5], ["tag", 14, 5], ["hash", 15, 5]], [["changelog", 48, 5], ["description", 49, 5], ["homepage", 50, 5], ["license", 51, 5], ["maintainers", 52, 5], ["mainProgram", 53, 5]], [["pname", 7, 3], ["version", 8, 3], ["pyproject", 9, 3], ["src", 11, 3], ["build-system", 18, 3], ["dependencies", 20, 3], ["postInstall", 27, 3], ["meta", 47, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, python3Packages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 12, 5], ["repo", 13, 5], ["tag", 14, 5], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["changelog", 48, 5], ["description", 49, 5], ["homepage", 50, 5], ["license", 51, 5], ["maintainers", 52, 5], ["mainProgram", 53, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 7, 3], ["version", 8, 3], ["pyproject", 9, 3], ["src", 11, 3], ["build-system", 18, 3], ["dependencies", 20, 3], ["postInstall", 27, 3], ["meta", 47, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,12 +11,12 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const python3Packages = nix.arg($, "python3Packages");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "tuxbox",
       version: "3.6.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "AndyCappDev",
           repo: "tuxbox",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,7 +34,7 @@ export default nix.lambda((args) => (() => {
       })()),
       postInstall: "# Copy .desktop file to output\nmkdir -p $out/share/applications/\ncp ./tuxbox-gui.desktop $out/share/applications/\n\nsubstituteInPlace $out/share/applications/tuxbox-gui.desktop \\\n  --replace-fail \"/usr/local/bin/tuxbox-gui\" \"$out/bin/tuxbox-gui\"\n\n# Install uinput udev rules\nmkdir -p $out/lib/udev/rules.d/\necho 'KERNEL==\"uinput\", MODE=\"0660\", GROUP=\"input\", OPTIONS+=\"static_node=uinput\"' > $out/lib/udev/rules.d/99-tuxbox-uinput.rules\nchmod 0744 $out/lib/udev/rules.d/99-tuxbox-uinput.rules\n\n# Keep ModemManager off the TourBox serial port\ncat > $out/lib/udev/rules.d/99-tuxbox-modemmanager.rules <<'EOF'\nSUBSYSTEM==\"tty\", ATTRS{idVendor}==\"c251\", ATTRS{idProduct}==\"2005\", ENV{ID_MM_DEVICE_IGNORE}=\"1\"\nSUBSYSTEM==\"tty\", ATTRS{idVendor}==\"2e3c\", ATTRS{idProduct}==\"5740\", ENV{ID_MM_DEVICE_IGNORE}=\"1\"\nEOF\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         changelog: nix.thunk(() => nix.str`https://github.com/AndyCappDev/tuxbox/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "Linux driver for all TourBox models - Native feel with USB, Bluetooth, haptics and graphical configuration GUI",
         homepage: "https://github.com/AndyCappDev/tuxbox",

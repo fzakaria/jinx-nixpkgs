@@ -2,24 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/7.x.nix", [[["withCompression", 14, 41]], [["owner", 25, 11], ["repo", 26, 11], ["tag", 27, 11], ["hash", 28, 11]], [["homepage", 36, 11], ["license", 37, 11], ["maintainers", 38, 11], ["platforms", 42, 11]], [["pname", 21, 9], ["version", 22, 9], ["src", 24, 9], ["vendorHash", 31, 9], ["subPackages", 33, 9], ["meta", 35, 9]], [["description", 53, 10]], [["meta", 53, 5]], [["description", 56, 10]], [["meta", 56, 5], ["buildInputs", 57, 5], ["tags", 58, 5], ["postFixup", 59, 5]], [["description", 64, 10]], [["meta", 64, 5]], [["description", 67, 10]], [["elk", 71, 9]], [["tests", 68, 14]], [["meta", 67, 5], ["passthru", 68, 5]], [["description", 77, 10], ["longDescription", 78, 10]], [["buildInputs", 76, 5], ["meta", 77, 5]], [["auditbeat7", 52, 3], ["filebeat7", 55, 3], ["heartbeat7", 63, 3], ["metricbeat7", 66, 3], ["packetbeat7", 75, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, elk7Version: false, buildGoModule: false, libpcap: false, nixosTests: false, systemdLibs: false, config: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/7.x.nix", [["withCompression", 14, 41]]);
-const pos$2 = nix.positions(here + "/7.x.nix", [["owner", 25, 11], ["repo", 26, 11], ["tag", 27, 11], ["hash", 28, 11]]);
-const pos$3 = nix.positions(here + "/7.x.nix", [["homepage", 36, 11], ["license", 37, 11], ["maintainers", 38, 11], ["platforms", 42, 11]]);
-const pos$4 = nix.positions(here + "/7.x.nix", [["pname", 21, 9], ["version", 22, 9], ["src", 24, 9], ["vendorHash", 31, 9], ["subPackages", 33, 9], ["meta", 35, 9]]);
-const pos$5 = nix.positions(here + "/7.x.nix", [["description", 53, 10]]);
-const pos$6 = nix.positions(here + "/7.x.nix", [["meta", 53, 5]]);
-const pos$7 = nix.positions(here + "/7.x.nix", [["description", 56, 10]]);
-const pos$8 = nix.positions(here + "/7.x.nix", [["meta", 56, 5], ["buildInputs", 57, 5], ["tags", 58, 5], ["postFixup", 59, 5]]);
-const pos$9 = nix.positions(here + "/7.x.nix", [["description", 64, 10]]);
-const pos$10 = nix.positions(here + "/7.x.nix", [["meta", 64, 5]]);
-const pos$11 = nix.positions(here + "/7.x.nix", [["description", 67, 10]]);
-const pos$12 = nix.positions(here + "/7.x.nix", [["elk", 71, 9]]);
-const pos$13 = nix.positions(here + "/7.x.nix", [["tests", 68, 14]]);
-const pos$14 = nix.positions(here + "/7.x.nix", [["meta", 67, 5], ["passthru", 68, 5]]);
-const pos$15 = nix.positions(here + "/7.x.nix", [["description", 77, 10], ["longDescription", 78, 10]]);
-const pos$16 = nix.positions(here + "/7.x.nix", [["buildInputs", 76, 5], ["meta", 77, 5]]);
-const pos$17 = nix.positions(here + "/7.x.nix", [["auditbeat7", 52, 3], ["filebeat7", 55, 3], ["heartbeat7", 63, 3], ["metricbeat7", 66, 3], ["packetbeat7", 75, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,13 +15,13 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const systemdLibs = nix.arg($, "systemdLibs");
   const config = nix.arg($, "config");
-  const systemdLibs$ = nix.thunk(() => nix.app(nix.sel(systemdLibs, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, withCompression: true }))));
+  const systemdLibs$ = nix.thunk(() => nix.app(nix.sel(systemdLibs, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], withCompression: true }))));
   const beat = (package$) => (extraArgs) => nix.app(buildGoModule, (finalAttrs) => nix.update({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: package$,
       version: elk7Version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "elastic",
           repo: "beats",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -46,7 +30,7 @@ export default nix.lambda((args) => (() => {
       vendorHash: "sha256-JOCcceYYutC5MI+/lXBqcqiET+mcrG1e3kWySo3+NIk=",
       subPackages: nix.thunk(() => [package$]),
       meta: nix.thunk(() => nix.update({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://www.elastic.co/products/beats",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
         maintainers: nix.thunk(() => (() => {
@@ -61,46 +45,46 @@ export default nix.lambda((args) => (() => {
     }, nix.builtins.removeAttrs(extraArgs, nix.thunk(() => ["meta"]))));
   return (() => {
     const auditbeat7 = nix.thunk(() => nix.app(beat, "auditbeat", nix.thunk(() => ({
-        [nix.POS]: pos$6,
-        meta: nix.thunk(() => ({ [nix.POS]: pos$5, description: "Lightweight shipper for audit data" })),
+        [nix.POS]: $pos[5],
+        meta: nix.thunk(() => ({ [nix.POS]: $pos[4], description: "Lightweight shipper for audit data" })),
       }))));
     const filebeat7 = nix.thunk(() => nix.app(beat, "filebeat", nix.thunk(() => ({
-        [nix.POS]: pos$8,
-        meta: nix.thunk(() => ({ [nix.POS]: pos$7, description: "Lightweight shipper for logfiles" })),
+        [nix.POS]: $pos[7],
+        meta: nix.thunk(() => ({ [nix.POS]: $pos[6], description: "Lightweight shipper for logfiles" })),
         buildInputs: nix.thunk(() => [systemdLibs$]),
         tags: nix.thunk(() => ["withjournald"]),
         postFixup: nix.thunk(() => nix.str`patchelf --set-rpath ${nix.app(nix.sel(lib, "makeLibraryPath"), nix.thunk(() => [nix.thunk(() => nix.app(nix.sel(lib, "getLib"), systemdLibs$))]))} "$out/bin/filebeat"
 `),
       }))));
     const heartbeat7 = nix.thunk(() => nix.app(beat, "heartbeat", nix.thunk(() => ({
-        [nix.POS]: pos$10,
-        meta: nix.thunk(() => ({ [nix.POS]: pos$9, description: "Lightweight shipper for uptime monitoring" })),
+        [nix.POS]: $pos[9],
+        meta: nix.thunk(() => ({ [nix.POS]: $pos[8], description: "Lightweight shipper for uptime monitoring" })),
       }))));
     const metricbeat7 = nix.thunk(() => nix.app(beat, "metricbeat", nix.thunk(() => ({
-        [nix.POS]: pos$14,
-        meta: nix.thunk(() => ({ [nix.POS]: pos$11, description: "Lightweight shipper for metrics" })),
+        [nix.POS]: $pos[13],
+        meta: nix.thunk(() => ({ [nix.POS]: $pos[10], description: "Lightweight shipper for metrics" })),
         passthru: nix.thunk(() => ({
-          [nix.POS]: pos$13,
+          [nix.POS]: $pos[12],
           tests: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(config, "allowUnfree")), nix.thunk(() => (() => {
               nix.assert_(nix.eq(nix.sel(metricbeat7, "drvPath"), nix.sel(nixosTests, "elk", "unfree", "ELK-7", "elkPackages", "metricbeat", "drvPath")), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/misc/logging/beats/7.x.nix:69:7");
               return {
-                [nix.POS]: pos$12,
+                [nix.POS]: $pos[11],
                 elk: nix.thunk(() => nix.sel(nixosTests, "elk", "unfree", "ELK-7")),
               };
             })()))),
         })),
       }))));
     const packetbeat7 = nix.thunk(() => nix.app(beat, "packetbeat", nix.thunk(() => ({
-        [nix.POS]: pos$16,
+        [nix.POS]: $pos[15],
         buildInputs: nix.thunk(() => [libpcap]),
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$15,
+          [nix.POS]: $pos[14],
           description: "Network packet analyzer that ships data to Elasticsearch",
           longDescription: "Packetbeat is an open source network packet analyzer that ships the\ndata to Elasticsearch.\n\nThink of it like a distributed real-time Wireshark with a lot more\nanalytics features. The Packetbeat shippers sniff the traffic between\nyour application processes, parse on the fly protocols like HTTP, MySQL,\nPostgreSQL, Redis or Thrift and correlate the messages into transactions.\n",
         })),
       }))));
     return {
-      [nix.POS]: pos$17,
+      [nix.POS]: $pos[16],
       auditbeat7,
       filebeat7,
       heartbeat7,

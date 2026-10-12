@@ -2,15 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 23, 7], ["repo", 24, 7], ["tag", 25, 7], ["hash", 26, 7]], [["pandocBin", 30, 9]], [["src", 34, 28], ["hash", 35, 7]], [["sourceName", 18, 5], ["name", 19, 5], ["pname", 20, 5], ["version", 21, 13], ["src", 22, 5], ["patches", 28, 5], ["npmDeps", 33, 5], ["nativeBuildInputs", 37, 5], ["strictDeps", 42, 5], ["__structuredAttrs", 43, 5], ["dontConfigure", 44, 5], ["buildPhase", 45, 5], ["dontInstall", 50, 5]], [["attrPath", 61, 5]], [["updateScript", 60, 12]], [["description", 64, 5], ["homepage", 65, 5], ["downloadPage", 66, 5], ["license", 67, 5], ["maintainers", 68, 5]], [["pname", 54, 3], ["version", 55, 11], ["src", 55, 19], ["vscodeExtPublisher", 56, 3], ["vscodeExtName", 57, 3], ["vscodeExtUniqueId", 58, 3], ["buildInputs", 59, 3], ["passthru", 60, 3], ["meta", 63, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchFromGitHub: false, fetchNpmDeps: false, "nix-update-script": false, nodejs: false, npmHooks: false, replaceVars: false, vsce: false, "vscode-utils": false, pandoc: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 23, 7], ["repo", 24, 7], ["tag", 25, 7], ["hash", 26, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pandocBin", 30, 9]]);
-const pos$3 = nix.positions(here + "/default.nix", [["src", 34, 28], ["hash", 35, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["sourceName", 18, 5], ["name", 19, 5], ["pname", 20, 5], ["version", 21, 13], ["src", 22, 5], ["patches", 28, 5], ["npmDeps", 33, 5], ["nativeBuildInputs", 37, 5], ["strictDeps", 42, 5], ["__structuredAttrs", 43, 5], ["dontConfigure", 44, 5], ["buildPhase", 45, 5], ["dontInstall", 50, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["attrPath", 61, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["updateScript", 60, 12]]);
-const pos$7 = nix.positions(here + "/default.nix", [["description", 64, 5], ["homepage", 65, 5], ["downloadPage", 66, 5], ["license", 67, 5], ["maintainers", 68, 5]]);
-const pos$8 = nix.positions(here + "/default.nix", [["pname", 54, 3], ["version", 55, 11], ["src", 55, 19], ["vscodeExtPublisher", 56, 3], ["vscodeExtName", 57, 3], ["vscodeExtUniqueId", 58, 3], ["buildInputs", 59, 3], ["passthru", 60, 3], ["meta", 63, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,13 +20,13 @@ export default nix.lambda((args) => (() => {
   const pandoc = nix.arg($, "pandoc");
   const version = "0.7.3";
   const src = nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       sourceName: "chrischinchilla-vscode-pandoc",
       name: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "sourceName")}-${nix.sel(finalAttrs, "version")}.vsix`),
       pname: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "sourceName")}-vsix`),
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ChrisChinchilla",
           repo: "vscode-pandoc",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -41,12 +34,12 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./add-pandoc-to-path.patch"), nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             pandocBin: nix.thunk(() => nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [pandoc]))),
           })))),
       ]),
       npmDeps: nix.thunk(() => nix.app(fetchNpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           hash: "sha256-1j+bDx2CiViEgLfanyx0dwLRgY1aYV9rQDWP3nDl1Bw=",
         })))),
@@ -58,7 +51,7 @@ export default nix.lambda((args) => (() => {
       dontInstall: true,
     })));
   return nix.app(nix.sel(vscode_utils, "buildVscodeExtension"), (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "chrischinchilla-vscode-pandoc",
       version: version,
       src: src,
@@ -67,14 +60,14 @@ export default nix.lambda((args) => (() => {
       vscodeExtUniqueId: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "vscodeExtPublisher")}.${nix.sel(finalAttrs, "vscodeExtName")}`),
       buildInputs: nix.thunk(() => [pandoc]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             attrPath: "vscode-extensions.chrischinchilla.vscode-pandoc.src",
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "Converts Markdown files to pdf, docx, or html files using pandoc",
         homepage: "https://github.com/ChrisChinchilla/vscode-pandoc#readme",
         downloadPage: "https://marketplace.visualstudio.com/items?itemName=chrischinchilla.vscode-pandoc",

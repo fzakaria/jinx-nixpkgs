@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]], [["pname", 27, 7], ["version", 28, 7], ["src", 29, 7], ["cargoRoot", 30, 7], ["hash", 32, 5]], [["HOST_AR", 57, 7]], [["description", 62, 5], ["homepage", 63, 35], ["license", 64, 5], ["platforms", 65, 5], ["maintainers", 66, 5], ["broken", 67, 5], ["mainProgram", 68, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["cargoDeps", 25, 3], ["postPatch", 35, 3], ["buildInputs", 40, 3], ["nativeBuildInputs", 47, 3], ["cargoRoot", 55, 3], ["env", 57, 3], ["installFlags", 59, 3], ["meta", 61, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, boost: false, xz: false, cargo: false, "pkg-config": false, qt6Packages: false, rustPlatform: false, sqlite: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 27, 7], ["version", 28, 7], ["src", 29, 7], ["cargoRoot", 30, 7], ["hash", 32, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["HOST_AR", 57, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 62, 5], ["homepage", 63, 35], ["license", 64, 5], ["platforms", 65, 5], ["maintainers", 66, 5], ["broken", 67, 5], ["mainProgram", 68, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["cargoDeps", 25, 3], ["postPatch", 35, 3], ["buildInputs", 40, 3], ["nativeBuildInputs", 47, 3], ["cargoRoot", 55, 3], ["env", 57, 3], ["installFlags", 59, 3], ["meta", 61, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,18 +18,18 @@ export default nix.lambda((args) => (() => {
   const rustPlatform = nix.arg($, "rustPlatform");
   const sqlite = nix.arg($, "sqlite");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "QMediathekView",
       version: "0.2.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "adamreichold",
           repo: "QMediathekView",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-miqCzNTqbZwPuy6P911wlf5TF1lECzNW/02/edK8XaU=",
         })))),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -51,14 +47,14 @@ export default nix.lambda((args) => (() => {
       ]),
       cargoRoot: "internals",
       env: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         HOST_AR: nix.thunk(() => nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(stdenv, "cc", "bintools", "bintools")), "ar")),
       })),
       installFlags: nix.thunk(() => ["INSTALL_ROOT=$(out)"]),
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(finalAttrs, "src", "meta"));
         return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Alternative Qt-based front-end for the database maintained by the MediathekView project",
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

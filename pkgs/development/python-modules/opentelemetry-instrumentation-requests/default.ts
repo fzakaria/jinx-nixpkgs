@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["homepage", 48, 5], ["description", 49, 5]], [["version", 17, 43], ["src", 17, 51], ["pname", 18, 3], ["pyproject", 19, 3], ["sourceRoot", 21, 3], ["build-system", 23, 3], ["dependencies", 25, 3], ["nativeCheckInputs", 33, 3], ["pytestFlags", 41, 3], ["pythonImportsCheck", 45, 3], ["meta", 47, 3]]]);
 const formals$1 = { args: { buildPythonPackage: false, requests: false, hatchling: false, "opentelemetry-api": false, "opentelemetry-instrumentation": false, "opentelemetry-semantic-conventions": false, "opentelemetry-util-http": false, httpretty: false, mocket: false, "opentelemetry-test-utils": false, "pytest-benchmark": false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["homepage", 48, 5], ["description", 49, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["version", 17, 43], ["src", 17, 51], ["pname", 18, 3], ["pyproject", 19, 3], ["sourceRoot", 21, 3], ["build-system", 23, 3], ["dependencies", 25, 3], ["nativeCheckInputs", 33, 3], ["pytestFlags", 41, 3], ["pythonImportsCheck", 45, 3], ["meta", 47, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,7 +20,7 @@ export default nix.lambda((args) => (() => {
   const pytest_benchmark = nix.arg($, "pytest-benchmark");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       version: nix.thunk(() => nix.attr(opentelemetry_instrumentation, "version")),
       src: nix.thunk(() => nix.attr(opentelemetry_instrumentation, "src")),
       pname: "opentelemetry-instrumentation-requests",
@@ -45,7 +44,7 @@ export default nix.lambda((args) => (() => {
       pytestFlags: nix.thunk(() => ["--benchmark-disable"]),
       pythonImportsCheck: nix.thunk(() => ["opentelemetry.instrumentation.requests"]),
       meta: nix.thunk(() => nix.update(nix.sel(opentelemetry_instrumentation, "meta"), {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         homepage: "https://github.com/open-telemetry/opentelemetry-python-contrib/blob/main/instrumentation/opentelemetry-instrumentation-requests",
         description: "Requests instrumentation for OpenTelemetry",
       })),

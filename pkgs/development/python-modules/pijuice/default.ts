@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 15, 5], ["repo", 16, 5], ["tag", 19, 5], ["sha256", 20, 5]], [["PIJUICE_BUILD_BASE", 31, 5], ["PIJUICE_VERSION", 32, 5]], [["description", 61, 5], ["mainProgram", 62, 5], ["homepage", 63, 5], ["license", 64, 5], ["maintainers", 65, 5]], [["pname", 10, 3], ["version", 11, 3], ["format", 12, 3], ["src", 14, 3], ["patches", 23, 3], ["env", 30, 3], ["preBuild", 35, 3], ["propagatedBuildInputs", 39, 3], ["postFixup", 51, 3], ["doCheck", 58, 3], ["meta", 60, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, buildPythonPackage: false, "smbus-cffi": false, urwid: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 15, 5], ["repo", 16, 5], ["tag", 19, 5], ["sha256", 20, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["PIJUICE_BUILD_BASE", 31, 5], ["PIJUICE_VERSION", 32, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 61, 5], ["mainProgram", 62, 5], ["homepage", 63, 5], ["license", 64, 5], ["maintainers", 65, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 10, 3], ["version", 11, 3], ["format", 12, 3], ["src", 14, 3], ["patches", 23, 3], ["env", 30, 3], ["preBuild", 35, 3], ["propagatedBuildInputs", 39, 3], ["postFixup", 51, 3], ["doCheck", 58, 3], ["meta", 60, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,20 +17,20 @@ export default nix.lambda((args) => (() => {
       const version = "1.8";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "PiSupply",
           repo: "PiJuice",
           tag: nix.thunk(() => nix.str`V${version}`),
           sha256: "sha256-tPYuI+VzbxmTeY/L3s0oDoydRDXJ6t76KmLUyJzxUvU=",
         }))));
       const patches = nix.thunk(() => [nix.path(here, "./patch-shebang.diff")]);
-      const env = nix.thunk(() => ({ [nix.POS]: pos$2, PIJUICE_BUILD_BASE: 1n, PIJUICE_VERSION: version }));
+      const env = nix.thunk(() => ({ [nix.POS]: $pos[1], PIJUICE_BUILD_BASE: 1n, PIJUICE_VERSION: version }));
       const preBuild = "cd Software/Source\n";
       const propagatedBuildInputs = nix.thunk(() => [smbus_cffi, urwid]);
       const postFixup = "rm $out/bin/pijuice_sys.py\nrm $out/bin/pijuiceboot{32,64}\nmv $out/bin/pijuice_cli.py $out/bin/pijuice_cli\n";
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Library and resources for PiJuice HAT for Raspberry Pi",
         mainProgram: "pijuice_cli",
         homepage: "https://github.com/PiSupply/PiJuice",
@@ -44,7 +41,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         format,

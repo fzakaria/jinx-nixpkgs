@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["15.0.0", 20, 7], ["18.0.0", 21, 7]], [["url", 30, 5], ["hash", 31, 13]], [["description", 61, 5], ["homepage", 62, 5], ["license", 63, 5], ["maintainers", 64, 5], ["mainProgram", 65, 5], ["platforms", 66, 26], ["broken", 67, 5]], [["name", 26, 3], ["version", 27, 11], ["pname", 27, 19], ["src", 29, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 40, 3], ["strictDeps", 46, 3], ["prePatch", 48, 3], ["buildPhase", 50, 3], ["installPhase", 58, 19], ["meta", 60, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, ocaml: false, findlib: false, ocamlbuild: false, topkg: false, uutf: false, cmdliner: false, cmdlinerSupport: true, version: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["15.0.0", 20, 7], ["18.0.0", 21, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["url", 30, 5], ["hash", 31, 13]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 61, 5], ["homepage", 62, 5], ["license", 63, 5], ["maintainers", 64, 5], ["mainProgram", 65, 5], ["platforms", 66, 26], ["broken", 67, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["name", 26, 3], ["version", 27, 11], ["pname", 27, 19], ["src", 29, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 40, 3], ["strictDeps", 46, 3], ["prePatch", 48, 3], ["buildPhase", 50, 3], ["installPhase", 58, 19], ["meta", 60, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,17 +21,17 @@ export default nix.lambda((args) => (() => {
   const pname = "uunf";
   const webpage = nix.thunk(() => nix.str`https://erratique.ch/software/${pname}`);
   const hash = nix.thunk(() => nix.sel({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     "15.0.0": "sha256-B/prPAwfqS8ZPS3fyDDIzXWRbKofwOCyCfwvh9veuug=",
     "18.0.0": "sha256-PigyC3vjIFWo2pNa3yUJBv3qgcpZXWf6ytGIOoaiHiM=",
   }, nix.key(nix.str`${version}`)));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finallAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       name: nix.thunk(() => nix.str`ocaml${nix.sel(ocaml, "version")}-${nix.sel(finallAttrs, "pname")}-${nix.sel(finallAttrs, "version")}`),
       version: version,
       pname: pname,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: nix.thunk(() => nix.str`${webpage}/releases/${pname}-${version}.tbz`),
           hash: hash,
         })))),
@@ -52,7 +49,7 @@ runHook postBuild
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(ocaml, "meta"));
         return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "OCaml module for normalizing Unicode text",
         homepage: webpage,
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

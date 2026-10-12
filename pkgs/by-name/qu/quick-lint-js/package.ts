@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]], [["pname", 35, 5], ["version", 36, 13], ["src", 36, 21], ["nativeBuildInputs", 38, 5], ["cmakeFlags", 42, 13], ["ninjaFlags", 43, 5], ["installPhase", 45, 5], ["doCheck", 51, 5]], [["url", 60, 7], ["hash", 61, 7]], [["build-tools", 81, 5]], [["description", 85, 5], ["mainProgram", 86, 5], ["homepage", 87, 5], ["downloadPage", 88, 5], ["changelog", 89, 5], ["license", 90, 5], ["maintainers", 91, 5], ["platforms", 92, 5]], [["pname", 55, 3], ["version", 56, 11], ["src", 56, 19], ["patches", 58, 3], ["nativeBuildInputs", 65, 3], ["cmakeFlags", 70, 11], ["doCheck", 72, 3], ["nativeInstallCheckInputs", 74, 3], ["doInstallCheck", 77, 3], ["passthru", 79, 3], ["meta", 84, 3]]]);
 const formals$1 = { args: { buildPackages: false, cmake: false, fetchFromGitHub: false, fetchpatch2: false, lib: false, ninja: false, stdenv: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 35, 5], ["version", 36, 13], ["src", 36, 21], ["nativeBuildInputs", 38, 5], ["cmakeFlags", 42, 13], ["ninjaFlags", 43, 5], ["installPhase", 45, 5], ["doCheck", 51, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 60, 7], ["hash", 61, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["build-tools", 81, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 85, 5], ["mainProgram", 86, 5], ["homepage", 87, 5], ["downloadPage", 88, 5], ["changelog", 89, 5], ["license", 90, 5], ["maintainers", 91, 5], ["platforms", 92, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 55, 3], ["version", 56, 11], ["src", 56, 19], ["patches", 58, 3], ["nativeBuildInputs", 65, 3], ["cmakeFlags", 70, 11], ["doCheck", 72, 3], ["nativeInstallCheckInputs", 74, 3], ["doInstallCheck", 77, 3], ["passthru", 79, 3], ["meta", 84, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,7 +17,7 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const version = "3.2.0";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "quick-lint",
       repo: "quick-lint-js",
       tag: version,
@@ -34,7 +29,7 @@ export default nix.lambda((args) => (() => {
     nix.thunk(() => nix.app(nix.sel(lib, "cmakeFeature"), "CMAKE_POLICY_VERSION_MINIMUM", "3.10")),
   ]);
   const quick_lint_js_build_tools = nix.thunk(() => nix.app(nix.sel(buildPackages, "stdenv", "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "quick-lint-js-build-tools",
       version: version,
       src: src,
@@ -45,13 +40,13 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "quick-lint-js",
       version: version,
       src: src,
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: "https://github.com/quick-lint/quick-lint-js/commit/a2798b35021f34bc798e2b70ec703075dd5eb7f6.patch",
             hash: "sha256-jEzFFntk94HQPNYLqU1XlwCnhaqt95Kk3TXmfqBGxBc=",
           })))),
@@ -61,9 +56,9 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$4, "build-tools": quick_lint_js_build_tools })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[3], "build-tools": quick_lint_js_build_tools })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Find bugs in JavaScript programs",
         mainProgram: "quick-lint-js",
         homepage: "https://quick-lint-js.com",

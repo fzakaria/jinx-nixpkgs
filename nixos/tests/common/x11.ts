@@ -2,55 +2,43 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/x11.nix", [[["enable", 16, 40]], [["icewm", 16, 34]], [["enable", 8, 20], ["windowManager", 16, 20]], [["defaultSession", 15, 27]], [["xserver", 8, 12], ["displayManager", 15, 12]], [["enable", 11, 36]], [["auto", 11, 31]], [["displayManager", 11, 16]], [["text", 20, 19]], [["text", 24, 25]], [["icewm/theme", 20, 5], ["icewm/preferences", 24, 5]], [["etc", 18, 15]], [["imports", 4, 3], ["services", 8, 3], ["test-support", 11, 3], ["environment", 18, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/x11.nix", [["enable", 16, 40]]);
-const pos$2 = nix.positions(here + "/x11.nix", [["icewm", 16, 34]]);
-const pos$3 = nix.positions(here + "/x11.nix", [["enable", 8, 20], ["windowManager", 16, 20]]);
-const pos$4 = nix.positions(here + "/x11.nix", [["defaultSession", 15, 27]]);
-const pos$5 = nix.positions(here + "/x11.nix", [["xserver", 8, 12], ["displayManager", 15, 12]]);
-const pos$6 = nix.positions(here + "/x11.nix", [["enable", 11, 36]]);
-const pos$7 = nix.positions(here + "/x11.nix", [["auto", 11, 31]]);
-const pos$8 = nix.positions(here + "/x11.nix", [["displayManager", 11, 16]]);
-const pos$9 = nix.positions(here + "/x11.nix", [["text", 20, 19]]);
-const pos$10 = nix.positions(here + "/x11.nix", [["text", 24, 25]]);
-const pos$11 = nix.positions(here + "/x11.nix", [["icewm/theme", 20, 5], ["icewm/preferences", 24, 5]]);
-const pos$12 = nix.positions(here + "/x11.nix", [["etc", 18, 15]]);
-const pos$13 = nix.positions(here + "/x11.nix", [["imports", 4, 3], ["services", 8, 3], ["test-support", 11, 3], ["environment", 18, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$13,
+    [nix.POS]: $pos[12],
     imports: nix.thunk(() => [nix.path(here, "./auto.nix")]),
     services: nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       xserver: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         enable: true,
         windowManager: nix.thunk(() => ({
-          [nix.POS]: pos$2,
-          icewm: nix.thunk(() => ({ [nix.POS]: pos$1, enable: true })),
+          [nix.POS]: $pos[1],
+          icewm: nix.thunk(() => ({ [nix.POS]: $pos[0], enable: true })),
         })),
       })),
       displayManager: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         defaultSession: nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "none+icewm")),
       })),
     })),
     "test-support": nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       displayManager: nix.thunk(() => ({
-        [nix.POS]: pos$7,
-        auto: nix.thunk(() => ({ [nix.POS]: pos$6, enable: true })),
+        [nix.POS]: $pos[6],
+        auto: nix.thunk(() => ({ [nix.POS]: $pos[5], enable: true })),
       })),
     })),
     environment: nix.thunk(() => ({
-      [nix.POS]: pos$12,
+      [nix.POS]: $pos[11],
       etc: nix.thunk(() => ({
-        [nix.POS]: pos$11,
-        "icewm/theme": nix.thunk(() => ({ [nix.POS]: pos$9, text: "Theme=\"gtk2/default.theme\"\n" })),
-        "icewm/preferences": nix.thunk(() => ({ [nix.POS]: pos$10, text: "ShowTaskBar=0\n" })),
+        [nix.POS]: $pos[10],
+        "icewm/theme": nix.thunk(() => ({ [nix.POS]: $pos[8], text: "Theme=\"gtk2/default.theme\"\n" })),
+        "icewm/preferences": nix.thunk(() => ({ [nix.POS]: $pos[9], text: "ShowTaskBar=0\n" })),
       })),
     })),
   };

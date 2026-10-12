@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["flags", 81, 9], ["deps", 82, 9]], [["flags", 86, 9], ["deps", 87, 9]], [["owner", 136, 5], ["repo", 137, 5], ["rev", 138, 5], ["hash", 139, 5]], [["description", 162, 5], ["homepage", 163, 5], ["license", 164, 5], ["maintainers", 165, 5], ["platforms", 166, 5]], [["pname", 132, 3], ["version", 133, 3], ["src", 135, 3], ["nativeBuildInputs", 142, 3], ["buildInputs", 143, 3], ["prefixKey", 151, 3], ["configureFlags", 153, 3], ["makeFlags", 159, 3], ["meta", 161, 3]]]);
 const formals$1 = { args: { config: false, lib: false, stdenv: false, fetchFromGitHub: false, ncurses: false, "pkg-config": false, libiconv: false, alsaSupport: true, "alsa-lib": true, aoSupport: true, libao: true, jackSupport: true, libjack2: true, samplerateSupport: true, libsamplerate: true, ossSupport: true, "alsa-oss": true, pulseaudioSupport: true, libpulseaudio: true, sndioSupport: true, sndio: true, mprisSupport: true, systemd: true, cddbSupport: true, libcddb: true, cdioSupport: true, libcdio: true, "libcdio-paranoia": true, cueSupport: true, libcue: true, discidSupport: true, libdiscid: true, ffmpegSupport: true, ffmpeg_7: true, flacSupport: true, flac: true, madSupport: true, libmad: true, mikmodSupport: true, libmikmod: true, modplugSupport: true, libmodplug: true, mpcSupport: true, libmpcdec: true, vorbisSupport: true, libvorbis: true, wavpackSupport: true, wavpack: true, opusSupport: true, opusfile: true, aacSupport: true, faad2: true, mp4Support: true, mp4v2: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["flags", 81, 9], ["deps", 82, 9]]);
-const pos$2 = nix.positions(here + "/package.nix", [["flags", 86, 9], ["deps", 87, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["owner", 136, 5], ["repo", 137, 5], ["rev", 138, 5], ["hash", 139, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 162, 5], ["homepage", 163, 5], ["license", 164, 5], ["maintainers", 165, 5], ["platforms", 166, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 132, 3], ["version", 133, 3], ["src", 135, 3], ["nativeBuildInputs", 142, 3], ["buildInputs", 143, 3], ["prefixKey", 151, 3], ["configureFlags", 153, 3], ["makeFlags", 159, 3], ["meta", 161, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -67,7 +63,11 @@ export default nix.lambda((args) => (() => {
   const mp4v2 = nix.argOr($, "mp4v2", () => null);
   nix.assert_((!nix.asBool(samplerateSupport) || nix.asBool(jackSupport)), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/cm/cmus/package.nix:71:1");
   const ffmpeg = ffmpeg_7;
-  const mkFlag = (b) => (f) => (dep) => (nix.asBool(b) ? { [nix.POS]: pos$1, flags: nix.thunk(() => [f]), deps: nix.thunk(() => [dep]) } : { [nix.POS]: pos$2, flags: [], deps: [] });
+  const mkFlag = (b) => (f) => (dep) => (nix.asBool(b) ? {
+    [nix.POS]: $pos[0],
+    flags: nix.thunk(() => [f]),
+    deps: nix.thunk(() => [dep]),
+  } : { [nix.POS]: $pos[1], flags: [], deps: [] });
   const opts = nix.thunk(() => [
     nix.thunk(() => nix.app(mkFlag, alsaSupport, "CONFIG_ALSA=y", alsa_lib)),
     nix.thunk(() => nix.app(mkFlag, aoSupport, "CONFIG_AO=y", libao)),
@@ -94,11 +94,11 @@ export default nix.lambda((args) => (() => {
     nix.thunk(() => nix.app(mkFlag, aacSupport, "CONFIG_AAC=y", faad2)),
   ]);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "cmus",
       version: "2.12.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           owner: "cmus",
           repo: "cmus",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -113,7 +113,7 @@ export default nix.lambda((args) => (() => {
       ], nix.app(nix.sel(lib, "concatMap"), (a) => nix.sel(a, "flags"), opts))),
       makeFlags: nix.thunk(() => ["LD=$(CC)"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Small, fast and powerful console music player for Linux and *BSD",
         homepage: "https://cmus.github.io/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

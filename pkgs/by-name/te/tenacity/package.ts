@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 55, 5], ["repo", 56, 5], ["fetchSubmodules", 57, 5], ["rev", 58, 5], ["hash", 59, 5]], [["NIX_LDFLAGS", 113, 5]], [["description", 187, 5], ["mainProgram", 188, 5], ["homepage", 189, 5], ["license", 190, 5], ["maintainers", 191, 5], ["platforms", 195, 5]], [["pname", 51, 3], ["version", 52, 3], ["src", 54, 3], ["patches", 64, 3], ["postPatch", 68, 3], ["postInstall", 86, 3], ["postFixup", 102, 3], ["env", 110, 3], ["nativeBuildInputs", 125, 3], ["buildInputs", 137, 3], ["cmakeFlags", 178, 3], ["meta", 186, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromCodeberg: false, cmake: false, ninja: false, wxwidgets_3_2: false, gtk3: false, "pkg-config": false, python3: false, gettext: false, glib: false, file: false, lame: false, libvorbis: false, libmad: false, libjack2: false, lv2: false, lilv: false, makeWrapper: false, serd: false, sord: false, sqlite: false, sratom: false, suil: false, "alsa-lib": false, libsndfile: false, soxr: false, flac: false, twolame: false, expat: false, libid3tag: false, libopus: false, ffmpeg_7: false, soundtouch: false, portaudio: false, linuxHeaders: false, "at-spi2-core": false, dbus: false, libepoxy: false, libxdmcp: false, libxtst: false, "libpthread-stubs": false, libselinux: false, libsepol: false, libxkbcommon: false, "util-linux": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 55, 5], ["repo", 56, 5], ["fetchSubmodules", 57, 5], ["rev", 58, 5], ["hash", 59, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_LDFLAGS", 113, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 187, 5], ["mainProgram", 188, 5], ["homepage", 189, 5], ["license", 190, 5], ["maintainers", 191, 5], ["platforms", 195, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 51, 3], ["version", 52, 3], ["src", 54, 3], ["patches", 64, 3], ["postPatch", 68, 3], ["postInstall", 86, 3], ["postFixup", 102, 3], ["env", 110, 3], ["nativeBuildInputs", 125, 3], ["buildInputs", 137, 3], ["cmakeFlags", 178, 3], ["meta", 186, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -57,11 +54,11 @@ export default nix.lambda((args) => (() => {
   const libxkbcommon = nix.arg($, "libxkbcommon");
   const util_linux = nix.arg($, "util-linux");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "tenacity",
       version: "1.3.4",
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "tenacityteam",
           repo: "tenacity",
           fetchSubmodules: true,
@@ -97,7 +94,7 @@ rm -r $out/lib
 `))),
       postFixup: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), "wrapProgram \"$out/bin/tenacity\" \\\n  --suffix AUDACITY_PATH : \"$out/share/tenacity\" \\\n  --suffix AUDACITY_MODULES_PATH : \"$out/lib/tenacity/modules\" \\\n  --prefix LD_LIBRARY_PATH : \"$out/lib/tenacity\" \\\n  --prefix XDG_DATA_DIRS : \"$out/share:$GSETTINGS_SCHEMAS_PATH\"\n")),
       env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           NIX_LDFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => [
               "-lavcodec",
               "-lavdevice",
@@ -151,7 +148,7 @@ rm -r $out/lib
         ])))),
       cmakeFlags: nix.thunk(() => ["-DCMAKE_SKIP_BUILD_RPATH=ON", "-DVCPKG=OFF"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Sound editor with graphical UI",
         mainProgram: "tenacity",
         homepage: "https://tenacityaudio.org/",

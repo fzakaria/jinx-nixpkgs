@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]], [["url", 30, 7], ["hash", 31, 7]], [["url", 36, 7], ["hash", 37, 7]], [["description", 69, 5], ["homepage", 70, 5], ["license", 71, 5], ["maintainers", 72, 5], ["platforms", 74, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["patches", 26, 3], ["buildInputs", 47, 3], ["nativeBuildInputs", 55, 3], ["makeFlags", 57, 3], ["postInstall", 59, 3], ["meta", 68, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch2: false, "pkg-config": false, nss: false, efivar: false, "util-linux": false, popt: false, nspr: false, mandoc: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 30, 7], ["hash", 31, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 36, 7], ["hash", 37, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 69, 5], ["homepage", 70, 5], ["license", 71, 5], ["maintainers", 72, 5], ["platforms", 74, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["patches", 26, 3], ["buildInputs", 47, 3], ["nativeBuildInputs", 55, 3], ["makeFlags", 57, 3], ["postInstall", 59, 3], ["meta", 68, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const nspr = nix.arg($, "nspr");
   const mandoc = nix.arg($, "mandoc");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "pesign",
       version: "116",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "rhboot",
           repo: "pesign",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -35,12 +31,12 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/rhboot/pesign/commit/1f9e2fa0b4d872fdd01ca3ba81b04dfb1211a187.patch?full_index=1",
             hash: "sha256-viVM4Z0jAEAWC3EdJVHcWe21aQskH5XE85lOd6Xd/qU=",
           })))),
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: "https://github.com/rhboot/pesign/commit/419d63a8b6434f94b57730bb8a58a32a0bb199aa.patch?full_index=1",
             hash: "sha256-/o0QknZ1IDFwmsQAt1IENx7tr8WRNJS3wl84cHzprzA=",
           })))),
@@ -50,7 +46,7 @@ export default nix.lambda((args) => (() => {
       makeFlags: nix.thunk(() => ["INSTALLROOT=$(out)"]),
       postInstall: "mv $out/usr/bin $out/bin\nmv $out/usr/share $out/share\n\nrm -rf $out/usr\nrm -rf $out/etc\nrm -rf $out/run\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Signing tools for PE-COFF binaries. Compliant with the PE and Authenticode specifications",
         homepage: "https://github.com/rhboot/pesign",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

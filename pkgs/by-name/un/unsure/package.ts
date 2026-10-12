@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["hash", 20, 5]], [["updateScript", 34, 12]], [["changelog", 37, 5], ["description", 38, 5], ["downloadPage", 39, 5], ["homepage", 40, 5], ["license", 41, 5], ["mainProgram", 42, 5], ["maintainers", 43, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["pubspecLock", 23, 3], ["doInstallCheck", 25, 3], ["installCheckPhase", 26, 3], ["passthru", 34, 3], ["meta", 36, 3]]]);
 const formals$1 = { args: { buildDartApplication: false, dart: false, fetchFromGitHub: false, lib: false, runCommand: false, testers: false, unsure: false, writeText: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 34, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["changelog", 37, 5], ["description", 38, 5], ["downloadPage", 39, 5], ["homepage", 40, 5], ["license", 41, 5], ["mainProgram", 42, 5], ["maintainers", 43, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["pubspecLock", 23, 3], ["doInstallCheck", 25, 3], ["installCheckPhase", 26, 3], ["passthru", 34, 3], ["meta", 36, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = "unsure";
       const version = "0.4.0-unstable-2025-04-15";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "filiph",
           repo: "unsure",
           rev: "123712482b7053974cbef9ffa7ba46c1cdfb765f",
@@ -31,9 +28,9 @@ export default nix.lambda((args) => (() => {
       const pubspecLock = nix.thunk(() => nix.app(nix.sel(lib, "importJSON"), nix.path(here, "./pubspec.lock.json")));
       const doInstallCheck = true;
       const installCheckPhase = "runHook preInstallCheck\n\n[[ \"$(\"$out/bin/unsure\" \"4~6 * 1~2\" | head --lines=2)\" == \"$(printf '\\n\\t%s' '5~11')\" ]]\n\nrunHook postInstallCheck\n";
-      const passthru = nix.thunk(() => ({ [nix.POS]: pos$2, updateScript: nix.path(here, "./update.sh") }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: $pos[1], updateScript: nix.path(here, "./update.sh") }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         changelog: nix.thunk(() => nix.str`https://github.com/filiph/unsure/blob/${nix.sel(src, "rev")}/CHANGELOG.md`),
         description: "Calculate with numbers you’re not sure about",
         downloadPage: "https://github.com/filiph/unsure",
@@ -46,7 +43,7 @@ export default nix.lambda((args) => (() => {
         ]),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]], [["ELECTRON_SKIP_BINARY_DOWNLOAD", 45, 7]], [["package", 99, 7], ["command", 101, 7]], [["version", 98, 11]], [["extraArgs", 104, 7]], [["tests", 98, 5], ["updateScript", 103, 5]], [["description", 109, 5], ["mainProgram", 110, 5], ["homepage", 111, 5], ["changelog", 112, 5], ["license", 113, 5], ["platforms", 114, 5], ["broken", 116, 5], ["sourceProvenance", 117, 5], ["maintainers", 121, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["npmDepsHash", 29, 3], ["npmBuildScript", 30, 3], ["makeCacheWritable", 31, 3], ["nativeBuildInputs", 33, 3], ["autoPatchelfIgnoreMissingDeps", 39, 3], ["buildInputs", 41, 3], ["env", 45, 3], ["postPatch", 47, 3], ["postBuild", 56, 3], ["installPhase", 68, 3], ["passthru", 97, 3], ["meta", 108, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, buildNpmPackage: false, electron_43: false, autoPatchelfHook: false, makeWrapper: false, testers: false, "mattermost-desktop": false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["ELECTRON_SKIP_BINARY_DOWNLOAD", 45, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["package", 99, 7], ["command", 101, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["version", 98, 11]]);
-const pos$5 = nix.positions(here + "/package.nix", [["extraArgs", 104, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["tests", 98, 5], ["updateScript", 103, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["description", 109, 5], ["mainProgram", 110, 5], ["homepage", 111, 5], ["changelog", 112, 5], ["license", 113, 5], ["platforms", 114, 5], ["broken", 116, 5], ["sourceProvenance", 117, 5], ["maintainers", 121, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["npmDepsHash", 29, 3], ["npmBuildScript", 30, 3], ["makeCacheWritable", 31, 3], ["nativeBuildInputs", 33, 3], ["autoPatchelfIgnoreMissingDeps", 39, 3], ["buildInputs", 41, 3], ["env", 45, 3], ["postPatch", 47, 3], ["postBuild", 56, 3], ["installPhase", 68, 3], ["passthru", 97, 3], ["meta", 108, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const pname = "mattermost-desktop";
       const version = "6.3.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "mattermost",
           repo: "desktop",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -41,7 +34,7 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [makeWrapper, autoPatchelfHook]);
       const autoPatchelfIgnoreMissingDeps = nix.thunk(() => ["libc.musl-x86_64.so.1"]);
       const buildInputs = nix.thunk(() => [nix.thunk(() => nix.sel(stdenv, "cc", "cc"))]);
-      const env = nix.thunk(() => ({ [nix.POS]: pos$2, ELECTRON_SKIP_BINARY_DOWNLOAD: "1" }));
+      const env = nix.thunk(() => ({ [nix.POS]: $pos[1], ELECTRON_SKIP_BINARY_DOWNLOAD: "1" }));
       const postPatch = "substituteInPlace webpack.config.base.js \\\n  --replace-fail \\\n    \"const VERSION = childProcess.execSync('git rev-parse --short HEAD', {cwd: __dirname}).toString();\" \\\n    \"const VERSION = process.env.version;\"\nsubstituteInPlace src/common/config/buildConfig.ts \\\n  --replace-fail 'enableUpdateNotifications: true,' 'enableUpdateNotifications: false,'\n";
       const postBuild = nix.thunk(() => nix.str`# electronDist needs to be writable
 cp -r ${nix.sel(electron, "dist")} electron-dist
@@ -81,22 +74,22 @@ makeWrapper '${nix.app(nix.sel(lib, "getExe"), electron)}' $out/bin/${pname} \\
 runHook postInstall
 `);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               package: mattermost_desktop,
               command: nix.thunk(() => nix.str`env HOME=/tmp ${nix.sel(meta, "mainProgram")} --version`),
             })))),
         })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             extraArgs: nix.thunk(() => ["--version-regex=^v(\\d+\\.\\d+\\.\\d+)$"]),
           })))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "Mattermost Desktop client",
         mainProgram: "mattermost-desktop",
         homepage: "https://about.mattermost.com/",
@@ -121,7 +114,7 @@ runHook postInstall
         })()),
       }));
       return {
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         pname,
         version,
         src,

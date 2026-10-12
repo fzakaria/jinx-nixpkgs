@@ -2,17 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["description", 54, 5], ["longDescription", 55, 5], ["homepage", 63, 5], ["license", 64, 5], ["maintainers", 65, 5], ["platforms", 68, 5]], [["name", 72, 5], ["exec", 73, 5], ["comment", 74, 5], ["desktopName", 75, 5], ["categories", 76, 5], ["icon", 80, 5], ["startupNotify", 81, 5]], [["url", 89, 7], ["hash", 90, 7]], [["mainProgram", 208, 10]], [["pname", 85, 5], ["version", 86, 13], ["src", 88, 5], ["patches", 93, 5], ["nativeBuildInputs", 95, 5], ["buildInputs", 96, 5], ["sourceRoot", 114, 5], ["target", 117, 5], ["dontStrip", 119, 5], ["postConfigure", 121, 5], ["buildPhase", 127, 5], ["enableParallelBuilding", 145, 5], ["installPhase", 147, 5], ["dontPatchELF", 179, 5], ["postFixup", 180, 5], ["meta", 208, 5]], [["hydraPlatforms", 228, 10]], [["name", 221, 5], ["url", 222, 5], ["hash", 223, 5], ["postFetch", 224, 5], ["meta", 228, 5], ["version", 229, 13], ["pname", 229, 21]], [["hydraPlatforms", 243, 11], ["mainProgram", 244, 11]], [["xonotic-unwrapped", 235, 17], ["version", 235, 35], ["pname", 236, 9], ["nativeBuildInputs", 237, 9], ["desktopItems", 241, 9], ["meta", 242, 9]], [["xonotic-data", 220, 3], ["xonotic", 232, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, fetchzip: false, makeWrapper: false, runCommand: false, makeDesktopItem: false, "xonotic-data": false, copyDesktopItems: false, unzip: false, libjpeg: false, zlib: false, libvorbis: false, curl: false, freetype: false, libpng: false, libtheora: false, libx11: false, libGLU: false, libGL: false, libxpm: false, libxext: false, libxxf86vm: false, "alsa-lib": false, SDL2: false, gmp: false, withSDL: true, withGLX: true, withDedicated: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["description", 54, 5], ["longDescription", 55, 5], ["homepage", 63, 5], ["license", 64, 5], ["maintainers", 65, 5], ["platforms", 68, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["name", 72, 5], ["exec", 73, 5], ["comment", 74, 5], ["desktopName", 75, 5], ["categories", 76, 5], ["icon", 80, 5], ["startupNotify", 81, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["url", 89, 7], ["hash", 90, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["mainProgram", 208, 10]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 85, 5], ["version", 86, 13], ["src", 88, 5], ["patches", 93, 5], ["nativeBuildInputs", 95, 5], ["buildInputs", 96, 5], ["sourceRoot", 114, 5], ["target", 117, 5], ["dontStrip", 119, 5], ["postConfigure", 121, 5], ["buildPhase", 127, 5], ["enableParallelBuilding", 145, 5], ["installPhase", 147, 5], ["dontPatchELF", 179, 5], ["postFixup", 180, 5], ["meta", 208, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["hydraPlatforms", 228, 10]]);
-const pos$7 = nix.positions(here + "/default.nix", [["name", 221, 5], ["url", 222, 5], ["hash", 223, 5], ["postFetch", 224, 5], ["meta", 228, 5], ["version", 229, 13], ["pname", 229, 21]]);
-const pos$8 = nix.positions(here + "/default.nix", [["hydraPlatforms", 243, 11], ["mainProgram", 244, 11]]);
-const pos$9 = nix.positions(here + "/default.nix", [["xonotic-unwrapped", 235, 17], ["version", 235, 35], ["pname", 236, 9], ["nativeBuildInputs", 237, 9], ["desktopItems", 241, 9], ["meta", 242, 9]]);
-const pos$10 = nix.positions(here + "/default.nix", [["xonotic-data", 220, 3], ["xonotic", 232, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -49,7 +40,7 @@ export default nix.lambda((args) => (() => {
   const version = "0.8.6";
   const variant = nix.thunk(() => (nix.asBool((nix.asBool(withSDL) && nix.asBool(withGLX))) ? "" : (nix.asBool(withSDL) ? "-sdl" : (nix.asBool(withGLX) ? "-glx" : (nix.asBool(withDedicated) ? "-dedicated" : "-what-even-am-i")))));
   const meta = nix.thunk(() => ({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     description: "Free fast-paced first-person shooter",
     longDescription: "Xonotic is a free, fast-paced first-person shooter that works on\nWindows, macOS and Linux. The project is geared towards providing\naddictive arena shooter gameplay which is all spawned and driven\nby the community itself. Xonotic is a direct successor of the\nNexuiz project with years of development between them, and it\naims to become the best possible open-source FPS of its kind.\n",
     homepage: "https://www.xonotic.org/",
@@ -61,7 +52,7 @@ export default nix.lambda((args) => (() => {
     platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
   }));
   const desktopItem = nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       name: "xonotic",
       exec: "xonotic",
       comment: nix.thunk(() => nix.sel(meta, "description")),
@@ -74,7 +65,7 @@ export default nix.lambda((args) => (() => {
       const pname_1 = nix.thunk(() => nix.str`xonotic${variant}-unwrapped`);
       const version_1 = version;
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           url: nix.thunk(() => nix.str`https://dl.xonotic.org/xonotic-${version_1}-source.zip`),
           hash: "sha256-i5KseBz/SuicEhoj6s197AWiqr7azMI6GdGglYtAEqg=",
         }))));
@@ -114,11 +105,11 @@ export default nix.lambda((args) => (() => {
     $out/bin/xonotic-sdl
 `))));
       const meta_1 = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         mainProgram: nix.thunk(() => nix.str`xonotic-${(nix.asBool(withSDL) ? "sdl" : (nix.asBool(withGLX) ? "glx" : "dedicated"))}`),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname: pname_1,
         version: version_1,
         src,
@@ -139,24 +130,24 @@ export default nix.lambda((args) => (() => {
     })())));
   return (() => {
     const xonotic_data_1 = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         name: "xonotic-data",
         url: nix.thunk(() => nix.str`https://dl.xonotic.org/xonotic-${version}.zip`),
         hash: "sha256-Lhjpyk7idmfQAVn4YUb7diGyyKZQBfwNXxk2zMOqiZQ=",
         postFetch: "cd $out\nrm -rf $(ls | grep -v \"^data$\" | grep -v \"^key_0.d0pk$\")\n",
-        meta: nix.thunk(() => ({ [nix.POS]: pos$6, hydraPlatforms: [] })),
+        meta: nix.thunk(() => ({ [nix.POS]: $pos[5], hydraPlatforms: [] })),
         version: version,
         pname: pname,
       }))));
     const xonotic = nix.thunk(() => nix.app(runCommand, nix.thunk(() => nix.str`xonotic${variant}-${version}`), nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         "xonotic-unwrapped": xonotic_unwrapped,
         version: version,
         pname: nix.thunk(() => nix.str`${pname}${variant}`),
         nativeBuildInputs: nix.thunk(() => [makeWrapper, copyDesktopItems]),
         desktopItems: nix.thunk(() => [desktopItem]),
         meta: nix.thunk(() => nix.update(meta, {
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           hydraPlatforms: [],
           mainProgram: nix.thunk(() => (nix.asBool((nix.asBool(withSDL) || nix.asBool(withGLX))) ? "xonotic" : "xonotic-dedicated")),
         })),
@@ -172,7 +163,7 @@ copyDesktopItems
   wrapProgram $binary --add-flags "-basedir ${xonotic_data_1}" --prefix LD_LIBRARY_PATH : "${xonotic_unwrapped}/lib"
 done
 `))));
-    return { [nix.POS]: pos$10, "xonotic-data": xonotic_data_1, xonotic };
+    return { [nix.POS]: $pos[9], "xonotic-data": xonotic_data_1, xonotic };
   })();
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

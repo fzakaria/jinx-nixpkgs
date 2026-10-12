@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["ipu6", 26, 7], ["ipu6ep", 27, 7], ["ipu6epmtl", 28, 7]], [["owner", 37, 5], ["repo", 38, 5], ["tag", 39, 5], ["hash", 40, 5]], [["NIX_CFLAGS_COMPILE", 58, 7]], [["ipuVersion", 91, 13], ["ipuTarget", 91, 24]], [["description", 95, 5], ["homepage", 96, 5], ["license", 97, 5], ["maintainers", 98, 5], ["platforms", 99, 5]], [["pname", 33, 3], ["version", 34, 3], ["src", 36, 3], ["nativeBuildInputs", 43, 3], ["cmakeFlags", 48, 3], ["env", 58, 3], ["enableParallelBuilding", 62, 3], ["buildInputs", 64, 3], ["postPatch", 73, 3], ["postInstall", 79, 3], ["postFixup", 84, 3], ["passthru", 90, 3], ["meta", 94, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, "pkg-config": false, expat: false, "ipu6-camera-bins": false, libtool: false, gst_all_1: false, libdrm: false, ipuVersion: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["ipu6", 26, 7], ["ipu6ep", 27, 7], ["ipu6epmtl", 28, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 37, 5], ["repo", 38, 5], ["tag", 39, 5], ["hash", 40, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 58, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["ipuVersion", 91, 13], ["ipuTarget", 91, 24]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 95, 5], ["homepage", 96, 5], ["license", 97, 5], ["maintainers", 98, 5], ["platforms", 99, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 33, 3], ["version", 34, 3], ["src", 36, 3], ["nativeBuildInputs", 43, 3], ["cmakeFlags", 48, 3], ["env", 58, 3], ["enableParallelBuilding", 62, 3], ["buildInputs", 64, 3], ["postPatch", 73, 3], ["postInstall", 79, 3], ["postFixup", 84, 3], ["passthru", 90, 3], ["meta", 94, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,13 +18,13 @@ export default nix.lambda((args) => (() => {
   const gst_all_1 = nix.arg($, "gst_all_1");
   const libdrm = nix.arg($, "libdrm");
   const ipuVersion = nix.argOr($, "ipuVersion", () => "ipu6");
-  const ipuTarget = nix.thunk(() => nix.sel({ [nix.POS]: pos$1, ipu6: "ipu_tgl", ipu6ep: "ipu_adl", ipu6epmtl: "ipu_mtl" }, nix.key(nix.force(ipuVersion))));
+  const ipuTarget = nix.thunk(() => nix.sel({ [nix.POS]: $pos[0], ipu6: "ipu_tgl", ipu6ep: "ipu_adl", ipu6epmtl: "ipu_mtl" }, nix.key(nix.force(ipuVersion))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: nix.thunk(() => nix.str`${ipuVersion}-camera-hal`),
       version: "unstable-2025-06-27",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "intel",
           repo: "ipu6-camera-hal",
           tag: "20250923_ov02e",
@@ -46,7 +41,7 @@ export default nix.lambda((args) => (() => {
         "-DUSE_PG_LITE_PIPE=ON",
       ]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-Wno-error"]))),
       })),
       enableParallelBuilding: true,
@@ -69,9 +64,9 @@ cp -r $src/include $out/include/${ipuTarget}/libcamhal
   patchelf --add-rpath "${ipu6_camera_bins}/lib" $lib
 done
 `),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$4, ipuVersion: ipuVersion, ipuTarget: ipuTarget })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[3], ipuVersion: ipuVersion, ipuTarget: ipuTarget })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "HAL for processing of images in userspace",
         homepage: "https://github.com/intel/ipu6-camera-hal",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

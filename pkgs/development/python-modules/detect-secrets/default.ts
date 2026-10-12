@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5], ["leaveDotGit", 30, 5]], [["gibberish", 43, 5], ["word_list", 46, 5]], [["description", 85, 5], ["homepage", 86, 5], ["changelog", 87, 5], ["license", 88, 5], ["maintainers", 89, 5]], [["pname", 21, 3], ["version", 22, 3], ["pyproject", 23, 3], ["src", 25, 3], ["build-system", 33, 3], ["dependencies", 35, 3], ["optional-dependencies", 42, 3], ["nativeCheckInputs", 51, 3], ["disabledTests", 60, 3], ["disabledTestPaths", 74, 3], ["pythonImportsCheck", 82, 3], ["meta", 84, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, "gibberish-detector": false, mock: false, pkgs: false, pyahocorasick: false, pytest7CheckHook: false, pyyaml: false, requests: false, responses: false, setuptools: false, unidiff: false, writableTmpDirAsHomeHook: false, withGibberish: true, withWordList: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5], ["leaveDotGit", 30, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["gibberish", 43, 5], ["word_list", 46, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 85, 5], ["homepage", 86, 5], ["changelog", 87, 5], ["license", 88, 5], ["maintainers", 89, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 21, 3], ["version", 22, 3], ["pyproject", 23, 3], ["src", 25, 3], ["build-system", 33, 3], ["dependencies", 35, 3], ["optional-dependencies", 42, 3], ["nativeCheckInputs", 51, 3], ["disabledTests", 60, 3], ["disabledTestPaths", 74, 3], ["pythonImportsCheck", 82, 3], ["meta", 84, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.5.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Yelp",
           repo: "detect-secrets",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -41,7 +38,7 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [setuptools]);
       const dependencies = nix.thunk(() => nix.concat([pyyaml, requests], nix.concat(nix.app(nix.sel(lib, "optionals"), withGibberish, nix.thunk(() => nix.sel(optional_dependencies, "gibberish"))), nix.app(nix.sel(lib, "optionals"), withWordList, nix.thunk(() => nix.sel(optional_dependencies, "word_list"))))));
       const optional_dependencies = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         gibberish: nix.thunk(() => [gibberish_detector]),
         word_list: nix.thunk(() => [pyahocorasick]),
       }));
@@ -64,7 +61,7 @@ export default nix.lambda((args) => (() => {
       const disabledTestPaths = nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(withGibberish)), nix.thunk(() => ["tests/filters/gibberish_filter_test.py"])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(withWordList)), nix.thunk(() => ["tests/filters/wordlist_filter_test.py"]))));
       const pythonImportsCheck = nix.thunk(() => ["detect_secrets"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Enterprise friendly way of detecting and preventing secrets in code",
         homepage: "https://github.com/Yelp/detect-secrets",
         changelog: nix.thunk(() => nix.str`https://github.com/Yelp/detect-secrets/releases/tag/${nix.sel(src, "tag")}`),
@@ -72,7 +69,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

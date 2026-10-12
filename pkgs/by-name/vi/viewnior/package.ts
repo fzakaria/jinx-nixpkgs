@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 35, 5], ["repo", 36, 5], ["rev", 38, 5], ["hash", 39, 5]], [["extraLoaders", 66, 9]], [["description", 84, 5], ["longDescription", 85, 5], ["license", 92, 5], ["homepage", 93, 5], ["maintainers", 94, 5], ["platforms", 97, 5], ["mainProgram", 98, 5]], [["pname", 29, 3], ["version", 30, 3], ["src", 32, 3], ["nativeBuildInputs", 42, 3], ["buildInputs", 52, 3], ["postInstall", 63, 3], ["meta", 83, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, meson: false, ninja: false, "pkg-config": false, "desktop-file-utils": false, gtk3: false, libpng: false, exiv2: false, lcms: false, intltool: false, gettext: false, "shared-mime-info": false, glib: false, "gdk-pixbuf": false, perl: false, wrapGAppsHook3: false, "webp-pixbuf-loader": false, gnome: false, librsvg: false, libavif: false, libheif: false, libjxl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 35, 5], ["repo", 36, 5], ["rev", 38, 5], ["hash", 39, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["extraLoaders", 66, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 84, 5], ["longDescription", 85, 5], ["license", 92, 5], ["homepage", 93, 5], ["maintainers", 94, 5], ["platforms", 97, 5], ["mainProgram", 98, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 29, 3], ["version", 30, 3], ["src", 32, 3], ["nativeBuildInputs", 42, 3], ["buildInputs", 52, 3], ["postInstall", 63, 3], ["meta", 83, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -35,11 +32,11 @@ export default nix.lambda((args) => (() => {
   const libheif = nix.arg($, "libheif");
   const libjxl = nix.arg($, "libjxl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "viewnior-gtk3",
       version: "1.8-unstable-2023-11-23",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Artturin",
           repo: "Viewnior",
           rev: "23ce6e5630b24509d8009f17a833ad9e59b85fab",
@@ -56,7 +53,7 @@ export default nix.lambda((args) => (() => {
       ]),
       buildInputs: nix.thunk(() => [gtk3, libpng, exiv2, lcms, shared_mime_info, glib, gdk_pixbuf, perl]),
       postInstall: nix.thunk(() => nix.str`export GDK_PIXBUF_MODULE_FILE="${nix.app(nix.sel(gnome, "_gdkPixbufCacheBuilder_DO_NOT_USE"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           extraLoaders: nix.thunk(() => [
             webp_pixbuf_loader,
             librsvg,
@@ -73,7 +70,7 @@ gappsWrapperArgs+=(
 )
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Fast and simple image viewer",
         longDescription: "Viewnior is inspired by big projects like Eye of Gnome, because of it's\nusability and richness,and by GPicView, because of it's lightweight design and\nminimal interface. So here comes Viewnior - small and light, with no compromise\nwith the quality of it's functions. The program is made with better integration\nin mind (follows Gnome HIG2).\n",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

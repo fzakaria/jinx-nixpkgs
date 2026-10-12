@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 37, 5], ["repo", 38, 5], ["tag", 39, 5], ["hash", 40, 5]], [["description", 112, 5], ["homepage", 113, 5], ["changelog", 114, 5], ["license", 115, 5], ["maintainers", 119, 5]], [["pname", 32, 3], ["version", 33, 3], ["pyproject", 34, 3], ["src", 36, 3], ["pythonRelaxDeps", 43, 3], ["build-system", 53, 3], ["dependencies", 57, 3], ["nativeCheckInputs", 75, 3], ["pytestFlags", 80, 3], ["disabledTestPaths", 85, 3], ["pythonImportsCheck", 109, 3], ["meta", 111, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, "poetry-core": false, apscheduler: false, bitstring: false, cffi: false, ecdsa: false, monero: false, pypng: false, pyqrcode: false, pyramid: false, "pyramid-jinja2": false, pysocks: false, pytz: false, requests: false, tzlocal: false, waitress: false, "yoyo-migrations": false, pytestCheckHook: false, webtest: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 37, 5], ["repo", 38, 5], ["tag", 39, 5], ["hash", 40, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 112, 5], ["homepage", 113, 5], ["changelog", 114, 5], ["license", 115, 5], ["maintainers", 119, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 32, 3], ["version", 33, 3], ["pyproject", 34, 3], ["src", 36, 3], ["pythonRelaxDeps", 43, 3], ["build-system", 53, 3], ["dependencies", 57, 3], ["nativeCheckInputs", 75, 3], ["pytestFlags", 80, 3], ["disabledTestPaths", 85, 3], ["pythonImportsCheck", 109, 3], ["meta", 111, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -35,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.0.16";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "CypherpunkPay",
           repo: "CypherpunkPay",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -89,7 +87,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const pythonImportsCheck = nix.thunk(() => ["cypherpunkpay"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Modern self-hosted software for accepting Bitcoin",
         homepage: "https://github.com/CypherpunkPay/CypherpunkPay",
         changelog: nix.thunk(() => nix.str`https://github.com/CypherpunkPay/CypherpunkPay/releases/tag/v${version}`),
@@ -106,7 +104,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

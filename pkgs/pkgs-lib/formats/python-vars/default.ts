@@ -2,30 +2,25 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["typeName", 13, 11]], [["value", 19, 19], ["_type", 20, 11]], [["mkRaw", 18, 9]], [["nativeBuildInputs", 34, 15], ["imports", 38, 15], ["value", 41, 15], ["pythonGen", 42, 15], ["preferLocalBuild", 82, 15], ["__structuredAttrs", 83, 15]], [["type", 11, 7], ["lib", 17, 7], ["generate", 24, 7]], [["format", 8, 3]]]);
 const formals$1 = { args: { pkgs: false, lib: false }, ellipsis: false };
 const formals$2 = { args: {  }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["typeName", 13, 11]]);
-const pos$2 = nix.positions(here + "/default.nix", [["value", 19, 19], ["_type", 20, 11]]);
-const pos$3 = nix.positions(here + "/default.nix", [["mkRaw", 18, 9]]);
 const formals$3 = { args: { runCommand: false, python3: false, black: false }, ellipsis: false };
-const pos$4 = nix.positions(here + "/default.nix", [["nativeBuildInputs", 34, 15], ["imports", 38, 15], ["value", 41, 15], ["pythonGen", 42, 15], ["preferLocalBuild", 82, 15], ["__structuredAttrs", 83, 15]]);
-const pos$5 = nix.positions(here + "/default.nix", [["type", 11, 7], ["lib", 17, 7], ["generate", 24, 7]]);
-const pos$6 = nix.positions(here + "/default.nix", [["format", 8, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$6,
+    [nix.POS]: $pos[5],
     format: nix.lambda((args_1) => (() => {
       const $_1 = nix.formals(args_1, formals$2);
       return {
-        [nix.POS]: pos$5,
-        type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.app(nix.sel(lib, "types", "serializableValueWith"), nix.thunk(() => ({ [nix.POS]: pos$1, typeName: "Python" })))))),
+        [nix.POS]: $pos[4],
+        type: nix.thunk(() => nix.app(nix.sel(lib, "types", "attrsOf"), nix.thunk(() => nix.app(nix.sel(lib, "types", "serializableValueWith"), nix.thunk(() => ({ [nix.POS]: $pos[0], typeName: "Python" })))))),
         lib: nix.thunk(() => ({
-          [nix.POS]: pos$3,
-          mkRaw: (value) => ({ [nix.POS]: pos$2, value: value, _type: "raw" }),
+          [nix.POS]: $pos[2],
+          mkRaw: (value) => ({ [nix.POS]: $pos[1], value: value, _type: "raw" }),
         })),
         generate: (name) => (value) => nix.app(nix.sel(pkgs, "callPackage"), nix.lambda((args_2) => (() => {
             const $_2 = nix.formals(args_2, formals$3);
@@ -33,7 +28,7 @@ export default nix.lambda((args) => (() => {
             const python3 = nix.arg($_2, "python3");
             const black = nix.arg($_2, "black");
             return nix.app(runCommand, name, nix.thunk(() => ({
-                [nix.POS]: pos$4,
+                [nix.POS]: $pos[3],
                 nativeBuildInputs: nix.thunk(() => [python3, black]),
                 imports: nix.thunk(() => nix.selOr(value, () => [], "_imports")),
                 value: nix.thunk(() => nix.builtins.removeAttrs(value, nix.thunk(() => ["_imports"]))),

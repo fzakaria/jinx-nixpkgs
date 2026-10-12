@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 25, 5], ["repo", 26, 5], ["rev", 27, 5], ["hash", 28, 5]], [["description", 64, 5], ["homepage", 65, 5], ["license", 66, 5], ["maintainers", 67, 5]], [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["patches", 34, 3], ["nativeBuildInputs", 40, 3], ["buildInputs", 46, 3], ["configureFlags", 54, 3], ["enableParallelBuilding", 61, 3], ["meta", 63, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, autoreconfHook: false, "pkg-config": false, popt: false, bluezSupport: true, bluez: false, readlineSupport: true, readline: false, enableConduits: true, bison: false, enableLibpng: true, libpng: false, enableLibusb: true, "libusb-compat-0_1": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 25, 5], ["repo", 26, 5], ["rev", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 64, 5], ["homepage", 65, 5], ["license", 66, 5], ["maintainers", 67, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["patches", 34, 3], ["nativeBuildInputs", 40, 3], ["buildInputs", 46, 3], ["configureFlags", 54, 3], ["enableParallelBuilding", 61, 3], ["meta", 63, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const enableLibusb = nix.argOr($, "enableLibusb", () => true);
   const libusb_compat_0_1 = nix.arg($, "libusb-compat-0_1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "pilot-link",
       version: "0.13.0-unstable-2026-04-25",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "desrod",
           repo: "pilot-link",
           rev: "fa3c832fb0aabd9465664309168abf278fd38f2a",
@@ -42,7 +40,7 @@ export default nix.lambda((args) => (() => {
       configureFlags: nix.thunk(() => nix.concat(["--with-libiconv"], nix.concat(nix.app(nix.sel(lib, "optionals"), enableConduits, nix.thunk(() => ["--enable-conduits"])), nix.concat(nix.app(nix.sel(lib, "optionals"), enableLibpng, nix.thunk(() => ["--enable-libpng"])), nix.app(nix.sel(lib, "optionals"), enableLibusb, nix.thunk(() => ["--enable-libusb"])))))),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Suite of tools for connecting to PalmOS handheld devices",
         homepage: "https://github.com/desrod/pilot-link",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),

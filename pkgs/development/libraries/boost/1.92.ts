@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/1.92.nix", [[["urls", 18, 9], ["sha256", 23, 9]], [["version", 11, 5], ["src", 13, 5]]]);
 const formals$1 = { args: { lib: false, callPackage: false, fetchurl: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/1.92.nix", [["urls", 18, 9], ["sha256", 23, 9]]);
-const pos$2 = nix.positions(here + "/1.92.nix", [["version", 11, 5], ["src", 13, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const src = nix.thunk(() => (() => {
         const underVersion = nix.thunk(() => nix.app(nix.sel(lib, "replaceString"), ".", "_", version));
         return nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             urls: nix.thunk(() => [
               nix.thunk(() => nix.str`https://archives.boost.io/release/${version}/source/boost_${underVersion}.tar.bz2`),
               nix.thunk(() => nix.str`mirror://sourceforge/boost/boost_${underVersion}.tar.bz2`),
@@ -25,7 +24,7 @@ export default nix.lambda((args) => (() => {
             sha256: "5c1d40cb8e19adbf740a4ec2da35b3e58f3f5804b1dce44deb53df72193cbc6c",
           })));
       })());
-      return { [nix.POS]: pos$2, version, src };
+      return { [nix.POS]: $pos[1], version, src };
     })())));
 })(), formals$1);
 //# sourceMappingURL=1.92.ts.map

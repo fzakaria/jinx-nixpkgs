@@ -2,16 +2,10 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["buildInputs", 155, 15]], [["initArgs", 337, 11]], [["shellHook", 359, 17]], [["env", 356, 11], ["args", 367, 19], ["fhsenv", 367, 24]], [["mainProgram", 371, 11]], [["buildCommand", 341, 9], ["__structuredAttrs", 348, 9], ["strictDeps", 349, 9], ["enableParallelBuilding", 351, 9], ["preferLocalBuild", 352, 9], ["allowSubstitutes", 353, 9], ["passthru", 355, 9], ["meta", 370, 9]], [["constructDrv", 24, 5], ["excludeDrvArgNames", 25, 5], ["extendDrvArgs", 30, 5]]]);
 const formals$1 = { args: { lib: false, stdenv: false, stdenvNoCC: false, callPackage: false, runCommandLocal: false, writeShellScript: false, glibc: false, pkgsHostTarget: false, runCommandCC: false, coreutils: false, bubblewrap: false }, ellipsis: false };
 const formals$2 = { args: { pname: true, version: true, name: true, runScript: true, executableName: true, meta: true, passthru: true, unshareUser: true, unshareIpc: true, unsharePid: true, unshareNet: true, unshareUts: true, unshareCgroup: true, privateTmp: true, chdirToPwd: true, dieWithParent: true }, ellipsis: true };
-const pos$1 = nix.positions(here + "/default.nix", [["buildInputs", 155, 15]]);
 const formals$3 = { args: { initArgs: true }, ellipsis: false };
-const pos$2 = nix.positions(here + "/default.nix", [["initArgs", 337, 11]]);
-const pos$3 = nix.positions(here + "/default.nix", [["shellHook", 359, 17]]);
-const pos$4 = nix.positions(here + "/default.nix", [["env", 356, 11], ["args", 367, 19], ["fhsenv", 367, 24]]);
-const pos$5 = nix.positions(here + "/default.nix", [["mainProgram", 371, 11]]);
-const pos$6 = nix.positions(here + "/default.nix", [["buildCommand", 341, 9], ["__structuredAttrs", 348, 9], ["strictDeps", 349, 9], ["enableParallelBuilding", 351, 9], ["preferLocalBuild", 352, 9], ["allowSubstitutes", 353, 9], ["passthru", 355, 9], ["meta", 370, 9]]);
-const pos$7 = nix.positions(here + "/default.nix", [["constructDrv", 24, 5], ["excludeDrvArgNames", 25, 5], ["extendDrvArgs", 30, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,7 +21,7 @@ export default nix.lambda((args) => (() => {
   const coreutils = nix.arg($, "coreutils");
   const bubblewrap = nix.arg($, "bubblewrap");
   return nix.app(nix.sel(lib, "makeOverridable"), nix.thunk(() => nix.app(nix.sel(lib, "extendMkDerivation"), nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         constructDrv: nix.thunk(() => nix.sel(stdenvNoCC, "mkDerivation")),
         excludeDrvArgNames: nix.thunk(() => ["multiPkgs", "targetPkgs", "runScript"]),
         extendDrvArgs: (finalAttrs) => nix.lambda((args_1) => (() => {
@@ -110,7 +104,7 @@ export default nix.lambda((args) => (() => {
             return nix.builtins.map((path) => nix.str`/etc/${path}`, files);
           })());
           const containerInit = nix.thunk(() => nix.app(runCommandCC, "container-init", nix.thunk(() => ({
-              [nix.POS]: pos$1,
+              [nix.POS]: $pos[0],
               buildInputs: nix.thunk(() => [nix.thunk(() => nix.selOr(stdenv, () => null, "cc", "libc", "static"))]),
             })), nix.thunk(() => nix.str`$CXX -static -s -o $out ${nix.path(here, "./container-init.cc")}
 `)));
@@ -261,9 +255,9 @@ cmd=(
 exec "\${cmd[@]}"
 `);
           })(), formals$3);
-          const bin = nix.thunk(() => nix.app(writeShellScript, nix.thunk(() => nix.str`${name}-bwrap`), nix.thunk(() => nix.app(bwrapCmd, nix.thunk(() => ({ [nix.POS]: pos$2, initArgs: "\"$@\"" }))))));
+          const bin = nix.thunk(() => nix.app(writeShellScript, nix.thunk(() => nix.str`${name}-bwrap`), nix.thunk(() => nix.app(bwrapCmd, nix.thunk(() => ({ [nix.POS]: $pos[1], initArgs: "\"$@\"" }))))));
           return {
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             buildCommand: nix.thunk(() => nix.str`mkdir -p $out/bin
 ln -s ${bin} $out/bin/${executableName}
 
@@ -275,15 +269,15 @@ ${nix.selOr(finalAttrs, () => "", "extraInstallCommands")}
             preferLocalBuild: true,
             allowSubstitutes: false,
             passthru: nix.thunk(() => nix.update(passthru, {
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               env: nix.thunk(() => nix.app(runCommandLocal, nix.thunk(() => nix.str`${name}-shell-env`), nix.thunk(() => ({
-                  [nix.POS]: pos$3,
+                  [nix.POS]: $pos[2],
                   shellHook: nix.thunk(() => nix.app(bwrapCmd, nix.thunk(() => ({})))),
                 })), "echo >&2 \"\"\necho >&2 \"*** User chroot 'env' attributes are intended for interactive nix-shell sessions, not for building! ***\"\necho >&2 \"\"\nexit 1\n")),
               args: args_2,
               fhsenv: fhsenv,
             })),
-            meta: nix.thunk(() => nix.update({ [nix.POS]: pos$5, mainProgram: executableName }, meta)),
+            meta: nix.thunk(() => nix.update({ [nix.POS]: $pos[4], mainProgram: executableName }, meta)),
           };
         })(), formals$2),
       })))));

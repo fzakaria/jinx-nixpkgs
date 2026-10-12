@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]], [["swiftLib", 29, 47]], [["OPENSSL_NO_VENDOR", 35, 7]], [["updateScript", 73, 12]], [["homepage", 76, 5], ["license", 77, 5], ["description", 78, 5], ["mainProgram", 79, 5], ["changelog", 80, 5], ["maintainers", 81, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["patches", 28, 3], ["cargoHash", 32, 3], ["env", 35, 3], ["dontUseSwiftpmBuild", 38, 3], ["dontUseSwiftpmCheck", 39, 3], ["dontUseSwiftpmInstall", 40, 3], ["__darwinAllowLocalNetworking", 42, 3], ["nativeBuildInputs", 44, 3], ["buildInputs", 53, 3], ["nativeCheckInputs", 55, 3], ["checkFlags", 57, 3], ["postInstall", 62, 3], ["nativeInstallCheckInputs", 69, 3], ["versionCheckProgramArg", 70, 3], ["doInstallCheck", 71, 3], ["passthru", 73, 3], ["meta", 75, 3]]]);
 const formals$1 = { args: { rustPlatform: false, fetchFromGitHub: false, lib: false, installShellFiles: false, openssl: false, "pkg-config": false, stdenv: false, swift: false, swiftpm: false, replaceVars: false, gitMinimal: false, versionCheckHook: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["swiftLib", 29, 47]]);
-const pos$3 = nix.positions(here + "/package.nix", [["OPENSSL_NO_VENDOR", 35, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 73, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["homepage", 76, 5], ["license", 77, 5], ["description", 78, 5], ["mainProgram", 79, 5], ["changelog", 80, 5], ["maintainers", 81, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["patches", 28, 3], ["cargoHash", 32, 3], ["env", 35, 3], ["dontUseSwiftpmBuild", 38, 3], ["dontUseSwiftpmCheck", 39, 3], ["dontUseSwiftpmInstall", 40, 3], ["__darwinAllowLocalNetworking", 42, 3], ["nativeBuildInputs", 44, 3], ["buildInputs", 53, 3], ["nativeCheckInputs", 55, 3], ["checkFlags", 57, 3], ["postInstall", 62, 3], ["nativeInstallCheckInputs", 69, 3], ["versionCheckProgramArg", 70, 3], ["doInstallCheck", 71, 3], ["passthru", 73, 3], ["meta", 75, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "sentry-cli",
       version: "2.58.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "getsentry",
           repo: "sentry-cli",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -38,12 +33,12 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [
           nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix-swift-lib-path.patch"), nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               swiftLib: nix.thunk(() => nix.app(nix.sel(lib, "getLib"), swift)),
             })))),
         ]))),
       cargoHash: "sha256-CwULTOZN2TTpB8heLuegID38ub6J3XoiY7l7UW1VcGo=",
-      env: nix.thunk(() => ({ [nix.POS]: pos$3, OPENSSL_NO_VENDOR: 1n })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[2], OPENSSL_NO_VENDOR: 1n })),
       dontUseSwiftpmBuild: true,
       dontUseSwiftpmCheck: true,
       dontUseSwiftpmInstall: true,
@@ -60,11 +55,11 @@ export default nix.lambda((args) => (() => {
       versionCheckProgramArg: "--version",
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "https://docs.sentry.io/cli/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
         description: "Command line utility to work with Sentry",

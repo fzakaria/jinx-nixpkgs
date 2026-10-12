@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["repo", 43, 7], ["owner", 44, 7], ["rev", 45, 7], ["hash", 46, 7]], [["description", 73, 7], ["homepage", 74, 7], ["license", 75, 7], ["platforms", 76, 7], ["maintainers", 77, 7]], [["pname", 39, 13], ["version", 40, 5], ["src", 42, 5], ["nativeBuildInputs", 49, 5], ["buildInputs", 54, 5], ["preInstall", 56, 5], ["installPhase", 60, 5], ["meta", 72, 5]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchFromGitHub: false, gtk3: false, "gnome-themes-extra": false, sassc: false, "border-radius": true, tweaks: true, withWallpapers: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["repo", 43, 7], ["owner", 44, 7], ["rev", 45, 7], ["hash", 46, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 73, 7], ["homepage", 74, 7], ["license", 75, 7], ["platforms", 76, 7], ["maintainers", 77, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 39, 13], ["version", 40, 5], ["src", 42, 5], ["nativeBuildInputs", 49, 5], ["buildInputs", 54, 5], ["preInstall", 56, 5], ["installPhase", 60, 5], ["meta", 72, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -39,7 +37,7 @@ export default nix.lambda((args) => (() => {
       const pname_1 = pname;
       const version = "2026-07-07";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           repo: "Orchis-theme",
           owner: "vinceliuice",
           rev: version,
@@ -56,7 +54,7 @@ ${nix.app(nix.sel(lib, "optionalString"), withWallpapers, "mkdir -p $out/share/b
 runHook postInstall
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Material Design theme for GNOME/GTK based desktop environments",
         homepage: "https://github.com/vinceliuice/Orchis-theme",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
@@ -64,7 +62,7 @@ runHook postInstall
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "ncfavier"))]),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname: pname_1,
         version,
         src,

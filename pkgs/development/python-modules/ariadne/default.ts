@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]], [["description", 63, 5], ["homepage", 64, 5], ["changelog", 65, 5], ["license", 66, 5], ["maintainers", 67, 5]], [["pname", 22, 3], ["version", 23, 3], ["pyproject", 24, 3], ["src", 26, 3], ["build-system", 33, 3], ["dependencies", 35, 3], ["nativeCheckInputs", 41, 3], ["pythonImportsCheck", 54, 3], ["disabledTestPaths", 56, 3], ["meta", 62, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, freezegun: false, "graphql-core": false, hatchling: false, httpx: false, "opentelemetry-api": false, pyprojectVersionPatchHook: false, "pytest-asyncio": false, "pytest-mock": false, pytestCheckHook: false, "python-multipart": false, starlette: false, syrupy: false, "typing-extensions": false, werkzeug: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 63, 5], ["homepage", 64, 5], ["changelog", 65, 5], ["license", 66, 5], ["maintainers", 67, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 22, 3], ["version", 23, 3], ["pyproject", 24, 3], ["src", 26, 3], ["build-system", 33, 3], ["dependencies", 35, 3], ["nativeCheckInputs", 41, 3], ["pythonImportsCheck", 54, 3], ["disabledTestPaths", 56, 3], ["meta", 62, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,12 +25,12 @@ export default nix.lambda((args) => (() => {
   const typing_extensions = nix.arg($, "typing-extensions");
   const werkzeug = nix.arg($, "werkzeug");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "ariadne",
       version: "1.0.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "mirumee",
           repo: "ariadne",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -55,7 +53,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["ariadne"]),
       disabledTestPaths: nix.thunk(() => ["tests/test_dataloaders.py", "tests/wsgi/test_configuration.py"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Python library for implementing GraphQL servers using schema-first approach",
         homepage: "https://ariadnegraphql.org",
         changelog: nix.thunk(() => nix.str`https://github.com/mirumee/ariadne/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

@@ -2,42 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/google-compute-config.nix", [[["fsType", 24, 5], ["device", 25, 5], ["autoResize", 26, 5]], [["/", 23, 15]], [["kernelModules", 35, 15]], [["device", 42, 20], ["configurationLimit", 47, 20]], [["grub", 42, 15], ["timeout", 43, 15]], [["growPartition", 29, 8], ["kernelParams", 30, 8], ["initrd", 35, 8], ["kernelModules", 36, 8], ["loader", 42, 8]], [["PermitRootLogin", 52, 29], ["PasswordAuthentication", 53, 29]], [["enable", 51, 20], ["settings", 52, 20]], [["packages", 60, 17], ["path", 61, 17]], [["openssh", 51, 12], ["udev", 60, 12]], [["enable", 57, 26]], [["command", 98, 11], ["options", 99, 11]], [["groups", 95, 7], ["commands", 96, 7]], [["extraRules", 93, 17]], [["command", 110, 11], ["options", 111, 11]], [["groups", 107, 7], ["commands", 108, 7]], [["extraRules", 105, 20]], [["googleOsLogin", 57, 12], ["sudo", 93, 12], ["sudo-rs", 105, 12]], [["enable", 70, 23]], [["mtu", 82, 30]], [["eth0", 82, 25]], [["hostName", 64, 14], ["firewall", 70, 14], ["extraHosts", 73, 14], ["timeServers", 77, 14], ["usePredictableInterfaceNames", 79, 14], ["interfaces", 82, 14]], [["source", 119, 51]], [["source", 122, 59]], [["text", 125, 50]], [["modprobe.d/gce-blacklist.conf", 119, 19], ["sysctl.d/60-gce-network-security.conf", 122, 19], ["default/instance_configs.cfg", 125, 19]], [["systemPackages", 67, 15], ["etc", 119, 15]], [["wantedBy", 86, 5], ["restartTriggers", 87, 5], ["path", 88, 5]], [["wantedBy", 90, 43]], [["wantedBy", 91, 44]], [["google-guest-agent", 85, 20], ["google-startup-scripts", 90, 20], ["google-shutdown-scripts", 91, 20]], [["packages", 84, 11], ["services", 85, 11]], [["google-sudoers", 117, 16]], [["groups", 117, 9]], [["imports", 18, 3], ["fileSystems", 23, 3], ["boot", 29, 3], ["services", 51, 3], ["security", 57, 3], ["networking", 64, 3], ["environment", 67, 3], ["systemd", 84, 3], ["users", 117, 3]]]);
 const formals$1 = { args: { config: false, lib: false, pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/google-compute-config.nix", [["fsType", 24, 5], ["device", 25, 5], ["autoResize", 26, 5]]);
-const pos$2 = nix.positions(here + "/google-compute-config.nix", [["/", 23, 15]]);
-const pos$3 = nix.positions(here + "/google-compute-config.nix", [["kernelModules", 35, 15]]);
-const pos$4 = nix.positions(here + "/google-compute-config.nix", [["device", 42, 20], ["configurationLimit", 47, 20]]);
-const pos$5 = nix.positions(here + "/google-compute-config.nix", [["grub", 42, 15], ["timeout", 43, 15]]);
-const pos$6 = nix.positions(here + "/google-compute-config.nix", [["growPartition", 29, 8], ["kernelParams", 30, 8], ["initrd", 35, 8], ["kernelModules", 36, 8], ["loader", 42, 8]]);
-const pos$7 = nix.positions(here + "/google-compute-config.nix", [["PermitRootLogin", 52, 29], ["PasswordAuthentication", 53, 29]]);
-const pos$8 = nix.positions(here + "/google-compute-config.nix", [["enable", 51, 20], ["settings", 52, 20]]);
-const pos$9 = nix.positions(here + "/google-compute-config.nix", [["packages", 60, 17], ["path", 61, 17]]);
-const pos$10 = nix.positions(here + "/google-compute-config.nix", [["openssh", 51, 12], ["udev", 60, 12]]);
-const pos$11 = nix.positions(here + "/google-compute-config.nix", [["enable", 57, 26]]);
-const pos$12 = nix.positions(here + "/google-compute-config.nix", [["command", 98, 11], ["options", 99, 11]]);
-const pos$13 = nix.positions(here + "/google-compute-config.nix", [["groups", 95, 7], ["commands", 96, 7]]);
-const pos$14 = nix.positions(here + "/google-compute-config.nix", [["extraRules", 93, 17]]);
-const pos$15 = nix.positions(here + "/google-compute-config.nix", [["command", 110, 11], ["options", 111, 11]]);
-const pos$16 = nix.positions(here + "/google-compute-config.nix", [["groups", 107, 7], ["commands", 108, 7]]);
-const pos$17 = nix.positions(here + "/google-compute-config.nix", [["extraRules", 105, 20]]);
-const pos$18 = nix.positions(here + "/google-compute-config.nix", [["googleOsLogin", 57, 12], ["sudo", 93, 12], ["sudo-rs", 105, 12]]);
-const pos$19 = nix.positions(here + "/google-compute-config.nix", [["enable", 70, 23]]);
-const pos$20 = nix.positions(here + "/google-compute-config.nix", [["mtu", 82, 30]]);
-const pos$21 = nix.positions(here + "/google-compute-config.nix", [["eth0", 82, 25]]);
-const pos$22 = nix.positions(here + "/google-compute-config.nix", [["hostName", 64, 14], ["firewall", 70, 14], ["extraHosts", 73, 14], ["timeServers", 77, 14], ["usePredictableInterfaceNames", 79, 14], ["interfaces", 82, 14]]);
-const pos$23 = nix.positions(here + "/google-compute-config.nix", [["source", 119, 51]]);
-const pos$24 = nix.positions(here + "/google-compute-config.nix", [["source", 122, 59]]);
-const pos$25 = nix.positions(here + "/google-compute-config.nix", [["text", 125, 50]]);
-const pos$26 = nix.positions(here + "/google-compute-config.nix", [["modprobe.d/gce-blacklist.conf", 119, 19], ["sysctl.d/60-gce-network-security.conf", 122, 19], ["default/instance_configs.cfg", 125, 19]]);
-const pos$27 = nix.positions(here + "/google-compute-config.nix", [["systemPackages", 67, 15], ["etc", 119, 15]]);
-const pos$28 = nix.positions(here + "/google-compute-config.nix", [["wantedBy", 86, 5], ["restartTriggers", 87, 5], ["path", 88, 5]]);
-const pos$29 = nix.positions(here + "/google-compute-config.nix", [["wantedBy", 90, 43]]);
-const pos$30 = nix.positions(here + "/google-compute-config.nix", [["wantedBy", 91, 44]]);
-const pos$31 = nix.positions(here + "/google-compute-config.nix", [["google-guest-agent", 85, 20], ["google-startup-scripts", 90, 20], ["google-shutdown-scripts", 91, 20]]);
-const pos$32 = nix.positions(here + "/google-compute-config.nix", [["packages", 84, 11], ["services", 85, 11]]);
-const pos$33 = nix.positions(here + "/google-compute-config.nix", [["google-sudoers", 117, 16]]);
-const pos$34 = nix.positions(here + "/google-compute-config.nix", [["groups", 117, 9]]);
-const pos$35 = nix.positions(here + "/google-compute-config.nix", [["imports", 18, 3], ["fileSystems", 23, 3], ["boot", 29, 3], ["services", 51, 3], ["security", 57, 3], ["networking", 64, 3], ["environment", 67, 3], ["systemd", 84, 3], ["users", 117, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -49,104 +15,104 @@ export default nix.lambda((args) => (() => {
   const mkIf = nix.thunk(() => nix.attr(lib, "mkIf"));
   const optional = nix.thunk(() => nix.attr(lib, "optional"));
   return {
-    [nix.POS]: pos$35,
+    [nix.POS]: $pos[34],
     imports: nix.thunk(() => [
       nix.path(here, "../profiles/headless.nix"),
       nix.path(here, "../profiles/qemu-guest.nix"),
     ]),
     fileSystems: nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       "/": nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         fsType: "ext4",
         device: "/dev/disk/by-label/nixos",
         autoResize: true,
       })),
     })),
     boot: nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       growPartition: true,
       kernelParams: nix.thunk(() => ["console=ttyS0", "panic=1", "boot.panic_on_fail"]),
-      initrd: nix.thunk(() => ({ [nix.POS]: pos$3, kernelModules: nix.thunk(() => ["virtio_scsi"]) })),
+      initrd: nix.thunk(() => ({ [nix.POS]: $pos[2], kernelModules: nix.thunk(() => ["virtio_scsi"]) })),
       kernelModules: nix.thunk(() => ["virtio_pci", "virtio_net"]),
       loader: nix.thunk(() => ({
-        [nix.POS]: pos$5,
-        grub: nix.thunk(() => ({ [nix.POS]: pos$4, device: "/dev/sda", configurationLimit: 0n })),
+        [nix.POS]: $pos[4],
+        grub: nix.thunk(() => ({ [nix.POS]: $pos[3], device: "/dev/sda", configurationLimit: 0n })),
         timeout: 0n,
       })),
     })),
     services: nix.thunk(() => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       openssh: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         enable: true,
         settings: nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           PermitRootLogin: nix.thunk(() => nix.app(mkDefault, "prohibit-password")),
           PasswordAuthentication: nix.thunk(() => nix.app(mkDefault, false)),
         })),
       })),
       udev: nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         packages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "google-guest-configs"))]),
         path: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "google-guest-configs"))]),
       })),
     })),
     security: nix.thunk(() => ({
-      [nix.POS]: pos$18,
-      googleOsLogin: nix.thunk(() => ({ [nix.POS]: pos$11, enable: true })),
+      [nix.POS]: $pos[17],
+      googleOsLogin: nix.thunk(() => ({ [nix.POS]: $pos[10], enable: true })),
       sudo: nix.thunk(() => ({
-        [nix.POS]: pos$14,
+        [nix.POS]: $pos[13],
         extraRules: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(config, "users", "mutableUsers")), nix.thunk(() => [
             nix.thunk(() => ({
-              [nix.POS]: pos$13,
+              [nix.POS]: $pos[12],
               groups: nix.thunk(() => ["google-sudoers"]),
               commands: nix.thunk(() => [
-                nix.thunk(() => ({ [nix.POS]: pos$12, command: "ALL", options: nix.thunk(() => ["NOPASSWD"]) })),
+                nix.thunk(() => ({ [nix.POS]: $pos[11], command: "ALL", options: nix.thunk(() => ["NOPASSWD"]) })),
               ]),
             })),
           ]))),
       })),
       "sudo-rs": nix.thunk(() => ({
-        [nix.POS]: pos$17,
+        [nix.POS]: $pos[16],
         extraRules: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(config, "users", "mutableUsers")), nix.thunk(() => [
             nix.thunk(() => ({
-              [nix.POS]: pos$16,
+              [nix.POS]: $pos[15],
               groups: nix.thunk(() => ["google-sudoers"]),
               commands: nix.thunk(() => [
-                nix.thunk(() => ({ [nix.POS]: pos$15, command: "ALL", options: nix.thunk(() => ["NOPASSWD"]) })),
+                nix.thunk(() => ({ [nix.POS]: $pos[14], command: "ALL", options: nix.thunk(() => ["NOPASSWD"]) })),
               ]),
             })),
           ]))),
       })),
     })),
     networking: nix.thunk(() => ({
-      [nix.POS]: pos$22,
+      [nix.POS]: $pos[21],
       hostName: nix.thunk(() => nix.app(mkDefault, "")),
-      firewall: nix.thunk(() => ({ [nix.POS]: pos$19, enable: nix.thunk(() => nix.app(mkDefault, false)) })),
+      firewall: nix.thunk(() => ({ [nix.POS]: $pos[18], enable: nix.thunk(() => nix.app(mkDefault, false)) })),
       extraHosts: "169.254.169.254 metadata.google.internal metadata\n",
       timeServers: nix.thunk(() => ["metadata.google.internal"]),
       usePredictableInterfaceNames: false,
       interfaces: nix.thunk(() => ({
-        [nix.POS]: pos$21,
-        eth0: nix.thunk(() => ({ [nix.POS]: pos$20, mtu: 1460n })),
+        [nix.POS]: $pos[20],
+        eth0: nix.thunk(() => ({ [nix.POS]: $pos[19], mtu: 1460n })),
       })),
     })),
     environment: nix.thunk(() => ({
-      [nix.POS]: pos$27,
+      [nix.POS]: $pos[26],
       systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "cryptsetup"))]),
       etc: nix.thunk(() => ({
-        [nix.POS]: pos$26,
+        [nix.POS]: $pos[25],
         "modprobe.d/gce-blacklist.conf": nix.thunk(() => ({
-          [nix.POS]: pos$23,
+          [nix.POS]: $pos[22],
           source: nix.thunk(() => nix.str`${nix.sel(pkgs, "google-guest-configs")}/etc/modprobe.d/gce-blacklist.conf`),
         })),
         "sysctl.d/60-gce-network-security.conf": nix.thunk(() => ({
-          [nix.POS]: pos$24,
+          [nix.POS]: $pos[23],
           source: nix.thunk(() => nix.str`${nix.sel(pkgs, "google-guest-configs")}/etc/sysctl.d/60-gce-network-security.conf`),
         })),
         "default/instance_configs.cfg": nix.thunk(() => ({
-          [nix.POS]: pos$25,
+          [nix.POS]: $pos[24],
           text: nix.thunk(() => nix.str`[Accounts]
 useradd_cmd = useradd -m -s /run/current-system/sw/bin/bash -p * {user}
 
@@ -169,26 +135,26 @@ setup = false
       })),
     })),
     systemd: nix.thunk(() => ({
-      [nix.POS]: pos$32,
+      [nix.POS]: $pos[31],
       packages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "google-guest-agent"))]),
       services: nix.thunk(() => ({
-        [nix.POS]: pos$31,
+        [nix.POS]: $pos[30],
         "google-guest-agent": nix.thunk(() => ({
-          [nix.POS]: pos$28,
+          [nix.POS]: $pos[27],
           wantedBy: nix.thunk(() => ["multi-user.target"]),
           restartTriggers: nix.thunk(() => [
             nix.thunk(() => nix.sel(config, "environment", "etc", "default/instance_configs.cfg", "source")),
           ]),
           path: nix.thunk(() => nix.app(optional, nix.thunk(() => nix.sel(config, "users", "mutableUsers")), nix.thunk(() => nix.sel(pkgs, "shadow")))),
         })),
-        "google-startup-scripts": nix.thunk(() => ({ [nix.POS]: pos$29, wantedBy: nix.thunk(() => ["multi-user.target"]) })),
-        "google-shutdown-scripts": nix.thunk(() => ({ [nix.POS]: pos$30, wantedBy: nix.thunk(() => ["multi-user.target"]) })),
+        "google-startup-scripts": nix.thunk(() => ({ [nix.POS]: $pos[28], wantedBy: nix.thunk(() => ["multi-user.target"]) })),
+        "google-shutdown-scripts": nix.thunk(() => ({ [nix.POS]: $pos[29], wantedBy: nix.thunk(() => ["multi-user.target"]) })),
       })),
     })),
     users: nix.thunk(() => ({
-      [nix.POS]: pos$34,
+      [nix.POS]: $pos[33],
       groups: nix.thunk(() => ({
-        [nix.POS]: pos$33,
+        [nix.POS]: $pos[32],
         "google-sudoers": nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(config, "users", "mutableUsers")), nix.thunk(() => ({})))),
       })),
     })),

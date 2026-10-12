@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 10, 5]], [["url", 18, 5], ["hash", 19, 5]], [["description", 38, 5], ["longDescription", 39, 5], ["homepage", 44, 5], ["changelog", 45, 5], ["license", 46, 5], ["maintainers", 47, 5], ["mainProgram", 48, 5], ["platforms", 49, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["dontUnpack", 22, 3], ["installPhase", 24, 3], ["meta", 37, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, buildFHSEnv: false, fetchurl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 10, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 18, 5], ["hash", 19, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 38, 5], ["longDescription", 39, 5], ["homepage", 44, 5], ["changelog", 45, 5], ["license", 46, 5], ["maintainers", 47, 5], ["mainProgram", 48, 5], ["platforms", 49, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["dontUnpack", 22, 3], ["installPhase", 24, 3], ["meta", 37, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,13 +11,13 @@ export default nix.lambda((args) => (() => {
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   const buildFHSEnv = nix.arg($, "buildFHSEnv");
   const fetchurl = nix.arg($, "fetchurl");
-  const fhs = nix.thunk(() => nix.app(buildFHSEnv, nix.thunk(() => ({ [nix.POS]: pos$1, name: "fhs-shell" }))));
+  const fhs = nix.thunk(() => nix.app(buildFHSEnv, nix.thunk(() => ({ [nix.POS]: $pos[0], name: "fhs-shell" }))));
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "c2000-cgt",
       version: "25.11.0.LTS",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: nix.thunk(() => nix.str`https://dr-download.ti.com/software-development/ide-configuration-compiler-or-debugger/MD-xqxJ05PLfM/${nix.sel(finalAttrs, "version")}/ti_cgt_c2000_${nix.sel(finalAttrs, "version")}_linux-x64_installer.bin`),
           hash: "sha256-vkxV7/D3I4Uf7q3KBwdjEq9rn4DTPNMUm1NSuMYQEbM=",
         })))),
@@ -37,7 +34,7 @@ mv /build/ti/ti-cgt-c2000_${nix.sel(finalAttrs, "version")} $out
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "C28x/CLA code generation tools (CGT) - compiler",
         longDescription: "The TI C28x code generation tools (C2000-CGT) facilitate the development of applications\nfor TI C28x microcontroller platforms. The platforms include the Concerto (F28M3xx),\nPiccolo (280xx), Delfino floating-point (283xx), and C28x fixed-point (2823x/280x/281x) device families.\n",
         homepage: "https://www.ti.com/tool/C2000-CGT",

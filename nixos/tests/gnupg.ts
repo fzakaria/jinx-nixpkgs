@@ -2,60 +2,42 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/gnupg.nix", [[["maintainers", 6, 5]], [["isNormalUser", 15, 25]], [["alice", 15, 19]], [["users", 15, 13]], [["enable", 16, 24]], [["openssh", 16, 16]], [["imports", 13, 7], ["users", 15, 7], ["services", 16, 7]], [["isNormalUser", 25, 25]], [["alice", 25, 19]], [["users", 25, 13]], [["autologinUser", 26, 22]], [["getty", 26, 16]], [["shellInit", 28, 19]], [["enable", 44, 28], ["enableSSHSupport", 45, 28]], [["agent", 44, 22]], [["gnupg", 44, 16]], [["imports", 23, 7], ["users", 25, 7], ["services", 26, 7], ["environment", 28, 7], ["programs", 44, 7]], [["server", 10, 9], ["machine", 20, 9]], [["name", 4, 3], ["meta", 5, 3], ["nodes", 10, 3], ["testScript", 48, 3]]]);
 const formals$1 = { args: { pkgs: false, lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/gnupg.nix", [["maintainers", 6, 5]]);
 const formals$2 = { args: {  }, ellipsis: true };
-const pos$2 = nix.positions(here + "/gnupg.nix", [["isNormalUser", 15, 25]]);
-const pos$3 = nix.positions(here + "/gnupg.nix", [["alice", 15, 19]]);
-const pos$4 = nix.positions(here + "/gnupg.nix", [["users", 15, 13]]);
-const pos$5 = nix.positions(here + "/gnupg.nix", [["enable", 16, 24]]);
-const pos$6 = nix.positions(here + "/gnupg.nix", [["openssh", 16, 16]]);
-const pos$7 = nix.positions(here + "/gnupg.nix", [["imports", 13, 7], ["users", 15, 7], ["services", 16, 7]]);
 const formals$3 = { args: { pkgs: false }, ellipsis: true };
-const pos$8 = nix.positions(here + "/gnupg.nix", [["isNormalUser", 25, 25]]);
-const pos$9 = nix.positions(here + "/gnupg.nix", [["alice", 25, 19]]);
-const pos$10 = nix.positions(here + "/gnupg.nix", [["users", 25, 13]]);
-const pos$11 = nix.positions(here + "/gnupg.nix", [["autologinUser", 26, 22]]);
-const pos$12 = nix.positions(here + "/gnupg.nix", [["getty", 26, 16]]);
-const pos$13 = nix.positions(here + "/gnupg.nix", [["shellInit", 28, 19]]);
-const pos$14 = nix.positions(here + "/gnupg.nix", [["enable", 44, 28], ["enableSSHSupport", 45, 28]]);
-const pos$15 = nix.positions(here + "/gnupg.nix", [["agent", 44, 22]]);
-const pos$16 = nix.positions(here + "/gnupg.nix", [["gnupg", 44, 16]]);
-const pos$17 = nix.positions(here + "/gnupg.nix", [["imports", 23, 7], ["users", 25, 7], ["services", 26, 7], ["environment", 28, 7], ["programs", 44, 7]]);
-const pos$18 = nix.positions(here + "/gnupg.nix", [["server", 10, 9], ["machine", 20, 9]]);
-const pos$19 = nix.positions(here + "/gnupg.nix", [["name", 4, 3], ["meta", 5, 3], ["nodes", 10, 3], ["testScript", 48, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$19,
+    [nix.POS]: $pos[18],
     name: "gnupg",
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
       return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "rnhmjoj"))]),
       };
     })()),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$18,
+      [nix.POS]: $pos[17],
       server: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           imports: nix.thunk(() => [nix.path(here, "../modules/profiles/minimal.nix")]),
           users: nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             users: nix.thunk(() => ({
-              [nix.POS]: pos$3,
-              alice: nix.thunk(() => ({ [nix.POS]: pos$2, isNormalUser: true })),
+              [nix.POS]: $pos[2],
+              alice: nix.thunk(() => ({ [nix.POS]: $pos[1], isNormalUser: true })),
             })),
           })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$6,
-            openssh: nix.thunk(() => ({ [nix.POS]: pos$5, enable: true })),
+            [nix.POS]: $pos[5],
+            openssh: nix.thunk(() => ({ [nix.POS]: $pos[4], enable: true })),
           })),
         };
       })(), formals$2),
@@ -63,28 +45,28 @@ export default nix.lambda((args) => (() => {
         const $_1 = nix.formals(args_1, formals$3);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$17,
+          [nix.POS]: $pos[16],
           imports: nix.thunk(() => [nix.path(here, "../modules/profiles/minimal.nix")]),
           users: nix.thunk(() => ({
-            [nix.POS]: pos$10,
+            [nix.POS]: $pos[9],
             users: nix.thunk(() => ({
-              [nix.POS]: pos$9,
-              alice: nix.thunk(() => ({ [nix.POS]: pos$8, isNormalUser: true })),
+              [nix.POS]: $pos[8],
+              alice: nix.thunk(() => ({ [nix.POS]: $pos[7], isNormalUser: true })),
             })),
           })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$12,
-            getty: nix.thunk(() => ({ [nix.POS]: pos$11, autologinUser: "alice" })),
+            [nix.POS]: $pos[11],
+            getty: nix.thunk(() => ({ [nix.POS]: $pos[10], autologinUser: "alice" })),
           })),
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$13,
+            [nix.POS]: $pos[12],
             shellInit: "# preset a key passphrase in gpg-agent\npreset_key() {\n  # find all keys\n  case \"$1\" in\n    ssh) grips=$(awk '/^[0-9A-F]/{print $1}' \"${GNUPGHOME:-$HOME/.gnupg}/sshcontrol\") ;;\n    pgp) grips=$(gpg --with-keygrip --list-secret-keys | awk '/Keygrip/{print $3}') ;;\n  esac\n\n  # try to preset the passphrase for each key found\n  for grip in $grips; do\n    \"$(gpgconf --list-dirs libexecdir)/gpg-preset-passphrase\" -c -P \"$2\" \"$grip\"\n  done\n}\n",
           })),
           programs: nix.thunk(() => ({
-            [nix.POS]: pos$16,
+            [nix.POS]: $pos[15],
             gnupg: nix.thunk(() => ({
-              [nix.POS]: pos$15,
-              agent: nix.thunk(() => ({ [nix.POS]: pos$14, enable: true, enableSSHSupport: true })),
+              [nix.POS]: $pos[14],
+              agent: nix.thunk(() => ({ [nix.POS]: $pos[13], enable: true, enableSSHSupport: true })),
             })),
           })),
         };

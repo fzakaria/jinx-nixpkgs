@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["hash", 20, 5]], [["BASH_PATH", 26, 7], ["CGO_ENABLED", 29, 7]], [["description", 66, 5], ["longDescription", 67, 5], ["homepage", 78, 5], ["license", 79, 5], ["maintainers", 80, 5], ["mainProgram", 81, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["vendorHash", 23, 3], ["env", 26, 3], ["postPatch", 34, 3], ["buildPhase", 39, 3], ["installPhase", 43, 3], ["nativeCheckInputs", 47, 3], ["checkPhase", 53, 3], ["postInstall", 61, 3], ["meta", 65, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, buildGoModule: false, bash: false, fish: false, zsh: false, writableTmpDirAsHomeHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["BASH_PATH", 26, 7], ["CGO_ENABLED", 29, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 66, 5], ["longDescription", 67, 5], ["homepage", 78, 5], ["license", 79, 5], ["maintainers", 80, 5], ["mainProgram", 81, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["vendorHash", 23, 3], ["env", 26, 3], ["postPatch", 34, 3], ["buildPhase", 39, 3], ["installPhase", 43, 3], ["nativeCheckInputs", 47, 3], ["checkPhase", 53, 3], ["postInstall", 61, 3], ["meta", 65, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const zsh = nix.arg($, "zsh");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "direnv",
       version: "2.37.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "direnv",
           repo: "direnv",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -31,7 +28,7 @@ export default nix.lambda((args) => (() => {
         })))),
       vendorHash: "sha256-SAIGFQGACTB3Q0KnIdiKKNYY6fVjf/09wGqNr0Hkg+M=",
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         BASH_PATH: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isWindows"))), nix.thunk(() => nix.str`${bash}/bin/bash`))),
         CGO_ENABLED: 0n,
       })),
@@ -42,7 +39,7 @@ export default nix.lambda((args) => (() => {
       checkPhase: "runHook preCheck\n\nmake test-go test-bash test-fish test-zsh\n\nrunHook postCheck\n",
       postInstall: "rm -rf \"$out/share/fish\"\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Shell extension that manages your environment",
         longDescription: "Once hooked into your shell direnv is looking for an .envrc file in your\ncurrent directory before every prompt.\n\nIf found it will load the exported environment variables from that bash\nscript into your current environment, and unload them if the .envrc is\nnot reachable from the current path anymore.\n\nIn short, this little tool allows you to have project-specific\nenvironment variables.\n",
         homepage: "https://direnv.net",

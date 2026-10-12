@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 31, 5], ["repo", 32, 5], ["tag", 33, 5], ["hash", 38, 5]], [["name", 48, 7], ["url", 49, 7], ["hash", 50, 7]], [["dev", 60, 5], ["doc", 68, 5], ["test", 75, 5], ["toml", 82, 5], ["yaml", 83, 5]], [["description", 96, 5], ["homepage", 97, 5], ["changelog", 98, 5], ["license", 99, 5], ["maintainers", 100, 5]], [["pname", 26, 3], ["version", 27, 3], ["pyproject", 28, 3], ["src", 30, 3], ["patches", 41, 3], ["build-system", 54, 3], ["optional-dependencies", 59, 3], ["nativeCheckInputs", 86, 3], ["enabledTestPaths", 91, 3], ["pythonImportsCheck", 93, 3], ["meta", 95, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, fetchpatch: false, attrs: false, coverage: false, furo: false, ipython: false, msgpack: false, mypy: false, "pre-commit": false, pyright: false, pytest: false, pytestCheckHook: false, pyyaml: false, setuptools: false, "setuptools-scm": false, sphinx: false, "sphinx-copybutton": false, "sphinx-design": false, "tomli-w": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 31, 5], ["repo", 32, 5], ["tag", 33, 5], ["hash", 38, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["name", 48, 7], ["url", 49, 7], ["hash", 50, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["dev", 60, 5], ["doc", 68, 5], ["test", 75, 5], ["toml", 82, 5], ["yaml", 83, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 96, 5], ["homepage", 97, 5], ["changelog", 98, 5], ["license", 99, 5], ["maintainers", 100, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 26, 3], ["version", 27, 3], ["pyproject", 28, 3], ["src", 30, 3], ["patches", 41, 3], ["build-system", 54, 3], ["optional-dependencies", 59, 3], ["nativeCheckInputs", 86, 3], ["enabledTestPaths", 91, 3], ["pythonImportsCheck", 93, 3], ["meta", 95, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -37,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.21.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "jcrist",
           repo: "msgspec",
           tag: version,
@@ -45,7 +41,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "0001-msgspec-Fix-backing-type-declaration-of-Ext.code.patch",
             url: "https://github.com/msgspec/msgspec/commit/c24bc7025cbf153edc7d32256ea1279f49f422ea.patch",
             hash: "sha256-JypmnX55s+wbWzBDsZjsQbkqpE6Cg61GpJ9lSvNrAgY=",
@@ -53,7 +49,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const build_system = nix.thunk(() => [setuptools, setuptools_scm]);
       const optional_dependencies = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         dev: nix.thunk(() => nix.concat([coverage, mypy, pre_commit, pyright], nix.concat(nix.sel(optional_dependencies, "doc"), nix.sel(optional_dependencies, "test")))),
         doc: nix.thunk(() => [furo, ipython, sphinx, sphinx_copybutton, sphinx_design]),
         test: nix.thunk(() => nix.concat([attrs, msgpack, pytest], nix.concat(nix.sel(optional_dependencies, "yaml"), nix.sel(optional_dependencies, "toml")))),
@@ -64,7 +60,7 @@ export default nix.lambda((args) => (() => {
       const enabledTestPaths = nix.thunk(() => ["tests/unit"]);
       const pythonImportsCheck = nix.thunk(() => ["msgspec"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Module to handle JSON/MessagePack",
         homepage: "https://github.com/jcrist/msgspec",
         changelog: nix.thunk(() => nix.str`https://github.com/jcrist/msgspec/releases/tag/${nix.sel(src, "tag")}`),
@@ -75,7 +71,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         pyproject,

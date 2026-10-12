@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["hash", 33, 5]], [["cpu", 50, 5], ["hub", 53, 5], ["gpu", 58, 5]], [["description", 75, 5], ["homepage", 76, 5], ["changelog", 77, 5], ["license", 78, 5], ["mainProgram", 79, 5], ["maintainers", 80, 5]], [["pname", 25, 3], ["version", 26, 3], ["pyproject", 27, 3], ["src", 29, 3], ["build-system", 36, 3], ["dependencies", 44, 3], ["optional-dependencies", 49, 3], ["doCheck", 64, 3], ["pythonImportsCheck", 68, 3], ["meta", 74, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitHub: false, hatchling: false, "hatch-vcs": false, "ml-dtypes": false, numpy: false, onnxscript: false, onnxruntime: false, "huggingface-hub": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["hash", 33, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["cpu", 50, 5], ["hub", 53, 5], ["gpu", 58, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 75, 5], ["homepage", 76, 5], ["changelog", 77, 5], ["license", 78, 5], ["mainProgram", 79, 5], ["maintainers", 80, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 25, 3], ["version", 26, 3], ["pyproject", 27, 3], ["src", 29, 3], ["build-system", 36, 3], ["dependencies", 44, 3], ["optional-dependencies", 49, 3], ["doCheck", 64, 3], ["pythonImportsCheck", 68, 3], ["meta", 74, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const onnxruntime = nix.arg($, "onnxruntime");
   const huggingface_hub = nix.arg($, "huggingface-hub");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "onnx-asr",
       version: "0.12.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "istupakov",
           repo: "onnx-asr",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,7 +33,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [hatch_vcs, hatchling, ml_dtypes, numpy, onnxscript]),
       dependencies: nix.thunk(() => [numpy, onnxruntime]),
       "optional-dependencies": nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         cpu: nix.thunk(() => [onnxruntime]),
         hub: nix.thunk(() => [huggingface_hub]),
         gpu: nix.thunk(() => [onnxruntime]),
@@ -44,7 +41,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool((nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64"))))), nix.thunk(() => ["onnx_asr"]))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Lightweight Automatic Speech Recognition using ONNX models",
         homepage: "https://github.com/istupakov/onnx-asr",
         changelog: nix.thunk(() => nix.str`https://github.com/istupakov/onnx-asr/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

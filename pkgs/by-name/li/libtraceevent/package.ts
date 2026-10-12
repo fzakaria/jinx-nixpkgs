@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 21, 5], ["tag", 22, 5], ["hash", 23, 5]], [["url", 57, 5], ["rev-prefix", 58, 5]], [["updateScript", 55, 12]], [["description", 62, 5], ["homepage", 63, 5], ["license", 64, 5], ["platforms", 65, 5], ["maintainers", 66, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["postPatch", 26, 3], ["outputs", 31, 3], ["nativeBuildInputs", 37, 3], ["ninjaFlags", 47, 3], ["doCheck", 52, 3], ["checkInputs", 53, 3], ["passthru", 55, 3], ["meta", 61, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchgit: false, "pkg-config": false, asciidoc: false, xmlto: false, docbook_xml_dtd_45: false, docbook_xsl: false, meson: false, ninja: false, cunit: false, gitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 21, 5], ["tag", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 57, 5], ["rev-prefix", 58, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 55, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 62, 5], ["homepage", 63, 5], ["license", 64, 5], ["platforms", 65, 5], ["maintainers", 66, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["postPatch", 26, 3], ["outputs", 31, 3], ["nativeBuildInputs", 37, 3], ["ninjaFlags", 47, 3], ["doCheck", 52, 3], ["checkInputs", 53, 3], ["passthru", 55, 3], ["meta", 61, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const cunit = nix.arg($, "cunit");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "libtraceevent",
       version: "1.9.0",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://git.kernel.org/pub/scm/libs/libtrace/libtraceevent.git",
           tag: nix.thunk(() => nix.str`libtraceevent-${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-4KuF+UNMWxfxXYVlS0cBY5/p242UQ/NoRRVK+wmn04E=",
@@ -40,15 +36,15 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       checkInputs: nix.thunk(() => [cunit]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://git.kernel.org/pub/scm/libs/libtrace/libtraceevent.git",
             "rev-prefix": "libtraceevent-",
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Linux kernel trace event library",
         homepage: "https://git.kernel.org/pub/scm/libs/libtrace/libtraceevent.git/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Only")),

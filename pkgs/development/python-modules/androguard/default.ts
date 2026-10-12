@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["repo", 39, 5], ["owner", 40, 5], ["tag", 41, 5], ["hash", 42, 5]], [["description", 85, 5], ["homepage", 86, 5], ["license", 87, 5], ["maintainers", 88, 5]], [["pname", 34, 3], ["version", 35, 3], ["pyproject", 36, 3], ["src", 38, 3], ["build-system", 45, 3], ["nativeBuildInputs", 49, 3], ["dependencies", 51, 3], ["nativeCheckInputs", 71, 3], ["pytestFlags", 78, 3], ["preFixup", 80, 3], ["meta", 84, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, "poetry-core": false, apkinspector: false, networkx: false, pygments: false, lxml: false, colorama: false, cryptography: false, dataset: false, loguru: false, asn1crypto: false, click: false, mutf8: false, pyyaml: false, pydot: false, ipython: false, pyqt5: false, pytestCheckHook: false, "python-magic": false, qt5: false, withGui: true, doCheck: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["repo", 39, 5], ["owner", 40, 5], ["tag", 41, 5], ["hash", 42, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 85, 5], ["homepage", 86, 5], ["license", 87, 5], ["maintainers", 88, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 34, 3], ["version", 35, 3], ["pyproject", 36, 3], ["src", 38, 3], ["build-system", 45, 3], ["nativeBuildInputs", 49, 3], ["dependencies", 51, 3], ["nativeCheckInputs", 71, 3], ["pytestFlags", 78, 3], ["preFixup", 80, 3], ["meta", 84, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -39,7 +37,7 @@ export default nix.lambda((args) => (() => {
       const version = "4.1.4";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           repo: "androguard",
           owner: "androguard",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -67,7 +65,7 @@ export default nix.lambda((args) => (() => {
       const pytestFlags = nix.thunk(() => ["--verbose"]);
       const preFixup = nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), withGui, "makeWrapperArgs+=(\"${qtWrapperArgs[@]}\")\n"));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Tool and Python library to interact with Android Files",
         homepage: "https://github.com/androguard/androguard",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -77,7 +75,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

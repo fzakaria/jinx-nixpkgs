@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 48, 5], ["repo", 49, 5], ["tag", 50, 5], ["sha256", 51, 5]], [["url", 62, 7], ["sha256", 63, 7]], [["description", 126, 5], ["longDescription", 127, 5], ["homepage", 134, 5], ["license", 135, 5], ["platforms", 136, 5], ["maintainers", 137, 5], ["mainProgram", 138, 5]], [["pname", 44, 3], ["version", 45, 3], ["src", 47, 3], ["patches", 54, 3], ["nativeBuildInputs", 72, 3], ["buildInputs", 85, 3], ["postPatch", 117, 3], ["meta", 125, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, fetchpatch: false, itstool: false, libxml2: false, meson: false, ninja: false, perl: false, python3: false, "pkg-config": false, wrapGAppsHook3: false, "at-spi2-core": false, dbus: false, elfutils: false, libepoxy: false, gexiv2_0_10: false, glib: false, "gobject-introspection": false, gst_all_1: false, gtk3: false, lcms2: false, libdatrie: false, libgphoto2: false, libgudev: false, libpeas: false, libraw: false, libselinux: false, libsepol: false, lerc: false, libthai: false, libunwind: false, libxkbcommon: false, orc: false, udev: false, "util-linux": false, libxtst: false, libxdmcp: false, zstd: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 48, 5], ["repo", 49, 5], ["tag", 50, 5], ["sha256", 51, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 62, 7], ["sha256", 63, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 126, 5], ["longDescription", 127, 5], ["homepage", 134, 5], ["license", 135, 5], ["platforms", 136, 5], ["maintainers", 137, 5], ["mainProgram", 138, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 44, 3], ["version", 45, 3], ["src", 47, 3], ["patches", 54, 3], ["nativeBuildInputs", 72, 3], ["buildInputs", 85, 3], ["postPatch", 117, 3], ["meta", 125, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -50,11 +47,11 @@ export default nix.lambda((args) => (() => {
   const libxdmcp = nix.arg($, "libxdmcp");
   const zstd = nix.arg($, "zstd");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "entangle",
       version: "3.0",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "entangle",
           repo: "entangle",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -63,7 +60,7 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [
         nix.path(here, "./girepository-2.0.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://gitlab.com/entangle/entangle/-/commit/54795d275a93e94331a614c8712740fcedbdd4f0.patch",
             sha256: "iEgqGjKa0xwSdctwvNdEV361l9nx+bz53xn3fuDgtzY=",
           })))),
@@ -112,7 +109,7 @@ export default nix.lambda((args) => (() => {
       ]),
       postPatch: "sed -i \"/subdir('reference')/d\" \"docs/meson.build\"\npatchShebangs --build build-aux meson_post_install.py\nsed -i meson_post_install.py \\\n  -e \"/print('Update icon cache...')/d\" \\\n  -e \"/gtk-update-icon-cache/d\"\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Tethered camera control and capture",
         longDescription: "Entangle uses GTK and libgphoto2 to provide a graphical interface\nfor tethered photography with digital cameras.\nIt includes control over camera shooting and configuration settings\nand 'hands off' shooting directly from the controlling computer.\nThis app can also serve as a camera app for mobile devices.\n",
         homepage: "https://gitlab.com/entangle/entangle",

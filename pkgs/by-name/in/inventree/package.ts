@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5], ["postCheckout", 24, 5]], [["yarnLock", 42, 9], ["hash", 43, 9]], [["pname", 36, 7], ["version", 37, 15], ["src", 39, 7], ["yarnOfflineCache", 41, 7], ["nativeBuildInputs", 46, 7], ["buildPhase", 53, 7], ["installPhase", 65, 7]], [["DJANGO_SETTINGS_MODULE", 267, 5]], [["nixos", 322, 13]], [["frontend", 321, 15], ["pythonPath", 321, 24], ["tests", 322, 7]], [["description", 326, 5], ["homepage", 327, 5], ["changelog", 328, 5], ["license", 329, 5], ["platforms", 330, 5], ["mainProgram", 331, 5], ["maintainers", 332, 5]], [["pname", 76, 3], ["pyproject", 77, 3], ["version", 78, 11], ["src", 78, 19], ["dependencies", 80, 3], ["build-system", 170, 3], ["nativeBuildInputs", 171, 3], ["prePatch", 176, 3], ["installPhase", 220, 3], ["doCheck", 265, 3], ["env", 266, 3], ["checkPhase", 270, 3], ["nativeCheckInputs", 306, 3], ["passthru", 316, 3], ["meta", 325, 3]]]);
 const formals$1 = { args: { fetchFromGitHub: false, fetchYarnDeps: false, lib: false, nodejs: false, python3: false, python3Packages: false, gettext: false, gitMinimal: false, stdenv: false, yarnBuildHook: false, yarnConfigHook: false, yarnInstallHook: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5], ["postCheckout", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["yarnLock", 42, 9], ["hash", 43, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 36, 7], ["version", 37, 15], ["src", 39, 7], ["yarnOfflineCache", 41, 7], ["nativeBuildInputs", 46, 7], ["buildPhase", 53, 7], ["installPhase", 65, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["DJANGO_SETTINGS_MODULE", 267, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["nixos", 322, 13]]);
-const pos$6 = nix.positions(here + "/package.nix", [["frontend", 321, 15], ["pythonPath", 321, 24], ["tests", 322, 7]]);
-const pos$7 = nix.positions(here + "/package.nix", [["description", 326, 5], ["homepage", 327, 5], ["changelog", 328, 5], ["license", 329, 5], ["platforms", 330, 5], ["mainProgram", 331, 5], ["maintainers", 332, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 76, 3], ["pyproject", 77, 3], ["version", 78, 11], ["src", 78, 19], ["dependencies", 80, 3], ["build-system", 170, 3], ["nativeBuildInputs", 171, 3], ["prePatch", 176, 3], ["installPhase", 220, 3], ["doCheck", 265, 3], ["env", 266, 3], ["checkPhase", 270, 3], ["nativeCheckInputs", 306, 3], ["passthru", 316, 3], ["meta", 325, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,7 +22,7 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const version = "1.5.6";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "inventree",
       repo: "inventree",
       tag: nix.thunk(() => nix.str`${version}`),
@@ -39,12 +32,12 @@ export default nix.lambda((args) => (() => {
   const frontend = nix.thunk(() => (() => {
     const frontendSource = nix.thunk(() => nix.add(src, "/src/frontend"));
     return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname: "inventree-frontend",
         version: version,
         src: frontendSource,
         yarnOfflineCache: nix.thunk(() => nix.app(fetchYarnDeps, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             yarnLock: nix.thunk(() => nix.add(nix.sel(finalAttrs, "src"), "/yarn.lock")),
             hash: "sha256-iJfu2eo8anGDGoPDx68+LyFI6/bmaUms5kkiMpuEC+Y=",
           })))),
@@ -215,7 +208,7 @@ runHook postInstall
 `;
       })());
       const doCheck = true;
-      const env = nix.thunk(() => ({ [nix.POS]: pos$4, DJANGO_SETTINGS_MODULE: "InvenTree.settings" }));
+      const env = nix.thunk(() => ({ [nix.POS]: $pos[3], DJANGO_SETTINGS_MODULE: "InvenTree.settings" }));
       const checkPhase = nix.thunk(() => nix.str`runHook preCheck
 
 tmpDir=$(mktemp -d)
@@ -266,14 +259,14 @@ runHook postCheck
       const passthru = nix.thunk(() => (() => {
         const pythonPath = nix.thunk(() => nix.app(nix.sel(python3Packages, "makePythonPath"), dependencies));
         return {
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           frontend: frontend,
           pythonPath: pythonPath,
-          tests: nix.thunk(() => ({ [nix.POS]: pos$5, nixos: nix.thunk(() => nix.sel(nixosTests, "inventree")) })),
+          tests: nix.thunk(() => ({ [nix.POS]: $pos[4], nixos: nix.thunk(() => nix.sel(nixosTests, "inventree")) })),
         };
       })());
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "Open Source Inventory Management System",
         homepage: "https://inventree.org/",
         changelog: nix.thunk(() => nix.str`https://github.com/inventree/inventree/blob/${nix.sel(src_1, "tag")}/CHANGELOG.md`),
@@ -286,7 +279,7 @@ runHook postCheck
         })()),
       }));
       return {
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         pname,
         pyproject,
         version: version_1,

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 15, 5], ["hash", 16, 5]], [["name", 27, 7], ["url", 28, 7], ["hash", 29, 7]], [["homepage", 34, 5], ["description", 35, 5], ["mainProgram", 36, 5], ["license", 37, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["buildInputs", 19, 3], ["patches", 24, 3], ["meta", 33, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, fetchpatch: false, flint: false, gmp: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 27, 7], ["url", 28, 7], ["hash", 29, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 34, 5], ["description", 35, 5], ["mainProgram", 36, 5], ["license", 37, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["buildInputs", 19, 3], ["patches", 24, 3], ["meta", 33, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,25 +14,25 @@ export default nix.lambda((args) => (() => {
   const flint = nix.arg($, "flint");
   const gmp = nix.arg($, "gmp");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "pplite",
       version: "0.12",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://github.com/ezaffanella/PPLite/raw/main/releases/pplite-0.12.tar.gz",
           hash: "sha256-9qulVEIZRPHV5GnVmp65nMrGrUwRGkR8i8ORbLdHb1E=",
         })))),
       buildInputs: nix.thunk(() => [flint, gmp]),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "flint-3_2.patch",
             url: "https://github.com/ezaffanella/PPLite/commit/96fd1e50131f70bb78efdd60985525e970c9df06.patch",
             hash: "sha256-8FNyL8h/rBm2Hegib2l08vqEmFDU0PhMCV8Ui2G4xHQ=",
           })))),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/ezaffanella/PPLite",
         description: "Convex polyhedra library for Abstract Interpretation",
         mainProgram: "pplite_lcdd",

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 17, 13], ["version", 17, 19], ["hash", 18, 5]], [["ZSTD_EXTERNAL", 38, 5], ["VERSION", 39, 5], ["PKG_VERSION", 40, 5]], [["description", 49, 5], ["homepage", 50, 5], ["license", 51, 5], ["maintainers", 52, 5]], [["pname", 12, 3], ["version", 13, 3], ["format", 14, 3], ["src", 16, 3], ["postPatch", 21, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 27, 3], ["setupPyBuildFlags", 29, 3], ["env", 36, 3], ["nativeCheckInputs", 43, 3], ["checkPhase", 44, 3], ["meta", 48, 3]]]);
 const formals$1 = { args: { lib: false, "pkg-config": false, fetchPypi: false, buildPythonPackage: false, buildPackages: false, zstd: false, pytest: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 17, 13], ["version", 17, 19], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["ZSTD_EXTERNAL", 38, 5], ["VERSION", 39, 5], ["PKG_VERSION", 40, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 49, 5], ["homepage", 50, 5], ["license", 51, 5], ["maintainers", 52, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 12, 3], ["version", 13, 3], ["format", 14, 3], ["src", 16, 3], ["postPatch", 21, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 27, 3], ["setupPyBuildFlags", 29, 3], ["env", 36, 3], ["nativeCheckInputs", 43, 3], ["checkPhase", 44, 3], ["meta", 48, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.5.7.3";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-QD5SBfSsBLkuawzaZUvi9R3iaCKKDbAGe8CH+qzy9JU=",
@@ -39,7 +36,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`--library-dirs=${zstd}/lib`),
       ]);
       const env = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         ZSTD_EXTERNAL: 1n,
         VERSION: nix.thunk(() => nix.sel(zstd, "version")),
         PKG_VERSION: version,
@@ -47,7 +44,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytest]);
       const checkPhase = "pytest\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Simple python bindings to Yann Collet ZSTD compression library",
         homepage: "https://github.com/sergey-dryabzhinsky/python-zstd",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),
@@ -57,7 +54,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         format,

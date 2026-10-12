@@ -2,25 +2,23 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 12, 7], ["hash", 13, 7]], [["updateScript", 16, 14]], [["pname", 8, 5], ["version", 9, 5], ["src", 11, 5], ["passthru", 16, 5]]]);
 const formals$1 = { args: { fetchurl: false, "renode-bin": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 12, 7], ["hash", 13, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 16, 14]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 5], ["version", 9, 5], ["src", 11, 5], ["passthru", 16, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const fetchurl = nix.arg($, "fetchurl");
   const renode_bin = nix.arg($, "renode-bin");
   return nix.app(nix.sel(renode_bin, "overrideAttrs"), (finalAttrs) => (_) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "renode-unstable",
       version: "1.17.0+20260923gite1227827a",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://builds.renode.io/renode-${nix.sel(finalAttrs, "version")}.linux.tar.gz`),
           hash: "sha256-a/iJjN14eZRy+1AKvWk0Fpxri1JJouKqMp4nad8VGkk=",
         })))),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[1], updateScript: nix.path(here, "./update.sh") })),
     }));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

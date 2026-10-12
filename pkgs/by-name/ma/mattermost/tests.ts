@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/tests.nix", [[["doCheck", 15, 5], ["checkTargets", 16, 5], ["nativeCheckInputs", 19, 5], ["postPatch", 28, 5], ["disabledTests", 46, 5], ["preCheck", 59, 5], ["checkPhase", 193, 5], ["postCheck", 206, 5]]]);
 const formals$1 = { args: { lib: false, mattermost: false, gotestsum: false, which: false, postgresql: false, redis: false, curl: false, "net-tools": false, runtimeShell: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/tests.nix", [["doCheck", 15, 5], ["checkTargets", 16, 5], ["nativeCheckInputs", 19, 5], ["postPatch", 28, 5], ["disabledTests", 46, 5], ["preCheck", 59, 5], ["checkPhase", 193, 5], ["postCheck", 206, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
   const net_tools = nix.arg($, "net-tools");
   const runtimeShell = nix.arg($, "runtimeShell");
   return nix.app(nix.sel(mattermost, "overrideAttrs"), (final) => (prev) => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       doCheck: true,
       checkTargets: nix.thunk(() => ["test-mmctl"]),
       nativeCheckInputs: nix.thunk(() => [which, postgresql, redis, curl, net_tools, gotestsum]),

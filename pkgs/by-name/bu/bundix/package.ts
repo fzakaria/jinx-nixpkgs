@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]], [["description", 41, 5], ["longDescription", 42, 5], ["homepage", 48, 5], ["license", 49, 5], ["maintainers", 50, 5], ["platforms", 53, 5]], [["ruby", 12, 21], ["name", 14, 3], ["gemName", 15, 3], ["version", 16, 3], ["src", 18, 3], ["buildInputs", 25, 3], ["nativeBuildInputs", 29, 3], ["preFixup", 31, 3], ["meta", 40, 3]]]);
 const formals$1 = { args: { buildRubyGem: false, fetchFromGitHub: false, makeWrapper: false, lib: false, bundler: false, nix: false, "nix-prefetch-git": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 41, 5], ["longDescription", 42, 5], ["homepage", 48, 5], ["license", 49, 5], ["maintainers", 50, 5], ["platforms", 53, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["ruby", 12, 21], ["name", 14, 3], ["gemName", 15, 3], ["version", 16, 3], ["src", 18, 3], ["buildInputs", 25, 3], ["nativeBuildInputs", 29, 3], ["preFixup", 31, 3], ["meta", 40, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const gemName = "bundix";
       const version = "2.5.2";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "nix-community",
           repo: "bundix",
           tag: version,
@@ -38,7 +36,7 @@ export default nix.lambda((args) => (() => {
             --set GEM_PATH "${bundler}/${nix.sel(bundler, "ruby", "gemPath")}"
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Creates Nix packages from Gemfiles",
         longDescription: "This is a tool that converts Gemfile.lock files to nix expressions.\n\nThe output is then usable by the bundlerEnv derivation to list all the\ndependencies of a ruby package.\n",
         homepage: "https://github.com/nix-community/bundix",
@@ -50,7 +48,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         ruby,
         name,
         gemName,

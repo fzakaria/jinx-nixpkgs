@@ -2,11 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 18, 5], ["buildCommand", 20, 5]], [["NIX_CFLAGS_COMPILE", 53, 7]], [["description", 60, 5], ["license", 61, 5]], [["releaseName", 35, 3], ["outputs", 37, 3], ["postPatch", 43, 3], ["xcodeHash", 51, 3], ["env", 53, 3], ["postInstall", 55, 3], ["meta", 59, 3]]]);
 const formals$1 = { args: { lib: false, mkAppleDerivation: false, sourceRelease: false, stdenvNoCC: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 18, 5], ["buildCommand", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 53, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 60, 5], ["license", 61, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["releaseName", 35, 3], ["outputs", 37, 3], ["postPatch", 43, 3], ["xcodeHash", 51, 3], ["env", 53, 3], ["postInstall", 55, 3], ["meta", 59, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,7 +17,7 @@ export default nix.lambda((args) => (() => {
   const Libnotify = nix.thunk(() => nix.app(sourceRelease, "Libnotify"));
   const Libc = nix.thunk(() => nix.app(sourceRelease, "Libc"));
   const privateHeaders = nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: "libresolv-deps-private-headers",
       buildCommand: nix.thunk(() => nix.str`install -D -t "$out/include/mach-o" \\
   '${dyld}/include/mach-o/dyld_priv.h'
@@ -35,7 +32,7 @@ EOF
 `),
     }))));
   return nix.app(mkAppleDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       releaseName: "libresolv",
       outputs: nix.thunk(() => ["out", "dev", "man"]),
       postPatch: nix.thunk(() => nix.str`cp ${Libc}/include/arpa/nameser_compat.h arpa/nameser_compat.h
@@ -46,12 +43,12 @@ substituteInPlace hmac_link.c \\
 `),
       xcodeHash: "sha256-pQ1eFMPnSy8M3pfvv+sPyale9xDlVCMif0EWO8PO7zg=",
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.str`-I${privateHeaders}/include -I${configd}/dnsinfo -I${Libinfo}/lookup.subproj -I${Libnotify}`),
       })),
       postInstall: "ln -s ../nameser.h \"${!outputDev}/include/arpa\"\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Libresolv implementation for Darwin",
         license: nix.thunk(() => nix.sel(lib, "licenses", "apple-psl10")),
       })),

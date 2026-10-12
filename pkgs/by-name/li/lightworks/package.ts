@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 68, 11], ["sha256", 69, 11]], [["version", 61, 5], ["rev", 62, 5], ["pname", 63, 5], ["src", 65, 5], ["nativeBuildInputs", 74, 5], ["installPhase", 79, 5], ["dontPatchELF", 108, 5]], [["description", 121, 5], ["homepage", 122, 5], ["sourceProvenance", 123, 5], ["license", 124, 5], ["mainProgram", 125, 5], ["maintainers", 126, 5], ["platforms", 132, 5]], [["pname", 114, 24], ["version", 114, 30], ["targetPkgs", 116, 3], ["runScript", 118, 3], ["meta", 120, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, dpkg: false, makeWrapper: false, buildFHSEnv: false, gtk3: false, "gdk-pixbuf": false, cairo: false, libjpeg_original: false, glib: false, pango: false, libGLU: false, libGL: false, nvidia_cg_toolkit: false, zlib: false, openssl: false, libuuid: false, "alsa-lib": false, udev: false, libjack2: false, freetype: false, libva: false, libvdpau: false, twolame: false, gmp: false, libdrm: false, libpulseaudio: false, sndio: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 68, 11], ["sha256", 69, 11]]);
-const pos$2 = nix.positions(here + "/package.nix", [["version", 61, 5], ["rev", 62, 5], ["pname", 63, 5], ["src", 65, 5], ["nativeBuildInputs", 74, 5], ["installPhase", 79, 5], ["dontPatchELF", 108, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 121, 5], ["homepage", 122, 5], ["sourceProvenance", 123, 5], ["license", 124, 5], ["mainProgram", 125, 5], ["maintainers", 126, 5], ["platforms", 132, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 114, 24], ["version", 114, 30], ["targetPkgs", 116, 3], ["runScript", 118, 3], ["meta", 120, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -70,7 +67,7 @@ export default nix.lambda((args) => (() => {
       const rev = "56356";
       const pname = "lightworks";
       const src = nix.thunk(() => (nix.asBool(nix.eq(nix.sel(stdenv, "hostPlatform", "system"), "x86_64-linux")) ? nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://cdn.lwks.com/releases/${version}/Lightworks-${version}-${rev}.deb`),
           sha256: "sha256-MQsXl10I85qHiOosBEpdrLPq3iIiFlzumQv2R2sXNn8=",
         }))) : nix.builtins.throw(nix.thunk(() => nix.str`${pname}-${version} is not supported on ${nix.sel(stdenv, "hostPlatform", "system")}`))));
@@ -104,7 +101,7 @@ cp -r usr/share $out/share
 `);
       const dontPatchELF = true;
       return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         version,
         rev,
         pname,
@@ -115,13 +112,13 @@ cp -r usr/share $out/share
       };
     })())));
   return nix.app(buildFHSEnv, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: nix.thunk(() => nix.attr(lightworks, "pname")),
       version: nix.thunk(() => nix.attr(lightworks, "version")),
       targetPkgs: (pkgs) => [lightworks],
       runScript: "lightworks",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Professional Non-Linear Video Editor",
         homepage: "https://www.lwks.com/",
         sourceProvenance: nix.thunk(() => (() => {

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/build-from-zip.nix", [[["name", 32, 5], ["url", 33, 5], ["hash", 34, 13]], [["name", 74, 7], ["desktopName", 75, 7], ["comment", 76, 7], ["exec", 77, 7], ["icon", 78, 7], ["categories", 79, 7]], [["name", 84, 5], ["text", 85, 5]], [["platforms", 123, 5]], [["pname", 29, 11], ["version", 29, 17], ["src", 31, 3], ["sourceRoot", 37, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 47, 3], ["installPhase", 61, 3], ["desktopItems", 72, 3], ["migrationScript", 83, 3], ["meta", 122, 3]]]);
 const formals$1 = { args: { pname: false, version: false, hash: false, autoPatchelfHook: false, copyDesktopItems: false, fetchurl: false, fontconfig: false, freetype: false, lib: false, libGL: false, libxkbcommon: false, makeDesktopItem: false, makeWrapper: false, stdenvNoCC: false, unzip: false, writeShellApplication: false, "libxcb-wm": false, "libxcb-render-util": false, "libxcb-keysyms": false, "libxcb-image": false, libxcb: false, zlib: false, dbus: false, metaCommon: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/build-from-zip.nix", [["name", 32, 5], ["url", 33, 5], ["hash", 34, 13]]);
-const pos$2 = nix.positions(here + "/build-from-zip.nix", [["name", 74, 7], ["desktopName", 75, 7], ["comment", 76, 7], ["exec", 77, 7], ["icon", 78, 7], ["categories", 79, 7]]);
-const pos$3 = nix.positions(here + "/build-from-zip.nix", [["name", 84, 5], ["text", 85, 5]]);
-const pos$4 = nix.positions(here + "/build-from-zip.nix", [["platforms", 123, 5]]);
-const pos$5 = nix.positions(here + "/build-from-zip.nix", [["pname", 29, 11], ["version", 29, 17], ["src", 31, 3], ["sourceRoot", 37, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 47, 3], ["installPhase", 61, 3], ["desktopItems", 72, 3], ["migrationScript", 83, 3], ["meta", 122, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -36,11 +32,11 @@ export default nix.lambda((args) => (() => {
   const dbus = nix.arg($, "dbus");
   const metaCommon = nix.argOr($, "metaCommon", () => ({}));
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: pname,
       version: version,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           name: nix.thunk(() => nix.str`WinBox_Linux-${nix.sel(finalAttrs, "version")}.zip`),
           url: nix.thunk(() => nix.str`https://download.mikrotik.com/routeros/winbox/${nix.sel(finalAttrs, "version")}/WinBox_Linux.zip`),
           hash: hash,
@@ -71,7 +67,7 @@ runHook postInstall
 `),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "winbox",
             desktopName: "WinBox",
             comment: "GUI administration for Mikrotik RouterOS",
@@ -81,11 +77,11 @@ runHook postInstall
           })))),
       ]),
       migrationScript: nix.thunk(() => nix.app(writeShellApplication, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           name: "winbox-migrate",
           text: "XDG_DATA_HOME=${XDG_DATA_HOME:-$HOME/.local/share}\ntargetFile=\"$XDG_DATA_HOME/MikroTik/WinBox/Addresses.cdb\"\n\nif [ -f \"$targetFile\" ]; then\n  echo \"NixOS: WinBox 4 data already present at $(dirname \"$targetFile\"). Skipping automatic migration.\"\n  exit 0\nfi\n\n# cover both wine prefix variants\n# latter was used until https://github.com/NixOS/nixpkgs/pull/329626 was merged on 2024/07/24\nwinePrefixes=(\n  \"${WINEPREFIX:-$HOME/.wine}\"\n  \"${WINBOX_HOME:-$XDG_DATA_HOME/winbox}/wine\"\n)\nsourceFilePathSuffix=\"drive_c/users/$USER/AppData/Roaming/Mikrotik/Winbox/Addresses.cdb\"\nselectedSourceFile=\"\"\n\nfor prefix in \"${winePrefixes[@]}\"\ndo\n  echo \"NixOS: Probing WinBox 3 data path at $prefix...\"\n  if [ -f \"$prefix/$sourceFilePathSuffix\" ]; then\n    selectedSourceFile=\"$prefix/$sourceFilePathSuffix\"\n    break\n  fi\ndone\n\nif [ -z \"$selectedSourceFile\" ]; then\n  echo \"NixOS: WinBox 3 data not found. Skipping automatic migration.\"\n  exit 0\nfi\n\necho \"NixOS: Automatically migrating WinBox 3 data...\"\ninstall -Dvm644 \"$selectedSourceFile\" \"$targetFile\"\n",
         })))),
-      meta: nix.thunk(() => nix.update(metaCommon, { [nix.POS]: pos$4, platforms: nix.thunk(() => ["x86_64-linux"]) })),
+      meta: nix.thunk(() => nix.update(metaCommon, { [nix.POS]: $pos[3], platforms: nix.thunk(() => ["x86_64-linux"]) })),
     }));
 })(), formals$1);
 //# sourceMappingURL=build-from-zip.ts.map

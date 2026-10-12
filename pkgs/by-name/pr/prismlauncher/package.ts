@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["msaClientID", 59, 63]], [["cpeParts", 149, 63]], [["description", 140, 7], ["longDescription", 141, 7], ["homepage", 142, 7], ["changelog", 143, 7], ["license", 144, 7], ["maintainers", 145, 7], ["mainProgram", 146, 7], ["platforms", 147, 7], ["identifiers", 149, 5]], [["pname", 63, 3], ["version", 64, 28], ["paths", 66, 3], ["nativeBuildInputs", 68, 3], ["buildInputs", 73, 3], ["postBuild", 80, 3], ["qtWrapperArgs", 88, 3], ["meta", 138, 3]]]);
 const formals$1 = { args: { addDriverRunpath: false, "alsa-lib": false, flite: false, gamemode: false, "glfw3-minecraft": false, jdk17: false, jdk21: false, jdk25: false, jdk8: false, kdePackages: false, lib: false, libGL: false, libdecor: false, libjack2: false, libpulseaudio: false, libusb1: false, libx11: false, libxcursor: false, libxext: false, libxkbcommon: false, libxrandr: false, libxxf86vm: false, openal: false, pciutils: false, pipewire: false, "prismlauncher-unwrapped": false, stdenv: false, symlinkJoin: false, udev: false, "vulkan-loader": false, wayland: false, wrapGAppsHook3: false, xrandr: false, additionalLibs: true, additionalPrograms: true, controllerSupport: true, gamemodeSupport: true, jdks: true, msaClientID: true, textToSpeechSupport: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["msaClientID", 59, 63]]);
-const pos$2 = nix.positions(here + "/package.nix", [["cpeParts", 149, 63]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 140, 7], ["longDescription", 141, 7], ["homepage", 142, 7], ["changelog", 143, 7], ["license", 144, 7], ["maintainers", 145, 7], ["mainProgram", 146, 7], ["platforms", 147, 7], ["identifiers", 149, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 63, 3], ["version", 64, 28], ["paths", 66, 3], ["nativeBuildInputs", 68, 3], ["buildInputs", 73, 3], ["postBuild", 80, 3], ["qtWrapperArgs", 88, 3], ["meta", 138, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -52,9 +49,9 @@ export default nix.lambda((args) => (() => {
   const textToSpeechSupport = nix.argOr($, "textToSpeechSupport", () => nix.sel(stdenv, "hostPlatform", "isLinux"));
   nix.assert_(nix.app(nix.sel(lib, "assertMsg"), nix.thunk(() => (!nix.asBool(controllerSupport) || nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")))), "controllerSupport only has an effect on Linux."), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/pr/prismlauncher/package.nix:50:1");
   nix.assert_(nix.app(nix.sel(lib, "assertMsg"), nix.thunk(() => (!nix.asBool(textToSpeechSupport) || nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")))), "textToSpeechSupport only has an effect on Linux."), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/pr/prismlauncher/package.nix:54:1");
-  const prismlauncher$ = nix.thunk(() => nix.app(nix.sel(prismlauncher_unwrapped, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, msaClientID: msaClientID }))));
+  const prismlauncher$ = nix.thunk(() => nix.app(nix.sel(prismlauncher_unwrapped, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], msaClientID: msaClientID }))));
   return nix.app(symlinkJoin, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "prismlauncher",
       version: nix.thunk(() => nix.attr(prismlauncher$, "version")),
       paths: nix.thunk(() => [prismlauncher$]),
@@ -98,7 +95,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(prismlauncher$, "meta"));
         return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: nix.thunk(() => nix.attr(from, "description")),
         longDescription: nix.thunk(() => nix.attr(from, "longDescription")),
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
@@ -109,7 +106,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.attr(from, "platforms")),
         identifiers: nix.thunk(() => (() => {
           const from_1 = nix.thunk(() => nix.sel(prismlauncher$, "meta", "identifiers"));
-          return { [nix.POS]: pos$2, cpeParts: nix.thunk(() => nix.attr(from_1, "cpeParts")) };
+          return { [nix.POS]: $pos[1], cpeParts: nix.thunk(() => nix.attr(from_1, "cpeParts")) };
         })()),
       };
       })()),

@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 35, 5], ["repo", 36, 5], ["tag", 37, 5], ["hash", 38, 5]], [["owner", 41, 5], ["repo", 42, 5], ["tag", 43, 5], ["hash", 44, 5]], [["url", 47, 5], ["hash", 48, 5]], [["owner", 56, 5], ["repo", 57, 5], ["tag", 58, 5], ["hash", 59, 5], ["fetchSubmodules", 60, 5]], [["description", 124, 5], ["mainProgram", 125, 5], ["homepage", 126, 5], ["license", 127, 5], ["maintainers", 128, 5], ["platforms", 129, 5]], [["pname", 52, 3], ["version", 53, 3], ["src", 55, 3], ["buildInputs", 63, 3], ["nativeBuildInputs", 85, 3], ["mesonFlags", 99, 3], ["postPatch", 105, 3], ["meta", 123, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchurl: false, unzip: false, "pkg-config": false, python3: false, SDL2: false, SDL2_image: false, enet: false, freetype: false, glpk: false, intltool: false, libpng: false, libunibreak: false, libvorbis: false, libwebp: false, libxml2: false, luajit: false, meson: false, ninja: false, openal: false, openblas: false, pcre2: false, physfs: false, suitesparse: false, libyaml: false, cmark: false, dbus: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 35, 5], ["repo", 36, 5], ["tag", 37, 5], ["hash", 38, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 41, 5], ["repo", 42, 5], ["tag", 43, 5], ["hash", 44, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 47, 5], ["hash", 48, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["owner", 56, 5], ["repo", 57, 5], ["tag", 58, 5], ["hash", 59, 5], ["fetchSubmodules", 60, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 124, 5], ["mainProgram", 125, 5], ["homepage", 126, 5], ["license", 127, 5], ["maintainers", 128, 5], ["platforms", 129, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 52, 3], ["version", 53, 3], ["src", 55, 3], ["buildInputs", 63, 3], ["nativeBuildInputs", 85, 3], ["mesonFlags", 99, 3], ["postPatch", 105, 3], ["meta", 123, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -42,30 +37,30 @@ export default nix.lambda((args) => (() => {
   const cmark = nix.arg($, "cmark");
   const dbus = nix.arg($, "dbus");
   const lyaml = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "gvvaughan",
       repo: "lyaml",
       tag: "v6.2.8",
       hash: "sha256-ADLXi38sAs9ifQ4HJoYzgdp/dw0axGmVCtqJjpqWcmQ=",
     }))));
   const nativefiledialog_extended = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       owner: "btzy",
       repo: "nativefiledialog-extended",
       tag: "v1.2.1",
       hash: "sha256-GwT42lMZAAKSJpUJE6MYOpSLKUD5o9nSe9lcsoeXgJY=",
     }))));
   const nativefiledialog_extended_patch = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       url: "https://wrapdb.mesonbuild.com/v2/nativefiledialog-extended_1.2.1-1/get_patch",
       hash: "sha256-BEouiB2HTVWokrYc9VOqdnjRwPBs+us5obQ/NMqXawk=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "naev",
       version: "0.12.6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           owner: "naev",
           repo: "naev",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -125,7 +120,7 @@ unzip ${nativefiledialog_extended_patch} -d $tmp
 cp -r $tmp/*/* subprojects/nativefiledialog-extended-1.2.1
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "2D action/rpg space game",
         mainProgram: "naev",
         homepage: "http://www.naev.org",

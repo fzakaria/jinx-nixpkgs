@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 11, 5], ["sha256", 12, 5]], [["NIX_CFLAGS_COMPILE", 21, 7]], [["description", 31, 5], ["maintainers", 32, 5], ["license", 33, 5], ["platforms", 34, 5]], [["version", 8, 3], ["pname", 9, 3], ["src", 10, 3], ["buildInputs", 15, 3], ["configureFlags", 17, 3], ["hardeningDisable", 19, 3], ["env", 21, 3], ["meta", 30, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, allegro: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 11, 5], ["sha256", 12, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 21, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 31, 5], ["maintainers", 32, 5], ["license", 33, 5], ["platforms", 34, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["version", 8, 3], ["pname", 9, 3], ["src", 10, 3], ["buildInputs", 15, 3], ["configureFlags", 17, 3], ["hardeningDisable", 19, 3], ["env", 21, 3], ["meta", 30, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const allegro = nix.arg($, "allegro");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       version: "5.6.6",
       pname: "liquidwar5",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://www.ufoot.org/download/liquidwar/v5/${nix.sel(finalAttrs, "version")}/liquidwar-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "sha256-JF2AZuzDiCm9EQ8AiQ6230TgmMgML7yJpG80BFqsQ/c=",
         })))),
@@ -27,11 +24,11 @@ export default nix.lambda((args) => (() => {
       configureFlags: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isx86_64")), "--disable-asm")),
       hardeningDisable: nix.thunk(() => ["format"]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-fcommon", "-lm"]))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Classic version of a quick tactics game LiquidWar",
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "raskin"))]),
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

@@ -2,13 +2,9 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["aarch64-linux", 13, 9], ["x86_64-linux", 14, 9]], [["_3_7_0-aarch64-linux", 27, 13], ["_3_7_0-x86_64-linux", 28, 13], ["_3_5_0-aarch64-linux", 29, 13], ["_3_5_0-x86_64-linux", 30, 13]], [["url", 20, 9], ["sha256", 25, 9]], [["name", 18, 7], ["src", 19, 7], ["unpackPhase", 39, 7], ["installPhase", 40, 7]], [["pname", 44, 3], ["version", 45, 11], ["src", 45, 19], ["passthru", 46, 17], ["setupHook", 48, 3], ["postPatch", 57, 3], ["installPhase", 72, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, writeScript: false, fetchurl: false, sqlite: false }, ellipsis: false };
 const formals$2 = { args: { version: false, src: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/default.nix", [["aarch64-linux", 13, 9], ["x86_64-linux", 14, 9]]);
-const pos$2 = nix.positions(here + "/default.nix", [["_3_7_0-aarch64-linux", 27, 13], ["_3_7_0-x86_64-linux", 28, 13], ["_3_5_0-aarch64-linux", 29, 13], ["_3_5_0-x86_64-linux", 30, 13]]);
-const pos$3 = nix.positions(here + "/default.nix", [["url", 20, 9], ["sha256", 25, 9]]);
-const pos$4 = nix.positions(here + "/default.nix", [["name", 18, 7], ["src", 19, 7], ["unpackPhase", 39, 7], ["installPhase", 40, 7]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 44, 3], ["version", 45, 11], ["src", 45, 19], ["passthru", 46, 17], ["setupHook", 48, 3], ["postPatch", 57, 3], ["installPhase", 72, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,18 +19,18 @@ export default nix.lambda((args) => (() => {
     const src = nix.arg($_1, "src");
     const sqlcipher = nix.thunk(() => (() => {
       const system_alias = nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         "aarch64-linux": "arm64.linux",
         "x86_64-linux": "x64.linux",
       }));
       return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           name: "libsqlcipher.so",
           src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               url: nix.thunk(() => nix.str`https://github.com/simolus3/sqlite3.dart/releases/download/sqlite3-${version}/libsqlcipher.${nix.selOr(system_alias, () => nix.builtins.throw("Unsupported system for pub 'sqlite3' ('sqlcipher' dependency)\nPlease add the system alias mapping if it exists, note that you will also have to add used version hashes for that system below"), nix.key(nix.sel(stdenv, "hostPlatform", "system")))}.so`),
               sha256: nix.thunk(() => nix.selOr({
-                [nix.POS]: pos$2,
+                [nix.POS]: $pos[1],
                 "_3_7_0-aarch64-linux": "sha256-XzJyz2ThlbdsvsiORjJuTO2bzi4YbUuwqvC/dspnLvA=",
                 "_3_7_0-x86_64-linux": "sha256-ncTXhpLnz7shUSvmBkmLknrRpxPAexho/wMEp1Sja3I=",
                 "_3_5_0-aarch64-linux": "sha256-m2Op1KowdxErQ9nFa1+0TIshwjBSdXdrnlsyO4mULos=",
@@ -49,7 +45,7 @@ is the same with existing versions, add an alias here.
         })));
     })());
     return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname: "sqlite3",
         version: version,
         src: src,

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["updateScript", 26, 12]], [["description", 29, 5], ["mainProgram", 30, 5], ["homepage", 31, 5], ["changelog", 32, 5], ["license", 33, 5], ["platforms", 34, 5], ["maintainers", 35, 5]], [["pname", 13, 3], ["version", 14, 3], ["nugetHash", 16, 3], ["dotnet-sdk", 18, 11], ["dotnet-runtime", 19, 3], ["nativeInstallCheckInputs", 21, 3], ["doInstallCheck", 24, 3], ["passthru", 26, 3], ["meta", 28, 3]]]);
 const formals$1 = { args: { lib: false, buildDotnetGlobalTool: false, dotnetCorePackages: false, versionCheckHook: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["updateScript", 26, 12]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 29, 5], ["mainProgram", 30, 5], ["homepage", 31, 5], ["changelog", 32, 5], ["license", 33, 5], ["platforms", 34, 5], ["maintainers", 35, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["nugetHash", 16, 3], ["dotnet-sdk", 18, 11], ["dotnet-runtime", 19, 3], ["nativeInstallCheckInputs", 21, 3], ["doInstallCheck", 24, 3], ["passthru", 26, 3], ["meta", 28, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const dotnet_sdk = nix.thunk(() => nix.sel(dotnetCorePackages, "sdk_10_0"));
   return nix.app(buildDotnetGlobalTool, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "csharp-ls",
       version: "0.28.0",
       nugetHash: "sha256-j4FeTyJnQQaoJEvroH5LSwYuMVKOQEqoSJMS7/uMDgw=",
@@ -25,11 +23,11 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Roslyn-based LSP language server for C#",
         mainProgram: "csharp-ls",
         homepage: "https://github.com/razzmatazz/csharp-language-server",

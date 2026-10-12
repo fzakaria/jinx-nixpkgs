@@ -2,10 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["name", 11, 5], ["publisher", 12, 5], ["version", 13, 5], ["hash", 14, 5]], [["description", 29, 5], ["downloadPage", 30, 5], ["homepage", 31, 5], ["license", 32, 5], ["maintainers", 36, 5]], [["mktplcRef", 10, 3], ["nativeBuildInputs", 17, 3], ["postPatch", 22, 3], ["meta", 28, 3]]]);
 const formals$1 = { args: { lib: false, "vscode-utils": false, jq: false, moreutils: false, "wgsl-analyzer": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["name", 11, 5], ["publisher", 12, 5], ["version", 13, 5], ["hash", 14, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 29, 5], ["downloadPage", 30, 5], ["homepage", 31, 5], ["license", 32, 5], ["maintainers", 36, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["mktplcRef", 10, 3], ["nativeBuildInputs", 17, 3], ["postPatch", 22, 3], ["meta", 28, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,9 +13,9 @@ export default nix.lambda((args) => (() => {
   const moreutils = nix.arg($, "moreutils");
   const wgsl_analyzer = nix.arg($, "wgsl-analyzer");
   return nix.app(nix.sel(vscode_utils, "buildVscodeMarketplaceExtension"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       mktplcRef: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         name: "wgsl-analyzer",
         publisher: "wgsl-analyzer",
         version: "0.11.318",
@@ -29,7 +27,7 @@ export default nix.lambda((args) => (() => {
   package.json | sponge package.json
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Extension that integrates wgsl-analyzer a wgsl language server into VSCode",
         downloadPage: "https://marketplace.visualstudio.com/items?itemName=wgsl-analyzer.wgsl-analyzer",
         homepage: "https://github.com/wgsl-analyzer/wgsl-analyzer",

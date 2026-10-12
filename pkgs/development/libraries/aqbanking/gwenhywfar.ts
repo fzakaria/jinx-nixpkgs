@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/gwenhywfar.nix", [[["url", 31, 5], ["hash", 32, 13]], [["description", 90, 5], ["homepage", 91, 5], ["license", 92, 5], ["maintainers", 93, 5], ["platforms", 94, 5]], [["pname", 27, 3], ["version", 28, 11], ["src", 30, 3], ["configureFlags", 35, 3], ["preConfigure", 40, 3], ["postPatch", 44, 3], ["nativeBuildInputs", 72, 3], ["buildInputs", 78, 3], ["dontWrapQtApps", 87, 3], ["meta", 89, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, gnutls: false, openssl: false, libgcrypt: false, "libgpg-error": false, "pkg-config": false, gettext: false, which: false, gtk3: false, qt5: false, pluginSearchPaths: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/gwenhywfar.nix", [["url", 31, 5], ["hash", 32, 13]]);
-const pos$2 = nix.positions(here + "/gwenhywfar.nix", [["description", 90, 5], ["homepage", 91, 5], ["license", 92, 5], ["maintainers", 93, 5], ["platforms", 94, 5]]);
-const pos$3 = nix.positions(here + "/gwenhywfar.nix", [["pname", 27, 3], ["version", 28, 11], ["src", 30, 3], ["configureFlags", 35, 3], ["preConfigure", 40, 3], ["postPatch", 44, 3], ["nativeBuildInputs", 72, 3], ["buildInputs", 78, 3], ["dontWrapQtApps", 87, 3], ["meta", 89, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const pname = "gwenhywfar";
       const version_1 = version;
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://www.aquamaniac.de/rdm/attachments/download/${releaseId}/gwenhywfar-${version_1}.tar.gz`),
           hash: hash,
         }))));
@@ -71,7 +69,7 @@ sed -i -e '/^gwenhywfar_plugindir=/s,/\\\${GWENHYWFAR_SO_EFFECTIVE},,' \\
       ]);
       const dontWrapQtApps = true;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "OS abstraction functions used by aqbanking and related tools",
         homepage: "https://www.aquamaniac.de/rdm/projects/gwenhywfar",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),
@@ -79,7 +77,7 @@ sed -i -e '/^gwenhywfar_plugindir=/s,/\\\${GWENHYWFAR_SO_EFFECTIVE},,' \\
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version: version_1,
         src,

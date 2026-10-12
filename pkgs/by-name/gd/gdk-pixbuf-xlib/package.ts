@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 26, 5], ["owner", 27, 5], ["repo", 28, 5], ["rev", 29, 5], ["hash", 30, 5]], [["description", 52, 5], ["homepage", 53, 5], ["maintainers", 54, 5], ["license", 55, 5], ["platforms", 56, 5]], [["pname", 16, 3], ["version", 17, 3], ["outputs", 19, 3], ["src", 25, 3], ["nativeBuildInputs", 33, 3], ["propagatedBuildInputs", 42, 3], ["mesonFlags", 47, 3], ["meta", 51, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, meson: false, ninja: false, "pkg-config": false, "docbook-xsl-nons": false, docbook_xml_dtd_43: false, "gtk-doc": false, "gdk-pixbuf": false, libx11: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 26, 5], ["owner", 27, 5], ["repo", 28, 5], ["rev", 29, 5], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 52, 5], ["homepage", 53, 5], ["maintainers", 54, 5], ["license", 55, 5], ["platforms", 56, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["outputs", 19, 3], ["src", 25, 3], ["nativeBuildInputs", 33, 3], ["propagatedBuildInputs", 42, 3], ["mesonFlags", 47, 3], ["meta", 51, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const gdk_pixbuf = nix.arg($, "gdk-pixbuf");
   const libx11 = nix.arg($, "libx11");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "gdk-pixbuf-xlib",
       version: "2.40.2",
       outputs: nix.thunk(() => ["out", "dev", "devdoc"]),
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "gitlab.gnome.org",
           owner: "Archive",
           repo: "gdk-pixbuf-xlib",
@@ -37,7 +35,7 @@ export default nix.lambda((args) => (() => {
       propagatedBuildInputs: nix.thunk(() => [gdk_pixbuf, libx11]),
       mesonFlags: nix.thunk(() => ["-Dgtk_doc=true"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Deprecated API for integrating GdkPixbuf with Xlib data types",
         homepage: "https://gitlab.gnome.org/Archive/gdk-pixbuf-xlib",
         maintainers: [],

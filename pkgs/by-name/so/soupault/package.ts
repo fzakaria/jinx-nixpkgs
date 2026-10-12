@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["urls", 20, 5], ["hash", 24, 5]], [["package", 62, 5], ["command", 63, 5]], [["version", 61, 18]], [["tests", 61, 12]], [["description", 67, 5], ["homepage", 68, 5], ["changelog", 69, 5], ["license", 70, 5], ["maintainers", 71, 5], ["mainProgram", 72, 5]], [["pname", 14, 3], ["version", 15, 3], ["minimalOCamlVersion", 17, 3], ["src", 19, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 34, 3], ["postFixup", 57, 3], ["passthru", 61, 3], ["meta", 66, 3]]]);
 const formals$1 = { args: { lib: false, darwin: false, fetchzip: false, ocamlPackages: false, ocaml: false, removeReferencesTo: false, soupault: false, stdenv: false, testers: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["urls", 20, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["package", 62, 5], ["command", 63, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 61, 18]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 61, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 67, 5], ["homepage", 68, 5], ["changelog", 69, 5], ["license", 70, 5], ["maintainers", 71, 5], ["mainProgram", 72, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["minimalOCamlVersion", 17, 3], ["src", 19, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 34, 3], ["postFixup", 57, 3], ["passthru", 61, 3], ["meta", 66, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const testers = nix.arg($, "testers");
   return nix.app(nix.sel(ocamlPackages, "buildDunePackage"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "soupault",
       version: "5.3.0",
       minimalOCamlVersion: "5.3",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           urls: nix.thunk(() => [
             nix.thunk(() => nix.str`https://github.com/PataphysicalSociety/soupault/archive/${nix.sel(finalAttrs, "version")}.tar.gz`),
             nix.thunk(() => nix.str`https://codeberg.org/PataphysicalSociety/soupault/archive/${nix.sel(finalAttrs, "version")}.tar.gz`),
@@ -63,14 +58,14 @@ export default nix.lambda((args) => (() => {
       postFixup: nix.thunk(() => nix.str`find "$out" -type f -exec remove-references-to -t ${ocaml} '{}' +
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$2, package: soupault, command: "soupault --version-number" })))),
+          [nix.POS]: $pos[2],
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: $pos[1], package: soupault, command: "soupault --version-number" })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Tool that helps you create and manage static websites",
         homepage: "https://soupault.app/",
         changelog: "https://codeberg.org/PataphysicalSociety/soupault/src/branch/main/CHANGELOG.md",

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["sha256", 26, 5]], [["dataDir", 42, 24]], [["description", 45, 5], ["maintainers", 46, 5], ["license", 50, 5], ["platforms", 51, 5], ["homepage", 52, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["nativeBuildInputs", 29, 3], ["configureFlags", 32, 3], ["postConfigure", 38, 3], ["passthru", 42, 3], ["meta", 44, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, autoreconfHook: false, drvName: true, geoipDatabase: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["sha256", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["dataDir", 42, 24]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 45, 5], ["maintainers", 46, 5], ["license", 50, 5], ["platforms", 51, 5], ["homepage", 52, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["nativeBuildInputs", 29, 3], ["configureFlags", 32, 3], ["postConfigure", 38, 3], ["passthru", 42, 3], ["meta", 44, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const geoipDatabase = nix.argOr($, "geoipDatabase", () => "/var/lib/geoip-databases");
   const dataDir = nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "isDerivation"), geoipDatabase)) ? nix.str`${nix.builtins.toString(geoipDatabase)}/share/GeoIP` : nix.force(geoipDatabase)));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: drvName,
       version: "1.6.12",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "maxmind",
           repo: "geoip-api-c",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -32,9 +29,9 @@ export default nix.lambda((args) => (() => {
       configureFlags: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.eq(nix.sel(stdenv, "hostPlatform"), nix.sel(stdenv, "buildPlatform"))), nix.thunk(() => ["ac_cv_func_malloc_0_nonnull=yes", "ac_cv_func_realloc_0_nonnull=yes"]))),
       postConfigure: nix.thunk(() => nix.str`find . -name Makefile.in -exec sed -i -r 's#^pkgdatadir\\s*=.+$#pkgdatadir = ${dataDir}#' {} \\;
 `),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, dataDir: dataDir })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[1], dataDir: dataDir })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "API for GeoIP/Geolocation databases",
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);

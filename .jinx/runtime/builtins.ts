@@ -104,6 +104,7 @@ import {
   attrPos,
   derivedAttrs,
   MapPos,
+  Mapped,
   POS,
 } from "./value.ts";
 import { toXml } from "./xml.ts";
@@ -118,11 +119,15 @@ export interface Settings {
   impure: boolean;
   // Lines a `warn`/`trace` builtin prints go here.
   log: (line: string) => void;
+  // The search path `<name>` resolves against: a prefix and the directory
+  // it names, consulted in order. Empty unless a caller fills it.
+  nixPath: { readonly prefix: string; readonly path: string }[];
 }
 
 export const settings: Settings = {
   currentSystem: "x86_64-linux",
   impure: false,
+  nixPath: [],
   // stderr under node, the console in a browser.
   log: (line) =>
     typeof process === "undefined"
@@ -857,15 +862,11 @@ def("catAttrs", 2, (name, l) => {
   }
   return out;
 });
-// Nix gives the result of mapAttrs no positions.
+// Nix gives the result of mapAttrs no positions. The thunks are made on
+// access (Mapped), which is where the eager version spent its memory.
 def("mapAttrs", 2, (f, a) => {
   const s = forceAttrs(a);
-  const out: PlainAttrs = {};
-  for (const k of attrKeys(s)) {
-    const v = getAttr(s, k) as Lazy;
-    out[k] = new Thunk(() => app(f, k, v));
-  }
-  return out;
+  return new Mapped(s, (k, v) => new Thunk(() => app(f, k, v)));
 });
 def("zipAttrsWith", 2, (f, l) => {
   const lists: PlainAttrs = {};
@@ -1163,6 +1164,17 @@ def("findFile", 2, (_searchPath, name) => {
     const p = `${COREPKGS_DIR}/${n.slice(COREPKGS_PREFIX.length)}`;
     if (existsSync(p)) {
       return new Path(p);
+    }
+  }
+  for (const entry of settings.nixPath) {
+    if (n === entry.prefix) {
+      return new Path(entry.path);
+    }
+    if (n.startsWith(entry.prefix + "/")) {
+      const p = `${entry.path}/${n.slice(entry.prefix.length + 1)}`;
+      if (existsSync(p)) {
+        return new Path(p);
+      }
     }
   }
   // A ThrownError in Nix, so tryEval can catch it; nixpkgs probes

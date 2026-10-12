@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["hash", 24, 5]], [["package", 72, 50]], [["version", 72, 18]], [["tests", 72, 12]], [["description", 75, 5], ["homepage", 76, 5], ["license", 77, 5], ["maintainers", 78, 5], ["mainProgram", 79, 5]], [["pname", 16, 3], ["version", 17, 3], ["pyproject", 18, 3], ["src", 20, 3], ["postPatch", 27, 3], ["build-system", 35, 3], ["nativeBuildInputs", 37, 3], ["dependencies", 45, 3], ["postInstall", 57, 3], ["doCheck", 66, 3], ["pythonImportsCheck", 68, 3], ["passthru", 72, 3], ["meta", 74, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, python3: false, asciidoc: false, cacert: false, docbook_xsl: false, installShellFiles: false, libxml2: false, libxslt: false, testers: false, offlineimap: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["package", 72, 50]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 72, 18]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 72, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 75, 5], ["homepage", 76, 5], ["license", 77, 5], ["maintainers", 78, 5], ["mainProgram", 79, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["pyproject", 18, 3], ["src", 20, 3], ["postPatch", 27, 3], ["build-system", 35, 3], ["nativeBuildInputs", 37, 3], ["dependencies", 45, 3], ["postInstall", 57, 3], ["doCheck", 66, 3], ["pythonImportsCheck", 68, 3], ["passthru", 72, 3], ["meta", 74, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const offlineimap = nix.arg($, "offlineimap");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "offlineimap",
       version: "8.0.3",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "OfflineIMAP",
           repo: "offlineimap3",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -61,14 +56,14 @@ sed -i offlineimap/utils/distro_utils.py -e '/def get_os_sslcertfile():/a\\ \\ \
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["offlineimap"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$2, package: offlineimap })))),
+          [nix.POS]: $pos[2],
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: $pos[1], package: offlineimap })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Synchronize emails between two repositories, so that you can read the same mailbox from multiple computers",
         homepage: "http://offlineimap.org",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

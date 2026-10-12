@@ -2,9 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["stdenv", 6, 53]], [["pname", 20, 11], ["version", 21, 34], ["meta", 21, 42], ["passthru", 21, 47], ["unwrapped", 23, 11], ["nativeBuildInputs", 25, 3], ["buildInputs", 32, 3], ["qtWrapperArgs", 45, 3], ["dontUnpack", 55, 3], ["dontWrapGApps", 56, 3], ["dontWrapQtApps", 57, 3], ["installPhase", 59, 3], ["preFixup", 65, 3], ["postFixup", 69, 3]]]);
 const formals$1 = { args: { callPackage: false, lib: false, stdenv: false, pname: true, unwrapped: true, qtbase: false, qtimageformats: false, qtsvg: false, qtwayland: false, kimageformats: false, wrapGAppsHook3: false, wrapQtAppsHook: false, geoclue2: false, "glib-networking": false, webkitgtk_4_1: false, withWebkit: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["stdenv", 6, 53]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 20, 11], ["version", 21, 34], ["meta", 21, 42], ["passthru", 21, 47], ["unwrapped", 23, 11], ["nativeBuildInputs", 25, 3], ["buildInputs", 32, 3], ["qtWrapperArgs", 45, 3], ["dontUnpack", 55, 3], ["dontWrapGApps", 56, 3], ["dontWrapQtApps", 57, 3], ["installPhase", 59, 3], ["preFixup", 65, 3], ["postFixup", 69, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -12,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const stdenv = nix.arg($, "stdenv");
   const pname = nix.argOr($, "pname", () => "telegram-desktop");
-  const unwrapped = nix.argOr($, "unwrapped", () => nix.app(callPackage, nix.path(here, "./unwrapped.nix"), nix.thunk(() => ({ [nix.POS]: pos$1, stdenv: stdenv }))));
+  const unwrapped = nix.argOr($, "unwrapped", () => nix.app(callPackage, nix.path(here, "./unwrapped.nix"), nix.thunk(() => ({ [nix.POS]: $pos[0], stdenv: stdenv }))));
   const qtbase = nix.arg($, "qtbase");
   const qtimageformats = nix.arg($, "qtimageformats");
   const qtsvg = nix.arg($, "qtsvg");
@@ -27,7 +26,7 @@ export default nix.lambda((args) => (() => {
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => (() => {
       const from = nix.thunk(() => nix.sel(finalAttrs, "unwrapped"));
       return {
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: pname,
       version: nix.thunk(() => nix.attr(from, "version")),
       meta: nix.thunk(() => nix.attr(from, "meta")),

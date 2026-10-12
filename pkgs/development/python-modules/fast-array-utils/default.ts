@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 49, 5], ["repo", 50, 5], ["tag", 51, 5], ["hash", 52, 5]], [["MIN_REQS_OFFLINE", 56, 7]], [["accel", 70, 5], ["dask", 73, 5], ["doc", 76, 5], ["full", 82, 5], ["sparse", 89, 5], ["test", 92, 5], ["test-min", 98, 5], ["testing", 107, 5]], [["description", 129, 5], ["homepage", 130, 5], ["changelog", 131, 5], ["license", 132, 5], ["maintainers", 133, 5]], [["pname", 44, 3], ["version", 45, 3], ["pyproject", 46, 3], ["src", 48, 3], ["env", 56, 3], ["build-system", 58, 3], ["dependencies", 65, 3], ["optional-dependencies", 69, 3], ["nativeCheckInputs", 112, 3], ["pythonImportsCheck", 121, 3], ["meta", 128, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, "hatch-docstring-description": false, "hatch-fancy-pypi-readme": false, "hatch-vcs": false, hatchling: false, numpy: false, numba: false, dask: false, furo: false, pytest: false, sphinx: false, h5py: false, zarr: false, anndata: false, "scikit-learn": false, coverage: false, "pytest-codspeed": false, "pytest-doctestplus": false, "pytest-xdist": false, packaging: false, pytestCheckHook: false, scipy: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 49, 5], ["repo", 50, 5], ["tag", 51, 5], ["hash", 52, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["MIN_REQS_OFFLINE", 56, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["accel", 70, 5], ["dask", 73, 5], ["doc", 76, 5], ["full", 82, 5], ["sparse", 89, 5], ["test", 92, 5], ["test-min", 98, 5], ["testing", 107, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 129, 5], ["homepage", 130, 5], ["changelog", 131, 5], ["license", 132, 5], ["maintainers", 133, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 44, 3], ["version", 45, 3], ["pyproject", 46, 3], ["src", 48, 3], ["env", 56, 3], ["build-system", 58, 3], ["dependencies", 65, 3], ["optional-dependencies", 69, 3], ["nativeCheckInputs", 112, 3], ["pythonImportsCheck", 121, 3], ["meta", 128, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -36,22 +32,22 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const scipy = nix.arg($, "scipy");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "fast-array-utils",
       version: "1.4.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "scverse",
           repo: "fast-array-utils",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-9tB8cV3i9WPbdLeS5/FmQzLu8rk/jRVtUZ35X/XSCx8=",
         })))),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, MIN_REQS_OFFLINE: "1" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], MIN_REQS_OFFLINE: "1" })),
       "build-system": nix.thunk(() => [hatch_docstring_description, hatch_fancy_pypi_readme, hatch_vcs, hatchling]),
       dependencies: nix.thunk(() => [numpy]),
       "optional-dependencies": nix.thunk(() => nix.app(nix.sel(lib, "fix"), (self) => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           accel: nix.thunk(() => [numba]),
           dask: nix.thunk(() => [dask]),
           doc: nix.thunk(() => [furo, pytest, sphinx]),
@@ -69,7 +65,7 @@ export default nix.lambda((args) => (() => {
         "fast_array_utils",
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Fast array utilities",
         homepage: "https://icb-fast-array-utils.readthedocs-hosted.com",
         changelog: nix.thunk(() => nix.str`https://github.com/scverse/fast-array-utils/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

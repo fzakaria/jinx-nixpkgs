@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 30, 5], ["hash", 31, 5]], [["packageName", 63, 41]], [["updateScript", 63, 5]], [["homepage", 67, 5], ["changelog", 68, 5], ["description", 69, 5], ["mainProgram", 70, 5], ["teams", 71, 5], ["license", 72, 5], ["platforms", 73, 5]], [["pname", 26, 3], ["version", 27, 3], ["src", 29, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 49, 3], ["postPatch", 57, 3], ["passthru", 62, 3], ["meta", 66, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, "pkg-config": false, vala: false, gnome: false, "adwaita-icon-theme": false, gtk3: false, wrapGAppsHook3: false, "appstream-glib": false, "desktop-file-utils": false, glib: false, librsvg: false, libxml2: false, gettext: false, itstool: false, libgee: false, "libgnome-games-support": false, meson: false, ninja: false, python3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 30, 5], ["hash", 31, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["packageName", 63, 41]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 63, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 67, 5], ["changelog", 68, 5], ["description", 69, 5], ["mainProgram", 70, 5], ["teams", 71, 5], ["license", 72, 5], ["platforms", 73, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 26, 3], ["version", 27, 3], ["src", 29, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 49, 3], ["postPatch", 57, 3], ["passthru", 62, 3], ["meta", 66, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,11 +29,11 @@ export default nix.lambda((args) => (() => {
   const ninja = nix.arg($, "ninja");
   const python3 = nix.arg($, "python3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "gnome-klotski",
       version: "3.38.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnome/sources/gnome-klotski/${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/gnome-klotski-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-kWN4RWSfPKcJ0p9x7ndblG0REghyCfMiZOj60hoMoOI=",
         })))),
@@ -58,11 +54,11 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [glib, gtk3, librsvg, libgee, libgnome_games_support]),
       postPatch: "chmod +x build-aux/meson_post_install.py\npatchShebangs build-aux/meson_post_install.py\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$2, packageName: "gnome-klotski" })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: $pos[1], packageName: "gnome-klotski" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://gitlab.gnome.org/GNOME/gnome-klotski",
         changelog: nix.thunk(() => nix.str`https://gitlab.gnome.org/GNOME/gnome-klotski/-/blob/${nix.sel(finalAttrs, "version")}/NEWS?ref_type=tags`),
         description: "Slide blocks to solve the puzzle",

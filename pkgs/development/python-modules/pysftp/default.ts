@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 16, 13], ["version", 16, 19], ["sha256", 17, 5]], [["homepage", 23, 5], ["description", 24, 5], ["license", 25, 5], ["longDescription", 26, 5]], [["pname", 10, 3], ["version", 11, 3], ["format", 12, 3], ["disabled", 13, 3], ["src", 15, 3], ["propagatedBuildInputs", 20, 3], ["meta", 22, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, isPyPy: false, paramiko: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 16, 13], ["version", 16, 19], ["sha256", 17, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 23, 5], ["description", 24, 5], ["license", 25, 5], ["longDescription", 26, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 10, 3], ["version", 11, 3], ["format", 12, 3], ["disabled", 13, 3], ["src", 15, 3], ["propagatedBuildInputs", 20, 3], ["meta", 22, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,21 +18,21 @@ export default nix.lambda((args) => (() => {
       const format = "setuptools";
       const disabled = isPyPy;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           sha256: "0jl5qix5cxzrv4lb8rfpjkpcghbkacnxkb006ikn7mkl5s05mxgv",
         }))));
       const propagatedBuildInputs = nix.thunk(() => [paramiko]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://bitbucket.org/dundeemt/pysftp",
         description: "Friendly face on SFTP",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         longDescription: "A simple interface to SFTP. The module offers high level abstractions\nand task based routines to handle your SFTP needs. Checkout the Cook\nBook, in the docs, to see what pysftp can do for you.\n",
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         format,

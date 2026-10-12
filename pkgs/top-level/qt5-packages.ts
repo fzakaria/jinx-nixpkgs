@@ -2,16 +2,8 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/qt5-packages.nix", [[["config", 36, 21], ["libsForQt5", 37, 21], ["lib", 38, 28], ["fetchurl", 38, 32], ["kdePackages", 38, 41]], [["cmake-extras", 96, 33]], [["cmake-extras", 100, 33]], [["lcms", 112, 11], ["qt5Support", 113, 11], ["suffix", 114, 11]], [["cmake-extras", 129, 33]], [["qt6Kvantum", 157, 11]], [["__internalKF5", 57, 9], ["accounts-qml-module", 61, 9], ["accounts-qt", 63, 9], ["dxflib", 65, 9], ["drumstick", 67, 9], ["fcitx5-qt", 69, 9], ["qgpgme", 71, 9], ["grantlee", 73, 9], ["herqq", 75, 9], ["kcolorpicker", 77, 9], ["kdsoap", 79, 9], ["kimageannotator", 81, 9], ["ldutils", 83, 9], ["libcommuni", 85, 9], ["libiodata", 87, 9], ["liblastfm", 89, 9], ["libqglviewer", 91, 9], ["libqofono", 93, 9], ["libqtdbusmock", 95, 9], ["libqtdbustest", 99, 9], ["libqtpas", 103, 9], ["mapbox-gl-qml", 105, 9], ["maplibre-native-qt", 107, 9], ["polkit-qt", 109, 9], ["poppler", 111, 9], ["pyotherside", 117, 9], ["qca", 119, 9], ["qca-qt5", 120, 9], ["qcoro", 122, 9], ["qcustomplot", 124, 9], ["qjson", 126, 9], ["qmenumodel", 128, 9], ["qmltermwidget", 132, 9], ["qoauth", 134, 9], ["qt5ct", 136, 9], ["qtdbusextended", 138, 9], ["qtfeedback", 140, 9], ["qtforkawesome", 142, 9], ["qtutilities", 144, 9], ["qtinstaller", 146, 9], ["qtkeychain", 148, 9], ["qtmpris", 150, 9], ["qtpbfimageplugin", 152, 9], ["qtstyleplugins", 154, 9], ["qtstyleplugin-kvantum", 156, 9], ["quazip", 160, 9], ["quickflux", 162, 9], ["qscintilla", 164, 9], ["qwt", 166, 9], ["qwt6_1", 168, 9], ["qxlsx", 170, 9], ["qzxing", 172, 9], ["rlottie-qml", 174, 9], ["sailfish-access-control-plugin", 176, 9], ["telepathy", 180, 9], ["signond", 182, 9], ["timed", 184, 9]], [["qt5", 187, 9], ["mlt", 188, 9], ["futuresql", 189, 9], ["kdb", 190, 9], ["kdiagram", 191, 9], ["kf5gpgmepp", 192, 9], ["kirigami-addons", 196, 9], ["kproperty", 197, 9], ["kquickimageedit", 198, 9], ["ktextaddons", 199, 9], ["kuserfeedback", 200, 9], ["libqaccessibilityclient", 201, 9], ["mapbox-gl-native", 202, 9], ["maplibre-gl-native", 203, 9], ["maui-core", 204, 9], ["phonon", 205, 9], ["phonon-backend-gstreamer", 206, 9], ["phonon-backend-vlc", 207, 9], ["plasma-wayland-protocols", 208, 9], ["pulseaudio-qt", 209, 9]], [["otherSplices", 25, 3], ["f", 26, 3]]]);
 const formals$1 = { args: { lib: false, config: false, __splicedPackages: false, "makeScopeWithSplicing'": false, generateSplicesForMkScope: false, pkgsHostTarget: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/qt5-packages.nix", [["config", 36, 21], ["libsForQt5", 37, 21], ["lib", 38, 28], ["fetchurl", 38, 32], ["kdePackages", 38, 41]]);
-const pos$2 = nix.positions(here + "/qt5-packages.nix", [["cmake-extras", 96, 33]]);
-const pos$3 = nix.positions(here + "/qt5-packages.nix", [["cmake-extras", 100, 33]]);
-const pos$4 = nix.positions(here + "/qt5-packages.nix", [["lcms", 112, 11], ["qt5Support", 113, 11], ["suffix", 114, 11]]);
-const pos$5 = nix.positions(here + "/qt5-packages.nix", [["cmake-extras", 129, 33]]);
-const pos$6 = nix.positions(here + "/qt5-packages.nix", [["qt6Kvantum", 157, 11]]);
-const pos$7 = nix.positions(here + "/qt5-packages.nix", [["__internalKF5", 57, 9], ["accounts-qml-module", 61, 9], ["accounts-qt", 63, 9], ["dxflib", 65, 9], ["drumstick", 67, 9], ["fcitx5-qt", 69, 9], ["qgpgme", 71, 9], ["grantlee", 73, 9], ["herqq", 75, 9], ["kcolorpicker", 77, 9], ["kdsoap", 79, 9], ["kimageannotator", 81, 9], ["ldutils", 83, 9], ["libcommuni", 85, 9], ["libiodata", 87, 9], ["liblastfm", 89, 9], ["libqglviewer", 91, 9], ["libqofono", 93, 9], ["libqtdbusmock", 95, 9], ["libqtdbustest", 99, 9], ["libqtpas", 103, 9], ["mapbox-gl-qml", 105, 9], ["maplibre-native-qt", 107, 9], ["polkit-qt", 109, 9], ["poppler", 111, 9], ["pyotherside", 117, 9], ["qca", 119, 9], ["qca-qt5", 120, 9], ["qcoro", 122, 9], ["qcustomplot", 124, 9], ["qjson", 126, 9], ["qmenumodel", 128, 9], ["qmltermwidget", 132, 9], ["qoauth", 134, 9], ["qt5ct", 136, 9], ["qtdbusextended", 138, 9], ["qtfeedback", 140, 9], ["qtforkawesome", 142, 9], ["qtutilities", 144, 9], ["qtinstaller", 146, 9], ["qtkeychain", 148, 9], ["qtmpris", 150, 9], ["qtpbfimageplugin", 152, 9], ["qtstyleplugins", 154, 9], ["qtstyleplugin-kvantum", 156, 9], ["quazip", 160, 9], ["quickflux", 162, 9], ["qscintilla", 164, 9], ["qwt", 166, 9], ["qwt6_1", 168, 9], ["qxlsx", 170, 9], ["qzxing", 172, 9], ["rlottie-qml", 174, 9], ["sailfish-access-control-plugin", 176, 9], ["telepathy", 180, 9], ["signond", 182, 9], ["timed", 184, 9]]);
-const pos$8 = nix.positions(here + "/qt5-packages.nix", [["qt5", 187, 9], ["mlt", 188, 9], ["futuresql", 189, 9], ["kdb", 190, 9], ["kdiagram", 191, 9], ["kf5gpgmepp", 192, 9], ["kirigami-addons", 196, 9], ["kproperty", 197, 9], ["kquickimageedit", 198, 9], ["ktextaddons", 199, 9], ["kuserfeedback", 200, 9], ["libqaccessibilityclient", 201, 9], ["mapbox-gl-native", 202, 9], ["maplibre-gl-native", 203, 9], ["maui-core", 204, 9], ["phonon", 205, 9], ["phonon-backend-gstreamer", 206, 9], ["phonon-backend-vlc", 207, 9], ["plasma-wayland-protocols", 208, 9], ["pulseaudio-qt", 209, 9]]);
-const pos$9 = nix.positions(here + "/qt5-packages.nix", [["otherSplices", 25, 3], ["f", 26, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const pkgs = __splicedPackages;
   const qt5 = nix.thunk(() => nix.sel(pkgsHostTarget, "qt5"));
   return nix.app(makeScopeWithSplicing$, nix.thunk(() => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       otherSplices: nix.thunk(() => nix.app(generateSplicesForMkScope, "libsForQt5")),
       f: (self) => (() => {
         const libsForQt5 = self;
@@ -32,7 +24,7 @@ export default nix.lambda((args) => (() => {
         const kdeFrameworks = nix.thunk(() => (() => {
           const mkFrameworks = nix.thunk(() => nix.builtins.import(nix.path(here, "../development/libraries/kde-frameworks")));
           const attrs = nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             config: config,
             libsForQt5: libsForQt5,
             lib: nix.thunk(() => nix.attr(pkgs, "lib")),
@@ -43,7 +35,7 @@ export default nix.lambda((args) => (() => {
         })());
         const noExtraAttrs = (set) => nix.app(nix.sel(lib, "attrsets", "removeAttrs"), set, nix.thunk(() => ["extend", "override", "overrideScope", "overrideDerivation"]));
         return nix.app(noExtraAttrs, nix.thunk(() => nix.update(qt5, nix.update({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             __internalKF5: nix.thunk(() => nix.app(nix.sel(lib, "dontRecurseIntoAttrs"), kdeFrameworks)),
             "accounts-qml-module": nix.thunk(() => nix.app(callPackage, nix.path(here, "../development/libraries/accounts-qml-module"), nix.thunk(() => ({})))),
             "accounts-qt": nix.thunk(() => nix.app(callPackage, nix.path(here, "../development/libraries/accounts-qt"), nix.thunk(() => ({})))),
@@ -65,14 +57,14 @@ export default nix.lambda((args) => (() => {
             libqtdbusmock: nix.thunk(() => nix.app(callPackage, nix.path(here, "../development/libraries/libqtdbusmock"), nix.thunk(() => (() => {
                 const from = nix.thunk(() => nix.sel(pkgs, "lomiri"));
                 return {
-                [nix.POS]: pos$2,
+                [nix.POS]: $pos[1],
                 "cmake-extras": nix.thunk(() => nix.attr(from, "cmake-extras")),
               };
               })()))),
             libqtdbustest: nix.thunk(() => nix.app(callPackage, nix.path(here, "../development/libraries/libqtdbustest"), nix.thunk(() => (() => {
                 const from = nix.thunk(() => nix.sel(pkgs, "lomiri"));
                 return {
-                [nix.POS]: pos$3,
+                [nix.POS]: $pos[2],
                 "cmake-extras": nix.thunk(() => nix.attr(from, "cmake-extras")),
               };
               })()))),
@@ -81,7 +73,7 @@ export default nix.lambda((args) => (() => {
             "maplibre-native-qt": nix.thunk(() => nix.app(callPackage, nix.path(here, "../development/libraries/maplibre-native-qt"), nix.thunk(() => ({})))),
             "polkit-qt": nix.thunk(() => nix.app(callPackage, nix.path(here, "../development/libraries/polkit-qt-1"), nix.thunk(() => ({})))),
             poppler: nix.thunk(() => nix.app(callPackage, nix.path(here, "../development/libraries/poppler"), nix.thunk(() => ({
-                [nix.POS]: pos$4,
+                [nix.POS]: $pos[3],
                 lcms: nix.thunk(() => nix.sel(pkgs, "lcms2")),
                 qt5Support: true,
                 suffix: "qt5",
@@ -95,7 +87,7 @@ export default nix.lambda((args) => (() => {
             qmenumodel: nix.thunk(() => nix.app(callPackage, nix.path(here, "../development/libraries/qmenumodel"), nix.thunk(() => (() => {
                 const from = nix.thunk(() => nix.sel(pkgs, "lomiri"));
                 return {
-                [nix.POS]: pos$5,
+                [nix.POS]: $pos[4],
                 "cmake-extras": nix.thunk(() => nix.attr(from, "cmake-extras")),
               };
               })()))),
@@ -112,7 +104,7 @@ export default nix.lambda((args) => (() => {
             qtpbfimageplugin: nix.thunk(() => nix.app(callPackage, nix.path(here, "../development/libraries/qtpbfimageplugin"), nix.thunk(() => ({})))),
             qtstyleplugins: nix.thunk(() => nix.app(callPackage, nix.path(here, "../development/libraries/qtstyleplugins"), nix.thunk(() => ({})))),
             "qtstyleplugin-kvantum": nix.thunk(() => nix.app(callPackage, nix.path(here, "../development/libraries/qtstyleplugin-kvantum"), nix.thunk(() => ({
-                [nix.POS]: pos$6,
+                [nix.POS]: $pos[5],
                 qt6Kvantum: nix.thunk(() => nix.sel(pkgs, "qt6Packages", "qtstyleplugin-kvantum")),
               })))),
             quazip: nix.thunk(() => nix.app(callPackage, nix.path(here, "../development/libraries/quazip"), nix.thunk(() => ({})))),
@@ -128,7 +120,7 @@ export default nix.lambda((args) => (() => {
             signond: nix.thunk(() => nix.app(callPackage, nix.path(here, "../development/libraries/signond"), nix.thunk(() => ({})))),
             timed: nix.thunk(() => nix.app(callPackage, nix.path(here, "../applications/system/timed"), nix.thunk(() => ({})))),
           }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(config, "allowAliases")), nix.thunk(() => ({
-              [nix.POS]: pos$8,
+              [nix.POS]: $pos[7],
               qt5: nix.thunk(() => nix.builtins.throw("'libsForQt5.qt5.*' attributes were removed in favor of top-level 'qt5.*' attributes")),
               mlt: nix.thunk(() => nix.builtins.throw("'libsForQt5.mlt' was removed due to lack of upstream support since v7.36.0, use 'qt6Packages.mlt'.")),
               futuresql: nix.thunk(() => nix.builtins.throw("libsForQt5.futuresql has been removed")),

@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["enableStatic", 14, 29]], [["enableShared", 15, 37]], [["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["hash", 25, 5]], [["name", 30, 7], ["url", 31, 7], ["hash", 32, 7]], [["name", 35, 7], ["url", 36, 7], ["hash", 37, 7], ["excludes", 38, 7]], [["description", 66, 5], ["homepage", 67, 5], ["license", 68, 5], ["maintainers", 69, 5], ["platforms", 70, 5], ["mainProgram", 71, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["patches", 28, 3], ["nativeBuildInputs", 42, 3], ["buildInputs", 44, 3], ["postPatch", 52, 3], ["hardeningDisable", 63, 3], ["meta", 65, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch: false, cmake: false, openssl: false, protobuf_21: false, catch2: false, boost: false, icu: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["enableStatic", 14, 29]]);
-const pos$2 = nix.positions(here + "/package.nix", [["enableShared", 15, 37]]);
-const pos$3 = nix.positions(here + "/package.nix", [["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["hash", 25, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["name", 30, 7], ["url", 31, 7], ["hash", 32, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["name", 35, 7], ["url", 36, 7], ["hash", 37, 7], ["excludes", 38, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 66, 5], ["homepage", 67, 5], ["license", 68, 5], ["maintainers", 69, 5], ["platforms", 70, 5], ["mainProgram", 71, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["patches", 28, 3], ["nativeBuildInputs", 42, 3], ["buildInputs", 44, 3], ["postPatch", 52, 3], ["hardeningDisable", 63, 3], ["meta", 65, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,14 +17,14 @@ export default nix.lambda((args) => (() => {
   const catch2 = nix.arg($, "catch2");
   const boost = nix.arg($, "boost");
   const icu = nix.arg($, "icu");
-  const boost$ = nix.thunk(() => nix.app(nix.sel(boost, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, enableStatic: true }))));
-  const protobuf = nix.thunk(() => nix.app(nix.sel(protobuf_21, "override"), nix.thunk(() => ({ [nix.POS]: pos$2, enableShared: false }))));
+  const boost$ = nix.thunk(() => nix.app(nix.sel(boost, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], enableStatic: true }))));
+  const protobuf = nix.thunk(() => nix.app(nix.sel(protobuf_21, "override"), nix.thunk(() => ({ [nix.POS]: $pos[1], enableShared: false }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "localproxy",
       version: "3.1.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           owner: "aws-samples",
           repo: "aws-iot-securetunneling-localproxy",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,13 +32,13 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             name: "gcc-13.patch",
             url: "https://github.com/aws-samples/aws-iot-securetunneling-localproxy/commit/de8779630d14e4f4969c9b171d826acfa847822b.patch",
             hash: "sha256-11k6mRvCx72+5G/5LZZx2qnx10yfKpcAZofn8t8BD3E=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             name: "boost187.patch",
             url: "https://github.com/aws-samples/aws-iot-securetunneling-localproxy/commit/12022770e89c6787c3eda4ca01a7cedaf2affa92.patch",
             hash: "sha256-THY+dRkKhpbpK+wLskRjWvqr6uFuT0JMt/VHvgzKTzw=",
@@ -56,7 +50,7 @@ export default nix.lambda((args) => (() => {
       postPatch: "sed -i '/set(OPENSSL_USE_STATIC_LIBS TRUE)/d' CMakeLists.txt\nsubstituteInPlace ./CMakeLists.txt --replace-fail \\\n  \"cmake_minimum_required(VERSION 3.2 FATAL_ERROR)\" \\\n  \"cmake_minimum_required(VERSION 4.0)\"\n\n# boost 1.89 removed the boost_system stub library\nsubstituteInPlace CMakeLists.txt --replace-fail ' system' \"\"\n",
       hardeningDisable: nix.thunk(() => ["fortify3"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "AWS IoT Secure Tunneling Local Proxy Reference Implementation C++",
         homepage: "https://github.com/aws-samples/aws-iot-securetunneling-localproxy",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

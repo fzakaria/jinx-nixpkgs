@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 41, 5], ["repo", 42, 5], ["tag", 43, 5], ["fetchSubmodules", 44, 5], ["hash", 45, 5]], [["description", 103, 5], ["mainProgram", 104, 5], ["homepage", 105, 5], ["changelog", 106, 5], ["license", 107, 5], ["maintainers", 108, 5]], [["pname", 35, 3], ["version", 36, 3], ["pyproject", 37, 3], ["__structuredAttrs", 38, 3], ["src", 40, 3], ["postPatch", 48, 3], ["build-system", 61, 3], ["nativeBuildInputs", 67, 3], ["dontUseCmakeConfigure", 71, 3], ["buildInputs", 73, 3], ["dependencies", 79, 3], ["pythonImportsCheck", 86, 3], ["nativeCheckInputs", 88, 3], ["disabledTests", 97, 3], ["meta", 102, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitHub: false, pybind11: false, "scikit-build-core": false, "setuptools-scm": false, cmake: false, ninja: false, boost: false, eigen: false, zlib: false, numpy: false, packaging: false, pydantic: false, rich: false, addBinToPathHook: false, awkward: false, pytestCheckHook: false, scipy: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 41, 5], ["repo", 42, 5], ["tag", 43, 5], ["fetchSubmodules", 44, 5], ["hash", 45, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 103, 5], ["mainProgram", 104, 5], ["homepage", 105, 5], ["changelog", 106, 5], ["license", 107, 5], ["maintainers", 108, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 35, 3], ["version", 36, 3], ["pyproject", 37, 3], ["__structuredAttrs", 38, 3], ["src", 40, 3], ["postPatch", 48, 3], ["build-system", 61, 3], ["nativeBuildInputs", 67, 3], ["dontUseCmakeConfigure", 71, 3], ["buildInputs", 73, 3], ["dependencies", 79, 3], ["pythonImportsCheck", 86, 3], ["nativeCheckInputs", 88, 3], ["disabledTests", 97, 3], ["meta", 102, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,13 +28,13 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const scipy = nix.arg($, "scipy");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "correctionlib",
       version: "2.9.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "cms-nanoAOD",
           repo: "correctionlib",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -53,7 +51,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [addBinToPathHook, awkward, pytestCheckHook, scipy]),
       disabledTests: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isAarch64")), nix.thunk(() => ["test_lwtnn_example"]))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Provides a well-structured JSON data format for a wide variety of ad-hoc correction factors encountered in a typical HEP analysis",
         mainProgram: "correction",
         homepage: "https://cms-nanoaod.github.io/correctionlib/",

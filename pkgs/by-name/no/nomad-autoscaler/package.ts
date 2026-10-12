@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 30, 7], ["repo", 31, 7], ["rev", 32, 7], ["sha256", 33, 7]], [["plugins", 94, 15], ["withPlugins", 94, 23]], [["description", 98, 7], ["mainProgram", 99, 7], ["homepage", 100, 7], ["license", 101, 7], ["maintainers", 102, 7]], [["pname", 10, 5], ["version", 11, 5], ["outputs", 13, 5], ["src", 29, 5], ["vendorHash", 36, 5], ["buildPhase", 38, 5], ["doCheck", 45, 5], ["installPhase", 47, 5], ["doInstallCheck", 84, 5], ["installCheckPhase", 85, 5], ["passthru", 93, 5], ["meta", 97, 5]], [["name", 122, 7], ["paths", 123, 7]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, buildGoModule: false, buildEnv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 30, 7], ["repo", 31, 7], ["rev", 32, 7], ["sha256", 33, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["plugins", 94, 15], ["withPlugins", 94, 23]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 98, 7], ["mainProgram", 99, 7], ["homepage", 100, 7], ["license", 101, 7], ["maintainers", 102, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 10, 5], ["version", 11, 5], ["outputs", 13, 5], ["src", 29, 5], ["vendorHash", 36, 5], ["buildPhase", 38, 5], ["doCheck", 45, 5], ["installPhase", 47, 5], ["doInstallCheck", 84, 5], ["installCheckPhase", 85, 5], ["passthru", 93, 5], ["meta", 97, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["name", 122, 7], ["paths", 123, 7]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,7 +30,7 @@ export default nix.lambda((args) => (() => {
         "threshold",
       ]);
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "hashicorp",
           repo: "nomad-autoscaler",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -46,9 +42,9 @@ export default nix.lambda((args) => (() => {
       const installPhase = "runHook preInstall\nmkdir -p $bin/bin $out/bin\nmv bin/nomad-autoscaler $bin/bin\nln -s $bin/bin/nomad-autoscaler $out/bin/nomad-autoscaler\n\nfor d in $(getAllOutputNames); do\n  mkdir -p ${!d}/share\ndone\nrmdir $bin/share\n\n# have out contain all of the plugins\nfor plugin in bin/plugins/*; do\n  cp \"$plugin\" $out/share/\ndone\n\n# populate the outputs as individual plugins\n# can't think of a more generic way to handle this\n# bash doesn't allow for dashes '-' to be in a variable name\n# this means that the output names will need to differ slightly from the binary\nmv bin/plugins/aws-asg $aws_asg/share/\nmv bin/plugins/azure-vmss $azure_vmss/share/\nmv bin/plugins/datadog $datadog/share/\nmv bin/plugins/fixed-value $fixed_value/share/\nmv bin/plugins/gce-mig $gce_mig/share/\nmv bin/plugins/nomad-apm $nomad_apm/share/\nmv bin/plugins/nomad-target $nomad_target/share/\nmv bin/plugins/pass-through $pass_through/share/\nmv bin/plugins/prometheus $prometheus/share/\nmv bin/plugins/target-value $target_value/share/\nmv bin/plugins/threshold $threshold/share/\nrunHook postInstall\n";
       const doInstallCheck = true;
       const installCheckPhase = "rmdir bin/plugins || {\n  echo \"Not all plugins were extracted\"\n  echo \"Please move the following to their related output: $(ls bin/plugins)\"\n  exit 1\n}\n";
-      const passthru = nix.thunk(() => ({ [nix.POS]: pos$2, plugins: plugins, withPlugins: withPlugins }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: $pos[1], plugins: plugins, withPlugins: withPlugins }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Autoscaling daemon for Nomad",
         mainProgram: "nomad-autoscaler",
         homepage: "https://github.com/hashicorp/nomad-autoscaler",
@@ -56,7 +52,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         outputs,
@@ -76,7 +72,7 @@ export default nix.lambda((args) => (() => {
     return nix.app(nix.sel(lib, "genAttrs"), plugins_1, (output) => nix.sel(package$, nix.key(nix.force(output))));
   })());
   const withPlugins = (f) => nix.app(buildEnv, nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       name: "nomad-autoscaler-env",
       paths: nix.thunk(() => nix.concat([nix.thunk(() => nix.sel(package$, "bin"))], nix.app(f, plugins))),
     })));

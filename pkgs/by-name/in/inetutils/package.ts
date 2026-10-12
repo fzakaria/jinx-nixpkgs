@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 18, 5], ["hash", 19, 5]], [["name", 36, 7], ["url", 37, 7], ["hash", 38, 7]], [["name", 41, 7], ["url", 42, 7], ["hash", 43, 7]], [["name", 46, 7], ["url", 47, 7], ["excludes", 48, 7], ["hash", 52, 7]], [["name", 55, 7], ["url", 56, 7], ["excludes", 57, 7], ["hash", 58, 7]], [["name", 110, 45]], [["description", 121, 5], ["longDescription", 123, 5], ["homepage", 130, 5], ["license", 131, 5], ["maintainers", 133, 5], ["platforms", 134, 5], ["priority", 141, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["outputs", 22, 3], ["patches", 29, 3], ["strictDeps", 62, 3], ["nativeBuildInputs", 63, 3], ["buildInputs", 67, 3], ["preConfigure", 75, 3], ["configureFlags", 83, 3], ["doCheck", 97, 3], ["installFlags", 99, 3], ["postInstall", 101, 3], ["meta", 120, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, fetchpatch: false, ncurses: false, perl: false, help2man: false, apparmorRulesFromClosure: false, libxcrypt: false, "util-linux": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 36, 7], ["url", 37, 7], ["hash", 38, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 41, 7], ["url", 42, 7], ["hash", 43, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["name", 46, 7], ["url", 47, 7], ["excludes", 48, 7], ["hash", 52, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["name", 55, 7], ["url", 56, 7], ["excludes", 57, 7], ["hash", 58, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["name", 110, 45]]);
-const pos$7 = nix.positions(here + "/package.nix", [["description", 121, 5], ["longDescription", 123, 5], ["homepage", 130, 5], ["license", 131, 5], ["maintainers", 133, 5], ["platforms", 134, 5], ["priority", 141, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["outputs", 22, 3], ["patches", 29, 3], ["strictDeps", 62, 3], ["nativeBuildInputs", 63, 3], ["buildInputs", 67, 3], ["preConfigure", 75, 3], ["configureFlags", 83, 3], ["doCheck", 97, 3], ["installFlags", 99, 3], ["postInstall", 101, 3], ["meta", 120, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const libxcrypt = nix.arg($, "libxcrypt");
   const util_linux = nix.arg($, "util-linux");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => nix.attrsDyn({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "inetutils",
       version: "2.7",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnu/inetutils/inetutils-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-oVa+HN48XA/+/CYhgNk2mmBIQIeQeqVUxieH0vQOwIY=",
         })))),
@@ -38,26 +31,26 @@ export default nix.lambda((args) => (() => {
         nix.path(here, "./inetutils-1_9-PATH_PROCNET_DEV.patch"),
         nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? nix.path(here, "./tests-libls-2.sh.patch") : nix.path(here, "./tests-libls.sh.patch"))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "CVE-2026-24061_1.patch",
             url: "https://codeberg.org/inetutils/inetutils/commit/fd702c02497b2f398e739e3119bed0b23dd7aa7b.patch",
             hash: "sha256-d/FdQyLD0gYr+erFqKDr8Okf04DFXknFaN03ls2aonQ=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "CVE-2026-24061_2.patch",
             url: "https://codeberg.org/inetutils/inetutils/commit/ccba9f748aa8d50a38d7748e2e60362edd6a32cc.patch",
             hash: "sha256-ws+ed5vb7kVMHEbqK7yj6FUT355pTv2RZEYuXs5M7Io=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             name: "CVE-2026-28372.patch",
             url: "https://codeberg.org/inetutils/inetutils/commit/4db2f19f4caac03c7f4da6363c140bd70df31386.patch",
             excludes: nix.thunk(() => ["NEWS.md", "THANKS"]),
             hash: "sha256-ASgcaNC+yo3Hth4M32IVbD3jFt8mxcGtLfl+ULNt4Ag=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             name: "CVE-2026-32746.patch",
             url: "https://codeberg.org/inetutils/inetutils/commit/6864598a29b652a6b69a958f5cd1318aa2b258af.patch",
             excludes: nix.thunk(() => ["NEWS.md"]),
@@ -84,7 +77,7 @@ profile $out/bin/ping {
   include <abstractions/base>
   include <abstractions/consoles>
   include <abstractions/nameservice>
-  include "${nix.app(apparmorRulesFromClosure, nix.thunk(() => ({ [nix.POS]: pos$6, name: "ping" })), nix.thunk(() => [nix.thunk(() => nix.sel(stdenv, "cc", "libc"))]))}"
+  include "${nix.app(apparmorRulesFromClosure, nix.thunk(() => ({ [nix.POS]: $pos[5], name: "ping" })), nix.thunk(() => [nix.thunk(() => nix.sel(stdenv, "cc", "libc"))]))}"
   capability net_raw,
   network inet raw,
   network inet6 raw,
@@ -94,7 +87,7 @@ profile $out/bin/ping {
 EOF
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "Collection of common network programs",
         longDescription: "The GNU network utilities suite provides the\nfollowing tools: ftp(d), hostname, ifconfig, inetd, logger, ping, rcp,\nrexec(d), rlogin(d), rsh(d), syslogd, talk(d), telnet(d), tftp(d),\ntraceroute, uucpd, and whois.\n",
         homepage: "https://www.gnu.org/software/inetutils/",

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 39, 5], ["repo", 40, 5], ["tag", 41, 5], ["hash", 42, 5]], [["wrapperPath", 80, 13], ["updateScript", 82, 5]], [["description", 86, 5], ["homepage", 87, 5], ["license", 88, 5], ["maintainers", 89, 5], ["changelog", 94, 5], ["longDescription", 96, 5], ["mainProgram", 105, 5]], [["pname", 30, 3], ["version", 31, 3], ["nativeBuildInputs", 33, 3], ["src", 38, 3], ["vendorHash", 45, 3], ["subPackages", 47, 3], ["ldflags", 49, 3], ["postInstall", 56, 3], ["postFixup", 67, 3], ["doInstallCheck", 73, 3], ["nativeInstallCheckInputs", 74, 3], ["passthru", 79, 3], ["meta", 85, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, makeBinaryWrapper: false, buildGoModule: false, fetchFromGitHub: false, installShellFiles: false, gitMinimal: false, gnupg: false, xclip: false, "wl-clipboard": false, passAlias: true, "nix-update-script": false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 39, 5], ["repo", 40, 5], ["tag", 41, 5], ["hash", 42, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["wrapperPath", 80, 13], ["updateScript", 82, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 86, 5], ["homepage", 87, 5], ["license", 88, 5], ["maintainers", 89, 5], ["changelog", 94, 5], ["longDescription", 96, 5], ["mainProgram", 105, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 30, 3], ["version", 31, 3], ["nativeBuildInputs", 33, 3], ["src", 38, 3], ["vendorHash", 45, 3], ["subPackages", 47, 3], ["ldflags", 49, 3], ["postInstall", 56, 3], ["postFixup", 67, 3], ["doInstallCheck", 73, 3], ["nativeInstallCheckInputs", 74, 3], ["passthru", 79, 3], ["meta", 85, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,12 +22,12 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const wrapperPath = nix.thunk(() => nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => nix.concat([gitMinimal, gnupg, xclip], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [wl_clipboard]))))));
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "gopass",
       version: "1.17.3",
       nativeBuildInputs: nix.thunk(() => [installShellFiles, makeBinaryWrapper]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "gopasspw",
           repo: "gopass",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -52,12 +49,12 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook, gitMinimal]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         wrapperPath: wrapperPath,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Slightly more awesome Standard Unix Password Manager for Teams. Written in Go",
         homepage: "https://www.gopass.pw/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

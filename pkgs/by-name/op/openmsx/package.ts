@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5], ["fetchSubmodules", 33, 5]], [["name", 38, 7], ["url", 39, 7], ["hash", 40, 7]], [["TCL_CONFIG", 74, 7]], [["homepage", 77, 5], ["description", 78, 5], ["longDescription", 79, 5], ["license", 83, 5], ["maintainers", 88, 5], ["platforms", 89, 5], ["mainProgram", 90, 5]], [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["patches", 36, 3], ["nativeBuildInputs", 44, 3], ["buildInputs", 49, 3], ["postPatch", 66, 3], ["dontAddPrefix", 70, 3], ["env", 74, 3], ["meta", 76, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchpatch2: false, fetchFromGitHub: false, "pkg-config": false, SDL2: false, SDL2_image: false, SDL2_ttf: false, "alsa-lib": false, freetype: false, glew: false, libGL: false, libogg: false, libpng: false, libtheora: false, libvorbis: false, libx11: false, python3: false, tcl: false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5], ["fetchSubmodules", 33, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 38, 7], ["url", 39, 7], ["hash", 40, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["TCL_CONFIG", 74, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 77, 5], ["description", 78, 5], ["longDescription", 79, 5], ["license", 83, 5], ["maintainers", 88, 5], ["platforms", 89, 5], ["mainProgram", 90, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["patches", 36, 3], ["nativeBuildInputs", 44, 3], ["buildInputs", 49, 3], ["postPatch", 66, 3], ["dontAddPrefix", 70, 3], ["env", 74, 3], ["meta", 76, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,11 +28,11 @@ export default nix.lambda((args) => (() => {
   const tcl = nix.arg($, "tcl");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "openmsx",
       version: "20_0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "openMSX",
           repo: "openMSX",
           tag: nix.thunk(() => nix.str`RELEASE_${nix.builtins.replaceStrings(nix.thunk(() => ["."]), nix.thunk(() => ["_"]), nix.thunk(() => nix.sel(finalAttrs, "version")))}`),
@@ -45,7 +41,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "fix_view_operator.patch",
             url: "https://aur.archlinux.org/cgit/aur.git/plain/fix_view_operator.patch?h=openmsx&id=aa63ce478c7f528d60b79bcf4c9427101caa3b94",
             hash: "sha256-3wmUJQrM5P3zfFJt+HF32AchNSqCgFTnQ508Bztg4uA=",
@@ -71,9 +67,9 @@ export default nix.lambda((args) => (() => {
       postPatch: nix.thunk(() => nix.str`cp ${nix.path(here, "./custom-nix.mk")} build/custom.mk
 `),
       dontAddPrefix: true,
-      env: nix.thunk(() => ({ [nix.POS]: pos$3, TCL_CONFIG: nix.thunk(() => nix.str`${tcl}/lib/`) })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[2], TCL_CONFIG: nix.thunk(() => nix.str`${tcl}/lib/`) })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://openmsx.org",
         description: "MSX emulator that aims for perfection",
         longDescription: "OpenMSX is an emulator for the MSX home computer system. Its goal is\nto emulate all aspects of the MSX with 100% accuracy.\n",

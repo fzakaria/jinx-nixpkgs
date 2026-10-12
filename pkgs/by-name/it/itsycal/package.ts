@@ -2,16 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]], [["escape", 38, 51]], [["CFBundleDevelopmentRegion", 39, 5], ["CFBundleExecutable", 40, 5], ["CFBundleIdentifier", 41, 5], ["CFBundleInfoDictionaryVersion", 42, 5], ["CFBundleName", 43, 5], ["CFBundlePackageType", 44, 5], ["CFBundleShortVersionString", 45, 5], ["CFBundleVersion", 46, 5], ["NSHumanReadableCopyright", 47, 5]], [["owner", 55, 5], ["repo", 56, 5], ["tag", 57, 5], ["hash", 58, 5]], [["NIX_CFLAGS_LINK", 85, 7]], [["extraArgs", 221, 5]], [["updateScript", 219, 12]], [["changelog", 225, 5], ["description", 226, 5], ["homepage", 227, 5], ["license", 228, 5], ["mainProgram", 232, 5], ["maintainers", 233, 5], ["platforms", 237, 5], ["sourceProvenance", 238, 5]], [["pname", 51, 3], ["version", 52, 3], ["src", 54, 3], ["patches", 61, 3], ["strictDeps", 72, 3], ["nativeBuildInputs", 74, 3], ["env", 85, 3], ["dontConfigure", 87, 3], ["postPatch", 89, 3], ["buildPhase", 95, 3], ["installPhase", 153, 3], ["postFixup", 215, 3], ["passthru", 219, 3], ["meta", 224, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, actool: false, ibtool: false, lld: false, makeWrapper: false, rcodesign: false, "re-plistbuddy": false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["escape", 38, 51]]);
-const pos$3 = nix.positions(here + "/package.nix", [["CFBundleDevelopmentRegion", 39, 5], ["CFBundleExecutable", 40, 5], ["CFBundleIdentifier", 41, 5], ["CFBundleInfoDictionaryVersion", 42, 5], ["CFBundleName", 43, 5], ["CFBundlePackageType", 44, 5], ["CFBundleShortVersionString", 45, 5], ["CFBundleVersion", 46, 5], ["NSHumanReadableCopyright", 47, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["owner", 55, 5], ["repo", 56, 5], ["tag", 57, 5], ["hash", 58, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_LINK", 85, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["extraArgs", 221, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["updateScript", 219, 12]]);
-const pos$8 = nix.positions(here + "/package.nix", [["changelog", 225, 5], ["description", 226, 5], ["homepage", 227, 5], ["license", 228, 5], ["mainProgram", 232, 5], ["maintainers", 233, 5], ["platforms", 237, 5], ["sourceProvenance", 238, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["pname", 51, 3], ["version", 52, 3], ["src", 54, 3], ["patches", 61, 3], ["strictDeps", 72, 3], ["nativeBuildInputs", 74, 3], ["env", 85, 3], ["dontConfigure", 87, 3], ["postPatch", 89, 3], ["buildPhase", 95, 3], ["installPhase", 153, 3], ["postFixup", 215, 3], ["passthru", 219, 3], ["meta", 224, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,7 +18,7 @@ export default nix.lambda((args) => (() => {
   const re_plistbuddy = nix.arg($, "re-plistbuddy");
   const nix_update_script = nix.arg($, "nix-update-script");
   const masShortcutSrc = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "rxhanson",
       repo: "MASShortcut",
       rev: "2f9fbb3f959b7a683c6faaf9638d22afad37a235",
@@ -44,8 +36,8 @@ export default nix.lambda((args) => (() => {
     "User Defaults Storage/MASDictionaryTransformer.m",
     "User Defaults Storage/MASShortcutBinder.m",
   ]);
-  const masShortcutInfoPlist = nix.thunk(() => nix.app(nix.sel(lib, "generators", "toPlist"), nix.thunk(() => ({ [nix.POS]: pos$2, escape: true })), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+  const masShortcutInfoPlist = nix.thunk(() => nix.app(nix.sel(lib, "generators", "toPlist"), nix.thunk(() => ({ [nix.POS]: $pos[1], escape: true })), nix.thunk(() => ({
+      [nix.POS]: $pos[2],
       CFBundleDevelopmentRegion: "English",
       CFBundleExecutable: "MASShortcut",
       CFBundleIdentifier: "com.github.shpakovski.MASShortcut",
@@ -57,11 +49,11 @@ export default nix.lambda((args) => (() => {
       NSHumanReadableCopyright: "Copyright © Vadim Shpakovski. All rights reserved.",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       pname: "itsycal",
       version: "0.15.12",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           owner: "sfsam",
           repo: "Itsycal",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -75,7 +67,7 @@ export default nix.lambda((args) => (() => {
       ]),
       strictDeps: true,
       nativeBuildInputs: nix.thunk(() => [actool, ibtool, lld, makeWrapper, rcodesign, re_plistbuddy]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$5, NIX_CFLAGS_LINK: "-fuse-ld=lld" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[4], NIX_CFLAGS_LINK: "-fuse-ld=lld" })),
       dontConfigure: true,
       postPatch: "# Both upstream frameworks contain native code. MASShortcut is rebuilt\n# below and Sparkle is removed by patch 0002, so make accidental reuse fail.\nrm -rf Itsycal/_frameworks\n",
       buildPhase: nix.thunk(() => nix.str`runHook preBuild
@@ -192,14 +184,14 @@ runHook postInstall
 `),
       postFixup: "rcodesign sign \"$out/Applications/Itsycal.app\"\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             extraArgs: nix.thunk(() => ["--version-regex=^([0-9]+\\.[0-9]+\\.[0-9]+)$"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         changelog: "https://www.mowglii.com/itsycal/versionhistory.html",
         description: "Tiny menu bar calendar",
         homepage: "https://www.mowglii.com/itsycal/",

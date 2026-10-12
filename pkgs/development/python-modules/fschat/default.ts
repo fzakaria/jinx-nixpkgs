@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 41, 5], ["repo", 42, 5], ["tag", 43, 5], ["hash", 44, 5]], [["llm_judge", 67, 5], ["train", 72, 5], ["webui", 77, 5], ["model_worker", 78, 5]], [["description", 94, 5], ["homepage", 95, 5], ["license", 96, 5], ["maintainers", 97, 5]], [["pname", 36, 3], ["version", 37, 11], ["pyproject", 38, 3], ["src", 40, 3], ["nativeBuildInputs", 47, 3], ["propagatedBuildInputs", 49, 3], ["optional-dependencies", 66, 3], ["pythonImportsCheck", 88, 3], ["doCheck", 91, 3], ["meta", 93, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, aiohttp: false, fastapi: false, httpx: false, markdown2: false, nh3: false, numpy: false, "prompt-toolkit": false, pydantic: false, requests: false, rich: false, shortuuid: false, tiktoken: false, uvicorn: false, anthropic: false, openai: false, ray: false, wandb: false, einops: false, gradio: false, accelerate: false, peft: false, sentencepiece: false, torch: false, transformers: false, protobuf: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 41, 5], ["repo", 42, 5], ["tag", 43, 5], ["hash", 44, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["llm_judge", 67, 5], ["train", 72, 5], ["webui", 77, 5], ["model_worker", 78, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 94, 5], ["homepage", 95, 5], ["license", 96, 5], ["maintainers", 97, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 36, 3], ["version", 37, 11], ["pyproject", 38, 3], ["src", 40, 3], ["nativeBuildInputs", 47, 3], ["propagatedBuildInputs", 49, 3], ["optional-dependencies", 66, 3], ["pythonImportsCheck", 88, 3], ["doCheck", 91, 3], ["meta", 93, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -41,12 +38,12 @@ export default nix.lambda((args) => (() => {
   const protobuf = nix.arg($, "protobuf");
   const version = "0.2.36";
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "fschat",
       version: version,
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "lm-sys",
           repo: "FastChat",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -69,7 +66,7 @@ export default nix.lambda((args) => (() => {
         uvicorn,
       ]),
       "optional-dependencies": nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         llm_judge: nix.thunk(() => [anthropic, openai, ray]),
         train: nix.thunk(() => [wandb, einops]),
         webui: nix.thunk(() => [gradio]),
@@ -78,7 +75,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["fastchat"]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Open platform for training, serving, and evaluating large language models. Release repo for Vicuna and Chatbot Arena",
         homepage: "https://github.com/lm-sys/FastChat",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

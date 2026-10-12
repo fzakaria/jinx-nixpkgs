@@ -2,18 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["description", 26, 5], ["homepage", 27, 5], ["license", 28, 5], ["platforms", 29, 5], ["maintainers", 30, 5]], [["owner", 34, 5], ["repo", 35, 5], ["tag", 36, 5], ["hash", 37, 5]], [["description", 64, 7]], [["pname", 42, 5], ["version", 43, 13], ["src", 43, 21], ["nodejs", 43, 25], ["sourceRoot", 45, 5], ["npmDepsHash", 47, 5], ["npmBuildScript", 49, 5], ["dontNpmPrune", 51, 5], ["installPhase", 53, 5], ["meta", 63, 5]], [["description", 86, 7]], [["pname", 70, 5], ["version", 71, 5], ["src", 72, 13], ["sourceRoot", 74, 5], ["doCheck", 77, 5], ["buildInputs", 79, 5], ["cargoHash", 83, 5], ["meta", 85, 5]], [["url", 92, 5], ["hash", 93, 5]], [["extraArgs", 133, 9]], [["quint-cli", 126, 7], ["quint-evaluator", 127, 7], ["apalacheDist", 128, 7], ["apalacheVersion", 129, 7], ["updateScript", 131, 5]], [["mainProgram", 149, 5]], [["pname", 97, 3], ["version", 98, 11], ["src", 98, 19], ["nativeBuildInputs", 100, 3], ["dontBuild", 102, 3], ["dontConfigure", 104, 3], ["installPhase", 106, 3], ["passthru", 124, 3], ["meta", 148, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, rustPlatform: false, fetchFromGitHub: false, nodejs: false, makeWrapper: false, jre: false, fetchzip: false, buildNpmPackage: false, "_experimental-update-script-combinators": false, "nix-update-script": false, writeShellScript: false, gnugrep: false, "nix-update": false, "common-updater-scripts": false, libiconv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["description", 26, 5], ["homepage", 27, 5], ["license", 28, 5], ["platforms", 29, 5], ["maintainers", 30, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 34, 5], ["repo", 35, 5], ["tag", 36, 5], ["hash", 37, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 64, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 42, 5], ["version", 43, 13], ["src", 43, 21], ["nodejs", 43, 25], ["sourceRoot", 45, 5], ["npmDepsHash", 47, 5], ["npmBuildScript", 49, 5], ["dontNpmPrune", 51, 5], ["installPhase", 53, 5], ["meta", 63, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 86, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 70, 5], ["version", 71, 5], ["src", 72, 13], ["sourceRoot", 74, 5], ["doCheck", 77, 5], ["buildInputs", 79, 5], ["cargoHash", 83, 5], ["meta", 85, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["url", 92, 5], ["hash", 93, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["extraArgs", 133, 9]]);
-const pos$9 = nix.positions(here + "/package.nix", [["quint-cli", 126, 7], ["quint-evaluator", 127, 7], ["apalacheDist", 128, 7], ["apalacheVersion", 129, 7], ["updateScript", 131, 5]]);
-const pos$10 = nix.positions(here + "/package.nix", [["mainProgram", 149, 5]]);
-const pos$11 = nix.positions(here + "/package.nix", [["pname", 97, 3], ["version", 98, 11], ["src", 98, 19], ["nativeBuildInputs", 100, 3], ["dontBuild", 102, 3], ["dontConfigure", 104, 3], ["installPhase", 106, 3], ["passthru", 124, 3], ["meta", 148, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -37,7 +27,7 @@ export default nix.lambda((args) => (() => {
   const apalacheVersion = "0.62.1";
   const evaluatorVersion = "0.7.0";
   const metaCommon = nix.thunk(() => ({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     description: "Formal specification language with TLA+ semantics",
     homepage: "https://quint-lang.org",
     license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -48,14 +38,14 @@ export default nix.lambda((args) => (() => {
     })()),
   }));
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       owner: "quint-co",
       repo: "quint",
       tag: nix.thunk(() => nix.str`v${version}`),
       hash: "sha256-ywcK3GahcA/GWoKTAYr9lSU7k2r1OfA5OALp4f04Vxs=",
     }))));
   const quint_cli = nix.thunk(() => nix.app(buildNpmPackage, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "quint-cli",
       version: version,
       src: src,
@@ -66,12 +56,12 @@ export default nix.lambda((args) => (() => {
       dontNpmPrune: true,
       installPhase: "runHook preInstall\n\nmkdir -p $out/share/quint\ncp -r node_modules $out/share/quint\ncp -r dist $out/share/quint\n\nrunHook postInstall\n",
       meta: nix.thunk(() => nix.update(metaCommon, {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "CLI for the Quint formal specification language",
       })),
     }))));
   const quint_evaluator = nix.thunk(() => nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "quint-evaluator",
       version: evaluatorVersion,
       src: src,
@@ -80,17 +70,17 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [libiconv]))),
       cargoHash: "sha256-aGVs/J+lAPHOsi01xShfZHBeUjd6eONpraNuMkaVfO8=",
       meta: nix.thunk(() => nix.update(metaCommon, {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Evaluator for the Quint formal specification language",
       })),
     }))));
   const apalacheDist = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       url: nix.thunk(() => nix.str`https://github.com/apalache-mc/apalache/releases/download/v${apalacheVersion}/apalache.tgz`),
       hash: "sha256-/BLs3nfUuYeGhBmiA/Fa0mzOyKibMHdnG9rU/6ZU6ZM=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$11,
+      [nix.POS]: $pos[10],
       pname: "quint",
       version: version,
       src: src,
@@ -114,13 +104,16 @@ chmod +x $out/share/quint/apalache-dist-${apalacheVersion}/apalache/bin/apalache
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         "quint-cli": quint_cli,
         "quint-evaluator": quint_evaluator,
         apalacheDist: apalacheDist,
         apalacheVersion: apalacheVersion,
         updateScript: nix.thunk(() => nix.app(nix.sel(_experimental_update_script_combinators, "sequence"), nix.thunk(() => [
-            nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$8, extraArgs: nix.thunk(() => ["--subpackage", "quint-cli"]) })))),
+            nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
+                [nix.POS]: $pos[7],
+                extraArgs: nix.thunk(() => ["--subpackage", "quint-cli"]),
+              })))),
             nix.thunk(() => nix.app(writeShellScript, "update", nix.thunk(() => nix.str`src=$(nix build --print-out-paths --no-link .#quint.src)
 QUINT_EVALUATOR_VERSION=$(${nix.app(nix.sel(lib, "getExe"), gnugrep)} -m1 "const QUINT_EVALUATOR_VERSION" $src/quint/src/rust/binaryManager.ts | sed -E "s/.*= 'v?([^']+)'.*/\\1/")
 ${nix.app(nix.sel(lib, "getExe"), nix_update)} quint.quint-evaluator --version $QUINT_EVALUATOR_VERSION
@@ -129,7 +122,7 @@ ${nix.app(nix.sel(lib, "getExe'"), common_updater_scripts, "update-source-versio
 `))),
           ]))),
       })),
-      meta: nix.thunk(() => nix.update(metaCommon, { [nix.POS]: pos$10, mainProgram: "quint" })),
+      meta: nix.thunk(() => nix.update(metaCommon, { [nix.POS]: $pos[9], mainProgram: "quint" })),
     }));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

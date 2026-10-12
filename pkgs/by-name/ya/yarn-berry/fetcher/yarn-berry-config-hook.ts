@@ -2,10 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/yarn-berry-config-hook.nix", [[["diff", 15, 5], ["yarn_offline", 17, 5], ["nodeSrc", 19, 5], ["nodeGyp", 20, 5]], [["description", 23, 5], ["license", 24, 5]], [["name", 11, 3], ["substitutions", 12, 3], ["meta", 22, 3]]]);
 const formals$1 = { args: { lib: false, makeSetupHook: false, "yarn-berry-offline": false, srcOnly: false, nodejs: false, diffutils: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/yarn-berry-config-hook.nix", [["diff", 15, 5], ["yarn_offline", 17, 5], ["nodeSrc", 19, 5], ["nodeGyp", 20, 5]]);
-const pos$2 = nix.positions(here + "/yarn-berry-config-hook.nix", [["description", 23, 5], ["license", 24, 5]]);
-const pos$3 = nix.positions(here + "/yarn-berry-config-hook.nix", [["name", 11, 3], ["substitutions", 12, 3], ["meta", 22, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,17 +14,17 @@ export default nix.lambda((args) => (() => {
   const nodejs = nix.arg($, "nodejs");
   const diffutils = nix.arg($, "diffutils");
   return nix.app(makeSetupHook, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       name: "yarn-berry-config-hook",
       substitutions: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         diff: nix.thunk(() => nix.str`${diffutils}/bin/diff`),
         yarn_offline: nix.thunk(() => nix.str`${yarn_berry_offline}/bin/yarn`),
         nodeSrc: nix.thunk(() => nix.app(srcOnly, nodejs)),
         nodeGyp: nix.thunk(() => nix.str`${nodejs}/lib/node_modules/npm/node_modules/node-gyp/bin/node-gyp.js`),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Install nodejs dependencies from an offline yarn cache produced by fetchYarnDeps",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       })),

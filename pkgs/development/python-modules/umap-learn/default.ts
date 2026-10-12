@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 41, 5], ["repo", 42, 5], ["tag", 43, 5], ["hash", 44, 5]], [["plot", 59, 5], ["parametric_umap", 71, 5], ["tbb", 76, 5]], [["description", 103, 5], ["homepage", 104, 5], ["changelog", 105, 5], ["license", 106, 5], ["maintainers", 107, 5]], [["pname", 36, 3], ["version", 37, 3], ["pyproject", 38, 3], ["src", 40, 3], ["build-system", 47, 3], ["dependencies", 49, 3], ["optional-dependencies", 58, 3], ["nativeCheckInputs", 82, 3], ["disabledTests", 87, 3], ["meta", 102, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, numba: false, numpy: false, pynndescent: false, "scikit-learn": false, scipy: false, tqdm: false, bokeh: false, colorcet: false, dask: false, datashader: false, holoviews: false, matplotlib: false, pandas: false, "scikit-image": false, seaborn: false, tensorflow: false, "tensorflow-probability": false, pytestCheckHook: false, writableTmpDirAsHomeHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 41, 5], ["repo", 42, 5], ["tag", 43, 5], ["hash", 44, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["plot", 59, 5], ["parametric_umap", 71, 5], ["tbb", 76, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 103, 5], ["homepage", 104, 5], ["changelog", 105, 5], ["license", 106, 5], ["maintainers", 107, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 36, 3], ["version", 37, 3], ["pyproject", 38, 3], ["src", 40, 3], ["build-system", 47, 3], ["dependencies", 49, 3], ["optional-dependencies", 58, 3], ["nativeCheckInputs", 82, 3], ["disabledTests", 87, 3], ["meta", 102, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,12 +31,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "umap-learn",
       version: "0.5.12",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "lmcinnes",
           repo: "umap",
           tag: nix.thunk(() => nix.str`release-${nix.sel(finalAttrs, "version")}`),
@@ -48,7 +45,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [setuptools]),
       dependencies: nix.thunk(() => [numba, numpy, pynndescent, scikit_learn, scipy, tqdm]),
       "optional-dependencies": nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         plot: nix.thunk(() => [
           bokeh,
           colorcet,
@@ -73,7 +70,7 @@ export default nix.lambda((args) => (() => {
         "test_save_load",
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Uniform Manifold Approximation and Projection",
         homepage: "https://github.com/lmcinnes/umap",
         changelog: nix.thunk(() => nix.str`https://github.com/lmcinnes/umap/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

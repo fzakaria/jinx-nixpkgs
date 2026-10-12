@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]], [["description", 28, 5], ["longDescription", 29, 5], ["maintainers", 36, 5], ["license", 37, 5], ["homepage", 38, 5], ["platforms", 39, 5], ["mainProgram", 40, 5]], [["pname", 10, 3], ["version", 11, 11], ["src", 13, 3], ["installPhase", 20, 3], ["meta", 27, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 28, 5], ["longDescription", 29, 5], ["maintainers", 36, 5], ["license", 37, 5], ["homepage", 38, 5], ["platforms", 39, 5], ["mainProgram", 40, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 11], ["src", 13, 3], ["installPhase", 20, 3], ["meta", 27, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const version = "3.0.0";
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "lavat",
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "AngelJumbo",
           repo: "lavat",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -26,7 +24,7 @@ export default nix.lambda((args) => (() => {
         })))),
       installPhase: "runHook preInstall\nmkdir -p $out/bin\ncp lavat $out/bin\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Lava lamp simulation in the terminal",
         longDescription: "Lavat puts ascii metaballs in your terminal to make it look a bit like a\nlava lamp.\n\nLavat contains various options, including those to change the color and\nspeed of the metaballs. For a full list, run `lavat -h`\n",
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "minion3665"))]),

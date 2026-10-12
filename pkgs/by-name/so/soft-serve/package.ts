@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]], [["tests", 46, 12]], [["description", 49, 5], ["homepage", 50, 5], ["changelog", 51, 5], ["mainProgram", 52, 5], ["license", 53, 5], ["maintainers", 54, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["vendorHash", 22, 3], ["doCheck", 24, 3], ["ldflags", 26, 3], ["nativeBuildInputs", 32, 3], ["postInstall", 34, 3], ["passthru", 46, 3], ["meta", 48, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitHub: false, makeWrapper: false, nixosTests: false, git: false, bash: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["tests", 46, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 49, 5], ["homepage", 50, 5], ["changelog", 51, 5], ["mainProgram", 52, 5], ["license", 53, 5], ["maintainers", 54, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["vendorHash", 22, 3], ["doCheck", 24, 3], ["ldflags", 26, 3], ["nativeBuildInputs", 32, 3], ["postInstall", 34, 3], ["passthru", 46, 3], ["meta", 48, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const git = nix.arg($, "git");
   const bash = nix.arg($, "bash");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "soft-serve",
       version: "0.12.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "charmbracelet",
           repo: "soft-serve",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -41,9 +38,12 @@ export default nix.lambda((args) => (() => {
 wrapProgram $out/bin/soft \\
   --prefix PATH : "${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [git, bash]))}"
 `),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, tests: nix.thunk(() => nix.sel(nixosTests, "soft-serve")) })),
+      passthru: nix.thunk(() => ({
+        [nix.POS]: $pos[1],
+        tests: nix.thunk(() => nix.sel(nixosTests, "soft-serve")),
+      })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Tasty, self-hosted Git server for the command line",
         homepage: "https://github.com/charmbracelet/soft-serve",
         changelog: nix.thunk(() => nix.str`https://github.com/charmbracelet/soft-serve/releases/tag/v${nix.sel(finalAttrs, "version")}`),

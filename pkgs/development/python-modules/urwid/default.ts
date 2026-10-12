@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]], [["curses", 48, 5], ["glib", 49, 5], ["tornado", 50, 5], ["trio", 51, 5], ["twisted", 52, 5], ["zmq", 53, 5], ["serial", 54, 5], ["lcd", 55, 5]], [["LC_ALL", 64, 7]], [["description", 81, 5], ["changelog", 82, 5], ["downloadPage", 83, 5], ["homepage", 84, 5], ["license", 85, 5], ["maintainers", 86, 5]], [["pname", 22, 3], ["version", 23, 3], ["pyproject", 24, 3], ["src", 26, 3], ["postPatch", 33, 3], ["build-system", 37, 3], ["dependencies", 42, 3], ["optional-dependencies", 47, 3], ["nativeCheckInputs", 58, 3], ["env", 64, 3], ["enabledTestPaths", 66, 3], ["disabledTests", 68, 3], ["disabledTestPaths", 73, 3], ["pythonImportsCheck", 78, 3], ["meta", 80, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, exceptiongroup: false, fetchFromGitHub: false, glibcLocales: false, pygobject3: false, pyserial: false, pytestCheckHook: false, pythonOlder: false, pyzmq: false, setuptools: false, "setuptools-scm": false, tornado: false, trio: false, twisted: false, "typing-extensions": false, wcwidth: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["curses", 48, 5], ["glib", 49, 5], ["tornado", 50, 5], ["trio", 51, 5], ["twisted", 52, 5], ["zmq", 53, 5], ["serial", 54, 5], ["lcd", 55, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["LC_ALL", 64, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 81, 5], ["changelog", 82, 5], ["downloadPage", 83, 5], ["homepage", 84, 5], ["license", 85, 5], ["maintainers", 86, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 22, 3], ["version", 23, 3], ["pyproject", 24, 3], ["src", 26, 3], ["postPatch", 33, 3], ["build-system", 37, 3], ["dependencies", 42, 3], ["optional-dependencies", 47, 3], ["nativeCheckInputs", 58, 3], ["env", 64, 3], ["enabledTestPaths", 66, 3], ["disabledTests", 68, 3], ["disabledTestPaths", 73, 3], ["pythonImportsCheck", 78, 3], ["meta", 80, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.0.5";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "urwid",
           repo: "urwid",
           tag: version,
@@ -43,7 +39,7 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [setuptools, setuptools_scm]);
       const dependencies = nix.thunk(() => [typing_extensions, wcwidth]);
       const optional_dependencies = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         curses: [],
         glib: nix.thunk(() => [pygobject3]),
         tornado: nix.thunk(() => [tornado]),
@@ -54,13 +50,13 @@ export default nix.lambda((args) => (() => {
         lcd: nix.thunk(() => [pyserial]),
       }));
       const nativeCheckInputs = nix.thunk(() => nix.concat([glibcLocales, pytestCheckHook], nix.app(nix.sel(lib, "concatAttrValues"), optional_dependencies)));
-      const env = nix.thunk(() => ({ [nix.POS]: pos$3, LC_ALL: "en_US.UTF8" }));
+      const env = nix.thunk(() => ({ [nix.POS]: $pos[2], LC_ALL: "en_US.UTF8" }));
       const enabledTestPaths = nix.thunk(() => ["tests"]);
       const disabledTests = nix.thunk(() => ["TwistedEventLoopTest"]);
       const disabledTestPaths = nix.thunk(() => ["tests/test_vterm.py"]);
       const pythonImportsCheck = nix.thunk(() => ["urwid"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Full-featured console (xterm et al.) user interface library",
         changelog: nix.thunk(() => nix.str`https://github.com/urwid/urwid/releases/tag/${nix.sel(src, "tag")}`),
         downloadPage: "https://github.com/urwid/urwid",
@@ -69,7 +65,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         pyproject,

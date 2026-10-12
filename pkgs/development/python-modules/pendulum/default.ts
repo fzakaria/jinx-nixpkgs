@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]], [["pname", 40, 26], ["version", 40, 32], ["src", 40, 40], ["sourceRoot", 41, 5], ["hash", 42, 5]], [["description", 71, 5], ["homepage", 72, 5], ["changelog", 73, 5], ["license", 74, 5], ["maintainers", 75, 5]], [["pname", 20, 3], ["version", 21, 3], ["pyproject", 22, 3], ["src", 24, 3], ["patches", 31, 3], ["cargoRoot", 38, 3], ["cargoDeps", 39, 3], ["nativeBuildInputs", 45, 3], ["dependencies", 50, 3], ["pythonImportsCheck", 55, 3], ["nativeCheckInputs", 57, 3], ["disabledTestPaths", 62, 3], ["meta", 70, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitHub: false, rustPlatform: false, "python-dateutil": false, tzdata: false, pytestCheckHook: false, "time-machine": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 40, 26], ["version", 40, 32], ["src", 40, 40], ["sourceRoot", 41, 5], ["hash", 42, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 71, 5], ["homepage", 72, 5], ["changelog", 73, 5], ["license", 74, 5], ["maintainers", 75, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 20, 3], ["version", 21, 3], ["pyproject", 22, 3], ["src", 24, 3], ["patches", 31, 3], ["cargoRoot", 38, 3], ["cargoDeps", 39, 3], ["nativeBuildInputs", 45, 3], ["dependencies", 50, 3], ["pythonImportsCheck", 55, 3], ["nativeCheckInputs", 57, 3], ["disabledTestPaths", 62, 3], ["meta", 70, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const time_machine = nix.arg($, "time-machine");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "pendulum",
       version: "3.2.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "sdispater",
           repo: "pendulum",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -34,7 +31,7 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [nix.path(here, "./delete-obsolete-cargo-toml.patch")]),
       cargoRoot: "rust",
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -50,7 +47,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook, time_machine]),
       disabledTestPaths: nix.thunk(() => nix.concat(["tests/benchmarks"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["tests/testing/test_time_travel.py"])))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Python datetimes made easy",
         homepage: "https://github.com/sdispater/pendulum",
         changelog: nix.thunk(() => nix.str`https://github.com/sdispater/pendulum/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

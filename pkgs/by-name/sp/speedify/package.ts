@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 16, 5], ["hash", 17, 5]], [["homepage", 50, 5], ["description", 51, 5], ["longDescription", 52, 5], ["sourceProvenance", 57, 5], ["license", 58, 5], ["platforms", 59, 5], ["maintainers", 60, 5]], [["pname", 11, 3], ["version", 13, 3], ["src", 15, 3], ["nativeBuildInputs", 20, 3], ["buildInputs", 25, 3], ["installPhase", 30, 3], ["meta", 49, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, dpkg: false, fetchurl: false, libgcc: false, libnetfilter_conntrack: false, autoPatchelfHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 50, 5], ["description", 51, 5], ["longDescription", 52, 5], ["sourceProvenance", 57, 5], ["license", 58, 5], ["platforms", 59, 5], ["maintainers", 60, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 13, 3], ["src", 15, 3], ["nativeBuildInputs", 20, 3], ["buildInputs", 25, 3], ["installPhase", 30, 3], ["meta", 49, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const libnetfilter_conntrack = nix.arg($, "libnetfilter_conntrack");
   const autoPatchelfHook = nix.arg($, "autoPatchelfHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "speedify",
       version: "16.7.0-12928",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://apt.connectify.me/pool/main/s/speedify/speedify_${nix.sel(finalAttrs, "version")}_amd64.deb`),
           hash: "sha256-A77LYBGLAgoRFV64/ZmpTL76NQx6xHq0a7leDYi9Izg=",
         })))),
@@ -29,7 +27,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [libgcc, libnetfilter_conntrack]),
       installPhase: "runHook preInstall\n\nsubstituteInPlace \"usr/share/speedify/SpeedifyStartup.sh\" \"usr/share/speedify/SpeedifyShutdown.sh\" \"usr/share/speedify/GenerateLogs.sh\" \\\n  --replace-fail '/usr/share/' \"$out/share/\"\nsubstituteInPlace \"usr/share/speedify/SpeedifyStartup.sh\" \\\n  --replace-fail 'logs' \"/var/log/speedify\"\n\nmkdir -p $out/share/\nmv usr/share $out/\nmkdir -p $out/etc/\nmv lib/systemd $out/etc/\n\nmkdir -p $out/bin\nln -s $out/share/speedify/speedify_cli $out/bin/speedify_cli\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://speedify.com/",
         description: "Use multiple internet connections in parallel",
         longDescription: "Combine multiple internet connections (Wi-Fi, 4G, 5G, Ethernet, Starlink, Satellite, and more)\nto improve the stability, speed, and security of your online experiences.\nCheck corresponding option {option}`services.speedify.enable`\n",

@@ -2,11 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/wrapper.nix", [[["pkg-config", 66, 63], ["standalone", 67, 5]], [["tests", 65, 12]], [["description", 71, 5], ["priority", 72, 5]], [["pname", 14, 3], ["version", 15, 46], ["dontUnpack", 17, 3], ["dontConfigure", 18, 3], ["dontBuild", 19, 3], ["strictDeps", 21, 3], ["nativeBuildInputs", 23, 3], ["buildInputs", 29, 3], ["installPhase", 35, 3], ["dontWrapGApps", 56, 3], ["preFixup", 58, 3], ["passthru", 65, 3], ["meta", 70, 3]]]);
 const formals$1 = { args: { stdenvNoCC: false, lib: false, nixosTests: false, glib: false, lndir: false, "lomiri-system-settings-unwrapped": false, wrapGAppsHook3: false, wrapQtAppsHook: false, plugins: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/wrapper.nix", [["pkg-config", 66, 63], ["standalone", 67, 5]]);
-const pos$2 = nix.positions(here + "/wrapper.nix", [["tests", 65, 12]]);
-const pos$3 = nix.positions(here + "/wrapper.nix", [["description", 71, 5], ["priority", 72, 5]]);
-const pos$4 = nix.positions(here + "/wrapper.nix", [["pname", 14, 3], ["version", 15, 46], ["dontUnpack", 17, 3], ["dontConfigure", 18, 3], ["dontBuild", 19, 3], ["strictDeps", 21, 3], ["nativeBuildInputs", 23, 3], ["buildInputs", 29, 3], ["installPhase", 35, 3], ["dontWrapGApps", 56, 3], ["preFixup", 58, 3], ["passthru", 65, 3], ["meta", 70, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,7 +17,7 @@ export default nix.lambda((args) => (() => {
   const wrapQtAppsHook = nix.arg($, "wrapQtAppsHook");
   const plugins = nix.argOr($, "plugins", () => []);
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "lomiri-system-settings",
       version: nix.thunk(() => nix.attr(lomiri_system_settings_unwrapped, "version")),
       dontUnpack: true,
@@ -51,18 +48,18 @@ runHook postInstall
       dontWrapGApps: true,
       preFixup: "qtWrapperArgs+=(\n  \"${gappsWrapperArgs[@]}\"\n  --set NIX_LSS_PREFIX \"$out\"\n)\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         tests: nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(lomiri_system_settings_unwrapped, "passthru", "tests"));
           return {
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           "pkg-config": nix.thunk(() => nix.attr(from, "pkg-config")),
           standalone: nix.thunk(() => nix.sel(nixosTests, "lomiri-system-settings")),
         };
         })()),
       })),
       meta: nix.thunk(() => nix.update(nix.sel(lomiri_system_settings_unwrapped, "meta"), {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "System Settings application for Lomiri (wrapped)",
         priority: nix.thunk(() => nix.sub(nix.selOr(lomiri_system_settings_unwrapped, () => nix.sel(lib, "meta", "defaultPriority"), "meta", "priority"), 1n)),
       })),

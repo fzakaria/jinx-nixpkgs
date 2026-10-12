@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 31, 5], ["repo", 32, 5], ["tag", 33, 5], ["hash", 34, 5]], [["rtorrent", 82, 36]], [["attrPath", 84, 28]], [["libtorrent-rakshasa", 81, 13], ["tests", 82, 5], ["updateScript", 83, 5]], [["description", 90, 5], ["homepage", 91, 5], ["license", 92, 5], ["mainProgram", 93, 5], ["maintainers", 94, 5], ["platforms", 97, 5]], [["pname", 25, 3], ["version", 26, 3], ["__structuredAttrs", 28, 3], ["src", 30, 3], ["outputs", 37, 3], ["strictDeps", 42, 3], ["nativeBuildInputs", 44, 3], ["buildInputs", 51, 3], ["configureFlags", 62, 3], ["enableParallelBuilding", 68, 3], ["postInstall", 70, 3], ["doInstallCheck", 75, 3], ["nativeInstallCheckInputs", 76, 3], ["versionCheckProgramArg", 77, 3], ["versionCheckKeepEnvironment", 78, 3], ["passthru", 80, 3], ["meta", 89, 3]]]);
 const formals$1 = { args: { "_experimental-update-script-combinators": false, autoreconfHook: false, cppunit: false, curl: false, fetchFromGitHub: false, installShellFiles: false, lib: false, libtool: false, "libtorrent-rakshasa": false, lua5_4_compat: false, ncurses: false, "nix-update-script": false, nixosTests: false, openssl: false, "pkg-config": false, stdenv: false, versionCheckHook: false, writableTmpDirAsHomeHook: false, withLua: true, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 31, 5], ["repo", 32, 5], ["tag", 33, 5], ["hash", 34, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["rtorrent", 82, 36]]);
-const pos$3 = nix.positions(here + "/package.nix", [["attrPath", 84, 28]]);
-const pos$4 = nix.positions(here + "/package.nix", [["libtorrent-rakshasa", 81, 13], ["tests", 82, 5], ["updateScript", 83, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 90, 5], ["homepage", 91, 5], ["license", 92, 5], ["mainProgram", 93, 5], ["maintainers", 94, 5], ["platforms", 97, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 25, 3], ["version", 26, 3], ["__structuredAttrs", 28, 3], ["src", 30, 3], ["outputs", 37, 3], ["strictDeps", 42, 3], ["nativeBuildInputs", 44, 3], ["buildInputs", 51, 3], ["configureFlags", 62, 3], ["enableParallelBuilding", 68, 3], ["postInstall", 70, 3], ["doInstallCheck", 75, 3], ["nativeInstallCheckInputs", 76, 3], ["versionCheckProgramArg", 77, 3], ["versionCheckKeepEnvironment", 78, 3], ["passthru", 80, 3], ["meta", 89, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,12 +28,12 @@ export default nix.lambda((args) => (() => {
   const withLua = nix.argOr($, "withLua", () => false);
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "rtorrent",
       version: "0.16.22",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "rakshasa",
           repo: "rtorrent",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -56,19 +51,19 @@ export default nix.lambda((args) => (() => {
       versionCheckProgramArg: "-h",
       versionCheckKeepEnvironment: nix.thunk(() => ["HOME"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         "libtorrent-rakshasa": libtorrent_rakshasa,
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           rtorrent: nix.thunk(() => nix.attr(nixosTests, "rtorrent")),
         })),
         updateScript: nix.thunk(() => nix.app(nix.sel(_experimental_update_script_combinators, "sequence"), nix.thunk(() => [
-            nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$3, attrPath: "libtorrent-rakshasa" })))),
+            nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: $pos[2], attrPath: "libtorrent-rakshasa" })))),
             nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
           ]))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Ncurses client for libtorrent, ideal for use with screen, tmux, or dtach",
         homepage: "https://rakshasa.github.io/rtorrent/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

@@ -2,14 +2,9 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["vmopts", 18, 13], ["excludeDrvArgNames", 22, 5]], [["ide", 60, 56]], [["plugins", 60, 11]], [["buildNumber", 51, 11], ["product", 52, 11], ["jetbrains-libdbm", 53, 11], ["fsnotifier", 54, 11], ["updateScript", 57, 9], ["tests", 59, 9]], [["passthru", 49, 7]], [["constructDrv", 17, 3], ["extendDrvArgs", 34, 3]]]);
 const formals$1 = { args: { callPackage: false, lib: false, stdenv: false, vmopts: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["vmopts", 18, 13], ["excludeDrvArgNames", 22, 5]]);
 const formals$2 = { args: { buildNumber: false, product: false, "jetbrains-libdbm": false, fsnotifier: false, meta: true, passthru: true }, ellipsis: true };
-const pos$2 = nix.positions(here + "/default.nix", [["ide", 60, 56]]);
-const pos$3 = nix.positions(here + "/default.nix", [["plugins", 60, 11]]);
-const pos$4 = nix.positions(here + "/default.nix", [["buildNumber", 51, 11], ["product", 52, 11], ["jetbrains-libdbm", 53, 11], ["fsnotifier", 54, 11], ["updateScript", 57, 9], ["tests", 59, 9]]);
-const pos$5 = nix.positions(here + "/default.nix", [["passthru", 49, 7]]);
-const pos$6 = nix.positions(here + "/default.nix", [["constructDrv", 17, 3], ["extendDrvArgs", 34, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,9 +14,9 @@ export default nix.lambda((args) => (() => {
   const vmopts = nix.argOr($, "vmopts", () => null);
   const baseBuilder = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? nix.path(here, "./darwin.nix") : nix.path(here, "./linux.nix")));
   return nix.app(nix.sel(lib, "extendMkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       constructDrv: nix.thunk(() => nix.app(callPackage, baseBuilder, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           vmopts: vmopts,
           excludeDrvArgNames: nix.thunk(() => [
             "product",
@@ -43,17 +38,20 @@ export default nix.lambda((args) => (() => {
         const meta = nix.argOr($_1, "meta", () => ({}));
         const passthru = nix.argOr($_1, "passthru", () => ({}));
         return {
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           passthru: nix.thunk(() => nix.update(passthru, {
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             buildNumber: buildNumber,
             product: product,
             "jetbrains-libdbm": jetbrains_libdbm,
             fsnotifier: fsnotifier,
             updateScript: nix.path(here, "../updater/main.py"),
             tests: nix.thunk(() => ({
-              [nix.POS]: pos$3,
-              plugins: nix.thunk(() => nix.app(callPackage, nix.path(here, "../plugins/tests.nix"), nix.thunk(() => ({ [nix.POS]: pos$2, ide: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")) })))),
+              [nix.POS]: $pos[2],
+              plugins: nix.thunk(() => nix.app(callPackage, nix.path(here, "../plugins/tests.nix"), nix.thunk(() => ({
+                  [nix.POS]: $pos[1],
+                  ide: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
+                })))),
             })),
           })),
         };

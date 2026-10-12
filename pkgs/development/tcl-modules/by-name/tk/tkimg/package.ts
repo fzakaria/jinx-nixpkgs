@@ -2,10 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 16, 5], ["hash", 17, 5]], [["homepage", 37, 5], ["description", 38, 5], ["maintainers", 39, 5], ["license", 40, 5], ["platforms", 41, 5], ["badPlatforms", 42, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["configureFlags", 20, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 30, 3], ["meta", 36, 3]]]);
 const formals$1 = { args: { lib: false, fetchzip: false, tcl: false, tcllib: false, tk: false, libx11: false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 37, 5], ["description", 38, 5], ["maintainers", 39, 5], ["license", 40, 5], ["platforms", 41, 5], ["badPlatforms", 42, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["configureFlags", 20, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 30, 3], ["meta", 36, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const libx11 = nix.arg($, "libx11");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(tcl, "mkTclDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "tkimg",
       version: "2.1.1",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/tkimg/tkimg/Img-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-TRtE2/BVrYgkdKtbF06UjLvokokgLGQ/EKDLxhz2Ckw=",
         })))),
@@ -33,7 +31,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [tcllib]),
       buildInputs: nix.thunk(() => [libx11, tcllib, zlib]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://sourceforge.net/projects/tkimg/",
         description: "Img package adds several image formats to Tcl/Tk",
         maintainers: nix.thunk(() => (() => {

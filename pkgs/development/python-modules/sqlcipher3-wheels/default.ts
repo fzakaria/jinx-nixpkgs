@@ -2,16 +2,15 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["description", 11, 31], ["homepage", 11, 43], ["license", 11, 52]], [["pname", 6, 3], ["version", 7, 24], ["dependencies", 8, 3], ["optional-dependencies", 9, 3], ["meta", 10, 3]]]);
 const formals$1 = { args: { mkPythonMetaPackage: false, sqlcipher3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["description", 11, 31], ["homepage", 11, 43], ["license", 11, 52]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 6, 3], ["version", 7, 24], ["dependencies", 8, 3], ["optional-dependencies", 9, 3], ["meta", 10, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const mkPythonMetaPackage = nix.arg($, "mkPythonMetaPackage");
   const sqlcipher3 = nix.arg($, "sqlcipher3");
   return nix.app(mkPythonMetaPackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "sqlcipher3-wheels",
       version: nix.thunk(() => nix.attr(sqlcipher3, "version")),
       dependencies: nix.thunk(() => [sqlcipher3]),
@@ -19,7 +18,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(sqlcipher3, "meta"));
         return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: nix.thunk(() => nix.attr(from, "description")),
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         license: nix.thunk(() => nix.attr(from, "license")),

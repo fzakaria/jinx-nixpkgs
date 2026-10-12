@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/udev.nix", [[["shell", 34, 39]], [["replacements", 34, 5], ["isExecutable", 35, 5], ["src", 36, 5]], [["homepage", 62, 5], ["description", 63, 5], ["mainProgram", 64, 5], ["platforms", 65, 5], ["license", 66, 5]], [["name", 40, 3], ["nativeBuildInputs", 42, 3], ["doInstallCheck", 46, 3], ["dontUnpack", 48, 3], ["dontBuild", 49, 3], ["installPhase", 51, 3], ["meta", 61, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, replaceVarsWith: false, udevCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/udev.nix", [["shell", 34, 39]]);
-const pos$2 = nix.positions(here + "/udev.nix", [["replacements", 34, 5], ["isExecutable", 35, 5], ["src", 36, 5]]);
-const pos$3 = nix.positions(here + "/udev.nix", [["homepage", 62, 5], ["description", 63, 5], ["mainProgram", 64, 5], ["platforms", 65, 5], ["license", 66, 5]]);
-const pos$4 = nix.positions(here + "/udev.nix", [["name", 40, 3], ["nativeBuildInputs", 42, 3], ["doInstallCheck", 46, 3], ["dontUnpack", 48, 3], ["dontBuild", 49, 3], ["installPhase", 51, 3], ["meta", 61, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,13 +12,13 @@ export default nix.lambda((args) => (() => {
   const replaceVarsWith = nix.arg($, "replaceVarsWith");
   const udevCheckHook = nix.arg($, "udevCheckHook");
   const rfkillHook = nix.thunk(() => nix.app(replaceVarsWith, nix.thunk(() => ({
-      [nix.POS]: pos$2,
-      replacements: nix.thunk(() => ({ [nix.POS]: pos$1, shell: nix.thunk(() => nix.attr(stdenv, "shell")) })),
+      [nix.POS]: $pos[1],
+      replacements: nix.thunk(() => ({ [nix.POS]: $pos[0], shell: nix.thunk(() => nix.attr(stdenv, "shell")) })),
       isExecutable: true,
       src: nix.path(here, "./rfkill-hook.sh"),
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       name: "rfkill-udev",
       nativeBuildInputs: nix.thunk(() => [udevCheckHook]),
       doInstallCheck: true,
@@ -36,7 +33,7 @@ mkdir -p "$out/bin/";
 cp ${rfkillHook} "$out/bin/rfkill-hook.sh"
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "http://wireless.kernel.org/en/users/Documentation/rfkill",
         description: "Rules+hook for udev to catch rfkill state changes",
         mainProgram: "rfkill-hook.sh",

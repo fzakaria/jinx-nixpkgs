@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 16, 5], ["version", 17, 26], ["hash", 18, 5]], [["pname", 22, 26], ["version", 22, 32], ["src", 22, 40], ["hash", 23, 5]], [["PYO3_USE_ABI3_FORWARD_COMPATIBILITY", 36, 7]], [["description", 39, 5], ["homepage", 40, 5], ["changelog", 41, 5], ["license", 42, 5], ["maintainers", 43, 5]], [["pname", 10, 3], ["version", 11, 3], ["pyproject", 12, 3], ["src", 15, 3], ["cargoDeps", 21, 3], ["nativeBuildInputs", 26, 3], ["nativeCheckInputs", 31, 3], ["pythonImportsCheck", 33, 3], ["env", 36, 3], ["meta", 38, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, rustPlatform: false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 16, 5], ["version", 17, 26], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 22, 26], ["version", 22, 32], ["src", 22, 40], ["hash", 23, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["PYO3_USE_ABI3_FORWARD_COMPATIBILITY", 36, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 39, 5], ["homepage", 40, 5], ["changelog", 41, 5], ["license", 42, 5], ["maintainers", 43, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 10, 3], ["version", 11, 3], ["pyproject", 12, 3], ["src", 15, 3], ["cargoDeps", 21, 3], ["nativeBuildInputs", 26, 3], ["nativeCheckInputs", 31, 3], ["pythonImportsCheck", 33, 3], ["env", 36, 3], ["meta", 38, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,18 +13,18 @@ export default nix.lambda((args) => (() => {
   const rustPlatform = nix.arg($, "rustPlatform");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "color-parser-py",
       version: "0.1.7",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "color_parser_py",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-C3Q9vaOa/SE0PtQu5Gw/sk1JMRIlhgbA5VTW+2aC5dU=",
         })))),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -40,9 +36,9 @@ export default nix.lambda((args) => (() => {
       ]),
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
       pythonImportsCheck: nix.thunk(() => ["color_parser_py"]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$3, PYO3_USE_ABI3_FORWARD_COMPATIBILITY: true })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[2], PYO3_USE_ABI3_FORWARD_COMPATIBILITY: true })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Python bindings for color parsing and conversion",
         homepage: "https://github.com/rusiaaman/color-parser-py",
         changelog: nix.thunk(() => nix.str`https://github.com/rusiaaman/color-parser-py/releases/tag/${nix.sel(finalAttrs, "version")}`),

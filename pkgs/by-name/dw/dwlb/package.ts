@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 24, 5], ["repo", 25, 5], ["rev", 26, 5], ["hash", 27, 5]], [["PREFIX", 54, 5]], [["updateScript", 62, 12]], [["description", 65, 5], ["homepage", 66, 5], ["license", 67, 5], ["mainProgram", 68, 5], ["maintainers", 69, 5], ["platforms", 73, 5]], [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 34, 3], ["postPatch", 43, 3], ["env", 53, 3], ["outputs", 57, 3], ["passthru", 62, 3], ["meta", 64, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, "pkg-config": false, wayland: false, "wayland-scanner": false, "wayland-protocols": false, unstableGitUpdater: false, pixman: false, fcft: false, writeText: false, withCustomConfigH: true, configH: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 24, 5], ["repo", 25, 5], ["rev", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["PREFIX", 54, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 62, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 65, 5], ["homepage", 66, 5], ["license", 67, 5], ["mainProgram", 68, 5], ["maintainers", 69, 5], ["platforms", 73, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 34, 3], ["postPatch", 43, 3], ["env", 53, 3], ["outputs", 57, 3], ["passthru", 62, 3], ["meta", 64, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const withCustomConfigH = nix.argOr($, "withCustomConfigH", () => !nix.eq(configH, null));
   const configH = nix.argOr($, "configH", () => null);
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "dwlb",
       version: "0-unstable-2025-05-20",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "kolunmi",
           repo: "dwlb",
           rev: "48dbe00bdb98a1ae6a0e60558ce14503616aa759",
@@ -41,14 +37,14 @@ export default nix.lambda((args) => (() => {
         const configFile = nix.thunk(() => (nix.asBool((nix.asBool(nix.app(nix.sel(lib, "isDerivation"), configH)) || nix.asBool(nix.builtins.isPath(configH)))) ? nix.force(configH) : nix.app(writeText, "config.h", configH)));
         return nix.app(nix.sel(lib, "optionalString"), withCustomConfigH, nix.thunk(() => nix.str`cp ${configFile} config.h`));
       })()),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, PREFIX: nix.thunk(() => nix.builtins.placeholder("out")) })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], PREFIX: nix.thunk(() => nix.builtins.placeholder("out")) })),
       outputs: nix.thunk(() => ["out", "man"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Fast, feature-complete bar for dwl",
         homepage: "https://github.com/kolunmi/dwlb",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

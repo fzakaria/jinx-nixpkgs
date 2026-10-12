@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 12, 5], ["repo", 13, 5], ["rev", 17, 5], ["hash", 18, 5]], [["owner", 26, 7], ["repo", 27, 7], ["rev", 28, 7], ["hash", 29, 7]], [["updateScript", 37, 14]], [["description", 39, 7], ["mainProgram", 40, 7], ["license", 41, 7]], [["pname", 23, 5], ["version", 24, 5], ["src", 25, 5], ["buildInputs", 31, 5], ["preConfigure", 32, 5], ["doCheck", 36, 5], ["passthru", 37, 5], ["meta", 38, 5]]]);
 const formals$1 = { args: { lib: false, buildNimPackage: false, fetchFromGitHub: false, "nix-update-script": false, openssl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 12, 5], ["repo", 13, 5], ["rev", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 26, 7], ["repo", 27, 7], ["rev", 28, 7], ["hash", 29, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 37, 14]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 39, 7], ["mainProgram", 40, 7], ["license", 41, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 23, 5], ["version", 24, 5], ["src", 25, 5], ["buildInputs", 31, 5], ["preConfigure", 32, 5], ["doCheck", 36, 5], ["passthru", 37, 5], ["meta", 38, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const openssl = nix.arg($, "openssl");
   const sat = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "nim-lang",
       repo: "sat",
       rev: "9d52513b3c68bfb929dbd687d4fb2836cfee6936",
@@ -27,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const pname = "atlas";
       const version = "0.16.3";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "nim-lang",
           repo: "atlas",
           rev: nix.thunk(() => nix.str`${version}`),
@@ -39,17 +35,17 @@ cp -r ${sat} deps/sat
 `);
       const doCheck = false;
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => nix.update(nix.sel(final, "src", "meta"), {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Nim package cloner",
         mainProgram: "atlas",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         src,

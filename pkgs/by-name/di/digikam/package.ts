@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 57, 5], ["rev", 58, 5], ["fetchLFS", 59, 5], ["hash", 60, 5]], [["domain", 69, 5], ["owner", 70, 5], ["repo", 71, 5], ["tag", 72, 5], ["hash", 73, 5]], [["rev-prefix", 208, 5]], [["updateScript", 207, 12]], [["description", 212, 5], ["homepage", 213, 5], ["changelog", 214, 5], ["sourceProvenance", 215, 5], ["license", 216, 5], ["maintainers", 217, 5], ["platforms", 218, 5], ["mainProgram", 219, 5]], [["pname", 65, 3], ["version", 66, 3], ["src", 68, 3], ["patches", 76, 3], ["strictDeps", 80, 3], ["nativeBuildInputs", 82, 3], ["buildInputs", 100, 3], ["checkInputs", 157, 3], ["postConfigure", 159, 3], ["postPatch", 163, 3], ["cmakeFlags", 170, 3], ["doCheck", 184, 3], ["dontWrapGApps", 186, 3], ["preFixup", 188, 3], ["requiredSystemFeatures", 205, 3], ["passthru", 207, 3], ["meta", 211, 3]]]);
 const formals$1 = { args: { stdenv: false, config: false, lib: false, fetchFromGitLab: false, fetchgit: false, gitUpdater: false, cmake: false, "pkg-config": false, ninja: false, flex: false, bison: false, wrapGAppsHook3: false, exiftool: false, opencv: false, libtiff: false, libpng: false, libjpeg: false, libheif: false, libjxl: false, boost: false, lcms2: false, expat: false, exiv2: false, libxml2: false, libxslt: false, jasper: false, eigen: false, lensfun: false, liblqr1: false, libgphoto2: false, libusb1: false, imagemagick: false, x265: false, libGLX: false, libGLU: false, cudaPackages: false, enableCuda: true, kdePackages: false, perl: false, sqlite: false, runtimeShell: false, "enblend-enfuse": false, hugin: false, gnumake: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 57, 5], ["rev", 58, 5], ["fetchLFS", 59, 5], ["hash", 60, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["domain", 69, 5], ["owner", 70, 5], ["repo", 71, 5], ["tag", 72, 5], ["hash", 73, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["rev-prefix", 208, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 207, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 212, 5], ["homepage", 213, 5], ["changelog", 214, 5], ["sourceProvenance", 215, 5], ["license", 216, 5], ["maintainers", 217, 5], ["platforms", 218, 5], ["mainProgram", 219, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 65, 3], ["version", 66, 3], ["src", 68, 3], ["patches", 76, 3], ["strictDeps", 80, 3], ["nativeBuildInputs", 82, 3], ["buildInputs", 100, 3], ["checkInputs", 157, 3], ["postConfigure", 159, 3], ["postPatch", 163, 3], ["cmakeFlags", 170, 3], ["doCheck", 184, 3], ["dontWrapGApps", 186, 3], ["preFixup", 188, 3], ["requiredSystemFeatures", 205, 3], ["passthru", 207, 3], ["meta", 211, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -57,18 +52,18 @@ export default nix.lambda((args) => (() => {
   const hugin = nix.arg($, "hugin");
   const gnumake = nix.arg($, "gnumake");
   const testData = nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: "https://invent.kde.org/graphics/digikam-test-data.git",
       rev: "d02dd20b23cc279792325a0f03d21688547a7a59",
       fetchLFS: true,
       hash: "sha256-SvsmcniDRorwu9x9OLtHD9ftgquyoE5Kl8qDgqi1XdQ=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "digikam",
       version: "9.1.0",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           domain: "invent.kde.org",
           owner: "graphics",
           repo: "digikam",
@@ -162,11 +157,11 @@ substituteInPlace $out/bin/digitaglinktree \\
 `),
       requiredSystemFeatures: nix.thunk(() => ["big-parallel"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$3, "rev-prefix": "v" })))),
+        [nix.POS]: $pos[3],
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[2], "rev-prefix": "v" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Photo management application",
         homepage: "https://www.digikam.org/",
         changelog: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "meta", "homepage")}-/blob/master/project/NEWS.${nix.sel(finalAttrs, "version")}`),

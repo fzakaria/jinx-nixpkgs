@@ -2,10 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/auto-format-root-device.nix", [[["extraUtilsCommands", 20, 15], ["postDeviceCommands", 25, 15]], [["initrd", 20, 8]], [["boot", 20, 3]]]);
 const formals$1 = { args: { lib: false, config: false, pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/auto-format-root-device.nix", [["extraUtilsCommands", 20, 15], ["postDeviceCommands", 25, 15]]);
-const pos$2 = nix.positions(here + "/auto-format-root-device.nix", [["initrd", 20, 8]]);
-const pos$3 = nix.positions(here + "/auto-format-root-device.nix", [["boot", 20, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const rootDevice = nix.thunk(() => nix.sel(config, "virtualisation", "rootDevice"));
   return {
-    [nix.POS]: pos$3,
+    [nix.POS]: $pos[2],
     boot: nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       initrd: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         extraUtilsCommands: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => !nix.asBool(nix.sel(config, "boot", "initrd", "systemd", "enable"))), nix.thunk(() => nix.str`# We need mke2fs in the initrd.
 copy_bin_and_libs ${nix.sel(pkgs, "e2fsprogs")}/bin/mke2fs
 `))),

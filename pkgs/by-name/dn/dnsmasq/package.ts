@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 36, 5], ["hash", 37, 5]], [["prometheus-exporter", 103, 5], ["dnscrypt-proxy", 106, 26], ["kubernetes-dns-single", 107, 5], ["kubernetes-dns-multi", 108, 5], ["pihole-ftl-dnsmasq", 109, 5]], [["tests", 102, 12]], [["description", 113, 5], ["homepage", 114, 5], ["license", 115, 5], ["mainProgram", 116, 5], ["platforms", 117, 5], ["maintainers", 118, 5]], [["pname", 32, 3], ["version", 33, 3], ["src", 35, 3], ["postPatch", 40, 3], ["preBuild", 44, 3], ["makeFlags", 48, 3], ["enableParallelBuilding", 56, 3], ["postBuild", 58, 3], ["postInstall", 64, 3], ["nativeBuildInputs", 91, 3], ["buildInputs", 92, 3], ["passthru", 102, 3], ["meta", 112, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, "pkg-config": false, nettle: false, libidn2: false, libnetfilter_conntrack: false, nftables: false, buildPackages: false, dbusSupport: true, dbus: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 36, 5], ["hash", 37, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["prometheus-exporter", 103, 5], ["dnscrypt-proxy", 106, 26], ["kubernetes-dns-single", 107, 5], ["kubernetes-dns-multi", 108, 5], ["pihole-ftl-dnsmasq", 109, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 102, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 113, 5], ["homepage", 114, 5], ["license", 115, 5], ["mainProgram", 116, 5], ["platforms", 117, 5], ["maintainers", 118, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 32, 3], ["version", 33, 3], ["src", 35, 3], ["postPatch", 40, 3], ["preBuild", 44, 3], ["makeFlags", 48, 3], ["enableParallelBuilding", 56, 3], ["postBuild", 58, 3], ["postInstall", 64, 3], ["nativeBuildInputs", 91, 3], ["buildInputs", 92, 3], ["passthru", 102, 3], ["meta", 112, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const copts = nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), " ", nix.thunk(() => nix.concat(["-DHAVE_LIBIDN2", "-DHAVE_DNSSEC"], nix.concat(nix.app(nix.sel(lib, "optionals"), dbusSupport, nix.thunk(() => ["-DHAVE_DBUS"])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => ["-DHAVE_CONNTRACK", "-DHAVE_NFTSET"])))))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "dnsmasq",
       version: "2.93",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://www.thekelleys.org.uk/dnsmasq/dnsmasq-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-DADU5cl8gwbl+5MrNIs0JpycKaDn3w6OgpWLQHCSvBk=",
         })))),
@@ -49,9 +45,9 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => nix.concat([nettle, libidn2], nix.concat(nix.app(nix.sel(lib, "optionals"), dbusSupport, nix.thunk(() => [dbus])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [libnetfilter_conntrack, nftables]))))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           "prometheus-exporter": nix.thunk(() => nix.sel(nixosTests, "prometheus-exporters", "dnsmasq")),
           "dnscrypt-proxy": nix.thunk(() => nix.attr(nixosTests, "dnscrypt-proxy")),
           "kubernetes-dns-single": nix.thunk(() => nix.sel(nixosTests, "kubernetes", "dns-single-node")),
@@ -60,7 +56,7 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Integrated DNS, DHCP and TFTP server for small networks",
         homepage: "https://www.thekelleys.org.uk/dnsmasq/doc.html",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

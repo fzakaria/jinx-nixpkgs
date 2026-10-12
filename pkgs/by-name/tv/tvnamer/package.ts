@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["pname", 15, 30], ["version", 16, 19], ["sha256", 17, 11]], [["version", 13, 9], ["src", 14, 9], ["nativeBuildInputs", 20, 9], ["doCheck", 26, 9]], [["requests-cache", 12, 7]], [["self", 9, 5], ["packageOverrides", 10, 5]], [["pname", 40, 13], ["version", 40, 19], ["sha256", 41, 5]], [["description", 54, 5], ["homepage", 55, 5], ["license", 56, 5], ["maintainers", 57, 5], ["mainProgram", 58, 5]], [["pname", 35, 3], ["version", 36, 3], ["pyproject", 37, 3], ["src", 39, 3], ["build-system", 44, 3], ["dependencies", 46, 3], ["doCheck", 49, 3], ["pythonImportsCheck", 51, 3], ["meta", 53, 3]]]);
 const formals$1 = { args: { lib: false, python3: false, fetchPypi: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["pname", 15, 30], ["version", 16, 19], ["sha256", 17, 11]]);
-const pos$2 = nix.positions(here + "/package.nix", [["version", 13, 9], ["src", 14, 9], ["nativeBuildInputs", 20, 9], ["doCheck", 26, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["requests-cache", 12, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["self", 9, 5], ["packageOverrides", 10, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 40, 13], ["version", 40, 19], ["sha256", 41, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 54, 5], ["homepage", 55, 5], ["license", 56, 5], ["maintainers", 57, 5], ["mainProgram", 58, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 35, 3], ["version", 36, 3], ["pyproject", 37, 3], ["src", 39, 3], ["build-system", 44, 3], ["dependencies", 46, 3], ["doCheck", 49, 3], ["pythonImportsCheck", 51, 3], ["meta", 53, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,14 +11,14 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const fetchPypi = nix.arg($, "fetchPypi");
   const python$ = nix.thunk(() => nix.app(nix.sel(python3, "override"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       self: python$,
       packageOverrides: (final) => (prev) => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         "requests-cache": nix.thunk(() => nix.app(nix.sel(prev, "requests-cache", "overridePythonAttrs"), (oldAttrs) => (() => {
             const version = "0.5.2";
             const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-                [nix.POS]: pos$1,
+                [nix.POS]: $pos[0],
                 pname: nix.thunk(() => nix.attr(oldAttrs, "pname")),
                 version: version,
                 sha256: "sha256-gTAjJpaGBF+OAeIonMHn6a5asi3dHihJqQk6s6tycOs=",
@@ -34,7 +28,7 @@ export default nix.lambda((args) => (() => {
               return [nix.thunk(() => nix.lookup(w, "setuptools"))];
             })());
             const doCheck = false;
-            return { [nix.POS]: pos$2, version, src, nativeBuildInputs, doCheck };
+            return { [nix.POS]: $pos[1], version, src, nativeBuildInputs, doCheck };
           })())),
       }),
     }))));
@@ -44,7 +38,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.0.4";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           pname: pname,
           version: version,
           sha256: "dc2ea8188df6ac56439343630466b874c57756dd0b2538dd8e7905048f425f04",
@@ -60,7 +54,7 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["tvnamer"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Automatic TV episode file renamer, uses data from thetvdb.com via tvdb_api",
         homepage: "https://github.com/dbr/tvnamer",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unlicense")),
@@ -71,7 +65,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "tvnamer",
       }));
       return {
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         pname,
         version,
         pyproject,

@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 17, 5], ["hash", 18, 5]], [["package", 36, 7], ["command", 37, 7]], [["version", 35, 11]], [["url", 41, 7]], [["tests", 35, 5], ["updateScript", 40, 5]], [["homepage", 46, 5], ["description", 47, 5], ["longDescription", 48, 5], ["license", 60, 5], ["platforms", 64, 5], ["mainProgram", 65, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["separateDebugInfo", 21, 3], ["postPatch", 23, 3], ["makeFlags", 29, 3], ["passthru", 34, 3], ["meta", 45, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPackages: false, fetchurl: false, getconf: false, gitUpdater: false, testers: false, unixtools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["package", 36, 7], ["command", 37, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 35, 11]]);
-const pos$4 = nix.positions(here + "/package.nix", [["url", 41, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["tests", 35, 5], ["updateScript", 40, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["homepage", 46, 5], ["description", 47, 5], ["longDescription", 48, 5], ["license", 60, 5], ["platforms", 64, 5], ["mainProgram", 65, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["separateDebugInfo", 21, 3], ["postPatch", 23, 3], ["makeFlags", 29, 3], ["passthru", 34, 3], ["meta", 45, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const unixtools = nix.arg($, "unixtools");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "passt",
       version: "2026_07_16.090d739",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://passt.top/passt/snapshot/passt-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-UD4fkctSqMDQTmZxpmBjR1uKLV0Lf9QoqtSK1u8EQ+4=",
         })))),
@@ -40,19 +34,19 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`VERSION=${nix.sel(finalAttrs, "version")}`),
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               command: nix.thunk(() => nix.str`${nix.sel(unixtools, "script")}/bin/script -c 'passt --version'`),
             })))),
         })),
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$4, url: "https://passt.top/passt" })))),
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[3], url: "https://passt.top/passt" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         homepage: "https://passt.top/passt/about/",
         description: "Plug A Simple Socket Transport",
         longDescription: "passt implements a translation layer between a Layer-2 network interface\nand native Layer-4 sockets (TCP, UDP, ICMP/ICMPv6 echo) on a host.\nIt doesn't require any capabilities or privileges, and it can be used as\na simple replacement for Slirp.\n\npasta (same binary as passt, different command) offers equivalent\nfunctionality, for network namespaces: traffic is forwarded using a tap\ninterface inside the namespace, without the need to create further\ninterfaces on the host, hence not requiring any capabilities or\nprivileges.\n",

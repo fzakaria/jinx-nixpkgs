@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 15, 5], ["rev", 16, 5], ["hash", 17, 5]], [["NIX_CFLAGS_COMPILE", 40, 7]], [["url", 49, 5]], [["updateScript", 48, 12]], [["description", 53, 5], ["mainProgram", 54, 5], ["homepage", 55, 5], ["license", 56, 5], ["platforms", 57, 5], ["maintainers", 58, 5], ["broken", 60, 5]], [["pname", 10, 3], ["version", 12, 3], ["src", 14, 3], ["buildInputs", 20, 3], ["postPatch", 22, 3], ["buildPhase", 34, 3], ["env", 40, 3], ["installPhase", 42, 3], ["passthru", 48, 3], ["meta", 52, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchgit: false, gcc: false, unstableGitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 15, 5], ["rev", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 40, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 49, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 48, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 53, 5], ["mainProgram", 54, 5], ["homepage", 55, 5], ["license", 56, 5], ["platforms", 57, 5], ["maintainers", 58, 5], ["broken", 60, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 12, 3], ["src", 14, 3], ["buildInputs", 20, 3], ["postPatch", 22, 3], ["buildPhase", 34, 3], ["env", 40, 3], ["installPhase", 42, 3], ["passthru", 48, 3], ["meta", 52, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const gcc = nix.arg($, "gcc");
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "cakelisp",
       version: "0.3.0-unstable-2024-04-25",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://macoy.me/code/macoy/cakelisp",
           rev: "eb4427f555c3def9d65612672ccfe59e11b14059",
           hash: "sha256-wFyqAbHrBMFKqMYlBjS6flYHPn3Rxtaiqb1rRmlZrB4=",
@@ -34,14 +29,14 @@ substituteInPlace src/ModuleManager.cpp \\
     --replace '"/usr/bin/g++"' '"${gcc}/bin/g++"'
 `, nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "substituteInPlace Build.sh --replace '--export-dynamic' '-export_dynamic'\nsubstituteInPlace runtime/HotReloading.cake --replace '--export-dynamic' '-export_dynamic'\nsubstituteInPlace Bootstrap.cake --replace '--export-dynamic' '-export_dynamic'\n"))),
       buildPhase: "runHook preBuild\n./Build.sh\nrunHook postBuild\n",
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-Wno-error=format" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], NIX_CFLAGS_COMPILE: "-Wno-error=format" })),
       installPhase: "runHook preInstall\ninstall -Dm755 bin/cakelisp -t $out/bin\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: pos$3, url: "https://macoy.me/code/macoy/cakelisp" })))),
+        [nix.POS]: $pos[3],
+        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[2], url: "https://macoy.me/code/macoy/cakelisp" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Performance-oriented Lisp-like language",
         mainProgram: "cakelisp",
         homepage: "https://macoy.me/code/macoy/cakelisp",

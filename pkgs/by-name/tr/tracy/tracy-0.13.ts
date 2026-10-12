@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/tracy-0.13.nix", [[["name", 25, 7], ["owner", 26, 7], ["repo", 27, 7], ["rev", 28, 7], ["hash", 29, 7]], [["name", 32, 41]], [["name", 34, 7], ["owner", 35, 7], ["repo", 36, 7], ["rev", 37, 7], ["hash", 38, 7]], [["name", 42, 7], ["owner", 43, 7], ["repo", 44, 7], ["rev", 45, 7], ["hash", 46, 7]], [["name", 49, 7], ["owner", 50, 7], ["repo", 51, 7], ["rev", 52, 7], ["hash", 53, 7]], [["name", 56, 7], ["owner", 57, 7], ["repo", 58, 7], ["rev", 59, 7], ["hash", 60, 7]], [["name", 63, 7], ["owner", 64, 7], ["repo", 65, 7], ["rev", 66, 7], ["fetchSubmodules", 67, 7], ["hash", 68, 7]], [["version", 13, 3], ["srcHash", 14, 3], ["extraBuildInputs", 15, 3], ["cpmSrcs", 23, 3]]]);
 const formals$1 = { args: { fetchFromGitHub: false, md4c: false, pugixml: false, curl: false, zstd: false, nlohmann_json: false, "nativefiledialog-extended": false, "html-tidy": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/tracy-0.13.nix", [["name", 25, 7], ["owner", 26, 7], ["repo", 27, 7], ["rev", 28, 7], ["hash", 29, 7]]);
-const pos$2 = nix.positions(here + "/tracy-0.13.nix", [["name", 32, 41]]);
-const pos$3 = nix.positions(here + "/tracy-0.13.nix", [["name", 34, 7], ["owner", 35, 7], ["repo", 36, 7], ["rev", 37, 7], ["hash", 38, 7]]);
-const pos$4 = nix.positions(here + "/tracy-0.13.nix", [["name", 42, 7], ["owner", 43, 7], ["repo", 44, 7], ["rev", 45, 7], ["hash", 46, 7]]);
-const pos$5 = nix.positions(here + "/tracy-0.13.nix", [["name", 49, 7], ["owner", 50, 7], ["repo", 51, 7], ["rev", 52, 7], ["hash", 53, 7]]);
-const pos$6 = nix.positions(here + "/tracy-0.13.nix", [["name", 56, 7], ["owner", 57, 7], ["repo", 58, 7], ["rev", 59, 7], ["hash", 60, 7]]);
-const pos$7 = nix.positions(here + "/tracy-0.13.nix", [["name", 63, 7], ["owner", 64, 7], ["repo", 65, 7], ["rev", 66, 7], ["fetchSubmodules", 67, 7], ["hash", 68, 7]]);
-const pos$8 = nix.positions(here + "/tracy-0.13.nix", [["version", 13, 3], ["srcHash", 14, 3], ["extraBuildInputs", 15, 3], ["cpmSrcs", 23, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,22 +16,22 @@ export default nix.lambda((args) => (() => {
   const nativefiledialog_extended = nix.arg($, "nativefiledialog-extended");
   const html_tidy = nix.arg($, "html-tidy");
   return {
-    [nix.POS]: pos$8,
+    [nix.POS]: $pos[7],
     version: "0.13.1",
     srcHash: "sha256-D4aQ5kSfWH9qEUaithR0W/E5pN5on0n9YoBHeMggMSE=",
     extraBuildInputs: nix.thunk(() => [md4c, pugixml, curl, zstd, nlohmann_json, html_tidy]),
     cpmSrcs: nix.thunk(() => [
       nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           name: "ImGui",
           owner: "ocornut",
           repo: "imgui",
           rev: "v1.92.5-docking",
           hash: "sha256-/jVT7+874LCeSF/pdNVTFoSOfRisSqxCJnt5/SGCXPQ=",
         })))),
-      nix.thunk(() => nix.update(nix.sel(nativefiledialog_extended, "src"), { [nix.POS]: pos$2, name: "nfd" })),
+      nix.thunk(() => nix.update(nix.sel(nativefiledialog_extended, "src"), { [nix.POS]: $pos[1], name: "nfd" })),
       nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           name: "PPQSort",
           owner: "GabTux",
           repo: "PPQSort",
@@ -46,7 +39,7 @@ export default nix.lambda((args) => (() => {
           hash: "sha256-HgM+p2QGd9C8A8l/VaEB+cLFDrY2HU6mmXyTNh7xd0A=",
         })))),
       nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           name: "PackageProject.cmake",
           owner: "TheLartians",
           repo: "PackageProject.cmake",
@@ -54,7 +47,7 @@ export default nix.lambda((args) => (() => {
           hash: "sha256-E7WZSYDlss5bidbiWL1uX41Oh6JxBRtfhYsFU19kzIw=",
         })))),
       nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           name: "capstone",
           owner: "capstone-engine",
           repo: "capstone",
@@ -62,7 +55,7 @@ export default nix.lambda((args) => (() => {
           hash: "sha256-18PTj4hvBw8RTgzaFGeaDbBfkxmotxSoGtprIjcEuVg=",
         })))),
       nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           name: "base64",
           owner: "aklomp",
           repo: "base64",
@@ -70,7 +63,7 @@ export default nix.lambda((args) => (() => {
           hash: "sha256-dIaNfQ/znpAdg0/vhVNTfoaG7c8eFrdDTI0QDHcghXU=",
         })))),
       nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           name: "usearch",
           owner: "unum-cloud",
           repo: "usearch",

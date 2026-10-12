@@ -2,16 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 9], ["repo", 17, 9], ["rev", 18, 9], ["hash", 19, 9]], [["description", 32, 9], ["homepage", 33, 9], ["changelog", 34, 9], ["license", 35, 9], ["maintainers", 36, 9]], [["pname", 12, 7], ["version", 13, 7], ["src", 15, 7], ["doDist", 22, 7], ["ldflags", 24, 7], ["modRoot", 29, 15], ["vendorHash", 29, 23], ["meta", 31, 7]], [["modRoot", 44, 5], ["vendorHash", 45, 5]], [["modRoot", 49, 5], ["vendorHash", 50, 5]], [["extraArgs", 63, 7]], [["bird-lg-frontend", 61, 13], ["bird-lg-proxy", 61, 30], ["updateScript", 62, 5]], [["pname", 54, 3], ["version", 55, 30], ["meta", 55, 38], ["src", 55, 43], ["paths", 56, 3], ["passthru", 60, 3]]]);
 const formals$1 = { args: { buildGoModule: false, fetchFromGitHub: false, lib: false, "nix-update-script": false, symlinkJoin: false }, ellipsis: false };
 const formals$2 = { args: { modRoot: false, vendorHash: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 9], ["repo", 17, 9], ["rev", 18, 9], ["hash", 19, 9]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 32, 9], ["homepage", 33, 9], ["changelog", 34, 9], ["license", 35, 9], ["maintainers", 36, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 12, 7], ["version", 13, 7], ["src", 15, 7], ["doDist", 22, 7], ["ldflags", 24, 7], ["modRoot", 29, 15], ["vendorHash", 29, 23], ["meta", 31, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["modRoot", 44, 5], ["vendorHash", 45, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["modRoot", 49, 5], ["vendorHash", 50, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["extraArgs", 63, 7]]);
-const pos$7 = nix.positions(here + "/package.nix", [["bird-lg-frontend", 61, 13], ["bird-lg-proxy", 61, 30], ["updateScript", 62, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 54, 3], ["version", 55, 30], ["meta", 55, 38], ["src", 55, 43], ["paths", 56, 3], ["passthru", 60, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,7 +21,7 @@ export default nix.lambda((args) => (() => {
         const pname = nix.thunk(() => nix.str`bird-lg-${modRoot_1}`);
         const version = "1.4.8";
         const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             owner: "xddxdd",
             repo: "bird-lg-go",
             rev: nix.thunk(() => nix.str`v${version}`),
@@ -39,7 +32,7 @@ export default nix.lambda((args) => (() => {
         const modRoot_1 = modRoot;
         const vendorHash_1 = vendorHash;
         const meta = nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           description: "Bird Looking Glass",
           homepage: "https://github.com/xddxdd/bird-lg-go",
           changelog: nix.thunk(() => nix.str`https://github.com/xddxdd/bird-lg-go/releases/tag/v${version}`),
@@ -53,7 +46,7 @@ export default nix.lambda((args) => (() => {
           })()),
         }));
         return {
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           pname,
           version,
           src,
@@ -66,28 +59,28 @@ export default nix.lambda((args) => (() => {
       })()));
   })(), formals$2);
   const bird_lg_frontend = nix.thunk(() => nix.app(generic, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       modRoot: "frontend",
       vendorHash: "sha256-SmpCCvOP9HQh+Niqa3EhRGj1a7EXQgwRW2hTJgv+oIw=",
     }))));
   const bird_lg_proxy = nix.thunk(() => nix.app(generic, nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       modRoot: "proxy",
       vendorHash: "sha256-LRj5OvCu0e0iNW8nEUmbnKhhvaUXOVNIYGv0Lmai28g=",
     }))));
   return nix.app(symlinkJoin, nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "bird-lg",
       version: nix.thunk(() => nix.attr(bird_lg_frontend, "version")),
       meta: nix.thunk(() => nix.attr(bird_lg_frontend, "meta")),
       src: nix.thunk(() => nix.attr(bird_lg_frontend, "src")),
       paths: nix.thunk(() => [bird_lg_frontend, bird_lg_proxy]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         "bird-lg-frontend": bird_lg_frontend,
         "bird-lg-proxy": bird_lg_proxy,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             extraArgs: nix.thunk(() => ["--subpackage", "bird-lg-frontend", "--subpackage", "bird-lg-proxy"]),
           })))),
       })),

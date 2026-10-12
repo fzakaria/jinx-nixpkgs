@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 38, 5], ["repo", 39, 5], ["tag", 40, 5], ["hash", 41, 5]], [["extraLoaders", 76, 9]], [["odd-unstable", 88, 5], ["rev-prefix", 89, 5]], [["updateScript", 87, 12]], [["description", 93, 5], ["mainProgram", 94, 5], ["homepage", 95, 5], ["license", 96, 5], ["platforms", 97, 5], ["teams", 98, 5]], [["pname", 34, 3], ["version", 35, 3], ["src", 37, 3], ["nativeBuildInputs", 44, 3], ["buildInputs", 56, 3], ["enableParallelBuilding", 70, 3], ["postInstall", 72, 3], ["passthru", 87, 3], ["meta", 92, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, "autoconf-archive": false, autoreconfHook: false, "gtk-doc": false, "mate-common": false, "pkg-config": false, gettext: false, itstool: false, exempi: false, lcms2: false, libexif: false, libjpeg: false, librsvg: false, libxml2: false, libpeas: false, "shared-mime-info": false, gtk3: false, "mate-desktop": false, "hicolor-icon-theme": false, wrapGAppsHook3: false, "yelp-tools": false, gitUpdater: false, gnome: false, libavif: false, libheif: false, libjxl: false, "webp-pixbuf-loader": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 38, 5], ["repo", 39, 5], ["tag", 40, 5], ["hash", 41, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["extraLoaders", 76, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["odd-unstable", 88, 5], ["rev-prefix", 89, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 87, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 93, 5], ["mainProgram", 94, 5], ["homepage", 95, 5], ["license", 96, 5], ["platforms", 97, 5], ["teams", 98, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 34, 3], ["version", 35, 3], ["src", 37, 3], ["nativeBuildInputs", 44, 3], ["buildInputs", 56, 3], ["enableParallelBuilding", 70, 3], ["postInstall", 72, 3], ["passthru", 87, 3], ["meta", 92, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -42,11 +37,11 @@ export default nix.lambda((args) => (() => {
   const libjxl = nix.arg($, "libjxl");
   const webp_pixbuf_loader = nix.arg($, "webp-pixbuf-loader");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "eom",
       version: "1.28.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "mate-desktop",
           repo: "eom",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -79,7 +74,7 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: true,
       postInstall: nix.thunk(() => nix.str`# In postInstall to run before gappsWrapperArgsHook.
 export GDK_PIXBUF_MODULE_FILE="${nix.app(nix.sel(gnome, "_gdkPixbufCacheBuilder_DO_NOT_USE"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           extraLoaders: nix.thunk(() => [
             libavif,
             nix.thunk(() => nix.sel(libheif, "lib")),
@@ -90,11 +85,11 @@ export GDK_PIXBUF_MODULE_FILE="${nix.app(nix.sel(gnome, "_gdkPixbufCacheBuilder_
         })))}"
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$3, "odd-unstable": true, "rev-prefix": "v" })))),
+        [nix.POS]: $pos[3],
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[2], "odd-unstable": true, "rev-prefix": "v" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Image viewing and cataloging program for the MATE desktop",
         mainProgram: "eom",
         homepage: "https://mate-desktop.org",

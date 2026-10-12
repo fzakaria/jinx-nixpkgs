@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 44, 5], ["repo", 45, 5], ["tag", 46, 5], ["hash", 47, 5]], [["csv", 73, 9], ["monai", 74, 9], ["plot", 75, 9], ["video", 79, 9], ["sklearn", 80, 9]], [["all", 83, 17]], [["description", 108, 5], ["homepage", 109, 5], ["changelog", 110, 5], ["license", 111, 5], ["maintainers", 112, 5]], [["pname", 39, 3], ["version", 40, 3], ["pyproject", 41, 3], ["src", 43, 3], ["build-system", 50, 3], ["dependencies", 54, 3], ["optional-dependencies", 70, 3], ["nativeCheckInputs", 85, 3], ["disabledTests", 93, 3], ["pythonImportsCheck", 102, 3], ["meta", 107, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitHub: false, "uv-build": false, deprecated: false, einops: false, humanize: false, jaxtyping: false, nibabel: false, numpy: false, packaging: false, rich: false, scipy: false, simpleitk: false, torch: false, tqdm: false, typer: false, colorcet: false, matplotlib: false, monai: false, pandas: false, "ffmpeg-python": false, "scikit-learn": false, parameterized: false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 44, 5], ["repo", 45, 5], ["tag", 46, 5], ["hash", 47, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["csv", 73, 9], ["monai", 74, 9], ["plot", 75, 9], ["video", 79, 9], ["sklearn", 80, 9]]);
-const pos$3 = nix.positions(here + "/default.nix", [["all", 83, 17]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 108, 5], ["homepage", 109, 5], ["changelog", 110, 5], ["license", 111, 5], ["maintainers", 112, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 39, 3], ["version", 40, 3], ["pyproject", 41, 3], ["src", 43, 3], ["build-system", 50, 3], ["dependencies", 54, 3], ["optional-dependencies", 70, 3], ["nativeCheckInputs", 85, 3], ["disabledTests", 93, 3], ["pythonImportsCheck", 102, 3], ["meta", 107, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -42,7 +38,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.2.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "TorchIO-project",
           repo: "torchio",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -66,7 +62,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const optional_dependencies = nix.thunk(() => (() => {
         const extras = nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           csv: nix.thunk(() => [pandas]),
           monai: nix.thunk(() => [monai]),
           plot: nix.thunk(() => [colorcet, matplotlib]),
@@ -74,7 +70,7 @@ export default nix.lambda((args) => (() => {
           sklearn: nix.thunk(() => [scikit_learn]),
         }));
         return nix.update(extras, {
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           all: nix.thunk(() => nix.app(nix.sel(lib, "concatLists"), nix.thunk(() => nix.app(nix.sel(lib, "attrValues"), extras)))),
         });
       })());
@@ -82,7 +78,7 @@ export default nix.lambda((args) => (() => {
       const disabledTests = nix.thunk(() => nix.concat(["test_load_all"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isAarch64")), nix.thunk(() => ["test_queue_multiprocessing"]))));
       const pythonImportsCheck = nix.thunk(() => ["torchio", "torchio.data"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Medical imaging toolkit for deep learning",
         homepage: "https://docs.torchio.org",
         changelog: nix.thunk(() => nix.str`https://github.com/TorchIO-project/torchio/releases/tag/${nix.sel(src, "tag")}`),
@@ -90,7 +86,7 @@ export default nix.lambda((args) => (() => {
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "bcdarwin"))]),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         pyproject,

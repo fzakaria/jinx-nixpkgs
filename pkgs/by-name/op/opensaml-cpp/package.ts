@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]], [["NIX_CFLAGS_COMPILE", 53, 7]], [["updateScript", 57, 12]], [["homepage", 60, 5], ["description", 61, 5], ["mainProgram", 62, 5], ["platforms", 63, 5], ["license", 64, 5], ["maintainers", 65, 5]], [["pname", 18, 3], ["version", 19, 3], ["outputs", 21, 3], ["src", 28, 3], ["buildInputs", 35, 3], ["nativeBuildInputs", 44, 3], ["configureFlags", 49, 3], ["env", 53, 3], ["enableParallelBuilding", 55, 3], ["passthru", 57, 3], ["meta", 59, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromCodeberg: false, autoreconfHook: false, "pkg-config": false, boost: false, openssl: false, log4shib: false, xercesc: false, "xml-security-c": false, "xml-tooling-c": false, zlib: false, gitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 53, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 57, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 60, 5], ["description", 61, 5], ["mainProgram", 62, 5], ["platforms", 63, 5], ["license", 64, 5], ["maintainers", 65, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["outputs", 21, 3], ["src", 28, 3], ["buildInputs", 35, 3], ["nativeBuildInputs", 44, 3], ["configureFlags", 49, 3], ["env", 53, 3], ["enableParallelBuilding", 55, 3], ["passthru", 57, 3], ["meta", 59, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const zlib = nix.arg($, "zlib");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "opensaml-cpp",
       version: "3.3.1",
       outputs: nix.thunk(() => ["out", "bin", "dev", "doc"]),
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Shibboleth",
           repo: "cpp-opensaml",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -40,16 +36,16 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [autoreconfHook, pkg_config]),
       configureFlags: nix.thunk(() => [nix.thunk(() => nix.str`--with-boost=${nix.sel(boost, "dev")}`)]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), "-std=c++14")),
       })),
       enableParallelBuilding: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://shibboleth.net/products/opensaml-cpp.html",
         description: "Low-level library written in C++ that provides support for producing and consuming SAML messages",
         mainProgram: "samlsign",

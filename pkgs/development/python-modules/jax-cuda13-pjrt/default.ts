@@ -2,18 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["name", 19, 7], ["hash", 20, 7]], [["name", 23, 7], ["hash", 24, 7]], [["x86_64-linux", 18, 5], ["aarch64-linux", 22, 5]], [["pname", 53, 5], ["version", 54, 13], ["format", 55, 5], ["python", 56, 5], ["dist", 57, 5], ["platform", 58, 5], ["hash", 59, 31]], [["cudaLibPath", 98, 13]], [["message", 112, 11], ["kind", 117, 11]], [["unsupported-cuda-version", 111, 9]], [["message", 122, 11], ["kind", 128, 11]], [["unsupported-cudnn-version", 121, 9]], [["description", 102, 5], ["homepage", 103, 5], ["sourceProvenance", 104, 5], ["license", 105, 5], ["teams", 106, 5], ["maintainers", 107, 5], ["platforms", 108, 5], ["problems", 109, 5]], [["pname", 47, 3], ["version", 48, 11], ["pyproject", 49, 3], ["__structuredAttrs", 50, 3], ["src", 52, 3], ["nativeBuildInputs", 62, 3], ["postInstall", 73, 3], ["preInstallCheck", 88, 3], ["doCheck", 93, 3], ["pythonImportsCheck", 95, 3], ["passthru", 97, 3], ["meta", 101, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchPypi: false, addDriverRunpath: false, autoPatchelfHook: false, pypaInstallHook: false, wheelUnpackHook: false, cudaPackages: false, python: false, jaxlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["name", 19, 7], ["hash", 20, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["name", 23, 7], ["hash", 24, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["x86_64-linux", 18, 5], ["aarch64-linux", 22, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 53, 5], ["version", 54, 13], ["format", 55, 5], ["python", 56, 5], ["dist", 57, 5], ["platform", 58, 5], ["hash", 59, 31]]);
-const pos$5 = nix.positions(here + "/default.nix", [["cudaLibPath", 98, 13]]);
-const pos$6 = nix.positions(here + "/default.nix", [["message", 112, 11], ["kind", 117, 11]]);
-const pos$7 = nix.positions(here + "/default.nix", [["unsupported-cuda-version", 111, 9]]);
-const pos$8 = nix.positions(here + "/default.nix", [["message", 122, 11], ["kind", 128, 11]]);
-const pos$9 = nix.positions(here + "/default.nix", [["unsupported-cudnn-version", 121, 9]]);
-const pos$10 = nix.positions(here + "/default.nix", [["description", 102, 5], ["homepage", 103, 5], ["sourceProvenance", 104, 5], ["license", 105, 5], ["teams", 106, 5], ["maintainers", 107, 5], ["platforms", 108, 5], ["problems", 109, 5]]);
-const pos$11 = nix.positions(here + "/default.nix", [["pname", 47, 3], ["version", 48, 11], ["pyproject", 49, 3], ["__structuredAttrs", 50, 3], ["src", 52, 3], ["nativeBuildInputs", 62, 3], ["postInstall", 73, 3], ["preInstallCheck", 88, 3], ["doCheck", 93, 3], ["pythonImportsCheck", 95, 3], ["passthru", 97, 3], ["meta", 101, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,14 +20,14 @@ export default nix.lambda((args) => (() => {
   const jaxlib = nix.arg($, "jaxlib");
   const version = nix.thunk(() => nix.attr(jaxlib, "version"));
   const platforms = nix.thunk(() => ({
-    [nix.POS]: pos$3,
+    [nix.POS]: $pos[2],
     "x86_64-linux": nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: "manylinux_2_27_x86_64",
       hash: "sha256-5f9YnUMGSRO7dAJ2gtiWOcfqSPn4HCuub8dRF+kT+T4=",
     })),
     "aarch64-linux": nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       name: "manylinux_2_27_aarch64",
       hash: "sha256-Y7VeUOXCWDol4Za6BrA0tj0rLYrUwvF5NWUsjTrS3S0=",
     })),
@@ -59,13 +49,13 @@ export default nix.lambda((args) => (() => {
       ];
     })())));
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$11,
+      [nix.POS]: $pos[10],
       pname: "jax-cuda13-pjrt",
       version: version,
       pyproject: false,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           pname: "jax_cuda13_pjrt",
           version: version,
           format: "wheel",
@@ -86,9 +76,9 @@ ln -s ${nix.sel(cudaPackages, "cuda_nvcc")}/nvvm $OUTPATH/nvvm
 `),
       doCheck: true,
       pythonImportsCheck: nix.thunk(() => ["jax_plugins"]),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$5, cudaLibPath: cudaLibPath })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[4], cudaLibPath: cudaLibPath })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         description: "JAX XLA PJRT Plugin for NVIDIA GPUs",
         homepage: "https://github.com/jax-ml/jax/tree/main/jax_plugins/cuda",
         sourceProvenance: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "sourceTypes", "binaryNativeCode"))]),
@@ -100,9 +90,9 @@ ln -s ${nix.sel(cudaPackages, "cuda_nvcc")}/nvvm $OUTPATH/nvvm
         })()),
         platforms: nix.thunk(() => nix.app(nix.sel(lib, "attrNames"), platforms)),
         problems: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(cudaPackages, "cudaMajorVersion"), "13")), nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             "unsupported-cuda-version": nix.thunk(() => ({
-              [nix.POS]: pos$6,
+              [nix.POS]: $pos[5],
               message: nix.thunk(() => nix.str`Incompatible cudaPackages version.
   - Expected: 13
   - Got: ${nix.sel(cudaPackages, "cudaMajorVersion")}
@@ -110,9 +100,9 @@ ln -s ${nix.sel(cudaPackages, "cuda_nvcc")}/nvvm $OUTPATH/nvvm
               kind: "broken",
             })),
           }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(cudaPackages, "cudnn", "version")), "10.0")), nix.thunk(() => ({
-            [nix.POS]: pos$9,
+            [nix.POS]: $pos[8],
             "unsupported-cudnn-version": nix.thunk(() => ({
-              [nix.POS]: pos$8,
+              [nix.POS]: $pos[7],
               message: nix.thunk(() => nix.str`cudaPackages.cudnn is too new (${nix.sel(cudaPackages, "cudnn", "version")}).
 
 See CUDA compatibility matrix

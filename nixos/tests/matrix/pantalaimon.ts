@@ -2,28 +2,16 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/pantalaimon.nix", [[["buildInputs", 9, 7]], [["homeserver", 39, 9], ["listenAddress", 40, 9], ["listenPort", 41, 9], ["logLevel", 42, 9], ["ssl", 43, 9]], [["instances", 38, 37]], [["names", 61, 19], ["compress", 64, 19]], [["names", 67, 19], ["compress", 70, 19]], [["port", 51, 15], ["bind_addresses", 52, 15], ["type", 56, 15], ["tls", 57, 15], ["x_forwarded", 58, 15], ["resources", 59, 15]], [["name", 75, 20]], [["listeners", 49, 11], ["database", 75, 11], ["tls_certificate_path", 76, 11], ["tls_private_key_path", 77, 11]], [["enable", 47, 9], ["settings", 48, 9]], [["pantalaimon-headless", 38, 16], ["matrix-synapse", 46, 16]], [["services", 38, 7]], [["machine", 35, 9]], [["name", 33, 3], ["nodes", 35, 3], ["testScript", 82, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/pantalaimon.nix", [["buildInputs", 9, 7]]);
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/pantalaimon.nix", [["homeserver", 39, 9], ["listenAddress", 40, 9], ["listenPort", 41, 9], ["logLevel", 42, 9], ["ssl", 43, 9]]);
-const pos$3 = nix.positions(here + "/pantalaimon.nix", [["instances", 38, 37]]);
-const pos$4 = nix.positions(here + "/pantalaimon.nix", [["names", 61, 19], ["compress", 64, 19]]);
-const pos$5 = nix.positions(here + "/pantalaimon.nix", [["names", 67, 19], ["compress", 70, 19]]);
-const pos$6 = nix.positions(here + "/pantalaimon.nix", [["port", 51, 15], ["bind_addresses", 52, 15], ["type", 56, 15], ["tls", 57, 15], ["x_forwarded", 58, 15], ["resources", 59, 15]]);
-const pos$7 = nix.positions(here + "/pantalaimon.nix", [["name", 75, 20]]);
-const pos$8 = nix.positions(here + "/pantalaimon.nix", [["listeners", 49, 11], ["database", 75, 11], ["tls_certificate_path", 76, 11], ["tls_private_key_path", 77, 11]]);
-const pos$9 = nix.positions(here + "/pantalaimon.nix", [["enable", 47, 9], ["settings", 48, 9]]);
-const pos$10 = nix.positions(here + "/pantalaimon.nix", [["pantalaimon-headless", 38, 16], ["matrix-synapse", 46, 16]]);
-const pos$11 = nix.positions(here + "/pantalaimon.nix", [["services", 38, 7]]);
-const pos$12 = nix.positions(here + "/pantalaimon.nix", [["machine", 35, 9]]);
-const pos$13 = nix.positions(here + "/pantalaimon.nix", [["name", 33, 3], ["nodes", 35, 3], ["testScript", 82, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   const pantalaimonInstanceName = "testing";
   const runWithOpenSSL = (file) => (cmd) => nix.app(nix.sel(pkgs, "runCommand"), file, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       buildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "openssl"))]),
     })), cmd);
   const ca_key = nix.thunk(() => nix.app(runWithOpenSSL, "ca-key.pem", "openssl genrsa -out $out 2048"));
@@ -43,22 +31,22 @@ export default nix.lambda((args) => (() => {
   -days 365
 `)));
   return {
-    [nix.POS]: pos$13,
+    [nix.POS]: $pos[12],
     name: "pantalaimon",
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$12,
+      [nix.POS]: $pos[11],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$11,
+          [nix.POS]: $pos[10],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$10,
+            [nix.POS]: $pos[9],
             "pantalaimon-headless": nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               instances: nix.thunk(() => nix.attrsDyn({}, [
                 [pantalaimonInstanceName, nix.thunk(() => ({
-                  [nix.POS]: pos$2,
+                  [nix.POS]: $pos[1],
                   homeserver: "https://localhost:8448",
                   listenAddress: "0.0.0.0",
                   listenPort: 8888n,
@@ -68,25 +56,25 @@ export default nix.lambda((args) => (() => {
               ])),
             })),
             "matrix-synapse": nix.thunk(() => ({
-              [nix.POS]: pos$9,
+              [nix.POS]: $pos[8],
               enable: true,
               settings: nix.thunk(() => ({
-                [nix.POS]: pos$8,
+                [nix.POS]: $pos[7],
                 listeners: nix.thunk(() => [
                   nix.thunk(() => ({
-                    [nix.POS]: pos$6,
+                    [nix.POS]: $pos[5],
                     port: 8448n,
                     bind_addresses: nix.thunk(() => ["127.0.0.1", "::1"]),
                     type: "http",
                     tls: true,
                     x_forwarded: false,
                     resources: nix.thunk(() => [
-                      nix.thunk(() => ({ [nix.POS]: pos$4, names: nix.thunk(() => ["client"]), compress: true })),
-                      nix.thunk(() => ({ [nix.POS]: pos$5, names: nix.thunk(() => ["federation"]), compress: false })),
+                      nix.thunk(() => ({ [nix.POS]: $pos[3], names: nix.thunk(() => ["client"]), compress: true })),
+                      nix.thunk(() => ({ [nix.POS]: $pos[4], names: nix.thunk(() => ["federation"]), compress: false })),
                     ]),
                   })),
                 ]),
-                database: nix.thunk(() => ({ [nix.POS]: pos$7, name: "sqlite3" })),
+                database: nix.thunk(() => ({ [nix.POS]: $pos[6], name: "sqlite3" })),
                 tls_certificate_path: nix.thunk(() => nix.str`${cert}`),
                 tls_private_key_path: nix.thunk(() => nix.str`${key}`),
               })),

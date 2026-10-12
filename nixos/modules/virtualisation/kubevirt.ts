@@ -2,26 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/kubevirt.nix", [[["device", 16, 7], ["fsType", 17, 7], ["autoResize", 18, 7]], [["/", 15, 17]], [["device", 23, 22]], [["grub", 23, 17], ["timeout", 24, 17]], [["growPartition", 21, 10], ["kernelParams", 22, 10], ["loader", 23, 10]], [["enable", 26, 24]], [["enable", 27, 22]], [["enable", 28, 25]], [["qemuGuest", 26, 14], ["openssh", 27, 14], ["cloud-init", 28, 14]], [["enable", 29, 43]], [["serial-getty@ttyS0", 29, 22]], [["services", 29, 13]], [["tags", 31, 18]], [["lib", 35, 15], ["config", 35, 19], ["pkgs", 35, 26], ["baseName", 36, 30], ["format", 37, 7]], [["image", 33, 18], ["kubevirtImage", 34, 18]], [["nixos", 31, 12], ["build", 33, 12]], [["extension", 32, 11]], [["fileSystems", 15, 5], ["boot", 21, 5], ["services", 26, 5], ["systemd", 29, 5], ["system", 31, 5], ["image", 32, 5]], [["imports", 9, 3], ["config", 14, 3]]]);
 const formals$1 = { args: { config: false, lib: false, pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/kubevirt.nix", [["device", 16, 7], ["fsType", 17, 7], ["autoResize", 18, 7]]);
-const pos$2 = nix.positions(here + "/kubevirt.nix", [["/", 15, 17]]);
-const pos$3 = nix.positions(here + "/kubevirt.nix", [["device", 23, 22]]);
-const pos$4 = nix.positions(here + "/kubevirt.nix", [["grub", 23, 17], ["timeout", 24, 17]]);
-const pos$5 = nix.positions(here + "/kubevirt.nix", [["growPartition", 21, 10], ["kernelParams", 22, 10], ["loader", 23, 10]]);
-const pos$6 = nix.positions(here + "/kubevirt.nix", [["enable", 26, 24]]);
-const pos$7 = nix.positions(here + "/kubevirt.nix", [["enable", 27, 22]]);
-const pos$8 = nix.positions(here + "/kubevirt.nix", [["enable", 28, 25]]);
-const pos$9 = nix.positions(here + "/kubevirt.nix", [["qemuGuest", 26, 14], ["openssh", 27, 14], ["cloud-init", 28, 14]]);
-const pos$10 = nix.positions(here + "/kubevirt.nix", [["enable", 29, 43]]);
-const pos$11 = nix.positions(here + "/kubevirt.nix", [["serial-getty@ttyS0", 29, 22]]);
-const pos$12 = nix.positions(here + "/kubevirt.nix", [["services", 29, 13]]);
-const pos$13 = nix.positions(here + "/kubevirt.nix", [["tags", 31, 18]]);
-const pos$14 = nix.positions(here + "/kubevirt.nix", [["lib", 35, 15], ["config", 35, 19], ["pkgs", 35, 26], ["baseName", 36, 30], ["format", 37, 7]]);
-const pos$15 = nix.positions(here + "/kubevirt.nix", [["image", 33, 18], ["kubevirtImage", 34, 18]]);
-const pos$16 = nix.positions(here + "/kubevirt.nix", [["nixos", 31, 12], ["build", 33, 12]]);
-const pos$17 = nix.positions(here + "/kubevirt.nix", [["extension", 32, 11]]);
-const pos$18 = nix.positions(here + "/kubevirt.nix", [["fileSystems", 15, 5], ["boot", 21, 5], ["services", 26, 5], ["systemd", 29, 5], ["system", 31, 5], ["image", 32, 5]]);
-const pos$19 = nix.positions(here + "/kubevirt.nix", [["imports", 9, 3], ["config", 14, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,55 +11,55 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   return {
-    [nix.POS]: pos$19,
+    [nix.POS]: $pos[18],
     imports: nix.thunk(() => [
       nix.path(here, "../profiles/qemu-guest.nix"),
       nix.path(here, "../image/file-options.nix"),
     ]),
     config: nix.thunk(() => ({
-      [nix.POS]: pos$18,
+      [nix.POS]: $pos[17],
       fileSystems: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         "/": nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           device: "/dev/disk/by-label/nixos",
           fsType: "ext4",
           autoResize: true,
         })),
       })),
       boot: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         growPartition: true,
         kernelParams: nix.thunk(() => ["console=ttyS0"]),
         loader: nix.thunk(() => ({
-          [nix.POS]: pos$4,
-          grub: nix.thunk(() => ({ [nix.POS]: pos$3, device: "/dev/vda" })),
+          [nix.POS]: $pos[3],
+          grub: nix.thunk(() => ({ [nix.POS]: $pos[2], device: "/dev/vda" })),
           timeout: 0n,
         })),
       })),
       services: nix.thunk(() => ({
-        [nix.POS]: pos$9,
-        qemuGuest: nix.thunk(() => ({ [nix.POS]: pos$6, enable: true })),
-        openssh: nix.thunk(() => ({ [nix.POS]: pos$7, enable: true })),
-        "cloud-init": nix.thunk(() => ({ [nix.POS]: pos$8, enable: true })),
+        [nix.POS]: $pos[8],
+        qemuGuest: nix.thunk(() => ({ [nix.POS]: $pos[5], enable: true })),
+        openssh: nix.thunk(() => ({ [nix.POS]: $pos[6], enable: true })),
+        "cloud-init": nix.thunk(() => ({ [nix.POS]: $pos[7], enable: true })),
       })),
       systemd: nix.thunk(() => ({
-        [nix.POS]: pos$12,
+        [nix.POS]: $pos[11],
         services: nix.thunk(() => ({
-          [nix.POS]: pos$11,
-          "serial-getty@ttyS0": nix.thunk(() => ({ [nix.POS]: pos$10, enable: true })),
+          [nix.POS]: $pos[10],
+          "serial-getty@ttyS0": nix.thunk(() => ({ [nix.POS]: $pos[9], enable: true })),
         })),
       })),
       system: nix.thunk(() => ({
-        [nix.POS]: pos$16,
-        nixos: nix.thunk(() => ({ [nix.POS]: pos$13, tags: nix.thunk(() => ["kubevirt"]) })),
+        [nix.POS]: $pos[15],
+        nixos: nix.thunk(() => ({ [nix.POS]: $pos[12], tags: nix.thunk(() => ["kubevirt"]) })),
         build: nix.thunk(() => ({
-          [nix.POS]: pos$15,
+          [nix.POS]: $pos[14],
           image: nix.thunk(() => nix.sel(config, "system", "build", "kubevirtImage")),
           kubevirtImage: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../lib/make-disk-image.nix")), nix.thunk(() => (() => {
               const from = nix.thunk(() => nix.sel(config, "image"));
               return {
-              [nix.POS]: pos$14,
+              [nix.POS]: $pos[13],
               lib: lib,
               config: config,
               pkgs: pkgs,
@@ -87,7 +69,7 @@ export default nix.lambda((args) => (() => {
             })()))),
         })),
       })),
-      image: nix.thunk(() => ({ [nix.POS]: pos$17, extension: "qcow2" })),
+      image: nix.thunk(() => ({ [nix.POS]: $pos[16], extension: "qcow2" })),
     })),
   };
 })(), formals$1);

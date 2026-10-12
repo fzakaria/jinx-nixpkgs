@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 13, 5], ["rev", 14, 5], ["hash", 15, 5]], [["extraArgs", 25, 47]], [["updateScript", 25, 12]], [["description", 28, 5], ["homepage", 29, 5], ["license", 30, 5], ["mainProgram", 31, 5], ["maintainers", 32, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["vendorHash", 18, 3], ["ldflags", 20, 3], ["passthru", 25, 3], ["meta", 27, 3]]]);
 const formals$1 = { args: { lib: false, fetchgit: false, buildGoModule: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 13, 5], ["rev", 14, 5], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["extraArgs", 25, 47]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 25, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 28, 5], ["homepage", 29, 5], ["license", 30, 5], ["mainProgram", 31, 5], ["maintainers", 32, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["vendorHash", 18, 3], ["ldflags", 20, 3], ["passthru", 25, 3], ["meta", 27, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const buildGoModule = nix.arg($, "buildGoModule");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(buildGoModule, nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "waybar-mpris",
       version: "0.1.0-unstable-2022-01-27",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://git.hrfee.pw/hrfee/waybar-mpris",
           rev: "485ec0ec0af80a0d63c10e94aebfc59b16aab46b",
           hash: "sha256-BjLxWnDNsR2ZnNklNiKzi1DeoPpaZsRdKbVSwNwYhJ4=",
@@ -28,11 +24,11 @@ export default nix.lambda((args) => (() => {
       vendorHash: "sha256-85jFSAOfNMihv710LtfETmkKRqcdRuFCHVuPkW94X/Y=",
       ldflags: nix.thunk(() => ["-s", "-w"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$2, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: $pos[1], extraArgs: nix.thunk(() => ["--version=branch"]) })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Waybar component/utility for displaying and controlling MPRIS2 compliant media players individually",
         homepage: "https://git.hrfee.pw/hrfee/waybar-mpris",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

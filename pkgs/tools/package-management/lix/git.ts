@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/git.nix", [[["domain", 9, 5], ["owner", 10, 5], ["repo", 11, 5], ["rev", 12, 5], ["hash", 13, 5]], [["name", 17, 5], ["src", 18, 13], ["hash", 19, 5]], [["version", 6, 3], ["src", 8, 3], ["cargoDeps", 16, 3]]]);
 const formals$1 = { args: { fetchFromGitea: false, rustPlatform: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/git.nix", [["domain", 9, 5], ["owner", 10, 5], ["repo", 11, 5], ["rev", 12, 5], ["hash", 13, 5]]);
-const pos$2 = nix.positions(here + "/git.nix", [["name", 17, 5], ["src", 18, 13], ["hash", 19, 5]]);
-const pos$3 = nix.positions(here + "/git.nix", [["version", 6, 3], ["src", 8, 3], ["cargoDeps", 16, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,7 +12,7 @@ export default nix.lambda((args) => (() => {
   return (() => {
     const version = nix.thunk(() => nix.str`2.96.0-pre-20260408_${nix.builtins.substring(0n, 12n, nix.thunk(() => nix.sel(src, "rev")))}`);
     const src = nix.thunk(() => nix.app(fetchFromGitea, nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         domain: "git.lix.systems",
         owner: "lix-project",
         repo: "lix",
@@ -22,12 +20,12 @@ export default nix.lambda((args) => (() => {
         hash: "sha256-bONRPjhk5OZdnkQZexZNJzlvwIPg31Gy7fNiwGoX3BQ=",
       }))));
     const cargoDeps = nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         name: nix.thunk(() => nix.str`lix-${version}`),
         src: src,
         hash: "sha256-a5XtutX+NS4wOqxeqbscWZMs99teKick5+cQfbCRGxQ=",
       }))));
-    return { [nix.POS]: pos$3, version, src, cargoDeps };
+    return { [nix.POS]: $pos[2], version, src, cargoDeps };
   })();
 })(), formals$1);
 //# sourceMappingURL=git.ts.map

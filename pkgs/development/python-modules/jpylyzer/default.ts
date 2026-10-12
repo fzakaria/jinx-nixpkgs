@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]], [["owner", 31, 5], ["repo", 32, 5], ["rev", 33, 5], ["hash", 34, 5]], [["doFullCheck", 57, 41]], [["withFullCheck", 57, 5]], [["tests", 56, 12]], [["description", 61, 5], ["mainProgram", 62, 5], ["homepage", 63, 5], ["license", 64, 5], ["maintainers", 65, 5]], [["pname", 26, 3], ["version", 27, 3], ["format", 28, 3], ["src", 30, 3], ["propagatedBuildInputs", 37, 3], ["nativeCheckInputs", 39, 3], ["preCheck", 46, 3], ["disabledTestPaths", 50, 3], ["pythonImportsCheck", 52, 3], ["disallowedReferences", 54, 3], ["passthru", 56, 3], ["meta", 60, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, buildPythonPackage: false, six: false, lxml: false, pytestCheckHook: false, doFullCheck: true, jpylyzer: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["owner", 31, 5], ["repo", 32, 5], ["rev", 33, 5], ["hash", 34, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["doFullCheck", 57, 41]]);
-const pos$4 = nix.positions(here + "/default.nix", [["withFullCheck", 57, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["tests", 56, 12]]);
-const pos$6 = nix.positions(here + "/default.nix", [["description", 61, 5], ["mainProgram", 62, 5], ["homepage", 63, 5], ["license", 64, 5], ["maintainers", 65, 5]]);
-const pos$7 = nix.positions(here + "/default.nix", [["pname", 26, 3], ["version", 27, 3], ["format", 28, 3], ["src", 30, 3], ["propagatedBuildInputs", 37, 3], ["nativeCheckInputs", 39, 3], ["preCheck", 46, 3], ["disabledTestPaths", 50, 3], ["pythonImportsCheck", 52, 3], ["disallowedReferences", 54, 3], ["passthru", 56, 3], ["meta", 60, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const doFullCheck = nix.argOr($, "doFullCheck", () => false);
   const jpylyzer = nix.arg($, "jpylyzer");
   const testFiles = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "openpreserve",
       repo: "jpylyzer-test-files",
       rev: "0290e98bae9c5480c995954d3f14b4cf0a0395ff",
@@ -33,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.2.1";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "openpreserve",
           repo: "jpylyzer",
           rev: version,
@@ -47,14 +41,14 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["jpylyzer"]);
       const disallowedReferences = nix.thunk(() => [testFiles]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
-          withFullCheck: nix.thunk(() => nix.app(nix.sel(jpylyzer, "override"), nix.thunk(() => ({ [nix.POS]: pos$3, doFullCheck: true })))),
+          [nix.POS]: $pos[3],
+          withFullCheck: nix.thunk(() => nix.app(nix.sel(jpylyzer, "override"), nix.thunk(() => ({ [nix.POS]: $pos[2], doFullCheck: true })))),
         })),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "JP2 (JPEG 2000 Part 1) image validator and properties extractor",
         mainProgram: "jpylyzer",
         homepage: "https://jpylyzer.openpreservation.org/",
@@ -65,7 +59,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         pname,
         version,
         format,

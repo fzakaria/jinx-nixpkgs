@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 14, 5], ["version", 15, 13], ["hash", 16, 5]], [["homepage", 26, 5], ["maintainers", 27, 5], ["license", 28, 5], ["platforms", 29, 5], ["description", 30, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["pyproject", 19, 3], ["build-system", 21, 3], ["meta", 25, 3]]]);
 const formals$1 = { args: { buildPythonPackage: false, lib: false, fetchPypi: false, hatchling: false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 14, 5], ["version", 15, 13], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 26, 5], ["maintainers", 27, 5], ["license", 28, 5], ["platforms", 29, 5], ["description", 30, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["pyproject", 19, 3], ["build-system", 21, 3], ["meta", 25, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "litestar-htmx";
       const version = "0.5.0";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "litestar_htmx",
           version: version,
           hash: "sha256-4C0aOpIXLIdINfo+Z0nWWun8Ym0N9GcZSQoWKT4hRvs=",
@@ -26,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const pyproject = true;
       const build_system = nix.thunk(() => [hatchling]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://docs.litestar.dev/latest/usage/htmx.html",
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -37,7 +35,7 @@ export default nix.lambda((args) => (() => {
         description: "HTMX Integration for Litesstar",
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

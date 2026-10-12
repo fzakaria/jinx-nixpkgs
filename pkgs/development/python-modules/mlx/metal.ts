@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/metal.nix", [[["pname", 14, 7], ["version", 15, 30], ["format", 16, 7], ["dist", 17, 7], ["python", 18, 7], ["abi", 19, 7], ["platform", 20, 24], ["hash", 20, 33]], [["macosVariant", 33, 13], ["srcs", 33, 26], ["updateScript", 36, 5]], [["description", 40, 5], ["homepage", 41, 5], ["changelog", 42, 5], ["license", 43, 5], ["maintainers", 47, 5], ["sourceProvenance", 51, 5], ["platforms", 52, 5]], [["pname", 25, 3], ["version", 26, 26], ["format", 27, 3], ["__structuredAttrs", 28, 3], ["src", 30, 3], ["passthru", 32, 3], ["meta", 39, 3]]]);
 const formals$1 = { args: { buildPythonPackage: false, callPackage: false, fetchPypi: false, lib: false, macosVariant: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/metal.nix", [["pname", 14, 7], ["version", 15, 30], ["format", 16, 7], ["dist", 17, 7], ["python", 18, 7], ["abi", 19, 7], ["platform", 20, 24], ["hash", 20, 33]]);
-const pos$2 = nix.positions(here + "/metal.nix", [["macosVariant", 33, 13], ["srcs", 33, 26], ["updateScript", 36, 5]]);
-const pos$3 = nix.positions(here + "/metal.nix", [["description", 40, 5], ["homepage", 41, 5], ["changelog", 42, 5], ["license", 43, 5], ["maintainers", 47, 5], ["sourceProvenance", 51, 5], ["platforms", 52, 5]]);
-const pos$4 = nix.positions(here + "/metal.nix", [["pname", 25, 3], ["version", 26, 26], ["format", 27, 3], ["__structuredAttrs", 28, 3], ["src", 30, 3], ["passthru", 32, 3], ["meta", 39, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const macosVariant = nix.argOr($, "macosVariant", () => "14");
   const wheelSources = nix.thunk(() => nix.builtins.import(nix.path(here, "./wheel-sources.nix")));
   const srcs = nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (_) => (source) => nix.app(fetchPypi, nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         pname: "mlx_metal",
         version: nix.thunk(() => nix.attr(wheelSources, "version")),
         format: "wheel",
@@ -34,13 +31,13 @@ export default nix.lambda((args) => (() => {
       const __structuredAttrs = true;
       const src = nix.thunk(() => nix.selOr(srcs, () => nix.builtins.throw(nix.thunk(() => nix.str`mlx-metal: unsupported macOS wheel variant ${macosVariant}`)), nix.key(nix.force(macosVariant))));
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         macosVariant: macosVariant,
         srcs: srcs,
         updateScript: nix.thunk(() => nix.app(callPackage, nix.path(here, "./update-wheels.nix"), nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Prebuilt Metal runtime for MLX",
         homepage: "https://github.com/ml-explore/mlx",
         changelog: nix.thunk(() => nix.str`https://github.com/ml-explore/mlx/releases/tag/v${version}`),
@@ -65,7 +62,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => ["aarch64-darwin"]),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         format,

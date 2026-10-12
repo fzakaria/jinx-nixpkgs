@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 12, 5], ["repo", 13, 5], ["rev", 14, 5], ["hash", 15, 5]], [["description", 38, 5], ["homepage", 39, 5], ["license", 40, 5], ["sourceProvenance", 41, 5], ["maintainers", 44, 5], ["platforms", 45, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["dontBuild", 18, 3], ["installPhase", 20, 3], ["meta", 37, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 12, 5], ["repo", 13, 5], ["rev", 14, 5], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 38, 5], ["homepage", 39, 5], ["license", 40, 5], ["sourceProvenance", 41, 5], ["maintainers", 44, 5], ["platforms", 45, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["dontBuild", 18, 3], ["installPhase", 20, 3], ["meta", 37, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,11 +11,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "ivsc-firmware",
       version: "unstable-2024-06-14",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "intel",
           repo: "ivsc-firmware",
           rev: "74a01d1208a352ed85d76f959c68200af4ead918",
@@ -26,7 +24,7 @@ export default nix.lambda((args) => (() => {
       dontBuild: true,
       installPhase: "runHook preInstall\n\nmkdir -p $out/lib/firmware/vsc\ncp --no-preserve=mode --recursive ./firmware/* $out/lib/firmware/vsc/\ninstall -D ./LICENSE $out/share/doc\n\nmkdir -p $out/lib/firmware/vsc/soc_a1_prod\n# According to Intel's documentation for prod platform the a1_prod postfix is need it (https://github.com/intel/ivsc-firmware)\n# This fixes ipu6 webcams\nfor file in $out/lib/firmware/vsc/*.bin; do\n  ln -sf \"$file\" \"$out/lib/firmware/vsc/soc_a1_prod/$(basename \"$file\" .bin)_a1_prod.bin\"\ndone\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Firmware binaries for the Intel Vision Sensing Controller",
         homepage: "https://github.com/intel/ivsc-firmware",
         license: nix.thunk(() => nix.sel(lib, "licenses", "issl")),

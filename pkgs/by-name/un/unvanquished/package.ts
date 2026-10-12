@@ -2,17 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 41, 5], ["repo", 42, 5], ["tag", 43, 5], ["fetchSubmodules", 44, 5], ["hash", 45, 5]], [["url", 54, 7], ["hash", 55, 7]], [["pname", 50, 5], ["version", 51, 5], ["src", 53, 5], ["dontPatchELF", 58, 5], ["preFixup", 60, 5], ["preCheck", 73, 5], ["installPhase", 78, 5]], [["name", 89, 5], ["propagatedBuildInputs", 91, 5], ["buildCommand", 93, 5]], [["pname", 100, 5], ["version", 101, 13], ["targetPkgs", 103, 5]], [["pname", 121, 5], ["version", 122, 13], ["src", 122, 21], ["outputHash", 124, 5], ["outputHashMode", 125, 5], ["nativeBuildInputs", 127, 5], ["buildCommand", 132, 5]], [["name", 190, 7], ["desktopName", 191, 7], ["comment", 192, 7], ["icon", 193, 7], ["exec", 194, 7], ["categories", 195, 7], ["prefersNonDefaultGPU", 200, 7]], [["name", 203, 7], ["desktopName", 204, 7], ["noDisplay", 205, 7], ["exec", 206, 7], ["mimeTypes", 207, 7], ["prefersNonDefaultGPU", 208, 7]], [["homepage", 233, 5], ["downloadPage", 234, 5], ["description", 235, 5], ["license", 238, 5], ["sourceProvenance", 249, 5], ["maintainers", 253, 5], ["platforms", 254, 5]], [["pname", 140, 3], ["version", 141, 11], ["src", 141, 19], ["binary-deps-version", 141, 23], ["preConfigure", 143, 3], ["nativeBuildInputs", 150, 3], ["buildInputs", 155, 3], ["cmakeFlags", 178, 3], ["desktopItems", 188, 3], ["installPhase", 212, 3], ["meta", 232, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchzip: false, fetchFromGitHub: false, sdl3: false, buildFHSEnv: false, cmake: false, copyDesktopItems: false, curl: false, freetype: false, gcc: false, geoip: false, glew: false, gmp: false, libGL: false, libjpeg: false, libogg: false, libopus: false, libpng: false, libvorbis: false, libwebp: false, libx11: false, lua5: false, makeDesktopItem: false, ncurses: false, nettle: false, openal: false, opusfile: false, zlib: false, aria2: false, cacert: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 41, 5], ["repo", 42, 5], ["tag", 43, 5], ["fetchSubmodules", 44, 5], ["hash", 45, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 54, 7], ["hash", 55, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 50, 5], ["version", 51, 5], ["src", 53, 5], ["dontPatchELF", 58, 5], ["preFixup", 60, 5], ["preCheck", 73, 5], ["installPhase", 78, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["name", 89, 5], ["propagatedBuildInputs", 91, 5], ["buildCommand", 93, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 100, 5], ["version", 101, 13], ["targetPkgs", 103, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 121, 5], ["version", 122, 13], ["src", 122, 21], ["outputHash", 124, 5], ["outputHashMode", 125, 5], ["nativeBuildInputs", 127, 5], ["buildCommand", 132, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["name", 190, 7], ["desktopName", 191, 7], ["comment", 192, 7], ["icon", 193, 7], ["exec", 194, 7], ["categories", 195, 7], ["prefersNonDefaultGPU", 200, 7]]);
-const pos$8 = nix.positions(here + "/package.nix", [["name", 203, 7], ["desktopName", 204, 7], ["noDisplay", 205, 7], ["exec", 206, 7], ["mimeTypes", 207, 7], ["prefersNonDefaultGPU", 208, 7]]);
-const pos$9 = nix.positions(here + "/package.nix", [["homepage", 233, 5], ["downloadPage", 234, 5], ["description", 235, 5], ["license", 238, 5], ["sourceProvenance", 249, 5], ["maintainers", 253, 5], ["platforms", 254, 5]]);
-const pos$10 = nix.positions(here + "/package.nix", [["pname", 140, 3], ["version", 141, 11], ["src", 141, 19], ["binary-deps-version", 141, 23], ["preConfigure", 143, 3], ["nativeBuildInputs", 150, 3], ["buildInputs", 155, 3], ["cmakeFlags", 178, 3], ["desktopItems", 188, 3], ["installPhase", 212, 3], ["meta", 232, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -50,7 +41,7 @@ export default nix.lambda((args) => (() => {
   const version = "0.56.2";
   const binary_deps_version = "11";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "Unvanquished",
       repo: "Unvanquished",
       tag: nix.thunk(() => nix.str`v${version}`),
@@ -61,7 +52,7 @@ export default nix.lambda((args) => (() => {
       const pname = "unvanquished-binary-deps";
       const version_1 = binary_deps_version;
       const src_1 = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: nix.thunk(() => nix.str`https://dl.unvanquished.net/deps/linux-amd64-default_${version_1}.tar.xz`),
           hash: "sha256-1PPqQYnMBFR7Jr48qiqQEduEjiFWx3XyvfPBwX/PzIY=",
         }))));
@@ -70,7 +61,7 @@ export default nix.lambda((args) => (() => {
       const preCheck = "# check it links correctly\npnacl/bin/clang -v\n";
       const installPhase = "runHook preInstall\n\nmkdir -p $out\ncp -R ./* $out/\n\nrunHook postInstall\n";
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version: version_1,
         src: src_1,
@@ -81,7 +72,7 @@ export default nix.lambda((args) => (() => {
       };
     })())));
   const libstdcpp_preload_for_unvanquished_nacl = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       name: "libstdcpp-preload-for-unvanquished-nacl",
       propagatedBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(gcc, "cc", "lib"))]),
       buildCommand: nix.thunk(() => nix.str`mkdir $out/etc -p
@@ -89,7 +80,7 @@ echo ${nix.sel(gcc, "cc", "lib")}/lib/libstdc++.so.6 > $out/etc/ld-nix.so.preloa
 `),
     }))));
   const fhsEnv = nix.thunk(() => nix.app(buildFHSEnv, nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "unvanquished-fhs-wrapper",
       version: version,
       targetPkgs: (pkgs) => [libstdcpp_preload_for_unvanquished_nacl],
@@ -107,7 +98,7 @@ EOT
 chmod +x $out/bin/${wrappername}
 `;
   const unvanquished_assets = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "unvanquished-assets",
       version: version,
       src: src,
@@ -161,7 +152,7 @@ chmod +w -R daemon/external_deps/"$TARGET"/
       ]);
       const desktopItems = nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             name: "net.unvanquished.Unvanquished.desktop",
             desktopName: "Unvanquished",
             comment: "FPS/RTS Game - Aliens vs. Humans",
@@ -171,7 +162,7 @@ chmod +w -R daemon/external_deps/"$TARGET"/
             prefersNonDefaultGPU: true,
           })))),
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$8,
+            [nix.POS]: $pos[7],
             name: "net.unvanquished.UnvanquishedProtocolHandler.desktop",
             desktopName: "Unvanquished (protocol handler)",
             noDisplay: true,
@@ -199,7 +190,7 @@ done
 runHook postInstall
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         homepage: "https://unvanquished.net/",
         downloadPage: "https://unvanquished.net/download/",
         description: "Fast paced, first person strategy game",
@@ -231,7 +222,7 @@ runHook postInstall
         platforms: nix.thunk(() => ["x86_64-linux"]),
       }));
       return {
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         pname,
         version: version_1,
         src: src_1,

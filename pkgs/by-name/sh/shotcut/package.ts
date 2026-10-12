@@ -2,18 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]], [["ffmpeg_8-headless", 42, 52]], [["opencv", 42, 24]], [["NIX_CFLAGS_COMPILE", 57, 7]], [["ffmpeg", 63, 7], ["mlt", 64, 7]], [["ffmpeg_8-headless", 72, 54]], [["opencv", 72, 26]], [["rev-prefix", 90, 40]], [["updateScript", 90, 12]], [["description", 93, 5], ["longDescription", 94, 5], ["homepage", 103, 5], ["license", 104, 5], ["maintainers", 105, 5], ["platforms", 110, 5], ["mainProgram", 111, 5]], [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 40, 3], ["env", 57, 3], ["cmakeFlags", 59, 3], ["patches", 61, 3], ["dontWrapGApps", 68, 3], ["qtWrapperArgs", 70, 3], ["preFixup", 80, 3], ["postInstall", 84, 3], ["passthru", 90, 3], ["meta", 92, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, stdenv: false, replaceVars: false, SDL2: false, frei0r: false, opencv4: false, ladspaPlugins: false, gettext: false, jack1: false, "pkg-config": false, fftw: false, qt6: false, qt6Packages: false, cmake: false, gitUpdater: false, ffmpeg_8: false, wrapGAppsHook3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["ffmpeg_8-headless", 42, 52]]);
-const pos$3 = nix.positions(here + "/package.nix", [["opencv", 42, 24]]);
-const pos$4 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 57, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["ffmpeg", 63, 7], ["mlt", 64, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["ffmpeg_8-headless", 72, 54]]);
-const pos$7 = nix.positions(here + "/package.nix", [["opencv", 72, 26]]);
-const pos$8 = nix.positions(here + "/package.nix", [["rev-prefix", 90, 40]]);
-const pos$9 = nix.positions(here + "/package.nix", [["updateScript", 90, 12]]);
-const pos$10 = nix.positions(here + "/package.nix", [["description", 93, 5], ["longDescription", 94, 5], ["homepage", 103, 5], ["license", 104, 5], ["maintainers", 105, 5], ["platforms", 110, 5], ["mainProgram", 111, 5]]);
-const pos$11 = nix.positions(here + "/package.nix", [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 40, 3], ["env", 57, 3], ["cmakeFlags", 59, 3], ["patches", 61, 3], ["dontWrapGApps", 68, 3], ["qtWrapperArgs", 70, 3], ["preFixup", 80, 3], ["postInstall", 84, 3], ["passthru", 90, 3], ["meta", 92, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -36,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const ffmpeg_8 = nix.arg($, "ffmpeg_8");
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$11,
+      [nix.POS]: $pos[10],
       pname: "shotcut",
       version: "26.9.27",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "mltframework",
           repo: "shotcut",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -55,8 +45,8 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => nix.concat([
         SDL2,
         nix.thunk(() => nix.app(nix.sel(frei0r, "override"), nix.thunk(() => ({
-            [nix.POS]: pos$3,
-            opencv: nix.thunk(() => nix.app(nix.sel(opencv4, "override"), nix.thunk(() => ({ [nix.POS]: pos$2, "ffmpeg_8-headless": ffmpeg_8 })))),
+            [nix.POS]: $pos[2],
+            opencv: nix.thunk(() => nix.app(nix.sel(opencv4, "override"), nix.thunk(() => ({ [nix.POS]: $pos[1], "ffmpeg_8-headless": ffmpeg_8 })))),
           })))),
         ladspaPlugins,
         gettext,
@@ -68,13 +58,13 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.sel(qt6, "qtcharts")),
         nix.thunk(() => nix.sel(qt6, "qtwebsockets")),
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [nix.thunk(() => nix.sel(qt6, "qtwayland"))])))),
-      env: nix.thunk(() => ({ [nix.POS]: pos$4, NIX_CFLAGS_COMPILE: "-DSHOTCUT_NOUPGRADE" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[3], NIX_CFLAGS_COMPILE: "-DSHOTCUT_NOUPGRADE" })),
       cmakeFlags: nix.thunk(() => [
         nix.thunk(() => nix.str`-DSHOTCUT_VERSION=${nix.sel(finalAttrs, "version")}`),
       ]),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix-mlt-ffmpeg-path.patch"), nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             ffmpeg: ffmpeg_8,
             mlt: nix.thunk(() => nix.sel(qt6Packages, "mlt")),
           })))),
@@ -82,8 +72,8 @@ export default nix.lambda((args) => (() => {
       dontWrapGApps: true,
       qtWrapperArgs: nix.thunk(() => [
         nix.thunk(() => nix.str`--set FREI0R_PATH ${nix.app(nix.sel(frei0r, "override"), nix.thunk(() => ({
-            [nix.POS]: pos$7,
-            opencv: nix.thunk(() => nix.app(nix.sel(opencv4, "override"), nix.thunk(() => ({ [nix.POS]: pos$6, "ffmpeg_8-headless": ffmpeg_8 })))),
+            [nix.POS]: $pos[6],
+            opencv: nix.thunk(() => nix.app(nix.sel(opencv4, "override"), nix.thunk(() => ({ [nix.POS]: $pos[5], "ffmpeg_8-headless": ffmpeg_8 })))),
           })))}/lib/frei0r-1`),
         nix.thunk(() => nix.str`--set LADSPA_PATH ${ladspaPlugins}/lib/ladspa`),
         nix.thunk(() => nix.str`--prefix LD_LIBRARY_PATH : ${nix.app(nix.sel(lib, "makeLibraryPath"), nix.thunk(() => nix.concat([SDL2], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), nix.thunk(() => [jack1])))))}`),
@@ -91,11 +81,11 @@ export default nix.lambda((args) => (() => {
       preFixup: "qtWrapperArgs+=(\"${gappsWrapperArgs[@]}\")\n",
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "mkdir $out/Applications $out/bin\nmv $out/Shotcut.app $out/Applications/Shotcut.app\nln -s $out/Applications/Shotcut.app/Contents/MacOS/Shotcut $out/bin/shotcut\n")),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$9,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$8, "rev-prefix": "v" })))),
+        [nix.POS]: $pos[8],
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[7], "rev-prefix": "v" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         description: "Free, open source, cross-platform video editor",
         longDescription: "An official binary for Shotcut, which includes all the\ndependencies pinned to specific versions, is provided on\nhttp://shotcut.org.\n\nIf you encounter problems with this version, please contact the\nnixpkgs maintainer(s). If you wish to report any bugs upstream,\nplease use the official build from shotcut.org instead.\n",
         homepage: "https://shotcut.org",

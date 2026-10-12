@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/foreign.nix", [[["NIX_CFLAGS_COMPILE", 31, 7]], [["description", 37, 5]], [["pname", 14, 3], ["version", 16, 20], ["src", 16, 28], ["buildInputs", 18, 3], ["propagatedBuildInputs", 20, 3], ["checkInputs", 25, 3], ["env", 31, 3], ["doCheck", 34, 3], ["meta", 36, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, ocaml: false, buildDunePackage: false, ctypes: false, "dune-configurator": false, libffi: false, ounit2: false, lwt: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/foreign.nix", [["NIX_CFLAGS_COMPILE", 31, 7]]);
-const pos$2 = nix.positions(here + "/foreign.nix", [["description", 37, 5]]);
-const pos$3 = nix.positions(here + "/foreign.nix", [["pname", 14, 3], ["version", 16, 20], ["src", 16, 28], ["buildInputs", 18, 3], ["propagatedBuildInputs", 20, 3], ["checkInputs", 25, 3], ["env", 31, 3], ["doCheck", 34, 3], ["meta", 36, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,7 +17,7 @@ export default nix.lambda((args) => (() => {
   const ounit2 = nix.arg($, "ounit2");
   const lwt = nix.arg($, "lwt");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "ctypes-foreign",
       version: nix.thunk(() => nix.attr(ctypes, "version")),
       src: nix.thunk(() => nix.attr(ctypes, "src")),
@@ -27,12 +25,12 @@ export default nix.lambda((args) => (() => {
       propagatedBuildInputs: nix.thunk(() => [ctypes, libffi]),
       checkInputs: nix.thunk(() => [ounit2, lwt]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         NIX_CFLAGS_COMPILE: "-Wno-error=incompatible-pointer-types",
       })),
       doCheck: nix.thunk(() => !nix.asBool((nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) && nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(ocaml, "version")), "5.5"))))),
       meta: nix.thunk(() => nix.update(nix.sel(ctypes, "meta"), {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Dynamic access to foreign C libraries using Ctypes",
       })),
     })));

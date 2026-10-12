@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 34, 5], ["repo", 35, 5], ["tag", 36, 5], ["hash", 37, 5]], [["s3", 57, 5], ["xarray", 58, 5], ["zarr", 59, 5], ["geotiff", 63, 5]], [["description", 93, 5], ["homepage", 94, 5], ["license", 95, 5], ["teams", 96, 5]], [["pname", 29, 3], ["version", 30, 3], ["pyproject", 31, 3], ["src", 33, 3], ["build-system", 40, 3], ["dependencies", 42, 3], ["optional-dependencies", 56, 3], ["nativeCheckInputs", 69, 3], ["pythonImportsCheck", 76, 3], ["disabledTests", 78, 3], ["meta", 92, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, pytestCheckHook: false, "async-geotiff": false, attrs: false, boto3: false, cachetools: false, "color-operations": false, h5netcdf: false, hatchling: false, httpx2: false, morecantile: false, numexpr: false, numpy: false, obstore: false, pydantic: false, pystac: false, "pytest-asyncio": false, rasterio: false, rioxarray: false, "typing-extensions": false, zarr: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 34, 5], ["repo", 35, 5], ["tag", 36, 5], ["hash", 37, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["s3", 57, 5], ["xarray", 58, 5], ["zarr", 59, 5], ["geotiff", 63, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 93, 5], ["homepage", 94, 5], ["license", 95, 5], ["teams", 96, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 29, 3], ["version", 30, 3], ["pyproject", 31, 3], ["src", 33, 3], ["build-system", 40, 3], ["dependencies", 42, 3], ["optional-dependencies", 56, 3], ["nativeCheckInputs", 69, 3], ["pythonImportsCheck", 76, 3], ["disabledTests", 78, 3], ["meta", 92, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,12 +31,12 @@ export default nix.lambda((args) => (() => {
   const typing_extensions = nix.arg($, "typing-extensions");
   const zarr = nix.arg($, "zarr");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "rio-tiler",
       version: "9.4.7",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "cogeotiff",
           repo: "rio-tiler",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -60,7 +57,7 @@ export default nix.lambda((args) => (() => {
         typing_extensions,
       ]),
       "optional-dependencies": nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         s3: nix.thunk(() => [boto3]),
         xarray: nix.thunk(() => [rioxarray]),
         zarr: nix.thunk(() => [obstore, zarr]),
@@ -78,7 +75,7 @@ export default nix.lambda((args) => (() => {
         "test_geoxarray_reader",
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "User friendly Rasterio plugin to read raster datasets",
         homepage: "https://cogeotiff.github.io/rio-tiler/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

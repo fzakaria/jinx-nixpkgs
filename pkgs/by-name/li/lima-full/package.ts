@@ -2,12 +2,12 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["withAdditionalGuestAgents", 6, 3]]]);
 const formals$1 = { args: { lima: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["withAdditionalGuestAgents", 6, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lima = nix.arg($, "lima");
-  return nix.app(nix.sel(lima, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, withAdditionalGuestAgents: true })));
+  return nix.app(nix.sel(lima, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], withAdditionalGuestAgents: true })));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

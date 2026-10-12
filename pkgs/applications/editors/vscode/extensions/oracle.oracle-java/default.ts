@@ -2,10 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["name", 8, 5], ["publisher", 9, 5], ["version", 10, 5], ["hash", 11, 5]], [["changelog", 15, 5], ["description", 16, 5], ["downloadPage", 17, 5], ["homepage", 18, 5], ["license", 19, 5], ["maintainers", 20, 5]], [["mktplcRef", 7, 3], ["meta", 14, 3]]]);
 const formals$1 = { args: { lib: false, "vscode-utils": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["name", 8, 5], ["publisher", 9, 5], ["version", 10, 5], ["hash", 11, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["changelog", 15, 5], ["description", 16, 5], ["downloadPage", 17, 5], ["homepage", 18, 5], ["license", 19, 5], ["maintainers", 20, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["mktplcRef", 7, 3], ["meta", 14, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,14 +11,14 @@ export default nix.lambda((args) => (() => {
   const vscode_utils = nix.arg($, "vscode-utils");
   return nix.app(nix.sel(vscode_utils, "buildVscodeMarketplaceExtension"), nix.thunk(() => (() => {
       const mktplcRef = nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         name: "oracle-java",
         publisher: "oracle",
         version: "27.0.0",
         hash: "sha256-yXe07ZspiIN336DTqgzu8TbY5TC8vZ4XFIW4kr/WU0E=",
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         changelog: nix.thunk(() => nix.str`https://github.com/oracle/javavscode/releases/tag/v${nix.sel(mktplcRef, "version")}`),
         description: "Java Platform Extension for Visual Studio Code",
         downloadPage: "https://marketplace.visualstudio.com/items?itemName=oracle.oracle-java",
@@ -28,7 +26,7 @@ export default nix.lambda((args) => (() => {
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "kiyotoko"))]),
       }));
-      return { [nix.POS]: pos$3, mktplcRef, meta };
+      return { [nix.POS]: $pos[2], mktplcRef, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

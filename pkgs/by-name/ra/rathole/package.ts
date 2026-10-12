@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["hash", 20, 5]], [["VERGEN_BUILD_TIMESTAMP", 53, 5], ["VERGEN_BUILD_SEMVER", 54, 5], ["VERGEN_GIT_COMMIT_TIMESTAMP", 55, 5], ["VERGEN_GIT_BRANCH", 56, 5], ["VERGEN_RUSTC_SEMVER", 57, 5], ["VERGEN_RUSTC_CHANNEL", 58, 5], ["VERGEN_CARGO_PROFILE", 59, 5], ["VERGEN_CARGO_FEATURES", 60, 5], ["VERGEN_CARGO_TARGET_TRIPLE", 61, 5]], [["rathole", 65, 26]], [["tests", 64, 12]], [["description", 69, 5], ["homepage", 70, 5], ["license", 71, 5], ["mainProgram", 72, 5], ["maintainers", 73, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["patches", 26, 3], ["postPatch", 32, 3], ["cargoHash", 36, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 40, 3], ["__darwinAllowLocalNetworking", 44, 3], ["nativeCheckInputs", 46, 3], ["preCheck", 47, 3], ["env", 52, 3], ["passthru", 64, 3], ["meta", 68, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, rustPlatform: false, rustc: false, "pkg-config": false, openssl: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["VERGEN_BUILD_TIMESTAMP", 53, 5], ["VERGEN_BUILD_SEMVER", 54, 5], ["VERGEN_GIT_COMMIT_TIMESTAMP", 55, 5], ["VERGEN_GIT_BRANCH", 56, 5], ["VERGEN_RUSTC_SEMVER", 57, 5], ["VERGEN_RUSTC_CHANNEL", 58, 5], ["VERGEN_CARGO_PROFILE", 59, 5], ["VERGEN_CARGO_FEATURES", 60, 5], ["VERGEN_CARGO_TARGET_TRIPLE", 61, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["rathole", 65, 26]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 64, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 69, 5], ["homepage", 70, 5], ["license", 71, 5], ["mainProgram", 72, 5], ["maintainers", 73, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["patches", 26, 3], ["postPatch", 32, 3], ["cargoHash", 36, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 40, 3], ["__darwinAllowLocalNetworking", 44, 3], ["nativeCheckInputs", 46, 3], ["preCheck", 47, 3], ["env", 52, 3], ["passthru", 64, 3], ["meta", 68, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const openssl = nix.arg($, "openssl");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "rathole",
       version: "0.5.0-unstable-2025-07-29",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "rathole-org",
           repo: "rathole",
           rev: "5a9dd6d939744859af322aeff7fd60f7483a68bc",
@@ -40,7 +35,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [openssl]),
       preCheck: "patchShebangs examples/tls/create_self_signed_cert.sh\n(cd examples/tls && chmod +x create_self_signed_cert.sh && ./create_self_signed_cert.sh)\n",
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         VERGEN_BUILD_TIMESTAMP: "0",
         VERGEN_BUILD_SEMVER: nix.thunk(() => nix.sel(finalAttrs, "version")),
         VERGEN_GIT_COMMIT_TIMESTAMP: "0",
@@ -52,11 +47,14 @@ export default nix.lambda((args) => (() => {
         VERGEN_CARGO_TARGET_TRIPLE: nix.thunk(() => nix.str`${nix.sel(stdenv, "hostPlatform", "rust", "rustcTarget")}`),
       })),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$3, rathole: nix.thunk(() => nix.attr(nixosTests, "rathole")) })),
+        [nix.POS]: $pos[3],
+        tests: nix.thunk(() => ({
+          [nix.POS]: $pos[2],
+          rathole: nix.thunk(() => nix.attr(nixosTests, "rathole")),
+        })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Reverse proxy for NAT traversal",
         homepage: "https://github.com/rathole-org/rathole",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

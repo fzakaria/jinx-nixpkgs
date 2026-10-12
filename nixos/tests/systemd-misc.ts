@@ -2,26 +2,15 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/systemd-misc.nix", [[["name", 5, 5], ["text", 6, 5], ["executable", 14, 5]], [["name", 18, 5], ["text", 19, 5]], [["extraSystemdUnitPaths", 37, 12]], [["isNormalUser", 40, 9], ["uid", 41, 9]], [["limited", 39, 19]], [["users", 39, 13]], [["text", 45, 9]], [["user-1000.slice.d/limits.conf", 44, 21]], [["units", 44, 15]], [["boot", 37, 7], ["users", 39, 7], ["systemd", 44, 7]], [["machine", 34, 9]], [["name", 32, 3], ["nodes", 34, 3], ["testScript", 53, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/systemd-misc.nix", [["name", 5, 5], ["text", 6, 5], ["executable", 14, 5]]);
-const pos$2 = nix.positions(here + "/systemd-misc.nix", [["name", 18, 5], ["text", 19, 5]]);
 const formals$2 = { args: { pkgs: false, lib: false }, ellipsis: true };
-const pos$3 = nix.positions(here + "/systemd-misc.nix", [["extraSystemdUnitPaths", 37, 12]]);
-const pos$4 = nix.positions(here + "/systemd-misc.nix", [["isNormalUser", 40, 9], ["uid", 41, 9]]);
-const pos$5 = nix.positions(here + "/systemd-misc.nix", [["limited", 39, 19]]);
-const pos$6 = nix.positions(here + "/systemd-misc.nix", [["users", 39, 13]]);
-const pos$7 = nix.positions(here + "/systemd-misc.nix", [["text", 45, 9]]);
-const pos$8 = nix.positions(here + "/systemd-misc.nix", [["user-1000.slice.d/limits.conf", 44, 21]]);
-const pos$9 = nix.positions(here + "/systemd-misc.nix", [["units", 44, 15]]);
-const pos$10 = nix.positions(here + "/systemd-misc.nix", [["boot", 37, 7], ["users", 39, 7], ["systemd", 44, 7]]);
-const pos$11 = nix.positions(here + "/systemd-misc.nix", [["machine", 34, 9]]);
-const pos$12 = nix.positions(here + "/systemd-misc.nix", [["name", 32, 3], ["nodes", 34, 3], ["testScript", 53, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   const exampleScript = nix.thunk(() => nix.app(nix.sel(pkgs, "writeTextFile"), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: "example.sh",
       text: nix.thunk(() => nix.str`#! ${nix.sel(pkgs, "runtimeShell")} -e
 
@@ -33,7 +22,7 @@ done
       executable: true,
     }))));
   const unitFile = nix.thunk(() => nix.app(nix.sel(pkgs, "writeTextFile"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       name: "example.service",
       text: nix.thunk(() => nix.str`[Unit]
 Description=Example systemd service unit file
@@ -46,32 +35,32 @@ WantedBy=multi-user.target
 `),
     }))));
   return {
-    [nix.POS]: pos$12,
+    [nix.POS]: $pos[11],
     name: "systemd-misc",
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$11,
+      [nix.POS]: $pos[10],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs_1 = nix.arg($_1, "pkgs");
         const lib = nix.arg($_1, "lib");
         return {
-          [nix.POS]: pos$10,
+          [nix.POS]: $pos[9],
           boot: nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             extraSystemdUnitPaths: nix.thunk(() => ["/etc/systemd-rw/system"]),
           })),
           users: nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             users: nix.thunk(() => ({
-              [nix.POS]: pos$5,
-              limited: nix.thunk(() => ({ [nix.POS]: pos$4, isNormalUser: true, uid: 1000n })),
+              [nix.POS]: $pos[4],
+              limited: nix.thunk(() => ({ [nix.POS]: $pos[3], isNormalUser: true, uid: 1000n })),
             })),
           })),
           systemd: nix.thunk(() => ({
-            [nix.POS]: pos$9,
+            [nix.POS]: $pos[8],
             units: nix.thunk(() => ({
-              [nix.POS]: pos$8,
-              "user-1000.slice.d/limits.conf": nix.thunk(() => ({ [nix.POS]: pos$7, text: "[Slice]\nTasksAccounting=yes\nTasksMax=100\n" })),
+              [nix.POS]: $pos[7],
+              "user-1000.slice.d/limits.conf": nix.thunk(() => ({ [nix.POS]: $pos[6], text: "[Slice]\nTasksAccounting=yes\nTasksMax=100\n" })),
             })),
           })),
         };

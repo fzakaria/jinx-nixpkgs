@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 26, 5], ["hash", 27, 5]], [["description", 55, 5], ["homepage", 56, 5], ["sourceProvenance", 57, 5], ["license", 58, 5], ["maintainers", 59, 5], ["platforms", 60, 5]], [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["targetPkgs", 30, 3], ["extraInstallCommands", 47, 3], ["runScript", 52, 3], ["meta", 54, 3]]]);
 const formals$1 = { args: { buildFHSEnv: false, dbus: false, fetchzip: false, fontconfig: false, freetype: false, glib: false, lib: false, libGL: false, xkeyboard_config: false, libxrender: false, libxi: false, libxext: false, libx11: false, libsm: false, libice: false, libxcb: false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 55, 5], ["homepage", 56, 5], ["sourceProvenance", 57, 5], ["license", 58, 5], ["maintainers", 59, 5], ["platforms", 60, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["targetPkgs", 30, 3], ["extraInstallCommands", 47, 3], ["runScript", 52, 3], ["meta", 54, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const libxcb = nix.arg($, "libxcb");
   const zlib = nix.arg($, "zlib");
   return nix.app(buildFHSEnv, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "kingstvis",
       version: "3.6.6",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`http://res.kingst.site/kfs/KingstVIS_v${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-41tIOUaPOkyLAowf0M+hnZC6b5wVKVAD/DTjnE7nbOQ=",
         })))),
@@ -56,7 +54,7 @@ export default nix.lambda((args) => (() => {
 `),
       runScript: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src")}/KingstVIS`),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Kingst Virtual Instruments Studio, software for logic analyzers",
         homepage: "http://www.qdkingst.com/",
         sourceProvenance: nix.thunk(() => (() => {

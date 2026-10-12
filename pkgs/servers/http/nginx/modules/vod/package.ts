@@ -2,12 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]], [["frigate", 37, 43]], [["tests", 37, 12]], [["changelog", 40, 5], ["description", 41, 5], ["homepage", 42, 5], ["license", 43, 5], ["maintainers", 44, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["postPatch", 24, 3], ["buildInputs", 29, 3], ["passthru", 37, 3], ["meta", 39, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, mkNginxPlugin: false, "ffmpeg-headless": false, fdk_aac: false, openssl: false, libxml2: false, libiconv: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["frigate", 37, 43]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 37, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["changelog", 40, 5], ["description", 41, 5], ["homepage", 42, 5], ["license", 43, 5], ["maintainers", 44, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["postPatch", 24, 3], ["buildInputs", 29, 3], ["passthru", 37, 3], ["meta", 39, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const libiconv = nix.arg($, "libiconv");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(mkNginxPlugin, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "vod",
       version: "1.10.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "dio-az",
           repo: "nginx-vod-module",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,11 +30,14 @@ export default nix.lambda((args) => (() => {
       postPatch: "substituteInPlace vod/media_set.h \\\n  --replace-fail \"MAX_CLIPS (128)\" \"MAX_CLIPS (1024)\"\n",
       buildInputs: nix.thunk(() => [ffmpeg_headless, fdk_aac, openssl, libxml2, libiconv]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$2, frigate: nix.thunk(() => nix.attr(nixosTests, "frigate")) })),
+        [nix.POS]: $pos[2],
+        tests: nix.thunk(() => ({
+          [nix.POS]: $pos[1],
+          frigate: nix.thunk(() => nix.attr(nixosTests, "frigate")),
+        })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         changelog: nix.thunk(() => nix.str`https://github.com/dio-az/nginx-vod-module/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         description: "VOD packager",
         homepage: "https://github.com/dio-az/nginx-vod-module",

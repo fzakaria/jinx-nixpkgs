@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 40, 7], ["repo", 41, 7], ["tag", 42, 7], ["hash", 43, 7]], [["description", 77, 7], ["homepage", 78, 7], ["license", 79, 7], ["platforms", 80, 7], ["maintainers", 81, 7]], [["pname", 36, 5], ["version", 37, 5], ["src", 39, 5], ["dontWrapQtApps", 46, 5], ["propagatedBuildInputs", 48, 5], ["installPhase", 56, 5], ["meta", 76, 5]]]);
 const formals$1 = { args: { lib: false, formats: false, stdenvNoCC: false, fetchFromGitHub: false, qt6: false, libsForQt5: false, variants: true, themeConfig: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 40, 7], ["repo", 41, 7], ["tag", 42, 7], ["hash", 43, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 77, 7], ["homepage", 78, 7], ["license", 79, 7], ["platforms", 80, 7], ["maintainers", 81, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 36, 5], ["version", 37, 5], ["src", 39, 5], ["dontWrapQtApps", 46, 5], ["propagatedBuildInputs", 48, 5], ["installPhase", 56, 5], ["meta", 76, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const user_cfg = nix.thunk(() => nix.app(nix.sel(nix.app(nix.sel(formats, "ini"), nix.thunk(() => ({}))), "generate"), "theme.conf.user", themeConfig));
   const validVariants = nix.thunk(() => ["qt5", "qt6"]);
   return nix.app(nix.sel(lib, "checkListOfEnum"), "where-is-my-sddm-theme: variant", validVariants, variants, nix.thunk(() => nix.sel(stdenvNoCC, "mkDerivation")), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "where-is-my-sddm-theme",
       version: "1.12.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "stepanzubkov",
           repo: "where-is-my-sddm-theme",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -39,7 +37,7 @@ export default nix.lambda((args) => (() => {
 `)))))), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(lib, "elem"), "qt5", variants)), nix.thunk(() => nix.add("cp -r where_is_my_sddm_theme_qt5/ $out/share/sddm/themes/\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(lib, "isAttrs"), themeConfig)), nix.thunk(() => nix.str`ln -sf ${user_cfg} $out/share/sddm/themes/where_is_my_sddm_theme_qt5/theme.conf.user
 `))))))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Most minimalistic SDDM theme among all themes",
         homepage: "https://github.com/stepanzubkov/where-is-my-sddm-theme",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

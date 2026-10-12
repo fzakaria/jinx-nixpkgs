@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["vapoursynth", 30, 51]], [["withPlugins", 29, 5]], [["pname", 10, 3], ["format", 11, 3], ["version", 13, 25], ["src", 13, 33], ["nativeBuildInputs", 15, 3], ["buildInputs", 17, 3], ["nativeCheckInputs", 19, 3], ["unittestFlagsArray", 21, 3], ["passthru", 28, 3], ["meta", 33, 25]]]);
 const formals$1 = { args: { vapoursynth: false, cython: false, buildPythonPackage: false, unittestCheckHook: false, python: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["vapoursynth", 30, 51]]);
-const pos$2 = nix.positions(here + "/default.nix", [["withPlugins", 29, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 10, 3], ["format", 11, 3], ["version", 13, 25], ["src", 13, 33], ["nativeBuildInputs", 15, 3], ["buildInputs", 17, 3], ["nativeCheckInputs", 19, 3], ["unittestFlagsArray", 21, 3], ["passthru", 28, 3], ["meta", 33, 25]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const unittestCheckHook = nix.arg($, "unittestCheckHook");
   const python = nix.arg($, "python");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "vapoursynth",
       format: "setuptools",
       version: nix.thunk(() => nix.attr(vapoursynth, "version")),
@@ -25,9 +23,9 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [unittestCheckHook]),
       unittestFlagsArray: nix.thunk(() => ["-s", "test", "-p", "'*test.py'"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         withPlugins: (plugins) => nix.app(nix.sel(python, "pkgs", "vapoursynth", "override"), nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             vapoursynth: nix.thunk(() => nix.app(nix.sel(vapoursynth, "withPlugins"), plugins)),
           }))),
       })),

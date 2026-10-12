@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]], [["name", 22, 7], ["url", 23, 7], ["hash", 24, 7]], [["homepage", 38, 5], ["description", 39, 5], ["longDescription", 40, 5], ["license", 59, 5], ["maintainers", 60, 5], ["platforms", 61, 5], ["mainProgram", 62, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["patches", 20, 3], ["postConfigure", 28, 3], ["nativeBuildInputs", 33, 3], ["hardeningDisable", 35, 3], ["meta", 37, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch: false, autoreconfHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 22, 7], ["url", 23, 7], ["hash", 24, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 38, 5], ["description", 39, 5], ["longDescription", 40, 5], ["license", 59, 5], ["maintainers", 60, 5], ["platforms", 61, 5], ["mainProgram", 62, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["patches", 20, 3], ["postConfigure", 28, 3], ["nativeBuildInputs", 33, 3], ["hardeningDisable", 35, 3], ["meta", 37, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const fetchpatch = nix.arg($, "fetchpatch");
   const autoreconfHook = nix.arg($, "autoreconfHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "robodoc",
       version: "4.99.44",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "gumpu",
           repo: "ROBODoc",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -28,7 +25,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "troff_generator-fix",
             url: "https://github.com/gumpu/ROBODoc/commit/0f8b35c42523810415bec70bb2200d2ecb41c82f.patch?index=full",
             hash: "sha256-Pbuc1gHrOeHbR4QT/dZ8wP+vqYQlilayjCGKOJP5wvk=",
@@ -38,7 +35,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [autoreconfHook]),
       hardeningDisable: nix.thunk(() => ["format"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/gumpu/ROBODoc",
         description: "Documentation Extraction Tool",
         longDescription: "ROBODoc is program documentation tool. The idea is to include for every\nfunction or procedure a standard header containing all sorts of\ninformation about the procedure or function. ROBODoc extracts these\nheaders from the source file and puts them in a separate\nautodocs-file. ROBODoc thus allows you to include the program\ndocumentation in the source code and avoid having to maintain two separate\ndocuments. Or as Petteri puts it: \"robodoc is very useful - especially for\nprogrammers who don't like writing documents with Word or some other\nstrange tool.\"\n\nROBODoc can format the headers in a number of different formats: HTML,\nRTF, LaTeX, or XML DocBook. In HTML mode it can generate cross links\nbetween headers. You can even include parts of your source code.\n\nROBODoc works with many programming languages: For instance C, Pascal,\nShell Scripts, Assembler, COBOL, Occam, Postscript, Forth, Tcl/Tk, C++,\nJava -- basically any program in which you can use remarks/comments.\n",

@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 27, 5], ["sha256", 28, 5]], [["url", 34, 7], ["hash", 35, 7]], [["GNUPG", 57, 7], ["GPGME_CONFIG", 58, 7]], [["packageName", 69, 7], ["versionPolicy", 70, 7]], [["updateScript", 68, 5]], [["description", 75, 5], ["mainProgram", 76, 5], ["homepage", 77, 5], ["license", 78, 5], ["platforms", 79, 5], ["broken", 82, 5]], [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["patches", 31, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 47, 3], ["propagatedBuildInputs", 55, 3], ["env", 57, 3], ["enableParallelBuilding", 60, 3], ["preAutoreconf", 62, 3], ["passthru", 67, 3], ["meta", 74, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, fetchpatch: false, autoreconfHook: false, gettext: false, "pkg-config": false, intltool: false, glib: false, gnome: false, gtk3: false, "gtk3-x11": false, "gtk3'": true, "gtk-doc": false, gnupg: false, gpgme: false, "dbus-glib": false, gcr_3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 27, 5], ["sha256", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 34, 7], ["hash", 35, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["GNUPG", 57, 7], ["GPGME_CONFIG", 58, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["packageName", 69, 7], ["versionPolicy", 70, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["updateScript", 68, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 75, 5], ["mainProgram", 76, 5], ["homepage", 77, 5], ["license", 78, 5], ["platforms", 79, 5], ["broken", 82, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["patches", 31, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 47, 3], ["propagatedBuildInputs", 55, 3], ["env", 57, 3], ["enableParallelBuilding", 60, 3], ["preAutoreconf", 62, 3], ["passthru", 67, 3], ["meta", 74, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,17 +26,17 @@ export default nix.lambda((args) => (() => {
   const dbus_glib = nix.arg($, "dbus-glib");
   const gcr_3 = nix.arg($, "gcr_3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "libcryptui",
       version: "3.12.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnome/sources/libcryptui/${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/libcryptui-${nix.sel(finalAttrs, "version")}.tar.xz`),
           sha256: "0rh8wa5k2iwbwppyvij2jdxmnlfjbna7kbh2a5n7zw4nnjkx3ski",
         })))),
       patches: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "map"), fetchurl, nix.thunk(() => nix.builtins.import(nix.path(here, "./debian-patches.nix")))), [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://gitlab.archlinux.org/archlinux/packaging/packages/libcryptui/-/raw/1-3.12.2+r71+ged4f890e-2/gpgme-2.0.patch",
             hash: "sha256-yftIixqVGUqn/VP0tfzPnhLPI7A/m61kVY5P1NDTIqQ=",
           })))),
@@ -51,7 +45,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [glib, gtk3$, gnupg, gpgme, dbus_glib, gcr_3]),
       propagatedBuildInputs: nix.thunk(() => [dbus_glib]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         GNUPG: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), gnupg)),
         GPGME_CONFIG: nix.thunk(() => nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.app(nix.sel(lib, "getDev"), gpgme)), "gpgme-config")),
       })),
@@ -60,11 +54,11 @@ export default nix.lambda((args) => (() => {
 cp ${gettext}/share/gettext/m4/nls.m4 m4
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$4, packageName: "libcryptui", versionPolicy: "odd-unstable" })))),
+        [nix.POS]: $pos[4],
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: $pos[3], packageName: "libcryptui", versionPolicy: "odd-unstable" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Interface components for OpenPGP",
         mainProgram: "seahorse-daemon",
         homepage: "https://gitlab.gnome.org/GNOME/libcryptui",

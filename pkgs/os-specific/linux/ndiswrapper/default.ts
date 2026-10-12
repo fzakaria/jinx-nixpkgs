@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 40, 5], ["sha256", 41, 5]], [["description", 50, 5], ["homepage", 51, 5], ["license", 52, 5], ["platforms", 53, 5], ["broken", 57, 5]], [["name", 12, 3], ["pname", 13, 3], ["version", 14, 3], ["hardeningDisable", 16, 3], ["patches", 18, 3], ["kernel", 21, 3], ["buildPhase", 23, 3], ["installPhase", 30, 3], ["src", 39, 3], ["buildInputs", 44, 3], ["meta", 49, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, kernel: false, perl: false, kmod: false, elfutils: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 40, 5], ["sha256", 41, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 50, 5], ["homepage", 51, 5], ["license", 52, 5], ["platforms", 53, 5], ["broken", 57, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["name", 12, 3], ["pname", 13, 3], ["version", 14, 3], ["hardeningDisable", 16, 3], ["patches", 18, 3], ["kernel", 21, 3], ["buildPhase", 23, 3], ["installPhase", 30, 3], ["src", 39, 3], ["buildInputs", 44, 3], ["meta", 49, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const kmod = nix.arg($, "kmod");
   const elfutils = nix.arg($, "elfutils");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       name: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-${nix.sel(finalAttrs, "version")}-${nix.sel(kernel, "version")}`),
       pname: "ndiswrapper",
       version: "1.63",
@@ -32,13 +30,13 @@ export default nix.lambda((args) => (() => {
   `),
       installPhase: "make install KBUILD=$(cat kbuild_path) DESTDIR=$out\nmv $out/usr/sbin/* $out/sbin/\nmv $out/usr/share $out/\nrm -r $out/usr\n\npatchShebangs $out/sbin\n",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/ndiswrapper/files/stable/ndiswrapper-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "1v6b66jhisl110jfl00hm43lmnrav32vs39d85gcbxrjqnmcx08g",
         })))),
       buildInputs: nix.thunk(() => [perl, elfutils]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Ndis driver wrapper for the Linux kernel",
         homepage: "https://sourceforge.net/projects/ndiswrapper",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

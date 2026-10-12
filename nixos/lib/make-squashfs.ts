@@ -2,10 +2,8 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/make-squashfs.nix", [[["out", 32, 27]], [["rootPaths", 37, 33]], [["name", 27, 3], ["__structuredAttrs", 28, 3], ["unsafeDiscardReferences", 32, 3], ["nativeBuildInputs", 34, 3], ["buildCommand", 36, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, "squashfs-tools": false, closureInfo: false, fileName: true, storeContents: true, pseudoFiles: true, noStrip: true, comp: true, hydraBuildProduct: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/make-squashfs.nix", [["out", 32, 27]]);
-const pos$2 = nix.positions(here + "/make-squashfs.nix", [["rootPaths", 37, 33]]);
-const pos$3 = nix.positions(here + "/make-squashfs.nix", [["name", 27, 3], ["__structuredAttrs", 28, 3], ["unsafeDiscardReferences", 32, 3], ["nativeBuildInputs", 34, 3], ["buildCommand", 36, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const pseudoFilesArgs = nix.thunk(() => nix.app(nix.sel(lib, "concatMapStrings"), (f) => nix.str`-p "${f}" `, pseudoFiles));
   const compFlag = nix.thunk(() => (nix.asBool(nix.eq(comp, null)) ? "-no-compression" : nix.str`-comp ${comp}`));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       name: nix.thunk(() => nix.str`${fileName}${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(hydraBuildProduct)), ".img")}`),
       __structuredAttrs: true,
-      unsafeDiscardReferences: nix.thunk(() => ({ [nix.POS]: pos$1, out: true })),
+      unsafeDiscardReferences: nix.thunk(() => ({ [nix.POS]: $pos[0], out: true })),
       nativeBuildInputs: nix.thunk(() => [squashfs_tools]),
-      buildCommand: nix.thunk(() => nix.add(nix.add(nix.add(nix.add(nix.str`closureInfo=${nix.app(closureInfo, nix.thunk(() => ({ [nix.POS]: pos$2, rootPaths: storeContents })))}
+      buildCommand: nix.thunk(() => nix.add(nix.add(nix.add(nix.add(nix.str`closureInfo=${nix.app(closureInfo, nix.thunk(() => ({ [nix.POS]: $pos[1], rootPaths: storeContents })))}
 
 # Also include a manifest of the closures in a format suitable
 # for nix-store --load-db.

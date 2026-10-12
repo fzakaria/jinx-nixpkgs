@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 29, 5], ["sha256", 30, 5]], [["packageName", 62, 7], ["versionPolicy", 63, 7]], [["updateScript", 61, 5]], [["homepage", 68, 5], ["description", 69, 5], ["license", 70, 5], ["platforms", 71, 5]], [["pname", 19, 3], ["version", 20, 3], ["outputs", 22, 3], ["src", 28, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 44, 3], ["mesonFlags", 49, 3], ["doCheck", 53, 3], ["postPatch", 55, 3], ["passthru", 60, 3], ["meta", 67, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, meson: false, ninja: false, "pkg-config": false, "gobject-introspection": false, vala: false, "gtk-doc": false, "docbook-xsl-nons": false, docbook_xml_dtd_412: false, libxml2: false, gst_all_1: false, gnome: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 29, 5], ["sha256", 30, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["packageName", 62, 7], ["versionPolicy", 63, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 61, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 68, 5], ["description", 69, 5], ["license", 70, 5], ["platforms", 71, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["outputs", 22, 3], ["src", 28, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 44, 3], ["mesonFlags", 49, 3], ["doCheck", 53, 3], ["postPatch", 55, 3], ["passthru", 60, 3], ["meta", 67, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.12.0";
       const outputs = nix.thunk(() => ["out", "dev", "devdoc"]);
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnome/sources/gupnp-dlna/${nix.app(nix.sel(lib, "versions", "majorMinor"), version)}/gupnp-dlna-${version}.tar.xz`),
           sha256: "PVO5b4W8VijTPjZ+yb8q2zjvKzTXrQQ0proM9K2QSOY=",
         }))));
@@ -49,18 +45,18 @@ export default nix.lambda((args) => (() => {
       const doCheck = true;
       const postPatch = "chmod +x tests/test-discoverer.sh.in\npatchShebangs tests/test-discoverer.sh.in\n";
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$2, packageName: pname, versionPolicy: "odd-unstable" })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: $pos[1], packageName: pname, versionPolicy: "odd-unstable" })))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://gitlab.gnome.org/GNOME/gupnp-dlna",
         description: "Library to ease DLNA-related bits for applications using GUPnP",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl2Plus")),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         outputs,

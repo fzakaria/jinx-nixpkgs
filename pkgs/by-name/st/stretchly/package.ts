@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 16, 5], ["hash", 17, 5]], [["url", 21, 5], ["hash", 22, 5]], [["name", 43, 5], ["exec", 44, 5], ["icon", 45, 5], ["desktopName", 46, 5], ["genericName", 47, 5], ["categories", 48, 5]], [["updateScript", 52, 5]], [["description", 56, 5], ["longDescription", 57, 5], ["homepage", 64, 5], ["downloadPage", 65, 5], ["license", 66, 5], ["maintainers", 67, 5], ["platforms", 68, 5], ["mainProgram", 69, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["icon", 20, 3], ["nativeBuildInputs", 25, 3], ["installPhase", 27, 3], ["desktopItem", 42, 3], ["passthru", 51, 3], ["meta", 55, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, makeWrapper: false, electron: false, makeDesktopItem: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 21, 5], ["hash", 22, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 43, 5], ["exec", 44, 5], ["icon", 45, 5], ["desktopName", 46, 5], ["genericName", 47, 5], ["categories", 48, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 52, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 56, 5], ["longDescription", 57, 5], ["homepage", 64, 5], ["downloadPage", 65, 5], ["license", 66, 5], ["maintainers", 67, 5], ["platforms", 68, 5], ["mainProgram", 69, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["icon", 20, 3], ["nativeBuildInputs", 25, 3], ["installPhase", 27, 3], ["desktopItem", 42, 3], ["passthru", 51, 3], ["meta", 55, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,16 +15,16 @@ export default nix.lambda((args) => (() => {
   const makeDesktopItem = nix.arg($, "makeDesktopItem");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "stretchly",
       version: "1.19.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/hovancik/stretchly/releases/download/v${nix.sel(finalAttrs, "version")}/stretchly-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-llcKbzlqGMxwrqH1qvQo4fHxO0C1itVZ5wlkwL1IOOU=",
         })))),
       icon: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: nix.thunk(() => nix.str`https://raw.githubusercontent.com/hovancik/stretchly/v${nix.sel(finalAttrs, "version")}/stretchly_128x128.png`),
           hash: "sha256-tO0cNKopG/recQus7KDUTyGpApvR5/tpmF5C4V14DnI=",
         })))),
@@ -48,7 +43,7 @@ makeWrapper ${electron}/bin/electron $out/bin/stretchly \\
 runHook postInstall
 `),
       desktopItem: nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           name: "stretchly",
           exec: "stretchly",
           icon: nix.thunk(() => nix.sel(finalAttrs, "icon")),
@@ -57,11 +52,11 @@ runHook postInstall
           categories: nix.thunk(() => ["Utility"]),
         })))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Break time reminder app",
         longDescription: "stretchly is a cross-platform electron app that reminds you to take\nbreaks when working on your computer. By default, it runs in your tray\nand displays a reminder window containing an idea for a microbreak for 20\nseconds every 10 minutes. Every 30 minutes, it displays a window\ncontaining an idea for a longer 5 minute break.\n",
         homepage: "https://hovancik.net/stretchly",

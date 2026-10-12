@@ -2,58 +2,47 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/qemu-vm-store.nix", [[["maintainers", 6, 8]], [["enable", 9, 9]], [["nix", 9, 5]], [["writableStore", 14, 22]], [["virtualisation", 14, 7]], [["writableStore", 18, 22]], [["virtualisation", 18, 7]], [["useNixStoreImage", 22, 22], ["writableStore", 23, 22]], [["virtualisation", 22, 7]], [["useNixStoreImage", 27, 22], ["writableStore", 28, 22]], [["virtualisation", 27, 7]], [["useBootLoader", 32, 22]], [["virtualisation", 32, 7]], [["sharedWritable", 13, 5], ["sharedReadOnly", 17, 5], ["imageWritable", 21, 5], ["imageReadOnly", 26, 5], ["fullDisk", 31, 5]], [["name", 4, 3], ["meta", 6, 3], ["defaults", 8, 3], ["nodes", 12, 3], ["testScript", 36, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/qemu-vm-store.nix", [["maintainers", 6, 8]]);
-const pos$2 = nix.positions(here + "/qemu-vm-store.nix", [["enable", 9, 9]]);
-const pos$3 = nix.positions(here + "/qemu-vm-store.nix", [["nix", 9, 5]]);
-const pos$4 = nix.positions(here + "/qemu-vm-store.nix", [["writableStore", 14, 22]]);
-const pos$5 = nix.positions(here + "/qemu-vm-store.nix", [["virtualisation", 14, 7]]);
-const pos$6 = nix.positions(here + "/qemu-vm-store.nix", [["writableStore", 18, 22]]);
-const pos$7 = nix.positions(here + "/qemu-vm-store.nix", [["virtualisation", 18, 7]]);
-const pos$8 = nix.positions(here + "/qemu-vm-store.nix", [["useNixStoreImage", 22, 22], ["writableStore", 23, 22]]);
-const pos$9 = nix.positions(here + "/qemu-vm-store.nix", [["virtualisation", 22, 7]]);
-const pos$10 = nix.positions(here + "/qemu-vm-store.nix", [["useNixStoreImage", 27, 22], ["writableStore", 28, 22]]);
-const pos$11 = nix.positions(here + "/qemu-vm-store.nix", [["virtualisation", 27, 7]]);
-const pos$12 = nix.positions(here + "/qemu-vm-store.nix", [["useBootLoader", 32, 22]]);
-const pos$13 = nix.positions(here + "/qemu-vm-store.nix", [["virtualisation", 32, 7]]);
-const pos$14 = nix.positions(here + "/qemu-vm-store.nix", [["sharedWritable", 13, 5], ["sharedReadOnly", 17, 5], ["imageWritable", 21, 5], ["imageReadOnly", 26, 5], ["fullDisk", 31, 5]]);
-const pos$15 = nix.positions(here + "/qemu-vm-store.nix", [["name", 4, 3], ["meta", 6, 3], ["defaults", 8, 3], ["nodes", 12, 3], ["testScript", 36, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$15,
+    [nix.POS]: $pos[14],
     name: "qemu-vm-store",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "nikstur"))];
       })()),
     })),
-    defaults: nix.thunk(() => ({ [nix.POS]: pos$3, nix: nix.thunk(() => ({ [nix.POS]: pos$2, enable: true })) })),
+    defaults: nix.thunk(() => ({
+      [nix.POS]: $pos[2],
+      nix: nix.thunk(() => ({ [nix.POS]: $pos[1], enable: true })),
+    })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$14,
+      [nix.POS]: $pos[13],
       sharedWritable: nix.thunk(() => ({
-        [nix.POS]: pos$5,
-        virtualisation: nix.thunk(() => ({ [nix.POS]: pos$4, writableStore: true })),
+        [nix.POS]: $pos[4],
+        virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[3], writableStore: true })),
       })),
       sharedReadOnly: nix.thunk(() => ({
-        [nix.POS]: pos$7,
-        virtualisation: nix.thunk(() => ({ [nix.POS]: pos$6, writableStore: false })),
+        [nix.POS]: $pos[6],
+        virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[5], writableStore: false })),
       })),
       imageWritable: nix.thunk(() => ({
-        [nix.POS]: pos$9,
-        virtualisation: nix.thunk(() => ({ [nix.POS]: pos$8, useNixStoreImage: true, writableStore: true })),
+        [nix.POS]: $pos[8],
+        virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[7], useNixStoreImage: true, writableStore: true })),
       })),
       imageReadOnly: nix.thunk(() => ({
-        [nix.POS]: pos$11,
-        virtualisation: nix.thunk(() => ({ [nix.POS]: pos$10, useNixStoreImage: true, writableStore: false })),
+        [nix.POS]: $pos[10],
+        virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[9], useNixStoreImage: true, writableStore: false })),
       })),
       fullDisk: nix.thunk(() => ({
-        [nix.POS]: pos$13,
-        virtualisation: nix.thunk(() => ({ [nix.POS]: pos$12, useBootLoader: true })),
+        [nix.POS]: $pos[12],
+        virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[11], useBootLoader: true })),
       })),
     })),
     testScript: "build_derivation = \"\"\"\n  nix-build --option substitute false -E 'derivation {\n    name = \"t\";\n    builder = \"/bin/sh\";\n    args = [\"-c\" \"echo something > $out\"];\n    system = builtins.currentSystem;\n    preferLocalBuild = true;\n  }'\n\"\"\"\n\nstart_all()\n\nwith subtest(\"Nix Store is writable\"):\n  sharedWritable.succeed(build_derivation)\n  imageWritable.succeed(build_derivation)\n  fullDisk.succeed(build_derivation)\n\nwith subtest(\"Nix Store is read only\"):\n  sharedReadOnly.fail(build_derivation)\n  imageReadOnly.fail(build_derivation)\n\n# Checking whether the fs type is virtiofs is just a proxy to test whether the\n# Nix Store is shared.\n\nwith subtest(\"Nix store is shared from the host via virtiofs\"):\n  sharedWritable.succeed(\"findmnt --kernel --type virtiofs /nix/.ro-store\")\n  sharedReadOnly.succeed(\"findmnt --kernel --type virtiofs /nix/.ro-store\")\n\nwith subtest(\"Nix store is not shared via virtiofs\"):\n  imageWritable.fail(\"findmnt --kernel --type virtiofs /nix/.ro-store\")\n  imageReadOnly.fail(\"findmnt --kernel --type virtiofs /nix/.ro-store\")\n\nwith subtest(\"Nix store is not mounted separately\"):\n  rootDevice = fullDisk.succeed(\"stat -c %d /\")\n  nixStoreDevice = fullDisk.succeed(\"stat -c %d /nix/store\")\n  assert rootDevice == nixStoreDevice, \"Nix store is mounted separately from the root fs\"\n",

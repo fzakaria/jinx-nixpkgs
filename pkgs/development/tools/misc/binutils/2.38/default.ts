@@ -2,16 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 38, 7], ["sha256", 39, 7]], [["owner", 42, 7], ["repo", 43, 7], ["rev", 44, 7], ["sha256", 45, 7]], [["normal", 37, 5], ["vc4-none", 41, 5]], [["name", 92, 7], ["url", 93, 7], ["hash", 94, 7], ["excludes", 95, 7]], [["src", 107, 13], ["substitutions", 108, 13]], [["NIX_CFLAGS_COMPILE", 184, 7]], [["targetPrefix", 261, 13], ["hasGold", 262, 5], ["isGNU", 263, 5]], [["description", 269, 5], ["longDescription", 270, 5], ["homepage", 276, 5], ["license", 277, 5], ["maintainers", 278, 5], ["platforms", 282, 5], ["priority", 286, 5]], [["pname", 55, 3], ["version", 56, 11], ["src", 59, 3], ["patches", 65, 3], ["outputs", 129, 3], ["strictDeps", 135, 3], ["depsBuildBuild", 136, 3], ["nativeBuildInputs", 137, 3], ["buildInputs", 151, 3], ["noSysDirs", 156, 11], ["preConfigure", 158, 3], ["env", 184, 3], ["hardeningDisable", 190, 3], ["configurePlatforms", 194, 3], ["configureFlags", 200, 3], ["doCheck", 241, 3], ["postFixup", 245, 3], ["stripDebugList", 248, 3], ["doInstallCheck", 256, 3], ["enableParallelBuilding", 258, 3], ["passthru", 260, 3], ["__structuredAttrs", 266, 3], ["meta", 268, 3]]]);
 const formals$1 = { args: { stdenv: false, autoreconfHook: false, autoconf269: false, automake: false, libtool: false, bison: false, buildPackages: false, fetchFromGitHub: false, fetchurl: false, fetchpatch: false, flex: false, gettext: false, lib: false, noSysDirs: false, perl: false, substitute: false, texinfo: false, zlib: false, enableGold: true, enableShared: true, withAllTargets: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 38, 7], ["sha256", 39, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["owner", 42, 7], ["repo", 43, 7], ["rev", 44, 7], ["sha256", 45, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["normal", 37, 5], ["vc4-none", 41, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["name", 92, 7], ["url", 93, 7], ["hash", 94, 7], ["excludes", 95, 7]]);
-const pos$5 = nix.positions(here + "/default.nix", [["src", 107, 13], ["substitutions", 108, 13]]);
-const pos$6 = nix.positions(here + "/default.nix", [["NIX_CFLAGS_COMPILE", 184, 7]]);
-const pos$7 = nix.positions(here + "/default.nix", [["targetPrefix", 261, 13], ["hasGold", 262, 5], ["isGNU", 263, 5]]);
-const pos$8 = nix.positions(here + "/default.nix", [["description", 269, 5], ["longDescription", 270, 5], ["homepage", 276, 5], ["license", 277, 5], ["maintainers", 278, 5], ["platforms", 282, 5], ["priority", 286, 5]]);
-const pos$9 = nix.positions(here + "/default.nix", [["pname", 55, 3], ["version", 56, 11], ["src", 59, 3], ["patches", 65, 3], ["outputs", 129, 3], ["strictDeps", 135, 3], ["depsBuildBuild", 136, 3], ["nativeBuildInputs", 137, 3], ["buildInputs", 151, 3], ["noSysDirs", 156, 11], ["preConfigure", 158, 3], ["env", 184, 3], ["hardeningDisable", 190, 3], ["configurePlatforms", 194, 3], ["configureFlags", 200, 3], ["doCheck", 241, 3], ["postFixup", 245, 3], ["stripDebugList", 248, 3], ["doInstallCheck", 256, 3], ["enableParallelBuilding", 258, 3], ["passthru", 260, 3], ["__structuredAttrs", 266, 3], ["meta", 268, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -42,14 +34,14 @@ export default nix.lambda((args) => (() => {
   const targetPlatform = nix.thunk(() => nix.attr(stdenv, "targetPlatform"));
   const version = "2.38";
   const srcs = nix.thunk(() => ({
-    [nix.POS]: pos$3,
+    [nix.POS]: $pos[2],
     normal: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         url: nix.thunk(() => nix.str`mirror://gnu/binutils/binutils-${version}.tar.bz2`),
         sha256: "sha256-Bw7HHPB3pqWOC5WfBaCaNQFTeMLYpR6Q866r/jBZDvg=",
       })))),
     "vc4-none": nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         owner: "itszor",
         repo: "binutils-vc4",
         rev: "708acc851880dbeda1dd18aca4fd0a95b2573b36",
@@ -58,7 +50,7 @@ export default nix.lambda((args) => (() => {
   }));
   const targetPrefix = nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(targetPlatform, hostPlatform)), nix.thunk(() => nix.str`${nix.sel(targetPlatform, "config")}-`)));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       pname: nix.thunk(() => nix.add(targetPrefix, "binutils")),
       version: version,
       src: nix.thunk(() => nix.selOr(stdenv, () => nix.selOr(srcs, () => nix.sel(srcs, "normal"), nix.key(nix.sel(targetPlatform, "system"))), "__bootPackages", "binutils-unwrapped_2_38", "src")),
@@ -69,14 +61,14 @@ export default nix.lambda((args) => (() => {
         nix.path(here, "./always-search-rpath.patch"),
         nix.path(here, "./deterministic-temp-prefixes.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             name: "gcc-15.patch",
             url: "https://sourceware.org/git/?p=binutils-gdb.git;a=commitdiff_plain;h=8ebe62f3f0d27806b1bf69f301f5e188b4acd2b4",
             hash: "sha256-Od0PXWKoo9rKhveZ1rWJsdpS17fgmU2AevcVWXvWkSA=",
             excludes: nix.thunk(() => ["opcodes/s390-opc.c"]),
           })))),
       ], nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(targetPlatform, "isiOS")), nix.path(here, "./support-ios.patch")), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "targetPlatform", "isWindows")), nix.path(here, "./windres-locate-gcc.patch")), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "targetPlatform", "isMips64n64")), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "targetPlatform", "isMusl")) ? nix.app(substitute, nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             src: nix.path(here, "./mips64-default-n64.patch"),
             substitutions: nix.thunk(() => ["--replace", "gnuabi64", "muslabi64"]),
           }))) : nix.path(here, "./mips64-default-n64.patch")))), nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "targetPlatform", "isPower")), nix.path(here, "./ppc-make-machine-less-strict.patch"))))))),
@@ -88,7 +80,7 @@ export default nix.lambda((args) => (() => {
       noSysDirs: noSysDirs,
       preConfigure: nix.thunk(() => nix.add(nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(buildPlatform, "isDarwin")), "for i in */configure.ac; do\n  pushd \"$(dirname \"$i\")\"\n  echo \"Running autoreconf in $PWD\"\n  # autoreconf doesn't work, don't know why\n  # autoreconf ${autoreconfFlags:---install --force --verbose}\n  autoconf\n  popd\ndone\n"), "# Clear the default library search path.\nif test \"$noSysDirs\" = \"1\"; then\n    echo 'NATIVE_LIB_DIRS=' >> ld/configure.tgt\nfi\n\n# Use symlinks instead of hard links to save space (\"strip\" in the\n# fixup phase strips each hard link separately).\nfor i in binutils/Makefile.in gas/Makefile.in ld/Makefile.in gold/Makefile.in; do\n    sed -i \"$i\" -e 's|ln |ln -s |'\ndone\n")),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         NIX_CFLAGS_COMPILE: nix.thunk(() => (nix.asBool(nix.sel(hostPlatform, "isDarwin")) ? "-Wno-string-plus-int -Wno-deprecated-declarations" : "-static-libgcc")),
       })),
       hardeningDisable: nix.thunk(() => ["format"]),
@@ -108,14 +100,14 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: nix.thunk(() => (nix.asBool(nix.eq(buildPlatform, hostPlatform)) && nix.asBool(nix.eq(hostPlatform, targetPlatform)))),
       enableParallelBuilding: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         targetPrefix: targetPrefix,
         hasGold: enableGold,
         isGNU: true,
       })),
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         description: "Tools for manipulating binaries (linker, assembler, etc.)",
         longDescription: "The GNU Binutils are a collection of binary tools.  The main\nones are `ld' (the GNU linker) and `as' (the GNU assembler).\nThey also include the BFD (Binary File Descriptor) library,\n`gprof', `nm', `strip', etc.\n",
         homepage: "https://www.gnu.org/software/binutils/",

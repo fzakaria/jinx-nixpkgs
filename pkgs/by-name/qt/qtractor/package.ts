@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 37, 5], ["hash", 38, 5]], [["description", 86, 5], ["homepage", 87, 5], ["changelog", 88, 5], ["license", 89, 5], ["mainProgram", 90, 5], ["maintainers", 91, 5], ["platforms", 92, 5]], [["pname", 33, 3], ["version", 34, 3], ["src", 36, 3], ["nativeBuildInputs", 41, 3], ["qtWrapperArgs", 52, 3], ["buildInputs", 59, 3], ["meta", 85, 3]]]);
 const formals$1 = { args: { lib: false, "alsa-lib": false, aubio: false, cmake: false, dssi: false, fetchurl: false, flac: false, gtk3: false, libjack2: false, "ladspa-header": false, ladspaPlugins: false, liblo: false, libmad: false, libsamplerate: false, libsndfile: false, libtool: false, libvorbis: false, lilv: false, lv2: false, opusfile: false, "pkg-config": false, qt6: false, rubberband: false, serd: false, stdenv: false, sord: false, sratom: false, suil: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 37, 5], ["hash", 38, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 86, 5], ["homepage", 87, 5], ["changelog", 88, 5], ["license", 89, 5], ["mainProgram", 90, 5], ["maintainers", 91, 5], ["platforms", 92, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 33, 3], ["version", 34, 3], ["src", 36, 3], ["nativeBuildInputs", 41, 3], ["qtWrapperArgs", 52, 3], ["buildInputs", 59, 3], ["meta", 85, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -38,11 +36,11 @@ export default nix.lambda((args) => (() => {
   const sratom = nix.arg($, "sratom");
   const suil = nix.arg($, "suil");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "qtractor",
       version: "1.6.4",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/qtractor/qtractor-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-rXjiDytSXb+aSZZVASSkzGvqvkxaCFduBSQWUXEKku8=",
         })))),
@@ -85,7 +83,7 @@ export default nix.lambda((args) => (() => {
         suil,
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Audio/MIDI multi-track sequencer",
         homepage: "https://qtractor.sourceforge.io",
         changelog: nix.thunk(() => nix.str`https://github.com/rncbc/qtractor/blob/v${nix.sel(finalAttrs, "version")}/ChangeLog`),

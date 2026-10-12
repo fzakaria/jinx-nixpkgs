@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["hash", 25, 5]], [["url", 33, 7], ["hash", 34, 7]], [["package", 77, 7], ["moduleNames", 78, 7]], [["package", 80, 48]], [["cmake-config", 76, 5], ["pkg-config", 80, 5]], [["tests", 75, 12]], [["homepage", 84, 5], ["description", 85, 5], ["license", 86, 5], ["maintainers", 87, 5], ["platforms", 88, 5], ["pkgConfigModules", 89, 5]], [["pname", 17, 3], ["version", 19, 3], ["src", 21, 3], ["patches", 28, 3], ["postPatch", 38, 3], ["nativeBuildInputs", 43, 3], ["outputs", 49, 3], ["buildInputs", 54, 3], ["propagatedBuildInputs", 61, 3], ["strictDeps", 67, 3], ["cmakeFlags", 69, 3], ["doCheck", 73, 3], ["passthru", 75, 3], ["meta", 83, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch2: false, testers: false, validatePkgConfig: false, boost: false, cmake: false, "howard-hinnant-date": false, ninja: false, sqlite: false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 33, 7], ["hash", 34, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["package", 77, 7], ["moduleNames", 78, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["package", 80, 48]]);
-const pos$5 = nix.positions(here + "/package.nix", [["cmake-config", 76, 5], ["pkg-config", 80, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["tests", 75, 12]]);
-const pos$7 = nix.positions(here + "/package.nix", [["homepage", 84, 5], ["description", 85, 5], ["license", 86, 5], ["maintainers", 87, 5], ["platforms", 88, 5], ["pkgConfigModules", 89, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 19, 3], ["src", 21, 3], ["patches", 28, 3], ["postPatch", 38, 3], ["nativeBuildInputs", 43, 3], ["outputs", 49, 3], ["buildInputs", 54, 3], ["propagatedBuildInputs", 61, 3], ["strictDeps", 67, 3], ["cmakeFlags", 69, 3], ["doCheck", 73, 3], ["passthru", 75, 3], ["meta", 83, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const sqlite = nix.arg($, "sqlite");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "libdjinterop",
       version: "0.27.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "xsco",
           repo: "libdjinterop",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -39,7 +32,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/xsco/libdjinterop/commit/d21f713440633e41d37df14c8e5cc16be7595a7a.patch",
             hash: "sha256-QPgSU1BYl+RAb3sJn5LkbqovhBgCLYw44+d8pr7Tx3M=",
           })))),
@@ -55,22 +48,22 @@ export default nix.lambda((args) => (() => {
       cmakeFlags: nix.thunk(() => [nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "SYSTEM_DATE_H", true))]),
       doCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           "cmake-config": nix.thunk(() => nix.app(nix.sel(testers, "hasCmakeConfigModules"), nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               moduleNames: nix.thunk(() => ["DjInterop"]),
             })))),
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "hasPkgConfigModules"), nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         homepage: "https://github.com/xsco/libdjinterop",
         description: "C++ library for access to DJ record libraries",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3")),

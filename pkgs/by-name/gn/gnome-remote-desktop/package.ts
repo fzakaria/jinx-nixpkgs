@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 41, 5], ["hash", 42, 5]], [["packageName", 91, 41]], [["updateScript", 91, 5]], [["homepage", 95, 5], ["changelog", 96, 5], ["description", 97, 5], ["mainProgram", 98, 5], ["teams", 99, 5], ["license", 100, 5], ["platforms", 101, 5]], [["pname", 37, 3], ["version", 38, 3], ["src", 40, 3], ["nativeBuildInputs", 45, 3], ["buildInputs", 55, 3], ["mesonFlags", 79, 3], ["passthru", 90, 3], ["meta", 94, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, cairo: false, meson: false, ninja: false, "pkg-config": false, python3: false, asciidoc: false, wrapGAppsHook3: false, glib: false, libei: false, libepoxy: false, libdrm: false, libkrb5: false, libva: false, "vulkan-loader": false, shaderc: false, "nv-codec-headers-11": false, pipewire: false, systemd: false, libsecret: false, libnotify: false, libopus: false, libxkbcommon: false, "gdk-pixbuf": false, freerdp: false, fdk_aac: false, "tpm2-tss": false, fuse3: false, gnome: false, polkit: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 41, 5], ["hash", 42, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["packageName", 91, 41]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 91, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 95, 5], ["changelog", 96, 5], ["description", 97, 5], ["mainProgram", 98, 5], ["teams", 99, 5], ["license", 100, 5], ["platforms", 101, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 37, 3], ["version", 38, 3], ["src", 40, 3], ["nativeBuildInputs", 45, 3], ["buildInputs", 55, 3], ["mesonFlags", 79, 3], ["passthru", 90, 3], ["meta", 94, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -44,11 +40,11 @@ export default nix.lambda((args) => (() => {
   const gnome = nix.arg($, "gnome");
   const polkit = nix.arg($, "polkit");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "gnome-remote-desktop",
       version: "50.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnome/sources/gnome-remote-desktop/${nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/gnome-remote-desktop-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-Md9ij0ETVz8Tb/yNwAF2Ou1jPNhb7SHli8YfihffCR8=",
         })))),
@@ -86,11 +82,11 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`-Dc_args=-I${freerdp}/include/winpr3`),
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$2, packageName: "gnome-remote-desktop" })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: $pos[1], packageName: "gnome-remote-desktop" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://gitlab.gnome.org/GNOME/gnome-remote-desktop",
         changelog: nix.thunk(() => nix.str`https://gitlab.gnome.org/GNOME/gnome-remote-desktop/-/blob/${nix.sel(finalAttrs, "version")}/NEWS?ref_type=tags`),
         description: "GNOME Remote Desktop server",

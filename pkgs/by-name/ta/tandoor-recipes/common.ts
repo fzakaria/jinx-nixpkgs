@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/common.nix", [[["owner", 6, 5], ["repo", 7, 5], ["tag", 8, 5], ["hash", 9, 5]], [["homepage", 15, 5], ["changelog", 16, 5], ["license", 17, 5], ["maintainers", 18, 5]], [["version", 3, 3], ["src", 5, 3], ["yarnHash", 12, 3], ["meta", 14, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/common.nix", [["owner", 6, 5], ["repo", 7, 5], ["tag", 8, 5], ["hash", 9, 5]]);
-const pos$2 = nix.positions(here + "/common.nix", [["homepage", 15, 5], ["changelog", 16, 5], ["license", 17, 5], ["maintainers", 18, 5]]);
-const pos$3 = nix.positions(here + "/common.nix", [["version", 3, 3], ["src", 5, 3], ["yarnHash", 12, 3], ["meta", 14, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,7 +12,7 @@ export default nix.lambda((args) => (() => {
   return (() => {
     const version = "2.6.13";
     const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         owner: "TandoorRecipes",
         repo: "recipes",
         tag: version,
@@ -22,7 +20,7 @@ export default nix.lambda((args) => (() => {
       }))));
     const yarnHash = "sha256-EpmFGyuWZeqzdi8wPX7ABjfJKWP8r5qqpdfNKdOFiso=";
     const meta = nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       homepage: "https://tandoor.dev/",
       changelog: nix.thunk(() => nix.str`https://github.com/TandoorRecipes/recipes/releases/tag/${version}`),
       license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),
@@ -34,7 +32,7 @@ export default nix.lambda((args) => (() => {
         ];
       })()),
     }));
-    return { [nix.POS]: pos$3, version, src, yarnHash, meta };
+    return { [nix.POS]: $pos[2], version, src, yarnHash, meta };
   })();
 })(), formals$1);
 //# sourceMappingURL=common.ts.map

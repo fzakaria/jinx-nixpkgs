@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]], [["SETUPTOOLS_SCM_PRETEND_VERSION", 70, 7]], [["description", 85, 5], ["homepage", 86, 5], ["license", 87, 5], ["mainProgram", 88, 5], ["maintainers", 89, 5], ["platforms", 90, 5]], [["pname", 21, 3], ["__structuredAttrs", 22, 3], ["version", 23, 3], ["src", 25, 3], ["pyproject", 32, 3], ["build-system", 34, 3], ["dependencies", 39, 3], ["pythonImportsCheck", 44, 3], ["nativeBuildInputs", 46, 3], ["runtimeDeps", 48, 3], ["makeWrapperArgs", 63, 3], ["env", 70, 3], ["postPatch", 72, 3], ["postInstall", 80, 3], ["meta", 84, 3]]]);
 const formals$1 = { args: { lib: false, python3: false, fetchFromGitHub: false, installShellFiles: false, swappy: false, libnotify: false, slurp: false, "wl-clipboard": false, cliphist: false, "xdg-utils": false, "dart-sass": false, grim: false, fuzzel: false, "gpu-screen-recorder": false, dconf: false, killall: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["SETUPTOOLS_SCM_PRETEND_VERSION", 70, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 85, 5], ["homepage", 86, 5], ["license", 87, 5], ["mainProgram", 88, 5], ["maintainers", 89, 5], ["platforms", 90, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["__structuredAttrs", 22, 3], ["version", 23, 3], ["src", 25, 3], ["pyproject", 32, 3], ["build-system", 34, 3], ["dependencies", 39, 3], ["pythonImportsCheck", 44, 3], ["nativeBuildInputs", 46, 3], ["runtimeDeps", 48, 3], ["makeWrapperArgs", 63, 3], ["env", 70, 3], ["postPatch", 72, 3], ["postInstall", 80, 3], ["meta", 84, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const __structuredAttrs = true;
       const version = "1.1.3";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "caelestia-dots",
           repo: "cli",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -74,11 +71,11 @@ export default nix.lambda((args) => (() => {
         ":",
         nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "makeBinPath"), runtimeDeps)}`),
       ]);
-      const env = nix.thunk(() => ({ [nix.POS]: pos$2, SETUPTOOLS_SCM_PRETEND_VERSION: version }));
+      const env = nix.thunk(() => ({ [nix.POS]: $pos[1], SETUPTOOLS_SCM_PRETEND_VERSION: version }));
       const postPatch = "substituteInPlace src/caelestia/subcommands/{shell.py,screenshot.py} \\\n    --replace-fail '\"qs\", \"-c\", \"caelestia\"' '\"caelestia-shell\"'\n\nsubstituteInPlace src/caelestia/subcommands/toggle.py \\\n    --replace-fail '[\"todoist\"]' '[\"todoist.desktop\"]'\n";
       const postInstall = "installShellCompletion completions/caelestia.fish\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "The main control script for the Caelestia Shell",
         homepage: "https://github.com/caelestia-dots/cli",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),
@@ -90,7 +87,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         __structuredAttrs,
         version,

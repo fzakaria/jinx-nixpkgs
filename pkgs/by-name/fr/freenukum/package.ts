@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["desktopName", 18, 5], ["name", 19, 5], ["exec", 20, 5], ["icon", 21, 5], ["comment", 22, 5], ["categories", 23, 5], ["genericName", 28, 5]], [["domain", 37, 5], ["owner", 38, 5], ["repo", 39, 5], ["rev", 40, 5], ["hash", 41, 5]], [["description", 73, 5], ["homepage", 74, 5], ["changelog", 75, 5], ["license", 76, 5], ["maintainers", 77, 5], ["broken", 78, 5]], [["pname", 33, 11], ["version", 34, 3], ["src", 36, 3], ["cargoHash", 44, 3], ["nativeBuildInputs", 46, 3], ["buildInputs", 50, 3], ["postPatch", 56, 3], ["postInstall", 61, 3], ["meta", 72, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, rustPlatform: false, fetchFromGitLab: false, makeDesktopItem: false, installShellFiles: false, dejavu_fonts: false, SDL2: false, SDL2_ttf: false, SDL2_image: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["desktopName", 18, 5], ["name", 19, 5], ["exec", 20, 5], ["icon", 21, 5], ["comment", 22, 5], ["categories", 23, 5], ["genericName", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["domain", 37, 5], ["owner", 38, 5], ["repo", 39, 5], ["rev", 40, 5], ["hash", 41, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 73, 5], ["homepage", 74, 5], ["changelog", 75, 5], ["license", 76, 5], ["maintainers", 77, 5], ["broken", 78, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 33, 11], ["version", 34, 3], ["src", 36, 3], ["cargoHash", 44, 3], ["nativeBuildInputs", 46, 3], ["buildInputs", 50, 3], ["postPatch", 56, 3], ["postInstall", 61, 3], ["meta", 72, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,7 +20,7 @@ export default nix.lambda((args) => (() => {
   const pname = "freenukum";
   const description = "Clone of the original Duke Nukum 1 Jump'n Run game";
   const desktopItem = nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       desktopName: pname,
       name: pname,
       exec: pname,
@@ -36,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const pname_1 = pname;
       const version = "0.4.0";
       const src = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           domain: "salsa.debian.org",
           owner: "silwol",
           repo: "freenukum",
@@ -57,7 +54,7 @@ installManPage doc/freenukum.6
 install -Dm644 "${desktopItem}/share/applications/"* -t $out/share/applications/
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Clone of the original Duke Nukum 1 Jump'n Run game",
         homepage: "https://salsa.debian.org/silwol/freenukum",
         changelog: nix.thunk(() => nix.str`https://salsa.debian.org/silwol/freenukum/-/blob/v${version}/CHANGELOG.md`),
@@ -69,7 +66,7 @@ install -Dm644 "${desktopItem}/share/applications/"* -t $out/share/applications/
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname: pname_1,
         version,
         src,

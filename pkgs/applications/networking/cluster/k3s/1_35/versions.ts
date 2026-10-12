@@ -2,10 +2,10 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
-const pos$1 = nix.positions(here + "/versions.nix", [["k3sVersion", 2, 3], ["k3sCommit", 3, 3], ["k3sRepoSha256", 4, 3], ["k3sVendorHash", 5, 3], ["chartVersions", 6, 3], ["imagesVersions", 7, 3], ["k3sRootVersion", 8, 3], ["k3sRootSha256", 9, 3], ["k3sCNIVersion", 10, 3], ["k3sCNISha256", 11, 3], ["containerdVersion", 12, 3], ["containerdSha256", 13, 3], ["containerdPackage", 14, 3], ["criCtlVersion", 15, 3], ["flannelVersion", 16, 3], ["flannelPluginVersion", 17, 3], ["kubeRouterVersion", 18, 3], ["criDockerdVersion", 19, 3], ["helmJobVersion", 20, 3]]);
+const $pos = nix.positions(here + "/versions.nix", [[["k3sVersion", 2, 3], ["k3sCommit", 3, 3], ["k3sRepoSha256", 4, 3], ["k3sVendorHash", 5, 3], ["chartVersions", 6, 3], ["imagesVersions", 7, 3], ["k3sRootVersion", 8, 3], ["k3sRootSha256", 9, 3], ["k3sCNIVersion", 10, 3], ["k3sCNISha256", 11, 3], ["containerdVersion", 12, 3], ["containerdSha256", 13, 3], ["containerdPackage", 14, 3], ["criCtlVersion", 15, 3], ["flannelVersion", 16, 3], ["flannelPluginVersion", 17, 3], ["kubeRouterVersion", 18, 3], ["criDockerdVersion", 19, 3], ["helmJobVersion", 20, 3]]]);
 
 export default nix.thunk(() => ({
-  [nix.POS]: pos$1,
+  [nix.POS]: $pos[0],
   k3sVersion: "1.35.8+k3s1",
   k3sCommit: "e952d68a5a5f8953c4549cf8fb557f3eae417107",
   k3sRepoSha256: "07kpi9kl8pw4fyba474dap5hiskxays8qa8mf4qz6ai4wqapzg5c",

@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 43, 5], ["repo", 44, 5], ["tag", 45, 5], ["hash", 46, 5], ["fetchSubmodules", 47, 5]], [["owner", 56, 5], ["repo", 57, 5], ["tag", 58, 5], ["hash", 59, 5], ["fetchSubmodules", 60, 5]], [["pname", 67, 7], ["version", 68, 7], ["src", 69, 7], ["cargoRoot", 70, 7], ["hash", 72, 5]], [["name", 214, 7], ["exec", 215, 7], ["icon", 216, 7], ["desktopName", 217, 7], ["comment", 218, 7], ["categories", 219, 7]], [["updateScript", 227, 12]], [["homepage", 230, 5], ["description", 231, 5], ["license", 232, 5], ["maintainers", 233, 5], ["platforms", 239, 5]], [["pname", 52, 3], ["version", 53, 3], ["src", 55, 3], ["cargoRoot", 63, 3], ["cargoDeps", 65, 3], ["strictDeps", 75, 3], ["nativeBuildInputs", 77, 3], ["buildInputs", 90, 3], ["nativeCheckInputs", 112, 3], ["cmakeFlags", 118, 3], ["doCheck", 127, 3], ["postPatch", 130, 3], ["preConfigure", 134, 3], ["checkPhase", 151, 3], ["installPhase", 169, 3], ["dontWrapQtApps", 189, 3], ["preFixup", 190, 3], ["stripDebugList", 207, 3], ["desktopItems", 212, 3], ["passthru", 227, 3], ["meta", 229, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, autoPatchelfHook: false, makeDesktopItem: false, copyDesktopItems: false, cmake: false, "pkg-config": false, git: false, rustc: false, cargo: false, rustPlatform: false, catch2_3: false, ncurses: false, kdePackages: false, kissfftFloat: false, crossguid: false, reproc: false, "platform-folders": false, ruby_3_3: false, "alsa-lib": false, libsndfile: false, rtmidi: false, boost186: false, aubio: false, jack2: false, "jack-example-tools": false, pipewire: false, "supercollider-with-sc3-plugins": false, parallel: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 43, 5], ["repo", 44, 5], ["tag", 45, 5], ["hash", 46, 5], ["fetchSubmodules", 47, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 56, 5], ["repo", 57, 5], ["tag", 58, 5], ["hash", 59, 5], ["fetchSubmodules", 60, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 67, 7], ["version", 68, 7], ["src", 69, 7], ["cargoRoot", 70, 7], ["hash", 72, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["name", 214, 7], ["exec", 215, 7], ["icon", 216, 7], ["desktopName", 217, 7], ["comment", 218, 7], ["categories", 219, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["updateScript", 227, 12]]);
-const pos$6 = nix.positions(here + "/package.nix", [["homepage", 230, 5], ["description", 231, 5], ["license", 232, 5], ["maintainers", 233, 5], ["platforms", 239, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 52, 3], ["version", 53, 3], ["src", 55, 3], ["cargoRoot", 63, 3], ["cargoDeps", 65, 3], ["strictDeps", 75, 3], ["nativeBuildInputs", 77, 3], ["buildInputs", 90, 3], ["nativeCheckInputs", 112, 3], ["cmakeFlags", 118, 3], ["doCheck", 127, 3], ["postPatch", 130, 3], ["preConfigure", 134, 3], ["checkPhase", 151, 3], ["installPhase", 169, 3], ["dontWrapQtApps", 189, 3], ["preFixup", 190, 3], ["stripDebugList", 207, 3], ["desktopItems", 212, 3], ["passthru", 227, 3], ["meta", 229, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -51,7 +45,7 @@ export default nix.lambda((args) => (() => {
       nix.thunk(() => nix.sel(ps, "rexml")),
     ]));
   const ableton_link = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "Ableton",
       repo: "link",
       tag: "Link-4.0",
@@ -59,11 +53,11 @@ export default nix.lambda((args) => (() => {
       fetchSubmodules: true,
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "sonic-pi",
       version: "5.0.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "sonic-pi-net",
           repo: "sonic-pi",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -72,7 +66,7 @@ export default nix.lambda((args) => (() => {
         })))),
       cargoRoot: "app/external/supersonic/rust",
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -154,7 +148,7 @@ cd app
       stripDebugList: nix.thunk(() => ["app", "bin"]),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             name: "sonic-pi",
             exec: "sonic-pi",
             icon: "sonic-pi",
@@ -163,9 +157,9 @@ cd app
             categories: nix.thunk(() => ["Audio", "AudioVideo", "Education"]),
           })))),
       ]),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$5, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[4], updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         homepage: "https://sonic-pi.net/",
         description: "Free live coding synth for everyone originally designed to support computing and music lessons within schools",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

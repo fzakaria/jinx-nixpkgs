@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 24, 5], ["repo", 25, 5], ["rev", 26, 5], ["hash", 27, 5]], [["pname", 36, 9], ["version", 37, 9], ["src", 38, 9], ["pnpm", 40, 15], ["sourceRoot", 42, 7], ["fetcherVersion", 43, 7], ["hash", 44, 7]], [["version", 31, 26], ["src", 31, 34], ["pname", 32, 5], ["pnpmDeps", 34, 5], ["nativeBuildInputs", 47, 5], ["pnpmRoot", 54, 5], ["installPhase", 56, 5]], [["preBuild", 69, 5]], [["description", 129, 5], ["homepage", 130, 5], ["license", 131, 5], ["maintainers", 132, 5], ["mainProgram", 136, 5]], [["pname", 18, 3], ["version", 19, 3], ["__structuredAttrs", 21, 3], ["src", 23, 3], ["webui", 30, 3], ["vendorHash", 65, 3], ["overrideModAttrs", 67, 3], ["nativeBuildInputs", 72, 3], ["nativeCheckInputs", 76, 3], ["excludedPackages", 80, 3], ["tags", 87, 3], ["ldflags", 91, 3], ["preBuild", 95, 3], ["checkFlags", 101, 3], ["__darwinAllowLocalNetworking", 116, 3], ["postInstall", 118, 3], ["meta", 128, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, stdenvNoCC: false, fetchFromGitHub: false, gitMinimal: false, installShellFiles: false, pnpm_10: false, pnpmConfigHook: false, pnpmBuildHook: false, fetchPnpmDeps: false, nodejs: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 24, 5], ["repo", 25, 5], ["rev", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 36, 9], ["version", 37, 9], ["src", 38, 9], ["pnpm", 40, 15], ["sourceRoot", 42, 7], ["fetcherVersion", 43, 7], ["hash", 44, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 31, 26], ["src", 31, 34], ["pname", 32, 5], ["pnpmDeps", 34, 5], ["nativeBuildInputs", 47, 5], ["pnpmRoot", 54, 5], ["installPhase", 56, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["preBuild", 69, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 129, 5], ["homepage", 130, 5], ["license", 131, 5], ["maintainers", 132, 5], ["mainProgram", 136, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["__structuredAttrs", 21, 3], ["src", 23, 3], ["webui", 30, 3], ["vendorHash", 65, 3], ["overrideModAttrs", 67, 3], ["nativeBuildInputs", 72, 3], ["nativeCheckInputs", 76, 3], ["excludedPackages", 80, 3], ["tags", 87, 3], ["ldflags", 91, 3], ["preBuild", 95, 3], ["checkFlags", 101, 3], ["__darwinAllowLocalNetworking", 116, 3], ["postInstall", 118, 3], ["meta", 128, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,24 +20,24 @@ export default nix.lambda((args) => (() => {
   const nodejs = nix.arg($, "nodejs");
   const pnpm = pnpm_10;
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "git-bug",
       version: "0.11.0",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "git-bug",
           repo: "git-bug",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-lyQy6P929SQcmXZ1GI+5MtXoYD0b0xr69X9/y+1xCUs=",
         })))),
       webui: nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           pname: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-webui`),
           pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
               version: nix.thunk(() => nix.attr(finalAttrs, "version")),
               src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -56,7 +51,7 @@ export default nix.lambda((args) => (() => {
           installPhase: "runHook preInstall\n\ncp -r webui/ $out\n\nrunHook postInstall\n",
         })))),
       vendorHash: "sha256-TwAgpdlitF3O68wA+jyagifrLSRG7WCCZvJ1XJjP/pI=",
-      overrideModAttrs: (_) => ({ [nix.POS]: pos$4, preBuild: "" }),
+      overrideModAttrs: (_) => ({ [nix.POS]: $pos[3], preBuild: "" }),
       nativeBuildInputs: nix.thunk(() => [installShellFiles]),
       nativeCheckInputs: nix.thunk(() => [gitMinimal]),
       excludedPackages: nix.thunk(() => ["./webui/node_modules", "cmd", "doc", "completion"]),
@@ -82,7 +77,7 @@ CC="$CC_FOR_BUILD" LD="$CC_FOR_BUILD" GOOS= GOARCH= go generate
       __darwinAllowLocalNetworking: true,
       postInstall: "installShellCompletion \\\n  --cmd git-bug \\\n  --bash misc/completion/bash/git-bug \\\n  --zsh misc/completion/zsh/git-bug \\\n  --fish misc/completion/fish/git-bug\n\ninstallManPage doc/man/*\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Distributed bug tracker embedded in Git",
         homepage: "https://github.com/git-bug/git-bug",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]], [["pname", 41, 5], ["version", 42, 26], ["src", 42, 34], ["sourceRoot", 43, 5], ["npmDepsHash", 45, 5], ["postPatch", 47, 5], ["installPhase", 52, 5]], [["extraArgs", 69, 5]], [["updateScript", 68, 12]], [["description", 76, 5], ["homepage", 77, 5], ["changelog", 78, 5], ["license", 79, 5], ["mainProgram", 80, 5], ["maintainers", 81, 5], ["platforms", 82, 5]], [["pname", 12, 3], ["version", 13, 3], ["__structuredAttrs", 15, 3], ["src", 17, 3], ["cargoHash", 24, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 30, 3], ["cargoBuildFlags", 32, 3], ["postPatch", 34, 3], ["oxicloud-front", 40, 3], ["postInstall", 59, 3], ["postFixup", 63, 3], ["passthru", 68, 3], ["meta", 75, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, makeBinaryWrapper: false, openssl: false, "pkg-config": false, rustPlatform: false, buildNpmPackage: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 41, 5], ["version", 42, 26], ["src", 42, 34], ["sourceRoot", 43, 5], ["npmDepsHash", 45, 5], ["postPatch", 47, 5], ["installPhase", 52, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["extraArgs", 69, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 68, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 76, 5], ["homepage", 77, 5], ["changelog", 78, 5], ["license", 79, 5], ["mainProgram", 80, 5], ["maintainers", 81, 5], ["platforms", 82, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["__structuredAttrs", 15, 3], ["src", 17, 3], ["cargoHash", 24, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 30, 3], ["cargoBuildFlags", 32, 3], ["postPatch", 34, 3], ["oxicloud-front", 40, 3], ["postInstall", 59, 3], ["postFixup", 63, 3], ["passthru", 68, 3], ["meta", 75, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const buildNpmPackage = nix.arg($, "buildNpmPackage");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "oxicloud",
       version: "0.8.3",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "AtalayaLabs",
           repo: "OxiCloud",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,7 +33,7 @@ export default nix.lambda((args) => (() => {
       cargoBuildFlags: nix.thunk(() => ["--bin=oxicloud"]),
       postPatch: "# Upstream pins `target-cpu=native`, making the binary non-portable\n# (breaks the binary cache). Build for the generic baseline instead.\nrm -f .cargo/config.toml\n",
       "oxicloud-front": nix.thunk(() => nix.app(buildNpmPackage, (frontFinalAttrs) => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: "oxicloud-front",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -52,14 +47,14 @@ export default nix.lambda((args) => (() => {
   --set-default OXICLOUD_STATIC_PATH ${nix.sel(finalAttrs, "oxicloud-front")}
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             extraArgs: nix.thunk(() => ["--subpackage", "oxicloud-front"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Ultra-fast, secure & lightweight self-hosted cloud storage",
         homepage: "https://github.com/AtalayaLabs/OxiCloud",
         changelog: nix.thunk(() => nix.str`https://github.com/AtalayaLabs/OxiCloud/releases/tag/v${nix.sel(finalAttrs, "version")}`),

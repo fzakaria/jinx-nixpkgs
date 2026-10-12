@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]], [["NIX_CFLAGS_COMPILE", 90, 7]], [["description", 102, 5], ["mainProgram", 103, 5], ["homepage", 104, 5], ["license", 105, 5], ["maintainers", 106, 5], ["platforms", 107, 5]], [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["postPatch", 33, 3], ["strictDeps", 50, 3], ["nativeBuildInputs", 52, 3], ["buildInputs", 57, 3], ["outputs", 66, 3], ["configureFlags", 72, 3], ["installFlags", 86, 3], ["env", 90, 3], ["meta", 101, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, autoreconfHook: false, "pkg-config": false, hwdata: false, kmod: false, libcap: false, libconfuse: false, libite: false, libuev: false, libxcrypt: false, shadow: false, sysctl: false, "util-linuxMinimal": false, udevSupport: true, plymouth: false, plymouthSupport: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 90, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 102, 5], ["mainProgram", 103, 5], ["homepage", 104, 5], ["license", 105, 5], ["maintainers", 106, 5], ["platforms", 107, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["postPatch", 33, 3], ["strictDeps", 50, 3], ["nativeBuildInputs", 52, 3], ["buildInputs", 57, 3], ["outputs", 66, 3], ["configureFlags", 72, 3], ["installFlags", 86, 3], ["env", 90, 3], ["meta", 101, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const plymouth = nix.arg($, "plymouth");
   const plymouthSupport = nix.argOr($, "plymouthSupport", () => false);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "finit",
       version: "5.0-rc1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "finit-project",
           repo: "finit",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -70,7 +67,7 @@ substituteInPlace keventd/builtin.c \\
         nix.thunk(() => nix.str`dbuspolicydir=${nix.builtins.placeholder("out")}/etc/dbus-1/system.d`),
       ]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.concat([
             nix.thunk(() => nix.str`-D_PATH_LOGIN="${shadow}/bin/login"`),
             nix.thunk(() => nix.str`-DSYSCTL_PATH="${sysctl}/bin/sysctl"`),
@@ -80,7 +77,7 @@ substituteInPlace keventd/builtin.c \\
             ])))))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Fast init for Linux",
         mainProgram: "initctl",
         homepage: "https://troglobit.com/projects/finit/",

@@ -2,32 +2,18 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/boot-stage2.nix", [[["isNormalUser", 26, 9], ["uid", 27, 9]], [["alice", 25, 19]], [["users", 25, 13]], [["device", 36, 13], ["fsType", 37, 13], ["options", 42, 13]], [["/nix/store", 35, 11]], [["emptyDiskImages", 31, 9], ["fileSystems", 34, 9]], [["systemPackages", 51, 19]], [["extraDependencies", 53, 14]], [["enable", 58, 19]], [["systemd", 58, 11], ["postDeviceCommands", 61, 11], ["postMountCommands", 70, 11], ["kernelModules", 91, 11]], [["initrd", 56, 9], ["postBootCommands", 94, 9]], [["users", 25, 7], ["virtualisation", 30, 7], ["environment", 51, 7], ["system", 53, 7], ["boot", 55, 7]], [["machine", 5, 9]], [["maintainers", 133, 8]], [["name", 3, 3], ["nodes", 5, 3], ["testScript", 101, 3], ["meta", 133, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
 const formals$2 = { args: { config: false, pkgs: false, lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/boot-stage2.nix", [["isNormalUser", 26, 9], ["uid", 27, 9]]);
-const pos$2 = nix.positions(here + "/boot-stage2.nix", [["alice", 25, 19]]);
-const pos$3 = nix.positions(here + "/boot-stage2.nix", [["users", 25, 13]]);
-const pos$4 = nix.positions(here + "/boot-stage2.nix", [["device", 36, 13], ["fsType", 37, 13], ["options", 42, 13]]);
-const pos$5 = nix.positions(here + "/boot-stage2.nix", [["/nix/store", 35, 11]]);
-const pos$6 = nix.positions(here + "/boot-stage2.nix", [["emptyDiskImages", 31, 9], ["fileSystems", 34, 9]]);
-const pos$7 = nix.positions(here + "/boot-stage2.nix", [["systemPackages", 51, 19]]);
-const pos$8 = nix.positions(here + "/boot-stage2.nix", [["extraDependencies", 53, 14]]);
-const pos$9 = nix.positions(here + "/boot-stage2.nix", [["enable", 58, 19]]);
-const pos$10 = nix.positions(here + "/boot-stage2.nix", [["systemd", 58, 11], ["postDeviceCommands", 61, 11], ["postMountCommands", 70, 11], ["kernelModules", 91, 11]]);
-const pos$11 = nix.positions(here + "/boot-stage2.nix", [["initrd", 56, 9], ["postBootCommands", 94, 9]]);
-const pos$12 = nix.positions(here + "/boot-stage2.nix", [["users", 25, 7], ["virtualisation", 30, 7], ["environment", 51, 7], ["system", 53, 7], ["boot", 55, 7]]);
-const pos$13 = nix.positions(here + "/boot-stage2.nix", [["machine", 5, 9]]);
-const pos$14 = nix.positions(here + "/boot-stage2.nix", [["maintainers", 133, 8]]);
-const pos$15 = nix.positions(here + "/boot-stage2.nix", [["name", 3, 3], ["nodes", 5, 3], ["testScript", 101, 3], ["meta", 133, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   return {
-    [nix.POS]: pos$15,
+    [nix.POS]: $pos[14],
     name: "boot-stage2",
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$13,
+      [nix.POS]: $pos[12],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config = nix.arg($_1, "config");
@@ -35,21 +21,21 @@ export default nix.lambda((args) => (() => {
         const lib = nix.arg($_1, "lib");
         const uid = nix.thunk(() => nix.app(nix.sel(pkgs_1, "writeCBin"), "uid", "#include <unistd.h>\n#include <stdio.h>\nint main(void) {\n  printf(\"%d\\n\", geteuid());\n  return 0;\n}\n"));
         return {
-          [nix.POS]: pos$12,
+          [nix.POS]: $pos[11],
           users: nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             users: nix.thunk(() => ({
-              [nix.POS]: pos$2,
-              alice: nix.thunk(() => ({ [nix.POS]: pos$1, isNormalUser: true, uid: 1000n })),
+              [nix.POS]: $pos[1],
+              alice: nix.thunk(() => ({ [nix.POS]: $pos[0], isNormalUser: true, uid: 1000n })),
             })),
           })),
           virtualisation: nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             emptyDiskImages: nix.thunk(() => [256n]),
             fileSystems: nix.thunk(() => ({
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               "/nix/store": nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), nix.thunk(() => ({
-                  [nix.POS]: pos$4,
+                  [nix.POS]: $pos[3],
                   device: "/dev/vdb",
                   fsType: "ext4",
                   options: nix.thunk(() => ["defaults", "errors=remount-ro", "data=journal"]),
@@ -57,15 +43,15 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs_1, "xxd"))]),
           })),
-          system: nix.thunk(() => ({ [nix.POS]: pos$8, extraDependencies: nix.thunk(() => [uid]) })),
+          system: nix.thunk(() => ({ [nix.POS]: $pos[7], extraDependencies: nix.thunk(() => [uid]) })),
           boot: nix.thunk(() => ({
-            [nix.POS]: pos$11,
+            [nix.POS]: $pos[10],
             initrd: nix.thunk(() => ({
-              [nix.POS]: pos$10,
-              systemd: nix.thunk(() => ({ [nix.POS]: pos$9, enable: false })),
+              [nix.POS]: $pos[9],
+              systemd: nix.thunk(() => ({ [nix.POS]: $pos[8], enable: false })),
               postDeviceCommands: nix.thunk(() => nix.str`${nix.sel(pkgs_1, "e2fsprogs")}/bin/mkfs.ext4 /dev/vdb
 `),
               postMountCommands: nix.thunk(() => nix.str`mkdir -p /mnt-root/nix/store/ro /mnt-root/nix/store/rw /mnt-root/nix/store/work
@@ -96,7 +82,7 @@ mknod -m 666 $evil/dev/zero c 1 5
     })),
     testScript: "machine.wait_for_unit(\"multi-user.target\")\nmachine.succeed(\"test /etc/post-boot-ran\")\nmachine.fail(\"touch /nix/store/should-not-work\");\n\nfor opt in [\"ro\", \"nosuid\", \"nodev\"]:\n  with subtest(f\"testing store mount option: {opt}\"):\n    machine.succeed(f'[[ \"$(findmnt --direction backward --first-only --noheadings --output OPTIONS /nix/store)\" =~ (^|,){opt}(,|$) ]]')\n\n# should still be suid\nmachine.succeed('[ -u /nix/store/evil/bin/suid ]')\n# runs as alice and is not root\nmachine.succeed('[ \"$(sudo -u alice /nix/store/evil/bin/suid)\" == 1000 ]')\n# can be remounted and runs as root\nmachine.succeed('mount -o remount,suid,bind /nix/store && mount >&2')\nmachine.succeed('[ \"$(sudo -u alice /nix/store/evil/bin/suid)\" == 0 ]')\n# double checking we can undo it\nmachine.succeed('mount -o remount,nosuid,bind /nix/store && mount >&2')\nmachine.succeed('[ \"$(sudo -u alice /nix/store/evil/bin/suid)\" == 1000 ]')\n\n# should still be a character device\nmachine.succeed('[ -c /nix/store/evil/dev/zero ]')\n# should not work\nmachine.fail('[ \"$(dd if=/nix/store/evil/dev/zero bs=1 count=1 | xxd -pl1)\" == 00 ]')\n# can be remounted and works\nmachine.succeed('mount -o remount,dev,bind /nix/store && mount >&2')\nmachine.succeed('[ \"$(dd if=/nix/store/evil/dev/zero bs=1 count=1 | xxd -pl1)\" == 00 ]')\n# double checking we can undo it\nmachine.succeed('mount -o remount,nodev,bind /nix/store && mount >&2')\nmachine.fail('[ \"$(dd if=/nix/store/evil/dev/zero bs=1 count=1 | xxd -pl1)\" == 00 ]')\n",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$14,
+      [nix.POS]: $pos[13],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "numinit"))];

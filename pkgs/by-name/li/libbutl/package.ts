@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 24, 5], ["hash", 25, 5]], [["description", 59, 5], ["longDescription", 60, 5], ["homepage", 64, 5], ["changelog", 65, 5], ["license", 66, 5], ["maintainers", 67, 5], ["platforms", 68, 5]], [["pname", 14, 3], ["version", 15, 3], ["outputs", 17, 3], ["src", 23, 3], ["nativeBuildInputs", 28, 3], ["patches", 35, 3], ["strictDeps", 41, 3], ["disallowedReferences", 45, 3], ["postPatch", 47, 3], ["build2ConfigureFlags", 52, 3], ["doCheck", 56, 3], ["meta", 58, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, "build2-bootstrap": false, darwin: false, fetchurl: false, libuuid: false, enableShared: true, enableStatic: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 59, 5], ["longDescription", 60, 5], ["homepage", 64, 5], ["changelog", 65, 5], ["license", 66, 5], ["maintainers", 67, 5], ["platforms", 68, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["outputs", 17, 3], ["src", 23, 3], ["nativeBuildInputs", 28, 3], ["patches", 35, 3], ["strictDeps", 41, 3], ["disallowedReferences", 45, 3], ["postPatch", 47, 3], ["build2ConfigureFlags", 52, 3], ["doCheck", 56, 3], ["meta", 58, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const enableShared = nix.argOr($, "enableShared", () => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isStatic")));
   const enableStatic = nix.argOr($, "enableStatic", () => !nix.asBool(enableShared));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "libbutl",
       version: "0.18.1",
       outputs: nix.thunk(() => ["out", "dev", "doc"]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://pkg.cppget.org/1/alpha/build2/libbutl-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-tQl7FRJh/CJ7A5MIlxlVv5aduPy/C0shcn9l+IB1oZU=",
         })))),
@@ -39,7 +37,7 @@ export default nix.lambda((args) => (() => {
       ]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "build2 utility library",
         longDescription: "This library is a collection of utilities that are used throughout the\nbuild2 toolchain.\n",
         homepage: "https://build2.org/",

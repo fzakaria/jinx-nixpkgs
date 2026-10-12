@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["rev", 20, 5], ["owner", 21, 5], ["repo", 22, 5], ["sha256", 23, 5]], [["url", 29, 7], ["hash", 30, 7]], [["description", 62, 5], ["maintainers", 63, 5], ["license", 66, 5], ["homepage", 67, 5], ["platforms", 68, 5]], [["pname", 12, 3], ["version", 13, 3], ["outputs", 14, 3], ["src", 19, 3], ["patches", 26, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 38, 3], ["cmakeFlags", 40, 3], ["enableParallelBuilding", 48, 3], ["postBuild", 52, 3], ["postInstall", 56, 3], ["meta", 61, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, jekyll: false, cmake: false, fetchFromGitHub: false, fetchpatch: false, gtest: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["rev", 20, 5], ["owner", 21, 5], ["repo", 22, 5], ["sha256", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 29, 7], ["hash", 30, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 62, 5], ["maintainers", 63, 5], ["license", 66, 5], ["homepage", 67, 5], ["platforms", 68, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["outputs", 14, 3], ["src", 19, 3], ["patches", 26, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 38, 3], ["cmakeFlags", 40, 3], ["enableParallelBuilding", 48, 3], ["postBuild", 52, 3], ["postInstall", 56, 3], ["meta", 61, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const fetchpatch = nix.arg($, "fetchpatch");
   const gtest = nix.arg($, "gtest");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "jsonnet",
       version: "0.21.0",
       outputs: nix.thunk(() => ["out", "doc"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           owner: "google",
           repo: "jsonnet",
@@ -31,7 +28,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/google/jsonnet/commit/6c87c1b0e1e18d25898be071c1b231e264f05a8c.patch",
             hash: "sha256-KprhMKwUCpvLiMT/grfqZ8Vt9rbosIizQgNMStuV8/U=",
           })))),
@@ -48,7 +45,7 @@ export default nix.lambda((args) => (() => {
       postBuild: "jekyll build --source ../doc --destination ./html\n",
       postInstall: "mkdir -p $out/share/doc/jsonnet\ncp -r ./html $out/share/doc/jsonnet\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Purely-functional configuration language that helps you define JSON data",
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 38, 5], ["repo", 39, 5], ["tag", 40, 5], ["fetchSubmodules", 41, 5], ["hash", 42, 5]], [["CL_INC_DIR", 83, 5], ["CL_LIB_DIR", 84, 5], ["CL_LIBNAME", 85, 5]], [["description", 102, 5], ["homepage", 103, 5], ["changelog", 104, 5], ["license", 105, 5], ["maintainers", 106, 5]], [["pname", 32, 3], ["version", 33, 3], ["pyproject", 34, 3], ["__structuredAttrs", 35, 3], ["src", 37, 3], ["postPatch", 45, 3], ["build-system", 52, 3], ["dontUseCmakeConfigure", 60, 3], ["buildInputs", 62, 3], ["dependencies", 68, 3], ["nativeCheckInputs", 75, 3], ["env", 82, 3], ["preCheck", 88, 3], ["pythonImportsCheck", 92, 3], ["meta", 101, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, buildPythonPackage: false, cmake: false, nanobind: false, ninja: false, numpy: false, "scikit-build-core": false, "opencl-headers": false, pybind11: false, "ocl-icd": false, platformdirs: false, pytools: false, "typing-extensions": false, pytestCheckHook: false, writableTmpDirAsHomeHook: false, mako: false, pocl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 38, 5], ["repo", 39, 5], ["tag", 40, 5], ["fetchSubmodules", 41, 5], ["hash", 42, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["CL_INC_DIR", 83, 5], ["CL_LIB_DIR", 84, 5], ["CL_LIBNAME", 85, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 102, 5], ["homepage", 103, 5], ["changelog", 104, 5], ["license", 105, 5], ["maintainers", 106, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 32, 3], ["version", 33, 3], ["pyproject", 34, 3], ["__structuredAttrs", 35, 3], ["src", 37, 3], ["postPatch", 45, 3], ["build-system", 52, 3], ["dontUseCmakeConfigure", 60, 3], ["buildInputs", 62, 3], ["dependencies", 68, 3], ["nativeCheckInputs", 75, 3], ["env", 82, 3], ["preCheck", 88, 3], ["pythonImportsCheck", 92, 3], ["meta", 101, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,13 +27,13 @@ export default nix.lambda((args) => (() => {
   const mako = nix.arg($, "mako");
   const pocl = nix.arg($, "pocl");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "pyopencl",
       version: "2026.1.4",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "inducer",
           repo: "pyopencl",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -50,7 +47,7 @@ export default nix.lambda((args) => (() => {
       dependencies: nix.thunk(() => [numpy, platformdirs, pytools, typing_extensions]),
       nativeCheckInputs: nix.thunk(() => [pocl, mako, pytestCheckHook, writableTmpDirAsHomeHook]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         CL_INC_DIR: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getInclude"), opencl_headers)}/include`),
         CL_LIB_DIR: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getLib"), ocl_icd)}/lib`),
         CL_LIBNAME: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getLib"), ocl_icd)}/lib/libOpenCL${nix.sel(stdenv, "hostPlatform", "extensions", "sharedLibrary")}`),
@@ -65,7 +62,7 @@ export default nix.lambda((args) => (() => {
         "pyopencl.tools",
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Python wrapper for OpenCL",
         homepage: "https://github.com/pyopencl/pyopencl",
         changelog: nix.thunk(() => nix.str`https://github.com/inducer/pyopencl/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

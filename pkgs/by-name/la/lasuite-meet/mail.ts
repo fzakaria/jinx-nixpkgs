@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/mail.nix", [[["pname", 22, 5], ["version", 23, 13], ["src", 23, 21], ["sourceRoot", 24, 26], ["hash", 25, 5]], [["description", 32, 5]], [["pname", 9, 3], ["src", 10, 11], ["version", 10, 15], ["sourceRoot", 12, 3], ["postPatch", 14, 3], ["npmDeps", 21, 3], ["npmBuildScript", 27, 3], ["dontInstall", 29, 3], ["meta", 31, 3]]]);
 const formals$1 = { args: { src: false, version: false, meta: false, fetchNpmDeps: false, buildNpmPackage: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/mail.nix", [["pname", 22, 5], ["version", 23, 13], ["src", 23, 21], ["sourceRoot", 24, 26], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/mail.nix", [["description", 32, 5]]);
-const pos$3 = nix.positions(here + "/mail.nix", [["pname", 9, 3], ["src", 10, 11], ["version", 10, 15], ["sourceRoot", 12, 3], ["postPatch", 14, 3], ["npmDeps", 21, 3], ["npmBuildScript", 27, 3], ["dontInstall", 29, 3], ["meta", 31, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const fetchNpmDeps = nix.arg($, "fetchNpmDeps");
   const buildNpmPackage = nix.arg($, "buildNpmPackage");
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "lasuite-meet-mail",
       src: src,
       version: version,
@@ -26,7 +24,7 @@ export default nix.lambda((args) => (() => {
     '${nix.builtins.placeholder("out")}'
 `),
       npmDeps: nix.thunk(() => nix.app(fetchNpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-npm-deps`),
           version: version,
           src: src,
@@ -35,7 +33,7 @@ export default nix.lambda((args) => (() => {
         })))),
       npmBuildScript: "build",
       dontInstall: true,
-      meta: nix.thunk(() => nix.update(meta, { [nix.POS]: pos$2, description: "HTML mail templates for LaSuite Meet" })),
+      meta: nix.thunk(() => nix.update(meta, { [nix.POS]: $pos[1], description: "HTML mail templates for LaSuite Meet" })),
     }));
 })(), formals$1);
 //# sourceMappingURL=mail.ts.map

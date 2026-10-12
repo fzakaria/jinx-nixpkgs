@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 51, 5], ["repo", 52, 5], ["tag", 53, 5], ["hash", 54, 5]], [["description", 223, 5], ["homepage", 224, 5], ["changelog", 225, 5], ["license", 226, 5], ["maintainers", 227, 5]], [["pname", 45, 3], ["version", 46, 3], ["pyproject", 47, 3], ["__structuredAttrs", 48, 3], ["src", 50, 3], ["sourceRoot", 57, 3], ["build-system", 59, 3], ["dependencies", 61, 3], ["nativeCheckInputs", 81, 3], ["disabledTests", 98, 3], ["disabledTestPaths", 142, 3], ["pythonImportsCheck", 217, 3], ["meta", 222, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, "absl-py": false, buildPythonPackage: false, fetchFromGitHub: false, "flit-core": false, aiofiles: false, etils: false, humanize: false, jax: false, msgpack: false, numpy: false, "prometheus-client": false, protobuf: false, psutil: false, pyyaml: false, simplejson: false, tensorstore: false, "typing-extensions": false, uvloop: false, aiosqlite: false, chex: false, cloudpickle: false, fastapi: false, "google-cloud-logging": false, greenlet: false, httpx: false, mock: false, optax: false, portpicker: false, pytestCheckHook: false, safetensors: false, sqlalchemy: false, torch: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 51, 5], ["repo", 52, 5], ["tag", 53, 5], ["hash", 54, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 223, 5], ["homepage", 224, 5], ["changelog", 225, 5], ["license", 226, 5], ["maintainers", 227, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 45, 3], ["version", 46, 3], ["pyproject", 47, 3], ["__structuredAttrs", 48, 3], ["src", 50, 3], ["sourceRoot", 57, 3], ["build-system", 59, 3], ["dependencies", 61, 3], ["nativeCheckInputs", 81, 3], ["disabledTests", 98, 3], ["disabledTestPaths", 142, 3], ["pythonImportsCheck", 217, 3], ["meta", 222, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -44,13 +42,13 @@ export default nix.lambda((args) => (() => {
   const sqlalchemy = nix.arg($, "sqlalchemy");
   const torch = nix.arg($, "torch");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "orbax-checkpoint",
       version: "0.12.7",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "google",
           repo: "orbax",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -150,7 +148,7 @@ export default nix.lambda((args) => (() => {
       ]),
       pythonImportsCheck: nix.thunk(() => ["orbax", "orbax.checkpoint"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Orbax provides common utility libraries for JAX users",
         homepage: "https://github.com/google/orbax/tree/main/checkpoint",
         changelog: nix.thunk(() => nix.str`https://github.com/google/orbax/blob/${nix.sel(finalAttrs, "src", "tag")}/checkpoint/CHANGELOG.md`),

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 29, 5], ["hash", 30, 5]], [["url", 61, 5], ["rev-prefix", 62, 5]], [["updateScript", 60, 12]], [["homepage", 66, 5], ["description", 67, 5], ["mainProgram", 68, 5], ["license", 69, 5], ["platforms", 70, 5], ["teams", 71, 5]], [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["strictDeps", 33, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 43, 3], ["mesonFlags", 56, 3], ["passthru", 60, 3], ["meta", 65, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, gettext: false, meson: false, ninja: false, "pkg-config": false, wrapGAppsHook3: false, glib: false, gtk3: false, libx11: false, libxext: false, libxfce4ui: false, libxfce4util: false, "xfce4-panel": false, libnotify: false, lm_sensors: false, linuxPackages: false, nvidiaSupport: true, gitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 29, 5], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 61, 5], ["rev-prefix", 62, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 60, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 66, 5], ["description", 67, 5], ["mainProgram", 68, 5], ["license", 69, 5], ["platforms", 70, 5], ["teams", 71, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["strictDeps", 33, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 43, 3], ["mesonFlags", 56, 3], ["passthru", 60, 3], ["meta", 65, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,11 +28,11 @@ export default nix.lambda((args) => (() => {
   const nvidiaSupport = nix.argOr($, "nvidiaSupport", () => nix.app(nix.sel(lib, "meta", "availableOn"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")), nix.thunk(() => nix.sel(linuxPackages, "nvidia_x11", "settings", "libXNVCtrl"))));
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "xfce4-sensors-plugin",
       version: "1.5.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://xfce/src/panel-plugins/xfce4-sensors-plugin/${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/xfce4-sensors-plugin-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-hARCuH/d3NhZW9n4Pqi4H3cf4pa7nSq/Dhl54ghyeuk=",
         })))),
@@ -59,15 +55,15 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "mesonEnable"), "xnvctrl", nvidiaSupport)),
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://gitlab.xfce.org/panel-plugins/xfce4-sensors-plugin",
             "rev-prefix": "xfce4-sensors-plugin-",
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://docs.xfce.org/panel-plugins/xfce4-sensors-plugin",
         description: "Panel plug-in for different sensors using acpi, lm_sensors and hddtemp",
         mainProgram: "xfce4-sensors",

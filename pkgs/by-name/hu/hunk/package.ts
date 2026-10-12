@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]], [["pname", 25, 5], ["version", 26, 13], ["src", 26, 21], ["nativeBuildInputs", 28, 5], ["dontConfigure", 33, 5], ["buildPhase", 35, 5], ["installPhase", 49, 5], ["dontFixup", 59, 5], ["outputHash", 61, 5], ["outputHashMode", 62, 5]], [["extraArgs", 142, 7]], [["node_modules", 140, 13], ["updateScript", 141, 5]], [["description", 150, 5], ["homepage", 151, 5], ["changelog", 152, 5], ["license", 153, 5], ["mainProgram", 154, 5], ["maintainers", 155, 5], ["platforms", 159, 5], ["sourceProvenance", 160, 5]], [["pname", 66, 11], ["version", 66, 17], ["src", 66, 25], ["strictDeps", 68, 3], ["__structuredAttrs", 69, 3], ["nativeBuildInputs", 71, 3], ["configurePhase", 78, 3], ["buildPhase", 88, 3], ["dontInstallAgentSkills", 105, 3], ["installPhase", 106, 3], ["dontFixup", 120, 3], ["dontStrip", 121, 3], ["doInstallCheck", 123, 3], ["nativeInstallCheckInputs", 124, 3], ["versionCheckProgramArg", 128, 3], ["installCheckPhase", 130, 3], ["passthru", 139, 3], ["meta", 149, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, bun: false, fetchFromGitHub: false, "nix-update-script": false, versionCheckHook: false, installAgentSkills: false, installShellFiles: false, writableTmpDirAsHomeHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 25, 5], ["version", 26, 13], ["src", 26, 21], ["nativeBuildInputs", 28, 5], ["dontConfigure", 33, 5], ["buildPhase", 35, 5], ["installPhase", 49, 5], ["dontFixup", 59, 5], ["outputHash", 61, 5], ["outputHashMode", 62, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["extraArgs", 142, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["node_modules", 140, 13], ["updateScript", 141, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 150, 5], ["homepage", 151, 5], ["changelog", 152, 5], ["license", 153, 5], ["mainProgram", 154, 5], ["maintainers", 155, 5], ["platforms", 159, 5], ["sourceProvenance", 160, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 66, 11], ["version", 66, 17], ["src", 66, 25], ["strictDeps", 68, 3], ["__structuredAttrs", 69, 3], ["nativeBuildInputs", 71, 3], ["configurePhase", 78, 3], ["buildPhase", 88, 3], ["dontInstallAgentSkills", 105, 3], ["installPhase", 106, 3], ["dontFixup", 120, 3], ["dontStrip", 121, 3], ["doInstallCheck", 123, 3], ["nativeInstallCheckInputs", 124, 3], ["versionCheckProgramArg", 128, 3], ["installCheckPhase", 130, 3], ["passthru", 139, 3], ["meta", 149, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,14 +19,14 @@ export default nix.lambda((args) => (() => {
   const pname = "hunk";
   const version = "0.22.0";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "modem-dev",
       repo: "hunk",
       tag: nix.thunk(() => nix.str`v${version}`),
       hash: "sha256-dc4/xLAyQe7mL/KMcpjsjgHzgf0tRomQAemVABwUWFY=",
     }))));
   const node_modules = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: nix.thunk(() => nix.str`${pname}-node_modules`),
       version: version,
       src: src,
@@ -44,7 +39,7 @@ export default nix.lambda((args) => (() => {
       outputHashMode: "recursive",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: pname,
       version: version,
       src: src,
@@ -86,15 +81,15 @@ cmp "$out/share/skills/${pname}/hunk-extensions/SKILL.md" "$($out/bin/hunk skill
 runHook postInstallCheck
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         node_modules: node_modules,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             extraArgs: nix.thunk(() => ["--subpackage", "node_modules"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Terminal diff viewer for agentic changesets",
         homepage: "https://github.com/modem-dev/hunk",
         changelog: nix.thunk(() => nix.str`https://github.com/modem-dev/hunk/releases/tag/v${version}`),

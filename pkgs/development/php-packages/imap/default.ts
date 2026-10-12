@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["hash", 25, 5]], [["description", 47, 5], ["homepage", 48, 5], ["license", 49, 5], ["teams", 50, 5]], [["version", 18, 11], ["pname", 19, 3], ["src", 21, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 30, 3], ["configureFlags", 38, 3], ["doCheck", 44, 3], ["meta", 46, 3]]]);
 const formals$1 = { args: { buildPecl: false, fetchFromGitHub: false, fetchpatch: false, lib: false, libkrb5: false, openssl: false, pam: false, pcre2: false, "pkg-config": false, uwimap: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 47, 5], ["homepage", 48, 5], ["license", 49, 5], ["teams", 50, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["version", 18, 11], ["pname", 19, 3], ["src", 21, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 30, 3], ["configureFlags", 38, 3], ["doCheck", 44, 3], ["meta", 46, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const uwimap = nix.arg($, "uwimap");
   const version = "1.0.3";
   return nix.app(buildPecl, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       version: version,
       pname: "imap",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "php",
           repo: "pecl-mail-imap",
           rev: version,
@@ -40,7 +38,7 @@ export default nix.lambda((args) => (() => {
       ]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "PHP extension for checking the spelling of a word",
         homepage: "https://pecl.php.net/package/imap",
         license: nix.thunk(() => nix.sel(lib, "licenses", "php301")),

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 37, 5], ["repo", 38, 5], ["tag", 39, 5], ["hash", 40, 5]], [["default", 161, 7], ["incus", 162, 7]], [["tests", 160, 5], ["updateScript", 165, 5]], [["changelog", 169, 5], ["description", 170, 5], ["longDescription", 171, 5], ["homepage", 181, 5], ["license", 182, 5], ["maintainers", 187, 5], ["platforms", 192, 5]], [["pname", 33, 3], ["version", 34, 3], ["src", 36, 3], ["outputs", 43, 3], ["patches", 51, 3], ["strictDeps", 56, 3], ["nativeBuildInputs", 58, 3], ["sphinxBuilders", 68, 3], ["sphinxRoot", 70, 3], ["buildInputs", 72, 3], ["preConfigure", 88, 3], ["configureFlags", 90, 3], ["installFlags", 98, 3], ["enableParallelBuilding", 104, 3], ["postInstall", 106, 3], ["doCheck", 122, 3], ["preCheck", 123, 3], ["checkPhase", 133, 3], ["nativeCheckInputs", 145, 3], ["passthru", 159, 3], ["meta", 168, 3]]]);
 const formals$1 = { args: { withDPDK: true, lib: false, stdenv: false, autoconf: false, automake: false, dpdk: false, fetchFromGitHub: false, installShellFiles: false, iproute2: false, libcap_ng: false, libpcap: false, libtool: false, makeWrapper: false, "nix-update-script": false, nixosTests: false, numactl: false, openssl: false, perl: false, "pkg-config": false, procps: false, python3: false, sphinxHook: false, tcpdump: false, unbound: false, "util-linux": false, which: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 37, 5], ["repo", 38, 5], ["tag", 39, 5], ["hash", 40, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["default", 161, 7], ["incus", 162, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 160, 5], ["updateScript", 165, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["changelog", 169, 5], ["description", 170, 5], ["longDescription", 171, 5], ["homepage", 181, 5], ["license", 182, 5], ["maintainers", 187, 5], ["platforms", 192, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 33, 3], ["version", 34, 3], ["src", 36, 3], ["outputs", 43, 3], ["patches", 51, 3], ["strictDeps", 56, 3], ["nativeBuildInputs", 58, 3], ["sphinxBuilders", 68, 3], ["sphinxRoot", 70, 3], ["buildInputs", 72, 3], ["preConfigure", 88, 3], ["configureFlags", 90, 3], ["installFlags", 98, 3], ["enableParallelBuilding", 104, 3], ["postInstall", 106, 3], ["doCheck", 122, 3], ["preCheck", 123, 3], ["checkPhase", 133, 3], ["nativeCheckInputs", 145, 3], ["passthru", 159, 3], ["meta", 168, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -38,11 +34,11 @@ export default nix.lambda((args) => (() => {
   const util_linux = nix.arg($, "util-linux");
   const which = nix.arg($, "which");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: nix.thunk(() => (nix.asBool(withDPDK) ? "openvswitch-dpdk" : "openvswitch")),
       version: "4.0.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "openvswitch",
           repo: "ovs",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -95,16 +91,16 @@ wrapProgram $tools/bin/ovs-tcpdump \\
         ];
       })(), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isStatic"))), nix.thunk(() => [nix.thunk(() => nix.sel(python3, "pkgs", "pyftpdlib"))]))))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           default: nix.thunk(() => nix.sel(nixosTests, "openvswitch")),
           incus: nix.thunk(() => nix.sel(nixosTests, "incus-lts", "openvswitch")),
         })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         changelog: nix.thunk(() => nix.str`https://www.openvswitch.org/releases/NEWS-${nix.sel(finalAttrs, "version")}.txt`),
         description: "Multilayer virtual switch",
         longDescription: "Open vSwitch is a production quality, multilayer virtual switch\nlicensed under the open source Apache 2.0 license. It is\ndesigned to enable massive network automation through\nprogrammatic extension, while still supporting standard\nmanagement interfaces and protocols (e.g. NetFlow, sFlow, SPAN,\nRSPAN, CLI, LACP, 802.1ag). In addition, it is designed to\nsupport distribution across multiple physical servers similar\nto VMware's vNetwork distributed vswitch or Cisco's Nexus 1000V.\n",

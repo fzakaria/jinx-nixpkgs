@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 16, 13], ["version", 16, 19], ["sha256", 17, 5]], [["description", 50, 5], ["homepage", 51, 5], ["license", 52, 5], ["platforms", 53, 5]], [["pname", 11, 3], ["version", 12, 3], ["format", 13, 3], ["src", 15, 3], ["buildInputs", 20, 3], ["nativeCheckInputs", 22, 3], ["postPatch", 27, 3], ["disabledTests", 34, 3], ["meta", 49, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, libcap: false, pytestCheckHook: false, distutils: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 16, 13], ["version", 16, 19], ["sha256", 17, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 50, 5], ["homepage", 51, 5], ["license", 52, 5], ["platforms", 53, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 11, 3], ["version", 12, 3], ["format", 13, 3], ["src", 15, 3], ["buildInputs", 20, 3], ["nativeCheckInputs", 22, 3], ["postPatch", 27, 3], ["disabledTests", 34, 3], ["meta", 49, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.8.1";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           sha256: "b4ca9a25a7d4f1ace4fffd1f3a2e64ef5208fe05f929f3edd5e27081ca7e67ce",
@@ -30,14 +28,14 @@ export default nix.lambda((args) => (() => {
       const postPatch = "substituteInPlace test_prctl.py \\\n  --replace-fail \\\n    'sys.version[0:3]' \\\n    '\"cpython-%d%d\" % (sys.version_info.major, sys.version_info.minor)'\n";
       const disabledTests = nix.thunk(() => ["test_mpx", "test_no_new_privs", "test_seccomp", "test_speculation_ctrl"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Python(ic) interface to the linux prctl syscall",
         homepage: "https://github.com/seveas/python-prctl",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         format,

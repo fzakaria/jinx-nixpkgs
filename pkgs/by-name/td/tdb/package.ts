@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["x86_64-freebsd", 23, 7]], [["url", 34, 5], ["hash", 35, 5]], [["PYTHON_CONFIG", 90, 5]], [["NIX_LDFLAGS", 96, 9]], [["description", 100, 5], ["longDescription", 101, 5], ["homepage", 107, 5], ["license", 108, 5], ["platforms", 109, 5]], [["pname", 30, 3], ["version", 31, 3], ["src", 33, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 47, 3], ["preConfigure", 55, 3], ["wafPath", 64, 3], ["wafConfigureFlags", 66, 3], ["postFixup", 80, 3], ["env", 86, 3], ["meta", 99, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, "pkg-config": false, wafHook: false, buildPackages: false, python3: false, readline: false, libxslt: false, libxcrypt: false, "docbook-xsl-nons": false, docbook_xml_dtd_45: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["x86_64-freebsd", 23, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 34, 5], ["hash", 35, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["PYTHON_CONFIG", 90, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["NIX_LDFLAGS", 96, 9]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 100, 5], ["longDescription", 101, 5], ["homepage", 107, 5], ["license", 108, 5], ["platforms", 109, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 30, 3], ["version", 31, 3], ["src", 33, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 47, 3], ["preConfigure", 55, 3], ["wafPath", 64, 3], ["wafConfigureFlags", 66, 3], ["postFixup", 80, 3], ["env", 86, 3], ["meta", 99, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,15 +21,15 @@ export default nix.lambda((args) => (() => {
   const docbook_xml_dtd_45 = nix.arg($, "docbook_xml_dtd_45");
   const needsAnswers = nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(stdenv, "hostPlatform"), nix.sel(stdenv, "buildPlatform"))) && nix.asBool(!nix.asBool(nix.app(nix.sel(stdenv, "hostPlatform", "emulatorAvailable"), buildPackages)))));
   const answers = nix.thunk(() => nix.selOr({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     "x86_64-freebsd": nix.path(here, "./answers-x86_64-freebsd"),
   }, () => nix.builtins.throw(nix.thunk(() => nix.str`Need pre-generated answers file to compile for ${nix.sel(stdenv, "hostPlatform", "system")}`)), nix.key(nix.sel(stdenv, "hostPlatform", "system"))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "tdb",
       version: "1.4.15",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: nix.thunk(() => nix.str`mirror://samba/tdb/tdb-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-+6CdjfHxuQcq6ujniyvUPFr+8gsvbe76YzqhSjd6jdI=",
         })))),
@@ -49,9 +44,9 @@ chmod +w answers
           nix.thunk(() => (nix.asBool(nix.app(nix.sel(stdenv, "hostPlatform", "emulatorAvailable"), buildPackages)) ? nix.str`--cross-execute=${nix.app(nix.sel(stdenv, "hostPlatform", "emulator"), buildPackages)}` : "--cross-answers=answers")),
         ])))),
       postFixup: nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? "install_name_tool -id $out/lib/libtdb.dylib $out/lib/libtdb.dylib" : null)),
-      env: nix.thunk(() => nix.update({ [nix.POS]: pos$3, PYTHON_CONFIG: "/invalid" }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "cc", "bintools", "isLLVM")) && nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(stdenv, "cc", "bintools", "version")), "17")))), nix.thunk(() => ({ [nix.POS]: pos$4, NIX_LDFLAGS: "--undefined-version" }))))),
+      env: nix.thunk(() => nix.update({ [nix.POS]: $pos[2], PYTHON_CONFIG: "/invalid" }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "cc", "bintools", "isLLVM")) && nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(stdenv, "cc", "bintools", "version")), "17")))), nix.thunk(() => ({ [nix.POS]: $pos[3], NIX_LDFLAGS: "--undefined-version" }))))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Trivial database",
         longDescription: "TDB is a Trivial Database. In concept, it is very much like GDBM,\nand BSD's DB except that it allows multiple simultaneous writers\nand uses locking internally to keep writers from trampling on each\nother. TDB is also extremely small.\n",
         homepage: "https://tdb.samba.org/",

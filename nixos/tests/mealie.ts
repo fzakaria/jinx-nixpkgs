@@ -2,29 +2,19 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/mealie.nix", [[["maintainers", 6, 5]], [["ALLOW_SIGNUP", 18, 20]], [["enable", 16, 11], ["port", 17, 11], ["settings", 18, 11]], [["mealie", 15, 18]], [["services", 15, 9]], [["createLocally", 23, 34]], [["database", 23, 25]], [["mealie", 23, 18]], [["imports", 22, 9], ["services", 23, 9]], [["sqlite", 27, 15], ["postgres", 27, 22]], [["name", 4, 3], ["meta", 5, 3], ["nodes", 12, 3], ["testScript", 30, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/mealie.nix", [["maintainers", 6, 5]]);
-const pos$2 = nix.positions(here + "/mealie.nix", [["ALLOW_SIGNUP", 18, 20]]);
-const pos$3 = nix.positions(here + "/mealie.nix", [["enable", 16, 11], ["port", 17, 11], ["settings", 18, 11]]);
-const pos$4 = nix.positions(here + "/mealie.nix", [["mealie", 15, 18]]);
-const pos$5 = nix.positions(here + "/mealie.nix", [["services", 15, 9]]);
-const pos$6 = nix.positions(here + "/mealie.nix", [["createLocally", 23, 34]]);
-const pos$7 = nix.positions(here + "/mealie.nix", [["database", 23, 25]]);
-const pos$8 = nix.positions(here + "/mealie.nix", [["mealie", 23, 18]]);
-const pos$9 = nix.positions(here + "/mealie.nix", [["imports", 22, 9], ["services", 23, 9]]);
-const pos$10 = nix.positions(here + "/mealie.nix", [["sqlite", 27, 15], ["postgres", 27, 22]]);
-const pos$11 = nix.positions(here + "/mealie.nix", [["name", 4, 3], ["meta", 5, 3], ["nodes", 12, 3], ["testScript", 30, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   return {
-    [nix.POS]: pos$11,
+    [nix.POS]: $pos[10],
     name: "mealie",
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
       return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         maintainers: nix.thunk(() => [
           nix.thunk(() => nix.lookup(w, "litchipi")),
           nix.thunk(() => nix.lookup(w, "anoa")),
@@ -33,29 +23,29 @@ export default nix.lambda((args) => (() => {
     })()),
     nodes: nix.thunk(() => (() => {
       const sqlite = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         services: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           mealie: nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             enable: true,
             port: 9001n,
-            settings: nix.thunk(() => ({ [nix.POS]: pos$2, ALLOW_SIGNUP: "true" })),
+            settings: nix.thunk(() => ({ [nix.POS]: $pos[1], ALLOW_SIGNUP: "true" })),
           })),
         })),
       }));
       const postgres = nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         imports: nix.thunk(() => [sqlite]),
         services: nix.thunk(() => ({
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           mealie: nix.thunk(() => ({
-            [nix.POS]: pos$7,
-            database: nix.thunk(() => ({ [nix.POS]: pos$6, createLocally: true })),
+            [nix.POS]: $pos[6],
+            database: nix.thunk(() => ({ [nix.POS]: $pos[5], createLocally: true })),
           })),
         })),
       }));
-      return { [nix.POS]: pos$10, sqlite: sqlite, postgres: postgres };
+      return { [nix.POS]: $pos[9], sqlite: sqlite, postgres: postgres };
     })()),
     testScript: nix.thunk(() => nix.str`import json
 import urllib.parse

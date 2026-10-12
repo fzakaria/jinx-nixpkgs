@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["pname", 18, 7], ["version", 19, 22], ["owner", 20, 7], ["repo", 21, 7], ["rev", 22, 7], ["hash", 23, 7]], [["package", 40, 11], ["command", 41, 11]], [["version", 39, 9]], [["tests", 38, 7]], [["homepage", 50, 7], ["description", 51, 7], ["changelog", 52, 7], ["mainProgram", 53, 7], ["license", 54, 7], ["maintainers", 55, 7]], [["pname", 14, 5], ["version", 15, 5], ["src", 17, 5], ["cargoHash", 26, 5], ["nativeBuildInputs", 28, 5], ["buildInputs", 30, 5], ["passthru", 37, 5], ["meta", 49, 5]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, libiconv: false, openssl: false, "pkg-config": false, rustPlatform: false, stdenv: false, testers: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["pname", 18, 7], ["version", 19, 22], ["owner", 20, 7], ["repo", 21, 7], ["rev", 22, 7], ["hash", 23, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["package", 40, 11], ["command", 41, 11]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 39, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 38, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["homepage", 50, 7], ["description", 51, 7], ["changelog", 52, 7], ["mainProgram", 53, 7], ["license", 54, 7], ["maintainers", 55, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 14, 5], ["version", 15, 5], ["src", 17, 5], ["cargoHash", 26, 5], ["nativeBuildInputs", 28, 5], ["buildInputs", 30, 5], ["passthru", 37, 5], ["meta", 49, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const testers = nix.arg($, "testers");
   const self = nix.thunk(() => nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "so",
       version: "0.4.10",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "so-source",
           version: nix.thunk(() => nix.attr(self, "version")),
           owner: "samtay",
@@ -37,14 +32,18 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => nix.concat([openssl], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [libiconv])))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$2, package: self, command: "export HOME=$TMP\nso --version\n" })))),
+          [nix.POS]: $pos[2],
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
+              [nix.POS]: $pos[1],
+              package: self,
+              command: "export HOME=$TMP\nso --version\n",
+            })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "https://github.com/samtay/so",
         description: "TUI to StackExchange network",
         changelog: "https://github.com/samtay/so/blob/main/CHANGELOG.md",

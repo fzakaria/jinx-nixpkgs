@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]], [["homepage", 46, 5], ["description", 47, 5], ["longDescription", 48, 5], ["license", 62, 5], ["platforms", 63, 5], ["maintainers", 64, 5], ["mainProgram", 68, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 30, 3], ["preAutoreconf", 41, 3], ["meta", 45, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, autoreconfHook: false, "pkg-config": false, curl: false, libimobiledevice: false, libirecovery: false, libzip: false, libusbmuxd: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 46, 5], ["description", 47, 5], ["longDescription", 48, 5], ["license", 62, 5], ["platforms", 63, 5], ["maintainers", 64, 5], ["mainProgram", 68, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 30, 3], ["preAutoreconf", 41, 3], ["meta", 45, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const libzip = nix.arg($, "libzip");
   const libusbmuxd = nix.arg($, "libusbmuxd");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "idevicerestore",
       version: "1.0.0-unstable-2026-09-07",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "libimobiledevice",
           repo: "idevicerestore",
           rev: "60192e97f87d1bbab5c493684e0a245b0966363f",
@@ -35,7 +33,7 @@ export default nix.lambda((args) => (() => {
       preAutoreconf: nix.thunk(() => nix.str`export RELEASE_VERSION=${nix.sel(finalAttrs, "version")}
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/libimobiledevice/idevicerestore",
         description: "Restore/upgrade firmware of iOS devices",
         longDescription: "The idevicerestore tool allows to restore firmware files to iOS devices.\n\nIt is a full reimplementation of all granular steps which are performed during\nrestore of a firmware to a device.\n\nIn general, upgrades and downgrades are possible, however subject to\navailability of SHSH blobs from Apple for signing the firmware files.\n\nTo restore a device to some firmware, simply run the following:\n$ sudo idevicerestore -l\n\nThis will download and restore a device to the latest firmware available.\n",

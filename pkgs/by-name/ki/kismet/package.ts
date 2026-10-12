@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 40, 5], ["repo", 41, 5], ["tag", 42, 5], ["hash", 43, 5]], [["kismet", 122, 11]], [["extraArgs", 124, 7]], [["tests", 122, 5], ["updateScript", 123, 5]], [["description", 132, 5], ["homepage", 133, 5], ["license", 134, 5], ["platforms", 135, 5], ["maintainers", 136, 5]], [["pname", 36, 3], ["version", 37, 3], ["src", 39, 3], ["postPatch", 46, 3], ["postConfigure", 53, 3], ["strictDeps", 61, 3], ["nativeBuildInputs", 63, 3], ["buildInputs", 79, 3], ["configureFlags", 106, 3], ["enableParallelBuilding", 119, 3], ["passthru", 121, 3], ["meta", 131, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, autoreconfHook: false, binutils: false, elfutils: false, fetchFromGitHub: false, glib: false, libbtbb: false, libcap: false, libmicrohttpd: false, libnl: false, libpcap: false, libusb1: false, libwebsockets: false, lm_sensors: false, mosquitto: false, networkmanager: false, "nix-update-script": false, nixosTests: false, pcre2: false, "pkg-config": false, openssl: false, protobuf: false, protobufc: false, python3: false, "rtl-sdr-librtlsdr": false, sqlite: false, withNetworkManager: true, withPython: true, withSensors: true, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 40, 5], ["repo", 41, 5], ["tag", 42, 5], ["hash", 43, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["kismet", 122, 11]]);
-const pos$3 = nix.positions(here + "/package.nix", [["extraArgs", 124, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 122, 5], ["updateScript", 123, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 132, 5], ["homepage", 133, 5], ["license", 134, 5], ["platforms", 135, 5], ["maintainers", 136, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 36, 3], ["version", 37, 3], ["src", 39, 3], ["postPatch", 46, 3], ["postConfigure", 53, 3], ["strictDeps", 61, 3], ["nativeBuildInputs", 63, 3], ["buildInputs", 79, 3], ["configureFlags", 106, 3], ["enableParallelBuilding", 119, 3], ["passthru", 121, 3], ["meta", 131, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -44,11 +39,11 @@ export default nix.lambda((args) => (() => {
   const withSensors = nix.argOr($, "withSensors", () => false);
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "kismet",
       version: "2025-09-R1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "kismetwireless",
           repo: "kismet",
           tag: nix.thunk(() => nix.str`kismet-${nix.sel(finalAttrs, "version")}`),
@@ -88,15 +83,15 @@ export default nix.lambda((args) => (() => {
       configureFlags: nix.thunk(() => nix.concat(["--disable-wifi-coconut"], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(withNetworkManager)), nix.thunk(() => ["--disable-libnm"])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(withPython)), nix.thunk(() => ["--disable-python-tools"])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(withSensors)), nix.thunk(() => ["--disable-lmsensors"])))))),
       enableParallelBuilding: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$2, kismet: nix.thunk(() => nix.sel(nixosTests, "kismet")) })),
+        [nix.POS]: $pos[3],
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[1], kismet: nix.thunk(() => nix.sel(nixosTests, "kismet")) })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             extraArgs: nix.thunk(() => ["--version-regex", "^kismet-(\\d+-\\d+-.+)$"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Wireless network sniffer",
         homepage: "https://www.kismetwireless.net/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["withAllTargets", 18, 37]], [["updateScript", 22, 12]], [["description", 25, 5], ["homepage", 26, 5], ["license", 27, 5], ["maintainers", 28, 5], ["mainProgram", 32, 5], ["platforms", 33, 5]], [["pname", 10, 3], ["gemdir", 11, 3], ["exes", 12, 3], ["nativeBuildInputs", 14, 3], ["postBuild", 16, 3], ["passthru", 22, 3], ["meta", 24, 3]]]);
 const formals$1 = { args: { lib: false, "binutils-unwrapped": false, bundlerApp: false, bundlerUpdateScript: false, makeWrapper: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["withAllTargets", 18, 37]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 22, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 25, 5], ["homepage", 26, 5], ["license", 27, 5], ["maintainers", 28, 5], ["mainProgram", 32, 5], ["platforms", 33, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["gemdir", 11, 3], ["exes", 12, 3], ["nativeBuildInputs", 14, 3], ["postBuild", 16, 3], ["passthru", 22, 3], ["meta", 24, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,19 +13,19 @@ export default nix.lambda((args) => (() => {
   const bundlerUpdateScript = nix.arg($, "bundlerUpdateScript");
   const makeWrapper = nix.arg($, "makeWrapper");
   return nix.app(bundlerApp, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "one_gadget",
       gemdir: nix.path(here, "./."),
       exes: nix.thunk(() => ["one_gadget"]),
       nativeBuildInputs: nix.thunk(() => [makeWrapper]),
-      postBuild: nix.thunk(() => nix.str`wrapProgram $out/bin/one_gadget --prefix PATH : ${nix.app(nix.sel(binutils_unwrapped, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, withAllTargets: true })))}/bin
+      postBuild: nix.thunk(() => nix.str`wrapProgram $out/bin/one_gadget --prefix PATH : ${nix.app(nix.sel(binutils_unwrapped, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], withAllTargets: true })))}/bin
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(bundlerUpdateScript, "one_gadget")),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Best tool for finding one gadget RCE in libc.so.6",
         homepage: "https://github.com/david942j/one_gadget",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

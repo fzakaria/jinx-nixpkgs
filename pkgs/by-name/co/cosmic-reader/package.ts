@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 25, 5], ["repo", 26, 5], ["rev", 27, 5], ["hash", 28, 5]], [["VERGEN_GIT_SHA", 36, 7]], [["extraArgs", 76, 5]], [["updateScript", 75, 12]], [["description", 83, 5], ["homepage", 84, 5], ["license", 85, 5], ["mainProgram", 86, 5], ["platforms", 87, 5], ["teams", 88, 5]], [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["cargoHash", 31, 3], ["separateDebugInfo", 33, 3], ["__structuredAttrs", 34, 3], ["env", 36, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 44, 3], ["dontUseJustBuild", 57, 3], ["dontUseJustCheck", 58, 3], ["justFlags", 60, 3], ["postInstall", 69, 3], ["passthru", 75, 3], ["meta", 82, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, rustPlatform: false, fetchFromGitHub: false, just: false, libcosmicAppHook: false, fontconfig: false, freetype: false, gumbo: false, harfbuzz: false, jbig2dec: false, lcms2: false, leptonica: false, libjpeg: false, openjpeg: false, tesseract: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 25, 5], ["repo", 26, 5], ["rev", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["VERGEN_GIT_SHA", 36, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["extraArgs", 76, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 75, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 83, 5], ["homepage", 84, 5], ["license", 85, 5], ["mainProgram", 86, 5], ["platforms", 87, 5], ["teams", 88, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["cargoHash", 31, 3], ["separateDebugInfo", 33, 3], ["__structuredAttrs", 34, 3], ["env", 36, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 44, 3], ["dontUseJustBuild", 57, 3], ["dontUseJustCheck", 58, 3], ["justFlags", 60, 3], ["postInstall", 69, 3], ["passthru", 75, 3], ["meta", 82, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const tesseract = nix.arg($, "tesseract");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "cosmic-reader",
       version: "0-unstable-2026-09-15",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "pop-os",
           repo: "cosmic-reader",
           rev: "9a34cc93c817f07be9b3540faa5d146c2a891e64",
@@ -44,7 +39,7 @@ export default nix.lambda((args) => (() => {
       separateDebugInfo: true,
       __structuredAttrs: true,
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         VERGEN_GIT_SHA: nix.thunk(() => nix.sel(finalAttrs, "src", "rev")),
       })),
       nativeBuildInputs: nix.thunk(() => [
@@ -76,11 +71,11 @@ export default nix.lambda((args) => (() => {
       ]),
       postInstall: "substituteInPlace $out/share/thumbnailers/com.system76.CosmicReader.thumbnailer \\\n  --replace-fail \"TryExec=cosmic-reader\" \"TryExec=$out/bin/cosmic-reader\" \\\n  --replace-fail \"Exec=cosmic-reader\" \"Exec=$out/bin/cosmic-reader\"\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$3, extraArgs: nix.thunk(() => ["--version", "branch=HEAD"]) })))),
+        [nix.POS]: $pos[3],
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: $pos[2], extraArgs: nix.thunk(() => ["--version", "branch=HEAD"]) })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "PDF reader for the COSMIC Desktop Environment",
         homepage: "https://github.com/pop-os/cosmic-reader",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

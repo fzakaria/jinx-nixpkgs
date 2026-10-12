@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 47, 5], ["repo", 48, 5], ["tag", 49, 5], ["hash", 50, 5]], [["homepage", 91, 5], ["description", 92, 5], ["longDescription", 93, 5], ["changelog", 109, 5], ["license", 110, 5], ["platforms", 111, 5], ["mainProgram", 112, 5]], [["pname", 43, 3], ["version", 44, 3], ["src", 46, 3], ["nativeBuildInputs", 53, 3], ["dontBuild", 57, 3], ["installPhase", 59, 3], ["meta", 90, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, makeWrapper: false, bash: false, procps: false, iproute2: false, dnsmasq: false, iptables: false, coreutils: false, flock: false, gawk: false, getopt: false, gnugrep: false, gnused: false, which: false, useNetworkManager: true, networkmanager: false, useWifiDependencies: true, hostapd: false, iw: false, useWirelessTools: true, wirelesstools: false, useHaveged: true, haveged: false, useQrencode: true, qrencode: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 47, 5], ["repo", 48, 5], ["tag", 49, 5], ["hash", 50, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 91, 5], ["description", 92, 5], ["longDescription", 93, 5], ["changelog", 109, 5], ["license", 110, 5], ["platforms", 111, 5], ["mainProgram", 112, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 43, 3], ["version", 44, 3], ["src", 46, 3], ["nativeBuildInputs", 53, 3], ["dontBuild", 57, 3], ["installPhase", 59, 3], ["meta", 90, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -37,11 +35,11 @@ export default nix.lambda((args) => (() => {
   const useQrencode = nix.argOr($, "useQrencode", () => true);
   const qrencode = nix.arg($, "qrencode");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "linux-router",
       version: "0.8.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "garywill",
           repo: "linux-router",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -70,7 +68,7 @@ makeWrapper $out/.bin-wrapped/lnxrouter $out/bin/lnxrouter --prefix PATH : ${bin
 `;
       })()),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/garywill/linux-router",
         description: "Set Linux as router / Wifi hotspot / proxy in one command",
         longDescription: "Features:\n\n- Create a NATed sub-network\n- Provide Internet\n- DHCP server and RA\n- DNS server\n- IPv6 (behind NATed LAN, like IPv4)\n- Creating Wifi hotspot:\n  - Channel selecting\n  - Choose encryptions: WPA2/WPA, WPA2, WPA, No encryption\n  - Create AP on the same interface you are getting Internet (require same channel)\n- Transparent proxy (redsocks)\n- DNS proxy\n- Compatible with NetworkManager (automatically set interface as unmanaged)\n",

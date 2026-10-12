@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5], ["fetchSubmodules", 22, 5]], [["homepage", 85, 5], ["description", 86, 5], ["license", 87, 5], ["platforms", 88, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["outputs", 25, 3], ["postUnpack", 36, 3], ["nativeBuildInputs", 40, 3], ["checkInputs", 48, 3], ["configureFlags", 53, 3], ["enableParallelBuilding", 60, 3], ["doCheck", 63, 3], ["preInstall", 67, 3], ["postInstall", 74, 3], ["meta", 84, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, autoreconfHook: false, "pkg-config": false, python3Packages: false, openssl: false, enableManpages: true, docutils: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5], ["fetchSubmodules", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 85, 5], ["description", 86, 5], ["license", 87, 5], ["platforms", 88, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["outputs", 25, 3], ["postUnpack", 36, 3], ["nativeBuildInputs", 40, 3], ["checkInputs", 48, 3], ["configureFlags", 53, 3], ["enableParallelBuilding", 60, 3], ["doCheck", 63, 3], ["preInstall", 67, 3], ["postInstall", 74, 3], ["meta", 84, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const enableManpages = nix.argOr($, "enableManpages", () => true);
   const docutils = nix.arg($, "docutils");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "eiwd",
       version: "2.22-1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "illiliti",
           repo: "eiwd",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -43,7 +41,7 @@ export default nix.lambda((args) => (() => {
       preInstall: "mkdir install-data-local\nsubstituteInPlace Makefile --replace \\\n  '$(MKDIR_P) -m 700 $(DESTDIR)$(daemon_storagedir)' \\\n  'true'\n",
       postInstall: nix.thunk(() => nix.add("mkdir -p $doc/share/doc\ncp -a doc $doc/share/doc/iwd\ncp -a README AUTHORS TODO $doc/share/doc/iwd\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage", "doCheck")), "mkdir -p $test/bin\ncp -a test/* $test/bin/\n"))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/illiliti/eiwd/",
         description: "Fork of iwd (wifi daemon) which does not require dbus",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),

@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 23, 5], ["owner", 24, 5], ["repo", 25, 5], ["rev", 26, 5], ["hash", 27, 5], ["forceFetchGit", 30, 5]], [["yarnLock", 34, 5], ["hash", 35, 5]], [["extraArgs", 64, 5]], [["updateScript", 63, 12]], [["description", 68, 5], ["homepage", 69, 5], ["license", 70, 5], ["maintainers", 71, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["offlineCache", 33, 3], ["nativeBuildInputs", 38, 3], ["buildPhase", 51, 3], ["installPhase", 57, 3], ["passthru", 63, 3], ["meta", 67, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitea: false, cctools: false, "yarn-berry_3": false, nodejs: false, python311: false, "pkg-config": false, libsass: false, xcbuild: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 23, 5], ["owner", 24, 5], ["repo", 25, 5], ["rev", 26, 5], ["hash", 27, 5], ["forceFetchGit", 30, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["yarnLock", 34, 5], ["hash", 35, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["extraArgs", 64, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 63, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 68, 5], ["homepage", 69, 5], ["license", 70, 5], ["maintainers", 71, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["offlineCache", 33, 3], ["nativeBuildInputs", 38, 3], ["buildPhase", 51, 3], ["installPhase", 57, 3], ["passthru", 63, 3], ["meta", 67, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const yarn_berry = yarn_berry_3;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "admin-fe",
       version: "2.3.0-2-unstable-2025-12-07",
       src: nix.thunk(() => nix.app(fetchFromGitea, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "akkoma.dev",
           owner: "AkkomaGang",
           repo: "admin-fe",
@@ -38,7 +33,7 @@ export default nix.lambda((args) => (() => {
           forceFetchGit: true,
         })))),
       offlineCache: nix.thunk(() => nix.app(nix.sel(yarn_berry, "fetchYarnBerryDeps"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           yarnLock: nix.thunk(() => nix.add(nix.sel(finalAttrs, "src"), "/yarn.lock")),
           hash: "sha256-YZlvIr27bHBgsQcBiayqEX07kjX6iH2Kh5wt+PQFq04=",
         })))),
@@ -53,11 +48,11 @@ export default nix.lambda((args) => (() => {
       buildPhase: "runHook preBuild\nyarn run build:prod --offline\nrunHook postBuild\n",
       installPhase: "runHook preInstall\ncp -R -v dist $out\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$3, extraArgs: nix.thunk(() => ["--version=branch=stable"]) })))),
+        [nix.POS]: $pos[3],
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: $pos[2], extraArgs: nix.thunk(() => ["--version=branch=stable"]) })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Admin interface for Akkoma",
         homepage: "https://akkoma.dev/AkkomaGang/akkoma-fe/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),

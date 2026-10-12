@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 40, 13], ["version", 40, 19], ["hash", 41, 5]], [["description", 78, 5], ["homepage", 79, 5], ["changelog", 80, 5], ["license", 81, 5], ["mainProgram", 82, 5], ["maintainers", 83, 5]], [["pname", 34, 3], ["version", 35, 3], ["pyproject", 36, 3], ["src", 39, 3], ["build-system", 44, 3], ["pythonRelaxDeps", 46, 3], ["dependencies", 48, 3], ["pythonImportsCheck", 70, 3], ["nativeCheckInputs", 73, 3], ["meta", 77, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, "uv-build": false, click: false, docutils: false, itsdangerous: false, jedi: false, loro: false, markdown: false, msgspec: false, narwhals: false, packaging: false, psutil: false, pygments: false, "pymdown-extensions": false, "python-multipart": false, pyyaml: false, pyzmq: false, starlette: false, tomlkit: false, uvicorn: false, websockets: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 40, 13], ["version", 40, 19], ["hash", 41, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 78, 5], ["homepage", 79, 5], ["changelog", 80, 5], ["license", 81, 5], ["mainProgram", 82, 5], ["maintainers", 83, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 34, 3], ["version", 35, 3], ["pyproject", 36, 3], ["src", 39, 3], ["build-system", 44, 3], ["pythonRelaxDeps", 46, 3], ["dependencies", 48, 3], ["pythonImportsCheck", 70, 3], ["nativeCheckInputs", 73, 3], ["meta", 77, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -38,7 +36,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.25.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-k02yzrbCuMmuNRSnoi5rIuz1T6vqC2E4rtGYD48VNv8=",
@@ -69,7 +67,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["marimo"]);
       const nativeCheckInputs = nix.thunk(() => [versionCheckHook]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Reactive Python notebook that's reproducible, git-friendly, and deployable as scripts or apps",
         homepage: "https://github.com/marimo-team/marimo",
         changelog: nix.thunk(() => nix.str`https://github.com/marimo-team/marimo/releases/tag/${version}`),
@@ -84,7 +82,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

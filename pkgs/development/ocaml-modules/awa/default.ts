@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 26, 5], ["hash", 27, 5]], [["description", 52, 5], ["homepage", 53, 5], ["changelog", 54, 5], ["license", 55, 5], ["maintainers", 56, 5]], [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["propagatedBuildInputs", 30, 3], ["doCheck", 44, 3], ["checkInputs", 45, 3], ["meta", 51, 3]]]);
 const formals$1 = { args: { lib: false, buildDunePackage: false, fetchurl: false, "mirage-crypto": false, "mirage-crypto-ec": false, "mirage-crypto-rng": false, "mirage-crypto-pk": false, x509: false, ohex: false, eqaf: false, mtime: false, logs: false, fmt: false, cmdliner: false, base64: false, zarith: false, "mirage-mtime": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 52, 5], ["homepage", 53, 5], ["changelog", 54, 5], ["license", 55, 5], ["maintainers", 56, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["propagatedBuildInputs", 30, 3], ["doCheck", 44, 3], ["checkInputs", 45, 3], ["meta", 51, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const zarith = nix.arg($, "zarith");
   const mirage_mtime = nix.arg($, "mirage-mtime");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "awa",
       version: "0.7.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/mirage/awa-ssh/releases/download/v${nix.sel(finalAttrs, "version")}/awa-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-NGjkX5ZXpp1qyZnBgUBJEaSdgOYGqGkSvTD3shwXDpc=",
         })))),
@@ -51,7 +49,7 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       checkInputs: nix.thunk(() => [cmdliner, fmt, mirage_mtime]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "SSH implementation in OCaml",
         homepage: "https://github.com/mirage/awa-ssh",
         changelog: nix.thunk(() => nix.str`https://github.com/mirage/awa-ssh/raw/v${nix.sel(finalAttrs, "version")}/CHANGES.md`),

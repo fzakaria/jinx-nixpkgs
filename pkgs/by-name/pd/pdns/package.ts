@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 30, 5], ["hash", 31, 5]], [["nixos", 98, 5]], [["tests", 97, 12]], [["changelog", 104, 5], ["description", 105, 5], ["homepage", 106, 5], ["platforms", 107, 5], ["broken", 108, 5], ["license", 109, 5], ["maintainers", 110, 5]], [["pname", 26, 3], ["version", 27, 3], ["src", 29, 3], ["patches", 34, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 37, 3], ["configureFlags", 56, 3], ["installFlags", 92, 3], ["enableParallelBuilding", 94, 3], ["doCheck", 95, 3], ["passthru", 97, 3], ["__structuredAttrs", 101, 3], ["meta", 103, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, "pkg-config": false, nixosTests: false, boost: false, "yaml-cpp": false, libsodium: false, sqlite: false, protobuf: false, openssl: false, systemd: false, "mariadb-connector-c": false, libpq: false, lua: false, openldap: false, geoip: false, curl: false, unixodbc: false, lmdb: false, tinycdb: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 30, 5], ["hash", 31, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["nixos", 98, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 97, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["changelog", 104, 5], ["description", 105, 5], ["homepage", 106, 5], ["platforms", 107, 5], ["broken", 108, 5], ["license", 109, 5], ["maintainers", 110, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 26, 3], ["version", 27, 3], ["src", 29, 3], ["patches", 34, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 37, 3], ["configureFlags", 56, 3], ["installFlags", 92, 3], ["enableParallelBuilding", 94, 3], ["doCheck", 95, 3], ["passthru", 97, 3], ["__structuredAttrs", 101, 3], ["meta", 103, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,11 +29,11 @@ export default nix.lambda((args) => (() => {
   const lmdb = nix.arg($, "lmdb");
   const tinycdb = nix.arg($, "tinycdb");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "pdns",
       version: "5.1.4",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://downloads.powerdns.com/releases/pdns-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           hash: "sha256-+KEO2/YOSdjBYOkxIZidXrza2DjQ4LdH8m736J/SIMA=",
         })))),
@@ -95,12 +91,12 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: true,
       doCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$2, nixos: nix.thunk(() => nix.sel(nixosTests, "powerdns")) })),
+        [nix.POS]: $pos[2],
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[1], nixos: nix.thunk(() => nix.sel(nixosTests, "powerdns")) })),
       })),
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         changelog: nix.thunk(() => nix.str`https://doc.powerdns.com/authoritative/changelog/${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}.html#change-${nix.sel(finalAttrs, "version")}`),
         description: "Authoritative DNS server",
         homepage: "https://www.powerdns.com",

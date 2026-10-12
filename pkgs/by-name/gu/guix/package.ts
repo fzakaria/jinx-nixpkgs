@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 46, 5], ["rev", 47, 5], ["hash", 48, 5]], [["guix", 142, 26]], [["tests", 141, 12]], [["description", 146, 5], ["longDescription", 147, 5], ["homepage", 159, 5], ["donationPage", 160, 5], ["changelog", 161, 5], ["license", 162, 5], ["mainProgram", 163, 5], ["maintainers", 164, 5], ["platforms", 168, 5]], [["pname", 42, 3], ["version", 43, 3], ["src", 45, 3], ["postPatch", 51, 3], ["strictDeps", 57, 3], ["nativeBuildInputs", 59, 3], ["buildInputs", 89, 3], ["propagatedBuildInputs", 96, 3], ["configureFlags", 115, 3], ["preAutoreconf", 125, 3], ["enableParallelBuilding", 130, 3], ["postInstall", 132, 3], ["passthru", 141, 3], ["meta", 145, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchgit: false, graphviz: false, gettext: false, autoreconfHook: false, disarchive: false, git: false, glibcLocales: false, guile: false, "guile-avahi": false, "guile-gcrypt": false, "guile-git": false, "guile-gnutls": false, "guile-json": false, "guile-lib": false, "guile-lzlib": false, "guile-lzma": false, "guile-semver": false, "guile-ssh": false, "guile-sqlite3": false, "guile-zlib": false, "guile-zstd": false, help2man: false, makeWrapper: false, "pkg-config": false, po4a: false, "scheme-bytestructures": false, slirp4netns: false, texinfo: false, bzip2: false, libgcrypt: false, sqlite: false, nixosTests: false, stateDir: true, storeDir: true, confDir: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 46, 5], ["rev", 47, 5], ["hash", 48, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["guix", 142, 26]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 141, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 146, 5], ["longDescription", 147, 5], ["homepage", 159, 5], ["donationPage", 160, 5], ["changelog", 161, 5], ["license", 162, 5], ["mainProgram", 163, 5], ["maintainers", 164, 5], ["platforms", 168, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 42, 3], ["version", 43, 3], ["src", 45, 3], ["postPatch", 51, 3], ["strictDeps", 57, 3], ["nativeBuildInputs", 59, 3], ["buildInputs", 89, 3], ["propagatedBuildInputs", 96, 3], ["configureFlags", 115, 3], ["preAutoreconf", 125, 3], ["enableParallelBuilding", 130, 3], ["postInstall", 132, 3], ["passthru", 141, 3], ["meta", 145, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -49,11 +45,11 @@ export default nix.lambda((args) => (() => {
   const storeDir = nix.argOr($, "storeDir", () => "/gnu/store");
   const confDir = nix.argOr($, "confDir", () => "/etc");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "guix",
       version: "1.5.0-unstable-2026-08-23",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://codeberg.org/guix/guix.git",
           rev: "bf8a5bce1bdbddc2a0097e153ef06210d637e398",
           hash: "sha256-Emd26l9buF1P7Dj14ulT6W6lrNC3PSTY4steU1I7T84=",
@@ -129,11 +125,11 @@ export default nix.lambda((args) => (() => {
 done
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$2, guix: nix.thunk(() => nix.attr(nixosTests, "guix")) })),
+        [nix.POS]: $pos[2],
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[1], guix: nix.thunk(() => nix.attr(nixosTests, "guix")) })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Functional package manager with a Scheme interface",
         longDescription: "GNU Guix is a purely functional package manager for the GNU system, and a distribution thereof.\nIn addition to standard package management features, Guix supports\ntransactional upgrades and roll-backs, unprivileged package management,\nper-user profiles, and garbage collection.\nIt provides Guile Scheme APIs, including high-level embedded\ndomain-specific languages (EDSLs), to describe how packages are built\nand composed.\nA user-land free software distribution for GNU/Linux comes as part of\nGuix.\nGuix is based on the Nix package manager.\n",
         homepage: "https://guix.gnu.org/",

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 12, 5], ["sha256", 13, 5]], [["homepage", 19, 5], ["description", 20, 5], ["mainProgram", 21, 5], ["platforms", 22, 5], ["maintainers", 23, 5], ["license", 24, 5]], [["pname", 7, 3], ["version", 8, 3], ["src", 11, 3], ["makeFlags", 16, 3], ["meta", 18, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchzip: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 12, 5], ["sha256", 13, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 19, 5], ["description", 20, 5], ["mainProgram", 21, 5], ["platforms", 22, 5], ["maintainers", 23, 5], ["license", 24, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 7, 3], ["version", 8, 3], ["src", 11, 3], ["makeFlags", 16, 3], ["meta", 18, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,17 +11,17 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchzip = nix.arg($, "fetchzip");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "ries",
       version: "2018.04.11-1",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://salsa.debian.org/debian/ries/-/archive/debian/${nix.sel(finalAttrs, "version")}/ries-debian-${nix.sel(finalAttrs, "version")}.zip`),
           sha256: "1h2wvd4k7f0l0i1vm9niz453xdbcs3nxccmri50qyrzzzc1b0842",
         })))),
       makeFlags: nix.thunk(() => ["PREFIX=$(out)"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://mrob.com/pub/ries/",
         description: "Tool to produce a list of equations that approximately solve to a given number",
         mainProgram: "ries",

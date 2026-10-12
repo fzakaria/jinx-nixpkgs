@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 31, 5], ["repo", 32, 5], ["tag", 33, 5], ["hash", 34, 5]], [["changelog", 77, 5], ["description", 78, 5], ["mainProgram", 79, 5], ["homepage", 80, 5], ["license", 81, 5], ["maintainers", 82, 5]], [["pname", 26, 3], ["version", 27, 3], ["pyproject", 28, 3], ["src", 30, 3], ["build-system", 37, 3], ["pythonRelaxDeps", 39, 3], ["dependencies", 45, 3], ["nativeCheckInputs", 62, 3], ["disabledTests", 68, 3], ["pythonImportsCheck", 74, 3], ["meta", 76, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitLab: false, babel: false, html2text: false, lxml: false, packaging: false, pillow: false, prettytable: false, pycountry: false, pytestCheckHook: false, "python-dateutil": false, "python-jose": false, pyyaml: false, requests: false, rich: false, setuptools: false, unidecode: false, termcolor: false, responses: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 31, 5], ["repo", 32, 5], ["tag", 33, 5], ["hash", 34, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["changelog", 77, 5], ["description", 78, 5], ["mainProgram", 79, 5], ["homepage", 80, 5], ["license", 81, 5], ["maintainers", 82, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 26, 3], ["version", 27, 3], ["pyproject", 28, 3], ["src", 30, 3], ["build-system", 37, 3], ["pythonRelaxDeps", 39, 3], ["dependencies", 45, 3], ["nativeCheckInputs", 62, 3], ["disabledTests", 68, 3], ["pythonImportsCheck", 74, 3], ["meta", 76, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,12 +29,12 @@ export default nix.lambda((args) => (() => {
   const responses = nix.arg($, "responses");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "woob",
       version: "3.7",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "woob",
           repo: "woob",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -64,7 +62,7 @@ export default nix.lambda((args) => (() => {
       disabledTests: nix.thunk(() => ["test_ciphers", "test_verify"]),
       pythonImportsCheck: nix.thunk(() => ["woob"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         changelog: nix.thunk(() => nix.str`https://gitlab.com/woob/woob/-/blob/${nix.sel(finalAttrs, "src", "rev")}/ChangeLog`),
         description: "Collection of applications and APIs to interact with websites",
         mainProgram: "woob",

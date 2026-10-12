@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]], [["homepage", 33, 5], ["description", 34, 5], ["license", 35, 5], ["maintainers", 36, 5], ["platforms", 37, 5], ["broken", 38, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["strictDeps", 19, 3], ["nativeBuildInputs", 20, 3], ["makeTargets", 25, 3], ["makeFlags", 27, 3], ["meta", 32, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, inkscape: false, xcursorgen: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 33, 5], ["description", 34, 5], ["license", 35, 5], ["maintainers", 36, 5], ["platforms", 37, 5], ["broken", 38, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["strictDeps", 19, 3], ["nativeBuildInputs", 20, 3], ["makeTargets", 25, 3], ["makeFlags", 27, 3], ["meta", 32, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const inkscape = nix.arg($, "inkscape");
   const xcursorgen = nix.arg($, "xcursorgen");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "volantes-cursors",
       version: "2022-08-27",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "varlesh",
           repo: "volantes-cursors",
           rev: "b13a4bbf6bd1d7e85fadf7f2ecc44acc198f8d01",
@@ -30,7 +28,7 @@ export default nix.lambda((args) => (() => {
       makeTargets: nix.thunk(() => ["build"]),
       makeFlags: nix.thunk(() => ["DESTDIR=$(out)", "PREFIX="]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://www.pling.com/p/1356095/",
         description: "Classic cursor theme with a flying style",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 30, 5], ["repo", 31, 5], ["rev", 32, 5], ["hash", 33, 5]], [["updateScript", 73, 5]], [["description", 77, 5], ["homepage", 78, 5], ["mainProgram", 79, 5], ["maintainers", 80, 5], ["platforms", 81, 5], ["license", 82, 5]], [["pname", 26, 3], ["version", 27, 3], ["src", 29, 3], ["sourceRoot", 36, 3], ["postPatch", 38, 3], ["nativeBuildInputs", 43, 3], ["buildInputs", 49, 3], ["outputs", 67, 3], ["passthru", 72, 3], ["meta", 76, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, meson: false, ninja: false, "pkg-config": false, fontconfig: false, icu: false, libdrm: false, libGL: false, libinput: false, libx11: false, libxcursor: false, libxkbcommon: false, libgbm: false, pixman: false, seatd: false, "srm-cuarzo": false, udev: false, wayland: false, xorgproto: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 30, 5], ["repo", 31, 5], ["rev", 32, 5], ["hash", 33, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 73, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 77, 5], ["homepage", 78, 5], ["mainProgram", 79, 5], ["maintainers", 80, 5], ["platforms", 81, 5], ["license", 82, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 26, 3], ["version", 27, 3], ["src", 29, 3], ["sourceRoot", 36, 3], ["postPatch", 38, 3], ["nativeBuildInputs", 43, 3], ["buildInputs", 49, 3], ["outputs", 67, 3], ["passthru", 72, 3], ["meta", 76, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,11 +30,11 @@ export default nix.lambda((args) => (() => {
   const xorgproto = nix.arg($, "xorgproto");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "louvre",
       version: "2.18.1-1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "CuarzoSoftware",
           repo: "Louvre",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -67,11 +64,11 @@ export default nix.lambda((args) => (() => {
       ]),
       outputs: nix.thunk(() => ["out", "dev"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "C++ library for building Wayland compositors",
         homepage: "https://github.com/CuarzoSoftware/Louvre",
         mainProgram: "louvre-views",

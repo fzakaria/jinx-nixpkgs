@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 13, 5], ["hash", 14, 5]], [["url", 21, 7], ["sha256", 22, 7], ["decode", 23, 7], ["name", 24, 7], ["stripLen", 25, 7]], [["description", 49, 5], ["homepage", 50, 5], ["license", 51, 5], ["maintainers", 52, 5], ["mainProgram", 53, 5], ["platforms", 54, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["patches", 17, 3], ["postPatch", 29, 3], ["buildInputs", 40, 3], ["preInstall", 42, 3], ["makeFlags", 46, 3], ["meta", 48, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, fetchpatch: false, ncurses: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 13, 5], ["hash", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 21, 7], ["sha256", 22, 7], ["decode", 23, 7], ["name", 24, 7], ["stripLen", 25, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 49, 5], ["homepage", 50, 5], ["license", 51, 5], ["maintainers", 52, 5], ["mainProgram", 53, 5], ["platforms", 54, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["patches", 17, 3], ["postPatch", 29, 3], ["buildInputs", 40, 3], ["preInstall", 42, 3], ["makeFlags", 46, 3], ["meta", 48, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,17 +13,17 @@ export default nix.lambda((args) => (() => {
   const fetchpatch = nix.arg($, "fetchpatch");
   const ncurses = nix.arg($, "ncurses");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "visual-hexdiff",
       version: "0.0.53",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "mirror://ubuntu/pool/universe/h/hexdiff/hexdiff_0.0.53.orig.tar.gz",
           hash: "sha256-M1bmkW63pHlfl9zNWEq0EGN1rpVGo+BTUKM9ot4HWqo=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "mirror://ubuntu/pool/universe/h/hexdiff/hexdiff_0.0.53-0ubuntu4.diff.gz",
             sha256: "sha256-X5ONNp9jeACxsulyowDQJ6REX6bty6L4in0/+rq8Wz4=",
             decode: "gunzip --stdout",
@@ -39,7 +36,7 @@ export default nix.lambda((args) => (() => {
       preInstall: "mkdir -p $out/bin/\n",
       makeFlags: nix.thunk(() => ["PREFIX=$(out)"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Visual hexadecimal difference editor",
         homepage: "http://tboudet.free.fr/hexdiff/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "wtfpl")),

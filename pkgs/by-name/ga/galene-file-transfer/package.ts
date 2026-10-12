@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]], [["vm", 33, 11]], [["rev-prefix", 35, 7]], [["name", 38, 7], ["runtimeInputs", 39, 7], ["text", 43, 7]], [["tests", 33, 5], ["updateScriptSrc", 34, 5], ["updateScriptVendor", 37, 5], ["updateScript", 59, 5]], [["description", 66, 5], ["homepage", 67, 5], ["changelog", 68, 5], ["license", 69, 5], ["platforms", 70, 5], ["maintainers", 71, 27]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["vendorHash", 25, 3], ["ldflags", 27, 3], ["passthru", 32, 3], ["meta", 65, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitHub: false, gitUpdater: false, nixosTests: false, writeShellApplication: false, "_experimental-update-script-combinators": false, galene: false, nix: false, sd: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["vm", 33, 11]]);
-const pos$3 = nix.positions(here + "/package.nix", [["rev-prefix", 35, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["name", 38, 7], ["runtimeInputs", 39, 7], ["text", 43, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["tests", 33, 5], ["updateScriptSrc", 34, 5], ["updateScriptVendor", 37, 5], ["updateScript", 59, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 66, 5], ["homepage", 67, 5], ["changelog", 68, 5], ["license", 69, 5], ["platforms", 70, 5], ["maintainers", 71, 27]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["vendorHash", 25, 3], ["ldflags", 27, 3], ["passthru", 32, 3], ["meta", 65, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const nix$ = nix.arg($, "nix");
   const sd = nix.arg($, "sd");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "galene-file-transfer",
       version: "0.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "jech",
           repo: "galene-file-transfer",
           tag: nix.thunk(() => nix.str`galene-file-transfer-${nix.sel(finalAttrs, "version")}`),
@@ -37,14 +31,14 @@ export default nix.lambda((args) => (() => {
       vendorHash: "sha256-Z2IYZtB2PAxJD8993reu+ldTG3LdPLNMbr9pP2NUBMA=",
       ldflags: nix.thunk(() => ["-s", "-w"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           vm: nix.thunk(() => nix.sel(nixosTests, "galene", "file-transfer")),
         })),
-        updateScriptSrc: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$3, "rev-prefix": "galene-file-transfer-" })))),
+        updateScriptSrc: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[2], "rev-prefix": "galene-file-transfer-" })))),
         updateScriptVendor: nix.thunk(() => nix.app(writeShellApplication, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             name: "update-galene-file-transfer-vendorHash",
             runtimeInputs: nix.thunk(() => [nix$, sd]),
             text: nix.thunk(() => nix.str`export UPDATE_NIX_ATTR_PATH="\${UPDATE_NIX_ATTR_PATH:-galene-file-transfer}"
@@ -70,7 +64,7 @@ ${nix.sel(sd, "meta", "mainProgram")} --string-mode "$oldhash" "$newhash" "$fnam
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(galene, "meta"));
         return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Command-line file transfer client for the Galene videoconferencing server",
         homepage: "https://github.com/jech/galene-file-transfer",
         changelog: nix.thunk(() => nix.str`https://github.com/jech/galene-file-transfer/raw/${nix.sel(finalAttrs, "src", "rev")}/CHANGES`),

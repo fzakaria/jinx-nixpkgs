@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["sha256", 20, 5]], [["homepage", 50, 5], ["description", 51, 5], ["license", 52, 5], ["maintainers", 53, 5], ["platforms", 54, 5], ["mainProgram", 55, 5]], [["pname", 12, 3], ["version", 13, 3], ["pyproject", 14, 3], ["src", 16, 3], ["buildInputs", 23, 3], ["postPatch", 29, 3], ["dontBuild", 41, 3], ["doCheck", 42, 3], ["installPhase", 44, 3], ["meta", 49, 3]]]);
 const formals$1 = { args: { lib: false, python3Packages: false, fetchFromGitHub: false, openvpn: false, iproute2: false, iptables: false, "util-linux": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["sha256", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 50, 5], ["description", 51, 5], ["license", 52, 5], ["maintainers", 53, 5], ["platforms", 54, 5], ["mainProgram", 55, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["pyproject", 14, 3], ["src", 16, 3], ["buildInputs", 23, 3], ["postPatch", 29, 3], ["dontBuild", 41, 3], ["doCheck", 42, 3], ["installPhase", 44, 3], ["meta", 49, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.6.0";
       const pyproject = false;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "slingamn",
           repo: pname,
           rev: "a3fa42b2d8645272cbeb6856e26a7ea9547cb7d1",
@@ -42,7 +40,7 @@ substituteInPlace seal-unseal-gateway \\
       const doCheck = false;
       const installPhase = "mkdir -p $out/bin\ncp namespaced-openvpn seal-unseal-gateway $out/bin\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/slingamn/namespaced-openvpn",
         description: "Network namespace isolation for OpenVPN tunnels",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -51,7 +49,7 @@ substituteInPlace seal-unseal-gateway \\
         mainProgram: "namespaced-openvpn",
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

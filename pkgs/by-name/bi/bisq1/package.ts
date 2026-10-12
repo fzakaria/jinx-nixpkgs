@@ -2,19 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["enableJavaFX", 48, 5]], [["url", 91, 7], ["hash", 92, 7]], [["url", 96, 7], ["hash", 97, 7]], [["url", 101, 7], ["hash", 102, 7]], [["E222AA02", 90, 5], ["4A133008", 95, 5], ["387C8307", 100, 5]], [["url", 138, 5], ["hash", 139, 5], ["nativeBuildInputs", 144, 5], ["downloadToTemp", 145, 5], ["postFetch", 147, 5]], [["url", 163, 5], ["hash", 164, 5]], [["name", 179, 7], ["exec", 180, 7], ["icon", 181, 7], ["desktopName", 182, 7], ["genericName", 183, 7], ["categories", 184, 7]], [["name", 191, 7], ["exec", 192, 7], ["icon", 193, 7], ["desktopName", 194, 7], ["genericName", 195, 7], ["categories", 196, 7]], [["updateScript", 247, 12]], [["description", 250, 5], ["homepage", 251, 5], ["mainProgram", 252, 5], ["sourceProvenance", 253, 5], ["license", 257, 5], ["maintainers", 258, 5], ["platforms", 259, 5]], [["version", 130, 11], ["pname", 132, 3], ["strictDeps", 134, 3], ["__structuredAttrs", 135, 3], ["src", 137, 3], ["signature", 162, 3], ["nativeBuildInputs", 167, 3], ["desktopItems", 177, 3], ["unpackPhase", 203, 3], ["buildPhase", 209, 3], ["installPhase", 224, 3], ["passthru", 247, 3], ["meta", 249, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, makeBinaryWrapper: false, fetchurl: false, writeShellScript: false, makeDesktopItem: false, copyDesktopItems: false, imagemagick: false, zulu21: false, dpkg: false, zip: false, xz: false, gnupg: false, coreutils: false, tor: false, gtk3: false, glib: false, cairo: false, pango: false, atk: false, "gdk-pixbuf": false, harfbuzz: false, freetype: false, fontconfig: false, libGL: false, libglvnd: false, libx11: false, libxtst: false, libxxf86vm: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["enableJavaFX", 48, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 91, 7], ["hash", 92, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 96, 7], ["hash", 97, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["url", 101, 7], ["hash", 102, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["E222AA02", 90, 5], ["4A133008", 95, 5], ["387C8307", 100, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["url", 138, 5], ["hash", 139, 5], ["nativeBuildInputs", 144, 5], ["downloadToTemp", 145, 5], ["postFetch", 147, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["url", 163, 5], ["hash", 164, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["name", 179, 7], ["exec", 180, 7], ["icon", 181, 7], ["desktopName", 182, 7], ["genericName", 183, 7], ["categories", 184, 7]]);
-const pos$9 = nix.positions(here + "/package.nix", [["name", 191, 7], ["exec", 192, 7], ["icon", 193, 7], ["desktopName", 194, 7], ["genericName", 195, 7], ["categories", 196, 7]]);
-const pos$10 = nix.positions(here + "/package.nix", [["updateScript", 247, 12]]);
-const pos$11 = nix.positions(here + "/package.nix", [["description", 250, 5], ["homepage", 251, 5], ["mainProgram", 252, 5], ["sourceProvenance", 253, 5], ["license", 257, 5], ["maintainers", 258, 5], ["platforms", 259, 5]]);
-const pos$12 = nix.positions(here + "/package.nix", [["version", 130, 11], ["pname", 132, 3], ["strictDeps", 134, 3], ["__structuredAttrs", 135, 3], ["src", 137, 3], ["signature", 162, 3], ["nativeBuildInputs", 167, 3], ["desktopItems", 177, 3], ["unpackPhase", 203, 3], ["buildPhase", 209, 3], ["installPhase", 224, 3], ["passthru", 247, 3], ["meta", 249, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -49,7 +38,7 @@ export default nix.lambda((args) => (() => {
   const libxxf86vm = nix.arg($, "libxxf86vm");
   const sources = nix.thunk(() => nix.builtins.import(nix.path(here, "./sources.nix")));
   const version = nix.thunk(() => nix.sel(sources, "version"));
-  const jdk = nix.thunk(() => nix.app(nix.sel(zulu21, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, enableJavaFX: true }))));
+  const jdk = nix.thunk(() => nix.app(nix.sel(zulu21, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], enableJavaFX: true }))));
   const bisqJvmArgs = nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), " ", nix.thunk(() => [
       "-XX:MaxRAM=8g",
       "-Xss1280k",
@@ -72,19 +61,19 @@ export default nix.lambda((args) => (() => {
   ${args_1} bisq.desktop.app.BisqAppMain "$@"
 `));
   const publicKey = nix.thunk(() => ({
-    [nix.POS]: pos$5,
+    [nix.POS]: $pos[4],
     E222AA02: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         url: nix.thunk(() => nix.str`https://github.com/bisq-network/bisq/releases/download/v${version}/E222AA02.asc`),
         hash: nix.thunk(() => nix.sel(sources, "key-E222AA02-hash")),
       })))),
     "4A133008": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         url: nix.thunk(() => nix.str`https://github.com/bisq-network/bisq/releases/download/v${version}/4A133008.asc`),
         hash: nix.thunk(() => nix.sel(sources, "key-4A133008-hash")),
       })))),
     "387C8307": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         url: nix.thunk(() => nix.str`https://github.com/bisq-network/bisq/releases/download/v${version}/387C8307.asc`),
         hash: nix.thunk(() => nix.sel(sources, "key-387C8307-hash")),
       })))),
@@ -108,13 +97,13 @@ export default nix.lambda((args) => (() => {
       nix.thunk(() => nix.sel(stdenv, "cc", "cc")),
     ])));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$12,
+      [nix.POS]: $pos[11],
       version: version,
       pname: "bisq1",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           url: nix.thunk(() => nix.str`https://github.com/bisq-network/bisq/releases/download/v${version}/Bisq-64bit-${version}.deb`),
           hash: nix.thunk(() => nix.sel(sources, "deb-hash")),
           nativeBuildInputs: nix.thunk(() => [gnupg]),
@@ -133,14 +122,14 @@ mv $downloadedFile $out
 `),
         })))),
       signature: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           url: nix.thunk(() => nix.str`https://github.com/bisq-network/bisq/releases/download/v${version}/Bisq-64bit-${version}.deb.asc`),
           hash: nix.thunk(() => nix.sel(sources, "sig-hash")),
         })))),
       nativeBuildInputs: nix.thunk(() => [copyDesktopItems, dpkg, imagemagick, makeBinaryWrapper, zip, xz, gnupg]),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$8,
+            [nix.POS]: $pos[7],
             name: "bisq",
             exec: "bisq",
             icon: "bisq",
@@ -149,7 +138,7 @@ mv $downloadedFile $out
             categories: nix.thunk(() => ["Network", "P2P"]),
           })))),
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$9,
+            [nix.POS]: $pos[8],
             name: "bisq-hidpi",
             exec: "bisq-hidpi",
             icon: "bisq",
@@ -193,9 +182,9 @@ done
 
 runHook postInstall
 `),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$10, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[9], updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$11,
+        [nix.POS]: $pos[10],
         description: "Decentralized bitcoin exchange network (Bisq 1)",
         homepage: "https://bisq.network",
         mainProgram: "bisq",

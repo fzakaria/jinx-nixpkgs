@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 29, 5], ["hash", 30, 5]], [["description", 92, 5], ["license", 93, 5], ["teams", 94, 5], ["platforms", 95, 5], ["homepage", 98, 5], ["mainProgram", 99, 5]], [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["__structuredAttrs", 33, 3], ["strictDeps", 34, 3], ["patches", 36, 3], ["postPatch", 41, 3], ["nativeBuildInputs", 45, 3], ["buildInputs", 53, 3], ["ninjaFlags", 63, 3], ["configurePhase", 68, 3], ["postInstall", 86, 3], ["meta", 91, 3]]]);
 const formals$1 = { args: { lib: false, llvmPackages_22: false, fetchzip: false, ninja: false, sbcl: false, "pkg-config": false, writableTmpDirAsHomeHook: false, boost: false, fmt: false, gmpxx: false, libelf: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 29, 5], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 92, 5], ["license", 93, 5], ["teams", 94, 5], ["platforms", 95, 5], ["homepage", 98, 5], ["mainProgram", 99, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["__structuredAttrs", 33, 3], ["strictDeps", 34, 3], ["patches", 36, 3], ["postPatch", 41, 3], ["nativeBuildInputs", 45, 3], ["buildInputs", 53, 3], ["ninjaFlags", 63, 3], ["configurePhase", 68, 3], ["postInstall", 86, 3], ["meta", 91, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const libclang = nix.thunk(() => nix.attr(llvmPackages_22, "libclang"));
   const libunwind = nix.thunk(() => nix.attr(llvmPackages_22, "libunwind"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "clasp",
       version: "3.0.1",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/clasp-developers/clasp/releases/download/${nix.sel(finalAttrs, "version")}/clasp-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-C6FwbLz/kjBcuI3225TczWaInkbQ3chtDhWCYh+a/2E=",
         })))),
@@ -49,7 +47,7 @@ export default nix.lambda((args) => (() => {
       configurePhase: "runHook preConfigure\nexport SOURCE_DATE_EPOCH=1\nsbcl --script koga \\\n  --skip-sync \\\n  --cc=$NIX_CC/bin/cc \\\n  --cxx=$NIX_CC/bin/c++ \\\n  --jobs=$NIX_BUILD_CORES \\\n  --reproducible-build \\\n  --package-path=/ \\\n  --bin-path=$out/bin \\\n  --lib-path=$out/lib \\\n  --dylib-path=$out/lib \\\n  --share-path=$out/share \\\n  --pkgconfig-path=$out/lib/pkgconfig\nrunHook postConfigure\n",
       postInstall: "# --dylib-path not honored. Fix it in post.\nmv $out/libclasp* $out/lib/\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Common Lisp implementation based on LLVM with C++ integration",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "lisp"))]),

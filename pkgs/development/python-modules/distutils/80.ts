@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/80.nix", [[["owner", 30, 5], ["repo", 31, 5], ["rev", 32, 5], ["hash", 33, 5]], [["description", 86, 5], ["homepage", 87, 5], ["license", 88, 5], ["maintainers", 89, 5]], [["pname", 25, 3], ["version", 26, 27], ["pyproject", 27, 3], ["src", 29, 3], ["postPatch", 36, 3], ["build-system", 40, 3], ["dependencies", 42, 3], ["postInstall", 49, 3], ["pythonImportsCheck", 54, 3], ["nativeCheckInputs", 56, 3], ["checkInputs", 67, 3], ["doCheck", 73, 3], ["disabledTests", 75, 3], ["meta", 85, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, pythonAtLeast: false, "setuptools-scm": false, setuptools_80: false, python: false, docutils: false, "jaraco-collections": false, "jaraco-functools": false, "jaraco-envs": false, "jaraco-path": false, "jaraco-text": false, libz: false, "more-itertools": false, packaging: false, path: false, pyfakefs: false, pytestCheckHook: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/80.nix", [["owner", 30, 5], ["repo", 31, 5], ["rev", 32, 5], ["hash", 33, 5]]);
-const pos$2 = nix.positions(here + "/80.nix", [["description", 86, 5], ["homepage", 87, 5], ["license", 88, 5], ["maintainers", 89, 5]]);
-const pos$3 = nix.positions(here + "/80.nix", [["pname", 25, 3], ["version", 26, 27], ["pyproject", 27, 3], ["src", 29, 3], ["postPatch", 36, 3], ["build-system", 40, 3], ["dependencies", 42, 3], ["postInstall", 49, 3], ["pythonImportsCheck", 54, 3], ["nativeCheckInputs", 56, 3], ["checkInputs", 67, 3], ["doCheck", 73, 3], ["disabledTests", 75, 3], ["meta", 85, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,12 +28,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "distutils",
       version: nix.thunk(() => nix.attr(setuptools_80, "version")),
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "pypa",
           repo: "distutils",
           rev: "5ad8291ff2ad3e43583bc72a4c09299ca6134f09",
@@ -62,7 +60,7 @@ ln -s ${setuptools_80}/${nix.sel(python, "sitePackages")}/setuptools/_distutils 
       doCheck: nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))),
       disabledTests: nix.thunk(() => nix.concat(["test_byte_compile", "test_byte_compile_optimized"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(pythonAtLeast, "3.14")), nix.thunk(() => ["test_glob_to_re"])))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Distutils as found in cpython",
         homepage: "https://github.com/pypa/distutils",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

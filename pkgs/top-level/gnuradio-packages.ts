@@ -2,11 +2,8 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/gnuradio-packages.nix", [[["lib", 15, 15], ["unwrapped", 16, 7]], [["boost", 24, 11], ["volk", 25, 11], ["logLib", 26, 11], ["python", 27, 11], ["qwt", 28, 11], ["mkDerivationWith", 30, 17], ["mkDerivation", 30, 34], ["gnuradio", 31, 17], ["gnuradioOlder", 32, 28], ["gnuradioAtLeast", 32, 42]], [["uhd", 35, 28]], [["callPackage", 41, 15], ["mkDerivation", 41, 27], ["mkDerivationWith", 41, 40], ["bladeRF", 43, 7], ["lora_sdr", 45, 7], ["osmosdr", 47, 7], ["fosphor", 49, 7], ["gr-difi", 51, 7]]]);
 const formals$1 = { args: { lib: false, stdenv: false, newScope: false, gnuradio: false, packageOverrides: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/gnuradio-packages.nix", [["lib", 15, 15], ["unwrapped", 16, 7]]);
-const pos$2 = nix.positions(here + "/gnuradio-packages.nix", [["boost", 24, 11], ["volk", 25, 11], ["logLib", 26, 11], ["python", 27, 11], ["qwt", 28, 11], ["mkDerivationWith", 30, 17], ["mkDerivation", 30, 34], ["gnuradio", 31, 17], ["gnuradioOlder", 32, 28], ["gnuradioAtLeast", 32, 42]]);
-const pos$3 = nix.positions(here + "/gnuradio-packages.nix", [["uhd", 35, 28]]);
-const pos$4 = nix.positions(here + "/gnuradio-packages.nix", [["callPackage", 41, 15], ["mkDerivation", 41, 27], ["mkDerivationWith", 41, 40], ["bladeRF", 43, 7], ["lora_sdr", 45, 7], ["osmosdr", 47, 7], ["fosphor", 49, 7], ["gr-difi", 51, 7]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,10 +13,10 @@ export default nix.lambda((args) => (() => {
   const gnuradio = nix.arg($, "gnuradio");
   const packageOverrides = nix.arg($, "packageOverrides");
   return nix.app(nix.sel(lib, "makeScope"), newScope, (self) => (() => {
-      const mkDerivationWith = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../development/gnuradio-modules/mkDerivation.nix")), nix.thunk(() => ({ [nix.POS]: pos$1, lib: lib, unwrapped: gnuradio }))));
+      const mkDerivationWith = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../development/gnuradio-modules/mkDerivation.nix")), nix.thunk(() => ({ [nix.POS]: $pos[0], lib: lib, unwrapped: gnuradio }))));
       const mkDerivation = nix.thunk(() => nix.app(mkDerivationWith, nix.thunk(() => nix.sel(stdenv, "mkDerivation"))));
       const callPackage = nix.thunk(() => nix.app(nix.sel(self, "newScope"), nix.thunk(() => nix.update({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           boost: nix.thunk(() => nix.attr(gnuradio, "boost")),
           volk: nix.thunk(() => nix.attr(gnuradio, "volk")),
           logLib: nix.thunk(() => nix.attr(gnuradio, "logLib")),
@@ -30,9 +27,9 @@ export default nix.lambda((args) => (() => {
           gnuradio: gnuradio,
           gnuradioOlder: nix.thunk(() => nix.attr(gnuradio, "gnuradioOlder")),
           gnuradioAtLeast: nix.thunk(() => nix.attr(gnuradio, "gnuradioAtLeast")),
-        }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.app(nix.sel(gnuradio, "hasFeature"), "gr-uhd")), nix.thunk(() => ({ [nix.POS]: pos$3, uhd: nix.thunk(() => nix.attr(gnuradio, "uhd")) })))))));
+        }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.app(nix.sel(gnuradio, "hasFeature"), "gr-uhd")), nix.thunk(() => ({ [nix.POS]: $pos[2], uhd: nix.thunk(() => nix.attr(gnuradio, "uhd")) })))))));
       const basePackages = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         callPackage: callPackage,
         mkDerivation: mkDerivation,
         mkDerivationWith: mkDerivationWith,

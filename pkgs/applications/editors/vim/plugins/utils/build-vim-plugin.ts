@@ -2,11 +2,9 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/build-vim-plugin.nix", [[["platforms", 53, 13]], [["name", 29, 11], ["__structuredAttrs", 31, 11], ["unpackPhase", 33, 13], ["configurePhase", 34, 13], ["buildPhase", 35, 13], ["addonInfo", 36, 13], ["preInstall", 37, 13], ["postInstall", 38, 13], ["installPhase", 41, 11], ["meta", 52, 11]], [["addRtp", 9, 3], ["buildVimPlugin", 11, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, rtpPath: false, toVimPlugin: false }, ellipsis: false };
 const formals$2 = { args: { name: true, src: false, unpackPhase: true, configurePhase: true, buildPhase: true, preInstall: true, postInstall: true, path: true, addonInfo: true, meta: true }, ellipsis: true };
-const pos$1 = nix.positions(here + "/build-vim-plugin.nix", [["platforms", 53, 13]]);
-const pos$2 = nix.positions(here + "/build-vim-plugin.nix", [["name", 29, 11], ["__structuredAttrs", 31, 11], ["unpackPhase", 33, 13], ["configurePhase", 34, 13], ["buildPhase", 35, 13], ["addonInfo", 36, 13], ["preInstall", 37, 13], ["postInstall", 38, 13], ["installPhase", 41, 11], ["meta", 52, 11]]);
-const pos$3 = nix.positions(here + "/build-vim-plugin.nix", [["addRtp", 9, 3], ["buildVimPlugin", 11, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const rtpPath = nix.arg($, "rtpPath");
   const toVimPlugin = nix.arg($, "toVimPlugin");
   return {
-    [nix.POS]: pos$3,
+    [nix.POS]: $pos[2],
     addRtp: (drv) => nix.app(nix.sel(lib, "warn"), "`addRtp` is deprecated, does nothing.", drv),
     buildVimPlugin: nix.lambda((args_1) => (() => {
       const $_1 = nix.formals(args_1, formals$2);
@@ -31,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const addonInfo = nix.argOr($_1, "addonInfo", () => null);
       const meta = nix.argOr($_1, "meta", () => ({}));
       const drv = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => nix.update(attrs, {
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           name: nix.thunk(() => nix.app(nix.sel(lib, "warnIf"), nix.thunk(() => nix.has(attrs, "vimprefix")), "The 'vimprefix' is now hardcoded in toVimPlugin", name)),
           __structuredAttrs: true,
           unpackPhase: unpackPhase,
@@ -49,7 +47,7 @@ ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(nix.selOr(
 runHook postInstall
 `, "installPhase")),
           meta: nix.thunk(() => nix.update({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
           }, meta)),
         }))));

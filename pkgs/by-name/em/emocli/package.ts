@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 12, 5], ["repo", 13, 5], ["rev", 14, 5], ["hash", 15, 5]], [["EMOCLI_DATAFILE", 20, 7]], [["homepage", 22, 5], ["description", 23, 5], ["license", 24, 5], ["maintainers", 25, 5], ["mainProgram", 26, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 11, 3], ["nimFlags", 17, 3], ["env", 20, 3], ["meta", 21, 3]]]);
 const formals$1 = { args: { lib: false, buildNimPackage: false, fetchFromGitLab: false, "unicode-emoji": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 12, 5], ["repo", 13, 5], ["rev", 14, 5], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["EMOCLI_DATAFILE", 20, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 22, 5], ["description", 23, 5], ["license", 24, 5], ["maintainers", 25, 5], ["mainProgram", 26, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 11, 3], ["nimFlags", 17, 3], ["env", 20, 3], ["meta", 21, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitLab = nix.arg($, "fetchFromGitLab");
   const unicode_emoji = nix.arg($, "unicode-emoji");
   return nix.app(buildNimPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "emocli",
       version: "1.0.0",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "AsbjornOlling",
           repo: "emocli",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -27,11 +24,11 @@ export default nix.lambda((args) => (() => {
         })))),
       nimFlags: nix.thunk(() => ["--maxLoopIterationsVM:1000000000"]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         EMOCLI_DATAFILE: nix.thunk(() => nix.str`${unicode_emoji}/share/unicode/emoji/emoji-test.txt`),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://gitlab.com/AsbjornOlling/emocli",
         description: "Emoji picker for your command line",
         license: nix.thunk(() => nix.sel(lib, "licenses", "eupl12")),

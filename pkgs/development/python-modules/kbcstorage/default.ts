@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]], [["description", 69, 5], ["homepage", 70, 5], ["changelog", 71, 5], ["license", 72, 5], ["maintainers", 73, 5]], [["pname", 19, 3], ["version", 20, 3], ["pyproject", 21, 3], ["src", 23, 3], ["postPatch", 30, 3], ["build-system", 35, 3], ["pythonRelaxDeps", 41, 3], ["dependencies", 46, 3], ["doCheck", 59, 3], ["pythonImportsCheck", 61, 3], ["meta", 68, 3]]]);
 const formals$1 = { args: { lib: false, "azure-storage-blob": false, boto3: false, buildPythonPackage: false, fetchFromGitHub: false, "python-dotenv": false, requests: false, responses: false, setuptools: false, "setuptools-git-versioning": false, "setuptools-scm": false, urllib3: false, "google-auth": false, "google-cloud-storage": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 69, 5], ["homepage", 70, 5], ["changelog", 71, 5], ["license", 72, 5], ["maintainers", 73, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 19, 3], ["version", 20, 3], ["pyproject", 21, 3], ["src", 23, 3], ["postPatch", 30, 3], ["build-system", 35, 3], ["pythonRelaxDeps", 41, 3], ["dependencies", 46, 3], ["doCheck", 59, 3], ["pythonImportsCheck", 61, 3], ["meta", 68, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.9.5";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "keboola",
           repo: "sapi-python-client",
           tag: version,
@@ -50,7 +48,7 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["kbcstorage", "kbcstorage.buckets", "kbcstorage.client", "kbcstorage.tables"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Keboola Connection Storage API client",
         homepage: "https://github.com/keboola/sapi-python-client",
         changelog: nix.thunk(() => nix.str`https://github.com/keboola/sapi-python-client/releases/tag/${version}`),
@@ -61,7 +59,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

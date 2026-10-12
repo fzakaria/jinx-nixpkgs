@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]], [["homepage", 44, 5], ["description", 45, 5], ["mainProgram", 46, 5], ["license", 47, 5], ["maintainers", 48, 5], ["platforms", 49, 5]], [["pname", 13, 3], ["version", 16, 3], ["src", 18, 3], ["postPatch", 25, 3], ["doCheck", 32, 3], ["nativeBuildInputs", 34, 3], ["checkInputs", 35, 3], ["buildInputs", 37, 3], ["meta", 43, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, cmake: false, libGL: false, SDL2: false, libGLU: false, catch2_3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 44, 5], ["description", 45, 5], ["mainProgram", 46, 5], ["license", 47, 5], ["maintainers", 48, 5], ["platforms", 49, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 16, 3], ["src", 18, 3], ["postPatch", 25, 3], ["doCheck", 32, 3], ["nativeBuildInputs", 34, 3], ["checkInputs", 35, 3], ["buildInputs", 37, 3], ["meta", 43, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const libGLU = nix.arg($, "libGLU");
   const catch2_3 = nix.arg($, "catch2_3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "recastai",
       version: "unstable-2025-08-12",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "recastnavigation",
           repo: "recastnavigation",
           rev: "40ec6fcd6c0263a3d7798452aee531066072d15d",
@@ -38,7 +36,7 @@ substituteInPlace RecastDemo/CMakeLists.txt \\
       checkInputs: nix.thunk(() => [catch2_3]),
       buildInputs: nix.thunk(() => [libGL, SDL2, libGLU]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/recastnavigation/recastnavigation",
         description: "Navigation-mesh Toolset for Games",
         mainProgram: "RecastDemo",

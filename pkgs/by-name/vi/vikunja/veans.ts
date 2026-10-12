@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/veans.nix", [[["CGO_ENABLED", 22, 7]], [["description", 44, 5], ["homepage", 45, 5], ["mainProgram", 46, 5], ["platforms", 47, 5]], [["pname", 13, 3], ["src", 14, 11], ["version", 14, 15], ["__structuredAttrs", 16, 3], ["modRoot", 18, 3], ["vendorHash", 20, 3], ["env", 22, 3], ["ldflags", 24, 3], ["nativeBuildInputs", 29, 3], ["postInstall", 33, 3], ["doCheck", 41, 3], ["meta", 43, 3]]]);
 const formals$1 = { args: { meta: false, src: false, version: false, lib: false, buildGoModule: false, installShellFiles: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/veans.nix", [["CGO_ENABLED", 22, 7]]);
-const pos$2 = nix.positions(here + "/veans.nix", [["description", 44, 5], ["homepage", 45, 5], ["mainProgram", 46, 5], ["platforms", 47, 5]]);
-const pos$3 = nix.positions(here + "/veans.nix", [["pname", 13, 3], ["src", 14, 11], ["version", 14, 15], ["__structuredAttrs", 16, 3], ["modRoot", 18, 3], ["vendorHash", 20, 3], ["env", 22, 3], ["ldflags", 24, 3], ["nativeBuildInputs", 29, 3], ["postInstall", 33, 3], ["doCheck", 41, 3], ["meta", 43, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,14 +15,14 @@ export default nix.lambda((args) => (() => {
   const installShellFiles = nix.arg($, "installShellFiles");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "veans",
       src: src,
       version: version,
       __structuredAttrs: true,
       modRoot: "veans",
       vendorHash: "sha256-cCRPfJDZXIlufMg3SkqtI7Hb5Dphu2Eofxuls3eSS+Q=",
-      env: nix.thunk(() => ({ [nix.POS]: pos$1, CGO_ENABLED: 0n })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[0], CGO_ENABLED: 0n })),
       ldflags: nix.thunk(() => [
         "-s",
         nix.thunk(() => nix.str`-X main.version=v${nix.sel(finalAttrs, "version")}`),
@@ -33,7 +31,7 @@ export default nix.lambda((args) => (() => {
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "installShellCompletion --cmd veans \\\n  --bash <($out/bin/veans completion bash) \\\n  --zsh <($out/bin/veans completion zsh) \\\n  --fish <($out/bin/veans completion fish)\n")),
       doCheck: false,
       meta: nix.thunk(() => nix.update(meta, {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "A beans-shaped CLI for Vikunja",
         homepage: "https://vikunja.io/docs/veans/",
         mainProgram: "veans",

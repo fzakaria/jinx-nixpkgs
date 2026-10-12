@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]], [["OPENSSL_NO_VENDOR", 25, 7]], [["description", 57, 5], ["homepage", 58, 5], ["license", 59, 5], ["maintainers", 63, 5], ["mainProgram", 64, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["cargoHash", 22, 3], ["env", 25, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 32, 3], ["doCheck", 35, 3], ["checkFlags", 37, 3], ["doInstallCheck", 52, 3], ["nativeInstallCheckInputs", 54, 3], ["meta", 56, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, rustPlatform: false, openssl: false, "pkg-config": false, git: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["OPENSSL_NO_VENDOR", 25, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 57, 5], ["homepage", 58, 5], ["license", 59, 5], ["maintainers", 63, 5], ["mainProgram", 64, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["cargoHash", 22, 3], ["env", 25, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 32, 3], ["doCheck", 35, 3], ["checkFlags", 37, 3], ["doInstallCheck", 52, 3], ["nativeInstallCheckInputs", 54, 3], ["meta", 56, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,18 +15,18 @@ export default nix.lambda((args) => (() => {
   const git = nix.arg($, "git");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "c2patool",
       version: "0.27.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "contentauth",
           repo: "c2pa-rs",
           tag: nix.thunk(() => nix.str`c2patool-v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-mLF67Kq+lZMaDuBkWW0mD/uKnv0HIrMMrcGEyvUpX1w=",
         })))),
       cargoHash: "sha256-LrzoSShsichdc6RevA087aRo8+OhdCrKz4CPp1jRy5o=",
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, OPENSSL_NO_VENDOR: 1n })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], OPENSSL_NO_VENDOR: 1n })),
       nativeBuildInputs: nix.thunk(() => [git, pkg_config]),
       buildInputs: nix.thunk(() => [openssl]),
       doCheck: false,
@@ -47,7 +44,7 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Command line tool for working with C2PA manifests and media assets",
         homepage: "https://github.com/contentauth/c2pa-rs/tree/main/cli",
         license: nix.thunk(() => (() => {

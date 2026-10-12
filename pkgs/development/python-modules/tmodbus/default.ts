@@ -2,16 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]], [["description", 38, 7], ["license", 39, 7], ["mainProgram", 40, 7]], [["pname", 28, 5], ["version", 29, 5], ["src", 31, 13], ["sourceRoot", 33, 5], ["cargoHash", 35, 5], ["meta", 37, 5]], [["description", 55, 7], ["license", 56, 7], ["mainProgram", 57, 7]], [["pname", 45, 5], ["version", 46, 5], ["src", 48, 13], ["sourceRoot", 50, 5], ["cargoHash", 52, 5], ["meta", 54, 5]], [["async-serial", 87, 5], ["security", 90, 5]], [["rmodbus-server", 107, 13], ["tokio-modbus-server", 107, 28]], [["description", 111, 5], ["homepage", 112, 5], ["changelog", 113, 5], ["license", 114, 5], ["maintainers", 115, 5], ["badPlatforms", 116, 5]], [["pname", 63, 3], ["version", 64, 11], ["src", 64, 19], ["pyproject", 65, 3], ["__structuredAttrs", 67, 3], ["postPatch", 69, 3], ["build-system", 79, 3], ["dependencies", 84, 3], ["optional-dependencies", 86, 3], ["nativeCheckInputs", 95, 3], ["pythonImportsCheck", 102, 3], ["passthru", 106, 3], ["meta", 110, 3]]]);
 const formals$1 = { args: { buildPythonPackage: false, cryptography: false, fetchFromGitHub: false, hatchling: false, "hatch-vcs": false, lib: false, "pytest-asyncio": false, pytestCheckHook: false, rustPlatform: false, serialx: false, socat: false, sybil: false, tenacity: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 38, 7], ["license", 39, 7], ["mainProgram", 40, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 28, 5], ["version", 29, 5], ["src", 31, 13], ["sourceRoot", 33, 5], ["cargoHash", 35, 5], ["meta", 37, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 55, 7], ["license", 56, 7], ["mainProgram", 57, 7]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 45, 5], ["version", 46, 5], ["src", 48, 13], ["sourceRoot", 50, 5], ["cargoHash", 52, 5], ["meta", 54, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["async-serial", 87, 5], ["security", 90, 5]]);
-const pos$7 = nix.positions(here + "/default.nix", [["rmodbus-server", 107, 13], ["tokio-modbus-server", 107, 28]]);
-const pos$8 = nix.positions(here + "/default.nix", [["description", 111, 5], ["homepage", 112, 5], ["changelog", 113, 5], ["license", 114, 5], ["maintainers", 115, 5], ["badPlatforms", 116, 5]]);
-const pos$9 = nix.positions(here + "/default.nix", [["pname", 63, 3], ["version", 64, 11], ["src", 64, 19], ["pyproject", 65, 3], ["__structuredAttrs", 67, 3], ["postPatch", 69, 3], ["build-system", 79, 3], ["dependencies", 84, 3], ["optional-dependencies", 86, 3], ["nativeCheckInputs", 95, 3], ["pythonImportsCheck", 102, 3], ["passthru", 106, 3], ["meta", 110, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,42 +22,42 @@ export default nix.lambda((args) => (() => {
   const tenacity = nix.arg($, "tenacity");
   const version = "0.6.2";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "wlcrs",
       repo: "tmodbus",
       tag: nix.thunk(() => nix.str`v${version}`),
       hash: "sha256-VqIke5S7x5Qm9dsk7/e8jqNYA1PQ7akdJVbXt0lcIC8=",
     }))));
   const rmodbus_server = nix.thunk(() => nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "rmodbus-server",
       version: "0.1.0",
       src: src,
       sourceRoot: nix.thunk(() => nix.str`${nix.sel(src, "name")}/integration_tests/rmodbus`),
       cargoHash: "sha256-wJ6HVtl7X+1M3By06q02K2naBFEvZNWh42StOhJbYt0=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Rust Modbus server",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
         mainProgram: "server",
       })),
     })));
   const tokio_modbus_server = nix.thunk(() => nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "tokio-modbus-server",
       version: "0.1.0",
       src: src,
       sourceRoot: nix.thunk(() => nix.str`${nix.sel(src, "name")}/integration_tests/tokio`),
       cargoHash: "sha256-/V10uVQPgiqp05557OvhVgo/jDyWopRUUAkf4Ibfh/E=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Rust Tokio Modbus server",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
         mainProgram: "tokio-server",
       })),
     })));
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       pname: "tmodbus",
       version: version,
       src: src,
@@ -82,19 +74,19 @@ ln -s ${nix.app(nix.sel(lib, "getExe"), tokio_modbus_server)} integration_tests/
       "build-system": nix.thunk(() => [hatch_vcs, hatchling]),
       dependencies: nix.thunk(() => [tenacity]),
       "optional-dependencies": nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         "async-serial": nix.thunk(() => [serialx]),
         security: nix.thunk(() => [cryptography]),
       })),
       nativeCheckInputs: nix.thunk(() => nix.concat([pytest_asyncio, pytestCheckHook, sybil], nix.app(nix.sel(lib, "concatAttrValues"), nix.thunk(() => nix.sel(finalAttrs, "passthru", "optional-dependencies"))))),
       pythonImportsCheck: nix.thunk(() => ["tmodbus"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         "rmodbus-server": rmodbus_server,
         "tokio-modbus-server": tokio_modbus_server,
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         description: "Modern Python Modbus library",
         homepage: "https://github.com/wlcrs/tmodbus",
         changelog: nix.thunk(() => nix.str`https://github.com/wlcrs/tmodbus/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

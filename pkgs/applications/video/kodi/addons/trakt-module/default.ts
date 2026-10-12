@@ -2,12 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 17, 5], ["sha256", 18, 5]], [["attrPath", 30, 7]], [["pythonPath", 28, 5], ["updateScript", 29, 5]], [["homepage", 35, 5], ["description", 36, 5], ["license", 37, 5], ["teams", 38, 5]], [["pname", 12, 3], ["namespace", 13, 3], ["version", 14, 3], ["src", 16, 3], ["propagatedBuildInputs", 21, 3], ["passthru", 27, 3], ["meta", 34, 3]]]);
 const formals$1 = { args: { lib: false, rel: false, buildKodiAddon: false, fetchzip: false, addonUpdateScript: false, requests: false, six: false, arrow: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 17, 5], ["sha256", 18, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["attrPath", 30, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pythonPath", 28, 5], ["updateScript", 29, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["homepage", 35, 5], ["description", 36, 5], ["license", 37, 5], ["teams", 38, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 12, 3], ["namespace", 13, 3], ["version", 14, 3], ["src", 16, 3], ["propagatedBuildInputs", 21, 3], ["passthru", 27, 3], ["meta", 34, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,25 +20,25 @@ export default nix.lambda((args) => (() => {
       const namespace = "script.module.trakt";
       const version = "4.4.0+matrix.1";
       const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://mirrors.kodi.tv/addons/${nix.app(nix.sel(lib, "toLower"), rel)}/${namespace}/${namespace}-${version}.zip`),
           sha256: "sha256-6JIAQwot5VZ36gvQym88BD/e/mSyS8WO8VqkPn2GcqY=",
         }))));
       const propagatedBuildInputs = nix.thunk(() => [requests, six, arrow]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pythonPath: "lib",
-        updateScript: nix.thunk(() => nix.app(addonUpdateScript, nix.thunk(() => ({ [nix.POS]: pos$2, attrPath: "kodi.packages.trakt-module" })))),
+        updateScript: nix.thunk(() => nix.app(addonUpdateScript, nix.thunk(() => ({ [nix.POS]: $pos[1], attrPath: "kodi.packages.trakt-module" })))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://github.com/Razzeee/script.module.trakt",
         description: "Python trakt.py library packed for Kodi",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "kodi"))]),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         namespace,
         version,

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]], [["description", 70, 5], ["homepage", 71, 5], ["changelog", 72, 5], ["license", 73, 5], ["mainProgram", 74, 5], ["maintainers", 75, 5], ["platforms", 79, 5]], [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["cargoHash", 31, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 45, 3], ["buildPhase", 53, 3], ["doCheck", 63, 3], ["preFixup", 65, 3], ["meta", 69, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, rustPlatform: false, cargo: false, rustc: false, meson: false, ninja: false, "pkg-config": false, wrapGAppsHook4: false, "desktop-file-utils": false, "appstream-glib": false, "blueprint-compiler": false, dbus: false, gtk4: false, libadwaita: false, bluez: false, libpulseaudio: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 70, 5], ["homepage", 71, 5], ["changelog", 72, 5], ["license", 73, 5], ["mainProgram", 74, 5], ["maintainers", 75, 5], ["platforms", 79, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["cargoHash", 31, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 45, 3], ["buildPhase", 53, 3], ["doCheck", 63, 3], ["preFixup", 65, 3], ["meta", 69, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const bluez = nix.arg($, "bluez");
   const libpulseaudio = nix.arg($, "libpulseaudio");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "overskride",
       version: "0.6.6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "kaii-lb",
           repo: "overskride",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -55,7 +53,7 @@ export default nix.lambda((args) => (() => {
       preFixup: nix.thunk(() => nix.str`glib-compile-schemas $out/share/gsettings-schemas/overskride-${nix.sel(finalAttrs, "version")}/glib-2.0/schemas
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Bluetooth and Obex client that is straight to the point, DE/WM agnostic, and beautiful",
         homepage: "https://github.com/kaii-lb/overskride",
         changelog: nix.thunk(() => nix.str`https://github.com/kaii-lb/overskride/blob/v${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

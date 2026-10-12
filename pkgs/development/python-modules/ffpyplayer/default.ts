@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]], [["NIX_CFLAGS_COMPILE", 57, 5]], [["changelog", 69, 5], ["description", 70, 5], ["homepage", 71, 5], ["license", 72, 5], ["maintainers", 73, 5]], [["pname", 19, 3], ["version", 20, 3], ["pyproject", 21, 3], ["__structuredAttrs", 22, 3], ["src", 24, 3], ["postPatch", 31, 3], ["build-system", 42, 3], ["nativeBuildInputs", 47, 3], ["buildInputs", 51, 3], ["env", 56, 3], ["pythonImportsCheck", 63, 3], ["doCheck", 66, 3], ["meta", 68, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, "pkg-config": false, cython: false, setuptools: false, SDL2: false, ffmpeg_6: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["NIX_CFLAGS_COMPILE", 57, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["changelog", 69, 5], ["description", 70, 5], ["homepage", 71, 5], ["license", 72, 5], ["maintainers", 73, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 19, 3], ["version", 20, 3], ["pyproject", 21, 3], ["__structuredAttrs", 22, 3], ["src", 24, 3], ["postPatch", 31, 3], ["build-system", 42, 3], ["nativeBuildInputs", 47, 3], ["buildInputs", 51, 3], ["env", 56, 3], ["pythonImportsCheck", 63, 3], ["doCheck", 66, 3], ["meta", 68, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,13 +16,13 @@ export default nix.lambda((args) => (() => {
   const SDL2 = nix.arg($, "SDL2");
   const ffmpeg_6 = nix.arg($, "ffmpeg_6");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "ffpyplayer",
       version: "4.5.3",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "matham",
           repo: "ffpyplayer",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -39,7 +36,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "getDev"), ffmpeg_6)),
       ]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => [
             "-Wno-error=implicit-function-declaration",
             "-Wno-error=incompatible-pointer-types",
@@ -48,7 +45,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["ffpyplayer"]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         changelog: nix.thunk(() => nix.str`https://github.com/matham/ffpyplayer/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "A cython implementation of an ffmpeg based player",
         homepage: "https://github.com/matham/ffpyplayer",

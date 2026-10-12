@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 16, 5], ["sha256", 17, 5]], [["url", 58, 7], ["hash", 59, 7]], [["url", 67, 7], ["hash", 68, 7]], [["NIX_CFLAGS_COMPILE", 82, 7]], [["description", 85, 5], ["longDescription", 86, 5], ["homepage", 96, 5], ["platforms", 97, 5], ["license", 98, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["nativeBuildInputs", 20, 3], ["buildInputs", 22, 3], ["cmakeFlags", 27, 3], ["patches", 45, 3], ["postPatch", 73, 3], ["doCheck", 80, 3], ["env", 82, 3], ["meta", 84, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, fetchpatch: false, cmake: false, boost: false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 16, 5], ["sha256", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 58, 7], ["hash", 59, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 67, 7], ["hash", 68, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 82, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 85, 5], ["longDescription", 86, 5], ["homepage", 96, 5], ["platforms", 97, 5], ["license", 98, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["nativeBuildInputs", 20, 3], ["buildInputs", 22, 3], ["cmakeFlags", 27, 3], ["patches", 45, 3], ["postPatch", 73, 3], ["doCheck", 80, 3], ["env", 82, 3], ["meta", 84, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const boost = nix.arg($, "boost");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "clucene-core",
       version: "2.3.3.4",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/clucene/clucene-core-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "1arffdwivig88kkx685pldr784njm0249k0rb1f1plwavlrw9zfx",
         })))),
@@ -53,14 +48,14 @@ export default nix.lambda((args) => (() => {
         nix.path(here, "./fix-missing-include-time.patch"),
         nix.path(here, "./pthread-include.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://gitweb.gentoo.org/repo/gentoo.git/plain/dev-cpp/clucene/files/clucene-2.3.3.4-cmake4.patch?id=e06df280c75b0f0803954338466e5278d777f984",
             hash: "sha256-e0u6J91bnuy24hIrSl+Ap5Xwds/nzzGiWpzskwaGx9o=",
           })))),
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [
           nix.path(here, "./fix-darwin.patch"),
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               url: "https://869170.bugs.gentoo.org/attachment.cgi?id=858825",
               hash: "sha256-TbAfBKdXh+1HepZc8J6OhK1XGwhwBCMvO8QBDsad998=",
             })))),
@@ -68,11 +63,11 @@ export default nix.lambda((args) => (() => {
       postPatch: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "substituteInPlace src/shared/CMakeLists.txt --replace 'fstati64;_fstati64;fstat64;fstat;_fstat' 'fstat;_fstat'\nsubstituteInPlace src/shared/CMakeLists.txt --replace 'stati64;_stati64;stat64;stat;_stat' 'stat;_stat'\n")),
       doCheck: false,
       env: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), "-Wno-error=c++11-narrowing")),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Core library for full-featured text search engine",
         longDescription: "CLucene is a high-performance, scalable, cross platform, full-featured,\nopen-source indexing and searching API. Specifically, CLucene is the guts\nof a search engine, the hard stuff. You write the easy stuff: the UI and\nthe process of selecting and parsing your data files to pump them into\nthe search engine yourself, and any specialized queries to pull it back\nfor display or further processing.\n\nCLucene is a port of the very popular Java Lucene text search engine API.\n",
         homepage: "https://clucene.sourceforge.net",

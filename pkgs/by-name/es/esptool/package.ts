@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]], [["hsm", 51, 5]], [["changelog", 116, 5], ["description", 117, 5], ["homepage", 118, 5], ["license", 119, 5], ["maintainers", 120, 5], ["platforms", 123, 5], ["mainProgram", 124, 5]], [["pname", 11, 3], ["version", 12, 3], ["pyproject", 13, 3], ["src", 15, 3], ["postPatch", 22, 3], ["build-system", 29, 3], ["dependencies", 33, 3], ["optional-dependencies", 50, 3], ["nativeBuildInputs", 54, 3], ["postInstall", 58, 3], ["nativeCheckInputs", 84, 3], ["pytestFlags", 95, 3], ["disabledTests", 100, 3], ["preCheck", 109, 3], ["meta", 115, 3]]]);
 const formals$1 = { args: { lib: false, addBinToPathHook: false, fetchFromGitHub: false, python3Packages: false, softhsm: false, installShellFiles: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["hsm", 51, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["changelog", 116, 5], ["description", 117, 5], ["homepage", 118, 5], ["license", 119, 5], ["maintainers", 120, 5], ["platforms", 123, 5], ["mainProgram", 124, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["pyproject", 13, 3], ["src", 15, 3], ["postPatch", 22, 3], ["build-system", 29, 3], ["dependencies", 33, 3], ["optional-dependencies", 50, 3], ["nativeBuildInputs", 54, 3], ["postInstall", 58, 3], ["nativeCheckInputs", 84, 3], ["pytestFlags", 95, 3], ["disabledTests", 100, 3], ["preCheck", 109, 3], ["meta", 115, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const softhsm = nix.arg($, "softhsm");
   const installShellFiles = nix.arg($, "installShellFiles");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "esptool",
       version: "5.4.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "espressif",
           repo: "esptool",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -54,7 +51,7 @@ substituteInPlace test/test_espsecure_hsm.py \\
       "optional-dependencies": nix.thunk(() => (() => {
         const w_2 = nix.withScope(python3Packages, null);
         return {
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           hsm: nix.thunk(() => [nix.thunk(() => nix.lookup(w_2, "python-pkcs11"))]),
         };
       })()),
@@ -83,7 +80,7 @@ substituteInPlace test/test_espsecure_hsm.py \\
       ]),
       preCheck: "export SOFTHSM2_CONF=$(mktemp)\necho \"directories.tokendir = $(mktemp -d)\" > \"$SOFTHSM2_CONF\"\n./ci/setup_softhsm2.sh\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         changelog: nix.thunk(() => nix.str`https://github.com/espressif/esptool/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),
         description: "ESP8266 and ESP32 serial bootloader utility",
         homepage: "https://github.com/espressif/esptool",

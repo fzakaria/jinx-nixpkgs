@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["hash", 25, 5]], [["description", 48, 5], ["homepage", 49, 5], ["license", 50, 5], ["maintainers", 51, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["dontWrapQtApps", 28, 3], ["propagatedBuildInputs", 29, 3], ["installPhase", 34, 3], ["meta", 47, 3]]]);
 const formals$1 = { args: { lib: false, formats: false, stdenvNoCC: false, fetchFromGitHub: false, kdePackages: false, themeConfig: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 48, 5], ["homepage", 49, 5], ["license", 50, 5], ["maintainers", 51, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["dontWrapQtApps", 28, 3], ["propagatedBuildInputs", 29, 3], ["installPhase", 34, 3], ["meta", 47, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const themeConfig = nix.argOr($, "themeConfig", () => null);
   const user_cfg = nix.thunk(() => nix.app(nix.sel(nix.app(nix.sel(formats, "ini"), nix.thunk(() => ({}))), "generate"), "theme.conf.user", themeConfig));
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "elegant-sddm",
       version: "0-unstable-2024-03-30",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "rainD4X",
           repo: "Elegant-sddm-qt6",
           rev: "66952cbe32460938c0b6e8c6cf3343047af098f0",
@@ -32,7 +30,7 @@ export default nix.lambda((args) => (() => {
       installPhase: nix.thunk(() => nix.add(nix.add("runHook preInstall\n\nmkdir -p \"$out/share/sddm/themes\"\ncp -r Elegant/ \"$out/share/sddm/themes/Elegant\"\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(lib, "isAttrs"), themeConfig)), nix.thunk(() => nix.str`ln -sf ${user_cfg} $out/share/sddm/themes/Elegant/theme.conf.user
 `))), "runHook postInstall\n")),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Sleek and stylish SDDM theme crafted in QML for Qt6",
         homepage: "https://github.com/rainD4X/Elegant-sddm-qt6",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

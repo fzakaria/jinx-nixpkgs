@@ -2,16 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/sources.nix", [[["url", 15, 9], ["rev", 16, 9], ["hash", 17, 17]], [["pname", 12, 7], ["version", 13, 15], ["src", 14, 7]], [["version", 23, 5], ["hash", 24, 5]], [["version", 27, 5], ["hash", 28, 5]], [["version", 31, 5], ["hash", 32, 5]], [["version", 35, 5], ["hash", 36, 5]], [["version", 39, 5], ["hash", 40, 5]], [["nv-codec-headers-8", 22, 3], ["nv-codec-headers-9", 26, 3], ["nv-codec-headers-10", 30, 3], ["nv-codec-headers-11", 34, 3], ["nv-codec-headers-12", 38, 3]]]);
 const formals$1 = { args: { fetchgit: false }, ellipsis: false };
 const formals$2 = { args: { version: false, hash: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/sources.nix", [["url", 15, 9], ["rev", 16, 9], ["hash", 17, 17]]);
-const pos$2 = nix.positions(here + "/sources.nix", [["pname", 12, 7], ["version", 13, 15], ["src", 14, 7]]);
-const pos$3 = nix.positions(here + "/sources.nix", [["version", 23, 5], ["hash", 24, 5]]);
-const pos$4 = nix.positions(here + "/sources.nix", [["version", 27, 5], ["hash", 28, 5]]);
-const pos$5 = nix.positions(here + "/sources.nix", [["version", 31, 5], ["hash", 32, 5]]);
-const pos$6 = nix.positions(here + "/sources.nix", [["version", 35, 5], ["hash", 36, 5]]);
-const pos$7 = nix.positions(here + "/sources.nix", [["version", 39, 5], ["hash", 40, 5]]);
-const pos$8 = nix.positions(here + "/sources.nix", [["nv-codec-headers-8", 22, 3], ["nv-codec-headers-9", 26, 3], ["nv-codec-headers-10", 30, 3], ["nv-codec-headers-11", 34, 3], ["nv-codec-headers-12", 38, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +14,11 @@ export default nix.lambda((args) => (() => {
     const version = nix.arg($_1, "version");
     const hash = nix.arg($_1, "hash");
     return {
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "nv-codec-headers",
       version: version,
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://git.videolan.org/git/ffmpeg/nv-codec-headers.git",
           rev: nix.thunk(() => nix.str`n${version}`),
           hash: hash,
@@ -33,29 +26,29 @@ export default nix.lambda((args) => (() => {
     };
   })(), formals$2);
   return {
-    [nix.POS]: pos$8,
+    [nix.POS]: $pos[7],
     "nv-codec-headers-8": nix.thunk(() => nix.app(nv_codec_headers_template, nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         version: "8.2.15.2",
         hash: "sha256-TKYT8vXqnUpq+M0grDeOR37n/ffqSWDYTrXIbl++BG4=",
       })))),
     "nv-codec-headers-9": nix.thunk(() => nix.app(nv_codec_headers_template, nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         version: "9.1.23.1",
         hash: "sha256-kF5tv8Nh6I9x3hvSAdKLakeBVEcIiXFY6o6bD+tY2/U=",
       })))),
     "nv-codec-headers-10": nix.thunk(() => nix.app(nv_codec_headers_template, nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         version: "10.0.26.2",
         hash: "sha256-BfW+fmPp8U22+HK0ZZY6fKUjqigWvOBi6DmW7SSnslg=",
       })))),
     "nv-codec-headers-11": nix.thunk(() => nix.app(nv_codec_headers_template, nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         version: "11.1.5.2",
         hash: "sha256-KzaqwpzISHB7tSTruynEOJmSlJnAFK2h7/cRI/zkNPk=",
       })))),
     "nv-codec-headers-12": nix.thunk(() => nix.app(nv_codec_headers_template, nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         version: "12.1.14.0",
         hash: "sha256-WJYuFmMGSW+B32LwE7oXv/IeTln6TNEeXSkquHh85Go=",
       })))),

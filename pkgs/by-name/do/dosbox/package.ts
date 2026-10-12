@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 24, 5], ["hash", 25, 5]], [["url", 30, 7], ["includes", 31, 7], ["hash", 32, 7]], [["NIX_CFLAGS_COMPILE", 61, 7]], [["name", 69, 7], ["exec", 70, 7], ["icon", 71, 7], ["comment", 72, 7], ["desktopName", 73, 7], ["genericName", 74, 7], ["categories", 75, 7]], [["homepage", 90, 5], ["changelog", 91, 5], ["description", 92, 5], ["longDescription", 93, 5], ["license", 100, 5], ["maintainers", 101, 5], ["platforms", 102, 5], ["mainProgram", 103, 5]], [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["patches", 28, 3], ["strictDeps", 36, 3], ["nativeBuildInputs", 38, 3], ["depsBuildBuild", 45, 3], ["buildInputs", 49, 3], ["env", 61, 3], ["hardeningDisable", 63, 3], ["configureFlags", 65, 3], ["desktopItems", 67, 3], ["postInstall", 82, 3], ["enableParallelBuilding", 87, 3], ["meta", 89, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, fetchpatch: false, autoreconfHook: false, SDL: false, SDL_net: false, SDL_sound: false, copyDesktopItems: false, graphicsmagick: false, libGL: false, libGLU: false, libpng: false, binutils: false, makeDesktopItem: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 30, 7], ["includes", 31, 7], ["hash", 32, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 61, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["name", 69, 7], ["exec", 70, 7], ["icon", 71, 7], ["comment", 72, 7], ["desktopName", 73, 7], ["genericName", 74, 7], ["categories", 75, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["homepage", 90, 5], ["changelog", 91, 5], ["description", 92, 5], ["longDescription", 93, 5], ["license", 100, 5], ["maintainers", 101, 5], ["platforms", 102, 5], ["mainProgram", 103, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["patches", 28, 3], ["strictDeps", 36, 3], ["nativeBuildInputs", 38, 3], ["depsBuildBuild", 45, 3], ["buildInputs", 49, 3], ["env", 61, 3], ["hardeningDisable", 63, 3], ["configureFlags", 65, 3], ["desktopItems", 67, 3], ["postInstall", 82, 3], ["enableParallelBuilding", 87, 3], ["meta", 89, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,17 +23,17 @@ export default nix.lambda((args) => (() => {
   const binutils = nix.arg($, "binutils");
   const makeDesktopItem = nix.arg($, "makeDesktopItem");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "dosbox",
       version: "0.74-3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/dosbox/dosbox-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-wNE91+0u02O2jeYVR1eB6JHNWC6BYrXDZpE3UCIiJgo=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/joncampbell123/dosbox-x/commit/006d5727d36d1ec598e387f2f1a3c521e3673dcb.patch",
             includes: nix.thunk(() => ["src/gui/render_templates_sai.h"]),
             hash: "sha256-HSO29/LgZRKQ3HQBA0QF5henG8pCSoe1R2joYNPcUcE=",
@@ -49,14 +44,14 @@ export default nix.lambda((args) => (() => {
       depsBuildBuild: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "buildPlatform", "isDarwin"))), nix.thunk(() => [binutils]))),
       buildInputs: nix.thunk(() => nix.concat([SDL, SDL_net, SDL_sound, libpng], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), nix.thunk(() => [libGL, libGLU])))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.str`-I${nix.app(nix.sel(lib, "getDev"), SDL_net)}/include/SDL`),
       })),
       hardeningDisable: nix.thunk(() => ["format"]),
       configureFlags: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "--disable-sdltest")),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             name: "dosbox",
             exec: "dosbox",
             icon: "dosbox",
@@ -69,7 +64,7 @@ export default nix.lambda((args) => (() => {
       postInstall: "mkdir -p $out/share/icons/hicolor/256x256/apps\ngm convert src/dosbox.ico $out/share/icons/hicolor/256x256/apps/dosbox.png\n",
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "http://www.dosbox.com/",
         changelog: "https://www.dosbox.com/wiki/Releases",
         description: "DOS emulator",

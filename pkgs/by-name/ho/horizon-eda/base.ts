@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/base.nix", [[["owner", 30, 5], ["repo", 31, 5], ["rev", 32, 5], ["hash", 33, 5]], [["CASROOT", 59, 5]], [["description", 63, 5], ["homepage", 64, 5], ["maintainers", 65, 5], ["license", 69, 5], ["platforms", 70, 5]], [["pname", 26, 3], ["version", 27, 3], ["src", 29, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 43, 3], ["env", 58, 3], ["meta", 62, 3]]]);
 const formals$1 = { args: { lib: false, cmake: false, cppzmq: false, curl: false, fetchFromGitHub: false, glm: false, gtkmm3: false, libarchive: false, libepoxy: false, libgit2: false, librsvg: false, libuuid: false, meson: false, ninja: false, "opencascade-occt_7_6": false, "pkg-config": false, podofo0: false, sqlite: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/base.nix", [["owner", 30, 5], ["repo", 31, 5], ["rev", 32, 5], ["hash", 33, 5]]);
-const pos$2 = nix.positions(here + "/base.nix", [["CASROOT", 59, 5]]);
-const pos$3 = nix.positions(here + "/base.nix", [["description", 63, 5], ["homepage", 64, 5], ["maintainers", 65, 5], ["license", 69, 5], ["platforms", 70, 5]]);
-const pos$4 = nix.positions(here + "/base.nix", [["pname", 26, 3], ["version", 27, 3], ["src", 29, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 43, 3], ["env", 58, 3], ["meta", 62, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,7 +30,7 @@ export default nix.lambda((args) => (() => {
     const pname = "horizon-eda";
     const version = "2.7.2";
     const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         owner: "horizon-eda",
         repo: "horizon",
         rev: nix.thunk(() => nix.str`v${version}`),
@@ -54,9 +51,9 @@ export default nix.lambda((args) => (() => {
       podofo0,
       sqlite,
     ]);
-    const env = nix.thunk(() => ({ [nix.POS]: pos$2, CASROOT: opencascade_occt }));
+    const env = nix.thunk(() => ({ [nix.POS]: $pos[1], CASROOT: opencascade_occt }));
     const meta = nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       description: "Free EDA software to develop printed circuit boards",
       homepage: "https://horizon-eda.org",
       maintainers: nix.thunk(() => (() => {
@@ -70,7 +67,7 @@ export default nix.lambda((args) => (() => {
       platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
     }));
     return {
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname,
       version,
       src,

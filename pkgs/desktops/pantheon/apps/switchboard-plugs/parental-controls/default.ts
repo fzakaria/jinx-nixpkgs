@@ -2,13 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 33, 5], ["repo", 34, 5], ["tag", 35, 5], ["hash", 36, 5]], [["url", 43, 7], ["hash", 44, 7]], [["url", 47, 7], ["hash", 48, 7]], [["updateScript", 96, 5]], [["description", 100, 5], ["homepage", 101, 5], ["license", 102, 5], ["platforms", 103, 5], ["teams", 104, 5]], [["pname", 29, 3], ["version", 30, 3], ["src", 32, 3], ["patches", 39, 3], ["nativeBuildInputs", 59, 3], ["buildInputs", 69, 3], ["mesonFlags", 84, 3], ["preFixup", 90, 3], ["passthru", 95, 3], ["meta", 99, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, fetchpatch: false, gettext: false, gtk4: false, meson: false, ninja: false, "pkg-config": false, vala: false, wrapGAppsHook4: false, accountsservice: false, dbus: false, flatpak: false, glib: false, granite7: false, libadwaita: false, libgee: false, malcontent: false, polkit: false, switchboard: false, systemdLibs: false, iptables: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 33, 5], ["repo", 34, 5], ["tag", 35, 5], ["hash", 36, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["url", 43, 7], ["hash", 44, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["url", 47, 7], ["hash", 48, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["updateScript", 96, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["description", 100, 5], ["homepage", 101, 5], ["license", 102, 5], ["platforms", 103, 5], ["teams", 104, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 29, 3], ["version", 30, 3], ["src", 32, 3], ["patches", 39, 3], ["nativeBuildInputs", 59, 3], ["buildInputs", 69, 3], ["mesonFlags", 84, 3], ["preFixup", 90, 3], ["passthru", 95, 3], ["meta", 99, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -37,11 +32,11 @@ export default nix.lambda((args) => (() => {
   const iptables = nix.arg($, "iptables");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "switchboard-plug-parental-controls",
       version: "8.0.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "elementary",
           repo: "switchboard-plug-parental-controls",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -49,12 +44,12 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/elementary/switchboard-plug-parental-controls/commit/1e5a08c1c3b0a5503e9d3f6858047d53ed8188f7.patch",
             hash: "sha256-daP/nBmrUw8b3UytIZz3bKdM+lIgAIQ/DJP0h9sdXmc=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: "https://github.com/elementary/switchboard-plug-parental-controls/commit/51f027657616a5d4a6bd24478a5b94fad12edb95.patch",
             hash: "sha256-JOogF1ychF7MAJdrKT4eiUgM8+Y7CN9nxnRNidRoMOk=",
           })))),
@@ -84,11 +79,11 @@ export default nix.lambda((args) => (() => {
 gappsWrapperArgs+=(--prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [iptables]))})
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Switchboard Screen Time & Limits Plug",
         homepage: "https://github.com/elementary/switchboard-plug-parental-controls",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

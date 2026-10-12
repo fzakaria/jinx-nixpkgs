@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["mainProgram", 41, 8]], [["pname", 17, 3], ["extraNativeBuildInputs", 19, 3], ["extraBuildInputs", 20, 3], ["qtWrapperArgs", 30, 3], ["meta", 41, 3]]]);
 const formals$1 = { args: { lib: false, mkKdeDerivation: false, qtsvg: false, qttools: false, qtwebchannel: false, qtwebengine: false, qt5compat: false, "pkg-config": false, hunspell: false, kdoctools: false, pandoc: false, multimarkdown: false, cmark: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["mainProgram", 41, 8]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 17, 3], ["extraNativeBuildInputs", 19, 3], ["extraBuildInputs", 20, 3], ["qtWrapperArgs", 30, 3], ["meta", 41, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,7 +21,7 @@ export default nix.lambda((args) => (() => {
   const multimarkdown = nix.arg($, "multimarkdown");
   const cmark = nix.arg($, "cmark");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "ghostwriter",
       extraNativeBuildInputs: nix.thunk(() => [pkg_config]),
       extraBuildInputs: nix.thunk(() => [qtsvg, qttools, qtwebchannel, qtwebengine, qt5compat, kdoctools, hunspell]),
@@ -32,7 +31,7 @@ export default nix.lambda((args) => (() => {
         ":",
         nix.thunk(() => nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [cmark, multimarkdown, pandoc]))),
       ]),
-      meta: nix.thunk(() => ({ [nix.POS]: pos$1, mainProgram: "ghostwriter" })),
+      meta: nix.thunk(() => ({ [nix.POS]: $pos[0], mainProgram: "ghostwriter" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

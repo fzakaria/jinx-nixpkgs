@@ -2,17 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["license", 103, 13]], [["meta", 99, 11]], [["argon2", 95, 5], ["ldap", 108, 5], ["log_json", 109, 5], ["log_syslog", 110, 5], ["mysql", 111, 5], ["pgsql", 112, 5], ["regex_pcre2", 113, 5], ["regex_re2", 114, 5], ["sqlite3", 115, 5], ["ssl_gnutls", 116, 5], ["regex_posix", 118, 5], ["sslrehashsignal", 119, 5], ["regex_stdlib", 121, 5], ["regex_tre", 122, 5], ["geo_maxmind", 124, 5], ["ssl_openssl", 125, 5]], [["owner", 157, 5], ["repo", 158, 5], ["rev", 159, 5], ["sha256", 160, 5]], [["SYSTEM_HTTP_PARSER", 181, 5], ["SYSTEM_UTFCPP", 182, 5]], [["nixos-test", 228, 5]], [["tests", 227, 12]], [["broken", 233, 5], ["description", 234, 5], ["license", 235, 5], ["maintainers", 246, 5], ["platforms", 250, 5], ["homepage", 251, 5]], [["hydraPlatforms", 256, 5]], [["pname", 153, 3], ["version", 154, 3], ["src", 156, 3], ["outputs", 163, 3], ["nativeBuildInputs", 171, 3], ["env", 180, 3], ["buildInputs", 185, 3], ["configurePhase", 191, 3], ["postInstall", 220, 3], ["enableParallelBuilding", 225, 3], ["passthru", 227, 3], ["meta", 231, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, nixosTests: false, perl: false, "pkg-config": false, "http-parser": false, utf8cpp: false, libargon2: false, openldap: false, libpq: false, libmysqlclient: false, pcre2: false, re2: false, sqlite: false, gnutls: false, libmaxminddb: false, openssl: false, tre: false, yyjson: false, extraModules: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["license", 103, 13]]);
-const pos$2 = nix.positions(here + "/package.nix", [["meta", 99, 11]]);
-const pos$3 = nix.positions(here + "/package.nix", [["argon2", 95, 5], ["ldap", 108, 5], ["log_json", 109, 5], ["log_syslog", 110, 5], ["mysql", 111, 5], ["pgsql", 112, 5], ["regex_pcre2", 113, 5], ["regex_re2", 114, 5], ["sqlite3", 115, 5], ["ssl_gnutls", 116, 5], ["regex_posix", 118, 5], ["sslrehashsignal", 119, 5], ["regex_stdlib", 121, 5], ["regex_tre", 122, 5], ["geo_maxmind", 124, 5], ["ssl_openssl", 125, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["owner", 157, 5], ["repo", 158, 5], ["rev", 159, 5], ["sha256", 160, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["SYSTEM_HTTP_PARSER", 181, 5], ["SYSTEM_UTFCPP", 182, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["nixos-test", 228, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["tests", 227, 12]]);
-const pos$8 = nix.positions(here + "/package.nix", [["broken", 233, 5], ["description", 234, 5], ["license", 235, 5], ["maintainers", 246, 5], ["platforms", 250, 5], ["homepage", 251, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["hydraPlatforms", 256, 5]]);
-const pos$10 = nix.positions(here + "/package.nix", [["pname", 153, 3], ["version", 154, 3], ["src", 156, 3], ["outputs", 163, 3], ["nativeBuildInputs", 171, 3], ["env", 180, 3], ["buildInputs", 185, 3], ["configurePhase", 191, 3], ["postInstall", 220, 3], ["enableParallelBuilding", 225, 3], ["passthru", 227, 3], ["meta", 231, 3]]);
 
 export default nix.thunk(() => (() => {
   const compatible = (lib) => (drv) => nix.app(nix.sel(lib, "elem"), nix.thunk(() => nix.selOr(drv, () => ({}), "meta", "license")), nix.thunk(() => [
@@ -57,11 +48,14 @@ export default nix.thunk(() => (() => {
     const yyjson = nix.arg($, "yyjson");
     const extraModules = nix.argOr($, "extraModules", () => nix.app(compatibleModules, lib, stdenv));
     const extras = nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       argon2: nix.thunk(() => [
         nix.thunk(() => nix.update(libargon2, {
-          [nix.POS]: pos$2,
-          meta: nix.thunk(() => nix.update(nix.sel(libargon2, "meta"), { [nix.POS]: pos$1, license: nix.thunk(() => nix.sel(lib, "licenses", "cc0")) })),
+          [nix.POS]: $pos[1],
+          meta: nix.thunk(() => nix.update(nix.sel(libargon2, "meta"), {
+            [nix.POS]: $pos[0],
+            license: nix.thunk(() => nix.sel(lib, "licenses", "cc0")),
+          })),
         })),
       ]),
       ldap: nix.thunk(() => [openldap]),
@@ -91,11 +85,11 @@ export default nix.thunk(() => (() => {
     })();
     const anyMembers = (list1) => (list2) => nix.app(nix.sel(lib, "any"), (m1) => nix.app(nix.sel(lib, "elem"), m1, list2), list1);
     return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         pname: "inspircd",
         version: "4.12.1",
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             owner: "inspircd",
             repo: "inspircd",
             rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -103,7 +97,7 @@ export default nix.thunk(() => (() => {
           })))),
         outputs: nix.thunk(() => ["bin", "lib", "man", "doc", "out"]),
         nativeBuildInputs: nix.thunk(() => nix.concat([perl, pkg_config], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(nix.sel(lib, "elem"), "pgsql", extraModules)), nix.thunk(() => [nix.thunk(() => nix.sel(libpq, "pg_config"))])))),
-        env: nix.thunk(() => ({ [nix.POS]: pos$5, SYSTEM_HTTP_PARSER: "1", SYSTEM_UTFCPP: "1" })),
+        env: nix.thunk(() => ({ [nix.POS]: $pos[4], SYSTEM_HTTP_PARSER: "1", SYSTEM_UTFCPP: "1" })),
         buildInputs: nix.thunk(() => nix.concat([http_parser, utf8cpp], extraInputs)),
         configurePhase: nix.thunk(() => nix.str`runHook preConfigure
 
@@ -135,21 +129,21 @@ runHook postConfigure
         postInstall: "# for some reasons the executables are not executable\nchmod +x $bin/bin/*\n",
         enableParallelBuilding: true,
         passthru: nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           tests: nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             "nixos-test": nix.thunk(() => nix.sel(nixosTests, "inspircd")),
           })),
         })),
         meta: nix.thunk(() => nix.update({
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
           description: "Modular C++ IRC server",
           license: nix.thunk(() => nix.concat([nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only"))], nix.concat(nix.app(nix.sel(lib, "concatMap"), getLicenses, extraInputs), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(anyMembers, extraModules, libcModules)), nix.thunk(() => nix.app(getLicenses, nix.thunk(() => nix.sel(stdenv, "cc", "libc"))))), nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.app(anyMembers, extraModules, libcxxModules)), "Unknown"), nix.app(nix.sel(lib, "optional"), gpl2Conflict, nix.thunk(() => nix.sel(lib, "licenses", "unfree")))))))),
           maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "sternenseemann"))]),
           platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
           homepage: "https://www.inspircd.org/",
-        }, nix.app(nix.sel(lib, "optionalAttrs"), gpl2Conflict, nix.thunk(() => ({ [nix.POS]: pos$9, hydraPlatforms: [] }))))),
+        }, nix.app(nix.sel(lib, "optionalAttrs"), gpl2Conflict, nix.thunk(() => ({ [nix.POS]: $pos[8], hydraPlatforms: [] }))))),
       }));
   })(), formals$1);
 })());

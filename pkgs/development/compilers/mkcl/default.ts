@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["sha256", 19, 5]], [["name", 25, 7], ["url", 26, 7], ["sha256", 27, 7]], [["name", 32, 7], ["url", 33, 7], ["sha256", 34, 7]], [["NIX_CFLAGS_COMPILE", 62, 5]], [["broken", 72, 5], ["description", 73, 5], ["homepage", 74, 5], ["license", 75, 5], ["mainProgram", 76, 5], ["teams", 77, 5], ["platforms", 78, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["patches", 22, 3], ["nativeBuildInputs", 38, 3], ["propagatedBuildInputs", 40, 3], ["hardeningDisable", 42, 3], ["configureFlags", 44, 3], ["postConfigure", 50, 3], ["env", 61, 3], ["postInstall", 65, 3], ["enableParallelBuilding", 69, 3], ["meta", 71, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch: false, makeWrapper: false, gmp: false, gcc: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["sha256", 19, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["name", 25, 7], ["url", 26, 7], ["sha256", 27, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["name", 32, 7], ["url", 33, 7], ["sha256", 34, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["NIX_CFLAGS_COMPILE", 62, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["broken", 72, 5], ["description", 73, 5], ["homepage", 74, 5], ["license", 75, 5], ["mainProgram", 76, 5], ["teams", 77, 5], ["platforms", 78, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["patches", 22, 3], ["nativeBuildInputs", 38, 3], ["propagatedBuildInputs", 40, 3], ["hardeningDisable", 42, 3], ["configureFlags", 44, 3], ["postConfigure", 50, 3], ["env", 61, 3], ["postInstall", 65, 3], ["enableParallelBuilding", 69, 3], ["meta", 71, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pname = "mkcl";
       const version = "1.1.11";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "jcbeaudoin",
           repo: "mkcl",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -31,13 +26,13 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "sys_siglist.patch",
             url: "https://github.com/jcbeaudoin/MKCL/commit/0777dd08254c88676f4f101117b10786b22111d6.patch",
             sha256: "1dnr1jzha77nrxs22mclrcqyqvxxn6q1sfn35qjs77fi3jcinjsc",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "fno-common.patch",
             url: "https://gitlab.common-lisp.net/mkcl/mkcl/-/commit/ef1981dbf4ceb1793cd6434e66e97b3db48b4ea0.patch",
             sha256: "00y6qanwvgb1r4haaqmvz7lbqa51l4wcnns1rwlfgvcvkpjc3dif",
@@ -59,12 +54,12 @@ export default nix.lambda((args) => (() => {
     --libpaths=${nix.app(nix.sel(lib, "getLib"), nix.thunk(() => nix.sel(stdenv, "cc", "libc")))}/lib
 )
 `);
-      const env = nix.thunk(() => ({ [nix.POS]: pos$4, NIX_CFLAGS_COMPILE: "-std=gnu17" }));
+      const env = nix.thunk(() => ({ [nix.POS]: $pos[3], NIX_CFLAGS_COMPILE: "-std=gnu17" }));
       const postInstall = nix.thunk(() => nix.str`wrapProgram $out/bin/mkcl --prefix PATH : "${gcc}/bin" --set-default LANG "C.UTF-8"
 `);
       const enableParallelBuilding = true;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         broken: nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")))),
         description: "ANSI Common Lisp Implementation",
         homepage: "https://common-lisp.net/project/mkcl/",
@@ -74,7 +69,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname,
         version,
         src,

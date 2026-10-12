@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]], [["TIMED_VERSION", 83, 5], ["NIX_CFLAGS_COMPILE", 86, 5], ["NIX_LDFLAGS", 87, 5]], [["package", 100, 7]], [["pkg-config", 99, 11]], [["updateScript", 98, 5], ["tests", 99, 5]], [["description", 106, 5], ["homepage", 107, 5], ["changelog", 108, 5], ["license", 109, 5], ["mainProgram", 110, 5], ["teams", 111, 5], ["platforms", 112, 5], ["pkgConfigModules", 113, 5]], [["pname", 17, 3], ["version", 18, 3], ["outputs", 20, 3], ["src", 26, 3], ["postPatch", 33, 3], ["strictDeps", 64, 3], ["nativeBuildInputs", 66, 3], ["buildInputs", 72, 3], ["postConfigure", 78, 3], ["env", 82, 3], ["preBuild", 90, 3], ["passthru", 97, 3], ["meta", 105, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, gitUpdater: false, testers: false, libiodata: false, "pkg-config": false, qmake: false, qtbase: false, "sailfish-access-control": false, tzdata: false, wrapQtAppsHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["TIMED_VERSION", 83, 5], ["NIX_CFLAGS_COMPILE", 86, 5], ["NIX_LDFLAGS", 87, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["package", 100, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pkg-config", 99, 11]]);
-const pos$5 = nix.positions(here + "/default.nix", [["updateScript", 98, 5], ["tests", 99, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["description", 106, 5], ["homepage", 107, 5], ["changelog", 108, 5], ["license", 109, 5], ["mainProgram", 110, 5], ["teams", 111, 5], ["platforms", 112, 5], ["pkgConfigModules", 113, 5]]);
-const pos$7 = nix.positions(here + "/default.nix", [["pname", 17, 3], ["version", 18, 3], ["outputs", 20, 3], ["src", 26, 3], ["postPatch", 33, 3], ["strictDeps", 64, 3], ["nativeBuildInputs", 66, 3], ["buildInputs", 72, 3], ["postConfigure", 78, 3], ["env", 82, 3], ["preBuild", 90, 3], ["passthru", 97, 3], ["meta", 105, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const tzdata = nix.arg($, "tzdata");
   const wrapQtAppsHook = nix.arg($, "wrapQtAppsHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "timed",
       version: "3.6.24",
       outputs: nix.thunk(() => ["out", "lib", "dev"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "sailfishos",
           repo: "timed",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -70,25 +64,25 @@ substituteInPlace \\
       buildInputs: nix.thunk(() => [libiodata, sailfish_access_control]),
       postConfigure: "make qmake_all\n",
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         TIMED_VERSION: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "version")}`),
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.str`-isystem ${nix.builtins.placeholder("dev")}/include`),
         NIX_LDFLAGS: nix.thunk(() => nix.str`-L${nix.builtins.placeholder("out")}/lib`),
       })),
       preBuild: "pushd src/lib\nmake ${enableParallelBuilding:+-j$NIX_BUILD_CORES}\nmake install\npopd\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "hasPkgConfigModules"), nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Time daemon managing system time, time zone and settings",
         homepage: "https://github.com/sailfishos/timed",
         changelog: nix.thunk(() => nix.str`https://github.com/sailfishos/timed/releases/tag/${nix.sel(finalAttrs, "version")}`),

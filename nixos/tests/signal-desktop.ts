@@ -2,19 +2,10 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/signal-desktop.nix", [[["maintainers", 16, 5]], [["enable", 30, 24]], [["xserver", 30, 16]], [["user", 31, 40]], [["auto", 31, 35]], [["displayManager", 31, 20]], [["systemPackages", 32, 19]], [["imports", 25, 7], ["services", 30, 7], ["test-support", 31, 7], ["environment", 32, 7]], [["machine", 21, 9]], [["name", 14, 3], ["meta", 15, 3], ["nodes", 21, 3], ["enableOCR", 40, 3], ["testScript", 42, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/signal-desktop.nix", [["maintainers", 16, 5]]);
 const formals$2 = { args: {  }, ellipsis: true };
-const pos$2 = nix.positions(here + "/signal-desktop.nix", [["enable", 30, 24]]);
-const pos$3 = nix.positions(here + "/signal-desktop.nix", [["xserver", 30, 16]]);
-const pos$4 = nix.positions(here + "/signal-desktop.nix", [["user", 31, 40]]);
-const pos$5 = nix.positions(here + "/signal-desktop.nix", [["auto", 31, 35]]);
-const pos$6 = nix.positions(here + "/signal-desktop.nix", [["displayManager", 31, 20]]);
-const pos$7 = nix.positions(here + "/signal-desktop.nix", [["systemPackages", 32, 19]]);
-const pos$8 = nix.positions(here + "/signal-desktop.nix", [["imports", 25, 7], ["services", 30, 7], ["test-support", 31, 7], ["environment", 32, 7]]);
-const pos$9 = nix.positions(here + "/signal-desktop.nix", [["machine", 21, 9]]);
 const formals$3 = { args: { nodes: false }, ellipsis: true };
-const pos$10 = nix.positions(here + "/signal-desktop.nix", [["name", 14, 3], ["meta", 15, 3], ["nodes", 21, 3], ["enableOCR", 40, 3], ["testScript", 42, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,38 +19,38 @@ readonly SQL="SELECT * FROM sqlite_master where type='table'"
 ${nix.sel(pkgs, "sqlcipher")}/bin/sqlcipher "$DB" "PRAGMA key = \\"x'$KEY'\\"; $SQL"
 `)));
   return {
-    [nix.POS]: pos$10,
+    [nix.POS]: $pos[9],
     name: "signal-desktop",
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
       return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "flokli"))]),
       };
     })()),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           imports: nix.thunk(() => [
             nix.path(here, "./common/user-account.nix"),
             nix.path(here, "./common/x11.nix"),
           ]),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$3,
-            xserver: nix.thunk(() => ({ [nix.POS]: pos$2, enable: true })),
+            [nix.POS]: $pos[2],
+            xserver: nix.thunk(() => ({ [nix.POS]: $pos[1], enable: true })),
           })),
           "test-support": nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             displayManager: nix.thunk(() => ({
-              [nix.POS]: pos$5,
-              auto: nix.thunk(() => ({ [nix.POS]: pos$4, user: "alice" })),
+              [nix.POS]: $pos[4],
+              auto: nix.thunk(() => ({ [nix.POS]: $pos[3], user: "alice" })),
             })),
           })),
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             systemPackages: nix.thunk(() => (() => {
               const w_1 = nix.withScope(pkgs, null);
               return [

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 30, 5], ["hash", 31, 5]], [["updateScript", 79, 12]], [["description", 82, 5], ["license", 83, 5], ["sourceProvenance", 84, 5], ["homepage", 85, 5], ["mainProgram", 86, 5], ["maintainers", 87, 5], ["platforms", 90, 5]], [["pname", 26, 3], ["version", 27, 3], ["src", 29, 3], ["strictDeps", 34, 3], ["__structuredAttrs", 35, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 42, 3], ["unpackPhase", 58, 3], ["installPhase", 64, 3], ["passthru", 79, 3], ["meta", 81, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, dpkg: false, autoPatchelfHook: false, gtk3: false, libnotify: false, nss: false, libxscrnsaver: false, libxtst: false, "xdg-utils": false, "at-spi2-atk": false, libuuid: false, libsecret: false, libappindicator: false, libgbm: false, "alsa-lib": false, libGL: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 30, 5], ["hash", 31, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 79, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 82, 5], ["license", 83, 5], ["sourceProvenance", 84, 5], ["homepage", 85, 5], ["mainProgram", 86, 5], ["maintainers", 87, 5], ["platforms", 90, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 26, 3], ["version", 27, 3], ["src", 29, 3], ["strictDeps", 34, 3], ["__structuredAttrs", 35, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 42, 3], ["unpackPhase", 58, 3], ["installPhase", 64, 3], ["passthru", 79, 3], ["meta", 81, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const alsa_lib = nix.arg($, "alsa-lib");
   const libGL = nix.arg($, "libGL");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "stashcat",
       version: "6.55.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`http://deb.stashcat.com/repo01/dists/stashcat-dc/main/binary-amd64/stashcat-dc/${nix.sel(finalAttrs, "pname")}_${nix.sel(finalAttrs, "version")}_amd64.deb`),
           hash: "sha512-acXuy4Qlpda58oyN/W8+AU/CnjFtGmySFwbkftWo4CxgTAZu/tXhgN//4/IvMJ11wvMrlzDKcFwowVCrccxOPQ==",
         })))),
@@ -57,9 +54,9 @@ export default nix.lambda((args) => (() => {
       ]),
       unpackPhase: "runHook preUnpack\ndpkg-deb --fsys-tarfile $src | tar --extract\nrunHook postUnpack\n",
       installPhase: "runHook preInstall\n\nmkdir -p $out/{share,opt,bin}\ncp -r usr/share/* $out/share/\ncp -r opt/* $out/opt/\n\nln -s $out/opt/Stashcat/stashcat $out/bin/stashcat\n\nsubstituteInPlace $out/share/applications/stashcat.desktop \\\n  --replace-fail \"Exec=/opt/Stashcat/stashcat %U\" \"Exec=$out/opt/Stashcat/stashcat %U\"\n\nrunHook postInstall\n",
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, updateScript: nix.path(here, "./update.py") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[1], updateScript: nix.path(here, "./update.py") })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Stashcat Desktop Messenger",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
         sourceProvenance: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "sourceTypes", "binaryNativeCode"))]),

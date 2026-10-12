@@ -2,514 +2,430 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/srcs.nix", [[["url", 9, 7], ["sha256", 10, 7], ["name", 11, 7]], [["version", 7, 5], ["src", 8, 5]], [["url", 17, 7], ["sha256", 18, 7], ["name", 19, 7]], [["version", 15, 5], ["src", 16, 5]], [["url", 25, 7], ["sha256", 26, 7], ["name", 27, 7]], [["version", 23, 5], ["src", 24, 5]], [["url", 33, 7], ["sha256", 34, 7], ["name", 35, 7]], [["version", 31, 5], ["src", 32, 5]], [["url", 41, 7], ["sha256", 42, 7], ["name", 43, 7]], [["version", 39, 5], ["src", 40, 5]], [["url", 49, 7], ["sha256", 50, 7], ["name", 51, 7]], [["version", 47, 5], ["src", 48, 5]], [["url", 57, 7], ["sha256", 58, 7], ["name", 59, 7]], [["version", 55, 5], ["src", 56, 5]], [["url", 65, 7], ["sha256", 66, 7], ["name", 67, 7]], [["version", 63, 5], ["src", 64, 5]], [["url", 73, 7], ["sha256", 74, 7], ["name", 75, 7]], [["version", 71, 5], ["src", 72, 5]], [["url", 81, 7], ["sha256", 82, 7], ["name", 83, 7]], [["version", 79, 5], ["src", 80, 5]], [["url", 89, 7], ["sha256", 90, 7], ["name", 91, 7]], [["version", 87, 5], ["src", 88, 5]], [["url", 97, 7], ["sha256", 98, 7], ["name", 99, 7]], [["version", 95, 5], ["src", 96, 5]], [["url", 105, 7], ["sha256", 106, 7], ["name", 107, 7]], [["version", 103, 5], ["src", 104, 5]], [["url", 113, 7], ["sha256", 114, 7], ["name", 115, 7]], [["version", 111, 5], ["src", 112, 5]], [["url", 121, 7], ["sha256", 122, 7], ["name", 123, 7]], [["version", 119, 5], ["src", 120, 5]], [["url", 129, 7], ["sha256", 130, 7], ["name", 131, 7]], [["version", 127, 5], ["src", 128, 5]], [["url", 137, 7], ["sha256", 138, 7], ["name", 139, 7]], [["version", 135, 5], ["src", 136, 5]], [["url", 145, 7], ["sha256", 146, 7], ["name", 147, 7]], [["version", 143, 5], ["src", 144, 5]], [["url", 153, 7], ["sha256", 154, 7], ["name", 155, 7]], [["version", 151, 5], ["src", 152, 5]], [["url", 161, 7], ["sha256", 162, 7], ["name", 163, 7]], [["version", 159, 5], ["src", 160, 5]], [["url", 169, 7], ["sha256", 170, 7], ["name", 171, 7]], [["version", 167, 5], ["src", 168, 5]], [["url", 177, 7], ["sha256", 178, 7], ["name", 179, 7]], [["version", 175, 5], ["src", 176, 5]], [["url", 185, 7], ["sha256", 186, 7], ["name", 187, 7]], [["version", 183, 5], ["src", 184, 5]], [["url", 193, 7], ["sha256", 194, 7], ["name", 195, 7]], [["version", 191, 5], ["src", 192, 5]], [["url", 201, 7], ["sha256", 202, 7], ["name", 203, 7]], [["version", 199, 5], ["src", 200, 5]], [["url", 209, 7], ["sha256", 210, 7], ["name", 211, 7]], [["version", 207, 5], ["src", 208, 5]], [["url", 217, 7], ["sha256", 218, 7], ["name", 219, 7]], [["version", 215, 5], ["src", 216, 5]], [["url", 225, 7], ["sha256", 226, 7], ["name", 227, 7]], [["version", 223, 5], ["src", 224, 5]], [["url", 233, 7], ["sha256", 234, 7], ["name", 235, 7]], [["version", 231, 5], ["src", 232, 5]], [["url", 241, 7], ["sha256", 242, 7], ["name", 243, 7]], [["version", 239, 5], ["src", 240, 5]], [["url", 249, 7], ["sha256", 250, 7], ["name", 251, 7]], [["version", 247, 5], ["src", 248, 5]], [["url", 257, 7], ["sha256", 258, 7], ["name", 259, 7]], [["version", 255, 5], ["src", 256, 5]], [["url", 265, 7], ["sha256", 266, 7], ["name", 267, 7]], [["version", 263, 5], ["src", 264, 5]], [["url", 273, 7], ["sha256", 274, 7], ["name", 275, 7]], [["version", 271, 5], ["src", 272, 5]], [["url", 281, 7], ["sha256", 282, 7], ["name", 283, 7]], [["version", 279, 5], ["src", 280, 5]], [["url", 289, 7], ["sha256", 290, 7], ["name", 291, 7]], [["version", 287, 5], ["src", 288, 5]], [["url", 297, 7], ["sha256", 298, 7], ["name", 299, 7]], [["version", 295, 5], ["src", 296, 5]], [["url", 305, 7], ["sha256", 306, 7], ["name", 307, 7]], [["version", 303, 5], ["src", 304, 5]], [["url", 313, 7], ["sha256", 314, 7], ["name", 315, 7]], [["version", 311, 5], ["src", 312, 5]], [["url", 321, 7], ["sha256", 322, 7], ["name", 323, 7]], [["version", 319, 5], ["src", 320, 5]], [["url", 329, 7], ["sha256", 330, 7], ["name", 331, 7]], [["version", 327, 5], ["src", 328, 5]], [["url", 337, 7], ["sha256", 338, 7], ["name", 339, 7]], [["version", 335, 5], ["src", 336, 5]], [["qt3d", 6, 3], ["qt5compat", 14, 3], ["qtactiveqt", 22, 3], ["qtbase", 30, 3], ["qtcanvaspainter", 38, 3], ["qtcharts", 46, 3], ["qtconnectivity", 54, 3], ["qtdatavis3d", 62, 3], ["qtdeclarative", 70, 3], ["qtdoc", 78, 3], ["qtgraphs", 86, 3], ["qtgrpc", 94, 3], ["qthttpserver", 102, 3], ["qtimageformats", 110, 3], ["qtlanguageserver", 118, 3], ["qtlocation", 126, 3], ["qtlottie", 134, 3], ["qtmultimedia", 142, 3], ["qtnetworkauth", 150, 3], ["qtopenapi", 158, 3], ["qtpositioning", 166, 3], ["qtquick3d", 174, 3], ["qtquick3dphysics", 182, 3], ["qtquickeffectmaker", 190, 3], ["qtquicktimeline", 198, 3], ["qtremoteobjects", 206, 3], ["qtscxml", 214, 3], ["qtsensors", 222, 3], ["qtserialbus", 230, 3], ["qtserialport", 238, 3], ["qtshadertools", 246, 3], ["qtspeech", 254, 3], ["qtsvg", 262, 3], ["qttasktree", 270, 3], ["qttools", 278, 3], ["qttranslations", 286, 3], ["qtvirtualkeyboard", 294, 3], ["qtwayland", 302, 3], ["qtwebchannel", 310, 3], ["qtwebengine", 318, 3], ["qtwebsockets", 326, 3], ["qtwebview", 334, 3]]]);
 const formals$1 = { args: { fetchurl: false, mirror: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/srcs.nix", [["url", 9, 7], ["sha256", 10, 7], ["name", 11, 7]]);
-const pos$2 = nix.positions(here + "/srcs.nix", [["version", 7, 5], ["src", 8, 5]]);
-const pos$3 = nix.positions(here + "/srcs.nix", [["url", 17, 7], ["sha256", 18, 7], ["name", 19, 7]]);
-const pos$4 = nix.positions(here + "/srcs.nix", [["version", 15, 5], ["src", 16, 5]]);
-const pos$5 = nix.positions(here + "/srcs.nix", [["url", 25, 7], ["sha256", 26, 7], ["name", 27, 7]]);
-const pos$6 = nix.positions(here + "/srcs.nix", [["version", 23, 5], ["src", 24, 5]]);
-const pos$7 = nix.positions(here + "/srcs.nix", [["url", 33, 7], ["sha256", 34, 7], ["name", 35, 7]]);
-const pos$8 = nix.positions(here + "/srcs.nix", [["version", 31, 5], ["src", 32, 5]]);
-const pos$9 = nix.positions(here + "/srcs.nix", [["url", 41, 7], ["sha256", 42, 7], ["name", 43, 7]]);
-const pos$10 = nix.positions(here + "/srcs.nix", [["version", 39, 5], ["src", 40, 5]]);
-const pos$11 = nix.positions(here + "/srcs.nix", [["url", 49, 7], ["sha256", 50, 7], ["name", 51, 7]]);
-const pos$12 = nix.positions(here + "/srcs.nix", [["version", 47, 5], ["src", 48, 5]]);
-const pos$13 = nix.positions(here + "/srcs.nix", [["url", 57, 7], ["sha256", 58, 7], ["name", 59, 7]]);
-const pos$14 = nix.positions(here + "/srcs.nix", [["version", 55, 5], ["src", 56, 5]]);
-const pos$15 = nix.positions(here + "/srcs.nix", [["url", 65, 7], ["sha256", 66, 7], ["name", 67, 7]]);
-const pos$16 = nix.positions(here + "/srcs.nix", [["version", 63, 5], ["src", 64, 5]]);
-const pos$17 = nix.positions(here + "/srcs.nix", [["url", 73, 7], ["sha256", 74, 7], ["name", 75, 7]]);
-const pos$18 = nix.positions(here + "/srcs.nix", [["version", 71, 5], ["src", 72, 5]]);
-const pos$19 = nix.positions(here + "/srcs.nix", [["url", 81, 7], ["sha256", 82, 7], ["name", 83, 7]]);
-const pos$20 = nix.positions(here + "/srcs.nix", [["version", 79, 5], ["src", 80, 5]]);
-const pos$21 = nix.positions(here + "/srcs.nix", [["url", 89, 7], ["sha256", 90, 7], ["name", 91, 7]]);
-const pos$22 = nix.positions(here + "/srcs.nix", [["version", 87, 5], ["src", 88, 5]]);
-const pos$23 = nix.positions(here + "/srcs.nix", [["url", 97, 7], ["sha256", 98, 7], ["name", 99, 7]]);
-const pos$24 = nix.positions(here + "/srcs.nix", [["version", 95, 5], ["src", 96, 5]]);
-const pos$25 = nix.positions(here + "/srcs.nix", [["url", 105, 7], ["sha256", 106, 7], ["name", 107, 7]]);
-const pos$26 = nix.positions(here + "/srcs.nix", [["version", 103, 5], ["src", 104, 5]]);
-const pos$27 = nix.positions(here + "/srcs.nix", [["url", 113, 7], ["sha256", 114, 7], ["name", 115, 7]]);
-const pos$28 = nix.positions(here + "/srcs.nix", [["version", 111, 5], ["src", 112, 5]]);
-const pos$29 = nix.positions(here + "/srcs.nix", [["url", 121, 7], ["sha256", 122, 7], ["name", 123, 7]]);
-const pos$30 = nix.positions(here + "/srcs.nix", [["version", 119, 5], ["src", 120, 5]]);
-const pos$31 = nix.positions(here + "/srcs.nix", [["url", 129, 7], ["sha256", 130, 7], ["name", 131, 7]]);
-const pos$32 = nix.positions(here + "/srcs.nix", [["version", 127, 5], ["src", 128, 5]]);
-const pos$33 = nix.positions(here + "/srcs.nix", [["url", 137, 7], ["sha256", 138, 7], ["name", 139, 7]]);
-const pos$34 = nix.positions(here + "/srcs.nix", [["version", 135, 5], ["src", 136, 5]]);
-const pos$35 = nix.positions(here + "/srcs.nix", [["url", 145, 7], ["sha256", 146, 7], ["name", 147, 7]]);
-const pos$36 = nix.positions(here + "/srcs.nix", [["version", 143, 5], ["src", 144, 5]]);
-const pos$37 = nix.positions(here + "/srcs.nix", [["url", 153, 7], ["sha256", 154, 7], ["name", 155, 7]]);
-const pos$38 = nix.positions(here + "/srcs.nix", [["version", 151, 5], ["src", 152, 5]]);
-const pos$39 = nix.positions(here + "/srcs.nix", [["url", 161, 7], ["sha256", 162, 7], ["name", 163, 7]]);
-const pos$40 = nix.positions(here + "/srcs.nix", [["version", 159, 5], ["src", 160, 5]]);
-const pos$41 = nix.positions(here + "/srcs.nix", [["url", 169, 7], ["sha256", 170, 7], ["name", 171, 7]]);
-const pos$42 = nix.positions(here + "/srcs.nix", [["version", 167, 5], ["src", 168, 5]]);
-const pos$43 = nix.positions(here + "/srcs.nix", [["url", 177, 7], ["sha256", 178, 7], ["name", 179, 7]]);
-const pos$44 = nix.positions(here + "/srcs.nix", [["version", 175, 5], ["src", 176, 5]]);
-const pos$45 = nix.positions(here + "/srcs.nix", [["url", 185, 7], ["sha256", 186, 7], ["name", 187, 7]]);
-const pos$46 = nix.positions(here + "/srcs.nix", [["version", 183, 5], ["src", 184, 5]]);
-const pos$47 = nix.positions(here + "/srcs.nix", [["url", 193, 7], ["sha256", 194, 7], ["name", 195, 7]]);
-const pos$48 = nix.positions(here + "/srcs.nix", [["version", 191, 5], ["src", 192, 5]]);
-const pos$49 = nix.positions(here + "/srcs.nix", [["url", 201, 7], ["sha256", 202, 7], ["name", 203, 7]]);
-const pos$50 = nix.positions(here + "/srcs.nix", [["version", 199, 5], ["src", 200, 5]]);
-const pos$51 = nix.positions(here + "/srcs.nix", [["url", 209, 7], ["sha256", 210, 7], ["name", 211, 7]]);
-const pos$52 = nix.positions(here + "/srcs.nix", [["version", 207, 5], ["src", 208, 5]]);
-const pos$53 = nix.positions(here + "/srcs.nix", [["url", 217, 7], ["sha256", 218, 7], ["name", 219, 7]]);
-const pos$54 = nix.positions(here + "/srcs.nix", [["version", 215, 5], ["src", 216, 5]]);
-const pos$55 = nix.positions(here + "/srcs.nix", [["url", 225, 7], ["sha256", 226, 7], ["name", 227, 7]]);
-const pos$56 = nix.positions(here + "/srcs.nix", [["version", 223, 5], ["src", 224, 5]]);
-const pos$57 = nix.positions(here + "/srcs.nix", [["url", 233, 7], ["sha256", 234, 7], ["name", 235, 7]]);
-const pos$58 = nix.positions(here + "/srcs.nix", [["version", 231, 5], ["src", 232, 5]]);
-const pos$59 = nix.positions(here + "/srcs.nix", [["url", 241, 7], ["sha256", 242, 7], ["name", 243, 7]]);
-const pos$60 = nix.positions(here + "/srcs.nix", [["version", 239, 5], ["src", 240, 5]]);
-const pos$61 = nix.positions(here + "/srcs.nix", [["url", 249, 7], ["sha256", 250, 7], ["name", 251, 7]]);
-const pos$62 = nix.positions(here + "/srcs.nix", [["version", 247, 5], ["src", 248, 5]]);
-const pos$63 = nix.positions(here + "/srcs.nix", [["url", 257, 7], ["sha256", 258, 7], ["name", 259, 7]]);
-const pos$64 = nix.positions(here + "/srcs.nix", [["version", 255, 5], ["src", 256, 5]]);
-const pos$65 = nix.positions(here + "/srcs.nix", [["url", 265, 7], ["sha256", 266, 7], ["name", 267, 7]]);
-const pos$66 = nix.positions(here + "/srcs.nix", [["version", 263, 5], ["src", 264, 5]]);
-const pos$67 = nix.positions(here + "/srcs.nix", [["url", 273, 7], ["sha256", 274, 7], ["name", 275, 7]]);
-const pos$68 = nix.positions(here + "/srcs.nix", [["version", 271, 5], ["src", 272, 5]]);
-const pos$69 = nix.positions(here + "/srcs.nix", [["url", 281, 7], ["sha256", 282, 7], ["name", 283, 7]]);
-const pos$70 = nix.positions(here + "/srcs.nix", [["version", 279, 5], ["src", 280, 5]]);
-const pos$71 = nix.positions(here + "/srcs.nix", [["url", 289, 7], ["sha256", 290, 7], ["name", 291, 7]]);
-const pos$72 = nix.positions(here + "/srcs.nix", [["version", 287, 5], ["src", 288, 5]]);
-const pos$73 = nix.positions(here + "/srcs.nix", [["url", 297, 7], ["sha256", 298, 7], ["name", 299, 7]]);
-const pos$74 = nix.positions(here + "/srcs.nix", [["version", 295, 5], ["src", 296, 5]]);
-const pos$75 = nix.positions(here + "/srcs.nix", [["url", 305, 7], ["sha256", 306, 7], ["name", 307, 7]]);
-const pos$76 = nix.positions(here + "/srcs.nix", [["version", 303, 5], ["src", 304, 5]]);
-const pos$77 = nix.positions(here + "/srcs.nix", [["url", 313, 7], ["sha256", 314, 7], ["name", 315, 7]]);
-const pos$78 = nix.positions(here + "/srcs.nix", [["version", 311, 5], ["src", 312, 5]]);
-const pos$79 = nix.positions(here + "/srcs.nix", [["url", 321, 7], ["sha256", 322, 7], ["name", 323, 7]]);
-const pos$80 = nix.positions(here + "/srcs.nix", [["version", 319, 5], ["src", 320, 5]]);
-const pos$81 = nix.positions(here + "/srcs.nix", [["url", 329, 7], ["sha256", 330, 7], ["name", 331, 7]]);
-const pos$82 = nix.positions(here + "/srcs.nix", [["version", 327, 5], ["src", 328, 5]]);
-const pos$83 = nix.positions(here + "/srcs.nix", [["url", 337, 7], ["sha256", 338, 7], ["name", 339, 7]]);
-const pos$84 = nix.positions(here + "/srcs.nix", [["version", 335, 5], ["src", 336, 5]]);
-const pos$85 = nix.positions(here + "/srcs.nix", [["qt3d", 6, 3], ["qt5compat", 14, 3], ["qtactiveqt", 22, 3], ["qtbase", 30, 3], ["qtcanvaspainter", 38, 3], ["qtcharts", 46, 3], ["qtconnectivity", 54, 3], ["qtdatavis3d", 62, 3], ["qtdeclarative", 70, 3], ["qtdoc", 78, 3], ["qtgraphs", 86, 3], ["qtgrpc", 94, 3], ["qthttpserver", 102, 3], ["qtimageformats", 110, 3], ["qtlanguageserver", 118, 3], ["qtlocation", 126, 3], ["qtlottie", 134, 3], ["qtmultimedia", 142, 3], ["qtnetworkauth", 150, 3], ["qtopenapi", 158, 3], ["qtpositioning", 166, 3], ["qtquick3d", 174, 3], ["qtquick3dphysics", 182, 3], ["qtquickeffectmaker", 190, 3], ["qtquicktimeline", 198, 3], ["qtremoteobjects", 206, 3], ["qtscxml", 214, 3], ["qtsensors", 222, 3], ["qtserialbus", 230, 3], ["qtserialport", 238, 3], ["qtshadertools", 246, 3], ["qtspeech", 254, 3], ["qtsvg", 262, 3], ["qttasktree", 270, 3], ["qttools", 278, 3], ["qttranslations", 286, 3], ["qtvirtualkeyboard", 294, 3], ["qtwayland", 302, 3], ["qtwebchannel", 310, 3], ["qtwebengine", 318, 3], ["qtwebsockets", 326, 3], ["qtwebview", 334, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const fetchurl = nix.arg($, "fetchurl");
   const mirror = nix.arg($, "mirror");
   return {
-    [nix.POS]: pos$85,
+    [nix.POS]: $pos[84],
     qt3d: nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       version: "6.11.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`${mirror}/official_releases/qt/6.11/6.11.2/submodules/qt3d-everywhere-src-6.11.2.tar.xz`),
           sha256: "0adczdz74mlmrb8w7hzjln1902isn7bgfbzpr1r18wasg6j8a4a1",
           name: "qt3d-everywhere-src-6.11.2.tar.xz",
         })))),
     })),
     qt5compat: nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       version: "6.11.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           url: nix.thunk(() => nix.str`${mirror}/official_releases/qt/6.11/6.11.2/submodules/qt5compat-everywhere-src-6.11.2.tar.xz`),
           sha256: "11s225zq0hskkq61rrfhy65aqzdny7np00c75ngnl2ci6gz21hv8",
           name: "qt5compat-everywhere-src-6.11.2.tar.xz",
         })))),
     })),
     qtactiveqt: nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       version: "6.11.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           url: nix.thunk(() => nix.str`${mirror}/official_releases/qt/6.11/6.11.2/submodules/qtactiveqt-everywhere-src-6.11.2.tar.xz`),
           sha256: "0g3ak3jmh4fqjl0xh3vcj7hlw7k7902b2arqxa304hmh1s0dmblx",
           name: "qtactiveqt-everywhere-src-6.11.2.tar.xz",
         })))),
     })),
     qtbase: nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       version: "6.11.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           url: nix.thunk(() => nix.str`${mirror}/official_releases/qt/6.11/6.11.2/submodules/qtbase-everywhere-src-6.11.2.tar.xz`),
           sha256: "08ng4gns21a3za3qszzw3yp3a2pxipma1zrl870xi97mrbn00bjv",
           name: "qtbase-everywhere-src-6.11.2.tar.xz",
         })))),
     })),
     qtcanvaspainter: nix.thunk(() => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       version: "6.11.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           url: nix.thunk(() => nix.str`${mirror}/official_releases/qt/6.11/6.11.2/submodules/qtcanvaspainter-everywhere-src-6.11.2.tar.xz`),
           sha256: "0q77hc83ynvnagwxa9z0j9rwvlzmyig06kklb7v5zvyfa1ra544a",
           name: "qtcanvaspainter-everywhere-src-6.11.2.tar.xz",
         })))),
     })),
     qtcharts: nix.thunk(() => ({
-      [nix.POS]: pos$12,
+      [nix.POS]: $pos[11],
       version: "6.11.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$11,
+          [nix.POS]: $pos[10],
           url: nix.thunk(() => nix.str`${mirror}/official_releases/qt/6.11/6.11.2/submodules/qtcharts-everywhere-src-6.11.2.tar.xz`),
           sha256: "0agvnva90diqvllfvrd1smicar6nlv5pjqvwjfg509fih4xyasah",
           name: "qtcharts-everywhere-src-6.11.2.tar.xz",
         })))),
     })),
     qtconnectivity: nix.thunk(() => ({
-      [nix.POS]: pos$14,
+      [nix.POS]: $pos[13],
       version: "6.11.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$13,
+          [nix.POS]: $pos[12],
           url: nix.thunk(() => nix.str`${mirror}/official_releases/qt/6.11/6.11.2/submodules/qtconnectivity-everywhere-src-6.11.2.tar.xz`),
           sha256: "0dv0bqlvfdphk2a5pzq7fm222h6zvy87k18aaamq7585pmbimc45",
           name: "qtconnectivity-everywhere-src-6.11.2.tar.xz",
         })))),
     })),
     qtdatavis3d: nix.thunk(() => ({
-      [nix.POS]: pos$16,
+      [nix.POS]: $pos[15],
       version: "6.11.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$15,
+          [nix.POS]: $pos[14],
           url: nix.thunk(() => nix.str`${mirror}/official_releases/qt/6.11/6.11.2/submodules/qtdatavis3d-everywhere-src-6.11.2.tar.xz`),
           sha256: "07b61fkdzkhv3hfa7r6vfadd72bnyk4cgqwws5ns3y6nqlcnjknj",
           name: "qtdatavis3d-everywhere-src-6.11.2.tar.xz",
         })))),
     })),
     qtdeclarative: nix.thunk(() => ({
-      [nix.POS]: pos$18,
+      [nix.POS]: $pos[17],
       version: "6.11.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$17,
+          [nix.POS]: $pos[16],
           url: nix.thunk(() => nix.str`${mirror}/official_releases/qt/6.11/6.11.2/submodules/qtdeclarative-everywhere-src-6.11.2.tar.xz`),
           sha256: "0c5lqr8kbrfvaxh147d92vqbcirw7wj94sxwx8ih2f3ya5q7nnr1",
           name: "qtdeclarative-everywhere-src-6.11.2.tar.xz",
         })))),
     })),
     qtdoc: nix.thunk(() => ({
-      [nix.POS]: pos$20,
+      [nix.POS]: $pos[19],
       version: "6.11.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$19,
+          [nix.POS]: $pos[18],
           url: nix.thunk(() => nix.str`${mirror}/official_releases/qt/6.11/6.11.2/submodules/qtdoc-everywhere-src-6.11.2.tar.xz`),
           sha256: "1dsfnlsk0kihz55fnmyrybya9x3s88nam9jfpb5g68vk4n9if9sn",
           name: "qtdoc-everywhere-src-6.11.2.tar.xz",
         })))),
     })),
     qtgraphs: nix.thunk(() => ({
-      [nix.POS]: pos$22,
+      [nix.POS]: $pos[21],
       version: "6.11.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$21,
+          [nix.POS]: $pos[20],
           url: nix.thunk(() => nix.str`${mirror}/official_releases/qt/6.11/6.11.2/submodules/qtgraphs-everywhere-src-6.11.2.tar.xz`),
           sha256: "08cbzc0146j4d18dlqsw0qbilhcwk1hi9h8n84adsigs9a2hj8cz",
           name: "qtgraphs-everywhere-src-6.11.2.tar.xz",
         })))),
     })),
     qtgrpc: nix.thunk(() => ({
-      [nix.POS]: pos$24,
+      [nix.POS]: $pos[23],
       version: "6.11.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$23,
+          [nix.POS]: $pos[22],
           url: nix.thunk(() => nix.str`${mirror}/official_releases/qt/6.11/6.11.2/submodules/qtgrpc-everywhere-src-6.11.2.tar.xz`),
           sha256: "14xdchng4sn90r2cva7wxrqlyzncpwkj11gscm4z73q5y0blcha4",
           name: "qtgrpc-everywhere-src-6.11.2.tar.xz",
         })))),
     })),
     qthttpserver: nix.thunk(() => ({
-      [nix.POS]: pos$26,
+      [nix.POS]: $pos[25],
       version: "6.11.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$25,
+          [nix.POS]: $pos[24],
           url: nix.thunk(() => nix.str`${mirror}/official_releases/qt/6.11/6.11.2/submodules/qthttpserver-everywhere-src-6.11.2.tar.xz`),
           sha256: "13mxwy5h41c96ykdkxlxcdf2pqv2gswyvyzxrzsj13x55cxpdxgh",
           name: "qthttpserver-everywhere-src-6.11.2.tar.xz",
         })))),
     })),
     qtimageformats: nix.thunk(() => ({
-      [nix.POS]: pos$28,
+      [nix.POS]: $pos[27],
       version: "6.11.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$27,
+          [nix.POS]: $pos[26],
           url: nix.thunk(() => nix.str`${mirror}/official_releases/qt/6.11/6.11.2/submodules/qtimageformats-everywhere-src-6.11.2.tar.xz`),
           sha256: "1y0123s8hry81059w8x46fv0i0425zv99g09cc3m0rabyc08kkff",
           name: "qtimageformats-everywhere-src-6.11.2.tar.xz",
         })))),
     })),
     qtlanguageserver: nix.thunk(() => ({
-      [nix.POS]: pos$30,
+      [nix.POS]: $pos[29],
       version: "6.11.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$29,
+          [nix.POS]: $pos[28],
           url: nix.thunk(() => nix.str`${mirror}/official_releases/qt/6.11/6.11.2/submodules/qtlanguageserver-everywhere-src-6.11.2.tar.xz`),
           sha256: "0ppw27jsqsih48sd0iizfc2jwsxya8z0a9vjjaqhxjplxir45g1q",
           name: "qtlanguageserver-everywhere-src-6.11.2.tar.xz",
         })))),
     })),
     qtlocation: nix.thunk(() => ({
-      [nix.POS]: pos$32,
+      [nix.POS]: $pos[31],
       version: "6.11.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$31,
+          [nix.POS]: $pos[30],
           url: nix.thunk(() => nix.str`${mirror}/official_releases/qt/6.11/6.11.2/submodules/qtlocation-everywhere-src-6.11.2.tar.xz`),
           sha256: "0fn2clzz2wmc3lwzqlkwk07scvmmdhim1ihpxkv7dg8zw3nafl2d",
           name: "qtlocation-everywhere-src-6.11.2.tar.xz",
         })))),
     })),
     qtlottie: nix.thunk(() => ({
-      [nix.POS]: pos$34,
+      [nix.POS]: $pos[33],
       version: "6.11.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$33,
+          [nix.POS]: $pos[32],
           url: nix.thunk(() => nix.str`${mirror}/official_releases/qt/6.11/6.11.2/submodules/qtlottie-everywhere-src-6.11.2.tar.xz`),
           sha256: "0lj8a90frd265waypkwghabj0r9h5p6vh1dlrjksksyr2qkp2g7m",
           name: "qtlottie-everywhere-src-6.11.2.tar.xz",
         })))),
     })),
     qtmultimedia: nix.thunk(() => ({
-      [nix.POS]: pos$36,
+      [nix.POS]: $pos[35],
       version: "6.11.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$35,
+          [nix.POS]: $pos[34],
           url: nix.thunk(() => nix.str`${mirror}/official_releases/qt/6.11/6.11.2/submodules/qtmultimedia-everywhere-src-6.11.2.tar.xz`),
           sha256: "17yd17qm0jxfimkqs843z5m86ciif1pcs8h66vdkqybbxh15wywn",
           name: "qtmultimedia-everywhere-src-6.11.2.tar.xz",
         })))),
     })),
     qtnetworkauth: nix.thunk(() => ({
-      [nix.POS]: pos$38,
+      [nix.POS]: $pos[37],
       version: "6.11.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$37,
+          [nix.POS]: $pos[36],
           url: nix.thunk(() => nix.str`${mirror}/official_releases/qt/6.11/6.11.2/submodules/qtnetworkauth-everywhere-src-6.11.2.tar.xz`),
           sha256: "0nx03zab9jrzkrwali45czswlniwbh0v0nx17wwj8y5bfwqc50qc",
           name: "qtnetworkauth-everywhere-src-6.11.2.tar.xz",
         })))),
     })),
     qtopenapi: nix.thunk(() => ({
-      [nix.POS]: pos$40,
+      [nix.POS]: $pos[39],
       version: "6.11.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$39,
+          [nix.POS]: $pos[38],
           url: nix.thunk(() => nix.str`${mirror}/official_releases/qt/6.11/6.11.2/submodules/qtopenapi-everywhere-src-6.11.2.tar.xz`),
           sha256: "1873byinl4ikm3bncz869fjhn1z2jwj9s0bg3h9ncnn4kl0fp74b",
           name: "qtopenapi-everywhere-src-6.11.2.tar.xz",
         })))),
     })),
     qtpositioning: nix.thunk(() => ({
-      [nix.POS]: pos$42,
+      [nix.POS]: $pos[41],
       version: "6.11.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$41,
+          [nix.POS]: $pos[40],
           url: nix.thunk(() => nix.str`${mirror}/official_releases/qt/6.11/6.11.2/submodules/qtpositioning-everywhere-src-6.11.2.tar.xz`),
           sha256: "16blmv0plbh0l214q6phfp7jb18201cyqk66v8555cd38fnibkyq",
           name: "qtpositioning-everywhere-src-6.11.2.tar.xz",
         })))),
     })),
     qtquick3d: nix.thunk(() => ({
-      [nix.POS]: pos$44,
+      [nix.POS]: $pos[43],
       version: "6.11.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$43,
+          [nix.POS]: $pos[42],
           url: nix.thunk(() => nix.str`${mirror}/official_releases/qt/6.11/6.11.2/submodules/qtquick3d-everywhere-src-6.11.2.tar.xz`),
           sha256: "1d1pcy9ipjsipczrassn6h9jq2bx7v1457fg6wx3f9nvivqf3f1s",
           name: "qtquick3d-everywhere-src-6.11.2.tar.xz",
         })))),
     })),
     qtquick3dphysics: nix.thunk(() => ({
-      [nix.POS]: pos$46,
+      [nix.POS]: $pos[45],
       version: "6.11.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$45,
+          [nix.POS]: $pos[44],
           url: nix.thunk(() => nix.str`${mirror}/official_releases/qt/6.11/6.11.2/submodules/qtquick3dphysics-everywhere-src-6.11.2.tar.xz`),
           sha256: "0vmqvr68qq0caglackln225xj3p8srdycykw3m44iz458b7j8nhw",
           name: "qtquick3dphysics-everywhere-src-6.11.2.tar.xz",
         })))),
     })),
     qtquickeffectmaker: nix.thunk(() => ({
-      [nix.POS]: pos$48,
+      [nix.POS]: $pos[47],
       version: "6.11.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$47,
+          [nix.POS]: $pos[46],
           url: nix.thunk(() => nix.str`${mirror}/official_releases/qt/6.11/6.11.2/submodules/qtquickeffectmaker-everywhere-src-6.11.2.tar.xz`),
           sha256: "1dswhg102b09x3p3iyldmwkhnkphcisl4jp2dbisacz9hirdq8vr",
           name: "qtquickeffectmaker-everywhere-src-6.11.2.tar.xz",
         })))),
     })),
     qtquicktimeline: nix.thunk(() => ({
-      [nix.POS]: pos$50,
+      [nix.POS]: $pos[49],
       version: "6.11.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$49,
+          [nix.POS]: $pos[48],
           url: nix.thunk(() => nix.str`${mirror}/official_releases/qt/6.11/6.11.2/submodules/qtquicktimeline-everywhere-src-6.11.2.tar.xz`),
           sha256: "05qxi1gqv02af28rlzlbmxc4v939i920gqblvrfh9i50002z22i5",
           name: "qtquicktimeline-everywhere-src-6.11.2.tar.xz",
         })))),
     })),
     qtremoteobjects: nix.thunk(() => ({
-      [nix.POS]: pos$52,
+      [nix.POS]: $pos[51],
       version: "6.11.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$51,
+          [nix.POS]: $pos[50],
           url: nix.thunk(() => nix.str`${mirror}/official_releases/qt/6.11/6.11.2/submodules/qtremoteobjects-everywhere-src-6.11.2.tar.xz`),
           sha256: "1zbwg7pzswibjjx2vgcl3r4v47xhdwk0c9bik8bv3hlyg60rc32y",
           name: "qtremoteobjects-everywhere-src-6.11.2.tar.xz",
         })))),
     })),
     qtscxml: nix.thunk(() => ({
-      [nix.POS]: pos$54,
+      [nix.POS]: $pos[53],
       version: "6.11.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$53,
+          [nix.POS]: $pos[52],
           url: nix.thunk(() => nix.str`${mirror}/official_releases/qt/6.11/6.11.2/submodules/qtscxml-everywhere-src-6.11.2.tar.xz`),
           sha256: "1zrmxhf2a58dynbxij08vxa6x7b6jllcfwvrhlhgpgzqlyxw957m",
           name: "qtscxml-everywhere-src-6.11.2.tar.xz",
         })))),
     })),
     qtsensors: nix.thunk(() => ({
-      [nix.POS]: pos$56,
+      [nix.POS]: $pos[55],
       version: "6.11.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$55,
+          [nix.POS]: $pos[54],
           url: nix.thunk(() => nix.str`${mirror}/official_releases/qt/6.11/6.11.2/submodules/qtsensors-everywhere-src-6.11.2.tar.xz`),
           sha256: "069ij142dvh4spqp9584pfqqj8265x659xb35wcf5s1jzd6y9j38",
           name: "qtsensors-everywhere-src-6.11.2.tar.xz",
         })))),
     })),
     qtserialbus: nix.thunk(() => ({
-      [nix.POS]: pos$58,
+      [nix.POS]: $pos[57],
       version: "6.11.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$57,
+          [nix.POS]: $pos[56],
           url: nix.thunk(() => nix.str`${mirror}/official_releases/qt/6.11/6.11.2/submodules/qtserialbus-everywhere-src-6.11.2.tar.xz`),
           sha256: "1h9nvwhbfhb5js0458ha653n04d46m70j4gh8gn4bc7njnxcj1lg",
           name: "qtserialbus-everywhere-src-6.11.2.tar.xz",
         })))),
     })),
     qtserialport: nix.thunk(() => ({
-      [nix.POS]: pos$60,
+      [nix.POS]: $pos[59],
       version: "6.11.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$59,
+          [nix.POS]: $pos[58],
           url: nix.thunk(() => nix.str`${mirror}/official_releases/qt/6.11/6.11.2/submodules/qtserialport-everywhere-src-6.11.2.tar.xz`),
           sha256: "13md2wdypib4wjw3mai8hqfyjjs4l67232dnxjr32ks42qv76fnz",
           name: "qtserialport-everywhere-src-6.11.2.tar.xz",
         })))),
     })),
     qtshadertools: nix.thunk(() => ({
-      [nix.POS]: pos$62,
+      [nix.POS]: $pos[61],
       version: "6.11.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$61,
+          [nix.POS]: $pos[60],
           url: nix.thunk(() => nix.str`${mirror}/official_releases/qt/6.11/6.11.2/submodules/qtshadertools-everywhere-src-6.11.2.tar.xz`),
           sha256: "070b41mzqf1b7xnxn2mh7ap79s2702a7bcwhd1c6axkmnyw4cl40",
           name: "qtshadertools-everywhere-src-6.11.2.tar.xz",
         })))),
     })),
     qtspeech: nix.thunk(() => ({
-      [nix.POS]: pos$64,
+      [nix.POS]: $pos[63],
       version: "6.11.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$63,
+          [nix.POS]: $pos[62],
           url: nix.thunk(() => nix.str`${mirror}/official_releases/qt/6.11/6.11.2/submodules/qtspeech-everywhere-src-6.11.2.tar.xz`),
           sha256: "166bqmcffdncyr64zw4h99c9ng19nk30ys371br4j03ikpf0a7cw",
           name: "qtspeech-everywhere-src-6.11.2.tar.xz",
         })))),
     })),
     qtsvg: nix.thunk(() => ({
-      [nix.POS]: pos$66,
+      [nix.POS]: $pos[65],
       version: "6.11.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$65,
+          [nix.POS]: $pos[64],
           url: nix.thunk(() => nix.str`${mirror}/official_releases/qt/6.11/6.11.2/submodules/qtsvg-everywhere-src-6.11.2.tar.xz`),
           sha256: "0xhq64622f6iz42xj4dn0jjgs4jwd9gbi1zyczxjck58xizk756m",
           name: "qtsvg-everywhere-src-6.11.2.tar.xz",
         })))),
     })),
     qttasktree: nix.thunk(() => ({
-      [nix.POS]: pos$68,
+      [nix.POS]: $pos[67],
       version: "6.11.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$67,
+          [nix.POS]: $pos[66],
           url: nix.thunk(() => nix.str`${mirror}/official_releases/qt/6.11/6.11.2/submodules/qttasktree-everywhere-src-6.11.2.tar.xz`),
           sha256: "1n1yq8hws4yq0raanfkjj2r4z671mic2dspg2p6sc5hny292jxn0",
           name: "qttasktree-everywhere-src-6.11.2.tar.xz",
         })))),
     })),
     qttools: nix.thunk(() => ({
-      [nix.POS]: pos$70,
+      [nix.POS]: $pos[69],
       version: "6.11.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$69,
+          [nix.POS]: $pos[68],
           url: nix.thunk(() => nix.str`${mirror}/official_releases/qt/6.11/6.11.2/submodules/qttools-everywhere-src-6.11.2.tar.xz`),
           sha256: "07h4nhk02izczi1wz6dh7gab84vzk7rkm30wwq4pwbsibkrmm9wy",
           name: "qttools-everywhere-src-6.11.2.tar.xz",
         })))),
     })),
     qttranslations: nix.thunk(() => ({
-      [nix.POS]: pos$72,
+      [nix.POS]: $pos[71],
       version: "6.11.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$71,
+          [nix.POS]: $pos[70],
           url: nix.thunk(() => nix.str`${mirror}/official_releases/qt/6.11/6.11.2/submodules/qttranslations-everywhere-src-6.11.2.tar.xz`),
           sha256: "0560cyg3j4fcsq7ikb7rraa8g5ymi9lscmmhqfmryylklz0q85h2",
           name: "qttranslations-everywhere-src-6.11.2.tar.xz",
         })))),
     })),
     qtvirtualkeyboard: nix.thunk(() => ({
-      [nix.POS]: pos$74,
+      [nix.POS]: $pos[73],
       version: "6.11.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$73,
+          [nix.POS]: $pos[72],
           url: nix.thunk(() => nix.str`${mirror}/official_releases/qt/6.11/6.11.2/submodules/qtvirtualkeyboard-everywhere-src-6.11.2.tar.xz`),
           sha256: "0bvwci70c4ng5zgzj621a723p22v58cmzbprbz6llkjw99rjcsjc",
           name: "qtvirtualkeyboard-everywhere-src-6.11.2.tar.xz",
         })))),
     })),
     qtwayland: nix.thunk(() => ({
-      [nix.POS]: pos$76,
+      [nix.POS]: $pos[75],
       version: "6.11.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$75,
+          [nix.POS]: $pos[74],
           url: nix.thunk(() => nix.str`${mirror}/official_releases/qt/6.11/6.11.2/submodules/qtwayland-everywhere-src-6.11.2.tar.xz`),
           sha256: "1pzr4a11dmlbpzfgcm7z95cvnm2r5pq71pg80vsi0aik75g63dwf",
           name: "qtwayland-everywhere-src-6.11.2.tar.xz",
         })))),
     })),
     qtwebchannel: nix.thunk(() => ({
-      [nix.POS]: pos$78,
+      [nix.POS]: $pos[77],
       version: "6.11.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$77,
+          [nix.POS]: $pos[76],
           url: nix.thunk(() => nix.str`${mirror}/official_releases/qt/6.11/6.11.2/submodules/qtwebchannel-everywhere-src-6.11.2.tar.xz`),
           sha256: "0pspql8j7yxjvvxwibavb4kw5lidh6a62rcjqbq8ga5xb2bi9czy",
           name: "qtwebchannel-everywhere-src-6.11.2.tar.xz",
         })))),
     })),
     qtwebengine: nix.thunk(() => ({
-      [nix.POS]: pos$80,
+      [nix.POS]: $pos[79],
       version: "6.11.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$79,
+          [nix.POS]: $pos[78],
           url: nix.thunk(() => nix.str`${mirror}/official_releases/qt/6.11/6.11.2/submodules/qtwebengine-everywhere-src-6.11.2.tar.xz`),
           sha256: "0qy1lyykwwkp288v0y5kqnd1pmz8frzicpgfcldkv4zz02mc20b1",
           name: "qtwebengine-everywhere-src-6.11.2.tar.xz",
         })))),
     })),
     qtwebsockets: nix.thunk(() => ({
-      [nix.POS]: pos$82,
+      [nix.POS]: $pos[81],
       version: "6.11.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$81,
+          [nix.POS]: $pos[80],
           url: nix.thunk(() => nix.str`${mirror}/official_releases/qt/6.11/6.11.2/submodules/qtwebsockets-everywhere-src-6.11.2.tar.xz`),
           sha256: "18y9ycpmny1czkqz7c97hp7l89vxj34h56y5wf87czy3hg1jbzib",
           name: "qtwebsockets-everywhere-src-6.11.2.tar.xz",
         })))),
     })),
     qtwebview: nix.thunk(() => ({
-      [nix.POS]: pos$84,
+      [nix.POS]: $pos[83],
       version: "6.11.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$83,
+          [nix.POS]: $pos[82],
           url: nix.thunk(() => nix.str`${mirror}/official_releases/qt/6.11/6.11.2/submodules/qtwebview-everywhere-src-6.11.2.tar.xz`),
           sha256: "0k0zi0pzbcvrrjfzhim55rbaar4xrdmpip9y5ppxxnl9xq4y28by",
           name: "qtwebview-everywhere-src-6.11.2.tar.xz",

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 21, 5], ["hash", 22, 5]], [["homepage", 60, 5], ["changelog", 61, 5], ["description", 62, 5], ["license", 63, 5], ["maintainers", 64, 5]], [["pname", 11, 3], ["version", 12, 3], ["outputs", 14, 3], ["src", 20, 3], ["postPatch", 25, 3], ["strictDeps", 34, 3], ["depsBuildBuild", 35, 3], ["configureFlags", 37, 3], ["nativeBuildInputs", 45, 3], ["enableParallelBuilding", 49, 3], ["nativeInstallCheckInputs", 51, 3], ["doCheck", 53, 3], ["enableParallelChecking", 54, 3], ["doInstallCheck", 55, 3], ["versionCheckProgram", 57, 3], ["meta", 59, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, buildPackages: false, which: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 60, 5], ["changelog", 61, 5], ["description", 62, 5], ["license", 63, 5], ["maintainers", 64, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["outputs", 14, 3], ["src", 20, 3], ["postPatch", 25, 3], ["strictDeps", 34, 3], ["depsBuildBuild", 35, 3], ["configureFlags", 37, 3], ["nativeBuildInputs", 45, 3], ["enableParallelBuilding", 49, 3], ["nativeInstallCheckInputs", 51, 3], ["doCheck", 53, 3], ["enableParallelChecking", 54, 3], ["doInstallCheck", 55, 3], ["versionCheckProgram", 57, 3], ["meta", 59, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const which = nix.arg($, "which");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "otf2",
       version: "3.2",
       outputs: nix.thunk(() => ["out", "lib", "doc"]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://perftools.pages.jsc.fz-juelich.de/cicd/otf2/tags/otf2-${nix.sel(finalAttrs, "version")}/otf2-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-grOoilUMuMPOyP1F7Kgs3Lr5RSCZd0gkcbS15DDWSo0=",
         })))),
@@ -46,7 +44,7 @@ substituteInPlace build-config/common/platforms/platform-frontend-user-provided 
       doInstallCheck: true,
       versionCheckProgram: nix.thunk(() => [nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/bin/otf2-config`)]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://www.vi-hps.org/projects/score-p",
         changelog: nix.thunk(() => nix.str`https://perftools.pages.jsc.fz-juelich.de/cicd/otf2/tags/otf2-${nix.sel(finalAttrs, "version")}/ChangeLog.txt`),
         description: "Open Trace Format 2 library",

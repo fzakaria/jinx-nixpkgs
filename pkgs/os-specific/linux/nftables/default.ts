@@ -2,16 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 34, 5], ["hash", 35, 5]], [["name", 40, 7], ["url", 41, 7], ["hash", 42, 7]], [["NIX_LDFLAGS", 69, 7]], [["firewall", 82, 47], ["standalone", 82, 56]], [["firewall-nftables", 81, 26], ["nat", 82, 5]], [["url", 86, 5], ["rev-prefix", 87, 5]], [["tests", 80, 12], ["updateScript", 85, 12]], [["description", 91, 5], ["homepage", 92, 5], ["license", 93, 5], ["platforms", 94, 5], ["maintainers", 95, 5], ["mainProgram", 96, 5]], [["version", 30, 3], ["pname", 31, 3], ["src", 33, 3], ["patches", 38, 3], ["nativeBuildInputs", 46, 3], ["buildInputs", 59, 3], ["env", 69, 3], ["configureFlags", 71, 3], ["enableParallelBuilding", 78, 3], ["passthru", 80, 3], ["meta", 90, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, "pkg-config": false, bison: false, flex: false, asciidoc: false, libxslt: false, findXMLCatalogs: false, docbook_xml_dtd_45: false, docbook_xsl: false, libmnl: false, libnftnl: false, libpcap: false, gmp: false, jansson: false, autoreconfHook: false, withDebugSymbols: true, withCli: true, libedit: false, withXtables: true, iptables: false, nixosTests: false, gitUpdater: false, ncurses: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 34, 5], ["hash", 35, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["name", 40, 7], ["url", 41, 7], ["hash", 42, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["NIX_LDFLAGS", 69, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["firewall", 82, 47], ["standalone", 82, 56]]);
-const pos$5 = nix.positions(here + "/default.nix", [["firewall-nftables", 81, 26], ["nat", 82, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["url", 86, 5], ["rev-prefix", 87, 5]]);
-const pos$7 = nix.positions(here + "/default.nix", [["tests", 80, 12], ["updateScript", 85, 12]]);
-const pos$8 = nix.positions(here + "/default.nix", [["description", 91, 5], ["homepage", 92, 5], ["license", 93, 5], ["platforms", 94, 5], ["maintainers", 95, 5], ["mainProgram", 96, 5]]);
-const pos$9 = nix.positions(here + "/default.nix", [["version", 30, 3], ["pname", 31, 3], ["src", 33, 3], ["patches", 38, 3], ["nativeBuildInputs", 46, 3], ["buildInputs", 59, 3], ["env", 69, 3], ["configureFlags", 71, 3], ["enableParallelBuilding", 78, 3], ["passthru", 80, 3], ["meta", 90, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -44,13 +36,13 @@ export default nix.lambda((args) => (() => {
       const version = "1.1.7";
       const pname = "nftables";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://netfilter.org/projects/nftables/files/${pname}-${version}.tar.xz`),
           hash: "sha256-pvvwYNjU//ABUXorlPNWu0Nmv78Lo2Y2b50nzDjKpY8=",
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "musl.patch",
             url: "https://lore.kernel.org/netfilter-devel/20241219231001.1166085-2-hi@alyssa.is/raw",
             hash: "sha256-7vMBIoDWcI/JBInYP5yYWp8BnYbATRfMTxqyZr2L9Sk=",
@@ -69,7 +61,7 @@ export default nix.lambda((args) => (() => {
       ], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isStatic")), ncurses)));
       const buildInputs = nix.thunk(() => nix.concat([libmnl, libnftnl, libpcap, gmp, jansson], nix.concat(nix.app(nix.sel(lib, "optional"), withCli, libedit), nix.app(nix.sel(lib, "optional"), withXtables, iptables))));
       const env = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         NIX_LDFLAGS: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isStatic")), "-lncursesw")),
       }));
       const configureFlags = nix.thunk(() => nix.concat([
@@ -78,27 +70,27 @@ export default nix.lambda((args) => (() => {
       ], nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(withDebugSymbols)), "--disable-debug"), nix.app(nix.sel(lib, "optional"), withXtables, "--with-xtables"))));
       const enableParallelBuilding = true;
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           "firewall-nftables": nix.thunk(() => nix.attr(nixosTests, "firewall-nftables")),
           nat: nix.thunk(() => (() => {
             const from = nix.thunk(() => nix.sel(nixosTests, "nat", "nftables"));
             return {
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             firewall: nix.thunk(() => nix.attr(from, "firewall")),
             standalone: nix.thunk(() => nix.attr(from, "standalone")),
           };
           })()),
         })),
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             url: "https://git.netfilter.org/nftables",
             "rev-prefix": "v",
           })))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         description: "Project that aims to replace the existing {ip,ip6,arp,eb}tables framework",
         homepage: "https://netfilter.org/projects/nftables/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),
@@ -110,7 +102,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "nft",
       }));
       return {
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         version,
         pname,
         src,

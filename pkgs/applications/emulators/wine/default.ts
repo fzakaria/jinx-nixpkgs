@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["src", 75, 7], ["useStaging", 76, 7]], [["src", 79, 7], ["useStaging", 80, 7]], [["src", 85, 7], ["pnameSuffix", 86, 7], ["useStaging", 87, 7]], [["src", 92, 7], ["pnameSuffix", 93, 7], ["useStaging", 94, 7]], [["stable", 74, 5], ["unstable", 78, 5], ["staging", 84, 5], ["yabridge", 91, 5]], [["NIX_CFLAGS_COMPILE", 105, 7]], [["env", 104, 5]]]);
 const formals$1 = { args: { lib: false, stdenv: false, callPackage: false, darwin: false, wineRelease: true, wineBuild: true, gettextSupport: true, fontconfigSupport: true, alsaSupport: true, gtkSupport: true, openglSupport: true, tlsSupport: true, gstreamerSupport: true, cupsSupport: true, dbusSupport: true, openclSupport: true, cairoSupport: true, odbcSupport: true, netapiSupport: true, cursesSupport: true, vaSupport: true, pcapSupport: true, v4lSupport: true, saneSupport: true, gphoto2Support: true, krb5Support: true, pulseaudioSupport: true, udevSupport: true, xineramaSupport: true, vulkanSupport: true, sdlSupport: true, usbSupport: true, mingwSupport: true, waylandSupport: true, x11Support: true, ffmpegSupport: true, embedInstallers: true, moltenvk: false, smartcardSupport: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["src", 75, 7], ["useStaging", 76, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["src", 79, 7], ["useStaging", 80, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["src", 85, 7], ["pnameSuffix", 86, 7], ["useStaging", 87, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["src", 92, 7], ["pnameSuffix", 93, 7], ["useStaging", 94, 7]]);
-const pos$5 = nix.positions(here + "/default.nix", [["stable", 74, 5], ["unstable", 78, 5], ["staging", 84, 5], ["yabridge", 91, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["NIX_CFLAGS_COMPILE", 105, 7]]);
-const pos$7 = nix.positions(here + "/default.nix", [["env", 104, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -56,25 +50,25 @@ export default nix.lambda((args) => (() => {
   const sources = nix.thunk(() => nix.app(callPackage, nix.path(here, "./sources.nix"), nix.thunk(() => ({}))));
   const supportFlags = nix.thunk(() => nix.app(nix.sel(lib, "filterAttrs"), (name) => (_) => !nix.asBool(nix.builtins.elem(name, nix.thunk(() => ["lib", "stdenv", "callPackage", "darwin", "wineRelease", "wineBuild"]))), args_1));
   const releaseInfo = nix.thunk(() => ({
-    [nix.POS]: pos$5,
+    [nix.POS]: $pos[4],
     stable: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       src: nix.thunk(() => nix.sel(sources, "stable")),
       useStaging: false,
     })),
     unstable: nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       src: nix.thunk(() => nix.sel(sources, "unstable")),
       useStaging: false,
     })),
     staging: nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       src: nix.thunk(() => nix.sel(sources, "unstable")),
       pnameSuffix: "-staging",
       useStaging: true,
     })),
     yabridge: nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       src: nix.thunk(() => nix.sel(sources, "yabridge")),
       pnameSuffix: "-yabridge",
       useStaging: true,
@@ -82,8 +76,8 @@ export default nix.lambda((args) => (() => {
   }));
   const baseWine = nix.thunk(() => nix.app(nix.sel(lib, "getAttr"), wineBuild, nix.thunk(() => nix.app(callPackage, nix.path(here, "./packages.nix"), nix.thunk(() => nix.update(nix.sel(releaseInfo, nix.key(nix.force(wineRelease))), supportFlags))))));
   return (nix.asBool(nix.eq(wineRelease, "yabridge")) ? nix.app(nix.sel(baseWine, "overrideAttrs"), (old) => ({
-      [nix.POS]: pos$7,
-      env: nix.thunk(() => nix.update(nix.sel(old, "env"), { [nix.POS]: pos$6, NIX_CFLAGS_COMPILE: "-std=gnu17" })),
+      [nix.POS]: $pos[6],
+      env: nix.thunk(() => nix.update(nix.sel(old, "env"), { [nix.POS]: $pos[5], NIX_CFLAGS_COMPILE: "-std=gnu17" })),
     })) : nix.force(baseWine));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

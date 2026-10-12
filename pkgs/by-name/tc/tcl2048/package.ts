@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 14, 5], ["sha256", 15, 5]], [["homepage", 27, 5], ["description", 28, 5], ["license", 29, 5], ["maintainers", 30, 5], ["mainProgram", 31, 5], ["platforms", 32, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["buildInputs", 18, 3], ["dontUnpack", 19, 3], ["installPhase", 21, 3], ["meta", 26, 3]]]);
 const formals$1 = { args: { lib: false, fetchurl: false, tcl: false, tclPackages: false, runtimeShell: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 14, 5], ["sha256", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 27, 5], ["description", 28, 5], ["license", 29, 5], ["maintainers", 30, 5], ["mainProgram", 31, 5], ["platforms", 32, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["buildInputs", 18, 3], ["dontUnpack", 19, 3], ["installPhase", 21, 3], ["meta", 26, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const tclPackages = nix.arg($, "tclPackages");
   const runtimeShell = nix.arg($, "runtimeShell");
   return nix.app(nix.sel(tcl, "mkTclDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "tcl2048",
       version: "0.4.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://raw.githubusercontent.com/dbohdan/2048.tcl/v${nix.sel(finalAttrs, "version")}/2048.tcl`),
           sha256: "53f5503efd7f029b2614b0f9b1e3aac6c0342735a3c9b811d74a5135fee3e89e",
         })))),
@@ -27,7 +25,7 @@ export default nix.lambda((args) => (() => {
       dontUnpack: true,
       installPhase: "mkdir -pv $out/bin\ninstall -m 755 $src $out/bin/2048\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/dbohdan/2048.tcl",
         description: "Game of 2048 implemented in Tcl",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

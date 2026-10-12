@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/generated-package.nix", [[["url", 43, 5], ["sha256", 44, 5]], [["pname", 40, 3], ["version", 41, 3], ["src", 42, 3], ["postUnpack", 46, 3], ["isLibrary", 47, 3], ["isExecutable", 48, 3], ["libraryHaskellDepends", 49, 3], ["executableHaskellDepends", 77, 3], ["testHaskellDepends", 107, 3], ["homepage", 139, 3], ["description", 140, 3], ["license", 141, 3], ["mainProgram", 142, 3], ["maintainers", 143, 3]]]);
 const formals$1 = { args: { mkDerivation: false, "ansi-terminal": false, async: false, attoparsec: false, base: false, bytestring: false, cassava: false, containers: false, directory: false, "doctest-parallel": false, extra: false, fetchzip: false, filelock: false, filepath: false, fsnotify: false, "hermes-json": false, HUnit: false, lib: false, "nix-derivation": false, optics: false, random: false, relude: false, safe: false, "safe-exceptions": false, stm: false, "streamly-core": false, strict: false, "terminal-size": false, text: false, time: false, transformers: false, "typed-process": false, unix: false, word8: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/generated-package.nix", [["url", 43, 5], ["sha256", 44, 5]]);
-const pos$2 = nix.positions(here + "/generated-package.nix", [["pname", 40, 3], ["version", 41, 3], ["src", 42, 3], ["postUnpack", 46, 3], ["isLibrary", 47, 3], ["isExecutable", 48, 3], ["libraryHaskellDepends", 49, 3], ["executableHaskellDepends", 77, 3], ["testHaskellDepends", 107, 3], ["homepage", 139, 3], ["description", 140, 3], ["license", 141, 3], ["mainProgram", 142, 3], ["maintainers", 143, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -43,11 +42,11 @@ export default nix.lambda((args) => (() => {
   const unix = nix.arg($, "unix");
   const word8 = nix.arg($, "word8");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "nix-output-monitor",
       version: "2.2.0",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://code.maralorn.de/maralorn/nix-output-monitor/archive/v2.2.0.tar.gz",
           sha256: "14qlawcwi4zq586rq75msxh19nkwh3zigzl41g7gdj7fzg030rnl",
         })))),

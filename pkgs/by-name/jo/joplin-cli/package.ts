@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["src", 31, 11], ["substitutions", 32, 11]], [["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["postFetch", 25, 5], ["hash", 40, 5]], [["src", 47, 7], ["missingHashes", 48, 7], ["postPatch", 49, 7], ["hash", 51, 5]], [["YARN_ENABLE_SCRIPTS", 76, 5]], [["changelog", 129, 5], ["description", 130, 5], ["homepage", 131, 5], ["license", 132, 5], ["mainProgram", 133, 5], ["maintainers", 134, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["missingHashes", 43, 3], ["offlineCache", 45, 3], ["nativeBuildInputs", 54, 3], ["buildInputs", 69, 3], ["env", 73, 3], ["postPatch", 79, 3], ["buildPhase", 86, 3], ["installPhase", 104, 3], ["updateScript", 126, 3], ["meta", 128, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, nodejs: false, fetchFromGitHub: false, substitute: false, "yarn-berry_4": false, python3: false, "pkg-config": false, libsecret: false, rsync: false, xcbuild: false, buildPackages: false, clang_20: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["src", 31, 11], ["substitutions", 32, 11]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["postFetch", 25, 5], ["hash", 40, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["src", 47, 7], ["missingHashes", 48, 7], ["postPatch", 49, 7], ["hash", 51, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["YARN_ENABLE_SCRIPTS", 76, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["changelog", 129, 5], ["description", 130, 5], ["homepage", 131, 5], ["license", 132, 5], ["mainProgram", 133, 5], ["maintainers", 134, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["missingHashes", 43, 3], ["offlineCache", 45, 3], ["nativeBuildInputs", 54, 3], ["buildInputs", 69, 3], ["env", 73, 3], ["postPatch", 79, 3], ["buildPhase", 86, 3], ["installPhase", 104, 3], ["updateScript", 126, 3], ["meta", 128, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const buildPackages = nix.arg($, "buildPackages");
   const clang_20 = nix.arg($, "clang_20");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "joplin-cli",
       version: "3.7.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "laurent22",
           repo: "joplin",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,7 +33,7 @@ export default nix.lambda((args) => (() => {
 rm $out/packages/app-cli/tests/support/photo*
 cd $out
 patch -p1 < ${nix.app(substitute, nix.thunk(() => ({
-              [nix.POS]: pos$1,
+              [nix.POS]: $pos[0],
               src: nix.path(here, "./yarn-fix.patch"),
               substitutions: nix.thunk(() => [
                 "--replace-fail",
@@ -51,7 +46,7 @@ patch -p1 < ${nix.app(substitute, nix.thunk(() => ({
         })))),
       missingHashes: nix.path(here, "./missing-hashes.json"),
       offlineCache: nix.thunk(() => nix.app(nix.sel(yarn_berry_4, "fetchYarnBerryDeps"), nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           missingHashes: nix.thunk(() => nix.attr(finalAttrs, "missingHashes")),
           postPatch: nix.thunk(() => nix.attr(finalAttrs, "postPatch")),
@@ -70,13 +65,13 @@ patch -p1 < ${nix.app(substitute, nix.thunk(() => ({
         rsync,
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [xcbuild, nix.thunk(() => nix.sel(buildPackages, "cctools")), clang_20])))),
       buildInputs: nix.thunk(() => [nodejs]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$4, YARN_ENABLE_SCRIPTS: 0n })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[3], YARN_ENABLE_SCRIPTS: 0n })),
       postPatch: "# Don't immediately build everything\nsed -i '/postinstall/d' package.json\n# Don't install onenote-converter subpackage deps\nsed -i '/onenote-converter/d' packages/{lib,app-cli}/package.json\n",
       buildPhase: "runHook preBuild\n\nunset YARN_ENABLE_SCRIPTS\n\nyarn config set enableInlineBuilds true\n\nfor node_modules in packages/*/node_modules; do\n  patchShebangs $node_modules\ndone\n\nyarn workspaces focus root joplin\nyarn workspaces foreach -Rptvi --from joplin run tsc\nyarn workspaces foreach -Rtvi --from joplin run build\n\nrunHook postBuild\n",
       installPhase: "runHook preInstall\n\n# Remove dev dependencies\nyarn workspaces focus --production root joplin\n\nmkdir -p $out/lib/packages\nmkdir $out/bin\nmv packages/{app-cli,renderer,tools,utils,lib,htmlpack,turndown{,-plugin-gfm},fork-*} $out/lib/packages/\nrm -rf $out/lib/packages/lib/node_modules/canvas\n\n# Remove extra files\nrm -rf $out/lib/packages/app-cli/{app/,*.md,.*ignore,tests/,tools/,*.js,tsconfig.json,*.sh}\n\n# Link final binary\nchmod +x $out/lib/packages/app-cli/build/main.js\nln -s $out/lib/packages/app-cli/build/main.js $out/bin/joplin\npatchShebangs $out/bin/joplin\n\nrunHook postInstall\n",
       updateScript: nix.path(here, "./update.sh"),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         changelog: nix.thunk(() => nix.str`https://github.com/laurent22/joplin/releases/v${nix.sel(finalAttrs, "version")}`),
         description: "CLI client for Joplin",
         homepage: "https://joplinapp.org/",

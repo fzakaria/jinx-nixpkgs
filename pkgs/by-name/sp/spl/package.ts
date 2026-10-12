@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["updateScript", 11, 12]], [["url", 14, 5], ["rev", 15, 5], ["hash", 16, 5]], [["description", 22, 5], ["homepage", 23, 5], ["license", 24, 5], ["maintainers", 25, 5], ["mainProgram", 26, 5]], [["pname", 8, 3], ["version", 9, 3], ["passthru", 11, 3], ["src", 13, 3], ["cargoHash", 19, 3], ["meta", 21, 3]]]);
 const formals$1 = { args: { lib: false, fetchgit: false, rustPlatform: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["updateScript", 11, 12]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 14, 5], ["rev", 15, 5], ["hash", 16, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 22, 5], ["homepage", 23, 5], ["license", 24, 5], ["maintainers", 25, 5], ["mainProgram", 26, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["passthru", 11, 3], ["src", 13, 3], ["cargoHash", 19, 3], ["meta", 21, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,22 +12,22 @@ export default nix.lambda((args) => (() => {
   const rustPlatform = nix.arg($, "rustPlatform");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "spl",
       version: "0.4.3",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: "https://git.tudbut.de/tudbut/spl",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-ckj50psQ2/r7Bw03J2VjHx0R1zY5xivJfvB9HNxnJLw=",
         })))),
       cargoHash: "sha256-rq6GO+5qXM22JoAGdAM3Bb6/U0+x5sRYUjnZQUpzcGA=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Simple, concise, concatenative scripting language",
         homepage: "https://git.tudbut.de/tudbut/spl",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

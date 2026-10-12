@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 16, 5], ["sha256", 17, 5]], [["package", 46, 5], ["command", 47, 5], ["version", 48, 5]], [["version", 45, 18]], [["tests", 45, 12]], [["description", 52, 5], ["homepage", 53, 5], ["sourceProvenance", 54, 5], ["license", 55, 5], ["maintainers", 56, 5], ["platforms", 57, 5], ["mainProgram", 58, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["nativeBuildInputs", 20, 3], ["libPath", 25, 3], ["buildCommand", 30, 3], ["passthru", 45, 3], ["meta", 51, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, rpmextract: false, patchelf: false, testers: false, scaleft: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 16, 5], ["sha256", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["package", 46, 5], ["command", 47, 5], ["version", 48, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 45, 18]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 45, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 52, 5], ["homepage", 53, 5], ["sourceProvenance", 54, 5], ["license", 55, 5], ["maintainers", 56, 5], ["platforms", 57, 5], ["mainProgram", 58, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["nativeBuildInputs", 20, 3], ["libPath", 25, 3], ["buildCommand", 30, 3], ["passthru", 45, 3], ["meta", 51, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pname = "scaleft";
       const version = "1.80.1";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://dist.scaleft.com/repos/rpm/stable/centos/9/x86_64/1.80.1/scaleft-client-tools-${version}-1.x86_64.rpm`),
           sha256: "sha256-QrkqAgkplFF6Tp6FWKb2TJaqeOw8ec4zd9pymDP2IyY=",
         }))));
@@ -46,11 +41,11 @@ chmod +x $out/bin/sft
 patchShebangs $out
 `);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               package: scaleft,
               command: "sft -v",
               version: nix.thunk(() => nix.str`sft version ${version}`),
@@ -58,7 +53,7 @@ patchShebangs $out
         })),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Zero Trust software which you can use to secure your internal servers and services",
         homepage: "https://www.scaleft.com",
         sourceProvenance: nix.thunk(() => (() => {
@@ -74,7 +69,7 @@ patchShebangs $out
         mainProgram: "sft",
       }));
       return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname,
         version,
         src,

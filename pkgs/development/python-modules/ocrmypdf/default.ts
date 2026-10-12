@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 39, 5], ["repo", 40, 5], ["tag", 41, 5], ["postFetch", 45, 5], ["hash", 48, 5]], [["gs", 54, 7], ["jbig2", 55, 7], ["pngquant", 56, 7], ["tesseract", 57, 7], ["unpaper", 58, 7]], [["homepage", 101, 5], ["description", 102, 5], ["license", 103, 5], ["maintainers", 107, 5], ["changelog", 110, 5], ["mainProgram", 111, 5]], [["pname", 34, 3], ["version", 35, 3], ["pyproject", 36, 3], ["src", 38, 3], ["patches", 51, 3], ["build-system", 62, 3], ["nativeBuildInputs", 67, 3], ["dependencies", 69, 3], ["nativeCheckInputs", 85, 3], ["pythonImportsCheck", 92, 3], ["postInstall", 94, 3], ["meta", 100, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, deprecation: false, fetchFromGitHub: false, fpdf2: false, ghostscript_headless: false, "hatch-vcs": false, hatchling: false, hypothesis: false, img2pdf: false, jbig2enc: false, packaging: false, "pdfminer-six": false, "pillow-heif": false, pikepdf: false, pillow: false, pluggy: false, pngquant: false, pydantic: false, pypdfium2: false, "pytest-xdist": false, pytestCheckHook: false, rich: false, reportlab: false, replaceVars: false, tesseract: false, uharfbuzz: false, unpaper: false, installShellFiles: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 39, 5], ["repo", 40, 5], ["tag", 41, 5], ["postFetch", 45, 5], ["hash", 48, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["gs", 54, 7], ["jbig2", 55, 7], ["pngquant", 56, 7], ["tesseract", 57, 7], ["unpaper", 58, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["homepage", 101, 5], ["description", 102, 5], ["license", 103, 5], ["maintainers", 107, 5], ["changelog", 110, 5], ["mainProgram", 111, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 34, 3], ["version", 35, 3], ["pyproject", 36, 3], ["src", 38, 3], ["patches", 51, 3], ["build-system", 62, 3], ["nativeBuildInputs", 67, 3], ["dependencies", 69, 3], ["nativeCheckInputs", 85, 3], ["pythonImportsCheck", 92, 3], ["postInstall", 94, 3], ["meta", 100, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -40,12 +37,12 @@ export default nix.lambda((args) => (() => {
   const unpaper = nix.arg($, "unpaper");
   const installShellFiles = nix.arg($, "installShellFiles");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "ocrmypdf",
       version: "17.11.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ocrmypdf",
           repo: "OCRmyPDF",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -55,7 +52,7 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [
         nix.path(here, "./use-pillow-heif.patch"),
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./paths.patch"), nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             gs: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), ghostscript_headless)),
             jbig2: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), jbig2enc)),
             pngquant: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), pngquant)),
@@ -84,7 +81,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["ocrmypdf"]),
       postInstall: "installShellCompletion --cmd ocrmypdf \\\n  --bash misc/completion/ocrmypdf.bash \\\n  --fish misc/completion/ocrmypdf.fish\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/ocrmypdf/OCRmyPDF",
         description: "Adds an OCR text layer to scanned PDF files, allowing them to be searched",
         license: nix.thunk(() => (() => {

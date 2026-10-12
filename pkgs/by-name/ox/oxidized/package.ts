@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["tests", 24, 5], ["updateScript", 25, 5]], [["description", 29, 5], ["homepage", 30, 5], ["license", 31, 5], ["maintainers", 32, 5], ["platforms", 37, 5]], [["pname", 11, 3], ["gemdir", 12, 3], ["ruby", 14, 11], ["exes", 16, 3], ["gemConfig", 21, 3], ["passthru", 23, 3], ["meta", 28, 3]]]);
 const formals$1 = { args: { lib: false, ruby: false, bundlerApp: false, bundlerUpdateScript: false, defaultGemConfig: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["tests", 24, 5], ["updateScript", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 29, 5], ["homepage", 30, 5], ["license", 31, 5], ["maintainers", 32, 5], ["platforms", 37, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["gemdir", 12, 3], ["ruby", 14, 11], ["exes", 16, 3], ["gemConfig", 21, 3], ["passthru", 23, 3], ["meta", 28, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,19 +14,19 @@ export default nix.lambda((args) => (() => {
   const defaultGemConfig = nix.arg($, "defaultGemConfig");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(bundlerApp, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "oxidized",
       gemdir: nix.path(here, "./."),
       ruby: ruby,
       exes: nix.thunk(() => ["oxidized", "oxs"]),
       gemConfig: defaultGemConfig,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         tests: nix.thunk(() => nix.sel(nixosTests, "oxidized")),
         updateScript: nix.thunk(() => nix.app(bundlerUpdateScript, "oxidized")),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Network device configuration backup tool. It's a RANCID replacement",
         homepage: "https://github.com/ytti/oxidized",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

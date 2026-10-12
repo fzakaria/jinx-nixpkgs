@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 20, 5], ["hash", 21, 5], ["stripRoot", 22, 5]], [["owner", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["hash", 33, 5]], [["updateScript", 62, 12]], [["description", 65, 5], ["mainProgram", 66, 5], ["homepage", 67, 5], ["license", 68, 5], ["maintainers", 71, 5], ["platforms", 72, 5]], [["pname", 26, 3], ["version", 27, 3], ["src", 29, 3], ["strictDeps", 36, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 43, 3], ["cmakeFlags", 48, 3], ["postInstall", 57, 3], ["passthru", 62, 3], ["meta", 64, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchzip: false, "nix-update-script": false, ninja: false, cmake: false, SDL2: false, SDL2_mixer: false, unzip: false, buildShareware: true, withSharewareData: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 20, 5], ["hash", 21, 5], ["stripRoot", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["hash", 33, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 62, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 65, 5], ["mainProgram", 66, 5], ["homepage", 67, 5], ["license", 68, 5], ["maintainers", 71, 5], ["platforms", 72, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 26, 3], ["version", 27, 3], ["src", 29, 3], ["strictDeps", 36, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 43, 3], ["cmakeFlags", 48, 3], ["postInstall", 57, 3], ["passthru", 62, 3], ["meta", 64, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,17 +22,17 @@ export default nix.lambda((args) => (() => {
   nix.assert_((!nix.asBool(withSharewareData) || nix.asBool(buildShareware)), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/ta/taradino/package.nix:15:1");
   const datadir = "share/data/rott-shareware/";
   const sharewareData = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: "http://icculus.org/rott/share/1rott13.zip",
       hash: "sha256-l0pP+mNPAabGh7LZrwcB6KOhPRSycrZpAlPVTyDXc6Y=",
       stripRoot: false,
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: nix.thunk(() => nix.add("taradino", nix.app(nix.sel(lib, "optionalString"), buildShareware, "-shareware"))),
       version: "20251222",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "fabiangreffrath",
           repo: "taradino",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -55,11 +51,11 @@ export default nix.lambda((args) => (() => {
 unzip -d "$out/${datadir}" ${sharewareData}/ROTTSW13.SHR
 `))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "SDL2 port of Rise of the Triad",
         mainProgram: nix.thunk(() => nix.add("taradino", nix.app(nix.sel(lib, "optionalString"), buildShareware, "-shareware"))),
         homepage: "https://github.com/fabiangreffrath/taradino",

@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 28, 5], ["hash", 29, 5]], [["ipsec", 34, 7], ["libreswan", 35, 15]], [["packageName", 74, 7], ["attrPath", 75, 7]], [["updateScript", 73, 5], ["networkManagerPlugin", 77, 5]], [["description", 81, 5], ["maintainers", 82, 35], ["teams", 82, 47], ["platforms", 82, 53], ["license", 83, 5]], [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["patches", 32, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 46, 3], ["configureFlags", 58, 3], ["strictDeps", 64, 3], ["__structuredAttrs", 65, 3], ["postPatch", 67, 3], ["passthru", 72, 3], ["meta", 80, 3]]]);
 const formals$1 = { args: { dieHook: false, fetchpatch: false, fetchurl: false, glib: false, gnome: false, gtk3: false, gtk4: false, intltool: false, lib: false, libnl: false, libnma: false, "libnma-gtk4": false, libreswan: false, libsecret: false, networkmanager: false, "pkg-config": false, replaceVars: false, stdenv: false, withGnome: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 28, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["ipsec", 34, 7], ["libreswan", 35, 15]]);
-const pos$3 = nix.positions(here + "/package.nix", [["packageName", 74, 7], ["attrPath", 75, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 73, 5], ["networkManagerPlugin", 77, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 81, 5], ["maintainers", 82, 35], ["teams", 82, 47], ["platforms", 82, 53], ["license", 83, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["patches", 32, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 46, 3], ["configureFlags", 58, 3], ["strictDeps", 64, 3], ["__structuredAttrs", 65, 3], ["postPatch", 67, 3], ["passthru", 72, 3], ["meta", 80, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,17 +27,17 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const withGnome = nix.argOr($, "withGnome", () => true);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "NetworkManager-libreswan",
       version: "1.2.31",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnome/sources/NetworkManager-libreswan/${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/NetworkManager-libreswan-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-5xq3zWruZoOqlDQusm5hQzv/3y2ml4LsptHCmdzDp28=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix-paths.patch"), nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             ipsec: nix.thunk(() => nix.app(nix.sel(lib, "getExe'"), libreswan, "ipsec")),
             libreswan: libreswan,
           })))),
@@ -58,9 +53,9 @@ export default nix.lambda((args) => (() => {
       __structuredAttrs: true,
       postPatch: "echo \"Ensuring that all helper paths lookups were replaced\"\n! grep -lr nm_libreswan_find_helper --exclude 'utils.[ch]' || die \"^ Found non-replaced helper lookup\"\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             packageName: "NetworkManager-libreswan",
             attrPath: "networkmanager-libreswan",
           })))),
@@ -69,7 +64,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(networkmanager, "meta"));
         return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "NetworkManager's libreswan plugin",
         maintainers: nix.thunk(() => nix.attr(from, "maintainers")),
         teams: nix.thunk(() => nix.attr(from, "teams")),

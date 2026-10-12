@@ -2,15 +2,14 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["version", 4, 3], ["hash", 5, 3], ["binaryVersion", 6, 3], ["postPatch", 9, 3], ["depsFile", 14, 3], ["overridesFile", 15, 3], ["invalidDependencies", 19, 3]], [["egg2nix", 29, 7]]]);
 const formals$1 = { args: { callPackage: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["version", 4, 3], ["hash", 5, 3], ["binaryVersion", 6, 3], ["postPatch", 9, 3], ["depsFile", 14, 3], ["overridesFile", 15, 3], ["invalidDependencies", 19, 3]]);
-const pos$2 = nix.positions(here + "/default.nix", [["egg2nix", 29, 7]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const callPackage = nix.arg($, "callPackage");
   return nix.app(nix.sel(nix.app(callPackage, nix.path(here, "../common"), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       version: "5.4.0",
       hash: "sha256-PF1KphwRZ79tm/nq+JHadjC6n188Fb8JUVpwOb/N7F8=",
       binaryVersion: 11n,
@@ -19,7 +18,7 @@ export default nix.lambda((args) => (() => {
       overridesFile: nix.path(here, "./overrides.nix"),
       invalidDependencies: nix.thunk(() => ["srfi-4", "cond-expand", "http-curl"]),
     }))), "overrideScope"), (final) => (prev) => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       egg2nix: nix.thunk(() => nix.app(nix.sel(final, "callPackage"), nix.path(here, "./egg2nix.nix"), nix.thunk(() => ({})))),
     }));
 })(), formals$1);

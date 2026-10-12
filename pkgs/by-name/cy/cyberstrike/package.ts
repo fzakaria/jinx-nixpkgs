@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]], [["pname", 32, 5], ["version", 33, 26], ["src", 33, 34], ["impureEnvVars", 35, 5], ["nativeBuildInputs", 40, 5], ["dontConfigure", 45, 5], ["buildPhase", 47, 5], ["installPhase", 66, 5], ["dontFixup", 76, 5], ["outputHash", 78, 5], ["outputHashAlgo", 79, 5], ["outputHashMode", 80, 5]], [["MODELS_DEV_API_JSON", 101, 5], ["CYBERSTRIKE_DISABLE_MODELS_FETCH", 102, 5], ["CYBERSTRIKE_VERSION", 103, 5], ["CYBERSTRIKE_CHANNEL", 104, 5]], [["config", 159, 7], ["tui", 160, 7]], [["extraArgs", 163, 7]], [["jsonschema", 158, 5], ["updateScript", 162, 5]], [["description", 171, 5], ["homepage", 172, 5], ["changelog", 173, 5], ["license", 174, 5], ["maintainers", 175, 5], ["mainProgram", 176, 5], ["platforms", 178, 5]], [["pname", 18, 3], ["version", 19, 3], ["__structuredAttrs", 21, 3], ["strictDeps", 22, 3], ["src", 24, 3], ["node_modules", 31, 3], ["nativeBuildInputs", 83, 3], ["configurePhase", 90, 3], ["env", 100, 3], ["buildPhase", 107, 3], ["installPhase", 117, 3], ["postInstall", 137, 3], ["nativeInstallCheckInputs", 143, 3], ["doInstallCheck", 148, 3], ["versionCheckKeepEnvironment", 150, 3], ["versionCheckProgramArg", 155, 3], ["passthru", 157, 3], ["meta", 170, 3]]]);
 const formals$1 = { args: { lib: false, bun: false, fetchFromGitHub: false, installShellFiles: false, makeBinaryWrapper: false, "models-dev": false, "nix-update-script": false, nodejs: false, ripgrep: false, stdenvNoCC: false, sysctl: false, versionCheckHook: false, writableTmpDirAsHomeHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 32, 5], ["version", 33, 26], ["src", 33, 34], ["impureEnvVars", 35, 5], ["nativeBuildInputs", 40, 5], ["dontConfigure", 45, 5], ["buildPhase", 47, 5], ["installPhase", 66, 5], ["dontFixup", 76, 5], ["outputHash", 78, 5], ["outputHashAlgo", 79, 5], ["outputHashMode", 80, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["MODELS_DEV_API_JSON", 101, 5], ["CYBERSTRIKE_DISABLE_MODELS_FETCH", 102, 5], ["CYBERSTRIKE_VERSION", 103, 5], ["CYBERSTRIKE_CHANNEL", 104, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["config", 159, 7], ["tui", 160, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["extraArgs", 163, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["jsonschema", 158, 5], ["updateScript", 162, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["description", 171, 5], ["homepage", 172, 5], ["changelog", 173, 5], ["license", 174, 5], ["maintainers", 175, 5], ["mainProgram", 176, 5], ["platforms", 178, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["__structuredAttrs", 21, 3], ["strictDeps", 22, 3], ["src", 24, 3], ["node_modules", 31, 3], ["nativeBuildInputs", 83, 3], ["configurePhase", 90, 3], ["env", 100, 3], ["buildPhase", 107, 3], ["installPhase", 117, 3], ["postInstall", 137, 3], ["nativeInstallCheckInputs", 143, 3], ["doInstallCheck", 148, 3], ["versionCheckKeepEnvironment", 150, 3], ["versionCheckProgramArg", 155, 3], ["passthru", 157, 3], ["meta", 170, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,20 +21,20 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "cyberstrike",
       version: "1.1.16",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "CyberStrikeus",
           repo: "CyberStrike",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-PKA+qWtyh0aCvefClWVXX9nYW5+hu/ZdNCcBzHQUQBE=",
         })))),
       node_modules: nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-node_modules`),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -81,7 +74,7 @@ patchShebangs packages/*/node_modules
 runHook postConfigure
 `),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         MODELS_DEV_API_JSON: nix.thunk(() => nix.str`${models_dev}/dist/_api.json`),
         CYBERSTRIKE_DISABLE_MODELS_FETCH: true,
         CYBERSTRIKE_VERSION: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -104,19 +97,19 @@ runHook postInstall
       versionCheckKeepEnvironment: nix.thunk(() => ["HOME", "CYBERSTRIKE_DISABLE_MODELS_FETCH"]),
       versionCheckProgramArg: "--version",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         jsonschema: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           config: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/share/cyberstrike/schema.json`),
           tui: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/share/cyberstrike/tui.json`),
         })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             extraArgs: nix.thunk(() => ["--subpackage", "node_modules"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "AI-powered offensive security agent",
         homepage: "https://github.com/CyberStrikeus/CyberStrike",
         changelog: nix.thunk(() => nix.str`https://github.com/CyberStrikeus/CyberStrike/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG.md`),

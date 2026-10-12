@@ -2,17 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["command", 37, 11], ["includes", 38, 11]], [["nixfmt", 36, 19]], [["_file", 29, 9], ["on-unmatched", 33, 9], ["formatter", 36, 9]], [["_file", 43, 9], ["imports", 44, 9]], [["name", 24, 5], ["settings", 26, 5], ["runtimeInputs", 48, 5]], [["mainProgram", 59, 5], ["description", 60, 5], ["longDescription", 61, 5], ["license", 116, 5], ["teams", 117, 5], ["platforms", 118, 5]], [["nativeBuildInputs", 125, 11]], [["simple", 122, 11]], [["tests", 122, 5]], [["meta", 58, 3], ["passthru", 121, 3]]]);
 const formals$1 = { args: { lib: false, runCommand: false, treefmt: false, nixfmt: false, "nixfmt-tree": false, git: false, writableTmpDirAsHomeHook: false, settings: true, runtimeInputs: true, nixfmtPackage: true, runtimePackages: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["command", 37, 11], ["includes", 38, 11]]);
-const pos$2 = nix.positions(here + "/package.nix", [["nixfmt", 36, 19]]);
-const pos$3 = nix.positions(here + "/package.nix", [["_file", 29, 9], ["on-unmatched", 33, 9], ["formatter", 36, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["_file", 43, 9], ["imports", 44, 9]]);
-const pos$5 = nix.positions(here + "/package.nix", [["name", 24, 5], ["settings", 26, 5], ["runtimeInputs", 48, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["mainProgram", 59, 5], ["description", 60, 5], ["longDescription", 61, 5], ["license", 116, 5], ["teams", 117, 5], ["platforms", 118, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["nativeBuildInputs", 125, 11]]);
-const pos$8 = nix.positions(here + "/package.nix", [["simple", 122, 11]]);
-const pos$9 = nix.positions(here + "/package.nix", [["tests", 122, 5]]);
-const pos$10 = nix.positions(here + "/package.nix", [["meta", 58, 3], ["passthru", 121, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,20 +22,20 @@ export default nix.lambda((args) => (() => {
   const allRuntimeInputs = nix.thunk(() => nix.concat(runtimePackages, runtimeInputs));
   const isNixfmt = (p) => nix.eq(nix.selOr(p, () => null, "meta", "mainProgram"), "nixfmt");
   const treefmtWithConfig = nix.thunk(() => nix.app(nix.sel(treefmt, "withConfig"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       name: "nixfmt-tree",
       settings: nix.thunk(() => nix.app(nix.sel(lib, "mkMerge"), nix.thunk(() => [
           nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             _file: nix.path(here, "./package.nix"),
             "on-unmatched": nix.thunk(() => nix.app(nix.sel(lib, "mkOptionDefault"), "info")),
             formatter: nix.thunk(() => ({
-              [nix.POS]: pos$2,
-              nixfmt: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.app(nix.sel(lib, "any"), isNixfmt, allRuntimeInputs)), nix.thunk(() => ({ [nix.POS]: pos$1, command: "nixfmt", includes: nix.thunk(() => ["*.nix"]) })))),
+              [nix.POS]: $pos[1],
+              nixfmt: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.app(nix.sel(lib, "any"), isNixfmt, allRuntimeInputs)), nix.thunk(() => ({ [nix.POS]: $pos[0], command: "nixfmt", includes: nix.thunk(() => ["*.nix"]) })))),
             })),
           })),
           nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             _file: "<nixfmt-tree args>",
             imports: nix.thunk(() => nix.app(nix.sel(lib, "toList"), settings)),
           })),
@@ -52,9 +43,9 @@ export default nix.lambda((args) => (() => {
       runtimeInputs: nix.thunk(() => nix.app(nix.sel(lib, "warnIf"), nix.thunk(() => nix.has(args_1, "runtimePackages")), "nixfmt-tree: overriding `runtimePackages` is deprecated, use `runtimeInputs` instead.\nNote: you do not need to supply a nixfmt package when using `runtimeInputs`, however you can override `nixfmtPackage` to a different nixfmt package.\nFor additional flexibility, or to configure treefmt without nixfmt, consider using `treefmt.withConfig` instead of `nixfmt-tree`.\n", allRuntimeInputs)),
     }))));
   return nix.app(nix.sel(treefmtWithConfig, "overrideAttrs"), (prevAttrs) => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         mainProgram: "treefmt",
         description: "Official Nix formatter zero-setup starter using treefmt",
         longDescription: "A zero-setup [treefmt](https://treefmt.com/) starter to get started using the [official Nix formatter](https://github.com/NixOS/nixfmt).\n\n- For `nix fmt` to format all Nix files, add this to the `flake.nix` outputs:\n\n  ```nix\n  formatter.${system} = nixpkgs.legacyPackages.${system}.nixfmt-tree;\n  ```\n\n- The same can be done more efficiently with the `treefmt` command,\n  which you can get in `nix-shell`/`nix develop` by extending `mkShell` using\n\n  ```nix\n  mkShell {\n    packages = [ pkgs.nixfmt-tree ];\n  }\n  ```\n\n  You can then also use `treefmt` in a pre-commit/pre-push [Git hook](https://git-scm.com/docs/githooks)\n  and with your editor's format-on-save feature.\n\n- To check formatting in CI, run the following in a checkout of your Git repository:\n  ```\n  treefmt --ci\n  ```\n\nFor more flexibility, you can customise this package using\n```nix\npkgs.nixfmt-tree.override {\n  settings = { /* additional treefmt config */ };\n  runtimeInputs = [ /* additional formatter packages */ ];\n}\n```\n\nYou can achieve similar results by manually configuring `treefmt`:\n```nix\npkgs.treefmt.withConfig {\n  runtimeInputs = [ pkgs.nixfmt ];\n\n  settings = {\n    # Log level for files treefmt won't format\n    on-unmatched = \"info\";\n\n    # Configure nixfmt for .nix files\n    formatter.nixfmt = {\n      command = \"nixfmt\";\n      includes = [ \"*.nix\" ];\n    };\n  };\n}\n```\n\nAlternatively you can switch to the more fully-featured [treefmt-nix](https://github.com/numtide/treefmt-nix).\n",
@@ -63,11 +54,11 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       })),
       passthru: nix.thunk(() => nix.update(nix.sel(prevAttrs, "passthru"), {
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           simple: nix.thunk(() => nix.app(runCommand, "nixfmt-tree-test-simple", nix.thunk(() => ({
-              [nix.POS]: pos$7,
+              [nix.POS]: $pos[6],
               nativeBuildInputs: nix.thunk(() => [git, nixfmt_tree, writableTmpDirAsHomeHook]),
             })), "git config --global user.email \"nix-builder@nixos.org\"\ngit config --global user.name \"Nix Builder\"\n\ncat > unformatted.nix <<EOF\nlet to = \"be formatted\"; in to\nEOF\n\ncat > formatted.nix <<EOF\nlet\n  to = \"be formatted\";\nin\nto\nEOF\n\nmkdir -p repo\n(\n  cd repo\n  mkdir dir\n  cp ../unformatted.nix a.nix\n  cp ../unformatted.nix dir/b.nix\n\n  git init\n  git add .\n  git commit -m \"Initial commit\"\n\n  treefmt dir\n  if [[ \"$(<dir/b.nix)\" != \"$(<../formatted.nix)\" ]]; then\n    echo \"File dir/b.nix was not formatted properly after dir was requested to be formatted\"\n    exit 1\n  elif [[ \"$(<a.nix)\" != \"$(<../unformatted.nix)\" ]]; then\n    echo \"File a.nix was formatted when only dir was requested to be formatted\"\n    exit 1\n  fi\n\n  (\n    cd dir\n    treefmt\n  )\n\n  if [[ \"$(<a.nix)\" != \"$(<../formatted.nix)\" ]]; then\n    echo \"File a.nix was not formatted properly after running treefmt without arguments in dir\"\n    exit 1\n  fi\n)\n\necho \"Success!\"\n\ntouch $out\n")),
         })),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]], [["mainProgram", 60, 5], ["maintainers", 61, 5], ["description", 62, 5], ["homepage", 63, 5], ["license", 64, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 12, 3], ["patches", 19, 3], ["postPatch", 22, 3], ["nativeBuildInputs", 45, 3], ["buildInputs", 50, 3], ["postInstall", 54, 3], ["meta", 59, 3]]]);
 const formals$1 = { args: { fetchFromGitHub: false, lib: false, stdenv: false, cmake: false, qt6: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["mainProgram", 60, 5], ["maintainers", 61, 5], ["description", 62, 5], ["homepage", 63, 5], ["license", 64, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 12, 3], ["patches", 19, 3], ["postPatch", 22, 3], ["nativeBuildInputs", 45, 3], ["buildInputs", 50, 3], ["postInstall", 54, 3], ["meta", 59, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const cmake = nix.arg($, "cmake");
   const qt6 = nix.arg($, "qt6");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "ela-widget-tools",
       version: "0-unstable-2025-10-30",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Liniyous",
           repo: "ElaWidgetTools",
           rev: "c1eed7c23545e61cc63a34f2cc26737c9d563f78",
@@ -42,7 +40,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(qt6, "qtbase"))]),
       postInstall: "cp -r $out/ElaWidgetTools/* $out/\nrm -rf $out/ElaWidgetTools\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         mainProgram: "ElaWidgetToolsExample",
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);

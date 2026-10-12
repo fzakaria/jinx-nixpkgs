@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]], [["url", 52, 7], ["name", 53, 7], ["hash", 54, 7]], [["package", 60, 7], ["versionCheck", 61, 7]], [["pkg-config", 59, 11]], [["tests", 59, 5]], [["homepage", 66, 5], ["description", 67, 5], ["license", 68, 5], ["maintainers", 69, 5], ["pkgConfigModules", 70, 5], ["platforms", 71, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["propagatedBuildInputs", 25, 3], ["cmakeFlags", 26, 3], ["nativeBuildInputs", 31, 3], ["doCheck", 39, 3], ["dontUseCmakeBuildDir", 42, 3], ["postPatch", 45, 3], ["patches", 50, 3], ["passthru", 58, 3], ["meta", 65, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch2: false, cmake: false, icu: false, "pkg-config": false, testers: false, validatePkgConfig: false, enableUnicodeHelp: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 52, 7], ["name", 53, 7], ["hash", 54, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["package", 60, 7], ["versionCheck", 61, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pkg-config", 59, 11]]);
-const pos$5 = nix.positions(here + "/package.nix", [["tests", 59, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["homepage", 66, 5], ["description", 67, 5], ["license", 68, 5], ["maintainers", 69, 5], ["pkgConfigModules", 70, 5], ["platforms", 71, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["propagatedBuildInputs", 25, 3], ["cmakeFlags", 26, 3], ["nativeBuildInputs", 31, 3], ["doCheck", 39, 3], ["dontUseCmakeBuildDir", 42, 3], ["postPatch", 45, 3], ["patches", 50, 3], ["passthru", 58, 3], ["meta", 65, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const validatePkgConfig = nix.arg($, "validatePkgConfig");
   const enableUnicodeHelp = nix.argOr($, "enableUnicodeHelp", () => true);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "cxxopts",
       version: "3.3.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "jarro2783",
           repo: "cxxopts",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -42,25 +36,25 @@ export default nix.lambda((args) => (() => {
       postPatch: "substituteInPlace packaging/pkgconfig.pc.in \\\n  --replace-fail '$'{prefix}/@CMAKE_INSTALL_INCLUDEDIR@ @CMAKE_INSTALL_FULL_INCLUDEDIR@\n",
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/jarro2783/cxxopts/commit/e98c73d665915b292a0592bf34fcbe8522035bc1.patch?full_index=1",
             name: "fix-icu-uc-typo-in-pkgconfig.patch",
             hash: "sha256-bqd3H66Op1/EkN2HLd84Obky4Y2ndPPY8MGZ5fqtdk4=",
           })))),
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "hasPkgConfigModules"), nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               versionCheck: true,
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         homepage: "https://github.com/jarro2783/cxxopts",
         description: "Lightweight C++ GNU-style option parser library",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

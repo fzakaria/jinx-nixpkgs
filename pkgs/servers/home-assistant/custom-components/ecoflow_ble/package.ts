@@ -2,11 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]], [["updateScript", 45, 12]], [["changelog", 48, 5], ["description", 49, 5], ["homepage", 50, 5], ["maintainers", 51, 5], ["license", 52, 5]], [["owner", 19, 3], ["domain", 20, 3], ["version", 21, 3], ["src", 23, 3], ["dependencies", 30, 3], ["nativeCheckInputs", 39, 3], ["passthru", 45, 3], ["meta", 47, 3]]]);
 const formals$1 = { args: { lib: false, buildHomeAssistantComponent: false, fetchFromGitHub: false, bleak: false, "bleak-retry-connector": false, crc: false, ecdsa: false, "jsonpath-ng": false, protobuf6: false, pycryptodome: false, pytestCheckHook: false, "pytest-asyncio": false, "pytest-mock": false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 45, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["changelog", 48, 5], ["description", 49, 5], ["homepage", 50, 5], ["maintainers", 51, 5], ["license", 52, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["owner", 19, 3], ["domain", 20, 3], ["version", 21, 3], ["src", 23, 3], ["dependencies", 30, 3], ["nativeCheckInputs", 39, 3], ["passthru", 45, 3], ["meta", 47, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const domain = "ef_ble";
       const version = "1.1.2";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "rabits",
           repo: "ha-ef-ble",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -38,11 +35,11 @@ export default nix.lambda((args) => (() => {
       const dependencies = nix.thunk(() => [bleak, bleak_retry_connector, ecdsa, crc, protobuf6, pycryptodome]);
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook, pytest_asyncio, pytest_mock]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         changelog: nix.thunk(() => nix.str`https://github.com/rabits/ha-ef-ble/releases/tag/v${version}`),
         description: "Home Assistant component for EcoFlow BLE devices (local)",
         homepage: "https://github.com/rabits/ha-ef-ble",
@@ -53,7 +50,7 @@ export default nix.lambda((args) => (() => {
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         owner,
         domain,
         version,

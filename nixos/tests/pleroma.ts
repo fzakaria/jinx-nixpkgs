@@ -2,33 +2,11 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/pleroma.nix", [[["buildInputs", 172, 52]], [["certificateFiles", 197, 24]], [["pki", 197, 20]], [["extraHosts", 198, 22]], [["systemPackages", 199, 23]], [["security", 197, 11], ["networking", 198, 11], ["environment", 199, 11]], [["certificateFiles", 212, 24]], [["pki", 212, 20]], [["enable", 214, 31]], [["extraHosts", 213, 22], ["firewall", 214, 22]], [["systemPackages", 215, 23]], [["enable", 222, 15], ["configs", 223, 15]], [["enable", 228, 15], ["package", 229, 15]], [["proxyPass", 238, 19], ["extraConfig", 239, 19]], [["/", 237, 27]], [["addSSL", 234, 17], ["sslCertificate", 235, 17], ["sslCertificateKey", 236, 17], ["locations", 237, 17]], [["pleroma.nixos.test", 233, 28]], [["enable", 232, 15], ["virtualHosts", 233, 15]], [["pleroma", 221, 13], ["postgresql", 227, 13], ["nginx", 231, 13]], [["security", 212, 11], ["networking", 213, 11], ["environment", 215, 11], ["services", 220, 11]], [["client", 189, 7], ["pleroma", 204, 7]], [["timeout", 280, 10]], [["name", 187, 5], ["nodes", 188, 5], ["testScript", 265, 5], ["meta", 280, 5]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/pleroma.nix", [["buildInputs", 172, 52]]);
 const formals$2 = { args: { nodes: false, pkgs: false, config: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/pleroma.nix", [["certificateFiles", 197, 24]]);
-const pos$3 = nix.positions(here + "/pleroma.nix", [["pki", 197, 20]]);
-const pos$4 = nix.positions(here + "/pleroma.nix", [["extraHosts", 198, 22]]);
-const pos$5 = nix.positions(here + "/pleroma.nix", [["systemPackages", 199, 23]]);
-const pos$6 = nix.positions(here + "/pleroma.nix", [["security", 197, 11], ["networking", 198, 11], ["environment", 199, 11]]);
 const formals$3 = { args: { nodes: false, pkgs: false, config: false }, ellipsis: true };
-const pos$7 = nix.positions(here + "/pleroma.nix", [["certificateFiles", 212, 24]]);
-const pos$8 = nix.positions(here + "/pleroma.nix", [["pki", 212, 20]]);
-const pos$9 = nix.positions(here + "/pleroma.nix", [["enable", 214, 31]]);
-const pos$10 = nix.positions(here + "/pleroma.nix", [["extraHosts", 213, 22], ["firewall", 214, 22]]);
-const pos$11 = nix.positions(here + "/pleroma.nix", [["systemPackages", 215, 23]]);
-const pos$12 = nix.positions(here + "/pleroma.nix", [["enable", 222, 15], ["configs", 223, 15]]);
-const pos$13 = nix.positions(here + "/pleroma.nix", [["enable", 228, 15], ["package", 229, 15]]);
-const pos$14 = nix.positions(here + "/pleroma.nix", [["proxyPass", 238, 19], ["extraConfig", 239, 19]]);
-const pos$15 = nix.positions(here + "/pleroma.nix", [["/", 237, 27]]);
-const pos$16 = nix.positions(here + "/pleroma.nix", [["addSSL", 234, 17], ["sslCertificate", 235, 17], ["sslCertificateKey", 236, 17], ["locations", 237, 17]]);
-const pos$17 = nix.positions(here + "/pleroma.nix", [["pleroma.nixos.test", 233, 28]]);
-const pos$18 = nix.positions(here + "/pleroma.nix", [["enable", 232, 15], ["virtualHosts", 233, 15]]);
-const pos$19 = nix.positions(here + "/pleroma.nix", [["pleroma", 221, 13], ["postgresql", 227, 13], ["nginx", 231, 13]]);
-const pos$20 = nix.positions(here + "/pleroma.nix", [["security", 212, 11], ["networking", 213, 11], ["environment", 215, 11], ["services", 220, 11]]);
-const pos$21 = nix.positions(here + "/pleroma.nix", [["client", 189, 7], ["pleroma", 204, 7]]);
 const formals$4 = { args: { nodes: false }, ellipsis: true };
-const pos$22 = nix.positions(here + "/pleroma.nix", [["timeout", 280, 10]]);
-const pos$23 = nix.positions(here + "/pleroma.nix", [["name", 187, 5], ["nodes", 188, 5], ["testScript", 265, 5], ["meta", 280, 5]]);
 
 export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./make-test-python.nix")), nix.lambda((args) => (() => {
     const $ = nix.formals(args, formals$1);
@@ -113,34 +91,34 @@ chown pleroma:pleroma /var/lib/pleroma/secrets.exs
 `)));
     const provision_user = nix.thunk(() => nix.app(nix.sel(pkgs, "writeScriptBin"), "provision-user", "set -eux\n\n# Waiting for pleroma to be up.\ntimeout 5m bash -c 'while [[ \"$(curl -s -o /dev/null -w '%{http_code}' https://pleroma.nixos.test/api/v1/instance)\" != \"200\" ]]; do sleep 2; done'\n# Toremove the RELEASE_COOKIE bit when https://github.com/NixOS/nixpkgs/issues/166229 gets fixed.\nRELEASE_COOKIE=\"/var/lib/pleroma/.cookie\" \\\n  pleroma_ctl user new jamy jamy@nixos.test --password 'jamy-password' --moderator --admin -y\n"));
     const tls_cert = nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "selfSignedCerts", nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         buildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "openssl"))]),
       })), "mkdir -p $out\nopenssl req -x509 \\\n  -subj '/CN=pleroma.nixos.test/' -days 49710 \\\n  -addext 'subjectAltName = DNS:pleroma.nixos.test' \\\n  -keyout \"$out/key.pem\" -newkey ed25519 \\\n  -out \"$out/cert.pem\" -noenc\n"));
     const hosts = (nodes) => nix.str`${nix.sel(nodes, "pleroma", "networking", "primaryIPAddress")} pleroma.nixos.test
 ${nix.sel(nodes, "client", "networking", "primaryIPAddress")} client.nixos.test
 `;
     return {
-      [nix.POS]: pos$23,
+      [nix.POS]: $pos[22],
       name: "pleroma",
       nodes: nix.thunk(() => ({
-        [nix.POS]: pos$21,
+        [nix.POS]: $pos[20],
         client: nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$2);
           const nodes = nix.arg($_1, "nodes");
           const pkgs_1 = nix.arg($_1, "pkgs");
           const config = nix.arg($_1, "config");
           return {
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             security: nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               pki: nix.thunk(() => ({
-                [nix.POS]: pos$2,
+                [nix.POS]: $pos[1],
                 certificateFiles: nix.thunk(() => [nix.thunk(() => nix.str`${tls_cert}/cert.pem`)]),
               })),
             })),
-            networking: nix.thunk(() => ({ [nix.POS]: pos$4, extraHosts: nix.thunk(() => nix.app(hosts, nodes)) })),
+            networking: nix.thunk(() => ({ [nix.POS]: $pos[3], extraHosts: nix.thunk(() => nix.app(hosts, nodes)) })),
             environment: nix.thunk(() => ({
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs_1, "toot")), send_toot]),
             })),
           };
@@ -151,45 +129,45 @@ ${nix.sel(nodes, "client", "networking", "primaryIPAddress")} client.nixos.test
           const pkgs_1 = nix.arg($_1, "pkgs");
           const config = nix.arg($_1, "config");
           return {
-            [nix.POS]: pos$20,
+            [nix.POS]: $pos[19],
             security: nix.thunk(() => ({
-              [nix.POS]: pos$8,
+              [nix.POS]: $pos[7],
               pki: nix.thunk(() => ({
-                [nix.POS]: pos$7,
+                [nix.POS]: $pos[6],
                 certificateFiles: nix.thunk(() => [nix.thunk(() => nix.str`${tls_cert}/cert.pem`)]),
               })),
             })),
             networking: nix.thunk(() => ({
-              [nix.POS]: pos$10,
+              [nix.POS]: $pos[9],
               extraHosts: nix.thunk(() => nix.app(hosts, nodes)),
-              firewall: nix.thunk(() => ({ [nix.POS]: pos$9, enable: false })),
+              firewall: nix.thunk(() => ({ [nix.POS]: $pos[8], enable: false })),
             })),
             environment: nix.thunk(() => ({
-              [nix.POS]: pos$11,
+              [nix.POS]: $pos[10],
               systemPackages: nix.thunk(() => [provision_db, provision_secrets, provision_user]),
             })),
             services: nix.thunk(() => ({
-              [nix.POS]: pos$19,
-              pleroma: nix.thunk(() => ({ [nix.POS]: pos$12, enable: true, configs: nix.thunk(() => [pleroma_conf]) })),
+              [nix.POS]: $pos[18],
+              pleroma: nix.thunk(() => ({ [nix.POS]: $pos[11], enable: true, configs: nix.thunk(() => [pleroma_conf]) })),
               postgresql: nix.thunk(() => ({
-                [nix.POS]: pos$13,
+                [nix.POS]: $pos[12],
                 enable: true,
                 package: nix.thunk(() => nix.sel(pkgs_1, "postgresql_14")),
               })),
               nginx: nix.thunk(() => ({
-                [nix.POS]: pos$18,
+                [nix.POS]: $pos[17],
                 enable: true,
                 virtualHosts: nix.thunk(() => ({
-                  [nix.POS]: pos$17,
+                  [nix.POS]: $pos[16],
                   "pleroma.nixos.test": nix.thunk(() => ({
-                    [nix.POS]: pos$16,
+                    [nix.POS]: $pos[15],
                     addSSL: true,
                     sslCertificate: nix.thunk(() => nix.str`${tls_cert}/cert.pem`),
                     sslCertificateKey: nix.thunk(() => nix.str`${tls_cert}/key.pem`),
                     locations: nix.thunk(() => ({
-                      [nix.POS]: pos$15,
+                      [nix.POS]: $pos[14],
                       "/": nix.thunk(() => ({
-                        [nix.POS]: pos$14,
+                        [nix.POS]: $pos[13],
                         proxyPass: "http://127.0.0.1:4000",
                         extraConfig: "add_header 'Access-Control-Allow-Origin' '*' always;\nadd_header 'Access-Control-Allow-Methods' 'POST, PUT, DELETE, GET, PATCH, OPTIONS' always;\nadd_header 'Access-Control-Allow-Headers' 'Authorization, Content-Type, Idempotency-Key' always;\nadd_header 'Access-Control-Expose-Headers' 'Link, X-RateLimit-Reset, X-RateLimit-Limit, X-RateLimit-Remaining, X-Request-Id' always;\nif ($request_method = OPTIONS) {\n    return 204;\n}\nadd_header X-Permitted-Cross-Domain-Policies none;\nadd_header X-Frame-Options DENY;\nadd_header X-Content-Type-Options nosniff;\nadd_header Referrer-Policy same-origin;\nadd_header X-Download-Options noopen;\nproxy_http_version 1.1;\nproxy_set_header Upgrade $http_upgrade;\nproxy_set_header Connection \"upgrade\";\nproxy_set_header Host $host;\nclient_max_body_size 16m;\n",
                       })),
@@ -206,7 +184,7 @@ ${nix.sel(nodes, "client", "networking", "primaryIPAddress")} client.nixos.test
         const nodes = nix.arg($_1, "nodes");
         return "pleroma.wait_for_unit(\"postgresql.target\")\npleroma.wait_until_succeeds(\"ls /var/lib/pleroma\")\npleroma.succeed(\"provision-db\")\npleroma.wait_for_file(\"/var/lib/pleroma\")\npleroma.succeed(\"provision-secrets\")\npleroma.systemctl(\"restart pleroma-migrations.service\")\npleroma.systemctl(\"restart pleroma.service\")\npleroma.wait_for_unit(\"pleroma.service\")\npleroma.succeed(\"provision-user\")\nclient.succeed(\"send-toot\")\n";
       })(), formals$4),
-      meta: nix.thunk(() => ({ [nix.POS]: pos$22, timeout: 600n })),
+      meta: nix.thunk(() => ({ [nix.POS]: $pos[21], timeout: 600n })),
     };
   })(), formals$1)));
 //# sourceMappingURL=pleroma.ts.map

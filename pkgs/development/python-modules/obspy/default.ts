@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 37, 5], ["repo", 38, 5], ["tag", 39, 5], ["hash", 40, 5]], [["geo", 64, 5], ["imaging", 65, 5], ["io.shapefile", 66, 5]], [["description", 105, 5], ["homepage", 106, 5], ["changelog", 107, 5], ["license", 108, 5], ["maintainers", 109, 5]], [["pname", 31, 3], ["version", 32, 3], ["pyproject", 33, 3], ["__structuredAttrs", 34, 3], ["src", 36, 3], ["postPatch", 43, 3], ["build-system", 50, 3], ["dependencies", 52, 3], ["optional-dependencies", 63, 3], ["pythonImportsCheck", 69, 3], ["stripExclude", 73, 3], ["nativeCheckInputs", 75, 3], ["preCheck", 83, 3], ["pytestFlags", 90, 3], ["disabledTests", 95, 3], ["meta", 104, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, decorator: false, lxml: false, matplotlib: false, numpy: false, requests: false, scipy: false, sqlalchemy: false, cartopy: false, geographiclib: false, pyshp: false, packaging: false, pyproj: false, pytestCheckHook: false, writableTmpDirAsHomeHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 37, 5], ["repo", 38, 5], ["tag", 39, 5], ["hash", 40, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["geo", 64, 5], ["imaging", 65, 5], ["io.shapefile", 66, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 105, 5], ["homepage", 106, 5], ["changelog", 107, 5], ["license", 108, 5], ["maintainers", 109, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 31, 3], ["version", 32, 3], ["pyproject", 33, 3], ["__structuredAttrs", 34, 3], ["src", 36, 3], ["postPatch", 43, 3], ["build-system", 50, 3], ["dependencies", 52, 3], ["optional-dependencies", 63, 3], ["pythonImportsCheck", 69, 3], ["stripExclude", 73, 3], ["nativeCheckInputs", 75, 3], ["preCheck", 83, 3], ["pytestFlags", 90, 3], ["disabledTests", 95, 3], ["meta", 104, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,13 +26,13 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "obspy",
       version: "1.5.1",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "obspy",
           repo: "obspy",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -46,7 +43,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [setuptools]),
       dependencies: nix.thunk(() => [decorator, lxml, matplotlib, numpy, requests, scipy, setuptools, sqlalchemy]),
       "optional-dependencies": nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         geo: nix.thunk(() => [geographiclib]),
         imaging: nix.thunk(() => [cartopy]),
         "io.shapefile": nix.thunk(() => [pyshp]),
@@ -64,7 +61,7 @@ export default nix.lambda((args) => (() => {
         "test_plot_farfield_without_quiver_with_maps",
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Python framework for seismological observatories",
         homepage: "https://www.obspy.org",
         changelog: nix.thunk(() => nix.str`https://github.com/obspy/obspy/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

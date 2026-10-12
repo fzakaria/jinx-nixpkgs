@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 28, 5], ["repo", 29, 5], ["fetchSubmodules", 30, 5], ["tag", 31, 5], ["hash", 32, 5]], [["url", 44, 7], ["hash", 45, 7], ["name", 46, 7]], [["NIX_CFLAGS_COMPILE", 75, 7]], [["name", 83, 7], ["desktopName", 84, 7], ["genericName", 85, 7], ["exec", 86, 7], ["icon", 87, 7], ["comment", 88, 7], ["categories", 89, 7], ["startupNotify", 93, 7], ["keywords", 94, 7]], [["broken", 108, 5], ["description", 109, 5], ["mainProgram", 110, 5], ["homepage", 111, 5], ["license", 112, 5], ["maintainers", 113, 5], ["platforms", 117, 5]], [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["nativeBuildInputs", 35, 3], ["patches", 42, 3], ["buildInputs", 51, 3], ["preFixup", 68, 3], ["qmakeFlags", 72, 3], ["env", 75, 3], ["desktopItems", 81, 3], ["postInstall", 102, 3], ["meta", 107, 3]]]);
 const formals$1 = { args: { copyDesktopItems: false, fetchFromGitHub: false, fetchpatch: false, glibmm_2_4: false, gst_all_1: false, lib: false, libarchive: false, makeDesktopItem: false, pipewire: false, "pkg-config": false, pulseaudio: false, stdenv: false, usePipewire: true, usePulseaudio: true, kdePackages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 28, 5], ["repo", 29, 5], ["fetchSubmodules", 30, 5], ["tag", 31, 5], ["hash", 32, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 44, 7], ["hash", 45, 7], ["name", 46, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 75, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["name", 83, 7], ["desktopName", 84, 7], ["genericName", 85, 7], ["exec", 86, 7], ["icon", 87, 7], ["comment", 88, 7], ["categories", 89, 7], ["startupNotify", 93, 7], ["keywords", 94, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["broken", 108, 5], ["description", 109, 5], ["mainProgram", 110, 5], ["homepage", 111, 5], ["license", 112, 5], ["maintainers", 113, 5], ["platforms", 117, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["nativeBuildInputs", 35, 3], ["patches", 42, 3], ["buildInputs", 51, 3], ["preFixup", 68, 3], ["qmakeFlags", 72, 3], ["env", 75, 3], ["desktopItems", 81, 3], ["postInstall", 102, 3], ["meta", 107, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const kdePackages = nix.arg($, "kdePackages");
   nix.assert_(nix.app(nix.sel(lib, "asserts", "assertMsg"), nix.thunk(() => !nix.eq(usePipewire, usePulseaudio)), "You need to enable one and only one of pulseaudio or pipewire support"), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/ja/jamesdsp/package.nix:19:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "jamesdsp",
       version: "2.7.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Audio4Linux",
           repo: "JDSP4Linux",
           fetchSubmodules: true,
@@ -48,7 +43,7 @@ export default nix.lambda((args) => (() => {
       ]),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/Audio4Linux/JDSP4Linux/pull/241.patch",
             hash: "sha256-RtVKlw2ca8An4FodeD0RN95z9yHDHBgAxsEwLAmW7co=",
             name: "fix-build-with-new-pipewire.patch",
@@ -70,7 +65,7 @@ export default nix.lambda((args) => (() => {
       preFixup: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), usePulseaudio, "qtWrapperArgs+=(--prefix GST_PLUGIN_SYSTEM_PATH_1_0 : \"$GST_PLUGIN_SYSTEM_PATH_1_0\")\n")),
       qmakeFlags: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), usePulseaudio, nix.thunk(() => ["CONFIG+=USE_PULSEAUDIO"]))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => [
             "-Wno-error=incompatible-pointer-types",
             "-Wno-error=implicit-int",
@@ -79,7 +74,7 @@ export default nix.lambda((args) => (() => {
       })),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             name: "jamesdsp",
             desktopName: "JamesDSP",
             genericName: "Audio effects processor",
@@ -93,7 +88,7 @@ export default nix.lambda((args) => (() => {
       ]),
       postInstall: "install -D resources/icons/icon.png $out/share/icons/hicolor/512x512/apps/jamesdsp.png\ninstall -D resources/icons/icon.svg $out/share/icons/hicolor/scalable/apps/jamesdsp.svg\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         broken: nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")))),
         description: "Audio effect processor for PipeWire clients",
         mainProgram: "jamesdsp",

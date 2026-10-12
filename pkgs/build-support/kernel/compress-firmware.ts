@@ -2,14 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/compress-firmware.nix", [[["ext", 14, 9], ["nativeBuildInputs", 15, 9], ["cmd", 16, 9]], [["ext", 19, 9], ["nativeBuildInputs", 20, 9], ["cmd", 21, 9]], [["xz", 13, 7], ["zstd", 18, 7]], [["allowedRequisites", 27, 22]], [["out", 27, 18]], [["outputChecks", 27, 5], ["__structuredAttrs", 28, 5], ["nativeBuildInputs", 29, 26]], [["meta", 31, 63]]]);
 const formals$1 = { args: { runCommand: false, lib: false, type: true, zstd: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/compress-firmware.nix", [["ext", 14, 9], ["nativeBuildInputs", 15, 9], ["cmd", 16, 9]]);
-const pos$2 = nix.positions(here + "/compress-firmware.nix", [["ext", 19, 9], ["nativeBuildInputs", 20, 9], ["cmd", 21, 9]]);
-const pos$3 = nix.positions(here + "/compress-firmware.nix", [["xz", 13, 7], ["zstd", 18, 7]]);
-const pos$4 = nix.positions(here + "/compress-firmware.nix", [["allowedRequisites", 27, 22]]);
-const pos$5 = nix.positions(here + "/compress-firmware.nix", [["out", 27, 18]]);
-const pos$6 = nix.positions(here + "/compress-firmware.nix", [["outputChecks", 27, 5], ["__structuredAttrs", 28, 5], ["nativeBuildInputs", 29, 26]]);
-const pos$7 = nix.positions(here + "/compress-firmware.nix", [["meta", 31, 63]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,29 +13,29 @@ export default nix.lambda((args) => (() => {
   const zstd = nix.arg($, "zstd");
   return (firmware) => (() => {
     const compressor = nix.thunk(() => nix.selOr({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       xz: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         ext: "xz",
         nativeBuildInputs: [],
         cmd: (file) => (target) => nix.str`xz -9c -T1 -C crc32 --lzma2=dict=2MiB "${file}" > "${target}"`,
       })),
       zstd: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         ext: "zst",
         nativeBuildInputs: nix.thunk(() => [zstd]),
         cmd: (file) => (target) => nix.str`zstd -T1 -19 --long --check -f "${file}" -o "${target}"`,
       })),
     }, () => nix.builtins.throw("Unsupported compressor type for firmware."), nix.key(nix.force(type))));
     const args_1 = nix.thunk(() => nix.update({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       outputChecks: nix.thunk(() => ({
-        [nix.POS]: pos$5,
-        out: nix.thunk(() => ({ [nix.POS]: pos$4, allowedRequisites: nix.thunk(() => ["out"]) })),
+        [nix.POS]: $pos[4],
+        out: nix.thunk(() => ({ [nix.POS]: $pos[3], allowedRequisites: nix.thunk(() => ["out"]) })),
       })),
       __structuredAttrs: true,
       nativeBuildInputs: nix.thunk(() => nix.attr(compressor, "nativeBuildInputs")),
-    }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.has(firmware, "meta")), nix.thunk(() => ({ [nix.POS]: pos$7, meta: nix.thunk(() => nix.attr(firmware, "meta")) })))));
+    }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.has(firmware, "meta")), nix.thunk(() => ({ [nix.POS]: $pos[6], meta: nix.thunk(() => nix.attr(firmware, "meta")) })))));
     return nix.app(runCommand, nix.thunk(() => nix.str`${nix.sel(firmware, "name")}-${type}`), args_1, nix.thunk(() => nix.str`mkdir -p $out/lib
 (cd ${firmware} && find lib/firmware -type d -print0) |
     (cd $out && xargs -0 mkdir -v --)

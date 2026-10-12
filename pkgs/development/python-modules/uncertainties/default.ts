@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]], [["arrays", 35, 25]], [["homepage", 51, 5], ["description", 52, 5], ["maintainers", 53, 5], ["license", 57, 5]], [["pname", 19, 3], ["version", 20, 3], ["pyproject", 21, 3], ["src", 23, 3], ["build-system", 30, 3], ["optional-dependencies", 35, 3], ["nativeCheckInputs", 37, 3], ["disabledTests", 43, 3], ["pythonImportsCheck", 48, 3], ["meta", 50, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, "setuptools-scm": false, numpy: false, pytestCheckHook: false, scipy: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["arrays", 35, 25]]);
-const pos$3 = nix.positions(here + "/default.nix", [["homepage", 51, 5], ["description", 52, 5], ["maintainers", 53, 5], ["license", 57, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 19, 3], ["version", 20, 3], ["pyproject", 21, 3], ["src", 23, 3], ["build-system", 30, 3], ["optional-dependencies", 35, 3], ["nativeCheckInputs", 37, 3], ["disabledTests", 43, 3], ["pythonImportsCheck", 48, 3], ["meta", 50, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,19 +20,19 @@ export default nix.lambda((args) => (() => {
       const version = "3.2.4";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "lmfit",
           repo: "uncertainties",
           tag: version,
           hash: "sha256-XfEiE27azEBNCZ6sIBncJI1cYocoXwgxEkclVgR5O34=",
         }))));
       const build_system = nix.thunk(() => [setuptools, setuptools_scm]);
-      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, arrays: nix.thunk(() => [numpy]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: $pos[1], arrays: nix.thunk(() => [numpy]) }));
       const nativeCheckInputs = nix.thunk(() => nix.concat([pytestCheckHook, scipy], nix.sel(optional_dependencies, "arrays")));
       const disabledTests = nix.thunk(() => ["test_repeated_summation_complexity"]);
       const pythonImportsCheck = nix.thunk(() => ["uncertainties"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://uncertainties.readthedocs.io/",
         description: "Transparent calculations with uncertainties on the quantities involved (aka error propagation)",
         maintainers: nix.thunk(() => (() => {
@@ -48,7 +45,7 @@ export default nix.lambda((args) => (() => {
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

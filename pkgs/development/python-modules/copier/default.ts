@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 35, 5], ["repo", 36, 5], ["tag", 37, 5], ["postFetch", 39, 5], ["hash", 42, 5]], [["POETRY_DYNAMIC_VERSIONING_BYPASS", 45, 7]], [["updateScript", 75, 12]], [["description", 78, 5], ["homepage", 79, 5], ["changelog", 80, 5], ["license", 81, 5], ["maintainers", 82, 5], ["mainProgram", 86, 5]], [["pname", 30, 3], ["version", 31, 3], ["pyproject", 32, 3], ["src", 34, 3], ["env", 45, 3], ["build-system", 47, 3], ["dependencies", 52, 3], ["makeWrapperArgs", 73, 3], ["passthru", 75, 3], ["meta", 77, 3]]]);
 const formals$1 = { args: { buildPythonPackage: false, colorama: false, decorator: false, dunamai: false, fetchFromGitHub: false, funcy: false, git: false, hatchling: false, "hatch-vcs": false, "iteration-utilities": false, jinja2: false, "jinja2-ansible-filters": false, lib: false, "mkdocs-material": false, "mkdocs-mermaid2-plugin": false, "nix-update-script": false, mkdocstrings: false, packaging: false, pathspec: false, plumbum: false, pydantic: false, pygments: false, pyyaml: false, "pyyaml-include": false, questionary: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 35, 5], ["repo", 36, 5], ["tag", 37, 5], ["postFetch", 39, 5], ["hash", 42, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["POETRY_DYNAMIC_VERSIONING_BYPASS", 45, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["updateScript", 75, 12]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 78, 5], ["homepage", 79, 5], ["changelog", 80, 5], ["license", 81, 5], ["maintainers", 82, 5], ["mainProgram", 86, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 30, 3], ["version", 31, 3], ["pyproject", 32, 3], ["src", 34, 3], ["env", 45, 3], ["build-system", 47, 3], ["dependencies", 52, 3], ["makeWrapperArgs", 73, 3], ["passthru", 75, 3], ["meta", 77, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -37,12 +33,12 @@ export default nix.lambda((args) => (() => {
   const pyyaml_include = nix.arg($, "pyyaml-include");
   const questionary = nix.arg($, "questionary");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "copier",
       version: "9.17.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "copier-org",
           repo: "copier",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -50,7 +46,7 @@ export default nix.lambda((args) => (() => {
           hash: "sha256-Bv3jXePZwF6fbOcMq1eNPrRZiCXXp0598t6qQJXol1o=",
         })))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         POETRY_DYNAMIC_VERSIONING_BYPASS: nix.thunk(() => nix.sel(finalAttrs, "version")),
       })),
       "build-system": nix.thunk(() => [hatchling, hatch_vcs]),
@@ -78,11 +74,11 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`--suffix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [git]))}`),
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Library and command-line utility for rendering projects templates",
         homepage: "https://copier.readthedocs.io",
         changelog: nix.thunk(() => nix.str`https://github.com/copier-org/copier/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

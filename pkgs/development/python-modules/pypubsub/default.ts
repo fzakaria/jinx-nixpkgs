@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["sha256", 17, 5]], [["homepage", 28, 5], ["description", 29, 5], ["longDescription", 30, 5], ["license", 40, 5]], [["pname", 9, 3], ["version", 10, 3], ["format", 11, 3], ["src", 13, 3], ["nativeCheckInputs", 20, 3], ["checkPhase", 22, 3], ["meta", 27, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, pytest: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["sha256", 17, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 28, 5], ["description", 29, 5], ["longDescription", 30, 5], ["license", 40, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 9, 3], ["version", 10, 3], ["format", 11, 3], ["src", 13, 3], ["nativeCheckInputs", 20, 3], ["checkPhase", 22, 3], ["meta", 27, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,12 +12,12 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const pytest = nix.arg($, "pytest");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "pypubsub",
       version: "4.0.3",
       format: "setuptools",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "schollii",
           repo: "pypubsub",
           rev: "v4.0.3",
@@ -28,7 +26,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [pytest]),
       checkPhase: "cd tests/suite\npy.test\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/schollii/pypubsub",
         description: "Python 3 publish-subscribe library",
         longDescription: "Provides a publish-subscribe API to facilitate event-based or\nmessage-based  architecture in a single-process application. It is pure\nPython  and works on Python 3.3+. It is centered on the notion of a topic;\nsenders publish messages of a given topic, and listeners subscribe to\nmessages of a given topic, all inside the same process. The package also\nsupports a variety of advanced features that facilitate debugging and\nmaintaining topics and messages in larger desktop- or server-based\napplications.\n",

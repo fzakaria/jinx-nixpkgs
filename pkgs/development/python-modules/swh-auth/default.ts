@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["domain", 28, 5], ["group", 29, 5], ["owner", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["hash", 33, 5]], [["description", 65, 5], ["homepage", 66, 5], ["license", 67, 5], ["maintainers", 68, 5]], [["pname", 23, 3], ["version", 24, 3], ["pyproject", 25, 3], ["src", 27, 3], ["build-system", 36, 3], ["dependencies", 41, 3], ["pythonImportsCheck", 49, 3], ["doCheck", 52, 3], ["nativeCheckInputs", 54, 3], ["meta", 64, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitLab: false, setuptools: false, "setuptools-scm": false, click: false, "python-keycloak": false, "python-jose": false, pyyaml: false, "swh-core": false, aiocache: false, httpx: false, pytestCheckHook: false, "pytest-django": false, "pytest-mock": false, djangorestframework: false, starlette: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["domain", 28, 5], ["group", 29, 5], ["owner", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["hash", 33, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 65, 5], ["homepage", 66, 5], ["license", 67, 5], ["maintainers", 68, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 23, 3], ["version", 24, 3], ["pyproject", 25, 3], ["src", 27, 3], ["build-system", 36, 3], ["dependencies", 41, 3], ["pythonImportsCheck", 49, 3], ["doCheck", 52, 3], ["nativeCheckInputs", 54, 3], ["meta", 64, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,12 +26,12 @@ export default nix.lambda((args) => (() => {
   const djangorestframework = nix.arg($, "djangorestframework");
   const starlette = nix.arg($, "starlette");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "swh-auth",
       version: "0.10.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "gitlab.softwareheritage.org",
           group: "swh",
           owner: "devel",
@@ -55,7 +53,7 @@ export default nix.lambda((args) => (() => {
         starlette,
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Set of utility libraries related to user authentication in applications and services based on the use of Keycloak and OpenID Connect",
         homepage: "https://gitlab.softwareheritage.org/swh/devel/swh-auth",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

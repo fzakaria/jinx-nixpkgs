@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/openstack-image.nix", [[["enable", 20, 17]], [["extension", 22, 9]], [["tags", 23, 16]], [["system", 34, 68]], [["lib", 27, 7], ["config", 28, 7], ["copyChannel", 29, 7], ["format", 30, 7], ["baseName", 32, 28], ["additionalSpace", 33, 5], ["pkgs", 34, 5], ["configFile", 35, 5]], [["image", 24, 16], ["openstackImage", 25, 16]], [["nixos", 23, 10], ["build", 24, 10]], [["imports", 14, 3], ["documentation", 20, 3], ["image", 22, 3], ["system", 23, 3]]]);
 const formals$1 = { args: { config: false, lib: false, pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/openstack-image.nix", [["enable", 20, 17]]);
-const pos$2 = nix.positions(here + "/openstack-image.nix", [["extension", 22, 9]]);
-const pos$3 = nix.positions(here + "/openstack-image.nix", [["tags", 23, 16]]);
-const pos$4 = nix.positions(here + "/openstack-image.nix", [["system", 34, 68]]);
-const pos$5 = nix.positions(here + "/openstack-image.nix", [["lib", 27, 7], ["config", 28, 7], ["copyChannel", 29, 7], ["format", 30, 7], ["baseName", 32, 28], ["additionalSpace", 33, 5], ["pkgs", 34, 5], ["configFile", 35, 5]]);
-const pos$6 = nix.positions(here + "/openstack-image.nix", [["image", 24, 16], ["openstackImage", 25, 16]]);
-const pos$7 = nix.positions(here + "/openstack-image.nix", [["nixos", 23, 10], ["build", 24, 10]]);
-const pos$8 = nix.positions(here + "/openstack-image.nix", [["imports", 14, 3], ["documentation", 20, 3], ["image", 22, 3], ["system", 23, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,23 +13,23 @@ export default nix.lambda((args) => (() => {
   const copyChannel = true;
   const format = "qcow2";
   return {
-    [nix.POS]: pos$8,
+    [nix.POS]: $pos[7],
     imports: nix.thunk(() => nix.concat([
       nix.path(here, "../../../modules/virtualisation/openstack-config.nix"),
       nix.path(here, "../../../modules/image/file-options.nix"),
     ], nix.app(nix.sel(lib, "optional"), copyChannel, nix.path(here, "../../../modules/installer/cd-dvd/channel.nix")))),
-    documentation: nix.thunk(() => ({ [nix.POS]: pos$1, enable: copyChannel })),
-    image: nix.thunk(() => ({ [nix.POS]: pos$2, extension: format })),
+    documentation: nix.thunk(() => ({ [nix.POS]: $pos[0], enable: copyChannel })),
+    image: nix.thunk(() => ({ [nix.POS]: $pos[1], extension: format })),
     system: nix.thunk(() => ({
-      [nix.POS]: pos$7,
-      nixos: nix.thunk(() => ({ [nix.POS]: pos$3, tags: nix.thunk(() => ["openstack"]) })),
+      [nix.POS]: $pos[6],
+      nixos: nix.thunk(() => ({ [nix.POS]: $pos[2], tags: nix.thunk(() => ["openstack"]) })),
       build: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         image: nix.thunk(() => nix.sel(config, "system", "build", "openstackImage")),
         openstackImage: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../../lib/make-disk-image.nix")), nix.thunk(() => (() => {
             const from = nix.thunk(() => nix.sel(config, "image"));
             return {
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             lib: lib,
             config: config,
             copyChannel: copyChannel,
@@ -45,7 +38,7 @@ export default nix.lambda((args) => (() => {
             additionalSpace: "1024M",
             pkgs: nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../../..")), nix.thunk(() => (() => {
                 const from_1 = nix.thunk(() => nix.sel(pkgs, "stdenv", "hostPlatform"));
-                return { [nix.POS]: pos$4, system: nix.thunk(() => nix.attr(from_1, "system")) };
+                return { [nix.POS]: $pos[3], system: nix.thunk(() => nix.attr(from_1, "system")) };
               })()))),
             configFile: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "configuration.nix", "{\n  imports = [ <nixpkgs/nixos/modules/virtualisation/openstack-config.nix> ];\n}\n")),
           };

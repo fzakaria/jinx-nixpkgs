@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 34, 5], ["repo", 35, 5], ["tag", 36, 5], ["hash", 37, 5], ["fetchSubmodules", 38, 5]], [["NIX_CFLAGS_COMPILE", 91, 7]], [["description", 141, 5], ["homepage", 142, 5], ["changelog", 143, 5], ["mainProgram", 144, 5], ["license", 145, 5], ["maintainers", 146, 5], ["platforms", 147, 5]], [["pname", 30, 3], ["version", 31, 3], ["src", 33, 3], ["patches", 41, 3], ["postPatch", 50, 3], ["nativeBuildInputs", 62, 3], ["buildInputs", 68, 3], ["env", 91, 3], ["cmakeFlags", 93, 3], ["doCheck", 100, 3], ["checkPhase", 102, 3], ["installPhase", 114, 3], ["dontWrapQtApps", 138, 3], ["meta", 140, 3]]]);
 const formals$1 = { args: { withGUI: true, stdenv: false, lib: false, fetchFromGitHub: false, cmake: false, openssl: false, "util-linux": false, libselinux: false, libsepol: false, "pkg-config": false, "gdk-pixbuf": false, libnotify: false, libice: false, libsm: false, libx11: false, libxkbfile: false, libxi: false, libxtst: false, libxrandr: false, libxinerama: false, "xkeyboard-config": false, xinput: false, "avahi-compat": false, libsForQt5: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 34, 5], ["repo", 35, 5], ["tag", 36, 5], ["hash", 37, 5], ["fetchSubmodules", 38, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 91, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 141, 5], ["homepage", 142, 5], ["changelog", 143, 5], ["mainProgram", 144, 5], ["license", 145, 5], ["maintainers", 146, 5], ["platforms", 147, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 30, 3], ["version", 31, 3], ["src", 33, 3], ["patches", 41, 3], ["postPatch", 50, 3], ["nativeBuildInputs", 62, 3], ["buildInputs", 68, 3], ["env", 91, 3], ["cmakeFlags", 93, 3], ["doCheck", 100, 3], ["checkPhase", 102, 3], ["installPhase", 114, 3], ["dontWrapQtApps", 138, 3], ["meta", 140, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -35,11 +32,11 @@ export default nix.lambda((args) => (() => {
   const avahi_compat = nix.arg($, "avahi-compat");
   const libsForQt5 = nix.arg($, "libsForQt5");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "synergy",
       version: "1.14.6.19-stable",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "symless",
           repo: "synergy",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -77,7 +74,7 @@ substituteInPlace CMakeLists.txt cmake/Version.cmake src/gui/CMakeLists.txt \\
           libnotify,
         ])))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "-Wno-inconsistent-missing-override")),
       })),
       cmakeFlags: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(withGUI)), "-DSYNERGY_BUILD_LEGACY_GUI=OFF"), nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => nix.str`-DCMAKE_OSX_DEPLOYMENT_TARGET=${(nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")) ? "10.13" : nix.sel(stdenv, "hostPlatform", "darwinSdkVersion"))}`)))),
@@ -86,7 +83,7 @@ substituteInPlace CMakeLists.txt cmake/Version.cmake src/gui/CMakeLists.txt \\
       installPhase: nix.thunk(() => nix.add(nix.add(nix.add(nix.add("runHook preInstall\n\nmkdir -p $out/bin\ncp bin/{synergyc,synergys,synergyd,syntool} $out/bin/\n", nix.app(nix.sel(lib, "optionalString"), withGUI, "cp bin/synergy $out/bin/\n")), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), "mkdir -p $out/share/{applications,icons/hicolor/scalable/apps}\ncp ../res/synergy.svg $out/share/icons/hicolor/scalable/apps/\nsubstitute ../res/synergy.desktop $out/share/applications/synergy.desktop \\\n  --replace \"/usr/bin\" \"$out/bin\"\n")), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) && nix.asBool(withGUI))), "mkdir -p $out/Applications\ncp -r bundle/Synergy.app $out/Applications\nln -s $out/bin $out/Applications/Synergy.app/Contents/MacOS\n")), "runHook postInstall\n")),
       dontWrapQtApps: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(withGUI)), true)),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Share one mouse and keyboard between multiple computers",
         homepage: "https://symless.com/synergy",
         changelog: nix.thunk(() => nix.str`https://github.com/symless/synergy/blob/${nix.sel(finalAttrs, "version")}/ChangeLog`),

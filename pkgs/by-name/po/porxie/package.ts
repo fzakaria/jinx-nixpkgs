@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["hash", 20, 5]], [["porxie", 34, 7]], [["updateScript", 32, 5], ["tests", 33, 5]], [["description", 39, 5], ["homepage", 40, 5], ["license", 41, 5], ["maintainers", 42, 5], ["mainProgram", 43, 5], ["platforms", 44, 5]], [["__structuredAttrs", 11, 3], ["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["cargoHash", 22, 3], ["buildInputs", 24, 3], ["checkFlags", 26, 3], ["passthru", 31, 3], ["meta", 38, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromCodeberg: false, rustPlatform: false, nixosTests: false, stdenvNoCC: false, "nix-update-script": false, "rust-jemalloc-sys": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["porxie", 34, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 32, 5], ["tests", 33, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 39, 5], ["homepage", 40, 5], ["license", 41, 5], ["maintainers", 42, 5], ["mainProgram", 43, 5], ["platforms", 44, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["__structuredAttrs", 11, 3], ["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["cargoHash", 22, 3], ["buildInputs", 24, 3], ["checkFlags", 26, 3], ["passthru", 31, 3], ["meta", 38, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const rust_jemalloc_sys = nix.arg($, "rust-jemalloc-sys");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       __structuredAttrs: true,
       pname: "porxie",
       version: "0.3.5",
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Blooym",
           repo: "porxie",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,12 +30,12 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [rust_jemalloc_sys]),
       checkFlags: nix.thunk(() => ["--skip=identity_service::tests::resolve_and_cache"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
-        tests: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenvNoCC, "hostPlatform", "isLinux")), nix.thunk(() => ({ [nix.POS]: pos$2, porxie: nix.thunk(() => nix.sel(nixosTests, "porxie")) })))),
+        tests: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenvNoCC, "hostPlatform", "isLinux")), nix.thunk(() => ({ [nix.POS]: $pos[1], porxie: nix.thunk(() => nix.sel(nixosTests, "porxie")) })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Porxie, an ATProto blob proxy for secure content delivery",
         homepage: "https://codeberg.org/Blooym/porxie",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),

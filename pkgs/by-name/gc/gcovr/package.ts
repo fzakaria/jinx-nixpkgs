@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]], [["description", 76, 5], ["homepage", 77, 5], ["changelog", 78, 5], ["license", 79, 5], ["maintainers", 80, 5], ["mainProgram", 81, 5]], [["pname", 11, 3], ["version", 12, 3], ["pyproject", 13, 3], ["src", 15, 3], ["build-system", 22, 3], ["preBuild", 29, 3], ["dependencies", 38, 3], ["pythonImportsCheck", 45, 3], ["preCheck", 50, 3], ["nativeCheckInputs", 56, 3], ["disabledTests", 66, 3], ["meta", 75, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, python3Packages: false, fetchFromGitHub: false, writableTmpDirAsHomeHook: false, gitMinimal: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 76, 5], ["homepage", 77, 5], ["changelog", 78, 5], ["license", 79, 5], ["maintainers", 80, 5], ["mainProgram", 81, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["pyproject", 13, 3], ["src", 15, 3], ["build-system", 22, 3], ["preBuild", 29, 3], ["dependencies", 38, 3], ["pythonImportsCheck", 45, 3], ["preCheck", 50, 3], ["nativeCheckInputs", 56, 3], ["disabledTests", 66, 3], ["meta", 75, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   const gitMinimal = nix.arg($, "gitMinimal");
   return nix.app(nix.sel(python3Packages, "buildPythonPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "gcovr",
       version: "8.4",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "gcovr",
           repo: "gcovr",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -69,7 +67,7 @@ export CC_REFERENCE="gcc-${nix.app(nix.sel(lib, "versions", "major"), nix.thunk(
         "test_multiple_output_formats_to_stdout_1",
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Python script for summarizing gcov data",
         homepage: "https://www.gcovr.com/",
         changelog: nix.thunk(() => nix.str`https://github.com/gcovr/gcovr/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.rst`),

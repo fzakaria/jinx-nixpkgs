@@ -2,28 +2,11 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/common.nix", [[["name", 29, 9], ["dontUnpack", 30, 9], ["nativeBuildInputs", 31, 9], ["installPhase", 32, 9], ["postFixup", 33, 9]], [["memorySize", 41, 22]], [["timeZone", 42, 12]], [["source", 43, 47]], [["hydra-test/ad-hoc.nix", 43, 23]], [["etc", 43, 19], ["systemPackages", 44, 19]], [["enable", 53, 15]], [["enable", 49, 9], ["hydraURL", 51, 9], ["notificationSender", 52, 9], ["adHoc", 53, 9], ["extraConfig", 54, 9]], [["enable", 63, 9], ["queueRunnerAddr", 64, 9]], [["enable", 68, 24]], [["hydra", 48, 16], ["hydra-builder", 62, 16], ["postfix", 68, 16]], [["after", 66, 38]], [["hydra-builder", 66, 24]], [["services", 66, 15]], [["substituters", 69, 20]], [["settings", 69, 11], ["enable", 70, 11]], [["virtualisation", 41, 7], ["time", 42, 7], ["environment", 43, 7], ["services", 48, 7], ["systemd", 66, 7], ["nix", 69, 7]], [["baseConfig", 2, 3]]]);
 const formals$1 = { args: { config: false, pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/common.nix", [["name", 29, 9], ["dontUnpack", 30, 9], ["nativeBuildInputs", 31, 9], ["installPhase", 32, 9], ["postFixup", 33, 9]]);
-const pos$2 = nix.positions(here + "/common.nix", [["memorySize", 41, 22]]);
-const pos$3 = nix.positions(here + "/common.nix", [["timeZone", 42, 12]]);
-const pos$4 = nix.positions(here + "/common.nix", [["source", 43, 47]]);
-const pos$5 = nix.positions(here + "/common.nix", [["hydra-test/ad-hoc.nix", 43, 23]]);
-const pos$6 = nix.positions(here + "/common.nix", [["etc", 43, 19], ["systemPackages", 44, 19]]);
-const pos$7 = nix.positions(here + "/common.nix", [["enable", 53, 15]]);
-const pos$8 = nix.positions(here + "/common.nix", [["enable", 49, 9], ["hydraURL", 51, 9], ["notificationSender", 52, 9], ["adHoc", 53, 9], ["extraConfig", 54, 9]]);
-const pos$9 = nix.positions(here + "/common.nix", [["enable", 63, 9], ["queueRunnerAddr", 64, 9]]);
-const pos$10 = nix.positions(here + "/common.nix", [["enable", 68, 24]]);
-const pos$11 = nix.positions(here + "/common.nix", [["hydra", 48, 16], ["hydra-builder", 62, 16], ["postfix", 68, 16]]);
-const pos$12 = nix.positions(here + "/common.nix", [["after", 66, 38]]);
-const pos$13 = nix.positions(here + "/common.nix", [["hydra-builder", 66, 24]]);
-const pos$14 = nix.positions(here + "/common.nix", [["services", 66, 15]]);
-const pos$15 = nix.positions(here + "/common.nix", [["substituters", 69, 20]]);
-const pos$16 = nix.positions(here + "/common.nix", [["settings", 69, 11], ["enable", 70, 11]]);
-const pos$17 = nix.positions(here + "/common.nix", [["virtualisation", 41, 7], ["time", 42, 7], ["environment", 43, 7], ["services", 48, 7], ["systemd", 66, 7], ["nix", 69, 7]]);
-const pos$18 = nix.positions(here + "/common.nix", [["baseConfig", 2, 3]]);
 
 export default nix.thunk(() => ({
-  [nix.POS]: pos$18,
+  [nix.POS]: $pos[17],
   baseConfig: nix.lambda((args) => (() => {
     const $ = nix.formals(args, formals$1);
     const config = nix.arg($, "config");
@@ -47,7 +30,7 @@ export default nix.thunk(() => ({
 }
 `)));
     const createTrivialProject = nix.thunk(() => nix.app(nix.sel(pkgs, "stdenv", "mkDerivation"), nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         name: "create-trivial-project",
         dontUnpack: true,
         nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "makeWrapper"))]),
@@ -56,44 +39,44 @@ export default nix.thunk(() => ({
 `),
       }))));
     return {
-      [nix.POS]: pos$17,
-      virtualisation: nix.thunk(() => ({ [nix.POS]: pos$2, memorySize: 2048n })),
-      time: nix.thunk(() => ({ [nix.POS]: pos$3, timeZone: "UTC" })),
+      [nix.POS]: $pos[16],
+      virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[1], memorySize: 2048n })),
+      time: nix.thunk(() => ({ [nix.POS]: $pos[2], timeZone: "UTC" })),
       environment: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         etc: nix.thunk(() => ({
-          [nix.POS]: pos$5,
-          "hydra-test/ad-hoc.nix": nix.thunk(() => ({ [nix.POS]: pos$4, source: adHocJob })),
+          [nix.POS]: $pos[4],
+          "hydra-test/ad-hoc.nix": nix.thunk(() => ({ [nix.POS]: $pos[3], source: adHocJob })),
         })),
         systemPackages: nix.thunk(() => [createTrivialProject, nix.thunk(() => nix.sel(pkgs, "jq"))]),
       })),
       services: nix.thunk(() => ({
-        [nix.POS]: pos$11,
+        [nix.POS]: $pos[10],
         hydra: nix.thunk(() => ({
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           enable: true,
           hydraURL: "example.com",
           notificationSender: "example@example.com",
-          adHoc: nix.thunk(() => ({ [nix.POS]: pos$7, enable: true })),
+          adHoc: nix.thunk(() => ({ [nix.POS]: $pos[6], enable: true })),
           extraConfig: "<email_notifications>\n  build = 1\n</email_notifications>\n",
         })),
         "hydra-builder": nix.thunk(() => ({
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           enable: true,
           queueRunnerAddr: nix.thunk(() => nix.str`http://[::1]:${nix.builtins.toString(nix.thunk(() => nix.sel(config, "services", "hydra", "queueRunner", "grpc", "port")))}`),
         })),
-        postfix: nix.thunk(() => ({ [nix.POS]: pos$10, enable: true })),
+        postfix: nix.thunk(() => ({ [nix.POS]: $pos[9], enable: true })),
       })),
       systemd: nix.thunk(() => ({
-        [nix.POS]: pos$14,
+        [nix.POS]: $pos[13],
         services: nix.thunk(() => ({
-          [nix.POS]: pos$13,
-          "hydra-builder": nix.thunk(() => ({ [nix.POS]: pos$12, after: nix.thunk(() => ["hydra-queue-runner.service"]) })),
+          [nix.POS]: $pos[12],
+          "hydra-builder": nix.thunk(() => ({ [nix.POS]: $pos[11], after: nix.thunk(() => ["hydra-queue-runner.service"]) })),
         })),
       })),
       nix: nix.thunk(() => ({
-        [nix.POS]: pos$16,
-        settings: nix.thunk(() => ({ [nix.POS]: pos$15, substituters: [] })),
+        [nix.POS]: $pos[15],
+        settings: nix.thunk(() => ({ [nix.POS]: $pos[14], substituters: [] })),
         enable: true,
       })),
     };

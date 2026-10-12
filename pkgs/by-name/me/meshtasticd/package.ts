@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 36, 5], ["hash", 37, 5]], [["owner", 45, 5], ["repo", 46, 5], ["hash", 47, 5], ["tag", 48, 5], ["fetchSubmodules", 49, 5]], [["dependencies", 60, 7]], [["meshtasticd", 147, 26]], [["tests", 146, 12]], [["description", 151, 5], ["longDescription", 152, 5], ["homepage", 159, 5], ["mainProgram", 160, 5], ["license", 161, 5], ["platforms", 162, 5], ["maintainers", 163, 5]], [["pname", 41, 3], ["version", 42, 11], ["src", 44, 3], ["strictDeps", 52, 3], ["nativeBuildInputs", 54, 3], ["buildInputs", 69, 3], ["preConfigure", 82, 3], ["buildPhase", 95, 3], ["installPhase", 103, 3], ["doInstallCheck", 136, 3], ["nativeInstallCheckInputs", 137, 3], ["versionCheckProgramArg", 141, 3], ["preVersionCheck", 142, 3], ["passthru", 146, 3], ["meta", 150, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, fetchzip: false, libarchive: false, "pkg-config": false, jq: false, "platformio-core": false, writableTmpDirAsHomeHook: false, bluez: false, "i2c-tools": false, libx11: false, libgpiod_1: false, libinput: false, libusb1: false, libuv: false, libxkbcommon: false, ulfius: false, "yaml-cpp": false, udevCheckHook: false, versionCheckHook: false, makeBinaryWrapper: false, python3Packages: false, enableDefaultConfig: true, "meshtastic-web": false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 36, 5], ["hash", 37, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 45, 5], ["repo", 46, 5], ["hash", 47, 5], ["tag", 48, 5], ["fetchSubmodules", 49, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["dependencies", 60, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["meshtasticd", 147, 26]]);
-const pos$5 = nix.positions(here + "/package.nix", [["tests", 146, 12]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 151, 5], ["longDescription", 152, 5], ["homepage", 159, 5], ["mainProgram", 160, 5], ["license", 161, 5], ["platforms", 162, 5], ["maintainers", 163, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 41, 3], ["version", 42, 11], ["src", 44, 3], ["strictDeps", 52, 3], ["nativeBuildInputs", 54, 3], ["buildInputs", 69, 3], ["preConfigure", 82, 3], ["buildPhase", 95, 3], ["installPhase", 103, 3], ["doInstallCheck", 136, 3], ["nativeInstallCheckInputs", 137, 3], ["versionCheckProgramArg", 141, 3], ["preVersionCheck", 142, 3], ["passthru", 146, 3], ["meta", 150, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -42,16 +36,16 @@ export default nix.lambda((args) => (() => {
   nix.assert_(nix.builtins.isBool(enableDefaultConfig), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/me/meshtasticd/package.nix:30:1");
   const version = "2.7.23.b246bcd";
   const platformio_deps_native = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: nix.thunk(() => nix.str`https://github.com/meshtastic/firmware/releases/download/v${version}/platformio-deps-native-tft-${version}.zip`),
       hash: "sha256-Jr8/KnzNedGvMfMEjrqBv5HwKZS0jZpHFfp/saQEnng=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "meshtasticd",
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "meshtastic",
           repo: "firmware",
           hash: "sha256-oNV6ZP5aSAFBcn9Y+yEzVTtMKg40eXcvDw5LlyZAft4=",
@@ -63,7 +57,7 @@ export default nix.lambda((args) => (() => {
         libarchive,
         pkg_config,
         nix.thunk(() => nix.app(nix.sel(platformio_core, "overridePythonAttrs"), (oldAttrs) => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             dependencies: nix.thunk(() => nix.concat(nix.sel(oldAttrs, "dependencies"), [nix.thunk(() => nix.sel(python3Packages, "grpcio-tools"))])),
           }))),
         writableTmpDirAsHomeHook,
@@ -115,14 +109,14 @@ done
       preVersionCheck: nix.thunk(() => nix.str`version="${nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(finalAttrs, "version")))}.${nix.app(nix.sel(lib, "versions", "minor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}.${nix.app(nix.sel(lib, "versions", "patch"), nix.thunk(() => nix.sel(finalAttrs, "version")))}"
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           meshtasticd: nix.thunk(() => nix.attr(nixosTests, "meshtasticd")),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Meshtastic daemon for communicating with Meshtastic devices",
         longDescription: "This package has `udev` rules installed as part of the package.\nAdd `services.udev.packages = [ pkgs.meshtasticd ]` into your NixOS\nconfiguration to enable them.\n\nTo enable the default configuration, set the `enableDefaultConfig` parameter to true.\n",
         homepage: "https://github.com/meshtastic/firmware",

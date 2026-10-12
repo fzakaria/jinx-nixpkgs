@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]], [["NIX_CFLAGS_COMPILE", 25, 7]], [["description", 62, 5], ["mainProgram", 63, 5], ["homepage", 64, 5], ["license", 65, 5], ["maintainers", 66, 5], ["platforms", 67, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["env", 25, 3], ["makeFlags", 30, 3], ["sourceRoot", 34, 3], ["postPatch", 36, 3], ["nativeBuildInputs", 41, 3], ["buildInputs", 46, 3], ["postInstall", 51, 3], ["hardeningDisable", 59, 3], ["meta", 61, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, "pkg-config": false, makeWrapper: false, "alsa-utils": false, "alsa-lib": false, gtk4: false, openssl: false, wrapGAppsHook4: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 25, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 62, 5], ["mainProgram", 63, 5], ["homepage", 64, 5], ["license", 65, 5], ["maintainers", 66, 5], ["platforms", 67, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["env", 25, 3], ["makeFlags", 30, 3], ["sourceRoot", 34, 3], ["postPatch", 36, 3], ["nativeBuildInputs", 41, 3], ["buildInputs", 46, 3], ["postInstall", 51, 3], ["hardeningDisable", 59, 3], ["meta", 61, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,18 +18,18 @@ export default nix.lambda((args) => (() => {
   const openssl = nix.arg($, "openssl");
   const wrapGAppsHook4 = nix.arg($, "wrapGAppsHook4");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "alsa-scarlett-gui",
       version: "0.5.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "geoffreybennett",
           repo: "alsa-scarlett-gui",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-DkfpMK0T67B4mnriignf4hx6Ifddls0rN0SxyfEsPZg=",
         })))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-Wno-error=deprecated-declarations", "-Wno-error=discarded-qualifiers"]))),
       })),
       makeFlags: nix.thunk(() => ["DESTDIR=${out}", "PREFIX=''"]),
@@ -49,7 +46,7 @@ substituteInPlace $out/share/applications/vu.b4.alsa-scarlett-gui.desktop \\
 `),
       hardeningDisable: nix.thunk(() => ["fortify3"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "GUI for alsa controls presented by Focusrite Scarlett Gen 2/3/4 Mixer Driver",
         mainProgram: "alsa-scarlett-gui",
         homepage: "https://github.com/geoffreybennett/alsa-scarlett-gui",

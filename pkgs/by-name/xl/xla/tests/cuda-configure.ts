@@ -2,10 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/cuda-configure.nix", [[["cudaPackages", 9, 56]], [["realArches", 12, 36], ["virtualArches", 12, 47], ["cudaForwardCompat", 12, 61]], [["name", 17, 3], ["buildInputs", 21, 3], ["runtimeDependencies", 30, 3], ["buildPhase", 31, 3], ["installPhase", 60, 3], ["dontFixup", 70, 3], ["passthru", 72, 3]]]);
 const formals$1 = { args: { pkgs: false, xla: false, cudaPackages: false, expectSelectedOutput: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/cuda-configure.nix", [["cudaPackages", 9, 56]]);
-const pos$2 = nix.positions(here + "/cuda-configure.nix", [["realArches", 12, 36], ["virtualArches", 12, 47], ["cudaForwardCompat", 12, 61]]);
-const pos$3 = nix.positions(here + "/cuda-configure.nix", [["name", 17, 3], ["buildInputs", 21, 3], ["runtimeDependencies", 30, 3], ["buildPhase", 31, 3], ["installPhase", 60, 3], ["dontFixup", 70, 3], ["passthru", 72, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,18 +12,18 @@ export default nix.lambda((args) => (() => {
   const cudaPackages = nix.arg($, "cudaPackages");
   const expectSelectedOutput = nix.argOr($, "expectSelectedOutput", () => false);
   const lib = nix.thunk(() => nix.attr(pkgs, "lib"));
-  const local = nix.thunk(() => nix.app(nix.sel(pkgs, "callPackage"), nix.path(here, "../cuda-local.nix"), nix.thunk(() => ({ [nix.POS]: pos$1, cudaPackages: cudaPackages }))));
+  const local = nix.thunk(() => nix.app(nix.sel(pkgs, "callPackage"), nix.path(here, "../cuda-local.nix"), nix.thunk(() => ({ [nix.POS]: $pos[0], cudaPackages: cudaPackages }))));
   const expected = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "xla-cuda-configure-expected.json", nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(cudaPackages, "flags"));
         return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         realArches: nix.thunk(() => nix.attr(from, "realArches")),
         virtualArches: nix.thunk(() => nix.attr(from, "virtualArches")),
         cudaForwardCompat: nix.thunk(() => nix.attr(from, "cudaForwardCompat")),
       };
       })())))));
   return nix.app(nix.sel(xla, "overrideAttrs"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       name: nix.thunk(() => nix.str`${nix.sel(xla, "name")}-cuda-configure`),
       buildInputs: nix.thunk(() => (() => {
         const w = nix.withScope(pkgs, null);

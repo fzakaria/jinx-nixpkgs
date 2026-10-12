@@ -2,28 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/openstack-config.nix", [[["targetRoot", 15, 5], ["wgetExtraOptions", 16, 5]], [["device", 37, 7], ["fsType", 38, 7], ["autoResize", 39, 7]], [["device", 45, 7], ["fsType", 46, 7]], [["/", 36, 17], ["/boot", 42, 17]], [["device", 51, 22], ["efiSupport", 52, 22], ["efiInstallAsRemovable", 53, 22], ["extraConfig", 55, 22]], [["grub", 51, 17], ["timeout", 54, 17]], [["devNodes", 62, 14]], [["growPartition", 49, 10], ["kernelParams", 50, 10], ["loader", 51, 10], ["zfs", 62, 10]], [["expandOnBoot", 61, 18]], [["PermitRootLogin", 67, 16], ["PasswordAuthentication", 68, 16]], [["enable", 66, 7], ["settings", 67, 7]], [["zfs", 61, 14], ["openssh", 65, 14]], [["enable", 72, 42]], [["X-StopOnRemoval", 89, 18]], [["Type", 91, 9], ["RemainAfterExit", 92, 9]], [["path", 78, 7], ["description", 79, 7], ["wantedBy", 80, 7], ["before", 81, 7], ["wants", 85, 7], ["after", 86, 7], ["script", 87, 7], ["restartIfChanged", 88, 7], ["unitConfig", 89, 7], ["serviceConfig", 90, 7]], [["serial-getty@tty1", 72, 22], ["openstack-init", 77, 22]], [["services", 72, 13]], [["hostName", 75, 16]], [["fileSystems", 36, 5], ["boot", 49, 5], ["services", 61, 5], ["systemd", 72, 5], ["networking", 75, 5]], [["imports", 20, 3], ["config", 35, 3]]]);
 const formals$1 = { args: { config: false, pkgs: false, lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/openstack-config.nix", [["targetRoot", 15, 5], ["wgetExtraOptions", 16, 5]]);
-const pos$2 = nix.positions(here + "/openstack-config.nix", [["device", 37, 7], ["fsType", 38, 7], ["autoResize", 39, 7]]);
-const pos$3 = nix.positions(here + "/openstack-config.nix", [["device", 45, 7], ["fsType", 46, 7]]);
-const pos$4 = nix.positions(here + "/openstack-config.nix", [["/", 36, 17], ["/boot", 42, 17]]);
-const pos$5 = nix.positions(here + "/openstack-config.nix", [["device", 51, 22], ["efiSupport", 52, 22], ["efiInstallAsRemovable", 53, 22], ["extraConfig", 55, 22]]);
-const pos$6 = nix.positions(here + "/openstack-config.nix", [["grub", 51, 17], ["timeout", 54, 17]]);
-const pos$7 = nix.positions(here + "/openstack-config.nix", [["devNodes", 62, 14]]);
-const pos$8 = nix.positions(here + "/openstack-config.nix", [["growPartition", 49, 10], ["kernelParams", 50, 10], ["loader", 51, 10], ["zfs", 62, 10]]);
-const pos$9 = nix.positions(here + "/openstack-config.nix", [["expandOnBoot", 61, 18]]);
-const pos$10 = nix.positions(here + "/openstack-config.nix", [["PermitRootLogin", 67, 16], ["PasswordAuthentication", 68, 16]]);
-const pos$11 = nix.positions(here + "/openstack-config.nix", [["enable", 66, 7], ["settings", 67, 7]]);
-const pos$12 = nix.positions(here + "/openstack-config.nix", [["zfs", 61, 14], ["openssh", 65, 14]]);
-const pos$13 = nix.positions(here + "/openstack-config.nix", [["enable", 72, 42]]);
-const pos$14 = nix.positions(here + "/openstack-config.nix", [["X-StopOnRemoval", 89, 18]]);
-const pos$15 = nix.positions(here + "/openstack-config.nix", [["Type", 91, 9], ["RemainAfterExit", 92, 9]]);
-const pos$16 = nix.positions(here + "/openstack-config.nix", [["path", 78, 7], ["description", 79, 7], ["wantedBy", 80, 7], ["before", 81, 7], ["wants", 85, 7], ["after", 86, 7], ["script", 87, 7], ["restartIfChanged", 88, 7], ["unitConfig", 89, 7], ["serviceConfig", 90, 7]]);
-const pos$17 = nix.positions(here + "/openstack-config.nix", [["serial-getty@tty1", 72, 22], ["openstack-init", 77, 22]]);
-const pos$18 = nix.positions(here + "/openstack-config.nix", [["services", 72, 13]]);
-const pos$19 = nix.positions(here + "/openstack-config.nix", [["hostName", 75, 16]]);
-const pos$20 = nix.positions(here + "/openstack-config.nix", [["fileSystems", 36, 5], ["boot", 49, 5], ["services", 61, 5], ["systemd", 72, 5], ["networking", 75, 5]]);
-const pos$21 = nix.positions(here + "/openstack-config.nix", [["imports", 20, 3], ["config", 35, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,9 +13,9 @@ export default nix.lambda((args) => (() => {
   const mkIf = nix.thunk(() => nix.attr(lib, "mkIf"));
   const mkDefault = nix.thunk(() => nix.attr(lib, "mkDefault"));
   const cfg = nix.thunk(() => nix.sel(config, "openstack"));
-  const metadataFetcher = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./openstack-metadata-fetcher.nix")), nix.thunk(() => ({ [nix.POS]: pos$1, targetRoot: "/", wgetExtraOptions: "--retry-connrefused" }))));
+  const metadataFetcher = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./openstack-metadata-fetcher.nix")), nix.thunk(() => ({ [nix.POS]: $pos[0], targetRoot: "/", wgetExtraOptions: "--retry-connrefused" }))));
   return {
-    [nix.POS]: pos$21,
+    [nix.POS]: $pos[20],
     imports: nix.thunk(() => [
       nix.path(here, "../profiles/qemu-guest.nix"),
       nix.path(here, "../profiles/headless.nix"),
@@ -43,25 +23,25 @@ export default nix.lambda((args) => (() => {
       nix.path(here, "./amazon-init.nix"),
     ]),
     config: nix.thunk(() => ({
-      [nix.POS]: pos$20,
+      [nix.POS]: $pos[19],
       fileSystems: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         "/": nix.thunk(() => nix.app(mkIf, nix.thunk(() => !nix.asBool(nix.sel(cfg, "zfs", "enable"))), nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             device: "/dev/disk/by-label/nixos",
             fsType: "ext4",
             autoResize: true,
           })))),
-        "/boot": nix.thunk(() => nix.app(mkIf, nix.thunk(() => (nix.asBool(nix.sel(cfg, "efi")) || nix.asBool(nix.sel(cfg, "zfs", "enable")))), nix.thunk(() => ({ [nix.POS]: pos$3, device: "/dev/disk/by-label/ESP", fsType: "vfat" })))),
+        "/boot": nix.thunk(() => nix.app(mkIf, nix.thunk(() => (nix.asBool(nix.sel(cfg, "efi")) || nix.asBool(nix.sel(cfg, "zfs", "enable")))), nix.thunk(() => ({ [nix.POS]: $pos[2], device: "/dev/disk/by-label/ESP", fsType: "vfat" })))),
       })),
       boot: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         growPartition: true,
         kernelParams: nix.thunk(() => ["console=tty1"]),
         loader: nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           grub: nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             device: nix.thunk(() => (nix.asBool(!nix.asBool(nix.sel(cfg, "efi"))) ? "/dev/vda" : "nodev")),
             efiSupport: nix.thunk(() => nix.sel(cfg, "efi")),
             efiInstallAsRemovable: nix.thunk(() => nix.sel(cfg, "efi")),
@@ -70,33 +50,33 @@ export default nix.lambda((args) => (() => {
           timeout: 1n,
         })),
         zfs: nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           devNodes: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "zfs", "enable")), "/dev/")),
         })),
       })),
       services: nix.thunk(() => ({
-        [nix.POS]: pos$12,
+        [nix.POS]: $pos[11],
         zfs: nix.thunk(() => ({
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           expandOnBoot: nix.thunk(() => nix.app(mkIf, nix.thunk(() => nix.sel(cfg, "zfs", "enable")), nix.thunk(() => nix.app(nix.sel(lib, "mkDefault"), "all")))),
         })),
         openssh: nix.thunk(() => ({
-          [nix.POS]: pos$11,
+          [nix.POS]: $pos[10],
           enable: true,
           settings: nix.thunk(() => ({
-            [nix.POS]: pos$10,
+            [nix.POS]: $pos[9],
             PermitRootLogin: "prohibit-password",
             PasswordAuthentication: nix.thunk(() => nix.app(mkDefault, false)),
           })),
         })),
       })),
       systemd: nix.thunk(() => ({
-        [nix.POS]: pos$18,
+        [nix.POS]: $pos[17],
         services: nix.thunk(() => ({
-          [nix.POS]: pos$17,
-          "serial-getty@tty1": nix.thunk(() => ({ [nix.POS]: pos$13, enable: true })),
+          [nix.POS]: $pos[16],
+          "serial-getty@tty1": nix.thunk(() => ({ [nix.POS]: $pos[12], enable: true })),
           "openstack-init": nix.thunk(() => ({
-            [nix.POS]: pos$16,
+            [nix.POS]: $pos[15],
             path: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "wget"))]),
             description: "Fetch Metadata on startup",
             wantedBy: nix.thunk(() => ["multi-user.target"]),
@@ -105,12 +85,12 @@ export default nix.lambda((args) => (() => {
             after: nix.thunk(() => ["network-online.target"]),
             script: metadataFetcher,
             restartIfChanged: false,
-            unitConfig: nix.thunk(() => ({ [nix.POS]: pos$14, "X-StopOnRemoval": false })),
-            serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$15, Type: "oneshot", RemainAfterExit: true })),
+            unitConfig: nix.thunk(() => ({ [nix.POS]: $pos[13], "X-StopOnRemoval": false })),
+            serviceConfig: nix.thunk(() => ({ [nix.POS]: $pos[14], Type: "oneshot", RemainAfterExit: true })),
           })),
         })),
       })),
-      networking: nix.thunk(() => ({ [nix.POS]: pos$19, hostName: nix.thunk(() => nix.app(mkDefault, "")) })),
+      networking: nix.thunk(() => ({ [nix.POS]: $pos[18], hostName: nix.thunk(() => nix.app(mkDefault, "")) })),
     })),
   };
 })(), formals$1);

@@ -2,11 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["RENAME", 82, 9]], [["netbsd-install", 85, 7]], [["tests", 84, 14]], [["path", 21, 5], ["outputs", 23, 5], ["setupHooks", 28, 5], ["preConfigure", 33, 5], ["configurePlatforms", 41, 5], ["configureFlags", 45, 5], ["nativeBuildInputs", 56, 5], ["buildInputs", 62, 5], ["makeFlags", 66, 5], ["env", 82, 5], ["passthru", 84, 5], ["patches", 88, 5], ["preInstall", 94, 5], ["postInstall", 100, 5], ["extraPaths", 136, 5]]]);
 const formals$1 = { args: { lib: false, mkDerivation: false, stdenv: false, zlib: false, defaultMakeFlags: false, coreutils: false, cctools: false, install: false, bsdSetupHook: false, netbsdSetupHook: false, makeMinimal: false, version: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["RENAME", 82, 9]]);
-const pos$2 = nix.positions(here + "/package.nix", [["netbsd-install", 85, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 84, 14]]);
-const pos$4 = nix.positions(here + "/package.nix", [["path", 21, 5], ["outputs", 23, 5], ["setupHooks", 28, 5], ["preConfigure", 33, 5], ["configurePlatforms", 41, 5], ["configureFlags", 45, 5], ["nativeBuildInputs", 56, 5], ["buildInputs", 62, 5], ["makeFlags", 66, 5], ["env", 82, 5], ["passthru", 84, 5], ["patches", 88, 5], ["preInstall", 94, 5], ["postInstall", 100, 5], ["extraPaths", 136, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,7 +22,7 @@ export default nix.lambda((args) => (() => {
   return nix.app(mkDerivation, nix.thunk(() => (() => {
       const commonDeps = nix.thunk(() => [zlib]);
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         path: "tools/compat",
         outputs: nix.thunk(() => ["out", "dev"]),
         setupHooks: nix.thunk(() => [
@@ -44,10 +41,10 @@ export default nix.lambda((args) => (() => {
           "TSORT=cat",
           "MKSHARE=no",
         ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [nix.thunk(() => nix.str`OBJCOPY=${cctools}/bin/strip`)]))))),
-        env: nix.thunk(() => ({ [nix.POS]: pos$1, RENAME: "-D" })),
+        env: nix.thunk(() => ({ [nix.POS]: $pos[0], RENAME: "-D" })),
         passthru: nix.thunk(() => ({
-          [nix.POS]: pos$3,
-          tests: nix.thunk(() => ({ [nix.POS]: pos$2, "netbsd-install": install })),
+          [nix.POS]: $pos[2],
+          tests: nix.thunk(() => ({ [nix.POS]: $pos[1], "netbsd-install": install })),
         })),
         patches: nix.thunk(() => [
           nix.path(here, "./compat-cxx-safe-header.patch"),

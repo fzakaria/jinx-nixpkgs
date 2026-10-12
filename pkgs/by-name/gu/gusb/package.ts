@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 43, 5], ["repo", 44, 5], ["tag", 45, 5], ["hash", 46, 5]], [["python", 51, 7]], [["description", 99, 5], ["mainProgram", 100, 5], ["homepage", 101, 5], ["license", 102, 5], ["maintainers", 103, 5], ["platforms", 104, 5]], [["pname", 32, 3], ["version", 33, 3], ["outputs", 35, 3], ["src", 42, 3], ["patches", 49, 3], ["strictDeps", 55, 3], ["depsBuildBuild", 57, 3], ["nativeBuildInputs", 61, 3], ["propagatedBuildInputs", 73, 3], ["mesonFlags", 79, 3], ["checkInputs", 87, 3], ["doCheck", 91, 3], ["postFixup", 93, 3], ["meta", 98, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, replaceVars: false, meson: false, ninja: false, "pkg-config": false, buildPackages: false, withIntrospection: true, "gobject-introspection": false, "gi-docgen": false, python3: false, glib: false, libusb1: false, "json-glib": false, vala: false, hwdata: false, umockdev: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 43, 5], ["repo", 44, 5], ["tag", 45, 5], ["hash", 46, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["python", 51, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 99, 5], ["mainProgram", 100, 5], ["homepage", 101, 5], ["license", 102, 5], ["maintainers", 103, 5], ["platforms", 104, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 32, 3], ["version", 33, 3], ["outputs", 35, 3], ["src", 42, 3], ["patches", 49, 3], ["strictDeps", 55, 3], ["depsBuildBuild", 57, 3], ["nativeBuildInputs", 61, 3], ["propagatedBuildInputs", 73, 3], ["mesonFlags", 79, 3], ["checkInputs", 87, 3], ["doCheck", 91, 3], ["postFixup", 93, 3], ["meta", 98, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -37,14 +34,17 @@ export default nix.lambda((args) => (() => {
       const version = "0.4.9";
       const outputs = nix.thunk(() => nix.concat(["bin", "out", "dev"], nix.app(nix.sel(lib, "optionals"), withIntrospection, nix.thunk(() => ["devdoc"]))));
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "hughsie",
           repo: "libgusb",
           tag: version,
           hash: "sha256-piIPNLc3deToyQaajXFvM+CKh9ni8mb0P3kb+2RoJOs=",
         }))));
       const patches = nix.thunk(() => [
-        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix-python-path.patch"), nix.thunk(() => ({ [nix.POS]: pos$2, python: nix.thunk(() => nix.str`${pythonEnv}/bin/python3`) })))),
+        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix-python-path.patch"), nix.thunk(() => ({
+            [nix.POS]: $pos[1],
+            python: nix.thunk(() => nix.str`${pythonEnv}/bin/python3`),
+          })))),
       ]);
       const strictDeps = true;
       const depsBuildBuild = nix.thunk(() => [pkg_config]);
@@ -61,7 +61,7 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const postFixup = "# Cannot be in postInstall, otherwise _multioutDocs hook in preFixup will move right back.\nmoveToOutput \"share/doc\" \"$devdoc\"\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "GLib libusb wrapper",
         mainProgram: "gusbcmd",
         homepage: "https://github.com/hughsie/libgusb",
@@ -70,7 +70,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         outputs,

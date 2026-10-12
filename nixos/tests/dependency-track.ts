@@ -2,31 +2,19 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/dependency-track.nix", [[["maintainers", 8, 5]], [["cores", 19, 11], ["diskSize", 20, 11], ["memorySize", 21, 11]], [["systemPackages", 24, 21]], [["preStart", 27, 11]], [["dependency-track", 25, 26]], [["services", 25, 17]], [["domain", 49, 17]], [["passwordFile", 50, 20]], [["enable", 42, 11], ["javaArgs", 46, 11], ["port", 48, 11], ["nginx", 49, 11], ["database", 50, 11]], [["dependency-track", 41, 18]], [["virtualisation", 18, 9], ["environment", 24, 9], ["systemd", 25, 9], ["services", 41, 9]], [["server", 15, 5]], [["name", 6, 3], ["meta", 7, 3], ["nodes", 14, 3], ["testScript", 55, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/dependency-track.nix", [["maintainers", 8, 5]]);
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/dependency-track.nix", [["cores", 19, 11], ["diskSize", 20, 11], ["memorySize", 21, 11]]);
-const pos$3 = nix.positions(here + "/dependency-track.nix", [["systemPackages", 24, 21]]);
-const pos$4 = nix.positions(here + "/dependency-track.nix", [["preStart", 27, 11]]);
-const pos$5 = nix.positions(here + "/dependency-track.nix", [["dependency-track", 25, 26]]);
-const pos$6 = nix.positions(here + "/dependency-track.nix", [["services", 25, 17]]);
-const pos$7 = nix.positions(here + "/dependency-track.nix", [["domain", 49, 17]]);
-const pos$8 = nix.positions(here + "/dependency-track.nix", [["passwordFile", 50, 20]]);
-const pos$9 = nix.positions(here + "/dependency-track.nix", [["enable", 42, 11], ["javaArgs", 46, 11], ["port", 48, 11], ["nginx", 49, 11], ["database", 50, 11]]);
-const pos$10 = nix.positions(here + "/dependency-track.nix", [["dependency-track", 41, 18]]);
-const pos$11 = nix.positions(here + "/dependency-track.nix", [["virtualisation", 18, 9], ["environment", 24, 9], ["systemd", 25, 9], ["services", 41, 9]]);
-const pos$12 = nix.positions(here + "/dependency-track.nix", [["server", 15, 5]]);
-const pos$13 = nix.positions(here + "/dependency-track.nix", [["name", 6, 3], ["meta", 7, 3], ["nodes", 14, 3], ["testScript", 55, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   const dependencyTrackPort = 8081n;
   return {
-    [nix.POS]: pos$13,
+    [nix.POS]: $pos[12],
     name: "dependency-track",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
         return [
@@ -36,45 +24,45 @@ export default nix.lambda((args) => (() => {
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$12,
+      [nix.POS]: $pos[11],
       server: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$11,
+          [nix.POS]: $pos[10],
           virtualisation: nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             cores: 2n,
             diskSize: 4096n,
             memorySize: nix.thunk(() => nix.mul(1024n, 2n)),
           })),
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             systemPackages: nix.thunk(() => (() => {
               const w = nix.withScope(pkgs_1, null);
               return [nix.thunk(() => nix.lookup(w, "curl"))];
             })()),
           })),
           systemd: nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             services: nix.thunk(() => ({
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               "dependency-track": nix.thunk(() => ({
-                [nix.POS]: pos$4,
+                [nix.POS]: $pos[3],
                 preStart: "set -euo pipefail\n\nNIST_DIR=\"$HOME/.dependency-track/nist\"\n\nrm -rf \"$NIST_DIR\"\nmkdir -p \"$NIST_DIR\"\n\nfor feed in $(seq \"2024\" \"2002\"); do\n  touch \"$NIST_DIR/nvdcve-1.1-$feed.json.gz\"\n  echo \"9999999999999\" > \"$NIST_DIR/nvdcve-1.1-$feed.json.gz.ts\"\ndone\n",
               })),
             })),
           })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$10,
+            [nix.POS]: $pos[9],
             "dependency-track": nix.thunk(() => ({
-              [nix.POS]: pos$9,
+              [nix.POS]: $pos[8],
               enable: true,
               javaArgs: nix.thunk(() => ["-Xmx4G"]),
               port: dependencyTrackPort,
-              nginx: nix.thunk(() => ({ [nix.POS]: pos$7, domain: "localhost" })),
+              nginx: nix.thunk(() => ({ [nix.POS]: $pos[6], domain: "localhost" })),
               database: nix.thunk(() => ({
-                [nix.POS]: pos$8,
+                [nix.POS]: $pos[7],
                 passwordFile: nix.thunk(() => nix.str`${nix.app(nix.sel(pkgs_1, "writeText"), "dbPassword", "hunter2'THE''H'''E")}`),
               })),
             })),

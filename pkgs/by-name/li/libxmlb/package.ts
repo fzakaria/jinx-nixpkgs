@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 39, 5], ["repo", 40, 5], ["rev", 41, 5], ["hash", 42, 5]], [["installed-tests", 84, 7]], [["tests", 83, 5]], [["description", 91, 5], ["mainProgram", 92, 5], ["homepage", 93, 5], ["license", 94, 5], ["maintainers", 95, 5], ["platforms", 96, 5]], [["pname", 25, 3], ["version", 26, 3], ["outputs", 28, 3], ["src", 38, 3], ["patches", 45, 3], ["nativeBuildInputs", 49, 3], ["buildInputs", 63, 3], ["mesonFlags", 69, 3], ["preCheck", 76, 3], ["doCheck", 80, 3], ["passthru", 82, 3], ["__structuredAttrs", 88, 3], ["meta", 90, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, docbook_xml_dtd_43: false, "docbook-xsl-nons": false, glib: false, "gobject-introspection": false, "gtk-doc": false, meson: false, ninja: false, "pkg-config": false, python3: false, "shared-mime-info": false, nixosTests: false, xz: false, zstd: false, buildPackages: false, withIntrospection: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 39, 5], ["repo", 40, 5], ["rev", 41, 5], ["hash", 42, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["installed-tests", 84, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 83, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 91, 5], ["mainProgram", 92, 5], ["homepage", 93, 5], ["license", 94, 5], ["maintainers", 95, 5], ["platforms", 96, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 25, 3], ["version", 26, 3], ["outputs", 28, 3], ["src", 38, 3], ["patches", 45, 3], ["nativeBuildInputs", 49, 3], ["buildInputs", 63, 3], ["mesonFlags", 69, 3], ["preCheck", 76, 3], ["doCheck", 80, 3], ["passthru", 82, 3], ["__structuredAttrs", 88, 3], ["meta", 90, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,12 +26,12 @@ export default nix.lambda((args) => (() => {
   const buildPackages = nix.arg($, "buildPackages");
   const withIntrospection = nix.argOr($, "withIntrospection", () => (nix.asBool(nix.app(nix.sel(lib, "meta", "availableOn"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")), gobject_introspection)) && nix.asBool(nix.app(nix.sel(stdenv, "hostPlatform", "emulatorAvailable"), buildPackages))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "libxmlb",
       version: "0.3.27",
       outputs: nix.thunk(() => nix.concat(["out", "lib", "dev", "installedTests"], nix.app(nix.sel(lib, "optionals"), withIntrospection, nix.thunk(() => ["devdoc"])))),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "hughsie",
           repo: "libxmlb",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -62,15 +58,15 @@ export default nix.lambda((args) => (() => {
 `),
       doCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           "installed-tests": nix.thunk(() => nix.sel(nixosTests, "installed-tests", "libxmlb")),
         })),
       })),
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Library to help create and query binary XML blobs",
         mainProgram: "xb-tool",
         homepage: "https://github.com/hughsie/libxmlb",

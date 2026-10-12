@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["docs", 55, 5]], [["description", 84, 7], ["homepage", 85, 7], ["changelog", 86, 7], ["license", 87, 7], ["maintainers", 88, 7], ["teams", 89, 7]], [["pname", 33, 3], ["src", 34, 22], ["version", 34, 26], ["pyproject", 36, 3], ["dontUseCmakeConfigure", 39, 3], ["build-system", 41, 3], ["dependencies", 49, 3], ["optional-dependencies", 54, 3], ["buildInputs", 63, 3], ["nativeCheckInputs", 68, 3], ["preCheck", 74, 3], ["pythonImportsCheck", 78, 3], ["meta", 82, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, libgdstk: false, build: false, "scikit-build-core": false, numpy: false, "typing-extensions": false, matplotlib: false, sphinx: false, "sphinx-inline-tabs": false, "sphinx-rtd-theme": false, cmake: false, ninja: false, zlib: false, qhull: false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["docs", 55, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 84, 7], ["homepage", 85, 7], ["changelog", 86, 7], ["license", 87, 7], ["maintainers", 88, 7], ["teams", 89, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 33, 3], ["src", 34, 22], ["version", 34, 26], ["pyproject", 36, 3], ["dontUseCmakeConfigure", 39, 3], ["build-system", 41, 3], ["dependencies", 49, 3], ["optional-dependencies", 54, 3], ["buildInputs", 63, 3], ["nativeCheckInputs", 68, 3], ["preCheck", 74, 3], ["pythonImportsCheck", 78, 3], ["meta", 82, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,7 +24,7 @@ export default nix.lambda((args) => (() => {
   const qhull = nix.arg($, "qhull");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "gdstk",
       src: nix.thunk(() => nix.attr(libgdstk, "src")),
       version: nix.thunk(() => nix.attr(libgdstk, "version")),
@@ -35,7 +33,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [build, cmake, ninja, numpy, scikit_build_core]),
       dependencies: nix.thunk(() => [numpy, typing_extensions]),
       "optional-dependencies": nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         docs: nix.thunk(() => [matplotlib, sphinx, sphinx_inline_tabs, sphinx_rtd_theme]),
       })),
       buildInputs: nix.thunk(() => [zlib, qhull]),
@@ -45,7 +43,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(libgdstk, "meta"));
         return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: nix.thunk(() => nix.attr(from, "description")),
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         changelog: nix.thunk(() => nix.attr(from, "changelog")),

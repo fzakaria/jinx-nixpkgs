@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["sha256", 20, 5]], [["description", 49, 5], ["homepage", 50, 5], ["license", 51, 5], ["maintainers", 52, 5], ["platforms", 53, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["buildInputs", 23, 3], ["patchPhase", 24, 3], ["dontBuild", 39, 3], ["installPhase", 40, 3], ["meta", 48, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, yosys: false, python3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["sha256", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 49, 5], ["homepage", 50, 5], ["license", 51, 5], ["maintainers", 52, 5], ["platforms", 53, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["buildInputs", 23, 3], ["patchPhase", 24, 3], ["dontBuild", 39, 3], ["installPhase", 40, 3], ["meta", 48, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +17,11 @@ export default nix.lambda((args) => (() => {
       return [nix.thunk(() => nix.lookup(w, "flask"))];
     })()));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "mcy",
       version: "2020.08.03",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "YosysHQ",
           repo: "mcy",
           rev: "62048e69df13f8e03670424626755ae8ef4c36ff",
@@ -45,7 +43,7 @@ substituteInPlace scripts/create_mutated.sh \\
       dontBuild: true,
       installPhase: "mkdir -p $out/bin $out/share/mcy/{dash,scripts}\ninstall mcy.py      $out/bin/mcy      && chmod +x $out/bin/mcy\ninstall mcy-dash.py $out/bin/mcy-dash && chmod +x $out/bin/mcy-dash\ncp -r dash/.    $out/share/mcy/dash/.\ncp -r scripts/. $out/share/mcy/scripts/.\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Mutation-based coverage testing for hardware designs, with Yosys",
         homepage: "https://github.com/YosysHQ/mcy",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),

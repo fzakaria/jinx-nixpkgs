@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["pname", 23, 26], ["version", 23, 32], ["hash", 24, 5]], [["description", 54, 5], ["mainProgram", 55, 5], ["homepage", 56, 5], ["license", 57, 5], ["maintainers", 61, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["cargoHash", 27, 3], ["patches", 29, 3], ["buildInputs", 37, 3], ["buildNoDefaultFeatures", 43, 3], ["buildFeatures", 44, 3], ["preBuild", 46, 3], ["doCheck", 51, 3], ["meta", 53, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchCrate: false, libxml2: false, ncurses: false, zlib: false, features: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["pname", 23, 26], ["version", 23, 32], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 54, 5], ["mainProgram", 55, 5], ["homepage", 56, 5], ["license", 57, 5], ["maintainers", 61, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["cargoHash", 27, 3], ["patches", 29, 3], ["buildInputs", 37, 3], ["buildNoDefaultFeatures", 43, 3], ["buildFeatures", 44, 3], ["preBuild", 46, 3], ["doCheck", 51, 3], ["meta", 53, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const features = nix.argOr($, "features", () => ["use_jemalloc", "allow_avx2", "unstable"]);
   nix.assert_(nix.app(nix.sel(lib, "assertMsg"), nix.thunk(() => !nix.asBool((nix.asBool(nix.app(nix.sel(lib, "elem"), "default", features)) || nix.asBool(nix.app(nix.sel(lib, "elem"), "llvm_backend", features))))), "LLVM support has been dropped due to LLVM 12 EOL."), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/fr/frawk/package.nix:15:1");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "frawk",
       version: "0.4.8",
       src: nix.thunk(() => nix.app(fetchCrate, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-wPnMJDx3aF1Slx5pjLfii366pgNU3FJBdznQLuUboYA=",
@@ -38,7 +36,7 @@ export default nix.lambda((args) => (() => {
       preBuild: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "elem"), "default", features)) || nix.asBool(nix.app(nix.sel(lib, "elem"), "unstable", features)))), "export RUSTC_BOOTSTRAP=1\n")),
       doCheck: false,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Small programming language for writing short programs processing textual data",
         mainProgram: "frawk",
         homepage: "https://github.com/ezrosent/frawk",

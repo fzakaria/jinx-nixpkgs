@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/helper.nix", [[["pname", 15, 3], ["src", 16, 11], ["version", 16, 15], ["meta", 16, 23], ["pyproject", 18, 3], ["sourceRoot", 20, 3], ["nativeBuildInputs", 22, 3], ["pythonRelaxDeps", 26, 3], ["postPatch", 28, 3], ["postInstall", 34, 3], ["propagatedBuildInputs", 40, 3]]]);
 const formals$1 = { args: { buildPythonApplication: false, "yubikey-manager": false, mss: false, "zxing-cpp": false, pillow: false, "poetry-core": false, src: false, version: false, meta: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/helper.nix", [["pname", 15, 3], ["src", 16, 11], ["version", 16, 15], ["meta", 16, 23], ["pyproject", 18, 3], ["sourceRoot", 20, 3], ["nativeBuildInputs", 22, 3], ["pythonRelaxDeps", 26, 3], ["postPatch", 28, 3], ["postInstall", 34, 3], ["propagatedBuildInputs", 40, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,7 +17,7 @@ export default nix.lambda((args) => (() => {
   const version = nix.arg($, "version");
   const meta = nix.arg($, "meta");
   return nix.app(buildPythonApplication, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       pname: "yubioath-flutter-helper",
       src: src,
       version: version,

@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["homepage", 33, 5], ["description", 34, 5]], [["src", 12, 31], ["pname", 13, 3], ["version", 16, 3], ["pyproject", 17, 3], ["sourceRoot", 19, 3], ["build-system", 21, 3], ["dependencies", 23, 3], ["pythonImportsCheck", 30, 3], ["meta", 32, 3]]]);
 const formals$1 = { args: { buildPythonPackage: false, asgiref: false, hatchling: false, "opentelemetry-api": false, "opentelemetry-instrumentation": false, "opentelemetry-sdk": false, requests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["homepage", 33, 5], ["description", 34, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["src", 12, 31], ["pname", 13, 3], ["version", 16, 3], ["pyproject", 17, 3], ["sourceRoot", 19, 3], ["build-system", 21, 3], ["dependencies", 23, 3], ["pythonImportsCheck", 30, 3], ["meta", 32, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const opentelemetry_sdk = nix.arg($, "opentelemetry-sdk");
   const requests = nix.arg($, "requests");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       src: nix.thunk(() => nix.attr(opentelemetry_api, "src")),
       pname: "opentelemetry-test-utils",
       version: nix.thunk(() => nix.sel(opentelemetry_instrumentation, "version")),
@@ -26,7 +25,7 @@ export default nix.lambda((args) => (() => {
       dependencies: nix.thunk(() => [asgiref, opentelemetry_api, opentelemetry_sdk, requests]),
       pythonImportsCheck: nix.thunk(() => ["opentelemetry.test"]),
       meta: nix.thunk(() => nix.update(nix.sel(opentelemetry_api, "meta"), {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         homepage: "https://github.com/open-telemetry/opentelemetry-python/tree/main/tests/opentelemetry-test-utils",
         description: "Test utilities for OpenTelemetry unit tests",
       })),

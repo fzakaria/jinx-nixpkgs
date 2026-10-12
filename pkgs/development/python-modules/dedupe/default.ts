@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 37, 5], ["repo", 38, 5], ["tag", 39, 5], ["hash", 40, 5]], [["nativeBuildInputs", 79, 9]], [["benchmarks", 76, 18]], [["tests", 76, 12]], [["description", 100, 5], ["homepage", 101, 5], ["changelog", 102, 5], ["license", 103, 5], ["maintainers", 104, 5]], [["pname", 32, 3], ["version", 33, 3], ["pyproject", 34, 3], ["src", 36, 3], ["build-system", 43, 3], ["dependencies", 48, 3], ["nativeCheckInputs", 62, 3], ["preCheck", 68, 3], ["pythonImportsCheck", 72, 3], ["passthru", 76, 3], ["meta", 99, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, cython: false, setuptools: false, affinegap: false, btrees: false, "categorical-distance": false, "dedupe-levenshtein-search": false, doublemetaphone: false, haversine: false, highered: false, numpy: false, "scikit-learn": false, simplecosine: false, "zope-index": false, dedupe: false, "pytest-cov-stub": false, pytestCheckHook: false, python: false, runCommand: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 37, 5], ["repo", 38, 5], ["tag", 39, 5], ["hash", 40, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["nativeBuildInputs", 79, 9]]);
-const pos$3 = nix.positions(here + "/default.nix", [["benchmarks", 76, 18]]);
-const pos$4 = nix.positions(here + "/default.nix", [["tests", 76, 12]]);
-const pos$5 = nix.positions(here + "/default.nix", [["description", 100, 5], ["homepage", 101, 5], ["changelog", 102, 5], ["license", 103, 5], ["maintainers", 104, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 32, 3], ["version", 33, 3], ["pyproject", 34, 3], ["src", 36, 3], ["build-system", 43, 3], ["dependencies", 48, 3], ["nativeCheckInputs", 62, 3], ["preCheck", 68, 3], ["pythonImportsCheck", 72, 3], ["passthru", 76, 3], ["meta", 99, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -38,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.0.3";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "dedupeio",
           repo: "dedupe",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -62,11 +57,11 @@ export default nix.lambda((args) => (() => {
       const preCheck = "rm -rf dedupe\n";
       const pythonImportsCheck = nix.thunk(() => ["dedupe"]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           benchmarks: nix.thunk(() => nix.app(runCommand, "dedupe-benchmarks-test", nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.app(nix.sel(python, "withPackages"), (ps) => [dedupe]))]),
             })), nix.thunk(() => nix.str`# Copy benchmarks to writable location
 cp -r ${src}/benchmarks benchmarks
@@ -87,7 +82,7 @@ touch $out
         })),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Library for accurate and scalable fuzzy matching, deduplication and entity resolution",
         homepage: "https://github.com/dedupeio/dedupe",
         changelog: nix.thunk(() => nix.str`https://github.com/dedupeio/dedupe/blob/${nix.sel(src, "tag")}/CHANGELOG.md`),
@@ -98,7 +93,7 @@ touch $out
         })()),
       }));
       return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname,
         version,
         pyproject,

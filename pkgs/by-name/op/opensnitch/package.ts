@@ -2,16 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 26, 7], ["repo", 27, 7], ["rev", 28, 7], ["hash", 29, 7]], [["version", 23, 5], ["src", 25, 5], ["vendorHash", 32, 5]], [["owner", 40, 5], ["repo", 41, 5], ["tag", 42, 5], ["hash", 43, 5]], [["package", 99, 9], ["command", 100, 9]], [["opensnitch", 96, 28], ["opensnitch-ui", 97, 15], ["version", 98, 7]], [["extraArgs", 105, 7]], [["tests", 95, 5], ["updater", 104, 5]], [["description", 113, 5], ["mainProgram", 114, 5], ["homepage", 115, 5], ["license", 116, 5], ["maintainers", 117, 5], ["platforms", 121, 5]], [["pname", 36, 3], ["version", 37, 3], ["src", 39, 3], ["postPatch", 46, 3], ["modRoot", 51, 3], ["buildInputs", 53, 3], ["nativeBuildInputs", 58, 3], ["vendorHash", 66, 3], ["preBuild", 68, 3], ["postBuild", 72, 3], ["ldflags", 83, 3], ["postInstall", 89, 3], ["passthru", 94, 3], ["meta", 112, 3]]]);
 const formals$1 = { args: { buildGoModule: false, fetchFromGitHub: false, protobuf: false, "go-protobuf": false, "pkg-config": false, libnetfilter_queue: false, libnfnetlink: false, lib: false, iptables: false, makeWrapper: false, "protoc-gen-go-grpc": false, testers: false, opensnitch: false, nixosTests: false, "opensnitch-ui": false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 26, 7], ["repo", 27, 7], ["rev", 28, 7], ["hash", 29, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["version", 23, 5], ["src", 25, 5], ["vendorHash", 32, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["owner", 40, 5], ["repo", 41, 5], ["tag", 42, 5], ["hash", 43, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["package", 99, 9], ["command", 100, 9]]);
-const pos$5 = nix.positions(here + "/package.nix", [["opensnitch", 96, 28], ["opensnitch-ui", 97, 15], ["version", 98, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["extraArgs", 105, 7]]);
-const pos$7 = nix.positions(here + "/package.nix", [["tests", 95, 5], ["updater", 104, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["description", 113, 5], ["mainProgram", 114, 5], ["homepage", 115, 5], ["license", 116, 5], ["maintainers", 117, 5], ["platforms", 121, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["pname", 36, 3], ["version", 37, 3], ["src", 39, 3], ["postPatch", 46, 3], ["modRoot", 51, 3], ["buildInputs", 53, 3], ["nativeBuildInputs", 58, 3], ["vendorHash", 66, 3], ["preBuild", 68, 3], ["postBuild", 72, 3], ["ldflags", 83, 3], ["postInstall", 89, 3], ["passthru", 94, 3], ["meta", 112, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,21 +26,21 @@ export default nix.lambda((args) => (() => {
   const protoc_gen_go_grpc$ = nix.thunk(() => nix.app(nix.sel(protoc_gen_go_grpc, "overrideAttrs"), (oldAttrs) => (() => {
       const version = "1.3.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "grpc",
           repo: "grpc-go",
           rev: nix.thunk(() => nix.str`cmd/protoc-gen-go-grpc/v${version}`),
           hash: "sha256-Zy0k5X/KFzCao9xAGt5DNb0MMGEyqmEsDj+uvXI4xH4=",
         }))));
       const vendorHash = "sha256-y+/hjYUTFZuq55YAZ5M4T1cwIR+XFQBmWVE+Cg1Y7PI=";
-      return { [nix.POS]: pos$2, version, src, vendorHash };
+      return { [nix.POS]: $pos[1], version, src, vendorHash };
     })()));
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       pname: "opensnitch",
       version: "1.8.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           owner: "evilsocket",
           repo: "opensnitch",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -70,20 +62,20 @@ export default nix.lambda((args) => (() => {
   --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [iptables]))}
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           opensnitch: nix.thunk(() => nix.attr(nixosTests, "opensnitch")),
           "opensnitch-ui": opensnitch_ui,
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$4, package: opensnitch, command: "opensnitchd -version" })))),
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: $pos[3], package: opensnitch, command: "opensnitchd -version" })))),
         })),
         updater: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             extraArgs: nix.thunk(() => ["--version-regex", "^v([0-9.]+)$"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         description: "Application firewall",
         mainProgram: "opensnitchd",
         homepage: "https://github.com/evilsocket/opensnitch/wiki",

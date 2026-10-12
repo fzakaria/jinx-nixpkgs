@@ -2,13 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/fetchWinSdk.nix", [[["arch", 83, 17]], [["deprecated", 87, 9], ["fullName", 88, 9], ["shortName", 89, 9], ["spdxId", 90, 9], ["free", 91, 9], ["url", 92, 9]], [["license", 86, 12]], [["name", 41, 15], ["__structuredAttrs", 42, 7], ["dontUnpack", 43, 7], ["dontFixup", 44, 7], ["dontInstall", 45, 7], ["strictDeps", 47, 7], ["nativeBuildInputs", 49, 7], ["outputHashAlgo", 54, 7], ["outputHashMode", 55, 7], ["outputHash", 56, 7], ["xwinArgs", 66, 7], ["buildPhase", 73, 7], ["passthru", 82, 7], ["meta", 86, 7]], [["constructDrv", 24, 3], ["excludeDrvArgNames", 26, 3], ["extendDrvArgs", 31, 3]]]);
 const formals$1 = { args: { lib: false, config: false, stdenvNoCC: false, xwin: false, cacert: false }, ellipsis: false };
 const formals$2 = { args: { name: true, hash: true, manifest: true, arch: true }, ellipsis: true };
-const pos$1 = nix.positions(here + "/fetchWinSdk.nix", [["arch", 83, 17]]);
-const pos$2 = nix.positions(here + "/fetchWinSdk.nix", [["deprecated", 87, 9], ["fullName", 88, 9], ["shortName", 89, 9], ["spdxId", 90, 9], ["free", 91, 9], ["url", 92, 9]]);
-const pos$3 = nix.positions(here + "/fetchWinSdk.nix", [["license", 86, 12]]);
-const pos$4 = nix.positions(here + "/fetchWinSdk.nix", [["name", 41, 15], ["__structuredAttrs", 42, 7], ["dontUnpack", 43, 7], ["dontFixup", 44, 7], ["dontInstall", 45, 7], ["strictDeps", 47, 7], ["nativeBuildInputs", 49, 7], ["outputHashAlgo", 54, 7], ["outputHashMode", 55, 7], ["outputHash", 56, 7], ["xwinArgs", 66, 7], ["buildPhase", 73, 7], ["passthru", 82, 7], ["meta", 86, 7]]);
-const pos$5 = nix.positions(here + "/fetchWinSdk.nix", [["constructDrv", 24, 3], ["excludeDrvArgNames", 26, 3], ["extendDrvArgs", 31, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const host = nix.thunk(() => nix.sel(stdenvNoCC, "hostPlatform"));
   const hostArch = nix.thunk(() => (nix.asBool(nix.sel(host, "isx86_64")) ? "x86_64" : (nix.asBool(nix.sel(host, "isAarch64")) ? "aarch64" : (nix.asBool(nix.sel(host, "isx86_32")) ? "x86" : (nix.asBool(nix.sel(host, "isAarch32")) ? "aarch" : nix.builtins.throw("Unsupported system"))))));
   return nix.app(nix.sel(lib, "extendMkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       constructDrv: nix.thunk(() => nix.sel(stdenvNoCC, "mkDerivation")),
       excludeDrvArgNames: nix.thunk(() => ["manifest", "arch"]),
       extendDrvArgs: (finalAttrs) => nix.lambda((args_1) => (() => {
@@ -31,7 +27,7 @@ export default nix.lambda((args) => (() => {
         const manifest = nix.argOr($_1, "manifest", () => null);
         const arch = nix.argOr($_1, "arch", () => nix.force(hostArch));
         return {
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           name: name,
           __structuredAttrs: true,
           dontUnpack: true,
@@ -49,11 +45,11 @@ export default nix.lambda((args) => (() => {
             "download",
           ])),
           buildPhase: nix.thunk(() => nix.selOr(args_2, () => "runHook preBuild\n\nxwin \"${xwinArgs[@]}\"\n\nrunHook postBuild\n", "buildPhase")),
-          passthru: nix.thunk(() => ({ [nix.POS]: pos$1, arch: arch })),
+          passthru: nix.thunk(() => ({ [nix.POS]: $pos[0], arch: arch })),
           meta: nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             license: nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               deprecated: false,
               fullName: "Microsoft Software License Terms",
               shortName: "msvc",

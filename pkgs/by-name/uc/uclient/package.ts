@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 17, 5], ["rev", 18, 5], ["hash", 19, 5]], [["description", 39, 5], ["homepage", 40, 5], ["license", 41, 5], ["maintainers", 42, 5], ["mainProgram", 43, 5], ["platforms", 44, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 22, 3], ["buildInputs", 26, 3], ["preConfigure", 32, 3], ["meta", 38, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchgit: false, cmake: false, "pkg-config": false, libubox: false, ucode: false, json_c: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 17, 5], ["rev", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 39, 5], ["homepage", 40, 5], ["license", 41, 5], ["maintainers", 42, 5], ["mainProgram", 43, 5], ["platforms", 44, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 22, 3], ["buildInputs", 26, 3], ["preConfigure", 32, 3], ["meta", 38, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const ucode = nix.arg($, "ucode");
   const json_c = nix.arg($, "json_c");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "uclient",
       version: "unstable-2025-10-03",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://git.openwrt.org/project/uclient.git",
           rev: "dc909ca71bc884c0e5362e1d7cc7808696cb2add",
           hash: "sha256-jrhLBB3Mb7FvxMtKxG7e7D/hcyygTjx868POGtF+Dcc=",
@@ -34,7 +32,7 @@ export default nix.lambda((args) => (() => {
     -i CMakeLists.txt
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Tiny OpenWrt fork of libnl",
         homepage: "https://git.openwrt.org/?p=project/uclient.git;a=summary",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),

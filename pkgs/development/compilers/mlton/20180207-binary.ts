@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/20180207-binary.nix", [[["url", 18, 9], ["hash", 19, 9]], [["lib", 48, 38]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["buildInputs", 24, 3], ["nativeBuildInputs", 25, 3], ["buildPhase", 27, 3], ["installPhase", 34, 3], ["postFixup", 38, 3], ["meta", 48, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, patchelf: false, gmp: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/20180207-binary.nix", [["url", 18, 9], ["hash", 19, 9]]);
-const pos$2 = nix.positions(here + "/20180207-binary.nix", [["lib", 48, 38]]);
-const pos$3 = nix.positions(here + "/20180207-binary.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["buildInputs", 24, 3], ["nativeBuildInputs", 25, 3], ["buildPhase", 27, 3], ["installPhase", 34, 3], ["postFixup", 38, 3], ["meta", 48, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname = "mlton";
       const version = "20180207";
       const src = nix.thunk(() => (nix.asBool(nix.eq(nix.sel(stdenv, "hostPlatform", "system"), "x86_64-linux")) ? nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/MLton/mlton/releases/download/on-${version}-release/${pname}-${version}-1.amd64-linux.tgz`),
           hash: "sha256-jkq9ufPvgcAbmJpmc03KKn9BicVWc6HIu61U58spmDg=",
         }))) : nix.builtins.throw("Architecture not supported")));
@@ -39,9 +37,9 @@ for e in mllex mlnlffigen mlprof mlyacc; do
   patchelf --set-rpath ${gmp}/lib $out/bin/$e
 done
 `);
-      const meta = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./meta.nix")), nix.thunk(() => ({ [nix.POS]: pos$2, lib: lib }))));
+      const meta = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./meta.nix")), nix.thunk(() => ({ [nix.POS]: $pos[1], lib: lib }))));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

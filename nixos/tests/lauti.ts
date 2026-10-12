@@ -2,35 +2,30 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/lauti.nix", [[["maintainers", 9, 8]], [["enable", 13, 22]], [["lauti", 13, 16]], [["services", 13, 7]], [["lauti", 12, 5]], [["name", 8, 3], ["meta", 9, 3], ["nodes", 11, 3], ["testScript", 17, 3]]]);
 const formals$1 = { args: { lib: false, pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/lauti.nix", [["maintainers", 9, 8]]);
-const pos$2 = nix.positions(here + "/lauti.nix", [["enable", 13, 22]]);
-const pos$3 = nix.positions(here + "/lauti.nix", [["lauti", 13, 16]]);
-const pos$4 = nix.positions(here + "/lauti.nix", [["services", 13, 7]]);
-const pos$5 = nix.positions(here + "/lauti.nix", [["lauti", 12, 5]]);
-const pos$6 = nix.positions(here + "/lauti.nix", [["name", 8, 3], ["meta", 9, 3], ["nodes", 11, 3], ["testScript", 17, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   return {
-    [nix.POS]: pos$6,
+    [nix.POS]: $pos[5],
     name: "lauti",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "onny"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       lauti: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         services: nix.thunk(() => ({
-          [nix.POS]: pos$3,
-          lauti: nix.thunk(() => ({ [nix.POS]: pos$2, enable: true })),
+          [nix.POS]: $pos[2],
+          lauti: nix.thunk(() => ({ [nix.POS]: $pos[1], enable: true })),
         })),
       })),
     })),

@@ -2,21 +2,20 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/libnvidia_nscq.nix", [[["description", 14, 5], ["homepage", 15, 5]], [["redistName", 3, 3], ["pname", 4, 3], ["outputs", 6, 3], ["allowFHSReferences", 11, 3], ["meta", 13, 3]]]);
 const formals$1 = { args: { buildRedist: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/libnvidia_nscq.nix", [["description", 14, 5], ["homepage", 15, 5]]);
-const pos$2 = nix.positions(here + "/libnvidia_nscq.nix", [["redistName", 3, 3], ["pname", 4, 3], ["outputs", 6, 3], ["allowFHSReferences", 11, 3], ["meta", 13, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const buildRedist = nix.arg($, "buildRedist");
   return nix.app(buildRedist, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       redistName: "cuda",
       pname: "libnvidia_nscq",
       outputs: nix.thunk(() => ["out", "lib"]),
       allowFHSReferences: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "NVIDIA NSCQ (Node Scalable Coherency Quantum) API for NVSwitch communication",
         homepage: "https://docs.nvidia.com/datacenter/tesla/fabric-manager-user-guide",
       })),

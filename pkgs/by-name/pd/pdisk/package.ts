@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]], [["url", 24, 7], ["sha256", 25, 7]], [["url", 29, 7], ["sha256", 30, 7]], [["url", 34, 7], ["sha256", 35, 7]], [["url", 39, 7], ["sha256", 40, 7]], [["NIX_CFLAGS_COMPILE", 67, 7]], [["description", 85, 5], ["homepage", 86, 5], ["license", 87, 5], ["mainProgram", 91, 5], ["maintainers", 92, 5], ["platforms", 93, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["patches", 21, 3], ["postPatch", 47, 3], ["strictDeps", 57, 3], ["nativeBuildInputs", 59, 3], ["buildInputs", 63, 3], ["env", 67, 3], ["enableParallelBuilding", 69, 3], ["installPhase", 71, 3], ["meta", 84, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, fetchpatch: false, installShellFiles: false, libbsd: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 24, 7], ["sha256", 25, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 29, 7], ["sha256", 30, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["url", 34, 7], ["sha256", 35, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["url", 39, 7], ["sha256", 40, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 67, 7]]);
-const pos$7 = nix.positions(here + "/package.nix", [["description", 85, 5], ["homepage", 86, 5], ["license", 87, 5], ["mainProgram", 91, 5], ["maintainers", 92, 5], ["platforms", 93, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["patches", 21, 3], ["postPatch", 47, 3], ["strictDeps", 57, 3], ["nativeBuildInputs", 59, 3], ["buildInputs", 63, 3], ["env", 67, 3], ["enableParallelBuilding", 69, 3], ["installPhase", 71, 3], ["meta", 84, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const installShellFiles = nix.arg($, "installShellFiles");
   const libbsd = nix.arg($, "libbsd");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "pdisk",
       version: "0.10",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "apple-oss-distributions",
           repo: "pdisk",
           tag: nix.thunk(() => nix.str`pdisk-${nix.app(nix.sel(lib, "versions", "minor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}`),
@@ -33,22 +26,22 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://aur.archlinux.org/cgit/aur.git/plain/makefile.patch?h=pdisk&id=39dc371712d2f7dbd38f6e8ddc6ba661faa1a7a9",
             sha256: "sha256-mLFclu8IlDN/gxNTI7Kei6ARketlAhJRu8ForFUzFU0=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: "https://aur.archlinux.org/cgit/aur.git/plain/file_media.c.patch?h=pdisk&id=39dc371712d2f7dbd38f6e8ddc6ba661faa1a7a9",
             sha256: "sha256-CCq5fApwx6w1GKDrgP+0nUdQy/5z5ON7/fdp4M63nko=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             url: "https://aur.archlinux.org/cgit/aur.git/plain/cvt_pt.c.patch?h=pdisk&id=39dc371712d2f7dbd38f6e8ddc6ba661faa1a7a9",
             sha256: "sha256-jScPfzt9/fQHkf2MfHLvYsh/Rw2NZZXkzZiiVo8F5Mc=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             url: "https://aur.archlinux.org/cgit/aur.git/plain/linux_strerror.patch?h=pdisk&id=d0c930ea8bcac008bbd0ade1811133a625caea54",
             sha256: "sha256-HGJIS+vTn6456KtaETutIgTPPBm2C9OHf1anG8yaJPo=",
           })))),
@@ -61,11 +54,11 @@ export default nix.lambda((args) => (() => {
       strictDeps: true,
       nativeBuildInputs: nix.thunk(() => [installShellFiles]),
       buildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), nix.thunk(() => [libbsd]))),
-      env: nix.thunk(() => ({ [nix.POS]: pos$6, NIX_CFLAGS_COMPILE: "-D_GNU_SOURCE" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[5], NIX_CFLAGS_COMPILE: "-D_GNU_SOURCE" })),
       enableParallelBuilding: true,
       installPhase: "runHook preInstall\n\nfor exe in pdisk cvt_pt; do\n  install -Dm755 -t $out/bin $exe\ndone\n\ninstallManPage pdisk.8\ninstall -Dm644 pdisk.html $out/share/doc/pdisk/pdisk.html\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "Low-level Apple partition table editor for Linux, OSS Apple version",
         homepage: "https://github.com/apple-oss-distributions/pdisk",
         license: nix.thunk(() => (() => {

@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]], [["src", 39, 7], ["hash", 40, 7]], [["npmRoot", 37, 5], ["npmDeps", 38, 5]], [["updateScript", 79, 12]], [["mainProgram", 82, 5], ["description", 83, 5], ["homepage", 84, 5], ["license", 85, 5], ["maintainers", 86, 5], ["platforms", 87, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["proxyVendor", 23, 3], ["vendorHash", 24, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 32, 3], ["env", 36, 3], ["postPatch", 44, 3], ["doCheck", 50, 3], ["tags", 52, 3], ["ldflags", 58, 3], ["subPackages", 65, 3], ["preBuild", 71, 3], ["postInstall", 75, 3], ["passthru", 79, 3], ["meta", 81, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, fetchNpmDeps: false, buildGoModule: false, nodejs: false, npmHooks: false, "pkg-config": false, libheif: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["src", 39, 7], ["hash", 40, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["npmRoot", 37, 5], ["npmDeps", 38, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 79, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["mainProgram", 82, 5], ["description", 83, 5], ["homepage", 84, 5], ["license", 85, 5], ["maintainers", 86, 5], ["platforms", 87, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["proxyVendor", 23, 3], ["vendorHash", 24, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 32, 3], ["env", 36, 3], ["postPatch", 44, 3], ["doCheck", 50, 3], ["tags", 52, 3], ["ldflags", 58, 3], ["subPackages", 65, 3], ["preBuild", 71, 3], ["postInstall", 75, 3], ["passthru", 79, 3], ["meta", 81, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const libheif = nix.arg($, "libheif");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "gomuks-web",
       version: "26.09",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "gomuks",
           repo: "gomuks",
           tag: nix.thunk(() => nix.str`v0.${nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => [""]), nix.thunk(() => nix.sel(finalAttrs, "version")))}.0`),
@@ -36,10 +31,10 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [nodejs, nix.thunk(() => nix.sel(npmHooks, "npmConfigHook")), pkg_config]),
       buildInputs: nix.thunk(() => [libheif]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         npmRoot: "web",
         npmDeps: nix.thunk(() => nix.app(fetchNpmDeps, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             src: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src")}/web`),
             hash: "sha256-t45wpiuBy9S2UaI/bQJqHOCWn11QWlcEuP7lNrgH90E=",
           })))),
@@ -59,9 +54,9 @@ export default nix.lambda((args) => (() => {
       subPackages: nix.thunk(() => ["cmd/gomuks", "cmd/gomuks-terminal", "cmd/archivemuks"]),
       preBuild: "CGO_ENABLED=0 go generate ./web\n",
       postInstall: "mv $out/bin/gomuks $out/bin/gomuks-web\n",
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$4, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[3], updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         mainProgram: "gomuks-web",
         description: "Matrix client written in Go",
         homepage: "https://github.com/tulir/gomuks",

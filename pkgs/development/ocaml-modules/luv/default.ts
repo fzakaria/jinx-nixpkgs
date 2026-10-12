@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["0.5.14", 19, 9], ["0.5.12", 20, 9]], [["url", 16, 5], ["hash", 17, 5]], [["homepage", 40, 5], ["description", 41, 5], ["license", 43, 5], ["maintainers", 49, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["patches", 25, 3], ["postConfigure", 27, 3], ["nativeBuildInputs", 31, 3], ["propagatedBuildInputs", 32, 3], ["checkInputs", 36, 3], ["doCheck", 37, 3], ["meta", 39, 3]]]);
 const formals$1 = { args: { lib: false, buildDunePackage: false, fetchurl: false, ctypes: false, result: false, alcotest: false, file: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["0.5.14", 19, 9], ["0.5.12", 20, 9]]);
-const pos$2 = nix.positions(here + "/default.nix", [["url", 16, 5], ["hash", 17, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["homepage", 40, 5], ["description", 41, 5], ["license", 43, 5], ["maintainers", 49, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["patches", 25, 3], ["postConfigure", 27, 3], ["nativeBuildInputs", 31, 3], ["propagatedBuildInputs", 32, 3], ["checkInputs", 36, 3], ["doCheck", 37, 3], ["meta", 39, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,14 +15,14 @@ export default nix.lambda((args) => (() => {
   const alcotest = nix.arg($, "alcotest");
   const file = nix.arg($, "file");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "luv",
       version: "0.5.14",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: nix.thunk(() => nix.str`https://github.com/aantron/luv/releases/download/${nix.sel(finalAttrs, "version")}/luv-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: nix.thunk(() => nix.sel({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             "0.5.14": "sha256-jgG0pQyIds3ZjY4kXAaHxNxNiDrtFhrZxazh+x/arpk=",
             "0.5.12": "sha256-dp9qCIYqSdROIAQ+Jw73F3vMe7hnkDe8BgZWImNMVsA=",
           }, nix.key(nix.str`${nix.sel(finalAttrs, "version")}`))),
@@ -37,7 +34,7 @@ export default nix.lambda((args) => (() => {
       checkInputs: nix.thunk(() => [alcotest]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/aantron/luv",
         description: "Binding to libuv: cross-platform asynchronous I/O",
         license: nix.thunk(() => (() => {

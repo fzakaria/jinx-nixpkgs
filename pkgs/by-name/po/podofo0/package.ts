@@ -2,19 +2,18 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["hash", 8, 5]], [["version", 6, 3], ["src", 7, 3], ["buildInputs", 10, 3]]]);
 const formals$1 = { args: { podofo: false, libidn: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["hash", 8, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["version", 6, 3], ["src", 7, 3], ["buildInputs", 10, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const podofo = nix.arg($, "podofo");
   const libidn = nix.arg($, "libidn");
   return nix.app(nix.sel(podofo, "overrideAttrs"), (prevAttrs) => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       version: "0.10.6",
       src: nix.thunk(() => nix.app(nix.sel(prevAttrs, "src", "override"), nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           hash: "sha256-DlCKQYlsgTfnZACk6yTeoIiaOL5AtICcHjRd8jl0RkI=",
         })))),
       buildInputs: nix.thunk(() => nix.concat(nix.sel(prevAttrs, "buildInputs"), [libidn])),

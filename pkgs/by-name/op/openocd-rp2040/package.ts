@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 7], ["repo", 14, 7], ["tag", 15, 7], ["hash", 16, 7], ["fetchSubmodules", 19, 7]], [["description", 25, 7], ["homepage", 26, 7], ["maintainers", 27, 7]], [["pname", 10, 5], ["version", 11, 5], ["src", 12, 5], ["nativeBuildInputs", 21, 5], ["meta", 24, 5]]]);
 const formals$1 = { args: { openocd: false, autoreconfHook: false, lib: false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 7], ["repo", 14, 7], ["tag", 15, 7], ["hash", 16, 7], ["fetchSubmodules", 19, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 25, 7], ["homepage", 26, 7], ["maintainers", 27, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 5], ["version", 11, 5], ["src", 12, 5], ["nativeBuildInputs", 21, 5], ["meta", 24, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return nix.app(nix.sel(openocd, "overrideAttrs"), (finalAttrs) => (old) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "openocd-rp2040",
       version: "2.2.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "raspberrypi",
           repo: "openocd",
           tag: nix.thunk(() => nix.str`sdk-${nix.sel(finalAttrs, "version")}`),
@@ -27,7 +25,7 @@ export default nix.lambda((args) => (() => {
         })))),
       nativeBuildInputs: nix.thunk(() => nix.concat(nix.sel(old, "nativeBuildInputs"), [autoreconfHook])),
       meta: nix.thunk(() => nix.update(nix.sel(openocd, "meta"), {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Raspberry Pi's downstream fork of OpenOCD for use with Pico-series devices",
         homepage: "https://github.com/raspberrypi/openocd",
         maintainers: nix.thunk(() => (() => {

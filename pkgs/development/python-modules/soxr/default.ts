@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["hash", 33, 5]], [["changelog", 65, 5], ["description", 66, 5], ["homepage", 67, 5], ["license", 68, 5], ["maintainers", 69, 5]], [["pname", 25, 3], ["version", 26, 3], ["pyproject", 27, 3], ["src", 29, 3], ["patches", 36, 3], ["nativeBuildInputs", 38, 3], ["dontUseCmakeConfigure", 43, 3], ["cmakeFlags", 45, 3], ["build-system", 49, 3], ["buildInputs", 56, 3], ["dependencies", 58, 3], ["pythonImportsCheck", 60, 3], ["nativeCheckInputs", 62, 3], ["meta", 64, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, cmake: false, nanobind: false, ninja: false, "scikit-build-core": false, setuptools: false, "setuptools-scm": false, libsoxr: false, numpy: false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["hash", 33, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["changelog", 65, 5], ["description", 66, 5], ["homepage", 67, 5], ["license", 68, 5], ["maintainers", 69, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 25, 3], ["version", 26, 3], ["pyproject", 27, 3], ["src", 29, 3], ["patches", 36, 3], ["nativeBuildInputs", 38, 3], ["dontUseCmakeConfigure", 43, 3], ["cmakeFlags", 45, 3], ["build-system", 49, 3], ["buildInputs", 56, 3], ["dependencies", 58, 3], ["pythonImportsCheck", 60, 3], ["nativeCheckInputs", 62, 3], ["meta", 64, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.1.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "dofuuz",
           repo: "python-soxr",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -44,7 +42,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["soxr"]);
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         changelog: nix.thunk(() => nix.str`https://github.com/dofuuz/python-soxr/releases/tag/${nix.sel(src, "tag")}`),
         description: "High quality, one-dimensional sample-rate conversion library",
         homepage: "https://github.com/dofuuz/python-soxr/tree/main",
@@ -52,7 +50,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

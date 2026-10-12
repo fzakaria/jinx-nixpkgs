@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 25, 5], ["version", 26, 13], ["hash", 27, 5]], [["url", 33, 7], ["hash", 34, 7]], [["description", 70, 5], ["homepage", 71, 5], ["license", 72, 5], ["teams", 73, 5]], [["pname", 20, 3], ["version", 21, 3], ["pyproject", 22, 3], ["src", 24, 3], ["patches", 30, 3], ["build-system", 38, 3], ["dependencies", 43, 3], ["nativeCheckInputs", 49, 3], ["checkPhase", 59, 3], ["pythonImportsCheck", 67, 3], ["meta", 69, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchpatch: false, fetchPypi: false, fixtures: false, jsonschema: false, openstacksdk: false, oslotest: false, pbr: false, "python-glanceclient": false, setuptools: false, stestr: false, "python-subunit": false, testscenarios: false, testtools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 25, 5], ["version", 26, 13], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["url", 33, 7], ["hash", 34, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 70, 5], ["homepage", 71, 5], ["license", 72, 5], ["teams", 73, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 20, 3], ["version", 21, 3], ["pyproject", 22, 3], ["src", 24, 3], ["patches", 30, 3], ["build-system", 38, 3], ["dependencies", 43, 3], ["nativeCheckInputs", 49, 3], ["checkPhase", 59, 3], ["pythonImportsCheck", 67, 3], ["meta", 69, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,14 +27,14 @@ export default nix.lambda((args) => (() => {
       const version = "2.3.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "os_client_config",
           version: version,
           hash: "sha256-4WomDy/VAK8U8Ve5t7fWkpLOg7D4pGHsaM5qikKWfL0=",
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/openstack/os-client-config/commit/a72d8845545d6ac3b64b6fc48d0e2ada5750f6fe.patch",
             hash: "sha256-i8DZCdpZ8yoN0WHseczycI4iwDP55Ibzo0KLy7Moy4M=",
           })))),
@@ -56,14 +53,14 @@ export default nix.lambda((args) => (() => {
       const checkPhase = "runHook preCheck\n\nstestr run\n\nrunHook postCheck\n";
       const pythonImportsCheck = nix.thunk(() => ["os_client_config"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Unified config handling for client libraries and programs",
         homepage: "https://github.com/openstack/os-client-config",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "openstack"))]),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

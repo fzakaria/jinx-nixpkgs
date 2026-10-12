@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 25, 5], ["repo", 26, 5], ["rev", 27, 5], ["sha256", 28, 5]], [["description", 57, 5], ["longDescription", 58, 5], ["homepage", 63, 5], ["license", 64, 5], ["platforms", 65, 5], ["maintainers", 66, 5]], [["name", 14, 3], ["pname", 15, 3], ["version", 17, 3], ["src", 24, 3], ["hardeningDisable", 31, 3], ["nativeBuildInputs", 33, 3], ["makeFlags", 38, 3], ["preBuild", 42, 3], ["enableParallelBuilding", 48, 3], ["installPhase", 50, 3], ["meta", 56, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, kernel: false, kernelModuleMakeFlags: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 25, 5], ["repo", 26, 5], ["rev", 27, 5], ["sha256", 28, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 57, 5], ["longDescription", 58, 5], ["homepage", 63, 5], ["license", 64, 5], ["platforms", 65, 5], ["maintainers", 66, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["name", 14, 3], ["pname", 15, 3], ["version", 17, 3], ["src", 24, 3], ["hardeningDisable", 31, 3], ["nativeBuildInputs", 33, 3], ["makeFlags", 38, 3], ["preBuild", 42, 3], ["enableParallelBuilding", 48, 3], ["installPhase", 50, 3], ["meta", 56, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pname = "r8168";
       const version = "8.057.00";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "mtorromeo",
           repo: "r8168",
           rev: version,
@@ -39,7 +37,7 @@ find . -name '*.ko' -exec cp --parents '{}' ${modDestDir} \\;
 find ${modDestDir} -name '*.ko' -exec xz -f '{}' \\;
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Realtek r8168 driver",
         longDescription: "A kernel module for Realtek 8168 network cards.\nIf you want to use this driver, you might need to blacklist the r8169 driver\nby adding \"r8169\" to boot.blacklistedKernelModules.\n",
         homepage: "https://github.com/mtorromeo/r8168",
@@ -48,7 +46,7 @@ find ${modDestDir} -name '*.ko' -exec xz -f '{}' \\;
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         name,
         pname,
         version,

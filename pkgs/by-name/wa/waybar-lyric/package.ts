@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]], [["updateScript", 59, 12]], [["description", 62, 5], ["homepage", 63, 5], ["license", 64, 5], ["mainProgram", 65, 5], ["maintainers", 66, 5], ["platforms", 70, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["vendorHash", 24, 3], ["ldflags", 26, 3], ["nativeBuildInputs", 32, 3], ["propagatedBuildInputs", 37, 3], ["postInstall", 39, 3], ["doInstallCheck", 51, 3], ["nativeInstallCheckInputs", 52, 3], ["versionCheckKeepEnvironment", 53, 3], ["preInstallCheck", 54, 3], ["passthru", 59, 3], ["meta", 61, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, ffmpeg: false, makeWrapper: false, buildGoModule: false, fetchFromGitHub: false, versionCheckHook: false, "nix-update-script": false, installShellFiles: false, withEmbeddedLyric: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 59, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 62, 5], ["homepage", 63, 5], ["license", 64, 5], ["mainProgram", 65, 5], ["maintainers", 66, 5], ["platforms", 70, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["vendorHash", 24, 3], ["ldflags", 26, 3], ["nativeBuildInputs", 32, 3], ["propagatedBuildInputs", 37, 3], ["postInstall", 39, 3], ["doInstallCheck", 51, 3], ["nativeInstallCheckInputs", 52, 3], ["versionCheckKeepEnvironment", 53, 3], ["preInstallCheck", 54, 3], ["passthru", 59, 3], ["meta", 61, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const installShellFiles = nix.arg($, "installShellFiles");
   const withEmbeddedLyric = nix.argOr($, "withEmbeddedLyric", () => false);
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "waybar-lyric",
       version: "0.18.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Nadim147c",
           repo: "waybar-lyric",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -47,11 +44,11 @@ export default nix.lambda((args) => (() => {
       versionCheckKeepEnvironment: nix.thunk(() => ["XDG_CACHE_HOME"]),
       preInstallCheck: "# ERROR Failed to find cache directory\nexport XDG_CACHE_HOME=$(mktemp -d)\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Waybar module for displaying song lyrics",
         homepage: "https://github.com/Nadim147c/waybar-lyric",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),

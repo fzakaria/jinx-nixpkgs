@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 92, 5], ["repo", 93, 5], ["rev", 95, 5], ["hash", 96, 5]], [["owner", 106, 5], ["repo", 107, 5], ["tag", 108, 5], ["hash", 109, 5]], [["athena", 303, 5], ["bigquery", 313, 5], ["clickhouse", 324, 5], ["databricks", 332, 5], ["datafusion", 340, 5], ["druid", 348, 5], ["duckdb", 356, 5], ["flink", 365, 5], ["geospatial", 372, 5], ["mssql", 376, 5], ["mysql", 384, 5], ["oracle", 392, 5], ["polars", 401, 5], ["postgres", 410, 5], ["pyspark", 418, 5], ["snowflake", 427, 5], ["sqlite", 435, 5], ["trino", 443, 5], ["visualization", 451, 5], ["decompiler", 452, 5], ["examples", 453, 5]], [["description", 457, 5], ["homepage", 458, 5], ["changelog", 459, 5], ["license", 460, 5], ["maintainers", 461, 5]], [["pname", 101, 3], ["version", 102, 3], ["pyproject", 103, 3], ["src", 105, 3], ["build-system", 112, 3], ["dependencies", 116, 3], ["nativeCheckInputs", 126, 3], ["pytestFlags", 144, 3], ["enabledTestMarks", 160, 3], ["disabledTests", 162, 3], ["disabledTestPaths", 275, 3], ["postPatch", 283, 3], ["preCheck", 289, 3], ["postCheck", 296, 3], ["pythonImportsCheck", 300, 3], ["optional-dependencies", 302, 3], ["meta", 456, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, pythonAtLeast: false, hatchling: false, atpublic: false, parsy: false, "python-dateutil": false, sqlglot: false, toolz: false, "typing-extensions": false, tzdata: false, pytestCheckHook: false, black: false, filelock: false, hypothesis: false, "pytest-benchmark": false, "pytest-httpserver": false, "pytest-mock": false, "pytest-randomly": false, "pytest-snapshot": false, "pytest-timeout": false, "pytest-xdist": false, writableTmpDirAsHomeHook: false, pyathena: false, fsspec: false, "db-dtypes": false, "google-cloud-bigquery": false, "google-cloud-bigquery-storage": false, pyarrow: false, "pyarrow-hotfix": false, "pydata-google-auth": false, numpy: false, pandas: false, rich: false, "clickhouse-connect": false, datafusion: false, pydruid: false, duckdb: false, packaging: false, geopandas: false, shapely: false, pyodbc: false, pymysql: false, oracledb: false, polars: false, psycopg2: false, pyspark: false, "snowflake-connector-python": false, regex: false, "trino-python-client": false, graphviz: false, pins: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 92, 5], ["repo", 93, 5], ["rev", 95, 5], ["hash", 96, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["owner", 106, 5], ["repo", 107, 5], ["tag", 108, 5], ["hash", 109, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["athena", 303, 5], ["bigquery", 313, 5], ["clickhouse", 324, 5], ["databricks", 332, 5], ["datafusion", 340, 5], ["druid", 348, 5], ["duckdb", 356, 5], ["flink", 365, 5], ["geospatial", 372, 5], ["mssql", 376, 5], ["mysql", 384, 5], ["oracle", 392, 5], ["polars", 401, 5], ["postgres", 410, 5], ["pyspark", 418, 5], ["snowflake", 427, 5], ["sqlite", 435, 5], ["trino", 443, 5], ["visualization", 451, 5], ["decompiler", 452, 5], ["examples", 453, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 457, 5], ["homepage", 458, 5], ["changelog", 459, 5], ["license", 460, 5], ["maintainers", 461, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 101, 3], ["version", 102, 3], ["pyproject", 103, 3], ["src", 105, 3], ["build-system", 112, 3], ["dependencies", 116, 3], ["nativeCheckInputs", 126, 3], ["pytestFlags", 144, 3], ["enabledTestMarks", 160, 3], ["disabledTests", 162, 3], ["disabledTestPaths", 275, 3], ["postPatch", 283, 3], ["preCheck", 289, 3], ["postCheck", 296, 3], ["pythonImportsCheck", 300, 3], ["optional-dependencies", 302, 3], ["meta", 456, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -66,19 +62,19 @@ export default nix.lambda((args) => (() => {
   const pins = nix.arg($, "pins");
   const testBackends = nix.thunk(() => ["duckdb", "sqlite"]);
   const ibisTestingData = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "ibis-project",
       repo: "testing-data",
       rev: "b26bd40cf29004372319df620c4bbe41420bb6f8",
       hash: "sha256-1fenQNQB+Q0pbb0cbK2S/UIwZDE4PXXG15MH3aVbyLU=",
     }))));
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "ibis-framework",
       version: "12.0.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "ibis-project",
           repo: "ibis",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -208,7 +204,7 @@ ln -s "${ibisTestingData}" "$IBIS_TEST_DATA_DIRECTORY"
       postCheck: "rm -r \"$IBIS_TEST_DATA_DIRECTORY\"\n",
       pythonImportsCheck: nix.thunk(() => nix.concat(["ibis"], nix.builtins.map((backend) => nix.str`ibis.backends.${backend}`, testBackends))),
       "optional-dependencies": nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         athena: nix.thunk(() => [pyathena, pyarrow, pyarrow_hotfix, numpy, pandas, rich, packaging, fsspec]),
         bigquery: nix.thunk(() => [
           db_dtypes,
@@ -242,7 +238,7 @@ ln -s "${ibisTestingData}" "$IBIS_TEST_DATA_DIRECTORY"
         examples: nix.thunk(() => nix.concat([pins], nix.sel(pins, "optional-dependencies", "gcs"))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Productivity-centric Python Big Data Framework",
         homepage: "https://github.com/ibis-project/ibis",
         changelog: nix.thunk(() => nix.str`https://github.com/ibis-project/ibis/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

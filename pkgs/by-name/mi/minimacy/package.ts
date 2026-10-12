@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]], [["NIX_CFLAGS_COMPILE", 38, 7]], [["description", 83, 5], ["longDescription", 84, 5], ["maintainers", 88, 5], ["homepage", 89, 5], ["license", 90, 5], ["platforms", 91, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 26, 3], ["enableParallelBuilding", 36, 3], ["env", 38, 3], ["preBuild", 40, 3], ["buildFlags", 45, 3], ["postBuild", 49, 3], ["doCheck", 53, 3], ["checkPhase", 55, 3], ["installPhase", 65, 3], ["postFixup", 75, 3], ["meta", 82, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, "alsa-lib": false, fetchFromGitHub: false, libGL: false, libGLU: false, libx11: false, libxext: false, makeBinaryWrapper: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 38, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 83, 5], ["longDescription", 84, 5], ["maintainers", 88, 5], ["homepage", 89, 5], ["license", 90, 5], ["platforms", 91, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 26, 3], ["enableParallelBuilding", 36, 3], ["env", 38, 3], ["preBuild", 40, 3], ["buildFlags", 45, 3], ["postBuild", 49, 3], ["doCheck", 53, 3], ["checkPhase", 55, 3], ["installPhase", 65, 3], ["postFixup", 75, 3], ["meta", 82, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const libxext = nix.arg($, "libxext");
   const makeBinaryWrapper = nix.arg($, "makeBinaryWrapper");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "minimacy",
       version: "1.2.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ambermind",
           repo: "minimacy",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -33,7 +30,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [makeBinaryWrapper]),
       buildInputs: nix.thunk(() => nix.concat([libGL, libGLU], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [alsa_lib, libx11, libxext])))),
       enableParallelBuilding: true,
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-Wno-unused-result" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], NIX_CFLAGS_COMPILE: "-Wno-unused-result" })),
       preBuild: nix.thunk(() => nix.str`pushd ${(nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? "macos/cmdline" : "unix")}
 `),
       buildFlags: nix.thunk(() => nix.concat((nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? ["nox"] : ["all"]), [nix.thunk(() => nix.str`CC=${nix.sel(stdenv, "cc", "targetPrefix")}cc`)])),
@@ -48,7 +45,7 @@ runHook postCheck
       installPhase: "runHook preInstall\n\nmkdir -p $out/lib/minimacy\ncp -r {README.md,LICENSE,system,rom,topLevel.mcy} $out/lib/minimacy\ninstall bin/minimacy* -Dt $out/bin\n\nrunHook postInstall\n",
       postFixup: "for prog in $out/bin/minimacy*;\n  do wrapProgram $prog \\\n    --set MINIMACY $out/lib/minimacy\n  done\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Open-source minimalist computing technology",
         longDescription: "Minimacy is an open-source minimalist computation system based on the principle \"Less is more\".\nIt is designed and programmed by Sylvain Huet.\n",
         maintainers: nix.thunk(() => (() => {

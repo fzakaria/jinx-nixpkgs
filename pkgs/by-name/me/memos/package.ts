@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]], [["pname", 29, 31], ["version", 29, 37], ["src", 29, 45], ["pnpm", 30, 15], ["sourceRoot", 31, 7], ["fetcherVersion", 32, 7], ["hash", 33, 7]], [["pname", 26, 5], ["version", 27, 26], ["src", 27, 34], ["pnpmDeps", 28, 5], ["pnpmRoot", 35, 5], ["nativeBuildInputs", 36, 5], ["buildPhase", 41, 5], ["installPhase", 46, 5]], [["extraArgs", 75, 5]], [["updateScript", 74, 12]], [["homepage", 82, 5], ["description", 83, 5], ["changelog", 84, 5], ["maintainers", 85, 5], ["license", 89, 5], ["mainProgram", 90, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 18, 3], ["memos-web", 25, 3], ["vendorHash", 53, 3], ["ldflags", 55, 3], ["preBuild", 59, 3], ["checkFlags", 64, 3], ["passthru", 74, 3], ["meta", 81, 3]]]);
 const formals$1 = { args: { fetchFromGitHub: false, buildGo127Module: false, stdenvNoCC: false, "nix-update-script": false, nodejs: false, lib: false, fetchPnpmDeps: false, pnpmConfigHook: false, pnpm_11: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 29, 31], ["version", 29, 37], ["src", 29, 45], ["pnpm", 30, 15], ["sourceRoot", 31, 7], ["fetcherVersion", 32, 7], ["hash", 33, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 26, 5], ["version", 27, 26], ["src", 27, 34], ["pnpmDeps", 28, 5], ["pnpmRoot", 35, 5], ["nativeBuildInputs", 36, 5], ["buildPhase", 41, 5], ["installPhase", 46, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["extraArgs", 75, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["updateScript", 74, 12]]);
-const pos$6 = nix.positions(here + "/package.nix", [["homepage", 82, 5], ["description", 83, 5], ["changelog", 84, 5], ["maintainers", 85, 5], ["license", 89, 5], ["mainProgram", 90, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 18, 3], ["memos-web", 25, 3], ["vendorHash", 53, 3], ["ldflags", 55, 3], ["preBuild", 59, 3], ["checkFlags", 64, 3], ["passthru", 74, 3], ["meta", 81, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,23 +18,23 @@ export default nix.lambda((args) => (() => {
   const pnpm_11 = nix.arg($, "pnpm_11");
   const pnpm = pnpm_11;
   return nix.app(buildGo127Module, (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "memos",
       version: "0.31.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "usememos",
           repo: "memos",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-O6r+M+T6zDr9getunGgNSXJlmt3ZsSwTCYoSpVgDcM4=",
         })))),
       "memos-web": nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalWebAttrs) => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           pname: "memos-web",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               pname: nix.thunk(() => nix.attr(finalWebAttrs, "pname")),
               version: nix.thunk(() => nix.attr(finalWebAttrs, "version")),
               src: nix.thunk(() => nix.attr(finalWebAttrs, "src")),
@@ -72,11 +66,14 @@ cp -r ${nix.sel(finalAttrs, "memos-web")} server/frontend/dist
         ];
       })()),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$4, extraArgs: nix.thunk(() => ["--subpackage", "memos-web"]) })))),
+        [nix.POS]: $pos[4],
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
+            [nix.POS]: $pos[3],
+            extraArgs: nix.thunk(() => ["--subpackage", "memos-web"]),
+          })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         homepage: "https://usememos.com",
         description: "Lightweight, self-hosted memo hub",
         changelog: nix.thunk(() => nix.str`https://github.com/usememos/memos/releases/tag/${nix.sel(finalAttrs, "src", "rev")}`),

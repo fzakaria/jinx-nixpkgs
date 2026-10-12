@@ -2,28 +2,22 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["_cuda", 7, 46], ["lib", 7, 52]], [["_cuda", 14, 40], ["lib", 14, 46]], [["_cuda", 22, 40], ["lib", 22, 46]], [["_cuda", 28, 42], ["lib", 28, 48]], [["_cuda", 38, 43], ["lib", 38, 49]], [["_cuda", 50, 44], ["lib", 50, 50]], [["_evaluateAssertions", 8, 5], ["_mkFailedAssertionsString", 9, 5], ["_mkMissingPackagesAssertions", 10, 5], ["_cudaCapabilityIsDefault", 15, 5], ["_cudaCapabilityIsSupported", 16, 5], ["_mkCudaVariants", 17, 5], ["allowUnfreeCudaPredicate", 18, 5], ["_mkMetaBadPlatforms", 23, 5], ["_mkMetaBroken", 24, 5], ["_getJetsonMinSbsaCapability", 29, 5], ["_redistSystemIsSupported", 30, 5], ["getNixSystems", 31, 5], ["getRedistSystem", 32, 5], ["mkRedistUrl", 33, 5], ["selectManifests", 34, 5], ["dotsToUnderscores", 39, 5], ["dropDots", 40, 5], ["formatCapabilities", 41, 5], ["mkCmakeCudaArchitecturesString", 42, 5], ["mkGencodeFlag", 43, 5], ["mkRealArchitecture", 44, 5], ["mkVersionedName", 45, 5], ["mkVirtualArchitecture", 46, 5], ["majorMinorPatch", 51, 5], ["trimComponents", 52, 5]]]);
 const formals$1 = { args: { _cuda: false, lib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["_cuda", 7, 46], ["lib", 7, 52]]);
-const pos$2 = nix.positions(here + "/default.nix", [["_cuda", 14, 40], ["lib", 14, 46]]);
-const pos$3 = nix.positions(here + "/default.nix", [["_cuda", 22, 40], ["lib", 22, 46]]);
-const pos$4 = nix.positions(here + "/default.nix", [["_cuda", 28, 42], ["lib", 28, 48]]);
-const pos$5 = nix.positions(here + "/default.nix", [["_cuda", 38, 43], ["lib", 38, 49]]);
-const pos$6 = nix.positions(here + "/default.nix", [["_cuda", 50, 44], ["lib", 50, 50]]);
-const pos$7 = nix.positions(here + "/default.nix", [["_evaluateAssertions", 8, 5], ["_mkFailedAssertionsString", 9, 5], ["_mkMissingPackagesAssertions", 10, 5], ["_cudaCapabilityIsDefault", 15, 5], ["_cudaCapabilityIsSupported", 16, 5], ["_mkCudaVariants", 17, 5], ["allowUnfreeCudaPredicate", 18, 5], ["_mkMetaBadPlatforms", 23, 5], ["_mkMetaBroken", 24, 5], ["_getJetsonMinSbsaCapability", 29, 5], ["_redistSystemIsSupported", 30, 5], ["getNixSystems", 31, 5], ["getRedistSystem", 32, 5], ["mkRedistUrl", 33, 5], ["selectManifests", 34, 5], ["dotsToUnderscores", 39, 5], ["dropDots", 40, 5], ["formatCapabilities", 41, 5], ["mkCmakeCudaArchitecturesString", 42, 5], ["mkGencodeFlag", 43, 5], ["mkRealArchitecture", 44, 5], ["mkVersionedName", 45, 5], ["mkVirtualArchitecture", 46, 5], ["majorMinorPatch", 51, 5], ["trimComponents", 52, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const _cuda = nix.arg($, "_cuda");
   const lib = nix.arg($, "lib");
   return (() => {
-    const from = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./assertions.nix")), nix.thunk(() => ({ [nix.POS]: pos$1, _cuda: _cuda, lib: lib }))));
-    const from_1 = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./cuda.nix")), nix.thunk(() => ({ [nix.POS]: pos$2, _cuda: _cuda, lib: lib }))));
-    const from_2 = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./meta.nix")), nix.thunk(() => ({ [nix.POS]: pos$3, _cuda: _cuda, lib: lib }))));
-    const from_3 = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./redist.nix")), nix.thunk(() => ({ [nix.POS]: pos$4, _cuda: _cuda, lib: lib }))));
-    const from_4 = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./strings.nix")), nix.thunk(() => ({ [nix.POS]: pos$5, _cuda: _cuda, lib: lib }))));
-    const from_5 = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./versions.nix")), nix.thunk(() => ({ [nix.POS]: pos$6, _cuda: _cuda, lib: lib }))));
+    const from = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./assertions.nix")), nix.thunk(() => ({ [nix.POS]: $pos[0], _cuda: _cuda, lib: lib }))));
+    const from_1 = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./cuda.nix")), nix.thunk(() => ({ [nix.POS]: $pos[1], _cuda: _cuda, lib: lib }))));
+    const from_2 = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./meta.nix")), nix.thunk(() => ({ [nix.POS]: $pos[2], _cuda: _cuda, lib: lib }))));
+    const from_3 = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./redist.nix")), nix.thunk(() => ({ [nix.POS]: $pos[3], _cuda: _cuda, lib: lib }))));
+    const from_4 = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./strings.nix")), nix.thunk(() => ({ [nix.POS]: $pos[4], _cuda: _cuda, lib: lib }))));
+    const from_5 = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./versions.nix")), nix.thunk(() => ({ [nix.POS]: $pos[5], _cuda: _cuda, lib: lib }))));
     return {
-    [nix.POS]: pos$7,
+    [nix.POS]: $pos[6],
     _evaluateAssertions: nix.thunk(() => nix.attr(from, "_evaluateAssertions")),
     _mkFailedAssertionsString: nix.thunk(() => nix.attr(from, "_mkFailedAssertionsString")),
     _mkMissingPackagesAssertions: nix.thunk(() => nix.attr(from, "_mkMissingPackagesAssertions")),

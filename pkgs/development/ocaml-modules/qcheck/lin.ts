@@ -2,22 +2,21 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/lin.nix", [[["description", 16, 5]], [["pname", 7, 3], ["version", 9, 40], ["src", 9, 48], ["propagatedBuildInputs", 11, 3], ["doCheck", 13, 3], ["meta", 15, 3]]]);
 const formals$1 = { args: { buildDunePackage: false, "qcheck-multicoretests-util": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/lin.nix", [["description", 16, 5]]);
-const pos$2 = nix.positions(here + "/lin.nix", [["pname", 7, 3], ["version", 9, 40], ["src", 9, 48], ["propagatedBuildInputs", 11, 3], ["doCheck", 13, 3], ["meta", 15, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const buildDunePackage = nix.arg($, "buildDunePackage");
   const qcheck_multicoretests_util = nix.arg($, "qcheck-multicoretests-util");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "qcheck-lin",
       version: nix.thunk(() => nix.attr(qcheck_multicoretests_util, "version")),
       src: nix.thunk(() => nix.attr(qcheck_multicoretests_util, "src")),
       propagatedBuildInputs: nix.thunk(() => [qcheck_multicoretests_util]),
       doCheck: true,
-      meta: nix.thunk(() => nix.update(nix.sel(qcheck_multicoretests_util, "meta"), { [nix.POS]: pos$1, description: "Multicore testing library for OCaml" })),
+      meta: nix.thunk(() => nix.update(nix.sel(qcheck_multicoretests_util, "meta"), { [nix.POS]: $pos[0], description: "Multicore testing library for OCaml" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=lin.ts.map

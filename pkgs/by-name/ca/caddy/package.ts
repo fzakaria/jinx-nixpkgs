@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 29, 5]], [["caddy", 81, 47]], [["owner", 84, 7], ["repo", 85, 7], ["tag", 86, 7], ["hash", 87, 7]], [["extraArgs", 91, 7]], [["caddy", 98, 28], ["plugins", 99, 7], ["acme-integration", 100, 7]], [["withPlugins", 81, 5], ["dist", 83, 5], ["updateScript", 90, 5], ["tests", 97, 5]], [["homepage", 105, 5], ["description", 106, 5], ["changelog", 107, 5], ["license", 108, 5], ["mainProgram", 109, 5], ["maintainers", 110, 5]], [["pname", 17, 3], ["version", 18, 3], ["__structuredAttrs", 20, 3], ["__darwinAllowLocalNetworking", 22, 3], ["src", 24, 3], ["vendorHash", 32, 3], ["ldflags", 34, 3], ["tags", 40, 3], ["nativeBuildInputs", 46, 3], ["nativeCheckInputs", 48, 3], ["checkFlags", 50, 3], ["postInstall", 52, 3], ["doInstallCheck", 73, 3], ["versionCheckKeepEnvironment", 74, 3], ["nativeInstallCheckInputs", 75, 3], ["passthru", 80, 3], ["meta", 104, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPackages: false, callPackage: false, buildGoModule: false, fetchFromGitHub: false, installShellFiles: false, versionCheckHook: false, writableTmpDirAsHomeHook: false, testers: false, nixosTests: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["caddy", 81, 47]]);
-const pos$3 = nix.positions(here + "/package.nix", [["owner", 84, 7], ["repo", 85, 7], ["tag", 86, 7], ["hash", 87, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["extraArgs", 91, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["caddy", 98, 28], ["plugins", 99, 7], ["acme-integration", 100, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["withPlugins", 81, 5], ["dist", 83, 5], ["updateScript", 90, 5], ["tests", 97, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["homepage", 105, 5], ["description", 106, 5], ["changelog", 107, 5], ["license", 108, 5], ["mainProgram", 109, 5], ["maintainers", 110, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["__structuredAttrs", 20, 3], ["__darwinAllowLocalNetworking", 22, 3], ["src", 24, 3], ["vendorHash", 32, 3], ["ldflags", 34, 3], ["tags", 40, 3], ["nativeBuildInputs", 46, 3], ["nativeCheckInputs", 48, 3], ["checkFlags", 50, 3], ["postInstall", 52, 3], ["doInstallCheck", 73, 3], ["versionCheckKeepEnvironment", 74, 3], ["nativeInstallCheckInputs", 75, 3], ["passthru", 80, 3], ["meta", 104, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,13 +20,13 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "caddy",
       version: "2.11.7",
       __structuredAttrs: true,
       __darwinAllowLocalNetworking: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "caddyserver",
           repo: "caddy",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -67,28 +60,28 @@ installShellCompletion --cmd caddy \\
       versionCheckKeepEnvironment: nix.thunk(() => ["HOME"]),
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook, writableTmpDirAsHomeHook]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         withPlugins: nix.thunk(() => nix.app(callPackage, nix.path(here, "./plugins.nix"), nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             caddy: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
           })))),
         dist: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             owner: "caddyserver",
             repo: "dist",
             tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
             hash: "sha256-KvdaqiX06I1ft+p67J1ISgP512SoZ4syDzfe888ZqGI=",
           })))),
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$4, extraArgs: nix.thunk(() => ["--custom-dep", "dist"]) })))),
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: $pos[3], extraArgs: nix.thunk(() => ["--custom-dep", "dist"]) })))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           caddy: nix.thunk(() => nix.attr(nixosTests, "caddy")),
           plugins: nix.thunk(() => nix.app(nix.sel(testers, "runNixOSTest"), nix.path(here, "./plugins.test.nix"))),
           "acme-integration": nix.thunk(() => nix.sel(nixosTests, "acme", "caddy")),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         homepage: "https://caddyserver.com",
         description: "Fast and extensible multi-platform HTTP/1-2-3 web server with automatic HTTPS",
         changelog: nix.thunk(() => nix.str`https://github.com/caddyserver/caddy/releases/tag/v${nix.sel(finalAttrs, "version")}`),

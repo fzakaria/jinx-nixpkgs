@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 31, 7], ["hash", 32, 7], ["stripRoot", 33, 7]], [["owner", 45, 5], ["repo", 46, 5], ["tag", 47, 5], ["hash", 48, 5]], [["version", 65, 28]], [["requiredSystemFeatures", 143, 5], ["doCheck", 144, 5], ["disabledTests", 146, 5]], [["skipBulkUpdate", 140, 12], ["gpuCheck", 142, 12]], [["changelog", 155, 5], ["description", 156, 5], ["homepage", 157, 5], ["license", 158, 5], ["maintainers", 159, 5], ["mainProgram", 160, 5]], [["pname", 40, 3], ["version", 41, 3], ["pyproject", 42, 3], ["src", 44, 3], ["sourceRoot", 51, 3], ["patches", 63, 3], ["postPatch", 69, 3], ["preBuild", 79, 3], ["postBuild", 86, 3], ["build-system", 91, 3], ["dependencies", 93, 3], ["pythonImportsCheck", 109, 3], ["nativeCheckInputs", 113, 3], ["disabledTestPaths", 119, 3], ["disabledTests", 124, 3], ["doCheck", 129, 3], ["passthru", 140, 3], ["meta", 154, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, config: false, buildPythonPackage: false, fetchFromGitHub: false, fetchzip: false, replaceVars: false, setuptools: false, pyclipper: false, "opencv-python": false, numpy: false, six: false, shapely: false, pyyaml: false, pillow: false, onnxruntime: false, tqdm: false, pytestCheckHook: false, requests: false, cudaSupport: true, "rapidocr-onnxruntime": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 31, 7], ["hash", 32, 7], ["stripRoot", 33, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["owner", 45, 5], ["repo", 46, 5], ["tag", 47, 5], ["hash", 48, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["version", 65, 28]]);
-const pos$4 = nix.positions(here + "/default.nix", [["requiredSystemFeatures", 143, 5], ["doCheck", 144, 5], ["disabledTests", 146, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["skipBulkUpdate", 140, 12], ["gpuCheck", 142, 12]]);
-const pos$6 = nix.positions(here + "/default.nix", [["changelog", 155, 5], ["description", 156, 5], ["homepage", 157, 5], ["license", 158, 5], ["maintainers", 159, 5], ["mainProgram", 160, 5]]);
-const pos$7 = nix.positions(here + "/default.nix", [["pname", 40, 3], ["version", 41, 3], ["pyproject", 42, 3], ["src", 44, 3], ["sourceRoot", 51, 3], ["patches", 63, 3], ["postPatch", 69, 3], ["preBuild", 79, 3], ["postBuild", 86, 3], ["build-system", 91, 3], ["dependencies", 93, 3], ["pythonImportsCheck", 109, 3], ["nativeCheckInputs", 113, 3], ["disabledTestPaths", 119, 3], ["disabledTests", 124, 3], ["doCheck", 129, 3], ["passthru", 140, 3], ["meta", 154, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -35,19 +29,19 @@ export default nix.lambda((args) => (() => {
   const cudaSupport = nix.argOr($, "cudaSupport", () => nix.sel(config, "cudaSupport"));
   const rapidocr_onnxruntime = nix.arg($, "rapidocr-onnxruntime");
   const models = nix.thunk(() => nix.add(nix.app(fetchzip, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: "https://github.com/RapidAI/RapidOCR/releases/download/v1.1.0/required_for_whl_v1.3.0.zip",
       hash: "sha256-j/0nzyvu/HfNTt5EZ+2Phe5dkyPOdQw/OZTz0yS63aA=",
       stripRoot: false,
     }))), "/required_for_whl_v1.3.0/resources/models"));
   const isNotAarch64Linux = nix.thunk(() => !nix.asBool((nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")))));
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "rapidocr-onnxruntime",
       version: "1.4.4",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "RapidAI",
           repo: "RapidOCR",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -55,7 +49,10 @@ export default nix.lambda((args) => (() => {
         })))),
       sourceRoot: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "name")}/python`),
       patches: nix.thunk(() => [
-        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./setup-py-override-version-checking.patch"), nix.thunk(() => ({ [nix.POS]: pos$3, version: nix.thunk(() => nix.attr(finalAttrs, "version")) })))),
+        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./setup-py-override-version-checking.patch"), nix.thunk(() => ({
+            [nix.POS]: $pos[2],
+            version: nix.thunk(() => nix.attr(finalAttrs, "version")),
+          })))),
       ]),
       postPatch: nix.thunk(() => nix.str`mv setup_onnxruntime.py setup.py
 
@@ -83,17 +80,17 @@ echo "from .rapidocr_onnxruntime.main import RapidOCR, VisRes" > __init__.py
       disabledTests: nix.thunk(() => ["test_long_img"]),
       doCheck: nix.thunk(() => (nix.asBool(!nix.asBool(cudaSupport)) && nix.asBool(isNotAarch64Linux))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         skipBulkUpdate: true,
         gpuCheck: nix.thunk(() => nix.app(nix.sel(rapidocr_onnxruntime, "overridePythonAttrs"), (old) => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             requiredSystemFeatures: nix.thunk(() => ["cuda"]),
             doCheck: true,
             disabledTests: nix.thunk(() => nix.concat(nix.selOr(old, () => [], "disabledTests"), nix.app(nix.sel(lib, "optionals"), cudaSupport, nix.thunk(() => ["test_ort_cuda_warning"])))),
           }))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         changelog: nix.thunk(() => nix.str`https://github.com/RapidAI/RapidOCR/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         description: "Cross platform OCR Library based on OnnxRuntime",
         homepage: "https://github.com/RapidAI/RapidOCR",

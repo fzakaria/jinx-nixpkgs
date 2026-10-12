@@ -2,28 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 24, 5], ["hash", 25, 5]], [["tests", 64, 15]], [["pname", 32, 5], ["version", 33, 5], ["dontUnpack", 35, 5], ["dontBuild", 36, 5], ["nativeBuildInputs", 38, 5], ["buildInputs", 39, 5], ["installPhase", 41, 5], ["passthru", 63, 5]], [["tests", 95, 15]], [["pname", 69, 5], ["version", 70, 5], ["dontUnpack", 72, 5], ["dontBuild", 73, 5], ["nativeBuildInputs", 75, 5], ["buildInputs", 76, 5], ["installPhase", 78, 5], ["passthru", 94, 5]], [["outputHashAlgo", 114, 17], ["outputHash", 115, 17]], [["outputHashAlgo", 119, 17], ["outputHash", 120, 17]], [["outputHashAlgo", 124, 17], ["outputHash", 125, 17]], [["GIT_SSL_CAINFO", 143, 15], ["NODE_EXTRA_CA_CERTS", 144, 15]], [["name", 130, 21], ["dontUnpack", 132, 13], ["dontInstall", 133, 13], ["nativeBuildInputs", 135, 13], ["impureEnvVars", 140, 13], ["env", 142, 13], ["buildPhase", 147, 13], ["outputHashMode", 159, 13]], [["tests", 173, 61]], [["diff", 184, 7]], [["description", 187, 7], ["license", 188, 7]], [["name", 176, 5], ["propagatedBuildInputs", 177, 5], ["substitutions", 181, 5], ["meta", 186, 5]], [["description", 195, 7], ["license", 196, 7]], [["name", 193, 5], ["meta", 194, 5]], [["jq", 208, 7]], [["description", 211, 7], ["license", 212, 7]], [["name", 201, 5], ["propagatedBuildInputs", 202, 5], ["substitutions", 207, 5], ["meta", 210, 5]], [["prefetch-yarn-deps", 31, 3], ["fixup-yarn-lock", 68, 3], ["fetchYarnDeps", 99, 3], ["yarnConfigHook", 175, 3], ["yarnBuildHook", 192, 3], ["yarnInstallHook", 200, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, makeWrapper: false, installShellFiles: false, nodejsInstallManuals: false, nodejsInstallExecutables: false, coreutils: false, "nix-prefetch-git": false, fetchurl: false, jq: false, "nodejs-slim": false, "prefetch-yarn-deps": false, "fixup-yarn-lock": false, diffutils: false, yarn: false, makeSetupHook: false, cacert: false, callPackage: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["tests", 64, 15]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 32, 5], ["version", 33, 5], ["dontUnpack", 35, 5], ["dontBuild", 36, 5], ["nativeBuildInputs", 38, 5], ["buildInputs", 39, 5], ["installPhase", 41, 5], ["passthru", 63, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["tests", 95, 15]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 69, 5], ["version", 70, 5], ["dontUnpack", 72, 5], ["dontBuild", 73, 5], ["nativeBuildInputs", 75, 5], ["buildInputs", 76, 5], ["installPhase", 78, 5], ["passthru", 94, 5]]);
 const formals$2 = { args: { name: true, src: true, hash: true, sha256: true, mirrorUrl: true }, ellipsis: true };
-const pos$6 = nix.positions(here + "/default.nix", [["outputHashAlgo", 114, 17], ["outputHash", 115, 17]]);
-const pos$7 = nix.positions(here + "/default.nix", [["outputHashAlgo", 119, 17], ["outputHash", 120, 17]]);
-const pos$8 = nix.positions(here + "/default.nix", [["outputHashAlgo", 124, 17], ["outputHash", 125, 17]]);
-const pos$9 = nix.positions(here + "/default.nix", [["GIT_SSL_CAINFO", 143, 15], ["NODE_EXTRA_CA_CERTS", 144, 15]]);
-const pos$10 = nix.positions(here + "/default.nix", [["name", 130, 21], ["dontUnpack", 132, 13], ["dontInstall", 133, 13], ["nativeBuildInputs", 135, 13], ["impureEnvVars", 140, 13], ["env", 142, 13], ["buildPhase", 147, 13], ["outputHashMode", 159, 13]]);
-const pos$11 = nix.positions(here + "/default.nix", [["tests", 173, 61]]);
-const pos$12 = nix.positions(here + "/default.nix", [["diff", 184, 7]]);
-const pos$13 = nix.positions(here + "/default.nix", [["description", 187, 7], ["license", 188, 7]]);
-const pos$14 = nix.positions(here + "/default.nix", [["name", 176, 5], ["propagatedBuildInputs", 177, 5], ["substitutions", 181, 5], ["meta", 186, 5]]);
-const pos$15 = nix.positions(here + "/default.nix", [["description", 195, 7], ["license", 196, 7]]);
-const pos$16 = nix.positions(here + "/default.nix", [["name", 193, 5], ["meta", 194, 5]]);
-const pos$17 = nix.positions(here + "/default.nix", [["jq", 208, 7]]);
-const pos$18 = nix.positions(here + "/default.nix", [["description", 211, 7], ["license", 212, 7]]);
-const pos$19 = nix.positions(here + "/default.nix", [["name", 201, 5], ["propagatedBuildInputs", 202, 5], ["substitutions", 207, 5], ["meta", 210, 5]]);
-const pos$20 = nix.positions(here + "/default.nix", [["prefetch-yarn-deps", 31, 3], ["fixup-yarn-lock", 68, 3], ["fetchYarnDeps", 99, 3], ["yarnConfigHook", 175, 3], ["yarnBuildHook", 192, 3], ["yarnInstallHook", 200, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -46,15 +27,15 @@ export default nix.lambda((args) => (() => {
   const cacert = nix.arg($, "cacert");
   const callPackage = nix.arg($, "callPackage");
   const yarnpkg_lockfile_tar = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: "https://registry.yarnpkg.com/@yarnpkg/lockfile/-/lockfile-1.1.0.tgz",
       hash: "sha512-GpSwvyXOcOOlV70vbnzjj4fW5xW/FdUF6nQEt1ENy7m4ZCczi1+/buVUPAqmGfqznsORNFzUMjctTIp8a9tuCQ==",
     }))));
   const tests = nix.thunk(() => nix.app(callPackage, nix.path(here, "./tests"), nix.thunk(() => ({}))));
   return {
-    [nix.POS]: pos$20,
+    [nix.POS]: $pos[19],
     "prefetch-yarn-deps": nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname: "prefetch-yarn-deps",
         version: nix.thunk(() => nix.sel(lib, "trivial", "release")),
         dontUnpack: true,
@@ -76,10 +57,10 @@ makeWrapper $out/libexec/index.js $out/bin/prefetch-yarn-deps \\
 
 runHook postInstall
 `),
-        passthru: nix.thunk(() => ({ [nix.POS]: pos$2, tests: tests })),
+        passthru: nix.thunk(() => ({ [nix.POS]: $pos[1], tests: tests })),
       })))),
     "fixup-yarn-lock": nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname: "fixup-yarn-lock",
         version: nix.thunk(() => nix.sel(lib, "trivial", "release")),
         dontUnpack: true,
@@ -100,7 +81,7 @@ makeWrapper $out/libexec/fixup.js $out/bin/fixup-yarn-lock
 
 runHook postInstall
 `),
-        passthru: nix.thunk(() => ({ [nix.POS]: pos$4, tests: tests })),
+        passthru: nix.thunk(() => ({ [nix.POS]: $pos[3], tests: tests })),
       })))),
     fetchYarnDeps: nix.thunk(() => (() => {
       const f = nix.lambda((args_1) => (() => {
@@ -111,20 +92,20 @@ runHook postInstall
         const hash = nix.argOr($_1, "hash", () => "");
         const sha256 = nix.argOr($_1, "sha256", () => "");
         const mirrorUrl = nix.argOr($_1, "mirrorUrl", () => null);
-        const hash_ = nix.thunk(() => (nix.asBool(!nix.eq(hash, "")) ? { [nix.POS]: pos$6, outputHashAlgo: null, outputHash: hash } : (nix.asBool(!nix.eq(sha256, "")) ? { [nix.POS]: pos$7, outputHashAlgo: "sha256", outputHash: sha256 } : {
-          [nix.POS]: pos$8,
+        const hash_ = nix.thunk(() => (nix.asBool(!nix.eq(hash, "")) ? { [nix.POS]: $pos[5], outputHashAlgo: null, outputHash: hash } : (nix.asBool(!nix.eq(sha256, "")) ? { [nix.POS]: $pos[6], outputHashAlgo: "sha256", outputHash: sha256 } : {
+          [nix.POS]: $pos[7],
           outputHashAlgo: "sha256",
           outputHash: nix.thunk(() => nix.sel(lib, "fakeSha256")),
         })));
         return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => nix.update({
-            [nix.POS]: pos$10,
+            [nix.POS]: $pos[9],
             name: name,
             dontUnpack: nix.thunk(() => nix.eq(src, null)),
             dontInstall: true,
             nativeBuildInputs: nix.thunk(() => [prefetch_yarn_deps, cacert]),
             impureEnvVars: nix.thunk(() => nix.sel(lib, "fetchers", "proxyImpureEnvVars")),
             env: nix.thunk(() => ({
-              [nix.POS]: pos$9,
+              [nix.POS]: $pos[8],
               GIT_SSL_CAINFO: nix.thunk(() => nix.str`${cacert}/etc/ssl/certs/ca-bundle.crt`),
               NODE_EXTRA_CA_CERTS: nix.thunk(() => nix.str`${cacert}/etc/ssl/certs/ca-bundle.crt`),
             })),
@@ -139,35 +120,38 @@ runHook postBuild
             outputHashMode: "recursive",
           }, nix.update(hash_, nix.builtins.removeAttrs(args_2, nix.thunk(() => nix.concat(["name", "hash", "sha256", "mirrorUrl"], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.eq(src, null)), "src"))))))));
       })(), formals$2);
-      return nix.update(nix.app(nix.sel(lib, "setFunctionArgs"), f, nix.thunk(() => nix.app(nix.sel(lib, "functionArgs"), f))), { [nix.POS]: pos$11, tests: tests });
+      return nix.update(nix.app(nix.sel(lib, "setFunctionArgs"), f, nix.thunk(() => nix.app(nix.sel(lib, "functionArgs"), f))), { [nix.POS]: $pos[10], tests: tests });
     })()),
     yarnConfigHook: nix.thunk(() => nix.app(makeSetupHook, nix.thunk(() => ({
-        [nix.POS]: pos$14,
+        [nix.POS]: $pos[13],
         name: "yarn-config-hook",
         propagatedBuildInputs: nix.thunk(() => [yarn, fixup_yarn_lock]),
-        substitutions: nix.thunk(() => ({ [nix.POS]: pos$12, diff: nix.thunk(() => nix.str`${diffutils}/bin/diff`) })),
+        substitutions: nix.thunk(() => ({ [nix.POS]: $pos[11], diff: nix.thunk(() => nix.str`${diffutils}/bin/diff`) })),
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$13,
+          [nix.POS]: $pos[12],
           description: "Install nodejs dependencies from an offline yarn cache produced by fetchYarnDeps",
           license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         })),
       })), nix.path(here, "./yarn-config-hook.sh"))),
     yarnBuildHook: nix.thunk(() => nix.app(makeSetupHook, nix.thunk(() => ({
-        [nix.POS]: pos$16,
+        [nix.POS]: $pos[15],
         name: "yarn-build-hook",
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$15,
+          [nix.POS]: $pos[14],
           description: "Run yarn build in buildPhase",
           license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         })),
       })), nix.path(here, "./yarn-build-hook.sh"))),
     yarnInstallHook: nix.thunk(() => nix.app(makeSetupHook, nix.thunk(() => ({
-        [nix.POS]: pos$19,
+        [nix.POS]: $pos[18],
         name: "yarn-install-hook",
         propagatedBuildInputs: nix.thunk(() => [yarn, nodejsInstallManuals, nodejsInstallExecutables]),
-        substitutions: nix.thunk(() => ({ [nix.POS]: pos$17, jq: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), jq)) })),
+        substitutions: nix.thunk(() => ({
+          [nix.POS]: $pos[16],
+          jq: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), jq)),
+        })),
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$18,
+          [nix.POS]: $pos[17],
           description: "Prune yarn dependencies and install files for packages using Yarn 1",
           license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         })),

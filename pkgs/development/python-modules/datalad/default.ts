@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 55, 5], ["repo", 56, 5], ["tag", 57, 5], ["hash", 58, 5]], [["core", 82, 5], ["downloaders", 96, 5], ["downloaders-extra", 103, 5], ["publish", 106, 5], ["misc", 107, 5], ["duecredit", 112, 5]], [["description", 181, 5], ["homepage", 182, 5], ["changelog", 183, 5], ["license", 184, 5], ["maintainers", 185, 5]], [["pname", 50, 3], ["version", 51, 3], ["pyproject", 52, 3], ["src", 54, 3], ["postPatch", 61, 3], ["nativeBuildInputs", 66, 3], ["build-system", 71, 3], ["dependencies", 76, 3], ["optional-dependencies", 81, 3], ["postInstall", 115, 3], ["preCheck", 124, 3], ["disabledTestMarks", 130, 3], ["disabledTests", 134, 3], ["nativeCheckInputs", 160, 3], ["pytestFlags", 170, 3], ["__darwinAllowLocalNetworking", 176, 3], ["pythonImportsCheck", 178, 3], ["meta", 180, 3]]]);
 const formals$1 = { args: { buildPythonPackage: false, lib: false, setuptools: false, stdenv: false, fetchFromGitHub: false, pythonAtLeast: false, installShellFiles: false, git: false, versioneer: false, platformdirs: false, chardet: false, iso8601: false, humanize: false, fasteners: false, packaging: false, patool: false, tqdm: false, annexremote: false, looseversion: false, "git-annex": false, boto3: false, "keyrings-alt": false, keyring: false, msgpack: false, requests: false, "python-gitlab": false, argcomplete: false, pyperclip: false, "python-dateutil": false, duecredit: false, distro: false, colorama: false, "pytest-retry": false, "pytest-xdist": false, pytestCheckHook: false, p7zip: false, curl: false, httpretty: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 55, 5], ["repo", 56, 5], ["tag", 57, 5], ["hash", 58, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["core", 82, 5], ["downloaders", 96, 5], ["downloaders-extra", 103, 5], ["publish", 106, 5], ["misc", 107, 5], ["duecredit", 112, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 181, 5], ["homepage", 182, 5], ["changelog", 183, 5], ["license", 184, 5], ["maintainers", 185, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 50, 3], ["version", 51, 3], ["pyproject", 52, 3], ["src", 54, 3], ["postPatch", 61, 3], ["nativeBuildInputs", 66, 3], ["build-system", 71, 3], ["dependencies", 76, 3], ["optional-dependencies", 81, 3], ["postInstall", 115, 3], ["preCheck", 124, 3], ["disabledTestMarks", 130, 3], ["disabledTests", 134, 3], ["nativeCheckInputs", 160, 3], ["pytestFlags", 170, 3], ["__darwinAllowLocalNetworking", 176, 3], ["pythonImportsCheck", 178, 3], ["meta", 180, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -49,12 +46,12 @@ export default nix.lambda((args) => (() => {
   const curl = nix.arg($, "curl");
   const httpretty = nix.arg($, "httpretty");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "datalad",
       version: "1.3.4",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "datalad",
           repo: "datalad",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -65,7 +62,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [setuptools, versioneer]),
       dependencies: nix.thunk(() => nix.concat(nix.sel(finalAttrs, "passthru", "optional-dependencies", "core"), nix.concat(nix.sel(finalAttrs, "passthru", "optional-dependencies", "downloaders"), nix.sel(finalAttrs, "passthru", "optional-dependencies", "publish")))),
       "optional-dependencies": nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         core: nix.thunk(() => nix.concat([
           platformdirs,
           chardet,
@@ -119,7 +116,7 @@ wrapProgram $out/bin/datalad \\
       __darwinAllowLocalNetworking: true,
       pythonImportsCheck: nix.thunk(() => ["datalad"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Keep code, data, containers under control with git and git-annex",
         homepage: "https://www.datalad.org",
         changelog: nix.thunk(() => nix.str`https://github.com/datalad/datalad/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

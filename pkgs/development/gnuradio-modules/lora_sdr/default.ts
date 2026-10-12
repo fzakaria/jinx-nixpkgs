@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["hash", 24, 5]], [["description", 54, 5], ["homepage", 55, 5], ["license", 56, 5], ["maintainers", 57, 5], ["platforms", 58, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["disabled", 26, 3], ["outputs", 28, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 38, 3], ["cmakeFlags", 49, 3], ["meta", 53, 3]]]);
 const formals$1 = { args: { lib: false, mkDerivation: false, fetchFromGitHub: false, gnuradio: false, cmake: false, "pkg-config": false, logLib: false, mpir: false, gmp: false, boost: false, python: false, gnuradioOlder: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 54, 5], ["homepage", 55, 5], ["license", 56, 5], ["maintainers", 57, 5], ["platforms", 58, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["disabled", 26, 3], ["outputs", 28, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 38, 3], ["cmakeFlags", 49, 3], ["meta", 53, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const python = nix.arg($, "python");
   const gnuradioOlder = nix.arg($, "gnuradioOlder");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "gr-lora_sdr",
       version: "0-unstable-2026-01-05",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "tapparelj",
           repo: "gr-lora_sdr",
           rev: "862746dd1cf635c9c8a4bfbaa2c3a0ec3a5306c9",
@@ -43,7 +41,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "ENABLE_PYTHON", nix.thunk(() => nix.app(nix.sel(gnuradio, "hasFeature"), "python-support")))),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Fully-functional GNU Radio software-defined radio (SDR) implementation of a LoRa transceiver",
         homepage: "https://www.epfl.ch/labs/tcl/resources-and-sw/lora-phy/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

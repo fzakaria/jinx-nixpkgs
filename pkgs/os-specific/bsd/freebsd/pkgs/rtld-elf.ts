@@ -2,10 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/rtld-elf.nix", [[["name", 46, 7], ["url", 47, 7], ["hash", 48, 7], ["includes", 49, 7]], [["MK_TESTS", 92, 7]], [["path", 17, 3], ["extraPaths", 18, 3], ["patches", 43, 3], ["outputs", 53, 3], ["noLibc", 59, 3], ["buildInputs", 61, 3], ["extraNativeBuildInputs", 67, 3], ["preBuild", 74, 3], ["postInstall", 81, 3], ["hardeningDisable", 87, 3], ["env", 92, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, mkDerivation: false, fetchpatch: false, include: false, rpcgen: false, libsys: false, flex: false, byacc: false, csu: false, libcompiler_rt: false, extraSrc: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/rtld-elf.nix", [["name", 46, 7], ["url", 47, 7], ["hash", 48, 7], ["includes", 49, 7]]);
-const pos$2 = nix.positions(here + "/rtld-elf.nix", [["MK_TESTS", 92, 7]]);
-const pos$3 = nix.positions(here + "/rtld-elf.nix", [["path", 17, 3], ["extraPaths", 18, 3], ["patches", 43, 3], ["outputs", 53, 3], ["noLibc", 59, 3], ["buildInputs", 61, 3], ["extraNativeBuildInputs", 67, 3], ["preBuild", 74, 3], ["postInstall", 81, 3], ["hardeningDisable", 87, 3], ["env", 92, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,7 +20,7 @@ export default nix.lambda((args) => (() => {
   const libcompiler_rt = nix.arg($, "libcompiler_rt");
   const extraSrc = nix.argOr($, "extraSrc", () => []);
   return nix.app(mkDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       path: "libexec/rtld-elf",
       extraPaths: nix.thunk(() => nix.concat([
         "lib/csu",
@@ -46,7 +44,7 @@ export default nix.lambda((args) => (() => {
       ], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch32")) || nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")))), nix.thunk(() => ["contrib/arm-optimized-routines"])), extraSrc))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             name: "freebsd-rtld-use-nonstring-attribute.patch",
             url: "https://github.com/freebsd/freebsd-src/pull/1882/commits/650800993deb513dc31e99ef5cdecd50ee70bb04.diff",
             hash: "sha256-V9jDE/5Fu6hLIzlG1e6AqLnGwlzW2OjonyUgvSVtm58=",
@@ -63,7 +61,7 @@ make -C $BSDSRCDIR/lib/libc $makeFlags libc_nossp_pic.a
 `),
       postInstall: "ln -sf $out/bin/ld-elf.so.1 $out/libexec/ld-elf.so.1\n",
       hardeningDisable: nix.thunk(() => ["stackprotector", "fortify"]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, MK_TESTS: "no" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], MK_TESTS: "no" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=rtld-elf.ts.map

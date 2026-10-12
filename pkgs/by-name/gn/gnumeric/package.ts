@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 33, 5], ["owner", 34, 5], ["repo", 35, 5], ["tag", 36, 5], ["hash", 37, 5]], [["name", 43, 7], ["url", 44, 7], ["hash", 45, 7]], [["packageName", 93, 7], ["versionPolicy", 94, 7]], [["updateScript", 92, 5]], [["changelog", 99, 5], ["description", 100, 5], ["license", 101, 5], ["homepage", 102, 5], ["platforms", 103, 5], ["maintainers", 104, 5]], [["pname", 29, 3], ["version", 30, 3], ["src", 32, 3], ["patches", 40, 3], ["postPatch", 49, 3], ["preConfigure", 54, 3], ["configureFlags", 58, 3], ["nativeBuildInputs", 60, 3], ["buildInputs", 77, 3], ["enableParallelBuilding", 89, 3], ["passthru", 91, 3], ["meta", 98, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, "pkg-config": false, intltool: false, libxml2: false, perlPackages: false, goffice: false, gnome: false, "adwaita-icon-theme": false, wrapGAppsHook3: false, glib: false, gtk3: false, bison: false, python3Packages: false, itstool: false, autoreconfHook: false, "gtk-doc": false, fetchFromGitLab: false, fetchpatch: false, gettext: false, "yelp-tools": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 33, 5], ["owner", 34, 5], ["repo", 35, 5], ["tag", 36, 5], ["hash", 37, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 43, 7], ["url", 44, 7], ["hash", 45, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["packageName", 93, 7], ["versionPolicy", 94, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 92, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["changelog", 99, 5], ["description", 100, 5], ["license", 101, 5], ["homepage", 102, 5], ["platforms", 103, 5], ["maintainers", 104, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 29, 3], ["version", 30, 3], ["src", 32, 3], ["patches", 40, 3], ["postPatch", 49, 3], ["preConfigure", 54, 3], ["configureFlags", 58, 3], ["nativeBuildInputs", 60, 3], ["buildInputs", 77, 3], ["enableParallelBuilding", 89, 3], ["passthru", 91, 3], ["meta", 98, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -36,11 +31,11 @@ export default nix.lambda((args) => (() => {
   const python = nix.thunk(() => nix.attr(python3Packages, "python"));
   const pygobject3 = nix.thunk(() => nix.attr(python3Packages, "pygobject3"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "gnumeric",
       version: "1.12.62",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "gitlab.gnome.org",
           owner: "GNOME",
           repo: "gnumeric",
@@ -49,7 +44,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "CVE-2026-97222.patch",
             url: "https://gitlab.gnome.org/GNOME/gnumeric/-/commit/bc1dee29525933994181fb2307d6ad584de6040d.diff",
             hash: "sha256-8A56BLNgekDOYZnA6WqQiyoC0iJTPJQ8jEPnoKv0OPM=",
@@ -81,11 +76,11 @@ export default nix.lambda((args) => (() => {
       })())),
       enableParallelBuilding: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$3, packageName: "gnumeric", versionPolicy: "odd-unstable" })))),
+        [nix.POS]: $pos[3],
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: $pos[2], packageName: "gnumeric", versionPolicy: "odd-unstable" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         changelog: nix.thunk(() => nix.str`https://gitlab.gnome.org/GNOME/gnumeric/-/blob/${nix.sel(finalAttrs, "src", "tag")}/NEWS`),
         description: "GNOME Office Spreadsheet",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

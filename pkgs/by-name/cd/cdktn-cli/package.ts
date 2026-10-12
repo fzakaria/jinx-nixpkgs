@@ -2,17 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]], [["pname", 34, 7], ["version", 35, 7], ["src", 36, 7], ["pnpmInstallFlags", 37, 7], ["pnpmWorkspaces", 38, 7], ["fetcherVersion", 40, 5], ["hash", 41, 5], ["pnpm", 42, 5]], [["GOWORK", 53, 11]], [["pname", 47, 7], ["version", 48, 28], ["src", 48, 36], ["modRoot", 49, 7], ["vendorHash", 50, 7], ["proxyVendor", 51, 7], ["doCheck", 52, 7], ["env", 53, 7]], [["GOWORK", 64, 11]], [["pname", 58, 7], ["version", 59, 28], ["src", 59, 36], ["modRoot", 60, 7], ["vendorHash", 61, 7], ["proxyVendor", 62, 7], ["doCheck", 63, 7], ["env", 64, 7]], [["extraArgs", 155, 5]], [["updateScript", 153, 12]], [["description", 162, 5], ["homepage", 163, 5], ["changelog", 164, 5], ["license", 165, 5], ["mainProgram", 166, 5], ["maintainers", 167, 5], ["platforms", 168, 5]], [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["pnpmWorkspaces", 30, 3], ["pnpmDeps", 32, 3], ["hcl2json-go-modules", 45, 3], ["hcltools-go-modules", 56, 3], ["pnpmInstallFlags", 67, 3], ["strictDeps", 68, 3], ["disallowedReferences", 69, 3], ["nativeBuildInputs", 71, 3], ["postPatch", 82, 3], ["preConfigure", 90, 3], ["buildPhase", 100, 3], ["doCheck", 110, 3], ["checkPhase", 111, 3], ["installPhase", 122, 3], ["postInstall", 138, 3], ["nativeInstallCheckInputs", 145, 3], ["doInstallCheck", 151, 3], ["passthru", 153, 3], ["meta", 161, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildGoModule: false, faketty: false, fetchFromGitHub: false, fetchPnpmDeps: false, go: false, makeWrapper: false, nodejs: false, "nix-update-script": false, patchelf: false, pnpm_10: false, pnpmConfigHook: false, removeReferencesTo: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 34, 7], ["version", 35, 7], ["src", 36, 7], ["pnpmInstallFlags", 37, 7], ["pnpmWorkspaces", 38, 7], ["fetcherVersion", 40, 5], ["hash", 41, 5], ["pnpm", 42, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["GOWORK", 53, 11]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 47, 7], ["version", 48, 28], ["src", 48, 36], ["modRoot", 49, 7], ["vendorHash", 50, 7], ["proxyVendor", 51, 7], ["doCheck", 52, 7], ["env", 53, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["GOWORK", 64, 11]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 58, 7], ["version", 59, 28], ["src", 59, 36], ["modRoot", 60, 7], ["vendorHash", 61, 7], ["proxyVendor", 62, 7], ["doCheck", 63, 7], ["env", 64, 7]]);
-const pos$7 = nix.positions(here + "/package.nix", [["extraArgs", 155, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["updateScript", 153, 12]]);
-const pos$9 = nix.positions(here + "/package.nix", [["description", 162, 5], ["homepage", 163, 5], ["changelog", 164, 5], ["license", 165, 5], ["mainProgram", 166, 5], ["maintainers", 167, 5], ["platforms", 168, 5]]);
-const pos$10 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["pnpmWorkspaces", 30, 3], ["pnpmDeps", 32, 3], ["hcl2json-go-modules", 45, 3], ["hcltools-go-modules", 56, 3], ["pnpmInstallFlags", 67, 3], ["strictDeps", 68, 3], ["disallowedReferences", 69, 3], ["nativeBuildInputs", 71, 3], ["postPatch", 82, 3], ["preConfigure", 90, 3], ["buildPhase", 100, 3], ["doCheck", 110, 3], ["checkPhase", 111, 3], ["installPhase", 122, 3], ["postInstall", 138, 3], ["nativeInstallCheckInputs", 145, 3], ["doInstallCheck", 151, 3], ["passthru", 153, 3], ["meta", 161, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const removeReferencesTo = nix.arg($, "removeReferencesTo");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       pname: "cdktn-cli",
       version: "0.24.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "open-constructs",
           repo: "cdk-terrain",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -44,7 +35,7 @@ export default nix.lambda((args) => (() => {
         })))),
       pnpmWorkspaces: nix.thunk(() => ["cdktn-cli..."]),
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -55,7 +46,7 @@ export default nix.lambda((args) => (() => {
           pnpm: pnpm_10,
         })))),
       "hcl2json-go-modules": nix.thunk(() => nix.sel(nix.app(buildGoModule, nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           pname: "cdktn-hcl2json-go-modules",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -63,10 +54,10 @@ export default nix.lambda((args) => (() => {
           vendorHash: "sha256-OiKPq0CHkOxJaFzgsaNJ02tasvHtHWylmaPRPayJob4=",
           proxyVendor: true,
           doCheck: false,
-          env: nix.thunk(() => ({ [nix.POS]: pos$3, GOWORK: "off" })),
+          env: nix.thunk(() => ({ [nix.POS]: $pos[2], GOWORK: "off" })),
         }))), "goModules")),
       "hcltools-go-modules": nix.thunk(() => nix.sel(nix.app(buildGoModule, nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           pname: "cdktn-hcltools-go-modules",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -74,7 +65,7 @@ export default nix.lambda((args) => (() => {
           vendorHash: "sha256-orGxkYEQVtTKvXb7/FD/CLwqSINgBQFTF5arbR0xAvE=",
           proxyVendor: true,
           doCheck: false,
-          env: nix.thunk(() => ({ [nix.POS]: pos$5, GOWORK: "off" })),
+          env: nix.thunk(() => ({ [nix.POS]: $pos[4], GOWORK: "off" })),
         }))), "goModules")),
       pnpmInstallFlags: nix.thunk(() => ["--shamefully-hoist"]),
       strictDeps: true,
@@ -123,14 +114,14 @@ remove-references-to -t ${go} \\
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             extraArgs: nix.thunk(() => ["--version-regex", "^v([\\d.]+)$"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         description: "CDK for Terraform CLI",
         homepage: "https://cdktn.io",
         changelog: nix.thunk(() => nix.str`https://github.com/open-constructs/cdk-terrain/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

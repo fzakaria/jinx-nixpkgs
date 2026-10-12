@@ -2,15 +2,9 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["description", 53, 11], ["platforms", 54, 11], ["homepage", 55, 11]], [["command", 63, 13], ["supportedFeatures", 68, 13]], [["updateScript", 62, 11]], [["installPhase", 28, 9], ["meta", 52, 9], ["passthru", 61, 9]], [["constructDrv", 12, 5], ["extendDrvArgs", 14, 5]], [["mkYaziPlugin", 74, 58]], [["mkYaziPlugin", 82, 11]]]);
 const formals$1 = { args: { lib: false, callPackage: false, stdenvNoCC: false, writeShellScript: false }, ellipsis: false };
 const formals$2 = { args: { pname: false, src: false, meta: true, installPhase: true }, ellipsis: true };
-const pos$1 = nix.positions(here + "/default.nix", [["description", 53, 11], ["platforms", 54, 11], ["homepage", 55, 11]]);
-const pos$2 = nix.positions(here + "/default.nix", [["command", 63, 13], ["supportedFeatures", 68, 13]]);
-const pos$3 = nix.positions(here + "/default.nix", [["updateScript", 62, 11]]);
-const pos$4 = nix.positions(here + "/default.nix", [["installPhase", 28, 9], ["meta", 52, 9], ["passthru", 61, 9]]);
-const pos$5 = nix.positions(here + "/default.nix", [["constructDrv", 12, 5], ["extendDrvArgs", 14, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["mkYaziPlugin", 74, 58]]);
-const pos$7 = nix.positions(here + "/default.nix", [["mkYaziPlugin", 82, 11]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const root = nix.path(here, "./.");
   const updateScript = nix.path(here, "./update.py");
   const mkYaziPlugin = nix.thunk(() => nix.app(nix.sel(lib, "extendMkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       constructDrv: nix.thunk(() => nix.sel(stdenvNoCC, "mkDerivation")),
       extendDrvArgs: (finalAttrs) => nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
@@ -32,7 +26,7 @@ export default nix.lambda((args) => (() => {
         const installPhase = nix.argOr($_1, "installPhase", () => null);
         const pluginName = nix.thunk(() => nix.app(nix.sel(lib, "removeSuffix"), ".yazi", pname));
         return {
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           installPhase: nix.thunk(() => (nix.asBool(!nix.eq(installPhase, null)) ? nix.force(installPhase) : (nix.asBool((nix.asBool(nix.has(src, "owner")) && nix.asBool(nix.eq(nix.sel(src, "owner"), "yazi-rs")))) ? nix.str`runHook preInstall
 
 cp -r ${pname} $out
@@ -42,15 +36,15 @@ cp LICENSE $out
 runHook postInstall
 ` : "runHook preInstall\n\ncp -r . $out\n\nrunHook postInstall\n"))),
           meta: nix.thunk(() => nix.update(meta, {
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             description: nix.thunk(() => nix.selOr(meta, () => "", "description")),
             platforms: nix.thunk(() => nix.selOr(meta, () => nix.sel(lib, "platforms", "all"), "platforms")),
             homepage: nix.thunk(() => (nix.asBool((nix.asBool(nix.has(src, "owner")) && nix.asBool(nix.eq(nix.sel(src, "owner"), "yazi-rs")))) ? nix.str`https://github.com/yazi-rs/plugins/tree/main/${pname}` : nix.selOr(meta, () => null, "homepage"))),
           })),
           passthru: nix.thunk(() => nix.update(nix.selOr(args_2, () => ({}), "passthru"), {
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             updateScript: nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               command: nix.thunk(() => nix.app(writeShellScript, nix.thunk(() => nix.str`update-${pluginName}`), nix.thunk(() => nix.str`export PLUGIN_NAME="${pluginName}"
 export PLUGIN_PNAME="${pname}"
 exec ${updateScript}
@@ -61,11 +55,11 @@ exec ${updateScript}
         };
       })(), formals$2),
     }))));
-  const call = (name) => nix.app(callPackage, nix.thunk(() => nix.add(root, nix.str`/${name}`)), nix.thunk(() => ({ [nix.POS]: pos$6, mkYaziPlugin: mkYaziPlugin })));
+  const call = (name) => nix.app(callPackage, nix.thunk(() => nix.add(root, nix.str`/${name}`)), nix.thunk(() => ({ [nix.POS]: $pos[5], mkYaziPlugin: mkYaziPlugin })));
   return nix.update(nix.app(nix.sel(lib, "pipe"), root, nix.thunk(() => [
       nix.thunk(() => nix.builtins.readDir),
       nix.thunk(() => nix.app(nix.sel(lib, "filterAttrs"), (_) => (type) => nix.eq(type, "directory"))),
       nix.thunk(() => nix.app(nix.builtins.mapAttrs, (name) => (_) => nix.app(call, name))),
-    ])), { [nix.POS]: pos$7, mkYaziPlugin: mkYaziPlugin });
+    ])), { [nix.POS]: $pos[6], mkYaziPlugin: mkYaziPlugin });
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

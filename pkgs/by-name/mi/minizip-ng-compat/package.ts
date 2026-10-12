@@ -2,12 +2,12 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["enableCompat", 5, 3]]]);
 const formals$1 = { args: { "minizip-ng": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["enableCompat", 5, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const minizip_ng = nix.arg($, "minizip-ng");
-  return nix.app(nix.sel(minizip_ng, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, enableCompat: true })));
+  return nix.app(nix.sel(minizip_ng, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], enableCompat: true })));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

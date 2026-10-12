@@ -2,20 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["embedSupport", 47, 5], ["apxs2Support", 48, 5]], [["name", 52, 7], ["enabled", 53, 7], ["cmakeFlag", 54, 7], ["buildInputs", 55, 7]], [["name", 58, 7], ["enabled", 59, 7], ["cmakeFlag", 60, 7], ["buildInputs", 61, 7]], [["name", 64, 7], ["enabled", 65, 7], ["cmakeFlag", 66, 7], ["buildInputs", 67, 7]], [["name", 70, 7], ["enabled", 71, 7], ["cmakeFlag", 72, 7], ["buildInputs", 73, 7]], [["name", 76, 7], ["enabled", 77, 7], ["cmakeFlag", 78, 7], ["buildInputs", 79, 7]], [["name", 82, 7], ["enabled", 83, 7], ["cmakeFlag", 84, 7], ["buildInputs", 85, 7]], [["name", 88, 7], ["enabled", 89, 7], ["cmakeFlag", 90, 7], ["buildInputs", 91, 7]], [["url", 111, 5], ["hash", 112, 5]], [["NIX_CFLAGS_COMPILE", 161, 7]], [["updateScript", 178, 12]], [["homepage", 193, 5], ["changelog", 194, 5], ["description", 195, 5], ["longDescription", 196, 5], ["license", 201, 5], ["maintainers", 202, 5], ["mainProgram", 203, 5], ["platforms", 204, 5]], [["pname", 107, 3], ["version", 108, 3], ["src", 110, 3], ["patches", 116, 3], ["outputs", 120, 3], ["cmakeFlags", 126, 3], ["nativeBuildInputs", 137, 3], ["buildInputs", 144, 3], ["env", 161, 3], ["postInstall", 166, 3], ["doInstallCheck", 175, 3], ["nativeInstallCheckInputs", 176, 3], ["passthru", 178, 3], ["meta", 192, 3]]]);
 const formals$1 = { args: { stdenv: false, fetchurl: false, lib: false, ncurses: false, openssl: false, cjson: false, enchant: false, gnutls: false, gettext: false, zlib: false, curl: false, "pkg-config": false, libgcrypt: false, cmake: false, libresolv: false, libiconv: false, asciidoctor: false, enableTests: true, cpputest: false, guileSupport: true, guile: false, luaSupport: true, lua5_3: false, perlSupport: true, perl: false, pythonSupport: true, python3Packages: false, rubySupport: true, ruby: false, tclSupport: true, tcl: false, phpSupport: true, php: false, systemdLibs: false, libxml2: false, pcre2: false, libargon2: false, extraBuildInputs: true, writeScript: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["embedSupport", 47, 5], ["apxs2Support", 48, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["name", 52, 7], ["enabled", 53, 7], ["cmakeFlag", 54, 7], ["buildInputs", 55, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["name", 58, 7], ["enabled", 59, 7], ["cmakeFlag", 60, 7], ["buildInputs", 61, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["name", 64, 7], ["enabled", 65, 7], ["cmakeFlag", 66, 7], ["buildInputs", 67, 7]]);
-const pos$5 = nix.positions(here + "/default.nix", [["name", 70, 7], ["enabled", 71, 7], ["cmakeFlag", 72, 7], ["buildInputs", 73, 7]]);
-const pos$6 = nix.positions(here + "/default.nix", [["name", 76, 7], ["enabled", 77, 7], ["cmakeFlag", 78, 7], ["buildInputs", 79, 7]]);
-const pos$7 = nix.positions(here + "/default.nix", [["name", 82, 7], ["enabled", 83, 7], ["cmakeFlag", 84, 7], ["buildInputs", 85, 7]]);
-const pos$8 = nix.positions(here + "/default.nix", [["name", 88, 7], ["enabled", 89, 7], ["cmakeFlag", 90, 7], ["buildInputs", 91, 7]]);
-const pos$9 = nix.positions(here + "/default.nix", [["url", 111, 5], ["hash", 112, 5]]);
-const pos$10 = nix.positions(here + "/default.nix", [["NIX_CFLAGS_COMPILE", 161, 7]]);
-const pos$11 = nix.positions(here + "/default.nix", [["updateScript", 178, 12]]);
-const pos$12 = nix.positions(here + "/default.nix", [["homepage", 193, 5], ["changelog", 194, 5], ["description", 195, 5], ["longDescription", 196, 5], ["license", 201, 5], ["maintainers", 202, 5], ["mainProgram", 203, 5], ["platforms", 204, 5]]);
-const pos$13 = nix.positions(here + "/default.nix", [["pname", 107, 3], ["version", 108, 3], ["src", 110, 3], ["patches", 116, 3], ["outputs", 120, 3], ["cmakeFlags", 126, 3], ["nativeBuildInputs", 137, 3], ["buildInputs", 144, 3], ["env", 161, 3], ["postInstall", 166, 3], ["doInstallCheck", 175, 3], ["nativeInstallCheckInputs", 176, 3], ["passthru", 178, 3], ["meta", 192, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -60,52 +48,52 @@ export default nix.lambda((args) => (() => {
   const writeScript = nix.arg($, "writeScript");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const python = nix.thunk(() => nix.attr(python3Packages, "python"));
-  const php_embed = nix.thunk(() => nix.app(nix.sel(php, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, embedSupport: true, apxs2Support: false }))));
+  const php_embed = nix.thunk(() => nix.app(nix.sel(php, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], embedSupport: true, apxs2Support: false }))));
   const plugins = nix.thunk(() => [
     nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       name: "perl",
       enabled: perlSupport,
       cmakeFlag: "ENABLE_PERL",
       buildInputs: nix.thunk(() => [perl]),
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       name: "tcl",
       enabled: tclSupport,
       cmakeFlag: "ENABLE_TCL",
       buildInputs: nix.thunk(() => [tcl]),
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       name: "ruby",
       enabled: rubySupport,
       cmakeFlag: "ENABLE_RUBY",
       buildInputs: nix.thunk(() => [ruby]),
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       name: "guile",
       enabled: guileSupport,
       cmakeFlag: "ENABLE_GUILE",
       buildInputs: nix.thunk(() => [guile]),
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       name: "lua",
       enabled: luaSupport,
       cmakeFlag: "ENABLE_LUA",
       buildInputs: nix.thunk(() => [lua5_3]),
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       name: "python",
       enabled: pythonSupport,
       cmakeFlag: "ENABLE_PYTHON3",
       buildInputs: nix.thunk(() => [python]),
     })),
     nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       name: "php",
       enabled: phpSupport,
       cmakeFlag: "ENABLE_PHP",
@@ -123,7 +111,7 @@ export default nix.lambda((args) => (() => {
       const pname = "weechat";
       const version = "4.10.1";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           url: nix.thunk(() => nix.str`https://weechat.org/files/src/weechat-${version}.tar.xz`),
           hash: "sha256-uHRMb13FVDBieR9WPgUW28lqNhYeGgPEaLO33Mi+Wv8=",
         }))));
@@ -140,7 +128,7 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => nix.concat([cmake, pkg_config, asciidoctor], nix.app(nix.sel(lib, "optionals"), enableTests, nix.thunk(() => [cpputest]))));
       const buildInputs = nix.thunk(() => nix.concat([ncurses, openssl, cjson, enchant, gnutls, gettext, zlib, curl, libgcrypt], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [libresolv])), nix.concat(nix.app(nix.sel(lib, "concatMap"), (p) => nix.sel(p, "buildInputs"), enabledPlugins), extraBuildInputs))));
       const env = nix.thunk(() => ({
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.add(nix.str`-I${python}/include/${nix.sel(python, "libPrefix")}`, nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "-DBIND_8_COMPAT=1 -lresolv"))),
       }));
       const postInstall = nix.thunk(() => nix.str`for p in ${nix.app(nix.sel(lib, "concatMapStringsSep"), " ", (p) => nix.sel(p, "name"), enabledPlugins)}; do
@@ -153,11 +141,11 @@ done
       const doInstallCheck = true;
       const nativeInstallCheckInputs = nix.thunk(() => [versionCheckHook]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$11,
+        [nix.POS]: $pos[10],
         updateScript: nix.thunk(() => nix.app(writeScript, "update-weechat", "#!/usr/bin/env nix-shell\n#!nix-shell -i bash -p coreutils gawk git gnugrep common-updater-scripts\nset -eu -o pipefail\n\nversion=\"$(git ls-remote --refs https://github.com/weechat/weechat | \\\n  awk '{ print $2 }' | \\\n  grep \"refs/tags/v\" | \\\n  sed -E -e 's,refs/tags/v(.*)$,\\1,' | \\\n  sort --version-sort --reverse | \\\n  head -n1)\"\nupdate-source-version weechat-unwrapped \"$version\"\n")),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$12,
+        [nix.POS]: $pos[11],
         homepage: "https://weechat.org/",
         changelog: nix.thunk(() => nix.str`https://github.com/weechat/weechat/releases/tag/v${version}`),
         description: "Fast, light and extensible chat client",
@@ -171,7 +159,7 @@ done
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        [nix.POS]: pos$13,
+        [nix.POS]: $pos[12],
         pname,
         version,
         src,

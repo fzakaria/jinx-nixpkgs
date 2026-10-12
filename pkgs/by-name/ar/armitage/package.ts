@@ -2,16 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["hash", 24, 5]], [["name", 29, 7], ["url", 30, 7], ["hash", 31, 7]], [["name", 34, 7], ["url", 35, 7], ["hash", 36, 7]], [["name", 39, 7], ["url", 40, 7], ["hash", 41, 7]], [["name", 44, 7], ["url", 45, 7], ["hash", 46, 7]], [["name", 66, 7], ["desktopName", 67, 7], ["exec", 68, 7], ["icon", 69, 7], ["comment", 70, 7], ["categories", 71, 7], ["startupNotify", 75, 7]], [["pname", 90, 13], ["data", 91, 5]], [["description", 136, 5], ["homepage", 137, 5], ["license", 138, 5], ["maintainers", 139, 5], ["platforms", 140, 5], ["mainProgram", 141, 5]], [["pname", 58, 5], ["version", 59, 5], ["src", 60, 5], ["patches", 61, 5], ["desktopItems", 64, 3], ["nativeBuildInputs", 79, 3], ["mitmCache", 89, 3], ["__darwinAllowLocalNetworking", 94, 3], ["installPhase", 96, 3], ["meta", 135, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, fetchFromGitHub: false, jdk11: false, jdk17: false, gradle_8: false, metasploit: false, makeWrapper: false, makeDesktopItem: false, copyDesktopItems: false, writeDarwinBundle: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 29, 7], ["url", 30, 7], ["hash", 31, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 34, 7], ["url", 35, 7], ["hash", 36, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["name", 39, 7], ["url", 40, 7], ["hash", 41, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["name", 44, 7], ["url", 45, 7], ["hash", 46, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["name", 66, 7], ["desktopName", 67, 7], ["exec", 68, 7], ["icon", 69, 7], ["comment", 70, 7], ["categories", 71, 7], ["startupNotify", 75, 7]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 90, 13], ["data", 91, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["description", 136, 5], ["homepage", 137, 5], ["license", 138, 5], ["maintainers", 139, 5], ["platforms", 140, 5], ["mainProgram", 141, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["pname", 58, 5], ["version", 59, 5], ["src", 60, 5], ["patches", 61, 5], ["desktopItems", 64, 3], ["nativeBuildInputs", 79, 3], ["mitmCache", 89, 3], ["__darwinAllowLocalNetworking", 94, 3], ["installPhase", 96, 3], ["meta", 135, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,7 +22,7 @@ export default nix.lambda((args) => (() => {
   const pname = "armitage";
   const version = "1.0-unstable-2022-12-05";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "r00t0v3rr1d3",
       repo: "armitage",
       rev: "991244e9a0c0fc9302e48c4e708347c315f78b13",
@@ -38,25 +30,25 @@ export default nix.lambda((args) => (() => {
     }))));
   const patches = nix.thunk(() => [
     nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         name: "Remove-mentions-of-old-metasploit-versions.patch",
         url: "https://gitlab.com/kalilinux/packages/armitage/-/raw/042beb7494a10227761ecb3ddabf4019bbb78681/debian/patches/Remove-mentions-of-old-metasploit-versions.patch",
         hash: "sha256-VUey/e8kcBWqAxYTfIXoyTAoDR/UKZKqBJAKmdabArY=",
       })))),
     nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         name: "Update-postgresql-version-to-support-scram-sha-256.patch",
         url: "https://gitlab.com/kalilinux/packages/armitage/-/raw/042beb7494a10227761ecb3ddabf4019bbb78681/debian/patches/Update-postgresql-version-to-support-scram-sha-256.patch",
         hash: "sha256-ZPvcRoUCrq32g0Mw8+EhNl8DlI+jMYUlFyPW1VScgzc=",
       })))),
     nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         name: "fix-launch-script.patch",
         url: "https://gitlab.com/kalilinux/packages/armitage/-/raw/042beb7494a10227761ecb3ddabf4019bbb78681/debian/patches/fix-launch-script.patch",
         hash: "sha256-I6T7iwShQLn+ZHuKa117VOlItXjY4/51RDbjvNJEW/4=",
       })))),
     nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         name: "fix-meterpreter.patch",
         url: "https://gitlab.com/kalilinux/packages/armitage/-/raw/042beb7494a10227761ecb3ddabf4019bbb78681/debian/patches/fix-meterpreter.patch",
         hash: "sha256-p4fs5xFdC2apW0U8x8u9S4p5gq3Eiv+0E4CGccQZYKY=",
@@ -65,14 +57,14 @@ export default nix.lambda((args) => (() => {
   ]);
   const gradle = gradle_8;
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       pname: pname,
       version: version,
       src: src,
       patches: patches,
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             name: "armitage",
             desktopName: "Armitage",
             exec: "armitage",
@@ -83,7 +75,7 @@ export default nix.lambda((args) => (() => {
           })))),
       ]),
       nativeBuildInputs: nix.thunk(() => nix.concat([jdk17, gradle, makeWrapper, copyDesktopItems], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [writeDarwinBundle])))),
-      mitmCache: nix.thunk(() => nix.app(nix.sel(gradle, "fetchDeps"), nix.thunk(() => ({ [nix.POS]: pos$7, pname: pname, data: nix.path(here, "./deps.json") })))),
+      mitmCache: nix.thunk(() => nix.app(nix.sel(gradle, "fetchDeps"), nix.thunk(() => ({ [nix.POS]: $pos[6], pname: pname, data: nix.path(here, "./deps.json") })))),
       __darwinAllowLocalNetworking: true,
       installPhase: nix.thunk(() => nix.str`runHook preInstall
 
@@ -108,7 +100,7 @@ ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostP
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         description: "Graphical cyber attack management tool for Metasploit",
         homepage: "https://github.com/r00t0v3rr1d3/armitage",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

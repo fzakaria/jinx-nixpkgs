@@ -2,9 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/breseq.nix", [[["timeout", 10, 34]], [["meta", 10, 29]]]);
 const formals$1 = { args: { runCommand: false, breseq: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/breseq.nix", [["timeout", 10, 34]]);
-const pos$2 = nix.positions(here + "/breseq.nix", [["meta", 10, 29]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,8 +12,8 @@ export default nix.lambda((args) => (() => {
   const pname = nix.thunk(() => nix.attr(breseq, "pname"));
   const version = nix.thunk(() => nix.attr(breseq, "version"));
   return nix.app(runCommand, "breseq-tests", nix.thunk(() => ({
-      [nix.POS]: pos$2,
-      meta: nix.thunk(() => ({ [nix.POS]: pos$1, timeout: 60n })),
+      [nix.POS]: $pos[1],
+      meta: nix.thunk(() => ({ [nix.POS]: $pos[0], timeout: 60n })),
     })), nix.thunk(() => nix.str`echo "Testing breseq - breseq executable"
 export TESTBINPREFIX=${breseq}/bin
 cp ${breseq}/tests $PWD/breseqtests -r

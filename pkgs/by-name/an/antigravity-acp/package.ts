@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 13, 7], ["hash", 14, 7]], [["url", 17, 7], ["hash", 18, 7]], [["url", 21, 7], ["hash", 22, 7]], [["x86_64-linux", 12, 5], ["aarch64-linux", 16, 5], ["aarch64-darwin", 20, 5]], [["url", 35, 23], ["hash", 35, 27]], [["description", 70, 5], ["homepage", 71, 5], ["license", 72, 5], ["maintainers", 73, 5], ["platforms", 77, 5], ["mainProgram", 82, 5]], [["pname", 31, 3], ["version", 32, 3], ["src", 34, 3], ["nativeBuildInputs", 38, 3], ["strictDeps", 46, 3], ["__structuredAttrs", 47, 3], ["sourceRoot", 49, 3], ["dontBuild", 50, 3], ["installPhase", 52, 3], ["postFixup", 64, 3], ["meta", 69, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, unzip: false, autoPatchelfHook: false, makeBinaryWrapper: false, cacert: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 13, 7], ["hash", 14, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 17, 7], ["hash", 18, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 21, 7], ["hash", 22, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["x86_64-linux", 12, 5], ["aarch64-linux", 16, 5], ["aarch64-darwin", 20, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["url", 35, 23], ["hash", 35, 27]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 70, 5], ["homepage", 71, 5], ["license", 72, 5], ["maintainers", 73, 5], ["platforms", 77, 5], ["mainProgram", 82, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 31, 3], ["version", 32, 3], ["src", 34, 3], ["nativeBuildInputs", 38, 3], ["strictDeps", 46, 3], ["__structuredAttrs", 47, 3], ["sourceRoot", 49, 3], ["dontBuild", 50, 3], ["installPhase", 52, 3], ["postFixup", 64, 3], ["meta", 69, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,30 +15,30 @@ export default nix.lambda((args) => (() => {
   const makeBinaryWrapper = nix.arg($, "makeBinaryWrapper");
   const cacert = nix.arg($, "cacert");
   const sources = nix.thunk(() => ({
-    [nix.POS]: pos$4,
+    [nix.POS]: $pos[3],
     "x86_64-linux": nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: "https://dl.google.com/agy-extensions/releases/linux/agy-acp-server-1.2.1-linux-x86_64.zip",
       hash: "sha256-n78L1YSiZHgWH2N8q9dRE/clQchC0Uj1eO8aap7cuEM=",
     })),
     "aarch64-linux": nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       url: "https://dl.google.com/agy-extensions/releases/linux/agy-acp-server-1.2.1-linux-arm64.zip",
       hash: "sha256-fn70CIvBheGvQgQCng9OxCEK8gck8/8mIYasC86mqg4=",
     })),
     "aarch64-darwin": nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       url: "https://dl.google.com/agy-extensions/releases/macos/agy-acp-server-1.2.1-darwin-arm64.zip",
       hash: "sha256-D6uZOIEuazKztUPmXk86ACXO73VUE9sTVC2am4HqgDw=",
     })),
   }));
   const srcInfo = nix.thunk(() => nix.selOr(sources, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported platform for antigravity-acp: ${nix.sel(stdenv, "hostPlatform", "system")}`)), nix.key(nix.sel(stdenv, "hostPlatform", "system"))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "antigravity-acp",
       version: "1.2.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           url: nix.thunk(() => nix.attr(srcInfo, "url")),
           hash: nix.thunk(() => nix.attr(srcInfo, "hash")),
         })))),
@@ -58,7 +52,7 @@ export default nix.lambda((args) => (() => {
   --set-default SSL_CERT_FILE "${cacert}/etc/ssl/certs/ca-bundle.crt"
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Google's AI coding agent. Official ACP server powered by Antigravity",
         homepage: "https://antigravity.google/docs/ide/extensions",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 19, 5], ["sha256", 20, 5]], [["name", 26, 7], ["url", 27, 7], ["hash", 28, 7]], [["homepage", 40, 5], ["license", 41, 5], ["description", 42, 5], ["mainProgram", 43, 5], ["platforms", 44, 5], ["maintainers", 45, 5]], [["pname", 13, 3], ["remakeVersion", 14, 3], ["dbgVersion", 15, 3], ["version", 16, 3], ["src", 18, 3], ["patches", 23, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 35, 3], ["meta", 39, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, fetchpatch: false, "pkg-config": false, readline: false, guileSupport: true, guile: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 19, 5], ["sha256", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 26, 7], ["url", 27, 7], ["hash", 28, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 40, 5], ["license", 41, 5], ["description", 42, 5], ["mainProgram", 43, 5], ["platforms", 44, 5], ["maintainers", 45, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["remakeVersion", 14, 3], ["dbgVersion", 15, 3], ["version", 16, 3], ["src", 18, 3], ["patches", 23, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 35, 3], ["meta", 39, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,14 +21,14 @@ export default nix.lambda((args) => (() => {
       const dbgVersion = "1.6";
       const version = nix.thunk(() => nix.str`${remakeVersion}+dbg-${dbgVersion}`);
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/project/bashdb/remake/${version}/remake-${remakeVersion}+dbg-${dbgVersion}.tar.gz`),
           sha256: "11vvch8bi0yhjfz7gn92b3xmmm0cgi3qfiyhbnnj89frkhbwd87n",
         }))));
       const patches = nix.thunk(() => [
         nix.path(here, "./glibc-2.27-glob.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "gcc15-tolerance.patch",
             url: "https://github.com/Trepan-Debuggers/remake/commit/15f36a69b1a7798fa836d849c68c0fa5cd1dae6f.patch",
             hash: "sha256-Pau0ho0stPFnJjsHKY6lIag/XV4A0bEKBLPp3XRcxc8=",
@@ -40,7 +37,7 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [pkg_config]);
       const buildInputs = nix.thunk(() => nix.concat([readline], nix.app(nix.sel(lib, "optionals"), guileSupport, nix.thunk(() => [guile]))));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://bashdb.sourceforge.net/remake/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
         description: "GNU Make with comprehensible tracing and a debugger",
@@ -55,7 +52,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         remakeVersion,
         dbgVersion,

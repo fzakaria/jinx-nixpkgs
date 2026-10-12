@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 38, 5], ["repo", 39, 5], ["tag", 40, 5], ["hash", 41, 5]], [["url", 47, 7], ["hash", 48, 7]], [["url", 52, 7], ["hash", 53, 7]], [["package", 107, 9], ["versionCheck", 108, 9]], [["iniparser", 105, 15], ["pkg-config", 106, 7]], [["updateScript", 103, 5], ["tests", 104, 5]], [["description", 114, 5], ["homepage", 115, 5], ["changelog", 116, 5], ["license", 117, 5], ["platforms", 118, 5], ["pkgConfigModules", 119, 5], ["maintainers", 120, 5]], [["pname", 34, 3], ["version", 35, 3], ["src", 37, 3], ["patches", 44, 3], ["postPatch", 57, 3], ["outputs", 61, 3], ["strictDeps", 66, 3], ["nativeBuildInputs", 67, 3], ["buildInputs", 75, 3], ["mesonFlags", 80, 3], ["doCheck", 86, 3], ["checkPhase", 88, 3], ["postInstall", 97, 3], ["passthru", 102, 3], ["meta", 113, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch2: false, meson: false, ninja: false, ruby: false, python3: false, "nix-update-script": false, testers: false, iniparser: false, validatePkgConfig: false, buildFixture: true, buildMemory: true, supportDouble: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 38, 5], ["repo", 39, 5], ["tag", 40, 5], ["hash", 41, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 47, 7], ["hash", 48, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 52, 7], ["hash", 53, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["package", 107, 9], ["versionCheck", 108, 9]]);
-const pos$5 = nix.positions(here + "/package.nix", [["iniparser", 105, 15], ["pkg-config", 106, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["updateScript", 103, 5], ["tests", 104, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["description", 114, 5], ["homepage", 115, 5], ["changelog", 116, 5], ["license", 117, 5], ["platforms", 118, 5], ["pkgConfigModules", 119, 5], ["maintainers", 120, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 34, 3], ["version", 35, 3], ["src", 37, 3], ["patches", 44, 3], ["postPatch", 57, 3], ["outputs", 61, 3], ["strictDeps", 66, 3], ["nativeBuildInputs", 67, 3], ["buildInputs", 75, 3], ["mesonFlags", 80, 3], ["doCheck", 86, 3], ["checkPhase", 88, 3], ["postInstall", 97, 3], ["passthru", 102, 3], ["meta", 113, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -36,11 +29,11 @@ export default nix.lambda((args) => (() => {
     "-Wno-implicit-void-ptr-cast",
   ]);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "unity-test",
       version: "2.6.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ThrowTheSwitch",
           repo: "Unity",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -48,12 +41,12 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://patch-diff.githubusercontent.com/raw/ThrowTheSwitch/Unity/pull/771.patch?full_index=1",
             hash: "sha256-b1TGYkqeAVbYftN5/YBdiFB7EsSh56S8PCx53fY8lDo=",
           })))),
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: "https://patch-diff.githubusercontent.com/raw/ThrowTheSwitch/Unity/pull/790.patch?full_index=1",
             hash: "sha256-N3DVkSuhZUA+9RIynPwuISf4XkVSA2eNqJqrt67XOhA=",
           })))),
@@ -77,20 +70,20 @@ runHook postCheck
 `),
       postInstall: "mkdir -p \"$out/share\"\ninstall -Dm755 ../auto/* -t \"$out/share/\"\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           iniparser: iniparser,
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "hasPkgConfigModules"), nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               versionCheck: true,
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "Unity Unit Testing Framework",
         homepage: "https://www.throwtheswitch.org/unity",
         changelog: nix.thunk(() => nix.str`https://github.com/ThrowTheSwitch/Unity/releases/tag/v${nix.sel(finalAttrs, "version")}`),

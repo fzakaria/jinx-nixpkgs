@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 34, 5], ["repo", 35, 5], ["rev", 36, 5], ["hash", 37, 5]], [["description", 79, 5], ["homepage", 80, 5], ["license", 81, 5], ["maintainers", 82, 5], ["platforms", 83, 5]], [["pname", 30, 3], ["version", 31, 3], ["src", 33, 3], ["outputs", 40, 3], ["cmakeFlags", 45, 3], ["buildInputs", 51, 3], ["nativeBuildInputs", 71, 3], ["meta", 78, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, "pkg-config": false, kdePackages: false, fcitx5: false, "gobject-introspection": false, glib: false, gtk2: false, gtk3: false, gtk4: false, fmt: false, libuuid: false, libselinux: false, libsepol: false, libthai: false, libdatrie: false, libxdmcp: false, libxkbcommon: false, libepoxy: false, dbus: false, "at-spi2-core": false, libxtst: false, withGTK2: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 34, 5], ["repo", 35, 5], ["rev", 36, 5], ["hash", 37, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 79, 5], ["homepage", 80, 5], ["license", 81, 5], ["maintainers", 82, 5], ["platforms", 83, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 30, 3], ["version", 31, 3], ["src", 33, 3], ["outputs", 40, 3], ["cmakeFlags", 45, 3], ["buildInputs", 51, 3], ["nativeBuildInputs", 71, 3], ["meta", 78, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -38,7 +36,7 @@ export default nix.lambda((args) => (() => {
       const pname = "fcitx5-gtk";
       const version = "5.1.7";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "fcitx",
           repo: pname,
           rev: version,
@@ -74,7 +72,7 @@ export default nix.lambda((args) => (() => {
         gobject_introspection,
       ]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Fcitx5 gtk im module and glib based dbus client library",
         homepage: "https://github.com/fcitx/fcitx5-gtk",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),
@@ -85,7 +83,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

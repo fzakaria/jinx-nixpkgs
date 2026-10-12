@@ -2,53 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/bootstrap-sdk.nix", [[["pname", 13, 7], ["version", 14, 7], ["hash", 15, 7]], [["pname", 22, 9], ["version", 23, 9], ["hash", 24, 9]], [["pname", 27, 9], ["version", 28, 9], ["hash", 29, 9]], [["pname", 32, 9], ["version", 33, 9], ["hash", 34, 9]], [["pname", 37, 9], ["version", 38, 9], ["hash", 39, 9]], [["pname", 44, 9], ["version", 45, 9], ["hash", 46, 9]], [["pname", 49, 9], ["version", 50, 9], ["hash", 51, 9]], [["pname", 54, 9], ["version", 55, 9], ["hash", 56, 9]], [["pname", 59, 9], ["version", 60, 9], ["hash", 61, 9]], [["pname", 66, 9], ["version", 67, 9], ["hash", 68, 9]], [["pname", 71, 9], ["version", 72, 9], ["hash", 73, 9]], [["pname", 76, 9], ["version", 77, 9], ["hash", 78, 9]], [["pname", 81, 9], ["version", 82, 9], ["hash", 83, 9]], [["pname", 88, 9], ["version", 89, 9], ["hash", 90, 9]], [["pname", 93, 9], ["version", 94, 9], ["hash", 95, 9]], [["pname", 98, 9], ["version", 99, 9], ["hash", 100, 9]], [["pname", 103, 9], ["version", 104, 9], ["hash", 105, 9]], [["linux-arm64", 20, 5], ["linux-x64", 42, 5], ["osx-arm64", 64, 5], ["osx-x64", 86, 5]], [["pname", 113, 9], ["version", 114, 9], ["hash", 115, 9]], [["pname", 118, 9], ["version", 119, 9], ["hash", 120, 9]], [["pname", 125, 9], ["version", 126, 9], ["hash", 127, 9]], [["pname", 130, 9], ["version", 131, 9], ["hash", 132, 9]], [["pname", 137, 9], ["version", 138, 9], ["hash", 139, 9]], [["pname", 142, 9], ["version", 143, 9], ["hash", 144, 9]], [["pname", 149, 9], ["version", 150, 9], ["hash", 151, 9]], [["pname", 154, 9], ["version", 155, 9], ["hash", 156, 9]], [["linux-arm64", 111, 5], ["linux-x64", 123, 5], ["osx-arm64", 135, 5], ["osx-x64", 147, 5]], [["url", 169, 9], ["hash", 170, 9]], [["url", 173, 9], ["hash", 174, 9]], [["url", 177, 9], ["hash", 178, 9]], [["url", 181, 9], ["hash", 182, 9]], [["linux-arm64", 168, 7], ["linux-x64", 172, 7], ["osx-arm64", 176, 7], ["osx-x64", 180, 7]], [["version", 166, 5], ["srcs", 167, 5]], [["url", 191, 9], ["hash", 192, 9]], [["url", 195, 9], ["hash", 196, 9]], [["url", 199, 9], ["hash", 200, 9]], [["url", 203, 9], ["hash", 204, 9]], [["linux-arm64", 190, 7], ["linux-x64", 194, 7], ["osx-arm64", 198, 7], ["osx-x64", 202, 7]], [["version", 188, 5], ["srcs", 189, 5]], [["url", 213, 9], ["hash", 214, 9]], [["url", 217, 9], ["hash", 218, 9]], [["url", 221, 9], ["hash", 222, 9]], [["url", 225, 9], ["hash", 226, 9]], [["linux-arm64", 212, 7], ["linux-x64", 216, 7], ["osx-arm64", 220, 7], ["osx-x64", 224, 7]], [["version", 210, 5], ["srcs", 211, 5], ["commonPackages", 229, 13], ["hostPackages", 229, 28], ["targetPackages", 229, 41], ["runtime", 230, 5], ["aspnetcore", 231, 5]], [["release_10_0", 163, 3], ["aspnetcore_10_0", 165, 3], ["runtime_10_0", 187, 3], ["sdk_10_0_1xx", 209, 3], ["sdk", 234, 3], ["sdk_10_0", 236, 3]]]);
 const formals$1 = { args: { buildAspNetCore: false, buildNetRuntime: false, buildNetSdk: false, fetchNupkg: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/bootstrap-sdk.nix", [["pname", 13, 7], ["version", 14, 7], ["hash", 15, 7]]);
-const pos$2 = nix.positions(here + "/bootstrap-sdk.nix", [["pname", 22, 9], ["version", 23, 9], ["hash", 24, 9]]);
-const pos$3 = nix.positions(here + "/bootstrap-sdk.nix", [["pname", 27, 9], ["version", 28, 9], ["hash", 29, 9]]);
-const pos$4 = nix.positions(here + "/bootstrap-sdk.nix", [["pname", 32, 9], ["version", 33, 9], ["hash", 34, 9]]);
-const pos$5 = nix.positions(here + "/bootstrap-sdk.nix", [["pname", 37, 9], ["version", 38, 9], ["hash", 39, 9]]);
-const pos$6 = nix.positions(here + "/bootstrap-sdk.nix", [["pname", 44, 9], ["version", 45, 9], ["hash", 46, 9]]);
-const pos$7 = nix.positions(here + "/bootstrap-sdk.nix", [["pname", 49, 9], ["version", 50, 9], ["hash", 51, 9]]);
-const pos$8 = nix.positions(here + "/bootstrap-sdk.nix", [["pname", 54, 9], ["version", 55, 9], ["hash", 56, 9]]);
-const pos$9 = nix.positions(here + "/bootstrap-sdk.nix", [["pname", 59, 9], ["version", 60, 9], ["hash", 61, 9]]);
-const pos$10 = nix.positions(here + "/bootstrap-sdk.nix", [["pname", 66, 9], ["version", 67, 9], ["hash", 68, 9]]);
-const pos$11 = nix.positions(here + "/bootstrap-sdk.nix", [["pname", 71, 9], ["version", 72, 9], ["hash", 73, 9]]);
-const pos$12 = nix.positions(here + "/bootstrap-sdk.nix", [["pname", 76, 9], ["version", 77, 9], ["hash", 78, 9]]);
-const pos$13 = nix.positions(here + "/bootstrap-sdk.nix", [["pname", 81, 9], ["version", 82, 9], ["hash", 83, 9]]);
-const pos$14 = nix.positions(here + "/bootstrap-sdk.nix", [["pname", 88, 9], ["version", 89, 9], ["hash", 90, 9]]);
-const pos$15 = nix.positions(here + "/bootstrap-sdk.nix", [["pname", 93, 9], ["version", 94, 9], ["hash", 95, 9]]);
-const pos$16 = nix.positions(here + "/bootstrap-sdk.nix", [["pname", 98, 9], ["version", 99, 9], ["hash", 100, 9]]);
-const pos$17 = nix.positions(here + "/bootstrap-sdk.nix", [["pname", 103, 9], ["version", 104, 9], ["hash", 105, 9]]);
-const pos$18 = nix.positions(here + "/bootstrap-sdk.nix", [["linux-arm64", 20, 5], ["linux-x64", 42, 5], ["osx-arm64", 64, 5], ["osx-x64", 86, 5]]);
-const pos$19 = nix.positions(here + "/bootstrap-sdk.nix", [["pname", 113, 9], ["version", 114, 9], ["hash", 115, 9]]);
-const pos$20 = nix.positions(here + "/bootstrap-sdk.nix", [["pname", 118, 9], ["version", 119, 9], ["hash", 120, 9]]);
-const pos$21 = nix.positions(here + "/bootstrap-sdk.nix", [["pname", 125, 9], ["version", 126, 9], ["hash", 127, 9]]);
-const pos$22 = nix.positions(here + "/bootstrap-sdk.nix", [["pname", 130, 9], ["version", 131, 9], ["hash", 132, 9]]);
-const pos$23 = nix.positions(here + "/bootstrap-sdk.nix", [["pname", 137, 9], ["version", 138, 9], ["hash", 139, 9]]);
-const pos$24 = nix.positions(here + "/bootstrap-sdk.nix", [["pname", 142, 9], ["version", 143, 9], ["hash", 144, 9]]);
-const pos$25 = nix.positions(here + "/bootstrap-sdk.nix", [["pname", 149, 9], ["version", 150, 9], ["hash", 151, 9]]);
-const pos$26 = nix.positions(here + "/bootstrap-sdk.nix", [["pname", 154, 9], ["version", 155, 9], ["hash", 156, 9]]);
-const pos$27 = nix.positions(here + "/bootstrap-sdk.nix", [["linux-arm64", 111, 5], ["linux-x64", 123, 5], ["osx-arm64", 135, 5], ["osx-x64", 147, 5]]);
-const pos$28 = nix.positions(here + "/bootstrap-sdk.nix", [["url", 169, 9], ["hash", 170, 9]]);
-const pos$29 = nix.positions(here + "/bootstrap-sdk.nix", [["url", 173, 9], ["hash", 174, 9]]);
-const pos$30 = nix.positions(here + "/bootstrap-sdk.nix", [["url", 177, 9], ["hash", 178, 9]]);
-const pos$31 = nix.positions(here + "/bootstrap-sdk.nix", [["url", 181, 9], ["hash", 182, 9]]);
-const pos$32 = nix.positions(here + "/bootstrap-sdk.nix", [["linux-arm64", 168, 7], ["linux-x64", 172, 7], ["osx-arm64", 176, 7], ["osx-x64", 180, 7]]);
-const pos$33 = nix.positions(here + "/bootstrap-sdk.nix", [["version", 166, 5], ["srcs", 167, 5]]);
-const pos$34 = nix.positions(here + "/bootstrap-sdk.nix", [["url", 191, 9], ["hash", 192, 9]]);
-const pos$35 = nix.positions(here + "/bootstrap-sdk.nix", [["url", 195, 9], ["hash", 196, 9]]);
-const pos$36 = nix.positions(here + "/bootstrap-sdk.nix", [["url", 199, 9], ["hash", 200, 9]]);
-const pos$37 = nix.positions(here + "/bootstrap-sdk.nix", [["url", 203, 9], ["hash", 204, 9]]);
-const pos$38 = nix.positions(here + "/bootstrap-sdk.nix", [["linux-arm64", 190, 7], ["linux-x64", 194, 7], ["osx-arm64", 198, 7], ["osx-x64", 202, 7]]);
-const pos$39 = nix.positions(here + "/bootstrap-sdk.nix", [["version", 188, 5], ["srcs", 189, 5]]);
-const pos$40 = nix.positions(here + "/bootstrap-sdk.nix", [["url", 213, 9], ["hash", 214, 9]]);
-const pos$41 = nix.positions(here + "/bootstrap-sdk.nix", [["url", 217, 9], ["hash", 218, 9]]);
-const pos$42 = nix.positions(here + "/bootstrap-sdk.nix", [["url", 221, 9], ["hash", 222, 9]]);
-const pos$43 = nix.positions(here + "/bootstrap-sdk.nix", [["url", 225, 9], ["hash", 226, 9]]);
-const pos$44 = nix.positions(here + "/bootstrap-sdk.nix", [["linux-arm64", 212, 7], ["linux-x64", 216, 7], ["osx-arm64", 220, 7], ["osx-x64", 224, 7]]);
-const pos$45 = nix.positions(here + "/bootstrap-sdk.nix", [["version", 210, 5], ["srcs", 211, 5], ["commonPackages", 229, 13], ["hostPackages", 229, 28], ["targetPackages", 229, 41], ["runtime", 230, 5], ["aspnetcore", 231, 5]]);
-const pos$46 = nix.positions(here + "/bootstrap-sdk.nix", [["release_10_0", 163, 3], ["aspnetcore_10_0", 165, 3], ["runtime_10_0", 187, 3], ["sdk_10_0_1xx", 209, 3], ["sdk", 234, 3], ["sdk_10_0", 236, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -58,35 +13,35 @@ export default nix.lambda((args) => (() => {
   const fetchNupkg = nix.arg($, "fetchNupkg");
   const commonPackages = nix.thunk(() => [
     nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         pname: "Microsoft.NET.ILLink.Tasks",
         version: "10.0.11",
         hash: "sha512-hMVB326ViZa64sqR9bxmf4oB41LMuaTrGRfihXZw3dylFRFfZPutLwJrKZmdisSvBcNM6kfuY7vtj9vdR9IbuA==",
       })))),
   ]);
   const hostPackages = nix.thunk(() => ({
-    [nix.POS]: pos$18,
+    [nix.POS]: $pos[17],
     "linux-arm64": nix.thunk(() => [
       nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: "Microsoft.NETCore.App.Crossgen2.linux-arm64",
           version: "10.0.11",
           hash: "sha512-ktHa71j6xxZzaSYVn2HKips+N5FI1BANjhvRqeGf4oW32orhMhI6kSNtt9M8qy8XStB8LyNiO7kZnoOXS2FhBw==",
         })))),
       nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           pname: "runtime.linux-arm64.Microsoft.NETCore.ILAsm",
           version: "10.0.11",
           hash: "sha512-9JPrO9bbmHl9HK8UPzs57zILxc/irSC516X+XzHPwlzpCYL9aMeN7linRiE+UxtzZy1A223Dolr2jXSVPr7QBQ==",
         })))),
       nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           pname: "runtime.linux-arm64.Microsoft.NETCore.ILDAsm",
           version: "10.0.11",
           hash: "sha512-81IzS8gr4ALeO4toKuwOTHZCLC2h/MstyDKSVGJyUHbtNU3GZtxt6rTkP3PhxyHjg/Fg1/sWrydNCevmNA2SvQ==",
         })))),
       nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           pname: "runtime.linux-arm64.Microsoft.DotNet.ILCompiler",
           version: "10.0.11",
           hash: "sha512-EtTwxmg9PfefrrT73nNntoxnbHN7h4X6LlIm/ZJq0T/9J4uf9MnlDzAru+HwNof+f6hOvI/kwwXxM+WDPJ41iw==",
@@ -94,25 +49,25 @@ export default nix.lambda((args) => (() => {
     ]),
     "linux-x64": nix.thunk(() => [
       nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           pname: "Microsoft.NETCore.App.Crossgen2.linux-x64",
           version: "10.0.11",
           hash: "sha512-kb4KNaI16vCAPnlAttZkf8oIBRHoUgj2wUBhc9BciDI6Ue/WNv/EGIISiUIpelKgF/flafOvexv/Gpt61Io/+Q==",
         })))),
       nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           pname: "runtime.linux-x64.Microsoft.NETCore.ILAsm",
           version: "10.0.11",
           hash: "sha512-8ybmrjBHA6LSL1348beg7JmV35gBxRZA+nC1P6WAcLB9fxerz2PUJj/PIELFrmWt7CCHJeQahKPM05g0pLOoWA==",
         })))),
       nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           pname: "runtime.linux-x64.Microsoft.NETCore.ILDAsm",
           version: "10.0.11",
           hash: "sha512-qd9nAwFm6yTdRjzB/kYC5V1ZWHEx0D9lSMtp5NVnGRg8nFT6iOmE0946fRqeV22YSrVoihkvymE/V+/LRke+ig==",
         })))),
       nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           pname: "runtime.linux-x64.Microsoft.DotNet.ILCompiler",
           version: "10.0.11",
           hash: "sha512-xzT3xSscegBsQMjf6IOLE5Bf6b22NjeEkCvXba6D/1Xx+ieIysxzZliW2Q9CdQflgU7HvzvioYNLoATowC+/nw==",
@@ -120,25 +75,25 @@ export default nix.lambda((args) => (() => {
     ]),
     "osx-arm64": nix.thunk(() => [
       nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-          [nix.POS]: pos$10,
+          [nix.POS]: $pos[9],
           pname: "Microsoft.NETCore.App.Crossgen2.osx-arm64",
           version: "10.0.11",
           hash: "sha512-Y/8LzYfB4LT6GPvqmfsKx3+LkTzHoaRP7rn3dC5kRc84Xsiio8oyEegPPP5P8XzZDeA3lG8YzA6cNMZQgjRRlQ==",
         })))),
       nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-          [nix.POS]: pos$11,
+          [nix.POS]: $pos[10],
           pname: "runtime.osx-arm64.Microsoft.NETCore.ILAsm",
           version: "10.0.11",
           hash: "sha512-qBL6mDCXONMCVnpyBjnyE0F8Gw6Dzqs95TMlaYLG9AaL+RbPIqoRE0NM5g0OZCGXgo2YEJuRUvzAKOMsWz23mA==",
         })))),
       nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-          [nix.POS]: pos$12,
+          [nix.POS]: $pos[11],
           pname: "runtime.osx-arm64.Microsoft.NETCore.ILDAsm",
           version: "10.0.11",
           hash: "sha512-lLC312LPXZCQe5x6tCQpMNgkI3KPBNg1GQbVXRsu669eyvpx3NBnMEl7YtJFv2uw7mX6wuEBul3xPuBL980Qtw==",
         })))),
       nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-          [nix.POS]: pos$13,
+          [nix.POS]: $pos[12],
           pname: "runtime.osx-arm64.Microsoft.DotNet.ILCompiler",
           version: "10.0.11",
           hash: "sha512-zqZTeuF7gT7ZwAgO6JMuJfaFDzqsrxU8UvYP2q9ZxRWHDOAtsxMtp/8Yc+WUPl3FJGi6jw6KJx8AWYeLQ4JXJw==",
@@ -146,25 +101,25 @@ export default nix.lambda((args) => (() => {
     ]),
     "osx-x64": nix.thunk(() => [
       nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-          [nix.POS]: pos$14,
+          [nix.POS]: $pos[13],
           pname: "Microsoft.NETCore.App.Crossgen2.osx-x64",
           version: "10.0.11",
           hash: "sha512-mNepSLSVvthaN56/UO0kqqbjo3svV0yTQu2BHaKYYTwkePP208VyACgyElVqTVXNA5uKFN1rfw5AWcOG+Z5+FA==",
         })))),
       nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-          [nix.POS]: pos$15,
+          [nix.POS]: $pos[14],
           pname: "runtime.osx-x64.Microsoft.NETCore.ILAsm",
           version: "10.0.11",
           hash: "sha512-Z0Fuv6PnZAYLVu8FBbbeXDkrxelSP2Admr9shitvurOqXqtD1Qnw3kwKY5nQLzgBwgMqGqsSOWpsjqbHc/D23A==",
         })))),
       nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-          [nix.POS]: pos$16,
+          [nix.POS]: $pos[15],
           pname: "runtime.osx-x64.Microsoft.NETCore.ILDAsm",
           version: "10.0.11",
           hash: "sha512-KEPEO4fv1z46Y6Ru8G0KNHAgzNK+IjtTJI6QsCRmi+qgNJzOBMnBI9jFC9iMLRVaFzeWbnaJtmCXI1C3D/Kcpw==",
         })))),
       nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-          [nix.POS]: pos$17,
+          [nix.POS]: $pos[16],
           pname: "runtime.osx-x64.Microsoft.DotNet.ILCompiler",
           version: "10.0.11",
           hash: "sha512-BAQNYmn4y/pUeNQSya5QllcN8VHebtDuMh4a4m7Onq5j/x1Mr1N+1NW3qX0RwbW6ePrjtW7WR+RFKTgX5KaDJw==",
@@ -172,16 +127,16 @@ export default nix.lambda((args) => (() => {
     ]),
   }));
   const targetPackages = nix.thunk(() => ({
-    [nix.POS]: pos$27,
+    [nix.POS]: $pos[26],
     "linux-arm64": nix.thunk(() => [
       nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-          [nix.POS]: pos$19,
+          [nix.POS]: $pos[18],
           pname: "Microsoft.AspNetCore.App.Runtime.linux-arm64",
           version: "10.0.11",
           hash: "sha512-gDHFTYuhJV+0Kg+lmwS6CZWqoAc3daRCktKmvZ4PqjLD9h9ZNNYKZBhP6Y6hnaq1V4T4qN7M93dVwZtUdRpPeA==",
         })))),
       nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-          [nix.POS]: pos$20,
+          [nix.POS]: $pos[19],
           pname: "Microsoft.NETCore.App.Runtime.linux-arm64",
           version: "10.0.11",
           hash: "sha512-2lKSs6dpNXSgX9Wuj2iasd52IPUL/VgP7YLb4CB9OnytsjFfVkQEPIAfIe9Dy2ke3Lsm/OotZVNjJAJcnak5CA==",
@@ -189,13 +144,13 @@ export default nix.lambda((args) => (() => {
     ]),
     "linux-x64": nix.thunk(() => [
       nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-          [nix.POS]: pos$21,
+          [nix.POS]: $pos[20],
           pname: "Microsoft.AspNetCore.App.Runtime.linux-x64",
           version: "10.0.11",
           hash: "sha512-jBVAhk1hdU+IkKJ1qkUODvsj9Q+VZlrsIYwECWgL5ItiGprBVzoQPxJg8Ei9ZZ9fTn1QmcYRMu9g0V/HXmkUbQ==",
         })))),
       nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-          [nix.POS]: pos$22,
+          [nix.POS]: $pos[21],
           pname: "Microsoft.NETCore.App.Runtime.linux-x64",
           version: "10.0.11",
           hash: "sha512-ef6XpQH4KI7lukxMuXnh0iDM7a60cR0tFiynPPmRK7TnOHZXKpwIlPd341kInZJvMw+u2B3qaHb3rVEMIxLWlQ==",
@@ -203,13 +158,13 @@ export default nix.lambda((args) => (() => {
     ]),
     "osx-arm64": nix.thunk(() => [
       nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-          [nix.POS]: pos$23,
+          [nix.POS]: $pos[22],
           pname: "Microsoft.AspNetCore.App.Runtime.osx-arm64",
           version: "10.0.11",
           hash: "sha512-JnlrGXHx2XqDHf8SX5rclpBOhB9fyOvcjgRmYV1P4g+bqmBP2ELulaXC6VZ4eZA3Yk/281EUNTtm5JRafvfmrA==",
         })))),
       nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-          [nix.POS]: pos$24,
+          [nix.POS]: $pos[23],
           pname: "Microsoft.NETCore.App.Runtime.osx-arm64",
           version: "10.0.11",
           hash: "sha512-7+/J1t8Daj/Rtrf7ySI0ONwPH/pGXmIClDQKVXnv6L6WBfYBC38azortAsqPRlvJw+UKodGl8nwydxNlxedxCA==",
@@ -217,13 +172,13 @@ export default nix.lambda((args) => (() => {
     ]),
     "osx-x64": nix.thunk(() => [
       nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-          [nix.POS]: pos$25,
+          [nix.POS]: $pos[24],
           pname: "Microsoft.AspNetCore.App.Runtime.osx-x64",
           version: "10.0.11",
           hash: "sha512-+cDuH1GmIRK3/3rvrQnF9keE6Ry0RVCXu3xN91riR/hseQqhZ5UcelODFgSvUxspKqKaF7oZQ5kJS2dQw+0rbw==",
         })))),
       nix.thunk(() => nix.app(fetchNupkg, nix.thunk(() => ({
-          [nix.POS]: pos$26,
+          [nix.POS]: $pos[25],
           pname: "Microsoft.NETCore.App.Runtime.osx-x64",
           version: "10.0.11",
           hash: "sha512-WvFD+6nJ8zBDoEqGru/z2Id8ifSm7/Zr/+wkOFWzxQMpRBByYyPxyjaiVLXMB3nYdy0KqeLQnYmF/IcJAuN/WQ==",
@@ -233,81 +188,81 @@ export default nix.lambda((args) => (() => {
   return (() => {
     const release_10_0 = "10.0.11";
     const aspnetcore_10_0 = nix.thunk(() => nix.app(buildAspNetCore, nix.thunk(() => ({
-        [nix.POS]: pos$33,
+        [nix.POS]: $pos[32],
         version: "10.0.11",
         srcs: nix.thunk(() => ({
-          [nix.POS]: pos$32,
+          [nix.POS]: $pos[31],
           "linux-arm64": nix.thunk(() => ({
-            [nix.POS]: pos$28,
+            [nix.POS]: $pos[27],
             url: "https://builds.dotnet.microsoft.com/dotnet/aspnetcore/Runtime/10.0.11/aspnetcore-runtime-10.0.11-linux-arm64.tar.gz",
             hash: "sha512-lUn3pZ1db33T6WW/iGMWmLI5dK/0401YkDfWrpo/RDOQKIG00j9+GGAquVSCP1vjUBUFSm7MtXBBsPINkoc+1w==",
           })),
           "linux-x64": nix.thunk(() => ({
-            [nix.POS]: pos$29,
+            [nix.POS]: $pos[28],
             url: "https://builds.dotnet.microsoft.com/dotnet/aspnetcore/Runtime/10.0.11/aspnetcore-runtime-10.0.11-linux-x64.tar.gz",
             hash: "sha512-TGvgYjMwB05pnauAhL4Vobrrt6UYwN2M6Z+Tz3l3fNRvOjjvnSXtwVLtYG8IS2Nza9nkCC6zLRiPw1e/asTR1g==",
           })),
           "osx-arm64": nix.thunk(() => ({
-            [nix.POS]: pos$30,
+            [nix.POS]: $pos[29],
             url: "https://builds.dotnet.microsoft.com/dotnet/aspnetcore/Runtime/10.0.11/aspnetcore-runtime-10.0.11-osx-arm64.tar.gz",
             hash: "sha512-cikD+WGArQJeYC55ZFAMh7A4X8hiv32zwXTV7iDj0HQE4Q4Zw4vVffCB6rCN+KsG9fXTSfoaHDtsR/aAUsMJ8w==",
           })),
           "osx-x64": nix.thunk(() => ({
-            [nix.POS]: pos$31,
+            [nix.POS]: $pos[30],
             url: "https://builds.dotnet.microsoft.com/dotnet/aspnetcore/Runtime/10.0.11/aspnetcore-runtime-10.0.11-osx-x64.tar.gz",
             hash: "sha512-P+1bUkNrtKR3lV4qy3QQzhAP4svrln6bYN1cTd3ewQhUri8LiVy++4Y17U3joJMz+xbo7jbLvvSbHZYydY+Gbw==",
           })),
         })),
       }))));
     const runtime_10_0 = nix.thunk(() => nix.app(buildNetRuntime, nix.thunk(() => ({
-        [nix.POS]: pos$39,
+        [nix.POS]: $pos[38],
         version: "10.0.11",
         srcs: nix.thunk(() => ({
-          [nix.POS]: pos$38,
+          [nix.POS]: $pos[37],
           "linux-arm64": nix.thunk(() => ({
-            [nix.POS]: pos$34,
+            [nix.POS]: $pos[33],
             url: "https://builds.dotnet.microsoft.com/dotnet/Runtime/10.0.11/dotnet-runtime-10.0.11-linux-arm64.tar.gz",
             hash: "sha512-KnKaTv9qVeJxs659Tyvpiu8W3yLjuTFoJ1WOIE94gbvwt7n468+xoUGch/vLigD1vnK2R04CxpXDCyxSuvtl7Q==",
           })),
           "linux-x64": nix.thunk(() => ({
-            [nix.POS]: pos$35,
+            [nix.POS]: $pos[34],
             url: "https://builds.dotnet.microsoft.com/dotnet/Runtime/10.0.11/dotnet-runtime-10.0.11-linux-x64.tar.gz",
             hash: "sha512-ZMd6X5jW38Yzk+1dL+1HwoVcfN1DIgCLOxPh0LcQrvwfun5WYS8l9+iisbbO9c93yzqDT/NoXnI60oZwPDOW2A==",
           })),
           "osx-arm64": nix.thunk(() => ({
-            [nix.POS]: pos$36,
+            [nix.POS]: $pos[35],
             url: "https://builds.dotnet.microsoft.com/dotnet/Runtime/10.0.11/dotnet-runtime-10.0.11-osx-arm64.tar.gz",
             hash: "sha512-6WqKgQjVo7cOgnVnskk+3lQPNwXBIJ5/NHNrpqo5jdTQ0V8x62Z8nMo9vNMK2DsxWobV6aE/0sNw4vwM7OckNg==",
           })),
           "osx-x64": nix.thunk(() => ({
-            [nix.POS]: pos$37,
+            [nix.POS]: $pos[36],
             url: "https://builds.dotnet.microsoft.com/dotnet/Runtime/10.0.11/dotnet-runtime-10.0.11-osx-x64.tar.gz",
             hash: "sha512-ysotsQD/gd0PEfLQS6HaiR2quaAV2tSqfdDPYX4qBc+y7kOU2k9FW8YnSNig908Ah7l/zqBfCGkat1Zy3Xm8Vw==",
           })),
         })),
       }))));
     const sdk_10_0_1xx = nix.thunk(() => nix.app(buildNetSdk, nix.thunk(() => ({
-        [nix.POS]: pos$45,
+        [nix.POS]: $pos[44],
         version: "10.0.111",
         srcs: nix.thunk(() => ({
-          [nix.POS]: pos$44,
+          [nix.POS]: $pos[43],
           "linux-arm64": nix.thunk(() => ({
-            [nix.POS]: pos$40,
+            [nix.POS]: $pos[39],
             url: "https://builds.dotnet.microsoft.com/dotnet/Sdk/10.0.111/dotnet-sdk-10.0.111-linux-arm64.tar.gz",
             hash: "sha512-HhFd24UJUNRRTWo7MrLReyQKTw9As3IC305b32gyoOVGci5r+bntfffMyzTfX15IvLB1Mi+wGBW//G6cI5mfDg==",
           })),
           "linux-x64": nix.thunk(() => ({
-            [nix.POS]: pos$41,
+            [nix.POS]: $pos[40],
             url: "https://builds.dotnet.microsoft.com/dotnet/Sdk/10.0.111/dotnet-sdk-10.0.111-linux-x64.tar.gz",
             hash: "sha512-quIhvpajtRDVtv/+/GnYrS+llaFDAplBkxa7ccZfJgpFfKmvJNBE4XCbKKkRh5jKr+xTXM/lj3dnxay3NcADkg==",
           })),
           "osx-arm64": nix.thunk(() => ({
-            [nix.POS]: pos$42,
+            [nix.POS]: $pos[41],
             url: "https://builds.dotnet.microsoft.com/dotnet/Sdk/10.0.111/dotnet-sdk-10.0.111-osx-arm64.tar.gz",
             hash: "sha512-AjEkZ46Lubpobi8oe8zxTCvfRmrrEUgZrkJWqO7USk+7iIpXruHwd7gHD6WMYR/TOwvolPyLDKsuzkrc1APqMQ==",
           })),
           "osx-x64": nix.thunk(() => ({
-            [nix.POS]: pos$43,
+            [nix.POS]: $pos[42],
             url: "https://builds.dotnet.microsoft.com/dotnet/Sdk/10.0.111/dotnet-sdk-10.0.111-osx-x64.tar.gz",
             hash: "sha512-lUlhjlnGFd1H4v08XYl8b738Sjzj1pKPmdy/UeMgI1lUGp029ixs2NDtMqphu8TsGRsRRtQc9fsRIfA+dvSEtg==",
           })),
@@ -321,7 +276,7 @@ export default nix.lambda((args) => (() => {
     const sdk_10_0 = sdk_10_0_1xx;
     const sdk = sdk_10_0;
     return {
-      [nix.POS]: pos$46,
+      [nix.POS]: $pos[45],
       release_10_0,
       aspnetcore_10_0,
       runtime_10_0,

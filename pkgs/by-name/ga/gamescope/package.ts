@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 58, 5], ["repo", 59, 5], ["rev", 60, 5], ["hash", 61, 5]], [["owner", 69, 5], ["repo", 70, 5], ["tag", 71, 5], ["fetchSubmodules", 72, 5], ["hash", 73, 5]], [["url", 85, 7], ["hash", 86, 7]], [["url", 92, 7], ["hash", 93, 7]], [["updateScript", 208, 12]], [["description", 211, 5], ["homepage", 212, 5], ["license", 213, 5], ["maintainers", 214, 5], ["platforms", 221, 5], ["mainProgram", 222, 5]], [["pname", 65, 3], ["version", 66, 3], ["src", 68, 3], ["patches", 76, 3], ["postPatch", 99, 3], ["mesonFlags", 110, 3], ["mesonInstallFlags", 119, 3], ["strictDeps", 121, 3], ["depsBuildBuild", 123, 3], ["nativeBuildInputs", 127, 3], ["buildInputs", 149, 3], ["postInstall", 189, 3], ["passthru", 208, 3], ["meta", 210, 3]]]);
 const formals$1 = { args: { stdenv: false, buildPackages: false, libv4l: false, fetchFromGitHub: false, fetchpatch: false, meson: false, "pkg-config": false, ninja: false, cmake: false, libxxf86vm: false, libxtst: false, libxres: false, libxrender: false, libxmu: false, libxi: false, libxext: false, libxdamage: false, libxcursor: false, libxcomposite: false, libx11: false, xwininfo: false, xprop: false, libxcb: false, libdrm: false, libei: false, "vulkan-loader": false, "vulkan-headers": false, wayland: false, "wayland-protocols": false, "wayland-scanner": false, libxkbcommon: false, glm: false, gbenchmark: false, libcap: false, libavif: false, SDL2: false, pipewire: false, pixman: false, python3: false, libinput: false, glslang: false, hwdata: false, stb: false, wlroots_0_19: false, libdecor: false, lcms: false, lib: false, luajit: false, catch2_3: false, makeBinaryWrapper: false, "nix-update-script": false, enableExecutable: true, enableWsi: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 58, 5], ["repo", 59, 5], ["rev", 60, 5], ["hash", 61, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 69, 5], ["repo", 70, 5], ["tag", 71, 5], ["fetchSubmodules", 72, 5], ["hash", 73, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 85, 7], ["hash", 86, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["url", 92, 7], ["hash", 93, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["updateScript", 208, 12]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 211, 5], ["homepage", 212, 5], ["license", 213, 5], ["maintainers", 214, 5], ["platforms", 221, 5], ["mainProgram", 222, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 65, 3], ["version", 66, 3], ["src", 68, 3], ["patches", 76, 3], ["postPatch", 99, 3], ["mesonFlags", 110, 3], ["mesonInstallFlags", 119, 3], ["strictDeps", 121, 3], ["depsBuildBuild", 123, 3], ["nativeBuildInputs", 127, 3], ["buildInputs", 149, 3], ["postInstall", 189, 3], ["passthru", 208, 3], ["meta", 210, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -67,18 +61,18 @@ export default nix.lambda((args) => (() => {
   const enableExecutable = nix.argOr($, "enableExecutable", () => true);
   const enableWsi = nix.argOr($, "enableWsi", () => false);
   const frogShaders = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "misyltoad",
       repo: "GamescopeShaders",
       rev: "v0.1",
       hash: "sha256-gR1AeAHV/Kn4ntiEDUSPxASLMFusV6hgSGrTbMCBUZA=",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "gamescope",
       version: "3.16.31",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "ValveSoftware",
           repo: "gamescope",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -89,12 +83,12 @@ export default nix.lambda((args) => (() => {
         nix.path(here, "./shaders-path.patch"),
         nix.path(here, "./gamescopereaper.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: "https://github.com/ValveSoftware/gamescope/commit/4ce1a91fb219f570b0871071a2ec8ac97d90c0bc.diff",
             hash: "sha256-O358ScIIndfkc1S0A8g2jKvFWoCzcXB/g6lRJamqOI4=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             url: "https://github.com/ValveSoftware/gamescope/commit/d49a2aded261030e649fee42ad295f1ef56b736b.diff",
             hash: "sha256-Uh08ZRaV912ZOsl1DMpbVLxIgh4jEXevgihQf2W9KFk=",
           })))),
@@ -164,11 +158,11 @@ mkdir -p $out/share/gamescope/reshade
 cp -r ${frogShaders}/* $out/share/gamescope/reshade/
 `))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "SteamOS session compositing window manager",
         homepage: "https://github.com/ValveSoftware/gamescope",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

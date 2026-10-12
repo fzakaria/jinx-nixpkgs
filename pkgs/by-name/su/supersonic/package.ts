@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]], [["name", 74, 7], ["exec", 75, 7], ["icon", 76, 7], ["desktopName", 77, 7], ["genericName", 78, 7], ["comment", 79, 7], ["type", 80, 7], ["categories", 81, 7]], [["mainProgram", 89, 5], ["description", 90, 5], ["homepage", 91, 5], ["changelog", 92, 5], ["platforms", 93, 5], ["license", 94, 5], ["maintainers", 95, 5]], [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["vendorHash", 35, 3], ["nativeBuildInputs", 37, 3], ["tags", 45, 3], ["buildInputs", 47, 3], ["postInstall", 64, 3], ["desktopItems", 72, 3], ["meta", 88, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildGoModule: false, fetchFromGitHub: false, makeDesktopItem: false, copyDesktopItems: false, "pkg-config": false, desktopToDarwinBundle: false, libxxf86vm: false, libxrandr: false, libxi: false, libxinerama: false, libxext: false, libxcursor: false, libx11: false, wayland: false, "wayland-protocols": false, libxkbcommon: false, libglvnd: false, "mpv-unwrapped": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 74, 7], ["exec", 75, 7], ["icon", 76, 7], ["desktopName", 77, 7], ["genericName", 78, 7], ["comment", 79, 7], ["type", 80, 7], ["categories", 81, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["mainProgram", 89, 5], ["description", 90, 5], ["homepage", 91, 5], ["changelog", 92, 5], ["platforms", 93, 5], ["license", 94, 5], ["maintainers", 95, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["vendorHash", 35, 3], ["nativeBuildInputs", 37, 3], ["tags", 45, 3], ["buildInputs", 47, 3], ["postInstall", 64, 3], ["desktopItems", 72, 3], ["meta", 88, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,11 +28,11 @@ export default nix.lambda((args) => (() => {
   const libglvnd = nix.arg($, "libglvnd");
   const mpv_unwrapped = nix.arg($, "mpv-unwrapped");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "supersonic",
       version: "0.22.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "supersonic-app",
           repo: "supersonic",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -64,7 +61,7 @@ done
 `),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: nix.thunk(() => nix.sel(finalAttrs, "meta", "mainProgram")),
             exec: nix.thunk(() => nix.sel(finalAttrs, "meta", "mainProgram")),
             icon: nix.thunk(() => nix.sel(finalAttrs, "meta", "mainProgram")),
@@ -76,7 +73,7 @@ done
           })))),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         mainProgram: "supersonic",
         description: "Lightweight cross-platform desktop client for Subsonic music servers",
         homepage: "https://github.com/dweymouth/supersonic",

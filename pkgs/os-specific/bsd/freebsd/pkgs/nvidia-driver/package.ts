@@ -2,11 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 14, 5], ["hash", 15, 5]], [["NIX_CFLAGS_COMPILE_AFTER", 44, 7]], [["platforms", 46, 8], ["license", 47, 8]], [["path", 10, 3], ["pname", 11, 3], ["version", 12, 3], ["src", 13, 3], ["outputs", 18, 3], ["extraNativeBuildInputs", 23, 3], ["preConfigure", 27, 3], ["makeFlags", 31, 3], ["hardeningDisable", 40, 3], ["env", 44, 3], ["meta", 46, 3]]]);
 const formals$1 = { args: { lib: false, mkDerivation: false, fetchurl: false, sys: false, "drm-kmod": false, "xargs-j": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 14, 5], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE_AFTER", 44, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["platforms", 46, 8], ["license", 47, 8]]);
-const pos$4 = nix.positions(here + "/package.nix", [["path", 10, 3], ["pname", 11, 3], ["version", 12, 3], ["src", 13, 3], ["outputs", 18, 3], ["extraNativeBuildInputs", 23, 3], ["preConfigure", 27, 3], ["makeFlags", 31, 3], ["hardeningDisable", 40, 3], ["env", 44, 3], ["meta", 46, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pname = "nvidia-driver";
       const version = "570.124.04";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://us.download.nvidia.com/XFree86/FreeBSD-x86_64/${version}/NVIDIA-FreeBSD-x86_64-${version}.tar.xz`),
           hash: "sha256-3FNJPZWg23H/YiUdIfO4KOUZ7BrJ2/xw8LD6MMSEICY=",
         }))));
@@ -37,14 +34,14 @@ export default nix.lambda((args) => (() => {
         "DEBUG_FLAGS=-g",
       ]);
       const hardeningDisable = nix.thunk(() => ["pic"]);
-      const env = nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE_AFTER: "-O0" }));
+      const env = nix.thunk(() => ({ [nix.POS]: $pos[1], NIX_CFLAGS_COMPILE_AFTER: "-O0" }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         platforms: nix.thunk(() => ["x86_64-freebsd"]),
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         path,
         pname,
         version,

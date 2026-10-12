@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["updateScript", 18, 12]], [["description", 21, 5], ["longDescription", 22, 5], ["homepage", 27, 5], ["license", 28, 5], ["maintainers", 29, 5], ["platforms", 33, 5], ["mainProgram", 34, 5]], [["pname", 8, 3], ["gemdir", 10, 3], ["postInstall", 13, 3], ["passthru", 18, 3], ["meta", 20, 3]]]);
 const formals$1 = { args: { lib: false, bundlerEnv: false, bundlerUpdateScript: false, git: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["updateScript", 18, 12]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 21, 5], ["longDescription", 22, 5], ["homepage", 27, 5], ["license", 28, 5], ["maintainers", 29, 5], ["platforms", 33, 5], ["mainProgram", 34, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["gemdir", 10, 3], ["postInstall", 13, 3], ["passthru", 18, 3], ["meta", 20, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,18 +12,18 @@ export default nix.lambda((args) => (() => {
   const bundlerUpdateScript = nix.arg($, "bundlerUpdateScript");
   const git = nix.arg($, "git");
   return nix.app(bundlerEnv, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "homesick",
       gemdir: nix.path(here, "./."),
       postInstall: nix.thunk(() => nix.str`rm $out/bin/thor
 sed 1a'ENV["PATH"] = "${git}/bin:#{ENV["PATH"] ? ":#{ENV["PATH"]}" : "" }"' -i $out/bin/homesick
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         updateScript: nix.thunk(() => nix.app(bundlerUpdateScript, "homesick")),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Your home directory is your castle. Don't leave your dotfiles behind",
         longDescription: "Homesick is sorta like rip, but for dotfiles. It uses git to clone a repository containing\ndotfiles, and saves them in ~/.homesick. It then allows you to symlink all the dotfiles into\nplace with a single command.\n",
         homepage: "https://github.com/technicalpickles/homesick",

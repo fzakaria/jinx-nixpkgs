@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]], [["pname", 32, 26], ["version", 32, 32], ["src", 32, 40], ["pnpm", 33, 13], ["fetcherVersion", 34, 5], ["hash", 35, 5]], [["extraArgs", 57, 5]], [["updateSript", 56, 12]], [["homepage", 64, 5], ["changelog", 65, 5], ["description", 66, 5], ["maintainers", 67, 5], ["license", 68, 26], ["platforms", 68, 34]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["patches", 29, 3], ["pnpmDeps", 31, 3], ["nativeBuildInputs", 38, 3], ["buildPhase", 44, 3], ["installPhase", 50, 3], ["passthru", 56, 3], ["meta", 63, 3]]]);
 const formals$1 = { args: { stdenvNoCC: false, fetchFromGitHub: false, fetchPnpmDeps: false, nodejs: false, pnpm_10: false, pnpmConfigHook: false, lib: false, shoko: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 32, 26], ["version", 32, 32], ["src", 32, 40], ["pnpm", 33, 13], ["fetcherVersion", 34, 5], ["hash", 35, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["extraArgs", 57, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateSript", 56, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["homepage", 64, 5], ["changelog", 65, 5], ["description", 66, 5], ["maintainers", 67, 5], ["license", 68, 26], ["platforms", 68, 34]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["patches", 29, 3], ["pnpmDeps", 31, 3], ["nativeBuildInputs", 38, 3], ["buildPhase", 44, 3], ["installPhase", 50, 3], ["passthru", 56, 3], ["meta", 63, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const pnpm = pnpm_10;
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "shoko-webui",
       version: "2.5.9",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ShokoAnime",
           repo: "Shoko-WebUI",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,7 +30,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [nix.path(here, "./no-commit-hash.patch")]),
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -47,16 +42,16 @@ export default nix.lambda((args) => (() => {
       buildPhase: "runHook preBuild\npnpm build\nrunHook postBuild\n",
       installPhase: "runHook preInstall\ncp -r dist $out\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateSript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             extraArgs: nix.thunk(() => ["--version-regex", "v([0-9]+\\.[0-9]+\\.[0-9]+).*"]),
           })))),
       })),
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(shoko, "meta"));
         return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "https://github.com/ShokoAnime/Shoko-WebUI",
         changelog: nix.thunk(() => nix.str`https://github.com/ShokoAnime/Shoko-WebUI/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "Web-based frontend for the Shoko anime management system",

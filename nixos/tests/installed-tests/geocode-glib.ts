@@ -2,21 +2,19 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/geocode-glib.nix", [[["supportedLocales", 5, 10]], [["i18n", 5, 5]], [["testConfig", 4, 3], ["tested", 14, 3]]]);
 const formals$1 = { args: { pkgs: false, makeInstalledTest: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/geocode-glib.nix", [["supportedLocales", 5, 10]]);
-const pos$2 = nix.positions(here + "/geocode-glib.nix", [["i18n", 5, 5]]);
-const pos$3 = nix.positions(here + "/geocode-glib.nix", [["testConfig", 4, 3], ["tested", 14, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   const makeInstalledTest = nix.arg($, "makeInstalledTest");
   return nix.app(makeInstalledTest, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       testConfig: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         i18n: nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           supportedLocales: nix.thunk(() => [
             "en_US.UTF-8/UTF-8",
             "en_GB.UTF-8/UTF-8",

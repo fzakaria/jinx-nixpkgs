@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 29, 5], ["owner", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["hash", 33, 5]], [["description", 72, 5], ["mainProgram", 73, 5], ["homepage", 74, 5], ["maintainers", 75, 5], ["platforms", 78, 5], ["license", 79, 5]], [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 46, 3], ["cmakeFlags", 58, 3], ["preFixup", 67, 3], ["meta", 71, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, cmake: false, "pkg-config": false, gtk3: false, gspell: false, gmime3: false, gettext: false, intltool: false, itstool: false, libxml2: false, libnotify: false, gnutls: false, wrapGAppsHook3: false, gnupg: false, spellChecking: true, gnomeSupport: true, libsecret: false, gcr_3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 29, 5], ["owner", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["hash", 33, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 72, 5], ["mainProgram", 73, 5], ["homepage", 74, 5], ["maintainers", 75, 5], ["platforms", 78, 5], ["license", 79, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 46, 3], ["cmakeFlags", 58, 3], ["preFixup", 67, 3], ["meta", 71, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,11 +28,11 @@ export default nix.lambda((args) => (() => {
   const libsecret = nix.arg($, "libsecret");
   const gcr_3 = nix.arg($, "gcr_3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "pan",
       version: "0.165",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "gitlab.gnome.org",
           owner: "GNOME",
           repo: "pan",
@@ -54,7 +52,7 @@ export default nix.lambda((args) => (() => {
       preFixup: nix.thunk(() => nix.str`gappsWrapperArgs+=(--prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [gnupg]))})
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "GTK-based Usenet newsreader good at both text and binaries",
         mainProgram: "pan",
         homepage: "http://pan.rebelbase.com",

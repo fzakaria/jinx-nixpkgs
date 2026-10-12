@@ -2,16 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["nodejs-slim", 14, 29]], [["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]], [["pname", 40, 9], ["version", 41, 9], ["src", 42, 9], ["sourceRoot", 43, 9], ["pnpm", 45, 15], ["fetcherVersion", 46, 7], ["hash", 47, 7]], [["pname", 25, 5], ["version", 26, 13], ["src", 26, 21], ["strictDeps", 28, 5], ["sourceRoot", 30, 5], ["nativeBuildInputs", 32, 5], ["pnpmDeps", 38, 5], ["buildPhase", 50, 5], ["installPhase", 58, 5]], [["package", 98, 5], ["command", 99, 5], ["version", 100, 5]], [["version", 97, 18]], [["tests", 97, 12]], [["description", 104, 5], ["homepage", 105, 5], ["license", 106, 5], ["mainProgram", 107, 5], ["platforms", 108, 5], ["maintainers", 109, 5]], [["pname", 69, 3], ["version", 70, 11], ["src", 70, 19], ["modRoot", 72, 3], ["subPackages", 75, 3], ["preBuild", 77, 3], ["vendorHash", 83, 3], ["ldflags", 86, 3], ["postInstall", 93, 3], ["passthru", 97, 3], ["meta", 103, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, buildGoModule: false, "nodejs-slim_22": false, pnpm_10: false, fetchPnpmDeps: false, pnpmConfigHook: false, testers: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["nodejs-slim", 14, 29]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 40, 9], ["version", 41, 9], ["src", 42, 9], ["sourceRoot", 43, 9], ["pnpm", 45, 15], ["fetcherVersion", 46, 7], ["hash", 47, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 25, 5], ["version", 26, 13], ["src", 26, 21], ["strictDeps", 28, 5], ["sourceRoot", 30, 5], ["nativeBuildInputs", 32, 5], ["pnpmDeps", 38, 5], ["buildPhase", 50, 5], ["installPhase", 58, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["package", 98, 5], ["command", 99, 5], ["version", 100, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["version", 97, 18]]);
-const pos$7 = nix.positions(here + "/package.nix", [["tests", 97, 12]]);
-const pos$8 = nix.positions(here + "/package.nix", [["description", 104, 5], ["homepage", 105, 5], ["license", 106, 5], ["mainProgram", 107, 5], ["platforms", 108, 5], ["maintainers", 109, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["pname", 69, 3], ["version", 70, 11], ["src", 70, 19], ["modRoot", 72, 3], ["subPackages", 75, 3], ["preBuild", 77, 3], ["vendorHash", 83, 3], ["ldflags", 86, 3], ["postInstall", 93, 3], ["passthru", 97, 3], ["meta", 103, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,17 +16,17 @@ export default nix.lambda((args) => (() => {
   const fetchPnpmDeps = nix.arg($, "fetchPnpmDeps");
   const pnpmConfigHook = nix.arg($, "pnpmConfigHook");
   const testers = nix.arg($, "testers");
-  const pnpm = nix.thunk(() => nix.app(nix.sel(pnpm_10, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, "nodejs-slim": nodejs_slim_22 }))));
+  const pnpm = nix.thunk(() => nix.app(nix.sel(pnpm_10, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], "nodejs-slim": nodejs_slim_22 }))));
   const version = "1.16.4";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       owner: "umputun",
       repo: "remark42",
       tag: nix.thunk(() => nix.str`v${version}`),
       hash: "sha256-VCFpN/8GRziD7sKVw7jK33llo0AGqygW4ghHZxrluJc=",
     }))));
   const remark42_web = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "remark42-web",
       version: version,
       src: src,
@@ -42,7 +34,7 @@ export default nix.lambda((args) => (() => {
       sourceRoot: nix.thunk(() => nix.str`${nix.sel(src, "name")}/frontend`),
       nativeBuildInputs: nix.thunk(() => [nodejs_slim_22, pnpm, pnpmConfigHook]),
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -55,7 +47,7 @@ export default nix.lambda((args) => (() => {
       installPhase: "runHook preInstall\n\nmkdir -p $out/web\ncp -r \"apps/remark42/public/.\" $out/web/\n\nrunHook postInstall\n",
     })));
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       pname: "remark42",
       version: version,
       src: src,
@@ -69,11 +61,11 @@ cp -r ${remark42_web}/web/. app/cmd/web/
       ldflags: nix.thunk(() => ["-s", "-w", "-X", nix.thunk(() => nix.str`main.revision=v${version}`)]),
       postInstall: "mv \"$out/bin/app\" \"$out/bin/remark42\"\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               command: "remark42 --help",
               version: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -81,7 +73,7 @@ cp -r ${remark42_web}/web/. app/cmd/web/
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         description: "Self-hosted comment engine that embeds a statically built frontend",
         homepage: "https://remark42.com/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

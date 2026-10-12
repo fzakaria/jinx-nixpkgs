@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 22, 9], ["ruby", 24, 17], ["gemdir", 26, 9]], [["updateScript", 35, 12]], [["description", 38, 5], ["homepage", 39, 5], ["license", 40, 5], ["maintainers", 41, 5], ["platforms", 45, 5], ["mainProgram", 46, 5]], [["pname", 12, 3], ["version", 13, 3], ["nativeBuildInputs", 15, 3], ["dontUnpack", 17, 3], ["installPhase", 19, 3], ["passthru", 35, 3], ["meta", 37, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, bundlerEnv: false, ruby: false, bundlerUpdateScript: false, xsel: false, makeWrapper: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 22, 9], ["ruby", 24, 17], ["gemdir", 26, 9]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 35, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 38, 5], ["homepage", 39, 5], ["license", 40, 5], ["maintainers", 41, 5], ["platforms", 45, 5], ["mainProgram", 46, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["nativeBuildInputs", 15, 3], ["dontUnpack", 17, 3], ["installPhase", 19, 3], ["passthru", 35, 3], ["meta", 37, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const dontUnpack = true;
       const installPhase = nix.thunk(() => (() => {
         const env = nix.thunk(() => nix.app(bundlerEnv, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             name: nix.thunk(() => nix.str`${pname}-gems`),
             ruby: ruby,
             gemdir: nix.path(here, "./."),
@@ -35,11 +32,11 @@ makeWrapper ${env}/bin/pws $out/bin/pws \\
 `;
       })());
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(bundlerUpdateScript, "pws")),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Command-line password safe",
         homepage: "https://github.com/janlelis/pws",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -54,7 +51,7 @@ makeWrapper ${env}/bin/pws $out/bin/pws \\
         mainProgram: "pws",
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         nativeBuildInputs,

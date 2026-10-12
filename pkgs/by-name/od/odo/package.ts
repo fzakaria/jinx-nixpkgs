@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["sha256", 17, 5]], [["package", 32, 5], ["command", 33, 5], ["version", 34, 5]], [["version", 31, 18]], [["tests", 31, 12]], [["description", 38, 5], ["mainProgram", 39, 5], ["license", 40, 5], ["homepage", 41, 5], ["changelog", 42, 5], ["maintainers", 43, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["vendorHash", 20, 3], ["buildPhase", 22, 3], ["installPhase", 26, 3], ["passthru", 31, 3], ["meta", 37, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitHub: false, testers: false, odo: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["sha256", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["package", 32, 5], ["command", 33, 5], ["version", 34, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 31, 18]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 31, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 38, 5], ["mainProgram", 39, 5], ["license", 40, 5], ["homepage", 41, 5], ["changelog", 42, 5], ["maintainers", 43, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["vendorHash", 20, 3], ["buildPhase", 22, 3], ["installPhase", 26, 3], ["passthru", 31, 3], ["meta", 37, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const odo = nix.arg($, "odo");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "odo",
       version: "3.16.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "redhat-developer",
           repo: "odo",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -32,11 +27,11 @@ export default nix.lambda((args) => (() => {
       buildPhase: "make bin\n",
       installPhase: "mkdir -p $out/bin\ncp -a odo $out/bin\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               package: odo,
               command: "odo version",
               version: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -44,7 +39,7 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Developer-focused CLI for OpenShift and Kubernetes",
         mainProgram: "odo",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

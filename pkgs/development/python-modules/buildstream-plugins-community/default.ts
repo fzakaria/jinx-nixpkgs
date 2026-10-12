@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]], [["pytest", 51, 11]], [["updateScript", 49, 5], ["tests", 51, 5]], [["changelog", 55, 5], ["description", 56, 5], ["homepage", 57, 5], ["platforms", 58, 5], ["license", 59, 5], ["maintainers", 60, 5]], [["pname", 17, 3], ["version", 18, 3], ["pyproject", 19, 3], ["src", 21, 3], ["build-system", 28, 3], ["dependencies", 33, 3], ["pythonRemoveDeps", 44, 3], ["pythonImportsCheck", 46, 3], ["passthru", 48, 3], ["meta", 54, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitLab: false, gitUpdater: false, nixosTests: false, setuptools: false, "setuptools-scm": false, arpy: false, dulwich: false, packaging: false, requests: false, tomlkit: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pytest", 51, 11]]);
-const pos$3 = nix.positions(here + "/default.nix", [["updateScript", 49, 5], ["tests", 51, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["changelog", 55, 5], ["description", 56, 5], ["homepage", 57, 5], ["platforms", 58, 5], ["license", 59, 5], ["maintainers", 60, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 17, 3], ["version", 18, 3], ["pyproject", 19, 3], ["src", 21, 3], ["build-system", 28, 3], ["dependencies", 33, 3], ["pythonRemoveDeps", 44, 3], ["pythonImportsCheck", 46, 3], ["passthru", 48, 3], ["meta", 54, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const requests = nix.arg($, "requests");
   const tomlkit = nix.arg($, "tomlkit");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "buildstream-plugins-community",
       version: "2.4.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "buildstream",
           repo: "buildstream-plugins-community",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -40,15 +36,15 @@ export default nix.lambda((args) => (() => {
       pythonRemoveDeps: nix.thunk(() => ["buildstream"]),
       pythonImportsCheck: nix.thunk(() => ["buildstream_plugins_community"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pytest: nix.thunk(() => nix.sel(nixosTests, "buildstream-plugins-community")),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         changelog: nix.thunk(() => nix.str`https://gitlab.com/BuildStream/buildstream-plugins-community/-/blob/${nix.sel(finalAttrs, "src", "tag")}/NEWS`),
         description: "BuildStream community plugins",
         homepage: "https://gitlab.com/buildstream/buildstream-plugins-community",

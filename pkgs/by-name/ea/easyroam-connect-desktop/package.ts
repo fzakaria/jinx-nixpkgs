@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 24, 5], ["hash", 25, 5]], [["description", 61, 5], ["mainProgram", 62, 5], ["longDescription", 63, 5], ["homepage", 66, 5], ["license", 67, 5], ["maintainers", 68, 5], ["platforms", 72, 5]], [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["dontConfigure", 28, 3], ["dontBuild", 29, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 37, 3], ["installPhase", 50, 3], ["meta", 60, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, autoPatchelfHook: false, glib: false, gtk3: false, pango: false, cairo: false, harfbuzz: false, networkmanager: false, libsecret: false, libsoup_3: false, webkitgtk_4_1: false, "glib-networking": false, wrapGAppsHook3: false, dpkg: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 61, 5], ["mainProgram", 62, 5], ["longDescription", 63, 5], ["homepage", 66, 5], ["license", 67, 5], ["maintainers", 68, 5], ["platforms", 72, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["dontConfigure", 28, 3], ["dontBuild", 29, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 37, 3], ["installPhase", 50, 3], ["meta", 60, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const pname = "easyroam-connect-desktop";
       const version = "1.4.3";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://packages.easyroam.de/repos/easyroam-desktop/pool/main/e/easyroam-desktop/easyroam_connect_desktop-${version}+${version}-linux.deb`),
           hash: "sha256-03PLAUQQWlaAO+0cYcCorc1Q6wAhvLQGXNu0mqh8Lvw=",
         }))));
@@ -50,7 +48,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const installPhase = "runHook preInstall\n\nmkdir -p $out/bin\ncp -r usr/share $out/share\nln -s $out/share/easyroam_connect_desktop/easyroam_connect_desktop $out/bin/easyroam_connect_desktop\n\nrunHook postInstall\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Manage and install your easyroam WiFi profiles",
         mainProgram: "easyroam_connect_desktop",
         longDescription: "Using this software you can easily connect your device to eduroam® by simply logging in with your DFN-AAI account.\n",
@@ -66,7 +64,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => ["x86_64-linux"]),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/cargo_cross.nix", [[["depsBuildBuild", 14, 5], ["meta", 16, 36]]]);
 const formals$1 = { args: { runCommand: false, stdenv: false, lib: false, pkgsBuildBuild: false, makeShellWrapper: false, rustc: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/cargo_cross.nix", [["depsBuildBuild", 14, 5], ["meta", 16, 36]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
   return nix.app(runCommand, nix.thunk(() => nix.str`${nix.sel(stdenv, "targetPlatform", "config")}-cargo-${nix.app(nix.sel(lib, "getVersion"), nix.thunk(() => nix.sel(pkgsBuildBuild, "cargo")))}`), nix.thunk(() => (() => {
       const from = nix.thunk(() => nix.sel(pkgsBuildBuild, "cargo"));
       return {
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       depsBuildBuild: nix.thunk(() => [makeShellWrapper]),
       meta: nix.thunk(() => nix.attr(from, "meta")),
     };

@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]], [["desktopName", 51, 7], ["genericName", 52, 7], ["exec", 53, 7], ["name", 54, 7], ["icon", 55, 7]], [["extraArgs", 60, 5]], [["updateScript", 59, 12]], [["description", 64, 5], ["longDescription", 65, 5], ["homepage", 68, 5], ["changelog", 69, 5], ["license", 70, 5], ["maintainers", 71, 5], ["mainProgram", 72, 5], ["platforms", 73, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["nugetDeps", 25, 3], ["projectFile", 27, 3], ["dotnet-sdk", 29, 3], ["dotnet-runtime", 30, 3], ["nativeBuildInputs", 32, 3], ["runtimeDeps", 38, 3], ["postInstall", 43, 3], ["desktopItems", 49, 3], ["passthru", 59, 3], ["meta", 63, 3]]]);
 const formals$1 = { args: { lib: false, buildDotnetModule: false, fetchFromGitHub: false, dotnetCorePackages: false, wrapGAppsHook3: false, gtk3: false, libnotify: false, icoutils: false, "nix-update-script": false, copyDesktopItems: false, makeDesktopItem: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["desktopName", 51, 7], ["genericName", 52, 7], ["exec", 53, 7], ["name", 54, 7], ["icon", 55, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["extraArgs", 60, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 59, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 64, 5], ["longDescription", 65, 5], ["homepage", 68, 5], ["changelog", 69, 5], ["license", 70, 5], ["maintainers", 71, 5], ["mainProgram", 72, 5], ["platforms", 73, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["nugetDeps", 25, 3], ["projectFile", 27, 3], ["dotnet-sdk", 29, 3], ["dotnet-runtime", 30, 3], ["nativeBuildInputs", 32, 3], ["runtimeDeps", 38, 3], ["postInstall", 43, 3], ["desktopItems", 49, 3], ["passthru", 59, 3], ["meta", 63, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const copyDesktopItems = nix.arg($, "copyDesktopItems");
   const makeDesktopItem = nix.arg($, "makeDesktopItem");
   return nix.app(buildDotnetModule, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "arcdps-log-manager",
       version: "1.17",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "gw2scratch",
           repo: "evtc",
           tag: nix.thunk(() => nix.str`manager-v${nix.sel(finalAttrs, "version")}`),
@@ -43,7 +38,7 @@ export default nix.lambda((args) => (() => {
       postInstall: "mkdir -p $out/share/icons/hicolor/128x128/apps\nicotool -x $src/ArcdpsLogManager/Images/program_icon.ico\ncp program_icon_1_128x128x32.png $out/share/icons/hicolor/128x128/apps/arcdps-log-manager.png\n",
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             desktopName: "arcdps Log Manager",
             genericName: "arcdps Log Manager",
             exec: "GW2Scratch.ArcdpsLogManager.Gtk",
@@ -52,14 +47,14 @@ export default nix.lambda((args) => (() => {
           })))),
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             extraArgs: nix.thunk(() => ["--version-regex=manager-v(.*)"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Manager for Guild Wars 2 log files",
         longDescription: "Manager for all your recorded logs. Filter logs, upload them with one click, find interesting statistics.\n",
         homepage: "https://gw2scratch.com/tools/manager",

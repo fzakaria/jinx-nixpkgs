@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 17, 5], ["sha256", 18, 5]], [["name", 24, 7], ["url", 25, 7], ["sha256", 26, 7]], [["name", 32, 7], ["url", 33, 7], ["sha256", 34, 7]], [["homepage", 59, 5], ["description", 60, 5], ["license", 61, 5], ["platforms", 62, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["patches", 21, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 39, 3], ["configureFlags", 45, 3], ["doCheck", 49, 3], ["doInstallCheck", 51, 3], ["postInstall", 53, 3], ["meta", 58, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, fetchpatch: false, "pkg-config": false, libusb1: false, libyubikey: false, json_c: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 17, 5], ["sha256", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 24, 7], ["url", 25, 7], ["sha256", 26, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 32, 7], ["url", 33, 7], ["sha256", 34, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 59, 5], ["description", 60, 5], ["license", 61, 5], ["platforms", 62, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["patches", 21, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 39, 3], ["configureFlags", 45, 3], ["doCheck", 49, 3], ["doInstallCheck", 51, 3], ["postInstall", 53, 3], ["meta", 58, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,23 +16,23 @@ export default nix.lambda((args) => (() => {
   const libyubikey = nix.arg($, "libyubikey");
   const json_c = nix.arg($, "json_c");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "yubikey-personalization",
       version: "1.20.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://developers.yubico.com/yubikey-personalization/Releases/ykpers-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "14wvlwqnwj0gllkpvfqiy8ns938bwvjsz8x1hmymmx32m074vj0f",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "json-c-0.14-support.patch",
             url: "https://github.com/Yubico/yubikey-personalization/commit/0aa2e2cae2e1777863993a10c809bb50f4cde7f8.patch",
             sha256: "1wnigf3hbq59i15kgxpq3pwrl1drpbj134x81mmv9xm1r44cjva8",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "fno-common.patch",
             url: "https://github.com/Yubico/yubikey-personalization/commit/09ea16d9e2030e4da6ad00c1e5147e962aa7ff84.patch",
             sha256: "0n3ka8n7f3ndbxv3k0bi77d850kr2ypglkw81gqycpqyaciidqwa",
@@ -49,7 +45,7 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       postInstall: "# Don't use 70-yubikey.rules because it depends on ConsoleKit\ninstall -D -t $out/lib/udev/rules.d 69-yubikey.rules\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://developers.yubico.com/yubikey-personalization",
         description: "Library and command line tool to personalize YubiKeys",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

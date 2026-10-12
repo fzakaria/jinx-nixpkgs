@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 7], ["repo", 14, 7], ["rev", 15, 7], ["hash", 16, 7]], [["homepage", 22, 7], ["description", 23, 7], ["changelog", 24, 7], ["license", 25, 7], ["mainProgram", 26, 7], ["maintainers", 27, 7]], [["pname", 9, 5], ["version", 10, 5], ["src", 12, 5], ["vendorHash", 19, 5], ["meta", 21, 5]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 7], ["repo", 14, 7], ["rev", 15, 7], ["hash", 16, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 22, 7], ["description", 23, 7], ["changelog", 24, 7], ["license", 25, 7], ["mainProgram", 26, 7], ["maintainers", 27, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 5], ["version", 10, 5], ["src", 12, 5], ["vendorHash", 19, 5], ["meta", 21, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,11 +11,11 @@ export default nix.lambda((args) => (() => {
   const buildGoModule = nix.arg($, "buildGoModule");
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const finalAttrs = nix.thunk(() => ({
-    [nix.POS]: pos$3,
+    [nix.POS]: $pos[2],
     pname: "fm",
     version: "1.2.0",
     src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         owner: "mistakenelf",
         repo: "fm",
         rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -25,7 +23,7 @@ export default nix.lambda((args) => (() => {
       })))),
     vendorHash: "sha256-uhrE8ZuUeQSm+Jg1xi83RsBrzjex+aBlElJRT61k0BU=",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       homepage: "https://github.com/mistakenelf/fm",
       description: "Terminal based file manager",
       changelog: nix.thunk(() => nix.str`https://github.com/mistakenelf/fm/releases/tag/${nix.sel(finalAttrs, "src", "rev")}`),

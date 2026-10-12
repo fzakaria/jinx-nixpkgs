@@ -42,7 +42,7 @@ export interface PlainAttrs {
   [POS]?: AttrPos;
 }
 
-export type Attrs = PlainAttrs | Layered;
+export type Attrs = PlainAttrs | Layered | Mapped;
 
 // Where a set's attributes were defined, for builtins.unsafeGetAttrPos,
 // which nixpkgs reads for meta.position. A set carries its positions
@@ -65,25 +65,29 @@ export interface Pos {
   readonly column: number;
 }
 
+export type PosEntries = readonly (readonly [string, number, number])[];
+
+// One literal site: its entries, indexed on the first lookup, since few
+// sets are ever asked for a position.
 export class PosTable extends AttrPos {
   private readonly file: string;
-  private readonly entries: ReadonlyMap<string, readonly [number, number]>;
+  private readonly entries: PosEntries;
+  private index: Map<string, readonly [number, number]> | null = null;
 
-  constructor(
-    file: string,
-    entries: readonly (readonly [string, number, number])[],
-  ) {
+  constructor(file: string, entries: PosEntries) {
     super();
-    const map = new Map<string, readonly [number, number]>();
-    for (const [name, line, column] of entries) {
-      map.set(name, [line, column]);
-    }
     this.file = file;
-    this.entries = map;
+    this.entries = entries;
   }
 
   override lookup(name: string): Pos | null {
-    const e = this.entries.get(name);
+    if (this.index === null) {
+      this.index = new Map();
+      for (const [n, line, column] of this.entries) {
+        this.index.set(n, [line, column]);
+      }
+    }
+    const e = this.index.get(name);
     return e === undefined
       ? null
       : { file: this.file, line: e[0], column: e[1] };
@@ -138,17 +142,21 @@ export class MapPos extends AttrPos {
   }
 }
 
+// A module's literal sites, one table each (`$pos` in emitted code).
 export function positions(
   file: string,
-  entries: readonly (readonly [string, number, number])[],
-): PosTable {
-  return new PosTable(file, entries);
+  sites: readonly PosEntries[],
+): PosTable[] {
+  return sites.map((entries) => new PosTable(file, entries));
 }
 
 // The positions of a set, or null when it has none.
 export function posOf(a: Attrs): AttrPos | null {
   if (a instanceof Layered) {
     return a.positions();
+  }
+  if (a instanceof Mapped) {
+    return null;
   }
   return a[POS] ?? null;
 }
@@ -166,6 +174,9 @@ export function attrPos(a: Attrs, name: string): Pos | null {
     return hasAttr(a.over, name)
       ? attrPos(a.over, name)
       : attrPos(a.base, name);
+  }
+  if (a instanceof Mapped) {
+    return null;
   }
   const pos = a[POS];
   return pos === undefined ? null : pos.lookup(name);
@@ -207,7 +218,7 @@ export class Layered {
       }
       a = a.base;
     }
-    return hasOwn(a, name) ? a[name] : undefined;
+    return getAttr(a, name);
   }
 
   has(name: string): boolean {
@@ -226,7 +237,7 @@ export class Layered {
       overs.push(a.over);
       a = a.base;
     }
-    const flat: PlainAttrs = { ...(a instanceof Layered ? a.flat! : a) };
+    const flat: PlainAttrs = { ...toPlain(a) };
     for (let i = overs.length - 1; i >= 0; i--) {
       Object.assign(flat, toPlain(overs[i]!));
     }
@@ -258,29 +269,93 @@ const MAX_LAYERS = 16;
 // cheaper than a layer.
 const LAYER_THRESHOLD = 256;
 
+// builtins.mapAttrs without a thunk per attribute up front. nixpkgs
+// maps over whole package sets (makeScope, overrideScope, the language
+// package sets), and the eager version was a quarter of the live heap of
+// a firefox evaluation. An attribute's thunk is made on first access and
+// kept, which is the sharing Nix's thunks have.
+export class Mapped {
+  readonly base: Attrs;
+  private readonly make: (name: string, value: Lazy) => Lazy;
+  private readonly made = new Map<string, Lazy>();
+  private flat: PlainAttrs | null = null;
+
+  constructor(base: Attrs, make: (name: string, value: Lazy) => Lazy) {
+    this.base = base;
+    this.make = make;
+  }
+
+  get(name: string): Lazy | undefined {
+    if (this.flat !== null) {
+      return hasOwn(this.flat, name) ? this.flat[name] : undefined;
+    }
+    const have = this.made.get(name);
+    if (have !== undefined) {
+      return have;
+    }
+    const v = getAttr(this.base, name);
+    if (v === undefined) {
+      return undefined;
+    }
+    const t = this.make(name, v);
+    this.made.set(name, t);
+    return t;
+  }
+
+  has(name: string): boolean {
+    return this.flat !== null
+      ? hasOwn(this.flat, name)
+      : hasAttr(this.base, name);
+  }
+
+  keys(): string[] {
+    return this.flat !== null ? Object.keys(this.flat) : attrKeys(this.base);
+  }
+
+  // Every attribute's thunk, made now; computed once and kept.
+  flatten(): PlainAttrs {
+    if (this.flat !== null) {
+      return this.flat;
+    }
+    const flat: PlainAttrs = {};
+    for (const k of attrKeys(this.base)) {
+      flat[k] = this.get(k)!;
+    }
+    this.flat = flat;
+    return flat;
+  }
+
+  get isEmpty(): boolean {
+    return isEmptyAttrs(this.base);
+  }
+}
+
 // The lazy value of an attribute, or undefined when absent.
 export function getAttr(a: Attrs, name: string): Lazy | undefined {
-  if (a instanceof Layered) {
+  if (a instanceof Layered || a instanceof Mapped) {
     return a.get(name);
   }
   return hasOwn(a, name) ? a[name] : undefined;
 }
 
 export function hasAttr(a: Attrs, name: string): boolean {
-  if (a instanceof Layered) {
+  if (a instanceof Layered || a instanceof Mapped) {
     return a.has(name);
   }
   return hasOwn(a, name);
 }
 
 // The plain object holding every attribute: the set itself, or a layered
-// set flattened.
+// or mapped set flattened.
 export function toPlain(a: Attrs): PlainAttrs {
-  return a instanceof Layered ? a.flatten() : a;
+  return a instanceof Layered || a instanceof Mapped ? a.flatten() : a;
 }
 
 // Attribute names in no particular order.
 export function attrKeys(a: Attrs): string[] {
+  if (a instanceof Mapped) {
+    return a.keys();
+  }
   return Object.keys(toPlain(a));
 }
 
@@ -289,6 +364,9 @@ export function attrKeys(a: Attrs): string[] {
 const sizes = new WeakMap<PlainAttrs, number>();
 
 export function attrCount(a: Attrs): number {
+  if (a instanceof Mapped) {
+    return attrCount(a.base);
+  }
   const p = toPlain(a);
   let n = sizes.get(p);
   if (n === undefined) {
@@ -302,7 +380,7 @@ export function attrCount(a: Attrs): number {
 }
 
 export function isEmptyAttrs(a: Attrs): boolean {
-  if (a instanceof Layered) {
+  if (a instanceof Layered || a instanceof Mapped) {
     return a.isEmpty;
   }
   for (const _ in a) {
@@ -314,7 +392,21 @@ export function isEmptyAttrs(a: Attrs): boolean {
 // Whether a set is large enough to be worth layering rather than copying.
 // A layered set always is, by construction.
 export function isLargeAttrs(a: Attrs): boolean {
-  return a instanceof Layered || attrCount(a) >= LAYER_THRESHOLD;
+  if (a instanceof Layered) {
+    return true;
+  }
+  if (a instanceof Mapped) {
+    return isLargeAttrs(a.base);
+  }
+  // Count only as far as the threshold: most sets are small, and a large
+  // one is known to be large long before its last attribute.
+  let n = 0;
+  for (const _ in a) {
+    if (++n >= LAYER_THRESHOLD) {
+      return true;
+    }
+  }
+  return false;
 }
 
 // `x // y`: shared thunks, nothing forced. Small left sides are copied;
@@ -335,7 +427,7 @@ export function updateAttrs(x: Attrs, y: Attrs): Attrs {
   if (isLargeAttrs(x)) {
     return new Layered(x, y);
   }
-  return { ...x, ...toPlain(y), [POS]: new MergedPos(x, y) };
+  return { ...toPlain(x), ...toPlain(y), [POS]: new MergedPos(x, y) };
 }
 
 export interface Formals {
@@ -405,33 +497,40 @@ export class Path {
 
 // A suspended computation with its result memoised. Forcing a thunk that
 // is already being forced is Nix's "infinite recursion".
+// A thunk being forced has BLACKHOLE in place of its closure, which is
+// how forcing it again from inside its own evaluation is detected; two
+// fields per thunk, and there are millions.
+const BLACKHOLE = (): Lazy => {
+  throw new NixError("infinite recursion encountered");
+};
+
 export class Thunk {
   private fn: (() => Lazy) | null;
   private result: Value | undefined = undefined;
-  private evaluating = false;
 
   constructor(fn: () => Lazy) {
     this.fn = fn;
   }
 
   force(): Value {
-    if (this.fn === null) {
+    const fn = this.fn;
+    if (fn === null) {
       return this.result as Value;
     }
-    if (this.evaluating) {
-      throw new NixError("infinite recursion encountered");
-    }
-    this.evaluating = true;
+    this.fn = BLACKHOLE;
     try {
-      let v = this.fn();
+      let v = fn();
       while (v instanceof Thunk) {
         v = v.force();
       }
       this.result = v;
       this.fn = null;
       return v;
-    } finally {
-      this.evaluating = false;
+    } catch (e) {
+      // Nix forces a thunk again after an error, so the closure comes
+      // back; a tryEval that caught the error may force it once more.
+      this.fn = fn;
+      throw e;
     }
   }
 
@@ -488,7 +587,7 @@ export function isAttrs(v: Value): v is Attrs {
   if (typeof v !== "object" || v === null) {
     return false;
   }
-  if (v instanceof Layered) {
+  if (v instanceof Layered || v instanceof Mapped) {
     return true;
   }
   const proto: unknown = Object.getPrototypeOf(v);

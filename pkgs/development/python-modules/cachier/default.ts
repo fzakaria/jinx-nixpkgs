@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]], [["RELEASING_PROCESS", 100, 7]], [["homepage", 105, 5], ["changelog", 106, 5], ["description", 107, 5], ["mainProgram", 108, 5], ["maintainers", 109, 5], ["license", 110, 5]], [["pname", 24, 3], ["version", 25, 3], ["pyproject", 26, 3], ["src", 28, 3], ["pythonRemoveDeps", 35, 3], ["nativeBuildInputs", 37, 3], ["dependencies", 41, 3], ["nativeCheckInputs", 49, 3], ["disabledTests", 62, 3], ["disabledTestPaths", 90, 3], ["preBuild", 95, 3], ["env", 100, 3], ["pythonImportsCheck", 102, 3], ["meta", 104, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, click: false, watchdog: false, pympler: false, portalocker: false, pytestCheckHook: false, "pytest-cov-stub": false, "pytest-asyncio": false, aiosqlite: false, sqlalchemy: false, pymongo: false, dnspython: false, "pymongo-inmemory": false, pandas: false, birch: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["RELEASING_PROCESS", 100, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["homepage", 105, 5], ["changelog", 106, 5], ["description", 107, 5], ["mainProgram", 108, 5], ["maintainers", 109, 5], ["license", 110, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 24, 3], ["version", 25, 3], ["pyproject", 26, 3], ["src", 28, 3], ["pythonRemoveDeps", 35, 3], ["nativeBuildInputs", 37, 3], ["dependencies", 41, 3], ["nativeCheckInputs", 49, 3], ["disabledTests", 62, 3], ["disabledTestPaths", 90, 3], ["preBuild", 95, 3], ["env", 100, 3], ["pythonImportsCheck", 102, 3], ["meta", 104, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const version = "4.2.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "python-cachier",
           repo: "cachier",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -71,10 +68,10 @@ export default nix.lambda((args) => (() => {
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["test_bad_cache_file", "test_delete_cache_file"]))));
       const disabledTestPaths = nix.thunk(() => ["tests/sql_tests/test_sql_core.py"]);
       const preBuild = "export HOME=\"$(mktemp -d)\"\n";
-      const env = nix.thunk(() => ({ [nix.POS]: pos$2, RELEASING_PROCESS: "1" }));
+      const env = nix.thunk(() => ({ [nix.POS]: $pos[1], RELEASING_PROCESS: "1" }));
       const pythonImportsCheck = nix.thunk(() => ["cachier"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/python-cachier/cachier",
         changelog: nix.thunk(() => nix.str`https://github.com/python-cachier/cachier/releases/tag/${nix.sel(src, "tag")}`),
         description: "Persistent, stale-free, local and cross-machine caching for functions",
@@ -86,7 +83,7 @@ export default nix.lambda((args) => (() => {
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

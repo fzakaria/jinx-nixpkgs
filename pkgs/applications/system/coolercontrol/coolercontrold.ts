@@ -2,13 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/coolercontrold.nix", [[["package", 85, 5]], [["version", 84, 18]], [["tests", 84, 12]], [["description", 89, 5], ["mainProgram", 90, 5]], [["pname", 25, 3], ["version", 26, 11], ["src", 26, 19], ["sourceRoot", 27, 3], ["cargoHash", 29, 3], ["buildInputs", 31, 3], ["nativeBuildInputs", 38, 3], ["pythonPath", 44, 3], ["postPatch", 46, 3], ["postInstall", 56, 3], ["postFixup", 62, 3], ["passthru", 84, 3], ["meta", 88, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, testers: false, hwdata: false, "pkg-config": false, libdrm: false, libglvnd: false, "vulkan-loader": false, coolercontrol: false, runtimeShell: false, addDriverRunpath: false, python3Packages: false, liquidctl: false, which: false }, ellipsis: false };
 const formals$2 = { args: { version: false, src: false, meta: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/coolercontrold.nix", [["package", 85, 5]]);
-const pos$2 = nix.positions(here + "/coolercontrold.nix", [["version", 84, 18]]);
-const pos$3 = nix.positions(here + "/coolercontrold.nix", [["tests", 84, 12]]);
-const pos$4 = nix.positions(here + "/coolercontrold.nix", [["description", 89, 5], ["mainProgram", 90, 5]]);
-const pos$5 = nix.positions(here + "/coolercontrold.nix", [["pname", 25, 3], ["version", 26, 11], ["src", 26, 19], ["sourceRoot", 27, 3], ["cargoHash", 29, 3], ["buildInputs", 31, 3], ["nativeBuildInputs", 38, 3], ["pythonPath", 44, 3], ["postPatch", 46, 3], ["postInstall", 56, 3], ["postFixup", 62, 3], ["passthru", 84, 3], ["meta", 88, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,7 +28,7 @@ export default nix.lambda((args) => (() => {
     const src = nix.arg($_1, "src");
     const meta = nix.arg($_1, "meta");
     return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname: "coolercontrold",
         version: version,
         src: src,
@@ -68,17 +64,17 @@ wrapProgram "$out/bin/coolercontrold" \\
   --prefix PYTHONPATH : $program_PYTHONPATH
 `),
         passthru: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           tests: nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-                [nix.POS]: pos$1,
+                [nix.POS]: $pos[0],
                 package: nix.thunk(() => nix.sel(coolercontrol, "coolercontrold")),
               })))),
           })),
         })),
         meta: nix.thunk(() => nix.update(meta, {
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           description: nix.thunk(() => nix.str`${nix.sel(meta, "description")} (Main Daemon)`),
           mainProgram: "coolercontrold",
         })),

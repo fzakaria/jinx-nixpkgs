@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 76, 5], ["repo", 77, 5], ["tag", 78, 5], ["hash", 79, 5], ["sparseCheckout", 80, 5], ["postFetch", 85, 5]], [["CXX", 90, 7], ["CFLAGS", 91, 7], ["CXXFLAGS", 92, 7], ["ROCM_PATH", 93, 7], ["TENSILE_ROCM_ASSEMBLER_PATH", 94, 7], ["TENSILE_GEN_ASSEMBLY_TOOLCHAIN", 95, 7], ["LD_PRELOAD", 96, 7], ["MALLOC_CONF", 97, 7]], [["finalAttrs", 248, 54]], [["supportsTargetArches", 247, 12], ["updateScript", 248, 12]], [["description", 250, 5], ["homepage", 251, 5], ["license", 252, 5], ["teams", 253, 5], ["platforms", 254, 5]], [["pname", 72, 3], ["version", 73, 3], ["src", 75, 3], ["sourceRoot", 89, 3], ["env", 90, 3], ["requiredSystemFeatures", 98, 3], ["__structuredAttrs", 100, 3], ["strictDeps", 101, 3], ["outputs", 103, 3], ["patches", 115, 3], ["preConfigure", 129, 3], ["postPatch", 133, 3], ["doCheck", 141, 3], ["doInstallCheck", 142, 3], ["nativeBuildInputs", 144, 3], ["buildInputs", 156, 3], ["cmakeFlags", 179, 3], ["postInstall", 206, 3], ["installCheckPhase", 229, 3], ["passthru", 247, 3], ["meta", 249, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, "rocm-cmake": false, "rocm-smi": false, "pkg-config": false, clr: false, gfortran: false, gtest: false, boost: false, llvm: false, "msgpack-cxx": false, "amd-blis": false, libxml2: false, python3: false, python3Packages: false, openmp: false, "hipblas-common": false, "lapack-reference": false, ncurses: false, ninja: false, libffi: false, jemalloc: false, zlib: false, zstd: false, rocmUpdateScript: false, buildTests: true, buildSamples: true, gpuTargets: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 76, 5], ["repo", 77, 5], ["tag", 78, 5], ["hash", 79, 5], ["sparseCheckout", 80, 5], ["postFetch", 85, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["CXX", 90, 7], ["CFLAGS", 91, 7], ["CXXFLAGS", 92, 7], ["ROCM_PATH", 93, 7], ["TENSILE_ROCM_ASSEMBLER_PATH", 94, 7], ["TENSILE_GEN_ASSEMBLY_TOOLCHAIN", 95, 7], ["LD_PRELOAD", 96, 7], ["MALLOC_CONF", 97, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["finalAttrs", 248, 54]]);
-const pos$4 = nix.positions(here + "/default.nix", [["supportsTargetArches", 247, 12], ["updateScript", 248, 12]]);
-const pos$5 = nix.positions(here + "/default.nix", [["description", 250, 5], ["homepage", 251, 5], ["license", 252, 5], ["teams", 253, 5], ["platforms", 254, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 72, 3], ["version", 73, 3], ["src", 75, 3], ["sourceRoot", 89, 3], ["env", 90, 3], ["requiredSystemFeatures", 98, 3], ["__structuredAttrs", 100, 3], ["strictDeps", 101, 3], ["outputs", 103, 3], ["patches", 115, 3], ["preConfigure", 129, 3], ["postPatch", 133, 3], ["doCheck", 141, 3], ["doInstallCheck", 142, 3], ["nativeBuildInputs", 144, 3], ["buildInputs", 156, 3], ["cmakeFlags", 179, 3], ["postInstall", 206, 3], ["installCheckPhase", 229, 3], ["passthru", 247, 3], ["meta", 249, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -66,11 +61,11 @@ export default nix.lambda((args) => (() => {
   const compiler = "amdclang++";
   const cFlags = nix.thunk(() => nix.str`-Wno-switch -fopenmp -I${nix.app(nix.sel(lib, "getDev"), zstd)}/include -I${amd_blis}/include/blis/ -I${nix.app(nix.sel(lib, "getDev"), msgpack_cxx)}/include`);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: nix.thunk(() => nix.str`hipblaslt${nix.sel(clr, "gpuArchSuffix")}`),
       version: "7.2.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ROCm",
           repo: "rocm-libraries",
           tag: nix.thunk(() => nix.str`rocm-${nix.sel(finalAttrs, "version")}`),
@@ -81,7 +76,7 @@ export default nix.lambda((args) => (() => {
         })))),
       sourceRoot: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "name")}/projects/hipblaslt`),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         CXX: compiler,
         CFLAGS: cFlags,
         CXXFLAGS: cFlags,
@@ -154,12 +149,12 @@ rmdir $out/bin
 `)),
       installCheckPhase: "runHook preInstallCheck\nfind \"$out\" -type f -name \"*.dat\" -size \"+2M\" -exec sh -c '\n    echo \"ERROR: oversized .dat file, check for issues with install compression: {}\" >&2\n    exit 1\n' {} \\;\necho \"Verified .dat files in $out are not huge\"\nrunHook postInstallCheck\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         supportsTargetArches: supportsTargetArches,
-        updateScript: nix.thunk(() => nix.app(rocmUpdateScript, nix.thunk(() => ({ [nix.POS]: pos$3, finalAttrs: finalAttrs })))),
+        updateScript: nix.thunk(() => nix.app(rocmUpdateScript, nix.thunk(() => ({ [nix.POS]: $pos[2], finalAttrs: finalAttrs })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Library that provides general matrix-matrix operations with a flexible API",
         homepage: "https://github.com/ROCm/rocm-libraries/tree/develop/projects/hipblaslt",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

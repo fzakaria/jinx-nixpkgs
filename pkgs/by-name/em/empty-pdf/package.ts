@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["description", 34, 5], ["maintainers", 35, 5], ["platforms", 39, 5]], [["name", 8, 3], ["__structuredAttrs", 10, 3], ["strictDeps", 11, 3], ["dontUnpack", 13, 3], ["nativeBuildInputs", 15, 3], ["buildPhase", 17, 3], ["installPhase", 25, 3], ["meta", 33, 3]]]);
 const formals$1 = { args: { stdenvNoCC: false, imagemagick: false, lib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["description", 34, 5], ["maintainers", 35, 5], ["platforms", 39, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 8, 3], ["__structuredAttrs", 10, 3], ["strictDeps", 11, 3], ["dontUnpack", 13, 3], ["nativeBuildInputs", 15, 3], ["buildPhase", 17, 3], ["installPhase", 25, 3], ["meta", 33, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -12,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const imagemagick = nix.arg($, "imagemagick");
   const lib = nix.arg($, "lib");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       name: "empty-pdf",
       __structuredAttrs: true,
       strictDeps: true,
@@ -21,7 +20,7 @@ export default nix.lambda((args) => (() => {
       buildPhase: "runHook preBuild\n\nmagick xc:none -page Letter empty.pdf\n\nrunHook postBuild\n",
       installPhase: "runHook preInstall\n\nmv empty.pdf $out\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Empty PDF file intended for testing",
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);

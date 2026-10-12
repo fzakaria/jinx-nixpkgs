@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 27, 7], ["repo", 28, 7], ["tag", 29, 7], ["hash", 30, 7]], [["updateScript", 66, 12]], [["description", 69, 5], ["homepage", 70, 5], ["changelog", 71, 5], ["license", 72, 5], ["platforms", 73, 5], ["maintainers", 74, 5]], [["pname", 19, 3], ["version", 20, 3], ["__structuredAttrs", 22, 3], ["src", 24, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 38, 3], ["strictDeps", 44, 3], ["patches", 46, 3], ["cmakeFlags", 53, 3], ["enableParallelBuilding", 64, 3], ["passthru", 66, 3], ["meta", 68, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, "nix-update-script": false, onetbb: false, openvino: false, pcre2: false, "pkg-config": false, sentencepiece: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 27, 7], ["repo", 28, 7], ["tag", 29, 7], ["hash", 30, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 66, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 69, 5], ["homepage", 70, 5], ["changelog", 71, 5], ["license", 72, 5], ["platforms", 73, 5], ["maintainers", 74, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["__structuredAttrs", 22, 3], ["src", 24, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 38, 3], ["strictDeps", 44, 3], ["patches", 46, 3], ["cmakeFlags", 53, 3], ["enableParallelBuilding", 64, 3], ["passthru", 66, 3], ["meta", 68, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,14 +20,14 @@ export default nix.lambda((args) => (() => {
   const cmakeBool = nix.thunk(() => nix.attr(lib, "cmakeBool"));
   const cmakeFeature = nix.thunk(() => nix.attr(lib, "cmakeFeature"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "openvino-tokenizers",
       version: "2026.4.0.0",
       __structuredAttrs: true,
       src: nix.thunk(() => (() => {
         nix.assert_(nix.app(nix.sel(lib, "hasPrefix"), nix.thunk(() => nix.sel(openvino, "version")), nix.thunk(() => nix.sel(finalAttrs, "version"))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/op/openvino-tokenizers/package.nix:25:5");
         return nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             owner: "openvinotoolkit",
             repo: "openvino_tokenizers",
             tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -51,11 +48,11 @@ export default nix.lambda((args) => (() => {
       ]),
       enableParallelBuilding: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "OpenVINO Tokenizers - text tokenisation extensions for OpenVINO",
         homepage: "https://github.com/openvinotoolkit/openvino_tokenizers",
         changelog: nix.thunk(() => nix.str`https://github.com/openvinotoolkit/openvino_tokenizers/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

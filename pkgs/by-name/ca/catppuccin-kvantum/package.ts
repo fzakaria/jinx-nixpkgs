@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 39, 7], ["repo", 40, 7], ["rev", 41, 7], ["hash", 42, 7]], [["updateScript", 52, 14]], [["description", 55, 7], ["homepage", 56, 7], ["license", 57, 7], ["platforms", 58, 7], ["maintainers", 59, 7]], [["pname", 35, 13], ["version", 36, 5], ["src", 38, 5], ["installPhase", 45, 5], ["passthru", 52, 5], ["meta", 54, 5]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchFromGitHub: false, unstableGitUpdater: false, accent: true, variant: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 39, 7], ["repo", 40, 7], ["rev", 41, 7], ["hash", 42, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 52, 14]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 55, 7], ["homepage", 56, 7], ["license", 57, 7], ["platforms", 58, 7], ["maintainers", 59, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 35, 13], ["version", 36, 5], ["src", 38, 5], ["installPhase", 45, 5], ["passthru", 52, 5], ["meta", 54, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,11 +30,11 @@ export default nix.lambda((args) => (() => {
       "teal",
       "yellow",
     ]), nix.thunk(() => [accent]), nix.thunk(() => nix.sel(lib, "checkListOfEnum")), nix.thunk(() => nix.str`${pname}: color variant`), nix.thunk(() => ["latte", "frappe", "macchiato", "mocha"]), nix.thunk(() => [variant]), nix.thunk(() => nix.sel(stdenvNoCC, "mkDerivation")), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: pname,
       version: "0-unstable-2025-12-27",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "catppuccin",
           repo: "Kvantum",
           rev: "71105d224fef95dd023691303477ce3eea487457",
@@ -49,11 +46,11 @@ cp -a themes/catppuccin-${variant}-${accent} $out/share/Kvantum
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Soothing pastel theme for Kvantum",
         homepage: "https://github.com/catppuccin/Kvantum",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

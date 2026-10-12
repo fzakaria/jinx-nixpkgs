@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]], [["url", 28, 7], ["hash", 29, 7]], [["description", 34, 5], ["license", 35, 5], ["maintainers", 36, 5], ["homepage", 37, 5], ["platforms", 38, 5]], [["pname", 12, 3], ["version", 13, 11], ["src", 15, 3], ["nativeBuildInputs", 22, 3], ["patches", 24, 3], ["meta", 33, 3]]]);
 const formals$1 = { args: { stdenv: false, cmake: false, fetchFromGitHub: false, fetchpatch: false, lib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 28, 7], ["hash", 29, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 34, 5], ["license", 35, 5], ["maintainers", 36, 5], ["homepage", 37, 5], ["platforms", 38, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 11], ["src", 15, 3], ["nativeBuildInputs", 22, 3], ["patches", 24, 3], ["meta", 33, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const version = "1.2.3";
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "stduuid",
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "mariusbancila",
           repo: "stduuid",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -30,13 +27,13 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [cmake]),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/OlivierLDff/stduuid/commit/b02c70c0a4bef2c82152503e13c9a67d6631b13d.patch",
             hash: "sha256-tv4rllhngdgjXX35kcM69yXo0DXF/BQ+AUbiC1gJIU8=",
           })))),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "C++17 cross-platform implementation for UUIDs",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "shlevy"))]),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 13, 5], ["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["sha256", 17, 5]], [["homepage", 28, 5], ["description", 29, 5], ["mainProgram", 30, 5], ["license", 31, 5], ["platforms", 32, 5], ["maintainers", 33, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["buildInputs", 20, 3], ["installFlags", 22, 3], ["meta", 27, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, perl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 13, 5], ["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["sha256", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 28, 5], ["description", 29, 5], ["mainProgram", 30, 5], ["license", 31, 5], ["platforms", 32, 5], ["maintainers", 33, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["buildInputs", 20, 3], ["installFlags", 22, 3], ["meta", 27, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,7 +15,7 @@ export default nix.lambda((args) => (() => {
       const pname = "copyright-update";
       const version = "2025.0404";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           name: nix.thunk(() => nix.str`${pname}-${version}-src`),
           owner: "jaalto",
           repo: "project--copyright-update",
@@ -27,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const buildInputs = nix.thunk(() => [perl]);
       const installFlags = nix.thunk(() => ["INSTALL=install", "prefix=$(out)"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/jaalto/project--copyright-update",
         description: "Updates the copyright information in a set of files",
         mainProgram: "copyright-update",
@@ -35,7 +33,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "rycee"))]),
       }));
-      return { [nix.POS]: pos$3, pname, version, src, buildInputs, installFlags, meta };
+      return { [nix.POS]: $pos[2], pname, version, src, buildInputs, installFlags, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

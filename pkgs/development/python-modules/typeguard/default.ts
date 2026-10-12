@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 22, 13], ["version", 22, 19], ["hash", 23, 5]], [["LC_ALL", 44, 7]], [["description", 58, 5], ["homepage", 59, 5], ["changelog", 60, 5], ["license", 61, 5], ["maintainers", 62, 5]], [["pname", 17, 3], ["version", 18, 3], ["pyproject", 19, 3], ["src", 21, 3], ["outputs", 26, 3], ["build-system", 31, 3], ["dependencies", 40, 3], ["env", 44, 3], ["nativeCheckInputs", 46, 3], ["preCheck", 53, 3], ["pythonImportsCheck", 55, 3], ["meta", 57, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, setuptools: false, "setuptools-scm": false, pytestCheckHook: false, "typing-extensions": false, mypy: false, sphinxHook: false, "sphinx-autodoc-typehints": false, "sphinx-rtd-theme": false, glibcLocales: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 22, 13], ["version", 22, 19], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["LC_ALL", 44, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 58, 5], ["homepage", 59, 5], ["changelog", 60, 5], ["license", 61, 5], ["maintainers", 62, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 17, 3], ["version", 18, 3], ["pyproject", 19, 3], ["src", 21, 3], ["outputs", 26, 3], ["build-system", 31, 3], ["dependencies", 40, 3], ["env", 44, 3], ["nativeCheckInputs", 46, 3], ["preCheck", 53, 3], ["pythonImportsCheck", 55, 3], ["meta", 57, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "4.5.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-WhbcrCNQIDkpnJfIlBZRvDPX6ozEsvfWu7G1KPbupCM=",
@@ -42,12 +39,12 @@ export default nix.lambda((args) => (() => {
         sphinx_rtd_theme,
       ]);
       const dependencies = nix.thunk(() => [typing_extensions]);
-      const env = nix.thunk(() => ({ [nix.POS]: pos$2, LC_ALL: "en_US.utf-8" }));
+      const env = nix.thunk(() => ({ [nix.POS]: $pos[1], LC_ALL: "en_US.utf-8" }));
       const nativeCheckInputs = nix.thunk(() => [mypy, pytestCheckHook]);
       const preCheck = "export PYTHONDONTWRITEBYTECODE=1";
       const pythonImportsCheck = nix.thunk(() => ["typeguard"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "This library provides run-time type checking for functions defined with argument type annotations",
         homepage: "https://github.com/agronholm/typeguard",
         changelog: nix.thunk(() => nix.str`https://github.com/agronholm/typeguard/releases/tag/${version}`),
@@ -55,7 +52,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["pname", 10, 3], ["src", 11, 20], ["version", 11, 24], ["patches", 11, 32], ["outputs", 12, 3], ["nativeBuildInputs", 14, 3], ["buildInputs", 18, 3], ["postPatch", 22, 3], ["dontConfigure", 26, 3], ["dontBuild", 27, 3], ["installPhase", 29, 3], ["dontFixup", 52, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, libpsl: false, python3: false, lzip: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["src", 11, 20], ["version", 11, 24], ["patches", 11, 32], ["outputs", 12, 3], ["nativeBuildInputs", 14, 3], ["buildInputs", 18, 3], ["postPatch", 22, 3], ["dontConfigure", 26, 3], ["dontBuild", 27, 3], ["installPhase", 29, 3], ["dontFixup", 52, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const lzip = nix.arg($, "lzip");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       pname: "libpsl-with-scripts",
       src: nix.thunk(() => nix.attr(libpsl, "src")),
       version: nix.thunk(() => nix.attr(libpsl, "version")),

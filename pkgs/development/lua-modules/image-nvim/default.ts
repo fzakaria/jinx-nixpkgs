@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]], [["homepage", 30, 5], ["description", 31, 5], ["maintainers", 32, 5], ["license", 33, 5]], [["pname", 10, 3], ["version", 11, 3], ["disabled", 13, 3], ["knownRockspec", 14, 3], ["rockspecVersion", 15, 3], ["src", 17, 3], ["propagatedBuildInputs", 24, 3], ["meta", 29, 3]]]);
 const formals$1 = { args: { buildLuarocksPackage: false, fetchFromGitHub: false, lib: false, lua: false, luaOlder: false, luajitPackages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 30, 5], ["description", 31, 5], ["maintainers", 32, 5], ["license", 33, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 10, 3], ["version", 11, 3], ["disabled", 13, 3], ["knownRockspec", 14, 3], ["rockspecVersion", 15, 3], ["src", 17, 3], ["propagatedBuildInputs", 24, 3], ["meta", 29, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const knownRockspec = "image.nvim-scm-1.rockspec";
       const rockspecVersion = "scm-1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "3rd",
           repo: "image.nvim",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -30,7 +28,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const propagatedBuildInputs = nix.thunk(() => [lua, nix.thunk(() => nix.sel(luajitPackages, "magick"))]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/3rd/image.nvim",
         description: "🖼️ Bringing images to Neovim.",
         maintainers: nix.thunk(() => (() => {
@@ -40,7 +38,7 @@ export default nix.lambda((args) => (() => {
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         disabled,

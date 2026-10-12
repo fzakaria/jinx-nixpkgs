@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/paf.nix", [[["description", 53, 5]], [["pname", 22, 3], ["version", 24, 17], ["src", 24, 25], ["postPatch", 26, 3], ["minimalOCamlVersion", 31, 3], ["propagatedBuildInputs", 33, 3], ["meta", 52, 3]]]);
 const formals$1 = { args: { buildDunePackage: false, git: false, mimic: false, paf: false, "ca-certs-nss": false, fmt: false, ipaddr: false, logs: false, lwt: false, rresult: false, tls: false, uri: false, bigstringaf: false, "domain-name": false, h1: false, "mirage-flow": false, "tls-mirage": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/paf.nix", [["description", 53, 5]]);
-const pos$2 = nix.positions(here + "/paf.nix", [["pname", 22, 3], ["version", 24, 17], ["src", 24, 25], ["postPatch", 26, 3], ["minimalOCamlVersion", 31, 3], ["propagatedBuildInputs", 33, 3], ["meta", 52, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,7 +25,7 @@ export default nix.lambda((args) => (() => {
   const mirage_flow = nix.arg($, "mirage-flow");
   const tls_mirage = nix.arg($, "tls-mirage");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "git-paf",
       version: nix.thunk(() => nix.attr(git, "version")),
       src: nix.thunk(() => nix.attr(git, "src")),
@@ -51,7 +50,7 @@ export default nix.lambda((args) => (() => {
         tls_mirage,
       ]),
       meta: nix.thunk(() => nix.update(nix.sel(git, "meta"), {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Package to use HTTP-based ocaml-git with MirageOS backend",
       })),
     })));

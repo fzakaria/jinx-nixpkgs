@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["x86_64-linux", 21, 5], ["aarch64-linux", 22, 5], ["aarch64-darwin", 23, 5]], [["x86_64-linux", 80, 13], ["aarch64-linux", 81, 13], ["aarch64-darwin", 82, 13]], [["url", 77, 9], ["hash", 78, 9]], [["sources", 74, 5], ["updateScript", 87, 5]], [["description", 91, 5], ["homepage", 92, 5], ["downloadPage", 93, 5], ["license", 94, 5], ["maintainers", 95, 5], ["mainProgram", 99, 5], ["platforms", 100, 5], ["sourceProvenance", 101, 5]], [["pname", 28, 3], ["version", 29, 3], ["src", 31, 3], ["nativeBuildInputs", 33, 3], ["strictDeps", 38, 3], ["dontUnpack", 40, 3], ["dontStrip", 41, 3], ["dontFixup", 42, 3], ["installPhase", 44, 3], ["postInstall", 58, 3], ["doInstallCheck", 64, 3], ["nativeInstallCheckInputs", 65, 3], ["versionCheckProgram", 69, 3], ["versionCheckProgramArg", 70, 3], ["versionCheckKeepEnvironment", 71, 3], ["passthru", 73, 3], ["meta", 90, 3]]]);
 const formals$1 = { args: { stdenvNoCC: false, lib: false, fetchurl: false, autoPatchelfHook: false, gzip: false, makeWrapper: false, ripgrep: false, versionCheckHook: false, writableTmpDirAsHomeHook: false, cctools: false, darwin: false, rcodesign: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["x86_64-linux", 21, 5], ["aarch64-linux", 22, 5], ["aarch64-darwin", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["x86_64-linux", 80, 13], ["aarch64-linux", 81, 13], ["aarch64-darwin", 82, 13]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 77, 9], ["hash", 78, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["sources", 74, 5], ["updateScript", 87, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 91, 5], ["homepage", 92, 5], ["downloadPage", 93, 5], ["license", 94, 5], ["maintainers", 95, 5], ["mainProgram", 99, 5], ["platforms", 100, 5], ["sourceProvenance", 101, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 28, 3], ["version", 29, 3], ["src", 31, 3], ["nativeBuildInputs", 33, 3], ["strictDeps", 38, 3], ["dontUnpack", 40, 3], ["dontStrip", 41, 3], ["dontFixup", 42, 3], ["installPhase", 44, 3], ["postInstall", 58, 3], ["doInstallCheck", 64, 3], ["nativeInstallCheckInputs", 65, 3], ["versionCheckProgram", 69, 3], ["versionCheckProgramArg", 70, 3], ["versionCheckKeepEnvironment", 71, 3], ["passthru", 73, 3], ["meta", 90, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,13 +20,13 @@ export default nix.lambda((args) => (() => {
   const darwin = nix.arg($, "darwin");
   const rcodesign = nix.arg($, "rcodesign");
   const platforms = nix.thunk(() => ({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     "x86_64-linux": "linux-x64-baseline",
     "aarch64-linux": "linux-arm64",
     "aarch64-darwin": "darwin-arm64",
   }));
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "amp-cli",
       version: "0.0.1791107882-gfe04cc",
       src: nix.thunk(() => nix.sel(finalAttrs, "passthru", "sources", nix.key(nix.sel(stdenvNoCC, "hostPlatform", "system")))),
@@ -62,12 +57,12 @@ runHook postInstall
       versionCheckProgramArg: "--version",
       versionCheckKeepEnvironment: nix.thunk(() => ["HOME"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         sources: nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (system$) => (platform) => nix.app(fetchurl, nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               url: nix.thunk(() => nix.str`https://static.ampcode.com/cli/${nix.sel(finalAttrs, "version")}/amp-${platform}.gz`),
               hash: nix.thunk(() => nix.sel({
-                [nix.POS]: pos$2,
+                [nix.POS]: $pos[1],
                 "x86_64-linux": "sha256-vsJje36Dg0w9j5KBICM5bpyjQ7AUmt2cJUuH3LGUC80=",
                 "aarch64-linux": "sha256-2aI/a66uzuA/unxYtItj3HHkTQcb/zB95cWzznsEcpY=",
                 "aarch64-darwin": "sha256-Ut0Z7zgEFP6NE3HmbCIEArOVgqoHCr9ZPTHtjkInWg8=",
@@ -76,7 +71,7 @@ runHook postInstall
         updateScript: nix.path(here, "./update.sh"),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "CLI for Amp, an agentic coding agent in research preview from Sourcegraph",
         homepage: "https://ampcode.com/",
         downloadPage: "https://ampcode.com/install",

@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]], [["name", 25, 7], ["url", 26, 7], ["hash", 27, 7]], [["extraArgs", 39, 5]], [["updateScript", 38, 12]], [["description", 43, 5], ["homepage", 44, 5], ["mainProgram", 45, 5], ["maintainers", 46, 5], ["license", 47, 5], ["platforms", 48, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["patches", 21, 3], ["strictDeps", 31, 3], ["__structuredAttrs", 32, 3], ["buildInputs", 34, 3], ["makeFlags", 36, 3], ["passthru", 38, 3], ["meta", 42, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch: false, ncurses: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 25, 7], ["url", 26, 7], ["hash", 27, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["extraArgs", 39, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 38, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 43, 5], ["homepage", 44, 5], ["mainProgram", 45, 5], ["maintainers", 46, 5], ["license", 47, 5], ["platforms", 48, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["patches", 21, 3], ["strictDeps", 31, 3], ["__structuredAttrs", 32, 3], ["buildInputs", 34, 3], ["makeFlags", 36, 3], ["passthru", 38, 3], ["meta", 42, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const ncurses = nix.arg($, "ncurses");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "pacvim",
       version: "1.1.1-unstable-2018-05-16",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "jmoon018",
           repo: "PacVim",
           rev: "ca7c8833c22c5fe97974ba5247ef1fcc00cedb8e",
@@ -31,7 +26,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "ncurses-6.3.patch",
             url: "https://github.com/jmoon018/PacVim/commit/760682824cdbb328af616ff43bf822ade23924f7.patch",
             hash: "sha256-z0RykcydY5GWOzy4MrJCEp++6AITxwtxo25awRoSafg=",
@@ -42,11 +37,11 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [ncurses]),
       makeFlags: nix.thunk(() => ["PREFIX=$(out)"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$3, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
+        [nix.POS]: $pos[3],
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: $pos[2], extraArgs: nix.thunk(() => ["--version=branch"]) })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Game that teaches you vim commands",
         homepage: "https://github.com/jmoon018/PacVim",
         mainProgram: "pacvim",

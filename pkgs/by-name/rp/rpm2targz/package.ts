@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 20, 5], ["hash", 21, 5]], [["description", 47, 5], ["homepage", 48, 5], ["license", 49, 5], ["maintainers", 50, 5], ["platforms", 51, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 19, 3], ["postPatch", 24, 3], ["installFlags", 44, 3], ["meta", 46, 3]]]);
 const formals$1 = { args: { bzip2: false, coreutils: false, cpio: false, fetchurl: false, gnutar: false, gzip: false, lib: false, stdenv: false, xz: false, zstd: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 47, 5], ["homepage", 48, 5], ["license", 49, 5], ["maintainers", 50, 5], ["platforms", 51, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 19, 3], ["postPatch", 24, 3], ["installFlags", 44, 3], ["meta", 46, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const xz = nix.arg($, "xz");
   const zstd = nix.arg($, "zstd");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "rpm2targz",
       version: "2021.03.16",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://dev.gentoo.org/~vapier/dist/rpm2targz-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-rcV+o9V2wWKznqSW2rA8xgnpQ02kpK4te6mYvLRC5vQ=",
         })))),
@@ -39,7 +37,7 @@ sed -i -e '2iexport PATH="${nix.app(nix.sel(lib, "makeBinPath"), shdeps)}"' rpm2
       })()),
       installFlags: nix.thunk(() => ["prefix=$(out)"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Convert a .rpm file to a .tar.gz archive",
         homepage: "http://slackware.com/config/packages.php",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd1")),

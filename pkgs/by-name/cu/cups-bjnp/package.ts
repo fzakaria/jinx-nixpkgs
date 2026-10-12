@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 13, 5], ["hash", 14, 5]], [["NIX_CFLAGS_COMPILE", 24, 7]], [["description", 34, 5], ["longDescription", 35, 5], ["homepage", 40, 5], ["platforms", 41, 5], ["license", 42, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["preConfigure", 17, 3], ["buildInputs", 22, 3], ["env", 24, 3], ["meta", 33, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, cups: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 13, 5], ["hash", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 24, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 34, 5], ["longDescription", 35, 5], ["homepage", 40, 5], ["platforms", 41, 5], ["license", 42, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["preConfigure", 17, 3], ["buildInputs", 22, 3], ["env", 24, 3], ["meta", 33, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,18 +12,18 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const cups = nix.arg($, "cups");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "cups-bjnp",
       version: "2.0.3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/cups-bjnp/cups-bjnp-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-yRSy/Z2OJs4i8t9iRNne/uwx7ppTYPcj7ss7APIWhQA=",
         })))),
       preConfigure: "mkdir -p $out/lib/cups/backend\nconfigureFlags=\"--with-cupsbackenddir=$out/lib/cups/backend\"\n",
       buildInputs: nix.thunk(() => [cups]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => [
             "-include stdio.h",
             "-Wno-error=stringop-truncation",
@@ -37,7 +34,7 @@ export default nix.lambda((args) => (() => {
           ]))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "CUPS back-end for Canon printers",
         longDescription: "CUPS back-end for the canon printers using the proprietary USB over IP\nBJNP protocol. This back-end allows Cups to print over the network to a\nCanon printer. The design is based on reverse engineering of the protocol.\n",
         homepage: "http://cups-bjnp.sourceforge.net",

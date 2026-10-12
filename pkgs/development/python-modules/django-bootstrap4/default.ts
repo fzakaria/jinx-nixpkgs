@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]], [["withGdal", 44, 24]], [["description", 54, 5], ["homepage", 55, 5], ["changelog", 56, 5], ["license", 57, 5], ["maintainers", 58, 5]], [["pname", 21, 3], ["version", 22, 3], ["pyproject", 23, 3], ["src", 25, 3], ["postPatch", 32, 3], ["build-system", 37, 3], ["dependencies", 39, 3], ["pythonImportsCheck", 41, 3], ["nativeCheckInputs", 43, 3], ["preCheck", 49, 3], ["meta", 53, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, "uv-build": false, django: false, beautifulsoup4: false, "pytest-django": false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["withGdal", 44, 24]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 54, 5], ["homepage", 55, 5], ["changelog", 56, 5], ["license", 57, 5], ["maintainers", 58, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 21, 3], ["version", 22, 3], ["pyproject", 23, 3], ["src", 25, 3], ["postPatch", 32, 3], ["build-system", 37, 3], ["dependencies", 39, 3], ["pythonImportsCheck", 41, 3], ["nativeCheckInputs", 43, 3], ["preCheck", 49, 3], ["meta", 53, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "26.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "zostera",
           repo: "django-bootstrap4",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -34,13 +31,13 @@ export default nix.lambda((args) => (() => {
       const dependencies = nix.thunk(() => [beautifulsoup4]);
       const pythonImportsCheck = nix.thunk(() => ["bootstrap4"]);
       const nativeCheckInputs = nix.thunk(() => [
-        nix.thunk(() => nix.app(nix.sel(django, "override"), nix.thunk(() => ({ [nix.POS]: pos$2, withGdal: true })))),
+        nix.thunk(() => nix.app(nix.sel(django, "override"), nix.thunk(() => ({ [nix.POS]: $pos[1], withGdal: true })))),
         pytest_django,
         pytestCheckHook,
       ]);
       const preCheck = "export DJANGO_SETTINGS_MODULE=tests.app.settings\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Bootstrap 4 integration with Django",
         homepage: "https://github.com/zostera/django-bootstrap4",
         changelog: nix.thunk(() => nix.str`https://github.com/zostera/django-bootstrap4/blob/${nix.sel(src, "tag")}/CHANGELOG.md`),
@@ -51,7 +48,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

@@ -2,32 +2,27 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/docling-serve.nix", [[["maintainers", 8, 5]], [["enable", 16, 11]], [["docling-serve", 15, 18]], [["services", 15, 9]], [["machine", 12, 5]], [["name", 6, 3], ["meta", 7, 3], ["nodes", 11, 3], ["testScript", 21, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/docling-serve.nix", [["maintainers", 8, 5]]);
 const formals$2 = { args: {  }, ellipsis: true };
-const pos$2 = nix.positions(here + "/docling-serve.nix", [["enable", 16, 11]]);
-const pos$3 = nix.positions(here + "/docling-serve.nix", [["docling-serve", 15, 18]]);
-const pos$4 = nix.positions(here + "/docling-serve.nix", [["services", 15, 9]]);
-const pos$5 = nix.positions(here + "/docling-serve.nix", [["machine", 12, 5]]);
-const pos$6 = nix.positions(here + "/docling-serve.nix", [["name", 6, 3], ["meta", 7, 3], ["nodes", 11, 3], ["testScript", 21, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const mainPort = "5001";
   return {
-    [nix.POS]: pos$6,
+    [nix.POS]: $pos[5],
     name: "docling-serve",
-    meta: nix.thunk(() => ({ [nix.POS]: pos$1, maintainers: [] })),
+    meta: nix.thunk(() => ({ [nix.POS]: $pos[0], maintainers: [] })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$3,
-            "docling-serve": nix.thunk(() => ({ [nix.POS]: pos$2, enable: true })),
+            [nix.POS]: $pos[2],
+            "docling-serve": nix.thunk(() => ({ [nix.POS]: $pos[1], enable: true })),
           })),
         };
       })(), formals$2),

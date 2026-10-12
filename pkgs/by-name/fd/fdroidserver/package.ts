@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["pname", 21, 11], ["version", 22, 11], ["hash", 23, 11]], [["version", 19, 9], ["src", 20, 9]], [["ruamel-yaml", 18, 7]], [["owner", 36, 5], ["repo", 37, 5], ["rev", 38, 5], ["hash", 39, 5]], [["homepage", 110, 5], ["changelog", 111, 5], ["description", 112, 5], ["license", 113, 5], ["maintainers", 114, 5], ["mainProgram", 118, 5]], [["pname", 30, 3], ["version", 31, 3], ["pyproject", 33, 3], ["src", 35, 3], ["pythonRemoveDeps", 42, 3], ["postPatch", 46, 3], ["preConfigure", 51, 3], ["postInstall", 55, 3], ["nativeBuildInputs", 60, 3], ["build-system", 62, 3], ["dependencies", 67, 3], ["makeWrapperArgs", 94, 3], ["doCheck", 105, 3], ["pythonImportsCheck", 107, 3], ["meta", 109, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, python3Packages: false, fetchPypi: false, apksigner: false, "gradlew-fdroid": false, installShellFiles: false, withLibvirt: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["pname", 21, 11], ["version", 22, 11], ["hash", 23, 11]]);
-const pos$2 = nix.positions(here + "/package.nix", [["version", 19, 9], ["src", 20, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["ruamel-yaml", 18, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["owner", 36, 5], ["repo", 37, 5], ["rev", 38, 5], ["hash", 39, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["homepage", 110, 5], ["changelog", 111, 5], ["description", 112, 5], ["license", 113, 5], ["maintainers", 114, 5], ["mainProgram", 118, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 30, 3], ["version", 31, 3], ["pyproject", 33, 3], ["src", 35, 3], ["pythonRemoveDeps", 42, 3], ["postPatch", 46, 3], ["preConfigure", 51, 3], ["postInstall", 55, 3], ["nativeBuildInputs", 60, 3], ["build-system", 62, 3], ["dependencies", 67, 3], ["makeWrapperArgs", 94, 3], ["doCheck", 105, 3], ["pythonImportsCheck", 107, 3], ["meta", 109, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const installShellFiles = nix.arg($, "installShellFiles");
   const withLibvirt = nix.argOr($, "withLibvirt", () => false);
   const pythonPackages = nix.thunk(() => nix.app(nix.sel(python3Packages, "overrideScope"), (_final) => (prev) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       "ruamel-yaml": nix.thunk(() => nix.app(nix.sel(prev, "ruamel-yaml", "overridePythonAttrs"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           version: "0.18.10",
           src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-              [nix.POS]: pos$1,
+              [nix.POS]: $pos[0],
               pname: "ruamel.yaml",
               version: "0.18.10",
               hash: "sha256-IMhqsprCFT+ApCjhJUqK32htM4PfBEkFFMo7eaNi21g=",
@@ -35,12 +30,12 @@ export default nix.lambda((args) => (() => {
         })))),
     })));
   return nix.app(nix.sel(pythonPackages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "fdroidserver",
       version: "2.4.5-unstable-2026-06-11",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           owner: "fdroid",
           repo: "fdroidserver",
           rev: "00932d0a715b43b3ecf8da44826abf2ba65dd8b4",
@@ -93,7 +88,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["fdroidserver"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "https://gitlab.com/fdroid/fdroidserver",
         changelog: nix.thunk(() => nix.str`https://gitlab.com/fdroid/fdroidserver/-/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG.md`),
         description: "Server and tools for F-Droid, the Free Software repository system for Android",

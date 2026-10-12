@@ -2,22 +2,9 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/pam-pgsql.nix", [[["maintainers", 8, 8]], [["connect", 15, 9], ["auth_query", 16, 9], ["acct_query", 17, 9], ["pwd_query", 18, 9], ["pw_type", 19, 9]], [["text", 14, 40]], [["pam_pgsql.conf", 14, 23]], [["systemPackages", 13, 19], ["etc", 14, 19]], [["enable", 23, 9], ["authentication", 24, 9], ["initialScript", 27, 9]], [["postgresql", 22, 16]], [["text", 55, 40]], [["pgsql-test", 55, 29]], [["services", 55, 20]], [["pam", 55, 16]], [["environment", 13, 7], ["services", 22, 7], ["security", 55, 7]], [["machine", 10, 9]], [["name", 7, 3], ["meta", 8, 3], ["nodes", 10, 3], ["testScript", 67, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/pam-pgsql.nix", [["maintainers", 8, 8]]);
 const formals$2 = { args: { lib: false, pkgs: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/pam-pgsql.nix", [["connect", 15, 9], ["auth_query", 16, 9], ["acct_query", 17, 9], ["pwd_query", 18, 9], ["pw_type", 19, 9]]);
-const pos$3 = nix.positions(here + "/pam-pgsql.nix", [["text", 14, 40]]);
-const pos$4 = nix.positions(here + "/pam-pgsql.nix", [["pam_pgsql.conf", 14, 23]]);
-const pos$5 = nix.positions(here + "/pam-pgsql.nix", [["systemPackages", 13, 19], ["etc", 14, 19]]);
-const pos$6 = nix.positions(here + "/pam-pgsql.nix", [["enable", 23, 9], ["authentication", 24, 9], ["initialScript", 27, 9]]);
-const pos$7 = nix.positions(here + "/pam-pgsql.nix", [["postgresql", 22, 16]]);
-const pos$8 = nix.positions(here + "/pam-pgsql.nix", [["text", 55, 40]]);
-const pos$9 = nix.positions(here + "/pam-pgsql.nix", [["pgsql-test", 55, 29]]);
-const pos$10 = nix.positions(here + "/pam-pgsql.nix", [["services", 55, 20]]);
-const pos$11 = nix.positions(here + "/pam-pgsql.nix", [["pam", 55, 16]]);
-const pos$12 = nix.positions(here + "/pam-pgsql.nix", [["environment", 13, 7], ["services", 22, 7], ["security", 55, 7]]);
-const pos$13 = nix.positions(here + "/pam-pgsql.nix", [["machine", 10, 9]]);
-const pos$14 = nix.positions(here + "/pam-pgsql.nix", [["name", 7, 3], ["meta", 8, 3], ["nodes", 10, 3], ["testScript", 67, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,35 +12,35 @@ export default nix.lambda((args) => (() => {
   const dbName = "authdb";
   const dbUser = "authuser";
   return {
-    [nix.POS]: pos$14,
+    [nix.POS]: $pos[13],
     name: "pam-pgsql",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "moraxyc"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$13,
+      [nix.POS]: $pos[12],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const lib_1 = nix.arg($_1, "lib");
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$12,
+          [nix.POS]: $pos[11],
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             systemPackages: nix.thunk(() => (() => {
               const w = nix.withScope(pkgs, null);
               return [nix.thunk(() => nix.lookup(w, "pamtester"))];
             })()),
             etc: nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               "pam_pgsql.conf": nix.thunk(() => ({
-                [nix.POS]: pos$3,
+                [nix.POS]: $pos[2],
                 text: nix.thunk(() => nix.app(nix.sel(lib_1, "generators", "toKeyValue"), nix.thunk(() => ({})), nix.thunk(() => ({
-                    [nix.POS]: pos$2,
+                    [nix.POS]: $pos[1],
                     connect: nix.thunk(() => nix.str`host=/run/postgresql port=5432 dbname=${dbName} user=${dbUser} connect_timeout=15`),
                     auth_query: "select password from account where username = %u",
                     acct_query: "select (expired = 'y' OR expired = '1'), (newtok = 'y' OR newtok = '1'), (password IS NULL OR password = '') from account where username = %u",
@@ -64,9 +51,9 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             postgresql: nix.thunk(() => ({
-              [nix.POS]: pos$6,
+              [nix.POS]: $pos[5],
               enable: true,
               authentication: nix.thunk(() => nix.str`local ${dbName} ${dbUser} trust
 `),
@@ -96,13 +83,13 @@ VALUES (
             })),
           })),
           security: nix.thunk(() => ({
-            [nix.POS]: pos$11,
+            [nix.POS]: $pos[10],
             pam: nix.thunk(() => ({
-              [nix.POS]: pos$10,
+              [nix.POS]: $pos[9],
               services: nix.thunk(() => ({
-                [nix.POS]: pos$9,
+                [nix.POS]: $pos[8],
                 "pgsql-test": nix.thunk(() => ({
-                  [nix.POS]: pos$8,
+                  [nix.POS]: $pos[7],
                   text: nix.thunk(() => (() => {
                     const pam_pgsql_so = nix.thunk(() => nix.str`${nix.sel(pkgs, "pam-pgsql")}/lib/security/pam_pgsql.so`);
                     return nix.str`auth        required    ${pam_pgsql_so}

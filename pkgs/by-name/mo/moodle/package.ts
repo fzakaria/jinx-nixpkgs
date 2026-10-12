@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["mod", 30, 5], ["antivirus", 31, 5], ["assignsubmission", 32, 5], ["assignfeedback", 33, 5], ["booktool", 34, 5], ["customfield", 35, 5], ["datafield", 36, 5], ["datapreset", 37, 5], ["ltisource", 38, 5], ["fileconverter", 39, 5], ["ltiservice", 40, 5], ["mlbackend", 41, 5], ["forumreport", 42, 5], ["quiz", 43, 5], ["quizaccess", 44, 5], ["scormreport", 45, 5], ["workshopform", 46, 5], ["workshopallocation", 47, 5], ["workshopeval", 48, 5], ["block", 49, 5], ["qtype", 50, 5], ["qbehaviour", 51, 5], ["qformat", 52, 5], ["filter", 53, 5], ["editor", 54, 5], ["atto", 55, 5], ["tinymce", 56, 5], ["enrol", 57, 5], ["auth", 58, 5], ["tool", 59, 5], ["logstore", 60, 5], ["availability", 61, 5], ["calendartype", 62, 5], ["message", 63, 5], ["format", 64, 5], ["dataformat", 65, 5], ["profilefield", 66, 5], ["report", 67, 5], ["gradeexport", 69, 5], ["gradeimport", 70, 5], ["gradereport", 71, 5], ["gradingform", 72, 5], ["mnetservice", 73, 5], ["webservice", 74, 5], ["repository", 75, 5], ["portfolio", 76, 5], ["search", 77, 5], ["media", 78, 5], ["plagiarism", 79, 5], ["cachestore", 80, 5], ["cachelock", 81, 5], ["theme", 82, 5], ["local", 83, 5], ["contenttype", 86, 5], ["h5plib", 87, 5], ["qbank", 88, 5]], [["url", 97, 5], ["hash", 98, 5]], [["moodle", 136, 26]], [["tests", 135, 12]], [["description", 140, 5], ["license", 141, 5], ["homepage", 142, 5], ["maintainers", 143, 5], ["platforms", 144, 5]], [["pname", 93, 3], ["version", 94, 11], ["src", 96, 3], ["phpConfig", 101, 3], ["installPhase", 107, 3], ["passthru", 135, 3], ["meta", 139, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, writeText: false, plugins: true, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["mod", 30, 5], ["antivirus", 31, 5], ["assignsubmission", 32, 5], ["assignfeedback", 33, 5], ["booktool", 34, 5], ["customfield", 35, 5], ["datafield", 36, 5], ["datapreset", 37, 5], ["ltisource", 38, 5], ["fileconverter", 39, 5], ["ltiservice", 40, 5], ["mlbackend", 41, 5], ["forumreport", 42, 5], ["quiz", 43, 5], ["quizaccess", 44, 5], ["scormreport", 45, 5], ["workshopform", 46, 5], ["workshopallocation", 47, 5], ["workshopeval", 48, 5], ["block", 49, 5], ["qtype", 50, 5], ["qbehaviour", 51, 5], ["qformat", 52, 5], ["filter", 53, 5], ["editor", 54, 5], ["atto", 55, 5], ["tinymce", 56, 5], ["enrol", 57, 5], ["auth", 58, 5], ["tool", 59, 5], ["logstore", 60, 5], ["availability", 61, 5], ["calendartype", 62, 5], ["message", 63, 5], ["format", 64, 5], ["dataformat", 65, 5], ["profilefield", 66, 5], ["report", 67, 5], ["gradeexport", 69, 5], ["gradeimport", 70, 5], ["gradereport", 71, 5], ["gradingform", 72, 5], ["mnetservice", 73, 5], ["webservice", 74, 5], ["repository", 75, 5], ["portfolio", 76, 5], ["search", 77, 5], ["media", 78, 5], ["plagiarism", 79, 5], ["cachestore", 80, 5], ["cachelock", 81, 5], ["theme", 82, 5], ["local", 83, 5], ["contenttype", 86, 5], ["h5plib", 87, 5], ["qbank", 88, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 97, 5], ["hash", 98, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["moodle", 136, 26]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 135, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 140, 5], ["license", 141, 5], ["homepage", 142, 5], ["maintainers", 143, 5], ["platforms", 144, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 93, 3], ["version", 94, 11], ["src", 96, 3], ["phpConfig", 101, 3], ["installPhase", 107, 3], ["passthru", 135, 3], ["meta", 139, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,7 +17,7 @@ export default nix.lambda((args) => (() => {
   const versionParts = nix.thunk(() => nix.app(nix.sel(lib, "take"), 2n, nix.thunk(() => nix.app(nix.sel(lib, "splitVersion"), version))));
   const stableVersion = nix.thunk(() => nix.app(nix.sel(lib, "removePrefix"), "0", nix.thunk(() => nix.app(nix.sel(lib, "concatMapStrings"), (p) => (nix.asBool(nix.lt(nix.app(nix.sel(lib, "toInt"), p), 10n)) ? nix.app(nix.sel(lib, "concatStrings"), nix.thunk(() => ["0", p])) : nix.force(p)), versionParts))));
   const pluginDirs = nix.thunk(() => ({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     mod: "mod",
     antivirus: "lib/antivirus",
     assignsubmission: "mod/assign/submission",
@@ -84,7 +79,7 @@ export default nix.lambda((args) => (() => {
       const pname = "moodle";
       const version_1 = version;
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: nix.thunk(() => nix.str`https://download.moodle.org/download.php/direct/stable${stableVersion}/${pname}-${version_1}.tgz`),
           hash: "sha256-7N2aPfPdZu4WXmZeetup7hL/8XdCcH+5NwTdHxvG0qk=",
         }))));
@@ -105,11 +100,11 @@ cp -r ${p}/* $out/share/moodle/${dir}/${nix.sel(p, "name")}/
 runHook postInstall
 `);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$3, moodle: nix.thunk(() => nix.attr(nixosTests, "moodle")) })),
+        [nix.POS]: $pos[3],
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[2], moodle: nix.thunk(() => nix.attr(nixosTests, "moodle")) })),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Free and open-source learning management system (LMS) written in PHP",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
         homepage: "https://moodle.org/",
@@ -117,7 +112,7 @@ runHook postInstall
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
       return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname,
         version: version_1,
         src,

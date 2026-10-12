@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 26, 5], ["repo", 27, 5], ["rev", 28, 5], ["hash", 29, 5], ["fetchSubmodules", 30, 5]], [["NIX_CFLAGS_COMPILE", 64, 7]], [["owner", 76, 5], ["repo", 77, 5], ["rev", 78, 5], ["hash", 79, 5], ["fetchSubmodules", 80, 5]], [["clapJuceExtensions", 75, 12]], [["description", 84, 5], ["longDescription", 85, 5], ["homepage", 88, 5], ["downloadPage", 89, 5], ["license", 90, 5], ["maintainers", 91, 5], ["mainProgram", 92, 5], ["platforms", 93, 5]], [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["postPatch", 33, 3], ["strictDeps", 38, 3], ["nativeBuildInputs", 40, 3], ["buildInputs", 46, 3], ["cmakeFlags", 60, 3], ["env", 64, 3], ["passthru", 75, 3], ["meta", 83, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, juce: false, "pkg-config": false, "alsa-lib": false, fftwFloat: false, fontconfig: false, freetype: false, libGL: false, libx11: false, libxcursor: false, libxext: false, libxinerama: false, libxrandr: false, libjack2: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 26, 5], ["repo", 27, 5], ["rev", 28, 5], ["hash", 29, 5], ["fetchSubmodules", 30, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 64, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["owner", 76, 5], ["repo", 77, 5], ["rev", 78, 5], ["hash", 79, 5], ["fetchSubmodules", 80, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["clapJuceExtensions", 75, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 84, 5], ["longDescription", 85, 5], ["homepage", 88, 5], ["downloadPage", 89, 5], ["license", 90, 5], ["maintainers", 91, 5], ["mainProgram", 92, 5], ["platforms", 93, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["postPatch", 33, 3], ["strictDeps", 38, 3], ["nativeBuildInputs", 40, 3], ["buildInputs", 46, 3], ["cmakeFlags", 60, 3], ["env", 64, 3], ["passthru", 75, 3], ["meta", 83, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const libxrandr = nix.arg($, "libxrandr");
   const libjack2 = nix.arg($, "libjack2");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "vaporizer2",
       version: "3.5.0-unstable-2024-09-14",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "VASTDynamics",
           repo: "Vaporizer2",
           rev: "1c56c4be304255f1c397dad725ea784f15a55ef5",
@@ -63,13 +58,13 @@ ln -s ${nix.sel(finalAttrs, "passthru", "clapJuceExtensions")} clap-juce-extensi
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeFeature"), "USE_SYSTEM_JUCE", "ON")),
       ]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-ffat-lto-objects"]))),
       })),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         clapJuceExtensions: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             owner: "free-audio",
             repo: "clap-juce-extensions",
             rev: "645ed2fd0949d36639e3d63333f26136df6df769",
@@ -78,7 +73,7 @@ ln -s ${nix.sel(finalAttrs, "passthru", "clapJuceExtensions")} clap-juce-extensi
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Wavetable synthesizer",
         longDescription: "Hybrid wavetable additive / subtractive VST / AU / AAX synthesizer / sampler workstation plugin\n",
         homepage: "https://www.vast-dynamics.com/?q=Vaporizer2",

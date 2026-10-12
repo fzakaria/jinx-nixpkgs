@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 21, 5], ["hash", 22, 5]], [["url", 28, 7], ["hash", 29, 7]], [["homepage", 56, 5], ["description", 57, 5], ["license", 58, 5], ["maintainers", 59, 5], ["platforms", 60, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["patches", 25, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 41, 3], ["configureFlags", 47, 3], ["doCheck", 53, 3], ["meta", 55, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, fetchpatch: false, autoreconfHook: false, bzip2: false, doxygen: false, gettext: false, imagemagick: false, libgsf: false, "pkg-config": false, xmlto: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 28, 7], ["hash", 29, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 56, 5], ["description", 57, 5], ["license", 58, 5], ["maintainers", 59, 5], ["platforms", 60, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["patches", 25, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 41, 3], ["configureFlags", 47, 3], ["doCheck", 53, 3], ["meta", 55, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,17 +20,17 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const xmlto = nix.arg($, "xmlto");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "libpst",
       version: "0.6.76",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://www.five-ten-sg.com/libpst/packages/libpst-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-PSkb7rvbSNK5NGCLwGGVtkHaY9Ko9eDThvLp1tBaC0I=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/pst-format/libpst/commit/cc600ee98c4ed23b8ab0bc2cf6b6c6e9cb587e89.patch",
             hash: "sha256-lD6vJrRbqnlG69+aU0v32UTxD0NfKNr6vPcysXK7ir0=",
           })))),
@@ -43,7 +40,7 @@ export default nix.lambda((args) => (() => {
       configureFlags: nix.thunk(() => ["--disable-static", "--enable-libpst-shared", "--enable-python=no"]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://www.five-ten-sg.com/libpst/",
         description: "Library to read PST (MS Outlook Personal Folders) files",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

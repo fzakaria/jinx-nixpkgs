@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]], [["description", 46, 5], ["longDescription", 47, 5], ["homepage", 61, 5], ["license", 62, 5], ["maintainers", 63, 5], ["platforms", 64, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["buildInputs", 21, 3], ["nativeBuildInputs", 25, 3], ["checkInputs", 29, 3], ["configureFlags", 33, 3], ["__structuredAttrs", 37, 3], ["strictDeps", 39, 3], ["enableParallelBuilding", 41, 3], ["doCheck", 43, 3], ["meta", 45, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, stdenv: false, autoreconfHook: false, gtest: false, memtailor: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 46, 5], ["longDescription", 47, 5], ["homepage", 61, 5], ["license", 62, 5], ["maintainers", 63, 5], ["platforms", 64, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["buildInputs", 21, 3], ["nativeBuildInputs", 25, 3], ["checkInputs", 29, 3], ["configureFlags", 33, 3], ["__structuredAttrs", 37, 3], ["strictDeps", 39, 3], ["enableParallelBuilding", 41, 3], ["doCheck", 43, 3], ["meta", 45, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const gtest = nix.arg($, "gtest");
   const memtailor = nix.arg($, "memtailor");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "mathic",
       version: "1.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Macaulay2",
           repo: "mathic",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -37,7 +35,7 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: true,
       doCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "C++ library of fast data structures designed for use in Groebner basis computation",
         longDescription: "Mathic is a C++ library of fast data structures designed for use in\nGroebner basis computation. This includes data structures for ordering\nS-pairs, performing divisor queries and ordering polynomial terms during\npolynomial reduction.  With Mathic you get to use highly optimized code\nwith little effort so that you can focus more of your time on whatever\npart of your Groebner basis implementation that you are interested in.\nThe data structures use templates to allow you to use them with whatever\nrepresentation of monomials/terms and coefficients that your code uses.\nIn fact the only places where Mathic defines its own monomials/terms is\nin the test code and example code. Currently only dense representations\nof terms/monomials are suitable since Mathic will frequently ask \"what is\nthe exponent of variable number x in this term/monomial?\".\n",
         homepage: "https://github.com/Macaulay2/mathic",

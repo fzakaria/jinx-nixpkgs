@@ -2,77 +2,50 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/ndppd.nix", [[["maintainers", 5, 5]], [["systemPackages", 12, 21]], [["address", 18, 17], ["prefixLength", 19, 17]], [["address", 24, 17], ["prefixLength", 25, 17]], [["addresses", 16, 18], ["routes", 22, 18]], [["ipv6", 16, 13]], [["eth1", 15, 11]], [["useDHCP", 13, 20], ["interfaces", 14, 20]], [["environment", 12, 9], ["networking", 13, 9]], [["net.ipv6.conf.all.forwarding", 35, 11], ["net.ipv6.conf.default.forwarding", 36, 11]], [["sysctl", 34, 21]], [["kernel", 34, 14]], [["systemPackages", 38, 21]], [["address", 44, 17], ["prefixLength", 45, 17]], [["addresses", 42, 18]], [["ipv6", 42, 13]], [["eth1", 41, 11]], [["useDHCP", 39, 20], ["interfaces", 40, 20]], [["fd42::/112", 52, 30]], [["rules", 52, 24]], [["eth1", 52, 19]], [["enable", 51, 11], ["proxies", 52, 11]], [["ndppd", 50, 18]], [["autoStart", 55, 11], ["privateNetwork", 56, 11], ["hostAddress", 57, 11], ["localAddress", 58, 11], ["hostAddress6", 59, 11], ["localAddress6", 60, 11], ["config", 61, 11]], [["client", 54, 20]], [["boot", 34, 9], ["environment", 38, 9], ["networking", 39, 9], ["services", 50, 9], ["containers", 54, 9]], [["upstream", 9, 5], ["server", 31, 5]], [["name", 3, 3], ["meta", 4, 3], ["nodes", 8, 3], ["testScript", 66, 3]]]);
 const formals$1 = { args: { pkgs: false, lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/ndppd.nix", [["maintainers", 5, 5]]);
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/ndppd.nix", [["systemPackages", 12, 21]]);
-const pos$3 = nix.positions(here + "/ndppd.nix", [["address", 18, 17], ["prefixLength", 19, 17]]);
-const pos$4 = nix.positions(here + "/ndppd.nix", [["address", 24, 17], ["prefixLength", 25, 17]]);
-const pos$5 = nix.positions(here + "/ndppd.nix", [["addresses", 16, 18], ["routes", 22, 18]]);
-const pos$6 = nix.positions(here + "/ndppd.nix", [["ipv6", 16, 13]]);
-const pos$7 = nix.positions(here + "/ndppd.nix", [["eth1", 15, 11]]);
-const pos$8 = nix.positions(here + "/ndppd.nix", [["useDHCP", 13, 20], ["interfaces", 14, 20]]);
-const pos$9 = nix.positions(here + "/ndppd.nix", [["environment", 12, 9], ["networking", 13, 9]]);
 const formals$3 = { args: { pkgs: false }, ellipsis: true };
-const pos$10 = nix.positions(here + "/ndppd.nix", [["net.ipv6.conf.all.forwarding", 35, 11], ["net.ipv6.conf.default.forwarding", 36, 11]]);
-const pos$11 = nix.positions(here + "/ndppd.nix", [["sysctl", 34, 21]]);
-const pos$12 = nix.positions(here + "/ndppd.nix", [["kernel", 34, 14]]);
-const pos$13 = nix.positions(here + "/ndppd.nix", [["systemPackages", 38, 21]]);
-const pos$14 = nix.positions(here + "/ndppd.nix", [["address", 44, 17], ["prefixLength", 45, 17]]);
-const pos$15 = nix.positions(here + "/ndppd.nix", [["addresses", 42, 18]]);
-const pos$16 = nix.positions(here + "/ndppd.nix", [["ipv6", 42, 13]]);
-const pos$17 = nix.positions(here + "/ndppd.nix", [["eth1", 41, 11]]);
-const pos$18 = nix.positions(here + "/ndppd.nix", [["useDHCP", 39, 20], ["interfaces", 40, 20]]);
-const pos$19 = nix.positions(here + "/ndppd.nix", [["fd42::/112", 52, 30]]);
-const pos$20 = nix.positions(here + "/ndppd.nix", [["rules", 52, 24]]);
-const pos$21 = nix.positions(here + "/ndppd.nix", [["eth1", 52, 19]]);
-const pos$22 = nix.positions(here + "/ndppd.nix", [["enable", 51, 11], ["proxies", 52, 11]]);
-const pos$23 = nix.positions(here + "/ndppd.nix", [["ndppd", 50, 18]]);
-const pos$24 = nix.positions(here + "/ndppd.nix", [["autoStart", 55, 11], ["privateNetwork", 56, 11], ["hostAddress", 57, 11], ["localAddress", 58, 11], ["hostAddress6", 59, 11], ["localAddress6", 60, 11], ["config", 61, 11]]);
-const pos$25 = nix.positions(here + "/ndppd.nix", [["client", 54, 20]]);
-const pos$26 = nix.positions(here + "/ndppd.nix", [["boot", 34, 9], ["environment", 38, 9], ["networking", 39, 9], ["services", 50, 9], ["containers", 54, 9]]);
-const pos$27 = nix.positions(here + "/ndppd.nix", [["upstream", 9, 5], ["server", 31, 5]]);
-const pos$28 = nix.positions(here + "/ndppd.nix", [["name", 3, 3], ["meta", 4, 3], ["nodes", 8, 3], ["testScript", 66, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$28,
+    [nix.POS]: $pos[27],
     name: "ndppd",
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
       return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "fpletz"))]),
       };
     })()),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$27,
+      [nix.POS]: $pos[26],
       upstream: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs_1, "tcpdump"))]),
           })),
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$8,
+            [nix.POS]: $pos[7],
             useDHCP: false,
             interfaces: nix.thunk(() => ({
-              [nix.POS]: pos$7,
+              [nix.POS]: $pos[6],
               eth1: nix.thunk(() => ({
-                [nix.POS]: pos$6,
+                [nix.POS]: $pos[5],
                 ipv6: nix.thunk(() => ({
-                  [nix.POS]: pos$5,
+                  [nix.POS]: $pos[4],
                   addresses: nix.thunk(() => [
-                    nix.thunk(() => ({ [nix.POS]: pos$3, address: "fd23::1", prefixLength: 112n })),
+                    nix.thunk(() => ({ [nix.POS]: $pos[2], address: "fd23::1", prefixLength: 112n })),
                   ]),
                   routes: nix.thunk(() => [
-                    nix.thunk(() => ({ [nix.POS]: pos$4, address: "fd42::", prefixLength: 112n })),
+                    nix.thunk(() => ({ [nix.POS]: $pos[3], address: "fd42::", prefixLength: 112n })),
                   ]),
                 })),
               })),
@@ -84,56 +57,56 @@ export default nix.lambda((args) => (() => {
         const $_1 = nix.formals(args_1, formals$3);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$26,
+          [nix.POS]: $pos[25],
           boot: nix.thunk(() => ({
-            [nix.POS]: pos$12,
+            [nix.POS]: $pos[11],
             kernel: nix.thunk(() => ({
-              [nix.POS]: pos$11,
+              [nix.POS]: $pos[10],
               sysctl: nix.thunk(() => ({
-                [nix.POS]: pos$10,
+                [nix.POS]: $pos[9],
                 "net.ipv6.conf.all.forwarding": "1",
                 "net.ipv6.conf.default.forwarding": "1",
               })),
             })),
           })),
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$13,
+            [nix.POS]: $pos[12],
             systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs_1, "tcpdump"))]),
           })),
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$18,
+            [nix.POS]: $pos[17],
             useDHCP: false,
             interfaces: nix.thunk(() => ({
-              [nix.POS]: pos$17,
+              [nix.POS]: $pos[16],
               eth1: nix.thunk(() => ({
-                [nix.POS]: pos$16,
+                [nix.POS]: $pos[15],
                 ipv6: nix.thunk(() => ({
-                  [nix.POS]: pos$15,
+                  [nix.POS]: $pos[14],
                   addresses: nix.thunk(() => [
-                    nix.thunk(() => ({ [nix.POS]: pos$14, address: "fd23::2", prefixLength: 112n })),
+                    nix.thunk(() => ({ [nix.POS]: $pos[13], address: "fd23::2", prefixLength: 112n })),
                   ]),
                 })),
               })),
             })),
           })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$23,
+            [nix.POS]: $pos[22],
             ndppd: nix.thunk(() => ({
-              [nix.POS]: pos$22,
+              [nix.POS]: $pos[21],
               enable: true,
               proxies: nix.thunk(() => ({
-                [nix.POS]: pos$21,
+                [nix.POS]: $pos[20],
                 eth1: nix.thunk(() => ({
-                  [nix.POS]: pos$20,
-                  rules: nix.thunk(() => ({ [nix.POS]: pos$19, "fd42::/112": nix.thunk(() => ({})) })),
+                  [nix.POS]: $pos[19],
+                  rules: nix.thunk(() => ({ [nix.POS]: $pos[18], "fd42::/112": nix.thunk(() => ({})) })),
                 })),
               })),
             })),
           })),
           containers: nix.thunk(() => ({
-            [nix.POS]: pos$25,
+            [nix.POS]: $pos[24],
             client: nix.thunk(() => ({
-              [nix.POS]: pos$24,
+              [nix.POS]: $pos[23],
               autoStart: true,
               privateNetwork: true,
               hostAddress: "192.168.255.1",

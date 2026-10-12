@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 31, 5], ["repo", 32, 5], ["tag", 33, 5], ["hash", 34, 5]], [["NIX_CFLAGS_COMPILE", 44, 7]], [["description", 67, 5], ["homepage", 68, 5], ["changelog", 69, 5], ["license", 70, 5], ["maintainers", 71, 5], ["platforms", 72, 5]], [["mainProgram", 74, 55]], [["pname", 27, 3], ["version", 28, 3], ["src", 30, 3], ["strictDeps", 37, 3], ["nativeBuildInputs", 39, 3], ["env", 44, 3], ["propagatedBuildInputs", 46, 3], ["cmakeFlags", 56, 3], ["meta", 66, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, withJson: true, withHttps: true, withWebsockets: true, withCurl: true, withLogger: true, withUwsc: true, cmake: false, curl: false, gnutls: false, jansson: false, libmicrohttpd: false, orcania: false, yder: false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 31, 5], ["repo", 32, 5], ["tag", 33, 5], ["hash", 34, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 44, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 67, 5], ["homepage", 68, 5], ["changelog", 69, 5], ["license", 70, 5], ["maintainers", 71, 5], ["platforms", 72, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["mainProgram", 74, 55]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 27, 3], ["version", 28, 3], ["src", 30, 3], ["strictDeps", 37, 3], ["nativeBuildInputs", 39, 3], ["env", 44, 3], ["propagatedBuildInputs", 46, 3], ["cmakeFlags", 56, 3], ["meta", 66, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const yder = nix.arg($, "yder");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "ulfius",
       version: "2.7.15",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "babelouest",
           repo: "ulfius",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -41,7 +37,7 @@ export default nix.lambda((args) => (() => {
         })))),
       strictDeps: true,
       nativeBuildInputs: nix.thunk(() => [cmake]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-Wno-error=discarded-qualifiers" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], NIX_CFLAGS_COMPILE: "-Wno-error=discarded-qualifiers" })),
       propagatedBuildInputs: nix.thunk(() => nix.concat([libmicrohttpd, orcania], nix.concat(nix.app(nix.sel(lib, "optionals"), withJson, nix.thunk(() => [jansson])), nix.concat(nix.app(nix.sel(lib, "optionals"), withCurl, nix.thunk(() => [curl])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(withHttps) || nix.asBool(withWebsockets))), nix.thunk(() => [gnutls])), nix.concat(nix.app(nix.sel(lib, "optionals"), withLogger, nix.thunk(() => [yder])), nix.app(nix.sel(lib, "optionals"), withWebsockets, nix.thunk(() => [zlib])))))))),
       cmakeFlags: nix.thunk(() => [
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "WITH_CURL", withCurl)),
@@ -53,7 +49,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "WITH_WEBSOCKET_MESSAGE_LIST", withWebsockets)),
       ]),
       meta: nix.thunk(() => nix.update({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Web Framework to build REST APIs, Webservices or any HTTP endpoint in C language. Can stream large amount of data, integrate JSON data with Jansson, and create websocket services",
         homepage: "https://github.com/babelouest/ulfius",
         changelog: nix.thunk(() => nix.str`https://github.com/babelouest/ulfius/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),
@@ -63,7 +59,7 @@ export default nix.lambda((args) => (() => {
           return [nix.thunk(() => nix.lookup(w, "drupol"))];
         })()),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
-      }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(withUwsc) && nix.asBool(withWebsockets))), nix.thunk(() => ({ [nix.POS]: pos$4, mainProgram: "uwsc" }))))),
+      }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(withUwsc) && nix.asBool(withWebsockets))), nix.thunk(() => ({ [nix.POS]: $pos[3], mainProgram: "uwsc" }))))),
     }));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

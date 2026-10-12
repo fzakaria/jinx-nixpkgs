@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 13, 5], ["sha256", 14, 5]], [["version", 18, 13], ["pname", 18, 21], ["src", 18, 27]], [["updateScript", 39, 12]], [["mainProgram", 42, 5], ["description", 43, 5], ["homepage", 44, 5], ["changelog", 45, 5], ["license", 46, 5], ["maintainers", 50, 5], ["platforms", 51, 5]], [["pname", 23, 11], ["version", 23, 17], ["src", 23, 25], ["nativeBuildInputs", 25, 3], ["extraInstallCommands", 27, 3], ["passthru", 39, 3], ["meta", 41, 3]]]);
 const formals$1 = { args: { appimageTools: false, "desktop-file-utils": false, fetchurl: false, lib: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 13, 5], ["sha256", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["version", 18, 13], ["pname", 18, 21], ["src", 18, 27]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 39, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["mainProgram", 42, 5], ["description", 43, 5], ["homepage", 44, 5], ["changelog", 45, 5], ["license", 46, 5], ["maintainers", 50, 5], ["platforms", 51, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 23, 11], ["version", 23, 17], ["src", 23, 25], ["nativeBuildInputs", 25, 3], ["extraInstallCommands", 27, 3], ["passthru", 39, 3], ["meta", 41, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,13 +15,13 @@ export default nix.lambda((args) => (() => {
   const pname = "heynote";
   const version = "2.9.1";
   const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: nix.thunk(() => nix.str`https://github.com/heyman/heynote/releases/download/v${version}/Heynote_${version}_x86_64.AppImage`),
       sha256: "sha256-37as29Jh5Xz3nEW5aryD52puqaCiAxlMBs+aRIZbbU8=",
     }))));
-  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: pos$2, version: version, pname: pname, src: src }))));
+  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: $pos[1], version: version, pname: pname, src: src }))));
   return nix.app(nix.sel(appimageTools, "wrapType2"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: pname,
       version: version,
       src: src,
@@ -41,11 +37,11 @@ desktop-file-install --dir $out/share/applications \\
 --delete-original $out/heynote.desktop
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         mainProgram: "heynote",
         description: "Dedicated scratchpad for developers",
         homepage: "https://heynote.com/",

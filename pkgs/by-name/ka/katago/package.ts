@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 51, 5], ["repo", 52, 5], ["rev", 53, 5], ["sha256", 54, 5]], [["description", 136, 5], ["mainProgram", 137, 5], ["homepage", 138, 5], ["license", 139, 5], ["maintainers", 140, 5], ["platforms", 141, 5]], [["pname", 47, 3], ["version", 48, 3], ["src", 50, 3], ["nativeBuildInputs", 57, 3], ["prePatch", 65, 3], ["buildInputs", 73, 3], ["cmakeFlags", 102, 3], ["preConfigure", 115, 3], ["installPhase", 123, 3], ["meta", 135, 3]]]);
 const formals$1 = { args: { stdenv: false, boost: false, cmake: false, config: false, cudaPackages: false, eigen: false, fetchFromGitHub: false, gperftools: false, lib: false, libzip: false, makeWrapper: false, "ocl-icd": false, "opencl-headers": false, openssl: false, writeShellScriptBin: false, enableAVX2: true, backend: true, enableBigBoards: true, enableContrib: true, enableTcmalloc: true, enableTrtPlanCache: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 51, 5], ["repo", 52, 5], ["rev", 53, 5], ["sha256", 54, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 136, 5], ["mainProgram", 137, 5], ["homepage", 138, 5], ["license", 139, 5], ["maintainers", 140, 5], ["platforms", 141, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 47, 3], ["version", 48, 3], ["src", 50, 3], ["nativeBuildInputs", 57, 3], ["prePatch", 65, 3], ["buildInputs", 73, 3], ["cmakeFlags", 102, 3], ["preConfigure", 115, 3], ["installPhase", 123, 3], ["meta", 135, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -38,7 +36,7 @@ export default nix.lambda((args) => (() => {
       const pname = "katago";
       const version = "1.16.5";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "lightvector",
           repo: "katago",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -78,7 +76,7 @@ export EXTRA_LDFLAGS="-L/run/opengl-driver/lib"
 `))));
       const installPhase = nix.thunk(() => nix.add(nix.add("runHook preInstall\nmkdir -p $out/bin; cp katago $out/bin;\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool(nix.eq(backend, "cuda")) || nix.asBool(nix.eq(backend, "tensorrt")))), "wrapProgram $out/bin/katago \\\n  --prefix LD_LIBRARY_PATH : \"/run/opengl-driver/lib\"\n")), "runHook postInstall\n"));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Go engine modeled after AlphaGo Zero",
         mainProgram: "katago",
         homepage: "https://github.com/lightvector/katago",
@@ -87,7 +85,7 @@ export EXTRA_LDFLAGS="-L/run/opengl-driver/lib"
         platforms: nix.thunk(() => ["x86_64-linux"]),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

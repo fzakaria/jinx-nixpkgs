@@ -2,43 +2,13 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["maintainers", 22, 7]], [["enable", 29, 33]], [["podman", 29, 26]], [["supportedFilesystems", 32, 16]], [["hostId", 33, 22]], [["virtualisation", 29, 11], ["boot", 32, 11], ["networking", 33, 11]], [["enable", 38, 33], ["extraRuntimes", 39, 33]], [["podman", 38, 26]], [["virtualisation", 38, 11]], [["enable", 44, 33]], [["podman", 44, 26]], [["isNormalUser", 47, 13]], [["alice", 46, 23]], [["users", 46, 17]], [["virtualisation", 44, 11], ["users", 46, 11]], [["dns_enabled", 55, 57]], [["settings", 55, 48]], [["enable", 53, 33], ["defaultNetwork", 55, 33]], [["podman", 53, 26]], [["virtualisation", 53, 11]], [["enable", 62, 46]], [["enable", 60, 33], ["dockerSocket", 62, 33]], [["podman", 60, 26]], [["systemPackages", 64, 23]], [["isNormalUser", 69, 13], ["extraGroups", 70, 13]], [["isNormalUser", 74, 13]], [["alice", 68, 23], ["mallory", 73, 23]], [["users", 68, 17]], [["virtualisation", 60, 11], ["environment", 64, 11], ["users", 68, 11]], [["rootful", 26, 7], ["rootful_norunc", 35, 7], ["rootless", 41, 7], ["dns", 50, 7], ["docker", 57, 7]], [["name", 20, 5], ["meta", 21, 5], ["nodes", 25, 5], ["testScript", 79, 5]]]);
 const formals$1 = { args: { pkgs: false, lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/default.nix", [["maintainers", 22, 7]]);
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/default.nix", [["enable", 29, 33]]);
-const pos$3 = nix.positions(here + "/default.nix", [["podman", 29, 26]]);
-const pos$4 = nix.positions(here + "/default.nix", [["supportedFilesystems", 32, 16]]);
-const pos$5 = nix.positions(here + "/default.nix", [["hostId", 33, 22]]);
-const pos$6 = nix.positions(here + "/default.nix", [["virtualisation", 29, 11], ["boot", 32, 11], ["networking", 33, 11]]);
 const formals$3 = { args: { pkgs: false }, ellipsis: true };
-const pos$7 = nix.positions(here + "/default.nix", [["enable", 38, 33], ["extraRuntimes", 39, 33]]);
-const pos$8 = nix.positions(here + "/default.nix", [["podman", 38, 26]]);
-const pos$9 = nix.positions(here + "/default.nix", [["virtualisation", 38, 11]]);
 const formals$4 = { args: { pkgs: false }, ellipsis: true };
-const pos$10 = nix.positions(here + "/default.nix", [["enable", 44, 33]]);
-const pos$11 = nix.positions(here + "/default.nix", [["podman", 44, 26]]);
-const pos$12 = nix.positions(here + "/default.nix", [["isNormalUser", 47, 13]]);
-const pos$13 = nix.positions(here + "/default.nix", [["alice", 46, 23]]);
-const pos$14 = nix.positions(here + "/default.nix", [["users", 46, 17]]);
-const pos$15 = nix.positions(here + "/default.nix", [["virtualisation", 44, 11], ["users", 46, 11]]);
 const formals$5 = { args: { pkgs: false }, ellipsis: true };
-const pos$16 = nix.positions(here + "/default.nix", [["dns_enabled", 55, 57]]);
-const pos$17 = nix.positions(here + "/default.nix", [["settings", 55, 48]]);
-const pos$18 = nix.positions(here + "/default.nix", [["enable", 53, 33], ["defaultNetwork", 55, 33]]);
-const pos$19 = nix.positions(here + "/default.nix", [["podman", 53, 26]]);
-const pos$20 = nix.positions(here + "/default.nix", [["virtualisation", 53, 11]]);
 const formals$6 = { args: { pkgs: false }, ellipsis: true };
-const pos$21 = nix.positions(here + "/default.nix", [["enable", 62, 46]]);
-const pos$22 = nix.positions(here + "/default.nix", [["enable", 60, 33], ["dockerSocket", 62, 33]]);
-const pos$23 = nix.positions(here + "/default.nix", [["podman", 60, 26]]);
-const pos$24 = nix.positions(here + "/default.nix", [["systemPackages", 64, 23]]);
-const pos$25 = nix.positions(here + "/default.nix", [["isNormalUser", 69, 13], ["extraGroups", 70, 13]]);
-const pos$26 = nix.positions(here + "/default.nix", [["isNormalUser", 74, 13]]);
-const pos$27 = nix.positions(here + "/default.nix", [["alice", 68, 23], ["mallory", 73, 23]]);
-const pos$28 = nix.positions(here + "/default.nix", [["users", 68, 17]]);
-const pos$29 = nix.positions(here + "/default.nix", [["virtualisation", 60, 11], ["environment", 64, 11], ["users", 68, 11]]);
-const pos$30 = nix.positions(here + "/default.nix", [["rootful", 26, 7], ["rootful_norunc", 35, 7], ["rootless", 41, 7], ["dns", 50, 7], ["docker", 57, 7]]);
-const pos$31 = nix.positions(here + "/default.nix", [["name", 20, 5], ["meta", 21, 5], ["nodes", 25, 5], ["testScript", 79, 5]]);
 
 export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../make-test-python.nix")), nix.lambda((args) => (() => {
     const $ = nix.formals(args, formals$1);
@@ -46,35 +16,35 @@ export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../ma
     const lib = nix.arg($, "lib");
     const quadletContainerFile = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "quadlet.container", "[Unit]\nDescription=A test quadlet container\n\n[Container]\nImage=localhost/scratchimg:latest\nExec=bash -c 'trap exit SIGTERM SIGINT; while true; do sleep 1; done'\nContainerName=quadlet\nVolume=/nix/store:/nix/store\nVolume=/run/current-system/sw/bin:/bin\n\n[Install]\nWantedBy=default.target\n"));
     return {
-      [nix.POS]: pos$31,
+      [nix.POS]: $pos[30],
       name: "podman",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         maintainers: nix.thunk(() => nix.sel(lib, "teams", "podman", "members")),
       })),
       nodes: nix.thunk(() => ({
-        [nix.POS]: pos$30,
+        [nix.POS]: $pos[29],
         rootful: nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$2);
           const pkgs_1 = nix.arg($_1, "pkgs");
           return {
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             virtualisation: nix.thunk(() => ({
-              [nix.POS]: pos$3,
-              podman: nix.thunk(() => ({ [nix.POS]: pos$2, enable: true })),
+              [nix.POS]: $pos[2],
+              podman: nix.thunk(() => ({ [nix.POS]: $pos[1], enable: true })),
             })),
-            boot: nix.thunk(() => ({ [nix.POS]: pos$4, supportedFilesystems: nix.thunk(() => ["zfs"]) })),
-            networking: nix.thunk(() => ({ [nix.POS]: pos$5, hostId: "00000000" })),
+            boot: nix.thunk(() => ({ [nix.POS]: $pos[3], supportedFilesystems: nix.thunk(() => ["zfs"]) })),
+            networking: nix.thunk(() => ({ [nix.POS]: $pos[4], hostId: "00000000" })),
           };
         })(), formals$2),
         rootful_norunc: nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$3);
           const pkgs_1 = nix.arg($_1, "pkgs");
           return {
-            [nix.POS]: pos$9,
+            [nix.POS]: $pos[8],
             virtualisation: nix.thunk(() => ({
-              [nix.POS]: pos$8,
-              podman: nix.thunk(() => ({ [nix.POS]: pos$7, enable: true, extraRuntimes: [] })),
+              [nix.POS]: $pos[7],
+              podman: nix.thunk(() => ({ [nix.POS]: $pos[6], enable: true, extraRuntimes: [] })),
             })),
           };
         })(), formals$3),
@@ -82,16 +52,16 @@ export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../ma
           const $_1 = nix.formals(args_1, formals$4);
           const pkgs_1 = nix.arg($_1, "pkgs");
           return {
-            [nix.POS]: pos$15,
+            [nix.POS]: $pos[14],
             virtualisation: nix.thunk(() => ({
-              [nix.POS]: pos$11,
-              podman: nix.thunk(() => ({ [nix.POS]: pos$10, enable: true })),
+              [nix.POS]: $pos[10],
+              podman: nix.thunk(() => ({ [nix.POS]: $pos[9], enable: true })),
             })),
             users: nix.thunk(() => ({
-              [nix.POS]: pos$14,
+              [nix.POS]: $pos[13],
               users: nix.thunk(() => ({
-                [nix.POS]: pos$13,
-                alice: nix.thunk(() => ({ [nix.POS]: pos$12, isNormalUser: true })),
+                [nix.POS]: $pos[12],
+                alice: nix.thunk(() => ({ [nix.POS]: $pos[11], isNormalUser: true })),
               })),
             })),
           };
@@ -100,15 +70,15 @@ export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../ma
           const $_1 = nix.formals(args_1, formals$5);
           const pkgs_1 = nix.arg($_1, "pkgs");
           return {
-            [nix.POS]: pos$20,
+            [nix.POS]: $pos[19],
             virtualisation: nix.thunk(() => ({
-              [nix.POS]: pos$19,
+              [nix.POS]: $pos[18],
               podman: nix.thunk(() => ({
-                [nix.POS]: pos$18,
+                [nix.POS]: $pos[17],
                 enable: true,
                 defaultNetwork: nix.thunk(() => ({
-                  [nix.POS]: pos$17,
-                  settings: nix.thunk(() => ({ [nix.POS]: pos$16, dns_enabled: true })),
+                  [nix.POS]: $pos[16],
+                  settings: nix.thunk(() => ({ [nix.POS]: $pos[15], dns_enabled: true })),
                 })),
               })),
             })),
@@ -118,29 +88,29 @@ export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../ma
           const $_1 = nix.formals(args_1, formals$6);
           const pkgs_1 = nix.arg($_1, "pkgs");
           return {
-            [nix.POS]: pos$29,
+            [nix.POS]: $pos[28],
             virtualisation: nix.thunk(() => ({
-              [nix.POS]: pos$23,
+              [nix.POS]: $pos[22],
               podman: nix.thunk(() => ({
-                [nix.POS]: pos$22,
+                [nix.POS]: $pos[21],
                 enable: true,
-                dockerSocket: nix.thunk(() => ({ [nix.POS]: pos$21, enable: true })),
+                dockerSocket: nix.thunk(() => ({ [nix.POS]: $pos[20], enable: true })),
               })),
             })),
             environment: nix.thunk(() => ({
-              [nix.POS]: pos$24,
+              [nix.POS]: $pos[23],
               systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs_1, "docker-client"))]),
             })),
             users: nix.thunk(() => ({
-              [nix.POS]: pos$28,
+              [nix.POS]: $pos[27],
               users: nix.thunk(() => ({
-                [nix.POS]: pos$27,
+                [nix.POS]: $pos[26],
                 alice: nix.thunk(() => ({
-                  [nix.POS]: pos$25,
+                  [nix.POS]: $pos[24],
                   isNormalUser: true,
                   extraGroups: nix.thunk(() => ["podman"]),
                 })),
-                mallory: nix.thunk(() => ({ [nix.POS]: pos$26, isNormalUser: true })),
+                mallory: nix.thunk(() => ({ [nix.POS]: $pos[25], isNormalUser: true })),
               })),
             })),
           };

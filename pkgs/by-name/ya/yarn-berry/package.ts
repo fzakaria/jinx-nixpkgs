@@ -2,16 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 31, 5], ["repo", 32, 5], ["tag", 33, 5], ["hash", 34, 5]], [["prettier", 109, 17], ["corepack", 110, 17]], [["svgo", 116, 17], ["yarn-lock-converter", 117, 17]], [["package", 124, 11]], [["version", 123, 9]], [["updateScript", 101, 5], ["tests", 103, 5]], [["yarn-berry", 128, 31]], [["homepage", 131, 5], ["changelog", 132, 5], ["description", 133, 5], ["license", 134, 5], ["maintainers", 135, 5], ["platforms", 140, 5], ["mainProgram", 141, 5]], [["pname", 26, 3], ["version", 27, 3], ["lockfileVersion", 28, 3], ["src", 30, 3], ["buildInputs", 37, 3], ["nativeBuildInputs", 41, 3], ["strictDeps", 49, 3], ["dontConfigure", 51, 3], ["buildPhase", 53, 3], ["doCheck", 73, 3], ["checkPhase", 74, 3], ["installPhase", 94, 3], ["passthru", 100, 3], ["meta", 130, 3]]]);
 const formals$1 = { args: { fetchFromGitHub: false, unzip: false, zip: false, lib: false, pkgs: false, nodejs: false, stdenv: false, testers: false, yarn: false, gitMinimal: false, callPackage: false, berryVersion: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 31, 5], ["repo", 32, 5], ["tag", 33, 5], ["hash", 34, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["prettier", 109, 17], ["corepack", 110, 17]]);
-const pos$3 = nix.positions(here + "/package.nix", [["svgo", 116, 17], ["yarn-lock-converter", 117, 17]]);
-const pos$4 = nix.positions(here + "/package.nix", [["package", 124, 11]]);
-const pos$5 = nix.positions(here + "/package.nix", [["version", 123, 9]]);
-const pos$6 = nix.positions(here + "/package.nix", [["updateScript", 101, 5], ["tests", 103, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["yarn-berry", 128, 31]]);
-const pos$8 = nix.positions(here + "/package.nix", [["homepage", 131, 5], ["changelog", 132, 5], ["description", 133, 5], ["license", 134, 5], ["maintainers", 135, 5], ["platforms", 140, 5], ["mainProgram", 141, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["pname", 26, 3], ["version", 27, 3], ["lockfileVersion", 28, 3], ["src", 30, 3], ["buildInputs", 37, 3], ["nativeBuildInputs", 41, 3], ["strictDeps", 49, 3], ["dontConfigure", 51, 3], ["buildPhase", 53, 3], ["doCheck", 73, 3], ["checkPhase", 74, 3], ["installPhase", 94, 3], ["passthru", 100, 3], ["meta", 130, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,12 +26,12 @@ export default nix.lambda((args) => (() => {
   const lockfileVersion_4 = "10";
   const lockfileVersion_3 = "6";
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       pname: "yarn-berry",
       version: nix.thunk(() => (nix.asBool(nix.eq(berryVersion, 4n)) ? version_4 : version_3)),
       lockfileVersion: nix.thunk(() => (nix.asBool(nix.eq(berryVersion, 4n)) ? lockfileVersion_4 : lockfileVersion_3)),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "yarnpkg",
           repo: "berry",
           tag: nix.thunk(() => nix.str`@yarnpkg/cli/${nix.sel(finalAttrs, "version")}`),
@@ -87,29 +79,29 @@ runHook postCheck
 `),
       installPhase: "runHook preInstall\ninstall -Dm 755 ./packages/yarnpkg-cli/bundles/yarn.js \"$out/bin/yarn\"\nrunHook postInstall\n",
       passthru: nix.thunk(() => nix.update({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         updateScript: nix.path(here, "./update.sh"),
         tests: nix.thunk(() => (() => {
           const packageTests = nix.thunk(() => (nix.asBool(nix.eq(berryVersion, 4n)) ? {
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             prettier: nix.thunk(() => nix.attr(pkgs, "prettier")),
             corepack: nix.thunk(() => nix.attr(pkgs, "corepack")),
           } : {
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             svgo: nix.thunk(() => nix.attr(pkgs, "svgo")),
             "yarn-lock-converter": nix.thunk(() => nix.attr(pkgs, "yarn-lock-converter")),
           }));
           return nix.update(packageTests, {
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-                [nix.POS]: pos$4,
+                [nix.POS]: $pos[3],
                 package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               })))),
           });
         })()),
-      }, nix.app(callPackage, nix.path(here, "./fetcher"), nix.thunk(() => ({ [nix.POS]: pos$7, "yarn-berry": finalAttrs }))))),
+      }, nix.app(callPackage, nix.path(here, "./fetcher"), nix.thunk(() => ({ [nix.POS]: $pos[6], "yarn-berry": finalAttrs }))))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         homepage: "https://yarnpkg.com/",
         changelog: nix.thunk(() => nix.str`https://github.com/yarnpkg/berry/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         description: "Fast, reliable, and secure dependency management",

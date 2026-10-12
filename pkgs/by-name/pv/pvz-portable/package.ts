@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["license", 15, 10]], [["url", 13, 5], ["hash", 14, 5], ["meta", 15, 5]], [["pvzDebug", 23, 57], ["limboPage", 23, 66], ["doFixBugs", 23, 76]], [["name", 26, 5], ["src", 28, 5], ["nativeBuildInputs", 30, 5], ["unpackCmd", 32, 5], ["installPhase", 36, 5]], [["unwrapped", 67, 24], ["assets", 67, 34]], [["pname", 54, 3], ["version", 55, 43], ["meta", 55, 51], ["paths", 57, 3], ["nativeBuildInputs", 62, 3], ["postBuild", 63, 3], ["passthru", 67, 3]]]);
 const formals$1 = { args: { lib: false, fetchurl: false, stdenvNoCC: false, symlinkJoin: false, makeWrapper: false, p7zip: false, "pvz-portable-unwrapped": false, gameAssets: true, pvzDebug: true, limboPage: true, doFixBugs: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["license", 15, 10]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 13, 5], ["hash", 14, 5], ["meta", 15, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pvzDebug", 23, 57], ["limboPage", 23, 66], ["doFixBugs", 23, 76]]);
-const pos$4 = nix.positions(here + "/package.nix", [["name", 26, 5], ["src", 28, 5], ["nativeBuildInputs", 30, 5], ["unpackCmd", 32, 5], ["installPhase", 36, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["unwrapped", 67, 24], ["assets", 67, 34]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 54, 3], ["version", 55, 43], ["meta", 55, 51], ["paths", 57, 3], ["nativeBuildInputs", 62, 3], ["postBuild", 63, 3], ["passthru", 67, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const p7zip = nix.arg($, "p7zip");
   const pvz_portable_unwrapped = nix.arg($, "pvz-portable-unwrapped");
   const gameAssets = nix.argOr($, "gameAssets", () => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       url: "https://web.archive.org/web/20220717170711/http://static-www.ec.popcap.com/binaries/popcap_downloads/PlantsVsZombiesSetup.exe",
       hash: "sha256-S0u00Z+2OeVpiYPjnXrQYcdme87BkFZWBTLHrQ1n0OQ=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
       })),
     }))));
@@ -32,13 +27,13 @@ export default nix.lambda((args) => (() => {
   const limboPage = nix.argOr($, "limboPage", () => true);
   const doFixBugs = nix.argOr($, "doFixBugs", () => false);
   const unwrapped = nix.thunk(() => nix.app(nix.sel(pvz_portable_unwrapped, "override"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pvzDebug: pvzDebug,
       limboPage: limboPage,
       doFixBugs: doFixBugs,
     }))));
   const assets = nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       name: "pvz-portable-assets",
       src: gameAssets,
       nativeBuildInputs: nix.thunk(() => [p7zip]),
@@ -48,7 +43,7 @@ export default nix.lambda((args) => (() => {
   return nix.app(symlinkJoin, (finalAttrs) => (() => {
       const from = nix.thunk(() => nix.sel(finalAttrs, "passthru", "unwrapped"));
       return {
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "pvz-portable",
       version: nix.thunk(() => nix.attr(from, "version")),
       meta: nix.thunk(() => nix.attr(from, "meta")),
@@ -58,7 +53,7 @@ export default nix.lambda((args) => (() => {
       ]),
       nativeBuildInputs: nix.thunk(() => [makeWrapper]),
       postBuild: "wrapProgram $out/bin/pvz-portable --add-flags -resdir=$out/share/pvz-portable\n",
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$5, unwrapped: unwrapped, assets: assets })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[4], unwrapped: unwrapped, assets: assets })),
     };
     })());
 })(), formals$1);

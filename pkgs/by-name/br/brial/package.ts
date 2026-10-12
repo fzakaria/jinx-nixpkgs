@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["sha256", 20, 5]], [["url", 26, 7], ["hash", 27, 7]], [["homepage", 50, 5], ["description", 51, 5], ["license", 52, 5], ["teams", 53, 5], ["platforms", 54, 5]], [["version", 13, 3], ["pname", 14, 3], ["src", 16, 3], ["patches", 23, 3], ["doCheck", 32, 3], ["configureFlags", 34, 3], ["buildInputs", 38, 3], ["nativeBuildInputs", 44, 3], ["meta", 49, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch: false, autoreconfHook: false, "pkg-config": false, boost: false, m4ri: false, gd: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["sha256", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 26, 7], ["hash", 27, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 50, 5], ["description", 51, 5], ["license", 52, 5], ["teams", 53, 5], ["platforms", 54, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["version", 13, 3], ["pname", 14, 3], ["src", 16, 3], ["patches", 23, 3], ["doCheck", 32, 3], ["configureFlags", 34, 3], ["buildInputs", 38, 3], ["nativeBuildInputs", 44, 3], ["meta", 49, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const m4ri = nix.arg($, "m4ri");
   const gd = nix.arg($, "gd");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       version: "1.2.15",
       pname: "brial",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "BRiAl",
           repo: "BRiAl",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -32,7 +29,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/BRiAl/BRiAl/commit/df5b4fd300cdbdd4cda920a27fdc5257f3cfea26.patch",
             hash: "sha256-MwpXTmK+3hJB/J7V8iHPfgyrxc/s9LhHgkAZDq7wZb0=",
           })))),
@@ -42,7 +39,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [boost, m4ri, gd]),
       nativeBuildInputs: nix.thunk(() => [autoreconfHook, pkg_config]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/BRiAl/BRiAl",
         description: "Legacy version of PolyBoRi maintained by sagemath developers",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

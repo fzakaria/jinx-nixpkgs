@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 23, 7], ["hash", 24, 7]], [["jdk", 36, 13], ["debugBuild", 36, 17], ["withJcef", 36, 28]], [["javaVersion", 39, 13], ["build", 39, 25], ["sourceDateEpoch", 41, 5], ["srcHash", 42, 5], ["jcefPackage", 43, 5], ["extraBuildPhase", 44, 5], ["vendorVersionString", 56, 5], ["extraConfigureFlags", 57, 5], ["extraNativeBuildInputs", 60, 5]]]);
 const formals$1 = { args: { lib: false, callPackage: false, fetchurl: false, jetbrains: false, jdk: false, debugBuild: true, withJcef: true, "wayland-scanner": false, "wayland-protocols": false, libxkbcommon: false, "speechd-minimal": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 23, 7], ["hash", 24, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["jdk", 36, 13], ["debugBuild", 36, 17], ["withJcef", 36, 28]]);
-const pos$3 = nix.positions(here + "/default.nix", [["javaVersion", 39, 13], ["build", 39, 25], ["sourceDateEpoch", 41, 5], ["srcHash", 42, 5], ["jcefPackage", 43, 5], ["extraBuildPhase", 44, 5], ["vendorVersionString", 56, 5], ["extraConfigureFlags", 57, 5], ["extraNativeBuildInputs", 60, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,15 +22,15 @@ export default nix.lambda((args) => (() => {
     const rev = "refs/tags/4.22.1";
     const hash = "sha256-zCcXuiEYL2N4Q+WT96ouVDwdZVSohgU/QA2BkGlnZZ0=";
     return nix.app(fetchurl, nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         url: nix.thunk(() => nix.str`https://raw.githubusercontent.com/GNOME/gtk/${rev}/gdk/wayland/protocol/gtk-shell.xml`),
         hash: hash,
       })));
   })());
   const javaVersion = "25.0.3";
   const build = "508.4";
-  return nix.app(callPackage, nix.path(here, "./common.nix"), nix.thunk(() => ({ [nix.POS]: pos$2, jdk: jdk, debugBuild: debugBuild, withJcef: withJcef })), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+  return nix.app(callPackage, nix.path(here, "./common.nix"), nix.thunk(() => ({ [nix.POS]: $pos[1], jdk: jdk, debugBuild: debugBuild, withJcef: withJcef })), nix.thunk(() => ({
+      [nix.POS]: $pos[2],
       javaVersion: javaVersion,
       build: build,
       sourceDateEpoch: 1780959777n,

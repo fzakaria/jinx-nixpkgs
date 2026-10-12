@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]], [["src", 27, 26], ["hash", 28, 5]], [["description", 48, 5], ["homepage", 49, 5], ["license", 50, 5], ["mainProgram", 51, 5], ["maintainers", 52, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["yarnOfflineCache", 26, 3], ["nativeBuildInputs", 31, 3], ["nativeInstallCheckInputs", 39, 3], ["doInstallCheck", 40, 3], ["postInstall", 43, 3], ["meta", 47, 3]]]);
 const formals$1 = { args: { asciinema: false, fetchFromGitHub: false, fetchYarnDeps: false, lib: false, makeWrapper: false, nodejs: false, stdenv: false, versionCheckHook: false, yarnBuildHook: false, yarnConfigHook: false, yarnInstallHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["src", 27, 26], ["hash", 28, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 48, 5], ["homepage", 49, 5], ["license", 50, 5], ["mainProgram", 51, 5], ["maintainers", 52, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["yarnOfflineCache", 26, 3], ["nativeBuildInputs", 31, 3], ["nativeInstallCheckInputs", 39, 3], ["doInstallCheck", 40, 3], ["postInstall", 43, 3], ["meta", 47, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,18 +19,18 @@ export default nix.lambda((args) => (() => {
   const yarnConfigHook = nix.arg($, "yarnConfigHook");
   const yarnInstallHook = nix.arg($, "yarnInstallHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "svg-term",
       version: "2.1.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "marionebl",
           repo: "svg-term-cli",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-sB4/SM48UmqaYKj6kzfjzITroL0l/QL4Gg5GSrQ+pdk=",
         })))),
       yarnOfflineCache: nix.thunk(() => nix.app(fetchYarnDeps, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           hash: "sha256-4Q1NP3VhnACcrZ1XUFPtgSlk1Eh8Kp02rOgijoRJFcI=",
         })))),
@@ -43,7 +40,7 @@ export default nix.lambda((args) => (() => {
       postInstall: nix.thunk(() => nix.str`wrapProgram $out/bin/svg-term --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [asciinema]))}
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Share terminal sessions as razor-sharp animated SVG everywhere",
         homepage: "https://github.com/marionebl/svg-term-cli",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

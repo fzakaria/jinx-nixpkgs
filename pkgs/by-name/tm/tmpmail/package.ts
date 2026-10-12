@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["sha256", 21, 5]], [["homepage", 48, 5], ["description", 49, 5], ["license", 50, 5], ["maintainers", 51, 5], ["mainProgram", 52, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["dontConfigure", 24, 3], ["dontBuild", 26, 3], ["nativeBuildInputs", 28, 3], ["installPhase", 33, 3], ["meta", 47, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, stdenvNoCC: false, w3m: false, curl: false, jq: false, makeWrapper: false, installShellFiles: false, xclip: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["sha256", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 48, 5], ["description", 49, 5], ["license", 50, 5], ["maintainers", 51, 5], ["mainProgram", 52, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["dontConfigure", 24, 3], ["dontBuild", 26, 3], ["nativeBuildInputs", 28, 3], ["installPhase", 33, 3], ["meta", 47, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const pname = "tmpmail";
       const version = "1.2.3";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "sdushantha",
           repo: "tmpmail",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -37,7 +35,7 @@ installManPage tmpmail.1
 wrapProgram $out/bin/tmpmail --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [w3m, curl, jq, xclip]))}
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/sdushantha/tmpmail",
         description: "Temporary email right from your terminal written in POSIX sh",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -45,7 +43,7 @@ wrapProgram $out/bin/tmpmail --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath
         mainProgram: "tmpmail",
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

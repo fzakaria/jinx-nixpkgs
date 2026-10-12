@@ -2,12 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["1.8.2", 24, 9], ["1.7.2", 25, 9], ["1.6.0", 26, 9]], [["url", 21, 5], ["hash", 22, 5]], [["withProvers", 105, 12]], [["description", 108, 5], ["homepage", 109, 5], ["license", 110, 5], ["platforms", 111, 5], ["maintainers", 112, 5]], [["pname", 17, 3], ["version", 18, 11], ["src", 20, 3], ["strictDeps", 31, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 45, 3], ["propagatedBuildInputs", 75, 3], ["enableParallelBuilding", 83, 3], ["configureFlags", 85, 3], ["outputs", 90, 3], ["installTargets", 95, 3], ["postInstall", 100, 3], ["passthru", 105, 3], ["meta", 107, 3]]]);
 const formals$1 = { args: { callPackage: false, fetchurl: false, lib: false, stdenv: false, ocamlPackages: false, coqPackages: false, rubber: false, hevea: false, emacs: false, version: true, ideSupport: true, wrapGAppsHook3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["1.8.2", 24, 9], ["1.7.2", 25, 9], ["1.6.0", 26, 9]]);
-const pos$2 = nix.positions(here + "/default.nix", [["url", 21, 5], ["hash", 22, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["withProvers", 105, 12]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 108, 5], ["homepage", 109, 5], ["license", 110, 5], ["platforms", 111, 5], ["maintainers", 112, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 17, 3], ["version", 18, 11], ["src", 20, 3], ["strictDeps", 31, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 45, 3], ["propagatedBuildInputs", 75, 3], ["enableParallelBuilding", 83, 3], ["configureFlags", 85, 3], ["outputs", 90, 3], ["installTargets", 95, 3], ["postInstall", 100, 3], ["passthru", 105, 3], ["meta", 107, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,10 +23,10 @@ export default nix.lambda((args) => (() => {
       const pname = "why3";
       const version_1 = version;
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: nix.thunk(() => nix.str`https://why3.gitlabpages.inria.fr/releases/${pname}-${version_1}.tar.gz`),
           hash: nix.thunk(() => nix.sel({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             "1.8.2": "sha256-t9ES7dW8zmvM4AI9K8g06yrhocQteupE/6Ek1km1C+o=",
             "1.7.2": "sha256-VaSG/FiO2MDdSSFXGJJrIylQx0LPwtT8AF7TpPVZhCQ=",
             "1.6.0": "sha256-hFvM6kHScaCtcHCc6Vezl9CR7BFbiKPoTEh7kj0ZJxw=",
@@ -85,11 +81,11 @@ export default nix.lambda((args) => (() => {
       const installTargets = nix.thunk(() => ["install", "install-lib"]);
       const postInstall = "mkdir -p $dev/lib\nmv $out/lib/ocaml $dev/lib/\n";
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         withProvers: nix.thunk(() => nix.app(callPackage, nix.path(here, "./with-provers.nix"), nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Platform for deductive program verification",
         homepage: "https://why3.lri.fr/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21")),
@@ -103,7 +99,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version: version_1,
         src,

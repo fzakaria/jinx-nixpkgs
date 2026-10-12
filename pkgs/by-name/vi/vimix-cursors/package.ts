@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]], [["description", 50, 5], ["homepage", 51, 5], ["license", 52, 5], ["maintainers", 53, 5], ["platforms", 54, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 20, 3], ["postPatch", 26, 3], ["buildPhase", 30, 3], ["installPhase", 38, 3], ["meta", 49, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, stdenvNoCC: false, cairosvg: false, inkscape: false, xcursorgen: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 50, 5], ["homepage", 51, 5], ["license", 52, 5], ["maintainers", 53, 5], ["platforms", 54, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 20, 3], ["postPatch", 26, 3], ["buildPhase", 30, 3], ["installPhase", 38, 3], ["meta", 49, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const inkscape = nix.arg($, "inkscape");
   const xcursorgen = nix.arg($, "xcursorgen");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "vimix-cursors",
       version: "2020-02-24-unstable-2021-09-18",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "vinceliuice",
           repo: "vimix-cursors",
           rev: "9bc292f40904e0a33780eda5c5d92eb9a1154e9c",
@@ -31,7 +29,7 @@ export default nix.lambda((args) => (() => {
       buildPhase: "runHook preBuild\n\nHOME=\"$NIX_BUILD_ROOT\" ./build.sh\n\nrunHook postBuild\n",
       installPhase: "runHook preInstall\n\ninstall -dm 755 $out/share/icons\nfor color in \"\" \"-white\"; do\n  cp -pr \"dist$color/\"  \"$out/share/icons/Vimix$color-cursors\"\ndone\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "X cursor theme inspired by Materia design",
         homepage: "https://github.com/vinceliuice/Vimix-cursors",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

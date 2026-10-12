@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 13, 5], ["sha256", 14, 5]], [["url", 20, 7], ["sha256", 21, 7]], [["url", 24, 7], ["sha256", 25, 7]], [["broken", 30, 5], ["description", 31, 5], ["mainProgram", 32, 5], ["longDescription", 33, 5], ["homepage", 37, 5], ["license", 38, 5], ["platforms", 39, 5], ["maintainers", 40, 5]], [["version", 9, 3], ["pname", 10, 3], ["src", 12, 3], ["patches", 18, 3], ["meta", 29, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, fetchpatch: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 13, 5], ["sha256", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 20, 7], ["sha256", 21, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 24, 7], ["sha256", 25, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["broken", 30, 5], ["description", 31, 5], ["mainProgram", 32, 5], ["longDescription", 33, 5], ["homepage", 37, 5], ["license", 38, 5], ["platforms", 39, 5], ["maintainers", 40, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["version", 9, 3], ["pname", 10, 3], ["src", 12, 3], ["patches", 18, 3], ["meta", 29, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,28 +12,28 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const fetchpatch = nix.arg($, "fetchpatch");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       version: "3.3.2",
       pname: "enhanced-ctorrent-dhn",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "http://www.rahul.net/dholmes/ctorrent/ctorrent-dnh3.3.2.tar.gz",
           sha256: "0qs8waqwllk56i3yy3zhncy7nsnhmf09a494p5siz4vm2k4ncwy8",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://sources.debian.org/data/main/c/ctorrent/1.3.4.dnh3.3.2-5/debian/patches/cve-security-fix.diff",
             sha256: "1qkzzm8sfspbcs10azmmif4qcr7pr8r38dsa2py84lsjm1yi3kls",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: "https://sources.debian.org/data/main/c/ctorrent/1.3.4.dnh3.3.2-5/debian/patches/FTBFS-fix.diff",
             sha256: "1m3zh96xwqjjzsbg62f7kx0miams58nys1f484qhdn870b5x9p06",
           })))),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
         description: "BitTorrent client written in C++",
         mainProgram: "ctorrent",

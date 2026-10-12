@@ -2,47 +2,40 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/maintainer-module.nix", [[["type", 8, 7]], [["type", 11, 7]], [["type", 14, 7]], [["type", 17, 7], ["default", 18, 7]], [["type", 21, 7], ["default", 22, 7]], [["type", 27, 48]], [["fingerprint", 27, 19]], [["options", 27, 11]], [["type", 25, 7], ["default", 30, 7]], [["name", 7, 5], ["github", 10, 5], ["githubId", 13, 5], ["email", 16, 5], ["matrix", 20, 5], ["keys", 24, 5]], [["options", 6, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/maintainer-module.nix", [["type", 8, 7]]);
-const pos$2 = nix.positions(here + "/maintainer-module.nix", [["type", 11, 7]]);
-const pos$3 = nix.positions(here + "/maintainer-module.nix", [["type", 14, 7]]);
-const pos$4 = nix.positions(here + "/maintainer-module.nix", [["type", 17, 7], ["default", 18, 7]]);
-const pos$5 = nix.positions(here + "/maintainer-module.nix", [["type", 21, 7], ["default", 22, 7]]);
-const pos$6 = nix.positions(here + "/maintainer-module.nix", [["type", 27, 48]]);
-const pos$7 = nix.positions(here + "/maintainer-module.nix", [["fingerprint", 27, 19]]);
-const pos$8 = nix.positions(here + "/maintainer-module.nix", [["options", 27, 11]]);
-const pos$9 = nix.positions(here + "/maintainer-module.nix", [["type", 25, 7], ["default", 30, 7]]);
-const pos$10 = nix.positions(here + "/maintainer-module.nix", [["name", 7, 5], ["github", 10, 5], ["githubId", 13, 5], ["email", 16, 5], ["matrix", 20, 5], ["keys", 24, 5]]);
-const pos$11 = nix.positions(here + "/maintainer-module.nix", [["options", 6, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const types = nix.thunk(() => nix.attr(lib, "types"));
   return {
-    [nix.POS]: pos$11,
+    [nix.POS]: $pos[10],
     options: nix.thunk(() => ({
-      [nix.POS]: pos$10,
-      name: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({ [nix.POS]: pos$1, type: nix.thunk(() => nix.sel(types, "str")) })))),
-      github: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({ [nix.POS]: pos$2, type: nix.thunk(() => nix.sel(types, "str")) })))),
-      githubId: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({ [nix.POS]: pos$3, type: nix.thunk(() => nix.sel(types, "ints", "unsigned")) })))),
+      [nix.POS]: $pos[9],
+      name: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({ [nix.POS]: $pos[0], type: nix.thunk(() => nix.sel(types, "str")) })))),
+      github: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({ [nix.POS]: $pos[1], type: nix.thunk(() => nix.sel(types, "str")) })))),
+      githubId: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
+          [nix.POS]: $pos[2],
+          type: nix.thunk(() => nix.sel(types, "ints", "unsigned")),
+        })))),
       email: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "str")))),
           default: null,
         })))),
       matrix: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           type: nix.thunk(() => nix.app(nix.sel(types, "nullOr"), nix.thunk(() => nix.sel(types, "str")))),
           default: null,
         })))),
       keys: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           type: nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-                [nix.POS]: pos$8,
+                [nix.POS]: $pos[7],
                 options: nix.thunk(() => ({
-                  [nix.POS]: pos$7,
-                  fingerprint: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({ [nix.POS]: pos$6, type: nix.thunk(() => nix.sel(types, "str")) })))),
+                  [nix.POS]: $pos[6],
+                  fingerprint: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({ [nix.POS]: $pos[5], type: nix.thunk(() => nix.sel(types, "str")) })))),
                 })),
               })))))),
           default: [],

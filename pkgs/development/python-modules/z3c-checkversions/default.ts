@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["version", 20, 13], ["pname", 21, 5], ["hash", 22, 5]], [["homepage", 34, 5], ["changelog", 35, 5], ["description", 36, 5], ["mainProgram", 37, 5], ["license", 38, 5]], [["pname", 12, 3], ["version", 13, 3], ["format", 14, 3], ["disabled", 17, 3], ["src", 19, 3], ["propagatedBuildInputs", 25, 3], ["nativeCheckInputs", 27, 3], ["checkPhase", 29, 3], ["meta", 33, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, python: false, pythonAtLeast: false, "zc-buildout": false, "zope-testrunner": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["version", 20, 13], ["pname", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 34, 5], ["changelog", 35, 5], ["description", 36, 5], ["mainProgram", 37, 5], ["license", 38, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 12, 3], ["version", 13, 3], ["format", 14, 3], ["disabled", 17, 3], ["src", 19, 3], ["propagatedBuildInputs", 25, 3], ["nativeCheckInputs", 27, 3], ["checkPhase", 29, 3], ["meta", 33, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const format = "setuptools";
       const disabled = nix.thunk(() => nix.app(pythonAtLeast, "3.12"));
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           version: version,
           pname: "z3c.checkversions",
           hash: "sha256-VMGSlocgEddBrUT0A4ihtCdhSbirWYe9FmQ0QyOGOEs=",
@@ -32,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const checkPhase = nix.thunk(() => nix.str`${nix.sel(python, "interpreter")} -m zope.testrunner --test-path=src []
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/zopefoundation/z3c.checkversions",
         changelog: nix.thunk(() => nix.str`https://github.com/zopefoundation/z3c.checkversions/blob/${version}/CHANGES.rst`),
         description: "Find newer package versions on PyPI",
@@ -40,7 +38,7 @@ export default nix.lambda((args) => (() => {
         license: nix.thunk(() => nix.sel(lib, "licenses", "zpl21")),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         format,

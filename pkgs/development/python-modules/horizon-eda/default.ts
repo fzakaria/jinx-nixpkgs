@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 26, 7], ["hash", 27, 7]], [["pname", 14, 5], ["version", 15, 5], ["src", 16, 5], ["meta", 17, 5], ["env", 18, 5], ["pyproject", 21, 3], ["patches", 23, 3], ["buildInputs", 31, 3], ["propagatedBuildInputs", 35, 3], ["nativeBuildInputs", 37, 3], ["ninjaFlags", 39, 3], ["installPhase", 41, 3], ["enableParallelBuilding", 50, 3]]]);
 const formals$1 = { args: { buildPythonPackage: false, fetchpatch: false, "horizon-eda": false, pycairo: false, python: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 26, 7], ["hash", 27, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 14, 5], ["version", 15, 5], ["src", 16, 5], ["meta", 17, 5], ["env", 18, 5], ["pyproject", 21, 3], ["patches", 23, 3], ["buildInputs", 31, 3], ["propagatedBuildInputs", 35, 3], ["nativeBuildInputs", 37, 3], ["ninjaFlags", 39, 3], ["installPhase", 41, 3], ["enableParallelBuilding", 50, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const python = nix.arg($, "python");
   const base = nix.thunk(() => nix.sel(horizon_eda, "passthru", "base"));
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: nix.thunk(() => nix.attr(base, "pname")),
       version: nix.thunk(() => nix.attr(base, "version")),
       src: nix.thunk(() => nix.attr(base, "src")),
@@ -24,7 +23,7 @@ export default nix.lambda((args) => (() => {
       pyproject: false,
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             url: "https://github.com/horizon-eda/horizon/commit/663a8adaa1cb7eae7a824de07df8909bc33677c3.patch",
             hash: "sha256-g0rP9NBDdDijh35Y2h4me9N5R/mjCn+2w7uhnv9bweY=",
           })))),

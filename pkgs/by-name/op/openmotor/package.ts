@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["withPdf", 16, 44]], [["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]], [["version", 106, 42]], [["name", 133, 7], ["exec", 134, 7], ["icon", 135, 7], ["desktopName", 136, 7], ["comment", 137, 7], ["categories", 138, 7]], [["updateScript", 145, 12]], [["description", 148, 5], ["longDescription", 149, 5], ["homepage", 156, 5], ["changelog", 157, 5], ["license", 158, 5], ["maintainers", 159, 5], ["platforms", 160, 5], ["mainProgram", 161, 5]], [["pname", 19, 3], ["version", 20, 3], ["pyproject", 21, 3], ["src", 23, 3], ["patches", 30, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 43, 3], ["build-system", 50, 3], ["dependencies", 56, 3], ["postPatch", 77, 3], ["preBuild", 82, 3], ["postInstall", 94, 3], ["postFixup", 100, 3], ["preFixup", 119, 3], ["doCheck", 124, 3], ["pythonImportsCheck", 126, 3], ["desktopItems", 131, 3], ["passthru", 145, 3], ["meta", 147, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, python3Packages: false, fetchFromGitHub: false, qt6: false, writableTmpDirAsHomeHook: false, copyDesktopItems: false, makeDesktopItem: false, replaceVars: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["withPdf", 16, 44]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 106, 42]]);
-const pos$4 = nix.positions(here + "/package.nix", [["name", 133, 7], ["exec", 134, 7], ["icon", 135, 7], ["desktopName", 136, 7], ["comment", 137, 7], ["categories", 138, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["updateScript", 145, 12]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 148, 5], ["longDescription", 149, 5], ["homepage", 156, 5], ["changelog", 157, 5], ["license", 158, 5], ["maintainers", 159, 5], ["platforms", 160, 5], ["mainProgram", 161, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["pyproject", 21, 3], ["src", 23, 3], ["patches", 30, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 43, 3], ["build-system", 50, 3], ["dependencies", 56, 3], ["postPatch", 77, 3], ["preBuild", 82, 3], ["postInstall", 94, 3], ["postFixup", 100, 3], ["preFixup", 119, 3], ["doCheck", 124, 3], ["pythonImportsCheck", 126, 3], ["desktopItems", 131, 3], ["passthru", 145, 3], ["meta", 147, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,13 +17,13 @@ export default nix.lambda((args) => (() => {
   const makeDesktopItem = nix.arg($, "makeDesktopItem");
   const replaceVars = nix.arg($, "replaceVars");
   const nix_update_script = nix.arg($, "nix-update-script");
-  const pyqt6 = nix.thunk(() => nix.app(nix.sel(python3Packages, "pyqt6", "override"), nix.thunk(() => ({ [nix.POS]: pos$1, withPdf: false }))));
+  const pyqt6 = nix.thunk(() => nix.app(nix.sel(python3Packages, "pyqt6", "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], withPdf: false }))));
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), nix.thunk(() => (() => {
       const pname = "openmotor";
       const version = "0.6.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "reilleya",
           repo: "openMotor",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -81,7 +75,7 @@ substituteInPlace setup.py --replace-fail '@version@' '${version}'
 mkdir -p $out/Applications/openMotor.app/Contents/{MacOS,Resources}
 
 # Install Info.plist
-install -Dm644 ${nix.app(replaceVars, nix.path(here, "./Info.plist"), nix.thunk(() => ({ [nix.POS]: pos$3, version: version })))} $out/Applications/openMotor.app/Contents/Info.plist
+install -Dm644 ${nix.app(replaceVars, nix.path(here, "./Info.plist"), nix.thunk(() => ({ [nix.POS]: $pos[2], version: version })))} $out/Applications/openMotor.app/Contents/Info.plist
 
 # Use upstream's .icns icon
 install -Dm644 resources/oMIconCycles.icns $out/Applications/openMotor.app/Contents/Resources/openMotor.icns
@@ -97,7 +91,7 @@ ln -s $out/Applications/openMotor.app/Contents/MacOS/openMotor $out/bin/openMoto
       const pythonImportsCheck = nix.thunk(() => ["motorlib", "uilib"]);
       const desktopItems = nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), nix.thunk(() => [
           nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               name: "openmotor",
               exec: "openMotor",
               icon: "openmotor",
@@ -107,11 +101,11 @@ ln -s $out/Applications/openMotor.app/Contents/MacOS/openMotor $out/bin/openMoto
             })))),
         ])));
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Open-source internal ballistics simulator for rocket motor experimenters",
         longDescription: "openMotor is an open-source internal ballistics simulator for rocket motor\nexperimenters. The software estimates a rocket motor's chamber pressure and\nthrust based on propellant properties, grain geometry, and nozzle specifications.\nIt uses the Fast Marching Method to determine how a propellant grain regresses,\nwhich allows the use of arbitrary core geometries.\n",
         homepage: "https://github.com/reilleya/openMotor",
@@ -125,7 +119,7 @@ ln -s $out/Applications/openMotor.app/Contents/MacOS/openMotor $out/bin/openMoto
         mainProgram: "openMotor",
       }));
       return {
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         pname,
         version,
         pyproject,

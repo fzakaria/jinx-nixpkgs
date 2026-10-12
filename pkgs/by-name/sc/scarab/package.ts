@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]], [["name", 27, 7], ["url", 28, 7], ["hash", 29, 7]], [["desktopName", 68, 7], ["name", 69, 7], ["exec", 70, 7], ["icon", 71, 7], ["comment", 72, 7], ["type", 73, 7], ["categories", 74, 7]], [["updateScript", 78, 12]], [["description", 81, 5], ["homepage", 82, 5], ["downloadPage", 83, 5], ["changelog", 84, 5], ["license", 85, 5], ["maintainers", 86, 5], ["mainProgram", 90, 5], ["platforms", 91, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["patches", 25, 3], ["dotnet-sdk", 33, 3], ["nugetDeps", 34, 3], ["projectFile", 35, 3], ["testProjectFile", 36, 3], ["executables", 37, 3], ["runtimeDeps", 39, 3], ["nativeBuildInputs", 43, 3], ["doCheck", 48, 3], ["nativeInstallCheckInputs", 50, 3], ["doInstallCheck", 51, 3], ["postFixup", 53, 3], ["desktopItems", 66, 3], ["passthru", 78, 3], ["meta", 80, 3]]]);
 const formals$1 = { args: { lib: false, buildDotnetModule: false, fetchFromGitHub: false, fetchpatch2: false, dotnetCorePackages: false, bc: false, copyDesktopItems: false, icoutils: false, versionCheckHook: false, makeDesktopItem: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 27, 7], ["url", 28, 7], ["hash", 29, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["desktopName", 68, 7], ["name", 69, 7], ["exec", 70, 7], ["icon", 71, 7], ["comment", 72, 7], ["type", 73, 7], ["categories", 74, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 78, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 81, 5], ["homepage", 82, 5], ["downloadPage", 83, 5], ["changelog", 84, 5], ["license", 85, 5], ["maintainers", 86, 5], ["mainProgram", 90, 5], ["platforms", 91, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["patches", 25, 3], ["dotnet-sdk", 33, 3], ["nugetDeps", 34, 3], ["projectFile", 35, 3], ["testProjectFile", 36, 3], ["executables", 37, 3], ["runtimeDeps", 39, 3], ["nativeBuildInputs", 43, 3], ["doCheck", 48, 3], ["nativeInstallCheckInputs", 50, 3], ["doInstallCheck", 51, 3], ["postFixup", 53, 3], ["desktopItems", 66, 3], ["passthru", 78, 3], ["meta", 80, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const pname = "scarab";
       const version = "2.7.0.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "fifty-six",
           repo: "scarab",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -34,7 +29,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "fix-test-missing-shasum.patch",
             url: "https://github.com/fifty-six/Scarab/commit/581e86fefb457772d2d067f094b6dafcc49a4075.patch?full_index=1",
             hash: "sha256-N5a0QeJFQzvxX8RavwPILuLg10pWLVQhvodWpeUtItE=",
@@ -63,7 +58,7 @@ wrapProgram "$out/bin/Scarab" --run '. ${nix.path(here, "./scaling-settings.bash
 `);
       const desktopItems = nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             desktopName: "Scarab",
             name: "scarab",
             exec: "Scarab",
@@ -73,9 +68,9 @@ wrapProgram "$out/bin/Scarab" --run '. ${nix.path(here, "./scaling-settings.bash
             categories: nix.thunk(() => ["Game"]),
           })))),
       ]);
-      const passthru = nix.thunk(() => ({ [nix.POS]: pos$4, updateScript: nix.path(here, "./update.sh") }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: $pos[3], updateScript: nix.path(here, "./update.sh") }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Hollow Knight mod installer and manager",
         homepage: "https://github.com/fifty-six/Scarab",
         downloadPage: "https://github.com/fifty-six/Scarab/releases",
@@ -92,7 +87,7 @@ wrapProgram "$out/bin/Scarab" --run '. ${nix.path(here, "./scaling-settings.bash
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname,
         version,
         src,

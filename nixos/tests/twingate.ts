@@ -2,23 +2,19 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
-const pos$1 = nix.positions(here + "/twingate.nix", [["enable", 4, 35]]);
-const pos$2 = nix.positions(here + "/twingate.nix", [["twingate", 4, 26]]);
-const pos$3 = nix.positions(here + "/twingate.nix", [["services", 4, 17]]);
-const pos$4 = nix.positions(here + "/twingate.nix", [["machine", 4, 9]]);
+const $pos = nix.positions(here + "/twingate.nix", [[["enable", 4, 35]], [["twingate", 4, 26]], [["services", 4, 17]], [["machine", 4, 9]], [["name", 2, 3], ["nodes", 4, 3], ["testScript", 6, 3]]]);
 const formals$1 = { args: { nodes: false }, ellipsis: true };
-const pos$5 = nix.positions(here + "/twingate.nix", [["name", 2, 3], ["nodes", 4, 3], ["testScript", 6, 3]]);
 
 export default nix.thunk(() => ({
-  [nix.POS]: pos$5,
+  [nix.POS]: $pos[4],
   name: "twingate",
   nodes: nix.thunk(() => ({
-    [nix.POS]: pos$4,
+    [nix.POS]: $pos[3],
     machine: nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       services: nix.thunk(() => ({
-        [nix.POS]: pos$2,
-        twingate: nix.thunk(() => ({ [nix.POS]: pos$1, enable: true })),
+        [nix.POS]: $pos[1],
+        twingate: nix.thunk(() => ({ [nix.POS]: $pos[0], enable: true })),
       })),
     })),
   })),

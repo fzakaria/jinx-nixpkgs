@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]], [["libraries", 37, 7], ["doCheck", 38, 7]], [["cube", 36, 5]], [["tests", 35, 12]], [["description", 43, 5], ["homepage", 44, 5], ["maintainers", 45, 5], ["license", 46, 5], ["broken", 48, 5]], [["pname", 13, 3], ["version", 14, 3], ["pyproject", 15, 3], ["src", 17, 3], ["build-system", 24, 3], ["dependencies", 26, 3], ["doCheck", 31, 3], ["pythonImportsCheck", 33, 3], ["passthru", 35, 3], ["meta", 42, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, pyopengl: false, writers: false, tkinter: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["libraries", 37, 7], ["doCheck", 38, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["cube", 36, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["tests", 35, 12]]);
-const pos$5 = nix.positions(here + "/default.nix", [["description", 43, 5], ["homepage", 44, 5], ["maintainers", 45, 5], ["license", 46, 5], ["broken", 48, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 13, 3], ["version", 14, 3], ["pyproject", 15, 3], ["src", 17, 3], ["build-system", 24, 3], ["dependencies", 26, 3], ["doCheck", 31, 3], ["pythonImportsCheck", 33, 3], ["passthru", 35, 3], ["meta", 42, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const writers = nix.arg($, "writers");
   const tkinter = nix.arg($, "tkinter");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "pyopengltk",
       version: "0.0.4",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "jonwright",
           repo: "pyopengltk",
           rev: "dbed7b7d01cc5a90fd3e79769259b1dc0894b673",
@@ -37,18 +32,18 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["pyopengltk"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           cube: nix.thunk(() => nix.app(nix.sel(writers, "writePython3"), "cube", nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               libraries: nix.thunk(() => [nix.thunk(() => nix.sel(finalAttrs, "finalPackage"))]),
               doCheck: false,
             })), nix.thunk(() => nix.builtins.readFile(nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src")}/examples/cube.py`))))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "OpenGL frame for Python/Tkinter via ctypes and pyopengl",
         homepage: "https://github.com/jonwright/pyopengltk",
         maintainers: nix.thunk(() => (() => {

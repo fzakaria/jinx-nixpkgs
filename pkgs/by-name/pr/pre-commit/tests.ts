@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/tests.nix", [[["nativeBuildInputs", 10, 9]], [["check-meta-hooks", 7, 3]]]);
 const formals$1 = { args: { gitMinimal: false, "pre-commit": false, runCommand: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/tests.nix", [["nativeBuildInputs", 10, 9]]);
-const pos$2 = nix.positions(here + "/tests.nix", [["check-meta-hooks", 7, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -12,9 +11,9 @@ export default nix.lambda((args) => (() => {
   const pre_commit = nix.arg($, "pre-commit");
   const runCommand = nix.arg($, "runCommand");
   return {
-    [nix.POS]: pos$2,
+    [nix.POS]: $pos[1],
     "check-meta-hooks": nix.thunk(() => nix.app(runCommand, "check-meta-hooks", nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         nativeBuildInputs: nix.thunk(() => [gitMinimal, pre_commit]),
       })), "cd \"$(mktemp --directory)\"\nexport HOME=\"$PWD\"\ncat << 'EOF' > .pre-commit-config.yaml\nrepos:\n  - repo: local\n    hooks:\n      - id: echo\n        name: echo\n        entry: echo\n        files: \\.yaml$\n        language: system\n  - repo: meta\n    hooks:\n      - id: check-hooks-apply\n      - id: check-useless-excludes\n      - id: identity\nEOF\ngit config --global user.email \"you@example.com\"\ngit config --global user.name \"Your Name\"\ngit init --initial-branch=main\ngit add .\npre-commit run --all-files\ntouch $out\n")),
   };

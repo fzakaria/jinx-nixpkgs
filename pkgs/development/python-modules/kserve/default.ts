@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 68, 5], ["repo", 69, 5], ["tag", 70, 5], ["hash", 71, 5]], [["storage", 130, 5], ["logging", 133, 5], ["ray", 136, 5], ["llm", 140, 5]], [["description", 226, 5], ["homepage", 227, 5], ["changelog", 228, 5], ["license", 229, 5], ["maintainers", 230, 5]], [["pname", 62, 3], ["version", 63, 3], ["pyproject", 64, 3], ["__structuredAttrs", 65, 3], ["src", 67, 3], ["sourceRoot", 74, 3], ["patches", 76, 3], ["build-system", 81, 3], ["pythonRelaxDeps", 85, 3], ["dependencies", 98, 3], ["optional-dependencies", 129, 3], ["nativeCheckInputs", 145, 3], ["pythonImportsCheck", 158, 3], ["disabledTestPaths", 160, 3], ["disabledTests", 186, 3], ["__darwinAllowLocalNetworking", 223, 3], ["meta", 225, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, aiohttp: false, cloudevents: false, cryptography: false, fastapi: false, "grpc-interceptor": false, grpcio: false, "grpcio-tools": false, h11: false, httpx: false, kubernetes: false, numpy: false, orjson: false, pandas: false, "prometheus-client": false, protobuf: false, psutil: false, pyasn1: false, pydantic: false, "python-dateutil": false, "python-multipart": false, pyyaml: false, six: false, starlette: false, tabulate: false, "timing-asgi": false, urllib3: false, uvicorn: false, "kserve-storage": false, "asgi-logger": false, ray: false, vllm: false, avro: false, "grpcio-testing": false, jinja2: false, "pytest-asyncio": false, "pytest-cov-stub": false, "pytest-httpx": false, "pytest-xdist": false, pytestCheckHook: false, tomlkit: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 68, 5], ["repo", 69, 5], ["tag", 70, 5], ["hash", 71, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["storage", 130, 5], ["logging", 133, 5], ["ray", 136, 5], ["llm", 140, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 226, 5], ["homepage", 227, 5], ["changelog", 228, 5], ["license", 229, 5], ["maintainers", 230, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 62, 3], ["version", 63, 3], ["pyproject", 64, 3], ["__structuredAttrs", 65, 3], ["src", 67, 3], ["sourceRoot", 74, 3], ["patches", 76, 3], ["build-system", 81, 3], ["pythonRelaxDeps", 85, 3], ["dependencies", 98, 3], ["optional-dependencies", 129, 3], ["nativeCheckInputs", 145, 3], ["pythonImportsCheck", 158, 3], ["disabledTestPaths", 160, 3], ["disabledTests", 186, 3], ["__darwinAllowLocalNetworking", 223, 3], ["meta", 225, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -56,13 +53,13 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const tomlkit = nix.arg($, "tomlkit");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "kserve",
       version: "0.21.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "kserve",
           repo: "kserve",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -114,7 +111,7 @@ export default nix.lambda((args) => (() => {
         uvicorn,
       ], nix.sel(uvicorn, "optional-dependencies", "standard"))),
       "optional-dependencies": nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         storage: nix.thunk(() => [kserve_storage]),
         logging: nix.thunk(() => [asgi_logger]),
         ray: nix.thunk(() => nix.concat([ray], nix.sel(ray, "optional-dependencies", "serve"))),
@@ -167,7 +164,7 @@ export default nix.lambda((args) => (() => {
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["test_local_path_with_out_dir_not_exist"])))),
       __darwinAllowLocalNetworking: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Standardized Serverless ML Inference Platform on Kubernetes",
         homepage: "https://github.com/kserve/kserve/tree/master/python/kserve",
         changelog: nix.thunk(() => nix.str`https://github.com/kserve/kserve/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

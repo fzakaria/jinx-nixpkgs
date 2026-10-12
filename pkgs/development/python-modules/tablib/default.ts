@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 25, 13], ["version", 25, 19], ["hash", 26, 5]], [["all", 32, 5], ["cli", 42, 5], ["html", 43, 5], ["ods", 44, 5], ["pandas", 45, 5], ["xls", 46, 5], ["xlsx", 50, 5], ["yaml", 51, 5]], [["description", 69, 5], ["homepage", 70, 5], ["changelog", 71, 5], ["license", 72, 5], ["maintainers", 73, 5]], [["pname", 20, 3], ["version", 21, 3], ["pyproject", 22, 3], ["src", 24, 3], ["nativeBuildInputs", 29, 3], ["optional-dependencies", 31, 3], ["nativeCheckInputs", 54, 3], ["disabledTestPaths", 61, 3], ["pythonImportsCheck", 66, 3], ["meta", 68, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, markuppy: false, odfpy: false, openpyxl: false, pandas: false, pytestCheckHook: false, "pytest-cov-stub": false, pyyaml: false, "setuptools-scm": false, tabulate: false, unicodecsv: false, xlrd: false, xlwt: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 25, 13], ["version", 25, 19], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["all", 32, 5], ["cli", 42, 5], ["html", 43, 5], ["ods", 44, 5], ["pandas", 45, 5], ["xls", 46, 5], ["xlsx", 50, 5], ["yaml", 51, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 69, 5], ["homepage", 70, 5], ["changelog", 71, 5], ["license", 72, 5], ["maintainers", 73, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 20, 3], ["version", 21, 3], ["pyproject", 22, 3], ["src", 24, 3], ["nativeBuildInputs", 29, 3], ["optional-dependencies", 31, 3], ["nativeCheckInputs", 54, 3], ["disabledTestPaths", 61, 3], ["pythonImportsCheck", 66, 3], ["meta", 68, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,14 +27,14 @@ export default nix.lambda((args) => (() => {
       const version = "3.10.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-eBz6mkLejzPFKv+Ff9CgTkg95P0cU+qqmmrqxiutEd4=",
         }))));
       const nativeBuildInputs = nix.thunk(() => [setuptools_scm]);
       const optional_dependencies = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         all: nix.thunk(() => [markuppy, odfpy, openpyxl, pandas, pyyaml, tabulate, xlrd, xlwt]),
         cli: nix.thunk(() => [tabulate]),
         html: nix.thunk(() => [markuppy]),
@@ -51,7 +48,7 @@ export default nix.lambda((args) => (() => {
       const disabledTestPaths = nix.thunk(() => ["tests/test_tablib.py"]);
       const pythonImportsCheck = nix.thunk(() => ["tablib"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Format-agnostic tabular dataset library",
         homepage: "https://tablib.readthedocs.io/",
         changelog: nix.thunk(() => nix.str`https://github.com/jazzband/tablib/raw/v${version}/HISTORY.md`),
@@ -59,7 +56,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

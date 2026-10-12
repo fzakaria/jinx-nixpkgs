@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["name", 50, 5], ["paths", 51, 5]], [["LLVM_INSTALL_DIR", 87, 5]], [["description", 134, 5], ["license", 135, 5], ["homepage", 140, 5], ["changelog", 141, 5], ["maintainers", 142, 5], ["platforms", 143, 5]], [["pname", 56, 3], ["version", 58, 23], ["src", 58, 31], ["sourceRoot", 60, 3], ["outputs", 64, 3], ["postPatch", 72, 3], ["env", 86, 3], ["nativeBuildInputs", 90, 3], ["buildInputs", 99, 3], ["propagatedBuildInputs", 112, 3], ["cmakeFlags", 114, 3], ["dontWrapQtApps", 119, 3], ["postInstall", 121, 3], ["pythonImportsCheck", 131, 3], ["meta", 133, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, cmake: false, cups: false, ninja: false, python: false, pythonImportsCheckHook: false, moveBuildTree: false, shiboken6: false, "shiboken6-generator": false, llvmPackages: false, symlinkJoin: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["name", 50, 5], ["paths", 51, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["LLVM_INSTALL_DIR", 87, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 134, 5], ["license", 135, 5], ["homepage", 140, 5], ["changelog", 141, 5], ["maintainers", 142, 5], ["platforms", 143, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 56, 3], ["version", 58, 23], ["src", 58, 31], ["sourceRoot", 60, 3], ["outputs", 64, 3], ["postPatch", 72, 3], ["env", 86, 3], ["nativeBuildInputs", 90, 3], ["buildInputs", 99, 3], ["propagatedBuildInputs", 112, 3], ["cmakeFlags", 114, 3], ["dontWrapQtApps", 119, 3], ["postInstall", 121, 3], ["pythonImportsCheck", 131, 3], ["meta", 133, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -55,9 +52,9 @@ export default nix.lambda((args) => (() => {
       nix.thunk(() => nix.lookup(w, "qttools")),
     ];
   })());
-  const qt_linked = nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({ [nix.POS]: pos$1, name: "qt_linked", paths: packages }))));
+  const qt_linked = nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({ [nix.POS]: $pos[0], name: "qt_linked", paths: packages }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "pyside6",
       version: nix.thunk(() => nix.attr(shiboken6, "version")),
       src: nix.thunk(() => nix.attr(shiboken6, "src")),
@@ -65,7 +62,7 @@ export default nix.lambda((args) => (() => {
       outputs: nix.thunk(() => ["out", "devtools"]),
       postPatch: nix.thunk(() => nix.add("# Don't ignore optional Qt modules\nsubstituteInPlace cmake/PySideHelpers.cmake \\\n  --replace-fail \\\n    'string(FIND \"${_module_dir}\" \"${_core_abs_dir}\" found_basepath)' \\\n    'set (found_basepath 0)'\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "substituteInPlace cmake/PySideHelpers.cmake \\\n  --replace-fail \\\n    \"Designer\" \"\"\n"))),
       env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           LLVM_INSTALL_DIR: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getLib"), nix.thunk(() => nix.sel(llvmPackages, "libclang")))}/lib`),
         })))),
       nativeBuildInputs: nix.thunk(() => nix.concat([cmake, ninja, python, pythonImportsCheckHook, shiboken6_generator], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [moveBuildTree])))),
@@ -83,7 +80,7 @@ moveToOutput "${nix.sel(python, "pkgs", "qt6", "qtbase", "qtPluginPrefix")}/desi
 `),
       pythonImportsCheck: nix.thunk(() => ["PySide6"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Python bindings for Qt",
         license: nix.thunk(() => (() => {
           const w_1 = nix.withScope(nix.thunk(() => nix.sel(lib, "licenses")), null);

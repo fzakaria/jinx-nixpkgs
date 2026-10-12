@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 23, 13], ["version", 23, 19], ["hash", 24, 5]], [["name", 30, 7], ["url", 31, 7], ["hash", 32, 7], ["excludes", 33, 7]], [["name", 37, 7], ["url", 38, 7], ["hash", 39, 7]], [["description", 64, 5], ["mainProgram", 65, 5], ["homepage", 66, 5], ["changelog", 67, 5], ["license", 68, 5], ["maintainers", 69, 5]], [["pname", 18, 3], ["version", 19, 3], ["pyproject", 20, 3], ["src", 22, 3], ["patches", 27, 3], ["build-system", 43, 3], ["dependencies", 45, 3], ["__darwinAllowLocalNetworking", 50, 3], ["nativeCheckInputs", 52, 3], ["pythonImportsCheck", 61, 3], ["meta", 63, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, fetchpatch: false, packaging: false, "pdm-backend": false, httpx: false, flask: false, "pytest-httpserver": false, "pytest-mock": false, pytestCheckHook: false, "requests-wsgi-adapter": false, trustme: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 23, 13], ["version", 23, 19], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["name", 30, 7], ["url", 31, 7], ["hash", 32, 7], ["excludes", 33, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["name", 37, 7], ["url", 38, 7], ["hash", 39, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 64, 5], ["mainProgram", 65, 5], ["homepage", 66, 5], ["changelog", 67, 5], ["license", 68, 5], ["maintainers", 69, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 18, 3], ["version", 19, 3], ["pyproject", 20, 3], ["src", 22, 3], ["patches", 27, 3], ["build-system", 43, 3], ["dependencies", 45, 3], ["__darwinAllowLocalNetworking", 50, 3], ["nativeCheckInputs", 52, 3], ["pythonImportsCheck", 61, 3], ["meta", 63, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,21 +25,21 @@ export default nix.lambda((args) => (() => {
       const version = "0.18.2";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-HlPX9S9G3V+HXnf/HFWxJHfiFaCS5LZsl2SnffSptSA=",
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "fix-packaging-26.0-changes.patch",
             url: "https://github.com/frostming/unearth/commit/69ece0800edeefb1daf035bb0ee348e17a4393fd.patch",
             hash: "sha256-t/Ubv9qC1Fvh4JsnfVgOZO/O7ZpCGHugBUt9qAjnH8c=",
             excludes: nix.thunk(() => ["pdm.lock"]),
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "CVE-2026-73030.patch",
             url: "https://github.com/frostming/unearth/commit/6c78164e7bfa28b8b3d6f247b87e560692e3c8ba.patch",
             hash: "sha256-OEf4YnpNhZcIWaFMSXQP0SA7kRV9FqKIpnkLbUrQj+4=",
@@ -62,7 +58,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const pythonImportsCheck = nix.thunk(() => ["unearth"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Utility to fetch and download Python packages",
         mainProgram: "unearth",
         homepage: "https://github.com/frostming/unearth",
@@ -74,7 +70,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         pyproject,

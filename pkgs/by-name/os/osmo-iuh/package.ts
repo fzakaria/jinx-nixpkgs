@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 24, 5], ["repo", 25, 5], ["rev", 26, 5], ["hash", 27, 5]], [["description", 56, 5], ["homepage", 57, 5], ["license", 58, 5], ["maintainers", 59, 5], ["platforms", 60, 5]], [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["prePatch", 30, 3], ["postPatch", 35, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 45, 3], ["enableParallelBuilding", 53, 3], ["meta", 55, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, autoreconfHook: false, "pkg-config": false, libosmocore: false, "lksctp-tools": false, "libosmo-netif": false, "libosmo-sigtran": false, libasn1c: false, python3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 24, 5], ["repo", 25, 5], ["rev", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 56, 5], ["homepage", 57, 5], ["license", 58, 5], ["maintainers", 59, 5], ["platforms", 60, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["prePatch", 30, 3], ["postPatch", 35, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 45, 3], ["enableParallelBuilding", 53, 3], ["meta", 55, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const pname = "osmo-iuh";
       const version = "1.6.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "osmocom",
           repo: "osmo-iuh",
           rev: version,
@@ -41,7 +39,7 @@ export default nix.lambda((args) => (() => {
       const buildInputs = nix.thunk(() => [libosmocore, lksctp_tools, libosmo_netif, libosmo_sigtran, libasn1c]);
       const enableParallelBuilding = true;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Osmocom IuH library",
         homepage: "https://osmocom.org/projects/osmohnbgw/wiki",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Plus")),
@@ -49,7 +47,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

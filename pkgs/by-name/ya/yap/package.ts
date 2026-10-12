@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["hash", 25, 5]], [["NIX_CFLAGS_COMPILE", 53, 7]], [["updateScript", 55, 12]], [["broken", 65, 5], ["homepage", 67, 5], ["description", 68, 5], ["license", 69, 5], ["platforms", 70, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 34, 3], ["cmakeFlags", 41, 3], ["env", 53, 3], ["passthru", 55, 3], ["meta", 63, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, "pkg-config": false, R: false, readline: false, gmp: false, zlib: false, librdf_raptor2: false, writeShellScript: false, "nix-update": false, "common-updater-scripts": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 53, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 55, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["broken", 65, 5], ["homepage", 67, 5], ["description", 68, 5], ["license", 69, 5], ["platforms", 70, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 34, 3], ["cmakeFlags", 41, 3], ["env", 53, 3], ["passthru", 55, 3], ["meta", 63, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const nix_update = nix.arg($, "nix-update");
   const common_updater_scripts = nix.arg($, "common-updater-scripts");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "yap",
       version: "8.0.1-unstable-2025-10-27",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "vscosta",
           repo: "yap",
           rev: "d5ef32dec671e8d1bc7465e3d2ecdf468c568f16",
@@ -44,9 +40,9 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "WITH_CUDD", false)),
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "WITH_Gecode", false)),
       ]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-fpermissive -fcommon" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], NIX_CFLAGS_COMPILE: "-fpermissive -fcommon" })),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(writeShellScript, "update-yap", nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), nix_update)} yap --version=branch
 version=$(nix eval --raw --file . yap.version)
 src=$(nix eval --raw --file . yap.src)
@@ -55,7 +51,7 @@ ${nix.app(nix.sel(lib, "getExe'"), common_updater_scripts, "update-source-versio
 `))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         broken: nix.thunk(() => (nix.asBool((nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")))) || nix.asBool(!nix.asBool(nix.sel(stdenv, "hostPlatform", "is64bit"))))),
         homepage: "https://github.com/vscosta/yap",
         description: "ISO-compatible high-performance Prolog compiler",

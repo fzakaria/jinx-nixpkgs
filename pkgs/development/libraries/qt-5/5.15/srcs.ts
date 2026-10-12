@@ -2,20 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/srcs.nix", [[["url", 13, 22], ["rev", 13, 26], ["sha256", 13, 30], ["fetchLFS", 14, 7], ["fetchSubmodules", 15, 7], ["deepClone", 16, 7], ["leaveDotGit", 17, 7]], [["version", 11, 13], ["src", 12, 5]], [["owner", 27, 7], ["repo", 28, 7], ["rev", 30, 7], ["hash", 31, 7]], [["version", 25, 5], ["src", 26, 5]], [["owner", 39, 7], ["repo", 40, 7], ["rev", 41, 7], ["hash", 42, 7]], [["version", 37, 5], ["src", 38, 5]], [["owner", 50, 7], ["repo", 51, 7], ["rev", 52, 7], ["hash", 53, 7]], [["version", 48, 5], ["src", 49, 5]], [["owner", 61, 7], ["repo", 62, 7], ["rev", 63, 7], ["hash", 64, 7]], [["version", 58, 5], ["src", 60, 5]], [["owner", 72, 7], ["repo", 73, 7], ["rev", 74, 7], ["hash", 75, 7], ["fetchSubmodules", 76, 7]], [["version", 69, 5], ["src", 71, 5]], [["qtpim", 24, 3], ["qtpositioning", 36, 3], ["qtsystems", 47, 3], ["qtscript", 57, 3], ["qtwebengine", 68, 3]]]);
 const formals$1 = { args: { lib: false, fetchgit: false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/srcs.nix", [["url", 13, 22], ["rev", 13, 26], ["sha256", 13, 30], ["fetchLFS", 14, 7], ["fetchSubmodules", 15, 7], ["deepClone", 16, 7], ["leaveDotGit", 17, 7]]);
-const pos$2 = nix.positions(here + "/srcs.nix", [["version", 11, 13], ["src", 12, 5]]);
-const pos$3 = nix.positions(here + "/srcs.nix", [["owner", 27, 7], ["repo", 28, 7], ["rev", 30, 7], ["hash", 31, 7]]);
-const pos$4 = nix.positions(here + "/srcs.nix", [["version", 25, 5], ["src", 26, 5]]);
-const pos$5 = nix.positions(here + "/srcs.nix", [["owner", 39, 7], ["repo", 40, 7], ["rev", 41, 7], ["hash", 42, 7]]);
-const pos$6 = nix.positions(here + "/srcs.nix", [["version", 37, 5], ["src", 38, 5]]);
-const pos$7 = nix.positions(here + "/srcs.nix", [["owner", 50, 7], ["repo", 51, 7], ["rev", 52, 7], ["hash", 53, 7]]);
-const pos$8 = nix.positions(here + "/srcs.nix", [["version", 48, 5], ["src", 49, 5]]);
-const pos$9 = nix.positions(here + "/srcs.nix", [["owner", 61, 7], ["repo", 62, 7], ["rev", 63, 7], ["hash", 64, 7]]);
-const pos$10 = nix.positions(here + "/srcs.nix", [["version", 58, 5], ["src", 60, 5]]);
-const pos$11 = nix.positions(here + "/srcs.nix", [["owner", 72, 7], ["repo", 73, 7], ["rev", 74, 7], ["hash", 75, 7], ["fetchSubmodules", 76, 7]]);
-const pos$12 = nix.positions(here + "/srcs.nix", [["version", 69, 5], ["src", 71, 5]]);
-const pos$13 = nix.positions(here + "/srcs.nix", [["qtpim", 24, 3], ["qtpositioning", 36, 3], ["qtsystems", 47, 3], ["qtscript", 57, 3], ["qtwebengine", 68, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,10 +12,10 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const version = "5.15.19";
   const mk = (name) => (args_1) => ({
-    [nix.POS]: pos$2,
+    [nix.POS]: $pos[1],
     version: version,
     src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         url: nix.thunk(() => nix.attr(args_1, "url")),
         rev: nix.thunk(() => nix.attr(args_1, "rev")),
         sha256: nix.thunk(() => nix.attr(args_1, "sha256")),
@@ -38,12 +26,12 @@ export default nix.lambda((args) => (() => {
       })))),
   });
   return nix.update(nix.app(nix.sel(lib, "mapAttrs"), mk, nix.thunk(() => nix.app(nix.sel(lib, "importJSON"), nix.path(here, "./srcs-generated.json")))), {
-    [nix.POS]: pos$13,
+    [nix.POS]: $pos[12],
     qtpim: nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       version: "5.0.0-beta1-unstable-2020-10-01",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           owner: "qt",
           repo: "qtpim",
           rev: "f9a8f0fc914c040d48bbd0ef52d7a68eea175a98",
@@ -53,19 +41,19 @@ export default nix.lambda((args) => (() => {
     qtpositioning: nix.thunk(() => (() => {
       const version_1 = "5.15.2";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           owner: "qt",
           repo: "qtpositioning",
           rev: nix.thunk(() => nix.str`v${version_1}`),
           hash: "sha256-L/P+yAQItm3taPpCNoOOm7PNdOFZiIwJJYflk6JDWvU=",
         }))));
-      return { [nix.POS]: pos$6, version: version_1, src };
+      return { [nix.POS]: $pos[5], version: version_1, src };
     })()),
     qtsystems: nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       version: "unstable-2019-01-03",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           owner: "qt",
           repo: "qtsystems",
           rev: "e3332ee38d27a134cef6621fdaf36687af1b6f4a",
@@ -75,25 +63,25 @@ export default nix.lambda((args) => (() => {
     qtscript: nix.thunk(() => (() => {
       const version_1 = "5.15.19";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           owner: "qt",
           repo: "qtscript",
           rev: nix.thunk(() => nix.str`v${version_1}-lts`),
           hash: "sha256-kUY8uSEoHqQVPd4s5BoAW6n1hGXQOQcberqWF6rK60w=",
         }))));
-      return { [nix.POS]: pos$10, version: version_1, src };
+      return { [nix.POS]: $pos[9], version: version_1, src };
     })()),
     qtwebengine: nix.thunk(() => (() => {
       const version_1 = "5.15.19";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$11,
+          [nix.POS]: $pos[10],
           owner: "qt",
           repo: "qtwebengine",
           rev: nix.thunk(() => nix.str`v${version_1}-lts`),
           hash: "sha256-/R4dF1nu40uH8POmx+7xnwaLNZZVgOSY3mSZLMbtvF4=",
           fetchSubmodules: true,
         }))));
-      return { [nix.POS]: pos$12, version: version_1, src };
+      return { [nix.POS]: $pos[11], version: version_1, src };
     })()),
   });
 })(), formals$1);

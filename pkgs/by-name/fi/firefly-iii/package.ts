@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 20, 5], ["stripRoot", 21, 5], ["hash", 22, 5]], [["owner", 31, 5], ["repo", 32, 5], ["tag", 33, 5], ["hash", 34, 5]], [["pname", 49, 26], ["src", 49, 32], ["version", 49, 36], ["composerStrictValidation", 50, 5], ["strictDeps", 51, 5], ["vendorHash", 52, 5]], [["src", 56, 26], ["name", 57, 5], ["hash", 58, 5]], [["extraArgs", 70, 7]], [["releaseTarball", 66, 13], ["phpPackage", 67, 5], ["tests", 68, 5], ["updateScript", 69, 5]], [["changelog", 90, 5], ["description", 91, 5], ["homepage", 92, 5], ["license", 93, 5], ["maintainers", 94, 5], ["hydraPlatforms", 98, 5]], [["pname", 26, 3], ["version", 27, 11], ["__structuredAttrs", 28, 3], ["src", 30, 3], ["buildInputs", 37, 3], ["nativeBuildInputs", 39, 3], ["composerVendor", 48, 3], ["npmDeps", 55, 3], ["preInstall", 61, 3], ["passthru", 65, 3], ["postInstall", 77, 3], ["meta", 89, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, fetchzip: false, stdenvNoCC: false, "nodejs-slim": false, fetchNpmDeps: false, buildPackages: false, php85: false, nixosTests: false, "nix-update-script": false, dataDir: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 20, 5], ["stripRoot", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 31, 5], ["repo", 32, 5], ["tag", 33, 5], ["hash", 34, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 49, 26], ["src", 49, 32], ["version", 49, 36], ["composerStrictValidation", 50, 5], ["strictDeps", 51, 5], ["vendorHash", 52, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["src", 56, 26], ["name", 57, 5], ["hash", 58, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["extraArgs", 70, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["releaseTarball", 66, 13], ["phpPackage", 67, 5], ["tests", 68, 5], ["updateScript", 69, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["changelog", 90, 5], ["description", 91, 5], ["homepage", 92, 5], ["license", 93, 5], ["maintainers", 94, 5], ["hydraPlatforms", 98, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 26, 3], ["version", 27, 11], ["__structuredAttrs", 28, 3], ["src", 30, 3], ["buildInputs", 37, 3], ["nativeBuildInputs", 39, 3], ["composerVendor", 48, 3], ["npmDeps", 55, 3], ["preInstall", 61, 3], ["passthru", 65, 3], ["postInstall", 77, 3], ["meta", 89, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,18 +21,18 @@ export default nix.lambda((args) => (() => {
   const php = php85;
   const version = "6.7.7";
   const releaseTarball = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: nix.thunk(() => nix.str`https://github.com/firefly-iii/firefly-iii/releases/download/v${version}/FireflyIII-v${version}.tar.gz`),
       stripRoot: false,
       hash: "sha256-ejXSfrsmHfbR5KpVo9VxXEsJWZ2ejS55JPl9P/6QzH8=",
     }))));
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "firefly-iii",
       version: version,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "firefly-iii",
           repo: "firefly-iii",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -55,7 +48,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.sel(php, "composerHooks2", "composerInstallHook")),
       ]),
       composerVendor: nix.thunk(() => nix.app(nix.sel(php, "mkComposerVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
@@ -64,19 +57,19 @@ export default nix.lambda((args) => (() => {
           vendorHash: "sha256-WxBC8zg954mYoCuXOJh+UFXFU7fXAZcfpwWPxbUWXao=",
         })))),
       npmDeps: nix.thunk(() => nix.app(fetchNpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           name: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-${nix.sel(finalAttrs, "version")}-npm-deps`),
           hash: "sha256-8OBn/SM9ccJ0viA7edDiSz9HX+r92SmQZY+0gX6UgPc=",
         })))),
       preInstall: "npm run build --workspace=v3\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         releaseTarball: releaseTarball,
         phpPackage: php,
         tests: nix.thunk(() => nix.sel(nixosTests, "firefly-iii")),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             extraArgs: nix.thunk(() => ["--version-regex", "v(\\d+\\.\\d+\\.\\d+)"]),
           })))),
       })),
@@ -91,7 +84,7 @@ ln -s ${dataDir}/storage $out/storage
 ln -s ${dataDir}/cache $out/bootstrap/cache
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         changelog: nix.thunk(() => nix.str`https://github.com/firefly-iii/firefly-iii/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "Firefly III: a personal finances manager",
         homepage: "https://github.com/firefly-iii/firefly-iii",

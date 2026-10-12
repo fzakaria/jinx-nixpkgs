@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 33, 5], ["repo", 34, 5], ["tag", 35, 5], ["sha256", 36, 5]], [["description", 86, 5], ["mainProgram", 87, 5], ["homepage", 88, 5], ["changelog", 89, 5], ["license", 90, 5], ["maintainers", 91, 5]], [["pname", 28, 3], ["version", 29, 3], ["pyproject", 30, 3], ["src", 32, 3], ["patches", 39, 3], ["postPatch", 41, 3], ["pythonRelaxDeps", 46, 3], ["build-system", 48, 3], ["dependencies", 50, 3], ["nativeCheckInputs", 65, 3], ["disabledTests", 69, 3], ["pythonImportsCheck", 83, 3], ["meta", 85, 3]]]);
 const formals$1 = { args: { lib: false, pkgs: false, fetchFromGitHub: false, buildPythonPackage: false, setuptools: false, chardet: false, click: false, numpy: false, "opencv-python-headless": false, openpyxl: false, pandas: false, "pdfminer-six": false, pillow: false, pypdf: false, pypdfium2: false, tabulate: false, pytestCheckHook: false, matplotlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 33, 5], ["repo", 34, 5], ["tag", 35, 5], ["sha256", 36, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 86, 5], ["mainProgram", 87, 5], ["homepage", 88, 5], ["changelog", 89, 5], ["license", 90, 5], ["maintainers", 91, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 28, 3], ["version", 29, 3], ["pyproject", 30, 3], ["src", 32, 3], ["patches", 39, 3], ["postPatch", 41, 3], ["pythonRelaxDeps", 46, 3], ["build-system", 48, 3], ["dependencies", 50, 3], ["nativeCheckInputs", 65, 3], ["disabledTests", 69, 3], ["pythonImportsCheck", 83, 3], ["meta", 85, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,12 +26,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const matplotlib = nix.arg($, "matplotlib");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "camelot-py",
       version: "1.0.9",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "camelot-dev",
           repo: "camelot",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -71,7 +69,7 @@ export default nix.lambda((args) => (() => {
       ]),
       pythonImportsCheck: nix.thunk(() => ["camelot"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Python library to extract tabular data from PDFs",
         mainProgram: "camelot",
         homepage: "http://camelot-py.readthedocs.io",

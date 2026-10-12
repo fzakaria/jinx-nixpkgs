@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 21, 5], ["sha256", 22, 5]], [["url", 28, 7], ["sha256", 29, 7]], [["packageName", 35, 7], ["versionPolicy", 36, 7]], [["updateScript", 34, 5]], [["homepage", 60, 5], ["description", 61, 5], ["teams", 62, 5], ["license", 63, 5], ["platforms", 64, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["patches", 25, 3], ["passthru", 33, 3], ["strictDeps", 40, 3], ["depsBuildBuild", 41, 3], ["nativeBuildInputs", 42, 3], ["buildInputs", 50, 3], ["mesonFlags", 55, 3], ["meta", 59, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchpatch: false, fetchurl: false, meson: false, ninja: false, "pkg-config": false, gettext: false, libxml2: false, "gobject-introspection": false, gnome: false, glib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 21, 5], ["sha256", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 28, 7], ["sha256", 29, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["packageName", 35, 7], ["versionPolicy", 36, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 34, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["homepage", 60, 5], ["description", 61, 5], ["teams", 62, 5], ["license", 63, 5], ["platforms", 64, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["patches", 25, 3], ["passthru", 33, 3], ["strictDeps", 40, 3], ["depsBuildBuild", 41, 3], ["nativeBuildInputs", 42, 3], ["buildInputs", 50, 3], ["mesonFlags", 55, 3], ["meta", 59, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,20 +23,20 @@ export default nix.lambda((args) => (() => {
       const pname = "totem-pl-parser";
       const version = "3.26.7";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnome/sources/totem-pl-parser/${nix.app(nix.sel(lib, "versions", "majorMinor"), version)}/totem-pl-parser-${version}.tar.xz`),
           sha256: "YNUXwayr5UrjN/ZEUSZPx2cwaW6q4mtUgPs3FmaJtfM=",
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://gitlab.gnome.org/GNOME/totem-pl-parser/-/commit/f4f69c9b99095416aaed18a73f7486ad9eb04aa9.patch",
             sha256: "sha256-Uya5fgFgauv5rIpVK3CDGCieyMus7VjcLMMe/vQ2WWY=",
           })))),
       ]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$3, packageName: pname, versionPolicy: "odd-unstable" })))),
+        [nix.POS]: $pos[3],
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: $pos[2], packageName: pname, versionPolicy: "odd-unstable" })))),
       }));
       const strictDeps = true;
       const depsBuildBuild = nix.thunk(() => [pkg_config]);
@@ -49,7 +44,7 @@ export default nix.lambda((args) => (() => {
       const buildInputs = nix.thunk(() => [libxml2, glib]);
       const mesonFlags = nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.eq(nix.sel(stdenv, "buildPlatform"), nix.sel(stdenv, "hostPlatform"))), nix.thunk(() => ["-Dintrospection=false"])));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "https://gitlab.gnome.org/GNOME/totem-pl-parser",
         description: "Simple GObject-based library to parse and save a host of playlist formats",
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "gnome"))]),
@@ -57,7 +52,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname,
         version,
         src,

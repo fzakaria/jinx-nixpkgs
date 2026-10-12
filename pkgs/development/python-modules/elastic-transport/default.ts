@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]], [["url", 38, 7], ["hash", 39, 7]], [["description", 91, 5], ["homepage", 92, 5], ["changelog", 93, 5], ["license", 94, 5], ["maintainers", 95, 5]], [["pname", 24, 3], ["version", 25, 3], ["pyproject", 26, 3], ["src", 28, 3], ["patches", 36, 3], ["build-system", 43, 3], ["dependencies", 45, 3], ["nativeCheckInputs", 50, 3], ["pythonImportsCheck", 65, 3], ["pytestFlags", 67, 3], ["disabledTests", 71, 3], ["meta", 90, 3]]]);
 const formals$1 = { args: { lib: false, aiohttp: false, buildPythonPackage: false, certifi: false, fetchFromGitHub: false, fetchpatch: false, mock: false, "opentelemetry-api": false, "opentelemetry-sdk": false, orjson: false, "pytest-asyncio": false, "pytest-cov-stub": false, "pytest-httpserver": false, pytestCheckHook: false, requests: false, respx: false, setuptools: false, trustme: false, urllib3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["url", 38, 7], ["hash", 39, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 91, 5], ["homepage", 92, 5], ["changelog", 93, 5], ["license", 94, 5], ["maintainers", 95, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 24, 3], ["version", 25, 3], ["pyproject", 26, 3], ["src", 28, 3], ["patches", 36, 3], ["build-system", 43, 3], ["dependencies", 45, 3], ["nativeCheckInputs", 50, 3], ["pythonImportsCheck", 65, 3], ["pytestFlags", 67, 3], ["disabledTests", 71, 3], ["meta", 90, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const version = "8.17.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "elastic",
           repo: "elastic-transport-python",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -42,7 +39,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/elastic/elastic-transport-python/commit/d749d0be54821e81979888ff34b1451354548863.patch",
             hash: "sha256-FrabqeLn3Sr1sg/lWWYsMPd0CZS/6BZYLnaK66T93BQ=",
           })))),
@@ -83,7 +80,7 @@ export default nix.lambda((args) => (() => {
         "test_async_transport_httpbin",
       ]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Transport classes and utilities shared among Python Elastic client libraries",
         homepage: "https://github.com/elastic/elastic-transport-python",
         changelog: nix.thunk(() => nix.str`https://github.com/elastic/elastic-transport-python/releases/tag/${nix.sel(src, "tag")}`),
@@ -94,7 +91,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

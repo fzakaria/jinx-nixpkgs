@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 40, 5], ["repo", 41, 5], ["rev", 42, 5], ["hash", 43, 5]], [["description", 88, 5], ["homepage", 90, 5], ["license", 91, 5], ["platforms", 92, 5], ["teams", 93, 5]], [["pname", 36, 3], ["version", 37, 3], ["src", 39, 3], ["nativeBuildInputs", 46, 3], ["mesonFlags", 56, 3], ["buildInputs", 61, 3], ["postInstall", 75, 3], ["preFixup", 81, 3], ["meta", 87, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, glib: false, "gobject-introspection": false, intltool: false, "shared-mime-info": false, gtk3: false, wrapGAppsHook3: false, libarchive: false, libxml2: false, xapp: false, "xapp-symbolic-icons": false, meson: false, "pkg-config": false, cairo: false, libsecret: false, poppler: false, libspectre: false, libgxps: false, ninja: false, djvulibre: false, backends: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 40, 5], ["repo", 41, 5], ["rev", 42, 5], ["hash", 43, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 88, 5], ["homepage", 90, 5], ["license", 91, 5], ["platforms", 92, 5], ["teams", 93, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 36, 3], ["version", 37, 3], ["src", 39, 3], ["nativeBuildInputs", 46, 3], ["mesonFlags", 56, 3], ["buildInputs", 61, 3], ["postInstall", 75, 3], ["preFixup", 81, 3], ["meta", 87, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,11 +31,11 @@ export default nix.lambda((args) => (() => {
   const djvulibre = nix.arg($, "djvulibre");
   const backends = nix.argOr($, "backends", () => ["pdf", "ps", "djvu", "tiff", "pixbuf", "comics", "xps"]);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "xreader",
       version: "4.6.9",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "linuxmint",
           repo: "xreader",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -72,7 +70,7 @@ export default nix.lambda((args) => (() => {
 )
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Document viewer capable of displaying multiple and single page\ndocument formats like PDF and Postscript",
         homepage: "https://github.com/linuxmint/xreader",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["sha256", 23, 5]], [["description", 67, 5], ["homepage", 68, 5], ["license", 69, 5], ["platforms", 70, 5], ["maintainers", 71, 5], ["mainProgram", 72, 5]], [["pname", 15, 3], ["version", 16, 3], ["format", 17, 3], ["src", 19, 3], ["postPatch", 26, 3], ["preBuild", 32, 3], ["nativeBuildInputs", 36, 3], ["propagatedBuildInputs", 41, 3], ["strictDeps", 54, 3], ["doCheck", 57, 3], ["pythonImportsCheck", 59, 3], ["preFixup", 61, 3], ["meta", 66, 3]]]);
 const formals$1 = { args: { lib: false, python3Packages: false, fetchFromGitHub: false, wrapGAppsHook3: false, "gobject-introspection": false, libpulseaudio: false, glib: false, gtk3: false, pango: false, libxfixes: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["sha256", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 67, 5], ["homepage", 68, 5], ["license", 69, 5], ["platforms", 70, 5], ["maintainers", 71, 5], ["mainProgram", 72, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["format", 17, 3], ["src", 19, 3], ["postPatch", 26, 3], ["preBuild", 32, 3], ["nativeBuildInputs", 36, 3], ["propagatedBuildInputs", 41, 3], ["strictDeps", 54, 3], ["doCheck", 57, 3], ["pythonImportsCheck", 59, 3], ["preFixup", 61, 3], ["meta", 66, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.9.5";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "buzz",
           repo: "volctl",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -54,7 +52,7 @@ export default nix.lambda((args) => (() => {
 gappsWrapperArgs+=(--prefix LD_LIBRARY_PATH : "${libpulseaudio}/lib")
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "PulseAudio enabled volume control featuring per-app sliders",
         homepage: "https://buzz.github.io/volctl/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),
@@ -63,7 +61,7 @@ gappsWrapperArgs+=(--prefix LD_LIBRARY_PATH : "${libpulseaudio}/lib")
         mainProgram: "volctl",
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         format,

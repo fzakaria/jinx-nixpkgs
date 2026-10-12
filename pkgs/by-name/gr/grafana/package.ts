@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 33, 5], ["repo", 34, 5], ["rev", 35, 5], ["hash", 36, 5]], [["CYPRESS_INSTALL_BINARY", 41, 5], ["PUPPETEER_SKIP_DOWNLOAD", 42, 5], ["NODE_OPTIONS", 45, 5]], [["src", 51, 26], ["missingHashes", 51, 30], ["hash", 52, 5]], [["nativeBuildInputs", 95, 7]], [["grafana", 153, 36]], [["tests", 153, 5], ["updateScript", 154, 5]], [["description", 158, 5], ["license", 159, 5], ["homepage", 160, 5], ["maintainers", 161, 5], ["platforms", 168, 5], ["mainProgram", 174, 5]], [["pname", 23, 3], ["version", 24, 3], ["subPackages", 26, 3], ["src", 32, 3], ["env", 40, 3], ["missingHashes", 48, 3], ["offlineCache", 50, 3], ["disallowedRequisites", 55, 3], ["vendorHash", 57, 3], ["postPatch", 69, 3], ["proxyVendor", 73, 3], ["depsBuildBuild", 75, 3], ["nativeBuildInputs", 77, 3], ["overrideModAttrs", 93, 3], ["postConfigure", 101, 3], ["postBuild", 117, 3], ["ldflags", 125, 3], ["__darwinAllowLocalNetworking", 133, 3], ["preCheck", 137, 3], ["postInstall", 141, 3], ["postFixup", 146, 3], ["passthru", 152, 3], ["meta", 157, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildGoModule: false, fetchFromGitHub: false, removeReferencesTo: false, tzdata: false, wire: false, "yarn-berry_4": false, "yarn-berry_4-fetcher": false, buildPackages: false, python3: false, jq: false, moreutils: false, "nix-update-script": false, nixosTests: false, xcbuild: false, faketty: false, nodejs: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 33, 5], ["repo", 34, 5], ["rev", 35, 5], ["hash", 36, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["CYPRESS_INSTALL_BINARY", 41, 5], ["PUPPETEER_SKIP_DOWNLOAD", 42, 5], ["NODE_OPTIONS", 45, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["src", 51, 26], ["missingHashes", 51, 30], ["hash", 52, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["nativeBuildInputs", 95, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["grafana", 153, 36]]);
-const pos$6 = nix.positions(here + "/package.nix", [["tests", 153, 5], ["updateScript", 154, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["description", 158, 5], ["license", 159, 5], ["homepage", 160, 5], ["maintainers", 161, 5], ["platforms", 168, 5], ["mainProgram", 174, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 23, 3], ["version", 24, 3], ["subPackages", 26, 3], ["src", 32, 3], ["env", 40, 3], ["missingHashes", 48, 3], ["offlineCache", 50, 3], ["disallowedRequisites", 55, 3], ["vendorHash", 57, 3], ["postPatch", 69, 3], ["proxyVendor", 73, 3], ["depsBuildBuild", 75, 3], ["nativeBuildInputs", 77, 3], ["overrideModAttrs", 93, 3], ["postConfigure", 101, 3], ["postBuild", 117, 3], ["ldflags", 125, 3], ["__darwinAllowLocalNetworking", 133, 3], ["preCheck", 137, 3], ["postInstall", 141, 3], ["postFixup", 146, 3], ["passthru", 152, 3], ["meta", 157, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,26 +26,26 @@ export default nix.lambda((args) => (() => {
   const faketty = nix.arg($, "faketty");
   const nodejs = nix.arg($, "nodejs");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "grafana",
       version: "13.2.3",
       subPackages: nix.thunk(() => ["pkg/cmd/grafana", "pkg/cmd/grafana-server", "pkg/cmd/grafana-cli"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "grafana",
           repo: "grafana",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-ySpywbu/JzuzvI9iVDXuzBu/nIAICr2e8raOeeie1YE=",
         })))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         CYPRESS_INSTALL_BINARY: 0n,
         PUPPETEER_SKIP_DOWNLOAD: 1n,
         NODE_OPTIONS: "--max_old_space_size=4096",
       })),
       missingHashes: nix.path(here, "./missing-hashes.json"),
       offlineCache: nix.thunk(() => nix.app(nix.sel(buildPackages, "yarn-berry_4-fetcher", "fetchYarnBerryDeps"), nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           missingHashes: nix.thunk(() => nix.attr(finalAttrs, "missingHashes")),
           hash: "sha256-rDH/PUHcbPEivSE5BecDaRgW56EPpLPbV1dd7UbgPaA=",
@@ -75,7 +68,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.sel(yarn_berry_4_fetcher, "yarnBerryConfigHook")),
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [nix.thunk(() => nix.sel(xcbuild, "xcbuild"))])))),
       overrideModAttrs: (old) => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         nativeBuildInputs: nix.thunk(() => nix.app(nix.sel(lib, "filter"), (x) => !nix.eq(nix.app(nix.sel(lib, "getName"), x), nix.app(nix.sel(lib, "getName"), nix.thunk(() => nix.sel(buildPackages, "yarn-berry_4-fetcher", "yarnBerryConfigHook")))), nix.thunk(() => nix.sel(old, "nativeBuildInputs")))),
       }),
       postConfigure: "# Generate DI code that's required to compile the package.\n# From https://github.com/grafana/grafana/blob/v8.2.3/Makefile#L33-L35\nwire gen -tags oss ./pkg/server\nwire gen -tags oss ./pkg/cmd/grafana-cli/runner\n\n# ```\n# go-1.25.4/share/go/pkg/tool/linux_amd64/link: running aarch64-unknown-linux-gnu-gcc failed: exit status 1\n# aarch64-unknown-linux-gnu-gcc -m64 -s -o $WORK/b001/exe/gen -rdynamic /build/go-link-507658645/go.o\n# aarch64-unknown-linux-gnu-gcc: error: unrecognized command-line option '-m64'\n# ```\n# Above log is due to https://github.com/golang/go/blob/b194f5d24a71e34f147c90e4351d80ac75be55de/src/cmd/cgo/gcc.go#L1763\nCC=\"$CC_FOR_BUILD\" LD=\"$CC_FOR_BUILD\" GOOS= GOARCH= CGO_ENABLED=0 go generate ./kinds/gen.go\nCC=\"$CC_FOR_BUILD\" LD=\"$LD_FOR_BUILD\" GOOS= GOARCH= CGO_ENABLED=0 go generate ./public/app/plugins/gen.go\n",
@@ -91,12 +84,15 @@ export default nix.lambda((args) => (() => {
       postInstall: "mkdir -p $out/share/grafana\ncp -r public conf $out/share/grafana/\n",
       postFixup: "while read line; do\n  remove-references-to -t $offlineCache \"$line\"\ndone < <(find $out -type f -name '*.js.map' -or -name '*.js')\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$5, grafana: nix.thunk(() => nix.attr(nixosTests, "grafana")) })),
+        [nix.POS]: $pos[5],
+        tests: nix.thunk(() => ({
+          [nix.POS]: $pos[4],
+          grafana: nix.thunk(() => nix.attr(nixosTests, "grafana")),
+        })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "Gorgeous metric viz, dashboards & editors for Graphite, InfluxDB & OpenTSDB",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),
         homepage: "https://grafana.com",

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]], [["extras", 49, 5]], [["description", 61, 5], ["homepage", 62, 5], ["changelog", 63, 5], ["license", 64, 5], ["maintainers", 65, 5]], [["pname", 19, 3], ["version", 20, 3], ["pyproject", 21, 3], ["src", 23, 3], ["postPatch", 30, 3], ["build-system", 35, 3], ["dependencies", 37, 3], ["optional-dependencies", 48, 3], ["doCheck", 56, 3], ["pythonImportsCheck", 58, 3], ["meta", 60, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, dateparser: false, defusedxml: false, fetchFromGitHub: false, geomet: false, geopandas: false, kml2geojson: false, pyshp: false, pyyaml: false, requests: false, "setuptools-scm": false, shapely: false, "scikit-learn": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["extras", 49, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 61, 5], ["homepage", 62, 5], ["changelog", 63, 5], ["license", 64, 5], ["maintainers", 65, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 19, 3], ["version", 20, 3], ["pyproject", 21, 3], ["src", 23, 3], ["postPatch", 30, 3], ["build-system", 35, 3], ["dependencies", 37, 3], ["optional-dependencies", 48, 3], ["doCheck", 56, 3], ["pythonImportsCheck", 58, 3], ["meta", 60, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.0.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "asfadmin",
           repo: "Discovery-WKTUtils",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -47,11 +44,11 @@ export default nix.lambda((args) => (() => {
         pyyaml,
         shapely,
       ]);
-      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, extras: nix.thunk(() => [requests, scikit_learn]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: $pos[1], extras: nix.thunk(() => [requests, scikit_learn]) }));
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["WKTUtils"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Collection of tools for handling WKTs",
         homepage: "https://github.com/asfadmin/Discovery-WKTUtils",
         changelog: nix.thunk(() => nix.str`https://github.com/asfadmin/Discovery-WKTUtils/blob/v${version}/CHANGELOG.md`),
@@ -62,7 +59,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

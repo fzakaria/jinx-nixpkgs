@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["cargoBuildNoDefaultFeatures", 19, 39]], [["owner", 27, 7], ["repo", 28, 7], ["tag", 29, 7], ["hash", 30, 7]], [["description", 64, 7], ["homepage", 65, 7], ["license", 66, 7], ["maintainers", 67, 7]], [["pname", 22, 5], ["version", 24, 5], ["src", 26, 5], ["leanPackageName", 33, 5], ["leanDeps", 34, 5], ["nativeBuildInputs", 44, 5], ["postInstall", 50, 5], ["meta", 63, 5]], [["weak-minimax", 87, 30]], [["mathlib__archive", 77, 15], ["src", 79, 9], ["lakePackageName", 80, 9], ["lean4", 81, 9], ["allLeanDeps", 82, 9], ["computedLakeDeps", 83, 9], ["overrideLakeDepsAttrs", 84, 9], ["tests", 86, 7]], [["hydraPlatforms", 91, 7]], [["nativeBuildInputs", 74, 5], ["pname", 75, 32], ["version", 75, 38], ["passthru", 76, 5], ["meta", 90, 5]]]);
 const formals$1 = { args: { lib: false, buildLakePackage: false, runCommand: false, leangz: false, fetchFromGitHub: false, batteries: false, aesop: false, Qq: false, proofwidgets: false, plausible: false, LeanSearchClient: false, importGraph: false, tests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["cargoBuildNoDefaultFeatures", 19, 39]]);
-const pos$2 = nix.positions(here + "/default.nix", [["owner", 27, 7], ["repo", 28, 7], ["tag", 29, 7], ["hash", 30, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 64, 7], ["homepage", 65, 7], ["license", 66, 7], ["maintainers", 67, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 22, 5], ["version", 24, 5], ["src", 26, 5], ["leanPackageName", 33, 5], ["leanDeps", 34, 5], ["nativeBuildInputs", 44, 5], ["postInstall", 50, 5], ["meta", 63, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["weak-minimax", 87, 30]]);
-const pos$6 = nix.positions(here + "/default.nix", [["mathlib__archive", 77, 15], ["src", 79, 9], ["lakePackageName", 80, 9], ["lean4", 81, 9], ["allLeanDeps", 82, 9], ["computedLakeDeps", 83, 9], ["overrideLakeDepsAttrs", 84, 9], ["tests", 86, 7]]);
-const pos$7 = nix.positions(here + "/default.nix", [["hydraPlatforms", 91, 7]]);
-const pos$8 = nix.positions(here + "/default.nix", [["nativeBuildInputs", 74, 5], ["pname", 75, 32], ["version", 75, 38], ["passthru", 76, 5], ["meta", 90, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,13 +20,13 @@ export default nix.lambda((args) => (() => {
   const LeanSearchClient = nix.arg($, "LeanSearchClient");
   const importGraph = nix.arg($, "importGraph");
   const tests = nix.arg($, "tests");
-  const leangz_raw = nix.thunk(() => nix.app(nix.sel(leangz, "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: pos$1, cargoBuildNoDefaultFeatures: true }))));
+  const leangz_raw = nix.thunk(() => nix.app(nix.sel(leangz, "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: $pos[0], cargoBuildNoDefaultFeatures: true }))));
   const mathlib__archive = nix.thunk(() => nix.app(buildLakePackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "lean4-mathlib",
       version: "4.34.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "leanprover-community",
           repo: "mathlib4",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -44,7 +37,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [leangz_raw]),
       postInstall: "local lib=\"$out/.lake/build/lib/lean\"\nlocal ir=\"$out/.lake/build/ir\"\nfind \"$lib\" -name '*.trace' -print0 \\\n  | xargs -0 -P\"$NIX_BUILD_CORES\" -I{} bash -c '\n      base=\"${1%.trace}\"; rel=\"${base#'\"$lib\"'/}\"\n      leantar -C \"'\"$lib\"'\" -C \"'\"$ir\"'\" \"$base.ltar\" \\\n        \"$rel.trace\" \"$rel.olean\" \"$rel.olean.server\" \"$rel.olean.private\" \\\n        \"$rel.ilean\" -i 1 \"$rel.c\"\n      rm \"$base\".{trace,olean,olean.server,olean.private,ilean} \"'\"$ir\"'/$rel.c\"\n    ' _ {}\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Mathematical library for Lean 4",
         homepage: "https://github.com/leanprover-community/mathlib4",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -55,12 +48,12 @@ export default nix.lambda((args) => (() => {
       })),
     })));
   return nix.app(runCommand, nix.thunk(() => nix.sel(mathlib__archive, "name")), nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       nativeBuildInputs: nix.thunk(() => [leangz_raw]),
       pname: nix.thunk(() => nix.attr(mathlib__archive, "pname")),
       version: nix.thunk(() => nix.attr(mathlib__archive, "version")),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         mathlib__archive: mathlib__archive,
         src: nix.thunk(() => nix.attr(mathlib__archive, "src")),
         lakePackageName: nix.thunk(() => nix.attr(mathlib__archive, "lakePackageName")),
@@ -71,12 +64,12 @@ export default nix.lambda((args) => (() => {
         tests: nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(tests, "lake"));
           return {
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           "weak-minimax": nix.thunk(() => nix.attr(from, "weak-minimax")),
         };
         })()),
       })),
-      meta: nix.thunk(() => nix.update(nix.sel(mathlib__archive, "meta"), { [nix.POS]: pos$7, hydraPlatforms: [] })),
+      meta: nix.thunk(() => nix.update(nix.sel(mathlib__archive, "meta"), { [nix.POS]: $pos[6], hydraPlatforms: [] })),
     })), nix.thunk(() => nix.str`mkdir -p $out
 cp -rT ${mathlib__archive} $out
 chmod -R u+w $out

@@ -2,102 +2,66 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/startx.nix", [[["maintainers", 7, 10]], [["autologinUser", 12, 24]], [["configFile", 31, 19]], [["enable", 25, 13], ["configFile", 26, 13], ["sxhkd", 31, 13]], [["bspwm", 24, 25]], [["enable", 41, 13], ["generateScript", 42, 13], ["extraCommands", 43, 13]], [["startx", 40, 26]], [["enable", 23, 11], ["windowManager", 24, 11], ["displayManager", 40, 11]], [["enable", 54, 25]], [["getty", 12, 18], ["xserver", 22, 18], ["urxvtd", 54, 18]], [["systemPackages", 14, 21]], [["promptInit", 19, 23]], [["enable", 55, 27]], [["bash", 19, 18], ["xss-lock", 55, 18]], [["enable", 53, 25]], [["polkit", 53, 18]], [["services", 12, 9], ["environment", 14, 9], ["programs", 19, 9], ["security", 53, 9]], [["machine", 9, 11]], [["name", 6, 5], ["meta", 7, 5], ["nodes", 9, 5], ["testScript", 58, 5]], [["maintainers", 114, 10]], [["autologinUser", 119, 24]], [["enable", 125, 29]], [["twm", 125, 25]], [["enable", 126, 33], ["generateScript", 127, 33]], [["startx", 126, 26]], [["enable", 124, 11], ["windowManager", 125, 11], ["displayManager", 126, 11]], [["enable", 132, 25]], [["getty", 119, 18], ["xserver", 123, 18], ["urxvtd", 132, 18]], [["promptInit", 120, 23]], [["enable", 133, 27]], [["bash", 120, 18], ["xss-lock", 133, 18]], [["enable", 131, 25]], [["polkit", 131, 18]], [["services", 119, 9], ["programs", 120, 9], ["security", 131, 9]], [["machine", 116, 11]], [["name", 113, 5], ["meta", 114, 5], ["nodes", 116, 5], ["testScript", 136, 5]], [["declarative", 5, 3], ["imperative", 112, 3]]]);
 const formals$1 = { args: { pkgs: false, runTest: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/startx.nix", [["maintainers", 7, 10]]);
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/startx.nix", [["autologinUser", 12, 24]]);
-const pos$3 = nix.positions(here + "/startx.nix", [["configFile", 31, 19]]);
-const pos$4 = nix.positions(here + "/startx.nix", [["enable", 25, 13], ["configFile", 26, 13], ["sxhkd", 31, 13]]);
-const pos$5 = nix.positions(here + "/startx.nix", [["bspwm", 24, 25]]);
-const pos$6 = nix.positions(here + "/startx.nix", [["enable", 41, 13], ["generateScript", 42, 13], ["extraCommands", 43, 13]]);
-const pos$7 = nix.positions(here + "/startx.nix", [["startx", 40, 26]]);
-const pos$8 = nix.positions(here + "/startx.nix", [["enable", 23, 11], ["windowManager", 24, 11], ["displayManager", 40, 11]]);
-const pos$9 = nix.positions(here + "/startx.nix", [["enable", 54, 25]]);
-const pos$10 = nix.positions(here + "/startx.nix", [["getty", 12, 18], ["xserver", 22, 18], ["urxvtd", 54, 18]]);
-const pos$11 = nix.positions(here + "/startx.nix", [["systemPackages", 14, 21]]);
-const pos$12 = nix.positions(here + "/startx.nix", [["promptInit", 19, 23]]);
-const pos$13 = nix.positions(here + "/startx.nix", [["enable", 55, 27]]);
-const pos$14 = nix.positions(here + "/startx.nix", [["bash", 19, 18], ["xss-lock", 55, 18]]);
-const pos$15 = nix.positions(here + "/startx.nix", [["enable", 53, 25]]);
-const pos$16 = nix.positions(here + "/startx.nix", [["polkit", 53, 18]]);
-const pos$17 = nix.positions(here + "/startx.nix", [["services", 12, 9], ["environment", 14, 9], ["programs", 19, 9], ["security", 53, 9]]);
-const pos$18 = nix.positions(here + "/startx.nix", [["machine", 9, 11]]);
-const pos$19 = nix.positions(here + "/startx.nix", [["name", 6, 5], ["meta", 7, 5], ["nodes", 9, 5], ["testScript", 58, 5]]);
-const pos$20 = nix.positions(here + "/startx.nix", [["maintainers", 114, 10]]);
 const formals$3 = { args: { pkgs: false }, ellipsis: true };
-const pos$21 = nix.positions(here + "/startx.nix", [["autologinUser", 119, 24]]);
-const pos$22 = nix.positions(here + "/startx.nix", [["enable", 125, 29]]);
-const pos$23 = nix.positions(here + "/startx.nix", [["twm", 125, 25]]);
-const pos$24 = nix.positions(here + "/startx.nix", [["enable", 126, 33], ["generateScript", 127, 33]]);
-const pos$25 = nix.positions(here + "/startx.nix", [["startx", 126, 26]]);
-const pos$26 = nix.positions(here + "/startx.nix", [["enable", 124, 11], ["windowManager", 125, 11], ["displayManager", 126, 11]]);
-const pos$27 = nix.positions(here + "/startx.nix", [["enable", 132, 25]]);
-const pos$28 = nix.positions(here + "/startx.nix", [["getty", 119, 18], ["xserver", 123, 18], ["urxvtd", 132, 18]]);
-const pos$29 = nix.positions(here + "/startx.nix", [["promptInit", 120, 23]]);
-const pos$30 = nix.positions(here + "/startx.nix", [["enable", 133, 27]]);
-const pos$31 = nix.positions(here + "/startx.nix", [["bash", 120, 18], ["xss-lock", 133, 18]]);
-const pos$32 = nix.positions(here + "/startx.nix", [["enable", 131, 25]]);
-const pos$33 = nix.positions(here + "/startx.nix", [["polkit", 131, 18]]);
-const pos$34 = nix.positions(here + "/startx.nix", [["services", 119, 9], ["programs", 120, 9], ["security", 131, 9]]);
-const pos$35 = nix.positions(here + "/startx.nix", [["machine", 116, 11]]);
-const pos$36 = nix.positions(here + "/startx.nix", [["name", 113, 5], ["meta", 114, 5], ["nodes", 116, 5], ["testScript", 136, 5]]);
-const pos$37 = nix.positions(here + "/startx.nix", [["declarative", 5, 3], ["imperative", 112, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   const runTest = nix.arg($, "runTest");
   return {
-    [nix.POS]: pos$37,
+    [nix.POS]: $pos[36],
     declarative: nix.thunk(() => nix.app(runTest, nix.thunk(() => ({
-        [nix.POS]: pos$19,
+        [nix.POS]: $pos[18],
         name: "startx",
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           maintainers: nix.thunk(() => (() => {
             const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
             return [nix.thunk(() => nix.lookup(w, "rnhmjoj"))];
           })()),
         })),
         nodes: nix.thunk(() => ({
-          [nix.POS]: pos$18,
+          [nix.POS]: $pos[17],
           machine: nix.lambda((args_1) => (() => {
             const $_1 = nix.formals(args_1, formals$2);
             const pkgs_1 = nix.arg($_1, "pkgs");
             return {
-              [nix.POS]: pos$17,
+              [nix.POS]: $pos[16],
               services: nix.thunk(() => ({
-                [nix.POS]: pos$10,
-                getty: nix.thunk(() => ({ [nix.POS]: pos$2, autologinUser: "root" })),
+                [nix.POS]: $pos[9],
+                getty: nix.thunk(() => ({ [nix.POS]: $pos[1], autologinUser: "root" })),
                 xserver: nix.thunk(() => ({
-                  [nix.POS]: pos$8,
+                  [nix.POS]: $pos[7],
                   enable: true,
                   windowManager: nix.thunk(() => ({
-                    [nix.POS]: pos$5,
+                    [nix.POS]: $pos[4],
                     bspwm: nix.thunk(() => ({
-                      [nix.POS]: pos$4,
+                      [nix.POS]: $pos[3],
                       enable: true,
                       configFile: nix.thunk(() => nix.app(nix.sel(pkgs_1, "writeShellScript"), "bspwrc", "bspc config border_width 2\nbspc config window_gap 12\nbspc rule -a xclock state=floating sticky=on\n")),
                       sxhkd: nix.thunk(() => ({
-                        [nix.POS]: pos$3,
+                        [nix.POS]: $pos[2],
                         configFile: nix.thunk(() => nix.app(nix.sel(pkgs_1, "writeText"), "sxhkdrc", "# open a terminal\nsuper + Return\n  urxvtc\n# quit bspwm\nsuper + alt + Escape\n  bspc quit\n")),
                       })),
                     })),
                   })),
                   displayManager: nix.thunk(() => ({
-                    [nix.POS]: pos$7,
+                    [nix.POS]: $pos[6],
                     startx: nix.thunk(() => ({
-                      [nix.POS]: pos$6,
+                      [nix.POS]: $pos[5],
                       enable: true,
                       generateScript: true,
                       extraCommands: "xrdb -load ~/.Xresources\nxsetroot -solid '#343d46'\nxsetroot -cursor_name trek\nxclock &\n",
                     })),
                   })),
                 })),
-                urxvtd: nix.thunk(() => ({ [nix.POS]: pos$9, enable: true })),
+                urxvtd: nix.thunk(() => ({ [nix.POS]: $pos[8], enable: true })),
               })),
               environment: nix.thunk(() => ({
-                [nix.POS]: pos$11,
+                [nix.POS]: $pos[10],
                 systemPackages: nix.thunk(() => (() => {
                   const w = nix.withScope(pkgs_1, null);
                   return [
@@ -107,13 +71,13 @@ export default nix.lambda((args) => (() => {
                 })()),
               })),
               programs: nix.thunk(() => ({
-                [nix.POS]: pos$14,
-                bash: nix.thunk(() => ({ [nix.POS]: pos$12, promptInit: "PS1='# '" })),
-                "xss-lock": nix.thunk(() => ({ [nix.POS]: pos$13, enable: true })),
+                [nix.POS]: $pos[13],
+                bash: nix.thunk(() => ({ [nix.POS]: $pos[11], promptInit: "PS1='# '" })),
+                "xss-lock": nix.thunk(() => ({ [nix.POS]: $pos[12], enable: true })),
               })),
               security: nix.thunk(() => ({
-                [nix.POS]: pos$16,
-                polkit: nix.thunk(() => ({ [nix.POS]: pos$15, enable: true })),
+                [nix.POS]: $pos[15],
+                polkit: nix.thunk(() => ({ [nix.POS]: $pos[14], enable: true })),
               })),
             };
           })(), formals$2),
@@ -121,47 +85,47 @@ export default nix.lambda((args) => (() => {
         testScript: "import textwrap\n\nsysu = \"env XDG_RUNTIME_DIR=/run/user/0 systemctl --user\";\nprompt = \"# \"\n\nwith subtest(\"Wait for the autologin\"):\n    machine.wait_until_tty_matches(\"1\", prompt)\n\nwith subtest(\"Setup dotfiles\"):\n    machine.execute(textwrap.dedent(\"\"\"\n      cat <<EOF > ~/.Xresources\n        urxvt*foreground: #9b9081\n        urxvt*background: #181b20\n        urxvt*scrollBar:  false\n        urxvt*title:      myterm\n        urxvt*geometry:   80x240+0+0\n        xclock*geometry:  164x164+24+440\n      EOF\n    \"\"\"))\n\nwith subtest(\"Can start the X server\"):\n    machine.send_chars(\"startx\\n\")\n    machine.wait_for_x()\n    machine.wait_for_window(\"xclock\")\n\nwith subtest(\"Graphical services are running\"):\n    machine.succeed(f\"{sysu} is-active graphical-session.target\")\n    machine.succeed(f\"{sysu} is-active urxvtd\")\n    machine.succeed(f\"{sysu} is-active xss-lock\")\n\nwith subtest(\"Can interact with the WM\"):\n    machine.wait_until_succeeds(\"pgrep sxhkd\")\n    machine.wait_until_succeeds(\"pgrep bspwm\")\n    # spawn some terminals\n    machine.send_key(\"meta_l-ret\", delay=0.5)\n    machine.send_key(\"meta_l-ret\", delay=0.5)\n    machine.send_key(\"meta_l-ret\", delay=0.5)\n    # Note: this tests that resources have beeen loaded\n    machine.wait_for_window(\"myterm\")\n    machine.screenshot(\"screenshot.png\")\n\nwith subtest(\"Can stop the X server\"):\n    # kill the WM\n    machine.send_key(\"meta_l-alt-esc\")\n    machine.wait_until_tty_matches(\"1\", prompt)\n\nwith subtest(\"Graphical session has stopped\"):\n    machine.fail(f\"{sysu} is-active graphical-session.target\")\n    machine.fail(f\"{sysu} is-active urxvtd\")\n    machine.fail(f\"{sysu} is-active xss-lock\")\n",
       })))),
     imperative: nix.thunk(() => nix.app(runTest, nix.thunk(() => ({
-        [nix.POS]: pos$36,
+        [nix.POS]: $pos[35],
         name: "startx-imperative",
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$20,
+          [nix.POS]: $pos[19],
           maintainers: nix.thunk(() => (() => {
             const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
             return [nix.thunk(() => nix.lookup(w, "rnhmjoj"))];
           })()),
         })),
         nodes: nix.thunk(() => ({
-          [nix.POS]: pos$35,
+          [nix.POS]: $pos[34],
           machine: nix.lambda((args_1) => (() => {
             const $_1 = nix.formals(args_1, formals$3);
             const pkgs_1 = nix.arg($_1, "pkgs");
             return {
-              [nix.POS]: pos$34,
+              [nix.POS]: $pos[33],
               services: nix.thunk(() => ({
-                [nix.POS]: pos$28,
-                getty: nix.thunk(() => ({ [nix.POS]: pos$21, autologinUser: "root" })),
+                [nix.POS]: $pos[27],
+                getty: nix.thunk(() => ({ [nix.POS]: $pos[20], autologinUser: "root" })),
                 xserver: nix.thunk(() => ({
-                  [nix.POS]: pos$26,
+                  [nix.POS]: $pos[25],
                   enable: true,
                   windowManager: nix.thunk(() => ({
-                    [nix.POS]: pos$23,
-                    twm: nix.thunk(() => ({ [nix.POS]: pos$22, enable: true })),
+                    [nix.POS]: $pos[22],
+                    twm: nix.thunk(() => ({ [nix.POS]: $pos[21], enable: true })),
                   })),
                   displayManager: nix.thunk(() => ({
-                    [nix.POS]: pos$25,
-                    startx: nix.thunk(() => ({ [nix.POS]: pos$24, enable: true, generateScript: false })),
+                    [nix.POS]: $pos[24],
+                    startx: nix.thunk(() => ({ [nix.POS]: $pos[23], enable: true, generateScript: false })),
                   })),
                 })),
-                urxvtd: nix.thunk(() => ({ [nix.POS]: pos$27, enable: true })),
+                urxvtd: nix.thunk(() => ({ [nix.POS]: $pos[26], enable: true })),
               })),
               programs: nix.thunk(() => ({
-                [nix.POS]: pos$31,
-                bash: nix.thunk(() => ({ [nix.POS]: pos$29, promptInit: "PS1='# '" })),
-                "xss-lock": nix.thunk(() => ({ [nix.POS]: pos$30, enable: true })),
+                [nix.POS]: $pos[30],
+                bash: nix.thunk(() => ({ [nix.POS]: $pos[28], promptInit: "PS1='# '" })),
+                "xss-lock": nix.thunk(() => ({ [nix.POS]: $pos[29], enable: true })),
               })),
               security: nix.thunk(() => ({
-                [nix.POS]: pos$33,
-                polkit: nix.thunk(() => ({ [nix.POS]: pos$32, enable: true })),
+                [nix.POS]: $pos[32],
+                polkit: nix.thunk(() => ({ [nix.POS]: $pos[31], enable: true })),
               })),
             };
           })(), formals$3),

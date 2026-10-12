@@ -2,11 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/nix-build.nix", [[["doCheck", 36, 5], ["dontInstall", 39, 5], ["useTempPrefix", 40, 5], ["showBuildStats", 42, 5], ["finalPhase", 44, 5], ["failureHook", 75, 5]], [["description", 152, 7]], [["name", 90, 5], ["postHook", 92, 5], ["preHook", 99, 5], ["postBuild", 117, 5], ["initPhase", 123, 5], ["prePhases", 136, 5], ["buildInputs", 138, 5], ["lcovFilter", 145, 5], ["lcovExtraTraceFiles", 147, 13], ["postPhases", 149, 5], ["meta", 151, 5]], [["preConfigure", 161, 7]]]);
 const formals$1 = { args: { buildOutOfSourceTree: true, preConfigure: true, doCoverageAnalysis: true, doClangAnalysis: true, doCoverityAnalysis: true, lcovFilter: true, lcovExtraTraceFiles: true, src: false, lib: false, stdenv: false, name: true, failureHook: true, prePhases: true, postPhases: true, buildInputs: true, preHook: true, postHook: true }, ellipsis: true };
-const pos$1 = nix.positions(here + "/nix-build.nix", [["doCheck", 36, 5], ["dontInstall", 39, 5], ["useTempPrefix", 40, 5], ["showBuildStats", 42, 5], ["finalPhase", 44, 5], ["failureHook", 75, 5]]);
-const pos$2 = nix.positions(here + "/nix-build.nix", [["description", 152, 7]]);
-const pos$3 = nix.positions(here + "/nix-build.nix", [["name", 90, 5], ["postHook", 92, 5], ["preHook", 99, 5], ["postBuild", 117, 5], ["initPhase", 123, 5], ["prePhases", 136, 5], ["buildInputs", 138, 5], ["lcovFilter", 145, 5], ["lcovExtraTraceFiles", 147, 13], ["postPhases", 149, 5], ["meta", 151, 5]]);
-const pos$4 = nix.positions(here + "/nix-build.nix", [["preConfigure", 161, 7]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,7 +27,7 @@ export default nix.lambda((args) => (() => {
   const postHook = nix.argOr($, "postHook", () => "");
   const doingAnalysis = nix.thunk(() => (nix.asBool((nix.asBool(doCoverageAnalysis) || nix.asBool(doClangAnalysis))) || nix.asBool(doCoverityAnalysis)));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => nix.update({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       doCheck: true,
       dontInstall: doingAnalysis,
       useTempPrefix: doingAnalysis,
@@ -66,7 +63,7 @@ fi
 `),
       failureHook: nix.thunk(() => nix.add(nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(failureHook, null)), failureHook), "if test -n \"$succeedOnFailure\"; then\n    if test -n \"$keepBuildDirectory\"; then\n        KEEPBUILDDIR=\"$out/`basename $TMPDIR`\"\n        echo \"Copying build directory to $KEEPBUILDDIR\"\n        mkdir -p $KEEPBUILDDIR\n        cp -R \"$TMPDIR/\"* $KEEPBUILDDIR\n    fi\nfi\n")),
     }, nix.update(nix.builtins.removeAttrs(args_1, nix.thunk(() => ["lib"])), nix.update({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       name: nix.thunk(() => nix.add(name, nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.has(src, "version")), nix.thunk(() => nix.str`-${nix.sel(src, "version")}`)))),
       postHook: nix.thunk(() => nix.str`. ${nix.path(here, "./functions.sh")}
 origSrc=$src
@@ -109,11 +106,11 @@ fi
       lcovExtraTraceFiles: lcovExtraTraceFiles,
       postPhases: nix.thunk(() => nix.concat(postPhases, ["finalPhase"])),
       meta: nix.thunk(() => nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.has(args_1, "meta")), nix.thunk(() => nix.sel(args_1, "meta"))), {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: nix.thunk(() => (nix.asBool(doCoverageAnalysis) ? "Coverage analysis" : nix.str`Nix package for ${nix.sel(stdenv, "hostPlatform", "system")}`)),
       })),
     }, nix.app(nix.sel(lib, "optionalAttrs"), buildOutOfSourceTree, nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         preConfigure: nix.thunk(() => nix.str`mkdir "../build"
 cd "../build"
 configureScript="../$sourceRoot/configure"

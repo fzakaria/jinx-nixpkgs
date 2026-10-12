@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]], [["pname", 27, 7], ["version", 28, 7], ["src", 29, 7], ["pnpmWorkspaces", 30, 7], ["pnpm", 32, 5], ["fetcherVersion", 33, 5], ["hash", 34, 5]], [["CI", 57, 7]], [["updateScript", 88, 12]], [["description", 91, 5], ["homepage", 92, 5], ["changelog", 93, 5], ["license", 94, 5], ["mainProgram", 95, 5], ["maintainers", 96, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["pnpmWorkspaces", 23, 3], ["pnpmDeps", 25, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 43, 3], ["buildPhase", 48, 3], ["env", 57, 3], ["installPhase", 59, 3], ["passthru", 88, 3], ["meta", 90, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, nodejs: false, pnpm_10: false, fetchPnpmDeps: false, pnpmConfigHook: false, fetchFromGitHub: false, gitMinimal: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 27, 7], ["version", 28, 7], ["src", 29, 7], ["pnpmWorkspaces", 30, 7], ["pnpm", 32, 5], ["fetcherVersion", 33, 5], ["hash", 34, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["CI", 57, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 88, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 91, 5], ["homepage", 92, 5], ["changelog", 93, 5], ["license", 94, 5], ["mainProgram", 95, 5], ["maintainers", 96, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["pnpmWorkspaces", 23, 3], ["pnpmDeps", 25, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 43, 3], ["buildPhase", 48, 3], ["env", 57, 3], ["installPhase", 59, 3], ["passthru", 88, 3], ["meta", 90, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const gitMinimal = nix.arg($, "gitMinimal");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "cspell",
       version: "9.7.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "streetsidesoftware",
           repo: "cspell",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,7 +29,7 @@ export default nix.lambda((args) => (() => {
         })))),
       pnpmWorkspaces: nix.thunk(() => ["cspell..."]),
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -46,14 +41,14 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [nodejs, pnpmConfigHook, pnpm_10]),
       buildInputs: nix.thunk(() => [nodejs, gitMinimal]),
       buildPhase: "runHook preBuild\n\npnpm --filter \"cspell...\" build\n\nrunHook postBuild\n",
-      env: nix.thunk(() => ({ [nix.POS]: pos$3, CI: true })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[2], CI: true })),
       installPhase: "runHook preInstall\n\nmkdir -p $out/lib/node_modules/cspell\nmkdir $out/bin\n\n# Re-install only production dependencies\nrm -rf node_modules packages/*/node_modules scripts/node_modules\npnpm config set nodeLinker hoisted\npnpm config set preferSymlinkedExecutables false\npnpm --filter=\"cspell...\" --offline --prod install\n\nmv ./package.json ./packages ./bin.mjs ./node_modules $out/lib/node_modules/cspell\n# Clean up unneeded files\npushd $out/lib/node_modules/cspell/packages\nrm -rf */*.md */tsconfig.* */LICENSE Samples */**/*.test.{j,t}s */**/*.map */__snapshots__ */src */Samples\n# These are example dictionaries, and are not needed\nrm -rf hunspell-reader/dictionaries\npushd cspell\nrm -rf dist/tsc\nrm -rf samples/ fixtures/ tools/ static/\npopd\npopd\n\nln -s $out/lib/node_modules/cspell/bin.mjs $out/bin/cspell\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Spell checker for code",
         homepage: "https://cspell.org",
         changelog: nix.thunk(() => nix.str`https://github.com/streetsidesoftware/cspell/releases/tag/v${nix.sel(finalAttrs, "version")}`),

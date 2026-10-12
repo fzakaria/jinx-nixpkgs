@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/ppx.nix", [[["description", 24, 5]], [["pname", 8, 3], ["src", 10, 19], ["version", 10, 23], ["postPatch", 13, 3], ["buildInputs", 18, 3], ["meta", 23, 3]]]);
 const formals$1 = { args: { buildDunePackage: false, xtmpl: false, ppxlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/ppx.nix", [["description", 24, 5]]);
-const pos$2 = nix.positions(here + "/ppx.nix", [["pname", 8, 3], ["src", 10, 19], ["version", 10, 23], ["postPatch", 13, 3], ["buildInputs", 18, 3], ["meta", 23, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -12,13 +11,13 @@ export default nix.lambda((args) => (() => {
   const xtmpl = nix.arg($, "xtmpl");
   const ppxlib = nix.arg($, "ppxlib");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "xtmpl_ppx",
       src: nix.thunk(() => nix.attr(xtmpl, "src")),
       version: nix.thunk(() => nix.attr(xtmpl, "version")),
       postPatch: "substituteInPlace ppx/ppx_xtmpl.ml --replace-fail 'Parse.longident b' \\\n  'Astlib.Longident.parse s'\n",
       buildInputs: nix.thunk(() => [ppxlib, xtmpl]),
-      meta: nix.thunk(() => nix.update(nix.sel(xtmpl, "meta"), { [nix.POS]: pos$1, description: "Xml templating library, ppx extension" })),
+      meta: nix.thunk(() => nix.update(nix.sel(xtmpl, "meta"), { [nix.POS]: $pos[0], description: "Xml templating library, ppx extension" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=ppx.ts.map

@@ -2,11 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]], [["src", 25, 13], ["postPatch", 25, 17], ["hash", 26, 5]], [["description", 35, 5], ["homepage", 36, 5], ["license", 37, 5], ["maintainers", 38, 5], ["platforms", 39, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["postPatch", 19, 3], ["npmDeps", 24, 3], ["installPhase", 29, 3], ["meta", 34, 3]]]);
 const formals$1 = { args: { lib: false, buildNpmPackage: false, fetchFromGitHub: false, fetchNpmDeps: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["src", 25, 13], ["postPatch", 25, 17], ["hash", 26, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 35, 5], ["homepage", 36, 5], ["license", 37, 5], ["maintainers", 38, 5], ["platforms", 39, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["postPatch", 19, 3], ["npmDeps", 24, 3], ["installPhase", 29, 3], ["meta", 34, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,7 +15,7 @@ export default nix.lambda((args) => (() => {
       const pname = "weather-chart-card";
       const version = "2.4.11";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "mlamberts78",
           repo: "weather-chart-card",
           rev: nix.thunk(() => nix.str`V${version}`),
@@ -28,14 +25,14 @@ export default nix.lambda((args) => (() => {
 ln -s ${nix.path(here, "./package-lock.json")} ./package-lock.json
 `);
       const npmDeps = nix.thunk(() => nix.app(fetchNpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           src: src,
           postPatch: postPatch,
           hash: "sha256-OJF8N7vPLRX0ec5gaQKAxLR227uoeuAU5z+QVNyOeTY=",
         }))));
       const installPhase = "mkdir $out\ncp -R dist/* $out/\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Custom weather card with charts",
         homepage: "https://github.com/mlamberts78/weather-chart-card",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -46,7 +43,7 @@ ln -s ${nix.path(here, "./package-lock.json")} ./package-lock.json
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

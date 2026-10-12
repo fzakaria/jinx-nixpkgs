@@ -2,19 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/lib.nix", [[["modulesPath", 25, 19]], [["pkgs", 29, 24]], [["args", 29, 19]], [["_file", 28, 11], ["_module", 29, 11], ["package", 30, 11]], [["_file", 33, 11], ["imports", 34, 11]], [["class", 24, 7], ["specialArgs", 25, 7], ["modules", 26, 7]], [["_file", 72, 9], ["imports", 73, 9]], [["imports", 98, 18]], [["_file", 97, 9], ["settings", 98, 9]], [["settings", 103, 40], ["options", 104, 9]], [["passthru", 102, 7]], [["evalConfig", 21, 3], ["withConfig", 68, 3], ["buildConfig", 93, 3]]]);
 const formals$1 = { args: { lib: false, pkgs: false, treefmt: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/lib.nix", [["modulesPath", 25, 19]]);
-const pos$2 = nix.positions(here + "/lib.nix", [["pkgs", 29, 24]]);
-const pos$3 = nix.positions(here + "/lib.nix", [["args", 29, 19]]);
-const pos$4 = nix.positions(here + "/lib.nix", [["_file", 28, 11], ["_module", 29, 11], ["package", 30, 11]]);
-const pos$5 = nix.positions(here + "/lib.nix", [["_file", 33, 11], ["imports", 34, 11]]);
-const pos$6 = nix.positions(here + "/lib.nix", [["class", 24, 7], ["specialArgs", 25, 7], ["modules", 26, 7]]);
-const pos$7 = nix.positions(here + "/lib.nix", [["_file", 72, 9], ["imports", 73, 9]]);
-const pos$8 = nix.positions(here + "/lib.nix", [["imports", 98, 18]]);
-const pos$9 = nix.positions(here + "/lib.nix", [["_file", 97, 9], ["settings", 98, 9]]);
-const pos$10 = nix.positions(here + "/lib.nix", [["settings", 103, 40], ["options", 104, 9]]);
-const pos$11 = nix.positions(here + "/lib.nix", [["passthru", 102, 7]]);
-const pos$12 = nix.positions(here + "/lib.nix", [["evalConfig", 21, 3], ["withConfig", 68, 3], ["buildConfig", 93, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,26 +11,26 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const treefmt = nix.arg($, "treefmt");
   return {
-    [nix.POS]: pos$12,
+    [nix.POS]: $pos[11],
     evalConfig: (module) => nix.app(nix.sel(lib, "evalModules"), nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         class: "treefmtConfig",
-        specialArgs: nix.thunk(() => ({ [nix.POS]: pos$1, modulesPath: nix.path(here, "./modules") })),
+        specialArgs: nix.thunk(() => ({ [nix.POS]: $pos[0], modulesPath: nix.path(here, "./modules") })),
         modules: nix.thunk(() => [
           nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             _file: "treefmt.evalConfig",
             _module: nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               args: nix.thunk(() => ({
-                [nix.POS]: pos$2,
+                [nix.POS]: $pos[1],
                 pkgs: nix.thunk(() => nix.app(nix.sel(lib, "mkOptionDefault"), pkgs)),
               })),
             })),
             package: nix.thunk(() => nix.app(nix.sel(lib, "mkOptionDefault"), treefmt)),
           })),
           nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             _file: "<treefmt.evalConfig args>",
             imports: nix.thunk(() => nix.app(nix.sel(lib, "toList"), module)),
           })),
@@ -50,7 +39,7 @@ export default nix.lambda((args) => (() => {
       }))),
     withConfig: (module) => (() => {
       const configuration = nix.thunk(() => nix.app(nix.sel(treefmt, "evalConfig"), nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           _file: "<treefmt.withConfig args>",
           imports: nix.thunk(() => nix.app(nix.sel(lib, "toList"), module)),
         }))));
@@ -58,19 +47,19 @@ export default nix.lambda((args) => (() => {
     })(),
     buildConfig: (module) => (() => {
       const configuration = nix.thunk(() => nix.app(nix.sel(treefmt, "evalConfig"), nix.thunk(() => ({
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           _file: "<treefmt.buildConfig args>",
           settings: nix.thunk(() => ({
-            [nix.POS]: pos$8,
+            [nix.POS]: $pos[7],
             imports: nix.thunk(() => nix.app(nix.sel(lib, "toList"), module)),
           })),
         }))));
       return nix.app(nix.sel(configuration, "config", "configFile", "overrideAttrs"), nix.thunk(() => ({
-          [nix.POS]: pos$11,
+          [nix.POS]: $pos[10],
           passthru: nix.thunk(() => (() => {
             const from = nix.thunk(() => nix.sel(configuration, "config"));
             return {
-            [nix.POS]: pos$10,
+            [nix.POS]: $pos[9],
             settings: nix.thunk(() => nix.attr(from, "settings")),
             options: nix.thunk(() => nix.app((opt) => nix.app(nix.sel(opt, "type", "getSubOptions"), nix.thunk(() => nix.sel(opt, "loc"))), nix.thunk(() => nix.sel(configuration, "options", "settings")))),
           };

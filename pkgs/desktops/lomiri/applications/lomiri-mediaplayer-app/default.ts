@@ -2,12 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]], [["vm", 119, 11]], [["tests", 119, 5], ["updateScript", 120, 5]], [["description", 124, 5], ["homepage", 125, 5], ["changelog", 126, 5], ["license", 129, 5], ["mainProgram", 133, 5], ["teams", 134, 5], ["platforms", 135, 5]], [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["postPatch", 35, 3], ["strictDeps", 43, 3], ["nativeBuildInputs", 45, 3], ["buildInputs", 53, 3], ["nativeCheckInputs", 71, 3], ["checkInputs", 77, 3], ["dontWrapGApps", 79, 3], ["cmakeFlags", 81, 3], ["doCheck", 83, 3], ["preCheck", 85, 3], ["postInstall", 106, 3], ["preFixup", 114, 3], ["passthru", 118, 3], ["meta", 123, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitLab: false, gitUpdater: false, nixosTests: false, cmake: false, gettext: false, gst_all_1: false, "lomiri-action-api": false, "lomiri-content-hub": false, "lomiri-ui-toolkit": false, mesa: false, "pkg-config": false, qtbase: false, qtdeclarative: false, qtmultimedia: false, qtxmlpatterns: false, wrapGAppsHook3: false, wrapQtAppsHook: false, "xvfb-run": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["vm", 119, 11]]);
-const pos$3 = nix.positions(here + "/default.nix", [["tests", 119, 5], ["updateScript", 120, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 124, 5], ["homepage", 125, 5], ["changelog", 126, 5], ["license", 129, 5], ["mainProgram", 133, 5], ["teams", 134, 5], ["platforms", 135, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["postPatch", 35, 3], ["strictDeps", 43, 3], ["nativeBuildInputs", 45, 3], ["buildInputs", 53, 3], ["nativeCheckInputs", 71, 3], ["checkInputs", 77, 3], ["dontWrapGApps", 79, 3], ["cmakeFlags", 81, 3], ["doCheck", 83, 3], ["preCheck", 85, 3], ["postInstall", 106, 3], ["preFixup", 114, 3], ["passthru", 118, 3], ["meta", 123, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,11 +28,11 @@ export default nix.lambda((args) => (() => {
   const wrapQtAppsHook = nix.arg($, "wrapQtAppsHook");
   const xvfb_run = nix.arg($, "xvfb-run");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "lomiri-mediaplayer-app",
       version: "1.1.2",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ubports",
           repo: "development/core/lomiri-mediaplayer-app",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -77,15 +73,15 @@ export QML2_IMPORT_PATH=${nix.app(listToQtVar, nix.thunk(() => [lomiri_ui_toolki
       postInstall: "mkdir -p $out/share/{icons/hicolor/256x256/apps,lomiri-app-launch/{symbolic,splash}}\n\nln -s $out/share/{lomiri-mediaplayer-app,icons/hicolor/256x256/apps}/lomiri-mediaplayer-app.png\nln -s $out/share/{lomiri-mediaplayer-app/lomiri-mediaplayer-app-splash.svg,lomiri-app-launch/splash/lomiri-mediaplayer-app.svg}\nln -s $out/share/{lomiri-mediaplayer-app/lomiri-mediaplayer-app-symbolic.svg,lomiri-app-launch/symbolic/lomiri-mediaplayer-app.svg}\n",
       preFixup: "qtWrapperArgs+=(\"${gappsWrapperArgs[@]}\")\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           vm: nix.thunk(() => nix.sel(nixosTests, "lomiri-mediaplayer-app")),
         })),
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Media Player application for Ubuntu Touch devices",
         homepage: "https://gitlab.com/ubports/development/core/lomiri-mediaplayer-app",
         changelog: nix.thunk(() => nix.str`https://gitlab.com/ubports/development/core/lomiri-mediaplayer-app/-/blob/${(nix.asBool(!nix.asBool(nix.builtins.isNull(nix.thunk(() => nix.sel(finalAttrs, "src", "tag"))))) ? nix.sel(finalAttrs, "src", "tag") : nix.sel(finalAttrs, "src", "rev"))}/ChangeLog`),

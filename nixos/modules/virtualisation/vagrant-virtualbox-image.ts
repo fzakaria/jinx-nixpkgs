@@ -2,20 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/vagrant-virtualbox-image.nix", [[["audio", 17, 5], ["audioin", 18, 5], ["audioout", 19, 5], ["usb", 20, 5], ["usbehci", 21, 5]], [["params", 16, 14]], [["enable", 23, 21]], [["enable", 24, 23]], [["man", 23, 17], ["nixos", 24, 17]], [["extraGroups", 26, 28]], [["vagrant", 26, 20]], [["extraUsers", 26, 9]], [["extension", 30, 9]], [["tags", 31, 16]], [["image", 32, 16], ["vagrantVirtualbox", 33, 16]], [["nixos", 31, 10], ["build", 32, 10]], [["imports", 11, 3], ["virtualbox", 16, 3], ["documentation", 23, 3], ["users", 26, 3], ["image", 30, 3], ["system", 31, 3]]]);
 const formals$1 = { args: { config: false, pkgs: false, lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/vagrant-virtualbox-image.nix", [["audio", 17, 5], ["audioin", 18, 5], ["audioout", 19, 5], ["usb", 20, 5], ["usbehci", 21, 5]]);
-const pos$2 = nix.positions(here + "/vagrant-virtualbox-image.nix", [["params", 16, 14]]);
-const pos$3 = nix.positions(here + "/vagrant-virtualbox-image.nix", [["enable", 23, 21]]);
-const pos$4 = nix.positions(here + "/vagrant-virtualbox-image.nix", [["enable", 24, 23]]);
-const pos$5 = nix.positions(here + "/vagrant-virtualbox-image.nix", [["man", 23, 17], ["nixos", 24, 17]]);
-const pos$6 = nix.positions(here + "/vagrant-virtualbox-image.nix", [["extraGroups", 26, 28]]);
-const pos$7 = nix.positions(here + "/vagrant-virtualbox-image.nix", [["vagrant", 26, 20]]);
-const pos$8 = nix.positions(here + "/vagrant-virtualbox-image.nix", [["extraUsers", 26, 9]]);
-const pos$9 = nix.positions(here + "/vagrant-virtualbox-image.nix", [["extension", 30, 9]]);
-const pos$10 = nix.positions(here + "/vagrant-virtualbox-image.nix", [["tags", 31, 16]]);
-const pos$11 = nix.positions(here + "/vagrant-virtualbox-image.nix", [["image", 32, 16], ["vagrantVirtualbox", 33, 16]]);
-const pos$12 = nix.positions(here + "/vagrant-virtualbox-image.nix", [["nixos", 31, 10], ["build", 32, 10]]);
-const pos$13 = nix.positions(here + "/vagrant-virtualbox-image.nix", [["imports", 11, 3], ["virtualbox", 16, 3], ["documentation", 23, 3], ["users", 26, 3], ["image", 30, 3], ["system", 31, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,15 +11,15 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$13,
+    [nix.POS]: $pos[12],
     imports: nix.thunk(() => [
       nix.path(here, "./vagrant-guest.nix"),
       nix.path(here, "./virtualbox-image.nix"),
     ]),
     virtualbox: nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       params: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         audio: "none",
         audioin: "off",
         audioout: "off",
@@ -40,26 +28,26 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     documentation: nix.thunk(() => ({
-      [nix.POS]: pos$5,
-      man: nix.thunk(() => ({ [nix.POS]: pos$3, enable: false })),
-      nixos: nix.thunk(() => ({ [nix.POS]: pos$4, enable: false })),
+      [nix.POS]: $pos[4],
+      man: nix.thunk(() => ({ [nix.POS]: $pos[2], enable: false })),
+      nixos: nix.thunk(() => ({ [nix.POS]: $pos[3], enable: false })),
     })),
     users: nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       extraUsers: nix.thunk(() => ({
-        [nix.POS]: pos$7,
-        vagrant: nix.thunk(() => ({ [nix.POS]: pos$6, extraGroups: nix.thunk(() => ["vboxsf"]) })),
+        [nix.POS]: $pos[6],
+        vagrant: nix.thunk(() => ({ [nix.POS]: $pos[5], extraGroups: nix.thunk(() => ["vboxsf"]) })),
       })),
     })),
     image: nix.thunk(() => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       extension: nix.thunk(() => nix.app(nix.sel(lib, "mkOverride"), 999n, nix.thunk(() => nix.str`${nix.sel(config, "image", "baseName")}.box`))),
     })),
     system: nix.thunk(() => ({
-      [nix.POS]: pos$12,
-      nixos: nix.thunk(() => ({ [nix.POS]: pos$10, tags: nix.thunk(() => ["vagrant"]) })),
+      [nix.POS]: $pos[11],
+      nixos: nix.thunk(() => ({ [nix.POS]: $pos[9], tags: nix.thunk(() => ["vagrant"]) })),
       build: nix.thunk(() => ({
-        [nix.POS]: pos$11,
+        [nix.POS]: $pos[10],
         image: nix.thunk(() => nix.app(nix.sel(lib, "mkOverride"), 999n, nix.thunk(() => nix.sel(config, "system", "build", "vagrantVirtualbox")))),
         vagrantVirtualbox: nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), nix.thunk(() => nix.sel(config, "image", "fileName")), nix.thunk(() => ({})), nix.thunk(() => nix.str`  mkdir workdir
   cd workdir

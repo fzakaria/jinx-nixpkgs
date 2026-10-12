@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 29, 5], ["sha256", 30, 5]], [["packageName", 58, 7], ["versionPolicy", 59, 7]], [["updateScript", 57, 5]], [["description", 64, 5], ["homepage", 65, 5], ["license", 66, 5], ["teams", 67, 5], ["platforms", 68, 5]], [["pname", 20, 3], ["version", 21, 3], ["outputs", 23, 3], ["src", 28, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 39, 3], ["propagatedBuildInputs", 47, 3], ["mesonFlags", 49, 3], ["passthru", 56, 3], ["meta", 63, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, meson: false, ninja: false, "pkg-config": false, glib: false, "gobject-introspection": false, cairo: false, libarchive: false, freetype: false, libjpeg: false, libtiff: false, gnome: false, lcms2: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 29, 5], ["sha256", 30, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["packageName", 58, 7], ["versionPolicy", 59, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 57, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 64, 5], ["homepage", 65, 5], ["license", 66, 5], ["teams", 67, 5], ["platforms", 68, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["outputs", 23, 3], ["src", 28, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 39, 3], ["propagatedBuildInputs", 47, 3], ["mesonFlags", 49, 3], ["passthru", 56, 3], ["meta", 63, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.3.2";
       const outputs = nix.thunk(() => ["out", "dev"]);
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnome/sources/libgxps/${nix.app(nix.sel(lib, "versions", "majorMinor"), version)}/libgxps-${version}.tar.xz`),
           sha256: "bSeGclajXM+baSU+sqiKMrrKO5fV9O9/guNmf6Q1JRw=",
         }))));
@@ -40,11 +36,11 @@ export default nix.lambda((args) => (() => {
       const propagatedBuildInputs = nix.thunk(() => [libarchive]);
       const mesonFlags = nix.thunk(() => nix.concat(["-Denable-test=false"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.eq(nix.sel(stdenv, "buildPlatform"), nix.sel(stdenv, "hostPlatform"))), nix.thunk(() => ["-Ddisable-introspection=true"]))));
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$2, packageName: pname, versionPolicy: "none" })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: $pos[1], packageName: pname, versionPolicy: "none" })))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "GObject based library for handling and rendering XPS documents",
         homepage: "https://gitlab.gnome.org/GNOME/libgxps",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),
@@ -52,7 +48,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         outputs,

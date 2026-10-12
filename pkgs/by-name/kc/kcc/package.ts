@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]], [["updateScript", 75, 5]], [["name", 80, 7], ["exec", 81, 7], ["icon", 82, 7], ["desktopName", 83, 7], ["comment", 84, 7], ["categories", 85, 7]], [["description", 90, 5], ["homepage", 91, 5], ["mainProgram", 92, 5], ["changelog", 93, 5], ["license", 94, 5], ["maintainers", 95, 5]], [["pname", 17, 3], ["version", 18, 3], ["pyproject", 19, 3], ["src", 21, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 33, 3], ["build-system", 38, 3], ["dependencies", 40, 3], ["dontWrapQtApps", 56, 3], ["makeWrapperArgs", 58, 3], ["nativeInstallCheckInputs", 65, 3], ["versionCheckProgram", 66, 3], ["postInstall", 68, 3], ["passthru", 74, 3], ["desktopItems", 78, 3], ["meta", 89, 3]]]);
 const formals$1 = { args: { lib: false, python3: false, fetchFromGitHub: false, makeDesktopItem: false, copyDesktopItems: false, qt6: false, archiveSupport: true, p7zip: false, versionCheckHook: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 75, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 80, 7], ["exec", 81, 7], ["icon", 82, 7], ["desktopName", 83, 7], ["comment", 84, 7], ["categories", 85, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 90, 5], ["homepage", 91, 5], ["mainProgram", 92, 5], ["changelog", 93, 5], ["license", 94, 5], ["maintainers", 95, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["pyproject", 19, 3], ["src", 21, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 33, 3], ["build-system", 38, 3], ["dependencies", 40, 3], ["dontWrapQtApps", 56, 3], ["makeWrapperArgs", 58, 3], ["nativeInstallCheckInputs", 65, 3], ["versionCheckProgram", 66, 3], ["postInstall", 68, 3], ["passthru", 74, 3], ["desktopItems", 78, 3], ["meta", 89, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "kcc",
       version: "9.6.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ciromattia",
           repo: "kcc",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -67,12 +63,12 @@ export default nix.lambda((args) => (() => {
       versionCheckProgram: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/bin/kcc-c2e`),
       postInstall: "install -Dm644 \\\n  icons/comic2ebook.png \\\n  \"$out/share/icons/hicolor/256x256/apps/kcc.png\"\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "kcc",
             exec: "kcc",
             icon: "kcc",
@@ -82,7 +78,7 @@ export default nix.lambda((args) => (() => {
           })))),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Python app to convert comic/manga files or folders to EPUB, Panel View MOBI or E-Ink optimized CBZ",
         homepage: "https://kcc.iosphe.re",
         mainProgram: "kcc",

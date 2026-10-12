@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 10, 5], ["url", 11, 5], ["hash", 12, 5]], [["description", 34, 5], ["homepage", 35, 5], ["downloadPage", 36, 5], ["license", 37, 5], ["platforms", 38, 5], ["sourceProvenance", 39, 5], ["maintainers", 40, 5], ["mainProgram", 41, 5]], [["name", 16, 3], ["runtimeInputs", 18, 3], ["text", 23, 3], ["meta", 33, 3]]]);
 const formals$1 = { args: { dosbox: false, fetchzip: false, lib: false, writeShellApplication: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 10, 5], ["url", 11, 5], ["hash", 12, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 34, 5], ["homepage", 35, 5], ["downloadPage", 36, 5], ["license", 37, 5], ["platforms", 38, 5], ["sourceProvenance", 39, 5], ["maintainers", 40, 5], ["mainProgram", 41, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 16, 3], ["runtimeInputs", 18, 3], ["text", 23, 3], ["meta", 33, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,13 +12,13 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const writeShellApplication = nix.arg($, "writeShellApplication");
   const zip = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: "keen4.zip",
       url: "https://archive.org/download/msdos_Commander_Keen_4_-_Secret_of_the_Oracle_1991/Commander_Keen_4_-_Secret_of_the_Oracle_1991.zip",
       hash: "sha256-vVfBQArNH1JPUxM5suMe8NK54a+NAMnDhLKxVUOzUgA=",
     }))));
   return nix.app(writeShellApplication, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       name: "keen4",
       runtimeInputs: nix.thunk(() => [dosbox]),
       text: nix.thunk(() => nix.str`mkdir -p "\${HOME:-.}/.keen4"
@@ -32,7 +30,7 @@ trap 'find . -type l -delete' EXIT
 dosbox ./KEEN4E.EXE -fullscreen -exit
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Commander Keen Episode 4: Secret of the Oracle",
         homepage: "https://web.archive.org/web/20141013080934/http://www.3drealms.com/keen4/index.html",
         downloadPage: "https://archive.org/details/msdos_Commander_Keen_4_-_Secret_of_the_Oracle_1991",

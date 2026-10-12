@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]], [["petsc4py", 33, 5], ["slepc4py", 34, 5]], [["homepage", 52, 5], ["description", 53, 5], ["changelog", 54, 5], ["license", 55, 5], ["maintainers", 56, 5]], [["pname", 13, 3], ["version", 14, 3], ["pyproject", 15, 3], ["src", 17, 3], ["build-system", 24, 3], ["dependencies", 28, 3], ["optional-dependencies", 32, 3], ["pythonImportsCheck", 37, 3], ["nativeCheckInputs", 41, 3], ["disabledTests", 46, 3], ["meta", 51, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, packaging: false, petsc4py: false, slepc4py: false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["petsc4py", 33, 5], ["slepc4py", 34, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["homepage", 52, 5], ["description", 53, 5], ["changelog", 54, 5], ["license", 55, 5], ["maintainers", 56, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 13, 3], ["version", 14, 3], ["pyproject", 15, 3], ["src", 17, 3], ["build-system", 24, 3], ["dependencies", 28, 3], ["optional-dependencies", 32, 3], ["pythonImportsCheck", 37, 3], ["nativeCheckInputs", 41, 3], ["disabledTests", 46, 3], ["meta", 51, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,12 +16,12 @@ export default nix.lambda((args) => (() => {
   const slepc4py = nix.arg($, "slepc4py");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "petsctools",
       version: "2026.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "firedrakeproject",
           repo: "petsctools",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -33,7 +30,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [setuptools]),
       dependencies: nix.thunk(() => [packaging]),
       "optional-dependencies": nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         petsc4py: nix.thunk(() => [petsc4py]),
         slepc4py: nix.thunk(() => [slepc4py]),
       })),
@@ -41,7 +38,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => nix.concat([pytestCheckHook], nix.sel(finalAttrs, "passthru", "optional-dependencies", "petsc4py"))),
       disabledTests: nix.thunk(() => ["test_get_petsc_dirs"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/firedrakeproject/petsctools",
         description: "Pythonic extensions for petsc4py and slepc4py",
         changelog: nix.thunk(() => nix.str`https://github.com/firedrakeproject/petsctools/releases/tag/${nix.sel(finalAttrs, "version")}`),

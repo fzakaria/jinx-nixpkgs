@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["aarch64-darwin", 32, 9], ["x86_64-linux", 33, 9], ["aarch64-linux", 34, 9]], [["url", 29, 5], ["hash", 30, 5]], [["updateScript", 91, 12]], [["description", 94, 5], ["homepage", 95, 5], ["changelog", 96, 5], ["license", 97, 5], ["sourceProvenance", 98, 5], ["maintainers", 103, 5], ["mainProgram", 106, 5], ["platforms", 107, 5]], [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 43, 3], ["sourceRoot", 48, 3], ["dontStrip", 49, 3], ["autoPatchelfIgnoreMissingDeps", 54, 3], ["installPhase", 73, 3], ["postInstall", 80, 3], ["nativeInstallCheckInputs", 89, 3], ["passthru", 91, 3], ["meta", 93, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, autoPatchelfHook: false, cacert: false, fetchurl: false, glib: false, libsecret: false, makeBinaryWrapper: false, bash: false, nodejs: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["aarch64-darwin", 32, 9], ["x86_64-linux", 33, 9], ["aarch64-linux", 34, 9]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 29, 5], ["hash", 30, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 91, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 94, 5], ["homepage", 95, 5], ["changelog", 96, 5], ["license", 97, 5], ["sourceProvenance", 98, 5], ["maintainers", 103, 5], ["mainProgram", 106, 5], ["platforms", 107, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 43, 3], ["sourceRoot", 48, 3], ["dontStrip", 49, 3], ["autoPatchelfIgnoreMissingDeps", 54, 3], ["installPhase", 73, 3], ["postInstall", 80, 3], ["nativeInstallCheckInputs", 89, 3], ["passthru", 91, 3], ["meta", 93, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,14 +21,14 @@ export default nix.lambda((args) => (() => {
   const arch = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isx86_64")) ? "x64" : (nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")) ? "arm64" : nix.builtins.throw(nix.thunk(() => nix.str`Unsupported arch: ${nix.sel(stdenv, "hostPlatform", "system")}`)))));
   const platform = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? nix.str`darwin-${arch}` : nix.str`linux-${arch}`));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "github-copilot-cli",
       version: "1.0.91",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: nix.thunk(() => nix.str`https://github.com/github/copilot-cli/releases/download/v${nix.sel(finalAttrs, "version")}/github-copilot-${nix.sel(finalAttrs, "version")}-${platform}.tgz`),
           hash: nix.thunk(() => nix.selOr({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             "aarch64-darwin": "sha256-7eqWUaRON3dXEwZ5pjf36zWRdJf+OKDPULaG2GnEDzE=",
             "x86_64-linux": "sha256-j682m6rqqJXLQLyN6WC2SreM44OTWBGdtEX2/MGTZ3k=",
             "aarch64-linux": "sha256-+Zpd0Xt7DfuAD51v379ahCZaw+vkr/qDfnnK7LqbZrM=",
@@ -69,9 +65,9 @@ export default nix.lambda((args) => (() => {
   --prefix PATH : "${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [bash]))}"
 `),
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$3, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[2], updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "GitHub Copilot CLI brings the power of Copilot coding agent directly to your terminal",
         homepage: "https://github.com/github/copilot-cli",
         changelog: nix.thunk(() => nix.str`https://github.com/github/copilot-cli/releases/tag/v${nix.sel(finalAttrs, "version")}`),

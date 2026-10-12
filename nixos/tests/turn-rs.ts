@@ -2,78 +2,60 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/turn-rs.nix", [[["vlans", 7, 22]], [["enable", 12, 18]], [["useNetworkd", 10, 9], ["useDHCP", 11, 9], ["firewall", 12, 9]], [["Address", 17, 23]], [["name", 16, 9], ["networkConfig", 17, 9]], [["01-eth1", 15, 32]], [["networks", 15, 23]], [["network", 15, 15]], [["transport", 30, 17], ["listen", 31, 17], ["external", 32, 17]], [["transport", 35, 17], ["listen", 36, 17], ["external", 37, 17]], [["realm", 27, 13], ["interfaces", 28, 13]], [["user1", 42, 37]], [["static-credentials", 42, 16]], [["server", 26, 11], ["auth", 42, 11]], [["enable", 21, 9], ["secretFile", 22, 9], ["settings", 25, 9]], [["turn-rs", 20, 16]], [["virtualisation", 7, 7], ["networking", 9, 7], ["systemd", 15, 7], ["services", 20, 7]], [["server", 6, 5]], [["name", 3, 3], ["nodes", 5, 3], ["testScript", 48, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/turn-rs.nix", [["vlans", 7, 22]]);
-const pos$2 = nix.positions(here + "/turn-rs.nix", [["enable", 12, 18]]);
-const pos$3 = nix.positions(here + "/turn-rs.nix", [["useNetworkd", 10, 9], ["useDHCP", 11, 9], ["firewall", 12, 9]]);
-const pos$4 = nix.positions(here + "/turn-rs.nix", [["Address", 17, 23]]);
-const pos$5 = nix.positions(here + "/turn-rs.nix", [["name", 16, 9], ["networkConfig", 17, 9]]);
-const pos$6 = nix.positions(here + "/turn-rs.nix", [["01-eth1", 15, 32]]);
-const pos$7 = nix.positions(here + "/turn-rs.nix", [["networks", 15, 23]]);
-const pos$8 = nix.positions(here + "/turn-rs.nix", [["network", 15, 15]]);
-const pos$9 = nix.positions(here + "/turn-rs.nix", [["transport", 30, 17], ["listen", 31, 17], ["external", 32, 17]]);
-const pos$10 = nix.positions(here + "/turn-rs.nix", [["transport", 35, 17], ["listen", 36, 17], ["external", 37, 17]]);
-const pos$11 = nix.positions(here + "/turn-rs.nix", [["realm", 27, 13], ["interfaces", 28, 13]]);
-const pos$12 = nix.positions(here + "/turn-rs.nix", [["user1", 42, 37]]);
-const pos$13 = nix.positions(here + "/turn-rs.nix", [["static-credentials", 42, 16]]);
-const pos$14 = nix.positions(here + "/turn-rs.nix", [["server", 26, 11], ["auth", 42, 11]]);
-const pos$15 = nix.positions(here + "/turn-rs.nix", [["enable", 21, 9], ["secretFile", 22, 9], ["settings", 25, 9]]);
-const pos$16 = nix.positions(here + "/turn-rs.nix", [["turn-rs", 20, 16]]);
-const pos$17 = nix.positions(here + "/turn-rs.nix", [["virtualisation", 7, 7], ["networking", 9, 7], ["systemd", 15, 7], ["services", 20, 7]]);
-const pos$18 = nix.positions(here + "/turn-rs.nix", [["server", 6, 5]]);
-const pos$19 = nix.positions(here + "/turn-rs.nix", [["name", 3, 3], ["nodes", 5, 3], ["testScript", 48, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   return {
-    [nix.POS]: pos$19,
+    [nix.POS]: $pos[18],
     name: "turn-rs",
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$18,
+      [nix.POS]: $pos[17],
       server: nix.thunk(() => ({
-        [nix.POS]: pos$17,
-        virtualisation: nix.thunk(() => ({ [nix.POS]: pos$1, vlans: nix.thunk(() => [1n]) })),
+        [nix.POS]: $pos[16],
+        virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[0], vlans: nix.thunk(() => [1n]) })),
         networking: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           useNetworkd: true,
           useDHCP: false,
-          firewall: nix.thunk(() => ({ [nix.POS]: pos$2, enable: false })),
+          firewall: nix.thunk(() => ({ [nix.POS]: $pos[1], enable: false })),
         })),
         systemd: nix.thunk(() => ({
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           network: nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             networks: nix.thunk(() => ({
-              [nix.POS]: pos$6,
+              [nix.POS]: $pos[5],
               "01-eth1": nix.thunk(() => ({
-                [nix.POS]: pos$5,
+                [nix.POS]: $pos[4],
                 name: "eth1",
-                networkConfig: nix.thunk(() => ({ [nix.POS]: pos$4, Address: "10.0.0.1/24" })),
+                networkConfig: nix.thunk(() => ({ [nix.POS]: $pos[3], Address: "10.0.0.1/24" })),
               })),
             })),
           })),
         })),
         services: nix.thunk(() => ({
-          [nix.POS]: pos$16,
+          [nix.POS]: $pos[15],
           "turn-rs": nix.thunk(() => ({
-            [nix.POS]: pos$15,
+            [nix.POS]: $pos[14],
             enable: true,
             secretFile: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "secret", "USER_1_CREDS=\"foobar\"\n")),
             settings: nix.thunk(() => ({
-              [nix.POS]: pos$14,
+              [nix.POS]: $pos[13],
               server: nix.thunk(() => ({
-                [nix.POS]: pos$11,
+                [nix.POS]: $pos[10],
                 realm: "localhost",
                 interfaces: nix.thunk(() => [
                   nix.thunk(() => ({
-                    [nix.POS]: pos$9,
+                    [nix.POS]: $pos[8],
                     transport: "udp",
                     listen: "127.0.0.1:3478",
                     external: "127.0.0.1:3478",
                   })),
                   nix.thunk(() => ({
-                    [nix.POS]: pos$10,
+                    [nix.POS]: $pos[9],
                     transport: "tcp",
                     listen: "127.0.0.1:3478",
                     external: "127.0.0.1:3478",
@@ -81,8 +63,8 @@ export default nix.lambda((args) => (() => {
                 ]),
               })),
               auth: nix.thunk(() => ({
-                [nix.POS]: pos$13,
-                "static-credentials": nix.thunk(() => ({ [nix.POS]: pos$12, user1: "$USER_1_CREDS" })),
+                [nix.POS]: $pos[12],
+                "static-credentials": nix.thunk(() => ({ [nix.POS]: $pos[11], user1: "$USER_1_CREDS" })),
               })),
             })),
           })),

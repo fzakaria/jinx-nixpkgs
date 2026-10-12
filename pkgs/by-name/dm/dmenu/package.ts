@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 28, 5], ["hash", 29, 5]], [["url", 61, 40]], [["updateScript", 61, 12]], [["description", 64, 5], ["homepage", 65, 5], ["license", 66, 5], ["maintainers", 67, 5], ["platforms", 72, 5], ["mainProgram", 73, 5]], [["pname", 21, 3], ["version", 22, 3], ["strictDeps", 24, 3], ["__structuredAttrs", 25, 3], ["src", 27, 3], ["buildInputs", 32, 3], ["patches", 41, 11], ["postPatch", 43, 3], ["preConfigure", 54, 3], ["passthru", 61, 3], ["meta", 63, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchzip: false, bash: false, fontconfig: false, libx11: false, libxinerama: false, libxft: false, writeText: false, config: false, conf: true, extraLibs: true, patches: true, gitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 28, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 61, 40]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 61, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 64, 5], ["homepage", 65, 5], ["license", 66, 5], ["maintainers", 67, 5], ["platforms", 72, 5], ["mainProgram", 73, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 3], ["strictDeps", 24, 3], ["__structuredAttrs", 25, 3], ["src", 27, 3], ["buildInputs", 32, 3], ["patches", 41, 11], ["postPatch", 43, 3], ["preConfigure", 54, 3], ["passthru", 61, 3], ["meta", 63, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,13 +22,13 @@ export default nix.lambda((args) => (() => {
   const patches = nix.argOr($, "patches", () => nix.selOr(config, () => [], "dmenu", "patches"));
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "dmenu",
       version: "5.4",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://dl.suckless.org/tools/dmenu-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-6bFq3Pj3cuZqLR0pkoJyfx3CDWmmSqkDoEVptMfej7g=",
         })))),
@@ -47,11 +43,11 @@ ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(conf, null)), 
       })()),
       preConfigure: "makeFlagsArray+=(\n  PREFIX=\"$out\"\n  CC=\"$CC\"\n)\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, url: "git://git.suckless.org/dmenu" })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[1], url: "git://git.suckless.org/dmenu" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Generic, highly customizable, and efficient menu for the X Window System",
         homepage: "https://tools.suckless.org/dmenu",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

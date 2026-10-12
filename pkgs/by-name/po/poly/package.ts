@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 13, 5], ["sha256", 14, 5]], [["url", 19, 5], ["sha256", 20, 5]], [["description", 40, 5], ["longDescription", 41, 5], ["homepage", 51, 5], ["license", 52, 5], ["maintainers", 53, 5]], [["name", 9, 3], ["regular", 11, 3], ["italic", 17, 3], ["nativeBuildInputs", 23, 3], ["sourceRoot", 25, 3], ["dontUnpack", 27, 3], ["installPhase", 29, 3], ["outputHashAlgo", 35, 3], ["outputHashMode", 36, 3], ["outputHash", 37, 3], ["meta", 39, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, unzip: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 13, 5], ["sha256", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 19, 5], ["sha256", 20, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 40, 5], ["longDescription", 41, 5], ["homepage", 51, 5], ["license", 52, 5], ["maintainers", 53, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["name", 9, 3], ["regular", 11, 3], ["italic", 17, 3], ["nativeBuildInputs", 23, 3], ["sourceRoot", 25, 3], ["dontUnpack", 27, 3], ["installPhase", 29, 3], ["outputHashAlgo", 35, 3], ["outputHashMode", 36, 3], ["outputHash", 37, 3], ["meta", 39, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,12 +14,12 @@ export default nix.lambda((args) => (() => {
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => (() => {
       const name = "poly";
       const regular = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://googlefontdirectory.googlecode.com/hg-history/d7441308e589c9fa577f920fc4152fa32477a267/poly/src/Poly-Regular.otf",
           sha256: "1mxp2lvki6b1h7r9xcj1ld0g4z5y3dmsal85xam4yr764zpjzaiw",
         }))));
       const italic = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: "https://googlefontdirectory.googlecode.com/hg-history/d7441308e589c9fa577f920fc4152fa32477a267/poly/src/Poly-Italic.otf",
           sha256: "1chzcy3kyi7wpr4iq4aj1v24fq1wwph1v5z96dimlqcrnvm66h2l",
         }))));
@@ -37,7 +34,7 @@ cp ${italic} $out/share/fonts/opentype/Poly-Italic.otf
       const outputHashMode = "recursive";
       const outputHash = "11d7ldryfxi0wzfrg1bhw23a668a44vdb8gggxryvahmp5ahmq2h";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Medium contrast serif font",
         longDescription: "With short ascenders and a very high x-height, Poly is efficient in small\nsizes. Thanks to its careful balance between the x-height and glyph widths,\nit allows more economy and legibility than standard web serifs, even in\nsmall sizes. The aglutinative language for which it was designed contains\nvery long words. The goal was to develop a typeface that would tolerate\ncramped tracking and that would increase the number of letters on a single\nline. Poly is a Unicode typeface family that supports Open Type features\nand languages that use the Latin script and its variants.\n",
         homepage: "http://www.fontsquirrel.com/fonts/poly",
@@ -48,7 +45,7 @@ cp ${italic} $out/share/fonts/opentype/Poly-Italic.otf
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         name,
         regular,
         italic,

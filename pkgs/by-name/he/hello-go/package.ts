@@ -2,24 +2,22 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["CGO_ENABLED", 13, 7]], [["description", 21, 5], ["longDescription", 22, 5], ["license", 42, 5], ["maintainers", 43, 5], ["mainProgram", 44, 5]], [["name", 7, 3], ["src", 9, 3], ["vendorHash", 11, 3], ["env", 13, 3], ["postInstall", 16, 3], ["meta", 20, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["CGO_ENABLED", 13, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 21, 5], ["longDescription", 22, 5], ["license", 42, 5], ["maintainers", 43, 5], ["mainProgram", 44, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 7, 3], ["src", 9, 3], ["vendorHash", 11, 3], ["env", 13, 3], ["postInstall", 16, 3], ["meta", 20, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const buildGoModule = nix.arg($, "buildGoModule");
   return nix.app(buildGoModule, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       name: "hello-go",
       src: nix.path(here, "./src"),
       vendorHash: null,
-      env: nix.thunk(() => ({ [nix.POS]: pos$1, CGO_ENABLED: 0n })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[0], CGO_ENABLED: 0n })),
       postInstall: "[[ -f \"$out/bin/hello-go\" ]] || ln -s ./${GOOS}_${GOARCH}/hello-go $out/bin/hello-go\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Simple program printing hello world in Go",
         longDescription: "hello-go is a simple program printing \"Hello, world!\" written in Go,\naiming at testing programs that involves analyzing executables or\nemulating foreign architectures, without pulling in a heavy cross\ntoolchain.\n\nSpecify target platform by setting GOOS and GOARCH:\n\n```nix\nhello-go.overrideAttrs (previousAttrs: {\n  env = previousAttrs.env or { } // {\n    GOOS = \"linux\";\n    GOARCH = \"arm64\";\n  };\n})\n```\n\nSee https://pkg.go.dev/internal/platform#pkg-variables for a list\nof available platforms.\n",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

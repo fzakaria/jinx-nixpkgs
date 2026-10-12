@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 44, 5], ["repo", 45, 5], ["tag", 46, 5], ["hash", 47, 5]], [["pname", 121, 47], ["version", 121, 53], ["meta", 121, 61], ["nativeBuildInputs", 122, 13]], [["package", 117, 7]], [["version", 116, 11]], [["rev-prefix", 130, 7], ["ignoredVersions", 131, 7]], [["tests", 116, 5], ["updateScript", 129, 5]], [["description", 136, 5], ["homepage", 137, 5], ["changelog", 138, 5], ["license", 139, 5], ["mainProgram", 140, 5], ["maintainers", 141, 5], ["platforms", 144, 5]], [["pname", 40, 3], ["version", 41, 3], ["src", 43, 3], ["postPatch", 50, 3], ["strictDeps", 87, 3], ["nativeBuildInputs", 89, 3], ["buildInputs", 95, 3], ["configureFlags", 109, 3], ["enableParallelBuilding", 113, 3], ["passthru", 115, 3], ["meta", 135, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, gitUpdater: false, runCommand: false, testers: false, alsaSupport: true, coreaudioSupport: true, jackSupport: true, pulseSupport: true, "alsa-lib": false, autoreconfHook: false, fmt: false, jack2: false, libpulseaudio: false, libsidplayfp: false, makeWrapper: false, perl: false, "pkg-config": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 44, 5], ["repo", 45, 5], ["tag", 46, 5], ["hash", 47, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 121, 47], ["version", 121, 53], ["meta", 121, 61], ["nativeBuildInputs", 122, 13]]);
-const pos$3 = nix.positions(here + "/package.nix", [["package", 117, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["version", 116, 11]]);
-const pos$5 = nix.positions(here + "/package.nix", [["rev-prefix", 130, 7], ["ignoredVersions", 131, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["tests", 116, 5], ["updateScript", 129, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["description", 136, 5], ["homepage", 137, 5], ["changelog", 138, 5], ["license", 139, 5], ["mainProgram", 140, 5], ["maintainers", 141, 5], ["platforms", 144, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 40, 3], ["version", 41, 3], ["src", 43, 3], ["postPatch", 50, 3], ["strictDeps", 87, 3], ["nativeBuildInputs", 89, 3], ["buildInputs", 95, 3], ["configureFlags", 109, 3], ["enableParallelBuilding", 113, 3], ["passthru", 115, 3], ["meta", 135, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -37,11 +30,11 @@ export default nix.lambda((args) => (() => {
   const miniaudioPkgconfigs = nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optional"), alsaSupport, "alsa"), nix.concat(nix.app(nix.sel(lib, "optional"), jackSupport, "jack"), nix.app(nix.sel(lib, "optional"), pulseSupport, "libpulse"))));
   const miniaudioNeedsPkgconfigs = nix.thunk(() => nix.gt(nix.builtins.length(miniaudioPkgconfigs), 0n));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "sidplayfp",
       version: "3.2.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "libsidplayfp",
           repo: "sidplayfp",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -69,15 +62,15 @@ export default nix.lambda((args) => (() => {
       ]),
       enableParallelBuilding: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               package: nix.thunk(() => nix.app(runCommand, "sidplayfp-print-version", nix.thunk(() => (() => {
                   const from = nix.thunk(() => nix.sel(finalAttrs, "finalPackage"));
                   return {
-                  [nix.POS]: pos$2,
+                  [nix.POS]: $pos[1],
                   pname: nix.thunk(() => nix.attr(from, "pname")),
                   version: nix.thunk(() => nix.attr(from, "version")),
                   meta: nix.thunk(() => nix.attr(from, "meta")),
@@ -88,10 +81,10 @@ export default nix.lambda((args) => (() => {
 `))),
             })))),
         })),
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$5, "rev-prefix": "v", ignoredVersions: "[a-zA-Z]" })))),
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[4], "rev-prefix": "v", ignoredVersions: "[a-zA-Z]" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "SID player using libsidplayfp",
         homepage: "https://github.com/libsidplayfp/sidplayfp",
         changelog: nix.thunk(() => nix.str`https://github.com/libsidplayfp/sidplayfp/releases/tag/v${nix.sel(finalAttrs, "version")}`),

@@ -2,78 +2,59 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/gnome-extensions.nix", [[["maintainers", 4, 8]], [["pkgsReadOnly", 6, 8]], [["systemPackages", 14, 19]], [["allowBroken", 19, 22], ["allowAliases", 22, 22]], [["config", 19, 15]], [["enable", 25, 24]], [["enable", 27, 9], ["debug", 28, 9]], [["enable", 31, 9], ["user", 32, 9]], [["gdm", 26, 31], ["autoLogin", 30, 31]], [["enable", 36, 37], ["debug", 37, 37]], [["gnome", 36, 31]], [["xserver", 25, 16], ["displayManager", 26, 16], ["desktopManager", 36, 16]], [["ExecStart", 42, 13]], [["serviceConfig", 41, 11]], [["org.gnome.Shell@", 40, 9]], [["services", 39, 20]], [["user", 39, 15]], [["imports", 11, 7], ["environment", 14, 7], ["nixpkgs", 19, 7], ["services", 25, 7], ["systemd", 39, 7]], [["machine", 8, 9]], [["name", 3, 3], ["meta", 4, 3], ["node", 6, 3], ["nodes", 8, 3], ["testScript", 56, 3]]]);
 const formals$1 = { args: { pkgs: false, lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/gnome-extensions.nix", [["maintainers", 4, 8]]);
-const pos$2 = nix.positions(here + "/gnome-extensions.nix", [["pkgsReadOnly", 6, 8]]);
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$3 = nix.positions(here + "/gnome-extensions.nix", [["systemPackages", 14, 19]]);
-const pos$4 = nix.positions(here + "/gnome-extensions.nix", [["allowBroken", 19, 22], ["allowAliases", 22, 22]]);
-const pos$5 = nix.positions(here + "/gnome-extensions.nix", [["config", 19, 15]]);
-const pos$6 = nix.positions(here + "/gnome-extensions.nix", [["enable", 25, 24]]);
-const pos$7 = nix.positions(here + "/gnome-extensions.nix", [["enable", 27, 9], ["debug", 28, 9]]);
-const pos$8 = nix.positions(here + "/gnome-extensions.nix", [["enable", 31, 9], ["user", 32, 9]]);
-const pos$9 = nix.positions(here + "/gnome-extensions.nix", [["gdm", 26, 31], ["autoLogin", 30, 31]]);
-const pos$10 = nix.positions(here + "/gnome-extensions.nix", [["enable", 36, 37], ["debug", 37, 37]]);
-const pos$11 = nix.positions(here + "/gnome-extensions.nix", [["gnome", 36, 31]]);
-const pos$12 = nix.positions(here + "/gnome-extensions.nix", [["xserver", 25, 16], ["displayManager", 26, 16], ["desktopManager", 36, 16]]);
-const pos$13 = nix.positions(here + "/gnome-extensions.nix", [["ExecStart", 42, 13]]);
-const pos$14 = nix.positions(here + "/gnome-extensions.nix", [["serviceConfig", 41, 11]]);
-const pos$15 = nix.positions(here + "/gnome-extensions.nix", [["org.gnome.Shell@", 40, 9]]);
-const pos$16 = nix.positions(here + "/gnome-extensions.nix", [["services", 39, 20]]);
-const pos$17 = nix.positions(here + "/gnome-extensions.nix", [["user", 39, 15]]);
-const pos$18 = nix.positions(here + "/gnome-extensions.nix", [["imports", 11, 7], ["environment", 14, 7], ["nixpkgs", 19, 7], ["services", 25, 7], ["systemd", 39, 7]]);
-const pos$19 = nix.positions(here + "/gnome-extensions.nix", [["machine", 8, 9]]);
 const formals$3 = { args: { nodes: false }, ellipsis: true };
-const pos$20 = nix.positions(here + "/gnome-extensions.nix", [["name", 3, 3], ["meta", 4, 3], ["node", 6, 3], ["nodes", 8, 3], ["testScript", 56, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$20,
+    [nix.POS]: $pos[19],
     name: "gnome-extensions",
-    meta: nix.thunk(() => ({ [nix.POS]: pos$1, maintainers: [] })),
-    node: nix.thunk(() => ({ [nix.POS]: pos$2, pkgsReadOnly: false })),
+    meta: nix.thunk(() => ({ [nix.POS]: $pos[0], maintainers: [] })),
+    node: nix.thunk(() => ({ [nix.POS]: $pos[1], pkgsReadOnly: false })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$19,
+      [nix.POS]: $pos[18],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$18,
+          [nix.POS]: $pos[17],
           imports: nix.thunk(() => [nix.path(here, "./common/user-account.nix")]),
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             systemPackages: nix.thunk(() => nix.app(nix.sel(lib, "filter"), (e) => nix.has(e, "extensionUuid"), nix.thunk(() => nix.app(nix.sel(lib, "attrValues"), nix.thunk(() => nix.sel(pkgs_1, "gnomeExtensions")))))),
           })),
           nixpkgs: nix.thunk(() => ({
-            [nix.POS]: pos$5,
-            config: nix.thunk(() => ({ [nix.POS]: pos$4, allowBroken: true, allowAliases: false })),
+            [nix.POS]: $pos[4],
+            config: nix.thunk(() => ({ [nix.POS]: $pos[3], allowBroken: true, allowAliases: false })),
           })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$12,
-            xserver: nix.thunk(() => ({ [nix.POS]: pos$6, enable: true })),
+            [nix.POS]: $pos[11],
+            xserver: nix.thunk(() => ({ [nix.POS]: $pos[5], enable: true })),
             displayManager: nix.thunk(() => ({
-              [nix.POS]: pos$9,
-              gdm: nix.thunk(() => ({ [nix.POS]: pos$7, enable: true, debug: true })),
-              autoLogin: nix.thunk(() => ({ [nix.POS]: pos$8, enable: true, user: "alice" })),
+              [nix.POS]: $pos[8],
+              gdm: nix.thunk(() => ({ [nix.POS]: $pos[6], enable: true, debug: true })),
+              autoLogin: nix.thunk(() => ({ [nix.POS]: $pos[7], enable: true, user: "alice" })),
             })),
             desktopManager: nix.thunk(() => ({
-              [nix.POS]: pos$11,
-              gnome: nix.thunk(() => ({ [nix.POS]: pos$10, enable: true, debug: true })),
+              [nix.POS]: $pos[10],
+              gnome: nix.thunk(() => ({ [nix.POS]: $pos[9], enable: true, debug: true })),
             })),
           })),
           systemd: nix.thunk(() => ({
-            [nix.POS]: pos$17,
+            [nix.POS]: $pos[16],
             user: nix.thunk(() => ({
-              [nix.POS]: pos$16,
+              [nix.POS]: $pos[15],
               services: nix.thunk(() => ({
-                [nix.POS]: pos$15,
+                [nix.POS]: $pos[14],
                 "org.gnome.Shell@": nix.thunk(() => ({
-                  [nix.POS]: pos$14,
+                  [nix.POS]: $pos[13],
                   serviceConfig: nix.thunk(() => ({
-                    [nix.POS]: pos$13,
+                    [nix.POS]: $pos[12],
                     ExecStart: nix.thunk(() => [
                       "",
                       nix.thunk(() => nix.str`${nix.sel(pkgs_1, "gnome-shell")}/bin/gnome-shell --unsafe-mode`),

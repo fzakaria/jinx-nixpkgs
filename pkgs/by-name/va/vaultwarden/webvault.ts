@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/webvault.nix", [[["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]], [["ELECTRON_SKIP_BINARY_DOWNLOAD", 33, 5], ["npm_config_build_from_source", 34, 5]], [["tests", 63, 5]], [["description", 67, 5], ["homepage", 68, 5], ["platforms", 69, 5], ["license", 70, 5], ["maintainers", 71, 32]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["npmDepsFetcherVersion", 22, 3], ["npmDepsHash", 23, 3], ["nativeBuildInputs", 25, 3], ["makeCacheWritable", 30, 3], ["env", 32, 3], ["preBuild", 37, 3], ["npmRebuildFlags", 41, 3], ["npmBuildScript", 46, 3], ["npmBuildFlags", 48, 3], ["npmFlags", 53, 3], ["installPhase", 55, 3], ["passthru", 62, 3], ["meta", 66, 3]]]);
 const formals$1 = { args: { lib: false, buildNpmPackage: false, fetchFromGitHub: false, nixosTests: false, python3: false, "dart-sass": false, vaultwarden: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/webvault.nix", [["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/webvault.nix", [["ELECTRON_SKIP_BINARY_DOWNLOAD", 33, 5], ["npm_config_build_from_source", 34, 5]]);
-const pos$3 = nix.positions(here + "/webvault.nix", [["tests", 63, 5]]);
-const pos$4 = nix.positions(here + "/webvault.nix", [["description", 67, 5], ["homepage", 68, 5], ["platforms", 69, 5], ["license", 70, 5], ["maintainers", 71, 32]]);
-const pos$5 = nix.positions(here + "/webvault.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["npmDepsFetcherVersion", 22, 3], ["npmDepsHash", 23, 3], ["nativeBuildInputs", 25, 3], ["makeCacheWritable", 30, 3], ["env", 32, 3], ["preBuild", 37, 3], ["npmRebuildFlags", 41, 3], ["npmBuildScript", 46, 3], ["npmBuildFlags", 48, 3], ["npmFlags", 53, 3], ["installPhase", 55, 3], ["passthru", 62, 3], ["meta", 66, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pname = "vaultwarden-webvault";
       const version = "2026.7.0+0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "vaultwarden",
           repo: "vw_web_builds",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -33,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [python3, dart_sass]);
       const makeCacheWritable = true;
       const env = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         ELECTRON_SKIP_BINARY_DOWNLOAD: "1",
         npm_config_build_from_source: "true",
       }));
@@ -43,11 +39,14 @@ export default nix.lambda((args) => (() => {
       const npmBuildFlags = nix.thunk(() => ["--workspace", "apps/web"]);
       const npmFlags = nix.thunk(() => ["--legacy-peer-deps"]);
       const installPhase = "runHook preInstall\nmkdir -p $out/share/vaultwarden\nmv apps/web/build $out/share/vaultwarden/vault\nrunHook postInstall\n";
-      const passthru = nix.thunk(() => ({ [nix.POS]: pos$3, tests: nix.thunk(() => nix.sel(nixosTests, "vaultwarden")) }));
+      const passthru = nix.thunk(() => ({
+        [nix.POS]: $pos[2],
+        tests: nix.thunk(() => nix.sel(nixosTests, "vaultwarden")),
+      }));
       const meta = nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(vaultwarden, "meta"));
         return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Integrates the web vault into vaultwarden",
         homepage: "https://github.com/vaultwarden/vw_web_builds",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
@@ -56,7 +55,7 @@ export default nix.lambda((args) => (() => {
       };
       })());
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         src,

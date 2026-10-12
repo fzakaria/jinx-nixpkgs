@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 77, 5], ["hash", 78, 5]], [["asmcrypto", 123, 11], ["marked", 125, 11], ["easy-markdown-editor", 131, 11], ["codemirror", 133, 11], ["dompurify", 135, 11], ["font-awesome", 140, 11], ["prism", 146, 11], ["fusepy", 150, 11]], [["description", 115, 5], ["longDescription", 116, 13], ["homepage", 117, 5], ["license", 118, 5], ["sourceProvenance", 161, 5], ["maintainers", 168, 5], ["mainProgram", 171, 5], ["platforms", 172, 5]], [["pname", 73, 3], ["version", 74, 3], ["src", 76, 3], ["pyproject", 81, 3], ["build-system", 83, 3], ["dependencies", 87, 3], ["makeWrapperArgs", 112, 3], ["meta", 114, 3]]]);
 const formals$1 = { args: { lib: false, fetchurl: false, python3Packages: false, cfssl: false, ffmpeg: false, "util-linux": false, withHashedPasswords: true, withCertgen: true, withThumbnails: true, withFastThumbnails: true, withMediaProcessing: true, withBasicAudioMetadata: true, withZeroMQ: true, withFTP: true, withFTPS: true, withTFTP: true, withSMB: true, withMagic: true, extraPackages: true, extraPythonPackages: true, nameSuffix: true, longDescription: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 77, 5], ["hash", 78, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["asmcrypto", 123, 11], ["marked", 125, 11], ["easy-markdown-editor", 131, 11], ["codemirror", 133, 11], ["dompurify", 135, 11], ["font-awesome", 140, 11], ["prism", 146, 11], ["fusepy", 150, 11]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 115, 5], ["longDescription", 116, 13], ["homepage", 117, 5], ["license", 118, 5], ["sourceProvenance", 161, 5], ["maintainers", 168, 5], ["mainProgram", 171, 5], ["platforms", 172, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 73, 3], ["version", 74, 3], ["src", 76, 3], ["pyproject", 81, 3], ["build-system", 83, 3], ["dependencies", 87, 3], ["makeWrapperArgs", 112, 3], ["meta", 114, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -37,7 +34,7 @@ export default nix.lambda((args) => (() => {
       const pname = nix.thunk(() => nix.str`copyparty${nameSuffix}`);
       const version = "1.20.24";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/9001/copyparty/releases/download/v${version}/copyparty-${version}.tar.gz`),
           hash: "sha256-RQ3KfVcB5nI12RbgNfzCFDMozh0Ka1t+PF0sI727c+M=",
         }))));
@@ -59,7 +56,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`--prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), runtimeDeps)}`),
       ]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "turn almost any device into a file server over http(s), webdav, ftp(s), and tftp",
         longDescription: longDescription,
         homepage: "https://github.com/9001/copyparty",
@@ -67,7 +64,7 @@ export default nix.lambda((args) => (() => {
           const includedLibraryLicenses = nix.thunk(() => (() => {
             const w_1 = nix.withScope(nix.thunk(() => nix.sel(lib, "licenses")), null);
             return {
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               asmcrypto: nix.thunk(() => nix.lookup(w_1, "mit")),
               marked: nix.thunk(() => [
                 nix.thunk(() => nix.lookup(w_1, "mit")),
@@ -113,7 +110,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

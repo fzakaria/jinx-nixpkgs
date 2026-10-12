@@ -2,9 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/i18n_module.nix", [[["platforms", 19, 8]], [["path", 9, 3], ["libcMinimal", 11, 3], ["NIX_CFLAGS_COMPILE_BEFORE", 15, 3], ["extraPaths", 17, 3], ["meta", 19, 3]]]);
 const formals$1 = { args: { lib: false, stdenvLibcMinimal: false, mkDerivation: false, libcMinimal: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/i18n_module.nix", [["platforms", 19, 8]]);
-const pos$2 = nix.positions(here + "/i18n_module.nix", [["path", 9, 3], ["libcMinimal", 11, 3], ["NIX_CFLAGS_COMPILE_BEFORE", 15, 3], ["extraPaths", 17, 3], ["meta", 19, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,13 +12,13 @@ export default nix.lambda((args) => (() => {
   const mkDerivation = nix.arg($, "mkDerivation");
   const libcMinimal = nix.arg($, "libcMinimal");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       path: "lib/i18n_module",
       libcMinimal: true,
       NIX_CFLAGS_COMPILE_BEFORE: nix.thunk(() => nix.str`-isystem ${nix.sel(stdenvLibcMinimal, "cc", "libc", "dev")}/include`),
       extraPaths: nix.thunk(() => [nix.thunk(() => nix.sel(libcMinimal, "path"))]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "netbsd")),
       })),
     })));

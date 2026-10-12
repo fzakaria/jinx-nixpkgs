@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]], [["url", 31, 7], ["hash", 32, 7]], [["package", 59, 7]], [["pkg-config", 58, 11]], [["updateScript", 56, 5], ["tests", 58, 5]], [["description", 64, 5], ["homepage", 65, 5], ["changelog", 66, 5], ["license", 67, 5], ["maintainers", 68, 5], ["platforms", 69, 5], ["pkgConfigModules", 70, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["__structuredAttrs", 25, 3], ["strictDeps", 26, 3], ["patches", 28, 3], ["postPatch", 35, 3], ["cmakeFlags", 38, 3], ["outputs", 42, 3], ["nativeBuildInputs", 47, 3], ["buildInputs", 51, 3], ["passthru", 55, 3], ["meta", 63, 3]]]);
 const formals$1 = { args: { lib: false, cmake: false, fetchFromGitHub: false, fetchpatch2: false, libuv: false, "nix-update-script": false, stdenv: false, testers: false, validatePkgConfig: false, static: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 31, 7], ["hash", 32, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["package", 59, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pkg-config", 58, 11]]);
-const pos$5 = nix.positions(here + "/package.nix", [["updateScript", 56, 5], ["tests", 58, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 64, 5], ["homepage", 65, 5], ["changelog", 66, 5], ["license", 67, 5], ["maintainers", 68, 5], ["platforms", 69, 5], ["pkgConfigModules", 70, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["__structuredAttrs", 25, 3], ["strictDeps", 26, 3], ["patches", 28, 3], ["postPatch", 35, 3], ["cmakeFlags", 38, 3], ["outputs", 42, 3], ["nativeBuildInputs", 47, 3], ["buildInputs", 51, 3], ["passthru", 55, 3], ["meta", 63, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const validatePkgConfig = nix.arg($, "validatePkgConfig");
   const static$ = nix.argOr($, "static", () => nix.sel(stdenv, "hostPlatform", "isStatic"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "uvwasi",
       version: "0.0.23",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "nodejs",
           repo: "uvwasi",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,7 +32,7 @@ export default nix.lambda((args) => (() => {
       strictDeps: true,
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/nodejs/uvwasi/commit/0820128569533c855d60c0f6382acbb14aa62ad2.patch?full_index=1",
             hash: "sha256-psjivoarqisOuCdVJAWuFH0aITzwb/obmal3ewVXvG4=",
           })))),
@@ -51,18 +45,18 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [cmake, validatePkgConfig]),
       buildInputs: nix.thunk(() => [libuv]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "hasPkgConfigModules"), nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "WASI syscall API built atop libuv",
         homepage: "https://github.com/nodejs/uvwasi",
         changelog: nix.thunk(() => nix.str`https://github.com/nodejs/uvwasi/releases/tag/v${nix.sel(finalAttrs, "version")}`),

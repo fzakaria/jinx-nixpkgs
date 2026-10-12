@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["desktopName", 20, 5], ["genericName", 21, 5], ["categories", 22, 5], ["exec", 26, 5], ["icon", 27, 5], ["name", 28, 5]], [["url", 38, 9], ["sha256", 39, 9]], [["url", 42, 9], ["sha256", 43, 9]], [["x86_64-linux", 37, 7], ["i686-linux", 41, 7]], [["description", 92, 5], ["homepage", 93, 5], ["sourceProvenance", 94, 5], ["license", 95, 5], ["maintainers", 96, 5], ["platforms", 99, 5], ["mainProgram", 103, 5], ["knownVulnerabilities", 104, 5]], [["pname", 32, 3], ["version", 33, 3], ["src", 35, 3], ["dontBuild", 48, 3], ["dontConfigure", 49, 3], ["dontPatchELF", 50, 3], ["dontWrapGApps", 51, 3], ["nativeBuildInputs", 54, 3], ["buildInputs", 61, 3], ["unpackPhase", 70, 3], ["installPhase", 75, 3], ["runtimeDependencies", 82, 3], ["postFixup", 86, 3], ["meta", 91, 3]]]);
 const formals$1 = { args: { autoPatchelfHook: false, dpkg: false, fetchurl: false, makeDesktopItem: false, makeWrapper: false, udev: false, stdenv: false, lib: false, wrapGAppsHook3: false, "alsa-lib": false, nss: false, nspr: false, systemd: false, libxtst: false, libxscrnsaver: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["desktopName", 20, 5], ["genericName", 21, 5], ["categories", 22, 5], ["exec", 26, 5], ["icon", 27, 5], ["name", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 38, 9], ["sha256", 39, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 42, 9], ["sha256", 43, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["x86_64-linux", 37, 7], ["i686-linux", 41, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 92, 5], ["homepage", 93, 5], ["sourceProvenance", 94, 5], ["license", 95, 5], ["maintainers", 96, 5], ["platforms", 99, 5], ["mainProgram", 103, 5], ["knownVulnerabilities", 104, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 32, 3], ["version", 33, 3], ["src", 35, 3], ["dontBuild", 48, 3], ["dontConfigure", 49, 3], ["dontPatchELF", 50, 3], ["dontWrapGApps", 51, 3], ["nativeBuildInputs", 54, 3], ["buildInputs", 61, 3], ["unpackPhase", 70, 3], ["installPhase", 75, 3], ["runtimeDependencies", 82, 3], ["postFixup", 86, 3], ["meta", 91, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,7 +23,7 @@ export default nix.lambda((args) => (() => {
   const libxtst = nix.arg($, "libxtst");
   const libxscrnsaver = nix.arg($, "libxscrnsaver");
   const desktopItem = nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       desktopName: "HakuNeko Desktop",
       genericName: "Manga & Anime Downloader",
       categories: nix.thunk(() => ["Network", "FileTransfer"]),
@@ -37,18 +32,18 @@ export default nix.lambda((args) => (() => {
       name: "hakuneko-desktop",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "hakuneko",
       version: "6.1.7",
       src: nix.thunk(() => nix.selOr({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         "x86_64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: nix.thunk(() => nix.str`https://github.com/manga-download/hakuneko/releases/download/v${nix.sel(finalAttrs, "version")}/hakuneko-desktop_${nix.sel(finalAttrs, "version")}_linux_amd64.deb`),
             sha256: "06bb17d7a06bb0601053eaaf423f9176f06ff3636cc43ffc024438e1962dcd02",
           })))),
         "i686-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: nix.thunk(() => nix.str`https://github.com/manga-download/hakuneko/releases/download/v${nix.sel(finalAttrs, "version")}/hakuneko-desktop_${nix.sel(finalAttrs, "version")}_linux_i386.deb`),
             sha256: "32017d26bafffaaf0a83dd6954d3926557014af4022a972371169c56c0e3d98b",
           })))),
@@ -68,7 +63,7 @@ cp "${desktopItem}/share/applications/hakuneko-desktop.desktop" \\
       runtimeDependencies: nix.thunk(() => [nix.thunk(() => nix.app(nix.sel(lib, "getLib"), udev))]),
       postFixup: "makeWrapper $out/lib/hakuneko-desktop/hakuneko $out/bin/hakuneko \\\n  \"${gappsWrapperArgs[@]}\"\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Manga & Anime Downloader",
         homepage: "https://sourceforge.net/projects/hakuneko/",
         sourceProvenance: nix.thunk(() => (() => {

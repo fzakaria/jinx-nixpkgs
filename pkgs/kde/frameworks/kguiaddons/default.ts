@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["mainProgram", 13, 8]], [["pname", 7, 3], ["hasPythonBindings", 9, 3], ["extraNativeBuildInputs", 11, 3], ["extraBuildInputs", 12, 3], ["meta", 13, 3]]]);
 const formals$1 = { args: { mkKdeDerivation: false, qtwayland: false, "pkg-config": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["mainProgram", 13, 8]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 7, 3], ["hasPythonBindings", 9, 3], ["extraNativeBuildInputs", 11, 3], ["extraBuildInputs", 12, 3], ["meta", 13, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -12,12 +11,12 @@ export default nix.lambda((args) => (() => {
   const qtwayland = nix.arg($, "qtwayland");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "kguiaddons",
       hasPythonBindings: true,
       extraNativeBuildInputs: nix.thunk(() => [pkg_config]),
       extraBuildInputs: nix.thunk(() => [qtwayland]),
-      meta: nix.thunk(() => ({ [nix.POS]: pos$1, mainProgram: "kde-geo-uri-handler" })),
+      meta: nix.thunk(() => ({ [nix.POS]: $pos[0], mainProgram: "kde-geo-uri-handler" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

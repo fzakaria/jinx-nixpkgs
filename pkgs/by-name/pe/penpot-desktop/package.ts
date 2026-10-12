@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]], [["ELECTRON_SKIP_BINARY_DOWNLOAD", 40, 7]], [["name", 90, 7], ["exec", 91, 7], ["icon", 92, 15], ["comment", 93, 7], ["desktopName", 94, 7], ["categories", 95, 7]], [["changelog", 100, 5], ["description", 101, 13], ["homepage", 102, 5], ["license", 103, 5], ["maintainers", 104, 5], ["platforms", 105, 5], ["badPlatforms", 106, 5], ["mainProgram", 107, 5]], [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["makeCacheWritable", 31, 3], ["npmFlags", 32, 3], ["npmDepsHash", 36, 3], ["dontNpmBuild", 38, 3], ["env", 40, 3], ["nativeBuildInputs", 42, 3], ["preBuild", 49, 3], ["postBuild", 56, 3], ["installPhase", 63, 3], ["desktopItems", 88, 3], ["meta", 99, 3]]]);
 const formals$1 = { args: { lib: false, buildNpmPackage: false, copyDesktopItems: false, electron_42: false, fetchFromGitHub: false, jq: false, makeDesktopItem: false, makeWrapper: false, nodejs_24: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["ELECTRON_SKIP_BINARY_DOWNLOAD", 40, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 90, 7], ["exec", 91, 7], ["icon", 92, 15], ["comment", 93, 7], ["desktopName", 94, 7], ["categories", 95, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["changelog", 100, 5], ["description", 101, 13], ["homepage", 102, 5], ["license", 103, 5], ["maintainers", 104, 5], ["platforms", 105, 5], ["badPlatforms", 106, 5], ["mainProgram", 107, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["makeCacheWritable", 31, 3], ["npmFlags", 32, 3], ["npmDepsHash", 36, 3], ["dontNpmBuild", 38, 3], ["env", 40, 3], ["nativeBuildInputs", 42, 3], ["preBuild", 49, 3], ["postBuild", 56, 3], ["installPhase", 63, 3], ["desktopItems", 88, 3], ["meta", 99, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const pname = "penpot-desktop";
       const version = "0.23.2";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "author-more",
           repo: "penpot-desktop",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -39,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const npmFlags = nix.thunk(() => ["--engine-strict", "--legacy-peer-deps"]);
       const npmDepsHash = "sha256-5CD/sK/DYfzIgnuvTi4OevtyNLEOTedmuStrg4ru14A=";
       const dontNpmBuild = true;
-      const env = nix.thunk(() => ({ [nix.POS]: pos$2, ELECTRON_SKIP_BINARY_DOWNLOAD: "1" }));
+      const env = nix.thunk(() => ({ [nix.POS]: $pos[1], ELECTRON_SKIP_BINARY_DOWNLOAD: "1" }));
       const nativeBuildInputs = nix.thunk(() => [jq, nodejs, makeWrapper, copyDesktopItems]);
       const preBuild = nix.thunk(() => nix.str`if [[ $(jq --raw-output '.devDependencies.electron' < package.json | grep -E --only-matching '\\^[0-9]+' | sed -e 's/\\^//') != ${nix.app(nix.sel(lib, "escapeShellArg"), nix.thunk(() => nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(electron, "version")))))} ]]; then
   echo 'ERROR: electron version mismatch'
@@ -76,7 +72,7 @@ runHook postInstall
 `);
       const desktopItems = nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "Penpot",
             exec: "penpot-desktop %U",
             icon: icon,
@@ -86,7 +82,7 @@ runHook postInstall
           })))),
       ]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         changelog: nix.thunk(() => nix.str`https://github.com/author-more/penpot-desktop/releases/tag/v${version}`),
         description: description,
         homepage: "https://github.com/author-more/penpot-desktop",
@@ -100,7 +96,7 @@ runHook postInstall
         mainProgram: "penpot-desktop",
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         src,

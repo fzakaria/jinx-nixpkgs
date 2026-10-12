@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/bitwig-wrapper.nix", [[["license", 50, 8]], [["version", 9, 37], ["pname", 11, 3], ["dontUnpack", 13, 3], ["dontConfigure", 14, 3], ["dontBuild", 15, 3], ["dontPatchELF", 16, 3], ["dontStrip", 17, 3], ["installPhase", 19, 3], ["meta", 50, 3]]]);
 const formals$1 = { args: { stdenv: false, bubblewrap: false, mktemp: false, writeShellScript: false, "bitwig-studio-unwrapped": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/bitwig-wrapper.nix", [["license", 50, 8]]);
-const pos$2 = nix.positions(here + "/bitwig-wrapper.nix", [["version", 9, 37], ["pname", 11, 3], ["dontUnpack", 13, 3], ["dontConfigure", 14, 3], ["dontBuild", 15, 3], ["dontPatchELF", 16, 3], ["dontStrip", 17, 3], ["installPhase", 19, 3], ["meta", 50, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const writeShellScript = nix.arg($, "writeShellScript");
   const bitwig_studio_unwrapped = nix.arg($, "bitwig-studio-unwrapped");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       version: nix.thunk(() => nix.attr(bitwig_studio_unwrapped, "version")),
       pname: "bitwig-studio",
       dontUnpack: true,
@@ -50,7 +49,7 @@ cp -r ${bitwig_studio_unwrapped}/share $out
 `;
       })()),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         license: nix.thunk(() => nix.sel(bitwig_studio_unwrapped, "meta", "license")),
       })),
     })));

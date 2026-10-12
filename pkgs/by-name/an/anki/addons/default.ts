@@ -2,14 +2,14 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["adjust-sound-volume", 5, 3], ["advanced-browser", 7, 3], ["ajt-card-management", 9, 3], ["anki-connect", 11, 3], ["anki-quizlet-importer-extended", 13, 3], ["fsrs4anki-helper", 15, 3], ["image-occlusion-enhanced", 17, 3], ["local-audio-yomichan", 19, 3], ["passfail2", 21, 3], ["puppy-reinforcement", 23, 3], ["recolor", 25, 3], ["reviewer-refocus-card", 27, 3], ["review-heatmap", 29, 3], ["yomichan-forvo-server", 31, 3]]]);
 const formals$1 = { args: { callPackage: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["adjust-sound-volume", 5, 3], ["advanced-browser", 7, 3], ["ajt-card-management", 9, 3], ["anki-connect", 11, 3], ["anki-quizlet-importer-extended", 13, 3], ["fsrs4anki-helper", 15, 3], ["image-occlusion-enhanced", 17, 3], ["local-audio-yomichan", 19, 3], ["passfail2", 21, 3], ["puppy-reinforcement", 23, 3], ["recolor", 25, 3], ["reviewer-refocus-card", 27, 3], ["review-heatmap", 29, 3], ["yomichan-forvo-server", 31, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const callPackage = nix.arg($, "callPackage");
   return {
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     "adjust-sound-volume": nix.thunk(() => nix.app(callPackage, nix.path(here, "./adjust-sound-volume"), nix.thunk(() => ({})))),
     "advanced-browser": nix.thunk(() => nix.app(callPackage, nix.path(here, "./advanced-browser"), nix.thunk(() => ({})))),
     "ajt-card-management": nix.thunk(() => nix.app(callPackage, nix.path(here, "./ajt-card-management"), nix.thunk(() => ({})))),

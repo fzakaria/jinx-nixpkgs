@@ -2,44 +2,38 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/sources.nix", [[["url", 8, 7], ["hash", 9, 7]], [["version", 6, 5], ["src", 7, 5]], [["url", 15, 7], ["hash", 16, 7]], [["version", 13, 5], ["src", 14, 5]], [["url", 22, 7], ["hash", 23, 7]], [["version", 20, 5], ["src", 21, 5]], [["aarch64-darwin", 5, 3], ["aarch64-linux", 12, 3], ["x86_64-linux", 19, 3]]]);
 const formals$1 = { args: { fetchurl: false, fetchzip: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/sources.nix", [["url", 8, 7], ["hash", 9, 7]]);
-const pos$2 = nix.positions(here + "/sources.nix", [["version", 6, 5], ["src", 7, 5]]);
-const pos$3 = nix.positions(here + "/sources.nix", [["url", 15, 7], ["hash", 16, 7]]);
-const pos$4 = nix.positions(here + "/sources.nix", [["version", 13, 5], ["src", 14, 5]]);
-const pos$5 = nix.positions(here + "/sources.nix", [["url", 22, 7], ["hash", 23, 7]]);
-const pos$6 = nix.positions(here + "/sources.nix", [["version", 20, 5], ["src", 21, 5]]);
-const pos$7 = nix.positions(here + "/sources.nix", [["aarch64-darwin", 5, 3], ["aarch64-linux", 12, 3], ["x86_64-linux", 19, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const fetchurl = nix.arg($, "fetchurl");
   const fetchzip = nix.arg($, "fetchzip");
   return {
-    [nix.POS]: pos$7,
+    [nix.POS]: $pos[6],
     "aarch64-darwin": nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       version: "1.8.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://dl.fastmailcdn.com/desktop/production/mac/arm64/Fastmail-1.8.0-arm64-mac.zip",
           hash: "sha512-TT/oMY6F0tNzS9fyYybJDOdsLkDWTubAlVGRhm3V7cWaoR/6wpx7AhTLLZLidKGDVn55OFqHLAy0TBocVwkx+w==",
         })))),
     })),
     "aarch64-linux": nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       version: "1.8.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           url: "https://dl.fastmailcdn.com/desktop/production/linux/arm64/com.fastmail.Fastmail-1.8.0-arm64.AppImage",
           hash: "sha512-salt9b6hxkn+uW0QIlauGcobRua8ih2bYIgCR7otCQjhcUCz7SuLN8zryfM8Q+awNJ9p6RILrv5S0t2QFihPlA==",
         })))),
     })),
     "x86_64-linux": nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       version: "1.8.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           url: "https://dl.fastmailcdn.com/desktop/production/linux/x64/com.fastmail.Fastmail-1.8.0.AppImage",
           hash: "sha512-t5Ygan37PcUpt2z4bAEpUbtEO4TlBM4QLkP2ycfhaBxQD9L/pJH4iWI+SL4emg4oWZSJk0GnehlWhCosayiIlQ==",
         })))),

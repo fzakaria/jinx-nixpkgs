@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 39, 5], ["rev", 40, 5], ["hash", 41, 5]], [["fontDirectories", 151, 39]], [["NIX_CFLAGS_COMPILE", 148, 5], ["FONTCONFIG_FILE", 151, 5]], [["description", 155, 5], ["homepage", 156, 5], ["changelog", 157, 5], ["license", 158, 5], ["maintainers", 159, 5], ["platforms", 160, 5], ["badPlatforms", 161, 5]], [["pname", 35, 3], ["version", 36, 3], ["src", 38, 3], ["outputs", 44, 3], ["postPatch", 49, 3], ["preBuild", 60, 3], ["postFixup", 65, 3], ["strictDeps", 69, 3], ["buildInputs", 71, 3], ["nativeBuildInputs", 107, 3], ["mesonFlags", 122, 3], ["env", 146, 3], ["meta", 154, 3]]]);
 const formals$1 = { args: { stdenv: false, fetchgit: false, lib: false, meson: false, ninja: false, "pkg-config": false, makeFontsConf: false, openssl: false, libdrm: false, libevent: false, libyaml: false, libyuv: false, gst_all_1: false, gtest: false, graphviz: false, doxygen: false, python3: false, python3Packages: false, udev: false, libpisp: false, libglvnd: false, withTracing: true, "lttng-ust": false, withSoftispGPU: true, withQcam: true, qt6: false, libjpeg: false, libtiff: false, SDL2: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 39, 5], ["rev", 40, 5], ["hash", 41, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["fontDirectories", 151, 39]]);
-const pos$3 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 148, 5], ["FONTCONFIG_FILE", 151, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 155, 5], ["homepage", 156, 5], ["changelog", 157, 5], ["license", 158, 5], ["maintainers", 159, 5], ["platforms", 160, 5], ["badPlatforms", 161, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 35, 3], ["version", 36, 3], ["src", 38, 3], ["outputs", 44, 3], ["postPatch", 49, 3], ["preBuild", 60, 3], ["postFixup", 65, 3], ["strictDeps", 69, 3], ["buildInputs", 71, 3], ["nativeBuildInputs", 107, 3], ["mesonFlags", 122, 3], ["env", 146, 3], ["meta", 154, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -44,7 +40,7 @@ export default nix.lambda((args) => (() => {
       const pname = "libcamera";
       const version = "0.7.2";
       const src = nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://git.libcamera.org/libcamera/libcamera.git",
           rev: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-vhFkeT1j2KKm+CVvGrtH5BEYJSEdaX7N7DRdA0a9EWk=",
@@ -102,12 +98,12 @@ install -D ${nix.path(here, "./ipa-priv-key.pem")} src/ipa-priv-key.pem
         nix.thunk(() => nix.app(nix.sel(lib, "mesonEnable"), "documentation", false)),
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isAarch")), nix.thunk(() => [nix.thunk(() => nix.app(nix.sel(lib, "mesonEnable"), "rpi-awb-nn", false))]))));
       const env = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         NIX_CFLAGS_COMPILE: "-Wno-error=deprecated-declarations",
-        FONTCONFIG_FILE: nix.thunk(() => nix.app(makeFontsConf, nix.thunk(() => ({ [nix.POS]: pos$2, fontDirectories: [] })))),
+        FONTCONFIG_FILE: nix.thunk(() => nix.app(makeFontsConf, nix.thunk(() => ({ [nix.POS]: $pos[1], fontDirectories: [] })))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Open source camera stack and framework for Linux, Android, and ChromeOS",
         homepage: "https://libcamera.org",
         changelog: nix.thunk(() => nix.str`https://git.libcamera.org/libcamera/libcamera.git/tag/?h=${nix.sel(src, "rev")}`),
@@ -122,7 +118,7 @@ install -D ${nix.path(here, "./ipa-priv-key.pem")} src/ipa-priv-key.pem
         ]),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         src,

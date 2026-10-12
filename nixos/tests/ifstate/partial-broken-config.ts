@@ -2,51 +2,41 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
-const pos$1 = nix.positions(here + "/partial-broken-config.nix", [["vlan", 7, 36]]);
-const pos$2 = nix.positions(here + "/partial-broken-config.nix", [["eth1", 7, 31]]);
-const pos$3 = nix.positions(here + "/partial-broken-config.nix", [["interfaces", 7, 20]]);
-const pos$4 = nix.positions(here + "/partial-broken-config.nix", [["state", 15, 13], ["kind", 16, 13]]);
-const pos$5 = nix.positions(here + "/partial-broken-config.nix", [["addresses", 13, 11], ["link", 14, 11]]);
-const pos$6 = nix.positions(here + "/partial-broken-config.nix", [["state", 23, 13], ["kind", 24, 13]]);
-const pos$7 = nix.positions(here + "/partial-broken-config.nix", [["addresses", 21, 11], ["link", 22, 11]]);
-const pos$8 = nix.positions(here + "/partial-broken-config.nix", [["eth1", 12, 9], ["eth2", 20, 9]]);
-const pos$9 = nix.positions(here + "/partial-broken-config.nix", [["interfaces", 11, 16]]);
-const pos$10 = nix.positions(here + "/partial-broken-config.nix", [["enable", 10, 7], ["settings", 11, 7]]);
-const pos$11 = nix.positions(here + "/partial-broken-config.nix", [["ifstate", 9, 16]]);
-const pos$12 = nix.positions(here + "/partial-broken-config.nix", [["imports", 5, 5], ["virtualisation", 7, 5], ["networking", 9, 5]]);
-const pos$13 = nix.positions(here + "/partial-broken-config.nix", [["machine", 4, 9]]);
-const pos$14 = nix.positions(here + "/partial-broken-config.nix", [["name", 2, 3], ["nodes", 4, 3], ["testScript", 31, 3]]);
+const $pos = nix.positions(here + "/partial-broken-config.nix", [[["vlan", 7, 36]], [["eth1", 7, 31]], [["interfaces", 7, 20]], [["state", 15, 13], ["kind", 16, 13]], [["addresses", 13, 11], ["link", 14, 11]], [["state", 23, 13], ["kind", 24, 13]], [["addresses", 21, 11], ["link", 22, 11]], [["eth1", 12, 9], ["eth2", 20, 9]], [["interfaces", 11, 16]], [["enable", 10, 7], ["settings", 11, 7]], [["ifstate", 9, 16]], [["imports", 5, 5], ["virtualisation", 7, 5], ["networking", 9, 5]], [["machine", 4, 9]], [["name", 2, 3], ["nodes", 4, 3], ["testScript", 31, 3]]]);
 
 export default nix.thunk(() => ({
-  [nix.POS]: pos$14,
+  [nix.POS]: $pos[13],
   name: "ifstate-partial-broken-config",
   nodes: nix.thunk(() => ({
-    [nix.POS]: pos$13,
+    [nix.POS]: $pos[12],
     machine: nix.thunk(() => ({
-      [nix.POS]: pos$12,
+      [nix.POS]: $pos[11],
       imports: nix.thunk(() => [nix.path(here, "../../modules/profiles/minimal.nix")]),
       virtualisation: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        interfaces: nix.thunk(() => ({ [nix.POS]: pos$2, eth1: nix.thunk(() => ({ [nix.POS]: pos$1, vlan: 1n })) })),
+        [nix.POS]: $pos[2],
+        interfaces: nix.thunk(() => ({
+          [nix.POS]: $pos[1],
+          eth1: nix.thunk(() => ({ [nix.POS]: $pos[0], vlan: 1n })),
+        })),
       })),
       networking: nix.thunk(() => ({
-        [nix.POS]: pos$11,
+        [nix.POS]: $pos[10],
         ifstate: nix.thunk(() => ({
-          [nix.POS]: pos$10,
+          [nix.POS]: $pos[9],
           enable: true,
           settings: nix.thunk(() => ({
-            [nix.POS]: pos$9,
+            [nix.POS]: $pos[8],
             interfaces: nix.thunk(() => ({
-              [nix.POS]: pos$8,
+              [nix.POS]: $pos[7],
               eth1: nix.thunk(() => ({
-                [nix.POS]: pos$5,
+                [nix.POS]: $pos[4],
                 addresses: nix.thunk(() => ["2001:0db8:a::1/64"]),
-                link: nix.thunk(() => ({ [nix.POS]: pos$4, state: "up", kind: "physical" })),
+                link: nix.thunk(() => ({ [nix.POS]: $pos[3], state: "up", kind: "physical" })),
               })),
               eth2: nix.thunk(() => ({
-                [nix.POS]: pos$7,
+                [nix.POS]: $pos[6],
                 addresses: nix.thunk(() => ["2001:0db8:b::1/64"]),
-                link: nix.thunk(() => ({ [nix.POS]: pos$6, state: "up", kind: "physical" })),
+                link: nix.thunk(() => ({ [nix.POS]: $pos[5], state: "up", kind: "physical" })),
               })),
             })),
           })),

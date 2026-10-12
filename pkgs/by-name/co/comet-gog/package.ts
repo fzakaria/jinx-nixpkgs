@@ -2,16 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["version", 18, 7], ["srcHash", 19, 7], ["cargoHash", 20, 7]], [["version", 24, 7], ["srcHash", 25, 7], ["cargoHash", 26, 7]], [["latest", 17, 5], ["heroic", 23, 5]], [["owner", 37, 5], ["repo", 38, 5], ["tag", 39, 5], ["hash", 40, 5], ["fetchSubmodules", 41, 5]], [["PROTOC", 50, 7]], [["pname", 53, 5], ["version", 54, 26], ["src", 54, 34], ["sourceRoot", 56, 5], ["nativeBuildInputs", 58, 5], ["mesonFlags", 64, 5], ["installPhase", 68, 5]], [["dummy-service", 52, 12]], [["changelog", 76, 5], ["description", 77, 5], ["homepage", 78, 5], ["license", 79, 5], ["mainProgram", 80, 5], ["maintainers", 81, 5]], [["pname", 33, 3], ["version", 34, 25], ["cargoHash", 34, 33], ["src", 36, 3], ["postPatch", 45, 3], ["env", 50, 3], ["passthru", 52, 3], ["meta", 75, 3]]]);
 const formals$1 = { args: { "comet-gog_kind": true, lib: false, stdenv: false, rustPlatform: false, fetchFromGitHub: false, buildPackages: false, meson: false, ninja: false, pkgsCross: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["version", 18, 7], ["srcHash", 19, 7], ["cargoHash", 20, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["version", 24, 7], ["srcHash", 25, 7], ["cargoHash", 26, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["latest", 17, 5], ["heroic", 23, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["owner", 37, 5], ["repo", 38, 5], ["tag", 39, 5], ["hash", 40, 5], ["fetchSubmodules", 41, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["PROTOC", 50, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 53, 5], ["version", 54, 26], ["src", 54, 34], ["sourceRoot", 56, 5], ["nativeBuildInputs", 58, 5], ["mesonFlags", 64, 5], ["installPhase", 68, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["dummy-service", 52, 12]]);
-const pos$8 = nix.positions(here + "/package.nix", [["changelog", 76, 5], ["description", 77, 5], ["homepage", 78, 5], ["license", 79, 5], ["mainProgram", 80, 5], ["maintainers", 81, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["pname", 33, 3], ["version", 34, 25], ["cargoHash", 34, 33], ["src", 36, 3], ["postPatch", 45, 3], ["env", 50, 3], ["passthru", 52, 3], ["meta", 75, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,15 +17,15 @@ export default nix.lambda((args) => (() => {
   const ninja = nix.arg($, "ninja");
   const pkgsCross = nix.arg($, "pkgsCross");
   const versionInfoTable = nix.thunk(() => ({
-    [nix.POS]: pos$3,
+    [nix.POS]: $pos[2],
     latest: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       version: "0.3.2",
       srcHash: "sha256-DUkeOkUf9roZGKqdjoy/DfUL1OrVfSVjMhEvfACLEoo=",
       cargoHash: "sha256-AiBoM7rywsuokz/fmLmye630N+t1GtwZsxkmtlH5MI8=",
     })),
     heroic: nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       version: "0.2.0",
       srcHash: "sha256-LAEt2i/SRABrz+y2CTMudrugifLgHNxkMSdC8PXYF0E=",
       cargoHash: "sha256-SvDE+QqaSK0+4XgB3bdmqOtwxBDTlf7yckTR8XjmMXc=",
@@ -41,12 +33,12 @@ export default nix.lambda((args) => (() => {
   }));
   const versionInfo = nix.thunk(() => nix.sel(versionInfoTable, nix.key(nix.force(comet_gog_kind))));
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       pname: "comet-gog",
       version: nix.thunk(() => nix.attr(versionInfo, "version")),
       cargoHash: nix.thunk(() => nix.attr(versionInfo, "cargoHash")),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           owner: "imLinguin",
           repo: "comet",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -55,13 +47,13 @@ export default nix.lambda((args) => (() => {
         })))),
       postPatch: "rm .cargo/config.toml\n",
       env: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         PROTOC: nix.thunk(() => nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(buildPackages, "protobuf")), "protoc")),
       })),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         "dummy-service": nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             pname: "galaxy-dummy-service",
             version: nix.thunk(() => nix.attr(finalAttrs, "version")),
             src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -76,7 +68,7 @@ export default nix.lambda((args) => (() => {
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         changelog: nix.thunk(() => nix.str`https://github.com/imLinguin/comet/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         description: "Open Source implementation of GOG Galaxy's Communication Service",
         homepage: "https://github.com/imLinguin/comet",

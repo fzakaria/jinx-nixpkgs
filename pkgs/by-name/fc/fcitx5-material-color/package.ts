@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 12, 5], ["repo", 13, 5], ["rev", 14, 5], ["hash", 15, 5]], [["description", 36, 5], ["homepage", 37, 5], ["license", 38, 5], ["maintainers", 39, 5], ["platforms", 43, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["installPhase", 18, 3], ["meta", 35, 3]]]);
 const formals$1 = { args: { stdenvNoCC: false, fetchFromGitHub: false, lib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 12, 5], ["repo", 13, 5], ["rev", 14, 5], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 36, 5], ["homepage", 37, 5], ["license", 38, 5], ["maintainers", 39, 5], ["platforms", 43, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["installPhase", 18, 3], ["meta", 35, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,11 +11,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const lib = nix.arg($, "lib");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "fcitx5-material-color",
       version: "0.2.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "hosxy",
           repo: "Fcitx5-Material-Color",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -25,7 +23,7 @@ export default nix.lambda((args) => (() => {
         })))),
       installPhase: "runHook preInstall\n\n# https://gitlab.archlinux.org/archlinux/packaging/packages/fcitx5-material-color/-/blob/main/PKGBUILD?ref_type=heads#L16\ninstall -Dm644 arrow.png radio.png -t $out/share/fcitx5-material-color/\nfor _variant in black blue brown deepPurple indigo orange pink red sakuraPink teal; do\n  _variant_name=Material-Color-$_variant\n  install -dm755 $_variant_name $out/share/fcitx5/themes/$_variant_name\n  ln -sv ../../../$pname/arrow.png $out/share/fcitx5/themes/$_variant_name/\n  ln -sv ../../../$pname/radio.png $out/share/fcitx5/themes/$_variant_name/\n  install -Dm644 theme-$_variant.conf $out/share/fcitx5/themes/$_variant_name/theme.conf\n  sed -i \"s/^Name=.*/Name=$_variant_name/\" $out/share/fcitx5/themes/$_variant_name/theme.conf\ndone\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Fcitx5 themes based on Material color",
         homepage: "https://github.com/hosxy/Fcitx5-Material-Color",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

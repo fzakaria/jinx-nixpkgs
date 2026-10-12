@@ -2,9 +2,8 @@
 import * as nix from "../../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["platforms", 33, 5]], [["pname", 13, 3], ["version", 14, 11], ["workDir", 16, 3], ["nativeBuildInputs", 18, 3], ["preConfigure", 22, 3], ["postInstall", 27, 3], ["meta", 32, 3]]]);
 const formals$1 = { args: { lib: false, mkMesonDerivation: false, doxygen: false, version: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["platforms", 33, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 11], ["workDir", 16, 3], ["nativeBuildInputs", 18, 3], ["preConfigure", 22, 3], ["postInstall", 27, 3], ["meta", 32, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const doxygen = nix.arg($, "doxygen");
   const version = nix.arg($, "version");
   return nix.app(mkMesonDerivation, (finalAttrs) => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "nix-external-api-docs",
       version: version,
       workDir: nix.path(here, "./."),
@@ -23,7 +22,7 @@ echo ${nix.sel(finalAttrs, "version")} > ./.version
 `),
       postInstall: "mkdir -p ${!outputDoc}/nix-support\necho \"doc external-api-docs $out/share/doc/nix/external-api/html\" >> ${!outputDoc}/nix-support/hydra-build-products\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       })),
     }));

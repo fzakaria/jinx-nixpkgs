@@ -2,25 +2,22 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/release-attrPaths-gen.nix", [[["allowAliases", 5, 37]], [["config", 5, 30]], [["p", 22, 13], ["o", 23, 13]], [["recurseForDerivations", 36, 36]]]);
 const formals$1 = { args: { variant: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/release-attrPaths-gen.nix", [["allowAliases", 5, 37]]);
-const pos$2 = nix.positions(here + "/release-attrPaths-gen.nix", [["config", 5, 30]]);
-const pos$3 = nix.positions(here + "/release-attrPaths-gen.nix", [["p", 22, 13], ["o", 23, 13]]);
-const pos$4 = nix.positions(here + "/release-attrPaths-gen.nix", [["recurseForDerivations", 36, 36]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const variant = nix.arg($, "variant");
   const pkgs = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../../.")), nix.thunk(() => ({
-      [nix.POS]: pos$2,
-      config: nix.thunk(() => ({ [nix.POS]: pos$1, allowAliases: false })),
+      [nix.POS]: $pos[1],
+      config: nix.thunk(() => ({ [nix.POS]: $pos[0], allowAliases: false })),
     }))));
   const lib = nix.thunk(() => nix.sel(pkgs, "lib"));
   const optionalsWithSuccess = (toTry) => (next) => (() => {
     const tried = nix.thunk(() => nix.builtins.tryEval(toTry));
     return nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(tried, "success")), nix.thunk(() => nix.app(next, nix.thunk(() => nix.sel(tried, "value")))));
   })();
-  const findAll = (path) => (obj) => nix.app(optionalsWithSuccess, obj, (obj_1) => (nix.asBool(nix.has(obj_1, "outPath")) ? nix.app(optionalsWithSuccess, nix.thunk(() => nix.selOr(obj_1, () => null, "outPath")), (outPath) => nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool((nix.asBool(nix.has(obj_1, "meta")) && nix.asBool((nix.asBool(!nix.asBool(nix.selOr(obj_1, () => false, "meta", "available"))) || nix.asBool(nix.sel(obj_1, "meta", "broken"))))))), nix.thunk(() => ({ [nix.POS]: pos$3, p: path, o: outPath })))) : (nix.asBool((nix.asBool(nix.selOr(obj_1, () => false, "recurseForDerivations")) || nix.asBool(nix.selOr(obj_1, () => false, "recurseForRelease")))) ? nix.app(nix.sel(lib, "concatLists"), nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (name) => (value) => nix.app(findAll, nix.thunk(() => (nix.asBool(nix.eq(path, null)) ? nix.force(name) : nix.add(nix.add(path, "."), name))), value), obj_1))) : [])));
-  return nix.app(findAll, null, nix.thunk(() => nix.update(nix.sel(pkgs, nix.key(nix.force(variant))), { [nix.POS]: pos$4, recurseForDerivations: true })));
+  const findAll = (path) => (obj) => nix.app(optionalsWithSuccess, obj, (obj_1) => (nix.asBool(nix.has(obj_1, "outPath")) ? nix.app(optionalsWithSuccess, nix.thunk(() => nix.selOr(obj_1, () => null, "outPath")), (outPath) => nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool((nix.asBool(nix.has(obj_1, "meta")) && nix.asBool((nix.asBool(!nix.asBool(nix.selOr(obj_1, () => false, "meta", "available"))) || nix.asBool(nix.sel(obj_1, "meta", "broken"))))))), nix.thunk(() => ({ [nix.POS]: $pos[2], p: path, o: outPath })))) : (nix.asBool((nix.asBool(nix.selOr(obj_1, () => false, "recurseForDerivations")) || nix.asBool(nix.selOr(obj_1, () => false, "recurseForRelease")))) ? nix.app(nix.sel(lib, "concatLists"), nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), (name) => (value) => nix.app(findAll, nix.thunk(() => (nix.asBool(nix.eq(path, null)) ? nix.force(name) : nix.add(nix.add(path, "."), name))), value), obj_1))) : [])));
+  return nix.app(findAll, null, nix.thunk(() => nix.update(nix.sel(pkgs, nix.key(nix.force(variant))), { [nix.POS]: $pos[3], recurseForDerivations: true })));
 })(), formals$1);
 //# sourceMappingURL=release-attrPaths-gen.ts.map

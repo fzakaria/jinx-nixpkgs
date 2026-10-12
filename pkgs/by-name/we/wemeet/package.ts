@@ -2,23 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 58, 7], ["repo", 59, 7], ["rev", 60, 7], ["hash", 61, 7], ["fetchSubmodules", 62, 7]], [["description", 86, 7], ["homepage", 87, 7], ["license", 88, 7]], [["pname", 54, 5], ["version", 55, 5], ["src", 57, 5], ["nativeBuildInputs", 65, 5], ["buildInputs", 71, 5], ["dontWrapQtApps", 83, 5], ["meta", 85, 5]], [["url", 98, 7], ["rev", 99, 7], ["hash", 100, 7]], [["license", 134, 10]], [["pname", 94, 5], ["version", 95, 5], ["src", 97, 5], ["dontWrapQtApps", 103, 5], ["nativeBuildInputs", 105, 5], ["buildInputs", 107, 5], ["buildPhase", 113, 5], ["installPhase", 126, 5], ["meta", 134, 5]], [["description", 172, 7], ["license", 173, 7]], [["pname", 139, 5], ["version", 140, 5], ["src", 142, 5], ["dontUnpack", 144, 5], ["dontWrapQtApps", 145, 5], ["nativeBuildInputs", 147, 5], ["buildInputs", 149, 5], ["buildPhase", 153, 5], ["installPhase", 163, 5], ["meta", 171, 5]], [["description", 210, 7], ["license", 211, 7]], [["pname", 178, 5], ["version", 179, 5], ["src", 181, 5], ["dontUnpack", 183, 5], ["dontWrapQtApps", 184, 5], ["buildInputs", 186, 5], ["buildPhase", 191, 5], ["installPhase", 201, 5], ["meta", 209, 5]], [["url", 226, 7], ["hash", 227, 7]], [["url", 230, 7], ["hash", 231, 7]], [["x86_64-linux", 225, 5], ["aarch64-linux", 229, 5]], [["x86_64-linux", 296, 5], ["aarch64-linux", 305, 5]], [["description", 344, 5], ["homepage", 345, 5], ["license", 346, 5], ["mainProgram", 347, 5], ["platforms", 348, 5], ["sourceProvenance", 352, 5], ["maintainers", 353, 5]], [["pname", 221, 3], ["version", 222, 3], ["src", 224, 3], ["nativeBuildInputs", 235, 3], ["buildInputs", 241, 3], ["installPhase", 272, 3], ["postInstall", 295, 3], ["preFixup", 314, 3], ["meta", 343, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, dpkg: false, autoPatchelfHook: false, makeWrapper: false, nss: false, libxtst: false, libxrandr: false, libxext: false, libxdamage: false, libx11: false, libsm: false, libice: false, "desktop-file-utils": false, libpulseaudio: false, libgcrypt: false, dbus: false, systemd: false, udev: false, libGL: false, libglvnd: false, fontconfig: false, freetype: false, openssl: false, wayland: false, libdrm: false, harfbuzz: false, openldap: false, curl: false, nghttp2: false, libunwind: false, "alsa-lib": false, libidn2: false, rtmpdump: false, libpsl: false, libkrb5: false, xkeyboard_config: false, libsForQt5: false, "pkg-config": false, fetchFromGitHub: false, cmake: false, ninja: false, wireplumber: false, libportal: false, "xdg-desktop-portal": false, opencv4WithoutCuda: false, pipewire: false, fetchgit: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 58, 7], ["repo", 59, 7], ["rev", 60, 7], ["hash", 61, 7], ["fetchSubmodules", 62, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 86, 7], ["homepage", 87, 7], ["license", 88, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 54, 5], ["version", 55, 5], ["src", 57, 5], ["nativeBuildInputs", 65, 5], ["buildInputs", 71, 5], ["dontWrapQtApps", 83, 5], ["meta", 85, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["url", 98, 7], ["rev", 99, 7], ["hash", 100, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["license", 134, 10]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 94, 5], ["version", 95, 5], ["src", 97, 5], ["dontWrapQtApps", 103, 5], ["nativeBuildInputs", 105, 5], ["buildInputs", 107, 5], ["buildPhase", 113, 5], ["installPhase", 126, 5], ["meta", 134, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["description", 172, 7], ["license", 173, 7]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 139, 5], ["version", 140, 5], ["src", 142, 5], ["dontUnpack", 144, 5], ["dontWrapQtApps", 145, 5], ["nativeBuildInputs", 147, 5], ["buildInputs", 149, 5], ["buildPhase", 153, 5], ["installPhase", 163, 5], ["meta", 171, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["description", 210, 7], ["license", 211, 7]]);
-const pos$10 = nix.positions(here + "/package.nix", [["pname", 178, 5], ["version", 179, 5], ["src", 181, 5], ["dontUnpack", 183, 5], ["dontWrapQtApps", 184, 5], ["buildInputs", 186, 5], ["buildPhase", 191, 5], ["installPhase", 201, 5], ["meta", 209, 5]]);
-const pos$11 = nix.positions(here + "/package.nix", [["url", 226, 7], ["hash", 227, 7]]);
-const pos$12 = nix.positions(here + "/package.nix", [["url", 230, 7], ["hash", 231, 7]]);
-const pos$13 = nix.positions(here + "/package.nix", [["x86_64-linux", 225, 5], ["aarch64-linux", 229, 5]]);
-const pos$14 = nix.positions(here + "/package.nix", [["x86_64-linux", 296, 5], ["aarch64-linux", 305, 5]]);
-const pos$15 = nix.positions(here + "/package.nix", [["description", 344, 5], ["homepage", 345, 5], ["license", 346, 5], ["mainProgram", 347, 5], ["platforms", 348, 5], ["sourceProvenance", 352, 5], ["maintainers", 353, 5]]);
-const pos$16 = nix.positions(here + "/package.nix", [["pname", 221, 3], ["version", 222, 3], ["src", 224, 3], ["nativeBuildInputs", 235, 3], ["buildInputs", 241, 3], ["installPhase", 272, 3], ["postInstall", 295, 3], ["preFixup", 314, 3], ["meta", 343, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -72,11 +57,11 @@ export default nix.lambda((args) => (() => {
   const pipewire = nix.arg($, "pipewire");
   const fetchgit = nix.arg($, "fetchgit");
   const wemeet_wayland_screenshare = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "wemeet-wayland-screenshare",
       version: "0-unstable-2025-05-31",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "xuwd1",
           repo: "wemeet-wayland-screenshare",
           rev: "7f338966e162612b09d838512b11af5901414d05",
@@ -97,18 +82,18 @@ export default nix.lambda((args) => (() => {
       ]),
       dontWrapQtApps: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Hooked WeMeet that enables screenshare on Wayland",
         homepage: "https://github.com/xuwd1/wemeet-wayland-screenshare",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       })),
     }))));
   const libwemeetwrap = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "libwemeetwrap",
       version: "0-unstable-2023-12-14",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           url: "https://aur.archlinux.org/wemeet-bin.git",
           rev: "8f03fbc4d5ae263ed7e670473886cfa1c146aecc",
           hash: "sha256-ExzLCIoLu4KxaoeWNhMXixdlDTIwuPiYZkO+XVK8X10=",
@@ -119,12 +104,12 @@ export default nix.lambda((args) => (() => {
       buildPhase: "runHook preBuild\n\nread -ra openssl_args < <(pkg-config --libs openssl)\nread -ra libpulse_args < <(pkg-config --cflags --libs libpulse)\n# Comment out `-D WRAP_FORCE_SINK_HARDWARE` to disable the patch that forces wemeet detects sink as hardware sink\n$CC $CFLAGS -Wall -Wextra -fPIC -shared \\\n  \"${openssl_args[@]}\" \"${libpulse_args[@]}\" \\\n  -o libwemeetwrap.so wrap.c -D WRAP_FORCE_SINK_HARDWARE\n\nrunHook postBuild\n",
       installPhase: "runHook preInstall\n\ninstall -Dm755 ./libwemeetwrap.so $out/lib/libwemeetwrap.so\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
       })),
     }))));
   const wemeet_x11_fix = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "wemeet-x11-fix",
       version: "0-unstable-2025-11-07",
       src: nix.path(here, "./wemeet-x11-fix.c"),
@@ -135,13 +120,13 @@ export default nix.lambda((args) => (() => {
       buildPhase: "runHook preBuild\n\n$CC $CFLAGS -Wall -Wextra -fPIC -shared \\\n  -o libwemeet-x11-fix.so $src \\\n  -ldl -lX11\n\nrunHook postBuild\n",
       installPhase: "runHook preInstall\n\ninstall -Dm755 ./libwemeet-x11-fix.so $out/lib/libwemeet-x11-fix.so\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "Fix for wemeet Wayland XSetInputFocus crash",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       })),
     }))));
   const wemeet_camera_fix = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       pname: "wemeet-camera-fix",
       version: "0-unstable-2026-05-20",
       src: nix.path(here, "./wemeet-camera-fix.c"),
@@ -151,25 +136,25 @@ export default nix.lambda((args) => (() => {
       buildPhase: "runHook preBuild\n\n$CC $CFLAGS -Wall -Wextra -fPIC -shared \\\n  -o libwemeet-camera-fix.so $src \\\n  -ldl -lEGL -lX11\n\nrunHook postBuild\n",
       installPhase: "runHook preInstall\n\ninstall -Dm755 ./libwemeet-camera-fix.so $out/lib/libwemeet-camera-fix.so\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         description: "Fix for WeMeet Wayland camera preview rendering",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       })),
     }))));
   const selectSystem = (attrs) => nix.selOr(attrs, () => nix.builtins.throw(nix.thunk(() => nix.str`wemeet: ${nix.sel(stdenv, "hostPlatform", "system")} is not supported`)), nix.key(nix.sel(stdenv, "hostPlatform", "system")));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$16,
+      [nix.POS]: $pos[15],
       pname: "wemeet",
       version: "3.26.10.401",
       src: nix.thunk(() => nix.app(selectSystem, nix.thunk(() => ({
-          [nix.POS]: pos$13,
+          [nix.POS]: $pos[12],
           "x86_64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              [nix.POS]: pos$11,
+              [nix.POS]: $pos[10],
               url: "https://updatecdn.meeting.qq.com/cos/72e0e0023e1d1e6d4123fba28821aea1/TencentMeeting_0300000000_3.26.10.401_x86_64_default.publish.officialwebsite.deb",
               hash: "sha256-cPN7ApIJwO+RvpgT7r9mUMbLmgD3xxhJAVh3Pi/mrK8=",
             })))),
           "aarch64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              [nix.POS]: pos$12,
+              [nix.POS]: $pos[11],
               url: "https://updatecdn.meeting.qq.com/cos/c06d6bc4a3370dbfb2f43bbc6ff8969e/TencentMeeting_0300000000_3.26.10.401_arm64_default.publish.officialwebsite.deb",
               hash: "sha256-W50E1bmqJLPDU7FY0qNKPlh1z8A9Ez1Gc+NrHQhBwgI=",
             })))),
@@ -207,7 +192,7 @@ export default nix.lambda((args) => (() => {
       ]),
       installPhase: "runHook preInstall\n\nmkdir -p $out/app\ncp -r opt/wemeet $out/app/wemeet\ncp -r usr/share $out/share\n# bundled libcurl depends on openssl 1.1 which is not available in nixpkgs\nrm -f $out/app/wemeet/lib/libcurl.so\nsubstituteInPlace $out/share/applications/wemeetapp.desktop \\\n  --replace-fail \"/opt/wemeet/wemeetapp.sh\" \"wemeet\" \\\n  --replace-fail \"/opt/wemeet/wemeet.svg\" \"wemeet\"\nsubstituteInPlace $out/app/wemeet/bin/qt.conf \\\n  --replace-fail \"Prefix = ../\" \"Prefix = $out/app/wemeet/lib\"\ncp -r $out/app/wemeet/icons $out/share/icons || true\ninstall -Dm0644 $out/app/wemeet/wemeet.svg $out/share/icons/hicolor/scalable/apps/wemeet.svg\nln -s $out/app/wemeet/bin/raw/xcast.conf $out/app/wemeet/bin/xcast.conf\nln -s $out/app/wemeet/plugins $out/app/wemeet/lib/plugins\nln -s $out/app/wemeet/resources $out/app/wemeet/lib/resources\nln -s $out/app/wemeet/translations $out/app/wemeet/lib/translations\n\nrunHook postInstall\n",
       postInstall: nix.thunk(() => nix.app(selectSystem, nix.thunk(() => ({
-          [nix.POS]: pos$14,
+          [nix.POS]: $pos[13],
           "x86_64-linux": "# According to @mnixry:\n#   The thing is, it's a coroutine library that involves a series of low-level operations like stack and register restoration and saving, so there's quite a bit of code that looks like hand-written assembly.\n#   Then they apparently changed the usage of co_jump_to_link, but the registers used in the assembly weren't updated accordingly.\n#   And then under certain versions of libc/libcpp implementations, that original register happens to have a value, so the tests also pass.\n\n# cmp rdi, 0 -> cmp r12, 0, at co_jump_to_link to address coroutine context resume issue\necho -ne '\\x49\\x83\\xfc\\x00' | dd of=$out/app/wemeet/lib/libwemeet_base.so bs=1 seek=$((0x94c833)) conv=notrunc\n",
           "aarch64-linux": "# I don't know if aarch64-linux version needs similar patch, I don't have aarch64 device.\n",
         })))),
@@ -238,7 +223,7 @@ makeWrapper $out/app/wemeet/bin/wemeetapp $out/bin/wemeet-xwayland \\
 `;
       })()),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$15,
+        [nix.POS]: $pos[14],
         description: "Tencent Video Conferencing",
         homepage: "https://wemeet.qq.com",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

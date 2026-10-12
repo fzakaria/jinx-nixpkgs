@@ -2,9 +2,9 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["builder", 24, 7], ["nativeBuildInputs", 25, 7], ["strictDeps", 30, 7], ["__structuredAttrs", 31, 7], ["outputHash", 33, 15], ["outputHashAlgo", 33, 26], ["outputHashMode", 34, 7], ["rev", 37, 9], ["context", 38, 9], ["name", 39, 9], ["repositories", 42, 7]]]);
 const formals$1 = { args: { stdenvNoCC: false, darcs: false, cacert: false, lib: false }, ellipsis: false };
 const formals$2 = { args: { url: false, mirrors: true, rev: true, context: true, outputHash: true, outputHashAlgo: true, name: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["builder", 24, 7], ["nativeBuildInputs", 25, 7], ["strictDeps", 30, 7], ["__structuredAttrs", 31, 7], ["outputHash", 33, 15], ["outputHashAlgo", 33, 26], ["outputHashMode", 34, 7], ["rev", 37, 9], ["context", 38, 9], ["name", 39, 9], ["repositories", 42, 7]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,7 +22,7 @@ export default nix.lambda((args) => (() => {
         const outputHashAlgo = nix.argOr($_1, "outputHashAlgo", () => null);
         const name = nix.argOr($_1, "name", () => "fetchdarcs");
         return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             builder: nix.path(here, "./builder.sh"),
             nativeBuildInputs: nix.thunk(() => [cacert, darcs]),
             strictDeps: true,

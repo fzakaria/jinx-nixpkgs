@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 20, 5], ["sha256", 21, 5]], [["description", 93, 5], ["longDescription", 94, 5], ["homepage", 111, 5], ["license", 112, 5], ["maintainers", 113, 5], ["platforms", 114, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 25, 3], ["makeFlags", 35, 3], ["postInstall", 37, 3], ["meta", 92, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, makeWrapper: false, cvs: false, perl: false, "net-tools": false, findutils: false, rsync: false, coreutils: false, diffutils: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 20, 5], ["sha256", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 93, 5], ["longDescription", 94, 5], ["homepage", 111, 5], ["license", 112, 5], ["maintainers", 113, 5], ["platforms", 114, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 25, 3], ["makeFlags", 35, 3], ["postInstall", 37, 3], ["meta", 92, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const coreutils = nix.arg($, "coreutils");
   const diffutils = nix.arg($, "diffutils");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "cvsq",
       version: "1.11",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://www.linta.de/~aehlig/cvsq/cvsq-${nix.sel(finalAttrs, "version")}.tgz`),
           sha256: "0491k4skk3jyyd6plp2kcihmxxav9rsch7vd1yi697m2fqckp5ws",
         })))),
@@ -41,7 +39,7 @@ wrapProgram $out/bin/cvsq-switch --prefix PATH : ${nix.app(nix.sel(lib, "makeBin
 wrapProgram $out/bin/lcvs --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [cvs, net_tools, findutils, rsync, coreutils, diffutils]))}
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Collection of tools to work locally with CVS",
         longDescription: "cvsq is a collection of tools to work locally with CVS.\n\ncvsq queues commits and other cvs commands in a queue to be executed later,\nwhen the machine is online again. In case of a commit (the default action)\nan actual copy of the working directory is made, so that you can continue\nediting without affecting the scheduled commit. You can even schedule\nseveral successive commits to the same file and they will be correctly\ncommitted as successive commits at the time of upload. This is different\nfrom an earlier script also named cvsq that you might have seen elsewhere.\n\nlcvs uses rsync to maintain a local copy of a cvs repository. It also\ngives a convenient interface to call cvs in such a way that it believes the\ncurrent working directory refers to the local copy rather than to the actual\nrepository. This is useful for commands like log, diff, etc; however it cannot\nbe used for commits (that's what cvsq is for).\n",
         homepage: "https://www.linta.de/~aehlig/cvsq/",

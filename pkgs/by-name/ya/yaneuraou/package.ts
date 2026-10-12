@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 49, 5], ["repo", 50, 5], ["tag", 51, 5], ["hash", 52, 5]], [["url", 88, 9], ["hash", 89, 9]], [["extraArgs", 108, 7]], [["updateScript", 107, 5]], [["description", 115, 5], ["homepage", 116, 5], ["license", 117, 5], ["maintainers", 118, 5], ["mainProgram", 121, 5], ["platforms", 122, 5]], [["pname", 45, 3], ["version", 46, 3], ["src", 48, 3], ["sourceRoot", 55, 3], ["nativeBuildInputs", 57, 3], ["buildInputs", 61, 3], ["buildFlags", 65, 3], ["installPhase", 72, 3], ["doInstallCheck", 81, 3], ["nativeInstallCheckInputs", 82, 3], ["installCheckPhase", 85, 3], ["passthru", 106, 3], ["meta", 114, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, clangStdenv: false, lld: false, targetLabel: true, fetchFromGitHub: false, fetchurl: false, _7zz: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 49, 5], ["repo", 50, 5], ["tag", 51, 5], ["hash", 52, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 88, 9], ["hash", 89, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["extraArgs", 108, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 107, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 115, 5], ["homepage", 116, 5], ["license", 117, 5], ["maintainers", 118, 5], ["mainProgram", 121, 5], ["platforms", 122, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 45, 3], ["version", 46, 3], ["src", 48, 3], ["sourceRoot", 55, 3], ["nativeBuildInputs", 57, 3], ["buildInputs", 61, 3], ["buildFlags", 65, 3], ["installPhase", 72, 3], ["doInstallCheck", 81, 3], ["nativeInstallCheckInputs", 82, 3], ["installCheckPhase", 85, 3], ["passthru", 106, 3], ["meta", 114, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const _7zz = nix.arg($, "_7zz");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(clangStdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "yaneuraou",
       version: "9.01",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "yaneurao",
           repo: "YaneuraOu",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}git`),
@@ -49,7 +44,7 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [_7zz]),
       installCheckPhase: nix.thunk(() => (() => {
         const nnue = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/yaneurao/YaneuraOu/releases/download/suisho5/Suisho5.7z",
             hash: "sha256-ZzTjo9KOZ7kgbDRC9tEPFhSBODJ9/4Ecre389YH3mAk=",
           }))));
@@ -67,14 +62,14 @@ runHook postInstallCheck
 `;
       })()),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             extraArgs: nix.thunk(() => ["--version-regex=^v([\\d.]+)git$"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "USI compliant shogi engine",
         homepage: "https://github.com/yaneurao/YaneuraOu",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

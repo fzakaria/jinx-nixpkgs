@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 18, 5], ["hash", 19, 5]], [["pkg-config", 42, 11]], [["updateScript", 34, 5], ["tests", 42, 5]], [["description", 46, 5], ["longDescription", 47, 5], ["homepage", 54, 5], ["license", 55, 5], ["maintainers", 62, 5], ["pkgConfigModules", 63, 5], ["platforms", 64, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["strictDeps", 22, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 26, 3], ["passthru", 33, 3], ["meta", 45, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, "pkg-config": false, xorgproto: false, libx11: false, libxext: false, libxi: false, writeScript: false, testers: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pkg-config", 42, 11]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 34, 5], ["tests", 42, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 46, 5], ["longDescription", 47, 5], ["homepage", 54, 5], ["license", 55, 5], ["maintainers", 62, 5], ["pkgConfigModules", 63, 5], ["platforms", 64, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["strictDeps", 22, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 26, 3], ["passthru", 33, 3], ["meta", 45, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const writeScript = nix.arg($, "writeScript");
   const testers = nix.arg($, "testers");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "libxtst",
       version: "1.2.5",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://xorg/individual/lib/libXtst-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-tQ1MJblwCadEcGwQOcWY9NjmSRDJ/eOBmU4criNdkkI=",
         })))),
@@ -34,7 +30,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [xorgproto, libx11, libxext, libxi]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(writeScript, nix.thunk(() => nix.str`update-${nix.sel(finalAttrs, "pname")}`), nix.thunk(() => nix.str`#!/usr/bin/env nix-shell
 #!nix-shell -i bash -p common-updater-scripts
 version="$(list-directory-versions --pname libXtst \\
@@ -43,12 +39,12 @@ version="$(list-directory-versions --pname libXtst \\
 update-source-version ${nix.sel(finalAttrs, "pname")} "$version"
 `))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "testMetaPkgConfig"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Library for the XTEST and RECORD X11 extensions",
         longDescription: "The XTEST extension is a minimal set of client and server extensions required to completely\ntest the X11 server with no user intervention. This extension is not intended to support\ngeneral journaling and playback of user actions.\nThe RECORD extension supports the recording and reporting of all core X protocol and arbitrary\nX extension protocol.\n",
         homepage: "https://gitlab.freedesktop.org/xorg/lib/libxtst",

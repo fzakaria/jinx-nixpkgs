@@ -2,50 +2,13 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/with-objectstore.nix", [[["system", 9, 52], ["pkgs", 9, 59]], [["maintainers", 31, 10]], [["enable", 49, 13], ["bucket", 50, 13], ["verify_bucket_exists", 51, 13], ["key", 52, 13], ["secretFile", 53, 13], ["hostname", 54, 13], ["useSsl", 55, 13], ["port", 56, 13], ["usePathStyle", 57, 13], ["region", 58, 13]], [["s3", 48, 49]], [["dbtype", 43, 37], ["objectstore", 48, 37]], [["config", 43, 30]], [["nextcloud", 43, 20]], [["AWS_CONFIG_FILE", 45, 33], ["AWS_CA_BUNDLE", 46, 33]], [["variables", 45, 23], ["systemPackages", 65, 23]], [["certificates", 61, 24]], [["pki", 61, 20]], [["extraHosts", 69, 22]], [["services", 43, 11], ["environment", 45, 11], ["security", 61, 11], ["networking", 69, 11]], [["AWS_CONFIG_FILE", 77, 33], ["AWS_CA_BUNDLE", 78, 33]], [["variables", 77, 23], ["systemPackages", 79, 23]], [["certificates", 81, 24]], [["pki", 81, 20]], [["extraHosts", 84, 22]], [["environment", 77, 11], ["security", 81, 11], ["networking", 84, 11]], [["certificates", 92, 24]], [["pki", 92, 20]], [["s3_region", 106, 17], ["api_bind_addr", 107, 17]], [["rpc_bind_addr", 100, 15], ["rpc_public_addr", 101, 15], ["rpc_secret", 102, 15], ["replication_factor", 103, 15], ["s3_api", 105, 15]], [["enable", 97, 13], ["package", 98, 13], ["settings", 99, 13]], [["proxyPass", 120, 29]], [["/", 120, 25]], [["onlySSL", 117, 15], ["sslCertificate", 118, 15], ["sslCertificateKey", 119, 15], ["locations", 120, 15]], [["acme.test", 116, 26]], [["enable", 113, 13], ["recommendedProxySettings", 114, 13], ["virtualHosts", 116, 13]], [["garage", 96, 20], ["nginx", 112, 20]], [["allowedTCPPorts", 132, 31]], [["extraHosts", 124, 22], ["firewall", 132, 22]], [["systemPackages", 128, 23]], [["diskSize", 130, 26]], [["security", 92, 11], ["services", 96, 11], ["networking", 124, 11], ["environment", 128, 11], ["virtualisation", 130, 11]], [["nextcloud", 36, 7], ["client", 74, 7], ["garage", 89, 7]], [["provision", 140, 18], ["extraTests", 158, 18]], [["name", 30, 13], ["meta", 31, 5], ["imports", 33, 5], ["nodes", 35, 5], ["test-helpers", 140, 5]]]);
 const formals$1 = { args: { name: false, pkgs: false, testBase: false, system: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/with-objectstore.nix", [["system", 9, 52], ["pkgs", 9, 59]]);
 const formals$2 = { args: { config: false, lib: false, pkgs: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/with-objectstore.nix", [["maintainers", 31, 10]]);
 const formals$3 = { args: { pkgs: false, nodes: false }, ellipsis: true };
-const pos$3 = nix.positions(here + "/with-objectstore.nix", [["enable", 49, 13], ["bucket", 50, 13], ["verify_bucket_exists", 51, 13], ["key", 52, 13], ["secretFile", 53, 13], ["hostname", 54, 13], ["useSsl", 55, 13], ["port", 56, 13], ["usePathStyle", 57, 13], ["region", 58, 13]]);
-const pos$4 = nix.positions(here + "/with-objectstore.nix", [["s3", 48, 49]]);
-const pos$5 = nix.positions(here + "/with-objectstore.nix", [["dbtype", 43, 37], ["objectstore", 48, 37]]);
-const pos$6 = nix.positions(here + "/with-objectstore.nix", [["config", 43, 30]]);
-const pos$7 = nix.positions(here + "/with-objectstore.nix", [["nextcloud", 43, 20]]);
-const pos$8 = nix.positions(here + "/with-objectstore.nix", [["AWS_CONFIG_FILE", 45, 33], ["AWS_CA_BUNDLE", 46, 33]]);
-const pos$9 = nix.positions(here + "/with-objectstore.nix", [["variables", 45, 23], ["systemPackages", 65, 23]]);
-const pos$10 = nix.positions(here + "/with-objectstore.nix", [["certificates", 61, 24]]);
-const pos$11 = nix.positions(here + "/with-objectstore.nix", [["pki", 61, 20]]);
-const pos$12 = nix.positions(here + "/with-objectstore.nix", [["extraHosts", 69, 22]]);
-const pos$13 = nix.positions(here + "/with-objectstore.nix", [["services", 43, 11], ["environment", 45, 11], ["security", 61, 11], ["networking", 69, 11]]);
 const formals$4 = { args: { pkgs: false, nodes: false }, ellipsis: true };
-const pos$14 = nix.positions(here + "/with-objectstore.nix", [["AWS_CONFIG_FILE", 77, 33], ["AWS_CA_BUNDLE", 78, 33]]);
-const pos$15 = nix.positions(here + "/with-objectstore.nix", [["variables", 77, 23], ["systemPackages", 79, 23]]);
-const pos$16 = nix.positions(here + "/with-objectstore.nix", [["certificates", 81, 24]]);
-const pos$17 = nix.positions(here + "/with-objectstore.nix", [["pki", 81, 20]]);
-const pos$18 = nix.positions(here + "/with-objectstore.nix", [["extraHosts", 84, 22]]);
-const pos$19 = nix.positions(here + "/with-objectstore.nix", [["environment", 77, 11], ["security", 81, 11], ["networking", 84, 11]]);
 const formals$5 = { args: { pkgs: false }, ellipsis: true };
-const pos$20 = nix.positions(here + "/with-objectstore.nix", [["certificates", 92, 24]]);
-const pos$21 = nix.positions(here + "/with-objectstore.nix", [["pki", 92, 20]]);
-const pos$22 = nix.positions(here + "/with-objectstore.nix", [["s3_region", 106, 17], ["api_bind_addr", 107, 17]]);
-const pos$23 = nix.positions(here + "/with-objectstore.nix", [["rpc_bind_addr", 100, 15], ["rpc_public_addr", 101, 15], ["rpc_secret", 102, 15], ["replication_factor", 103, 15], ["s3_api", 105, 15]]);
-const pos$24 = nix.positions(here + "/with-objectstore.nix", [["enable", 97, 13], ["package", 98, 13], ["settings", 99, 13]]);
-const pos$25 = nix.positions(here + "/with-objectstore.nix", [["proxyPass", 120, 29]]);
-const pos$26 = nix.positions(here + "/with-objectstore.nix", [["/", 120, 25]]);
-const pos$27 = nix.positions(here + "/with-objectstore.nix", [["onlySSL", 117, 15], ["sslCertificate", 118, 15], ["sslCertificateKey", 119, 15], ["locations", 120, 15]]);
-const pos$28 = nix.positions(here + "/with-objectstore.nix", [["acme.test", 116, 26]]);
-const pos$29 = nix.positions(here + "/with-objectstore.nix", [["enable", 113, 13], ["recommendedProxySettings", 114, 13], ["virtualHosts", 116, 13]]);
-const pos$30 = nix.positions(here + "/with-objectstore.nix", [["garage", 96, 20], ["nginx", 112, 20]]);
-const pos$31 = nix.positions(here + "/with-objectstore.nix", [["allowedTCPPorts", 132, 31]]);
-const pos$32 = nix.positions(here + "/with-objectstore.nix", [["extraHosts", 124, 22], ["firewall", 132, 22]]);
-const pos$33 = nix.positions(here + "/with-objectstore.nix", [["systemPackages", 128, 23]]);
-const pos$34 = nix.positions(here + "/with-objectstore.nix", [["diskSize", 130, 26]]);
-const pos$35 = nix.positions(here + "/with-objectstore.nix", [["security", 92, 11], ["services", 96, 11], ["networking", 124, 11], ["environment", 128, 11], ["virtualisation", 130, 11]]);
-const pos$36 = nix.positions(here + "/with-objectstore.nix", [["nextcloud", 36, 7], ["client", 74, 7], ["garage", 89, 7]]);
 const formals$6 = { args: { nodes: false }, ellipsis: true };
-const pos$37 = nix.positions(here + "/with-objectstore.nix", [["provision", 140, 18], ["extraTests", 158, 18]]);
-const pos$38 = nix.positions(here + "/with-objectstore.nix", [["name", 30, 13], ["meta", 31, 5], ["imports", 33, 5], ["nodes", 35, 5], ["test-helpers", 140, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -53,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const testBase = nix.arg($, "testBase");
   const system = nix.arg($, "system");
-  const w = nix.withScope(nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../lib/testing-python.nix")), nix.thunk(() => ({ [nix.POS]: pos$1, system: system, pkgs: pkgs })))), null);
+  const w = nix.withScope(nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../lib/testing-python.nix")), nix.thunk(() => ({ [nix.POS]: $pos[0], system: system, pkgs: pkgs })))), null);
   return nix.app(nix.lookup(w, "runTest"), nix.lambda((args_1) => (() => {
       const $_1 = nix.formals(args_1, formals$2);
       const config = nix.arg($_1, "config");
@@ -68,32 +31,32 @@ aws_secret_access_key=${secretKey}
 region=garage
 `))}`);
       return {
-        [nix.POS]: pos$38,
+        [nix.POS]: $pos[37],
         name: name,
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           maintainers: nix.thunk(() => nix.sel(lib, "teams", "nextcloud", "members")),
         })),
         imports: nix.thunk(() => [testBase]),
         nodes: nix.thunk(() => ({
-          [nix.POS]: pos$36,
+          [nix.POS]: $pos[35],
           nextcloud: nix.lambda((args_2) => (() => {
             const $_2 = nix.formals(args_2, formals$3);
             const pkgs_2 = nix.arg($_2, "pkgs");
             const nodes = nix.arg($_2, "nodes");
             return {
-              [nix.POS]: pos$13,
+              [nix.POS]: $pos[12],
               services: nix.thunk(() => ({
-                [nix.POS]: pos$7,
+                [nix.POS]: $pos[6],
                 nextcloud: nix.thunk(() => ({
-                  [nix.POS]: pos$6,
+                  [nix.POS]: $pos[5],
                   config: nix.thunk(() => ({
-                    [nix.POS]: pos$5,
+                    [nix.POS]: $pos[4],
                     dbtype: "sqlite",
                     objectstore: nix.thunk(() => ({
-                      [nix.POS]: pos$4,
+                      [nix.POS]: $pos[3],
                       s3: nix.thunk(() => ({
-                        [nix.POS]: pos$3,
+                        [nix.POS]: $pos[2],
                         enable: true,
                         bucket: "nextcloud",
                         verify_bucket_exists: true,
@@ -110,25 +73,25 @@ region=garage
                 })),
               })),
               environment: nix.thunk(() => ({
-                [nix.POS]: pos$9,
+                [nix.POS]: $pos[8],
                 variables: nix.thunk(() => ({
-                  [nix.POS]: pos$8,
+                  [nix.POS]: $pos[7],
                   AWS_CONFIG_FILE: awsCfg,
                   AWS_CA_BUNDLE: "/etc/ssl/certs/ca-bundle.crt",
                 })),
                 systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs_2, "awscli2"))]),
               })),
               security: nix.thunk(() => ({
-                [nix.POS]: pos$11,
+                [nix.POS]: $pos[10],
                 pki: nix.thunk(() => ({
-                  [nix.POS]: pos$10,
+                  [nix.POS]: $pos[9],
                   certificates: nix.thunk(() => [
                     nix.thunk(() => nix.app(nix.sel(nix.builtins, "readFile"), nix.path(here, "../common/acme/server/ca.cert.pem"))),
                   ]),
                 })),
               })),
               networking: nix.thunk(() => ({
-                [nix.POS]: pos$12,
+                [nix.POS]: $pos[11],
                 extraHosts: nix.thunk(() => nix.str`${nix.sel(nodes, "garage", "networking", "primaryIPAddress")} acme.test
 `),
               })),
@@ -139,27 +102,27 @@ region=garage
             const pkgs_2 = nix.arg($_2, "pkgs");
             const nodes = nix.arg($_2, "nodes");
             return {
-              [nix.POS]: pos$19,
+              [nix.POS]: $pos[18],
               environment: nix.thunk(() => ({
-                [nix.POS]: pos$15,
+                [nix.POS]: $pos[14],
                 variables: nix.thunk(() => ({
-                  [nix.POS]: pos$14,
+                  [nix.POS]: $pos[13],
                   AWS_CONFIG_FILE: awsCfg,
                   AWS_CA_BUNDLE: "/etc/ssl/certs/ca-bundle.crt",
                 })),
                 systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs_2, "awscli2"))]),
               })),
               security: nix.thunk(() => ({
-                [nix.POS]: pos$17,
+                [nix.POS]: $pos[16],
                 pki: nix.thunk(() => ({
-                  [nix.POS]: pos$16,
+                  [nix.POS]: $pos[15],
                   certificates: nix.thunk(() => [
                     nix.thunk(() => nix.app(nix.sel(nix.builtins, "readFile"), nix.path(here, "../common/acme/server/ca.cert.pem"))),
                   ]),
                 })),
               })),
               networking: nix.thunk(() => ({
-                [nix.POS]: pos$18,
+                [nix.POS]: $pos[17],
                 extraHosts: nix.thunk(() => nix.str`${nix.sel(nodes, "garage", "networking", "primaryIPAddress")} acme.test
 `),
               })),
@@ -169,65 +132,65 @@ region=garage
             const $_2 = nix.formals(args_2, formals$5);
             const pkgs_2 = nix.arg($_2, "pkgs");
             return {
-              [nix.POS]: pos$35,
+              [nix.POS]: $pos[34],
               security: nix.thunk(() => ({
-                [nix.POS]: pos$21,
+                [nix.POS]: $pos[20],
                 pki: nix.thunk(() => ({
-                  [nix.POS]: pos$20,
+                  [nix.POS]: $pos[19],
                   certificates: nix.thunk(() => [
                     nix.thunk(() => nix.app(nix.sel(nix.builtins, "readFile"), nix.path(here, "../common/acme/server/ca.cert.pem"))),
                   ]),
                 })),
               })),
               services: nix.thunk(() => ({
-                [nix.POS]: pos$30,
+                [nix.POS]: $pos[29],
                 garage: nix.thunk(() => ({
-                  [nix.POS]: pos$24,
+                  [nix.POS]: $pos[23],
                   enable: true,
                   package: nix.thunk(() => nix.sel(pkgs_2, "garage_2")),
                   settings: nix.thunk(() => ({
-                    [nix.POS]: pos$23,
+                    [nix.POS]: $pos[22],
                     rpc_bind_addr: "[::]:3901",
                     rpc_public_addr: "[::]:3901",
                     rpc_secret: "81e5ab61625a5097c5953a09a16a524479c290ca01921560704395b830ad248d",
                     replication_factor: 1n,
-                    s3_api: nix.thunk(() => ({ [nix.POS]: pos$22, s3_region: "garage", api_bind_addr: "[::]:3900" })),
+                    s3_api: nix.thunk(() => ({ [nix.POS]: $pos[21], s3_region: "garage", api_bind_addr: "[::]:3900" })),
                   })),
                 })),
                 nginx: nix.thunk(() => ({
-                  [nix.POS]: pos$29,
+                  [nix.POS]: $pos[28],
                   enable: true,
                   recommendedProxySettings: true,
                   virtualHosts: nix.thunk(() => ({
-                    [nix.POS]: pos$28,
+                    [nix.POS]: $pos[27],
                     "acme.test": nix.thunk(() => ({
-                      [nix.POS]: pos$27,
+                      [nix.POS]: $pos[26],
                       onlySSL: true,
                       sslCertificate: nix.path(here, "../common/acme/server/acme.test.cert.pem"),
                       sslCertificateKey: nix.path(here, "../common/acme/server/acme.test.key.pem"),
                       locations: nix.thunk(() => ({
-                        [nix.POS]: pos$26,
-                        "/": nix.thunk(() => ({ [nix.POS]: pos$25, proxyPass: "http://127.0.0.1:3900" })),
+                        [nix.POS]: $pos[25],
+                        "/": nix.thunk(() => ({ [nix.POS]: $pos[24], proxyPass: "http://127.0.0.1:3900" })),
                       })),
                     })),
                   })),
                 })),
               })),
               networking: nix.thunk(() => ({
-                [nix.POS]: pos$32,
+                [nix.POS]: $pos[31],
                 extraHosts: "127.0.0.1 acme.test\n",
-                firewall: nix.thunk(() => ({ [nix.POS]: pos$31, allowedTCPPorts: nix.thunk(() => [3900n, 80n, 443n]) })),
+                firewall: nix.thunk(() => ({ [nix.POS]: $pos[30], allowedTCPPorts: nix.thunk(() => [3900n, 80n, 443n]) })),
               })),
               environment: nix.thunk(() => ({
-                [nix.POS]: pos$33,
+                [nix.POS]: $pos[32],
                 systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs_2, "gawk"))]),
               })),
-              virtualisation: nix.thunk(() => ({ [nix.POS]: pos$34, diskSize: nix.thunk(() => nix.mul(2n, 1024n)) })),
+              virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[33], diskSize: nix.thunk(() => nix.mul(2n, 1024n)) })),
             };
           })(), formals$5),
         })),
         "test-helpers": nix.thunk(() => ({
-          [nix.POS]: pos$37,
+          [nix.POS]: $pos[36],
           provision: nix.thunk(() => nix.str`garage.start()
 garage.wait_for_open_port(3900)
 garage.wait_for_unit("nginx.service")

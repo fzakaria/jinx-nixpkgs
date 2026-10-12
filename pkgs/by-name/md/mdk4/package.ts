@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]], [["description", 43, 5], ["homepage", 44, 5], ["maintainers", 45, 5], ["license", 46, 5], ["mainProgram", 47, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["preBuild", 21, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 30, 3], ["makeFlags", 35, 3], ["enableParallelBuilding", 40, 3], ["meta", 42, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, libnl: false, libpcap: false, "pkg-config": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 43, 5], ["homepage", 44, 5], ["maintainers", 45, 5], ["license", 46, 5], ["mainProgram", 47, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["preBuild", 21, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 30, 3], ["makeFlags", 35, 3], ["enableParallelBuilding", 40, 3], ["meta", 42, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const libpcap = nix.arg($, "libpcap");
   const pkg_config = nix.arg($, "pkg-config");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "mdk4",
       version: "4.2-unstable-2024-08-16",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "aircrack-ng",
           repo: "mdk4",
           rev: "36ca143a2e6c0b75b5ec60143b0c5eddd3d2970c",
@@ -32,7 +30,7 @@ export default nix.lambda((args) => (() => {
       makeFlags: nix.thunk(() => ["PREFIX=$(out)", "SBINDIR=$(PREFIX)/bin"]),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Tool that injects data into wireless networks",
         homepage: "https://github.com/aircrack-ng/mdk4",
         maintainers: nix.thunk(() => (() => {

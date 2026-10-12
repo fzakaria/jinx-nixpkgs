@@ -2,18 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["hash", 33, 5]], [["url", 39, 7], ["hash", 40, 7]], [["url", 43, 7], ["hash", 44, 7]], [["url", 47, 7], ["hash", 48, 7]], [["url", 51, 7], ["hash", 52, 7]], [["url", 55, 7], ["hash", 56, 7]], [["url", 59, 7], ["hash", 60, 7]], [["url", 63, 7], ["hash", 64, 7]], [["url", 67, 7], ["hash", 68, 7]], [["description", 99, 5], ["homepage", 100, 5], ["changelog", 101, 5], ["license", 102, 5], ["maintainers", 103, 5]], [["pname", 25, 3], ["version", 26, 3], ["pyproject", 27, 3], ["src", 29, 3], ["patches", 37, 3], ["pythonRelaxDeps", 72, 3], ["build-system", 74, 3], ["dependencies", 76, 3], ["nativeCheckInputs", 84, 3], ["disabledTestPaths", 91, 3], ["pythonImportsCheck", 96, 3], ["meta", 98, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, fetchpatch: false, setuptools: false, celery: false, "cron-descriptor": false, "django-timezone-field": false, "python-crontab": false, tzdata: false, ephem: false, "pytest-django": false, "pytest-timeout": false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["hash", 33, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["url", 39, 7], ["hash", 40, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["url", 43, 7], ["hash", 44, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["url", 47, 7], ["hash", 48, 7]]);
-const pos$5 = nix.positions(here + "/default.nix", [["url", 51, 7], ["hash", 52, 7]]);
-const pos$6 = nix.positions(here + "/default.nix", [["url", 55, 7], ["hash", 56, 7]]);
-const pos$7 = nix.positions(here + "/default.nix", [["url", 59, 7], ["hash", 60, 7]]);
-const pos$8 = nix.positions(here + "/default.nix", [["url", 63, 7], ["hash", 64, 7]]);
-const pos$9 = nix.positions(here + "/default.nix", [["url", 67, 7], ["hash", 68, 7]]);
-const pos$10 = nix.positions(here + "/default.nix", [["description", 99, 5], ["homepage", 100, 5], ["changelog", 101, 5], ["license", 102, 5], ["maintainers", 103, 5]]);
-const pos$11 = nix.positions(here + "/default.nix", [["pname", 25, 3], ["version", 26, 3], ["pyproject", 27, 3], ["src", 29, 3], ["patches", 37, 3], ["pythonRelaxDeps", 72, 3], ["build-system", 74, 3], ["dependencies", 76, 3], ["nativeCheckInputs", 84, 3], ["disabledTestPaths", 91, 3], ["pythonImportsCheck", 96, 3], ["meta", 98, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,12 +22,12 @@ export default nix.lambda((args) => (() => {
   const pytest_timeout = nix.arg($, "pytest-timeout");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$11,
+      [nix.POS]: $pos[10],
       pname: "django-celery-beat",
       version: "2.9.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "celery",
           repo: "django-celery-beat",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -45,42 +35,42 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/celery/django-celery-beat/commit/dc11bdfa06858409da01f2d407bb68486870a559.patch",
             hash: "sha256-aK8u2CfmNYFwE9CQvKjnwywVcw8MQfXvev7JYU9kz4E=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: "https://github.com/celery/django-celery-beat/commit/ddcbe8bf2c970a82e87f50c0e9c232b0ae951a85.patch",
             hash: "sha256-uw3l6CA0lnbF1HnNeSgZ91l1ujkB4V3831Yj+L4i+L0=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             url: "https://github.com/celery/django-celery-beat/commit/088355dc6531bfffc19272c9de55f4d18606634e.patch",
             hash: "sha256-6pamaLcHbNUGJMw6nCWeY/C1O58choDbJ1j/4SqDPx4=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             url: "https://github.com/celery/django-celery-beat/commit/273e2f23edee26404a1691320a69dee280f9639b.patch",
             hash: "sha256-8wZrDi9GDIF+w5ZZDssJGLG3UyE45xqld95nnG3SV0A=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             url: "https://github.com/celery/django-celery-beat/commit/69f4a231f30df9ff028f8fc0f67cb115e5d53246.patch",
             hash: "sha256-74p2XxB9ssWpVokY8XVUjkyyE4+/2lijDYZcZSu9ms0=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             url: "https://github.com/celery/django-celery-beat/commit/4b8246a44a69e79d7648a9f4658abd8b7937b2b8.patch",
             hash: "sha256-c1ZJHgnxvOoEWAc9oRkcCLRG7sLLsSER/Dq0H8TIOYU=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$8,
+            [nix.POS]: $pos[7],
             url: "https://github.com/celery/django-celery-beat/commit/17dd67625f99a0e6dbe7fb779f61f336e7af1730.patch",
             hash: "sha256-w+MynocR80jUARgvuk5cUIdzmdAYGglvrNXph/8XdBE=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$9,
+            [nix.POS]: $pos[8],
             url: "https://github.com/celery/django-celery-beat/commit/03018882f088be83e1c78b4ca657b960b3080081.patch",
             hash: "sha256-YE121p2aGqoj9mRFSQu+oi+8xaz0QE+CsJHdBB7xwUM=",
           })))),
@@ -92,7 +82,7 @@ export default nix.lambda((args) => (() => {
       disabledTestPaths: nix.thunk(() => ["t/unit/test_schedulers.py"]),
       pythonImportsCheck: nix.thunk(() => ["django_celery_beat"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         description: "Celery Periodic Tasks backed by the Django ORM",
         homepage: "https://github.com/celery/django-celery-beat",
         changelog: nix.thunk(() => nix.str`https://github.com/celery/django-celery-beat/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

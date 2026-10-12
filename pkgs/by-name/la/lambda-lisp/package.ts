@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["fetchurl", 16, 38], ["fetchFromGitHub", 16, 47]], [["description", 66, 5], ["homepage", 67, 5], ["longDescription", 68, 5], ["license", 79, 5], ["maintainers", 80, 5], ["platforms", 81, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 21, 3], ["flatSrc", 22, 3], ["blcSrc", 23, 3], ["installPhase", 25, 3], ["doInstallCheck", 54, 3], ["installCheckPhase", 56, 3], ["meta", 65, 3]]]);
 const formals$1 = { args: { lib: false, gccStdenv: false, fetchFromGitHub: false, fetchurl: false, runtimeShell: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["fetchurl", 16, 38], ["fetchFromGitHub", 16, 47]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 66, 5], ["homepage", 67, 5], ["longDescription", 68, 5], ["license", 79, 5], ["maintainers", 80, 5], ["platforms", 81, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 21, 3], ["flatSrc", 22, 3], ["blcSrc", 23, 3], ["installPhase", 25, 3], ["doInstallCheck", 54, 3], ["installCheckPhase", 56, 3], ["meta", 65, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,9 +13,9 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const runtimeShell = nix.arg($, "runtimeShell");
   const stdenv = gccStdenv;
-  const s = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./sources.nix")), nix.thunk(() => ({ [nix.POS]: pos$1, fetchurl: fetchurl, fetchFromGitHub: fetchFromGitHub }))));
+  const s = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./sources.nix")), nix.thunk(() => ({ [nix.POS]: $pos[0], fetchurl: fetchurl, fetchFromGitHub: fetchFromGitHub }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "lambda-lisp-blc",
       version: nix.thunk(() => nix.sel(s, "lambdaLispVersion")),
       src: nix.thunk(() => nix.sel(s, "src")),
@@ -53,7 +51,7 @@ runHook postInstall
       doInstallCheck: true,
       installCheckPhase: "runHook preInstallCheck\n\na=$(echo \"(* (+ 1 2 3 4 5 6 7 8 9 10) 12020569 (- 2 5))\" | $out/bin/lambda-lisp-blc | tr -d \"> \");\ntest $a == -1983393885\n\nrunHook postInstallCheck\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Lisp interpreter written in untyped lambda calculus",
         homepage: "https://github.com/woodrush/lambdalisp",
         longDescription: "LambdaLisp is a Lisp interpreter written as a closed untyped lambda calculus term.\nIt is written as a lambda calculus term LambdaLisp = λx. ... which takes a string\nx as an input and returns a string as an output. The input x is the Lisp program\nand the user's standard input, and the output is the standard output. Characters\nare encoded into lambda term representations of natural numbers using the Church\nencoding, and strings are encoded as a list of characters with lists expressed as\nlambdas in the Mogensen-Scott encoding, so the entire computation process solely\nconsists of the beta-reduction of lambda terms, without introducing any\nnon-lambda-type object.\n",

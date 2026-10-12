@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 16, 5], ["hash", 17, 5]], [["NIX_CFLAGS_COMPILE", 35, 7], ["NIX_LDFLAGS", 36, 7]], [["homepage", 39, 5], ["description", 40, 5], ["longDescription", 41, 5], ["license", 46, 5], ["mainProgram", 47, 5], ["maintainers", 48, 5], ["platforms", 49, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["buildInputs", 20, 3], ["makeFlags", 27, 3], ["env", 35, 3], ["meta", 38, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, qpdf: false, libiconv: false, libpaper: false, asciidoc: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 35, 7], ["NIX_LDFLAGS", 36, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 39, 5], ["description", 40, 5], ["longDescription", 41, 5], ["license", 46, 5], ["mainProgram", 47, 5], ["maintainers", 48, 5], ["platforms", 49, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["buildInputs", 20, 3], ["makeFlags", 27, 3], ["env", 35, 3], ["meta", 38, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,23 +15,23 @@ export default nix.lambda((args) => (() => {
   const libpaper = nix.arg($, "libpaper");
   const asciidoc = nix.arg($, "asciidoc");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "paperjam",
       version: "1.2.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://mj.ucw.cz/download/linux/paperjam-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-ooGRLQCpNfSQziCHPoe4LVIDu2GAMmvhvsYBhKyrMPw=",
         })))),
       buildInputs: nix.thunk(() => nix.concat([qpdf, libpaper, asciidoc], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), libiconv))),
       makeFlags: nix.thunk(() => ["PREFIX=$(out)", "BUILD_DATE=\\<unknown\\>", "BUILD_COMMIT=\\<unknown\\>"]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: "-DPOINTERHOLDER_TRANSITION=1",
         NIX_LDFLAGS: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "-liconv")),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://mj.ucw.cz/sw/paperjam/",
         description: "Program for transforming PDF files",
         longDescription: "PaperJam is a program for transforming PDF files. It can re-arrange\npages, scale and rotate them, put multiple pages on a single sheet, draw\ncropmarks, and many other tricks.\n",

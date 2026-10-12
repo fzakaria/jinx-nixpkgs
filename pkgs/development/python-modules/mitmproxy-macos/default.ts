@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 15, 5], ["version", 16, 13], ["format", 17, 5], ["dist", 18, 5], ["python", 19, 5], ["hash", 20, 5]], [["changelog", 29, 33], ["license", 29, 43], ["maintainers", 29, 51], ["description", 30, 5], ["homepage", 31, 5], ["platforms", 32, 5], ["sourceProvenance", 33, 5]], [["pname", 9, 3], ["version", 10, 26], ["format", 11, 3], ["src", 14, 3], ["doCheck", 24, 3], ["pythonImportsCheck", 26, 3], ["meta", 28, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, "mitmproxy-rs": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 15, 5], ["version", 16, 13], ["format", 17, 5], ["dist", 18, 5], ["python", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["changelog", 29, 33], ["license", 29, 43], ["maintainers", 29, 51], ["description", 30, 5], ["homepage", 31, 5], ["platforms", 32, 5], ["sourceProvenance", 33, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 9, 3], ["version", 10, 26], ["format", 11, 3], ["src", 14, 3], ["doCheck", 24, 3], ["pythonImportsCheck", 26, 3], ["meta", 28, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const version = nix.thunk(() => nix.attr(mitmproxy_rs, "version"));
       const format = "wheel";
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "mitmproxy_macos",
           version: version,
           format: "wheel",
@@ -31,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const meta = nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(mitmproxy_rs, "meta"));
         return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         changelog: nix.thunk(() => nix.attr(from, "changelog")),
         license: nix.thunk(() => nix.attr(from, "license")),
         maintainers: nix.thunk(() => nix.attr(from, "maintainers")),
@@ -45,7 +43,7 @@ export default nix.lambda((args) => (() => {
       };
       })());
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         format,

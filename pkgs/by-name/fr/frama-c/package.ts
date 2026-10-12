@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 27, 5], ["hash", 28, 5]], [["description", 115, 5], ["longDescription", 116, 5], ["homepage", 123, 5], ["license", 124, 5], ["maintainers", 125, 5], ["platforms", 129, 5], ["mainProgram", 130, 5], ["broken", 131, 5]], [["pname", 20, 3], ["version", 21, 3], ["slang", 22, 3], ["__structuredAttrs", 24, 3], ["src", 26, 3], ["preConfigure", 31, 3], ["strictDeps", 36, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 51, 3], ["buildPhase", 79, 3], ["installFlags", 85, 3], ["preFixup", 87, 3], ["meta", 114, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, darwin: false, fetchzip: false, makeBinaryWrapper: false, graphviz: false, doxygen: false, ocamlPackages: false, coq: false, dune: false, why3: false, withWP: true, withMarkdown: true, withApron: true, withZeroMQ: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 115, 5], ["longDescription", 116, 5], ["homepage", 123, 5], ["license", 124, 5], ["maintainers", 125, 5], ["platforms", 129, 5], ["mainProgram", 130, 5], ["broken", 131, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["slang", 22, 3], ["__structuredAttrs", 24, 3], ["src", 26, 3], ["preConfigure", 31, 3], ["strictDeps", 36, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 51, 3], ["buildPhase", 79, 3], ["installFlags", 85, 3], ["preFixup", 87, 3], ["meta", 114, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,13 +23,13 @@ export default nix.lambda((args) => (() => {
   const withApron = nix.argOr($, "withApron", () => true);
   const withZeroMQ = nix.argOr($, "withZeroMQ", () => true);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "frama-c",
       version: "33.0",
       slang: "Arsenic",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://frama-c.com/download/frama-c-${nix.sel(finalAttrs, "version")}-${nix.sel(finalAttrs, "slang")}.tar.gz`),
           hash: "sha256-QGqEwwyNFEVrUoE179Yz2AR2s5wWbkUrP3EsnQw9Cjo=",
         })))),
@@ -81,7 +79,7 @@ export default nix.lambda((args) => (() => {
 `;
       })()),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Extensible and collaborative platform dedicated to source-code analysis of C software",
         longDescription: "Frama-C is an open-source extensible and collaborative platform\ndedicated to source-code analysis of C software. The Frama-C\nanalyzers assist you in various source-code-related activities,\nfrom the navigation through unfamiliar projects up to the\ncertification of critical software.\n",
         homepage: "https://www.frama-c.com/index.html",

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/linux.nix", [[["url", 27, 5], ["hash", 28, 5]], [["description", 71, 5], ["homepage", 72, 5], ["license", 73, 5], ["maintainers", 74, 5], ["platforms", 75, 5], ["mainProgram", 76, 5], ["sourceProvenance", 77, 5]], [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 37, 3], ["unpackPhase", 53, 3], ["installPhase", 57, 3], ["meta", 70, 3]]]);
 const formals$1 = { args: { autoPatchelfHook: false, dpkg: false, fetchurl: false, gtk3: false, gtksourceview3: false, krb5: false, lib: false, libgee: false, libsecret: false, libxkbcommon: false, stdenv: false, wrapGAppsHook3: false, libxrender: false, libxrandr: false, libxi: false, libxext: false, libxcursor: false, libx11: false, libxcb: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/linux.nix", [["url", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/linux.nix", [["description", 71, 5], ["homepage", 72, 5], ["license", 73, 5], ["maintainers", 74, 5], ["platforms", 75, 5], ["mainProgram", 76, 5], ["sourceProvenance", 77, 5]]);
-const pos$3 = nix.positions(here + "/linux.nix", [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 37, 3], ["unpackPhase", 53, 3], ["installPhase", 57, 3], ["meta", 70, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,11 +27,11 @@ export default nix.lambda((args) => (() => {
   const libx11 = nix.arg($, "libx11");
   const libxcb = nix.arg($, "libxcb");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "tableplus",
       version: "0.1.308",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://web.archive.org/web/20251230232124/https://deb.tableplus.com/debian/22/pool/main/t/tableplus/tableplus_${nix.sel(finalAttrs, "version")}_amd64.deb`),
           hash: "sha256-sqiA+iCZrqHPIkh24JejtfBvILtZt3HN2bKf/1Sc714=",
         })))),
@@ -56,7 +54,7 @@ export default nix.lambda((args) => (() => {
       unpackPhase: "dpkg-deb -x $src .\n",
       installPhase: "runHook preInstall\n\nsubstituteInPlace opt/tableplus/tableplus.desktop \\\n  --replace-fail \"Exec=/usr/local/bin/tableplus\" \"Exec=tableplus\" \\\n  --replace-fail \"Icon=/opt/tableplus/resource/image/logo.png\" \"Icon=tableplus\"\ninstall -Dt $out/bin opt/tableplus/tableplus\ninstall -Dt $out/share/applications/ opt/tableplus/tableplus.desktop\ninstall -Dt $out/share/icons/hicolor/256x256/apps/ opt/tableplus/resource/image/tableplus.png\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Database management made easy",
         homepage: "https://tableplus.com",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

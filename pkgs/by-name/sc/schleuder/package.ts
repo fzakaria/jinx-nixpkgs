@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["schleuder", 24, 26]], [["updateScript", 22, 12], ["tests", 23, 12]], [["broken", 28, 5], ["description", 29, 5], ["longDescription", 30, 5], ["homepage", 35, 5], ["changelog", 36, 5], ["license", 37, 5]], [["ruby", 11, 11], ["pname", 13, 3], ["gemdir", 15, 3], ["exes", 17, 3], ["passthru", 22, 3], ["meta", 27, 3]]]);
 const formals$1 = { args: { lib: false, bundlerApp: false, ruby: false, stdenv: false, bundlerUpdateScript: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["schleuder", 24, 26]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 22, 12], ["tests", 23, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["broken", 28, 5], ["description", 29, 5], ["longDescription", 30, 5], ["homepage", 35, 5], ["changelog", 36, 5], ["license", 37, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["ruby", 11, 11], ["pname", 13, 3], ["gemdir", 15, 3], ["exes", 17, 3], ["passthru", 22, 3], ["meta", 27, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,21 +14,21 @@ export default nix.lambda((args) => (() => {
   const bundlerUpdateScript = nix.arg($, "bundlerUpdateScript");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(bundlerApp, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       ruby: ruby,
       pname: "schleuder",
       gemdir: nix.path(here, "./."),
       exes: nix.thunk(() => ["schleuder", "schleuder-api-daemon"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(bundlerUpdateScript, "schleuder")),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           schleuder: nix.thunk(() => nix.attr(nixosTests, "schleuder")),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
         description: "Encrypting mailing list manager with remailing-capabilities",
         longDescription: "Schleuder is a group's email-gateway: subscribers can exchange\nencrypted emails among themselves, receive emails from\nnon-subscribers and send emails to non-subscribers via the list.\n",

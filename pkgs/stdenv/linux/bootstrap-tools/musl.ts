@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/musl.nix", [[["name", 9, 5], ["builder", 11, 5], ["args", 13, 5], ["tarball", 19, 5], ["system", 21, 13], ["langC", 24, 5], ["langCC", 25, 5], ["isGNU", 26, 5], ["hardeningUnsupportedFlags", 27, 5]]]);
 const formals$1 = { args: { system: false, bootstrapFiles: false, extraAttrs: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/musl.nix", [["name", 9, 5], ["builder", 11, 5], ["args", 13, 5], ["tarball", 19, 5], ["system", 21, 13], ["langC", 24, 5], ["langCC", 25, 5], ["isGNU", 26, 5], ["hardeningUnsupportedFlags", 27, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -11,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const bootstrapFiles = nix.arg($, "bootstrapFiles");
   const extraAttrs = nix.arg($, "extraAttrs");
   return nix.app(nix.builtins.derivation, nix.thunk(() => nix.update({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: "bootstrap-tools",
       builder: nix.thunk(() => nix.sel(bootstrapFiles, "busybox")),
       args: nix.thunk(() => ["ash", "-e", nix.path(here, "./musl/unpack-bootstrap-tools.sh")]),

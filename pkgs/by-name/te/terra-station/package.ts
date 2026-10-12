@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["x86_64-linux", 18, 7]], [["x86_64-linux", 24, 7]], [["url", 35, 5], ["sha256", 36, 13]], [["description", 75, 5], ["homepage", 76, 5], ["license", 77, 5], ["maintainers", 78, 5], ["platforms", 79, 5], ["mainProgram", 80, 5], ["sourceProvenance", 81, 5]], [["pname", 31, 3], ["version", 32, 3], ["src", 34, 3], ["nativeBuildInputs", 39, 3], ["dontConfigure", 45, 3], ["dontBuild", 46, 3], ["installPhase", 48, 3], ["postFixup", 69, 3], ["meta", 74, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, dpkg: false, makeWrapper: false, electron: false, asar: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["x86_64-linux", 18, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["x86_64-linux", 24, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 35, 5], ["sha256", 36, 13]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 75, 5], ["homepage", 76, 5], ["license", 77, 5], ["maintainers", 78, 5], ["platforms", 79, 5], ["mainProgram", 80, 5], ["sourceProvenance", 81, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 31, 3], ["version", 32, 3], ["src", 34, 3], ["nativeBuildInputs", 39, 3], ["dontConfigure", 45, 3], ["dontBuild", 46, 3], ["installPhase", 48, 3], ["postFixup", 69, 3], ["meta", 74, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,15 +18,15 @@ export default nix.lambda((args) => (() => {
   const system = nix.thunk(() => nix.attr(from, "system"));
   const throwSystem = nix.thunk(() => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenv, "hostPlatform", "system")}`)));
   const sha256 = nix.thunk(() => nix.selOr({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     "x86_64-linux": "139nlr191bsinx6ixpi2glcr03lsnzq7b0438h3245napsnjpx6p",
   }, () => nix.force(throwSystem), nix.key(nix.str`${system}`)));
-  const arch = nix.thunk(() => nix.selOr({ [nix.POS]: pos$2, "x86_64-linux": "amd64" }, () => nix.force(throwSystem), nix.key(nix.str`${system}`)));
+  const arch = nix.thunk(() => nix.selOr({ [nix.POS]: $pos[1], "x86_64-linux": "amd64" }, () => nix.force(throwSystem), nix.key(nix.str`${system}`)));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => (() => {
       const pname = "terra-station";
       const version = "1.2.0";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           url: nix.thunk(() => nix.str`https://github.com/terra-money/station-desktop/releases/download/v${version}/Terra.Station_${version}_${arch}.deb`),
           sha256: sha256,
         }))));
@@ -60,7 +56,7 @@ runHook postInstall
   --add-flags $out/share/${pname}/resources/app.aasar
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Terra station is the official wallet of the Terra blockchain",
         homepage: "https://station.money/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),
@@ -70,7 +66,7 @@ runHook postInstall
         sourceProvenance: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "sourceTypes", "binaryNativeCode"))]),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         src,

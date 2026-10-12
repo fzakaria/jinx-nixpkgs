@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/passthru.nix", [[["zig", 14, 61]], [["bintools", 15, 33]], [["zig", 17, 49]], [["cc-cflags", 22, 16]], [["cc", 19, 5], ["bintools", 20, 5], ["extraPackages", 21, 5], ["nixSupport", 22, 5]], [["zig", 30, 51]], [["hook", 12, 3], ["bintools-unwrapped", 14, 3], ["bintools", 15, 3], ["cc-unwrapped", 17, 3], ["cc", 18, 3], ["stdenv", 28, 3], ["fetchDeps", 30, 3]]]);
 const formals$1 = { args: { stdenv: false, zig: false, callPackage: false, wrapCCWith: false, wrapBintoolsWith: false, overrideCC: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/passthru.nix", [["zig", 14, 61]]);
-const pos$2 = nix.positions(here + "/passthru.nix", [["bintools", 15, 33]]);
-const pos$3 = nix.positions(here + "/passthru.nix", [["zig", 17, 49]]);
-const pos$4 = nix.positions(here + "/passthru.nix", [["cc-cflags", 22, 16]]);
-const pos$5 = nix.positions(here + "/passthru.nix", [["cc", 19, 5], ["bintools", 20, 5], ["extraPackages", 21, 5], ["nixSupport", 22, 5]]);
-const pos$6 = nix.positions(here + "/passthru.nix", [["zig", 30, 51]]);
-const pos$7 = nix.positions(here + "/passthru.nix", [["hook", 12, 3], ["bintools-unwrapped", 14, 3], ["bintools", 15, 3], ["cc-unwrapped", 17, 3], ["cc", 18, 3], ["stdenv", 28, 3], ["fetchDeps", 30, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,21 +14,21 @@ export default nix.lambda((args) => (() => {
   const wrapBintoolsWith = nix.arg($, "wrapBintoolsWith");
   const overrideCC = nix.arg($, "overrideCC");
   return {
-    [nix.POS]: pos$7,
+    [nix.POS]: $pos[6],
     hook: zig,
-    "bintools-unwrapped": nix.thunk(() => nix.app(callPackage, nix.path(here, "./bintools.nix"), nix.thunk(() => ({ [nix.POS]: pos$1, zig: zig })))),
+    "bintools-unwrapped": nix.thunk(() => nix.app(callPackage, nix.path(here, "./bintools.nix"), nix.thunk(() => ({ [nix.POS]: $pos[0], zig: zig })))),
     bintools: nix.thunk(() => nix.app(wrapBintoolsWith, nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         bintools: nix.thunk(() => nix.sel(zig, "bintools-unwrapped")),
       })))),
-    "cc-unwrapped": nix.thunk(() => nix.app(callPackage, nix.path(here, "./cc.nix"), nix.thunk(() => ({ [nix.POS]: pos$3, zig: zig })))),
+    "cc-unwrapped": nix.thunk(() => nix.app(callPackage, nix.path(here, "./cc.nix"), nix.thunk(() => ({ [nix.POS]: $pos[2], zig: zig })))),
     cc: nix.thunk(() => nix.app(wrapCCWith, nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         cc: nix.thunk(() => nix.sel(zig, "cc-unwrapped")),
         bintools: nix.thunk(() => nix.sel(zig, "bintools")),
         extraPackages: [],
         nixSupport: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           "cc-cflags": nix.thunk(() => [
             "-target",
             nix.thunk(() => nix.str`${nix.sel(stdenv, "targetPlatform", "system")}-${nix.sel(stdenv, "targetPlatform", "parsed", "abi", "name")}`),
@@ -42,7 +36,7 @@ export default nix.lambda((args) => (() => {
         })),
       })))),
     stdenv: nix.thunk(() => nix.app(overrideCC, stdenv, nix.thunk(() => nix.sel(zig, "cc")))),
-    fetchDeps: nix.thunk(() => nix.app(callPackage, nix.path(here, "./fetcher.nix"), nix.thunk(() => ({ [nix.POS]: pos$6, zig: zig })))),
+    fetchDeps: nix.thunk(() => nix.app(callPackage, nix.path(here, "./fetcher.nix"), nix.thunk(() => ({ [nix.POS]: $pos[5], zig: zig })))),
   };
 })(), formals$1);
 //# sourceMappingURL=passthru.ts.map

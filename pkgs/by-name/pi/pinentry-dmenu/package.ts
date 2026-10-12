@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]], [["description", 52, 5], ["homepage", 53, 5], ["changelog", 54, 5], ["license", 55, 5], ["maintainers", 56, 5], ["mainProgram", 57, 5], ["platforms", 58, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 30, 3], ["preConfigure", 41, 3], ["meta", 51, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fontconfig: false, gpgme: false, libx11: false, libxinerama: false, libxft: false, "pkg-config": false, zlib: false, writeText: false, libassuan: false, libconfig: false, "libgpg-error": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 52, 5], ["homepage", 53, 5], ["changelog", 54, 5], ["license", 55, 5], ["maintainers", 56, 5], ["mainProgram", 57, 5], ["platforms", 58, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 30, 3], ["preConfigure", 41, 3], ["meta", 51, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const libconfig = nix.arg($, "libconfig");
   const libgpg_error = nix.arg($, "libgpg-error");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "pinentry-dmenu",
       version: "0.2.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ritze",
           repo: "pinentry-dmenu",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -47,7 +45,7 @@ export default nix.lambda((args) => (() => {
       ]),
       preConfigure: "makeFlagsArray+=(\n  PREFIX=\"$out\"\n  CC=\"$CC\"\n  # default config.mk hardcodes dependent libraries and include paths\n  INCS=\"`$PKG_CONFIG --cflags fontconfig x11 xft xinerama`\"\n  LIBS=\"`$PKG_CONFIG --libs   fontconfig x11 xft xinerama`\"\n)\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Pinentry implementation based on dmenu",
         homepage: "https://github.com/ritze/pinentry-dmenu",
         changelog: nix.thunk(() => nix.str`https://github.com/ritze/pinentry-dmenu/releases/tag/${nix.sel(finalAttrs, "version")}`),

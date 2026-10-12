@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["description", 16, 5], ["homepage", 17, 5], ["changelog", 18, 5], ["platforms", 19, 5], ["maintainers", 23, 5], ["license", 27, 5], ["sourceProvenance", 28, 5]], [["extraArgs", 33, 7]], [["updateScript", 32, 5], ["darwin", 39, 13], ["linux", 39, 20]], [["url", 51, 7], ["hash", 52, 7]], [["pname", 44, 7], ["version", 45, 7], ["meta", 46, 7], ["passthru", 47, 7], ["src", 50, 5], ["nativeBuildInputs", 55, 5], ["dontBuild", 59, 5], ["installPhase", 61, 5]], [["url", 78, 7], ["hash", 79, 7]], [["pname", 88, 69], ["src", 88, 75], ["version", 88, 79]], [["pname", 71, 7], ["version", 72, 7], ["meta", 73, 7], ["passthru", 74, 7], ["src", 77, 5], ["extraPkgs", 82, 5], ["appimageContents", 88, 5], ["extraInstallCommands", 90, 5]]]);
 const formals$1 = { args: { lib: false, stdenv: false, appimageTools: false, "nix-update-script": false, fetchurl: false, makeWrapper: false, _7zz: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["description", 16, 5], ["homepage", 17, 5], ["changelog", 18, 5], ["platforms", 19, 5], ["maintainers", 23, 5], ["license", 27, 5], ["sourceProvenance", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["extraArgs", 33, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 32, 5], ["darwin", 39, 13], ["linux", 39, 20]]);
-const pos$4 = nix.positions(here + "/package.nix", [["url", 51, 7], ["hash", 52, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 44, 7], ["version", 45, 7], ["meta", 46, 7], ["passthru", 47, 7], ["src", 50, 5], ["nativeBuildInputs", 55, 5], ["dontBuild", 59, 5], ["installPhase", 61, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["url", 78, 7], ["hash", 79, 7]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 88, 69], ["src", 88, 75], ["version", 88, 79]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 71, 7], ["version", 72, 7], ["meta", 73, 7], ["passthru", 74, 7], ["src", 77, 5], ["extraPkgs", 82, 5], ["appimageContents", 88, 5], ["extraInstallCommands", 90, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,7 +17,7 @@ export default nix.lambda((args) => (() => {
   const pname = "golden-cheetah";
   const version = "3.8";
   const meta = nix.thunk(() => ({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     description: "Performance software for cyclists, runners and triathletes. This version includes the API Tokens for e.g. Strava",
     homepage: "https://github.com/GoldenCheetah/GoldenCheetah",
     changelog: nix.thunk(() => nix.str`https://github.com/GoldenCheetah/GoldenCheetah/releases/tag/v${version}`),
@@ -43,9 +36,9 @@ export default nix.lambda((args) => (() => {
     })()),
   }));
   const passthru = nix.thunk(() => ({
-    [nix.POS]: pos$3,
+    [nix.POS]: $pos[2],
     updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         extraArgs: nix.thunk(() => nix.concat([
           "--url=https://github.com/GoldenCheetah/GoldenCheetah",
           "--version-regex=v([0-9\\.]*)",
@@ -55,13 +48,13 @@ export default nix.lambda((args) => (() => {
     linux: linux,
   }));
   const darwin = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: pname,
       version: version,
       meta: meta,
       passthru: passthru,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           url: nix.thunk(() => nix.str`https://github.com/GoldenCheetah/GoldenCheetah/releases/download/v${version}/GoldenCheetah_v${nix.builtins.substring(0n, 7n, version)}_arm64.dmg`),
           hash: "sha256-mOdaYtdqR4O5IpPuZ40gng64/WtNKHVU7H86EYMk4LM=",
         })))),
@@ -70,13 +63,13 @@ export default nix.lambda((args) => (() => {
       installPhase: "runHook preInstall\nmkdir -p \"$out/Applications/GoldenCheetah.app\"\ncp -r * \"$out/Applications/GoldenCheetah.app/\"\nmakeWrapper \"$out/Applications/GoldenCheetah.app/Contents/MacOS/GoldenCheetah\" \"$out/bin/GoldenCheetah\"\nrunHook postInstall\n",
     }))));
   const linux = nix.thunk(() => nix.app(nix.sel(appimageTools, "wrapType2"), (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: pname,
       version: version,
       meta: meta,
       passthru: passthru,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           url: nix.thunk(() => nix.str`https://github.com/GoldenCheetah/GoldenCheetah/releases/download/v${version}/GoldenCheetah_v${nix.builtins.substring(0n, 7n, version)}_x64.AppImage`),
           hash: "sha256-qOluTrvyUEQ89B/brIKJKlZxVkZRVpswCysNW7VJFy0=",
         })))),
@@ -86,7 +79,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.sel(pkgs, "libusb-compat-0_1")),
       ],
       appimageContents: nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),

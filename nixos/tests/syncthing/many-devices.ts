@@ -2,106 +2,72 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/many-devices.nix", [[["id", 30, 20]], [["id", 31, 20]], [["id", 32, 20]], [["id", 33, 20]], [["id", 34, 20]], [["id", 35, 20]], [["id", 36, 20]], [["id", 37, 20]], [["id", 38, 20]], [["id", 39, 21]], [["id", 40, 21]], [["test_device1", 30, 7], ["test_device2", 31, 7], ["test_device3", 32, 7], ["test_device4", 33, 7], ["test_device5", 34, 7], ["test_device6", 35, 7], ["test_device7", 36, 7], ["test_device8", 37, 7], ["test_device9", 38, 7], ["test_device10", 39, 7], ["test_device11", 40, 7]], [["id", 47, 11]], [["name", 45, 9], ["value", 46, 9]], [["devices", 22, 5], ["folders", 43, 5]], [["autoUpgradeIntervalH", 56, 7], ["urAccepted", 57, 7]], [["theme", 60, 7]], [["options", 55, 5], ["gui", 59, 5]], [["t", 108, 25], ["id", 108, 27], ["not", 109, 19]], [["t", 119, 7], ["id", 120, 7], ["name", 122, 7]], [["t", 126, 7], ["id", 127, 7]], [["t", 130, 7], ["id", 131, 7]], [["maintainers", 137, 8]], [["deviceID", 171, 23], ["name", 172, 37]], [["id", 176, 37], ["path", 177, 23]], [["systemPackages", 143, 17]], [["enable", 195, 7], ["overrideDevices", 196, 7], ["overrideFolders", 197, 7], ["settings", 198, 7]], [["syncthing", 194, 14]], [["environment", 143, 5], ["services", 194, 5]], [["machine", 142, 14]], [["t", 210, 9], ["id", 211, 17]], [["t", 224, 9], ["n", 225, 9], ["v", 226, 9]], [["not", 238, 5]], [["not", 248, 5]], [["name", 136, 3], ["meta", 137, 3], ["containers", 142, 3], ["testScript", 201, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/many-devices.nix", [["id", 30, 20]]);
-const pos$2 = nix.positions(here + "/many-devices.nix", [["id", 31, 20]]);
-const pos$3 = nix.positions(here + "/many-devices.nix", [["id", 32, 20]]);
-const pos$4 = nix.positions(here + "/many-devices.nix", [["id", 33, 20]]);
-const pos$5 = nix.positions(here + "/many-devices.nix", [["id", 34, 20]]);
-const pos$6 = nix.positions(here + "/many-devices.nix", [["id", 35, 20]]);
-const pos$7 = nix.positions(here + "/many-devices.nix", [["id", 36, 20]]);
-const pos$8 = nix.positions(here + "/many-devices.nix", [["id", 37, 20]]);
-const pos$9 = nix.positions(here + "/many-devices.nix", [["id", 38, 20]]);
-const pos$10 = nix.positions(here + "/many-devices.nix", [["id", 39, 21]]);
-const pos$11 = nix.positions(here + "/many-devices.nix", [["id", 40, 21]]);
-const pos$12 = nix.positions(here + "/many-devices.nix", [["test_device1", 30, 7], ["test_device2", 31, 7], ["test_device3", 32, 7], ["test_device4", 33, 7], ["test_device5", 34, 7], ["test_device6", 35, 7], ["test_device7", 36, 7], ["test_device8", 37, 7], ["test_device9", 38, 7], ["test_device10", 39, 7], ["test_device11", 40, 7]]);
-const pos$13 = nix.positions(here + "/many-devices.nix", [["id", 47, 11]]);
-const pos$14 = nix.positions(here + "/many-devices.nix", [["name", 45, 9], ["value", 46, 9]]);
-const pos$15 = nix.positions(here + "/many-devices.nix", [["devices", 22, 5], ["folders", 43, 5]]);
-const pos$16 = nix.positions(here + "/many-devices.nix", [["autoUpgradeIntervalH", 56, 7], ["urAccepted", 57, 7]]);
-const pos$17 = nix.positions(here + "/many-devices.nix", [["theme", 60, 7]]);
-const pos$18 = nix.positions(here + "/many-devices.nix", [["options", 55, 5], ["gui", 59, 5]]);
 const formals$2 = { args: { t: false, id: false, not: true }, ellipsis: false };
 const formals$3 = { args: { t: false, n: false, v: false, not: true }, ellipsis: false };
 const formals$4 = { args: { not: false }, ellipsis: false };
-const pos$19 = nix.positions(here + "/many-devices.nix", [["t", 108, 25], ["id", 108, 27], ["not", 109, 19]]);
-const pos$20 = nix.positions(here + "/many-devices.nix", [["t", 119, 7], ["id", 120, 7], ["name", 122, 7]]);
-const pos$21 = nix.positions(here + "/many-devices.nix", [["t", 126, 7], ["id", 127, 7]]);
-const pos$22 = nix.positions(here + "/many-devices.nix", [["t", 130, 7], ["id", 131, 7]]);
-const pos$23 = nix.positions(here + "/many-devices.nix", [["maintainers", 137, 8]]);
 const formals$5 = { args: { lib: false, pkgs: false }, ellipsis: true };
-const pos$24 = nix.positions(here + "/many-devices.nix", [["deviceID", 171, 23], ["name", 172, 37]]);
-const pos$25 = nix.positions(here + "/many-devices.nix", [["id", 176, 37], ["path", 177, 23]]);
-const pos$26 = nix.positions(here + "/many-devices.nix", [["systemPackages", 143, 17]]);
-const pos$27 = nix.positions(here + "/many-devices.nix", [["enable", 195, 7], ["overrideDevices", 196, 7], ["overrideFolders", 197, 7], ["settings", 198, 7]]);
-const pos$28 = nix.positions(here + "/many-devices.nix", [["syncthing", 194, 14]]);
-const pos$29 = nix.positions(here + "/many-devices.nix", [["environment", 143, 5], ["services", 194, 5]]);
-const pos$30 = nix.positions(here + "/many-devices.nix", [["machine", 142, 14]]);
-const pos$31 = nix.positions(here + "/many-devices.nix", [["t", 210, 9], ["id", 211, 17]]);
-const pos$32 = nix.positions(here + "/many-devices.nix", [["t", 224, 9], ["n", 225, 9], ["v", 226, 9]]);
-const pos$33 = nix.positions(here + "/many-devices.nix", [["not", 238, 5]]);
-const pos$34 = nix.positions(here + "/many-devices.nix", [["not", 248, 5]]);
-const pos$35 = nix.positions(here + "/many-devices.nix", [["name", 136, 3], ["meta", 137, 3], ["containers", 142, 3], ["testScript", 201, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const configPath = "/var/lib/syncthing/.config/syncthing/config.xml";
   const settingsWithId = nix.thunk(() => ({
-    [nix.POS]: pos$15,
+    [nix.POS]: $pos[14],
     devices: nix.thunk(() => ({
-      [nix.POS]: pos$12,
+      [nix.POS]: $pos[11],
       test_device1: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         id: "IVTZ5XF-EF3GKFT-GS4AZLG-IT6H2ZP-6WK75SF-AFXQXJJ-BNRZ4N6-XPDKVAU",
       })),
       test_device2: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         id: "5C35H56-Z2GFF4F-F3IVD4B-GJYVWIE-SMDBJZN-GI66KWP-52JIQGN-4AVLYAM",
       })),
       test_device3: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         id: "XKLSKHE-BZOHV7B-WQZACEF-GTH36NP-6JSBB6L-RXS3M7C-EEVWO2L-C5B4OAJ",
       })),
       test_device4: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         id: "APN5Q7J-35GZETO-5KCLF35-ZA7KBWK-HGWPBNG-FERF24R-UTLGMEX-4VJ6PQX",
       })),
       test_device5: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         id: "D4YXQEE-5MK6LIK-BRU5QWM-ZRXJCK2-N3RQBJE-23JKTQQ-LYGDPHF-RFPZIQX",
       })),
       test_device6: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         id: "TKMCH64-T44VSLI-6FN2YLF-URBZOBR-ATO4DYX-GEDRIII-CSMRQAI-UAQMDQG",
       })),
       test_device7: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         id: "472EEBG-Q4PZCD4-4CX6PGF-XS3FSQ2-UFXBZVB-PGNXWLX-7FKBLER-NJ3EMAR",
       })),
       test_device8: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         id: "HW6KUMK-WTBG24L-2HZQXLO-TGJSG2M-2JG3FHX-5OGYRUJ-T6L5NN7-L364QAZ",
       })),
       test_device9: nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         id: "YAE24AP-7LSVY4T-J74ZSEM-A2IK6RB-FGA35TP-AG4CSLU-ED4UYYY-2J2TDQU",
       })),
       test_device10: nix.thunk(() => ({
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         id: "277XFSB-OFMQOBI-3XGNGUE-Y7FWRV3-QQDADIY-QIIPQ26-EOGTYKW-JP2EXAI",
       })),
       test_device11: nix.thunk(() => ({
-        [nix.POS]: pos$11,
+        [nix.POS]: $pos[10],
         id: "2WWXVTN-Q3QWAAY-XFORMRM-2FDI5XZ-OGN33BD-XOLL42R-DHLT2ML-QYXDQAU",
       })),
     })),
     folders: nix.thunk(() => nix.app(nix.sel(lib, "pipe"), 6n, nix.thunk(() => [
         nix.thunk(() => nix.app(nix.builtins.genList, (x) => ({
-            [nix.POS]: pos$14,
+            [nix.POS]: $pos[13],
             name: nix.thunk(() => nix.str`/var/lib/syncthing/test_folder${nix.builtins.toString(x)}`),
             value: nix.thunk(() => ({
-              [nix.POS]: pos$13,
+              [nix.POS]: $pos[12],
               id: nix.thunk(() => nix.str`DontDeleteMe${nix.builtins.toString(x)}`),
             })),
           }))),
@@ -109,13 +75,13 @@ export default nix.lambda((args) => (() => {
       ]))),
   }));
   const settingsWithoutId = nix.thunk(() => ({
-    [nix.POS]: pos$18,
+    [nix.POS]: $pos[17],
     options: nix.thunk(() => ({
-      [nix.POS]: pos$16,
+      [nix.POS]: $pos[15],
       autoUpgradeIntervalH: 0n,
       urAccepted: nix.thunk(() => nix.neg(1n)),
     })),
-    gui: nix.thunk(() => ({ [nix.POS]: pos$17, theme: "dark" })),
+    gui: nix.thunk(() => ({ [nix.POS]: $pos[16], theme: "dark" })),
   }));
   const checkSettingWithId = nix.lambda((args_1) => (() => {
     const $_1 = nix.formals(args_1, formals$2);
@@ -151,7 +117,7 @@ assert "${v}" ${(nix.asBool(not) ? "not" : "")} in configVal_${t}_${n}
     const not = nix.arg($_1, "not");
     return nix.app(nix.sel(lib, "pipe"), IDsToDelete, nix.thunk(() => [
         nix.thunk(() => nix.app(nix.builtins.map, (obj) => nix.app(checkSettingWithId, nix.thunk(() => ({
-              [nix.POS]: pos$19,
+              [nix.POS]: $pos[18],
               t: nix.thunk(() => nix.attr(obj, "t")),
               id: nix.thunk(() => nix.attr(obj, "id")),
               not: not,
@@ -161,19 +127,19 @@ assert "${v}" ${(nix.asBool(not) ? "not" : "")} in configVal_${t}_${n}
   })(), formals$4);
   const IDsToDelete = nix.thunk(() => [
     nix.thunk(() => ({
-      [nix.POS]: pos$20,
+      [nix.POS]: $pos[19],
       t: "device",
       id: "LZ2CTHT-3W2M7BC-CMKDFZL-DLUQJFS-WJR73PA-NZGODWG-DZBHCHI-OXTQXAK",
       name: "DeleteThisDevice",
     })),
-    nix.thunk(() => ({ [nix.POS]: pos$21, t: "folder", id: "DeleteMe" })),
-    nix.thunk(() => ({ [nix.POS]: pos$22, t: "folder", id: "Delete Me" })),
+    nix.thunk(() => ({ [nix.POS]: $pos[20], t: "folder", id: "DeleteMe" })),
+    nix.thunk(() => ({ [nix.POS]: $pos[21], t: "folder", id: "Delete Me" })),
   ]);
   return {
-    [nix.POS]: pos$35,
+    [nix.POS]: $pos[34],
     name: "syncthing-many-devices",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$23,
+      [nix.POS]: $pos[22],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [
@@ -183,15 +149,15 @@ assert "${v}" ${(nix.asBool(not) ? "not" : "")} in configVal_${t}_${n}
       })()),
     })),
     containers: nix.thunk(() => ({
-      [nix.POS]: pos$30,
+      [nix.POS]: $pos[29],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$5);
         const lib_1 = nix.arg($_1, "lib");
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$29,
+          [nix.POS]: $pos[28],
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$26,
+            [nix.POS]: $pos[25],
             systemPackages: nix.thunk(() => (() => {
               const addDeviceToDeleteScript = nix.thunk(() => nix.app(nix.sel(pkgs, "writers", "writeBashBin"), "syncthing-add-device-to-delete.sh", nix.thunk(() => nix.str`set -euo pipefail
 
@@ -213,11 +179,11 @@ curl() {
         "$@"
 }
 ${nix.app(nix.sel(lib_1, "concatMapStringsSep"), "\n", (obj) => nix.str`curl -d ${nix.app(nix.sel(lib_1, "escapeShellArg"), nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => (nix.asBool(nix.eq(nix.sel(obj, "t"), "device")) ? {
-                        [nix.POS]: pos$24,
+                        [nix.POS]: $pos[23],
                         deviceID: nix.thunk(() => nix.sel(obj, "id")),
                         name: nix.thunk(() => nix.attr(obj, "name")),
                       } : (nix.asBool(nix.eq(nix.sel(obj, "t"), "folder")) ? {
-                        [nix.POS]: pos$25,
+                        [nix.POS]: $pos[24],
                         id: nix.thunk(() => nix.attr(obj, "id")),
                         path: nix.thunk(() => nix.str`/var/lib/syncthing/${nix.sel(obj, "id")}`),
                       } : nix.builtins.throw(nix.thunk(() => nix.str`unsupported object type ${nix.sel(obj, "t")}`))))))))} \\
@@ -232,9 +198,9 @@ ${nix.app(nix.sel(lib_1, "concatMapStringsSep"), "\n", (obj) => nix.str`curl -d 
             })()),
           })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$28,
+            [nix.POS]: $pos[27],
             syncthing: nix.thunk(() => ({
-              [nix.POS]: pos$27,
+              [nix.POS]: $pos[26],
               enable: true,
               overrideDevices: true,
               overrideFolders: true,
@@ -246,7 +212,7 @@ ${nix.app(nix.sel(lib_1, "concatMapStringsSep"), "\n", (obj) => nix.str`curl -d 
     })),
     testScript: nix.thunk(() => nix.add(nix.add(nix.add(nix.add(nix.add(nix.add(nix.add("machine.wait_for_unit(\"syncthing-init.service\")\n", nix.app(nix.sel(lib, "pipe"), settingsWithId, nix.thunk(() => [
         nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsRecursive"), (path) => (id) => nix.app(checkSettingWithId, nix.thunk(() => ({
-              [nix.POS]: pos$31,
+              [nix.POS]: $pos[30],
               t: nix.thunk(() => nix.app(nix.sel(lib, "removeSuffix"), "s", nix.thunk(() => nix.builtins.elemAt(path, 0n)))),
               id: id,
             }))))),
@@ -254,19 +220,19 @@ ${nix.app(nix.sel(lib_1, "concatMapStringsSep"), "\n", (obj) => nix.str`curl -d 
         nix.thunk(() => nix.sel(lib, "concatStrings")),
       ]))), nix.app(nix.sel(lib, "pipe"), settingsWithoutId, nix.thunk(() => [
         nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsRecursive"), (path) => (value) => nix.app(checkSettingWithoutId, nix.thunk(() => ({
-              [nix.POS]: pos$32,
+              [nix.POS]: $pos[31],
               t: nix.thunk(() => nix.builtins.elemAt(path, 0n)),
               n: nix.thunk(() => nix.builtins.elemAt(path, 1n)),
               v: nix.thunk(() => nix.builtins.toString(value)),
             }))))),
         nix.thunk(() => nix.app(nix.sel(lib, "collect"), nix.thunk(() => nix.builtins.isString))),
         nix.thunk(() => nix.sel(lib, "concatStrings")),
-      ]))), "# Run the script on the machine\nmachine.succeed(\"syncthing-add-device-to-delete.sh\")\n"), nix.app(checkSettingsToDelete, nix.thunk(() => ({ [nix.POS]: pos$33, not: false })))), nix.str`# Useful for debugging later
+      ]))), "# Run the script on the machine\nmachine.succeed(\"syncthing-add-device-to-delete.sh\")\n"), nix.app(checkSettingsToDelete, nix.thunk(() => ({ [nix.POS]: $pos[32], not: false })))), nix.str`# Useful for debugging later
 machine.copy_from_machine("${configPath}", "before")
 
 machine.systemctl("restart syncthing-init.service")
 machine.wait_for_unit("syncthing-init.service")
-`), nix.app(checkSettingsToDelete, nix.thunk(() => ({ [nix.POS]: pos$34, not: true })))), nix.str`# Useful for debugging later
+`), nix.app(checkSettingsToDelete, nix.thunk(() => ({ [nix.POS]: $pos[33], not: true })))), nix.str`# Useful for debugging later
 machine.copy_from_machine("${configPath}", "after")
 
 # Copy the systemd unit's bash script, to inspect it for debugging.

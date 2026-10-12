@@ -2,25 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/auto.nix", [[["default", 14, 9], ["description", 15, 9]], [["default", 24, 9], ["description", 25, 9]], [["enable", 13, 7], ["user", 23, 7]], [["auto", 12, 33]], [["displayManager", 12, 18]], [["test-support", 12, 5]], [["enable", 33, 45]], [["lightdm", 33, 37]], [["displayManager", 33, 22]], [["enable", 35, 7], ["user", 36, 7]], [["autoLogin", 34, 29]], [["xserver", 33, 14], ["displayManager", 34, 14]], [["text", 41, 45]], [["lightdm-autologin", 41, 27]], [["services", 41, 18]], [["pam", 41, 14]], [["services", 33, 5], ["security", 41, 5]], [["options", 11, 3], ["config", 32, 3]]]);
 const formals$1 = { args: { config: false, lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/auto.nix", [["default", 14, 9], ["description", 15, 9]]);
-const pos$2 = nix.positions(here + "/auto.nix", [["default", 24, 9], ["description", 25, 9]]);
-const pos$3 = nix.positions(here + "/auto.nix", [["enable", 13, 7], ["user", 23, 7]]);
-const pos$4 = nix.positions(here + "/auto.nix", [["auto", 12, 33]]);
-const pos$5 = nix.positions(here + "/auto.nix", [["displayManager", 12, 18]]);
-const pos$6 = nix.positions(here + "/auto.nix", [["test-support", 12, 5]]);
-const pos$7 = nix.positions(here + "/auto.nix", [["enable", 33, 45]]);
-const pos$8 = nix.positions(here + "/auto.nix", [["lightdm", 33, 37]]);
-const pos$9 = nix.positions(here + "/auto.nix", [["displayManager", 33, 22]]);
-const pos$10 = nix.positions(here + "/auto.nix", [["enable", 35, 7], ["user", 36, 7]]);
-const pos$11 = nix.positions(here + "/auto.nix", [["autoLogin", 34, 29]]);
-const pos$12 = nix.positions(here + "/auto.nix", [["xserver", 33, 14], ["displayManager", 34, 14]]);
-const pos$13 = nix.positions(here + "/auto.nix", [["text", 41, 45]]);
-const pos$14 = nix.positions(here + "/auto.nix", [["lightdm-autologin", 41, 27]]);
-const pos$15 = nix.positions(here + "/auto.nix", [["services", 41, 18]]);
-const pos$16 = nix.positions(here + "/auto.nix", [["pam", 41, 14]]);
-const pos$17 = nix.positions(here + "/auto.nix", [["services", 33, 5], ["security", 41, 5]]);
-const pos$18 = nix.positions(here + "/auto.nix", [["options", 11, 3], ["config", 32, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,22 +12,22 @@ export default nix.lambda((args) => (() => {
   const dmcfg = nix.thunk(() => nix.sel(config, "services", "xserver", "displayManager"));
   const cfg = nix.thunk(() => nix.sel(config, "test-support", "displayManager", "auto"));
   return {
-    [nix.POS]: pos$18,
+    [nix.POS]: $pos[17],
     options: nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       "test-support": nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         displayManager: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           auto: nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             enable: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                [nix.POS]: pos$1,
+                [nix.POS]: $pos[0],
                 default: false,
                 description: "Whether to enable the fake \"auto\" display manager, which\nautomatically logs in the user specified in the\n{option}`user` option.  This is mostly useful for\nautomated tests.\n",
               })))),
             user: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-                [nix.POS]: pos$2,
+                [nix.POS]: $pos[1],
                 default: "root",
                 description: "The user account to login automatically.",
               })))),
@@ -53,29 +36,33 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     config: nix.thunk(() => nix.app(nix.sel(lib, "mkIf"), nix.thunk(() => nix.sel(cfg, "enable")), nix.thunk(() => ({
-        [nix.POS]: pos$17,
+        [nix.POS]: $pos[16],
         services: nix.thunk(() => ({
-          [nix.POS]: pos$12,
+          [nix.POS]: $pos[11],
           xserver: nix.thunk(() => ({
-            [nix.POS]: pos$9,
+            [nix.POS]: $pos[8],
             displayManager: nix.thunk(() => ({
-              [nix.POS]: pos$8,
-              lightdm: nix.thunk(() => ({ [nix.POS]: pos$7, enable: true })),
+              [nix.POS]: $pos[7],
+              lightdm: nix.thunk(() => ({ [nix.POS]: $pos[6], enable: true })),
             })),
           })),
           displayManager: nix.thunk(() => ({
-            [nix.POS]: pos$11,
-            autoLogin: nix.thunk(() => ({ [nix.POS]: pos$10, enable: true, user: nix.thunk(() => nix.sel(cfg, "user")) })),
+            [nix.POS]: $pos[10],
+            autoLogin: nix.thunk(() => ({
+              [nix.POS]: $pos[9],
+              enable: true,
+              user: nix.thunk(() => nix.sel(cfg, "user")),
+            })),
           })),
         })),
         security: nix.thunk(() => ({
-          [nix.POS]: pos$16,
+          [nix.POS]: $pos[15],
           pam: nix.thunk(() => ({
-            [nix.POS]: pos$15,
+            [nix.POS]: $pos[14],
             services: nix.thunk(() => ({
-              [nix.POS]: pos$14,
+              [nix.POS]: $pos[13],
               "lightdm-autologin": nix.thunk(() => ({
-                [nix.POS]: pos$13,
+                [nix.POS]: $pos[12],
                 text: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), "auth     requisite pam_nologin.so\nauth     required  pam_succeed_if.so quiet\nauth     required  pam_permit.so\n\naccount  include   lightdm\n\npassword include   lightdm\n\nsession  include   lightdm\n")),
               })),
             })),

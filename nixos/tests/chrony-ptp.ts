@@ -2,37 +2,31 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/chrony-ptp.nix", [[["maintainers", 5, 8]], [["kernelModules", 8, 10]], [["enable", 11, 7], ["extraConfig", 12, 7]], [["chrony", 10, 14]], [["boot", 8, 5], ["services", 10, 5]], [["qemuGuest", 7, 9]], [["name", 3, 3], ["meta", 5, 3], ["nodes", 7, 3], ["testScript", 18, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/chrony-ptp.nix", [["maintainers", 5, 8]]);
-const pos$2 = nix.positions(here + "/chrony-ptp.nix", [["kernelModules", 8, 10]]);
-const pos$3 = nix.positions(here + "/chrony-ptp.nix", [["enable", 11, 7], ["extraConfig", 12, 7]]);
-const pos$4 = nix.positions(here + "/chrony-ptp.nix", [["chrony", 10, 14]]);
-const pos$5 = nix.positions(here + "/chrony-ptp.nix", [["boot", 8, 5], ["services", 10, 5]]);
-const pos$6 = nix.positions(here + "/chrony-ptp.nix", [["qemuGuest", 7, 9]]);
-const pos$7 = nix.positions(here + "/chrony-ptp.nix", [["name", 3, 3], ["meta", 5, 3], ["nodes", 7, 3], ["testScript", 18, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$7,
+    [nix.POS]: $pos[6],
     name: "chrony-ptp",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "gkleen"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       qemuGuest: nix.thunk(() => ({
-        [nix.POS]: pos$5,
-        boot: nix.thunk(() => ({ [nix.POS]: pos$2, kernelModules: nix.thunk(() => ["ptp_kvm"]) })),
+        [nix.POS]: $pos[4],
+        boot: nix.thunk(() => ({ [nix.POS]: $pos[1], kernelModules: nix.thunk(() => ["ptp_kvm"]) })),
         services: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           chrony: nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             enable: true,
             extraConfig: "refclock PHC /dev/ptp_kvm poll 2 dpoll -2 offset 0 stratum 3\n",
           })),

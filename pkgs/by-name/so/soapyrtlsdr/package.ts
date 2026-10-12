@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["sha256", 20, 5]], [["name", 34, 7], ["url", 35, 7], ["hash", 36, 7]], [["name", 40, 7], ["url", 41, 7], ["hash", 42, 7]], [["homepage", 49, 5], ["description", 50, 5], ["license", 51, 5], ["maintainers", 52, 5], ["platforms", 56, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 23, 3], ["buildInputs", 27, 3], ["patches", 32, 3], ["cmakeFlags", 46, 3], ["meta", 48, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch2: false, cmake: false, "pkg-config": false, "rtl-sdr": false, soapysdr: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["sha256", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 34, 7], ["url", 35, 7], ["hash", 36, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 40, 7], ["url", 41, 7], ["hash", 42, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 49, 5], ["description", 50, 5], ["license", 51, 5], ["maintainers", 52, 5], ["platforms", 56, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 23, 3], ["buildInputs", 27, 3], ["patches", 32, 3], ["cmakeFlags", 46, 3], ["meta", 48, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const rtl_sdr = nix.arg($, "rtl-sdr");
   const soapysdr = nix.arg($, "soapysdr");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "soapyrtlsdr",
       version: "0.3.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "pothosware",
           repo: "SoapyRTLSDR",
           rev: nix.thunk(() => nix.str`soapy-rtl-sdr-${nix.sel(finalAttrs, "version")}`),
@@ -34,13 +30,13 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [rtl_sdr, soapysdr]),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "cmake-update.patch",
             url: "https://github.com/pothosware/SoapyRTLSDR/commit/448c9d0d326c2600905b7ce84222ff9d72ba2189.patch?full_index=1",
             hash: "sha256-hWlNowkf9yZM6p+EGh+IiUm2JfG5mLe8Qq8gTVIdIak=",
           })))),
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "fix-cmake4-build.patch",
             url: "https://github.com/pothosware/SoapyRTLSDR/commit/bb2d1511b957138051764c9193a3d6971e912b85.patch?full_index=1",
             hash: "sha256-C90B5WMjx1lJKiX0F/cAfGmz2WRc2BA84FTmVmnC+DI=",
@@ -48,7 +44,7 @@ export default nix.lambda((args) => (() => {
       ]),
       cmakeFlags: nix.thunk(() => [nix.thunk(() => nix.str`-DSoapySDR_DIR=${soapysdr}/share/cmake/SoapySDR/`)]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://github.com/pothosware/SoapyRTLSDR",
         description: "SoapySDR plugin for RTL-SDR devices",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

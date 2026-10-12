@@ -2,18 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]], [["name", 60, 5], ["src", 61, 13], ["forceGitDeps", 61, 17], ["patches", 61, 30], ["hash", 62, 5]], [["url", 100, 13], ["hash", 101, 21]], [["filename", 98, 19], ["language", 98, 28], ["source", 99, 11]], [["language", 108, 11], ["filename", 109, 11], ["hash", 110, 11]], [["language", 113, 11], ["filename", 114, 11], ["hash", 115, 11]], [["lindera-ko-dic", 107, 9], ["lindera-unidic", 112, 9]], [["updateScript", 167, 12]], [["description", 170, 5], ["homepage", 171, 5], ["changelog", 172, 5], ["license", 173, 5], ["maintainers", 174, 5], ["mainProgram", 178, 5], ["platforms", 179, 5]], [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["patches", 35, 3], ["cargoPatches", 44, 3], ["cargoRoot", 50, 3], ["buildAndTestSubdir", 51, 3], ["cargoHash", 53, 3], ["forceGitDeps", 57, 3], ["npmDeps", 59, 3], ["preConfigure", 65, 3], ["nativeBuildInputs", 129, 3], ["buildInputs", 143, 3], ["makeCacheWritable", 150, 3], ["doCheck", 153, 3], ["postInstall", 156, 3], ["preFixup", 160, 3], ["passthru", 167, 3], ["meta", 169, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, rustPlatform: false, fetchFromGitHub: false, fetchNpmDeps: false, fetchurl: false, "cargo-tauri": false, makeBinaryWrapper: false, nodejs: false, npmHooks: false, "pkg-config": false, wrapGAppsHook3: false, "alsa-lib": false, openssl: false, webkitgtk_4_1: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 60, 5], ["src", 61, 13], ["forceGitDeps", 61, 17], ["patches", 61, 30], ["hash", 62, 5]]);
 const formals$2 = { args: { language: false, filename: false, hash: false }, ellipsis: false };
-const pos$3 = nix.positions(here + "/package.nix", [["url", 100, 13], ["hash", 101, 21]]);
-const pos$4 = nix.positions(here + "/package.nix", [["filename", 98, 19], ["language", 98, 28], ["source", 99, 11]]);
-const pos$5 = nix.positions(here + "/package.nix", [["language", 108, 11], ["filename", 109, 11], ["hash", 110, 11]]);
-const pos$6 = nix.positions(here + "/package.nix", [["language", 113, 11], ["filename", 114, 11], ["hash", 115, 11]]);
-const pos$7 = nix.positions(here + "/package.nix", [["lindera-ko-dic", 107, 9], ["lindera-unidic", 112, 9]]);
-const pos$8 = nix.positions(here + "/package.nix", [["updateScript", 167, 12]]);
-const pos$9 = nix.positions(here + "/package.nix", [["description", 170, 5], ["homepage", 171, 5], ["changelog", 172, 5], ["license", 173, 5], ["maintainers", 174, 5], ["mainProgram", 178, 5], ["platforms", 179, 5]]);
-const pos$10 = nix.positions(here + "/package.nix", [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["patches", 35, 3], ["cargoPatches", 44, 3], ["cargoRoot", 50, 3], ["buildAndTestSubdir", 51, 3], ["cargoHash", 53, 3], ["forceGitDeps", 57, 3], ["npmDeps", 59, 3], ["preConfigure", 65, 3], ["nativeBuildInputs", 129, 3], ["buildInputs", 143, 3], ["makeCacheWritable", 150, 3], ["doCheck", 153, 3], ["postInstall", 156, 3], ["preFixup", 160, 3], ["passthru", 167, 3], ["meta", 169, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -37,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const pname = "lrcget";
       const version = "2.2.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "tranxuanthang",
           repo: "lrcget",
           tag: version,
@@ -53,7 +44,7 @@ export default nix.lambda((args) => (() => {
       const cargoHash = "sha256-qyIvUbEBImJfVaxILtLN88KREgUk45zRdxbdZ1A6vc0=";
       const forceGitDeps = true;
       const npmDeps = nix.thunk(() => nix.app(fetchNpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           name: nix.thunk(() => nix.str`lrcget-${version}-npm-deps`),
           src: src,
           forceGitDeps: forceGitDeps,
@@ -69,26 +60,26 @@ export default nix.lambda((args) => (() => {
           const filename = nix.arg($_1, "filename");
           const hash = nix.arg($_1, "hash");
           return {
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             filename: filename,
             language: language,
             source: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-                [nix.POS]: pos$3,
+                [nix.POS]: $pos[2],
                 url: nix.thunk(() => nix.str`https://lindera.dev/${filename}`),
                 hash: hash,
               })))),
           };
         })(), formals$2);
         const dictionaries = nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           "lindera-ko-dic": nix.thunk(() => nix.app(dict, nix.thunk(() => ({
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               language: "Korean",
               filename: "mecab-ko-dic-2.1.1-20180720.tar.gz",
               hash: "sha256-cCztIcYWfp2a68Z0q17lSvWNREOXXylA030FZ8AgWRo=",
             })))),
           "lindera-unidic": nix.thunk(() => nix.app(dict, nix.thunk(() => ({
-              [nix.POS]: pos$6,
+              [nix.POS]: $pos[5],
               language: "Japanese",
               filename: "unidic-mecab-2.1.2.tar.gz",
               hash: "sha256-JKx1/k5E2XO1XmWEfDX6Suwtt6QaB7ScoSUUbbn8EYk=",
@@ -114,11 +105,11 @@ echo "Lindera cache prepared at $${dictCacheVarName}"
       const postInstall = nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "makeWrapper \"$out/Applications/LRCGET.app/Contents/MacOS/LRCGET\" \"$out/bin/LRCGET\"\n"));
       const preFixup = nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), "gappsWrapperArgs+=(\n  # WEBKIT_DISABLE_COMPOSITING_MODE essential in NVIDIA + compositor https://github.com/NixOS/nixpkgs/issues/212064#issuecomment-1400202079\n  --set WEBKIT_DISABLE_COMPOSITING_MODE 1\n)\n"));
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         description: "Utility for mass-downloading LRC synced lyrics for your offline music library",
         homepage: "https://github.com/tranxuanthang/lrcget",
         changelog: nix.thunk(() => nix.str`https://github.com/tranxuanthang/lrcget/releases/tag/${version}`),
@@ -137,7 +128,7 @@ echo "Lindera cache prepared at $${dictCacheVarName}"
         })()),
       }));
       return {
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         pname,
         version,
         src,

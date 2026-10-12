@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 44, 5], ["repo", 45, 5], ["tag", 46, 5], ["hash", 47, 5]], [["description", 97, 5], ["homepage", 98, 5], ["platforms", 99, 5], ["license", 100, 5], ["maintainers", 101, 5], ["mainProgram", 102, 5]], [["pname", 40, 3], ["version", 41, 3], ["src", 43, 3], ["prePatch", 50, 3], ["nativeBuildInputs", 59, 3], ["buildInputs", 70, 3], ["postInstall", 77, 3], ["meta", 96, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, wrapGAppsHook3: false, "pkg-config": false, meson: false, ninja: false, cmake: false, "gobject-introspection": false, "desktop-file-utils": false, python3: false, gtk3: false, libdazzle: false, libappindicator: false, libnotify: false, linuxPackages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 44, 5], ["repo", 45, 5], ["tag", 46, 5], ["hash", 47, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 97, 5], ["homepage", 98, 5], ["platforms", 99, 5], ["license", 100, 5], ["maintainers", 101, 5], ["mainProgram", 102, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 40, 3], ["version", 41, 3], ["src", 43, 3], ["prePatch", 50, 3], ["nativeBuildInputs", 59, 3], ["buildInputs", 70, 3], ["postInstall", 77, 3], ["meta", 96, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -44,11 +42,11 @@ export default nix.lambda((args) => (() => {
     })()));
   const nvidia_x11 = nix.thunk(() => nix.sel(linuxPackages, "nvidia_x11"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "gwe",
       version: "0.15.9",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "leinardi",
           repo: "gwe",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -79,7 +77,7 @@ makeWrapper ${pythonEnv}/bin/python $out/bin/gwe \\
   \${gappsWrapperArgs[@]}
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "System utility designed to provide information, control the fans and overclock your NVIDIA card",
         homepage: "https://gitlab.com/leinardi/gwe",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]], [["description", 62, 5], ["homepage", 63, 5], ["changelog", 64, 5], ["license", 65, 5], ["maintainers", 66, 5]], [["pname", 19, 3], ["version", 20, 3], ["pyproject", 21, 3], ["src", 23, 3], ["patches", 30, 3], ["nativeBuildInputs", 35, 3], ["propagatedBuildInputs", 37, 3], ["nativeCheckInputs", 42, 3], ["disabledTests", 53, 3], ["pythonImportsCheck", 59, 3], ["meta", 61, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, "flit-core": false, packaging: false, sphinx: false, click: false, "myst-parser": false, "pytest-regressions": false, pytestCheckHook: false, "sphinx-external-toc": false, "sphinxcontrib-bibtex": false, texsoup: false, defusedxml: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 62, 5], ["homepage", 63, 5], ["changelog", 64, 5], ["license", 65, 5], ["maintainers", 66, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 19, 3], ["version", 20, 3], ["pyproject", 21, 3], ["src", 23, 3], ["patches", 30, 3], ["nativeBuildInputs", 35, 3], ["propagatedBuildInputs", 37, 3], ["nativeCheckInputs", 42, 3], ["disabledTests", 53, 3], ["pythonImportsCheck", 59, 3], ["meta", 61, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,12 +22,12 @@ export default nix.lambda((args) => (() => {
   const texsoup = nix.arg($, "texsoup");
   const defusedxml = nix.arg($, "defusedxml");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "sphinx-jupyterbook-latex",
       version: "1.0.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "executablebooks",
           repo: "sphinx-jupyterbook-latex",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -51,7 +49,7 @@ export default nix.lambda((args) => (() => {
       disabledTests: nix.thunk(() => ["test_jblatex_show_tocs", "test_build_no_ext", "test_build_with_ext"]),
       pythonImportsCheck: nix.thunk(() => ["sphinx_jupyterbook_latex"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Latex specific features for jupyter book",
         homepage: "https://github.com/executablebooks/sphinx-jupyterbook-latex",
         changelog: nix.thunk(() => nix.str`https://github.com/executablebooks/sphinx-jupyterbook-latex/raw/v${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

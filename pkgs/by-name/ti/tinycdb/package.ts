@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 58, 5], ["hash", 59, 5]], [["description", 64, 5], ["mainProgram", 65, 5], ["longDescription", 67, 5], ["homepage", 73, 5], ["license", 74, 5], ["platforms", 75, 5]], [["postPatch", 16, 3], ["pname", 19, 3], ["version", 20, 3], ["outputs", 24, 3], ["separateDebugInfo", 30, 3], ["makeFlags", 31, 3], ["postInstall", 39, 3], ["src", 57, 3], ["meta", 62, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 58, 5], ["hash", 59, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 64, 5], ["mainProgram", 65, 5], ["longDescription", 67, 5], ["homepage", 73, 5], ["license", 74, 5], ["platforms", 75, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["postPatch", 16, 3], ["pname", 19, 3], ["version", 20, 3], ["outputs", 24, 3], ["separateDebugInfo", 30, 3], ["makeFlags", 31, 3], ["postInstall", 39, 3], ["src", 57, 3], ["meta", 62, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,7 +17,7 @@ export default nix.lambda((args) => (() => {
   const ar = nix.thunk(() => (nix.asBool(!nix.asBool(isCross)) ? "ar" : nix.str`${cross}-ar`));
   const ranlib = nix.thunk(() => (nix.asBool(!nix.asBool(isCross)) ? "ranlib" : nix.str`${cross}-ranlib`));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       postPatch: "sed -i 's,set --, set -x; set --,' Makefile\n",
       pname: "tinycdb",
       version: "0.81",
@@ -34,12 +32,12 @@ export default nix.lambda((args) => (() => {
       ], nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(static$)), "shared"))),
       postInstall: nix.thunk(() => nix.add("mkdir -p $dev/lib $out/bin\nmv $out/lib/libcdb.a $dev/lib\nrm --recursive $out/lib\n", (nix.asBool(static$) ? "cp cdb $out/bin/cdb\n" : "mkdir -p $lib/lib\ncp libcdb.so* $lib/lib\ncp cdb-shared $out/bin/cdb\n"))),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://www.corpit.ru/mjt/tinycdb/tinycdb-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-Rp3i1EW/VIgPZS9LbclcfN9vVQLDVSSkWyEi1w1H68I=",
         })))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Utility to manipulate constant databases (cdb)",
         mainProgram: "cdb",
         longDescription: "tinycdb is a small, fast and reliable utility and subroutine\nlibrary for creating and reading constant databases. The database\nstructure is tuned for fast reading.\n",

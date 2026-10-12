@@ -2,16 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 46, 5], ["hash", 47, 5]], [["ssh-add", 92, 11], ["ssh-agent", 93, 11]], [["systemctl", 96, 11]], [["binaries", 91, 9]], [["PKG_CONFIG_SYSTEMD_SYSTEMDUSERUNITDIR", 104, 7]], [["attrPath", 117, 7], ["packageName", 118, 7], ["versionPolicy", 119, 7]], [["updateScript", 116, 5]], [["platforms", 124, 5], ["teams", 125, 5], ["description", 126, 5], ["mainProgram", 127, 5], ["homepage", 128, 5], ["license", 129, 5], ["longDescription", 131, 5]], [["pname", 33, 3], ["version", 34, 3], ["__structuredAttrs", 36, 3], ["outputs", 38, 3], ["src", 45, 3], ["strictDeps", 50, 3], ["nativeBuildInputs", 52, 3], ["buildInputs", 65, 3], ["propagatedBuildInputs", 77, 3], ["nativeCheckInputs", 82, 3], ["mesonFlags", 86, 3], ["doCheck", 102, 3], ["env", 104, 3], ["postPatch", 106, 3], ["postFixup", 110, 3], ["passthru", 115, 3], ["meta", 123, 3]]]);
 const formals$1 = { args: { pkgs: false, stdenv: false, lib: false, fetchurl: false, "pkg-config": false, meson: false, ninja: false, gettext: false, gnupg: false, "p11-kit": false, glib: false, libgcrypt: false, libtasn1: false, gtk4: false, pango: false, libsecret: false, openssh: false, systemd: false, "gobject-introspection": false, wrapGAppsHook4: false, vala: false, "gi-docgen": false, gnome: false, python3: false, "shared-mime-info": false, systemdSupport: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 46, 5], ["hash", 47, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["ssh-add", 92, 11], ["ssh-agent", 93, 11]]);
-const pos$3 = nix.positions(here + "/package.nix", [["systemctl", 96, 11]]);
-const pos$4 = nix.positions(here + "/package.nix", [["binaries", 91, 9]]);
-const pos$5 = nix.positions(here + "/package.nix", [["PKG_CONFIG_SYSTEMD_SYSTEMDUSERUNITDIR", 104, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["attrPath", 117, 7], ["packageName", 118, 7], ["versionPolicy", 119, 7]]);
-const pos$7 = nix.positions(here + "/package.nix", [["updateScript", 116, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["platforms", 124, 5], ["teams", 125, 5], ["description", 126, 5], ["mainProgram", 127, 5], ["homepage", 128, 5], ["license", 129, 5], ["longDescription", 131, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["pname", 33, 3], ["version", 34, 3], ["__structuredAttrs", 36, 3], ["outputs", 38, 3], ["src", 45, 3], ["strictDeps", 50, 3], ["nativeBuildInputs", 52, 3], ["buildInputs", 65, 3], ["propagatedBuildInputs", 77, 3], ["nativeCheckInputs", 82, 3], ["mesonFlags", 86, 3], ["doCheck", 102, 3], ["env", 104, 3], ["postPatch", 106, 3], ["postFixup", 110, 3], ["passthru", 115, 3], ["meta", 123, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -43,13 +35,13 @@ export default nix.lambda((args) => (() => {
   const systemdSupport = nix.argOr($, "systemdSupport", () => nix.app(nix.sel(lib, "meta", "availableOn"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")), systemd));
   const ini = nix.thunk(() => nix.app(nix.sel(pkgs, "formats", "ini"), nix.thunk(() => ({}))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       pname: "gcr",
       version: "4.4.0.1",
       __structuredAttrs: true,
       outputs: nix.thunk(() => ["out", "bin", "dev", "devdoc"]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnome/sources/gcr/${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/gcr-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-DDw0Hkn59PJTKkiEUJgEGQoMJmPmEgNguymMXRdKgJg=",
         })))),
@@ -73,35 +65,35 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`-Dgpg_path=${nix.app(nix.sel(lib, "getBin"), gnupg)}/bin/gpg`),
         nix.thunk(() => nix.app(nix.sel(lib, "mesonEnable"), "systemd", systemdSupport)),
         nix.thunk(() => nix.str`--cross-file=${nix.app(nix.sel(ini, "generate"), "cross-file.conf", nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             binaries: nix.thunk(() => nix.update({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               "ssh-add": nix.thunk(() => nix.str`'${nix.app(nix.sel(lib, "getExe'"), openssh, "ssh-add")}'`),
               "ssh-agent": nix.thunk(() => nix.str`'${nix.app(nix.sel(lib, "getExe'"), openssh, "ssh-agent")}'`),
             }, nix.app(nix.sel(lib, "optionalAttrs"), systemdSupport, nix.thunk(() => ({
-                [nix.POS]: pos$3,
+                [nix.POS]: $pos[2],
                 systemctl: nix.thunk(() => nix.str`'${nix.app(nix.sel(lib, "getExe'"), systemd, "systemctl")}'`),
               }))))),
           })))}`),
       ]),
       doCheck: false,
       env: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         PKG_CONFIG_SYSTEMD_SYSTEMDUSERUNITDIR: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/lib/systemd/user`),
       })),
       postPatch: "patchShebangs gcr/fixtures/\n",
       postFixup: "# Cannot be in postInstall, otherwise _multioutDocs hook in preFixup will move right back.\nmoveToOutput \"share/doc\" \"$devdoc\"\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             attrPath: "gcr_4",
             packageName: "gcr",
             versionPolicy: "ninety-micro-unstable",
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "gnome"))]),
         description: "GNOME crypto services (daemon and tools)",

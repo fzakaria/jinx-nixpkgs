@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 28, 5], ["hash", 29, 5]], [["url", 35, 7], ["hash", 36, 7]], [["url", 39, 7], ["hash", 40, 7]], [["packageName", 65, 41]], [["updateScript", 65, 5]], [["homepage", 69, 5], ["description", 70, 5], ["mainProgram", 71, 5], ["teams", 72, 5], ["license", 73, 5], ["platforms", 74, 5]], [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["patches", 32, 3], ["nativeBuildInputs", 44, 3], ["buildInputs", 57, 3], ["passthru", 64, 3], ["meta", 68, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, fetchpatch: false, "pkg-config": false, gnome: false, "adwaita-icon-theme": false, gtk3: false, wrapGAppsHook3: false, librsvg: false, gsound: false, gettext: false, itstool: false, libxml2: false, meson: false, ninja: false, vala: false, python3: false, "desktop-file-utils": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 28, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 35, 7], ["hash", 36, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 39, 7], ["hash", 40, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["packageName", 65, 41]]);
-const pos$5 = nix.positions(here + "/package.nix", [["updateScript", 65, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["homepage", 69, 5], ["description", 70, 5], ["mainProgram", 71, 5], ["teams", 72, 5], ["license", 73, 5], ["platforms", 74, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["patches", 32, 3], ["nativeBuildInputs", 44, 3], ["buildInputs", 57, 3], ["passthru", 64, 3], ["meta", 68, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,22 +27,22 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const desktop_file_utils = nix.arg($, "desktop-file-utils");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "gnome-taquin",
       version: "3.38.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnome/sources/gnome-taquin/${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/gnome-taquin-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-lts9j61JeSSnOQrRCKPvckMqHWLSRWyuXhk0BXAYgU8=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://gitlab.gnome.org/GNOME/gnome-taquin/-/commit/99dea5e7863e112f33f16e59898c56a4f1a547b3.patch",
             hash: "sha256-U7djuMhb1XJaKAPyogQjaunOkbBK24r25YD7BgH05P4=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: "https://gitlab.gnome.org/GNOME/gnome-taquin/-/commit/66be44dc20d114e449fc33156e3939fd05dfbb16.patch",
             hash: "sha256-RN41RCLHlJyXTARSH9qjsmpYi1UFeMRssoYxRsbngDQ=",
           })))),
@@ -67,11 +61,11 @@ export default nix.lambda((args) => (() => {
       ]),
       buildInputs: nix.thunk(() => [gtk3, librsvg, gsound, adwaita_icon_theme]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$4, packageName: "gnome-taquin" })))),
+        [nix.POS]: $pos[4],
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: $pos[3], packageName: "gnome-taquin" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         homepage: "https://gitlab.gnome.org/GNOME/gnome-taquin",
         description: "Move tiles so that they reach their places",
         mainProgram: "gnome-taquin",

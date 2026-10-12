@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 35, 5], ["repo", 36, 5], ["rev", 37, 5], ["hash", 38, 5]], [["extraArgs", 164, 7]], [["pkg-config", 170, 7]], [["updateScript", 163, 5], ["tests", 169, 5]], [["description", 175, 5], ["mainProgram", 176, 5], ["homepage", 177, 5], ["changelog", 178, 5], ["license", 179, 5], ["platforms", 180, 5], ["maintainers", 181, 5], ["pkgConfigModules", 185, 5], ["broken", 186, 5]], [["pname", 31, 3], ["version", 32, 3], ["src", 34, 3], ["patches", 41, 3], ["strictDeps", 45, 3], ["nativeBuildInputs", 47, 3], ["propagatedBuildInputs", 62, 3], ["enableParallelBuilding", 63, 3], ["postPatch", 65, 3], ["configurePhase", 70, 3], ["cmakeFlags", 85, 3], ["doCheck", 106, 3], ["checkPhase", 107, 3], ["postInstall", 116, 3], ["doInstallCheck", 142, 3], ["nativeInstallCheckInputs", 144, 3], ["pythonImportsCheck", 149, 3], ["outputs", 153, 3], ["passthru", 162, 3], ["meta", 174, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch2: false, python3Packages: false, fixDarwinDylibNames: false, "nix-update-script": false, versionCheckHook: false, javaBindings: true, ocamlBindings: true, pythonBindings: true, jdk: true, ocaml: true, findlib: true, zarith: true, cmake: false, ninja: false, testers: false, useCmakeBuild: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 35, 5], ["repo", 36, 5], ["rev", 37, 5], ["hash", 38, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["extraArgs", 164, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pkg-config", 170, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 163, 5], ["tests", 169, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 175, 5], ["mainProgram", 176, 5], ["homepage", 177, 5], ["changelog", 178, 5], ["license", 179, 5], ["platforms", 180, 5], ["maintainers", 181, 5], ["pkgConfigModules", 185, 5], ["broken", 186, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 31, 3], ["version", 32, 3], ["src", 34, 3], ["patches", 41, 3], ["strictDeps", 45, 3], ["nativeBuildInputs", 47, 3], ["propagatedBuildInputs", 62, 3], ["enableParallelBuilding", 63, 3], ["postPatch", 65, 3], ["configurePhase", 70, 3], ["cmakeFlags", 85, 3], ["doCheck", 106, 3], ["checkPhase", 107, 3], ["postInstall", 116, 3], ["doInstallCheck", 142, 3], ["nativeInstallCheckInputs", 144, 3], ["pythonImportsCheck", 149, 3], ["outputs", 153, 3], ["passthru", 162, 3], ["meta", 174, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -35,11 +30,11 @@ export default nix.lambda((args) => (() => {
   nix.assert_((!nix.asBool(javaBindings) || nix.asBool((nix.asBool(!nix.eq(jdk, null)) && nix.asBool(!nix.asBool(nix.sel(stdenv, "hostPlatform", "isStatic")))))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/z3/z3/package.nix:25:1");
   nix.assert_((!nix.asBool(ocamlBindings) || nix.asBool((nix.asBool((nix.asBool((nix.asBool(!nix.eq(ocaml, null)) && nix.asBool(!nix.eq(findlib, null)))) && nix.asBool(!nix.eq(zarith, null)))) && nix.asBool(!nix.asBool(nix.sel(stdenv, "hostPlatform", "isStatic")))))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/z3/z3/package.nix:26:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "z3",
       version: "5.1.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Z3Prover",
           repo: "z3",
           rev: nix.thunk(() => nix.str`z3-${nix.sel(finalAttrs, "version")}`),
@@ -106,18 +101,18 @@ ln -sf $lib/lib $python/${nix.sel(python3Packages, "python", "sitePackages")}/z3
       pythonImportsCheck: nix.thunk(() => ["z3"]),
       outputs: nix.thunk(() => nix.concat(["out", "lib", "dev"], nix.concat(nix.app(nix.sel(lib, "optionals"), pythonBindings, nix.thunk(() => ["python"])), nix.concat(nix.app(nix.sel(lib, "optionals"), javaBindings, nix.thunk(() => ["java"])), nix.app(nix.sel(lib, "optionals"), ocamlBindings, nix.thunk(() => ["ocaml"])))))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             extraArgs: nix.thunk(() => ["--version-regex", "^z3-([0-9]+\\.[0-9]+\\.[0-9]+)$"]),
           })))),
         tests: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), useCmakeBuild, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "testMetaPkgConfig"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "High-performance theorem prover and SMT solver",
         mainProgram: "z3",
         homepage: "https://github.com/Z3Prover/z3",

@@ -2,53 +2,44 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/sstorytime.nix", [[["maintainers", 6, 5]], [["createLocally", 16, 18]], [["enable", 13, 9], ["httpPort", 14, 9], ["httpsPort", 15, 9], ["database", 16, 9]], [["sstorytime", 12, 16]], [["source", 19, 41]], [["sstorytime/test", 19, 23]], [["etc", 19, 19]], [["services", 12, 7], ["environment", 19, 7]], [["machine", 9, 9]], [["name", 3, 3], ["meta", 5, 3], ["nodes", 9, 3], ["testScript", 22, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/sstorytime.nix", [["maintainers", 6, 5]]);
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/sstorytime.nix", [["createLocally", 16, 18]]);
-const pos$3 = nix.positions(here + "/sstorytime.nix", [["enable", 13, 9], ["httpPort", 14, 9], ["httpsPort", 15, 9], ["database", 16, 9]]);
-const pos$4 = nix.positions(here + "/sstorytime.nix", [["sstorytime", 12, 16]]);
-const pos$5 = nix.positions(here + "/sstorytime.nix", [["source", 19, 41]]);
-const pos$6 = nix.positions(here + "/sstorytime.nix", [["sstorytime/test", 19, 23]]);
-const pos$7 = nix.positions(here + "/sstorytime.nix", [["etc", 19, 19]]);
-const pos$8 = nix.positions(here + "/sstorytime.nix", [["services", 12, 7], ["environment", 19, 7]]);
-const pos$9 = nix.positions(here + "/sstorytime.nix", [["machine", 9, 9]]);
 const formals$3 = { args: { nodes: false }, ellipsis: true };
-const pos$10 = nix.positions(here + "/sstorytime.nix", [["name", 3, 3], ["meta", 5, 3], ["nodes", 9, 3], ["testScript", 22, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$10,
+    [nix.POS]: $pos[9],
     name: "sstorytime",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => nix.sel(lib, "teams", "ngi", "members")),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             sstorytime: nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               enable: true,
               httpPort: 18080n,
               httpsPort: 18443n,
-              database: nix.thunk(() => ({ [nix.POS]: pos$2, createLocally: true })),
+              database: nix.thunk(() => ({ [nix.POS]: $pos[1], createLocally: true })),
             })),
           })),
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             etc: nix.thunk(() => ({
-              [nix.POS]: pos$6,
+              [nix.POS]: $pos[5],
               "sstorytime/test": nix.thunk(() => ({
-                [nix.POS]: pos$5,
+                [nix.POS]: $pos[4],
                 source: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "sstorytime-test", "extra-config-ok\n")),
               })),
             })),

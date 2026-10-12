@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["sha256", 23, 5]], [["javaSupport", 44, 32]], [["javaSupport", 45, 33]], [["HDFLIBS", 44, 5], ["HDF5LIBS", 45, 5]], [["name", 62, 7], ["desktopName", 63, 7], ["exec", 64, 7], ["icon", 65, 7], ["comment", 66, 7], ["categories", 67, 7]], [["description", 101, 5], ["license", 102, 5], ["homepage", 103, 5], ["downloadPage", 104, 5], ["platforms", 105, 5], ["maintainers", 106, 5], ["mainProgram", 107, 5], ["broken", 114, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["patches", 26, 3], ["nativeBuildInputs", 35, 3], ["env", 43, 3], ["buildPhase", 48, 3], ["desktopItems", 60, 3], ["installPhase", 74, 3], ["preFixup", 95, 3], ["meta", 100, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, ant: false, jdk: false, hdf4: false, hdf5: false, makeDesktopItem: false, copyDesktopItems: false, "strip-nondeterminism": false, stripJavaArchivesHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["sha256", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["javaSupport", 44, 32]]);
-const pos$3 = nix.positions(here + "/package.nix", [["javaSupport", 45, 33]]);
-const pos$4 = nix.positions(here + "/package.nix", [["HDFLIBS", 44, 5], ["HDF5LIBS", 45, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["name", 62, 7], ["desktopName", 63, 7], ["exec", 64, 7], ["icon", 65, 7], ["comment", 66, 7], ["categories", 67, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 101, 5], ["license", 102, 5], ["homepage", 103, 5], ["downloadPage", 104, 5], ["platforms", 105, 5], ["maintainers", 106, 5], ["mainProgram", 107, 5], ["broken", 114, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["patches", 26, 3], ["nativeBuildInputs", 35, 3], ["env", 43, 3], ["buildPhase", 48, 3], ["desktopItems", 60, 3], ["installPhase", 74, 3], ["preFixup", 95, 3], ["meta", 100, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const strip_nondeterminism = nix.arg($, "strip-nondeterminism");
   const stripJavaArchivesHook = nix.arg($, "stripJavaArchivesHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "hdfview",
       version: "3.3.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "HDFGroup",
           repo: "hdfview",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -42,9 +36,9 @@ export default nix.lambda((args) => (() => {
       ]),
       nativeBuildInputs: nix.thunk(() => [ant, jdk, copyDesktopItems, strip_nondeterminism, stripJavaArchivesHook]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        HDFLIBS: nix.thunk(() => nix.sel(nix.app(nix.sel(hdf4, "override"), nix.thunk(() => ({ [nix.POS]: pos$2, javaSupport: true }))), "out")),
-        HDF5LIBS: nix.thunk(() => nix.sel(nix.app(nix.sel(hdf5, "override"), nix.thunk(() => ({ [nix.POS]: pos$3, javaSupport: true }))), "out")),
+        [nix.POS]: $pos[3],
+        HDFLIBS: nix.thunk(() => nix.sel(nix.app(nix.sel(hdf4, "override"), nix.thunk(() => ({ [nix.POS]: $pos[1], javaSupport: true }))), "out")),
+        HDF5LIBS: nix.thunk(() => nix.sel(nix.app(nix.sel(hdf5, "override"), nix.thunk(() => ({ [nix.POS]: $pos[2], javaSupport: true }))), "out")),
       })),
       buildPhase: nix.thunk(() => (() => {
         const arch = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isx86_64")) ? "x86_64" : "aarch64"));
@@ -63,7 +57,7 @@ runHook postBuild
             const icon = name;
             const comment = nix.thunk(() => nix.sel(finalAttrs, "finalPackage", "meta", "description"));
             const categories = nix.thunk(() => ["Science", "DataVisualization"]);
-            return { [nix.POS]: pos$5, name, desktopName, exec, icon, comment, categories };
+            return { [nix.POS]: $pos[4], name, desktopName, exec, icon, comment, categories };
           })()))),
       ]),
       installPhase: nix.thunk(() => nix.add(nix.add(nix.add("runHook preInstall\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => nix.str`mkdir -p $out/bin $out/lib
@@ -77,7 +71,7 @@ cp src/HDFView.png $out/share/icons/hicolor/32x32/apps/
 `))), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "mkdir -p $out/Applications\ncp -a build/dist/HDFView.app $out/Applications/\n")), "runHook postInstall\n")),
       preFixup: "# Remove build timestamp from javadoc files\nfind $out/lib/app{,/mods}/doc/javadocs -name \"*.html\" -exec strip-nondeterminism --type javadoc {} +\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Visual tool for browsing and editing HDF4 and HDF5 files",
         license: nix.thunk(() => nix.sel(lib, "licenses", "free")),
         homepage: "https://www.hdfgroup.org/downloads/hdfview",

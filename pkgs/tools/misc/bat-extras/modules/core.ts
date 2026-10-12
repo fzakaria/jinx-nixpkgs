@@ -2,12 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/core.nix", [[["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5], ["fetchSubmodules", 22, 5]], [["extraArgs", 75, 47]], [["updateScript", 75, 12]], [["description", 78, 5], ["homepage", 79, 5], ["license", 80, 5], ["maintainers", 81, 5], ["platforms", 85, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 26, 3], ["dontConfigure", 28, 3], ["postPatch", 30, 3], ["buildPhase", 34, 3], ["doCheck", 41, 3], ["nativeCheckInputs", 42, 3], ["checkPhase", 49, 3], ["installPhase", 65, 3], ["dontPatchShebangs", 73, 3], ["passthru", 75, 3], ["meta", 77, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, stdenv: false, bash: false, bat: false, fish: false, getconf: false, "nix-update-script": false, nushell: false, zsh: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/core.nix", [["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5], ["fetchSubmodules", 22, 5]]);
-const pos$2 = nix.positions(here + "/core.nix", [["extraArgs", 75, 47]]);
-const pos$3 = nix.positions(here + "/core.nix", [["updateScript", 75, 12]]);
-const pos$4 = nix.positions(here + "/core.nix", [["description", 78, 5], ["homepage", 79, 5], ["license", 80, 5], ["maintainers", 81, 5], ["platforms", 85, 5]]);
-const pos$5 = nix.positions(here + "/core.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 26, 3], ["dontConfigure", 28, 3], ["postPatch", 30, 3], ["buildPhase", 34, 3], ["doCheck", 41, 3], ["nativeCheckInputs", 42, 3], ["checkPhase", 49, 3], ["installPhase", 65, 3], ["dontPatchShebangs", 73, 3], ["passthru", 75, 3], ["meta", 77, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const nushell = nix.arg($, "nushell");
   const zsh = nix.arg($, "zsh");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "bat-extras",
       version: "2024.08.24-unstable-2025-02-22",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "eth-p",
           repo: "bat-extras",
           rev: "3860f0f1481f1d0e117392030f55ef19cc018ee4",
@@ -43,11 +39,11 @@ export default nix.lambda((args) => (() => {
       installPhase: "runHook preInstall\ncp -a . $out\nrunHook postInstall\n",
       dontPatchShebangs: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$2, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: $pos[1], extraArgs: nix.thunk(() => ["--version=branch"]) })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Bash scripts that integrate bat with various command line tools",
         homepage: "https://github.com/eth-p/bat-extras",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

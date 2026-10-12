@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 15, 7], ["hash", 16, 7]], [["pname", 13, 13], ["version", 13, 19], ["src", 14, 5]], [["description", 29, 5], ["homepage", 30, 5], ["license", 31, 5], ["maintainers", 32, 5], ["platforms", 33, 5], ["mainProgram", 34, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["extraInstallCommands", 20, 3], ["meta", 28, 3]]]);
 const formals$1 = { args: { lib: false, fetchurl: false, appimageTools: false, imagemagick: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 15, 7], ["hash", 16, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 13, 13], ["version", 13, 19], ["src", 14, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 29, 5], ["homepage", 30, 5], ["license", 31, 5], ["maintainers", 32, 5], ["platforms", 33, 5], ["mainProgram", 34, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["extraInstallCommands", 20, 3], ["meta", 28, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +15,11 @@ export default nix.lambda((args) => (() => {
       const pname = "chain-desktop-wallet";
       const version = "1.5.1";
       const src = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: pname,
           version: version,
           src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-              [nix.POS]: pos$1,
+              [nix.POS]: $pos[0],
               url: nix.thunk(() => nix.str`https://github.com/crypto-com/chain-desktop-wallet/releases/download/v${version}/Crypto.com-DeFi-Desktop-Wallet-${version}.AppImage`),
               hash: "sha256-dXJMU6abg31ZyETKl5Hh6fxn1Gd1FbSHGJh1z0R7XPM=",
             })))),
@@ -34,7 +31,7 @@ substituteInPlace $out/share/applications/chain-desktop-wallet.desktop \\
   --replace-fail "Exec=AppRun --no-sandbox %U" "Exec=chain-desktop-wallet %U"
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Crypto.org Chain desktop wallet (Beta)",
         homepage: "https://github.com/crypto-com/chain-desktop-wallet",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -45,7 +42,7 @@ substituteInPlace $out/share/applications/chain-desktop-wallet.desktop \\
         platforms: nix.thunk(() => ["x86_64-linux"]),
         mainProgram: "chain-desktop-wallet",
       }));
-      return { [nix.POS]: pos$4, pname, version, src, extraInstallCommands, meta };
+      return { [nix.POS]: $pos[3], pname, version, src, extraInstallCommands, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

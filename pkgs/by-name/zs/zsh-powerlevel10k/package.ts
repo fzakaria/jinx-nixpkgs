@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 18, 5], ["hash", 19, 5]], [["gitstatusdPath", 28, 7]], [["description", 46, 5], ["longDescription", 47, 5], ["homepage", 51, 5], ["license", 52, 5], ["platforms", 53, 5], ["maintainers", 54, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["strictDeps", 22, 3], ["buildInputs", 24, 3], ["patches", 26, 3], ["installPhase", 32, 3], ["meta", 45, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, replaceVars: false, gitstatus: false, bash: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["gitstatusdPath", 28, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 46, 5], ["longDescription", 47, 5], ["homepage", 51, 5], ["license", 52, 5], ["platforms", 53, 5], ["maintainers", 54, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["strictDeps", 22, 3], ["buildInputs", 24, 3], ["patches", 26, 3], ["installPhase", 32, 3], ["meta", 45, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const gitstatus = nix.arg($, "gitstatus");
   const bash = nix.arg($, "bash");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "powerlevel10k",
       version: "1.20.15",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "romkatv",
           repo: "powerlevel10k",
           rev: "36f3045d69d1ba402db09d09eb12b42eebe0fa3b",
@@ -31,13 +28,13 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [bash]),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./gitstatusd.patch"), nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             gitstatusdPath: nix.thunk(() => nix.str`${gitstatus}/bin/gitstatusd`),
           })))),
       ]),
       installPhase: "runHook preInstall\n\ninstall -D powerlevel10k.zsh-theme --target-directory=$out/share/zsh/themes/powerlevel10k\ninstall -D powerlevel9k.zsh-theme --target-directory=$out/share/zsh/themes/powerlevel10k\ninstall -D config/* --target-directory=$out/share/zsh/themes/powerlevel10k/config\ninstall -D internal/* --target-directory=$out/share/zsh/themes/powerlevel10k/internal\ncp -R gitstatus $out/share/zsh/themes/powerlevel10k/gitstatus\nln -s $out/share/zsh/themes/powerlevel10k $out/share/zsh-powerlevel10k\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Fast reimplementation of Powerlevel9k ZSH theme",
         longDescription: "To make use of this derivation, use\n`programs.zsh.promptInit = \"source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme\";`\n",
         homepage: "https://github.com/romkatv/powerlevel10k",

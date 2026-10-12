@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["repo", 19, 5], ["owner", 20, 5], ["tag", 21, 5], ["hash", 22, 5]], [["homepage", 49, 5], ["description", 50, 5], ["license", 51, 5], ["platforms", 52, 5]], [["pname", 13, 3], ["version", 14, 3], ["format", 15, 3], ["disabled", 16, 3], ["src", 18, 3], ["postPatch", 25, 3], ["preConfigure", 37, 3], ["nativeBuildInputs", 41, 3], ["nativeCheckInputs", 42, 3], ["propagatedBuildInputs", 46, 3], ["meta", 48, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, buildPythonPackage: false, isPyPy: false, pkgs: false, six: false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["repo", 19, 5], ["owner", 20, 5], ["tag", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 49, 5], ["description", 50, 5], ["license", 51, 5], ["platforms", 52, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 13, 3], ["version", 14, 3], ["format", 15, 3], ["disabled", 16, 3], ["src", 18, 3], ["postPatch", 25, 3], ["preConfigure", 37, 3], ["nativeBuildInputs", 41, 3], ["nativeCheckInputs", 42, 3], ["propagatedBuildInputs", 46, 3], ["meta", 48, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const format = "setuptools";
       const disabled = isPyPy;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           repo: "pyparted",
           owner: "dcantrell",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -40,14 +38,14 @@ sed -i -e '
       const nativeCheckInputs = nix.thunk(() => [six, pytestCheckHook]);
       const propagatedBuildInputs = nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "parted"))]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/dcantrell/pyparted/",
         description: "Python interface for libparted",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         format,

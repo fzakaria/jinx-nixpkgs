@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 7], ["repo", 16, 7], ["tag", 17, 7], ["hash", 18, 7]], [["updateScript", 30, 7]], [["description", 34, 7], ["homepage", 35, 7], ["changelog", 36, 7], ["license", 37, 7], ["maintainers", 38, 7], ["platforms", 39, 7]], [["pname", 11, 5], ["version", 12, 5], ["src", 14, 5], ["installPhase", 21, 5], ["passthru", 29, 5], ["meta", 33, 5]], [["pname", 45, 5], ["version", 46, 5], ["src", 47, 5], ["passthru", 48, 5], ["meta", 49, 5], ["paths", 51, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchFromGitHub: false, "nix-update-script": false, symlinkJoin: false, "alsa-ucm-conf": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 7], ["repo", 16, 7], ["tag", 17, 7], ["hash", 18, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 30, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 34, 7], ["homepage", 35, 7], ["changelog", 36, 7], ["license", 37, 7], ["maintainers", 38, 7], ["platforms", 39, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 11, 5], ["version", 12, 5], ["src", 14, 5], ["installPhase", 21, 5], ["passthru", 29, 5], ["meta", 33, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 45, 5], ["version", 46, 5], ["src", 47, 5], ["passthru", 48, 5], ["meta", 49, 5], ["paths", 51, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const symlinkJoin = nix.arg($, "symlinkJoin");
   const alsa_ucm_conf = nix.arg($, "alsa-ucm-conf");
   const alsa_ucm_conf_asahi = nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "alsa-ucm-conf-asahi",
       version: "10",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "AsahiLinux",
           repo: "alsa-ucm-conf-asahi",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -30,11 +26,11 @@ export default nix.lambda((args) => (() => {
         })))),
       installPhase: "runHook preInstall\n\nfind ucm2/conf.d -type f -exec install -Dm644 \"{}\" \"$out/share/alsa/{}\" \\;\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "ALSA Use Case Manager configuration (and topologies) for Apple silicon devices",
         homepage: "https://github.com/AsahiLinux/alsa-ucm-conf-asahi",
         changelog: nix.thunk(() => nix.str`https://github.com/AsahiLinux/alsa-ucm-conf-asahi/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
@@ -44,7 +40,7 @@ export default nix.lambda((args) => (() => {
       })),
     })));
   return nix.app(symlinkJoin, nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: nix.thunk(() => nix.attr(alsa_ucm_conf_asahi, "pname")),
       version: nix.thunk(() => nix.attr(alsa_ucm_conf_asahi, "version")),
       src: nix.thunk(() => nix.attr(alsa_ucm_conf_asahi, "src")),

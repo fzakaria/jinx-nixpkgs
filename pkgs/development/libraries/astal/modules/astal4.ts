@@ -2,9 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/astal4.nix", [[["description", 15, 8]], [["name", 8, 3], ["sourceRoot", 9, 3], ["buildInputs", 10, 3], ["meta", 15, 3]]]);
 const formals$1 = { args: { buildAstalModule: false, gtk4: false, "gtk4-layer-shell": false, io: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/astal4.nix", [["description", 15, 8]]);
-const pos$2 = nix.positions(here + "/astal4.nix", [["name", 8, 3], ["sourceRoot", 9, 3], ["buildInputs", 10, 3], ["meta", 15, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const gtk4_layer_shell = nix.arg($, "gtk4-layer-shell");
   const io = nix.arg($, "io");
   return nix.app(buildAstalModule, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       name: "astal4",
       sourceRoot: "lib/astal/gtk4",
       buildInputs: nix.thunk(() => [io, gtk4, gtk4_layer_shell]),
-      meta: nix.thunk(() => ({ [nix.POS]: pos$1, description: "Astal module for GTK4 widgets" })),
+      meta: nix.thunk(() => ({ [nix.POS]: $pos[0], description: "Astal module for GTK4 widgets" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=astal4.ts.map

@@ -2,11 +2,8 @@
 import * as nix from "../../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["sha256", 16, 5]], [["scripts", 19, 12]], [["description", 31, 5], ["homepage", 32, 5], ["license", 33, 5], ["maintainers", 34, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["passthru", 19, 3], ["dontBuild", 21, 3], ["doCheck", 22, 3], ["installPhase", 24, 3], ["meta", 30, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, libnotify: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["sha256", 16, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["scripts", 19, 12]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 31, 5], ["homepage", 32, 5], ["license", 33, 5], ["maintainers", 34, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["passthru", 19, 3], ["dontBuild", 21, 3], ["doCheck", 22, 3], ["installPhase", 24, 3], ["meta", 30, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,13 +15,13 @@ export default nix.lambda((args) => (() => {
       const pname = "weechat-notify-send";
       const version = "0.10";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "s3rvac",
           repo: "weechat-notify-send",
           rev: nix.thunk(() => nix.str`v${version}`),
           sha256: "sha256-7uw0IdRSxhPrLqdgECKB9eOrtFj+2HTILBhakKiRuNQ=",
         }))));
-      const passthru = nix.thunk(() => ({ [nix.POS]: pos$2, scripts: nix.thunk(() => ["notify_send.py"]) }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: $pos[1], scripts: nix.thunk(() => ["notify_send.py"]) }));
       const dontBuild = true;
       const doCheck = false;
       const installPhase = nix.thunk(() => nix.str`install -D notify_send.py $out/share/notify_send.py
@@ -32,7 +29,7 @@ substituteInPlace $out/share/notify_send.py \\
   --replace "'notify-send'" "'${libnotify}/bin/notify-send'"
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "WeeChat script that sends highlight and message notifications through notify-send",
         homepage: "https://github.com/s3rvac/weechat-notify-send",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -42,7 +39,7 @@ substituteInPlace $out/share/notify_send.py \\
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]], [["name", 25, 7], ["url", 26, 7], ["hash", 27, 7]], [["homepage", 46, 5], ["changelog", 47, 5], ["description", 48, 5], ["license", 49, 5], ["maintainers", 50, 5], ["mainProgram", 53, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["patches", 21, 3], ["vendorHash", 31, 3], ["buildInputs", 33, 3], ["nativeBuildInputs", 35, 3], ["ldflags", 37, 3], ["__darwinAllowLocalNetworking", 43, 3], ["meta", 45, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitHub: false, fetchpatch: false, "pkg-config": false, vips: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 25, 7], ["url", 26, 7], ["hash", 27, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 46, 5], ["changelog", 47, 5], ["description", 48, 5], ["license", 49, 5], ["maintainers", 50, 5], ["mainProgram", 53, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["patches", 21, 3], ["vendorHash", 31, 3], ["buildInputs", 33, 3], ["nativeBuildInputs", 35, 3], ["ldflags", 37, 3], ["__darwinAllowLocalNetworking", 43, 3], ["meta", 45, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const vips = nix.arg($, "vips");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "imaginary",
       version: "1.2.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "h2non",
           repo: "imaginary",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -29,7 +26,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "return-width-and-height-of-generated-images.patch",
             url: "https://github.com/h2non/imaginary/commit/cfbf8d724cd326e835dfcb01e7224397c46037d3.patch",
             hash: "sha256-TwZ5WU5g9LXrenpfY52jYsc6KsEt2fjDq7cPz6ILlhA=",
@@ -45,7 +42,7 @@ export default nix.lambda((args) => (() => {
       ]),
       __darwinAllowLocalNetworking: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://fly.io/docs/app-guides/run-a-global-image-service",
         changelog: nix.thunk(() => nix.str`https://github.com/h2non/imaginary/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "Fast, simple, scalable, Docker-ready HTTP microservice for high-level image processing",

@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/driver-postgresql.nix", [[["description", 17, 5]], [["pname", 8, 3], ["version", 9, 19], ["src", 9, 27], ["propagatedBuildInputs", 11, 3], ["meta", 16, 3]]]);
 const formals$1 = { args: { buildDunePackage: false, caqti: false, postgresql: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/driver-postgresql.nix", [["description", 17, 5]]);
-const pos$2 = nix.positions(here + "/driver-postgresql.nix", [["pname", 8, 3], ["version", 9, 19], ["src", 9, 27], ["propagatedBuildInputs", 11, 3], ["meta", 16, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -12,13 +11,13 @@ export default nix.lambda((args) => (() => {
   const caqti = nix.arg($, "caqti");
   const postgresql = nix.arg($, "postgresql");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "caqti-driver-postgresql",
       version: nix.thunk(() => nix.attr(caqti, "version")),
       src: nix.thunk(() => nix.attr(caqti, "src")),
       propagatedBuildInputs: nix.thunk(() => [caqti, postgresql]),
       meta: nix.thunk(() => nix.update(nix.sel(caqti, "meta"), {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "PostgreSQL driver for Caqti based on C bindings",
       })),
     })));

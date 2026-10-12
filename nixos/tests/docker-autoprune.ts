@@ -2,41 +2,31 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/docker-autoprune.nix", [[["enable", 16, 13]], [["enable", 13, 11], ["package", 14, 11], ["autoPrune", 15, 11]], [["docker", 12, 24]], [["virtualisation", 12, 9]], [["enable", 28, 24]], [["enable", 27, 13], ["allVolumes", 28, 13]], [["enable", 24, 11], ["package", 25, 11], ["autoPrune", 26, 11]], [["docker", 23, 24]], [["virtualisation", 23, 9]], [["prune", 9, 5], ["prunevolumes", 20, 5]], [["name", 6, 3], ["nodes", 8, 3], ["testScript", 34, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/docker-autoprune.nix", [["enable", 16, 13]]);
-const pos$2 = nix.positions(here + "/docker-autoprune.nix", [["enable", 13, 11], ["package", 14, 11], ["autoPrune", 15, 11]]);
-const pos$3 = nix.positions(here + "/docker-autoprune.nix", [["docker", 12, 24]]);
-const pos$4 = nix.positions(here + "/docker-autoprune.nix", [["virtualisation", 12, 9]]);
 const formals$3 = { args: { pkgs: false }, ellipsis: true };
-const pos$5 = nix.positions(here + "/docker-autoprune.nix", [["enable", 28, 24]]);
-const pos$6 = nix.positions(here + "/docker-autoprune.nix", [["enable", 27, 13], ["allVolumes", 28, 13]]);
-const pos$7 = nix.positions(here + "/docker-autoprune.nix", [["enable", 24, 11], ["package", 25, 11], ["autoPrune", 26, 11]]);
-const pos$8 = nix.positions(here + "/docker-autoprune.nix", [["docker", 23, 24]]);
-const pos$9 = nix.positions(here + "/docker-autoprune.nix", [["virtualisation", 23, 9]]);
-const pos$10 = nix.positions(here + "/docker-autoprune.nix", [["prune", 9, 5], ["prunevolumes", 20, 5]]);
-const pos$11 = nix.positions(here + "/docker-autoprune.nix", [["name", 6, 3], ["nodes", 8, 3], ["testScript", 34, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   return {
-    [nix.POS]: pos$11,
+    [nix.POS]: $pos[10],
     name: "docker",
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       prune: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           virtualisation: nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             docker: nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               enable: true,
               package: nix.thunk(() => nix.sel(pkgs_1, "docker")),
-              autoPrune: nix.thunk(() => ({ [nix.POS]: pos$1, enable: true })),
+              autoPrune: nix.thunk(() => ({ [nix.POS]: $pos[0], enable: true })),
             })),
           })),
         };
@@ -45,17 +35,17 @@ export default nix.lambda((args) => (() => {
         const $_1 = nix.formals(args_1, formals$3);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           virtualisation: nix.thunk(() => ({
-            [nix.POS]: pos$8,
+            [nix.POS]: $pos[7],
             docker: nix.thunk(() => ({
-              [nix.POS]: pos$7,
+              [nix.POS]: $pos[6],
               enable: true,
               package: nix.thunk(() => nix.sel(pkgs_1, "docker")),
               autoPrune: nix.thunk(() => ({
-                [nix.POS]: pos$6,
+                [nix.POS]: $pos[5],
                 enable: true,
-                allVolumes: nix.thunk(() => ({ [nix.POS]: pos$5, enable: true })),
+                allVolumes: nix.thunk(() => ({ [nix.POS]: $pos[4], enable: true })),
               })),
             })),
           })),

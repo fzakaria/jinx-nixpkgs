@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 35, 5], ["repo", 36, 5], ["rev", 37, 5], ["hash", 38, 5]], [["url", 44, 7], ["hash", 45, 7]], [["homepage", 115, 5], ["description", 116, 5], ["license", 117, 5], ["maintainers", 118, 5], ["platforms", 119, 5], ["mainProgram", 120, 5]], [["version", 31, 3], ["pname", 32, 3], ["src", 34, 3], ["patches", 41, 3], ["buildInputs", 49, 3], ["nativeBuildInputs", 64, 3], ["doCheck", 77, 3], ["preCheck", 78, 3], ["postInstall", 82, 3], ["nativeInstallCheckInputs", 89, 3], ["doInstallCheck", 92, 3], ["cmakeFlags", 94, 3], ["qtWrapperArgs", 110, 3], ["meta", 114, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch: false, kdePackages: false, "cpp-utilities": false, boost: false, cmake: false, iconv: false, cppunit: false, syncthing: false, "xdg-utils": false, webviewSupport: true, jsSupport: true, kioPluginSupport: true, plasmoidSupport: true, systemdSupport: true, autostartExecPath: true, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 35, 5], ["repo", 36, 5], ["rev", 37, 5], ["hash", 38, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 44, 7], ["hash", 45, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 115, 5], ["description", 116, 5], ["license", 117, 5], ["maintainers", 118, 5], ["platforms", 119, 5], ["mainProgram", 120, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["version", 31, 3], ["pname", 32, 3], ["src", 34, 3], ["patches", 41, 3], ["buildInputs", 49, 3], ["nativeBuildInputs", 64, 3], ["doCheck", 77, 3], ["preCheck", 78, 3], ["postInstall", 82, 3], ["nativeInstallCheckInputs", 89, 3], ["doInstallCheck", 92, 3], ["cmakeFlags", 94, 3], ["qtWrapperArgs", 110, 3], ["meta", 114, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,11 +27,11 @@ export default nix.lambda((args) => (() => {
   const autostartExecPath = nix.argOr($, "autostartExecPath", () => "syncthingtray");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       version: "2.1.7",
       pname: "syncthingtray",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Martchus",
           repo: "syncthingtray",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -42,7 +39,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/Martchus/syncthingtray/commit/cf2aa323f935041a55a8852a19a63968c832f517.patch",
             hash: "sha256-nE7+RB0Wk6NirljqaCSNPXBxmAvPLMBOzyT+Rl7OkBw=",
           })))),
@@ -86,7 +83,7 @@ export QT_PLUGIN_PATH="${nix.app(nix.sel(lib, "getBin"), nix.thunk(() => nix.sel
         nix.thunk(() => nix.str`--prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [xdg_utils]))}`),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/Martchus/syncthingtray",
         description: "Tray application and Dolphin/Plasma integration for Syncthing",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

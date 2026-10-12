@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 15, 5], ["group", 16, 5], ["owner", 17, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]], [["extraArgs", 47, 5]], [["updateScript", 46, 12]], [["description", 51, 5], ["longDescription", 52, 5], ["homepage", 63, 5], ["changelog", 64, 5], ["license", 65, 5], ["maintainers", 70, 5], ["mainProgram", 74, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["vendorHash", 25, 3], ["ldflags", 27, 3], ["subPackages", 33, 3], ["nativeBuildInputs", 35, 3], ["postInstall", 37, 3], ["nativeInstallCheckInputs", 42, 3], ["versionCheckProgramArg", 43, 3], ["doInstallCheck", 44, 3], ["passthru", 46, 3], ["meta", 50, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitLab: false, installShellFiles: false, versionCheckHook: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 15, 5], ["group", 16, 5], ["owner", 17, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["extraArgs", 47, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 46, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 51, 5], ["longDescription", 52, 5], ["homepage", 63, 5], ["changelog", 64, 5], ["license", 65, 5], ["maintainers", 70, 5], ["mainProgram", 74, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["vendorHash", 25, 3], ["ldflags", 27, 3], ["subPackages", 33, 3], ["nativeBuildInputs", 35, 3], ["postInstall", 37, 3], ["nativeInstallCheckInputs", 42, 3], ["versionCheckProgramArg", 43, 3], ["doInstallCheck", 44, 3], ["passthru", 46, 3], ["meta", 50, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "obfs4",
       version: "0.8.1",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "gitlab.torproject.org",
           group: "tpo",
           owner: "anti-censorship/pluggable-transports",
@@ -43,14 +39,14 @@ export default nix.lambda((args) => (() => {
       versionCheckProgramArg: "--version",
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             extraArgs: nix.thunk(() => ["--version-regex=^lyrebird-(\\d+\\.\\d+\\.\\d+)$"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Circumvents censorship by transforming Tor traffic between clients and bridges",
         longDescription: "Obfs4proxy is a tool that attempts to circumvent censorship by\ntransforming the Tor traffic between the client and the bridge.\nThis way censors, who usually monitor traffic between the client\nand the bridge, will see innocent-looking transformed traffic\ninstead of the actual Tor traffic.  obfs4proxy implements the\nobfsucation protocols obfs2, obfs3, and obfs4.  It is written in\nGo and is compliant with the Tor pluggable transports\nspecification, and its modular architecture allows it to support\nmultiple pluggable transports.\n",
         homepage: "https://gitlab.torproject.org/tpo/anti-censorship/pluggable-transports/lyrebird",

@@ -2,15 +2,10 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["fetchurl", 48, 13], ["mirror", 49, 5]], [["homepage", 115, 17], ["license", 116, 17], ["maintainers", 117, 17], ["platforms", 118, 17]], [["pname", 126, 17], ["meta", 127, 17], ["outputs", 128, 17], ["setupHook", 129, 17], ["src", 130, 17], ["version", 131, 17]], [["propagate", 89, 17], ["propagateBin", 89, 27], ["mkDerivation", 91, 9]], [["extra-cmake-modules", 143, 31], ["attica", 146, 9], ["breeze-icons", 147, 9], ["karchive", 148, 9], ["kcalendarcore", 149, 9], ["kcodecs", 150, 9], ["kconfig", 151, 9], ["kcoreaddons", 152, 9], ["kdbusaddons", 153, 9], ["kdnssd", 154, 9], ["kguiaddons", 155, 9], ["ki18n", 156, 9], ["kirigami2", 157, 9], ["kitemviews", 158, 9], ["kwayland", 159, 9], ["kwidgetsaddons", 160, 9], ["kwindowsystem", 161, 9], ["solid", 162, 9], ["sonnet", 163, 9], ["syntax-highlighting", 164, 9], ["kactivities", 167, 9], ["kauth", 168, 9], ["kcompletion", 169, 9], ["kcrash", 170, 9], ["kdoctools", 171, 9], ["kjobwidgets", 172, 9], ["knotifications", 173, 9], ["kpackage", 174, 9], ["syndication", 175, 9], ["kactivities-stats", 178, 9], ["kbookmarks", 179, 9], ["kconfigwidgets", 180, 9], ["kded", 181, 9], ["kglobalaccel", 182, 9], ["kiconthemes", 183, 9], ["kio", 184, 9], ["knewstuff", 185, 9], ["kservice", 186, 9], ["ktextwidgets", 187, 9], ["kwallet", 188, 9], ["kxmlgui", 189, 9], ["frameworkintegration", 192, 9]], [["baloo", 195, 9], ["bluez-qt", 196, 9], ["kapidox", 197, 9], ["kcmutils", 198, 9], ["kcontacts", 199, 9], ["kdav", 200, 9], ["kdeclarative", 201, 9], ["kdelibs4support", 202, 9], ["kdesignerplugin", 203, 9], ["kdesu", 204, 9], ["kemoticons", 205, 9], ["kfilemetadata", 206, 9], ["kholidays", 207, 9], ["khtml", 208, 9], ["kimageformats", 209, 9], ["kidletime", 210, 9], ["kinit", 211, 9], ["kitemmodels", 212, 9], ["kjs", 213, 9], ["kjsembed", 214, 9], ["kmediaplayer", 215, 9], ["knotifyconfig", 216, 9], ["kparts", 217, 9], ["kpeople", 218, 9], ["kplotting", 219, 9], ["kpty", 220, 9], ["kpurpose", 221, 9], ["kquickcharts", 222, 9], ["kross", 223, 9], ["krunner", 224, 9], ["ktexteditor", 225, 9], ["kunitconversion", 226, 9], ["kxmlrpcclient", 227, 9], ["modemmanager-qt", 228, 9], ["networkmanager-qt", 229, 9], ["oxygen-icons", 230, 9], ["oxygen-icons5", 231, 9], ["plasma-framework", 232, 9], ["prison", 233, 9], ["qqc2-desktop-style", 234, 9], ["threadweaver", 235, 9]]]);
 const formals$1 = { args: { config: false, libsForQt5: false, lib: false, fetchurl: false, kdePackages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["fetchurl", 48, 13], ["mirror", 49, 5]]);
 const formals$2 = { args: { stdenv: false, mkDerivation: true }, ellipsis: false };
 const formals$3 = { args: { writeScript: false }, ellipsis: false };
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 115, 17], ["license", 116, 17], ["maintainers", 117, 17], ["platforms", 118, 17]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 126, 17], ["meta", 127, 17], ["outputs", 128, 17], ["setupHook", 129, 17], ["src", 130, 17], ["version", 131, 17]]);
-const pos$4 = nix.positions(here + "/default.nix", [["propagate", 89, 17], ["propagateBin", 89, 27], ["mkDerivation", 91, 9]]);
-const pos$5 = nix.positions(here + "/default.nix", [["extra-cmake-modules", 143, 31], ["attica", 146, 9], ["breeze-icons", 147, 9], ["karchive", 148, 9], ["kcalendarcore", 149, 9], ["kcodecs", 150, 9], ["kconfig", 151, 9], ["kcoreaddons", 152, 9], ["kdbusaddons", 153, 9], ["kdnssd", 154, 9], ["kguiaddons", 155, 9], ["ki18n", 156, 9], ["kirigami2", 157, 9], ["kitemviews", 158, 9], ["kwayland", 159, 9], ["kwidgetsaddons", 160, 9], ["kwindowsystem", 161, 9], ["solid", 162, 9], ["sonnet", 163, 9], ["syntax-highlighting", 164, 9], ["kactivities", 167, 9], ["kauth", 168, 9], ["kcompletion", 169, 9], ["kcrash", 170, 9], ["kdoctools", 171, 9], ["kjobwidgets", 172, 9], ["knotifications", 173, 9], ["kpackage", 174, 9], ["syndication", 175, 9], ["kactivities-stats", 178, 9], ["kbookmarks", 179, 9], ["kconfigwidgets", 180, 9], ["kded", 181, 9], ["kglobalaccel", 182, 9], ["kiconthemes", 183, 9], ["kio", 184, 9], ["knewstuff", 185, 9], ["kservice", 186, 9], ["ktextwidgets", 187, 9], ["kwallet", 188, 9], ["kxmlgui", 189, 9], ["frameworkintegration", 192, 9]]);
-const pos$6 = nix.positions(here + "/default.nix", [["baloo", 195, 9], ["bluez-qt", 196, 9], ["kapidox", 197, 9], ["kcmutils", 198, 9], ["kcontacts", 199, 9], ["kdav", 200, 9], ["kdeclarative", 201, 9], ["kdelibs4support", 202, 9], ["kdesignerplugin", 203, 9], ["kdesu", 204, 9], ["kemoticons", 205, 9], ["kfilemetadata", 206, 9], ["kholidays", 207, 9], ["khtml", 208, 9], ["kimageformats", 209, 9], ["kidletime", 210, 9], ["kinit", 211, 9], ["kitemmodels", 212, 9], ["kjs", 213, 9], ["kjsembed", 214, 9], ["kmediaplayer", 215, 9], ["knotifyconfig", 216, 9], ["kparts", 217, 9], ["kpeople", 218, 9], ["kplotting", 219, 9], ["kpty", 220, 9], ["kpurpose", 221, 9], ["kquickcharts", 222, 9], ["kross", 223, 9], ["krunner", 224, 9], ["ktexteditor", 225, 9], ["kunitconversion", 226, 9], ["kxmlrpcclient", 227, 9], ["modemmanager-qt", 228, 9], ["networkmanager-qt", 229, 9], ["oxygen-icons", 230, 9], ["oxygen-icons5", 231, 9], ["plasma-framework", 232, 9], ["prison", 233, 9], ["qqc2-desktop-style", 234, 9], ["threadweaver", 235, 9]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -35,7 +30,7 @@ export default nix.lambda((args) => (() => {
       nix.thunk(() => nix.lookup(w_1, "fdl12Plus")),
     ];
   })());
-  const srcs = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./srcs.nix")), nix.thunk(() => ({ [nix.POS]: pos$1, fetchurl: fetchurl, mirror: "mirror://kde" }))));
+  const srcs = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./srcs.nix")), nix.thunk(() => ({ [nix.POS]: $pos[0], fetchurl: fetchurl, mirror: "mirror://kde" }))));
   const mkDerivation = nix.thunk(() => nix.app(nix.sel(libsForQt5, "callPackage"), nix.lambda((args_1) => (() => {
       const $_1 = nix.formals(args_1, formals$2);
       const stdenv = nix.arg($_1, "stdenv");
@@ -53,7 +48,7 @@ export default nix.lambda((args) => (() => {
     })();
     const propagateBin = nix.thunk(() => nix.app(propagate, "bin"));
     const callPackage = nix.thunk(() => nix.app(nix.sel(self, "newScope"), nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         propagate: propagate,
         propagateBin: propagateBin,
         mkDerivation: (args_1) => (() => {
@@ -68,7 +63,7 @@ export default nix.lambda((args) => (() => {
           const meta = nix.thunk(() => (() => {
             const meta_1 = nix.thunk(() => nix.selOr(args_1, () => ({}), "meta"));
             return nix.update(meta_1, {
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               homepage: nix.thunk(() => nix.selOr(meta_1, () => "https://kde.org", "homepage")),
               license: nix.thunk(() => nix.selOr(meta_1, () => nix.force(license), "license")),
               maintainers: nix.thunk(() => nix.concat(nix.selOr(meta_1, () => [], "maintainers"), maintainers)),
@@ -76,7 +71,7 @@ export default nix.lambda((args) => (() => {
             });
           })());
           return nix.app(mkDerivation, nix.thunk(() => nix.update(args_1, {
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               pname: pname,
               meta: meta,
               outputs: outputs,
@@ -88,7 +83,7 @@ export default nix.lambda((args) => (() => {
       }))));
     const mkThrow = (name) => nix.builtins.throw(nix.thunk(() => nix.str`libsForQt5.${name} has been removed, as KDE Frameworks 5 has reached end of life.`));
     return nix.update({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       "extra-cmake-modules": nix.thunk(() => nix.attr(kdePackages, "extra-cmake-modules")),
       attica: nix.thunk(() => nix.app(callPackage, nix.path(here, "./attica.nix"), nix.thunk(() => ({})))),
       "breeze-icons": nix.thunk(() => nix.app(callPackage, nix.path(here, "./breeze-icons.nix"), nix.thunk(() => ({})))),
@@ -132,7 +127,7 @@ export default nix.lambda((args) => (() => {
       kxmlgui: nix.thunk(() => nix.app(callPackage, nix.path(here, "./kxmlgui.nix"), nix.thunk(() => ({})))),
       frameworkintegration: nix.thunk(() => nix.app(callPackage, nix.path(here, "./frameworkintegration.nix"), nix.thunk(() => ({})))),
     }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(config, "allowAliases")), nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         baloo: nix.thunk(() => nix.app(mkThrow, "baloo")),
         "bluez-qt": nix.thunk(() => nix.app(mkThrow, "bluez-qt")),
         kapidox: nix.thunk(() => nix.app(mkThrow, "kapidox")),

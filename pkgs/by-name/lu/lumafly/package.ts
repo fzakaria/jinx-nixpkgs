@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]], [["updateScript", 37, 12]], [["desktopName", 60, 7], ["name", 61, 7], ["exec", 62, 7], ["icon", 63, 7], ["comment", 64, 7], ["type", 65, 7], ["categories", 66, 7]], [["description", 71, 5], ["homepage", 72, 5], ["license", 73, 5], ["mainProgram", 74, 5], ["maintainers", 75, 5], ["platforms", 76, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["dotnetFlags", 26, 3], ["projectFile", 28, 3], ["nugetDeps", 30, 3], ["dotnet-sdk", 32, 3], ["dotnet-runtime", 33, 3], ["selfContainedBuild", 35, 3], ["passthru", 37, 3], ["runtimeDeps", 39, 3], ["nativeBuildInputs", 45, 3], ["executables", 50, 3], ["postFixup", 52, 3], ["desktopItems", 58, 3], ["meta", 70, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, buildDotnetModule: false, dotnetCorePackages: false, zlib: false, icu: false, openssl: false, icoutils: false, copyDesktopItems: false, makeDesktopItem: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 37, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["desktopName", 60, 7], ["name", 61, 7], ["exec", 62, 7], ["icon", 63, 7], ["comment", 64, 7], ["type", 65, 7], ["categories", 66, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 71, 5], ["homepage", 72, 5], ["license", 73, 5], ["mainProgram", 74, 5], ["maintainers", 75, 5], ["platforms", 76, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["dotnetFlags", 26, 3], ["projectFile", 28, 3], ["nugetDeps", 30, 3], ["dotnet-sdk", 32, 3], ["dotnet-runtime", 33, 3], ["selfContainedBuild", 35, 3], ["passthru", 37, 3], ["runtimeDeps", 39, 3], ["nativeBuildInputs", 45, 3], ["executables", 50, 3], ["postFixup", 52, 3], ["desktopItems", 58, 3], ["meta", 70, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,7 +22,7 @@ export default nix.lambda((args) => (() => {
       const pname = "lumafly";
       const version = "3.3.0.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "TheMulhima",
           repo: "lumafly",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -39,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const dotnet_runtime = nix.thunk(() => nix.sel(dotnetCorePackages, "sdk_9_0"));
       const selfContainedBuild = true;
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const runtimeDeps = nix.thunk(() => [zlib, icu, openssl]);
@@ -48,7 +44,7 @@ export default nix.lambda((args) => (() => {
       const postFixup = "# Icon for the desktop file\nicotool -x $src/Lumafly/Assets/Lumafly.ico\ninstall -D Lumafly_1_32x32x32.png $out/share/icons/hicolor/32x32/apps/lumafly.png\n";
       const desktopItems = nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             desktopName: "Lumafly",
             name: "lumafly",
             exec: "Lumafly",
@@ -59,7 +55,7 @@ export default nix.lambda((args) => (() => {
           })))),
       ]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Cross platform mod manager for Hollow Knight written in Avalonia",
         homepage: "https://themulhima.github.io/Lumafly/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
@@ -71,7 +67,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         src,

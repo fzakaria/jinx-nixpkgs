@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 19, 5], ["sha256", 20, 5]], [["pname", 26, 15], ["version", 26, 21], ["debianRevision", 27, 7], ["patch", 28, 7], ["hash", 29, 7]], [["pname", 33, 15], ["version", 33, 21], ["debianRevision", 34, 7], ["patch", 35, 7], ["hash", 36, 7]], [["pname", 40, 15], ["version", 40, 21], ["debianRevision", 41, 7], ["patch", 42, 7], ["hash", 43, 7]], [["name", 48, 7], ["url", 49, 7], ["hash", 50, 7]], [["homepage", 63, 5], ["description", 64, 5], ["license", 65, 5], ["mainProgram", 66, 5], ["maintainers", 67, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["patches", 23, 3], ["nativeBuildInputs", 54, 3], ["buildInputs", 55, 3], ["meta", 62, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, fetchpatch: false, fetchDebianPatch: false, glib: false, "pkg-config": false, libogg: false, libvorbis: false, libmad: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 19, 5], ["sha256", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 26, 15], ["version", 26, 21], ["debianRevision", 27, 7], ["patch", 28, 7], ["hash", 29, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 33, 15], ["version", 33, 21], ["debianRevision", 34, 7], ["patch", 35, 7], ["hash", 36, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 40, 15], ["version", 40, 21], ["debianRevision", 41, 7], ["patch", 42, 7], ["hash", 43, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["name", 48, 7], ["url", 49, 7], ["hash", 50, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["homepage", 63, 5], ["description", 64, 5], ["license", 65, 5], ["mainProgram", 66, 5], ["maintainers", 67, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["patches", 23, 3], ["nativeBuildInputs", 54, 3], ["buildInputs", 55, 3], ["meta", 62, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,13 +21,13 @@ export default nix.lambda((args) => (() => {
       const pname = "streamripper";
       const version = "1.64.6";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/streamripper/streamripper-${version}.tar.gz`),
           sha256: "0hnyv3206r0rfprn3k7k6a0j959kagsfyrmyjm3gsf3vkhp5zmy1",
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchDebianPatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             pname: pname,
             version: version,
             debianRevision: "2",
@@ -41,7 +35,7 @@ export default nix.lambda((args) => (() => {
             hash: "sha256-30bz7CDmbq+Bd+jTKSq7aJsXUJQAQp3nnJZvt3Qbp8Q=",
           })))),
         nix.thunk(() => nix.app(fetchDebianPatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             pname: pname,
             version: version,
             debianRevision: "2",
@@ -49,7 +43,7 @@ export default nix.lambda((args) => (() => {
             hash: "sha256-D6koUCbnJHtRuq2zZy9VrxymuGXN1COacbQhphgB8qo=",
           })))),
         nix.thunk(() => nix.app(fetchDebianPatch, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             pname: pname,
             version: version,
             debianRevision: "4",
@@ -57,7 +51,7 @@ export default nix.lambda((args) => (() => {
             hash: "sha256-yBFDxd2sNlavQDmg/MCORFdpJY8p1Lzo131T4sBby5g=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             name: "streamripper-http-1.0.patch",
             url: "https://sourceforge.net/p/streamripper/bugs/_discuss/thread/df13e77a/6a82/attachment/streamripper-http-1.0.patch",
             hash: "sha256-EhkxAqMcRJ4IJ6BLrpSQu6FomfEbxvgAu12vaDdNqEU=",
@@ -66,7 +60,7 @@ export default nix.lambda((args) => (() => {
       const nativeBuildInputs = nix.thunk(() => [pkg_config]);
       const buildInputs = nix.thunk(() => [glib, libogg, libvorbis, libmad]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         homepage: "https://streamripper.sourceforge.net/",
         description: "Application that lets you record streaming mp3 to your hard drive",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),
@@ -77,7 +71,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         pname,
         version,
         src,

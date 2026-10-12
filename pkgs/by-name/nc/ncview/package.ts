@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 21, 5], ["hash", 22, 5]], [["NIX_CFLAGS_COMPILE", 44, 7]], [["description", 47, 5], ["homepage", 48, 5], ["license", 49, 5], ["mainProgram", 50, 5], ["maintainers", 51, 5], ["platforms", 52, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["strictDeps", 25, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 31, 3], ["env", 44, 3], ["meta", 46, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, expat: false, libpng: false, udunits: false, netcdf: false, libxt: false, libxaw: false, libx11: false, libsm: false, libice: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 44, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 47, 5], ["homepage", 48, 5], ["license", 49, 5], ["mainProgram", 50, 5], ["maintainers", 51, 5], ["platforms", 52, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["strictDeps", 25, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 31, 3], ["env", 44, 3], ["meta", 46, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,20 +20,20 @@ export default nix.lambda((args) => (() => {
   const libsm = nix.arg($, "libsm");
   const libice = nix.arg($, "libice");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "ncview",
       version: "2.1.9",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://cirrus.ucsd.edu/~pierce/ncview/ncview-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-4jF6wJSvYvCtz2hCHXBlgglDaq40RkCVnsiXWmRYka8=",
         })))),
       strictDeps: true,
       nativeBuildInputs: nix.thunk(() => [netcdf]),
       buildInputs: nix.thunk(() => [expat, libpng, netcdf, udunits, libice, libsm, libx11, libxaw, libxt]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-std=gnu17" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], NIX_CFLAGS_COMPILE: "-std=gnu17" })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Visual browser for netCDF format files",
         homepage: "http://meteora.ucsd.edu/~pierce/ncview_home_page.html",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

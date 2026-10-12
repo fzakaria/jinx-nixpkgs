@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["sha256", 23, 5]], [["url", 32, 7], ["hash", 33, 7]], [["url", 36, 7], ["hash", 37, 7]], [["homepage", 93, 5], ["description", 94, 5], ["license", 95, 5], ["platforms", 96, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["patches", 26, 3], ["postPatch", 41, 3], ["enableParallelBuilding", 47, 3], ["configureFlags", 49, 3], ["nativeBuildInputs", 54, 3], ["buildInputs", 63, 3], ["outputs", 67, 3], ["preConfigure", 72, 3], ["postInstall", 77, 3], ["meta", 92, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch: false, SDL: false, autoconf: false, automake: false, libtool: false, m4: false, "pkg-config": false, makeWrapper: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["sha256", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 32, 7], ["hash", 33, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 36, 7], ["hash", 37, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 93, 5], ["description", 94, 5], ["license", 95, 5], ["platforms", 96, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["patches", 26, 3], ["postPatch", 41, 3], ["enableParallelBuilding", 47, 3], ["configureFlags", 49, 3], ["nativeBuildInputs", 54, 3], ["buildInputs", 63, 3], ["outputs", 67, 3], ["preConfigure", 72, 3], ["postInstall", 77, 3], ["meta", 92, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const makeWrapper = nix.arg($, "makeWrapper");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "smpeg",
       version: "0.4.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "icculus",
           repo: "smpeg",
           rev: nix.thunk(() => nix.str`release_${nix.builtins.replaceStrings(nix.thunk(() => ["."]), nix.thunk(() => ["_"]), nix.thunk(() => nix.sel(finalAttrs, "version")))}`),
@@ -37,12 +33,12 @@ export default nix.lambda((args) => (() => {
         nix.path(here, "./format.patch"),
         nix.path(here, "./gcc6.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/icculus/smpeg/commit/cc114ba0dd8644c0d6205bbce2384781daeff44b.patch",
             hash: "sha256-GxSD82j05pw0r2SxmPYAe/BXX4iUc+iHWhB9Ap4GzfA=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: "https://github.com/icculus/smpeg/commit/b369feca5bf99d6cff50d8eb316395ef48acf24f.patch",
             hash: "sha256-U+a6dbc5cm249KlUcf4vi79yUiT4hgEvMv522K4PqUc=",
           })))),
@@ -68,7 +64,7 @@ wrapProgram $dev/bin/smpeg-config \\
   --prefix PKG_CONFIG_PATH ":" "${nix.app(nix.sel(lib, "getDev"), SDL)}/lib/pkgconfig"
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://icculus.org/smpeg/",
         description: "MPEG decoding library",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

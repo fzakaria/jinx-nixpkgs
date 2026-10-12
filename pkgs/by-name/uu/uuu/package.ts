@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 24, 5], ["repo", 25, 5], ["rev", 26, 5], ["hash", 27, 5]], [["extraArgs", 31, 5]], [["updateScript", 30, 12]], [["description", 67, 5], ["homepage", 68, 5], ["license", 69, 5], ["maintainers", 70, 5], ["mainProgram", 71, 5], ["platforms", 72, 5]], [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["passthru", 30, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 43, 3], ["postPatch", 52, 3], ["postInstall", 57, 3], ["doInstallCheck", 64, 3], ["meta", 66, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, "nix-update-script": false, cmake: false, installShellFiles: false, "pkg-config": false, bzip2: false, libusb1: false, openssl: false, "tinyxml-2": false, zlib: false, zstd: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 24, 5], ["repo", 25, 5], ["rev", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["extraArgs", 31, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 30, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 67, 5], ["homepage", 68, 5], ["license", 69, 5], ["maintainers", 70, 5], ["mainProgram", 71, 5], ["platforms", 72, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["passthru", 30, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 43, 3], ["postPatch", 52, 3], ["postInstall", 57, 3], ["doInstallCheck", 64, 3], ["meta", 66, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,20 +21,20 @@ export default nix.lambda((args) => (() => {
   const zlib = nix.arg($, "zlib");
   const zstd = nix.arg($, "zstd");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "uuu",
       version: "1.5.243",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "nxp-imx",
           repo: "mfgtools",
           rev: nix.thunk(() => nix.str`uuu_${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-+m3r/QxOnTjemqIaZ/2cxDHtHlw7qxu9PbTsQYyMaEY=",
         })))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             extraArgs: nix.thunk(() => ["--version-regex", "uuu_([0-9.]+)"]),
           })))),
       })),
@@ -54,7 +50,7 @@ cat <($out/bin/uuu -udev) > $out/lib/udev/rules.d/70-uuu.rules
 `),
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Freescale/NXP I.MX Chip image deploy tools",
         homepage: "https://github.com/nxp-imx/mfgtools",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

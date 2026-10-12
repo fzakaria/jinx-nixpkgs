@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 12, 5], ["hash", 13, 5]], [["pname", 15, 54], ["src", 15, 60], ["version", 15, 64]], [["updateScript", 31, 12]], [["description", 49, 5], ["homepage", 50, 5], ["license", 51, 5], ["maintainers", 52, 5], ["mainProgram", 53, 5], ["sourceProvenance", 54, 5], ["platforms", 55, 5]], [["pname", 18, 11], ["version", 18, 17], ["src", 18, 25], ["nativeBuildInputs", 20, 3], ["extraInstallCommands", 22, 3], ["passthru", 31, 3], ["meta", 48, 3]]]);
 const formals$1 = { args: { lib: false, fetchurl: false, appimageTools: false, makeWrapper: false, writeScript: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 12, 5], ["hash", 13, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 15, 54], ["src", 15, 60], ["version", 15, 64]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 31, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 49, 5], ["homepage", 50, 5], ["license", 51, 5], ["maintainers", 52, 5], ["mainProgram", 53, 5], ["sourceProvenance", 54, 5], ["platforms", 55, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 18, 11], ["version", 18, 17], ["src", 18, 25], ["nativeBuildInputs", 20, 3], ["extraInstallCommands", 22, 3], ["passthru", 31, 3], ["meta", 48, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,13 +15,13 @@ export default nix.lambda((args) => (() => {
   const pname = "redact";
   const version = "0.21.28";
   const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: nix.thunk(() => nix.str`https://update-desktop.redact.dev/build/Redact-${version}.AppImage`),
       hash: "sha256-YubwGhmRLuZ74pTIZvvHybq79puK2J9xSJ4IxD3hLpw=",
     }))));
-  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: pos$2, pname: pname, src: src, version: version }))));
+  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: $pos[1], pname: pname, src: src, version: version }))));
   return nix.app(nix.sel(appimageTools, "wrapType2"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: pname,
       version: version,
       src: src,
@@ -38,11 +34,11 @@ substituteInPlace $out/share/applications/redact.desktop \\
   --replace-fail 'Exec=AppRun' 'Exec=${pname}'
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(writeScript, "update.sh", "#!/usr/bin/env nix-shell\n#!nix-shell -i bash -p curl coreutils gnused common-updater-scripts\nset -eu -o pipefail\nurl=\"$(curl -ILs -w %{url_effective} -o /dev/null https://download.redact.dev/windows)\"\nversion=\"$(echo $url | sed -n 's/.*Redact-Setup-\\([0-9]\\+\\.[0-9]\\+\\.[0-9]\\+\\).*/\\1/p')\"\nhash=$(nix-hash --to-sri --type sha256 \"$(nix-prefetch-url \"https://update-desktop.redact.dev/build/Redact-$version.AppImage\")\")\nupdate-source-version redact \"$version\" \"$hash\" --print-changes --ignore-same-version\n")),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Only platform that allows you to automatically clean up your old posts from services like Twitter, Reddit, Facebook, Discord, and more, all in one place",
         homepage: "https://redact.dev/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

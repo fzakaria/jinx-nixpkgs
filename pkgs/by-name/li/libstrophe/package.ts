@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5]], [["name", 29, 7], ["url", 30, 7], ["hash", 31, 7]], [["description", 55, 5], ["longDescription", 56, 5], ["homepage", 61, 5], ["changelog", 62, 5], ["license", 63, 5], ["platforms", 67, 5], ["maintainers", 68, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["patches", 26, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 40, 3], ["dontDisableStatic", 48, 3], ["strictDeps", 50, 3], ["doCheck", 52, 3], ["meta", 54, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch2: false, autoreconfHook: false, libtool: false, openssl: false, expat: false, "pkg-config": false, check: false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 29, 7], ["url", 30, 7], ["hash", 31, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 55, 5], ["longDescription", 56, 5], ["homepage", 61, 5], ["changelog", 62, 5], ["license", 63, 5], ["platforms", 67, 5], ["maintainers", 68, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["patches", 26, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 40, 3], ["dontDisableStatic", 48, 3], ["strictDeps", 50, 3], ["doCheck", 52, 3], ["meta", 54, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const check = nix.arg($, "check");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "libstrophe",
       version: "0.14.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "strophe",
           repo: "libstrophe",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -34,7 +31,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "pointer-cast.patch",
             url: "https://github.com/strophe/libstrophe/commit/dfb3e868248d86fc0f5553dffbb6f7c367c3c383.patch?full_index=1",
             hash: "sha256-ALr2I53hGHW3OycKDdoXkNgANSYw1kUSYGqmAHkMq5E=",
@@ -46,7 +43,7 @@ export default nix.lambda((args) => (() => {
       strictDeps: true,
       doCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Simple, lightweight C library for writing XMPP clients",
         longDescription: "libstrophe is a lightweight XMPP client library written in C. It has\nminimal dependencies and is configurable for various environments. It\nruns well on both Linux, Unix, and Windows based platforms.\n",
         homepage: "https://strophe.im/libstrophe/",

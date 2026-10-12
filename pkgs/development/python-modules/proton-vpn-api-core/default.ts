@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 35, 5], ["repo", 36, 5], ["rev", 37, 5], ["hash", 38, 5]], [["description", 118, 5], ["homepage", 119, 5], ["license", 120, 5], ["platforms", 121, 5], ["maintainers", 122, 5]], [["pname", 30, 3], ["version", 31, 3], ["pyproject", 32, 3], ["src", 34, 3], ["postPatch", 41, 3], ["nativeBuildInputs", 46, 3], ["propagatedBuildInputs", 51, 3], ["build-system", 56, 3], ["dependencies", 60, 3], ["pythonImportsCheck", 75, 3], ["nativeCheckInputs", 89, 3], ["postInstall", 99, 3], ["disabledTests", 105, 3], ["meta", 117, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, aiohttp: false, cryptography: false, distro: false, fido2: false, "gobject-introspection": false, iproute2: false, jinja2: false, networkmanager: false, packaging: false, "proton-core": false, "proton-vpn-local-agent": false, pycairo: false, pygobject3: false, pynacl: false, pyopenssl: false, "pytest-asyncio": false, "pytest-cov-stub": false, pytestCheckHook: false, pyxdg: false, requests: false, "sentry-sdk": false, setuptools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 35, 5], ["repo", 36, 5], ["rev", 37, 5], ["hash", 38, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 118, 5], ["homepage", 119, 5], ["license", 120, 5], ["platforms", 121, 5], ["maintainers", 122, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 30, 3], ["version", 31, 3], ["pyproject", 32, 3], ["src", 34, 3], ["postPatch", 41, 3], ["nativeBuildInputs", 46, 3], ["propagatedBuildInputs", 51, 3], ["build-system", 56, 3], ["dependencies", 60, 3], ["pythonImportsCheck", 75, 3], ["nativeCheckInputs", 89, 3], ["postInstall", 99, 3], ["disabledTests", 105, 3], ["meta", 117, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -39,7 +37,7 @@ export default nix.lambda((args) => (() => {
       const version = "5.2.5";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ProtonVPN",
           repo: "python-proton-vpn-api-core",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -98,7 +96,7 @@ export default nix.lambda((args) => (() => {
         "test_ensure_configuration_file_is_deleted",
       ]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Acts as a facade to the other Proton VPN components, exposing a uniform API to the available Proton VPN services",
         homepage: "https://github.com/ProtonVPN/python-proton-vpn-api-core",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),
@@ -112,7 +110,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

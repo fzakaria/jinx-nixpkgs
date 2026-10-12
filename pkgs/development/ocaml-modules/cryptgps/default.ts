@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 14, 5], ["sha256", 15, 5]], [["homepage", 30, 5], ["description", 31, 5], ["longDescription", 32, 5], ["license", 38, 5], ["broken", 39, 5], ["platforms", 40, 26]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 18, 3], ["strictDeps", 23, 3], ["dontConfigure", 25, 3], ["createFindlibDestdir", 27, 3], ["meta", 29, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, ocaml: false, findlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 14, 5], ["sha256", 15, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 30, 5], ["description", 31, 5], ["longDescription", 32, 5], ["license", 38, 5], ["broken", 39, 5], ["platforms", 40, 26]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 18, 3], ["strictDeps", 23, 3], ["dontConfigure", 25, 3], ["createFindlibDestdir", 27, 3], ["meta", 29, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const ocaml = nix.arg($, "ocaml");
   const findlib = nix.arg($, "findlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "ocaml-cryptgps",
       version: "0.2.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "http://download.camlcity.org/download/cryptgps-0.2.1.tar.gz",
           sha256: "1mp7i42cm9w9grmcsa69m3h1ycpn6a48p43y4xj8rsc12x9nav3s",
         })))),
@@ -30,7 +28,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(ocaml, "meta"));
         return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "http://projects.camlcity.org/projects/cryptgps.html",
         description: "Cryptographic functions for OCaml",
         longDescription: "This library implements the symmetric cryptographic algorithms\nBlowfish, DES, and 3DES. The algorithms are written in O'Caml,\ni.e. this is not a binding to some C library, but the implementation\nitself.\n",

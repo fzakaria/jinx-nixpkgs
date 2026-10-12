@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 23, 5], ["owner", 24, 5], ["repo", 25, 5], ["rev", 26, 5], ["hash", 27, 5]], [["homepage", 59, 5], ["description", 60, 5], ["license", 61, 5], ["platforms", 62, 5], ["maintainers", 63, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["outputs", 30, 3], ["strictDeps", 35, 3], ["mesonFlags", 37, 3], ["nativeBuildInputs", 41, 3], ["buildInputs", 48, 3], ["meta", 58, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitLab: false, "pkg-config": false, meson: false, ninja: false, wayland: false, "wayland-protocols": false, "wayland-scanner": false, cairo: false, dbus: false, pango: false, gtk3: false, "evdev-proto": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 23, 5], ["owner", 24, 5], ["repo", 25, 5], ["rev", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 59, 5], ["description", 60, 5], ["license", 61, 5], ["platforms", 62, 5], ["maintainers", 63, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["outputs", 30, 3], ["strictDeps", 35, 3], ["mesonFlags", 37, 3], ["nativeBuildInputs", 41, 3], ["buildInputs", 48, 3], ["meta", 58, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const gtk3 = nix.arg($, "gtk3");
   const evdev_proto = nix.arg($, "evdev-proto");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "libdecor",
       version: "0.2.5",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "gitlab.freedesktop.org",
           owner: "libdecor",
           repo: "libdecor",
@@ -41,7 +39,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [meson, ninja, pkg_config, wayland_scanner]),
       buildInputs: nix.thunk(() => nix.concat([wayland, wayland_protocols, cairo, dbus, pango, gtk3], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isFreeBSD")), evdev_proto))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://gitlab.freedesktop.org/libdecor/libdecor",
         description: "Client-side decorations library for Wayland clients",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

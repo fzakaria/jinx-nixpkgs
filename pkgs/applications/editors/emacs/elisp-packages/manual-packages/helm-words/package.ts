@@ -2,10 +2,8 @@
 import * as nix from "../../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]], [["homepage", 26, 5], ["description", 27, 5], ["license", 28, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["packageRequires", 20, 3], ["meta", 25, 3]]]);
 const formals$1 = { args: { lib: false, dictionary: false, fetchFromGitHub: false, helm: false, melpaBuild: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 26, 5], ["description", 27, 5], ["license", 28, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["packageRequires", 20, 3], ["meta", 25, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const helm = nix.arg($, "helm");
   const melpaBuild = nix.arg($, "melpaBuild");
   return nix.app(melpaBuild, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "helm-words",
       version: "0-unstable-2019-03-12",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "emacsmirror",
           repo: "helm-words",
           rev: "e6387ece1940a06695b9d910de3d90252efb8d29",
@@ -27,7 +25,7 @@ export default nix.lambda((args) => (() => {
         })))),
       packageRequires: nix.thunk(() => [dictionary, helm]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/emacsmirror/helm-words",
         description: "Helm extension for looking up words in dictionaries and thesauri",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

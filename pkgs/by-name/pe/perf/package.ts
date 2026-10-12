@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 44, 7], ["sha256", 45, 7]], [["license", 52, 10]], [["pname", 40, 5], ["version", 41, 5], ["src", 43, 5], ["installPhase", 48, 5], ["meta", 52, 5]], [["NIX_CFLAGS_COMPILE", 134, 7]], [["homepage", 172, 5], ["description", 173, 5], ["mainProgram", 174, 5], ["maintainers", 175, 5], ["platforms", 176, 5], ["license", 177, 33]], [["pname", 57, 3], ["version", 58, 26], ["src", 58, 34], ["strictDeps", 60, 3], ["depsBuildBuild", 62, 3], ["postPatch", 64, 3], ["makeFlags", 83, 3], ["hardeningDisable", 95, 3], ["nativeBuildInputs", 98, 3], ["buildInputs", 113, 3], ["env", 134, 3], ["doCheck", 141, 3], ["installTargets", 143, 3], ["postInstall", 149, 3], ["separateDebugInfo", 154, 3], ["preFixup", 156, 3], ["meta", 171, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, linux_latest: false, elfutils: false, python3: false, newt: false, slang: false, asciidoc: false, xmlto: false, makeWrapper: false, docbook_xsl: false, docbook_xml_dtd_45: false, libxslt: false, flex: false, bison: false, "pkg-config": false, libunwind: false, "binutils-unwrapped": false, libiberty: false, audit: false, libopcodes: false, libpfm: false, libtraceevent: false, openssl: false, "systemtap-unwrapped": false, numactl: false, zlib: false, babeltrace: false, withZstd: true, zstd: false, withLibcap: true, libcap: false, withPython: true, buildPackages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 44, 7], ["sha256", 45, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["license", 52, 10]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 40, 5], ["version", 41, 5], ["src", 43, 5], ["installPhase", 48, 5], ["meta", 52, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 134, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["homepage", 172, 5], ["description", 173, 5], ["mainProgram", 174, 5], ["maintainers", 175, 5], ["platforms", 176, 5], ["license", 177, 33]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 57, 3], ["version", 58, 26], ["src", 58, 34], ["strictDeps", 60, 3], ["depsBuildBuild", 62, 3], ["postPatch", 64, 3], ["makeFlags", 83, 3], ["hardeningDisable", 95, 3], ["nativeBuildInputs", 98, 3], ["buildInputs", 113, 3], ["env", 134, 3], ["doCheck", 141, 3], ["installTargets", 143, 3], ["postInstall", 149, 3], ["separateDebugInfo", 154, 3], ["preFixup", 156, 3], ["meta", 171, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -51,19 +46,19 @@ export default nix.lambda((args) => (() => {
       const pname = "d3-flame-graph-templates";
       const version = "4.1.3";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://registry.npmjs.org/d3-flame-graph/-/d3-flame-graph-${version}.tgz`),
           sha256: "sha256-W5/Vh5jarXUV224aIiTB2TnBFYT3naEIcG2945QjY8Q=",
         }))));
       const installPhase = "install -D -m 0755 -t $out/share/d3-flame-graph/ ./dist/templates/*\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
       }));
-      return { [nix.POS]: pos$3, pname, version, src, installPhase, meta };
+      return { [nix.POS]: $pos[2], pname, version, src, installPhase, meta };
     })())));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "perf-linux",
       version: nix.thunk(() => nix.attr(linux_latest, "version")),
       src: nix.thunk(() => nix.attr(linux_latest, "src")),
@@ -123,7 +118,7 @@ patchShebangs pmu-events/jevents.py
         libpfm,
       ], nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.app(nix.sel(lib, "meta", "availableOn"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")), systemtap_unwrapped)), systemtap_unwrapped), nix.concat(nix.app(nix.sel(lib, "optional"), withZstd, zstd), nix.concat(nix.app(nix.sel(lib, "optional"), withLibcap, libcap), nix.app(nix.sel(lib, "optionals"), withPython, nix.thunk(() => [python3, nix.thunk(() => nix.sel(python3, "pkgs", "setuptools"))]))))))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => [
             "-Wno-error=cpp",
             "-Wno-error=bool-compare",
@@ -144,7 +139,7 @@ wrapProgram $out/bin/perf \\
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(linux_latest, "meta"));
         return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "https://perf.wiki.kernel.org/",
         description: "Linux tools to profile with performance counters",
         mainProgram: "perf",

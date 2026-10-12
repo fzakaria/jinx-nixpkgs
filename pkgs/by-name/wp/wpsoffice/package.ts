@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["outputHashMode", 40, 9], ["outputHashAlgo", 41, 9], ["outputHash", 42, 9], ["nativeBuildInputs", 44, 9], ["impureEnvVars", 49, 9], ["SSL_CERT_FILE", 50, 9]], [["description", 132, 5], ["homepage", 133, 5], ["platforms", 134, 5], ["sourceProvenance", 135, 5], ["hydraPlatforms", 136, 5], ["license", 137, 5], ["maintainers", 138, 5]], [["pname", 34, 3], ["version", 35, 3], ["src", 37, 3], ["unpackCmd", 59, 3], ["sourceRoot", 60, 3], ["nativeBuildInputs", 62, 3], ["buildInputs", 67, 3], ["dontWrapQtApps", 84, 3], ["runtimeDependencies", 86, 3], ["autoPatchelfIgnoreMissingDeps", 91, 3], ["installPhase", 100, 3], ["preFixup", 117, 3], ["meta", 131, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, dpkg: false, autoPatchelfHook: false, "alsa-lib": false, "at-spi2-core": false, libtool: false, libxkbcommon: false, nspr: false, libgbm: false, libtiff: false, udev: false, gtk3: false, libxv: false, libxtst: false, libxdamage: false, cups: false, pango: false, runCommandLocal: false, curl: false, qt5: false, coreutils: false, cacert: false, libjpeg: false, libxml2: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["outputHashMode", 40, 9], ["outputHashAlgo", 41, 9], ["outputHash", 42, 9], ["nativeBuildInputs", 44, 9], ["impureEnvVars", 49, 9], ["SSL_CERT_FILE", 50, 9]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 132, 5], ["homepage", 133, 5], ["platforms", 134, 5], ["sourceProvenance", 135, 5], ["hydraPlatforms", 136, 5], ["license", 137, 5], ["maintainers", 138, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 34, 3], ["version", 35, 3], ["src", 37, 3], ["unpackCmd", 59, 3], ["sourceRoot", 60, 3], ["nativeBuildInputs", 62, 3], ["buildInputs", 67, 3], ["dontWrapQtApps", 84, 3], ["runtimeDependencies", 86, 3], ["autoPatchelfIgnoreMissingDeps", 91, 3], ["installPhase", 100, 3], ["preFixup", 117, 3], ["meta", 131, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -41,7 +39,7 @@ export default nix.lambda((args) => (() => {
       const pname = "wpsoffice";
       const version = pkgVersion;
       const src = nix.thunk(() => nix.app(runCommandLocal, nix.thunk(() => nix.str`wps-office_${version}.XA_amd64.deb`), nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           outputHashMode: "recursive",
           outputHashAlgo: "sha256",
           outputHash: hash,
@@ -94,7 +92,7 @@ mkdir -p "$out/lib"
 ln -s "${nix.app(nix.sel(lib, "getLib"), libxml2)}/lib/libxml2.so" "$out/lib/libxml2.so.2"
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Office suite, formerly Kingsoft Office",
         homepage: "https://www.wps.com",
         platforms: nix.thunk(() => ["x86_64-linux"]),
@@ -115,7 +113,7 @@ ln -s "${nix.app(nix.sel(lib, "getLib"), libxml2)}/lib/libxml2.so" "$out/lib/lib
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

@@ -2,16 +2,15 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["license", 15, 26], ["platforms", 15, 34], ["description", 16, 5], ["maintainers", 17, 5]], [["pname", 7, 3], ["version", 8, 19], ["src", 8, 27], ["makeFlags", 10, 3], ["preConfigure", 12, 3], ["meta", 14, 3]]]);
 const formals$1 = { args: { stdenv: false, linux: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["license", 15, 26], ["platforms", 15, 34], ["description", 16, 5], ["maintainers", 17, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 7, 3], ["version", 8, 19], ["src", 8, 27], ["makeFlags", 10, 3], ["preConfigure", 12, 3], ["meta", 14, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const stdenv = nix.arg($, "stdenv");
   const linux = nix.arg($, "linux");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "mm-tools",
       version: nix.thunk(() => nix.attr(linux, "version")),
       src: nix.thunk(() => nix.attr(linux, "src")),
@@ -20,7 +19,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(linux, "meta"));
         return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         license: nix.thunk(() => nix.attr(from, "license")),
         platforms: nix.thunk(() => nix.attr(from, "platforms")),
         description: "Set of virtual memory tools",

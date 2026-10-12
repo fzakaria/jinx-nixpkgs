@@ -2,34 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/9.6.6-debian-binary.nix", [[["lib", 25, 54], ["stdenv", 25, 58], ["version", 25, 65]], [["url", 33, 9], ["sha256", 34, 9]], [["nixPackage", 39, 11], ["fileToCheckFor", 40, 11]], [["nixPackage", 43, 11], ["fileToCheckFor", 44, 11]], [["nixPackage", 47, 11], ["fileToCheckFor", 48, 11]], [["nixPackage", 51, 11], ["fileToCheckFor", 52, 11]], [["toolPrefix", 31, 7], ["src", 32, 7], ["exePathForLibraryCheck", 36, 7], ["archSpecificLibraries", 37, 7]], [["urls", 59, 9], ["sha256", 63, 9]], [["nixPackage", 68, 11], ["fileToCheckFor", 69, 11]], [["nixPackage", 72, 11], ["fileToCheckFor", 73, 11]], [["nixPackage", 76, 11], ["fileToCheckFor", 77, 11]], [["nixPackage", 80, 11], ["fileToCheckFor", 81, 11]], [["toolPrefix", 57, 7], ["src", 58, 7], ["exePathForLibraryCheck", 65, 7], ["archSpecificLibraries", 66, 7]], [["urls", 88, 9], ["sha256", 92, 9]], [["nixPackage", 97, 11], ["fileToCheckFor", 98, 11]], [["nixPackage", 101, 11], ["fileToCheckFor", 102, 11]], [["nixPackage", 105, 11], ["fileToCheckFor", 106, 11]], [["nixPackage", 109, 11], ["fileToCheckFor", 110, 11]], [["toolPrefix", 86, 7], ["src", 87, 7], ["exePathForLibraryCheck", 94, 7], ["archSpecificLibraries", 95, 7]], [["loongarch64-linux", 30, 5], ["powerpc64-linux", 56, 5], ["riscv64-linux", 85, 5]], [["shell", 141, 26], ["opt", 142, 9]], [["name", 133, 7], ["src", 134, 7], ["dir", 135, 7], ["isExecutable", 136, 7], ["preBuild", 137, 7], ["replacements", 140, 7]], [["gmp", 149, 5], ["numa", 150, 5], ["ffi", 151, 5]], [["targetPrefix", 324, 5], ["enableShared", 325, 5], ["llvmPackages", 327, 13], ["haskellCompilerName", 330, 5], ["hadrian", 335, 5]], [["homepage", 339, 5], ["description", 340, 5], ["license", 341, 5], ["platforms", 342, 5], ["maintainers", 343, 5], ["teams", 349, 5]], [["version", 157, 11], ["pname", 158, 3], ["src", 160, 3], ["nativeBuildInputs", 162, 3], ["sourceRoot", 164, 3], ["unpackPhase", 167, 3], ["postUnpack", 178, 3], ["dontConfigure", 228, 3], ["dontBuild", 231, 3], ["installPhase", 234, 3], ["postInstall", 246, 3], ["postFixup", 282, 3], ["doInstallCheck", 308, 3], ["installCheckPhase", 309, 3], ["passthru", 323, 3], ["meta", 338, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, perl: false, gcc: false, ncurses5: false, ncurses6: false, gmp: false, libiconv: false, numactl: false, libffi: false, coreutils: false, targetPackages: false, llvmPackages: false, replaceVarsWith: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/9.6.6-debian-binary.nix", [["lib", 25, 54], ["stdenv", 25, 58], ["version", 25, 65]]);
-const pos$2 = nix.positions(here + "/9.6.6-debian-binary.nix", [["url", 33, 9], ["sha256", 34, 9]]);
-const pos$3 = nix.positions(here + "/9.6.6-debian-binary.nix", [["nixPackage", 39, 11], ["fileToCheckFor", 40, 11]]);
-const pos$4 = nix.positions(here + "/9.6.6-debian-binary.nix", [["nixPackage", 43, 11], ["fileToCheckFor", 44, 11]]);
-const pos$5 = nix.positions(here + "/9.6.6-debian-binary.nix", [["nixPackage", 47, 11], ["fileToCheckFor", 48, 11]]);
-const pos$6 = nix.positions(here + "/9.6.6-debian-binary.nix", [["nixPackage", 51, 11], ["fileToCheckFor", 52, 11]]);
-const pos$7 = nix.positions(here + "/9.6.6-debian-binary.nix", [["toolPrefix", 31, 7], ["src", 32, 7], ["exePathForLibraryCheck", 36, 7], ["archSpecificLibraries", 37, 7]]);
-const pos$8 = nix.positions(here + "/9.6.6-debian-binary.nix", [["urls", 59, 9], ["sha256", 63, 9]]);
-const pos$9 = nix.positions(here + "/9.6.6-debian-binary.nix", [["nixPackage", 68, 11], ["fileToCheckFor", 69, 11]]);
-const pos$10 = nix.positions(here + "/9.6.6-debian-binary.nix", [["nixPackage", 72, 11], ["fileToCheckFor", 73, 11]]);
-const pos$11 = nix.positions(here + "/9.6.6-debian-binary.nix", [["nixPackage", 76, 11], ["fileToCheckFor", 77, 11]]);
-const pos$12 = nix.positions(here + "/9.6.6-debian-binary.nix", [["nixPackage", 80, 11], ["fileToCheckFor", 81, 11]]);
-const pos$13 = nix.positions(here + "/9.6.6-debian-binary.nix", [["toolPrefix", 57, 7], ["src", 58, 7], ["exePathForLibraryCheck", 65, 7], ["archSpecificLibraries", 66, 7]]);
-const pos$14 = nix.positions(here + "/9.6.6-debian-binary.nix", [["urls", 88, 9], ["sha256", 92, 9]]);
-const pos$15 = nix.positions(here + "/9.6.6-debian-binary.nix", [["nixPackage", 97, 11], ["fileToCheckFor", 98, 11]]);
-const pos$16 = nix.positions(here + "/9.6.6-debian-binary.nix", [["nixPackage", 101, 11], ["fileToCheckFor", 102, 11]]);
-const pos$17 = nix.positions(here + "/9.6.6-debian-binary.nix", [["nixPackage", 105, 11], ["fileToCheckFor", 106, 11]]);
-const pos$18 = nix.positions(here + "/9.6.6-debian-binary.nix", [["nixPackage", 109, 11], ["fileToCheckFor", 110, 11]]);
-const pos$19 = nix.positions(here + "/9.6.6-debian-binary.nix", [["toolPrefix", 86, 7], ["src", 87, 7], ["exePathForLibraryCheck", 94, 7], ["archSpecificLibraries", 95, 7]]);
-const pos$20 = nix.positions(here + "/9.6.6-debian-binary.nix", [["loongarch64-linux", 30, 5], ["powerpc64-linux", 56, 5], ["riscv64-linux", 85, 5]]);
-const pos$21 = nix.positions(here + "/9.6.6-debian-binary.nix", [["shell", 141, 26], ["opt", 142, 9]]);
-const pos$22 = nix.positions(here + "/9.6.6-debian-binary.nix", [["name", 133, 7], ["src", 134, 7], ["dir", 135, 7], ["isExecutable", 136, 7], ["preBuild", 137, 7], ["replacements", 140, 7]]);
-const pos$23 = nix.positions(here + "/9.6.6-debian-binary.nix", [["gmp", 149, 5], ["numa", 150, 5], ["ffi", 151, 5]]);
 const formals$2 = { args: { fileToCheckFor: false, nixPackage: false }, ellipsis: false };
-const pos$24 = nix.positions(here + "/9.6.6-debian-binary.nix", [["targetPrefix", 324, 5], ["enableShared", 325, 5], ["llvmPackages", 327, 13], ["haskellCompilerName", 330, 5], ["hadrian", 335, 5]]);
-const pos$25 = nix.positions(here + "/9.6.6-debian-binary.nix", [["homepage", 339, 5], ["description", 340, 5], ["license", 341, 5], ["platforms", 342, 5], ["maintainers", 343, 5], ["teams", 349, 5]]);
-const pos$26 = nix.positions(here + "/9.6.6-debian-binary.nix", [["version", 157, 11], ["pname", 158, 3], ["src", 160, 3], ["nativeBuildInputs", 162, 3], ["sourceRoot", 164, 3], ["unpackPhase", 167, 3], ["postUnpack", 178, 3], ["dontConfigure", 228, 3], ["dontBuild", 231, 3], ["installPhase", 234, 3], ["postInstall", 246, 3], ["postFixup", 282, 3], ["doInstallCheck", 308, 3], ["installCheckPhase", 309, 3], ["passthru", 323, 3], ["meta", 338, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -50,30 +25,30 @@ export default nix.lambda((args) => (() => {
   const replaceVarsWith = nix.arg($, "replaceVarsWith");
   nix.assert_(nix.eq(nix.sel(stdenv, "targetPlatform"), nix.sel(stdenv, "hostPlatform")), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/development/compilers/ghc/9.6.6-debian-binary.nix:20:1");
   const version = "9.6.6";
-  const useLLVM = nix.thunk(() => !nix.asBool(nix.app(nix.builtins.import(nix.path(here, "./common-have-ncg.nix")), nix.thunk(() => ({ [nix.POS]: pos$1, lib: lib, stdenv: stdenv, version: version })))));
+  const useLLVM = nix.thunk(() => !nix.asBool(nix.app(nix.builtins.import(nix.path(here, "./common-have-ncg.nix")), nix.thunk(() => ({ [nix.POS]: $pos[0], lib: lib, stdenv: stdenv, version: version })))));
   const ghcDebs = nix.thunk(() => ({
-    [nix.POS]: pos$20,
+    [nix.POS]: $pos[19],
     "loongarch64-linux": nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       toolPrefix: "loongarch64-linux-gnu-",
       src: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         url: "http://ftp.ports.debian.org/debian-ports/pool-loong64/main/g/ghc/ghc_9.6.6-4+b1_loong64.deb",
         sha256: "f14b5e3c8e6bd233b5be8e72c369fea0644f2a804d7636f930c05b4abf77d57f",
       })),
       exePathForLibraryCheck: null,
       archSpecificLibraries: nix.thunk(() => [
-        nix.thunk(() => ({ [nix.POS]: pos$3, nixPackage: gmp, fileToCheckFor: null })),
-        nix.thunk(() => ({ [nix.POS]: pos$4, nixPackage: ncurses6, fileToCheckFor: "libtinfo.so.6" })),
-        nix.thunk(() => ({ [nix.POS]: pos$5, nixPackage: numactl, fileToCheckFor: null })),
-        nix.thunk(() => ({ [nix.POS]: pos$6, nixPackage: libffi, fileToCheckFor: null })),
+        nix.thunk(() => ({ [nix.POS]: $pos[2], nixPackage: gmp, fileToCheckFor: null })),
+        nix.thunk(() => ({ [nix.POS]: $pos[3], nixPackage: ncurses6, fileToCheckFor: "libtinfo.so.6" })),
+        nix.thunk(() => ({ [nix.POS]: $pos[4], nixPackage: numactl, fileToCheckFor: null })),
+        nix.thunk(() => ({ [nix.POS]: $pos[5], nixPackage: libffi, fileToCheckFor: null })),
       ]),
     })),
     "powerpc64-linux": nix.thunk(() => ({
-      [nix.POS]: pos$13,
+      [nix.POS]: $pos[12],
       toolPrefix: "powerpc64-linux-gnu-",
       src: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         urls: nix.thunk(() => [
           "http://ftp.ports.debian.org/debian-ports/pool-ppc64/main/g/ghc/ghc_9.6.6-4_ppc64.deb",
           "https://snapshot.debian.org/archive/debian-ports/20250917T193713Z/pool-ppc64/main/g/ghc/ghc_9.6.6-4_ppc64.deb",
@@ -82,17 +57,17 @@ export default nix.lambda((args) => (() => {
       })),
       exePathForLibraryCheck: null,
       archSpecificLibraries: nix.thunk(() => [
-        nix.thunk(() => ({ [nix.POS]: pos$9, nixPackage: gmp, fileToCheckFor: null })),
-        nix.thunk(() => ({ [nix.POS]: pos$10, nixPackage: ncurses6, fileToCheckFor: "libtinfo.so.6" })),
-        nix.thunk(() => ({ [nix.POS]: pos$11, nixPackage: numactl, fileToCheckFor: null })),
-        nix.thunk(() => ({ [nix.POS]: pos$12, nixPackage: libffi, fileToCheckFor: null })),
+        nix.thunk(() => ({ [nix.POS]: $pos[8], nixPackage: gmp, fileToCheckFor: null })),
+        nix.thunk(() => ({ [nix.POS]: $pos[9], nixPackage: ncurses6, fileToCheckFor: "libtinfo.so.6" })),
+        nix.thunk(() => ({ [nix.POS]: $pos[10], nixPackage: numactl, fileToCheckFor: null })),
+        nix.thunk(() => ({ [nix.POS]: $pos[11], nixPackage: libffi, fileToCheckFor: null })),
       ]),
     })),
     "riscv64-linux": nix.thunk(() => ({
-      [nix.POS]: pos$19,
+      [nix.POS]: $pos[18],
       toolPrefix: "riscv64-linux-gnu-",
       src: nix.thunk(() => ({
-        [nix.POS]: pos$14,
+        [nix.POS]: $pos[13],
         urls: nix.thunk(() => [
           "https://deb.debian.org/debian/pool/main/g/ghc/ghc_9.6.6-4_riscv64.deb",
           "https://snapshot.debian.org/archive/debian/20250218T211057Z/pool/main/g/ghc/ghc_9.6.6-4_riscv64.deb",
@@ -101,10 +76,10 @@ export default nix.lambda((args) => (() => {
       })),
       exePathForLibraryCheck: "ghc-debian-binary-9.6.6/usr/lib/ghc/bin/ghc-9.6.6",
       archSpecificLibraries: nix.thunk(() => [
-        nix.thunk(() => ({ [nix.POS]: pos$15, nixPackage: gmp, fileToCheckFor: null })),
-        nix.thunk(() => ({ [nix.POS]: pos$16, nixPackage: ncurses6, fileToCheckFor: "libtinfo.so.6" })),
-        nix.thunk(() => ({ [nix.POS]: pos$17, nixPackage: numactl, fileToCheckFor: null })),
-        nix.thunk(() => ({ [nix.POS]: pos$18, nixPackage: libffi, fileToCheckFor: null })),
+        nix.thunk(() => ({ [nix.POS]: $pos[14], nixPackage: gmp, fileToCheckFor: null })),
+        nix.thunk(() => ({ [nix.POS]: $pos[15], nixPackage: ncurses6, fileToCheckFor: "libtinfo.so.6" })),
+        nix.thunk(() => ({ [nix.POS]: $pos[16], nixPackage: numactl, fileToCheckFor: null })),
+        nix.thunk(() => ({ [nix.POS]: $pos[17], nixPackage: libffi, fileToCheckFor: null })),
       ]),
     })),
   }));
@@ -116,23 +91,23 @@ export default nix.lambda((args) => (() => {
     coreutils,
   ], nix.app(nix.sel(lib, "optionals"), useLLVM, nix.thunk(() => [
       nix.thunk(() => nix.app(replaceVarsWith, nix.thunk(() => ({
-          [nix.POS]: pos$22,
+          [nix.POS]: $pos[21],
           name: "subopt",
           src: nix.path(here, "./subopt.bash"),
           dir: "bin",
           isExecutable: true,
           preBuild: "name=opt\n",
           replacements: nix.thunk(() => ({
-            [nix.POS]: pos$21,
+            [nix.POS]: $pos[20],
             shell: nix.thunk(() => nix.attr(stdenv, "shell")),
             opt: nix.thunk(() => nix.app(nix.sel(lib, "getExe'"), nix.thunk(() => nix.sel(llvmPackages, "llvm")), "opt")),
           })),
         })))),
       nix.thunk(() => nix.app(nix.sel(lib, "getBin"), nix.thunk(() => nix.sel(llvmPackages, "llvm")))),
     ]))));
-  const extraLibraryMapping = nix.thunk(() => ({ [nix.POS]: pos$23, gmp: gmpUsed, numa: numactl, ffi: libffi }));
+  const extraLibraryMapping = nix.thunk(() => ({ [nix.POS]: $pos[22], gmp: gmpUsed, numa: numactl, ffi: libffi }));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$26,
+      [nix.POS]: $pos[25],
       version: version,
       pname: "ghc-debian-binary",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => nix.sel(debUsed, "src")))),
@@ -223,7 +198,7 @@ done
       doInstallCheck: true,
       installCheckPhase: "# Sanity check, can ghc create executables?\ncd $TMP\nmkdir test-ghc; cd test-ghc\ncat > main.hs << EOF\n  {-# LANGUAGE TemplateHaskell #-}\n  module Main where\n  main = putStrLn \\$([|\"yes\"|])\nEOF\nenv -i $out/bin/ghc --make main.hs || exit 1\necho compilation ok\n[ $(./main) == \"yes\" ]\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$24,
+        [nix.POS]: $pos[23],
         targetPrefix: "",
         enableShared: true,
         llvmPackages: llvmPackages,
@@ -231,7 +206,7 @@ done
         hadrian: null,
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$25,
+        [nix.POS]: $pos[24],
         homepage: "http://haskell.org/ghc",
         description: "Glasgow Haskell Compiler",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

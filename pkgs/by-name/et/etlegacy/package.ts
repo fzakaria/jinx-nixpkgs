@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["description", 42, 5], ["homepage", 43, 5], ["license", 44, 5], ["longDescription", 48, 5], ["mainProgram", 53, 5], ["maintainers", 54, 5], ["platforms", 57, 5]], [["pname", 22, 3], ["version", 23, 3], ["paths", 25, 3], ["nativeBuildInputs", 30, 3], ["postBuild", 34, 3], ["meta", 41, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, symlinkJoin: false, "etlegacy-assets": false, "etlegacy-unwrapped": false, makeBinaryWrapper: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["description", 42, 5], ["homepage", 43, 5], ["license", 44, 5], ["longDescription", 48, 5], ["mainProgram", 53, 5], ["maintainers", 54, 5], ["platforms", 57, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 22, 3], ["version", 23, 3], ["paths", 25, 3], ["nativeBuildInputs", 30, 3], ["postBuild", 34, 3], ["meta", 41, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const makeBinaryWrapper = nix.arg($, "makeBinaryWrapper");
   const binarySuffix = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isx86_64")) ? "x86_64" : (nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")) ? "aarch64" : (nix.asBool(nix.sel(stdenv, "hostPlatform", "isi686")) ? "i386" : nix.builtins.throw(nix.thunk(() => nix.str`Unsupported architecture: ${nix.sel(stdenv, "hostPlatform", "system")}`))))));
   return nix.app(symlinkJoin, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "etlegacy",
       version: "2.86.1",
       paths: nix.thunk(() => [etlegacy_assets, etlegacy_unwrapped]),
@@ -27,7 +26,7 @@ wrapProgram $out/bin/etlded.* \\
   --add-flags "+set fs_basepath ${nix.builtins.placeholder("out")}/lib/etlegacy"
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "ET: Legacy is an open source project based on the code of Wolfenstein: Enemy Territory which was released in 2010 under the terms of the GPLv3 license",
         homepage: "https://etlegacy.com",
         license: nix.thunk(() => (() => {

@@ -2,23 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]], [["owner", 32, 7], ["repo", 33, 7], ["tag", 34, 7], ["hash", 35, 7]], [["url", 41, 9], ["hash", 42, 9]], [["url", 46, 9], ["hash", 47, 9]], [["url", 51, 9], ["hash", 52, 9]], [["src", 31, 5], ["patches", 38, 5]], [["pname", 60, 9], ["nativeBuildInputs", 61, 9], ["buildInputs", 62, 9]], [["extraPacks", 66, 9]], [["owner", 77, 5], ["repo", 78, 5], ["tag", 79, 5], ["hash", 80, 5], ["leaveDotGit", 81, 5], ["postFetch", 82, 5]], [["src", 92, 26], ["cargoRoot", 92, 30], ["hash", 93, 5]], [["FEATURES", 132, 5]], [["C_INCLUDE_PATH", 139, 5], ["LIBRARY_PATH", 144, 5]], [["upstream-integration", 182, 5]], [["tests", 181, 12]], [["description", 186, 5], ["homepage", 187, 5], ["license", 188, 5], ["longDescription", 189, 5], ["mainProgram", 196, 5], ["maintainers", 197, 5]], [["pname", 73, 3], ["version", 74, 3], ["src", 76, 3], ["cargoRoot", 89, 3], ["cargoDeps", 91, 3], ["postPatch", 96, 3], ["strictDeps", 111, 3], ["nativeBuildInputs", 113, 3], ["buildInputs", 122, 3], ["env", 129, 3], ["checkTarget", 151, 3], ["doCheck", 152, 3], ["__darwinAllowLocalNetworking", 155, 3], ["preBuild", 157, 3], ["dontStrip", 168, 3], ["installPhase", 170, 3], ["passthru", 181, 3], ["meta", 185, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch2: false, "swi-prolog": false, libjwt: false, rustPlatform: false, cargo: false, gmp: false, mpfr: false, libmpc: false, protobuf: false, "pkg-config": false, callPackage: false, applyPatches: false, installShellFiles: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 32, 7], ["repo", 33, 7], ["tag", 34, 7], ["hash", 35, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 41, 9], ["hash", 42, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["url", 46, 9], ["hash", 47, 9]]);
-const pos$5 = nix.positions(here + "/package.nix", [["url", 51, 9], ["hash", 52, 9]]);
-const pos$6 = nix.positions(here + "/package.nix", [["src", 31, 5], ["patches", 38, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 60, 9], ["nativeBuildInputs", 61, 9], ["buildInputs", 62, 9]]);
-const pos$8 = nix.positions(here + "/package.nix", [["extraPacks", 66, 9]]);
-const pos$9 = nix.positions(here + "/package.nix", [["owner", 77, 5], ["repo", 78, 5], ["tag", 79, 5], ["hash", 80, 5], ["leaveDotGit", 81, 5], ["postFetch", 82, 5]]);
-const pos$10 = nix.positions(here + "/package.nix", [["src", 92, 26], ["cargoRoot", 92, 30], ["hash", 93, 5]]);
-const pos$11 = nix.positions(here + "/package.nix", [["FEATURES", 132, 5]]);
-const pos$12 = nix.positions(here + "/package.nix", [["C_INCLUDE_PATH", 139, 5], ["LIBRARY_PATH", 144, 5]]);
-const pos$13 = nix.positions(here + "/package.nix", [["upstream-integration", 182, 5]]);
-const pos$14 = nix.positions(here + "/package.nix", [["tests", 181, 12]]);
-const pos$15 = nix.positions(here + "/package.nix", [["description", 186, 5], ["homepage", 187, 5], ["license", 188, 5], ["longDescription", 189, 5], ["mainProgram", 196, 5], ["maintainers", 197, 5]]);
-const pos$16 = nix.positions(here + "/package.nix", [["pname", 73, 3], ["version", 74, 3], ["src", 76, 3], ["cargoRoot", 89, 3], ["cargoDeps", 91, 3], ["postPatch", 96, 3], ["strictDeps", 111, 3], ["nativeBuildInputs", 113, 3], ["buildInputs", 122, 3], ["env", 129, 3], ["checkTarget", 151, 3], ["doCheck", 152, 3], ["__darwinAllowLocalNetworking", 155, 3], ["preBuild", 157, 3], ["dontStrip", 168, 3], ["installPhase", 170, 3], ["passthru", 181, 3], ["meta", 185, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -41,16 +26,16 @@ export default nix.lambda((args) => (() => {
   const tusVersion = "0.0.16";
   const jwt_ioVersion = "1.0.4";
   const tus = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "terminusdb",
       repo: "tus",
       tag: nix.thunk(() => nix.str`v${tusVersion}`),
       hash: "sha256-NQGvDFtGEXhSXIZ7dZ2r13q8hRpYXkA9/NlFKED1ANM=",
     }))));
   const jwt_io = nix.thunk(() => nix.app(applyPatches, nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "terminusdb-labs",
           repo: "jwt_io",
           tag: nix.thunk(() => nix.str`v${jwt_ioVersion}`),
@@ -58,37 +43,37 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: "https://github.com/terminusdb-labs/jwt_io/commit/f2c7066fb8a7d4a16c0b5ce8ccb3086270524976.patch?full_index=1",
             hash: "sha256-A/eonL4MhkJ1L0dBoaiITcE0kTWlkFslpPj377WbdnM=",
           })))),
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             url: "https://github.com/terminusdb-labs/jwt_io/commit/6bd0f2674eefcf80bfd3d1ca465b7af28efdc54e.patch?full_index=1",
             hash: "sha256-EacqYO9ulD6PUxT3gg6PEtQNmwenuKfxdv1a/2IA3wI=",
           })))),
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             url: "https://github.com/terminusdb-labs/jwt_io/commit/dbb11e74566e25b7b942c1cbd4742bd485cc6bf5.patch?full_index=1",
             hash: "sha256-BPg28msT3zevNsB4yJeFUai5uW5DgilfESXw32h2gSA=",
           })))),
       ]),
     }))));
   const swi_prologWithDeps = nix.thunk(() => nix.app(nix.sel(nix.app(nix.sel(swi_prolog, "overrideAttrs"), (finalSwi_prologAttrs) => (previousAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "terminusdb-swi-prolog",
       nativeBuildInputs: nix.thunk(() => nix.concat(nix.sel(previousAttrs, "nativeBuildInputs"), [pkg_config])),
       buildInputs: nix.thunk(() => nix.concat(nix.sel(previousAttrs, "buildInputs"), [libjwt])),
     })), "override"), nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       extraPacks: nix.thunk(() => nix.builtins.map((dep_path) => nix.str`'file://${dep_path}'`, nix.thunk(() => [tus, jwt_io]))),
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$16,
+      [nix.POS]: $pos[15],
       pname: "terminusdb",
       version: "12.0.6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           owner: "terminusdb",
           repo: "terminusdb",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -98,7 +83,7 @@ export default nix.lambda((args) => (() => {
         })))),
       cargoRoot: "src/rust",
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$10,
+          [nix.POS]: $pos[9],
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           cargoRoot: nix.thunk(() => nix.attr(finalAttrs, "cargoRoot")),
           hash: "sha256-WymXMJaUKz/IT2gDgQYagin1Sfg1akqCU+mkYUs40Ic=",
@@ -115,10 +100,10 @@ export default nix.lambda((args) => (() => {
       ]),
       buildInputs: nix.thunk(() => [swi_prologWithDeps, gmp, mpfr, libmpc]),
       env: nix.thunk(() => nix.update({
-        [nix.POS]: pos$11,
+        [nix.POS]: $pos[10],
         FEATURES: "--features terminusdb-community/use-system-gmp",
       }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({
-          [nix.POS]: pos$12,
+          [nix.POS]: $pos[11],
           C_INCLUDE_PATH: nix.thunk(() => nix.app(nix.sel(lib, "makeSearchPath"), "include", nix.thunk(() => [
               nix.thunk(() => nix.app(nix.sel(lib, "getDev"), gmp)),
               nix.thunk(() => nix.app(nix.sel(lib, "getDev"), mpfr)),
@@ -133,14 +118,14 @@ export default nix.lambda((args) => (() => {
       dontStrip: true,
       installPhase: "runHook preInstall\ninstallBin terminusdb\ninstallManPage $src/docs/terminusdb.1\n\n# Replace with the Nix store source so schema files are findable\n# at runtime (the build directory no longer exists).\nln --symbolic --force --no-target-directory $src/src $out/share/terminusdb/src\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$14,
+        [nix.POS]: $pos[13],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$13,
+          [nix.POS]: $pos[12],
           "upstream-integration": nix.thunk(() => nix.app(callPackage, nix.path(here, "./tests.nix"), nix.thunk(() => ({})))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$15,
+        [nix.POS]: $pos[14],
         description: "In-memory graph database with Git-like versioned data",
         homepage: "https://github.com/terminusdb/terminusdb",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

@@ -2,11 +2,10 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
-const pos$1 = nix.positions(here + "/b.nix", [["key", 2, 17]]);
-const pos$2 = nix.positions(here + "/b.nix", [["imports", 2, 3]]);
+const $pos = nix.positions(here + "/b.nix", [[["key", 2, 17]], [["imports", 2, 3]]]);
 
 export default (args) => ({
-  [nix.POS]: pos$2,
-  imports: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: pos$1, key: "explicit-key" }))]),
+  [nix.POS]: $pos[1],
+  imports: nix.thunk(() => [nix.thunk(() => ({ [nix.POS]: $pos[0], key: "explicit-key" }))]),
 });
 //# sourceMappingURL=b.ts.map

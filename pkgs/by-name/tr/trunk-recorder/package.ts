@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 30, 5], ["repo", 31, 5], ["rev", 32, 5], ["hash", 33, 5]], [["url", 41, 7], ["hash", 42, 7]], [["description", 84, 5], ["homepage", 85, 5], ["changelog", 86, 5], ["license", 87, 5], ["maintainers", 88, 5], ["mainProgram", 89, 5]], [["pname", 26, 3], ["version", 27, 3], ["src", 29, 3], ["patches", 36, 3], ["cmakeFlags", 46, 3], ["nativeBuildInputs", 48, 3], ["buildInputs", 54, 3], ["postPatch", 68, 3], ["postFixup", 74, 3], ["meta", 83, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch: false, cmake: false, git: false, makeWrapper: false, "pkg-config": false, boost: false, curl: false, gmp: false, gnuradio: false, gnuradioPackages: false, hackrf: false, mpir: false, openssl: false, spdlog: false, uhd: false, volk: false, "fdk-aac-encoder": false, sox: false, hackrfSupport: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 30, 5], ["repo", 31, 5], ["rev", 32, 5], ["hash", 33, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 41, 7], ["hash", 42, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 84, 5], ["homepage", 85, 5], ["changelog", 86, 5], ["license", 87, 5], ["maintainers", 88, 5], ["mainProgram", 89, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 26, 3], ["version", 27, 3], ["src", 29, 3], ["patches", 36, 3], ["cmakeFlags", 46, 3], ["nativeBuildInputs", 48, 3], ["buildInputs", 54, 3], ["postPatch", 68, 3], ["postFixup", 74, 3], ["meta", 83, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,11 +30,11 @@ export default nix.lambda((args) => (() => {
   const sox = nix.arg($, "sox");
   const hackrfSupport = nix.argOr($, "hackrfSupport", () => true);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "trunk-recorder",
       version: "5.2.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "TrunkRecorder",
           repo: "trunk-recorder",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -45,7 +42,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/TrunkRecorder/trunk-recorder/commit/a7810f36fd3c1e0fb61877f5b8e02a1376f01635.patch",
             hash: "sha256-AB0EPHnJJwwHrz59mNlOcyAFOgzisYI0cJOnHjeu3V4=",
           })))),
@@ -67,7 +64,7 @@ export default nix.lambda((args) => (() => {
       postFixup: nix.thunk(() => nix.str`wrapProgram $out/bin/trunk-recorder --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [sox, fdk_aac_encoder]))}
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Record calls from trunked radio systems",
         homepage: "https://trunkrecorder.com/",
         changelog: nix.thunk(() => nix.str`https://github.com/TrunkRecorder/trunk-recorder/releases/tag/v${nix.sel(finalAttrs, "version")}`),

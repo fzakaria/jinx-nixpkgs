@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["sha256", 17, 5]], [["description", 37, 5], ["longDescription", 38, 5], ["homepage", 46, 5], ["license", 47, 5], ["maintainers", 51, 5], ["platforms", 52, 5], ["broken", 56, 5]], [["name", 9, 3], ["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["hardeningDisable", 20, 3], ["nativeBuildInputs", 22, 3], ["makeFlags", 24, 3], ["installPhase", 28, 3], ["enableParallelBuilding", 34, 3], ["meta", 36, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, kernel: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["sha256", 17, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 37, 5], ["longDescription", 38, 5], ["homepage", 46, 5], ["license", 47, 5], ["maintainers", 51, 5], ["platforms", 52, 5], ["broken", 56, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["name", 9, 3], ["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["hardeningDisable", 20, 3], ["nativeBuildInputs", 22, 3], ["makeFlags", 24, 3], ["installPhase", 28, 3], ["enableParallelBuilding", 34, 3], ["meta", 36, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "isgx";
       const version = "2.14";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "intel",
           repo: "linux-sgx-driver",
           rev: nix.thunk(() => nix.str`sgx_diver_${version}`),
@@ -35,7 +33,7 @@ runHook postInstall
 `);
       const enableParallelBuilding = true;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Intel SGX Linux Driver",
         longDescription: "The linux-sgx-driver project (isgx) hosts an out-of-tree driver\nfor the Linux* Intel(R) SGX software stack, which would be used\nuntil the driver upstreaming process is complete (before 5.11.0).\n\nIt is used to support Enhanced Privacy Identification (EPID)\nbased attestation on the platforms without Flexible Launch Control.\n",
         homepage: "https://github.com/intel/linux-sgx-driver",
@@ -51,7 +49,7 @@ runHook postInstall
         broken: nix.thunk(() => nix.app(nix.sel(kernel, "kernelAtLeast"), "6.4")),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         name,
         pname,
         version,

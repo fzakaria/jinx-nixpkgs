@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 105, 5], ["repo", 106, 5], ["tag", 107, 5], ["hash", 108, 5]], [["backend", 208, 13], ["resourceDir", 208, 21], ["interpreterArgs", 208, 33]], [["description", 212, 5], ["homepage", 213, 5], ["changelog", 214, 5], ["license", 215, 5], ["maintainers", 219, 5], ["platforms", 220, 5]], [["pname", 101, 3], ["version", 102, 3], ["src", 104, 3], ["strictDeps", 111, 3], ["__structuredAttrs", 112, 3], ["nativeBuildInputs", 114, 3], ["buildInputs", 120, 3], ["postPatch", 140, 3], ["cmakeFlags", 145, 3], ["doCheck", 167, 3], ["checkInputs", 168, 3], ["checkPhase", 169, 3], ["doInstallCheck", 182, 3], ["installCheckPhase", 183, 3], ["passthru", 207, 3], ["meta", 211, 3]]]);
 const formals$1 = { args: { "apple-sdk": false, cling: false, cmake: false, fetchFromGitHub: false, "gcc-unwrapped": false, lib: false, libffi: false, libxml2: false, llvmPackages_21: false, ncurses: false, ninja: false, python3: false, zlib: false, zstd: false, gtest: false, backend: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 105, 5], ["repo", 106, 5], ["tag", 107, 5], ["hash", 108, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["backend", 208, 13], ["resourceDir", 208, 21], ["interpreterArgs", 208, 33]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 212, 5], ["homepage", 213, 5], ["changelog", 214, 5], ["license", 215, 5], ["maintainers", 219, 5], ["platforms", 220, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 101, 3], ["version", 102, 3], ["src", 104, 3], ["strictDeps", 111, 3], ["__structuredAttrs", 112, 3], ["nativeBuildInputs", 114, 3], ["buildInputs", 120, 3], ["postPatch", 140, 3], ["cmakeFlags", 145, 3], ["doCheck", 167, 3], ["checkInputs", 168, 3], ["checkPhase", 169, 3], ["doInstallCheck", 182, 3], ["installCheckPhase", 183, 3], ["passthru", 207, 3], ["meta", 211, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -54,11 +51,11 @@ export default nix.lambda((args) => (() => {
   const interpreterArgs = nix.thunk(() => nix.concat(["-nostdinc", "-nostdinc++", "-resource-dir", resourceDir], nix.concat(cxxIncludeArgs, nix.concat(["-isystem", nix.thunk(() => nix.str`${resourceDir}/include`)], libcIncludeArgs))));
   nix.assert_(nix.app(nix.sel(lib, "assertOneOf"), "backend", backend, nix.thunk(() => ["clang-repl", "cling"])), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/cp/cpp-interop/package.nix:95:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: nix.thunk(() => nix.str`cpp-interop-${backend}`),
       version: "1.9.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "compiler-research",
           repo: "CppInterOp",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -96,13 +93,13 @@ runHook postCheck
       doInstallCheck: nix.thunk(() => !nix.asBool(useCling)),
       installCheckPhase: "runHook preInstallCheck\n\ncat > smoke.cpp <<'EOF'\n#include \"CppInterOp/CppInterOp.h\"\n#include <cstdio>\nint main() {\n  Cpp::CreateInterpreter();\n  if (Cpp::Declare(\"int square(int x) { return x * x; }\") != 0) return 1;\n  bool hadError = false;\n  intptr_t result = Cpp::Evaluate(\"square(7)\", &hadError);\n  if (hadError) return 2;\n  if (result != 49) { std::printf(\"expected 49, got %ld\\n\", (long)result); return 3; }\n  if (Cpp::GetNamed(\"square\") == nullptr) return 4;\n  return 0;\n}\nEOF\n\n$CXX -std=c++17 smoke.cpp -I$out/include -L$out/lib -lclangCppInterOp -o smoke\nLD_LIBRARY_PATH=$out/lib ./smoke\n\nrunHook postInstallCheck\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         backend: backend,
         resourceDir: resourceDir,
         interpreterArgs: interpreterArgs,
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: nix.thunk(() => nix.str`Clang-based C++ interoperability library (${backend} backend)`),
         homepage: "https://github.com/compiler-research/CppInterOp",
         changelog: nix.thunk(() => nix.str`https://github.com/compiler-research/CppInterOp/releases/tag/v${nix.sel(finalAttrs, "version")}`),

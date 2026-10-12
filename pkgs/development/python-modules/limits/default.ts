@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 32, 5], ["repo", 33, 5], ["tag", 34, 5], ["hash", 35, 5], ["postFetch", 36, 5]], [["async-memcached", 59, 5], ["async-mongodb", 60, 5], ["async-redis", 61, 5], ["async-valkey", 62, 5], ["memcached", 63, 5], ["mongodb", 64, 5], ["redis", 65, 5], ["rediscluster", 66, 5], ["valkey", 67, 5]], [["PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION", 73, 5]], [["description", 122, 5], ["homepage", 123, 5], ["changelog", 124, 5], ["license", 125, 5], ["maintainers", 126, 5]], [["pname", 27, 3], ["version", 28, 3], ["pyproject", 29, 3], ["src", 31, 3], ["postPatch", 41, 3], ["build-system", 46, 3], ["dependencies", 51, 3], ["optional-dependencies", 58, 3], ["env", 70, 3], ["nativeCheckInputs", 76, 3], ["pytestFlags", 87, 3], ["disabledTests", 89, 3], ["disabledTestMarks", 103, 3], ["disabledTestPaths", 114, 3], ["pythonImportsCheck", 119, 3], ["meta", 121, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, coredis: false, deprecated: false, fetchFromGitHub: false, flaky: false, hatchling: false, "hatch-vcs": false, hiro: false, "importlib-resources": false, motor: false, packaging: false, pymemcache: false, pymongo: false, "pytest-asyncio": false, "pytest-benchmark": false, "pytest-cov-stub": false, "pytest-lazy-fixtures": false, pytestCheckHook: false, redis: false, "typing-extensions": false, valkey: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 32, 5], ["repo", 33, 5], ["tag", 34, 5], ["hash", 35, 5], ["postFetch", 36, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["async-memcached", 59, 5], ["async-mongodb", 60, 5], ["async-redis", 61, 5], ["async-valkey", 62, 5], ["memcached", 63, 5], ["mongodb", 64, 5], ["redis", 65, 5], ["rediscluster", 66, 5], ["valkey", 67, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION", 73, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 122, 5], ["homepage", 123, 5], ["changelog", 124, 5], ["license", 125, 5], ["maintainers", 126, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 27, 3], ["version", 28, 3], ["pyproject", 29, 3], ["src", 31, 3], ["postPatch", 41, 3], ["build-system", 46, 3], ["dependencies", 51, 3], ["optional-dependencies", 58, 3], ["env", 70, 3], ["nativeCheckInputs", 76, 3], ["pytestFlags", 87, 3], ["disabledTests", 89, 3], ["disabledTestMarks", 103, 3], ["disabledTestPaths", 114, 3], ["pythonImportsCheck", 119, 3], ["meta", 121, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -38,7 +34,7 @@ export default nix.lambda((args) => (() => {
       const version = "5.8.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "alisaifee",
           repo: "limits",
           tag: version,
@@ -49,7 +45,7 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [hatchling, hatch_vcs]);
       const dependencies = nix.thunk(() => [deprecated, importlib_resources, packaging, typing_extensions]);
       const optional_dependencies = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         "async-memcached": nix.thunk(() => [pymemcache]),
         "async-mongodb": nix.thunk(() => [motor]),
         "async-redis": nix.thunk(() => [coredis]),
@@ -60,7 +56,7 @@ export default nix.lambda((args) => (() => {
         rediscluster: nix.thunk(() => [redis]),
         valkey: nix.thunk(() => [valkey]),
       }));
-      const env = nix.thunk(() => ({ [nix.POS]: pos$3, PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION: "python" }));
+      const env = nix.thunk(() => ({ [nix.POS]: $pos[2], PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION: "python" }));
       const nativeCheckInputs = nix.thunk(() => nix.concat([
         flaky,
         hiro,
@@ -96,7 +92,7 @@ export default nix.lambda((args) => (() => {
       const disabledTestPaths = nix.thunk(() => ["tests/benchmarks/test_storage.py"]);
       const pythonImportsCheck = nix.thunk(() => ["limits"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Rate limiting using various strategies and storage backends such as redis & memcached",
         homepage: "https://github.com/alisaifee/limits",
         changelog: nix.thunk(() => nix.str`https://github.com/alisaifee/limits/releases/tag/${nix.sel(src, "tag")}`),
@@ -107,7 +103,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         pyproject,

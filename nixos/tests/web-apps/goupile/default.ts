@@ -2,38 +2,11 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["interactive-script", 58, 12]], [["Port", 71, 23]], [["HTTP", 71, 18]], [["enable", 69, 9], ["enableSandbox", 70, 9], ["settings", 71, 9]], [["goupile", 68, 16]], [["allowedTCPPorts", 75, 18]], [["firewall", 75, 9], ["domain", 76, 9], ["extraHosts", 82, 18]], [["systemPackages", 86, 19]], [["memorySize", 92, 22], ["cores", 93, 22]], [["services", 68, 7], ["networking", 74, 7], ["environment", 86, 7], ["virtualisation", 92, 7]], [["machine", 60, 9]], [["enable", 122, 27]], [["enable", 135, 24]], [["xserver", 135, 16]], [["user", 136, 40]], [["auto", 136, 35]], [["displayManager", 136, 20]], [["port", 141, 16]], [["port", 142, 17]], [["from", 140, 11], ["host", 141, 11], ["guest", 142, 11]], [["forwardPorts", 138, 22]], [["allowedTCPPorts", 147, 27]], [["firewall", 147, 18]], [["imports", 130, 7], ["services", 135, 7], ["test-support", 136, 7], ["virtualisation", 138, 7], ["networking", 147, 7]], [["machine", 124, 21]], [["sshBackdoor", 122, 15], ["nodes", 124, 15]], [["maintainers", 150, 8]], [["name", 56, 3], ["passthru", 58, 3], ["nodes", 60, 3], ["testScript", 96, 3], ["interactive", 122, 3], ["meta", 150, 3]]]);
 const formals$1 = { args: { lib: false, pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/default.nix", [["interactive-script", 58, 12]]);
 const formals$2 = { args: { lib: false, pkgs: false, config: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/default.nix", [["Port", 71, 23]]);
-const pos$3 = nix.positions(here + "/default.nix", [["HTTP", 71, 18]]);
-const pos$4 = nix.positions(here + "/default.nix", [["enable", 69, 9], ["enableSandbox", 70, 9], ["settings", 71, 9]]);
-const pos$5 = nix.positions(here + "/default.nix", [["goupile", 68, 16]]);
-const pos$6 = nix.positions(here + "/default.nix", [["allowedTCPPorts", 75, 18]]);
-const pos$7 = nix.positions(here + "/default.nix", [["firewall", 75, 9], ["domain", 76, 9], ["extraHosts", 82, 18]]);
-const pos$8 = nix.positions(here + "/default.nix", [["systemPackages", 86, 19]]);
-const pos$9 = nix.positions(here + "/default.nix", [["memorySize", 92, 22], ["cores", 93, 22]]);
-const pos$10 = nix.positions(here + "/default.nix", [["services", 68, 7], ["networking", 74, 7], ["environment", 86, 7], ["virtualisation", 92, 7]]);
-const pos$11 = nix.positions(here + "/default.nix", [["machine", 60, 9]]);
 const formals$3 = { args: { nodes: false }, ellipsis: true };
-const pos$12 = nix.positions(here + "/default.nix", [["enable", 122, 27]]);
 const formals$4 = { args: { config: false }, ellipsis: true };
-const pos$13 = nix.positions(here + "/default.nix", [["enable", 135, 24]]);
-const pos$14 = nix.positions(here + "/default.nix", [["xserver", 135, 16]]);
-const pos$15 = nix.positions(here + "/default.nix", [["user", 136, 40]]);
-const pos$16 = nix.positions(here + "/default.nix", [["auto", 136, 35]]);
-const pos$17 = nix.positions(here + "/default.nix", [["displayManager", 136, 20]]);
-const pos$18 = nix.positions(here + "/default.nix", [["port", 141, 16]]);
-const pos$19 = nix.positions(here + "/default.nix", [["port", 142, 17]]);
-const pos$20 = nix.positions(here + "/default.nix", [["from", 140, 11], ["host", 141, 11], ["guest", 142, 11]]);
-const pos$21 = nix.positions(here + "/default.nix", [["forwardPorts", 138, 22]]);
-const pos$22 = nix.positions(here + "/default.nix", [["allowedTCPPorts", 147, 27]]);
-const pos$23 = nix.positions(here + "/default.nix", [["firewall", 147, 18]]);
-const pos$24 = nix.positions(here + "/default.nix", [["imports", 130, 7], ["services", 135, 7], ["test-support", 136, 7], ["virtualisation", 138, 7], ["networking", 147, 7]]);
-const pos$25 = nix.positions(here + "/default.nix", [["machine", 124, 21]]);
-const pos$26 = nix.positions(here + "/default.nix", [["sshBackdoor", 122, 15], ["nodes", 124, 15]]);
-const pos$27 = nix.positions(here + "/default.nix", [["maintainers", 150, 8]]);
-const pos$28 = nix.positions(here + "/default.nix", [["name", 56, 3], ["passthru", 58, 3], ["nodes", 60, 3], ["testScript", 96, 3], ["interactive", 122, 3], ["meta", 150, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -85,31 +58,34 @@ EOF
 fi
 `)));
   return {
-    [nix.POS]: pos$28,
+    [nix.POS]: $pos[27],
     name: "goupile",
-    passthru: nix.thunk(() => ({ [nix.POS]: pos$1, "interactive-script": run_goupile_test })),
+    passthru: nix.thunk(() => ({ [nix.POS]: $pos[0], "interactive-script": run_goupile_test })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$11,
+      [nix.POS]: $pos[10],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const lib_1 = nix.arg($_1, "lib");
         const pkgs_1 = nix.arg($_1, "pkgs");
         const config = nix.arg($_1, "config");
         return {
-          [nix.POS]: pos$10,
+          [nix.POS]: $pos[9],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             goupile: nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               enable: true,
               enableSandbox: true,
-              settings: nix.thunk(() => ({ [nix.POS]: pos$3, HTTP: nix.thunk(() => ({ [nix.POS]: pos$2, Port: 8889n })) })),
+              settings: nix.thunk(() => ({
+                [nix.POS]: $pos[2],
+                HTTP: nix.thunk(() => ({ [nix.POS]: $pos[1], Port: 8889n })),
+              })),
             })),
           })),
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             firewall: nix.thunk(() => ({
-              [nix.POS]: pos$6,
+              [nix.POS]: $pos[5],
               allowedTCPPorts: nix.thunk(() => [
                 nix.thunk(() => nix.sel(config, "services", "nginx", "defaultHTTPListenPort")),
               ]),
@@ -118,11 +94,11 @@ fi
             extraHosts: "127.0.0.1 www.example.com\n",
           })),
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$8,
+            [nix.POS]: $pos[7],
             systemPackages: nix.thunk(() => [python, run_goupile_test]),
           })),
           virtualisation: nix.thunk(() => ({
-            [nix.POS]: pos$9,
+            [nix.POS]: $pos[8],
             memorySize: nix.thunk(() => nix.app(nix.sel(lib_1, "mkForce"), 8192n)),
             cores: 4n,
           })),
@@ -149,52 +125,52 @@ finally:
 `;
     })(), formals$3),
     interactive: nix.thunk(() => ({
-      [nix.POS]: pos$26,
-      sshBackdoor: nix.thunk(() => ({ [nix.POS]: pos$12, enable: true })),
+      [nix.POS]: $pos[25],
+      sshBackdoor: nix.thunk(() => ({ [nix.POS]: $pos[11], enable: true })),
       nodes: nix.thunk(() => ({
-        [nix.POS]: pos$25,
+        [nix.POS]: $pos[24],
         machine: nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$4);
           const config = nix.arg($_1, "config");
           const port = nix.thunk(() => nix.sel(config, "services", "goupile", "settings", "HTTP", "Port"));
           return {
-            [nix.POS]: pos$24,
+            [nix.POS]: $pos[23],
             imports: nix.thunk(() => [
               nix.path(here, "../../common/x11.nix"),
               nix.path(here, "../../common/user-account.nix"),
             ]),
             services: nix.thunk(() => ({
-              [nix.POS]: pos$14,
-              xserver: nix.thunk(() => ({ [nix.POS]: pos$13, enable: true })),
+              [nix.POS]: $pos[13],
+              xserver: nix.thunk(() => ({ [nix.POS]: $pos[12], enable: true })),
             })),
             "test-support": nix.thunk(() => ({
-              [nix.POS]: pos$17,
+              [nix.POS]: $pos[16],
               displayManager: nix.thunk(() => ({
-                [nix.POS]: pos$16,
-                auto: nix.thunk(() => ({ [nix.POS]: pos$15, user: "alice" })),
+                [nix.POS]: $pos[15],
+                auto: nix.thunk(() => ({ [nix.POS]: $pos[14], user: "alice" })),
               })),
             })),
             virtualisation: nix.thunk(() => ({
-              [nix.POS]: pos$21,
+              [nix.POS]: $pos[20],
               forwardPorts: nix.thunk(() => [
                 nix.thunk(() => ({
-                  [nix.POS]: pos$20,
+                  [nix.POS]: $pos[19],
                   from: "host",
-                  host: nix.thunk(() => ({ [nix.POS]: pos$18, port: port })),
-                  guest: nix.thunk(() => ({ [nix.POS]: pos$19, port: port })),
+                  host: nix.thunk(() => ({ [nix.POS]: $pos[17], port: port })),
+                  guest: nix.thunk(() => ({ [nix.POS]: $pos[18], port: port })),
                 })),
               ]),
             })),
             networking: nix.thunk(() => ({
-              [nix.POS]: pos$23,
-              firewall: nix.thunk(() => ({ [nix.POS]: pos$22, allowedTCPPorts: nix.thunk(() => [port]) })),
+              [nix.POS]: $pos[22],
+              firewall: nix.thunk(() => ({ [nix.POS]: $pos[21], allowedTCPPorts: nix.thunk(() => [port]) })),
             })),
           };
         })(), formals$4),
       })),
     })),
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$27,
+      [nix.POS]: $pos[26],
       maintainers: nix.thunk(() => nix.sel(lib, "teams", "ngi", "members")),
     })),
   };

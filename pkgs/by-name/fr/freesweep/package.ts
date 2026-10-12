@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["hash", 20, 5]], [["description", 59, 5], ["mainProgram", 60, 5], ["homepage", 61, 5], ["license", 62, 5], ["maintainers", 63, 5], ["platforms", 64, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["patches", 24, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 44, 3], ["enableParallelBuilding", 46, 3], ["preConfigure", 48, 3], ["installPhase", 50, 3], ["meta", 58, 3]]]);
 const formals$1 = { args: { fetchFromGitHub: false, ncurses: false, lib: false, stdenv: false, autoconf: false, automake: false, "pkg-config": false, installShellFiles: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 59, 5], ["mainProgram", 60, 5], ["homepage", 61, 5], ["license", 62, 5], ["maintainers", 63, 5], ["platforms", 64, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["patches", 24, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 44, 3], ["enableParallelBuilding", 46, 3], ["preConfigure", 48, 3], ["installPhase", 50, 3], ["meta", 58, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const installShellFiles = nix.arg($, "installShellFiles");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "freesweep",
       version: "1.0.2-unstable-2024-04-19",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "rwestlund",
           repo: "freesweep",
           rev: "68c0ee5b29d1087d216d95875a7036713cd25fc0",
@@ -39,7 +37,7 @@ export default nix.lambda((args) => (() => {
       preConfigure: "./autogen.sh",
       installPhase: "runHook preInstall\ninstall -D -m 0555 freesweep $out/bin/freesweep\ninstall -D -m 0444 sweeprc $out/share/sweeprc\ninstallManPage freesweep.6\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Console minesweeper-style game written in C for Unix-like systems",
         mainProgram: "freesweep",
         homepage: "https://github.com/rwestlund/freesweep",

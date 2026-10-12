@@ -2,19 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["tesseract", 29, 41]], [["django", 26, 5], ["ocrmypdf", 29, 5]], [["ghostscript", 39, 32]], [["url", 54, 9], ["hash", 55, 9]], [["name", 52, 7], ["path", 53, 7]], [["owner", 66, 5], ["repo", 67, 5], ["tag", 68, 5], ["hash", 69, 5]], [["src", 282, 28], ["version", 282, 32], ["meta", 283, 7]], [["paperless", 291, 36]], [["extraArgs", 293, 7]], [["frontend", 281, 5], ["path", 286, 7], ["tesseract5", 287, 7], ["tiktokenCacheDir", 288, 7], ["python", 290, 30], ["tests", 291, 5], ["updateScript", 292, 5]], [["description", 301, 5], ["homepage", 302, 5], ["changelog", 303, 5], ["license", 304, 5], ["platforms", 305, 5], ["mainProgram", 306, 5], ["maintainers", 307, 5]], [["pname", 61, 3], ["version", 62, 3], ["pyproject", 63, 3], ["src", 65, 3], ["postPatch", 72, 3], ["build-system", 78, 3], ["nativeBuildInputs", 80, 3], ["pythonRelaxDeps", 85, 3], ["dependencies", 96, 3], ["postBuild", 175, 3], ["installPhase", 190, 3], ["postFixup", 211, 3], ["nativeCheckInputs", 216, 3], ["dontUsePytestXdist", 233, 3], ["enabledTestPaths", 235, 3], ["preCheck", 239, 3], ["disabledTests", 261, 3], ["disabledTestPaths", 269, 3], ["doCheck", 278, 3], ["passthru", 280, 3], ["meta", 300, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchurl: false, linkFarm: false, callPackage: false, nixosTests: false, gettext: false, python3Packages: false, ghostscript_headless: false, imagemagickBig: false, jbig2enc: false, optipng: false, pngquant: false, qpdf: false, tesseract5: false, "poppler-utils": false, liberation_ttf: false, lndir: false, "nix-update-script": false, extraPythonPackageOverrides: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["tesseract", 29, 41]]);
-const pos$2 = nix.positions(here + "/package.nix", [["django", 26, 5], ["ocrmypdf", 29, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["ghostscript", 39, 32]]);
-const pos$4 = nix.positions(here + "/package.nix", [["url", 54, 9], ["hash", 55, 9]]);
-const pos$5 = nix.positions(here + "/package.nix", [["name", 52, 7], ["path", 53, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["owner", 66, 5], ["repo", 67, 5], ["tag", 68, 5], ["hash", 69, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["src", 282, 28], ["version", 282, 32], ["meta", 283, 7]]);
-const pos$8 = nix.positions(here + "/package.nix", [["paperless", 291, 36]]);
-const pos$9 = nix.positions(here + "/package.nix", [["extraArgs", 293, 7]]);
-const pos$10 = nix.positions(here + "/package.nix", [["frontend", 281, 5], ["path", 286, 7], ["tesseract5", 287, 7], ["tiktokenCacheDir", 288, 7], ["python", 290, 30], ["tests", 291, 5], ["updateScript", 292, 5]]);
-const pos$11 = nix.positions(here + "/package.nix", [["description", 301, 5], ["homepage", 302, 5], ["changelog", 303, 5], ["license", 304, 5], ["platforms", 305, 5], ["mainProgram", 306, 5], ["maintainers", 307, 5]]);
-const pos$12 = nix.positions(here + "/package.nix", [["pname", 61, 3], ["version", 62, 3], ["pyproject", 63, 3], ["src", 65, 3], ["postPatch", 72, 3], ["build-system", 78, 3], ["nativeBuildInputs", 80, 3], ["pythonRelaxDeps", 85, 3], ["dependencies", 96, 3], ["postBuild", 175, 3], ["installPhase", 190, 3], ["postFixup", 211, 3], ["nativeCheckInputs", 216, 3], ["dontUsePytestXdist", 233, 3], ["enabledTestPaths", 235, 3], ["preCheck", 239, 3], ["disabledTests", 261, 3], ["disabledTestPaths", 269, 3], ["doCheck", 278, 3], ["passthru", 280, 3], ["meta", 300, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -40,14 +29,14 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const extraPythonPackageOverrides = nix.argOr($, "extraPythonPackageOverrides", () => (_final) => (_prev) => ({}));
   const defaultPythonPackageOverrides = (final) => (prev) => ({
-    [nix.POS]: pos$2,
+    [nix.POS]: $pos[1],
     django: nix.thunk(() => nix.sel(prev, "django_5")),
-    ocrmypdf: nix.thunk(() => nix.app(nix.sel(prev, "ocrmypdf", "override"), nix.thunk(() => ({ [nix.POS]: pos$1, tesseract: tesseract5 })))),
+    ocrmypdf: nix.thunk(() => nix.app(nix.sel(prev, "ocrmypdf", "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], tesseract: tesseract5 })))),
   });
   const pythonPackages = nix.thunk(() => nix.app(nix.sel(python3Packages, "overrideScope"), (final) => (prev) => nix.app(nix.sel(lib, "composeManyExtensions"), nix.thunk(() => [defaultPythonPackageOverrides, extraPythonPackageOverrides]), final, prev)));
   const path = nix.thunk(() => nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [
       ghostscript_headless,
-      nix.thunk(() => nix.app(nix.sel(imagemagickBig, "override"), nix.thunk(() => ({ [nix.POS]: pos$3, ghostscript: ghostscript_headless })))),
+      nix.thunk(() => nix.app(nix.sel(imagemagickBig, "override"), nix.thunk(() => ({ [nix.POS]: $pos[2], ghostscript: ghostscript_headless })))),
       jbig2enc,
       optipng,
       pngquant,
@@ -57,22 +46,22 @@ export default nix.lambda((args) => (() => {
     ])));
   const tiktokenCacheDir = nix.thunk(() => nix.app(linkFarm, "paperless-ngx-tiktoken-cache", nix.thunk(() => [
       nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         name: "9b5ad71b2ce5302211f9c61530b329a4922fc6a4",
         path: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             url: "https://web.archive.org/web/20260723164258/https://openaipublic.blob.core.windows.net/encodings/cl100k_base.tiktoken",
             hash: "sha256-Ijkht27pm96ZW3/3OFE+7xAPtR0YyTWXoRO8/+hlsqc=",
           })))),
       })),
     ])));
   return nix.app(nix.sel(pythonPackages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$12,
+      [nix.POS]: $pos[11],
       pname: "paperless-ngx",
       version: "3.3.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           owner: "paperless-ngx",
           repo: "paperless-ngx",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -240,9 +229,9 @@ rm -r build/lib
       ]),
       doCheck: nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         frontend: nix.thunk(() => nix.app(callPackage, nix.path(here, "./frontend.nix"), nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             src: nix.thunk(() => nix.attr(finalAttrs, "src")),
             version: nix.thunk(() => nix.attr(finalAttrs, "version")),
             meta: nix.thunk(() => nix.builtins.removeAttrs(nix.thunk(() => nix.sel(finalAttrs, "meta")), nix.thunk(() => ["mainProgram"]))),
@@ -252,13 +241,13 @@ rm -r build/lib
         tiktokenCacheDir: tiktokenCacheDir,
         python: nix.thunk(() => nix.attr(pythonPackages, "python")),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           paperless: nix.thunk(() => nix.attr(nixosTests, "paperless")),
         })),
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$9, extraArgs: nix.thunk(() => ["--subpackage", "frontend"]) })))),
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: $pos[8], extraArgs: nix.thunk(() => ["--subpackage", "frontend"]) })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$11,
+        [nix.POS]: $pos[10],
         description: "Tool to scan, index, and archive all of your physical documents",
         homepage: "https://docs.paperless-ngx.com/",
         changelog: nix.thunk(() => nix.str`https://github.com/paperless-ngx/paperless-ngx/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

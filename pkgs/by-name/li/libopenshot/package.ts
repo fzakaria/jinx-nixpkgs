@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 34, 5], ["repo", 35, 5], ["rev", 36, 5], ["hash", 37, 5]], [["ffmpeg_8-headless", 60, 25]], [["libopenshot-audio", 101, 13]], [["homepage", 105, 5], ["description", 106, 5], ["longDescription", 107, 5], ["license", 112, 5], ["maintainers", 113, 5], ["platforms", 114, 5]], [["pname", 30, 3], ["version", 31, 3], ["src", 33, 3], ["patches", 40, 3], ["nativeBuildInputs", 45, 3], ["buildInputs", 53, 3], ["strictDeps", 77, 3], ["__structuredAttrs", 78, 3], ["dontWrapQtApps", 80, 3], ["doCheck", 82, 3], ["nativeCheckInputs", 84, 3], ["ctestFlags", 87, 3], ["cmakeFlags", 92, 3], ["passthru", 100, 3], ["meta", 104, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, "alsa-lib": false, catch2_3: false, cmake: false, cppzmq: false, ctestCheckHook: false, doxygen: false, ffmpeg_8: false, glib: false, imagemagick: false, jsoncpp: false, "libopenshot-audio": false, llvmPackages: false, opencv4: false, pipewire: false, "pkg-config": false, protobuf: false, python3: false, qt6: false, swig: false, zeromq: false, resvg: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 34, 5], ["repo", 35, 5], ["rev", 36, 5], ["hash", 37, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["ffmpeg_8-headless", 60, 25]]);
-const pos$3 = nix.positions(here + "/package.nix", [["libopenshot-audio", 101, 13]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 105, 5], ["description", 106, 5], ["longDescription", 107, 5], ["license", 112, 5], ["maintainers", 113, 5], ["platforms", 114, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 30, 3], ["version", 31, 3], ["src", 33, 3], ["patches", 40, 3], ["nativeBuildInputs", 45, 3], ["buildInputs", 53, 3], ["strictDeps", 77, 3], ["__structuredAttrs", 78, 3], ["dontWrapQtApps", 80, 3], ["doCheck", 82, 3], ["nativeCheckInputs", 84, 3], ["ctestFlags", 87, 3], ["cmakeFlags", 92, 3], ["passthru", 100, 3], ["meta", 104, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -36,11 +32,11 @@ export default nix.lambda((args) => (() => {
   const zeromq = nix.arg($, "zeromq");
   const resvg = nix.arg($, "resvg");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "libopenshot",
       version: "0.7.0-unstable-2026-07-22",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "OpenShot",
           repo: "libopenshot",
           rev: "eac81cf91555438c54fbadef7fdd05bf803f26ee",
@@ -55,7 +51,7 @@ export default nix.lambda((args) => (() => {
         imagemagick,
         jsoncpp,
         libopenshot_audio,
-        nix.thunk(() => nix.app(nix.sel(opencv4, "override"), nix.thunk(() => ({ [nix.POS]: pos$2, "ffmpeg_8-headless": ffmpeg_8 })))),
+        nix.thunk(() => nix.app(nix.sel(opencv4, "override"), nix.thunk(() => ({ [nix.POS]: $pos[1], "ffmpeg_8-headless": ffmpeg_8 })))),
         protobuf,
         python3,
         nix.thunk(() => nix.sel(qt6, "qtbase")),
@@ -76,9 +72,9 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeOptionType"), "filepath", "PYTHON_MODULE_PATH", nix.thunk(() => nix.sel(python3, "sitePackages")))),
         "-DUSE_QT6=ON",
       ]),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$3, "libopenshot-audio": libopenshot_audio })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[2], "libopenshot-audio": libopenshot_audio })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "http://openshot.org/",
         description: "Free, open-source video editor library",
         longDescription: "OpenShot Library (libopenshot) is an open-source project dedicated to\ndelivering high quality video editing, animation, and playback solutions\nto the world. API currently supports C++, Python, and Ruby.\n",

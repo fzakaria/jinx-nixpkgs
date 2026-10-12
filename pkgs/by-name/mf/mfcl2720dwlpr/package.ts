@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 21, 5], ["sha256", 22, 5]], [["description", 61, 5], ["homepage", 62, 5], ["sourceProvenance", 63, 5], ["license", 64, 5], ["platforms", 65, 5], ["maintainers", 69, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["nativeBuildInputs", 25, 3], ["dontUnpack", 30, 3], ["installPhase", 32, 3], ["meta", 60, 3]]]);
 const formals$1 = { args: { pkgs: false, lib: false, stdenv: false, fetchurl: false, dpkg: false, makeWrapper: false, coreutils: false, ghostscript: false, gnugrep: false, gnused: false, which: false, perl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 21, 5], ["sha256", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 61, 5], ["homepage", 62, 5], ["sourceProvenance", 63, 5], ["license", 64, 5], ["platforms", 65, 5], ["maintainers", 69, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["nativeBuildInputs", 25, 3], ["dontUnpack", 30, 3], ["installPhase", 32, 3], ["meta", 60, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const pname = "mfcl2720dwlpr";
       const version = "3.2.0-1";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://download.brother.com/welcome/dlf101801/${pname}-${version}.i386.deb`),
           sha256: "088217e9ad118ec1e7f3d3f8f60f3bd839fe2c7d7c1136b249e9ac648dc742af",
         }))));
@@ -50,7 +48,7 @@ patchelf --set-interpreter "$interpreter" $dir/lpd/brprintconflsr3
 patchelf --set-interpreter "$interpreter" $dir/lpd/rawtobr3
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Brother MFC-L2720DW lpr driver",
         homepage: "http://www.brother.com/",
         sourceProvenance: nix.thunk(() => (() => {
@@ -62,7 +60,7 @@ patchelf --set-interpreter "$interpreter" $dir/lpd/rawtobr3
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "xeji"))]),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

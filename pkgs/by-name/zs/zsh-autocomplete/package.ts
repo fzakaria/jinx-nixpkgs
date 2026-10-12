@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["sha256", 16, 5]], [["description", 45, 5], ["homepage", 46, 5], ["license", 47, 5], ["platforms", 48, 5], ["maintainers", 49, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["strictDeps", 19, 3], ["nativeInstallCheckInputs", 21, 3], ["installPhase", 23, 3], ["doInstallCheck", 30, 3], ["installCheckPhase", 32, 3], ["meta", 44, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchFromGitHub: false, zsh: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["sha256", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 45, 5], ["homepage", 46, 5], ["license", 47, 5], ["platforms", 48, 5], ["maintainers", 49, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["strictDeps", 19, 3], ["nativeInstallCheckInputs", 21, 3], ["installPhase", 23, 3], ["doInstallCheck", 30, 3], ["installCheckPhase", 32, 3], ["meta", 44, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,7 +15,7 @@ export default nix.lambda((args) => (() => {
       const pname = "zsh-autocomplete";
       const version = "26.08.04";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "marlonrichert",
           repo: "zsh-autocomplete",
           rev: version,
@@ -29,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const doInstallCheck = true;
       const installCheckPhase = "runHook preInstallCheck\n\nzsh -f -c '\n  fpath=( \"$out/share/zsh-autocomplete/z-async\" )\n  autoload -Uz z-async\n  z-async help >/dev/null\n'\n\nrunHook postInstallCheck\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Real-time type-ahead completion for Zsh. Asynchronous find-as-you-type autocompletion",
         homepage: "https://github.com/marlonrichert/zsh-autocomplete/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -37,7 +35,7 @@ export default nix.lambda((args) => (() => {
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "leona"))]),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

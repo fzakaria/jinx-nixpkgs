@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 19, 5], ["hash", 22, 5]], [["NIX_CFLAGS_COMPILE", 46, 7]], [["nativeBuildInputs", 90, 11]], [["prefab", 87, 5]], [["tests", 86, 12]], [["description", 100, 5], ["longDescription", 101, 5], ["license", 109, 5], ["maintainers", 110, 5], ["homepage", 111, 5], ["platforms", 112, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["patches", 25, 3], ["env", 46, 3], ["buildInputs", 48, 3], ["hardeningDisable", 57, 3], ["postPatch", 59, 3], ["preBuild", 63, 3], ["makeFlags", 67, 3], ["enableParallelBuilding", 69, 3], ["preInstall", 71, 3], ["postInstall", 75, 3], ["passthru", 86, 3], ["meta", 99, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, zlib: false, libx11: false, libpng: false, libjpeg: false, gd: false, freetype: false, runCommand: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 19, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 46, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["nativeBuildInputs", 90, 11]]);
-const pos$4 = nix.positions(here + "/package.nix", [["prefab", 87, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["tests", 86, 12]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 100, 5], ["longDescription", 101, 5], ["license", 109, 5], ["maintainers", 110, 5], ["homepage", 111, 5], ["platforms", 112, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["patches", 25, 3], ["env", 46, 3], ["buildInputs", 48, 3], ["hardeningDisable", 57, 3], ["postPatch", 59, 3], ["preBuild", 63, 3], ["makeFlags", 67, 3], ["enableParallelBuilding", 69, 3], ["preInstall", 71, 3], ["postInstall", 75, 3], ["passthru", 86, 3], ["meta", 99, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const freetype = nix.arg($, "freetype");
   const runCommand = nix.arg($, "runCommand");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "ploticus",
       version: "2.42",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/ploticus/ploticus/${nix.sel(finalAttrs, "version")}/ploticus${nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => [""]), nix.thunk(() => nix.sel(finalAttrs, "version")))}_src.tar.gz`),
           hash: "sha256-PynkufQFIDqT7+yQDlgW2eG0OBghiB4kHAjKt91m4LA=",
         })))),
@@ -38,7 +32,7 @@ export default nix.lambda((args) => (() => {
         nix.path(here, "./use-gd-package.patch"),
         nix.path(here, "./fix-zlib-file-type.patch"),
       ]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-std=gnu17" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], NIX_CFLAGS_COMPILE: "-std=gnu17" })),
       buildInputs: nix.thunk(() => [zlib, libx11, libpng, gd, freetype, libjpeg]),
       hardeningDisable: nix.thunk(() => ["format"]),
       postPatch: "substituteInPlace src/pl.h --subst-var out\n",
@@ -48,17 +42,17 @@ export default nix.lambda((args) => (() => {
       preInstall: "mkdir -p \"$out/bin\"\n",
       postInstall: "cd ..\n\n# Install the “prefabs”.\nmkdir -p \"$out/share/ploticus/prefabs\"\ncp -rv prefabs/* \"$out/share/ploticus/prefabs\"\n\n# Add aliases for backwards compatibility.\nln -s \"pl\" \"$out/bin/ploticus\"\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           prefab: nix.thunk(() => nix.app(runCommand, "ploticus-prefab-test", nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(finalAttrs, "finalPackage"))]),
             })), "# trivial test to see if the prefab path munging works\nmkdir $out/\npl -prefab scat inlinedata=\"A 1 2\" x=2 y=3 -png -o $out/out.png\n")),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Non-interactive software package for producing plots and charts",
         longDescription: "Ploticus is a free, GPL'd, non-interactive\nsoftware package for producing plots, charts, and graphics from\ndata.  Ploticus is good for automated or just-in-time graph\ngeneration, handles date and time data nicely, and has basic\nstatistical capabilities.  It allows significant user control\nover colors, styles, options and details.\n",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

@@ -2,20 +2,18 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
-const pos$1 = nix.positions(here + "/mipsel-unknown-linux-gnu.nix", [["url", 17, 5], ["hash", 18, 5], ["executable", 19, 5]]);
-const pos$2 = nix.positions(here + "/mipsel-unknown-linux-gnu.nix", [["url", 22, 5], ["hash", 23, 5]]);
-const pos$3 = nix.positions(here + "/mipsel-unknown-linux-gnu.nix", [["busybox", 16, 3], ["bootstrapTools", 21, 3]]);
+const $pos = nix.positions(here + "/mipsel-unknown-linux-gnu.nix", [[["url", 17, 5], ["hash", 18, 5], ["executable", 19, 5]], [["url", 22, 5], ["hash", 23, 5]], [["busybox", 16, 3], ["bootstrapTools", 21, 3]]]);
 
 export default nix.thunk(() => ({
-  [nix.POS]: pos$3,
+  [nix.POS]: $pos[2],
   busybox: nix.thunk(() => nix.app(nix.builtins.import(nix.builtins.findFile(nix.builtins.nixPath, "nix/fetchurl.nix")), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: "http://tarballs.nixos.org/stdenv-linux/mipsel/5bd14b3cfe2f87a2e2b074645aba39c69563e4bc/busybox",
       hash: "sha256-EhuzjL52VEIOfEcFdVGZaDMClQbMc9V9ISrTUNaA7HQ=",
       executable: true,
     })))),
   bootstrapTools: nix.thunk(() => nix.app(nix.builtins.import(nix.builtins.findFile(nix.builtins.nixPath, "nix/fetchurl.nix")), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       url: "http://tarballs.nixos.org/stdenv-linux/mipsel/5bd14b3cfe2f87a2e2b074645aba39c69563e4bc/bootstrap-tools.tar.xz",
       hash: "sha256-OEGgLJOLnV+aobsb+P8mY3Dp8qbeVODBH6x3aUE/MGM=",
     })))),

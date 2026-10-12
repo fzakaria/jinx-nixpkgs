@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]], [["name", 36, 7], ["exec", 37, 7], ["desktopName", 38, 7], ["comment", 39, 7]], [["description", 81, 5], ["homepage", 82, 5], ["changelog", 83, 5], ["license", 84, 5], ["maintainers", 85, 5]], [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["cargoHash", 32, 3], ["desktopItems", 34, 3], ["nativeBuildInputs", 43, 3], ["buildInputs", 50, 3], ["postInstall", 63, 3], ["nativeInstallCheckInputs", 77, 3], ["doInstallCheck", 78, 3], ["meta", 80, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchFromGitHub: false, makeDesktopItem: false, versionCheckHook: false, "pkg-config": false, git: false, makeWrapper: false, copyDesktopItems: false, libx11: false, libGL: false, libxcb: false, libxkbcommon: false, dbus: false, udev: false, openssl: false, wayland: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 36, 7], ["exec", 37, 7], ["desktopName", 38, 7], ["comment", 39, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 81, 5], ["homepage", 82, 5], ["changelog", 83, 5], ["license", 84, 5], ["maintainers", 85, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["cargoHash", 32, 3], ["desktopItems", 34, 3], ["nativeBuildInputs", 43, 3], ["buildInputs", 50, 3], ["postInstall", 63, 3], ["nativeInstallCheckInputs", 77, 3], ["doInstallCheck", 78, 3], ["meta", 80, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const wayland = nix.arg($, "wayland");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "buttplug-lite",
       version: "2.5.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "runtime-shady-backroom",
           repo: "buttplug-lite",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -42,7 +39,7 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-XGfHJAlv1B+tFKhLqMWiUaVyCUnyuyVZmYz3wvwITQI=",
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "buttplug-lite",
             exec: "buttplug-lite",
             desktopName: "Buttplug Lite",
@@ -56,7 +53,7 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Simplified buttplug.io API for when JSON is infeasible",
         homepage: "https://github.com/runtime-shady-backroom/buttplug-lite",
         changelog: nix.thunk(() => nix.str`https://github.com/runtime-shady-backroom/buttplug-lite/releases/tag/${nix.sel(finalAttrs, "version")}`),

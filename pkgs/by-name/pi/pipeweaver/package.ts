@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["pname", 16, 7], ["version", 17, 28], ["src", 17, 36], ["sourceRoot", 19, 7], ["npmDepsHash", 21, 7], ["installPhase", 23, 7]], [["owner", 37, 7], ["repo", 38, 7], ["tag", 39, 7], ["hash", 40, 7]], [["GIT_HASH", 78, 9]], [["extraArgs", 110, 9]], [["web", 108, 15], ["updateScript", 109, 7]], [["description", 118, 7], ["homepage", 119, 7], ["license", 120, 7], ["mainProgram", 121, 7], ["platforms", 122, 7], ["maintainers", 123, 7]], [["pname", 31, 5], ["version", 32, 5], ["__structuredAttrs", 34, 5], ["src", 36, 5], ["cargoHash", 43, 5], ["nativeBuildInputs", 45, 5], ["buildInputs", 50, 5], ["cargoBuildFlags", 54, 5], ["cargoTestFlags", 61, 5], ["postPatch", 68, 5], ["env", 78, 5], ["installPhase", 80, 5], ["passthru", 107, 5], ["meta", 117, 5]]]);
 const formals$1 = { args: { lib: false, buildNpmPackage: false, fetchFromGitHub: false, rustPlatform: false, "pkg-config": false, pipewire: false, "nix-update-script": false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["pname", 16, 7], ["version", 17, 28], ["src", 17, 36], ["sourceRoot", 19, 7], ["npmDepsHash", 21, 7], ["installPhase", 23, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 37, 7], ["repo", 38, 7], ["tag", 39, 7], ["hash", 40, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["GIT_HASH", 78, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["extraArgs", 110, 9]]);
-const pos$5 = nix.positions(here + "/package.nix", [["web", 108, 15], ["updateScript", 109, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 118, 7], ["homepage", 119, 7], ["license", 120, 7], ["mainProgram", 121, 7], ["platforms", 122, 7], ["maintainers", 123, 7]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 31, 5], ["version", 32, 5], ["__structuredAttrs", 34, 5], ["src", 36, 5], ["cargoHash", 43, 5], ["nativeBuildInputs", 45, 5], ["buildInputs", 50, 5], ["cargoBuildFlags", 54, 5], ["cargoTestFlags", 61, 5], ["postPatch", 68, 5], ["env", 78, 5], ["installPhase", 80, 5], ["passthru", 107, 5], ["meta", 117, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,7 +17,7 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => (() => {
       const web = nix.thunk(() => nix.app(buildNpmPackage, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-web`),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -32,12 +26,12 @@ export default nix.lambda((args) => (() => {
           installPhase: "runHook preInstall\ncp -r dist $out\nrunHook postInstall\n",
         }))));
       return {
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         pname: "pipeweaver",
         version: "0.1.9",
         __structuredAttrs: true,
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             owner: "pipeweaver",
             repo: "pipeweaver",
             tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -56,7 +50,7 @@ mkdir -p daemon/web-content
 cp -r ${web}/* daemon/web-content/
 `),
         env: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           GIT_HASH: nix.thunk(() => nix.sel(finalAttrs, "src", "tag")),
         })),
         installPhase: nix.thunk(() => nix.str`runHook preInstall
@@ -85,12 +79,12 @@ install -Dm644 LICENSE $out/share/licenses/pipeweaver/LICENSE
 runHook postInstall
 `),
         passthru: nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           web: web,
-          updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$4, extraArgs: nix.thunk(() => ["--subpackage", "web"]) })))),
+          updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: $pos[3], extraArgs: nix.thunk(() => ["--subpackage", "web"]) })))),
         })),
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           description: "Manage streaming audio on Linux through PipeWire with virtual channels, mixing, and routing",
           homepage: "https://github.com/pipeweaver/pipeweaver",
           license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

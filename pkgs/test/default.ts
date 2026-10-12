@@ -2,24 +2,8 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["stdenv", 43, 50]], [["stdenv", 44, 51]], [["clang", 43, 15], ["libcxx", 44, 15]], [["stdenv", 78, 60]], [["name", 84, 9], ["builtGCC", 85, 9], ["builtLLVM", 95, 9], ["buildCommand", 103, 9]], [["default", 81, 7], ["supported", 83, 7], ["llvmTests", 108, 7], ["gccTests", 109, 7]], [["stdenv", 120, 7]], [["stdenv", 125, 7]], [["stdenv", 137, 61]], [["stdenv", 138, 63]], [["fetchpatch", 146, 58]], [["sanitizers", 230, 7]], [["makeBinaryWrapper", 227, 5]], [["pkgs", 239, 60]], [["wrapQtAppsHook", 265, 5]], [["wrapQtAppsHook", 270, 5]], [["cc-wrapper", 21, 3], ["devShellTools", 112, 3], ["stdenv-inputs", 114, 3], ["stdenv", 115, 3], ["hardeningFlags", 117, 3], ["hardeningFlags-gcc", 118, 3], ["hardeningFlags-clang", 123, 3], ["config", 129, 3], ["top-level", 131, 3], ["haskell", 133, 3], ["hooks", 135, 3], ["cc-multilib-gcc", 137, 3], ["cc-multilib-clang", 138, 3], ["compress-drv", 140, 3], ["fetchurl", 142, 3], ["fetchtorrent", 143, 3], ["fetchpatch", 144, 3], ["fetchpatch2", 145, 3], ["fetchDebianPatch", 148, 3], ["fetchzip", 149, 3], ["fetchgit", 150, 3], ["fetchRepoProject", 151, 3], ["fetchNextcloudApp", 152, 3], ["fetchFromBitbucket", 155, 3], ["fetchFromGitHub", 156, 3], ["fetchFromHuggingFace", 157, 3], ["fetchFirefoxAddon", 160, 3], ["fetchPypiLegacy", 163, 3], ["install-shell-files", 165, 3], ["checkpointBuildTools", 167, 3], ["kernel-config", 169, 3], ["ld-library-path", 171, 3], ["cross", 173, 3], ["php", 175, 3], ["pnpm", 177, 3], ["go", 179, 3], ["lake", 181, 3], ["pkg-config", 183, 3], ["buildRustCrate", 185, 3], ["importCargoLock", 186, 3], ["vim", 188, 3], ["nixos-functions", 190, 3], ["nixosOptionsDoc", 192, 3], ["buildenv", 194, 3], ["overriding", 196, 3], ["texlive", 198, 3], ["problems", 203, 3], ["cuda", 205, 3], ["trivial-builders", 207, 3], ["vmTools", 209, 3], ["writers", 211, 3], ["testers", 213, 3], ["dhall", 215, 3], ["cue-validation", 217, 3], ["coq", 219, 3], ["dotnet", 221, 3], ["makeHardcodeGsettingsPatch", 223, 3], ["makeWrapper", 225, 3], ["makeBinaryWrapper", 226, 3], ["lib-tests", 239, 3], ["pkgs-lib", 241, 3], ["buildFHSEnv", 243, 3], ["auto-patchelf-structured-log", 245, 3], ["auto-patchelf-hook", 247, 3], ["auto-patchelf-hook-preserve-origin", 249, 3], ["auto-patchelf-hook-relativize-rpath", 251, 3], ["arrayUtilities", 254, 3], ["qt5", 264, 3], ["qt6", 269, 3], ["srcOnly", 273, 3], ["systemd", 275, 3], ["replaceVars", 277, 3], ["substitute", 279, 3], ["build-environment-info", 281, 3], ["rust-hooks", 283, 3], ["prefer-remote-fetch", 285, 3], ["home-assistant-components", 289, 3], ["openscad", 291, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["stdenv", 43, 50]]);
-const pos$2 = nix.positions(here + "/default.nix", [["stdenv", 44, 51]]);
-const pos$3 = nix.positions(here + "/default.nix", [["clang", 43, 15], ["libcxx", 44, 15]]);
-const pos$4 = nix.positions(here + "/default.nix", [["stdenv", 78, 60]]);
-const pos$5 = nix.positions(here + "/default.nix", [["name", 84, 9], ["builtGCC", 85, 9], ["builtLLVM", 95, 9], ["buildCommand", 103, 9]]);
-const pos$6 = nix.positions(here + "/default.nix", [["default", 81, 7], ["supported", 83, 7], ["llvmTests", 108, 7], ["gccTests", 109, 7]]);
-const pos$7 = nix.positions(here + "/default.nix", [["stdenv", 120, 7]]);
-const pos$8 = nix.positions(here + "/default.nix", [["stdenv", 125, 7]]);
-const pos$9 = nix.positions(here + "/default.nix", [["stdenv", 137, 61]]);
-const pos$10 = nix.positions(here + "/default.nix", [["stdenv", 138, 63]]);
-const pos$11 = nix.positions(here + "/default.nix", [["fetchpatch", 146, 58]]);
-const pos$12 = nix.positions(here + "/default.nix", [["sanitizers", 230, 7]]);
-const pos$13 = nix.positions(here + "/default.nix", [["makeBinaryWrapper", 227, 5]]);
-const pos$14 = nix.positions(here + "/default.nix", [["pkgs", 239, 60]]);
-const pos$15 = nix.positions(here + "/default.nix", [["wrapQtAppsHook", 265, 5]]);
-const pos$16 = nix.positions(here + "/default.nix", [["wrapQtAppsHook", 270, 5]]);
-const pos$17 = nix.positions(here + "/default.nix", [["cc-wrapper", 21, 3], ["devShellTools", 112, 3], ["stdenv-inputs", 114, 3], ["stdenv", 115, 3], ["hardeningFlags", 117, 3], ["hardeningFlags-gcc", 118, 3], ["hardeningFlags-clang", 123, 3], ["config", 129, 3], ["top-level", 131, 3], ["haskell", 133, 3], ["hooks", 135, 3], ["cc-multilib-gcc", 137, 3], ["cc-multilib-clang", 138, 3], ["compress-drv", 140, 3], ["fetchurl", 142, 3], ["fetchtorrent", 143, 3], ["fetchpatch", 144, 3], ["fetchpatch2", 145, 3], ["fetchDebianPatch", 148, 3], ["fetchzip", 149, 3], ["fetchgit", 150, 3], ["fetchRepoProject", 151, 3], ["fetchNextcloudApp", 152, 3], ["fetchFromBitbucket", 155, 3], ["fetchFromGitHub", 156, 3], ["fetchFromHuggingFace", 157, 3], ["fetchFirefoxAddon", 160, 3], ["fetchPypiLegacy", 163, 3], ["install-shell-files", 165, 3], ["checkpointBuildTools", 167, 3], ["kernel-config", 169, 3], ["ld-library-path", 171, 3], ["cross", 173, 3], ["php", 175, 3], ["pnpm", 177, 3], ["go", 179, 3], ["lake", 181, 3], ["pkg-config", 183, 3], ["buildRustCrate", 185, 3], ["importCargoLock", 186, 3], ["vim", 188, 3], ["nixos-functions", 190, 3], ["nixosOptionsDoc", 192, 3], ["buildenv", 194, 3], ["overriding", 196, 3], ["texlive", 198, 3], ["problems", 203, 3], ["cuda", 205, 3], ["trivial-builders", 207, 3], ["vmTools", 209, 3], ["writers", 211, 3], ["testers", 213, 3], ["dhall", 215, 3], ["cue-validation", 217, 3], ["coq", 219, 3], ["dotnet", 221, 3], ["makeHardcodeGsettingsPatch", 223, 3], ["makeWrapper", 225, 3], ["makeBinaryWrapper", 226, 3], ["lib-tests", 239, 3], ["pkgs-lib", 241, 3], ["buildFHSEnv", 243, 3], ["auto-patchelf-structured-log", 245, 3], ["auto-patchelf-hook", 247, 3], ["auto-patchelf-hook-preserve-origin", 249, 3], ["auto-patchelf-hook-relativize-rpath", 251, 3], ["arrayUtilities", 254, 3], ["qt5", 264, 3], ["qt6", 269, 3], ["srcOnly", 273, 3], ["systemd", 275, 3], ["replaceVars", 277, 3], ["substitute", 279, 3], ["build-environment-info", 281, 3], ["rust-hooks", 283, 3], ["prefer-remote-fetch", 285, 3], ["home-assistant-components", 289, 3], ["openscad", 291, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -43,7 +27,7 @@ export default nix.lambda((args) => (() => {
   const from_1 = nix.thunk(() => nix.sel(pkgs, "lib", "strings"));
   const toJSON = nix.thunk(() => nix.attr(from_1, "toJSON"));
   return {
-    [nix.POS]: pos$17,
+    [nix.POS]: $pos[16],
     "cc-wrapper": nix.thunk(() => (() => {
       const pkgNames = nix.thunk(() => nix.app(attrNames, pkgs));
       const llvmTests = nix.thunk(() => (() => {
@@ -61,13 +45,13 @@ export default nix.lambda((args) => (() => {
             nix.thunk(() => nix.app(filter, (n) => !nix.eq(n, "llvmPackages_17"))),
           ])));
         const tests = nix.thunk(() => nix.app(genAttrs, pkgSets, (name) => nix.app(recurseIntoAttrs, nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               clang: nix.thunk(() => nix.app(callPackage, nix.path(here, "./cc-wrapper"), nix.thunk(() => ({
-                  [nix.POS]: pos$1,
+                  [nix.POS]: $pos[0],
                   stdenv: nix.thunk(() => nix.sel(pkgs, nix.key(nix.force(name)), "stdenv")),
                 })))),
               libcxx: nix.thunk(() => nix.app(callPackage, nix.path(here, "./cc-wrapper"), nix.thunk(() => ({
-                  [nix.POS]: pos$2,
+                  [nix.POS]: $pos[1],
                   stdenv: nix.thunk(() => nix.sel(pkgs, nix.key(nix.force(name)), "libcxxStdenv")),
                 })))),
             })))));
@@ -90,15 +74,15 @@ export default nix.lambda((args) => (() => {
               nix.thunk(() => nix.app(filter, (n) => !nix.asBool(nix.app(hasSuffix, "MultiStdenv", n)))),
             ]))))));
         return nix.app(genAttrs, pkgSets, (name) => nix.app(callPackage, nix.path(here, "./cc-wrapper"), nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               stdenv: nix.thunk(() => nix.sel(pkgs, nix.key(nix.force(name)))),
             }))));
       })());
       return nix.app(recurseIntoAttrs, nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           default: nix.thunk(() => nix.app(callPackage, nix.path(here, "./cc-wrapper"), nix.thunk(() => ({})))),
           supported: nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               name: "cc-wrapper-supported",
               builtGCC: nix.thunk(() => (() => {
                 const sets = nix.thunk(() => nix.app(pipe, gccTests, nix.thunk(() => [
@@ -124,25 +108,28 @@ export default nix.lambda((args) => (() => {
     "stdenv-inputs": nix.thunk(() => nix.app(callPackage, nix.path(here, "./stdenv-inputs"), nix.thunk(() => ({})))),
     stdenv: nix.thunk(() => nix.app(recurseIntoAttrs, nix.thunk(() => nix.app(callPackage, nix.path(here, "./stdenv"), nix.thunk(() => ({})))))),
     hardeningFlags: nix.thunk(() => nix.app(recurseIntoAttrs, nix.thunk(() => nix.app(callPackage, nix.path(here, "./cc-wrapper/hardening.nix"), nix.thunk(() => ({})))))),
-    "hardeningFlags-gcc": nix.thunk(() => nix.app(recurseIntoAttrs, nix.thunk(() => nix.app(callPackage, nix.path(here, "./cc-wrapper/hardening.nix"), nix.thunk(() => ({ [nix.POS]: pos$7, stdenv: nix.thunk(() => nix.sel(pkgs, "gccStdenv")) })))))),
+    "hardeningFlags-gcc": nix.thunk(() => nix.app(recurseIntoAttrs, nix.thunk(() => nix.app(callPackage, nix.path(here, "./cc-wrapper/hardening.nix"), nix.thunk(() => ({ [nix.POS]: $pos[6], stdenv: nix.thunk(() => nix.sel(pkgs, "gccStdenv")) })))))),
     "hardeningFlags-clang": nix.thunk(() => nix.app(recurseIntoAttrs, nix.thunk(() => nix.app(callPackage, nix.path(here, "./cc-wrapper/hardening.nix"), nix.thunk(() => ({
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           stdenv: nix.thunk(() => nix.sel(pkgs, "llvmPackages", "stdenv")),
         })))))),
     config: nix.thunk(() => nix.app(callPackage, nix.path(here, "./config.nix"), nix.thunk(() => ({})))),
     "top-level": nix.thunk(() => nix.app(callPackage, nix.path(here, "./top-level"), nix.thunk(() => ({})))),
     haskell: nix.thunk(() => nix.app(callPackage, nix.path(here, "./haskell"), nix.thunk(() => ({})))),
     hooks: nix.thunk(() => nix.app(recurseIntoAttrs, nix.thunk(() => nix.app(callPackage, nix.path(here, "./hooks"), nix.thunk(() => ({})))))),
-    "cc-multilib-gcc": nix.thunk(() => nix.app(callPackage, nix.path(here, "./cc-wrapper/multilib.nix"), nix.thunk(() => ({ [nix.POS]: pos$9, stdenv: nix.thunk(() => nix.sel(pkgs, "gccMultiStdenv")) })))),
+    "cc-multilib-gcc": nix.thunk(() => nix.app(callPackage, nix.path(here, "./cc-wrapper/multilib.nix"), nix.thunk(() => ({ [nix.POS]: $pos[8], stdenv: nix.thunk(() => nix.sel(pkgs, "gccMultiStdenv")) })))),
     "cc-multilib-clang": nix.thunk(() => nix.app(callPackage, nix.path(here, "./cc-wrapper/multilib.nix"), nix.thunk(() => ({
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         stdenv: nix.thunk(() => nix.sel(pkgs, "clangMultiStdenv")),
       })))),
     "compress-drv": nix.thunk(() => nix.app(callPackage, nix.path(here, "../build-support/compress-drv/test.nix"), nix.thunk(() => ({})))),
     fetchurl: nix.thunk(() => nix.app(recurseIntoAttrs, nix.thunk(() => nix.app(callPackages, nix.path(here, "../build-support/fetchurl/tests.nix"), nix.thunk(() => ({})))))),
     fetchtorrent: nix.thunk(() => nix.app(recurseIntoAttrs, nix.thunk(() => nix.app(callPackages, nix.path(here, "../build-support/fetchtorrent/tests.nix"), nix.thunk(() => ({})))))),
     fetchpatch: nix.thunk(() => nix.app(recurseIntoAttrs, nix.thunk(() => nix.app(callPackages, nix.path(here, "../build-support/fetchpatch/tests.nix"), nix.thunk(() => ({})))))),
-    fetchpatch2: nix.thunk(() => nix.app(recurseIntoAttrs, nix.thunk(() => nix.app(callPackages, nix.path(here, "../build-support/fetchpatch/tests.nix"), nix.thunk(() => ({ [nix.POS]: pos$11, fetchpatch: nix.thunk(() => nix.sel(pkgs, "fetchpatch2")) })))))),
+    fetchpatch2: nix.thunk(() => nix.app(recurseIntoAttrs, nix.thunk(() => nix.app(callPackages, nix.path(here, "../build-support/fetchpatch/tests.nix"), nix.thunk(() => ({
+          [nix.POS]: $pos[10],
+          fetchpatch: nix.thunk(() => nix.sel(pkgs, "fetchpatch2")),
+        })))))),
     fetchDebianPatch: nix.thunk(() => nix.app(recurseIntoAttrs, nix.thunk(() => nix.app(callPackages, nix.path(here, "../build-support/fetchdebianpatch/tests.nix"), nix.thunk(() => ({})))))),
     fetchzip: nix.thunk(() => nix.app(recurseIntoAttrs, nix.thunk(() => nix.app(callPackages, nix.path(here, "../build-support/fetchzip/tests.nix"), nix.thunk(() => ({})))))),
     fetchgit: nix.thunk(() => nix.app(recurseIntoAttrs, nix.thunk(() => nix.app(callPackages, nix.path(here, "../build-support/fetchgit/tests.nix"), nix.thunk(() => ({})))))),
@@ -184,13 +171,13 @@ export default nix.lambda((args) => (() => {
     makeHardcodeGsettingsPatch: nix.thunk(() => nix.app(recurseIntoAttrs, nix.thunk(() => nix.app(callPackage, nix.path(here, "./make-hardcode-gsettings-patch"), nix.thunk(() => ({})))))),
     makeWrapper: nix.thunk(() => nix.app(callPackage, nix.path(here, "./make-wrapper"), nix.thunk(() => ({})))),
     makeBinaryWrapper: nix.thunk(() => nix.app(callPackage, nix.path(here, "./make-binary-wrapper"), nix.thunk(() => ({
-        [nix.POS]: pos$13,
+        [nix.POS]: $pos[12],
         makeBinaryWrapper: nix.thunk(() => nix.app(nix.sel(pkgs, "makeBinaryWrapper", "override"), nix.thunk(() => ({
-            [nix.POS]: pos$12,
+            [nix.POS]: $pos[11],
             sanitizers: nix.thunk(() => nix.app(optionals, nix.thunk(() => !nix.asBool((nix.asBool(nix.sel(pkgs, "stdenv", "hostPlatform", "isDarwin")) && nix.asBool(nix.sel(pkgs, "stdenv", "hostPlatform", "isAarch64"))))), nix.thunk(() => ["undefined", "address"]))),
           })))),
       })))),
-    "lib-tests": nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../lib/tests/release.nix")), nix.thunk(() => ({ [nix.POS]: pos$14, pkgs: pkgs })))),
+    "lib-tests": nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../lib/tests/release.nix")), nix.thunk(() => ({ [nix.POS]: $pos[13], pkgs: pkgs })))),
     "pkgs-lib": nix.thunk(() => nix.app(recurseIntoAttrs, nix.thunk(() => nix.app(callPackage, nix.path(here, "../pkgs-lib/tests"), nix.thunk(() => ({})))))),
     buildFHSEnv: nix.thunk(() => nix.app(recurseIntoAttrs, nix.thunk(() => nix.app(callPackages, nix.path(here, "./buildFHSEnv"), nix.thunk(() => ({})))))),
     "auto-patchelf-structured-log": nix.thunk(() => nix.app(callPackage, nix.path(here, "./auto-patchelf-structured-log"), nix.thunk(() => ({})))),
@@ -199,11 +186,11 @@ export default nix.lambda((args) => (() => {
     "auto-patchelf-hook-relativize-rpath": nix.thunk(() => nix.app(callPackage, nix.path(here, "./auto-patchelf-hook-relativize-rpath"), nix.thunk(() => ({})))),
     arrayUtilities: nix.thunk(() => nix.app(recurseIntoAttrs, nix.thunk(() => nix.app(concatMapAttrs, (name) => (value) => nix.app(optionalAttrs, nix.thunk(() => nix.has(value, "passthru", "tests")), nix.thunk(() => nix.attrsDyn({}, [[nix.force(name), nix.thunk(() => nix.sel(value, "passthru", "tests"))]]))), nix.thunk(() => nix.sel(pkgs, "arrayUtilities")))))),
     qt5: nix.thunk(() => nix.app(recurseIntoAttrs, nix.thunk(() => ({
-        [nix.POS]: pos$15,
+        [nix.POS]: $pos[14],
         wrapQtAppsHook: nix.thunk(() => nix.app(recurseIntoAttrs, nix.thunk(() => nix.sel(pkgs, "qt5", "wrapQtAppsHook", "passthru", "tests")))),
       })))),
     qt6: nix.thunk(() => nix.app(recurseIntoAttrs, nix.thunk(() => ({
-        [nix.POS]: pos$16,
+        [nix.POS]: $pos[15],
         wrapQtAppsHook: nix.thunk(() => nix.app(recurseIntoAttrs, nix.thunk(() => nix.sel(pkgs, "qt6", "wrapQtAppsHook", "passthru", "tests")))),
       })))),
     srcOnly: nix.thunk(() => nix.app(callPackage, nix.path(here, "../build-support/src-only/tests.nix"), nix.thunk(() => ({})))),

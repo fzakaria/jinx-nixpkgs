@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]], [["description", 97, 5], ["homepage", 98, 5], ["changelog", 99, 5], ["license", 100, 5], ["maintainers", 101, 5], ["mainProgram", 102, 5]], [["pname", 24, 3], ["version", 25, 3], ["pyproject", 26, 3], ["src", 28, 3], ["prePatch", 35, 3], ["pythonRelaxDeps", 43, 3], ["build-system", 48, 3], ["pythonRemoveDeps", 53, 3], ["dependencies", 57, 3], ["nativeCheckInputs", 71, 3], ["postInstall", 78, 3], ["pythonImportsCheck", 94, 3], ["meta", 96, 3]]]);
 const formals$1 = { args: { lib: false, appdirs: false, buildPythonPackage: false, doit: false, fetchFromGitHub: false, ftfy: false, mock: false, "pytest-order": false, pytestCheckHook: false, python: false, requests: false, setuptools: false, "setuptools-scm": false, tableauserverclient: false, "types-appdirs": false, "types-mock": false, "types-requests": false, "types-setuptools": false, urllib3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 97, 5], ["homepage", 98, 5], ["changelog", 99, 5], ["license", 100, 5], ["maintainers", 101, 5], ["mainProgram", 102, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 24, 3], ["version", 25, 3], ["pyproject", 26, 3], ["src", 28, 3], ["prePatch", 35, 3], ["pythonRelaxDeps", 43, 3], ["build-system", 48, 3], ["pythonRemoveDeps", 53, 3], ["dependencies", 57, 3], ["nativeCheckInputs", 71, 3], ["postInstall", 78, 3], ["pythonImportsCheck", 94, 3], ["meta", 96, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.0.20";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "tableau",
           repo: "tabcmd",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -73,7 +71,7 @@ chmod +x $out/bin/tabcmd
 `);
       const pythonImportsCheck = nix.thunk(() => ["tabcmd"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Command line client for working with Tableau Server",
         homepage: "https://github.com/tableau/tabcmd",
         changelog: nix.thunk(() => nix.str`https://github.com/tableau/tabcmd/releases/tag/v${version}`),
@@ -82,7 +80,7 @@ chmod +x $out/bin/tabcmd
         mainProgram: "tabcmd",
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

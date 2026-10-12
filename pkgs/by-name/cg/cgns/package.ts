@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]], [["url", 29, 7], ["hash", 30, 7]], [["moduleNames", 73, 5], ["package", 74, 5]], [["cmake-config", 72, 18]], [["tests", 72, 12]], [["description", 78, 5], ["homepage", 79, 5], ["downloadPage", 80, 5], ["changelog", 81, 5], ["license", 82, 5], ["platforms", 83, 5], ["maintainers", 84, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["patches", 26, 3], ["postPatch", 34, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 44, 3], ["cmakeFlags", 53, 3], ["doCheck", 63, 3], ["enableParallelChecking", 65, 3], ["postFixup", 68, 3], ["passthru", 72, 3], ["meta", 77, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch2: false, cmake: false, gfortran: false, tk: false, hdf5: false, libxmu: false, libGLU: false, withTools: true, testers: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 29, 7], ["hash", 30, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["moduleNames", 73, 5], ["package", 74, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["cmake-config", 72, 18]]);
-const pos$5 = nix.positions(here + "/package.nix", [["tests", 72, 12]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 78, 5], ["homepage", 79, 5], ["downloadPage", 80, 5], ["changelog", 81, 5], ["license", 82, 5], ["platforms", 83, 5], ["maintainers", 84, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["patches", 26, 3], ["postPatch", 34, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 44, 3], ["cmakeFlags", 53, 3], ["doCheck", 63, 3], ["enableParallelChecking", 65, 3], ["postFixup", 68, 3], ["passthru", 72, 3], ["meta", 77, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const withTools = nix.argOr($, "withTools", () => false);
   const testers = nix.arg($, "testers");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "cgns",
       version: "4.5.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "cgns",
           repo: "cgns",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -38,7 +32,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/CGNS/CGNS/commit/0ea14abf6da44f13ca8a01117ad7af8eb405394c.patch?full_index=1",
             hash: "sha256-dtwTD8YqRm0NCXTDPRHmaPLTU17ZLzOyVii1aoGYge0=",
           })))),
@@ -59,18 +53,18 @@ export default nix.lambda((args) => (() => {
       enableParallelChecking: false,
       postFixup: "rm -f $out/bin/*.desktop\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           "cmake-config": nix.thunk(() => nix.app(nix.sel(testers, "hasCmakeConfigModules"), nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               moduleNames: nix.thunk(() => ["cgns"]),
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "CFD General Notation System standard library",
         homepage: "https://cgns.github.io",
         downloadPage: "https://github.com/cgns/cgns",

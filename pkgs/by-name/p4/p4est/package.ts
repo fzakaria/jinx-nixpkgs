@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["mpi", 19, 43], ["mpiSupport", 19, 47], ["debug", 19, 58]], [["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]], [["pkg-config", 73, 18]], [["tests", 73, 12]], [["description", 76, 5], ["longDescription", 77, 5], ["homepage", 82, 5], ["downloadPage", 83, 5], ["pkgConfigModules", 84, 5], ["license", 85, 5], ["maintainers", 86, 5]], [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["strictDeps", 32, 3], ["postPatch", 34, 3], ["nativeBuildInputs", 41, 3], ["buildInputs", 47, 3], ["propagatedBuildInputs", 51, 3], ["configureFlags", 53, 3], ["doCheck", 65, 3], ["__darwinAllowLocalNetworking", 67, 3], ["nativeCheckInputs", 69, 3], ["passthru", 73, 3], ["meta", 75, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, autoreconfHook: false, "pkg-config": false, metis: false, "p4est-sc": false, mpi: false, mpiCheckPhaseHook: false, debug: true, withMetis: true, mpiSupport: true, testers: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["mpi", 19, 43], ["mpiSupport", 19, 47], ["debug", 19, 58]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pkg-config", 73, 18]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 73, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 76, 5], ["longDescription", 77, 5], ["homepage", 82, 5], ["downloadPage", 83, 5], ["pkgConfigModules", 84, 5], ["license", 85, 5], ["maintainers", 86, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["strictDeps", 32, 3], ["postPatch", 34, 3], ["nativeBuildInputs", 41, 3], ["buildInputs", 47, 3], ["propagatedBuildInputs", 51, 3], ["configureFlags", 53, 3], ["doCheck", 65, 3], ["__darwinAllowLocalNetworking", 67, 3], ["nativeCheckInputs", 69, 3], ["passthru", 73, 3], ["meta", 75, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,13 +20,13 @@ export default nix.lambda((args) => (() => {
   const withMetis = nix.argOr($, "withMetis", () => true);
   const mpiSupport = nix.argOr($, "mpiSupport", () => true);
   const testers = nix.arg($, "testers");
-  const p4est_sc$ = nix.thunk(() => nix.app(nix.sel(p4est_sc, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, mpi: mpi, mpiSupport: mpiSupport, debug: debug }))));
+  const p4est_sc$ = nix.thunk(() => nix.app(nix.sel(p4est_sc, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], mpi: mpi, mpiSupport: mpiSupport, debug: debug }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "p4est",
       version: "2.8.7",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "cburstedde",
           repo: "p4est",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -56,14 +51,14 @@ substituteInPlace Makefile.am \\
       __darwinAllowLocalNetworking: mpiSupport,
       nativeCheckInputs: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), mpiSupport, nix.thunk(() => [mpiCheckPhaseHook]))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "testMetaPkgConfig"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Parallel AMR on Forests of Octrees",
         longDescription: "The p4est software library provides algorithms for parallel AMR.\nAMR refers to Adaptive Mesh Refinement, a technique in scientific\ncomputing to cover the domain of a simulation with an adaptive mesh.\n",
         homepage: "https://www.p4est.org/",

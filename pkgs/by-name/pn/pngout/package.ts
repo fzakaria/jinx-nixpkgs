@@ -2,18 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["folder", 11, 7]], [["folder", 14, 7], ["ld-linux", 15, 7]], [["folder", 18, 7], ["ld-linux", 19, 7]], [["folder", 22, 7], ["ld-linux", 23, 7]], [["folder", 26, 7], ["ld-linux", 27, 7]], [["aarch64-darwin", 10, 5], ["aarch64-linux", 13, 5], ["armv7l-linux", 17, 5], ["i686-linux", 21, 5], ["x86_64-linux", 25, 5]], [["suffix", 36, 9], ["hash", 37, 9]], [["suffix", 41, 9], ["hash", 42, 9]], [["hash", 50, 24], ["url", 51, 5]], [["description", 68, 5], ["sourceProvenance", 69, 5], ["license", 70, 5], ["homepage", 71, 5], ["platforms", 72, 5], ["mainProgram", 73, 5]], [["pname", 46, 3], ["version", 47, 3], ["src", 49, 3], ["nativeBuildInputs", 54, 3], ["dontFixup", 57, 3], ["installPhase", 59, 3], ["meta", 67, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, unzip: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["folder", 11, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["folder", 14, 7], ["ld-linux", 15, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["folder", 18, 7], ["ld-linux", 19, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["folder", 22, 7], ["ld-linux", 23, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["folder", 26, 7], ["ld-linux", 27, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["aarch64-darwin", 10, 5], ["aarch64-linux", 13, 5], ["armv7l-linux", 17, 5], ["i686-linux", 21, 5], ["x86_64-linux", 25, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["suffix", 36, 9], ["hash", 37, 9]]);
-const pos$8 = nix.positions(here + "/package.nix", [["suffix", 41, 9], ["hash", 42, 9]]);
-const pos$9 = nix.positions(here + "/package.nix", [["hash", 50, 24], ["url", 51, 5]]);
-const pos$10 = nix.positions(here + "/package.nix", [["description", 68, 5], ["sourceProvenance", 69, 5], ["license", 70, 5], ["homepage", 71, 5], ["platforms", 72, 5], ["mainProgram", 73, 5]]);
-const pos$11 = nix.positions(here + "/package.nix", [["pname", 46, 3], ["version", 47, 3], ["src", 49, 3], ["nativeBuildInputs", 54, 3], ["dontFixup", 57, 3], ["installPhase", 59, 3], ["meta", 67, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,29 +12,29 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const unzip = nix.arg($, "unzip");
   const platforms = nix.thunk(() => ({
-    [nix.POS]: pos$6,
-    "aarch64-darwin": nix.thunk(() => ({ [nix.POS]: pos$1, folder: "." })),
-    "aarch64-linux": nix.thunk(() => ({ [nix.POS]: pos$2, folder: "aarch64", "ld-linux": "ld-linux-aarch64.so.1" })),
-    "armv7l-linux": nix.thunk(() => ({ [nix.POS]: pos$3, folder: "armv7", "ld-linux": "ld-linux-armhf.so.3" })),
-    "i686-linux": nix.thunk(() => ({ [nix.POS]: pos$4, folder: "i686", "ld-linux": "ld-linux.so.2" })),
-    "x86_64-linux": nix.thunk(() => ({ [nix.POS]: pos$5, folder: "amd64", "ld-linux": "ld-linux-x86-64.so.2" })),
+    [nix.POS]: $pos[5],
+    "aarch64-darwin": nix.thunk(() => ({ [nix.POS]: $pos[0], folder: "." })),
+    "aarch64-linux": nix.thunk(() => ({ [nix.POS]: $pos[1], folder: "aarch64", "ld-linux": "ld-linux-aarch64.so.1" })),
+    "armv7l-linux": nix.thunk(() => ({ [nix.POS]: $pos[2], folder: "armv7", "ld-linux": "ld-linux-armhf.so.3" })),
+    "i686-linux": nix.thunk(() => ({ [nix.POS]: $pos[3], folder: "i686", "ld-linux": "ld-linux.so.2" })),
+    "x86_64-linux": nix.thunk(() => ({ [nix.POS]: $pos[4], folder: "amd64", "ld-linux": "ld-linux-x86-64.so.2" })),
   }));
   const platform = nix.thunk(() => nix.selOr(platforms, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenv, "hostPlatform", "system")}`)), nix.key(nix.str`${nix.sel(stdenv, "hostPlatform", "system")}`)));
   const download = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? {
-    [nix.POS]: pos$7,
+    [nix.POS]: $pos[6],
     suffix: "20230322-mac.zip",
     hash: "sha256-Lj63k0UgYECuOg0NDs/prQHZL+UAK4oWdqZWMqVoQOE=",
   } : {
-    [nix.POS]: pos$8,
+    [nix.POS]: $pos[7],
     suffix: "20200115-linux.tar.gz",
     hash: "sha256-rDi7pvDeKQM96GZTjDr6ZDQTGbaVu+OI77xf2egw6Sg=",
   }));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$11,
+      [nix.POS]: $pos[10],
       pname: "pngout",
       version: "20230322",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           hash: nix.thunk(() => nix.attr(download, "hash")),
           url: nix.thunk(() => nix.str`https://www.jonof.id.au/files/kenutils/pngout-${nix.sel(download, "suffix")}`),
         })))),
@@ -55,7 +45,7 @@ cp ${nix.sel(platform, "folder")}/pngout $out/bin
 `, nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => nix.str`patchelf --set-interpreter ${nix.sel(stdenv, "cc", "libc")}/lib/${nix.sel(platform, "ld-linux")} $out/bin/pngout
 `)))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         description: "Tool that aggressively optimizes the sizes of PNG images",
         sourceProvenance: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "sourceTypes")), null);

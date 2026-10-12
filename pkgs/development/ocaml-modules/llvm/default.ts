@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["libllvm", 59, 13]], [["license", 63, 28], ["homepage", 63, 36], ["platforms", 64, 26], ["description", 65, 5], ["maintainers", 66, 5]], [["pname", 17, 3], ["version", 18, 11], ["src", 20, 21], ["nativeBuildInputs", 22, 3], ["buildInputs", 28, 3], ["propagatedBuildInputs", 29, 3], ["strictDeps", 31, 3], ["preConfigure", 33, 3], ["cmakeFlags", 37, 3], ["buildFlags", 44, 3], ["installFlags", 46, 3], ["postInstall", 51, 3], ["passthru", 58, 3], ["meta", 62, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, python3: false, cmake: false, libllvm: false, ocaml: false, findlib: false, ctypes: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["libllvm", 59, 13]]);
-const pos$2 = nix.positions(here + "/default.nix", [["license", 63, 28], ["homepage", 63, 36], ["platforms", 64, 26], ["description", 65, 5], ["maintainers", 66, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 17, 3], ["version", 18, 11], ["src", 20, 21], ["nativeBuildInputs", 22, 3], ["buildInputs", 28, 3], ["propagatedBuildInputs", 29, 3], ["strictDeps", 31, 3], ["preConfigure", 33, 3], ["cmakeFlags", 37, 3], ["buildFlags", 44, 3], ["installFlags", 46, 3], ["postInstall", 51, 3], ["passthru", 58, 3], ["meta", 62, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,7 +17,7 @@ export default nix.lambda((args) => (() => {
   const ctypes = nix.arg($, "ctypes");
   const version = nix.thunk(() => nix.app(nix.sel(lib, "getVersion"), libllvm));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "ocaml-llvm",
       version: version,
       src: nix.thunk(() => nix.attr(libllvm, "src")),
@@ -37,12 +35,12 @@ export default nix.lambda((args) => (() => {
       buildFlags: nix.thunk(() => ["ocaml_all"]),
       installFlags: nix.thunk(() => ["-C", "bindings/ocaml"]),
       postInstall: "mkdir -p $OCAMLFIND_DESTDIR/\nmv $out/ocaml $OCAMLFIND_DESTDIR/llvm\nmv $OCAMLFIND_DESTDIR/llvm/META{.llvm,}\nmv $OCAMLFIND_DESTDIR/llvm/stublibs $OCAMLFIND_DESTDIR/stublibs\n",
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$1, libllvm: libllvm })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[0], libllvm: libllvm })),
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(libllvm, "meta"));
         const from_1 = nix.thunk(() => nix.sel(ocaml, "meta"));
         return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         license: nix.thunk(() => nix.attr(from, "license")),
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         platforms: nix.thunk(() => nix.attr(from_1, "platforms")),

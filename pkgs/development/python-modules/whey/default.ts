@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]], [["all", 58, 5], ["editable", 59, 5], ["readme", 62, 5]], [["description", 77, 5], ["homepage", 78, 5], ["changelog", 79, 5], ["license", 80, 5], ["maintainers", 81, 5]], [["pname", 23, 3], ["version", 24, 3], ["pyproject", 25, 3], ["src", 27, 3], ["postPatch", 34, 3], ["build-system", 39, 3], ["dependencies", 41, 3], ["pythonImportsCheck", 55, 3], ["optional-dependencies", 57, 3], ["nativeCheckInputs", 69, 3], ["doCheck", 74, 3], ["meta", 76, 3]]]);
 const formals$1 = { args: { buildPythonPackage: false, fetchFromGitHub: false, lib: false, setuptools: false, attrs: false, click: false, consolekit: false, "dist-meta": false, docutils: false, "dom-toml": false, "domdf-python-tools": false, editables: false, "handy-archives": false, natsort: false, packaging: false, "pyproject-parser": false, pytestCheckHook: false, shippinglabel: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["all", 58, 5], ["editable", 59, 5], ["readme", 62, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 77, 5], ["homepage", 78, 5], ["changelog", 79, 5], ["license", 80, 5], ["maintainers", 81, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 23, 3], ["version", 24, 3], ["pyproject", 25, 3], ["src", 27, 3], ["postPatch", 34, 3], ["build-system", 39, 3], ["dependencies", 41, 3], ["pythonImportsCheck", 55, 3], ["optional-dependencies", 57, 3], ["nativeCheckInputs", 69, 3], ["doCheck", 74, 3], ["meta", 76, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.1.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "repo-helper",
           repo: "whey",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -56,7 +53,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const pythonImportsCheck = nix.thunk(() => ["whey"]);
       const optional_dependencies = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         all: nix.thunk(() => nix.app(nix.sel(lib, "concatAttrValues"), nix.thunk(() => nix.app(nix.sel(lib, "removeAttrs"), optional_dependencies, nix.thunk(() => ["all"]))))),
         editable: nix.thunk(() => [editables]),
         readme: nix.thunk(() => nix.concat([docutils, pyproject_parser], nix.sel(pyproject_parser, "optional-dependencies", "readme"))),
@@ -64,7 +61,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const doCheck = false;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Simple Python wheel builder for simple projects",
         homepage: "https://github.com/repo-helper/whey",
         changelog: nix.thunk(() => nix.str`https://github.com/repo-helper/whey/releases/tag/${nix.sel(src, "tag")}`),
@@ -75,7 +72,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

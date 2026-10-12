@@ -2,56 +2,37 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/olivetin.nix", [[["maintainers", 5, 8]], [["id", 13, 13], ["title", 14, 13], ["shell", 15, 13]], [["actions", 11, 9]], [["enable", 9, 7], ["settings", 10, 7], ["extraConfigFiles", 19, 7]], [["olivetin", 8, 14]], [["services", 8, 5]], [["machine", 7, 9]], [["ListenAddressSingleHTTPFrontend", 31, 32]], [["settings", 31, 23]], [["olivetin", 31, 14]], [["allowedTCPPorts", 32, 25]], [["firewall", 32, 16]], [["port", 36, 14]], [["port", 37, 15]], [["from", 35, 9], ["host", 36, 9], ["guest", 37, 9]], [["forwardPorts", 33, 20]], [["services", 31, 5], ["networking", 32, 5], ["virtualisation", 33, 5]], [["machine", 30, 21]], [["nodes", 30, 15]], [["name", 4, 3], ["meta", 5, 3], ["nodes", 7, 3], ["interactive", 30, 3], ["testScript", 42, 3]]]);
 const formals$1 = { args: { config: false, lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/olivetin.nix", [["maintainers", 5, 8]]);
-const pos$2 = nix.positions(here + "/olivetin.nix", [["id", 13, 13], ["title", 14, 13], ["shell", 15, 13]]);
-const pos$3 = nix.positions(here + "/olivetin.nix", [["actions", 11, 9]]);
-const pos$4 = nix.positions(here + "/olivetin.nix", [["enable", 9, 7], ["settings", 10, 7], ["extraConfigFiles", 19, 7]]);
-const pos$5 = nix.positions(here + "/olivetin.nix", [["olivetin", 8, 14]]);
-const pos$6 = nix.positions(here + "/olivetin.nix", [["services", 8, 5]]);
-const pos$7 = nix.positions(here + "/olivetin.nix", [["machine", 7, 9]]);
-const pos$8 = nix.positions(here + "/olivetin.nix", [["ListenAddressSingleHTTPFrontend", 31, 32]]);
-const pos$9 = nix.positions(here + "/olivetin.nix", [["settings", 31, 23]]);
-const pos$10 = nix.positions(here + "/olivetin.nix", [["olivetin", 31, 14]]);
-const pos$11 = nix.positions(here + "/olivetin.nix", [["allowedTCPPorts", 32, 25]]);
-const pos$12 = nix.positions(here + "/olivetin.nix", [["firewall", 32, 16]]);
-const pos$13 = nix.positions(here + "/olivetin.nix", [["port", 36, 14]]);
-const pos$14 = nix.positions(here + "/olivetin.nix", [["port", 37, 15]]);
-const pos$15 = nix.positions(here + "/olivetin.nix", [["from", 35, 9], ["host", 36, 9], ["guest", 37, 9]]);
-const pos$16 = nix.positions(here + "/olivetin.nix", [["forwardPorts", 33, 20]]);
-const pos$17 = nix.positions(here + "/olivetin.nix", [["services", 31, 5], ["networking", 32, 5], ["virtualisation", 33, 5]]);
-const pos$18 = nix.positions(here + "/olivetin.nix", [["machine", 30, 21]]);
-const pos$19 = nix.positions(here + "/olivetin.nix", [["nodes", 30, 15]]);
-const pos$20 = nix.positions(here + "/olivetin.nix", [["name", 4, 3], ["meta", 5, 3], ["nodes", 7, 3], ["interactive", 30, 3], ["testScript", 42, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const config = nix.arg($, "config");
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$20,
+    [nix.POS]: $pos[19],
     name: "olivetin",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "defelo"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       machine: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         services: nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           olivetin: nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             enable: true,
             settings: nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               actions: nix.thunk(() => [
                 nix.thunk(() => ({
-                  [nix.POS]: pos$2,
+                  [nix.POS]: $pos[1],
                   id: "hello_world",
                   title: "Say Hello",
                   shell: "echo -n 'Hello World!' | tee /tmp/result",
@@ -66,30 +47,30 @@ export default nix.lambda((args) => (() => {
       })),
     })),
     interactive: nix.thunk(() => ({
-      [nix.POS]: pos$19,
+      [nix.POS]: $pos[18],
       nodes: nix.thunk(() => ({
-        [nix.POS]: pos$18,
+        [nix.POS]: $pos[17],
         machine: nix.thunk(() => ({
-          [nix.POS]: pos$17,
+          [nix.POS]: $pos[16],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$10,
+            [nix.POS]: $pos[9],
             olivetin: nix.thunk(() => ({
-              [nix.POS]: pos$9,
-              settings: nix.thunk(() => ({ [nix.POS]: pos$8, ListenAddressSingleHTTPFrontend: "0.0.0.0:8000" })),
+              [nix.POS]: $pos[8],
+              settings: nix.thunk(() => ({ [nix.POS]: $pos[7], ListenAddressSingleHTTPFrontend: "0.0.0.0:8000" })),
             })),
           })),
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$12,
-            firewall: nix.thunk(() => ({ [nix.POS]: pos$11, allowedTCPPorts: nix.thunk(() => [8000n]) })),
+            [nix.POS]: $pos[11],
+            firewall: nix.thunk(() => ({ [nix.POS]: $pos[10], allowedTCPPorts: nix.thunk(() => [8000n]) })),
           })),
           virtualisation: nix.thunk(() => ({
-            [nix.POS]: pos$16,
+            [nix.POS]: $pos[15],
             forwardPorts: nix.thunk(() => [
               nix.thunk(() => ({
-                [nix.POS]: pos$15,
+                [nix.POS]: $pos[14],
                 from: "host",
-                host: nix.thunk(() => ({ [nix.POS]: pos$13, port: 8000n })),
-                guest: nix.thunk(() => ({ [nix.POS]: pos$14, port: 8000n })),
+                host: nix.thunk(() => ({ [nix.POS]: $pos[12], port: 8000n })),
+                guest: nix.thunk(() => ({ [nix.POS]: $pos[13], port: 8000n })),
               })),
             ]),
           })),

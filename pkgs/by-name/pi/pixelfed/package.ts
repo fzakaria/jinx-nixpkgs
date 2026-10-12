@@ -2,13 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]], [["standard", 41, 45]], [["tests", 41, 5], ["updateScript", 42, 5]], [["description", 46, 5], ["license", 47, 5], ["homepage", 48, 5], ["teams", 49, 5], ["platforms", 50, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["vendorHash", 24, 3], ["postInstall", 26, 3], ["passthru", 40, 3], ["meta", 45, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, php: false, nixosTests: false, "nix-update-script": false, dataDir: true, runtimeDir: true }, ellipsis: false };
 const formals$2 = { args: { enabled: false, all: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["standard", 41, 45]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 41, 5], ["updateScript", 42, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 46, 5], ["license", 47, 5], ["homepage", 48, 5], ["teams", 49, 5], ["platforms", 50, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["vendorHash", 24, 3], ["postInstall", 26, 3], ["passthru", 40, 3], ["meta", 45, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,11 +25,11 @@ export default nix.lambda((args) => (() => {
       })());
     })(), formals$2)));
   return nix.app(nix.sel(php$, "buildComposerProject2"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "pixelfed",
       version: "0.12.9",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "pixelfed",
           repo: "pixelfed",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -53,15 +49,15 @@ ln -s ${runtimeDir} $out/bootstrap
 chmod +x $out/artisan
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(nixosTests, "pixelfed"));
-          return { [nix.POS]: pos$2, standard: nix.thunk(() => nix.attr(from, "standard")) };
+          return { [nix.POS]: $pos[1], standard: nix.thunk(() => nix.attr(from, "standard")) };
         })()),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Federated image sharing platform",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),
         homepage: "https://pixelfed.org/",

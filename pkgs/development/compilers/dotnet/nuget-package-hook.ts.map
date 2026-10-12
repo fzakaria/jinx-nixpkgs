@@ -1,1 +1,1 @@
-{"version":3,"file":"nuget-package-hook.ts","sources":["../../../../../../../../../../nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/development/compilers/dotnet/nuget-package-hook.nix"],"names":[],"mappings":";;;;;;;;;eAAA;;;;;;;;SAQA,wCAAc;;YACL;sCACS;;;;;;;6BAIhB,6CAAkB;SAClB"}
+{"version":3,"file":"nuget-package-hook.ts","sources":["../../../../../../../../../../nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/development/compilers/dotnet/nuget-package-hook.nix"],"names":[],"mappings":";;;;;;;eAAA;;;;;;;;SAQA,wCAAc;;YACL;sCACS;;;;;;;6BAIhB;;iCAAkB;;SAClB"}

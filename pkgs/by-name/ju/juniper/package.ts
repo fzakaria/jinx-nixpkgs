@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]], [["description", 25, 5], ["longDescription", 26, 5], ["homepage", 34, 5], ["license", 35, 5], ["maintainers", 36, 5], ["mainProgram", 37, 5], ["platforms", 38, 31]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["projectFile", 19, 3], ["nugetDeps", 20, 3], ["dotnet-sdk", 21, 3], ["dotnet-runtime", 22, 3], ["meta", 24, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, buildDotnetModule: false, dotnetCorePackages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 25, 5], ["longDescription", 26, 5], ["homepage", 34, 5], ["license", 35, 5], ["maintainers", 36, 5], ["mainProgram", 37, 5], ["platforms", 38, 31]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["projectFile", 19, 3], ["nugetDeps", 20, 3], ["dotnet-sdk", 21, 3], ["dotnet-runtime", 22, 3], ["meta", 24, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,7 +15,7 @@ export default nix.lambda((args) => (() => {
       const pname = "juniper";
       const version = "4.0.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "calebh",
           repo: "Juniper",
           rev: "286050d6be5606db0973feda556d8fbc48b4566c",
@@ -30,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const meta = nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(dotnet_sdk, "meta"));
         return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Functional reactive programming language for programming Arduino",
         longDescription: "The purpose of Juniper is to provide a functional reactive programming\nplatform for designing Arduino projects. FRP's high-level approach to\ntiming-based events fits naturally with Arduino, with which programming\nalmost entirely revolves around reacting to realtime events. Juniper\ntranspiles to Arduino C++, which is then compiled to an Arduino\nexecutable.\n",
         homepage: "https://www.juniper-lang.org/",
@@ -44,7 +42,7 @@ export default nix.lambda((args) => (() => {
       };
       })());
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

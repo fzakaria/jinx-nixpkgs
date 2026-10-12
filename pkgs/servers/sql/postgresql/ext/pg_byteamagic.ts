@@ -2,14 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/pg_byteamagic.nix", [[["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]], [["query", 34, 11], ["expected", 35, 11], ["description", 36, 11]], [["finalPackage", 27, 28], ["sql", 28, 7], ["asserts", 32, 7]], [["extension", 26, 5]], [["tests", 25, 12]], [["description", 43, 5], ["homepage", 44, 5], ["changelog", 45, 5], ["license", 46, 5], ["maintainers", 47, 5], ["platforms", 51, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["buildInputs", 21, 3], ["passthru", 25, 3], ["meta", 42, 3]]]);
 const formals$1 = { args: { fetchFromGitHub: false, file: false, lib: false, postgresql: false, postgresqlBuildExtension: false, postgresqlTestExtension: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/pg_byteamagic.nix", [["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/pg_byteamagic.nix", [["query", 34, 11], ["expected", 35, 11], ["description", 36, 11]]);
-const pos$3 = nix.positions(here + "/pg_byteamagic.nix", [["finalPackage", 27, 28], ["sql", 28, 7], ["asserts", 32, 7]]);
-const pos$4 = nix.positions(here + "/pg_byteamagic.nix", [["extension", 26, 5]]);
-const pos$5 = nix.positions(here + "/pg_byteamagic.nix", [["tests", 25, 12]]);
-const pos$6 = nix.positions(here + "/pg_byteamagic.nix", [["description", 43, 5], ["homepage", 44, 5], ["changelog", 45, 5], ["license", 46, 5], ["maintainers", 47, 5], ["platforms", 51, 5]]);
-const pos$7 = nix.positions(here + "/pg_byteamagic.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["buildInputs", 21, 3], ["passthru", 25, 3], ["meta", 42, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const postgresqlBuildExtension = nix.arg($, "postgresqlBuildExtension");
   const postgresqlTestExtension = nix.arg($, "postgresqlTestExtension");
   return nix.app(postgresqlBuildExtension, (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "pg_byteamagic",
       version: "0.2.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "nmandery",
           repo: "pg_byteamagic",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -32,16 +26,16 @@ export default nix.lambda((args) => (() => {
         })))),
       buildInputs: nix.thunk(() => [file]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           extension: nix.thunk(() => nix.app(postgresqlTestExtension, nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               finalPackage: nix.thunk(() => nix.attr(finalAttrs, "finalPackage")),
               sql: "CREATE EXTENSION byteamagic;\nSELECT byteamagic_mime('test');\n",
               asserts: nix.thunk(() => [
                 nix.thunk(() => ({
-                  [nix.POS]: pos$2,
+                  [nix.POS]: $pos[1],
                   query: "SELECT byteamagic_mime('test')",
                   expected: "'text/plain'",
                   description: "`byteamagic_mime(...) should return proper mimetype.",
@@ -51,7 +45,7 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "PostgreSQL extension to determinate the filetypes of bytea BLOBs",
         homepage: "https://github.com/nmandery/pg_byteamagic",
         changelog: nix.thunk(() => nix.str`https://raw.githubusercontent.com/nmandery/pg_byteamagic/refs/tags/v${nix.sel(finalAttrs, "version")}/Changes`),

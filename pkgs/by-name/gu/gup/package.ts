@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["hash", 14, 5], ["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5]], [["updateScript", 32, 12]], [["homepage", 51, 24], ["description", 52, 5], ["license", 53, 5], ["maintainers", 54, 5], ["platforms", 55, 5]], [["version", 12, 3], ["src", 13, 3], ["pname", 19, 3], ["nativeBuildInputs", 20, 3], ["buildInputs", 25, 3], ["strictDeps", 26, 3], ["buildPhase", 27, 3], ["installPhase", 28, 3], ["passthru", 32, 3], ["meta", 50, 3]]]);
 const formals$1 = { args: { stdenv: false, fetchFromGitHub: false, "nix-update-source": false, lib: false, python3: false, which: false, runtimeShell: false, pylint: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["hash", 14, 5], ["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 32, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 51, 24], ["description", 52, 5], ["license", 53, 5], ["maintainers", 54, 5], ["platforms", 55, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["version", 12, 3], ["src", 13, 3], ["pname", 19, 3], ["nativeBuildInputs", 20, 3], ["buildInputs", 25, 3], ["strictDeps", 26, 3], ["buildPhase", 27, 3], ["installPhase", 28, 3], ["passthru", 32, 3], ["meta", 50, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,7 +18,7 @@ export default nix.lambda((args) => (() => {
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => (() => {
       const version = "0.9.2";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           hash: "sha256-bV5HauM0xmRI/9Pxp1cYLPLA8PbFvPER2y4mAMmgchs=",
           owner: "timbertson",
           repo: "gup",
@@ -34,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const buildPhase = "make python";
       const installPhase = "mkdir $out\ncp -r python/bin $out/bin\n";
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => [
           runtimeShell,
           "-c",
@@ -56,7 +53,7 @@ ${nix_update_source}/bin/nix-update-source \\
       const meta = nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(src, "meta"));
         return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         description: "Better make, inspired by djb's redo",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl2Plus")),
@@ -65,7 +62,7 @@ ${nix_update_source}/bin/nix-update-source \\
       };
       })());
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         version,
         src,
         pname,

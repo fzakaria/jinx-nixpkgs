@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 52, 5], ["repo", 53, 5], ["tag", 54, 5], ["hash", 55, 5]], [["RUSTC_BOOTSTRAP", 77, 7]], [["patchVoxygen", 85, 13], ["patchServer", 85, 26], ["runtimeLibs", 86, 5]], [["description", 130, 5], ["mainProgram", 131, 5], ["homepage", 132, 5], ["license", 133, 5], ["maintainers", 134, 5]], [["pname", 48, 3], ["version", 49, 3], ["src", 51, 3], ["cargoHash", 58, 3], ["buildInputs", 60, 3], ["nativeBuildInputs", 72, 3], ["env", 77, 3], ["postInstall", 79, 3], ["passthru", 84, 3], ["postFixup", 103, 3], ["doCheck", 119, 3], ["cargoBuildFlags", 120, 3], ["cargoTestFlags", 124, 3], ["meta", 129, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchFromGitLab: false, openssl: false, libGL: false, "vulkan-loader": false, wayland: false, "wayland-protocols": false, libxkbcommon: false, libx11: false, libxrandr: false, libxi: false, libxcursor: false, udev: false, "alsa-lib": false, stdenv: false, libxcb: false, "pkg-config": false, makeWrapper: false, writeShellScript: false, patchelf: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 52, 5], ["repo", 53, 5], ["tag", 54, 5], ["hash", 55, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["RUSTC_BOOTSTRAP", 77, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["patchVoxygen", 85, 13], ["patchServer", 85, 26], ["runtimeLibs", 86, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 130, 5], ["mainProgram", 131, 5], ["homepage", 132, 5], ["license", 133, 5], ["maintainers", 134, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 48, 3], ["version", 49, 3], ["src", 51, 3], ["cargoHash", 58, 3], ["buildInputs", 60, 3], ["nativeBuildInputs", 72, 3], ["env", 77, 3], ["postInstall", 79, 3], ["passthru", 84, 3], ["postFixup", 103, 3], ["doCheck", 119, 3], ["cargoBuildFlags", 120, 3], ["cargoTestFlags", 124, 3], ["meta", 129, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -48,11 +44,11 @@ ${patchelf}/bin/patchelf \\
   veloren-server-cli
 `)));
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "airshipper",
       version: "0.17.0",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Veloren",
           repo: "airshipper",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -72,10 +68,10 @@ ${patchelf}/bin/patchelf \\
         libGL,
       ]),
       nativeBuildInputs: nix.thunk(() => [pkg_config, makeWrapper]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, RUSTC_BOOTSTRAP: 1n })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], RUSTC_BOOTSTRAP: 1n })),
       postInstall: "install -Dm444 -t \"$out/share/applications\" \"client/assets/net.veloren.airshipper.desktop\"\ninstall -Dm444    \"client/assets/net.veloren.airshipper.png\"  \"$out/share/icons/net.veloren.airshipper.png\"\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         patchVoxygen: patchVoxygen,
         patchServer: patchServer,
         runtimeLibs: nix.thunk(() => [
@@ -107,7 +103,7 @@ wrapProgram "$out/bin/airshipper" \\
       cargoBuildFlags: nix.thunk(() => ["--package", "airshipper"]),
       cargoTestFlags: nix.thunk(() => ["--package", "airshipper"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Provides automatic updates for the voxel RPG Veloren",
         mainProgram: "airshipper",
         homepage: "https://www.veloren.net",

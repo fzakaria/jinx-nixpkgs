@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]], [["name", 28, 7], ["url", 29, 7], ["hash", 30, 7]], [["ffmpeg", 34, 7], ["ffplay", 35, 7], ["ffprobe", 36, 7]], [["description", 57, 5], ["homepage", 58, 5], ["changelog", 59, 5], ["license", 60, 5], ["maintainers", 61, 5]], [["pname", 14, 3], ["version", 15, 3], ["pyproject", 16, 3], ["src", 18, 3], ["patches", 25, 3], ["nativeBuildInputs", 40, 3], ["dependencies", 42, 3], ["nativeCheckInputs", 44, 3], ["pythonImportsCheck", 48, 3], ["enabledTestPaths", 54, 3], ["meta", 56, 3]]]);
 const formals$1 = { args: { lib: false, "audioop-lts": false, buildPythonPackage: false, fetchFromGitHub: false, fetchpatch: false, ffmpeg: false, pytestCheckHook: false, setuptools: false, replaceVars: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["name", 28, 7], ["url", 29, 7], ["hash", 30, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["ffmpeg", 34, 7], ["ffplay", 35, 7], ["ffprobe", 36, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 57, 5], ["homepage", 58, 5], ["changelog", 59, 5], ["license", 60, 5], ["maintainers", 61, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 14, 3], ["version", 15, 3], ["pyproject", 16, 3], ["src", 18, 3], ["patches", 25, 3], ["nativeBuildInputs", 40, 3], ["dependencies", 42, 3], ["nativeCheckInputs", 44, 3], ["pythonImportsCheck", 48, 3], ["enabledTestPaths", 54, 3], ["meta", 56, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.25.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "jiaaro",
           repo: "pydub",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -33,13 +29,13 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "fix-assertions.patch",
             url: "https://github.com/jiaaro/pydub/commit/66c1bf7813ae8621a71484fdcdf609734c0d8efd.patch",
             hash: "sha256-3OIzvTgGK3r4/s5y7izHvouB4uJEmjO6cgKvegtTf7A=",
           })))),
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./ffmpeg-fix-path.patch"), nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             ffmpeg: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), ffmpeg)),
             ffplay: nix.thunk(() => nix.app(nix.sel(lib, "getExe'"), ffmpeg, "ffplay")),
             ffprobe: nix.thunk(() => nix.app(nix.sel(lib, "getExe'"), ffmpeg, "ffprobe")),
@@ -51,7 +47,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["pydub", "pydub.audio_segment", "pydub.playback"]);
       const enabledTestPaths = nix.thunk(() => ["test/test.py"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Manipulate audio with a simple and easy high level interface",
         homepage: "http://pydub.com",
         changelog: nix.thunk(() => nix.str`https://github.com/jiaaro/pydub/blob/v${version}/CHANGELOG.md`),
@@ -59,7 +55,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         pyproject,

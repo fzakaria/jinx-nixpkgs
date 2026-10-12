@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 21, 5], ["version", 22, 13], ["url", 23, 5], ["hash", 24, 5]], [["owner", 32, 5], ["repo", 33, 5], ["tag", 34, 5], ["hash", 35, 5]], [["description", 66, 5], ["homepage", 67, 5], ["changelog", 68, 5], ["sourceProvenance", 69, 5], ["license", 73, 5], ["platforms", 74, 5], ["maintainers", 75, 5], ["mainProgram", 79, 5]], [["pname", 28, 3], ["version", 29, 11], ["src", 31, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 46, 3], ["preConfigure", 53, 3], ["postInstall", 57, 3], ["meta", 65, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, fetchFromGitHub: false, makeWrapper: false, meson: false, ninja: false, "pkg-config": false, installShellFiles: false, "android-tools": false, ffmpeg: false, libusb1: false, sdl3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 21, 5], ["version", 22, 13], ["url", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 32, 5], ["repo", 33, 5], ["tag", 34, 5], ["hash", 35, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 66, 5], ["homepage", 67, 5], ["changelog", 68, 5], ["sourceProvenance", 69, 5], ["license", 73, 5], ["platforms", 74, 5], ["maintainers", 75, 5], ["mainProgram", 79, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 28, 3], ["version", 29, 11], ["src", 31, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 46, 3], ["preConfigure", 53, 3], ["postInstall", 57, 3], ["meta", 65, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,7 +22,7 @@ export default nix.lambda((args) => (() => {
   const sdl3 = nix.arg($, "sdl3");
   const version = "4.1";
   const prebuilt_server = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: "scrcpy-server",
       version: version,
       url: nix.thunk(() => nix.str`https://github.com/Genymobile/scrcpy/releases/download/v${version}/scrcpy-server-v${version}`),
@@ -35,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const pname = "scrcpy";
       const version_1 = version;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "Genymobile",
           repo: "scrcpy",
           tag: nix.thunk(() => nix.str`v${version_1}`),
@@ -51,7 +48,7 @@ ln -s "${prebuilt_server}" "$out/share/scrcpy/scrcpy-server"
 wrapProgram "$out/bin/scrcpy" --prefix PATH : "${android_tools}/bin"
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Display and control Android devices over USB or TCP/IP",
         homepage: "https://github.com/Genymobile/scrcpy",
         changelog: nix.thunk(() => nix.str`https://github.com/Genymobile/scrcpy/releases/tag/v${version_1}`),
@@ -74,7 +71,7 @@ wrapProgram "$out/bin/scrcpy" --prefix PATH : "${android_tools}/bin"
         mainProgram: "scrcpy",
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version: version_1,
         src,

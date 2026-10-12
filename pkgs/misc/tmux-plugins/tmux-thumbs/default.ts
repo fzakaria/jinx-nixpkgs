@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["tmuxThumbsDir", 16, 7]], [["version", 9, 20], ["src", 9, 28], ["meta", 9, 32], ["pluginName", 11, 3], ["rtpFilePath", 12, 3], ["patches", 14, 3]]]);
 const formals$1 = { args: { mkTmuxPlugin: false, thumbs: false, replaceVars: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["tmuxThumbsDir", 16, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["version", 9, 20], ["src", 9, 28], ["meta", 9, 32], ["pluginName", 11, 3], ["rtpFilePath", 12, 3], ["patches", 14, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -12,14 +11,14 @@ export default nix.lambda((args) => (() => {
   const thumbs = nix.arg($, "thumbs");
   const replaceVars = nix.arg($, "replaceVars");
   return nix.app(mkTmuxPlugin, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       version: nix.thunk(() => nix.attr(thumbs, "version")),
       src: nix.thunk(() => nix.attr(thumbs, "src")),
       meta: nix.thunk(() => nix.attr(thumbs, "meta")),
       pluginName: nix.thunk(() => nix.sel(thumbs, "src", "repo")),
       rtpFilePath: "tmux-thumbs.tmux",
       patches: nix.thunk(() => [
-        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix.patch"), nix.thunk(() => ({ [nix.POS]: pos$1, tmuxThumbsDir: nix.thunk(() => nix.str`${thumbs}/bin`) })))),
+        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix.patch"), nix.thunk(() => ({ [nix.POS]: $pos[0], tmuxThumbsDir: nix.thunk(() => nix.str`${thumbs}/bin`) })))),
       ]),
     })));
 })(), formals$1);

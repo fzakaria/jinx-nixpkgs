@@ -2,46 +2,38 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/accountsservice.nix", [[["systemPackages", 9, 19]], [["enable", 11, 32]], [["accounts-daemon", 11, 16]], [["isNormalUser", 14, 9], ["description", 15, 9]], [["alice", 13, 19]], [["users", 13, 13]], [["environment", 9, 7], ["services", 11, 7], ["users", 13, 7]], [["machine", 6, 9]], [["name", 4, 3], ["nodes", 6, 3], ["testScript", 19, 3]]]);
 const formals$1 = { args: {  }, ellipsis: true };
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/accountsservice.nix", [["systemPackages", 9, 19]]);
-const pos$2 = nix.positions(here + "/accountsservice.nix", [["enable", 11, 32]]);
-const pos$3 = nix.positions(here + "/accountsservice.nix", [["accounts-daemon", 11, 16]]);
-const pos$4 = nix.positions(here + "/accountsservice.nix", [["isNormalUser", 14, 9], ["description", 15, 9]]);
-const pos$5 = nix.positions(here + "/accountsservice.nix", [["alice", 13, 19]]);
-const pos$6 = nix.positions(here + "/accountsservice.nix", [["users", 13, 13]]);
-const pos$7 = nix.positions(here + "/accountsservice.nix", [["environment", 9, 7], ["services", 11, 7], ["users", 13, 7]]);
-const pos$8 = nix.positions(here + "/accountsservice.nix", [["machine", 6, 9]]);
-const pos$9 = nix.positions(here + "/accountsservice.nix", [["name", 4, 3], ["nodes", 6, 3], ["testScript", 19, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   return {
-    [nix.POS]: pos$9,
+    [nix.POS]: $pos[8],
     name: "accountsservice",
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             systemPackages: nix.thunk(() => (() => {
               const w = nix.withScope(pkgs, null);
               return [nix.thunk(() => nix.lookup(w, "jq"))];
             })()),
           })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$3,
-            "accounts-daemon": nix.thunk(() => ({ [nix.POS]: pos$2, enable: true })),
+            [nix.POS]: $pos[2],
+            "accounts-daemon": nix.thunk(() => ({ [nix.POS]: $pos[1], enable: true })),
           })),
           users: nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             users: nix.thunk(() => ({
-              [nix.POS]: pos$5,
-              alice: nix.thunk(() => ({ [nix.POS]: pos$4, isNormalUser: true, description: "Alice" })),
+              [nix.POS]: $pos[4],
+              alice: nix.thunk(() => ({ [nix.POS]: $pos[3], isNormalUser: true, description: "Alice" })),
             })),
           })),
         };

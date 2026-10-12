@@ -2,16 +2,15 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/mtrace.nix", [[["description", 38, 5], ["mainProgram", 39, 5]], [["pname", 12, 3], ["buildPhase", 14, 3], ["installPhase", 23, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 31, 3], ["outputs", 34, 3], ["separateDebugInfo", 35, 3], ["meta", 37, 3]]]);
 const formals$1 = { args: { glibc: false, perl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/mtrace.nix", [["description", 38, 5], ["mainProgram", 39, 5]]);
-const pos$2 = nix.positions(here + "/mtrace.nix", [["pname", 12, 3], ["buildPhase", 14, 3], ["installPhase", 23, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 31, 3], ["outputs", 34, 3], ["separateDebugInfo", 35, 3], ["meta", 37, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const glibc = nix.arg($, "glibc");
   const perl = nix.arg($, "perl");
   return nix.app(nix.sel(glibc, "overrideAttrs"), (oldAttrs) => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "glibc-mtrace",
       buildPhase: "runHook preBuild\n\nmkdir malloc\nmake -C ../malloc objdir=`pwd` `pwd`/malloc/mtrace;\n\nrunHook postBuild\n",
       installPhase: "mkdir -p $out/bin\nmv malloc/mtrace $out/bin/\n",
@@ -20,7 +19,7 @@ export default nix.lambda((args) => (() => {
       outputs: nix.thunk(() => ["out"]),
       separateDebugInfo: false,
       meta: nix.thunk(() => nix.update(nix.sel(oldAttrs, "meta"), {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Perl script used to interpret and provide human readable output of the trace log contained in the file mtracedata, whose contents were produced by mtrace(3)",
         mainProgram: "mtrace",
       })),

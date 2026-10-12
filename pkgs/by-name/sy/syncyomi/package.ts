@@ -2,16 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 9], ["repo", 21, 9], ["tag", 22, 9], ["hash", 23, 9]], [["version", 18, 7], ["src", 19, 7], ["vendorHash", 25, 7]], [["owner", 34, 5], ["repo", 35, 5], ["tag", 36, 5], ["hash", 37, 5]], [["pname", 49, 9], ["version", 50, 9], ["src", 51, 9], ["sourceRoot", 52, 9], ["pnpm", 54, 7], ["fetcherVersion", 55, 7], ["hash", 56, 7]], [["ESBUILD_BINARY_PATH", 65, 9]], [["pname", 43, 5], ["src", 44, 26], ["version", 44, 30], ["sourceRoot", 45, 5], ["pnpmDeps", 47, 5], ["nativeBuildInputs", 59, 5], ["env", 65, 5], ["buildPhase", 67, 5], ["installPhase", 73, 5]], [["updateScript", 100, 12]], [["description", 103, 5], ["homepage", 104, 5], ["changelog", 105, 5], ["license", 106, 5], ["maintainers", 107, 5], ["mainProgram", 111, 5], ["platforms", 112, 5]], [["pname", 30, 3], ["version", 31, 3], ["src", 33, 3], ["vendorHash", 40, 3], ["web", 42, 3], ["preConfigure", 80, 3], ["nativeCheckInputs", 84, 3], ["preCheck", 86, 3], ["ldflags", 90, 3], ["postInstall", 96, 3], ["passthru", 100, 3], ["meta", 102, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchFromGitHub: false, "iana-etc": false, libredirect: false, buildGoModule: false, nodejs: false, pnpm_10: false, fetchPnpmDeps: false, pnpmConfigHook: false, esbuild: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 9], ["repo", 21, 9], ["tag", 22, 9], ["hash", 23, 9]]);
-const pos$2 = nix.positions(here + "/package.nix", [["version", 18, 7], ["src", 19, 7], ["vendorHash", 25, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["owner", 34, 5], ["repo", 35, 5], ["tag", 36, 5], ["hash", 37, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 49, 9], ["version", 50, 9], ["src", 51, 9], ["sourceRoot", 52, 9], ["pnpm", 54, 7], ["fetcherVersion", 55, 7], ["hash", 56, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["ESBUILD_BINARY_PATH", 65, 9]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 43, 5], ["src", 44, 26], ["version", 44, 30], ["sourceRoot", 45, 5], ["pnpmDeps", 47, 5], ["nativeBuildInputs", 59, 5], ["env", 65, 5], ["buildPhase", 67, 5], ["installPhase", 73, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["updateScript", 100, 12]]);
-const pos$8 = nix.positions(here + "/package.nix", [["description", 103, 5], ["homepage", 104, 5], ["changelog", 105, 5], ["license", 106, 5], ["maintainers", 107, 5], ["mainProgram", 111, 5], ["platforms", 112, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["pname", 30, 3], ["version", 31, 3], ["src", 33, 3], ["vendorHash", 40, 3], ["web", 42, 3], ["preConfigure", 80, 3], ["nativeCheckInputs", 84, 3], ["preCheck", 86, 3], ["ldflags", 90, 3], ["postInstall", 96, 3], ["passthru", 100, 3], ["meta", 102, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,10 +20,10 @@ export default nix.lambda((args) => (() => {
   const esbuild = nix.arg($, "esbuild");
   const nix_update_script = nix.arg($, "nix-update-script");
   const lockedEsbuild = nix.thunk(() => nix.app(nix.sel(esbuild, "overrideAttrs"), (finalAttrs) => (prevAttrs) => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       version: "0.21.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "evanw",
           repo: "esbuild",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -40,11 +32,11 @@ export default nix.lambda((args) => (() => {
       vendorHash: "sha256-+BfxCyg0KkDQpHt/wycy/8CTG6YBA/VJvJFhhzUnSiQ=",
     })));
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       pname: "syncyomi",
       version: "1.1.8",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           owner: "SyncYomi",
           repo: "SyncYomi",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -52,13 +44,13 @@ export default nix.lambda((args) => (() => {
         })))),
       vendorHash: "sha256-7AySGQBQHaTp2M1uj5581ZqcpzgexI1KvanWMOc6rx0=",
       web: nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (webFinalAttrs) => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           pname: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-web`),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           sourceRoot: nix.thunk(() => nix.str`${nix.sel(webFinalAttrs, "src", "name")}/web`),
           pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               pname: nix.thunk(() => nix.attr(webFinalAttrs, "pname")),
               version: nix.thunk(() => nix.attr(webFinalAttrs, "version")),
               src: nix.thunk(() => nix.attr(webFinalAttrs, "src")),
@@ -69,7 +61,7 @@ export default nix.lambda((args) => (() => {
             })))),
           nativeBuildInputs: nix.thunk(() => [nodejs, pnpmConfigHook, pnpm_10]),
           env: nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             ESBUILD_BINARY_PATH: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), lockedEsbuild)),
           })),
           buildPhase: "runHook preBuild\npnpm build\nrunHook postBuild\n",
@@ -86,11 +78,11 @@ export default nix.lambda((args) => (() => {
       ]),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(nix.sel(stdenvNoCC, "hostPlatform", "isDarwin"))), "mv $out/bin/SyncYomi $out/bin/syncyomi\n")),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         description: "Open-source project to synchronize Tachiyomi manga reading progress and library across multiple devices",
         homepage: "https://github.com/SyncYomi/SyncYomi",
         changelog: nix.thunk(() => nix.str`https://github.com/SyncYomi/SyncYomi/releases/tag/v${nix.sel(finalAttrs, "version")}`),

@@ -2,18 +2,9 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/avahi.nix", [[["maintainers", 12, 8]], [["addresses", 22, 21], ["domain", 23, 21], ["enable", 24, 21], ["userServices", 25, 21], ["workstation", 26, 21]], [["ssh", 27, 31]], [["enable", 20, 13], ["nssmdns4", 21, 13], ["publish", 22, 13], ["extraServiceFiles", 27, 13], ["debug", 28, 13]], [["avahi", 19, 20]], [["services", 19, 11]], [["useNetworkd", 33, 13], ["useDHCP", 34, 13]], [["networking", 32, 11]], [["one", 39, 7], ["two", 40, 7]], [["name", 11, 3], ["meta", 12, 3], ["nodes", 14, 3], ["testScript", 43, 3]]]);
 const formals$1 = { args: { lib: false, pkgs: false, networkd: true }, ellipsis: true };
-const pos$1 = nix.positions(here + "/avahi.nix", [["maintainers", 12, 8]]);
 const formals$2 = { args: {  }, ellipsis: true };
-const pos$2 = nix.positions(here + "/avahi.nix", [["addresses", 22, 21], ["domain", 23, 21], ["enable", 24, 21], ["userServices", 25, 21], ["workstation", 26, 21]]);
-const pos$3 = nix.positions(here + "/avahi.nix", [["ssh", 27, 31]]);
-const pos$4 = nix.positions(here + "/avahi.nix", [["enable", 20, 13], ["nssmdns4", 21, 13], ["publish", 22, 13], ["extraServiceFiles", 27, 13], ["debug", 28, 13]]);
-const pos$5 = nix.positions(here + "/avahi.nix", [["avahi", 19, 20]]);
-const pos$6 = nix.positions(here + "/avahi.nix", [["services", 19, 11]]);
-const pos$7 = nix.positions(here + "/avahi.nix", [["useNetworkd", 33, 13], ["useDHCP", 34, 13]]);
-const pos$8 = nix.positions(here + "/avahi.nix", [["networking", 32, 11]]);
-const pos$9 = nix.positions(here + "/avahi.nix", [["one", 39, 7], ["two", 40, 7]]);
-const pos$10 = nix.positions(here + "/avahi.nix", [["name", 11, 3], ["meta", 12, 3], ["nodes", 14, 3], ["testScript", 43, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,22 +12,22 @@ export default nix.lambda((args) => (() => {
   const pkgs = nix.arg($, "pkgs");
   const networkd = nix.argOr($, "networkd", () => false);
   return {
-    [nix.POS]: pos$10,
+    [nix.POS]: $pos[9],
     name: nix.thunk(() => nix.str`avahi${nix.app(nix.sel(lib, "optionalString"), networkd, "-with-resolved")}`),
-    meta: nix.thunk(() => ({ [nix.POS]: pos$1, maintainers: [] })),
+    meta: nix.thunk(() => ({ [nix.POS]: $pos[0], maintainers: [] })),
     nodes: nix.thunk(() => (() => {
       const cfg = nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return nix.update({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             avahi: nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               enable: true,
               nssmdns4: true,
               publish: nix.thunk(() => ({
-                [nix.POS]: pos$2,
+                [nix.POS]: $pos[1],
                 addresses: true,
                 domain: true,
                 enable: true,
@@ -44,18 +35,18 @@ export default nix.lambda((args) => (() => {
                 workstation: true,
               })),
               extraServiceFiles: nix.thunk(() => ({
-                [nix.POS]: pos$3,
+                [nix.POS]: $pos[2],
                 ssh: nix.thunk(() => nix.str`${nix.sel(pkgs, "avahi")}/etc/avahi/services/ssh.service`),
               })),
               debug: true,
             })),
           })),
         }, nix.app(nix.sel(pkgs, "lib", "optionalAttrs"), networkd, nix.thunk(() => ({
-            [nix.POS]: pos$8,
-            networking: nix.thunk(() => ({ [nix.POS]: pos$7, useNetworkd: true, useDHCP: false })),
+            [nix.POS]: $pos[7],
+            networking: nix.thunk(() => ({ [nix.POS]: $pos[6], useNetworkd: true, useDHCP: false })),
           }))));
       })(), formals$2);
-      return { [nix.POS]: pos$9, one: cfg, two: cfg };
+      return { [nix.POS]: $pos[8], one: cfg, two: cfg };
     })()),
     testScript: "start_all()\n\n# mDNS.\none.wait_for_unit(\"network.target\")\ntwo.wait_for_unit(\"network.target\")\n\none.succeed(\"avahi-resolve-host-name one.local | tee out >&2\")\none.succeed('test \"`cut -f1 < out`\" = one.local')\none.succeed(\"avahi-resolve-host-name two.local | tee out >&2\")\none.succeed('test \"`cut -f1 < out`\" = two.local')\n\ntwo.succeed(\"avahi-resolve-host-name one.local | tee out >&2\")\ntwo.succeed('test \"`cut -f1 < out`\" = one.local')\ntwo.succeed(\"avahi-resolve-host-name two.local | tee out >&2\")\ntwo.succeed('test \"`cut -f1 < out`\" = two.local')\n\n# Basic DNS-SD.\none.succeed(\"avahi-browse -r -t _workstation._tcp | tee out >&2\")\none.succeed(\"test `wc -l < out` -gt 0\")\ntwo.succeed(\"avahi-browse -r -t _workstation._tcp | tee out >&2\")\ntwo.succeed(\"test `wc -l < out` -gt 0\")\n\n# More DNS-SD.\none.execute('avahi-publish -s \"This is a test\" _test._tcp 123 one=1 >&2 &')\none.sleep(5)\ntwo.succeed(\"avahi-browse -r -t _test._tcp | tee out >&2\")\ntwo.succeed(\"test `wc -l < out` -gt 0\")\n\n# NSS-mDNS.\none.succeed(\"getent hosts one.local >&2\")\none.succeed(\"getent hosts two.local >&2\")\ntwo.succeed(\"getent hosts one.local >&2\")\ntwo.succeed(\"getent hosts two.local >&2\")\n\n# extra service definitions\none.succeed(\"avahi-browse -r -t _ssh._tcp | tee out >&2\")\none.succeed(\"test `wc -l < out` -gt 0\")\ntwo.succeed(\"avahi-browse -r -t _ssh._tcp | tee out >&2\")\ntwo.succeed(\"test `wc -l < out` -gt 0\")\n\none.log(one.execute(\"systemd-analyze security avahi-daemon.service | grep -v ✓\")[1])\n",
   };

@@ -2,43 +2,33 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/firefoxpwa.nix", [[["maintainers", 5, 8]], [["systemPackages", 11, 19]], [["packages", 18, 30]], [["enable", 17, 9], ["nativeMessagingHosts", 18, 9]], [["firefox", 16, 16]], [["enable", 21, 25]], [["jellyfin", 21, 16]], [["diskSize", 23, 22]], [["imports", 10, 7], ["environment", 11, 7], ["programs", 16, 7], ["services", 21, 7], ["virtualisation", 23, 7]], [["machine", 7, 9]], [["name", 4, 3], ["meta", 5, 3], ["nodes", 7, 3], ["enableOCR", 26, 3], ["testScript", 28, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/firefoxpwa.nix", [["maintainers", 5, 8]]);
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/firefoxpwa.nix", [["systemPackages", 11, 19]]);
-const pos$3 = nix.positions(here + "/firefoxpwa.nix", [["packages", 18, 30]]);
-const pos$4 = nix.positions(here + "/firefoxpwa.nix", [["enable", 17, 9], ["nativeMessagingHosts", 18, 9]]);
-const pos$5 = nix.positions(here + "/firefoxpwa.nix", [["firefox", 16, 16]]);
-const pos$6 = nix.positions(here + "/firefoxpwa.nix", [["enable", 21, 25]]);
-const pos$7 = nix.positions(here + "/firefoxpwa.nix", [["jellyfin", 21, 16]]);
-const pos$8 = nix.positions(here + "/firefoxpwa.nix", [["diskSize", 23, 22]]);
-const pos$9 = nix.positions(here + "/firefoxpwa.nix", [["imports", 10, 7], ["environment", 11, 7], ["programs", 16, 7], ["services", 21, 7], ["virtualisation", 23, 7]]);
-const pos$10 = nix.positions(here + "/firefoxpwa.nix", [["machine", 7, 9]]);
-const pos$11 = nix.positions(here + "/firefoxpwa.nix", [["name", 4, 3], ["meta", 5, 3], ["nodes", 7, 3], ["enableOCR", 26, 3], ["testScript", 28, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$11,
+    [nix.POS]: $pos[10],
     name: "firefoxpwa",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "camillemndn"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           imports: nix.thunk(() => [nix.path(here, "./common/x11.nix")]),
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             systemPackages: nix.thunk(() => (() => {
               const w = nix.withScope(pkgs, null);
               return [
@@ -48,21 +38,21 @@ export default nix.lambda((args) => (() => {
             })()),
           })),
           programs: nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             firefox: nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               enable: true,
               nativeMessagingHosts: nix.thunk(() => ({
-                [nix.POS]: pos$3,
+                [nix.POS]: $pos[2],
                 packages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "firefoxpwa"))]),
               })),
             })),
           })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$7,
-            jellyfin: nix.thunk(() => ({ [nix.POS]: pos$6, enable: true })),
+            [nix.POS]: $pos[6],
+            jellyfin: nix.thunk(() => ({ [nix.POS]: $pos[5], enable: true })),
           })),
-          virtualisation: nix.thunk(() => ({ [nix.POS]: pos$8, diskSize: nix.thunk(() => nix.mul(3n, 1024n)) })),
+          virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[7], diskSize: nix.thunk(() => nix.mul(3n, 1024n)) })),
         };
       })(), formals$2),
     })),

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 29, 5], ["hash", 30, 5]], [["updateScript", 62, 12]], [["description", 65, 5], ["mainProgram", 66, 5], ["longDescription", 67, 5], ["homepage", 72, 5], ["license", 73, 5], ["maintainers", 74, 5], ["platforms", 75, 5]], [["pname", 19, 3], ["version", 20, 3], ["outputs", 22, 3], ["src", 28, 3], ["enableParallelBuilding", 33, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 39, 3], ["configureFlags", 52, 3], ["doCheck", 56, 3], ["postFixup", 58, 3], ["passthru", 62, 3], ["meta", 64, 3]]]);
 const formals$1 = { args: { config: false, lib: false, stdenv: false, fetchurl: false, zlib: false, "pkg-config": false, mpg123: false, libogg: false, libvorbis: false, portaudio: false, libsndfile: false, flac: false, usePulseAudio: true, libpulseaudio: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 29, 5], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 62, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 65, 5], ["mainProgram", 66, 5], ["longDescription", 67, 5], ["homepage", 72, 5], ["license", 73, 5], ["maintainers", 74, 5], ["platforms", 75, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["outputs", 22, 3], ["src", 28, 3], ["enableParallelBuilding", 33, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 39, 3], ["configureFlags", 52, 3], ["doCheck", 56, 3], ["postFixup", 58, 3], ["passthru", 62, 3], ["meta", 64, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,12 +22,12 @@ export default nix.lambda((args) => (() => {
   const usePulseAudio = nix.argOr($, "usePulseAudio", () => nix.selOr(config, () => nix.sel(stdenv, "hostPlatform", "isLinux"), "pulseaudio"));
   const libpulseaudio = nix.arg($, "libpulseaudio");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "libopenmpt",
       version: "0.8.9",
       outputs: nix.thunk(() => ["out", "dev", "bin"]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://lib.openmpt.org/files/libopenmpt/src/libopenmpt-${nix.sel(finalAttrs, "version")}+release.autotools.tar.gz`),
           hash: "sha256-186E/QXWhsS89mr0Dq6Fevo3FELbYO7aP4dL1s9vwxg=",
         })))),
@@ -42,9 +39,9 @@ export default nix.lambda((args) => (() => {
       ]),
       doCheck: nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))),
       postFixup: "moveToOutput share/doc $dev\n",
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[1], updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Cross-platform C++ and C library to decode tracked music files into a raw PCM audio stream",
         mainProgram: "openmpt123",
         longDescription: "libopenmpt is a cross-platform C++ and C library to decode tracked music files (modules) into a raw PCM audio stream.\nopenmpt123 is a cross-platform command-line or terminal based module file player.\nlibopenmpt is based on the player code of the OpenMPT project.\n",

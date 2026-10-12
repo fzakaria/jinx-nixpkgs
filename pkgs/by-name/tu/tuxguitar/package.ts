@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["x86_64-linux", 63, 5], ["aarch64-linux", 64, 5], ["aarch64-darwin", 65, 5]], [["owner", 89, 5], ["repo", 90, 5], ["tag", 91, 5], ["hash", 92, 5]], [["name", 99, 7], ["url", 100, 7], ["hash", 101, 7]], [["dontWrapQtApps", 118, 5], ["dontWrapGApps", 119, 5], ["preBuild", 120, 5], ["postInstall", 130, 5]], [["nixos", 220, 11]], [["tests", 220, 5]], [["description", 224, 5], ["longDescription", 225, 5], ["homepage", 229, 5], ["license", 230, 5], ["maintainers", 231, 5], ["platforms", 235, 5], ["mainProgram", 236, 5]], [["pname", 85, 3], ["version", 86, 11], ["src", 88, 3], ["patches", 95, 3], ["buildOffline", 105, 3], ["mvnJdk", 107, 3], ["mvnHash", 109, 3], ["mvnParameters", 114, 3], ["mvnDepsParameters", 115, 3], ["mvnFetchExtraArgs", 117, 3], ["afterDepsSetup", 136, 3], ["nativeBuildInputs", 146, 3], ["buildInputs", 155, 3], ["dontWrapQtApps", 168, 3], ["dontWrapGApps", 170, 3], ["installPhase", 172, 3], ["postFixup", 215, 3], ["passthru", 219, 3], ["meta", 223, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, maven: false, swt: false, jdk: false, jre: false, makeBinaryWrapper: false, "pkg-config": false, "alsa-lib": false, jack2: false, fluidsynth: false, libpulseaudio: false, lilv: false, suil: false, qt5: false, which: false, wrapGAppsHook3: false, nixosTests: false, fetchpatch: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["x86_64-linux", 63, 5], ["aarch64-linux", 64, 5], ["aarch64-darwin", 65, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 89, 5], ["repo", 90, 5], ["tag", 91, 5], ["hash", 92, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 99, 7], ["url", 100, 7], ["hash", 101, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["dontWrapQtApps", 118, 5], ["dontWrapGApps", 119, 5], ["preBuild", 120, 5], ["postInstall", 130, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["nixos", 220, 11]]);
-const pos$6 = nix.positions(here + "/package.nix", [["tests", 220, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["description", 224, 5], ["longDescription", 225, 5], ["homepage", 229, 5], ["license", 230, 5], ["maintainers", 231, 5], ["platforms", 235, 5], ["mainProgram", 236, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 85, 3], ["version", 86, 11], ["src", 88, 3], ["patches", 95, 3], ["buildOffline", 105, 3], ["mvnJdk", 107, 3], ["mvnHash", 109, 3], ["mvnParameters", 114, 3], ["mvnDepsParameters", 115, 3], ["mvnFetchExtraArgs", 117, 3], ["afterDepsSetup", 136, 3], ["nativeBuildInputs", 146, 3], ["buildInputs", 155, 3], ["dontWrapQtApps", 168, 3], ["dontWrapGApps", 170, 3], ["installPhase", 172, 3], ["postFixup", 215, 3], ["passthru", 219, 3], ["meta", 223, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -43,7 +36,7 @@ export default nix.lambda((args) => (() => {
   const libraryPath = nix.thunk(() => nix.concat(["$out/lib", fluidsynth, lilv], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [swt, alsa_lib, jack2, libpulseaudio]))));
   const wrapperPaths = nix.thunk(() => [jre, which]);
   const mvnHashByPlatform = nix.thunk(() => ({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     "x86_64-linux": "sha256-KYF7vSMXPgi6xvtgcSIIEOltK5RL4ynGQf1579Is5nM=",
     "aarch64-linux": "sha256-KYF7vSMXPgi6xvtgcSIIEOltK5RL4ynGQf1579Is5nM=",
     "aarch64-darwin": "sha256-uJXOACtuE4fKIb4a6C3Cy+MilI8OOdsuAgtJyklxHdw=",
@@ -65,11 +58,11 @@ export default nix.lambda((args) => (() => {
   ]);
   const version = "2.0.1";
   return nix.app(nix.sel(maven, "buildMavenPackage"), nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "tuxguitar",
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "helge17",
           repo: "tuxguitar",
           tag: version,
@@ -78,7 +71,7 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [
         nix.path(here, "./fix-include.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "create-new-file",
             url: "https://github.com/helge17/tuxguitar/commit/3dc828a9b92e932952c2b33d8ee41db734f2fcc0.patch",
             hash: "sha256-umZlCSCTWqj3tgR+qFcPucEDv5vpaC6zHbDJg/W5KUI=",
@@ -90,7 +83,7 @@ export default nix.lambda((args) => (() => {
       mvnParameters: mvnParams,
       mvnDepsParameters: mvnParams,
       mvnFetchExtraArgs: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         dontWrapQtApps: true,
         dontWrapGApps: true,
         preBuild: nix.thunk(() => nix.str`mkdir -p $out/.m2
@@ -143,11 +136,11 @@ makeWrapper "$out/Applications/TuxGuitar.app/Contents/MacOS/tuxguitar.sh" \\
       postFixup: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => nix.str`wrapProgram $out/bin/tuxguitar ${nix.app(nix.sel(lib, "concatStringsSep"), " ", wrapperArgs)}
 `))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$5, nixos: nix.thunk(() => nix.sel(nixosTests, "tuxguitar")) })),
+        [nix.POS]: $pos[5],
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[4], nixos: nix.thunk(() => nix.sel(nixosTests, "tuxguitar")) })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "Multitrack guitar tablature editor",
         longDescription: "TuxGuitar is a multitrack guitar tablature editor and player written\nin Java-SWT. It can open GuitarPro, PowerTab and TablEdit files.\n",
         homepage: "https://github.com/helge17/tuxguitar",

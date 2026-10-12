@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 28, 5], ["owner", 29, 5], ["repo", 30, 5], ["rev", 31, 5], ["hash", 32, 5]], [["description", 56, 5], ["homepage", 57, 5], ["license", 58, 5], ["teams", 59, 5], ["platforms", 60, 5]], [["pname", 18, 3], ["version", 19, 3], ["outputs", 21, 3], ["src", 27, 3], ["strictDeps", 35, 3], ["nativeBuildInputs", 37, 3], ["propagatedBuildInputs", 50, 3], ["meta", 55, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitLab: false, meson: false, mesonEmulatorHook: false, ninja: false, "pkg-config": false, "gobject-introspection": false, vala: false, "gtk-doc": false, "docbook-xsl-nons": false, glib: false, libsoup_3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 28, 5], ["owner", 29, 5], ["repo", 30, 5], ["rev", 31, 5], ["hash", 32, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 56, 5], ["homepage", 57, 5], ["license", 58, 5], ["teams", 59, 5], ["platforms", 60, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["outputs", 21, 3], ["src", 27, 3], ["strictDeps", 35, 3], ["nativeBuildInputs", 37, 3], ["propagatedBuildInputs", 50, 3], ["meta", 55, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const glib = nix.arg($, "glib");
   const libsoup_3 = nix.arg($, "libsoup_3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "uhttpmock",
       version: "0.11.0",
       outputs: nix.thunk(() => ["out", "dev", "devdoc"]),
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "gitlab.freedesktop.org",
           owner: "pwithnall",
           repo: "uhttpmock",
@@ -47,7 +45,7 @@ export default nix.lambda((args) => (() => {
       ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform"))))), nix.thunk(() => [mesonEmulatorHook])))),
       propagatedBuildInputs: nix.thunk(() => [glib, libsoup_3]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Project for mocking web service APIs which use HTTP or HTTPS",
         homepage: "https://gitlab.freedesktop.org/pwithnall/uhttpmock/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]], [["pname", 23, 7], ["version", 24, 7], ["debianRevision", 25, 7], ["patch", 26, 7], ["hash", 27, 7]], [["name", 30, 7], ["url", 31, 7], ["hash", 32, 7]], [["homepage", 39, 5], ["description", 40, 5], ["longDescription", 41, 5], ["license", 55, 5], ["maintainers", 56, 5], ["platforms", 57, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["patches", 21, 3], ["nativeBuildInputs", 36, 3], ["meta", 38, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, fetchpatch: false, fetchDebianPatch: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 23, 7], ["version", 24, 7], ["debianRevision", 25, 7], ["patch", 26, 7], ["hash", 27, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 30, 7], ["url", 31, 7], ["hash", 32, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 39, 5], ["description", 40, 5], ["longDescription", 41, 5], ["license", 55, 5], ["maintainers", 56, 5], ["platforms", 57, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["patches", 21, 3], ["nativeBuildInputs", 36, 3], ["meta", 38, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchpatch = nix.arg($, "fetchpatch");
   const fetchDebianPatch = nix.arg($, "fetchDebianPatch");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "cld2",
       version: "0-unstable-2015-08-21",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "CLD2Owners",
           repo: "cld2",
           rev: "b56fa78a2fe44ac2851bae5bf4f4693a0644da7b",
@@ -30,7 +26,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchDebianPatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             pname: "cld2",
             version: "0.0.0-git20150806",
             debianRevision: "10",
@@ -38,7 +34,7 @@ export default nix.lambda((args) => (() => {
             hash: "sha256-iLacWD4jQxid76pzGpDW3ZJ8Dyaksfj1pNTrU7qSBQM=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "fix-narrowing-errors.txt",
             url: "https://github.com/ripjar/cld2/pull/1/commits/79be1adea78f0d376cb793f4dae8e70b100dadcc.patch",
             hash: "sha256-i4WWYBx16kYXZ5IQPACWbS/HGsQysXre1SngYlAfNaM=",
@@ -46,7 +42,7 @@ export default nix.lambda((args) => (() => {
       ]),
       nativeBuildInputs: nix.thunk(() => [cmake]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://github.com/CLD2Owners/cld2",
         description: "Compact Language Detector 2",
         longDescription: "CLD2 probabilistically detects over 80 languages in Unicode UTF-8 text,\neither plain text or HTML/XML. Legacy encodings must be converted to valid\nUTF-8 by the caller. For mixed-language input, CLD2 returns the top three\nlanguages found and their approximate percentages of the total text bytes\n(e.g. 80% English and 20% French out of 1000 bytes of text means about 800\nbytes of English and 200 bytes of French). Optionally, it also returns a\nvector of text spans with the language of each identified. This may be\nuseful for applying different spelling-correction dictionaries or\ndifferent machine translation requests to each span. The design target is\nweb pages of at least 200 characters (about two sentences); CLD2 is not\ndesigned to do well on very short text, lists of proper names, part\nnumbers, etc.\n",

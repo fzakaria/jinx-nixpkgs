@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 37, 5], ["hash", 38, 5]], [["packageName", 89, 7], ["versionPolicy", 90, 7]], [["updateScript", 88, 5]], [["description", 95, 5], ["mainProgram", 96, 5], ["homepage", 97, 5], ["changelog", 98, 5], ["license", 99, 5], ["teams", 100, 5], ["platforms", 101, 5]], [["pname", 27, 3], ["version", 28, 3], ["outputs", 30, 3], ["src", 36, 3], ["patches", 41, 3], ["preFixup", 48, 3], ["nativeBuildInputs", 55, 3], ["buildInputs", 64, 3], ["configureFlags", 79, 3], ["enableParallelBuilding", 83, 3], ["doCheck", 85, 3], ["passthru", 87, 3], ["meta", 94, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, autoreconfHook: false, dconf: false, "evolution-data-server": false, gdm: false, "geocode-glib_2": false, gettext: false, glib: false, "gnome-desktop": false, "gnome-menus": false, gnome: false, gtk3: false, itstool: false, libgweather: false, libwnck: false, libxml2: false, "pkg-config": false, polkit: false, systemd: false, wrapGAppsHook3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 37, 5], ["hash", 38, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["packageName", 89, 7], ["versionPolicy", 90, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 88, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 95, 5], ["mainProgram", 96, 5], ["homepage", 97, 5], ["changelog", 98, 5], ["license", 99, 5], ["teams", 100, 5], ["platforms", 101, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 27, 3], ["version", 28, 3], ["outputs", 30, 3], ["src", 36, 3], ["patches", 41, 3], ["preFixup", 48, 3], ["nativeBuildInputs", 55, 3], ["buildInputs", 64, 3], ["configureFlags", 79, 3], ["enableParallelBuilding", 83, 3], ["doCheck", 85, 3], ["passthru", 87, 3], ["meta", 94, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,12 +30,12 @@ export default nix.lambda((args) => (() => {
   const systemd = nix.arg($, "systemd");
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "gnome-panel",
       version: "3.58.1",
       outputs: nix.thunk(() => ["out", "dev", "man"]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnome/sources/gnome-panel/${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/gnome-panel-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-fovKQ6gaE0xmazp4uvKv+wxdMO+xvKZTiH/EGzHdXmQ=",
         })))),
@@ -68,11 +64,15 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: true,
       doCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$2, packageName: "gnome-panel", versionPolicy: "odd-unstable" })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({
+            [nix.POS]: $pos[1],
+            packageName: "gnome-panel",
+            versionPolicy: "odd-unstable",
+          })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Component of Gnome Flashback that provides panels and default applets for the desktop",
         mainProgram: "gnome-panel",
         homepage: "https://gitlab.gnome.org/GNOME/gnome-panel",

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 44, 5], ["repo", 45, 5], ["tag", 46, 5], ["hash", 47, 5]], [["name", 54, 7], ["url", 55, 7], ["hash", 56, 7]], [["description", 201, 5], ["longDescription", 202, 5], ["homepage", 210, 5], ["changelog", 211, 5], ["license", 212, 5], ["maintainers", 213, 5], ["platforms", 214, 5]], [["pname", 40, 3], ["version", 41, 3], ["src", 43, 3], ["patches", 52, 3], ["postPatch", 60, 3], ["nativeBuildInputs", 94, 3], ["buildInputs", 104, 3], ["cmakeFlags", 142, 3], ["doCheck", 195, 3], ["strictDeps", 197, 3], ["__structuredAttrs", 198, 3], ["meta", 200, 3]]]);
 const formals$1 = { args: { blas: false, blasfeo: false, bonmin: false, bzip2: false, cbc: false, clp: false, cmake: false, cplex: false, fatrop: false, fetchFromGitHub: false, fetchpatch2: false, gurobi: false, highs: false, hpipm: false, lib: false, ipopt: false, lapack: false, llvmPackages: false, mumps: false, ninja: false, osqp: false, "pkg-config": false, pythonSupport: true, python3Packages: false, proxsuite: false, stdenv: false, sleqp: false, suitesparse: false, superscs: false, spral: false, swig: false, "tinyxml-2": false, withUnfree: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 44, 5], ["repo", 45, 5], ["tag", 46, 5], ["hash", 47, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 54, 7], ["url", 55, 7], ["hash", 56, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 201, 5], ["longDescription", 202, 5], ["homepage", 210, 5], ["changelog", 211, 5], ["license", 212, 5], ["maintainers", 213, 5], ["platforms", 214, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 40, 3], ["version", 41, 3], ["src", 43, 3], ["patches", 52, 3], ["postPatch", 60, 3], ["nativeBuildInputs", 94, 3], ["buildInputs", 104, 3], ["cmakeFlags", 142, 3], ["doCheck", 195, 3], ["strictDeps", 197, 3], ["__structuredAttrs", 198, 3], ["meta", 200, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -44,11 +41,11 @@ export default nix.lambda((args) => (() => {
   const tinyxml_2 = nix.arg($, "tinyxml-2");
   const withUnfree = nix.argOr($, "withUnfree", () => false);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "casadi",
       version: "3.8.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "casadi",
           repo: "casadi",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -56,7 +53,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), pythonSupport, nix.thunk(() => [
           nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               name: "add-missing-stub-guards.patch",
               url: "https://github.com/casadi/casadi/commit/fc4b71177089c2fabbfc3a41dca8a6e40a0a81f4.patch?full_index=1",
               hash: "sha256-/T9Fof36l/wEeKusI1teCcrax3Zg+fhpteBwnVjWr0o=",
@@ -153,7 +150,7 @@ substituteInPlace swig/python/CMakeLists.txt --replace-fail \\
       strictDeps: true,
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Symbolic framework for numeric optimization",
         longDescription: "CasADi is a symbolic framework for numeric optimization\nimplementing automatic differentiation in forward and reverse\nmodes on sparse matrix-valued computational graphs. It supports\nself-contained C-code generation and interfaces state-of-the-art\ncodes such as SUNDIALS, IPOPT etc. It can be used from C++,\nPython or Matlab/Octave\n",
         homepage: "https://github.com/casadi/casadi",

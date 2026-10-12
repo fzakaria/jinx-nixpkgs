@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["sha256", 22, 5]], [["url", 28, 7], ["sha256", 29, 7]], [["url", 33, 7], ["sha256", 34, 7]], [["url", 40, 7], ["sha256", 41, 7]], [["url", 45, 7], ["sha256", 46, 7]], [["url", 52, 7], ["hash", 53, 7]], [["homepage", 84, 5], ["license", 85, 5], ["description", 86, 5], ["maintainers", 87, 5], ["platforms", 88, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["patches", 25, 3], ["postPatch", 60, 3], ["cmakeFlags", 65, 3], ["nativeBuildInputs", 72, 3], ["propagatedBuildInputs", 79, 3], ["buildInputs", 81, 3], ["meta", 83, 3]]]);
 const formals$1 = { args: { lib: false, cmake: false, fetchFromGitHub: false, fetchpatch: false, lz4: false, "pkg-config": false, python3: false, stdenv: false, unzip: false, enablePython: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["sha256", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 28, 7], ["sha256", 29, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 33, 7], ["sha256", 34, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["url", 40, 7], ["sha256", 41, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["url", 45, 7], ["sha256", 46, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["url", 52, 7], ["hash", 53, 7]]);
-const pos$7 = nix.positions(here + "/package.nix", [["homepage", 84, 5], ["license", 85, 5], ["description", 86, 5], ["maintainers", 87, 5], ["platforms", 88, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["patches", 25, 3], ["postPatch", 60, 3], ["cmakeFlags", 65, 3], ["nativeBuildInputs", 72, 3], ["propagatedBuildInputs", 79, 3], ["buildInputs", 81, 3], ["meta", 83, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const unzip = nix.arg($, "unzip");
   const enablePython = nix.argOr($, "enablePython", () => false);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "flann",
       version: "1.9.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "flann-lib",
           repo: "flann",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -37,29 +30,29 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => nix.concat([
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://salsa.debian.org/science-team/flann/-/raw/debian/1.9.1+dfsg-9/debian/patches/0001-Updated-fix-cmake-hdf5.patch",
             sha256: "yM1ONU4mu6lctttM5YcSTg8F344TNUJXwjxXLqzr5Pk=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: "https://salsa.debian.org/science-team/flann/-/raw/debian/1.9.1+dfsg-9/debian/patches/0001-src-cpp-fix-cmake-3.11-build.patch",
             sha256: "REsBnbe6vlrZ+iCcw43kR5wy2o6q10RM73xjW5kBsr4=",
           })))),
       ], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "cc", "isClang"))), nix.thunk(() => [
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               url: "https://salsa.debian.org/science-team/flann/-/raw/debian/1.9.1+dfsg-9/debian/patches/0003-Use-system-version-of-liblz4.patch",
               sha256: "xi+GyFn9PEjLgbJeAIEmsbp7ut9G9KIBkVulyT3nfsg=",
             })))),
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               url: "https://github.com/flann-lib/flann/commit/25eb56ec78472bd419a121c6905095a793cf8992.patch",
               sha256: "qt8h576Gn8uR7+T9u9bEBIRz6e6AoTKpa1JfdZVvW9s=",
             })))),
         ])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), nix.thunk(() => [
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              [nix.POS]: pos$6,
+              [nix.POS]: $pos[5],
               url: "https://github.com/flann-lib/flann/commit/be80cefa69b314a3d9e1ab971715e84145863ebb.patch",
               hash: "sha256-4SUKzQCm0Sx8N43Z6ShuMbgbbe7q8b2Ibk3WgkB0qa4=",
             })))),
@@ -75,7 +68,7 @@ export default nix.lambda((args) => (() => {
       propagatedBuildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "cc", "isClang"))), lz4)),
       buildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), enablePython, nix.thunk(() => [python3]))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         homepage: "https://github.com/flann-lib/flann",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
         description: "Fast approximate nearest neighbor searches in high dimensional spaces",

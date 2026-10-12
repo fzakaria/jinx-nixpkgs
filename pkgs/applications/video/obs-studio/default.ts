@@ -2,16 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["aarch64-linux", 87, 13], ["x86_64-linux", 88, 13]], [["aarch64-linux", 92, 11], ["x86_64-linux", 93, 11]], [["url", 85, 9], ["hash", 91, 9]], [["version", 82, 15], ["src", 84, 7]], [["owner", 104, 5], ["repo", 105, 5], ["rev", 106, 5], ["hash", 107, 5], ["fetchSubmodules", 108, 5]], [["NIX_CFLAGS_COMPILE", 202, 7]], [["updateScript", 246, 12]], [["description", 249, 5], ["longDescription", 250, 5], ["homepage", 255, 5], ["changelog", 256, 5], ["maintainers", 257, 5], ["license", 262, 5], ["platforms", 263, 5], ["mainProgram", 268, 5]], [["pname", 100, 3], ["version", 101, 3], ["src", 103, 3], ["separateDebugInfo", 111, 3], ["patches", 113, 3], ["nativeBuildInputs", 117, 3], ["buildInputs", 129, 3], ["propagatedBuildInputs", 173, 3], ["postUnpack", 176, 3], ["postPatch", 180, 3], ["cmakeFlags", 184, 3], ["env", 202, 3], ["dontWrapGApps", 208, 3], ["preFixup", 209, 3], ["postFixup", 234, 3], ["passthru", 246, 3], ["meta", 248, 3]]]);
 const formals$1 = { args: { config: false, uthash: false, lib: false, stdenv: false, ninja: false, "nv-codec-headers-12": false, fetchFromGitHub: false, fetchurl: false, addDriverRunpath: false, autoAddDriverRunpath: false, cudaSupport: true, cmake: false, fdk_aac: false, ffmpeg: false, jansson: false, libjack2: false, libxkbcommon: false, "libpthread-stubs": false, libxdmcp: false, qtbase: false, qtsvg: false, speex: false, libv4l: false, x264: false, curl: false, wayland: false, libx11: false, "pkg-config": false, libvlc: false, libGL: false, mbedtls: false, wrapGAppsHook3: false, scriptingSupport: true, luajit: false, swig: false, python3: false, alsaSupport: true, "alsa-lib": false, pulseaudioSupport: true, libpulseaudio: false, browserSupport: true, "cef-binary": false, pciutils: false, pipewireSupport: true, withFdk: true, pipewire: false, libdrm: false, librist: false, cjson: false, libva: false, srt: false, qtwayland: false, wrapQtAppsHook: false, nlohmann_json: false, websocketpp: false, asio: false, decklinkSupport: true, "blackmagic-desktop-video": false, libdatachannel: false, libvpl: false, qrcodegencpp: false, simde: false, "nix-update-script": false, kdePackages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["aarch64-linux", 87, 13], ["x86_64-linux", 88, 13]]);
-const pos$2 = nix.positions(here + "/default.nix", [["aarch64-linux", 92, 11], ["x86_64-linux", 93, 11]]);
-const pos$3 = nix.positions(here + "/default.nix", [["url", 85, 9], ["hash", 91, 9]]);
-const pos$4 = nix.positions(here + "/default.nix", [["version", 82, 15], ["src", 84, 7]]);
-const pos$5 = nix.positions(here + "/default.nix", [["owner", 104, 5], ["repo", 105, 5], ["rev", 106, 5], ["hash", 107, 5], ["fetchSubmodules", 108, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["NIX_CFLAGS_COMPILE", 202, 7]]);
-const pos$7 = nix.positions(here + "/default.nix", [["updateScript", 246, 12]]);
-const pos$8 = nix.positions(here + "/default.nix", [["description", 249, 5], ["longDescription", 250, 5], ["homepage", 255, 5], ["changelog", 256, 5], ["maintainers", 257, 5], ["license", 262, 5], ["platforms", 263, 5], ["mainProgram", 268, 5]]);
-const pos$9 = nix.positions(here + "/default.nix", [["pname", 100, 3], ["version", 101, 3], ["src", 103, 3], ["separateDebugInfo", 111, 3], ["patches", 113, 3], ["nativeBuildInputs", 117, 3], ["buildInputs", 129, 3], ["propagatedBuildInputs", 173, 3], ["postUnpack", 176, 3], ["postPatch", 180, 3], ["cmakeFlags", 184, 3], ["env", 202, 3], ["dontWrapGApps", 208, 3], ["preFixup", 209, 3], ["postFixup", 234, 3], ["passthru", 246, 3], ["meta", 248, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -86,13 +78,13 @@ export default nix.lambda((args) => (() => {
       const version = "6533";
       const revision = "6";
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         version: version,
         src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$3,
-            url: nix.thunk(() => nix.str`https://cdn-fastly.obsproject.com/downloads/cef_binary_${version}_linux_${nix.app(selectSystem, nix.thunk(() => ({ [nix.POS]: pos$1, "aarch64-linux": "aarch64", "x86_64-linux": "x86_64" })))}_v${revision}.tar.xz`),
+            [nix.POS]: $pos[2],
+            url: nix.thunk(() => nix.str`https://cdn-fastly.obsproject.com/downloads/cef_binary_${version}_linux_${nix.app(selectSystem, nix.thunk(() => ({ [nix.POS]: $pos[0], "aarch64-linux": "aarch64", "x86_64-linux": "x86_64" })))}_v${revision}.tar.xz`),
             hash: nix.thunk(() => nix.app(selectSystem, nix.thunk(() => ({
-                [nix.POS]: pos$2,
+                [nix.POS]: $pos[1],
                 "aarch64-linux": "sha256-ZCUURp6qKaXIh4kQhNLnP33C10Bfffp3JrLbwkswmZk=",
                 "x86_64-linux": "sha256-eWMzVRmhnM3FIz9zNMWrAjAm4vPpoMxBcAfAnYZggUY=",
               })))),
@@ -100,11 +92,11 @@ export default nix.lambda((args) => (() => {
       };
     })()));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       pname: "obs-studio",
       version: "32.2.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           owner: "obsproject",
           repo: "obs-studio",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -175,7 +167,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "ENABLE_BROWSER", browserSupport)),
       ], nix.app(nix.sel(lib, "optional"), browserSupport, "-DCEF_ROOT_DIR=../../cef"))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => [
             "-Wno-error=deprecated-declarations",
             "-Wno-error=sign-compare",
@@ -198,11 +190,11 @@ ln -sf ${cef}/${nix.sel(cef, "buildType")}/* $out/lib/obs-plugins/
 `))),
         ]))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         description: "Free and open source software for video recording and live streaming",
         longDescription: "This project is a rewrite of what was formerly known as \"Open Broadcaster\nSoftware\", software originally designed for recording and streaming live\nvideo content, efficiently\n",
         homepage: "https://obsproject.com",

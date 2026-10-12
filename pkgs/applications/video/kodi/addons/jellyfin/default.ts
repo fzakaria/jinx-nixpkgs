@@ -2,10 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["sha256", 24, 5]], [["homepage", 48, 5], ["description", 49, 5], ["license", 50, 5], ["teams", 51, 5]], [["pname", 16, 3], ["namespace", 17, 3], ["version", 18, 3], ["src", 20, 3], ["nativeBuildInputs", 27, 3], ["patches", 30, 3], ["buildPhase", 32, 3], ["postInstall", 36, 3], ["propagatedBuildInputs", 40, 3], ["meta", 47, 3]]]);
 const formals$1 = { args: { lib: false, addonDir: false, buildKodiAddon: false, fetchFromGitHub: false, kodi: false, requests: false, dateutil: false, typing_extensions: false, websocket: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 21, 5], ["repo", 22, 5], ["rev", 23, 5], ["sha256", 24, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 48, 5], ["description", 49, 5], ["license", 50, 5], ["teams", 51, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 16, 3], ["namespace", 17, 3], ["version", 18, 3], ["src", 20, 3], ["nativeBuildInputs", 27, 3], ["patches", 30, 3], ["buildPhase", 32, 3], ["postInstall", 36, 3], ["propagatedBuildInputs", 40, 3], ["meta", 47, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const namespace = "plugin.video.jellyfin";
       const version = "2.2.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "jellyfin",
           repo: "jellyfin-kodi",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -41,14 +39,14 @@ export default nix.lambda((args) => (() => {
 `);
       const propagatedBuildInputs = nix.thunk(() => [requests, dateutil, websocket, typing_extensions]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://jellyfin.org/",
         description: "Whole new way to manage and view your media library",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "kodi"))]),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         namespace,
         version,

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 26, 5], ["version", 27, 26], ["hash", 28, 5]], [["jenkins", 53, 43]], [["tests", 53, 12]], [["description", 56, 5], ["mainProgram", 57, 5], ["homepage", 58, 5], ["license", 59, 5], ["maintainers", 60, 5]], [["pname", 20, 3], ["version", 21, 3], ["pyproject", 22, 3], ["src", 25, 3], ["postPatch", 31, 3], ["build-system", 35, 3], ["dependencies", 37, 3], ["nativeCheckInputs", 47, 3], ["passthru", 53, 3], ["meta", 55, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, fasteners: false, jinja2: false, pbr: false, "python-jenkins": false, pyyaml: false, six: false, stevedore: false, pytestCheckHook: false, setuptools_80: false, testtools: false, "pytest-mock": false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 26, 5], ["version", 27, 26], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["jenkins", 53, 43]]);
-const pos$3 = nix.positions(here + "/default.nix", [["tests", 53, 12]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 56, 5], ["mainProgram", 57, 5], ["homepage", 58, 5], ["license", 59, 5], ["maintainers", 60, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 20, 3], ["version", 21, 3], ["pyproject", 22, 3], ["src", 25, 3], ["postPatch", 31, 3], ["build-system", 35, 3], ["dependencies", 37, 3], ["nativeCheckInputs", 47, 3], ["passthru", 53, 3], ["meta", 55, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,12 +23,12 @@ export default nix.lambda((args) => (() => {
   const pytest_mock = nix.arg($, "pytest-mock");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "jenkins-job-builder",
       version: "6.5.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "jenkins_job_builder",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-9E3tWR9olpAZrloh/dxsIztz2PJJfRJrPUzMvpuLFJ0=",
@@ -42,11 +38,14 @@ export default nix.lambda((args) => (() => {
       dependencies: nix.thunk(() => [pbr, python_jenkins, pyyaml, six, stevedore, fasteners, jinja2]),
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook, testtools, pytest_mock]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$2, jenkins: nix.thunk(() => nix.attr(nixosTests, "jenkins")) })),
+        [nix.POS]: $pos[2],
+        tests: nix.thunk(() => ({
+          [nix.POS]: $pos[1],
+          jenkins: nix.thunk(() => nix.attr(nixosTests, "jenkins")),
+        })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Jenkins Job Builder is a system for configuring Jenkins jobs using simple YAML files stored in Git",
         mainProgram: "jenkins-jobs",
         homepage: "https://jenkins-job-builder.readthedocs.io/en/latest/",

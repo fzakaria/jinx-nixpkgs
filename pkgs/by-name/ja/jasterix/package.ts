@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]], [["name", 29, 7], ["url", 30, 7], ["hash", 31, 7]], [["description", 71, 5], ["homepage", 72, 5], ["changelog", 73, 5], ["maintainers", 74, 5], ["license", 75, 5], ["platforms", 76, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["patches", 27, 3], ["postPatch", 36, 3], ["outputs", 42, 3], ["nativeBuildInputs", 47, 3], ["cmakeFlags", 49, 3], ["buildInputs", 55, 3], ["doCheck", 65, 3], ["strictDeps", 67, 3], ["__structuredAttrs", 68, 3], ["meta", 70, 3]]]);
 const formals$1 = { args: { boost: false, catch2_3: false, cmake: false, fetchFromGitHub: false, fetchpatch: false, lib: false, libarchive: false, libpcap: false, log4cpp: false, onetbb: false, openssl: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 29, 7], ["url", 30, 7], ["hash", 31, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 71, 5], ["homepage", 72, 5], ["changelog", 73, 5], ["maintainers", 74, 5], ["license", 75, 5], ["platforms", 76, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["patches", 27, 3], ["postPatch", 36, 3], ["outputs", 42, 3], ["nativeBuildInputs", 47, 3], ["cmakeFlags", 49, 3], ["buildInputs", 55, 3], ["doCheck", 65, 3], ["strictDeps", 67, 3], ["__structuredAttrs", 68, 3], ["meta", 70, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const openssl = nix.arg($, "openssl");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "jasterix",
       version: "0.1.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "OpenATSGmbH",
           repo: "jASTERIX",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,7 +32,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "jasterix-fix-tests.patch",
             url: "https://github.com/OpenATSGmbH/jASTERIX/commit/b79e59c042ebb7eee31f50a7ed48840bcec50429.patch",
             hash: "sha256-V0/nMJGb8ZB/Z6bKvyZnic57HXAsUAHXgyVq+D4yFDw=",
@@ -62,7 +59,7 @@ export default nix.lambda((args) => (() => {
       strictDeps: true,
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "C++ Library for EUROCONTROL's ASTERIX to JSON conversion",
         homepage: "https://github.com/OpenATSGmbH/jASTERIX",
         changelog: nix.thunk(() => nix.str`https://github.com/OpenATSGmbH/jASTERIX/releases/tag/v${nix.sel(finalAttrs, "src", "tag")}`),

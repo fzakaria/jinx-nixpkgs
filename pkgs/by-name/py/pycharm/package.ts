@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 18, 7], ["hash", 19, 7]], [["url", 22, 7], ["hash", 23, 7]], [["url", 26, 7], ["hash", 27, 7]], [["x86_64-linux", 17, 5], ["aarch64-linux", 21, 5], ["aarch64-darwin", 25, 5]], [["homepage", 68, 5], ["description", 69, 5], ["longDescription", 70, 5], ["maintainers", 75, 5], ["teams", 78, 5], ["license", 79, 5], ["sourceProvenance", 80, 5]], [["jetbrains-libdbm", 33, 11], ["fsnotifier", 33, 28], ["pname", 35, 3], ["wmClass", 37, 3], ["product", 38, 3], ["version", 41, 3], ["buildNumber", 42, 3], ["src", 45, 3], ["jdk", 48, 3], ["nativeBuildInputs", 54, 3], ["buildInputs", 62, 3], ["meta", 67, 3]]]);
 const formals$1 = { args: { fetchurl: false, fsnotifier: false, jetbrains: false, "jetbrains-libdbm": false, lib: false, musl: false, python3: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 18, 7], ["hash", 19, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 22, 7], ["hash", 23, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 26, 7], ["hash", 27, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["x86_64-linux", 17, 5], ["aarch64-linux", 21, 5], ["aarch64-darwin", 25, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["homepage", 68, 5], ["description", 69, 5], ["longDescription", 70, 5], ["maintainers", 75, 5], ["teams", 78, 5], ["license", 79, 5], ["sourceProvenance", 80, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["jetbrains-libdbm", 33, 11], ["fsnotifier", 33, 28], ["pname", 35, 3], ["wmClass", 37, 3], ["product", 38, 3], ["version", 41, 3], ["buildNumber", 42, 3], ["src", 45, 3], ["jdk", 48, 3], ["nativeBuildInputs", 54, 3], ["buildInputs", 62, 3], ["meta", 67, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,25 +17,25 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const system = nix.thunk(() => nix.sel(stdenv, "hostPlatform", "system"));
   const urls = nix.thunk(() => ({
-    [nix.POS]: pos$4,
+    [nix.POS]: $pos[3],
     "x86_64-linux": nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: "https://download.jetbrains.com/python/pycharm-2026.2.3.tar.gz",
       hash: "sha256-6OT75Nq0Q5DQn2geBZoxbmksq9JLLhHOmP92yBIPoxM=",
     })),
     "aarch64-linux": nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       url: "https://download.jetbrains.com/python/pycharm-2026.2.3-aarch64.tar.gz",
       hash: "sha256-waxrdED02JRiQdYCIg6dua+sdfQYMcoh3FFozfNonQ4=",
     })),
     "aarch64-darwin": nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       url: "https://download.jetbrains.com/python/pycharm-2026.2.3-aarch64.dmg",
       hash: "sha256-o4hXS1XSwywItdc7oDAsZpCBBgrCCYjbt2d+hD4s77A=",
     })),
   }));
   return nix.app(nix.sel(jetbrains, "mkJetBrainsProduct"), nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       "jetbrains-libdbm": jetbrains_libdbm,
       fsnotifier: fsnotifier,
       pname: "pycharm",
@@ -57,7 +52,7 @@ export default nix.lambda((args) => (() => {
         ]))),
       buildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [musl]))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "https://www.jetbrains.com/pycharm/",
         description: "Python IDE from JetBrains",
         longDescription: "Python IDE with complete set of tools for productive development with Python programming language.\nIn addition, the IDE provides high-class capabilities for professional Web development with Django framework and Google App Engine.\nIt has powerful coding assistance, navigation, a lot of refactoring features, tight integration with various Version Control Systems, Unit testing and powerful Debugger.\n",

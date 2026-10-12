@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 40, 5], ["repo", 41, 5], ["tag", 42, 5], ["hash", 43, 5]], [["anthropic", 68, 5]], [["rev-prefix", 102, 7], ["ignoredVersions", 103, 7]], [["skipBulkUpdate", 100, 5], ["updateScript", 101, 5]], [["changelog", 108, 5], ["description", 109, 5], ["homepage", 110, 5], ["license", 111, 5], ["maintainers", 112, 5]], [["pname", 34, 3], ["version", 35, 3], ["pyproject", 36, 3], ["__structuredAttrs", 37, 3], ["src", 39, 3], ["postPatch", 46, 3], ["sourceRoot", 51, 3], ["build-system", 53, 3], ["dependencies", 55, 3], ["pythonRelaxDeps", 62, 3], ["optional-dependencies", 67, 3], ["nativeCheckInputs", 73, 3], ["enabledTestPaths", 84, 3], ["disabledTests", 86, 3], ["pythonImportsCheck", 96, 3], ["passthru", 98, 3], ["meta", 107, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, hatchling: false, boto3: false, "langchain-core": false, numpy: false, pydantic: false, langchain: false, anthropic: false, "langchain-anthropic": false, "langchain-openai": false, "langchain-tests": false, "pytest-asyncio": false, "pytest-cov-stub": false, pytestCheckHook: false, gitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 40, 5], ["repo", 41, 5], ["tag", 42, 5], ["hash", 43, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["anthropic", 68, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["rev-prefix", 102, 7], ["ignoredVersions", 103, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["skipBulkUpdate", 100, 5], ["updateScript", 101, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["changelog", 108, 5], ["description", 109, 5], ["homepage", 110, 5], ["license", 111, 5], ["maintainers", 112, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 34, 3], ["version", 35, 3], ["pyproject", 36, 3], ["__structuredAttrs", 37, 3], ["src", 39, 3], ["postPatch", 46, 3], ["sourceRoot", 51, 3], ["build-system", 53, 3], ["dependencies", 55, 3], ["pythonRelaxDeps", 62, 3], ["optional-dependencies", 67, 3], ["nativeCheckInputs", 73, 3], ["enabledTestPaths", 84, 3], ["disabledTests", 86, 3], ["pythonImportsCheck", 96, 3], ["passthru", 98, 3], ["meta", 107, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,13 +25,13 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "langchain-aws",
       version: "1.7.8",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "langchain-ai",
           repo: "langchain-aws",
           tag: nix.thunk(() => nix.str`langchain-aws==${nix.sel(finalAttrs, "version")}`),
@@ -48,7 +43,7 @@ export default nix.lambda((args) => (() => {
       dependencies: nix.thunk(() => [boto3, langchain_core, numpy, pydantic]),
       pythonRelaxDeps: nix.thunk(() => ["boto3"]),
       "optional-dependencies": nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         anthropic: nix.thunk(() => nix.concat(nix.sel(anthropic, "optional-dependencies", "bedrock"), [langchain_anthropic])),
       })),
       nativeCheckInputs: nix.thunk(() => nix.concat([
@@ -69,16 +64,16 @@ export default nix.lambda((args) => (() => {
       ]),
       pythonImportsCheck: nix.thunk(() => ["langchain_aws"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         skipBulkUpdate: true,
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             "rev-prefix": "langchain-aws==",
             ignoredVersions: "a|b|dev|rc",
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         changelog: nix.thunk(() => nix.str`https://github.com/langchain-ai/langchain-aws/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         description: "Build LangChain application on AWS",
         homepage: "https://github.com/langchain-ai/langchain-aws/",

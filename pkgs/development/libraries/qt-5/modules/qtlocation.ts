@@ -2,9 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/qtlocation.nix", [[["NIX_CFLAGS_COMPILE", 25, 9]], [["pname", 10, 3], ["propagatedBuildInputs", 11, 3], ["outputs", 15, 3], ["env", 22, 3], ["qmakeFlags", 27, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, qtModule: false, qtbase: false, qtmultimedia: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/qtlocation.nix", [["NIX_CFLAGS_COMPILE", 25, 9]]);
-const pos$2 = nix.positions(here + "/qtlocation.nix", [["pname", 10, 3], ["propagatedBuildInputs", 11, 3], ["outputs", 15, 3], ["env", 22, 3], ["qmakeFlags", 27, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +13,14 @@ export default nix.lambda((args) => (() => {
   const qtbase = nix.arg($, "qtbase");
   const qtmultimedia = nix.arg($, "qtmultimedia");
   return nix.app(qtModule, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "qtlocation",
       propagatedBuildInputs: nix.thunk(() => [qtbase, qtmultimedia]),
       outputs: nix.thunk(() => ["bin", "out", "dev"]),
-      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "cc", "isClang")) && nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.app(nix.sel(lib, "getVersion"), nix.thunk(() => nix.sel(stdenv, "cc")))), "18")))), nix.thunk(() => ({ [nix.POS]: pos$1, NIX_CFLAGS_COMPILE: "-Wno-c++11-narrowing-const-reference" })))),
+      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "cc", "isClang")) && nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.app(nix.sel(lib, "getVersion"), nix.thunk(() => nix.sel(stdenv, "cc")))), "18")))), nix.thunk(() => ({
+          [nix.POS]: $pos[0],
+          NIX_CFLAGS_COMPILE: "-Wno-c++11-narrowing-const-reference",
+        })))),
       qmakeFlags: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [
           "QMAKE_CXXFLAGS+=-D_LIBCPP_ENABLE_CXX17_REMOVED_AUTO_PTR",
           "QMAKE_CXXFLAGS+=-D_LIBCPP_ENABLE_CXX17_REMOVED_UNARY_BINARY_FUNCTION",

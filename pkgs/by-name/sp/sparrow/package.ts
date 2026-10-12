@@ -2,23 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["enableJavaFX", 29, 31]], [["x86_64-linux", 33, 7], ["aarch64-linux", 34, 7]], [["x86_64-linux", 40, 7], ["aarch64-linux", 41, 7]], [["x86_64-linux", 47, 7], ["aarch64-linux", 48, 7]], [["x86_64-linux", 56, 9], ["aarch64-linux", 57, 9]], [["url", 53, 5], ["hash", 54, 5], ["nativeBuildInputs", 68, 5], ["downloadToTemp", 69, 5], ["postFetch", 71, 5]], [["url", 87, 5], ["hash", 88, 5]], [["url", 92, 5], ["hash", 93, 5]], [["name", 153, 5], ["nativeBuildInputs", 154, 5], ["dontUnpack", 155, 5], ["buildPhase", 157, 5], ["installPhase", 166, 5]], [["pname", 174, 5], ["version", 175, 13], ["src", 175, 21], ["nativeBuildInputs", 176, 5], ["buildInputs", 184, 5], ["buildPhase", 190, 5], ["installPhase", 263, 5]], [["name", 282, 7], ["exec", 283, 7], ["icon", 284, 7], ["desktopName", 285, 7], ["genericName", 286, 7], ["categories", 287, 7], ["mimeTypes", 291, 7], ["startupWMClass", 298, 7]], [["version", 303, 13], ["src", 303, 21], ["pname", 304, 5], ["nativeBuildInputs", 305, 5], ["installPhase", 307, 5]], [["command", 340, 7], ["supportedFeatures", 344, 7]], [["updateScript", 339, 5]], [["description", 349, 5], ["homepage", 350, 5], ["sourceProvenance", 351, 5], ["license", 355, 5], ["maintainers", 356, 5], ["platforms", 360, 5], ["mainProgram", 364, 5]], [["version", 272, 11], ["src", 272, 19], ["pname", 273, 3], ["nativeBuildInputs", 274, 3], ["desktopItems", 280, 3], ["sparrow-icons", 302, 3], ["installPhase", 316, 3], ["doInstallCheck", 336, 3], ["passthru", 338, 3], ["meta", 348, 3]]]);
 const formals$1 = { args: { stdenv: false, stdenvNoCC: false, lib: false, makeWrapper: false, fetchurl: false, makeDesktopItem: false, copyDesktopItems: false, autoPatchelfHook: false, zulu25: false, gtk3: false, "gsettings-desktop-schemas": false, writeScript: false, bash: false, gnugrep: false, tor: false, zlib: false, imagemagick: false, gzip: false, gnupg: false, libusb1: false, pcsclite: false, udevCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["enableJavaFX", 29, 31]]);
-const pos$2 = nix.positions(here + "/package.nix", [["x86_64-linux", 33, 7], ["aarch64-linux", 34, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["x86_64-linux", 40, 7], ["aarch64-linux", 41, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["x86_64-linux", 47, 7], ["aarch64-linux", 48, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["x86_64-linux", 56, 9], ["aarch64-linux", 57, 9]]);
-const pos$6 = nix.positions(here + "/package.nix", [["url", 53, 5], ["hash", 54, 5], ["nativeBuildInputs", 68, 5], ["downloadToTemp", 69, 5], ["postFetch", 71, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["url", 87, 5], ["hash", 88, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["url", 92, 5], ["hash", 93, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["name", 153, 5], ["nativeBuildInputs", 154, 5], ["dontUnpack", 155, 5], ["buildPhase", 157, 5], ["installPhase", 166, 5]]);
-const pos$10 = nix.positions(here + "/package.nix", [["pname", 174, 5], ["version", 175, 13], ["src", 175, 21], ["nativeBuildInputs", 176, 5], ["buildInputs", 184, 5], ["buildPhase", 190, 5], ["installPhase", 263, 5]]);
-const pos$11 = nix.positions(here + "/package.nix", [["name", 282, 7], ["exec", 283, 7], ["icon", 284, 7], ["desktopName", 285, 7], ["genericName", 286, 7], ["categories", 287, 7], ["mimeTypes", 291, 7], ["startupWMClass", 298, 7]]);
-const pos$12 = nix.positions(here + "/package.nix", [["version", 303, 13], ["src", 303, 21], ["pname", 304, 5], ["nativeBuildInputs", 305, 5], ["installPhase", 307, 5]]);
-const pos$13 = nix.positions(here + "/package.nix", [["command", 340, 7], ["supportedFeatures", 344, 7]]);
-const pos$14 = nix.positions(here + "/package.nix", [["updateScript", 339, 5]]);
-const pos$15 = nix.positions(here + "/package.nix", [["description", 349, 5], ["homepage", 350, 5], ["sourceProvenance", 351, 5], ["license", 355, 5], ["maintainers", 356, 5], ["platforms", 360, 5], ["mainProgram", 364, 5]]);
-const pos$16 = nix.positions(here + "/package.nix", [["version", 272, 11], ["src", 272, 19], ["pname", 273, 3], ["nativeBuildInputs", 274, 3], ["desktopItems", 280, 3], ["sparrow-icons", 302, 3], ["installPhase", 316, 3], ["doInstallCheck", 336, 3], ["passthru", 338, 3], ["meta", 348, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -45,15 +30,15 @@ export default nix.lambda((args) => (() => {
   const pcsclite = nix.arg($, "pcsclite");
   const udevCheckHook = nix.arg($, "udevCheckHook");
   const version = "2.5.5";
-  const openjdk = nix.thunk(() => nix.app(nix.sel(zulu25, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, enableJavaFX: true }))));
-  const sparrowArch = nix.thunk(() => nix.sel({ [nix.POS]: pos$2, "x86_64-linux": "x86_64", "aarch64-linux": "aarch64" }, nix.key(nix.str`${nix.sel(stdenvNoCC, "hostPlatform", "system")}`)));
-  const javaArch = nix.thunk(() => nix.sel({ [nix.POS]: pos$3, "x86_64-linux": "x64", "aarch64-linux": "aarch64" }, nix.key(nix.str`${nix.sel(stdenvNoCC, "hostPlatform", "system")}`)));
-  const jnaArch = nix.thunk(() => nix.sel({ [nix.POS]: pos$4, "x86_64-linux": "x86-64", "aarch64-linux": "aarch64" }, nix.key(nix.str`${nix.sel(stdenvNoCC, "hostPlatform", "system")}`)));
+  const openjdk = nix.thunk(() => nix.app(nix.sel(zulu25, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], enableJavaFX: true }))));
+  const sparrowArch = nix.thunk(() => nix.sel({ [nix.POS]: $pos[1], "x86_64-linux": "x86_64", "aarch64-linux": "aarch64" }, nix.key(nix.str`${nix.sel(stdenvNoCC, "hostPlatform", "system")}`)));
+  const javaArch = nix.thunk(() => nix.sel({ [nix.POS]: $pos[2], "x86_64-linux": "x64", "aarch64-linux": "aarch64" }, nix.key(nix.str`${nix.sel(stdenvNoCC, "hostPlatform", "system")}`)));
+  const jnaArch = nix.thunk(() => nix.sel({ [nix.POS]: $pos[3], "x86_64-linux": "x86-64", "aarch64-linux": "aarch64" }, nix.key(nix.str`${nix.sel(stdenvNoCC, "hostPlatform", "system")}`)));
   const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       url: nix.thunk(() => nix.str`https://github.com/sparrowwallet/sparrow/releases/download/${version}/sparrowwallet-${version}-${sparrowArch}.tar.gz`),
       hash: nix.thunk(() => nix.sel({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         "x86_64-linux": "sha256-fopZv35yk72SRRjdqOp3R2lmNCl95Uh4wcX1zbUoVZ0=",
         "aarch64-linux": "sha256-E9DOz3juTDxDkO5dwfNUq4pI9a1B28BsQZfGpyTqCb4=",
       }, nix.key(nix.str`${nix.sel(stdenvNoCC, "hostPlatform", "system")}`))),
@@ -73,12 +58,12 @@ mv $downloadedFile $out
 `),
     }))));
   const manifest = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       url: nix.thunk(() => nix.str`https://github.com/sparrowwallet/sparrow/releases/download/${version}/sparrow-${version}-manifest.txt`),
       hash: "sha256-/beBl+4nD9CZLQn0OsiZxWKaJTmyHaQi/devyImEJI8=",
     }))));
   const manifestSignature = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       url: nix.thunk(() => nix.str`https://github.com/sparrowwallet/sparrow/releases/download/${version}/sparrow-${version}-manifest.txt.asc`),
       hash: "sha256-kk4rC68Ij/mUeSgX1bw7x4unUeriFsmcruBky1pbYro=",
     }))));
@@ -134,7 +119,7 @@ ${openjdk}/bin/java "\${params[@]}" "$@"
 exec ${tor}/bin/tor "$@"
 `)));
   const jdk_modules = nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       name: "jdk-modules",
       nativeBuildInputs: nix.thunk(() => [openjdk]),
       dontUnpack: true,
@@ -148,7 +133,7 @@ popd
       installPhase: "mkdir -p $out\ncp manifest.txt $out/\ncp -r modules/ $out/\n",
     }))));
   const sparrow_modules = nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       pname: "sparrow-modules",
       version: version,
       src: src,
@@ -238,7 +223,7 @@ cp tor.gz modules/io.matthewnelson.kmp.tor.resource.exec.tor/io/matthewnelson/km
       const nativeBuildInputs = nix.thunk(() => [makeWrapper, copyDesktopItems, udevCheckHook]);
       const desktopItems = nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$11,
+            [nix.POS]: $pos[10],
             name: "sparrow-desktop",
             exec: "sparrow-desktop",
             icon: "sparrow-desktop",
@@ -256,7 +241,7 @@ cp tor.gz modules/io.matthewnelson.kmp.tor.resource.exec.tor/io/matthewnelson/km
           })))),
       ]);
       const sparrow_icons = nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-          [nix.POS]: pos$12,
+          [nix.POS]: $pos[11],
           version: version_1,
           src: src_1,
           pname: "sparrow-icons",
@@ -283,15 +268,15 @@ runHook postInstall
 `);
       const doInstallCheck = true;
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$14,
+        [nix.POS]: $pos[13],
         updateScript: nix.thunk(() => ({
-          [nix.POS]: pos$13,
+          [nix.POS]: $pos[12],
           command: nix.thunk(() => [nix.path(here, "./update.sh"), nix.path(here, "./.")]),
           supportedFeatures: nix.thunk(() => ["commit"]),
         })),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$15,
+        [nix.POS]: $pos[14],
         description: "Modern desktop Bitcoin wallet application supporting most hardware wallets and built on common standards such as PSBT, with an emphasis on transparency and usability",
         homepage: "https://sparrowwallet.com",
         sourceProvenance: nix.thunk(() => (() => {
@@ -313,7 +298,7 @@ runHook postInstall
         mainProgram: "sparrow-desktop",
       }));
       return {
-        [nix.POS]: pos$16,
+        [nix.POS]: $pos[15],
         version: version_1,
         src: src_1,
         pname,

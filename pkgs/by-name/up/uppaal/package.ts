@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 21, 5], ["hash", 22, 5]], [["name", 27, 7], ["exec", 28, 7], ["icon", 29, 7], ["comment", 30, 7], ["desktopName", 31, 7], ["genericName", 32, 7], ["categories", 33, 7]], [["description", 74, 5], ["homepage", 75, 5], ["license", 76, 5], ["platforms", 77, 5], ["broken", 78, 5], ["maintainers", 79, 5], ["mainProgram", 80, 5]], [["pname", 15, 3], ["version", 16, 3], ["subversion", 17, 3], ["platform", 18, 3], ["src", 20, 3], ["desktopItems", 25, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 43, 3], ["dontBuild", 49, 3], ["installPhase", 51, 3], ["meta", 73, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchzip: false, makeWrapper: false, jdk17: false, makeDesktopItem: false, copyDesktopItems: false, wrapGAppsHook3: false, "shared-mime-info": false, "gdk-pixbuf": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 27, 7], ["exec", 28, 7], ["icon", 29, 7], ["comment", 30, 7], ["desktopName", 31, 7], ["genericName", 32, 7], ["categories", 33, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 74, 5], ["homepage", 75, 5], ["license", 76, 5], ["platforms", 77, 5], ["broken", 78, 5], ["maintainers", 79, 5], ["mainProgram", 80, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["subversion", 17, 3], ["platform", 18, 3], ["src", 20, 3], ["desktopItems", 25, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 43, 3], ["dontBuild", 49, 3], ["installPhase", 51, 3], ["meta", 73, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,13 +23,13 @@ export default nix.lambda((args) => (() => {
       const subversion = "0";
       const platform = "linux64";
       const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://download.uppaal.org/uppaal-${version}/uppaal-${version}.${subversion}/uppaal-${version}.${subversion}-${platform}.zip`),
           hash: "sha256-o71mP2/sDNRpmA1Qx59cvx6t4pk5pP0lrn1CogN3PuM=",
         }))));
       const desktopItems = nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "uppaal",
             exec: "uppaal %U",
             icon: "uppaal",
@@ -66,7 +63,7 @@ makeWrapper $out/lib/uppaal/uppaal $out/bin/uppaal \\
 runHook postInstall
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Integrated tool environment for modeling, validation and verification of real-time systems",
         homepage: "https://uppaal.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfreeRedistributable")),
@@ -82,7 +79,7 @@ runHook postInstall
         mainProgram: "uppaal",
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         subversion,

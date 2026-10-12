@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 42, 9], ["repo", 43, 9], ["rev", 44, 17], ["sha256", 44, 21]], [["name", 48, 7], ["src", 49, 15], ["nativeBuildInputs", 51, 7], ["dontInstall", 53, 7], ["patchPhase", 55, 7]], [["name", 84, 7], ["src", 85, 7], ["nativeBuildInputs", 87, 7], ["buildInputs", 89, 7], ["postPatch", 91, 7], ["preConfigure", 101, 7]], [["name", 107, 5], ["paths", 108, 5]], [["description", 147, 5], ["mainProgram", 148, 5], ["homepage", 149, 5], ["license", 150, 5], ["maintainers", 151, 5]], [["pname", 113, 3], ["version", 114, 11], ["src", 115, 3], ["postPatch", 117, 3], ["buildPhase", 124, 3], ["preInstall", 135, 3], ["nativeBuildInputs", 139, 3], ["buildInputs", 144, 11], ["meta", 146, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, "pkg-config": false, qt5: false, symlinkJoin: false, diffPlugins: false, taglib: false, libmediainfo: false, libzen: false, libbass: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 42, 9], ["repo", 43, 9], ["rev", 44, 17], ["sha256", 44, 21]]);
-const pos$2 = nix.positions(here + "/default.nix", [["name", 48, 7], ["src", 49, 15], ["nativeBuildInputs", 51, 7], ["dontInstall", 53, 7], ["patchPhase", 55, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["name", 84, 7], ["src", 85, 7], ["nativeBuildInputs", 87, 7], ["buildInputs", 89, 7], ["postPatch", 91, 7], ["preConfigure", 101, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["name", 107, 5], ["paths", 108, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["description", 147, 5], ["mainProgram", 148, 5], ["homepage", 149, 5], ["license", 150, 5], ["maintainers", 151, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 113, 3], ["version", 114, 11], ["src", 115, 3], ["postPatch", 117, 3], ["buildPhase", 124, 3], ["preInstall", 135, 3], ["nativeBuildInputs", 139, 3], ["buildInputs", 144, 11], ["meta", 146, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -46,14 +41,14 @@ export default nix.lambda((args) => (() => {
   ]);
   const patchedSrc = nix.thunk(() => (() => {
     const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         owner: "UltraStar-Deluxe",
         repo: "UltraStar-Manager",
         rev: rev,
         sha256: sha256,
       }))));
     return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         name: nix.thunk(() => nix.str`${nix.sel(src, "name")}-patched`),
         src: src,
         nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(qt5, "wrapQtAppsHook"))]),
@@ -82,7 +77,7 @@ mv * $out
   const patchApplicationPath = (file) => (path) => nix.str`sed -e "s|QCore.*applicationDirPath()|QString(\\"${path}\\")|" -i "${file}"
 `;
   const buildPlugin = (name) => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       name: nix.thunk(() => nix.str`ultrastar-manager-${name}-plugin-${version}`),
       src: patchedSrc,
       nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(qt5, "wrapQtAppsHook"))]),
@@ -100,12 +95,12 @@ done
 `),
     })));
   const builtPlugins = nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       name: nix.thunk(() => nix.str`ultrastar-manager-plugins-${version}`),
       paths: nix.thunk(() => nix.builtins.map(buildPlugin, plugins)),
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "ultrastar-manager",
       version: version,
       src: patchedSrc,
@@ -126,7 +121,7 @@ cd src && qmake && make
       nativeBuildInputs: nix.thunk(() => [pkg_config, nix.thunk(() => nix.sel(qt5, "wrapQtAppsHook"))]),
       buildInputs: buildInputs,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Ultrastar karaoke song manager",
         mainProgram: "UltraStar-Manager",
         homepage: "https://github.com/UltraStar-Deluxe/UltraStar-Manager",

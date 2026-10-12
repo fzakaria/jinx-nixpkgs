@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 31, 5], ["repo", 32, 5], ["tag", 33, 5], ["hash", 34, 5]], [["pkg-config", 63, 18]], [["tests", 63, 12]], [["changelog", 66, 5], ["description", 67, 5], ["homepage", 68, 5], ["license", 69, 5], ["mainProgram", 70, 5], ["maintainers", 71, 5], ["pkgConfigModules", 75, 5], ["platforms", 76, 5]], [["__structuredAttrs", 26, 3], ["pname", 27, 3], ["version", 28, 3], ["src", 30, 3], ["strictDeps", 37, 3], ["depsBuildBuild", 38, 3], ["nativeBuildInputs", 40, 3], ["buildInputs", 49, 3], ["passthru", 63, 3], ["meta", 65, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, meson: false, ninja: false, wlroots_0_20: false, scdoc: false, "pkg-config": false, wayland: false, libdrm: false, libxkbcommon: false, pixman: false, "wayland-protocols": false, libGL: false, libgbm: false, libxcb: false, "libxcb-wm": false, lcms2: false, validatePkgConfig: false, testers: false, "wayland-scanner": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 31, 5], ["repo", 32, 5], ["tag", 33, 5], ["hash", 34, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pkg-config", 63, 18]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 63, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["changelog", 66, 5], ["description", 67, 5], ["homepage", 68, 5], ["license", 69, 5], ["mainProgram", 70, 5], ["maintainers", 71, 5], ["pkgConfigModules", 75, 5], ["platforms", 76, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["__structuredAttrs", 26, 3], ["pname", 27, 3], ["version", 28, 3], ["src", 30, 3], ["strictDeps", 37, 3], ["depsBuildBuild", 38, 3], ["nativeBuildInputs", 40, 3], ["buildInputs", 49, 3], ["passthru", 63, 3], ["meta", 65, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,12 +29,12 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const wayland_scanner = nix.arg($, "wayland-scanner");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       __structuredAttrs: true,
       pname: "scenefx",
       version: "0.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "wlrfx",
           repo: "scenefx",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -61,14 +57,14 @@ export default nix.lambda((args) => (() => {
         lcms2,
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "testMetaPkgConfig"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         changelog: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "meta", "homepage")}/releases/tag/${nix.sel(finalAttrs, "version")}`),
         description: "Drop-in replacement for the wlroots scene API that allows wayland compositors to render surfaces with eye-candy effects",
         homepage: nix.thunk(() => nix.sel(finalAttrs, "src", "meta", "homepage")),

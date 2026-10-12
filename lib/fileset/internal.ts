@@ -2,18 +2,9 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/internal.nix", [[["_internalVersion", 87, 9], ["_internalBaseRoot", 88, 9], ["_internalBaseComponents", 89, 9]], [["_internalVersion", 99, 9]], [["_internalIsEmptyWithoutBase", 109, 9], ["_internalVersion", 110, 9]], [["_type", 122, 5], ["_internalVersion", 124, 5], ["_internalIsEmptyWithoutBase", 127, 5], ["_noEval", 132, 5]], [["_type", 152, 7], ["_internalVersion", 154, 7], ["_internalIsEmptyWithoutBase", 156, 7], ["_internalBase", 157, 7], ["_internalBaseRoot", 158, 7], ["_internalBaseComponents", 159, 7], ["_internalTree", 160, 7], ["_noEval", 165, 7]], [["success", 183, 9], ["value", 184, 17]], [["success", 187, 9], ["message", 188, 17]], [["name", 1047, 21], ["type", 1047, 26], ["hasExt", 1048, 13], ["lib.fileset.fileFilter: The predicate function passed as the first argument must be able to handle extra attributes for future compatibility. If you're using `{ name, file, hasExt }:`, use `{ name, file, hasExt, ... }:` instead.", 1052, 13]], [["url", 1144, 15], ["shallow", 1145, 15]], [["_currentVersion", 75, 3], ["migrations", 78, 3], ["_noEvalMessage", 115, 3], ["_emptyWithoutBase", 121, 3], ["_create", 144, 3], ["_coerceResult", 180, 3], ["_coerce", 238, 3], ["_coerceMany", 255, 3], ["_singleton", 291, 3], ["_directoryEntries", 319, 3], ["_normaliseTreeFilter", 352, 3], ["_normaliseTreeMinimal", 406, 3], ["_printMinimalTree", 447, 3], ["_printFileset", 505, 3], ["_toSourceFilter", 524, 3], ["_fromSourceFilter", 646, 3], ["_toList", 706, 3], ["_shortenTreeBase", 728, 3], ["_lengthenTreeBase", 746, 3], ["_unionMany", 776, 3], ["_unionTrees", 830, 3], ["_intersection", 871, 3], ["_intersectTree", 927, 3], ["_difference", 951, 3], ["_differenceTree", 1013, 3], ["_fileFilter", 1038, 3], ["_mirrorStorePath", 1090, 3], ["_fromFetchGit", 1110, 3]]]);
 const formals$1 = { args: { lib: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/internal.nix", [["_internalVersion", 87, 9], ["_internalBaseRoot", 88, 9], ["_internalBaseComponents", 89, 9]]);
-const pos$2 = nix.positions(here + "/internal.nix", [["_internalVersion", 99, 9]]);
-const pos$3 = nix.positions(here + "/internal.nix", [["_internalIsEmptyWithoutBase", 109, 9], ["_internalVersion", 110, 9]]);
-const pos$4 = nix.positions(here + "/internal.nix", [["_type", 122, 5], ["_internalVersion", 124, 5], ["_internalIsEmptyWithoutBase", 127, 5], ["_noEval", 132, 5]]);
-const pos$5 = nix.positions(here + "/internal.nix", [["_type", 152, 7], ["_internalVersion", 154, 7], ["_internalIsEmptyWithoutBase", 156, 7], ["_internalBase", 157, 7], ["_internalBaseRoot", 158, 7], ["_internalBaseComponents", 159, 7], ["_internalTree", 160, 7], ["_noEval", 165, 7]]);
-const pos$6 = nix.positions(here + "/internal.nix", [["success", 183, 9], ["value", 184, 17]]);
-const pos$7 = nix.positions(here + "/internal.nix", [["success", 187, 9], ["message", 188, 17]]);
 const formals$2 = { args: { context: false, value: false }, ellipsis: false };
-const pos$8 = nix.positions(here + "/internal.nix", [["name", 1047, 21], ["type", 1047, 26], ["hasExt", 1048, 13], ["lib.fileset.fileFilter: The predicate function passed as the first argument must be able to handle extra attributes for future compatibility. If you're using `{ name, file, hasExt }:`, use `{ name, file, hasExt, ... }:` instead.", 1052, 13]]);
-const pos$9 = nix.positions(here + "/internal.nix", [["url", 1144, 15], ["shallow", 1145, 15]]);
-const pos$10 = nix.positions(here + "/internal.nix", [["_currentVersion", 75, 3], ["migrations", 78, 3], ["_noEvalMessage", 115, 3], ["_emptyWithoutBase", 121, 3], ["_create", 144, 3], ["_coerceResult", 180, 3], ["_coerce", 238, 3], ["_coerceMany", 255, 3], ["_singleton", 291, 3], ["_directoryEntries", 319, 3], ["_normaliseTreeFilter", 352, 3], ["_normaliseTreeMinimal", 406, 3], ["_printMinimalTree", 447, 3], ["_printFileset", 505, 3], ["_toSourceFilter", 524, 3], ["_fromSourceFilter", 646, 3], ["_toList", 706, 3], ["_shortenTreeBase", 728, 3], ["_lengthenTreeBase", 746, 3], ["_unionMany", 776, 3], ["_unionTrees", 830, 3], ["_intersection", 871, 3], ["_intersectTree", 927, 3], ["_difference", 951, 3], ["_differenceTree", 1013, 3], ["_fileFilter", 1038, 3], ["_mirrorStorePath", 1090, 3], ["_fromFetchGit", 1110, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -68,18 +59,18 @@ export default nix.lambda((args) => (() => {
       (filesetV0) => (() => {
         const parts = nix.thunk(() => nix.app(splitRoot, nix.thunk(() => nix.sel(filesetV0, "_internalBase"))));
         return nix.update(filesetV0, {
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           _internalVersion: 1n,
           _internalBaseRoot: nix.thunk(() => nix.sel(parts, "root")),
           _internalBaseComponents: nix.thunk(() => nix.app(components, nix.thunk(() => nix.sel(parts, "subpath")))),
         });
       })(),
-      (filesetV1) => nix.update(filesetV1, { [nix.POS]: pos$2, _internalVersion: 2n }),
-      (filesetV2) => nix.update(filesetV2, { [nix.POS]: pos$3, _internalIsEmptyWithoutBase: false, _internalVersion: 3n }),
+      (filesetV1) => nix.update(filesetV1, { [nix.POS]: $pos[1], _internalVersion: 2n }),
+      (filesetV2) => nix.update(filesetV2, { [nix.POS]: $pos[2], _internalIsEmptyWithoutBase: false, _internalVersion: 3n }),
     ]);
     const _noEvalMessage = "lib.fileset: Directly evaluating a file set is not supported.\n  To turn it into a usable source, use `lib.fileset.toSource`.\n  To pretty-print the contents, use `lib.fileset.trace` or `lib.fileset.traceVal`.";
     const _emptyWithoutBase = nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       _type: "fileset",
       _internalVersion: _currentVersion,
       _internalIsEmptyWithoutBase: true,
@@ -88,7 +79,7 @@ export default nix.lambda((args) => (() => {
     const _create = (base) => (tree) => (() => {
       const parts = nix.thunk(() => nix.app(splitRoot, base));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         _type: "fileset",
         _internalVersion: _currentVersion,
         _internalIsEmptyWithoutBase: false,
@@ -100,8 +91,8 @@ export default nix.lambda((args) => (() => {
       };
     })();
     const _coerceResult = nix.thunk(() => (() => {
-      const ok = (value) => ({ [nix.POS]: pos$6, success: true, value: value });
-      const error = (message) => ({ [nix.POS]: pos$7, success: false, message: message });
+      const ok = (value) => ({ [nix.POS]: $pos[5], success: true, value: value });
+      const error = (message) => ({ [nix.POS]: $pos[6], success: false, message: message });
       return (context) => (value) => (nix.asBool(nix.eq(nix.selOr(value, () => "", "_type"), "fileset")) ? (nix.asBool(nix.gt(nix.sel(value, "_internalVersion"), _currentVersion)) ? nix.app(error, nix.thunk(() => nix.str`${context} is a file set created from a future version of the file set library with a different internal representation:
     - Internal version of the file set: ${nix.builtins.toString(nix.thunk(() => nix.sel(value, "_internalVersion")))}
     - Internal version of the library: ${nix.builtins.toString(_currentVersion)}
@@ -236,7 +227,7 @@ export default nix.lambda((args) => (() => {
     const _differenceTree = (path) => (lhs) => (rhs) => (nix.asBool((nix.asBool(nix.eq(lhs, null)) || nix.asBool(nix.app(isString, rhs)))) ? null : (nix.asBool(nix.eq(rhs, null)) ? nix.force(lhs) : nix.app(mapAttrs, (name) => (lhsValue) => nix.app(_differenceTree, nix.thunk(() => nix.add(path, nix.str`/${name}`)), lhsValue, nix.thunk(() => nix.selOr(rhs, () => null, nix.key(nix.force(name))))), nix.thunk(() => nix.app(_directoryEntries, path, lhs)))));
     const _fileFilter = (predicate) => (root) => (() => {
       const fromFile = (name) => (type) => (nix.asBool(nix.app(predicate, nix.thunk(() => ({
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           name: name,
           type: type,
           hasExt: (ext) => nix.app(hasSuffix, nix.thunk(() => nix.str`.${ext}`), name),
@@ -259,13 +250,13 @@ export default nix.lambda((args) => (() => {
     You could make this work by using a fetcher such as \`fetchGit\` instead of copying the whole repository.
     If you can't avoid copying the repo to the store, see https://github.com/NixOS/nix/issues/9292.`)) : nix.app(_singleton, path)));
       const tryFetchGit = nix.thunk(() => (() => {
-        const fetchResult = nix.thunk(() => nix.app(fetchGit, nix.thunk(() => nix.update({ [nix.POS]: pos$9, url: path, shallow: true }, extraFetchGitAttrs))));
+        const fetchResult = nix.thunk(() => nix.app(fetchGit, nix.thunk(() => nix.update({ [nix.POS]: $pos[8], url: path, shallow: true }, extraFetchGitAttrs))));
         return (nix.asBool(!nix.asBool(nix.app(pathExists, nix.thunk(() => nix.add(path, "/.git"))))) ? nix.builtins.throw(nix.thunk(() => nix.str`lib.fileset.${function$}: Expected the ${argument} (${nix.builtins.toString(path)}) to point to a local working tree of a Git repository, but it's not.`)) : nix.app(_mirrorStorePath, path, nix.thunk(() => nix.sel(fetchResult, "outPath"))));
       })());
       return (nix.asBool(!nix.asBool(nix.app(isPath, path))) ? nix.builtins.throw(nix.thunk(() => nix.str`lib.fileset.${function$}: Expected the ${argument} to be a path, but it's a ${nix.app(typeOf, path)} instead.`)) : (nix.asBool(!nix.eq(nix.app(pathType, path), "directory")) ? nix.builtins.throw(nix.thunk(() => nix.str`lib.fileset.${function$}: Expected the ${argument} (${nix.builtins.toString(path)}) to be a directory, but it's a file instead.`)) : (nix.asBool(nix.app(hasStorePathPrefix, path)) ? nix.force(tryStorePath) : nix.force(tryFetchGit))));
     })();
     return {
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       _currentVersion,
       migrations,
       _noEvalMessage,

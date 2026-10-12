@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5], ["fetchSubmodules", 22, 5]], [["updateScript", 89, 12]], [["description", 92, 5], ["longDescription", 93, 5], ["homepage", 98, 5], ["license", 99, 5], ["platforms", 101, 5], ["maintainers", 106, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["outputs", 25, 3], ["strictDeps", 32, 3], ["__structuredAttrs", 33, 3], ["cmakeFlags", 35, 3], ["nativeBuildInputs", 62, 3], ["buildInputs", 67, 3], ["patches", 74, 3], ["postBuild", 83, 3], ["doCheck", 87, 3], ["passthru", 89, 3], ["meta", 91, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, doxygen: false, zlib: false, "nix-update-script": false, stb: false, libmeshb: false, rply: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5], ["fetchSubmodules", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 89, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 92, 5], ["longDescription", 93, 5], ["homepage", 98, 5], ["license", 99, 5], ["platforms", 101, 5], ["maintainers", 106, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["outputs", 25, 3], ["strictDeps", 32, 3], ["__structuredAttrs", 33, 3], ["cmakeFlags", 35, 3], ["nativeBuildInputs", 62, 3], ["buildInputs", 67, 3], ["patches", 74, 3], ["postBuild", 83, 3], ["doCheck", 87, 3], ["passthru", 89, 3], ["meta", 91, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const libmeshb = nix.arg($, "libmeshb");
   const rply = nix.arg($, "rply");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "geogram",
       version: "1.9.9",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "BrunoLevy",
           repo: "geogram",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -54,11 +51,11 @@ export default nix.lambda((args) => (() => {
       postBuild: "make doc-devkit-full\n",
       doCheck: false,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Programming Library with Geometric Algorithms",
         longDescription: "Geogram contains the main results in Geometry Processing from the former ALICE Inria project,\nthat is, more than 30 research articles published in ACM SIGGRAPH, ACM Transactions on Graphics,\nSymposium on Geometry Processing and Eurographics.\n",
         homepage: "https://github.com/BrunoLevy/geogram",

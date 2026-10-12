@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["stdenv", 12, 13], ["fetchFromGitHub", 12, 20], ["cmake", 12, 36]], [["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5]], [["zycore", 35, 24]], [["homepage", 38, 5], ["changelog", 39, 5], ["description", 40, 5], ["license", 41, 5], ["maintainers", 42, 5], ["platforms", 46, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["nativeBuildInputs", 26, 3], ["propagatedBuildInputs", 27, 3], ["cmakeFlags", 28, 3], ["doCheck", 33, 3], ["nativeCheckInputs", 34, 3], ["passthru", 35, 3], ["meta", 37, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, callPackage: false, cmake: false, python3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["stdenv", 12, 13], ["fetchFromGitHub", 12, 20], ["cmake", 12, 36]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["zycore", 35, 24]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 38, 5], ["changelog", 39, 5], ["description", 40, 5], ["license", 41, 5], ["maintainers", 42, 5], ["platforms", 46, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["nativeBuildInputs", 26, 3], ["propagatedBuildInputs", 27, 3], ["cmakeFlags", 28, 3], ["doCheck", 33, 3], ["nativeCheckInputs", 34, 3], ["passthru", 35, 3], ["meta", 37, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,17 +14,17 @@ export default nix.lambda((args) => (() => {
   const cmake = nix.arg($, "cmake");
   const python3 = nix.arg($, "python3");
   const zycore = nix.thunk(() => nix.app(callPackage, nix.path(here, "./zycore.nix"), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       stdenv: stdenv,
       fetchFromGitHub: fetchFromGitHub,
       cmake: cmake,
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "zydis",
       version: "4.1.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "zyantific",
           repo: "zydis",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -39,9 +35,9 @@ export default nix.lambda((args) => (() => {
       cmakeFlags: nix.thunk(() => ["-DCMAKE_INSTALL_LIBDIR=lib", "-DCMAKE_INSTALL_INCLUDEDIR=include"]),
       doCheck: true,
       nativeCheckInputs: nix.thunk(() => [python3]),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$3, zycore: zycore })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[2], zycore: zycore })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://zydis.re/",
         changelog: nix.thunk(() => nix.str`https://github.com/zyantific/zydis/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "Fast and lightweight x86/x86-64 disassembler library",

@@ -2,11 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/build-fish-plugin.nix", [[["pluginPkgs", 66, 11], ["functionDirs", 67, 11]], [["name", 34, 15], ["unpackPhase", 35, 15], ["configurePhase", 35, 27], ["buildPhase", 35, 42], ["installPhase", 37, 7], ["doCheck", 61, 15], ["nativeCheckInputs", 63, 7], ["checkPhase", 72, 7]], [["constructDrv", 9, 3], ["excludeDrvArgNames", 10, 3], ["extendDrvArgs", 14, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, writeScript: false, wrapFish: false, writableTmpDirAsHomeHook: false }, ellipsis: false };
 const formals$2 = { args: { name: true, unpackPhase: true, configurePhase: true, buildPhase: true, nativeCheckInputs: true, checkPlugins: true, checkFunctionDirs: true, checkPhase: true, doCheck: true }, ellipsis: true };
-const pos$1 = nix.positions(here + "/build-fish-plugin.nix", [["pluginPkgs", 66, 11], ["functionDirs", 67, 11]]);
-const pos$2 = nix.positions(here + "/build-fish-plugin.nix", [["name", 34, 15], ["unpackPhase", 35, 15], ["configurePhase", 35, 27], ["buildPhase", 35, 42], ["installPhase", 37, 7], ["doCheck", 61, 15], ["nativeCheckInputs", 63, 7], ["checkPhase", 72, 7]]);
-const pos$3 = nix.positions(here + "/build-fish-plugin.nix", [["constructDrv", 9, 3], ["excludeDrvArgNames", 10, 3], ["extendDrvArgs", 14, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const wrapFish = nix.arg($, "wrapFish");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(nix.sel(lib, "extendMkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       constructDrv: nix.thunk(() => nix.sel(stdenv, "mkDerivation")),
       excludeDrvArgNames: nix.thunk(() => ["checkPlugins", "checkFunctionDirs"]),
       extendDrvArgs: (finalAttrs) => nix.lambda((args_1) => (() => {
@@ -31,7 +29,7 @@ export default nix.lambda((args) => (() => {
         const checkPhase = nix.argOr($_1, "checkPhase", () => "");
         const doCheck = nix.argOr($_1, "doCheck", () => !nix.eq(checkPhase, ""));
         return {
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           name: name,
           unpackPhase: unpackPhase,
           configurePhase: configurePhase,
@@ -40,7 +38,11 @@ export default nix.lambda((args) => (() => {
           doCheck: doCheck,
           nativeCheckInputs: nix.thunk(() => nix.concat([
             writableTmpDirAsHomeHook,
-            nix.thunk(() => nix.app(wrapFish, nix.thunk(() => ({ [nix.POS]: pos$1, pluginPkgs: checkPlugins, functionDirs: checkFunctionDirs })))),
+            nix.thunk(() => nix.app(wrapFish, nix.thunk(() => ({
+                [nix.POS]: $pos[0],
+                pluginPkgs: checkPlugins,
+                functionDirs: checkFunctionDirs,
+              })))),
           ], nativeCheckInputs)),
           checkPhase: nix.thunk(() => nix.str`fish "${nix.app(writeScript, nix.thunk(() => nix.str`${nix.sel(finalAttrs, "name")}-test`), checkPhase)}"
 `),

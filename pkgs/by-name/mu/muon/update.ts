@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/update.nix", [[["name", 10, 3], ["runtimeInputs", 12, 3], ["text", 18, 3]]]);
 const formals$1 = { args: { lib: false, writeShellApplication: false, "common-updater-scripts": false, curl: false, gnugrep: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/update.nix", [["name", 10, 3], ["runtimeInputs", 12, 3], ["text", 18, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const curl = nix.arg($, "curl");
   const gnugrep = nix.arg($, "gnugrep");
   return nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.app(writeShellApplication, nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         name: "update-muon",
         runtimeInputs: nix.thunk(() => [common_updater_scripts, curl, gnugrep]),
         text: "REPO=$(nix-instantiate --raw --eval -E \"with import ./. {}; muon.srcsAttrs.muon-src.meta.homepage\")\nMUON_VERSION=$(list-git-tags --url=\"$REPO\" | tail -1)\n\nupdate-source-version \"muon\" \\\n  \"$MUON_VERSION\" \\\n  --version-key=version \\\n  --source-key=srcsAttrs.muon-src\nupdate-source-version \"muon\" \\\n  --ignore-same-version \\\n  --rev=\"$(curl -s \"$REPO/blob/$MUON_VERSION/subprojects/meson-docs.wrap\" | grep -oP \"revision = \\K.+$\")\" \\\n  --source-key=srcsAttrs.meson-docs\nupdate-source-version \"muon\" \\\n  --ignore-same-version \\\n  --rev=\"$(curl -s \"$REPO/blob/$MUON_VERSION/subprojects/meson-tests.wrap\" | grep -oP \"revision = \\K.+$\")\" \\\n  --source-key=srcsAttrs.meson-tests\n",

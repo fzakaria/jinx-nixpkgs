@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 35, 5], ["repo", 36, 5], ["rev", 37, 5], ["hash", 38, 5]], [["package", 76, 7]], [["version", 75, 11]], [["updateScript", 74, 5], ["tests", 75, 5]], [["description", 81, 5], ["homepage", 82, 5], ["changelog", 83, 5], ["license", 84, 5], ["maintainers", 85, 5], ["mainProgram", 86, 5], ["platforms", 87, 5]], [["__structuredAttrs", 29, 3], ["pname", 31, 3], ["version", 32, 3], ["src", 34, 3], ["nativeBuildInputs", 41, 3], ["dontConfigure", 43, 3], ["dontBuild", 44, 3], ["installPhase", 46, 3], ["postFixup", 58, 3], ["passthru", 73, 3], ["meta", 80, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchFromGitHub: false, makeWrapper: false, "nix-update-script": false, coreutils: false, curl: false, findutils: false, gawk: false, gnugrep: false, gnused: false, testers: false, unzip: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 35, 5], ["repo", 36, 5], ["rev", 37, 5], ["hash", 38, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["package", 76, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 75, 11]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 74, 5], ["tests", 75, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 81, 5], ["homepage", 82, 5], ["changelog", 83, 5], ["license", 84, 5], ["maintainers", 85, 5], ["mainProgram", 86, 5], ["platforms", 87, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["__structuredAttrs", 29, 3], ["pname", 31, 3], ["version", 32, 3], ["src", 34, 3], ["nativeBuildInputs", 41, 3], ["dontConfigure", 43, 3], ["dontBuild", 44, 3], ["installPhase", 46, 3], ["postFixup", 58, 3], ["passthru", 73, 3], ["meta", 80, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,12 +22,12 @@ export default nix.lambda((args) => (() => {
   const unzip = nix.arg($, "unzip");
   const runtimePath = nix.thunk(() => nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [coreutils, curl, findutils, gawk, gnugrep, gnused, unzip])));
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       __structuredAttrs: true,
       pname: "tfenv",
       version: "3.2.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "tfutils",
           repo: "tfenv",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -56,18 +51,18 @@ ln -s $out/share/tfenv/bin/tfenv $out/bin/tfenv
 ln -s $out/share/tfenv/bin/terraform $out/bin/terraform
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Terraform version manager",
         homepage: "https://github.com/tfutils/tfenv",
         changelog: nix.thunk(() => nix.str`https://github.com/tfutils/tfenv/blob/v${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

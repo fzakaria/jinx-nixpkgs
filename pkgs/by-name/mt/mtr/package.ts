@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["sha256", 22, 5]], [["description", 58, 5], ["homepage", 59, 5], ["license", 60, 5], ["maintainers", 61, 5], ["mainProgram", 67, 5], ["platforms", 68, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["postPatch", 26, 3], ["preConfigure", 31, 3], ["configureFlags", 36, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 43, 3], ["enableParallelBuilding", 50, 3], ["outputs", 52, 3], ["meta", 57, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, autoreconfHook: false, "pkg-config": false, libcap: false, ncurses: false, jansson: false, withGtk: true, gtk3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["sha256", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 58, 5], ["homepage", 59, 5], ["license", 60, 5], ["maintainers", 61, 5], ["mainProgram", 67, 5], ["platforms", 68, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["postPatch", 26, 3], ["preConfigure", 31, 3], ["configureFlags", 36, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 43, 3], ["enableParallelBuilding", 50, 3], ["outputs", 52, 3], ["meta", 57, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const pname = nix.thunk(() => nix.str`mtr${nix.app(nix.sel(lib, "optionalString"), withGtk, "-gui")}`);
       const version = "0.96";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "traviscross",
           repo: "mtr",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -38,7 +36,7 @@ export default nix.lambda((args) => (() => {
       const enableParallelBuilding = true;
       const outputs = nix.thunk(() => ["out", "man"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Network diagnostics tool",
         homepage: "https://www.bitwizard.nl/mtr/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),
@@ -55,7 +53,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

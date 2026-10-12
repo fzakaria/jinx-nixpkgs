@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["repo", 18, 5], ["owner", 19, 5], ["rev", 20, 5], ["sha256", 21, 5]], [["NIX_CFLAGS_COMPILE", 38, 7]], [["description", 55, 5], ["homepage", 56, 5], ["platforms", 57, 5], ["license", 58, 5], ["mainProgram", 59, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["buildInputs", 24, 3], ["sourceRoot", 34, 3], ["makeFlags", 36, 3], ["env", 38, 3], ["hardeningDisable", 40, 3], ["patchPhase", 42, 3], ["installPhase", 48, 3], ["meta", 54, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, libpulseaudio: false, SDL2: false, SDL2_image: false, SDL2_ttf: false, "alsa-lib": false, libjack2: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["repo", 18, 5], ["owner", 19, 5], ["rev", 20, 5], ["sha256", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 38, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 55, 5], ["homepage", 56, 5], ["platforms", 57, 5], ["license", 58, 5], ["mainProgram", 59, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["buildInputs", 24, 3], ["sourceRoot", 34, 3], ["makeFlags", 36, 3], ["env", 38, 3], ["hardeningDisable", 40, 3], ["patchPhase", 42, 3], ["installPhase", 48, 3], ["meta", 54, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const alsa_lib = nix.arg($, "alsa-lib");
   const libjack2 = nix.arg($, "libjack2");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "picoloop",
       version: "0.77e",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           repo: "picoloop",
           owner: "yoyz",
           rev: nix.thunk(() => nix.str`picoloop-${nix.sel(finalAttrs, "version")}`),
@@ -42,7 +39,7 @@ export default nix.lambda((args) => (() => {
       sourceRoot: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "name")}/picoloop`),
       makeFlags: nix.thunk(() => ["-f Makefile.PatternPlayer_debian_RtAudio_sdl20"]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => [
             nix.thunk(() => nix.str`-I${nix.app(nix.sel(lib, "getInclude"), SDL2)}/include/SDL2`),
           ]))),
@@ -51,7 +48,7 @@ export default nix.lambda((args) => (() => {
       patchPhase: "substituteInPlace SDL_GUI.cpp \\\n--replace \"\\\"font.ttf\\\"\" \"\\\"$out/share/font.ttf\\\"\" \\\n--replace \"\\\"font.bmp\\\"\" \"\\\"$out/share/font.bmp\\\"\"\n",
       installPhase: "mkdir -p $out/{bin,share}\ncp PatternPlayer_debian_RtAudio_sdl20 $out/bin/picoloop\ncp {font.*,LICENSE} $out/share\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Synth and a stepsequencer (a clone of the famous nanoloop)",
         homepage: "https://github.com/yoyz/picoloop",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),

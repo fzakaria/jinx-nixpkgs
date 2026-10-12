@@ -2,38 +2,34 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/drbd-driver.nix", [[["maintainers", 4, 8]], [["kernelModules", 11, 11], ["extraModulePackages", 12, 11], ["kernelPackages", 13, 11]], [["boot", 10, 9]], [["machine", 7, 5]], [["name", 3, 3], ["meta", 4, 3], ["nodes", 6, 3], ["testScript", 18, 3]]]);
 const formals$1 = { args: { lib: false, pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/drbd-driver.nix", [["maintainers", 4, 8]]);
 const formals$2 = { args: { config: false, pkgs: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/drbd-driver.nix", [["kernelModules", 11, 11], ["extraModulePackages", 12, 11], ["kernelPackages", 13, 11]]);
-const pos$3 = nix.positions(here + "/drbd-driver.nix", [["boot", 10, 9]]);
-const pos$4 = nix.positions(here + "/drbd-driver.nix", [["machine", 7, 5]]);
-const pos$5 = nix.positions(here + "/drbd-driver.nix", [["name", 3, 3], ["meta", 4, 3], ["nodes", 6, 3], ["testScript", 18, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   return {
-    [nix.POS]: pos$5,
+    [nix.POS]: $pos[4],
     name: "drbd-driver",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "birkb"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config = nix.arg($_1, "config");
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           boot: nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             kernelModules: nix.thunk(() => ["drbd"]),
             extraModulePackages: nix.thunk(() => (() => {
               const w = nix.withScope(nix.thunk(() => nix.sel(config, "boot", "kernelPackages")), null);

@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 34, 5], ["repo", 35, 5], ["tag", 36, 5], ["hash", 37, 5]], [["full", 44, 25]], [["fastapi", 62, 13]], [["tests", 61, 12]], [["changelog", 66, 5], ["downloadPage", 67, 5], ["homepage", 68, 5], ["description", 69, 5], ["license", 70, 5], ["maintainers", 71, 5]], [["pname", 29, 3], ["version", 30, 3], ["pyproject", 31, 3], ["src", 33, 3], ["build-system", 40, 3], ["dependencies", 42, 3], ["optional-dependencies", 44, 3], ["nativeCheckInputs", 53, 3], ["pythonImportsCheck", 59, 3], ["passthru", 61, 3], ["meta", 65, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, hatchling: false, anyio: false, itsdangerous: false, jinja2: false, "python-multipart": false, pyyaml: false, httpx: false, httpx2: false, pytestCheckHook: false, trio: false, fastapi: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 34, 5], ["repo", 35, 5], ["tag", 36, 5], ["hash", 37, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["full", 44, 25]]);
-const pos$3 = nix.positions(here + "/default.nix", [["fastapi", 62, 13]]);
-const pos$4 = nix.positions(here + "/default.nix", [["tests", 61, 12]]);
-const pos$5 = nix.positions(here + "/default.nix", [["changelog", 66, 5], ["downloadPage", 67, 5], ["homepage", 68, 5], ["description", 69, 5], ["license", 70, 5], ["maintainers", 71, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 29, 3], ["version", 30, 3], ["pyproject", 31, 3], ["src", 33, 3], ["build-system", 40, 3], ["dependencies", 42, 3], ["optional-dependencies", 44, 3], ["nativeCheckInputs", 53, 3], ["pythonImportsCheck", 59, 3], ["passthru", 61, 3], ["meta", 65, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,7 +26,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.3.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Kludex",
           repo: "starlette",
           tag: version,
@@ -40,17 +35,17 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [hatchling]);
       const dependencies = nix.thunk(() => [anyio]);
       const optional_dependencies = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         full: nix.thunk(() => [itsdangerous, jinja2, python_multipart, pyyaml, httpx, httpx2]),
       }));
       const nativeCheckInputs = nix.thunk(() => nix.concat([pytestCheckHook, trio], nix.app(nix.sel(lib, "concatAttrValues"), optional_dependencies)));
       const pythonImportsCheck = nix.thunk(() => ["starlette"]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$3, fastapi: fastapi })),
+        [nix.POS]: $pos[3],
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[2], fastapi: fastapi })),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         changelog: nix.thunk(() => nix.str`https://github.com/Kludex/starlette/blob/${nix.sel(src, "tag")}/docs/release-notes.md`),
         downloadPage: "https://github.com/Kludex/starlette",
         homepage: "https://www.starlette.io/",
@@ -62,7 +57,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname,
         version,
         pyproject,

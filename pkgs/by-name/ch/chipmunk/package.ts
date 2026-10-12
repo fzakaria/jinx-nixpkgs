@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 25, 5], ["sha256", 26, 5]], [["url", 31, 7], ["sha256", 32, 7]], [["description", 56, 5], ["mainProgram", 57, 5], ["homepage", 58, 5], ["license", 59, 5], ["platforms", 60, 5]], [["pname", 20, 3], ["majorVersion", 21, 3], ["version", 22, 3], ["src", 24, 3], ["patches", 29, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 37, 3], ["postInstall", 50, 3], ["meta", 55, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, cmake: false, libglut: false, libGLU: false, libGL: false, glfw2: false, glew: false, libx11: false, xorgproto: false, libxi: false, libxmu: false, fetchpatch: false, libxrandr: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 25, 5], ["sha256", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 31, 7], ["sha256", 32, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 56, 5], ["mainProgram", 57, 5], ["homepage", 58, 5], ["license", 59, 5], ["platforms", 60, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["majorVersion", 21, 3], ["version", 22, 3], ["src", 24, 3], ["patches", 29, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 37, 3], ["postInstall", 50, 3], ["meta", 55, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,13 +27,13 @@ export default nix.lambda((args) => (() => {
       const majorVersion = "7";
       const version = nix.thunk(() => nix.str`${majorVersion}.0.3`);
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://chipmunk-physics.net/release/Chipmunk-${majorVersion}.x/Chipmunk-${version}.tgz`),
           sha256: "06j9cfxsyrrnyvl7hsf55ac5mgff939mmijliampphlizyg0r2q4",
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/slembcke/Chipmunk2D/commit/9a051e6fb970c7afe09ce2d564c163b81df050a8.patch",
             sha256: "0ps8bjba1k544vcdx5w0qk7gcjq94yfigxf67j50s63yf70k2n70",
           })))),
@@ -56,7 +53,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const postInstall = "mkdir -p $out/bin\ncp demo/chipmunk_demos $out/bin\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Fast and lightweight 2D game physics library",
         mainProgram: "chipmunk_demos",
         homepage: "http://chipmunk2d.net/",
@@ -64,7 +61,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         majorVersion,
         version,

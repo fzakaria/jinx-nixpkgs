@@ -2,19 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 35, 7], ["hash", 36, 7]], [["openssl", 56, 32]], [["mysql", 113, 13]], [["mysqlVersion", 112, 7], ["tests", 113, 7]], [["homepage", 118, 7], ["description", 119, 7], ["license", 120, 7], ["maintainers", 121, 7], ["platforms", 123, 7]], [["version", 32, 5], ["src", 34, 5], ["patches", 39, 5], ["postPatch", 44, 5], ["nativeBuildInputs", 48, 5], ["buildInputs", 55, 5], ["outputs", 80, 5], ["cmakeFlags", 86, 5], ["postInstall", 105, 5], ["passthru", 111, 5], ["meta", 117, 5]], [["mainProgram", 140, 9]], [["pname", 133, 7], ["cmakeFlags", 135, 7], ["meta", 139, 7]], [["mainProgram", 156, 7]], [["mysql-secure-root-by-default", 163, 13], ["mysql-root-can-be-kept-insecure", 165, 13]], [["client", 160, 15], ["connector-c", 161, 7], ["server", 162, 7], ["tests", 163, 7]], [["pname", 153, 5], ["meta", 155, 5], ["passthru", 159, 5]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, bison: false, cmake: false, "pkg-config": false, icu: false, libedit: false, libevent: false, lz4: false, ncurses: false, openssl: false, protobuf_21: false, re2: false, readline: false, zlib: false, zstd: false, libfido2: false, cctools: false, darwin: false, numactl: false, libtirpc: false, "rpcsvc-proto": false, curl: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 35, 7], ["hash", 36, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["openssl", 56, 32]]);
-const pos$3 = nix.positions(here + "/package.nix", [["mysql", 113, 13]]);
-const pos$4 = nix.positions(here + "/package.nix", [["mysqlVersion", 112, 7], ["tests", 113, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["homepage", 118, 7], ["description", 119, 7], ["license", 120, 7], ["maintainers", 121, 7], ["platforms", 123, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["version", 32, 5], ["src", 34, 5], ["patches", 39, 5], ["postPatch", 44, 5], ["nativeBuildInputs", 48, 5], ["buildInputs", 55, 5], ["outputs", 80, 5], ["cmakeFlags", 86, 5], ["postInstall", 105, 5], ["passthru", 111, 5], ["meta", 117, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["mainProgram", 140, 9]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 133, 7], ["cmakeFlags", 135, 7], ["meta", 139, 7]]);
-const pos$9 = nix.positions(here + "/package.nix", [["mainProgram", 156, 7]]);
-const pos$10 = nix.positions(here + "/package.nix", [["mysql-secure-root-by-default", 163, 13], ["mysql-root-can-be-kept-insecure", 165, 13]]);
-const pos$11 = nix.positions(here + "/package.nix", [["client", 160, 15], ["connector-c", 161, 7], ["server", 162, 7], ["tests", 163, 7]]);
-const pos$12 = nix.positions(here + "/package.nix", [["pname", 153, 5], ["meta", 155, 5], ["passthru", 159, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -44,10 +33,10 @@ export default nix.lambda((args) => (() => {
   const curl = nix.arg($, "curl");
   const nixosTests = nix.arg($, "nixosTests");
   const common = (finalAttrs) => ({
-    [nix.POS]: pos$6,
+    [nix.POS]: $pos[5],
     version: "8.4.11",
     src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         url: nix.thunk(() => nix.str`https://dev.mysql.com/get/Downloads/MySQL-${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/mysql-${nix.sel(finalAttrs, "version")}.tar.gz`),
         hash: "sha256-6zBRFk1iXdNGqCA/duDV1dmuxR2+nVF4jjnsaz8TlMI=",
       })))),
@@ -55,7 +44,7 @@ export default nix.lambda((args) => (() => {
     postPatch: "substituteInPlace cmake/libutils.cmake --replace /usr/bin/libtool libtool\nsubstituteInPlace cmake/os/Darwin.cmake --replace /usr/bin/libtool libtool\n",
     nativeBuildInputs: nix.thunk(() => nix.concat([bison, cmake, pkg_config], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), nix.thunk(() => [rpcsvc_proto])))),
     buildInputs: nix.thunk(() => nix.concat([
-      nix.thunk(() => nix.app(nix.sel(curl, "override"), nix.thunk(() => ({ [nix.POS]: pos$2, openssl: openssl })))),
+      nix.thunk(() => nix.app(nix.sel(curl, "override"), nix.thunk(() => ({ [nix.POS]: $pos[1], openssl: openssl })))),
       icu,
       libedit,
       libevent,
@@ -97,15 +86,15 @@ so=${nix.sel(stdenv, "hostPlatform", "extensions", "sharedLibrary")}
 ln -s libmysqlclient$so $out/lib/libmysqlclient_r$so
 `),
     passthru: nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       mysqlVersion: nix.thunk(() => nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))),
       tests: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         mysql: nix.thunk(() => nix.sel(nixosTests, "mysql", nix.key(nix.str`mysql${nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(finalAttrs, "version")))}${nix.app(nix.sel(lib, "versions", "minor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}`))),
       })),
     })),
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       homepage: "https://www.mysql.com/",
       description: "World's most popular open source database",
       license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),
@@ -116,25 +105,25 @@ ln -s libmysqlclient$so $out/lib/libmysqlclient_r$so
   const client = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => (() => {
       const common$ = nix.thunk(() => nix.app(common, finalAttrs));
       return nix.update(common$, {
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         pname: "mysql-client",
         cmakeFlags: nix.thunk(() => nix.concat(nix.sel(common$, "cmakeFlags"), ["-DWITHOUT_SERVER=ON", "-DINSTALL_MYSQLSHAREDIR=share/mysql-client"])),
-        meta: nix.thunk(() => nix.update(nix.sel(common$, "meta"), { [nix.POS]: pos$7, mainProgram: "mysql" })),
+        meta: nix.thunk(() => nix.update(nix.sel(common$, "meta"), { [nix.POS]: $pos[6], mainProgram: "mysql" })),
       });
     })()));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => (() => {
       const common$ = nix.thunk(() => nix.app(common, finalAttrs));
       return nix.update(common$, {
-        [nix.POS]: pos$12,
+        [nix.POS]: $pos[11],
         pname: "mysql",
-        meta: nix.thunk(() => nix.update(nix.sel(common$, "meta"), { [nix.POS]: pos$9, mainProgram: "mysqld" })),
+        meta: nix.thunk(() => nix.update(nix.sel(common$, "meta"), { [nix.POS]: $pos[8], mainProgram: "mysqld" })),
         passthru: nix.thunk(() => nix.app(nix.sel(lib, "recursiveUpdate"), nix.thunk(() => nix.sel(common$, "passthru")), nix.thunk(() => ({
-            [nix.POS]: pos$11,
+            [nix.POS]: $pos[10],
             client: client,
             "connector-c": client,
             server: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             tests: nix.thunk(() => ({
-              [nix.POS]: pos$10,
+              [nix.POS]: $pos[9],
               "mysql-secure-root-by-default": nix.thunk(() => nix.sel(nixosTests, "mysql-secure-root", "secure-by-default", nix.key(nix.str`mysql${nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(finalAttrs, "version")))}${nix.app(nix.sel(lib, "versions", "minor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}`))),
               "mysql-root-can-be-kept-insecure": nix.thunk(() => nix.sel(nixosTests, "mysql-secure-root", "can-be-insecure", nix.key(nix.str`mysql${nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(finalAttrs, "version")))}${nix.app(nix.sel(lib, "versions", "minor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}`))),
             })),

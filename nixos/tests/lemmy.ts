@@ -2,24 +2,8 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/lemmy.nix", [[["maintainers", 10, 5], ["teams", 14, 5]], [["port", 23, 12]], [["createLocally", 24, 18]], [["admin_username", 30, 13], ["site_name", 31, 13], ["admin_email", 32, 13]], [["hostname", 26, 11], ["port", 27, 11], ["setup", 29, 11]], [["enable", 36, 15]], [["enable", 22, 9], ["ui", 23, 9], ["database", 24, 9], ["settings", 25, 9], ["adminPasswordFile", 35, 9], ["caddy", 36, 9]], [["lemmy", 21, 16]], [["text", 39, 50]], [["lemmy-admin-password.txt", 39, 23]], [["etc", 39, 19]], [["allowedTCPPorts", 41, 27]], [["firewall", 41, 18]], [["memorySize", 44, 22]], [["services", 21, 7], ["environment", 39, 7], ["networking", 41, 7], ["virtualisation", 44, 7]], [["client", 18, 5]], [["name", 8, 3], ["meta", 9, 3], ["nodes", 17, 3], ["testScript", 48, 3]]]);
 const formals$1 = { args: { pkgs: false, lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/lemmy.nix", [["maintainers", 10, 5], ["teams", 14, 5]]);
-const pos$2 = nix.positions(here + "/lemmy.nix", [["port", 23, 12]]);
-const pos$3 = nix.positions(here + "/lemmy.nix", [["createLocally", 24, 18]]);
-const pos$4 = nix.positions(here + "/lemmy.nix", [["admin_username", 30, 13], ["site_name", 31, 13], ["admin_email", 32, 13]]);
-const pos$5 = nix.positions(here + "/lemmy.nix", [["hostname", 26, 11], ["port", 27, 11], ["setup", 29, 11]]);
-const pos$6 = nix.positions(here + "/lemmy.nix", [["enable", 36, 15]]);
-const pos$7 = nix.positions(here + "/lemmy.nix", [["enable", 22, 9], ["ui", 23, 9], ["database", 24, 9], ["settings", 25, 9], ["adminPasswordFile", 35, 9], ["caddy", 36, 9]]);
-const pos$8 = nix.positions(here + "/lemmy.nix", [["lemmy", 21, 16]]);
-const pos$9 = nix.positions(here + "/lemmy.nix", [["text", 39, 50]]);
-const pos$10 = nix.positions(here + "/lemmy.nix", [["lemmy-admin-password.txt", 39, 23]]);
-const pos$11 = nix.positions(here + "/lemmy.nix", [["etc", 39, 19]]);
-const pos$12 = nix.positions(here + "/lemmy.nix", [["allowedTCPPorts", 41, 27]]);
-const pos$13 = nix.positions(here + "/lemmy.nix", [["firewall", 41, 18]]);
-const pos$14 = nix.positions(here + "/lemmy.nix", [["memorySize", 44, 22]]);
-const pos$15 = nix.positions(here + "/lemmy.nix", [["services", 21, 7], ["environment", 39, 7], ["networking", 41, 7], ["virtualisation", 44, 7]]);
-const pos$16 = nix.positions(here + "/lemmy.nix", [["client", 18, 5]]);
-const pos$17 = nix.positions(here + "/lemmy.nix", [["name", 8, 3], ["meta", 9, 3], ["nodes", 17, 3], ["testScript", 48, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,10 +13,10 @@ export default nix.lambda((args) => (() => {
   const backendPort = 5678n;
   const lemmyNodeName = "server";
   return {
-    [nix.POS]: pos$17,
+    [nix.POS]: $pos[16],
     name: "lemmy",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [
@@ -42,43 +26,43 @@ export default nix.lambda((args) => (() => {
       })()),
       teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "ngi"))]),
     })),
-    nodes: nix.thunk(() => nix.attrsDyn({ [nix.POS]: pos$16, client: nix.thunk(() => ({})) }, [
+    nodes: nix.thunk(() => nix.attrsDyn({ [nix.POS]: $pos[15], client: nix.thunk(() => ({})) }, [
       [nix.str`${lemmyNodeName}`, nix.thunk(() => ({
-        [nix.POS]: pos$15,
+        [nix.POS]: $pos[14],
         services: nix.thunk(() => ({
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           lemmy: nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             enable: true,
-            ui: nix.thunk(() => ({ [nix.POS]: pos$2, port: uiPort })),
-            database: nix.thunk(() => ({ [nix.POS]: pos$3, createLocally: true })),
+            ui: nix.thunk(() => ({ [nix.POS]: $pos[1], port: uiPort })),
+            database: nix.thunk(() => ({ [nix.POS]: $pos[2], createLocally: true })),
             settings: nix.thunk(() => ({
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               hostname: nix.thunk(() => nix.str`http://${lemmyNodeName}`),
               port: backendPort,
               setup: nix.thunk(() => ({
-                [nix.POS]: pos$4,
+                [nix.POS]: $pos[3],
                 admin_username: "mightyiam",
                 site_name: "Lemmy FTW",
                 admin_email: "mightyiam@example.com",
               })),
             })),
             adminPasswordFile: nix.path("", "/etc/lemmy-admin-password.txt"),
-            caddy: nix.thunk(() => ({ [nix.POS]: pos$6, enable: true })),
+            caddy: nix.thunk(() => ({ [nix.POS]: $pos[5], enable: true })),
           })),
         })),
         environment: nix.thunk(() => ({
-          [nix.POS]: pos$11,
+          [nix.POS]: $pos[10],
           etc: nix.thunk(() => ({
-            [nix.POS]: pos$10,
-            "lemmy-admin-password.txt": nix.thunk(() => ({ [nix.POS]: pos$9, text: "ThisIsWhatIUseEverywhereTryIt" })),
+            [nix.POS]: $pos[9],
+            "lemmy-admin-password.txt": nix.thunk(() => ({ [nix.POS]: $pos[8], text: "ThisIsWhatIUseEverywhereTryIt" })),
           })),
         })),
         networking: nix.thunk(() => ({
-          [nix.POS]: pos$13,
-          firewall: nix.thunk(() => ({ [nix.POS]: pos$12, allowedTCPPorts: nix.thunk(() => [80n]) })),
+          [nix.POS]: $pos[12],
+          firewall: nix.thunk(() => ({ [nix.POS]: $pos[11], allowedTCPPorts: nix.thunk(() => [80n]) })),
         })),
-        virtualisation: nix.thunk(() => ({ [nix.POS]: pos$14, memorySize: 2000n })),
+        virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[13], memorySize: 2000n })),
       }))],
     ])),
     testScript: nix.thunk(() => nix.str`server = ${lemmyNodeName}

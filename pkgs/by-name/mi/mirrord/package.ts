@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["updateScript", 44, 12]], [["description", 47, 5], ["homepage", 48, 5], ["license", 49, 5], ["platforms", 50, 5], ["maintainers", 51, 5], ["sourceProvenance", 52, 5], ["mainProgram", 53, 5]], [["pname", 13, 3], ["version", 14, 3], ["strictDeps", 16, 3], ["__structuredAttrs", 17, 3], ["src", 19, 3], ["dontUnpack", 21, 3], ["dontConfigure", 22, 3], ["dontBuild", 23, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 29, 3], ["installPhase", 33, 3], ["nativeInstallCheckInputs", 41, 3], ["doInstallCheck", 42, 3], ["passthru", 44, 3], ["meta", 46, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, autoPatchelfHook: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["updateScript", 44, 12]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 47, 5], ["homepage", 48, 5], ["license", 49, 5], ["platforms", 50, 5], ["maintainers", 51, 5], ["sourceProvenance", 52, 5], ["mainProgram", 53, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["strictDeps", 16, 3], ["__structuredAttrs", 17, 3], ["src", 19, 3], ["dontUnpack", 21, 3], ["dontConfigure", 22, 3], ["dontBuild", 23, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 29, 3], ["installPhase", 33, 3], ["nativeInstallCheckInputs", 41, 3], ["doInstallCheck", 42, 3], ["passthru", 44, 3], ["meta", 46, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const manifest = nix.thunk(() => nix.app(nix.sel(lib, "importJSON"), nix.path(here, "./manifest.json")));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "mirrord",
       version: nix.thunk(() => nix.sel(manifest, "version")),
       strictDeps: true,
@@ -30,9 +28,9 @@ export default nix.lambda((args) => (() => {
       installPhase: "runHook preInstall\n\ninstall -D $src $out/bin/mirrord\n\nrunHook postInstall\n",
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$1, updateScript: nix.path(here, "./update.py") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[0], updateScript: nix.path(here, "./update.py") })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Run local processes in the context of Kubernetes environment",
         homepage: "https://mirrord.dev/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 28, 5], ["hash", 29, 5]], [["packageName", 66, 5], ["versionPolicy", 67, 5]], [["updateScript", 65, 12]], [["description", 71, 5], ["homepage", 72, 5], ["teams", 73, 5], ["platforms", 74, 5], ["license", 75, 5]], [["pname", 18, 3], ["version", 19, 3], ["outputs", 21, 3], ["src", 27, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 42, 3], ["mesonFlags", 47, 3], ["doCheck", 51, 3], ["postPatch", 54, 3], ["postFixup", 60, 3], ["passthru", 65, 3], ["meta", 70, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, "gi-docgen": false, "gobject-introspection": false, meson: false, ninja: false, "pkg-config": false, vala: false, glib: false, liburing: false, gnome: false, python3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 28, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["packageName", 66, 5], ["versionPolicy", 67, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 65, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 71, 5], ["homepage", 72, 5], ["teams", 73, 5], ["platforms", 74, 5], ["license", 75, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["outputs", 21, 3], ["src", 27, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 42, 3], ["mesonFlags", 47, 3], ["doCheck", 51, 3], ["postPatch", 54, 3], ["postFixup", 60, 3], ["passthru", 65, 3], ["meta", 70, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const gnome = nix.arg($, "gnome");
   const python3 = nix.arg($, "python3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "libdex",
       version: "1.1.0",
       outputs: nix.thunk(() => ["out", "dev", "devdoc"]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnome/sources/libdex/${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/libdex-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-qeBMir7gHJp88RSMW3qma6N37+avbYOAHU/RqlUhmqo=",
         })))),
@@ -41,11 +37,11 @@ export default nix.lambda((args) => (() => {
       postPatch: "substituteInPlace \"testsuite/meson.build\" --replace-fail \\\n  \"'test-dbus': {'extra-sources': dbus_foo, 'disable': not have_gdbus_codegen},\" \\\n  \"'test-dbus': {'extra-sources': dbus_foo, 'disable': true},\"\n",
       postFixup: "# Cannot be in postInstall, otherwise _multioutDocs hook in preFixup will move right back.\nmoveToOutput \"share/doc\" \"$devdoc\"\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$2, packageName: "libdex", versionPolicy: "odd-unstable" })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: $pos[1], packageName: "libdex", versionPolicy: "odd-unstable" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Library supporting deferred execution for GNOME and GTK",
         homepage: "https://gitlab.gnome.org/GNOME/libdex",
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "gnome"))]),

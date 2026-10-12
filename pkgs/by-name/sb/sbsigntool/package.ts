@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 25, 5], ["rev", 26, 5], ["hash", 27, 5]], [["description", 73, 5], ["homepage", 74, 5], ["maintainers", 75, 5], ["platforms", 79, 5], ["license", 83, 5]], [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["patches", 30, 3], ["prePatch", 32, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 42, 3], ["preConfigure", 49, 3], ["configureFlags", 66, 3], ["makeFlags", 68, 3], ["meta", 72, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchgit: false, autoconf: false, automake: false, "pkg-config": false, help2man: false, openssl: false, libuuid: false, "gnu-efi": false, libbfd: false, "util-linux": false, buildPackages: false, "deterministic-host-uname": false, withMan: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 25, 5], ["rev", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 73, 5], ["homepage", 74, 5], ["maintainers", 75, 5], ["platforms", 79, 5], ["license", 83, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["patches", 30, 3], ["prePatch", 32, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 42, 3], ["preConfigure", 49, 3], ["configureFlags", 66, 3], ["makeFlags", 68, 3], ["meta", 72, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const deterministic_host_uname = nix.arg($, "deterministic-host-uname");
   const withMan = nix.argOr($, "withMan", () => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform"))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "sbsigntool",
       version: "0.9.5",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://git.kernel.org/pub/scm/linux/kernel/git/jejb/sbsigntools.git",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-5DInWgl1gThjjfGOsts1H1s1GbMCkd0gjbmG3gA3Fhg=",
@@ -61,7 +59,7 @@ automake --add-missing -Wno-portability
       configureFlags: nix.thunk(() => ["CFLAGS=-Wno-error=unused-but-set-variable"]),
       makeFlags: nix.thunk(() => [nix.thunk(() => nix.str`AR=${nix.sel(stdenv, "cc", "targetPrefix")}ar`)]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Tools for maintaining UEFI signature databases",
         homepage: "https://git.kernel.org/pub/scm/linux/kernel/git/jejb/sbsigntools.git",
         maintainers: nix.thunk(() => (() => {

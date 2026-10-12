@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/influx.nix", [[["description", 23, 5]], [["pname", 10, 3], ["version", 11, 21], ["src", 11, 29], ["duneVersion", 13, 3], ["propagatedBuildInputs", 15, 3], ["meta", 22, 3]]]);
 const formals$1 = { args: { buildDunePackage: false, metrics: false, duration: false, fmt: false, lwt: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/influx.nix", [["description", 23, 5]]);
-const pos$2 = nix.positions(here + "/influx.nix", [["pname", 10, 3], ["version", 11, 21], ["src", 11, 29], ["duneVersion", 13, 3], ["propagatedBuildInputs", 15, 3], ["meta", 22, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,13 +13,13 @@ export default nix.lambda((args) => (() => {
   const fmt = nix.arg($, "fmt");
   const lwt = nix.arg($, "lwt");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "metrics-influx",
       version: nix.thunk(() => nix.attr(metrics, "version")),
       src: nix.thunk(() => nix.attr(metrics, "src")),
       duneVersion: "3",
       propagatedBuildInputs: nix.thunk(() => [duration, fmt, lwt, metrics]),
-      meta: nix.thunk(() => nix.update(nix.sel(metrics, "meta"), { [nix.POS]: pos$1, description: "Influx reporter for the Metrics library" })),
+      meta: nix.thunk(() => nix.update(nix.sel(metrics, "meta"), { [nix.POS]: $pos[0], description: "Influx reporter for the Metrics library" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=influx.ts.map

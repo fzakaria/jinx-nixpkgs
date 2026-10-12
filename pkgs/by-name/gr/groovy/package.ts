@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 21, 5], ["hash", 22, 5]], [["name", 34, 7], ["desktopName", 35, 7], ["exec", 36, 7], ["icon", 37, 7], ["comment", 38, 7], ["terminal", 39, 7], ["startupNotify", 40, 7], ["categories", 41, 7]], [["description", 78, 5], ["homepage", 79, 5], ["license", 80, 5], ["maintainers", 81, 5], ["platforms", 82, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["nativeBuildInputs", 25, 3], ["desktopItems", 32, 3], ["installPhase", 45, 3], ["meta", 77, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, unzip: false, which: false, makeWrapper: false, installShellFiles: false, jdk: false, copyDesktopItems: false, makeDesktopItem: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 34, 7], ["desktopName", 35, 7], ["exec", 36, 7], ["icon", 37, 7], ["comment", 38, 7], ["terminal", 39, 7], ["startupNotify", 40, 7], ["categories", 41, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 78, 5], ["homepage", 79, 5], ["license", 80, 5], ["maintainers", 81, 5], ["platforms", 82, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["nativeBuildInputs", 25, 3], ["desktopItems", 32, 3], ["installPhase", 45, 3], ["meta", 77, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,18 +18,18 @@ export default nix.lambda((args) => (() => {
   const copyDesktopItems = nix.arg($, "copyDesktopItems");
   const makeDesktopItem = nix.arg($, "makeDesktopItem");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "groovy",
       version: "5.0.4",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://apache/groovy/${nix.sel(finalAttrs, "version")}/distribution/apache-groovy-binary-${nix.sel(finalAttrs, "version")}.zip`),
           hash: "sha256-Xl6aRo1DRODI7gzWjGJ1HM9OX4+E162birxqAQFLn3k=",
         })))),
       nativeBuildInputs: nix.thunk(() => [makeWrapper, unzip, installShellFiles, copyDesktopItems]),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "groovy",
             desktopName: "Groovy Console",
             exec: "groovyConsole",
@@ -74,7 +71,7 @@ done
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Agile dynamic language for the Java Platform",
         homepage: "http://groovy-lang.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

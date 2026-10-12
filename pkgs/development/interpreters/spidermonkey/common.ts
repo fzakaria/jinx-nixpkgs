@@ -2,17 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/common.nix", [[["url", 47, 5], ["hash", 48, 13]], [["url", 64, 7], ["hash", 65, 7]], [["NIX_CFLAGS_COMPILE", 167, 5]], [["spidermonkey", 179, 7]], [["run", 178, 11]], [["version", 181, 59]], [["tests", 178, 5], ["updateScript", 181, 5]], [["changelog", 185, 5], ["description", 186, 5], ["homepage", 187, 5], ["license", 188, 5], ["maintainers", 189, 5], ["platforms", 192, 5]], [["pname", 38, 3], ["version", 39, 11], ["outputs", 41, 3], ["src", 46, 3], ["patches", 51, 3], ["nativeBuildInputs", 72, 3], ["buildInputs", 86, 3], ["depsBuildBuild", 97, 3], ["setOutputFlags", 101, 3], ["configureFlags", 103, 3], ["configurePlatforms", 138, 3], ["enableParallelBuilding", 140, 3], ["preConfigure", 142, 3], ["env", 165, 3], ["preFixup", 171, 3], ["passthru", 177, 3], ["meta", 184, 3]]]);
 const formals$1 = { args: { version: false, hash: false }, ellipsis: false };
 const formals$2 = { args: { callPackage: false, lib: false, stdenv: false, fetchurl: false, fetchpatch: false, "apple-sdk_14": false, "apple-sdk_15": false, buildPackages: false, cargo: false, m4: false, perl: false, "pkg-config": false, python313: false, "rust-cbindgen": false, rustPlatform: false, rustc: false, which: false, zip: false, icu75: false, icu77: false, nspr: false, readline: false, zlib: false, libiconv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/common.nix", [["url", 47, 5], ["hash", 48, 13]]);
-const pos$2 = nix.positions(here + "/common.nix", [["url", 64, 7], ["hash", 65, 7]]);
-const pos$3 = nix.positions(here + "/common.nix", [["NIX_CFLAGS_COMPILE", 167, 5]]);
-const pos$4 = nix.positions(here + "/common.nix", [["spidermonkey", 179, 7]]);
-const pos$5 = nix.positions(here + "/common.nix", [["run", 178, 11]]);
-const pos$6 = nix.positions(here + "/common.nix", [["version", 181, 59]]);
-const pos$7 = nix.positions(here + "/common.nix", [["tests", 178, 5], ["updateScript", 181, 5]]);
-const pos$8 = nix.positions(here + "/common.nix", [["changelog", 185, 5], ["description", 186, 5], ["homepage", 187, 5], ["license", 188, 5], ["maintainers", 189, 5], ["platforms", 192, 5]]);
-const pos$9 = nix.positions(here + "/common.nix", [["pname", 38, 3], ["version", 39, 11], ["outputs", 41, 3], ["src", 46, 3], ["patches", 51, 3], ["nativeBuildInputs", 72, 3], ["buildInputs", 86, 3], ["depsBuildBuild", 97, 3], ["setOutputFlags", 101, 3], ["configureFlags", 103, 3], ["configurePlatforms", 138, 3], ["enableParallelBuilding", 140, 3], ["preConfigure", 142, 3], ["env", 165, 3], ["preFixup", 171, 3], ["passthru", 177, 3], ["meta", 184, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -46,12 +38,12 @@ export default nix.lambda((args) => (() => {
     const libiconv = nix.arg($_1, "libiconv");
     const apple_sdk = nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), version, "140")) ? nix.force(apple_sdk_15) : nix.force(apple_sdk_14)));
     return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         pname: "spidermonkey",
         version: version,
         outputs: nix.thunk(() => ["out", "dev"]),
         src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             url: nix.thunk(() => nix.str`mirror://mozilla/firefox/releases/${version}esr/source/firefox-${version}esr.source.tar.xz`),
             hash: hash,
           })))),
@@ -60,7 +52,7 @@ export default nix.lambda((args) => (() => {
           nix.path(here, "./allow-system-s-nspr-and-icu-on-bootstrapped-sysroot-128.patch"),
         ], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.eq(nix.sel(stdenv, "hostPlatform", "system"), "i686-linux")), nix.thunk(() => [nix.path(here, "./fix-float-i686.patch")])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), version, "140")), nix.thunk(() => [
             nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-                [nix.POS]: pos$2,
+                [nix.POS]: $pos[1],
                 url: "https://src.fedoraproject.org/rpms/mozjs140/raw/49492baa47bc1d7b7d5bc738c4c81b4661302f27/f/9aa8b4b051dd539e0fbd5e08040870b3c712a846.patch",
                 hash: "sha256-SsyO5g7wlrxE7y2+VTHfmUDamofeZVqge8fv2y0ZhuU=",
               })))),
@@ -120,27 +112,27 @@ mkdir obj
 cd obj/
 configureScript=../js/src/configure
 `)),
-        env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), version, "140")), nix.thunk(() => ({ [nix.POS]: pos$3, NIX_CFLAGS_COMPILE: "-Wformat" })))),
+        env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), version, "140")), nix.thunk(() => ({ [nix.POS]: $pos[2], NIX_CFLAGS_COMPILE: "-Wformat" })))),
         preFixup: nix.thunk(() => nix.str`moveToOutput bin/js${nix.app(nix.sel(lib, "versions", "major"), version)}-config "$dev"
 rm $out/lib/libjs_static.ajs
 ln -s $out/bin/js${nix.app(nix.sel(lib, "versions", "major"), version)} $out/bin/js
 `),
         passthru: nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           tests: nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             run: nix.thunk(() => nix.app(callPackage, nix.path(here, "./test.nix"), nix.thunk(() => ({
-                [nix.POS]: pos$4,
+                [nix.POS]: $pos[3],
                 spidermonkey: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               })))),
           })),
           updateScript: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.app(callPackage, nix.path(here, "./update.nix"), nix.thunk(() => ({
-                [nix.POS]: pos$6,
+                [nix.POS]: $pos[5],
                 version: nix.thunk(() => nix.app(nix.sel(lib, "versions", "major"), version)),
               })))))),
         })),
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           changelog: nix.thunk(() => nix.str`https://www.firefox.com/en-US/firefox/${version}/releasenotes/`),
           description: "Mozilla's JavaScript engine written in C/C++",
           homepage: "https://spidermonkey.dev/",

@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]], [["pname", 28, 26], ["version", 28, 32], ["src", 28, 40], ["hash", 29, 5]], [["opensslSupport", 63, 7], ["rustlsSupport", 64, 7], ["http3Support", 65, 7], ["rustls-ffi", 66, 7]], [["curl", 62, 5], ["pkg-config", 68, 5]], [["tests", 61, 12]], [["description", 72, 5], ["homepage", 73, 5], ["pkgConfigModules", 74, 5], ["license", 75, 5], ["maintainers", 80, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["cargoDeps", 27, 3], ["propagatedBuildInputs", 32, 3], ["nativeBuildInputs", 36, 3], ["buildPhase", 43, 3], ["installPhase", 49, 3], ["checkPhase", 55, 3], ["passthru", 61, 3], ["meta", 71, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cargo: false, rustPlatform: false, "cargo-c": false, validatePkgConfig: false, buildPackages: false, libiconv: false, curl: false, apacheHttpd: false, testers: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 28, 26], ["version", 28, 32], ["src", 28, 40], ["hash", 29, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["opensslSupport", 63, 7], ["rustlsSupport", 64, 7], ["http3Support", 65, 7], ["rustls-ffi", 66, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["curl", 62, 5], ["pkg-config", 68, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["tests", 61, 12]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 72, 5], ["homepage", 73, 5], ["pkgConfigModules", 74, 5], ["license", 75, 5], ["maintainers", 80, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["cargoDeps", 27, 3], ["propagatedBuildInputs", 32, 3], ["nativeBuildInputs", 36, 3], ["buildPhase", 43, 3], ["installPhase", 49, 3], ["checkPhase", 55, 3], ["passthru", 61, 3], ["meta", 71, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,18 +20,18 @@ export default nix.lambda((args) => (() => {
   const apacheHttpd = nix.arg($, "apacheHttpd");
   const testers = nix.arg($, "testers");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "rustls-ffi",
       version: "0.15.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "rustls",
           repo: "rustls-ffi",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-bhh9KtL7AvRLX1W6+FKdimq+YZsIsQHFdVKf1h1i0Jo=",
         })))),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -63,11 +57,11 @@ ${nix.sel(buildPackages, "rust", "envVars", "setEnv")} cargo ctest -j $NIX_BUILD
 runHook postCheck
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           curl: nix.thunk(() => nix.app(nix.sel(curl, "override"), nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               opensslSupport: false,
               rustlsSupport: true,
               http3Support: false,
@@ -77,7 +71,7 @@ runHook postCheck
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "C-to-rustls bindings",
         homepage: "https://github.com/rustls/rustls-ffi/",
         pkgConfigModules: nix.thunk(() => ["rustls"]),

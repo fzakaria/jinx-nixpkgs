@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/linux.nix", [[["aarch64-linux", 14, 7], ["x86_64-linux", 15, 7], ["i686-linux", 16, 7]], [["aarch64-linux", 28, 9], ["x86_64-linux", 29, 9], ["i686-linux", 30, 9]], [["url", 25, 5], ["hash", 26, 5]], [["pname", 38, 50], ["version", 38, 56], ["src", 38, 64]], [["pname", 22, 11], ["version", 22, 17], ["src", 24, 3], ["extraInstallCommands", 36, 3], ["meta", 47, 11]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, appimageTools: false, fetchurl: false, pname: false, version: false, meta: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/linux.nix", [["aarch64-linux", 14, 7], ["x86_64-linux", 15, 7], ["i686-linux", 16, 7]]);
-const pos$2 = nix.positions(here + "/linux.nix", [["aarch64-linux", 28, 9], ["x86_64-linux", 29, 9], ["i686-linux", 30, 9]]);
-const pos$3 = nix.positions(here + "/linux.nix", [["url", 25, 5], ["hash", 26, 5]]);
-const pos$4 = nix.positions(here + "/linux.nix", [["pname", 38, 50], ["version", 38, 56], ["src", 38, 64]]);
-const pos$5 = nix.positions(here + "/linux.nix", [["pname", 22, 11], ["version", 22, 17], ["src", 24, 3], ["extraInstallCommands", 36, 3], ["meta", 47, 11]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const version = nix.arg($, "version");
   const meta = nix.arg($, "meta");
   const suffix = nix.thunk(() => nix.selOr({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     "aarch64-linux": "linux-armv7l",
     "x86_64-linux": "linux-x86_64",
     "i686-linux": "linux-i386",
@@ -28,17 +24,17 @@ export default nix.lambda((args) => (() => {
       const pname_1 = pname;
       const version_1 = version;
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           url: nix.thunk(() => nix.str`https://hamrs-releases.s3.us-east-2.amazonaws.com/${version_1}/hamrs-${version_1}-${suffix}.AppImage`),
           hash: nix.thunk(() => nix.selOr({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             "aarch64-linux": "sha256-nBW8q7LVWQz93LkTc+c36H+2ymLLwLKfxePUwEm3D2E=",
             "x86_64-linux": "sha256-tplp7TADvbxkk5qBb4c4zm4mrzrVtW/WVUjiolBBJHc=",
             "i686-linux": "sha256-PllxLMBsPCedKU7OUN0nqi4qtQ57l2Z+huLfkfaBfT4=",
           }, () => nix.builtins.throw(nix.thunk(() => nix.str`Unsupported system: ${nix.sel(stdenvNoCC, "hostPlatform", "system")}`)), nix.key(nix.sel(stdenvNoCC, "hostPlatform", "system")))),
         }))));
       const extraInstallCommands = nix.thunk(() => (() => {
-        const contents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: pos$4, pname: pname_1, version: version_1, src: src }))));
+        const contents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: $pos[3], pname: pname_1, version: version_1, src: src }))));
         return nix.str`install -m 444 -D ${contents}/${pname_1}.desktop -t $out/share/applications
 substituteInPlace $out/share/applications/${pname_1}.desktop \\
   --replace-fail 'Exec=AppRun' 'Exec=${pname_1}'
@@ -47,7 +43,7 @@ cp -r ${contents}/usr/share/icons $out/share
       })());
       const meta_1 = meta;
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname: pname_1,
         version: version_1,
         src,

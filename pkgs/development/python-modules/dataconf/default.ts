@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 32, 13], ["version", 32, 19], ["hash", 33, 5]], [["description", 39, 5], ["changelog", 40, 5], ["homepage", 41, 5], ["license", 42, 5], ["maintainers", 43, 5]], [["pname", 17, 11], ["version", 17, 17], ["pyproject", 19, 3], ["dependencies", 21, 3], ["build-system", 29, 3], ["src", 31, 3], ["pythonImportsCheck", 36, 3], ["meta", 38, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, isodate: false, "poetry-core": false, pyhocon: false, pyparsing: false, "python-dateutil": false, pyyaml: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 32, 13], ["version", 32, 19], ["hash", 33, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 39, 5], ["changelog", 40, 5], ["homepage", 41, 5], ["license", 42, 5], ["maintainers", 43, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 17, 11], ["version", 17, 17], ["pyproject", 19, 3], ["dependencies", 21, 3], ["build-system", 29, 3], ["src", 31, 3], ["pythonImportsCheck", 36, 3], ["meta", 38, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,21 +19,21 @@ export default nix.lambda((args) => (() => {
   const pname = "dataconf";
   const version = "3.7.0";
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: pname,
       version: version,
       pyproject: true,
       dependencies: nix.thunk(() => [isodate, pyhocon, pyparsing, python_dateutil, pyyaml]),
       "build-system": nix.thunk(() => [poetry_core]),
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-YUt1iLQ7zSnYGbJMWCvl2MZ82k2XR8gccwrnynnuDqo=",
         })))),
       pythonImportsCheck: nix.thunk(() => ["dataconf"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Simple dataclasses configuration management for Python with hocon/json/yaml/properties/env-vars/dict/cli support",
         changelog: "https://github.com/zifeo/dataconf/blob/main/CHANGELOG.md",
         homepage: "https://github.com/zifeo/dataconf",

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 15, 5], ["hash", 16, 5]], [["updateScript", 32, 12]], [["homepage", 46, 5], ["description", 47, 5], ["mainProgram", 48, 5], ["maintainers", 49, 5], ["license", 53, 5], ["platforms", 54, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 19, 3], ["dontBuild", 21, 3], ["installPhase", 23, 3], ["passthru", 32, 3], ["meta", 45, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchzip: false, makeWrapper: false, nodejs: false, writeScript: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 32, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 46, 5], ["description", 47, 5], ["mainProgram", 48, 5], ["maintainers", 49, 5], ["license", 53, 5], ["platforms", 54, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 19, 3], ["dontBuild", 21, 3], ["installPhase", 23, 3], ["passthru", 32, 3], ["meta", 45, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const nodejs = nix.arg($, "nodejs");
   const writeScript = nix.arg($, "writeScript");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "heroku",
       version: "11.0.0",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://cli-assets.heroku.com/versions/11.0.0/a6e2188/heroku-v11.0.0-a6e2188-linux-x64.tar.xz",
           hash: "sha256-kmshQ3QUcY4CLRFXHaOa7Y+wu8O5POL5+cGr7TyG5qg=",
         })))),
@@ -35,11 +32,11 @@ makeWrapper $out/share/heroku/bin/run $out/bin/heroku \\
   --set HEROKU_DISABLE_AUTOUPDATE 1
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(writeScript, "update-heroku", "#!/usr/bin/env nix-shell\n#!nix-shell -I nixpkgs=./. -i bash -p nix-prefetch curl jq common-updater-scripts\nresp=\"$(\n    curl -L \"https://cli-assets.heroku.com/versions/heroku-linux-x64-tar-xz.json\" \\\n        | jq '[to_entries[] | { version: .key, url: .value } | select(.version|contains(\"-\")|not)] | sort_by(.version|split(\".\")|map(tonumber)) | .[-1]'\n)\"\nurl=\"$(jq <<<\"$resp\" .url --raw-output)\"\nversion=\"$(jq <<<\"$resp\" .version --raw-output)\"\nhash=\"$(nix-prefetch fetchzip --url \"$(jq <<<\"$resp\" .url --raw-output)\")\"\nupdate-source-version heroku \"$version\" \"$hash\" \"$url\"\n")),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://devcenter.heroku.com/articles/heroku-cli",
         description: "Everything you need to get started using Heroku",
         mainProgram: "heroku",

@@ -2,64 +2,47 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/cfssl.nix", [[["allowedTCPPorts", 13, 27]], [["firewall", 13, 18]], [["enable", 15, 22]], [["cfssl", 15, 16]], [["after", 16, 30]], [["User", 22, 11], ["Type", 23, 11], ["WorkingDirectory", 24, 11]], [["algo", 32, 19], ["size", 33, 19]], [["C", 37, 21], ["L", 38, 21], ["O", 39, 21], ["OU", 40, 21], ["ST", 41, 21]], [["hosts", 30, 17], ["key", 31, 17], ["names", 35, 17]], [["description", 19, 9], ["wantedBy", 20, 9], ["serviceConfig", 21, 9], ["script", 26, 9]], [["cfssl", 16, 24], ["cfssl-init", 18, 24]], [["services", 16, 15]], [["networking", 13, 7], ["services", 15, 7], ["systemd", 16, 7]], [["machine", 5, 9]], [["algo", 67, 13], ["size", 68, 13]], [["C", 72, 15], ["L", 73, 15], ["O", 74, 15], ["OU", 75, 15], ["ST", 76, 15]], [["CN", 61, 11], ["hosts", 62, 11], ["key", 66, 11], ["names", 70, 11]], [["name", 3, 3], ["nodes", 5, 3], ["testScript", 51, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
 const formals$2 = { args: { config: false, lib: false, pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/cfssl.nix", [["allowedTCPPorts", 13, 27]]);
-const pos$2 = nix.positions(here + "/cfssl.nix", [["firewall", 13, 18]]);
-const pos$3 = nix.positions(here + "/cfssl.nix", [["enable", 15, 22]]);
-const pos$4 = nix.positions(here + "/cfssl.nix", [["cfssl", 15, 16]]);
-const pos$5 = nix.positions(here + "/cfssl.nix", [["after", 16, 30]]);
-const pos$6 = nix.positions(here + "/cfssl.nix", [["User", 22, 11], ["Type", 23, 11], ["WorkingDirectory", 24, 11]]);
-const pos$7 = nix.positions(here + "/cfssl.nix", [["algo", 32, 19], ["size", 33, 19]]);
-const pos$8 = nix.positions(here + "/cfssl.nix", [["C", 37, 21], ["L", 38, 21], ["O", 39, 21], ["OU", 40, 21], ["ST", 41, 21]]);
-const pos$9 = nix.positions(here + "/cfssl.nix", [["hosts", 30, 17], ["key", 31, 17], ["names", 35, 17]]);
-const pos$10 = nix.positions(here + "/cfssl.nix", [["description", 19, 9], ["wantedBy", 20, 9], ["serviceConfig", 21, 9], ["script", 26, 9]]);
-const pos$11 = nix.positions(here + "/cfssl.nix", [["cfssl", 16, 24], ["cfssl-init", 18, 24]]);
-const pos$12 = nix.positions(here + "/cfssl.nix", [["services", 16, 15]]);
-const pos$13 = nix.positions(here + "/cfssl.nix", [["networking", 13, 7], ["services", 15, 7], ["systemd", 16, 7]]);
-const pos$14 = nix.positions(here + "/cfssl.nix", [["machine", 5, 9]]);
-const pos$15 = nix.positions(here + "/cfssl.nix", [["algo", 67, 13], ["size", 68, 13]]);
-const pos$16 = nix.positions(here + "/cfssl.nix", [["C", 72, 15], ["L", 73, 15], ["O", 74, 15], ["OU", 75, 15], ["ST", 76, 15]]);
-const pos$17 = nix.positions(here + "/cfssl.nix", [["CN", 61, 11], ["hosts", 62, 11], ["key", 66, 11], ["names", 70, 11]]);
-const pos$18 = nix.positions(here + "/cfssl.nix", [["name", 3, 3], ["nodes", 5, 3], ["testScript", 51, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   return {
-    [nix.POS]: pos$18,
+    [nix.POS]: $pos[17],
     name: "cfssl",
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$14,
+      [nix.POS]: $pos[13],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config = nix.arg($_1, "config");
         const lib = nix.arg($_1, "lib");
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$13,
+          [nix.POS]: $pos[12],
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             firewall: nix.thunk(() => ({
-              [nix.POS]: pos$1,
+              [nix.POS]: $pos[0],
               allowedTCPPorts: nix.thunk(() => [nix.thunk(() => nix.sel(config, "services", "cfssl", "port"))]),
             })),
           })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$4,
-            cfssl: nix.thunk(() => ({ [nix.POS]: pos$3, enable: true })),
+            [nix.POS]: $pos[3],
+            cfssl: nix.thunk(() => ({ [nix.POS]: $pos[2], enable: true })),
           })),
           systemd: nix.thunk(() => ({
-            [nix.POS]: pos$12,
+            [nix.POS]: $pos[11],
             services: nix.thunk(() => ({
-              [nix.POS]: pos$11,
-              cfssl: nix.thunk(() => ({ [nix.POS]: pos$5, after: nix.thunk(() => ["cfssl-init.service"]) })),
+              [nix.POS]: $pos[10],
+              cfssl: nix.thunk(() => ({ [nix.POS]: $pos[4], after: nix.thunk(() => ["cfssl-init.service"]) })),
               "cfssl-init": nix.thunk(() => ({
-                [nix.POS]: pos$10,
+                [nix.POS]: $pos[9],
                 description: "Initialize the cfssl CA",
                 wantedBy: nix.thunk(() => ["multi-user.target"]),
                 serviceConfig: nix.thunk(() => ({
-                  [nix.POS]: pos$6,
+                  [nix.POS]: $pos[5],
                   User: "cfssl",
                   Type: "oneshot",
                   WorkingDirectory: nix.thunk(() => nix.sel(config, "services", "cfssl", "dataDir")),
@@ -67,12 +50,12 @@ export default nix.lambda((args) => (() => {
                 script: nix.thunk(() => (() => {
                   const w = nix.withScope(pkgs_1, null);
                   return nix.str`${nix.lookup(w, "cfssl")}/bin/cfssl genkey -initca ${nix.app(nix.sel(pkgs_1, "writeText"), "ca.json", nix.thunk(() => nix.app(nix.sel(nix.builtins, "toJSON"), nix.thunk(() => ({
-                        [nix.POS]: pos$9,
+                        [nix.POS]: $pos[8],
                         hosts: nix.thunk(() => ["ca.example.com"]),
-                        key: nix.thunk(() => ({ [nix.POS]: pos$7, algo: "rsa", size: 4096n })),
+                        key: nix.thunk(() => ({ [nix.POS]: $pos[6], algo: "rsa", size: 4096n })),
                         names: nix.thunk(() => [
                           nix.thunk(() => ({
-                            [nix.POS]: pos$8,
+                            [nix.POS]: $pos[7],
                             C: "US",
                             L: "San Francisco",
                             O: "Internet Widgets, LLC",
@@ -97,13 +80,13 @@ export default nix.lambda((args) => (() => {
 `));
       })());
       const csr = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "csr.json", nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => ({
-            [nix.POS]: pos$17,
+            [nix.POS]: $pos[16],
             CN: "www.example.com",
             hosts: nix.thunk(() => ["example.com", "www.example.com"]),
-            key: nix.thunk(() => ({ [nix.POS]: pos$15, algo: "rsa", size: 2048n })),
+            key: nix.thunk(() => ({ [nix.POS]: $pos[14], algo: "rsa", size: 2048n })),
             names: nix.thunk(() => [
               nix.thunk(() => ({
-                [nix.POS]: pos$16,
+                [nix.POS]: $pos[15],
                 C: "US",
                 L: "San Francisco",
                 O: "Example Company, LLC",

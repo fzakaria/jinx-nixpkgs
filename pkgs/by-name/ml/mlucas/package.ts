@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]], [["NIX_CFLAGS_COMPILE", 35, 7]], [["description", 57, 5], ["longDescription", 58, 5], ["homepage", 66, 5], ["maintainers", 67, 5], ["license", 68, 5], ["platforms", 69, 5], ["mainProgram", 73, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["enableParallelBuilding", 24, 3], ["buildInputs", 26, 3], ["postPatch", 30, 3], ["env", 35, 3], ["buildPhase", 37, 3], ["installPhase", 45, 3], ["nativeInstallCheckInputs", 53, 3], ["doInstallCheck", 54, 3], ["meta", 56, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, gmp: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 35, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 57, 5], ["longDescription", 58, 5], ["homepage", 66, 5], ["maintainers", 67, 5], ["license", 68, 5], ["platforms", 69, 5], ["mainProgram", 73, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["enableParallelBuilding", 24, 3], ["buildInputs", 26, 3], ["postPatch", 30, 3], ["env", 35, 3], ["buildPhase", 37, 3], ["installPhase", 45, 3], ["nativeInstallCheckInputs", 53, 3], ["doInstallCheck", 54, 3], ["meta", 56, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const platform = nix.thunk(() => (nix.asBool(nix.eq(nix.sel(stdenv, "hostPlatform", "system"), "aarch64-linux")) ? "asimd" : "avx2"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "mlucas",
       version: "21.0.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "primesearch",
           repo: "Mlucas",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -31,7 +28,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [gmp]),
       postPatch: "chmod +x makemake.sh\npatchShebangs makemake.sh\n",
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: "-Wno-error=incompatible-pointer-types",
       })),
       buildPhase: nix.thunk(() => nix.str`runHook preBuild
@@ -49,7 +46,7 @@ runHook postInstall
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Open-source program for primality testing of Mersenne numbers",
         longDescription: "This program may be used to test any suitable number as you wish, but it is preferable that you do so in a coordinated fashion,\nas part of the Great Internet Mersenne Prime Search (GIMPS). Note that on x86 processors Mlucas is not as efficient\nas the main GIMPS client, George Woltman's Prime95 program (a.k.a. mprime for the linux version),\nbut that program is not 100% open-source. Prime95 is also only available for platforms based on the\nx86 processor architecture. The help.txt file in the Github repo includes a variety of usage information\nnot covered in the original README.\n",
         homepage: "https://github.com/primesearch/Mlucas",

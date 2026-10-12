@@ -2,18 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["case", 16, 9], ["out", 17, 9]], [["case", 20, 9], ["out", 21, 9]], [["case", 24, 9], ["out", 25, 9]], [["case", 28, 9], ["out", 29, 9]], [["hash", 32, 17]], [["hash", 33, 17]], [["hash", 34, 17]], [["version", 35, 21], ["rev", 36, 21], ["hash", 37, 21]], [["0.3", 32, 11], ["0.2", 33, 11], ["0.1", 34, 11], ["0.1-8.7", 35, 11]], [["description", 42, 5], ["maintainers", 43, 5], ["license", 44, 5]], [["pname", 9, 3], ["owner", 10, 3], ["version", 11, 11], ["defaultVersion", 12, 3], ["release", 32, 3], ["mlPlugin", 39, 3], ["meta", 41, 3]]]);
 const formals$1 = { args: { lib: false, mkCoqDerivation: false, coq: false, version: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["case", 16, 9], ["out", 17, 9]]);
-const pos$2 = nix.positions(here + "/default.nix", [["case", 20, 9], ["out", 21, 9]]);
-const pos$3 = nix.positions(here + "/default.nix", [["case", 24, 9], ["out", 25, 9]]);
-const pos$4 = nix.positions(here + "/default.nix", [["case", 28, 9], ["out", 29, 9]]);
-const pos$5 = nix.positions(here + "/default.nix", [["hash", 32, 17]]);
-const pos$6 = nix.positions(here + "/default.nix", [["hash", 33, 17]]);
-const pos$7 = nix.positions(here + "/default.nix", [["hash", 34, 17]]);
-const pos$8 = nix.positions(here + "/default.nix", [["version", 35, 21], ["rev", 36, 21], ["hash", 37, 21]]);
-const pos$9 = nix.positions(here + "/default.nix", [["0.3", 32, 11], ["0.2", 33, 11], ["0.1", 34, 11], ["0.1-8.7", 35, 11]]);
-const pos$10 = nix.positions(here + "/default.nix", [["description", 42, 5], ["maintainers", 43, 5], ["license", 44, 5]]);
-const pos$11 = nix.positions(here + "/default.nix", [["pname", 9, 3], ["owner", 10, 3], ["version", 11, 11], ["defaultVersion", 12, 3], ["release", 32, 3], ["mlPlugin", 39, 3], ["meta", 41, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,32 +12,32 @@ export default nix.lambda((args) => (() => {
   const coq = nix.arg($, "coq");
   const version = nix.argOr($, "version", () => null);
   return nix.app(mkCoqDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$11,
+      [nix.POS]: $pos[10],
       pname: "ltac2",
       owner: "coq",
       version: version,
       defaultVersion: nix.thunk(() => nix.app(nix.sel(lib, "switch"), nix.thunk(() => nix.sel(coq, "coq-version")), nix.thunk(() => [
-          nix.thunk(() => ({ [nix.POS]: pos$1, case: "8.10", out: "0.3" })),
-          nix.thunk(() => ({ [nix.POS]: pos$2, case: "8.9", out: "0.2" })),
-          nix.thunk(() => ({ [nix.POS]: pos$3, case: "8.8", out: "0.1" })),
-          nix.thunk(() => ({ [nix.POS]: pos$4, case: "8.7", out: "0.1-8.7" })),
+          nix.thunk(() => ({ [nix.POS]: $pos[0], case: "8.10", out: "0.3" })),
+          nix.thunk(() => ({ [nix.POS]: $pos[1], case: "8.9", out: "0.2" })),
+          nix.thunk(() => ({ [nix.POS]: $pos[2], case: "8.8", out: "0.1" })),
+          nix.thunk(() => ({ [nix.POS]: $pos[3], case: "8.7", out: "0.1-8.7" })),
         ]), null)),
       release: nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         "0.3": nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           hash: "sha256:0pzs5nsakh4l8ffwgn4ryxbnxdv2x0r1i7bc598ij621haxdirrr",
         })),
         "0.2": nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           hash: "sha256:0xby1kb26r9gcvk5511wqj05fqm9paynwfxlfqkmwkgnfmzk0x73",
         })),
         "0.1": nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           hash: "sha256:1zz26cyv99whj7rrpgnhhm9dfqnpmrx5pqizn8ihf8jkq8d4drz7",
         })),
         "0.1-8.7": nix.thunk(() => ({
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           version: "0.1",
           rev: "v0.1-8.7",
           hash: "sha256:0l6wiwi4cvd0i324fb29i9mdh0ijlxzggw4mrjjy695l2qdnlgg0",
@@ -55,7 +45,7 @@ export default nix.lambda((args) => (() => {
       })),
       mlPlugin: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         description: "Robust and expressive tactic language for Coq",
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "vbgl"))]),
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21")),

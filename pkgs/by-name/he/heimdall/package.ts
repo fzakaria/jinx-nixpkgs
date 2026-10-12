@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]], [["rev-prefix", 24, 40]], [["updateScript", 24, 12]], [["withStatic", 44, 25]], [["description", 65, 5], ["homepage", 66, 5], ["license", 67, 5], ["mainProgram", 68, 5], ["maintainers", 71, 5], ["platforms", 75, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["passthru", 24, 3], ["patches", 26, 3], ["outputs", 30, 3], ["strictDeps", 35, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 43, 3], ["preInstall", 48, 3], ["doInstallCheck", 53, 3], ["preFixup", 56, 3], ["cmakeFlags", 60, 3], ["meta", 64, 3]]]);
 const formals$1 = { args: { cmake: false, enableGUI: true, fetchFromSourcehut: false, gitUpdater: false, lib: false, libusb1: false, "pkg-config": false, qt6: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["rev-prefix", 24, 40]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 24, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["withStatic", 44, 25]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 65, 5], ["homepage", 66, 5], ["license", 67, 5], ["mainProgram", 68, 5], ["maintainers", 71, 5], ["platforms", 75, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["passthru", 24, 3], ["patches", 26, 3], ["outputs", 30, 3], ["strictDeps", 35, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 43, 3], ["preInstall", 48, 3], ["doInstallCheck", 53, 3], ["preFixup", 56, 3], ["cmakeFlags", 60, 3], ["meta", 64, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,19 +17,19 @@ export default nix.lambda((args) => (() => {
   const qt6 = nix.arg($, "qt6");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "heimdall",
       version: "2.2.2",
       src: nix.thunk(() => nix.app(fetchFromSourcehut, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "~grimler",
           repo: "Heimdall",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-ga2hAZhsKosEG//qXEf+1vhJYtsHwyq6QvMlZaSFIgQ=",
         })))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, "rev-prefix": "v" })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[1], "rev-prefix": "v" })))),
       })),
       patches: nix.thunk(() => [
         nix.path(here, "./0001-Install-the-macOS-bundle-to-the-install-prefix.patch"),
@@ -44,7 +39,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => nix.concat([cmake, pkg_config], nix.app(nix.sel(lib, "optional"), enableGUI, nix.thunk(() => nix.sel(qt6, "wrapQtAppsHook"))))),
       buildInputs: nix.thunk(() => nix.concat([
         nix.thunk(() => nix.app(nix.sel(libusb1, "override"), nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             withStatic: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isWindows")),
           })))),
       ], nix.app(nix.sel(lib, "optional"), enableGUI, nix.thunk(() => nix.sel(qt6, "qtbase"))))),
@@ -55,7 +50,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "DISABLE_FRONTEND", nix.thunk(() => !nix.asBool(enableGUI)))),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Cross-platform open-source tool suite used to flash firmware onto Samsung Galaxy devices",
         homepage: "https://git.sr.ht/~grimler/Heimdall",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

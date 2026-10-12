@@ -2,10 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["repo", 14, 5], ["owner", 15, 5], ["rev", 16, 5], ["hash", 17, 5]], [["homepage", 37, 5], ["description", 38, 5], ["license", 39, 5], ["platforms", 40, 5], ["maintainers", 41, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 20, 3], ["buildPhase", 27, 3], ["meta", 36, 3]]]);
 const formals$1 = { args: { lib: false, mkDerivation: false, fetchFromGitHub: false, ghc: false, "cabal-install": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["repo", 14, 5], ["owner", 15, 5], ["rev", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 37, 5], ["description", 38, 5], ["license", 39, 5], ["platforms", 40, 5], ["maintainers", 41, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 20, 3], ["buildPhase", 27, 3], ["meta", 36, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const ghc = nix.arg($, "ghc");
   const cabal_install = nix.arg($, "cabal-install");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "cubical-mini",
       version: "0.5-unstable-2025-06-13",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           repo: "cubical-mini",
           owner: "cmcmA20",
           rev: "1776874d13d0b811e6eeb70d0e5a52b4d2a978d2",
@@ -28,7 +26,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [ghc, cabal_install]),
       buildPhase: "runHook preBuild\nexport HOME=$TMP\nmkdir $HOME/.cabal\ntouch $HOME/.cabal/config\nmake\nrunHook postBuild\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/cmcmA20/cubical-mini",
         description: "Nonstandard library for Cubical Agda",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),

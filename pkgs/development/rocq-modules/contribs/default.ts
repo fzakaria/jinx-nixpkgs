@@ -2,183 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 18, 21], ["version", 18, 27], ["owner", 19, 13], ["mlPlugin", 20, 13]], [["rev", 26, 56], ["sha256", 26, 60]], [["defaultVersion", 24, 15], ["release", 25, 15]], [["version", 44, 11], ["rev", 45, 11], ["sha256", 46, 11]], [["version", 49, 11], ["rev", 50, 11], ["sha256", 51, 11]], [["8.7", 43, 9], ["8.8", 48, 9]], [["version", 57, 5], ["rev", 58, 5], ["sha256", 59, 5]], [["version", 63, 5], ["rev", 64, 5], ["sha256", 65, 5]], [["version", 69, 5], ["rev", 70, 5], ["sha256", 71, 5]], [["version", 75, 5], ["rev", 76, 5], ["sha256", 77, 5]], [["version", 81, 5], ["rev", 82, 5], ["sha256", 83, 5]], [["version", 87, 5], ["rev", 88, 5], ["sha256", 89, 5]], [["version", 93, 5], ["rev", 94, 5], ["sha256", 95, 5]], [["version", 99, 5], ["rev", 100, 5], ["sha256", 101, 5]], [["version", 105, 5], ["rev", 106, 5], ["sha256", 107, 5]], [["version", 111, 5], ["rev", 112, 5], ["sha256", 113, 5]], [["version", 117, 5], ["rev", 118, 5], ["sha256", 119, 5]], [["version", 123, 5], ["rev", 124, 5], ["sha256", 125, 5]], [["version", 129, 5], ["rev", 130, 5], ["sha256", 131, 5]], [["version", 135, 5], ["rev", 136, 5], ["sha256", 137, 5]], [["version", 141, 5], ["rev", 142, 5], ["sha256", 143, 5]], [["version", 147, 5], ["rev", 148, 5], ["sha256", 149, 5]], [["version", 153, 5], ["rev", 154, 5], ["sha256", 155, 5]], [["version", 159, 5], ["rev", 160, 5], ["sha256", 161, 5]], [["version", 165, 5], ["rev", 166, 5], ["sha256", 167, 5]], [["version", 171, 5], ["rev", 172, 5], ["sha256", 173, 5]], [["version", 177, 5], ["rev", 178, 5], ["sha256", 179, 5]], [["version", 183, 5], ["rev", 184, 5], ["sha256", 185, 5]], [["version", 189, 5], ["rev", 190, 5], ["sha256", 191, 5]], [["version", 195, 5], ["rev", 196, 5], ["sha256", 197, 5]], [["version", 201, 5], ["rev", 202, 5], ["sha256", 203, 5]], [["version", 207, 5], ["rev", 208, 5], ["sha256", 209, 5]], [["version", 213, 5], ["rev", 214, 5], ["sha256", 215, 5]], [["version", 222, 11], ["rev", 223, 11], ["sha256", 224, 11]], [["version", 227, 11], ["rev", 228, 11], ["sha256", 229, 11]], [["version", 232, 11], ["rev", 233, 11], ["sha256", 234, 11]], [["version", 237, 11], ["rev", 238, 11], ["sha256", 239, 11]], [["8.6", 221, 9], ["8.7", 226, 9], ["8.8", 231, 9], ["8.9", 236, 9]], [["version", 245, 5], ["rev", 246, 5], ["sha256", 247, 5]], [["version", 251, 5], ["rev", 252, 5], ["sha256", 253, 5]], [["version", 257, 5], ["rev", 258, 5], ["sha256", 259, 5]], [["version", 263, 5], ["rev", 264, 5], ["sha256", 265, 5]], [["version", 269, 5], ["rev", 270, 5], ["sha256", 271, 5]], [["version", 275, 5], ["rev", 276, 5], ["sha256", 277, 5]], [["version", 281, 5], ["rev", 282, 5], ["sha256", 283, 5]], [["version", 287, 5], ["rev", 288, 5], ["sha256", 289, 5]], [["version", 293, 5], ["rev", 294, 5], ["sha256", 295, 5]], [["version", 299, 5], ["rev", 300, 5], ["sha256", 301, 5]], [["version", 305, 5], ["rev", 306, 5], ["sha256", 307, 5]], [["version", 311, 5], ["rev", 312, 5], ["sha256", 313, 5]], [["version", 317, 5], ["rev", 318, 5], ["sha256", 319, 5]], [["version", 323, 5], ["rev", 324, 5], ["sha256", 325, 5]], [["version", 329, 5], ["rev", 330, 5], ["sha256", 331, 5]], [["version", 335, 5], ["rev", 336, 5], ["sha256", 337, 5]], [["version", 341, 5], ["rev", 342, 5], ["sha256", 343, 5]], [["version", 347, 5], ["rev", 348, 5], ["sha256", 349, 5]], [["version", 353, 5], ["rev", 354, 5], ["sha256", 355, 5]], [["version", 359, 5], ["rev", 360, 5], ["sha256", 361, 5]], [["version", 365, 5], ["rev", 366, 5], ["sha256", 367, 5]], [["version", 371, 5], ["rev", 372, 5], ["sha256", 373, 5]], [["version", 377, 5], ["rev", 378, 5], ["sha256", 379, 5]], [["version", 383, 5], ["rev", 384, 5], ["sha256", 385, 5]], [["version", 389, 5], ["rev", 390, 5], ["sha256", 391, 5]], [["version", 395, 5], ["rev", 396, 5], ["sha256", 397, 5]], [["version", 401, 5], ["rev", 402, 5], ["sha256", 403, 5]], [["version", 407, 5], ["rev", 408, 5], ["sha256", 409, 5]], [["version", 413, 5], ["rev", 414, 5], ["sha256", 415, 5]], [["version", 419, 5], ["rev", 420, 5], ["sha256", 421, 5]], [["version", 425, 5], ["rev", 426, 5], ["sha256", 427, 5]], [["version", 431, 5], ["rev", 432, 5], ["sha256", 433, 5]], [["version", 437, 5], ["rev", 438, 5], ["sha256", 439, 5]], [["version", 443, 5], ["rev", 444, 5], ["sha256", 445, 5]], [["version", 449, 5], ["rev", 450, 5], ["sha256", 451, 5]], [["version", 455, 5], ["rev", 456, 5], ["sha256", 457, 5]], [["version", 461, 5], ["rev", 462, 5], ["sha256", 463, 5]], [["version", 467, 5], ["rev", 468, 5], ["sha256", 469, 5]], [["version", 473, 5], ["rev", 474, 5], ["sha256", 475, 5]], [["version", 479, 5], ["rev", 480, 5], ["sha256", 481, 5]], [["version", 485, 5], ["rev", 486, 5], ["sha256", 487, 5]], [["version", 491, 5], ["rev", 492, 5], ["sha256", 493, 5]], [["version", 497, 5], ["rev", 498, 5], ["sha256", 499, 5]], [["version", 503, 5], ["rev", 504, 5], ["sha256", 505, 5]], [["version", 509, 5], ["rev", 510, 5], ["sha256", 511, 5]], [["version", 515, 5], ["rev", 516, 5], ["sha256", 517, 5]], [["version", 521, 5], ["rev", 522, 5], ["sha256", 523, 5]], [["version", 527, 5], ["rev", 528, 5], ["sha256", 529, 5]], [["version", 533, 5], ["rev", 534, 5], ["sha256", 535, 5]], [["version", 539, 5], ["rev", 540, 5], ["sha256", 541, 5]], [["version", 545, 5], ["rev", 546, 5], ["sha256", 547, 5], ["installFlags", 548, 5]], [["version", 552, 5], ["rev", 553, 5], ["sha256", 554, 5]], [["version", 558, 5], ["rev", 559, 5], ["sha256", 560, 5]], [["version", 564, 5], ["rev", 565, 5], ["sha256", 566, 5]], [["version", 570, 5], ["rev", 571, 5], ["sha256", 572, 5]], [["version", 576, 5], ["rev", 577, 5], ["sha256", 578, 5]], [["version", 582, 5], ["rev", 583, 5], ["sha256", 584, 5]], [["version", 588, 5], ["rev", 589, 5], ["sha256", 590, 5]], [["version", 594, 5], ["rev", 595, 5], ["sha256", 596, 5]], [["version", 600, 5], ["rev", 601, 5], ["sha256", 602, 5]], [["version", 606, 5], ["rev", 607, 5], ["sha256", 608, 5]], [["version", 612, 5], ["rev", 613, 5], ["sha256", 614, 5]], [["version", 618, 5], ["rev", 619, 5], ["sha256", 620, 5]], [["version", 624, 5], ["rev", 625, 5], ["sha256", 626, 5]], [["version", 630, 5], ["rev", 631, 5], ["sha256", 632, 5]], [["version", 636, 5], ["rev", 637, 5], ["sha256", 638, 5]], [["version", 642, 5], ["rev", 643, 5], ["sha256", 644, 5]], [["version", 648, 5], ["rev", 649, 5], ["sha256", 650, 5]], [["version", 654, 5], ["rev", 655, 5], ["sha256", 656, 5]], [["version", 660, 5], ["rev", 661, 5], ["sha256", 662, 5]], [["version", 666, 5], ["rev", 667, 5], ["sha256", 668, 5]], [["version", 672, 5], ["rev", 673, 5], ["sha256", 674, 5]], [["version", 678, 5], ["rev", 679, 5], ["sha256", 680, 5]], [["version", 684, 5], ["rev", 685, 5], ["sha256", 686, 5]], [["version", 690, 5], ["rev", 691, 5], ["sha256", 692, 5]], [["version", 696, 5], ["rev", 697, 5], ["sha256", 698, 5]], [["version", 702, 5], ["rev", 703, 5], ["sha256", 704, 5]], [["version", 708, 5], ["rev", 709, 5], ["sha256", 710, 5]], [["version", 714, 5], ["rev", 715, 5], ["sha256", 716, 5]], [["version", 720, 5], ["rev", 721, 5], ["sha256", 722, 5]], [["version", 726, 5], ["rev", 727, 5], ["sha256", 728, 5]], [["version", 732, 5], ["rev", 733, 5], ["sha256", 734, 5]], [["version", 738, 5], ["rev", 739, 5], ["sha256", 740, 5]], [["version", 744, 5], ["rev", 745, 5], ["sha256", 746, 5]], [["version", 750, 5], ["rev", 751, 5], ["sha256", 752, 5]], [["version", 756, 5], ["rev", 757, 5], ["sha256", 758, 5]], [["version", 762, 5], ["rev", 763, 5], ["sha256", 764, 5]], [["version", 768, 5], ["rev", 769, 5], ["sha256", 770, 5]], [["version", 774, 5], ["rev", 775, 5], ["sha256", 776, 5]], [["version", 780, 5], ["rev", 781, 5], ["sha256", 782, 5]], [["version", 786, 5], ["rev", 787, 5], ["sha256", 788, 5]], [["version", 792, 5], ["rev", 793, 5], ["sha256", 794, 5]], [["version", 798, 5], ["rev", 799, 5], ["sha256", 800, 5]], [["version", 804, 5], ["rev", 805, 5], ["sha256", 806, 5]], [["version", 810, 5], ["rev", 811, 5], ["sha256", 812, 5]], [["version", 816, 5], ["rev", 817, 5], ["sha256", 818, 5]], [["version", 822, 5], ["rev", 823, 5], ["sha256", 824, 5]], [["version", 828, 5], ["rev", 829, 5], ["sha256", 830, 5]], [["version", 834, 5], ["rev", 835, 5], ["sha256", 836, 5]], [["version", 840, 5], ["rev", 841, 5], ["sha256", 842, 5]], [["version", 846, 5], ["rev", 847, 5], ["sha256", 848, 5]], [["version", 852, 5], ["rev", 853, 5], ["sha256", 854, 5]], [["version", 858, 5], ["rev", 859, 5], ["sha256", 860, 5]], [["version", 864, 5], ["rev", 865, 5], ["sha256", 866, 5]], [["version", 870, 5], ["rev", 871, 5], ["sha256", 872, 5]], [["version", 876, 5], ["rev", 877, 5], ["sha256", 878, 5]], [["version", 882, 5], ["rev", 883, 5], ["sha256", 884, 5]], [["version", 888, 5], ["rev", 889, 5], ["sha256", 890, 5]], [["version", 894, 5], ["rev", 895, 5], ["sha256", 896, 5]], [["version", 900, 5], ["rev", 901, 5], ["sha256", 902, 5]], [["version", 906, 5], ["rev", 907, 5], ["sha256", 908, 5]], [["version", 912, 5], ["rev", 913, 5], ["sha256", 914, 5]], [["version", 918, 5], ["rev", 919, 5], ["sha256", 920, 5]], [["version", 924, 5], ["rev", 925, 5], ["sha256", 926, 5]], [["version", 930, 5], ["rev", 931, 5], ["sha256", 932, 5]], [["version", 936, 5], ["rev", 937, 5], ["sha256", 938, 5]], [["version", 942, 5], ["rev", 943, 5], ["sha256", 944, 5]], [["version", 948, 5], ["rev", 949, 5], ["sha256", 950, 5]], [["version", 954, 5], ["rev", 955, 5], ["sha256", 956, 5]], [["version", 960, 5], ["rev", 961, 5], ["sha256", 962, 5]], [["version", 966, 5], ["rev", 967, 5], ["sha256", 968, 5]], [["version", 972, 5], ["rev", 973, 5], ["sha256", 974, 5]], [["version", 978, 5], ["rev", 979, 5], ["sha256", 980, 5]], [["version", 984, 5], ["rev", 985, 5], ["sha256", 986, 5]], [["version", 990, 5], ["rev", 991, 5], ["sha256", 992, 5]], [["version", 996, 5], ["rev", 997, 5], ["sha256", 998, 5]], [["version", 1002, 5], ["rev", 1003, 5], ["sha256", 1004, 5]], [["version", 1008, 5], ["rev", 1009, 5], ["sha256", 1010, 5]], [["version", 1014, 5], ["rev", 1015, 5], ["sha256", 1016, 5]], [["version", 1020, 5], ["rev", 1021, 5], ["sha256", 1022, 5]], [["version", 1026, 5], ["rev", 1027, 5], ["sha256", 1028, 5]], [["version", 1032, 5], ["rev", 1033, 5], ["sha256", 1034, 5]], [["version", 1038, 5], ["rev", 1039, 5], ["sha256", 1040, 5]], [["version", 1044, 5], ["rev", 1045, 5], ["sha256", 1046, 5]], [["version", 1050, 5], ["rev", 1051, 5], ["sha256", 1052, 5]], [["version", 1056, 5], ["rev", 1057, 5], ["sha256", 1058, 5]], [["aac-tactics", 40, 3], ["abp", 56, 3], ["additions", 62, 3], ["ails", 68, 3], ["algebra", 74, 3], ["amm11262", 80, 3], ["angles", 86, 3], ["area-method", 92, 3], ["atbr", 98, 3], ["automata", 104, 3], ["axiomatic-abp", 110, 3], ["bdds", 116, 3], ["bertrand", 122, 3], ["buchberger", 128, 3], ["canon-bdds", 134, 3], ["cantor", 140, 3], ["cats-in-zfc", 146, 3], ["ccs", 152, 3], ["cfgv", 158, 3], ["checker", 164, 3], ["chinese", 170, 3], ["circuits", 176, 3], ["classical-realizability", 182, 3], ["coalgebras", 188, 3], ["coinductive-examples", 194, 3], ["coinductive-reals", 200, 3], ["concat", 206, 3], ["constructive-geometry", 212, 3], ["containers", 218, 3], ["continuations", 244, 3], ["coq-in-coq", 250, 3], ["coqoban", 256, 3], ["corn", 262, 3], ["counting", 268, 3], ["cours-de-coq", 274, 3], ["ctltctl", 280, 3], ["dblib", 286, 3], ["demos", 292, 3], ["dep-map", 298, 3], ["descente-infinie", 304, 3], ["dictionaries", 310, 3], ["distributed-reference-counting", 316, 3], ["domain-theory", 322, 3], ["ergo", 328, 3], ["euclidean-geometry", 334, 3], ["euler-formula", 340, 3], ["exact-real-arithmetic", 346, 3], ["exceptions", 352, 3], ["fairisle", 358, 3], ["fermat4", 364, 3], ["finger-tree", 370, 3], ["firing-squad", 376, 3], ["float", 382, 3], ["founify", 388, 3], ["free-groups", 394, 3], ["fsets", 400, 3], ["fssec-model", 406, 3], ["functions-in-zfc", 412, 3], ["fundamental-arithmetics", 418, 3], ["gc", 424, 3], ["generic-environments", 430, 3], ["goedel", 436, 3], ["graph-basics", 442, 3], ["graphs", 448, 3], ["group-theory", 454, 3], ["groups", 460, 3], ["hardware", 466, 3], ["hedges", 472, 3], ["high-school-geometry", 478, 3], ["higman-cf", 484, 3], ["higman-nw", 490, 3], ["higman-s", 496, 3], ["historical-examples", 502, 3], ["hoare-tut", 508, 3], ["huffman", 514, 3], ["icharate", 520, 3], ["idxassoc", 526, 3], ["ieee754", 532, 3], ["int-map", 538, 3], ["intuitionistic-nuprl", 544, 3], ["ipc", 551, 3], ["izf", 557, 3], ["jordan-curve-theorem", 563, 3], ["jprover", 569, 3], ["karatsuba", 575, 3], ["kildall", 581, 3], ["lambda", 587, 3], ["lambek", 593, 3], ["lazy-pcf", 599, 3], ["lc", 605, 3], ["legacy-field", 611, 3], ["legacy-ring", 617, 3], ["lemma-overloading", 623, 3], ["lesniewski-mereology", 629, 3], ["lin-alg", 635, 3], ["ltl", 641, 3], ["maple-mode", 647, 3], ["markov", 653, 3], ["maths", 659, 3], ["matrices", 665, 3], ["micromega", 671, 3], ["mini-compiler", 677, 3], ["minic", 683, 3], ["miniml", 689, 3], ["mod-red", 695, 3], ["multiplier", 701, 3], ["mutual-exclusion", 707, 3], ["nfix", 713, 3], ["orb-stab", 719, 3], ["otway-rees", 725, 3], ["paco", 731, 3], ["paradoxes", 737, 3], ["param-pi", 743, 3], ["pautomata", 749, 3], ["persistent-union-find", 755, 3], ["pi-calc", 761, 3], ["pocklington", 767, 3], ["presburger", 773, 3], ["prfx", 779, 3], ["projective-geometry", 785, 3], ["propcalc", 791, 3], ["pts", 797, 3], ["ptsatr", 803, 3], ["ptsf", 809, 3], ["qarith", 815, 3], ["qarith-stern-brocot", 821, 3], ["quicksort-complexity", 827, 3], ["railroad-crossing", 833, 3], ["ramsey", 839, 3], ["random", 845, 3], ["rational", 851, 3], ["recursive-definition", 857, 3], ["reflexive-first-order", 863, 3], ["regexp", 869, 3], ["relation-algebra", 875, 3], ["relation-extraction", 881, 3], ["rem", 887, 3], ["rsa", 893, 3], ["ruler-compass-geometry", 899, 3], ["schroeder", 905, 3], ["search-trees", 911, 3], ["semantics", 917, 3], ["shuffle", 923, 3], ["smc", 929, 3], ["square-matrices", 935, 3], ["stalmarck", 941, 3], ["streams", 947, 3], ["string", 953, 3], ["subst", 959, 3], ["sudoku", 965, 3], ["sum-of-two-square", 971, 3], ["tait", 977, 3], ["tarski-geometry", 983, 3], ["three-gap", 989, 3], ["topology", 995, 3], ["tortoise-hare-algorithm", 1001, 3], ["traversable-fincontainer", 1007, 3], ["tree-automata", 1013, 3], ["tree-diameter", 1019, 3], ["weak-up-to", 1025, 3], ["zchinese", 1031, 3], ["zf", 1037, 3], ["zfc", 1043, 3], ["zorns-lemma", 1049, 3], ["zsearch-trees", 1055, 3]]]);
 const formals$1 = { args: { lib: false, mkCoqDerivation: false, coq: false, callPackage: false }, ellipsis: false };
 const formals$2 = { args: { version: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 18, 21], ["version", 18, 27], ["owner", 19, 13], ["mlPlugin", 20, 13]]);
-const pos$2 = nix.positions(here + "/default.nix", [["rev", 26, 56], ["sha256", 26, 60]]);
-const pos$3 = nix.positions(here + "/default.nix", [["defaultVersion", 24, 15], ["release", 25, 15]]);
-const pos$4 = nix.positions(here + "/default.nix", [["version", 44, 11], ["rev", 45, 11], ["sha256", 46, 11]]);
-const pos$5 = nix.positions(here + "/default.nix", [["version", 49, 11], ["rev", 50, 11], ["sha256", 51, 11]]);
-const pos$6 = nix.positions(here + "/default.nix", [["8.7", 43, 9], ["8.8", 48, 9]]);
-const pos$7 = nix.positions(here + "/default.nix", [["version", 57, 5], ["rev", 58, 5], ["sha256", 59, 5]]);
-const pos$8 = nix.positions(here + "/default.nix", [["version", 63, 5], ["rev", 64, 5], ["sha256", 65, 5]]);
-const pos$9 = nix.positions(here + "/default.nix", [["version", 69, 5], ["rev", 70, 5], ["sha256", 71, 5]]);
-const pos$10 = nix.positions(here + "/default.nix", [["version", 75, 5], ["rev", 76, 5], ["sha256", 77, 5]]);
-const pos$11 = nix.positions(here + "/default.nix", [["version", 81, 5], ["rev", 82, 5], ["sha256", 83, 5]]);
-const pos$12 = nix.positions(here + "/default.nix", [["version", 87, 5], ["rev", 88, 5], ["sha256", 89, 5]]);
-const pos$13 = nix.positions(here + "/default.nix", [["version", 93, 5], ["rev", 94, 5], ["sha256", 95, 5]]);
-const pos$14 = nix.positions(here + "/default.nix", [["version", 99, 5], ["rev", 100, 5], ["sha256", 101, 5]]);
-const pos$15 = nix.positions(here + "/default.nix", [["version", 105, 5], ["rev", 106, 5], ["sha256", 107, 5]]);
-const pos$16 = nix.positions(here + "/default.nix", [["version", 111, 5], ["rev", 112, 5], ["sha256", 113, 5]]);
-const pos$17 = nix.positions(here + "/default.nix", [["version", 117, 5], ["rev", 118, 5], ["sha256", 119, 5]]);
-const pos$18 = nix.positions(here + "/default.nix", [["version", 123, 5], ["rev", 124, 5], ["sha256", 125, 5]]);
-const pos$19 = nix.positions(here + "/default.nix", [["version", 129, 5], ["rev", 130, 5], ["sha256", 131, 5]]);
-const pos$20 = nix.positions(here + "/default.nix", [["version", 135, 5], ["rev", 136, 5], ["sha256", 137, 5]]);
-const pos$21 = nix.positions(here + "/default.nix", [["version", 141, 5], ["rev", 142, 5], ["sha256", 143, 5]]);
-const pos$22 = nix.positions(here + "/default.nix", [["version", 147, 5], ["rev", 148, 5], ["sha256", 149, 5]]);
-const pos$23 = nix.positions(here + "/default.nix", [["version", 153, 5], ["rev", 154, 5], ["sha256", 155, 5]]);
-const pos$24 = nix.positions(here + "/default.nix", [["version", 159, 5], ["rev", 160, 5], ["sha256", 161, 5]]);
-const pos$25 = nix.positions(here + "/default.nix", [["version", 165, 5], ["rev", 166, 5], ["sha256", 167, 5]]);
-const pos$26 = nix.positions(here + "/default.nix", [["version", 171, 5], ["rev", 172, 5], ["sha256", 173, 5]]);
-const pos$27 = nix.positions(here + "/default.nix", [["version", 177, 5], ["rev", 178, 5], ["sha256", 179, 5]]);
-const pos$28 = nix.positions(here + "/default.nix", [["version", 183, 5], ["rev", 184, 5], ["sha256", 185, 5]]);
-const pos$29 = nix.positions(here + "/default.nix", [["version", 189, 5], ["rev", 190, 5], ["sha256", 191, 5]]);
-const pos$30 = nix.positions(here + "/default.nix", [["version", 195, 5], ["rev", 196, 5], ["sha256", 197, 5]]);
-const pos$31 = nix.positions(here + "/default.nix", [["version", 201, 5], ["rev", 202, 5], ["sha256", 203, 5]]);
-const pos$32 = nix.positions(here + "/default.nix", [["version", 207, 5], ["rev", 208, 5], ["sha256", 209, 5]]);
-const pos$33 = nix.positions(here + "/default.nix", [["version", 213, 5], ["rev", 214, 5], ["sha256", 215, 5]]);
-const pos$34 = nix.positions(here + "/default.nix", [["version", 222, 11], ["rev", 223, 11], ["sha256", 224, 11]]);
-const pos$35 = nix.positions(here + "/default.nix", [["version", 227, 11], ["rev", 228, 11], ["sha256", 229, 11]]);
-const pos$36 = nix.positions(here + "/default.nix", [["version", 232, 11], ["rev", 233, 11], ["sha256", 234, 11]]);
-const pos$37 = nix.positions(here + "/default.nix", [["version", 237, 11], ["rev", 238, 11], ["sha256", 239, 11]]);
-const pos$38 = nix.positions(here + "/default.nix", [["8.6", 221, 9], ["8.7", 226, 9], ["8.8", 231, 9], ["8.9", 236, 9]]);
-const pos$39 = nix.positions(here + "/default.nix", [["version", 245, 5], ["rev", 246, 5], ["sha256", 247, 5]]);
-const pos$40 = nix.positions(here + "/default.nix", [["version", 251, 5], ["rev", 252, 5], ["sha256", 253, 5]]);
-const pos$41 = nix.positions(here + "/default.nix", [["version", 257, 5], ["rev", 258, 5], ["sha256", 259, 5]]);
-const pos$42 = nix.positions(here + "/default.nix", [["version", 263, 5], ["rev", 264, 5], ["sha256", 265, 5]]);
-const pos$43 = nix.positions(here + "/default.nix", [["version", 269, 5], ["rev", 270, 5], ["sha256", 271, 5]]);
-const pos$44 = nix.positions(here + "/default.nix", [["version", 275, 5], ["rev", 276, 5], ["sha256", 277, 5]]);
-const pos$45 = nix.positions(here + "/default.nix", [["version", 281, 5], ["rev", 282, 5], ["sha256", 283, 5]]);
-const pos$46 = nix.positions(here + "/default.nix", [["version", 287, 5], ["rev", 288, 5], ["sha256", 289, 5]]);
-const pos$47 = nix.positions(here + "/default.nix", [["version", 293, 5], ["rev", 294, 5], ["sha256", 295, 5]]);
-const pos$48 = nix.positions(here + "/default.nix", [["version", 299, 5], ["rev", 300, 5], ["sha256", 301, 5]]);
-const pos$49 = nix.positions(here + "/default.nix", [["version", 305, 5], ["rev", 306, 5], ["sha256", 307, 5]]);
-const pos$50 = nix.positions(here + "/default.nix", [["version", 311, 5], ["rev", 312, 5], ["sha256", 313, 5]]);
-const pos$51 = nix.positions(here + "/default.nix", [["version", 317, 5], ["rev", 318, 5], ["sha256", 319, 5]]);
-const pos$52 = nix.positions(here + "/default.nix", [["version", 323, 5], ["rev", 324, 5], ["sha256", 325, 5]]);
-const pos$53 = nix.positions(here + "/default.nix", [["version", 329, 5], ["rev", 330, 5], ["sha256", 331, 5]]);
-const pos$54 = nix.positions(here + "/default.nix", [["version", 335, 5], ["rev", 336, 5], ["sha256", 337, 5]]);
-const pos$55 = nix.positions(here + "/default.nix", [["version", 341, 5], ["rev", 342, 5], ["sha256", 343, 5]]);
-const pos$56 = nix.positions(here + "/default.nix", [["version", 347, 5], ["rev", 348, 5], ["sha256", 349, 5]]);
-const pos$57 = nix.positions(here + "/default.nix", [["version", 353, 5], ["rev", 354, 5], ["sha256", 355, 5]]);
-const pos$58 = nix.positions(here + "/default.nix", [["version", 359, 5], ["rev", 360, 5], ["sha256", 361, 5]]);
-const pos$59 = nix.positions(here + "/default.nix", [["version", 365, 5], ["rev", 366, 5], ["sha256", 367, 5]]);
-const pos$60 = nix.positions(here + "/default.nix", [["version", 371, 5], ["rev", 372, 5], ["sha256", 373, 5]]);
-const pos$61 = nix.positions(here + "/default.nix", [["version", 377, 5], ["rev", 378, 5], ["sha256", 379, 5]]);
-const pos$62 = nix.positions(here + "/default.nix", [["version", 383, 5], ["rev", 384, 5], ["sha256", 385, 5]]);
-const pos$63 = nix.positions(here + "/default.nix", [["version", 389, 5], ["rev", 390, 5], ["sha256", 391, 5]]);
-const pos$64 = nix.positions(here + "/default.nix", [["version", 395, 5], ["rev", 396, 5], ["sha256", 397, 5]]);
-const pos$65 = nix.positions(here + "/default.nix", [["version", 401, 5], ["rev", 402, 5], ["sha256", 403, 5]]);
-const pos$66 = nix.positions(here + "/default.nix", [["version", 407, 5], ["rev", 408, 5], ["sha256", 409, 5]]);
-const pos$67 = nix.positions(here + "/default.nix", [["version", 413, 5], ["rev", 414, 5], ["sha256", 415, 5]]);
-const pos$68 = nix.positions(here + "/default.nix", [["version", 419, 5], ["rev", 420, 5], ["sha256", 421, 5]]);
-const pos$69 = nix.positions(here + "/default.nix", [["version", 425, 5], ["rev", 426, 5], ["sha256", 427, 5]]);
-const pos$70 = nix.positions(here + "/default.nix", [["version", 431, 5], ["rev", 432, 5], ["sha256", 433, 5]]);
-const pos$71 = nix.positions(here + "/default.nix", [["version", 437, 5], ["rev", 438, 5], ["sha256", 439, 5]]);
-const pos$72 = nix.positions(here + "/default.nix", [["version", 443, 5], ["rev", 444, 5], ["sha256", 445, 5]]);
-const pos$73 = nix.positions(here + "/default.nix", [["version", 449, 5], ["rev", 450, 5], ["sha256", 451, 5]]);
-const pos$74 = nix.positions(here + "/default.nix", [["version", 455, 5], ["rev", 456, 5], ["sha256", 457, 5]]);
-const pos$75 = nix.positions(here + "/default.nix", [["version", 461, 5], ["rev", 462, 5], ["sha256", 463, 5]]);
-const pos$76 = nix.positions(here + "/default.nix", [["version", 467, 5], ["rev", 468, 5], ["sha256", 469, 5]]);
-const pos$77 = nix.positions(here + "/default.nix", [["version", 473, 5], ["rev", 474, 5], ["sha256", 475, 5]]);
-const pos$78 = nix.positions(here + "/default.nix", [["version", 479, 5], ["rev", 480, 5], ["sha256", 481, 5]]);
-const pos$79 = nix.positions(here + "/default.nix", [["version", 485, 5], ["rev", 486, 5], ["sha256", 487, 5]]);
-const pos$80 = nix.positions(here + "/default.nix", [["version", 491, 5], ["rev", 492, 5], ["sha256", 493, 5]]);
-const pos$81 = nix.positions(here + "/default.nix", [["version", 497, 5], ["rev", 498, 5], ["sha256", 499, 5]]);
-const pos$82 = nix.positions(here + "/default.nix", [["version", 503, 5], ["rev", 504, 5], ["sha256", 505, 5]]);
-const pos$83 = nix.positions(here + "/default.nix", [["version", 509, 5], ["rev", 510, 5], ["sha256", 511, 5]]);
-const pos$84 = nix.positions(here + "/default.nix", [["version", 515, 5], ["rev", 516, 5], ["sha256", 517, 5]]);
-const pos$85 = nix.positions(here + "/default.nix", [["version", 521, 5], ["rev", 522, 5], ["sha256", 523, 5]]);
-const pos$86 = nix.positions(here + "/default.nix", [["version", 527, 5], ["rev", 528, 5], ["sha256", 529, 5]]);
-const pos$87 = nix.positions(here + "/default.nix", [["version", 533, 5], ["rev", 534, 5], ["sha256", 535, 5]]);
-const pos$88 = nix.positions(here + "/default.nix", [["version", 539, 5], ["rev", 540, 5], ["sha256", 541, 5]]);
-const pos$89 = nix.positions(here + "/default.nix", [["version", 545, 5], ["rev", 546, 5], ["sha256", 547, 5], ["installFlags", 548, 5]]);
-const pos$90 = nix.positions(here + "/default.nix", [["version", 552, 5], ["rev", 553, 5], ["sha256", 554, 5]]);
-const pos$91 = nix.positions(here + "/default.nix", [["version", 558, 5], ["rev", 559, 5], ["sha256", 560, 5]]);
-const pos$92 = nix.positions(here + "/default.nix", [["version", 564, 5], ["rev", 565, 5], ["sha256", 566, 5]]);
-const pos$93 = nix.positions(here + "/default.nix", [["version", 570, 5], ["rev", 571, 5], ["sha256", 572, 5]]);
-const pos$94 = nix.positions(here + "/default.nix", [["version", 576, 5], ["rev", 577, 5], ["sha256", 578, 5]]);
-const pos$95 = nix.positions(here + "/default.nix", [["version", 582, 5], ["rev", 583, 5], ["sha256", 584, 5]]);
-const pos$96 = nix.positions(here + "/default.nix", [["version", 588, 5], ["rev", 589, 5], ["sha256", 590, 5]]);
-const pos$97 = nix.positions(here + "/default.nix", [["version", 594, 5], ["rev", 595, 5], ["sha256", 596, 5]]);
-const pos$98 = nix.positions(here + "/default.nix", [["version", 600, 5], ["rev", 601, 5], ["sha256", 602, 5]]);
-const pos$99 = nix.positions(here + "/default.nix", [["version", 606, 5], ["rev", 607, 5], ["sha256", 608, 5]]);
-const pos$100 = nix.positions(here + "/default.nix", [["version", 612, 5], ["rev", 613, 5], ["sha256", 614, 5]]);
-const pos$101 = nix.positions(here + "/default.nix", [["version", 618, 5], ["rev", 619, 5], ["sha256", 620, 5]]);
-const pos$102 = nix.positions(here + "/default.nix", [["version", 624, 5], ["rev", 625, 5], ["sha256", 626, 5]]);
-const pos$103 = nix.positions(here + "/default.nix", [["version", 630, 5], ["rev", 631, 5], ["sha256", 632, 5]]);
-const pos$104 = nix.positions(here + "/default.nix", [["version", 636, 5], ["rev", 637, 5], ["sha256", 638, 5]]);
-const pos$105 = nix.positions(here + "/default.nix", [["version", 642, 5], ["rev", 643, 5], ["sha256", 644, 5]]);
-const pos$106 = nix.positions(here + "/default.nix", [["version", 648, 5], ["rev", 649, 5], ["sha256", 650, 5]]);
-const pos$107 = nix.positions(here + "/default.nix", [["version", 654, 5], ["rev", 655, 5], ["sha256", 656, 5]]);
-const pos$108 = nix.positions(here + "/default.nix", [["version", 660, 5], ["rev", 661, 5], ["sha256", 662, 5]]);
-const pos$109 = nix.positions(here + "/default.nix", [["version", 666, 5], ["rev", 667, 5], ["sha256", 668, 5]]);
-const pos$110 = nix.positions(here + "/default.nix", [["version", 672, 5], ["rev", 673, 5], ["sha256", 674, 5]]);
-const pos$111 = nix.positions(here + "/default.nix", [["version", 678, 5], ["rev", 679, 5], ["sha256", 680, 5]]);
-const pos$112 = nix.positions(here + "/default.nix", [["version", 684, 5], ["rev", 685, 5], ["sha256", 686, 5]]);
-const pos$113 = nix.positions(here + "/default.nix", [["version", 690, 5], ["rev", 691, 5], ["sha256", 692, 5]]);
-const pos$114 = nix.positions(here + "/default.nix", [["version", 696, 5], ["rev", 697, 5], ["sha256", 698, 5]]);
-const pos$115 = nix.positions(here + "/default.nix", [["version", 702, 5], ["rev", 703, 5], ["sha256", 704, 5]]);
-const pos$116 = nix.positions(here + "/default.nix", [["version", 708, 5], ["rev", 709, 5], ["sha256", 710, 5]]);
-const pos$117 = nix.positions(here + "/default.nix", [["version", 714, 5], ["rev", 715, 5], ["sha256", 716, 5]]);
-const pos$118 = nix.positions(here + "/default.nix", [["version", 720, 5], ["rev", 721, 5], ["sha256", 722, 5]]);
-const pos$119 = nix.positions(here + "/default.nix", [["version", 726, 5], ["rev", 727, 5], ["sha256", 728, 5]]);
-const pos$120 = nix.positions(here + "/default.nix", [["version", 732, 5], ["rev", 733, 5], ["sha256", 734, 5]]);
-const pos$121 = nix.positions(here + "/default.nix", [["version", 738, 5], ["rev", 739, 5], ["sha256", 740, 5]]);
-const pos$122 = nix.positions(here + "/default.nix", [["version", 744, 5], ["rev", 745, 5], ["sha256", 746, 5]]);
-const pos$123 = nix.positions(here + "/default.nix", [["version", 750, 5], ["rev", 751, 5], ["sha256", 752, 5]]);
-const pos$124 = nix.positions(here + "/default.nix", [["version", 756, 5], ["rev", 757, 5], ["sha256", 758, 5]]);
-const pos$125 = nix.positions(here + "/default.nix", [["version", 762, 5], ["rev", 763, 5], ["sha256", 764, 5]]);
-const pos$126 = nix.positions(here + "/default.nix", [["version", 768, 5], ["rev", 769, 5], ["sha256", 770, 5]]);
-const pos$127 = nix.positions(here + "/default.nix", [["version", 774, 5], ["rev", 775, 5], ["sha256", 776, 5]]);
-const pos$128 = nix.positions(here + "/default.nix", [["version", 780, 5], ["rev", 781, 5], ["sha256", 782, 5]]);
-const pos$129 = nix.positions(here + "/default.nix", [["version", 786, 5], ["rev", 787, 5], ["sha256", 788, 5]]);
-const pos$130 = nix.positions(here + "/default.nix", [["version", 792, 5], ["rev", 793, 5], ["sha256", 794, 5]]);
-const pos$131 = nix.positions(here + "/default.nix", [["version", 798, 5], ["rev", 799, 5], ["sha256", 800, 5]]);
-const pos$132 = nix.positions(here + "/default.nix", [["version", 804, 5], ["rev", 805, 5], ["sha256", 806, 5]]);
-const pos$133 = nix.positions(here + "/default.nix", [["version", 810, 5], ["rev", 811, 5], ["sha256", 812, 5]]);
-const pos$134 = nix.positions(here + "/default.nix", [["version", 816, 5], ["rev", 817, 5], ["sha256", 818, 5]]);
-const pos$135 = nix.positions(here + "/default.nix", [["version", 822, 5], ["rev", 823, 5], ["sha256", 824, 5]]);
-const pos$136 = nix.positions(here + "/default.nix", [["version", 828, 5], ["rev", 829, 5], ["sha256", 830, 5]]);
-const pos$137 = nix.positions(here + "/default.nix", [["version", 834, 5], ["rev", 835, 5], ["sha256", 836, 5]]);
-const pos$138 = nix.positions(here + "/default.nix", [["version", 840, 5], ["rev", 841, 5], ["sha256", 842, 5]]);
-const pos$139 = nix.positions(here + "/default.nix", [["version", 846, 5], ["rev", 847, 5], ["sha256", 848, 5]]);
-const pos$140 = nix.positions(here + "/default.nix", [["version", 852, 5], ["rev", 853, 5], ["sha256", 854, 5]]);
-const pos$141 = nix.positions(here + "/default.nix", [["version", 858, 5], ["rev", 859, 5], ["sha256", 860, 5]]);
-const pos$142 = nix.positions(here + "/default.nix", [["version", 864, 5], ["rev", 865, 5], ["sha256", 866, 5]]);
-const pos$143 = nix.positions(here + "/default.nix", [["version", 870, 5], ["rev", 871, 5], ["sha256", 872, 5]]);
-const pos$144 = nix.positions(here + "/default.nix", [["version", 876, 5], ["rev", 877, 5], ["sha256", 878, 5]]);
-const pos$145 = nix.positions(here + "/default.nix", [["version", 882, 5], ["rev", 883, 5], ["sha256", 884, 5]]);
-const pos$146 = nix.positions(here + "/default.nix", [["version", 888, 5], ["rev", 889, 5], ["sha256", 890, 5]]);
-const pos$147 = nix.positions(here + "/default.nix", [["version", 894, 5], ["rev", 895, 5], ["sha256", 896, 5]]);
-const pos$148 = nix.positions(here + "/default.nix", [["version", 900, 5], ["rev", 901, 5], ["sha256", 902, 5]]);
-const pos$149 = nix.positions(here + "/default.nix", [["version", 906, 5], ["rev", 907, 5], ["sha256", 908, 5]]);
-const pos$150 = nix.positions(here + "/default.nix", [["version", 912, 5], ["rev", 913, 5], ["sha256", 914, 5]]);
-const pos$151 = nix.positions(here + "/default.nix", [["version", 918, 5], ["rev", 919, 5], ["sha256", 920, 5]]);
-const pos$152 = nix.positions(here + "/default.nix", [["version", 924, 5], ["rev", 925, 5], ["sha256", 926, 5]]);
-const pos$153 = nix.positions(here + "/default.nix", [["version", 930, 5], ["rev", 931, 5], ["sha256", 932, 5]]);
-const pos$154 = nix.positions(here + "/default.nix", [["version", 936, 5], ["rev", 937, 5], ["sha256", 938, 5]]);
-const pos$155 = nix.positions(here + "/default.nix", [["version", 942, 5], ["rev", 943, 5], ["sha256", 944, 5]]);
-const pos$156 = nix.positions(here + "/default.nix", [["version", 948, 5], ["rev", 949, 5], ["sha256", 950, 5]]);
-const pos$157 = nix.positions(here + "/default.nix", [["version", 954, 5], ["rev", 955, 5], ["sha256", 956, 5]]);
-const pos$158 = nix.positions(here + "/default.nix", [["version", 960, 5], ["rev", 961, 5], ["sha256", 962, 5]]);
-const pos$159 = nix.positions(here + "/default.nix", [["version", 966, 5], ["rev", 967, 5], ["sha256", 968, 5]]);
-const pos$160 = nix.positions(here + "/default.nix", [["version", 972, 5], ["rev", 973, 5], ["sha256", 974, 5]]);
-const pos$161 = nix.positions(here + "/default.nix", [["version", 978, 5], ["rev", 979, 5], ["sha256", 980, 5]]);
-const pos$162 = nix.positions(here + "/default.nix", [["version", 984, 5], ["rev", 985, 5], ["sha256", 986, 5]]);
-const pos$163 = nix.positions(here + "/default.nix", [["version", 990, 5], ["rev", 991, 5], ["sha256", 992, 5]]);
-const pos$164 = nix.positions(here + "/default.nix", [["version", 996, 5], ["rev", 997, 5], ["sha256", 998, 5]]);
-const pos$165 = nix.positions(here + "/default.nix", [["version", 1002, 5], ["rev", 1003, 5], ["sha256", 1004, 5]]);
-const pos$166 = nix.positions(here + "/default.nix", [["version", 1008, 5], ["rev", 1009, 5], ["sha256", 1010, 5]]);
-const pos$167 = nix.positions(here + "/default.nix", [["version", 1014, 5], ["rev", 1015, 5], ["sha256", 1016, 5]]);
-const pos$168 = nix.positions(here + "/default.nix", [["version", 1020, 5], ["rev", 1021, 5], ["sha256", 1022, 5]]);
-const pos$169 = nix.positions(here + "/default.nix", [["version", 1026, 5], ["rev", 1027, 5], ["sha256", 1028, 5]]);
-const pos$170 = nix.positions(here + "/default.nix", [["version", 1032, 5], ["rev", 1033, 5], ["sha256", 1034, 5]]);
-const pos$171 = nix.positions(here + "/default.nix", [["version", 1038, 5], ["rev", 1039, 5], ["sha256", 1040, 5]]);
-const pos$172 = nix.positions(here + "/default.nix", [["version", 1044, 5], ["rev", 1045, 5], ["sha256", 1046, 5]]);
-const pos$173 = nix.positions(here + "/default.nix", [["version", 1050, 5], ["rev", 1051, 5], ["sha256", 1052, 5]]);
-const pos$174 = nix.positions(here + "/default.nix", [["version", 1056, 5], ["rev", 1057, 5], ["sha256", 1058, 5]]);
-const pos$175 = nix.positions(here + "/default.nix", [["aac-tactics", 40, 3], ["abp", 56, 3], ["additions", 62, 3], ["ails", 68, 3], ["algebra", 74, 3], ["amm11262", 80, 3], ["angles", 86, 3], ["area-method", 92, 3], ["atbr", 98, 3], ["automata", 104, 3], ["axiomatic-abp", 110, 3], ["bdds", 116, 3], ["bertrand", 122, 3], ["buchberger", 128, 3], ["canon-bdds", 134, 3], ["cantor", 140, 3], ["cats-in-zfc", 146, 3], ["ccs", 152, 3], ["cfgv", 158, 3], ["checker", 164, 3], ["chinese", 170, 3], ["circuits", 176, 3], ["classical-realizability", 182, 3], ["coalgebras", 188, 3], ["coinductive-examples", 194, 3], ["coinductive-reals", 200, 3], ["concat", 206, 3], ["constructive-geometry", 212, 3], ["containers", 218, 3], ["continuations", 244, 3], ["coq-in-coq", 250, 3], ["coqoban", 256, 3], ["corn", 262, 3], ["counting", 268, 3], ["cours-de-coq", 274, 3], ["ctltctl", 280, 3], ["dblib", 286, 3], ["demos", 292, 3], ["dep-map", 298, 3], ["descente-infinie", 304, 3], ["dictionaries", 310, 3], ["distributed-reference-counting", 316, 3], ["domain-theory", 322, 3], ["ergo", 328, 3], ["euclidean-geometry", 334, 3], ["euler-formula", 340, 3], ["exact-real-arithmetic", 346, 3], ["exceptions", 352, 3], ["fairisle", 358, 3], ["fermat4", 364, 3], ["finger-tree", 370, 3], ["firing-squad", 376, 3], ["float", 382, 3], ["founify", 388, 3], ["free-groups", 394, 3], ["fsets", 400, 3], ["fssec-model", 406, 3], ["functions-in-zfc", 412, 3], ["fundamental-arithmetics", 418, 3], ["gc", 424, 3], ["generic-environments", 430, 3], ["goedel", 436, 3], ["graph-basics", 442, 3], ["graphs", 448, 3], ["group-theory", 454, 3], ["groups", 460, 3], ["hardware", 466, 3], ["hedges", 472, 3], ["high-school-geometry", 478, 3], ["higman-cf", 484, 3], ["higman-nw", 490, 3], ["higman-s", 496, 3], ["historical-examples", 502, 3], ["hoare-tut", 508, 3], ["huffman", 514, 3], ["icharate", 520, 3], ["idxassoc", 526, 3], ["ieee754", 532, 3], ["int-map", 538, 3], ["intuitionistic-nuprl", 544, 3], ["ipc", 551, 3], ["izf", 557, 3], ["jordan-curve-theorem", 563, 3], ["jprover", 569, 3], ["karatsuba", 575, 3], ["kildall", 581, 3], ["lambda", 587, 3], ["lambek", 593, 3], ["lazy-pcf", 599, 3], ["lc", 605, 3], ["legacy-field", 611, 3], ["legacy-ring", 617, 3], ["lemma-overloading", 623, 3], ["lesniewski-mereology", 629, 3], ["lin-alg", 635, 3], ["ltl", 641, 3], ["maple-mode", 647, 3], ["markov", 653, 3], ["maths", 659, 3], ["matrices", 665, 3], ["micromega", 671, 3], ["mini-compiler", 677, 3], ["minic", 683, 3], ["miniml", 689, 3], ["mod-red", 695, 3], ["multiplier", 701, 3], ["mutual-exclusion", 707, 3], ["nfix", 713, 3], ["orb-stab", 719, 3], ["otway-rees", 725, 3], ["paco", 731, 3], ["paradoxes", 737, 3], ["param-pi", 743, 3], ["pautomata", 749, 3], ["persistent-union-find", 755, 3], ["pi-calc", 761, 3], ["pocklington", 767, 3], ["presburger", 773, 3], ["prfx", 779, 3], ["projective-geometry", 785, 3], ["propcalc", 791, 3], ["pts", 797, 3], ["ptsatr", 803, 3], ["ptsf", 809, 3], ["qarith", 815, 3], ["qarith-stern-brocot", 821, 3], ["quicksort-complexity", 827, 3], ["railroad-crossing", 833, 3], ["ramsey", 839, 3], ["random", 845, 3], ["rational", 851, 3], ["recursive-definition", 857, 3], ["reflexive-first-order", 863, 3], ["regexp", 869, 3], ["relation-algebra", 875, 3], ["relation-extraction", 881, 3], ["rem", 887, 3], ["rsa", 893, 3], ["ruler-compass-geometry", 899, 3], ["schroeder", 905, 3], ["search-trees", 911, 3], ["semantics", 917, 3], ["shuffle", 923, 3], ["smc", 929, 3], ["square-matrices", 935, 3], ["stalmarck", 941, 3], ["streams", 947, 3], ["string", 953, 3], ["subst", 959, 3], ["sudoku", 965, 3], ["sum-of-two-square", 971, 3], ["tait", 977, 3], ["tarski-geometry", 983, 3], ["three-gap", 989, 3], ["topology", 995, 3], ["tortoise-hare-algorithm", 1001, 3], ["traversable-fincontainer", 1007, 3], ["tree-automata", 1013, 3], ["tree-diameter", 1019, 3], ["weak-up-to", 1025, 3], ["zchinese", 1031, 3], ["zf", 1037, 3], ["zfc", 1043, 3], ["zorns-lemma", 1049, 3], ["zsearch-trees", 1055, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -191,17 +17,17 @@ export default nix.lambda((args) => (() => {
       const $_1 = nix.formals(args_1, formals$2);
       const version = nix.argOr($_1, "version", () => null);
       return nix.app(mkCoqDerivation, nix.thunk(() => nix.update({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           owner: "coq-contribs",
           mlPlugin: true,
         }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.builtins.elem(nix.thunk(() => nix.sel(coq, "coq-version")), coqs)), nix.thunk(() => nix.update({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             defaultVersion: nix.thunk(() => nix.sel(param, "version")),
             release: nix.thunk(() => nix.attrsDyn({}, [
               [nix.str`${nix.sel(param, "version")}`, nix.thunk(() => ({
-                [nix.POS]: pos$2,
+                [nix.POS]: $pos[1],
                 rev: nix.thunk(() => nix.attr(param, "rev")),
                 sha256: nix.thunk(() => nix.attr(param, "sha256")),
               }))],
@@ -211,513 +37,513 @@ export default nix.lambda((args) => (() => {
     return nix.app(nix.sel(lib, "makeOverridable"), contribVersion, nix.thunk(() => ({})));
   })();
   return {
-    [nix.POS]: pos$175,
+    [nix.POS]: $pos[174],
     "aac-tactics": nix.thunk(() => nix.app(mkContrib, "aac-tactics", nix.thunk(() => ["8.7", "8.8"]), nix.thunk(() => nix.sel({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         "8.7": nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           version: "20180530",
           rev: "f01df35e1d796ce1fdc7ba3d670ce5d63c95d544",
           sha256: "1bwvnbd5ws1plgj147blcrvyycf3gg3fz3rm2mckln8z3sfxyq2k",
         })),
         "8.8": nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           version: "20180530",
           rev: "86ac28259030649ef51460e4de2441c8a1017751",
           sha256: "09bbk2a7pn0j76mmapl583f8a20zqd3a1m9lkml8rpwml692bzi9",
         })),
       }, nix.key(nix.sel(coq, "coq-version")))))),
     abp: nix.thunk(() => nix.app(mkContrib, "abp", nix.thunk(() => ["8.5", "8.6", "8.7"]), nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         version: "v8.6.0",
         rev: "492d919510ededf685e57f3b911b1ac43f2d9333",
         sha256: "18f5vbq6nx9gz2gcj5p7v2gmjczpspc5dmlj6by4jqv07iirzsz2",
       })))),
     additions: nix.thunk(() => nix.app(mkContrib, "additions", nix.thunk(() => ["8.6"]), nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         version: "v8.5.0-9-gbec504e",
         rev: "bec504e7822747376159aaa2156cf7453dbbd2b4",
         sha256: "1vvkqjnqrf6m726krhlm2viza64ha2081xgc5wb9y5sygd0baaz7",
       })))),
     ails: nix.thunk(() => nix.app(mkContrib, "ails", nix.thunk(() => ["8.7"]), nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         version: "v8.6.0-1-g1f7e52c",
         rev: "1f7e52cbfe12584787a91bcc641bcaa823e773e3",
         sha256: "0j7sjkjqdxsr3mkihh41s6bgdy8gj0hw09gijzw2nrjmj6g3s9nk",
       })))),
     algebra: nix.thunk(() => nix.app(mkContrib, "algebra", nix.thunk(() => ["8.5", "8.6", "8.7"]), nix.thunk(() => ({
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         version: "v8.5.0-5-gcd1d291",
         rev: "cd1d29115197c9c51d56e0a2e19fce2d0227c567",
         sha256: "01i8189n94swvwyfnrizh01ym5ijfyb6vbzl052awvhxv8a54j3q",
       })))),
     amm11262: nix.thunk(() => nix.app(mkContrib, "amm11262", nix.thunk(() => ["8.5", "8.6"]), nix.thunk(() => ({
-        [nix.POS]: pos$11,
+        [nix.POS]: $pos[10],
         version: "v8.5.0-5-gbfa5cdf",
         rev: "bfa5cdf3bd803c40e918ae3a78aeb9c2929432a0",
         sha256: "1zkbviarvqm228x9rnviad3b0sabpcgarx4z1cks9mfvg1wwyk8n",
       })))),
     angles: nix.thunk(() => nix.app(mkContrib, "angles", nix.thunk(() => ["8.5", "8.6", "8.7"]), nix.thunk(() => ({
-        [nix.POS]: pos$12,
+        [nix.POS]: $pos[11],
         version: "v8.5.0-5-g78715f8",
         rev: "78715f86971007c9e2803215cccee1c5fc9dee87",
         sha256: "0bgczag5qvmh92wxll0grzcyj52p80z6arx0plbrn6h7m1gywka5",
       })))),
     "area-method": nix.thunk(() => nix.app(mkContrib, "area-method", nix.thunk(() => ["8.5", "8.6", "8.7"]), nix.thunk(() => ({
-        [nix.POS]: pos$13,
+        [nix.POS]: $pos[12],
         version: "v8.6.0-1-gc599734",
         rev: "c599734c0ca9bfcdae7ca436be4a17fda5d55c18",
         sha256: "111jgxngmpb8sddpmrgr4cgh3p0w3w9jg6pq0x2qwddsq2x55bbq",
       })))),
     atbr: nix.thunk(() => nix.app(mkContrib, "atbr", [], nix.thunk(() => ({
-        [nix.POS]: pos$14,
+        [nix.POS]: $pos[13],
         version: "v8.5.0-16-g71ca792",
         rev: "71ca792293153f66a3734c367c23f9dd9ad4bd0f",
         sha256: "0r01crlf2hclq9wrsrx1by1c3qbncs6rkyn6v4amirdjwlrla4ba",
       })))),
     automata: nix.thunk(() => nix.app(mkContrib, "automata", nix.thunk(() => ["8.5", "8.6", "8.7"]), nix.thunk(() => ({
-        [nix.POS]: pos$15,
+        [nix.POS]: $pos[14],
         version: "v8.5.0-6-gc3dffb9",
         rev: "c3dffb957dea45ffde679c0d360e869e40396c6c",
         sha256: "174psnrmjwb7ywn8fs67bjjggq5jw9zrg3d9bpsx5n82bzr2vsnk",
       })))),
     "axiomatic-abp": nix.thunk(() => nix.app(mkContrib, "axiomatic-abp", nix.thunk(() => ["8.5", "8.6", "8.7"]), nix.thunk(() => ({
-        [nix.POS]: pos$16,
+        [nix.POS]: $pos[15],
         version: "v8.5.0-5-ge48eb5e",
         rev: "e48eb5ed467da6aa250b4d567478bc63e675783c",
         sha256: "0g924s0iiwhck5vvh6zcwj1s16g3p637xms2bld504d0nrjwapkx",
       })))),
     bdds: nix.thunk(() => nix.app(mkContrib, "bdds", [], nix.thunk(() => ({
-        [nix.POS]: pos$17,
+        [nix.POS]: $pos[16],
         version: "v8.6.0",
         rev: "f952a2f23d710761cf3d7143d543c7d9ed1331cc",
         sha256: "0wbbg2yvaks1fd9sdbmkwijh9sz9bkbjl1z49wy68hd1bs4d81j9",
       })))),
     bertrand: nix.thunk(() => nix.app(mkContrib, "bertrand", nix.thunk(() => ["8.7"]), nix.thunk(() => ({
-        [nix.POS]: pos$18,
+        [nix.POS]: $pos[17],
         version: "v8.5.0-9-g11a85bf",
         rev: "11a85bf3bb43c1c0447c65f320891e69f7ab6c04",
         sha256: "1bkcglyw3r0g06j695nynfmjl60p9jxm13z8zbzwaghcriw33p12",
       })))),
     buchberger: nix.thunk(() => nix.app(mkContrib, "buchberger", nix.thunk(() => ["8.6", "8.7"]), nix.thunk(() => ({
-        [nix.POS]: pos$19,
+        [nix.POS]: $pos[18],
         version: "v8.6.0-1-g926229f",
         rev: "926229fb43125f1c3977ffcf474a7e9d350c7124",
         sha256: "0c5bd99sdk31la58fkkf67p00gjj5fwi3rhap5bj9rjadmxgdwqr",
       })))),
     "canon-bdds": nix.thunk(() => nix.app(mkContrib, "canon-bdds", nix.thunk(() => ["8.6", "8.7"]), nix.thunk(() => ({
-        [nix.POS]: pos$20,
+        [nix.POS]: $pos[19],
         version: "v8.5.0-6-g1420af9",
         rev: "1420af91ba2f898b70404a6600c2b87881338a0e",
         sha256: "0g73z6biv3kn8fr3xsc1qlnflfaa8ljbcrmglg6mdacamphjji42",
       })))),
     cantor: nix.thunk(() => nix.app(mkContrib, "cantor", nix.thunk(() => ["8.5", "8.6"]), nix.thunk(() => ({
-        [nix.POS]: pos$21,
+        [nix.POS]: $pos[20],
         version: "v8.5.0-5-gdbcaa1d",
         rev: "dbcaa1de1eca2bd636e92cb5f78eedc237bb3f7a",
         sha256: "1wy75wv9w5ny2m359rdymvqc0v5ygi9kbljmiknjpd2m1rm24mc0",
       })))),
     "cats-in-zfc": nix.thunk(() => nix.app(mkContrib, "cats-in-zfc", nix.thunk(() => ["8.5", "8.6", "8.7"]), nix.thunk(() => ({
-        [nix.POS]: pos$22,
+        [nix.POS]: $pos[21],
         version: "v8.5.0-9-g2945072",
         rev: "2945072aa6c9c328a019d3128c0a725dabca434c",
         sha256: "177n0hv3jndwlzhxpfrpiv6ad7254iy7yscrrjjlya4kkfdlvnhh",
       })))),
     ccs: nix.thunk(() => nix.app(mkContrib, "ccs", nix.thunk(() => ["8.5", "8.6", "8.7"]), nix.thunk(() => ({
-        [nix.POS]: pos$23,
+        [nix.POS]: $pos[22],
         version: "v8.5.0-6-g7ec1e98",
         rev: "7ec1e98797f8644dc93a0492a901bd2e0cf7332b",
         sha256: "1fs3cmbdnmvbaz0ash585brqsvn7fky9vgc5qpahdbj541vrqzd6",
       })))),
     cfgv: nix.thunk(() => nix.app(mkContrib, "cfgv", nix.thunk(() => ["8.5", "8.6", "8.7"]), nix.thunk(() => ({
-        [nix.POS]: pos$24,
+        [nix.POS]: $pos[23],
         version: "v8.6.0",
         rev: "d9f4d58ddf571639217f0ba1706e1141921a693a",
         sha256: "0gsr498sx3zvspz731q5c9bgv9b9mw9khz3j9ijkbq34gz08n1cb",
       })))),
     checker: nix.thunk(() => nix.app(mkContrib, "checker", nix.thunk(() => ["8.5", "8.6", "8.7"]), nix.thunk(() => ({
-        [nix.POS]: pos$25,
+        [nix.POS]: $pos[24],
         version: "v8.6.0",
         rev: "f8da516722ccf49bc910089e12072c09b926fe50",
         sha256: "05gwasqj05hz3d34a68ir1mk0mq5swclzy4ijdwnysrzdp5nlw28",
       })))),
     chinese: nix.thunk(() => nix.app(mkContrib, "chinese", nix.thunk(() => ["8.6", "8.7"]), nix.thunk(() => ({
-        [nix.POS]: pos$26,
+        [nix.POS]: $pos[25],
         version: "v8.5.0-8-ga30ad2e",
         rev: "a30ad2eb63d5d93c82e2a76b8dd836713637b869",
         sha256: "0mccfdcgw72rl5mhk3m6s0i8rjym517gczijj7m0nhrask14zg89",
       })))),
     circuits: nix.thunk(() => nix.app(mkContrib, "circuits", nix.thunk(() => ["8.5", "8.6", "8.7"]), nix.thunk(() => ({
-        [nix.POS]: pos$27,
+        [nix.POS]: $pos[26],
         version: "v8.5.0-6-gf2cec60",
         rev: "f2cec6067f2c58e280c5b460e113d738b387be15",
         sha256: "05w6dmm4qch327zs4726jiirfyprs21mgwxdc9nlvwnpakpimfcf",
       })))),
     "classical-realizability": nix.thunk(() => nix.app(mkContrib, "classical-realizability", nix.thunk(() => ["8.6"]), nix.thunk(() => ({
-        [nix.POS]: pos$28,
+        [nix.POS]: $pos[27],
         version: "v8.6.0",
         rev: "b7b915583675b85feadd6fbf52cc453211de8e87",
         sha256: "099fwqjd1621bwy237wv1nln3kcr4mq09wl25z1620r2b467sglh",
       })))),
     coalgebras: nix.thunk(() => nix.app(mkContrib, "coalgebras", nix.thunk(() => ["8.5", "8.6", "8.7"]), nix.thunk(() => ({
-        [nix.POS]: pos$29,
+        [nix.POS]: $pos[28],
         version: "v8.5.0-9-g6544eae",
         rev: "6544eaee5de06d2f520a958d52afedcb83a53735",
         sha256: "0b15r2ln57mxsyz4fmpfzh4mzrwi604gqh8f471awm63a4xqj5ng",
       })))),
     "coinductive-examples": nix.thunk(() => nix.app(mkContrib, "coinductive-examples", nix.thunk(() => ["8.5", "8.6", "8.7"]), nix.thunk(() => ({
-        [nix.POS]: pos$30,
+        [nix.POS]: $pos[29],
         version: "v8.6.0",
         rev: "28b0e273c38fdecd1966e3ca5717ccd1f5871a15",
         sha256: "11dazllhl7qwhbnxqxpgwy0pf2a8c2aijrs93fzj5inf8z48vxnp",
       })))),
     "coinductive-reals": nix.thunk(() => nix.app(mkContrib, "coinductive-reals", [], nix.thunk(() => ({
-        [nix.POS]: pos$31,
+        [nix.POS]: $pos[30],
         version: "v8.6.0-9-gf89f884",
         rev: "f89f8848f74294afaa5c0e0e211f6e8e8d1fb36a",
         sha256: "0svpxflynara7v6vzrvibhyfk9kb5kzdxfzrsvbqyk192dsfkwf7",
       })))),
     concat: nix.thunk(() => nix.app(mkContrib, "concat", nix.thunk(() => ["8.5", "8.6", "8.7"]), nix.thunk(() => ({
-        [nix.POS]: pos$32,
+        [nix.POS]: $pos[31],
         version: "v8.5.0-6-gb4a9619",
         rev: "b4a96199f0bc447be8fcaa494bcba8d713fd1801",
         sha256: "1haw5i5rz420jsr2mw699ny3f0gfmdsy0i6mzi48dhpj12ni8rfq",
       })))),
     "constructive-geometry": nix.thunk(() => nix.app(mkContrib, "constructive-geometry", nix.thunk(() => ["8.5", "8.6", "8.7"]), nix.thunk(() => ({
-        [nix.POS]: pos$33,
+        [nix.POS]: $pos[32],
         version: "v8.5.0-7-g470ffa3",
         rev: "470ffa3d38eb7f78974693e52d190535e87004c4",
         sha256: "1ddwzg12pbzpnz3njin4zhpph92kscrbsn3bzds26yj8fp76zc33",
       })))),
     containers: nix.thunk(() => nix.app(mkContrib, "containers", nix.thunk(() => ["8.6", "8.7", "8.8", "8.9"]), nix.thunk(() => nix.sel({
-        [nix.POS]: pos$38,
+        [nix.POS]: $pos[37],
         "8.6": nix.thunk(() => ({
-          [nix.POS]: pos$34,
+          [nix.POS]: $pos[33],
           version: "8.6.0",
           rev: "fa1fec7",
           sha256: "1ns0swlr8hzb1zc7fsyd3vws1vbq0vvfxcf0lszqnca9c9hfkfy4",
         })),
         "8.7": nix.thunk(() => ({
-          [nix.POS]: pos$35,
+          [nix.POS]: $pos[34],
           version: "20180313",
           rev: "77ac16366529c9e558f70ba86f0168a76ca76b8f",
           sha256: "01gp8injb0knaxgqsdc4x9h8714k7qxg7j5w7y6i45dnpd81ndr4",
         })),
         "8.8": nix.thunk(() => ({
-          [nix.POS]: pos$36,
+          [nix.POS]: $pos[35],
           version: "20180330",
           rev: "52b86bed1671321b25fe4d7495558f9f221b12aa",
           sha256: "0hbnrwdgryr52170cfrlbiymr88jsyxilnpr343vnprqq3zk1xz0",
         })),
         "8.9": nix.thunk(() => ({
-          [nix.POS]: pos$37,
+          [nix.POS]: $pos[36],
           version: "20190222",
           rev: "aa33052c1edfc5a65885942a67c2773b5d96f8cc",
           sha256: "0mjgfdr9bzsch0dlk4vq1frkaig14dqh46r54cv0l15flxapg0iw",
         })),
       }, nix.key(nix.sel(coq, "coq-version")))))),
     continuations: nix.thunk(() => nix.app(mkContrib, "continuations", [], nix.thunk(() => ({
-        [nix.POS]: pos$39,
+        [nix.POS]: $pos[38],
         version: "v8.5.0-13-g6885310",
         rev: "68853104fd7390ba384cd2c63101b0bc4ec50a22",
         sha256: "1v2lqcj93xlwn9750xga6knyld4xcxma2brh58zmiggkc7wn1dpl",
       })))),
     "coq-in-coq": nix.thunk(() => nix.app(mkContrib, "coq-in-coq", nix.thunk(() => ["8.6", "8.7"]), nix.thunk(() => ({
-        [nix.POS]: pos$40,
+        [nix.POS]: $pos[39],
         version: "v8.5.0-9-g8d137fc",
         rev: "8d137fc20460561e6fd324466ebb04fd5a86150a",
         sha256: "0p9rb963ri5c8y1dlnp9307qnymr285dd6k7hir1qmvghybj1ijm",
       })))),
     coqoban: nix.thunk(() => nix.app(mkContrib, "coqoban", nix.thunk(() => ["8.5", "8.6", "8.7"]), nix.thunk(() => ({
-        [nix.POS]: pos$41,
+        [nix.POS]: $pos[40],
         version: "v8.5.0-6-g89758d9",
         rev: "89758d9bf1222155a37171e39ea1d6eec53aabb8",
         sha256: "02ixil10iw26wkbis62ydnsp2fn4r9jmyh88k2dj7inn0ln30h3q",
       })))),
     corn: nix.thunk(() => nix.app(mkContrib, "corn", [], nix.thunk(() => ({
-        [nix.POS]: pos$42,
+        [nix.POS]: $pos[41],
         version: "master",
         rev: "bb962a00c2a737fceb459fac663eecb266289461",
         sha256: "0xgkbzzsv3lc31lk71zgjvcryn9j51ffij5karln87j2ln989l3q",
       })))),
     counting: nix.thunk(() => nix.app(mkContrib, "counting", [], nix.thunk(() => ({
-        [nix.POS]: pos$43,
+        [nix.POS]: $pos[42],
         version: "v8.6.0-2-g2823e75",
         rev: "2823e75408a80a5a8946a11dd0debeb2409942a2",
         sha256: "0bn8kxyh4hwdn1cvnrlp7g66jagxp8c302hsslz07pfrxkdk1cwy",
       })))),
     "cours-de-coq": nix.thunk(() => nix.app(mkContrib, "cours-de-coq", nix.thunk(() => ["8.5", "8.6", "8.7"]), nix.thunk(() => ({
-        [nix.POS]: pos$44,
+        [nix.POS]: $pos[43],
         version: "v8.5.0-6-g8ecccd4",
         rev: "8ecccd4196e303b9adbbd95d3531f3d6e3d0299d",
         sha256: "1v6wh1ppzw6fcb78wvzxyg5hygssjvp56s9qd0yfsagy915vqyl6",
       })))),
     ctltctl: nix.thunk(() => nix.app(mkContrib, "ctltctl", nix.thunk(() => ["8.5", "8.6", "8.7"]), nix.thunk(() => ({
-        [nix.POS]: pos$45,
+        [nix.POS]: $pos[44],
         version: "v8.5.0-6-g51b7096",
         rev: "51b7096482ac402d8e0ba2eeb932432a2f2489fc",
         sha256: "1fmpp69pv8130wqhsknnn37xqpc5alqhr41n2vd4r4kj3dj45bj7",
       })))),
     dblib: nix.thunk(() => nix.app(mkContrib, "dblib", nix.thunk(() => ["8.5", "8.6", "8.7"]), nix.thunk(() => ({
-        [nix.POS]: pos$46,
+        [nix.POS]: $pos[45],
         version: "v8.6.0",
         rev: "df86f014dbfb07ec113e8ec4b401b6cc28eb792b",
         sha256: "0s9y9apainqc4kcldrrkisnw5hnqbz052q2ilb5967b643rac4bb",
       })))),
     demos: nix.thunk(() => nix.app(mkContrib, "demos", nix.thunk(() => ["8.5", "8.6", "8.7"]), nix.thunk(() => ({
-        [nix.POS]: pos$47,
+        [nix.POS]: $pos[46],
         version: "v8.5.0-7-g399f693",
         rev: "399f6930fa7a9909b840d4a017159d0e06616940",
         sha256: "08a99cwqz7f6438bkz0gf5dw7p61s48whccrpsd6rvhqrl4bg7b2",
       })))),
     "dep-map": nix.thunk(() => nix.app(mkContrib, "dep-map", nix.thunk(() => ["8.5", "8.6", "8.7"]), nix.thunk(() => ({
-        [nix.POS]: pos$48,
+        [nix.POS]: $pos[47],
         version: "v8.6.0-3-g091bb2d",
         rev: "091bb2d7fc86a816a2dafa249610d3fbc5b546fe",
         sha256: "1vp1nxxa4m8c8bmvllajrqi0ap13i450c2q5kcxyvac1bfv9hf50",
       })))),
     "descente-infinie": nix.thunk(() => nix.app(mkContrib, "descente-infinie", [], nix.thunk(() => ({
-        [nix.POS]: pos$49,
+        [nix.POS]: $pos[48],
         version: "v8.5.0-16-g7ad3ff6",
         rev: "7ad3ff63d8772d40b5ef415741cffc93f343856e",
         sha256: "0gpn6cngjlcfi78qj743w7a33fvq1513avjq9cnzhnsdnqnnwv07",
       })))),
     dictionaries: nix.thunk(() => nix.app(mkContrib, "dictionaries", nix.thunk(() => ["8.5", "8.6", "8.7"]), nix.thunk(() => ({
-        [nix.POS]: pos$50,
+        [nix.POS]: $pos[49],
         version: "v8.5.0-6-g545189e",
         rev: "545189ef2f9281135ff870069134bb04bc2e38e5",
         sha256: "0b0c4vcf5dl7bcgxj1pvdin4jg6py6nr1wqcy3yw8vbd1apnhgri",
       })))),
     "distributed-reference-counting": nix.thunk(() => nix.app(mkContrib, "distributed-reference-counting", nix.thunk(() => ["8.5", "8.6", "8.7"]), nix.thunk(() => ({
-        [nix.POS]: pos$51,
+        [nix.POS]: $pos[50],
         version: "v8.5.0-7-gfae0b8a",
         rev: "fae0b8a8e26c19f853996fae318e4e9f8f166c0e",
         sha256: "153xqfkw5cb24z6h4pj6xaqhxbi20bx4zr60mf5aly390sjd4m7x",
       })))),
     "domain-theory": nix.thunk(() => nix.app(mkContrib, "domain-theory", nix.thunk(() => ["8.5", "8.6", "8.7"]), nix.thunk(() => ({
-        [nix.POS]: pos$52,
+        [nix.POS]: $pos[51],
         version: "v8.5.0-6-g8a121a2",
         rev: "8a121a29ddb80964855ec43abbb21df7fccca37b",
         sha256: "0jpqjy9wi1kkn90fr1x3bf47m2a3p0byk06wza4psw2f40lz94yb",
       })))),
     ergo: nix.thunk(() => nix.app(mkContrib, "ergo", [], nix.thunk(() => ({
-        [nix.POS]: pos$53,
+        [nix.POS]: $pos[52],
         version: "v8.6.0-2-gf82bdee",
         rev: "f82bdee58ee2e0edc7515bfd1792063e9e1aea4c",
         sha256: "0ngwiwcxbylpjyz19zalbz9h3a447iagz4llq9vqdmbcs6qyml2k",
       })))),
     "euclidean-geometry": nix.thunk(() => nix.app(mkContrib, "euclidean-geometry", nix.thunk(() => ["8.6", "8.7"]), nix.thunk(() => ({
-        [nix.POS]: pos$54,
+        [nix.POS]: $pos[53],
         version: "v8.5.0-6-g280bb19",
         rev: "280bb19b7192275678838fdf4b2045074ec4b3a6",
         sha256: "05rnpxaa3jbz82j1y1hb1yi5nm1kz46c95nbn1kd4rdm0zn53r9f",
       })))),
     "euler-formula": nix.thunk(() => nix.app(mkContrib, "euler-formula", nix.thunk(() => ["8.5", "8.6", "8.7"]), nix.thunk(() => ({
-        [nix.POS]: pos$55,
+        [nix.POS]: $pos[54],
         version: "v8.5.0-6-g078d161",
         rev: "078d16102fc0a28f6a96525703ddd272df0e3ba9",
         sha256: "1wd6hay32ri91sk8pra6rr5vkyyrxfl2rxdhhw4gzyzsv72njmfd",
       })))),
     "exact-real-arithmetic": nix.thunk(() => nix.app(mkContrib, "exact-real-arithmetic", nix.thunk(() => ["8.5", "8.6", "8.7"]), nix.thunk(() => ({
-        [nix.POS]: pos$56,
+        [nix.POS]: $pos[55],
         version: "v8.6.0-1-g593028e",
         rev: "593028ec7d094c23ed4dbb3990d6442f7d05950e",
         sha256: "10x7w57mpiwr4640vfa27pbllkls68nfra9nz7ml0fqhi3s3h6pj",
       })))),
     exceptions: nix.thunk(() => nix.app(mkContrib, "exceptions", nix.thunk(() => ["8.6", "8.7"]), nix.thunk(() => ({
-        [nix.POS]: pos$57,
+        [nix.POS]: $pos[56],
         version: "v8.5.0-8-gcfe4f0b",
         rev: "cfe4f0bb4f98660fadb9d5a9c8cede9f0e4896e3",
         sha256: "149j0npyphy60xlgp4ibcwd6qyqminirjac1rwq00882n5gdprw2",
       })))),
     fairisle: nix.thunk(() => nix.app(mkContrib, "fairisle", nix.thunk(() => ["8.5", "8.6", "8.7"]), nix.thunk(() => ({
-        [nix.POS]: pos$58,
+        [nix.POS]: $pos[57],
         version: "v8.5.0-6-g3e7c9b0",
         rev: "3e7c9b0c48cf91307bf64f4b01f3c93c412e1ab8",
         sha256: "1g1jp6w9sip30fs5j5122z4vh7w7wqm6fhswlhpwygi4n5w1l8b7",
       })))),
     fermat4: nix.thunk(() => nix.app(mkContrib, "fermat4", nix.thunk(() => ["8.7"]), nix.thunk(() => ({
-        [nix.POS]: pos$59,
+        [nix.POS]: $pos[58],
         version: "v8.5.0-8-g07e3021",
         rev: "07e3021aec1d97f5827eb6ea6281f11108150811",
         sha256: "1r89cqxy3qmzcj2lfd8hir0hfiikn1f290801rqad7nwx10wfiq6",
       })))),
     "finger-tree": nix.thunk(() => nix.app(mkContrib, "finger-tree", nix.thunk(() => ["8.5", "8.6", "8.7"]), nix.thunk(() => ({
-        [nix.POS]: pos$60,
+        [nix.POS]: $pos[59],
         version: "v8.5.0-6-g67242c8",
         rev: "67242c896707de73405a596bfd9db2036fba98f3",
         sha256: "02jcp74i5icv92xkq3mcx91786d56622ghgnjiz3b51wfqs6ldic",
       })))),
     "firing-squad": nix.thunk(() => nix.app(mkContrib, "firing-squad", nix.thunk(() => ["8.6"]), nix.thunk(() => ({
-        [nix.POS]: pos$61,
+        [nix.POS]: $pos[60],
         version: "v8.5.0-9-gbe728cd",
         rev: "be728cddbee58088809b51c25425d2a4bdf9b823",
         sha256: "0i0v5x6lncjasxk22pras3644ff026q8jai45dbimf2fz73312c9",
       })))),
     float: nix.thunk(() => nix.app(mkContrib, "float", nix.thunk(() => ["8.7"]), nix.thunk(() => ({
-        [nix.POS]: pos$62,
+        [nix.POS]: $pos[61],
         version: "v8.6.0-14-g7699b1e",
         rev: "7699b1e4f492d58e8cfb197692977e705fa6b42b",
         sha256: "11v2w65xc3806r0pc84vjisp9rwqgmjaz8284q6ky9xd8567yq2z",
       })))),
     founify: nix.thunk(() => nix.app(mkContrib, "founify", nix.thunk(() => ["8.6", "8.7"]), nix.thunk(() => ({
-        [nix.POS]: pos$63,
+        [nix.POS]: $pos[62],
         version: "v8.5.0-9-gb7c81b8",
         rev: "b7c81b828a444f6a5e4d53020cf319288838399b",
         sha256: "0prh5vqn0gmvnm4dfb5vqd8n66d9knpx56vqzf5wsiphk5c7a43r",
       })))),
     "free-groups": nix.thunk(() => nix.app(mkContrib, "free-groups", nix.thunk(() => ["8.5", "8.6", "8.7"]), nix.thunk(() => ({
-        [nix.POS]: pos$64,
+        [nix.POS]: $pos[63],
         version: "v8.6.0",
         rev: "b11ffb1437f1b2793d9d434872e80d5a2d387ade",
         sha256: "12bkigjv3vkkkc4z6m57aim6g10ifvy53y941i0shfmwnvhlkgpc",
       })))),
     fsets: nix.thunk(() => nix.app(mkContrib, "fsets", nix.thunk(() => ["8.6", "8.7"]), nix.thunk(() => ({
-        [nix.POS]: pos$65,
+        [nix.POS]: $pos[64],
         version: "v8.5.0-12-g9b51a09",
         rev: "9b51a09e24f4b8b219952f2c06d06405944cd7a0",
         sha256: "19d2v85mnl29g6alpsbd2cb62xyp7rafryglp046hq9qz520gjzy",
       })))),
     "fssec-model": nix.thunk(() => nix.app(mkContrib, "fssec-model", nix.thunk(() => ["8.5", "8.6", "8.7"]), nix.thunk(() => ({
-        [nix.POS]: pos$66,
+        [nix.POS]: $pos[65],
         version: "v8.5.0-6-g2fec0b6",
         rev: "2fec0b646ae4d9fcb932901ef85cc13919d5faf3",
         sha256: "1ib9gw2h9dv5d4n9bqgb64mxz66mgrwy3766ymja0qfc8wflm3yn",
       })))),
     "functions-in-zfc": nix.thunk(() => nix.app(mkContrib, "functions-in-zfc", nix.thunk(() => ["8.5", "8.6", "8.7"]), nix.thunk(() => ({
-        [nix.POS]: pos$67,
+        [nix.POS]: $pos[66],
         version: "v8.6.0",
         rev: "ff58f7af1b4b79bf164d6f7abec6b467dde44050",
         sha256: "076kdfc01mrqh1cz4zi4nzl9rk6yblclbd7r34fxqwbiwdavwsrr",
       })))),
     "fundamental-arithmetics": nix.thunk(() => nix.app(mkContrib, "fundamental-arithmetics", nix.thunk(() => ["8.5", "8.6", "8.7"]), nix.thunk(() => ({
-        [nix.POS]: pos$68,
+        [nix.POS]: $pos[67],
         version: "v8.5.0-6-g8976d4b",
         rev: "8976d4ba6a5c53b7eb25d08921e592d200189431",
         sha256: "0pqq1y3hhw8k0qidigg9zkpblhasnb56rxq0n5sh2yfw07gbnfzc",
       })))),
     gc: nix.thunk(() => nix.app(mkContrib, "gc", nix.thunk(() => ["8.5", "8.6", "8.7"]), nix.thunk(() => ({
-        [nix.POS]: pos$69,
+        [nix.POS]: $pos[68],
         version: "v8.5.0-6-gee41f2f",
         rev: "ee41f2fad9fb3bbc2cbf3f90dc440cc31dbd7376",
         sha256: "0hwlby4sn1p7cky0xz9fmgw50xai3i061y6kqhqy9fn2l2did2sc",
       })))),
     "generic-environments": nix.thunk(() => nix.app(mkContrib, "generic-environments", nix.thunk(() => ["8.5", "8.6", "8.7"]), nix.thunk(() => ({
-        [nix.POS]: pos$70,
+        [nix.POS]: $pos[69],
         version: "v8.6.0",
         rev: "48b81bb3b8c2941c8d7ef15f5513bbb7f1821ff8",
         sha256: "03576kkhn5ml4hpn8s8g0i1fxfibr0yjndk8820s7fxmp9838bkc",
       })))),
     goedel: nix.thunk(() => nix.app(mkContrib, "goedel", [], nix.thunk(() => ({
-        [nix.POS]: pos$71,
+        [nix.POS]: $pos[70],
         version: "v8.6.0-1-gc3f922c",
         rev: "c3f922cd5cf2345e1be55ba2ec976afcdc6f4b13",
         sha256: "1cahlrjr1q38m3qwwxzkzvgvgvqvy3li6rjz3hn4n02jxi5daw2g",
       })))),
     "graph-basics": nix.thunk(() => nix.app(mkContrib, "graph-basics", nix.thunk(() => ["8.5", "8.6", "8.7"]), nix.thunk(() => ({
-        [nix.POS]: pos$72,
+        [nix.POS]: $pos[71],
         version: "v8.6.0",
         rev: "1b86d778016d88084df8a38b2a08e42a778fdf64",
         sha256: "1rslb8ha1dnygwp2q2lx23d8x5wjlq0c2b6vr1hgy4wzvbas2573",
       })))),
     graphs: nix.thunk(() => nix.app(mkContrib, "graphs", [], nix.thunk(() => ({
-        [nix.POS]: pos$73,
+        [nix.POS]: $pos[72],
         version: "v8.6.0-4-gdb25c37",
         rev: "db25c37561bd35e946fc6ad7c0a48121086fc47f",
         sha256: "10f7yq409i6skgnyv6xv7qklkj2kaddnwxpq752avgm7y8dr96nv",
       })))),
     "group-theory": nix.thunk(() => nix.app(mkContrib, "group-theory", nix.thunk(() => ["8.5", "8.6", "8.7"]), nix.thunk(() => ({
-        [nix.POS]: pos$74,
+        [nix.POS]: $pos[73],
         version: "v8.5.0-6-gab6459f",
         rev: "ab6459ff2571529edb0d5c10c13f30b1d9379d71",
         sha256: "062qixxly5zi22lb00dmspadr4ddsvbdwm05m96gbnycrl2siq09",
       })))),
     groups: nix.thunk(() => nix.app(mkContrib, "groups", nix.thunk(() => ["8.5", "8.6", "8.7"]), nix.thunk(() => ({
-        [nix.POS]: pos$75,
+        [nix.POS]: $pos[74],
         version: "v8.6.0",
         rev: "d02aab5c8559ea604a615d993df3c8e714a1dd12",
         sha256: "0fvwgk5nf5q86sn5q24k3bxps6f1fcafdd47v56xc49iczpkfrck",
       })))),
     hardware: nix.thunk(() => nix.app(mkContrib, "hardware", nix.thunk(() => ["8.6", "8.7"]), nix.thunk(() => ({
-        [nix.POS]: pos$76,
+        [nix.POS]: $pos[75],
         version: "v8.5.0-8-g2e85f0a",
         rev: "2e85f0ae87ca311e2ffaa8bfd273e505ac03802e",
         sha256: "0vzn4sgvsbglnwydf0yplpa6laqdmdnayizhrazca3qcckkzxzg4",
       })))),
     hedges: nix.thunk(() => nix.app(mkContrib, "hedges", nix.thunk(() => ["8.5", "8.6", "8.7"]), nix.thunk(() => ({
-        [nix.POS]: pos$77,
+        [nix.POS]: $pos[76],
         version: "v8.5.0-6-g301e7f8",
         rev: "301e7f86e0941fe0fa2b5f01f17276cf52be4b06",
         sha256: "1p42idmm741jx1g7swbkzm1b6mki40xnxkm3ci66mypw19m28142",
       })))),
     "high-school-geometry": nix.thunk(() => nix.app(mkContrib, "high-school-geometry", nix.thunk(() => ["8.6"]), nix.thunk(() => ({
-        [nix.POS]: pos$78,
+        [nix.POS]: $pos[77],
         version: "v8.5.0-7-g40e3f95",
         rev: "40e3f95cbbc756ff4b510e1a998bcbd7e1ff1377",
         sha256: "1ws57irja9fy1lw6kp6jp5kkn3cb8ws9gixgqvhjpxcfsvgaik0f",
       })))),
     "higman-cf": nix.thunk(() => nix.app(mkContrib, "higman-cf", nix.thunk(() => ["8.6", "8.7"]), nix.thunk(() => ({
-        [nix.POS]: pos$79,
+        [nix.POS]: $pos[78],
         version: "v8.6.0-1-g587cc23",
         rev: "587cc23ad61f43664d5ae5e9ee1949d8380a5209",
         sha256: "0wjvsmjh5vdmjf8raqlccxzm6ibklkbgznjqhwz3ss3x333lhykb",
       })))),
     "higman-nw": nix.thunk(() => nix.app(mkContrib, "higman-nw", nix.thunk(() => ["8.6", "8.7"]), nix.thunk(() => ({
-        [nix.POS]: pos$80,
+        [nix.POS]: $pos[79],
         version: "v8.6.0-1-g1e2693c",
         rev: "1e2693c6eeb11a39dfe7fcb24acab7dc1fb3d7f6",
         sha256: "14z3prrsz8c8s0n85890b45pvl4f986g2hckmk61ql6ns7qbsz84",
       })))),
     "higman-s": nix.thunk(() => nix.app(mkContrib, "higman-s", nix.thunk(() => ["8.5", "8.6", "8.7"]), nix.thunk(() => ({
-        [nix.POS]: pos$81,
+        [nix.POS]: $pos[80],
         version: "v8.5.0-7-g0cae3b4",
         rev: "0cae3b45df7a65f49afdb58f182065b939e5d224",
         sha256: "0s50v57ancmdcnidrz3jnjgm5rydkfhfn4s74cf4i6qvvscq44nj",
       })))),
     "historical-examples": nix.thunk(() => nix.app(mkContrib, "historical-examples", nix.thunk(() => ["8.5", "8.6", "8.7"]), nix.thunk(() => ({
-        [nix.POS]: pos$82,
+        [nix.POS]: $pos[81],
         version: "v8.5.0-6-gf08d49a",
         rev: "f08d49a166f486527f14ad45052f9dd9e2132c00",
         sha256: "1hym8si742z9rhkini9mbiwfa7mm43xrybfw2gh287hp4pcqcchz",
       })))),
     "hoare-tut": nix.thunk(() => nix.app(mkContrib, "hoare-tut", nix.thunk(() => ["8.5", "8.6", "8.7"]), nix.thunk(() => ({
-        [nix.POS]: pos$83,
+        [nix.POS]: $pos[82],
         version: "v8.6.0",
         rev: "73dee531bf19ba9db997dff2f0447e12dc8d07db",
         sha256: "0apmn8f32hfqgpb21n68gqnxg90lhzrawh2c6h4hpl46z087j2ci",
       })))),
     huffman: nix.thunk(() => nix.app(mkContrib, "huffman", nix.thunk(() => ["8.6", "8.7"]), nix.thunk(() => ({
-        [nix.POS]: pos$84,
+        [nix.POS]: $pos[83],
         version: "v8.5.0-9-gcd44991",
         rev: "cd4499144059e5426a5380b70a110cdaafbcf008",
         sha256: "0hw152g5cwc3286p44g73lcwd6qdr4n4lqgd0wfdpilpmzh2lm67",
       })))),
     icharate: nix.thunk(() => nix.app(mkContrib, "icharate", nix.thunk(() => ["8.5", "8.6", "8.7"]), nix.thunk(() => ({
-        [nix.POS]: pos$85,
+        [nix.POS]: $pos[84],
         version: "v8.5.0-6-g11eb008",
         rev: "11eb008f347e68a824e091ca2224b2138a342b3f",
         sha256: "03vjcwd5vwhkg1q0zvpz45ayb232hd4q130gx23i039wawgzj66i",
       })))),
     idxassoc: nix.thunk(() => nix.app(mkContrib, "idxassoc", nix.thunk(() => ["8.5", "8.6", "8.7"]), nix.thunk(() => ({
-        [nix.POS]: pos$86,
+        [nix.POS]: $pos[85],
         version: "v8.6.0",
         rev: "57991d3754c1b51067329d4abc7caf657c4d4552",
         sha256: "1xmrv2lpn5rsdxr8ryq5hkihd1wrzpc9a7cvg0jjq8xss1a2sxwh",
       })))),
     ieee754: nix.thunk(() => nix.app(mkContrib, "ieee754", nix.thunk(() => ["8.6", "8.7"]), nix.thunk(() => ({
-        [nix.POS]: pos$87,
+        [nix.POS]: $pos[86],
         version: "v8.5.0-8-g9764c31",
         rev: "9764c31bae03182ba9ada4cc877f411c11edc02d",
         sha256: "032axmvq4vv03cckm72m773v5h76s43awn5bpzd305gs8iag7wgk",
       })))),
     "int-map": nix.thunk(() => nix.app(mkContrib, "int-map", nix.thunk(() => ["8.5", "8.6", "8.7"]), nix.thunk(() => ({
-        [nix.POS]: pos$88,
+        [nix.POS]: $pos[87],
         version: "v8.6.0",
         rev: "42342f3b4152419faf17c7ac9afd90e337d68637",
         sha256: "1zxgvg021kakvi5vjvyr0xjmmzyd3zhd8wwm4q276wvmya1fjznr",
       })))),
     "intuitionistic-nuprl": nix.thunk(() => nix.app(mkContrib, "intuitionistic-nuprl", nix.thunk(() => ["8.6"]), nix.thunk(() => ({
-        [nix.POS]: pos$89,
+        [nix.POS]: $pos[88],
         version: "v8.6.0",
         rev: "6279ed83244dc4aec2e23ffb4c87e3f10a50326d",
         sha256: "1yvlnqwa7ka4a0yg0j7zrzvayhsm1shvsjjawjv552sxc9519aag",
@@ -726,511 +552,511 @@ export default nix.lambda((args) => (() => {
         ]),
       })))),
     ipc: nix.thunk(() => nix.app(mkContrib, "ipc", nix.thunk(() => ["8.6", "8.7"]), nix.thunk(() => ({
-        [nix.POS]: pos$90,
+        [nix.POS]: $pos[89],
         version: "v8.6.0-1-g433ab4f",
         rev: "433ab4f5962b49d3178120d6cc4419e4e9932d18",
         sha256: "16nprdk2cqck0s8ilfy1cjvs48n4kc2hilv9wzi382d4p8jagh0r",
       })))),
     izf: nix.thunk(() => nix.app(mkContrib, "izf", nix.thunk(() => ["8.5", "8.6", "8.7"]), nix.thunk(() => ({
-        [nix.POS]: pos$91,
+        [nix.POS]: $pos[90],
         version: "v8.5.0-5-g98ae92b",
         rev: "98ae92bfe0589c781160c967259be7354aaf1663",
         sha256: "131gpi3p3pxv50dzpr3zfzmfr02ymcwja51cs029j9a33mw9rwx0",
       })))),
     "jordan-curve-theorem": nix.thunk(() => nix.app(mkContrib, "jordan-curve-theorem", nix.thunk(() => ["8.5", "8.6", "8.7"]), nix.thunk(() => ({
-        [nix.POS]: pos$92,
+        [nix.POS]: $pos[91],
         version: "v8.6.0",
         rev: "906762607c3e05bedd3f9aab002172e34dd1b595",
         sha256: "1l4pl6rjfzbxnzg32rdcrjl5g889syl6iydiprm8b34blk15ajka",
       })))),
     jprover: nix.thunk(() => nix.app(mkContrib, "jprover", [], nix.thunk(() => ({
-        [nix.POS]: pos$93,
+        [nix.POS]: $pos[92],
         version: "v8.5.0-14-g80a9497",
         rev: "80a94974fa4e43be45583409daf9278768abebe0",
         sha256: "1c5mxnjhd21gzx3yf8gdvgbpwcvklmfxl6qjdynb6dw04lybp8af",
       })))),
     karatsuba: nix.thunk(() => nix.app(mkContrib, "karatsuba", nix.thunk(() => ["8.5", "8.6", "8.7"]), nix.thunk(() => ({
-        [nix.POS]: pos$94,
+        [nix.POS]: $pos[93],
         version: "v8.6.0",
         rev: "144bdc68571154ca669a276d30c16bb30ac80b2f",
         sha256: "0rp9ihw4d68dd6b21xq6lnxa4vsq5ckdhr07ylskmas74p66ns4f",
       })))),
     kildall: nix.thunk(() => nix.app(mkContrib, "kildall", nix.thunk(() => ["8.5", "8.6", "8.7"]), nix.thunk(() => ({
-        [nix.POS]: pos$95,
+        [nix.POS]: $pos[94],
         version: "v8.5.0-9-g319577b",
         rev: "319577bdd99aec968fc52f474565dd33b88e6bca",
         sha256: "1r7hw98xs5w21p50423jqancccn2cwjm90wff08yi7ln0s1rphn1",
       })))),
     lambda: nix.thunk(() => nix.app(mkContrib, "lambda", nix.thunk(() => ["8.5", "8.6", "8.7"]), nix.thunk(() => ({
-        [nix.POS]: pos$96,
+        [nix.POS]: $pos[95],
         version: "v8.6.0",
         rev: "577930fe1ee3923dcd3c53793908550a948bcb8f",
         sha256: "0kmqf5yp4q40wpqncwpd152ysryq2i18rwni4dx2z4d6dir7jidn",
       })))),
     lambek: nix.thunk(() => nix.app(mkContrib, "lambek", nix.thunk(() => ["8.5", "8.6", "8.7"]), nix.thunk(() => ({
-        [nix.POS]: pos$97,
+        [nix.POS]: $pos[96],
         version: "v8.6.0",
         rev: "23be01c773ff33dbd06627b7245098bdd3c4525a",
         sha256: "013nj7b8hicxw5ipiw0my0ms8biyqpcybnh17a7r0w4i7icsygj9",
       })))),
     "lazy-pcf": nix.thunk(() => nix.app(mkContrib, "lazy-pcf", nix.thunk(() => ["8.5", "8.6", "8.7"]), nix.thunk(() => ({
-        [nix.POS]: pos$98,
+        [nix.POS]: $pos[97],
         version: "v8.6.0",
         rev: "c0b19dff7e1beeccaa2b2d220012bffac6b75f99",
         sha256: "1qkpszdc3rkm74hkm3z6i080hha4l8904kg5z3xxgpwmhrwb56lq",
       })))),
     lc: nix.thunk(() => nix.app(mkContrib, "lc", nix.thunk(() => ["8.5", "8.6", "8.7"]), nix.thunk(() => ({
-        [nix.POS]: pos$99,
+        [nix.POS]: $pos[98],
         version: "v8.5.0-6-gae9c9f8",
         rev: "ae9c9f878d12539d7b61b91435745ffe32febfd0",
         sha256: "18bmck6xsp5yi17czyad6iy90c0k65gxjhp47ca64yzcccnzpqbx",
       })))),
     "legacy-field": nix.thunk(() => nix.app(mkContrib, "legacy-field", [], nix.thunk(() => ({
-        [nix.POS]: pos$100,
+        [nix.POS]: $pos[99],
         version: "v8.6.0-7-g7f400f7",
         rev: "7f400f787459dc63ff1bb862efe8aea41abe90fe",
         sha256: "0889z8s2rcccl1xckc49r904xpdsa9sdf5dl2v9a2zqx37qcn6cd",
       })))),
     "legacy-ring": nix.thunk(() => nix.app(mkContrib, "legacy-ring", [], nix.thunk(() => ({
-        [nix.POS]: pos$101,
+        [nix.POS]: $pos[100],
         version: "v8.6.0-4-g3e6c0cf",
         rev: "3e6c0cfeb69189278699e176e2f19fef5e738857",
         sha256: "15a8rvhr2zw17j7d6w3hd0fxpr6kqy5flpngdqdjij99srm7xzsq",
       })))),
     "lemma-overloading": nix.thunk(() => nix.app(mkContrib, "lemma-overloading", [], nix.thunk(() => ({
-        [nix.POS]: pos$102,
+        [nix.POS]: $pos[101],
         version: "v8.6.0",
         rev: "6112c139add4d81b9e4d555268a60865f9323151",
         sha256: "0m1i5xdmwfz4saacay7p6skqnw42csn473gisl24am9jls301cfh",
       })))),
     "lesniewski-mereology": nix.thunk(() => nix.app(mkContrib, "lesniewski-mereology", nix.thunk(() => ["8.5", "8.6", "8.7"]), nix.thunk(() => ({
-        [nix.POS]: pos$103,
+        [nix.POS]: $pos[102],
         version: "v8.6.0",
         rev: "eeaf56daa0b0bb0fe16368a5e79a089b42d3951c",
         sha256: "0j4r83biz128pl6g9z5c3x2p5h465ch4fz2jszbr2k1yd8b2gkd9",
       })))),
     "lin-alg": nix.thunk(() => nix.app(mkContrib, "lin-alg", [], nix.thunk(() => ({
-        [nix.POS]: pos$104,
+        [nix.POS]: $pos[103],
         version: "v8.6.0-5-g74833da",
         rev: "74833da8a93b1c4c921d4aaebbc9f7c2a096a5eb",
         sha256: "08r9zdq9fxf0b2fxfxb36zywgqd04wpb25l408q3djmq22k56azp",
       })))),
     ltl: nix.thunk(() => nix.app(mkContrib, "ltl", nix.thunk(() => ["8.5", "8.6", "8.7"]), nix.thunk(() => ({
-        [nix.POS]: pos$105,
+        [nix.POS]: $pos[104],
         version: "v8.5.0-6-g53e5fc4",
         rev: "53e5fc475fbcce767e2193f92896bd871f7eb1d5",
         sha256: "0aprimbywsnlg3zzxrg3kp1hw30swz95zcwa2gfidr381isnqciz",
       })))),
     "maple-mode": nix.thunk(() => nix.app(mkContrib, "maple-mode", [], nix.thunk(() => ({
-        [nix.POS]: pos$106,
+        [nix.POS]: $pos[105],
         version: "v8.5.0-22-gb97a515",
         rev: "b97a5155464360778b215c22668ab80c96a42332",
         sha256: "15wk6k8m2ff4b5cnqrsccq5vyabam2qaa6q4bvk4cj1nfg0ykg5r",
       })))),
     markov: nix.thunk(() => nix.app(mkContrib, "markov", nix.thunk(() => ["8.7"]), nix.thunk(() => ({
-        [nix.POS]: pos$107,
+        [nix.POS]: $pos[106],
         version: "v8.5.0-7-ge54c9a8",
         rev: "e54c9a86df5cb90ef6ea04d3753273186bb2d906",
         sha256: "19csz50846gvfwmhhc37nmlvf70g53cpb1kpmcnjlj82y8r63ajz",
       })))),
     maths: nix.thunk(() => nix.app(mkContrib, "maths", nix.thunk(() => ["8.5", "8.6", "8.7"]), nix.thunk(() => ({
-        [nix.POS]: pos$108,
+        [nix.POS]: $pos[107],
         version: "v8.6.0",
         rev: "75a2f84990c1dc83a18ee7decc1445c122664222",
         sha256: "0yj26mnsfk8y92pd575d9nv9r6pm23zaws18r690s9rjm4kzmwww",
       })))),
     matrices: nix.thunk(() => nix.app(mkContrib, "matrices", nix.thunk(() => ["8.5", "8.6", "8.7"]), nix.thunk(() => ({
-        [nix.POS]: pos$109,
+        [nix.POS]: $pos[108],
         version: "v8.5.0-6-g5553a1f",
         rev: "5553a1f7838bafd485e9868c6ad3f76be4c7ffb8",
         sha256: "0ppw2v404sbvc3d36wi701bwxfxha1ziciyddhzbqw62s5xkhzjc",
       })))),
     micromega: nix.thunk(() => nix.app(mkContrib, "micromega", nix.thunk(() => ["8.5", "8.6", "8.7"]), nix.thunk(() => ({
-        [nix.POS]: pos$110,
+        [nix.POS]: $pos[109],
         version: "v8.6.0-1-ga70bf64",
         rev: "a70bf64b99462a77cd9181e3f2836bc1fed04593",
         sha256: "0zvqb56il139xgj7n2arvqd305374jb1ahwg63mpf9cqla1m0fxs",
       })))),
     "mini-compiler": nix.thunk(() => nix.app(mkContrib, "mini-compiler", nix.thunk(() => ["8.5", "8.6", "8.7"]), nix.thunk(() => ({
-        [nix.POS]: pos$111,
+        [nix.POS]: $pos[110],
         version: "v8.6.0",
         rev: "5c0b9da5aabc590c28b7d5a9f49e5a9483b742e1",
         sha256: "02jpwvk0lsws886bsgahsjmmra25r7b6bn19qmizjjrc0pj44q58",
       })))),
     minic: nix.thunk(() => nix.app(mkContrib, "minic", nix.thunk(() => ["8.6", "8.7"]), nix.thunk(() => ({
-        [nix.POS]: pos$112,
+        [nix.POS]: $pos[111],
         version: "v8.5.0-7-g0b2e050",
         rev: "0b2e05096f83b08dd935f42501d408bebce01170",
         sha256: "1wyrshkmkdpkpc47iy2cw9wxadpd1hchr4ilpmifs4rny4y6kkhp",
       })))),
     miniml: nix.thunk(() => nix.app(mkContrib, "miniml", nix.thunk(() => ["8.5", "8.6", "8.7"]), nix.thunk(() => ({
-        [nix.POS]: pos$113,
+        [nix.POS]: $pos[112],
         version: "v8.6.0",
         rev: "22a570e57f9e8d1b971d0a7a9e6fdd8d3f053b44",
         sha256: "17syhr7qyr2naqm7mgarn39d6lrrwah3a6m4mzsvm8d9mwvdqhzs",
       })))),
     "mod-red": nix.thunk(() => nix.app(mkContrib, "mod-red", nix.thunk(() => ["8.5", "8.6", "8.7"]), nix.thunk(() => ({
-        [nix.POS]: pos$114,
+        [nix.POS]: $pos[113],
         version: "v8.5.0-6-g963c2c9",
         rev: "963c2c930175c91ebcd0cd39ef841ff752ad0813",
         sha256: "18nlgiypcykhnn9vbgy1bv0zz4ibvzw3jhigl3k9aa3672qr2bwl",
       })))),
     multiplier: nix.thunk(() => nix.app(mkContrib, "multiplier", nix.thunk(() => ["8.6", "8.7"]), nix.thunk(() => ({
-        [nix.POS]: pos$115,
+        [nix.POS]: $pos[114],
         version: "v8.5.0-10-g127feee",
         rev: "127feeebe065d4698e427cbbcd0ddd8c70fc8bb7",
         sha256: "08lvs0651yccvxn3mw3sf7d1cdbnf4jvwwc3p57124nvjig649a7",
       })))),
     "mutual-exclusion": nix.thunk(() => nix.app(mkContrib, "mutual-exclusion", nix.thunk(() => ["8.6", "8.7"]), nix.thunk(() => ({
-        [nix.POS]: pos$116,
+        [nix.POS]: $pos[115],
         version: "v8.5.0-9-g6f54d7f",
         rev: "6f54d7f25d9056bf72932c2acd53b832ba015eda",
         sha256: "066z3ijlni6h39l6g2phs1vqv460x07cri64f847jykchcdjizil",
       })))),
     nfix: nix.thunk(() => nix.app(mkContrib, "nfix", [], nix.thunk(() => ({
-        [nix.POS]: pos$117,
+        [nix.POS]: $pos[116],
         version: "v8.6.0-2-gcaeda20",
         rev: "caeda20f3ce3dea0bc647419f3b284e5656cf4ae",
         sha256: "0s5adpbjm4pxjvnmj24xwxmbg1c356lali0v1v9rcl5lv9fsfi64",
       })))),
     "orb-stab": nix.thunk(() => nix.app(mkContrib, "orb-stab", [], nix.thunk(() => ({
-        [nix.POS]: pos$118,
+        [nix.POS]: $pos[117],
         version: "v8.6.0-4-ga0a5520",
         rev: "a0a552020eae39e4fd0512c3714ef1b6f8da584c",
         sha256: "074ygyskvkzwlhqrpyhivxj1axjh3y8wdd57mnjxsf3c103dvajf",
       })))),
     "otway-rees": nix.thunk(() => nix.app(mkContrib, "otway-rees", nix.thunk(() => ["8.5", "8.6", "8.7"]), nix.thunk(() => ({
-        [nix.POS]: pos$119,
+        [nix.POS]: $pos[118],
         version: "v8.5.0-6-gf295926",
         rev: "f29592659199f79aa5d3b2fa61a35abba7db5183",
         sha256: "1yczckkchz3xlb9jcv3rkj5z831b0xrv9j0yvslkl6kpgi1br8af",
       })))),
     paco: nix.thunk(() => nix.app(mkContrib, "paco", nix.thunk(() => ["8.5", "8.6", "8.7"]), nix.thunk(() => ({
-        [nix.POS]: pos$120,
+        [nix.POS]: $pos[119],
         version: "v8.6.0",
         rev: "abe297080621c05b3f829a82b36b84f2fc7b5340",
         sha256: "1jpvkhhnkn8ikj3x7knzr0f8qqrw1ipa8h3mw9bd62kjlmg0f8fj",
       })))),
     paradoxes: nix.thunk(() => nix.app(mkContrib, "paradoxes", nix.thunk(() => ["8.6", "8.7"]), nix.thunk(() => ({
-        [nix.POS]: pos$121,
+        [nix.POS]: $pos[120],
         version: "v8.5.0-8-g2da6f5f",
         rev: "2da6f5fd4a560f5726dc6083abf2b624391b6d3b",
         sha256: "1xmhvfbhwn1rfcchb4wq0jlqdrswv1rapxmshjzgkwryq7a7bf64",
       })))),
     "param-pi": nix.thunk(() => nix.app(mkContrib, "param-pi", nix.thunk(() => ["8.5", "8.6", "8.7"]), nix.thunk(() => ({
-        [nix.POS]: pos$122,
+        [nix.POS]: $pos[121],
         version: "v8.5.0-6-gba4d052",
         rev: "ba4d052f64788004cb7d8ee172d8c8f58f3a8429",
         sha256: "04v2fd56x8vd1fv89c3a4vhbhlflnzfzybr7z2fkraxnz5ic1xa4",
       })))),
     pautomata: nix.thunk(() => nix.app(mkContrib, "pautomata", nix.thunk(() => ["8.6", "8.7"]), nix.thunk(() => ({
-        [nix.POS]: pos$123,
+        [nix.POS]: $pos[122],
         version: "v8.6.0-1-g0cb5e83",
         rev: "0cb5e83f2829d25e99628b1c771efbf0c9dc3d84",
         sha256: "09r9vdyc87ysciff3rfi4awpd432gblysjcsi42k8n03xhgjm1rv",
       })))),
     "persistent-union-find": nix.thunk(() => nix.app(mkContrib, "persistent-union-find", nix.thunk(() => ["8.5", "8.6", "8.7"]), nix.thunk(() => ({
-        [nix.POS]: pos$124,
+        [nix.POS]: $pos[123],
         version: "v8.6.0",
         rev: "62c2fac131b87d273c6278fe5bcba0e68895aa18",
         sha256: "0p4zd3mn8nljjch7c3mrmc5n2kcab8fh9xw7f933wqyh695n1zl9",
       })))),
     "pi-calc": nix.thunk(() => nix.app(mkContrib, "pi-calc", nix.thunk(() => ["8.5", "8.6", "8.7"]), nix.thunk(() => ({
-        [nix.POS]: pos$125,
+        [nix.POS]: $pos[124],
         version: "v8.5.0-6-gf8cfa30",
         rev: "f8cfa3027c62719bd944f85d25dcc19b785eb8da",
         sha256: "12i76ky3x0agd2wzxdsnfxpm7ynp3nj0i7s3skpjnf6rblzgnljf",
       })))),
     pocklington: nix.thunk(() => nix.app(mkContrib, "pocklington", nix.thunk(() => ["8.5", "8.6", "8.7"]), nix.thunk(() => ({
-        [nix.POS]: pos$126,
+        [nix.POS]: $pos[125],
         version: "v8.5.0-6-gc71f839",
         rev: "c71f83920538781a6be99c8ef8a2a306b66e7800",
         sha256: "0nsavl8v4ndxbrbi160zwpiaw865z22mr638pwgq4pa9qqbbs2p4",
       })))),
     presburger: nix.thunk(() => nix.app(mkContrib, "presburger", [], nix.thunk(() => ({
-        [nix.POS]: pos$127,
+        [nix.POS]: $pos[126],
         version: "v8.6.0-2-g6b473eb",
         rev: "6b473ebcab49ac0c0952c27f8a83fb1f7d21cb1a",
         sha256: "18r76vv7wclv4nzhypncdx4j68dpc0jf0m7p3c8585ca2l72nyfl",
       })))),
     prfx: nix.thunk(() => nix.app(mkContrib, "prfx", nix.thunk(() => ["8.5", "8.6", "8.7"]), nix.thunk(() => ({
-        [nix.POS]: pos$128,
+        [nix.POS]: $pos[127],
         version: "v8.5.0-6-g719a3ec",
         rev: "719a3ec175aabb2e3ad92dc030ce2e0d2131e325",
         sha256: "15vz731apciybn6nqb0fsxrwlxpyrfcakdva38hwxmjx6qskqkhi",
       })))),
     "projective-geometry": nix.thunk(() => nix.app(mkContrib, "projective-geometry", nix.thunk(() => ["8.6", "8.7"]), nix.thunk(() => ({
-        [nix.POS]: pos$129,
+        [nix.POS]: $pos[128],
         version: "v8.5.0-9-g118b0cc",
         rev: "118b0cc37aa97b5de97539cb824a8234f88e123a",
         sha256: "0fahqagh2il96q160mnwyk6xqjn5wbmy5ckmb5b0yhljs8y181zz",
       })))),
     propcalc: nix.thunk(() => nix.app(mkContrib, "propcalc", nix.thunk(() => ["8.5", "8.6", "8.7"]), nix.thunk(() => ({
-        [nix.POS]: pos$130,
+        [nix.POS]: $pos[129],
         version: "v8.6.0",
         rev: "b68586c079a71ebab3235a636e50c083b23d4f25",
         sha256: "005vqr0c85ld14ff3cz7nnbgy5m5km7ndgblb041f87l8486dbpz",
       })))),
     pts: nix.thunk(() => nix.app(mkContrib, "pts", nix.thunk(() => ["8.6", "8.7"]), nix.thunk(() => ({
-        [nix.POS]: pos$131,
+        [nix.POS]: $pos[130],
         version: "v8.5.0-9-g10a0c39",
         rev: "10a0c39b7e62f8a7ec2afbbe516a21289d065be5",
         sha256: "14nqxjqg7v6f70zwi13a1iz70vxq4gfsz7aviggj7cbbky9s1lw3",
       })))),
     ptsatr: nix.thunk(() => nix.app(mkContrib, "ptsatr", nix.thunk(() => ["8.5", "8.6", "8.7"]), nix.thunk(() => ({
-        [nix.POS]: pos$132,
+        [nix.POS]: $pos[131],
         version: "v8.6.0",
         rev: "e57ad4552055340ea97bc6a2c61b837c56c11a7d",
         sha256: "1ivqrvk7dhk52llxi6vxby0zyz05kgc82fgvvkv8f9gmy485v3m7",
       })))),
     ptsf: nix.thunk(() => nix.app(mkContrib, "ptsf", [], nix.thunk(() => ({
-        [nix.POS]: pos$133,
+        [nix.POS]: $pos[132],
         version: "v8.6.0-1-g2a303f4",
         rev: "2a303f4e83ef54fc6f8fbc374eaebf05e1e9b5e4",
         sha256: "0p7dwsf2s72ndgkwf8mj4n8sy1b5anfspj0v8rndvyqsmld7if2g",
       })))),
     qarith: nix.thunk(() => nix.app(mkContrib, "qarith", nix.thunk(() => ["8.6", "8.7"]), nix.thunk(() => ({
-        [nix.POS]: pos$134,
+        [nix.POS]: $pos[133],
         version: "v8.6.0-1-g5255d8f",
         rev: "5255d8fbb28b85424d0fe626125a70cc2f5abcde",
         sha256: "1rx70f3pnkj30ql97wdp4bimbb2pazbm7xgs5q0g5i3xbiyv50lk",
       })))),
     "qarith-stern-brocot": nix.thunk(() => nix.app(mkContrib, "qarith-stern-brocot", nix.thunk(() => ["8.7"]), nix.thunk(() => ({
-        [nix.POS]: pos$135,
+        [nix.POS]: $pos[134],
         version: "v8.6.0-4-gcad3819",
         rev: "cad381906c9c5b17e701005f3c4290765abc9099",
         sha256: "0bzczqa61cs9443gapm8y8137d9savxnadwwrkcynhmj1ljx26xy",
       })))),
     "quicksort-complexity": nix.thunk(() => nix.app(mkContrib, "quicksort-complexity", nix.thunk(() => ["8.6", "8.7"]), nix.thunk(() => ({
-        [nix.POS]: pos$136,
+        [nix.POS]: $pos[135],
         version: "v8.5.0-9-gb897466",
         rev: "b8974665b0de3e9b135291a699e98ed52cd335d1",
         sha256: "038gyjc6afyb31cfi4fiajzl7a8ykh7dmkajn9dm7rh4md1x6jjf",
       })))),
     "railroad-crossing": nix.thunk(() => nix.app(mkContrib, "railroad-crossing", nix.thunk(() => ["8.5", "8.6", "8.7"]), nix.thunk(() => ({
-        [nix.POS]: pos$137,
+        [nix.POS]: $pos[136],
         version: "v8.5.0-6-g2ef67f5",
         rev: "2ef67f5c586a58cd79a8ee0eb22590182374135d",
         sha256: "0cdk5b6br317xh0ivpj3ffqcy19w2g7sfa5rrv4ls0hmsrrzpxkp",
       })))),
     ramsey: nix.thunk(() => nix.app(mkContrib, "ramsey", nix.thunk(() => ["8.5", "8.6", "8.7"]), nix.thunk(() => ({
-        [nix.POS]: pos$138,
+        [nix.POS]: $pos[137],
         version: "v8.5.0-6-g2821213",
         rev: "2821213706faa7f06823001ce9e58ecff0cd3191",
         sha256: "1pw2yqkllkvllzs4dyzvyv27mh53qi8wpzh1cr53cwyg6573h0dz",
       })))),
     random: nix.thunk(() => nix.app(mkContrib, "random", nix.thunk(() => ["8.5", "8.6", "8.7"]), nix.thunk(() => ({
-        [nix.POS]: pos$139,
+        [nix.POS]: $pos[138],
         version: "v8.6.0-1-gf87a8a7",
         rev: "f87a8a77f420df4a12c4a7e4f28ff088e62b4175",
         sha256: "05xc59frgcmfx7g72i02g3x17zhdlgpap7y6q1gd29xnmrhqnhni",
       })))),
     rational: nix.thunk(() => nix.app(mkContrib, "rational", [], nix.thunk(() => ({
-        [nix.POS]: pos$140,
+        [nix.POS]: $pos[139],
         version: "v8.6.0-2-ga12ef65",
         rev: "a12ef65ddd267b4d61e234da4fab17bc12202c17",
         sha256: "06s3bpm1v7bz69qp3m58kjk5qmdr0d4jgmy20q6qp44mi0341gy7",
       })))),
     "recursive-definition": nix.thunk(() => nix.app(mkContrib, "recursive-definition", [], nix.thunk(() => ({
-        [nix.POS]: pos$141,
+        [nix.POS]: $pos[140],
         version: "v8.6.0-1-g66b8204",
         rev: "66b820494ed872ef16ff228f78310aab2a47d2be",
         sha256: "0z6sp1n1m2vbxhb220y3hqi1f24lz6g1nkkq84m9xq2wvg7li6hn",
       })))),
     "reflexive-first-order": nix.thunk(() => nix.app(mkContrib, "reflexive-first-order", nix.thunk(() => ["8.5", "8.6", "8.7"]), nix.thunk(() => ({
-        [nix.POS]: pos$142,
+        [nix.POS]: $pos[141],
         version: "v8.5.0-6-g307b421",
         rev: "307b421dd4894ef624e67558087d2f0945ef1970",
         sha256: "0rwr8sy6v7a17x1g0pa9gbbd9kgrq5lxr6cxv8r926883blz891y",
       })))),
     regexp: nix.thunk(() => nix.app(mkContrib, "regexp", nix.thunk(() => ["8.5", "8.6", "8.7"]), nix.thunk(() => ({
-        [nix.POS]: pos$143,
+        [nix.POS]: $pos[142],
         version: "v8.6.0",
         rev: "da6d250506ea667266282cc7280355d13b27c68d",
         sha256: "1s1rxrz6yq8j0ykd2ra0g9mj8ky2dvgim2ysjdn5yz514b36mc7x",
       })))),
     "relation-algebra": nix.thunk(() => nix.app(mkContrib, "relation-algebra", [], nix.thunk(() => ({
-        [nix.POS]: pos$144,
+        [nix.POS]: $pos[143],
         version: "v8.6.0-7-g0d3ca3e",
         rev: "0d3ca3eb5490b2f32d5c2763e2343d373e78baea",
         sha256: "1kjd23qgmi3qnb4hpn7k5h88psq5rs5bba9s494zhrzkf6cgv9d1",
       })))),
     "relation-extraction": nix.thunk(() => nix.app(mkContrib, "relation-extraction", [], nix.thunk(() => ({
-        [nix.POS]: pos$145,
+        [nix.POS]: $pos[144],
         version: "v8.6.0-4-g1a604fa",
         rev: "1a604fa2c4211c4c36dd600dab6ed076a04c00ce",
         sha256: "114idr4n19c5nnzn6wdj5jz82wbisxrbw6qvfjnwh02yz2sbpn2d",
       })))),
     rem: nix.thunk(() => nix.app(mkContrib, "rem", nix.thunk(() => ["8.5", "8.6", "8.7"]), nix.thunk(() => ({
-        [nix.POS]: pos$146,
+        [nix.POS]: $pos[145],
         version: "v8.5.0-6-g306938c",
         rev: "306938c460518695393313f57d47ec8c653add11",
         sha256: "1cccqj08pmgjdlwgi4r1qz0h9sgr1840zrwc36fzfslhdqixgyd9",
       })))),
     rsa: nix.thunk(() => nix.app(mkContrib, "rsa", nix.thunk(() => ["8.5", "8.6", "8.7"]), nix.thunk(() => ({
-        [nix.POS]: pos$147,
+        [nix.POS]: $pos[146],
         version: "v8.6.0",
         rev: "01dddd705621ad9efbaf081bffa76465b3cdc442",
         sha256: "1426cyzd1493iwhzb4sm7xpvn5vj10ap9607kh1flhhqdxx4fvgz",
       })))),
     "ruler-compass-geometry": nix.thunk(() => nix.app(mkContrib, "ruler-compass-geometry", nix.thunk(() => ["8.6", "8.7"]), nix.thunk(() => ({
-        [nix.POS]: pos$148,
+        [nix.POS]: $pos[147],
         version: "v8.5.0-7-g69e66a8",
         rev: "69e66a80590e89c3916359beef4109990b8c92f6",
         sha256: "01qw8vyaj29frm7zzdn18nwrzcqbjaqhpky5qwlsmxlza5h5vz1c",
       })))),
     schroeder: nix.thunk(() => nix.app(mkContrib, "schroeder", nix.thunk(() => ["8.5", "8.6", "8.7"]), nix.thunk(() => ({
-        [nix.POS]: pos$149,
+        [nix.POS]: $pos[148],
         version: "v8.6.0",
         rev: "31df08b6c00fe7d0ac7391f7f939c4869cfe9b8c",
         sha256: "18gwh3axcbaicmylkjsljiw8q2z02hpcbz6mpvx3zyh1vcgl47qw",
       })))),
     "search-trees": nix.thunk(() => nix.app(mkContrib, "search-trees", nix.thunk(() => ["8.6", "8.7"]), nix.thunk(() => ({
-        [nix.POS]: pos$150,
+        [nix.POS]: $pos[149],
         version: "v8.5.0-9-g07dee21",
         rev: "07dee215c9453fcd95a0c13d2495f7e260325378",
         sha256: "19jw1qccn1c7jp78kc6ipr3mpp1fkm3wxb6y7wjgvqqphjy62sfg",
       })))),
     semantics: nix.thunk(() => nix.app(mkContrib, "semantics", [], nix.thunk(() => ({
-        [nix.POS]: pos$151,
+        [nix.POS]: $pos[150],
         version: "v8.5.0-8-g8236bf9",
         rev: "8236bf94a7735378b3a49ea376cd220bcadfe831",
         sha256: "18kmmn7y0nvgszrap2d7dcqkvfrpkk6w6wzf8ji9j8lc8mznyy8h",
       })))),
     shuffle: nix.thunk(() => nix.app(mkContrib, "shuffle", nix.thunk(() => ["8.5", "8.6", "8.7"]), nix.thunk(() => ({
-        [nix.POS]: pos$152,
+        [nix.POS]: $pos[151],
         version: "v8.6.0",
         rev: "681fc1a794cce5d99e748b68586e8c5a11810788",
         sha256: "121b021b25vkgcw892lbidrhbk7syrz9xxlk3d45gf8pdin8i8zb",
       })))),
     smc: nix.thunk(() => nix.app(mkContrib, "smc", [], nix.thunk(() => ({
-        [nix.POS]: pos$153,
+        [nix.POS]: $pos[152],
         version: "v8.6.0-4-g161f8aa",
         rev: "161f8aaaf80f7475f2679c55a8f7ac511215cd4b",
         sha256: "01375i2n8cw8kdf7zgcz7kmkw6wspmw4ngrzjnq5bxf7ijw7z9qx",
       })))),
     "square-matrices": nix.thunk(() => nix.app(mkContrib, "square-matrices", nix.thunk(() => ["8.6", "8.7"]), nix.thunk(() => ({
-        [nix.POS]: pos$154,
+        [nix.POS]: $pos[153],
         version: "v8.6.0-1-g7fe56db",
         rev: "7fe56dbe1a9916236b44cc96d25cee2b90825ae5",
         sha256: "03lxq8v63gydnm7fcryjpqdywjb3hrfirnxx7sm6zc9yblh2m0il",
       })))),
     stalmarck: nix.thunk(() => nix.app(mkContrib, "stalmarck", [], nix.thunk(() => ({
-        [nix.POS]: pos$155,
+        [nix.POS]: $pos[154],
         version: "v8.6.0-3-g083bd20",
         rev: "083bd20af8ce5c646e5cd9845474523027bf7e79",
         sha256: "0nhbxin98hwam4jb4iadb06b785s88h0mz8i0v6adpprym1my746",
       })))),
     streams: nix.thunk(() => nix.app(mkContrib, "streams", nix.thunk(() => ["8.5", "8.6", "8.7"]), nix.thunk(() => ({
-        [nix.POS]: pos$156,
+        [nix.POS]: $pos[155],
         version: "v8.5.0-7-gd53a1ca",
         rev: "d53a1ca12b2fb5cb9324452aabe36a7e4b3db85c",
         sha256: "14qk7w675c2flh2qyrzqjywn1f1fcchsqzn59zlh755krssf4y4b",
       })))),
     string: nix.thunk(() => nix.app(mkContrib, "string", [], nix.thunk(() => ({
-        [nix.POS]: pos$157,
+        [nix.POS]: $pos[156],
         version: "v8.5.0-9-g861dd5c",
         rev: "861dd5ce2d72a5856a79d1e9e4eb0c4b1070e73c",
         sha256: "0fq49qdbi2c5i5hkbf6cgx1dyzg02mhr0zd89kgbxa5lpv5sp3y7",
       })))),
     subst: nix.thunk(() => nix.app(mkContrib, "subst", nix.thunk(() => ["8.5", "8.6", "8.7"]), nix.thunk(() => ({
-        [nix.POS]: pos$158,
+        [nix.POS]: $pos[157],
         version: "v8.5.0-5-g9d9fed6",
         rev: "9d9fed67529aa98f5b2d77c695e1370a3c4b7ecf",
         sha256: "0dqz2wgzsipk9zic6cf3dhqr1a3p5s2d30cjs5312c5pz6gw3fp4",
       })))),
     sudoku: nix.thunk(() => nix.app(mkContrib, "sudoku", nix.thunk(() => ["8.6", "8.7"]), nix.thunk(() => ({
-        [nix.POS]: pos$159,
+        [nix.POS]: $pos[158],
         version: "v8.5.0-6-g4ebe0aa",
         rev: "4ebe0aace3341b14ba6f2177888148345988c43c",
         sha256: "0srf1477x5q3qb5inlcrc1hr193rdw8sp8c0bw6fw4na0d6bphv3",
       })))),
     "sum-of-two-square": nix.thunk(() => nix.app(mkContrib, "sum-of-two-square", nix.thunk(() => ["8.5", "8.6", "8.7"]), nix.thunk(() => ({
-        [nix.POS]: pos$160,
+        [nix.POS]: $pos[159],
         version: "v8.5.0-5-g66c1146",
         rev: "66c11466b499c0f26a9d687933432e16f4aed080",
         sha256: "0z1h7cq3f15xlm7b0kirf1jv6n43f11in82x6vjiw7arnn1axwh5",
       })))),
     tait: nix.thunk(() => nix.app(mkContrib, "tait", nix.thunk(() => ["8.6", "8.7"]), nix.thunk(() => ({
-        [nix.POS]: pos$161,
+        [nix.POS]: $pos[160],
         version: "v8.6.0-1-g1505eb9",
         rev: "1505eb9e6af0c14892c9fe2bd1021b56dc65c409",
         sha256: "1662mn9qpym8rq99854ziykk2jrr5s9h5r8j6y4ddgma0ihv1v5w",
       })))),
     "tarski-geometry": nix.thunk(() => nix.app(mkContrib, "tarski-geometry", nix.thunk(() => ["8.5", "8.6", "8.7"]), nix.thunk(() => ({
-        [nix.POS]: pos$162,
+        [nix.POS]: $pos[161],
         version: "v8.5.0-6-gd30cc0e",
         rev: "d30cc0e71e507dc14eb0d5397e8c3a6252fe5d07",
         sha256: "1hngfix8riqa0kn774602q3kc2m8mfksx1ynb69pq6hy6q3ikn1n",
       })))),
     "three-gap": nix.thunk(() => nix.app(mkContrib, "three-gap", nix.thunk(() => ["8.5", "8.6", "8.7"]), nix.thunk(() => ({
-        [nix.POS]: pos$163,
+        [nix.POS]: $pos[162],
         version: "v8.6.0",
         rev: "b176a7b3165aecd171926271a8d90888f16dc297",
         sha256: "0mr8s0djs165i64v48k8i7sn832s5ff2hnyqhl9ijsvhcix20ij2",
       })))),
     topology: nix.thunk(() => nix.app(mkContrib, "topology", [], nix.thunk(() => ({
-        [nix.POS]: pos$164,
+        [nix.POS]: $pos[163],
         version: "v8.6.0-1-g4e79a75",
         rev: "4e79a755efe0ca509ef589135aa3406449b44dfb",
         sha256: "00211410zb5z367mv2brqg1d0p50yjy446g7qc69c4kyp6sr80gf",
       })))),
     "tortoise-hare-algorithm": nix.thunk(() => nix.app(mkContrib, "tortoise-hare-algorithm", nix.thunk(() => ["8.5", "8.6", "8.7"]), nix.thunk(() => ({
-        [nix.POS]: pos$165,
+        [nix.POS]: $pos[164],
         version: "v8.5.0-6-gb34a87c",
         rev: "b34a87c0b41eb9a72408292a5d714ae8f342a4c5",
         sha256: "08j6xc65scxzxznhiiapfny2hchl3mcvrsp2mr05snq5hlidlpxv",
       })))),
     "traversable-fincontainer": nix.thunk(() => nix.app(mkContrib, "traversable-fincontainer", nix.thunk(() => ["8.7"]), nix.thunk(() => ({
-        [nix.POS]: pos$166,
+        [nix.POS]: $pos[165],
         version: "v8.6.0-1-g3f1fc68",
         rev: "3f1fc684ea23a69b1e8ab7f1ee139a66278eb2e0",
         sha256: "0h0vf74lfll7bhb9m1sk3g82y1vaik1fr5r5k69bbjgh0j5bfj50",
       })))),
     "tree-automata": nix.thunk(() => nix.app(mkContrib, "tree-automata", [], nix.thunk(() => ({
-        [nix.POS]: pos$167,
+        [nix.POS]: $pos[166],
         version: "v8.6.0-1-g34b3eb6",
         rev: "34b3eb6362407040d7a9a3fc0b1c23661e01162a",
         sha256: "07iwfi6c6a8dq5rdlsppl187qbmbycj7xifm8aa38ygmsh5rcpir",
       })))),
     "tree-diameter": nix.thunk(() => nix.app(mkContrib, "tree-diameter", nix.thunk(() => ["8.5", "8.6", "8.7"]), nix.thunk(() => ({
-        [nix.POS]: pos$168,
+        [nix.POS]: $pos[167],
         version: "v8.6.0-1-g846a232",
         rev: "846a232a07b3cf43d18b694ef4bcbe4b270e9cd4",
         sha256: "0i238h60jgqmzkb38qbyjj6i1wzv0bm00g0mwh98wbxlj3pn7ma8",
       })))),
     "weak-up-to": nix.thunk(() => nix.app(mkContrib, "weak-up-to", nix.thunk(() => ["8.5", "8.6", "8.7"]), nix.thunk(() => ({
-        [nix.POS]: pos$169,
+        [nix.POS]: $pos[168],
         version: "v8.5.0-5-g0893619",
         rev: "0893619b205a30a0f832da8ceef97c2c3f4801f8",
         sha256: "0mg1628zyb7xyyg4k8zvay2h7wcdlwcx9nyxwpixdp5xhz3s4l9b",
       })))),
     zchinese: nix.thunk(() => nix.app(mkContrib, "zchinese", nix.thunk(() => ["8.6", "8.7"]), nix.thunk(() => ({
-        [nix.POS]: pos$170,
+        [nix.POS]: $pos[169],
         version: "v8.6.0-1-g25d4e21",
         rev: "25d4e21b648f65593f9378cb9f5171dcc4641223",
         sha256: "06phig9yh4rqqpqjbzk6704n44vz31irnwvprbdvyzgiyi2bkahk",
       })))),
     zf: nix.thunk(() => nix.app(mkContrib, "zf", nix.thunk(() => ["8.5", "8.6", "8.7"]), nix.thunk(() => ({
-        [nix.POS]: pos$171,
+        [nix.POS]: $pos[170],
         version: "v8.5.0-4-gcf33d92",
         rev: "cf33d92b69865af97d93946337f291cffc1e8a9e",
         sha256: "0fp3vdl79c8d759qjhk42rjfpkd0ba4pcw572f5gxn28kfwz3rrj",
       })))),
     zfc: nix.thunk(() => nix.app(mkContrib, "zfc", nix.thunk(() => ["8.5", "8.6", "8.7", "8.8"]), nix.thunk(() => ({
-        [nix.POS]: pos$172,
+        [nix.POS]: $pos[171],
         version: "v8.5.0-5-gbba3259",
         rev: "bba325933370fea64780b1afa2fad54c1b567819",
         sha256: "0iwkpmc22nwasrk4g7ki4s5y05zjs7kmqk3j98giwp2wiavhgapn",
       })))),
     "zorns-lemma": nix.thunk(() => nix.app(mkContrib, "zorns-lemma", nix.thunk(() => ["8.10", "8.11"]), nix.thunk(() => ({
-        [nix.POS]: pos$173,
+        [nix.POS]: $pos[172],
         version: "v8.11.0",
         rev: "a573b50fff994f996b8e15dec2079490a5233dc6",
         sha256: "0jbp1ay6abal66glbablbqsh5hzgd5fv81dc1vzn65jw0iiznxyq",
       })))),
     "zsearch-trees": nix.thunk(() => nix.app(mkContrib, "zsearch-trees", nix.thunk(() => ["8.6", "8.7"]), nix.thunk(() => ({
-        [nix.POS]: pos$174,
+        [nix.POS]: $pos[173],
         version: "v8.5.0-7-ga9f6d9a",
         rev: "a9f6d9a8b6e567e749b1470c6879df560dab7f43",
         sha256: "1001bnh5hzx0rnwhlx7qci52rqi49z5ij7p9gcdr4w86i182w6rg",

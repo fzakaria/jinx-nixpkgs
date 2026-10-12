@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 23, 5], ["hash", 24, 5]], [["homepage", 49, 5], ["changelog", 50, 5], ["description", 51, 5], ["mainProgram", 52, 5], ["license", 53, 5], ["maintainers", 54, 5], ["platforms", 55, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 29, 3], ["configureFlags", 41, 3], ["meta", 48, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, flex: false, bison: false, libmhash: false, zlib: false, acl: false, attr: false, libselinux: false, pcre2: false, "pkg-config": false, libgcrypt: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 49, 5], ["changelog", 50, 5], ["description", 51, 5], ["mainProgram", 52, 5], ["license", 53, 5], ["maintainers", 54, 5], ["platforms", 55, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 29, 3], ["configureFlags", 41, 3], ["meta", 48, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const libgcrypt = nix.arg($, "libgcrypt");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "aide",
       version: "0.19.4",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/aide/aide/releases/download/v${nix.sel(finalAttrs, "version")}/${nix.sel(finalAttrs, "pname")}-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-R6t8aW8HRZEUeaQfkNetmdJlNuGG1mxKrQk7xy0g/18=",
         })))),
@@ -35,7 +33,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [flex, bison, libmhash, zlib, acl, attr, libselinux, pcre2, libgcrypt]),
       configureFlags: nix.thunk(() => ["--with-posix-acl", "--with-selinux", "--with-xattr", "--sysconfdir=/etc"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://aide.github.io/",
         changelog: nix.thunk(() => nix.str`https://github.com/aide/aide/blob/v${nix.sel(finalAttrs, "version")}/ChangeLog`),
         description: "File and directory integrity checker",

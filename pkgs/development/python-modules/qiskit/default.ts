@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 36, 5], ["repo", 37, 5], ["tag", 38, 5], ["hash", 39, 5]], [["src", 56, 13], ["pname", 56, 17], ["version", 56, 23], ["hash", 57, 5]], [["visualization", 70, 5], ["crosstalk-pass", 78, 5], ["csp-layout-pass", 81, 5], ["qpy-compat", 84, 5]], [["description", 97, 5], ["longDescription", 98, 5], ["homepage", 102, 5], ["downloadPage", 103, 5], ["changelog", 104, 5], ["license", 105, 5], ["maintainers", 106, 5]], [["pname", 31, 3], ["version", 32, 3], ["pyproject", 33, 3], ["src", 35, 3], ["nativeBuildInputs", 42, 3], ["build-system", 48, 3], ["buildInputs", 53, 3], ["cargoDeps", 55, 3], ["dependencies", 60, 3], ["optional-dependencies", 69, 3], ["pythonImportsCheck", 90, 3], ["meta", 96, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, buildPythonPackage: false, fetchFromGitHub: false, cargo: false, rustPlatform: false, rustc: false, libiconv: false, dill: false, matplotlib: false, numpy: false, pillow: false, pydot: false, pylatexenc: false, "python-constraint": false, rustworkx: false, scipy: false, seaborn: false, setuptools: false, "setuptools-rust": false, stevedore: false, symengine: false, sympy: false, "typing-extensions": false, "z3-solver": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 36, 5], ["repo", 37, 5], ["tag", 38, 5], ["hash", 39, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["src", 56, 13], ["pname", 56, 17], ["version", 56, 23], ["hash", 57, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["visualization", 70, 5], ["crosstalk-pass", 78, 5], ["csp-layout-pass", 81, 5], ["qpy-compat", 84, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 97, 5], ["longDescription", 98, 5], ["homepage", 102, 5], ["downloadPage", 103, 5], ["changelog", 104, 5], ["license", 105, 5], ["maintainers", 106, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 31, 3], ["version", 32, 3], ["pyproject", 33, 3], ["src", 35, 3], ["nativeBuildInputs", 42, 3], ["build-system", 48, 3], ["buildInputs", 53, 3], ["cargoDeps", 55, 3], ["dependencies", 60, 3], ["optional-dependencies", 69, 3], ["pythonImportsCheck", 90, 3], ["meta", 96, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -41,7 +37,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.4.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Qiskit",
           repo: "qiskit",
           tag: version,
@@ -51,7 +47,7 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [setuptools, setuptools_rust]);
       const buildInputs = nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [libiconv])));
       const cargoDeps = nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           src: src,
           pname: pname,
           version: version,
@@ -59,7 +55,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const dependencies = nix.thunk(() => [dill, numpy, rustworkx, scipy, stevedore, typing_extensions]);
       const optional_dependencies = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         visualization: nix.thunk(() => [matplotlib, pillow, pydot, pylatexenc, seaborn, sympy]),
         "crosstalk-pass": nix.thunk(() => [z3_solver]),
         "csp-layout-pass": nix.thunk(() => [python_constraint]),
@@ -67,7 +63,7 @@ export default nix.lambda((args) => (() => {
       }));
       const pythonImportsCheck = nix.thunk(() => ["qiskit", "qiskit.circuit", "qiskit.providers.basic_provider"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Software for developing quantum computing programs",
         longDescription: "Open-source SDK for working with quantum computers at the level of\nextended quantum circuits, operators, and primitives.\n",
         homepage: "https://www.ibm.com/quantum/qiskit",
@@ -77,7 +73,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         pyproject,

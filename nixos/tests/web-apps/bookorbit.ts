@@ -2,30 +2,25 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/bookorbit.nix", [[["JWT_SECRET", 9, 9], ["SETUP_BOOTSTRAP_TOKEN", 10, 9]], [["enable", 7, 7], ["environment", 8, 7]], [["bookorbit", 6, 14]], [["services", 6, 5]], [["machine", 5, 14]], [["name", 3, 3], ["containers", 5, 3], ["testScript", 15, 3]]]);
 const formals$1 = { args: {  }, ellipsis: true };
-const pos$1 = nix.positions(here + "/bookorbit.nix", [["JWT_SECRET", 9, 9], ["SETUP_BOOTSTRAP_TOKEN", 10, 9]]);
-const pos$2 = nix.positions(here + "/bookorbit.nix", [["enable", 7, 7], ["environment", 8, 7]]);
-const pos$3 = nix.positions(here + "/bookorbit.nix", [["bookorbit", 6, 14]]);
-const pos$4 = nix.positions(here + "/bookorbit.nix", [["services", 6, 5]]);
-const pos$5 = nix.positions(here + "/bookorbit.nix", [["machine", 5, 14]]);
-const pos$6 = nix.positions(here + "/bookorbit.nix", [["name", 3, 3], ["containers", 5, 3], ["testScript", 15, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   return {
-    [nix.POS]: pos$6,
+    [nix.POS]: $pos[5],
     name: "bookorbit",
     containers: nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       machine: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         services: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           bookorbit: nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             enable: true,
             environment: nix.thunk(() => ({
-              [nix.POS]: pos$1,
+              [nix.POS]: $pos[0],
               JWT_SECRET: "abcdefghijklmnop",
               SETUP_BOOTSTRAP_TOKEN: "abcdefgh",
             })),

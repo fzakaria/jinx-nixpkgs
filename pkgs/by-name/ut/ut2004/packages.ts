@@ -2,15 +2,15 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/packages.nix", [[["image", 7, 3], ["data", 8, 3], ["game", 9, 3]]]);
 const formals$1 = { args: { lib: false, newScope: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/packages.nix", [["image", 7, 3], ["data", 8, 3], ["game", 9, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const newScope = nix.arg($, "newScope");
   return nix.app(nix.sel(lib, "makeScope"), newScope, (self) => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       image: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./image.nix"), nix.thunk(() => ({})))),
       data: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./data.nix"), nix.thunk(() => ({})))),
       game: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./game.nix"), nix.thunk(() => ({})))),

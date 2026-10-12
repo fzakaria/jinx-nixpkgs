@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5]], [["name", 36, 7], ["url", 37, 7], ["hash", 38, 7]], [["homepage", 54, 5], ["description", 55, 5], ["license", 56, 5], ["platforms", 57, 5], ["maintainers", 58, 5], ["mainProgram", 59, 5]], [["pname", 11, 3], ["version", 12, 3], ["buildInputs", 14, 3], ["src", 19, 3], ["makeFlags", 26, 3], ["patches", 31, 3], ["postPatch", 42, 3], ["postInstall", 46, 3], ["meta", 53, 3]]]);
 const formals$1 = { args: { lib: false, stdenv_32bit: false, fetchFromGitLab: false, fetchpatch: false, libGL: false, libx11: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 36, 7], ["url", 37, 7], ["hash", 38, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 54, 5], ["description", 55, 5], ["license", 56, 5], ["platforms", 57, 5], ["maintainers", 58, 5], ["mainProgram", 59, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["buildInputs", 14, 3], ["src", 19, 3], ["makeFlags", 26, 3], ["patches", 31, 3], ["postPatch", 42, 3], ["postInstall", 46, 3], ["meta", 53, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,12 +14,12 @@ export default nix.lambda((args) => (() => {
   const libGL = nix.arg($, "libGL");
   const libx11 = nix.arg($, "libx11");
   return nix.app(nix.sel(stdenv_32bit, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "libstrangle",
       version: "unstable-202202022",
       buildInputs: nix.thunk(() => [libGL, libx11]),
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "torkel104",
           repo: "libstrangle",
           rev: "0273e318e3b0cc759155db8729ad74266b74cb9b",
@@ -32,7 +29,7 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [
         nix.path(here, "./nixos.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "gcc-13.patch",
             url: "https://gitlab.com/torkel104/libstrangle/-/commit/4e17025071de1d99630febe7270b4f63056d0dfa.patch",
             hash: "sha256-AKMHAZhCPcn62pi4fBGhw2r8SNSkCDMUCpR3IlmJ7wQ=",
@@ -41,7 +38,7 @@ export default nix.lambda((args) => (() => {
       postPatch: "substituteAllInPlace src/strangle.sh\nsubstituteAllInPlace src/stranglevk.sh\n",
       postInstall: "substitute $out/share/vulkan/implicit_layer.d/libstrangle_vk.json $out/share/vulkan/implicit_layer.d/libstrangle_vk.x86.json \\\n  --replace \"libstrangle_vk.so\" \"$out/lib/libstrangle/lib32/libstrangle_vk.so\"\nsubstituteInPlace $out/share/vulkan/implicit_layer.d/libstrangle_vk.json \\\n  --replace \"libstrangle_vk.so\" \"$out/lib/libstrangle/lib64/libstrangle_vk.so\"\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://gitlab.com/torkel104/libstrangle",
         description: "Frame rate limiter for Linux/OpenGL",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

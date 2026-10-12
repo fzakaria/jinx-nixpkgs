@@ -2,15 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/webtorrent-mpv-hook.nix", [[["owner", 21, 7], ["repo", 22, 7], ["tag", 23, 7], ["hash", 24, 7]], [["NIX_CFLAGS_COMPILE", 46, 9]], [["pname", 17, 5], ["version", 18, 5], ["src", 20, 5], ["npmFlags", 27, 5], ["makeCacheWritable", 29, 5], ["npmDepsHash", 31, 5], ["nativeBuildInputs", 33, 5], ["buildInputs", 38, 5], ["dontUseCmakeConfigure", 44, 5], ["env", 46, 5], ["preBuild", 48, 5], ["installPhase", 61, 5]], [["owner", 74, 5], ["repo", 75, 5], ["rev", 76, 5], ["hash", 77, 5]], [["rev-prefix", 79, 40]], [["updateScript", 79, 12], ["scriptName", 100, 12]], [["description", 103, 5], ["homepage", 104, 5], ["maintainers", 105, 5], ["license", 106, 5]], [["pname", 70, 3], ["version", 71, 3], ["src", 73, 3], ["passthru", 79, 3], ["postPatch", 81, 3], ["npmDepsHash", 88, 3], ["makeCacheWritable", 89, 3], ["npmFlags", 90, 3], ["postConfigure", 92, 3], ["postInstall", 96, 3], ["meta", 102, 3]]]);
 const formals$1 = { args: { lib: false, buildNpmPackage: false, fetchFromGitHub: false, gitUpdater: false, nodejs: false, cmake: false, "pkg-config": false, openssl: false, libdatachannel: false, plog: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/webtorrent-mpv-hook.nix", [["owner", 21, 7], ["repo", 22, 7], ["tag", 23, 7], ["hash", 24, 7]]);
-const pos$2 = nix.positions(here + "/webtorrent-mpv-hook.nix", [["NIX_CFLAGS_COMPILE", 46, 9]]);
-const pos$3 = nix.positions(here + "/webtorrent-mpv-hook.nix", [["pname", 17, 5], ["version", 18, 5], ["src", 20, 5], ["npmFlags", 27, 5], ["makeCacheWritable", 29, 5], ["npmDepsHash", 31, 5], ["nativeBuildInputs", 33, 5], ["buildInputs", 38, 5], ["dontUseCmakeConfigure", 44, 5], ["env", 46, 5], ["preBuild", 48, 5], ["installPhase", 61, 5]]);
-const pos$4 = nix.positions(here + "/webtorrent-mpv-hook.nix", [["owner", 74, 5], ["repo", 75, 5], ["rev", 76, 5], ["hash", 77, 5]]);
-const pos$5 = nix.positions(here + "/webtorrent-mpv-hook.nix", [["rev-prefix", 79, 40]]);
-const pos$6 = nix.positions(here + "/webtorrent-mpv-hook.nix", [["updateScript", 79, 12], ["scriptName", 100, 12]]);
-const pos$7 = nix.positions(here + "/webtorrent-mpv-hook.nix", [["description", 103, 5], ["homepage", 104, 5], ["maintainers", 105, 5], ["license", 106, 5]]);
-const pos$8 = nix.positions(here + "/webtorrent-mpv-hook.nix", [["pname", 70, 3], ["version", 71, 3], ["src", 73, 3], ["passthru", 79, 3], ["postPatch", 81, 3], ["npmDepsHash", 88, 3], ["makeCacheWritable", 89, 3], ["npmFlags", 90, 3], ["postConfigure", 92, 3], ["postInstall", 96, 3], ["meta", 102, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const libdatachannel = nix.arg($, "libdatachannel");
   const plog = nix.arg($, "plog");
   const nodeDatachannel = nix.thunk(() => nix.app(buildNpmPackage, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "node-datachannel",
       version: "0.10.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "murat-dogan",
           repo: "node-datachannel",
           tag: nix.thunk(() => nix.str`v${nix.sel(nodeDatachannel, "version")}`),
@@ -42,7 +35,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [openssl, libdatachannel, plog]),
       dontUseCmakeConfigure: true,
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.str`-I${nodejs}/include/node`),
       })),
       preBuild: "# don't use static libs and don't use FetchContent\nsubstituteInPlace CMakeLists.txt \\\n    --replace-fail 'OPENSSL_USE_STATIC_LIBS TRUE' 'OPENSSL_USE_STATIC_LIBS FALSE' \\\n    --replace-fail 'if(NOT libdatachannel)' 'if(false)' \\\n    --replace-fail 'datachannel-static' 'datachannel'\nsed -i '2ifind_package(plog)' CMakeLists.txt\n\n# don't fetch node headers\nsubstituteInPlace node_modules/cmake-js/lib/dist.js \\\n    --replace-fail '!this.downloaded' 'false'\n",
@@ -52,15 +45,15 @@ export default nix.lambda((args) => (() => {
       const pname = "webtorrent-mpv-hook";
       const version = "1.4.6";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           owner: "mrxdst",
           repo: "webtorrent-mpv-hook",
           rev: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-p4Mggt3J8QOok/uj97eCchT7H9HPuDjoyV82MHHkkZM=",
         }))));
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$6,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$5, "rev-prefix": "v" })))),
+        [nix.POS]: $pos[5],
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[4], "rev-prefix": "v" })))),
         scriptName: "webtorrent.js",
       }));
       const postPatch = nix.thunk(() => nix.str`substituteInPlace src/webtorrent.ts --replace-fail "node_path: 'node'" "node_path: '${nix.app(nix.sel(lib, "getExe"), nodejs)}'"
@@ -76,14 +69,14 @@ ln -s ${nodeDatachannel}/build node_modules/node-datachannel/build
 `);
       const postInstall = "mkdir -p $out/share/mpv/scripts/\nln -s $out/lib/node_modules/webtorrent-mpv-hook/build/webtorrent.js $out/share/mpv/scripts/\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "Adds a hook that allows mpv to stream torrents",
         homepage: "https://github.com/mrxdst/webtorrent-mpv-hook",
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "chuangzhu"))]),
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),
       }));
       return {
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         pname,
         version,
         src,

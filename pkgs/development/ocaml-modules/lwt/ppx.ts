@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/ppx.nix", [[["description", 19, 5], ["license", 20, 24], ["homepage", 20, 32], ["maintainers", 20, 41]], [["pname", 10, 3], ["version", 11, 17], ["src", 11, 25], ["propagatedBuildInputs", 13, 3], ["meta", 18, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, buildDunePackage: false, lwt: false, ppxlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/ppx.nix", [["description", 19, 5], ["license", 20, 24], ["homepage", 20, 32], ["maintainers", 20, 41]]);
-const pos$2 = nix.positions(here + "/ppx.nix", [["pname", 10, 3], ["version", 11, 17], ["src", 11, 25], ["propagatedBuildInputs", 13, 3], ["meta", 18, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const lwt = nix.arg($, "lwt");
   const ppxlib = nix.arg($, "ppxlib");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "lwt_ppx",
       version: nix.thunk(() => nix.attr(lwt, "version")),
       src: nix.thunk(() => nix.attr(lwt, "src")),
@@ -22,7 +21,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(lwt, "meta"));
         return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Ppx syntax extension for Lwt",
         license: nix.thunk(() => nix.attr(from, "license")),
         homepage: nix.thunk(() => nix.attr(from, "homepage")),

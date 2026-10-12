@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 67, 5], ["repo", 68, 5], ["tag", 69, 5], ["postCheckout", 70, 5], ["hash", 77, 5]], [["updateScript", 188, 12]], [["description", 191, 5], ["homepage", 192, 5], ["license", 193, 5], ["maintainers", 194, 5], ["mainProgram", 195, 5], ["platforms", 196, 5]], [["pname", 63, 3], ["version", 64, 3], ["src", 66, 3], ["patches", 80, 3], ["strictDeps", 82, 3], ["nativeBuildInputs", 83, 3], ["buildInputs", 91, 3], ["postPatch", 143, 3], ["cmakeFlags", 154, 3], ["installPhase", 167, 3], ["preFixup", 178, 3], ["passthru", 188, 3], ["meta", 190, 3]]]);
 const formals$1 = { args: { boost: false, catch2_3: false, cmake: false, cryptopp: false, "cpp-jwt": false, doxygen: false, dynarmic: false, enet: false, fetchFromGitHub: false, fmt: false, "ffmpeg_6-headless": false, glslang: false, httplib: false, inih: false, lib: false, libGL: false, libunwind: false, libusb1: false, moltenvk: false, nlohmann_json: false, oaknut: false, openal: false, openssl: false, pipewire: false, "pkg-config": false, portaudio: false, python3: false, "robin-map": false, SDL2: false, soundtouch: false, stdenv: false, "vulkan-headers": false, "vulkan-memory-allocator": false, xbyak: false, libxext: false, libx11: false, libxcb: false, enableQtTranslations: true, qt6: false, gtk3: false, "gsettings-desktop-schemas": false, enableCubeb: true, cubeb: false, useDiscordRichPresence: true, rapidjson: false, enableSSE42: true, gamemode: false, enableGamemode: true, "nix-update-script": false, darwinMinVersionHook: false, fetchpatch: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 67, 5], ["repo", 68, 5], ["tag", 69, 5], ["postCheckout", 70, 5], ["hash", 77, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 188, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 191, 5], ["homepage", 192, 5], ["license", 193, 5], ["maintainers", 194, 5], ["mainProgram", 195, 5], ["platforms", 196, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 63, 3], ["version", 64, 3], ["src", 66, 3], ["patches", 80, 3], ["strictDeps", 82, 3], ["nativeBuildInputs", 83, 3], ["buildInputs", 91, 3], ["postPatch", 143, 3], ["cmakeFlags", 154, 3], ["installPhase", 167, 3], ["preFixup", 178, 3], ["passthru", 188, 3], ["meta", 190, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -66,11 +63,11 @@ export default nix.lambda((args) => (() => {
   const cmakeBool = nix.thunk(() => nix.attr(lib, "cmakeBool"));
   const getLib = nix.thunk(() => nix.attr(lib, "getLib"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "azahar",
       version: "2126.1.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "azahar-emu",
           repo: "azahar",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -155,11 +152,11 @@ runHook postInstall
 )
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Open-source 3DS emulator project based on Citra",
         homepage: "https://github.com/azahar-emu/azahar",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

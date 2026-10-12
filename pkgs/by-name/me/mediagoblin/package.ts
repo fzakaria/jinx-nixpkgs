@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["setuptools", 15, 37]], [["paste", 15, 7]], [["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["fetchSubmodules", 26, 5], ["hash", 27, 5]], [["name", 31, 5], ["src", 32, 13], ["npmDepsHash", 34, 5], ["dontNpmBuild", 36, 5], ["installPhase", 38, 5]], [["ascii", 119, 7], ["audio", 120, 7], ["ldap", 121, 7], ["openid", 122, 7], ["raw_image", 123, 7], ["video", 124, 7]], [["extlib", 155, 13], ["pythonPackages", 155, 20]], [["description", 159, 5], ["homepage", 160, 5], ["license", 161, 5], ["maintainers", 162, 5]], [["format", 45, 3], ["pname", 46, 3], ["version", 47, 11], ["src", 47, 19], ["postPatch", 49, 3], ["nativeBuildInputs", 60, 3], ["build-system", 66, 3], ["dependencies", 70, 3], ["optional-dependencies", 104, 3], ["postBuild", 127, 3], ["postInstall", 131, 3], ["nativeCheckInputs", 140, 3], ["pythonImportsCheck", 152, 3], ["passthru", 154, 3], ["meta", 158, 3]]]);
 const formals$1 = { args: { lib: false, buildNpmPackage: false, fetchFromSourcehut: false, "gobject-introspection": false, gst_all_1: false, "poppler-utils": false, python3Packages: false, lndir: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["setuptools", 15, 37]]);
-const pos$2 = nix.positions(here + "/package.nix", [["paste", 15, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["fetchSubmodules", 26, 5], ["hash", 27, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["name", 31, 5], ["src", 32, 13], ["npmDepsHash", 34, 5], ["dontNpmBuild", 36, 5], ["installPhase", 38, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["ascii", 119, 7], ["audio", 120, 7], ["ldap", 121, 7], ["openid", 122, 7], ["raw_image", 123, 7], ["video", 124, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["extlib", 155, 13], ["pythonPackages", 155, 20]]);
-const pos$7 = nix.positions(here + "/package.nix", [["description", 159, 5], ["homepage", 160, 5], ["license", 161, 5], ["maintainers", 162, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["format", 45, 3], ["pname", 46, 3], ["version", 47, 11], ["src", 47, 19], ["postPatch", 49, 3], ["nativeBuildInputs", 60, 3], ["build-system", 66, 3], ["dependencies", 70, 3], ["optional-dependencies", 104, 3], ["postBuild", 127, 3], ["postInstall", 131, 3], ["nativeCheckInputs", 140, 3], ["pythonImportsCheck", 152, 3], ["passthru", 154, 3], ["meta", 158, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,9 +16,9 @@ export default nix.lambda((args) => (() => {
   const python3Packages = nix.arg($, "python3Packages");
   const lndir = nix.arg($, "lndir");
   const pythonPackages = nix.thunk(() => nix.app(nix.sel(python3Packages, "overrideScope"), (final) => (prev) => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       paste: nix.thunk(() => nix.app(nix.sel(prev, "paste", "override"), nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           setuptools: nix.thunk(() => nix.sel(prev, "setuptools_80")),
         })))),
     })));
@@ -33,7 +26,7 @@ export default nix.lambda((args) => (() => {
   const sitePackages = nix.thunk(() => nix.attr(from, "sitePackages"));
   const version = "0.15.0";
   const src = nix.thunk(() => nix.app(fetchFromSourcehut, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       owner: "~mediagoblin",
       repo: "mediagoblin",
       rev: nix.thunk(() => nix.str`v${version}`),
@@ -41,7 +34,7 @@ export default nix.lambda((args) => (() => {
       hash: "sha256-9zfSRFyf9Sw+r7ATlZVl2dymWjOO2JQZGsBLQPYT0rs=",
     }))));
   const extlib = nix.thunk(() => nix.app(buildNpmPackage, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       name: "mediagoblin-extlib",
       src: src,
       npmDepsHash: "sha256-wtk5MgsWEpuz3V/EcozEAMOa8UeCgdjhR5wxaiaMugY=",
@@ -119,7 +112,7 @@ substituteInPlace mediagoblin/gmg_commands/__init__.py \\
           ];
         })());
         return {
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           ascii: nix.thunk(() => [nix.thunk(() => nix.lookup(w_2, "chardet"))]),
           audio: nix.thunk(() => nix.concat([nix.thunk(() => nix.lookup(w_2, "numpy"))], gst)),
           ldap: nix.thunk(() => [nix.thunk(() => nix.lookup(w_2, "python-ldap"))]),
@@ -147,9 +140,9 @@ ln -rs $out/${sitePackages}/mediagoblin/static/extlib/leaflet/dist/images/ $out/
         ], nix.app(nix.sel(lib, "concatAttrValues"), optional_dependencies));
       })());
       const pythonImportsCheck = nix.thunk(() => ["mediagoblin"]);
-      const passthru = nix.thunk(() => ({ [nix.POS]: pos$6, extlib: extlib, pythonPackages: pythonPackages }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: $pos[5], extlib: extlib, pythonPackages: pythonPackages }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "Free software media publishing platform that anyone can run",
         homepage: "https://mediagoblin.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Plus")),
@@ -159,7 +152,7 @@ ln -rs $out/${sitePackages}/mediagoblin/static/extlib/leaflet/dist/images/ $out/
         })()),
       }));
       return {
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         format,
         pname,
         version: version_1,

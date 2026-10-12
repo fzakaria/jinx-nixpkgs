@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 36, 5], ["hash", 37, 5]], [["homepage", 68, 5], ["description", 70, 5], ["longDescription", 72, 5], ["license", 82, 5], ["platforms", 83, 5], ["maintainers", 84, 5], ["broken", 86, 5]], [["pname", 33, 3], ["version", 34, 3], ["src", 35, 3], ["nativeBuildInputs", 40, 3], ["buildInputs", 45, 3], ["patches", 66, 3], ["meta", 67, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, gtk2: false, "pkg-config": false, fftw: false, file: false, openexrSupport: true, openexr: false, libzipSupport: true, libzip: false, libxml2Support: true, libxml2: false, libwebpSupport: true, libwebp: false, libXmuSupport: true, libxmu: false, libxsltSupport: true, libxslt: false, fitsSupport: true, cfitsio: false, zlibSupport: true, zlib: false, libpngSupport: true, libpng: false, openglSupport: true, gtkglext: false, libGL: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 36, 5], ["hash", 37, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 68, 5], ["description", 70, 5], ["longDescription", 72, 5], ["license", 82, 5], ["platforms", 83, 5], ["maintainers", 84, 5], ["broken", 86, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 33, 3], ["version", 34, 3], ["src", 35, 3], ["nativeBuildInputs", 40, 3], ["buildInputs", 45, 3], ["patches", 66, 3], ["meta", 67, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -38,11 +36,11 @@ export default nix.lambda((args) => (() => {
   const gtkglext = nix.arg($, "gtkglext");
   const libGL = nix.arg($, "libGL");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "gwyddion",
       version: "2.71",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/gwyddion/gwyddion-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-LfchvvzL5NXuK6Vksy5pNB+M4d5jfiBFg4oJotRrXbo=",
         })))),
@@ -50,7 +48,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => nix.concat([gtk2, fftw], nix.concat(nix.app(nix.sel(lib, "optionals"), openglSupport, nix.thunk(() => [gtkglext, libGL])), nix.concat(nix.app(nix.sel(lib, "optional"), openexrSupport, openexr), nix.concat(nix.app(nix.sel(lib, "optional"), libXmuSupport, libxmu), nix.concat(nix.app(nix.sel(lib, "optional"), fitsSupport, cfitsio), nix.concat(nix.app(nix.sel(lib, "optional"), libpngSupport, libpng), nix.concat(nix.app(nix.sel(lib, "optional"), libxsltSupport, libxslt), nix.concat(nix.app(nix.sel(lib, "optional"), libxml2Support, libxml2), nix.concat(nix.app(nix.sel(lib, "optional"), libwebpSupport, libwebp), nix.concat(nix.app(nix.sel(lib, "optional"), zlibSupport, zlib), nix.app(nix.sel(lib, "optional"), libzipSupport, libzip)))))))))))),
       patches: nix.thunk(() => [nix.path(here, "./codegen.patch")]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "http://gwyddion.net/",
         description: "Scanning probe microscopy data visualization and analysis",
         longDescription: "A modular program for SPM (scanning probe microscopy) data\nvisualization and analysis. Primarily it is intended for the\nanalysis of height fields obtained by scanning probe microscopy\ntechniques (AFM, MFM, STM, SNOM/NSOM) and it supports a lot of\nSPM data formats. However, it can be used for general height\nfield and (greyscale) image processing, for instance for the\nanalysis of profilometry data or thickness maps from imaging\nspectrophotometry.\n",

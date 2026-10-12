@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/generic.nix", [[["makeDesktopItem", 42, 13], ["pname", 42, 29], ["suiteName", 42, 35]], [["description", 158, 5], ["homepage", 159, 5], ["sourceProvenance", 160, 5], ["license", 161, 5], ["maintainers", 162, 5], ["platforms", 163, 5]], [["pname", 47, 11], ["src", 47, 17], ["version", 49, 3], ["nativeBuildInputs", 51, 3], ["buildInputs", 57, 3], ["dontBuild", 71, 3], ["dontConfigure", 72, 3], ["unpackPhase", 74, 3], ["installPhase", 85, 3], ["desktopItems", 155, 3], ["meta", 157, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, autoPatchelfHook: false, makeDesktopItem: false, makeWrapper: false, copyDesktopItems: false, curl: false, glib: false, gst_all_1: false, libGL: false, libx11: false, libxext: false, libxmu: false, libxrandr: false, libxrender: false, coreutils: false, libredirect: false, gnugrep: false, "util-linux": false, which: false, pname: false, version: false, edition: false, suiteName: false, src: false, archive: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/generic.nix", [["makeDesktopItem", 42, 13], ["pname", 42, 29], ["suiteName", 42, 35]]);
-const pos$2 = nix.positions(here + "/generic.nix", [["description", 158, 5], ["homepage", 159, 5], ["sourceProvenance", 160, 5], ["license", 161, 5], ["maintainers", 162, 5], ["platforms", 163, 5]]);
-const pos$3 = nix.positions(here + "/generic.nix", [["pname", 47, 11], ["src", 47, 17], ["version", 49, 3], ["nativeBuildInputs", 51, 3], ["buildInputs", 57, 3], ["dontBuild", 71, 3], ["dontConfigure", 72, 3], ["unpackPhase", 74, 3], ["installPhase", 85, 3], ["desktopItems", 155, 3], ["meta", 157, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -36,14 +34,14 @@ export default nix.lambda((args) => (() => {
   const src = nix.arg($, "src");
   const archive = nix.arg($, "archive");
   const desktopItems = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./desktop_items.nix")), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       makeDesktopItem: makeDesktopItem,
       pname: pname,
       suiteName: suiteName,
     }))));
   const shortEdition = nix.thunk(() => nix.builtins.substring(2n, 2n, edition));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: pname,
       src: src,
       version: nix.thunk(() => (nix.asBool(!nix.eq(edition, "")) ? nix.str`${edition}.${version}` : nix.force(version))),
@@ -120,7 +118,7 @@ runHook postInstall
       })()),
       desktopItems: nix.thunk(() => nix.builtins.attrValues(desktopItems)),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Office suite with a word processor, spreadsheet and presentation program",
         homepage: "https://www.softmaker.com/",
         sourceProvenance: nix.thunk(() => (() => {

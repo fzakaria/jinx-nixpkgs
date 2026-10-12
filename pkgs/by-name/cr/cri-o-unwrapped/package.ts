@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]], [["BUILDTAGS", 55, 7]], [["cri-o", 85, 43]], [["tests", 85, 12]], [["homepage", 88, 5], ["description", 89, 5], ["license", 93, 5], ["teams", 94, 5], ["platforms", 95, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["vendorHash", 28, 3], ["doCheck", 30, 3], ["outputs", 32, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 42, 3], ["env", 55, 3], ["buildPhase", 63, 3], ["installPhase", 70, 3], ["passthru", 85, 3], ["meta", 87, 3]]]);
 const formals$1 = { args: { lib: false, "btrfs-progs": false, buildGoModule: false, fetchFromGitHub: false, glibc: false, gpgme: false, installShellFiles: false, libapparmor: false, libseccomp: false, libselinux: false, lvm2: false, "pkg-config": false, nixosTests: false, "go-md2man": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["BUILDTAGS", 55, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["cri-o", 85, 43]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 85, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["homepage", 88, 5], ["description", 89, 5], ["license", 93, 5], ["teams", 94, 5], ["platforms", 95, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["vendorHash", 28, 3], ["doCheck", 30, 3], ["outputs", 32, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 42, 3], ["env", 55, 3], ["buildPhase", 63, 3], ["installPhase", 70, 3], ["passthru", 85, 3], ["meta", 87, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const go_md2man = nix.arg($, "go-md2man");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "cri-o",
       version: "1.37.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "cri-o",
           repo: "cri-o",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -43,7 +38,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [installShellFiles, go_md2man, pkg_config]),
       buildInputs: nix.thunk(() => nix.concat([btrfs_progs, gpgme, libapparmor, libseccomp, libselinux, lvm2], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.eq(glibc, null)), nix.thunk(() => [glibc, nix.thunk(() => nix.sel(glibc, "static"))])))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         BUILDTAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => [
             "apparmor",
             "seccomp",
@@ -55,11 +50,11 @@ export default nix.lambda((args) => (() => {
       buildPhase: "runHook preBuild\nsed -i 's;\\thack/;\\tbash ./hack/;g' Makefile\nmake binaries docs BUILDTAGS=\"$BUILDTAGS\"\nrunHook postBuild\n",
       installPhase: "runHook preInstall\ninstall -Dm755 bin/* -t $out/bin\n\nfor shell in bash fish zsh; do\n  installShellCompletion --$shell completions/$shell/*\ndone\n\ninstall contrib/cni/*.conflist -Dt $out/etc/cni/net.d\ninstall crictl.yaml -Dt $out/etc\n\ninstallManPage docs/*.[1-9]\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$3, "cri-o": nix.thunk(() => nix.attr(nixosTests, "cri-o")) })),
+        [nix.POS]: $pos[3],
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[2], "cri-o": nix.thunk(() => nix.attr(nixosTests, "cri-o")) })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "https://cri-o.io",
         description: "Open Container Initiative-based implementation of the\nKubernetes Container Runtime Interface\n",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

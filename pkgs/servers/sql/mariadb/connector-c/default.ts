@@ -2,12 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 26, 5], ["repo", 27, 5], ["rev", 28, 5], ["hash", 29, 13]], [["url", 35, 7], ["hash", 36, 7]], [["name", 41, 7], ["url", 42, 7], ["hash", 43, 7]], [["description", 104, 5], ["homepage", 105, 5], ["license", 106, 5], ["maintainers", 107, 5], ["platforms", 108, 5]], [["pname", 22, 3], ["version", 23, 11], ["src", 25, 3], ["patches", 32, 3], ["outputs", 47, 3], ["cmakeFlags", 52, 3], ["postPatch", 59, 3], ["preConfigure", 77, 3], ["nativeBuildInputs", 81, 3], ["propagatedBuildInputs", 82, 3], ["buildInputs", 88, 3], ["postInstall", 90, 3], ["postFixup", 94, 3], ["meta", 103, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch: false, cmake: false, curl: false, openssl: false, zlib: false, zstd: false, libiconv: false, version: false, hash: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 26, 5], ["repo", 27, 5], ["rev", 28, 5], ["hash", 29, 13]]);
-const pos$2 = nix.positions(here + "/default.nix", [["url", 35, 7], ["hash", 36, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["name", 41, 7], ["url", 42, 7], ["hash", 43, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 104, 5], ["homepage", 105, 5], ["license", 106, 5], ["maintainers", 107, 5], ["platforms", 108, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 22, 3], ["version", 23, 11], ["src", 25, 3], ["patches", 32, 3], ["outputs", 47, 3], ["cmakeFlags", 52, 3], ["postPatch", 59, 3], ["preConfigure", 77, 3], ["nativeBuildInputs", 81, 3], ["propagatedBuildInputs", 82, 3], ["buildInputs", 88, 3], ["postInstall", 90, 3], ["postFixup", 94, 3], ["meta", 103, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const hash = nix.arg($, "hash");
   const isVer33 = nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), version, "3.3"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "mariadb-connector-c",
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "mariadb-corporation",
           repo: "mariadb-connector-c",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -37,12 +33,12 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(nix.sel(lib, "versionOlder"), version, "3.4")), nix.thunk(() => [
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               url: "https://github.com/mariadb-corporation/mariadb-connector-c/commit/e8448137f3365568090d5c0d4051039ddc1cdb6f.patch",
               hash: "sha256-aDbaaJA8DxGG5RrOa+CHhk4wuzlBy5tWyS+f/zVYU0c=",
             })))),
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               name: "mariadb-connector-c-fix-cmake-4.patch",
               url: "https://github.com/mariadb-corporation/mariadb-connector-c/commit/598dc3d2d7a63e5d250421dd0ea88be55ea8511f.patch",
               hash: "sha256-HojNRobguBmtpEdr2lVi/MpcoDAsZnb3+tw/pt376es=",
@@ -63,7 +59,7 @@ export default nix.lambda((args) => (() => {
       postInstall: "moveToOutput bin/mariadb_config \"$dev\"\n",
       postFixup: "ln -sv mariadb_config $dev/bin/mysql_config\nln -sv mariadb $out/lib/mysql\nln -sv mariadb $dev/include/mysql\nln -sv mariadb_version.h $dev/include/mariadb/mysql_version.h\nln -sv libmariadb.pc $dev/lib/pkgconfig/mysqlclient.pc\ninstall -Dm644 include/ma_config.h $dev/include/mariadb/my_config.h\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Client library that can be used to connect to MySQL or MariaDB",
         homepage: "https://github.com/mariadb-corporation/mariadb-connector-c",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),

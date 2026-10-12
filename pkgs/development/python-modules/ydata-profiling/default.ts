@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 45, 5], ["repo", 46, 5], ["tag", 47, 5], ["hash", 48, 5]], [["description", 130, 5], ["homepage", 131, 5], ["changelog", 132, 5], ["license", 133, 5], ["maintainers", 134, 5], ["mainProgram", 135, 5]], [["pname", 40, 3], ["version", 41, 3], ["pyproject", 42, 3], ["src", 44, 3], ["disabled", 52, 3], ["postPatch", 54, 3], ["preBuild", 60, 3], ["build-system", 64, 3], ["pythonRelaxDeps", 69, 3], ["dependencies", 78, 3], ["nativeCheckInputs", 103, 3], ["disabledTestPaths", 108, 3], ["disabledTests", 119, 3], ["pythonImportsCheck", 127, 3], ["meta", 129, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, pythonAtLeast: false, setuptools: false, "setuptools-scm": false, dacite: false, filetype: false, imagehash: false, jinja2: false, matplotlib: false, "minify-html": false, multimethod: false, numba: false, numpy: false, pandas: false, phik: false, pydantic: false, pyyaml: false, requests: false, scipy: false, seaborn: false, statsmodels: false, tqdm: false, typeguard: false, visions: false, wordcloud: false, pyarrow: false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 45, 5], ["repo", 46, 5], ["tag", 47, 5], ["hash", 48, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 130, 5], ["homepage", 131, 5], ["changelog", 132, 5], ["license", 133, 5], ["maintainers", 134, 5], ["mainProgram", 135, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 40, 3], ["version", 41, 3], ["pyproject", 42, 3], ["src", 44, 3], ["disabled", 52, 3], ["postPatch", 54, 3], ["preBuild", 60, 3], ["build-system", 64, 3], ["pythonRelaxDeps", 69, 3], ["dependencies", 78, 3], ["nativeCheckInputs", 103, 3], ["disabledTestPaths", 108, 3], ["disabledTests", 119, 3], ["pythonImportsCheck", 127, 3], ["meta", 129, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -39,12 +37,12 @@ export default nix.lambda((args) => (() => {
   const pyarrow = nix.arg($, "pyarrow");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "ydata-profiling",
       version: "4.18.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ydataai",
           repo: "ydata-profiling",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -91,7 +89,7 @@ export default nix.lambda((args) => (() => {
       disabledTests: nix.thunk(() => ["test_decorator", "test_example", "test_load", "test_urls"]),
       pythonImportsCheck: nix.thunk(() => ["ydata_profiling"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Create HTML profiling reports from Pandas DataFrames",
         homepage: "https://ydata-profiling.ydata.ai",
         changelog: nix.thunk(() => nix.str`https://github.com/ydataai/ydata-profiling/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

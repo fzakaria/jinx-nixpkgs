@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]], [["ELECTRON_SKIP_BINARY_DOWNLOAD", 32, 7]], [["name", 83, 7], ["exec", 84, 7], ["icon", 85, 15], ["comment", 86, 7], ["desktopName", 87, 7], ["categories", 88, 7]], [["changelog", 93, 5], ["description", 94, 13], ["homepage", 95, 5], ["license", 96, 5], ["maintainers", 97, 5], ["mainProgram", 98, 5], ["platforms", 99, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["npmDepsHash", 28, 3], ["nativeBuildInputs", 30, 3], ["env", 32, 3], ["makeCacheWritable", 34, 3], ["preBuild", 36, 3], ["dontNpmBuild", 45, 3], ["postBuild", 47, 3], ["installPhase", 54, 3], ["desktopItems", 81, 3], ["meta", 92, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildNpmPackage: false, electron_42: false, fetchFromGitHub: false, jq: false, makeDesktopItem: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["ELECTRON_SKIP_BINARY_DOWNLOAD", 32, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 83, 7], ["exec", 84, 7], ["icon", 85, 15], ["comment", 86, 7], ["desktopName", 87, 7], ["categories", 88, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["changelog", 93, 5], ["description", 94, 13], ["homepage", 95, 5], ["license", 96, 5], ["maintainers", 97, 5], ["mainProgram", 98, 5], ["platforms", 99, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["npmDepsHash", 28, 3], ["nativeBuildInputs", 30, 3], ["env", 32, 3], ["makeCacheWritable", 34, 3], ["preBuild", 36, 3], ["dontNpmBuild", 45, 3], ["postBuild", 47, 3], ["installPhase", 54, 3], ["desktopItems", 81, 3], ["meta", 92, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const description = "Visualizer for neural network, deep learning and machine learning models";
   const icon = "netron";
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "netron",
       version: "9.0.9",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "lutzroeder",
           repo: "netron",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,7 +30,7 @@ export default nix.lambda((args) => (() => {
         })))),
       npmDepsHash: "sha256-KgMf4qWM8HeaZ6UQNVqLjbFZvlFZ/Y2YydI/dtGaeEw=",
       nativeBuildInputs: nix.thunk(() => [jq]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, ELECTRON_SKIP_BINARY_DOWNLOAD: "1" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], ELECTRON_SKIP_BINARY_DOWNLOAD: "1" })),
       makeCacheWritable: true,
       preBuild: nix.thunk(() => nix.str`if [[ $(jq --raw-output '.devDependencies.electron' < package.json | grep -E --only-matching '^[0-9]+') != ${nix.app(nix.sel(lib, "escapeShellArg"), nix.thunk(() => nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(electron, "version")))))} ]]; then
   echo 'ERROR: electron version mismatch'
@@ -74,7 +70,7 @@ runHook postInstall
 `),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "Netron",
             exec: "netron %U",
             icon: icon,
@@ -84,7 +80,7 @@ runHook postInstall
           })))),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         changelog: nix.thunk(() => nix.str`https://github.com/lutzroeder/netron/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: description,
         homepage: "https://netron.app",

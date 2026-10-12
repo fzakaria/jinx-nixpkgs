@@ -2,14 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/pg_squeeze.nix", [[["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]], [["extraArgs", 22, 5]], [["finalPackage", 25, 26], ["postgresqlExtraSettings", 26, 5], ["sql", 31, 5]], [["extension", 24, 18]], [["updateScript", 21, 12], ["tests", 24, 12]], [["description", 45, 5], ["homepage", 46, 5], ["changelog", 47, 5], ["license", 48, 5], ["maintainers", 49, 5], ["platforms", 50, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["passthru", 21, 3], ["meta", 44, 3]]]);
 const formals$1 = { args: { fetchFromGitHub: false, lib: false, "nix-update-script": false, postgresql: false, postgresqlBuildExtension: false, postgresqlTestExtension: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/pg_squeeze.nix", [["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/pg_squeeze.nix", [["extraArgs", 22, 5]]);
-const pos$3 = nix.positions(here + "/pg_squeeze.nix", [["finalPackage", 25, 26], ["postgresqlExtraSettings", 26, 5], ["sql", 31, 5]]);
-const pos$4 = nix.positions(here + "/pg_squeeze.nix", [["extension", 24, 18]]);
-const pos$5 = nix.positions(here + "/pg_squeeze.nix", [["updateScript", 21, 12], ["tests", 24, 12]]);
-const pos$6 = nix.positions(here + "/pg_squeeze.nix", [["description", 45, 5], ["homepage", 46, 5], ["changelog", 47, 5], ["license", 48, 5], ["maintainers", 49, 5], ["platforms", 50, 5]]);
-const pos$7 = nix.positions(here + "/pg_squeeze.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["passthru", 21, 3], ["meta", 44, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,26 +14,26 @@ export default nix.lambda((args) => (() => {
   const postgresqlBuildExtension = nix.arg($, "postgresqlBuildExtension");
   const postgresqlTestExtension = nix.arg($, "postgresqlTestExtension");
   return nix.app(postgresqlBuildExtension, (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "pg_squeeze",
       version: "1.9.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "cybertec-postgresql",
           repo: "pg_squeeze",
           tag: nix.thunk(() => nix.str`REL${nix.app(nix.sel(lib, "replaceString"), ".", "_", nix.thunk(() => nix.sel(finalAttrs, "version")))}`),
           hash: "sha256-AOhdl/EJNsQrl9ES/9flsVGy92KgpKV8no3etj0YzIk=",
         })))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             extraArgs: nix.thunk(() => ["--version-regex=^REL(\\d+)_(\\d+)_(\\d+)$"]),
           })))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           extension: nix.thunk(() => nix.app(postgresqlTestExtension, nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               finalPackage: nix.thunk(() => nix.attr(finalAttrs, "finalPackage")),
               postgresqlExtraSettings: "wal_level = logical\nshared_preload_libraries = 'pg_squeeze'\noutput_plugin_libraries = 'pg_squeeze'\n",
               sql: "CREATE EXTENSION pg_squeeze;\n\nSELECT squeeze.start_worker();\n\nCREATE TABLE a(i int PRIMARY KEY, j int);\nINSERT INTO a(i, j) SELECT x, x FROM generate_series(1, 20) AS g(x);\nINSERT INTO squeeze.tables (tabschema, tabname, schedule)\nVALUES ('public', 'a', ('{30}', '{22}', NULL, NULL, '{3, 5}'));\nSELECT squeeze.squeeze_table('public', 'a', NULL, NULL, NULL);\n",
@@ -47,7 +41,7 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "PostgreSQL extension for automatic bloat cleanup",
         homepage: "https://github.com/cybertec-postgresql/pg_squeeze",
         changelog: nix.thunk(() => nix.str`https://github.com/cybertec-postgresql/pg_squeeze/blob/${nix.sel(finalAttrs, "src", "rev")}/NEWS`),

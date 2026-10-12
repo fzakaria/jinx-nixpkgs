@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 24, 7], ["hash", 25, 7]], [["url", 28, 7], ["hash", 29, 7]], [["description", 64, 5], ["homepage", 65, 5], ["license", 66, 5], ["maintainers", 67, 5], ["platforms", 68, 5]], [["pname", 18, 3], ["version", 19, 3], ["debver", 20, 3], ["srcs", 22, 3], ["sourceRoot", 32, 3], ["prePatch", 34, 3], ["postPatch", 37, 3], ["nativeBuildInputs", 43, 3], ["buildInputs", 47, 3], ["installPhase", 57, 3], ["meta", 63, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, "amoeba-data": false, "alsa-lib": false, expat: false, freetype: false, gtk3: false, libvorbis: false, libGLU: false, libxxf86vm: false, "pkg-config": false, installShellFiles: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 24, 7], ["hash", 25, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 28, 7], ["hash", 29, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 64, 5], ["homepage", 65, 5], ["license", 66, 5], ["maintainers", 67, 5], ["platforms", 68, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["debver", 20, 3], ["srcs", 22, 3], ["sourceRoot", 32, 3], ["prePatch", 34, 3], ["postPatch", 37, 3], ["nativeBuildInputs", 43, 3], ["buildInputs", 47, 3], ["installPhase", 57, 3], ["meta", 63, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,18 +21,18 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const installShellFiles = nix.arg($, "installShellFiles");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "amoeba",
       version: "1.1",
       debver: "31",
       srcs: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             url: nix.thunk(() => nix.str`http://http.debian.net/debian/pool/contrib/a/amoeba/amoeba_${nix.sel(finalAttrs, "version")}.orig.tar.gz`),
             hash: "sha256-NT6oMuAlTcVZEnYjMCF+BD+k3/w7LfWEmj6bkQln3sM=",
           })))),
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: nix.thunk(() => nix.str`http://http.debian.net/debian/pool/contrib/a/amoeba/amoeba_${nix.sel(finalAttrs, "version")}-${nix.sel(finalAttrs, "debver")}.debian.tar.xz`),
             hash: "sha256-Ga/YeXbPXjkG/6qd9Z201d14Hlj/Je6DxgzeIQOqrWc=",
           })))),
@@ -51,7 +48,7 @@ sed -i main/linux-config/linux-config.cpp -e 's|libgtk-x11-2.0.so.0|${gtk3}/lib/
       buildInputs: nix.thunk(() => [alsa_lib, expat, freetype, gtk3, libvorbis, libGLU, libxxf86vm]),
       installPhase: "mkdir -p $out/bin\ncp amoeba $out/bin/\ninstallManPage ../debian/amoeba.1\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Fast-paced, polished OpenGL demonstration by Excess",
         homepage: "https://packages.qa.debian.org/a/amoeba.html",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

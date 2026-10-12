@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 20, 9], ["sha256", 21, 9]], [["url", 24, 9], ["sha256", 25, 9]], [["x86_64-linux", 19, 7], ["aarch64-linux", 23, 7]], [["homepage", 71, 5], ["description", 72, 5], ["sourceProvenance", 73, 5], ["license", 74, 5], ["maintainers", 75, 5], ["platforms", 76, 5], ["mainProgram", 77, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["unpackPhase", 30, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 39, 3], ["dontConfigure", 44, 3], ["dontBuild", 45, 3], ["installPhase", 47, 3], ["postInstall", 65, 3], ["meta", 70, 3]]]);
 const formals$1 = { args: { stdenv: false, autoPatchelfHook: false, dpkg: false, fetchurl: false, lib: false, "alsa-lib": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 20, 9], ["sha256", 21, 9]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 24, 9], ["sha256", 25, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["x86_64-linux", 19, 7], ["aarch64-linux", 23, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 71, 5], ["description", 72, 5], ["sourceProvenance", 73, 5], ["license", 74, 5], ["maintainers", 75, 5], ["platforms", 76, 5], ["mainProgram", 77, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["unpackPhase", 30, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 39, 3], ["dontConfigure", 44, 3], ["dontBuild", 45, 3], ["installPhase", 47, 3], ["postInstall", 65, 3], ["meta", 70, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,14 +20,14 @@ export default nix.lambda((args) => (() => {
       const pname = "networkaudiod";
       const version = "4.1.1-46";
       const src = nix.thunk(() => nix.selOr({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         "x86_64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             url: nix.thunk(() => nix.str`https://www.signalyst.eu/bins/naa/linux/buster/${pname}_${version}_amd64.deb`),
             sha256: "sha256-un5VcCnvCCS/KWtW991Rt9vz3flYilERmRNooEsKCkA=",
           })))),
         "aarch64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: nix.thunk(() => nix.str`https://www.signalyst.eu/bins/naa/linux/buster/${pname}_${version}_arm64.deb`),
             sha256: "sha256-fjSCWX9VYhVJ43N2kSqd5gfTtDJ1UiH4j5PJ9I5Skag=",
           })))),
@@ -47,7 +43,7 @@ export default nix.lambda((args) => (() => {
       const installPhase = "runHook preInstall\n\n# main executable\nmkdir -p $out/bin\ncp ./usr/sbin/networkaudiod $out/bin\n\n# systemd service file\nmkdir -p $out/lib/systemd/system\ncp ./lib/systemd/system/networkaudiod.service $out/lib/systemd/system\n\n# documentation\nmkdir -p $out/share/doc/networkaudiod\ncp -r ./usr/share/doc/networkaudiod $out/share/doc/\n\nrunHook postInstall\n";
       const postInstall = "substituteInPlace $out/lib/systemd/system/networkaudiod.service \\\n  --replace /usr/sbin/networkaudiod $out/bin/networkaudiod\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://www.signalyst.com/index.html",
         description: "Network Audio Adapter daemon",
         sourceProvenance: nix.thunk(() => (() => {
@@ -63,7 +59,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "networkaudiod",
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         src,

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["vmopts", 30, 13]], [["mkJetBrainsProduct", 29, 3], ["mkJetBrainsSource", 32, 3], ["cythonDebugSpeedupsHook", 35, 3], ["sharedLibsHook", 36, 3], ["plugins", 39, 3]], [["clion", 47, 3], ["datagrip", 48, 3], ["dataspell", 49, 3], ["gateway", 50, 3], ["goland", 51, 3], ["idea", 52, 3], ["idea-oss", 53, 3], ["mps", 54, 3], ["phpstorm", 55, 3], ["pycharm", 56, 3], ["pycharm-oss", 57, 3], ["rider", 58, 3], ["ruby-mine", 59, 3], ["rust-rover", 60, 3], ["webstorm", 61, 3], ["aqua", 64, 3], ["idea-community", 65, 3], ["idea-community-bin", 66, 3], ["idea-community-src", 67, 3], ["idea-ultimate", 68, 3], ["pycharm-community", 69, 3], ["pycharm-community-bin", 70, 3], ["pycharm-community-src", 71, 3], ["pycharm-professional", 72, 3], ["writerside", 73, 3]]]);
 const formals$1 = { args: { callPackage: false, clion: false, config: false, datagrip: false, dataspell: false, goland: false, "intellij-idea": false, "intellij-idea-oss": false, jetbrains: false, "jetbrains-gateway": false, "jetbrains-mps": false, lib: false, phpstorm: false, pycharm: false, "pycharm-oss": false, rider: false, "ruby-mine": false, "rust-rover": false, stdenv: false, webstorm: false, vmopts: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["vmopts", 30, 13]]);
-const pos$2 = nix.positions(here + "/default.nix", [["mkJetBrainsProduct", 29, 3], ["mkJetBrainsSource", 32, 3], ["cythonDebugSpeedupsHook", 35, 3], ["sharedLibsHook", 36, 3], ["plugins", 39, 3]]);
-const pos$3 = nix.positions(here + "/default.nix", [["clion", 47, 3], ["datagrip", 48, 3], ["dataspell", 49, 3], ["gateway", 50, 3], ["goland", 51, 3], ["idea", 52, 3], ["idea-oss", 53, 3], ["mps", 54, 3], ["phpstorm", 55, 3], ["pycharm", 56, 3], ["pycharm-oss", 57, 3], ["rider", 58, 3], ["ruby-mine", 59, 3], ["rust-rover", 60, 3], ["webstorm", 61, 3], ["aqua", 64, 3], ["idea-community", 65, 3], ["idea-community-bin", 66, 3], ["idea-community-src", 67, 3], ["idea-ultimate", 68, 3], ["pycharm-community", 69, 3], ["pycharm-community-bin", 70, 3], ["pycharm-community-src", 71, 3], ["pycharm-professional", 72, 3], ["writerside", 73, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,14 +29,14 @@ export default nix.lambda((args) => (() => {
   const webstorm = nix.arg($, "webstorm");
   const vmopts = nix.argOr($, "vmopts", () => null);
   return nix.update({
-    [nix.POS]: pos$2,
-    mkJetBrainsProduct: nix.thunk(() => nix.app(callPackage, nix.path(here, "./builder/default.nix"), nix.thunk(() => ({ [nix.POS]: pos$1, vmopts: vmopts })))),
+    [nix.POS]: $pos[1],
+    mkJetBrainsProduct: nix.thunk(() => nix.app(callPackage, nix.path(here, "./builder/default.nix"), nix.thunk(() => ({ [nix.POS]: $pos[0], vmopts: vmopts })))),
     mkJetBrainsSource: nix.thunk(() => nix.app(callPackage, nix.path(here, "./source/build.nix"), nix.thunk(() => ({})))),
     cythonDebugSpeedupsHook: nix.thunk(() => nix.app(callPackage, nix.path(here, "./hooks/cython-debug-speedups.nix"), nix.thunk(() => ({})))),
     sharedLibsHook: nix.thunk(() => nix.app(callPackage, nix.path(here, "./hooks/shared-libs.nix"), nix.thunk(() => ({})))),
     plugins: nix.thunk(() => nix.app(callPackage, nix.path(here, "./plugins"), nix.thunk(() => ({})))),
   }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(config, "allowAliases")), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       clion: clion,
       datagrip: datagrip,
       dataspell: dataspell,

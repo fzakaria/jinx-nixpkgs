@@ -2,15 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["sha256", 18, 17], ["url", 19, 9]], [["name", 23, 9], ["exec", 24, 9], ["icon", 25, 9], ["desktopName", 26, 9], ["genericName", 27, 9], ["comment", 28, 9], ["categories", 29, 9]], [["description", 51, 9], ["longDescription", 52, 9], ["homepage", 61, 9], ["downloadPage", 62, 9], ["sourceProvenance", 63, 9], ["license", 64, 9], ["platforms", 65, 9], ["maintainers", 66, 9]], [["pname", 14, 7], ["version", 15, 15], ["src", 17, 7], ["desktopItem", 22, 7], ["nativeBuildInputs", 36, 7], ["buildCommand", 38, 7], ["meta", 50, 7]], [["version", 73, 5], ["sha256", 74, 5]], [["version", 78, 5], ["sha256", 79, 5]], [["alloy5", 72, 3], ["alloy6", 77, 3], ["alloy", 82, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, jre: false, makeWrapper: false, makeDesktopItem: false }, ellipsis: false };
 const formals$2 = { args: { version: false, sha256: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["sha256", 18, 17], ["url", 19, 9]]);
-const pos$2 = nix.positions(here + "/default.nix", [["name", 23, 9], ["exec", 24, 9], ["icon", 25, 9], ["desktopName", 26, 9], ["genericName", 27, 9], ["comment", 28, 9], ["categories", 29, 9]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 51, 9], ["longDescription", 52, 9], ["homepage", 61, 9], ["downloadPage", 62, 9], ["sourceProvenance", 63, 9], ["license", 64, 9], ["platforms", 65, 9], ["maintainers", 66, 9]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 14, 7], ["version", 15, 15], ["src", 17, 7], ["desktopItem", 22, 7], ["nativeBuildInputs", 36, 7], ["buildCommand", 38, 7], ["meta", 50, 7]]);
-const pos$5 = nix.positions(here + "/default.nix", [["version", 73, 5], ["sha256", 74, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["version", 78, 5], ["sha256", 79, 5]]);
-const pos$7 = nix.positions(here + "/default.nix", [["alloy5", 72, 3], ["alloy6", 77, 3], ["alloy", 82, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,7 +22,7 @@ export default nix.lambda((args) => (() => {
         const pname = nix.thunk(() => nix.str`alloy${nix.app(nix.sel(lib, "versions", "major"), version_1)}`);
         const version_1 = version;
         const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             sha256: sha256,
             url: nix.thunk(() => nix.str`https://github.com/AlloyTools/org.alloytools.alloy/releases/download/v${version_1}/org.alloytools.alloy.dist.jar`),
           }))));
@@ -41,7 +35,7 @@ export default nix.lambda((args) => (() => {
             const comment = nix.thunk(() => nix.sel(meta, "description"));
             const categories = nix.thunk(() => ["Development", "IDE", "Education"]);
             return {
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               name,
               exec,
               icon,
@@ -63,7 +57,7 @@ install -Dm644 ${nix.path(here, "./icon.png")} $out/share/pixmaps/${pname}.png
 cp -r ${desktopItem}/share/applications $out/share
 `);
         const meta = nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           description: "Language & tool for relational models",
           longDescription: "Alloy is a language for describing structures and a tool for exploring\nthem. An Alloy model is a collection of constraints that describes a set\nof structures, e.g. all the possible security configurations of a web\napplication, or all the possible topologies of a switching network. The\nAlloy Analyzer is a solver that takes the constraints of a model and\nfinds structures that satisfy them. Structures are displayed graphically,\nand their appearance can be customized for the domain at hand.\n",
           homepage: "https://alloytools.org/",
@@ -80,7 +74,7 @@ cp -r ${desktopItem}/share/applications $out/share
           })()),
         }));
         return {
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           pname,
           version: version_1,
           src,
@@ -93,17 +87,17 @@ cp -r ${desktopItem}/share/applications $out/share
   })(), formals$2);
   return (() => {
     const alloy5 = nix.thunk(() => nix.app(generic, nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         version: "5.1.0",
         sha256: "sha256-o7Q+jsmWeUeuotUQG9lrPE6w2B6z3Ju6QcyWSTScaQo=",
       }))));
     const alloy6 = nix.thunk(() => nix.app(generic, nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         version: "6.2.0",
         sha256: "sha256-a4wctbyTvt/HxhQ1xOGrbmiKJC3HAqOUYo2amAHtt40=",
       }))));
     const alloy = alloy5;
-    return { [nix.POS]: pos$7, alloy5, alloy6, alloy };
+    return { [nix.POS]: $pos[6], alloy5, alloy6, alloy };
   })();
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

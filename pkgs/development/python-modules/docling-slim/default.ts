@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 102, 5], ["repo", 103, 5], ["tag", 104, 5], ["hash", 105, 5]], [["cli", 124, 5], ["convert-core", 129, 5], ["extract-core", 135, 5], ["feat-chunking", 139, 5], ["feat-ocr-easyocr", 142, 5], ["feat-ocr-mac", 147, 5], ["feat-ocr-rapidocr", 148, 5], ["feat-ocr-rapidocr-onnx", 151, 5], ["feat-ocr-tesserocr", 155, 5], ["format-audio", 160, 5], ["format-docx", 164, 5], ["format-email", 167, 5], ["format-html", 170, 5], ["format-html-render", 173, 5], ["format-latex", 176, 5], ["format-markdown", 179, 5], ["format-office", 182, 5], ["format-opendocument", 183, 5], ["format-pdf", 186, 5], ["format-pdf-docling", 187, 5], ["format-pdf-pypdfium2", 191, 5], ["format-pptx", 194, 5], ["format-video", 198, 5], ["format-web", 203, 5], ["format-xlsx", 204, 5], ["format-xml-jats", 207, 5], ["format-xml-uspto", 210, 5], ["format-xml-xbrl", 214, 5], ["models-local", 215, 5], ["models-onnxruntime", 223, 5], ["models-remote", 227, 5], ["models-vlm-inline", 231, 5], ["service-client", 236, 5], ["standard", 244, 5], ["all", 258, 5]], [["description", 364, 5], ["homepage", 365, 5], ["changelog", 366, 5], ["license", 367, 5], ["maintainers", 368, 5]], [["pname", 96, 3], ["version", 97, 3], ["pyproject", 98, 3], ["__structuredAttrs", 99, 3], ["src", 101, 3], ["build-system", 108, 3], ["dependencies", 112, 3], ["optional-dependencies", 123, 3], ["pythonImportsCheck", 273, 3], ["nativeCheckInputs", 275, 3], ["disabledTests", 298, 3], ["disabledTestPaths", 344, 3], ["meta", 363, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, hatchling: false, certifi: false, "docling-core": false, filetype: false, pluggy: false, pydantic: false, "pydantic-settings": false, requests: false, tqdm: false, "python-dotenv": false, rich: false, typer: false, numpy: false, pillow: false, rtree: false, scipy: false, polyfactory: false, easyocr: false, "scikit-image": false, onnxruntime: false, rapidocr: false, pandas: false, tesserocr: false, numba: false, "openai-whisper": false, "python-docx": false, "mail-parser": false, beautifulsoup4: false, playwright: false, pylatexenc: false, marko: false, odfdo: false, "docling-parse": false, pypdfium2: false, "python-pptx": false, librosa: false, "scikit-learn": false, soundfile: false, openpyxl: false, lxml: false, defusedxml: false, accelerate: false, "docling-ibm-models": false, "huggingface-hub": false, torch: false, torchvision: false, tritonclient: false, peft: false, transformers: false, httpx: false, websockets: false, "ffmpeg-headless": false, gitMinimal: false, "pytest-xdist": false, pytestCheckHook: false, writableTmpDirAsHomeHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 102, 5], ["repo", 103, 5], ["tag", 104, 5], ["hash", 105, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["cli", 124, 5], ["convert-core", 129, 5], ["extract-core", 135, 5], ["feat-chunking", 139, 5], ["feat-ocr-easyocr", 142, 5], ["feat-ocr-mac", 147, 5], ["feat-ocr-rapidocr", 148, 5], ["feat-ocr-rapidocr-onnx", 151, 5], ["feat-ocr-tesserocr", 155, 5], ["format-audio", 160, 5], ["format-docx", 164, 5], ["format-email", 167, 5], ["format-html", 170, 5], ["format-html-render", 173, 5], ["format-latex", 176, 5], ["format-markdown", 179, 5], ["format-office", 182, 5], ["format-opendocument", 183, 5], ["format-pdf", 186, 5], ["format-pdf-docling", 187, 5], ["format-pdf-pypdfium2", 191, 5], ["format-pptx", 194, 5], ["format-video", 198, 5], ["format-web", 203, 5], ["format-xlsx", 204, 5], ["format-xml-jats", 207, 5], ["format-xml-uspto", 210, 5], ["format-xml-xbrl", 214, 5], ["models-local", 215, 5], ["models-onnxruntime", 223, 5], ["models-remote", 227, 5], ["models-vlm-inline", 231, 5], ["service-client", 236, 5], ["standard", 244, 5], ["all", 258, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 364, 5], ["homepage", 365, 5], ["changelog", 366, 5], ["license", 367, 5], ["maintainers", 368, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 96, 3], ["version", 97, 3], ["pyproject", 98, 3], ["__structuredAttrs", 99, 3], ["src", 101, 3], ["build-system", 108, 3], ["dependencies", 112, 3], ["optional-dependencies", 123, 3], ["pythonImportsCheck", 273, 3], ["nativeCheckInputs", 275, 3], ["disabledTests", 298, 3], ["disabledTestPaths", 344, 3], ["meta", 363, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -70,13 +67,13 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "docling-slim",
       version: "2.118.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "docling-project",
           repo: "docling",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -137,7 +134,7 @@ export default nix.lambda((args) => (() => {
         const standard = nix.thunk(() => nix.concat(cli, nix.concat(extract_core, nix.concat(feat_chunking, nix.concat(feat_ocr_rapidocr, nix.concat(format_email, nix.concat(format_latex, nix.concat(format_office, nix.concat(format_pdf, nix.concat(format_web, nix.concat(models_local, service_client)))))))))));
         const all = nix.thunk(() => nix.concat(standard, nix.concat(feat_ocr_easyocr, nix.concat(feat_ocr_mac, nix.concat(feat_ocr_tesserocr, nix.concat(format_audio, nix.concat(format_html_render, nix.concat(format_xml_jats, nix.concat(format_xml_uspto, nix.concat(format_xml_xbrl, nix.concat(models_onnxruntime, nix.concat(models_remote, models_vlm_inline))))))))))));
         return {
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           cli,
           "convert-core": convert_core,
           "extract-core": extract_core,
@@ -250,7 +247,7 @@ export default nix.lambda((args) => (() => {
         "tests/test_e2e_ocr_conversion.py",
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Modular version of the Docling package",
         homepage: "https://github.com/docling-project/docling",
         changelog: nix.thunk(() => nix.str`https://github.com/docling-project/docling/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG.md`),

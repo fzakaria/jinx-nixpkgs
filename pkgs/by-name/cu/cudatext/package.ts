@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["repo", 38, 7], ["owner", 39, 22], ["rev", 39, 28], ["hash", 39, 32]], [["owner", 48, 5], ["repo", 49, 5], ["tag", 50, 5], ["hash", 51, 5]], [["NIX_LDFLAGS", 96, 7]], [["updateScript", 135, 12]], [["description", 138, 5], ["longDescription", 139, 5], ["homepage", 144, 5], ["changelog", 145, 5], ["license", 146, 5], ["maintainers", 147, 5], ["platforms", 148, 5], ["mainProgram", 149, 5]], [["pname", 44, 3], ["version", 45, 3], ["src", 47, 3], ["patches", 54, 3], ["prePatch", 60, 3], ["postPatch", 67, 3], ["nativeBuildInputs", 75, 3], ["buildInputs", 82, 3], ["env", 96, 3], ["buildPhase", 102, 3], ["installPhase", 117, 3], ["passthru", 135, 3], ["meta", 137, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, coreutils: false, lazarus: false, fpc: false, libx11: false, harfbuzz: false, pango: false, cairo: false, glib: false, atk: false, gtk3: false, "gdk-pixbuf": false, python3: false, wrapGAppsHook3: false, libsForQt5: false, widgetset: true, additionalLexers: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["repo", 38, 7], ["owner", 39, 22], ["rev", 39, 28], ["hash", 39, 32]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 48, 5], ["repo", 49, 5], ["tag", 50, 5], ["hash", 51, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["NIX_LDFLAGS", 96, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 135, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 138, 5], ["longDescription", 139, 5], ["homepage", 144, 5], ["changelog", 145, 5], ["license", 146, 5], ["maintainers", 147, 5], ["platforms", 148, 5], ["mainProgram", 149, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 44, 3], ["version", 45, 3], ["src", 47, 3], ["patches", 54, 3], ["prePatch", 60, 3], ["postPatch", 67, 3], ["nativeBuildInputs", 75, 3], ["buildInputs", 82, 3], ["env", 96, 3], ["buildPhase", 102, 3], ["installPhase", 117, 3], ["passthru", 135, 3], ["meta", 137, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,18 +28,18 @@ export default nix.lambda((args) => (() => {
   const additionalLexers = nix.argOr($, "additionalLexers", () => ["Nix"]);
   nix.assert_(nix.builtins.elem(widgetset, nix.thunk(() => ["gtk3", "qt5"])), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/cu/cudatext/package.nix:29:1");
   const deps = nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (name) => (spec) => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         repo: name,
         owner: nix.thunk(() => nix.attr(spec, "owner")),
         rev: nix.thunk(() => nix.attr(spec, "rev")),
         hash: nix.thunk(() => nix.attr(spec, "hash")),
       }))), nix.thunk(() => nix.app(nix.sel(lib, "importJSON"), nix.path(here, "./deps.json")))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "cudatext",
       version: "1.237.1.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "Alexey-T",
           repo: "CudaText",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -63,7 +58,7 @@ substituteInPlace app/proc_editor_saving.pas \\
       nativeBuildInputs: nix.thunk(() => nix.concat([lazarus, fpc], nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.eq(widgetset, "gtk3")), wrapGAppsHook3), nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.eq(widgetset, "qt5")), nix.thunk(() => nix.sel(libsForQt5, "wrapQtAppsHook")))))),
       buildInputs: nix.thunk(() => nix.concat([libx11], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.eq(widgetset, "gtk3")), nix.thunk(() => [harfbuzz, pango, cairo, glib, atk, gdk_pixbuf, gtk3])), nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.eq(widgetset, "qt5")), nix.thunk(() => nix.sel(libsForQt5, "libqtpas")))))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         NIX_LDFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => [
             "--as-needed",
             "-rpath",
@@ -90,9 +85,9 @@ else
   exit 1
 fi
 `, additionalLexers))),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$4, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[3], updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Cross-platform code editor",
         longDescription: "Text/code editor with lite UI. Syntax highlighting for 200+ languages.\nConfig system in JSON files. Multi-carets and multi-selections.\nSearch and replace with RegEx. Extendable by Python plugins and themes.\n",
         homepage: "https://cudatext.github.io/",

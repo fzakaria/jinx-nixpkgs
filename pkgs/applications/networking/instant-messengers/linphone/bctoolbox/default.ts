@@ -2,12 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["package", 31, 7], ["moduleNames", 32, 7]], [["cmake-config", 30, 5]], [["tests", 29, 12]], [["description", 39, 5], ["mainProgram", 40, 5], ["license", 41, 5], ["platforms", 42, 5], ["maintainers", 43, 5]], [["pname", 12, 3], ["propagatedBuildInputs", 14, 3], ["cmakeFlags", 20, 3], ["strictDeps", 27, 3], ["passthru", 29, 3], ["meta", 38, 3]]]);
 const formals$1 = { args: { bcunit: false, "bc-decaf": false, mkLinphoneDerivation: false, "bc-mbedtls": false, lib: false, testers: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["package", 31, 7], ["moduleNames", 32, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["cmake-config", 30, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["tests", 29, 12]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 39, 5], ["mainProgram", 40, 5], ["license", 41, 5], ["platforms", 42, 5], ["maintainers", 43, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 12, 3], ["propagatedBuildInputs", 14, 3], ["cmakeFlags", 20, 3], ["strictDeps", 27, 3], ["passthru", 29, 3], ["meta", 38, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,24 +14,24 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const testers = nix.arg($, "testers");
   return nix.app(mkLinphoneDerivation, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "bctoolbox",
       propagatedBuildInputs: nix.thunk(() => [bcunit, bc_decaf, bc_mbedtls]),
       cmakeFlags: nix.thunk(() => ["-DENABLE_STRICT=NO", "-DENABLE_MBEDTLS=YES", "-DENABLE_OPENSSL=NO"]),
       strictDeps: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           "cmake-config": nix.thunk(() => nix.app(nix.sel(testers, "hasCmakeConfigModules"), nix.thunk(() => ({
-              [nix.POS]: pos$1,
+              [nix.POS]: $pos[0],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               moduleNames: nix.thunk(() => ["BCToolbox"]),
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Utilities library for Linphone",
         mainProgram: "bctoolbox_tester",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

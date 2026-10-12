@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["hydraPlatforms", 34, 5]], [["pname", 11, 3], ["version", 12, 30], ["nativeBuildInputs", 14, 3], ["paths", 16, 3], ["pathsToLink", 21, 3], ["postBuild", 26, 3], ["meta", 33, 3]]]);
 const formals$1 = { args: { buildEnv: false, makeWrapper: false, "zeroad-unwrapped": false, "zeroad-data": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["hydraPlatforms", 34, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 30], ["nativeBuildInputs", 14, 3], ["paths", 16, 3], ["pathsToLink", 21, 3], ["postBuild", 26, 3], ["meta", 33, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,14 +13,14 @@ export default nix.lambda((args) => (() => {
   const zeroad_data = nix.arg($, "zeroad-data");
   nix.assert_(nix.eq(nix.sel(zeroad_unwrapped, "version"), nix.sel(zeroad_data, "version")), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/ze/zeroad/package.nix:8:1");
   return nix.app(buildEnv, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "zeroad",
       version: nix.thunk(() => nix.attr(zeroad_unwrapped, "version")),
       nativeBuildInputs: nix.thunk(() => [makeWrapper]),
       paths: nix.thunk(() => [zeroad_unwrapped, zeroad_data]),
       pathsToLink: nix.thunk(() => ["/", "/bin"]),
       postBuild: "for i in $out/bin/*; do\n  wrapProgram \"$i\" \\\n    --set ZEROAD_ROOTDIR \"$out/share/0ad\"\ndone\n",
-      meta: nix.thunk(() => nix.update(nix.sel(zeroad_unwrapped, "meta"), { [nix.POS]: pos$1, hydraPlatforms: [] })),
+      meta: nix.thunk(() => nix.update(nix.sel(zeroad_unwrapped, "meta"), { [nix.POS]: $pos[0], hydraPlatforms: [] })),
     })));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

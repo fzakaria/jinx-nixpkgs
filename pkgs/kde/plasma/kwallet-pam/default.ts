@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 10, 3], ["postPatch", 12, 3], ["extraNativeBuildInputs", 16, 3], ["extraBuildInputs", 17, 3]]]);
 const formals$1 = { args: { lib: false, mkKdeDerivation: false, "pkg-config": false, pam: false, libgcrypt: false, socat: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 10, 3], ["postPatch", 12, 3], ["extraNativeBuildInputs", 16, 3], ["extraBuildInputs", 17, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const libgcrypt = nix.arg($, "libgcrypt");
   const socat = nix.arg($, "socat");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       pname: "kwallet-pam",
       postPatch: nix.thunk(() => nix.str`sed -i pam_kwallet_init -e "s|socat|${nix.app(nix.sel(lib, "getBin"), socat)}/bin/socat|"
 `),

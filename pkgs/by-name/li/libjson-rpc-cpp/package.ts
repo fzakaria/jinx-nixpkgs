@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 22, 5], ["repo", 23, 5], ["sha256", 24, 5], ["rev", 25, 5]], [["NIX_CFLAGS_COMPILE", 28, 7]], [["description", 122, 5], ["mainProgram", 123, 5], ["homepage", 124, 5], ["license", 125, 5], ["platforms", 126, 5], ["sourceProvenance", 127, 5], ["maintainers", 128, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["env", 28, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 39, 3], ["postPatch", 48, 3], ["preConfigure", 67, 3], ["configurePhase", 74, 3], ["preInstall", 84, 3], ["postInstall", 103, 3], ["installPhase", 115, 3], ["meta", 121, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, "pkg-config": false, cmake: false, argtable: false, catch2: false, curl: false, doxygen: false, hiredis: false, jsoncpp: false, libmicrohttpd: false, patchelf: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 22, 5], ["repo", 23, 5], ["sha256", 24, 5], ["rev", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 28, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 122, 5], ["mainProgram", 123, 5], ["homepage", 124, 5], ["license", 125, 5], ["platforms", 126, 5], ["sourceProvenance", 127, 5], ["maintainers", 128, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["env", 28, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 39, 3], ["postPatch", 48, 3], ["preConfigure", 67, 3], ["configurePhase", 74, 3], ["preInstall", 84, 3], ["postInstall", 103, 3], ["installPhase", 115, 3], ["meta", 121, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,18 +21,18 @@ export default nix.lambda((args) => (() => {
   const libmicrohttpd = nix.arg($, "libmicrohttpd");
   const patchelf = nix.arg($, "patchelf");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "libjson-rpc-cpp",
       version: "1.4.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "cinemast",
           repo: "libjson-rpc-cpp",
           sha256: "sha256-YCCZN4y88AixQeo24pk6YHfSCsJz8jJ97Dg40KM08cQ=",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
         })))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.str`-I${catch2}/include/catch2`),
       })),
       nativeBuildInputs: nix.thunk(() => nix.concat([pkg_config, cmake, doxygen], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [patchelf])))),
@@ -59,7 +56,7 @@ runHook postConfigure
       postInstall: nix.thunk(() => nix.add(nix.add("sed -i -re \"s#-([LI]).*/Build/Install(.*)#-\\1$out\\2#g\" Install/lib*/pkgconfig/*.pc\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), "for f in Install/lib*/*.so* $(find Install/bin -executable -type f); do\n  fixRunPath $f\ndone\n")), "cp -r Install/* $out\n")),
       installPhase: "runHook preInstall\nmake install\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "C++ framework for json-rpc (json remote procedure call)",
         mainProgram: "jsonrpcstub",
         homepage: "https://github.com/cinemast/libjson-rpc-cpp",

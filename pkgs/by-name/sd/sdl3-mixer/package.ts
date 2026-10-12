@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 36, 5], ["repo", 37, 5], ["tag", 38, 5], ["hash", 39, 5]], [["extraArgs", 90, 7]], [["pkg-config", 95, 11]], [["updateScript", 89, 5], ["tests", 95, 5]], [["description", 99, 5], ["homepage", 100, 5], ["changelog", 101, 5], ["license", 102, 5], ["maintainers", 103, 5], ["teams", 104, 5], ["platforms", 105, 5], ["pkgConfigModules", 106, 5]], [["pname", 26, 3], ["version", 27, 3], ["__structuredAttrs", 28, 3], ["outputs", 30, 3], ["src", 35, 3], ["strictDeps", 42, 3], ["doCheck", 43, 3], ["nativeBuildInputs", 45, 3], ["buildInputs", 52, 3], ["postPatch", 68, 3], ["cmakeFlags", 73, 3], ["passthru", 88, 3], ["meta", 98, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, ninja: false, "pkg-config": false, validatePkgConfig: false, "nix-update-script": false, testers: false, sdl3: false, flac: false, fluidsynth: false, "game-music-emu": false, libogg: false, libsndfile: false, libvorbis: false, libxmp: false, mpg123: false, opusfile: false, timidity: false, wavpack: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 36, 5], ["repo", 37, 5], ["tag", 38, 5], ["hash", 39, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["extraArgs", 90, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pkg-config", 95, 11]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 89, 5], ["tests", 95, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 99, 5], ["homepage", 100, 5], ["changelog", 101, 5], ["license", 102, 5], ["maintainers", 103, 5], ["teams", 104, 5], ["platforms", 105, 5], ["pkgConfigModules", 106, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 26, 3], ["version", 27, 3], ["__structuredAttrs", 28, 3], ["outputs", 30, 3], ["src", 35, 3], ["strictDeps", 42, 3], ["doCheck", 43, 3], ["nativeBuildInputs", 45, 3], ["buildInputs", 52, 3], ["postPatch", 68, 3], ["cmakeFlags", 73, 3], ["passthru", 88, 3], ["meta", 98, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,13 +29,13 @@ export default nix.lambda((args) => (() => {
   const timidity = nix.arg($, "timidity");
   const wavpack = nix.arg($, "wavpack");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "sdl3-mixer",
       version: "3.2.4",
       __structuredAttrs: true,
       outputs: nix.thunk(() => ["dev", "out"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "libsdl-org",
           repo: "SDL_mixer",
           tag: nix.thunk(() => nix.str`release-${nix.sel(finalAttrs, "version")}`),
@@ -76,18 +71,18 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "SDLMIXER_VORBIS_STB", false)),
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             extraArgs: nix.thunk(() => ["--version-regex", "release-(3\\..*)"]),
           })))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "testMetaPkgConfig"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "SDL audio mixer library for SDL3",
         homepage: "https://github.com/libsdl-org/SDL_mixer",
         changelog: nix.thunk(() => nix.str`https://github.com/libsdl-org/SDL_mixer/releases/tag/release-${nix.sel(finalAttrs, "version")}`),

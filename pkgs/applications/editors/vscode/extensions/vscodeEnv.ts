@@ -2,18 +2,9 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/vscodeEnv.nix", [[["lib", 36, 17], ["writeShellScriptBin", 36, 21], ["extensionsFromVscodeMarketplace", 36, 41], ["vscodeDefault", 37, 9]], [["nixExtensions", 41, 11], ["mutableExtensions", 42, 11], ["vscodeExtsFolderName", 43, 11], ["user-data-dir", 44, 11]], [["lib", 48, 58], ["writeShellScriptBin", 48, 62], ["jq", 48, 82]], [["extensions.autoCheckUpdates", 53, 7], ["extensions.autoUpdate", 54, 7], ["update.mode", 55, 7]], [["settings", 52, 5], ["userSettingsFolder", 58, 13], ["createIfDoesNotExists", 59, 5], ["symlinkFromUserSetting", 60, 5]], [["settings", 64, 5], ["createIfDoesNotExists", 65, 5], ["vscodeSettingsFile", 66, 5]], [["settings", 70, 5], ["createIfDoesNotExists", 71, 5], ["vscodeSettingsFile", 72, 5], ["userSettingsFolder", 73, 13], ["symlinkFromUserSetting", 74, 5]], [["lib", 80, 17], ["writeShellScriptBin", 80, 21], ["vscodeDefault", 81, 9]], [["extensionsToIgnore", 84, 9], ["extensions", 85, 9]], [["name", 97, 3], ["paths", 98, 3]]]);
 const formals$1 = { args: { lib: false, buildEnv: false, writeShellScriptBin: false, extensionsFromVscodeMarketplace: false, vscodeDefault: false, jq: false }, ellipsis: false };
 const formals$2 = { args: { vscode: true, nixExtensions: true, vscodeExtsFolderName: true, settings: true, createSettingsIfDoesNotExists: true, launch: true, createLaunchIfDoesNotExists: true, keybindings: true, createKeybindingsIfDoesNotExists: true, "user-data-dir": true, mutableExtensionsFile: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/vscodeEnv.nix", [["lib", 36, 17], ["writeShellScriptBin", 36, 21], ["extensionsFromVscodeMarketplace", 36, 41], ["vscodeDefault", 37, 9]]);
-const pos$2 = nix.positions(here + "/vscodeEnv.nix", [["nixExtensions", 41, 11], ["mutableExtensions", 42, 11], ["vscodeExtsFolderName", 43, 11], ["user-data-dir", 44, 11]]);
-const pos$3 = nix.positions(here + "/vscodeEnv.nix", [["lib", 48, 58], ["writeShellScriptBin", 48, 62], ["jq", 48, 82]]);
-const pos$4 = nix.positions(here + "/vscodeEnv.nix", [["extensions.autoCheckUpdates", 53, 7], ["extensions.autoUpdate", 54, 7], ["update.mode", 55, 7]]);
-const pos$5 = nix.positions(here + "/vscodeEnv.nix", [["settings", 52, 5], ["userSettingsFolder", 58, 13], ["createIfDoesNotExists", 59, 5], ["symlinkFromUserSetting", 60, 5]]);
-const pos$6 = nix.positions(here + "/vscodeEnv.nix", [["settings", 64, 5], ["createIfDoesNotExists", 65, 5], ["vscodeSettingsFile", 66, 5]]);
-const pos$7 = nix.positions(here + "/vscodeEnv.nix", [["settings", 70, 5], ["createIfDoesNotExists", 71, 5], ["vscodeSettingsFile", 72, 5], ["userSettingsFolder", 73, 13], ["symlinkFromUserSetting", 74, 5]]);
-const pos$8 = nix.positions(here + "/vscodeEnv.nix", [["lib", 80, 17], ["writeShellScriptBin", 80, 21], ["vscodeDefault", 81, 9]]);
-const pos$9 = nix.positions(here + "/vscodeEnv.nix", [["extensionsToIgnore", 84, 9], ["extensions", 85, 9]]);
-const pos$10 = nix.positions(here + "/vscodeEnv.nix", [["name", 97, 3], ["paths", 98, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -39,24 +30,29 @@ export default nix.lambda((args) => (() => {
     const mutableExtensionsFilePath = nix.thunk(() => nix.builtins.toString(mutableExtensionsFile));
     const mutableExtensions = nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.builtins.pathExists(mutableExtensionsFile)), nix.thunk(() => nix.builtins.import(mutableExtensionsFilePath))));
     const vscodeWithConfiguration = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./vscodeWithConfiguration.nix")), nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         lib: lib,
         writeShellScriptBin: writeShellScriptBin,
         extensionsFromVscodeMarketplace: extensionsFromVscodeMarketplace,
         vscodeDefault: vscode,
       })), nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         nixExtensions: nixExtensions,
         mutableExtensions: mutableExtensions,
         vscodeExtsFolderName: vscodeExtsFolderName,
         "user-data-dir": user_data_dir,
       }))));
-    const updateSettings = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./updateSettings.nix")), nix.thunk(() => ({ [nix.POS]: pos$3, lib: lib, writeShellScriptBin: writeShellScriptBin, jq: jq }))));
+    const updateSettings = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./updateSettings.nix")), nix.thunk(() => ({
+        [nix.POS]: $pos[2],
+        lib: lib,
+        writeShellScriptBin: writeShellScriptBin,
+        jq: jq,
+      }))));
     const userSettingsFolder = nix.thunk(() => nix.str`${user_data_dir}/User`);
     const updateSettingsCmd = nix.thunk(() => nix.app(updateSettings, nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         settings: nix.thunk(() => nix.update({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           "extensions.autoCheckUpdates": false,
           "extensions.autoUpdate": false,
           "update.mode": "none",
@@ -66,13 +62,13 @@ export default nix.lambda((args) => (() => {
         symlinkFromUserSetting: nix.thunk(() => !nix.eq(user_data_dir, "")),
       }))));
     const updateLaunchCmd = nix.thunk(() => nix.app(updateSettings, nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         settings: launch,
         createIfDoesNotExists: createLaunchIfDoesNotExists,
         vscodeSettingsFile: ".vscode/launch.json",
       }))));
     const updateKeybindingsCmd = nix.thunk(() => nix.app(updateSettings, nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         settings: keybindings,
         createIfDoesNotExists: createKeybindingsIfDoesNotExists,
         vscodeSettingsFile: ".vscode/keybindings.json",
@@ -80,12 +76,12 @@ export default nix.lambda((args) => (() => {
         symlinkFromUserSetting: nix.thunk(() => !nix.eq(user_data_dir, "")),
       }))));
     const vscodeExts2nix = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./vscodeExts2nix.nix")), nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         lib: lib,
         writeShellScriptBin: writeShellScriptBin,
         vscodeDefault: vscodeWithConfiguration,
       })), nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         extensionsToIgnore: nixExtensions,
         extensions: mutableExtensions,
       }))));
@@ -97,7 +93,7 @@ echo 'running vscodeExts2nix to update ${mutableExtensionsFilePath}...'
 ${vscodeExts2nix}/bin/vscodeExts2nix > ${mutableExtensionsFilePath}
 `)));
     return nix.app(buildEnv, nix.thunk(() => ({
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         name: "vscodeEnv",
         paths: nix.thunk(() => [
           code,

@@ -2,25 +2,8 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/n8n.nix", [[["maintainers", 11, 8]], [["pkgsReadOnly", 17, 8]], [["enable", 21, 20]], [["n8n", 21, 16]], [["services", 21, 7]], [["WEBHOOK_URL", 28, 11], ["N8N_TEMPLATES_ENABLED", 29, 11], ["DB_PING_INTERVAL_SECONDS", 30, 11], ["N8N_ENCRYPTION_KEY_FILE", 32, 11], ["N8N_RUNNERS_AUTH_TOKEN_FILE", 33, 11]], [["N8N_RUNNERS_MAX_CONCURRENCY", 39, 13]], [["NODE_FUNCTION_ALLOW_BUILTIN", 44, 27]], [["args", 43, 15], ["environment", 44, 15]], [["N8N_RUNNERS_STDLIB_ALLOW", 48, 27]], [["args", 47, 15], ["environment", 48, 15]], [["javascript", 42, 13], ["python", 46, 13]], [["enable", 36, 11], ["environment", 37, 11], ["runners", 41, 11]], [["enable", 25, 9], ["customNodes", 26, 9], ["environment", 27, 9], ["taskRunners", 35, 9]], [["n8n", 24, 16]], [["services", 24, 7]], [["machine_simple", 20, 5], ["machine_configured", 23, 5]], [["name", 10, 3], ["meta", 11, 3], ["node", 17, 3], ["nodes", 19, 3], ["testScript", 56, 3]]]);
 const formals$1 = { args: { lib: false, pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/n8n.nix", [["maintainers", 11, 8]]);
-const pos$2 = nix.positions(here + "/n8n.nix", [["pkgsReadOnly", 17, 8]]);
-const pos$3 = nix.positions(here + "/n8n.nix", [["enable", 21, 20]]);
-const pos$4 = nix.positions(here + "/n8n.nix", [["n8n", 21, 16]]);
-const pos$5 = nix.positions(here + "/n8n.nix", [["services", 21, 7]]);
-const pos$6 = nix.positions(here + "/n8n.nix", [["WEBHOOK_URL", 28, 11], ["N8N_TEMPLATES_ENABLED", 29, 11], ["DB_PING_INTERVAL_SECONDS", 30, 11], ["N8N_ENCRYPTION_KEY_FILE", 32, 11], ["N8N_RUNNERS_AUTH_TOKEN_FILE", 33, 11]]);
-const pos$7 = nix.positions(here + "/n8n.nix", [["N8N_RUNNERS_MAX_CONCURRENCY", 39, 13]]);
-const pos$8 = nix.positions(here + "/n8n.nix", [["NODE_FUNCTION_ALLOW_BUILTIN", 44, 27]]);
-const pos$9 = nix.positions(here + "/n8n.nix", [["args", 43, 15], ["environment", 44, 15]]);
-const pos$10 = nix.positions(here + "/n8n.nix", [["N8N_RUNNERS_STDLIB_ALLOW", 48, 27]]);
-const pos$11 = nix.positions(here + "/n8n.nix", [["args", 47, 15], ["environment", 48, 15]]);
-const pos$12 = nix.positions(here + "/n8n.nix", [["javascript", 42, 13], ["python", 46, 13]]);
-const pos$13 = nix.positions(here + "/n8n.nix", [["enable", 36, 11], ["environment", 37, 11], ["runners", 41, 11]]);
-const pos$14 = nix.positions(here + "/n8n.nix", [["enable", 25, 9], ["customNodes", 26, 9], ["environment", 27, 9], ["taskRunners", 35, 9]]);
-const pos$15 = nix.positions(here + "/n8n.nix", [["n8n", 24, 16]]);
-const pos$16 = nix.positions(here + "/n8n.nix", [["services", 24, 7]]);
-const pos$17 = nix.positions(here + "/n8n.nix", [["machine_simple", 20, 5], ["machine_configured", 23, 5]]);
-const pos$18 = nix.positions(here + "/n8n.nix", [["name", 10, 3], ["meta", 11, 3], ["node", 17, 3], ["nodes", 19, 3], ["testScript", 56, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,10 +15,10 @@ export default nix.lambda((args) => (() => {
   const secretFile = nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "n8n-encryption-key", "test-encryption-key-12345"))));
   const authTokenFile = nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "n8n-runner-auth-token", "test-runner-auth-token-12345"))));
   return {
-    [nix.POS]: pos$18,
+    [nix.POS]: $pos[17],
     name: "n8n",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [
@@ -45,23 +28,26 @@ export default nix.lambda((args) => (() => {
         ];
       })()),
     })),
-    node: nix.thunk(() => ({ [nix.POS]: pos$2, pkgsReadOnly: false })),
+    node: nix.thunk(() => ({ [nix.POS]: $pos[1], pkgsReadOnly: false })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$17,
+      [nix.POS]: $pos[16],
       machine_simple: nix.thunk(() => ({
-        [nix.POS]: pos$5,
-        services: nix.thunk(() => ({ [nix.POS]: pos$4, n8n: nix.thunk(() => ({ [nix.POS]: pos$3, enable: true })) })),
+        [nix.POS]: $pos[4],
+        services: nix.thunk(() => ({
+          [nix.POS]: $pos[3],
+          n8n: nix.thunk(() => ({ [nix.POS]: $pos[2], enable: true })),
+        })),
       })),
       machine_configured: nix.thunk(() => ({
-        [nix.POS]: pos$16,
+        [nix.POS]: $pos[15],
         services: nix.thunk(() => ({
-          [nix.POS]: pos$15,
+          [nix.POS]: $pos[14],
           n8n: nix.thunk(() => ({
-            [nix.POS]: pos$14,
+            [nix.POS]: $pos[13],
             enable: true,
             customNodes: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "n8n-nodes-carbonejs"))]),
             environment: nix.thunk(() => ({
-              [nix.POS]: pos$6,
+              [nix.POS]: $pos[5],
               WEBHOOK_URL: webhookUrl,
               N8N_TEMPLATES_ENABLED: false,
               DB_PING_INTERVAL_SECONDS: 2n,
@@ -69,20 +55,20 @@ export default nix.lambda((args) => (() => {
               N8N_RUNNERS_AUTH_TOKEN_FILE: authTokenFile,
             })),
             taskRunners: nix.thunk(() => ({
-              [nix.POS]: pos$13,
+              [nix.POS]: $pos[12],
               enable: true,
-              environment: nix.thunk(() => ({ [nix.POS]: pos$7, N8N_RUNNERS_MAX_CONCURRENCY: 10n })),
+              environment: nix.thunk(() => ({ [nix.POS]: $pos[6], N8N_RUNNERS_MAX_CONCURRENCY: 10n })),
               runners: nix.thunk(() => ({
-                [nix.POS]: pos$12,
+                [nix.POS]: $pos[11],
                 javascript: nix.thunk(() => ({
-                  [nix.POS]: pos$9,
+                  [nix.POS]: $pos[8],
                   args: nix.thunk(() => ["--disallow-code-generation-from-strings"]),
-                  environment: nix.thunk(() => ({ [nix.POS]: pos$8, NODE_FUNCTION_ALLOW_BUILTIN: "*" })),
+                  environment: nix.thunk(() => ({ [nix.POS]: $pos[7], NODE_FUNCTION_ALLOW_BUILTIN: "*" })),
                 })),
                 python: nix.thunk(() => ({
-                  [nix.POS]: pos$11,
+                  [nix.POS]: $pos[10],
                   args: nix.thunk(() => ["--test-arg"]),
-                  environment: nix.thunk(() => ({ [nix.POS]: pos$10, N8N_RUNNERS_STDLIB_ALLOW: "*" })),
+                  environment: nix.thunk(() => ({ [nix.POS]: $pos[9], N8N_RUNNERS_STDLIB_ALLOW: "*" })),
                 })),
               })),
             })),

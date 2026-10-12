@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["pname", 22, 5], ["version", 23, 26], ["hash", 24, 5]], [["description", 59, 5], ["homepage", 60, 5], ["license", 61, 5], ["maintainers", 62, 5], ["mainProgram", 63, 5], ["platforms", 64, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["cargoHash", 27, 3], ["cargoBuildFlags", 29, 3], ["buildFeatures", 31, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 42, 3], ["outputs", 49, 3], ["postInstall", 54, 3], ["meta", 58, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchCrate: false, "pkg-config": false, libpulseaudio: false, "gtk4-layer-shell": false, gtk4: false, wrapGAppsHook4: false, libxcb: false, installShellFiles: false, enableWayland: true, enableSass: true, enableX11: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["pname", 22, 5], ["version", 23, 26], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 59, 5], ["homepage", 60, 5], ["license", 61, 5], ["maintainers", 62, 5], ["mainProgram", 63, 5], ["platforms", 64, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["cargoHash", 27, 3], ["cargoBuildFlags", 29, 3], ["buildFeatures", 31, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 42, 3], ["outputs", 49, 3], ["postInstall", 54, 3], ["meta", 58, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const enableSass = nix.argOr($, "enableSass", () => true);
   const enableX11 = nix.argOr($, "enableX11", () => true);
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "mixxc",
       version: "0.2.5",
       src: nix.thunk(() => nix.app(fetchCrate, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "mixxc",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-YVh6SOXCf4GHqDduXP7QupC48hcIMQtjIdGJYXNXQ1E=",
@@ -40,7 +38,7 @@ export default nix.lambda((args) => (() => {
       outputs: nix.thunk(() => ["out", "man"]),
       postInstall: "installManPage $src/doc/mixxc.1\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Minimalistic and customizable volume mixer",
         homepage: "https://github.com/Elvyria/mixxc",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

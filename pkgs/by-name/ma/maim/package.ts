@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 28, 5], ["repo", 29, 5], ["rev", 30, 5], ["hash", 31, 5]], [["mainProgram", 60, 5], ["homepage", 61, 35], ["description", 62, 5], ["longDescription", 63, 5], ["changelog", 68, 5], ["platforms", 69, 5], ["license", 70, 5], ["maintainers", 71, 5]], [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["cmakeFlags", 35, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 40, 3], ["doCheck", 57, 3], ["meta", 59, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, "pkg-config": false, zlib: false, libpng: false, libjpeg: false, libwebp: false, libGLU: false, libGL: false, glm: false, libx11: false, libxext: false, libxfixes: false, libxrandr: false, libxcomposite: false, slop: false, icu: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 28, 5], ["repo", 29, 5], ["rev", 30, 5], ["hash", 31, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["mainProgram", 60, 5], ["homepage", 61, 35], ["description", 62, 5], ["longDescription", 63, 5], ["changelog", 68, 5], ["platforms", 69, 5], ["license", 70, 5], ["maintainers", 71, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["cmakeFlags", 35, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 40, 3], ["doCheck", 57, 3], ["meta", 59, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,11 +27,11 @@ export default nix.lambda((args) => (() => {
   const slop = nix.arg($, "slop");
   const icu = nix.arg($, "icu");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "maim",
       version: "5.8.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "naelstrof",
           repo: "maim",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -61,7 +59,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(finalAttrs, "src", "meta"));
         return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         mainProgram: "maim",
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         description: "Command-line screenshot utility",

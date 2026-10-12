@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 39, 5], ["repo", 40, 5], ["tag", 41, 5], ["hash", 42, 5]], [["default", 78, 5], ["curl-cffi", 88, 5], ["secretstorage", 89, 5]], [["jsRuntime", 159, 11]], [["updateScript", 153, 5], ["tests", 155, 5]], [["changelog", 166, 5], ["description", 167, 5], ["homepage", 168, 5], ["license", 169, 5], ["longDescription", 170, 5], ["mainProgram", 178, 5], ["maintainers", 179, 5]], [["pname", 31, 3], ["version", 35, 3], ["pyproject", 36, 3], ["src", 38, 3], ["postPatch", 45, 3], ["__structuredAttrs", 57, 3], ["outputs", 58, 3], ["build-system", 64, 3], ["nativeBuildInputs", 66, 3], ["dependencies", 72, 3], ["optional-dependencies", 77, 3], ["pythonRelaxDeps", 94, 3], ["preBuild", 96, 3], ["postBuild", 100, 3], ["makeWrapperArgs", 115, 3], ["checkPhase", 129, 3], ["postInstall", 138, 3], ["passthru", 152, 3], ["meta", 165, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, python3Packages: false, atomicparsley: false, deno: false, jsRuntime: true, fetchFromGitHub: false, "ffmpeg-headless": false, installShellFiles: false, pandoc: false, rtmpdump: false, atomicparsleySupport: true, ffmpegSupport: true, javascriptSupport: true, rtmpSupport: true, withAlias: true, withSecretStorage: true, "nix-update-script": false, "yt-dlp": false, nodejs: false, bun: false, quickjs: false, "quickjs-ng": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 39, 5], ["repo", 40, 5], ["tag", 41, 5], ["hash", 42, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["default", 78, 5], ["curl-cffi", 88, 5], ["secretstorage", 89, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["jsRuntime", 159, 11]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 153, 5], ["tests", 155, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["changelog", 166, 5], ["description", 167, 5], ["homepage", 168, 5], ["license", 169, 5], ["longDescription", 170, 5], ["mainProgram", 178, 5], ["maintainers", 179, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 31, 3], ["version", 35, 3], ["pyproject", 36, 3], ["src", 38, 3], ["postPatch", 45, 3], ["__structuredAttrs", 57, 3], ["outputs", 58, 3], ["build-system", 64, 3], ["nativeBuildInputs", 66, 3], ["dependencies", 72, 3], ["optional-dependencies", 77, 3], ["pythonRelaxDeps", 94, 3], ["preBuild", 96, 3], ["postBuild", 100, 3], ["makeWrapperArgs", 115, 3], ["checkPhase", 129, 3], ["postInstall", 138, 3], ["passthru", 152, 3], ["meta", 165, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -40,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const version = "2026.08.19";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "yt-dlp",
           repo: "yt-dlp",
           tag: version,
@@ -64,7 +59,7 @@ substituteInPlace yt_dlp/utils/_jsruntime.py \\
       const nativeBuildInputs = nix.thunk(() => [installShellFiles, pandoc]);
       const dependencies = nix.thunk(() => nix.concat(nix.sel(optional_dependencies, "default"), nix.concat(nix.sel(optional_dependencies, "curl-cffi"), nix.app(nix.sel(lib, "optionals"), withSecretStorage, nix.thunk(() => nix.sel(optional_dependencies, "secretstorage"))))));
       const optional_dependencies = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         default: nix.thunk(() => (() => {
           const w_1 = nix.withScope(python3Packages, null);
           return [
@@ -99,12 +94,12 @@ substituteInPlace yt_dlp/utils/_jsruntime.py \\
       const checkPhase = "# Check for \"unsupported\" string in yt-dlp -v output.\noutput=$($out/bin/yt-dlp -v 2>&1 || true)\nif echo $output | grep -q \"unsupported\"; then\n  echo \"ERROR: Found \\\"unsupported\\\" string in yt-dlp -v output.\"\n  exit 1\nfi\n";
       const postInstall = nix.thunk(() => nix.add("installManPage yt-dlp.1\n\ninstallShellCompletion \\\n  --bash completions/bash/yt-dlp \\\n  --fish completions/fish/yt-dlp.fish \\\n  --zsh completions/zsh/_yt-dlp\n\ninstall -Dm644 Changelog.md README.md -t \"$doc/share/doc/yt_dlp\"\n", nix.app(nix.sel(lib, "optionalString"), withAlias, "ln -s \"$out/bin/yt-dlp\" \"$out/bin/youtube-dl\"\n")));
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
-        tests: nix.thunk(() => nix.app(nix.sel(lib, "genAttrs'"), nix.thunk(() => [nodejs, bun, quickjs, quickjs_ng]), (runtime) => nix.app(nix.sel(lib, "nameValuePair"), nix.thunk(() => nix.sel(runtime, "pname")), nix.thunk(() => nix.app(nix.sel(yt_dlp, "override"), nix.thunk(() => ({ [nix.POS]: pos$3, jsRuntime: runtime }))))))),
+        tests: nix.thunk(() => nix.app(nix.sel(lib, "genAttrs'"), nix.thunk(() => [nodejs, bun, quickjs, quickjs_ng]), (runtime) => nix.app(nix.sel(lib, "nameValuePair"), nix.thunk(() => nix.sel(runtime, "pname")), nix.thunk(() => nix.app(nix.sel(yt_dlp, "override"), nix.thunk(() => ({ [nix.POS]: $pos[2], jsRuntime: runtime }))))))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         changelog: nix.thunk(() => nix.str`https://github.com/yt-dlp/yt-dlp/blob/${version}/Changelog.md`),
         description: "Feature-rich command-line audio/video downloader",
         homepage: "https://github.com/yt-dlp/yt-dlp/",
@@ -120,7 +115,7 @@ substituteInPlace yt_dlp/utils/_jsruntime.py \\
         })()),
       }));
       return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname,
         version,
         pyproject,

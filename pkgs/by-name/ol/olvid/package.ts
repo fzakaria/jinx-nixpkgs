@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 71, 5], ["hash", 72, 5]], [["description", 110, 5], ["homepage", 111, 5], ["license", 112, 5], ["mainProgram", 113, 5], ["maintainers", 114, 5], ["platforms", 115, 5]], [["pname", 64, 3], ["version", 65, 3], ["dontUnpack", 67, 3], ["dontWrapGApps", 68, 3], ["src", 70, 3], ["nativeBuildInputs", 75, 3], ["buildInputs", 81, 3], ["installPhase", 92, 3], ["meta", 109, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, zlib: false, libxext: false, libx11: false, libxrender: false, libxtst: false, libxi: false, freetype: false, "alsa-lib": false, jdk21: false, openjfx21: false, autoPatchelfHook: false, makeBinaryWrapper: false, wrapGAppsHook3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 71, 5], ["hash", 72, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 110, 5], ["homepage", 111, 5], ["license", 112, 5], ["mainProgram", 113, 5], ["maintainers", 114, 5], ["platforms", 115, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 64, 3], ["version", 65, 3], ["dontUnpack", 67, 3], ["dontWrapGApps", 68, 3], ["src", 70, 3], ["nativeBuildInputs", 75, 3], ["buildInputs", 81, 3], ["installPhase", 92, 3], ["meta", 109, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -54,13 +52,13 @@ export default nix.lambda((args) => (() => {
     "--add-opens=java.desktop/sun.awt.shell=ALL-UNNAMED",
   ]);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "olvid",
       version: "3.1.1",
       dontUnpack: true,
       dontWrapGApps: true,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://static.olvid.io/linux/${repo}-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-kdx4xUQcDvXKMvrM/9LwuiJRlfrZehxpv0rrd4H13l0=",
         })))),
@@ -82,7 +80,7 @@ makeBinaryWrapper ${jdk21}/bin/java $out/bin/${repo} \\
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Secure french messenger",
         homepage: "https://www.olvid.io",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),

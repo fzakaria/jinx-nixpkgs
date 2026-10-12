@@ -2,10 +2,9 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["__structuredAttrs", 63, 9], ["name", 65, 9], ["hash", 67, 9], ["outputHash", 72, 9], ["outputHashAlgo", 79, 9], ["outputHashMode", 80, 9], ["nativeBuildInputs", 82, 9], ["strictDeps", 88, 9], ["preferLocalBuild", 90, 17], ["nixpkgsVersion", 93, 9], ["uploadName", 94, 9], ["endpoint", 96, 11], ["apiKeyVar", 97, 11], ["gameUrl", 98, 11], ["extraMessage", 99, 11], ["showUrl", 100, 11], ["preFetch", 101, 11], ["postFetch", 102, 11], ["impureEnvVars", 104, 9], ["builder", 112, 9]], [["constructDrv", 9, 3], ["excludeDrvArgNames", 10, 3], ["extendDrvArgs", 16, 3], ["inheritFunctionArgs", 121, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, cacert: false, python3: false }, ellipsis: false };
 const formals$2 = { args: { endpoint: true, apiKeyVar: true, gameUrl: false, upload: false, name: true, extraMessage: true, showUrl: true, outputHash: true, outputHashAlgo: true, preFetch: true, postFetch: true, nativeBuildInputs: true, impureEnvVars: true, passthru: true, meta: true, preferLocalBuild: true, derivationArgs: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["__structuredAttrs", 63, 9], ["name", 65, 9], ["hash", 67, 9], ["outputHash", 72, 9], ["outputHashAlgo", 79, 9], ["outputHashMode", 80, 9], ["nativeBuildInputs", 82, 9], ["strictDeps", 88, 9], ["preferLocalBuild", 90, 17], ["nixpkgsVersion", 93, 9], ["uploadName", 94, 9], ["endpoint", 96, 11], ["apiKeyVar", 97, 11], ["gameUrl", 98, 11], ["extraMessage", 99, 11], ["showUrl", 100, 11], ["preFetch", 101, 11], ["postFetch", 102, 11], ["impureEnvVars", 104, 9], ["builder", 112, 9]]);
-const pos$2 = nix.positions(here + "/default.nix", [["constructDrv", 9, 3], ["excludeDrvArgNames", 10, 3], ["extendDrvArgs", 16, 3], ["inheritFunctionArgs", 121, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const cacert = nix.arg($, "cacert");
   const python3 = nix.arg($, "python3");
   return nix.app(nix.sel(lib, "extendMkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       constructDrv: nix.thunk(() => nix.sel(stdenvNoCC, "mkDerivation")),
       excludeDrvArgNames: nix.thunk(() => ["derivationArgs", "sha1", "sha256", "sha512"]),
       extendDrvArgs: (finalAttrs) => nix.app(nix.sel(lib, "fetchers", "withNormalizedHash"), nix.thunk(() => ({})), nix.lambda((args_1) => (() => {
@@ -39,7 +38,7 @@ export default nix.lambda((args) => (() => {
           const finalHashHasColon = nix.thunk(() => nix.app(nix.sel(lib, "hasInfix"), ":", nix.thunk(() => nix.sel(finalAttrs, "hash"))));
           const finalHashColonMatch = nix.thunk(() => nix.app(nix.sel(lib, "match"), "([^:]+)[:](.*)", nix.thunk(() => nix.sel(finalAttrs, "hash"))));
           return nix.update(derivationArgs, {
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             __structuredAttrs: true,
             name: nix.thunk(() => (nix.asBool(!nix.eq(name, null)) ? nix.force(name) : nix.builtins.baseNameOf(gameUrl))),
             hash: nix.thunk(() => (nix.asBool((nix.asBool((nix.asBool(nix.eq(outputHashAlgo, null)) || nix.asBool(nix.eq(outputHash, "")))) || nix.asBool(nix.app(nix.sel(lib, "hasPrefix"), outputHashAlgo, outputHash)))) ? nix.force(outputHash) : nix.str`${outputHashAlgo}:${outputHash}`)),

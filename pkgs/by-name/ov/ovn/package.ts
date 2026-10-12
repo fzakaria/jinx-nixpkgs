@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 37, 5], ["repo", 38, 5], ["tag", 39, 5], ["hash", 40, 5], ["fetchSubmodules", 41, 5]], [["SKIP_UNSTABLE", 138, 5]], [["ovn", 167, 39]], [["tests", 167, 5], ["updateScript", 169, 5]], [["description", 173, 5], ["longDescription", 174, 5], ["homepage", 177, 5], ["changelog", 178, 5], ["license", 179, 5], ["maintainers", 184, 5], ["platforms", 188, 5]], [["pname", 33, 3], ["version", 34, 3], ["src", 36, 3], ["outputs", 44, 3], ["nativeBuildInputs", 52, 3], ["buildInputs", 62, 3], ["preConfigure", 74, 3], ["configureFlags", 82, 3], ["enableParallelBuilding", 91, 3], ["doCheck", 93, 3], ["nativeCheckInputs", 95, 3], ["postInstall", 110, 3], ["env", 137, 3], ["preCheck", 142, 3], ["checkPhase", 154, 3], ["passthru", 166, 3], ["meta", 172, 3]]]);
 const formals$1 = { args: { callPackage: false, lib: false, stdenv: false, fetchFromGitHub: false, autoreconfHook: false, libbpf: false, libcap_ng: false, "nix-update-script": false, numactl: false, openssl: false, "pkg-config": false, procps: false, python3: false, unbound: false, "xdp-tools": false, openvswitch: false, gawk: false, coreutils: false, gnugrep: false, gnused: false, makeWrapper: false, which: false, "util-linux": false, tcpdump: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 37, 5], ["repo", 38, 5], ["tag", 39, 5], ["hash", 40, 5], ["fetchSubmodules", 41, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["SKIP_UNSTABLE", 138, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["ovn", 167, 39]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 167, 5], ["updateScript", 169, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 173, 5], ["longDescription", 174, 5], ["homepage", 177, 5], ["changelog", 178, 5], ["license", 179, 5], ["maintainers", 184, 5], ["platforms", 188, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 33, 3], ["version", 34, 3], ["src", 36, 3], ["outputs", 44, 3], ["nativeBuildInputs", 52, 3], ["buildInputs", 62, 3], ["preConfigure", 74, 3], ["configureFlags", 82, 3], ["enableParallelBuilding", 91, 3], ["doCheck", 93, 3], ["nativeCheckInputs", 95, 3], ["postInstall", 110, 3], ["env", 137, 3], ["preCheck", 142, 3], ["checkPhase", 154, 3], ["passthru", 166, 3], ["meta", 172, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -38,11 +33,11 @@ export default nix.lambda((args) => (() => {
   const tcpdump = nix.arg($, "tcpdump");
   const withOpensslConfigureFlag = nix.thunk(() => nix.str`--with-openssl=${nix.app(nix.sel(lib, "getLib"), nix.thunk(() => nix.sel(openssl, "dev")))}`);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "ovn",
       version: "26.09.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ovn-org",
           repo: "ovn",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -94,16 +89,19 @@ ln -s ${openvswitch}/share/openvswitch/scripts/ovs-lib $out/share/openvswitch/sc
 wrapProgram $out/share/ovn/scripts/ovn-ctl \\
   --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [openvswitch, gawk, coreutils, gnugrep, gnused]))}
 `),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, SKIP_UNSTABLE: "yes" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], SKIP_UNSTABLE: "yes" })),
       preCheck: "export TESTSUITEFLAGS=\"-j$NIX_BUILD_CORES\"\n# allow rechecks to retry flaky tests\nexport RECHECK=yes\n\n# hack to stop tests from trying to read /etc/resolv.conf\nexport OVS_RESOLV_CONF=\"$PWD/resolv.conf\"\ntouch $OVS_RESOLV_CONF\n\npatchShebangs --build tests/scapy-server.py\n",
       checkPhase: "runHook preCheck\n\nif ! make check; then\n  echo \"Some tests failed. Collecting logs for analysis...\"\n  find tests/testsuite.dir -type f -exec echo \"==== Contents of {} ====\" \\; -exec cat {} \\;\n  exit 1\nfi\n\nrunHook postCheck\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        tests: nix.thunk(() => nix.app(callPackage, nix.path(here, "./tests.nix"), nix.thunk(() => ({ [nix.POS]: pos$3, ovn: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")) })))),
+        [nix.POS]: $pos[3],
+        tests: nix.thunk(() => nix.app(callPackage, nix.path(here, "./tests.nix"), nix.thunk(() => ({
+            [nix.POS]: $pos[2],
+            ovn: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
+          })))),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Open Virtual Network",
         longDescription: "OVN (Open Virtual Network) is a series of daemons that translates virtual network configuration into OpenFlow, and installs them into Open vSwitch.\n",
         homepage: "https://www.ovn.org",

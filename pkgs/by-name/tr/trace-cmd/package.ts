@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 22, 5], ["hash", 23, 5]], [["MANPAGE_DOCBOOK_XSL", 57, 7]], [["url", 91, 5], ["rev-prefix", 92, 5]], [["updateScript", 89, 12]], [["description", 96, 5], ["mainProgram", 97, 5], ["homepage", 98, 5], ["license", 99, 5], ["platforms", 103, 5], ["maintainers", 104, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["postPatch", 27, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 43, 3], ["outputs", 49, 3], ["env", 57, 3], ["dontConfigure", 59, 3], ["enableParallelBuilding", 61, 3], ["makeFlags", 62, 3], ["postBuild", 70, 3], ["installTargets", 74, 3], ["installFlags", 79, 3], ["passthru", 89, 3], ["meta", 95, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchzip: false, "pkg-config": false, asciidoc: false, xmlto: false, docbook_xsl: false, docbook_xml_dtd_45: false, libxslt: false, libtraceevent: false, libtracefs: false, zstd: false, sourceHighlight: false, gitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["MANPAGE_DOCBOOK_XSL", 57, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 91, 5], ["rev-prefix", 92, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 89, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 96, 5], ["mainProgram", 97, 5], ["homepage", 98, 5], ["license", 99, 5], ["platforms", 103, 5], ["maintainers", 104, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["postPatch", 27, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 43, 3], ["outputs", 49, 3], ["env", 57, 3], ["dontConfigure", 59, 3], ["enableParallelBuilding", 61, 3], ["makeFlags", 62, 3], ["postBuild", 70, 3], ["installTargets", 74, 3], ["installFlags", 79, 3], ["passthru", 89, 3], ["meta", 95, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const sourceHighlight = nix.arg($, "sourceHighlight");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "trace-cmd",
       version: "3.4",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://git.kernel.org/pub/scm/utils/trace-cmd/trace-cmd.git/snapshot/trace-cmd-v${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-7IMInvVLIjGcHZvnSzhcne+4ieFa85ep7KMn2Oy9pF8=",
         })))),
@@ -48,7 +43,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [libtraceevent, libtracefs, zstd]),
       outputs: nix.thunk(() => ["out", "lib", "dev", "man", "devman"]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         MANPAGE_DOCBOOK_XSL: nix.thunk(() => nix.str`${docbook_xsl}/xml/xsl/docbook/manpages/docbook.xsl`),
       })),
       dontConfigure: true,
@@ -66,15 +61,15 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`completion_dir=${nix.builtins.placeholder("out")}/share/bash-completion/completions`),
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: "https://git.kernel.org/pub/scm/utils/trace-cmd/trace-cmd.git",
             "rev-prefix": "trace-cmd-v",
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "User-space tools for the Linux kernel ftrace subsystem",
         mainProgram: "trace-cmd",
         homepage: "https://www.trace-cmd.org/",

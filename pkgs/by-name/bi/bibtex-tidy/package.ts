@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]], [["PUPPETEER_SKIP_DOWNLOAD", 23, 5]], [["package", 28, 7], ["version", 29, 7]], [["version", 27, 5]], [["tests", 26, 12]], [["changelog", 34, 5], ["description", 35, 5], ["mainProgram", 36, 5], ["homepage", 37, 5], ["license", 38, 5], ["maintainers", 39, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["npmDepsHash", 20, 3], ["env", 22, 3], ["passthru", 26, 3], ["meta", 33, 3]]]);
 const formals$1 = { args: { lib: false, buildNpmPackage: false, fetchFromGitHub: false, testers: false, "bibtex-tidy": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["PUPPETEER_SKIP_DOWNLOAD", 23, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["package", 28, 7], ["version", 29, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["version", 27, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["tests", 26, 12]]);
-const pos$6 = nix.positions(here + "/package.nix", [["changelog", 34, 5], ["description", 35, 5], ["mainProgram", 36, 5], ["homepage", 37, 5], ["license", 38, 5], ["maintainers", 39, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["npmDepsHash", 20, 3], ["env", 22, 3], ["passthru", 26, 3], ["meta", 33, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,27 +16,27 @@ export default nix.lambda((args) => (() => {
       const pname = "bibtex-tidy";
       const version = "1.14.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "FlamingTempura",
           repo: "bibtex-tidy",
           rev: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-sMgy29deEfc3DFSC0Z4JZCeNAFpBKNYj+mJnFI1pSY4=",
         }))));
       const npmDepsHash = "sha256-FKde5/ZZcS5g0fUaDjhRlKGLiS8kk1PvkZw9PUmvAAE=";
-      const env = nix.thunk(() => ({ [nix.POS]: pos$2, PUPPETEER_SKIP_DOWNLOAD: true }));
+      const env = nix.thunk(() => ({ [nix.POS]: $pos[1], PUPPETEER_SKIP_DOWNLOAD: true }));
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               package: bibtex_tidy,
               version: nix.thunk(() => nix.str`v${version}`),
             })))),
         })),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         changelog: nix.thunk(() => nix.str`https://github.com/FlamingTempura/bibtex-tidy/blob/${nix.sel(src, "rev")}/CHANGELOG.md`),
         description: "Cleaner and Formatter for BibTeX files",
         mainProgram: "bibtex-tidy",
@@ -53,7 +47,7 @@ export default nix.lambda((args) => (() => {
           return [nix.thunk(() => nix.lookup(w, "bertof"))];
         })()),
       }));
-      return { [nix.POS]: pos$7, pname, version, src, npmDepsHash, env, passthru, meta };
+      return { [nix.POS]: $pos[6], pname, version, src, npmDepsHash, env, passthru, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

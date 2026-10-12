@@ -2,13 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/jdk-linux-base.nix", [[["url", 64, 44], ["sha256", 64, 48]], [["url", 68, 47], ["sha256", 68, 51]], [["jre", 143, 7], ["home", 144, 7]], [["license", 148, 7], ["sourceProvenance", 152, 7], ["description", 156, 7], ["platforms", 157, 7], ["maintainers", 158, 7], ["teams", 159, 7], ["knownVulnerabilities", 160, 15], ["mainProgram", 161, 7]], [["pname", 54, 5], ["version", 60, 5], ["srcs", 62, 5], ["sourceRoot", 71, 5], ["buildInputs", 73, 5], ["nativeBuildInputs", 87, 5], ["dontStrip", 93, 5], ["installPhase", 95, 5], ["preFixup", 136, 5], ["passthru", 142, 5], ["meta", 147, 5]]]);
 const formals$1 = { args: { "name-prefix": true, "brand-name": true, sourcePerArch: false, jmodsSourcePreArch: true, knownVulnerabilities: true }, ellipsis: false };
 const formals$2 = { args: { stdenv: false, lib: false, fetchurl: false, autoPatchelfHook: false, makeWrapper: false, setJavaClassPath: false, "alsa-lib": false, fontconfig: false, freetype: false, libffi: false, libxtst: false, libxrender: false, libxi: false, libxext: false, libx11: false, zlib: false, cups: false, gtkSupport: true, cairo: false, glib: false, gtk3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/jdk-linux-base.nix", [["url", 64, 44], ["sha256", 64, 48]]);
-const pos$2 = nix.positions(here + "/jdk-linux-base.nix", [["url", 68, 47], ["sha256", 68, 51]]);
-const pos$3 = nix.positions(here + "/jdk-linux-base.nix", [["jre", 143, 7], ["home", 144, 7]]);
-const pos$4 = nix.positions(here + "/jdk-linux-base.nix", [["license", 148, 7], ["sourceProvenance", 152, 7], ["description", 156, 7], ["platforms", 157, 7], ["maintainers", 158, 7], ["teams", 159, 7], ["knownVulnerabilities", 160, 15], ["mainProgram", 161, 7]]);
-const pos$5 = nix.positions(here + "/jdk-linux-base.nix", [["pname", 54, 5], ["version", 60, 5], ["srcs", 62, 5], ["sourceRoot", 71, 5], ["buildInputs", 73, 5], ["nativeBuildInputs", 87, 5], ["dontStrip", 93, 5], ["installPhase", 95, 5], ["preFixup", 136, 5], ["passthru", 142, 5], ["meta", 147, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -46,14 +42,14 @@ export default nix.lambda((args) => (() => {
     const validCpuTypes = nix.thunk(() => nix.builtins.attrNames(nix.thunk(() => nix.sel(lib, "systems", "parse", "cpuTypes"))));
     const providedCpuTypes = nix.thunk(() => nix.builtins.filter((arch) => nix.builtins.elem(arch, validCpuTypes), nix.thunk(() => nix.builtins.attrNames(sourcePerArch))));
     const result = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname: nix.thunk(() => (nix.asBool(nix.eq(nix.sel(sourcePerArch, "packageType"), "jdk")) ? nix.str`${name_prefix}-bin` : nix.str`${name_prefix}-${nix.sel(sourcePerArch, "packageType")}-bin`)),
         version: nix.thunk(() => nix.selOr(sourcePerArch, () => "unsupported", nix.key(nix.force(cpuName)), "version")),
         srcs: nix.thunk(() => nix.concat([
           nix.thunk(() => nix.app(fetchurl, nix.thunk(() => (() => {
               const from = nix.thunk(() => nix.sel(sourcePerArch, nix.key(nix.force(cpuName))));
               return {
-              [nix.POS]: pos$1,
+              [nix.POS]: $pos[0],
               url: nix.thunk(() => nix.attr(from, "url")),
               sha256: nix.thunk(() => nix.attr(from, "sha256")),
             };
@@ -61,7 +57,7 @@ export default nix.lambda((args) => (() => {
         ], nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(jmodsSourcePreArch, null)), nix.thunk(() => nix.app(fetchurl, nix.thunk(() => (() => {
               const from = nix.thunk(() => nix.sel(jmodsSourcePreArch, nix.key(nix.force(cpuName))));
               return {
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               url: nix.thunk(() => nix.attr(from, "url")),
               sha256: nix.thunk(() => nix.attr(from, "sha256")),
             };
@@ -121,9 +117,9 @@ for bin in $( find "$out" -executable -type f -not -name jspawnhelper ); do
 done
 `),
         preFixup: "find \"$out\" -name libfontmanager.so -exec \\\n  patchelf --add-needed libfontconfig.so {} \\;\n",
-        passthru: nix.thunk(() => ({ [nix.POS]: pos$3, jre: result, home: result })),
+        passthru: nix.thunk(() => ({ [nix.POS]: $pos[2], jre: result, home: result })),
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           license: nix.thunk(() => (() => {
             const w = nix.withScope(nix.thunk(() => nix.sel(lib, "licenses")), null);
             return [

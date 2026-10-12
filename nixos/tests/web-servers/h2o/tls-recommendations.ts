@@ -2,29 +2,10 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/tls-recommendations.nix", [[["name", 9, 7], ["text", 10, 7]], [["openssl", 30, 15]], [["key-file", 42, 19], ["certificate-file", 43, 19]], [["ocsp-update-interval", 48, 17]], [["recommendations", 37, 23], ["port", 38, 15], ["policy", 39, 15], ["identity", 40, 15], ["extraSettings", 46, 15]], [["file.file", 52, 25]], [["/", 52, 21]], [["paths", 52, 15]], [["tls", 36, 13], ["settings", 51, 13]], [["ssl-offload", 57, 11]], [["enable", 23, 9], ["package", 24, 9], ["defaultTLSRecommendations", 33, 9], ["hosts", 34, 9], ["settings", 56, 9]], [["h2o", 22, 16]], [["certificates", 61, 20]], [["pki", 61, 16]], [["allowedTCPPorts", 66, 18]], [["firewall", 66, 9], ["extraHosts", 69, 9]], [["services", 22, 7], ["security", 61, 7], ["networking", 65, 7]], [["maintainers", 77, 5]], [["server_modern", 83, 5], ["server_intermediate", 84, 5]], [["name", 74, 3], ["meta", 76, 3], ["nodes", 82, 3], ["testScript", 87, 3]]]);
 const formals$1 = { args: { hostPkgs: false, lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/tls-recommendations.nix", [["name", 9, 7], ["text", 10, 7]]);
 const formals$2 = { args: { pkgs: false, lib: false, config: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/tls-recommendations.nix", [["openssl", 30, 15]]);
-const pos$3 = nix.positions(here + "/tls-recommendations.nix", [["key-file", 42, 19], ["certificate-file", 43, 19]]);
-const pos$4 = nix.positions(here + "/tls-recommendations.nix", [["ocsp-update-interval", 48, 17]]);
-const pos$5 = nix.positions(here + "/tls-recommendations.nix", [["recommendations", 37, 23], ["port", 38, 15], ["policy", 39, 15], ["identity", 40, 15], ["extraSettings", 46, 15]]);
-const pos$6 = nix.positions(here + "/tls-recommendations.nix", [["file.file", 52, 25]]);
-const pos$7 = nix.positions(here + "/tls-recommendations.nix", [["/", 52, 21]]);
-const pos$8 = nix.positions(here + "/tls-recommendations.nix", [["paths", 52, 15]]);
-const pos$9 = nix.positions(here + "/tls-recommendations.nix", [["tls", 36, 13], ["settings", 51, 13]]);
-const pos$10 = nix.positions(here + "/tls-recommendations.nix", [["ssl-offload", 57, 11]]);
-const pos$11 = nix.positions(here + "/tls-recommendations.nix", [["enable", 23, 9], ["package", 24, 9], ["defaultTLSRecommendations", 33, 9], ["hosts", 34, 9], ["settings", 56, 9]]);
-const pos$12 = nix.positions(here + "/tls-recommendations.nix", [["h2o", 22, 16]]);
-const pos$13 = nix.positions(here + "/tls-recommendations.nix", [["certificates", 61, 20]]);
-const pos$14 = nix.positions(here + "/tls-recommendations.nix", [["pki", 61, 16]]);
-const pos$15 = nix.positions(here + "/tls-recommendations.nix", [["allowedTCPPorts", 66, 18]]);
-const pos$16 = nix.positions(here + "/tls-recommendations.nix", [["firewall", 66, 9], ["extraHosts", 69, 9]]);
-const pos$17 = nix.positions(here + "/tls-recommendations.nix", [["services", 22, 7], ["security", 61, 7], ["networking", 65, 7]]);
-const pos$18 = nix.positions(here + "/tls-recommendations.nix", [["maintainers", 77, 5]]);
-const pos$19 = nix.positions(here + "/tls-recommendations.nix", [["server_modern", 83, 5], ["server_intermediate", 84, 5]]);
 const formals$3 = { args: { nodes: false }, ellipsis: true };
-const pos$20 = nix.positions(here + "/tls-recommendations.nix", [["name", 74, 3], ["meta", 76, 3], ["nodes", 82, 3], ["testScript", 87, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const domain = "acme.test";
   const hello_txt = (name) => nix.app(nix.sel(hostPkgs, "writeTextFile"), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: nix.thunk(() => nix.str`/hello_${name}.txt`),
       text: nix.thunk(() => nix.str`Hello, ${name}!`),
     })));
@@ -42,59 +23,62 @@ export default nix.lambda((args) => (() => {
     const lib_1 = nix.arg($_1, "lib");
     const config = nix.arg($_1, "config");
     return {
-      [nix.POS]: pos$17,
+      [nix.POS]: $pos[16],
       services: nix.thunk(() => ({
-        [nix.POS]: pos$12,
+        [nix.POS]: $pos[11],
         h2o: nix.thunk(() => ({
-          [nix.POS]: pos$11,
+          [nix.POS]: $pos[10],
           enable: true,
-          package: nix.thunk(() => nix.app(nix.sel(pkgs, "h2o", "override"), nix.thunk(() => nix.app(nix.sel(lib_1, "optionalAttrs"), nix.thunk(() => nix.builtins.elem(recommendations, nix.thunk(() => ["intermediate"]))), nix.thunk(() => ({ [nix.POS]: pos$2, openssl: nix.thunk(() => nix.sel(pkgs, "openssl_legacy")) })))))),
+          package: nix.thunk(() => nix.app(nix.sel(pkgs, "h2o", "override"), nix.thunk(() => nix.app(nix.sel(lib_1, "optionalAttrs"), nix.thunk(() => nix.builtins.elem(recommendations, nix.thunk(() => ["intermediate"]))), nix.thunk(() => ({
+                [nix.POS]: $pos[1],
+                openssl: nix.thunk(() => nix.sel(pkgs, "openssl_legacy")),
+              })))))),
           defaultTLSRecommendations: "modern",
           hosts: nix.thunk(() => nix.attrsDyn({}, [
             [nix.str`${domain}`, nix.thunk(() => ({
-              [nix.POS]: pos$9,
+              [nix.POS]: $pos[8],
               tls: nix.thunk(() => ({
-                [nix.POS]: pos$5,
+                [nix.POS]: $pos[4],
                 recommendations: recommendations,
                 port: 8443n,
                 policy: "force",
                 identity: nix.thunk(() => [
                   nix.thunk(() => ({
-                    [nix.POS]: pos$3,
+                    [nix.POS]: $pos[2],
                     "key-file": nix.path(here, "../../common/acme/server/acme.test.key.pem"),
                     "certificate-file": nix.path(here, "../../common/acme/server/acme.test.cert.pem"),
                   })),
                 ]),
-                extraSettings: nix.thunk(() => ({ [nix.POS]: pos$4, "ocsp-update-interval": 0n })),
+                extraSettings: nix.thunk(() => ({ [nix.POS]: $pos[3], "ocsp-update-interval": 0n })),
               })),
               settings: nix.thunk(() => ({
-                [nix.POS]: pos$8,
+                [nix.POS]: $pos[7],
                 paths: nix.thunk(() => ({
-                  [nix.POS]: pos$7,
+                  [nix.POS]: $pos[6],
                   "/": nix.thunk(() => ({
-                    [nix.POS]: pos$6,
+                    [nix.POS]: $pos[5],
                     "file.file": nix.thunk(() => nix.str`${nix.app(hello_txt, recommendations)}`),
                   })),
                 })),
               })),
             }))],
           ])),
-          settings: nix.thunk(() => ({ [nix.POS]: pos$10, "ssl-offload": "kernel" })),
+          settings: nix.thunk(() => ({ [nix.POS]: $pos[9], "ssl-offload": "kernel" })),
         })),
       })),
       security: nix.thunk(() => ({
-        [nix.POS]: pos$14,
+        [nix.POS]: $pos[13],
         pki: nix.thunk(() => ({
-          [nix.POS]: pos$13,
+          [nix.POS]: $pos[12],
           certificates: nix.thunk(() => [
             nix.thunk(() => nix.builtins.readFile(nix.path(here, "../../common/acme/server/ca.cert.pem"))),
           ]),
         })),
       })),
       networking: nix.thunk(() => ({
-        [nix.POS]: pos$16,
+        [nix.POS]: $pos[15],
         firewall: nix.thunk(() => ({
-          [nix.POS]: pos$15,
+          [nix.POS]: $pos[14],
           allowedTCPPorts: nix.thunk(() => [
             nix.thunk(() => nix.sel(config, "services", "h2o", "hosts", nix.key(domain), "tls", "port")),
           ]),
@@ -104,17 +88,17 @@ export default nix.lambda((args) => (() => {
     };
   })(), formals$2);
   return {
-    [nix.POS]: pos$20,
+    [nix.POS]: $pos[19],
     name: "h2o-tls-recommendations",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$18,
+      [nix.POS]: $pos[17],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "toastal"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$19,
+      [nix.POS]: $pos[18],
       server_modern: nix.thunk(() => nix.app(mkH2OServer, "modern")),
       server_intermediate: nix.thunk(() => nix.app(mkH2OServer, "intermediate")),
     })),

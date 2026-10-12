@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 22, 5], ["hash", 23, 5]], [["atop", 93, 43]], [["tests", 93, 12]], [["platforms", 96, 5], ["maintainers", 97, 5], ["description", 98, 5], ["longDescription", 99, 5], ["license", 107, 5], ["downloadPage", 108, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 33, 3], ["pythonPath", 42, 3], ["makeFlags", 46, 3], ["patches", 57, 3], ["preConfigure", 65, 3], ["preInstall", 74, 3], ["postInstall", 78, 3], ["passthru", 93, 3], ["meta", 95, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, glib: false, zlib: false, ncurses: false, "pkg-config": false, findutils: false, systemd: false, python3: false, nixosTests: false, withAtopgpu: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["atop", 93, 43]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 93, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["platforms", 96, 5], ["maintainers", 97, 5], ["description", 98, 5], ["longDescription", 99, 5], ["license", 107, 5], ["downloadPage", 108, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 33, 3], ["pythonPath", 42, 3], ["makeFlags", 46, 3], ["patches", 57, 3], ["preConfigure", 65, 3], ["preInstall", 74, 3], ["postInstall", 78, 3], ["passthru", 93, 3], ["meta", 95, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const withAtopgpu = nix.argOr($, "withAtopgpu", () => false);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "atop",
       version: "2.13.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://www.atoptool.nl/download/atop-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-6hgvhMn1LKki5a9PF9/5f/QkQApPL5I5Mxemr2bmqHQ=",
         })))),
@@ -58,11 +54,11 @@ substituteInPlace Makefile --replace 'chmod 04711' 'chmod 0711'
 rm -r $out/{var,etc} $out/bin/atop{sar,}-${nix.sel(finalAttrs, "version")}
 `, (nix.asBool(withAtopgpu) ? "wrapPythonPrograms\n" : "rm $out/lib/systemd/system/atopgpu.service $out/bin/atopgpud $out/share/man/man8/atopgpud.8\n"))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$2, atop: nix.thunk(() => nix.attr(nixosTests, "atop")) })),
+        [nix.POS]: $pos[2],
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[1], atop: nix.thunk(() => nix.attr(nixosTests, "atop")) })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);

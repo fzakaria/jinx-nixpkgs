@@ -2,22 +2,21 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/libpe.nix", [[["platforms", 18, 8]], [["path", 6, 3], ["extraPaths", 7, 3], ["postPatch", 12, 3], ["alwaysKeepStatic", 16, 3], ["meta", 18, 3]]]);
 const formals$1 = { args: { lib: false, mkDerivation: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/libpe.nix", [["platforms", 18, 8]]);
-const pos$2 = nix.positions(here + "/libpe.nix", [["path", 6, 3], ["extraPaths", 7, 3], ["postPatch", 12, 3], ["alwaysKeepStatic", 16, 3], ["meta", 18, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const mkDerivation = nix.arg($, "mkDerivation");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       path: "lib/libpe",
       extraPaths: nix.thunk(() => ["contrib/elftoolchain", "sys/sys/elf_common.h"]),
       postPatch: "sed -E -i -e '/INTERNALLIB/d' lib/libpe/Makefile\n",
       alwaysKeepStatic: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       })),
     })));

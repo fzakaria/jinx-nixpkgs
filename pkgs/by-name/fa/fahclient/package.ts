@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]], [["owner", 34, 7], ["repo", 35, 7], ["tag", 36, 7], ["hash", 37, 7]], [["pname", 29, 13], ["version", 29, 19], ["__structuredAttrs", 30, 5], ["strictDeps", 31, 5], ["src", 33, 5], ["nativeBuildInputs", 40, 5], ["buildInputs", 47, 5], ["postUnpack", 49, 5], ["preBuild", 55, 5], ["installPhase", 59, 5], ["nativeInstallCheckInputs", 75, 5], ["doInstallCheck", 78, 5]], [["description", 98, 5], ["homepage", 99, 5], ["license", 100, 5], ["mainProgram", 101, 5], ["maintainers", 102, 5], ["platforms", 103, 5]], [["pname", 83, 11], ["version", 83, 17], ["targetPkgs", 85, 3], ["runScript", 95, 3], ["meta", 97, 3]]]);
 const formals$1 = { args: { lib: false, buildFHSEnv: false, fetchFromGitHub: false, "ocl-icd": false, openssl: false, re2: false, libevent: false, gitMinimal: false, versionCheckHook: false, zlib: false, expat: false, scons: false, stdenv: false, extraPkgs: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 34, 7], ["repo", 35, 7], ["tag", 36, 7], ["hash", 37, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 29, 13], ["version", 29, 19], ["__structuredAttrs", 30, 5], ["strictDeps", 31, 5], ["src", 33, 5], ["nativeBuildInputs", 40, 5], ["buildInputs", 47, 5], ["postUnpack", 49, 5], ["preBuild", 55, 5], ["installPhase", 59, 5], ["nativeInstallCheckInputs", 75, 5], ["doInstallCheck", 78, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 98, 5], ["homepage", 99, 5], ["license", 100, 5], ["mainProgram", 101, 5], ["maintainers", 102, 5], ["platforms", 103, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 83, 11], ["version", 83, 17], ["targetPkgs", 85, 3], ["runScript", 95, 3], ["meta", 97, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,20 +24,20 @@ export default nix.lambda((args) => (() => {
   const pname = "fah-client";
   const version = "8.5.6";
   const cbangSrc = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "cauldrondevelopmentllc",
       repo: "cbang",
       tag: nix.thunk(() => nix.str`bastet-v${version}`),
       hash: "sha256-oh3q/gmAKx8BHoaw6Dxkd0GoxYyJ6is8uCKcivQVv2g=",
     }))));
   const fah_client = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: pname,
       version: version,
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "FoldingAtHome",
           repo: "fah-client-bastet",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -59,13 +55,13 @@ cp -r --no-preserve=mode ${cbangSrc} $CBANG_HOME
       doInstallCheck: true,
     }))));
   return nix.app(buildFHSEnv, nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: pname,
       version: version,
       targetPkgs: (_) => nix.concat([fah_client, ocl_icd, zlib, expat], extraPkgs),
       runScript: "/bin/fah-client",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Folding@home client",
         homepage: "https://foldingathome.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

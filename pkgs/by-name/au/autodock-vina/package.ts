@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["enableShared", 10, 5]], [["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]], [["boost", 49, 12]], [["description", 52, 5], ["homepage", 53, 5], ["changelog", 54, 5], ["license", 55, 5], ["maintainers", 56, 5], ["platforms", 57, 5], ["mainProgram", 58, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["sourceRoot", 24, 3], ["buildInputs", 28, 3], ["makeFlags", 35, 3], ["installPhase", 41, 3], ["passthru", 49, 3], ["meta", 51, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, boost186: false, glibc: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["enableShared", 10, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["boost", 49, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 52, 5], ["homepage", 53, 5], ["changelog", 54, 5], ["license", 55, 5], ["maintainers", 56, 5], ["platforms", 57, 5], ["mainProgram", 58, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["sourceRoot", 24, 3], ["buildInputs", 28, 3], ["makeFlags", 35, 3], ["installPhase", 41, 3], ["passthru", 49, 3], ["meta", 51, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,13 +12,13 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const boost186 = nix.arg($, "boost186");
   const glibc = nix.arg($, "glibc");
-  const boost$ = nix.thunk(() => nix.app(nix.sel(boost186, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, enableShared: false }))));
+  const boost$ = nix.thunk(() => nix.app(nix.sel(boost186, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], enableShared: false }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "autodock-vina",
       version: "1.2.7",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "ccsb-scripps",
           repo: "autodock-vina",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,9 +32,9 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`BOOST_INCLUDE=${nix.app(nix.sel(lib, "getDev"), boost$)}/include`),
       ]),
       installPhase: "runHook preInstall\n\ninstall -Dm755 vina vina_split -t $out/bin/\n\nrunHook postInstall\n",
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$3, boost: boost$ })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[2], boost: boost$ })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "One of the fastest and most widely used open-source docking engines",
         homepage: "https://vina.scripps.edu/",
         changelog: nix.thunk(() => nix.str`https://github.com/ccsb-scripps/AutoDock-Vina/releases/tag/v${nix.sel(finalAttrs, "version")}`),

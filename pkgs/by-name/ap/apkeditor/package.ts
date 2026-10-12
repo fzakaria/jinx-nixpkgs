@@ -2,18 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["__darwinAllowLocalNetworking", 21, 11], ["buildInputs", 23, 11], ["nativeBuildInputs", 24, 11], ["gradleFlags", 26, 11], ["gradleBuildTask", 27, 11], ["doCheck", 28, 11], ["outJar", 30, 19], ["installPhase", 31, 11]], [["sourceProvenance", 40, 13]], [["meta", 39, 11]], [["REAndroidLibrary", 51, 45]], [["REAndroidLibrary", 52, 41]], [["REAndroidLibrary", 53, 47]], [["arsclib", 67, 17], ["smali", 67, 25], ["jcommand", 67, 31]], [["deps", 66, 16], ["updateScript", 106, 16]], [["owner", 71, 9], ["repo", 72, 9], ["tag", 73, 9], ["hash", 74, 9]], [["description", 109, 9], ["homepage", 110, 9], ["changelog", 111, 9], ["maintainers", 112, 9], ["license", 113, 9], ["platforms", 114, 9], ["mainProgram", 115, 9]], [["pname", 62, 15], ["version", 62, 21], ["projectName", 62, 29], ["passthru", 66, 7], ["src", 70, 7], ["patches", 77, 7], ["nativeBuildInputs", 82, 7], ["gradleBuildTask", 87, 7], ["preConfigure", 91, 7], ["postInstall", 97, 7], ["doInstallCheck", 103, 7], ["nativeInstallCheckInputs", 104, 7], ["meta", 108, 7]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, callPackage: false, versionCheckHook: false, jre: false, gradle: false, makeWrapper: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["__darwinAllowLocalNetworking", 21, 11], ["buildInputs", 23, 11], ["nativeBuildInputs", 24, 11], ["gradleFlags", 26, 11], ["gradleBuildTask", 27, 11], ["doCheck", 28, 11], ["outJar", 30, 19], ["installPhase", 31, 11]]);
-const pos$2 = nix.positions(here + "/package.nix", [["sourceProvenance", 40, 13]]);
-const pos$3 = nix.positions(here + "/package.nix", [["meta", 39, 11]]);
-const pos$4 = nix.positions(here + "/package.nix", [["REAndroidLibrary", 51, 45]]);
-const pos$5 = nix.positions(here + "/package.nix", [["REAndroidLibrary", 52, 41]]);
-const pos$6 = nix.positions(here + "/package.nix", [["REAndroidLibrary", 53, 47]]);
-const pos$7 = nix.positions(here + "/package.nix", [["arsclib", 67, 17], ["smali", 67, 25], ["jcommand", 67, 31]]);
-const pos$8 = nix.positions(here + "/package.nix", [["deps", 66, 16], ["updateScript", 106, 16]]);
-const pos$9 = nix.positions(here + "/package.nix", [["owner", 71, 9], ["repo", 72, 9], ["tag", 73, 9], ["hash", 74, 9]]);
-const pos$10 = nix.positions(here + "/package.nix", [["description", 109, 9], ["homepage", 110, 9], ["changelog", 111, 9], ["maintainers", 112, 9], ["license", 113, 9], ["platforms", 114, 9], ["mainProgram", 115, 9]]);
-const pos$11 = nix.positions(here + "/package.nix", [["pname", 62, 15], ["version", 62, 21], ["projectName", 62, 29], ["passthru", 66, 7], ["src", 70, 7], ["patches", 77, 7], ["nativeBuildInputs", 82, 7], ["gradleBuildTask", 87, 7], ["preConfigure", 91, 7], ["postInstall", 97, 7], ["doInstallCheck", 103, 7], ["nativeInstallCheckInputs", 104, 7], ["meta", 108, 7]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,7 +21,7 @@ export default nix.lambda((args) => (() => {
     const projectName = nix.thunk(() => nix.attr(args_1, "projectName"));
     const outJar = nix.thunk(() => nix.str`share/${projectName}/${projectName}.jar`);
     const self = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => nix.update({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         __darwinAllowLocalNetworking: true,
         buildInputs: nix.thunk(() => [jre]),
         nativeBuildInputs: nix.thunk(() => [gradle]),
@@ -44,9 +34,9 @@ install -Dm644 build/libs/*.jar $out/${outJar}
 runHook postInstall
 `),
       }, nix.update(args_1, {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         meta: nix.thunk(() => nix.update({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           sourceProvenance: nix.thunk(() => (() => {
             const w = nix.withScope(nix.thunk(() => nix.sel(lib, "sourceTypes")), null);
             return [
@@ -58,25 +48,25 @@ runHook postInstall
       })))));
     return nix.force(self);
   })();
-  const arsclib = nix.thunk(() => nix.app(callPackage, nix.path(here, "./arsclib"), nix.thunk(() => ({ [nix.POS]: pos$4, REAndroidLibrary: REAndroidLibrary }))));
-  const smali = nix.thunk(() => nix.app(callPackage, nix.path(here, "./smali"), nix.thunk(() => ({ [nix.POS]: pos$5, REAndroidLibrary: REAndroidLibrary }))));
-  const jcommand = nix.thunk(() => nix.app(callPackage, nix.path(here, "./jcommand"), nix.thunk(() => ({ [nix.POS]: pos$6, REAndroidLibrary: REAndroidLibrary }))));
+  const arsclib = nix.thunk(() => nix.app(callPackage, nix.path(here, "./arsclib"), nix.thunk(() => ({ [nix.POS]: $pos[3], REAndroidLibrary: REAndroidLibrary }))));
+  const smali = nix.thunk(() => nix.app(callPackage, nix.path(here, "./smali"), nix.thunk(() => ({ [nix.POS]: $pos[4], REAndroidLibrary: REAndroidLibrary }))));
+  const jcommand = nix.thunk(() => nix.app(callPackage, nix.path(here, "./jcommand"), nix.thunk(() => ({ [nix.POS]: $pos[5], REAndroidLibrary: REAndroidLibrary }))));
   const apkeditor = nix.thunk(() => (() => {
     const pname = "apkeditor";
     const version = "1.4.9";
     const projectName = "APKEditor";
     return nix.app(REAndroidLibrary, nix.thunk(() => ({
-        [nix.POS]: pos$11,
+        [nix.POS]: $pos[10],
         pname: pname,
         version: version,
         projectName: projectName,
         passthru: nix.thunk(() => ({
-          [nix.POS]: pos$8,
-          deps: nix.thunk(() => ({ [nix.POS]: pos$7, arsclib: arsclib, smali: smali, jcommand: jcommand })),
+          [nix.POS]: $pos[7],
+          deps: nix.thunk(() => ({ [nix.POS]: $pos[6], arsclib: arsclib, smali: smali, jcommand: jcommand })),
           updateScript: nix.path(here, "./update.sh"),
         })),
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$9,
+            [nix.POS]: $pos[8],
             owner: "REAndroid",
             repo: "APKEditor",
             tag: nix.thunk(() => nix.str`V${version}`),
@@ -96,7 +86,7 @@ makeWrapper ${nix.app(nix.sel(lib, "getExe"), jre)} $out/bin/APKEditor \\
         doInstallCheck: true,
         nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$10,
+          [nix.POS]: $pos[9],
           description: "Powerful android apk resources editor",
           homepage: "https://github.com/REAndroid/APKEditor",
           changelog: nix.thunk(() => nix.str`https://github.com/REAndroid/APKEditor/releases/tag/V${version}`),

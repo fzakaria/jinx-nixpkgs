@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]], [["VERGEN_GIT_SHA", 51, 5], ["DISABLE_IF_EXISTS", 52, 5]], [["cosmic", 86, 9], ["cosmic-autologin", 87, 9], ["cosmic-noxwayland", 88, 9], ["cosmic-autologin-noxwayland", 89, 9]], [["extraArgs", 94, 7]], [["tests", 84, 5], ["updateScript", 93, 5]], [["description", 102, 5], ["homepage", 103, 5], ["license", 104, 5], ["mainProgram", 105, 5], ["platforms", 106, 5], ["teams", 107, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 20, 3], ["postPatch", 27, 3], ["cargoHash", 35, 3], ["buildFeatures", 37, 3], ["auditable", 45, 3], ["separateDebugInfo", 47, 3], ["__structuredAttrs", 48, 3], ["env", 50, 3], ["nativeBuildInputs", 55, 3], ["buildInputs", 60, 3], ["dontUseJustBuild", 67, 3], ["dontUseJustCheck", 68, 3], ["justFlags", 70, 3], ["preFixup", 79, 3], ["passthru", 83, 3], ["meta", 101, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, rustPlatform: false, fetchFromGitHub: false, just: false, killall: false, libcosmicAppHook: false, libinput: false, openssl: false, udev: false, nixosTests: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["VERGEN_GIT_SHA", 51, 5], ["DISABLE_IF_EXISTS", 52, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["cosmic", 86, 9], ["cosmic-autologin", 87, 9], ["cosmic-noxwayland", 88, 9], ["cosmic-autologin-noxwayland", 89, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["extraArgs", 94, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["tests", 84, 5], ["updateScript", 93, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 102, 5], ["homepage", 103, 5], ["license", 104, 5], ["mainProgram", 105, 5], ["platforms", 106, 5], ["teams", 107, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 20, 3], ["postPatch", 27, 3], ["cargoHash", 35, 3], ["buildFeatures", 37, 3], ["auditable", 45, 3], ["separateDebugInfo", 47, 3], ["__structuredAttrs", 48, 3], ["env", 50, 3], ["nativeBuildInputs", 55, 3], ["buildInputs", 60, 3], ["dontUseJustBuild", 67, 3], ["dontUseJustCheck", 68, 3], ["justFlags", 70, 3], ["preFixup", 79, 3], ["passthru", 83, 3], ["meta", 101, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "cosmic-initial-setup",
       version: "1.9.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "pop-os",
           repo: "cosmic-initial-setup",
           tag: nix.thunk(() => nix.str`epoch-${nix.sel(finalAttrs, "version")}`),
@@ -43,7 +37,7 @@ export default nix.lambda((args) => (() => {
       separateDebugInfo: true,
       __structuredAttrs: true,
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         VERGEN_GIT_SHA: nix.thunk(() => nix.sel(finalAttrs, "src", "tag")),
         DISABLE_IF_EXISTS: "/iso/nix-store.squashfs",
       })),
@@ -62,21 +56,21 @@ export default nix.lambda((args) => (() => {
       preFixup: nix.thunk(() => nix.str`libcosmicAppWrapperArgs+=(--prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [killall]))})
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           cosmic: nix.thunk(() => nix.attr(nixosTests, "cosmic")),
           "cosmic-autologin": nix.thunk(() => nix.attr(nixosTests, "cosmic-autologin")),
           "cosmic-noxwayland": nix.thunk(() => nix.attr(nixosTests, "cosmic-noxwayland")),
           "cosmic-autologin-noxwayland": nix.thunk(() => nix.attr(nixosTests, "cosmic-autologin-noxwayland")),
         })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             extraArgs: nix.thunk(() => ["--version-regex", "epoch-(.*)"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "COSMIC Initial Setup",
         homepage: "https://github.com/pop-os/cosmic-initial-setup",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

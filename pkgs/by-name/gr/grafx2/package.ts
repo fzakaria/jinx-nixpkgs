@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 28, 5], ["url", 29, 5], ["hash", 30, 5]], [["homepage", 70, 5], ["description", 71, 5], ["longDescription", 72, 5], ["license", 82, 5], ["mainProgram", 83, 5], ["maintainers", 84, 5], ["platforms", 85, 5]], [["pname", 19, 3], ["version", 20, 3], ["outputs", 22, 3], ["src", 27, 3], ["postPatch", 33, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 44, 3], ["strictDeps", 56, 3], ["__structuredAttrs", 57, 3], ["makeFlags", 59, 3], ["installFlags", 60, 3], ["postInstall", 65, 3], ["meta", 69, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, SDL: false, SDL_image: false, SDL_ttf: false, installShellFiles: false, fontconfig: false, libpng: false, libtiff: false, libx11: false, lua5: false, "pkg-config": false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 28, 5], ["url", 29, 5], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 70, 5], ["description", 71, 5], ["longDescription", 72, 5], ["license", 82, 5], ["mainProgram", 83, 5], ["maintainers", 84, 5], ["platforms", 85, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["outputs", 22, 3], ["src", 27, 3], ["postPatch", 33, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 44, 3], ["strictDeps", 56, 3], ["__structuredAttrs", 57, 3], ["makeFlags", 59, 3], ["installFlags", 60, 3], ["postInstall", 65, 3], ["meta", 69, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,12 +22,12 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "grafx2",
       version: "2.8.3091",
       outputs: nix.thunk(() => ["out", "man"]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           name: nix.thunk(() => nix.str`grafx2-${nix.sel(finalAttrs, "version")}.tar.gz`),
           url: "https://pulkomandy.tk/projects/GrafX2/downloads/65",
           hash: "sha256-KdY7GUhQp/Q7t/ktLPGxI66ZHy2gDAffn2yB5pmcJCM=",
@@ -43,7 +41,7 @@ export default nix.lambda((args) => (() => {
       installFlags: nix.thunk(() => ["--directory=src", "PREFIX=$(out)"]),
       postInstall: "installManPage misc/unix/grafx2.1\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "http://grafx2.eu/",
         description: "Ultimate 256-color painting program",
         longDescription: "GrafX2 is a bitmap paint program inspired by the Amiga programs ​Deluxe\nPaint and Brilliance. Specialized in 256-color drawing, it includes a very\nlarge number of tools and effects that make it particularly suitable for\npixel art, game graphics, and generally any detailed graphics painted with\na mouse.\n\nThe program is mostly developed on Haiku, Linux and Windows, but is also\nportable on many other platforms.\n",

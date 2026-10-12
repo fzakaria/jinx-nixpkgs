@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 24, 7], ["repo", 25, 7], ["tag", 26, 7], ["hash", 27, 7]], [["pname", 154, 9], ["version", 155, 30], ["src", 156, 9], ["npmDepsHash", 158, 9], ["npmFlags", 159, 9], ["makeCacheWritable", 160, 9], ["installPhase", 162, 9]], [["romm", 173, 30]], [["extraArgs", 177, 9]], [["pythonEnv", 95, 7], ["frontend", 153, 7], ["tests", 172, 7], ["updateScript", 176, 7]], [["description", 185, 7], ["homepage", 186, 7], ["changelog", 187, 7], ["license", 188, 7], ["maintainers", 189, 7], ["mainProgram", 193, 7], ["platforms", 194, 7]], [["pname", 20, 5], ["version", 21, 5], ["src", 23, 5], ["__structuredAttrs", 30, 5], ["strictDeps", 31, 5], ["nativeBuildInputs", 33, 5], ["postPatch", 36, 5], ["dontConfigure", 41, 5], ["dontBuild", 42, 5], ["installPhase", 44, 5], ["passthru", 91, 5], ["meta", 184, 5]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchFromGitHub: false, buildNpmPackage: false, makeWrapper: false, "nix-update-script": false, nixosTests: false, p7zip: false, python3: false, runtimeShell: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 24, 7], ["repo", 25, 7], ["tag", 26, 7], ["hash", 27, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 154, 9], ["version", 155, 30], ["src", 156, 9], ["npmDepsHash", 158, 9], ["npmFlags", 159, 9], ["makeCacheWritable", 160, 9], ["installPhase", 162, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["romm", 173, 30]]);
-const pos$4 = nix.positions(here + "/package.nix", [["extraArgs", 177, 9]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pythonEnv", 95, 7], ["frontend", 153, 7], ["tests", 172, 7], ["updateScript", 176, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 185, 7], ["homepage", 186, 7], ["changelog", 187, 7], ["license", 188, 7], ["maintainers", 189, 7], ["mainProgram", 193, 7], ["platforms", 194, 7]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 20, 5], ["version", 21, 5], ["src", 23, 5], ["__structuredAttrs", 30, 5], ["strictDeps", 31, 5], ["nativeBuildInputs", 33, 5], ["postPatch", 36, 5], ["dontConfigure", 41, 5], ["dontBuild", 42, 5], ["installPhase", 44, 5], ["passthru", 91, 5], ["meta", 184, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,11 +22,11 @@ export default nix.lambda((args) => (() => {
       const frontend = nix.thunk(() => nix.attr(from, "frontend"));
       const pythonEnv = nix.thunk(() => nix.attr(from, "pythonEnv"));
       return {
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         pname: "romm",
         version: "5.2.0",
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             owner: "rommapp",
             repo: "romm",
             tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -92,7 +86,7 @@ chmod +x $out/bin/romm-watcher
 runHook postInstall
 `),
         passthru: nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           pythonEnv: nix.thunk(() => nix.app(nix.sel(python3, "withPackages"), (ps) => (() => {
               const w = nix.withScope(ps, null);
               return [
@@ -152,7 +146,7 @@ runHook postInstall
               ];
             })())),
           frontend: nix.thunk(() => nix.app(buildNpmPackage, nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               pname: "romm-frontend",
               version: nix.thunk(() => nix.attr(finalAttrs, "version")),
               src: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src")}/frontend`),
@@ -161,11 +155,11 @@ runHook postInstall
               makeCacheWritable: true,
               installPhase: "runHook preInstall\ncp -r dist $out\n# merge static assets into the web root, as upstream's image does\nchmod u+w $out/assets\ncp -r assets/. $out/assets/\nrunHook postInstall\n",
             })))),
-          tests: nix.thunk(() => ({ [nix.POS]: pos$3, romm: nix.thunk(() => nix.attr(nixosTests, "romm")) })),
-          updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$4, extraArgs: nix.thunk(() => ["--subpackage", "frontend"]) })))),
+          tests: nix.thunk(() => ({ [nix.POS]: $pos[2], romm: nix.thunk(() => nix.attr(nixosTests, "romm")) })),
+          updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: $pos[3], extraArgs: nix.thunk(() => ["--subpackage", "frontend"]) })))),
         })),
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           description: "Self-hosted ROM manager and player",
           homepage: "https://romm.app/",
           changelog: nix.thunk(() => nix.str`https://github.com/rommapp/romm/releases/tag/${nix.sel(finalAttrs, "version")}`),

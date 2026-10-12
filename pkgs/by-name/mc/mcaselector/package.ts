@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["enableJavaFX", 15, 5]], [["url", 19, 5], ["hash", 20, 5]], [["url", 28, 5], ["hash", 29, 5]], [["name", 44, 7], ["desktopName", 45, 7], ["comment", 46, 7], ["exec", 47, 7], ["icon", 48, 7], ["categories", 49, 7], ["startupWMClass", 53, 7]], [["homepage", 76, 5], ["description", 77, 5], ["mainProgram", 78, 5], ["sourceProvenance", 79, 5], ["license", 80, 5], ["maintainers", 81, 5], ["platforms", 82, 5]], [["pname", 24, 3], ["version", 25, 11], ["src", 27, 3], ["dontUnpack", 32, 3], ["dontBuild", 33, 3], ["nativeBuildInputs", 35, 3], ["desktopItems", 42, 3], ["dontWrapGApps", 57, 3], ["installPhase", 59, 3], ["preFixup", 69, 3], ["meta", 75, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchurl: false, makeWrapper: false, makeDesktopItem: false, copyDesktopItems: false, wrapGAppsHook3: false, jre: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["enableJavaFX", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 19, 5], ["hash", 20, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 28, 5], ["hash", 29, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["name", 44, 7], ["desktopName", 45, 7], ["comment", 46, 7], ["exec", 47, 7], ["icon", 48, 7], ["categories", 49, 7], ["startupWMClass", 53, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["homepage", 76, 5], ["description", 77, 5], ["mainProgram", 78, 5], ["sourceProvenance", 79, 5], ["license", 80, 5], ["maintainers", 81, 5], ["platforms", 82, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 24, 3], ["version", 25, 11], ["src", 27, 3], ["dontUnpack", 32, 3], ["dontBuild", 33, 3], ["nativeBuildInputs", 35, 3], ["desktopItems", 42, 3], ["dontWrapGApps", 57, 3], ["installPhase", 59, 3], ["preFixup", 69, 3], ["meta", 75, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,18 +16,18 @@ export default nix.lambda((args) => (() => {
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   const jre = nix.arg($, "jre");
   const version = "2.9";
-  const jre$ = nix.thunk(() => nix.app(nix.sel(jre, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, enableJavaFX: true }))));
+  const jre$ = nix.thunk(() => nix.app(nix.sel(jre, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], enableJavaFX: true }))));
   const icon = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       url: nix.thunk(() => nix.str`https://github.com/Querz/mcaselector/raw/${version}/installer/linux/icon.png`),
       hash: "sha256-nUHTxFHKhp//AL3/B43iXPmp/gcCQPgrEqGAV23U/Vs=",
     }))));
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "mcaselector",
       version: version,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           url: nix.thunk(() => nix.str`https://github.com/Querz/mcaselector/releases/download/${nix.sel(finalAttrs, "version")}/mcaselector-${nix.sel(finalAttrs, "version")}.jar`),
           hash: "sha256-jjXqpqURnOcRtTUwwiqqxTEzLo/f/aI1fRbrb1Iycmc=",
         })))),
@@ -41,7 +36,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [jre$, makeWrapper, wrapGAppsHook3, copyDesktopItems]),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             name: "mcaselector",
             desktopName: "MCA Selector",
             comment: "Select, edit, and export chunks of your Minecraft world",
@@ -65,7 +60,7 @@ runHook postInstall
   \${gappsWrapperArgs[@]}
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "https://github.com/Querz/mcaselector",
         description: "Tool to select chunks from Minecraft worlds for deletion or export",
         mainProgram: "mcaselector",

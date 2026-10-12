@@ -2,11 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 23, 5], ["sha256", 24, 5]], [["url", 50, 7], ["sha256", 51, 7]], [["description", 69, 5], ["mainProgram", 70, 5], ["longDescription", 72, 5], ["homepage", 83, 5], ["license", 84, 5], ["maintainers", 86, 5], ["platforms", 90, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 29, 3], ["propagatedBuildInputs", 37, 3], ["configureFlags", 39, 3], ["patches", 47, 3], ["installTargets", 55, 3], ["doCheck", 60, 3], ["checkPhase", 61, 3], ["enableParallelBuilding", 66, 3], ["meta", 68, 3]]]);
 const formals$1 = { args: { lib: false, fetchurl: false, fetchpatch: false, stdenv: false, gnutls: false, glib: false, "pkg-config": false, check: false, libotr: false, python3: false, enableLibPurple: true, pidgin: true, enablePam: true, pam: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 23, 5], ["sha256", 24, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["url", 50, 7], ["sha256", 51, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 69, 5], ["mainProgram", 70, 5], ["longDescription", 72, 5], ["homepage", 83, 5], ["license", 84, 5], ["maintainers", 86, 5], ["platforms", 90, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 29, 3], ["propagatedBuildInputs", 37, 3], ["configureFlags", 39, 3], ["patches", 47, 3], ["installTargets", 55, 3], ["doCheck", 60, 3], ["checkPhase", 61, 3], ["enableParallelBuilding", 66, 3], ["meta", 68, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const pname = "bitlbee";
       const version = "3.6";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://bitlbee/src/bitlbee-${version}.tar.gz`),
           sha256: "0zhhcbcr59sx9h4maf8zamzv2waya7sbsl7w74gbyilvy93dw5cz",
         }))));
@@ -38,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const configureFlags = nix.thunk(() => nix.concat(["--otr=1", "--ssl=gnutls", "--pidfile=/var/lib/bitlbee/bitlbee.pid"], nix.concat(nix.app(nix.sel(lib, "optional"), enableLibPurple, "--purple=1"), nix.app(nix.sel(lib, "optional"), enablePam, "--pam=1"))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/bitlbee/bitlbee/commit/6ff651b3ec93e5fd74f80766d5e9714d963137bc.diff",
             sha256: "144dpm4kq7c268fpww1q3n88ayg068n73fbabr5arh1zryw48qfv",
           })))),
@@ -48,7 +45,7 @@ export default nix.lambda((args) => (() => {
       const checkPhase = "# check flags set VERBOSE=y which breaks the build due overriding a command\nmake check\n";
       const enableParallelBuilding = true;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "IRC instant messaging gateway",
         mainProgram: "bitlbee",
         longDescription: "BitlBee brings IM (instant messaging) to IRC clients.  It's a\ngreat solution for people who have an IRC client running all the\ntime and don't want to run an additional MSN/AIM/whatever\nclient.\n\nBitlBee currently supports the following IM networks/protocols:\nXMPP/Jabber (including Google Talk), MSN Messenger, Yahoo!\nMessenger, AIM and ICQ.\n",
@@ -64,7 +61,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.concat(nix.sel(lib, "platforms", "gnu"), nix.sel(lib, "platforms", "linux"))),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

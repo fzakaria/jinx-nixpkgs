@@ -2,20 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 18, 7], ["sha256", 19, 15]], [["pname", 27, 15], ["version", 27, 21], ["sha256", 28, 7]], [["description", 36, 7], ["license", 37, 15], ["maintainers", 37, 23]], [["pname", 23, 5], ["version", 24, 5], ["src", 26, 5], ["buildInputs", 31, 5], ["enableParallelBuilding", 33, 5], ["meta", 35, 5]], [["pname", 46, 15], ["version", 46, 21], ["sha256", 47, 7]], [["description", 59, 7], ["license", 60, 15], ["maintainers", 60, 23]], [["pname", 42, 5], ["version", 43, 5], ["src", 45, 5], ["patches", 50, 5], ["buildInputs", 54, 5], ["enableParallelBuilding", 56, 5], ["meta", 58, 5]], [["url", 69, 5], ["sha256", 70, 5]], [["url", 78, 11], ["name", 79, 11], ["sha256", 80, 19]], [["NIX_CFLAGS_COMPILE", 98, 7]], [["description", 103, 5], ["mainProgram", 104, 5], ["license", 105, 13], ["maintainers", 105, 21]], [["pname", 65, 3], ["version", 66, 3], ["src", 68, 3], ["patches", 73, 3], ["buildInputs", 90, 3], ["env", 98, 3], ["enableParallelBuilding", 100, 3], ["meta", 102, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, "libusb-compat-0_1": false }, ellipsis: false };
 const formals$2 = { args: { pname: false, version: false, sha256: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 18, 7], ["sha256", 19, 15]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 27, 15], ["version", 27, 21], ["sha256", 28, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 36, 7], ["license", 37, 15], ["maintainers", 37, 23]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 23, 5], ["version", 24, 5], ["src", 26, 5], ["buildInputs", 31, 5], ["enableParallelBuilding", 33, 5], ["meta", 35, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 46, 15], ["version", 46, 21], ["sha256", 47, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 59, 7], ["license", 60, 15], ["maintainers", 60, 23]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 42, 5], ["version", 43, 5], ["src", 45, 5], ["patches", 50, 5], ["buildInputs", 54, 5], ["enableParallelBuilding", 56, 5], ["meta", 58, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["url", 69, 5], ["sha256", 70, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["url", 78, 11], ["name", 79, 11], ["sha256", 80, 19]]);
-const pos$10 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 98, 7]]);
-const pos$11 = nix.positions(here + "/package.nix", [["description", 103, 5], ["mainProgram", 104, 5], ["license", 105, 13], ["maintainers", 105, 21]]);
-const pos$12 = nix.positions(here + "/package.nix", [["pname", 65, 3], ["version", 66, 3], ["src", 68, 3], ["patches", 73, 3], ["buildInputs", 90, 3], ["env", 98, 3], ["enableParallelBuilding", 100, 3], ["meta", 102, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,7 +23,7 @@ export default nix.lambda((args) => (() => {
     const version = nix.arg($_1, "version");
     const sha256 = nix.arg($_1, "sha256");
     return nix.app(fetchurl, nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         url: nix.thunk(() => nix.str`mirror://sourceforge/g15tools/${pname}/${version}/${pname}-${version}.tar.bz2`),
         sha256: sha256,
       })));
@@ -43,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const pname = "libg15";
       const version = "1.2.7";
       const src = nix.thunk(() => nix.app(g15src, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: pname,
           version: version,
           sha256: "1mkrf622n0cmz57lj8w9q82a9dcr1lmyyxbnrghrxzb6gvifnbqk",
@@ -51,13 +40,13 @@ export default nix.lambda((args) => (() => {
       const buildInputs = nix.thunk(() => [libusb_compat_0_1]);
       const enableParallelBuilding = true;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Provides low-level access to Logitech G11/G15 keyboards and Z10 speakers",
         license: license,
         maintainers: maintainers,
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,
@@ -70,7 +59,7 @@ export default nix.lambda((args) => (() => {
       const pname = "libg15render";
       const version = "1.2";
       const src = nix.thunk(() => nix.app(g15src, nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           pname: pname,
           version: version,
           sha256: "03yjb78j1fnr2fwklxy54sdljwi0imvp29m8kmwl9v0pdapka8yj",
@@ -79,13 +68,13 @@ export default nix.lambda((args) => (() => {
       const buildInputs = nix.thunk(() => [libg15]);
       const enableParallelBuilding = true;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Small graphics library optimised for drawing on an LCD",
         license: license,
         maintainers: maintainers,
       }));
       return {
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         pname,
         version,
         src,
@@ -99,13 +88,13 @@ export default nix.lambda((args) => (() => {
       const pname = "g15daemon";
       const version = "1.9.5.3";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           url: nix.thunk(() => nix.str`mirror://sourceforge/${pname}/G15Daemon%201.9x/${version}/${pname}-${version}.tar.bz2`),
           sha256: "1613gsp5dgilwbshqxxhiyw73ksngnam7n1iw6yxdjkp9fyd2a3d",
         }))));
       const patches = nix.thunk(() => (() => {
         const patch = (fname) => (sha256) => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$9,
+            [nix.POS]: $pos[8],
             url: nix.thunk(() => nix.str`https://raw.githubusercontent.com/archlinux/svntogit-community/c0b0b6d4d6d7b79eca68123b20e0c9fb82e1c6e1/g15daemon/trunk/${pname}-${version}-${fname}.patch`),
             name: nix.thunk(() => nix.str`${fname}.patch`),
             sha256: sha256,
@@ -118,17 +107,17 @@ export default nix.lambda((args) => (() => {
         ];
       })());
       const buildInputs = nix.thunk(() => [libg15, libg15render]);
-      const env = nix.thunk(() => ({ [nix.POS]: pos$10, NIX_CFLAGS_COMPILE: "-fcommon" }));
+      const env = nix.thunk(() => ({ [nix.POS]: $pos[9], NIX_CFLAGS_COMPILE: "-fcommon" }));
       const enableParallelBuilding = true;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$11,
+        [nix.POS]: $pos[10],
         description: "Daemon that makes it possible to use the Logitech keyboard G-Buttons and draw on various Logitech LCDs",
         mainProgram: "g15daemon",
         license: license,
         maintainers: maintainers,
       }));
       return {
-        [nix.POS]: pos$12,
+        [nix.POS]: $pos[11],
         pname,
         version,
         src,

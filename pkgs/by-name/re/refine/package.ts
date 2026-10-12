@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 28, 5], ["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]], [["updateScript", 74, 12]], [["description", 77, 5], ["homepage", 78, 5], ["mainProgram", 79, 5], ["platforms", 80, 5], ["license", 81, 5], ["maintainers", 82, 5]], [["pname", 23, 3], ["version", 24, 3], ["pyproject", 25, 3], ["src", 27, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 48, 3], ["dependencies", 53, 3], ["mesonFlags", 61, 3], ["dontWrapGApps", 63, 3], ["makeWrapperArgs", 65, 3], ["postInstallCheck", 70, 3], ["passthru", 74, 3], ["meta", 76, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitLab: false, "nix-update-script": false, "blueprint-compiler": false, "desktop-file-utils": false, libadwaita: false, meson: false, ninja: false, "pkg-config": false, wrapGAppsHook4: false, python3: false, libxml2: false, python3Packages: false, libportal: false, "libportal-gtk4": false, appstream: false, gtk4: false, glib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 28, 5], ["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 74, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 77, 5], ["homepage", 78, 5], ["mainProgram", 79, 5], ["platforms", 80, 5], ["license", 81, 5], ["maintainers", 82, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 23, 3], ["version", 24, 3], ["pyproject", 25, 3], ["src", 27, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 48, 3], ["dependencies", 53, 3], ["mesonFlags", 61, 3], ["dontWrapGApps", 63, 3], ["makeWrapperArgs", 65, 3], ["postInstallCheck", 70, 3], ["passthru", 74, 3], ["meta", 76, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,12 +26,12 @@ export default nix.lambda((args) => (() => {
   const gtk4 = nix.arg($, "gtk4");
   const glib = nix.arg($, "glib");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "refine",
       version: "0.7.0",
       pyproject: false,
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "gitlab.gnome.org",
           owner: "TheEvilSkeleton",
           repo: "Refine",
@@ -63,11 +60,11 @@ export default nix.lambda((args) => (() => {
       makeWrapperArgs: nix.thunk(() => ["${gappsWrapperArgs[@]}"]),
       postInstallCheck: "mesonCheckPhase\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Tweak various aspects of GNOME",
         homepage: "https://gitlab.gnome.org/TheEvilSkeleton/Refine",
         mainProgram: "refine",

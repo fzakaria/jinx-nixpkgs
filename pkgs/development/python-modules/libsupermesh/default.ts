@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 17, 5], ["version", 18, 5], ["src", 19, 5], ["meta", 20, 5], ["pyproject", 22, 3], ["build-system", 24, 3], ["nativeBuildInputs", 28, 3], ["dontUseCmakeConfigure", 35, 3], ["buildInputs", 37, 3], ["dependencies", 42, 3], ["doCheck", 47, 3]]]);
 const formals$1 = { args: { lib: false, pkgs: false, buildPythonPackage: false, fetchFromGitHub: false, "scikit-build-core": false, gfortran: false, cmake: false, ninja: false, mpi: false, libspatialindex: false, rtree: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 17, 5], ["version", 18, 5], ["src", 19, 5], ["meta", 20, 5], ["pyproject", 22, 3], ["build-system", 24, 3], ["nativeBuildInputs", 28, 3], ["dontUseCmakeConfigure", 35, 3], ["buildInputs", 37, 3], ["dependencies", 42, 3], ["doCheck", 47, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
   return nix.app(buildPythonPackage, nix.thunk(() => (() => {
       const from = nix.thunk(() => nix.sel(pkgs, "libsupermesh"));
       return {
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       pname: nix.thunk(() => nix.attr(from, "pname")),
       version: nix.thunk(() => nix.attr(from, "version")),
       src: nix.thunk(() => nix.attr(from, "src")),

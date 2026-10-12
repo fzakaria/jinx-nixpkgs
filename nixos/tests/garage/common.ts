@@ -2,19 +2,17 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/common.nix", [[["testScriptSetup", 3, 16]], [["args", 3, 11]], [["_module", 3, 3]]]);
 const formals$1 = { args: {  }, ellipsis: true };
-const pos$1 = nix.positions(here + "/common.nix", [["testScriptSetup", 3, 16]]);
-const pos$2 = nix.positions(here + "/common.nix", [["args", 3, 11]]);
-const pos$3 = nix.positions(here + "/common.nix", [["_module", 3, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   return {
-    [nix.POS]: pos$3,
+    [nix.POS]: $pos[2],
     _module: nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       args: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         testScriptSetup: "from typing import List\nfrom dataclasses import dataclass\nimport re\n\nstart_all()\n\ncur_version_regex = re.compile(r'Current cluster layout version: (?P<ver>\\d*)')\n\n@dataclass\nclass S3Key:\n   key_name: str\n   key_id: str\n   secret_key: str\n\n@dataclass\nclass GarageNode:\n   node_id: str\n   host: str\n\ndef get_node_fqn(machine: BaseMachine) -> GarageNode:\n  node_id, host = machine.succeed(\"garage node id\").split('@')\n  return GarageNode(node_id=node_id, host=host)\n\ndef get_node_id(machine: BaseMachine) -> str:\n  return get_node_fqn(machine).node_id\n\ndef get_layout_version(machine: BaseMachine) -> int:\n  version_data = machine.succeed(\"garage layout show\")\n  m = cur_version_regex.search(version_data)\n  if m and m.group('ver') is not None:\n    return int(m.group('ver')) + 1\n  else:\n    raise ValueError('Cannot find current layout version')\n\ndef apply_garage_layout(machine: BaseMachine, layouts: List[str]):\n   for layout in layouts:\n      machine.succeed(f\"garage layout assign {layout}\")\n   version = get_layout_version(machine)\n   machine.succeed(f\"garage layout apply --version {version}\")\n\ndef create_api_key(machine: BaseMachine, key_name: str) -> S3Key:\n   output = machine.succeed(f\"garage key create {key_name}\")\n   return parse_api_key_data(output)\n\ndef get_api_key(machine: BaseMachine, key_pattern: str) -> S3Key:\n   output = machine.succeed(f\"garage key info {key_pattern}\")\n   return parse_api_key_data(output)\n\ndef parse_api_key_data(text) -> S3Key:\n  key_creation_regex = re.compile(r'Key name: \\s*(?P<key_name>.*)|' r'Key ID: \\s*(?P<key_id>.*)|' r'Secret key: \\s*(?P<secret_key>.*)', re.IGNORECASE)\n  fields = {}\n  for match in key_creation_regex.finditer(text):\n    for key, value in match.groupdict().items():\n      if value:\n        fields[key] = value.strip()\n  try:\n    return S3Key(**fields)\n  except TypeError as e:\n    raise ValueError(f\"Cannot parse API key data. Missing required field(s): {e}\")\n\ndef test_bucket_writes(node):\n  node.succeed(\"garage bucket create test-bucket\")\n  s3_key = create_api_key(node, \"test-api-key\")\n  node.succeed(\"garage bucket allow --read --write test-bucket --key test-api-key\")\n  other_s3_key = get_api_key(node, 'test-api-key')\n  assert other_s3_key.secret_key == other_s3_key.secret_key\n  node.succeed(\n    f\"mc alias set test-garage http://[::1]:3900 {s3_key.key_id} {s3_key.secret_key} --api S3v4\"\n  )\n  node.succeed(\"echo test | mc pipe test-garage/test-bucket/test.txt\")\n  assert node.succeed(\"mc cat test-garage/test-bucket/test.txt\").strip() == \"test\"\n\ndef test_bucket_over_http(node, bucket='test-bucket', url=None):\n  if url is None:\n     url = f\"{bucket}.web.garage\"\n\n  node.succeed(f'garage bucket website --allow {bucket}')\n  node.succeed(f'echo hello world | mc pipe test-garage/{bucket}/index.html')\n  assert (node.succeed(f\"curl -H 'Host: {url}' http://localhost:3902\")).strip() == 'hello world'\n",
       })),
     })),

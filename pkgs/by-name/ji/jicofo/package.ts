@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 14, 5], ["hash", 15, 5]], [["single-node-smoke-test", 36, 5]], [["tests", 35, 12], ["updateScript", 39, 12]], [["description", 42, 5], ["mainProgram", 43, 5], ["longDescription", 44, 5], ["homepage", 47, 5], ["license", 48, 5], ["teams", 49, 5], ["platforms", 50, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 13, 3], ["dontBuild", 18, 3], ["nativeBuildInputs", 20, 3], ["installPhase", 22, 3], ["passthru", 35, 3], ["meta", 41, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, dpkg: false, jre_headless: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 14, 5], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["single-node-smoke-test", 36, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 35, 12], ["updateScript", 39, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 42, 5], ["mainProgram", 43, 5], ["longDescription", 44, 5], ["homepage", 47, 5], ["license", 48, 5], ["teams", 49, 5], ["platforms", 50, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 13, 3], ["dontBuild", 18, 3], ["nativeBuildInputs", 20, 3], ["installPhase", 22, 3], ["passthru", 35, 3], ["meta", 41, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const jre_headless = nix.arg($, "jre_headless");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "jicofo",
       version: "1.0-1189",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://download.jitsi.org/stable/jicofo_${nix.sel(finalAttrs, "version")}-1_all.deb`),
           hash: "sha256-c6YQT/okrB/PZmD7jHPte+qWpevfKqnXm4oAtTVjm7s=",
         })))),
@@ -40,15 +36,15 @@ ln -s $out/share/jicofo/jicofo.sh $out/bin/jicofo
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           "single-node-smoke-test": nix.thunk(() => nix.sel(nixosTests, "jitsi-meet")),
         })),
         updateScript: nix.path(here, "./update.sh"),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Server side focus component used in Jitsi Meet conferences",
         mainProgram: "jicofo",
         longDescription: "JItsi COnference FOcus is a server side focus component used in Jitsi Meet conferences.\n",

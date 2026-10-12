@@ -2,30 +2,26 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/go-sendxmpp-listen.nix", [[["ExecStart", 10, 7], ["Environment", 13, 7], ["DynamicUser", 16, 7], ["Restart", 17, 7], ["RestartSec", 18, 7], ["StateDirectory", 19, 7]], [["after", 5, 5], ["requires", 6, 5], ["wantedBy", 7, 5], ["serviceConfig", 9, 5]], [["go-sendxmpp-listen", 4, 20]], [["services", 4, 11]], [["systemd", 4, 3]]]);
 const formals$1 = { args: { lib: false, pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/go-sendxmpp-listen.nix", [["ExecStart", 10, 7], ["Environment", 13, 7], ["DynamicUser", 16, 7], ["Restart", 17, 7], ["RestartSec", 18, 7], ["StateDirectory", 19, 7]]);
-const pos$2 = nix.positions(here + "/go-sendxmpp-listen.nix", [["after", 5, 5], ["requires", 6, 5], ["wantedBy", 7, 5], ["serviceConfig", 9, 5]]);
-const pos$3 = nix.positions(here + "/go-sendxmpp-listen.nix", [["go-sendxmpp-listen", 4, 20]]);
-const pos$4 = nix.positions(here + "/go-sendxmpp-listen.nix", [["services", 4, 11]]);
-const pos$5 = nix.positions(here + "/go-sendxmpp-listen.nix", [["systemd", 4, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   return {
-    [nix.POS]: pos$5,
+    [nix.POS]: $pos[4],
     systemd: nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       services: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         "go-sendxmpp-listen": nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           after: nix.thunk(() => ["network-online.target"]),
           requires: nix.thunk(() => ["network-online.target"]),
           wantedBy: nix.thunk(() => ["multi-user.target"]),
           serviceConfig: nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             ExecStart: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgs, "go-sendxmpp")))} --username azurediamond@example.com --password hunter2 --listen
 `),
             Environment: nix.thunk(() => ["HOME=/var/lib/go-sendxmpp/"]),

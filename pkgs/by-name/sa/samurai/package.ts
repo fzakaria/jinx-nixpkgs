@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]], [["name", 28, 7], ["url", 29, 7], ["sha256", 30, 7]], [["name", 35, 7], ["url", 36, 7], ["sha256", 37, 7]], [["description", 42, 5], ["longDescription", 43, 5], ["homepage", 56, 5], ["license", 57, 5], ["maintainers", 61, 5], ["mainProgram", 62, 5], ["platforms", 63, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["makeFlags", 19, 3], ["patches", 24, 3], ["meta", 41, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 28, 7], ["url", 29, 7], ["sha256", 30, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 35, 7], ["url", 36, 7], ["sha256", 37, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 42, 5], ["longDescription", 43, 5], ["homepage", 56, 5], ["license", 57, 5], ["maintainers", 61, 5], ["mainProgram", 62, 5], ["platforms", 63, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["makeFlags", 19, 3], ["patches", 24, 3], ["meta", 41, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const fetchpatch = nix.arg($, "fetchpatch");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "samurai",
       version: "1.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "michaelforney",
           repo: "samurai",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -32,20 +28,20 @@ export default nix.lambda((args) => (() => {
       ]),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "CVE-2021-30218.patch",
             url: "https://github.com/michaelforney/samurai/commit/e84b6d99c85043fa1ba54851ee500540ec206918.patch",
             sha256: "sha256-hyndwj6st4rwOJ35Iu0qL12dR5E6CBvsulvR27PYKMw=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "CVE-2021-30219.patch",
             url: "https://github.com/michaelforney/samurai/commit/d2af3bc375e2a77139c3a28d6128c60cd8d08655.patch",
             sha256: "sha256-rcdwKjHeq5Oaga9wezdHSg/7ljkynfbnkBc2ciMW5so=",
           })))),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Ninja-compatible build tool written in C",
         longDescription: "samurai is a ninja-compatible build tool with a focus on simplicity,\nspeed, and portability.\n\nIt is written in C99, requires various POSIX.1-2008 interfaces, and\nnowadays implements ninja build language through version 1.9.0 except for\nMicrosoft (R) Visual C++ (TM) dependency handling (deps = msvc).\n\nIt is feature-complete (but not bug-compatible) and supports most of the\nsame options as ninja, using the same format for .ninja_log and\n.ninja_deps as the original ninja tool, currently version 5 and 4\nrespectively.\n",
         homepage: "https://github.com/michaelforney/samurai",

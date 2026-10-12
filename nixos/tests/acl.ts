@@ -2,8 +2,8 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/acl.nix", [[["postPatch", 11, 5], ["nativeCheckInputs", 17, 5], ["preCheck", 23, 5], ["doCheck", 27, 5], ["outputs", 28, 5], ["installPhase", 29, 5]]]);
 const formals$1 = { args: { vmTools: false, perl: false, coreutils: false, acl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/acl.nix", [["postPatch", 11, 5], ["nativeCheckInputs", 17, 5], ["preCheck", 23, 5], ["doCheck", 27, 5], ["outputs", 28, 5], ["installPhase", 29, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const coreutils = nix.arg($, "coreutils");
   const acl = nix.arg($, "acl");
   return nix.app(nix.sel(vmTools, "runInLinuxVM"), nix.thunk(() => nix.app(nix.sel(acl, "overrideAttrs"), (old) => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         postPatch: nix.thunk(() => nix.add(nix.selOr(old, () => "", "postPatch"), "# The runwrapper uses LD_PRELOAD to override available user/groups\nsubstituteInPlace Makefile.in --replace-fail \\\n  'TEST_LOG_COMPILER = $(srcdir)/test/runwrapper' \\\n  'TEST_LOG_COMPILER = $(srcdir)/test/run'\n")),
         nativeCheckInputs: nix.thunk(() => nix.concat(nix.selOr(old, () => [], "nativeCheckInputs"), [perl, coreutils])),
         preCheck: "cp test/test.passwd /etc/passwd\ncp test/test.group /etc/group\n",

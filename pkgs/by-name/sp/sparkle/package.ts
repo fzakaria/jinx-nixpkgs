@@ -2,18 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 32, 7], ["repo", 33, 7], ["rev", 34, 7], ["hash", 35, 7]], [["mainProgram", 40, 10]], [["pname", 28, 5], ["version", 29, 5], ["src", 31, 5], ["vendorHash", 38, 5], ["meta", 40, 5]], [["owner", 58, 5], ["repo", 59, 5], ["tag", 60, 5], ["hash", 61, 5]], [["pname", 66, 26], ["version", 66, 32], ["src", 66, 40], ["pnpm", 67, 13], ["fetcherVersion", 68, 5], ["hash", 69, 5]], [["ELECTRON_SKIP_BINARY_DOWNLOAD", 79, 7]], [["name", 142, 7], ["desktopName", 143, 7], ["exec", 144, 7], ["terminal", 145, 7], ["type", 146, 7], ["icon", 147, 7], ["startupWMClass", 148, 7], ["comment", 149, 7], ["categories", 150, 7], ["mimeTypes", 154, 7]], [["extraArgs", 162, 47]], [["updateScript", 162, 12]], [["description", 165, 5], ["homepage", 166, 5], ["license", 167, 5], ["mainProgram", 168, 5], ["maintainers", 169, 5], ["platforms", 170, 5]], [["pname", 51, 3], ["version", 52, 3], ["strictDeps", 54, 3], ["__structuredAttrs", 55, 3], ["src", 57, 3], ["npmDeps", 64, 3], ["pnpmDeps", 65, 3], ["nativeBuildInputs", 72, 3], ["npmConfigHook", 77, 3], ["env", 79, 3], ["postPatch", 82, 3], ["buildPhase", 87, 3], ["installPhase", 103, 3], ["desktopItems", 140, 3], ["passthru", 162, 3], ["meta", 164, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, buildGoModule: false, buildNpmPackage: false, fetchFromGitHub: false, pnpm_11: false, fetchPnpmDeps: false, pnpmConfigHook: false, makeWrapper: false, electron: false, "dbip-asn-lite": false, "dbip-country-lite": false, "v2ray-geoip": false, "v2ray-domain-list-community": false, "sub-store": false, "sub-store-frontend": false, mihomo: false, copyDesktopItems: false, makeDesktopItem: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 32, 7], ["repo", 33, 7], ["rev", 34, 7], ["hash", 35, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["mainProgram", 40, 10]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 28, 5], ["version", 29, 5], ["src", 31, 5], ["vendorHash", 38, 5], ["meta", 40, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["owner", 58, 5], ["repo", 59, 5], ["tag", 60, 5], ["hash", 61, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 66, 26], ["version", 66, 32], ["src", 66, 40], ["pnpm", 67, 13], ["fetcherVersion", 68, 5], ["hash", 69, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["ELECTRON_SKIP_BINARY_DOWNLOAD", 79, 7]]);
-const pos$7 = nix.positions(here + "/package.nix", [["name", 142, 7], ["desktopName", 143, 7], ["exec", 144, 7], ["terminal", 145, 7], ["type", 146, 7], ["icon", 147, 7], ["startupWMClass", 148, 7], ["comment", 149, 7], ["categories", 150, 7], ["mimeTypes", 154, 7]]);
-const pos$8 = nix.positions(here + "/package.nix", [["extraArgs", 162, 47]]);
-const pos$9 = nix.positions(here + "/package.nix", [["updateScript", 162, 12]]);
-const pos$10 = nix.positions(here + "/package.nix", [["description", 165, 5], ["homepage", 166, 5], ["license", 167, 5], ["mainProgram", 168, 5], ["maintainers", 169, 5], ["platforms", 170, 5]]);
-const pos$11 = nix.positions(here + "/package.nix", [["pname", 51, 3], ["version", 52, 3], ["strictDeps", 54, 3], ["__structuredAttrs", 55, 3], ["src", 57, 3], ["npmDeps", 64, 3], ["pnpmDeps", 65, 3], ["nativeBuildInputs", 72, 3], ["npmConfigHook", 77, 3], ["env", 79, 3], ["postPatch", 82, 3], ["buildPhase", 87, 3], ["installPhase", 103, 3], ["desktopItems", 140, 3], ["passthru", 162, 3], ["meta", 164, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -39,28 +29,28 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const pnpm = pnpm_11;
   const sparkle_service = nix.thunk(() => nix.app(buildGoModule, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "sparkle-service",
       version: "0-unstable-2026-08-02",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "xishang0128",
           repo: "sparkle-service",
           rev: "3cabb61aaf446444d71acbe06a3abdd768d2e80e",
           hash: "sha256-djXVcBDf5whSM6U0qBydFeX+XbHnmKTVGDet6aA3a1g=",
         })))),
       vendorHash: "sha256-GXAP6pCKyy41UyMfz1X9F8GeAbyYZi4suPXDryKINOU=",
-      meta: nix.thunk(() => ({ [nix.POS]: pos$2, mainProgram: "sparkle-service" })),
+      meta: nix.thunk(() => ({ [nix.POS]: $pos[1], mainProgram: "sparkle-service" })),
     }))));
   const resourcesDir = nix.thunk(() => (nix.asBool(nix.sel(stdenvNoCC, "hostPlatform", "isDarwin")) ? "$out/Applications/Sparkle.app/Contents/Resources" : "$out/share/sparkle/resources"));
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      [nix.POS]: pos$11,
+      [nix.POS]: $pos[10],
       pname: "sparkle",
       version: "1.26.9",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           owner: "xishang0128",
           repo: "sparkle",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -68,7 +58,7 @@ export default nix.lambda((args) => (() => {
         })))),
       npmDeps: null,
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -78,7 +68,7 @@ export default nix.lambda((args) => (() => {
         })))),
       nativeBuildInputs: nix.thunk(() => [pnpm, makeWrapper, copyDesktopItems]),
       npmConfigHook: pnpmConfigHook,
-      env: nix.thunk(() => ({ [nix.POS]: pos$6, ELECTRON_SKIP_BINARY_DOWNLOAD: "1" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[5], ELECTRON_SKIP_BINARY_DOWNLOAD: "1" })),
       postPatch: nix.thunk(() => nix.str`substituteInPlace src/main/utils/dirs.ts \\
   --replace-fail "process.resourcesPath" "'${resourcesDir}'"
 `),
@@ -123,7 +113,7 @@ runHook postInstall
 `),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             name: "sparkle",
             desktopName: "Sparkle",
             exec: "sparkle %U",
@@ -141,11 +131,11 @@ runHook postInstall
           })))),
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$9,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$8, extraArgs: nix.thunk(() => ["--use-github-releases"]) })))),
+        [nix.POS]: $pos[8],
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: $pos[7], extraArgs: nix.thunk(() => ["--use-github-releases"]) })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         description: "Another Mihomo GUI",
         homepage: "https://github.com/xishang0128/sparkle",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

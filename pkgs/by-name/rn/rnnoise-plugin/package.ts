@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 26, 5], ["repo", 27, 5], ["rev", 28, 5], ["sha256", 29, 5]], [["broken", 64, 5], ["description", 65, 5], ["homepage", 66, 5], ["license", 67, 5], ["platforms", 68, 5], ["maintainers", 69, 5]], [["pname", 15, 3], ["version", 16, 3], ["outputs", 17, 3], ["src", 25, 3], ["nativeBuildInputs", 32, 3], ["patches", 37, 3], ["buildInputs", 42, 3], ["postInstall", 54, 3], ["meta", 62, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, cmake: false, fetchFromGitHub: false, freetype: false, "gtk3-x11": false, pcre2: false, "pkg-config": false, webkitgtk_4_1: false, libxrandr: false, libx11: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 26, 5], ["repo", 27, 5], ["rev", 28, 5], ["sha256", 29, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["broken", 64, 5], ["description", 65, 5], ["homepage", 66, 5], ["license", 67, 5], ["platforms", 68, 5], ["maintainers", 69, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["outputs", 17, 3], ["src", 25, 3], ["nativeBuildInputs", 32, 3], ["patches", 37, 3], ["buildInputs", 42, 3], ["postInstall", 54, 3], ["meta", 62, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,12 +19,12 @@ export default nix.lambda((args) => (() => {
   const libxrandr = nix.arg($, "libxrandr");
   const libx11 = nix.arg($, "libx11");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "rnnoise-plugin",
       version: "1.10",
       outputs: nix.thunk(() => ["out", "ladspa", "lv2", "lxvst", "vst3"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "werman",
           repo: "noise-suppression-for-voice",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -37,7 +35,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => nix.concat([freetype, gtk3_x11, pcre2, libx11, libxrandr], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [webkitgtk_4_1])))),
       postInstall: "for plugin in ladspa lv2 lxvst vst3; do\n  mkdir -p ${!plugin}/lib\n  mv $out/lib/$plugin ${!plugin}/lib/$plugin\n  ln -s ${!plugin}/lib/$plugin $out/lib/$plugin\ndone\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
         description: "Real-time noise suppression plugin for voice based on Xiph's RNNoise",
         homepage: "https://github.com/werman/noise-suppression-for-voice",

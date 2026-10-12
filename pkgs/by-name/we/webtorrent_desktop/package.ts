@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["sha256", 17, 5]], [["name", 22, 7], ["url", 23, 7], ["hash", 24, 7]], [["description", 59, 5], ["homepage", 60, 5], ["license", 61, 5], ["maintainers", 62, 5], ["mainProgram", 63, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 13, 3], ["patches", 19, 3], ["npmDepsHash", 27, 3], ["makeCacheWritable", 28, 3], ["npmRebuildFlags", 29, 3], ["installPhase", 30, 3], ["meta", 58, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, electron: false, buildNpmPackage: false, fetchFromGitHub: false, fetchpatch: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["sha256", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 22, 7], ["url", 23, 7], ["hash", 24, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 59, 5], ["homepage", 60, 5], ["license", 61, 5], ["maintainers", 62, 5], ["mainProgram", 63, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 13, 3], ["patches", 19, 3], ["npmDepsHash", 27, 3], ["makeCacheWritable", 28, 3], ["npmRebuildFlags", 29, 3], ["installPhase", 30, 3], ["meta", 58, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const fetchpatch = nix.arg($, "fetchpatch");
   return nix.app(buildNpmPackage, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "webtorrent-desktop",
       version: "0.25-pre-ac7f16",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "webtorrent",
           repo: "webtorrent-desktop",
           rev: "ac7f16e71c96c5ad670bfcb8728df5af78ae21a1",
@@ -29,7 +26,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "2389.patch",
             url: "https://github.com/webtorrent/webtorrent-desktop/commit/407046d150ed7ff876a5e1978f68630e9c8f0074.patch",
             hash: "sha256-hBJGLNNjcGRhYOFlLm/RL0po+70tEeJtR6Y/CfacPAI=",
@@ -65,7 +62,7 @@ sed "s#/opt/webtorrent-desktop#$out/bin#" \\
   > $out/share/applications/webtorrent-desktop.desktop
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Streaming torrent app for Mac, Windows, and Linux",
         homepage: "https://webtorrent.io/desktop",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

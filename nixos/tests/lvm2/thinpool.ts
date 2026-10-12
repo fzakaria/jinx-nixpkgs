@@ -2,22 +2,9 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/thinpool.nix", [[["maintainers", 9, 8]], [["emptyDiskImages", 17, 22]], [["enable", 19, 19]], [["thin", 19, 14]], [["enable", 20, 18]], [["boot", 19, 9], ["dmeventd", 20, 9]], [["lvm", 18, 16]], [["text", 23, 38]], [["lvm/lvm.conf", 23, 23]], [["systemPackages", 22, 19], ["etc", 23, 19]], [["kernelPackages", 27, 58]], [["virtualisation", 17, 7], ["services", 18, 7], ["environment", 22, 7], ["boot", 27, 7]], [["machine", 14, 9]], [["name", 8, 3], ["meta", 9, 3], ["nodes", 14, 3], ["testScript", 30, 3]]]);
 const formals$1 = { args: { lib: false, kernelPackages: true, mkXfsFlags: true }, ellipsis: true };
-const pos$1 = nix.positions(here + "/thinpool.nix", [["maintainers", 9, 8]]);
 const formals$2 = { args: { pkgs: false, lib: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/thinpool.nix", [["emptyDiskImages", 17, 22]]);
-const pos$3 = nix.positions(here + "/thinpool.nix", [["enable", 19, 19]]);
-const pos$4 = nix.positions(here + "/thinpool.nix", [["thin", 19, 14]]);
-const pos$5 = nix.positions(here + "/thinpool.nix", [["enable", 20, 18]]);
-const pos$6 = nix.positions(here + "/thinpool.nix", [["boot", 19, 9], ["dmeventd", 20, 9]]);
-const pos$7 = nix.positions(here + "/thinpool.nix", [["lvm", 18, 16]]);
-const pos$8 = nix.positions(here + "/thinpool.nix", [["text", 23, 38]]);
-const pos$9 = nix.positions(here + "/thinpool.nix", [["lvm/lvm.conf", 23, 23]]);
-const pos$10 = nix.positions(here + "/thinpool.nix", [["systemPackages", 22, 19], ["etc", 23, 19]]);
-const pos$11 = nix.positions(here + "/thinpool.nix", [["kernelPackages", 27, 58]]);
-const pos$12 = nix.positions(here + "/thinpool.nix", [["virtualisation", 17, 7], ["services", 18, 7], ["environment", 22, 7], ["boot", 27, 7]]);
-const pos$13 = nix.positions(here + "/thinpool.nix", [["machine", 14, 9]]);
-const pos$14 = nix.positions(here + "/thinpool.nix", [["name", 8, 3], ["meta", 9, 3], ["nodes", 14, 3], ["testScript", 30, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,10 +12,10 @@ export default nix.lambda((args) => (() => {
   const kernelPackages = nix.argOr($, "kernelPackages", () => null);
   const mkXfsFlags = nix.argOr($, "mkXfsFlags", () => "");
   return {
-    [nix.POS]: pos$14,
+    [nix.POS]: $pos[13],
     name: "lvm2-thinpool",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [
@@ -38,40 +25,40 @@ export default nix.lambda((args) => (() => {
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$13,
+      [nix.POS]: $pos[12],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs = nix.arg($_1, "pkgs");
         const lib_1 = nix.arg($_1, "lib");
         return {
-          [nix.POS]: pos$12,
-          virtualisation: nix.thunk(() => ({ [nix.POS]: pos$2, emptyDiskImages: nix.thunk(() => [4096n]) })),
+          [nix.POS]: $pos[11],
+          virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[1], emptyDiskImages: nix.thunk(() => [4096n]) })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             lvm: nix.thunk(() => ({
-              [nix.POS]: pos$6,
+              [nix.POS]: $pos[5],
               boot: nix.thunk(() => ({
-                [nix.POS]: pos$4,
-                thin: nix.thunk(() => ({ [nix.POS]: pos$3, enable: true })),
+                [nix.POS]: $pos[3],
+                thin: nix.thunk(() => ({ [nix.POS]: $pos[2], enable: true })),
               })),
-              dmeventd: nix.thunk(() => ({ [nix.POS]: pos$5, enable: true })),
+              dmeventd: nix.thunk(() => ({ [nix.POS]: $pos[4], enable: true })),
             })),
           })),
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$10,
+            [nix.POS]: $pos[9],
             systemPackages: nix.thunk(() => (() => {
               const w = nix.withScope(pkgs, null);
               return [nix.thunk(() => nix.lookup(w, "xfsprogs"))];
             })()),
             etc: nix.thunk(() => ({
-              [nix.POS]: pos$9,
+              [nix.POS]: $pos[8],
               "lvm/lvm.conf": nix.thunk(() => ({
-                [nix.POS]: pos$8,
+                [nix.POS]: $pos[7],
                 text: "activation/thin_pool_autoextend_percent = 10\nactivation/thin_pool_autoextend_threshold = 80\n",
               })),
             })),
           })),
-          boot: nix.thunk(() => nix.app(nix.sel(lib_1, "mkIf"), nix.thunk(() => !nix.eq(kernelPackages, null)), nix.thunk(() => ({ [nix.POS]: pos$11, kernelPackages: kernelPackages })))),
+          boot: nix.thunk(() => nix.app(nix.sel(lib_1, "mkIf"), nix.thunk(() => !nix.eq(kernelPackages, null)), nix.thunk(() => ({ [nix.POS]: $pos[10], kernelPackages: kernelPackages })))),
         };
       })(), formals$2),
     })),

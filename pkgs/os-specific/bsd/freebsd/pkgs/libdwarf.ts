@@ -2,9 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/libdwarf.nix", [[["platforms", 26, 8]], [["path", 11, 3], ["extraPaths", 12, 3], ["extraNativeBuildInputs", 19, 3], ["buildInputs", 20, 3], ["MK_TESTS", 24, 3], ["meta", 26, 3]]]);
 const formals$1 = { args: { lib: false, mkDerivation: false, m4: false, compatIfNeeded: false, zlib: false, libelf: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/libdwarf.nix", [["platforms", 26, 8]]);
-const pos$2 = nix.positions(here + "/libdwarf.nix", [["path", 11, 3], ["extraPaths", 12, 3], ["extraNativeBuildInputs", 19, 3], ["buildInputs", 20, 3], ["MK_TESTS", 24, 3], ["meta", 26, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const zlib = nix.arg($, "zlib");
   const libelf = nix.arg($, "libelf");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       path: "lib/libdwarf",
       extraPaths: nix.thunk(() => [
         "contrib/elftoolchain/libdwarf",
@@ -28,7 +27,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => nix.concat(compatIfNeeded, [zlib, libelf])),
       MK_TESTS: "no",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       })),
     })));

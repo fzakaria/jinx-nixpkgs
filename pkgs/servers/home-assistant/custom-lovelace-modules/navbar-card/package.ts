@@ -2,13 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]], [["pname", 23, 5], ["version", 24, 26], ["src", 24, 34], ["nativeBuildInputs", 26, 5], ["dontConfigure", 31, 5], ["buildPhase", 33, 5], ["installPhase", 49, 5], ["dontFixup", 59, 5], ["outputHash", 61, 5], ["outputHashMode", 62, 5]], [["extraArgs", 100, 7]], [["entrypoint", 98, 5], ["updateScript", 99, 5]], [["description", 108, 5], ["homepage", 109, 5], ["changelog", 110, 5], ["license", 111, 5], ["platforms", 112, 5], ["maintainers", 116, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["node_modules", 22, 3], ["nativeBuildInputs", 65, 3], ["configurePhase", 70, 3], ["buildPhase", 79, 3], ["installPhase", 88, 3], ["passthru", 97, 3], ["meta", 107, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, bun: false, "nodejs-slim": false, "nix-update-script": false, writableTmpDirAsHomeHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 23, 5], ["version", 24, 26], ["src", 24, 34], ["nativeBuildInputs", 26, 5], ["dontConfigure", 31, 5], ["buildPhase", 33, 5], ["installPhase", 49, 5], ["dontFixup", 59, 5], ["outputHash", 61, 5], ["outputHashMode", 62, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["extraArgs", 100, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["entrypoint", 98, 5], ["updateScript", 99, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 108, 5], ["homepage", 109, 5], ["changelog", 110, 5], ["license", 111, 5], ["platforms", 112, 5], ["maintainers", 116, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["node_modules", 22, 3], ["nativeBuildInputs", 65, 3], ["configurePhase", 70, 3], ["buildPhase", 79, 3], ["installPhase", 88, 3], ["passthru", 97, 3], ["meta", 107, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,18 +15,18 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "navbar-card",
       version: "1.6.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "joseluis9595",
           repo: "lovelace-navbar-card",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-i8kVS09HAZwzhZKjfCGnuva0W8XedZ9M4kmGRHc1bFk=",
         })))),
       node_modules: nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-node_modules`),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -54,15 +49,15 @@ runHook postConfigure
       buildPhase: "runHook preBuild\n\n# Build the project using bun\nNODE_ENV=production bun build src/navbar-card.ts --outfile=dist/navbar-card.js --target=browser\n\nrunHook postBuild\n",
       installPhase: "runHook preInstall\n\nmkdir $out\ncp ./dist/navbar-card.js $out\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         entrypoint: "navbar-card.js",
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             extraArgs: nix.thunk(() => ["--subpackage", "node_modules"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Navbar Card for Home Assistant's Lovelace UI - easily navigate through dashboards",
         homepage: "https://github.com/joseluis9595/lovelace-navbar-card",
         changelog: nix.thunk(() => nix.str`https://github.com/joseluis9595/lovelace-navbar-card/releases/tag/v${nix.sel(finalAttrs, "version")}`),

@@ -2,37 +2,32 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/containers-imperative-no-daemon.nix", [[["enable", 8, 18]], [["daemon", 8, 11]], [["assertion", 12, 11], ["message", 13, 11]], [["nix", 8, 7], ["assertions", 9, 7]], [["machine", 5, 9]], [["imports", 2, 3], ["name", 3, 3], ["test-nix-in-container", 4, 3], ["nodes", 5, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
 const formals$2 = { args: { config: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/containers-imperative-no-daemon.nix", [["enable", 8, 18]]);
-const pos$2 = nix.positions(here + "/containers-imperative-no-daemon.nix", [["daemon", 8, 11]]);
-const pos$3 = nix.positions(here + "/containers-imperative-no-daemon.nix", [["assertion", 12, 11], ["message", 13, 11]]);
-const pos$4 = nix.positions(here + "/containers-imperative-no-daemon.nix", [["nix", 8, 7], ["assertions", 9, 7]]);
-const pos$5 = nix.positions(here + "/containers-imperative-no-daemon.nix", [["machine", 5, 9]]);
-const pos$6 = nix.positions(here + "/containers-imperative-no-daemon.nix", [["imports", 2, 3], ["name", 3, 3], ["test-nix-in-container", 4, 3], ["nodes", 5, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$6,
+    [nix.POS]: $pos[5],
     imports: nix.thunk(() => [nix.path(here, "./containers-imperative.nix")]),
     name: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), "containers-imperative-no-daemon")),
     "test-nix-in-container": false,
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config = nix.arg($_1, "config");
         return {
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           nix: nix.thunk(() => ({
-            [nix.POS]: pos$2,
-            daemon: nix.thunk(() => ({ [nix.POS]: pos$1, enable: false })),
+            [nix.POS]: $pos[1],
+            daemon: nix.thunk(() => ({ [nix.POS]: $pos[0], enable: false })),
           })),
           assertions: nix.thunk(() => [
             nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               assertion: nix.thunk(() => !nix.asBool(nix.sel(config, "nix", "daemon", "enable"))),
               message: "test failed: nix.daemon.enable has override",
             })),

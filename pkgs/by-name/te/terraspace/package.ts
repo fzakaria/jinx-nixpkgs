@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["ruby", 11, 13], ["name", 12, 5], ["gemdir", 13, 5]], [["updateScript", 31, 12]], [["description", 34, 5], ["mainProgram", 35, 5], ["homepage", 36, 5], ["license", 37, 5], ["platforms", 38, 5], ["maintainers", 39, 5]], [["pname", 17, 3], ["version", 18, 3], ["nativeBuildInputs", 20, 3], ["dontUnpack", 22, 3], ["installPhase", 24, 3], ["passthru", 31, 3], ["meta", 33, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, bundlerEnv: false, bundlerUpdateScript: false, makeWrapper: false, ruby: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["ruby", 11, 13], ["name", 12, 5], ["gemdir", 13, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 31, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 34, 5], ["mainProgram", 35, 5], ["homepage", 36, 5], ["license", 37, 5], ["platforms", 38, 5], ["maintainers", 39, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["nativeBuildInputs", 20, 3], ["dontUnpack", 22, 3], ["installPhase", 24, 3], ["passthru", 31, 3], ["meta", 33, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,13 +14,13 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const ruby = nix.arg($, "ruby");
   const rubyEnv = nix.thunk(() => nix.app(bundlerEnv, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       ruby: ruby,
       name: "terraspace",
       gemdir: nix.path(here, "./."),
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "terraspace",
       version: nix.thunk(() => nix.sel(nix.builtins.import(nix.path(here, "./gemset.nix")), "terraspace", "version")),
       nativeBuildInputs: nix.thunk(() => [makeWrapper]),
@@ -34,11 +31,11 @@ wrapProgram $out/bin/terraspace \\
   --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [nix.thunk(() => nix.sel(rubyEnv, "ruby"))]))}
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(bundlerUpdateScript, "terraspace")),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Terraform framework that provides an organized structure, and keeps your code DRY",
         mainProgram: "terraspace",
         homepage: "https://github.com/boltops-tools/terraspace",

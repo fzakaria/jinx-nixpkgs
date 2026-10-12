@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]], [["vnstat", 44, 43]], [["tests", 44, 12]], [["description", 47, 5], ["longDescription", 48, 5], ["mainProgram", 55, 5], ["homepage", 56, 5], ["license", 57, 5], ["maintainers", 58, 5], ["platforms", 59, 5], ["sourceProvenance", 60, 5]], [["pname", 14, 3], ["version", 15, 3], ["__structuredAttrs", 17, 3], ["src", 19, 3], ["strictDeps", 26, 3], ["postPatch", 28, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 34, 3], ["checkInputs", 40, 3], ["doCheck", 42, 3], ["passthru", 44, 3], ["meta", 46, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, "pkg-config": false, gd: false, ncurses: false, sqlite: false, check: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["vnstat", 44, 43]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 44, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 47, 5], ["longDescription", 48, 5], ["mainProgram", 55, 5], ["homepage", 56, 5], ["license", 57, 5], ["maintainers", 58, 5], ["platforms", 59, 5], ["sourceProvenance", 60, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["__structuredAttrs", 17, 3], ["src", 19, 3], ["strictDeps", 26, 3], ["postPatch", 28, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 34, 3], ["checkInputs", 40, 3], ["doCheck", 42, 3], ["passthru", 44, 3], ["meta", 46, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const check = nix.arg($, "check");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "vnstat",
       version: "2.13",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "vergoh",
           repo: "vnstat",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -39,11 +35,11 @@ export default nix.lambda((args) => (() => {
       checkInputs: nix.thunk(() => [check]),
       doCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$2, vnstat: nix.thunk(() => nix.attr(nixosTests, "vnstat")) })),
+        [nix.POS]: $pos[2],
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[1], vnstat: nix.thunk(() => nix.attr(nixosTests, "vnstat")) })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Console-based network statistics utility for Linux",
         longDescription: "vnStat is a console-based network traffic monitor for Linux and BSD that\nkeeps a log of network traffic for the selected interface(s). It uses the\nnetwork interface statistics provided by the kernel as information source.\nThis means that vnStat won't actually be sniffing any traffic and also\nensures light use of system resources.\n",
         mainProgram: "vnstat",

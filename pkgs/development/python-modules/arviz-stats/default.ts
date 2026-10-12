@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 47, 5], ["repo", 48, 5], ["tag", 49, 5], ["hash", 50, 5]], [["doc", 63, 5], ["numba", 75, 5], ["test", 79, 5], ["test-xarray", 83, 5], ["xarray", 88, 5]], [["description", 102, 5], ["homepage", 103, 5], ["changelog", 104, 5], ["license", 105, 5], ["maintainers", 106, 5]], [["pname", 41, 3], ["version", 42, 19], ["pyproject", 43, 3], ["__structuredAttrs", 44, 3], ["src", 46, 3], ["build-system", 53, 3], ["dependencies", 57, 3], ["optional-dependencies", 62, 3], ["pythonImportsCheck", 95, 3], ["nativeCheckInputs", 97, 3], ["meta", 101, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, arviz: false, fetchFromGitHub: false, "flit-core": false, numpy: false, scipy: false, h5netcdf: false, "jupyter-sphinx": false, "myst-nb": false, "myst-parser": false, numpydoc: false, sphinx: false, "sphinx-book-theme": false, "sphinx-copybutton": false, "sphinx-design": false, numba: false, "xarray-einstats": false, pytest: false, "pytest-cov": false, "arviz-base": false, xarray: false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 47, 5], ["repo", 48, 5], ["tag", 49, 5], ["hash", 50, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["doc", 63, 5], ["numba", 75, 5], ["test", 79, 5], ["test-xarray", 83, 5], ["xarray", 88, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 102, 5], ["homepage", 103, 5], ["changelog", 104, 5], ["license", 105, 5], ["maintainers", 106, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 41, 3], ["version", 42, 19], ["pyproject", 43, 3], ["__structuredAttrs", 44, 3], ["src", 46, 3], ["build-system", 53, 3], ["dependencies", 57, 3], ["optional-dependencies", 62, 3], ["pythonImportsCheck", 95, 3], ["nativeCheckInputs", 97, 3], ["meta", 101, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,13 +31,13 @@ export default nix.lambda((args) => (() => {
   const xarray = nix.arg($, "xarray");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "arviz-stats",
       version: nix.thunk(() => nix.attr(arviz, "version")),
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "arviz-devs",
           repo: "arviz-stats",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -49,7 +46,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [flit_core]),
       dependencies: nix.thunk(() => [numpy, scipy]),
       "optional-dependencies": nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         doc: nix.thunk(() => [
           h5netcdf,
           jupyter_sphinx,
@@ -69,7 +66,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["arviz_stats"]),
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Statistical computation and diagnostics for ArviZ",
         homepage: "https://github.com/arviz-devs/arviz-stats",
         changelog: nix.thunk(() => nix.str`https://github.com/arviz-devs/arviz-stats/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

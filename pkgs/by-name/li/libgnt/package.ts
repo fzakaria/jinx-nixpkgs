@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 27, 5], ["hash", 28, 5]], [["description", 62, 5], ["homepage", 63, 5], ["license", 64, 5], ["platforms", 65, 5], ["maintainers", 66, 5]], [["pname", 17, 3], ["version", 18, 3], ["outputs", 20, 3], ["src", 26, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 45, 3], ["postPatch", 51, 3], ["mesonFlags", 56, 3], ["meta", 61, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, meson: false, ninja: false, "pkg-config": false, "gtk-doc": false, "docbook-xsl-nons": false, glib: false, ncurses: false, libxml2: false, buildDocs: true, mesonEmulatorHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 62, 5], ["homepage", 63, 5], ["license", 64, 5], ["platforms", 65, 5], ["maintainers", 66, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["outputs", 20, 3], ["src", 26, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 45, 3], ["postPatch", 51, 3], ["mesonFlags", 56, 3], ["meta", 61, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const buildDocs = nix.argOr($, "buildDocs", () => true);
   const mesonEmulatorHook = nix.arg($, "mesonEmulatorHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "libgnt",
       version: "2.14.4-dev",
       outputs: nix.thunk(() => nix.concat(["out", "dev"], nix.app(nix.sel(lib, "optional"), buildDocs, "devdoc"))),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/pidgin/libgnt-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-GVkzqacx01dXkbiBulzArSpxXh6cTCPMqqKhfhZMluw=",
         })))),
@@ -43,7 +41,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "mesonBool"), "python2", false)),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Ncurses toolkit for creating text-mode graphical user interfaces",
         homepage: "https://keep.imfreedom.org/libgnt/libgnt/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

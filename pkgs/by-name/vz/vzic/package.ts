@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]], [["OLSON_DIR", 34, 5], ["PRODUCT_ID", 35, 5], ["TZID_PREFIX", 36, 5]], [["homepage", 51, 5], ["description", 52, 5], ["changelog", 53, 5], ["mainProgram", 54, 5], ["license", 55, 5], ["maintainers", 56, 5], ["broken", 57, 5], ["platforms", 58, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["postPatch", 21, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 28, 3], ["env", 33, 3], ["installPhase", 40, 3], ["meta", 50, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, buildPackages: false, fetchFromGitHub: false, "pkg-config": false, glib: false, libical: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["OLSON_DIR", 34, 5], ["PRODUCT_ID", 35, 5], ["TZID_PREFIX", 36, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 51, 5], ["description", 52, 5], ["changelog", 53, 5], ["mainProgram", 54, 5], ["license", 55, 5], ["maintainers", 56, 5], ["broken", 57, 5], ["platforms", 58, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["postPatch", 21, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 28, 3], ["env", 33, 3], ["installPhase", 40, 3], ["meta", 50, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const glib = nix.arg($, "glib");
   const libical = nix.arg($, "libical");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "vzic",
       version: "0-unstable-2024-06-04",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "libical",
           repo: "vzic",
           rev: "354296149e65ca31932c514fddb7435cb47671e9",
@@ -32,7 +29,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [glib, libical]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         OLSON_DIR: "tzdata2024a",
         PRODUCT_ID: "-//NixOS//NONSGML Citadel calendar//EN",
         TZID_PREFIX: "/NixOS/Olson_%D_1/",
@@ -46,7 +43,7 @@ install -Dm744 vzic $out/bin/vzic
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/libical/vzic",
         description: "Program to convert the IANA timezone database files into VTIMEZONE files compatible with the iCalendar specification",
         changelog: nix.thunk(() => nix.str`https://github.com/libical/vzic/blob/${nix.sel(finalAttrs, "src", "rev")}/ChangeLog`),

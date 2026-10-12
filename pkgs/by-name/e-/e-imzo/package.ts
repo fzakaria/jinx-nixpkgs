@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 15, 5], ["hash", 16, 5]], [["description", 46, 5], ["mainProgram", 47, 5], ["platforms", 48, 5], ["homepage", 49, 5], ["license", 50, 5], ["sourceProvenance", 51, 5], ["maintainers", 52, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 19, 3], ["installPhase", 23, 3], ["meta", 45, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchurl: false, jre8: false, pcsclite: false, udev: false, makeWrapper: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 46, 5], ["mainProgram", 47, 5], ["platforms", 48, 5], ["homepage", 49, 5], ["license", 50, 5], ["sourceProvenance", 51, 5], ["maintainers", 52, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 19, 3], ["installPhase", 23, 3], ["meta", 45, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const udev = nix.arg($, "udev");
   const makeWrapper = nix.arg($, "makeWrapper");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "e-imzo",
       version: "6.4.7",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://cdn.xinux.uz/e-imzo/E-IMZO-v${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-wHcVIGTNRMit5LqHcXcGGi7foDmiwHVXUcxl4ZlhGnY=",
         })))),
@@ -42,7 +40,7 @@ makeWrapper ${jre8}/bin/java $out/bin/e-imzo \\
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "For uzbek state web identity proving & key signing",
         mainProgram: "e-imzo",
         platforms: nix.thunk(() => (() => {

@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["description", 58, 7], ["homepage", 59, 7], ["license", 60, 7], ["maintainers", 61, 7]], [["pname", 27, 5], ["version", 28, 5], ["src", 29, 5], ["cargoDeps", 30, 5], ["pyproject", 33, 3], ["dependencies", 35, 3], ["nativeBuildInputs", 43, 3], ["buildInputs", 50, 3], ["pythonImportsCheck", 54, 3], ["meta", 56, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, pkgs: false, "pkg-config": false, rustPlatform: false, cargo: false, rustc: false, libiconv: false, openssl: false, setuptools: false, "setuptools-rust": false, breezy: false, dulwich: false, jinja2: false, pyyaml: false, "ruamel-yaml": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["description", 58, 7], ["homepage", 59, 7], ["license", 60, 7], ["maintainers", 61, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 27, 5], ["version", 28, 5], ["src", 29, 5], ["cargoDeps", 30, 5], ["pyproject", 33, 3], ["dependencies", 35, 3], ["nativeBuildInputs", 43, 3], ["buildInputs", 50, 3], ["pythonImportsCheck", 54, 3], ["meta", 56, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,7 +26,7 @@ export default nix.lambda((args) => (() => {
   const ruamel_yaml = nix.arg($, "ruamel-yaml");
   const silver_platter = nix.thunk(() => nix.attr(pkgs, "silver-platter"));
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: nix.thunk(() => nix.attr(silver_platter, "pname")),
       version: nix.thunk(() => nix.attr(silver_platter, "version")),
       src: nix.thunk(() => nix.attr(silver_platter, "src")),
@@ -45,7 +44,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(silver_platter, "meta"));
         return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: nix.thunk(() => nix.attr(from, "description")),
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         license: nix.thunk(() => nix.attr(from, "license")),

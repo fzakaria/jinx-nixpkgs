@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["hash", 26, 5]], [["lockFile", 30, 5]], [["description", 80, 5], ["homepage", 81, 5], ["license", 82, 5], ["maintainers", 86, 5], ["mainProgram", 87, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["cargoLock", 29, 3], ["postPatch", 33, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 42, 3], ["checkFlags", 49, 3], ["postInstall", 67, 3], ["meta", 79, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchFromGitHub: false, "pkg-config": false, makeWrapper: false, glib: false, openssl: false, zlib: false, ostree: false, stdenv: false, "util-linux": false, skopeo: false, gnutar: false, "ima-evm-utils": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["lockFile", 30, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 80, 5], ["homepage", 81, 5], ["license", 82, 5], ["maintainers", 86, 5], ["mainProgram", 87, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["cargoLock", 29, 3], ["postPatch", 33, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 42, 3], ["checkFlags", 49, 3], ["postInstall", 67, 3], ["meta", 79, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,13 +25,13 @@ export default nix.lambda((args) => (() => {
       const pname = "ostree-rs-ext";
       const version = "0.10.6";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ostreedev",
           repo: "ostree-rs-ext",
           rev: nix.thunk(() => nix.str`ostree-ext-v${version}`),
           hash: "sha256-kk/icUevzKMpAQ6IoruUxuKwTxXHlKLrr63Hch1w7po=",
         }))));
-      const cargoLock = nix.thunk(() => ({ [nix.POS]: pos$2, lockFile: nix.path(here, "./Cargo.lock") }));
+      const cargoLock = nix.thunk(() => ({ [nix.POS]: $pos[1], lockFile: nix.path(here, "./Cargo.lock") }));
       const postPatch = nix.thunk(() => nix.str`ln -s ${nix.path(here, "./Cargo.lock")} Cargo.lock
 `);
       const nativeBuildInputs = nix.thunk(() => [pkg_config, makeWrapper]);
@@ -58,7 +55,7 @@ export default nix.lambda((args) => (() => {
       const postInstall = nix.thunk(() => nix.str`wrapProgram "$out/bin/${nix.sel(meta, "mainProgram")}" --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [util_linux, skopeo, gnutar, ostree, ima_evm_utils]))}
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Rust library with higher level APIs on top of the core ostree API",
         homepage: "https://github.com/ostreedev/ostree-rs-ext",
         license: nix.thunk(() => (() => {
@@ -75,7 +72,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "ostree-ext-cli",
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

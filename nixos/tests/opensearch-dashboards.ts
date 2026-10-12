@@ -2,44 +2,33 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/opensearch-dashboards.nix", [[["maintainers", 5, 10]], [["memorySize", 8, 22]], [["enable", 11, 9]], [["disableSecurity", 18, 11]], [["host", 21, 18], ["port", 22, 18]], [["hosts", 23, 22]], [["server", 21, 11], ["opensearch", 23, 11]], [["enable", 16, 9], ["package", 17, 9], ["settings", 20, 9]], [["opensearch", 10, 16], ["opensearch-dashboards", 15, 16]], [["virtualisation", 8, 7], ["services", 10, 7]], [["machine", 7, 11]], [["name", 4, 5], ["meta", 5, 5], ["nodes", 7, 5], ["testScript", 28, 5]]]);
 const formals$1 = { args: { pkgs: false, lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/opensearch-dashboards.nix", [["maintainers", 5, 10]]);
-const pos$2 = nix.positions(here + "/opensearch-dashboards.nix", [["memorySize", 8, 22]]);
-const pos$3 = nix.positions(here + "/opensearch-dashboards.nix", [["enable", 11, 9]]);
-const pos$4 = nix.positions(here + "/opensearch-dashboards.nix", [["disableSecurity", 18, 11]]);
-const pos$5 = nix.positions(here + "/opensearch-dashboards.nix", [["host", 21, 18], ["port", 22, 18]]);
-const pos$6 = nix.positions(here + "/opensearch-dashboards.nix", [["hosts", 23, 22]]);
-const pos$7 = nix.positions(here + "/opensearch-dashboards.nix", [["server", 21, 11], ["opensearch", 23, 11]]);
-const pos$8 = nix.positions(here + "/opensearch-dashboards.nix", [["enable", 16, 9], ["package", 17, 9], ["settings", 20, 9]]);
-const pos$9 = nix.positions(here + "/opensearch-dashboards.nix", [["opensearch", 10, 16], ["opensearch-dashboards", 15, 16]]);
-const pos$10 = nix.positions(here + "/opensearch-dashboards.nix", [["virtualisation", 8, 7], ["services", 10, 7]]);
-const pos$11 = nix.positions(here + "/opensearch-dashboards.nix", [["machine", 7, 11]]);
-const pos$12 = nix.positions(here + "/opensearch-dashboards.nix", [["name", 4, 5], ["meta", 5, 5], ["nodes", 7, 5], ["testScript", 28, 5]]);
 
 export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./make-test-python.nix")), nix.lambda((args) => (() => {
     const $ = nix.formals(args, formals$1);
     const pkgs = nix.arg($, "pkgs");
     const lib = nix.arg($, "lib");
     return {
-      [nix.POS]: pos$12,
+      [nix.POS]: $pos[11],
       name: "opensearch-dashboards",
-      meta: nix.thunk(() => ({ [nix.POS]: pos$1, maintainers: [] })),
+      meta: nix.thunk(() => ({ [nix.POS]: $pos[0], maintainers: [] })),
       nodes: nix.thunk(() => ({
-        [nix.POS]: pos$11,
+        [nix.POS]: $pos[10],
         machine: nix.thunk(() => ({
-          [nix.POS]: pos$10,
-          virtualisation: nix.thunk(() => ({ [nix.POS]: pos$2, memorySize: 4096n })),
+          [nix.POS]: $pos[9],
+          virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[1], memorySize: 4096n })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$9,
-            opensearch: nix.thunk(() => ({ [nix.POS]: pos$3, enable: true })),
+            [nix.POS]: $pos[8],
+            opensearch: nix.thunk(() => ({ [nix.POS]: $pos[2], enable: true })),
             "opensearch-dashboards": nix.thunk(() => ({
-              [nix.POS]: pos$8,
+              [nix.POS]: $pos[7],
               enable: true,
-              package: nix.thunk(() => nix.app(nix.sel(pkgs, "opensearch-dashboards", "override"), nix.thunk(() => ({ [nix.POS]: pos$4, disableSecurity: true })))),
+              package: nix.thunk(() => nix.app(nix.sel(pkgs, "opensearch-dashboards", "override"), nix.thunk(() => ({ [nix.POS]: $pos[3], disableSecurity: true })))),
               settings: nix.thunk(() => ({
-                [nix.POS]: pos$7,
-                server: nix.thunk(() => ({ [nix.POS]: pos$5, host: "0.0.0.0", port: 5601n })),
-                opensearch: nix.thunk(() => ({ [nix.POS]: pos$6, hosts: nix.thunk(() => ["http://localhost:9200"]) })),
+                [nix.POS]: $pos[6],
+                server: nix.thunk(() => ({ [nix.POS]: $pos[4], host: "0.0.0.0", port: 5601n })),
+                opensearch: nix.thunk(() => ({ [nix.POS]: $pos[5], hosts: nix.thunk(() => ["http://localhost:9200"]) })),
               })),
             })),
           })),

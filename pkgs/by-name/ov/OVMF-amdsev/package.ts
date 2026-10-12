@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["firmware", 59, 5], ["mergedFirmware", 60, 5]], [["description", 64, 5], ["homepage", 65, 5], ["license", 66, 5], ["platforms", 67, 5], ["maintainers", 68, 5]], [["pname", 11, 3], ["version", 12, 3], ["outputs", 14, 3], ["__structuredAttrs", 19, 3], ["nativeBuildInputs", 21, 3], ["strictDeps", 26, 3], ["hardeningDisable", 28, 3], ["buildFlags", 34, 3], ["buildConfig", 35, 3], ["postPatch", 41, 3], ["postInstall", 48, 3], ["dontPatchELF", 56, 3], ["passthru", 58, 3], ["meta", 63, 3]]]);
 const formals$1 = { args: { lib: false, edk2: false, "util-linux": false, nasm: false, "acpica-tools": false, debug: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["firmware", 59, 5], ["mergedFirmware", 60, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 64, 5], ["homepage", 65, 5], ["license", 66, 5], ["platforms", 67, 5], ["maintainers", 68, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["outputs", 14, 3], ["__structuredAttrs", 19, 3], ["nativeBuildInputs", 21, 3], ["strictDeps", 26, 3], ["hardeningDisable", 28, 3], ["buildFlags", 34, 3], ["buildConfig", 35, 3], ["postPatch", 41, 3], ["postInstall", 48, 3], ["dontPatchELF", 56, 3], ["passthru", 58, 3], ["meta", 63, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const acpica_tools = nix.arg($, "acpica-tools");
   const debug = nix.argOr($, "debug", () => false);
   return nix.app(nix.sel(edk2, "mkDerivation"), "OvmfPkg/AmdSev/AmdSevX64.dsc", (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "OVMF-amdsev",
       version: nix.thunk(() => nix.app(nix.sel(lib, "getVersion"), edk2)),
       outputs: nix.thunk(() => ["out", "fd"]),
@@ -35,12 +33,12 @@ substitute ${nix.path(here, "./61-edk2-ovmf-x64-amdsev.json")} \\
 `),
       dontPatchELF: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         firmware: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "finalPackage", "fd")}/FV/OVMF.amdsev.fd`),
         mergedFirmware: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "finalPackage", "fd")}/FV/OVMF.amdsev.fd`),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "UEFI firmware with AMD SEV, SEV-ES and SEV-SNP support, direct kernel boot only",
         homepage: "https://github.com/tianocore/tianocore.github.io/wiki/OVMF",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),

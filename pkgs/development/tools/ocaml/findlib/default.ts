@@ -2,10 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 15, 5], ["hash", 16, 5]], [["description", 90, 5], ["homepage", 91, 5], ["license", 92, 5], ["maintainers", 93, 5], ["mainProgram", 94, 5], ["platforms", 95, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 19, 3], ["buildInputs", 20, 3], ["patches", 22, 3], ["dontAddPrefix", 27, 3], ["dontAddStaticConfigureFlags", 28, 3], ["configurePlatforms", 29, 3], ["configureFlags", 31, 3], ["buildFlags", 42, 3], ["setupHook", 49, 3], ["meta", 89, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, ncurses: false, ocaml: false, writeText: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 90, 5], ["homepage", 91, 5], ["license", 92, 5], ["maintainers", 93, 5], ["mainProgram", 94, 5], ["platforms", 95, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["nativeBuildInputs", 19, 3], ["buildInputs", 20, 3], ["patches", 22, 3], ["dontAddPrefix", 27, 3], ["dontAddStaticConfigureFlags", 28, 3], ["configurePlatforms", 29, 3], ["configureFlags", 31, 3], ["buildFlags", 42, 3], ["setupHook", 49, 3], ["meta", 89, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname = nix.thunk(() => nix.str`ocaml${nix.sel(ocaml, "version")}-findlib`);
       const version = "1.9.8";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://download.camlcity.org/download/findlib-${version}.tar.gz`),
           hash: "sha256-ZiyRD3dOn+46GcTgV/OAWBqy/E7lLaR2EwSsnDG4hp0=",
         }))));
@@ -79,7 +77,7 @@ if [[ -z "\${dontDetectOcamlConflicts-}" ]]; then
 fi
 `)));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "O'Caml library manager",
         homepage: "http://projects.camlcity.org/projects/findlib.html",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -88,7 +86,7 @@ fi
         platforms: nix.thunk(() => nix.selOr(ocaml, () => [], "meta", "platforms")),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

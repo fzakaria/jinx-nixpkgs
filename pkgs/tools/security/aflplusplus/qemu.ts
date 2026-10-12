@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/qemu.nix", [[["owner", 26, 5], ["repo", 27, 5], ["rev", 28, 5], ["hash", 29, 5], ["fetchSubmodules", 30, 5]], [["homepage", 138, 5], ["description", 139, 5], ["license", 140, 5], ["maintainers", 141, 5], ["platforms", 145, 5]], [["name", 23, 3], ["src", 25, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 44, 3], ["enableParallelBuilding", 51, 3], ["dontUseMesonConfigure", 53, 3], ["preBuild", 54, 3], ["preConfigure", 55, 3], ["configureFlags", 61, 3], ["meta", 137, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, python3: false, zlib: false, "pkg-config": false, glib: false, perl: false, texinfo: false, libuuid: false, flex: false, bison: false, pixman: false, meson: false, fetchFromGitHub: false, ninja: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/qemu.nix", [["owner", 26, 5], ["repo", 27, 5], ["rev", 28, 5], ["hash", 29, 5], ["fetchSubmodules", 30, 5]]);
-const pos$2 = nix.positions(here + "/qemu.nix", [["homepage", 138, 5], ["description", 139, 5], ["license", 140, 5], ["maintainers", 141, 5], ["platforms", 145, 5]]);
-const pos$3 = nix.positions(here + "/qemu.nix", [["name", 23, 3], ["src", 25, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 44, 3], ["enableParallelBuilding", 51, 3], ["dontUseMesonConfigure", 53, 3], ["preBuild", 54, 3], ["preConfigure", 55, 3], ["configureFlags", 61, 3], ["meta", 137, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,10 +24,10 @@ export default nix.lambda((args) => (() => {
   const ninja = nix.arg($, "ninja");
   const qemuName = "qemu-5.2.50";
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       name: nix.thunk(() => nix.str`aflplusplus-${qemuName}`),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "AFLplusplus",
           repo: "qemuafl",
           rev: "0732e079ed3716ef0b81e708cd9dcd372238a07f",
@@ -118,7 +116,7 @@ export default nix.lambda((args) => (() => {
         "--without-default-devices",
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/AFLplusplus/qemuafl",
         description: "Fork of QEMU with AFL++ instrumentation support",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

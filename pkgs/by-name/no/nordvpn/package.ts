@@ -2,16 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 7], ["repo", 17, 7], ["tag", 18, 7], ["hash", 19, 7]], [["homepage", 24, 7], ["changelog", 25, 7], ["license", 26, 7], ["maintainers", 27, 7], ["platforms", 30, 7]], [["categories", 34, 7], ["genericName", 35, 7], ["icon", 36, 7], ["type", 37, 7]], [["version", 13, 13], ["src", 15, 5], ["meta", 23, 5], ["desktopItemArgs", 33, 5]], [["extraArgs", 59, 9]], [["supportedFeatures", 69, 11]], [["cli", 55, 5], ["gui", 56, 5], ["updateScript", 57, 5]], [["description", 76, 5], ["longDescription", 77, 5]], [["pname", 42, 3], ["version", 43, 11], ["src", 44, 20], ["strictDeps", 46, 3], ["__structuredAttrs", 47, 3], ["paths", 49, 3], ["passthru", 54, 3], ["meta", 75, 3]]]);
 const formals$1 = { args: { callPackage: false, fetchFromGitHub: false, lib: false, "nix-update-script": false, symlinkJoin: false, "_experimental-update-script-combinators": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 7], ["repo", 17, 7], ["tag", 18, 7], ["hash", 19, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 24, 7], ["changelog", 25, 7], ["license", 26, 7], ["maintainers", 27, 7], ["platforms", 30, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["categories", 34, 7], ["genericName", 35, 7], ["icon", 36, 7], ["type", 37, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["version", 13, 13], ["src", 15, 5], ["meta", 23, 5], ["desktopItemArgs", 33, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["extraArgs", 59, 9]]);
-const pos$6 = nix.positions(here + "/package.nix", [["supportedFeatures", 69, 11]]);
-const pos$7 = nix.positions(here + "/package.nix", [["cli", 55, 5], ["gui", 56, 5], ["updateScript", 57, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["description", 76, 5], ["longDescription", 77, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["pname", 42, 3], ["version", 43, 11], ["src", 44, 20], ["strictDeps", 46, 3], ["__structuredAttrs", 47, 3], ["paths", 49, 3], ["passthru", 54, 3], ["meta", 75, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,10 +15,10 @@ export default nix.lambda((args) => (() => {
   const _experimental_update_script_combinators = nix.arg($, "_experimental-update-script-combinators");
   const version = "5.4.0";
   const common = nix.thunk(() => ({
-    [nix.POS]: pos$4,
+    [nix.POS]: $pos[3],
     version: version,
     src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         owner: "NordSecurity",
         repo: "nordvpn-linux",
         tag: version,
@@ -41,10 +33,10 @@ export default nix.lambda((args) => (() => {
         return [nix.thunk(() => nix.lookup(w, "novalkun"))];
       })());
       const platforms = nix.thunk(() => nix.sel(lib, "platforms", "linux"));
-      return { [nix.POS]: pos$2, homepage, changelog, license, maintainers, platforms };
+      return { [nix.POS]: $pos[1], homepage, changelog, license, maintainers, platforms };
     })()),
     desktopItemArgs: nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       categories: nix.thunk(() => ["Network"]),
       genericName: "VPN Client",
       icon: "nordvpn",
@@ -52,7 +44,7 @@ export default nix.lambda((args) => (() => {
     })),
   }));
   return nix.app(symlinkJoin, nix.thunk(() => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       pname: "nordvpn",
       version: version,
       src: nix.thunk(() => nix.attr(common, "src")),
@@ -63,19 +55,19 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(callPackage, nix.path(here, "./gui.nix"), common)),
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         cli: nix.thunk(() => nix.app(callPackage, nix.path(here, "./cli.nix"), common)),
         gui: nix.thunk(() => nix.app(callPackage, nix.path(here, "./gui.nix"), common)),
         updateScript: nix.thunk(() => nix.app(nix.sel(_experimental_update_script_combinators, "sequence"), nix.thunk(() => [
             nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-                [nix.POS]: pos$5,
+                [nix.POS]: $pos[4],
                 extraArgs: nix.thunk(() => ["--subpackage", "cli", "--subpackage", "gui"]),
               })))),
-            nix.thunk(() => nix.update(nix.app(nix.sel(_experimental_update_script_combinators, "copyAttrOutputToFile"), "nordvpn.gui.pubspecSource", nix.path(here, "./pubspec.lock.json")), { [nix.POS]: pos$6, supportedFeatures: [] })),
+            nix.thunk(() => nix.update(nix.app(nix.sel(_experimental_update_script_combinators, "copyAttrOutputToFile"), "nordvpn.gui.pubspecSource", nix.path(here, "./pubspec.lock.json")), { [nix.POS]: $pos[5], supportedFeatures: [] })),
           ]))),
       })),
       meta: nix.thunk(() => nix.update(nix.sel(common, "meta"), {
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         description: "NordVPN client and GUI for Linux",
         longDescription: "NordVPN CLI and GUI applications for Linux.\nThis package currently does not support meshnet.\nAdditionally, if `networking.firewall.enable = true;`,\nthen also set `networking.firewall.checkReversePath = \"loose\";`.\nThe closed-source nordwhisper protocol is also not supported.\n",
       })),

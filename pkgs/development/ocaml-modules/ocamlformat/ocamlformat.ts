@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/ocamlformat.nix", [[["version", 27, 41]], [["homepage", 31, 5], ["description", 32, 5], ["maintainers", 33, 5], ["license", 37, 5], ["mainProgram", 38, 5], ["broken", 39, 5]], [["pname", 17, 3], ["src", 18, 11], ["version", 18, 15], ["nativeBuildInputs", 20, 3], ["buildInputs", 22, 3], ["meta", 30, 3]]]);
 const formals$1 = { args: { lib: false, callPackage: false, buildDunePackage: false, ocaml: false, re: false, "ocamlformat-lib": false, menhir: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/ocamlformat.nix", [["version", 27, 41]]);
-const pos$2 = nix.positions(here + "/ocamlformat.nix", [["homepage", 31, 5], ["description", 32, 5], ["maintainers", 33, 5], ["license", 37, 5], ["mainProgram", 38, 5], ["broken", 39, 5]]);
-const pos$3 = nix.positions(here + "/ocamlformat.nix", [["pname", 17, 3], ["src", 18, 11], ["version", 18, 15], ["nativeBuildInputs", 20, 3], ["buildInputs", 22, 3], ["meta", 30, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,16 +20,16 @@ export default nix.lambda((args) => (() => {
   const version = nix.thunk(() => nix.attr(from, "version"));
   const library_deps = nix.thunk(() => nix.attr(from, "library_deps"));
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "ocamlformat",
       src: src,
       version: version,
       nativeBuildInputs: nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), version, "0.25.1")) ? [] : [menhir])),
       buildInputs: nix.thunk(() => nix.concat([re], nix.concat(library_deps, nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), version, "0.25.1")), nix.thunk(() => [
-          nix.thunk(() => nix.app(nix.sel(ocamlformat_lib, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, version: version })))),
+          nix.thunk(() => nix.app(nix.sel(ocamlformat_lib, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], version: version })))),
         ]))))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/ocaml-ppx/ocamlformat",
         description: "Auto-formatter for OCaml code",
         maintainers: nix.thunk(() => (() => {

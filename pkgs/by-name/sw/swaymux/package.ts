@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["rev", 15, 5], ["domain", 16, 5], ["owner", 17, 5], ["repo", 18, 5], ["hash", 19, 5]], [["updateScript", 34, 12]], [["changelog", 37, 5], ["description", 38, 5], ["homepage", 39, 5], ["license", 40, 5], ["longDescription", 41, 5], ["mainProgram", 44, 5], ["maintainers", 45, 5], ["platforms", 46, 5]], [["version", 11, 3], ["pname", 12, 3], ["src", 14, 3], ["buildInputs", 22, 3], ["nativeBuildInputs", 27, 3], ["doCheck", 32, 3], ["passthru", 34, 3], ["meta", 36, 3]]]);
 const formals$1 = { args: { cmake: false, fetchFromGitea: false, lib: false, nlohmann_json: false, qt6: false, stdenv: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["rev", 15, 5], ["domain", 16, 5], ["owner", 17, 5], ["repo", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 34, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["changelog", 37, 5], ["description", 38, 5], ["homepage", 39, 5], ["license", 40, 5], ["longDescription", 41, 5], ["mainProgram", 44, 5], ["maintainers", 45, 5], ["platforms", 46, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["version", 11, 3], ["pname", 12, 3], ["src", 14, 3], ["buildInputs", 22, 3], ["nativeBuildInputs", 27, 3], ["doCheck", 32, 3], ["passthru", 34, 3], ["meta", 36, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       version: "1.1.1",
       pname: "swaymux",
       src: nix.thunk(() => nix.app(fetchFromGitea, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           domain: "git.grimmauld.de",
           owner: "Grimmauld",
@@ -37,11 +34,11 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [cmake, nix.thunk(() => nix.sel(qt6, "wrapQtAppsHook"))]),
       doCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         changelog: "https://git.grimmauld.de/Grimmauld/swaymux/commits/branch/main",
         description: "Program to quickly navigate sway",
         homepage: "https://git.grimmauld.de/Grimmauld/swaymux",

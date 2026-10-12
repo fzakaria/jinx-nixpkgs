@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["dev", 13, 3], ["stable", 17, 3]]]);
 const formals$1 = { args: { lib: false, config: false, python3Packages: false, plover_4: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["dev", 13, 3], ["stable", 17, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -12,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const python3Packages = nix.arg($, "python3Packages");
   const plover_4 = nix.arg($, "plover_4");
   return nix.update(nix.app(nix.sel(python3Packages, "toPythonApplication"), nix.thunk(() => nix.sel(python3Packages, "plover"))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(nix.sel(config, "allowAliases")) && nix.asBool(!nix.asBool(nix.app(nix.sel(lib, "oldestSupportedReleaseIsAtLeast"), 2605n))))), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       dev: nix.thunk(() => nix.app(nix.sel(lib, "throwIf"), nix.thunk(() => nix.app(nix.sel(lib, "oldestSupportedReleaseIsAtLeast"), 2511n)), "plover.dev was renamed. Use plover, plover_5, or plover_4 instead.", plover_4)),
       stable: nix.thunk(() => nix.builtins.throw("plover.stable was renamed. Use plover instead.")),
     }))));

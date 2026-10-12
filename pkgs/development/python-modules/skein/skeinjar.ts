@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/skeinjar.nix", [[["pname", 14, 13], ["version", 14, 19], ["format", 15, 5], ["python", 16, 5], ["dist", 17, 5], ["hash", 18, 5]], [["pname", 11, 11], ["version", 11, 17], ["src", 13, 3], ["dontUnpack", 21, 3], ["nativeBuildInputs", 23, 3], ["installPhase", 25, 3]]]);
 const formals$1 = { args: { fetchPypi: false, unzip: false, stdenv: false, pname: false, version: false, jarHash: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/skeinjar.nix", [["pname", 14, 13], ["version", 14, 19], ["format", 15, 5], ["python", 16, 5], ["dist", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/skeinjar.nix", [["pname", 11, 11], ["version", 11, 17], ["src", 13, 3], ["dontUnpack", 21, 3], ["nativeBuildInputs", 23, 3], ["installPhase", 25, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const pname_1 = pname;
       const version_1 = version;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname_1,
           version: version_1,
           format: "wheel",
@@ -32,7 +31,7 @@ export default nix.lambda((args) => (() => {
 install -D ./skein/java/skein.jar $out
 `);
       return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         pname: pname_1,
         version: version_1,
         src,

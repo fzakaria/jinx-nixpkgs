@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["mlt", 26, 15], ["glaxnimate", 26, 19], ["ffmpeg", 27, 7]], [["mainProgram", 63, 8]], [["pname", 22, 3], ["patches", 24, 3], ["extraCmakeFlags", 31, 3], ["extraNativeBuildInputs", 37, 3], ["extraBuildInputs", 42, 3], ["qtWrapperArgs", 59, 3], ["meta", 63, 3]]]);
 const formals$1 = { args: { mkKdeDerivation: false, replaceVars: false, mlt: false, glaxnimate: false, "ffmpeg-full": false, ffmpegthumbs: false, "pkg-config": false, "shared-mime-info": false, qtsvg: false, qtmultimedia: false, qtnetworkauth: false, kddockwidgets: false, "qqc2-desktop-style": false, libv4l: false, "kio-extras": false, opentimelineio: false, frei0r: false, qtimageformats: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["mlt", 26, 15], ["glaxnimate", 26, 19], ["ffmpeg", 27, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["mainProgram", 63, 8]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 22, 3], ["patches", 24, 3], ["extraCmakeFlags", 31, 3], ["extraNativeBuildInputs", 37, 3], ["extraBuildInputs", 42, 3], ["qtWrapperArgs", 59, 3], ["meta", 63, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,10 +26,10 @@ export default nix.lambda((args) => (() => {
   const frei0r = nix.arg($, "frei0r");
   const qtimageformats = nix.arg($, "qtimageformats");
   return nix.app(mkKdeDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "kdenlive",
       patches: nix.thunk(() => [
-        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./dependency-paths.patch"), nix.thunk(() => ({ [nix.POS]: pos$1, mlt: mlt, glaxnimate: glaxnimate, ffmpeg: ffmpeg_full })))),
+        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./dependency-paths.patch"), nix.thunk(() => ({ [nix.POS]: $pos[0], mlt: mlt, glaxnimate: glaxnimate, ffmpeg: ffmpeg_full })))),
       ]),
       extraCmakeFlags: nix.thunk(() => ["-DFETCH_OTIO=0", "-DBUILD_RUN_QMLLINT=0"]),
       extraNativeBuildInputs: nix.thunk(() => [pkg_config, shared_mime_info]),
@@ -50,7 +48,7 @@ export default nix.lambda((args) => (() => {
         opentimelineio,
       ]),
       qtWrapperArgs: nix.thunk(() => [nix.thunk(() => nix.str`--set FREI0R_PATH ${frei0r}/lib/frei0r-1`)]),
-      meta: nix.thunk(() => ({ [nix.POS]: pos$2, mainProgram: "kdenlive" })),
+      meta: nix.thunk(() => ({ [nix.POS]: $pos[1], mainProgram: "kdenlive" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

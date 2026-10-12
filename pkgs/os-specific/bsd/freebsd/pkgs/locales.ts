@@ -2,10 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/locales.nix", [[["path", 21, 7], ["extraPaths", 23, 7], ["nativeBuildInputs", 24, 7]], [["colldef", 37, 5], ["colldef_unicode", 38, 5], ["ctypedef", 39, 5], ["monetdef", 40, 5], ["monetdef_unicode", 41, 5], ["msgdef", 42, 5], ["msgdef_unicode", 43, 5], ["numericdef", 44, 5], ["numericdef_unicode", 45, 5], ["timedef", 46, 5]], [["name", 50, 3], ["paths", 51, 3]]]);
 const formals$1 = { args: { mkDerivation: false, lib: false, symlinkJoin: false, bsdSetupHook: false, freebsdSetupHook: false, makeMinimal: false, install: false, tsort: false, lorder: false, mandoc: false, groff: false, localedef: false, allLocales: true, locales: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/locales.nix", [["path", 21, 7], ["extraPaths", 23, 7], ["nativeBuildInputs", 24, 7]]);
-const pos$2 = nix.positions(here + "/locales.nix", [["colldef", 37, 5], ["colldef_unicode", 38, 5], ["ctypedef", 39, 5], ["monetdef", 40, 5], ["monetdef_unicode", 41, 5], ["msgdef", 42, 5], ["msgdef_unicode", 43, 5], ["numericdef", 44, 5], ["numericdef_unicode", 45, 5], ["timedef", 46, 5]]);
-const pos$3 = nix.positions(here + "/locales.nix", [["name", 50, 3], ["paths", 51, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,7 +22,7 @@ export default nix.lambda((args) => (() => {
   const allLocales = nix.argOr($, "allLocales", () => true);
   const locales = nix.argOr($, "locales", () => ["en_US.UTF-8"]);
   const build = (name) => (needsLocaledef) => nix.app(mkDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       path: nix.thunk(() => nix.str`share/${name}`),
       extraPaths: nix.thunk(() => nix.app(nix.sel(lib, "optional"), needsLocaledef, "tools/tools/locale/etc/final-maps")),
       nativeBuildInputs: nix.thunk(() => nix.concat([
@@ -39,7 +37,7 @@ export default nix.lambda((args) => (() => {
       ], nix.app(nix.sel(lib, "optional"), needsLocaledef, localedef))),
     })));
   const directories = nix.thunk(() => ({
-    [nix.POS]: pos$2,
+    [nix.POS]: $pos[1],
     colldef: true,
     colldef_unicode: true,
     ctypedef: true,
@@ -52,7 +50,7 @@ export default nix.lambda((args) => (() => {
     timedef: false,
   }));
   return nix.app(symlinkJoin, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       name: "freebsd-locales",
       paths: nix.thunk(() => nix.app(nix.sel(lib, "mapAttrsToList"), build, directories)),
     })));

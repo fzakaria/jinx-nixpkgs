@@ -2,17 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 31, 5], ["repo", 32, 5], ["tag", 33, 5], ["hash", 34, 5]], [["query", 87, 11], ["expected", 88, 11], ["description", 89, 11]], [["query", 92, 11], ["expected", 93, 11], ["description", 94, 11]], [["query", 98, 11], ["expected", 99, 11], ["description", 100, 11]], [["query", 103, 11], ["expected", 104, 11], ["description", 105, 11]], [["finalPackage", 81, 28], ["withPackages", 83, 7], ["sql", 84, 7], ["asserts", 85, 7]], [["extension", 80, 5]], [["tests", 79, 12]], [["description", 112, 5], ["longDescription", 113, 5], ["homepage", 120, 5], ["changelog", 121, 5], ["license", 122, 5], ["teams", 123, 5], ["platforms", 124, 31]], [["pname", 22, 3], ["version", 23, 3], ["outputs", 25, 3], ["src", 30, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 49, 3], ["doCheck", 53, 3], ["checkInputs", 55, 3], ["nativeCheckInputs", 59, 3], ["preConfigure", 64, 3], ["configureFlags", 68, 3], ["postInstall", 73, 3], ["passthru", 79, 3], ["meta", 111, 3]]]);
 const formals$1 = { args: { autoconf: false, automake: false, cunit: false, fetchFromGitHub: false, fetchpatch: false, installShellFiles: false, lib: false, libtool: false, libxml2: false, perl: false, postgresql: false, postgresqlBuildExtension: false, postgresqlTestExtension: false, postgresqlTestHook: false, sphinx: false, stdenv: false, which: false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 31, 5], ["repo", 32, 5], ["tag", 33, 5], ["hash", 34, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["query", 87, 11], ["expected", 88, 11], ["description", 89, 11]]);
-const pos$3 = nix.positions(here + "/package.nix", [["query", 92, 11], ["expected", 93, 11], ["description", 94, 11]]);
-const pos$4 = nix.positions(here + "/package.nix", [["query", 98, 11], ["expected", 99, 11], ["description", 100, 11]]);
-const pos$5 = nix.positions(here + "/package.nix", [["query", 103, 11], ["expected", 104, 11], ["description", 105, 11]]);
-const pos$6 = nix.positions(here + "/package.nix", [["finalPackage", 81, 28], ["withPackages", 83, 7], ["sql", 84, 7], ["asserts", 85, 7]]);
-const pos$7 = nix.positions(here + "/package.nix", [["extension", 80, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["tests", 79, 12]]);
-const pos$9 = nix.positions(here + "/package.nix", [["description", 112, 5], ["longDescription", 113, 5], ["homepage", 120, 5], ["changelog", 121, 5], ["license", 122, 5], ["teams", 123, 5], ["platforms", 124, 31]]);
-const pos$10 = nix.positions(here + "/package.nix", [["pname", 22, 3], ["version", 23, 3], ["outputs", 25, 3], ["src", 30, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 49, 3], ["doCheck", 53, 3], ["checkInputs", 55, 3], ["nativeCheckInputs", 59, 3], ["preConfigure", 64, 3], ["configureFlags", 68, 3], ["postInstall", 73, 3], ["passthru", 79, 3], ["meta", 111, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -35,12 +26,12 @@ export default nix.lambda((args) => (() => {
   const which = nix.arg($, "which");
   const zlib = nix.arg($, "zlib");
   return nix.app(postgresqlBuildExtension, (finalAttrs) => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       pname: "pointcloud",
       version: "1.2.5",
       outputs: nix.thunk(() => ["out", "man"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "pgpointcloud",
           repo: "pointcloud",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -58,35 +49,35 @@ export default nix.lambda((args) => (() => {
       ]),
       postInstall: "cd doc\nmake man\ninstallManPage build/man/pgpointcloud.1\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           extension: nix.thunk(() => nix.app(postgresqlTestExtension, nix.thunk(() => ({
-              [nix.POS]: pos$6,
+              [nix.POS]: $pos[5],
               finalPackage: nix.thunk(() => nix.attr(finalAttrs, "finalPackage")),
               withPackages: nix.thunk(() => ["postgis"]),
               sql: nix.thunk(() => nix.builtins.readFile(nix.path(here, "./tests.sql"))),
               asserts: nix.thunk(() => [
                 nix.thunk(() => ({
-                  [nix.POS]: pos$2,
+                  [nix.POS]: $pos[1],
                   query: "pc_version()",
                   expected: nix.thunk(() => nix.str`'${nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(finalAttrs, "version")))}.${nix.app(nix.sel(lib, "versions", "minor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}.${nix.app(nix.sel(lib, "versions", "patch"), nix.thunk(() => nix.sel(finalAttrs, "version")))}'`),
                   description: "pc_version() returns correct values.",
                 })),
                 nix.thunk(() => ({
-                  [nix.POS]: pos$3,
+                  [nix.POS]: $pos[2],
                   query: "pc_postgis_version()",
                   expected: nix.thunk(() => nix.str`'${nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(finalAttrs, "version")))}.${nix.app(nix.sel(lib, "versions", "minor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}.${nix.app(nix.sel(lib, "versions", "patch"), nix.thunk(() => nix.sel(finalAttrs, "version")))}'`),
                   description: "pc_postgis_version() returns correct values.",
                 })),
                 nix.thunk(() => ({
-                  [nix.POS]: pos$4,
+                  [nix.POS]: $pos[3],
                   query: "SELECT PC_AsText('010100000064CEFFFF94110000703000000400'::pcpoint)",
                   expected: "'{\"pcid\":1,\"pt\":[-127,45,124,4]}'",
                   description: "Creating a point and displaying as text returns correct string",
                 })),
                 nix.thunk(() => ({
-                  [nix.POS]: pos$5,
+                  [nix.POS]: $pos[4],
                   query: "SELECT ST_AsText(PC_MakePoint(1, ARRAY[-127, 45, 124.0, 4.0])::geometry)",
                   expected: "'POINT Z (-127 45 124)'",
                   description: "Casting a pcpoint to a postgis geometry works",
@@ -98,7 +89,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(postgresql, "meta"));
         return {
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         description: "PostgreSQL extension for storing point cloud (LIDAR) data",
         longDescription: "# pgPointcloud - A PostgreSQL extension for storing point cloud (LIDAR) data.\n\nLIDAR point cloud are becoming more and more available. Devices are easy to get, not too expensive, and provide very accurate 3D points. pgPointCLoud is an open source PostgreSQL extension for storing point cloud data and use it with PostGIS. It is very easy to use, robust and efficient.\n\nBy storing LIDAR points in a PostgreSQL database, pgPointcloud eases many problems and allows a good integration with other geo-spatial data (vector, raster) into one common framework : PostGIS.\n",
         homepage: "https://pgpointcloud.github.io/pointcloud/",

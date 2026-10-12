@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["urls", 36, 5], ["hash", 40, 5]], [["NIX_CFLAGS_COMPILE", 67, 7], ["GAG_CPP", 70, 7]], [["updateScript", 96, 12]], [["description", 99, 5], ["longDescription", 100, 5], ["homepage", 110, 5], ["license", 111, 5], ["maintainers", 112, 5], ["platforms", 116, 5]], [["srcVersion", 29, 3], ["version", 30, 3], ["pname", 31, 3], ["src", 33, 3], ["nativeBuildInputs", 43, 3], ["buildInputs", 52, 3], ["patches", 59, 3], ["env", 67, 3], ["configurePhase", 72, 3], ["userExec", 84, 3], ["postInstall", 86, 3], ["passthru", 96, 3], ["meta", 98, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, gtk3: false, "gtk3-x11": false, "pkg-config": false, python3: false, gfortran: false, cfitsio: false, getopt: false, perl: false, groff: false, which: false, ncurses: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["urls", 36, 5], ["hash", 40, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 67, 7], ["GAG_CPP", 70, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 96, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 99, 5], ["longDescription", 100, 5], ["homepage", 110, 5], ["license", 111, 5], ["maintainers", 112, 5], ["platforms", 116, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["srcVersion", 29, 3], ["version", 30, 3], ["pname", 31, 3], ["src", 33, 3], ["nativeBuildInputs", 43, 3], ["buildInputs", 52, 3], ["patches", 59, 3], ["env", 67, 3], ["configurePhase", 72, 3], ["userExec", 84, 3], ["postInstall", 86, 3], ["passthru", 96, 3], ["meta", 98, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -38,7 +34,7 @@ export default nix.lambda((args) => (() => {
       const version = "20261001_a";
       const pname = "gildas";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           urls: nix.thunk(() => [
             nix.thunk(() => nix.str`http://www.iram.fr/~gildas/dist/gildas-src-${srcVersion}.tar.xz`),
             nix.thunk(() => nix.str`http://www.iram.fr/~gildas/dist/archive/gildas/gildas-src-${srcVersion}.tar.xz`),
@@ -49,7 +45,7 @@ export default nix.lambda((args) => (() => {
       const buildInputs = nix.thunk(() => [gtk3$, cfitsio, python3Env, ncurses]);
       const patches = nix.thunk(() => nix.concat([nix.path(here, "./wrapper.patch")], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [nix.path(here, "./clang.patch"), nix.path(here, "./cpp-darwin.patch")]))));
       const env = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "cc", "isClang")), "-Wno-unused-command-line-argument")),
         GAG_CPP: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => nix.str`${nix.sel(gfortran, "outPath")}/bin/cpp`))),
       }));
@@ -72,9 +68,9 @@ for i in ${userExec} ; do
   chmod 755 $out/bin/$i
 done
 `);
-      const passthru = nix.thunk(() => ({ [nix.POS]: pos$3, updateScript: nix.path(here, "./update.py") }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: $pos[2], updateScript: nix.path(here, "./update.py") }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Radioastronomy data analysis software",
         longDescription: "GILDAS is a collection of state-of-the-art software\noriented toward (sub-)millimeter radioastronomical\napplications (either single-dish or interferometer).\nIt is daily used to reduce all data acquired with the\nIRAM 30M telescope and Plateau de Bure Interferometer\nPDBI (except VLBI observations). GILDAS is easily\nextensible. GILDAS is written in Fortran-90, with a\nfew parts in C/C++ (mainly keyboard interaction,\nplotting, widgets).",
         homepage: "https://www.iram.fr/IRAMFR/GILDAS/",
@@ -86,7 +82,7 @@ done
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         srcVersion,
         version,
         pname,

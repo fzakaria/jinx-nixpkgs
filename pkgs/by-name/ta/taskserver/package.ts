@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 17, 5], ["sha256", 18, 5]], [["taskserver", 54, 43]], [["tests", 54, 12]], [["description", 57, 5], ["homepage", 58, 5], ["license", 59, 5], ["platforms", 60, 5], ["maintainers", 61, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["patchPhase", 21, 3], ["buildInputs", 45, 3], ["nativeBuildInputs", 49, 3], ["passthru", 54, 3], ["meta", 56, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, cmake: false, libuuid: false, gnutls: false, makeWrapper: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 17, 5], ["sha256", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["taskserver", 54, 43]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 54, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 57, 5], ["homepage", 58, 5], ["license", 59, 5], ["platforms", 60, 5], ["maintainers", 61, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["patchPhase", 21, 3], ["buildInputs", 45, 3], ["nativeBuildInputs", 49, 3], ["passthru", 54, 3], ["meta", 56, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "taskserver",
       version: "1.1.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`http://www.taskwarrior.org/download/taskd-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "1d110q9vw8g5syzihxymik7hd27z1592wkpz55kya6lphzk8i13v",
         })))),
@@ -53,14 +49,14 @@ substituteInPlace CMakeLists.txt \\
       buildInputs: nix.thunk(() => [libuuid, gnutls]),
       nativeBuildInputs: nix.thunk(() => [cmake, makeWrapper]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           taskserver: nix.thunk(() => nix.attr(nixosTests, "taskserver")),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Server for synchronising Taskwarrior 2 clients",
         homepage: "https://taskwarrior.org",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

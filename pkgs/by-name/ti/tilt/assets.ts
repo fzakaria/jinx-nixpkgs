@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/assets.nix", [[["os", 28, 7], ["cpu", 32, 7], ["libc", 38, 7]], [["name", 22, 5], ["src", 23, 5], ["nativeBuildInputs", 25, 5], ["supportedArchitectures", 27, 5], ["NODE_EXTRA_CA_CERTS", 44, 5], ["configurePhase", 46, 5], ["buildPhase", 59, 5], ["dontInstall", 68, 5], ["outputHashAlgo", 70, 5], ["outputHash", 71, 5], ["outputHashMode", 72, 5]], [["description", 102, 5], ["homepage", 103, 5], ["license", 104, 5], ["maintainers", 105, 5], ["platforms", 106, 5]], [["pname", 12, 3], ["src", 13, 3], ["version", 14, 11], ["nativeBuildInputs", 16, 3], ["yarnOfflineCache", 21, 3], ["configurePhase", 75, 3], ["buildPhase", 87, 3], ["installPhase", 96, 3], ["meta", 101, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, nodejs: false, "yarn-berry": false, cacert: false, version: false, src: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/assets.nix", [["os", 28, 7], ["cpu", 32, 7], ["libc", 38, 7]]);
-const pos$2 = nix.positions(here + "/assets.nix", [["name", 22, 5], ["src", 23, 5], ["nativeBuildInputs", 25, 5], ["supportedArchitectures", 27, 5], ["NODE_EXTRA_CA_CERTS", 44, 5], ["configurePhase", 46, 5], ["buildPhase", 59, 5], ["dontInstall", 68, 5], ["outputHashAlgo", 70, 5], ["outputHash", 71, 5], ["outputHashMode", 72, 5]]);
-const pos$3 = nix.positions(here + "/assets.nix", [["description", 102, 5], ["homepage", 103, 5], ["license", 104, 5], ["maintainers", 105, 5], ["platforms", 106, 5]]);
-const pos$4 = nix.positions(here + "/assets.nix", [["pname", 12, 3], ["src", 13, 3], ["version", 14, 11], ["nativeBuildInputs", 16, 3], ["yarnOfflineCache", 21, 3], ["configurePhase", 75, 3], ["buildPhase", 87, 3], ["installPhase", 96, 3], ["meta", 101, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,18 +15,18 @@ export default nix.lambda((args) => (() => {
   const version = nix.arg($, "version");
   const src = nix.arg($, "src");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "tilt-assets",
       src: nix.thunk(() => nix.str`${src}/web`),
       version: version,
       nativeBuildInputs: nix.thunk(() => [nodejs, yarn_berry]),
       yarnOfflineCache: nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           name: "tilt-assets-deps",
           src: nix.thunk(() => nix.str`${src}/web`),
           nativeBuildInputs: nix.thunk(() => [yarn_berry]),
           supportedArchitectures: nix.thunk(() => nix.builtins.toJSON(nix.thunk(() => ({
-              [nix.POS]: pos$1,
+              [nix.POS]: $pos[0],
               os: nix.thunk(() => ["darwin", "linux"]),
               cpu: nix.thunk(() => ["arm", "arm64", "ia32", "x64"]),
               libc: nix.thunk(() => ["glibc", "musl"]),
@@ -46,7 +43,7 @@ export default nix.lambda((args) => (() => {
       buildPhase: "runHook preBuild\n\nyarn install --immutable --immutable-cache\nyarn build\n\nrunHook postBuild\n",
       installPhase: "mkdir -p $out\ncp -r build/. $out/\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Assets needed for Tilt",
         homepage: "https://tilt.dev/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

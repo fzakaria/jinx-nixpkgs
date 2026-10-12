@@ -2,18 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["case", 16, 9], ["out", 17, 9]], [["case", 20, 9], ["out", 21, 9]], [["case", 24, 9], ["out", 25, 9]], [["case", 28, 9], ["out", 29, 9]], [["hash", 34, 12]], [["hash", 35, 12]], [["hash", 36, 12]], [["hash", 37, 12]], [["8.16", 34, 5], ["8.13", 35, 5], ["8.12", 36, 5], ["8.11", 37, 5]], [["description", 42, 5], ["maintainers", 43, 5], ["license", 44, 5]], [["pname", 9, 3], ["version", 10, 11], ["repo", 11, 3], ["defaultVersion", 12, 3], ["release", 33, 3], ["releaseRev", 39, 3], ["meta", 41, 3]]]);
 const formals$1 = { args: { lib: false, mkCoqDerivation: false, coq: false, version: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["case", 16, 9], ["out", 17, 9]]);
-const pos$2 = nix.positions(here + "/default.nix", [["case", 20, 9], ["out", 21, 9]]);
-const pos$3 = nix.positions(here + "/default.nix", [["case", 24, 9], ["out", 25, 9]]);
-const pos$4 = nix.positions(here + "/default.nix", [["case", 28, 9], ["out", 29, 9]]);
-const pos$5 = nix.positions(here + "/default.nix", [["hash", 34, 12]]);
-const pos$6 = nix.positions(here + "/default.nix", [["hash", 35, 12]]);
-const pos$7 = nix.positions(here + "/default.nix", [["hash", 36, 12]]);
-const pos$8 = nix.positions(here + "/default.nix", [["hash", 37, 12]]);
-const pos$9 = nix.positions(here + "/default.nix", [["8.16", 34, 5], ["8.13", 35, 5], ["8.12", 36, 5], ["8.11", 37, 5]]);
-const pos$10 = nix.positions(here + "/default.nix", [["description", 42, 5], ["maintainers", 43, 5], ["license", 44, 5]]);
-const pos$11 = nix.positions(here + "/default.nix", [["pname", 9, 3], ["version", 10, 11], ["repo", 11, 3], ["defaultVersion", 12, 3], ["release", 33, 3], ["releaseRev", 39, 3], ["meta", 41, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const coq = nix.arg($, "coq");
   const version = nix.argOr($, "version", () => null);
   return nix.app(mkCoqDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$11,
+      [nix.POS]: $pos[10],
       pname: "high-school-geometry",
       version: version,
       repo: "HighSchoolGeometry",
@@ -30,41 +20,41 @@ export default nix.lambda((args) => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "versions")), null);
         return nix.app(nix.sel(lib, "switch"), nix.thunk(() => nix.sel(coq, "coq-version")), nix.thunk(() => [
             nix.thunk(() => ({
-              [nix.POS]: pos$1,
+              [nix.POS]: $pos[0],
               case: nix.thunk(() => nix.app(nix.lookup(w, "range"), "8.16", "8.20")),
               out: "8.16",
             })),
             nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               case: nix.thunk(() => nix.app(nix.lookup(w, "range"), "8.12", "8.16")),
               out: "8.13",
             })),
-            nix.thunk(() => ({ [nix.POS]: pos$3, case: "8.12", out: "8.12" })),
-            nix.thunk(() => ({ [nix.POS]: pos$4, case: "8.11", out: "8.11" })),
+            nix.thunk(() => ({ [nix.POS]: $pos[2], case: "8.12", out: "8.12" })),
+            nix.thunk(() => ({ [nix.POS]: $pos[3], case: "8.11", out: "8.11" })),
           ]), null);
       })()),
       release: nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         "8.16": nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           hash: "sha256-HvUrZ6l7wCshuKUZs8rvfMkTEv+oXuogI5LICcD8Bn8=",
         })),
         "8.13": nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           hash: "sha256-5F/6155v0bWi5t7n4qU/GuR6jENngvWIIqJGPURzIeQ=",
         })),
         "8.12": nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           hash: "sha256-OF7sahU+5Ormkcrd8t6p2Kp/B2/Q/6zYTV3/XBvlGHc=",
         })),
         "8.11": nix.thunk(() => ({
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           hash: "sha256-sVGeBBAJ7a7f+EJU1aSUvIVe9ip9PakY4379XWvvoqw=",
         })),
       })),
       releaseRev: (v) => nix.str`v${v}`,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         description: "Geometry in Coq for French high school",
         maintainers: nix.thunk(() => (() => {
           const w_1 = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);

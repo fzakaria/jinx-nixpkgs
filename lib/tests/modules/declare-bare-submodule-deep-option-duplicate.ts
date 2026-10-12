@@ -2,11 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/declare-bare-submodule-deep-option-duplicate.nix", [[["type", 7, 5], ["default", 8, 5]], [["deep", 6, 26]], [["bare-submodule", 6, 11]], [["options", 6, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/declare-bare-submodule-deep-option-duplicate.nix", [["type", 7, 5], ["default", 8, 5]]);
-const pos$2 = nix.positions(here + "/declare-bare-submodule-deep-option-duplicate.nix", [["deep", 6, 26]]);
-const pos$3 = nix.positions(here + "/declare-bare-submodule-deep-option-duplicate.nix", [["bare-submodule", 6, 11]]);
-const pos$4 = nix.positions(here + "/declare-bare-submodule-deep-option-duplicate.nix", [["options", 6, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,12 +11,16 @@ export default nix.lambda((args) => (() => {
   const mkOption = nix.thunk(() => nix.attr(lib, "mkOption"));
   const types = nix.thunk(() => nix.attr(lib, "types"));
   return {
-    [nix.POS]: pos$4,
+    [nix.POS]: $pos[3],
     options: nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       "bare-submodule": nix.thunk(() => ({
-        [nix.POS]: pos$2,
-        deep: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({ [nix.POS]: pos$1, type: nix.thunk(() => nix.sel(types, "int")), default: 2n })))),
+        [nix.POS]: $pos[1],
+        deep: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
+            [nix.POS]: $pos[0],
+            type: nix.thunk(() => nix.sel(types, "int")),
+            default: 2n,
+          })))),
       })),
     })),
   };

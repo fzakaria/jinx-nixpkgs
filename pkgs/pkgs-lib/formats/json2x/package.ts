@@ -2,21 +2,20 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["lockFile", 17, 5]], [["pname", 7, 3], ["version", 8, 3], ["__structuredAttrs", 9, 3], ["src", 11, 3], ["cargoLock", 16, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["lockFile", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 7, 3], ["version", 8, 3], ["__structuredAttrs", 9, 3], ["src", 11, 3], ["cargoLock", 16, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const rustPlatform = nix.arg($, "rustPlatform");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "json2x",
       version: "0.1.0",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(nix.sel(lib, "sourceByRegex"), nix.path(here, "./."), nix.thunk(() => ["^src(/.*)?$", "^Cargo\\.(lock|toml)$"]))),
-      cargoLock: nix.thunk(() => ({ [nix.POS]: pos$1, lockFile: nix.path(here, "./Cargo.lock") })),
+      cargoLock: nix.thunk(() => ({ [nix.POS]: $pos[0], lockFile: nix.path(here, "./Cargo.lock") })),
     })));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

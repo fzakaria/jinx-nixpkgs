@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 23, 15], ["repo", 24, 15], ["rev", 25, 15], ["hash", 26, 15]], [["version", 21, 21], ["src", 22, 13], ["vendorHash", 28, 13]], [["buildGoModule", 16, 7]], [["owner", 39, 5], ["repo", 40, 5], ["tag", 41, 5], ["hash", 42, 5]], [["ESBUILD_BINARY_PATH", 52, 7]], [["updateScript", 54, 12]], [["description", 57, 5], ["homepage", 58, 5], ["license", 59, 5], ["maintainers", 60, 5]], [["pname", 35, 3], ["version", 36, 3], ["src", 38, 3], ["npmDepsHash", 45, 3], ["nodejs", 48, 3], ["nativeBuildInputs", 50, 3], ["env", 52, 3], ["passthru", 54, 3], ["meta", 56, 3]]]);
 const formals$1 = { args: { lib: false, buildNpmPackage: false, nodejs_22: false, fetchFromGitHub: false, "nix-update-script": false, esbuild: false, buildGoModule: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 23, 15], ["repo", 24, 15], ["rev", 25, 15], ["hash", 26, 15]]);
-const pos$2 = nix.positions(here + "/package.nix", [["version", 21, 21], ["src", 22, 13], ["vendorHash", 28, 13]]);
-const pos$3 = nix.positions(here + "/package.nix", [["buildGoModule", 16, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["owner", 39, 5], ["repo", 40, 5], ["tag", 41, 5], ["hash", 42, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["ESBUILD_BINARY_PATH", 52, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["updateScript", 54, 12]]);
-const pos$7 = nix.positions(here + "/package.nix", [["description", 57, 5], ["homepage", 58, 5], ["license", 59, 5], ["maintainers", 60, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 35, 3], ["version", 36, 3], ["src", 38, 3], ["npmDepsHash", 45, 3], ["nodejs", 48, 3], ["nativeBuildInputs", 50, 3], ["env", 52, 3], ["passthru", 54, 3], ["meta", 56, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const esbuild$ = nix.thunk(() => (() => {
     const version = "0.25.0";
     return nix.app(nix.sel(esbuild, "override"), nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         buildGoModule: (args_1) => nix.app(buildGoModule, nix.thunk(() => nix.update(args_1, {
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             version: version,
             src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-                [nix.POS]: pos$1,
+                [nix.POS]: $pos[0],
                 owner: "evanw",
                 repo: "esbuild",
                 rev: nix.thunk(() => nix.str`v${version}`),
@@ -40,11 +33,11 @@ export default nix.lambda((args) => (() => {
       })));
   })());
   return nix.app(buildNpmPackage, (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "coc-yank",
       version: "1.2.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           owner: "neoclide",
           repo: "coc-yank",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -54,15 +47,15 @@ export default nix.lambda((args) => (() => {
       nodejs: nodejs_22,
       nativeBuildInputs: nix.thunk(() => [esbuild$]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         ESBUILD_BINARY_PATH: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), esbuild$)),
       })),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "Yank highlight and persist yank history support for vim",
         homepage: "https://github.com/neoclide/coc-yank",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -2,48 +2,40 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/hickory-dns.nix", [[["maintainers", 5, 8]], [["systemPackages", 8, 17]], [["zone", 14, 11], ["file", 15, 11]], [["zones", 12, 16]], [["enable", 11, 7], ["settings", 12, 7]], [["hickory-dns", 10, 14]], [["environment", 8, 5], ["services", 10, 5]], [["machine", 7, 14]], [["name", 3, 3], ["meta", 5, 3], ["containers", 7, 3], ["testScript", 28, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/hickory-dns.nix", [["maintainers", 5, 8]]);
-const pos$2 = nix.positions(here + "/hickory-dns.nix", [["systemPackages", 8, 17]]);
-const pos$3 = nix.positions(here + "/hickory-dns.nix", [["zone", 14, 11], ["file", 15, 11]]);
-const pos$4 = nix.positions(here + "/hickory-dns.nix", [["zones", 12, 16]]);
-const pos$5 = nix.positions(here + "/hickory-dns.nix", [["enable", 11, 7], ["settings", 12, 7]]);
-const pos$6 = nix.positions(here + "/hickory-dns.nix", [["hickory-dns", 10, 14]]);
-const pos$7 = nix.positions(here + "/hickory-dns.nix", [["environment", 8, 5], ["services", 10, 5]]);
-const pos$8 = nix.positions(here + "/hickory-dns.nix", [["machine", 7, 14]]);
-const pos$9 = nix.positions(here + "/hickory-dns.nix", [["name", 3, 3], ["meta", 5, 3], ["containers", 7, 3], ["testScript", 28, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   return {
-    [nix.POS]: pos$9,
+    [nix.POS]: $pos[8],
     name: "hickory-dns",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "adamcstephens"))];
       })()),
     })),
     containers: nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       machine: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         environment: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "doggo"))]),
         })),
         services: nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           "hickory-dns": nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             enable: true,
             settings: nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               zones: nix.thunk(() => [
                 nix.thunk(() => ({
-                  [nix.POS]: pos$3,
+                  [nix.POS]: $pos[2],
                   zone: "example.test",
                   file: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "example.test.zone", "$ORIGIN example.test.\n$TTL 3600\n@ IN SOA ns.example.test. hostmaster.example.test. (1 3600 600 86400 3600)\n@ IN NS ns.example.test.\nns IN A 127.0.0.1\nwww IN A 192.0.2.1\n")),
                 })),

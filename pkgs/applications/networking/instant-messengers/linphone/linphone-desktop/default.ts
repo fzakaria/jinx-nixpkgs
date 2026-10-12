@@ -2,12 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["name", 31, 5], ["paths", 32, 5]], [["domain", 48, 5], ["owner", 49, 5], ["group", 50, 5], ["repo", 51, 5], ["tag", 52, 5], ["hash", 53, 5]], [["NIX_CFLAGS_COMPILE", 139, 7]], [["homepage", 182, 5], ["description", 183, 5], ["mainProgram", 184, 5], ["license", 185, 5], ["platforms", 186, 5], ["maintainers", 187, 5]], [["pname", 44, 3], ["version", 45, 3], ["src", 47, 3], ["patches", 56, 3], ["buildInputs", 72, 3], ["nativeBuildInputs", 97, 3], ["dontWrapGApps", 106, 3], ["cmakeFlags", 108, 3], ["env", 139, 3], ["preConfigure", 141, 3], ["preInstall", 147, 3], ["preFixup", 157, 3], ["postInstall", 165, 3], ["meta", 181, 3]]]);
 const formals$1 = { args: { "bc-ispell": false, "bc-soci": false, bctoolbox: false, belcard: false, cacert: false, "belle-sip": false, belr: false, boost: false, cmake: false, doxygen: false, fetchFromGitLab: false, lib: false, liblinphone: false, lime: false, linphoneSdkVersion: false, mediastreamer2: false, "minizip-ng": false, msopenh264: false, python3: false, python3Packages: false, qt6Packages: false, stdenv: false, symlinkJoin: false, xercesc: false, "zxing-cpp": false, wrapGAppsHook3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["name", 31, 5], ["paths", 32, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["domain", 48, 5], ["owner", 49, 5], ["group", 50, 5], ["repo", 51, 5], ["tag", 52, 5], ["hash", 53, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["NIX_CFLAGS_COMPILE", 139, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["homepage", 182, 5], ["description", 183, 5], ["mainProgram", 184, 5], ["license", 185, 5], ["platforms", 186, 5], ["maintainers", 187, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 44, 3], ["version", 45, 3], ["src", 47, 3], ["patches", 56, 3], ["buildInputs", 72, 3], ["nativeBuildInputs", 97, 3], ["dontWrapGApps", 106, 3], ["cmakeFlags", 108, 3], ["env", 139, 3], ["preConfigure", 141, 3], ["preInstall", 147, 3], ["preFixup", 157, 3], ["postInstall", 165, 3], ["meta", 181, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -38,7 +34,7 @@ export default nix.lambda((args) => (() => {
   const zxing_cpp = nix.arg($, "zxing-cpp");
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   const grammars = nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: "belr-grammars",
       paths: nix.thunk(() => (() => {
         const grammarPackages = nix.thunk(() => [belle_sip, belcard, liblinphone]);
@@ -46,11 +42,11 @@ export default nix.lambda((args) => (() => {
       })()),
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "linphone-desktop",
       version: "6.2.0",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           domain: "gitlab.linphone.org",
           owner: "public",
           group: "BC",
@@ -116,7 +112,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`-DLINPHONEAPP_VERSION=${nix.sel(finalAttrs, "version")}`),
         "-DENABLE_UPDATE_CHECK=OFF",
       ]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$3, NIX_CFLAGS_COMPILE: "-fpermissive" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[2], NIX_CFLAGS_COMPILE: "-fpermissive" })),
       preConfigure: "# custom \"find\" modules are causing issues during build,\n# as they are blinding cmake to nix dependencies\nrm -rf cmake/Modules\n",
       preInstall: "mkdir -p $out/share/linphone\nmkdir -p $out/share/belr\n",
       preFixup: "qtWrapperArgs+=(\n  \"${gappsWrapperArgs[@]}\"\n  --unset QML2_IMPORT_PATH\n  --set MEDIASTREAMER_PLUGINS_DIR $out/lib/mediastreamer/plugins\n)\n",
@@ -135,7 +131,7 @@ mkdir -p $out/share/sounds/linphone/
 ln -s ${liblinphone}/share/sounds/linphone/rings $out/share/sounds/linphone/rings
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://www.linphone.org/",
         description: "Open source SIP phone for voice/video calls and instant messaging",
         mainProgram: "linphone",

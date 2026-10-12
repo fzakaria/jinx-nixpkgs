@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 24, 5], ["repo", 25, 5], ["rev", 26, 5], ["hash", 27, 5]], [["description", 54, 5], ["homepage", 55, 5], ["maintainers", 56, 5], ["license", 57, 5], ["platforms", 58, 5], ["mainProgram", 59, 5]], [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["preConfigure", 30, 3], ["configureScript", 35, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 43, 3], ["meta", 53, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, autoconf: false, automake: false, "gtk-doc": false, "pkg-config": false, libuuid: false, libtool: false, readline: false, "gobject-introspection": false, "json-glib": false, lvm2: false, libxslt: false, docbook_xsl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 24, 5], ["repo", 25, 5], ["rev", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 54, 5], ["homepage", 55, 5], ["maintainers", 56, 5], ["license", 57, 5], ["platforms", 58, 5], ["mainProgram", 59, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["preConfigure", 30, 3], ["configureScript", 35, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 43, 3], ["meta", 53, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const libxslt = nix.arg($, "libxslt");
   const docbook_xsl = nix.arg($, "docbook_xsl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "ldmtool",
       version: "0.2.5-unstable-2025-02-06",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "mdbooth",
           repo: "libldm",
           rev: "1eafb653ac6347a9d4281848c8295f9daffb1613",
@@ -50,7 +48,7 @@ export default nix.lambda((args) => (() => {
         libuuid,
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Tool and library for managing Microsoft Windows Dynamic Disks",
         homepage: "https://github.com/mdbooth/libldm",
         maintainers: nix.thunk(() => (() => {

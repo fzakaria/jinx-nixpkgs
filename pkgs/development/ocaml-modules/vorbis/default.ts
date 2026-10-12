@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["homepage", 21, 5], ["description", 22, 5], ["license", 23, 5], ["maintainers", 24, 5]], [["pname", 11, 3], ["version", 12, 17], ["src", 12, 25], ["buildInputs", 14, 3], ["propagatedBuildInputs", 15, 3], ["meta", 20, 3]]]);
 const formals$1 = { args: { lib: false, buildDunePackage: false, fetchFromGitHub: false, "dune-configurator": false, ogg: false, libvorbis: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["homepage", 21, 5], ["description", 22, 5], ["license", 23, 5], ["maintainers", 24, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 11, 3], ["version", 12, 17], ["src", 12, 25], ["buildInputs", 14, 3], ["propagatedBuildInputs", 15, 3], ["meta", 20, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,14 +14,14 @@ export default nix.lambda((args) => (() => {
   const ogg = nix.arg($, "ogg");
   const libvorbis = nix.arg($, "libvorbis");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "vorbis",
       version: nix.thunk(() => nix.attr(ogg, "version")),
       src: nix.thunk(() => nix.attr(ogg, "src")),
       buildInputs: nix.thunk(() => [dune_configurator]),
       propagatedBuildInputs: nix.thunk(() => [ogg, libvorbis]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         homepage: "https://github.com/savonet/ocaml-vorbis",
         description: "Bindings to libvorbis",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

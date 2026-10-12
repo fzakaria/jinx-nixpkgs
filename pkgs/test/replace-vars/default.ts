@@ -2,23 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["free", 20, 11], ["equal in", 21, 11], ["brotherhood", 22, 11]], [["assertion", 18, 9], ["actual", 19, 9], ["expected", 25, 9]], [["failed", 38, 42]], [["not-found", 46, 68]], [["failed", 46, 13]], [["failed", 55, 13]], [["free", 84, 11], ["equal in", 85, 11], ["brotherhood", 86, 11]], [["assertion", 82, 9], ["actual", 83, 9], ["expected", 89, 9]], [["a", 113, 19], ["b", 114, 19]], [["failed", 103, 13]], [["a", 138, 19], ["b", 139, 19], ["c", 140, 19]], [["failed", 129, 13]], [["succeeds", 17, 7], ["fails-on-directory", 37, 7], ["fails-in-build-phase", 44, 7], ["fails-in-check-phase", 52, 7], ["succeeds-with-exemption", 81, 7], ["fails-in-check-phase-with-exemption", 100, 7], ["fails-in-check-phase-with-bad-exemption", 126, 7]], [["src", 158, 19], ["replacements", 158, 23], ["dir", 159, 11], ["isExecutable", 160, 11]], [["file", 165, 41]], [["replaceVars", 152, 3], ["replaceVarsWith", 153, 3]]]);
 const formals$1 = { args: { replaceVars: false, replaceVarsWith: false, emptyDirectory: false, emptyFile: false, lib: false, runCommand: false, testers: false, writeText: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["free", 20, 11], ["equal in", 21, 11], ["brotherhood", 22, 11]]);
-const pos$2 = nix.positions(here + "/default.nix", [["assertion", 18, 9], ["actual", 19, 9], ["expected", 25, 9]]);
-const pos$3 = nix.positions(here + "/default.nix", [["failed", 38, 42]]);
-const pos$4 = nix.positions(here + "/default.nix", [["not-found", 46, 68]]);
-const pos$5 = nix.positions(here + "/default.nix", [["failed", 46, 13]]);
-const pos$6 = nix.positions(here + "/default.nix", [["failed", 55, 13]]);
-const pos$7 = nix.positions(here + "/default.nix", [["free", 84, 11], ["equal in", 85, 11], ["brotherhood", 86, 11]]);
-const pos$8 = nix.positions(here + "/default.nix", [["assertion", 82, 9], ["actual", 83, 9], ["expected", 89, 9]]);
-const pos$9 = nix.positions(here + "/default.nix", [["a", 113, 19], ["b", 114, 19]]);
-const pos$10 = nix.positions(here + "/default.nix", [["failed", 103, 13]]);
-const pos$11 = nix.positions(here + "/default.nix", [["a", 138, 19], ["b", 139, 19], ["c", 140, 19]]);
-const pos$12 = nix.positions(here + "/default.nix", [["failed", 129, 13]]);
-const pos$13 = nix.positions(here + "/default.nix", [["succeeds", 17, 7], ["fails-on-directory", 37, 7], ["fails-in-build-phase", 44, 7], ["fails-in-check-phase", 52, 7], ["succeeds-with-exemption", 81, 7], ["fails-in-check-phase-with-exemption", 100, 7], ["fails-in-check-phase-with-bad-exemption", 126, 7]]);
-const pos$14 = nix.positions(here + "/default.nix", [["src", 158, 19], ["replacements", 158, 23], ["dir", 159, 11], ["isExecutable", 160, 11]]);
-const pos$15 = nix.positions(here + "/default.nix", [["file", 165, 41]]);
-const pos$16 = nix.positions(here + "/default.nix", [["replaceVars", 152, 3], ["replaceVarsWith", 153, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const testEqualContents = nix.thunk(() => nix.attr(testers, "testEqualContents"));
   const testBuildFailure = nix.thunk(() => nix.attr(testers, "testBuildFailure"));
   const mkTests = (callReplaceVars) => (mkExpectation) => nix.app(nix.sel(lib, "recurseIntoAttrs"), nix.thunk(() => ({
-      [nix.POS]: pos$13,
+      [nix.POS]: $pos[12],
       succeeds: nix.thunk(() => nix.app(testEqualContents, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           assertion: "replaceVars-succeeds",
           actual: nix.thunk(() => nix.app(callReplaceVars, nix.path(here, "./source.txt"), nix.thunk(() => ({
-              [nix.POS]: pos$1,
+              [nix.POS]: $pos[0],
               free: "free",
               "equal in": "are the same in",
               brotherhood: "shared humanity",
@@ -46,25 +31,25 @@ export default nix.lambda((args) => (() => {
           expected: nix.thunk(() => nix.app(mkExpectation, nix.thunk(() => nix.app(writeText, "source.txt", "All human beings are born free and are the same in dignity and rights.\nThey are endowed with reason and conscience and should act towards\none another in a spirit of shared humanity.\n\n  -- eroosevelt@humanrights.un.org\n")))),
         })))),
       "fails-on-directory": nix.thunk(() => nix.app(runCommand, "replaceVars-fails", nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           failed: nix.thunk(() => nix.app(testBuildFailure, nix.thunk(() => nix.app(callReplaceVars, emptyDirectory, nix.thunk(() => ({})))))),
         })), "grep -e \"ERROR: file.*empty-directory.*does not exist\" $failed/testBuildFailure.log\ntouch $out\n")),
       "fails-in-build-phase": nix.thunk(() => nix.app(runCommand, "replaceVars-fails", nix.thunk(() => ({
-          [nix.POS]: pos$5,
-          failed: nix.thunk(() => nix.app(testBuildFailure, nix.thunk(() => nix.app(callReplaceVars, emptyFile, nix.thunk(() => ({ [nix.POS]: pos$4, "not-found": "boo~" })))))),
+          [nix.POS]: $pos[4],
+          failed: nix.thunk(() => nix.app(testBuildFailure, nix.thunk(() => nix.app(callReplaceVars, emptyFile, nix.thunk(() => ({ [nix.POS]: $pos[3], "not-found": "boo~" })))))),
         })), "grep -e \"ERROR: pattern @not-found@ doesn't match anything in file.*empty-file\" $failed/testBuildFailure.log\ntouch $out\n")),
       "fails-in-check-phase": nix.thunk(() => nix.app(runCommand, "replaceVars-fails", nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           failed: nix.thunk(() => (() => {
             const src = nix.thunk(() => nix.app(writeText, "source.txt", "Header.\nbefore @whatIsThis@ middle @It'sOdd2Me@ after.\n@cannot detect due to space@\nTrailer.\n"));
             return nix.app(testBuildFailure, nix.thunk(() => nix.app(callReplaceVars, src, nix.thunk(() => ({})))));
           })()),
         })), "grep -e \"unsubstituted Nix identifiers.*source.txt\" $failed/testBuildFailure.log\ngrep -F \"@whatIsThis@\" $failed/testBuildFailure.log\ngrep -F \"@It'sOdd2Me@\" $failed/testBuildFailure.log\ngrep -F 'more precise `substitute` function' $failed/testBuildFailure.log\n\n# Shouldn't see irrelevant details.\n! grep -q -E -e \"Header|before|middle|after|Trailer\" $failed/testBuildFailure.log\n\n# Shouldn't see the \"cannot detect\" version.\n! grep -q -F \"cannot detect due to space\" $failed/testBuildFailure.log\n\ntouch $out\n")),
       "succeeds-with-exemption": nix.thunk(() => nix.app(testEqualContents, nix.thunk(() => ({
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           assertion: "replaceVars-succeeds",
           actual: nix.thunk(() => nix.app(callReplaceVars, nix.path(here, "./source.txt"), nix.thunk(() => ({
-              [nix.POS]: pos$7,
+              [nix.POS]: $pos[6],
               free: "free",
               "equal in": "are the same in",
               brotherhood: null,
@@ -72,30 +57,30 @@ export default nix.lambda((args) => (() => {
           expected: nix.thunk(() => nix.app(mkExpectation, nix.thunk(() => nix.app(writeText, "source.txt", "All human beings are born free and are the same in dignity and rights.\nThey are endowed with reason and conscience and should act towards\none another in a spirit of @brotherhood@.\n\n  -- eroosevelt@humanrights.un.org\n")))),
         })))),
       "fails-in-check-phase-with-exemption": nix.thunk(() => nix.app(runCommand, "replaceVars-fails", nix.thunk(() => ({
-          [nix.POS]: pos$10,
+          [nix.POS]: $pos[9],
           failed: nix.thunk(() => (() => {
             const src = nix.thunk(() => nix.app(writeText, "source.txt", "@a@\n@b@\n@c@\n"));
-            return nix.app(testBuildFailure, nix.thunk(() => nix.app(callReplaceVars, src, nix.thunk(() => ({ [nix.POS]: pos$9, a: "a", b: null })))));
+            return nix.app(testBuildFailure, nix.thunk(() => nix.app(callReplaceVars, src, nix.thunk(() => ({ [nix.POS]: $pos[8], a: "a", b: null })))));
           })()),
         })), "grep -e \"unsubstituted Nix identifiers.*source.txt\" $failed/testBuildFailure.log\ngrep -F \"@c@\" $failed/testBuildFailure.log\n! grep -F \"@b@\" $failed/testBuildFailure.log\n\ntouch $out\n")),
       "fails-in-check-phase-with-bad-exemption": nix.thunk(() => nix.app(runCommand, "replaceVars-fails", nix.thunk(() => ({
-          [nix.POS]: pos$12,
+          [nix.POS]: $pos[11],
           failed: nix.thunk(() => (() => {
             const src = nix.thunk(() => nix.app(writeText, "source.txt", "@a@\n@b@\n"));
-            return nix.app(testBuildFailure, nix.thunk(() => nix.app(callReplaceVars, src, nix.thunk(() => ({ [nix.POS]: pos$11, a: "a", b: null, c: null })))));
+            return nix.app(testBuildFailure, nix.thunk(() => nix.app(callReplaceVars, src, nix.thunk(() => ({ [nix.POS]: $pos[10], a: "a", b: null, c: null })))));
           })()),
         })), "grep -e \"ERROR: pattern @c@ doesn't match anything in file.*source.txt\" $failed/testBuildFailure.log\n\ntouch $out\n")),
     })));
   return {
-    [nix.POS]: pos$16,
+    [nix.POS]: $pos[15],
     replaceVars: nix.thunk(() => nix.app(mkTests, replaceVars, nix.thunk(() => nix.sel(lib, "id")))),
     replaceVarsWith: nix.thunk(() => nix.app(mkTests, (src) => (replacements) => nix.app(replaceVarsWith, nix.thunk(() => ({
-          [nix.POS]: pos$14,
+          [nix.POS]: $pos[13],
           src: src,
           replacements: replacements,
           dir: "bin",
           isExecutable: true,
-        }))), (file) => nix.app(runCommand, "expected", nix.thunk(() => ({ [nix.POS]: pos$15, file: file })), "install -Dm755 \"$file\" \"$out/bin/$(stripHash \"$file\")\"\n"))),
+        }))), (file) => nix.app(runCommand, "expected", nix.thunk(() => ({ [nix.POS]: $pos[14], file: file })), "install -Dm755 \"$file\" \"$out/bin/$(stripHash \"$file\")\"\n"))),
   };
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 25, 5], ["repo", 26, 5], ["rev", 27, 5], ["hash", 28, 5]], [["description", 70, 5], ["homepage", 71, 5], ["license", 72, 5], ["maintainers", 73, 5], ["platforms", 74, 5]], [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 39, 3], ["strictDeps", 51, 3], ["mesonFlags", 53, 3], ["pythonPath", 60, 3], ["postInstall", 65, 3], ["meta", 69, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, portaudio: false, boost: false, libjack2: false, libsigcxx_2_0: false, lilv: false, "pkg-config": false, python3: false, raul: false, sord: false, sratom: false, suil: false, meson: false, ninja: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 25, 5], ["repo", 26, 5], ["rev", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 70, 5], ["homepage", 71, 5], ["license", 72, 5], ["maintainers", 73, 5], ["platforms", 74, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 39, 3], ["strictDeps", 51, 3], ["mesonFlags", 53, 3], ["pythonPath", 60, 3], ["postInstall", 65, 3], ["meta", 69, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const meson = nix.arg($, "meson");
   const ninja = nix.arg($, "ninja");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "ingen",
       version: "0-unstable-2024-07-13",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "drobilla",
           repo: "ingen",
           rev: "bbdab98ed282291b6e29a944359c360c9cca127e",
@@ -52,7 +50,7 @@ export default nix.lambda((args) => (() => {
       pythonPath: nix.thunk(() => [python3, nix.thunk(() => nix.sel(python3, "pkgs", "rdflib"))]),
       postInstall: "wrapPythonProgramsIn \"$out/bin\" \"$out ${pythonPath[*]}\"\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Modular audio processing system using JACK and LV2 or LADSPA plugins",
         homepage: "http://drobilla.net/software/ingen",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Plus")),

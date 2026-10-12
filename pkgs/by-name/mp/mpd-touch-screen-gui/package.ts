@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 27, 5], ["repo", 28, 5], ["rev", 29, 5], ["hash", 30, 5]], [["url", 35, 7], ["hash", 36, 7]], [["description", 69, 5], ["homepage", 70, 5], ["license", 72, 5], ["maintainers", 73, 5], ["platforms", 74, 5]], [["pname", 20, 3], ["version", 21, 3], ["strictDeps", 23, 3], ["__structuredAttrs", 24, 3], ["src", 26, 3], ["patches", 32, 3], ["nativeBuildInputs", 40, 3], ["postPatch", 45, 3], ["buildInputs", 50, 3], ["configureFlags", 62, 3], ["doCheck", 66, 3], ["meta", 68, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch: false, "pkg-config": false, autoreconfHook: false, SDL2: false, SDL2_ttf: false, SDL2_image: false, boost: false, libmpdclient: false, "libwtk-sdl2": false, icu: false, libconfig: false, dejavu_fonts: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 27, 5], ["repo", 28, 5], ["rev", 29, 5], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 35, 7], ["hash", 36, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 69, 5], ["homepage", 70, 5], ["license", 72, 5], ["maintainers", 73, 5], ["platforms", 74, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["strictDeps", 23, 3], ["__structuredAttrs", 24, 3], ["src", 26, 3], ["patches", 32, 3], ["nativeBuildInputs", 40, 3], ["postPatch", 45, 3], ["buildInputs", 50, 3], ["configureFlags", 62, 3], ["doCheck", 66, 3], ["meta", 68, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,13 +23,13 @@ export default nix.lambda((args) => (() => {
   const libconfig = nix.arg($, "libconfig");
   const dejavu_fonts = nix.arg($, "dejavu_fonts");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "mpd-touch-screen-gui",
       version: "0-unstable-2022-12-30",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "muesli4",
           repo: "mpd-touch-screen-gui",
           rev: "156eaebede89da2b83a98d8f9dfa46af12282fb4",
@@ -40,7 +37,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/muesli4/mpd-touch-screen-gui/pull/15/commits/ecbe6fe2d7e30b81584e1f15e3003e0dba013f24.patch",
             hash: "sha256-p4TywZl7SQrMsKGEZgcctTY5DgnIWddQSFadVpyCbTU=",
           })))),
@@ -55,7 +52,7 @@ export default nix.lambda((args) => (() => {
       ]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Small MPD client that let's you view covers and has controls suitable for small touchscreens",
         homepage: "https://github.com/muesli4/mpd-touch-screen-gui",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3Plus")),

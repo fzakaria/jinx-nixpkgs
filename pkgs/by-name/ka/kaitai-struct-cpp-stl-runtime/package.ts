@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["sha256", 21, 5]], [["includedir", 55, 9], ["libdir", 56, 9]], [["name", 47, 7], ["version", 48, 28], ["cflags", 49, 7], ["libs", 50, 7], ["variables", 54, 7], ["description", 58, 33]], [["pkg-config", 63, 11]], [["tests", 63, 5]], [["pkgConfigModules", 67, 5], ["description", 68, 5], ["homepage", 69, 5], ["license", 70, 5], ["maintainers", 71, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["doCheck", 24, 3], ["outputs", 26, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 37, 3], ["strictDeps", 42, 3], ["pkgconfigItems", 45, 3], ["passthru", 62, 3], ["meta", 66, 3]]]);
 const formals$1 = { args: { stdenv: false, fetchFromGitHub: false, cmake: false, gtest: false, zlib: false, copyPkgconfigItems: false, makePkgconfigItem: false, lib: false, testers: false, ctestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["sha256", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["includedir", 55, 9], ["libdir", 56, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 47, 7], ["version", 48, 28], ["cflags", 49, 7], ["libs", 50, 7], ["variables", 54, 7], ["description", 58, 33]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pkg-config", 63, 11]]);
-const pos$5 = nix.positions(here + "/package.nix", [["tests", 63, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pkgConfigModules", 67, 5], ["description", 68, 5], ["homepage", 69, 5], ["license", 70, 5], ["maintainers", 71, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["doCheck", 24, 3], ["outputs", 26, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 37, 3], ["strictDeps", 42, 3], ["pkgconfigItems", 45, 3], ["passthru", 62, 3], ["meta", 66, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const ctestCheckHook = nix.arg($, "ctestCheckHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "kaitai-struct-cpp-stl-runtime",
       version: "0.11",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "kaitai-io",
           repo: "kaitai_struct_cpp_stl_runtime",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -49,24 +43,24 @@ export default nix.lambda((args) => (() => {
               "-lkaitai_struct_cpp_stl_runtime",
             ]);
             const variables = nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               includedir: nix.thunk(() => nix.str`${nix.builtins.placeholder("dev")}/include`),
               libdir: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/lib`),
             }));
             const from = nix.thunk(() => nix.sel(finalAttrs, "meta"));
             const description = nix.thunk(() => nix.attr(from, "description"));
-            return { [nix.POS]: pos$3, name, version, cflags, libs, variables, description };
+            return { [nix.POS]: $pos[2], name, version, cflags, libs, variables, description };
           })()))),
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "testMetaPkgConfig"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pkgConfigModules: nix.thunk(() => ["kaitai-struct-cpp-stl-runtime"]),
         description: "Kaitai Struct C++ STL Runtime Library",
         homepage: "https://github.com/kaitai-io/kaitai_struct_cpp_stl_runtime",

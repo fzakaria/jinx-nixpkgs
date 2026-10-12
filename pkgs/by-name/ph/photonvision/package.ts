@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 19, 9], ["hash", 20, 9]], [["url", 23, 9], ["hash", 24, 9]], [["x86_64-linux", 18, 7], ["aarch64-linux", 22, 7]], [["starts-web-server", 57, 5]], [["tests", 56, 12]], [["description", 61, 5], ["homepage", 62, 5], ["license", 63, 5], ["maintainers", 64, 5], ["mainProgram", 65, 5], ["platforms", 66, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["dontUnpack", 29, 3], ["nativeBuildInputs", 31, 3], ["installPhase", 33, 3], ["passthru", 56, 3], ["meta", 60, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, makeWrapper: false, "temurin-jre-bin-17": false, bash: false, suitesparse: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 19, 9], ["hash", 20, 9]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 23, 9], ["hash", 24, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["x86_64-linux", 18, 7], ["aarch64-linux", 22, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["starts-web-server", 57, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["tests", 56, 12]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 61, 5], ["homepage", 62, 5], ["license", 63, 5], ["maintainers", 64, 5], ["mainProgram", 65, 5], ["platforms", 66, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["dontUnpack", 29, 3], ["nativeBuildInputs", 31, 3], ["installPhase", 33, 3], ["passthru", 56, 3], ["meta", 60, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,18 +16,18 @@ export default nix.lambda((args) => (() => {
   const suitesparse = nix.arg($, "suitesparse");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "photonvision",
       version: "2025.2.1",
       src: nix.thunk(() => nix.selOr({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         "x86_64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             url: nix.thunk(() => nix.str`https://github.com/PhotonVision/photonvision/releases/download/v${nix.sel(finalAttrs, "version")}/photonvision-v${nix.sel(finalAttrs, "version")}-linuxx64.jar`),
             hash: "sha256-yEb6GCt29DjZNDsIqDvF/AiCw3QVMxUFKQM22OlMl7Q=",
           })))),
         "aarch64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: nix.thunk(() => nix.str`https://github.com/PhotonVision/photonvision/releases/download/v${nix.sel(finalAttrs, "version")}/photonvision-v${nix.sel(finalAttrs, "version")}-linuxarm64.jar`),
             hash: "sha256-YG9wyh+MCsv/RBdiFvgrF6Fw/6AnN7OEi4ofkMptfT0=",
           })))),
@@ -52,14 +46,14 @@ makeWrapper ${temurin_jre_bin_17}/bin/java $out/bin/photonvision \\
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           "starts-web-server": nix.thunk(() => nix.sel(nixosTests, "photonvision")),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Free, fast, and easy-to-use computer vision solution for the FIRST Robotics Competition",
         homepage: "https://photonvision.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

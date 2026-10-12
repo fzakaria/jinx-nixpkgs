@@ -2,40 +2,17 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/mjolnir.nix", [[["buildInputs", 7, 7]], [["maintainers", 33, 33]], [["name", 43, 22]], [["compress", 59, 21], ["names", 60, 21]], [["compress", 63, 21], ["names", 64, 21]], [["bind_addresses", 53, 17], ["port", 56, 17], ["resources", 57, 17], ["tls", 67, 17], ["type", 68, 17], ["x_forwarded", 69, 17]], [["database", 43, 13], ["tls_certificate_path", 44, 13], ["tls_private_key_path", 45, 13], ["enable_registration", 46, 13], ["enable_registration_without_verification", 47, 13], ["registration_shared_secret", 48, 13], ["listeners", 50, 13]], [["enable", 41, 11], ["settings", 42, 11]], [["matrix-synapse", 40, 18]], [["allowedTCPPorts", 75, 29]], [["firewall", 75, 20]], [["systemPackages", 77, 21]], [["services", 40, 9], ["networking", 75, 9], ["environment", 77, 9]], [["listenAddress", 108, 21]], [["enable", 104, 13], ["username", 105, 13], ["passwordFile", 106, 13], ["options", 108, 13]], [["enable", 101, 11], ["homeserverUrl", 102, 11], ["pantalaimon", 103, 11], ["managementRoom", 110, 11]], [["mjolnir", 100, 18]], [["services", 100, 9]], [["withVodozemac", 121, 40]], [["libraries", 120, 15]], [["systemPackages", 117, 21]], [["environment", 117, 9]], [["homeserver", 37, 5], ["mjolnir", 97, 5], ["client", 114, 5]], [["name", 31, 3], ["meta", 32, 3], ["nodes", 36, 3], ["testScript", 154, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/mjolnir.nix", [["buildInputs", 7, 7]]);
-const pos$2 = nix.positions(here + "/mjolnir.nix", [["maintainers", 33, 33]]);
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$3 = nix.positions(here + "/mjolnir.nix", [["name", 43, 22]]);
-const pos$4 = nix.positions(here + "/mjolnir.nix", [["compress", 59, 21], ["names", 60, 21]]);
-const pos$5 = nix.positions(here + "/mjolnir.nix", [["compress", 63, 21], ["names", 64, 21]]);
-const pos$6 = nix.positions(here + "/mjolnir.nix", [["bind_addresses", 53, 17], ["port", 56, 17], ["resources", 57, 17], ["tls", 67, 17], ["type", 68, 17], ["x_forwarded", 69, 17]]);
-const pos$7 = nix.positions(here + "/mjolnir.nix", [["database", 43, 13], ["tls_certificate_path", 44, 13], ["tls_private_key_path", 45, 13], ["enable_registration", 46, 13], ["enable_registration_without_verification", 47, 13], ["registration_shared_secret", 48, 13], ["listeners", 50, 13]]);
-const pos$8 = nix.positions(here + "/mjolnir.nix", [["enable", 41, 11], ["settings", 42, 11]]);
-const pos$9 = nix.positions(here + "/mjolnir.nix", [["matrix-synapse", 40, 18]]);
-const pos$10 = nix.positions(here + "/mjolnir.nix", [["allowedTCPPorts", 75, 29]]);
-const pos$11 = nix.positions(here + "/mjolnir.nix", [["firewall", 75, 20]]);
-const pos$12 = nix.positions(here + "/mjolnir.nix", [["systemPackages", 77, 21]]);
-const pos$13 = nix.positions(here + "/mjolnir.nix", [["services", 40, 9], ["networking", 75, 9], ["environment", 77, 9]]);
 const formals$3 = { args: { pkgs: false }, ellipsis: true };
-const pos$14 = nix.positions(here + "/mjolnir.nix", [["listenAddress", 108, 21]]);
-const pos$15 = nix.positions(here + "/mjolnir.nix", [["enable", 104, 13], ["username", 105, 13], ["passwordFile", 106, 13], ["options", 108, 13]]);
-const pos$16 = nix.positions(here + "/mjolnir.nix", [["enable", 101, 11], ["homeserverUrl", 102, 11], ["pantalaimon", 103, 11], ["managementRoom", 110, 11]]);
-const pos$17 = nix.positions(here + "/mjolnir.nix", [["mjolnir", 100, 18]]);
-const pos$18 = nix.positions(here + "/mjolnir.nix", [["services", 100, 9]]);
 const formals$4 = { args: { pkgs: false }, ellipsis: true };
-const pos$19 = nix.positions(here + "/mjolnir.nix", [["withVodozemac", 121, 40]]);
-const pos$20 = nix.positions(here + "/mjolnir.nix", [["libraries", 120, 15]]);
-const pos$21 = nix.positions(here + "/mjolnir.nix", [["systemPackages", 117, 21]]);
-const pos$22 = nix.positions(here + "/mjolnir.nix", [["environment", 117, 9]]);
-const pos$23 = nix.positions(here + "/mjolnir.nix", [["homeserver", 37, 5], ["mjolnir", 97, 5], ["client", 114, 5]]);
-const pos$24 = nix.positions(here + "/mjolnir.nix", [["name", 31, 3], ["meta", 32, 3], ["nodes", 36, 3], ["testScript", 154, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   const runWithOpenSSL = (file) => (cmd) => nix.app(nix.sel(pkgs, "runCommand"), file, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       buildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "openssl"))]),
     })), cmd);
   const ca_key = nix.thunk(() => nix.app(runWithOpenSSL, "ca-key.pem", "openssl genrsa -out $out 2048"));
@@ -55,30 +32,30 @@ export default nix.lambda((args) => (() => {
   -days 365
 `)));
   return {
-    [nix.POS]: pos$24,
+    [nix.POS]: $pos[23],
     name: "mjolnir",
     meta: nix.thunk(() => (() => {
       const from = nix.thunk(() => nix.sel(pkgs, "mjolnir", "meta"));
       return {
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       maintainers: nix.thunk(() => nix.attr(from, "maintainers")),
     };
     })()),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$23,
+      [nix.POS]: $pos[22],
       homeserver: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$13,
+          [nix.POS]: $pos[12],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$9,
+            [nix.POS]: $pos[8],
             "matrix-synapse": nix.thunk(() => ({
-              [nix.POS]: pos$8,
+              [nix.POS]: $pos[7],
               enable: true,
               settings: nix.thunk(() => ({
-                [nix.POS]: pos$7,
-                database: nix.thunk(() => ({ [nix.POS]: pos$3, name: "sqlite3" })),
+                [nix.POS]: $pos[6],
+                database: nix.thunk(() => ({ [nix.POS]: $pos[2], name: "sqlite3" })),
                 tls_certificate_path: nix.thunk(() => nix.str`${cert}`),
                 tls_private_key_path: nix.thunk(() => nix.str`${key}`),
                 enable_registration: true,
@@ -86,12 +63,12 @@ export default nix.lambda((args) => (() => {
                 registration_shared_secret: "supersecret-registration",
                 listeners: nix.thunk(() => [
                   nix.thunk(() => ({
-                    [nix.POS]: pos$6,
+                    [nix.POS]: $pos[5],
                     bind_addresses: nix.thunk(() => ["0.0.0.0"]),
                     port: 8448n,
                     resources: nix.thunk(() => [
-                      nix.thunk(() => ({ [nix.POS]: pos$4, compress: true, names: nix.thunk(() => ["client"]) })),
-                      nix.thunk(() => ({ [nix.POS]: pos$5, compress: false, names: nix.thunk(() => ["federation"]) })),
+                      nix.thunk(() => ({ [nix.POS]: $pos[3], compress: true, names: nix.thunk(() => ["client"]) })),
+                      nix.thunk(() => ({ [nix.POS]: $pos[4], compress: false, names: nix.thunk(() => ["federation"]) })),
                     ]),
                     tls: false,
                     type: "http",
@@ -102,11 +79,11 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$11,
-            firewall: nix.thunk(() => ({ [nix.POS]: pos$10, allowedTCPPorts: nix.thunk(() => [8448n]) })),
+            [nix.POS]: $pos[10],
+            firewall: nix.thunk(() => ({ [nix.POS]: $pos[9], allowedTCPPorts: nix.thunk(() => [8448n]) })),
           })),
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$12,
+            [nix.POS]: $pos[11],
             systemPackages: nix.thunk(() => [
               nix.thunk(() => nix.app(nix.sel(pkgs_1, "writeShellScriptBin"), "register_mjolnir_user", nix.thunk(() => nix.str`exec ${nix.sel(pkgs_1, "matrix-synapse")}/bin/register_new_matrix_user \\
   -u mjolnir \\
@@ -130,19 +107,19 @@ export default nix.lambda((args) => (() => {
         const $_1 = nix.formals(args_1, formals$3);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$18,
+          [nix.POS]: $pos[17],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$17,
+            [nix.POS]: $pos[16],
             mjolnir: nix.thunk(() => ({
-              [nix.POS]: pos$16,
+              [nix.POS]: $pos[15],
               enable: true,
               homeserverUrl: "http://homeserver:8448",
               pantalaimon: nix.thunk(() => ({
-                [nix.POS]: pos$15,
+                [nix.POS]: $pos[14],
                 enable: true,
                 username: "mjolnir",
                 passwordFile: nix.thunk(() => nix.app(nix.sel(pkgs_1, "writeText"), "password.txt", "mjolnir-password")),
-                options: nix.thunk(() => ({ [nix.POS]: pos$14, listenAddress: "127.0.0.1" })),
+                options: nix.thunk(() => ({ [nix.POS]: $pos[13], listenAddress: "127.0.0.1" })),
               })),
               managementRoom: "#moderators:homeserver",
             })),
@@ -153,16 +130,16 @@ export default nix.lambda((args) => (() => {
         const $_1 = nix.formals(args_1, formals$4);
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$22,
+          [nix.POS]: $pos[21],
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$21,
+            [nix.POS]: $pos[20],
             systemPackages: nix.thunk(() => [
               nix.thunk(() => nix.app(nix.sel(pkgs_1, "writers", "writePython3Bin"), "create_management_room_and_invite_mjolnir", nix.thunk(() => ({
-                  [nix.POS]: pos$20,
+                  [nix.POS]: $pos[19],
                   libraries: nix.thunk(() => (() => {
                     const w = nix.withScope(nix.thunk(() => nix.sel(pkgs_1, "python3Packages")), null);
                     return [
-                      nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "matrix-nio"), "override"), nix.thunk(() => ({ [nix.POS]: pos$19, withVodozemac: true })))),
+                      nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "matrix-nio"), "override"), nix.thunk(() => ({ [nix.POS]: $pos[18], withVodozemac: true })))),
                     ];
                   })()),
                 })), "import asyncio\n\nfrom nio import (\n    AsyncClient,\n    EnableEncryptionBuilder\n)\n\n\nasync def main() -> None:\n    client = AsyncClient(\"http://homeserver:8448\", \"moderator\")\n\n    await client.login(\"moderator-password\")\n\n    room = await client.room_create(\n        name=\"Moderators\",\n        alias=\"moderators\",\n        initial_state=[EnableEncryptionBuilder().as_dict()],\n    )\n\n    await client.join(room.room_id)\n    await client.room_invite(room.room_id, \"@mjolnir:homeserver\")\n\nasyncio.run(main())\n")),

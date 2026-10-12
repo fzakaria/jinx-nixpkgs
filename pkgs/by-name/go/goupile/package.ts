@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 34, 5], ["repo", 35, 5], ["tag", 36, 5], ["hash", 37, 5]], [["NIX_CFLAGS_COMPILE", 48, 7]], [["goupile", 71, 36]], [["extraArgs", 72, 40]], [["tests", 71, 5], ["updateScript", 72, 5]], [["changelog", 76, 5], ["description", 77, 5], ["homepage", 78, 5], ["license", 79, 5], ["platforms", 80, 5], ["mainProgram", 81, 5], ["teams", 82, 5]], [["pname", 29, 3], ["version", 30, 3], ["src", 33, 3], ["nativeBuildInputs", 40, 3], ["env", 48, 3], ["buildPhase", 52, 3], ["installPhase", 60, 3], ["doInstallCheck", 66, 3], ["versionCheckProgramArg", 67, 3], ["nativeInstallCheckInputs", 68, 3], ["passthru", 70, 3], ["meta", 75, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, versionCheckHook: false, installShellFiles: false, stdenv: false, clangStdenv: false, llvmPackages: false, nixosTests: false, profile: true, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 34, 5], ["repo", 35, 5], ["tag", 36, 5], ["hash", 37, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 48, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["goupile", 71, 36]]);
-const pos$4 = nix.positions(here + "/package.nix", [["extraArgs", 72, 40]]);
-const pos$5 = nix.positions(here + "/package.nix", [["tests", 71, 5], ["updateScript", 72, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["changelog", 76, 5], ["description", 77, 5], ["homepage", 78, 5], ["license", 79, 5], ["platforms", 80, 5], ["mainProgram", 81, 5], ["teams", 82, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 29, 3], ["version", 30, 3], ["src", 33, 3], ["nativeBuildInputs", 40, 3], ["env", 48, 3], ["buildPhase", 52, 3], ["installPhase", 60, 3], ["doInstallCheck", 66, 3], ["versionCheckProgramArg", 67, 3], ["nativeInstallCheckInputs", 68, 3], ["passthru", 70, 3], ["meta", 75, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,11 +20,11 @@ export default nix.lambda((args) => (() => {
   nix.assert_(nix.app(nix.sel(lib, "assertOneOf"), "profile", profile, nix.thunk(() => ["Fast", "Debug", "Paranoid"])), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/go/goupile/package.nix:19:1");
   const stdenv$ = nix.thunk(() => (nix.asBool(nix.eq(profile, "Paranoid")) ? nix.force(clangStdenv) : nix.force(stdenv)));
   return nix.app(nix.sel(stdenv$, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "goupile",
       version: "3.12.8",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Koromix",
           repo: "rygel",
           tag: nix.thunk(() => nix.str`goupile/${nix.sel(finalAttrs, "version")}`),
@@ -38,7 +32,7 @@ export default nix.lambda((args) => (() => {
         })))),
       nativeBuildInputs: nix.thunk(() => nix.concat([installShellFiles], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.eq(profile, "Paranoid")), nix.thunk(() => [nix.thunk(() => nix.sel(llvmPackages, "bintools"))])))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-D_GNU_SOURCE"]))),
       })),
       buildPhase: nix.thunk(() => nix.str`runHook preBuild
@@ -55,15 +49,18 @@ runHook postInstall
       versionCheckProgramArg: "--version",
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$3, goupile: nix.thunk(() => nix.attr(nixosTests, "goupile")) })),
+        [nix.POS]: $pos[4],
+        tests: nix.thunk(() => ({
+          [nix.POS]: $pos[2],
+          goupile: nix.thunk(() => nix.attr(nixosTests, "goupile")),
+        })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             extraArgs: nix.thunk(() => ["--version-regex=goupile/(.*)"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         changelog: nix.thunk(() => nix.str`https://github.com/Koromix/rygel/blob/${nix.sel(finalAttrs, "src", "rev")}/src/goupile/CHANGELOG.md`),
         description: "Free design tool for secure forms including Clinical Report Forms (eCRF)",
         homepage: "https://goupile.org/en",

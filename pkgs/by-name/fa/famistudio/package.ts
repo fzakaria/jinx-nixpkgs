@@ -2,23 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 36, 5], ["repo", 37, 5], ["tag", 38, 5], ["hash", 39, 5]], [["version", 50, 34], ["src", 50, 42], ["sourceRoot", 51, 13]], [["package", 60, 11], ["expectedName", 61, 11], ["ourName", 62, 11]], [["package", 67, 11], ["expectedName", 68, 11], ["ourName", 69, 11]], [["package", 72, 11], ["expectedName", 73, 11], ["ourName", 74, 11]], [["package", 79, 11], ["expectedName", 80, 11], ["ourName", 81, 11]], [["package", 86, 11], ["expectedName", 87, 11], ["ourName", 88, 11]], [["depname", 93, 41]], [["depname", 94, 41]], [["depname", 96, 11], ["extraPostPatch", 97, 11]], [["depname", 103, 41]], [["depname", 104, 41]], [["depname", 106, 11], ["buildInputs", 107, 11]], [["updateScript", 171, 12]], [["homepage", 177, 5], ["description", 178, 5], ["longDescription", 179, 5], ["license", 183, 5], ["maintainers", 184, 5], ["platforms", 187, 5], ["mainProgram", 188, 5]], [["pname", 32, 3], ["version", 33, 3], ["src", 35, 3], ["postPatch", 42, 3], ["projectFile", 133, 3], ["nugetDeps", 134, 3], ["dotnet-sdk", 135, 3], ["nativeBuildInputs", 137, 3], ["runtimeDeps", 141, 3], ["dontWrapGApps", 146, 3], ["executables", 148, 3], ["postInstall", 150, 3], ["postFixup", 157, 3], ["passthru", 171, 3], ["meta", 176, 3]]]);
 const formals$1 = { args: { stdenvNoCC: false, lib: false, buildDotnetModule: false, dotnetCorePackages: false, callPackage: false, fetchFromGitHub: false, ffmpeg: false, glfw: false, gtk3: false, libglvnd: false, libogg: false, libvorbis: false, openal: false, portaudio: false, rtmidi: false, wrapGAppsHook3: false, "_experimental-update-script-combinators": false, gitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 36, 5], ["repo", 37, 5], ["tag", 38, 5], ["hash", 39, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["version", 50, 34], ["src", 50, 42], ["sourceRoot", 51, 13]]);
-const pos$3 = nix.positions(here + "/package.nix", [["package", 60, 11], ["expectedName", 61, 11], ["ourName", 62, 11]]);
-const pos$4 = nix.positions(here + "/package.nix", [["package", 67, 11], ["expectedName", 68, 11], ["ourName", 69, 11]]);
-const pos$5 = nix.positions(here + "/package.nix", [["package", 72, 11], ["expectedName", 73, 11], ["ourName", 74, 11]]);
-const pos$6 = nix.positions(here + "/package.nix", [["package", 79, 11], ["expectedName", 80, 11], ["ourName", 81, 11]]);
-const pos$7 = nix.positions(here + "/package.nix", [["package", 86, 11], ["expectedName", 87, 11], ["ourName", 88, 11]]);
-const pos$8 = nix.positions(here + "/package.nix", [["depname", 93, 41]]);
-const pos$9 = nix.positions(here + "/package.nix", [["depname", 94, 41]]);
-const pos$10 = nix.positions(here + "/package.nix", [["depname", 96, 11], ["extraPostPatch", 97, 11]]);
-const pos$11 = nix.positions(here + "/package.nix", [["depname", 103, 41]]);
-const pos$12 = nix.positions(here + "/package.nix", [["depname", 104, 41]]);
-const pos$13 = nix.positions(here + "/package.nix", [["depname", 106, 11], ["buildInputs", 107, 11]]);
-const pos$14 = nix.positions(here + "/package.nix", [["updateScript", 171, 12]]);
-const pos$15 = nix.positions(here + "/package.nix", [["homepage", 177, 5], ["description", 178, 5], ["longDescription", 179, 5], ["license", 183, 5], ["maintainers", 184, 5], ["platforms", 187, 5], ["mainProgram", 188, 5]]);
-const pos$16 = nix.positions(here + "/package.nix", [["pname", 32, 3], ["version", 33, 3], ["src", 35, 3], ["postPatch", 42, 3], ["projectFile", 133, 3], ["nugetDeps", 134, 3], ["dotnet-sdk", 135, 3], ["nativeBuildInputs", 137, 3], ["runtimeDeps", 141, 3], ["dontWrapGApps", 146, 3], ["executables", 148, 3], ["postInstall", 150, 3], ["postFixup", 157, 3], ["passthru", 171, 3], ["meta", 176, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -42,11 +27,11 @@ export default nix.lambda((args) => (() => {
   const gitUpdater = nix.arg($, "gitUpdater");
   const csprojName = nix.thunk(() => (nix.asBool(nix.sel(stdenvNoCC, "hostPlatform", "isLinux")) ? "FamiStudio.Linux" : (nix.asBool(nix.sel(stdenvNoCC, "hostPlatform", "isDarwin")) ? "FamiStudio.Mac" : nix.builtins.throw(nix.thunk(() => nix.str`Don't know how to build FamiStudio for ${nix.sel(stdenvNoCC, "hostPlatform", "system")}`)))));
   return nix.app(buildDotnetModule, (finalAttrs) => ({
-      [nix.POS]: pos$16,
+      [nix.POS]: $pos[15],
       pname: "famistudio",
       version: "4.5.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "BleuBleu",
           repo: "FamiStudio",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -55,7 +40,7 @@ export default nix.lambda((args) => (() => {
       postPatch: nix.thunk(() => (() => {
         const libname = (library) => nix.str`${library}${nix.sel(stdenvNoCC, "hostPlatform", "extensions", "sharedLibrary")}`;
         const buildNativeWrapper = (args_1) => nix.app(callPackage, nix.path(here, "./build-native-wrapper.nix"), nix.thunk(() => nix.update(args_1, {
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             version: nix.thunk(() => nix.attr(finalAttrs, "version")),
             src: nix.thunk(() => nix.attr(finalAttrs, "src")),
             sourceRoot: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "src", "name")}/ThirdParty/${nix.sel(args_1, "depname")}`),
@@ -63,46 +48,51 @@ export default nix.lambda((args) => (() => {
         const nativeWrapperToReplaceFormat = (args_1) => (() => {
           const libPrefix = nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenvNoCC, "hostPlatform", "isLinux")), "lib"));
           return {
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             package: nix.thunk(() => nix.app(buildNativeWrapper, args_1)),
             expectedName: nix.thunk(() => nix.str`${libPrefix}${nix.sel(args_1, "depname")}`),
             ourName: nix.thunk(() => nix.str`${libPrefix}${nix.sel(args_1, "depname")}`),
           };
         })();
         const librariesToReplace = nix.thunk(() => nix.concat([
-          nix.thunk(() => ({ [nix.POS]: pos$4, package: glfw, expectedName: "libglfw", ourName: "libglfw" })),
           nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[3],
+            package: glfw,
+            expectedName: "libglfw",
+            ourName: "libglfw",
+          })),
+          nix.thunk(() => ({
+            [nix.POS]: $pos[4],
             package: rtmidi,
             expectedName: "librtmidi",
             ourName: "librtmidi",
           })),
         ], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenvNoCC, "hostPlatform", "isLinux")), nix.thunk(() => [
             nix.thunk(() => ({
-              [nix.POS]: pos$6,
+              [nix.POS]: $pos[5],
               package: openal,
               expectedName: "libopenal32",
               ourName: "libopenal",
             })),
           ])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenvNoCC, "hostPlatform", "isDarwin")), nix.thunk(() => [
             nix.thunk(() => ({
-              [nix.POS]: pos$7,
+              [nix.POS]: $pos[6],
               package: portaudio,
               expectedName: "libportaudio.2",
               ourName: "libportaudio.2",
             })),
           ])), [
-          nix.thunk(() => nix.app(nativeWrapperToReplaceFormat, nix.thunk(() => ({ [nix.POS]: pos$8, depname: "GifDec" })))),
-          nix.thunk(() => nix.app(nativeWrapperToReplaceFormat, nix.thunk(() => ({ [nix.POS]: pos$9, depname: "NesSndEmu" })))),
+          nix.thunk(() => nix.app(nativeWrapperToReplaceFormat, nix.thunk(() => ({ [nix.POS]: $pos[7], depname: "GifDec" })))),
+          nix.thunk(() => nix.app(nativeWrapperToReplaceFormat, nix.thunk(() => ({ [nix.POS]: $pos[8], depname: "NesSndEmu" })))),
           nix.thunk(() => nix.app(nativeWrapperToReplaceFormat, nix.thunk(() => ({
-              [nix.POS]: pos$10,
+              [nix.POS]: $pos[9],
               depname: "NotSoFatso",
               extraPostPatch: "# C++17 does not allow register storage class specifier\nsubstituteInPlace build.sh \\\n  --replace-fail \"$CXX\" \"$CXX -std=c++14\"\n",
             })))),
-          nix.thunk(() => nix.app(nativeWrapperToReplaceFormat, nix.thunk(() => ({ [nix.POS]: pos$11, depname: "ShineMp3" })))),
-          nix.thunk(() => nix.app(nativeWrapperToReplaceFormat, nix.thunk(() => ({ [nix.POS]: pos$12, depname: "Stb" })))),
+          nix.thunk(() => nix.app(nativeWrapperToReplaceFormat, nix.thunk(() => ({ [nix.POS]: $pos[10], depname: "ShineMp3" })))),
+          nix.thunk(() => nix.app(nativeWrapperToReplaceFormat, nix.thunk(() => ({ [nix.POS]: $pos[11], depname: "Stb" })))),
           nix.thunk(() => nix.app(nativeWrapperToReplaceFormat, nix.thunk(() => ({
-              [nix.POS]: pos$13,
+              [nix.POS]: $pos[12],
               depname: "Vorbis",
               buildInputs: nix.thunk(() => [libogg, libvorbis]),
             })))),
@@ -135,14 +125,14 @@ substituteInPlace FamiStudio/Source/AudioStreams/OpenALStream.cs \\
   \${makeWrapperArgs[@]}
 `)),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$14,
+        [nix.POS]: $pos[13],
         updateScript: nix.thunk(() => nix.app(nix.sel(_experimental_update_script_combinators, "sequence"), nix.thunk(() => [
             nix.thunk(() => nix.sel(nix.app(gitUpdater, nix.thunk(() => ({}))), "command")),
             nix.thunk(() => nix.sel(finalAttrs, "passthru", "fetch-deps")),
           ]))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$15,
+        [nix.POS]: $pos[14],
         homepage: "https://famistudio.org/",
         description: "NES Music Editor",
         longDescription: "FamiStudio is very simple music editor for the Nintendo Entertainment System\nor Famicom. It is targeted at both chiptune artists and NES homebrewers.\n",

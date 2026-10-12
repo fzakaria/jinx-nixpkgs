@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]], [["rev-prefix", 64, 7], ["ignoredVersions", 65, 7]], [["skipBulkUpdate", 62, 5], ["updateScript", 63, 5]], [["changelog", 70, 5], ["description", 71, 5], ["homepage", 72, 5], ["license", 73, 5], ["maintainers", 74, 5]], [["pname", 24, 3], ["version", 25, 3], ["pyproject", 26, 3], ["src", 28, 3], ["sourceRoot", 35, 3], ["build-system", 37, 3], ["pythonRelaxDeps", 39, 3], ["dependencies", 46, 3], ["pythonImportsCheck", 52, 3], ["nativeCheckInputs", 54, 3], ["passthru", 60, 3], ["meta", 69, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, hatchling: false, chromadb: false, "langchain-core": false, numpy: false, "langchain-tests": false, pytestCheckHook: false, "pytest-asyncio": false, gitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 29, 5], ["repo", 30, 5], ["tag", 31, 5], ["hash", 32, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["rev-prefix", 64, 7], ["ignoredVersions", 65, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["skipBulkUpdate", 62, 5], ["updateScript", 63, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["changelog", 70, 5], ["description", 71, 5], ["homepage", 72, 5], ["license", 73, 5], ["maintainers", 74, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 24, 3], ["version", 25, 3], ["pyproject", 26, 3], ["src", 28, 3], ["sourceRoot", 35, 3], ["build-system", 37, 3], ["pythonRelaxDeps", 39, 3], ["dependencies", 46, 3], ["pythonImportsCheck", 52, 3], ["nativeCheckInputs", 54, 3], ["passthru", 60, 3], ["meta", 69, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.1.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "langchain-ai",
           repo: "langchain",
           tag: nix.thunk(() => nix.str`langchain-chroma==${version}`),
@@ -40,16 +36,16 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["langchain_chroma"]);
       const nativeCheckInputs = nix.thunk(() => [langchain_tests, pytest_asyncio, pytestCheckHook]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         skipBulkUpdate: true,
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             "rev-prefix": "langchain-chroma==",
             ignoredVersions: "a|b|dev|rc",
           })))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         changelog: nix.thunk(() => nix.str`https://github.com/langchain-ai/langchain/releases/tag/${nix.sel(src, "tag")}`),
         description: "Integration package connecting Chroma and LangChain",
         homepage: "https://github.com/langchain-ai/langchain/tree/master/libs/partners/chroma",
@@ -63,7 +59,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         pyproject,

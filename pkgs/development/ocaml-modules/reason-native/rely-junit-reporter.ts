@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/rely-junit-reporter.nix", [[["description", 35, 5], ["downloadPage", 36, 5], ["homepage", 37, 5], ["license", 38, 5], ["maintainers", 39, 5]], [["src", 14, 11], ["pname", 16, 3], ["version", 17, 3], ["nativeBuildInputs", 19, 3], ["buildInputs", 23, 3], ["propagatedBuildInputs", 27, 3], ["meta", 34, 3]]]);
 const formals$1 = { args: { lib: false, buildDunePackage: false, atdgen: false, junit: false, re: false, reason: false, pastel: false, rely: false, src: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/rely-junit-reporter.nix", [["description", 35, 5], ["downloadPage", 36, 5], ["homepage", 37, 5], ["license", 38, 5], ["maintainers", 39, 5]]);
-const pos$2 = nix.positions(here + "/rely-junit-reporter.nix", [["src", 14, 11], ["pname", 16, 3], ["version", 17, 3], ["nativeBuildInputs", 19, 3], ["buildInputs", 23, 3], ["propagatedBuildInputs", 27, 3], ["meta", 34, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,7 +17,7 @@ export default nix.lambda((args) => (() => {
   const rely = nix.arg($, "rely");
   const src = nix.arg($, "src");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       src: src,
       pname: "rely-junit-reporter",
       version: "1.0.0-unstable-2024-05-07",
@@ -26,7 +25,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [atdgen]),
       propagatedBuildInputs: nix.thunk(() => [junit, re, pastel, rely]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Tool providing JUnit Reporter for Rely Testing Framework",
         downloadPage: "https://github.com/reasonml/reason-native/tree/master/src/rely-junit-reporter",
         homepage: "https://reason-native.com/docs/rely/",

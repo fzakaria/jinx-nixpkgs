@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]], [["name", 35, 7], ["url", 36, 7], ["hash", 37, 7]], [["description", 71, 5], ["homepage", 72, 5], ["maintainers", 73, 5], ["license", 77, 5], ["platforms", 78, 5]], [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["patches", 32, 3], ["nativeBuildInputs", 41, 3], ["buildInputs", 48, 3], ["cmakeFlags", 63, 3], ["meta", 70, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch: false, cmake: false, "pkg-config": false, qt6: false, faad2: false, "rtl-sdr": false, "soapysdr-with-plugins": false, "libusb-compat-0_1": false, fftwSinglePrec: false, lame: false, mpg123: false, unixtools: false, withFlac: true, flac: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 35, 7], ["url", 36, 7], ["hash", 37, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 71, 5], ["homepage", 72, 5], ["maintainers", 73, 5], ["license", 77, 5], ["platforms", 78, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["patches", 32, 3], ["nativeBuildInputs", 41, 3], ["buildInputs", 48, 3], ["cmakeFlags", 63, 3], ["meta", 70, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const withFlac = nix.argOr($, "withFlac", () => true);
   const flac = nix.arg($, "flac");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "welle-io",
       version: "2.7",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "AlbrechtL",
           repo: "welle.io",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -40,7 +37,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "cmake3_16.patch",
             url: "https://github.com/AlbrechtL/welle.io/commit/c7581c251b5fe2408b45365e0f2c5efc7f01fd19.patch",
             hash: "sha256-e282lwCstwsRFGCtFT39CBn1jTvkA9bxa5t6Nk8mc98=",
@@ -67,7 +64,7 @@ export default nix.lambda((args) => (() => {
       ], nix.app(nix.sel(lib, "optional"), withFlac, flac))),
       cmakeFlags: nix.thunk(() => nix.concat(["-DRTLSDR=true", "-DSOAPYSDR=true"], nix.concat(nix.app(nix.sel(lib, "optional"), withFlac, "-DFLAC=true"), nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => nix.str`-DBUNDLE_INSTALL_DIR=${nix.builtins.placeholder("out")}/Applications`))))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "DAB/DAB+ Software Radio",
         homepage: "https://www.welle.io/",
         maintainers: nix.thunk(() => (() => {

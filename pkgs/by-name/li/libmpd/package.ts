@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 20, 5], ["hash", 21, 5]], [["NIX_CFLAGS_COMPILE", 40, 7]], [["description", 43, 5], ["homepage", 44, 5], ["changelog", 45, 5], ["license", 46, 5], ["maintainers", 47, 5], ["platforms", 48, 5], ["broken", 50, 5]], [["pname", 11, 3], ["version", 12, 3], ["outputs", 13, 3], ["src", 19, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 28, 3], ["postInstall", 32, 3], ["env", 40, 3], ["meta", 42, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, "pkg-config": false, doxygen: false, glib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 40, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 43, 5], ["homepage", 44, 5], ["changelog", 45, 5], ["license", 46, 5], ["maintainers", 47, 5], ["platforms", 48, 5], ["broken", 50, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["outputs", 13, 3], ["src", 19, 3], ["nativeBuildInputs", 24, 3], ["buildInputs", 28, 3], ["postInstall", 32, 3], ["env", 40, 3], ["meta", 42, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,21 +14,21 @@ export default nix.lambda((args) => (() => {
   const doxygen = nix.arg($, "doxygen");
   const glib = nix.arg($, "glib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "libmpd",
       version: "11.8.17",
       outputs: nix.thunk(() => ["out", "dev", "devdoc"]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://www.musicpd.org/download/libmpd/${nix.sel(finalAttrs, "version")}/libmpd-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-/iAyaw0QZB9xxGc/rmN7+SIqluFxL3HxcPyi/DS/eoM=",
         })))),
       nativeBuildInputs: nix.thunk(() => [pkg_config, doxygen]),
       buildInputs: nix.thunk(() => [glib]),
       postInstall: "make doc\nmkdir -p $devdoc/share/devhelp/libmpd\ncp -r doc/html $devdoc/share/devhelp/libmpd/doxygen\n",
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-Wno-error=int-conversion" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], NIX_CFLAGS_COMPILE: "-Wno-error=int-conversion" })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Higher level access to MPD functions",
         homepage: "https://www.musicpd.org/download/libmpd/",
         changelog: nix.thunk(() => nix.str`https://www.musicpd.org/download/libmpd/${nix.sel(finalAttrs, "version")}/README`),

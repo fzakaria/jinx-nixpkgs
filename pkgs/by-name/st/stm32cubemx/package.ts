@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 20, 7], ["hash", 23, 7], ["stripRoot", 24, 7]], [["name", 33, 7], ["exec", 34, 7], ["desktopName", 35, 7], ["categories", 36, 7], ["icon", 37, 7], ["comment", 38, 7], ["terminal", 39, 7], ["startupNotify", 40, 7], ["mimeTypes", 41, 7]], [["description", 88, 7], ["longDescription", 89, 7], ["homepage", 96, 7], ["sourceProvenance", 97, 7], ["license", 98, 7], ["maintainers", 99, 7], ["platforms", 103, 7]], [["pname", 16, 5], ["version", 17, 5], ["src", 19, 5], ["nativeBuildInputs", 27, 5], ["desktopItem", 32, 5], ["buildCommand", 47, 5], ["meta", 87, 5]], [["pname", 108, 21], ["version", 108, 27], ["meta", 108, 35], ["runScript", 109, 3], ["extraInstallCommands", 110, 3], ["targetPkgs", 115, 3]]]);
 const formals$1 = { args: { fdupes: false, buildFHSEnv: false, fetchzip: false, icoutils: false, imagemagick: false, jdk21: false, lib: false, makeDesktopItem: false, stdenvNoCC: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 20, 7], ["hash", 23, 7], ["stripRoot", 24, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 33, 7], ["exec", 34, 7], ["desktopName", 35, 7], ["categories", 36, 7], ["icon", 37, 7], ["comment", 38, 7], ["terminal", 39, 7], ["startupNotify", 40, 7], ["mimeTypes", 41, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 88, 7], ["longDescription", 89, 7], ["homepage", 96, 7], ["sourceProvenance", 97, 7], ["license", 98, 7], ["maintainers", 99, 7], ["platforms", 103, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 16, 5], ["version", 17, 5], ["src", 19, 5], ["nativeBuildInputs", 27, 5], ["desktopItem", 32, 5], ["buildCommand", 47, 5], ["meta", 87, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 108, 21], ["version", 108, 27], ["meta", 108, 35], ["runScript", 109, 3], ["extraInstallCommands", 110, 3], ["targetPkgs", 115, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,14 +21,14 @@ export default nix.lambda((args) => (() => {
       const pname = "stm32cubemx";
       const version = "6.18.1";
       const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://sw-center.st.com/packs/resource/library/stm32cube_mx_v${nix.builtins.replaceStrings(nix.thunk(() => ["."]), nix.thunk(() => [""]), version)}-lin.zip`),
           hash: "sha256-Enpc4HFLjQRwovk8/9xCpDZZrmcRLlblY/RNqXbMbsM=",
           stripRoot: false,
         }))));
       const nativeBuildInputs = nix.thunk(() => [fdupes, icoutils, imagemagick]);
       const desktopItem = nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           name: "STM32CubeMX",
           exec: "stm32cubemx",
           desktopName: "STM32CubeMX",
@@ -82,7 +78,7 @@ else
 fi
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Graphical tool for configuring STM32 microcontrollers and microprocessors",
         longDescription: "A graphical tool that allows a very easy configuration of STM32\nmicrocontrollers and microprocessors, as well as the generation of the\ncorresponding initialization C code for the Arm® Cortex®-M core or a\npartial Linux® Device Tree for Arm® Cortex®-A core), through a\nstep-by-step process.\n",
         homepage: "https://www.st.com/en/development-tools/stm32cubemx.html",
@@ -101,7 +97,7 @@ fi
         platforms: nix.thunk(() => ["x86_64-linux"]),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,
@@ -112,7 +108,7 @@ fi
       };
     })())));
   return nix.app(buildFHSEnv, nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: nix.thunk(() => nix.attr(package$, "pname")),
       version: nix.thunk(() => nix.attr(package$, "version")),
       meta: nix.thunk(() => nix.attr(package$, "meta")),

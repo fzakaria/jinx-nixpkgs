@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]], [["description", 56, 5], ["homepage", 57, 5], ["license", 58, 5], ["maintainers", 59, 5], ["mainProgram", 60, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["vendorHash", 24, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 32, 3], ["preBuild", 34, 3], ["checkFlags", 36, 3], ["postInstall", 45, 3], ["meta", 55, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildGoModule: false, fetchFromGitHub: false, installShellFiles: false, makeWrapper: false, "pkg-config": false, withGui: true, vte: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 56, 5], ["homepage", 57, 5], ["license", 58, 5], ["maintainers", 59, 5], ["mainProgram", 60, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["vendorHash", 24, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 32, 3], ["preBuild", 34, 3], ["checkFlags", 36, 3], ["postInstall", 45, 3], ["meta", 55, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const pname = "orbiton";
       const version = "2.74.6";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "xyproto",
           repo: "orbiton",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -40,7 +38,7 @@ export default nix.lambda((args) => (() => {
       })());
       const postInstall = nix.thunk(() => nix.add("cd ..\ninstallManPage o.1\nmv $out/bin/{orbiton,o}\n", nix.app(nix.sel(lib, "optionalString"), withGui, "make install-gui PREFIX=$out\nwrapProgram $out/bin/og --prefix PATH : $out/bin\n")));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Config-free text editor and IDE limited to VT100",
         homepage: "https://roboticoverlords.org/orbiton/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
@@ -51,7 +49,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "o",
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

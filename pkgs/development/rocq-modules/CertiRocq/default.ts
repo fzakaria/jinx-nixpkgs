@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["cases", 25, 9], ["out", 29, 17]], [["hash", 42, 17]], [["0.9.1+9.1", 42, 5]], [["description", 95, 5], ["maintainers", 96, 5], ["license", 100, 5]], [["pname", 15, 3], ["owner", 16, 3], ["repo", 17, 3], ["opam-name", 18, 3], ["mlPlugin", 19, 3], ["version", 21, 11], ["defaultVersion", 22, 3], ["release", 41, 3], ["releaseRev", 44, 3], ["propagatedBuildInputs", 46, 3], ["postPatch", 54, 3], ["configurePhase", 67, 3], ["buildPhase", 71, 3], ["installPhase", 80, 3], ["meta", 94, 3]]]);
 const formals$1 = { args: { lib: false, mkCoqDerivation: false, coq: false, wasmcert: false, compcert: false, "metarocq-erasure-plugin": false, "metarocq-safechecker-plugin": false, ExtLib: false, version: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["cases", 25, 9], ["out", 29, 17]]);
-const pos$2 = nix.positions(here + "/default.nix", [["hash", 42, 17]]);
-const pos$3 = nix.positions(here + "/default.nix", [["0.9.1+9.1", 42, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 95, 5], ["maintainers", 96, 5], ["license", 100, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 15, 3], ["owner", 16, 3], ["repo", 17, 3], ["opam-name", 18, 3], ["mlPlugin", 19, 3], ["version", 21, 11], ["defaultVersion", 22, 3], ["release", 41, 3], ["releaseRev", 44, 3], ["propagatedBuildInputs", 46, 3], ["postPatch", 54, 3], ["configurePhase", 67, 3], ["buildPhase", 71, 3], ["installPhase", 80, 3], ["meta", 94, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,7 +18,7 @@ export default nix.lambda((args) => (() => {
   const version = nix.argOr($, "version", () => null);
   const w = nix.withScope(lib, null);
   return nix.app(mkCoqDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "CertiRocq",
       owner: "CertiRocq",
       repo: "certirocq",
@@ -30,16 +26,16 @@ export default nix.lambda((args) => (() => {
       mlPlugin: true,
       version: version,
       defaultVersion: nix.thunk(() => (() => {
-        const case$ = (coq_1) => (mr) => (out) => ({ [nix.POS]: pos$1, cases: nix.thunk(() => [coq_1, mr]), out: out });
+        const case$ = (coq_1) => (mr) => (out) => ({ [nix.POS]: $pos[0], cases: nix.thunk(() => [coq_1, mr]), out: out });
         return nix.app(nix.sel(lib, "switch"), nix.thunk(() => [
             nix.thunk(() => nix.sel(coq, "coq-version")),
             nix.thunk(() => nix.sel(metarocq_erasure_plugin, "version")),
           ]), nix.thunk(() => [nix.thunk(() => nix.app(case$, "9.1", "1.5.1-9.1", "0.9.1+9.1"))]), null);
       })()),
       release: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         "0.9.1+9.1": nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           hash: "sha256-YsweBaoq8+QG63e7Llp/4bHldAFnSQSyMumJkb+Bsp0=",
         })),
       })),
@@ -67,7 +63,7 @@ COQLIBINSTALL=$OUTDIR COQPLUGININSTALL=$OCAMLFIND_DESTDIR make -C cplugin instal
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "CertiRocq",
         maintainers: nix.thunk(() => (() => {
           const w_1 = nix.withScope(nix.thunk(() => nix.lookup(w, "maintainers")), w);

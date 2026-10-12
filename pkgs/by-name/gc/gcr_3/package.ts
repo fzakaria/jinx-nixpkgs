@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 42, 5], ["sha256", 43, 5]], [["PKG_CONFIG_SYSTEMD_SYSTEMDUSERUNITDIR", 98, 7]], [["attrPath", 115, 7], ["packageName", 116, 7], ["freeze", 117, 7]], [["updateScript", 114, 5]], [["platforms", 122, 5], ["teams", 123, 5], ["description", 124, 5], ["mainProgram", 125, 5], ["homepage", 126, 5], ["license", 127, 5], ["longDescription", 129, 5]], [["pname", 30, 3], ["version", 31, 3], ["__structuredAttrs", 33, 3], ["outputs", 35, 3], ["src", 41, 3], ["strictDeps", 46, 3], ["nativeBuildInputs", 48, 3], ["buildInputs", 62, 3], ["propagatedBuildInputs", 73, 3], ["nativeCheckInputs", 79, 3], ["mesonFlags", 83, 3], ["doCheck", 96, 3], ["env", 98, 3], ["postPatch", 100, 3], ["postFixup", 108, 3], ["passthru", 113, 3], ["meta", 121, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, "pkg-config": false, meson: false, ninja: false, gettext: false, gnupg: false, "p11-kit": false, glib: false, libgcrypt: false, libtasn1: false, gtk3: false, pango: false, libsecret: false, openssh: false, systemdSupport: true, systemd: false, "gobject-introspection": false, wrapGAppsHook3: false, "gi-docgen": false, vala: false, gnome: false, python3: false, "shared-mime-info": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 42, 5], ["sha256", 43, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["PKG_CONFIG_SYSTEMD_SYSTEMDUSERUNITDIR", 98, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["attrPath", 115, 7], ["packageName", 116, 7], ["freeze", 117, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 114, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["platforms", 122, 5], ["teams", 123, 5], ["description", 124, 5], ["mainProgram", 125, 5], ["homepage", 126, 5], ["license", 127, 5], ["longDescription", 129, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 30, 3], ["version", 31, 3], ["__structuredAttrs", 33, 3], ["outputs", 35, 3], ["src", 41, 3], ["strictDeps", 46, 3], ["nativeBuildInputs", 48, 3], ["buildInputs", 62, 3], ["propagatedBuildInputs", 73, 3], ["nativeCheckInputs", 79, 3], ["mesonFlags", 83, 3], ["doCheck", 96, 3], ["env", 98, 3], ["postPatch", 100, 3], ["postFixup", 108, 3], ["passthru", 113, 3], ["meta", 121, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -38,13 +33,13 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const shared_mime_info = nix.arg($, "shared-mime-info");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "gcr",
       version: "3.41.2",
       __structuredAttrs: true,
       outputs: nix.thunk(() => ["out", "dev", "devdoc"]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnome/sources/gcr/${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/gcr-${nix.sel(finalAttrs, "version")}.tar.xz`),
           sha256: "utEPPFU6DhhUZJq1nFskNNoiyhpUrmE48fU5YVZ+Grc=",
         })))),
@@ -71,7 +66,7 @@ export default nix.lambda((args) => (() => {
       ], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(systemdSupport)), nix.thunk(() => ["-Dsystemd=disabled"])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isMusl")), nix.thunk(() => ["-Dc_args=-D_GNU_SOURCE"]))))),
       doCheck: false,
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         PKG_CONFIG_SYSTEMD_SYSTEMDUSERUNITDIR: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/lib/systemd/user`),
       })),
       postPatch: nix.thunk(() => nix.str`patchShebangs gcr/fixtures/
@@ -82,11 +77,11 @@ substituteInPlace meson_post_install.py --replace ".so" "${nix.sel(stdenv, "host
 `),
       postFixup: "# Cannot be in postInstall, otherwise _multioutDocs hook in preFixup will move right back.\nmoveToOutput \"share/doc\" \"$devdoc\"\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$3, attrPath: "gcr_3", packageName: "gcr", freeze: true })))),
+        [nix.POS]: $pos[3],
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: $pos[2], attrPath: "gcr_3", packageName: "gcr", freeze: true })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "gnome"))]),
         description: "GNOME crypto services (daemon and tools)",

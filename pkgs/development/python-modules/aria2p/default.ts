@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 32, 5], ["repo", 33, 5], ["tag", 34, 5], ["hash", 35, 5]], [["tui", 51, 5]], [["homepage", 86, 5], ["changelog", 87, 5], ["description", 88, 5], ["mainProgram", 89, 5], ["license", 90, 5], ["maintainers", 91, 5], ["badPlatforms", 92, 5]], [["pname", 27, 3], ["version", 28, 3], ["pyproject", 29, 3], ["src", 31, 3], ["build-system", 38, 3], ["dependencies", 40, 3], ["optional-dependencies", 50, 3], ["preCheck", 57, 3], ["nativeCheckInputs", 61, 3], ["disabledTests", 72, 3], ["pythonImportsCheck", 83, 3], ["meta", 85, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitHub: false, "pdm-backend": false, loguru: false, platformdirs: false, requests: false, setuptools: false, toml: false, "websocket-client": false, asciimatics: false, pyperclip: false, aria2: false, fastapi: false, psutil: false, "pytest-xdist": false, pytestCheckHook: false, responses: false, uvicorn: false, withTui: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 32, 5], ["repo", 33, 5], ["tag", 34, 5], ["hash", 35, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["tui", 51, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["homepage", 86, 5], ["changelog", 87, 5], ["description", 88, 5], ["mainProgram", 89, 5], ["license", 90, 5], ["maintainers", 91, 5], ["badPlatforms", 92, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 27, 3], ["version", 28, 3], ["pyproject", 29, 3], ["src", 31, 3], ["build-system", 38, 3], ["dependencies", 40, 3], ["optional-dependencies", 50, 3], ["preCheck", 57, 3], ["nativeCheckInputs", 61, 3], ["disabledTests", 72, 3], ["pythonImportsCheck", 83, 3], ["meta", 85, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -36,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.12.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "pawamoy",
           repo: "aria2p",
           tag: version,
@@ -44,7 +41,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const build_system = nix.thunk(() => [pdm_backend]);
       const dependencies = nix.thunk(() => nix.concat([loguru, platformdirs, requests, setuptools, toml, websocket_client], nix.app(nix.sel(lib, "optionals"), withTui, nix.thunk(() => nix.sel(optional_dependencies, "tui")))));
-      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, tui: nix.thunk(() => [asciimatics, pyperclip]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: $pos[1], tui: nix.thunk(() => [asciimatics, pyperclip]) }));
       const preCheck = "export HOME=$TMPDIR\n";
       const nativeCheckInputs = nix.thunk(() => nix.concat([aria2, fastapi, pytest_xdist, pytestCheckHook, responses, psutil, uvicorn], nix.sel(optional_dependencies, "tui")));
       const disabledTests = nix.thunk(() => [
@@ -57,7 +54,7 @@ export default nix.lambda((args) => (() => {
       ]);
       const pythonImportsCheck = nix.thunk(() => ["aria2p"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/pawamoy/aria2p",
         changelog: nix.thunk(() => nix.str`https://github.com/pawamoy/aria2p/blob/${nix.sel(src, "tag")}/CHANGELOG.md`),
         description: "Command-line tool and library to interact with an aria2c daemon process with JSON-RPC",
@@ -70,7 +67,7 @@ export default nix.lambda((args) => (() => {
         badPlatforms: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "systems", "inspect", "patterns", "isDarwin"))]),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

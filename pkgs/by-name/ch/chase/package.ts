@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 20, 5], ["sha256", 21, 5]], [["description", 31, 5], ["longDescription", 32, 5], ["homepage", 35, 5], ["license", 36, 5], ["maintainers", 37, 5], ["platforms", 38, 5], ["mainProgram", 39, 5]], [["pname", 11, 3], ["version", 12, 3], ["nativeBuildInputs", 14, 3], ["buildInputs", 15, 3], ["src", 19, 3], ["doCheck", 24, 3], ["makeFlags", 25, 3], ["meta", 30, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, "pkg-config": false, libatomic_ops: false, boehmgc: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 20, 5], ["sha256", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 31, 5], ["longDescription", 32, 5], ["homepage", 35, 5], ["license", 36, 5], ["maintainers", 37, 5], ["platforms", 38, 5], ["mainProgram", 39, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["nativeBuildInputs", 14, 3], ["buildInputs", 15, 3], ["src", 19, 3], ["doCheck", 24, 3], ["makeFlags", 25, 3], ["meta", 30, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,20 +14,20 @@ export default nix.lambda((args) => (() => {
   const libatomic_ops = nix.arg($, "libatomic_ops");
   const boehmgc = nix.arg($, "boehmgc");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "chase",
       version: "0.5.2",
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [libatomic_ops, boehmgc]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://debian/pool/main/c/chase/chase_${nix.sel(finalAttrs, "version")}.orig.tar.gz`),
           sha256: "68d95c2d4dc45553b75790fcea4413b7204a2618dff148116ca9bdb0310d737f",
         })))),
       doCheck: true,
       makeFlags: nix.thunk(() => ["-e", "LIBS=-lgc"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Follow a symlink and print out its target file",
         longDescription: "A commandline program that chases symbolic filesystems links to the original file\n",
         homepage: "https://qa.debian.org/developer.php?login=rotty%40debian.org",

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 35, 5], ["repo", 36, 5], ["tag", 37, 5], ["hash", 38, 5]], [["lzo", 60, 5]], [["description", 87, 5], ["homepage", 88, 5], ["changelog", 89, 5], ["license", 90, 5], ["maintainers", 91, 5]], [["pname", 30, 3], ["version", 31, 3], ["pyproject", 32, 3], ["src", 34, 3], ["build-system", 41, 3], ["nativeBuildInputs", 47, 3], ["dependencies", 51, 3], ["optional-dependencies", 59, 3], ["nativeCheckInputs", 63, 3], ["disabledTests", 65, 3], ["preCheck", 73, 3], ["postCheck", 80, 3], ["pythonImportsCheck", 84, 3], ["meta", 86, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, cython: false, setuptools: false, "setuptools-scm": false, gitMinimal: false, cramjam: false, fsspec: false, numpy: false, packaging: false, pandas: false, "python-lzo": false, pytestCheckHook: false, python: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 35, 5], ["repo", 36, 5], ["tag", 37, 5], ["hash", 38, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["lzo", 60, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 87, 5], ["homepage", 88, 5], ["changelog", 89, 5], ["license", 90, 5], ["maintainers", 91, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 30, 3], ["version", 31, 3], ["pyproject", 32, 3], ["src", 34, 3], ["build-system", 41, 3], ["nativeBuildInputs", 47, 3], ["dependencies", 51, 3], ["optional-dependencies", 59, 3], ["nativeCheckInputs", 63, 3], ["disabledTests", 65, 3], ["preCheck", 73, 3], ["postCheck", 80, 3], ["pythonImportsCheck", 84, 3], ["meta", 86, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,7 +27,7 @@ export default nix.lambda((args) => (() => {
       const version = "2026.5.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "dask",
           repo: "fastparquet",
           tag: version,
@@ -39,7 +36,7 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [cython, setuptools, setuptools_scm]);
       const nativeBuildInputs = nix.thunk(() => [gitMinimal]);
       const dependencies = nix.thunk(() => [cramjam, fsspec, numpy, packaging, pandas]);
-      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, lzo: nix.thunk(() => [python_lzo]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: $pos[1], lzo: nix.thunk(() => [python_lzo]) }));
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const disabledTests = nix.thunk(() => ["test_import_without_warning"]);
       const preCheck = nix.thunk(() => nix.str`mv fastparquet/test .
@@ -50,7 +47,7 @@ ln -s \`pwd\`/test "$fastparquet_test"
       const postCheck = "rm \"$fastparquet_test\"\n";
       const pythonImportsCheck = nix.thunk(() => ["fastparquet"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Implementation of the parquet format",
         homepage: "https://github.com/dask/fastparquet",
         changelog: nix.thunk(() => nix.str`https://github.com/dask/fastparquet/blob/${version}/docs/source/releasenotes.rst`),
@@ -61,7 +58,7 @@ ln -s \`pwd\`/test "$fastparquet_test"
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

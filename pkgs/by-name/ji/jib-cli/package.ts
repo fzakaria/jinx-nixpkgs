@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 16, 5], ["hash", 17, 5]], [["description", 44, 5], ["homepage", 45, 5], ["license", 46, 5], ["maintainers", 47, 5], ["mainProgram", 50, 5], ["sourceProvenance", 51, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["nativeBuildInputs", 20, 3], ["nativeInstallCheckInputs", 25, 3], ["buildInputs", 26, 3], ["dontBuild", 28, 3], ["doInstallCheck", 29, 3], ["versionCheckProgram", 31, 3], ["installPhase", 33, 3], ["meta", 43, 3]]]);
 const formals$1 = { args: { stdenv: false, fetchzip: false, lib: false, makeWrapper: false, jre: false, stripJavaArchivesHook: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 44, 5], ["homepage", 45, 5], ["license", 46, 5], ["maintainers", 47, 5], ["mainProgram", 50, 5], ["sourceProvenance", 51, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["nativeBuildInputs", 20, 3], ["nativeInstallCheckInputs", 25, 3], ["buildInputs", 26, 3], ["dontBuild", 28, 3], ["doInstallCheck", 29, 3], ["versionCheckProgram", 31, 3], ["installPhase", 33, 3], ["meta", 43, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const stripJavaArchivesHook = nix.arg($, "stripJavaArchivesHook");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "jib-cli",
       version: "0.13.0",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/GoogleContainerTools/jib/releases/download/v${nix.sel(finalAttrs, "version")}-cli/jib-jre-${nix.sel(finalAttrs, "version")}.zip`),
           hash: "sha256-3/wKpwVHVBU86GJfR4YGM5ba8pOOfLL+fKU7zwwU+Qc=",
         })))),
@@ -40,7 +38,7 @@ makeWrapper ${jre}/bin/java $out/bin/jib \\
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Container image builder for Java using Jib CLI",
         homepage: "https://github.com/GoogleContainerTools/jib",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

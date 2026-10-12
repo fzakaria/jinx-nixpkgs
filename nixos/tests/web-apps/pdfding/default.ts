@@ -2,15 +2,15 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["basic", 3, 3], ["e2e", 4, 3], ["postgres", 5, 3]]]);
 const formals$1 = { args: { lib: false, runTest: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["basic", 3, 3], ["e2e", 4, 3], ["postgres", 5, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const runTest = nix.arg($, "runTest");
   return nix.app(nix.sel(lib, "recurseIntoAttrs"), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       basic: nix.thunk(() => nix.app(runTest, nix.path(here, "./basic.nix"))),
       e2e: nix.thunk(() => nix.app(runTest, nix.path(here, "./e2e.nix"))),
       postgres: nix.thunk(() => nix.app(runTest, nix.path(here, "./postgres.nix"))),

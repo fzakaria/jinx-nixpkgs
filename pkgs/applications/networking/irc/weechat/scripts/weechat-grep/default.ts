@@ -2,11 +2,8 @@
 import * as nix from "../../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 12, 5], ["sha256", 13, 5]], [["scripts", 24, 5]], [["description", 28, 5], ["homepage", 29, 5], ["license", 30, 5], ["maintainers", 31, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["dontUnpack", 16, 3], ["installPhase", 18, 3], ["passthru", 23, 3], ["meta", 27, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 12, 5], ["sha256", 13, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["scripts", 24, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 28, 5], ["homepage", 29, 5], ["license", 30, 5], ["maintainers", 31, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["dontUnpack", 16, 3], ["installPhase", 18, 3], ["passthru", 23, 3], ["meta", 27, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,19 +11,19 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "weechat-grep",
       version: "0.8.5",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://github.com/weechat/scripts/raw/5ee93d56f371c829d2798a5446a14292c180f70b/python/grep.py",
           sha256: "sha256-EVcoxjTTjXOYD8DppD+IULxpKerEdolmlgphrulFGC0=",
         })))),
       dontUnpack: true,
       installPhase: "mkdir -p $out/share\ncp $src $out/share/grep.py\n",
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, scripts: nix.thunk(() => ["grep.py"]) })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[1], scripts: nix.thunk(() => ["grep.py"]) })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Search in Weechat buffers and logs (for Weechat 0.3.*)",
         homepage: "https://github.com/weechat/scripts/blob/master/python/grep.py",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

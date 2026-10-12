@@ -2,10 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/pg_ed25519.nix", [[["owner", 13, 5], ["repo", 14, 5], ["tag", 15, 5], ["hash", 16, 5]], [["description", 20, 5], ["homepage", 21, 5], ["maintainers", 22, 5], ["platforms", 23, 5], ["license", 24, 5], ["broken", 26, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["meta", 19, 3]]]);
 const formals$1 = { args: { fetchFromGitLab: false, lib: false, postgresql: false, postgresqlBuildExtension: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/pg_ed25519.nix", [["owner", 13, 5], ["repo", 14, 5], ["tag", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/pg_ed25519.nix", [["description", 20, 5], ["homepage", 21, 5], ["maintainers", 22, 5], ["platforms", 23, 5], ["license", 24, 5], ["broken", 26, 5]]);
-const pos$3 = nix.positions(here + "/pg_ed25519.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["meta", 19, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,18 +12,18 @@ export default nix.lambda((args) => (() => {
   const postgresql = nix.arg($, "postgresql");
   const postgresqlBuildExtension = nix.arg($, "postgresqlBuildExtension");
   return nix.app(postgresqlBuildExtension, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "pg_ed25519",
       version: "0.2",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "dwagin",
           repo: "pg_ed25519",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-IOL3ogbPCMNmwDwpeaCZSoaFLJRX0Oah+ysgyUfHg5s=",
         })))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "PostgreSQL extension for signing and verifying ed25519 signatures",
         homepage: "https://gitlab.com/dwagin/pg_ed25519",
         maintainers: nix.thunk(() => (() => {

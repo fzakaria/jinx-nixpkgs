@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 39, 5], ["repo", 40, 5], ["tag", 41, 5], ["hash", 42, 5]], [["OPENSSL_NO_VENDOR", 46, 5]], [["pname", 50, 13], ["version", 50, 19], ["src", 50, 27], ["hash", 51, 5]], [["kafka", 75, 5]], [["description", 105, 5], ["homepage", 106, 5], ["changelog", 107, 5], ["license", 108, 5], ["maintainers", 109, 5]], [["pname", 31, 3], ["version", 32, 3], ["pyproject", 33, 3], ["disabled", 36, 3], ["src", 38, 3], ["env", 45, 3], ["cargoDeps", 49, 3], ["nativeBuildInputs", 54, 3], ["dontUseCmakeConfigure", 61, 3], ["buildInputs", 63, 3], ["dependencies", 69, 3], ["optional-dependencies", 74, 3], ["preCheck", 78, 3], ["nativeCheckInputs", 82, 3], ["pytestFlags", 89, 3], ["enabledTestPaths", 93, 3], ["disabledTestPaths", 97, 3], ["pythonImportsCheck", 102, 3], ["meta", 104, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, pythonAtLeast: false, cmake: false, "pkg-config": false, rustPlatform: false, cyrus_sasl: false, openssl: false, protobuf: false, jsonpickle: false, "prometheus-client": false, "confluent-kafka": false, "myst-parser": false, pytestCheckHook: false, "pytest-benchmark": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 39, 5], ["repo", 40, 5], ["tag", 41, 5], ["hash", 42, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["OPENSSL_NO_VENDOR", 46, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 50, 13], ["version", 50, 19], ["src", 50, 27], ["hash", 51, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["kafka", 75, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["description", 105, 5], ["homepage", 106, 5], ["changelog", 107, 5], ["license", 108, 5], ["maintainers", 109, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 31, 3], ["version", 32, 3], ["pyproject", 33, 3], ["disabled", 36, 3], ["src", 38, 3], ["env", 45, 3], ["cargoDeps", 49, 3], ["nativeBuildInputs", 54, 3], ["dontUseCmakeConfigure", 61, 3], ["buildInputs", 63, 3], ["dependencies", 69, 3], ["optional-dependencies", 74, 3], ["preCheck", 78, 3], ["nativeCheckInputs", 82, 3], ["pytestFlags", 89, 3], ["enabledTestPaths", 93, 3], ["disabledTestPaths", 97, 3], ["pythonImportsCheck", 102, 3], ["meta", 104, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,15 +29,15 @@ export default nix.lambda((args) => (() => {
       const pyproject = true;
       const disabled = nix.thunk(() => nix.app(pythonAtLeast, "3.13"));
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "bytewax",
           repo: "bytewax",
           tag: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-O5q1Jd3AMUaQwfQM249CUnkjqEkXybxtM9SOISoULZk=",
         }))));
-      const env = nix.thunk(() => ({ [nix.POS]: pos$2, OPENSSL_NO_VENDOR: true }));
+      const env = nix.thunk(() => ({ [nix.POS]: $pos[1], OPENSSL_NO_VENDOR: true }));
       const cargoDeps = nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           pname: pname,
           version: version,
           src: src,
@@ -57,7 +52,7 @@ export default nix.lambda((args) => (() => {
       const dontUseCmakeConfigure = true;
       const buildInputs = nix.thunk(() => [openssl, cyrus_sasl, protobuf]);
       const dependencies = nix.thunk(() => [jsonpickle, prometheus_client]);
-      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$4, kafka: nix.thunk(() => [confluent_kafka]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: $pos[3], kafka: nix.thunk(() => [confluent_kafka]) }));
       const preCheck = "export PY_IGNORE_IMPORTMISMATCH=1\n";
       const nativeCheckInputs = nix.thunk(() => nix.concat([myst_parser, pytestCheckHook, pytest_benchmark], nix.app(nix.sel(lib, "concatAttrValues"), optional_dependencies)));
       const pytestFlags = nix.thunk(() => ["--benchmark-disable"]);
@@ -65,7 +60,7 @@ export default nix.lambda((args) => (() => {
       const disabledTestPaths = nix.thunk(() => ["docs"]);
       const pythonImportsCheck = nix.thunk(() => ["bytewax"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Python Stream Processing",
         homepage: "https://github.com/bytewax/bytewax",
         changelog: nix.thunk(() => nix.str`https://github.com/bytewax/bytewax/releases/tag/v${version}`),
@@ -79,7 +74,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname,
         version,
         pyproject,

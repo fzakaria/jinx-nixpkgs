@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]], [["updateScript", 72, 12]], [["description", 75, 5], ["homepage", 76, 5], ["changelog", 77, 5], ["license", 78, 5], ["maintainers", 79, 5], ["mainProgram", 80, 5], ["platforms", 81, 5]], [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 44, 3], ["cmakeFlags", 51, 3], ["outputs", 58, 3], ["hardeningDisable", 65, 3], ["preFixup", 67, 3], ["passthru", 72, 3], ["meta", 74, 3]]]);
 const formals$1 = { args: { bison: false, clangStdenv: false, cmake: false, cmocka: false, doxygen: false, fetchFromGitHub: false, flex: false, lcov: false, lib: false, libbpf: false, libelf: false, libnl: false, "nix-update-script": false, "pkg-config": false, sphinx: false, tinyxxd: false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 72, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 75, 5], ["homepage", 76, 5], ["changelog", 77, 5], ["license", 78, 5], ["maintainers", 79, 5], ["mainProgram", 80, 5], ["platforms", 81, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 44, 3], ["cmakeFlags", 51, 3], ["outputs", 58, 3], ["hardeningDisable", 65, 3], ["preFixup", 67, 3], ["passthru", 72, 3], ["meta", 74, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const tinyxxd = nix.arg($, "tinyxxd");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(clangStdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "bpfilter",
       version: "0.7.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "facebook",
           repo: "bpfilter",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -50,11 +47,11 @@ export default nix.lambda((args) => (() => {
       hardeningDisable: nix.thunk(() => ["zerocallusedregs"]),
       preFixup: "# workaround for https://github.com/NixOS/nixpkgs/issues/144170\nsubstituteInPlace $lib/lib/pkgconfig/bpfilter.pc --replace-fail \\${prefix}/ \"\"\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "BPF-based packet filtering framework",
         homepage: "https://bpfilter.io",
         changelog: nix.thunk(() => nix.str`https://github.com/facebook/bpfilter/releases/tag/v${nix.sel(finalAttrs, "version")}`),

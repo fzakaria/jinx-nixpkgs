@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["license", 33, 8]], [["name", 14, 3], ["paths", 15, 3], ["meta", 33, 3]]]);
 const formals$1 = { args: { lib: false, symlinkJoin: false, writeTextDir: false, runCommand: false, extraPasswdLines: true, extraGroupLines: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["license", 33, 8]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 14, 3], ["paths", 15, 3], ["meta", 33, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const extraPasswdLines = nix.argOr($, "extraPasswdLines", () => []);
   const extraGroupLines = nix.argOr($, "extraGroupLines", () => []);
   return nix.app(symlinkJoin, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       name: "fake-nss",
       paths: nix.thunk(() => [
         nix.thunk(() => nix.app(writeTextDir, "etc/passwd", nix.thunk(() => nix.str`root:x:0:0:root user:/var/empty:/bin/sh
@@ -27,7 +26,10 @@ ${nix.app(nix.sel(lib, "concatStrings"), nix.thunk(() => nix.builtins.map((line)
         nix.thunk(() => nix.app(writeTextDir, "etc/nsswitch.conf", "hosts: files dns\n")),
         nix.thunk(() => nix.app(runCommand, "var-empty", nix.thunk(() => ({})), "mkdir -p $out/var/empty\n")),
       ]),
-      meta: nix.thunk(() => ({ [nix.POS]: pos$1, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) })),
+      meta: nix.thunk(() => ({
+        [nix.POS]: $pos[0],
+        license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
+      })),
     })));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

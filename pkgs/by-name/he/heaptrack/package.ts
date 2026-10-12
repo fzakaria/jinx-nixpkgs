@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 22, 5], ["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["hash", 26, 5]], [["description", 75, 5], ["homepage", 76, 5], ["license", 77, 5], ["mainProgram", 78, 5], ["maintainers", 79, 5], ["platforms", 80, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["patches", 29, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 41, 3], ["postPatch", 63, 3], ["postInstall", 68, 3], ["meta", 74, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, cmake: false, makeBinaryWrapper: false, zlib: false, boost: false, libunwind: false, elfutils: false, sparsehash: false, zstd: false, kdePackages: false, "rustc-demangle": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 22, 5], ["owner", 23, 5], ["repo", 24, 5], ["rev", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 75, 5], ["homepage", 76, 5], ["license", 77, 5], ["mainProgram", 78, 5], ["maintainers", 79, 5], ["platforms", 80, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["patches", 29, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 41, 3], ["postPatch", 63, 3], ["postInstall", 68, 3], ["meta", 74, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const kdePackages = nix.arg($, "kdePackages");
   const rustc_demangle = nix.arg($, "rustc-demangle");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "heaptrack",
       version: "1.5.0-unstable-2025-07-21",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "invent.kde.org",
           owner: "sdk",
           repo: "heaptrack",
@@ -61,7 +59,7 @@ export default nix.lambda((args) => (() => {
 `),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "makeWrapper \\\n  $out/Applications/KDE/heaptrack_gui.app/Contents/MacOS/heaptrack_gui \\\n  $out/bin/heaptrack_gui\n")),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Heap memory profiler for Linux",
         homepage: "https://github.com/KDE/heaptrack",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),

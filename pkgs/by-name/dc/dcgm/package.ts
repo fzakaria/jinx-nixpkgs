@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 57, 9], ["paths", 58, 9]], [["owner", 78, 5], ["repo", 79, 5], ["rev", 82, 5], ["hash", 83, 5]], [["coreutils", 91, 15], ["util-linux", 92, 15], ["lshw", 93, 15], ["mpi", 94, 15], ["shell", 95, 24], ["dcgm_out", 96, 7]], [["NIX_CFLAGS_COMPILE", 158, 7]], [["description", 174, 5], ["homepage", 175, 5], ["license", 176, 5], ["maintainers", 177, 5], ["mainProgram", 182, 5], ["platforms", 183, 5]], [["pname", 74, 3], ["version", 75, 3], ["src", 77, 3], ["patches", 86, 3], ["hardeningDisable", 100, 3], ["strictDeps", 102, 3], ["nativeBuildInputs", 104, 3], ["buildInputs", 116, 3], ["nativeCheckInputs", 129, 3], ["disabledTests", 135, 3], ["cmakeFlags", 155, 3], ["env", 158, 3], ["doCheck", 160, 3], ["dontUseNinjaCheck", 161, 3], ["postPatch", 163, 3], ["disallowedReferences", 169, 3], ["__structuredAttrs", 171, 3], ["meta", 173, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, autoAddDriverRunpath: false, catch2_3: false, cmake: false, ctestCheckHook: false, coreutils: false, mpi: false, mpiCheckPhaseHook: false, ninja: false, cudaPackages_12: false, boost186: false, fmt_10: false, git: false, jsoncpp: false, libevent: false, lshw: false, plog: false, python3: false, replaceVars: false, symlinkJoin: false, tclap_1_4: false, "util-linux": false, "yaml-cpp": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 57, 9], ["paths", 58, 9]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 78, 5], ["repo", 79, 5], ["rev", 82, 5], ["hash", 83, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["coreutils", 91, 15], ["util-linux", 92, 15], ["lshw", 93, 15], ["mpi", 94, 15], ["shell", 95, 24], ["dcgm_out", 96, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 158, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 174, 5], ["homepage", 175, 5], ["license", 176, 5], ["maintainers", 177, 5], ["mainProgram", 182, 5], ["platforms", 183, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 74, 3], ["version", 75, 3], ["src", 77, 3], ["patches", 86, 3], ["hardeningDisable", 100, 3], ["strictDeps", 102, 3], ["nativeBuildInputs", 104, 3], ["buildInputs", 116, 3], ["nativeCheckInputs", 129, 3], ["disabledTests", 135, 3], ["cmakeFlags", 155, 3], ["env", 158, 3], ["doCheck", 160, 3], ["dontUseNinjaCheck", 161, 3], ["postPatch", 163, 3], ["disallowedReferences", 169, 3], ["__structuredAttrs", 171, 3], ["meta", 173, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -53,7 +48,7 @@ export default nix.lambda((args) => (() => {
   const mkCudaFlags = (cudaPackages) => (() => {
     const version = nix.thunk(() => nix.sel(cudaPackages, "cudaMajorVersion"));
     const headers = nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         name: nix.thunk(() => nix.str`cuda-headers-combined-${version}`),
         paths: nix.thunk(() => nix.app(nix.sel(lib, "map"), (pkg) => nix.str`${nix.app(nix.sel(lib, "getInclude"), pkg)}/include`, nix.thunk(() => nix.app(getCudaPackages, cudaPackages)))),
       }))));
@@ -68,11 +63,11 @@ export default nix.lambda((args) => (() => {
     ];
   })();
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "dcgm",
       version: "4.3.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "NVIDIA",
           repo: "DCGM",
           rev: "1477d8785e899ab3450fdff2b486102e9bed096b",
@@ -83,7 +78,7 @@ export default nix.lambda((args) => (() => {
         nix.path(here, "./dynamic-libs.patch"),
         nix.path(here, "./fix-gcc15.patch"),
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix-paths.patch"), nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             coreutils: coreutils,
             "util-linux": util_linux,
             lshw: lshw,
@@ -122,14 +117,14 @@ export default nix.lambda((args) => (() => {
         "GetPluginCudalessDir returns cudaless directory in plugin directory",
       ]),
       cmakeFlags: nix.thunk(() => nix.app(nix.sel(lib, "concatMap"), mkCudaFlags, cudaPackageSets)),
-      env: nix.thunk(() => ({ [nix.POS]: pos$4, NIX_CFLAGS_COMPILE: "-Wno-error" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[3], NIX_CFLAGS_COMPILE: "-Wno-error" })),
       doCheck: true,
       dontUseNinjaCheck: true,
       postPatch: "while read -r -d \"\" file; do\n  substituteInPlace \"$file\" --replace-quiet @dcgm_out@ \"$out\"\ndone < <(find . '(' -name '*.h' -or -name '*.cpp' ')' -print0)\n",
       disallowedReferences: nix.thunk(() => nix.app(nix.sel(lib, "concatMap"), getCudaPackages, cudaPackageSets)),
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Data Center GPU Manager (DCGM) is a daemon that allows users to monitor NVIDIA data-center GPUs",
         homepage: "https://developer.nvidia.com/dcgm",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

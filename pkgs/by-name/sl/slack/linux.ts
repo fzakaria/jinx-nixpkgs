@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/linux.nix", [[["pname", 59, 5], ["version", 60, 5], ["src", 61, 5], ["passthru", 62, 5], ["meta", 63, 5], ["rpath", 66, 3], ["buildInputs", 114, 3], ["nativeBuildInputs", 118, 3], ["dontUnpack", 124, 3], ["dontBuild", 125, 3], ["dontPatchELF", 126, 3], ["installPhase", 128, 3]]]);
 const formals$1 = { args: { pname: false, version: false, src: false, passthru: false, meta: false, lib: false, stdenv: false, dpkg: false, makeWrapper: false, asar: false, "alsa-lib": false, "at-spi2-atk": false, "at-spi2-core": false, atk: false, cairo: false, cups: false, curl: false, dbus: false, expat: false, fontconfig: false, freetype: false, "gdk-pixbuf": false, glib: false, gtk3: false, libGL: false, libappindicator: false, libdrm: false, libnotify: false, libpulseaudio: false, libuuid: false, libxcb: false, libxkbcommon: false, libgbm: false, nspr: false, nss: false, pango: false, pipewire: false, systemdLibs: false, wayland: false, "xdg-utils": false, libxtst: false, libxscrnsaver: false, libxrender: false, libxrandr: false, libxi: false, libxfixes: false, libxext: false, libxdamage: false, libxcursor: false, libxcomposite: false, libx11: false, libxshmfence: false, libxkbfile: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/linux.nix", [["pname", 59, 5], ["version", 60, 5], ["src", 61, 5], ["passthru", 62, 5], ["meta", 63, 5], ["rpath", 66, 3], ["buildInputs", 114, 3], ["nativeBuildInputs", 118, 3], ["dontUnpack", 124, 3], ["dontBuild", 125, 3], ["dontPatchELF", 126, 3], ["installPhase", 128, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -158,7 +158,7 @@ sed -i -e 's/,"WebRTCPipeWireCapturer"/,"LebRTCPipeWireCapturer"/' $out/lib/slac
 runHook postInstall
 `);
       return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         pname: pname_1,
         version: version_1,
         src: src_1,

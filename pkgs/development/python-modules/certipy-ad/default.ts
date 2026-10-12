@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]], [["description", 72, 5], ["homepage", 73, 5], ["changelog", 74, 5], ["license", 75, 5], ["maintainers", 76, 5], ["mainProgram", 77, 5]], [["pname", 23, 3], ["version", 24, 3], ["pyproject", 25, 3], ["src", 27, 3], ["pythonRelaxDeps", 34, 3], ["build-system", 46, 3], ["dependencies", 48, 3], ["doCheck", 67, 3], ["pythonImportsCheck", 69, 3], ["meta", 71, 3]]]);
 const formals$1 = { args: { lib: false, argcomplete: false, asn1crypto: false, beautifulsoup4: false, buildPythonPackage: false, cryptography: false, dnspython: false, dsinternals: false, fetchFromGitHub: false, httpx: false, impacket: false, ldap3: false, pyasn1: false, pycryptodome: false, pyopenssl: false, requests: false, setuptools: false, unicrypto: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 72, 5], ["homepage", 73, 5], ["changelog", 74, 5], ["license", 75, 5], ["maintainers", 76, 5], ["mainProgram", 77, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 23, 3], ["version", 24, 3], ["pyproject", 25, 3], ["src", 27, 3], ["pythonRelaxDeps", 34, 3], ["build-system", 46, 3], ["dependencies", 48, 3], ["doCheck", 67, 3], ["pythonImportsCheck", 69, 3], ["meta", 71, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,12 +26,12 @@ export default nix.lambda((args) => (() => {
   const setuptools = nix.arg($, "setuptools");
   const unicrypto = nix.arg($, "unicrypto");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "certipy-ad",
       version: "5.1.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ly4k",
           repo: "Certipy",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -71,7 +69,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["certipy"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Library and CLI tool to enumerate and abuse misconfigurations in Active Directory Certificate Services",
         homepage: "https://github.com/ly4k/Certipy",
         changelog: nix.thunk(() => nix.str`https://github.com/ly4k/Certipy/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

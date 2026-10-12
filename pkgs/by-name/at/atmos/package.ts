@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["tag", 15, 5], ["hash", 16, 5]], [["CGO_ENABLED", 21, 7]], [["homepage", 47, 5], ["changelog", 48, 5], ["description", 49, 5], ["mainProgram", 50, 5], ["license", 51, 5], ["maintainers", 52, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["vendorHash", 19, 3], ["env", 21, 3], ["subPackages", 23, 3], ["ldflags", 25, 3], ["nativeCheckInputs", 31, 3], ["preCheck", 33, 3], ["doInstallCheck", 44, 3], ["meta", 46, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitHub: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["tag", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["CGO_ENABLED", 21, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 47, 5], ["changelog", 48, 5], ["description", 49, 5], ["mainProgram", 50, 5], ["license", 51, 5], ["maintainers", 52, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["vendorHash", 19, 3], ["env", 21, 3], ["subPackages", 23, 3], ["ldflags", 25, 3], ["nativeCheckInputs", 31, 3], ["preCheck", 33, 3], ["doInstallCheck", 44, 3], ["meta", 46, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,18 +12,18 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "atmos",
       version: "1.230.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "cloudposse",
           repo: "atmos",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-2iyRkQQ+NKER60jBiGrcq+QKBO8+pt3nfHm9Tn3e+iU=",
         })))),
       vendorHash: "sha256-J5TNPXzEz4gaNi2mEqkQ+t1JzmocbRRLwUwzLgAZU40=",
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, CGO_ENABLED: 0n })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], CGO_ENABLED: 0n })),
       subPackages: nix.thunk(() => ["."]),
       ldflags: nix.thunk(() => [
         "-s",
@@ -37,7 +34,7 @@ export default nix.lambda((args) => (() => {
       preCheck: "# Remove tests that depend on a network connection.\nrm -f \\\n  main_hooks_and_keychain_store_integration_test.go \\\n  main_hooks_and_store_integration_test.go \\\n  main_plan_diff_integration_test.go \\\n  pkg/atlantis/atlantis_generate_repo_config_test.go \\\n  pkg/describe/describe_affected_test.go \\\n  pkg/vender/component_vendor_test.go\n",
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://atmos.tools",
         changelog: nix.thunk(() => nix.str`https://github.com/cloudposse/atmos/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "Universal Tool for DevOps and Cloud Automation (works with terraform, helm, helmfile, etc)",

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 38, 5], ["repo", 39, 5], ["tag", 40, 5], ["sparseCheckout", 41, 5], ["hash", 45, 5]], [["finalAttrs", 107, 54]], [["updateScript", 107, 12]], [["description", 110, 5], ["homepage", 111, 5], ["license", 112, 5], ["teams", 113, 5], ["platforms", 114, 5]], [["pname", 21, 3], ["version", 22, 3], ["outputs", 24, 3], ["src", 37, 3], ["sourceRoot", 47, 3], ["patches", 49, 3], ["nativeBuildInputs", 53, 3], ["buildInputs", 59, 3], ["cmakeFlags", 68, 3], ["postInstall", 88, 3], ["passthru", 107, 3], ["meta", 109, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, rocmUpdateScript: false, cmake: false, "rocm-cmake": false, "rocm-smi": false, clr: false, openmp: false, gtest: false, rocblas: false, buildTests: true, buildExtendedTests: true, buildBenchmarks: true, buildSamples: true, gpuTargets: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 38, 5], ["repo", 39, 5], ["tag", 40, 5], ["sparseCheckout", 41, 5], ["hash", 45, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["finalAttrs", 107, 54]]);
-const pos$3 = nix.positions(here + "/default.nix", [["updateScript", 107, 12]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 110, 5], ["homepage", 111, 5], ["license", 112, 5], ["teams", 113, 5], ["platforms", 114, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 21, 3], ["version", 22, 3], ["outputs", 24, 3], ["src", 37, 3], ["sourceRoot", 47, 3], ["patches", 49, 3], ["nativeBuildInputs", 53, 3], ["buildInputs", 59, 3], ["cmakeFlags", 68, 3], ["postInstall", 88, 3], ["passthru", 107, 3], ["meta", 109, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,12 +24,12 @@ export default nix.lambda((args) => (() => {
   const buildSamples = nix.argOr($, "buildSamples", () => false);
   const gpuTargets = nix.argOr($, "gpuTargets", () => nix.selOr(clr, () => [], "localGpuTargets"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "rocwmma",
       version: "7.2.3",
       outputs: nix.thunk(() => nix.concat(["out"], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(buildTests) || nix.asBool(buildBenchmarks))), nix.thunk(() => ["test"])), nix.concat(nix.app(nix.sel(lib, "optionals"), buildBenchmarks, nix.thunk(() => ["benchmark"])), nix.app(nix.sel(lib, "optionals"), buildSamples, nix.thunk(() => ["sample"])))))),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ROCm",
           repo: "rocm-libraries",
           tag: nix.thunk(() => nix.str`rocm-${nix.sel(finalAttrs, "version")}`),
@@ -55,11 +51,11 @@ export default nix.lambda((args) => (() => {
         ])), nix.concat(nix.app(nix.sel(lib, "optionals"), buildExtendedTests, nix.thunk(() => ["-DROCWMMA_BUILD_EXTENDED_TESTS=ON"])), nix.app(nix.sel(lib, "optionals"), buildBenchmarks, nix.thunk(() => ["-DROCWMMA_BUILD_BENCHMARK_TESTS=ON", "-DROCWMMA_BENCHMARK_WITH_ROCBLAS=ON"])))))),
       postInstall: nix.thunk(() => nix.add(nix.add(nix.add(nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool(buildTests) || nix.asBool(buildBenchmarks))), "mkdir -p $test/bin\nmv $out/bin/{*_test,*-validate} $test/bin\n"), nix.app(nix.sel(lib, "optionalString"), buildBenchmarks, "mkdir -p $benchmark/bin\nmv $out/bin/*-bench $benchmark/bin\n")), nix.app(nix.sel(lib, "optionalString"), buildSamples, "mkdir -p $sample/bin\nmv $out/bin/sgemmv $sample/bin\nmv $out/bin/simple_gemm $sample/bin\nmv $out/bin/simple_dlrm $sample/bin\n")), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool((nix.asBool(buildTests) || nix.asBool(buildBenchmarks))) || nix.asBool(buildSamples))), "rm -rf $out/bin\n"))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(rocmUpdateScript, nix.thunk(() => ({ [nix.POS]: pos$2, finalAttrs: finalAttrs })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(rocmUpdateScript, nix.thunk(() => ({ [nix.POS]: $pos[1], finalAttrs: finalAttrs })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Mixed precision matrix multiplication and accumulation",
         homepage: "https://github.com/ROCm/rocm-libraries/tree/develop/projects/rocwmma",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]], [["mpd", 34, 13], ["vlc", 34, 17], ["gst-plugins-bad", 35, 25], ["ocaml-faad", 36, 5]], [["tests", 33, 12]], [["description", 40, 5], ["homepage", 41, 5], ["license", 42, 5], ["maintainers", 43, 5], ["mainProgram", 44, 5], ["platforms", 45, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["outputs", 25, 3], ["nativeBuildInputs", 31, 3], ["passthru", 33, 3], ["meta", 39, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, gst_all_1: false, mpd: false, ocamlPackages: false, vlc: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["mpd", 34, 13], ["vlc", 34, 17], ["gst-plugins-bad", 35, 25], ["ocaml-faad", 36, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 33, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 40, 5], ["homepage", 41, 5], ["license", 42, 5], ["maintainers", 43, 5], ["mainProgram", 44, 5], ["platforms", 45, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["outputs", 25, 3], ["nativeBuildInputs", 31, 3], ["passthru", 33, 3], ["meta", 39, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const ocamlPackages = nix.arg($, "ocamlPackages");
   const vlc = nix.arg($, "vlc");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "faad2",
       version: "2.11.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "knik0",
           repo: "faad2",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -33,9 +29,9 @@ export default nix.lambda((args) => (() => {
       outputs: nix.thunk(() => ["out", "dev", "man"]),
       nativeBuildInputs: nix.thunk(() => [cmake]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           mpd: mpd,
           vlc: vlc,
           "gst-plugins-bad": nix.thunk(() => nix.attr(gst_all_1, "gst-plugins-bad")),
@@ -43,7 +39,7 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Open source MPEG-4 and MPEG-2 AAC decoder",
         homepage: "https://sourceforge.net/projects/faac/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

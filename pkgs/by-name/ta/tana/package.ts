@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 72, 5], ["hash", 73, 5]], [["description", 104, 5], ["longDescription", 105, 5], ["homepage", 114, 5], ["changelog", 115, 5], ["license", 116, 5], ["maintainers", 117, 5], ["platforms", 118, 5], ["mainProgram", 119, 5]], [["pname", 68, 3], ["version", 69, 11], ["buildInputs", 69, 19], ["src", 71, 3], ["nativeBuildInputs", 76, 3], ["appendRunpaths", 81, 3], ["runtimeDependencies", 86, 3], ["installPhase", 90, 3], ["postFixup", 97, 3], ["meta", 103, 3]]]);
 const formals$1 = { args: { libx11: false, libxcb: false, libxcomposite: false, libxdamage: false, libxext: false, libxfixes: false, libxrandr: false, stdenv: false, lib: false, "alsa-lib": false, "at-spi2-atk": false, atkmm: false, cairo: false, cups: false, dbus: false, expat: false, glib: false, gtk3: false, libdrm: false, libglvnd: false, libxkbcommon: false, libgbm: false, nspr: false, nss: false, pango: false, systemd: false, fetchurl: false, autoPatchelfHook: false, dpkg: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 72, 5], ["hash", 73, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 104, 5], ["longDescription", 105, 5], ["homepage", 114, 5], ["changelog", 115, 5], ["license", 116, 5], ["maintainers", 117, 5], ["platforms", 118, 5], ["mainProgram", 119, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 68, 3], ["version", 69, 11], ["buildInputs", 69, 19], ["src", 71, 3], ["nativeBuildInputs", 76, 3], ["appendRunpaths", 81, 3], ["runtimeDependencies", 86, 3], ["installPhase", 90, 3], ["postFixup", 97, 3], ["meta", 103, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -69,12 +67,12 @@ export default nix.lambda((args) => (() => {
   ]));
   const version = "1.520.0";
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "tana",
       version: version,
       buildInputs: buildInputs,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/tanainc/tana-desktop-releases/releases/download/v${version}/tana_${version}_amd64.deb`),
           hash: "sha256-1FsoZLJBSi4BijlwO3VYwfU2z5TRapgMoSc+OfrpolU=",
         })))),
@@ -84,7 +82,7 @@ export default nix.lambda((args) => (() => {
       installPhase: "runHook preInstall\nmkdir -p $out\ncp -r usr/* $out\nrunHook postInstall\n",
       postFixup: "substituteInPlace $out/share/applications/tana.desktop \\\n  --replace \"Exec=tana\" \"Exec=$out/bin/tana\" \\\n  --replace \"Name=tana\" \"Name=Tana\"\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Intelligent all-in-one workspace",
         longDescription: "At its core, Tana is an outline editor which can be extended to\ncover multiple use-cases and different workflows.\nFor individuals, it supports GTD, P.A.R.A., Zettelkasten note-taking\nout of the box. Teams can leverage the powerful project management\nviews, like Kanban.\nTo complete all, a powerful AI system is integrated to help with most\nof the tasks.\n",
         homepage: "https://tana.inc",

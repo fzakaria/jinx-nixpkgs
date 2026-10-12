@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]], [["homepage", 29, 5], ["description", 30, 5], ["longDescription", 31, 5], ["license", 73, 5], ["maintainers", 74, 5], ["platforms", 75, 5], ["mainProgram", 76, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["nativeBuildInputs", 19, 3], ["installPhase", 21, 3], ["meta", 28, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, installShellFiles: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 29, 5], ["description", 30, 5], ["longDescription", 31, 5], ["license", 73, 5], ["maintainers", 74, 5], ["platforms", 75, 5], ["mainProgram", 76, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["nativeBuildInputs", 19, 3], ["installPhase", 21, 3], ["meta", 28, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const installShellFiles = nix.arg($, "installShellFiles");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "with",
       version: "0-unstable-2018-03-20",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "mchav",
           repo: "With",
           rev: "28eb40bbc08d171daabf0210f420477ad75e16d6",
@@ -27,7 +25,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [installShellFiles]),
       installPhase: "runHook preInstall\ninstall -D with $out/bin/with\ninstallShellCompletion --bash --name with.bash with.bash-completion\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/mchav/With",
         description: "Command prefixing for continuous workflow using a single tool",
         longDescription: "with is a Bash script that starts an interactive shell with where every\ncommand is prefixed using <program>.\n\nFor example:\n\n$ with git\ngit> add .\ngit> commit -a -m \"Committed\"\ngit> push\n\nCan also be used for compound commands.\n\n$ with java Primes\njava Primes> 1\n2\njava Primes> 4\n7\n\nAnd to repeat commands:\n\n$ with gcc -o output input.c\ngcc -o -output input.c>\n<enter>\nCompiling...\ngcc -o -output input.c>\n\nTo execute a shell command proper prefix line with :.\n\ngit> :ls\n\nYou can also drop, add, and replace different commands.\n\ngit> +add\ngit add> <some file>\ngit add> !commit\ngit commit> <arguments and message>\ngit commit> -\ngit>\n\nTo exit use either :q or :exit.\n",

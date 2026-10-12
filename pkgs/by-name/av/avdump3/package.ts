@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 18, 5], ["hash", 19, 5], ["stripRoot", 20, 5]], [["mainProgram", 54, 5], ["description", 55, 5], ["longDescription", 56, 5], ["homepage", 63, 5], ["sourceProvenance", 64, 5], ["license", 69, 5], ["maintainers", 73, 5], ["platforms", 75, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 23, 3], ["buildInputs", 29, 3], ["installPhase", 35, 3], ["meta", 53, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchzip: false, autoPatchelfHook: false, makeBinaryWrapper: false, jq: false, "dotnet-runtime": false, zlib: false, libzen: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 18, 5], ["hash", 19, 5], ["stripRoot", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["mainProgram", 54, 5], ["description", 55, 5], ["longDescription", 56, 5], ["homepage", 63, 5], ["sourceProvenance", 64, 5], ["license", 69, 5], ["maintainers", 73, 5], ["platforms", 75, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 23, 3], ["buildInputs", 29, 3], ["installPhase", 35, 3], ["meta", 53, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const zlib = nix.arg($, "zlib");
   const libzen = nix.arg($, "libzen");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "avdump3",
       version: "8293_stable",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://cdn.anidb.net/client/avdump3/avdump3_8293_stable.zip",
           hash: "sha256-H9Sn3I4S9CmymKIMHVagDy+7svHs285S3EJgYQo+ks0=",
           stripRoot: false,
@@ -47,7 +45,7 @@ makeBinaryWrapper ${dotnet_runtime}/bin/dotnet $out/bin/avdump3 \\
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         mainProgram: "avdump3",
         description: "Tool for extracting audio/video metadata from media files and uploading it to AniDB",
         longDescription: "AVDump is a tool to extract meta information from media files while at the\nsame time calculating multiple hashes. Based on that information reports\ncan be generated in multiple forms. Of particular interest is the ability\nto send those reports back to AniDB and thereby quickly filling in missing\nmetadata for new files.\n",

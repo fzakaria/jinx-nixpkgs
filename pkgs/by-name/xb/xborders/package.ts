@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]], [["desc", 47, 9], ["pname", 48, 17], ["version", 48, 23]], [["description", 56, 5], ["homepage", 57, 5], ["license", 58, 5], ["maintainers", 59, 5], ["platforms", 60, 5], ["mainProgram", 61, 5]], [["pname", 14, 3], ["version", 15, 3], ["pyproject", 16, 3], ["src", 18, 3], ["buildInputs", 25, 3], ["nativeBuildInputs", 31, 3], ["build-system", 36, 3], ["dependencies", 38, 3], ["postPatch", 44, 3], ["meta", 55, 3]]]);
 const formals$1 = { args: { lib: false, python3Packages: false, fetchFromGitHub: false, libwnck: false, gtk3: false, libnotify: false, wrapGAppsHook3: false, "gobject-introspection": false, replaceVars: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["desc", 47, 9], ["pname", 48, 17], ["version", 48, 23]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 56, 5], ["homepage", 57, 5], ["license", 58, 5], ["maintainers", 59, 5], ["platforms", 60, 5], ["mainProgram", 61, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["pyproject", 16, 3], ["src", 18, 3], ["buildInputs", 25, 3], ["nativeBuildInputs", 31, 3], ["build-system", 36, 3], ["dependencies", 38, 3], ["postPatch", 44, 3], ["meta", 55, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.4";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "deter0",
           repo: "xborder",
           rev: "e74ae532b9555c59d195537934fa355b3fea73c5",
@@ -46,7 +43,7 @@ export default nix.lambda((args) => (() => {
       })());
       const postPatch = nix.thunk(() => (() => {
         const setup = nix.thunk(() => nix.app(replaceVars, nix.path(here, "./setup.py"), nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             desc: nix.thunk(() => nix.sel(meta, "description")),
             pname: pname,
             version: version,
@@ -55,7 +52,7 @@ export default nix.lambda((args) => (() => {
 `;
       })());
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Active window border replacement for window managers",
         homepage: "https://github.com/deter0/xborder",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unlicense")),
@@ -67,7 +64,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "xborders",
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

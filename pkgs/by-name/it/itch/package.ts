@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 18, 5], ["stripRoot", 19, 5], ["hash", 20, 5]], [["owner", 26, 7], ["repo", 27, 7], ["rev", 28, 7], ["hash", 29, 7], ["sparseCheckout", 30, 7]], [["url", 39, 5], ["stripRoot", 40, 5], ["hash", 41, 5]], [["name", 51, 7], ["exec", 52, 7], ["tryExec", 53, 7], ["icon", 54, 7], ["desktopName", 55, 7], ["mimeTypes", 56, 7], ["comment", 60, 7], ["categories", 61, 7]], [["description", 95, 5], ["homepage", 96, 5], ["changelog", 97, 5], ["license", 98, 5], ["platforms", 99, 5], ["sourceProvenance", 100, 5], ["maintainers", 101, 5], ["mainProgram", 102, 5]], [["pname", 35, 3], ["version", 36, 11], ["src", 38, 3], ["nativeBuildInputs", 44, 3], ["desktopItems", 49, 3], ["installPhase", 66, 3], ["postFixup", 86, 3], ["meta", 94, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchzip: false, fetchFromGitHub: false, butler: false, electron: false, "steam-run": false, makeWrapper: false, copyDesktopItems: false, makeDesktopItem: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 18, 5], ["stripRoot", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 26, 7], ["repo", 27, 7], ["rev", 28, 7], ["hash", 29, 7], ["sparseCheckout", 30, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 39, 5], ["stripRoot", 40, 5], ["hash", 41, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["name", 51, 7], ["exec", 52, 7], ["tryExec", 53, 7], ["icon", 54, 7], ["desktopName", 55, 7], ["mimeTypes", 56, 7], ["comment", 60, 7], ["categories", 61, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 95, 5], ["homepage", 96, 5], ["changelog", 97, 5], ["license", 98, 5], ["platforms", 99, 5], ["sourceProvenance", 100, 5], ["maintainers", 101, 5], ["mainProgram", 102, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 35, 3], ["version", 36, 11], ["src", 38, 3], ["nativeBuildInputs", 44, 3], ["desktopItems", 49, 3], ["installPhase", 66, 3], ["postFixup", 86, 3], ["meta", 94, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,14 +19,14 @@ export default nix.lambda((args) => (() => {
   const makeDesktopItem = nix.arg($, "makeDesktopItem");
   const version = "26.13.0";
   const itch_setup = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: "https://broth.itch.zone/itch-setup/linux-amd64/1.29.0/archive.zip",
       stripRoot: false,
       hash: "sha256-T4xvso3jJ9XsiG7QTpYdcvcClg2ejbGS4R/+goaHl18=",
     }))));
   const sparseCheckout = "/release/images/itch-icons";
   const icons = nix.thunk(() => nix.add(nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       owner: "itchio",
       repo: "itch",
       rev: nix.thunk(() => nix.str`v${version}`),
@@ -39,11 +34,11 @@ export default nix.lambda((args) => (() => {
       sparseCheckout: nix.thunk(() => [sparseCheckout]),
     }))), sparseCheckout));
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "itch",
       version: version,
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           url: nix.thunk(() => nix.str`https://github.com/itchio/itch/releases/download/v${nix.sel(finalAttrs, "version")}/itch-v${nix.sel(finalAttrs, "version")}-linux-amd64.tar.gz`),
           stripRoot: false,
           hash: "sha256-//QA4aW9uwZ/yhKf1xJRthj36YqfXuu/6yU1yGXQeFo=",
@@ -51,7 +46,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [copyDesktopItems, makeWrapper]),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             name: "itch",
             exec: "itch %U",
             tryExec: "itch",
@@ -87,7 +82,7 @@ runHook postInstall
   --prefix PATH : ${butler}/bin/:${itch_setup}
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Best way to play itch.io games",
         homepage: "https://github.com/itchio/itch",
         changelog: nix.thunk(() => nix.str`https://github.com/itchio/itch/releases/tag/v${version}`),

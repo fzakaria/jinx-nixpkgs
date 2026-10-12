@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]], [["ELECTRON_SKIP_BINARY_DOWNLOAD", 23, 5]], [["homepage", 38, 5], ["description", 39, 5], ["maintainers", 40, 5], ["platforms", 41, 5], ["license", 42, 5], ["mainProgram", 43, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["npmDepsHash", 20, 3], ["env", 22, 3], ["npmFlags", 26, 3], ["npmBuildScript", 28, 3], ["nativeBuildInputs", 30, 3], ["postInstall", 32, 3], ["meta", 37, 3]]]);
 const formals$1 = { args: { lib: false, buildNpmPackage: false, fetchFromGitHub: false, electron: false, makeWrapper: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["ELECTRON_SKIP_BINARY_DOWNLOAD", 23, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 38, 5], ["description", 39, 5], ["maintainers", 40, 5], ["platforms", 41, 5], ["license", 42, 5], ["mainProgram", 43, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["npmDepsHash", 20, 3], ["env", 22, 3], ["npmFlags", 26, 3], ["npmBuildScript", 28, 3], ["nativeBuildInputs", 30, 3], ["postInstall", 32, 3], ["meta", 37, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,14 +16,14 @@ export default nix.lambda((args) => (() => {
       const pname = "uivonim";
       const version = "0.29.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "smolck",
           repo: "uivonim",
           rev: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-TcsKjRwiCTRQLxolRuJ7nRTGxFC0V2Q8LQC5p9iXaaY=",
         }))));
       const npmDepsHash = "sha256-jWLvsN6BCxTWn/Lc0fSz0VJIUiFNN8ptSYMeWlWsHXc=";
-      const env = nix.thunk(() => ({ [nix.POS]: pos$2, ELECTRON_SKIP_BINARY_DOWNLOAD: 1n }));
+      const env = nix.thunk(() => ({ [nix.POS]: $pos[1], ELECTRON_SKIP_BINARY_DOWNLOAD: 1n }));
       const npmFlags = nix.thunk(() => ["--ignore-scripts"]);
       const npmBuildScript = "build:prod";
       const nativeBuildInputs = nix.thunk(() => [makeWrapper]);
@@ -34,7 +31,7 @@ export default nix.lambda((args) => (() => {
   --add-flags $out/lib/node_modules/uivonim/build/main/main.js
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/smolck/uivonim",
         description: "Cross-platform GUI for neovim based on electron",
         maintainers: [],
@@ -43,7 +40,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "uivonim",
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/openscenegraph-flightgear.nix", [[["owner", 32, 5], ["repo", 33, 5], ["rev", 34, 5], ["hash", 35, 5]], [["name", 67, 7], ["url", 68, 7], ["hash", 69, 7]], [["url", 73, 7], ["hash", 74, 7]], [["description", 84, 5], ["homepage", 85, 5], ["changelog", 86, 5], ["maintainers", 87, 5], ["platforms", 91, 5], ["license", 94, 5]], [["pname", 28, 3], ["version", 29, 3], ["src", 31, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 44, 3], ["patches", 65, 3], ["cmakeFlags", 78, 3], ["meta", 83, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, "pkg-config": false, cmake: false, doxygen: false, fetchpatch: false, fetchurl: false, glib: false, libxml2: false, zlib: false, libjpeg: false, giflib: false, libtiff: false, libpng: false, curl: false, freetype: false, boost: false, libGLU: false, libGL: false, libx11: false, libxinerama: false, libxrandr: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/openscenegraph-flightgear.nix", [["owner", 32, 5], ["repo", 33, 5], ["rev", 34, 5], ["hash", 35, 5]]);
-const pos$2 = nix.positions(here + "/openscenegraph-flightgear.nix", [["name", 67, 7], ["url", 68, 7], ["hash", 69, 7]]);
-const pos$3 = nix.positions(here + "/openscenegraph-flightgear.nix", [["url", 73, 7], ["hash", 74, 7]]);
-const pos$4 = nix.positions(here + "/openscenegraph-flightgear.nix", [["description", 84, 5], ["homepage", 85, 5], ["changelog", 86, 5], ["maintainers", 87, 5], ["platforms", 91, 5], ["license", 94, 5]]);
-const pos$5 = nix.positions(here + "/openscenegraph-flightgear.nix", [["pname", 28, 3], ["version", 29, 3], ["src", 31, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 44, 3], ["patches", 65, 3], ["cmakeFlags", 78, 3], ["meta", 83, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -35,11 +31,11 @@ export default nix.lambda((args) => (() => {
   const libxinerama = nix.arg($, "libxinerama");
   const libxrandr = nix.arg($, "libxrandr");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "openscenegraph",
       version: "2024-build",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "flightgear",
           repo: "openscenegraph",
           rev: "b5895abe0d94a57839929d38b5681dc8e796a8a0",
@@ -49,13 +45,13 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), nix.thunk(() => [libx11, libxinerama, libxrandr, libGLU, libGL])), [glib, libxml2, zlib, libjpeg, giflib, libtiff, libpng, curl, freetype, boost])),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "opencascade-api-patch",
             url: "https://github.com/openscenegraph/OpenSceneGraph/commit/bc2daf9b3239c42d7e51ecd7947d31a92a7dc82b.patch",
             hash: "sha256-VR8YKOV/YihB5eEGZOGaIfJNrig1EPS/PJmpKsK284c=",
           })))),
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: "https://github.com/openscenegraph/OpenSceneGraph/commit/9da8d428f6666427c167b951b03edd21708e1f43.patch",
             hash: "sha256-YGG/DIHU1f6StbeerZoZrNDm348wYB3ydmVIIGTM7fU=",
           })))),
@@ -64,7 +60,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "BUILD_OSG_APPLICATIONS", false)),
       ], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => nix.app(nix.sel(lib, "cmakeFeature"), "OSG_WINDOWING_SYSTEM", "Cocoa"))))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "3D graphics toolkit (FlightGear fork)",
         homepage: "https://gitlab.com/flightgear/openscenegraph",
         changelog: "https://gitlab.com/flightgear/openscenegraph/-/commits/release/2024-build",

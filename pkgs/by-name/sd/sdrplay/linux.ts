@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/linux.nix", [[["majorVersion", 41, 5], ["majorMinorVersion", 42, 5]], [["pname", 18, 5], ["version", 19, 5], ["src", 20, 5], ["meta", 21, 5], ["nativeBuildInputs", 24, 3], ["buildInputs", 26, 3], ["unpackPhase", 32, 3], ["sourceRoot", 36, 3], ["dontBuild", 38, 3], ["env", 40, 3], ["installPhase", 45, 3]]]);
 const formals$1 = { args: { pname: false, version: false, src: false, meta: false, stdenv: false, lib: false, fetchurl: false, autoPatchelfHook: false, udev: false, libusb1: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/linux.nix", [["majorVersion", 41, 5], ["majorMinorVersion", 42, 5]]);
-const pos$2 = nix.positions(here + "/linux.nix", [["pname", 18, 5], ["version", 19, 5], ["src", 20, 5], ["meta", 21, 5], ["nativeBuildInputs", 24, 3], ["buildInputs", 26, 3], ["unpackPhase", 32, 3], ["sourceRoot", 36, 3], ["dontBuild", 38, 3], ["env", 40, 3], ["installPhase", 45, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,7 +33,7 @@ export default nix.lambda((args) => (() => {
       const sourceRoot = "source";
       const dontBuild = true;
       const env = nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         majorVersion: nix.thunk(() => nix.app(nix.sel(lib, "versions", "major"), version_1)),
         majorMinorVersion: nix.thunk(() => nix.app(nix.sel(lib, "versions", "majorMinor"), version_1)),
       }));
@@ -48,7 +47,7 @@ cp -r inc/* $out/include/
 awk 'index($0, "cat > /etc/udev/rules.d/66-sdrplay.rules"){flag=1; next} /EOF/{flag=0} flag' install_lib.sh > $out/lib/udev/rules.d/66-sdrplay.rules
 `);
       return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         pname: pname_1,
         version: version_1,
         src: src_1,

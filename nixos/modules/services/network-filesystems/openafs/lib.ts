@@ -2,12 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/lib.nix", [[["type", 14, 9], ["default", 15, 9], ["example", 16, 9], ["description", 17, 9]], [["type", 20, 9], ["default", 21, 9], ["example", 22, 9], ["description", 23, 9]], [["ip", 13, 7], ["dnsname", 19, 7]], [["options", 12, 5]], [["mkCellServDB", 31, 3], ["cellServDBType", 43, 3], ["openafsMod", 49, 3], ["openafsBin", 50, 3], ["openafsSrv", 51, 3]]]);
 const formals$1 = { args: { config: false, lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/lib.nix", [["type", 14, 9], ["default", 15, 9], ["example", 16, 9], ["description", 17, 9]]);
-const pos$2 = nix.positions(here + "/lib.nix", [["type", 20, 9], ["default", 21, 9], ["example", 22, 9], ["description", 23, 9]]);
-const pos$3 = nix.positions(here + "/lib.nix", [["ip", 13, 7], ["dnsname", 19, 7]]);
-const pos$4 = nix.positions(here + "/lib.nix", [["options", 12, 5]]);
-const pos$5 = nix.positions(here + "/lib.nix", [["mkCellServDB", 31, 3], ["cellServDBType", 43, 3], ["openafsMod", 49, 3], ["openafsBin", 50, 3], ["openafsSrv", 51, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,18 +15,18 @@ export default nix.lambda((args) => (() => {
   const types = nix.thunk(() => nix.attr(lib, "types"));
   const optionalString = nix.thunk(() => nix.attr(lib, "optionalString"));
   const cellServDBMemberType = nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       options: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         ip: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             type: nix.thunk(() => nix.sel(types, "str")),
             default: "",
             example: "1.2.3.4",
             description: "IP Address of a database server",
           })))),
         dnsname: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             type: nix.thunk(() => nix.sel(types, "str")),
             default: "",
             example: "afs.example.org",
@@ -40,7 +36,7 @@ export default nix.lambda((args) => (() => {
     }))));
   const cellServDBCellType = nix.thunk(() => nix.app(nix.sel(types, "listOf"), cellServDBMemberType));
   return {
-    [nix.POS]: pos$5,
+    [nix.POS]: $pos[4],
     mkCellServDB: nix.thunk(() => nix.app(concatMapAttrsStringSep, "", (cellName) => (db) => nix.add(nix.add(nix.str`>${cellName}
 `, nix.app(concatStringsSep, "\n", nix.thunk(() => nix.builtins.map((dbm) => nix.app(optionalString, nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(dbm, "ip"), "")) && nix.asBool(!nix.eq(nix.sel(dbm, "dnsname"), "")))), nix.thunk(() => nix.str`${nix.sel(dbm, "ip")} #${nix.sel(dbm, "dnsname")}`)), db)))), "\n"))),
     cellServDBType: (thisCell) => nix.app(nix.sel(types, "coercedTo"), nix.thunk(() => nix.app(nix.sel(types, "listOf"), nix.thunk(() => nix.sel(types, "anything")))), (m) => nix.attrsDyn({}, [[nix.str`${thisCell}`, m]]), nix.thunk(() => nix.app(nix.sel(types, "attrsOf"), cellServDBCellType))),

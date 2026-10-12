@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/4.nix", [[["abseil_cpp_include_path", 36, 9]], [["name", 41, 9], ["url", 42, 9], ["stripLen", 43, 9], ["hash", 44, 9]], [["protobuf", 148, 13]], [["description", 152, 5], ["homepage", 153, 5], ["license", 154, 5], ["maintainers", 155, 5], ["broken", 156, 5]], [["pname", 24, 22], ["src", 24, 28], ["version", 27, 3], ["format", 28, 3], ["sourceRoot", 30, 3], ["patches", 32, 3], ["prePatch", 48, 3], ["postPatch", 55, 3], ["nativeBuildInputs", 80, 3], ["buildInputs", 85, 3], ["propagatedNativeBuildInputs", 87, 3], ["setupPyGlobalFlags", 92, 3], ["nativeCheckInputs", 94, 3], ["disabledTests", 99, 3], ["disabledTestPaths", 123, 3], ["pythonImportsCheck", 142, 3], ["passthru", 147, 3], ["meta", 151, 3]]]);
 const formals$1 = { args: { buildPackages: false, buildPythonPackage: false, fetchpatch: false, isPyPy: false, lib: false, stdenv: false, numpy: false, packaging: false, protobuf: false, pytestCheckHook: false, pythonAtLeast: false, replaceVars: false, tzdata: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/4.nix", [["abseil_cpp_include_path", 36, 9]]);
-const pos$2 = nix.positions(here + "/4.nix", [["name", 41, 9], ["url", 42, 9], ["stripLen", 43, 9], ["hash", 44, 9]]);
-const pos$3 = nix.positions(here + "/4.nix", [["protobuf", 148, 13]]);
-const pos$4 = nix.positions(here + "/4.nix", [["description", 152, 5], ["homepage", 153, 5], ["license", 154, 5], ["maintainers", 155, 5], ["broken", 156, 5]]);
-const pos$5 = nix.positions(here + "/4.nix", [["pname", 24, 22], ["src", 24, 28], ["version", 27, 3], ["format", 28, 3], ["sourceRoot", 30, 3], ["patches", 32, 3], ["prePatch", 48, 3], ["postPatch", 55, 3], ["nativeBuildInputs", 80, 3], ["buildInputs", 85, 3], ["propagatedNativeBuildInputs", 87, 3], ["setupPyGlobalFlags", 92, 3], ["nativeCheckInputs", 94, 3], ["disabledTests", 99, 3], ["disabledTestPaths", 123, 3], ["pythonImportsCheck", 142, 3], ["passthru", 147, 3], ["meta", 151, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,7 +24,7 @@ export default nix.lambda((args) => (() => {
   const protobufVersionMajor = nix.thunk(() => nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(protobuf, "version"))));
   const protobufVersionMinor = nix.thunk(() => nix.app(nix.sel(lib, "versions", "minor"), nix.thunk(() => nix.sel(protobuf, "version"))));
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: nix.thunk(() => nix.attr(protobuf, "pname")),
       src: nix.thunk(() => nix.attr(protobuf, "src")),
       version: nix.thunk(() => nix.str`4.${protobufVersionMajor}.${protobufVersionMinor}`),
@@ -36,12 +32,12 @@ export default nix.lambda((args) => (() => {
       sourceRoot: nix.thunk(() => nix.str`${nix.sel(protobuf, "src", "name")}/python`),
       patches: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(protobuf, "version")), "22")), nix.thunk(() => [
           nix.thunk(() => nix.app(replaceVars, nix.path(here, "./use-nixpkgs-abseil-cpp.patch"), nix.thunk(() => ({
-              [nix.POS]: pos$1,
+              [nix.POS]: $pos[0],
               abseil_cpp_include_path: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getDev"), nix.thunk(() => nix.sel(protobuf, "abseil-cpp")))}/include`),
             })))),
         ])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(nix.app(pythonAtLeast, "3.11")) && nix.asBool(nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(protobuf, "version")), "22")))), nix.thunk(() => [
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               name: "support-python311.patch",
               url: "https://github.com/protocolbuffers/protobuf/commit/2206b63c4649cf2e8a06b66c9191c8ef862ca519.diff",
               stripLen: 1n,
@@ -67,9 +63,9 @@ export default nix.lambda((args) => (() => {
         ])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(pythonAtLeast, "3.14")), nix.thunk(() => ["testInvalidTimestamp"])))))),
       disabledTestPaths: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(protobuf, "version")), "23")), nix.thunk(() => ["google/protobuf/internal/generator_test.py"])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(protobuf, "version")), "25")), nix.thunk(() => ["minimal_test.py", "google/protobuf/internal/message_test.py"])))),
       pythonImportsCheck: nix.thunk(() => ["google.protobuf", "google.protobuf.internal._api_implementation"]),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$3, protobuf: protobuf })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[2], protobuf: protobuf })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Protocol Buffers are Google's data interchange format",
         homepage: "https://developers.google.com/protocol-buffers/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 47, 5], ["repo", 48, 5], ["tag", 49, 5], ["hash", 50, 5]], [["opencv", 73, 7], ["sentencepiece", 76, 7], ["soundfile", 79, 7], ["soxr", 82, 7], ["audio", 85, 7], ["image", 86, 7], ["guidance", 87, 7], ["hf-hub", 91, 7], ["server", 94, 7], ["all", 101, 7]], [["description", 131, 5], ["homepage", 132, 5], ["changelog", 133, 5], ["license", 134, 5], ["maintainers", 135, 5]], [["pname", 41, 3], ["version", 42, 3], ["pyproject", 43, 3], ["__structuredAttrs", 44, 3], ["src", 46, 3], ["build-system", 53, 3], ["dependencies", 57, 3], ["optional-dependencies", 68, 3], ["pythonImportsCheck", 111, 3], ["nativeCheckInputs", 113, 3], ["disabledTests", 122, 3], ["meta", 130, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, jsonschema: false, numpy: false, pillow: false, pydantic: false, "pydantic-extra-types": false, requests: false, tiktoken: false, "typing-extensions": false, click: false, fastapi: false, "huggingface-hub": false, jinja2: false, llguidance: false, "opencv-python-headless": false, "pydantic-settings": false, "pytest-xdist": false, pytestCheckHook: false, sentencepiece: false, soundfile: false, soxr: false, uvloop: false, openai: false, pycountry: false, uvicorn: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 47, 5], ["repo", 48, 5], ["tag", 49, 5], ["hash", 50, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["opencv", 73, 7], ["sentencepiece", 76, 7], ["soundfile", 79, 7], ["soxr", 82, 7], ["audio", 85, 7], ["image", 86, 7], ["guidance", 87, 7], ["hf-hub", 91, 7], ["server", 94, 7], ["all", 101, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 131, 5], ["homepage", 132, 5], ["changelog", 133, 5], ["license", 134, 5], ["maintainers", 135, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 41, 3], ["version", 42, 3], ["pyproject", 43, 3], ["__structuredAttrs", 44, 3], ["src", 46, 3], ["build-system", 53, 3], ["dependencies", 57, 3], ["optional-dependencies", 68, 3], ["pythonImportsCheck", 111, 3], ["nativeCheckInputs", 113, 3], ["disabledTests", 122, 3], ["meta", 130, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -39,13 +36,13 @@ export default nix.lambda((args) => (() => {
   const pycountry = nix.arg($, "pycountry");
   const uvicorn = nix.arg($, "uvicorn");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "mistral-common",
       version: "1.12.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "mistralai",
           repo: "mistral-common",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -65,7 +62,7 @@ export default nix.lambda((args) => (() => {
       "optional-dependencies": nix.thunk(() => (() => {
         const self = nix.thunk(() => nix.sel(finalAttrs, "finalPackage", "optional-dependencies"));
         return {
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           opencv: nix.thunk(() => [opencv_python_headless]),
           sentencepiece: nix.thunk(() => [sentencepiece]),
           soundfile: nix.thunk(() => [soundfile]),
@@ -82,7 +79,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => nix.concat([openai, pycountry, pytest_xdist, pytestCheckHook, uvicorn], nix.sel(finalAttrs, "finalPackage", "optional-dependencies", "all"))),
       disabledTests: nix.thunk(() => ["test_openai_chat_fields", "test_audio_base64"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Tools to help you work with Mistral models",
         homepage: "https://github.com/mistralai/mistral-common",
         changelog: nix.thunk(() => nix.str`https://github.com/mistralai/mistral-common/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

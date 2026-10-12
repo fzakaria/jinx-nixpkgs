@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5]], [["homepage", 68, 5], ["description", 69, 5], ["license", 70, 5], ["maintainers", 71, 5], ["mainProgram", 72, 5], ["platforms", 73, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["vendorHash", 26, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 37, 3], ["postInstall", 42, 3], ["doCheck", 65, 3], ["meta", 67, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, buildGoModule: false, wrapGAppsHook3: false, "pkg-config": false, glib: false, "gobject-introspection": false, gtk3: false, "gdk-pixbuf": false, gettext: false, librsvg: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 68, 5], ["description", 69, 5], ["license", 70, 5], ["maintainers", 71, 5], ["mainProgram", 72, 5], ["platforms", 73, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["vendorHash", 26, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 37, 3], ["postInstall", 42, 3], ["doCheck", 65, 3], ["meta", 67, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const gettext = nix.arg($, "gettext");
   const librsvg = nix.arg($, "librsvg");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "ymuse",
       version: "0.22",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "yktoo",
           repo: "ymuse",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -37,7 +35,7 @@ export default nix.lambda((args) => (() => {
       postInstall: "install -Dm644 ./resources/com.yktoo.ymuse.desktop -t $out/share/applications\ninstall -Dm644 ./resources/metainfo/com.yktoo.ymuse.metainfo.xml -t $out/share/metainfo\ncp -r ./resources/icons $out/share\n\napp_id=\"ymuse\"\nfind ./resources/i18n -type f -name '*.po' |\nwhile read file; do\n    # Language is the filename without the extension\n    lang=\"$(basename \"$file\")\"\n    lang=\"${lang%.*}\"\n\n    # Create the target dir if needed\n    target_dir=\"$out/share/locale/$lang/LC_MESSAGES\"\n    mkdir -p \"$target_dir\"\n\n    # Compile the .po into a .mo\n    echo \"Compiling $file\" into \"$target_dir/$app_id.mo\"\n    msgfmt \"$file\" -o \"$target_dir/$app_id.mo\"\ndone\n",
       doCheck: false,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://yktoo.com/en/software/ymuse/",
         description: "GTK client for Music Player Daemon (MPD)",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

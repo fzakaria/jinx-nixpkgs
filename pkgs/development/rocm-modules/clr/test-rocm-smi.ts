@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/test-rocm-smi.nix", [[["teams", 25, 5]], [["name", 10, 3], ["testedPackage", 11, 3], ["nativeBuildInputs", 12, 3], ["OCL_ICD_VENDORS", 16, 3], ["testScript", 18, 3], ["meta", 24, 3]]]);
 const formals$1 = { args: { lib: false, makeImpureTest: false, clinfo: false, clr: false, "rocm-smi": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/test-rocm-smi.nix", [["teams", 25, 5]]);
-const pos$2 = nix.positions(here + "/test-rocm-smi.nix", [["name", 10, 3], ["testedPackage", 11, 3], ["nativeBuildInputs", 12, 3], ["OCL_ICD_VENDORS", 16, 3], ["testScript", 18, 3], ["meta", 24, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,14 +13,14 @@ export default nix.lambda((args) => (() => {
   const clr = nix.arg($, "clr");
   const rocm_smi = nix.arg($, "rocm-smi");
   return nix.app(makeImpureTest, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       name: "rocm-smi",
       testedPackage: "rocmPackages.clr",
       nativeBuildInputs: nix.thunk(() => [clinfo, rocm_smi]),
       OCL_ICD_VENDORS: nix.thunk(() => nix.str`${nix.sel(clr, "icd")}/etc/OpenCL/vendors`),
       testScript: "# Test fails if the number of platforms is 0\nclinfo | grep -E 'Number of platforms * [1-9]'\nrocm-smi | grep -A1 GPU\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "rocm"))]),
       })),
     })));

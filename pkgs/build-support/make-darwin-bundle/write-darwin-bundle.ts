@@ -2,17 +2,16 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/write-darwin-bundle.nix", [[["escape", 8, 40]], [["CFBundleDevelopmentRegion", 9, 5], ["CFBundleExecutable", 10, 5], ["CFBundleIconFile", 11, 5], ["CFBundleIconFiles", 12, 5], ["CFBundleIdentifier", 13, 5], ["CFBundleInfoDictionaryVersion", 14, 5], ["CFBundleName", 15, 5], ["CFBundlePackageType", 16, 5], ["CFBundleSignature", 17, 5]]]);
 const formals$1 = { args: { writeScriptBin: false, lib: false, makeBinaryWrapper: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/write-darwin-bundle.nix", [["escape", 8, 40]]);
-const pos$2 = nix.positions(here + "/write-darwin-bundle.nix", [["CFBundleDevelopmentRegion", 9, 5], ["CFBundleExecutable", 10, 5], ["CFBundleIconFile", 11, 5], ["CFBundleIconFiles", 12, 5], ["CFBundleIdentifier", 13, 5], ["CFBundleInfoDictionaryVersion", 14, 5], ["CFBundleName", 15, 5], ["CFBundlePackageType", 16, 5], ["CFBundleSignature", 17, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const writeScriptBin = nix.arg($, "writeScriptBin");
   const lib = nix.arg($, "lib");
   const makeBinaryWrapper = nix.arg($, "makeBinaryWrapper");
-  const pListText = nix.thunk(() => nix.app(nix.sel(lib, "generators", "toPlist"), nix.thunk(() => ({ [nix.POS]: pos$1, escape: true })), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+  const pListText = nix.thunk(() => nix.app(nix.sel(lib, "generators", "toPlist"), nix.thunk(() => ({ [nix.POS]: $pos[0], escape: true })), nix.thunk(() => ({
+      [nix.POS]: $pos[1],
       CFBundleDevelopmentRegion: "English",
       CFBundleExecutable: "$name",
       CFBundleIconFile: "$icon",

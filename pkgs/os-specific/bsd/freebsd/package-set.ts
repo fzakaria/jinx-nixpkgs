@@ -2,27 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package-set.nix", [[["callPackage", 17, 3], ["directory", 18, 3]], [["url", 27, 5], ["rev", 28, 5], ["sha256", 29, 5]], [["version", 35, 5], ["lib", 44, 13], ["writeText", 44, 17]], [["stdenv", 51, 13], ["makeMinimal", 52, 28]], [["makeMinimal", 56, 28], ["install", 56, 40], ["gencat", 56, 48], ["include", 57, 20]], [["rpcgen", 60, 82], ["mtree", 60, 89]], [["makeMinimal", 63, 28], ["libmd", 64, 20], ["libnetbsd", 64, 26]], [["rpcgen", 69, 7], ["gencat", 70, 7], ["flex", 73, 7], ["byacc", 74, 7]], [["libcMinimal", 79, 20], ["librpcsvc", 79, 32], ["libelf", 79, 42]], [["rpcgen", 83, 28]], [["mkcsmapper", 86, 68], ["mkesdb", 86, 79]], [["m4", 88, 73]], [["rpcgen", 91, 28], ["flex", 92, 29], ["byacc", 92, 34]], [["makeMinimal", 95, 86]], [["makeMinimal", 97, 70]], [["stdenv", 100, 13], ["freebsdSetupHook", 102, 7], ["makeMinimal", 103, 7], ["install", 104, 7], ["tsort", 105, 7], ["lorder", 106, 7]], [["make", 110, 74]], [["libnetbsd", 112, 62], ["libmd", 112, 72]], [["makeMinimal", 114, 70], ["install", 114, 82]], [["sourceData", 21, 11], ["patchesRoot", 21, 22], ["versionData", 21, 34], ["buildFreebsd", 24, 3], ["ports", 26, 3], ["compatIsNeeded", 32, 3], ["compatIfNeeded", 33, 3], ["freebsd-lib", 34, 3], ["compat", 50, 3], ["csu", 55, 3], ["include", 60, 3], ["install", 62, 3], ["libcMinimal", 67, 3], ["libc", 78, 3], ["librpcsvc", 82, 3], ["i18n", 86, 3], ["libelf", 88, 3], ["rtld-elf", 90, 3], ["libnetbsd", 95, 3], ["libmd", 97, 3], ["mkDerivation", 99, 3], ["makeMinimal", 110, 3], ["mtree", 112, 3], ["tsort", 114, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, stdenvNoCC: false, fetchgit: false, sourceData: false, versionData: false, buildFreebsd: false, patchesRoot: false, writeText: false, buildPackages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package-set.nix", [["callPackage", 17, 3], ["directory", 18, 3]]);
-const pos$2 = nix.positions(here + "/package-set.nix", [["url", 27, 5], ["rev", 28, 5], ["sha256", 29, 5]]);
-const pos$3 = nix.positions(here + "/package-set.nix", [["version", 35, 5], ["lib", 44, 13], ["writeText", 44, 17]]);
-const pos$4 = nix.positions(here + "/package-set.nix", [["stdenv", 51, 13], ["makeMinimal", 52, 28]]);
-const pos$5 = nix.positions(here + "/package-set.nix", [["makeMinimal", 56, 28], ["install", 56, 40], ["gencat", 56, 48], ["include", 57, 20]]);
-const pos$6 = nix.positions(here + "/package-set.nix", [["rpcgen", 60, 82], ["mtree", 60, 89]]);
-const pos$7 = nix.positions(here + "/package-set.nix", [["makeMinimal", 63, 28], ["libmd", 64, 20], ["libnetbsd", 64, 26]]);
-const pos$8 = nix.positions(here + "/package-set.nix", [["rpcgen", 69, 7], ["gencat", 70, 7], ["flex", 73, 7], ["byacc", 74, 7]]);
-const pos$9 = nix.positions(here + "/package-set.nix", [["libcMinimal", 79, 20], ["librpcsvc", 79, 32], ["libelf", 79, 42]]);
-const pos$10 = nix.positions(here + "/package-set.nix", [["rpcgen", 83, 28]]);
-const pos$11 = nix.positions(here + "/package-set.nix", [["mkcsmapper", 86, 68], ["mkesdb", 86, 79]]);
-const pos$12 = nix.positions(here + "/package-set.nix", [["m4", 88, 73]]);
-const pos$13 = nix.positions(here + "/package-set.nix", [["rpcgen", 91, 28], ["flex", 92, 29], ["byacc", 92, 34]]);
-const pos$14 = nix.positions(here + "/package-set.nix", [["makeMinimal", 95, 86]]);
-const pos$15 = nix.positions(here + "/package-set.nix", [["makeMinimal", 97, 70]]);
-const pos$16 = nix.positions(here + "/package-set.nix", [["stdenv", 100, 13], ["freebsdSetupHook", 102, 7], ["makeMinimal", 103, 7], ["install", 104, 7], ["tsort", 105, 7], ["lorder", 106, 7]]);
-const pos$17 = nix.positions(here + "/package-set.nix", [["make", 110, 74]]);
-const pos$18 = nix.positions(here + "/package-set.nix", [["libnetbsd", 112, 62], ["libmd", 112, 72]]);
-const pos$19 = nix.positions(here + "/package-set.nix", [["makeMinimal", 114, 70], ["install", 114, 82]]);
-const pos$20 = nix.positions(here + "/package-set.nix", [["sourceData", 21, 11], ["patchesRoot", 21, 22], ["versionData", 21, 34], ["buildFreebsd", 24, 3], ["ports", 26, 3], ["compatIsNeeded", 32, 3], ["compatIfNeeded", 33, 3], ["freebsd-lib", 34, 3], ["compat", 50, 3], ["csu", 55, 3], ["include", 60, 3], ["install", 62, 3], ["libcMinimal", 67, 3], ["libc", 78, 3], ["librpcsvc", 82, 3], ["i18n", 86, 3], ["libelf", 88, 3], ["rtld-elf", 90, 3], ["libnetbsd", 95, 3], ["libmd", 97, 3], ["mkDerivation", 99, 3], ["makeMinimal", 110, 3], ["mtree", 112, 3], ["tsort", 114, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -37,17 +18,17 @@ export default nix.lambda((args) => (() => {
   const writeText = nix.arg($, "writeText");
   const buildPackages = nix.arg($, "buildPackages");
   return (self) => nix.update(nix.app(nix.sel(lib, "packagesFromDirectoryRecursive"), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       callPackage: nix.thunk(() => nix.sel(self, "callPackage")),
       directory: nix.path(here, "./pkgs"),
     }))), {
-    [nix.POS]: pos$20,
+    [nix.POS]: $pos[19],
     sourceData: sourceData,
     patchesRoot: patchesRoot,
     versionData: versionData,
     buildFreebsd: nix.thunk(() => nix.app(nix.sel(lib, "dontRecurseIntoAttrs"), buildFreebsd)),
     ports: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         url: "https://git.FreeBSD.org/ports.git",
         rev: "dde3b2b456c3a4bdd217d0bf3684231cc3724a0a",
         sha256: "BpHqJfnGOeTE7tkFJBx0Wk8ryalmf4KNTit/Coh026E=",
@@ -55,7 +36,7 @@ export default nix.lambda((args) => (() => {
     compatIsNeeded: nix.thunk(() => !nix.asBool(nix.sel(stdenvNoCC, "hostPlatform", "isFreeBSD"))),
     compatIfNeeded: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(self, "compatIsNeeded")), nix.thunk(() => nix.sel(self, "compat")))),
     "freebsd-lib": nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./lib")), nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         version: nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), ".", nix.thunk(() => nix.builtins.map(nix.builtins.toString, nix.thunk(() => nix.app(nix.sel(lib, "filter"), (x) => !nix.eq(x, null), nix.thunk(() => [
                 nix.thunk(() => nix.sel(self, "versionData", "major")),
                 nix.thunk(() => nix.sel(self, "versionData", "minor")),
@@ -65,64 +46,67 @@ export default nix.lambda((args) => (() => {
         writeText: writeText,
       })))),
     compat: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./pkgs/compat/package.nix"), nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         stdenv: stdenv,
         makeMinimal: nix.thunk(() => nix.attr(buildFreebsd, "makeMinimal")),
       })))),
     csu: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./pkgs/csu.nix"), nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         makeMinimal: nix.thunk(() => nix.attr(buildFreebsd, "makeMinimal")),
         install: nix.thunk(() => nix.attr(buildFreebsd, "install")),
         gencat: nix.thunk(() => nix.attr(buildFreebsd, "gencat")),
         include: nix.thunk(() => nix.attr(self, "include")),
       })))),
     include: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./pkgs/include/package.nix"), nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         rpcgen: nix.thunk(() => nix.attr(buildFreebsd, "rpcgen")),
         mtree: nix.thunk(() => nix.attr(buildFreebsd, "mtree")),
       })))),
     install: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./pkgs/install.nix"), nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         makeMinimal: nix.thunk(() => nix.attr(buildFreebsd, "makeMinimal")),
         libmd: nix.thunk(() => nix.attr(self, "libmd")),
         libnetbsd: nix.thunk(() => nix.attr(self, "libnetbsd")),
       })))),
     libcMinimal: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./pkgs/libcMinimal.nix"), nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         rpcgen: nix.thunk(() => nix.attr(buildFreebsd, "rpcgen")),
         gencat: nix.thunk(() => nix.attr(buildFreebsd, "gencat")),
         flex: nix.thunk(() => nix.attr(buildPackages, "flex")),
         byacc: nix.thunk(() => nix.attr(buildPackages, "byacc")),
       })))),
     libc: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./pkgs/libc/package.nix"), nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         libcMinimal: nix.thunk(() => nix.attr(self, "libcMinimal")),
         librpcsvc: nix.thunk(() => nix.attr(self, "librpcsvc")),
         libelf: nix.thunk(() => nix.attr(self, "libelf")),
       })))),
-    librpcsvc: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./pkgs/librpcsvc.nix"), nix.thunk(() => ({ [nix.POS]: pos$10, rpcgen: nix.thunk(() => nix.attr(buildFreebsd, "rpcgen")) })))),
+    librpcsvc: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./pkgs/librpcsvc.nix"), nix.thunk(() => ({
+        [nix.POS]: $pos[9],
+        rpcgen: nix.thunk(() => nix.attr(buildFreebsd, "rpcgen")),
+      })))),
     i18n: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./pkgs/i18n.nix"), nix.thunk(() => ({
-        [nix.POS]: pos$11,
+        [nix.POS]: $pos[10],
         mkcsmapper: nix.thunk(() => nix.attr(buildFreebsd, "mkcsmapper")),
         mkesdb: nix.thunk(() => nix.attr(buildFreebsd, "mkesdb")),
       })))),
-    libelf: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./pkgs/libelf.nix"), nix.thunk(() => ({ [nix.POS]: pos$12, m4: nix.thunk(() => nix.attr(buildPackages, "m4")) })))),
+    libelf: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./pkgs/libelf.nix"), nix.thunk(() => ({ [nix.POS]: $pos[11], m4: nix.thunk(() => nix.attr(buildPackages, "m4")) })))),
     "rtld-elf": nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./pkgs/rtld-elf.nix"), nix.thunk(() => ({
-        [nix.POS]: pos$13,
+        [nix.POS]: $pos[12],
         rpcgen: nix.thunk(() => nix.attr(buildFreebsd, "rpcgen")),
         flex: nix.thunk(() => nix.attr(buildPackages, "flex")),
         byacc: nix.thunk(() => nix.attr(buildPackages, "byacc")),
       })))),
     libnetbsd: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./pkgs/libnetbsd/package.nix"), nix.thunk(() => ({
-        [nix.POS]: pos$14,
+        [nix.POS]: $pos[13],
         makeMinimal: nix.thunk(() => nix.attr(buildFreebsd, "makeMinimal")),
       })))),
     libmd: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./pkgs/libmd.nix"), nix.thunk(() => ({
-        [nix.POS]: pos$15,
+        [nix.POS]: $pos[14],
         makeMinimal: nix.thunk(() => nix.attr(buildFreebsd, "makeMinimal")),
       })))),
     mkDerivation: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./pkgs/mkDerivation.nix"), nix.thunk(() => ({
-        [nix.POS]: pos$16,
+        [nix.POS]: $pos[15],
         stdenv: stdenv,
         freebsdSetupHook: nix.thunk(() => nix.attr(buildFreebsd, "freebsdSetupHook")),
         makeMinimal: nix.thunk(() => nix.attr(buildFreebsd, "makeMinimal")),
@@ -130,14 +114,14 @@ export default nix.lambda((args) => (() => {
         tsort: nix.thunk(() => nix.attr(buildFreebsd, "tsort")),
         lorder: nix.thunk(() => nix.attr(buildFreebsd, "lorder")),
       })))),
-    makeMinimal: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./pkgs/makeMinimal.nix"), nix.thunk(() => ({ [nix.POS]: pos$17, make: nix.thunk(() => nix.attr(self, "make")) })))),
+    makeMinimal: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./pkgs/makeMinimal.nix"), nix.thunk(() => ({ [nix.POS]: $pos[16], make: nix.thunk(() => nix.attr(self, "make")) })))),
     mtree: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./pkgs/mtree.nix"), nix.thunk(() => ({
-        [nix.POS]: pos$18,
+        [nix.POS]: $pos[17],
         libnetbsd: nix.thunk(() => nix.attr(self, "libnetbsd")),
         libmd: nix.thunk(() => nix.attr(self, "libmd")),
       })))),
     tsort: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./pkgs/tsort.nix"), nix.thunk(() => ({
-        [nix.POS]: pos$19,
+        [nix.POS]: $pos[18],
         makeMinimal: nix.thunk(() => nix.attr(buildFreebsd, "makeMinimal")),
         install: nix.thunk(() => nix.attr(buildFreebsd, "install")),
       })))),

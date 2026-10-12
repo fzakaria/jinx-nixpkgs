@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 54, 5], ["hash", 55, 5]], [["NIX_CFLAGS_COMPILE", 124, 7]], [["packageName", 146, 7], ["freeze", 148, 7]], [["updateScript", 145, 5]], [["homepage", 153, 5], ["description", 154, 5], ["longDescription", 156, 5], ["license", 163, 5], ["platforms", 164, 5], ["mainProgram", 165, 5], ["teams", 166, 5]], [["pname", 44, 3], ["version", 45, 3], ["outputs", 47, 3], ["src", 53, 3], ["depsBuildBuild", 58, 3], ["nativeBuildInputs", 62, 3], ["buildInputs", 76, 3], ["mesonFlags", 112, 3], ["env", 124, 3], ["postInstall", 129, 3], ["preFixup", 135, 3], ["postFixup", 139, 3], ["passthru", 144, 3], ["meta", 152, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, meson: false, ninja: false, "pkg-config": false, gettext: false, libxml2: false, appstream: false, "desktop-file-utils": false, glib: false, gtk3: false, pango: false, atk: false, "gdk-pixbuf": false, "shared-mime-info": false, itstool: false, gnome: false, poppler: false, ghostscriptX: false, djvulibre: false, libspectre: false, libarchive: false, libgxps: false, libhandy: false, libsecret: false, wrapGAppsHook3: false, librsvg: false, "gobject-introspection": false, "yelp-tools": false, gspell: false, "gsettings-desktop-schemas": false, "gnome-desktop": false, dbus: false, texlive: false, gst_all_1: false, "gi-docgen": false, supportMultimedia: true, withLibsecret: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 54, 5], ["hash", 55, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 124, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["packageName", 146, 7], ["freeze", 148, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 145, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["homepage", 153, 5], ["description", 154, 5], ["longDescription", 156, 5], ["license", 163, 5], ["platforms", 164, 5], ["mainProgram", 165, 5], ["teams", 166, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 44, 3], ["version", 45, 3], ["outputs", 47, 3], ["src", 53, 3], ["depsBuildBuild", 58, 3], ["nativeBuildInputs", 62, 3], ["buildInputs", 76, 3], ["mesonFlags", 112, 3], ["env", 124, 3], ["postInstall", 129, 3], ["preFixup", 135, 3], ["postFixup", 139, 3], ["passthru", 144, 3], ["meta", 152, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -52,12 +47,12 @@ export default nix.lambda((args) => (() => {
   const supportMultimedia = nix.argOr($, "supportMultimedia", () => true);
   const withLibsecret = nix.argOr($, "withLibsecret", () => true);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "evince",
       version: "48.4",
       outputs: nix.thunk(() => ["out", "dev", "devdoc"]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnome/sources/evince/${nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/evince-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-8pbFxmKIZjXUzVl+isCvzeeYK+RIZTPCt/CVsmi+hmg=",
         })))),
@@ -108,7 +103,7 @@ export default nix.lambda((args) => (() => {
         })()))))),
       mesonFlags: nix.thunk(() => nix.concat(["-Dnautilus=false", "-Dps=enabled"], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(withLibsecret)), nix.thunk(() => ["-Dkeyring=disabled"])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(supportMultimedia)), nix.thunk(() => ["-Dmultimedia=disabled"]))))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-DHAVE_STRING_H", "-DHAVE_STDLIB_H"]))),
       })),
       postInstall: "substituteInPlace $out/share/thumbnailers/evince.thumbnailer \\\n  --replace-fail \"TryExec=evince-thumbnailer\" \"TryExec=$out/bin/evince-thumbnailer\" \\\n  --replace-fail \"Exec=evince-thumbnailer\" \"Exec=$out/bin/evince-thumbnailer\"\n",
@@ -116,11 +111,11 @@ export default nix.lambda((args) => (() => {
 `),
       postFixup: "# Cannot be in postInstall, otherwise _multioutDocs hook in preFixup will move right back.\nmoveToOutput \"share/doc\" \"$devdoc\"\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$3, packageName: "evince", freeze: true })))),
+        [nix.POS]: $pos[3],
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: $pos[2], packageName: "evince", freeze: true })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "https://apps.gnome.org/Evince/",
         description: "GNOME's document viewer",
         longDescription: "Evince is a document viewer for multiple document formats.  It\ncurrently supports PDF, PostScript, DjVu, TIFF and DVI.  The goal\nof Evince is to replace the multiple document viewers that exist\non the GNOME Desktop with a single simple application.\n",

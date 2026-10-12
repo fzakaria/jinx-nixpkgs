@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]], [["description", 53, 5], ["homepage", 54, 5], ["changelog", 55, 5], ["license", 56, 5], ["maintainers", 57, 5]], [["pname", 17, 3], ["version", 18, 3], ["pyproject", 19, 3], ["disabled", 21, 3], ["src", 23, 3], ["build-system", 30, 3], ["dependencies", 35, 3], ["nativeCheckInputs", 37, 3], ["pythonImportsCheck", 45, 3], ["disabledTestPaths", 47, 3], ["meta", 52, 3]]]);
 const formals$1 = { args: { lib: false, aiohttp: false, aioresponses: false, buildPythonPackage: false, fetchFromGitHub: false, "hatch-regex-commit": false, hatchling: false, "pytest-asyncio": false, "pytest-cov-stub": false, pytestCheckHook: false, "python-dotenv": false, pythonOlder: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 53, 5], ["homepage", 54, 5], ["changelog", 55, 5], ["license", 56, 5], ["maintainers", 57, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 17, 3], ["version", 18, 3], ["pyproject", 19, 3], ["disabled", 21, 3], ["src", 23, 3], ["build-system", 30, 3], ["dependencies", 35, 3], ["nativeCheckInputs", 37, 3], ["pythonImportsCheck", 45, 3], ["disabledTestPaths", 47, 3], ["meta", 52, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,7 +25,7 @@ export default nix.lambda((args) => (() => {
       const pyproject = true;
       const disabled = nix.thunk(() => nix.app(pythonOlder, "3.12"));
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "tr4nt0r",
           repo: "pyloadapi",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -45,7 +43,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["pyloadapi"]);
       const disabledTestPaths = nix.thunk(() => ["tests/test_cli.py"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Simple wrapper for pyLoad's API",
         homepage: "https://github.com/tr4nt0r/pyloadapi",
         changelog: nix.thunk(() => nix.str`https://github.com/tr4nt0r/pyloadapi/blob/${nix.sel(src, "tag")}/CHANGELOG.md`),
@@ -56,7 +54,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

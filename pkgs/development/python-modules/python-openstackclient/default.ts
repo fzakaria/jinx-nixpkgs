@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 42, 5], ["repo", 43, 5], ["tag", 44, 5], ["hash", 45, 5]], [["PBR_VERSION", 48, 7]], [["cli-plugins", 95, 5]], [["description", 128, 5], ["mainProgram", 129, 5], ["homepage", 130, 5], ["downloadPage", 131, 5], ["license", 132, 5], ["teams", 133, 5]], [["pname", 37, 3], ["version", 38, 3], ["pyproject", 39, 3], ["src", 41, 3], ["env", 48, 3], ["build-system", 50, 3], ["sphinxBuilders", 57, 3], ["dependencies", 59, 3], ["nativeBuildInputs", 69, 3], ["nativeCheckInputs", 73, 3], ["pythonImportsCheck", 80, 3], ["optional-dependencies", 93, 3], ["nativeInstallCheckInputs", 117, 3], ["doInstallCheck", 120, 3], ["postInstall", 122, 3], ["meta", 127, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, ddt: false, hacking: false, installShellFiles: false, openstackdocstheme: false, "osc-lib": false, "osc-placement": false, pbr: false, aodhclient: false, "python-barbicanclient": false, "python-designateclient": false, "python-heatclient": false, "python-ironicclient": false, "python-keystoneclient": false, "python-magnumclient": false, "python-manilaclient": false, "python-mistralclient": false, "python-neutronclient": false, "python-octaviaclient": false, "python-watcherclient": false, "python-zaqarclient": false, "python-zunclient": false, "requests-mock": false, requests: false, setuptools: false, sphinxHook: false, "sphinxcontrib-apidoc": false, stdenv: false, stestrCheckHook: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 42, 5], ["repo", 43, 5], ["tag", 44, 5], ["hash", 45, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["PBR_VERSION", 48, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["cli-plugins", 95, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 128, 5], ["mainProgram", 129, 5], ["homepage", 130, 5], ["downloadPage", 131, 5], ["license", 132, 5], ["teams", 133, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 37, 3], ["version", 38, 3], ["pyproject", 39, 3], ["src", 41, 3], ["env", 48, 3], ["build-system", 50, 3], ["sphinxBuilders", 57, 3], ["dependencies", 59, 3], ["nativeBuildInputs", 69, 3], ["nativeCheckInputs", 73, 3], ["pythonImportsCheck", 80, 3], ["optional-dependencies", 93, 3], ["nativeInstallCheckInputs", 117, 3], ["doInstallCheck", 120, 3], ["postInstall", 122, 3], ["meta", 127, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -44,19 +40,19 @@ export default nix.lambda((args) => (() => {
   const stestrCheckHook = nix.arg($, "stestrCheckHook");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "python-openstackclient",
       version: "10.3.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "openstack",
           repo: "python-openstackclient",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-xOvDAwnJGYbMJDG+lO1TCLRFavlciJRVmbjYqU/E1DY=",
         })))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         PBR_VERSION: nix.thunk(() => nix.sel(finalAttrs, "version")),
       })),
       "build-system": nix.thunk(() => [openstackdocstheme, setuptools, sphinxHook, sphinxcontrib_apidoc]),
@@ -77,7 +73,7 @@ export default nix.lambda((args) => (() => {
         "openstackclient.tests",
       ]),
       "optional-dependencies": nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         "cli-plugins": nix.thunk(() => [
           aodhclient,
           osc_placement,
@@ -99,7 +95,7 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "installShellCompletion --cmd openstack \\\n  --bash <($out/bin/openstack complete)\n")),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "OpenStack Command-line Client",
         mainProgram: "openstack",
         homepage: "https://docs.openstack.org/python-openstackclient/latest/",

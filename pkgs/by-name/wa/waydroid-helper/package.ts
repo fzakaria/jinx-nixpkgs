@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 33, 5], ["repo", 34, 5], ["tag", 35, 5], ["hash", 36, 5]], [["name", 47, 7], ["url", 48, 7], ["hash", 49, 7]], [["updateScript", 120, 12]], [["changelog", 123, 5], ["description", 124, 5], ["homepage", 125, 5], ["license", 126, 5], ["mainProgram", 127, 5], ["maintainers", 128, 5], ["platforms", 129, 5]], [["pname", 40, 3], ["version", 41, 11], ["src", 41, 19], ["pyproject", 42, 3], ["patches", 44, 3], ["postPatch", 53, 3], ["nativeBuildInputs", 69, 3], ["buildInputs", 81, 3], ["dontUseCmakeConfigure", 90, 3], ["dependencies", 92, 3], ["dontWrapGApps", 101, 3], ["makeWrapperArgs", 103, 3], ["postInstallCheck", 116, 3], ["passthru", 120, 3], ["meta", 122, 3]]]);
 const formals$1 = { args: { lib: false, python3Packages: false, fetchFromGitHub: false, appstream: false, cmake: false, "desktop-file-utils": false, glib: false, "gobject-introspection": false, meson: false, ninja: false, "pkg-config": false, wrapGAppsHook4: false, bash: false, bindfs: false, dbus: false, "android-tools": false, e2fsprogs: false, fakeroot: false, libadwaita: false, libxml2: false, systemd: false, unzip: false, "vte-gtk4": false, "nix-update-script": false, fetchpatch: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 33, 5], ["repo", 34, 5], ["tag", 35, 5], ["hash", 36, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 47, 7], ["url", 48, 7], ["hash", 49, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 120, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["changelog", 123, 5], ["description", 124, 5], ["homepage", 125, 5], ["license", 126, 5], ["mainProgram", 127, 5], ["maintainers", 128, 5], ["platforms", 129, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 40, 3], ["version", 41, 11], ["src", 41, 19], ["pyproject", 42, 3], ["patches", 44, 3], ["postPatch", 53, 3], ["nativeBuildInputs", 69, 3], ["buildInputs", 81, 3], ["dontUseCmakeConfigure", 90, 3], ["dependencies", 92, 3], ["dontWrapGApps", 101, 3], ["makeWrapperArgs", 103, 3], ["postInstallCheck", 116, 3], ["passthru", 120, 3], ["meta", 122, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -38,21 +34,21 @@ export default nix.lambda((args) => (() => {
   const fetchpatch = nix.arg($, "fetchpatch");
   const version = "0.2.9";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "waydroid-helper",
       repo: "waydroid-helper",
       tag: nix.thunk(() => nix.str`v${version}`),
       hash: "sha256-6mVb4GPD2NCsvyaqQAOFox0rNIlyOttiaZKbHBS40Rg=",
     }))));
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "waydroid-helper",
       version: version,
       src: src,
       pyproject: false,
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "USE_UMOUNT_NOT_FUSERMOUNT",
             url: "https://github.com/waydroid-helper/waydroid-helper/commit/eb8ccf7a276f95b31972edbd063245704b2b5b2e.patch",
             hash: "sha256-z0PWBZTox3RpPCm8/fGYEukU0v41U7/TFcYE0Ec5Zeg=",
@@ -90,11 +86,11 @@ export default nix.lambda((args) => (() => {
       ]),
       postInstallCheck: "mesonCheckPhase\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         changelog: nix.thunk(() => nix.str`https://github.com/waydroid-helper/waydroid-helper/releases/tag/${nix.sel(src, "tag")}`),
         description: "User-friendly way to configure Waydroid and install extensions, including Magisk and ARM translation",
         homepage: "https://github.com/waydroid-helper/waydroid-helper",

@@ -2,11 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/bundle.nix", [[["type", 19, 7], ["exec", 25, 7], ["host", 26, 7]], [["stanzas", 16, 7]], [["name", 30, 5], ["text", 31, 5]], [["name", 36, 3], ["buildCommand", 37, 3], ["buildInputs", 45, 3]]]);
 const formals$1 = { args: { keterDomain: false, keterExecutable: false, gnutar: false, writeTextFile: false, lib: false, stdenv: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/bundle.nix", [["type", 19, 7], ["exec", 25, 7], ["host", 26, 7]]);
-const pos$2 = nix.positions(here + "/bundle.nix", [["stanzas", 16, 7]]);
-const pos$3 = nix.positions(here + "/bundle.nix", [["name", 30, 5], ["text", 31, 5]]);
-const pos$4 = nix.positions(here + "/bundle.nix", [["name", 36, 3], ["buildCommand", 37, 3], ["buildInputs", 45, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,18 +14,18 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const stdenv = nix.arg($, "stdenv");
   const str = nix.thunk(() => ({
-    [nix.POS]: pos$2,
+    [nix.POS]: $pos[1],
     stanzas: nix.thunk(() => [
-      nix.thunk(() => ({ [nix.POS]: pos$1, type: "webapp", exec: keterExecutable, host: keterDomain })),
+      nix.thunk(() => ({ [nix.POS]: $pos[0], type: "webapp", exec: keterExecutable, host: keterDomain })),
     ]),
   }));
   const configFile = nix.thunk(() => nix.app(writeTextFile, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       name: "keter.yml",
       text: nix.thunk(() => nix.app(nix.sel(lib, "generators", "toYAML"), nix.thunk(() => ({})), str)),
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       name: "keter-bundle",
       buildCommand: nix.thunk(() => nix.str`mkdir -p config
 cp ${configFile} config/keter.yaml

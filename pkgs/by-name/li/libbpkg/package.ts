@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 21, 5], ["hash", 22, 5]], [["description", 41, 5], ["longDescription", 42, 5], ["homepage", 48, 5], ["changelog", 49, 5], ["license", 50, 5], ["maintainers", 51, 5], ["platforms", 52, 5]], [["pname", 12, 3], ["version", 13, 3], ["outputs", 14, 3], ["src", 20, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 28, 3], ["build2ConfigureFlags", 32, 3], ["strictDeps", 36, 3], ["doCheck", 38, 3], ["meta", 40, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, build2: false, fetchurl: false, libbutl: false, enableShared: true, enableStatic: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 41, 5], ["longDescription", 42, 5], ["homepage", 48, 5], ["changelog", 49, 5], ["license", 50, 5], ["maintainers", 51, 5], ["platforms", 52, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["outputs", 14, 3], ["src", 20, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 28, 3], ["build2ConfigureFlags", 32, 3], ["strictDeps", 36, 3], ["doCheck", 38, 3], ["meta", 40, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const enableShared = nix.argOr($, "enableShared", () => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isStatic")));
   const enableStatic = nix.argOr($, "enableStatic", () => !nix.asBool(enableShared));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "libbpkg",
       version: "0.18.0",
       outputs: nix.thunk(() => ["out", "dev", "doc"]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://pkg.cppget.org/1/alpha/build2/libbpkg-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-ROaIgIql1oXOqiwz8giTcz0landh6rITyzX3WxR16L4=",
         })))),
@@ -34,7 +32,7 @@ export default nix.lambda((args) => (() => {
       strictDeps: true,
       doCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Build2 package dependency manager utility library",
         longDescription: "This library defines the types and utilities for working with build2 packages.\nIn particular, it provides C++ classes as well as the parser and serializer\nimplementations that can be used to read, manipulate, and write package,\nrepository and signature manifests.\n",
         homepage: "https://build2.org/",

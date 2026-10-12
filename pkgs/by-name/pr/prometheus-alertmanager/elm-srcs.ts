@@ -2,103 +2,87 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
-const pos$1 = nix.positions(here + "/elm-srcs.nix", [["sha256", 4, 5], ["version", 5, 5]]);
-const pos$2 = nix.positions(here + "/elm-srcs.nix", [["sha256", 9, 5], ["version", 10, 5]]);
-const pos$3 = nix.positions(here + "/elm-srcs.nix", [["sha256", 14, 5], ["version", 15, 5]]);
-const pos$4 = nix.positions(here + "/elm-srcs.nix", [["sha256", 19, 5], ["version", 20, 5]]);
-const pos$5 = nix.positions(here + "/elm-srcs.nix", [["sha256", 24, 5], ["version", 25, 5]]);
-const pos$6 = nix.positions(here + "/elm-srcs.nix", [["sha256", 29, 5], ["version", 30, 5]]);
-const pos$7 = nix.positions(here + "/elm-srcs.nix", [["sha256", 34, 5], ["version", 35, 5]]);
-const pos$8 = nix.positions(here + "/elm-srcs.nix", [["sha256", 39, 5], ["version", 40, 5]]);
-const pos$9 = nix.positions(here + "/elm-srcs.nix", [["sha256", 44, 5], ["version", 45, 5]]);
-const pos$10 = nix.positions(here + "/elm-srcs.nix", [["sha256", 49, 5], ["version", 50, 5]]);
-const pos$11 = nix.positions(here + "/elm-srcs.nix", [["sha256", 54, 5], ["version", 55, 5]]);
-const pos$12 = nix.positions(here + "/elm-srcs.nix", [["sha256", 59, 5], ["version", 60, 5]]);
-const pos$13 = nix.positions(here + "/elm-srcs.nix", [["sha256", 64, 5], ["version", 65, 5]]);
-const pos$14 = nix.positions(here + "/elm-srcs.nix", [["sha256", 69, 5], ["version", 70, 5]]);
-const pos$15 = nix.positions(here + "/elm-srcs.nix", [["sha256", 74, 5], ["version", 75, 5]]);
-const pos$16 = nix.positions(here + "/elm-srcs.nix", [["sha256", 79, 5], ["version", 80, 5]]);
-const pos$17 = nix.positions(here + "/elm-srcs.nix", [["NoRedInk/elm-json-decode-pipeline", 3, 3], ["elm/browser", 8, 3], ["elm/core", 13, 3], ["elm/html", 18, 3], ["elm/http", 23, 3], ["elm/json", 28, 3], ["elm/parser", 33, 3], ["elm/regex", 38, 3], ["elm/time", 43, 3], ["elm/url", 48, 3], ["justinmimbs/time-extra", 53, 3], ["rtfeldman/elm-iso8601-date-strings", 58, 3], ["elm/random", 63, 3], ["elm/virtual-dom", 68, 3], ["justinmimbs/date", 73, 3], ["elm-explorations/test", 78, 3]]);
+const $pos = nix.positions(here + "/elm-srcs.nix", [[["sha256", 4, 5], ["version", 5, 5]], [["sha256", 9, 5], ["version", 10, 5]], [["sha256", 14, 5], ["version", 15, 5]], [["sha256", 19, 5], ["version", 20, 5]], [["sha256", 24, 5], ["version", 25, 5]], [["sha256", 29, 5], ["version", 30, 5]], [["sha256", 34, 5], ["version", 35, 5]], [["sha256", 39, 5], ["version", 40, 5]], [["sha256", 44, 5], ["version", 45, 5]], [["sha256", 49, 5], ["version", 50, 5]], [["sha256", 54, 5], ["version", 55, 5]], [["sha256", 59, 5], ["version", 60, 5]], [["sha256", 64, 5], ["version", 65, 5]], [["sha256", 69, 5], ["version", 70, 5]], [["sha256", 74, 5], ["version", 75, 5]], [["sha256", 79, 5], ["version", 80, 5]], [["NoRedInk/elm-json-decode-pipeline", 3, 3], ["elm/browser", 8, 3], ["elm/core", 13, 3], ["elm/html", 18, 3], ["elm/http", 23, 3], ["elm/json", 28, 3], ["elm/parser", 33, 3], ["elm/regex", 38, 3], ["elm/time", 43, 3], ["elm/url", 48, 3], ["justinmimbs/time-extra", 53, 3], ["rtfeldman/elm-iso8601-date-strings", 58, 3], ["elm/random", 63, 3], ["elm/virtual-dom", 68, 3], ["justinmimbs/date", 73, 3], ["elm-explorations/test", 78, 3]]]);
 
 export default nix.thunk(() => ({
-  [nix.POS]: pos$17,
+  [nix.POS]: $pos[16],
   "NoRedInk/elm-json-decode-pipeline": nix.thunk(() => ({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     sha256: "0y25xn0yx1q2xlg1yx1i0hg4xq1yxx6yfa99g272z8162si75hnl",
     version: "1.0.0",
   })),
   "elm/browser": nix.thunk(() => ({
-    [nix.POS]: pos$2,
+    [nix.POS]: $pos[1],
     sha256: "1apmvyax93nvmagwj00y16zx10kfv640cxpi64xgqbgy7d2wphy4",
     version: "1.0.0",
   })),
   "elm/core": nix.thunk(() => ({
-    [nix.POS]: pos$3,
+    [nix.POS]: $pos[2],
     sha256: "10kr86h4v5h4p0586q406a5wbl8xvr1jyrf6097zp2wb8sv21ylw",
     version: "1.0.0",
   })),
   "elm/html": nix.thunk(() => ({
-    [nix.POS]: pos$4,
+    [nix.POS]: $pos[3],
     sha256: "1n3gpzmpqqdsldys4ipgyl1zacn0kbpc3g4v3hdpiyfjlgh8bf3k",
     version: "1.0.0",
   })),
   "elm/http": nix.thunk(() => ({
-    [nix.POS]: pos$5,
+    [nix.POS]: $pos[4],
     sha256: "1igmm89ialzrjib1j8xagkxalq1x2gj4l0hfxcd66mpwmvg7psl8",
     version: "1.0.0",
   })),
   "elm/json": nix.thunk(() => ({
-    [nix.POS]: pos$6,
+    [nix.POS]: $pos[5],
     sha256: "1g0hafkqf2q633r7ir9wxpb1lnlzskhpsyi0h5bkzj0gl072zfnb",
     version: "1.0.0",
   })),
   "elm/parser": nix.thunk(() => ({
-    [nix.POS]: pos$7,
+    [nix.POS]: $pos[6],
     sha256: "0a3cxrvbm7mwg9ykynhp7vjid58zsw03r63qxipxp3z09qks7512",
     version: "1.1.0",
   })),
   "elm/regex": nix.thunk(() => ({
-    [nix.POS]: pos$8,
+    [nix.POS]: $pos[7],
     sha256: "0lijsp50w7n1n57mjg6clpn9phly8vvs07h0qh2rqcs0f1jqvsa2",
     version: "1.0.0",
   })),
   "elm/time": nix.thunk(() => ({
-    [nix.POS]: pos$9,
+    [nix.POS]: $pos[8],
     sha256: "0vch7i86vn0x8b850w1p69vplll1bnbkp8s383z7pinyg94cm2z1",
     version: "1.0.0",
   })),
   "elm/url": nix.thunk(() => ({
-    [nix.POS]: pos$10,
+    [nix.POS]: $pos[9],
     sha256: "0av8x5syid40sgpl5vd7pry2rq0q4pga28b4yykn9gd9v12rs3l4",
     version: "1.0.0",
   })),
   "justinmimbs/time-extra": nix.thunk(() => ({
-    [nix.POS]: pos$11,
+    [nix.POS]: $pos[10],
     sha256: "0s5r0w5dfyrwpkgx594p3z39zrvz2gnxfzb6qlddwfibiaj2nfz9",
     version: "1.1.0",
   })),
   "rtfeldman/elm-iso8601-date-strings": nix.thunk(() => ({
-    [nix.POS]: pos$12,
+    [nix.POS]: $pos[11],
     sha256: "1n4zhm00m37fgy4vb6cayplm4yz6k78ijbmqajrqfnbsyc26p8wr",
     version: "1.1.2",
   })),
   "elm/random": nix.thunk(() => ({
-    [nix.POS]: pos$13,
+    [nix.POS]: $pos[12],
     sha256: "138n2455wdjwa657w6sjq18wx2r0k60ibpc4frhbqr50sncxrfdl",
     version: "1.0.0",
   })),
   "elm/virtual-dom": nix.thunk(() => ({
-    [nix.POS]: pos$14,
+    [nix.POS]: $pos[13],
     sha256: "0hm8g92h7z39km325dlnhk8n00nlyjkqp3r3jppr37k2k13md6aq",
     version: "1.0.0",
   })),
   "justinmimbs/date": nix.thunk(() => ({
-    [nix.POS]: pos$15,
+    [nix.POS]: $pos[14],
     sha256: "0gl31dsbzryc29749wwi4jfnidsyicbplawmc8ar1vbxaa39ld0v",
     version: "3.2.0",
   })),
   "elm-explorations/test": nix.thunk(() => ({
-    [nix.POS]: pos$16,
+    [nix.POS]: $pos[15],
     sha256: "0rpynrm9irgzyynd1bws0xspww5lnwv7w7998750jb8kcrw39h0n",
     version: "1.0.0",
   })),

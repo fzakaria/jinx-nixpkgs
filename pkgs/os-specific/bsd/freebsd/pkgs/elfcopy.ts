@@ -2,9 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/elfcopy.nix", [[["platforms", 29, 8]], [["path", 12, 3], ["extraPaths", 13, 3], ["buildInputs", 19, 3], ["MK_PIE", 27, 3], ["meta", 29, 3]]]);
 const formals$1 = { args: { lib: false, mkDerivation: false, compatIfNeeded: false, libelf: false, libelftc: false, libarchive: false, libpe: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/elfcopy.nix", [["platforms", 29, 8]]);
-const pos$2 = nix.positions(here + "/elfcopy.nix", [["path", 12, 3], ["extraPaths", 13, 3], ["buildInputs", 19, 3], ["MK_PIE", 27, 3], ["meta", 29, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,13 +15,13 @@ export default nix.lambda((args) => (() => {
   const libarchive = nix.arg($, "libarchive");
   const libpe = nix.arg($, "libpe");
   return nix.app(mkDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       path: "usr.bin/elfcopy",
       extraPaths: nix.thunk(() => ["contrib/elftoolchain", "sys/sys/elf_common.h", "sys/sys/elf32.h"]),
       buildInputs: nix.thunk(() => nix.concat(compatIfNeeded, [libelf, libelftc, libarchive, libpe])),
       MK_PIE: "no",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       })),
     })));

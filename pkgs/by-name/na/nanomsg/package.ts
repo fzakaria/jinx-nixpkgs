@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["sha256", 17, 5]], [["url", 23, 7], ["hash", 24, 7]], [["url", 28, 7], ["hash", 29, 7]], [["description", 42, 5], ["homepage", 43, 5], ["license", 44, 5], ["mainProgram", 45, 5], ["platforms", 46, 5]], [["version", 10, 3], ["pname", 11, 3], ["src", 13, 3], ["patches", 20, 3], ["nativeBuildInputs", 33, 3], ["postPatch", 36, 3], ["meta", 41, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, cmake: false, fetchFromGitHub: false, fetchpatch: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["sha256", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 23, 7], ["hash", 24, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 28, 7], ["hash", 29, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 42, 5], ["homepage", 43, 5], ["license", 44, 5], ["mainProgram", 45, 5], ["platforms", 46, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["version", 10, 3], ["pname", 11, 3], ["src", 13, 3], ["patches", 20, 3], ["nativeBuildInputs", 33, 3], ["postPatch", 36, 3], ["meta", 41, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const fetchpatch = nix.arg($, "fetchpatch");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       version: "1.1.5",
       pname: "nanomsg",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "nanomsg",
           repo: "nanomsg",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -29,12 +25,12 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/nanomsg/nanomsg/commit/e3323f19579529d272cb1d55bd6b653c4f34c064.patch",
             hash: "sha256-URz7TAqqpKxqjgvQqNX4WNSShwiEzAvO2h0hCZ2NhVY=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: "https://github.com/nanomsg/nanomsg/commit/eb24489839de3e2419360c67cc38842f223836d9.patch",
             hash: "sha256-yaQWWZLW4YbiI41oV0nj7zap3lEs0Gwwb9kTD6o3La8=",
           })))),
@@ -42,7 +38,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [cmake]),
       postPatch: "substituteInPlace src/pkgconfig.in \\\n  --replace '$'{prefix}/@CMAKE_INSTALL_LIBDIR@ @CMAKE_INSTALL_FULL_LIBDIR@\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Socket library that provides several common communication patterns",
         homepage: "https://nanomsg.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 10, 5], ["hash", 11, 5]], [["description", 26, 5], ["homepage", 27, 5], ["downloadPage", 28, 5], ["changelog", 29, 5], ["license", 30, 5], ["maintainers", 31, 5]], [["pname", 15, 11], ["version", 15, 17], ["src", 15, 25], ["installPhase", 17, 3], ["meta", 25, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchzip: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 10, 5], ["hash", 11, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 26, 5], ["homepage", 27, 5], ["downloadPage", 28, 5], ["changelog", 29, 5], ["license", 30, 5], ["maintainers", 31, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 15, 11], ["version", 15, 17], ["src", 15, 25], ["installPhase", 17, 3], ["meta", 25, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,18 +13,18 @@ export default nix.lambda((args) => (() => {
   const pname = "kawkab-mono";
   const version = "0.501";
   const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: nix.thunk(() => nix.str`https://github.com/aiaf/kawkab-mono/releases/download/v${version}/kawkab-mono-${version}.zip`),
       hash: "sha256-cDpQGTu3XzLrDtInAZtnCw6BymX7fupbbr7L4bd7kN8=",
     }))));
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: pname,
       version: version,
       src: src,
       installPhase: "runHook preInstall\n\ninstall -Dm644 *.ttf -t $out/share/fonts/truetype\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Monospaced Arabic typeface designed for code and text-editing",
         homepage: "https://makkuk.com/kawkab-mono/",
         downloadPage: "https://github.com/aiaf/kawkab-mono",

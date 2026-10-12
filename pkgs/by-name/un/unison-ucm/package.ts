@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 22, 9], ["hash", 23, 9]], [["url", 26, 9], ["hash", 27, 9]], [["url", 30, 9], ["hash", 31, 9]], [["aarch64-darwin", 21, 7], ["aarch64-linux", 25, 7], ["x86_64-linux", 29, 7]], [["updateScript", 68, 12]], [["description", 71, 5], ["homepage", 72, 5], ["license", 73, 5], ["mainProgram", 77, 5], ["maintainers", 78, 5], ["platforms", 83, 5], ["sourceProvenance", 88, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["sourceRoot", 37, 3], ["dontBuild", 38, 3], ["dontConfigure", 39, 3], ["nativeBuildInputs", 41, 3], ["buildInputs", 45, 3], ["installPhase", 51, 3], ["passthru", 68, 3], ["meta", 70, 3]]]);
 const formals$1 = { args: { lib: false, autoPatchelfHook: false, fetchurl: false, gmp: false, less: false, makeWrapper: false, libb2: false, ncurses6: false, openssl: false, stdenv: false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 22, 9], ["hash", 23, 9]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 26, 9], ["hash", 27, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 30, 9], ["hash", 31, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["aarch64-darwin", 21, 7], ["aarch64-linux", 25, 7], ["x86_64-linux", 29, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["updateScript", 68, 12]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 71, 5], ["homepage", 72, 5], ["license", 73, 5], ["mainProgram", 77, 5], ["maintainers", 78, 5], ["platforms", 83, 5], ["sourceProvenance", 88, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["sourceRoot", 37, 3], ["dontBuild", 38, 3], ["dontConfigure", 39, 3], ["nativeBuildInputs", 41, 3], ["buildInputs", 45, 3], ["installPhase", 51, 3], ["passthru", 68, 3], ["meta", 70, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,23 +19,23 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "unison-code-manager",
       version: "1.5.0",
       src: nix.thunk(() => nix.selOr({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         "aarch64-darwin": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             url: nix.thunk(() => nix.str`https://github.com/unisonweb/unison/releases/download/release/${nix.sel(finalAttrs, "version")}/ucm-macos-arm64.tar.gz`),
             hash: "sha256-Ph1ql4I1qPmJpYTjMuZw7KGMFfEJn88YgfwSa2K9vq4=",
           })))),
         "aarch64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: nix.thunk(() => nix.str`https://github.com/unisonweb/unison/releases/download/release/${nix.sel(finalAttrs, "version")}/ucm-linux-arm64.tar.gz`),
             hash: "sha256-pL4UQdBAu6vbQB24KUz3aRqT+QIhmSvY59W46frb/04=",
           })))),
         "x86_64-linux": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: nix.thunk(() => nix.str`https://github.com/unisonweb/unison/releases/download/release/${nix.sel(finalAttrs, "version")}/ucm-linux-x64.tar.gz`),
             hash: "sha256-/LLtYoTh9puhDE6Kgo3WVxDwnPHujLh25zKqnvVmz/Q=",
           })))),
@@ -61,9 +55,9 @@ makeWrapper $out/unison/unison $out/bin/ucm \\
   --prefix PATH ":" "${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [less]))}" \\
   --set UCM_WEB_UI "$out/ui"
 `),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$5, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[4], updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Modern, statically-typed purely functional language",
         homepage: "https://unisonweb.org/",
         license: nix.thunk(() => [

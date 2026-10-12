@@ -2,16 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["nodejs-slim", 15, 29]], [["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]], [["name", 32, 7], ["url", 33, 7], ["includes", 34, 7], ["hash", 35, 7]], [["pname", 47, 7], ["version", 48, 7], ["src", 49, 7], ["pnpmWorkspaces", 50, 7], ["patches", 51, 7], ["pnpm", 53, 13], ["fetcherVersion", 55, 5], ["hash", 56, 5]], [["CI", 75, 7]], [["extraArgs", 96, 5]], [["updateScript", 95, 12]], [["description", 104, 5], ["homepage", 105, 5], ["changelog", 106, 5], ["license", 107, 5], ["maintainers", 108, 5], ["mainProgram", 112, 5], ["platforms", 113, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["patches", 29, 3], ["pnpmWorkspaces", 40, 3], ["pnpmDeps", 45, 3], ["nativeBuildInputs", 59, 3], ["buildInputs", 65, 3], ["buildPhase", 67, 3], ["env", 75, 3], ["installPhase", 77, 3], ["passthru", 95, 3], ["meta", 103, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, pnpm_11: false, "nodejs-slim_22": false, fetchPnpmDeps: false, pnpmConfigHook: false, nodejs: false, "nix-update-script": false, fetchpatch2: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["nodejs-slim", 15, 29]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 32, 7], ["url", 33, 7], ["includes", 34, 7], ["hash", 35, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 47, 7], ["version", 48, 7], ["src", 49, 7], ["pnpmWorkspaces", 50, 7], ["patches", 51, 7], ["pnpm", 53, 13], ["fetcherVersion", 55, 5], ["hash", 56, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["CI", 75, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["extraArgs", 96, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["updateScript", 95, 12]]);
-const pos$8 = nix.positions(here + "/package.nix", [["description", 104, 5], ["homepage", 105, 5], ["changelog", 106, 5], ["license", 107, 5], ["maintainers", 108, 5], ["mainProgram", 112, 5], ["platforms", 113, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["patches", 29, 3], ["pnpmWorkspaces", 40, 3], ["pnpmDeps", 45, 3], ["nativeBuildInputs", 59, 3], ["buildInputs", 65, 3], ["buildPhase", 67, 3], ["env", 75, 3], ["installPhase", 77, 3], ["passthru", 95, 3], ["meta", 103, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,13 +17,13 @@ export default nix.lambda((args) => (() => {
   const nodejs = nix.arg($, "nodejs");
   const nix_update_script = nix.arg($, "nix-update-script");
   const fetchpatch2 = nix.arg($, "fetchpatch2");
-  const pnpm = nix.thunk(() => nix.app(nix.sel(pnpm_11, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, "nodejs-slim": nodejs_slim_22 }))));
+  const pnpm = nix.thunk(() => nix.app(nix.sel(pnpm_11, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], "nodejs-slim": nodejs_slim_22 }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       pname: "astro-language-server",
       version: "2.16.10",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "withastro",
           repo: "astro",
           tag: nix.thunk(() => nix.str`@astrojs/language-server@${nix.sel(finalAttrs, "version")}`),
@@ -39,7 +31,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "fix-supply-chain-verification-fail.patch",
             url: "https://github.com/withastro/astro/commit/272ca6173b40cfa37299c27b513f495f386d4009.patch?full_index=1",
             includes: nix.thunk(() => ["pnpm-workspace.yaml"]),
@@ -48,7 +40,7 @@ export default nix.lambda((args) => (() => {
       ]),
       pnpmWorkspaces: nix.thunk(() => ["@astrojs/language-server...", "@astrojs/ts-plugin"]),
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -61,17 +53,17 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [nodejs, pnpmConfigHook, pnpm]),
       buildInputs: nix.thunk(() => [nodejs]),
       buildPhase: "runHook preBuild\n\npnpm --filter \"@astrojs/language-server...\" --filter \"@astrojs/ts-plugin\" build\n\nrunHook postBuild\n",
-      env: nix.thunk(() => ({ [nix.POS]: pos$5, CI: true })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[4], CI: true })),
       installPhase: "runHook preInstall\n\npnpm install --offline --prod --filter=\"@astrojs/language-server...\"\nmkdir -p $out/{bin,lib/node_modules/astro-language-server/packages/language-tools}\ncp -r ./node_modules $out/lib/node_modules/astro-language-server\ncp -r packages/language-tools/{language-server,yaml2ts,ts-plugin} $out/lib/node_modules/astro-language-server/packages/language-tools/\npushd $out/lib/node_modules/astro-language-server/node_modules\nrm -rf {./,.pnpm/node_modules/}astro-{scripts,benchmark} .pnpm/node_modules/@astrojs/ts-plugin\npopd\n# pnpm creates symlinks for optional platform-specific packages (e.g. @biomejs/cli-darwin-arm64)\n# that are not installed by the --prod --filter install, leaving dangling symlinks\nfind $out -xtype l -delete\nln -s $out/lib/node_modules/astro-language-server/packages/language-tools/language-server/bin/nodeServer.js $out/bin/astro-ls\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             extraArgs: nix.thunk(() => ["--use-github-releases", "--version-regex", "@astrojs/language-server@(.*)"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         description: "Astro language server",
         homepage: "https://github.com/withastro/astro/tree/main/packages/language-tools",
         changelog: nix.thunk(() => nix.str`https://github.com/withastro/astro/blob/%40astrojs/language-server%40${nix.sel(finalAttrs, "version")}/packages/language-tools/language-server/CHANGELOG.md`),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 72, 5], ["repo", 73, 5], ["tag", 74, 5], ["hash", 75, 5]], [["homepage", 191, 5], ["description", 192, 5], ["changelog", 193, 5], ["license", 194, 5], ["mainProgram", 195, 5], ["maintainers", 196, 5], ["platforms", 200, 5]], [["pname", 68, 3], ["version", 69, 3], ["src", 71, 3], ["nativeBuildInputs", 78, 3], ["buildInputs", 83, 3], ["enableParallelBuilding", 120, 3], ["postPatch", 122, 3], ["postFixup", 154, 3], ["configureFlags", 158, 3], ["checkInputs", 180, 3], ["doCheck", 181, 3], ["versionCheckProgram", 183, 3], ["versionCheckProgramArg", 184, 3], ["nativeInstallCheckInputs", 185, 3], ["doInstallCheck", 188, 3], ["meta", 190, 3]]]);
 const formals$1 = { args: { stdenv: false, autoreconfHook: false, makeWrapper: false, "pkg-config": false, versionCheckHook: false, fetchFromGitHub: false, bison: false, brotli: false, coreutils: false, cunit: false, cyrus_sasl: false, fig2dev: false, flex: false, icu: false, jansson: false, lib: false, libbsd: false, libcap: false, libchardet: false, libical: false, libmysqlclient: false, libpq: false, libsrs2: false, libuuid: false, libxml2: false, nghttp2: false, openssl: false, pcre2: false, perl: false, rsync: false, shapelib: false, sqlite: false, unixtools: false, valgrind: false, wslay: false, xapian: false, zlib: false, enableAutoCreate: true, enableBackup: true, enableCalalarmd: true, enableHttp: true, enableIdled: true, enableJMAP: true, enableMurder: true, enableNNTP: true, enableReplication: true, enableSrs: true, enableUnitTests: true, enableXapian: true, withLibcap: true, withMySQL: true, withOpenssl: true, withPgSQL: true, withSQLite: true, withZlib: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 72, 5], ["repo", 73, 5], ["tag", 74, 5], ["hash", 75, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 191, 5], ["description", 192, 5], ["changelog", 193, 5], ["license", 194, 5], ["mainProgram", 195, 5], ["maintainers", 196, 5], ["platforms", 200, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 68, 3], ["version", 69, 3], ["src", 71, 3], ["nativeBuildInputs", 78, 3], ["buildInputs", 83, 3], ["enableParallelBuilding", 120, 3], ["postPatch", 122, 3], ["postFixup", 154, 3], ["configureFlags", 158, 3], ["checkInputs", 180, 3], ["doCheck", 181, 3], ["versionCheckProgram", 183, 3], ["versionCheckProgramArg", 184, 3], ["nativeInstallCheckInputs", 185, 3], ["doInstallCheck", 188, 3], ["meta", 190, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -65,11 +63,11 @@ export default nix.lambda((args) => (() => {
   const withSQLite = nix.argOr($, "withSQLite", () => true);
   const withZlib = nix.argOr($, "withZlib", () => true);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "cyrus-imapd",
       version: "3.12.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "cyrusimap",
           repo: "cyrus-imapd",
           tag: nix.thunk(() => nix.str`cyrus-imapd-${nix.sel(finalAttrs, "version")}`),
@@ -152,7 +150,7 @@ substituteInPlace perl/sieve/managesieve/Makefile.PL.in \\
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://www.cyrusimap.org",
         description: "Email, contacts and calendar server",
         changelog: nix.thunk(() => nix.str`https://www.cyrusimap.org/imap/download/release-notes/${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/x/${nix.sel(finalAttrs, "version")}.html`),

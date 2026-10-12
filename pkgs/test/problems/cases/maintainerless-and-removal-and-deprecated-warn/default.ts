@@ -2,33 +2,24 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["maintainerless", 8, 13], ["deprecated", 9, 13], ["removal", 10, 13]], [["a", 8, 9]], [["handlers", 7, 16]], [["problems", 7, 7]], [["system", 4, 5], ["overlays", 5, 5], ["config", 6, 5]], [["message", 21, 13]], [["message", 22, 16]], [["removal", 21, 5], ["deprecated", 22, 5]], [["description", 18, 8], ["maintainers", 19, 8], ["problems", 20, 8]], [["pname", 16, 3], ["version", 17, 3], ["meta", 18, 3]]]);
 const formals$1 = { args: { nixpkgs: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["maintainerless", 8, 13], ["deprecated", 9, 13], ["removal", 10, 13]]);
-const pos$2 = nix.positions(here + "/default.nix", [["a", 8, 9]]);
-const pos$3 = nix.positions(here + "/default.nix", [["handlers", 7, 16]]);
-const pos$4 = nix.positions(here + "/default.nix", [["problems", 7, 7]]);
-const pos$5 = nix.positions(here + "/default.nix", [["system", 4, 5], ["overlays", 5, 5], ["config", 6, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["message", 21, 13]]);
-const pos$7 = nix.positions(here + "/default.nix", [["message", 22, 16]]);
-const pos$8 = nix.positions(here + "/default.nix", [["removal", 21, 5], ["deprecated", 22, 5]]);
-const pos$9 = nix.positions(here + "/default.nix", [["description", 18, 8], ["maintainers", 19, 8], ["problems", 20, 8]]);
-const pos$10 = nix.positions(here + "/default.nix", [["pname", 16, 3], ["version", 17, 3], ["meta", 18, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const nixpkgs = nix.arg($, "nixpkgs");
   const pkgs = nix.thunk(() => nix.app(nix.builtins.import(nixpkgs), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       system: "x86_64-linux",
       overlays: [],
       config: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         problems: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           handlers: nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             a: nix.thunk(() => ({
-              [nix.POS]: pos$1,
+              [nix.POS]: $pos[0],
               maintainerless: "warn",
               deprecated: "warn",
               removal: "warn",
@@ -38,17 +29,17 @@ export default nix.lambda((args) => (() => {
       })),
     }))));
   return nix.app(nix.sel(pkgs, "stdenvNoCC", "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       pname: "a",
       version: "0",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         description: "Some package",
         maintainers: [],
         problems: nix.thunk(() => ({
-          [nix.POS]: pos$8,
-          removal: nix.thunk(() => ({ [nix.POS]: pos$6, message: "Package to be removed." })),
-          deprecated: nix.thunk(() => ({ [nix.POS]: pos$7, message: "Package will be deprecated." })),
+          [nix.POS]: $pos[7],
+          removal: nix.thunk(() => ({ [nix.POS]: $pos[5], message: "Package to be removed." })),
+          deprecated: nix.thunk(() => ({ [nix.POS]: $pos[6], message: "Package will be deprecated." })),
         })),
       })),
     })));

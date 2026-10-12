@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]], [["homepage", 37, 5], ["license", 38, 5], ["description", 39, 5], ["mainProgram", 40, 5], ["longDescription", 41, 5], ["maintainers", 50, 5], ["platforms", 53, 31], ["broken", 54, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["sourceRoot", 20, 3], ["patches", 22, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 31, 3], ["meta", 36, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromBitbucket: false, cmake: false, qt6: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 37, 5], ["license", 38, 5], ["description", 39, 5], ["mainProgram", 40, 5], ["longDescription", 41, 5], ["maintainers", 50, 5], ["platforms", 53, 31], ["broken", 54, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["sourceRoot", 20, 3], ["patches", 22, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 31, 3], ["meta", 36, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const cmake = nix.arg($, "cmake");
   const qt6 = nix.arg($, "qt6");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "speedcrunch",
       version: "0.12-unstable-2024-12-02",
       src: nix.thunk(() => nix.app(fetchFromBitbucket, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "heldercorreia",
           repo: "speedcrunch",
           rev: "3c1b4c18ccb275eb2891f9d8ff36a9205c0f566b",
@@ -35,7 +33,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(qt6, "qtbase", "meta"));
         return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://speedcrunch.org",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),
         description: "High-precision scientific calculator",

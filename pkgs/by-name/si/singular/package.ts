@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 38, 5], ["repo", 39, 5], ["tag", 43, 5], ["hash", 44, 5], ["forceFetchGit", 49, 5]], [["url", 76, 7], ["hash", 77, 7]], [["url", 80, 7], ["hash", 81, 7]], [["url", 85, 7], ["hash", 86, 7]], [["url", 89, 7], ["hash", 90, 7]], [["description", 203, 5], ["teams", 204, 5], ["platforms", 207, 5], ["license", 208, 5], ["homepage", 209, 5], ["downloadPage", 210, 5], ["mainProgram", 211, 5]], [["pname", 33, 3], ["version", 34, 3], ["src", 37, 3], ["configureFlags", 52, 3], ["prePatch", 61, 3], ["patches", 73, 3], ["buildInputs", 97, 3], ["nativeBuildInputs", 112, 3], ["depsBuildBuild", 127, 3], ["preAutoreconf", 129, 3], ["hardeningDisable", 137, 3], ["doCheck", 139, 3], ["installPhase", 141, 3], ["testsToRun", 159, 3], ["doInstallCheck", 170, 3], ["installCheckPhase", 171, 3], ["enableParallelBuilding", 199, 3], ["__darwinAllowLocalNetworking", 200, 3], ["meta", 202, 3]]]);
 const formals$1 = { args: { stdenv: false, fetchFromGitHub: false, fetchpatch: false, gmp: false, bison: false, perl: false, ncurses: false, readline: false, coreutils: false, "pkg-config": false, lib: false, autoreconfHook: false, buildPackages: false, sharutils: false, file: false, getconf: false, flint: false, ntl: false, mpfr: false, cddlib: false, gfan: false, lrcalc: false, doxygen: false, graphviz: false, latex2html: false, texinfo: false, texliveSmall: false, enableDocs: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 38, 5], ["repo", 39, 5], ["tag", 43, 5], ["hash", 44, 5], ["forceFetchGit", 49, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 76, 7], ["hash", 77, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 80, 7], ["hash", 81, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["url", 85, 7], ["hash", 86, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["url", 89, 7], ["hash", 90, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 203, 5], ["teams", 204, 5], ["platforms", 207, 5], ["license", 208, 5], ["homepage", 209, 5], ["downloadPage", 210, 5], ["mainProgram", 211, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 33, 3], ["version", 34, 3], ["src", 37, 3], ["configureFlags", 52, 3], ["prePatch", 61, 3], ["patches", 73, 3], ["buildInputs", 97, 3], ["nativeBuildInputs", 112, 3], ["depsBuildBuild", 127, 3], ["preAutoreconf", 129, 3], ["hardeningDisable", 137, 3], ["doCheck", 139, 3], ["installPhase", 141, 3], ["testsToRun", 159, 3], ["doInstallCheck", 170, 3], ["installCheckPhase", 171, 3], ["enableParallelBuilding", 199, 3], ["__darwinAllowLocalNetworking", 200, 3], ["meta", 202, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -45,7 +39,7 @@ export default nix.lambda((args) => (() => {
       const pname = "singular";
       const version = "4.4.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Singular",
           repo: "Singular",
           tag: nix.thunk(() => nix.str`Release-${nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => ["-"]), version)}`),
@@ -60,22 +54,22 @@ export default nix.lambda((args) => (() => {
       const prePatch = "# don't let the tests depend on `hostname`\nsubstituteInPlace Tst/regress.cmd \\\n  --replace-fail 'mysystem_catch(\"hostname\")' 'nix_test_runner'\n\n# ld: file not found: @rpath/libquadmath.0.dylib\nsubstituteInPlace m4/p-procs.m4 \\\n  --replace-fail \"-flat_namespace\" \"\"\n\npatchShebangs .\n";
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/Singular/Singular/commit/05f5116e13c8a4f5f820c78c35944dd6d197d442.patch",
             hash: "sha256-4l7JaCCFzE+xINU+E92eBN5CJKIdtQHly4Ed3ZwbKTA=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: "https://github.com/Singular/Singular/commit/595d7167e6e019d45d9a4f1e18ae741df1f3c41d.patch",
             hash: "sha256-hpTZy/eAiHAaleasWPAenxM35aqeNAZ//o6OqqdGOJ4=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             url: "https://github.com/Singular/Singular/commit/6a47eae152527e3147e3168989301b676576e9eb.patch",
             hash: "sha256-JW72CoDg0Pkmcg+uklkyV94F9qaT3cnHUhUG/6bStKY=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             url: "https://github.com/Singular/Singular/commit/935a043cac58180942ab753efbd576ba59eaab8e.patch",
             hash: "sha256-T9ml6SnXCKImnQDnBU4zrpYGRi2wlTYvjmln0r1AvPM=",
           })))),
@@ -129,7 +123,7 @@ echo "Exit status $?"
       const enableParallelBuilding = true;
       const __darwinAllowLocalNetworking = true;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "CAS for polynomial computations",
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "sage"))]),
         platforms: nix.thunk(() => nix.app(nix.sel(lib, "subtractLists"), nix.thunk(() => nix.sel(lib, "platforms", "i686")), nix.thunk(() => nix.sel(lib, "platforms", "unix")))),
@@ -139,7 +133,7 @@ echo "Exit status $?"
         mainProgram: "Singular",
       }));
       return {
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         pname,
         version,
         src,

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 30, 5], ["version", 31, 13], ["hash", 32, 5]], [["description", 88, 5], ["homepage", 89, 5], ["changelog", 90, 5], ["license", 91, 5], ["maintainers", 92, 5]], [["pname", 25, 3], ["version", 26, 3], ["pyproject", 27, 3], ["src", 29, 3], ["build-system", 35, 3], ["pythonRelaxDeps", 37, 3], ["dependencies", 41, 3], ["nativeCheckInputs", 53, 3], ["preCheck", 64, 3], ["disabledTests", 69, 3], ["disabledTestPaths", 76, 3], ["pythonImportsCheck", 82, 3], ["meta", 87, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, django: false, fetchPypi: false, flask: false, "google-api-core": false, "google-cloud-appengine-logging": false, "google-cloud-audit-log": false, "google-cloud-core": false, "google-cloud-testutils": false, "grpc-google-iam-v1": false, mock: false, "opentelemetry-api": false, pandas: false, "proto-plus": false, protobuf: false, "pytest-asyncio": false, pytestCheckHook: false, rich: false, setuptools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 30, 5], ["version", 31, 13], ["hash", 32, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 88, 5], ["homepage", 89, 5], ["changelog", 90, 5], ["license", 91, 5], ["maintainers", 92, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 25, 3], ["version", 26, 3], ["pyproject", 27, 3], ["src", 29, 3], ["build-system", 35, 3], ["pythonRelaxDeps", 37, 3], ["dependencies", 41, 3], ["nativeCheckInputs", 53, 3], ["preCheck", 64, 3], ["disabledTests", 69, 3], ["disabledTestPaths", 76, 3], ["pythonImportsCheck", 82, 3], ["meta", 87, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.16.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "google_cloud_logging",
           version: version,
           hash: "sha256-CKMHa48PckIZ1vc7KiQu9p1R6LziJhM66+QaJfI/VAA=",
@@ -66,7 +64,7 @@ export default nix.lambda((args) => (() => {
       const disabledTestPaths = nix.thunk(() => ["tests/system/test_system.py", "tests/unit/test__gapic.py"]);
       const pythonImportsCheck = nix.thunk(() => ["google.cloud.logging", "google.cloud.logging_v2"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Stackdriver Logging API client library",
         homepage: "https://github.com/googleapis/google-cloud-python/tree/main/packages/google-cloud-logging",
         changelog: nix.thunk(() => nix.str`https://github.com/googleapis/google-cloud-python/blob/${version}/packages/google-cloud-logging/CHANGELOG.md`),
@@ -74,7 +72,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

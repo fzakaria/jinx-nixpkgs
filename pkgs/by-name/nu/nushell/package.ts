@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 31, 5], ["repo", 32, 5], ["tag", 33, 5], ["hash", 34, 5]], [["plugins", 116, 69]], [["withPlugins", 118, 7], ["pluginCompat", 119, 7]], [["shellPath", 113, 5], ["updateScript", 114, 5], ["withPlugins", 116, 5], ["tests", 117, 5]], [["description", 124, 5], ["homepage", 125, 5], ["license", 126, 5], ["maintainers", 127, 5], ["mainProgram", 132, 5]], [["pname", 24, 3], ["version", 28, 3], ["src", 30, 3], ["cargoHash", 37, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 45, 3], ["buildNoDefaultFeatures", 55, 3], ["buildFeatures", 56, 3], ["preCheck", 58, 3], ["checkPhase", 62, 3], ["nativeCheckInputs", 104, 3], ["checkInputs", 108, 3], ["passthru", 112, 3], ["meta", 123, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, rustPlatform: false, openssl: false, zlib: false, zstd: false, "pkg-config": false, python3: false, libx11: false, nghttp2: false, libgit2: false, withDefaultFeatures: true, additionalFeatures: true, "nix-update-script": false, curlMinimal: false, versionCheckHook: false, writableTmpDirAsHomeHook: false, callPackage: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 31, 5], ["repo", 32, 5], ["tag", 33, 5], ["hash", 34, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["plugins", 116, 69]]);
-const pos$3 = nix.positions(here + "/package.nix", [["withPlugins", 118, 7], ["pluginCompat", 119, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["shellPath", 113, 5], ["updateScript", 114, 5], ["withPlugins", 116, 5], ["tests", 117, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 124, 5], ["homepage", 125, 5], ["license", 126, 5], ["maintainers", 127, 5], ["mainProgram", 132, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 24, 3], ["version", 28, 3], ["src", 30, 3], ["cargoHash", 37, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 45, 3], ["buildNoDefaultFeatures", 55, 3], ["buildFeatures", 56, 3], ["preCheck", 58, 3], ["checkPhase", 62, 3], ["nativeCheckInputs", 104, 3], ["checkInputs", 108, 3], ["passthru", 112, 3], ["meta", 123, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,11 +27,11 @@ export default nix.lambda((args) => (() => {
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   const callPackage = nix.arg($, "callPackage");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "nushell",
       version: "0.115.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "nushell",
           repo: "nushell",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -79,18 +74,18 @@ runHook postCheck
       nativeCheckInputs: nix.thunk(() => [versionCheckHook, writableTmpDirAsHomeHook]),
       checkInputs: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [curlMinimal])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [openssl])))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         shellPath: "/bin/nu",
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
-        withPlugins: (plugins) => nix.app(callPackage, nix.path(here, "./with-plugins.nix"), nix.thunk(() => ({ [nix.POS]: pos$2, plugins: plugins }))),
+        withPlugins: (plugins) => nix.app(callPackage, nix.path(here, "./with-plugins.nix"), nix.thunk(() => ({ [nix.POS]: $pos[1], plugins: plugins }))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           withPlugins: nix.thunk(() => nix.app(callPackage, nix.path(here, "./plugins/test-with-plugins.nix"), nix.thunk(() => ({})))),
           pluginCompat: nix.thunk(() => nix.app(callPackage, nix.path(here, "./plugins/test-plugin-compat.nix"), nix.thunk(() => ({})))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Modern shell written in Rust",
         homepage: "https://www.nushell.sh/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

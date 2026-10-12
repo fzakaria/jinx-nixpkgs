@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 39, 5], ["repo", 40, 5], ["tag", 41, 5], ["hash", 42, 5]], [["changelog", 101, 5], ["description", 102, 5], ["homepage", 103, 5], ["license", 104, 5], ["maintainers", 105, 5], ["mainProgram", 106, 5]], [["pname", 34, 3], ["version", 35, 3], ["pyproject", 36, 3], ["src", 38, 3], ["build-system", 45, 3], ["dependencies", 49, 3], ["pythonImportsCheck", 67, 3], ["nativeCheckInputs", 71, 3], ["disabledTests", 80, 3], ["meta", 100, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, boto3: false, click: false, fastapi: false, loguru: false, pathspec: false, "prometheus-client": false, pydantic: false, "python-dotenv": false, "sentry-sdk": false, slowapi: false, starlette: false, tiktoken: false, tomli: false, uvicorn: false, httpx: false, jinja2: false, gitMinimal: false, "pytest-asyncio": false, "pytest-mock": false, pytestCheckHook: false, "python-multipart": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 39, 5], ["repo", 40, 5], ["tag", 41, 5], ["hash", 42, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["changelog", 101, 5], ["description", 102, 5], ["homepage", 103, 5], ["license", 104, 5], ["maintainers", 105, 5], ["mainProgram", 106, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 34, 3], ["version", 35, 3], ["pyproject", 36, 3], ["src", 38, 3], ["build-system", 45, 3], ["dependencies", 49, 3], ["pythonImportsCheck", 67, 3], ["nativeCheckInputs", 71, 3], ["disabledTests", 80, 3], ["meta", 100, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -39,7 +37,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.3.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "coderamp-labs",
           repo: "gitingest",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -91,7 +89,7 @@ export default nix.lambda((args) => (() => {
         "test_run_ingest_query",
       ]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         changelog: nix.thunk(() => nix.str`https://github.com/coderamp-labs/gitingest/releases/tag/${nix.sel(src, "tag")}`),
         description: "Replace 'hub' with 'ingest' in any github url to get a prompt-friendly extract of a codebase",
         homepage: "https://github.com/coderamp-labs/gitingest",
@@ -100,7 +98,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "gitingest",
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/core-amqp.nix", [[["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]], [["AZURE_SDK_DISABLE_AUTO_VCPKG", 48, 5], ["NIX_CFLAGS_COMPILE", 49, 5]], [["extraArgs", 67, 5]], [["updateScript", 66, 12]], [["description", 76, 7], ["changelog", 77, 7]], [["pname", 14, 3], ["version", 15, 3], ["outputs", 16, 3], ["src", 21, 3], ["sourceRoot", 27, 3], ["postPatch", 29, 3], ["strictDeps", 33, 3], ["nativeBuildInputs", 35, 3], ["propagatedBuildInputs", 40, 3], ["env", 47, 3], ["cmakeFlags", 52, 3], ["postInstall", 58, 3], ["doCheck", 64, 3], ["passthru", 66, 3], ["meta", 73, 3]]]);
 const formals$1 = { args: { stdenv: false, fetchFromGitHub: false, cmake: false, ninja: false, core: false, "c-shared-utility": false, "macro-utils-c": false, "umock-c": false, "nix-update-script": false, meta: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/core-amqp.nix", [["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/core-amqp.nix", [["AZURE_SDK_DISABLE_AUTO_VCPKG", 48, 5], ["NIX_CFLAGS_COMPILE", 49, 5]]);
-const pos$3 = nix.positions(here + "/core-amqp.nix", [["extraArgs", 67, 5]]);
-const pos$4 = nix.positions(here + "/core-amqp.nix", [["updateScript", 66, 12]]);
-const pos$5 = nix.positions(here + "/core-amqp.nix", [["description", 76, 7], ["changelog", 77, 7]]);
-const pos$6 = nix.positions(here + "/core-amqp.nix", [["pname", 14, 3], ["version", 15, 3], ["outputs", 16, 3], ["src", 21, 3], ["sourceRoot", 27, 3], ["postPatch", 29, 3], ["strictDeps", 33, 3], ["nativeBuildInputs", 35, 3], ["propagatedBuildInputs", 40, 3], ["env", 47, 3], ["cmakeFlags", 52, 3], ["postInstall", 58, 3], ["doCheck", 64, 3], ["passthru", 66, 3], ["meta", 73, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const meta = nix.arg($, "meta");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "azure-sdk-for-cpp-core-amqp",
       version: "1.0.0-beta.11",
       outputs: nix.thunk(() => ["out", "dev"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Azure",
           repo: "azure-sdk-for-cpp",
           tag: "azure-core-amqp_1.0.0-beta.11",
@@ -40,7 +35,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [cmake, ninja]),
       propagatedBuildInputs: nix.thunk(() => [core, c_shared_utility, macro_utils_c, umock_c]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         AZURE_SDK_DISABLE_AUTO_VCPKG: 1n,
         NIX_CFLAGS_COMPILE: "-Wno-error",
       })),
@@ -52,14 +47,14 @@ export default nix.lambda((args) => (() => {
       postInstall: "moveToOutput \"share\" \"$dev\"\nmoveToOutput \"share/$(basename \"$sourceRoot\")-cpp/copyright\" \"$out\"\n",
       doCheck: false,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             extraArgs: nix.thunk(() => ["--version-regex", "azure-core-amqp_(.*)"]),
           })))),
       })),
       meta: nix.thunk(() => nix.update(meta, {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Azure SDK AMQP Library for C++",
         changelog: "https://github.com/Azure/azure-sdk-for-cpp/blob/main/sdk/core/azure-core-amqp/CHANGELOG.md",
       })),

@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["enableStatic", 24, 31]], [["owner", 32, 5], ["repo", 33, 5], ["tag", 34, 5], ["hash", 35, 5]], [["example", 80, 5]], [["tests", 79, 12]], [["description", 88, 5], ["mainProgram", 89, 5], ["homepage", 90, 5], ["changelog", 91, 5], ["license", 92, 5], ["maintainers", 93, 5], ["platforms", 94, 5]], [["pname", 28, 3], ["version", 29, 3], ["src", 31, 3], ["nativeBuildInputs", 38, 3], ["cmakeFlags", 48, 3], ["buildInputs", 60, 3], ["postInstall", 74, 3], ["passthru", 79, 3], ["meta", 87, 3]]]);
 const formals$1 = { args: { lib: false, config: false, stdenv: false, fetchFromGitHub: false, cmake: false, xxd: false, perl: false, installShellFiles: false, enableAvx2: true, enableSse4_1: true, enableMpi: true, mpi: false, cudaSupport: true, cudaPackages: false, llvmPackages: false, zlib: false, bzip2: false, zstd: false, runCommand: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["enableStatic", 24, 31]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 32, 5], ["repo", 33, 5], ["tag", 34, 5], ["hash", 35, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["example", 80, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 79, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 88, 5], ["mainProgram", 89, 5], ["homepage", 90, 5], ["changelog", 91, 5], ["license", 92, 5], ["maintainers", 93, 5], ["platforms", 94, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 28, 3], ["version", 29, 3], ["src", 31, 3], ["nativeBuildInputs", 38, 3], ["cmakeFlags", 48, 3], ["buildInputs", 60, 3], ["postInstall", 74, 3], ["passthru", 79, 3], ["meta", 87, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,13 +27,13 @@ export default nix.lambda((args) => (() => {
   const bzip2 = nix.arg($, "bzip2");
   const zstd = nix.arg($, "zstd");
   const runCommand = nix.arg($, "runCommand");
-  const zstd_1 = nix.thunk(() => nix.app(nix.sel(args_1, "zstd", "override"), nix.thunk(() => ({ [nix.POS]: pos$1, enableStatic: true }))));
+  const zstd_1 = nix.thunk(() => nix.app(nix.sel(args_1, "zstd", "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], enableStatic: true }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "mmseqs2",
       version: "18-8cc5c",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "soedinglab",
           repo: "mmseqs2",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -61,9 +56,9 @@ export default nix.lambda((args) => (() => {
         ])))))),
       postInstall: "installShellCompletion --bash --cmd mmseqs $out/util/bash-completion.sh\nrm -r $out/util/\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           example: nix.thunk(() => nix.app(runCommand, "mmseqs2-test", nix.thunk(() => ({})), nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))} createdb ${nix.sel(finalAttrs, "src")}/examples/DB.fasta targetDB > $out
 ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))} createindex targetDB tmp >> $out
 ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))} easy-search ${nix.sel(finalAttrs, "src")}/examples/QUERY.fasta targetDB alnRes.m8 tmp >> $out
@@ -71,7 +66,7 @@ ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(finalAttrs, "finalPack
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Ultra fast and sensitive sequence search and clustering suite",
         mainProgram: "mmseqs",
         homepage: "https://mmseqs.com/",

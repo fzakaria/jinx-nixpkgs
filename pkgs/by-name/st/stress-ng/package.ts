@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]], [["NIX_CFLAGS_COMPILE", 57, 7]], [["description", 66, 5], ["longDescription", 67, 5], ["homepage", 91, 5], ["downloadPage", 92, 5], ["changelog", 93, 5], ["license", 94, 5], ["maintainers", 95, 5], ["platforms", 98, 5], ["mainProgram", 99, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["postPatch", 29, 3], ["buildInputs", 34, 3], ["makeFlags", 50, 3], ["env", 57, 3], ["enableParallelBuilding", 63, 3], ["meta", 65, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, attr: false, judy: false, keyutils: false, libaio: false, libapparmor: false, libbsd: false, libcap: false, "lksctp-tools": false, zlib: false, libglvnd: false, libgbm: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 23, 5], ["repo", 24, 5], ["tag", 25, 5], ["hash", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 57, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 66, 5], ["longDescription", 67, 5], ["homepage", 91, 5], ["downloadPage", 92, 5], ["changelog", 93, 5], ["license", 94, 5], ["maintainers", 95, 5], ["platforms", 98, 5], ["mainProgram", 99, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["postPatch", 29, 3], ["buildInputs", 34, 3], ["makeFlags", 50, 3], ["env", 57, 3], ["enableParallelBuilding", 63, 3], ["meta", 65, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const libglvnd = nix.arg($, "libglvnd");
   const libgbm = nix.arg($, "libgbm");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "stress-ng",
       version: "0.22.01",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ColinIanKing",
           repo: "stress-ng",
           tag: nix.thunk(() => nix.str`V${nix.sel(finalAttrs, "version")}`),
@@ -44,12 +41,12 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`BASHDIR=${nix.builtins.placeholder("out")}/share/bash-completion/completions`),
       ]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isMusl")), "-D_LINUX_SYSINFO_H=1")),
       })),
       enableParallelBuilding: nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isi686"))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Stress test a computer system",
         longDescription: "stress-ng will stress test a computer system in various selectable ways. It\nwas designed to exercise various physical subsystems of a computer as well as\nthe various operating system kernel interfaces. Stress-ng features:\n\n  * over 210 stress tests\n  * over 50 CPU specific stress tests that exercise floating point, integer,\n    bit manipulation and control flow\n  * over 20 virtual memory stress tests\n  * portable: builds on Linux, Solaris, *BSD, Minix, Android, MacOS X,\n    Debian Hurd, Haiku, Windows Subsystem for Linux and SunOs/Dilos with\n    gcc, clang, tcc and pcc.\n\nstress-ng was originally intended to make a machine work hard and trip hardware\nissues such as thermal overruns as well as operating system bugs that only\noccur when a system is being thrashed hard. Use stress-ng with caution as some\nof the tests can make a system run hot on poorly designed hardware and also can\ncause excessive system thrashing which may be difficult to stop.\n\nstress-ng can also measure test throughput rates; this can be useful to observe\nperformance changes across different operating system releases or types of\nhardware. However, it has never been intended to be used as a precise benchmark\ntest suite, so do NOT use it in this manner.\n",
         homepage: "https://github.com/ColinIanKing/stress-ng",

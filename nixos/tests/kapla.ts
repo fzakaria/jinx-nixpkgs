@@ -2,38 +2,33 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/kapla.nix", [[["enable", 9, 9], ["group", 10, 9]], [["kapla", 8, 16]], [["services", 8, 7]], [["machine", 5, 9]], [["maintainers", 24, 5], ["teams", 25, 5]], [["name", 3, 3], ["nodes", 5, 3], ["testScript", 14, 3], ["meta", 23, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/kapla.nix", [["enable", 9, 9], ["group", 10, 9]]);
-const pos$2 = nix.positions(here + "/kapla.nix", [["kapla", 8, 16]]);
-const pos$3 = nix.positions(here + "/kapla.nix", [["services", 8, 7]]);
-const pos$4 = nix.positions(here + "/kapla.nix", [["machine", 5, 9]]);
-const pos$5 = nix.positions(here + "/kapla.nix", [["maintainers", 24, 5], ["teams", 25, 5]]);
-const pos$6 = nix.positions(here + "/kapla.nix", [["name", 3, 3], ["nodes", 5, 3], ["testScript", 14, 3], ["meta", 23, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$6,
+    [nix.POS]: $pos[5],
     name: "kapla",
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$2,
-            kapla: nix.thunk(() => ({ [nix.POS]: pos$1, enable: true, group: "users" })),
+            [nix.POS]: $pos[1],
+            kapla: nix.thunk(() => ({ [nix.POS]: $pos[0], enable: true, group: "users" })),
           })),
         };
       })(), formals$2),
     })),
     testScript: "start_all()\n\nmachine.wait_for_unit(\"kapla.service\")\n\nresource = machine.succeed('echo \"Hello world!\" | kapla encode -')\nassert \"Hello world!\" in machine.succeed(f\"kapla decode {resource.strip()}\")\n",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "sempiternal-aurora"))]),
       teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "ngi"))]),
     })),

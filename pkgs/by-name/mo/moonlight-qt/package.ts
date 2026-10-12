@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["hash", 33, 5], ["fetchSubmodules", 34, 5]], [["url", 40, 7], ["hash", 41, 7]], [["updateScript", 81, 12]], [["changelog", 84, 5], ["description", 85, 5], ["homepage", 86, 5], ["license", 87, 5], ["maintainers", 88, 5], ["platforms", 92, 5], ["mainProgram", 93, 5]], [["pname", 26, 3], ["version", 27, 3], ["src", 29, 3], ["patches", 37, 3], ["nativeBuildInputs", 45, 3], ["buildInputs", 52, 3], ["qmakeFlags", 73, 3], ["postInstall", 75, 3], ["passthru", 81, 3], ["meta", 83, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, fetchpatch: false, qt6: false, "pkg-config": false, "vulkan-headers": false, SDL2: false, SDL2_ttf: false, ffmpeg_8: false, libopus: false, libplacebo: false, openssl: false, "alsa-lib": false, libpulseaudio: false, libva: false, libvdpau: false, libxkbcommon: false, wayland: false, libdrm: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["hash", 33, 5], ["fetchSubmodules", 34, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 40, 7], ["hash", 41, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 81, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["changelog", 84, 5], ["description", 85, 5], ["homepage", 86, 5], ["license", 87, 5], ["maintainers", 88, 5], ["platforms", 92, 5], ["mainProgram", 93, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 26, 3], ["version", 27, 3], ["src", 29, 3], ["patches", 37, 3], ["nativeBuildInputs", 45, 3], ["buildInputs", 52, 3], ["qmakeFlags", 73, 3], ["postInstall", 75, 3], ["passthru", 81, 3], ["meta", 83, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,11 +29,11 @@ export default nix.lambda((args) => (() => {
   const libdrm = nix.arg($, "libdrm");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "moonlight-qt",
       version: "6.1.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "moonlight-stream",
           repo: "moonlight-qt",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -46,7 +42,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/moonlight-stream/moonlight-qt/commit/76deafbd7bf868562d69061e7d6abf2612a2c7ad.patch",
             hash: "sha256-+rXdexZQpOP6yS+oTmvYVxasWxOX16uU1udN75zNX3w=",
           })))),
@@ -79,11 +75,11 @@ export default nix.lambda((args) => (() => {
       qmakeFlags: nix.thunk(() => ["CONFIG+=disable-prebuilts"]),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "mkdir $out/Applications $out/bin\nmv app/Moonlight.app $out/Applications\nln -s $out/Applications/Moonlight.app/Contents/MacOS/Moonlight $out/bin/moonlight\n")),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         changelog: nix.thunk(() => nix.str`https://github.com/moonlight-stream/moonlight-qt/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "Play your PC games on almost any device",
         homepage: "https://moonlight-stream.org",

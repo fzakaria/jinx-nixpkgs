@@ -2,16 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["hash", 25, 5]], [["exec", 51, 11], ["name", 52, 11]], [["exec", 55, 11], ["name", 56, 11]], [["exec", 59, 11], ["name", 60, 11]], [["forge-adventure", 50, 9], ["forge-adventure-editor", 54, 9], ["forge-classic", 58, 9]], [["name", 47, 7], ["exec", 48, 7], ["actions", 49, 7], ["icon", 63, 7], ["comment", 64, 7], ["desktopName", 65, 7], ["genericName", 66, 7], ["categories", 67, 7], ["keywords", 71, 7]], [["updateScript", 135, 12]], [["description", 138, 5], ["homepage", 139, 5], ["license", 140, 5], ["maintainers", 141, 5]], [["pname", 33, 3], ["version", 34, 11], ["src", 34, 19], ["patches", 34, 23], ["mvnHash", 36, 3], ["doCheck", 38, 3], ["nativeBuildInputs", 40, 3], ["desktopItems", 45, 3], ["mvnParameters", 81, 3], ["installPhase", 87, 3], ["preFixup", 106, 3], ["passthru", 135, 3], ["meta", 137, 3]]]);
 const formals$1 = { args: { coreutils: false, fetchFromGitHub: false, gnused: false, lib: false, stdenv: false, maven: false, makeWrapper: false, openjdk: false, libGL: false, "alsa-lib": false, makeDesktopItem: false, copyDesktopItems: false, imagemagick: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["exec", 51, 11], ["name", 52, 11]]);
-const pos$3 = nix.positions(here + "/package.nix", [["exec", 55, 11], ["name", 56, 11]]);
-const pos$4 = nix.positions(here + "/package.nix", [["exec", 59, 11], ["name", 60, 11]]);
-const pos$5 = nix.positions(here + "/package.nix", [["forge-adventure", 50, 9], ["forge-adventure-editor", 54, 9], ["forge-classic", 58, 9]]);
-const pos$6 = nix.positions(here + "/package.nix", [["name", 47, 7], ["exec", 48, 7], ["actions", 49, 7], ["icon", 63, 7], ["comment", 64, 7], ["desktopName", 65, 7], ["genericName", 66, 7], ["categories", 67, 7], ["keywords", 71, 7]]);
-const pos$7 = nix.positions(here + "/package.nix", [["updateScript", 135, 12]]);
-const pos$8 = nix.positions(here + "/package.nix", [["description", 138, 5], ["homepage", 139, 5], ["license", 140, 5], ["maintainers", 141, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["pname", 33, 3], ["version", 34, 11], ["src", 34, 19], ["patches", 34, 23], ["mvnHash", 36, 3], ["doCheck", 38, 3], ["nativeBuildInputs", 40, 3], ["desktopItems", 45, 3], ["mvnParameters", 81, 3], ["installPhase", 87, 3], ["preFixup", 106, 3], ["passthru", 135, 3], ["meta", 137, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,7 +23,7 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const version = "2.0.15";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "Card-Forge",
       repo: "forge",
       rev: nix.thunk(() => nix.str`forge-${version}`),
@@ -39,7 +31,7 @@ export default nix.lambda((args) => (() => {
     }))));
   const patches = nix.thunk(() => [nix.path(here, "./no-launch4j.patch")]);
   return nix.app(nix.sel(maven, "buildMavenPackage"), nix.thunk(() => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       pname: "forge-mtg",
       version: version,
       src: src,
@@ -49,14 +41,14 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [makeWrapper, copyDesktopItems, imagemagick]),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             name: "forge",
             exec: "forge",
             actions: nix.thunk(() => ({
-              [nix.POS]: pos$5,
-              "forge-adventure": nix.thunk(() => ({ [nix.POS]: pos$2, exec: "forge-adventure", name: "Play Adventure" })),
-              "forge-adventure-editor": nix.thunk(() => ({ [nix.POS]: pos$3, exec: "forge-adventure-editor", name: "Adventure Editor" })),
-              "forge-classic": nix.thunk(() => ({ [nix.POS]: pos$4, exec: "forge", name: "Play Classic" })),
+              [nix.POS]: $pos[4],
+              "forge-adventure": nix.thunk(() => ({ [nix.POS]: $pos[1], exec: "forge-adventure", name: "Play Adventure" })),
+              "forge-adventure-editor": nix.thunk(() => ({ [nix.POS]: $pos[2], exec: "forge-adventure-editor", name: "Adventure Editor" })),
+              "forge-classic": nix.thunk(() => ({ [nix.POS]: $pos[3], exec: "forge", name: "Play Classic" })),
             })),
             icon: "forge-mtg",
             comment: "Magic: the Gathering card game with rules enforcement",
@@ -102,9 +94,9 @@ runHook postInstall
     $PREFIX_CMD
 done
 `),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$7, updateScript: nix.path(here, "./update.sh") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[6], updateScript: nix.path(here, "./update.sh") })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         description: "Magic: the Gathering card game with rules enforcement",
         homepage: "https://card-forge.github.io/forge",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

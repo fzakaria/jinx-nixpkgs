@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["repo", 21, 5], ["owner", 22, 5], ["rev", 23, 5], ["hash", 24, 5]], [["url", 30, 7], ["hash", 31, 7]], [["description", 70, 5], ["longDescription", 71, 5], ["homepage", 81, 5], ["license", 82, 5], ["maintainers", 83, 5], ["mainProgram", 84, 5], ["platforms", 85, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["patches", 27, 3], ["postPatch", 36, 3], ["strictDeps", 46, 3], ["nativeBuildInputs", 48, 3], ["buildInputs", 58, 3], ["preConfigure", 62, 3], ["makeFlags", 64, 3], ["meta", 69, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch: false, autoconf: false, automake: false, gettext: false, libtool: false, python3: false, wxwidgets_3_2: false, wrapGAppsHook3: false, llvmPackages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["repo", 21, 5], ["owner", 22, 5], ["rev", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 30, 7], ["hash", 31, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 70, 5], ["longDescription", 71, 5], ["homepage", 81, 5], ["license", 82, 5], ["maintainers", 83, 5], ["mainProgram", 84, 5], ["platforms", 85, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["patches", 27, 3], ["postPatch", 36, 3], ["strictDeps", 46, 3], ["nativeBuildInputs", 48, 3], ["buildInputs", 58, 3], ["preConfigure", 62, 3], ["makeFlags", 64, 3], ["meta", 69, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   const llvmPackages = nix.arg($, "llvmPackages");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "wxhexeditor",
       version: "0.24",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           repo: "wxHexEditor",
           owner: "EUA",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,7 +32,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/EUA/wxHexEditor/commit/d0fa3ddc3e9dc9b05f90b650991ef134f74eed01.patch",
             hash: "sha256-0m+dvsPlEoRnc22O73InR+NLPWb5JiSzEwdDmyE4i/E=",
           })))),
@@ -48,7 +45,7 @@ export default nix.lambda((args) => (() => {
       preConfigure: "patchShebangs .",
       makeFlags: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "cc", "isGNU")), nix.thunk(() => ["CFLAGS=-std=c17", "OPTFLAGS=-fopenmp"]))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Hex Editor / Disk Editor for Huge Files or Devices",
         longDescription: "This is not an ordinary hex editor, but could work as low level disk editor too.\nIf you have problems with your HDD or partition, you can recover your data from HDD or\nfrom partition via editing sectors in raw hex.\nYou can edit your partition tables or you could recover files from File System by hand\nwith help of wxHexEditor.\nOr you might want to analyze your big binary files, partitions, devices... If you need\na good reverse engineer tool like a good hex editor, you welcome.\nwxHexEditor could edit HDD/SDD disk devices or partitions in raw up to exabyte sizes.\n",
         homepage: "http://www.wxhexeditor.org/",

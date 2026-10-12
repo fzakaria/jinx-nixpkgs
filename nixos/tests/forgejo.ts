@@ -2,79 +2,13 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/forgejo.nix", [[["maintainers", 34, 12]], [["memorySize", 40, 28]], [["type", 44, 36]], [["DISABLE_REGISTRATION", 45, 32]], [["SIGNING_KEY", 46, 45]], [["ENABLED", 47, 32]], [["ENABLE_PUSH_CREATE_USER", 49, 17], ["DEFAULT_PUSH_CREATE_PRIVATE", 50, 17]], [["ENABLED", 52, 32]], [["service", 45, 24], ["repository.signing", 46, 24], ["actions", 47, 24], ["repository", 48, 24], ["metrics", 52, 24]], [["TOKEN", 53, 31]], [["metrics", 53, 23]], [["enable", 42, 15], ["package", 43, 15], ["database", 44, 15], ["settings", 45, 15], ["secrets", 53, 15]], [["enable", 61, 30]], [["forgejo", 41, 22], ["openssh", 61, 22]], [["systemPackages", 55, 25]], [["enable", 68, 19], ["name", 69, 19], ["url", 70, 19], ["labels", 71, 19], ["tokenFile", 75, 19]], [["test", 67, 27]], [["package", 66, 17], ["instances", 67, 17]], [["gitea-actions-runner", 65, 38]], [["services", 65, 29]], [["inheritParentConfig", 64, 15], ["configuration", 65, 15]], [["labels", 89, 32]], [["url", 94, 27], ["uuid", 95, 27]], [["default", 93, 44]], [["connections", 93, 32]], [["runner", 89, 25], ["server", 93, 25]], [["token_url", 98, 58]], [["default", 98, 50]], [["connections", 98, 38]], [["server", 98, 31]], [["enable", 87, 23], ["settings", 88, 23], ["secrets", 98, 23]], [["test", 86, 31]], [["instances", 86, 21]], [["forgejo-runner", 85, 28]], [["ExecStart", 111, 23], ["LoadCredential", 112, 23]], [["preStart", 104, 21], ["serviceConfig", 110, 21]], [["forgejo-runner-test", 103, 36]], [["services", 103, 27]], [["services", 85, 19], ["systemd", 103, 19]], [["inheritParentConfig", 80, 15], ["configuration", 81, 15]], [["enable", 121, 17], ["type", 122, 17], ["file", 123, 17]], [["dump", 120, 46]], [["forgejo", 120, 38]], [["services", 120, 29]], [["inheritParentConfig", 119, 15], ["configuration", 120, 15]], [["gitea-actions-runner", 63, 28], ["forgejo-runner", 79, 28], ["dump", 118, 28]], [["virtualisation", 40, 13], ["services", 41, 13], ["environment", 55, 13], ["specialisation", 63, 13]], [["email", 133, 22], ["name", 134, 22]], [["defaultBranch", 135, 22]], [["user", 133, 17], ["init", 135, 17]], [["enable", 131, 15], ["config", 132, 15]], [["extraConfig", 138, 26]], [["git", 130, 22], ["ssh", 138, 22]], [["programs", 130, 13]], [["server", 37, 9], ["client", 127, 9]], [["owner", 170, 13], ["repo", 171, 13], ["rev", 172, 13], ["hash", 173, 13]], [["name", 33, 7], ["meta", 34, 7], ["nodes", 36, 7], ["testScript", 146, 7]], [["type", 339, 18]], [["args", 339, 13]], [["imports", 338, 5], ["_module", 339, 5]], [["type", 343, 18]], [["args", 343, 13]], [["imports", 342, 5], ["_module", 343, 5]], [["type", 347, 18]], [["args", 347, 13]], [["imports", 346, 5], ["_module", 347, 5]], [["mysql", 337, 3], ["sqlite3", 341, 3], ["postgres", 345, 3]]]);
 const formals$1 = { args: { runTest: false, forgejoPackage: false }, ellipsis: false };
 const formals$2 = { args: { lib: false, pkgs: false, type: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/forgejo.nix", [["maintainers", 34, 12]]);
 const formals$3 = { args: { config: false, pkgs: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/forgejo.nix", [["memorySize", 40, 28]]);
-const pos$3 = nix.positions(here + "/forgejo.nix", [["type", 44, 36]]);
-const pos$4 = nix.positions(here + "/forgejo.nix", [["DISABLE_REGISTRATION", 45, 32]]);
-const pos$5 = nix.positions(here + "/forgejo.nix", [["SIGNING_KEY", 46, 45]]);
-const pos$6 = nix.positions(here + "/forgejo.nix", [["ENABLED", 47, 32]]);
-const pos$7 = nix.positions(here + "/forgejo.nix", [["ENABLE_PUSH_CREATE_USER", 49, 17], ["DEFAULT_PUSH_CREATE_PRIVATE", 50, 17]]);
-const pos$8 = nix.positions(here + "/forgejo.nix", [["ENABLED", 52, 32]]);
-const pos$9 = nix.positions(here + "/forgejo.nix", [["service", 45, 24], ["repository.signing", 46, 24], ["actions", 47, 24], ["repository", 48, 24], ["metrics", 52, 24]]);
-const pos$10 = nix.positions(here + "/forgejo.nix", [["TOKEN", 53, 31]]);
-const pos$11 = nix.positions(here + "/forgejo.nix", [["metrics", 53, 23]]);
-const pos$12 = nix.positions(here + "/forgejo.nix", [["enable", 42, 15], ["package", 43, 15], ["database", 44, 15], ["settings", 45, 15], ["secrets", 53, 15]]);
-const pos$13 = nix.positions(here + "/forgejo.nix", [["enable", 61, 30]]);
-const pos$14 = nix.positions(here + "/forgejo.nix", [["forgejo", 41, 22], ["openssh", 61, 22]]);
-const pos$15 = nix.positions(here + "/forgejo.nix", [["systemPackages", 55, 25]]);
-const pos$16 = nix.positions(here + "/forgejo.nix", [["enable", 68, 19], ["name", 69, 19], ["url", 70, 19], ["labels", 71, 19], ["tokenFile", 75, 19]]);
-const pos$17 = nix.positions(here + "/forgejo.nix", [["test", 67, 27]]);
-const pos$18 = nix.positions(here + "/forgejo.nix", [["package", 66, 17], ["instances", 67, 17]]);
-const pos$19 = nix.positions(here + "/forgejo.nix", [["gitea-actions-runner", 65, 38]]);
-const pos$20 = nix.positions(here + "/forgejo.nix", [["services", 65, 29]]);
-const pos$21 = nix.positions(here + "/forgejo.nix", [["inheritParentConfig", 64, 15], ["configuration", 65, 15]]);
 const formals$4 = { args: { config: false }, ellipsis: true };
-const pos$22 = nix.positions(here + "/forgejo.nix", [["labels", 89, 32]]);
-const pos$23 = nix.positions(here + "/forgejo.nix", [["url", 94, 27], ["uuid", 95, 27]]);
-const pos$24 = nix.positions(here + "/forgejo.nix", [["default", 93, 44]]);
-const pos$25 = nix.positions(here + "/forgejo.nix", [["connections", 93, 32]]);
-const pos$26 = nix.positions(here + "/forgejo.nix", [["runner", 89, 25], ["server", 93, 25]]);
-const pos$27 = nix.positions(here + "/forgejo.nix", [["token_url", 98, 58]]);
-const pos$28 = nix.positions(here + "/forgejo.nix", [["default", 98, 50]]);
-const pos$29 = nix.positions(here + "/forgejo.nix", [["connections", 98, 38]]);
-const pos$30 = nix.positions(here + "/forgejo.nix", [["server", 98, 31]]);
-const pos$31 = nix.positions(here + "/forgejo.nix", [["enable", 87, 23], ["settings", 88, 23], ["secrets", 98, 23]]);
-const pos$32 = nix.positions(here + "/forgejo.nix", [["test", 86, 31]]);
-const pos$33 = nix.positions(here + "/forgejo.nix", [["instances", 86, 21]]);
-const pos$34 = nix.positions(here + "/forgejo.nix", [["forgejo-runner", 85, 28]]);
-const pos$35 = nix.positions(here + "/forgejo.nix", [["ExecStart", 111, 23], ["LoadCredential", 112, 23]]);
-const pos$36 = nix.positions(here + "/forgejo.nix", [["preStart", 104, 21], ["serviceConfig", 110, 21]]);
-const pos$37 = nix.positions(here + "/forgejo.nix", [["forgejo-runner-test", 103, 36]]);
-const pos$38 = nix.positions(here + "/forgejo.nix", [["services", 103, 27]]);
-const pos$39 = nix.positions(here + "/forgejo.nix", [["services", 85, 19], ["systemd", 103, 19]]);
-const pos$40 = nix.positions(here + "/forgejo.nix", [["inheritParentConfig", 80, 15], ["configuration", 81, 15]]);
-const pos$41 = nix.positions(here + "/forgejo.nix", [["enable", 121, 17], ["type", 122, 17], ["file", 123, 17]]);
-const pos$42 = nix.positions(here + "/forgejo.nix", [["dump", 120, 46]]);
-const pos$43 = nix.positions(here + "/forgejo.nix", [["forgejo", 120, 38]]);
-const pos$44 = nix.positions(here + "/forgejo.nix", [["services", 120, 29]]);
-const pos$45 = nix.positions(here + "/forgejo.nix", [["inheritParentConfig", 119, 15], ["configuration", 120, 15]]);
-const pos$46 = nix.positions(here + "/forgejo.nix", [["gitea-actions-runner", 63, 28], ["forgejo-runner", 79, 28], ["dump", 118, 28]]);
-const pos$47 = nix.positions(here + "/forgejo.nix", [["virtualisation", 40, 13], ["services", 41, 13], ["environment", 55, 13], ["specialisation", 63, 13]]);
 const formals$5 = { args: {  }, ellipsis: true };
-const pos$48 = nix.positions(here + "/forgejo.nix", [["email", 133, 22], ["name", 134, 22]]);
-const pos$49 = nix.positions(here + "/forgejo.nix", [["defaultBranch", 135, 22]]);
-const pos$50 = nix.positions(here + "/forgejo.nix", [["user", 133, 17], ["init", 135, 17]]);
-const pos$51 = nix.positions(here + "/forgejo.nix", [["enable", 131, 15], ["config", 132, 15]]);
-const pos$52 = nix.positions(here + "/forgejo.nix", [["extraConfig", 138, 26]]);
-const pos$53 = nix.positions(here + "/forgejo.nix", [["git", 130, 22], ["ssh", 138, 22]]);
-const pos$54 = nix.positions(here + "/forgejo.nix", [["programs", 130, 13]]);
-const pos$55 = nix.positions(here + "/forgejo.nix", [["server", 37, 9], ["client", 127, 9]]);
 const formals$6 = { args: { nodes: false }, ellipsis: true };
-const pos$56 = nix.positions(here + "/forgejo.nix", [["owner", 170, 13], ["repo", 171, 13], ["rev", 172, 13], ["hash", 173, 13]]);
-const pos$57 = nix.positions(here + "/forgejo.nix", [["name", 33, 7], ["meta", 34, 7], ["nodes", 36, 7], ["testScript", 146, 7]]);
-const pos$58 = nix.positions(here + "/forgejo.nix", [["type", 339, 18]]);
-const pos$59 = nix.positions(here + "/forgejo.nix", [["args", 339, 13]]);
-const pos$60 = nix.positions(here + "/forgejo.nix", [["imports", 338, 5], ["_module", 339, 5]]);
-const pos$61 = nix.positions(here + "/forgejo.nix", [["type", 343, 18]]);
-const pos$62 = nix.positions(here + "/forgejo.nix", [["args", 343, 13]]);
-const pos$63 = nix.positions(here + "/forgejo.nix", [["imports", 342, 5], ["_module", 343, 5]]);
-const pos$64 = nix.positions(here + "/forgejo.nix", [["type", 347, 18]]);
-const pos$65 = nix.positions(here + "/forgejo.nix", [["args", 347, 13]]);
-const pos$66 = nix.positions(here + "/forgejo.nix", [["imports", 346, 5], ["_module", 347, 5]]);
-const pos$67 = nix.positions(here + "/forgejo.nix", [["mysql", 337, 3], ["sqlite3", 341, 3], ["postgres", 345, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -89,52 +23,52 @@ export default nix.lambda((args) => (() => {
     const pkgs = nix.arg($_1, "pkgs");
     const type = nix.arg($_1, "type");
     return {
-      [nix.POS]: pos$57,
+      [nix.POS]: $pos[56],
       name: nix.thunk(() => nix.str`forgejo-${nix.sel(forgejoPackage, "version")}-${type}`),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         maintainers: nix.thunk(() => nix.sel(lib, "teams", "forgejo", "members")),
       })),
       nodes: nix.thunk(() => ({
-        [nix.POS]: pos$55,
+        [nix.POS]: $pos[54],
         server: nix.lambda((args_2) => (() => {
           const $_2 = nix.formals(args_2, formals$3);
           const config = nix.arg($_2, "config");
           const pkgs_1 = nix.arg($_2, "pkgs");
           return {
-            [nix.POS]: pos$47,
-            virtualisation: nix.thunk(() => ({ [nix.POS]: pos$2, memorySize: 2047n })),
+            [nix.POS]: $pos[46],
+            virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[1], memorySize: 2047n })),
             services: nix.thunk(() => ({
-              [nix.POS]: pos$14,
+              [nix.POS]: $pos[13],
               forgejo: nix.thunk(() => ({
-                [nix.POS]: pos$12,
+                [nix.POS]: $pos[11],
                 enable: true,
                 package: forgejoPackage,
-                database: nix.thunk(() => ({ [nix.POS]: pos$3, type: type })),
+                database: nix.thunk(() => ({ [nix.POS]: $pos[2], type: type })),
                 settings: nix.thunk(() => ({
-                  [nix.POS]: pos$9,
-                  service: nix.thunk(() => ({ [nix.POS]: pos$4, DISABLE_REGISTRATION: true })),
-                  "repository.signing": nix.thunk(() => ({ [nix.POS]: pos$5, SIGNING_KEY: signingPrivateKeyId })),
-                  actions: nix.thunk(() => ({ [nix.POS]: pos$6, ENABLED: true })),
+                  [nix.POS]: $pos[8],
+                  service: nix.thunk(() => ({ [nix.POS]: $pos[3], DISABLE_REGISTRATION: true })),
+                  "repository.signing": nix.thunk(() => ({ [nix.POS]: $pos[4], SIGNING_KEY: signingPrivateKeyId })),
+                  actions: nix.thunk(() => ({ [nix.POS]: $pos[5], ENABLED: true })),
                   repository: nix.thunk(() => ({
-                    [nix.POS]: pos$7,
+                    [nix.POS]: $pos[6],
                     ENABLE_PUSH_CREATE_USER: true,
                     DEFAULT_PUSH_CREATE_PRIVATE: false,
                   })),
-                  metrics: nix.thunk(() => ({ [nix.POS]: pos$8, ENABLED: true })),
+                  metrics: nix.thunk(() => ({ [nix.POS]: $pos[7], ENABLED: true })),
                 })),
                 secrets: nix.thunk(() => ({
-                  [nix.POS]: pos$11,
+                  [nix.POS]: $pos[10],
                   metrics: nix.thunk(() => ({
-                    [nix.POS]: pos$10,
+                    [nix.POS]: $pos[9],
                     TOKEN: nix.thunk(() => nix.app(nix.sel(pkgs_1, "writeText"), "metrics_secret", metricSecret)),
                   })),
                 })),
               })),
-              openssh: nix.thunk(() => ({ [nix.POS]: pos$13, enable: true })),
+              openssh: nix.thunk(() => ({ [nix.POS]: $pos[12], enable: true })),
             })),
             environment: nix.thunk(() => ({
-              [nix.POS]: pos$15,
+              [nix.POS]: $pos[14],
               systemPackages: nix.thunk(() => [
                 nix.thunk(() => nix.sel(config, "services", "forgejo", "package")),
                 nix.thunk(() => nix.sel(pkgs_1, "gnupg")),
@@ -143,21 +77,21 @@ export default nix.lambda((args) => (() => {
               ]),
             })),
             specialisation: nix.thunk(() => ({
-              [nix.POS]: pos$46,
+              [nix.POS]: $pos[45],
               "gitea-actions-runner": nix.thunk(() => ({
-                [nix.POS]: pos$21,
+                [nix.POS]: $pos[20],
                 inheritParentConfig: true,
                 configuration: nix.thunk(() => ({
-                  [nix.POS]: pos$20,
+                  [nix.POS]: $pos[19],
                   services: nix.thunk(() => ({
-                    [nix.POS]: pos$19,
+                    [nix.POS]: $pos[18],
                     "gitea-actions-runner": nix.thunk(() => ({
-                      [nix.POS]: pos$18,
+                      [nix.POS]: $pos[17],
                       package: nix.thunk(() => nix.sel(pkgs_1, "forgejo-runner")),
                       instances: nix.thunk(() => ({
-                        [nix.POS]: pos$17,
+                        [nix.POS]: $pos[16],
                         test: nix.thunk(() => ({
-                          [nix.POS]: pos$16,
+                          [nix.POS]: $pos[15],
                           enable: true,
                           name: "ci",
                           url: "http://localhost:3000",
@@ -170,40 +104,40 @@ export default nix.lambda((args) => (() => {
                 })),
               })),
               "forgejo-runner": nix.thunk(() => ({
-                [nix.POS]: pos$40,
+                [nix.POS]: $pos[39],
                 inheritParentConfig: true,
                 configuration: nix.lambda((args_3) => (() => {
                   const $_3 = nix.formals(args_3, formals$4);
                   const config_1 = nix.arg($_3, "config");
                   return {
-                    [nix.POS]: pos$39,
+                    [nix.POS]: $pos[38],
                     services: nix.thunk(() => ({
-                      [nix.POS]: pos$34,
+                      [nix.POS]: $pos[33],
                       "forgejo-runner": nix.thunk(() => ({
-                        [nix.POS]: pos$33,
+                        [nix.POS]: $pos[32],
                         instances: nix.thunk(() => ({
-                          [nix.POS]: pos$32,
+                          [nix.POS]: $pos[31],
                           test: nix.thunk(() => ({
-                            [nix.POS]: pos$31,
+                            [nix.POS]: $pos[30],
                             enable: true,
                             settings: nix.thunk(() => ({
-                              [nix.POS]: pos$26,
-                              runner: nix.thunk(() => ({ [nix.POS]: pos$22, labels: nix.thunk(() => ["native:host"]) })),
+                              [nix.POS]: $pos[25],
+                              runner: nix.thunk(() => ({ [nix.POS]: $pos[21], labels: nix.thunk(() => ["native:host"]) })),
                               server: nix.thunk(() => ({
-                                [nix.POS]: pos$25,
+                                [nix.POS]: $pos[24],
                                 connections: nix.thunk(() => ({
-                                  [nix.POS]: pos$24,
-                                  default: nix.thunk(() => ({ [nix.POS]: pos$23, url: "http://localhost:3000", uuid: "@UUID@" })),
+                                  [nix.POS]: $pos[23],
+                                  default: nix.thunk(() => ({ [nix.POS]: $pos[22], url: "http://localhost:3000", uuid: "@UUID@" })),
                                 })),
                               })),
                             })),
                             secrets: nix.thunk(() => ({
-                              [nix.POS]: pos$30,
+                              [nix.POS]: $pos[29],
                               server: nix.thunk(() => ({
-                                [nix.POS]: pos$29,
+                                [nix.POS]: $pos[28],
                                 connections: nix.thunk(() => ({
-                                  [nix.POS]: pos$28,
-                                  default: nix.thunk(() => ({ [nix.POS]: pos$27, token_url: "/forgejo-runner_token" })),
+                                  [nix.POS]: $pos[27],
+                                  default: nix.thunk(() => ({ [nix.POS]: $pos[26], token_url: "/forgejo-runner_token" })),
                                 })),
                               })),
                             })),
@@ -212,18 +146,18 @@ export default nix.lambda((args) => (() => {
                       })),
                     })),
                     systemd: nix.thunk(() => ({
-                      [nix.POS]: pos$38,
+                      [nix.POS]: $pos[37],
                       services: nix.thunk(() => ({
-                        [nix.POS]: pos$37,
+                        [nix.POS]: $pos[36],
                         "forgejo-runner-test": nix.thunk(() => ({
-                          [nix.POS]: pos$36,
+                          [nix.POS]: $pos[35],
                           preStart: nix.thunk(() => nix.str`cp -v ${nix.sel(config_1, "services", "forgejo-runner", "instances", "test", "configFile")} ./config.yaml
 chmod u+w ./config.yaml
 ${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(pkgs_1, "replace-secret")))} "@UUID@" "$CREDENTIALS_DIRECTORY/UUID" ./config.yaml
 chmod u-w ./config.yaml
 `),
                           serviceConfig: nix.thunk(() => ({
-                            [nix.POS]: pos$35,
+                            [nix.POS]: $pos[34],
                             ExecStart: nix.thunk(() => nix.app(nix.sel(lib, "mkForce"), nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getExe"), nix.thunk(() => nix.sel(config_1, "services", "forgejo-runner", "package")))} daemon --config ./config.yaml`))),
                             LoadCredential: nix.thunk(() => ["UUID:/forgejo-runner_uuid"]),
                           })),
@@ -234,15 +168,15 @@ chmod u-w ./config.yaml
                 })(), formals$4),
               })),
               dump: nix.thunk(() => ({
-                [nix.POS]: pos$45,
+                [nix.POS]: $pos[44],
                 inheritParentConfig: true,
                 configuration: nix.thunk(() => ({
-                  [nix.POS]: pos$44,
+                  [nix.POS]: $pos[43],
                   services: nix.thunk(() => ({
-                    [nix.POS]: pos$43,
+                    [nix.POS]: $pos[42],
                     forgejo: nix.thunk(() => ({
-                      [nix.POS]: pos$42,
-                      dump: nix.thunk(() => ({ [nix.POS]: pos$41, enable: true, type: "tar.zst", file: "dump.tar.zst" })),
+                      [nix.POS]: $pos[41],
+                      dump: nix.thunk(() => ({ [nix.POS]: $pos[40], enable: true, type: "tar.zst", file: "dump.tar.zst" })),
                     })),
                   })),
                 })),
@@ -253,20 +187,20 @@ chmod u-w ./config.yaml
         client: nix.lambda((args_2) => (() => {
           const $_2 = nix.formals(args_2, formals$5);
           return {
-            [nix.POS]: pos$54,
+            [nix.POS]: $pos[53],
             programs: nix.thunk(() => ({
-              [nix.POS]: pos$53,
+              [nix.POS]: $pos[52],
               git: nix.thunk(() => ({
-                [nix.POS]: pos$51,
+                [nix.POS]: $pos[50],
                 enable: true,
                 config: nix.thunk(() => ({
-                  [nix.POS]: pos$50,
-                  user: nix.thunk(() => ({ [nix.POS]: pos$48, email: "test@localhost", name: "test" })),
-                  init: nix.thunk(() => ({ [nix.POS]: pos$49, defaultBranch: "main" })),
+                  [nix.POS]: $pos[49],
+                  user: nix.thunk(() => ({ [nix.POS]: $pos[47], email: "test@localhost", name: "test" })),
+                  init: nix.thunk(() => ({ [nix.POS]: $pos[48], defaultBranch: "main" })),
                 })),
               })),
               ssh: nix.thunk(() => ({
-                [nix.POS]: pos$52,
+                [nix.POS]: $pos[51],
                 extraConfig: "Host *\n  StrictHostKeyChecking no\n  IdentityFile ~/.ssh/privk\n",
               })),
             })),
@@ -288,7 +222,7 @@ chmod u-w ./config.yaml
         const remoteUriCheckoutAction = "forgejo@server:test/checkout";
         const actionsWorkflowYaml = "run-name: dummy workflow\non:\n  push:\njobs:\n  cat:\n    runs-on: native\n    steps:\n      - uses: http://localhost:3000/test/checkout@main\n      - run: cat testfile\n";
         const checkoutActionSource = nix.thunk(() => nix.app(nix.sel(pkgs, "fetchFromGitHub"), nix.thunk(() => ({
-            [nix.POS]: pos$56,
+            [nix.POS]: $pos[55],
             owner: "actions",
             repo: "checkout",
             rev: "v4.1.1",
@@ -455,29 +389,29 @@ with subtest("Testing backup service"):
     };
   })(), formals$2);
   return {
-    [nix.POS]: pos$67,
+    [nix.POS]: $pos[66],
     mysql: nix.thunk(() => nix.app(runTest, nix.thunk(() => ({
-        [nix.POS]: pos$60,
+        [nix.POS]: $pos[59],
         imports: nix.thunk(() => [base]),
         _module: nix.thunk(() => ({
-          [nix.POS]: pos$59,
-          args: nix.thunk(() => ({ [nix.POS]: pos$58, type: "mysql" })),
+          [nix.POS]: $pos[58],
+          args: nix.thunk(() => ({ [nix.POS]: $pos[57], type: "mysql" })),
         })),
       })))),
     sqlite3: nix.thunk(() => nix.app(runTest, nix.thunk(() => ({
-        [nix.POS]: pos$63,
+        [nix.POS]: $pos[62],
         imports: nix.thunk(() => [base]),
         _module: nix.thunk(() => ({
-          [nix.POS]: pos$62,
-          args: nix.thunk(() => ({ [nix.POS]: pos$61, type: "sqlite3" })),
+          [nix.POS]: $pos[61],
+          args: nix.thunk(() => ({ [nix.POS]: $pos[60], type: "sqlite3" })),
         })),
       })))),
     postgres: nix.thunk(() => nix.app(runTest, nix.thunk(() => ({
-        [nix.POS]: pos$66,
+        [nix.POS]: $pos[65],
         imports: nix.thunk(() => [base]),
         _module: nix.thunk(() => ({
-          [nix.POS]: pos$65,
-          args: nix.thunk(() => ({ [nix.POS]: pos$64, type: "postgres" })),
+          [nix.POS]: $pos[64],
+          args: nix.thunk(() => ({ [nix.POS]: $pos[63], type: "postgres" })),
         })),
       })))),
   };

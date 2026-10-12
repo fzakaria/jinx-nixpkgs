@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["hash", 25, 5]], [["description", 60, 5], ["mainProgram", 61, 5], ["longDescription", 62, 5], ["homepage", 69, 5], ["license", 70, 5], ["maintainers", 71, 5]], [["pname", 16, 3], ["version", 17, 3], ["pyproject", 19, 3], ["src", 21, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 39, 3], ["propagatedBuildInputs", 43, 3], ["nativeCheckInputs", 49, 3], ["dontWrapGApps", 53, 3], ["preFixup", 55, 3], ["meta", 59, 3]]]);
 const formals$1 = { args: { fetchFromGitHub: false, "gobject-introspection": false, lib: false, libadwaita: false, python3Packages: false, wrapGAppsHook4: false, meson: false, ninja: false, "desktop-file-utils": false, "pkg-config": false, "appstream-glib": false, gtk4: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 60, 5], ["mainProgram", 61, 5], ["longDescription", 62, 5], ["homepage", 69, 5], ["license", 70, 5], ["maintainers", 71, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["pyproject", 19, 3], ["src", 21, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 39, 3], ["propagatedBuildInputs", 43, 3], ["nativeCheckInputs", 49, 3], ["dontWrapGApps", 53, 3], ["preFixup", 55, 3], ["meta", 59, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const appstream_glib = nix.arg($, "appstream-glib");
   const gtk4 = nix.arg($, "gtk4");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "conjure",
       version: "0.1.2",
       pyproject: false,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "nate-xyz",
           repo: "conjure",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -59,7 +57,7 @@ export default nix.lambda((args) => (() => {
       dontWrapGApps: true,
       preFixup: "makeWrapperArgs+=(\"${gappsWrapperArgs[@]}\")\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Magically transform your images",
         mainProgram: "conjure",
         longDescription: "Resize, crop, rotate, flip images, apply various filters and effects,\nadjust levels and brightness, and much more. An intuitive tool for designers,\nartists, or just someone who wants to enhance their images.\nBuilt on top of the popular image processing library, ImageMagick with python\nbindings from Wand.\n",

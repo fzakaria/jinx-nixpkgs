@@ -2,19 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/fileset.nix", [[["type", 20, 26]], [["default", 25, 34]], [["fileset", 20, 5], ["filesetCardinal", 25, 5]], [["ok1", 29, 13], ["ok2", 30, 13], ["ok3", 31, 13], ["ok5", 36, 13], ["err1", 38, 13], ["err2", 39, 13], ["err3", 40, 13], ["err4", 41, 13]], [["fileset", 29, 5]], [["ok4", 46, 15]], [["fileset", 46, 7]], [["ok4", 47, 15]], [["fileset", 47, 7]], [["ok4", 48, 15]], [["fileset", 48, 7]], [["options", 19, 3], ["config", 28, 3], ["imports", 45, 3]]]);
 const formals$1 = { args: { config: false, lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/fileset.nix", [["type", 20, 26]]);
-const pos$2 = nix.positions(here + "/fileset.nix", [["default", 25, 34]]);
-const pos$3 = nix.positions(here + "/fileset.nix", [["fileset", 20, 5], ["filesetCardinal", 25, 5]]);
-const pos$4 = nix.positions(here + "/fileset.nix", [["ok1", 29, 13], ["ok2", 30, 13], ["ok3", 31, 13], ["ok5", 36, 13], ["err1", 38, 13], ["err2", 39, 13], ["err3", 40, 13], ["err4", 41, 13]]);
-const pos$5 = nix.positions(here + "/fileset.nix", [["fileset", 29, 5]]);
-const pos$6 = nix.positions(here + "/fileset.nix", [["ok4", 46, 15]]);
-const pos$7 = nix.positions(here + "/fileset.nix", [["fileset", 46, 7]]);
-const pos$8 = nix.positions(here + "/fileset.nix", [["ok4", 47, 15]]);
-const pos$9 = nix.positions(here + "/fileset.nix", [["fileset", 47, 7]]);
-const pos$10 = nix.positions(here + "/fileset.nix", [["ok4", 48, 15]]);
-const pos$11 = nix.positions(here + "/fileset.nix", [["fileset", 48, 7]]);
-const pos$12 = nix.positions(here + "/fileset.nix", [["options", 19, 3], ["config", 28, 3], ["imports", 45, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,25 +19,25 @@ export default nix.lambda((args) => (() => {
   const unions = nix.thunk(() => nix.attr(from, "unions"));
   const toList = nix.thunk(() => nix.attr(from, "toList"));
   return {
-    [nix.POS]: pos$12,
+    [nix.POS]: $pos[11],
     options: nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       fileset: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           type: nix.thunk(() => (() => {
             const w = nix.withScope(types, null);
             return nix.app(nix.lookup(w, "lazyAttrsOf"), nix.thunk(() => nix.lookup(w, "fileset")));
           })()),
         })))),
       filesetCardinal: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           default: nix.thunk(() => nix.app(mapAttrs, (_) => (fs) => nix.app(length, nix.thunk(() => nix.app(toList, fs))), nix.thunk(() => nix.sel(config, "fileset")))),
         })))),
     })),
     config: nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       fileset: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         ok1: empty,
         ok2: nix.path(here, "./fileset"),
         ok3: nix.thunk(() => nix.app(unions, nix.thunk(() => [empty, nix.path(here, "./fileset")]))),
@@ -61,16 +50,16 @@ export default nix.lambda((args) => (() => {
     })),
     imports: nix.thunk(() => [
       nix.thunk(() => ({
-        [nix.POS]: pos$7,
-        fileset: nix.thunk(() => ({ [nix.POS]: pos$6, ok4: nix.path(here, "./fileset") })),
+        [nix.POS]: $pos[6],
+        fileset: nix.thunk(() => ({ [nix.POS]: $pos[5], ok4: nix.path(here, "./fileset") })),
       })),
       nix.thunk(() => ({
-        [nix.POS]: pos$9,
-        fileset: nix.thunk(() => ({ [nix.POS]: pos$8, ok4: empty })),
+        [nix.POS]: $pos[8],
+        fileset: nix.thunk(() => ({ [nix.POS]: $pos[7], ok4: empty })),
       })),
       nix.thunk(() => ({
-        [nix.POS]: pos$11,
-        fileset: nix.thunk(() => ({ [nix.POS]: pos$10, ok4: nix.path(here, "./fileset") })),
+        [nix.POS]: $pos[10],
+        fileset: nix.thunk(() => ({ [nix.POS]: $pos[9], ok4: nix.path(here, "./fileset") })),
       })),
     ]),
   };

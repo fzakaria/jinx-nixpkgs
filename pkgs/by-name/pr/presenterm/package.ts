@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]], [["NIX_CFLAGS_LINK", 36, 5]], [["updateScript", 50, 5]], [["description", 54, 5], ["changelog", 55, 5], ["homepage", 56, 5], ["license", 57, 5], ["maintainers", 58, 5], ["mainProgram", 62, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["nativeBuildInputs", 25, 3], ["cargoHash", 33, 3], ["env", 35, 3], ["checkFlags", 39, 3], ["nativeInstallCheckInputs", 44, 3], ["doInstallCheck", 47, 3], ["passthru", 49, 3], ["meta", 53, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, rustPlatform: false, fetchFromGitHub: false, makeBinaryWrapper: false, lld: false, versionCheckHook: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_LINK", 36, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 50, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 54, 5], ["changelog", 55, 5], ["homepage", 56, 5], ["license", 57, 5], ["maintainers", 58, 5], ["mainProgram", 62, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["nativeBuildInputs", 25, 3], ["cargoHash", 33, 3], ["env", 35, 3], ["checkFlags", 39, 3], ["nativeInstallCheckInputs", 44, 3], ["doInstallCheck", 47, 3], ["passthru", 49, 3], ["meta", 53, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const isDarwin = nix.thunk(() => nix.attr(from, "isDarwin"));
   const isx86_64 = nix.thunk(() => nix.attr(from, "isx86_64"));
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "presenterm",
       version: "0.16.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "mfontanini",
           repo: "presenterm",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,16 +31,16 @@ export default nix.lambda((args) => (() => {
         })))),
       nativeBuildInputs: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optionals"), isDarwin, nix.thunk(() => [makeBinaryWrapper])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(isDarwin) && nix.asBool(isx86_64))), nix.thunk(() => [lld])))),
       cargoHash: "sha256-OlZXf8Wg32mXGDGbavLVf1ELoqqSmc8z9DNpvGOfAJ8=",
-      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(isDarwin) && nix.asBool(isx86_64))), nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_LINK: "-fuse-ld=lld" })))),
+      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(isDarwin) && nix.asBool(isx86_64))), nix.thunk(() => ({ [nix.POS]: $pos[1], NIX_CFLAGS_LINK: "-fuse-ld=lld" })))),
       checkFlags: nix.thunk(() => ["--skip=external_snippet"]),
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Terminal based slideshow tool",
         changelog: nix.thunk(() => nix.str`https://github.com/mfontanini/presenterm/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         homepage: "https://github.com/mfontanini/presenterm",

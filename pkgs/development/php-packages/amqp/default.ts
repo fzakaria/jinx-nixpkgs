@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["sha256", 19, 5]], [["AMQP_DIR", 24, 7]], [["changelog", 27, 5], ["description", 28, 5], ["license", 29, 5], ["homepage", 30, 5], ["teams", 31, 5]], [["version", 12, 11], ["pname", 13, 3], ["src", 15, 3], ["buildInputs", 22, 3], ["env", 24, 3], ["meta", 26, 3]]]);
 const formals$1 = { args: { buildPecl: false, lib: false, "rabbitmq-c": false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["sha256", 19, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["AMQP_DIR", 24, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["changelog", 27, 5], ["description", 28, 5], ["license", 29, 5], ["homepage", 30, 5], ["teams", 31, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["version", 12, 11], ["pname", 13, 3], ["src", 15, 3], ["buildInputs", 22, 3], ["env", 24, 3], ["meta", 26, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,20 +13,20 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const version = "2.2.0";
   return nix.app(buildPecl, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       version: version,
       pname: "amqp",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "php-amqp",
           repo: "php-amqp",
           rev: nix.thunk(() => nix.str`v${version}`),
           sha256: "sha256-HgwuQWxJFno24yo26qM30Qb8s3L9mYVntvMxC2MYxTk=",
         })))),
       buildInputs: nix.thunk(() => [rabbitmq_c]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, AMQP_DIR: rabbitmq_c })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], AMQP_DIR: rabbitmq_c })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         changelog: nix.thunk(() => nix.str`https://github.com/php-amqp/php-amqp/releases/tag/v${version}`),
         description: "PHP extension to communicate with any AMQP compliant server",
         license: nix.thunk(() => nix.sel(lib, "licenses", "php301")),

@@ -2,95 +2,70 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
-const pos$1 = nix.positions(here + "/openvswitch.nix", [["vlans", 6, 22]]);
-const pos$2 = nix.positions(here + "/openvswitch.nix", [["enable", 11, 18]]);
-const pos$3 = nix.positions(here + "/openvswitch.nix", [["eth1", 15, 13]]);
-const pos$4 = nix.positions(here + "/openvswitch.nix", [["interfaces", 14, 11]]);
-const pos$5 = nix.positions(here + "/openvswitch.nix", [["vs0", 13, 19]]);
-const pos$6 = nix.positions(here + "/openvswitch.nix", [["useNetworkd", 9, 9], ["useDHCP", 10, 9], ["firewall", 11, 9], ["vswitches", 13, 9]]);
-const pos$7 = nix.positions(here + "/openvswitch.nix", [["Address", 23, 23]]);
-const pos$8 = nix.positions(here + "/openvswitch.nix", [["name", 22, 9], ["networkConfig", 23, 9]]);
-const pos$9 = nix.positions(here + "/openvswitch.nix", [["40-vs0", 21, 32]]);
-const pos$10 = nix.positions(here + "/openvswitch.nix", [["networks", 21, 23]]);
-const pos$11 = nix.positions(here + "/openvswitch.nix", [["network", 21, 15]]);
-const pos$12 = nix.positions(here + "/openvswitch.nix", [["virtualisation", 6, 7], ["networking", 8, 7], ["systemd", 21, 7]]);
-const pos$13 = nix.positions(here + "/openvswitch.nix", [["vlans", 29, 22]]);
-const pos$14 = nix.positions(here + "/openvswitch.nix", [["enable", 34, 18]]);
-const pos$15 = nix.positions(here + "/openvswitch.nix", [["eth1", 38, 13]]);
-const pos$16 = nix.positions(here + "/openvswitch.nix", [["interfaces", 37, 11]]);
-const pos$17 = nix.positions(here + "/openvswitch.nix", [["vs0", 36, 19]]);
-const pos$18 = nix.positions(here + "/openvswitch.nix", [["useNetworkd", 32, 9], ["useDHCP", 33, 9], ["firewall", 34, 9], ["vswitches", 36, 9]]);
-const pos$19 = nix.positions(here + "/openvswitch.nix", [["Address", 46, 23]]);
-const pos$20 = nix.positions(here + "/openvswitch.nix", [["name", 45, 9], ["networkConfig", 46, 9]]);
-const pos$21 = nix.positions(here + "/openvswitch.nix", [["40-vs0", 44, 32]]);
-const pos$22 = nix.positions(here + "/openvswitch.nix", [["networks", 44, 23]]);
-const pos$23 = nix.positions(here + "/openvswitch.nix", [["network", 44, 15]]);
-const pos$24 = nix.positions(here + "/openvswitch.nix", [["virtualisation", 29, 7], ["networking", 31, 7], ["systemd", 44, 7]]);
-const pos$25 = nix.positions(here + "/openvswitch.nix", [["node1", 5, 5], ["node2", 28, 5]]);
-const pos$26 = nix.positions(here + "/openvswitch.nix", [["name", 2, 3], ["nodes", 4, 3], ["testScript", 51, 3]]);
+const $pos = nix.positions(here + "/openvswitch.nix", [[["vlans", 6, 22]], [["enable", 11, 18]], [["eth1", 15, 13]], [["interfaces", 14, 11]], [["vs0", 13, 19]], [["useNetworkd", 9, 9], ["useDHCP", 10, 9], ["firewall", 11, 9], ["vswitches", 13, 9]], [["Address", 23, 23]], [["name", 22, 9], ["networkConfig", 23, 9]], [["40-vs0", 21, 32]], [["networks", 21, 23]], [["network", 21, 15]], [["virtualisation", 6, 7], ["networking", 8, 7], ["systemd", 21, 7]], [["vlans", 29, 22]], [["enable", 34, 18]], [["eth1", 38, 13]], [["interfaces", 37, 11]], [["vs0", 36, 19]], [["useNetworkd", 32, 9], ["useDHCP", 33, 9], ["firewall", 34, 9], ["vswitches", 36, 9]], [["Address", 46, 23]], [["name", 45, 9], ["networkConfig", 46, 9]], [["40-vs0", 44, 32]], [["networks", 44, 23]], [["network", 44, 15]], [["virtualisation", 29, 7], ["networking", 31, 7], ["systemd", 44, 7]], [["node1", 5, 5], ["node2", 28, 5]], [["name", 2, 3], ["nodes", 4, 3], ["testScript", 51, 3]]]);
 
 export default nix.thunk(() => ({
-  [nix.POS]: pos$26,
+  [nix.POS]: $pos[25],
   name: "openvswitch",
   nodes: nix.thunk(() => ({
-    [nix.POS]: pos$25,
+    [nix.POS]: $pos[24],
     node1: nix.thunk(() => ({
-      [nix.POS]: pos$12,
-      virtualisation: nix.thunk(() => ({ [nix.POS]: pos$1, vlans: nix.thunk(() => [1n]) })),
+      [nix.POS]: $pos[11],
+      virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[0], vlans: nix.thunk(() => [1n]) })),
       networking: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         useNetworkd: true,
         useDHCP: false,
-        firewall: nix.thunk(() => ({ [nix.POS]: pos$2, enable: false })),
+        firewall: nix.thunk(() => ({ [nix.POS]: $pos[1], enable: false })),
         vswitches: nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           vs0: nix.thunk(() => ({
-            [nix.POS]: pos$4,
-            interfaces: nix.thunk(() => ({ [nix.POS]: pos$3, eth1: nix.thunk(() => ({})) })),
+            [nix.POS]: $pos[3],
+            interfaces: nix.thunk(() => ({ [nix.POS]: $pos[2], eth1: nix.thunk(() => ({})) })),
           })),
         })),
       })),
       systemd: nix.thunk(() => ({
-        [nix.POS]: pos$11,
+        [nix.POS]: $pos[10],
         network: nix.thunk(() => ({
-          [nix.POS]: pos$10,
+          [nix.POS]: $pos[9],
           networks: nix.thunk(() => ({
-            [nix.POS]: pos$9,
+            [nix.POS]: $pos[8],
             "40-vs0": nix.thunk(() => ({
-              [nix.POS]: pos$8,
+              [nix.POS]: $pos[7],
               name: "vs0",
-              networkConfig: nix.thunk(() => ({ [nix.POS]: pos$7, Address: "10.0.0.1/24" })),
+              networkConfig: nix.thunk(() => ({ [nix.POS]: $pos[6], Address: "10.0.0.1/24" })),
             })),
           })),
         })),
       })),
     })),
     node2: nix.thunk(() => ({
-      [nix.POS]: pos$24,
-      virtualisation: nix.thunk(() => ({ [nix.POS]: pos$13, vlans: nix.thunk(() => [1n]) })),
+      [nix.POS]: $pos[23],
+      virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[12], vlans: nix.thunk(() => [1n]) })),
       networking: nix.thunk(() => ({
-        [nix.POS]: pos$18,
+        [nix.POS]: $pos[17],
         useNetworkd: true,
         useDHCP: false,
-        firewall: nix.thunk(() => ({ [nix.POS]: pos$14, enable: false })),
+        firewall: nix.thunk(() => ({ [nix.POS]: $pos[13], enable: false })),
         vswitches: nix.thunk(() => ({
-          [nix.POS]: pos$17,
+          [nix.POS]: $pos[16],
           vs0: nix.thunk(() => ({
-            [nix.POS]: pos$16,
-            interfaces: nix.thunk(() => ({ [nix.POS]: pos$15, eth1: nix.thunk(() => ({})) })),
+            [nix.POS]: $pos[15],
+            interfaces: nix.thunk(() => ({ [nix.POS]: $pos[14], eth1: nix.thunk(() => ({})) })),
           })),
         })),
       })),
       systemd: nix.thunk(() => ({
-        [nix.POS]: pos$23,
+        [nix.POS]: $pos[22],
         network: nix.thunk(() => ({
-          [nix.POS]: pos$22,
+          [nix.POS]: $pos[21],
           networks: nix.thunk(() => ({
-            [nix.POS]: pos$21,
+            [nix.POS]: $pos[20],
             "40-vs0": nix.thunk(() => ({
-              [nix.POS]: pos$20,
+              [nix.POS]: $pos[19],
               name: "vs0",
-              networkConfig: nix.thunk(() => ({ [nix.POS]: pos$19, Address: "10.0.0.2/24" })),
+              networkConfig: nix.thunk(() => ({ [nix.POS]: $pos[18], Address: "10.0.0.2/24" })),
             })),
           })),
         })),

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 55, 5], ["repo", 56, 5], ["rev", 57, 5], ["postCheckout", 58, 5], ["hash", 64, 5]], [["extraArgs", 68, 5]], [["updateScript", 67, 12]], [["description", 169, 5], ["homepage", 170, 5], ["maintainers", 171, 5], ["license", 174, 5], ["platforms", 193, 5], ["mainProgram", 197, 5]], [["pname", 51, 3], ["version", 52, 3], ["src", 54, 3], ["passthru", 67, 3], ["preConfigure", 74, 3], ["cmakeFlags", 83, 3], ["dontWrapGApps", 111, 3], ["nativeBuildInputs", 113, 3], ["buildInputs", 121, 3], ["doInstallCheck", 155, 3], ["preFixup", 157, 3], ["postInstall", 161, 3], ["meta", 168, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, "nix-update-script": false, cmake: false, "pkg-config": false, git: false, qt6Packages: false, openal: false, glew: false, "vulkan-headers": false, "vulkan-loader": false, libpng: false, libsm: false, ffmpeg: false, libevdev: false, libusb1: false, zlib: false, curl: false, python3: false, pugixml: false, protobuf_33: false, llvm: false, cubeb: false, opencv: false, enableDiscordRpc: true, faudioSupport: true, faudio: false, sdl3: false, waylandSupport: true, wayland: false, wrapGAppsHook3: false, miniupnpc: false, rtmidi: false, glslang: false, zstd: false, hidapi: false, "vulkan-memory-allocator": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 55, 5], ["repo", 56, 5], ["rev", 57, 5], ["postCheckout", 58, 5], ["hash", 64, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["extraArgs", 68, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 67, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 169, 5], ["homepage", 170, 5], ["maintainers", 171, 5], ["license", 174, 5], ["platforms", 193, 5], ["mainProgram", 197, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 51, 3], ["version", 52, 3], ["src", 54, 3], ["passthru", 67, 3], ["preConfigure", 74, 3], ["cmakeFlags", 83, 3], ["dontWrapGApps", 111, 3], ["nativeBuildInputs", 113, 3], ["buildInputs", 121, 3], ["doInstallCheck", 155, 3], ["preFixup", 157, 3], ["postInstall", 161, 3], ["meta", 168, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -54,11 +50,11 @@ export default nix.lambda((args) => (() => {
   const wrapQtAppsHook = nix.thunk(() => nix.attr(qt6Packages, "wrapQtAppsHook"));
   const qtwayland = nix.thunk(() => nix.attr(qt6Packages, "qtwayland"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "rpcs3",
       version: "0.0.42-unstable-2026-08-15",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "RPCS3",
           repo: "rpcs3",
           rev: "fc93d932c8560f763f5223c0a4165cc53bceeb3f",
@@ -66,9 +62,9 @@ export default nix.lambda((args) => (() => {
           hash: "sha256-3sGcpYfaxZNa6/CIRxylSf/EL+ievwIeQzEKYDOUNy8=",
         })))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             extraArgs: nix.thunk(() => ["--version=branch", "--use-github-releases"]),
           })))),
       })),
@@ -144,7 +140,7 @@ install -D ${nix.path(here, "./99-ds4-controllers.rules")} $out/etc/udev/rules.d
 install -D ${nix.path(here, "./99-dualsense-controllers.rules")} $out/etc/udev/rules.d/99-dualsense-controllers.rules
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "PS3 emulator/debugger",
         homepage: "https://rpcs3.net/",
         maintainers: nix.thunk(() => (() => {

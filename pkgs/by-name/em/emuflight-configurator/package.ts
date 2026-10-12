@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 19, 5], ["sha256", 20, 5]], [["name", 45, 7], ["exec", 46, 7], ["icon", 47, 7], ["comment", 48, 7], ["desktopName", 49, 7], ["genericName", 50, 7]], [["description", 55, 5], ["mainProgram", 56, 5], ["longDescription", 57, 5], ["homepage", 63, 5], ["sourceProvenance", 64, 5], ["license", 65, 5], ["platforms", 66, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["nativeBuildInputs", 23, 3], ["buildInputs", 29, 3], ["installPhase", 34, 3], ["desktopItems", 43, 3], ["meta", 54, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, unzip: false, makeDesktopItem: false, copyDesktopItems: false, nwjs: false, wrapGAppsHook3: false, "gsettings-desktop-schemas": false, gtk3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 19, 5], ["sha256", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 45, 7], ["exec", 46, 7], ["icon", 47, 7], ["comment", 48, 7], ["desktopName", 49, 7], ["genericName", 50, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 55, 5], ["mainProgram", 56, 5], ["longDescription", 57, 5], ["homepage", 63, 5], ["sourceProvenance", 64, 5], ["license", 65, 5], ["platforms", 66, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["nativeBuildInputs", 23, 3], ["buildInputs", 29, 3], ["installPhase", 34, 3], ["desktopItems", 43, 3], ["meta", 54, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const pname = "emuflight-configurator";
       const version = "0.4.3";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/emuflight/EmuConfigurator/releases/download/${version}/emuflight-configurator_${version}_linux64.zip`),
           sha256: "sha256-7NcN1wF3BUClJBVm13VnV80N/+a2jAEIRqB/x9+GDEg=",
         }))));
@@ -39,7 +36,7 @@ makeWrapper ${nwjs}/bin/nw $out/bin/${pname} --add-flags $out/share/${pname}
 `);
       const desktopItems = nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: pname,
             exec: pname,
             icon: pname,
@@ -49,7 +46,7 @@ makeWrapper ${nwjs}/bin/nw $out/bin/${pname} --add-flags $out/share/${pname}
           })))),
       ]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Emuflight flight control system configuration tool",
         mainProgram: "emuflight-configurator",
         longDescription: "A crossplatform configuration tool for the Emuflight flight control system.\nVarious types of aircraft are supported by the tool and by Emuflight, e.g.\nquadcopters, hexacopters, octocopters and fixed-wing aircraft.\nThe application allows you to configure the Emuflight software running on any supported Emuflight target.\n",
@@ -62,7 +59,7 @@ makeWrapper ${nwjs}/bin/nw $out/bin/${pname} --add-flags $out/share/${pname}
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

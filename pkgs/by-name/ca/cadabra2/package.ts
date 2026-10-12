@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 48, 5], ["repo", 49, 5], ["tag", 50, 5], ["fetchSubmodules", 51, 5], ["hash", 52, 5]], [["name", 59, 7], ["url", 60, 7], ["extraPrefix", 61, 7], ["stripLen", 62, 7], ["hash", 63, 7]], [["updateScript", 137, 12]], [["description", 140, 5], ["changelog", 141, 5], ["homepage", 142, 5], ["license", 143, 5], ["maintainers", 144, 5], ["mainProgram", 145, 5], ["platforms", 146, 5], ["broken", 148, 5]], [["pname", 44, 3], ["version", 45, 3], ["src", 47, 3], ["patches", 55, 3], ["postPatch", 67, 3], ["cmakeFlags", 72, 3], ["nativeBuildInputs", 87, 3], ["buildInputs", 95, 3], ["propagatedBuildInputs", 107, 3], ["preFixup", 114, 3], ["checkInputs", 128, 3], ["nativeCheckInputs", 129, 3], ["doCheck", 130, 3], ["nativeInstallCheckInputs", 132, 3], ["versionCheckProgramArg", 133, 3], ["doInstallCheck", 135, 3], ["passthru", 137, 3], ["meta", 139, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch2: false, cmake: false, "pkg-config": false, makeBinaryWrapper: false, wrapGAppsHook3: false, "nix-update-script": false, boost: false, glibmm_2_4: false, gmpxx: false, gtkmm3: false, jsoncpp: false, onetbb: false, openssl: false, python3: false, sqlite: false, catch2_3: false, writableTmpDirAsHomeHook: false, versionCheckHook: false, enableMathematica: true, enableBuildAsCppLibrary: true, enableJupyter: true, enablePyJupyter: true, enableFrontend: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 48, 5], ["repo", 49, 5], ["tag", 50, 5], ["fetchSubmodules", 51, 5], ["hash", 52, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 59, 7], ["url", 60, 7], ["extraPrefix", 61, 7], ["stripLen", 62, 7], ["hash", 63, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 137, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 140, 5], ["changelog", 141, 5], ["homepage", 142, 5], ["license", 143, 5], ["maintainers", 144, 5], ["mainProgram", 145, 5], ["platforms", 146, 5], ["broken", 148, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 44, 3], ["version", 45, 3], ["src", 47, 3], ["patches", 55, 3], ["postPatch", 67, 3], ["cmakeFlags", 72, 3], ["nativeBuildInputs", 87, 3], ["buildInputs", 95, 3], ["propagatedBuildInputs", 107, 3], ["preFixup", 114, 3], ["checkInputs", 128, 3], ["nativeCheckInputs", 129, 3], ["doCheck", 130, 3], ["nativeInstallCheckInputs", 132, 3], ["versionCheckProgramArg", 133, 3], ["doInstallCheck", 135, 3], ["passthru", 137, 3], ["meta", 139, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -39,11 +35,11 @@ export default nix.lambda((args) => (() => {
   const enableFrontend = nix.argOr($, "enableFrontend", () => true);
   nix.assert_(nix.app(nix.sel(lib, "assertMsg"), nix.thunk(() => (!nix.asBool(enableMathematica) || nix.asBool(!nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))))), "Mathematica scalar backend does not yet work on macOS."), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/ca/cadabra2/package.nix:39:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "cadabra2",
       version: "2.5.14-p1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "kpeeters",
           repo: "cadabra2",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -52,7 +48,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "microtex-fix-recent-fontconfig-build.patch",
             url: "https://github.com/kpeeters/MicroTeX/commit/7944eb496dec1b7ff8af4c13e0cfee279eea30b8.patch?full_index=1",
             extraPrefix: "submodules/microtex/",
@@ -107,11 +103,11 @@ gappsWrapperArgs+=("\${wrapper_args[@]}")
       versionCheckProgramArg: "--version",
       doInstallCheck: false,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Field-theory motivated approach to computer algebra",
         changelog: nix.thunk(() => nix.str`https://github.com/kpeeters/cadabra2/releases/tag/${nix.sel(finalAttrs, "version")}`),
         homepage: "https://github.com/kpeeters/cadabra2",

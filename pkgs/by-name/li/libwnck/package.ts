@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 37, 5], ["hash", 38, 5]], [["packageName", 75, 7]], [["updateScript", 74, 5]], [["description", 80, 5], ["license", 81, 5], ["platforms", 82, 5], ["maintainers", 83, 5]], [["pname", 26, 3], ["version", 27, 3], ["outputs", 29, 3], ["outputBin", 34, 3], ["src", 36, 3], ["nativeBuildInputs", 41, 3], ["buildInputs", 55, 3], ["propagatedBuildInputs", 64, 3], ["mesonFlags", 69, 3], ["passthru", 73, 3], ["meta", 79, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, meson: false, mesonEmulatorHook: false, ninja: false, "pkg-config": false, "gtk-doc": false, docbook_xsl: false, docbook_xml_dtd_412: false, libx11: false, glib: false, gtk3: false, pango: false, cairo: false, libxres: false, libxi: false, libstartup_notification: false, gettext: false, "gobject-introspection": false, gnome: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 37, 5], ["hash", 38, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["packageName", 75, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 74, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 80, 5], ["license", 81, 5], ["platforms", 82, 5], ["maintainers", 83, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 26, 3], ["version", 27, 3], ["outputs", 29, 3], ["outputBin", 34, 3], ["src", 36, 3], ["nativeBuildInputs", 41, 3], ["buildInputs", 55, 3], ["propagatedBuildInputs", 64, 3], ["mesonFlags", 69, 3], ["passthru", 73, 3], ["meta", 79, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,13 +29,13 @@ export default nix.lambda((args) => (() => {
   const gobject_introspection = nix.arg($, "gobject-introspection");
   const gnome = nix.arg($, "gnome");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "libwnck",
       version: "43.3",
       outputs: nix.thunk(() => ["out", "dev", "devdoc"]),
       outputBin: "dev",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnome/sources/libwnck/${nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/libwnck-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-avisQajwZ63h08qu0lSoNCO19hrT96Rg/Ky6wuGSvfc=",
         })))),
@@ -57,11 +53,11 @@ export default nix.lambda((args) => (() => {
       propagatedBuildInputs: nix.thunk(() => [glib, gtk3]),
       mesonFlags: nix.thunk(() => ["-Dgtk_doc=true"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$2, packageName: "libwnck" })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: $pos[1], packageName: "libwnck" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Library to manage X windows and workspaces (via pagers, tasklists, etc.)",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),

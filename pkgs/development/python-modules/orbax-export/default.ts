@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 37, 5], ["version", 38, 26], ["hash", 39, 5]], [["doCheck", 81, 5]], [["pytest", 80, 18]], [["tests", 80, 12]], [["description", 85, 5], ["homepage", 86, 5], ["license", 87, 5], ["maintainers", 88, 5]], [["pname", 31, 3], ["version", 32, 3], ["pyproject", 33, 3], ["src", 36, 3], ["build-system", 42, 3], ["dependencies", 46, 3], ["pythonImportsCheck", 59, 3], ["nativeCheckInputs", 65, 3], ["preCheck", 71, 3], ["doCheck", 78, 3], ["passthru", 80, 3], ["meta", 84, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, "flit-core": false, "absl-py": false, "dataclasses-json": false, etils: false, jax: false, jaxlib: false, jaxtyping: false, numpy: false, "orbax-checkpoint": false, protobuf: false, tensorflow: false, chex: false, flax: false, pytestCheckHook: false, "orbax-export": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 37, 5], ["version", 38, 26], ["hash", 39, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["doCheck", 81, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pytest", 80, 18]]);
-const pos$4 = nix.positions(here + "/default.nix", [["tests", 80, 12]]);
-const pos$5 = nix.positions(here + "/default.nix", [["description", 85, 5], ["homepage", 86, 5], ["license", 87, 5], ["maintainers", 88, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 31, 3], ["version", 32, 3], ["pyproject", 33, 3], ["src", 36, 3], ["build-system", 42, 3], ["dependencies", 46, 3], ["pythonImportsCheck", 59, 3], ["nativeCheckInputs", 65, 3], ["preCheck", 71, 3], ["doCheck", 78, 3], ["passthru", 80, 3], ["meta", 84, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,12 +26,12 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const orbax_export = nix.arg($, "orbax-export");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "orbax-export",
       version: "0.0.8",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "orbax_export",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-VE7vVk4qbxfNEbEWf+vjSLe3z1bZV13plKM9VhPdVoo=",
@@ -59,14 +54,14 @@ export default nix.lambda((args) => (() => {
       preCheck: "cd orbax/export\nrm -rf ./**/__init__.py\nrm -rf typing\n",
       doCheck: false,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
-          pytest: nix.thunk(() => nix.app(nix.sel(orbax_export, "overridePythonAttrs"), nix.thunk(() => ({ [nix.POS]: pos$2, doCheck: true })))),
+          [nix.POS]: $pos[2],
+          pytest: nix.thunk(() => nix.app(nix.sel(orbax_export, "overridePythonAttrs"), nix.thunk(() => ({ [nix.POS]: $pos[1], doCheck: true })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Serialization library for JAX users, enabling the exporting of JAX models to the TensorFlow SavedModel format",
         homepage: "https://github.com/google/orbax/tree/main/export",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/test-hiprtc-type-traits.nix", [[["pname", 13, 5], ["version", 14, 5], ["dontUnpack", 16, 5], ["nativeBuildInputs", 18, 5], ["buildPhase", 20, 5], ["installPhase", 26, 5]], [["teams", 55, 5]], [["name", 35, 3], ["testedPackage", 36, 3], ["sandboxPaths", 38, 3], ["nativeBuildInputs", 44, 3], ["testScript", 49, 3], ["meta", 54, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, makeImpureTest: false, clr: false, "rocm-smi": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/test-hiprtc-type-traits.nix", [["pname", 13, 5], ["version", 14, 5], ["dontUnpack", 16, 5], ["nativeBuildInputs", 18, 5], ["buildPhase", 20, 5], ["installPhase", 26, 5]]);
-const pos$2 = nix.positions(here + "/test-hiprtc-type-traits.nix", [["teams", 55, 5]]);
-const pos$3 = nix.positions(here + "/test-hiprtc-type-traits.nix", [["name", 35, 3], ["testedPackage", 36, 3], ["sandboxPaths", 38, 3], ["nativeBuildInputs", 44, 3], ["testScript", 49, 3], ["meta", 54, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const clr = nix.arg($, "clr");
   const rocm_smi = nix.arg($, "rocm-smi");
   const hiprtc_test = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       pname: "hiprtc-type-traits-test",
       version: "0",
       dontUnpack: true,
@@ -27,14 +25,14 @@ runHook postBuild
       installPhase: "runHook preInstall\nmkdir -p $out/bin\ncp hiprtc-test $out/bin/\nrunHook postInstall\n",
     }))));
   return nix.app(makeImpureTest, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       name: "hiprtc-type-traits",
       testedPackage: "rocmPackages.clr",
       sandboxPaths: nix.thunk(() => ["/sys", "/dev/dri", "/dev/kfd"]),
       nativeBuildInputs: nix.thunk(() => [hiprtc_test, rocm_smi]),
       testScript: "rocm-smi\nhiprtc-test\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "rocm"))]),
       })),
     })));

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]], [["pname", 28, 13], ["version", 28, 19], ["src", 28, 27], ["projectFile", 29, 5], ["testProjectFile", 30, 5], ["nugetDeps", 31, 5], ["dotnet-sdk", 32, 5]], [["fetch-deps", 83, 12]], [["description", 86, 5], ["homepage", 87, 5], ["changelog", 88, 5], ["license", 89, 5], ["badPlatforms", 91, 5], ["maintainers", 92, 5]], [["pname", 36, 11], ["version", 36, 17], ["src", 36, 25], ["disabled", 38, 3], ["pyproject", 40, 3], ["postPatch", 42, 3], ["buildInputs", 60, 3], ["nativeBuildInputs", 62, 3], ["propagatedBuildInputs", 67, 3], ["pytestFlags", 72, 3], ["nativeCheckInputs", 77, 3], ["passthru", 83, 3], ["meta", 85, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, buildPythonPackage: false, pythonAtLeast: false, pytestCheckHook: false, pycparser: false, psutil: false, "dotnet-sdk_10": false, buildDotnetModule: false, "clr-loader": false, setuptools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 28, 13], ["version", 28, 19], ["src", 28, 27], ["projectFile", 29, 5], ["testProjectFile", 30, 5], ["nugetDeps", 31, 5], ["dotnet-sdk", 32, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["fetch-deps", 83, 12]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 86, 5], ["homepage", 87, 5], ["changelog", 88, 5], ["license", 89, 5], ["badPlatforms", 91, 5], ["maintainers", 92, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 36, 11], ["version", 36, 17], ["src", 36, 25], ["disabled", 38, 3], ["pyproject", 40, 3], ["postPatch", 42, 3], ["buildInputs", 60, 3], ["nativeBuildInputs", 62, 3], ["propagatedBuildInputs", 67, 3], ["pytestFlags", 72, 3], ["nativeCheckInputs", 77, 3], ["passthru", 83, 3], ["meta", 85, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,14 +21,14 @@ export default nix.lambda((args) => (() => {
   const pname = "pythonnet";
   const version = "3.0.5";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "pythonnet",
       repo: "pythonnet",
       tag: nix.thunk(() => nix.str`v${version}`),
       hash: "sha256-3LBrV/cQrXFKMFE1rCalDsPZ3rOY7RczqXoryMoVi14=",
     }))));
   const dotnet_build = nix.thunk(() => nix.app(buildDotnetModule, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: pname,
       version: version,
       src: src,
@@ -42,7 +38,7 @@ export default nix.lambda((args) => (() => {
       "dotnet-sdk": dotnet_sdk_10,
     }))));
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: pname,
       version: version,
       src: src,
@@ -70,11 +66,11 @@ substituteInPlace tests/conftest.py \\
       pytestFlags: nix.thunk(() => ["--runtime=coreclr"]),
       nativeCheckInputs: nix.thunk(() => [pytestCheckHook, psutil]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         "fetch-deps": nix.thunk(() => nix.sel(dotnet_build, "fetch-deps")),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: ".NET integration for Python",
         homepage: "https://pythonnet.github.io",
         changelog: nix.thunk(() => nix.str`https://github.com/pythonnet/pythonnet/releases/tag/${nix.sel(src, "tag")}`),

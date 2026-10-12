@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]], [["url", 29, 7], ["hash", 30, 7]], [["description", 79, 5], ["homepage", 80, 5], ["license", 81, 5], ["maintainers", 82, 5], ["mainProgram", 87, 5], ["platforms", 88, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["patches", 27, 3], ["postPatch", 34, 3], ["cmakeFlags", 45, 3], ["__structuredAttrs", 55, 3], ["nativeBuildInputs", 57, 3], ["strictDeps", 67, 3], ["buildInputs", 69, 3], ["doCheck", 76, 3], ["meta", 78, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch: false, boost: false, catch2_3: false, cmake: false, ninja: false, fmt: false, llvmPackages: false, mimalloc: false, python3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 29, 7], ["hash", 30, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 79, 5], ["homepage", 80, 5], ["license", 81, 5], ["maintainers", 82, 5], ["mainProgram", 87, 5], ["platforms", 88, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["patches", 27, 3], ["postPatch", 34, 3], ["cmakeFlags", 45, 3], ["__structuredAttrs", 55, 3], ["nativeBuildInputs", 57, 3], ["strictDeps", 67, 3], ["buildInputs", 69, 3], ["doCheck", 76, 3], ["meta", 78, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const mimalloc = nix.arg($, "mimalloc");
   const python3 = nix.arg($, "python3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "sv-lang",
       version: "10.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "MikePopoloski",
           repo: "slang",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,7 +32,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/MikePopoloski/slang/commit/0e2094e3570f399c4bedff8c7cf342812b50d909.patch",
             hash: "sha256-Evx5HJk8fH3QoBXM5BE3tmdJVnblVTkxLMTNIRLOt/c=",
           })))),
@@ -56,7 +53,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [boost, fmt, mimalloc, catch2_3]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "SystemVerilog compiler and language services",
         homepage: "https://github.com/MikePopoloski/slang",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

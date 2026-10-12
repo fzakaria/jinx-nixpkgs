@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 19, 5], ["version", 20, 13], ["hash", 21, 5]], [["styles", 33, 5]], [["description", 43, 5], ["longDescription", 44, 5], ["homepage", 64, 5], ["license", 65, 5], ["maintainers", 66, 5]], [["pname", 14, 3], ["version", 15, 3], ["pyproject", 16, 3], ["src", 18, 3], ["build-system", 24, 3], ["dependencies", 26, 3], ["optional-dependencies", 32, 3], ["nativeCheckInputs", 36, 3], ["meta", 42, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, configobj: false, mock: false, pytestCheckHook: false, pygments: false, setuptools: false, tabulate: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 19, 5], ["version", 20, 13], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["styles", 33, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 43, 5], ["longDescription", 44, 5], ["homepage", 64, 5], ["license", 65, 5], ["maintainers", 66, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 14, 3], ["version", 15, 3], ["pyproject", 16, 3], ["src", 18, 3], ["build-system", 24, 3], ["dependencies", 26, 3], ["optional-dependencies", 32, 3], ["nativeCheckInputs", 36, 3], ["meta", 42, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,17 +21,17 @@ export default nix.lambda((args) => (() => {
       const version = "2.14.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "cli_helpers",
           version: version,
           hash: "sha256-eY4HMfL01CV2fLEqOtlmvyi13nelZRZiBhu0pmvujzU=",
         }))));
       const build_system = nix.thunk(() => [setuptools]);
       const dependencies = nix.thunk(() => nix.concat([configobj, tabulate], nix.sel(tabulate, "optional-dependencies", "widechars")));
-      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, styles: nix.thunk(() => [pygments]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: $pos[1], styles: nix.thunk(() => [pygments]) }));
       const nativeCheckInputs = nix.thunk(() => nix.concat([pytestCheckHook, mock], nix.app(nix.sel(lib, "concatAttrValues"), optional_dependencies)));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Python helpers for common CLI tasks",
         longDescription: "CLI Helpers is a Python package that makes it easy to perform common\ntasks when building command-line apps. It's a helper library for\ncommand-line interfaces.\n\nLibraries like Click and Python Prompt Toolkit are amazing tools that\nhelp you create quality apps. CLI Helpers complements these libraries by\nwrapping up common tasks in simple interfaces.\n\nCLI Helpers is not focused on your app's design pattern or framework --\nyou can use it on its own or in combination with other libraries. It's\nlightweight and easy to extend.\n\nWhat's included in CLI Helpers?\n\n- Prettyprinting of tabular data with custom pre-processing\n- [in progress] config file reading/writing\n\nRead the documentation at http://cli-helpers.rtfd.io\n",
         homepage: "https://cli-helpers.readthedocs.io/en/stable/",
@@ -42,7 +39,7 @@ export default nix.lambda((args) => (() => {
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "kalbasit"))]),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

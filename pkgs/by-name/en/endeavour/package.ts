@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 29, 5], ["owner", 30, 5], ["repo", 31, 5], ["rev", 32, 5], ["sha256", 33, 5]], [["updateScript", 69, 5]], [["description", 73, 5], ["mainProgram", 74, 5], ["homepage", 75, 5], ["license", 76, 5], ["teams", 77, 5], ["platforms", 78, 5]], [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 45, 3], ["postPatch", 60, 3], ["passthru", 68, 3], ["meta", 72, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, meson: false, ninja: false, "pkg-config": false, wrapGAppsHook4: false, gettext: false, "adwaita-icon-theme": false, glib: false, gtk4: false, wayland: false, libadwaita: false, libpeas: false, "gnome-online-accounts": false, "gsettings-desktop-schemas": false, "evolution-data-server-gtk4": false, libical: false, itstool: false, gitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 29, 5], ["owner", 30, 5], ["repo", 31, 5], ["rev", 32, 5], ["sha256", 33, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 69, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 73, 5], ["mainProgram", 74, 5], ["homepage", 75, 5], ["license", 76, 5], ["teams", 77, 5], ["platforms", 78, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 45, 3], ["postPatch", 60, 3], ["passthru", 68, 3], ["meta", 72, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,11 +28,11 @@ export default nix.lambda((args) => (() => {
   const itstool = nix.arg($, "itstool");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "endeavour",
       version: "43.0",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "gitlab.gnome.org",
           owner: "World",
           repo: "Endeavour",
@@ -57,11 +54,11 @@ export default nix.lambda((args) => (() => {
       ]),
       postPatch: "# Switch to girepository-2.0\n# libpeas1 will be dropped in https://gitlab.gnome.org/World/Endeavour/-/merge_requests/153\nsubstituteInPlace src/gui/gtd-application.c \\\n  --replace-fail \"#include <girepository.h>\" \"#include <girepository/girepository.h>\" \\\n  --replace-fail \"g_irepository_get_option_group\" \"gi_repository_get_option_group\"\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Personal task manager for GNOME",
         mainProgram: "endeavour",
         homepage: "https://gitlab.gnome.org/World/Endeavour",

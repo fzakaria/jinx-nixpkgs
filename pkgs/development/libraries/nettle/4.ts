@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/4.nix", [[["url", 7, 5], ["hash", 8, 5]], [["version", 4, 3], ["src", 6, 3]]]);
 const formals$1 = { args: { callPackage: false, fetchurl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/4.nix", [["url", 7, 5], ["hash", 8, 5]]);
-const pos$2 = nix.positions(here + "/4.nix", [["version", 4, 3], ["src", 6, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,11 +12,11 @@ export default nix.lambda((args) => (() => {
   return nix.app(callPackage, nix.path(here, "./generic.nix"), nix.thunk(() => (() => {
       const version = "4.0";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnu/nettle/nettle-${version}.tar.gz`),
           hash: "sha256-Ot28ANoBhGsjL7O8RTU46lRo2kMDPyG7NFyx6Qc/UJQ=",
         }))));
-      return { [nix.POS]: pos$2, version, src };
+      return { [nix.POS]: $pos[1], version, src };
     })()));
 })(), formals$1);
 //# sourceMappingURL=4.ts.map

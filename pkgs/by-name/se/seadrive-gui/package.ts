@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["hash", 25, 5]], [["updateScript", 61, 12]], [["homepage", 64, 5], ["changelog", 65, 5], ["description", 66, 5], ["license", 67, 5], ["platforms", 68, 5], ["maintainers", 69, 5], ["mainProgram", 72, 5]], [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["postPatch", 31, 3], ["nativeBuildInputs", 40, 3], ["buildInputs", 48, 3], ["qtWrapperArgs", 57, 3], ["passthru", 61, 3], ["meta", 63, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchpatch: false, "nix-update-script": false, fetchFromGitHub: false, "pkg-config": false, cmake: false, qt6: false, libuuid: false, "seafile-shared": false, jansson: false, libsearpc: false, "seadrive-fuse": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 61, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 64, 5], ["changelog", 65, 5], ["description", 66, 5], ["license", 67, 5], ["platforms", 68, 5], ["maintainers", 69, 5], ["mainProgram", 72, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["src", 21, 3], ["postPatch", 31, 3], ["nativeBuildInputs", 40, 3], ["buildInputs", 48, 3], ["qtWrapperArgs", 57, 3], ["passthru", 61, 3], ["meta", 63, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const libsearpc = nix.arg($, "libsearpc");
   const seadrive_fuse = nix.arg($, "seadrive-fuse");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "seadrive-gui",
       version: "3.0.26",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "haiwen",
           repo: "seadrive-gui",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -54,11 +51,11 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`--suffix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [seadrive_fuse]))}`),
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/haiwen/seadrive-gui",
         changelog: nix.thunk(() => nix.str`https://github.com/haiwen/seadrive-gui/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "GUI part of Seafile drive",

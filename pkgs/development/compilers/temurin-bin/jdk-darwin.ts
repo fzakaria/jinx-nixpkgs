@@ -2,23 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/jdk-darwin.nix", [[["__structuredAttrs", 9, 7], ["strictDeps", 10, 7]], [["sourcePerArch", 16, 20]], [["sourcePerArch", 17, 20]], [["sourcePerArch", 19, 21]], [["sourcePerArch", 20, 21]], [["sourcePerArch", 22, 21]], [["sourcePerArch", 23, 21]], [["sourcePerArch", 25, 21]], [["sourcePerArch", 26, 21]], [["sourcePerArch", 28, 21]], [["sourcePerArch", 29, 21]], [["sourcePerArch", 32, 5]], [["sourcePerArch", 35, 5]], [["sourcePerArch", 39, 5]], [["sourcePerArch", 42, 5]], [["jdk-8", 16, 3], ["jre-8", 17, 3], ["jdk-11", 19, 3], ["jre-11", 20, 3], ["jdk-17", 22, 3], ["jre-17", 23, 3], ["jdk-21", 25, 3], ["jre-21", 26, 3], ["jdk-25", 28, 3], ["jre-25", 29, 3], ["jdk-26", 31, 3], ["jre-26", 34, 3], ["jdk-27", 38, 3], ["jre-27", 41, 3]]]);
 const formals$1 = { args: { lib: false, callPackage: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/jdk-darwin.nix", [["__structuredAttrs", 9, 7], ["strictDeps", 10, 7]]);
-const pos$2 = nix.positions(here + "/jdk-darwin.nix", [["sourcePerArch", 16, 20]]);
-const pos$3 = nix.positions(here + "/jdk-darwin.nix", [["sourcePerArch", 17, 20]]);
-const pos$4 = nix.positions(here + "/jdk-darwin.nix", [["sourcePerArch", 19, 21]]);
-const pos$5 = nix.positions(here + "/jdk-darwin.nix", [["sourcePerArch", 20, 21]]);
-const pos$6 = nix.positions(here + "/jdk-darwin.nix", [["sourcePerArch", 22, 21]]);
-const pos$7 = nix.positions(here + "/jdk-darwin.nix", [["sourcePerArch", 23, 21]]);
-const pos$8 = nix.positions(here + "/jdk-darwin.nix", [["sourcePerArch", 25, 21]]);
-const pos$9 = nix.positions(here + "/jdk-darwin.nix", [["sourcePerArch", 26, 21]]);
-const pos$10 = nix.positions(here + "/jdk-darwin.nix", [["sourcePerArch", 28, 21]]);
-const pos$11 = nix.positions(here + "/jdk-darwin.nix", [["sourcePerArch", 29, 21]]);
-const pos$12 = nix.positions(here + "/jdk-darwin.nix", [["sourcePerArch", 32, 5]]);
-const pos$13 = nix.positions(here + "/jdk-darwin.nix", [["sourcePerArch", 35, 5]]);
-const pos$14 = nix.positions(here + "/jdk-darwin.nix", [["sourcePerArch", 39, 5]]);
-const pos$15 = nix.positions(here + "/jdk-darwin.nix", [["sourcePerArch", 42, 5]]);
-const pos$16 = nix.positions(here + "/jdk-darwin.nix", [["jdk-8", 16, 3], ["jre-8", 17, 3], ["jdk-11", 19, 3], ["jre-11", 20, 3], ["jdk-17", 22, 3], ["jre-17", 23, 3], ["jdk-21", 25, 3], ["jre-21", 26, 3], ["jdk-25", 28, 3], ["jre-25", 29, 3], ["jdk-26", 31, 3], ["jre-26", 34, 3], ["jdk-27", 38, 3], ["jre-27", 41, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,63 +11,63 @@ export default nix.lambda((args) => (() => {
   const callPackage = nix.arg($, "callPackage");
   const sources = nix.thunk(() => nix.sel(nix.app(nix.sel(lib, "importJSON"), nix.path(here, "./sources.json")), "hotspot", "mac"));
   const common = (opts) => nix.app(callPackage, nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./jdk-darwin-base.nix")), opts)), nix.thunk(() => ({})));
-  const withModernDrvAttrs = (drv) => nix.app(nix.sel(drv, "overrideAttrs"), (_) => ({ [nix.POS]: pos$1, __structuredAttrs: true, strictDeps: true }));
+  const withModernDrvAttrs = (drv) => nix.app(nix.sel(drv, "overrideAttrs"), (_) => ({ [nix.POS]: $pos[0], __structuredAttrs: true, strictDeps: true }));
   return {
-    [nix.POS]: pos$16,
+    [nix.POS]: $pos[15],
     "jdk-8": nix.thunk(() => nix.app(common, nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         sourcePerArch: nix.thunk(() => nix.sel(sources, "jdk", "openjdk8")),
       })))),
     "jre-8": nix.thunk(() => nix.app(common, nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         sourcePerArch: nix.thunk(() => nix.sel(sources, "jre", "openjdk8")),
       })))),
     "jdk-11": nix.thunk(() => nix.app(common, nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         sourcePerArch: nix.thunk(() => nix.sel(sources, "jdk", "openjdk11")),
       })))),
     "jre-11": nix.thunk(() => nix.app(common, nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         sourcePerArch: nix.thunk(() => nix.sel(sources, "jre", "openjdk11")),
       })))),
     "jdk-17": nix.thunk(() => nix.app(common, nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         sourcePerArch: nix.thunk(() => nix.sel(sources, "jdk", "openjdk17")),
       })))),
     "jre-17": nix.thunk(() => nix.app(common, nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         sourcePerArch: nix.thunk(() => nix.sel(sources, "jre", "openjdk17")),
       })))),
     "jdk-21": nix.thunk(() => nix.app(common, nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         sourcePerArch: nix.thunk(() => nix.sel(sources, "jdk", "openjdk21")),
       })))),
     "jre-21": nix.thunk(() => nix.app(common, nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         sourcePerArch: nix.thunk(() => nix.sel(sources, "jre", "openjdk21")),
       })))),
     "jdk-25": nix.thunk(() => nix.app(common, nix.thunk(() => ({
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         sourcePerArch: nix.thunk(() => nix.sel(sources, "jdk", "openjdk25")),
       })))),
     "jre-25": nix.thunk(() => nix.app(common, nix.thunk(() => ({
-        [nix.POS]: pos$11,
+        [nix.POS]: $pos[10],
         sourcePerArch: nix.thunk(() => nix.sel(sources, "jre", "openjdk25")),
       })))),
     "jdk-26": nix.thunk(() => nix.app(withModernDrvAttrs, nix.thunk(() => nix.app(common, nix.thunk(() => ({
-          [nix.POS]: pos$12,
+          [nix.POS]: $pos[11],
           sourcePerArch: nix.thunk(() => nix.sel(sources, "jdk", "openjdk26")),
         })))))),
     "jre-26": nix.thunk(() => nix.app(withModernDrvAttrs, nix.thunk(() => nix.app(common, nix.thunk(() => ({
-          [nix.POS]: pos$13,
+          [nix.POS]: $pos[12],
           sourcePerArch: nix.thunk(() => nix.sel(sources, "jre", "openjdk26")),
         })))))),
     "jdk-27": nix.thunk(() => nix.app(withModernDrvAttrs, nix.thunk(() => nix.app(common, nix.thunk(() => ({
-          [nix.POS]: pos$14,
+          [nix.POS]: $pos[13],
           sourcePerArch: nix.thunk(() => nix.sel(sources, "jdk", "openjdk27")),
         })))))),
     "jre-27": nix.thunk(() => nix.app(withModernDrvAttrs, nix.thunk(() => nix.app(common, nix.thunk(() => ({
-          [nix.POS]: pos$15,
+          [nix.POS]: $pos[14],
           sourcePerArch: nix.thunk(() => nix.sel(sources, "jre", "openjdk27")),
         })))))),
   };

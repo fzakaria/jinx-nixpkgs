@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["threadModel", 33, 12]], [["pname", 11, 3], ["version", 12, 31], ["src", 12, 39], ["meta", 12, 43], ["outputs", 14, 3], ["configureFlags", 19, 3], ["passthru", 33, 3], ["enableParallelBuilding", 35, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 38, 3], ["hardeningDisable", 39, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, windows: false, autoreconfHook: false, mingw_w64_headers: false, crt: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["threadModel", 33, 12]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 11, 3], ["version", 12, 31], ["src", 12, 39], ["meta", 12, 43], ["outputs", 14, 3], ["configureFlags", 19, 3], ["passthru", 33, 3], ["enableParallelBuilding", 35, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 38, 3], ["hardeningDisable", 39, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const mingw_w64_headers = nix.arg($, "mingw_w64_headers");
   const crt = nix.argOr($, "crt", () => nix.sel(stdenv, "hostPlatform", "libc"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "mingw-w64",
       version: nix.thunk(() => nix.attr(mingw_w64_headers, "version")),
       src: nix.thunk(() => nix.attr(mingw_w64_headers, "src")),
@@ -29,7 +28,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "enableFeature"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isx86_64")), "lib64")),
         nix.thunk(() => nix.app(nix.sel(lib, "enableFeature"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isAarch64")), "libarm64")),
       ]),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$1, threadModel: "win32" })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[0], threadModel: "win32" })),
       enableParallelBuilding: true,
       nativeBuildInputs: nix.thunk(() => [autoreconfHook]),
       buildInputs: nix.thunk(() => [mingw_w64_headers]),

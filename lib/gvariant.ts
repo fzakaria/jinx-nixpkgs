@@ -2,31 +2,10 @@
 import * as nix from "../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/gvariant.nix", [[["_type", 26, 5], ["type", 27, 5], ["value", 28, 5], ["__toString", 29, 5]], [["arrayOf", 33, 5], ["maybeOf", 34, 5], ["tupleOf", 35, 5], ["dictionaryEntryOf", 36, 5], ["string", 37, 5], ["boolean", 38, 5], ["uchar", 39, 5], ["int16", 40, 5], ["uint16", 41, 5], ["int32", 42, 5], ["uint32", 43, 5], ["int64", 44, 5], ["uint64", 45, 5], ["double", 46, 5], ["variant", 47, 5]], [["name", 74, 7], ["type", 75, 7], ["min", 76, 7], ["max", 77, 7]], [["name", 80, 7], ["type", 81, 7], ["min", 82, 7], ["max", 83, 7]], [["name", 86, 7], ["type", 87, 7], ["min", 89, 7], ["max", 90, 7]], [["name", 93, 7], ["type", 94, 7], ["min", 95, 7], ["max", 97, 7]], [["name", 100, 7], ["type", 101, 7], ["min", 102, 7], ["max", 103, 7]], [["name", 106, 7], ["type", 107, 7], ["min", 108, 7], ["max", 109, 7]], [["name", 112, 7], ["type", 113, 7], ["min", 114, 7], ["max", 115, 7]], [["__toString", 207, 7]], [["__toString", 240, 7]], [["__toString", 279, 7]], [["name", 323, 42], ["value", 323, 47]], [["__toString", 325, 7]], [["__toString", 351, 7]], [["__toString", 417, 7]], [["__toString", 439, 7]], [["__toString", 464, 7]], [["__toString", 486, 7]], [["__toString", 541, 7]], [["__toString", 596, 7]], [["type", 53, 11], ["isGVariant", 70, 3], ["intConstructors", 72, 3], ["mkValue", 135, 3], ["mkArray", 192, 3], ["mkEmptyArray", 236, 3], ["mkVariant", 272, 3], ["mkDictionaryEntry", 316, 3], ["mkMaybe", 347, 3], ["mkNothing", 370, 3], ["mkJust", 387, 3], ["mkTuple", 409, 3], ["mkBoolean", 435, 3], ["mkString", 457, 3], ["mkObjectpath", 482, 3], ["mkUchar", 498, 3], ["mkInt16", 509, 3], ["mkUint16", 520, 3], ["mkInt32", 537, 3], ["mkUint32", 553, 3], ["mkInt64", 564, 3], ["mkUint64", 575, 3], ["mkDouble", 592, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/gvariant.nix", [["_type", 26, 5], ["type", 27, 5], ["value", 28, 5], ["__toString", 29, 5]]);
-const pos$2 = nix.positions(here + "/gvariant.nix", [["arrayOf", 33, 5], ["maybeOf", 34, 5], ["tupleOf", 35, 5], ["dictionaryEntryOf", 36, 5], ["string", 37, 5], ["boolean", 38, 5], ["uchar", 39, 5], ["int16", 40, 5], ["uint16", 41, 5], ["int32", 42, 5], ["uint32", 43, 5], ["int64", 44, 5], ["uint64", 45, 5], ["double", 46, 5], ["variant", 47, 5]]);
-const pos$3 = nix.positions(here + "/gvariant.nix", [["name", 74, 7], ["type", 75, 7], ["min", 76, 7], ["max", 77, 7]]);
-const pos$4 = nix.positions(here + "/gvariant.nix", [["name", 80, 7], ["type", 81, 7], ["min", 82, 7], ["max", 83, 7]]);
-const pos$5 = nix.positions(here + "/gvariant.nix", [["name", 86, 7], ["type", 87, 7], ["min", 89, 7], ["max", 90, 7]]);
-const pos$6 = nix.positions(here + "/gvariant.nix", [["name", 93, 7], ["type", 94, 7], ["min", 95, 7], ["max", 97, 7]]);
-const pos$7 = nix.positions(here + "/gvariant.nix", [["name", 100, 7], ["type", 101, 7], ["min", 102, 7], ["max", 103, 7]]);
-const pos$8 = nix.positions(here + "/gvariant.nix", [["name", 106, 7], ["type", 107, 7], ["min", 108, 7], ["max", 109, 7]]);
-const pos$9 = nix.positions(here + "/gvariant.nix", [["name", 112, 7], ["type", 113, 7], ["min", 114, 7], ["max", 115, 7]]);
 const formals$2 = { args: { min: false, max: false }, ellipsis: true };
 const formals$3 = { args: { name: false, type: false }, ellipsis: true };
-const pos$10 = nix.positions(here + "/gvariant.nix", [["__toString", 207, 7]]);
-const pos$11 = nix.positions(here + "/gvariant.nix", [["__toString", 240, 7]]);
-const pos$12 = nix.positions(here + "/gvariant.nix", [["__toString", 279, 7]]);
-const pos$13 = nix.positions(here + "/gvariant.nix", [["name", 323, 42], ["value", 323, 47]]);
-const pos$14 = nix.positions(here + "/gvariant.nix", [["__toString", 325, 7]]);
-const pos$15 = nix.positions(here + "/gvariant.nix", [["__toString", 351, 7]]);
-const pos$16 = nix.positions(here + "/gvariant.nix", [["__toString", 417, 7]]);
-const pos$17 = nix.positions(here + "/gvariant.nix", [["__toString", 439, 7]]);
-const pos$18 = nix.positions(here + "/gvariant.nix", [["__toString", 464, 7]]);
-const pos$19 = nix.positions(here + "/gvariant.nix", [["__toString", 486, 7]]);
-const pos$20 = nix.positions(here + "/gvariant.nix", [["__toString", 541, 7]]);
-const pos$21 = nix.positions(here + "/gvariant.nix", [["__toString", 596, 7]]);
-const pos$22 = nix.positions(here + "/gvariant.nix", [["type", 53, 11], ["isGVariant", 70, 3], ["intConstructors", 72, 3], ["mkValue", 135, 3], ["mkArray", 192, 3], ["mkEmptyArray", 236, 3], ["mkVariant", 272, 3], ["mkDictionaryEntry", 316, 3], ["mkMaybe", 347, 3], ["mkNothing", 370, 3], ["mkJust", 387, 3], ["mkTuple", 409, 3], ["mkBoolean", 435, 3], ["mkString", 457, 3], ["mkObjectpath", 482, 3], ["mkUchar", 498, 3], ["mkInt16", 509, 3], ["mkUint16", 520, 3], ["mkInt32", 537, 3], ["mkUint32", 553, 3], ["mkInt64", 564, 3], ["mkUint64", 575, 3], ["mkDouble", 592, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -38,14 +17,14 @@ export default nix.lambda((args) => (() => {
   const head = nix.thunk(() => nix.attr(lib, "head"));
   const replaceString = nix.thunk(() => nix.attr(lib, "replaceString"));
   const mkPrimitive = (t) => (v) => ({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     _type: "gvariant",
     type: t,
     value: v,
     __toString: (self) => nix.str`@${nix.sel(self, "type")} ${nix.builtins.toString(nix.thunk(() => nix.sel(self, "value")))}`,
   });
   const type = nix.thunk(() => ({
-    [nix.POS]: pos$2,
+    [nix.POS]: $pos[1],
     arrayOf: (t) => nix.str`a${t}`,
     maybeOf: (t) => nix.str`m${t}`,
     tupleOf: (ts) => nix.str`(${nix.app(concatStrings, ts)})`,
@@ -67,49 +46,49 @@ export default nix.lambda((args) => (() => {
     const isGVariant = (v) => nix.eq(nix.selOr(v, () => "", "_type"), "gvariant");
     const intConstructors = nix.thunk(() => [
       nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         name: "mkInt32",
         type: nix.thunk(() => nix.sel(type_1, "int32")),
         min: nix.thunk(() => nix.neg(2147483648n)),
         max: 2147483647n,
       })),
       nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         name: "mkUint32",
         type: nix.thunk(() => nix.sel(type_1, "uint32")),
         min: 0n,
         max: 4294967295n,
       })),
       nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         name: "mkInt64",
         type: nix.thunk(() => nix.sel(type_1, "int64")),
         min: null,
         max: null,
       })),
       nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         name: "mkUint64",
         type: nix.thunk(() => nix.sel(type_1, "uint64")),
         min: 0n,
         max: null,
       })),
       nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         name: "mkInt16",
         type: nix.thunk(() => nix.sel(type_1, "int16")),
         min: nix.thunk(() => nix.neg(32768n)),
         max: 32767n,
       })),
       nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         name: "mkUint16",
         type: nix.thunk(() => nix.sel(type_1, "uint16")),
         min: 0n,
         max: 65535n,
       })),
       nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         name: "mkUchar",
         type: nix.thunk(() => nix.sel(type_1, "uchar")),
         min: 0n,
@@ -139,18 +118,18 @@ ${nix.app(nix.sel(lib, "concatMapStringsSep"), "\n", nix.lambda((args_1) => (() 
       const firstType = nix.thunk(() => nix.sel(nix.app(head, vs), "type"));
       const elemType = nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "any"), (v) => !nix.eq(nix.sel(v, "type"), firstType), vs)) ? nix.builtins.throw("Elements in a list should have same type.") : nix.force(firstType)));
       return nix.update(nix.app(mkPrimitive, nix.thunk(() => nix.app(nix.sel(type_1, "arrayOf"), elemType)), vs), {
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         __toString: (self) => nix.str`@${nix.sel(self, "type")} [${nix.app(concatMapStringsSep, ",", nix.builtins.toString, nix.thunk(() => nix.sel(self, "value")))}]`,
       });
     })();
     const mkEmptyArray = (elemType) => nix.update(nix.app(mkPrimitive, nix.thunk(() => nix.app(nix.sel(type_1, "arrayOf"), elemType)), []), {
-      [nix.POS]: pos$11,
+      [nix.POS]: $pos[10],
       __toString: (self) => nix.str`@${nix.sel(self, "type")} []`,
     });
     const mkVariant = (elem) => (() => {
       const gvarElem = nix.thunk(() => nix.app(mkValue, elem));
       return nix.update(nix.app(mkPrimitive, nix.thunk(() => nix.sel(type_1, "variant")), gvarElem), {
-        [nix.POS]: pos$12,
+        [nix.POS]: $pos[11],
         __toString: (self) => nix.str`<${nix.builtins.toString(nix.thunk(() => nix.sel(self, "value")))}>`,
       });
     })();
@@ -158,13 +137,13 @@ ${nix.app(nix.sel(lib, "concatMapStringsSep"), "\n", nix.lambda((args_1) => (() 
       const name$ = nix.thunk(() => nix.app(mkValue, name));
       const value$ = nix.thunk(() => nix.app(mkValue, value));
       const dictionaryType = nix.thunk(() => nix.app(nix.sel(type_1, "dictionaryEntryOf"), nix.thunk(() => nix.sel(name$, "type")), nix.thunk(() => nix.sel(value$, "type"))));
-      return nix.update(nix.app(mkPrimitive, dictionaryType, nix.thunk(() => ({ [nix.POS]: pos$13, name: name, value: value }))), {
-        [nix.POS]: pos$14,
+      return nix.update(nix.app(mkPrimitive, dictionaryType, nix.thunk(() => ({ [nix.POS]: $pos[12], name: name, value: value }))), {
+        [nix.POS]: $pos[13],
         __toString: (self) => nix.str`@${nix.sel(self, "type")} {${name$},${value$}}`,
       });
     })();
     const mkMaybe = (elemType) => (elem) => nix.update(nix.app(mkPrimitive, nix.thunk(() => nix.app(nix.sel(type_1, "maybeOf"), elemType)), elem), {
-      [nix.POS]: pos$15,
+      [nix.POS]: $pos[14],
       __toString: (self) => (nix.asBool(nix.eq(nix.sel(self, "value"), null)) ? nix.str`@${nix.sel(self, "type")} nothing` : nix.str`just ${nix.builtins.toString(nix.thunk(() => nix.sel(self, "value")))}`),
     });
     const mkNothing = (elemType) => nix.app(mkMaybe, elemType, null);
@@ -176,41 +155,41 @@ ${nix.app(nix.sel(lib, "concatMapStringsSep"), "\n", nix.lambda((args_1) => (() 
       const gvarElems = nix.thunk(() => nix.builtins.map(mkValue, elems));
       const tupleType = nix.thunk(() => nix.app(nix.sel(type_1, "tupleOf"), nix.thunk(() => nix.app(catAttrs, "type", gvarElems))));
       return nix.update(nix.app(mkPrimitive, tupleType, gvarElems), {
-        [nix.POS]: pos$16,
+        [nix.POS]: $pos[15],
         __toString: (self) => nix.str`@${nix.sel(self, "type")} (${nix.app(concatMapStringsSep, ",", nix.builtins.toString, nix.thunk(() => nix.sel(self, "value")))})`,
       });
     })();
     const mkBoolean = (v) => nix.update(nix.app(mkPrimitive, nix.thunk(() => nix.sel(type_1, "boolean")), v), {
-      [nix.POS]: pos$17,
+      [nix.POS]: $pos[16],
       __toString: (self) => (nix.asBool(nix.sel(self, "value")) ? "true" : "false"),
     });
     const mkString = (v) => (() => {
       const sanitize = (s) => nix.app(replaceString, "\n", "\\n", nix.thunk(() => nix.app(escape, nix.thunk(() => ["'", "\\"]), s)));
       return nix.update(nix.app(mkPrimitive, nix.thunk(() => nix.sel(type_1, "string")), v), {
-        [nix.POS]: pos$18,
+        [nix.POS]: $pos[17],
         __toString: (self) => nix.str`'${nix.app(sanitize, nix.thunk(() => nix.sel(self, "value")))}'`,
       });
     })();
     const mkObjectpath = (v) => nix.update(nix.app(mkPrimitive, nix.thunk(() => nix.sel(type_1, "string")), v), {
-      [nix.POS]: pos$19,
+      [nix.POS]: $pos[18],
       __toString: (self) => nix.str`objectpath '${nix.app(escape, nix.thunk(() => ["'"]), nix.thunk(() => nix.sel(self, "value")))}'`,
     });
     const mkUchar = nix.thunk(() => nix.app(mkPrimitive, nix.thunk(() => nix.sel(type_1, "uchar"))));
     const mkInt16 = nix.thunk(() => nix.app(mkPrimitive, nix.thunk(() => nix.sel(type_1, "int16"))));
     const mkUint16 = nix.thunk(() => nix.app(mkPrimitive, nix.thunk(() => nix.sel(type_1, "uint16"))));
     const mkInt32 = (v) => nix.update(nix.app(mkPrimitive, nix.thunk(() => nix.sel(type_1, "int32")), v), {
-      [nix.POS]: pos$20,
+      [nix.POS]: $pos[19],
       __toString: (self) => nix.builtins.toString(nix.thunk(() => nix.sel(self, "value"))),
     });
     const mkUint32 = nix.thunk(() => nix.app(mkPrimitive, nix.thunk(() => nix.sel(type_1, "uint32"))));
     const mkInt64 = nix.thunk(() => nix.app(mkPrimitive, nix.thunk(() => nix.sel(type_1, "int64"))));
     const mkUint64 = nix.thunk(() => nix.app(mkPrimitive, nix.thunk(() => nix.sel(type_1, "uint64"))));
     const mkDouble = (v) => nix.update(nix.app(mkPrimitive, nix.thunk(() => nix.sel(type_1, "double")), v), {
-      [nix.POS]: pos$21,
+      [nix.POS]: $pos[20],
       __toString: (self) => nix.builtins.toString(nix.thunk(() => nix.sel(self, "value"))),
     });
     return {
-      [nix.POS]: pos$22,
+      [nix.POS]: $pos[21],
       type: type_1,
       isGVariant,
       intConstructors,

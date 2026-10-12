@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 22, 26], ["version", 22, 32], ["extension", 23, 5], ["hash", 24, 5]], [["description", 46, 5], ["homepage", 47, 5], ["license", 48, 5], ["maintainers", 49, 5]], [["version", 15, 3], ["pyproject", 16, 3], ["__structuredAttrs", 18, 3], ["pname", 19, 3], ["src", 21, 3], ["build-system", 27, 3], ["dependencies", 29, 3], ["postInstall", 36, 3], ["doCheck", 41, 3], ["pythonImportsCheck", 43, 3], ["meta", 45, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, python: false, "azure-common": false, "azure-mgmt-nspkg": false, requests: false, msrestazure: false, setuptools: false, isPy3k: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 22, 26], ["version", 22, 32], ["extension", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 46, 5], ["homepage", 47, 5], ["license", 48, 5], ["maintainers", 49, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["version", 15, 3], ["pyproject", 16, 3], ["__structuredAttrs", 18, 3], ["pname", 19, 3], ["src", 21, 3], ["build-system", 27, 3], ["dependencies", 29, 3], ["postInstall", 36, 3], ["doCheck", 41, 3], ["pythonImportsCheck", 43, 3], ["meta", 45, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,13 +18,13 @@ export default nix.lambda((args) => (() => {
   const setuptools = nix.arg($, "setuptools");
   const isPy3k = nix.arg($, "isPy3k");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       version: "0.20.0",
       pyproject: true,
       __structuredAttrs: true,
       pname: "azure-mgmt-common",
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           extension: "zip",
@@ -40,7 +38,7 @@ echo "__import__('pkg_resources').declare_namespace(__name__)" >> "$out/${nix.se
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["azure.mgmt.common"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "This is the Microsoft Azure Resource Management common code",
         homepage: "https://github.com/Azure/azure-sdk-for-python",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

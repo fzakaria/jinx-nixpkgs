@@ -2,26 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/oncall.nix", [[["maintainers", 20, 8]], [["memorySize", 24, 22]], [["text", 26, 44]], [["oncall-secrets.yml", 26, 23]], [["etc", 26, 19], ["systemPackages", 31, 19]], [["username", 45, 15], ["full_name", 46, 15], ["email", 47, 15], ["call", 48, 15], ["sms", 49, 15]], [["module", 37, 13], ["ldap_url", 38, 13], ["ldap_user_suffix", 39, 13], ["ldap_bind_user", 40, 13], ["ldap_base_dn", 41, 13], ["ldap_search_filter", 42, 13], ["import_user", 43, 13], ["attrs", 44, 13]], [["auth", 36, 11]], [["enable", 34, 9], ["settings", 35, 9], ["secretFile", 53, 9]], [["includes", 60, 25]], [["objectClass", 68, 17], ["olcDatabase", 72, 17], ["olcDbDirectory", 73, 17], ["olcSuffix", 74, 17], ["olcRootDN", 75, 17], ["olcRootPW", 76, 17]], [["attrs", 67, 15]], [["cn=schema", 60, 13], ["olcDatabase={1}mdb", 66, 13]], [["children", 59, 11]], [["enable", 57, 9], ["settings", 58, 9], ["declarativeContents", 81, 9]], [["oncall", 33, 16], ["openldap", 56, 16]], [["virtualisation", 24, 7], ["environment", 26, 7], ["services", 33, 7]], [["machine", 23, 5]], [["name", 19, 3], ["meta", 20, 3], ["nodes", 22, 3], ["testScript", 109, 3]]]);
 const formals$1 = { args: { lib: false, pkgs: false, config: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/oncall.nix", [["maintainers", 20, 8]]);
-const pos$2 = nix.positions(here + "/oncall.nix", [["memorySize", 24, 22]]);
-const pos$3 = nix.positions(here + "/oncall.nix", [["text", 26, 44]]);
-const pos$4 = nix.positions(here + "/oncall.nix", [["oncall-secrets.yml", 26, 23]]);
-const pos$5 = nix.positions(here + "/oncall.nix", [["etc", 26, 19], ["systemPackages", 31, 19]]);
-const pos$6 = nix.positions(here + "/oncall.nix", [["username", 45, 15], ["full_name", 46, 15], ["email", 47, 15], ["call", 48, 15], ["sms", 49, 15]]);
-const pos$7 = nix.positions(here + "/oncall.nix", [["module", 37, 13], ["ldap_url", 38, 13], ["ldap_user_suffix", 39, 13], ["ldap_bind_user", 40, 13], ["ldap_base_dn", 41, 13], ["ldap_search_filter", 42, 13], ["import_user", 43, 13], ["attrs", 44, 13]]);
-const pos$8 = nix.positions(here + "/oncall.nix", [["auth", 36, 11]]);
-const pos$9 = nix.positions(here + "/oncall.nix", [["enable", 34, 9], ["settings", 35, 9], ["secretFile", 53, 9]]);
-const pos$10 = nix.positions(here + "/oncall.nix", [["includes", 60, 25]]);
-const pos$11 = nix.positions(here + "/oncall.nix", [["objectClass", 68, 17], ["olcDatabase", 72, 17], ["olcDbDirectory", 73, 17], ["olcSuffix", 74, 17], ["olcRootDN", 75, 17], ["olcRootPW", 76, 17]]);
-const pos$12 = nix.positions(here + "/oncall.nix", [["attrs", 67, 15]]);
-const pos$13 = nix.positions(here + "/oncall.nix", [["cn=schema", 60, 13], ["olcDatabase={1}mdb", 66, 13]]);
-const pos$14 = nix.positions(here + "/oncall.nix", [["children", 59, 11]]);
-const pos$15 = nix.positions(here + "/oncall.nix", [["enable", 57, 9], ["settings", 58, 9], ["declarativeContents", 81, 9]]);
-const pos$16 = nix.positions(here + "/oncall.nix", [["oncall", 33, 16], ["openldap", 56, 16]]);
-const pos$17 = nix.positions(here + "/oncall.nix", [["virtualisation", 24, 7], ["environment", 26, 7], ["services", 33, 7]]);
-const pos$18 = nix.positions(here + "/oncall.nix", [["machine", 23, 5]]);
-const pos$19 = nix.positions(here + "/oncall.nix", [["name", 19, 3], ["meta", 20, 3], ["nodes", 22, 3], ["testScript", 109, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -36,26 +18,26 @@ export default nix.lambda((args) => (() => {
   const testPassword = "foobar23";
   const teamName = "myteam";
   return {
-    [nix.POS]: pos$19,
+    [nix.POS]: $pos[18],
     name: "oncall",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "onny"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$18,
+      [nix.POS]: $pos[17],
       machine: nix.thunk(() => ({
-        [nix.POS]: pos$17,
-        virtualisation: nix.thunk(() => ({ [nix.POS]: pos$2, memorySize: 2048n })),
+        [nix.POS]: $pos[16],
+        virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[1], memorySize: 2048n })),
         environment: nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           etc: nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             "oncall-secrets.yml": nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               text: nix.thunk(() => nix.str`auth:
   ldap_bind_password: "${ldapRootPassword}"
 `),
@@ -64,14 +46,14 @@ export default nix.lambda((args) => (() => {
           systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "jq"))]),
         })),
         services: nix.thunk(() => ({
-          [nix.POS]: pos$16,
+          [nix.POS]: $pos[15],
           oncall: nix.thunk(() => ({
-            [nix.POS]: pos$9,
+            [nix.POS]: $pos[8],
             enable: true,
             settings: nix.thunk(() => ({
-              [nix.POS]: pos$8,
+              [nix.POS]: $pos[7],
               auth: nix.thunk(() => ({
-                [nix.POS]: pos$7,
+                [nix.POS]: $pos[6],
                 module: "oncall.auth.modules.ldap_import",
                 ldap_url: "ldap://localhost",
                 ldap_user_suffix: "",
@@ -80,7 +62,7 @@ export default nix.lambda((args) => (() => {
                 ldap_search_filter: "(uid=%s)",
                 import_user: true,
                 attrs: nix.thunk(() => ({
-                  [nix.POS]: pos$6,
+                  [nix.POS]: $pos[5],
                   username: "uid",
                   full_name: "cn",
                   email: "mail",
@@ -92,14 +74,14 @@ export default nix.lambda((args) => (() => {
             secretFile: "/etc/oncall-secrets.yml",
           })),
           openldap: nix.thunk(() => ({
-            [nix.POS]: pos$15,
+            [nix.POS]: $pos[14],
             enable: true,
             settings: nix.thunk(() => ({
-              [nix.POS]: pos$14,
+              [nix.POS]: $pos[13],
               children: nix.thunk(() => ({
-                [nix.POS]: pos$13,
+                [nix.POS]: $pos[12],
                 "cn=schema": nix.thunk(() => ({
-                  [nix.POS]: pos$10,
+                  [nix.POS]: $pos[9],
                   includes: nix.thunk(() => [
                     nix.thunk(() => nix.str`${nix.sel(pkgs, "openldap")}/etc/schema/core.ldif`),
                     nix.thunk(() => nix.str`${nix.sel(pkgs, "openldap")}/etc/schema/cosine.ldif`),
@@ -108,9 +90,9 @@ export default nix.lambda((args) => (() => {
                   ]),
                 })),
                 "olcDatabase={1}mdb": nix.thunk(() => ({
-                  [nix.POS]: pos$12,
+                  [nix.POS]: $pos[11],
                   attrs: nix.thunk(() => ({
-                    [nix.POS]: pos$11,
+                    [nix.POS]: $pos[10],
                     objectClass: nix.thunk(() => ["olcDatabaseConfig", "olcMdbConfig"]),
                     olcDatabase: "{1}mdb",
                     olcDbDirectory: "/var/lib/openldap/db",

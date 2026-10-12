@@ -2,9 +2,8 @@
 import * as nix from "../../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["jq", 11, 5]], [["name", 9, 3], ["substitutions", 10, 3]]]);
 const formals$1 = { args: { lib: false, jq: false, makeSetupHook: false, swiftpm: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["jq", 11, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 9, 3], ["substitutions", 10, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,9 +12,9 @@ export default nix.lambda((args) => (() => {
   const makeSetupHook = nix.arg($, "makeSetupHook");
   const swiftpm = nix.arg($, "swiftpm");
   return nix.app(makeSetupHook, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       name: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getName"), swiftpm)}-unpack-hook-${nix.app(nix.sel(lib, "getVersion"), swiftpm)}`),
-      substitutions: nix.thunk(() => ({ [nix.POS]: pos$1, jq: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), jq)) })),
+      substitutions: nix.thunk(() => ({ [nix.POS]: $pos[0], jq: nix.thunk(() => nix.app(nix.sel(lib, "getExe"), jq)) })),
     })), nix.path(here, "./setup-hook.sh"));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

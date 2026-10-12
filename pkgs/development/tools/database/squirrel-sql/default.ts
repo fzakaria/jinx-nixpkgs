@@ -2,11 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 18, 5], ["sha256", 19, 5]], [["name", 70, 5], ["exec", 71, 5], ["comment", 72, 5], ["desktopName", 73, 5], ["genericName", 74, 5], ["categories", 75, 5], ["icon", 76, 5]], [["description", 80, 5], ["mainProgram", 81, 5], ["homepage", 82, 5], ["sourceProvenance", 83, 5], ["license", 84, 5], ["platforms", 85, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 22, 3], ["buildInputs", 26, 3], ["unpackPhase", 28, 3], ["buildPhase", 34, 3], ["installPhase", 41, 3], ["desktopItem", 69, 3], ["meta", 79, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, makeDesktopItem: false, makeWrapper: false, unzip: false, jre: false, drivers: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 18, 5], ["sha256", 19, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["name", 70, 5], ["exec", 71, 5], ["comment", 72, 5], ["desktopName", 73, 5], ["genericName", 74, 5], ["categories", 75, 5], ["icon", 76, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 80, 5], ["mainProgram", 81, 5], ["homepage", 82, 5], ["sourceProvenance", 83, 5], ["license", 84, 5], ["platforms", 85, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 22, 3], ["buildInputs", 26, 3], ["unpackPhase", 28, 3], ["buildPhase", 34, 3], ["installPhase", 41, 3], ["desktopItem", 69, 3], ["meta", 79, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,7 +19,7 @@ export default nix.lambda((args) => (() => {
       const pname = "squirrel-sql";
       const version = "5.1.0";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/project/squirrel-sql/1-stable/${version}-plainzip/squirrelsql-${version}-standard.zip`),
           sha256: "sha256-aYwA2TRXI74s1BXfhlatBqPzC1xCfEqTe/yK8DCMo4E=",
         }))));
@@ -64,7 +61,7 @@ ln -s ${desktopItem}/share/applications $out/share
 runHook postInstall
 `);
       const desktopItem = nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           name: "squirrel-sql",
           exec: "squirrel-sql",
           comment: nix.thunk(() => nix.sel(meta, "description")),
@@ -74,7 +71,7 @@ runHook postInstall
           icon: "squirrel-sql",
         }))));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Universal SQL Client",
         mainProgram: "squirrel-sql",
         homepage: "http://squirrel-sql.sourceforge.net/",
@@ -86,7 +83,7 @@ runHook postInstall
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

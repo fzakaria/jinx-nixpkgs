@@ -2,11 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/tests.nix", [[["nativeBuildInputs", 23, 11], ["tex", 24, 19], ["fonttype", 24, 23], ["file", 24, 32]], [["tex", 35, 5], ["fonttype", 39, 5], ["package", 43, 5], ["file", 44, 5]], [["package", 48, 7], ["fonttype", 49, 7], ["tex", 50, 7], ["file", 51, 7]]]);
 const formals$1 = { args: { lib: false, runCommand: false, junicode: false, texliveBasic: false }, ellipsis: false };
 const formals$2 = { args: { package: false, tex: false, fonttype: false, file: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/tests.nix", [["nativeBuildInputs", 23, 11], ["tex", 24, 19], ["fonttype", 24, 23], ["file", 24, 32]]);
-const pos$2 = nix.positions(here + "/tests.nix", [["tex", 35, 5], ["fonttype", 39, 5], ["package", 43, 5], ["file", 44, 5]]);
-const pos$3 = nix.positions(here + "/tests.nix", [["package", 48, 7], ["fonttype", 49, 7], ["tex", 50, 7], ["file", 51, 7]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,7 +20,7 @@ export default nix.lambda((args) => (() => {
     const fonttype = nix.arg($_1, "fonttype");
     const file = nix.arg($_1, "file");
     return nix.app(nix.sel(lib, "attrsets", "nameValuePair"), nix.thunk(() => nix.str`${package$}-${tex}-${fonttype}`), nix.thunk(() => nix.app(runCommand, nix.thunk(() => nix.str`${package$}-test-${tex}-${fonttype}.pdf`), nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           nativeBuildInputs: nix.thunk(() => [texliveWithJunicode]),
           tex: tex,
           fonttype: fonttype,
@@ -30,14 +28,14 @@ export default nix.lambda((args) => (() => {
         })), "substituteAll $file test.tex\nHOME=$PWD $tex test.tex\ncp test.pdf $out\n")));
   })(), formals$2);
   return nix.builtins.listToAttrs(nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "mapCartesianProduct"), texTest, nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         tex: nix.thunk(() => ["xelatex", "lualatex"]),
         fonttype: nix.thunk(() => ["ttf", "otf"]),
         package: nix.thunk(() => ["junicode"]),
         file: nix.thunk(() => [nix.path(here, "./test.tex")]),
       }))), [
       nix.thunk(() => nix.app(texTest, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           package: "junicodevf",
           fonttype: "ttf",
           tex: "lualatex",

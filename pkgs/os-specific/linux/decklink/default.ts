@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["KERNELDIR", 16, 5], ["INSTALL_MOD_PATH", 17, 5]], [["homepage", 49, 5], ["maintainers", 50, 5], ["license", 51, 5], ["description", 52, 5], ["sourceProvenance", 53, 5], ["platforms", 54, 5]], [["pname", 8, 3], ["src", 13, 38], ["version", 13, 42], ["env", 15, 3], ["nativeBuildInputs", 20, 3], ["postUnpack", 22, 3], ["buildPhase", 34, 3], ["installPhase", 41, 3], ["meta", 48, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, "blackmagic-desktop-video": false, kernel: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["KERNELDIR", 16, 5], ["INSTALL_MOD_PATH", 17, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["homepage", 49, 5], ["maintainers", 50, 5], ["license", 51, 5], ["description", 52, 5], ["sourceProvenance", 53, 5], ["platforms", 54, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 8, 3], ["src", 13, 38], ["version", 13, 42], ["env", 15, 3], ["nativeBuildInputs", 20, 3], ["postUnpack", 22, 3], ["buildPhase", 34, 3], ["installPhase", 41, 3], ["meta", 48, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,12 +12,12 @@ export default nix.lambda((args) => (() => {
   const blackmagic_desktop_video = nix.arg($, "blackmagic-desktop-video");
   const kernel = nix.arg($, "kernel");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "decklink",
       src: nix.thunk(() => nix.attr(blackmagic_desktop_video, "src")),
       version: nix.thunk(() => nix.attr(blackmagic_desktop_video, "version")),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         KERNELDIR: nix.thunk(() => nix.str`${nix.sel(kernel, "dev")}/lib/modules/${nix.sel(kernel, "modDirVersion")}/build`),
         INSTALL_MOD_PATH: nix.thunk(() => nix.builtins.placeholder("out")),
       })),
@@ -36,7 +34,7 @@ sourceRoot=$moduleRoot
       buildPhase: "runHook preBuild\nmake -C $moduleRoot/blackmagic-$bmVersion -j$NIX_BUILD_CORES\nmake -C $moduleRoot/blackmagic-io-$bmVersion -j$NIX_BUILD_CORES\nrunHook postBuild\n",
       installPhase: "runHook preInstall\nmake -C $KERNELDIR M=$moduleRoot/blackmagic-$bmVersion modules_install\nmake -C $KERNELDIR M=$moduleRoot/blackmagic-io-$bmVersion modules_install\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://www.blackmagicdesign.com/support/family/capture-and-playback",
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "naxdy"))]),
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

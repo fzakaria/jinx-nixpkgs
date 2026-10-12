@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]], [["updateScript", 73, 12]], [["description", 76, 5], ["homepage", 77, 5], ["changelog", 78, 5], ["license", 79, 5], ["maintainers", 80, 5], ["mainProgram", 81, 5], ["platforms", 85, 5]], [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["__structuredAttrs", 31, 3], ["cargoHash", 33, 3], ["cargoBuildFlags", 35, 3], ["nativeBuildInputs", 42, 3], ["nativeCheckInputs", 44, 3], ["buildInputs", 46, 3], ["cargoTestFlags", 58, 3], ["postInstall", 65, 3], ["passthru", 73, 3], ["meta", 75, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, rustPlatform: false, fetchFromGitHub: false, "pkg-config": false, "xdg-terminal-exec": false, gtk3: false, "gdk-pixbuf": false, cairo: false, pango: false, glib: false, atk: false, libappindicator: false, "libdbusmenu-gtk3": false, "nix-update-script": false, writableTmpDirAsHomeHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 25, 5], ["repo", 26, 5], ["tag", 27, 5], ["hash", 28, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 73, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 76, 5], ["homepage", 77, 5], ["changelog", 78, 5], ["license", 79, 5], ["maintainers", 80, 5], ["mainProgram", 81, 5], ["platforms", 85, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["__structuredAttrs", 31, 3], ["cargoHash", 33, 3], ["cargoBuildFlags", 35, 3], ["nativeBuildInputs", 42, 3], ["nativeCheckInputs", 44, 3], ["buildInputs", 46, 3], ["cargoTestFlags", 58, 3], ["postInstall", 65, 3], ["passthru", 73, 3], ["meta", 75, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "walls",
       version: "0.13.4",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "willfish",
           repo: "walls",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -51,11 +48,11 @@ substitute assets/applications/walls.desktop.in $out/share/applications/walls.de
   --replace-fail '@xdg-terminal-exec@' "${nix.app(nix.sel(lib, "getExe"), xdg_terminal_exec)}"
 `))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Wallpaper manager with Wallhaven sources, CLI/TUI, and tray",
         homepage: "https://github.com/willfish/walls",
         changelog: nix.thunk(() => nix.str`https://github.com/willfish/walls/releases/tag/v${nix.sel(finalAttrs, "version")}`),

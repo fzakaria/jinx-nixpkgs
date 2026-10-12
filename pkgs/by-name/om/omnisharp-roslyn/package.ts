@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 7], ["repo", 20, 7], ["tag", 21, 7], ["hash", 22, 7]], [["timeout", 75, 22]], [["nativeBuildInputs", 70, 17], ["meta", 75, 17]], [["with-net8-sdk", 97, 11], ["with-net9-sdk", 98, 11], ["no-sdk", 99, 11]], [["tests", 64, 7], ["updateScript", 102, 7]], [["description", 106, 7], ["homepage", 107, 7], ["changelog", 108, 7], ["sourceProvenance", 109, 7], ["license", 113, 7], ["maintainers", 114, 7], ["mainProgram", 121, 7]], [["pname", 15, 5], ["version", 16, 5], ["src", 18, 5], ["projectFile", 25, 5], ["nugetDeps", 26, 5], ["dotnet-sdk", 28, 5], ["dotnet-runtime", 29, 5], ["dotnetInstallFlags", 31, 5], ["dotnetBuildFlags", 32, 5], ["dotnetFlags", 36, 5], ["postPatch", 46, 5], ["useDotnetFromEnv", 60, 5], ["executables", 61, 5], ["passthru", 63, 5], ["meta", 105, 5]]]);
 const formals$1 = { args: { lib: false, dotnetCorePackages: false, buildDotnetModule: false, fetchFromGitHub: false, runCommand: false, expect: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 7], ["repo", 20, 7], ["tag", 21, 7], ["hash", 22, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["timeout", 75, 22]]);
-const pos$3 = nix.positions(here + "/package.nix", [["nativeBuildInputs", 70, 17], ["meta", 75, 17]]);
-const pos$4 = nix.positions(here + "/package.nix", [["with-net8-sdk", 97, 11], ["with-net9-sdk", 98, 11], ["no-sdk", 99, 11]]);
-const pos$5 = nix.positions(here + "/package.nix", [["tests", 64, 7], ["updateScript", 102, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 106, 7], ["homepage", 107, 7], ["changelog", 108, 7], ["sourceProvenance", 109, 7], ["license", 113, 7], ["maintainers", 114, 7], ["mainProgram", 121, 7]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 15, 5], ["version", 16, 5], ["src", 18, 5], ["projectFile", 25, 5], ["nugetDeps", 26, 5], ["dotnet-sdk", 28, 5], ["dotnet-runtime", 29, 5], ["dotnetInstallFlags", 31, 5], ["dotnetBuildFlags", 32, 5], ["dotnetFlags", 36, 5], ["postPatch", 46, 5], ["useDotnetFromEnv", 60, 5], ["executables", 61, 5], ["passthru", 63, 5], ["meta", 105, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const pname = "omnisharp-roslyn";
       const version = "1.39.14";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "OmniSharp",
           repo: "omnisharp-roslyn",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -50,12 +44,12 @@ export default nix.lambda((args) => (() => {
       const useDotnetFromEnv = true;
       const executables = nix.thunk(() => ["OmniSharp"]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         tests: nix.thunk(() => (() => {
           const with_sdk = (sdk) => nix.app(runCommand, nix.thunk(() => nix.str`with-${(nix.asBool(nix.has(sdk, "version")) ? nix.sel(sdk, "version") : "no")}-sdk`), nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               nativeBuildInputs: nix.thunk(() => [finalPackage, sdk, expect]),
-              meta: nix.thunk(() => ({ [nix.POS]: pos$2, timeout: 60n })),
+              meta: nix.thunk(() => ({ [nix.POS]: $pos[1], timeout: 60n })),
             })), nix.thunk(() => nix.str`HOME=$TMPDIR
 expect <<"EOF"
   spawn OmniSharp
@@ -73,7 +67,7 @@ EOF
 touch $out
 `));
           return {
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             "with-net8-sdk": nix.thunk(() => nix.app(with_sdk, sdk_8_0)),
             "with-net9-sdk": nix.thunk(() => nix.app(with_sdk, sdk_9_0)),
             "no-sdk": nix.thunk(() => nix.app(with_sdk, null)),
@@ -82,7 +76,7 @@ touch $out
         updateScript: nix.path(here, "./update.sh"),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "OmniSharp based on roslyn workspaces",
         homepage: "https://github.com/OmniSharp/omnisharp-roslyn",
         changelog: nix.thunk(() => nix.str`https://github.com/OmniSharp/omnisharp-roslyn/blob/v${version}/CHANGELOG.md`),
@@ -107,7 +101,7 @@ touch $out
         mainProgram: "OmniSharp",
       }));
       return {
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         pname,
         version,
         src,

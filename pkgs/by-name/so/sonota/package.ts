@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 15, 5], ["sha256", 16, 5]], [["owner", 25, 5], ["repo", 26, 5], ["rev", 27, 5], ["sha256", 28, 5]], [["description", 59, 5], ["homepage", 60, 5], ["license", 61, 5], ["maintainers", 62, 5], ["mainProgram", 63, 5]], [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["patches", 31, 3], ["postPatch", 35, 3], ["pyproject", 39, 3], ["propagatedBuildInputs", 41, 3], ["installPhase", 47, 3], ["meta", 58, 3]]]);
 const formals$1 = { args: { fetchFromGitHub: false, fetchurl: false, lib: false, python3Packages: false, coreVersion: true, coreSize: true, coreSha256: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 15, 5], ["sha256", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 25, 5], ["repo", 26, 5], ["rev", 27, 5], ["sha256", 28, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 59, 5], ["homepage", 60, 5], ["license", 61, 5], ["maintainers", 62, 5], ["mainProgram", 63, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["patches", 31, 3], ["postPatch", 35, 3], ["pyproject", 39, 3], ["propagatedBuildInputs", 41, 3], ["installPhase", 47, 3], ["meta", 58, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,16 +16,16 @@ export default nix.lambda((args) => (() => {
   const coreSha256 = nix.argOr($, "coreSha256", () => "0pkb2nmml0blrfiqpc46xpjc2dw927i89k1lfyqx827wanhc704x");
   const w = nix.withScope(python3Packages, null);
   const core = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: nix.thunk(() => nix.str`https://github.com/xoseperez/espurna/releases/download/${coreVersion}/espurna-${coreVersion}-espurna-core-${coreSize}.bin`),
       sha256: coreSha256,
     }))));
   return nix.app(nix.lookup(w, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "sonota-unstable",
       version: "2018-10-07",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "mirko",
           repo: "SonOTA",
           rev: "d7f4b353858aae7ac403f95475a35560fb7ffeae",
@@ -52,7 +49,7 @@ cp ${core} $out/share/sonota/static/image_arduino.bin
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Flash Itead Sonoff devices with custom firmware via original OTA mechanism",
         homepage: nix.thunk(() => nix.sel(finalAttrs, "src", "meta", "homepage")),
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

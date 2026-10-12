@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 27, 5], ["repo", 28, 5], ["rev", 29, 5], ["hash", 30, 5]], [["extraArgs", 79, 40]], [["testService", 80, 11]], [["updateScript", 79, 5], ["tests", 80, 5]], [["description", 84, 5], ["homepage", 85, 5], ["changelog", 86, 5], ["license", 87, 5], ["platforms", 93, 5], ["maintainers", 94, 5], ["mainProgram", 98, 5]], [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 40, 3], ["cmakeFlags", 53, 3], ["qtWrapperArgs", 63, 3], ["dontWrapGApps", 65, 3], ["postInstall", 67, 3], ["preFixup", 74, 3], ["passthru", 78, 3], ["meta", 83, 3]]]);
 const formals$1 = { args: { boost: false, cmake: false, dbus: false, fetchFromGitHub: false, guiSupport: true, lib: false, "libtorrent-rasterbar": false, "nix-update-script": false, openssl: false, "pkg-config": false, python3: false, qt6: false, stdenv: false, trackerSearch: true, webuiSupport: true, wrapGAppsHook3: false, zlib: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 27, 5], ["repo", 28, 5], ["rev", 29, 5], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["extraArgs", 79, 40]]);
-const pos$3 = nix.positions(here + "/package.nix", [["testService", 80, 11]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 79, 5], ["tests", 80, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 84, 5], ["homepage", 85, 5], ["changelog", 86, 5], ["license", 87, 5], ["platforms", 93, 5], ["maintainers", 94, 5], ["mainProgram", 98, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 40, 3], ["cmakeFlags", 53, 3], ["qtWrapperArgs", 63, 3], ["dontWrapGApps", 65, 3], ["postInstall", 67, 3], ["preFixup", 74, 3], ["passthru", 78, 3], ["meta", 83, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const zlib = nix.arg($, "zlib");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: nix.thunk(() => nix.add("qbittorrent", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(guiSupport)), "-nox"))),
       version: "5.2.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "qbittorrent",
           repo: "qBittorrent",
           rev: nix.thunk(() => nix.str`release-${nix.sel(finalAttrs, "version")}`),
@@ -72,18 +67,18 @@ makeWrapper $out/{Applications/$APP_NAME.app/Contents/MacOS,bin}/$APP_NAME
 `))),
       preFixup: "qtWrapperArgs+=(\"${gappsWrapperArgs[@]}\")\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             extraArgs: nix.thunk(() => ["--version-regex=release-(.*)"]),
           })))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           testService: nix.thunk(() => nix.sel(nixosTests, "qbittorrent")),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Featureful free software BitTorrent client",
         homepage: "https://www.qbittorrent.org",
         changelog: nix.thunk(() => nix.str`https://github.com/qbittorrent/qBittorrent/blob/release-${nix.sel(finalAttrs, "version")}/Changelog`),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 12, 5], ["sha256", 13, 5]], [["platforms", 28, 5]], [["pname", 8, 3], ["version", 9, 3], ["dtd", 11, 3], ["catalog", 15, 3], ["unpackPhase", 17, 3], ["installPhase", 22, 3], ["meta", 27, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 12, 5], ["sha256", 13, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["platforms", 28, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["dtd", 11, 3], ["catalog", 15, 3], ["unpackPhase", 17, 3], ["installPhase", 22, 3], ["meta", 27, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,11 +11,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "docbook-xml-ebnf",
       version: "1.2b1",
       dtd: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://docbook.org/xml/ebnf/${nix.sel(finalAttrs, "version")}/dbebnf.dtd`),
           sha256: "0min5dsc53my13b94g2yd65q1nkjcf4x1dak00bsc4ckf86mrx95",
         })))),
@@ -25,7 +23,7 @@ export default nix.lambda((args) => (() => {
       unpackPhase: "mkdir -p $out/xml/dtd/docbook-ebnf\ncd $out/xml/dtd/docbook-ebnf\n",
       installPhase: "cp -p $dtd dbebnf.dtd\ncp -p $catalog $(stripHash $catalog)\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       })),
     }));

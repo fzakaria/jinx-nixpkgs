@@ -2,16 +2,9 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 29, 9], ["hash", 30, 9]], [["deluge", 114, 47]], [["tests", 114, 16]], [["description", 117, 9], ["homepage", 118, 9], ["license", 119, 9], ["maintainers", 120, 9], ["platforms", 121, 9]], [["pname", 24, 15], ["version", 25, 7], ["format", 26, 7], ["src", 28, 7], ["patches", 33, 7], ["propagatedBuildInputs", 38, 7], ["nativeBuildInputs", 70, 7], ["nativeCheckInputs", 79, 7], ["doCheck", 88, 7], ["postInstall", 90, 7], ["postFixup", 108, 7], ["passthru", 114, 7], ["meta", 116, 7]], [["pname", 128, 5], ["withGUI", 129, 5]], [["pname", 132, 5], ["withGUI", 133, 5]], [["deluge-gtk", 127, 3], ["deluged", 131, 3], ["deluge", 135, 3]]]);
 const formals$1 = { args: { lib: false, fetchurl: false, intltool: false, "libtorrent-rasterbar": false, python3Packages: false, gtk3: false, libappindicator: false, glib: false, "gobject-introspection": false, librsvg: false, wrapGAppsHook3: false, nixosTests: false }, ellipsis: false };
 const formals$2 = { args: { pname: false, withGUI: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 29, 9], ["hash", 30, 9]]);
-const pos$2 = nix.positions(here + "/default.nix", [["deluge", 114, 47]]);
-const pos$3 = nix.positions(here + "/default.nix", [["tests", 114, 16]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 117, 9], ["homepage", 118, 9], ["license", 119, 9], ["maintainers", 120, 9], ["platforms", 121, 9]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 24, 15], ["version", 25, 7], ["format", 26, 7], ["src", 28, 7], ["patches", 33, 7], ["propagatedBuildInputs", 38, 7], ["nativeBuildInputs", 70, 7], ["nativeCheckInputs", 79, 7], ["doCheck", 88, 7], ["postInstall", 90, 7], ["postFixup", 108, 7], ["passthru", 114, 7], ["meta", 116, 7]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 128, 5], ["withGUI", 129, 5]]);
-const pos$7 = nix.positions(here + "/default.nix", [["pname", 132, 5], ["withGUI", 133, 5]]);
-const pos$8 = nix.positions(here + "/default.nix", [["deluge-gtk", 127, 3], ["deluged", 131, 3], ["deluge", 135, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -38,7 +31,7 @@ export default nix.lambda((args) => (() => {
         const version = "2.2.0";
         const format = "setuptools";
         const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             url: nix.thunk(() => nix.str`http://download.deluge-torrent.org/source/${nix.app(nix.sel(lib, "versions", "majorMinor"), version)}/deluge-${version}.tar.xz`),
             hash: "sha256-ubonK1ukKq8caU5sKWKKuBbMGnAKN7rAiqy1JXFgas0=",
           }))));
@@ -90,11 +83,11 @@ rm -r $out/share/{icons,man/man1/deluge-gtk*,pixmaps}
 `)));
         const postFixup = "for f in $out/lib/systemd/system/*; do\n  substituteInPlace $f --replace /usr/bin $out/bin\ndone\n";
         const passthru = nix.thunk(() => ({
-          [nix.POS]: pos$3,
-          tests: nix.thunk(() => ({ [nix.POS]: pos$2, deluge: nix.thunk(() => nix.attr(nixosTests, "deluge")) })),
+          [nix.POS]: $pos[2],
+          tests: nix.thunk(() => ({ [nix.POS]: $pos[1], deluge: nix.thunk(() => nix.attr(nixosTests, "deluge")) })),
         }));
         const meta = nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           description: "Torrent client",
           homepage: "https://deluge-torrent.org",
           license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
@@ -105,7 +98,7 @@ rm -r $out/share/{icons,man/man1/deluge-gtk*,pixmaps}
           platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
         }));
         return {
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           pname: pname_1,
           version,
           format,
@@ -123,10 +116,10 @@ rm -r $out/share/{icons,man/man1/deluge-gtk*,pixmaps}
       })()));
   })(), formals$2);
   return (() => {
-    const deluge_gtk = nix.thunk(() => nix.app(generic, nix.thunk(() => ({ [nix.POS]: pos$6, pname: "deluge-gtk", withGUI: true }))));
-    const deluged = nix.thunk(() => nix.app(generic, nix.thunk(() => ({ [nix.POS]: pos$7, pname: "deluged", withGUI: false }))));
+    const deluge_gtk = nix.thunk(() => nix.app(generic, nix.thunk(() => ({ [nix.POS]: $pos[5], pname: "deluge-gtk", withGUI: true }))));
+    const deluged = nix.thunk(() => nix.app(generic, nix.thunk(() => ({ [nix.POS]: $pos[6], pname: "deluged", withGUI: false }))));
     const deluge = deluge_gtk;
-    return { [nix.POS]: pos$8, "deluge-gtk": deluge_gtk, deluged, deluge };
+    return { [nix.POS]: $pos[7], "deluge-gtk": deluge_gtk, deluged, deluge };
   })();
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

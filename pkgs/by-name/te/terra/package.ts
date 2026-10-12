@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 24, 5], ["repo", 25, 5], ["rev", 26, 5], ["hash", 27, 5]], [["name", 32, 5], ["paths", 33, 5]], [["owner", 54, 5], ["repo", 55, 5], ["tag", 56, 5], ["hash", 57, 5]], [["description", 136, 5], ["homepage", 137, 5], ["downloadPage", 138, 5], ["changelog", 139, 5], ["platforms", 140, 5], ["maintainers", 141, 5], ["license", 147, 5], ["mainProgram", 148, 5]], [["pname", 47, 3], ["version", 48, 3], ["strictDeps", 50, 3], ["__structuredAttrs", 51, 3], ["src", 53, 3], ["nativeBuildInputs", 60, 3], ["buildInputs", 66, 3], ["cmakeFlags", 81, 3], ["doCheck", 96, 3], ["hardeningDisable", 97, 3], ["outputs", 98, 3], ["patches", 105, 3], ["postPatch", 107, 3], ["preConfigure", 112, 3], ["installPhase", 119, 3], ["nativeInstallCheckInputs", 132, 3], ["doInstallCheck", 133, 3], ["meta", 135, 3]]]);
 const formals$1 = { args: { config: false, lib: false, stdenv: false, fetchFromGitHub: false, llvmPackages_22: false, ncurses: false, cmake: false, libxml2: false, symlinkJoin: false, cudaPackages: false, enableCUDA: true, libffi: false, libpfm: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 24, 5], ["repo", 25, 5], ["rev", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 32, 5], ["paths", 33, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["owner", 54, 5], ["repo", 55, 5], ["tag", 56, 5], ["hash", 57, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 136, 5], ["homepage", 137, 5], ["downloadPage", 138, 5], ["changelog", 139, 5], ["platforms", 140, 5], ["maintainers", 141, 5], ["license", 147, 5], ["mainProgram", 148, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 47, 3], ["version", 48, 3], ["strictDeps", 50, 3], ["__structuredAttrs", 51, 3], ["src", 53, 3], ["nativeBuildInputs", 60, 3], ["buildInputs", 66, 3], ["cmakeFlags", 81, 3], ["doCheck", 96, 3], ["hardeningDisable", 97, 3], ["outputs", 98, 3], ["patches", 105, 3], ["postPatch", 107, 3], ["preConfigure", 112, 3], ["installPhase", 119, 3], ["nativeInstallCheckInputs", 132, 3], ["doInstallCheck", 133, 3], ["meta", 135, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,7 +25,7 @@ export default nix.lambda((args) => (() => {
   const luajitBase = nix.thunk(() => nix.str`LuaJIT-${luajitRev}`);
   const luajitArchive = nix.thunk(() => nix.str`${luajitBase}.tar.gz`);
   const luajitSrc = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "LuaJIT",
       repo: "LuaJIT",
       rev: luajitRev,
@@ -37,7 +33,7 @@ export default nix.lambda((args) => (() => {
     }))));
   const llvmPackages = llvmPackages_22;
   const llvmMerged = nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       name: "llvmClangMerged",
       paths: nix.thunk(() => (() => {
         const w = nix.withScope(llvmPackages, null);
@@ -53,13 +49,13 @@ export default nix.lambda((args) => (() => {
     }))));
   const clangVersion = nix.thunk(() => nix.sel(llvmPackages, "clang-unwrapped", "version"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "terra",
       version: "1.2.2",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           owner: "terralang",
           repo: "terra",
           tag: nix.thunk(() => nix.str`release-${nix.sel(finalAttrs, "version")}`),
@@ -111,7 +107,7 @@ runHook postInstall
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Low-level counterpart to Lua",
         homepage: "https://terralang.org/",
         downloadPage: "https://github.com/terralang/terra",

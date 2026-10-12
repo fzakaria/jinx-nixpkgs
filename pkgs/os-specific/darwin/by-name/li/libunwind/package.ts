@@ -2,9 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["description", 23, 5], ["teams", 24, 5], ["platforms", 25, 5], ["pkgConfigModules", 26, 5]], [["pname", 8, 3], ["version", 9, 23], ["buildCommand", 13, 3], ["meta", 22, 3]]]);
 const formals$1 = { args: { lib: false, "apple-sdk": false, stdenvNoCC: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["description", 23, 5], ["teams", 24, 5], ["platforms", 25, 5], ["pkgConfigModules", 26, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 23], ["buildCommand", 13, 3], ["meta", 22, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -12,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const apple_sdk = nix.arg($, "apple-sdk");
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "libunwind",
       version: nix.thunk(() => nix.attr(apple_sdk, "version")),
       buildCommand: nix.thunk(() => nix.str`mkdir -p "$out/lib/pkgconfig"
@@ -23,7 +22,7 @@ Version: ${nix.sel(finalAttrs, "version")}
 EOF
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Compatibility package for libunwind on Darwin",
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "darwin"))]),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "darwin")),

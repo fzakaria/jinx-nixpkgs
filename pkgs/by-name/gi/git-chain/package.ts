@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5]], [["LIBZ_SYS_STATIC", 29, 5]], [["extraArgs", 41, 47]], [["updateScript", 41, 12]], [["broken", 45, 5], ["description", 46, 5], ["homepage", 47, 5], ["license", 48, 5], ["mainProgram", 49, 5], ["maintainers", 50, 5]], [["pname", 14, 3], ["version", 15, 3], ["__structuredAttrs", 17, 3], ["src", 19, 3], ["cargoHash", 26, 3], ["env", 28, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 34, 3], ["nativeCheckInputs", 39, 3], ["passthru", 41, 3], ["meta", 43, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, rustPlatform: false, "pkg-config": false, libz: false, openssl: false, git: false, "nix-update-script": false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["LIBZ_SYS_STATIC", 29, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["extraArgs", 41, 47]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 41, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["broken", 45, 5], ["description", 46, 5], ["homepage", 47, 5], ["license", 48, 5], ["mainProgram", 49, 5], ["maintainers", 50, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["__structuredAttrs", 17, 3], ["src", 19, 3], ["cargoHash", 26, 3], ["env", 28, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 34, 3], ["nativeCheckInputs", 39, 3], ["passthru", 41, 3], ["meta", 43, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,28 +17,28 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "git-chain",
       version: "0-unstable-2025-03-25",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "dashed",
           repo: "git-chain",
           rev: "f6a6d365e6e3cce15e74649a421044a01fb4f68f",
           hash: "sha256-lOAURUhR2Ts1DF8yW0WnovSWeZFC8UwR6j4cxoreonY=",
         })))),
       cargoHash: "sha256-0Ur80eIKQIsM5vyIt+9YpFufHTk97+T+KXoAkJE90Ag=",
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, LIBZ_SYS_STATIC: 0n })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], LIBZ_SYS_STATIC: 0n })),
       nativeBuildInputs: nix.thunk(() => [pkg_config]),
       buildInputs: nix.thunk(() => [libz, openssl]),
       nativeCheckInputs: nix.thunk(() => [git]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$3, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
+        [nix.POS]: $pos[3],
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: $pos[2], extraArgs: nix.thunk(() => ["--version=branch"]) })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
         description: "Tool for rebasing a chain of local git branches",
         homepage: "https://github.com/dashed/git-chain",

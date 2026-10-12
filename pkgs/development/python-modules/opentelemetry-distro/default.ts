@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["updateScript", 39, 12]], [["description", 42, 5], ["homepage", 43, 5]], [["pname", 18, 3], ["src", 19, 43], ["version", 19, 47], ["pyproject", 20, 3], ["sourceRoot", 22, 3], ["build-system", 24, 3], ["dependencies", 26, 3], ["nativeCheckInputs", 32, 3], ["pythonImportsCheck", 37, 3], ["passthru", 39, 3], ["meta", 41, 3]]]);
 const formals$1 = { args: { buildPythonPackage: false, "opentelemetry-instrumentation": false, hatchling: false, "opentelemetry-api": false, "opentelemetry-sdk": false, "opentelemetry-test-utils": false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["updateScript", 39, 12]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 42, 5], ["homepage", 43, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 18, 3], ["src", 19, 43], ["version", 19, 47], ["pyproject", 20, 3], ["sourceRoot", 22, 3], ["build-system", 24, 3], ["dependencies", 26, 3], ["nativeCheckInputs", 32, 3], ["pythonImportsCheck", 37, 3], ["passthru", 39, 3], ["meta", 41, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,16 +25,16 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [opentelemetry_test_utils, pytestCheckHook]);
       const pythonImportsCheck = nix.thunk(() => ["opentelemetry.distro"]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         updateScript: nix.thunk(() => nix.sel(opentelemetry_api, "updateScript")),
       }));
       const meta = nix.thunk(() => nix.update(nix.sel(opentelemetry_instrumentation, "meta"), {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "OpenTelemetry Python Distro",
         homepage: "https://github.com/open-telemetry/opentelemetry-python/tree/main/opentelemetry-distro",
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         src,
         version,

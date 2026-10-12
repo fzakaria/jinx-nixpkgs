@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 44, 5], ["repo", 45, 5], ["rev", 46, 5], ["hash", 47, 5]], [["pkg-config", 101, 11]], [["tests", 101, 5], ["updateScript", 102, 5]], [["description", 106, 5], ["homepage", 107, 5], ["license", 108, 5], ["maintainers", 113, 5], ["platforms", 114, 5], ["pkgConfigModules", 115, 5]], [["pname", 40, 3], ["version", 41, 3], ["src", 43, 3], ["outputs", 50, 3], ["nativeBuildInputs", 56, 3], ["propagatedBuildInputs", 58, 3], ["cmakeFlags", 66, 3], ["passthru", 100, 3], ["meta", 105, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, unstableGitUpdater: false, testers: false, cmake: false, libiconv: false, zlib: false, enableShared: true, enableAudio: true, withWaveWrite: true, withWinMM: true, withDirectSound: true, withXAudio2: true, withWASAPI: true, withOSS: true, withSADA: true, withALSA: true, "alsa-lib": false, withPulseAudio: true, libpulseaudio: false, withCoreAudio: true, withLibao: true, libao: false, enableEmulation: true, withAllEmulators: true, emulators: true, enableLibplayer: true, enableTools: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 44, 5], ["repo", 45, 5], ["rev", 46, 5], ["hash", 47, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pkg-config", 101, 11]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 101, 5], ["updateScript", 102, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 106, 5], ["homepage", 107, 5], ["license", 108, 5], ["maintainers", 113, 5], ["platforms", 114, 5], ["pkgConfigModules", 115, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 40, 3], ["version", 41, 3], ["src", 43, 3], ["outputs", 50, 3], ["nativeBuildInputs", 56, 3], ["propagatedBuildInputs", 58, 3], ["cmakeFlags", 66, 3], ["passthru", 100, 3], ["meta", 105, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -42,11 +38,11 @@ export default nix.lambda((args) => (() => {
   const enableTools = nix.argOr($, "enableTools", () => false);
   nix.assert_((!nix.asBool(enableTools) || nix.asBool((nix.asBool((nix.asBool(enableAudio) && nix.asBool(enableEmulation))) && nix.asBool(enableLibplayer)))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/li/libvgm/package.nix:37:1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "libvgm",
       version: "0-unstable-2026-09-05",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ValleyBell",
           repo: "libvgm",
           rev: "c8b998b606895990c409a512b86c5509070f9f0d",
@@ -83,15 +79,15 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "UTIL_CHARCNV_WINAPI", nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isWindows")))),
         ])))))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "testMetaPkgConfig"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
         })),
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "More modular rewrite of most components from VGMPlay",
         homepage: "https://github.com/ValleyBell/libvgm",
         license: nix.thunk(() => (nix.asBool((nix.asBool(enableEmulation) && nix.asBool((nix.asBool(withAllEmulators) || nix.asBool(nix.app(nix.sel(lib, "lists", "elem"), "WSWAN_ALL", emulators)))))) ? nix.sel(lib, "licenses", "unfree") : nix.sel(lib, "licenses", "gpl2Only"))),

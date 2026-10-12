@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]], [["rev-prefix", 44, 40]], [["pkg-config", 45, 18]], [["updateScript", 44, 12], ["tests", 45, 12]], [["homepage", 48, 5], ["description", 49, 5], ["license", 50, 5], ["mainProgram", 51, 5], ["pkgConfigModules", 52, 5], ["maintainers", 53, 5], ["platforms", 54, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["postPatch", 21, 3], ["nativeBuildInputs", 25, 3], ["cmakeFlags", 27, 3], ["postInstall", 34, 3], ["outputs", 38, 3], ["passthru", 44, 3], ["meta", 47, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, stdenv: false, gitUpdater: false, testers: false, cmake: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["rev-prefix", 44, 40]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pkg-config", 45, 18]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 44, 12], ["tests", 45, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["homepage", 48, 5], ["description", 49, 5], ["license", 50, 5], ["mainProgram", 51, 5], ["pkgConfigModules", 52, 5], ["maintainers", 53, 5], ["platforms", 54, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["postPatch", 21, 3], ["nativeBuildInputs", 25, 3], ["cmakeFlags", 27, 3], ["postInstall", 34, 3], ["outputs", 38, 3], ["passthru", 44, 3], ["meta", 47, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const cmake = nix.arg($, "cmake");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "xevd",
       version: "0.7.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "mpeg5",
           repo: "xevd",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -41,15 +36,15 @@ export default nix.lambda((args) => (() => {
       postInstall: "ln $dev/include/xevd/* $dev/include/\n",
       outputs: nix.thunk(() => ["out", "lib", "dev"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, "rev-prefix": "v" })))),
+        [nix.POS]: $pos[3],
+        updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[1], "rev-prefix": "v" })))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "testMetaPkgConfig"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "https://github.com/mpeg5/xevd",
         description: "eXtra-fast Essential Video Decoder, MPEG-5 EVC",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

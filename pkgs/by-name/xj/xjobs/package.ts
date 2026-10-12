@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 16, 5], ["hash", 17, 5]], [["description", 50, 5], ["homepage", 51, 5], ["license", 52, 5], ["platforms", 53, 5], ["maintainers", 54, 5], ["longDescription", 55, 5], ["mainProgram", 75, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["postPatch", 20, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 30, 3], ["checkPhase", 34, 3], ["installPhase", 40, 3], ["meta", 49, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, flex: false, installShellFiles: false, ncurses: false, which: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 50, 5], ["homepage", 51, 5], ["license", 52, 5], ["platforms", 53, 5], ["maintainers", 54, 5], ["longDescription", 55, 5], ["mainProgram", 75, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["postPatch", 20, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 30, 3], ["checkPhase", 34, 3], ["installPhase", 40, 3], ["meta", 49, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const ncurses = nix.arg($, "ncurses");
   const which = nix.arg($, "which");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "xjobs",
       version: "20250529",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge//xjobs/files/xjobs-${nix.sel(finalAttrs, "version")}.tgz`),
           hash: "sha256-HR7kqx9N5fn8JMKFK0ierAwrCFlkqKo2S/mxQW9UE44=",
         })))),
@@ -31,7 +29,7 @@ export default nix.lambda((args) => (() => {
       checkPhase: "runHook preCheck\n./xjobs -V\nrunHook postCheck\n",
       installPhase: "runHook preInstall\nmkdir -p $out/{bin,etc}\ninstall -m755 xjobs $out/bin/xjobs\ninstall -m644 xjobs.rc $out/etc/xjobs.rc\ninstallManPage xjobs.1\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Program which reads job descriptions line by line and executes them in parallel",
         homepage: "https://www.maier-komor.de/xjobs.html",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

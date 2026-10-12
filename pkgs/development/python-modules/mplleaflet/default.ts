@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 23, 13], ["version", 23, 19], ["sha256", 24, 5]], [["description", 28, 5], ["homepage", 29, 5], ["license", 30, 5]], [["pname", 10, 3], ["version", 11, 3], ["format", 12, 3], ["propagatedBuildInputs", 14, 3], ["doCheck", 20, 3], ["src", 22, 3], ["meta", 27, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, jinja2: false, six: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 23, 13], ["version", 23, 19], ["sha256", 24, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 28, 5], ["homepage", 29, 5], ["license", 30, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 10, 3], ["version", 11, 3], ["format", 12, 3], ["propagatedBuildInputs", 14, 3], ["doCheck", 20, 3], ["src", 22, 3], ["meta", 27, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,19 +19,19 @@ export default nix.lambda((args) => (() => {
       const propagatedBuildInputs = nix.thunk(() => [jinja2, six]);
       const doCheck = false;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           sha256: "049e0b91797ce5b462853395138161fed9e8dfc1f4723f482ebb0739a0bbd289",
         }))));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Convert Matplotlib plots into Leaflet web maps",
         homepage: "https://github.com/jwass/mplleaflet",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         format,

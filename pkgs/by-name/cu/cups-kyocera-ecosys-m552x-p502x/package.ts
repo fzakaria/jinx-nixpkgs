@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 14, 5], ["sha256", 15, 5]], [["description", 24, 5], ["homepage", 25, 5], ["license", 26, 5], ["maintainers", 27, 5], ["platforms", 28, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["installPhase", 18, 3], ["meta", 23, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchzip: false, region: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 14, 5], ["sha256", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 24, 5], ["homepage", 25, 5], ["license", 26, 5], ["maintainers", 27, 5], ["platforms", 28, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["installPhase", 18, 3], ["meta", 23, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchzip = nix.arg($, "fetchzip");
   const region = nix.argOr($, "region", () => "Global");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "cups-kyocera-ecosys-m552x-p502x",
       version: "8.1602",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://www.kyoceradocumentsolutions.de/content/dam/download-center-cf/de/drivers/all/Linux_8_1602_ECOSYS_M5521_5526_P5021_5026_zip.download.zip",
           sha256: "sha256-XDH5deZmWNghfoO7JaYYvnVq++mbQ8RwLY57L2CKYaY=",
         })))),
@@ -26,7 +24,7 @@ export default nix.lambda((args) => (() => {
 cp ${region}/English/*.PPD $out/share/cups/model/Kyocera/
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "PPD files for Kyocera ECOSYS M5521cdn/M5521cdw/M5526cdn/M5526cdw/P5021cdn/P5021cdw/P5026cdn/P5026cdw",
         homepage: "https://www.kyoceradocumentsolutions.com",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["nativeInstallCheckInputs", 117, 5]], [["tests", 116, 12]], [["description", 132, 5], ["homepage", 133, 5], ["changelog", 134, 5], ["license", 135, 5], ["maintainers", 136, 5], ["mainProgram", 137, 5]], [["pname", 43, 3], ["version", 44, 3], ["pyproject", 45, 3], ["__structuredAttrs", 46, 3], ["src", 48, 25], ["sourceRoot", 50, 3], ["build-system", 52, 3], ["pythonRelaxDeps", 56, 3], ["dependencies", 68, 3], ["pythonImportsCheck", 87, 3], ["nativeCheckInputs", 89, 3], ["disabledTests", 93, 3], ["passthru", 116, 3], ["meta", 131, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, hatchling: false, appdirs: false, certifi: false, click: false, "crewai-core": false, cryptography: false, httpx: false, packaging: false, pydantic: false, "pydantic-settings": false, pyjwt: false, "python-dotenv": false, rich: false, textual: false, tomli: false, "tomli-w": false, uv: false, versionCheckHook: false, aiohttp: false, crewai: false, "pytest-asyncio": false, "pytest-recording": false, "pytest-subprocess": false, "pytest-timeout": false, "pytest-xdist": false, pytestCheckHook: false, vcrpy: false, writableTmpDirAsHomeHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["nativeInstallCheckInputs", 117, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["tests", 116, 12]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 132, 5], ["homepage", 133, 5], ["changelog", 134, 5], ["license", 135, 5], ["maintainers", 136, 5], ["mainProgram", 137, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 43, 3], ["version", 44, 3], ["pyproject", 45, 3], ["__structuredAttrs", 46, 3], ["src", 48, 25], ["sourceRoot", 50, 3], ["build-system", 52, 3], ["pythonRelaxDeps", 56, 3], ["dependencies", 68, 3], ["pythonImportsCheck", 87, 3], ["nativeCheckInputs", 89, 3], ["disabledTests", 93, 3], ["passthru", 116, 3], ["meta", 131, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -41,7 +38,7 @@ export default nix.lambda((args) => (() => {
   const vcrpy = nix.arg($, "vcrpy");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "crewai-cli",
       version: "1.15.18",
       pyproject: true,
@@ -97,9 +94,9 @@ export default nix.lambda((args) => (() => {
         "test_create_success",
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         tests: nix.thunk(() => nix.app(nix.sel(finalAttrs, "finalPackage", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             nativeInstallCheckInputs: nix.thunk(() => [
               aiohttp,
               crewai,
@@ -115,7 +112,7 @@ export default nix.lambda((args) => (() => {
           }))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "CLI for CrewAI: scaffold, run, deploy and manage AI agent crews",
         homepage: "https://github.com/crewAIInc/crewAI/tree/main/lib/cli",
         changelog: nix.thunk(() => nix.str`https://github.com/crewAIInc/crewAI/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

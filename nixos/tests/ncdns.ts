@@ -2,24 +2,9 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/ncdns.nix", [[["maintainers", 28, 5]], [["nameservers", 34, 18]], [["address", 37, 9], ["user", 38, 9], ["password", 39, 9], ["port", 40, 9]], [["rpc", 36, 26]], [["enable", 57, 16]], [["hostname", 58, 18], ["hostmaster", 59, 18], ["address", 60, 18]], [["enable", 56, 9], ["dnssec", 57, 9], ["identity", 58, 9]], [["enable", 63, 30], ["resolveNamecoin", 64, 30]], [["namecoind", 36, 16], ["ncdns", 55, 16], ["pdns-recursor", 63, 16]], [["wantedBy", 46, 9], ["script", 47, 9]], [["namecoind", 45, 24]], [["services", 45, 15]], [["systemPackages", 66, 19]], [["networking", 34, 7], ["services", 36, 7], ["systemd", 45, 7], ["environment", 66, 7]], [["server", 31, 9]], [["name", 26, 3], ["meta", 27, 3], ["nodes", 31, 3], ["testScript", 69, 3]]]);
 const formals$1 = { args: { lib: false, pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/ncdns.nix", [["maintainers", 28, 5]]);
 const formals$2 = { args: {  }, ellipsis: true };
-const pos$2 = nix.positions(here + "/ncdns.nix", [["nameservers", 34, 18]]);
-const pos$3 = nix.positions(here + "/ncdns.nix", [["address", 37, 9], ["user", 38, 9], ["password", 39, 9], ["port", 40, 9]]);
-const pos$4 = nix.positions(here + "/ncdns.nix", [["rpc", 36, 26]]);
-const pos$5 = nix.positions(here + "/ncdns.nix", [["enable", 57, 16]]);
-const pos$6 = nix.positions(here + "/ncdns.nix", [["hostname", 58, 18], ["hostmaster", 59, 18], ["address", 60, 18]]);
-const pos$7 = nix.positions(here + "/ncdns.nix", [["enable", 56, 9], ["dnssec", 57, 9], ["identity", 58, 9]]);
-const pos$8 = nix.positions(here + "/ncdns.nix", [["enable", 63, 30], ["resolveNamecoin", 64, 30]]);
-const pos$9 = nix.positions(here + "/ncdns.nix", [["namecoind", 36, 16], ["ncdns", 55, 16], ["pdns-recursor", 63, 16]]);
-const pos$10 = nix.positions(here + "/ncdns.nix", [["wantedBy", 46, 9], ["script", 47, 9]]);
-const pos$11 = nix.positions(here + "/ncdns.nix", [["namecoind", 45, 24]]);
-const pos$12 = nix.positions(here + "/ncdns.nix", [["services", 45, 15]]);
-const pos$13 = nix.positions(here + "/ncdns.nix", [["systemPackages", 66, 19]]);
-const pos$14 = nix.positions(here + "/ncdns.nix", [["networking", 34, 7], ["services", 36, 7], ["systemd", 45, 7], ["environment", 66, 7]]);
-const pos$15 = nix.positions(here + "/ncdns.nix", [["server", 31, 9]]);
-const pos$16 = nix.positions(here + "/ncdns.nix", [["name", 26, 3], ["meta", 27, 3], ["nodes", 31, 3], ["testScript", 69, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,28 +13,28 @@ export default nix.lambda((args) => (() => {
   const fakeReply = nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "namecoin-reply.json", "{ \"error\": null,\n  \"id\": 1,\n  \"result\": {\n    \"address\": \"T31q8ucJ4dI1xzhxQ5QispfECld5c7Xw\",\n    \"expired\": false,\n    \"expires_in\": 2248,\n    \"height\": 438155,\n    \"name\": \"d/test\",\n    \"txid\": \"db61c0b2540ba0c1a2c8cc92af703a37002e7566ecea4dbf8727c7191421edfb\",\n    \"value\": \"{\\\"ip\\\": \\\"1.2.3.4\\\", \\\"email\\\": \\\"root@test.bit\\\",\\\"info\\\": \\\"Fake record\\\"}\",\n    \"vout\": 0\n  }\n}\n"));
   const dnssec = false;
   return {
-    [nix.POS]: pos$16,
+    [nix.POS]: $pos[15],
     name: "ncdns",
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
       return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "rnhmjoj"))]),
       };
     })()),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$15,
+      [nix.POS]: $pos[14],
       server: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          [nix.POS]: pos$14,
-          networking: nix.thunk(() => ({ [nix.POS]: pos$2, nameservers: nix.thunk(() => ["::1"]) })),
+          [nix.POS]: $pos[13],
+          networking: nix.thunk(() => ({ [nix.POS]: $pos[1], nameservers: nix.thunk(() => ["::1"]) })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$9,
+            [nix.POS]: $pos[8],
             namecoind: nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               rpc: nix.thunk(() => ({
-                [nix.POS]: pos$3,
+                [nix.POS]: $pos[2],
                 address: "::1",
                 user: "namecoin",
                 password: "secret",
@@ -57,24 +42,24 @@ export default nix.lambda((args) => (() => {
               })),
             })),
             ncdns: nix.thunk(() => ({
-              [nix.POS]: pos$7,
+              [nix.POS]: $pos[6],
               enable: true,
-              dnssec: nix.thunk(() => ({ [nix.POS]: pos$5, enable: dnssec })),
+              dnssec: nix.thunk(() => ({ [nix.POS]: $pos[4], enable: dnssec })),
               identity: nix.thunk(() => ({
-                [nix.POS]: pos$6,
+                [nix.POS]: $pos[5],
                 hostname: "example.com",
                 hostmaster: "root@example.com",
                 address: "1.0.0.1",
               })),
             })),
-            "pdns-recursor": nix.thunk(() => ({ [nix.POS]: pos$8, enable: true, resolveNamecoin: true })),
+            "pdns-recursor": nix.thunk(() => ({ [nix.POS]: $pos[7], enable: true, resolveNamecoin: true })),
           })),
           systemd: nix.thunk(() => ({
-            [nix.POS]: pos$12,
+            [nix.POS]: $pos[11],
             services: nix.thunk(() => ({
-              [nix.POS]: pos$11,
+              [nix.POS]: $pos[10],
               namecoind: nix.thunk(() => ({
-                [nix.POS]: pos$10,
+                [nix.POS]: $pos[9],
                 wantedBy: nix.thunk(() => ["multi-user.target"]),
                 script: nix.thunk(() => nix.str`while true; do
   echo -e "HTTP/1.1 200 OK\\n\\n $(<${fakeReply})\\n" \\
@@ -85,7 +70,7 @@ done
             })),
           })),
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$13,
+            [nix.POS]: $pos[12],
             systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "dnsutils"))]),
           })),
         };

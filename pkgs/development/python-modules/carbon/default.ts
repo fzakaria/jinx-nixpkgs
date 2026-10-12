@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 20, 13], ["version", 20, 19], ["hash", 21, 5]], [["GRAPHITE_NO_PREFIX", 32, 7]], [["graphite", 53, 26]], [["tests", 52, 12]], [["description", 62, 5], ["homepage", 63, 5], ["changelog", 64, 5], ["license", 65, 5], ["maintainers", 66, 5]], [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["src", 19, 3], ["patches", 24, 3], ["env", 32, 3], ["postPatch", 34, 3], ["build-system", 39, 3], ["dependencies", 41, 3], ["doCheck", 50, 3], ["passthru", 52, 3], ["pythonImportsCheck", 56, 3], ["meta", 61, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, cachetools: false, fetchPypi: false, nixosTests: false, setuptools: false, twisted: false, txamqp: false, urllib3: false, whisper: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 20, 13], ["version", 20, 19], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["GRAPHITE_NO_PREFIX", 32, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["graphite", 53, 26]]);
-const pos$4 = nix.positions(here + "/default.nix", [["tests", 52, 12]]);
-const pos$5 = nix.positions(here + "/default.nix", [["description", 62, 5], ["homepage", 63, 5], ["changelog", 64, 5], ["license", 65, 5], ["maintainers", 66, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["src", 19, 3], ["patches", 24, 3], ["env", 32, 3], ["postPatch", 34, 3], ["build-system", 39, 3], ["dependencies", 41, 3], ["doCheck", 50, 3], ["passthru", 52, 3], ["pythonImportsCheck", 56, 3], ["meta", 61, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,27 +22,27 @@ export default nix.lambda((args) => (() => {
       const version = "1.1.10";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-wTtbqRHMWBcM2iFN95yzwCf/BQ+EK0vp5MXT4mKX3lw=",
         }))));
       const patches = nix.thunk(() => [nix.path(here, "./replace-imp.patch")]);
-      const env = nix.thunk(() => ({ [nix.POS]: pos$2, GRAPHITE_NO_PREFIX: "True" }));
+      const env = nix.thunk(() => ({ [nix.POS]: $pos[1], GRAPHITE_NO_PREFIX: "True" }));
       const postPatch = "substituteInPlace setup.py \\\n  --replace-fail \"cf.readfp(f, 'setup.cfg')\" \"cf.read(f, 'setup.cfg')\"\n";
       const build_system = nix.thunk(() => [setuptools]);
       const dependencies = nix.thunk(() => [cachetools, twisted, txamqp, urllib3, whisper]);
       const doCheck = false;
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           graphite: nix.thunk(() => nix.attr(nixosTests, "graphite")),
         })),
       }));
       const pythonImportsCheck = nix.thunk(() => ["carbon", "carbon.routers"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Backend data caching and persistence daemon for Graphite",
         homepage: "https://github.com/graphite-project/carbon",
         changelog: nix.thunk(() => nix.str`https://github.com/graphite-project/carbon/releases/tag/${version}`),
@@ -58,7 +53,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname,
         version,
         pyproject,

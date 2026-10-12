@@ -2,57 +2,15 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/akkoma.nix", [[["nativeBuildInputs", 17, 9]], [["nativeBuildInputs", 38, 45]], [["name", 43, 5], ["runtimeInputs", 44, 5], ["text", 45, 5]], [["certificateFiles", 59, 20]], [["pki", 59, 16]], [["extraHosts", 64, 18]], [["security", 59, 7], ["networking", 64, 7]], [["REQUESTS_CA_BUNDLE", 77, 11]], [["sessionVariables", 76, 9], ["systemPackages", 79, 9]], [["environment", 75, 7]], [["allowedTCPPorts", 88, 18]], [["domain", 87, 9], ["firewall", 88, 9]], [["enable", 91, 43]], [["confinement", 91, 31]], [["akkoma", 91, 24]], [["services", 91, 15]], [["name", 99, 15], ["description", 100, 15], ["email", 101, 15], ["notify_email", 102, 15], ["registration_open", 103, 15]], [["enabled", 107, 15]], [["host", 111, 19]], [["url", 111, 15]], [["base_url", 115, 15]], [["pools", 120, 29]], [["adapter", 120, 21]], [[":instance", 98, 13], [":media_proxy", 106, 13], ["Pleroma.Web.Endpoint", 110, 13], ["Pleroma.Upload", 114, 13], [":http", 120, 13]], [[":pleroma", 97, 11]], [["addSSL", 124, 15]], [["enable", 94, 9], ["package", 95, 17], ["config", 96, 9], ["nginx", 124, 9]], [["enable", 127, 22]], [["enable", 128, 27]], [["akkoma", 93, 16], ["nginx", 127, 16], ["postgresql", 128, 16]], [["networking", 86, 7], ["systemd", 91, 7], ["services", 93, 7]], [["imports", 137, 9]], [["imports", 146, 9]], [["sslCertificate", 161, 11], ["sslCertificateKey", 162, 11]], [["nginx", 160, 25]], [["akkoma", 160, 18]], [["imports", 155, 9], ["services", 160, 9]], [["sslCertificate", 175, 11], ["sslCertificateKey", 176, 11]], [["nginx", 174, 25]], [["akkoma", 174, 18]], [["imports", 169, 9], ["services", 174, 9]], [["client-a", 134, 5], ["client-b", 143, 5], ["akkoma-a", 152, 5], ["akkoma-b", 166, 5]], [["name", 132, 3], ["nodes", 133, 3], ["testScript", 181, 3]]]);
 const formals$1 = { args: { lib: false, pkgs: false, confined: true }, ellipsis: true };
-const pos$1 = nix.positions(here + "/akkoma.nix", [["nativeBuildInputs", 17, 9]]);
-const pos$2 = nix.positions(here + "/akkoma.nix", [["nativeBuildInputs", 38, 45]]);
-const pos$3 = nix.positions(here + "/akkoma.nix", [["name", 43, 5], ["runtimeInputs", 44, 5], ["text", 45, 5]]);
 const formals$2 = { args: { nodes: false }, ellipsis: true };
-const pos$4 = nix.positions(here + "/akkoma.nix", [["certificateFiles", 59, 20]]);
-const pos$5 = nix.positions(here + "/akkoma.nix", [["pki", 59, 16]]);
-const pos$6 = nix.positions(here + "/akkoma.nix", [["extraHosts", 64, 18]]);
-const pos$7 = nix.positions(here + "/akkoma.nix", [["security", 59, 7], ["networking", 64, 7]]);
 const formals$3 = { args: { pkgs: false }, ellipsis: true };
-const pos$8 = nix.positions(here + "/akkoma.nix", [["REQUESTS_CA_BUNDLE", 77, 11]]);
-const pos$9 = nix.positions(here + "/akkoma.nix", [["sessionVariables", 76, 9], ["systemPackages", 79, 9]]);
-const pos$10 = nix.positions(here + "/akkoma.nix", [["environment", 75, 7]]);
 const formals$4 = { args: { config: false, pkgs: false }, ellipsis: true };
-const pos$11 = nix.positions(here + "/akkoma.nix", [["allowedTCPPorts", 88, 18]]);
-const pos$12 = nix.positions(here + "/akkoma.nix", [["domain", 87, 9], ["firewall", 88, 9]]);
-const pos$13 = nix.positions(here + "/akkoma.nix", [["enable", 91, 43]]);
-const pos$14 = nix.positions(here + "/akkoma.nix", [["confinement", 91, 31]]);
-const pos$15 = nix.positions(here + "/akkoma.nix", [["akkoma", 91, 24]]);
-const pos$16 = nix.positions(here + "/akkoma.nix", [["services", 91, 15]]);
-const pos$17 = nix.positions(here + "/akkoma.nix", [["name", 99, 15], ["description", 100, 15], ["email", 101, 15], ["notify_email", 102, 15], ["registration_open", 103, 15]]);
-const pos$18 = nix.positions(here + "/akkoma.nix", [["enabled", 107, 15]]);
-const pos$19 = nix.positions(here + "/akkoma.nix", [["host", 111, 19]]);
-const pos$20 = nix.positions(here + "/akkoma.nix", [["url", 111, 15]]);
-const pos$21 = nix.positions(here + "/akkoma.nix", [["base_url", 115, 15]]);
-const pos$22 = nix.positions(here + "/akkoma.nix", [["pools", 120, 29]]);
-const pos$23 = nix.positions(here + "/akkoma.nix", [["adapter", 120, 21]]);
-const pos$24 = nix.positions(here + "/akkoma.nix", [[":instance", 98, 13], [":media_proxy", 106, 13], ["Pleroma.Web.Endpoint", 110, 13], ["Pleroma.Upload", 114, 13], [":http", 120, 13]]);
-const pos$25 = nix.positions(here + "/akkoma.nix", [[":pleroma", 97, 11]]);
-const pos$26 = nix.positions(here + "/akkoma.nix", [["addSSL", 124, 15]]);
-const pos$27 = nix.positions(here + "/akkoma.nix", [["enable", 94, 9], ["package", 95, 17], ["config", 96, 9], ["nginx", 124, 9]]);
-const pos$28 = nix.positions(here + "/akkoma.nix", [["enable", 127, 22]]);
-const pos$29 = nix.positions(here + "/akkoma.nix", [["enable", 128, 27]]);
-const pos$30 = nix.positions(here + "/akkoma.nix", [["akkoma", 93, 16], ["nginx", 127, 16], ["postgresql", 128, 16]]);
-const pos$31 = nix.positions(here + "/akkoma.nix", [["networking", 86, 7], ["systemd", 91, 7], ["services", 93, 7]]);
 const formals$5 = { args: {  }, ellipsis: true };
-const pos$32 = nix.positions(here + "/akkoma.nix", [["imports", 137, 9]]);
 const formals$6 = { args: {  }, ellipsis: true };
-const pos$33 = nix.positions(here + "/akkoma.nix", [["imports", 146, 9]]);
 const formals$7 = { args: {  }, ellipsis: true };
-const pos$34 = nix.positions(here + "/akkoma.nix", [["sslCertificate", 161, 11], ["sslCertificateKey", 162, 11]]);
-const pos$35 = nix.positions(here + "/akkoma.nix", [["nginx", 160, 25]]);
-const pos$36 = nix.positions(here + "/akkoma.nix", [["akkoma", 160, 18]]);
-const pos$37 = nix.positions(here + "/akkoma.nix", [["imports", 155, 9], ["services", 160, 9]]);
 const formals$8 = { args: {  }, ellipsis: true };
-const pos$38 = nix.positions(here + "/akkoma.nix", [["sslCertificate", 175, 11], ["sslCertificateKey", 176, 11]]);
-const pos$39 = nix.positions(here + "/akkoma.nix", [["nginx", 174, 25]]);
-const pos$40 = nix.positions(here + "/akkoma.nix", [["akkoma", 174, 18]]);
-const pos$41 = nix.positions(here + "/akkoma.nix", [["imports", 169, 9], ["services", 174, 9]]);
-const pos$42 = nix.positions(here + "/akkoma.nix", [["client-a", 134, 5], ["client-b", 143, 5], ["akkoma-a", 152, 5], ["akkoma-b", 166, 5]]);
-const pos$43 = nix.positions(here + "/akkoma.nix", [["name", 132, 3], ["nodes", 133, 3], ["testScript", 181, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -63,7 +21,7 @@ export default nix.lambda((args) => (() => {
   const mkRaw = nix.thunk(() => nix.attr(from, "mkRaw"));
   const package$ = nix.thunk(() => nix.sel(pkgs, "akkoma"));
   const tlsCert = (names) => nix.app(nix.sel(pkgs, "runCommand"), nix.thunk(() => nix.str`certificates-${nix.app(nix.sel(lib, "head"), names)}`), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       nativeBuildInputs: nix.thunk(() => (() => {
         const w = nix.withScope(pkgs, null);
         return [nix.thunk(() => nix.lookup(w, "openssl"))];
@@ -78,14 +36,14 @@ openssl req -x509 \\
   const tlsCertA = nix.thunk(() => nix.app(tlsCert, nix.thunk(() => ["akkoma-a.nixos.test", "media.akkoma-a.nixos.test"])));
   const tlsCertB = nix.thunk(() => nix.app(tlsCert, nix.thunk(() => ["akkoma-b.nixos.test", "media.akkoma-b.nixos.test"])));
   const testMedia = nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "blank.png", nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       nativeBuildInputs: nix.thunk(() => (() => {
         const w = nix.withScope(pkgs, null);
         return [nix.thunk(() => nix.lookup(w, "imagemagick"))];
       })()),
     })), "magick -size 640x480 canvas:transparent \"PNG8:$out\"\n"));
   const checkFe = nix.thunk(() => nix.app(nix.sel(pkgs, "writeShellApplication"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       name: "checkFe",
       runtimeInputs: nix.thunk(() => (() => {
         const w = nix.withScope(pkgs, null);
@@ -97,11 +55,11 @@ openssl req -x509 \\
     const $_1 = nix.formals(args_1, formals$2);
     const nodes = nix.arg($_1, "nodes");
     return {
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       security: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pki: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           certificateFiles: nix.thunk(() => [
             nix.thunk(() => nix.str`${tlsCertA}/cert.pem`),
             nix.thunk(() => nix.str`${tlsCertB}/cert.pem`),
@@ -109,7 +67,7 @@ openssl req -x509 \\
         })),
       })),
       networking: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         extraHosts: nix.thunk(() => nix.str`${nix.sel(nodes, "akkoma-a", "networking", "primaryIPAddress")} akkoma-a.nixos.test media.akkoma-a.nixos.test
 ${nix.sel(nodes, "akkoma-b", "networking", "primaryIPAddress")} akkoma-b.nixos.test media.akkoma-b.nixos.test
 ${nix.sel(nodes, "client-a", "networking", "primaryIPAddress")} client-a.nixos.test
@@ -122,10 +80,10 @@ ${nix.sel(nodes, "client-b", "networking", "primaryIPAddress")} client-b.nixos.t
     const $_1 = nix.formals(args_1, formals$3);
     const pkgs_1 = nix.arg($_1, "pkgs");
     return {
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       environment: nix.thunk(() => ({
-        [nix.POS]: pos$9,
-        sessionVariables: nix.thunk(() => ({ [nix.POS]: pos$8, REQUESTS_CA_BUNDLE: "/etc/ssl/certs/ca-certificates.crt" })),
+        [nix.POS]: $pos[8],
+        sessionVariables: nix.thunk(() => ({ [nix.POS]: $pos[7], REQUESTS_CA_BUNDLE: "/etc/ssl/certs/ca-certificates.crt" })),
         systemPackages: nix.thunk(() => (() => {
           const w = nix.withScope(pkgs_1, null);
           return [nix.thunk(() => nix.lookup(w, "toot"))];
@@ -138,92 +96,92 @@ ${nix.sel(nodes, "client-b", "networking", "primaryIPAddress")} client-b.nixos.t
     const config = nix.arg($_1, "config");
     const pkgs_1 = nix.arg($_1, "pkgs");
     return {
-      [nix.POS]: pos$31,
+      [nix.POS]: $pos[30],
       networking: nix.thunk(() => ({
-        [nix.POS]: pos$12,
+        [nix.POS]: $pos[11],
         domain: "nixos.test",
-        firewall: nix.thunk(() => ({ [nix.POS]: pos$11, allowedTCPPorts: nix.thunk(() => [443n]) })),
+        firewall: nix.thunk(() => ({ [nix.POS]: $pos[10], allowedTCPPorts: nix.thunk(() => [443n]) })),
       })),
       systemd: nix.thunk(() => ({
-        [nix.POS]: pos$16,
+        [nix.POS]: $pos[15],
         services: nix.thunk(() => ({
-          [nix.POS]: pos$15,
+          [nix.POS]: $pos[14],
           akkoma: nix.thunk(() => ({
-            [nix.POS]: pos$14,
-            confinement: nix.thunk(() => ({ [nix.POS]: pos$13, enable: confined })),
+            [nix.POS]: $pos[13],
+            confinement: nix.thunk(() => ({ [nix.POS]: $pos[12], enable: confined })),
           })),
         })),
       })),
       services: nix.thunk(() => ({
-        [nix.POS]: pos$30,
+        [nix.POS]: $pos[29],
         akkoma: nix.thunk(() => ({
-          [nix.POS]: pos$27,
+          [nix.POS]: $pos[26],
           enable: true,
           package: package$,
           config: nix.thunk(() => ({
-            [nix.POS]: pos$25,
+            [nix.POS]: $pos[24],
             ":pleroma": nix.thunk(() => ({
-              [nix.POS]: pos$24,
+              [nix.POS]: $pos[23],
               ":instance": nix.thunk(() => ({
-                [nix.POS]: pos$17,
+                [nix.POS]: $pos[16],
                 name: "NixOS test Akkoma server",
                 description: "NixOS test Akkoma server",
                 email: "akkoma@nixos.test",
                 notify_email: "akkoma@nixos.test",
                 registration_open: true,
               })),
-              ":media_proxy": nix.thunk(() => ({ [nix.POS]: pos$18, enabled: false })),
+              ":media_proxy": nix.thunk(() => ({ [nix.POS]: $pos[17], enabled: false })),
               "Pleroma.Web.Endpoint": nix.thunk(() => ({
-                [nix.POS]: pos$20,
+                [nix.POS]: $pos[19],
                 url: nix.thunk(() => ({
-                  [nix.POS]: pos$19,
+                  [nix.POS]: $pos[18],
                   host: nix.thunk(() => nix.sel(config, "networking", "fqdn")),
                 })),
               })),
               "Pleroma.Upload": nix.thunk(() => ({
-                [nix.POS]: pos$21,
+                [nix.POS]: $pos[20],
                 base_url: nix.thunk(() => nix.str`https://media.${nix.sel(config, "networking", "fqdn")}/media/`),
               })),
               ":http": nix.thunk(() => ({
-                [nix.POS]: pos$23,
+                [nix.POS]: $pos[22],
                 adapter: nix.thunk(() => ({
-                  [nix.POS]: pos$22,
+                  [nix.POS]: $pos[21],
                   pools: nix.thunk(() => nix.app(mkRaw, "%{default: [conn_opts: [transport_opts: [verify: :verify_none]]]}")),
                 })),
               })),
             })),
           })),
-          nginx: nix.thunk(() => ({ [nix.POS]: pos$26, addSSL: true })),
+          nginx: nix.thunk(() => ({ [nix.POS]: $pos[25], addSSL: true })),
         })),
-        nginx: nix.thunk(() => ({ [nix.POS]: pos$28, enable: true })),
-        postgresql: nix.thunk(() => ({ [nix.POS]: pos$29, enable: true })),
+        nginx: nix.thunk(() => ({ [nix.POS]: $pos[27], enable: true })),
+        postgresql: nix.thunk(() => ({ [nix.POS]: $pos[28], enable: true })),
       })),
     };
   })(), formals$4);
   return {
-    [nix.POS]: pos$43,
+    [nix.POS]: $pos[42],
     name: nix.thunk(() => nix.str`akkoma-${(nix.asBool(confined) ? "confined" : "nonconfined")}`),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$42,
+      [nix.POS]: $pos[41],
       "client-a": nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$5);
-        return { [nix.POS]: pos$32, imports: nix.thunk(() => [clientConfig, commonConfig]) };
+        return { [nix.POS]: $pos[31], imports: nix.thunk(() => [clientConfig, commonConfig]) };
       })(), formals$5),
       "client-b": nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$6);
-        return { [nix.POS]: pos$33, imports: nix.thunk(() => [clientConfig, commonConfig]) };
+        return { [nix.POS]: $pos[32], imports: nix.thunk(() => [clientConfig, commonConfig]) };
       })(), formals$6),
       "akkoma-a": nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$7);
         return {
-          [nix.POS]: pos$37,
+          [nix.POS]: $pos[36],
           imports: nix.thunk(() => [commonConfig, serverConfig]),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$36,
+            [nix.POS]: $pos[35],
             akkoma: nix.thunk(() => ({
-              [nix.POS]: pos$35,
+              [nix.POS]: $pos[34],
               nginx: nix.thunk(() => ({
-                [nix.POS]: pos$34,
+                [nix.POS]: $pos[33],
                 sslCertificate: nix.thunk(() => nix.str`${tlsCertA}/cert.pem`),
                 sslCertificateKey: nix.thunk(() => nix.str`${tlsCertA}/key.pem`),
               })),
@@ -234,14 +192,14 @@ ${nix.sel(nodes, "client-b", "networking", "primaryIPAddress")} client-b.nixos.t
       "akkoma-b": nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$8);
         return {
-          [nix.POS]: pos$41,
+          [nix.POS]: $pos[40],
           imports: nix.thunk(() => [commonConfig, serverConfig]),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$40,
+            [nix.POS]: $pos[39],
             akkoma: nix.thunk(() => ({
-              [nix.POS]: pos$39,
+              [nix.POS]: $pos[38],
               nginx: nix.thunk(() => ({
-                [nix.POS]: pos$38,
+                [nix.POS]: $pos[37],
                 sslCertificate: nix.thunk(() => nix.str`${tlsCertB}/cert.pem`),
                 sslCertificateKey: nix.thunk(() => nix.str`${tlsCertB}/key.pem`),
               })),

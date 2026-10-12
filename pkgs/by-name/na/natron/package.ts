@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 24, 5], ["repo", 25, 5], ["rev", 26, 5], ["hash", 27, 5]], [["owner", 36, 5], ["repo", 37, 5], ["rev", 38, 5], ["fetchSubmodules", 39, 5], ["hash", 40, 5]], [["name", 47, 7], ["url", 48, 7], ["includes", 49, 7], ["hash", 50, 7]], [["name", 53, 7], ["url", 54, 7], ["includes", 55, 7], ["hash", 56, 7]], [["description", 99, 5], ["longDescription", 100, 5], ["homepage", 104, 5], ["license", 105, 5], ["maintainers", 106, 5], ["platforms", 107, 5], ["broken", 109, 5]], [["version", 32, 11], ["pname", 33, 3], ["src", 35, 3], ["patches", 43, 3], ["cmakeFlags", 60, 3], ["nativeBuildInputs", 62, 3], ["buildInputs", 69, 3], ["postInstall", 82, 3], ["postFixup", 87, 3], ["meta", 98, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch: false, cmake: false, "pkg-config": false, libsForQt5: false, boost: false, cairo: false, "ceres-solver": false, expat: false, kdePackages: false, glog: false, libxdmcp: false, python312: false, wayland: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 24, 5], ["repo", 25, 5], ["rev", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 36, 5], ["repo", 37, 5], ["rev", 38, 5], ["fetchSubmodules", 39, 5], ["hash", 40, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 47, 7], ["url", 48, 7], ["includes", 49, 7], ["hash", 50, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["name", 53, 7], ["url", 54, 7], ["includes", 55, 7], ["hash", 56, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 99, 5], ["longDescription", 100, 5], ["homepage", 104, 5], ["license", 105, 5], ["maintainers", 106, 5], ["platforms", 107, 5], ["broken", 109, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["version", 32, 11], ["pname", 33, 3], ["src", 35, 3], ["patches", 43, 3], ["cmakeFlags", 60, 3], ["nativeBuildInputs", 62, 3], ["buildInputs", 69, 3], ["postInstall", 82, 3], ["postFixup", 87, 3], ["meta", 98, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,7 +26,7 @@ export default nix.lambda((args) => (() => {
   const minorVersion = "2.5";
   const version = nix.thunk(() => nix.str`${minorVersion}.0`);
   const OpenColorIO_Configs = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "NatronGitHub",
       repo: "OpenColorIO-Configs",
       rev: nix.thunk(() => nix.str`Natron-v${minorVersion}`),
@@ -39,11 +34,11 @@ export default nix.lambda((args) => (() => {
     }))));
   const python3 = python312;
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       version: version,
       pname: "natron",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "NatronGitHub",
           repo: "Natron",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -52,14 +47,14 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "gcc-13.patch",
             url: "https://github.com/NatronGitHub/Natron/commit/4b44fb18293035873b35c3a2d2aa29da78cb8740.patch",
             includes: nix.thunk(() => ["Global/GlobalDefines.h"]),
             hash: "sha256-9E1tJCvO7zA1iQAhrlL3GaBFIGpkjxNOr31behQXdhQ=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             name: "gcc-13.patch",
             url: "https://github.com/NatronGitHub/Natron/commit/f21f58622e32c1684567c82e2ab361f33030bda7.patch",
             includes: nix.thunk(() => ["Engine/Noise.cpp"]),
@@ -96,7 +91,7 @@ cp -r ${OpenColorIO_Configs} $out/share/OpenColorIO-Configs
   --set-default OCIO "$out/share/OpenColorIO-Configs/blender/config.ocio"
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Node-graph based, open-source compositing software",
         longDescription: "Node-graph based, open-source compositing software. Similar in\nfunctionalities to Adobe After Effects and Nuke by The Foundry.\n",
         homepage: "https://natron.fr/",

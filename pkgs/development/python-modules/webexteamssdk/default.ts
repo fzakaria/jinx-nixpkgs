@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]], [["skipBulkUpdate", 27, 12]], [["description", 52, 5], ["homepage", 53, 5], ["changelog", 54, 5], ["license", 55, 5], ["maintainers", 56, 5]], [["pname", 14, 3], ["version", 15, 3], ["pyproject", 16, 3], ["src", 18, 3], ["passthru", 27, 3], ["postPatch", 29, 3], ["build-system", 34, 3], ["dependencies", 39, 3], ["doCheck", 47, 3], ["pythonImportsCheck", 49, 3], ["meta", 51, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, future: false, pyjwt: false, requests: false, "requests-toolbelt": false, setuptools: false, versioneer: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["skipBulkUpdate", 27, 12]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 52, 5], ["homepage", 53, 5], ["changelog", 54, 5], ["license", 55, 5], ["maintainers", 56, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 14, 3], ["version", 15, 3], ["pyproject", 16, 3], ["src", 18, 3], ["passthru", 27, 3], ["postPatch", 29, 3], ["build-system", 34, 3], ["dependencies", 39, 3], ["doCheck", 47, 3], ["pythonImportsCheck", 49, 3], ["meta", 51, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,20 +21,20 @@ export default nix.lambda((args) => (() => {
       const version = "1.6.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "CiscoDevNet",
           repo: "webexteamssdk",
           tag: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-xlkmXl4tVm48drXmkUijv9GNXzJcDnfSKbOMciPIRRo=",
         }))));
-      const passthru = nix.thunk(() => ({ [nix.POS]: pos$2, skipBulkUpdate: true }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: $pos[1], skipBulkUpdate: true }));
       const postPatch = "# Remove vendorized versioneer\nrm versioneer.py\n";
       const build_system = nix.thunk(() => [setuptools, versioneer]);
       const dependencies = nix.thunk(() => [future, pyjwt, requests, requests_toolbelt]);
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["webexteamssdk"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Python module for Webex Teams APIs",
         homepage: "https://github.com/CiscoDevNet/webexteamssdk",
         changelog: nix.thunk(() => nix.str`https://github.com/WebexCommunity/WebexPythonSDK/releases/tag/v${version}`),
@@ -48,7 +45,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

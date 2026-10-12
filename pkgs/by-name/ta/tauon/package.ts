@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 33, 5], ["repo", 34, 5], ["tag", 35, 5], ["hash", 36, 5]], [["mainProgram", 46, 7], ["license", 47, 7], ["maintainers", 48, 7], ["platforms", 52, 7]], [["pname", 40, 5], ["version", 41, 13], ["src", 42, 5], ["cargoHash", 43, 5], ["meta", 45, 5]], [["lrclib-solver", 167, 24]], [["description", 170, 5], ["mainProgram", 171, 5], ["homepage", 172, 5], ["changelog", 173, 5], ["license", 174, 5], ["maintainers", 175, 5], ["platforms", 179, 5]], [["pname", 57, 3], ["pyproject", 58, 3], ["version", 59, 11], ["src", 59, 19], ["postUnpack", 61, 3], ["postPatch", 69, 3], ["pythonRemoveDeps", 78, 3], ["nativeBuildInputs", 85, 3], ["build-system", 91, 3], ["buildInputs", 96, 3], ["pythonPath", 113, 3], ["makeWrapperArgs", 141, 3], ["postInstall", 158, 3], ["passthru", 167, 3], ["meta", 169, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, kissfft: false, miniaudio: false, "pkg-config": false, python3Packages: false, "gobject-introspection": false, flac: false, "game-music-emu": false, gtk3: false, "libayatana-appindicator": false, libnotify: false, libopenmpt: false, librsvg: false, libsamplerate: false, libvorbis: false, libxcursor: false, mpg123: false, opusfile: false, pango: false, pipewire: false, wavpack: false, ffmpeg: false, pulseaudio: false, rustPlatform: false, withDiscordRPC: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 33, 5], ["repo", 34, 5], ["tag", 35, 5], ["hash", 36, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["mainProgram", 46, 7], ["license", 47, 7], ["maintainers", 48, 7], ["platforms", 52, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 40, 5], ["version", 41, 13], ["src", 42, 5], ["cargoHash", 43, 5], ["meta", 45, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["lrclib-solver", 167, 24]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 170, 5], ["mainProgram", 171, 5], ["homepage", 172, 5], ["changelog", 173, 5], ["license", 174, 5], ["maintainers", 175, 5], ["platforms", 179, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 57, 3], ["pyproject", 58, 3], ["version", 59, 11], ["src", 59, 19], ["postUnpack", 61, 3], ["postPatch", 69, 3], ["pythonRemoveDeps", 78, 3], ["nativeBuildInputs", 85, 3], ["build-system", 91, 3], ["buildInputs", 96, 3], ["pythonPath", 113, 3], ["makeWrapperArgs", 141, 3], ["postInstall", 158, 3], ["passthru", 167, 3], ["meta", 169, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -41,20 +36,20 @@ export default nix.lambda((args) => (() => {
   const withDiscordRPC = nix.argOr($, "withDiscordRPC", () => true);
   const version = "12.1.0";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "Taiko2k",
       repo: "Tauon",
       tag: nix.thunk(() => nix.str`v${version}`),
       hash: "sha256-Fy7NGZOUsrqgaIXUHqoNgK3A2OxnbFwJZfJDERsP6KA=",
     }))));
   const lrclib_solver = nix.thunk(() => nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "lrclib-solver",
       version: version,
       src: nix.thunk(() => nix.str`${src}/src/lrclib-solver`),
       cargoHash: "sha256-uNEf0d462W9mJHGLeAE/aLjpyzKT5orKZ7BYQ+53msY=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         mainProgram: "lrclib-solver",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),
         maintainers: nix.thunk(() => (() => {
@@ -68,7 +63,7 @@ export default nix.lambda((args) => (() => {
       })),
     }))));
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "tauon",
       pyproject: true,
       version: version,
@@ -154,9 +149,9 @@ mkdir -p $out/share/icons/hicolor/scalable/apps
 install -Dm644 extra/tauonmb{,-symbolic}.svg $out/share/icons/hicolor/scalable/apps
 ln -s ${nix.app(nix.sel(lib, "getExe"), lrclib_solver)} $out/${nix.sel(python3Packages, "python", "sitePackages")}/tauon/lrclib-solver
 `),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$4, "lrclib-solver": lrclib_solver })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[3], "lrclib-solver": lrclib_solver })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Linux desktop music player from the future",
         mainProgram: "tauon",
         homepage: "https://tauonmusicbox.rocks/",

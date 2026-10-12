@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]], [["name", 64, 7], ["url", 65, 7], ["hash", 66, 7]], [["description", 76, 5], ["longDescription", 77, 5], ["homepage", 84, 5], ["maintainers", 85, 5], ["license", 86, 5], ["platforms", 87, 5]], [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["buildInputs", 32, 3], ["cmakeFlags", 46, 3], ["makeFlags", 51, 3], ["nativeBuildInputs", 55, 3], ["patches", 60, 3], ["postPatch", 70, 3], ["meta", 75, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitLab: false, fetchpatch: false, SDL2: false, SDL2_image: false, "pkg-config": false, libvorbis: false, libGL: false, boost: false, cmake: false, zlib: false, curl: false, SDL2_mixer: false, SDL2_ttf: false, python3: false, libx11: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 64, 7], ["url", 65, 7], ["hash", 66, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 76, 5], ["longDescription", 77, 5], ["homepage", 84, 5], ["maintainers", 85, 5], ["license", 86, 5], ["platforms", 87, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["buildInputs", 32, 3], ["cmakeFlags", 46, 3], ["makeFlags", 51, 3], ["nativeBuildInputs", 55, 3], ["patches", 60, 3], ["postPatch", 70, 3], ["meta", 75, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,11 +25,11 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const libx11 = nix.arg($, "libx11");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "commandergenius",
       version: "3.5.2",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Dringgstein",
           repo: "Commander-Genius",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -59,7 +56,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [cmake, pkg_config]),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "fix-sdl-ttf_font_rename.patch",
             url: "https://github.com/gerstrong/Commander-Genius/commit/e8af0d16970d75e94392f57de0992dfddc509bc3.patch",
             hash: "sha256-bcCzXzh9yDngwHMfQTrnvyDal4YBiBcMTtKTgt9BtDk=",
@@ -67,7 +64,7 @@ export default nix.lambda((args) => (() => {
       ]),
       postPatch: "NIX_CFLAGS_COMPILE=\"$NIX_CFLAGS_COMPILE $(sdl2-config --cflags)\"\nsed -i 's,APPDIR games,APPDIR bin,' src/install.cmake\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Modern Interpreter for the Commander Keen Games",
         longDescription: "Commander Genius is an open-source clone of\nCommander Keen which allows you to play\nthe games, and some of the mods\nmade for it. All of the original data files\nare required to do so\n",
         homepage: "https://github.com/gerstrong/Commander-Genius",

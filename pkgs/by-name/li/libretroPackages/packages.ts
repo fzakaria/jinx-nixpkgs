@@ -2,29 +2,15 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/packages.nix", [[["withHw", 25, 46]], [["withProfile", 47, 58]], [["withProfile", 49, 61]], [["withBlarggAPU", 184, 48]], [["type", 212, 50]], [["type", 214, 51]], [["type", 216, 53]], [["type", 218, 52]], [["type", 220, 52]], [["type", 222, 54]], [["type", 224, 51]], [["type", 226, 53]], [["type", 228, 54]], [["type", 230, 51]], [["mkLibretroCore", 7, 3], ["atari800", 9, 3], ["beetle-gba", 11, 3], ["beetle-lynx", 13, 3], ["beetle-ngp", 15, 3], ["beetle-pce", 17, 3], ["beetle-pce-fast", 19, 3], ["beetle-pcfx", 21, 3], ["beetle-psx", 23, 3], ["beetle-psx-hw", 25, 3], ["beetle-saturn", 27, 3], ["beetle-supafaust", 29, 3], ["beetle-supergrafx", 31, 3], ["beetle-vb", 33, 3], ["beetle-wswan", 35, 3], ["blastem", 37, 3], ["bluemsx", 39, 3], ["bsnes", 41, 3], ["bsnes-hd", 43, 3], ["bsnes-mercury", 45, 3], ["bsnes-mercury-balanced", 47, 3], ["bsnes-mercury-performance", 49, 3], ["citra", 51, 3], ["desmume", 53, 3], ["desmume2015", 55, 3], ["dolphin", 57, 3], ["dosbox", 59, 3], ["dosbox-pure", 61, 3], ["easyrpg", 63, 3], ["eightyone", 65, 3], ["fbalpha2012", 67, 3], ["fbneo", 69, 3], ["fceumm", 71, 3], ["flycast", 73, 3], ["fmsx", 75, 3], ["freechaf", 77, 3], ["freeintv", 79, 3], ["fuse", 81, 3], ["gambatte", 83, 3], ["genesis-plus-gx", 85, 3], ["gearcoleco", 87, 3], ["gpsp", 89, 3], ["gw", 91, 3], ["handy", 93, 3], ["hatari", 95, 3], ["jaxe", 97, 3], ["mame", 99, 3], ["mame2000", 101, 3], ["mame2003", 103, 3], ["mame2003-plus", 105, 3], ["mame2010", 107, 3], ["mame2015", 109, 3], ["mame2016", 111, 3], ["m2000", 113, 3], ["melonds", 115, 3], ["melondsds", 117, 3], ["mesen", 119, 3], ["mesen-s", 121, 3], ["meteor", 123, 3], ["mgba", 125, 3], ["mrboom", 127, 3], ["mupen64plus", 129, 3], ["neocd", 131, 3], ["nestopia", 133, 3], ["np2kai", 135, 3], ["nxengine", 137, 3], ["o2em", 139, 3], ["opera", 141, 3], ["parallel-n64", 143, 3], ["pd777", 145, 3], ["pcsx2", 147, 3], ["pcsx-rearmed", 149, 3], ["pcsx_rearmed", 150, 3], ["picodrive", 152, 3], ["pokemini", 154, 3], ["play", 156, 3], ["ppsspp", 158, 3], ["prboom", 160, 3], ["prosystem", 162, 3], ["puae", 164, 3], ["puae2021", 166, 3], ["quicknes", 168, 3], ["same_cdi", 170, 3], ["sameboy", 172, 3], ["scummvm", 174, 3], ["smsplus-gx", 176, 3], ["snes9x", 178, 3], ["snes9x2002", 180, 3], ["snes9x2005", 182, 3], ["snes9x2005-plus", 184, 3], ["snes9x2010", 186, 3], ["stella", 188, 3], ["stella2014", 190, 3], ["swanstation", 192, 3], ["tgbdual", 194, 3], ["theodore", 196, 3], ["thepowdertoy", 198, 3], ["tic80", 200, 3], ["twenty-fortyeight", 202, 3], ["uzem", 204, 3], ["vba-m", 206, 3], ["vba-next", 208, 3], ["vecx", 210, 3], ["vice-x64", 212, 3], ["vice-x128", 214, 3], ["vice-x64dtv", 216, 3], ["vice-x64sc", 218, 3], ["vice-xcbm2", 220, 3], ["vice-xcbm5x0", 222, 3], ["vice-xpet", 224, 3], ["vice-xplus4", 226, 3], ["vice-xscpu64", 228, 3], ["vice-xvic", 230, 3], ["virtualjaguar", 232, 3], ["yabause", 234, 3]]]);
 const formals$1 = { args: { lib: false, newScope: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/packages.nix", [["withHw", 25, 46]]);
-const pos$2 = nix.positions(here + "/packages.nix", [["withProfile", 47, 58]]);
-const pos$3 = nix.positions(here + "/packages.nix", [["withProfile", 49, 61]]);
-const pos$4 = nix.positions(here + "/packages.nix", [["withBlarggAPU", 184, 48]]);
-const pos$5 = nix.positions(here + "/packages.nix", [["type", 212, 50]]);
-const pos$6 = nix.positions(here + "/packages.nix", [["type", 214, 51]]);
-const pos$7 = nix.positions(here + "/packages.nix", [["type", 216, 53]]);
-const pos$8 = nix.positions(here + "/packages.nix", [["type", 218, 52]]);
-const pos$9 = nix.positions(here + "/packages.nix", [["type", 220, 52]]);
-const pos$10 = nix.positions(here + "/packages.nix", [["type", 222, 54]]);
-const pos$11 = nix.positions(here + "/packages.nix", [["type", 224, 51]]);
-const pos$12 = nix.positions(here + "/packages.nix", [["type", 226, 53]]);
-const pos$13 = nix.positions(here + "/packages.nix", [["type", 228, 54]]);
-const pos$14 = nix.positions(here + "/packages.nix", [["type", 230, 51]]);
-const pos$15 = nix.positions(here + "/packages.nix", [["mkLibretroCore", 7, 3], ["atari800", 9, 3], ["beetle-gba", 11, 3], ["beetle-lynx", 13, 3], ["beetle-ngp", 15, 3], ["beetle-pce", 17, 3], ["beetle-pce-fast", 19, 3], ["beetle-pcfx", 21, 3], ["beetle-psx", 23, 3], ["beetle-psx-hw", 25, 3], ["beetle-saturn", 27, 3], ["beetle-supafaust", 29, 3], ["beetle-supergrafx", 31, 3], ["beetle-vb", 33, 3], ["beetle-wswan", 35, 3], ["blastem", 37, 3], ["bluemsx", 39, 3], ["bsnes", 41, 3], ["bsnes-hd", 43, 3], ["bsnes-mercury", 45, 3], ["bsnes-mercury-balanced", 47, 3], ["bsnes-mercury-performance", 49, 3], ["citra", 51, 3], ["desmume", 53, 3], ["desmume2015", 55, 3], ["dolphin", 57, 3], ["dosbox", 59, 3], ["dosbox-pure", 61, 3], ["easyrpg", 63, 3], ["eightyone", 65, 3], ["fbalpha2012", 67, 3], ["fbneo", 69, 3], ["fceumm", 71, 3], ["flycast", 73, 3], ["fmsx", 75, 3], ["freechaf", 77, 3], ["freeintv", 79, 3], ["fuse", 81, 3], ["gambatte", 83, 3], ["genesis-plus-gx", 85, 3], ["gearcoleco", 87, 3], ["gpsp", 89, 3], ["gw", 91, 3], ["handy", 93, 3], ["hatari", 95, 3], ["jaxe", 97, 3], ["mame", 99, 3], ["mame2000", 101, 3], ["mame2003", 103, 3], ["mame2003-plus", 105, 3], ["mame2010", 107, 3], ["mame2015", 109, 3], ["mame2016", 111, 3], ["m2000", 113, 3], ["melonds", 115, 3], ["melondsds", 117, 3], ["mesen", 119, 3], ["mesen-s", 121, 3], ["meteor", 123, 3], ["mgba", 125, 3], ["mrboom", 127, 3], ["mupen64plus", 129, 3], ["neocd", 131, 3], ["nestopia", 133, 3], ["np2kai", 135, 3], ["nxengine", 137, 3], ["o2em", 139, 3], ["opera", 141, 3], ["parallel-n64", 143, 3], ["pd777", 145, 3], ["pcsx2", 147, 3], ["pcsx-rearmed", 149, 3], ["pcsx_rearmed", 150, 3], ["picodrive", 152, 3], ["pokemini", 154, 3], ["play", 156, 3], ["ppsspp", 158, 3], ["prboom", 160, 3], ["prosystem", 162, 3], ["puae", 164, 3], ["puae2021", 166, 3], ["quicknes", 168, 3], ["same_cdi", 170, 3], ["sameboy", 172, 3], ["scummvm", 174, 3], ["smsplus-gx", 176, 3], ["snes9x", 178, 3], ["snes9x2002", 180, 3], ["snes9x2005", 182, 3], ["snes9x2005-plus", 184, 3], ["snes9x2010", 186, 3], ["stella", 188, 3], ["stella2014", 190, 3], ["swanstation", 192, 3], ["tgbdual", 194, 3], ["theodore", 196, 3], ["thepowdertoy", 198, 3], ["tic80", 200, 3], ["twenty-fortyeight", 202, 3], ["uzem", 204, 3], ["vba-m", 206, 3], ["vba-next", 208, 3], ["vecx", 210, 3], ["vice-x64", 212, 3], ["vice-x128", 214, 3], ["vice-x64dtv", 216, 3], ["vice-x64sc", 218, 3], ["vice-xcbm2", 220, 3], ["vice-xcbm5x0", 222, 3], ["vice-xpet", 224, 3], ["vice-xplus4", 226, 3], ["vice-xscpu64", 228, 3], ["vice-xvic", 230, 3], ["virtualjaguar", 232, 3], ["yabause", 234, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const newScope = nix.arg($, "newScope");
   return nix.app(nix.sel(lib, "makeScope"), newScope, (self) => ({
-      [nix.POS]: pos$15,
+      [nix.POS]: $pos[14],
       mkLibretroCore: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./mkLibretroCore.nix"), nix.thunk(() => ({})))),
       atari800: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./cores/atari800.nix"), nix.thunk(() => ({})))),
       "beetle-gba": nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./cores/beetle-gba.nix"), nix.thunk(() => ({})))),
@@ -34,7 +20,7 @@ export default nix.lambda((args) => (() => {
       "beetle-pce-fast": nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./cores/beetle-pce-fast.nix"), nix.thunk(() => ({})))),
       "beetle-pcfx": nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./cores/beetle-pcfx.nix"), nix.thunk(() => ({})))),
       "beetle-psx": nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./cores/beetle-psx.nix"), nix.thunk(() => ({})))),
-      "beetle-psx-hw": nix.thunk(() => nix.app(nix.sel(self, "beetle-psx", "override"), nix.thunk(() => ({ [nix.POS]: pos$1, withHw: true })))),
+      "beetle-psx-hw": nix.thunk(() => nix.app(nix.sel(self, "beetle-psx", "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], withHw: true })))),
       "beetle-saturn": nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./cores/beetle-saturn.nix"), nix.thunk(() => ({})))),
       "beetle-supafaust": nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./cores/beetle-supafaust.nix"), nix.thunk(() => ({})))),
       "beetle-supergrafx": nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./cores/beetle-supergrafx.nix"), nix.thunk(() => ({})))),
@@ -45,8 +31,8 @@ export default nix.lambda((args) => (() => {
       bsnes: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./cores/bsnes.nix"), nix.thunk(() => ({})))),
       "bsnes-hd": nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./cores/bsnes-hd.nix"), nix.thunk(() => ({})))),
       "bsnes-mercury": nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./cores/bsnes-mercury.nix"), nix.thunk(() => ({})))),
-      "bsnes-mercury-balanced": nix.thunk(() => nix.app(nix.sel(self, "bsnes-mercury", "override"), nix.thunk(() => ({ [nix.POS]: pos$2, withProfile: "balanced" })))),
-      "bsnes-mercury-performance": nix.thunk(() => nix.app(nix.sel(self, "bsnes-mercury", "override"), nix.thunk(() => ({ [nix.POS]: pos$3, withProfile: "performance" })))),
+      "bsnes-mercury-balanced": nix.thunk(() => nix.app(nix.sel(self, "bsnes-mercury", "override"), nix.thunk(() => ({ [nix.POS]: $pos[1], withProfile: "balanced" })))),
+      "bsnes-mercury-performance": nix.thunk(() => nix.app(nix.sel(self, "bsnes-mercury", "override"), nix.thunk(() => ({ [nix.POS]: $pos[2], withProfile: "performance" })))),
       citra: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./cores/citra.nix"), nix.thunk(() => ({})))),
       desmume: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./cores/desmume.nix"), nix.thunk(() => ({})))),
       desmume2015: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./cores/desmume2015.nix"), nix.thunk(() => ({})))),
@@ -114,7 +100,7 @@ export default nix.lambda((args) => (() => {
       snes9x: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./cores/snes9x.nix"), nix.thunk(() => ({})))),
       snes9x2002: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./cores/snes9x2002.nix"), nix.thunk(() => ({})))),
       snes9x2005: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./cores/snes9x2005.nix"), nix.thunk(() => ({})))),
-      "snes9x2005-plus": nix.thunk(() => nix.app(nix.sel(self, "snes9x2005", "override"), nix.thunk(() => ({ [nix.POS]: pos$4, withBlarggAPU: true })))),
+      "snes9x2005-plus": nix.thunk(() => nix.app(nix.sel(self, "snes9x2005", "override"), nix.thunk(() => ({ [nix.POS]: $pos[3], withBlarggAPU: true })))),
       snes9x2010: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./cores/snes9x2010.nix"), nix.thunk(() => ({})))),
       stella: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./cores/stella.nix"), nix.thunk(() => ({})))),
       stella2014: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./cores/stella2014.nix"), nix.thunk(() => ({})))),
@@ -128,16 +114,16 @@ export default nix.lambda((args) => (() => {
       "vba-m": nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./cores/vba-m.nix"), nix.thunk(() => ({})))),
       "vba-next": nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./cores/vba-next.nix"), nix.thunk(() => ({})))),
       vecx: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./cores/vecx.nix"), nix.thunk(() => ({})))),
-      "vice-x64": nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./cores/vice.nix"), nix.thunk(() => ({ [nix.POS]: pos$5, type: "x64" })))),
-      "vice-x128": nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./cores/vice.nix"), nix.thunk(() => ({ [nix.POS]: pos$6, type: "x128" })))),
-      "vice-x64dtv": nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./cores/vice.nix"), nix.thunk(() => ({ [nix.POS]: pos$7, type: "x64dtv" })))),
-      "vice-x64sc": nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./cores/vice.nix"), nix.thunk(() => ({ [nix.POS]: pos$8, type: "x64sc" })))),
-      "vice-xcbm2": nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./cores/vice.nix"), nix.thunk(() => ({ [nix.POS]: pos$9, type: "xcbm2" })))),
-      "vice-xcbm5x0": nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./cores/vice.nix"), nix.thunk(() => ({ [nix.POS]: pos$10, type: "xcbm5x0" })))),
-      "vice-xpet": nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./cores/vice.nix"), nix.thunk(() => ({ [nix.POS]: pos$11, type: "xpet" })))),
-      "vice-xplus4": nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./cores/vice.nix"), nix.thunk(() => ({ [nix.POS]: pos$12, type: "xplus4" })))),
-      "vice-xscpu64": nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./cores/vice.nix"), nix.thunk(() => ({ [nix.POS]: pos$13, type: "xscpu64" })))),
-      "vice-xvic": nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./cores/vice.nix"), nix.thunk(() => ({ [nix.POS]: pos$14, type: "xvic" })))),
+      "vice-x64": nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./cores/vice.nix"), nix.thunk(() => ({ [nix.POS]: $pos[4], type: "x64" })))),
+      "vice-x128": nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./cores/vice.nix"), nix.thunk(() => ({ [nix.POS]: $pos[5], type: "x128" })))),
+      "vice-x64dtv": nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./cores/vice.nix"), nix.thunk(() => ({ [nix.POS]: $pos[6], type: "x64dtv" })))),
+      "vice-x64sc": nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./cores/vice.nix"), nix.thunk(() => ({ [nix.POS]: $pos[7], type: "x64sc" })))),
+      "vice-xcbm2": nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./cores/vice.nix"), nix.thunk(() => ({ [nix.POS]: $pos[8], type: "xcbm2" })))),
+      "vice-xcbm5x0": nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./cores/vice.nix"), nix.thunk(() => ({ [nix.POS]: $pos[9], type: "xcbm5x0" })))),
+      "vice-xpet": nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./cores/vice.nix"), nix.thunk(() => ({ [nix.POS]: $pos[10], type: "xpet" })))),
+      "vice-xplus4": nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./cores/vice.nix"), nix.thunk(() => ({ [nix.POS]: $pos[11], type: "xplus4" })))),
+      "vice-xscpu64": nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./cores/vice.nix"), nix.thunk(() => ({ [nix.POS]: $pos[12], type: "xscpu64" })))),
+      "vice-xvic": nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./cores/vice.nix"), nix.thunk(() => ({ [nix.POS]: $pos[13], type: "xvic" })))),
       virtualjaguar: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./cores/virtualjaguar.nix"), nix.thunk(() => ({})))),
       yabause: nix.thunk(() => nix.app(nix.sel(self, "callPackage"), nix.path(here, "./cores/yabause.nix"), nix.thunk(() => ({})))),
     }));

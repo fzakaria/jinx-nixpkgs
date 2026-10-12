@@ -2,150 +2,113 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/containers-reloadable.nix", [[["maintainers", 5, 5]], [["text", 14, 40]], [["check", 14, 34]], [["etc", 14, 30]], [["enable", 15, 22]], [["environment", 14, 18], ["nix", 15, 18]], [["autoStart", 13, 11], ["config", 14, 11]], [["test1", 12, 20]], [["addresses", 19, 41]], [["ipv4", 19, 36]], [["eth1", 19, 31]], [["interfaces", 19, 20]], [["text", 23, 35]], [["check", 23, 29]], [["etc", 23, 25]], [["enable", 24, 28], ["adminAddr", 25, 28]], [["httpd", 24, 22]], [["enable", 26, 17]], [["environment", 23, 13], ["services", 24, 13], ["nix", 26, 13]], [["config", 22, 28]], [["test1", 22, 22]], [["containers", 22, 11]], [["configuration", 21, 27]], [["text", 32, 35]], [["check", 32, 29]], [["etc", 32, 25]], [["enable", 33, 28]], [["nginx", 33, 22]], [["enable", 34, 17]], [["environment", 32, 13], ["services", 33, 13], ["nix", 34, 13]], [["config", 31, 28]], [["test1", 31, 22]], [["containers", 31, 11]], [["configuration", 30, 27]], [["c1", 21, 24], ["c2", 30, 24]], [["containers", 12, 9], ["networking", 19, 9], ["specialisation", 21, 9]], [["machine", 9, 5]], [["name", 3, 3], ["meta", 4, 3], ["nodes", 8, 3], ["testScript", 40, 3]]]);
 const formals$1 = { args: { pkgs: false, lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/containers-reloadable.nix", [["maintainers", 5, 5]]);
 const formals$2 = { args: { lib: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/containers-reloadable.nix", [["text", 14, 40]]);
-const pos$3 = nix.positions(here + "/containers-reloadable.nix", [["check", 14, 34]]);
-const pos$4 = nix.positions(here + "/containers-reloadable.nix", [["etc", 14, 30]]);
-const pos$5 = nix.positions(here + "/containers-reloadable.nix", [["enable", 15, 22]]);
-const pos$6 = nix.positions(here + "/containers-reloadable.nix", [["environment", 14, 18], ["nix", 15, 18]]);
-const pos$7 = nix.positions(here + "/containers-reloadable.nix", [["autoStart", 13, 11], ["config", 14, 11]]);
-const pos$8 = nix.positions(here + "/containers-reloadable.nix", [["test1", 12, 20]]);
-const pos$9 = nix.positions(here + "/containers-reloadable.nix", [["addresses", 19, 41]]);
-const pos$10 = nix.positions(here + "/containers-reloadable.nix", [["ipv4", 19, 36]]);
-const pos$11 = nix.positions(here + "/containers-reloadable.nix", [["eth1", 19, 31]]);
-const pos$12 = nix.positions(here + "/containers-reloadable.nix", [["interfaces", 19, 20]]);
-const pos$13 = nix.positions(here + "/containers-reloadable.nix", [["text", 23, 35]]);
-const pos$14 = nix.positions(here + "/containers-reloadable.nix", [["check", 23, 29]]);
-const pos$15 = nix.positions(here + "/containers-reloadable.nix", [["etc", 23, 25]]);
-const pos$16 = nix.positions(here + "/containers-reloadable.nix", [["enable", 24, 28], ["adminAddr", 25, 28]]);
-const pos$17 = nix.positions(here + "/containers-reloadable.nix", [["httpd", 24, 22]]);
-const pos$18 = nix.positions(here + "/containers-reloadable.nix", [["enable", 26, 17]]);
-const pos$19 = nix.positions(here + "/containers-reloadable.nix", [["environment", 23, 13], ["services", 24, 13], ["nix", 26, 13]]);
-const pos$20 = nix.positions(here + "/containers-reloadable.nix", [["config", 22, 28]]);
-const pos$21 = nix.positions(here + "/containers-reloadable.nix", [["test1", 22, 22]]);
-const pos$22 = nix.positions(here + "/containers-reloadable.nix", [["containers", 22, 11]]);
-const pos$23 = nix.positions(here + "/containers-reloadable.nix", [["configuration", 21, 27]]);
-const pos$24 = nix.positions(here + "/containers-reloadable.nix", [["text", 32, 35]]);
-const pos$25 = nix.positions(here + "/containers-reloadable.nix", [["check", 32, 29]]);
-const pos$26 = nix.positions(here + "/containers-reloadable.nix", [["etc", 32, 25]]);
-const pos$27 = nix.positions(here + "/containers-reloadable.nix", [["enable", 33, 28]]);
-const pos$28 = nix.positions(here + "/containers-reloadable.nix", [["nginx", 33, 22]]);
-const pos$29 = nix.positions(here + "/containers-reloadable.nix", [["enable", 34, 17]]);
-const pos$30 = nix.positions(here + "/containers-reloadable.nix", [["environment", 32, 13], ["services", 33, 13], ["nix", 34, 13]]);
-const pos$31 = nix.positions(here + "/containers-reloadable.nix", [["config", 31, 28]]);
-const pos$32 = nix.positions(here + "/containers-reloadable.nix", [["test1", 31, 22]]);
-const pos$33 = nix.positions(here + "/containers-reloadable.nix", [["containers", 31, 11]]);
-const pos$34 = nix.positions(here + "/containers-reloadable.nix", [["configuration", 30, 27]]);
-const pos$35 = nix.positions(here + "/containers-reloadable.nix", [["c1", 21, 24], ["c2", 30, 24]]);
-const pos$36 = nix.positions(here + "/containers-reloadable.nix", [["containers", 12, 9], ["networking", 19, 9], ["specialisation", 21, 9]]);
-const pos$37 = nix.positions(here + "/containers-reloadable.nix", [["machine", 9, 5]]);
-const pos$38 = nix.positions(here + "/containers-reloadable.nix", [["name", 3, 3], ["meta", 4, 3], ["nodes", 8, 3], ["testScript", 40, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$38,
+    [nix.POS]: $pos[37],
     name: "containers-reloadable",
-    meta: nix.thunk(() => ({ [nix.POS]: pos$1, maintainers: [] })),
+    meta: nix.thunk(() => ({ [nix.POS]: $pos[0], maintainers: [] })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$37,
+      [nix.POS]: $pos[36],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const lib_1 = nix.arg($_1, "lib");
         return {
-          [nix.POS]: pos$36,
+          [nix.POS]: $pos[35],
           containers: nix.thunk(() => ({
-            [nix.POS]: pos$8,
+            [nix.POS]: $pos[7],
             test1: nix.thunk(() => ({
-              [nix.POS]: pos$7,
+              [nix.POS]: $pos[6],
               autoStart: true,
               config: nix.thunk(() => ({
-                [nix.POS]: pos$6,
+                [nix.POS]: $pos[5],
                 environment: nix.thunk(() => ({
-                  [nix.POS]: pos$4,
+                  [nix.POS]: $pos[3],
                   etc: nix.thunk(() => ({
-                    [nix.POS]: pos$3,
-                    check: nix.thunk(() => ({ [nix.POS]: pos$2, text: "client_base" })),
+                    [nix.POS]: $pos[2],
+                    check: nix.thunk(() => ({ [nix.POS]: $pos[1], text: "client_base" })),
                   })),
                 })),
-                nix: nix.thunk(() => ({ [nix.POS]: pos$5, enable: false })),
+                nix: nix.thunk(() => ({ [nix.POS]: $pos[4], enable: false })),
               })),
             })),
           })),
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$12,
+            [nix.POS]: $pos[11],
             interfaces: nix.thunk(() => ({
-              [nix.POS]: pos$11,
+              [nix.POS]: $pos[10],
               eth1: nix.thunk(() => ({
-                [nix.POS]: pos$10,
+                [nix.POS]: $pos[9],
                 ipv4: nix.thunk(() => ({
-                  [nix.POS]: pos$9,
+                  [nix.POS]: $pos[8],
                   addresses: nix.thunk(() => nix.app(nix.sel(lib_1, "mkOverride"), 0n, [])),
                 })),
               })),
             })),
           })),
           specialisation: nix.thunk(() => ({
-            [nix.POS]: pos$35,
+            [nix.POS]: $pos[34],
             c1: nix.thunk(() => ({
-              [nix.POS]: pos$23,
+              [nix.POS]: $pos[22],
               configuration: nix.thunk(() => ({
-                [nix.POS]: pos$22,
+                [nix.POS]: $pos[21],
                 containers: nix.thunk(() => ({
-                  [nix.POS]: pos$21,
+                  [nix.POS]: $pos[20],
                   test1: nix.thunk(() => ({
-                    [nix.POS]: pos$20,
+                    [nix.POS]: $pos[19],
                     config: nix.thunk(() => ({
-                      [nix.POS]: pos$19,
+                      [nix.POS]: $pos[18],
                       environment: nix.thunk(() => ({
-                        [nix.POS]: pos$15,
+                        [nix.POS]: $pos[14],
                         etc: nix.thunk(() => ({
-                          [nix.POS]: pos$14,
+                          [nix.POS]: $pos[13],
                           check: nix.thunk(() => ({
-                            [nix.POS]: pos$13,
+                            [nix.POS]: $pos[12],
                             text: nix.thunk(() => nix.app(nix.sel(lib_1, "mkForce"), "client_c1")),
                           })),
                         })),
                       })),
                       services: nix.thunk(() => ({
-                        [nix.POS]: pos$17,
-                        httpd: nix.thunk(() => ({ [nix.POS]: pos$16, enable: true, adminAddr: "nixos@example.com" })),
+                        [nix.POS]: $pos[16],
+                        httpd: nix.thunk(() => ({ [nix.POS]: $pos[15], enable: true, adminAddr: "nixos@example.com" })),
                       })),
-                      nix: nix.thunk(() => ({ [nix.POS]: pos$18, enable: false })),
+                      nix: nix.thunk(() => ({ [nix.POS]: $pos[17], enable: false })),
                     })),
                   })),
                 })),
               })),
             })),
             c2: nix.thunk(() => ({
-              [nix.POS]: pos$34,
+              [nix.POS]: $pos[33],
               configuration: nix.thunk(() => ({
-                [nix.POS]: pos$33,
+                [nix.POS]: $pos[32],
                 containers: nix.thunk(() => ({
-                  [nix.POS]: pos$32,
+                  [nix.POS]: $pos[31],
                   test1: nix.thunk(() => ({
-                    [nix.POS]: pos$31,
+                    [nix.POS]: $pos[30],
                     config: nix.thunk(() => ({
-                      [nix.POS]: pos$30,
+                      [nix.POS]: $pos[29],
                       environment: nix.thunk(() => ({
-                        [nix.POS]: pos$26,
+                        [nix.POS]: $pos[25],
                         etc: nix.thunk(() => ({
-                          [nix.POS]: pos$25,
+                          [nix.POS]: $pos[24],
                           check: nix.thunk(() => ({
-                            [nix.POS]: pos$24,
+                            [nix.POS]: $pos[23],
                             text: nix.thunk(() => nix.app(nix.sel(lib_1, "mkForce"), "client_c2")),
                           })),
                         })),
                       })),
                       services: nix.thunk(() => ({
-                        [nix.POS]: pos$28,
-                        nginx: nix.thunk(() => ({ [nix.POS]: pos$27, enable: true })),
+                        [nix.POS]: $pos[27],
+                        nginx: nix.thunk(() => ({ [nix.POS]: $pos[26], enable: true })),
                       })),
-                      nix: nix.thunk(() => ({ [nix.POS]: pos$29, enable: false })),
+                      nix: nix.thunk(() => ({ [nix.POS]: $pos[28], enable: false })),
                     })),
                   })),
                 })),

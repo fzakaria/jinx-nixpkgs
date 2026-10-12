@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 33, 5], ["repo", 34, 5], ["rev", 35, 5], ["hash", 36, 5]], [["description", 118, 5], ["homepage", 119, 5], ["longDescription", 120, 5], ["platforms", 126, 5], ["license", 127, 5], ["maintainers", 135, 5]], [["pname", 29, 3], ["version", 30, 3], ["src", 32, 3], ["postPatch", 40, 3], ["nativeBuildInputs", 47, 3], ["buildInputs", 56, 3], ["preBuild", 73, 3], ["fontsPath", 84, 3], ["makeFlags", 86, 3], ["postInstall", 99, 3], ["enableParallelBuilding", 115, 3], ["meta", 117, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, which: false, sqlite: false, lua5_4: false, perl: false, python3: false, zlib: false, "pkg-config": false, ncurses: false, dejavu_fonts: false, libpng: false, SDL2: false, SDL2_image: false, SDL2_mixer: false, libGLU: false, libGL: false, freetype: false, pngcrush: false, advancecomp: false, tileMode: true, enableSound: true, buildPackages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 33, 5], ["repo", 34, 5], ["rev", 35, 5], ["hash", 36, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 118, 5], ["homepage", 119, 5], ["longDescription", 120, 5], ["platforms", 126, 5], ["license", 127, 5], ["maintainers", 135, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 29, 3], ["version", 30, 3], ["src", 32, 3], ["postPatch", 40, 3], ["nativeBuildInputs", 47, 3], ["buildInputs", 56, 3], ["preBuild", 73, 3], ["fontsPath", 84, 3], ["makeFlags", 86, 3], ["postInstall", 99, 3], ["enableParallelBuilding", 115, 3], ["meta", 117, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -37,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const pname = nix.thunk(() => nix.str`crawl${nix.app(nix.sel(lib, "optionalString"), tileMode, "-tiles")}`);
       const version = "0.34.1";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "crawl",
           repo: "crawl",
           rev: version,
@@ -74,7 +72,7 @@ mkdir -p $out/xdg-data
       const postInstall = nix.thunk(() => nix.add(nix.add(nix.app(nix.sel(lib, "optionalString"), tileMode, "mv $out/bin/crawl $out/bin/crawl-tiles\necho \"Exec=crawl-tiles\" >> $out/xdg-data/org.develz.Crawl_tiles.desktop\necho \"Icon=crawl\" >> $out/xdg-data/org.develz.Crawl_tiles.desktop\ninstall -Dm444 $out/xdg-data/org.develz.Crawl_tiles.desktop -t $out/share/applications\ninstall -Dm444 $out/xdg-data/org.develz.Crawl_tiles.appdata.xml -t $out/share/metainfo\n"), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(tileMode)), "echo \"Exec=crawl\" >> $out/xdg-data/org.develz.Crawl_console.desktop\necho \"Icon=crawl\" >> $out/xdg-data/org.develz.Crawl_console.desktop\ninstall -Dm444 $out/xdg-data/org.develz.Crawl_console.desktop -t $out/share/applications\ninstall -Dm444 $out/xdg-data/org.develz.Crawl_console.appdata.xml -t $out/share/metainfo\n")), "install -Dm444 dat/tiles/stone_soup_icon-512x512.png $out/share/icons/hicolor/512x512/apps/crawl.png"));
       const enableParallelBuilding = true;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Open-source, single-player, role-playing roguelike game",
         homepage: "http://crawl.develz.org/",
         longDescription: "Dungeon Crawl: Stone Soup, an open-source, single-player, role-playing\nroguelike game of exploration and treasure-hunting in dungeons filled\nwith dangerous and unfriendly monsters in a quest to rescue the\nmystifyingly fabulous Orb of Zot.\n",
@@ -93,7 +91,7 @@ mkdir -p $out/xdg-data
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

@@ -2,38 +2,31 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/dovecot.nix", [[["enable", 11, 24]], [["dovecot_config_version", 16, 11], ["dovecot_storage_version", 17, 11], ["mail_driver", 18, 11], ["mail_path", 19, 11], ["protocols", 20, 11], ["mail_uid", 24, 11], ["mail_gid", 25, 11]], [["enable", 13, 9], ["enablePAM", 14, 9], ["settings", 15, 9]], [["postfix", 11, 16], ["dovecot2", 12, 16]], [["systemPackages", 28, 19]], [["imports", 10, 7], ["services", 11, 7], ["environment", 28, 7]], [["machine", 4, 9]], [["name", 2, 3], ["nodes", 4, 3], ["testScript", 95, 3]]]);
 const formals$1 = { args: { config: false, pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/dovecot.nix", [["enable", 11, 24]]);
-const pos$2 = nix.positions(here + "/dovecot.nix", [["dovecot_config_version", 16, 11], ["dovecot_storage_version", 17, 11], ["mail_driver", 18, 11], ["mail_path", 19, 11], ["protocols", 20, 11], ["mail_uid", 24, 11], ["mail_gid", 25, 11]]);
-const pos$3 = nix.positions(here + "/dovecot.nix", [["enable", 13, 9], ["enablePAM", 14, 9], ["settings", 15, 9]]);
-const pos$4 = nix.positions(here + "/dovecot.nix", [["postfix", 11, 16], ["dovecot2", 12, 16]]);
-const pos$5 = nix.positions(here + "/dovecot.nix", [["systemPackages", 28, 19]]);
-const pos$6 = nix.positions(here + "/dovecot.nix", [["imports", 10, 7], ["services", 11, 7], ["environment", 28, 7]]);
-const pos$7 = nix.positions(here + "/dovecot.nix", [["machine", 4, 9]]);
-const pos$8 = nix.positions(here + "/dovecot.nix", [["name", 2, 3], ["nodes", 4, 3], ["testScript", 95, 3]]);
 
 export default nix.thunk(() => ({
-  [nix.POS]: pos$8,
+  [nix.POS]: $pos[7],
   name: "dovecot",
   nodes: nix.thunk(() => ({
-    [nix.POS]: pos$7,
+    [nix.POS]: $pos[6],
     machine: nix.lambda((args) => (() => {
       const $ = nix.formals(args, formals$1);
       const config = nix.arg($, "config");
       const pkgs = nix.arg($, "pkgs");
       const dovecot = nix.thunk(() => nix.sel(config, "services", "dovecot2", "package"));
       return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         imports: nix.thunk(() => [nix.path(here, "common/user-account.nix")]),
         services: nix.thunk(() => ({
-          [nix.POS]: pos$4,
-          postfix: nix.thunk(() => ({ [nix.POS]: pos$1, enable: true })),
+          [nix.POS]: $pos[3],
+          postfix: nix.thunk(() => ({ [nix.POS]: $pos[0], enable: true })),
           dovecot2: nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             enable: true,
             enablePAM: true,
             settings: nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               dovecot_config_version: nix.thunk(() => nix.sel(dovecot, "version")),
               dovecot_storage_version: nix.thunk(() => nix.sel(dovecot, "version")),
               mail_driver: "maildir",
@@ -45,7 +38,7 @@ export default nix.thunk(() => ({
           })),
         })),
         environment: nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           systemPackages: nix.thunk(() => (() => {
             const sendTestMail = nix.thunk(() => nix.app(nix.sel(pkgs, "writeScriptBin"), "send-testmail", nix.thunk(() => nix.str`#!${nix.sel(pkgs, "runtimeShell")}
 exec sendmail -vt <<MAIL

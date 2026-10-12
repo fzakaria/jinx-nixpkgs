@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 55, 5], ["hash", 56, 5]], [["updateScript", 124, 12]], [["description", 137, 5], ["homepage", 138, 5], ["license", 139, 5], ["maintainers", 145, 5], ["platforms", 149, 5]], [["fontDirectories", 155, 9]], [["FONTCONFIG_FILE", 153, 5]], [["pname", 47, 3], ["version", 48, 3], ["outputs", 49, 3], ["src", 54, 3], ["postInstall", 59, 3], ["preConfigure", 76, 3], ["strictDeps", 81, 3], ["depsBuildBuild", 83, 3], ["nativeBuildInputs", 87, 3], ["buildInputs", 111, 3], ["autoreconfPhase", 120, 3], ["enableParallelBuilding", 122, 3], ["passthru", 124, 3], ["makeFlags", 132, 3], ["__structuredAttrs", 134, 3], ["meta", 136, 3], ["env", 152, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchzip: false, ghostscript: false, texinfo: false, imagemagick: false, texi2html: false, extractpdfmark: false, guile: false, python3: false, gettext: false, glib: false, gmp: false, flex: false, perl: false, bison: false, "pkg-config": false, autoreconfHook: false, dblatex: false, fontconfig: false, freetype: false, pango: false, fontforge: false, help2man: false, freefont_ttf: false, makeFontsConf: false, makeWrapper: false, t1utils: false, boehmgc: false, rsync: false, coreutils: false, texliveSmall: false, tex: true, writeScript: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 55, 5], ["hash", 56, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 124, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 137, 5], ["homepage", 138, 5], ["license", 139, 5], ["maintainers", 145, 5], ["platforms", 149, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["fontDirectories", 155, 9]]);
-const pos$5 = nix.positions(here + "/package.nix", [["FONTCONFIG_FILE", 153, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 47, 3], ["version", 48, 3], ["outputs", 49, 3], ["src", 54, 3], ["postInstall", 59, 3], ["preConfigure", 76, 3], ["strictDeps", 81, 3], ["depsBuildBuild", 83, 3], ["nativeBuildInputs", 87, 3], ["buildInputs", 111, 3], ["autoreconfPhase", 120, 3], ["enableParallelBuilding", 122, 3], ["passthru", 124, 3], ["makeFlags", 132, 3], ["__structuredAttrs", 134, 3], ["meta", 136, 3], ["env", 152, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -56,12 +51,12 @@ export default nix.lambda((args) => (() => {
     })()));
   const writeScript = nix.arg($, "writeScript");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "lilypond",
       version: "2.26.0",
       outputs: nix.thunk(() => ["out", "man"]),
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://lilypond.org/download/sources/v${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/lilypond-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-HUkPhaWNZ4UKbmlEyLXepHCFcgrdoRSDtjZMriO68RM=",
         })))),
@@ -104,13 +99,13 @@ done
       autoreconfPhase: "NOCONFIGURE=1 sh autogen.sh",
       enableParallelBuilding: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(writeScript, "update-lilypond", "#!/usr/bin/env nix-shell\n#!nix-shell -i bash -p common-updater-scripts curl\nversion=\"$(curl -s 'https://gitlab.com/lilypond/lilypond/-/raw/master/VERSION' | grep 'VERSION_STABLE=' | cut -d= -f2)\"\nupdate-source-version lilypond \"$version\"\n")),
       })),
       makeFlags: nix.thunk(() => ["out="]),
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Music typesetting system",
         homepage: "https://lilypond.org/",
         license: nix.thunk(() => (() => {
@@ -132,8 +127,8 @@ done
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       })),
       env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({
-          [nix.POS]: pos$5,
-          FONTCONFIG_FILE: nix.thunk(() => nix.app(makeFontsConf, nix.thunk(() => ({ [nix.POS]: pos$4, fontDirectories: nix.thunk(() => [freefont_ttf]) })))),
+          [nix.POS]: $pos[4],
+          FONTCONFIG_FILE: nix.thunk(() => nix.app(makeFontsConf, nix.thunk(() => ({ [nix.POS]: $pos[3], fontDirectories: nix.thunk(() => [freefont_ttf]) })))),
         })))),
     }));
 })(), formals$1);

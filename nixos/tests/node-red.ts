@@ -2,41 +2,34 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/node-red.nix", [[["maintainers", 5, 5]], [["systemPackages", 12, 21]], [["environment", 12, 9]], [["enable", 18, 11], ["openFirewall", 19, 11]], [["node-red", 17, 18]], [["services", 17, 9]], [["client", 9, 5], ["nodered", 14, 5]], [["name", 3, 3], ["meta", 4, 3], ["nodes", 8, 3], ["testScript", 24, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/node-red.nix", [["maintainers", 5, 5]]);
 const formals$2 = { args: { config: false, pkgs: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/node-red.nix", [["systemPackages", 12, 21]]);
-const pos$3 = nix.positions(here + "/node-red.nix", [["environment", 12, 9]]);
 const formals$3 = { args: { config: false, pkgs: false }, ellipsis: true };
-const pos$4 = nix.positions(here + "/node-red.nix", [["enable", 18, 11], ["openFirewall", 19, 11]]);
-const pos$5 = nix.positions(here + "/node-red.nix", [["node-red", 17, 18]]);
-const pos$6 = nix.positions(here + "/node-red.nix", [["services", 17, 9]]);
-const pos$7 = nix.positions(here + "/node-red.nix", [["client", 9, 5], ["nodered", 14, 5]]);
-const pos$8 = nix.positions(here + "/node-red.nix", [["name", 3, 3], ["meta", 4, 3], ["nodes", 8, 3], ["testScript", 24, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   return {
-    [nix.POS]: pos$8,
+    [nix.POS]: $pos[7],
     name: "nodered",
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib", "maintainers")), null);
       return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         maintainers: nix.thunk(() => [nix.thunk(() => nix.lookup(w, "matthewcroughan"))]),
       };
     })()),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       client: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config = nix.arg($_1, "config");
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             systemPackages: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs_1, "curl"))]),
           })),
         };
@@ -46,10 +39,10 @@ export default nix.lambda((args) => (() => {
         const config = nix.arg($_1, "config");
         const pkgs_1 = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$5,
-            "node-red": nix.thunk(() => ({ [nix.POS]: pos$4, enable: true, openFirewall: true })),
+            [nix.POS]: $pos[4],
+            "node-red": nix.thunk(() => ({ [nix.POS]: $pos[3], enable: true, openFirewall: true })),
           })),
         };
       })(), formals$3),

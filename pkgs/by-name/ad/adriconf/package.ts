@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 23, 5], ["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]], [["homepage", 65, 5], ["changelog", 66, 5], ["description", 67, 5], ["license", 68, 5], ["maintainers", 69, 5], ["platforms", 70, 5], ["mainProgram", 71, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["postPatch", 32, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 42, 3], ["cmakeFlags", 53, 3], ["postInstall", 55, 3], ["meta", 64, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitLab: false, cmake: false, gettext: false, glib: false, "pkg-config": false, libdrm: false, libGL: false, atkmm: false, gtkmm4: false, pugixml: false, libgbm: false, pciutils: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 23, 5], ["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 65, 5], ["changelog", 66, 5], ["description", 67, 5], ["license", 68, 5], ["maintainers", 69, 5], ["platforms", 70, 5], ["mainProgram", 71, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["postPatch", 32, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 42, 3], ["cmakeFlags", 53, 3], ["postInstall", 55, 3], ["meta", 64, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const libgbm = nix.arg($, "libgbm");
   const pciutils = nix.arg($, "pciutils");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "adriconf",
       version: "2.7.3",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "gitlab.freedesktop.org",
           owner: "mesa",
           repo: "adriconf",
@@ -41,7 +39,7 @@ export default nix.lambda((args) => (() => {
       cmakeFlags: nix.thunk(() => ["-DENABLE_UNIT_TESTS=off"]),
       postInstall: "install -Dm444 ../flatpak/org.freedesktop.adriconf.metainfo.xml \\\n  -t $out/share/metainfo/\ninstall -Dm444 ../flatpak/org.freedesktop.adriconf.desktop \\\n  -t $out/share/applications/\ninstall -Dm444 ../flatpak/org.freedesktop.adriconf.png \\\n  -t $out/share/icons/hicolor/256x256/apps/\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://gitlab.freedesktop.org/mesa/adriconf/",
         changelog: nix.thunk(() => nix.str`https://gitlab.freedesktop.org/mesa/adriconf/-/releases/v${nix.sel(finalAttrs, "version")}`),
         description: "GUI tool used to configure open source graphics drivers",

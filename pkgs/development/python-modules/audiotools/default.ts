@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 51, 5], ["repo", 52, 5], ["rev", 53, 5], ["hash", 54, 5]], [["description", 58, 5], ["homepage", 59, 5], ["license", 60, 5], ["maintainers", 61, 5]], [["pname", 18, 3], ["version", 19, 3], ["pyproject", 20, 3], ["build-system", 22, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 30, 3], ["preConfigure", 41, 3], ["src", 50, 3], ["meta", 57, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, "pkg-config": false, libmpg123: false, lame: false, twolame: false, libopus: false, opusfile: false, libvorbis: false, libcdio: false, "libcdio-paranoia": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 51, 5], ["repo", 52, 5], ["rev", 53, 5], ["hash", 54, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 58, 5], ["homepage", 59, 5], ["license", 60, 5], ["maintainers", 61, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 18, 3], ["version", 19, 3], ["pyproject", 20, 3], ["build-system", 22, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 30, 3], ["preConfigure", 41, 3], ["src", 50, 3], ["meta", 57, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,7 +21,7 @@ export default nix.lambda((args) => (() => {
   const libcdio = nix.arg($, "libcdio");
   const libcdio_paranoia = nix.arg($, "libcdio-paranoia");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "audiotools",
       version: "3.1.1-unstable-2020-07-29",
       pyproject: true,
@@ -41,14 +39,14 @@ export default nix.lambda((args) => (() => {
       ]),
       preConfigure: "# need to change probe to yes because mp3lame is not reported in pkg-config\nsubstituteInPlace setup.cfg \\\n  --replace-fail \"mp3lame:           probe\" \"mp3lame:           yes\"\n",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "tuffy",
           repo: "python-audio-tools",
           rev: "de55488dc982e3f6375cde2d0c2ea6aad1b1c31c",
           hash: "sha256-iRakeV4Sg4oU0JtiA0O3jnmLJt99d89Hg6v9onUaSnw=",
         })))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Utilities and Python modules for handling audio",
         homepage: "https://audiotools.sourceforge.net/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

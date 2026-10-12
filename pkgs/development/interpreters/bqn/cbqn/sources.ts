@@ -2,29 +2,21 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/sources.nix", [[["owner", 17, 11], ["repo", 18, 11], ["rev", 19, 11], ["hash", 20, 11]], [["pname", 13, 9], ["version", 14, 9], ["src", 16, 9]], [["owner", 31, 7], ["repo", 32, 7], ["rev", 33, 7], ["hash", 34, 7]], [["pname", 27, 5], ["version", 28, 5], ["src", 30, 5]], [["owner", 43, 7], ["repo", 44, 7], ["rev", 45, 7], ["hash", 46, 7]], [["pname", 39, 5], ["version", 40, 5], ["src", 42, 5]], [["owner", 55, 7], ["repo", 56, 7], ["rev", 57, 7], ["hash", 58, 7]], [["pname", 51, 5], ["version", 52, 5], ["src", 54, 5]], [["cbqn", 10, 3], ["cbqn-bytecode", 26, 3], ["replxx", 38, 3], ["singeli", 50, 3]]]);
 const formals$1 = { args: { fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/sources.nix", [["owner", 17, 11], ["repo", 18, 11], ["rev", 19, 11], ["hash", 20, 11]]);
-const pos$2 = nix.positions(here + "/sources.nix", [["pname", 13, 9], ["version", 14, 9], ["src", 16, 9]]);
-const pos$3 = nix.positions(here + "/sources.nix", [["owner", 31, 7], ["repo", 32, 7], ["rev", 33, 7], ["hash", 34, 7]]);
-const pos$4 = nix.positions(here + "/sources.nix", [["pname", 27, 5], ["version", 28, 5], ["src", 30, 5]]);
-const pos$5 = nix.positions(here + "/sources.nix", [["owner", 43, 7], ["repo", 44, 7], ["rev", 45, 7], ["hash", 46, 7]]);
-const pos$6 = nix.positions(here + "/sources.nix", [["pname", 39, 5], ["version", 40, 5], ["src", 42, 5]]);
-const pos$7 = nix.positions(here + "/sources.nix", [["owner", 55, 7], ["repo", 56, 7], ["rev", 57, 7], ["hash", 58, 7]]);
-const pos$8 = nix.positions(here + "/sources.nix", [["pname", 51, 5], ["version", 52, 5], ["src", 54, 5]]);
-const pos$9 = nix.positions(here + "/sources.nix", [["cbqn", 10, 3], ["cbqn-bytecode", 26, 3], ["replxx", 38, 3], ["singeli", 50, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   return {
-    [nix.POS]: pos$9,
+    [nix.POS]: $pos[8],
     cbqn: nix.thunk(() => (() => {
       const self = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         pname: "cbqn",
         version: "0.12.0",
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             owner: "dzaima",
             repo: "CBQN",
             rev: nix.thunk(() => nix.str`v${nix.sel(self, "version")}`),
@@ -34,11 +26,11 @@ export default nix.lambda((args) => (() => {
       return nix.force(self);
     })()),
     "cbqn-bytecode": nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "cbqn-bytecode",
       version: "0-unstable-2026-01-24",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           owner: "dzaima",
           repo: "cbqnBytecode",
           rev: "156b47caf895f6706811c5c34bbbbaf192b8018b",
@@ -46,11 +38,11 @@ export default nix.lambda((args) => (() => {
         })))),
     })),
     replxx: nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "replxx",
       version: "0-unstable-2026-02-02",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           owner: "dzaima",
           repo: "replxx",
           rev: "5e3bd870699007b9536d29f60e3a2b0a68ce0a7a",
@@ -58,11 +50,11 @@ export default nix.lambda((args) => (() => {
         })))),
     })),
     singeli: nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "singeli",
       version: "0-unstable-2026-03-12",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           owner: "mlochbaum",
           repo: "Singeli",
           rev: "5187ed3aa22a2257b63c04a5498ec756fa6263cb",

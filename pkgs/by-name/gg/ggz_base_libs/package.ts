@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 16, 5], ["hash", 17, 5]], [["NIX_CFLAGS_COMPILE", 34, 7]], [["description", 44, 5], ["mainProgram", 45, 5], ["maintainers", 46, 5], ["platforms", 49, 5], ["license", 50, 5], ["downloadPage", 51, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["postPatch", 20, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 27, 3], ["env", 34, 3], ["configureFlags", 39, 3], ["meta", 43, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, intltool: false, openssl: false, expat: false, libgcrypt: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 34, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 44, 5], ["mainProgram", 45, 5], ["maintainers", 46, 5], ["platforms", 49, 5], ["license", 50, 5], ["downloadPage", 51, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["postPatch", 20, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 27, 3], ["env", 34, 3], ["configureFlags", 39, 3], ["meta", 43, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const expat = nix.arg($, "expat");
   const libgcrypt = nix.arg($, "libgcrypt");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "ggz-base-libs",
       version: "0.99.5",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://mirrors.ibiblio.org/pub/mirrors/ggzgamingzone/ggz/snapshots/ggz-base-libs-snapshot-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-sy2uhOpH2237jbriT7IPzHG5WOotfvue/2bI5cDbgbM=",
         })))),
@@ -33,7 +30,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [intltool]),
       buildInputs: nix.thunk(() => [openssl, expat, libgcrypt]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => [
             "-Wno-error=incompatible-pointer-types",
             "-Wno-error=implicit-function-declaration",
@@ -41,7 +38,7 @@ export default nix.lambda((args) => (() => {
       })),
       configureFlags: nix.thunk(() => ["--with-tls"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "GGZ Gaming zone libraries",
         mainProgram: "ggz-config",
         maintainers: nix.thunk(() => (() => {

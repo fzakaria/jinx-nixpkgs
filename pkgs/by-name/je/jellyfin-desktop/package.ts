@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5], ["fetchSubmodules", 25, 5]], [["updateScript", 74, 12]], [["homepage", 77, 5], ["description", 78, 5], ["license", 79, 5], ["platforms", 83, 5], ["maintainers", 88, 5], ["mainProgram", 92, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["patches", 27, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 38, 3], ["cmakeFlags", 55, 3], ["qtWrapperArgs", 63, 3], ["postInstall", 68, 3], ["passthru", 74, 3], ["meta", 76, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, stdenv: false, cmake: false, ninja: false, python3: false, kdePackages: false, "mpv-unwrapped": false, libcec: false, SDL2: false, libxrandr: false, cacert: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5], ["fetchSubmodules", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 74, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 77, 5], ["description", 78, 5], ["license", 79, 5], ["platforms", 83, 5], ["maintainers", 88, 5], ["mainProgram", 92, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["patches", 27, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 38, 3], ["cmakeFlags", 55, 3], ["qtWrapperArgs", 63, 3], ["postInstall", 68, 3], ["passthru", 74, 3], ["meta", 76, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const cacert = nix.arg($, "cacert");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "jellyfin-desktop",
       version: "2.0.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "jellyfin",
           repo: "jellyfin-desktop",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -55,11 +52,11 @@ export default nix.lambda((args) => (() => {
       ]),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "mkdir -p $out/bin $out/Applications\nmv \"$out/Jellyfin Desktop.app\" $out/Applications\nln -s \"$out/Applications/Jellyfin Desktop.app/Contents/MacOS/Jellyfin Desktop\" $out/bin/jellyfin-desktop\n")),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/jellyfin/jellyfin-desktop",
         description: "Jellyfin Desktop Client",
         license: nix.thunk(() => (() => {

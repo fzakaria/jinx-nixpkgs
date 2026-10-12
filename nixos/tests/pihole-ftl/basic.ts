@@ -2,48 +2,40 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/basic.nix", [[["maintainers", 10, 8]], [["enable", 16, 9], ["openFirewallDNS", 17, 9]], [["pihole-ftl", 15, 16]], [["systemPackages", 19, 19]], [["services", 15, 7], ["environment", 19, 7]], [["systemPackages", 25, 19]], [["environment", 25, 7]], [["machine", 12, 9], ["client", 22, 9]], [["name", 9, 3], ["meta", 10, 3], ["nodes", 12, 3], ["testScript", 28, 3]]]);
 const formals$1 = { args: { lib: false, pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/basic.nix", [["maintainers", 10, 8]]);
 const formals$2 = { args: { pkgs: false, lib: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/basic.nix", [["enable", 16, 9], ["openFirewallDNS", 17, 9]]);
-const pos$3 = nix.positions(here + "/basic.nix", [["pihole-ftl", 15, 16]]);
-const pos$4 = nix.positions(here + "/basic.nix", [["systemPackages", 19, 19]]);
-const pos$5 = nix.positions(here + "/basic.nix", [["services", 15, 7], ["environment", 19, 7]]);
 const formals$3 = { args: { pkgs: false, lib: false }, ellipsis: true };
-const pos$6 = nix.positions(here + "/basic.nix", [["systemPackages", 25, 19]]);
-const pos$7 = nix.positions(here + "/basic.nix", [["environment", 25, 7]]);
-const pos$8 = nix.positions(here + "/basic.nix", [["machine", 12, 9], ["client", 22, 9]]);
 const formals$4 = { args: { nodes: false }, ellipsis: true };
-const pos$9 = nix.positions(here + "/basic.nix", [["name", 9, 3], ["meta", 10, 3], ["nodes", 12, 3], ["testScript", 28, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const pkgs = nix.arg($, "pkgs");
   return {
-    [nix.POS]: pos$9,
+    [nix.POS]: $pos[8],
     name: "pihole-ftl-basic",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "averyvigolo"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs_1 = nix.arg($_1, "pkgs");
         const lib_1 = nix.arg($_1, "lib");
         return {
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$3,
-            "pihole-ftl": nix.thunk(() => ({ [nix.POS]: pos$2, enable: true, openFirewallDNS: true })),
+            [nix.POS]: $pos[2],
+            "pihole-ftl": nix.thunk(() => ({ [nix.POS]: $pos[1], enable: true, openFirewallDNS: true })),
           })),
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             systemPackages: nix.thunk(() => (() => {
               const w = nix.withScope(pkgs_1, null);
               return [nix.thunk(() => nix.lookup(w, "dig"))];
@@ -56,9 +48,9 @@ export default nix.lambda((args) => (() => {
         const pkgs_1 = nix.arg($_1, "pkgs");
         const lib_1 = nix.arg($_1, "lib");
         return {
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             systemPackages: nix.thunk(() => (() => {
               const w = nix.withScope(pkgs_1, null);
               return [nix.thunk(() => nix.lookup(w, "dig"))];

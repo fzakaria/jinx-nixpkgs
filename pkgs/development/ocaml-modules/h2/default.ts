@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["sha256", 20, 5]], [["description", 52, 5]], [["pname", 25, 3], ["version", 28, 5], ["src", 29, 5], ["propagatedBuildInputs", 32, 3], ["doCheck", 41, 3], ["preCheck", 42, 3], ["checkInputs", 45, 3], ["meta", 51, 3]]]);
 const formals$1 = { args: { buildDunePackage: false, fetchFromGitHub: false, hpack: false, angstrom: false, faraday: false, base64: false, psq: false, "httpun-types": false, alcotest: false, yojson: false, hex: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 17, 5], ["repo", 18, 5], ["rev", 19, 5], ["sha256", 20, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 52, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 25, 3], ["version", 28, 5], ["src", 29, 5], ["propagatedBuildInputs", 32, 3], ["doCheck", 41, 3], ["preCheck", 42, 3], ["checkInputs", 45, 3], ["meta", 51, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,14 +19,14 @@ export default nix.lambda((args) => (() => {
   const yojson = nix.arg($, "yojson");
   const hex = nix.arg($, "hex");
   const http2_frame_test_case = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "http2jp",
       repo: "http2-frame-test-case",
       rev: "5c67db0d4d68e1fb7d3a241d6e01fc04d981f465",
       sha256: "16yyb37f8mk9saw7ndjs5is67yq7qa6b6y7k0c75ibxi4n9aw1r3",
     }))));
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "h2",
       version: nix.thunk(() => nix.attr(hpack, "version")),
       src: nix.thunk(() => nix.attr(hpack, "src")),
@@ -38,7 +36,7 @@ export default nix.lambda((args) => (() => {
 `),
       checkInputs: nix.thunk(() => [alcotest, yojson, hex]),
       meta: nix.thunk(() => nix.update(nix.sel(hpack, "meta"), {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "High-performance, memory-efficient, and scalable HTTP/2 library for OCaml",
       })),
     })));

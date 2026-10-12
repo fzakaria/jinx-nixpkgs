@@ -2,13 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["hash", 33, 5]], [["broken", 74, 10]], [["requiredSystemFeatures", 66, 5], ["doInstallCheck", 67, 5], ["postInstallCheck", 68, 5], ["meta", 74, 5]], [["gpuCheck", 65, 12]], [["description", 78, 5], ["homepage", 79, 5], ["changelog", 80, 5], ["license", 81, 5], ["maintainers", 82, 5], ["mainProgram", 83, 5], ["platforms", 84, 5], ["broken", 85, 5]], [["pname", 23, 3], ["version", 24, 3], ["__structuredAttrs", 26, 3], ["strictDeps", 27, 3], ["src", 29, 3], ["patches", 36, 3], ["nativeBuildInputs", 42, 3], ["cmakeFlags", 47, 3], ["buildInputs", 51, 3], ["installPhase", 57, 3], ["passthru", 65, 3], ["meta", 77, 3]]]);
 const formals$1 = { args: { lib: false, backendStdenv: false, fetchFromGitHub: false, flags: false, cmake: false, cuda_nvcc: false, argparse: false, cuda_cudart: false, cuda_nvml_dev: false, nvbandwidth: false, config: false, cudaSupport: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["hash", 33, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["broken", 74, 10]]);
-const pos$3 = nix.positions(here + "/package.nix", [["requiredSystemFeatures", 66, 5], ["doInstallCheck", 67, 5], ["postInstallCheck", 68, 5], ["meta", 74, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["gpuCheck", 65, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 78, 5], ["homepage", 79, 5], ["changelog", 80, 5], ["license", 81, 5], ["maintainers", 82, 5], ["mainProgram", 83, 5], ["platforms", 84, 5], ["broken", 85, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 23, 3], ["version", 24, 3], ["__structuredAttrs", 26, 3], ["strictDeps", 27, 3], ["src", 29, 3], ["patches", 36, 3], ["nativeBuildInputs", 42, 3], ["cmakeFlags", 47, 3], ["buildInputs", 51, 3], ["installPhase", 57, 3], ["passthru", 65, 3], ["meta", 77, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,13 +20,13 @@ export default nix.lambda((args) => (() => {
   const config = nix.arg($, "config");
   const cudaSupport = nix.argOr($, "cudaSupport", () => nix.sel(config, "cudaSupport"));
   return nix.app(nix.sel(backendStdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "nvbandwidth",
       version: "0.10.0",
       __structuredAttrs: true,
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "NVIDIA",
           repo: "nvbandwidth",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -45,18 +40,18 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [argparse, cuda_cudart, cuda_nvml_dev]),
       installPhase: "runHook preInstall\n\ninstall -Dm755 nvbandwidth -t $out/bin\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         gpuCheck: nix.thunk(() => nix.app(nix.sel(nvbandwidth, "overrideAttrs"), (_) => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             requiredSystemFeatures: nix.thunk(() => ["cuda"]),
             doInstallCheck: true,
             postInstallCheck: nix.thunk(() => nix.str`$out/bin/${nix.sel(nvbandwidth, "meta", "mainProgram")}
 `),
-            meta: nix.thunk(() => ({ [nix.POS]: pos$2, broken: true })),
+            meta: nix.thunk(() => ({ [nix.POS]: $pos[1], broken: true })),
           }))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Tool for bandwidth measurements on NVIDIA GPUs",
         homepage: "https://github.com/NVIDIA/nvbandwidth",
         changelog: nix.thunk(() => nix.str`https://github.com/NVIDIA/nvbandwidth/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

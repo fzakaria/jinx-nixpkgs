@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 24, 5], ["repo", 25, 5], ["rev", 26, 5], ["hash", 27, 5]], [["description", 57, 5], ["homepage", 58, 5], ["license", 59, 5], ["maintainers", 60, 5], ["platforms", 64, 5]], [["pname", 18, 3], ["version", 19, 3], ["pyproject", 21, 3], ["src", 23, 3], ["postPatch", 30, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 46, 3], ["propagatedBuildInputs", 51, 3], ["meta", 56, 3]]]);
 const formals$1 = { args: { lib: false, python3: false, fetchFromSourcehut: false, gtk3: false, libhandy_0: false, "gobject-introspection": false, meson: false, "pkg-config": false, ninja: false, gettext: false, glib: false, "desktop-file-utils": false, wrapGAppsHook3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 24, 5], ["repo", 25, 5], ["rev", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 57, 5], ["homepage", 58, 5], ["license", 59, 5], ["maintainers", 60, 5], ["platforms", 64, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 18, 3], ["version", 19, 3], ["pyproject", 21, 3], ["src", 23, 3], ["postPatch", 30, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 46, 3], ["propagatedBuildInputs", 51, 3], ["meta", 56, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const desktop_file_utils = nix.arg($, "desktop-file-utils");
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "thumbdrives",
       version: "0.3.2",
       pyproject: false,
       src: nix.thunk(() => nix.app(fetchFromSourcehut, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "~martijnbraam",
           repo: "thumbdrives",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -55,7 +53,7 @@ export default nix.lambda((args) => (() => {
         ];
       })()),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "USB mass storage emulator for Linux handhelds",
         homepage: "https://sr.ht/~martijnbraam/thumbdrives/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

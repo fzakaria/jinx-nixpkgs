@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 16, 5], ["sha256", 17, 5]], [["description", 36, 5], ["longDescription", 37, 5], ["homepage", 50, 5], ["license", 51, 5], ["maintainers", 52, 5], ["platforms", 53, 5]], [["version", 12, 3], ["pname", 13, 3], ["src", 15, 3], ["doCheck", 20, 3], ["nativeBuildInputs", 22, 3], ["buildInputs", 26, 3], ["preBuild", 31, 3], ["meta", 35, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, autoreconfHook: false, "pkg-config": false, pcsclite: false, "libusb-compat-0_1": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 16, 5], ["sha256", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 36, 5], ["longDescription", 37, 5], ["homepage", 50, 5], ["license", 51, 5], ["maintainers", 52, 5], ["platforms", 53, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 12, 3], ["pname", 13, 3], ["src", 15, 3], ["doCheck", 20, 3], ["nativeBuildInputs", 22, 3], ["buildInputs", 26, 3], ["preBuild", 31, 3], ["meta", 35, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const pcsclite = nix.arg($, "pcsclite");
   const libusb_compat_0_1 = nix.arg($, "libusb-compat-0_1");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       version: "1.7.11",
       pname: "libacr38u",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "http://http.debian.net/debian/pool/main/a/acr38/acr38_1.7.11.orig.tar.bz2",
           sha256: "0lxbq17y51cablx6bcd89klwnyigvkz0rsf9nps1a97ggnllyzkx",
         })))),
@@ -30,7 +28,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [pcsclite, libusb_compat_0_1]),
       preBuild: "makeFlagsArray=(usbdropdir=\"$out/pcsc/drivers\");\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "ACR38U smartcard reader driver for pcsclite",
         longDescription: "A PC/SC IFD handler implementation for the ACS ACR38U\nsmartcard readers. This driver is for the non-CCID version only.\n\nThis package is needed to communicate with the ACR38U smartcard readers through\nthe PC/SC Lite resource manager (pcscd).\n\nIt can be enabled in /etc/nixos/configuration.nix by adding:\n  services.pcscd.enable = true;\n  services.pcscd.plugins = [ libacr38u ];\n\nThe package is based on the debian package libacr38u.\n",
         homepage: "https://www.acs.com.hk",

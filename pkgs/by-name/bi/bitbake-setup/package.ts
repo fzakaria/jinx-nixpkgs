@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["pname", 19, 5], ["version", 20, 26], ["format", 21, 5], ["dist", 22, 5], ["python", 23, 5], ["hash", 24, 5]], [["extraArgs", 41, 5]], [["updateScript", 40, 12]], [["description", 48, 5], ["homepage", 49, 5], ["downloadPage", 50, 5], ["license", 51, 5], ["mainProgram", 59, 5], ["maintainers", 60, 5], ["platforms", 61, 5]], [["pname", 12, 3], ["version", 13, 3], ["format", 14, 3], ["__structuredAttrs", 16, 3], ["src", 18, 3], ["makeWrapperArgs", 27, 3], ["pythonImportsCheck", 34, 3], ["versionCheckProgramArg", 36, 3], ["nativeInstallCheckInputs", 37, 3], ["doInstallCheck", 38, 3], ["passthru", 40, 3], ["meta", 47, 3]]]);
 const formals$1 = { args: { lib: false, python3Packages: false, fetchPypi: false, git: false, "nix-update-script": false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["pname", 19, 5], ["version", 20, 26], ["format", 21, 5], ["dist", 22, 5], ["python", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["extraArgs", 41, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 40, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 48, 5], ["homepage", 49, 5], ["downloadPage", 50, 5], ["license", 51, 5], ["mainProgram", 59, 5], ["maintainers", 60, 5], ["platforms", 61, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["format", 14, 3], ["__structuredAttrs", 16, 3], ["src", 18, 3], ["makeWrapperArgs", 27, 3], ["pythonImportsCheck", 34, 3], ["versionCheckProgramArg", 36, 3], ["nativeInstallCheckInputs", 37, 3], ["doInstallCheck", 38, 3], ["passthru", 40, 3], ["meta", 47, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,13 +14,13 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "bitbake-setup",
       version: "2.19.0",
       format: "wheel",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: "bitbake_setup",
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           format: "wheel",
@@ -43,14 +39,14 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             extraArgs: nix.thunk(() => ["--url", "mirror://pypi/b/bitbake_setup/"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Command that sets up a BitBake build environment from a published configuration",
         homepage: "https://git.openembedded.org/bitbake/",
         downloadPage: "https://pypi.org/project/bitbake-setup/",

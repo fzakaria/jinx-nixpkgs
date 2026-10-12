@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 33, 5], ["repo", 34, 5], ["tag", 35, 5], ["hash", 36, 5]], [["description", 78, 5], ["longDescription", 79, 5], ["homepage", 85, 5], ["license", 86, 5], ["maintainers", 87, 5], ["platforms", 88, 5]], [["pname", 29, 3], ["version", 30, 3], ["src", 32, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 54, 3], ["cmakeFlags", 66, 3], ["preConfigure", 70, 3], ["meta", 77, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, appstream: false, biblesync: false, cmake: false, "desktop-file-utils": false, docbook2x: false, docbook_xml_dtd_412: false, glib: false, icu: false, intltool: false, itstool: false, libuuid: false, libxslt: false, minizip: false, "pkg-config": false, "speechd-minimal": false, sqlite: false, sword: false, webkitgtk_4_1: false, wrapGAppsHook3: false, "yelp-tools": false, zip: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 33, 5], ["repo", 34, 5], ["tag", 35, 5], ["hash", 36, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 78, 5], ["longDescription", 79, 5], ["homepage", 85, 5], ["license", 86, 5], ["maintainers", 87, 5], ["platforms", 88, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 29, 3], ["version", 30, 3], ["src", 32, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 54, 3], ["cmakeFlags", 66, 3], ["preConfigure", 70, 3], ["meta", 77, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,11 +32,11 @@ export default nix.lambda((args) => (() => {
   const yelp_tools = nix.arg($, "yelp-tools");
   const zip = nix.arg($, "zip");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "xiphos",
       version: "4.5.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "crosswire",
           repo: "xiphos",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -76,7 +74,7 @@ echo "${nix.sel(finalAttrs, "version")}" > cmake/source_version.txt
 export SWORD_HOME=${sword};
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "GTK Bible study tool",
         longDescription: "Xiphos (formerly known as GnomeSword) is a Bible study tool\nwritten for Linux, UNIX, and Windows using GTK, offering a rich\nand featureful environment for reading, study, and research using\nmodules from The SWORD Project and elsewhere.\n",
         homepage: "https://www.xiphos.org/",

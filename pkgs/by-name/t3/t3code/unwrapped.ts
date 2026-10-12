@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/unwrapped.nix", [[["owner", 48, 7], ["repo", 49, 7], ["tag", 50, 7], ["hash", 51, 7]], [["pnpm", 99, 15], ["pname", 101, 9], ["version", 102, 9], ["src", 103, 9], ["pnpmWorkspaces", 104, 9], ["fetcherVersion", 107, 7], ["hash", 108, 7]], [["name", 207, 9], ["desktopName", 208, 9], ["comment", 209, 9], ["exec", 210, 9], ["terminal", 211, 9], ["icon", 212, 9], ["startupWMClass", 213, 9], ["categories", 214, 9]], [["attrPath", 220, 9], ["extraArgs", 221, 9]], [["updateScript", 219, 7]], [["description", 226, 7], ["homepage", 227, 7], ["downloadPage", 228, 7], ["changelog", 229, 7], ["license", 230, 7], ["maintainers", 231, 7], ["mainProgram", 235, 7], ["platforms", 236, 29]], [["pname", 42, 5], ["version", 43, 5], ["strictDeps", 44, 5], ["__structuredAttrs", 45, 5], ["src", 47, 5], ["postPatch", 54, 5], ["nativeBuildInputs", 64, 5], ["buildInputs", 86, 5], ["pnpmWorkspaces", 88, 5], ["pnpmDeps", 98, 5], ["preBuild", 111, 5], ["pnpmBuildScript", 125, 5], ["postBuild", 127, 5], ["dontPatchELF", 135, 5], ["noAuditTmpdir", 139, 5], ["installPhase", 141, 5], ["postInstall", 199, 5], ["desktopItems", 205, 5], ["passthru", 218, 5], ["meta", 225, 5]]]);
 const formals$1 = { args: { cctools: false, copyDesktopItems: false, electron_44: false, fetchFromGitHub: false, installShellFiles: false, lib: false, libicns: false, libsecret: false, makeBinaryWrapper: false, makeDesktopItem: false, "nix-update-script": false, "node-gyp": false, nodejs: false, "pkg-config": false, python3: false, "spdx-license-list-data": false, stdenv: false, writeDarwinBundle: false, xcbuild: false, fetchPnpmDeps: false, pnpm_11: false, pnpmConfigHook: false, pnpmBuildHook: false, cacert: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/unwrapped.nix", [["owner", 48, 7], ["repo", 49, 7], ["tag", 50, 7], ["hash", 51, 7]]);
-const pos$2 = nix.positions(here + "/unwrapped.nix", [["pnpm", 99, 15], ["pname", 101, 9], ["version", 102, 9], ["src", 103, 9], ["pnpmWorkspaces", 104, 9], ["fetcherVersion", 107, 7], ["hash", 108, 7]]);
-const pos$3 = nix.positions(here + "/unwrapped.nix", [["name", 207, 9], ["desktopName", 208, 9], ["comment", 209, 9], ["exec", 210, 9], ["terminal", 211, 9], ["icon", 212, 9], ["startupWMClass", 213, 9], ["categories", 214, 9]]);
-const pos$4 = nix.positions(here + "/unwrapped.nix", [["attrPath", 220, 9], ["extraArgs", 221, 9]]);
-const pos$5 = nix.positions(here + "/unwrapped.nix", [["updateScript", 219, 7]]);
-const pos$6 = nix.positions(here + "/unwrapped.nix", [["description", 226, 7], ["homepage", 227, 7], ["downloadPage", 228, 7], ["changelog", 229, 7], ["license", 230, 7], ["maintainers", 231, 7], ["mainProgram", 235, 7], ["platforms", 236, 29]]);
-const pos$7 = nix.positions(here + "/unwrapped.nix", [["pname", 42, 5], ["version", 43, 5], ["strictDeps", 44, 5], ["__structuredAttrs", 45, 5], ["src", 47, 5], ["postPatch", 54, 5], ["nativeBuildInputs", 64, 5], ["buildInputs", 86, 5], ["pnpmWorkspaces", 88, 5], ["pnpmDeps", 98, 5], ["preBuild", 111, 5], ["pnpmBuildScript", 125, 5], ["postBuild", 127, 5], ["dontPatchELF", 135, 5], ["noAuditTmpdir", 139, 5], ["installPhase", 141, 5], ["postInstall", 199, 5], ["desktopItems", 205, 5], ["passthru", 218, 5], ["meta", 225, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -43,13 +37,13 @@ export default nix.lambda((args) => (() => {
       const pnpm = pnpm_11;
       const desktopIcon = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? "assets/prod/black-macos-1024.png" : "assets/prod/black-universal-1024.png"));
       return {
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         pname: "t3code-unwrapped",
         version: "0.0.45",
         strictDeps: true,
         __structuredAttrs: true,
         src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             owner: "pingdotgg",
             repo: "t3code",
             tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -82,7 +76,7 @@ cp ${nix.sel(spdx_license_list_data, "json")}/json/details/*.json \\
         buildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), nix.thunk(() => [libsecret]))),
         pnpmWorkspaces: nix.thunk(() => ["@t3tools/monorepo", "t3...", "@t3tools/desktop...", "@t3tools/scripts..."]),
         pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             pnpm: pnpm,
             pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
             version: nix.thunk(() => nix.attr(finalAttrs, "version")),
@@ -158,7 +152,7 @@ runHook postInstall
         postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "buildPlatform", "canExecute"), nix.thunk(() => nix.sel(stdenv, "hostPlatform")))), "for shell in bash fish zsh; do\n  installShellCompletion --cmd t3 --\"$shell\" <(\"$out/bin/t3\" --completions \"$shell\")\ndone\n")),
         desktopItems: nix.thunk(() => [
           nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               name: "t3code",
               desktopName: appName,
               comment: "Minimal web GUI for coding agents",
@@ -170,9 +164,9 @@ runHook postInstall
             })))),
         ]),
         passthru: nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               attrPath: "t3code.unwrapped",
               extraArgs: nix.thunk(() => ["--use-github-releases"]),
             })))),
@@ -180,7 +174,7 @@ runHook postInstall
         meta: nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(nodejs, "meta"));
           return {
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           description: "Minimal web GUI for coding agents",
           homepage: "https://t3.codes",
           downloadPage: "https://t3.codes/download",

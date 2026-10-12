@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5], ["fetchSubmodules", 18, 5]], [["url", 36, 5], ["rev-prefix", 37, 5]], [["updateScript", 35, 12]], [["description", 41, 5], ["longDescription", 42, 5], ["homepage", 47, 5], ["license", 48, 5], ["platforms", 49, 5], ["maintainers", 50, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["sourceRoot", 21, 3], ["nativeBuildInputs", 23, 3], ["cmakeFlags", 25, 3], ["installPhase", 30, 3], ["passthru", 35, 3], ["meta", 40, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, cmake: false, fetchFromGitHub: false, gitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["tag", 16, 5], ["hash", 17, 5], ["fetchSubmodules", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 36, 5], ["rev-prefix", 37, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 35, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 41, 5], ["longDescription", 42, 5], ["homepage", 47, 5], ["license", 48, 5], ["platforms", 49, 5], ["maintainers", 50, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["sourceRoot", 21, 3], ["nativeBuildInputs", 23, 3], ["cmakeFlags", 25, 3], ["installPhase", 30, 3], ["passthru", 35, 3], ["meta", 40, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "grpc-tools",
       version: "1.13.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "grpc",
           repo: "grpc-node",
           tag: nix.thunk(() => nix.str`grpc-tool@${nix.sel(finalAttrs, "version")}`),
@@ -35,15 +31,15 @@ export default nix.lambda((args) => (() => {
       ]),
       installPhase: "install -Dm755 -t $out/bin grpc_node_plugin\ninstall -Dm755 -t $out/bin deps/protobuf/protoc\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/grpc/grpc-node.git",
             "rev-prefix": "grpc-tools@",
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Distribution of protoc and the gRPC Node protoc plugin for ease of installation with npm",
         longDescription: "This package distributes the Protocol Buffers compiler protoc along with\nthe plugin for generating client and service objects for use with the Node\ngRPC libraries.\n",
         homepage: "https://github.com/grpc/grpc-node/tree/master/packages/grpc-tools",

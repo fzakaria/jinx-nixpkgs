@@ -2,22 +2,10 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 30, 9], ["hash", 31, 17]], [["description", 45, 9], ["homepage", 46, 9], ["license", 47, 9], ["maintainers", 48, 9]], [["pname", 23, 7], ["version", 24, 7], ["__structuredAttrs", 26, 7], ["strictDeps", 27, 7], ["src", 29, 7], ["nativeBuildInputs", 34, 7], ["unpackPhase", 36, 7], ["meta", 44, 7]], [["description", 74, 9], ["homepage", 75, 9], ["license", 76, 9], ["maintainers", 77, 9]], [["pname", 66, 7], ["version", 67, 15], ["hash", 67, 23], ["url", 68, 7], ["recursiveHash", 69, 7], ["downloadToTemp", 70, 7], ["postFetch", 71, 7], ["meta", 73, 7]], [["family", 86, 5], ["description", 87, 5], ["rev", 88, 5], ["hash", 89, 5], ["zip", 90, 5], ["prefix", 91, 5]], [["family", 95, 5], ["description", 96, 5], ["rev", 97, 5], ["hash", 98, 5], ["zip", 99, 5], ["prefix", 100, 5]], [["family", 104, 5], ["description", 105, 5], ["rev", 106, 5], ["hash", 107, 5]], [["family", 111, 5], ["version", 112, 5], ["hash", 113, 5], ["format", 114, 5]], [["family", 118, 5], ["version", 119, 5], ["hash", 120, 5], ["format", 121, 5]], [["family", 125, 5], ["version", 126, 5], ["hash", 127, 5], ["format", 128, 5]], [["family", 132, 5], ["version", 133, 5], ["hash", 134, 5], ["format", 135, 5]], [["source-han-sans", 85, 3], ["source-han-serif", 94, 3], ["source-han-mono", 103, 3], ["source-han-sans-vf-otf", 110, 3], ["source-han-sans-vf-ttf", 117, 3], ["source-han-serif-vf-otf", 124, 3], ["source-han-serif-vf-ttf", 131, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchurl: false, installFonts: false, unzip: false }, ellipsis: false };
 const formals$2 = { args: { family: false, description: false, rev: false, hash: false, zip: true, prefix: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 30, 9], ["hash", 31, 17]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 45, 9], ["homepage", 46, 9], ["license", 47, 9], ["maintainers", 48, 9]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 23, 7], ["version", 24, 7], ["__structuredAttrs", 26, 7], ["strictDeps", 27, 7], ["src", 29, 7], ["nativeBuildInputs", 34, 7], ["unpackPhase", 36, 7], ["meta", 44, 7]]);
 const formals$3 = { args: { family: false, version: false, hash: false, format: false }, ellipsis: false };
-const pos$4 = nix.positions(here + "/default.nix", [["description", 74, 9], ["homepage", 75, 9], ["license", 76, 9], ["maintainers", 77, 9]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 66, 7], ["version", 67, 15], ["hash", 67, 23], ["url", 68, 7], ["recursiveHash", 69, 7], ["downloadToTemp", 70, 7], ["postFetch", 71, 7], ["meta", 73, 7]]);
-const pos$6 = nix.positions(here + "/default.nix", [["family", 86, 5], ["description", 87, 5], ["rev", 88, 5], ["hash", 89, 5], ["zip", 90, 5], ["prefix", 91, 5]]);
-const pos$7 = nix.positions(here + "/default.nix", [["family", 95, 5], ["description", 96, 5], ["rev", 97, 5], ["hash", 98, 5], ["zip", 99, 5], ["prefix", 100, 5]]);
-const pos$8 = nix.positions(here + "/default.nix", [["family", 104, 5], ["description", 105, 5], ["rev", 106, 5], ["hash", 107, 5]]);
-const pos$9 = nix.positions(here + "/default.nix", [["family", 111, 5], ["version", 112, 5], ["hash", 113, 5], ["format", 114, 5]]);
-const pos$10 = nix.positions(here + "/default.nix", [["family", 118, 5], ["version", 119, 5], ["hash", 120, 5], ["format", 121, 5]]);
-const pos$11 = nix.positions(here + "/default.nix", [["family", 125, 5], ["version", 126, 5], ["hash", 127, 5], ["format", 128, 5]]);
-const pos$12 = nix.positions(here + "/default.nix", [["family", 132, 5], ["version", 133, 5], ["hash", 134, 5], ["format", 135, 5]]);
-const pos$13 = nix.positions(here + "/default.nix", [["source-han-sans", 85, 3], ["source-han-serif", 94, 3], ["source-han-mono", 103, 3], ["source-han-sans-vf-otf", 110, 3], ["source-han-sans-vf-ttf", 117, 3], ["source-han-serif-vf-otf", 124, 3], ["source-han-serif-vf-ttf", 131, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -36,13 +24,13 @@ export default nix.lambda((args) => (() => {
     const prefix = nix.argOr($_1, "prefix", () => "");
     const Family = nix.thunk(() => nix.add(nix.app(nix.sel(lib, "toUpper"), nix.thunk(() => nix.app(nix.sel(lib, "substring"), 0n, 1n, family))), nix.app(nix.sel(lib, "substring"), 1n, nix.thunk(() => nix.app(nix.sel(lib, "stringLength"), family)), family)));
     return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname: nix.thunk(() => nix.str`source-han-${family}`),
         version: nix.thunk(() => nix.app(nix.sel(lib, "removeSuffix"), "R", rev)),
         __structuredAttrs: true,
         strictDeps: true,
         src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             url: nix.thunk(() => nix.str`https://github.com/adobe-fonts/source-han-${family}/releases/download/${rev}/${prefix}SourceHan${Family}.ttc${zip}`),
             hash: hash,
           })))),
@@ -50,7 +38,7 @@ export default nix.lambda((args) => (() => {
         unpackPhase: nix.thunk(() => nix.add(nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.eq(zip, "")), nix.thunk(() => nix.str`cp $src SourceHan${Family}.ttc${zip}
 `)), nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.eq(zip, ".zip")), "unzip $src\n"))),
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           description: nix.thunk(() => nix.str`Open source Pan-CJK ${description} typeface`),
           homepage: nix.thunk(() => nix.str`https://github.com/adobe-fonts/source-han-${family}`),
           license: nix.thunk(() => nix.sel(lib, "licenses", "ofl")),
@@ -72,7 +60,7 @@ export default nix.lambda((args) => (() => {
     const format = nix.arg($_1, "format");
     const Family = nix.thunk(() => nix.add(nix.app(nix.sel(lib, "toUpper"), nix.thunk(() => nix.app(nix.sel(lib, "substring"), 0n, 1n, family))), nix.app(nix.sel(lib, "substring"), 1n, nix.thunk(() => nix.app(nix.sel(lib, "stringLength"), family)), family)));
     return nix.app(fetchurl, nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname: nix.thunk(() => nix.str`source-han-${family}-vf-${format}`),
         version: version,
         hash: hash,
@@ -81,7 +69,7 @@ export default nix.lambda((args) => (() => {
         downloadToTemp: true,
         postFetch: nix.thunk(() => nix.str`install -Dm444 $downloadedFile $out/share/fonts/variable/SourceHan${Family}-VF.${format}.ttc`),
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           description: nix.thunk(() => nix.str`Open source Pan-CJK ${Family} typeface`),
           homepage: nix.thunk(() => nix.str`https://github.com/adobe-fonts/source-han-${family}`),
           license: nix.thunk(() => nix.sel(lib, "licenses", "ofl")),
@@ -96,9 +84,9 @@ export default nix.lambda((args) => (() => {
       })));
   })(), formals$3);
   return {
-    [nix.POS]: pos$13,
+    [nix.POS]: $pos[12],
     "source-han-sans": nix.thunk(() => nix.app(makeSuperOTC, nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         family: "sans",
         description: "sans-serif",
         rev: "2.005R",
@@ -107,7 +95,7 @@ export default nix.lambda((args) => (() => {
         prefix: "01_",
       })))),
     "source-han-serif": nix.thunk(() => nix.app(makeSuperOTC, nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         family: "serif",
         description: "serif",
         rev: "2.003R",
@@ -116,35 +104,35 @@ export default nix.lambda((args) => (() => {
         prefix: "01_",
       })))),
     "source-han-mono": nix.thunk(() => nix.app(makeSuperOTC, nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         family: "mono",
         description: "monospaced",
         rev: "1.002",
         hash: "sha256-DBkkSN6QhI8R64M2h2iDqaNtxluJZeSJYAz8x6ZzWME=",
       })))),
     "source-han-sans-vf-otf": nix.thunk(() => nix.app(makeVariable, nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         family: "sans",
         version: "2.005",
         hash: "sha256-7/THncqTE6IpPezcX14eYRRC8WR/xPv0XjfOPEfF8aU=",
         format: "otf",
       })))),
     "source-han-sans-vf-ttf": nix.thunk(() => nix.app(makeVariable, nix.thunk(() => ({
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         family: "sans",
         version: "2.005",
         hash: "sha256-CL5kjZzCiNvdcwiFflTlarINpeYxvuqZH+4ayiIQdD8=",
         format: "ttf",
       })))),
     "source-han-serif-vf-otf": nix.thunk(() => nix.app(makeVariable, nix.thunk(() => ({
-        [nix.POS]: pos$11,
+        [nix.POS]: $pos[10],
         family: "serif",
         version: "2.003",
         hash: "sha256-a6295Ukha9QY5ByMr2FUy13j5gZ1itnezvfJWmJjqt0=",
         format: "otf",
       })))),
     "source-han-serif-vf-ttf": nix.thunk(() => nix.app(makeVariable, nix.thunk(() => ({
-        [nix.POS]: pos$12,
+        [nix.POS]: $pos[11],
         family: "serif",
         version: "2.003",
         hash: "sha256-F+FUQunfyAEBVV10lZxC3dzGTWhHgHzpTO8CjC3n4WY=",

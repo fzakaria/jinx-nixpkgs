@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 24, 5], ["sha256", 25, 5]], [["PYTHON_CONFIG", 68, 5]], [["NIX_LDFLAGS", 74, 9]], [["description", 78, 5], ["homepage", 79, 5], ["license", 80, 5], ["platforms", 81, 5]], [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 38, 3], ["preConfigure", 48, 3], ["wafPath", 53, 3], ["wafConfigureFlags", 55, 3], ["env", 64, 3], ["meta", 77, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, python3: false, "pkg-config": false, cmocka: false, readline: false, talloc: false, libxslt: false, "docbook-xsl-nons": false, docbook_xml_dtd_42: false, which: false, wafHook: false, buildPackages: false, libxcrypt: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 24, 5], ["sha256", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["PYTHON_CONFIG", 68, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["NIX_LDFLAGS", 74, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 78, 5], ["homepage", 79, 5], ["license", 80, 5], ["platforms", 81, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["nativeBuildInputs", 28, 3], ["buildInputs", 38, 3], ["preConfigure", 48, 3], ["wafPath", 53, 3], ["wafConfigureFlags", 55, 3], ["env", 64, 3], ["meta", 77, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const buildPackages = nix.arg($, "buildPackages");
   const libxcrypt = nix.arg($, "libxcrypt");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "tevent",
       version: "0.17.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://samba/tevent/tevent-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "sha256-G+LepzfN4l/gZiH4SUXmPrcSWeDEPp+PXaSC2rGnvpI=",
         })))),
@@ -51,9 +47,9 @@ export default nix.lambda((args) => (() => {
           "--cross-compile",
           nix.thunk(() => nix.str`--cross-execute=${nix.app(nix.sel(stdenv, "hostPlatform", "emulator"), buildPackages)}`),
         ])))),
-      env: nix.thunk(() => nix.update({ [nix.POS]: pos$2, PYTHON_CONFIG: "/invalid" }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "cc", "bintools", "isLLVM")) && nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(stdenv, "cc", "bintools", "version")), "17")))), nix.thunk(() => ({ [nix.POS]: pos$3, NIX_LDFLAGS: "--undefined-version" }))))),
+      env: nix.thunk(() => nix.update({ [nix.POS]: $pos[1], PYTHON_CONFIG: "/invalid" }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "cc", "bintools", "isLLVM")) && nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(stdenv, "cc", "bintools", "version")), "17")))), nix.thunk(() => ({ [nix.POS]: $pos[2], NIX_LDFLAGS: "--undefined-version" }))))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Event system based on the talloc memory management library",
         homepage: "https://tevent.samba.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3Plus")),

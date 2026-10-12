@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 21, 7], ["owner", 22, 7], ["repo", 23, 7], ["rev", 25, 7], ["hash", 26, 7], ["sparseCheckout", 27, 7], ["postFetch", 32, 7]], [["owner", 41, 5], ["repo", 42, 5], ["rev", 43, 5], ["hash", 44, 5]], [["NIX_CFLAGS_COMPILE", 71, 7]], [["suite", 80, 18]], [["tests", 80, 12]], [["description", 83, 5], ["homepage", 84, 5], ["maintainers", 85, 5], ["platforms", 89, 5], ["license", 90, 5]], [["pname", 37, 3], ["version", 38, 3], ["src", 40, 3], ["patches", 47, 3], ["nativeBuildInputs", 52, 3], ["buildInputs", 56, 3], ["postPatch", 62, 3], ["env", 71, 3], ["makeFlags", 73, 3], ["passthru", 80, 3], ["meta", 82, 3]]]);
 const formals$1 = { args: { stdenv: false, fetchFromGitHub: false, lib: false, curl: false, nlohmann_json: false, openssl: false, "pkg-config": false, linkFarmFromDrvs: false, callPackage: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 21, 7], ["owner", 22, 7], ["repo", 23, 7], ["rev", 25, 7], ["hash", 26, 7], ["sparseCheckout", 27, 7], ["postFetch", 32, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 41, 5], ["repo", 42, 5], ["rev", 43, 5], ["hash", 44, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 71, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["suite", 80, 18]]);
-const pos$5 = nix.positions(here + "/package.nix", [["tests", 80, 12]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 83, 5], ["homepage", 84, 5], ["maintainers", 85, 5], ["platforms", 89, 5], ["license", 90, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 37, 3], ["version", 38, 3], ["src", 40, 3], ["patches", 47, 3], ["nativeBuildInputs", 52, 3], ["buildInputs", 56, 3], ["postPatch", 62, 3], ["env", 71, 3], ["makeFlags", 73, 3], ["passthru", 80, 3], ["meta", 82, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -39,15 +33,15 @@ cp ${nix.app(nix.sel(lib, "concatStringsSep"), " ", list)} "$out/"
             "common/inc/sgx_attributes.h",
           ]);
           const postFetch = nix.thunk(() => nix.app(filterSparse, sparseCheckout));
-          return { [nix.POS]: pos$1, name, owner, repo, rev, hash, sparseCheckout, postFetch };
+          return { [nix.POS]: $pos[0], name, owner, repo, rev, hash, sparseCheckout, postFetch };
         })()))),
     ])));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "azure-dcap-client",
       version: "1.13.0-pre0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "microsoft",
           repo: "azure-dcap-client",
           rev: "839ac4a2acc11b90cb91a483fcfc0cf7ae6a75c7",
@@ -63,17 +57,17 @@ substitute src/Linux/Makefile{.in,} \\
   --replace-fail '##CURLINC##' '${nix.sel(curl, "dev")}/include/curl/' \\
   --replace-fail '$(TEST_SUITE): $(PROVIDER_LIB) $(TEST_SUITE_OBJ)' '$(TEST_SUITE): $(TEST_SUITE_OBJ)'
 `),
-      env: nix.thunk(() => ({ [nix.POS]: pos$3, NIX_CFLAGS_COMPILE: "-Wno-deprecated-declarations" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[2], NIX_CFLAGS_COMPILE: "-Wno-deprecated-declarations" })),
       makeFlags: nix.thunk(() => ["-C src/Linux", "prefix=$(out)"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           suite: nix.thunk(() => nix.app(callPackage, nix.path(here, "./test-suite.nix"), nix.thunk(() => ({})))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Interfaces between SGX SDKs and the Azure Attestation SGX Certification Cache",
         homepage: "https://github.com/microsoft/azure-dcap-client",
         maintainers: nix.thunk(() => (() => {

@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["description", 20, 5], ["mainProgram", 21, 5], ["homepage", 22, 5], ["license", 23, 5], ["platforms", 24, 5]], [["pname", 9, 3], ["src", 10, 20], ["version", 10, 24], ["buildInputs", 12, 3], ["makeFlags", 13, 3], ["postPatch", 15, 3], ["meta", 19, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, kernel: false, libcap: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["description", 20, 5], ["mainProgram", 21, 5], ["homepage", 22, 5], ["license", 23, 5], ["platforms", 24, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 9, 3], ["src", 10, 20], ["version", 10, 24], ["buildInputs", 12, 3], ["makeFlags", 13, 3], ["postPatch", 15, 3], ["meta", 19, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const kernel = nix.arg($, "kernel");
   const libcap = nix.arg($, "libcap");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "turbostat",
       src: nix.thunk(() => nix.attr(kernel, "src")),
       version: nix.thunk(() => nix.attr(kernel, "version")),
@@ -21,7 +20,7 @@ export default nix.lambda((args) => (() => {
       makeFlags: nix.thunk(() => [nix.thunk(() => nix.str`PREFIX=${nix.builtins.placeholder("out")}`)]),
       postPatch: "cd tools/power/x86/turbostat\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Report processor frequency and idle statistics",
         mainProgram: "turbostat",
         homepage: "https://www.kernel.org/",

@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["description", 26, 5], ["license", 27, 5], ["maintainers", 28, 5], ["platforms", 29, 5]], [["pname", 7, 3], ["version", 8, 3], ["src", 10, 3], ["dontUnpack", 12, 3], ["dontBuild", 13, 3], ["nativeBuildInputs", 15, 3], ["doInstallCheck", 19, 3], ["installPhase", 21, 3], ["meta", 25, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, udevCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["description", 26, 5], ["license", 27, 5], ["maintainers", 28, 5], ["platforms", 29, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 7, 3], ["version", 8, 3], ["src", 10, 3], ["dontUnpack", 12, 3], ["dontBuild", 13, 3], ["nativeBuildInputs", 15, 3], ["doInstallCheck", 19, 3], ["installPhase", 21, 3], ["meta", 25, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -12,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   const udevCheckHook = nix.arg($, "udevCheckHook");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "meletrix-udev-rules",
       version: "0-unstable-2023-10-20",
       src: nix.thunk(() => [nix.path(here, "./meletrix.rules")]),
@@ -22,7 +21,7 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       installPhase: "install -Dpm644 $src $out/lib/udev/rules.d/70-meletrix.rules\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "udev rules to configure Meletrix keyboards",
         license: nix.thunk(() => nix.sel(lib, "licenses", "cc0")),
         maintainers: nix.thunk(() => (() => {

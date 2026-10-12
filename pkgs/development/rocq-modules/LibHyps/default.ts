@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["hash", 15, 13]], [["2.0.8", 15, 5]], [["description", 25, 5], ["license", 26, 5]], [["pname", 10, 3], ["owner", 11, 3], ["version", 12, 11], ["defaultVersion", 13, 3], ["release", 14, 3], ["configureScript", 18, 3], ["propagatedBuildInputs", 20, 3], ["releaseRev", 22, 3], ["meta", 24, 3]]]);
 const formals$1 = { args: { lib: false, mkCoqDerivation: false, coq: false, stdlib: false, version: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["hash", 15, 13]]);
-const pos$2 = nix.positions(here + "/default.nix", [["2.0.8", 15, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 25, 5], ["license", 26, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 10, 3], ["owner", 11, 3], ["version", 12, 11], ["defaultVersion", 13, 3], ["release", 14, 3], ["configureScript", 18, 3], ["propagatedBuildInputs", 20, 3], ["releaseRev", 22, 3], ["meta", 24, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,15 +13,15 @@ export default nix.lambda((args) => (() => {
   const stdlib = nix.arg($, "stdlib");
   const version = nix.argOr($, "version", () => null);
   return nix.app(mkCoqDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "LibHyps",
       owner: "Matafou",
       version: version,
       defaultVersion: nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versions", "range"), "8.11", "9.0", nix.thunk(() => nix.sel(coq, "version")))) ? "2.0.8" : null)),
       release: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         "2.0.8": nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           hash: "sha256-u8T7ZWfgYNFBsIPss0uUS0oBvdlwPp3t5yYIMjYzfLc=",
         })),
       })),
@@ -32,7 +29,7 @@ export default nix.lambda((args) => (() => {
       propagatedBuildInputs: nix.thunk(() => [stdlib]),
       releaseRev: (v) => nix.str`libhyps-${v}`,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Hypotheses manipulation library",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       })),

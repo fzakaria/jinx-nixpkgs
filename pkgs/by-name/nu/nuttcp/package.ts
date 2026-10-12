@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 13, 5], ["sha256", 14, 5]], [["description", 33, 5], ["longDescription", 34, 5], ["license", 46, 5], ["homepage", 47, 5], ["maintainers", 48, 5], ["platforms", 49, 5], ["mainProgram", 50, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["nativeBuildInputs", 17, 3], ["makeFlags", 21, 3], ["installPhase", 23, 3], ["postInstall", 28, 3], ["meta", 32, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, installShellFiles: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 13, 5], ["sha256", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 33, 5], ["longDescription", 34, 5], ["license", 46, 5], ["homepage", 47, 5], ["maintainers", 48, 5], ["platforms", 49, 5], ["mainProgram", 50, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["nativeBuildInputs", 17, 3], ["makeFlags", 21, 3], ["installPhase", 23, 3], ["postInstall", 28, 3], ["meta", 32, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const installShellFiles = nix.arg($, "installShellFiles");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "nuttcp",
       version: "8.2.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://nuttcp.net/nuttcp/nuttcp-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           sha256: "sha256-fq16ieeqoFnSDjQELFihmMKYHK1ylVDROI3fyQNtOYM=",
         })))),
@@ -29,7 +27,7 @@ cp nuttcp-${nix.sel(finalAttrs, "version")} $out/bin/nuttcp
 `),
       postInstall: "installManPage nuttcp.8\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Network performance measurement tool",
         longDescription: "nuttcp is a network performance measurement tool intended for use by\nnetwork and system managers. Its most basic usage is to determine the raw\nTCP (or UDP) network layer throughput by transferring memory buffers from\na source system across an interconnecting network to a destination\nsystem, either transferring data for a specified time interval, or\nalternatively transferring a specified number of bytes. In addition to\nreporting the achieved network throughput in Mbps, nuttcp also provides\nadditional useful information related to the data transfer such as user,\nsystem, and wall-clock time, transmitter and receiver CPU utilization,\nand loss percentage (for UDP transfers).\n",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Only")),

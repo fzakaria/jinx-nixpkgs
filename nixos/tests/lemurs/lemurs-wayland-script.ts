@@ -2,35 +2,20 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/lemurs-wayland-script.nix", [[["maintainers", 5, 5]], [["enable", 17, 22]], [["enable", 20, 38]], [["lemurs", 20, 31]], [["seatd", 17, 16], ["displayManager", 20, 16]], [["extraGroups", 18, 25]], [["alice", 18, 19]], [["users", 18, 13]], [["enable", 22, 21]], [["sway", 22, 16]], [["mode", 24, 9], ["text", 25, 9]], [["lemurs/wayland/sway", 23, 23]], [["etc", 23, 19]], [["imports", 14, 7], ["services", 17, 7], ["users", 18, 7], ["programs", 22, 7], ["environment", 23, 7]], [["machine", 11, 9]], [["name", 3, 3], ["meta", 4, 3], ["nodes", 11, 3], ["testScript", 32, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/lemurs-wayland-script.nix", [["maintainers", 5, 5]]);
 const formals$2 = { args: { lib: false, config: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/lemurs-wayland-script.nix", [["enable", 17, 22]]);
-const pos$3 = nix.positions(here + "/lemurs-wayland-script.nix", [["enable", 20, 38]]);
-const pos$4 = nix.positions(here + "/lemurs-wayland-script.nix", [["lemurs", 20, 31]]);
-const pos$5 = nix.positions(here + "/lemurs-wayland-script.nix", [["seatd", 17, 16], ["displayManager", 20, 16]]);
-const pos$6 = nix.positions(here + "/lemurs-wayland-script.nix", [["extraGroups", 18, 25]]);
-const pos$7 = nix.positions(here + "/lemurs-wayland-script.nix", [["alice", 18, 19]]);
-const pos$8 = nix.positions(here + "/lemurs-wayland-script.nix", [["users", 18, 13]]);
-const pos$9 = nix.positions(here + "/lemurs-wayland-script.nix", [["enable", 22, 21]]);
-const pos$10 = nix.positions(here + "/lemurs-wayland-script.nix", [["sway", 22, 16]]);
-const pos$11 = nix.positions(here + "/lemurs-wayland-script.nix", [["mode", 24, 9], ["text", 25, 9]]);
-const pos$12 = nix.positions(here + "/lemurs-wayland-script.nix", [["lemurs/wayland/sway", 23, 23]]);
-const pos$13 = nix.positions(here + "/lemurs-wayland-script.nix", [["etc", 23, 19]]);
-const pos$14 = nix.positions(here + "/lemurs-wayland-script.nix", [["imports", 14, 7], ["services", 17, 7], ["users", 18, 7], ["programs", 22, 7], ["environment", 23, 7]]);
-const pos$15 = nix.positions(here + "/lemurs-wayland-script.nix", [["machine", 11, 9]]);
-const pos$16 = nix.positions(here + "/lemurs-wayland-script.nix", [["name", 3, 3], ["meta", 4, 3], ["nodes", 11, 3], ["testScript", 32, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$16,
+    [nix.POS]: $pos[15],
     name: "lemurs-wayland-script",
     meta: nix.thunk(() => (() => {
       const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
       return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         maintainers: nix.thunk(() => [
           nix.thunk(() => nix.lookup(w, "nullcube")),
           nix.thunk(() => nix.lookup(w, "stunkymonkey")),
@@ -38,39 +23,39 @@ export default nix.lambda((args) => (() => {
       };
     })()),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$15,
+      [nix.POS]: $pos[14],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const lib_1 = nix.arg($_1, "lib");
         const config = nix.arg($_1, "config");
         return {
-          [nix.POS]: pos$14,
+          [nix.POS]: $pos[13],
           imports: nix.thunk(() => [nix.path(here, "../common/user-account.nix")]),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$5,
-            seatd: nix.thunk(() => ({ [nix.POS]: pos$2, enable: true })),
+            [nix.POS]: $pos[4],
+            seatd: nix.thunk(() => ({ [nix.POS]: $pos[1], enable: true })),
             displayManager: nix.thunk(() => ({
-              [nix.POS]: pos$4,
-              lemurs: nix.thunk(() => ({ [nix.POS]: pos$3, enable: true })),
+              [nix.POS]: $pos[3],
+              lemurs: nix.thunk(() => ({ [nix.POS]: $pos[2], enable: true })),
             })),
           })),
           users: nix.thunk(() => ({
-            [nix.POS]: pos$8,
+            [nix.POS]: $pos[7],
             users: nix.thunk(() => ({
-              [nix.POS]: pos$7,
-              alice: nix.thunk(() => ({ [nix.POS]: pos$6, extraGroups: nix.thunk(() => ["seat"]) })),
+              [nix.POS]: $pos[6],
+              alice: nix.thunk(() => ({ [nix.POS]: $pos[5], extraGroups: nix.thunk(() => ["seat"]) })),
             })),
           })),
           programs: nix.thunk(() => ({
-            [nix.POS]: pos$10,
-            sway: nix.thunk(() => ({ [nix.POS]: pos$9, enable: true })),
+            [nix.POS]: $pos[9],
+            sway: nix.thunk(() => ({ [nix.POS]: $pos[8], enable: true })),
           })),
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$13,
+            [nix.POS]: $pos[12],
             etc: nix.thunk(() => ({
-              [nix.POS]: pos$12,
+              [nix.POS]: $pos[11],
               "lemurs/wayland/sway": nix.thunk(() => ({
-                [nix.POS]: pos$11,
+                [nix.POS]: $pos[10],
                 mode: "755",
                 text: nix.thunk(() => nix.str`#! /bin/sh
 exec ${nix.app(nix.sel(lib_1, "getExe"), nix.thunk(() => nix.sel(config, "programs", "sway", "package")))}

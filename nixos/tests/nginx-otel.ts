@@ -2,66 +2,47 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/nginx-otel.nix", [[["endpoint", 10, 41]], [["grpc", 10, 36]], [["protocols", 10, 26]], [["otlp", 10, 21]], [["verbosity", 11, 27]], [["debug", 11, 21]], [["receivers", 13, 13], ["exporters", 14, 13]], [["traces", 12, 29]], [["pipelines", 12, 19]], [["receivers", 10, 11], ["exporters", 11, 11], ["service", 12, 11]], [["enable", 8, 9], ["settings", 9, 9]], [["extraConfig", 28, 48]], [["/", 28, 44]], [["locations", 28, 34]], [["localhost", 28, 22]], [["enable", 19, 9], ["additionalModules", 20, 9], ["commonHttpConfig", 21, 9], ["virtualHosts", 28, 9]], [["opentelemetry-collector", 7, 16], ["nginx", 18, 16]], [["services", 7, 7]], [["machine", 4, 9]], [["name", 2, 3], ["nodes", 4, 3], ["testScript", 36, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/nginx-otel.nix", [["endpoint", 10, 41]]);
-const pos$2 = nix.positions(here + "/nginx-otel.nix", [["grpc", 10, 36]]);
-const pos$3 = nix.positions(here + "/nginx-otel.nix", [["protocols", 10, 26]]);
-const pos$4 = nix.positions(here + "/nginx-otel.nix", [["otlp", 10, 21]]);
-const pos$5 = nix.positions(here + "/nginx-otel.nix", [["verbosity", 11, 27]]);
-const pos$6 = nix.positions(here + "/nginx-otel.nix", [["debug", 11, 21]]);
-const pos$7 = nix.positions(here + "/nginx-otel.nix", [["receivers", 13, 13], ["exporters", 14, 13]]);
-const pos$8 = nix.positions(here + "/nginx-otel.nix", [["traces", 12, 29]]);
-const pos$9 = nix.positions(here + "/nginx-otel.nix", [["pipelines", 12, 19]]);
-const pos$10 = nix.positions(here + "/nginx-otel.nix", [["receivers", 10, 11], ["exporters", 11, 11], ["service", 12, 11]]);
-const pos$11 = nix.positions(here + "/nginx-otel.nix", [["enable", 8, 9], ["settings", 9, 9]]);
-const pos$12 = nix.positions(here + "/nginx-otel.nix", [["extraConfig", 28, 48]]);
-const pos$13 = nix.positions(here + "/nginx-otel.nix", [["/", 28, 44]]);
-const pos$14 = nix.positions(here + "/nginx-otel.nix", [["locations", 28, 34]]);
-const pos$15 = nix.positions(here + "/nginx-otel.nix", [["localhost", 28, 22]]);
-const pos$16 = nix.positions(here + "/nginx-otel.nix", [["enable", 19, 9], ["additionalModules", 20, 9], ["commonHttpConfig", 21, 9], ["virtualHosts", 28, 9]]);
-const pos$17 = nix.positions(here + "/nginx-otel.nix", [["opentelemetry-collector", 7, 16], ["nginx", 18, 16]]);
-const pos$18 = nix.positions(here + "/nginx-otel.nix", [["services", 7, 7]]);
-const pos$19 = nix.positions(here + "/nginx-otel.nix", [["machine", 4, 9]]);
 const formals$2 = { args: { nodes: false }, ellipsis: true };
-const pos$20 = nix.positions(here + "/nginx-otel.nix", [["name", 2, 3], ["nodes", 4, 3], ["testScript", 36, 3]]);
 
 export default nix.thunk(() => ({
-  [nix.POS]: pos$20,
+  [nix.POS]: $pos[19],
   name: "nginx-otel",
   nodes: nix.thunk(() => ({
-    [nix.POS]: pos$19,
+    [nix.POS]: $pos[18],
     machine: nix.lambda((args) => (() => {
       const $ = nix.formals(args, formals$1);
       const pkgs = nix.arg($, "pkgs");
       return {
-        [nix.POS]: pos$18,
+        [nix.POS]: $pos[17],
         services: nix.thunk(() => ({
-          [nix.POS]: pos$17,
+          [nix.POS]: $pos[16],
           "opentelemetry-collector": nix.thunk(() => ({
-            [nix.POS]: pos$11,
+            [nix.POS]: $pos[10],
             enable: true,
             settings: nix.thunk(() => ({
-              [nix.POS]: pos$10,
+              [nix.POS]: $pos[9],
               receivers: nix.thunk(() => ({
-                [nix.POS]: pos$4,
+                [nix.POS]: $pos[3],
                 otlp: nix.thunk(() => ({
-                  [nix.POS]: pos$3,
+                  [nix.POS]: $pos[2],
                   protocols: nix.thunk(() => ({
-                    [nix.POS]: pos$2,
-                    grpc: nix.thunk(() => ({ [nix.POS]: pos$1, endpoint: "127.0.0.1:4317" })),
+                    [nix.POS]: $pos[1],
+                    grpc: nix.thunk(() => ({ [nix.POS]: $pos[0], endpoint: "127.0.0.1:4317" })),
                   })),
                 })),
               })),
               exporters: nix.thunk(() => ({
-                [nix.POS]: pos$6,
-                debug: nix.thunk(() => ({ [nix.POS]: pos$5, verbosity: "detailed" })),
+                [nix.POS]: $pos[5],
+                debug: nix.thunk(() => ({ [nix.POS]: $pos[4], verbosity: "detailed" })),
               })),
               service: nix.thunk(() => ({
-                [nix.POS]: pos$9,
+                [nix.POS]: $pos[8],
                 pipelines: nix.thunk(() => ({
-                  [nix.POS]: pos$8,
+                  [nix.POS]: $pos[7],
                   traces: nix.thunk(() => ({
-                    [nix.POS]: pos$7,
+                    [nix.POS]: $pos[6],
                     receivers: nix.thunk(() => ["otlp"]),
                     exporters: nix.thunk(() => ["debug"]),
                   })),
@@ -70,18 +51,18 @@ export default nix.thunk(() => ({
             })),
           })),
           nginx: nix.thunk(() => ({
-            [nix.POS]: pos$16,
+            [nix.POS]: $pos[15],
             enable: true,
             additionalModules: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "nginxModules", "otel"))]),
             commonHttpConfig: "otel_exporter {\n  endpoint localhost:4317;\n}\notel_service_name \"nginx-test\";\notel_trace on;\n",
             virtualHosts: nix.thunk(() => ({
-              [nix.POS]: pos$15,
+              [nix.POS]: $pos[14],
               localhost: nix.thunk(() => ({
-                [nix.POS]: pos$14,
+                [nix.POS]: $pos[13],
                 locations: nix.thunk(() => ({
-                  [nix.POS]: pos$13,
+                  [nix.POS]: $pos[12],
                   "/": nix.thunk(() => ({
-                    [nix.POS]: pos$12,
+                    [nix.POS]: $pos[11],
                     extraConfig: "otel_trace_context propagate;\notel_span_name \"handle\";\nreturn 200 \"otel-ok\";\n",
                   })),
                 })),

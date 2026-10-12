@@ -2,16 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["x86_64-linux", 25, 11], ["aarch64-linux", 26, 11]], [["pdfium-linux-x64", 32, 11], ["pdfium-linux-arm64", 33, 11]], [["url", 45, 9], ["hash", 46, 17]], [["pname", 38, 7], ["version", 39, 7], ["__structuredAttrs", 41, 7], ["strictDeps", 42, 7], ["src", 44, 7], ["unpackPhase", 49, 7], ["sourceRoot", 53, 7], ["installPhase", 55, 7]], [["owner", 71, 5], ["repo", 72, 5], ["tag", 73, 5], ["hash", 74, 5]], [["OPENSSL_NO_VENDOR", 130, 5], ["PDFIUM_INCLUDE_PATH", 131, 5], ["PDFIUM_LIB_PATH", 132, 5]], [["updateScript", 146, 12]], [["description", 149, 5], ["homepage", 150, 5], ["changelog", 151, 5], ["license", 152, 5], ["maintainers", 153, 5], ["platforms", 154, 5], ["mainProgram", 158, 5]], [["pname", 66, 3], ["version", 67, 3], ["__structuredAttrs", 68, 3], ["src", 70, 3], ["postPatch", 77, 3], ["nativeBuildInputs", 97, 3], ["buildInputs", 104, 3], ["cargoHash", 109, 3], ["cargoBuildFlags", 110, 3], ["cargoInstallFlags", 114, 3], ["doCheck", 118, 3], ["preBuild", 120, 3], ["env", 129, 3], ["postInstall", 135, 3], ["nativeInstallCheckInputs", 141, 3], ["doInstallCheck", 144, 3], ["passthru", 146, 3], ["meta", 148, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, rustPlatform: false, fetchFromGitHub: false, fetchurl: false, cmake: false, makeWrapper: false, "nix-update-script": false, openssl: false, "pkg-config": false, versionCheckHook: false, writableTmpDirAsHomeHook: false, leptonica: false, tesseract: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["x86_64-linux", 25, 11], ["aarch64-linux", 26, 11]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pdfium-linux-x64", 32, 11], ["pdfium-linux-arm64", 33, 11]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 45, 9], ["hash", 46, 17]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 38, 7], ["version", 39, 7], ["__structuredAttrs", 41, 7], ["strictDeps", 42, 7], ["src", 44, 7], ["unpackPhase", 49, 7], ["sourceRoot", 53, 7], ["installPhase", 55, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["owner", 71, 5], ["repo", 72, 5], ["tag", 73, 5], ["hash", 74, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["OPENSSL_NO_VENDOR", 130, 5], ["PDFIUM_INCLUDE_PATH", 131, 5], ["PDFIUM_LIB_PATH", 132, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["updateScript", 146, 12]]);
-const pos$8 = nix.positions(here + "/package.nix", [["description", 149, 5], ["homepage", 150, 5], ["changelog", 151, 5], ["license", 152, 5], ["maintainers", 153, 5], ["platforms", 154, 5], ["mainProgram", 158, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["pname", 66, 3], ["version", 67, 3], ["__structuredAttrs", 68, 3], ["src", 70, 3], ["postPatch", 77, 3], ["nativeBuildInputs", 97, 3], ["buildInputs", 104, 3], ["cargoHash", 109, 3], ["cargoBuildFlags", 110, 3], ["cargoInstallFlags", 114, 3], ["doCheck", 118, 3], ["preBuild", 120, 3], ["env", 129, 3], ["postInstall", 135, 3], ["nativeInstallCheckInputs", 141, 3], ["doInstallCheck", 144, 3], ["passthru", 146, 3], ["meta", 148, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,23 +23,23 @@ export default nix.lambda((args) => (() => {
   const tesseract = nix.arg($, "tesseract");
   const pdfium = nix.thunk(() => (() => {
     const asset = nix.thunk(() => nix.sel({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       "x86_64-linux": "pdfium-linux-x64",
       "aarch64-linux": "pdfium-linux-arm64",
     }, nix.key(nix.sel(stdenv, "hostPlatform", "system"))));
     const hash = nix.thunk(() => nix.sel({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       "pdfium-linux-x64": "sha256-r5byH9jp1TlVAT2tHRewA9ASACXnh7fOYRpoXVcodZQ=",
       "pdfium-linux-arm64": "sha256-6B7ER90ACX6y/CbP+IvlPqMhSVcRpDr56ntQvr3qkiY=",
     }, nix.key(nix.force(asset))));
     return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname: "pdfium",
         version: "chromium-7897",
         __structuredAttrs: true,
         strictDeps: true,
         src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: nix.thunk(() => nix.str`https://github.com/run-llama/pdfium-binaries/releases/download/chromium%2F7897/${asset}.tgz`),
             hash: hash,
           })))),
@@ -59,12 +51,12 @@ export default nix.lambda((args) => (() => {
   const leptonicaSrc = nix.thunk(() => nix.sel(leptonica, "src"));
   const tesseractSrc = nix.thunk(() => nix.sel(tesseract, "tesseractBase", "src"));
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       pname: "liteparse",
       version: "2.15.0",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           owner: "run-llama",
           repo: "liteparse",
           tag: nix.thunk(() => nix.str`crates-v${nix.sel(finalAttrs, "version")}`),
@@ -88,7 +80,7 @@ cp ${nix.sel(tesseract, "languages", "eng")} "$HOME/.tesseract-rs/tessdata/eng.t
 cp ${nix.sel(tesseract, "languages", "tur")} "$HOME/.tesseract-rs/tessdata/tur.traineddata"
 `),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         OPENSSL_NO_VENDOR: true,
         PDFIUM_INCLUDE_PATH: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getInclude"), pdfium)}/include`),
         PDFIUM_LIB_PATH: nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "getLib"), pdfium)}/lib`),
@@ -100,11 +92,11 @@ cp ${nix.sel(tesseract, "languages", "tur")} "$HOME/.tesseract-rs/tessdata/tur.t
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         description: "Fast and lightweight document parser by LlamaIndex",
         homepage: "https://github.com/run-llama/liteparse",
         changelog: nix.thunk(() => nix.str`https://github.com/run-llama/liteparse/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

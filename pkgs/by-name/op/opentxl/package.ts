@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["unwrapped", 65, 5], ["tests", 66, 42]], [["platforms", 70, 5]], [["pname", 16, 3], ["version", 17, 31], ["preferLocalBuild", 18, 3], ["strictDeps", 19, 3], ["dontUnpack", 21, 3], ["dontConfigure", 22, 3], ["dontBuild", 23, 3], ["nativeBuildInputs", 25, 3], ["installPhase", 27, 3], ["passthru", 64, 3], ["meta", 69, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, makeWrapper: false, "opentxl-unwrapped": false, targetPackages: false, withCompiler: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["unwrapped", 65, 5], ["tests", 66, 42]]);
-const pos$2 = nix.positions(here + "/package.nix", [["platforms", 70, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 31], ["preferLocalBuild", 18, 3], ["strictDeps", 19, 3], ["dontUnpack", 21, 3], ["dontConfigure", 22, 3], ["dontBuild", 23, 3], ["nativeBuildInputs", 25, 3], ["installPhase", 27, 3], ["passthru", 64, 3], ["meta", 69, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,7 +18,7 @@ export default nix.lambda((args) => (() => {
   const crossCompiling = nix.thunk(() => !nix.eq(nix.sel(stdenv, "hostPlatform"), nix.sel(stdenv, "targetPlatform")));
   const targetOpentxl = nix.thunk(() => (nix.asBool(!nix.asBool(crossCompiling)) ? nix.force(opentxl_unwrapped) : nix.sel(targetPackages, "opentxl-unwrapped")));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: nix.thunk(() => nix.str`${targetPrefix}opentxl-wrapper`),
       version: nix.thunk(() => nix.attr(opentxl_unwrapped, "version")),
       preferLocalBuild: true,
@@ -62,13 +60,13 @@ runHook postInstall
       passthru: nix.thunk(() => (() => {
         const from_1 = nix.thunk(() => nix.sel(opentxl_unwrapped, "passthru"));
         return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         unwrapped: opentxl_unwrapped,
         tests: nix.thunk(() => nix.attr(from_1, "tests")),
       };
       })()),
       meta: nix.thunk(() => nix.update(nix.sel(opentxl_unwrapped, "meta"), {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       })),
     }));

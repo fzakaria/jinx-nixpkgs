@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]], [["package", 47, 54]], [["pkg-config", 47, 11]], [["extraArgs", 48, 40]], [["tests", 47, 5], ["updateScript", 48, 5]], [["description", 52, 5], ["mainProgram", 53, 5], ["homepage", 54, 5], ["license", 55, 5], ["maintainers", 56, 5], ["platforms", 57, 5], ["pkgConfigModules", 58, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["patches", 22, 3], ["outputs", 27, 3], ["strictDeps", 32, 3], ["enableParallelBuilding", 33, 3], ["buildInputs", 35, 3], ["propagatedBuildOutputs", 38, 3], ["makeFlags", 40, 3], ["passthru", 46, 3], ["meta", 51, 3]]]);
 const formals$1 = { args: { fetchFromGitHub: false, lib: false, libpng: false, "nix-update-script": false, stb: false, stdenv: false, testers: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["package", 47, 54]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pkg-config", 47, 11]]);
-const pos$4 = nix.positions(here + "/package.nix", [["extraArgs", 48, 40]]);
-const pos$5 = nix.positions(here + "/package.nix", [["tests", 47, 5], ["updateScript", 48, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 52, 5], ["mainProgram", 53, 5], ["homepage", 54, 5], ["license", 55, 5], ["maintainers", 56, 5], ["platforms", 57, 5], ["pkgConfigModules", 58, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["patches", 22, 3], ["outputs", 27, 3], ["strictDeps", 32, 3], ["enableParallelBuilding", 33, 3], ["buildInputs", 35, 3], ["propagatedBuildOutputs", 38, 3], ["makeFlags", 40, 3], ["passthru", 46, 3], ["meta", 51, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const testers = nix.arg($, "testers");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "qoi",
       version: "0-unstable-2026-09-27",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "phoboslab",
           repo: "qoi",
           rev: "ffb2d2cb74a1de60819b21b939f7209aa53e91c1",
@@ -43,18 +37,18 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`BINDIR=${nix.builtins.placeholder("out")}/bin`),
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "hasPkgConfigModules"), nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         })),
-        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: pos$4, extraArgs: nix.thunk(() => ["--version=branch"]) })))),
+        updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({ [nix.POS]: $pos[3], extraArgs: nix.thunk(() => ["--version=branch"]) })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "'Quite OK Image Format' for fast, lossless image compression",
         mainProgram: "qoiconv",
         homepage: "https://qoiformat.org/",

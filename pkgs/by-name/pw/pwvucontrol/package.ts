@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["hash", 33, 5]], [["pname", 37, 26], ["version", 37, 32], ["src", 37, 40], ["hash", 38, 5]], [["CARGO_BUILD_TARGET", 72, 7]], [["updateScript", 74, 12]], [["description", 77, 5], ["homepage", 78, 5], ["changelog", 79, 5], ["license", 80, 5], ["maintainers", 81, 5], ["mainProgram", 86, 5], ["platforms", 87, 5]], [["pname", 26, 3], ["version", 27, 3], ["src", 29, 3], ["cargoDeps", 36, 3], ["postPatch", 41, 3], ["nativeBuildInputs", 47, 3], ["buildInputs", 60, 3], ["env", 72, 3], ["passthru", 74, 3], ["meta", 76, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, "blueprint-compiler": false, cargo: false, "desktop-file-utils": false, meson: false, ninja: false, "pkg-config": false, rustPlatform: false, rustc: false, wrapGAppsHook4: false, cairo: false, "gdk-pixbuf": false, glib: false, gtk4: false, libadwaita: false, pango: false, pipewire: false, wireplumber: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["hash", 33, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 37, 26], ["version", 37, 32], ["src", 37, 40], ["hash", 38, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["CARGO_BUILD_TARGET", 72, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 74, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 77, 5], ["homepage", 78, 5], ["changelog", 79, 5], ["license", 80, 5], ["maintainers", 81, 5], ["mainProgram", 86, 5], ["platforms", 87, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 26, 3], ["version", 27, 3], ["src", 29, 3], ["cargoDeps", 36, 3], ["postPatch", 41, 3], ["nativeBuildInputs", 47, 3], ["buildInputs", 60, 3], ["env", 72, 3], ["passthru", 74, 3], ["meta", 76, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,18 +29,18 @@ export default nix.lambda((args) => (() => {
   const wireplumber = nix.arg($, "wireplumber");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "pwvucontrol",
       version: "0.5.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "saivert",
           repo: "pwvucontrol",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-Y5O/KkYYNDysZ3H0vk0qj2DOkmx/Z4vJELr9oydxpt8=",
         })))),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -69,15 +64,15 @@ export default nix.lambda((args) => (() => {
       ]),
       buildInputs: nix.thunk(() => [cairo, gdk_pixbuf, glib, gtk4, libadwaita, pango, pipewire, wireplumber]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         CARGO_BUILD_TARGET: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "rust", "rustcTargetSpec")),
       })),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Pipewire Volume Control",
         homepage: "https://github.com/saivert/pwvucontrol",
         changelog: nix.thunk(() => nix.str`https://github.com/saivert/pwvucontrol/releases/tag/${nix.sel(finalAttrs, "version")}`),

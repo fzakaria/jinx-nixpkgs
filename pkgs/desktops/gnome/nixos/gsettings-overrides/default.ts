@@ -2,8 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["preferLocalBuild", 45, 42]]]);
 const formals$1 = { args: { lib: false, runCommand: false, "gsettings-desktop-schemas": false, "gnome-shell": false, glib: false, "gnome-flashback": false, "nixos-artwork": false, "nixos-background-light": true, "nixos-background-dark": true, extraGSettingsOverrides: true, extraGSettingsOverridePackages: true, favoriteAppsOverride: true, flashbackEnabled: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["preferLocalBuild", 45, 42]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,7 +33,7 @@ ${favoriteAppsOverride}
 
 ${extraGSettingsOverrides}
 `);
-  return nix.app(runCommand, "gnome-gsettings-overrides", nix.thunk(() => ({ [nix.POS]: pos$1, preferLocalBuild: true })), nix.thunk(() => nix.str`data_dir="$out/share/gsettings-schemas/nixos-gsettings-overrides"
+  return nix.app(runCommand, "gnome-gsettings-overrides", nix.thunk(() => ({ [nix.POS]: $pos[0], preferLocalBuild: true })), nix.thunk(() => nix.str`data_dir="$out/share/gsettings-schemas/nixos-gsettings-overrides"
 schema_dir="$data_dir/glib-2.0/schemas"
 mkdir -p "$schema_dir"
 

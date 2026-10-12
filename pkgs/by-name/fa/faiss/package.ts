@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 53, 5], ["repo", 54, 5], ["tag", 55, 5], ["hash", 56, 5]], [["cudaSupport", 123, 13], ["cudaPackages", 123, 25], ["pythonSupport", 123, 38]], [["description", 127, 5], ["mainProgram", 128, 5], ["homepage", 129, 5], ["changelog", 130, 5], ["license", 131, 5], ["platforms", 132, 5], ["maintainers", 133, 5]], [["pname", 44, 3], ["version", 45, 3], ["__structuredAttrs", 47, 3], ["strictDeps", 48, 3], ["outputs", 50, 3], ["src", 52, 3], ["nativeBuildInputs", 59, 3], ["buildInputs", 73, 3], ["cmakeFlags", 80, 3], ["buildFlags", 96, 3], ["postBuild", 100, 3], ["postInstall", 105, 3], ["passthru", 122, 3], ["meta", 126, 3]]]);
 const formals$1 = { args: { lib: false, config: false, fetchFromGitHub: false, stdenv: false, capiSupport: true, cmake: false, swig: false, cudaPackages: true, cudaSupport: true, pythonSupport: true, python3Packages: false, sharedLibrarySupport: true, llvmPackages: false, blas: false, autoAddDriverRunpath: false, optLevel: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 53, 5], ["repo", 54, 5], ["tag", 55, 5], ["hash", 56, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["cudaSupport", 123, 13], ["cudaPackages", 123, 25], ["pythonSupport", 123, 38]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 127, 5], ["mainProgram", 128, 5], ["homepage", 129, 5], ["changelog", 130, 5], ["license", 131, 5], ["platforms", 132, 5], ["maintainers", 133, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 44, 3], ["version", 45, 3], ["__structuredAttrs", 47, 3], ["strictDeps", 48, 3], ["outputs", 50, 3], ["src", 52, 3], ["nativeBuildInputs", 59, 3], ["buildInputs", 73, 3], ["cmakeFlags", 80, 3], ["buildFlags", 96, 3], ["postBuild", 100, 3], ["postInstall", 105, 3], ["passthru", 122, 3], ["meta", 126, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -44,14 +41,14 @@ export default nix.lambda((args) => (() => {
     ];
   })());
   return nix.app(nix.sel(stdenv_1, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "faiss",
       version: "1.15.1",
       __structuredAttrs: true,
       strictDeps: true,
       outputs: nix.thunk(() => nix.concat(["out"], nix.app(nix.sel(lib, "optionals"), pythonSupport, nix.thunk(() => ["dist"])))),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "facebookresearch",
           repo: "faiss",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -77,13 +74,13 @@ export default nix.lambda((args) => (() => {
       postBuild: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), pythonSupport, "(cd faiss/python &&\n python -m pip wheel --verbose --no-index --no-deps --no-clean --no-build-isolation --wheel-dir dist .)\n")),
       postInstall: nix.thunk(() => nix.add(nix.app(nix.sel(lib, "optionalString"), pythonSupport, "mkdir \"$dist\"\ncp faiss/python/dist/*.whl \"$dist/\"\n"), nix.app(nix.sel(lib, "optionalString"), cudaSupport, "substituteInPlace \"$out/share/faiss/faiss-config.cmake\" \\\n  --replace-fail \\\n    'include(\"${CMAKE_CURRENT_LIST_DIR}/faiss-targets.cmake\")' \\\n    'include(CMakeFindDependencyMacro)\nfind_dependency(CUDAToolkit)\ninclude(\"${CMAKE_CURRENT_LIST_DIR}/faiss-targets.cmake\")'\n"))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         cudaSupport: cudaSupport,
         cudaPackages: cudaPackages,
         pythonSupport: pythonSupport,
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Library for efficient similarity search and clustering of dense vectors by Facebook Research",
         mainProgram: "demo_ivfpq_indexing",
         homepage: "https://github.com/facebookresearch/faiss",

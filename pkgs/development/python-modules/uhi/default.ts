@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 26, 13], ["version", 26, 19], ["hash", 27, 5]], [["schema", 43, 5], ["hdf5", 44, 5]], [["doCheck", 58, 50]], [["uhi", 58, 18]], [["tests", 58, 12]], [["description", 61, 5], ["homepage", 62, 5], ["license", 63, 5], ["maintainers", 64, 5]], [["pname", 21, 3], ["version", 22, 3], ["pyproject", 23, 3], ["src", 25, 3], ["build-system", 30, 3], ["dependencies", 35, 3], ["optional-dependencies", 42, 3], ["doCheck", 47, 3], ["nativeCheckInputs", 49, 3], ["passthru", 58, 3], ["meta", 60, 3]]]);
 const formals$1 = { args: { lib: false, fetchPypi: false, "boost-histogram": false, buildPythonPackage: false, h5py: false, hatchling: false, "hatch-vcs": false, hist: false, fastjsonschema: false, numpy: false, packaging: false, pytestCheckHook: false, pythonOlder: false, tomli: false, "typing-extensions": false, uhi: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 26, 13], ["version", 26, 19], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["schema", 43, 5], ["hdf5", 44, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["doCheck", 58, 50]]);
-const pos$4 = nix.positions(here + "/default.nix", [["uhi", 58, 18]]);
-const pos$5 = nix.positions(here + "/default.nix", [["tests", 58, 12]]);
-const pos$6 = nix.positions(here + "/default.nix", [["description", 61, 5], ["homepage", 62, 5], ["license", 63, 5], ["maintainers", 64, 5]]);
-const pos$7 = nix.positions(here + "/default.nix", [["pname", 21, 3], ["version", 22, 3], ["pyproject", 23, 3], ["src", 25, 3], ["build-system", 30, 3], ["dependencies", 35, 3], ["optional-dependencies", 42, 3], ["doCheck", 47, 3], ["nativeCheckInputs", 49, 3], ["passthru", 58, 3], ["meta", 60, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.1.1";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-05xNwWLWkby0Q1KanPX+mbEeFKOHzfgoQVTMJYcNL/A=",
@@ -42,21 +36,21 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [hatchling, hatch_vcs]);
       const dependencies = nix.thunk(() => nix.concat([numpy], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(pythonOlder, "3.11")), nix.thunk(() => [typing_extensions]))));
       const optional_dependencies = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         schema: nix.thunk(() => [fastjsonschema]),
         hdf5: nix.thunk(() => [h5py]),
       }));
       const doCheck = false;
       const nativeCheckInputs = nix.thunk(() => nix.concat([boost_histogram, hist, fastjsonschema, packaging, pytestCheckHook], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(pythonOlder, "3.11")), nix.thunk(() => [tomli]))));
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
-          uhi: nix.thunk(() => nix.app(nix.sel(uhi, "overridePythonAttrs"), nix.thunk(() => ({ [nix.POS]: pos$3, doCheck: true })))),
+          [nix.POS]: $pos[3],
+          uhi: nix.thunk(() => nix.app(nix.sel(uhi, "overridePythonAttrs"), nix.thunk(() => ({ [nix.POS]: $pos[2], doCheck: true })))),
         })),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Universal Histogram Interface",
         homepage: "https://uhi.readthedocs.io/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
@@ -66,7 +60,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         pname,
         version,
         pyproject,

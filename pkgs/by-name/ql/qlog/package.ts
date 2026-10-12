@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5], ["fetchSubmodules", 21, 5]], [["NIX_LDFLAGS", 24, 7]], [["description", 52, 5], ["mainProgram", 53, 5], ["license", 54, 5], ["homepage", 55, 5], ["maintainers", 56, 5], ["platforms", 59, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["env", 24, 3], ["buildInputs", 26, 3], ["nativeBuildInputs", 39, 3], ["postInstall", 45, 3], ["meta", 51, 3]]]);
 const formals$1 = { args: { fetchFromGitHub: false, stdenv: false, lib: false, cups: false, hamlib: false, "pkg-config": false, qt6: false, qt6Packages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5], ["fetchSubmodules", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_LDFLAGS", 24, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 52, 5], ["mainProgram", 53, 5], ["license", 54, 5], ["homepage", 55, 5], ["maintainers", 56, 5], ["platforms", 59, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["env", 24, 3], ["buildInputs", 26, 3], ["nativeBuildInputs", 39, 3], ["postInstall", 45, 3], ["meta", 51, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,18 +16,18 @@ export default nix.lambda((args) => (() => {
   const qt6 = nix.arg($, "qt6");
   const qt6Packages = nix.arg($, "qt6Packages");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "qlog",
       version: "0.48.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "foldynl",
           repo: "QLog",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-Grsrh+WDobWC+zRFYP3xtfGp0VIyTt6XhTMs0+s9qh4=",
           fetchSubmodules: true,
         })))),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_LDFLAGS: "-lhamlib" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], NIX_LDFLAGS: "-lhamlib" })),
       buildInputs: nix.thunk(() => nix.concat([
         hamlib,
         nix.thunk(() => nix.sel(qt6, "qtbase")),
@@ -47,7 +44,7 @@ export default nix.lambda((args) => (() => {
       ]),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "mkdir -p $out/{Applications,bin}\nmv $out/{qlog.app,Applications}\nln -s $out/Applications/qlog.app/Contents/MacOS/qlog $out/bin/qlog\n")),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Amateur radio logbook software",
         mainProgram: "qlog",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

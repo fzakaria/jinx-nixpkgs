@@ -2,22 +2,8 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/redlib.nix", [[["maintainers", 8, 8]], [["127.0.0.1", 16, 22]], [["hosts", 16, 16]], [["certificates", 17, 18]], [["pki", 17, 14]], [["extraConfig", 26, 54]], [["/auth/v2/oauth/access-token/loid", 26, 19]], [["onlySSL", 23, 9], ["sslCertificate", 24, 9], ["sslCertificateKey", 25, 9], ["locations", 26, 9]], [["enable", 21, 7], ["virtualHosts", 22, 7]], [["REDLIB_DEFAULT_USE_HLS", 39, 9]], [["package", 33, 7], ["enable", 34, 7], ["port", 36, 7], ["settings", 38, 7]], [["nginx", 20, 14], ["redlib", 32, 14]], [["networking", 16, 5], ["security", 17, 5], ["services", 20, 5]], [["machine", 13, 9]], [["name", 7, 3], ["meta", 8, 3], ["nodes", 13, 3], ["testScript", 44, 3]]]);
 const formals$1 = { args: { lib: false, pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/redlib.nix", [["maintainers", 8, 8]]);
-const pos$2 = nix.positions(here + "/redlib.nix", [["127.0.0.1", 16, 22]]);
-const pos$3 = nix.positions(here + "/redlib.nix", [["hosts", 16, 16]]);
-const pos$4 = nix.positions(here + "/redlib.nix", [["certificates", 17, 18]]);
-const pos$5 = nix.positions(here + "/redlib.nix", [["pki", 17, 14]]);
-const pos$6 = nix.positions(here + "/redlib.nix", [["extraConfig", 26, 54]]);
-const pos$7 = nix.positions(here + "/redlib.nix", [["/auth/v2/oauth/access-token/loid", 26, 19]]);
-const pos$8 = nix.positions(here + "/redlib.nix", [["onlySSL", 23, 9], ["sslCertificate", 24, 9], ["sslCertificateKey", 25, 9], ["locations", 26, 9]]);
-const pos$9 = nix.positions(here + "/redlib.nix", [["enable", 21, 7], ["virtualHosts", 22, 7]]);
-const pos$10 = nix.positions(here + "/redlib.nix", [["REDLIB_DEFAULT_USE_HLS", 39, 9]]);
-const pos$11 = nix.positions(here + "/redlib.nix", [["package", 33, 7], ["enable", 34, 7], ["port", 36, 7], ["settings", 38, 7]]);
-const pos$12 = nix.positions(here + "/redlib.nix", [["nginx", 20, 14], ["redlib", 32, 14]]);
-const pos$13 = nix.positions(here + "/redlib.nix", [["networking", 16, 5], ["security", 17, 5], ["services", 20, 5]]);
-const pos$14 = nix.positions(here + "/redlib.nix", [["machine", 13, 9]]);
-const pos$15 = nix.positions(here + "/redlib.nix", [["name", 7, 3], ["meta", 8, 3], ["nodes", 13, 3], ["testScript", 44, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,10 +12,10 @@ export default nix.lambda((args) => (() => {
   const certs = nix.thunk(() => nix.builtins.import(nix.path(here, "redlib/snakeoil-certs.nix")));
   const redditDomain = nix.thunk(() => nix.sel(certs, "domain"));
   return {
-    [nix.POS]: pos$15,
+    [nix.POS]: $pos[14],
     name: "redlib",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [
@@ -39,37 +25,37 @@ export default nix.lambda((args) => (() => {
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$14,
+      [nix.POS]: $pos[13],
       machine: nix.thunk(() => ({
-        [nix.POS]: pos$13,
+        [nix.POS]: $pos[12],
         networking: nix.thunk(() => ({
-          [nix.POS]: pos$3,
-          hosts: nix.thunk(() => ({ [nix.POS]: pos$2, "127.0.0.1": nix.thunk(() => [redditDomain]) })),
+          [nix.POS]: $pos[2],
+          hosts: nix.thunk(() => ({ [nix.POS]: $pos[1], "127.0.0.1": nix.thunk(() => [redditDomain]) })),
         })),
         security: nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           pki: nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             certificates: nix.thunk(() => [
               nix.thunk(() => nix.builtins.readFile(nix.thunk(() => nix.sel(certs, "ca", "cert")))),
             ]),
           })),
         })),
         services: nix.thunk(() => ({
-          [nix.POS]: pos$12,
+          [nix.POS]: $pos[11],
           nginx: nix.thunk(() => ({
-            [nix.POS]: pos$9,
+            [nix.POS]: $pos[8],
             enable: true,
             virtualHosts: nix.thunk(() => nix.attrsDyn({}, [
               [nix.force(redditDomain), nix.thunk(() => ({
-                [nix.POS]: pos$8,
+                [nix.POS]: $pos[7],
                 onlySSL: true,
                 sslCertificate: nix.thunk(() => nix.sel(certs, nix.key(nix.force(redditDomain)), "cert")),
                 sslCertificateKey: nix.thunk(() => nix.sel(certs, nix.key(nix.force(redditDomain)), "key")),
                 locations: nix.thunk(() => ({
-                  [nix.POS]: pos$7,
+                  [nix.POS]: $pos[6],
                   "/auth/v2/oauth/access-token/loid": nix.thunk(() => ({
-                    [nix.POS]: pos$6,
+                    [nix.POS]: $pos[5],
                     extraConfig: "return 200 \"{\\\"access_token\\\":\\\"AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA\\\",\\\"expires_in\\\":0}\";\n",
                   })),
                 })),
@@ -77,11 +63,11 @@ export default nix.lambda((args) => (() => {
             ])),
           })),
           redlib: nix.thunk(() => ({
-            [nix.POS]: pos$11,
+            [nix.POS]: $pos[10],
             package: nix.thunk(() => nix.sel(pkgs, "redlib")),
             enable: true,
             port: 80n,
-            settings: nix.thunk(() => ({ [nix.POS]: pos$10, REDLIB_DEFAULT_USE_HLS: true })),
+            settings: nix.thunk(() => ({ [nix.POS]: $pos[9], REDLIB_DEFAULT_USE_HLS: true })),
           })),
         })),
       })),

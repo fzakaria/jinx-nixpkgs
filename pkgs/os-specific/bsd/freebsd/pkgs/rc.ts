@@ -2,10 +2,9 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/rc.nix", [[["/sbin/sysctl", 63, 9], ["/usr/bin/protect", 64, 9], ["/usr/bin/id", 65, 9], ["/bin/ps", 66, 9], ["/bin/cpuset", 67, 9], ["/usr/bin/stat", 68, 9], ["/bin/rm", 69, 9], ["/bin/chmod", 70, 9], ["/bin/cat", 71, 9], ["/bin/sync", 72, 9], ["/bin/sleep", 73, 9], ["/bin/date", 74, 9], ["/usr/bin/logger", 75, 9], ["logger", 76, 9], ["kenv", 77, 9]], [["path", 44, 3], ["MK_TESTS", 45, 3], ["outputs", 47, 3], ["postPatch", 52, 3], ["skipIncludesPhase", 109, 3], ["postInstall", 111, 3]]]);
 const formals$1 = { args: { mkDerivation: false, lib: false, sysctl: false, bash: false, rcorder: false, bin: false, stat: false, id: false, protect: false, mount: false, fsck: false, logger: false, devmatch: false, sort: false, kldload: false, kldstat: false, devctl: false, sed: false, gnugrep: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/rc.nix", [["/sbin/sysctl", 63, 9], ["/usr/bin/protect", 64, 9], ["/usr/bin/id", 65, 9], ["/bin/ps", 66, 9], ["/bin/cpuset", 67, 9], ["/usr/bin/stat", 68, 9], ["/bin/rm", 69, 9], ["/bin/chmod", 70, 9], ["/bin/cat", 71, 9], ["/bin/sync", 72, 9], ["/bin/sleep", 73, 9], ["/bin/date", 74, 9], ["/usr/bin/logger", 75, 9], ["logger", 76, 9], ["kenv", 77, 9]]);
 const formals$2 = { args: { fname: true, name: false, value: false }, ellipsis: false };
-const pos$2 = nix.positions(here + "/rc.nix", [["path", 44, 3], ["MK_TESTS", 45, 3], ["outputs", 47, 3], ["postPatch", 52, 3], ["skipIncludesPhase", 109, 3], ["postInstall", 111, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -48,13 +47,13 @@ export default nix.lambda((args) => (() => {
       gnugrep,
     ])));
   return nix.app(mkDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       path: "libexec/rc",
       MK_TESTS: "no",
       outputs: nix.thunk(() => ["out", "services"]),
       postPatch: nix.thunk(() => nix.add("substituteInPlace \"$BSDSRCDIR/libexec/rc/Makefile\" \\\n  --replace-fail /etc $out/etc \\\n  --replace-fail /libexec $out/libexec\nsubstituteInPlace \"$BSDSRCDIR/libexec/rc/rc.d/Makefile\" \\\n  --replace-fail /etc $services/etc \\\n  --replace-fail /var $services/var\n", (() => {
         const bins = nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           "/sbin/sysctl": sysctl,
           "/usr/bin/protect": protect,
           "/usr/bin/id": id,

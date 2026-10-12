@@ -2,31 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["julia", 17, 61]], [["withPackages", 17, 9]], [["passthru", 16, 7]], [["x86_64-linux", 28, 9], ["aarch64-linux", 29, 9], ["aarch64-darwin", 30, 9]], [["version", 26, 7], ["sha256", 27, 7]], [["x86_64-linux", 38, 9], ["aarch64-linux", 39, 9], ["aarch64-darwin", 40, 9]], [["version", 36, 7], ["sha256", 37, 7]], [["x86_64-linux", 48, 9], ["aarch64-linux", 49, 9], ["aarch64-darwin", 50, 9]], [["version", 46, 7], ["sha256", 47, 7]], [["x86_64-linux", 58, 9], ["aarch64-linux", 59, 9], ["aarch64-darwin", 60, 9]], [["version", 56, 7], ["sha256", 57, 7]], [["url", 74, 13], ["revert", 75, 13], ["hash", 76, 13]], [["url", 82, 13], ["hash", 83, 13]], [["version", 67, 9], ["hash", 68, 9], ["patches", 69, 9]], [["stdenv", 88, 9], ["gfortran", 89, 9]], [["url", 102, 13], ["hash", 103, 13]], [["version", 95, 9], ["hash", 96, 9], ["patches", 97, 9]], [["stdenv", 108, 9], ["gfortran", 109, 9]], [["url", 122, 13], ["hash", 123, 13]], [["version", 115, 9], ["hash", 116, 9], ["patches", 117, 9]], [["stdenv", 134, 13], ["gfortran", 135, 13]], [["version", 144, 9], ["hash", 145, 9], ["patches", 146, 9]], [["stdenv", 156, 13], ["gfortran", 157, 13]], [["julia_110-bin", 24, 3], ["julia_111-bin", 34, 3], ["julia_112-bin", 44, 3], ["julia_113-bin", 54, 3], ["julia_110", 64, 3], ["julia_111", 92, 3], ["julia_112", 112, 3], ["julia_113", 141, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, callPackage: false, fetchpatch2: false, gcc14Stdenv: false, gfortran14: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["julia", 17, 61]]);
-const pos$2 = nix.positions(here + "/default.nix", [["withPackages", 17, 9]]);
-const pos$3 = nix.positions(here + "/default.nix", [["passthru", 16, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["x86_64-linux", 28, 9], ["aarch64-linux", 29, 9], ["aarch64-darwin", 30, 9]]);
-const pos$5 = nix.positions(here + "/default.nix", [["version", 26, 7], ["sha256", 27, 7]]);
-const pos$6 = nix.positions(here + "/default.nix", [["x86_64-linux", 38, 9], ["aarch64-linux", 39, 9], ["aarch64-darwin", 40, 9]]);
-const pos$7 = nix.positions(here + "/default.nix", [["version", 36, 7], ["sha256", 37, 7]]);
-const pos$8 = nix.positions(here + "/default.nix", [["x86_64-linux", 48, 9], ["aarch64-linux", 49, 9], ["aarch64-darwin", 50, 9]]);
-const pos$9 = nix.positions(here + "/default.nix", [["version", 46, 7], ["sha256", 47, 7]]);
-const pos$10 = nix.positions(here + "/default.nix", [["x86_64-linux", 58, 9], ["aarch64-linux", 59, 9], ["aarch64-darwin", 60, 9]]);
-const pos$11 = nix.positions(here + "/default.nix", [["version", 56, 7], ["sha256", 57, 7]]);
-const pos$12 = nix.positions(here + "/default.nix", [["url", 74, 13], ["revert", 75, 13], ["hash", 76, 13]]);
-const pos$13 = nix.positions(here + "/default.nix", [["url", 82, 13], ["hash", 83, 13]]);
-const pos$14 = nix.positions(here + "/default.nix", [["version", 67, 9], ["hash", 68, 9], ["patches", 69, 9]]);
-const pos$15 = nix.positions(here + "/default.nix", [["stdenv", 88, 9], ["gfortran", 89, 9]]);
-const pos$16 = nix.positions(here + "/default.nix", [["url", 102, 13], ["hash", 103, 13]]);
-const pos$17 = nix.positions(here + "/default.nix", [["version", 95, 9], ["hash", 96, 9], ["patches", 97, 9]]);
-const pos$18 = nix.positions(here + "/default.nix", [["stdenv", 108, 9], ["gfortran", 109, 9]]);
-const pos$19 = nix.positions(here + "/default.nix", [["url", 122, 13], ["hash", 123, 13]]);
-const pos$20 = nix.positions(here + "/default.nix", [["version", 115, 9], ["hash", 116, 9], ["patches", 117, 9]]);
-const pos$21 = nix.positions(here + "/default.nix", [["stdenv", 134, 13], ["gfortran", 135, 13]]);
-const pos$22 = nix.positions(here + "/default.nix", [["version", 144, 9], ["hash", 145, 9], ["patches", 146, 9]]);
-const pos$23 = nix.positions(here + "/default.nix", [["stdenv", 156, 13], ["gfortran", 157, 13]]);
-const pos$24 = nix.positions(here + "/default.nix", [["julia_110-bin", 24, 3], ["julia_111-bin", 34, 3], ["julia_112-bin", 44, 3], ["julia_113-bin", 54, 3], ["julia_110", 64, 3], ["julia_111", 92, 3], ["julia_112", 112, 3], ["julia_113", 141, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -38,91 +15,91 @@ export default nix.lambda((args) => (() => {
   const gfortran14 = nix.arg($, "gfortran14");
   const juliaWithPackages = nix.thunk(() => nix.app(callPackage, nix.path(here, "../../julia-modules"), nix.thunk(() => ({}))));
   const wrapJulia = (julia) => nix.app(nix.sel(julia, "overrideAttrs"), (oldAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       passthru: nix.thunk(() => nix.update(nix.selOr(oldAttrs, () => ({}), "passthru"), {
-        [nix.POS]: pos$2,
-        withPackages: nix.thunk(() => nix.app(nix.sel(juliaWithPackages, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, julia: julia })))),
+        [nix.POS]: $pos[1],
+        withPackages: nix.thunk(() => nix.app(nix.sel(juliaWithPackages, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], julia: julia })))),
       })),
     }));
   return {
-    [nix.POS]: pos$24,
+    [nix.POS]: $pos[23],
     "julia_110-bin": nix.thunk(() => nix.app(wrapJulia, nix.thunk(() => nix.app(callPackage, nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./generic-bin.nix")), nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             version: "1.10.12",
             sha256: nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               "x86_64-linux": "03dw4zykf09wnzc7mm8yv6k8hfb2pv0f090db34gyxlx6kz0vidh",
               "aarch64-linux": "18p5h0h00320rfc3yhjgp9z4f5xfgpzimphpzqmn8jbhjqhpn9fc",
               "aarch64-darwin": "0gvqmdnqgs2gv72zsnnppfhbsj7qynvimll9hm4nvm905bp2mcak",
             })),
           })))), nix.thunk(() => ({})))))),
     "julia_111-bin": nix.thunk(() => nix.app(wrapJulia, nix.thunk(() => nix.app(callPackage, nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./generic-bin.nix")), nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             version: "1.11.9",
             sha256: nix.thunk(() => ({
-              [nix.POS]: pos$6,
+              [nix.POS]: $pos[5],
               "x86_64-linux": "0dfy4wlrz6jbs7kd9r0bjk9d6sqgf4fakrxrnzwfl1bsdlsn6qxk",
               "aarch64-linux": "0gk2zxkwz2yyg3im23jpgaxzixchyywm19nbh51szmniah31y1x2",
               "aarch64-darwin": "1mrvycjlxs225sspdvvq4qbay1riyyjzqjs1d0xgqdkh6c6kv47d",
             })),
           })))), nix.thunk(() => ({})))))),
     "julia_112-bin": nix.thunk(() => nix.app(wrapJulia, nix.thunk(() => nix.app(callPackage, nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./generic-bin.nix")), nix.thunk(() => ({
-            [nix.POS]: pos$9,
+            [nix.POS]: $pos[8],
             version: "1.12.7",
             sha256: nix.thunk(() => ({
-              [nix.POS]: pos$8,
+              [nix.POS]: $pos[7],
               "x86_64-linux": "1s39x8l6rgp6jw3b4bj3phaszm5h77g7rrhd4lslililcrvrwzjf",
               "aarch64-linux": "1whyfcdf7bncz2n1ixxzf3h30slildgfx8a06a401wy74jsw0hwj",
               "aarch64-darwin": "06b9r4a6zddqr1cg9cv206zmjbdaiz1rb5nr2f69qssvnbgwx3xg",
             })),
           })))), nix.thunk(() => ({})))))),
     "julia_113-bin": nix.thunk(() => nix.app(wrapJulia, nix.thunk(() => nix.app(callPackage, nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./generic-bin.nix")), nix.thunk(() => ({
-            [nix.POS]: pos$11,
+            [nix.POS]: $pos[10],
             version: "1.13.1",
             sha256: nix.thunk(() => ({
-              [nix.POS]: pos$10,
+              [nix.POS]: $pos[9],
               "x86_64-linux": "0209grj6fn7yjs021rc99cwxza7p2abcv2fh263jq2m6vv41hbhg",
               "aarch64-linux": "1q2wxknfsh681qfsm9dbk4xc49r6qn1m2yd85wffld27w9i1hd3q",
               "aarch64-darwin": "0zqgkb294y2ih643z4fbil229hf6nvak98fbq9vbghkp8yfjbq53",
             })),
           })))), nix.thunk(() => ({})))))),
     julia_110: nix.thunk(() => nix.app(wrapJulia, nix.thunk(() => nix.app(callPackage, nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./generic.nix")), nix.thunk(() => ({
-            [nix.POS]: pos$14,
+            [nix.POS]: $pos[13],
             version: "1.10.12",
             hash: "sha256-KIFenIPyMWflO9SnnAhea5VHrigIrLI0FatcVYqFzuw=",
             patches: nix.thunk(() => [
               nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-                  [nix.POS]: pos$12,
+                  [nix.POS]: $pos[11],
                   url: "https://github.com/JuliaLang/julia/commit/0be37db8c5b5a440bd9a11960ae9c998027b7337.patch",
                   revert: true,
                   hash: "sha256-gXC3LE3AuHMlSdA4dW+rbAhJpSB6ZMaz9X1qrHDPX7Y=",
                 })))),
               nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-                  [nix.POS]: pos$13,
+                  [nix.POS]: $pos[12],
                   url: "https://github.com/JuliaLang/julia/commit/cf08907c8fc7ffc64dc664e2dd7469707824b601.patch?full_index=1",
                   hash: "sha256-1Dq5gEo+MiBoIZq8xBHNONwDrwLLQ3Yr6qQh6EJKCCQ=",
                 })))),
             ]),
-          })))), nix.thunk(() => ({ [nix.POS]: pos$15, stdenv: gcc14Stdenv, gfortran: gfortran14 })))))),
+          })))), nix.thunk(() => ({ [nix.POS]: $pos[14], stdenv: gcc14Stdenv, gfortran: gfortran14 })))))),
     julia_111: nix.thunk(() => nix.app(wrapJulia, nix.thunk(() => nix.app(callPackage, nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./generic.nix")), nix.thunk(() => ({
-            [nix.POS]: pos$17,
+            [nix.POS]: $pos[16],
             version: "1.11.9",
             hash: "sha256-SX5jIfJfxQQfP2P5sCGtglFn+GZlOIyHgnQ3qrr8GSI=",
             patches: nix.thunk(() => [
               nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-                  [nix.POS]: pos$16,
+                  [nix.POS]: $pos[15],
                   url: "https://github.com/JuliaLang/julia/commit/6144379071697e734d374530c412e6ae3cd4715b.patch?full_index=1",
                   hash: "sha256-BUNCMrduKBQtcovTCvhGKV1+liFkR1V+eKBgYT8bHkE=",
                 })))),
             ]),
-          })))), nix.thunk(() => ({ [nix.POS]: pos$18, stdenv: gcc14Stdenv, gfortran: gfortran14 })))))),
+          })))), nix.thunk(() => ({ [nix.POS]: $pos[17], stdenv: gcc14Stdenv, gfortran: gfortran14 })))))),
     julia_112: nix.thunk(() => nix.app(wrapJulia, nix.thunk(() => nix.app(callPackage, nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./generic.nix")), nix.thunk(() => ({
-            [nix.POS]: pos$20,
+            [nix.POS]: $pos[19],
             version: "1.12.7",
             hash: "sha256-XH2Ft3HeMYXuyp+8LmFz2Lz2109oQYYiqenEOtdSr1E=",
             patches: nix.thunk(() => nix.concat([
               nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-                  [nix.POS]: pos$19,
+                  [nix.POS]: $pos[18],
                   url: "https://github.com/JuliaLang/julia/commit/3e2d8ff4d016f425a894113b7b77cc3b9dcb1cec.patch?full_index=1",
                   hash: "sha256-R5H8Y/jksfo0HF9AzxQaEHWBYX8N7zZjzd5wFsrv4D0=",
                 })))),
@@ -130,13 +107,13 @@ export default nix.lambda((args) => (() => {
                 nix.path(here, "./patches/1.12/0001-zlib-rpath.patch"),
                 nix.path(here, "./patches/1.12/0002-lbt-blas-detection.patch"),
               ])))),
-          })))), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "cc", "isGNU")) ? { [nix.POS]: pos$21, stdenv: gcc14Stdenv, gfortran: gfortran14 } : {})))))),
+          })))), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "cc", "isGNU")) ? { [nix.POS]: $pos[20], stdenv: gcc14Stdenv, gfortran: gfortran14 } : {})))))),
     julia_113: nix.thunk(() => nix.app(wrapJulia, nix.thunk(() => nix.app(callPackage, nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./generic.nix")), nix.thunk(() => ({
-            [nix.POS]: pos$22,
+            [nix.POS]: $pos[21],
             version: "1.13.1",
             hash: "sha256-HCAGvO16H4tsklmO9lt7JPx0rqrcU1NaReTGGXABBXw=",
             patches: nix.thunk(() => [nix.path(here, "./patches/1.13/0001-llvm-zlib-rpath.patch")]),
-          })))), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "cc", "isGNU")) ? { [nix.POS]: pos$23, stdenv: gcc14Stdenv, gfortran: gfortran14 } : {})))))),
+          })))), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "cc", "isGNU")) ? { [nix.POS]: $pos[22], stdenv: gcc14Stdenv, gfortran: gfortran14 } : {})))))),
   };
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

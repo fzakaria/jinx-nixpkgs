@@ -2,144 +2,25 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/installer.nix", [[["system", 4, 33], ["config", 4, 40]], [["system", 8, 49], ["pkgs", 8, 56]], [["bootLoader", 194, 21], ["grubDevice", 195, 21], ["grubIdentifier", 196, 21], ["grubUseEfi", 197, 21], ["extraConfig", 198, 21], ["clevisTest", 199, 21], ["clevisAskpassTest", 200, 21]], [["bootLoader", 297, 21], ["grubDevice", 298, 21], ["grubIdentifier", 299, 21], ["grubUseEfi", 300, 21], ["extraConfig", 301, 21], ["clevisTest", 302, 21], ["clevisAskpassTest", 303, 21], ["forceGrubReinstallCount", 305, 19]], [["bootLoader", 331, 17], ["grubDevice", 332, 17], ["grubIdentifier", 333, 17], ["grubUseEfi", 334, 17], ["extraConfig", 335, 17], ["clevisTest", 336, 17], ["clevisAskpassTest", 337, 17], ["forceGrubReinstallCount", 339, 15]], [["bootLoader", 400, 17], ["grubDevice", 401, 17], ["grubIdentifier", 402, 17], ["grubUseEfi", 403, 17], ["extraConfig", 404, 17], ["clevisTest", 405, 17], ["clevisAskpassTest", 406, 17], ["forceGrubReinstallCount", 408, 15], ["withTestInstrumentation", 409, 15]], [["bootLoader", 499, 17], ["grubDevice", 500, 17], ["grubIdentifier", 501, 17], ["grubUseEfi", 502, 17], ["extraConfig", 503, 17], ["clevisTest", 504, 17], ["clevisAskpassTest", 505, 17], ["forceGrubReinstallCount", 507, 15]], [["bootLoader", 536, 17], ["grubDevice", 537, 17], ["grubIdentifier", 538, 17], ["grubUseEfi", 539, 17], ["extraConfig", 540, 17], ["clevisTest", 541, 17], ["clevisAskpassTest", 542, 17], ["forceGrubReinstallCount", 544, 15], ["withTestInstrumentation", 545, 15]], [["maintainers", 676, 9], ["platforms", 678, 9], ["broken", 682, 17]], [["enable", 688, 17]], [["options", 699, 33]], [["diskSize", 691, 28], ["cores", 692, 28], ["memorySize", 693, 28], ["diskImage", 696, 28], ["qemu", 699, 28]], [["nix", 688, 13], ["virtualisation", 691, 13]], [["autoFormat", 721, 46]], [["/", 721, 42]], [["fileSystems", 721, 30], ["emptyDiskImages", 728, 30], ["rootDevice", 729, 30]], [["enable", 723, 35]], [["systemd", 723, 27]], [["initrd", 723, 20]], [["substituters", 805, 17], ["hashed-mirrors", 806, 17], ["connect-timeout", 807, 17]], [["package", 731, 19], ["settings", 804, 19]], [["enableAllFirmware", 732, 24]], [["zfsSupport", 789, 52]], [["zfsSupport", 790, 56]], [["extraDependencies", 736, 22]], [["imports", 711, 15], ["virtualisation", 721, 15], ["boot", 723, 15], ["nix", 731, 15], ["hardware", 732, 15], ["system", 736, 15]], [["keepVariables", 816, 32]], [["device", 819, 15], ["fsType", 820, 15]], [["/", 818, 40]], [["useBootLoader", 813, 28], ["useEFIBoot", 814, 28], ["useDefaultFilesystems", 815, 28], ["efi", 816, 28], ["fileSystems", 818, 28]], [["imports", 812, 13], ["virtualisation", 813, 13]], [["installer", 708, 11], ["target", 811, 11]], [["enable", 827, 15], ["listenStream", 828, 15], ["ipAddressAllow", 829, 15]], [["tang", 826, 22]], [["allowedTCPPorts", 831, 33]], [["firewall", 831, 24]], [["services", 826, 13], ["networking", 831, 13]], [["tang", 825, 11]], [["bootLoader", 837, 11], ["createPartitions", 838, 11], ["postInstallCommands", 839, 11], ["postBootCommands", 840, 11], ["grubDevice", 841, 11], ["grubIdentifier", 842, 11], ["grubUseEfi", 843, 11], ["extraConfig", 844, 11], ["testSpecialisationConfig", 845, 11], ["testFlakeSwitch", 846, 11], ["testByAttrSwitch", 847, 11], ["clevisTest", 848, 11], ["clevisAskpassTest", 849, 11], ["clevisFallbackTest", 850, 11], ["disableFileSystems", 851, 11]], [["enableOCR", 672, 15], ["passthru", 672, 25], ["name", 673, 7], ["meta", 674, 7], ["nodes", 684, 7], ["testScript", 835, 7]], [["createPartitions", 859, 7], ["enableOCR", 883, 7], ["postBootCommands", 884, 7]], [["createPartitions", 900, 5]], [["testFlakeSwitch", 915, 5]], [["testByAttrSwitch", 919, 5], ["broken", 920, 5]], [["testByAttrSwitch", 924, 5], ["testFlakeSwitch", 925, 5], ["broken", 926, 5]], [["createPartitions", 930, 5], ["bootLoader", 947, 5], ["grubUseEfi", 948, 5]], [["extraConfig", 952, 5], ["testSpecialisationConfig", 966, 5]], [["platforms", 973, 16]], [["meta", 973, 11]], [["zfs", 972, 9]], [["overlays", 970, 13]], [["nixpkgs", 970, 5]], [["supportedFilesystems", 989, 14]], [["systemPackages", 990, 21]], [["imports", 988, 9], ["boot", 989, 9], ["environment", 990, 9]], [["clevisTest", 984, 7], ["clevisFallbackTest", 985, 7], ["enableOCR", 986, 7], ["extraInstallerConfig", 987, 7], ["createPartitions", 995, 7], ["extraConfig", 1013, 7], ["postBootCommands", 1020, 7]], [["systemPackages", 1035, 21]], [["environment", 1035, 9]], [["clevisTest", 1031, 7], ["clevisFallbackTest", 1032, 7], ["enableOCR", 1033, 7], ["extraInstallerConfig", 1034, 7], ["createPartitions", 1037, 7], ["extraConfig", 1056, 7], ["postBootCommands", 1059, 7]], [["systemPackages", 1084, 21]], [["environment", 1084, 9]], [["clevisTest", 1079, 7], ["clevisAskpassTest", 1080, 7], ["clevisFallbackTest", 1081, 7], ["enableOCR", 1082, 7], ["extraInstallerConfig", 1083, 7], ["createPartitions", 1086, 7], ["postBootCommands", 1105, 7]], [["supportedFilesystems", 1123, 16]], [["hostId", 1124, 22]], [["systemPackages", 1125, 23]], [["boot", 1123, 11], ["networking", 1124, 11], ["environment", 1125, 11]], [["clevisTest", 1119, 9], ["clevisFallbackTest", 1120, 9], ["enableOCR", 1121, 9], ["extraInstallerConfig", 1122, 9], ["createPartitions", 1127, 9], ["extraConfig", 1153, 9], ["postBootCommands", 1170, 9]], [["override", 1195, 16]], [["passthru", 1195, 7]], [["createPartitions", 1212, 5], ["bootLoader", 1229, 5]], [["createPartitions", 1241, 5]], [["createPartitions", 1261, 5]], [["supportedFilesystems", 1282, 12]], [["hostId", 1283, 18]], [["boot", 1282, 7], ["networking", 1283, 7]], [["extraInstallerConfig", 1281, 5], ["extraConfig", 1286, 5], ["createPartitions", 1294, 5], ["postInstallCommands", 1346, 5]], [["supportedFilesystems", 1355, 12]], [["hostId", 1356, 18]], [["boot", 1355, 7], ["networking", 1356, 7]], [["extraInstallerConfig", 1354, 5], ["extraConfig", 1359, 5], ["createPartitions", 1369, 5]], [["createPartitions", 1395, 5], ["extraConfig", 1417, 5]], [["createPartitions", 1435, 5], ["extraConfig", 1459, 5]], [["createPartitions", 1474, 5], ["bootLoader", 1500, 5], ["grubUseEfi", 1501, 5], ["extraConfig", 1502, 5], ["enableOCR", 1512, 5], ["postBootCommands", 1513, 5]], [["maintainers", 1524, 10]], [["meta", 1524, 5], ["createPartitions", 1525, 5], ["bootLoader", 1545, 5], ["enableOCR", 1549, 5], ["extraConfig", 1550, 5], ["postBootCommands", 1558, 5]], [["createPartitions", 1567, 5], ["postBootCommands", 1597, 5]], [["createPartitions", 1603, 5]], [["supportedFilesystems", 1628, 12]], [["boot", 1628, 7], ["imports", 1629, 7]], [["extraInstallerConfig", 1627, 5], ["createPartitions", 1632, 5]], [["supportedFilesystems", 1652, 12]], [["systemPackages", 1657, 19]], [["boot", 1652, 7], ["imports", 1655, 7], ["environment", 1657, 7]], [["extraInstallerConfig", 1651, 5], ["extraConfig", 1660, 5], ["enableOCR", 1664, 5], ["postBootCommands", 1665, 5], ["createPartitions", 1674, 5]], [["supportedFilesystems", 1695, 12]], [["boot", 1695, 7], ["imports", 1698, 7]], [["extraInstallerConfig", 1694, 5], ["createPartitions", 1701, 5]], [["createPartitions", 1722, 5], ["grubIdentifier", 1732, 5]], [["createPartitions", 1738, 5], ["grubIdentifier", 1757, 5]], [["createPartitions", 1762, 5]], [["createPartitions", 1776, 5]], [["createPartitions", 1798, 5]], [["createPartitions", 1824, 5]], [["simple", 1192, 3], ["switchToFlake", 1199, 3], ["switchToByAttr", 1201, 3], ["switchFromByAttrToFlake", 1203, 3], ["simpleSpecialised", 1206, 3], ["simpleUefiSystemdBoot", 1211, 3], ["simpleUefiGrub", 1232, 3], ["simpleUefiGrubSpecialisation", 1235, 3], ["separateBoot", 1240, 3], ["separateBootFat", 1260, 3], ["separateBootZfs", 1280, 3], ["zfsroot", 1353, 3], ["lvm", 1394, 3], ["luksroot", 1423, 3], ["luksroot-format1", 1426, 3], ["luksroot-format2", 1429, 3], ["encryptedFSWithKeyfile", 1434, 3], ["fullDiskEncryption", 1473, 3], ["grubCryptodiskLegacyBios", 1523, 3], ["swraid", 1566, 3], ["bcache", 1602, 3], ["bcachefsSimple", 1626, 3], ["bcachefsEncrypted", 1650, 3], ["bcachefsMulti", 1693, 3], ["simpleLabels", 1721, 3], ["simpleProvided", 1737, 3], ["btrfsSimple", 1761, 3], ["btrfsSubvols", 1775, 3], ["btrfsSubvolDefault", 1797, 3], ["btrfsSubvolEscape", 1823, 3]], [["fallback", 1845, 51]], [["fallback", 1847, 43]], [["fallback", 1849, 41]], [["parentDataset", 1850, 46]], [["parentDataset", 1852, 5], ["fallback", 1853, 5]], [["clevisBcachefs", 1844, 3], ["clevisBcachefsFallback", 1845, 3], ["clevisLuks", 1846, 3], ["clevisLuksFallback", 1847, 3], ["clevisZfs", 1848, 3], ["clevisZfsFallback", 1849, 3], ["clevisZfsParentDataset", 1850, 3], ["clevisZfsParentDatasetFallback", 1851, 3]], [["fallback", 1858, 57]], [["enable", 1886, 28]], [["stratis", 1886, 20]], [["systemPackages", 1887, 23]], [["services", 1886, 11], ["environment", 1887, 11]], [["config", 1885, 9]], [["createPartitions", 1861, 5], ["bootLoader", 1881, 5], ["extraInstallerConfig", 1882, 5]], [["ia32", 1901, 11], ["x64", 1902, 11], ["arm", 1903, 11], ["aa64", 1904, 11]], [["disableFileSystems", 1909, 7], ["createPartitions", 1910, 7], ["bootLoader", 1929, 7], ["extraConfig", 1930, 7]], [["clevisLuksAskpass", 1857, 3], ["clevisLuksAskpassFallback", 1858, 3], ["stratisRoot", 1860, 3], ["gptAutoRoot", 1897, 3]]]);
 const formals$1 = { args: { system: true, config: true, pkgs: true, systemdStage1: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/installer.nix", [["system", 4, 33], ["config", 4, 40]]);
-const pos$2 = nix.positions(here + "/installer.nix", [["system", 8, 49], ["pkgs", 8, 56]]);
 const formals$2 = { args: { bootLoader: false, grubDevice: false, grubIdentifier: false, grubUseEfi: false, extraConfig: false, forceGrubReinstallCount: true, withTestInstrumentation: true, clevisTest: false, clevisAskpassTest: true }, ellipsis: false };
 const formals$3 = { args: { bootLoader: false, createPartitions: false, grubDevice: false, grubUseEfi: false, grubIdentifier: false, postInstallCommands: false, postBootCommands: false, extraConfig: false, testSpecialisationConfig: false, testFlakeSwitch: false, testByAttrSwitch: false, clevisTest: false, clevisAskpassTest: true, clevisFallbackTest: false, disableFileSystems: false }, ellipsis: false };
-const pos$3 = nix.positions(here + "/installer.nix", [["bootLoader", 194, 21], ["grubDevice", 195, 21], ["grubIdentifier", 196, 21], ["grubUseEfi", 197, 21], ["extraConfig", 198, 21], ["clevisTest", 199, 21], ["clevisAskpassTest", 200, 21]]);
-const pos$4 = nix.positions(here + "/installer.nix", [["bootLoader", 297, 21], ["grubDevice", 298, 21], ["grubIdentifier", 299, 21], ["grubUseEfi", 300, 21], ["extraConfig", 301, 21], ["clevisTest", 302, 21], ["clevisAskpassTest", 303, 21], ["forceGrubReinstallCount", 305, 19]]);
-const pos$5 = nix.positions(here + "/installer.nix", [["bootLoader", 331, 17], ["grubDevice", 332, 17], ["grubIdentifier", 333, 17], ["grubUseEfi", 334, 17], ["extraConfig", 335, 17], ["clevisTest", 336, 17], ["clevisAskpassTest", 337, 17], ["forceGrubReinstallCount", 339, 15]]);
-const pos$6 = nix.positions(here + "/installer.nix", [["bootLoader", 400, 17], ["grubDevice", 401, 17], ["grubIdentifier", 402, 17], ["grubUseEfi", 403, 17], ["extraConfig", 404, 17], ["clevisTest", 405, 17], ["clevisAskpassTest", 406, 17], ["forceGrubReinstallCount", 408, 15], ["withTestInstrumentation", 409, 15]]);
-const pos$7 = nix.positions(here + "/installer.nix", [["bootLoader", 499, 17], ["grubDevice", 500, 17], ["grubIdentifier", 501, 17], ["grubUseEfi", 502, 17], ["extraConfig", 503, 17], ["clevisTest", 504, 17], ["clevisAskpassTest", 505, 17], ["forceGrubReinstallCount", 507, 15]]);
-const pos$8 = nix.positions(here + "/installer.nix", [["bootLoader", 536, 17], ["grubDevice", 537, 17], ["grubIdentifier", 538, 17], ["grubUseEfi", 539, 17], ["extraConfig", 540, 17], ["clevisTest", 541, 17], ["clevisAskpassTest", 542, 17], ["forceGrubReinstallCount", 544, 15], ["withTestInstrumentation", 545, 15]]);
 const formals$4 = { args: { createPartitions: false, postInstallCommands: true, postBootCommands: true, extraConfig: true, extraInstallerConfig: true, bootLoader: true, grubDevice: true, grubIdentifier: true, grubUseEfi: true, enableOCR: true, meta: true, passthru: true, testSpecialisationConfig: true, testFlakeSwitch: true, testByAttrSwitch: true, clevisTest: true, clevisAskpassTest: true, clevisFallbackTest: true, disableFileSystems: true, selectNixPackage: true, broken: true }, ellipsis: false };
-const pos$9 = nix.positions(here + "/installer.nix", [["maintainers", 676, 9], ["platforms", 678, 9], ["broken", 682, 17]]);
-const pos$10 = nix.positions(here + "/installer.nix", [["enable", 688, 17]]);
-const pos$11 = nix.positions(here + "/installer.nix", [["options", 699, 33]]);
-const pos$12 = nix.positions(here + "/installer.nix", [["diskSize", 691, 28], ["cores", 692, 28], ["memorySize", 693, 28], ["diskImage", 696, 28], ["qemu", 699, 28]]);
-const pos$13 = nix.positions(here + "/installer.nix", [["nix", 688, 13], ["virtualisation", 691, 13]]);
 const formals$5 = { args: { config: false, pkgs: false }, ellipsis: true };
-const pos$14 = nix.positions(here + "/installer.nix", [["autoFormat", 721, 46]]);
-const pos$15 = nix.positions(here + "/installer.nix", [["/", 721, 42]]);
-const pos$16 = nix.positions(here + "/installer.nix", [["fileSystems", 721, 30], ["emptyDiskImages", 728, 30], ["rootDevice", 729, 30]]);
-const pos$17 = nix.positions(here + "/installer.nix", [["enable", 723, 35]]);
-const pos$18 = nix.positions(here + "/installer.nix", [["systemd", 723, 27]]);
-const pos$19 = nix.positions(here + "/installer.nix", [["initrd", 723, 20]]);
-const pos$20 = nix.positions(here + "/installer.nix", [["substituters", 805, 17], ["hashed-mirrors", 806, 17], ["connect-timeout", 807, 17]]);
-const pos$21 = nix.positions(here + "/installer.nix", [["package", 731, 19], ["settings", 804, 19]]);
-const pos$22 = nix.positions(here + "/installer.nix", [["enableAllFirmware", 732, 24]]);
-const pos$23 = nix.positions(here + "/installer.nix", [["zfsSupport", 789, 52]]);
-const pos$24 = nix.positions(here + "/installer.nix", [["zfsSupport", 790, 56]]);
-const pos$25 = nix.positions(here + "/installer.nix", [["extraDependencies", 736, 22]]);
-const pos$26 = nix.positions(here + "/installer.nix", [["imports", 711, 15], ["virtualisation", 721, 15], ["boot", 723, 15], ["nix", 731, 15], ["hardware", 732, 15], ["system", 736, 15]]);
-const pos$27 = nix.positions(here + "/installer.nix", [["keepVariables", 816, 32]]);
-const pos$28 = nix.positions(here + "/installer.nix", [["device", 819, 15], ["fsType", 820, 15]]);
-const pos$29 = nix.positions(here + "/installer.nix", [["/", 818, 40]]);
-const pos$30 = nix.positions(here + "/installer.nix", [["useBootLoader", 813, 28], ["useEFIBoot", 814, 28], ["useDefaultFilesystems", 815, 28], ["efi", 816, 28], ["fileSystems", 818, 28]]);
-const pos$31 = nix.positions(here + "/installer.nix", [["imports", 812, 13], ["virtualisation", 813, 13]]);
-const pos$32 = nix.positions(here + "/installer.nix", [["installer", 708, 11], ["target", 811, 11]]);
-const pos$33 = nix.positions(here + "/installer.nix", [["enable", 827, 15], ["listenStream", 828, 15], ["ipAddressAllow", 829, 15]]);
-const pos$34 = nix.positions(here + "/installer.nix", [["tang", 826, 22]]);
-const pos$35 = nix.positions(here + "/installer.nix", [["allowedTCPPorts", 831, 33]]);
-const pos$36 = nix.positions(here + "/installer.nix", [["firewall", 831, 24]]);
-const pos$37 = nix.positions(here + "/installer.nix", [["services", 826, 13], ["networking", 831, 13]]);
-const pos$38 = nix.positions(here + "/installer.nix", [["tang", 825, 11]]);
-const pos$39 = nix.positions(here + "/installer.nix", [["bootLoader", 837, 11], ["createPartitions", 838, 11], ["postInstallCommands", 839, 11], ["postBootCommands", 840, 11], ["grubDevice", 841, 11], ["grubIdentifier", 842, 11], ["grubUseEfi", 843, 11], ["extraConfig", 844, 11], ["testSpecialisationConfig", 845, 11], ["testFlakeSwitch", 846, 11], ["testByAttrSwitch", 847, 11], ["clevisTest", 848, 11], ["clevisAskpassTest", 849, 11], ["clevisFallbackTest", 850, 11], ["disableFileSystems", 851, 11]]);
-const pos$40 = nix.positions(here + "/installer.nix", [["enableOCR", 672, 15], ["passthru", 672, 25], ["name", 673, 7], ["meta", 674, 7], ["nodes", 684, 7], ["testScript", 835, 7]]);
-const pos$41 = nix.positions(here + "/installer.nix", [["createPartitions", 859, 7], ["enableOCR", 883, 7], ["postBootCommands", 884, 7]]);
-const pos$42 = nix.positions(here + "/installer.nix", [["createPartitions", 900, 5]]);
-const pos$43 = nix.positions(here + "/installer.nix", [["testFlakeSwitch", 915, 5]]);
-const pos$44 = nix.positions(here + "/installer.nix", [["testByAttrSwitch", 919, 5], ["broken", 920, 5]]);
-const pos$45 = nix.positions(here + "/installer.nix", [["testByAttrSwitch", 924, 5], ["testFlakeSwitch", 925, 5], ["broken", 926, 5]]);
-const pos$46 = nix.positions(here + "/installer.nix", [["createPartitions", 930, 5], ["bootLoader", 947, 5], ["grubUseEfi", 948, 5]]);
-const pos$47 = nix.positions(here + "/installer.nix", [["extraConfig", 952, 5], ["testSpecialisationConfig", 966, 5]]);
-const pos$48 = nix.positions(here + "/installer.nix", [["platforms", 973, 16]]);
-const pos$49 = nix.positions(here + "/installer.nix", [["meta", 973, 11]]);
-const pos$50 = nix.positions(here + "/installer.nix", [["zfs", 972, 9]]);
-const pos$51 = nix.positions(here + "/installer.nix", [["overlays", 970, 13]]);
-const pos$52 = nix.positions(here + "/installer.nix", [["nixpkgs", 970, 5]]);
 const formals$6 = { args: { fallback: true }, ellipsis: false };
-const pos$53 = nix.positions(here + "/installer.nix", [["supportedFilesystems", 989, 14]]);
-const pos$54 = nix.positions(here + "/installer.nix", [["systemPackages", 990, 21]]);
-const pos$55 = nix.positions(here + "/installer.nix", [["imports", 988, 9], ["boot", 989, 9], ["environment", 990, 9]]);
-const pos$56 = nix.positions(here + "/installer.nix", [["clevisTest", 984, 7], ["clevisFallbackTest", 985, 7], ["enableOCR", 986, 7], ["extraInstallerConfig", 987, 7], ["createPartitions", 995, 7], ["extraConfig", 1013, 7], ["postBootCommands", 1020, 7]]);
 const formals$7 = { args: { fallback: true }, ellipsis: false };
-const pos$57 = nix.positions(here + "/installer.nix", [["systemPackages", 1035, 21]]);
-const pos$58 = nix.positions(here + "/installer.nix", [["environment", 1035, 9]]);
-const pos$59 = nix.positions(here + "/installer.nix", [["clevisTest", 1031, 7], ["clevisFallbackTest", 1032, 7], ["enableOCR", 1033, 7], ["extraInstallerConfig", 1034, 7], ["createPartitions", 1037, 7], ["extraConfig", 1056, 7], ["postBootCommands", 1059, 7]]);
 const formals$8 = { args: { fallback: true }, ellipsis: false };
-const pos$60 = nix.positions(here + "/installer.nix", [["systemPackages", 1084, 21]]);
-const pos$61 = nix.positions(here + "/installer.nix", [["environment", 1084, 9]]);
-const pos$62 = nix.positions(here + "/installer.nix", [["clevisTest", 1079, 7], ["clevisAskpassTest", 1080, 7], ["clevisFallbackTest", 1081, 7], ["enableOCR", 1082, 7], ["extraInstallerConfig", 1083, 7], ["createPartitions", 1086, 7], ["postBootCommands", 1105, 7]]);
 const formals$9 = { args: { fallback: true, parentDataset: true }, ellipsis: false };
-const pos$63 = nix.positions(here + "/installer.nix", [["supportedFilesystems", 1123, 16]]);
-const pos$64 = nix.positions(here + "/installer.nix", [["hostId", 1124, 22]]);
-const pos$65 = nix.positions(here + "/installer.nix", [["systemPackages", 1125, 23]]);
-const pos$66 = nix.positions(here + "/installer.nix", [["boot", 1123, 11], ["networking", 1124, 11], ["environment", 1125, 11]]);
-const pos$67 = nix.positions(here + "/installer.nix", [["clevisTest", 1119, 9], ["clevisFallbackTest", 1120, 9], ["enableOCR", 1121, 9], ["extraInstallerConfig", 1122, 9], ["createPartitions", 1127, 9], ["extraConfig", 1153, 9], ["postBootCommands", 1170, 9]]);
-const pos$68 = nix.positions(here + "/installer.nix", [["override", 1195, 16]]);
-const pos$69 = nix.positions(here + "/installer.nix", [["passthru", 1195, 7]]);
-const pos$70 = nix.positions(here + "/installer.nix", [["createPartitions", 1212, 5], ["bootLoader", 1229, 5]]);
-const pos$71 = nix.positions(here + "/installer.nix", [["createPartitions", 1241, 5]]);
-const pos$72 = nix.positions(here + "/installer.nix", [["createPartitions", 1261, 5]]);
-const pos$73 = nix.positions(here + "/installer.nix", [["supportedFilesystems", 1282, 12]]);
-const pos$74 = nix.positions(here + "/installer.nix", [["hostId", 1283, 18]]);
-const pos$75 = nix.positions(here + "/installer.nix", [["boot", 1282, 7], ["networking", 1283, 7]]);
-const pos$76 = nix.positions(here + "/installer.nix", [["extraInstallerConfig", 1281, 5], ["extraConfig", 1286, 5], ["createPartitions", 1294, 5], ["postInstallCommands", 1346, 5]]);
-const pos$77 = nix.positions(here + "/installer.nix", [["supportedFilesystems", 1355, 12]]);
-const pos$78 = nix.positions(here + "/installer.nix", [["hostId", 1356, 18]]);
-const pos$79 = nix.positions(here + "/installer.nix", [["boot", 1355, 7], ["networking", 1356, 7]]);
-const pos$80 = nix.positions(here + "/installer.nix", [["extraInstallerConfig", 1354, 5], ["extraConfig", 1359, 5], ["createPartitions", 1369, 5]]);
-const pos$81 = nix.positions(here + "/installer.nix", [["createPartitions", 1395, 5], ["extraConfig", 1417, 5]]);
-const pos$82 = nix.positions(here + "/installer.nix", [["createPartitions", 1435, 5], ["extraConfig", 1459, 5]]);
-const pos$83 = nix.positions(here + "/installer.nix", [["createPartitions", 1474, 5], ["bootLoader", 1500, 5], ["grubUseEfi", 1501, 5], ["extraConfig", 1502, 5], ["enableOCR", 1512, 5], ["postBootCommands", 1513, 5]]);
-const pos$84 = nix.positions(here + "/installer.nix", [["maintainers", 1524, 10]]);
-const pos$85 = nix.positions(here + "/installer.nix", [["meta", 1524, 5], ["createPartitions", 1525, 5], ["bootLoader", 1545, 5], ["enableOCR", 1549, 5], ["extraConfig", 1550, 5], ["postBootCommands", 1558, 5]]);
-const pos$86 = nix.positions(here + "/installer.nix", [["createPartitions", 1567, 5], ["postBootCommands", 1597, 5]]);
-const pos$87 = nix.positions(here + "/installer.nix", [["createPartitions", 1603, 5]]);
-const pos$88 = nix.positions(here + "/installer.nix", [["supportedFilesystems", 1628, 12]]);
-const pos$89 = nix.positions(here + "/installer.nix", [["boot", 1628, 7], ["imports", 1629, 7]]);
-const pos$90 = nix.positions(here + "/installer.nix", [["extraInstallerConfig", 1627, 5], ["createPartitions", 1632, 5]]);
-const pos$91 = nix.positions(here + "/installer.nix", [["supportedFilesystems", 1652, 12]]);
-const pos$92 = nix.positions(here + "/installer.nix", [["systemPackages", 1657, 19]]);
-const pos$93 = nix.positions(here + "/installer.nix", [["boot", 1652, 7], ["imports", 1655, 7], ["environment", 1657, 7]]);
-const pos$94 = nix.positions(here + "/installer.nix", [["extraInstallerConfig", 1651, 5], ["extraConfig", 1660, 5], ["enableOCR", 1664, 5], ["postBootCommands", 1665, 5], ["createPartitions", 1674, 5]]);
-const pos$95 = nix.positions(here + "/installer.nix", [["supportedFilesystems", 1695, 12]]);
-const pos$96 = nix.positions(here + "/installer.nix", [["boot", 1695, 7], ["imports", 1698, 7]]);
-const pos$97 = nix.positions(here + "/installer.nix", [["extraInstallerConfig", 1694, 5], ["createPartitions", 1701, 5]]);
-const pos$98 = nix.positions(here + "/installer.nix", [["createPartitions", 1722, 5], ["grubIdentifier", 1732, 5]]);
-const pos$99 = nix.positions(here + "/installer.nix", [["createPartitions", 1738, 5], ["grubIdentifier", 1757, 5]]);
-const pos$100 = nix.positions(here + "/installer.nix", [["createPartitions", 1762, 5]]);
-const pos$101 = nix.positions(here + "/installer.nix", [["createPartitions", 1776, 5]]);
-const pos$102 = nix.positions(here + "/installer.nix", [["createPartitions", 1798, 5]]);
-const pos$103 = nix.positions(here + "/installer.nix", [["createPartitions", 1824, 5]]);
-const pos$104 = nix.positions(here + "/installer.nix", [["simple", 1192, 3], ["switchToFlake", 1199, 3], ["switchToByAttr", 1201, 3], ["switchFromByAttrToFlake", 1203, 3], ["simpleSpecialised", 1206, 3], ["simpleUefiSystemdBoot", 1211, 3], ["simpleUefiGrub", 1232, 3], ["simpleUefiGrubSpecialisation", 1235, 3], ["separateBoot", 1240, 3], ["separateBootFat", 1260, 3], ["separateBootZfs", 1280, 3], ["zfsroot", 1353, 3], ["lvm", 1394, 3], ["luksroot", 1423, 3], ["luksroot-format1", 1426, 3], ["luksroot-format2", 1429, 3], ["encryptedFSWithKeyfile", 1434, 3], ["fullDiskEncryption", 1473, 3], ["grubCryptodiskLegacyBios", 1523, 3], ["swraid", 1566, 3], ["bcache", 1602, 3], ["bcachefsSimple", 1626, 3], ["bcachefsEncrypted", 1650, 3], ["bcachefsMulti", 1693, 3], ["simpleLabels", 1721, 3], ["simpleProvided", 1737, 3], ["btrfsSimple", 1761, 3], ["btrfsSubvols", 1775, 3], ["btrfsSubvolDefault", 1797, 3], ["btrfsSubvolEscape", 1823, 3]]);
-const pos$105 = nix.positions(here + "/installer.nix", [["fallback", 1845, 51]]);
-const pos$106 = nix.positions(here + "/installer.nix", [["fallback", 1847, 43]]);
-const pos$107 = nix.positions(here + "/installer.nix", [["fallback", 1849, 41]]);
-const pos$108 = nix.positions(here + "/installer.nix", [["parentDataset", 1850, 46]]);
-const pos$109 = nix.positions(here + "/installer.nix", [["parentDataset", 1852, 5], ["fallback", 1853, 5]]);
-const pos$110 = nix.positions(here + "/installer.nix", [["clevisBcachefs", 1844, 3], ["clevisBcachefsFallback", 1845, 3], ["clevisLuks", 1846, 3], ["clevisLuksFallback", 1847, 3], ["clevisZfs", 1848, 3], ["clevisZfsFallback", 1849, 3], ["clevisZfsParentDataset", 1850, 3], ["clevisZfsParentDatasetFallback", 1851, 3]]);
-const pos$111 = nix.positions(here + "/installer.nix", [["fallback", 1858, 57]]);
 const formals$10 = { args: { modulesPath: false }, ellipsis: true };
-const pos$112 = nix.positions(here + "/installer.nix", [["enable", 1886, 28]]);
-const pos$113 = nix.positions(here + "/installer.nix", [["stratis", 1886, 20]]);
-const pos$114 = nix.positions(here + "/installer.nix", [["systemPackages", 1887, 23]]);
-const pos$115 = nix.positions(here + "/installer.nix", [["services", 1886, 11], ["environment", 1887, 11]]);
-const pos$116 = nix.positions(here + "/installer.nix", [["config", 1885, 9]]);
-const pos$117 = nix.positions(here + "/installer.nix", [["createPartitions", 1861, 5], ["bootLoader", 1881, 5], ["extraInstallerConfig", 1882, 5]]);
-const pos$118 = nix.positions(here + "/installer.nix", [["ia32", 1901, 11], ["x64", 1902, 11], ["arm", 1903, 11], ["aa64", 1904, 11]]);
-const pos$119 = nix.positions(here + "/installer.nix", [["disableFileSystems", 1909, 7], ["createPartitions", 1910, 7], ["bootLoader", 1929, 7], ["extraConfig", 1930, 7]]);
-const pos$120 = nix.positions(here + "/installer.nix", [["clevisLuksAskpass", 1857, 3], ["clevisLuksAskpassFallback", 1858, 3], ["stratisRoot", 1860, 3], ["gptAutoRoot", 1897, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const system = nix.argOr($, "system", () => nix.builtins.currentSystem);
   const config = nix.argOr($, "config", () => ({}));
-  const pkgs = nix.argOr($, "pkgs", () => nix.app(nix.builtins.import(nix.path(here, "../..")), nix.thunk(() => ({ [nix.POS]: pos$1, system: system, config: config }))));
+  const pkgs = nix.argOr($, "pkgs", () => nix.app(nix.builtins.import(nix.path(here, "../..")), nix.thunk(() => ({ [nix.POS]: $pos[0], system: system, config: config }))));
   const systemdStage1 = nix.arg($, "systemdStage1");
-  const w = nix.withScope(nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../lib/testing-python.nix")), nix.thunk(() => ({ [nix.POS]: pos$2, system: system, pkgs: pkgs })))), null);
+  const w = nix.withScope(nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../lib/testing-python.nix")), nix.thunk(() => ({ [nix.POS]: $pos[1], system: system, pkgs: pkgs })))), null);
   const w_1 = nix.withScope(nix.thunk(() => nix.sel(pkgs, "lib")), w);
   const makeConfig = nix.lambda((args_1) => (() => {
     const $_1 = nix.formals(args_1, formals$2);
@@ -276,7 +157,7 @@ with subtest("Create the NixOS configuration"):
     installer.succeed("cat /mnt/etc/nixos/hardware-configuration.nix >&2")
     installer.copy_from_host(
         "${nix.app(makeConfig, nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         bootLoader: bootLoader,
         grubDevice: grubDevice,
         grubIdentifier: grubIdentifier,
@@ -357,7 +238,7 @@ with subtest("Configure system with writable Nix store on next boot"):
     # doesn't know about the host-guest sharing mechanism.
     target.copy_from_host_via_shell(
         "${nix.app(makeConfig, nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         bootLoader: bootLoader,
         grubDevice: grubDevice,
         grubIdentifier: grubIdentifier,
@@ -388,7 +269,7 @@ ${startTarget}
 # doesn't know about the host-guest sharing mechanism.
 target.copy_from_host_via_shell(
     "${nix.app(makeConfig, nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         bootLoader: bootLoader,
         grubDevice: grubDevice,
         grubIdentifier: grubIdentifier,
@@ -450,7 +331,7 @@ target.shutdown()
   """)
   target.copy_from_host_via_shell(
     "${nix.app(makeConfig, nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           bootLoader: bootLoader,
           grubDevice: grubDevice,
           grubIdentifier: grubIdentifier,
@@ -544,7 +425,7 @@ with subtest("Restore /etc/nixos"):
   """)
   target.copy_from_host_via_shell(
     "${nix.app(makeConfig, nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           bootLoader: bootLoader,
           grubDevice: grubDevice,
           grubIdentifier: grubIdentifier,
@@ -573,7 +454,7 @@ with subtest("Configure system with flake"):
   """)
   target.copy_from_host_via_shell(
     "${nix.app(makeConfig, nix.thunk(() => ({
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           bootLoader: bootLoader,
           grubDevice: grubDevice,
           grubIdentifier: grubIdentifier,
@@ -704,28 +585,28 @@ target.shutdown()
     const broken = nix.argOr($_1, "broken", () => false);
     const isEfi = nix.thunk(() => (nix.asBool(nix.eq(bootLoader, "systemd-boot")) || nix.asBool((nix.asBool(nix.eq(bootLoader, "grub")) && nix.asBool(grubUseEfi)))));
     return nix.app(nix.lookup(w_1, "makeTest"), nix.thunk(() => ({
-        [nix.POS]: pos$40,
+        [nix.POS]: $pos[39],
         enableOCR: enableOCR,
         passthru: passthru,
         name: nix.thunk(() => nix.add("installer-", name)),
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           maintainers: nix.thunk(() => nix.selOr(meta, () => [], "maintainers")),
           platforms: nix.thunk(() => nix.app(nix.lookup(w_1, "mkIf"), nix.thunk(() => !nix.asBool(isEfi)), nix.thunk(() => ["x86_64-linux", "i686-linux"]))),
           broken: broken,
         })),
         nodes: nix.thunk(() => (() => {
           const commonConfig = nix.thunk(() => ({
-            [nix.POS]: pos$13,
-            nix: nix.thunk(() => ({ [nix.POS]: pos$10, enable: true })),
+            [nix.POS]: $pos[12],
+            nix: nix.thunk(() => ({ [nix.POS]: $pos[9], enable: true })),
             virtualisation: nix.thunk(() => ({
-              [nix.POS]: pos$12,
+              [nix.POS]: $pos[11],
               diskSize: nix.thunk(() => nix.mul(12n, 1024n)),
               cores: 8n,
               memorySize: 2048n,
               diskImage: "./target.qcow2",
               qemu: nix.thunk(() => ({
-                [nix.POS]: pos$11,
+                [nix.POS]: $pos[10],
                 options: nix.thunk(() => nix.app(nix.lookup(w_1, "mkIf"), clevisTest, nix.thunk(() => [
                     "-chardev socket,id=chrtpm,path=$NIX_BUILD_TOP/swtpm-sock",
                     "-tpmdev emulator,id=tpm0,chardev=chrtpm",
@@ -735,13 +616,13 @@ target.shutdown()
             })),
           }));
           return nix.update({
-            [nix.POS]: pos$32,
+            [nix.POS]: $pos[31],
             installer: nix.lambda((args_2) => (() => {
               const $_2 = nix.formals(args_2, formals$5);
               const config_1 = nix.arg($_2, "config");
               const pkgs_1 = nix.arg($_2, "pkgs");
               return {
-                [nix.POS]: pos$26,
+                [nix.POS]: $pos[25],
                 imports: nix.thunk(() => [
                   commonConfig,
                   nix.path(here, "../modules/profiles/installation-device.nix"),
@@ -750,37 +631,37 @@ target.shutdown()
                   nix.path(here, "./common/auto-format-root-device.nix"),
                 ]),
                 virtualisation: nix.thunk(() => ({
-                  [nix.POS]: pos$16,
+                  [nix.POS]: $pos[15],
                   fileSystems: nix.thunk(() => ({
-                    [nix.POS]: pos$15,
-                    "/": nix.thunk(() => ({ [nix.POS]: pos$14, autoFormat: systemdStage1 })),
+                    [nix.POS]: $pos[14],
+                    "/": nix.thunk(() => ({ [nix.POS]: $pos[13], autoFormat: systemdStage1 })),
                   })),
                   emptyDiskImages: nix.thunk(() => [1024n]),
                   rootDevice: "/dev/vdb",
                 })),
                 boot: nix.thunk(() => ({
-                  [nix.POS]: pos$19,
+                  [nix.POS]: $pos[18],
                   initrd: nix.thunk(() => ({
-                    [nix.POS]: pos$18,
-                    systemd: nix.thunk(() => ({ [nix.POS]: pos$17, enable: systemdStage1 })),
+                    [nix.POS]: $pos[17],
+                    systemd: nix.thunk(() => ({ [nix.POS]: $pos[16], enable: systemdStage1 })),
                   })),
                 })),
                 nix: nix.thunk(() => ({
-                  [nix.POS]: pos$21,
+                  [nix.POS]: $pos[20],
                   package: nix.thunk(() => nix.app(selectNixPackage, pkgs_1)),
                   settings: nix.thunk(() => ({
-                    [nix.POS]: pos$20,
+                    [nix.POS]: $pos[19],
                     substituters: nix.thunk(() => nix.app(nix.lookup(w_1, "mkForce"), [])),
                     "hashed-mirrors": null,
                     "connect-timeout": 1n,
                   })),
                 })),
                 hardware: nix.thunk(() => ({
-                  [nix.POS]: pos$22,
+                  [nix.POS]: $pos[21],
                   enableAllFirmware: nix.thunk(() => nix.app(nix.lookup(w_1, "mkForce"), false)),
                 })),
                 system: nix.thunk(() => ({
-                  [nix.POS]: pos$25,
+                  [nix.POS]: $pos[24],
                   extraDependencies: nix.thunk(() => (() => {
                     const w_2 = nix.withScope(pkgs_1, w_1);
                     return nix.concat([
@@ -820,8 +701,8 @@ target.shutdown()
                     ], nix.concat(nix.app(nix.lookup(w_2, "optionals"), nix.thunk(() => nix.eq(bootLoader, "grub")), nix.thunk(() => (() => {
                         const zfsSupport = nix.thunk(() => nix.selOr(extraInstallerConfig, () => false, "boot", "supportedFilesystems", "zfs"));
                         return [
-                          nix.thunk(() => nix.app(nix.sel(pkgs_1, "grub2", "override"), nix.thunk(() => ({ [nix.POS]: pos$23, zfsSupport: zfsSupport })))),
-                          nix.thunk(() => nix.app(nix.sel(pkgs_1, "grub2_efi", "override"), nix.thunk(() => ({ [nix.POS]: pos$24, zfsSupport: zfsSupport })))),
+                          nix.thunk(() => nix.app(nix.sel(pkgs_1, "grub2", "override"), nix.thunk(() => ({ [nix.POS]: $pos[22], zfsSupport: zfsSupport })))),
+                          nix.thunk(() => nix.app(nix.sel(pkgs_1, "grub2_efi", "override"), nix.thunk(() => ({ [nix.POS]: $pos[23], zfsSupport: zfsSupport })))),
                           nix.thunk(() => nix.sel(pkgs_1, "nixos-artwork", "wallpapers", "simple-dark-gray-bootloader")),
                           nix.thunk(() => nix.sel(pkgs_1, "perlPackages", "FileCopyRecursive")),
                           nix.thunk(() => nix.sel(pkgs_1, "perlPackages", "XMLSAX")),
@@ -836,18 +717,18 @@ target.shutdown()
               };
             })(), formals$5),
             target: nix.thunk(() => ({
-              [nix.POS]: pos$31,
+              [nix.POS]: $pos[30],
               imports: nix.thunk(() => [commonConfig]),
               virtualisation: nix.thunk(() => ({
-                [nix.POS]: pos$30,
+                [nix.POS]: $pos[29],
                 useBootLoader: true,
                 useEFIBoot: isEfi,
                 useDefaultFilesystems: false,
-                efi: nix.thunk(() => ({ [nix.POS]: pos$27, keepVariables: false })),
+                efi: nix.thunk(() => ({ [nix.POS]: $pos[26], keepVariables: false })),
                 fileSystems: nix.thunk(() => ({
-                  [nix.POS]: pos$29,
+                  [nix.POS]: $pos[28],
                   "/": nix.thunk(() => ({
-                    [nix.POS]: pos$28,
+                    [nix.POS]: $pos[27],
                     device: "/dev/disk/by-label/this-is-not-real-and-will-never-be-used",
                     fsType: "ext4",
                   })),
@@ -855,27 +736,27 @@ target.shutdown()
               })),
             })),
           }, nix.app(nix.lookup(w_1, "optionalAttrs"), clevisTest, nix.thunk(() => ({
-              [nix.POS]: pos$38,
+              [nix.POS]: $pos[37],
               tang: nix.thunk(() => ({
-                [nix.POS]: pos$37,
+                [nix.POS]: $pos[36],
                 services: nix.thunk(() => ({
-                  [nix.POS]: pos$34,
+                  [nix.POS]: $pos[33],
                   tang: nix.thunk(() => ({
-                    [nix.POS]: pos$33,
+                    [nix.POS]: $pos[32],
                     enable: true,
                     listenStream: nix.thunk(() => ["80"]),
                     ipAddressAllow: nix.thunk(() => ["192.168.1.0/24"]),
                   })),
                 })),
                 networking: nix.thunk(() => ({
-                  [nix.POS]: pos$36,
-                  firewall: nix.thunk(() => ({ [nix.POS]: pos$35, allowedTCPPorts: nix.thunk(() => [80n]) })),
+                  [nix.POS]: $pos[35],
+                  firewall: nix.thunk(() => ({ [nix.POS]: $pos[34], allowedTCPPorts: nix.thunk(() => [80n]) })),
                 })),
               })),
             }))));
         })()),
         testScript: nix.thunk(() => nix.app(testScriptFun, nix.thunk(() => ({
-            [nix.POS]: pos$39,
+            [nix.POS]: $pos[38],
             bootLoader: bootLoader,
             createPartitions: createPartitions,
             postInstallCommands: postInstallCommands,
@@ -895,7 +776,7 @@ target.shutdown()
       })));
   })(), formals$4);
   const makeLuksRootTest = (name) => (luksFormatOpts) => nix.app(makeInstallerTest, name, nix.thunk(() => ({
-      [nix.POS]: pos$41,
+      [nix.POS]: $pos[40],
       createPartitions: nix.thunk(() => nix.str`installer.succeed(
     "flock /dev/vda parted --script /dev/vda -- mklabel msdos"
     + " mkpart primary ext2 1M 100MB"  # /boot
@@ -918,38 +799,38 @@ target.shutdown()
       postBootCommands: nix.thunk(() => (nix.asBool(systemdStage1) ? "target.wait_for_console_text(\"passphrase for\")\ntarget.send_console(\"supersecret\\n\")\n" : "target.wait_for_text(\"[Pp]assphrase for\")\ntarget.send_chars(\"supersecret\\n\")\n")),
     })));
   const simple_test_config = nix.thunk(() => ({
-    [nix.POS]: pos$42,
+    [nix.POS]: $pos[41],
     createPartitions: "installer.succeed(\n    \"flock /dev/vda parted --script /dev/vda -- mklabel msdos\"\n    + \" mkpart primary linux-swap 1M 1024M\"\n    + \" mkpart primary ext2 1024M -1s\",\n    \"udevadm settle\",\n    \"mkswap /dev/vda1 -L swap\",\n    \"swapon -L swap\",\n    \"mkfs.ext3 -L nixos /dev/vda2\",\n    \"mount LABEL=nixos /mnt\",\n)\n",
   }));
-  const simple_test_config_flake = nix.thunk(() => nix.update(simple_test_config, { [nix.POS]: pos$43, testFlakeSwitch: true }));
-  const simple_test_config_by_attr = nix.thunk(() => nix.update(simple_test_config, { [nix.POS]: pos$44, testByAttrSwitch: true, broken: true }));
+  const simple_test_config_flake = nix.thunk(() => nix.update(simple_test_config, { [nix.POS]: $pos[42], testFlakeSwitch: true }));
+  const simple_test_config_by_attr = nix.thunk(() => nix.update(simple_test_config, { [nix.POS]: $pos[43], testByAttrSwitch: true, broken: true }));
   const simple_test_config_from_by_attr_to_flake = nix.thunk(() => nix.update(simple_test_config, {
-    [nix.POS]: pos$45,
+    [nix.POS]: $pos[44],
     testByAttrSwitch: true,
     testFlakeSwitch: true,
     broken: true,
   }));
   const simple_uefi_grub_config = nix.thunk(() => ({
-    [nix.POS]: pos$46,
+    [nix.POS]: $pos[45],
     createPartitions: "installer.succeed(\n    \"flock /dev/vda parted --script /dev/vda -- mklabel gpt\"\n    + \" mkpart ESP fat32 1M 100MiB\"  # /boot\n    + \" set 1 boot on\"\n    + \" mkpart primary linux-swap 100MiB 1024MiB\"\n    + \" mkpart primary ext2 1024MiB -1MiB\",  # /\n    \"udevadm settle\",\n    \"mkswap /dev/vda2 -L swap\",\n    \"swapon -L swap\",\n    \"mkfs.ext3 -L nixos /dev/vda3\",\n    \"mount LABEL=nixos /mnt\",\n    \"mkfs.vfat -n BOOT /dev/vda1\",\n    \"mkdir -p /mnt/boot\",\n    \"mount LABEL=BOOT /mnt/boot\",\n)\n",
     bootLoader: "grub",
     grubUseEfi: true,
   }));
   const specialisation_test_extraconfig = nix.thunk(() => ({
-    [nix.POS]: pos$47,
+    [nix.POS]: $pos[46],
     extraConfig: "environment.systemPackages = [ pkgs.grub2 ];\nboot.loader.grub.configurationName = \"Home\";\nspecialisation.work.configuration = {\n  boot.loader.grub.configurationName = lib.mkForce \"Work\";\n\n  environment.etc = {\n    \"gitconfig\".text = \"\n      [core]\n        gitproxy = none for work.com\n        \";\n  };\n};\n",
     testSpecialisationConfig: true,
   }));
   const no_zfs_module = nix.thunk(() => ({
-    [nix.POS]: pos$52,
+    [nix.POS]: $pos[51],
     nixpkgs: nix.thunk(() => ({
-      [nix.POS]: pos$51,
+      [nix.POS]: $pos[50],
       overlays: nix.thunk(() => [
         (final) => (super$) => ({
-          [nix.POS]: pos$50,
+          [nix.POS]: $pos[49],
           zfs: nix.thunk(() => nix.app(nix.sel(super$, "zfs", "overrideAttrs"), (_) => ({
-              [nix.POS]: pos$49,
-              meta: nix.thunk(() => ({ [nix.POS]: pos$48, platforms: [] })),
+              [nix.POS]: $pos[48],
+              meta: nix.thunk(() => ({ [nix.POS]: $pos[47], platforms: [] })),
             }))),
         }),
       ]),
@@ -959,16 +840,16 @@ target.shutdown()
     const $_1 = nix.formals(args_1, formals$6);
     const fallback = nix.argOr($_1, "fallback", () => false);
     return nix.app(makeInstallerTest, nix.thunk(() => nix.str`clevis-bcachefs${nix.app(nix.lookup(w_1, "optionalString"), fallback, "-fallback")}`), nix.thunk(() => ({
-        [nix.POS]: pos$56,
+        [nix.POS]: $pos[55],
         clevisTest: true,
         clevisFallbackTest: fallback,
         enableOCR: fallback,
         extraInstallerConfig: nix.thunk(() => ({
-          [nix.POS]: pos$55,
+          [nix.POS]: $pos[54],
           imports: nix.thunk(() => [no_zfs_module]),
-          boot: nix.thunk(() => ({ [nix.POS]: pos$53, supportedFilesystems: nix.thunk(() => ["bcachefs"]) })),
+          boot: nix.thunk(() => ({ [nix.POS]: $pos[52], supportedFilesystems: nix.thunk(() => ["bcachefs"]) })),
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$54,
+            [nix.POS]: $pos[53],
             systemPackages: nix.thunk(() => (() => {
               const w_2 = nix.withScope(pkgs, w_1);
               return [
@@ -987,14 +868,14 @@ target.shutdown()
     const $_1 = nix.formals(args_1, formals$7);
     const fallback = nix.argOr($_1, "fallback", () => false);
     return nix.app(makeInstallerTest, nix.thunk(() => nix.str`clevis-luks${nix.app(nix.lookup(w_1, "optionalString"), fallback, "-fallback")}`), nix.thunk(() => ({
-        [nix.POS]: pos$59,
+        [nix.POS]: $pos[58],
         clevisTest: true,
         clevisFallbackTest: fallback,
         enableOCR: fallback,
         extraInstallerConfig: nix.thunk(() => ({
-          [nix.POS]: pos$58,
+          [nix.POS]: $pos[57],
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$57,
+            [nix.POS]: $pos[56],
             systemPackages: nix.thunk(() => (() => {
               const w_2 = nix.withScope(pkgs, w_1);
               return [nix.thunk(() => nix.lookup(w_2, "clevis"))];
@@ -1012,15 +893,15 @@ target.send_chars("password\\n")
     const $_1 = nix.formals(args_1, formals$8);
     const fallback = nix.argOr($_1, "fallback", () => false);
     return nix.app(makeInstallerTest, nix.thunk(() => nix.str`clevis-luks-askpass${nix.app(nix.lookup(w_1, "optionalString"), fallback, "-fallback")}`), nix.thunk(() => ({
-        [nix.POS]: pos$62,
+        [nix.POS]: $pos[61],
         clevisTest: true,
         clevisAskpassTest: true,
         clevisFallbackTest: fallback,
         enableOCR: fallback,
         extraInstallerConfig: nix.thunk(() => ({
-          [nix.POS]: pos$61,
+          [nix.POS]: $pos[60],
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$60,
+            [nix.POS]: $pos[59],
             systemPackages: nix.thunk(() => (() => {
               const w_2 = nix.withScope(pkgs, w_1);
               return [nix.thunk(() => nix.lookup(w_2, "clevis"))];
@@ -1036,16 +917,16 @@ target.send_chars("password\\n")
     const fallback = nix.argOr($_1, "fallback", () => false);
     const parentDataset = nix.argOr($_1, "parentDataset", () => false);
     return nix.app(makeInstallerTest, nix.thunk(() => nix.str`clevis-zfs${nix.app(nix.lookup(w_1, "optionalString"), parentDataset, "-parent-dataset")}${nix.app(nix.lookup(w_1, "optionalString"), fallback, "-fallback")}`), nix.thunk(() => ({
-        [nix.POS]: pos$67,
+        [nix.POS]: $pos[66],
         clevisTest: true,
         clevisFallbackTest: fallback,
         enableOCR: fallback,
         extraInstallerConfig: nix.thunk(() => ({
-          [nix.POS]: pos$66,
-          boot: nix.thunk(() => ({ [nix.POS]: pos$63, supportedFilesystems: nix.thunk(() => ["zfs"]) })),
-          networking: nix.thunk(() => ({ [nix.POS]: pos$64, hostId: "00000000" })),
+          [nix.POS]: $pos[65],
+          boot: nix.thunk(() => ({ [nix.POS]: $pos[62], supportedFilesystems: nix.thunk(() => ["zfs"]) })),
+          networking: nix.thunk(() => ({ [nix.POS]: $pos[63], hostId: "00000000" })),
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$65,
+            [nix.POS]: $pos[64],
             systemPackages: nix.thunk(() => (() => {
               const w_2 = nix.withScope(pkgs, w_1);
               return [nix.thunk(() => nix.lookup(w_2, "clevis"))];
@@ -1061,11 +942,11 @@ target.send_chars("password\\n")
       })));
   })(), formals$9);
   return nix.update({
-    [nix.POS]: pos$104,
+    [nix.POS]: $pos[103],
     simple: nix.thunk(() => nix.app(makeInstallerTest, "simple", nix.thunk(() => nix.update(simple_test_config, {
-        [nix.POS]: pos$69,
+        [nix.POS]: $pos[68],
         passthru: nix.thunk(() => ({
-          [nix.POS]: pos$68,
+          [nix.POS]: $pos[67],
           override: (args_1) => nix.app(makeInstallerTest, "simple", nix.thunk(() => nix.update(simple_test_config, args_1))),
         })),
       })))),
@@ -1074,43 +955,43 @@ target.send_chars("password\\n")
     switchFromByAttrToFlake: nix.thunk(() => nix.app(makeInstallerTest, "switch-from-by-attr-to-flake", simple_test_config_from_by_attr_to_flake)),
     simpleSpecialised: nix.thunk(() => nix.app(makeInstallerTest, "simpleSpecialised", nix.thunk(() => nix.update(simple_test_config, specialisation_test_extraconfig)))),
     simpleUefiSystemdBoot: nix.thunk(() => nix.app(makeInstallerTest, "simpleUefiSystemdBoot", nix.thunk(() => ({
-        [nix.POS]: pos$70,
+        [nix.POS]: $pos[69],
         createPartitions: "installer.succeed(\n    \"flock /dev/vda parted --script /dev/vda -- mklabel gpt\"\n    + \" mkpart ESP fat32 1M 170MiB\"  # /boot\n    + \" set 1 boot on\"\n    + \" mkpart primary linux-swap 170MiB 1024MiB\"\n    + \" mkpart primary ext2 1024MiB -1MiB\",  # /\n    \"udevadm settle\",\n    \"mkswap /dev/vda2 -L swap\",\n    \"swapon -L swap\",\n    \"mkfs.ext3 -L nixos /dev/vda3\",\n    \"mount LABEL=nixos /mnt\",\n    \"mkfs.vfat -n BOOT /dev/vda1\",\n    \"mkdir -p /mnt/boot\",\n    \"mount LABEL=BOOT /mnt/boot\",\n)\n",
         bootLoader: "systemd-boot",
       })))),
     simpleUefiGrub: nix.thunk(() => nix.app(makeInstallerTest, "simpleUefiGrub", simple_uefi_grub_config)),
     simpleUefiGrubSpecialisation: nix.thunk(() => nix.app(makeInstallerTest, "simpleUefiGrubSpecialisation", nix.thunk(() => nix.update(simple_uefi_grub_config, specialisation_test_extraconfig)))),
     separateBoot: nix.thunk(() => nix.app(makeInstallerTest, "separateBoot", nix.thunk(() => ({
-        [nix.POS]: pos$71,
+        [nix.POS]: $pos[70],
         createPartitions: "installer.succeed(\n    \"flock /dev/vda parted --script /dev/vda -- mklabel msdos\"\n    + \" mkpart primary ext2 1M 100MB\"  # /boot\n    + \" mkpart primary linux-swap 100MB 1024M\"\n    + \" mkpart primary ext2 1024M -1s\",  # /\n    \"udevadm settle\",\n    \"mkswap /dev/vda2 -L swap\",\n    \"swapon -L swap\",\n    \"mkfs.ext3 -L nixos /dev/vda3\",\n    \"mount LABEL=nixos /mnt\",\n    \"mkfs.ext3 -L boot /dev/vda1\",\n    \"mkdir -p /mnt/boot\",\n    \"mount LABEL=boot /mnt/boot\",\n)\n",
       })))),
     separateBootFat: nix.thunk(() => nix.app(makeInstallerTest, "separateBootFat", nix.thunk(() => ({
-        [nix.POS]: pos$72,
+        [nix.POS]: $pos[71],
         createPartitions: "installer.succeed(\n    \"flock /dev/vda parted --script /dev/vda -- mklabel msdos\"\n    + \" mkpart primary ext2 1M 100MB\"  # /boot\n    + \" mkpart primary linux-swap 100MB 1024M\"\n    + \" mkpart primary ext2 1024M -1s\",  # /\n    \"udevadm settle\",\n    \"mkswap /dev/vda2 -L swap\",\n    \"swapon -L swap\",\n    \"mkfs.ext3 -L nixos /dev/vda3\",\n    \"mount LABEL=nixos /mnt\",\n    \"mkfs.vfat -n BOOT /dev/vda1\",\n    \"mkdir -p /mnt/boot\",\n    \"mount LABEL=BOOT /mnt/boot\",\n)\n",
       })))),
     separateBootZfs: nix.thunk(() => nix.app(makeInstallerTest, "separateBootZfs", nix.thunk(() => ({
-        [nix.POS]: pos$76,
+        [nix.POS]: $pos[75],
         extraInstallerConfig: nix.thunk(() => ({
-          [nix.POS]: pos$75,
-          boot: nix.thunk(() => ({ [nix.POS]: pos$73, supportedFilesystems: nix.thunk(() => ["zfs"]) })),
-          networking: nix.thunk(() => ({ [nix.POS]: pos$74, hostId: "00000000" })),
+          [nix.POS]: $pos[74],
+          boot: nix.thunk(() => ({ [nix.POS]: $pos[72], supportedFilesystems: nix.thunk(() => ["zfs"]) })),
+          networking: nix.thunk(() => ({ [nix.POS]: $pos[73], hostId: "00000000" })),
         })),
         extraConfig: "# Using by-uuid overrides the default of by-id, and is unique\n# to the qemu disks, as they don't produce by-id paths for\n# some reason.\nboot.zfs.devNodes = \"/dev/disk/by-uuid/\";\nnetworking.hostId = \"00000000\";\n",
         createPartitions: "installer.succeed(\n    \"flock /dev/vda parted --script /dev/vda -- mklabel msdos\"\n    + \" mkpart primary ext2 1M 256MB\"   # /boot\n    + \" mkpart primary linux-swap 256MB 1280M\"\n    + \" mkpart primary ext2 1280M -1s\", # /\n    \"udevadm settle\",\n\n    \"mkswap /dev/vda2 -L swap\",\n    \"swapon -L swap\",\n\n    \"mkfs.ext4 -L nixos /dev/vda3\",\n    \"mount LABEL=nixos /mnt\",\n\n    # Use as many ZFS features as possible to verify that GRUB can handle them\n    \"zpool create\"\n      \" -o compatibility=grub2\"\n      \" -O utf8only=on\"\n      \" -O normalization=formD\"\n      \" -O compression=lz4\"      # Activate the lz4_compress feature\n      \" -O xattr=sa\"\n      \" -O acltype=posixacl\"\n      \" bpool /dev/vda1\",\n    \"zfs create\"\n      \" -o recordsize=1M\"        # Prepare activating the large_blocks feature\n      \" -o mountpoint=legacy\"\n      \" -o relatime=on\"\n      \" -o quota=1G\"\n      \" -o filesystem_limit=100\" # Activate the filesystem_limits features\n      \" bpool/boot\",\n\n    # Snapshotting the top-level dataset would trigger a bug in GRUB2: https://github.com/openzfs/zfs/issues/13873\n    \"zfs snapshot bpool/boot@snap-1\",                     # Prepare activating the livelist and bookmarks features\n    \"zfs clone bpool/boot@snap-1 bpool/test\",             # Activate the livelist feature\n    \"zfs bookmark bpool/boot@snap-1 bpool/boot#bookmark\", # Activate the bookmarks feature\n    \"zpool checkpoint bpool\",                             # Activate the zpool_checkpoint feature\n    \"mkdir -p /mnt/boot\",\n    \"mount -t zfs bpool/boot /mnt/boot\",\n    \"touch /mnt/boot/empty\",                              # Activate zilsaxattr feature\n    \"dd if=/dev/urandom of=/mnt/boot/test bs=1M count=1\", # Activate the large_blocks feature\n\n    # Print out all enabled and active ZFS features (and some other stuff)\n    \"sync /mnt/boot\",\n    \"zpool get all bpool >&2\",\n\n    # Abort early if GRUB2 doesn't like the disks\n    \"grub-probe --target=device /mnt/boot >&2\",\n)\n",
         postInstallCommands: "installer.succeed(\"umount /mnt/boot\")\ninstaller.succeed(\"zpool export bpool\")\n",
       })))),
     zfsroot: nix.thunk(() => nix.app(makeInstallerTest, "zfs-root", nix.thunk(() => ({
-        [nix.POS]: pos$80,
+        [nix.POS]: $pos[79],
         extraInstallerConfig: nix.thunk(() => ({
-          [nix.POS]: pos$79,
-          boot: nix.thunk(() => ({ [nix.POS]: pos$77, supportedFilesystems: nix.thunk(() => ["zfs"]) })),
-          networking: nix.thunk(() => ({ [nix.POS]: pos$78, hostId: "00000000" })),
+          [nix.POS]: $pos[78],
+          boot: nix.thunk(() => ({ [nix.POS]: $pos[76], supportedFilesystems: nix.thunk(() => ["zfs"]) })),
+          networking: nix.thunk(() => ({ [nix.POS]: $pos[77], hostId: "00000000" })),
         })),
         extraConfig: "boot.supportedFilesystems = [ \"zfs\" ];\n\n# Using by-uuid overrides the default of by-id, and is unique\n# to the qemu disks, as they don't produce by-id paths for\n# some reason.\nboot.zfs.devNodes = \"/dev/disk/by-uuid/\";\nnetworking.hostId = \"00000000\";\n",
         createPartitions: "installer.succeed(\n    \"flock /dev/vda parted --script /dev/vda -- mklabel msdos\"\n    + \" mkpart primary 1M 100MB\"  # /boot\n    + \" mkpart primary linux-swap 100M 1024M\"\n    + \" mkpart primary 1024M -1s\", # rpool\n    \"udevadm settle\",\n    \"mkswap /dev/vda2 -L swap\",\n    \"swapon -L swap\",\n    \"zpool create rpool /dev/vda3\",\n    \"zfs create -o mountpoint=legacy rpool/root\",\n    \"mount -t zfs rpool/root /mnt\",\n    \"zfs create -o mountpoint=legacy rpool/root/usr\",\n    \"mkdir /mnt/usr\",\n    \"mount -t zfs rpool/root/usr /mnt/usr\",\n    \"mkfs.vfat -n BOOT /dev/vda1\",\n    \"mkdir /mnt/boot\",\n    \"mount LABEL=BOOT /mnt/boot\",\n    \"udevadm settle\",\n)\n",
       })))),
     lvm: nix.thunk(() => nix.app(makeInstallerTest, "lvm", nix.thunk(() => ({
-        [nix.POS]: pos$81,
+        [nix.POS]: $pos[80],
         createPartitions: "installer.succeed(\n    \"flock /dev/vda parted --script /dev/vda -- mklabel msdos\"\n    + \" mkpart primary 1M 2048M\"  # PV1\n    + \" set 1 lvm on\"\n    + \" mkpart primary 2048M -1s\"  # PV2\n    + \" set 2 lvm on\",\n    \"udevadm settle\",\n    \"pvcreate /dev/vda1 /dev/vda2\",\n    \"vgcreate MyVolGroup /dev/vda1 /dev/vda2\",\n    \"lvcreate --size 1G --name swap MyVolGroup\",\n    \"lvcreate --size 1G --name boot MyVolGroup\",\n    \"lvcreate --size 5G --name nixos MyVolGroup\",\n    \"mkswap -f /dev/MyVolGroup/swap -L swap\",\n    \"swapon -L swap\",\n    \"mkfs.ext4 -L boot /dev/MyVolGroup/boot\",\n    \"mkfs.xfs -L nixos /dev/MyVolGroup/nixos\",\n    \"mount LABEL=nixos /mnt\",\n    \"mkdir /mnt/boot\",\n    \"mount LABEL=boot /mnt/boot\",\n)\n",
         extraConfig: nix.thunk(() => nix.app(nix.lookup(w_1, "optionalString"), systemdStage1, "boot.initrd.services.lvm.enable = true;\n")),
       })))),
@@ -1118,7 +999,7 @@ target.send_chars("password\\n")
     "luksroot-format1": nix.thunk(() => nix.app(makeLuksRootTest, "luksroot-format1", "--type=LUKS1")),
     "luksroot-format2": nix.thunk(() => nix.app(makeLuksRootTest, "luksroot-format2", "--type=LUKS2")),
     encryptedFSWithKeyfile: nix.thunk(() => nix.app(makeInstallerTest, "encryptedFSWithKeyfile", nix.thunk(() => ({
-        [nix.POS]: pos$82,
+        [nix.POS]: $pos[81],
         createPartitions: "installer.succeed(\n    \"flock /dev/vda parted --script /dev/vda -- mklabel msdos\"\n    + \" mkpart primary ext2 1M 100MB\"  # /boot\n    + \" mkpart primary linux-swap 100M 1024M\"\n    + \" mkpart primary 1024M 1280M\"  # LUKS with keyfile\n    + \" mkpart primary 1280M -1s\",\n    \"udevadm settle\",\n    \"mkswap /dev/vda2 -L swap\",\n    \"swapon -L swap\",\n    \"mkfs.ext3 -L nixos /dev/vda4\",\n    \"mount LABEL=nixos /mnt\",\n    \"mkfs.ext3 -L boot /dev/vda1\",\n    \"mkdir -p /mnt/boot\",\n    \"mount LABEL=boot /mnt/boot\",\n    \"modprobe dm_mod dm_crypt\",\n    \"echo -n supersecret > /mnt/keyfile\",\n    \"cryptsetup luksFormat -q /dev/vda3 --key-file /mnt/keyfile\",\n    \"cryptsetup luksOpen --key-file /mnt/keyfile /dev/vda3 crypt\",\n    \"mkfs.ext3 -L test /dev/mapper/crypt\",\n    \"cryptsetup luksClose crypt\",\n    \"mkdir -p /mnt/test\",\n)\n",
         extraConfig: nix.thunk(() => nix.str`fileSystems."/test" = {
   device = "/dev/disk/by-label/test";
@@ -1131,7 +1012,7 @@ target.send_chars("password\\n")
 `),
       })))),
     fullDiskEncryption: nix.thunk(() => nix.app(makeInstallerTest, "fullDiskEncryption", nix.thunk(() => ({
-        [nix.POS]: pos$83,
+        [nix.POS]: $pos[82],
         createPartitions: "installer.succeed(\n    \"flock /dev/vda parted --script /dev/vda -- mklabel gpt\"\n    + \" mkpart ESP fat32 1M 100MiB\"  # /boot/efi\n    + \" set 1 boot on\"\n    + \" mkpart primary ext2 1024MiB -1MiB\",  # LUKS\n    \"udevadm settle\",\n    \"modprobe dm_mod dm_crypt\",\n    \"dd if=/dev/random of=luks.key bs=256 count=1\",\n    \"echo -n supersecret | cryptsetup luksFormat -q --pbkdf-force-iterations 1000 --type luks1 /dev/vda2 -\",\n    \"echo -n supersecret | cryptsetup luksAddKey -q --pbkdf-force-iterations 1000 --key-file - /dev/vda2 luks.key\",\n    \"echo -n supersecret | cryptsetup luksOpen --key-file - /dev/vda2 crypt\",\n    \"pvcreate /dev/mapper/crypt\",\n    \"vgcreate crypt /dev/mapper/crypt\",\n    \"lvcreate -L 100M -n swap crypt\",\n    \"lvcreate -l '100%FREE' -n nixos crypt\",\n    \"mkfs.vfat -n efi /dev/vda1\",\n    \"mkfs.ext4 -L nixos /dev/crypt/nixos\",\n    \"mkswap -L swap /dev/crypt/swap\",\n    \"mount LABEL=nixos /mnt\",\n    \"mkdir -p /mnt/{etc/nixos,boot/efi}\",\n    \"mount LABEL=efi /mnt/boot/efi\",\n    \"swapon -L swap\",\n    \"mv luks.key /mnt/etc/nixos/\"\n)\n",
         bootLoader: "grub",
         grubUseEfi: true,
@@ -1140,9 +1021,9 @@ target.send_chars("password\\n")
         postBootCommands: "target.wait_for_text(\"Enter passphrase for\")\n# GRUB's EFI keyboard input appears to drop characters when typed at the\n# default speed (producing an \"Invalid passphrase\" error), so type slowly.\ntarget.send_chars(\"supersecret\\n\", 0.2)\n",
       })))),
     grubCryptodiskLegacyBios: nix.thunk(() => nix.app(makeInstallerTest, "grubCryptodiskLegacyBios", nix.thunk(() => ({
-        [nix.POS]: pos$85,
+        [nix.POS]: $pos[84],
         meta: nix.thunk(() => ({
-          [nix.POS]: pos$84,
+          [nix.POS]: $pos[83],
           maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(nix.lookup(w_1, "maintainers"), "tomfitzhenry"))]),
         })),
         createPartitions: "installer.succeed(\n    \"flock /dev/vda parted --script /dev/vda -- mklabel msdos mkpart primary ext4 1MiB -1GiB mkpart primary linux-swap -1GiB 100%\",\n    \"udevadm settle\",\n    \"echo -n supersecret | cryptsetup luksFormat -q --pbkdf-force-iterations 1000 --type luks1 /dev/vda1 -\",\n    \"echo -n supersecret | cryptsetup luksOpen /dev/vda1 cryptroot\",\n    \"mkfs.ext4 -L nixos /dev/mapper/cryptroot\",\n    \"mkswap -L swap /dev/vda2\",\n    \"swapon -L swap\",\n    \"mount LABEL=nixos /mnt\",\n    \"mkdir -p /mnt/etc/nixos\",\n    # Add a keyfile so stage 1 can unlock the root device without a second,\n    # interactive prompt. This keeps the test independent of the stage 1\n    # implementation, which matters because the scripted and systemd\n    # initrds word their passphrase prompts differently. Only GRUB (which\n    # is stage 1 independent) then prompts interactively.\n    \"dd if=/dev/urandom of=/mnt/etc/nixos/luks.key bs=256 count=1\",\n    \"echo -n supersecret | cryptsetup luksAddKey -q --pbkdf-force-iterations 1000 --key-file - /dev/vda1 /mnt/etc/nixos/luks.key\",\n)\n",
@@ -1152,31 +1033,31 @@ target.send_chars("password\\n")
         postBootCommands: "# GRUB has to unlock the disk to read /boot before it can boot the kernel;\n# stage 1 then unlocks the root device with the embedded keyfile.\ntarget.wait_for_text(\"Enter passphrase for\")\ntarget.send_chars(\"supersecret\\n\")\n",
       })))),
     swraid: nix.thunk(() => nix.app(makeInstallerTest, "swraid", nix.thunk(() => ({
-        [nix.POS]: pos$86,
+        [nix.POS]: $pos[85],
         createPartitions: "installer.succeed(\n    \"flock /dev/vda parted --script /dev/vda --\"\n    + \" mklabel msdos\"\n    + \" mkpart primary ext2 1M 100MB\"  # /boot\n    + \" mkpart extended 100M -1s\"\n    + \" mkpart logical 102M 3102M\"  # md0 (root), first device\n    + \" mkpart logical 3103M 6103M\"  # md0 (root), second device\n    + \" mkpart logical 6104M 6360M\"  # md1 (swap), first device\n    + \" mkpart logical 6361M 6617M\",  # md1 (swap), second device\n    \"udevadm settle\",\n    \"ls -l /dev/vda* >&2\",\n    \"cat /proc/partitions >&2\",\n    \"udevadm control --stop-exec-queue\",\n    \"mdadm --create --force /dev/md0 --metadata 1.2 --level=raid1 \"\n    + \"--raid-devices=2 --bitmap=internal /dev/vda5 /dev/vda6\",\n    \"mdadm --create --force /dev/md1 --metadata 1.2 --level=raid1 \"\n    + \"--raid-devices=2 --bitmap=internal /dev/vda7 /dev/vda8\",\n    \"udevadm control --start-exec-queue\",\n    \"udevadm settle\",\n    \"mkswap -f /dev/md1 -L swap\",\n    \"swapon -L swap\",\n    \"mkfs.ext3 -L nixos /dev/md0\",\n    \"mount LABEL=nixos /mnt\",\n    \"mkfs.ext3 -L boot /dev/vda1\",\n    \"mkdir /mnt/boot\",\n    \"mount LABEL=boot /mnt/boot\",\n    \"udevadm settle\",\n)\n",
         postBootCommands: "target.fail(\"dmesg | grep 'immediate safe mode'\")\n",
       })))),
     bcache: nix.thunk(() => nix.app(makeInstallerTest, "bcache", nix.thunk(() => ({
-        [nix.POS]: pos$87,
+        [nix.POS]: $pos[86],
         createPartitions: "installer.succeed(\n    \"flock /dev/vda parted --script /dev/vda --\"\n    + \" mklabel msdos\"\n    + \" mkpart primary ext2 1M 100MB\"  # /boot\n    + \" mkpart primary 100MB 512MB  \"  # swap\n    + \" mkpart primary 512MB 1024MB\"  # Cache (typically SSD)\n    + \" mkpart primary 1024MB -1s \",  # Backing device (typically HDD)\n    \"modprobe bcache\",\n    \"udevadm settle\",\n    \"make-bcache -B /dev/vda4 -C /dev/vda3\",\n    \"udevadm settle\",\n    \"mkfs.ext3 -L nixos /dev/bcache0\",\n    \"mount LABEL=nixos /mnt\",\n    \"mkfs.ext3 -L boot /dev/vda1\",\n    \"mkdir /mnt/boot\",\n    \"mount LABEL=boot /mnt/boot\",\n    \"mkswap -f /dev/vda2 -L swap\",\n    \"swapon -L swap\",\n)\n",
       })))),
     bcachefsSimple: nix.thunk(() => nix.app(makeInstallerTest, "bcachefs-simple", nix.thunk(() => ({
-        [nix.POS]: pos$90,
+        [nix.POS]: $pos[89],
         extraInstallerConfig: nix.thunk(() => ({
-          [nix.POS]: pos$89,
-          boot: nix.thunk(() => ({ [nix.POS]: pos$88, supportedFilesystems: nix.thunk(() => ["bcachefs"]) })),
+          [nix.POS]: $pos[88],
+          boot: nix.thunk(() => ({ [nix.POS]: $pos[87], supportedFilesystems: nix.thunk(() => ["bcachefs"]) })),
           imports: nix.thunk(() => [no_zfs_module]),
         })),
         createPartitions: "installer.succeed(\n  \"flock /dev/vda parted --script /dev/vda -- mklabel msdos\"\n  + \" mkpart primary ext2 1M 100MB\"          # /boot\n  + \" mkpart primary linux-swap 100M 1024M\"  # swap\n  + \" mkpart primary 1024M -1s\",             # /\n  \"udevadm settle\",\n  \"mkswap /dev/vda2 -L swap\",\n  \"swapon -L swap\",\n  \"mkfs.bcachefs -L root /dev/vda3\",\n  \"mount -t bcachefs /dev/vda3 /mnt\",\n  \"mkfs.ext3 -L boot /dev/vda1\",\n  \"mkdir -p /mnt/boot\",\n  \"mount /dev/vda1 /mnt/boot\",\n)\n",
       })))),
     bcachefsEncrypted: nix.thunk(() => nix.app(makeInstallerTest, "bcachefs-encrypted", nix.thunk(() => ({
-        [nix.POS]: pos$94,
+        [nix.POS]: $pos[93],
         extraInstallerConfig: nix.thunk(() => ({
-          [nix.POS]: pos$93,
-          boot: nix.thunk(() => ({ [nix.POS]: pos$91, supportedFilesystems: nix.thunk(() => ["bcachefs"]) })),
+          [nix.POS]: $pos[92],
+          boot: nix.thunk(() => ({ [nix.POS]: $pos[90], supportedFilesystems: nix.thunk(() => ["bcachefs"]) })),
           imports: nix.thunk(() => [no_zfs_module]),
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$92,
+            [nix.POS]: $pos[91],
             systemPackages: nix.thunk(() => (() => {
               const w_2 = nix.withScope(pkgs, w_1);
               return [nix.thunk(() => nix.lookup(w_2, "keyutils"))];
@@ -1189,71 +1070,71 @@ target.send_chars("password\\n")
         createPartitions: "installer.succeed(\n  \"flock /dev/vda parted --script /dev/vda -- mklabel msdos\"\n  + \" mkpart primary ext2 1M 100MB\"          # /boot\n  + \" mkpart primary linux-swap 100M 1024M\"  # swap\n  + \" mkpart primary 1024M -1s\",             # /\n  \"udevadm settle\",\n  \"mkswap /dev/vda2 -L swap\",\n  \"swapon -L swap\",\n  \"echo password | mkfs.bcachefs -L root --encrypted /dev/vda3\",\n  \"echo password | bcachefs unlock -k session /dev/vda3\",\n  \"echo password | mount -t bcachefs /dev/vda3 /mnt\",\n  \"mkfs.ext3 -L boot /dev/vda1\",\n  \"mkdir -p /mnt/boot\",\n  \"mount /dev/vda1 /mnt/boot\",\n)\n",
       })))),
     bcachefsMulti: nix.thunk(() => nix.app(makeInstallerTest, "bcachefs-multi", nix.thunk(() => ({
-        [nix.POS]: pos$97,
+        [nix.POS]: $pos[96],
         extraInstallerConfig: nix.thunk(() => ({
-          [nix.POS]: pos$96,
-          boot: nix.thunk(() => ({ [nix.POS]: pos$95, supportedFilesystems: nix.thunk(() => ["bcachefs"]) })),
+          [nix.POS]: $pos[95],
+          boot: nix.thunk(() => ({ [nix.POS]: $pos[94], supportedFilesystems: nix.thunk(() => ["bcachefs"]) })),
           imports: nix.thunk(() => [no_zfs_module]),
         })),
         createPartitions: "installer.succeed(\n  \"flock /dev/vda parted --script /dev/vda -- mklabel msdos\"\n  + \" mkpart primary ext2 1M 100MB\"          # /boot\n  + \" mkpart primary linux-swap 100M 1024M\"  # swap\n  + \" mkpart primary 1024M 4096M\"            # /\n  + \" mkpart primary 4096M -1s\",             # /\n  \"udevadm settle\",\n  \"mkswap /dev/vda2 -L swap\",\n  \"swapon -L swap\",\n  \"mkfs.bcachefs -L root --metadata_replicas 2 --foreground_target ssd --promote_target ssd --background_target hdd --label ssd /dev/vda3 --label hdd /dev/vda4\",\n  \"mount -t bcachefs /dev/vda3:/dev/vda4 /mnt\",\n  \"mkfs.ext3 -L boot /dev/vda1\",\n  \"mkdir -p /mnt/boot\",\n  \"mount /dev/vda1 /mnt/boot\",\n)\n",
       })))),
     simpleLabels: nix.thunk(() => nix.app(makeInstallerTest, "simpleLabels", nix.thunk(() => ({
-        [nix.POS]: pos$98,
+        [nix.POS]: $pos[97],
         createPartitions: "installer.succeed(\n    \"sgdisk -Z /dev/vda\",\n    \"sgdisk -n 1:0:+1M -n 2:0:+1G -N 3 -t 1:ef02 -t 2:8200 -t 3:8300 -c 3:root /dev/vda\",\n    \"mkswap /dev/vda2 -L swap\",\n    \"swapon -L swap\",\n    \"mkfs.ext4 -L root /dev/vda3\",\n    \"mount LABEL=root /mnt\",\n)\n",
         grubIdentifier: "label",
       })))),
     simpleProvided: nix.thunk(() => nix.app(makeInstallerTest, "simpleProvided", nix.thunk(() => ({
-        [nix.POS]: pos$99,
+        [nix.POS]: $pos[98],
         createPartitions: "uuid = \"$(blkid -s UUID -o value /dev/vda2)\"\ninstaller.succeed(\n    \"sgdisk -Z /dev/vda\",\n    \"sgdisk -n 1:0:+1M -n 2:0:+100M -n 3:0:+1G -N 4 -t 1:ef02 -t 2:8300 \"\n    + \"-t 3:8200 -t 4:8300 -c 2:boot -c 4:root /dev/vda\",\n    \"mkswap /dev/vda3 -L swap\",\n    \"swapon -L swap\",\n    \"mkfs.ext4 -L boot /dev/vda2\",\n    \"mkfs.ext4 -L root /dev/vda4\",\n)\ninstaller.execute(f\"ln -s ../../vda2 /dev/disk/by-uuid/{uuid}\")\ninstaller.execute(\"ln -s ../../vda4 /dev/disk/by-label/root\")\ninstaller.succeed(\n    \"mount /dev/disk/by-label/root /mnt\",\n    \"mkdir /mnt/boot\",\n    f\"mount /dev/disk/by-uuid/{uuid} /mnt/boot\",\n)\n",
         grubIdentifier: "provided",
       })))),
     btrfsSimple: nix.thunk(() => nix.app(makeInstallerTest, "btrfsSimple", nix.thunk(() => ({
-        [nix.POS]: pos$100,
+        [nix.POS]: $pos[99],
         createPartitions: "installer.succeed(\n    \"sgdisk -Z /dev/vda\",\n    \"sgdisk -n 1:0:+1M -n 2:0:+1G -N 3 -t 1:ef02 -t 2:8200 -t 3:8300 -c 3:root /dev/vda\",\n    \"mkswap /dev/vda2 -L swap\",\n    \"swapon -L swap\",\n    \"mkfs.btrfs -L root /dev/vda3\",\n    \"mount LABEL=root /mnt\",\n)\n",
       })))),
     btrfsSubvols: nix.thunk(() => nix.app(makeInstallerTest, "btrfsSubvols", nix.thunk(() => ({
-        [nix.POS]: pos$101,
+        [nix.POS]: $pos[100],
         createPartitions: "installer.succeed(\n    \"sgdisk -Z /dev/vda\",\n    \"sgdisk -n 1:0:+1M -n 2:0:+1G -N 3 -t 1:ef02 -t 2:8200 -t 3:8300 -c 3:root /dev/vda\",\n    \"mkswap /dev/vda2 -L swap\",\n    \"swapon -L swap\",\n    \"mkfs.btrfs -L root /dev/vda3\",\n    \"btrfs device scan\",\n    \"mount LABEL=root /mnt\",\n    \"btrfs subvol create /mnt/boot\",\n    \"btrfs subvol create /mnt/nixos\",\n    \"btrfs subvol create /mnt/nixos/default\",\n    \"umount /mnt\",\n    \"mount -o defaults,subvol=nixos/default LABEL=root /mnt\",\n    \"mkdir /mnt/boot\",\n    \"mount -o defaults,subvol=boot LABEL=root /mnt/boot\",\n)\n",
       })))),
     btrfsSubvolDefault: nix.thunk(() => nix.app(makeInstallerTest, "btrfsSubvolDefault", nix.thunk(() => ({
-        [nix.POS]: pos$102,
+        [nix.POS]: $pos[101],
         createPartitions: "installer.succeed(\n    \"sgdisk -Z /dev/vda\",\n    \"sgdisk -n 1:0:+1M -n 2:0:+1G -N 3 -t 1:ef02 -t 2:8200 -t 3:8300 -c 3:root /dev/vda\",\n    \"mkswap /dev/vda2 -L swap\",\n    \"swapon -L swap\",\n    \"mkfs.btrfs -L root /dev/vda3\",\n    \"btrfs device scan\",\n    \"mount LABEL=root /mnt\",\n    \"btrfs subvol create /mnt/badpath\",\n    \"btrfs subvol create /mnt/badpath/boot\",\n    \"btrfs subvol create /mnt/nixos\",\n    \"btrfs subvol set-default \"\n    + \"$(btrfs subvol list /mnt | grep 'nixos' | awk '{print $2}') /mnt\",\n    \"umount /mnt\",\n    \"mount -o defaults LABEL=root /mnt\",\n    \"mkdir -p /mnt/badpath/boot\",  # Help ensure the detection mechanism\n    # is actually looking up subvolumes\n    \"mkdir /mnt/boot\",\n    \"mount -o defaults,subvol=badpath/boot LABEL=root /mnt/boot\",\n)\n",
       })))),
     btrfsSubvolEscape: nix.thunk(() => nix.app(makeInstallerTest, "btrfsSubvolEscape", nix.thunk(() => ({
-        [nix.POS]: pos$103,
+        [nix.POS]: $pos[102],
         createPartitions: "installer.succeed(\n    \"sgdisk -Z /dev/vda\",\n    \"sgdisk -n 1:0:+1M -n 2:0:+1G -N 3 -t 1:ef02 -t 2:8200 -t 3:8300 -c 3:root /dev/vda\",\n    \"mkswap /dev/vda2 -L swap\",\n    \"swapon -L swap\",\n    \"mkfs.btrfs -L root /dev/vda3\",\n    \"btrfs device scan\",\n    \"mount LABEL=root /mnt\",\n    \"btrfs subvol create '/mnt/nixos in space'\",\n    \"btrfs subvol create /mnt/boot\",\n    \"umount /mnt\",\n    \"mount -o 'defaults,subvol=nixos in space' LABEL=root /mnt\",\n    \"mkdir /mnt/boot\",\n    \"mount -o defaults,subvol=boot LABEL=root /mnt/boot\",\n)\n",
       })))),
   }, nix.update({
-    [nix.POS]: pos$110,
+    [nix.POS]: $pos[109],
     clevisBcachefs: nix.thunk(() => nix.app(mkClevisBcachefsTest, nix.thunk(() => ({})))),
-    clevisBcachefsFallback: nix.thunk(() => nix.app(mkClevisBcachefsTest, nix.thunk(() => ({ [nix.POS]: pos$105, fallback: true })))),
+    clevisBcachefsFallback: nix.thunk(() => nix.app(mkClevisBcachefsTest, nix.thunk(() => ({ [nix.POS]: $pos[104], fallback: true })))),
     clevisLuks: nix.thunk(() => nix.app(mkClevisLuksTest, nix.thunk(() => ({})))),
-    clevisLuksFallback: nix.thunk(() => nix.app(mkClevisLuksTest, nix.thunk(() => ({ [nix.POS]: pos$106, fallback: true })))),
+    clevisLuksFallback: nix.thunk(() => nix.app(mkClevisLuksTest, nix.thunk(() => ({ [nix.POS]: $pos[105], fallback: true })))),
     clevisZfs: nix.thunk(() => nix.app(mkClevisZfsTest, nix.thunk(() => ({})))),
-    clevisZfsFallback: nix.thunk(() => nix.app(mkClevisZfsTest, nix.thunk(() => ({ [nix.POS]: pos$107, fallback: true })))),
-    clevisZfsParentDataset: nix.thunk(() => nix.app(mkClevisZfsTest, nix.thunk(() => ({ [nix.POS]: pos$108, parentDataset: true })))),
-    clevisZfsParentDatasetFallback: nix.thunk(() => nix.app(mkClevisZfsTest, nix.thunk(() => ({ [nix.POS]: pos$109, parentDataset: true, fallback: true })))),
+    clevisZfsFallback: nix.thunk(() => nix.app(mkClevisZfsTest, nix.thunk(() => ({ [nix.POS]: $pos[106], fallback: true })))),
+    clevisZfsParentDataset: nix.thunk(() => nix.app(mkClevisZfsTest, nix.thunk(() => ({ [nix.POS]: $pos[107], parentDataset: true })))),
+    clevisZfsParentDatasetFallback: nix.thunk(() => nix.app(mkClevisZfsTest, nix.thunk(() => ({ [nix.POS]: $pos[108], parentDataset: true, fallback: true })))),
   }, nix.app(nix.lookup(w_1, "optionalAttrs"), systemdStage1, nix.thunk(() => ({
-      [nix.POS]: pos$120,
+      [nix.POS]: $pos[119],
       clevisLuksAskpass: nix.thunk(() => nix.app(mkClevisLuksAskpassTest, nix.thunk(() => ({})))),
-      clevisLuksAskpassFallback: nix.thunk(() => nix.app(mkClevisLuksAskpassTest, nix.thunk(() => ({ [nix.POS]: pos$111, fallback: true })))),
+      clevisLuksAskpassFallback: nix.thunk(() => nix.app(mkClevisLuksAskpassTest, nix.thunk(() => ({ [nix.POS]: $pos[110], fallback: true })))),
       stratisRoot: nix.thunk(() => nix.app(makeInstallerTest, "stratisRoot", nix.thunk(() => ({
-          [nix.POS]: pos$117,
+          [nix.POS]: $pos[116],
           createPartitions: "installer.succeed(\n  \"sgdisk --zap-all /dev/vda\",\n  \"sgdisk --new=1:0:+200M --typecode=0:ef00 /dev/vda\", # /boot\n  \"sgdisk --new=2:0:+1G --typecode=0:8200 /dev/vda\", # swap\n  \"sgdisk --new=3:0:+5G --typecode=0:8300 /dev/vda\", # /\n  \"udevadm settle\",\n\n  \"mkfs.vfat /dev/vda1\",\n  \"mkswap /dev/vda2 -L swap\",\n  \"swapon -L swap\",\n  \"stratis pool create my-pool /dev/vda3\",\n  \"stratis filesystem create my-pool nixos\",\n  \"udevadm settle\",\n\n  \"mount /dev/stratis/my-pool/nixos /mnt\",\n  \"mkdir -p /mnt/boot\",\n  \"mount /dev/vda1 /mnt/boot\"\n)\n",
           bootLoader: "systemd-boot",
           extraInstallerConfig: nix.lambda((args_1) => (() => {
             const $_1 = nix.formals(args_1, formals$10);
             const modulesPath = nix.arg($_1, "modulesPath");
             return {
-              [nix.POS]: pos$116,
+              [nix.POS]: $pos[115],
               config: nix.thunk(() => ({
-                [nix.POS]: pos$115,
+                [nix.POS]: $pos[114],
                 services: nix.thunk(() => ({
-                  [nix.POS]: pos$113,
-                  stratis: nix.thunk(() => ({ [nix.POS]: pos$112, enable: true })),
+                  [nix.POS]: $pos[112],
+                  stratis: nix.thunk(() => ({ [nix.POS]: $pos[111], enable: true })),
                 })),
                 environment: nix.thunk(() => ({
-                  [nix.POS]: pos$114,
+                  [nix.POS]: $pos[113],
                   systemPackages: nix.thunk(() => [
                     nix.thunk(() => nix.sel(pkgs, "stratis-cli")),
                     nix.thunk(() => nix.sel(pkgs, "thin-provisioning-tools")),
@@ -1267,14 +1148,14 @@ target.send_chars("password\\n")
         })))),
       gptAutoRoot: nix.thunk(() => (() => {
         const rootPartType = nix.thunk(() => nix.sel({
-          [nix.POS]: pos$118,
+          [nix.POS]: $pos[117],
           ia32: "44479540-F297-41B2-9AF7-D131D5F0458A",
           x64: "4F68BCE3-E8CD-4DB1-96E7-FBCAF984B709",
           arm: "69DAD710-2CE4-4E3C-B16C-21A1D49ABED3",
           aa64: "B921B045-1DF0-41C3-AF44-4C6F280D3FAE",
         }, nix.key(nix.sel(pkgs, "stdenv", "hostPlatform", "efiArch"))));
         return nix.app(makeInstallerTest, "gptAutoRoot", nix.thunk(() => ({
-            [nix.POS]: pos$119,
+            [nix.POS]: $pos[118],
             disableFileSystems: true,
             createPartitions: nix.thunk(() => nix.str`installer.succeed(
   "sgdisk --zap-all /dev/vda",

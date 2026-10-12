@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["fetchSubmodules", 22, 5], ["hash", 23, 5]], [["enableEmulation", 54, 7], ["withAllEmulators", 55, 7], ["emulators", 56, 7], ["enableAudio", 67, 7], ["enableLibplayer", 68, 7], ["enableTools", 69, 7]], [["updateScript", 92, 5]], [["description", 96, 5], ["homepage", 97, 5], ["license", 98, 5], ["mainProgram", 99, 5], ["maintainers", 100, 5], ["platforms", 101, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["patches", 26, 3], ["postPatch", 31, 3], ["strictDeps", 42, 3], ["nativeBuildInputs", 44, 3], ["buildInputs", 49, 3], ["dontUseCmakeConfigure", 74, 3], ["enableParallelBuilding", 76, 3], ["buildFlags", 78, 3], ["installPhase", 83, 3], ["passthru", 91, 3], ["meta", 95, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, unstableGitUpdater: false, "alsa-lib": false, cmake: false, libjack2: false, libvgm: false, "pkg-config": false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["fetchSubmodules", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["enableEmulation", 54, 7], ["withAllEmulators", 55, 7], ["emulators", 56, 7], ["enableAudio", 67, 7], ["enableLibplayer", 68, 7], ["enableTools", 69, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 92, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 96, 5], ["homepage", 97, 5], ["license", 98, 5], ["mainProgram", 99, 5], ["maintainers", 100, 5], ["platforms", 101, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["patches", 26, 3], ["postPatch", 31, 3], ["strictDeps", 42, 3], ["nativeBuildInputs", 44, 3], ["buildInputs", 49, 3], ["dontUseCmakeConfigure", 74, 3], ["enableParallelBuilding", 76, 3], ["buildFlags", 78, 3], ["installPhase", 83, 3], ["passthru", 91, 3], ["meta", 95, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "fmtoy",
       version: "0-unstable-2024-12-15",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "vampirefrog",
           repo: "fmtoy",
           rev: "6858fc8ad3171df2c9b90cb1e62719af9fc4f7c2",
@@ -41,7 +37,7 @@ export default nix.lambda((args) => (() => {
         alsa_lib,
         libjack2,
         nix.thunk(() => nix.app(nix.sel(libvgm, "override"), nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             enableEmulation: true,
             withAllEmulators: false,
             emulators: nix.thunk(() => [
@@ -67,11 +63,11 @@ export default nix.lambda((args) => (() => {
       ]),
       installPhase: "runHook preInstall\n\ninstall -Dm755 fmtoy_jack $out/bin/fmtoy_jack\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "FM synthesiser based on emulated Yamaha YM chips (OPL, OPM and OPN series)",
         homepage: "https://github.com/vampirefrog/fmtoy",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

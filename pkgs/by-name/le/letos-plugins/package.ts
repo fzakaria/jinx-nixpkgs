@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["description", 35, 5], ["badPlatforms", 36, 5]], [["pname", 11, 3], ["version", 14, 5], ["src", 15, 5], ["nativeBuildInputs", 16, 5], ["buildInputs", 19, 3], ["__structuredAttrs", 24, 3], ["strictDeps", 25, 3], ["cmakeDir", 27, 3], ["cmakeFlags", 29, 3], ["meta", 34, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, python3: false, tcl: false, letos: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["description", 35, 5], ["badPlatforms", 36, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 14, 5], ["src", 15, 5], ["nativeBuildInputs", 16, 5], ["buildInputs", 19, 3], ["__structuredAttrs", 24, 3], ["strictDeps", 25, 3], ["cmakeDir", 27, 3], ["cmakeFlags", 29, 3], ["meta", 34, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const tcl = nix.arg($, "tcl");
   const letos = nix.arg($, "letos");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "letos-plugins",
       version: nix.thunk(() => nix.attr(letos, "version")),
       src: nix.thunk(() => nix.attr(letos, "src")),
@@ -28,7 +27,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "WITH_DYNAMIC_PYTHON", true)),
       ]),
       meta: nix.thunk(() => nix.update(nix.builtins.removeAttrs(nix.thunk(() => nix.sel(letos, "meta")), nix.thunk(() => ["mainProgram"])), {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Official plugins for Letos (formerly SQLiteStudio)",
         badPlatforms: nix.thunk(() => [
           nix.thunk(() => nix.sel(lib, "systems", "inspect", "platformPatterns", "isStatic")),

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]], [["CGO_LDFLAGS", 22, 7]], [["description", 46, 5], ["homepage", 47, 5], ["license", 48, 5], ["maintainers", 49, 5], ["mainProgram", 53, 5], ["platforms", 54, 5]], [["pname", 9, 3], ["version", 13, 3], ["src", 15, 3], ["env", 22, 3], ["buildInputs", 24, 3], ["hardeningDisable", 30, 3], ["vendorHash", 32, 3], ["nativeBuildInputs", 34, 3], ["doCheck", 39, 3], ["postFixup", 41, 3], ["meta", 45, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitHub: false, autoAddDriverRunpath: false, dcgm: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["CGO_LDFLAGS", 22, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 46, 5], ["homepage", 47, 5], ["license", 48, 5], ["maintainers", 49, 5], ["mainProgram", 53, 5], ["platforms", 54, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 13, 3], ["src", 15, 3], ["env", 22, 3], ["buildInputs", 24, 3], ["hardeningDisable", 30, 3], ["vendorHash", 32, 3], ["nativeBuildInputs", 34, 3], ["doCheck", 39, 3], ["postFixup", 41, 3], ["meta", 45, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,13 +16,13 @@ export default nix.lambda((args) => (() => {
       const pname = "dcgm-exporter";
       const version = "4.3.1-4.4.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "NVIDIA",
           repo: "dcgm-exporter",
           tag: version,
           hash: "sha256-NafQWP1NxHTwmOND8ovy3oVia7qq0rCwZYE3VNlMBKQ=",
         }))));
-      const env = nix.thunk(() => ({ [nix.POS]: pos$2, CGO_LDFLAGS: "-ldcgm" }));
+      const env = nix.thunk(() => ({ [nix.POS]: $pos[1], CGO_LDFLAGS: "-ldcgm" }));
       const buildInputs = nix.thunk(() => [dcgm]);
       const hardeningDisable = nix.thunk(() => ["bindnow"]);
       const vendorHash = "sha256-BfHC49Dzb4ArXK87JKD+aYEHR5HUS5NL0fEHa0jOCYM=";
@@ -33,7 +30,7 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const postFixup = "patchelf --add-needed libnvidia-ml.so \"$out/bin/dcgm-exporter\"\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "NVIDIA GPU metrics exporter for Prometheus leveraging DCGM",
         homepage: "https://github.com/NVIDIA/dcgm-exporter",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -48,7 +45,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

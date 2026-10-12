@@ -2,66 +2,46 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/nix-store-veritysetup.nix", [[["maintainers", 6, 8]], [["Type", 23, 15], ["Label", 24, 15], ["Format", 25, 15], ["Minimize", 26, 15], ["Verity", 27, 15], ["VerityMatchKey", 28, 15]], [["storePaths", 20, 13], ["nixStorePrefix", 21, 13], ["repartConfig", 22, 13]], [["Type", 33, 15], ["Label", 34, 15], ["Verity", 35, 15], ["VerityMatchKey", 36, 15], ["Minimize", 37, 15]], [["repartConfig", 32, 13]], [["nix-store", 19, 11], ["nix-store-verity", 31, 11]], [["name", 17, 9], ["partitions", 18, 9]], [["repart", 16, 13]], [["enable", 46, 20]], [["enable", 45, 11], ["dmVerity", 46, 11]], [["enable", 48, 31]], [["systemd", 44, 9], ["nix-store-veritysetup", 48, 9]], [["initrd", 43, 12]], [["name", 55, 13], ["file", 56, 13]], [["drives", 53, 14]], [["fsType", 61, 13], ["device", 62, 13]], [["/nix/store", 60, 11]], [["mountHostNixStore", 52, 9], ["qemu", 53, 9], ["fileSystems", 59, 9]], [["imports", 12, 7], ["image", 16, 7], ["boot", 43, 7], ["virtualisation", 51, 7]], [["machine", 8, 9]], [["name", 4, 3], ["meta", 6, 3], ["nodes", 8, 3], ["testScript", 69, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/nix-store-veritysetup.nix", [["maintainers", 6, 8]]);
 const formals$2 = { args: { config: false, modulesPath: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/nix-store-veritysetup.nix", [["Type", 23, 15], ["Label", 24, 15], ["Format", 25, 15], ["Minimize", 26, 15], ["Verity", 27, 15], ["VerityMatchKey", 28, 15]]);
-const pos$3 = nix.positions(here + "/nix-store-veritysetup.nix", [["storePaths", 20, 13], ["nixStorePrefix", 21, 13], ["repartConfig", 22, 13]]);
-const pos$4 = nix.positions(here + "/nix-store-veritysetup.nix", [["Type", 33, 15], ["Label", 34, 15], ["Verity", 35, 15], ["VerityMatchKey", 36, 15], ["Minimize", 37, 15]]);
-const pos$5 = nix.positions(here + "/nix-store-veritysetup.nix", [["repartConfig", 32, 13]]);
-const pos$6 = nix.positions(here + "/nix-store-veritysetup.nix", [["nix-store", 19, 11], ["nix-store-verity", 31, 11]]);
-const pos$7 = nix.positions(here + "/nix-store-veritysetup.nix", [["name", 17, 9], ["partitions", 18, 9]]);
-const pos$8 = nix.positions(here + "/nix-store-veritysetup.nix", [["repart", 16, 13]]);
-const pos$9 = nix.positions(here + "/nix-store-veritysetup.nix", [["enable", 46, 20]]);
-const pos$10 = nix.positions(here + "/nix-store-veritysetup.nix", [["enable", 45, 11], ["dmVerity", 46, 11]]);
-const pos$11 = nix.positions(here + "/nix-store-veritysetup.nix", [["enable", 48, 31]]);
-const pos$12 = nix.positions(here + "/nix-store-veritysetup.nix", [["systemd", 44, 9], ["nix-store-veritysetup", 48, 9]]);
-const pos$13 = nix.positions(here + "/nix-store-veritysetup.nix", [["initrd", 43, 12]]);
-const pos$14 = nix.positions(here + "/nix-store-veritysetup.nix", [["name", 55, 13], ["file", 56, 13]]);
-const pos$15 = nix.positions(here + "/nix-store-veritysetup.nix", [["drives", 53, 14]]);
-const pos$16 = nix.positions(here + "/nix-store-veritysetup.nix", [["fsType", 61, 13], ["device", 62, 13]]);
-const pos$17 = nix.positions(here + "/nix-store-veritysetup.nix", [["/nix/store", 60, 11]]);
-const pos$18 = nix.positions(here + "/nix-store-veritysetup.nix", [["mountHostNixStore", 52, 9], ["qemu", 53, 9], ["fileSystems", 59, 9]]);
-const pos$19 = nix.positions(here + "/nix-store-veritysetup.nix", [["imports", 12, 7], ["image", 16, 7], ["boot", 43, 7], ["virtualisation", 51, 7]]);
-const pos$20 = nix.positions(here + "/nix-store-veritysetup.nix", [["machine", 8, 9]]);
 const formals$3 = { args: { nodes: false }, ellipsis: true };
-const pos$21 = nix.positions(here + "/nix-store-veritysetup.nix", [["name", 4, 3], ["meta", 6, 3], ["nodes", 8, 3], ["testScript", 69, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$21,
+    [nix.POS]: $pos[20],
     name: "nix-store-veritysetup",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "nikstur"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$20,
+      [nix.POS]: $pos[19],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const config = nix.arg($_1, "config");
         const modulesPath = nix.arg($_1, "modulesPath");
         return {
-          [nix.POS]: pos$19,
+          [nix.POS]: $pos[18],
           imports: nix.thunk(() => [nix.thunk(() => nix.str`${modulesPath}/image/repart.nix`)]),
           image: nix.thunk(() => ({
-            [nix.POS]: pos$8,
+            [nix.POS]: $pos[7],
             repart: nix.thunk(() => ({
-              [nix.POS]: pos$7,
+              [nix.POS]: $pos[6],
               name: "nix-store",
               partitions: nix.thunk(() => ({
-                [nix.POS]: pos$6,
+                [nix.POS]: $pos[5],
                 "nix-store": nix.thunk(() => ({
-                  [nix.POS]: pos$3,
+                  [nix.POS]: $pos[2],
                   storePaths: nix.thunk(() => [nix.thunk(() => nix.sel(config, "system", "build", "toplevel"))]),
                   nixStorePrefix: "/",
                   repartConfig: nix.thunk(() => ({
-                    [nix.POS]: pos$2,
+                    [nix.POS]: $pos[1],
                     Type: "linux-generic",
                     Label: "nix-store",
                     Format: "erofs",
@@ -71,9 +51,9 @@ export default nix.lambda((args) => (() => {
                   })),
                 })),
                 "nix-store-verity": nix.thunk(() => ({
-                  [nix.POS]: pos$5,
+                  [nix.POS]: $pos[4],
                   repartConfig: nix.thunk(() => ({
-                    [nix.POS]: pos$4,
+                    [nix.POS]: $pos[3],
                     Type: "linux-generic",
                     Label: "nix-store-verity",
                     Verity: "hash",
@@ -85,29 +65,29 @@ export default nix.lambda((args) => (() => {
             })),
           })),
           boot: nix.thunk(() => ({
-            [nix.POS]: pos$13,
+            [nix.POS]: $pos[12],
             initrd: nix.thunk(() => ({
-              [nix.POS]: pos$12,
+              [nix.POS]: $pos[11],
               systemd: nix.thunk(() => ({
-                [nix.POS]: pos$10,
+                [nix.POS]: $pos[9],
                 enable: true,
-                dmVerity: nix.thunk(() => ({ [nix.POS]: pos$9, enable: true })),
+                dmVerity: nix.thunk(() => ({ [nix.POS]: $pos[8], enable: true })),
               })),
-              "nix-store-veritysetup": nix.thunk(() => ({ [nix.POS]: pos$11, enable: true })),
+              "nix-store-veritysetup": nix.thunk(() => ({ [nix.POS]: $pos[10], enable: true })),
             })),
           })),
           virtualisation: nix.thunk(() => ({
-            [nix.POS]: pos$18,
+            [nix.POS]: $pos[17],
             mountHostNixStore: false,
             qemu: nix.thunk(() => ({
-              [nix.POS]: pos$15,
+              [nix.POS]: $pos[14],
               drives: nix.thunk(() => [
-                nix.thunk(() => ({ [nix.POS]: pos$14, name: "nix-store", file: "\"$NIX_STORE\"" })),
+                nix.thunk(() => ({ [nix.POS]: $pos[13], name: "nix-store", file: "\"$NIX_STORE\"" })),
               ]),
             })),
             fileSystems: nix.thunk(() => ({
-              [nix.POS]: pos$17,
-              "/nix/store": nix.thunk(() => ({ [nix.POS]: pos$16, fsType: "erofs", device: "/dev/mapper/nix-store" })),
+              [nix.POS]: $pos[16],
+              "/nix/store": nix.thunk(() => ({ [nix.POS]: $pos[15], fsType: "erofs", device: "/dev/mapper/nix-store" })),
             })),
           })),
         };

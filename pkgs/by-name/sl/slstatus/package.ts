@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 24, 5], ["hash", 25, 5]], [["updateScript", 51, 12]], [["homepage", 54, 5], ["description", 55, 5], ["license", 56, 5], ["maintainers", 57, 5], ["platforms", 60, 5], ["mainProgram", 61, 5]], [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["preBuild", 28, 3], ["patches", 38, 11], ["nativeBuildInputs", 40, 3], ["buildInputs", 41, 3], ["installFlags", 49, 3], ["passthru", 51, 3], ["meta", 53, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchzip: false, "pkg-config": false, writeText: false, libx11: false, libxcb: false, libxau: false, libxdmcp: false, config: false, conf: true, patches: true, extraLibs: true, gitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 51, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["homepage", 54, 5], ["description", 55, 5], ["license", 56, 5], ["maintainers", 57, 5], ["platforms", 60, 5], ["mainProgram", 61, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["preBuild", 28, 3], ["patches", 38, 11], ["nativeBuildInputs", 40, 3], ["buildInputs", 41, 3], ["installFlags", 49, 3], ["passthru", 51, 3], ["meta", 53, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,11 +22,11 @@ export default nix.lambda((args) => (() => {
   const extraLibs = nix.argOr($, "extraLibs", () => nix.selOr(config, () => [], "slstatus", "extraLibs"));
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "slstatus",
       version: "1.1",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://dl.suckless.org/tools/slstatus-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-MRDovZpQsvnLEvsbJNBzprkzQQ4nIs1T9BLT+tSGta8=",
         })))),
@@ -44,11 +41,11 @@ makeFlagsArray+=(LDLIBS="-lX11 -lxcb -lXau -lXdmcp" CC=$CC)
       buildInputs: nix.thunk(() => nix.concat([libx11, libxcb, libxau, libxdmcp], extraLibs)),
       installFlags: nix.thunk(() => ["PREFIX=$(out)"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://tools.suckless.org/slstatus/",
         description: "Status monitor for window managers that use WM_NAME like dwm",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),

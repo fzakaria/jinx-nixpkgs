@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 30, 5], ["hash", 31, 5]], [["description", 64, 5], ["longDescription", 65, 5], ["license", 68, 5], ["homepage", 69, 5], ["maintainers", 70, 5], ["mainProgram", 71, 5], ["platforms", 72, 5]], [["version", 26, 3], ["pname", 27, 3], ["src", 29, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 38, 3], ["configureFlags", 57, 3], ["preConfigure", 59, 3], ["meta", 63, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, libGLU: false, libGL: false, libx11: false, xorgproto: false, tcl: false, libglut: false, freetype: false, sfml_2: false, libxi: false, libxmu: false, libxext: false, libxt: false, libsm: false, libice: false, libpng: false, "pkg-config": false, gettext: false, intltool: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 30, 5], ["hash", 31, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 64, 5], ["longDescription", 65, 5], ["license", 68, 5], ["homepage", 69, 5], ["maintainers", 70, 5], ["mainProgram", 71, 5], ["platforms", 72, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 26, 3], ["pname", 27, 3], ["src", 29, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 38, 3], ["configureFlags", 57, 3], ["preConfigure", 59, 3], ["meta", 63, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,11 +29,11 @@ export default nix.lambda((args) => (() => {
   const gettext = nix.arg($, "gettext");
   const intltool = nix.arg($, "intltool");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       version: "0.8.4",
       pname: "extremetuxracer",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/extremetuxracer/etr-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-+jKFzAx1Wlr/Up8/LOo1FkgRFMa0uOHsB2n+7/BHc+U=",
         })))),
@@ -61,7 +59,7 @@ export default nix.lambda((args) => (() => {
       configureFlags: nix.thunk(() => [nix.thunk(() => nix.str`--with-tcl=${tcl}/lib`)]),
       preConfigure: "export NIX_CFLAGS_COMPILE=\"$NIX_CFLAGS_COMPILE\"\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "High speed arctic racing game based on Tux Racer",
         longDescription: "ExtremeTuxRacer - Tux lies on his belly and accelerates down ice slopes.\n",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

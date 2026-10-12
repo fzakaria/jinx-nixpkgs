@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 14, 5], ["sha256", 15, 5]], [["url", 20, 7], ["sha256", 21, 7]], [["description", 48, 5], ["mainProgram", 49, 5], ["downloadPage", 50, 5], ["homepage", 51, 5], ["license", 52, 5], ["maintainers", 53, 5], ["longDescription", 54, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 13, 3], ["patches", 17, 3], ["pyproject", 24, 3], ["nativeBuildInputs", 25, 3], ["postBuild", 32, 3], ["installPhase", 35, 3], ["ppdFileCommands", 43, 3], ["postFixup", 44, 3], ["meta", 47, 3]]]);
 const formals$1 = { args: { lib: false, fetchzip: false, fetchpatch: false, cups: false, python3Packages: false, patchPpdFilesHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 14, 5], ["sha256", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 20, 7], ["sha256", 21, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 48, 5], ["mainProgram", 49, 5], ["downloadPage", 50, 5], ["homepage", 51, 5], ["license", 52, 5], ["maintainers", 53, 5], ["longDescription", 54, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 13, 3], ["patches", 17, 3], ["pyproject", 24, 3], ["nativeBuildInputs", 25, 3], ["postBuild", 32, 3], ["installPhase", 35, 3], ["ppdFileCommands", 43, 3], ["postFixup", 44, 3], ["meta", 47, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,13 +17,13 @@ export default nix.lambda((args) => (() => {
       const pname = "rastertosag-gdi";
       const version = "0.1";
       const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://www.openprinting.org/download/printing/${pname}/${pname}-${version}.tar.gz`),
           sha256: "1ldplpv497j8vhw24sksg3fiw8c5pqr0wajajh7p5xpvb6zlcmvw",
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: nix.thunk(() => nix.str`https://sources.debian.org/data/main/r/${pname}/0.1-7/debian/patches/0001-${pname}-python3.patch`),
             sha256: "1l3xbrs67025595k9ba5794q3s74anizpbxwsshcfhmbrzd9h8hg",
           })))),
@@ -46,7 +43,7 @@ runHook postInstall
       const postFixup = nix.thunk(() => nix.str`gzip -9nv "${nix.builtins.placeholder("out")}/share/cups/model/rastertosag-gdi"/*.ppd
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "CUPS driver for Ricoh Aficio SP 1000S and SP 1100S printers",
         mainProgram: "rastertosag-gdi",
         downloadPage: "https://www.openprinting.org/download/printing/rastertosag-gdi/",
@@ -56,7 +53,7 @@ runHook postInstall
         longDescription: "This package brings CUPS raster filter\nfor Ricoh Aficio SP 1000S and SP 1100S.\nIn contrast to other Ricoh laser printers,\nthey use the proprietary SAG-GDI raster format by\nSagem Communication and do not understand PCL or PostScript.\nTherefore they do not work with Ricoh's PPD files.\n",
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

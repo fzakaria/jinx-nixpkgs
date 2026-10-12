@@ -2,16 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/repart-image.nix", [[["depsBuildBuild", 86, 9], ["nativeBuildInputs", 87, 9]], [["vfat", 102, 5], ["ext4", 106, 5], ["squashfs", 107, 5], ["erofs", 108, 5], ["btrfs", 109, 5], ["xfs", 110, 5], ["swap", 111, 5], ["empty", 112, 5]], [["zstd", 119, 7], ["xz", 120, 7], ["zstd-seekable", 121, 7]], [["zstd", 127, 7], ["xz", 128, 7], ["zstd-seekable", 129, 7]], [["pname", 139, 9], ["version", 140, 17]], [["name", 143, 17]], [["out", 150, 29]], [["amendRepartDefinitions", 237, 15]], [["__structuredAttrs", 146, 5], ["unsafeDiscardReferences", 150, 5], ["nativeBuildInputs", 152, 5], ["env", 162, 5], ["finalPartitions", 164, 13], ["definitionsDirectory", 164, 29], ["partitionsJSON", 166, 5], ["finalRepartDefinitions", 169, 5], ["systemdRepartFlags", 171, 5], ["dontUnpack", 189, 5], ["dontConfigure", 190, 5], ["dontFixup", 191, 5], ["doCheck", 192, 5], ["patchPhase", 194, 5], ["buildPhase", 203, 5], ["installPhase", 215, 5], ["passthru", 236, 5]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, runCommand: false, python3: false, black: false, ruff: false, mypy: false, systemd: false, fakeroot: false, "util-linux": false, dosfstools: false, mtools: false, e2fsprogs: false, "squashfs-tools": false, "erofs-utils": false, "btrfs-progs": false, xfsprogs: false, zstd: false, xz: false, zeekstd: false, name: false, version: false, baseName: false, compression: false, fileSystems: false, finalPartitions: false, split: false, seed: false, definitionsDirectory: false, imageSize: true, sectorSize: false, mkfsEnv: true, createEmpty: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/repart-image.nix", [["depsBuildBuild", 86, 9], ["nativeBuildInputs", 87, 9]]);
-const pos$2 = nix.positions(here + "/repart-image.nix", [["vfat", 102, 5], ["ext4", 106, 5], ["squashfs", 107, 5], ["erofs", 108, 5], ["btrfs", 109, 5], ["xfs", 110, 5], ["swap", 111, 5], ["empty", 112, 5]]);
-const pos$3 = nix.positions(here + "/repart-image.nix", [["zstd", 119, 7], ["xz", 120, 7], ["zstd-seekable", 121, 7]]);
-const pos$4 = nix.positions(here + "/repart-image.nix", [["zstd", 127, 7], ["xz", 128, 7], ["zstd-seekable", 129, 7]]);
-const pos$5 = nix.positions(here + "/repart-image.nix", [["pname", 139, 9], ["version", 140, 17]]);
-const pos$6 = nix.positions(here + "/repart-image.nix", [["name", 143, 17]]);
-const pos$7 = nix.positions(here + "/repart-image.nix", [["out", 150, 29]]);
-const pos$8 = nix.positions(here + "/repart-image.nix", [["amendRepartDefinitions", 237, 15]]);
-const pos$9 = nix.positions(here + "/repart-image.nix", [["__structuredAttrs", 146, 5], ["unsafeDiscardReferences", 150, 5], ["nativeBuildInputs", 152, 5], ["env", 162, 5], ["finalPartitions", 164, 13], ["definitionsDirectory", 164, 29], ["partitionsJSON", 166, 5], ["finalRepartDefinitions", 169, 5], ["systemdRepartFlags", 171, 5], ["dontUnpack", 189, 5], ["dontConfigure", 190, 5], ["dontFixup", 191, 5], ["doCheck", 192, 5], ["patchPhase", 194, 5], ["buildPhase", 203, 5], ["installPhase", 215, 5], ["passthru", 236, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -53,7 +45,7 @@ export default nix.lambda((args) => (() => {
     return (nix.asBool(nix.sel(hostPlatform, "isAarch32")) ? "arm" : (nix.asBool(nix.sel(hostPlatform, "isAarch64")) ? "arm64" : (nix.asBool(nix.sel(hostPlatform, "isx86_32")) ? "x86" : (nix.asBool(nix.sel(hostPlatform, "isx86_64")) ? "x86-64" : (nix.asBool(nix.sel(hostPlatform, "isMips32")) ? "mips-le" : (nix.asBool(nix.sel(hostPlatform, "isMips64")) ? "mips64-le" : (nix.asBool(nix.sel(hostPlatform, "isPower")) ? "ppc" : (nix.asBool(nix.sel(hostPlatform, "isPower64")) ? "ppc64" : (nix.asBool(nix.sel(hostPlatform, "isRiscV32")) ? "riscv32" : (nix.asBool(nix.sel(hostPlatform, "isRiscV64")) ? "riscv64" : (nix.asBool(nix.sel(hostPlatform, "isS390")) ? "s390" : (nix.asBool(nix.sel(hostPlatform, "isS390x")) ? "s390x" : (nix.asBool(nix.sel(hostPlatform, "isLoongArch64")) ? "loongarch64" : (nix.asBool(nix.sel(hostPlatform, "isAlpha")) ? "alpha" : nix.sel(hostPlatform, "parsed", "cpu", "name")))))))))))))));
   })());
   const amendRepartDefinitions = nix.thunk(() => nix.app(runCommand, "amend-repart-definitions.py", nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       depsBuildBuild: nix.thunk(() => [ruff]),
       nativeBuildInputs: nix.thunk(() => [python3, mypy]),
     })), nix.thunk(() => nix.str`install ${nix.path(here, "./amend-repart-definitions.py")} $out
@@ -64,7 +56,7 @@ ruff check $out
 mypy --strict $out
 `)));
   const fileSystemToolMapping = nix.thunk(() => ({
-    [nix.POS]: pos$2,
+    [nix.POS]: $pos[1],
     vfat: nix.thunk(() => [dosfstools, mtools]),
     ext4: nix.thunk(() => [nix.thunk(() => nix.sel(e2fsprogs, "bin"))]),
     squashfs: nix.thunk(() => [squashfs_tools]),
@@ -75,17 +67,17 @@ mypy --strict $out
     empty: [],
   }));
   const fileSystemTools = nix.thunk(() => nix.builtins.concatMap((f) => nix.sel(fileSystemToolMapping, nix.key(nix.str`${f}`)), fileSystems));
-  const compressionPkg = nix.thunk(() => nix.sel({ [nix.POS]: pos$3, zstd: zstd, xz: xz, "zstd-seekable": zeekstd }, nix.key(nix.str`${nix.sel(compression, "algorithm")}`)));
+  const compressionPkg = nix.thunk(() => nix.sel({ [nix.POS]: $pos[2], zstd: zstd, xz: xz, "zstd-seekable": zeekstd }, nix.key(nix.str`${nix.sel(compression, "algorithm")}`)));
   const compressionCommand = nix.thunk(() => nix.sel({
-    [nix.POS]: pos$4,
+    [nix.POS]: $pos[3],
     zstd: nix.thunk(() => nix.str`zstd --no-progress --threads=$NIX_BUILD_CORES -${nix.builtins.toString(nix.thunk(() => nix.sel(compression, "level")))}`),
     xz: nix.thunk(() => nix.str`xz --keep --verbose --threads=$NIX_BUILD_CORES -${nix.builtins.toString(nix.thunk(() => nix.sel(compression, "level")))}`),
     "zstd-seekable": nix.thunk(() => nix.str`zeekstd --no-progress --frame-size 2M --compression-level ${nix.builtins.toString(nix.thunk(() => nix.sel(compression, "level")))}`),
   }, nix.key(nix.str`${nix.sel(compression, "algorithm")}`)));
-  return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => nix.update((nix.asBool(!nix.eq(version, null)) ? { [nix.POS]: pos$5, pname: name, version: version } : { [nix.POS]: pos$6, name: name }), {
-      [nix.POS]: pos$9,
+  return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => nix.update((nix.asBool(!nix.eq(version, null)) ? { [nix.POS]: $pos[4], pname: name, version: version } : { [nix.POS]: $pos[5], name: name }), {
+      [nix.POS]: $pos[8],
       __structuredAttrs: true,
-      unsafeDiscardReferences: nix.thunk(() => ({ [nix.POS]: pos$7, out: true })),
+      unsafeDiscardReferences: nix.thunk(() => ({ [nix.POS]: $pos[6], out: true })),
       nativeBuildInputs: nix.thunk(() => nix.concat([systemd, util_linux, fakeroot], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(compression, "enable")), nix.thunk(() => [compressionPkg])), fileSystemTools))),
       env: mkfsEnv,
       finalPartitions: finalPartitions,
@@ -130,7 +122,7 @@ done
 
 runHook postInstall
 `)),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$8, amendRepartDefinitions: amendRepartDefinitions })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[7], amendRepartDefinitions: amendRepartDefinitions })),
     }));
 })(), formals$1);
 //# sourceMappingURL=repart-image.ts.map

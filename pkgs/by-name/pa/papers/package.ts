@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 53, 5], ["hash", 54, 5]], [["src", 59, 7], ["pname", 60, 7], ["version", 61, 7], ["hash", 63, 5]], [["CARGO_BUILD_TARGET", 114, 7]], [["packageName", 145, 11]], [["command", 149, 11], ["supportedFeatures", 162, 11]], [["updateScript", 142, 5]], [["homepage", 172, 5], ["changelog", 173, 5], ["description", 174, 5], ["longDescription", 176, 5], ["license", 183, 5], ["platforms", 184, 5], ["mainProgram", 185, 5], ["teams", 186, 5]], [["pname", 43, 3], ["version", 44, 3], ["outputs", 46, 3], ["src", 52, 3], ["cargoDeps", 57, 3], ["nativeBuildInputs", 66, 3], ["buildInputs", 82, 3], ["mesonFlags", 105, 3], ["env", 114, 3], ["postPatch", 116, 3], ["postInstall", 122, 3], ["preFixup", 127, 3], ["postFixup", 136, 3], ["passthru", 141, 3], ["meta", 171, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, meson: false, ninja: false, "pkg-config": false, appstream: false, "blueprint-compiler": false, "desktop-file-utils": false, gtk4: false, glib: false, pango: false, "gdk-pixbuf": false, "shared-mime-info": false, itstool: false, poppler: false, nautilus: false, djvulibre: false, libarchive: false, libsecret: false, wrapGAppsHook4: false, librsvg: false, "gobject-introspection": false, "yelp-tools": false, "gsettings-desktop-schemas": false, dbus: false, "gi-docgen": false, "libsysprof-capture": false, libspelling: false, withLibsecret: true, supportNautilus: true, libadwaita: false, exempi: false, cargo: false, rustPlatform: false, "_experimental-update-script-combinators": false, "common-updater-scripts": false, gnome: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 53, 5], ["hash", 54, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["src", 59, 7], ["pname", 60, 7], ["version", 61, 7], ["hash", 63, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["CARGO_BUILD_TARGET", 114, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["packageName", 145, 11]]);
-const pos$5 = nix.positions(here + "/package.nix", [["command", 149, 11], ["supportedFeatures", 162, 11]]);
-const pos$6 = nix.positions(here + "/package.nix", [["updateScript", 142, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["homepage", 172, 5], ["changelog", 173, 5], ["description", 174, 5], ["longDescription", 176, 5], ["license", 183, 5], ["platforms", 184, 5], ["mainProgram", 185, 5], ["teams", 186, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 43, 3], ["version", 44, 3], ["outputs", 46, 3], ["src", 52, 3], ["cargoDeps", 57, 3], ["nativeBuildInputs", 66, 3], ["buildInputs", 82, 3], ["mesonFlags", 105, 3], ["env", 114, 3], ["postPatch", 116, 3], ["postInstall", 122, 3], ["preFixup", 127, 3], ["postFixup", 136, 3], ["passthru", 141, 3], ["meta", 171, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -53,17 +46,17 @@ export default nix.lambda((args) => (() => {
   const common_updater_scripts = nix.arg($, "common-updater-scripts");
   const gnome = nix.arg($, "gnome");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "papers",
       version: "50.2",
       outputs: nix.thunk(() => ["out", "dev", "devdoc"]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnome/sources/papers/${nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/papers-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-rhvc8c1Hy1DJ2EdleEYH+Bxy3xfdbmrZM/6hQXPSufQ=",
         })))),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
@@ -102,7 +95,7 @@ export default nix.lambda((args) => (() => {
       ], nix.concat(nix.app(nix.sel(lib, "optionals"), withLibsecret, nix.thunk(() => [libsecret])), nix.app(nix.sel(lib, "optionals"), supportNautilus, nix.thunk(() => [nautilus]))))),
       mesonFlags: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(withLibsecret)), nix.thunk(() => ["-Dkeyring=disabled"])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(supportNautilus)), nix.thunk(() => ["-Dnautilus=false"])))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         CARGO_BUILD_TARGET: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "rust", "rustcTargetSpec")),
       })),
       postPatch: nix.thunk(() => nix.str`substituteInPlace shell/src/meson.build thumbnailer/meson.build --replace-fail \\
@@ -116,11 +109,11 @@ export default nix.lambda((args) => (() => {
 `, nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "install_name_tool -add_rpath \"$out/lib\" \"$out/bin/papers\"\n"))),
       postFixup: "# Cannot be in postInstall, otherwise _multioutDocs hook in preFixup will move right back.\nmoveToOutput \"share/doc\" \"$devdoc\"\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         updateScript: nix.thunk(() => (() => {
-          const updateSource = nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$4, packageName: "papers" }))));
+          const updateSource = nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: $pos[3], packageName: "papers" }))));
           const updateLockfile = nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             command: nix.thunk(() => [
               "sh",
               "-c",
@@ -134,7 +127,7 @@ update-source-version papers --ignore-same-version --source-key=cargoDeps.vendor
         })()),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         homepage: "https://gitlab.gnome.org/GNOME/papers",
         changelog: nix.thunk(() => nix.str`https://gitlab.gnome.org/GNOME/papers/-/blob/${nix.sel(finalAttrs, "version")}/NEWS?ref_type=tags`),
         description: "GNOME's document viewer",

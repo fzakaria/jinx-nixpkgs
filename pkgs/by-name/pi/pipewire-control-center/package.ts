@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]], [["name", 51, 7], ["desktopName", 52, 7], ["comment", 53, 7], ["exec", 54, 7], ["icon", 55, 7], ["categories", 56, 7], ["keywords", 61, 7], ["startupWMClass", 70, 7]], [["updateScript", 78, 12]], [["description", 81, 5], ["longDescription", 82, 5], ["homepage", 88, 5], ["changelog", 89, 5], ["license", 90, 5], ["maintainers", 91, 5], ["mainProgram", 92, 5]], [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["__structuredAttrs", 18, 3], ["src", 20, 3], ["build-system", 27, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 37, 3], ["dependencies", 42, 3], ["desktopItems", 49, 3], ["pythonImportsCheck", 74, 3], ["passthru", 78, 3], ["meta", 80, 3]]]);
 const formals$1 = { args: { lib: false, python3Packages: false, fetchFromGitHub: false, "nix-update-script": false, wrapGAppsHook4: false, "gobject-introspection": false, gtk4: false, libadwaita: false, copyDesktopItems: false, makeDesktopItem: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 51, 7], ["desktopName", 52, 7], ["comment", 53, 7], ["exec", 54, 7], ["icon", 55, 7], ["categories", 56, 7], ["keywords", 61, 7], ["startupWMClass", 70, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 78, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 81, 5], ["longDescription", 82, 5], ["homepage", 88, 5], ["changelog", 89, 5], ["license", 90, 5], ["maintainers", 91, 5], ["mainProgram", 92, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["pyproject", 17, 3], ["__structuredAttrs", 18, 3], ["src", 20, 3], ["build-system", 27, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 37, 3], ["dependencies", 42, 3], ["desktopItems", 49, 3], ["pythonImportsCheck", 74, 3], ["passthru", 78, 3], ["meta", 80, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,13 +18,13 @@ export default nix.lambda((args) => (() => {
   const copyDesktopItems = nix.arg($, "copyDesktopItems");
   const makeDesktopItem = nix.arg($, "makeDesktopItem");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "pipewire-control-center",
       version: "0.6.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "knightinfected",
           repo: "PipeWireController",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -48,7 +44,7 @@ export default nix.lambda((args) => (() => {
       })()),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "io.github.knightinfected.PipeWireControlCenter",
             desktopName: "PipeWire Controller",
             comment: "Configure PipeWire, filter chains and HRIR virtual surround without editing files",
@@ -61,11 +57,11 @@ export default nix.lambda((args) => (() => {
       ]),
       pythonImportsCheck: nix.thunk(() => ["pwctl"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "GTK4/libadwaita audio control center for PipeWire",
         longDescription: "A GUI control center for PipeWire providing audio management, signal paths,\nvirtual devices, a live patchbay, parametric equalizer, performance monitoring,\nfilter chains, microphone cleanup (echo/noise reduction), HRIR virtual surround,\nrouting snapshots, per-app policies, and LADSPA/LV2 effect inserts.\n",
         homepage: "https://github.com/knightinfected/PipeWireController",

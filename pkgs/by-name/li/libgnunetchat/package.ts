@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 23, 5], ["tag", 24, 5], ["hash", 25, 5]], [["url", 30, 7], ["hash", 31, 7]], [["INSTALL_DIR", 52, 7]], [["pkg-config", 56, 18]], [["tests", 56, 12]], [["pkgConfigModules", 59, 5], ["description", 60, 5], ["homepage", 61, 5], ["changelog", 62, 5], ["license", 63, 5], ["platforms", 64, 5], ["teams", 65, 5], ["maintainers", 66, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["patches", 28, 3], ["strictDeps", 35, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 44, 3], ["env", 52, 3], ["prePatch", 54, 3], ["passthru", 56, 3], ["meta", 58, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchgit: false, fetchpatch: false, meson: false, ninja: false, "pkg-config": false, validatePkgConfig: false, testers: false, check: false, gnunet: false, libsodium: false, libgcrypt: false, libextractor: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 23, 5], ["tag", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 30, 7], ["hash", 31, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["INSTALL_DIR", 52, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pkg-config", 56, 18]]);
-const pos$5 = nix.positions(here + "/package.nix", [["tests", 56, 12]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pkgConfigModules", 59, 5], ["description", 60, 5], ["homepage", 61, 5], ["changelog", 62, 5], ["license", 63, 5], ["platforms", 64, 5], ["teams", 65, 5], ["maintainers", 66, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["patches", 28, 3], ["strictDeps", 35, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 44, 3], ["env", 52, 3], ["prePatch", 54, 3], ["passthru", 56, 3], ["meta", 58, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,18 +22,18 @@ export default nix.lambda((args) => (() => {
   const libgcrypt = nix.arg($, "libgcrypt");
   const libextractor = nix.arg($, "libextractor");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "libgnunetchat",
       version: "0.6.1",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://git-www.taler.net/libgnunetchat.git",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-FKFoIuGGPcYVRBrsqn1rnodRVCLAjLKlgZOs9v4H+8w=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://build.opensuse.org/public/source/openSUSE:Factory/libgnunetchat/libgnunetchat-0.6.1-gnunet-0.26.2.patch?rev=6",
             hash: "sha256-Q0FvZUXSnYwK+LsN9MoW7v+gPYmD7w4E+bXNDluhxfI=",
           })))),
@@ -48,19 +42,19 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [meson, ninja, pkg_config, validatePkgConfig]),
       buildInputs: nix.thunk(() => [check, gnunet, libextractor, libgcrypt, libsodium]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         INSTALL_DIR: nix.thunk(() => nix.add(nix.builtins.placeholder("out"), "/")),
       })),
       prePatch: "mkdir -p $out/lib",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "testMetaPkgConfig"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pkgConfigModules: nix.thunk(() => ["gnunetchat"]),
         description: "Library for secure, decentralized chat using GNUnet network services",
         homepage: "https://git-www.taler.net/libgnunetchat.git",

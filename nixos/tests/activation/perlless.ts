@@ -2,42 +2,37 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/perlless.nix", [[["maintainers", 7, 8]], [["kernelPackages", 14, 12]], [["mountHostNixStore", 16, 22], ["useNixStoreImage", 17, 22]], [["imports", 12, 7], ["boot", 14, 7], ["virtualisation", 16, 7]], [["machine", 9, 9]], [["name", 5, 3], ["meta", 7, 3], ["nodes", 9, 3], ["testScript", 20, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/perlless.nix", [["maintainers", 7, 8]]);
 const formals$2 = { args: { pkgs: false, modulesPath: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/perlless.nix", [["kernelPackages", 14, 12]]);
-const pos$3 = nix.positions(here + "/perlless.nix", [["mountHostNixStore", 16, 22], ["useNixStoreImage", 17, 22]]);
-const pos$4 = nix.positions(here + "/perlless.nix", [["imports", 12, 7], ["boot", 14, 7], ["virtualisation", 16, 7]]);
-const pos$5 = nix.positions(here + "/perlless.nix", [["machine", 9, 9]]);
-const pos$6 = nix.positions(here + "/perlless.nix", [["name", 5, 3], ["meta", 7, 3], ["nodes", 9, 3], ["testScript", 20, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$6,
+    [nix.POS]: $pos[5],
     name: "activation-perlless",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "nikstur"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs = nix.arg($_1, "pkgs");
         const modulesPath = nix.arg($_1, "modulesPath");
         return {
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           imports: nix.thunk(() => [nix.thunk(() => nix.str`${modulesPath}/profiles/perlless.nix`)]),
           boot: nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             kernelPackages: nix.thunk(() => nix.sel(pkgs, "linuxPackages_latest")),
           })),
-          virtualisation: nix.thunk(() => ({ [nix.POS]: pos$3, mountHostNixStore: false, useNixStoreImage: true })),
+          virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[2], mountHostNixStore: false, useNixStoreImage: true })),
         };
       })(), formals$2),
     })),

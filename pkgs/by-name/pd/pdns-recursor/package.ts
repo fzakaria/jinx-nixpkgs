@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 26, 5], ["hash", 27, 5]], [["pname", 31, 26], ["version", 31, 32], ["src", 31, 40], ["sourceRoot", 32, 5], ["hash", 33, 5]], [["pdns-recursor", 69, 26], ["ncdns", 69, 40]], [["tests", 68, 12]], [["changelog", 73, 5], ["description", 74, 5], ["homepage", 75, 5], ["platforms", 76, 5], ["badPlatforms", 77, 5], ["license", 80, 5], ["maintainers", 81, 5]], [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["cargoDeps", 30, 3], ["cargoRoot", 36, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 46, 3], ["configureFlags", 56, 3], ["installFlags", 64, 3], ["enableParallelBuilding", 66, 3], ["passthru", 68, 3], ["meta", 72, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, "pkg-config": false, boost: false, nixosTests: false, openssl: false, systemd: false, luajit: false, protobuf: false, libsodium: false, curl: false, rustPlatform: false, cargo: false, rustc: false, python3: false, enableProtoBuf: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 31, 26], ["version", 31, 32], ["src", 31, 40], ["sourceRoot", 32, 5], ["hash", 33, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pdns-recursor", 69, 26], ["ncdns", 69, 40]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 68, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["changelog", 73, 5], ["description", 74, 5], ["homepage", 75, 5], ["platforms", 76, 5], ["badPlatforms", 77, 5], ["license", 80, 5], ["maintainers", 81, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["cargoDeps", 30, 3], ["cargoRoot", 36, 3], ["nativeBuildInputs", 38, 3], ["buildInputs", 46, 3], ["configureFlags", 56, 3], ["installFlags", 64, 3], ["enableParallelBuilding", 66, 3], ["passthru", 68, 3], ["meta", 72, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,16 +25,16 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const enableProtoBuf = nix.argOr($, "enableProtoBuf", () => false);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "pdns-recursor",
       version: "5.4.6",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://downloads.powerdns.com/releases/pdns-recursor-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-DUyf6+b5TaCu1+Bex7ZUkE+9YindU79ge2P6cHuSNoo=",
         })))),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -65,15 +60,15 @@ export default nix.lambda((args) => (() => {
       installFlags: nix.thunk(() => ["sysconfdir=$(out)/etc/pdns-recursor"]),
       enableParallelBuilding: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           "pdns-recursor": nix.thunk(() => nix.attr(nixosTests, "pdns-recursor")),
           ncdns: nix.thunk(() => nix.attr(nixosTests, "ncdns")),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         changelog: nix.thunk(() => nix.str`https://doc.powerdns.com/recursor/changelog/${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}.html#change-${nix.sel(finalAttrs, "version")}`),
         description: "Recursive DNS server",
         homepage: "https://www.powerdns.com/",

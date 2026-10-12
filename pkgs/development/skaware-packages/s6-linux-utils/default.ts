@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["description", 13, 8], ["platforms", 14, 8]], [["pname", 9, 3], ["version", 10, 3], ["sha256", 11, 3], ["meta", 13, 3], ["outputs", 16, 3], ["buildInputs", 23, 3], ["configureFlags", 29, 3], ["postInstall", 39, 3]]]);
 const formals$1 = { args: { lib: false, skawarePackages: false, skalibs: false, execline: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["description", 13, 8], ["platforms", 14, 8]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 9, 3], ["version", 10, 3], ["sha256", 11, 3], ["meta", 13, 3], ["outputs", 16, 3], ["buildInputs", 23, 3], ["configureFlags", 29, 3], ["postInstall", 39, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,12 +12,12 @@ export default nix.lambda((args) => (() => {
   const skalibs = nix.arg($, "skalibs");
   const execline = nix.arg($, "execline");
   return nix.app(nix.sel(skawarePackages, "buildPackage"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "s6-linux-utils",
       version: "2.6.4.1",
       sha256: "sha256-FuGltaK0qYZ0tKlxlhKtt5WI48IMQIM2AnjqOPLTISk=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Set of minimalistic Linux-specific system utilities",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       })),

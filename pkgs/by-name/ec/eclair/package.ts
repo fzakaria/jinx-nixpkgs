@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 15, 5], ["hash", 16, 5]], [["description", 36, 5], ["homepage", 37, 5], ["license", 38, 5], ["maintainers", 39, 5], ["platforms", 40, 5]], [["pname", 10, 3], ["version", 11, 3], ["revision", 12, 3], ["src", 14, 3], ["propagatedBuildInputs", 19, 3], ["installPhase", 24, 3], ["meta", 35, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchzip: false, jq: false, openjdk21: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 36, 5], ["homepage", 37, 5], ["license", 38, 5], ["maintainers", 39, 5], ["platforms", 40, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["revision", 12, 3], ["src", 14, 3], ["propagatedBuildInputs", 19, 3], ["installPhase", 24, 3], ["meta", 35, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,14 +17,14 @@ export default nix.lambda((args) => (() => {
       const version = "0.14.2";
       const revision = "3dd8d2d";
       const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/ACINQ/eclair/releases/download/v${version}/eclair-node-${version}-${revision}-bin.zip`),
           hash: "sha256-4S2xAEGc1/9cs2n/fE4weIB7+oCqzH500QyTOaZew7A=",
         }))));
       const propagatedBuildInputs = nix.thunk(() => [jq, openjdk21]);
       const installPhase = "runHook preInstall\n\nmkdir $out\ncp -a * $out\nmv $out/bin/eclair-node.sh $out/bin/eclair-node\nrm $out/bin/eclair-node.bat\n\nrunHook postInstall\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Scala implementation of the Lightning Network",
         homepage: "https://github.com/ACINQ/eclair",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -37,7 +35,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         revision,

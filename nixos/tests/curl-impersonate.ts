@@ -2,26 +2,11 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/curl-impersonate.nix", [[["nativeBuildInputs", 68, 9]], [["buildInputs", 93, 13]], [["maintainers", 144, 5]], [["allowedTCPPorts", 151, 27]], [["firewall", 151, 18]], [["default", 160, 13], ["addSSL", 161, 13], ["sslCertificate", 162, 13], ["sslCertificateKey", 163, 13]], [["curl-impersonate.nixos.test", 159, 24]], [["enable", 158, 11], ["virtualHosts", 159, 11]], [["nginx", 157, 9]], [["networking", 151, 7], ["services", 156, 7]], [["extraHosts", 176, 20]], [["certificateFiles", 180, 22]], [["pki", 180, 18]], [["networking", 176, 9], ["security", 180, 9]], [["web", 150, 5], ["curl", 169, 5]], [["name", 141, 3], ["meta", 143, 3], ["nodes", 149, 3], ["testScript", 184, 3]]]);
 const formals$1 = { args: { config: false, lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/curl-impersonate.nix", [["nativeBuildInputs", 68, 9]]);
-const pos$2 = nix.positions(here + "/curl-impersonate.nix", [["buildInputs", 93, 13]]);
-const pos$3 = nix.positions(here + "/curl-impersonate.nix", [["maintainers", 144, 5]]);
 const formals$2 = { args: {  }, ellipsis: true };
-const pos$4 = nix.positions(here + "/curl-impersonate.nix", [["allowedTCPPorts", 151, 27]]);
-const pos$5 = nix.positions(here + "/curl-impersonate.nix", [["firewall", 151, 18]]);
-const pos$6 = nix.positions(here + "/curl-impersonate.nix", [["default", 160, 13], ["addSSL", 161, 13], ["sslCertificate", 162, 13], ["sslCertificateKey", 163, 13]]);
-const pos$7 = nix.positions(here + "/curl-impersonate.nix", [["curl-impersonate.nixos.test", 159, 24]]);
-const pos$8 = nix.positions(here + "/curl-impersonate.nix", [["enable", 158, 11], ["virtualHosts", 159, 11]]);
-const pos$9 = nix.positions(here + "/curl-impersonate.nix", [["nginx", 157, 9]]);
-const pos$10 = nix.positions(here + "/curl-impersonate.nix", [["networking", 151, 7], ["services", 156, 7]]);
 const formals$3 = { args: { nodes: false, lib: false }, ellipsis: true };
-const pos$11 = nix.positions(here + "/curl-impersonate.nix", [["extraHosts", 176, 20]]);
-const pos$12 = nix.positions(here + "/curl-impersonate.nix", [["certificateFiles", 180, 22]]);
-const pos$13 = nix.positions(here + "/curl-impersonate.nix", [["pki", 180, 18]]);
-const pos$14 = nix.positions(here + "/curl-impersonate.nix", [["networking", 176, 9], ["security", 180, 9]]);
-const pos$15 = nix.positions(here + "/curl-impersonate.nix", [["web", 150, 5], ["curl", 169, 5]]);
 const formals$4 = { args: {  }, ellipsis: true };
-const pos$16 = nix.positions(here + "/curl-impersonate.nix", [["name", 141, 3], ["meta", 143, 3], ["nodes", 149, 3], ["testScript", 184, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -48,7 +33,7 @@ subjectAltName = @alt_names
 ${nix.app(nix.sel(lib, "concatStringsSep"), "\n", nix.thunk(() => nix.app(nix.sel(lib, "imap0"), (idx) => (domain) => nix.str`DNS.${nix.builtins.toString(idx)} = ${domain}`, domains)))}
 `)));
     return nix.app(nix.sel(pkgs, "runCommand"), "curl-impersonate-test-certs", nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         nativeBuildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "openssl"))]),
       })), nix.thunk(() => nix.str`# create CA certificate and key
 openssl req -newkey rsa:4096 -keyout ca-key.pem -out ca-csr.pem -nodes -subj '/CN=curl-impersonate-ca.nixos.test'
@@ -67,7 +52,7 @@ cp key.pem cert.pem ca.pem $out
   })());
   const curl_impersonate_test = nix.thunk(() => (() => {
     const minicurl = nix.thunk(() => nix.app(nix.sel(pkgs, "runCommandCC"), "minicurl", nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         buildInputs: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "curl"))]),
       })), nix.thunk(() => nix.str`mkdir -p $out/bin
 sed -e 's/opts->local_port_end - opts->local_port_start);/(long)(opts->local_port_end - opts->local_port_start));/' \\
@@ -112,34 +97,34 @@ pytest . --install-dir ../usr --capture-interface eth1 --exitfirst -k 'not test_
 `));
   })());
   return {
-    [nix.POS]: pos$16,
+    [nix.POS]: $pos[15],
     name: "curl-impersonate",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
         return [nix.thunk(() => nix.lookup(w, "ui-1"))];
       })()),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$15,
+      [nix.POS]: $pos[14],
       web: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          [nix.POS]: pos$10,
+          [nix.POS]: $pos[9],
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$5,
-            firewall: nix.thunk(() => ({ [nix.POS]: pos$4, allowedTCPPorts: nix.thunk(() => [80n, 443n]) })),
+            [nix.POS]: $pos[4],
+            firewall: nix.thunk(() => ({ [nix.POS]: $pos[3], allowedTCPPorts: nix.thunk(() => [80n, 443n]) })),
           })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$9,
+            [nix.POS]: $pos[8],
             nginx: nix.thunk(() => ({
-              [nix.POS]: pos$8,
+              [nix.POS]: $pos[7],
               enable: true,
               virtualHosts: nix.thunk(() => ({
-                [nix.POS]: pos$7,
+                [nix.POS]: $pos[6],
                 "curl-impersonate.nixos.test": nix.thunk(() => ({
-                  [nix.POS]: pos$6,
+                  [nix.POS]: $pos[5],
                   default: true,
                   addSSL: true,
                   sslCertificate: nix.thunk(() => nix.str`${tls_certs}/cert.pem`),
@@ -155,15 +140,15 @@ pytest . --install-dir ../usr --capture-interface eth1 --exitfirst -k 'not test_
         const nodes = nix.arg($_1, "nodes");
         const lib_1 = nix.arg($_1, "lib");
         return {
-          [nix.POS]: pos$14,
+          [nix.POS]: $pos[13],
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$11,
+            [nix.POS]: $pos[10],
             extraHosts: nix.thunk(() => nix.app(nix.sel(lib_1, "concatStringsSep"), "\n", nix.thunk(() => nix.builtins.map((domain) => nix.str`${nix.sel(nodes, "web", "networking", "primaryIPAddress")}  ${domain}`, domains)))),
           })),
           security: nix.thunk(() => ({
-            [nix.POS]: pos$13,
+            [nix.POS]: $pos[12],
             pki: nix.thunk(() => ({
-              [nix.POS]: pos$12,
+              [nix.POS]: $pos[11],
               certificateFiles: nix.thunk(() => [nix.thunk(() => nix.str`${tls_certs}/ca.pem`)]),
             })),
           })),

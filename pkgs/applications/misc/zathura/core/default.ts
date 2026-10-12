@@ -2,13 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 42, 5], ["repo", 43, 5], ["tag", 44, 5], ["hash", 45, 5]], [["extraLoaders", 99, 5]], [["GDK_PIXBUF_MODULE_FILE", 98, 7]], [["updateScript", 112, 12]], [["homepage", 115, 5], ["description", 116, 5], ["license", 117, 5], ["platforms", 118, 5], ["maintainers", 119, 5], ["mainProgram", 120, 5]], [["pname", 35, 3], ["version", 36, 3], ["strictDeps", 38, 3], ["__structuredAttrs", 39, 3], ["src", 41, 3], ["outputs", 48, 3], ["mesonFlags", 57, 3], ["nativeBuildInputs", 70, 3], ["buildInputs", 82, 3], ["env", 98, 3], ["doCheck", 107, 3], ["nativeInstallCheckInputs", 109, 3], ["doInstallCheck", 110, 3], ["passthru", 112, 3], ["meta", 114, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, meson: false, ninja: false, wrapGAppsHook3: false, "pkg-config": false, gitUpdater: false, "appstream-glib": false, "json-glib": false, "desktop-file-utils": false, python3: false, gtk3: false, girara: false, gettext: false, gnome: false, libheif: false, libjxl: false, libxml2: false, check: false, sqlite: false, glib: false, texlive: false, libintl: false, libseccomp: false, file: false, librsvg: false, "gtk-mac-integration": false, "webp-pixbuf-loader": false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 42, 5], ["repo", 43, 5], ["tag", 44, 5], ["hash", 45, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["extraLoaders", 99, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["GDK_PIXBUF_MODULE_FILE", 98, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["updateScript", 112, 12]]);
-const pos$5 = nix.positions(here + "/default.nix", [["homepage", 115, 5], ["description", 116, 5], ["license", 117, 5], ["platforms", 118, 5], ["maintainers", 119, 5], ["mainProgram", 120, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 35, 3], ["version", 36, 3], ["strictDeps", 38, 3], ["__structuredAttrs", 39, 3], ["src", 41, 3], ["outputs", 48, 3], ["mesonFlags", 57, 3], ["nativeBuildInputs", 70, 3], ["buildInputs", 82, 3], ["env", 98, 3], ["doCheck", 107, 3], ["nativeInstallCheckInputs", 109, 3], ["doInstallCheck", 110, 3], ["passthru", 112, 3], ["meta", 114, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -43,13 +38,13 @@ export default nix.lambda((args) => (() => {
   const webp_pixbuf_loader = nix.arg($, "webp-pixbuf-loader");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "zathura",
       version: "2026.05.20",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "pwmt",
           repo: "zathura",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -89,9 +84,9 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.sel(texlive, "bin", "core")),
       ], nix.concat(nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isLinux")), libseccomp), nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), gtk_mac_integration)))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         GDK_PIXBUF_MODULE_FILE: nix.thunk(() => nix.app(nix.sel(gnome, "_gdkPixbufCacheBuilder_DO_NOT_USE"), nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             extraLoaders: nix.thunk(() => [
               nix.thunk(() => nix.sel(libheif, "lib")),
               libjxl,
@@ -104,11 +99,11 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "https://pwmt.org/projects/zathura",
         description: "Core component for zathura PDF viewer",
         license: nix.thunk(() => nix.sel(lib, "licenses", "zlib")),

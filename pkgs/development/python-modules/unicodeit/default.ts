@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]], [["url", 27, 7], ["hash", 28, 7]], [["nativeBuildInputs", 43, 9], ["preferLocalBuild", 44, 9]], [["entrypoint", 40, 18]], [["tests", 40, 12]], [["description", 52, 5], ["mainProgram", 53, 5], ["homepage", 54, 5], ["license", 55, 5], ["maintainers", 59, 5]], [["pname", 13, 3], ["version", 14, 3], ["pyproject", 15, 3], ["src", 17, 3], ["patches", 24, 3], ["build-system", 32, 3], ["nativeCheckInputs", 33, 3], ["pythonImportsCheck", 35, 3], ["passthru", 40, 3], ["meta", 51, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, fetchpatch: false, pytestCheckHook: false, runCommand: false, setuptools: false, unicodeit: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["url", 27, 7], ["hash", 28, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["nativeBuildInputs", 43, 9], ["preferLocalBuild", 44, 9]]);
-const pos$4 = nix.positions(here + "/default.nix", [["entrypoint", 40, 18]]);
-const pos$5 = nix.positions(here + "/default.nix", [["tests", 40, 12]]);
-const pos$6 = nix.positions(here + "/default.nix", [["description", 52, 5], ["mainProgram", 53, 5], ["homepage", 54, 5], ["license", 55, 5], ["maintainers", 59, 5]]);
-const pos$7 = nix.positions(here + "/default.nix", [["pname", 13, 3], ["version", 14, 3], ["pyproject", 15, 3], ["src", 17, 3], ["patches", 24, 3], ["build-system", 32, 3], ["nativeCheckInputs", 33, 3], ["pythonImportsCheck", 35, 3], ["passthru", 40, 3], ["meta", 51, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.7.5";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "svenkreiss",
           repo: "unicodeit",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -34,7 +28,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/svenkreiss/unicodeit/pull/79/commits/9f4a4fee5cb62a101075adf3054832cdb1e6a5ad.patch",
             hash: "sha256-mAhmU17K0adEFFAIf7ZeJ/cNohrzrL+sol7gYfWbPGo=",
           })))),
@@ -43,18 +37,18 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => [pytestCheckHook]);
       const pythonImportsCheck = nix.thunk(() => ["unicodeit", "unicodeit.cli"]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           entrypoint: nix.thunk(() => nix.app(runCommand, "python3-unicodeit-test-entrypoint", nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               nativeBuildInputs: nix.thunk(() => [unicodeit]),
               preferLocalBuild: true,
             })), "[[ \"$(unicodeit \"\\BbbR\")\" = \"ℝ\" ]]\ntouch $out\n")),
         })),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Converts LaTeX tags to unicode",
         mainProgram: "unicodeit",
         homepage: "https://github.com/svenkreiss/unicodeit",
@@ -71,7 +65,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         pname,
         version,
         pyproject,

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5], ["postFetch", 17, 5]], [["description", 34, 5], ["homepage", 35, 5], ["license", 36, 5], ["maintainers", 37, 5], ["mainProgram", 38, 5], ["platforms", 39, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["installPhase", 22, 3], ["__structuredAttrs", 29, 3], ["npmDepsHash", 31, 3], ["meta", 33, 3]]]);
 const formals$1 = { args: { lib: false, buildNpmPackage: false, fetchFromGitHub: false, "npm-lockfile-fix": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5], ["postFetch", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 34, 5], ["homepage", 35, 5], ["license", 36, 5], ["maintainers", 37, 5], ["mainProgram", 38, 5], ["platforms", 39, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["installPhase", 22, 3], ["__structuredAttrs", 29, 3], ["npmDepsHash", 31, 3], ["meta", 33, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const npm_lockfile_fix = nix.arg($, "npm-lockfile-fix");
   return nix.app(buildNpmPackage, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "niimblue",
       version: "0-unstable-2026-05-04",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "MultiMote",
           repo: "niimblue",
           rev: "89aed31a5162b282d2100dd2c2e3d90584153e41",
@@ -30,7 +28,7 @@ export default nix.lambda((args) => (() => {
       __structuredAttrs: true,
       npmDepsHash: "sha256-+jVD0lfOrQ3hQE15yfcB0dVnPZBFo/naLXhFRiPFUGs=",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Design and print labels with NIIMBOT printers directly from your PC or mobile web browser",
         homepage: "https://github.com/MultiMote/niimblue",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

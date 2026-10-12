@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 31, 5], ["hash", 32, 5]], [["pname", 36, 26], ["version", 36, 32], ["src", 36, 40], ["hash", 37, 5]], [["CARGO_BUILD_TARGET", 70, 7]], [["packageName", 76, 11]], [["command", 80, 11], ["supportedFeatures", 93, 11]], [["updateScript", 73, 5]], [["homepage", 103, 5], ["changelog", 104, 5], ["description", 105, 5], ["license", 106, 5], ["maintainers", 107, 5], ["teams", 108, 5], ["platforms", 109, 5], ["mainProgram", 110, 5]], [["pname", 27, 3], ["version", 28, 3], ["src", 30, 3], ["cargoDeps", 35, 3], ["postPatch", 40, 3], ["nativeBuildInputs", 46, 3], ["buildInputs", 59, 3], ["env", 70, 3], ["passthru", 72, 3], ["meta", 102, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, cargo: false, "desktop-file-utils": false, itstool: false, meson: false, ninja: false, "pkg-config": false, rustc: false, wrapGAppsHook4: false, gtk4: false, lcms2: false, libadwaita: false, libgweather: false, libseccomp: false, libglycin: false, "glycin-loaders": false, gnome: false, "common-updater-scripts": false, "_experimental-update-script-combinators": false, rustPlatform: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 31, 5], ["hash", 32, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 36, 26], ["version", 36, 32], ["src", 36, 40], ["hash", 37, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["CARGO_BUILD_TARGET", 70, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["packageName", 76, 11]]);
-const pos$5 = nix.positions(here + "/package.nix", [["command", 80, 11], ["supportedFeatures", 93, 11]]);
-const pos$6 = nix.positions(here + "/package.nix", [["updateScript", 73, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["homepage", 103, 5], ["changelog", 104, 5], ["description", 105, 5], ["license", 106, 5], ["maintainers", 107, 5], ["teams", 108, 5], ["platforms", 109, 5], ["mainProgram", 110, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 27, 3], ["version", 28, 3], ["src", 30, 3], ["cargoDeps", 35, 3], ["postPatch", 40, 3], ["nativeBuildInputs", 46, 3], ["buildInputs", 59, 3], ["env", 70, 3], ["passthru", 72, 3], ["meta", 102, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -37,16 +30,16 @@ export default nix.lambda((args) => (() => {
   const _experimental_update_script_combinators = nix.arg($, "_experimental-update-script-combinators");
   const rustPlatform = nix.arg($, "rustPlatform");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "loupe",
       version: "50.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnome/sources/loupe/${nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/loupe-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-euT7rl4ZMWqmQMVvgNxaeRRIpi3Y8P8G4ppYutgTqZQ=",
         })))),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -78,15 +71,15 @@ export default nix.lambda((args) => (() => {
         libseccomp,
       ]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         CARGO_BUILD_TARGET: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "rust", "rustcTargetSpec")),
       })),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         updateScript: nix.thunk(() => (() => {
-          const updateSource = nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$4, packageName: "loupe" }))));
+          const updateSource = nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: $pos[3], packageName: "loupe" }))));
           const updateLockfile = nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             command: nix.thunk(() => [
               "sh",
               "-c",
@@ -100,7 +93,7 @@ update-source-version loupe --ignore-same-version --source-key=cargoDeps.vendorS
         })()),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         homepage: "https://gitlab.gnome.org/GNOME/loupe",
         changelog: nix.thunk(() => nix.str`https://gitlab.gnome.org/GNOME/loupe/-/blob/${nix.sel(finalAttrs, "version")}/NEWS?ref_type=tags`),
         description: "Simple image viewer application written with GTK4 and Rust",

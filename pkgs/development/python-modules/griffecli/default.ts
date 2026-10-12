@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["description", 33, 5], ["homepage", 34, 5], ["changelog", 35, 5], ["license", 36, 5], ["maintainers", 37, 5]], [["pname", 12, 3], ["pyproject", 13, 3], ["version", 15, 23], ["src", 15, 31], ["sourceRoot", 17, 3], ["build-system", 19, 3], ["dependencies", 25, 3], ["pythonImportsCheck", 30, 3], ["meta", 32, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, colorama: false, griffelib: false, hatchling: false, "pdm-backend": false, "uv-dynamic-versioning": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["description", 33, 5], ["homepage", 34, 5], ["changelog", 35, 5], ["license", 36, 5], ["maintainers", 37, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 12, 3], ["pyproject", 13, 3], ["version", 15, 23], ["src", 15, 31], ["sourceRoot", 17, 3], ["build-system", 19, 3], ["dependencies", 25, 3], ["pythonImportsCheck", 30, 3], ["meta", 32, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const pdm_backend = nix.arg($, "pdm-backend");
   const uv_dynamic_versioning = nix.arg($, "uv-dynamic-versioning");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "griffecli",
       pyproject: true,
       version: nix.thunk(() => nix.attr(griffelib, "version")),
@@ -26,7 +25,7 @@ export default nix.lambda((args) => (() => {
       dependencies: nix.thunk(() => [colorama, griffelib]),
       pythonImportsCheck: nix.thunk(() => ["griffecli"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Signatures for entire Python programs. Extract the structure, the frame, the skeleton of your project, to generate API documentation or find breaking changes in your API",
         homepage: "https://github.com/mkdocstrings/griffe",
         changelog: nix.thunk(() => nix.str`https://github.com/mkdocstrings/griffe/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

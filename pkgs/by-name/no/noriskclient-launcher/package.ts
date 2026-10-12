@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["description", 94, 7], ["homepage", 95, 7], ["license", 96, 7], ["longDescription", 97, 7], ["maintainers", 98, 7], ["mainProgram", 99, 7], ["platforms", 100, 7]], [["pname", 36, 3], ["version", 37, 45], ["paths", 39, 3], ["strictDeps", 41, 3], ["nativeBuildInputs", 43, 3], ["buildInputs", 48, 3], ["runtimeDependencies", 53, 3], ["postBuild", 79, 3], ["meta", 92, 3]]]);
 const formals$1 = { args: { addDriverRunpath: false, "alsa-lib": false, flite: false, glib: false, "glib-networking": false, "gsettings-desktop-schemas": false, jdk25: false, jdk17: false, jdk21: false, jdk8: false, jdks: true, lib: false, libGL: false, libjack2: false, libpulseaudio: false, libx11: false, libxcursor: false, libxext: false, libxrandr: false, libxxf86vm: false, "noriskclient-launcher-unwrapped": false, pipewire: false, stdenv: false, symlinkJoin: false, udev: false, wrapGAppsHook4: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["description", 94, 7], ["homepage", 95, 7], ["license", 96, 7], ["longDescription", 97, 7], ["maintainers", 98, 7], ["mainProgram", 99, 7], ["platforms", 100, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 36, 3], ["version", 37, 45], ["paths", 39, 3], ["strictDeps", 41, 3], ["nativeBuildInputs", 43, 3], ["buildInputs", 48, 3], ["runtimeDependencies", 53, 3], ["postBuild", 79, 3], ["meta", 92, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -35,7 +34,7 @@ export default nix.lambda((args) => (() => {
   const udev = nix.arg($, "udev");
   const wrapGAppsHook4 = nix.arg($, "wrapGAppsHook4");
   return nix.app(symlinkJoin, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "noriskclient-launcher",
       version: nix.thunk(() => nix.attr(noriskclient_launcher_unwrapped, "version")),
       paths: nix.thunk(() => [noriskclient_launcher_unwrapped]),
@@ -69,7 +68,7 @@ wrapGApp "$out/bin/noriskclient-launcher-v3"
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(noriskclient_launcher_unwrapped, "meta"));
         return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: nix.thunk(() => nix.attr(from, "description")),
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         license: nix.thunk(() => nix.attr(from, "license")),

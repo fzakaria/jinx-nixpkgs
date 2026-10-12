@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 19, 5], ["sha256", 20, 5]], [["name", 25, 7], ["exec", 26, 7], ["icon", 27, 7], ["comment", 28, 7], ["desktopName", 29, 7], ["genericName", 30, 7], ["categories", 31, 7]], [["owner", 41, 5], ["repo", 42, 5], ["tag", 43, 5], ["hash", 44, 5], ["fetchSubmodules", 45, 5]], [["url", 51, 7], ["hash", 52, 7]], [["description", 79, 5], ["homepage", 80, 5], ["mainProgram", 81, 5], ["platforms", 82, 5], ["license", 83, 5], ["downloadPage", 90, 5]], [["pname", 37, 11], ["desktopItems", 37, 17], ["version", 38, 3], ["src", 40, 3], ["patches", 48, 3], ["nativeBuildInputs", 56, 3], ["buildPhase", 63, 3], ["installPhase", 70, 3], ["meta", 78, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchurl: false, fetchpatch2: false, love: false, makeWrapper: false, makeDesktopItem: false, copyDesktopItems: false, "strip-nondeterminism": false, zip: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 19, 5], ["sha256", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 25, 7], ["exec", 26, 7], ["icon", 27, 7], ["comment", 28, 7], ["desktopName", 29, 7], ["genericName", 30, 7], ["categories", 31, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["owner", 41, 5], ["repo", 42, 5], ["tag", 43, 5], ["hash", 44, 5], ["fetchSubmodules", 45, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["url", 51, 7], ["hash", 52, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 79, 5], ["homepage", 80, 5], ["mainProgram", 81, 5], ["platforms", 82, 5], ["license", 83, 5], ["downloadPage", 90, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 37, 11], ["desktopItems", 37, 17], ["version", 38, 3], ["src", 40, 3], ["patches", 48, 3], ["nativeBuildInputs", 56, 3], ["buildPhase", 63, 3], ["installPhase", 70, 3], ["meta", 78, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,13 +20,13 @@ export default nix.lambda((args) => (() => {
   const zip = nix.arg($, "zip");
   const pname = "90secondportraits";
   const icon = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: "http://tangramgames.dk/img/thumb/90secondportraits.png",
       sha256: "13k6cq8s7jw77j81xfa5ri41445m778q6iqbfplhwdpja03c6faw",
     }))));
   const desktopItems = nix.thunk(() => [
     nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         name: "90secondportraits",
         exec: pname,
         icon: icon,
@@ -46,7 +41,7 @@ export default nix.lambda((args) => (() => {
       const desktopItems_1 = desktopItems;
       const version = "1.01b";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           owner: "SimonLarsen",
           repo: "90-Second-Portraits",
           tag: version,
@@ -55,7 +50,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             url: "https://github.com/SimonLarsen/90-Second-Portraits/commit/0ae7ba046f14cef9857fd6c05d9072455097441f.patch?full_index=true",
             hash: "sha256-/C4gqzwHQqZCuTA/m6WX8mvTxmLxOcHRItVLA3bty3Y=",
           })))),
@@ -69,7 +64,7 @@ makeWrapper ${nix.app(nix.sel(lib, "getExe"), love)} $out/bin/90secondportraits 
 runHook postInstall
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Silly speed painting game",
         homepage: "https://github.com/SimonLarsen/90-Second-Portraits",
         mainProgram: "90secondportraits",
@@ -87,7 +82,7 @@ runHook postInstall
         downloadPage: "http://tangramgames.dk/games/90secondportraits",
       }));
       return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname: pname_1,
         desktopItems: desktopItems_1,
         version,

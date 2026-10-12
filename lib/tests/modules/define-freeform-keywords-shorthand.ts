@@ -2,34 +2,29 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/define-freeform-keywords-shorthand.nix", [[["just", 4, 5]], [["just", 19, 11]], [["a", 16, 9], ["b", 17, 9], ["class", 18, 9], ["meta", 21, 9]], [["result", 10, 16]], [["args", 10, 11]], [["class", 3, 3], ["a", 6, 3], ["b", 7, 3], ["meta", 8, 3], ["_module", 10, 3]]]);
 const formals$1 = { args: { config: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/define-freeform-keywords-shorthand.nix", [["just", 4, 5]]);
-const pos$2 = nix.positions(here + "/define-freeform-keywords-shorthand.nix", [["just", 19, 11]]);
-const pos$3 = nix.positions(here + "/define-freeform-keywords-shorthand.nix", [["a", 16, 9], ["b", 17, 9], ["class", 18, 9], ["meta", 21, 9]]);
-const pos$4 = nix.positions(here + "/define-freeform-keywords-shorthand.nix", [["result", 10, 16]]);
-const pos$5 = nix.positions(here + "/define-freeform-keywords-shorthand.nix", [["args", 10, 11]]);
-const pos$6 = nix.positions(here + "/define-freeform-keywords-shorthand.nix", [["class", 3, 3], ["a", 6, 3], ["b", 7, 3], ["meta", 8, 3], ["_module", 10, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const config = nix.arg($, "config");
   return {
-    [nix.POS]: pos$6,
-    class: nix.thunk(() => ({ [nix.POS]: pos$1, just: "data" })),
+    [nix.POS]: $pos[5],
+    class: nix.thunk(() => ({ [nix.POS]: $pos[0], just: "data" })),
     a: "one",
     b: "two",
     meta: "meta",
     _module: nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       args: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         result: nix.thunk(() => (() => {
           const r = nix.thunk(() => nix.builtins.removeAttrs(config, nix.thunk(() => ["_module"])));
           return nix.builtins.trace(nix.thunk(() => nix.builtins.deepSeq(r, r)), nix.thunk(() => nix.eq(r, {
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               a: "one",
               b: "two",
-              class: nix.thunk(() => ({ [nix.POS]: pos$2, just: "data" })),
+              class: nix.thunk(() => ({ [nix.POS]: $pos[1], just: "data" })),
               meta: "meta",
             })));
         })()),

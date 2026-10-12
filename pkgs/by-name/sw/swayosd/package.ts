@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 28, 5], ["repo", 29, 5], ["rev", 30, 5], ["hash", 31, 5]], [["pname", 35, 13], ["version", 35, 19], ["src", 35, 27], ["hash", 36, 5]], [["description", 79, 5], ["homepage", 80, 5], ["license", 81, 5], ["maintainers", 82, 5], ["platforms", 87, 5]], [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["cargoDeps", 34, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 50, 3], ["patches", 60, 3], ["preFixup", 64, 3], ["postPatch", 70, 3], ["doInstallCheck", 76, 3], ["meta", 78, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchFromGitHub: false, "pkg-config": false, wrapGAppsHook4: false, brightnessctl: false, cargo: false, coreutils: false, dbus: false, "gtk4-layer-shell": false, libevdev: false, libinput: false, libpulseaudio: false, meson: false, ninja: false, rustc: false, sassc: false, stdenv: false, udev: false, udevCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 28, 5], ["repo", 29, 5], ["rev", 30, 5], ["hash", 31, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 35, 13], ["version", 35, 19], ["src", 35, 27], ["hash", 36, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 79, 5], ["homepage", 80, 5], ["license", 81, 5], ["maintainers", 82, 5], ["platforms", 87, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["cargoDeps", 34, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 50, 3], ["patches", 60, 3], ["preFixup", 64, 3], ["postPatch", 70, 3], ["doInstallCheck", 76, 3], ["meta", 78, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,14 +31,14 @@ export default nix.lambda((args) => (() => {
       const pname = "swayosd";
       const version = "0.3.2";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ErikReider",
           repo: "SwayOSD",
           rev: nix.thunk(() => nix.str`v${version}`),
           hash: "sha256-jlwJw7PZCdJAGhB9/exAO95io1/0DiCTCR83u/yRpqI=",
         }))));
       const cargoDeps = nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: pname,
           version: version,
           src: src,
@@ -69,7 +66,7 @@ export default nix.lambda((args) => (() => {
 `);
       const doInstallCheck = true;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "GTK based on screen display for keyboard shortcuts",
         homepage: "https://github.com/ErikReider/SwayOSD",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
@@ -84,7 +81,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["sha256", 16, 5]], [["platforms", 42, 5], ["homepage", 43, 5], ["description", 44, 5], ["maintainers", 45, 5], ["license", 46, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["buildInputs", 19, 3], ["patchPhase", 21, 3], ["installPhase", 33, 3], ["meta", 41, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, perl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["sha256", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["platforms", 42, 5], ["homepage", 43, 5], ["description", 44, 5], ["maintainers", 45, 5], ["license", 46, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["buildInputs", 19, 3], ["patchPhase", 21, 3], ["installPhase", 33, 3], ["meta", 41, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const perl = nix.arg($, "perl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "perf-tools",
       version: "unstable-2017-12-19",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "brendangregg",
           repo: "perf-tools",
           rev: "98d42a2a1493d2d1c651a5c396e015d4f082eb20",
@@ -28,7 +26,7 @@ export default nix.lambda((args) => (() => {
       patchPhase: "for i in execsnoop iolatency iosnoop kernel/funcslower killsnoop opensnoop; do\n  substituteInPlace $i \\\n    --replace /usr/bin/gawk \"$(type -p gawk)\" \\\n    --replace /usr/bin/mawk /no-such-path \\\n    --replace /usr/bin/getconf \"$(type -p getconf)\" \\\n    --replace awk=awk \"awk=$(type -p gawk)\"\ndone\n\nrm -rf examples deprecated\n",
       installPhase: "d=$out/libexec/perf-tools\nmkdir -p $d $out/share\ncp -prvd . $d/\nln -s $d/bin $out/bin\nmv $d/man $out/share/\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
         homepage: "https://github.com/brendangregg/perf-tools",
         description: "Performance analysis tools based on Linux perf_events (aka perf) and ftrace",

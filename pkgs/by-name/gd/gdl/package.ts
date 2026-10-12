@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 17, 5], ["sha256", 18, 5]], [["NIX_CFLAGS_COMPILE", 23, 5]], [["packageName", 37, 7]], [["updateScript", 36, 5]], [["description", 42, 5], ["homepage", 43, 5], ["teams", 44, 5], ["license", 45, 5], ["platforms", 46, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["env", 21, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 30, 3], ["passthru", 35, 3], ["meta", 41, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, "pkg-config": false, libxml2: false, gtk3: false, gnome: false, intltool: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 17, 5], ["sha256", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 23, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["packageName", 37, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 36, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 42, 5], ["homepage", 43, 5], ["teams", 44, 5], ["license", 45, 5], ["platforms", 46, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["env", 21, 3], ["nativeBuildInputs", 26, 3], ["buildInputs", 30, 3], ["passthru", 35, 3], ["meta", 41, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,26 +16,26 @@ export default nix.lambda((args) => (() => {
   const gnome = nix.arg($, "gnome");
   const intltool = nix.arg($, "intltool");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "gdl",
       version: "3.40.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnome/sources/gdl/${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/gdl-${nix.sel(finalAttrs, "version")}.tar.xz`),
           sha256: "NkHU/WadHhgYrv88+f+3iH/Fw2eFC3jCjHdeukq2pVU=",
         })))),
       env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "cc", "isGNU")), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           NIX_CFLAGS_COMPILE: "-Wno-error=incompatible-pointer-types",
         })))),
       nativeBuildInputs: nix.thunk(() => [pkg_config, intltool]),
       buildInputs: nix.thunk(() => [libxml2, gtk3]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$3, packageName: "gdl" })))),
+        [nix.POS]: $pos[3],
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: $pos[2], packageName: "gdl" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Gnome docking library",
         homepage: "https://developer.gnome.org/gdl/",
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "gnome"))]),

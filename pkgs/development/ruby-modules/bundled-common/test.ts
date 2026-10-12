@@ -2,28 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/test.nix", [[["lib", 10, 13], ["gemConfig", 11, 5]], [["gemfile", 18, 7], ["lockfile", 19, 7], ["gemset", 20, 7]], [["gemfile", 23, 7], ["lockfile", 24, 7], ["gemset", 25, 7]], [["gemdir", 31, 7]], [["gemfile", 34, 7], ["lockfile", 35, 7], ["gemset", 36, 7]], [["gemdir", 42, 7], ["gemset", 43, 7]], [["gemfile", 46, 7], ["lockfile", 47, 7], ["gemset", 48, 7]], [["ruby", 55, 15], ["groups", 56, 7]], [["groups", 63, 11]], [["test", 62, 9]], [["ruby", 73, 17], ["groups", 74, 9]], [["platforms", 85, 11]], [["test", 84, 9]], [["ruby", 92, 17], ["groups", 93, 9]], [["engine", 103, 15], ["version", 104, 15]], [["platforms", 101, 11]], [["test", 100, 9]], [["ruby", 113, 17], ["groups", 114, 9]], [["groups", 122, 11]], [["test", 121, 9]], [["ruby", 132, 17], ["groups", 133, 9]]]);
 const formals$1 = { args: { lib: false, ruby: false, defaultGemConfig: false, test: false, should: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/test.nix", [["lib", 10, 13], ["gemConfig", 11, 5]]);
-const pos$2 = nix.positions(here + "/test.nix", [["gemfile", 18, 7], ["lockfile", 19, 7], ["gemset", 20, 7]]);
-const pos$3 = nix.positions(here + "/test.nix", [["gemfile", 23, 7], ["lockfile", 24, 7], ["gemset", 25, 7]]);
-const pos$4 = nix.positions(here + "/test.nix", [["gemdir", 31, 7]]);
-const pos$5 = nix.positions(here + "/test.nix", [["gemfile", 34, 7], ["lockfile", 35, 7], ["gemset", 36, 7]]);
-const pos$6 = nix.positions(here + "/test.nix", [["gemdir", 42, 7], ["gemset", 43, 7]]);
-const pos$7 = nix.positions(here + "/test.nix", [["gemfile", 46, 7], ["lockfile", 47, 7], ["gemset", 48, 7]]);
-const pos$8 = nix.positions(here + "/test.nix", [["ruby", 55, 15], ["groups", 56, 7]]);
-const pos$9 = nix.positions(here + "/test.nix", [["groups", 63, 11]]);
-const pos$10 = nix.positions(here + "/test.nix", [["test", 62, 9]]);
-const pos$11 = nix.positions(here + "/test.nix", [["ruby", 73, 17], ["groups", 74, 9]]);
-const pos$12 = nix.positions(here + "/test.nix", [["platforms", 85, 11]]);
-const pos$13 = nix.positions(here + "/test.nix", [["test", 84, 9]]);
-const pos$14 = nix.positions(here + "/test.nix", [["ruby", 92, 17], ["groups", 93, 9]]);
-const pos$15 = nix.positions(here + "/test.nix", [["engine", 103, 15], ["version", 104, 15]]);
-const pos$16 = nix.positions(here + "/test.nix", [["platforms", 101, 11]]);
-const pos$17 = nix.positions(here + "/test.nix", [["test", 100, 9]]);
-const pos$18 = nix.positions(here + "/test.nix", [["ruby", 113, 17], ["groups", 114, 9]]);
-const pos$19 = nix.positions(here + "/test.nix", [["groups", 122, 11]]);
-const pos$20 = nix.positions(here + "/test.nix", [["test", 121, 9]]);
-const pos$21 = nix.positions(here + "/test.nix", [["ruby", 132, 17], ["groups", 133, 9]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,73 +12,73 @@ export default nix.lambda((args) => (() => {
   const defaultGemConfig = nix.arg($, "defaultGemConfig");
   const test = nix.arg($, "test");
   const should = nix.arg($, "should");
-  const testConfigs = nix.thunk(() => ({ [nix.POS]: pos$1, lib: lib, gemConfig: defaultGemConfig }));
+  const testConfigs = nix.thunk(() => ({ [nix.POS]: $pos[0], lib: lib, gemConfig: defaultGemConfig }));
   const functions = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./functions.nix")), testConfigs));
   return nix.builtins.concatLists(nix.thunk(() => [
       nix.thunk(() => nix.app(nix.sel(test, "run"), "All set, no gemdir", nix.thunk(() => nix.app(nix.sel(functions, "bundlerFiles"), nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             gemfile: nix.path(here, "test/Gemfile"),
             lockfile: nix.path(here, "test/Gemfile.lock"),
             gemset: nix.path(here, "test/gemset.nix"),
           })))), nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           gemfile: nix.thunk(() => nix.app(nix.sel(should, "equal"), nix.path(here, "test/Gemfile"))),
           lockfile: nix.thunk(() => nix.app(nix.sel(should, "equal"), nix.path(here, "test/Gemfile.lock"))),
           gemset: nix.thunk(() => nix.app(nix.sel(should, "equal"), nix.path(here, "test/gemset.nix"))),
         })))),
-      nix.thunk(() => nix.app(nix.sel(test, "run"), "Just gemdir", nix.thunk(() => nix.app(nix.sel(functions, "bundlerFiles"), nix.thunk(() => ({ [nix.POS]: pos$4, gemdir: nix.path(here, "test/.") })))), nix.thunk(() => ({
-          [nix.POS]: pos$5,
+      nix.thunk(() => nix.app(nix.sel(test, "run"), "Just gemdir", nix.thunk(() => nix.app(nix.sel(functions, "bundlerFiles"), nix.thunk(() => ({ [nix.POS]: $pos[3], gemdir: nix.path(here, "test/.") })))), nix.thunk(() => ({
+          [nix.POS]: $pos[4],
           gemfile: nix.thunk(() => nix.app(nix.sel(should, "equal"), nix.path(here, "test/Gemfile"))),
           lockfile: nix.thunk(() => nix.app(nix.sel(should, "equal"), nix.path(here, "test/Gemfile.lock"))),
           gemset: nix.thunk(() => nix.app(nix.sel(should, "equal"), nix.path(here, "test/gemset.nix"))),
         })))),
       nix.thunk(() => nix.app(nix.sel(test, "run"), "Gemset and dir", nix.thunk(() => nix.app(nix.sel(functions, "bundlerFiles"), nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             gemdir: nix.path(here, "test/."),
             gemset: nix.path(here, "test/extraGemset.nix"),
           })))), nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           gemfile: nix.thunk(() => nix.app(nix.sel(should, "equal"), nix.path(here, "test/Gemfile"))),
           lockfile: nix.thunk(() => nix.app(nix.sel(should, "equal"), nix.path(here, "test/Gemfile.lock"))),
           gemset: nix.thunk(() => nix.app(nix.sel(should, "equal"), nix.path(here, "test/extraGemset.nix"))),
         })))),
-      nix.thunk(() => nix.app(nix.sel(test, "run"), "Filter empty gemset", nix.thunk(() => ({})), (set) => nix.eq(nix.app(nix.sel(functions, "filterGemset"), nix.thunk(() => ({ [nix.POS]: pos$8, ruby: ruby, groups: nix.thunk(() => ["default"]) })), set), {}))),
+      nix.thunk(() => nix.app(nix.sel(test, "run"), "Filter empty gemset", nix.thunk(() => ({})), (set) => nix.eq(nix.app(nix.sel(functions, "filterGemset"), nix.thunk(() => ({ [nix.POS]: $pos[7], ruby: ruby, groups: nix.thunk(() => ["default"]) })), set), {}))),
       nix.thunk(() => (() => {
         const gemSet = nix.thunk(() => ({
-          [nix.POS]: pos$10,
-          test: nix.thunk(() => ({ [nix.POS]: pos$9, groups: nix.thunk(() => ["x", "y"]) })),
+          [nix.POS]: $pos[9],
+          test: nix.thunk(() => ({ [nix.POS]: $pos[8], groups: nix.thunk(() => ["x", "y"]) })),
         }));
-        return nix.app(nix.sel(test, "run"), "Filter matches a group", gemSet, (set) => nix.eq(nix.app(nix.sel(functions, "filterGemset"), nix.thunk(() => ({ [nix.POS]: pos$11, ruby: ruby, groups: nix.thunk(() => ["y", "z"]) })), set), gemSet));
+        return nix.app(nix.sel(test, "run"), "Filter matches a group", gemSet, (set) => nix.eq(nix.app(nix.sel(functions, "filterGemset"), nix.thunk(() => ({ [nix.POS]: $pos[10], ruby: ruby, groups: nix.thunk(() => ["y", "z"]) })), set), gemSet));
       })()),
       nix.thunk(() => (() => {
         const gemSet = nix.thunk(() => ({
-          [nix.POS]: pos$13,
-          test: nix.thunk(() => ({ [nix.POS]: pos$12, platforms: [] })),
+          [nix.POS]: $pos[12],
+          test: nix.thunk(() => ({ [nix.POS]: $pos[11], platforms: [] })),
         }));
-        return nix.app(nix.sel(test, "run"), "Filter matches empty platforms list", gemSet, (set) => nix.eq(nix.app(nix.sel(functions, "filterGemset"), nix.thunk(() => ({ [nix.POS]: pos$14, ruby: ruby, groups: [] })), set), gemSet));
+        return nix.app(nix.sel(test, "run"), "Filter matches empty platforms list", gemSet, (set) => nix.eq(nix.app(nix.sel(functions, "filterGemset"), nix.thunk(() => ({ [nix.POS]: $pos[13], ruby: ruby, groups: [] })), set), gemSet));
       })()),
       nix.thunk(() => (() => {
         const gemSet = nix.thunk(() => ({
-          [nix.POS]: pos$17,
+          [nix.POS]: $pos[16],
           test: nix.thunk(() => ({
-            [nix.POS]: pos$16,
+            [nix.POS]: $pos[15],
             platforms: nix.thunk(() => [
               nix.thunk(() => ({
-                [nix.POS]: pos$15,
+                [nix.POS]: $pos[14],
                 engine: nix.thunk(() => nix.sel(ruby, "rubyEngine")),
                 version: nix.thunk(() => nix.sel(ruby, "version", "majMin")),
               })),
             ]),
           })),
         }));
-        return nix.app(nix.sel(test, "run"), "Filter matches on platform", gemSet, (set) => nix.eq(nix.app(nix.sel(functions, "filterGemset"), nix.thunk(() => ({ [nix.POS]: pos$18, ruby: ruby, groups: [] })), set), gemSet));
+        return nix.app(nix.sel(test, "run"), "Filter matches on platform", gemSet, (set) => nix.eq(nix.app(nix.sel(functions, "filterGemset"), nix.thunk(() => ({ [nix.POS]: $pos[17], ruby: ruby, groups: [] })), set), gemSet));
       })()),
       nix.thunk(() => (() => {
         const gemSet = nix.thunk(() => ({
-          [nix.POS]: pos$20,
-          test: nix.thunk(() => ({ [nix.POS]: pos$19, groups: nix.thunk(() => ["x", "y"]) })),
+          [nix.POS]: $pos[19],
+          test: nix.thunk(() => ({ [nix.POS]: $pos[18], groups: nix.thunk(() => ["x", "y"]) })),
         }));
-        return nix.app(nix.sel(test, "run"), "Filter excludes based on groups", gemSet, (set) => nix.eq(nix.app(nix.sel(functions, "filterGemset"), nix.thunk(() => ({ [nix.POS]: pos$21, ruby: ruby, groups: nix.thunk(() => ["a", "b"]) })), set), {}));
+        return nix.app(nix.sel(test, "run"), "Filter excludes based on groups", gemSet, (set) => nix.eq(nix.app(nix.sel(functions, "filterGemset"), nix.thunk(() => ({ [nix.POS]: $pos[20], ruby: ruby, groups: nix.thunk(() => ["a", "b"]) })), set), {}));
       })()),
     ]));
 })(), formals$1);

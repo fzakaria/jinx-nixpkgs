@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]], [["protos", 49, 5]], [["description", 69, 5], ["homepage", 70, 5], ["changelog", 71, 5], ["license", 72, 5], ["maintainers", 73, 5]], [["pname", 22, 3], ["version", 23, 3], ["pyproject", 24, 3], ["src", 26, 3], ["build-system", 33, 3], ["dependencies", 35, 3], ["optional-dependencies", 48, 3], ["nativeCheckInputs", 53, 3], ["pythonImportsCheck", 59, 3], ["disabledTestPaths", 64, 3], ["meta", 68, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, hatchling: false, requests: false, "nominal-api": false, "nominal-api-protos": false, "python-dateutil": false, "conjure-python-client": false, pandas: false, "typing-extensions": false, click: false, pyyaml: false, tabulate: false, "ffmpeg-python": false, "pytest-cov-stub": false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["protos", 49, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 69, 5], ["homepage", 70, 5], ["changelog", 71, 5], ["license", 72, 5], ["maintainers", 73, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 22, 3], ["version", 23, 3], ["pyproject", 24, 3], ["src", 26, 3], ["build-system", 33, 3], ["dependencies", 35, 3], ["optional-dependencies", 48, 3], ["nativeCheckInputs", 53, 3], ["pythonImportsCheck", 59, 3], ["disabledTestPaths", 64, 3], ["meta", 68, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.104.3";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "nominal-io",
           repo: "nominal-client",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -51,12 +48,12 @@ export default nix.lambda((args) => (() => {
         tabulate,
         ffmpeg_python,
       ]);
-      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$2, protos: nix.thunk(() => [nominal_api_protos]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: $pos[1], protos: nix.thunk(() => [nominal_api_protos]) }));
       const nativeCheckInputs = nix.thunk(() => [nominal_api_protos, pytest_cov_stub, pytestCheckHook]);
       const pythonImportsCheck = nix.thunk(() => ["nominal", "nominal.core"]);
       const disabledTestPaths = nix.thunk(() => ["tests/cli/test_auth.py::test_good_request"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Automate Nominal workflows in Python",
         homepage: "https://github.com/nominal-io/nominal-client",
         changelog: nix.thunk(() => nix.str`https://github.com/nominal-io/nominal-client/releases/tag/${nix.sel(src, "tag")}`),
@@ -67,7 +64,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

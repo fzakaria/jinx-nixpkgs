@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["description", 16, 5], ["license", 17, 5], ["homepage", 18, 5], ["teams", 19, 5]], [["pname", 8, 3], ["version", 10, 3], ["sha256", 11, 3], ["buildInputs", 13, 3], ["meta", 15, 3]]]);
 const formals$1 = { args: { buildPecl: false, lib: false, pcre2: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["description", 16, 5], ["license", 17, 5], ["homepage", 18, 5], ["teams", 19, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 8, 3], ["version", 10, 3], ["sha256", 11, 3], ["buildInputs", 13, 3], ["meta", 15, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -12,13 +11,13 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const pcre2 = nix.arg($, "pcre2");
   return nix.app(buildPecl, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "protobuf",
       version: "3.21.9",
       sha256: "05zlq9k6c45wj1286850nl31024ik158jnj1f5kskr1pchknnsf3",
       buildInputs: nix.thunk(() => [pcre2]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Google's language-neutral, platform-neutral, extensible mechanism for serializing structured data",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
         homepage: "https://developers.google.com/protocol-buffers/",

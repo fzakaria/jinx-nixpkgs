@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 12, 5], ["sha256", 13, 5]], [["description", 24, 5], ["homepage", 25, 5], ["sourceProvenance", 26, 5], ["license", 27, 5], ["maintainers", 28, 5], ["platforms", 29, 5], ["mainProgram", 30, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["buildCommand", 16, 3], ["meta", 23, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 12, 5], ["sha256", 13, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 24, 5], ["homepage", 25, 5], ["sourceProvenance", 26, 5], ["license", 27, 5], ["maintainers", 28, 5], ["platforms", 29, 5], ["mainProgram", 30, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["buildCommand", 16, 3], ["meta", 23, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,7 +14,7 @@ export default nix.lambda((args) => (() => {
       const pname = "mystem";
       const version = "3.1";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://download.cdn.yandex.net/mystem/${pname}-${version}-linux-64bit.tar.gz`),
           sha256: "0qha7jvkdmil3jiwrpsfhkqsbkqn9dzgx3ayxwjdmv73ikmg95j6",
         }))));
@@ -26,7 +24,7 @@ install -Dm755 mystem $out/bin/mystem
 patchelf --set-interpreter $(cat ${nix.sel(stdenv, "cc")}/nix-support/dynamic-linker) $out/bin/mystem
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Morphological analysis of Russian text",
         homepage: "https://yandex.ru/dev/mystem/",
         sourceProvenance: nix.thunk(() => (() => {
@@ -38,7 +36,7 @@ patchelf --set-interpreter $(cat ${nix.sel(stdenv, "cc")}/nix-support/dynamic-li
         platforms: nix.thunk(() => ["x86_64-linux"]),
         mainProgram: "mystem",
       }));
-      return { [nix.POS]: pos$3, pname, version, src, buildCommand, meta };
+      return { [nix.POS]: $pos[2], pname, version, src, buildCommand, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

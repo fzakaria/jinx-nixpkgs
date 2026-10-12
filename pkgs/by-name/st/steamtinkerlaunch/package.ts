@@ -2,16 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 29, 5], ["repo", 30, 5], ["rev", 31, 5], ["hash", 32, 5]], [["name", 37, 7], ["url", 38, 7], ["hash", 39, 7]], [["tagPrefix", 44, 5]], [["updateScript", 43, 12]], [["name", 58, 9], ["text", 59, 9]], [["runtimeInputs", 73, 9], ["name", 89, 9], ["text", 90, 9], ["bashOptions", 91, 9]], [["name", 94, 9], ["text", 95, 9]], [["description", 121, 5], ["mainProgram", 122, 5], ["homepage", 123, 5], ["license", 124, 5], ["maintainers", 125, 5], ["platforms", 129, 5]], [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["patches", 35, 3], ["passthru", 43, 3], ["outputs", 47, 3], ["installFlags", 52, 3], ["nativeBuildInputs", 54, 3], ["postInstall", 66, 3], ["meta", 120, 3]]]);
 const formals$1 = { args: { bash: false, fetchFromGitHub: false, fetchpatch2: false, gawk: false, git: false, lib: false, procps: false, stdenvNoCC: false, unixtools: false, unstableGitUpdater: false, unzip: false, usbutils: false, "util-linux": false, wget: false, writeShellApplication: false, xdotool: false, xprop: false, xrandr: false, xwininfo: false, yad: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 29, 5], ["repo", 30, 5], ["rev", 31, 5], ["hash", 32, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 37, 7], ["url", 38, 7], ["hash", 39, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tagPrefix", 44, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 43, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["name", 58, 9], ["text", 59, 9]]);
-const pos$6 = nix.positions(here + "/package.nix", [["runtimeInputs", 73, 9], ["name", 89, 9], ["text", 90, 9], ["bashOptions", 91, 9]]);
-const pos$7 = nix.positions(here + "/package.nix", [["name", 94, 9], ["text", 95, 9]]);
-const pos$8 = nix.positions(here + "/package.nix", [["description", 121, 5], ["mainProgram", 122, 5], ["homepage", 123, 5], ["license", 124, 5], ["maintainers", 125, 5], ["platforms", 129, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["patches", 35, 3], ["passthru", 43, 3], ["outputs", 47, 3], ["installFlags", 52, 3], ["nativeBuildInputs", 54, 3], ["postInstall", 66, 3], ["meta", 120, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -36,11 +28,11 @@ export default nix.lambda((args) => (() => {
   const xwininfo = nix.arg($, "xwininfo");
   const yad = nix.arg($, "yad");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       pname: "steamtinkerlaunch",
       version: "12.12-unstable-2025-07-14",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "sonic2kk",
           repo: "steamtinkerlaunch",
           rev: "8550ab26a712b7f5f6d0947070181446b9de61fd",
@@ -48,25 +40,25 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "yad-15-compat.patch",
             url: "https://github.com/sonic2kk/steamtinkerlaunch/commit/7b5d45e64e2d98e6cbc09cac95140a411f48de53.patch?full_index=1",
             hash: "sha256-BRtdcjZ1+NLe2aKRyd/VSQrHEg6x4qe63OFUShjT5go=",
           })))),
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: pos$3, tagPrefix: "v" })))),
+        [nix.POS]: $pos[3],
+        updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[2], tagPrefix: "v" })))),
       })),
       outputs: nix.thunk(() => ["out", "steamcompattool"]),
       installFlags: nix.thunk(() => ["PREFIX=${out}"]),
       nativeBuildInputs: nix.thunk(() => (() => {
-        const fakeSteam = nix.thunk(() => nix.app(writeShellApplication, nix.thunk(() => ({ [nix.POS]: pos$5, name: "steam", text: "exit 0" }))));
+        const fakeSteam = nix.thunk(() => nix.app(writeShellApplication, nix.thunk(() => ({ [nix.POS]: $pos[4], name: "steam", text: "exit 0" }))));
         return [fakeSteam];
       })()),
       postInstall: nix.thunk(() => (() => {
         const header = nix.thunk(() => nix.app(writeShellApplication, nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             runtimeInputs: nix.thunk(() => [
               bash,
               gawk,
@@ -88,7 +80,7 @@ export default nix.lambda((args) => (() => {
             bashOptions: [],
           }))));
         const fakeYad = nix.thunk(() => nix.app(writeShellApplication, nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             name: "yad",
             text: nix.thunk(() => nix.str`echo ${nix.sel(yad, "version")} FAKE`),
           }))));
@@ -114,7 +106,7 @@ ln -sfn $out/bin/steamtinkerlaunch $steamcompattool/
 `;
       })()),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         description: "Linux wrapper tool for use with the Steam client for custom launch options and 3rd party programs",
         mainProgram: "steamtinkerlaunch",
         homepage: "https://github.com/sonic2kk/steamtinkerlaunch",

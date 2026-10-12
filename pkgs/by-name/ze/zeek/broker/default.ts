@@ -2,14 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]], [["cmakeFlags", 20, 5]], [["owner", 27, 7], ["repo", 28, 7], ["rev", 29, 7], ["hash", 30, 7]], [["version", 25, 5], ["src", 26, 5], ["cmakeFlags", 32, 5], ["doCheck", 35, 5]], [["owner", 49, 5], ["repo", 50, 5], ["rev", 51, 5], ["hash", 52, 5]], [["description", 87, 5], ["homepage", 88, 5], ["license", 89, 5], ["platforms", 90, 5], ["maintainers", 91, 5]], [["pname", 39, 3], ["version", 40, 3], ["outputs", 41, 3], ["strictDeps", 46, 3], ["src", 48, 3], ["postUnpack", 54, 3], ["postPatch", 64, 3], ["nativeBuildInputs", 68, 3], ["buildInputs", 72, 3], ["propagatedBuildInputs", 77, 3], ["cmakeFlags", 79, 3], ["meta", 86, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, cmake: false, "prometheus-cpp": false, python3: false, caf: false, openssl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["cmakeFlags", 20, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["owner", 27, 7], ["repo", 28, 7], ["rev", 29, 7], ["hash", 30, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["version", 25, 5], ["src", 26, 5], ["cmakeFlags", 32, 5], ["doCheck", 35, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["owner", 49, 5], ["repo", 50, 5], ["rev", 51, 5], ["hash", 52, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["description", 87, 5], ["homepage", 88, 5], ["license", 89, 5], ["platforms", 90, 5], ["maintainers", 91, 5]]);
-const pos$7 = nix.positions(here + "/default.nix", [["pname", 39, 3], ["version", 40, 3], ["outputs", 41, 3], ["strictDeps", 46, 3], ["src", 48, 3], ["postUnpack", 54, 3], ["postPatch", 64, 3], ["nativeBuildInputs", 68, 3], ["buildInputs", 72, 3], ["propagatedBuildInputs", 77, 3], ["cmakeFlags", 79, 3], ["meta", 86, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,21 +16,21 @@ export default nix.lambda((args) => (() => {
   const caf = nix.arg($, "caf");
   const openssl = nix.arg($, "openssl");
   const src_cmake = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "zeek",
       repo: "cmake",
       rev: "a1482b8f9829cea870b4db75c085de1249e11bcb",
       hash: "sha256-kFkLig0g/sBKRg8EnfUldj9R7qX6V+c8Ap98p0YBsIw=",
     }))));
   const prometheus_cpp$ = nix.thunk(() => nix.app(nix.sel(prometheus_cpp, "overrideAttrs"), (old) => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       cmakeFlags: nix.thunk(() => nix.concat(nix.builtins.filter((flag) => !nix.eq(flag, "-DBUILD_SHARED_LIBS=ON"), nix.thunk(() => nix.sel(old, "cmakeFlags"))), ["-DBUILD_SHARED_LIBS=OFF"])),
     })));
   const caf$ = nix.thunk(() => nix.app(nix.sel(caf, "overrideAttrs"), (old) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       version: "unstable-2025-07-23-zeek",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           owner: "zeek",
           repo: "actor-framework",
           rev: "4aa660d003d8bbb922a33fb7a31f80d9d3271262",
@@ -46,13 +40,13 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
     })));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "zeek-broker",
       version: "2.8.0-unstable-2026-08-11",
       outputs: nix.thunk(() => ["out", "py"]),
       strictDeps: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           owner: "zeek",
           repo: "broker",
           rev: "fdca6b8ef4b95ec6518a32db46503c28cc812be4",
@@ -81,7 +75,7 @@ touch $sourceRoot/bindings/python/3rdparty/pybind11/CMakeLists.txt
         nix.thunk(() => nix.str`-Dprometheus-cpp_ROOT=${nix.app(nix.sel(lib, "getDev"), prometheus_cpp$)}`),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Zeek's Messaging Library",
         homepage: "https://github.com/zeek/broker",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

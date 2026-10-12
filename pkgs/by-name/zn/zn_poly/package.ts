@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]], [["homepage", 61, 5], ["description", 62, 5], ["license", 63, 5], ["teams", 64, 5], ["platforms", 65, 5]], [["version", 11, 3], ["pname", 12, 3], ["src", 17, 3], ["buildInputs", 24, 3], ["nativeBuildInputs", 28, 3], ["libbasename", 33, 3], ["libext", 34, 3], ["makeFlags", 36, 3], ["buildFlags", 41, 3], ["configureFlags", 46, 3], ["installPhase", 51, 3], ["doCheck", 58, 3], ["meta", 60, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitLab: false, gmp: false, python3: false, tune: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 61, 5], ["description", 62, 5], ["license", 63, 5], ["teams", 64, 5], ["platforms", 65, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 11, 3], ["pname", 12, 3], ["src", 17, 3], ["buildInputs", 24, 3], ["nativeBuildInputs", 28, 3], ["libbasename", 33, 3], ["libext", 34, 3], ["makeFlags", 36, 3], ["buildFlags", 41, 3], ["configureFlags", 46, 3], ["installPhase", 51, 3], ["doCheck", 58, 3], ["meta", 60, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.9.2";
       const pname = "zn_poly";
       const src = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "sagemath",
           repo: "zn_poly",
           rev: version,
@@ -39,7 +37,7 @@ cp include/*.h "$out/include/zn_poly"
 `);
       const doCheck = true;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://web.maths.unsw.edu.au/~davidharvey/code/zn_poly/",
         description: "Polynomial arithmetic over Z/nZ",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),
@@ -47,7 +45,7 @@ cp include/*.h "$out/include/zn_poly"
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         version,
         pname,
         src,

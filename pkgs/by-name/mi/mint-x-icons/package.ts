@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]], [["homepage", 48, 5], ["description", 49, 5], ["license", 50, 5], ["platforms", 51, 5], ["teams", 52, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["propagatedBuildInputs", 22, 3], ["nativeBuildInputs", 28, 3], ["dontDropIconThemeCache", 32, 3], ["installPhase", 34, 3], ["meta", 47, 3]]]);
 const formals$1 = { args: { fetchFromGitHub: false, lib: false, stdenvNoCC: false, "adwaita-icon-theme": false, "hicolor-icon-theme": false, gtk3: false, "humanity-icon-theme": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 48, 5], ["description", 49, 5], ["license", 50, 5], ["platforms", 51, 5], ["teams", 52, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["propagatedBuildInputs", 22, 3], ["nativeBuildInputs", 28, 3], ["dontDropIconThemeCache", 32, 3], ["installPhase", 34, 3], ["meta", 47, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const pname = "mint-x-icons";
       const version = "1.7.9";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "linuxmint",
           repo: "mint-x-icons",
           rev: version,
@@ -31,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const dontDropIconThemeCache = true;
       const installPhase = "runHook preInstall\n\nmkdir -p $out\nmv usr/share $out\n\nfor theme in $out/share/icons/*; do\n  gtk-update-icon-cache $theme\ndone\n\nrunHook postInstall\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/linuxmint/mint-x-icons",
         description: "Mint/metal theme based on mintified versions of Clearlooks Revamp, Elementary and Faenza",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
@@ -39,7 +37,7 @@ export default nix.lambda((args) => (() => {
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "cinnamon"))]),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

@@ -2,11 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/easycrop.nix", [[["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]], [["updateScript", 21, 12]], [["description", 24, 5], ["longDescription", 25, 5], ["homepage", 39, 5], ["license", 40, 5], ["platforms", 41, 5], ["maintainers", 42, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["scriptPath", 19, 3], ["passthru", 21, 3], ["meta", 23, 3]]]);
 const formals$1 = { args: { lib: false, buildLua: false, fetchFromGitHub: false, unstableGitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/easycrop.nix", [["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/easycrop.nix", [["updateScript", 21, 12]]);
-const pos$3 = nix.positions(here + "/easycrop.nix", [["description", 24, 5], ["longDescription", 25, 5], ["homepage", 39, 5], ["license", 40, 5], ["platforms", 41, 5], ["maintainers", 42, 5]]);
-const pos$4 = nix.positions(here + "/easycrop.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["scriptPath", 19, 3], ["passthru", 21, 3], ["meta", 23, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   return nix.app(buildLua, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "easycrop",
       version: "0-unstable-2018-01-24",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "aidanholm",
           repo: "mpv-easycrop",
           rev: "b8a67bb9039e19dec54d92ea57076c0c98e981aa",
@@ -27,11 +24,11 @@ export default nix.lambda((args) => (() => {
         })))),
       scriptPath: "easycrop.lua",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Manually crop videos during playback in mpv",
         longDescription: "A simple mpv script for manually cropping videos with ease.\n\n- Works during video playback\n- No need to re-encode or modify video files\n\nPress \"c\" to begin cropping. Click at one corner of the desired\ncropping rectangle, and click a second time at the opposite\ncorner; the video will be cropped immediately. Pressing \"c\" again\nwill undo the current crop.\n\nIf you wish to use a key other than \"c\" to crop, the keybind\n`easy_crop` can be changed.\n",
         homepage: "https://github.com/aidanholm/mpv-easycrop",

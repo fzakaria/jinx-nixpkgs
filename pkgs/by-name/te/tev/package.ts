@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["fetchSubmodules", 33, 5], ["hash", 34, 5]], [["description", 80, 5], ["mainProgram", 81, 5], ["longDescription", 82, 5], ["changelog", 88, 5], ["homepage", 89, 5], ["license", 90, 5], ["maintainers", 91, 5], ["platforms", 92, 5]], [["pname", 26, 3], ["version", 27, 3], ["src", 29, 3], ["postPatch", 37, 3], ["nativeBuildInputs", 50, 3], ["buildInputs", 57, 3], ["cmakeFlags", 75, 3], ["meta", 79, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, cmake: false, darwin: false, dbus: false, fetchFromGitHub: false, lcms2: false, libGL: false, libffi: false, libxkbcommon: false, nasm: false, perl: false, "pkg-config": false, wayland: false, "wayland-protocols": false, "wayland-scanner": false, libxrandr: false, libxi: false, libxinerama: false, libxcursor: false, libx11: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["fetchSubmodules", 33, 5], ["hash", 34, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 80, 5], ["mainProgram", 81, 5], ["longDescription", 82, 5], ["changelog", 88, 5], ["homepage", 89, 5], ["license", 90, 5], ["maintainers", 91, 5], ["platforms", 92, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 26, 3], ["version", 27, 3], ["src", 29, 3], ["postPatch", 37, 3], ["nativeBuildInputs", 50, 3], ["buildInputs", 57, 3], ["cmakeFlags", 75, 3], ["meta", 79, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const pname = "tev";
       const version = "2.14.0";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Tom94",
           repo: "tev",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -67,7 +65,7 @@ export default nix.lambda((args) => (() => {
         ]))));
       const cmakeFlags = nix.thunk(() => ["-DTEV_DEPLOY=1"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "High dynamic range (HDR) image viewer for people who care about colors",
         mainProgram: "tev",
         longDescription: "High dynamic range (HDR) image viewer for people who care about colors. It is\n- Lightning fast: starts up instantly, loads hundreds of images in seconds.\n- Accurate: understands color profiles and displays HDR.\n- Versatile: supports many formats, histograms, pixel peeping, tonemaps, etc.\n",
@@ -81,7 +79,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

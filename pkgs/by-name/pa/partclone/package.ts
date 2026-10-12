@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 27, 5], ["repo", 28, 5], ["rev", 29, 5], ["hash", 30, 5]], [["description", 81, 5], ["longDescription", 82, 5], ["homepage", 88, 5], ["license", 89, 5], ["maintainers", 90, 5], ["platforms", 91, 5]], [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["nativeBuildInputs", 33, 3], ["postPatch", 42, 3], ["buildInputs", 51, 3], ["configureFlags", 65, 3], ["enableParallelBuilding", 78, 3], ["meta", 80, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, autoreconfHook: false, docbook_xml_dtd_45: false, docbook_xsl: false, libtool: false, libxslt: false, "pkg-config": false, liburcu: false, libuuid: false, e2fsprogs: false, "nilfs-utils": false, ntfs3g: false, openssl: false, xxhash: false, zlib: false, zstd: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 27, 5], ["repo", 28, 5], ["rev", 29, 5], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 81, 5], ["longDescription", 82, 5], ["homepage", 88, 5], ["license", 89, 5], ["maintainers", 90, 5], ["platforms", 91, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["nativeBuildInputs", 33, 3], ["postPatch", 42, 3], ["buildInputs", 51, 3], ["configureFlags", 65, 3], ["enableParallelBuilding", 78, 3], ["meta", 80, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const zlib = nix.arg($, "zlib");
   const zstd = nix.arg($, "zstd");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "partclone",
       version: "0.3.48",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Thomas-Tsai",
           repo: "partclone",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -80,7 +78,7 @@ substituteInPlace docs/*.xml \\
       ]),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Utilities to save and restore used blocks on a partition",
         longDescription: "Partclone provides utilities to save and restore used blocks on a\npartition and is designed for higher compatibility of the file system by\nusing existing libraries, e.g. e2fslibs is used to read and write the\next2 partition.\n",
         homepage: "https://partclone.org",

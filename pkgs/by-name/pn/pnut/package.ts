@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]], [["NIX_CFLAGS_COMPILE", 30, 7]], [["description", 42, 5], ["homepage", 43, 5], ["changelog", 44, 5], ["license", 45, 5], ["teams", 46, 5], ["mainProgram", 47, 5], ["platforms", 48, 5]], [["pname", 9, 3], ["version", 10, 3], ["strictDeps", 12, 3], ["__structuredAttrs", 13, 3], ["src", 15, 3], ["preInstall", 22, 3], ["installFlags", 24, 3], ["env", 30, 3], ["preCheck", 33, 3], ["doCheck", 36, 3], ["checkTarget", 37, 3], ["nativeCheckInputs", 39, 3], ["meta", 41, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, gcc: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["tag", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 30, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 42, 5], ["homepage", 43, 5], ["changelog", 44, 5], ["license", 45, 5], ["teams", 46, 5], ["mainProgram", 47, 5], ["platforms", 48, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["strictDeps", 12, 3], ["__structuredAttrs", 13, 3], ["src", 15, 3], ["preInstall", 22, 3], ["installFlags", 24, 3], ["env", 30, 3], ["preCheck", 33, 3], ["doCheck", 36, 3], ["checkTarget", 37, 3], ["nativeCheckInputs", 39, 3], ["meta", 41, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,13 +12,13 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const gcc = nix.arg($, "gcc");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "pnut",
       version: "1.1",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "udem-dlteam",
           repo: "pnut",
           tag: nix.thunk(() => nix.str`pnut-${nix.sel(finalAttrs, "version")}`),
@@ -29,13 +26,13 @@ export default nix.lambda((args) => (() => {
         })))),
       preInstall: "mkdir -p $out/bin",
       installFlags: nix.thunk(() => [nix.thunk(() => nix.str`PREFIX=${nix.builtins.placeholder("out")}`)]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-std=c17" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], NIX_CFLAGS_COMPILE: "-std=c17" })),
       preCheck: "rm tests/_sh/checks/sizeof_array.c\n",
       doCheck: true,
       checkTarget: "test-sh",
       nativeCheckInputs: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [gcc]))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "C to POSIX shell transpiler",
         homepage: "https://github.com/udem-dlteam/pnut",
         changelog: nix.thunk(() => nix.str`https://github.com/udem-dlteam/pnut/releases/tag/pnut-${nix.sel(finalAttrs, "version")}`),

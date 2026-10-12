@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]], [["yarnLock", 34, 7], ["hash", 35, 7]], [["pname", 24, 5], ["version", 25, 13], ["src", 25, 21], ["nativeBuildInputs", 27, 5], ["yarnOfflineCache", 33, 5], ["NODE_ENV", 38, 5], ["yarnBuildScript", 39, 5], ["installPhase", 41, 5]], [["frontend", 90, 13]], [["homepage", 94, 5], ["changelog", 95, 5], ["description", 96, 5], ["license", 97, 5], ["maintainers", 98, 5], ["mainProgram", 103, 5]], [["pname", 55, 11], ["version", 55, 17], ["src", 55, 25], ["vendorHash", 57, 3], ["subPackages", 59, 3], ["ldflags", 63, 3], ["nativeBuildInputs", 68, 3], ["preBuild", 70, 3], ["tags", 79, 3], ["doInstallCheck", 81, 3], ["versionCheckProgramArg", 82, 3], ["nativeInstallCheckInputs", 83, 3], ["__darwinAllowLocalNetworking", 87, 3], ["passthru", 89, 3], ["meta", 93, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, stdenvNoCC: false, yarnConfigHook: false, yarnBuildHook: false, nodejs_24: false, fetchYarnDeps: false, buildGoModule: false, "go-bindata": false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["yarnLock", 34, 7], ["hash", 35, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 24, 5], ["version", 25, 13], ["src", 25, 21], ["nativeBuildInputs", 27, 5], ["yarnOfflineCache", 33, 5], ["NODE_ENV", 38, 5], ["yarnBuildScript", 39, 5], ["installPhase", 41, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["frontend", 90, 13]]);
-const pos$5 = nix.positions(here + "/package.nix", [["homepage", 94, 5], ["changelog", 95, 5], ["description", 96, 5], ["license", 97, 5], ["maintainers", 98, 5], ["mainProgram", 103, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 55, 11], ["version", 55, 17], ["src", 55, 25], ["vendorHash", 57, 3], ["subPackages", 59, 3], ["ldflags", 63, 3], ["nativeBuildInputs", 68, 3], ["preBuild", 70, 3], ["tags", 79, 3], ["doInstallCheck", 81, 3], ["versionCheckProgramArg", 82, 3], ["nativeInstallCheckInputs", 83, 3], ["__darwinAllowLocalNetworking", 87, 3], ["passthru", 89, 3], ["meta", 93, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,20 +20,20 @@ export default nix.lambda((args) => (() => {
   const pname = "fleet";
   const version = "4.92.1";
   const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "fleetdm",
       repo: "fleet",
       tag: nix.thunk(() => nix.str`fleet-v${version}`),
       hash: "sha256-O6BXxILefLY8zAUGsiAGixcD35+mpm/631s6711A5RE=",
     }))));
   const frontend = nix.thunk(() => nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: nix.thunk(() => nix.str`${pname}-frontend`),
       version: version,
       src: src,
       nativeBuildInputs: nix.thunk(() => [yarnConfigHook, yarnBuildHook, nodejs_24]),
       yarnOfflineCache: nix.thunk(() => nix.app(fetchYarnDeps, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           yarnLock: nix.thunk(() => nix.add(src, "/yarn.lock")),
           hash: "sha256-ZhkCkaX6mzavOAfSyK81s6wVN59VvBkRVBfgIfw17vE=",
         })))),
@@ -47,7 +42,7 @@ export default nix.lambda((args) => (() => {
       installPhase: "runHook preInstall\n\nmkdir -p $out/assets\ncp -r assets/* $out/assets/\n\nmkdir -p $out/frontend/templates\ncp frontend/templates/react.tmpl $out/frontend/templates/react.tmpl\n\nrunHook postInstall\n",
     }))));
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: pname,
       version: version,
       src: src,
@@ -70,9 +65,9 @@ go-bindata -pkg=bindata -tags full \\
       versionCheckProgramArg: "version",
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       __darwinAllowLocalNetworking: true,
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$4, frontend: frontend })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[3], frontend: frontend })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "https://github.com/fleetdm/fleet",
         changelog: nix.thunk(() => nix.str`https://github.com/fleetdm/fleet/releases/tag/fleet-v${nix.sel(finalAttrs, "version")}`),
         description: "CLI tool to launch Fleet server",

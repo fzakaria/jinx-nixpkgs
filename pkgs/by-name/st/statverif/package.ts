@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 16, 5], ["sha256", 17, 5]], [["url", 21, 5], ["sha256", 22, 5]], [["description", 38, 5], ["homepage", 39, 5], ["license", 40, 5], ["platforms", 41, 5], ["maintainers", 42, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["pf-patch", 20, 3], ["strictDeps", 25, 3], ["nativeBuildInputs", 27, 3], ["patchPhase", 29, 3], ["buildPhase", 30, 3], ["installPhase", 31, 3], ["meta", 37, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, "ocaml-ng": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 16, 5], ["sha256", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 21, 5], ["sha256", 22, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 38, 5], ["homepage", 39, 5], ["license", 40, 5], ["platforms", 41, 5], ["maintainers", 42, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["pf-patch", 20, 3], ["strictDeps", 25, 3], ["nativeBuildInputs", 27, 3], ["patchPhase", 29, 3], ["buildPhase", 30, 3], ["installPhase", 31, 3], ["meta", 37, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,16 +13,16 @@ export default nix.lambda((args) => (() => {
   const ocaml_ng = nix.arg($, "ocaml-ng");
   const ocaml = nix.thunk(() => nix.sel(ocaml_ng, "ocamlPackages_4_14_unsafe_string", "ocaml"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "statverif",
       version: "1.86pl4",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`http://prosecco.gforge.inria.fr/personal/bblanche/proverif/proverif${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "163vdcixs764jj8xa08w80qm4kcijf7xj911yp8jvz6pi1q5g13i",
         })))),
       "pf-patch": nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: nix.thunk(() => nix.str`http://markryan.eu/research/statverif/files/proverif-${nix.sel(finalAttrs, "version")}-statverif-2657ab4.patch`),
           sha256: "113jjhi1qkcggbsmbw8fa9ln8vs7vy2r288szks7rn0jjn0wxmbw",
         })))),
@@ -35,7 +32,7 @@ export default nix.lambda((args) => (() => {
       buildPhase: "./build",
       installPhase: "mkdir -p $out/bin\ncp ./proverif      $out/bin/statverif\ncp ./proveriftotex $out/bin/statveriftotex\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Verification of stateful processes (via Proverif)",
         homepage: "https://markryan.eu/research/statverif/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),

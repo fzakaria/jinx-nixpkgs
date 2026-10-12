@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 30, 5], ["hash", 31, 5]], [["packageName", 65, 7]], [["updateScript", 64, 5]], [["homepage", 70, 5], ["description", 71, 5], ["teams", 72, 5], ["license", 73, 5], ["platforms", 74, 5]], [["pname", 26, 3], ["version", 27, 3], ["src", 29, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 44, 3], ["postPatch", 57, 3], ["passthru", 63, 3], ["meta", 69, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, "desktop-file-utils": false, gettext: false, itstool: false, meson: false, ninja: false, "pkg-config": false, wrapGAppsHook4: false, bzip2: false, glib: false, gtk4: false, libadwaita: false, libxml2: false, libxslt: false, sqlite: false, webkitgtk_6_0: false, xz: false, "yelp-xsl": false, gnome: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 30, 5], ["hash", 31, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["packageName", 65, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 64, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 70, 5], ["description", 71, 5], ["teams", 72, 5], ["license", 73, 5], ["platforms", 74, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 26, 3], ["version", 27, 3], ["src", 29, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 44, 3], ["postPatch", 57, 3], ["passthru", 63, 3], ["meta", 69, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,11 +29,11 @@ export default nix.lambda((args) => (() => {
   const yelp_xsl = nix.arg($, "yelp-xsl");
   const gnome = nix.arg($, "gnome");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "yelp",
       version: "49.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnome/sources/yelp/${nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/yelp-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-Pj6U7y0slIfMUQYuOvv6FXjOvSnYDIQ1e21+5tz9inQ=",
         })))),
@@ -64,11 +60,11 @@ export default nix.lambda((args) => (() => {
       ]),
       postPatch: "chmod +x src/link-gnome-help.sh data/domains/gen_yelp_xml.sh\npatchShebangs src/link-gnome-help.sh\npatchShebangs data/domains/gen_yelp_xml.sh\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$2, packageName: "yelp" })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: $pos[1], packageName: "yelp" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://apps.gnome.org/Yelp/",
         description: "Help viewer for GNOME",
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "gnome"))]),

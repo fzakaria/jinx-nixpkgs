@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]], [["name", 28, 7], ["url", 29, 7], ["hash", 30, 7]], [["name", 34, 7], ["url", 35, 7], ["hash", 36, 7]], [["opusLibPath", 39, 7]], [["description", 61, 5], ["homepage", 62, 5], ["license", 63, 5], ["platforms", 64, 5], ["maintainers", 65, 5]], [["pname", 14, 3], ["version", 15, 3], ["pyproject", 16, 3], ["src", 18, 3], ["patches", 25, 3], ["build-system", 43, 3], ["nativeCheckInputs", 45, 3], ["enabledTestPaths", 47, 3], ["disabledTests", 54, 3], ["meta", 60, 3]]]);
 const formals$1 = { args: { buildPythonPackage: false, fetchFromGitHub: false, fetchpatch: false, libopus: false, pytestCheckHook: false, lib: false, stdenv: false, replaceVars: false, setuptools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 19, 5], ["repo", 20, 5], ["rev", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["name", 28, 7], ["url", 29, 7], ["hash", 30, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["name", 34, 7], ["url", 35, 7], ["hash", 36, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["opusLibPath", 39, 7]]);
-const pos$5 = nix.positions(here + "/default.nix", [["description", 61, 5], ["homepage", 62, 5], ["license", 63, 5], ["platforms", 64, 5], ["maintainers", 65, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 14, 3], ["version", 15, 3], ["pyproject", 16, 3], ["src", 18, 3], ["patches", 25, 3], ["build-system", 43, 3], ["nativeCheckInputs", 45, 3], ["enabledTestPaths", 47, 3], ["disabledTests", 54, 3], ["meta", 60, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const replaceVars = nix.arg($, "replaceVars");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "opuslib",
       version: "3.0.3",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "orion-labs",
           repo: "opuslib",
           rev: "92109c528f9f6c550df5e5325ca0fcd4f86b0909",
@@ -35,19 +30,19 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "fix-variadic-functions-on-aarch64-darwin.patch",
             url: "https://github.com/orion-labs/opuslib/commit/8aee916e4da4b3183d49cff5a986dc2408076d8d.patch",
             hash: "sha256-oa1HCFHNS3ejzSf0jxv9NueUKOZgdCtpv+xTrjYW5os=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "fix-tests-when-using-libopus-1.4.patch",
             url: "https://github.com/orion-labs/opuslib/commit/87a214fc98c1dcae38035e99fe8e279a160c4a52.patch",
             hash: "sha256-UoOafyTFvWLY7ErtBhkXTZSgbMZFrg5DGxjbhqEI7wo=",
           })))),
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./opuslib-paths.patch"), nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             opusLibPath: nix.thunk(() => nix.str`${libopus}/lib/libopus${nix.sel(stdenv, "hostPlatform", "extensions", "sharedLibrary")}`),
           })))),
       ]),
@@ -61,7 +56,7 @@ export default nix.lambda((args) => (() => {
       ]),
       disabledTests: nix.thunk(() => ["test_bitrate"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Python bindings to the libopus, IETF low-delay audio codec",
         homepage: "https://github.com/orion-labs/opuslib",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

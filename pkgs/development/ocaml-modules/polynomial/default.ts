@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]], [["description", 29, 5], ["license", 30, 5], ["homepage", 31, 5], ["maintainers", 32, 5]], [["pname", 10, 3], ["version", 11, 3], ["duneVersion", 12, 3], ["minimalOCamlVersion", 13, 3], ["src", 14, 3], ["propagatedBuildInputs", 21, 3], ["doCheck", 26, 3], ["meta", 28, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitLab: false, buildDunePackage: false, zarith: false, "ff-sig": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 29, 5], ["license", 30, 5], ["homepage", 31, 5], ["maintainers", 32, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 10, 3], ["version", 11, 3], ["duneVersion", 12, 3], ["minimalOCamlVersion", 13, 3], ["src", 14, 3], ["propagatedBuildInputs", 21, 3], ["doCheck", 26, 3], ["meta", 28, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,13 +13,13 @@ export default nix.lambda((args) => (() => {
   const zarith = nix.arg($, "zarith");
   const ff_sig = nix.arg($, "ff-sig");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "polynomial",
       version: "0.4.0",
       duneVersion: "3",
       minimalOCamlVersion: "4.08",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "nomadic-labs",
           repo: "cryptography/ocaml-polynomial",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -30,7 +28,7 @@ export default nix.lambda((args) => (() => {
       propagatedBuildInputs: nix.thunk(() => [zarith, ff_sig]),
       doCheck: false,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Polynomials over finite field",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         homepage: "https://gitlab.com/nomadic-labs/ocaml-polynomial",

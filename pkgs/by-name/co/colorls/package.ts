@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["ruby", 8, 24]], [["updateScript", 14, 12]], [["description", 17, 5], ["homepage", 18, 5], ["license", 19, 5], ["maintainers", 20, 5], ["platforms", 25, 5], ["mainProgram", 26, 5]], [["pname", 9, 3], ["gemdir", 11, 3], ["exes", 12, 3], ["passthru", 14, 3], ["meta", 16, 3]]]);
 const formals$1 = { args: { lib: false, bundlerApp: false, ruby_3_4: false, bundlerUpdateScript: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["ruby", 8, 24]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 14, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 17, 5], ["homepage", 18, 5], ["license", 19, 5], ["maintainers", 20, 5], ["platforms", 25, 5], ["mainProgram", 26, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["gemdir", 11, 3], ["exes", 12, 3], ["passthru", 14, 3], ["meta", 16, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,17 +11,17 @@ export default nix.lambda((args) => (() => {
   const bundlerApp = nix.arg($, "bundlerApp");
   const ruby_3_4 = nix.arg($, "ruby_3_4");
   const bundlerUpdateScript = nix.arg($, "bundlerUpdateScript");
-  return nix.app(nix.sel(bundlerApp, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, ruby: ruby_3_4 })), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+  return nix.app(nix.sel(bundlerApp, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], ruby: ruby_3_4 })), nix.thunk(() => ({
+      [nix.POS]: $pos[3],
       pname: "colorls",
       gemdir: nix.path(here, "./."),
       exes: nix.thunk(() => ["colorls"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(bundlerUpdateScript, "colorls")),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Prettified LS",
         homepage: "https://github.com/athityakumar/colorls",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["sha256", 27, 5]], [["FONTCONFIG", 31, 5], ["HYPERROGUE_USE_GLEW", 32, 5], ["HYPERROGUE_USE_PNG", 33, 5], ["HYPERROGUE_USE_ROGUEVIZ", 34, 5], ["CXXFLAGS", 36, 5]], [["name", 60, 7], ["desktopName", 61, 7], ["genericName", 62, 7], ["comment", 63, 7], ["icon", 64, 7], ["exec", 65, 7], ["categories", 66, 7]], [["updateScript", 108, 5]], [["description", 112, 5], ["homepage", 113, 5], ["changelog", 114, 5], ["mainProgram", 115, 5], ["maintainers", 116, 5], ["license", 117, 5], ["platforms", 118, 5]], [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["env", 30, 3], ["nativeBuildInputs", 43, 3], ["buildInputs", 48, 3], ["desktopItems", 58, 3], ["installPhase", 73, 3], ["enableParallelBuilding", 99, 3], ["nativeInstallCheckInputs", 101, 3], ["doInstallCheck", 105, 3], ["passthru", 107, 3], ["meta", 111, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, makeDesktopItem: false, copyDesktopItems: false, "pkg-config": false, SDL: false, SDL_ttf: false, SDL_gfx: false, SDL_mixer: false, libpng: false, glew: false, fontconfig: false, versionCheckHook: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["sha256", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["FONTCONFIG", 31, 5], ["HYPERROGUE_USE_GLEW", 32, 5], ["HYPERROGUE_USE_PNG", 33, 5], ["HYPERROGUE_USE_ROGUEVIZ", 34, 5], ["CXXFLAGS", 36, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 60, 7], ["desktopName", 61, 7], ["genericName", 62, 7], ["comment", 63, 7], ["icon", 64, 7], ["exec", 65, 7], ["categories", 66, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 108, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 112, 5], ["homepage", 113, 5], ["changelog", 114, 5], ["mainProgram", 115, 5], ["maintainers", 116, 5], ["license", 117, 5], ["platforms", 118, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["env", 30, 3], ["nativeBuildInputs", 43, 3], ["buildInputs", 48, 3], ["desktopItems", 58, 3], ["installPhase", 73, 3], ["enableParallelBuilding", 99, 3], ["nativeInstallCheckInputs", 101, 3], ["doInstallCheck", 105, 3], ["passthru", 107, 3], ["meta", 111, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,18 +23,18 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "hyperrogue",
       version: "13.1o",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "zenorogue",
           repo: "hyperrogue",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           sha256: "sha256-kbkUUpx4gcHUuT/pg0d2zfNnT9TOlmdhcOD36LE2U7s=",
         })))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         FONTCONFIG: 1n,
         HYPERROGUE_USE_GLEW: 1n,
         HYPERROGUE_USE_PNG: 1n,
@@ -54,7 +49,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [SDL, SDL_ttf, SDL_gfx, SDL_mixer, libpng, glew, fontconfig]),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "hyperrogue",
             desktopName: "HyperRogue",
             genericName: "HyperRogue",
@@ -69,11 +64,11 @@ export default nix.lambda((args) => (() => {
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       doInstallCheck: nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Roguelike game set in hyperbolic geometry",
         homepage: "https://www.roguetemple.com/z/hyper/",
         changelog: nix.thunk(() => nix.str`https://github.com/zenorogue/hyperrogue/releases/tag/v${nix.sel(finalAttrs, "version")}`),

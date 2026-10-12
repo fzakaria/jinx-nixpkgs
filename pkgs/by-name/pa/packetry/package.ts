@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]], [["name", 52, 7], ["desktopName", 53, 7], ["comment", 54, 7], ["exec", 55, 7], ["icon", 56, 7], ["categories", 57, 7]], [["description", 70, 5], ["homepage", 71, 5], ["license", 72, 5], ["maintainers", 73, 5], ["mainProgram", 74, 5], ["platforms", 75, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["cargoHash", 27, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 36, 3], ["preCheck", 42, 3], ["nativeInstallCheckInputs", 47, 3], ["doInstallCheck", 48, 3], ["desktopItems", 50, 3], ["postInstall", 62, 3], ["meta", 69, 3]]]);
 const formals$1 = { args: { fetchFromGitHub: false, lib: false, stdenv: false, rustPlatform: false, gtk4: false, "pkg-config": false, pango: false, wrapGAppsHook4: false, versionCheckHook: false, copyDesktopItems: false, makeDesktopItem: false, desktopToDarwinBundle: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 52, 7], ["desktopName", 53, 7], ["comment", 54, 7], ["exec", 55, 7], ["icon", 56, 7], ["categories", 57, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 70, 5], ["homepage", 71, 5], ["license", 72, 5], ["maintainers", 73, 5], ["mainProgram", 74, 5], ["platforms", 75, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["cargoHash", 27, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 36, 3], ["preCheck", 42, 3], ["nativeInstallCheckInputs", 47, 3], ["doInstallCheck", 48, 3], ["desktopItems", 50, 3], ["postInstall", 62, 3], ["meta", 69, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const makeDesktopItem = nix.arg($, "makeDesktopItem");
   const desktopToDarwinBundle = nix.arg($, "desktopToDarwinBundle");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "packetry",
       version: "0.5.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "greatscottgadgets",
           repo: "packetry",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -41,7 +38,7 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "packetry",
             desktopName: "Packetry",
             comment: nix.thunk(() => nix.sel(finalAttrs, "meta", "description")),
@@ -52,7 +49,7 @@ export default nix.lambda((args) => (() => {
       ]),
       postInstall: "rm $out/bin/packetry-cli\n\ninstall -Dm644 appimage/dist/icon.png \\\n  $out/share/icons/hicolor/512x512/apps/packetry.png\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "USB 2.0 protocol analysis application for use with Cynthion",
         homepage: "https://github.com/greatscottgadgets/packetry",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

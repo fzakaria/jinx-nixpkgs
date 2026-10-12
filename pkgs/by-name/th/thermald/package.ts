@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 31, 5], ["repo", 32, 5], ["rev", 33, 5], ["sha256", 34, 5]], [["name", 45, 7], ["url", 46, 7], ["hash", 47, 7]], [["description", 85, 5], ["homepage", 86, 5], ["changelog", 87, 5], ["license", 88, 5], ["platforms", 89, 5], ["maintainers", 93, 5], ["mainProgram", 94, 5]], [["pname", 22, 3], ["version", 23, 3], ["outputs", 25, 3], ["src", 30, 3], ["patches", 37, 3], ["nativeBuildInputs", 51, 3], ["buildInputs", 62, 3], ["configureFlags", 70, 3], ["preConfigure", 78, 3], ["postInstall", 80, 3], ["meta", 84, 3]]]);
 const formals$1 = { args: { autoconf: false, "autoconf-archive": false, automake: false, dbus: false, "dbus-glib": false, docbook_xml_dtd_412: false, "docbook-xsl-nons": false, fetchFromGitHub: false, fetchpatch: false, "gtk-doc": false, libevdev: false, libtool: false, libxml2: false, "pkg-config": false, lib: false, stdenv: false, upower: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 31, 5], ["repo", 32, 5], ["rev", 33, 5], ["sha256", 34, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 45, 7], ["url", 46, 7], ["hash", 47, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 85, 5], ["homepage", 86, 5], ["changelog", 87, 5], ["license", 88, 5], ["platforms", 89, 5], ["maintainers", 93, 5], ["mainProgram", 94, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 22, 3], ["version", 23, 3], ["outputs", 25, 3], ["src", 30, 3], ["patches", 37, 3], ["nativeBuildInputs", 51, 3], ["buildInputs", 62, 3], ["configureFlags", 70, 3], ["preConfigure", 78, 3], ["postInstall", 80, 3], ["meta", 84, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,12 +25,12 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const upower = nix.arg($, "upower");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "thermald",
       version: "2.5.12",
       outputs: nix.thunk(() => ["out", "devdoc"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "intel",
           repo: "thermal_daemon",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -41,7 +38,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "demote-fatal-error-to-warning-for-non-mobile-platform.patch",
             url: "https://github.com/panchoh/thermal_daemon/commit/7f2a5d09010c1ffa9ce53c4fe0e673bcc504ea67.patch",
             hash: "sha256-XQM6OfIg/2SZxhxB/NrCUEiWxBl/AtI4Y/jdcXBVoJM=",
@@ -68,7 +65,7 @@ export default nix.lambda((args) => (() => {
       preConfigure: "NO_CONFIGURE=1 ./autogen.sh",
       postInstall: "cp ./data/thermal-conf.xml $out/etc/thermald/\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Thermal Daemon",
         homepage: "https://github.com/intel/thermal_daemon",
         changelog: "https://github.com/intel/thermal_daemon/blob/master/README.txt",

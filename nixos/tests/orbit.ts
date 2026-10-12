@@ -2,55 +2,44 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/orbit.nix", [[["text", 9, 45]], [["fleet/enroll-secret", 9, 23]], [["etc", 9, 19]], [["name", 14, 11], ["text", 15, 11]], [["name", 24, 11], ["text", 25, 11]], [["name", 30, 13], ["text", 31, 13]], [["enable", 28, 11], ["package", 29, 11], ["alternativeBrowserHost", 33, 11]], [["enable", 12, 9], ["orbitPackage", 13, 9], ["osqueryPackage", 23, 9], ["desktop", 27, 9], ["fleetUrl", 35, 9], ["enrollSecretPath", 36, 9], ["debug", 37, 9], ["enableScripts", 38, 9], ["hostIdentifier", 39, 9]], [["orbit", 11, 16]], [["environment", 9, 7], ["services", 11, 7]], [["machine", 6, 9]], [["name", 4, 3], ["nodes", 6, 3], ["testScript", 43, 3]]]);
 const formals$1 = { args: {  }, ellipsis: true };
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/orbit.nix", [["text", 9, 45]]);
-const pos$2 = nix.positions(here + "/orbit.nix", [["fleet/enroll-secret", 9, 23]]);
-const pos$3 = nix.positions(here + "/orbit.nix", [["etc", 9, 19]]);
-const pos$4 = nix.positions(here + "/orbit.nix", [["name", 14, 11], ["text", 15, 11]]);
-const pos$5 = nix.positions(here + "/orbit.nix", [["name", 24, 11], ["text", 25, 11]]);
-const pos$6 = nix.positions(here + "/orbit.nix", [["name", 30, 13], ["text", 31, 13]]);
-const pos$7 = nix.positions(here + "/orbit.nix", [["enable", 28, 11], ["package", 29, 11], ["alternativeBrowserHost", 33, 11]]);
-const pos$8 = nix.positions(here + "/orbit.nix", [["enable", 12, 9], ["orbitPackage", 13, 9], ["osqueryPackage", 23, 9], ["desktop", 27, 9], ["fleetUrl", 35, 9], ["enrollSecretPath", 36, 9], ["debug", 37, 9], ["enableScripts", 38, 9], ["hostIdentifier", 39, 9]]);
-const pos$9 = nix.positions(here + "/orbit.nix", [["orbit", 11, 16]]);
-const pos$10 = nix.positions(here + "/orbit.nix", [["environment", 9, 7], ["services", 11, 7]]);
-const pos$11 = nix.positions(here + "/orbit.nix", [["machine", 6, 9]]);
-const pos$12 = nix.positions(here + "/orbit.nix", [["name", 4, 3], ["nodes", 6, 3], ["testScript", 43, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   return {
-    [nix.POS]: pos$12,
+    [nix.POS]: $pos[11],
     name: "orbit",
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$11,
+      [nix.POS]: $pos[10],
       machine: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs = nix.arg($_1, "pkgs");
         return {
-          [nix.POS]: pos$10,
+          [nix.POS]: $pos[9],
           environment: nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             etc: nix.thunk(() => ({
-              [nix.POS]: pos$2,
-              "fleet/enroll-secret": nix.thunk(() => ({ [nix.POS]: pos$1, text: "test-secret" })),
+              [nix.POS]: $pos[1],
+              "fleet/enroll-secret": nix.thunk(() => ({ [nix.POS]: $pos[0], text: "test-secret" })),
             })),
           })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$9,
+            [nix.POS]: $pos[8],
             orbit: nix.thunk(() => ({
-              [nix.POS]: pos$8,
+              [nix.POS]: $pos[7],
               enable: true,
               orbitPackage: nix.thunk(() => nix.app(nix.sel(pkgs, "writeShellApplication"), nix.thunk(() => ({
-                  [nix.POS]: pos$4,
+                  [nix.POS]: $pos[3],
                   name: "orbit",
                   text: "test \"$ORBIT_FLEET_URL\" = \"https://fleet.example.test\"\ntest -r \"$ORBIT_ENROLL_SECRET_PATH\"\ntest \"$(cat \"$ORBIT_ENROLL_SECRET_PATH\")\" = \"test-secret\"\ntest -x \"$NIX_ORBIT_OSQUERYD_PATH\"\nsleep infinity\n",
                 })))),
-              osqueryPackage: nix.thunk(() => nix.app(nix.sel(pkgs, "writeShellApplication"), nix.thunk(() => ({ [nix.POS]: pos$5, name: "osqueryd", text: "echo osquery" })))),
+              osqueryPackage: nix.thunk(() => nix.app(nix.sel(pkgs, "writeShellApplication"), nix.thunk(() => ({ [nix.POS]: $pos[4], name: "osqueryd", text: "echo osquery" })))),
               desktop: nix.thunk(() => ({
-                [nix.POS]: pos$7,
+                [nix.POS]: $pos[6],
                 enable: true,
-                package: nix.thunk(() => nix.app(nix.sel(pkgs, "writeShellApplication"), nix.thunk(() => ({ [nix.POS]: pos$6, name: "fleet-desktop", text: "echo fleet-desktop" })))),
+                package: nix.thunk(() => nix.app(nix.sel(pkgs, "writeShellApplication"), nix.thunk(() => ({ [nix.POS]: $pos[5], name: "fleet-desktop", text: "echo fleet-desktop" })))),
                 alternativeBrowserHost: "fleet-browser.example.test",
               })),
               fleetUrl: "https://fleet.example.test",

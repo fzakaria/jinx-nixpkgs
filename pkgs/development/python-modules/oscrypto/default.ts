@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]], [["url", 29, 7], ["hash", 30, 7]], [["description", 57, 5], ["homepage", 58, 5], ["license", 59, 5], ["maintainers", 60, 5]], [["pname", 13, 3], ["version", 14, 3], ["format", 15, 3], ["src", 17, 3], ["patches", 24, 3], ["postPatch", 34, 3], ["propagatedBuildInputs", 42, 3], ["nativeCheckInputs", 44, 3], ["pythonImportsCheck", 46, 3], ["doCheck", 48, 3], ["disabledTests", 50, 3], ["meta", 56, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, asn1crypto: false, buildPythonPackage: false, fetchFromGitHub: false, fetchpatch: false, openssl: false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["url", 29, 7], ["hash", 30, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 57, 5], ["homepage", 58, 5], ["license", 59, 5], ["maintainers", 60, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 13, 3], ["version", 14, 3], ["format", 15, 3], ["src", 17, 3], ["patches", 24, 3], ["postPatch", 34, 3], ["propagatedBuildInputs", 42, 3], ["nativeCheckInputs", 44, 3], ["pythonImportsCheck", 46, 3], ["doCheck", 48, 3], ["disabledTests", 50, 3], ["meta", 56, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "1.3.0";
       const format = "setuptools";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "wbond",
           repo: "oscrypto",
           rev: version,
@@ -32,7 +29,7 @@ export default nix.lambda((args) => (() => {
       const patches = nix.thunk(() => [
         nix.path(here, "./support-openssl-3.0.10.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/wbond/oscrypto/commit/3865f5d528740aa1205d16ddbee84c5b48aeb078.patch",
             hash: "sha256-lQGoPM7EicwCPWapEDkqWEqMqXk4tijiImxndcDFqY4=",
           })))),
@@ -49,14 +46,14 @@ done
       const doCheck = nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")));
       const disabledTests = nix.thunk(() => ["TLSTests", "TrustListTests"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Encryption library for Python",
         homepage: "https://github.com/wbond/oscrypto",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         format,

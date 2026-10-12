@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]], [["NIX_SYSTEM", 25, 5], ["RUSTC_BOOTSTRAP", 26, 5]], [["tests", 47, 12]], [["description", 50, 5], ["homepage", 51, 5], ["license", 52, 5], ["maintainers", 53, 5], ["platforms", 54, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["cargoHash", 20, 3], ["hardeningDisable", 22, 3], ["env", 24, 3], ["preCheck", 29, 3], ["postInstall", 33, 3], ["passthru", 47, 3], ["meta", 49, 3]]]);
 const formals$1 = { args: { stdenv: false, fetchFromGitHub: false, nixosTests: false, rustPlatform: false, lib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_SYSTEM", 25, 5], ["RUSTC_BOOTSTRAP", 26, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 47, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 50, 5], ["homepage", 51, 5], ["license", 52, 5], ["maintainers", 53, 5], ["platforms", 54, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["cargoHash", 20, 3], ["hardeningDisable", 22, 3], ["env", 24, 3], ["preCheck", 29, 3], ["postInstall", 33, 3], ["passthru", 47, 3], ["meta", 49, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const rustPlatform = nix.arg($, "rustPlatform");
   const lib = nix.arg($, "lib");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "nix-ld",
       version: "2.0.6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "nix-community",
           repo: "nix-ld",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -30,7 +26,7 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-8mkMq16CfEc/RHH3msXEnoiDHGGRjr2Omp2TVd07ObE=",
       hardeningDisable: nix.thunk(() => ["stackprotector"]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_SYSTEM: nix.thunk(() => nix.sel(stdenv, "system")),
         RUSTC_BOOTSTRAP: "1",
       })),
@@ -48,9 +44,9 @@ cat > $out/lib/tmpfiles.d/nix-ld.conf <<EOF
   L+ $ldpath - - - - $out/libexec/nix-ld
 EOF
 `),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$3, tests: nix.thunk(() => nix.sel(nixosTests, "nix-ld")) })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[2], tests: nix.thunk(() => nix.sel(nixosTests, "nix-ld")) })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Run unpatched dynamic binaries on NixOS",
         homepage: "https://github.com/nix-community/nix-ld",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

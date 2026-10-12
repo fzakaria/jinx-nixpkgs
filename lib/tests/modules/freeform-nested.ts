@@ -2,33 +2,31 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/freeform-nested.nix", [[["type", 9, 5], ["default", 10, 5]], [["foo", 8, 16], ["unused", 12, 16]], [["nest", 8, 11]], [["bar", 13, 15]], [["nest", 13, 10]], [["options", 8, 3], ["config", 13, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/freeform-nested.nix", [["type", 9, 5], ["default", 10, 5]]);
-const pos$2 = nix.positions(here + "/freeform-nested.nix", [["foo", 8, 16], ["unused", 12, 16]]);
-const pos$3 = nix.positions(here + "/freeform-nested.nix", [["nest", 8, 11]]);
-const pos$4 = nix.positions(here + "/freeform-nested.nix", [["bar", 13, 15]]);
-const pos$5 = nix.positions(here + "/freeform-nested.nix", [["nest", 13, 10]]);
-const pos$6 = nix.positions(here + "/freeform-nested.nix", [["options", 8, 3], ["config", 13, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const deathtrapArgs = nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (k) => (_) => nix.builtins.throw(nix.thunk(() => nix.str`The module system is too strict, accessing an unused option's ${k} mkOption-attribute.`)), nix.thunk(() => nix.app(nix.sel(lib, "functionArgs"), nix.thunk(() => nix.sel(lib, "mkOption"))))));
   return {
-    [nix.POS]: pos$6,
+    [nix.POS]: $pos[5],
     options: nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       nest: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         foo: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             type: nix.thunk(() => nix.sel(lib, "types", "bool")),
             default: false,
           })))),
         unused: nix.thunk(() => nix.app(nix.sel(lib, "mkOption"), deathtrapArgs)),
       })),
     })),
-    config: nix.thunk(() => ({ [nix.POS]: pos$5, nest: nix.thunk(() => ({ [nix.POS]: pos$4, bar: "bar" })) })),
+    config: nix.thunk(() => ({
+      [nix.POS]: $pos[4],
+      nest: nix.thunk(() => ({ [nix.POS]: $pos[3], bar: "bar" })),
+    })),
   };
 })(), formals$1);
 //# sourceMappingURL=freeform-nested.ts.map

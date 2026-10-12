@@ -2,12 +2,12 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["waylandSupport", 3, 3]]]);
 const formals$1 = { args: { "rofi-rbw": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["waylandSupport", 3, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const rofi_rbw = nix.arg($, "rofi-rbw");
-  return nix.app(nix.sel(rofi_rbw, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, waylandSupport: true })));
+  return nix.app(nix.sel(rofi_rbw, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], waylandSupport: true })));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

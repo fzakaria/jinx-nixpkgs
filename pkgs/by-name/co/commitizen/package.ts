@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]], [["updateScript", 114, 5]], [["description", 118, 5], ["homepage", 119, 5], ["changelog", 120, 5], ["license", 121, 5], ["mainProgram", 122, 5], ["maintainers", 123, 5]], [["pname", 14, 3], ["version", 15, 3], ["pyproject", 16, 3], ["src", 18, 3], ["postPatch", 25, 3], ["pythonRelaxDeps", 30, 3], ["build-system", 37, 3], ["nativeBuildInputs", 39, 3], ["dependencies", 41, 3], ["makeWrapperArgs", 57, 3], ["nativeCheckInputs", 64, 3], ["versionCheckProgramArg", 78, 3], ["pythonImportsCheck", 80, 3], ["preCheck", 83, 3], ["disabledTests", 90, 3], ["postInstall", 102, 3], ["passthru", 113, 3], ["meta", 117, 3]]]);
 const formals$1 = { args: { lib: false, python3Packages: false, fetchFromGitHub: false, gitMinimal: false, stdenv: false, installShellFiles: false, "nix-update-script": false, versionCheckHook: false, writableTmpDirAsHomeHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 114, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 118, 5], ["homepage", 119, 5], ["changelog", 120, 5], ["license", 121, 5], ["mainProgram", 122, 5], ["maintainers", 123, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["pyproject", 16, 3], ["src", 18, 3], ["postPatch", 25, 3], ["pythonRelaxDeps", 30, 3], ["build-system", 37, 3], ["nativeBuildInputs", 39, 3], ["dependencies", 41, 3], ["makeWrapperArgs", 57, 3], ["nativeCheckInputs", 64, 3], ["versionCheckProgramArg", 78, 3], ["pythonImportsCheck", 80, 3], ["preCheck", 83, 3], ["disabledTests", 90, 3], ["postInstall", 102, 3], ["passthru", 113, 3], ["meta", 117, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "4.16.5";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "commitizen-tools",
           repo: "commitizen",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -94,11 +91,11 @@ export default nix.lambda((args) => (() => {
 `));
       })());
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Tool to create committing rules for projects, auto bump versions, and generate changelogs",
         homepage: "https://github.com/commitizen-tools/commitizen",
         changelog: nix.thunk(() => nix.str`https://github.com/commitizen-tools/commitizen/blob/${nix.sel(src, "tag")}/CHANGELOG.md`),
@@ -113,7 +110,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

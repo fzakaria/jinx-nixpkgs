@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/lwt.nix", [[["description", 34, 5]], [["pname", 14, 3], ["version", 16, 5], ["src", 17, 5], ["buildInputs", 20, 3], ["propagatedBuildInputs", 22, 3], ["meta", 33, 3]]]);
 const formals$1 = { args: { lib: false, buildDunePackage: false, cohttp: false, ipaddr: false, lwt: false, uri: false, ppx_sexp_conv: false, logs: false, sexplib0: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/lwt.nix", [["description", 34, 5]]);
-const pos$2 = nix.positions(here + "/lwt.nix", [["pname", 14, 3], ["version", 16, 5], ["src", 17, 5], ["buildInputs", 20, 3], ["propagatedBuildInputs", 22, 3], ["meta", 33, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,14 +17,14 @@ export default nix.lambda((args) => (() => {
   const logs = nix.arg($, "logs");
   const sexplib0 = nix.arg($, "sexplib0");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "cohttp-lwt",
       version: nix.thunk(() => nix.attr(cohttp, "version")),
       src: nix.thunk(() => nix.attr(cohttp, "src")),
       buildInputs: nix.thunk(() => [ppx_sexp_conv]),
       propagatedBuildInputs: nix.thunk(() => nix.concat([cohttp, lwt, logs, sexplib0, uri], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(cohttp, "version")), "6.0.0")), nix.thunk(() => [ipaddr])))),
       meta: nix.thunk(() => nix.update(nix.sel(cohttp, "meta"), {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "CoHTTP implementation using the Lwt concurrency library",
       })),
     })));

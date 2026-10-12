@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 13, 5], ["hash", 14, 5]], [["homepage", 60, 5], ["changelog", 61, 5], ["description", 62, 5], ["maintainers", 63, 5], ["license", 64, 5], ["platforms", 65, 5], ["badPlatforms", 66, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["outputs", 17, 3], ["nativeBuildInputs", 26, 3], ["postConfigure", 28, 3], ["enableParallelBuilding", 32, 3], ["makeFlags", 33, 3], ["buildFlags", 50, 3], ["installTargets", 54, 3], ["meta", 59, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, autoreconfHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 13, 5], ["hash", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 60, 5], ["changelog", 61, 5], ["description", 62, 5], ["maintainers", 63, 5], ["license", 64, 5], ["platforms", 65, 5], ["badPlatforms", 66, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["outputs", 17, 3], ["nativeBuildInputs", 26, 3], ["postConfigure", 28, 3], ["enableParallelBuilding", 32, 3], ["makeFlags", 33, 3], ["buildFlags", 50, 3], ["installTargets", 54, 3], ["meta", 59, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const autoreconfHook = nix.arg($, "autoreconfHook");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "libhugetlbfs",
       version: "2.24",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/libhugetlbfs/libhugetlbfs/releases/download/${nix.sel(finalAttrs, "version")}/libhugetlbfs-${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-1QHfqRyOrREGlno9OCnyunOMP6wKZcs1jtKrOHDdxe8=",
         })))),
@@ -41,7 +39,7 @@ export default nix.lambda((args) => (() => {
       buildFlags: nix.thunk(() => ["libs", "tools"]),
       installTargets: nix.thunk(() => ["install", "install-docs"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/libhugetlbfs/libhugetlbfs",
         changelog: nix.thunk(() => nix.str`https://github.com/libhugetlbfs/libhugetlbfs/blob/${nix.sel(finalAttrs, "version")}/NEWS`),
         description: "Library and utilities for Linux hugepages",

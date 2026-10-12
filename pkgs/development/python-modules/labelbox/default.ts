@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 38, 5], ["repo", 39, 5], ["tag", 40, 5], ["hash", 41, 5]], [["data", 66, 5]], [["description", 103, 5], ["homepage", 104, 5], ["changelog", 105, 5], ["license", 106, 5], ["maintainers", 107, 5]], [["pname", 33, 3], ["version", 34, 3], ["pyproject", 35, 3], ["src", 37, 3], ["sourceRoot", 44, 3], ["pythonRelaxDeps", 46, 3], ["build-system", 51, 3], ["dependencies", 53, 3], ["optional-dependencies", 65, 3], ["nativeCheckInputs", 79, 3], ["disabledTestPaths", 90, 3], ["__darwinAllowLocalNetworking", 98, 3], ["pythonImportsCheck", 100, 3], ["meta", 102, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, geojson: false, "google-api-core": false, hatchling: false, imagesize: false, "lbox-clients": false, nbconvert: false, nbformat: false, numpy: false, "opencv-python-headless": false, pillow: false, pydantic: false, pyproj: false, "pytest-cov-stub": false, "pytest-order": false, "pytest-rerunfailures": false, "pytest-xdist": false, pytestCheckHook: false, "python-dateutil": false, pyyaml: false, requests: false, shapely: false, strenum: false, tqdm: false, typeguard: false, "typing-extensions": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 38, 5], ["repo", 39, 5], ["tag", 40, 5], ["hash", 41, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["data", 66, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 103, 5], ["homepage", 104, 5], ["changelog", 105, 5], ["license", 106, 5], ["maintainers", 107, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 33, 3], ["version", 34, 3], ["pyproject", 35, 3], ["src", 37, 3], ["sourceRoot", 44, 3], ["pythonRelaxDeps", 46, 3], ["build-system", 51, 3], ["dependencies", 53, 3], ["optional-dependencies", 65, 3], ["nativeCheckInputs", 79, 3], ["disabledTestPaths", 90, 3], ["__darwinAllowLocalNetworking", 98, 3], ["pythonImportsCheck", 100, 3], ["meta", 102, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -39,12 +36,12 @@ export default nix.lambda((args) => (() => {
   const typeguard = nix.arg($, "typeguard");
   const typing_extensions = nix.arg($, "typing-extensions");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "labelbox",
       version: "7.12.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Labelbox",
           repo: "labelbox-python",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -65,7 +62,7 @@ export default nix.lambda((args) => (() => {
         pyyaml,
       ]),
       "optional-dependencies": nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         data: nix.thunk(() => [
           shapely,
           numpy,
@@ -90,7 +87,7 @@ export default nix.lambda((args) => (() => {
       __darwinAllowLocalNetworking: true,
       pythonImportsCheck: nix.thunk(() => ["labelbox"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Platform API for LabelBox",
         homepage: "https://github.com/Labelbox/labelbox-python",
         changelog: nix.thunk(() => nix.str`https://github.com/Labelbox/labelbox-python/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

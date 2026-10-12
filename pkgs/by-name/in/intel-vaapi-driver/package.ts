@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]], [["LIBVA_DRIVERS_PATH", 35, 7]], [["updateScript", 70, 12]], [["homepage", 73, 5], ["changelog", 74, 5], ["license", 75, 5], ["description", 76, 5], ["longDescription", 77, 5], ["platforms", 87, 5], ["maintainers", 91, 5]], [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["env", 35, 3], ["postInstall", 37, 3], ["configureFlags", 41, 3], ["nativeBuildInputs", 47, 3], ["buildInputs", 55, 3], ["enableParallelBuilding", 68, 3], ["passthru", 70, 3], ["meta", 72, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, autoreconfHook: false, gnum4: false, "pkg-config": false, python3: false, "wayland-scanner": false, "intel-gpu-tools": false, libdrm: false, libva: false, libx11: false, libGL: false, wayland: false, libxext: false, enableHybridCodec: true, "vaapi-intel-hybrid": false, enableGui: true, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["LIBVA_DRIVERS_PATH", 35, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 70, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 73, 5], ["changelog", 74, 5], ["license", 75, 5], ["description", 76, 5], ["longDescription", 77, 5], ["platforms", 87, 5], ["maintainers", 91, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["env", 35, 3], ["postInstall", 37, 3], ["configureFlags", 41, 3], ["nativeBuildInputs", 47, 3], ["buildInputs", 55, 3], ["enableParallelBuilding", 68, 3], ["passthru", 70, 3], ["meta", 72, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,18 +27,18 @@ export default nix.lambda((args) => (() => {
   const enableGui = nix.argOr($, "enableGui", () => true);
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "intel-vaapi-driver",
       version: "2.4.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "irql-notlessorequal",
           repo: "intel-vaapi-driver",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-exQBA42jCmwybE7WIfF83cjmzBdtluDzUtOdqt49HSg=",
         })))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         LIBVA_DRIVERS_PATH: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/lib/dri`),
       })),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), enableHybridCodec, nix.thunk(() => nix.str`ln -s ${vaapi_intel_hybrid}/lib/dri/* $out/lib/dri/
@@ -55,11 +51,11 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => nix.concat([intel_gpu_tools, libdrm, libva], nix.concat(nix.app(nix.sel(lib, "optionals"), enableGui, nix.thunk(() => [libx11, libxext, libGL, wayland])), nix.app(nix.sel(lib, "optional"), enableHybridCodec, vaapi_intel_hybrid)))),
       enableParallelBuilding: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://github.com/irql-notlessorequal/intel-vaapi-driver",
         changelog: nix.thunk(() => nix.str`https://github.com/irql-notlessorequal/intel-vaapi-driver/blob/${nix.sel(finalAttrs, "src", "tag")}/NEWS`),
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

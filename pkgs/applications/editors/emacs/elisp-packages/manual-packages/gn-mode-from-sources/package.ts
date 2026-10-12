@@ -2,9 +2,8 @@
 import * as nix from "../../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["homepage", 22, 23], ["license", 22, 32], ["maintainers", 23, 5], ["description", 24, 5]], [["pname", 8, 3], ["ename", 9, 3], ["version", 10, 3], ["src", 11, 16], ["files", 13, 3], ["postPatch", 16, 3], ["meta", 21, 3]]]);
 const formals$1 = { args: { lib: false, gn: false, melpaBuild: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["homepage", 22, 23], ["license", 22, 32], ["maintainers", 23, 5], ["description", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["ename", 9, 3], ["version", 10, 3], ["src", 11, 16], ["files", 13, 3], ["postPatch", 16, 3], ["meta", 21, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -12,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const gn = nix.arg($, "gn");
   const melpaBuild = nix.arg($, "melpaBuild");
   return nix.app(melpaBuild, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "gn-mode-from-sources",
       ename: "gn-mode",
       version: nix.thunk(() => nix.str`0-unstable-${nix.sel(gn, "version")}`),
@@ -22,7 +21,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(gn, "meta"));
         return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         license: nix.thunk(() => nix.attr(from, "license")),
         maintainers: nix.thunk(() => (() => {

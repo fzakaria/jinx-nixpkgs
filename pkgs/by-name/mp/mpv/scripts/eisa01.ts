@@ -2,22 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/eisa01.nix", [[["owner", 18, 11], ["repo", 19, 11], ["rev", 20, 11], ["hash", 21, 11], ["sparseCheckout", 23, 11]], [["updateScript", 28, 18]], [["homepage", 31, 11], ["license", 32, 11]], [["pname", 14, 17], ["version", 15, 9], ["src", 17, 9], ["passthru", 28, 9], ["meta", 30, 9], ["pos", 36, 9]], [["description", 52, 9], ["maintainers", 53, 9]], [["scriptPath", 46, 7], ["prePatch", 47, 7], ["meta", 51, 7]], [["description", 60, 9], ["maintainers", 61, 9]], [["scriptPath", 58, 7], ["meta", 59, 7]], [["description", 68, 9], ["maintainers", 69, 9]], [["scriptPath", 66, 7], ["meta", 67, 7]], [["description", 76, 9], ["maintainers", 77, 9]], [["scriptPath", 74, 7], ["meta", 75, 7]], [["description", 84, 9], ["maintainers", 85, 9]], [["scriptPath", 82, 7], ["meta", 83, 7]], [["smart-copy-paste-2", 45, 5], ["simplebookmark", 57, 5], ["simplehistory", 65, 5], ["smartskip", 73, 5], ["undoredo", 81, 5]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, unstableGitUpdater: false, buildLua: false, xclip: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/eisa01.nix", [["owner", 18, 11], ["repo", 19, 11], ["rev", 20, 11], ["hash", 21, 11], ["sparseCheckout", 23, 11]]);
-const pos$2 = nix.positions(here + "/eisa01.nix", [["updateScript", 28, 18]]);
-const pos$3 = nix.positions(here + "/eisa01.nix", [["homepage", 31, 11], ["license", 32, 11]]);
-const pos$4 = nix.positions(here + "/eisa01.nix", [["pname", 14, 17], ["version", 15, 9], ["src", 17, 9], ["passthru", 28, 9], ["meta", 30, 9], ["pos", 36, 9]]);
-const pos$5 = nix.positions(here + "/eisa01.nix", [["description", 52, 9], ["maintainers", 53, 9]]);
-const pos$6 = nix.positions(here + "/eisa01.nix", [["scriptPath", 46, 7], ["prePatch", 47, 7], ["meta", 51, 7]]);
-const pos$7 = nix.positions(here + "/eisa01.nix", [["description", 60, 9], ["maintainers", 61, 9]]);
-const pos$8 = nix.positions(here + "/eisa01.nix", [["scriptPath", 58, 7], ["meta", 59, 7]]);
-const pos$9 = nix.positions(here + "/eisa01.nix", [["description", 68, 9], ["maintainers", 69, 9]]);
-const pos$10 = nix.positions(here + "/eisa01.nix", [["scriptPath", 66, 7], ["meta", 67, 7]]);
-const pos$11 = nix.positions(here + "/eisa01.nix", [["description", 76, 9], ["maintainers", 77, 9]]);
-const pos$12 = nix.positions(here + "/eisa01.nix", [["scriptPath", 74, 7], ["meta", 75, 7]]);
-const pos$13 = nix.positions(here + "/eisa01.nix", [["description", 84, 9], ["maintainers", 85, 9]]);
-const pos$14 = nix.positions(here + "/eisa01.nix", [["scriptPath", 82, 7], ["meta", 83, 7]]);
-const pos$15 = nix.positions(here + "/eisa01.nix", [["smart-copy-paste-2", 45, 5], ["simplebookmark", 57, 5], ["simplehistory", 65, 5], ["smartskip", 73, 5], ["undoredo", 81, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const xclip = nix.arg($, "xclip");
   const mkScript = (pname) => (args_1) => (() => {
     const self = nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: pname,
       version: "25-09-2023-unstable-2025-06-21",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Eisa01",
           repo: "mpv-scripts",
           rev: "b9e63743a858766c9cc7a801d77313b0cecdb049",
@@ -40,11 +26,11 @@ export default nix.lambda((args) => (() => {
           sparseCheckout: nix.thunk(() => ["scripts/", "script-opts/"]),
         })))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/Eisa01/mpv-scripts",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd2")),
       })),
@@ -53,14 +39,14 @@ export default nix.lambda((args) => (() => {
     return nix.app(buildLua, nix.thunk(() => nix.app(nix.sel(lib, "attrsets", "recursiveUpdate"), self, args_1)));
   })();
   return nix.app(nix.sel(lib, "recurseIntoAttrs"), nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (name) => nix.app(nix.sel(lib, "makeOverridable"), nix.thunk(() => nix.app(mkScript, name))), nix.thunk(() => ({
-        [nix.POS]: pos$15,
+        [nix.POS]: $pos[14],
         "smart-copy-paste-2": nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           scriptPath: "scripts/SmartCopyPaste_II.lua",
           prePatch: nix.thunk(() => nix.str`substituteInPlace $scriptPath --replace-fail 'xclip' "${nix.app(nix.sel(lib, "getExe"), xclip)}"
 `),
           meta: nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             description: "Smart copy paste with logging and clipboard support",
             maintainers: nix.thunk(() => (() => {
               const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -69,10 +55,10 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         simplebookmark: nix.thunk(() => ({
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           scriptPath: "scripts/SimpleBookmark.lua",
           meta: nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             description: "Simple bookmarks script based on assigning keys",
             maintainers: nix.thunk(() => (() => {
               const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -81,10 +67,10 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         simplehistory: nix.thunk(() => ({
-          [nix.POS]: pos$10,
+          [nix.POS]: $pos[9],
           scriptPath: "scripts/SimpleHistory.lua",
           meta: nix.thunk(() => ({
-            [nix.POS]: pos$9,
+            [nix.POS]: $pos[8],
             description: "Store videos in a history file, continue watching your last played or resume previously played videos, manage and play from your history, and more",
             maintainers: nix.thunk(() => (() => {
               const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -93,10 +79,10 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         smartskip: nix.thunk(() => ({
-          [nix.POS]: pos$12,
+          [nix.POS]: $pos[11],
           scriptPath: "scripts/SmartSkip.lua",
           meta: nix.thunk(() => ({
-            [nix.POS]: pos$11,
+            [nix.POS]: $pos[10],
             description: "Automatically or manually skip opening, intro, outro, and preview",
             maintainers: nix.thunk(() => (() => {
               const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -105,10 +91,10 @@ export default nix.lambda((args) => (() => {
           })),
         })),
         undoredo: nix.thunk(() => ({
-          [nix.POS]: pos$14,
+          [nix.POS]: $pos[13],
           scriptPath: "scripts/UndoRedo.lua",
           meta: nix.thunk(() => ({
-            [nix.POS]: pos$13,
+            [nix.POS]: $pos[12],
             description: "Undo / redo any accidental time jumps",
             maintainers: nix.thunk(() => (() => {
               const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);

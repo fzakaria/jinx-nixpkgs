@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 15, 5], ["hash", 16, 5]], [["description", 43, 5], ["longDescription", 44, 5], ["homepage", 51, 5], ["license", 52, 5], ["maintainers", 53, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["patches", 19, 3], ["buildInputs", 23, 3], ["preConfigure", 29, 3], ["installPhase", 33, 3], ["meta", 42, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, gcc: false, zlib: false, python3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 43, 5], ["longDescription", 44, 5], ["homepage", 51, 5], ["license", 52, 5], ["maintainers", 53, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["patches", 19, 3], ["buildInputs", 23, 3], ["preConfigure", 29, 3], ["installPhase", 33, 3], ["meta", 42, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const zlib = nix.arg($, "zlib");
   const python3 = nix.arg($, "python3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "ecopcr",
       version: "1.0.1",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://git.metabarcoding.org/obitools/ecopcr/-/archive/ecopcr_v${nix.sel(finalAttrs, "version")}/ecopcr-ecopcr_v${nix.sel(finalAttrs, "version")}.tar.gz`),
           hash: "sha256-ssvWpi7HuuRRAkpqqrX3ijLuBqM3QsrmrG+t7/m6fZA=",
         })))),
@@ -29,7 +27,7 @@ export default nix.lambda((args) => (() => {
       preConfigure: "cd src\n",
       installPhase: "mkdir -p $out/bin\ncp -v ecoPCR $out/bin\ncp -v ecogrep $out/bin\ncp -v ecofind $out/bin\ncp -v ../tools/ecoPCRFormat.py $out/bin/ecoPCRFormat\nchmod a+x $out/bin/ecoPCRFormat\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Electronic PCR software tool",
         longDescription: "ecoPCR is an electronic PCR software developed by the LECA. It\nhelps you estimate Barcode primers quality. In conjunction with\nOBITools, you can postprocess ecoPCR output to compute barcode\ncoverage and barcode specificity. New barcode primers can be\ndeveloped using the ecoPrimers software.\n",
         homepage: "https://git.metabarcoding.org/obitools/ecopcr/wikis/home",

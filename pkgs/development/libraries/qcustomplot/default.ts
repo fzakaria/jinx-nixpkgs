@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 17, 7], ["repo", 18, 7], ["tag", 19, 7], ["hash", 20, 7]], [["url", 23, 7], ["hash", 24, 7]], [["LANG", 39, 7]], [["homepage", 61, 5], ["description", 62, 5], ["license", 63, 5], ["platforms", 64, 5], ["maintainers", 65, 5]], [["pname", 12, 3], ["version", 13, 3], ["srcs", 15, 3], ["sourceRoot", 28, 3], ["buildInputs", 30, 3], ["nativeBuildInputs", 32, 3], ["env", 39, 3], ["qmakeFlags", 41, 3], ["dontWrapQtApps", 43, 3], ["postUnpack", 45, 3], ["installPhase", 50, 3], ["meta", 60, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitLab: false, fetchurl: false, fixDarwinDylibNames: false, qtbase: false, qmake: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 17, 7], ["repo", 18, 7], ["tag", 19, 7], ["hash", 20, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["url", 23, 7], ["hash", 24, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["LANG", 39, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["homepage", 61, 5], ["description", 62, 5], ["license", 63, 5], ["platforms", 64, 5], ["maintainers", 65, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 12, 3], ["version", 13, 3], ["srcs", 15, 3], ["sourceRoot", 28, 3], ["buildInputs", 30, 3], ["nativeBuildInputs", 32, 3], ["env", 39, 3], ["qmakeFlags", 41, 3], ["dontWrapQtApps", 43, 3], ["postUnpack", 45, 3], ["installPhase", 50, 3], ["meta", 60, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,19 +15,19 @@ export default nix.lambda((args) => (() => {
   const qtbase = nix.arg($, "qtbase");
   const qmake = nix.arg($, "qmake");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "qcustomplot",
       version: "2.1.1",
       srcs: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             owner: "ecme2",
             repo: "QCustomPlot",
             tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
             hash: "sha256-BW8H/vDbhK3b8t8oB92icEBemzcdRdrIz2aKqlUi6UU=",
           })))),
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: nix.thunk(() => nix.str`https://www.qcustomplot.com/release/${nix.sel(finalAttrs, "version")}/QCustomPlot-source.tar.gz`),
             hash: "sha256-Xi0i3sd5248B81fL2yXlT7z5ca2u516ujXrSRESHGC8=",
           })))),
@@ -39,7 +35,7 @@ export default nix.lambda((args) => (() => {
       sourceRoot: ".",
       buildInputs: nix.thunk(() => [qtbase]),
       nativeBuildInputs: nix.thunk(() => nix.concat([qmake], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [fixDarwinDylibNames])))),
-      env: nix.thunk(() => ({ [nix.POS]: pos$3, LANG: "C.UTF-8" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[2], LANG: "C.UTF-8" })),
       qmakeFlags: nix.thunk(() => ["sharedlib/sharedlib-compilation/sharedlib-compilation.pro"]),
       dontWrapQtApps: true,
       postUnpack: "cp -rv source/* .\ncp -rv qcustomplot-source/* .\n",
@@ -52,7 +48,7 @@ cp -av libqcustomplot*${nix.sel(stdenv, "hostPlatform", "extensions", "sharedLib
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://qtcustomplot.com/",
         description: "Qt C++ widget for plotting and data visualization",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["tag", 15, 5], ["hash", 16, 5]], [["homepage", 22, 5], ["description", 23, 5], ["license", 24, 5], ["mainProgram", 25, 5], ["maintainers", 26, 5], ["platforms", 27, 5]], [["pname", 7, 3], ["version", 8, 3], ["__structuredAttrs", 10, 3], ["src", 12, 3], ["vendorHash", 19, 3], ["meta", 21, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitHub: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["tag", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 22, 5], ["description", 23, 5], ["license", 24, 5], ["mainProgram", 25, 5], ["maintainers", 26, 5], ["platforms", 27, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 7, 3], ["version", 8, 3], ["__structuredAttrs", 10, 3], ["src", 12, 3], ["vendorHash", 19, 3], ["meta", 21, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,7 +15,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.1.0";
       const __structuredAttrs = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "maaslalani",
           repo: "fast",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -25,7 +23,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const vendorHash = "sha256-YSjJ8NOL97hXZLnfGYIjoKmARv+gWOsv+5qkl9konnA=";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/maaslalani/fast",
         description: "Internet speed test in your terminal",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -36,7 +34,7 @@ export default nix.lambda((args) => (() => {
         })()),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
       }));
-      return { [nix.POS]: pos$3, pname, version, __structuredAttrs, src, vendorHash, meta };
+      return { [nix.POS]: $pos[2], pname, version, __structuredAttrs, src, vendorHash, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

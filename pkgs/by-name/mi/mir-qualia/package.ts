@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 16, 5], ["sha256", 17, 5]], [["description", 21, 5], ["mainProgram", 22, 5], ["homepage", 23, 5], ["license", 24, 5], ["maintainers", 25, 5]], [["pname", 8, 3], ["version", 9, 3], ["format", 10, 3], ["doCheck", 11, 3], ["buildInputs", 13, 3], ["src", 15, 3], ["meta", 20, 3]]]);
 const formals$1 = { args: { lib: false, python3Packages: false, fetchurl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 16, 5], ["sha256", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 21, 5], ["mainProgram", 22, 5], ["homepage", 23, 5], ["license", 24, 5], ["maintainers", 25, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["format", 10, 3], ["doCheck", 11, 3], ["buildInputs", 13, 3], ["src", 15, 3], ["meta", 20, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,7 +11,7 @@ export default nix.lambda((args) => (() => {
   const python3Packages = nix.arg($, "python3Packages");
   const fetchurl = nix.arg($, "fetchurl");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "mir.qualia",
       version: "2.0.0",
       format: "setuptools",
@@ -23,12 +21,12 @@ export default nix.lambda((args) => (() => {
         return [nix.thunk(() => nix.lookup(w, "pytest"))];
       })()),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://pypi/m/mir.qualia/mir.qualia-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "1ybq6jb5clh9hw0sp3idp4hjv2gkm9yiaph48gcc208affflc8m9",
         })))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Dynamically enable sections of config files",
         mainProgram: "qualia",
         homepage: "https://github.com/darkfeline/mir.qualia",

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 26, 5], ["repo", 27, 5], ["rev", 28, 5], ["sha256", 29, 5]], [["description", 73, 5], ["mainProgram", 74, 5], ["homepage", 75, 5], ["license", 76, 5], ["maintainers", 77, 5], ["platforms", 78, 5]], [["pname", 21, 3], ["version", 22, 3], ["format", 23, 3], ["src", 25, 3], ["patches", 32, 3], ["propagatedBuildInputs", 36, 3], ["makeWrapperArgs", 65, 3], ["checkPhase", 68, 3], ["meta", 72, 3]]]);
 const formals$1 = { args: { fetchFromGitHub: false, lib: false, python3Packages: false, mp3Support: true, lame: false, opusSupport: true, "opus-tools": false, faacSupport: true, faac: false, flacSupport: true, flac: false, soxSupport: true, sox: false, vorbisSupport: true, "vorbis-tools": false, pulseaudio: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 26, 5], ["repo", 27, 5], ["rev", 28, 5], ["sha256", 29, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 73, 5], ["mainProgram", 74, 5], ["homepage", 75, 5], ["license", 76, 5], ["maintainers", 77, 5], ["platforms", 78, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 3], ["format", 23, 3], ["src", 25, 3], ["patches", 32, 3], ["propagatedBuildInputs", 36, 3], ["makeWrapperArgs", 65, 3], ["checkPhase", 68, 3], ["meta", 72, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,12 +24,12 @@ export default nix.lambda((args) => (() => {
   const vorbis_tools = nix.arg($, "vorbis-tools");
   const pulseaudio = nix.arg($, "pulseaudio");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "pulseaudio-dlna",
       version: "unstable-2021-11-09",
       format: "setuptools",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Cygn",
           repo: "pulseaudio-dlna",
           rev: "637a2e7bba2277137c5f12fb58e63100dab7cbe6",
@@ -63,7 +61,7 @@ export default nix.lambda((args) => (() => {
       ]),
       checkPhase: "$out/bin/pulseaudio-dlna --help > /dev/null\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Lightweight streaming server which brings DLNA / UPNP and Chromecast support to PulseAudio and Linux",
         mainProgram: "pulseaudio-dlna",
         homepage: "https://github.com/Cygn/pulseaudio-dlna",

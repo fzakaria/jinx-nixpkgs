@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]], [["hash", 63, 9]], [["pname", 60, 7], ["version", 61, 7], ["src", 62, 7], ["vendorHash", 65, 7]], [["server", 67, 30]], [["templ", 59, 5], ["server", 67, 5]], [["description", 71, 5], ["homepage", 72, 5], ["downloadPage", 73, 5], ["changelog", 74, 5], ["license", 75, 5], ["maintainers", 76, 5], ["mainProgram", 80, 5]], [["pname", 21, 11], ["version", 22, 3], ["__structuredAttrs", 24, 3], ["src", 26, 3], ["vendorHash", 33, 3], ["postPatch", 35, 3], ["subPackages", 41, 11], ["excludedPackages", 42, 3], ["buildInputs", 44, 3], ["nativeBuildInputs", 45, 3], ["postInstall", 50, 3], ["doInstallCheck", 54, 3], ["versionCheckProgramArg", 55, 3], ["nativeInstallCheckInputs", 56, 3], ["passthru", 58, 3], ["meta", 70, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildGoModule: false, buildPackages: false, fetchFromGitHub: false, versionCheckHook: false, pcsclite: false, "pkg-config": false, foks: false, server: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["hash", 63, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 60, 7], ["version", 61, 7], ["src", 62, 7], ["vendorHash", 65, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["server", 67, 30]]);
-const pos$5 = nix.positions(here + "/package.nix", [["templ", 59, 5], ["server", 67, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 71, 5], ["homepage", 72, 5], ["downloadPage", 73, 5], ["changelog", 74, 5], ["license", 75, 5], ["maintainers", 76, 5], ["mainProgram", 80, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 21, 11], ["version", 22, 3], ["__structuredAttrs", 24, 3], ["src", 26, 3], ["vendorHash", 33, 3], ["postPatch", 35, 3], ["subPackages", 41, 11], ["excludedPackages", 42, 3], ["buildInputs", 44, 3], ["nativeBuildInputs", 45, 3], ["postInstall", 50, 3], ["doInstallCheck", 54, 3], ["versionCheckProgramArg", 55, 3], ["nativeInstallCheckInputs", 56, 3], ["passthru", 58, 3], ["meta", 70, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const pname = nix.thunk(() => (nix.asBool(server) ? "foks-server" : "foks"));
   const subPackages = nix.thunk(() => (nix.asBool(server) ? ["server/foks-server"] : ["client/foks"]));
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: pname,
       version: "0.1.9",
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "foks-proj",
           repo: "go-foks",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -49,21 +43,21 @@ export default nix.lambda((args) => (() => {
       versionCheckProgramArg: "version",
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         templ: nix.thunk(() => nix.app(nix.sel(buildPackages, "templ", "overrideAttrs"), (old) => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             pname: "templ-foks",
             version: "0.3.833",
             src: nix.thunk(() => nix.app(nix.sel(old, "src", "override"), nix.thunk(() => ({
-                [nix.POS]: pos$2,
+                [nix.POS]: $pos[1],
                 hash: "sha256-4K1MpsM3OuamXRYOllDsxxgpMRseFGviC4RJzNA7Cu8=",
               })))),
             vendorHash: "sha256-OPADot7Lkn9IBjFCfbrqs3es3F6QnWNjSOHxONjG4MM=",
           }))),
-        server: nix.thunk(() => nix.app(nix.sel(foks, "override"), nix.thunk(() => ({ [nix.POS]: pos$4, server: true })))),
+        server: nix.thunk(() => nix.app(nix.sel(foks, "override"), nix.thunk(() => ({ [nix.POS]: $pos[3], server: true })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Federated key management and distribution system",
         homepage: "https://foks.pub",
         downloadPage: "https://github.com/foks-proj/go-foks",

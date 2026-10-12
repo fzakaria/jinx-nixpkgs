@@ -2,46 +2,10 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["maintainers", 11, 8]], [["s3_region", 26, 13], ["api_bind_addr", 27, 13]], [["replication_factor", 20, 11], ["consistency_mode", 21, 11], ["rpc_bind_addr", 22, 11], ["rpc_public_addr", 23, 11], ["rpc_secret", 24, 11], ["s3_api", 25, 11]], [["enable", 17, 9], ["package", 18, 9], ["settings", 19, 9]], [["garage", 16, 16]], [["allowedTCPPorts", 32, 27]], [["firewall", 32, 18]], [["diskSize", 35, 22]], [["services", 16, 7], ["networking", 32, 7], ["virtualisation", 35, 7]], [["certificateFiles", 46, 20]], [["pki", 46, 16]], [["allowedTCPPorts", 52, 27]], [["extraHosts", 48, 18], ["firewall", 52, 18]], [["sslCertificate", 69, 15], ["sslCertificateKey", 70, 15]], [["proxyPass", 77, 29]], [["/", 77, 25]], [["forceSSL", 74, 15], ["sslCertificate", 75, 15], ["sslCertificateKey", 76, 15], ["locations", 77, 15], ["extraConfig", 78, 15]], [["recommendedProxySettings", 58, 9], ["virtualHosts", 59, 9]], [["accounts", 91, 13], ["albums", 92, 13], ["cast", 93, 13], ["photos", 94, 13]], [["enable", 89, 11], ["domains", 90, 11]], [["enable", 99, 17]], [["_secret", 109, 21]], [["_secret", 110, 24]], [["endpoint", 106, 17], ["region", 107, 17], ["bucket", 108, 17], ["key", 109, 17], ["secret", 110, 17]], [["use_path_style_urls", 104, 15], ["b2-eu-cen", 105, 15]], [["_secret", 114, 26]], [["_secret", 115, 20]], [["encryption", 114, 15], ["hash", 115, 15]], [["_secret", 117, 24]], [["secret", 117, 17]], [["s3", 103, 13], ["key", 113, 13], ["jwt", 117, 13]], [["enable", 98, 11], ["nginx", 99, 11], ["enableLocalDB", 100, 11], ["domain", 101, 11], ["settings", 102, 11]], [["web", 88, 9], ["api", 97, 9]], [["nginx", 57, 16], ["ente", 87, 16]], [["security", 46, 7], ["networking", 48, 7], ["services", 57, 7]], [["garage", 13, 9], ["ente", 38, 9]], [["name", 10, 3], ["meta", 11, 3], ["nodes", 13, 3], ["testScript", 123, 3]]]);
 const formals$1 = { args: { lib: false, pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/default.nix", [["maintainers", 11, 8]]);
 const formals$2 = { args: {  }, ellipsis: true };
-const pos$2 = nix.positions(here + "/default.nix", [["s3_region", 26, 13], ["api_bind_addr", 27, 13]]);
-const pos$3 = nix.positions(here + "/default.nix", [["replication_factor", 20, 11], ["consistency_mode", 21, 11], ["rpc_bind_addr", 22, 11], ["rpc_public_addr", 23, 11], ["rpc_secret", 24, 11], ["s3_api", 25, 11]]);
-const pos$4 = nix.positions(here + "/default.nix", [["enable", 17, 9], ["package", 18, 9], ["settings", 19, 9]]);
-const pos$5 = nix.positions(here + "/default.nix", [["garage", 16, 16]]);
-const pos$6 = nix.positions(here + "/default.nix", [["allowedTCPPorts", 32, 27]]);
-const pos$7 = nix.positions(here + "/default.nix", [["firewall", 32, 18]]);
-const pos$8 = nix.positions(here + "/default.nix", [["diskSize", 35, 22]]);
-const pos$9 = nix.positions(here + "/default.nix", [["services", 16, 7], ["networking", 32, 7], ["virtualisation", 35, 7]]);
 const formals$3 = { args: { config: false, nodes: false, lib: false }, ellipsis: true };
-const pos$10 = nix.positions(here + "/default.nix", [["certificateFiles", 46, 20]]);
-const pos$11 = nix.positions(here + "/default.nix", [["pki", 46, 16]]);
-const pos$12 = nix.positions(here + "/default.nix", [["allowedTCPPorts", 52, 27]]);
-const pos$13 = nix.positions(here + "/default.nix", [["extraHosts", 48, 18], ["firewall", 52, 18]]);
-const pos$14 = nix.positions(here + "/default.nix", [["sslCertificate", 69, 15], ["sslCertificateKey", 70, 15]]);
-const pos$15 = nix.positions(here + "/default.nix", [["proxyPass", 77, 29]]);
-const pos$16 = nix.positions(here + "/default.nix", [["/", 77, 25]]);
-const pos$17 = nix.positions(here + "/default.nix", [["forceSSL", 74, 15], ["sslCertificate", 75, 15], ["sslCertificateKey", 76, 15], ["locations", 77, 15], ["extraConfig", 78, 15]]);
-const pos$18 = nix.positions(here + "/default.nix", [["recommendedProxySettings", 58, 9], ["virtualHosts", 59, 9]]);
-const pos$19 = nix.positions(here + "/default.nix", [["accounts", 91, 13], ["albums", 92, 13], ["cast", 93, 13], ["photos", 94, 13]]);
-const pos$20 = nix.positions(here + "/default.nix", [["enable", 89, 11], ["domains", 90, 11]]);
-const pos$21 = nix.positions(here + "/default.nix", [["enable", 99, 17]]);
-const pos$22 = nix.positions(here + "/default.nix", [["_secret", 109, 21]]);
-const pos$23 = nix.positions(here + "/default.nix", [["_secret", 110, 24]]);
-const pos$24 = nix.positions(here + "/default.nix", [["endpoint", 106, 17], ["region", 107, 17], ["bucket", 108, 17], ["key", 109, 17], ["secret", 110, 17]]);
-const pos$25 = nix.positions(here + "/default.nix", [["use_path_style_urls", 104, 15], ["b2-eu-cen", 105, 15]]);
-const pos$26 = nix.positions(here + "/default.nix", [["_secret", 114, 26]]);
-const pos$27 = nix.positions(here + "/default.nix", [["_secret", 115, 20]]);
-const pos$28 = nix.positions(here + "/default.nix", [["encryption", 114, 15], ["hash", 115, 15]]);
-const pos$29 = nix.positions(here + "/default.nix", [["_secret", 117, 24]]);
-const pos$30 = nix.positions(here + "/default.nix", [["secret", 117, 17]]);
-const pos$31 = nix.positions(here + "/default.nix", [["s3", 103, 13], ["key", 113, 13], ["jwt", 117, 13]]);
-const pos$32 = nix.positions(here + "/default.nix", [["enable", 98, 11], ["nginx", 99, 11], ["enableLocalDB", 100, 11], ["domain", 101, 11], ["settings", 102, 11]]);
-const pos$33 = nix.positions(here + "/default.nix", [["web", 88, 9], ["api", 97, 9]]);
-const pos$34 = nix.positions(here + "/default.nix", [["nginx", 57, 16], ["ente", 87, 16]]);
-const pos$35 = nix.positions(here + "/default.nix", [["security", 46, 7], ["networking", 48, 7], ["services", 57, 7]]);
-const pos$36 = nix.positions(here + "/default.nix", [["garage", 13, 9], ["ente", 38, 9]]);
-const pos$37 = nix.positions(here + "/default.nix", [["name", 10, 3], ["meta", 11, 3], ["nodes", 13, 3], ["testScript", 123, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -52,40 +16,40 @@ export default nix.lambda((args) => (() => {
   const certs = nix.thunk(() => nix.builtins.import(nix.path(here, "./snakeoil-certs.nix")));
   const domain = nix.thunk(() => nix.sel(certs, "domain"));
   return {
-    [nix.POS]: pos$37,
+    [nix.POS]: $pos[36],
     name: "ente",
     meta: nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "oddlama"))]),
     })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$36,
+      [nix.POS]: $pos[35],
       garage: nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           services: nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             garage: nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               enable: true,
               package: nix.thunk(() => nix.sel(pkgs, "garage_2")),
               settings: nix.thunk(() => ({
-                [nix.POS]: pos$3,
+                [nix.POS]: $pos[2],
                 replication_factor: 1n,
                 consistency_mode: "consistent",
                 rpc_bind_addr: "[::]:3901",
                 rpc_public_addr: "[::1]:3901",
                 rpc_secret: "5c1915fa04d0b6739675c61bf5907eb0fe3d9c69850c83820f51b4d25d13868c",
-                s3_api: nix.thunk(() => ({ [nix.POS]: pos$2, s3_region: "us-east-1", api_bind_addr: "[::]:3900" })),
+                s3_api: nix.thunk(() => ({ [nix.POS]: $pos[1], s3_region: "us-east-1", api_bind_addr: "[::]:3900" })),
               })),
             })),
           })),
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$7,
-            firewall: nix.thunk(() => ({ [nix.POS]: pos$6, allowedTCPPorts: nix.thunk(() => [3900n]) })),
+            [nix.POS]: $pos[6],
+            firewall: nix.thunk(() => ({ [nix.POS]: $pos[5], allowedTCPPorts: nix.thunk(() => [3900n]) })),
           })),
-          virtualisation: nix.thunk(() => ({ [nix.POS]: pos$8, diskSize: nix.thunk(() => nix.mul(2n, 1024n)) })),
+          virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[7], diskSize: nix.thunk(() => nix.mul(2n, 1024n)) })),
         };
       })(), formals$2),
       ente: nix.lambda((args_1) => (() => {
@@ -94,24 +58,24 @@ export default nix.lambda((args) => (() => {
         const nodes = nix.arg($_1, "nodes");
         const lib_1 = nix.arg($_1, "lib");
         return {
-          [nix.POS]: pos$35,
+          [nix.POS]: $pos[34],
           security: nix.thunk(() => ({
-            [nix.POS]: pos$11,
+            [nix.POS]: $pos[10],
             pki: nix.thunk(() => ({
-              [nix.POS]: pos$10,
+              [nix.POS]: $pos[9],
               certificateFiles: nix.thunk(() => [nix.thunk(() => nix.sel(certs, "ca", "cert"))]),
             })),
           })),
           networking: nix.thunk(() => ({
-            [nix.POS]: pos$13,
+            [nix.POS]: $pos[12],
             extraHosts: nix.thunk(() => nix.str`${nix.sel(config, "networking", "primaryIPAddress")} accounts.${domain} albums.${domain} api.${domain} cast.${domain} photos.${domain} s3.${domain}
 `),
-            firewall: nix.thunk(() => ({ [nix.POS]: pos$12, allowedTCPPorts: nix.thunk(() => [80n, 443n]) })),
+            firewall: nix.thunk(() => ({ [nix.POS]: $pos[11], allowedTCPPorts: nix.thunk(() => [80n, 443n]) })),
           })),
           services: nix.thunk(() => ({
-            [nix.POS]: pos$34,
+            [nix.POS]: $pos[33],
             nginx: nix.thunk(() => ({
-              [nix.POS]: pos$18,
+              [nix.POS]: $pos[17],
               recommendedProxySettings: true,
               virtualHosts: nix.thunk(() => nix.update(nix.app(nix.sel(lib_1, "genAttrs"), nix.thunk(() => [
                   nix.thunk(() => nix.str`accounts.${domain}`),
@@ -120,19 +84,19 @@ export default nix.lambda((args) => (() => {
                   nix.thunk(() => nix.str`cast.${domain}`),
                   nix.thunk(() => nix.str`photos.${domain}`),
                 ]), (_) => ({
-                  [nix.POS]: pos$14,
+                  [nix.POS]: $pos[13],
                   sslCertificate: nix.thunk(() => nix.sel(certs, nix.key(nix.force(domain)), "cert")),
                   sslCertificateKey: nix.thunk(() => nix.sel(certs, nix.key(nix.force(domain)), "key")),
                 })), nix.attrsDyn({}, [
                 [nix.str`s3.${domain}`, nix.thunk(() => ({
-                  [nix.POS]: pos$17,
+                  [nix.POS]: $pos[16],
                   forceSSL: true,
                   sslCertificate: nix.thunk(() => nix.sel(certs, nix.key(nix.force(domain)), "cert")),
                   sslCertificateKey: nix.thunk(() => nix.sel(certs, nix.key(nix.force(domain)), "key")),
                   locations: nix.thunk(() => ({
-                    [nix.POS]: pos$16,
+                    [nix.POS]: $pos[15],
                     "/": nix.thunk(() => ({
-                      [nix.POS]: pos$15,
+                      [nix.POS]: $pos[14],
                       proxyPass: nix.thunk(() => nix.str`http://${nix.sel(nodes, "garage", "networking", "primaryIPAddress")}:3900`),
                     })),
                   })),
@@ -141,12 +105,12 @@ export default nix.lambda((args) => (() => {
               ]))),
             })),
             ente: nix.thunk(() => ({
-              [nix.POS]: pos$33,
+              [nix.POS]: $pos[32],
               web: nix.thunk(() => ({
-                [nix.POS]: pos$20,
+                [nix.POS]: $pos[19],
                 enable: true,
                 domains: nix.thunk(() => ({
-                  [nix.POS]: pos$19,
+                  [nix.POS]: $pos[18],
                   accounts: nix.thunk(() => nix.str`accounts.${domain}`),
                   albums: nix.thunk(() => nix.str`albums.${domain}`),
                   cast: nix.thunk(() => nix.str`cast.${domain}`),
@@ -154,46 +118,46 @@ export default nix.lambda((args) => (() => {
                 })),
               })),
               api: nix.thunk(() => ({
-                [nix.POS]: pos$32,
+                [nix.POS]: $pos[31],
                 enable: true,
-                nginx: nix.thunk(() => ({ [nix.POS]: pos$21, enable: true })),
+                nginx: nix.thunk(() => ({ [nix.POS]: $pos[20], enable: true })),
                 enableLocalDB: true,
                 domain: nix.thunk(() => nix.str`api.${domain}`),
                 settings: nix.thunk(() => ({
-                  [nix.POS]: pos$31,
+                  [nix.POS]: $pos[30],
                   s3: nix.thunk(() => ({
-                    [nix.POS]: pos$25,
+                    [nix.POS]: $pos[24],
                     use_path_style_urls: true,
                     "b2-eu-cen": nix.thunk(() => ({
-                      [nix.POS]: pos$24,
+                      [nix.POS]: $pos[23],
                       endpoint: nix.thunk(() => nix.str`https://s3.${domain}`),
                       region: "us-east-1",
                       bucket: "ente",
                       key: nix.thunk(() => ({
-                        [nix.POS]: pos$22,
+                        [nix.POS]: $pos[21],
                         _secret: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "accesskey", garageAccessKey)),
                       })),
                       secret: nix.thunk(() => ({
-                        [nix.POS]: pos$23,
+                        [nix.POS]: $pos[22],
                         _secret: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "secretkey", garageSecretKey)),
                       })),
                     })),
                   })),
                   key: nix.thunk(() => ({
-                    [nix.POS]: pos$28,
+                    [nix.POS]: $pos[27],
                     encryption: nix.thunk(() => ({
-                      [nix.POS]: pos$26,
+                      [nix.POS]: $pos[25],
                       _secret: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "encryption", "T0sn+zUVFOApdX4jJL4op6BtqqAfyQLH95fu8ASWfno=")),
                     })),
                     hash: nix.thunk(() => ({
-                      [nix.POS]: pos$27,
+                      [nix.POS]: $pos[26],
                       _secret: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "hash", "g/dBZBs1zi9SXQ0EKr4RCt1TGr7ZCKkgrpjyjrQEKovWPu5/ce8dYM6YvMIPL23MMZToVuuG+Z6SGxxTbxg5NQ==")),
                     })),
                   })),
                   jwt: nix.thunk(() => ({
-                    [nix.POS]: pos$30,
+                    [nix.POS]: $pos[29],
                     secret: nix.thunk(() => ({
-                      [nix.POS]: pos$29,
+                      [nix.POS]: $pos[28],
                       _secret: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "jwt", "i2DecQmfGreG6q1vBj5tCokhlN41gcfS2cjOs9Po-u8=")),
                     })),
                   })),

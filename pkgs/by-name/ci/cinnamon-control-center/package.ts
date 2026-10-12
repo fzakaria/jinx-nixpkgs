@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 36, 5], ["repo", 37, 5], ["tag", 38, 5], ["hash", 39, 5]], [["homepage", 81, 5], ["description", 82, 5], ["mainProgram", 83, 5], ["license", 84, 5], ["platforms", 85, 5], ["teams", 86, 5]], [["pname", 32, 3], ["version", 33, 3], ["src", 35, 3], ["buildInputs", 42, 3], ["postPatch", 61, 3], ["mesonFlags", 65, 3], ["nativeBuildInputs", 70, 3], ["meta", 80, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, "pkg-config": false, glib: false, "glib-networking": false, gettext: false, "cinnamon-desktop": false, gtk3: false, libnotify: false, libxml2: false, colord: false, polkit: false, "cinnamon-menus": false, networkmanager: false, libgudev: false, libwacom: false, wrapGAppsHook3: false, libnma: false, libxi: false, modemmanager: false, xorgproto: false, meson: false, ninja: false, "cinnamon-translations": false, python3: false, upower: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 36, 5], ["repo", 37, 5], ["tag", 38, 5], ["hash", 39, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 81, 5], ["description", 82, 5], ["mainProgram", 83, 5], ["license", 84, 5], ["platforms", 85, 5], ["teams", 86, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 32, 3], ["version", 33, 3], ["src", 35, 3], ["buildInputs", 42, 3], ["postPatch", 61, 3], ["mesonFlags", 65, 3], ["nativeBuildInputs", 70, 3], ["meta", 80, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -37,11 +35,11 @@ export default nix.lambda((args) => (() => {
   const python3 = nix.arg($, "python3");
   const upower = nix.arg($, "upower");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "cinnamon-control-center",
       version: "6.6.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "linuxmint",
           repo: "cinnamon-control-center",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -69,7 +67,7 @@ export default nix.lambda((args) => (() => {
       mesonFlags: nix.thunk(() => [nix.thunk(() => nix.str`--localedir=${cinnamon_translations}/share/locale`)]),
       nativeBuildInputs: nix.thunk(() => [libxml2, pkg_config, meson, ninja, wrapGAppsHook3, gettext, python3]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://github.com/linuxmint/cinnamon-control-center",
         description: "Collection of configuration plugins used in cinnamon-settings",
         mainProgram: "cinnamon-control-center",

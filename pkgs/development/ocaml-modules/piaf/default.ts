@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 30, 5], ["hash", 31, 5]], [["url", 38, 9], ["includes", 39, 9], ["hash", 40, 9]], [["url", 43, 9], ["includes", 44, 9], ["hash", 45, 9]], [["description", 74, 5], ["homepage", 75, 5], ["license", 76, 5], ["maintainers", 77, 5]], [["pname", 26, 3], ["version", 27, 3], ["src", 29, 3], ["patches", 34, 3], ["propagatedBuildInputs", 49, 3], ["doCheck", 66, 3], ["checkInputs", 67, 3], ["meta", 73, 3]]]);
 const formals$1 = { args: { alcotest: false, buildDunePackage: false, fetchurl: false, fetchpatch: false, "eio-ssl": false, faraday: false, "h2-eio": false, "httpun-eio": false, "httpun-ws": false, ipaddr: false, ke: false, lib: false, logs: false, "magic-mime": false, pecu: false, prettym: false, unstrctrd: false, uri: false, uutf: false, "dune-site": false, eio_main: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 30, 5], ["hash", 31, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["url", 38, 9], ["includes", 39, 9], ["hash", 40, 9]]);
-const pos$3 = nix.positions(here + "/default.nix", [["url", 43, 9], ["includes", 44, 9], ["hash", 45, 9]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 74, 5], ["homepage", 75, 5], ["license", 76, 5], ["maintainers", 77, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 26, 3], ["version", 27, 3], ["src", 29, 3], ["patches", 34, 3], ["propagatedBuildInputs", 49, 3], ["doCheck", 66, 3], ["checkInputs", 67, 3], ["meta", 73, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,23 +29,23 @@ export default nix.lambda((args) => (() => {
   const dune_site = nix.arg($, "dune-site");
   const eio_main = nix.arg($, "eio_main");
   return nix.app(buildDunePackage, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "piaf",
       version: "0.2.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/anmonteiro/piaf/releases/download/${nix.sel(finalAttrs, "version")}/piaf-${nix.sel(finalAttrs, "version")}.tbz`),
           hash: "sha256-B/qQCaUvrqrm2GEW51AH9SebGFx7x8laq5RV8hBzcPs=",
         })))),
       patches: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(eio_main, "version")), "1.4")), nix.thunk(() => [
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               url: "https://github.com/anmonteiro/piaf/commit/5b2f44683fb7eabdb78f43848c9e0a448e741fc3.patch",
               includes: nix.thunk(() => ["lib/*.ml"]),
               hash: "sha256-/Y3OQtqoA4DCgs3Ai2EPCipMb/xSwDAN7+6MTFoHKXI=",
             })))),
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               url: "https://github.com/anmonteiro/piaf/commit/b8f5e94deea6e653025c37131bbf6833dc4c4c85.patch",
               includes: nix.thunk(() => ["lib/*.ml"]),
               hash: "sha256-gazYJFlM9OeuixpJnLwANZj/DVqdc8vacd1a6v35SpM=",
@@ -73,7 +69,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       checkInputs: nix.thunk(() => [alcotest, dune_site, eio_main]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "HTTP library with HTTP/2 support written entirely in OCaml",
         homepage: "https://github.com/anmonteiro/piaf",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

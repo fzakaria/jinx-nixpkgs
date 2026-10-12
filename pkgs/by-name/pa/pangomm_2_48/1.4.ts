@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/1.4.nix", [[["url", 23, 5], ["sha256", 24, 5]], [["packageName", 48, 7], ["attrPath", 49, 7], ["versionPolicy", 50, 7], ["freeze", 51, 7]], [["updateScript", 47, 5]], [["description", 56, 5], ["homepage", 57, 5], ["license", 58, 5], ["maintainers", 62, 5], ["platforms", 65, 5], ["longDescription", 67, 5]], [["pname", 16, 3], ["version", 17, 3], ["__structuredAttrs", 19, 3], ["strictDeps", 20, 3], ["src", 22, 3], ["outputs", 27, 3], ["nativeBuildInputs", 32, 3], ["propagatedBuildInputs", 38, 3], ["doCheck", 44, 3], ["passthru", 46, 3], ["meta", 55, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, "pkg-config": false, meson: false, ninja: false, python3: false, pango: false, glibmm_2_4: false, cairomm_1_0: false, gnome: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/1.4.nix", [["url", 23, 5], ["sha256", 24, 5]]);
-const pos$2 = nix.positions(here + "/1.4.nix", [["packageName", 48, 7], ["attrPath", 49, 7], ["versionPolicy", 50, 7], ["freeze", 51, 7]]);
-const pos$3 = nix.positions(here + "/1.4.nix", [["updateScript", 47, 5]]);
-const pos$4 = nix.positions(here + "/1.4.nix", [["description", 56, 5], ["homepage", 57, 5], ["license", 58, 5], ["maintainers", 62, 5], ["platforms", 65, 5], ["longDescription", 67, 5]]);
-const pos$5 = nix.positions(here + "/1.4.nix", [["pname", 16, 3], ["version", 17, 3], ["__structuredAttrs", 19, 3], ["strictDeps", 20, 3], ["src", 22, 3], ["outputs", 27, 3], ["nativeBuildInputs", 32, 3], ["propagatedBuildInputs", 38, 3], ["doCheck", 44, 3], ["passthru", 46, 3], ["meta", 55, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const __structuredAttrs = true;
       const strictDeps = true;
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnome/sources/pangomm/${nix.app(nix.sel(lib, "versions", "majorMinor"), version)}/pangomm-${version}.tar.xz`),
           sha256: "sha256-uSAWZhUmQk3kuTd/FRL1l4H0H7FsnAJn1hM7oc1o2yI=",
         }))));
@@ -37,9 +33,9 @@ export default nix.lambda((args) => (() => {
       const propagatedBuildInputs = nix.thunk(() => [pango, glibmm_2_4, cairomm_1_0]);
       const doCheck = true;
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             packageName: "pangomm",
             attrPath: "pangomm_1_4",
             versionPolicy: "odd-unstable",
@@ -47,7 +43,7 @@ export default nix.lambda((args) => (() => {
           })))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "C++ interface to the Pango text rendering library",
         homepage: "https://www.pango.org/",
         license: nix.thunk(() => (() => {
@@ -65,7 +61,7 @@ export default nix.lambda((args) => (() => {
         longDescription: "Pango is a library for laying out and rendering of text, with an\nemphasis on internationalization.  Pango can be used anywhere\nthat text layout is needed, though most of the work on Pango so\nfar has been done in the context of the GTK widget toolkit.\nPango forms the core of text and font handling for GTK.\n",
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         __structuredAttrs,

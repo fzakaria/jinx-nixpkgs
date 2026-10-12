@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]], [["owner", 26, 5], ["repo", 27, 5], ["rev", 28, 5], ["hash", 29, 5]], [["aarch64-linux", 44, 9], ["x86_64-linux", 45, 9]], [["preInstall", 39, 5], ["hash", 42, 5]], [["installPhase", 66, 5]], [["description", 74, 5], ["homepage", 75, 5], ["license", 76, 5], ["maintainers", 77, 5], ["platforms", 78, 5]], [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["bazel", 32, 3], ["bazelFlags", 33, 3], ["fetchAttrs", 38, 3], ["nativeBuildInputs", 50, 3], ["buildInputs", 52, 3], ["removeRulesCC", 57, 3], ["bazelBuildFlags", 59, 3], ["bazelTargets", 60, 3], ["doCheck", 62, 3], ["bazelTestTargets", 63, 3], ["buildAttrs", 65, 3], ["meta", 73, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildBazelPackage: false, fetchFromGitHub: false, bazel_7: false, jdk: false, elfutils: false, libcap: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 26, 5], ["repo", 27, 5], ["rev", 28, 5], ["hash", 29, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["aarch64-linux", 44, 9], ["x86_64-linux", 45, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["preInstall", 39, 5], ["hash", 42, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["installPhase", 66, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 74, 5], ["homepage", 75, 5], ["license", 76, 5], ["maintainers", 77, 5], ["platforms", 78, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 22, 3], ["version", 23, 3], ["src", 25, 3], ["bazel", 32, 3], ["bazelFlags", 33, 3], ["fetchAttrs", 38, 3], ["nativeBuildInputs", 50, 3], ["buildInputs", 52, 3], ["removeRulesCC", 57, 3], ["bazelBuildFlags", 59, 3], ["bazelTargets", 60, 3], ["doCheck", 62, 3], ["bazelTestTargets", 63, 3], ["buildAttrs", 65, 3], ["meta", 73, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,18 +17,18 @@ export default nix.lambda((args) => (() => {
   const libcap = nix.arg($, "libcap");
   const system = nix.thunk(() => nix.sel(stdenv, "hostPlatform", "system"));
   const registry = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       owner: "bazelbuild",
       repo: "bazel-central-registry",
       rev: "dc643526b97838ffe421b833dd8b9c95e71702e8",
       hash: "sha256-SLtrNU5uEt8rRJDUdV/IaI37CujsTHLlE31l2zYoRss=",
     }))));
   return nix.app(buildBazelPackage, nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "perf_data_converter",
       version: "0-unstable-2026-03-10",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "google",
           repo: "perf_data_converter",
           rev: "e2c2da7494e1c6cb8bb343c1bb3023ee3f37ab38",
@@ -43,10 +37,10 @@ export default nix.lambda((args) => (() => {
       bazel: bazel_7,
       bazelFlags: nix.thunk(() => ["--registry", nix.thunk(() => nix.str`file://${registry}`)]),
       fetchAttrs: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         preInstall: "rm -rf $bazelOut/external/rules_shell~~sh_configure~local_config_shell\n",
         hash: nix.thunk(() => nix.selOr({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           "aarch64-linux": "sha256-BlNTjS78QNuoiyIUFDmY5HeqIRJRVZQfrk5Y7+Q2DGo=",
           "x86_64-linux": "sha256-jOepM+Lor5RRIQEmdkwf3IJ1AAfbVq2VjMuwqjyfOio=",
         }, () => nix.builtins.throw(nix.thunk(() => nix.str`No hash for system: ${system}`)), nix.key(nix.force(system)))),
@@ -59,11 +53,11 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       bazelTestTargets: nix.thunk(() => ["src:all"]),
       buildAttrs: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         installPhase: "runHook preInstall\ninstall -Dm555 -t \"$out/bin\" bazel-bin/src/perf_to_profile\nrunHook postInstall\n",
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Tool to convert Linux perf files to the profile.proto format used by pprof",
         homepage: "https://github.com/google/perf_data_converter",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

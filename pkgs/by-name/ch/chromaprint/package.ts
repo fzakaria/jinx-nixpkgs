@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]], [["pkg-config", 53, 11]], [["updateScript", 52, 5], ["tests", 53, 5]], [["license", 64, 14]], [["name", 61, 9], ["url", 62, 9], ["hash", 63, 9], ["meta", 64, 9]], [["changelog", 78, 5], ["homepage", 79, 5], ["description", 80, 5], ["license", 81, 5], ["maintainers", 82, 5], ["platforms", 83, 5], ["pkgConfigModules", 84, 5]], [["mainProgram", 87, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 33, 3], ["hardeningDisable", 41, 3], ["cmakeFlags", 43, 3], ["passthru", 51, 3], ["doCheck", 57, 3], ["checkPhase", 58, 3], ["meta", 77, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchurl: false, cmake: false, ninja: false, "ffmpeg-headless": false, zlib: false, testers: false, validatePkgConfig: false, "nix-update-script": false, withTools: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pkg-config", 53, 11]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 52, 5], ["tests", 53, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["license", 64, 14]]);
-const pos$5 = nix.positions(here + "/package.nix", [["name", 61, 9], ["url", 62, 9], ["hash", 63, 9], ["meta", 64, 9]]);
-const pos$6 = nix.positions(here + "/package.nix", [["changelog", 78, 5], ["homepage", 79, 5], ["description", 80, 5], ["license", 81, 5], ["maintainers", 82, 5], ["platforms", 83, 5], ["pkgConfigModules", 84, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["mainProgram", 87, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["nativeBuildInputs", 27, 3], ["buildInputs", 33, 3], ["hardeningDisable", 41, 3], ["cmakeFlags", 43, 3], ["passthru", 51, 3], ["doCheck", 57, 3], ["checkPhase", 58, 3], ["meta", 77, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const withTools = nix.argOr($, "withTools", () => true);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "chromaprint",
       version: "1.6.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "acoustid",
           repo: "chromaprint",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -46,22 +39,22 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "BUILD_TESTS", nix.thunk(() => nix.sel(finalAttrs, "finalPackage", "doCheck")))),
         ])))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "testMetaPkgConfig"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
         })),
       })),
       doCheck: nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))),
       checkPhase: nix.thunk(() => (() => {
         const exampleAudio = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             name: "Dvorak_Symphony_9_1.mp3",
             url: "https://archive.org/download/Dvorak_Symphony_9/01.Adagio-Allegro_Molto.mp3",
             hash: "sha256-I+Ve3/OpL+3Joc928F8M21LhCH2eQfRtaJVx9mNOLW0=",
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               license: nix.thunk(() => nix.sel(lib, "licenses", "publicDomain")),
             })),
           }))));
@@ -73,7 +66,7 @@ runHook postCheck
 `;
       })()),
       meta: nix.thunk(() => nix.update({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         changelog: nix.thunk(() => nix.str`https://github.com/acoustid/chromaprint/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         homepage: "https://acoustid.org/chromaprint",
         description: "AcoustID audio fingerprinting library",
@@ -81,7 +74,7 @@ runHook postCheck
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "quantenzitrone"))]),
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),
         pkgConfigModules: nix.thunk(() => ["libchromaprint"]),
-      }, nix.app(nix.sel(lib, "attrsets", "optionalAttrs"), withTools, nix.thunk(() => ({ [nix.POS]: pos$7, mainProgram: "fpcalc" }))))),
+      }, nix.app(nix.sel(lib, "attrsets", "optionalAttrs"), withTools, nix.thunk(() => ({ [nix.POS]: $pos[6], mainProgram: "fpcalc" }))))),
     }));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

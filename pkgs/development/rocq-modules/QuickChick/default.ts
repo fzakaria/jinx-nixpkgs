@@ -2,24 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["cases", 18, 9], ["out", 22, 17]], [["hash", 37, 19]], [["hash", 38, 19]], [["hash", 39, 19]], [["hash", 40, 19]], [["hash", 41, 19]], [["hash", 42, 19]], [["hash", 43, 19]], [["hash", 44, 19]], [["hash", 45, 19]], [["hash", 46, 19]], [["hash", 47, 19]], [["hash", 48, 19]], [["2.1.1", 37, 11], ["2.0.4", 38, 11], ["2.0.2", 39, 11], ["2.0.1", 40, 11], ["1.6.5", 41, 11], ["1.6.4", 42, 11], ["1.6.2", 43, 11], ["1.5.0", 44, 11], ["1.4.0", 45, 11], ["1.3.2", 46, 11], ["1.2.1", 47, 11], ["1.1.0", 48, 11]], [["description", 68, 5], ["maintainers", 69, 5]], [["pname", 12, 3], ["owner", 13, 3], ["version", 14, 11], ["defaultVersion", 15, 3], ["release", 37, 3], ["releaseRev", 49, 3], ["preConfigure", 51, 3], ["useDuneifVersion", 53, 3], ["opam-name", 54, 3], ["mlPlugin", 56, 3], ["nativeBuildInputs", 57, 3], ["propagatedBuildInputs", 58, 3], ["extraInstallFlags", 63, 3], ["enableParallelBuilding", 65, 3], ["meta", 67, 3]], [["nativeBuildInputs", 79, 7], ["propagatedBuildInputs", 83, 7]]]);
 const formals$1 = { args: { lib: false, mkCoqDerivation: false, coq: false, "mathcomp-boot": false, ExtLib: false, "simple-io": false, version: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["cases", 18, 9], ["out", 22, 17]]);
-const pos$2 = nix.positions(here + "/default.nix", [["hash", 37, 19]]);
-const pos$3 = nix.positions(here + "/default.nix", [["hash", 38, 19]]);
-const pos$4 = nix.positions(here + "/default.nix", [["hash", 39, 19]]);
-const pos$5 = nix.positions(here + "/default.nix", [["hash", 40, 19]]);
-const pos$6 = nix.positions(here + "/default.nix", [["hash", 41, 19]]);
-const pos$7 = nix.positions(here + "/default.nix", [["hash", 42, 19]]);
-const pos$8 = nix.positions(here + "/default.nix", [["hash", 43, 19]]);
-const pos$9 = nix.positions(here + "/default.nix", [["hash", 44, 19]]);
-const pos$10 = nix.positions(here + "/default.nix", [["hash", 45, 19]]);
-const pos$11 = nix.positions(here + "/default.nix", [["hash", 46, 19]]);
-const pos$12 = nix.positions(here + "/default.nix", [["hash", 47, 19]]);
-const pos$13 = nix.positions(here + "/default.nix", [["hash", 48, 19]]);
-const pos$14 = nix.positions(here + "/default.nix", [["2.1.1", 37, 11], ["2.0.4", 38, 11], ["2.0.2", 39, 11], ["2.0.1", 40, 11], ["1.6.5", 41, 11], ["1.6.4", 42, 11], ["1.6.2", 43, 11], ["1.5.0", 44, 11], ["1.4.0", 45, 11], ["1.3.2", 46, 11], ["1.2.1", 47, 11], ["1.1.0", 48, 11]]);
-const pos$15 = nix.positions(here + "/default.nix", [["description", 68, 5], ["maintainers", 69, 5]]);
-const pos$16 = nix.positions(here + "/default.nix", [["pname", 12, 3], ["owner", 13, 3], ["version", 14, 11], ["defaultVersion", 15, 3], ["release", 37, 3], ["releaseRev", 49, 3], ["preConfigure", 51, 3], ["useDuneifVersion", 53, 3], ["opam-name", 54, 3], ["mlPlugin", 56, 3], ["nativeBuildInputs", 57, 3], ["propagatedBuildInputs", 58, 3], ["extraInstallFlags", 63, 3], ["enableParallelBuilding", 65, 3], ["meta", 67, 3]]);
-const pos$17 = nix.positions(here + "/default.nix", [["nativeBuildInputs", 79, 7], ["propagatedBuildInputs", 83, 7]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,12 +15,12 @@ export default nix.lambda((args) => (() => {
   const simple_io = nix.arg($, "simple-io");
   const version = nix.argOr($, "version", () => null);
   return nix.app(nix.sel(nix.app(mkCoqDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$16,
+      [nix.POS]: $pos[15],
       pname: "QuickChick",
       owner: "QuickChick",
       version: version,
       defaultVersion: nix.thunk(() => (() => {
-        const case$ = (coq_1) => (mc) => (out) => ({ [nix.POS]: pos$1, cases: nix.thunk(() => [coq_1, mc]), out: out });
+        const case$ = (coq_1) => (mc) => (out) => ({ [nix.POS]: $pos[0], cases: nix.thunk(() => [coq_1, mc]), out: out });
         return nix.app(nix.sel(lib, "switch"), nix.thunk(() => [
             nix.thunk(() => nix.sel(coq, "coq-version")),
             nix.thunk(() => nix.sel(mathcomp_boot, "version")),
@@ -51,53 +35,53 @@ export default nix.lambda((args) => (() => {
           ]), null);
       })()),
       release: nix.thunk(() => ({
-        [nix.POS]: pos$14,
+        [nix.POS]: $pos[13],
         "2.1.1": nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           hash: "sha256-tcZFpf8joEdVCgy1oKWdaM/9q3EMsF/jT+zz+kIsix8=",
         })),
         "2.0.4": nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           hash: "sha256-WD8B+n8gyGctHMO+M8201Ca3Uw8zCWYsOatSNGCf0/s=",
         })),
         "2.0.2": nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           hash: "sha256-xxKkwDRjB8nUiXNhein1Ppn0DP5FZ13J90xUPAnQBbs=",
         })),
         "2.0.1": nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           hash: "sha256-gJc+9Or6tbqE00920Il4pnEvokRoiADX6CxP/Q0QZaY=",
         })),
         "1.6.5": nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           hash: "sha256-rcFyRDH8UbB9KVk10P5qjtPkWs04p78VNHkCq4mXr3U=",
         })),
         "1.6.4": nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           hash: "sha256-C1060wPSU33yZAFLxGmZlAMXASnx98qz3oSLO8DO+mM=",
         })),
         "1.6.2": nix.thunk(() => ({
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           hash: "sha256:0g5q9zw3xd4zndihq96nxkq4w3dh05418wzlwdk1nnn3b6vbx6z0",
         })),
         "1.5.0": nix.thunk(() => ({
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           hash: "sha256:1lq8x86vd3vqqh2yq6hvyagpnhfq5wmk5pg2z0xq7b7dcw7hyfkw",
         })),
         "1.4.0": nix.thunk(() => ({
-          [nix.POS]: pos$10,
+          [nix.POS]: $pos[9],
           hash: "sha256:068p48pm5yxjc3yv8qwzp25bp9kddvxj81l31mjkyx3sdrsw3kyc",
         })),
         "1.3.2": nix.thunk(() => ({
-          [nix.POS]: pos$11,
+          [nix.POS]: $pos[10],
           hash: "sha256:0lciwaqv288dh2f13xk2x0lrn6zyrkqy6g4yy927wwzag2gklfrs",
         })),
         "1.2.1": nix.thunk(() => ({
-          [nix.POS]: pos$12,
+          [nix.POS]: $pos[11],
           hash: "sha256:17vz88xjzxh3q7hs6hnndw61r3hdfawxp5awqpgfaxx4w6ni8z46",
         })),
         "1.1.0": nix.thunk(() => ({
-          [nix.POS]: pos$13,
+          [nix.POS]: $pos[12],
           hash: "sha256:1c34v1k37rk7v0xk2czv5n79mbjxjrm6nh3llg2mpfmdsqi68wf3",
         })),
       })),
@@ -111,7 +95,7 @@ export default nix.lambda((args) => (() => {
       extraInstallFlags: nix.thunk(() => ["-f Makefile.coq"]),
       enableParallelBuilding: false,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$15,
+        [nix.POS]: $pos[14],
         description: "Randomized property-based testing plugin for Coq; a clone of Haskell QuickCheck",
         maintainers: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);
@@ -122,7 +106,7 @@ export default nix.lambda((args) => (() => {
       const after_1_6 = nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versions", "isGe"), "1.6", nix.thunk(() => nix.sel(o, "version")))) || nix.asBool(nix.eq(nix.sel(o, "version"), "dev"))));
       const after_2_1 = nix.thunk(() => (nix.asBool(nix.app(nix.sel(lib, "versions", "isGe"), "2.1", nix.thunk(() => nix.sel(o, "version")))) || nix.asBool(nix.eq(nix.sel(o, "version"), "dev"))));
       return {
-        [nix.POS]: pos$17,
+        [nix.POS]: $pos[16],
         nativeBuildInputs: nix.thunk(() => nix.concat(nix.sel(o, "nativeBuildInputs"), nix.concat(nix.app(nix.sel(lib, "optional"), after_1_6, nix.thunk(() => nix.sel(coq, "ocamlPackages", "cppo"))), nix.app(nix.sel(lib, "optional"), after_2_1, nix.thunk(() => nix.sel(coq, "ocamlPackages", "menhir")))))),
         propagatedBuildInputs: nix.thunk(() => nix.concat(nix.sel(o, "propagatedBuildInputs"), nix.app(nix.sel(lib, "optionals"), after_1_6, nix.thunk(() => (() => {
             const w = nix.withScope(nix.thunk(() => nix.sel(coq, "ocamlPackages")), null);

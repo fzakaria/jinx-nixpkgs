@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 32, 5], ["hash", 33, 5]], [["src", 37, 26], ["name", 38, 5], ["hash", 39, 5]], [["CARGO_BUILD_TARGET", 87, 7]], [["packageName", 96, 11]], [["command", 100, 11], ["supportedFeatures", 113, 11]], [["updateScript", 93, 5]], [["homepage", 123, 5], ["changelog", 124, 5], ["description", 125, 5], ["teams", 126, 5], ["license", 127, 5], ["platforms", 128, 5]], [["pname", 28, 3], ["version", 29, 3], ["src", 31, 3], ["cargoDeps", 36, 3], ["preConfigure", 42, 3], ["mesonFlags", 57, 3], ["nativeBuildInputs", 63, 3], ["buildInputs", 77, 3], ["postPatch", 81, 3], ["env", 87, 3], ["doCheck", 89, 3], ["strictDeps", 90, 3], ["passthru", 92, 3], ["meta", 122, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, buildPackages: false, gettext: false, meson: false, ninja: false, rustc: false, rustPlatform: false, cargo: false, fetchurl: false, apacheHttpdPackages: false, "pkg-config": false, glib: false, libxml2: false, wrapGAppsNoGuiHook: false, itstool: false, gnome: false, "_experimental-update-script-combinators": false, "common-updater-scripts": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 32, 5], ["hash", 33, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["src", 37, 26], ["name", 38, 5], ["hash", 39, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["CARGO_BUILD_TARGET", 87, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["packageName", 96, 11]]);
-const pos$5 = nix.positions(here + "/package.nix", [["command", 100, 11], ["supportedFeatures", 113, 11]]);
-const pos$6 = nix.positions(here + "/package.nix", [["updateScript", 93, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["homepage", 123, 5], ["changelog", 124, 5], ["description", 125, 5], ["teams", 126, 5], ["license", 127, 5], ["platforms", 128, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 28, 3], ["version", 29, 3], ["src", 31, 3], ["cargoDeps", 36, 3], ["preConfigure", 42, 3], ["mesonFlags", 57, 3], ["nativeBuildInputs", 63, 3], ["buildInputs", 77, 3], ["postPatch", 81, 3], ["env", 87, 3], ["doCheck", 89, 3], ["strictDeps", 90, 3], ["passthru", 92, 3], ["meta", 122, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -36,16 +29,16 @@ export default nix.lambda((args) => (() => {
   const apacheHttpd = nix.thunk(() => nix.attr(apacheHttpdPackages, "apacheHttpd"));
   const mod_dnssd = nix.thunk(() => nix.attr(apacheHttpdPackages, "mod_dnssd"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "gnome-user-share",
       version: "48.3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnome/sources/gnome-user-share/${nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/gnome-user-share-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-oE1IP0mz92naj/Xi0/y/++rztsa3HYLSoqYju0seDdQ=",
         })))),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           name: nix.thunk(() => nix.str`gnome-user-share-${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-tQoP0yBOCesj2kwgBUoqmcVtFttwML2N+wfSULtfC4w=",
@@ -84,17 +77,17 @@ export default nix.lambda((args) => (() => {
   --replace-fail "'cp', 'src' / rust_target / meson.project_name(), '@OUTPUT@'," "'cp', 'src' / '${nix.sel(stdenv, "hostPlatform", "rust", "cargoShortTarget")}' / rust_target / meson.project_name(), '@OUTPUT@',"
 `),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         CARGO_BUILD_TARGET: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "rust", "rustcTargetSpec")),
       })),
       doCheck: true,
       strictDeps: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         updateScript: nix.thunk(() => (() => {
-          const updateSource = nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$4, packageName: "gnome-user-share" }))));
+          const updateSource = nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: $pos[3], packageName: "gnome-user-share" }))));
           const updateLockfile = nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             command: nix.thunk(() => [
               "sh",
               "-c",
@@ -108,7 +101,7 @@ update-source-version gnome-user-share --ignore-same-version --source-key=cargoD
         })()),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         homepage: "https://gitlab.gnome.org/GNOME/gnome-user-share",
         changelog: nix.thunk(() => nix.str`https://gitlab.gnome.org/GNOME/gnome-user-share/-/blob/${nix.sel(finalAttrs, "version")}/NEWS?ref_type=tags`),
         description: "Service that exports the contents of the Public folder in your home directory on the local network",

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/netzbegruenung-mfa-plugin.nix", [[["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]], [["aarch64-darwin", 24, 9], ["aarch64-linux", 25, 9], ["x86_64-linux", 26, 9]], [["homepage", 42, 5], ["changelog", 43, 5], ["description", 44, 13], ["license", 45, 5], ["maintainers", 46, 5]], [["pname", 11, 11], ["version", 12, 3], ["src", 14, 3], ["mvnHash", 21, 3], ["strictDeps", 32, 3], ["__structuredAttrs", 33, 3], ["installPhase", 35, 3], ["meta", 41, 3]]]);
 const formals$1 = { args: { stdenv: false, maven: false, lib: false, fetchFromGitHub: false, pname: false, module: false, description: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/netzbegruenung-mfa-plugin.nix", [["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/netzbegruenung-mfa-plugin.nix", [["aarch64-darwin", 24, 9], ["aarch64-linux", 25, 9], ["x86_64-linux", 26, 9]]);
-const pos$3 = nix.positions(here + "/netzbegruenung-mfa-plugin.nix", [["homepage", 42, 5], ["changelog", 43, 5], ["description", 44, 13], ["license", 45, 5], ["maintainers", 46, 5]]);
-const pos$4 = nix.positions(here + "/netzbegruenung-mfa-plugin.nix", [["pname", 11, 11], ["version", 12, 3], ["src", 14, 3], ["mvnHash", 21, 3], ["strictDeps", 32, 3], ["__structuredAttrs", 33, 3], ["installPhase", 35, 3], ["meta", 41, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const module = nix.arg($, "module");
   const description = nix.arg($, "description");
   return nix.app(nix.sel(maven, "buildMavenPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: pname,
       version: "26.6.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "netzbegruenung",
           repo: "keycloak-mfa-plugins",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -30,7 +27,7 @@ export default nix.lambda((args) => (() => {
         })))),
       mvnHash: nix.thunk(() => (() => {
         const mvnHashes = nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           "aarch64-darwin": "sha256-D7inbJCs8r2RWY4TJMmxpiDPxy+o3xvdklzWNd5uZXk=",
           "aarch64-linux": "sha256-DS8LfIneN05OG201CK2bIUSV0fSUdku78Vt3FIZFmwQ=",
           "x86_64-linux": "sha256-k60cKLwN/VyWrErjIpgOvC+uYNbF2hkmCwO8MFVxvrI=",
@@ -44,7 +41,7 @@ install -Dm644 ${module}/target/netzbegruenung.${module}-v${nix.sel(finalAttrs, 
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://github.com/netzbegruenung/keycloak-mfa-plugins",
         changelog: nix.thunk(() => nix.str`https://github.com/netzbegruenung/keycloak-mfa-plugins/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: description,

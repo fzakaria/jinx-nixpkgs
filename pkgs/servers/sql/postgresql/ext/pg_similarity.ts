@@ -2,11 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/pg_similarity.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]], [["name", 24, 7], ["url", 25, 7], ["hash", 26, 7]], [["description", 33, 5], ["longDescription", 34, 5], ["homepage", 39, 5], ["platforms", 40, 5], ["license", 41, 5], ["maintainers", 42, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["patches", 20, 3], ["makeFlags", 30, 3], ["meta", 32, 3]]]);
 const formals$1 = { args: { fetchFromGitHub: false, fetchpatch: false, lib: false, postgresql: false, postgresqlBuildExtension: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/pg_similarity.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/pg_similarity.nix", [["name", 24, 7], ["url", 25, 7], ["hash", 26, 7]]);
-const pos$3 = nix.positions(here + "/pg_similarity.nix", [["description", 33, 5], ["longDescription", 34, 5], ["homepage", 39, 5], ["platforms", 40, 5], ["license", 41, 5], ["maintainers", 42, 5]]);
-const pos$4 = nix.positions(here + "/pg_similarity.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["patches", 20, 3], ["makeFlags", 30, 3], ["meta", 32, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const postgresql = nix.arg($, "postgresql");
   const postgresqlBuildExtension = nix.arg($, "postgresqlBuildExtension");
   return nix.app(postgresqlBuildExtension, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "pg_similarity",
       version: "pg_similarity_1_0-unstable-2021-01-12",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "eulerto",
           repo: "pg_similarity",
           rev: "b9cb0a2d501b91e33cd1ef550b05483ca3563f71",
@@ -28,7 +25,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "pg16.patch",
             url: "https://github.com/eulerto/pg_similarity/commit/f7781ea5ace80f697a8249e03e3ce47d4b0f6b2f.patch",
             hash: "sha256-MPDvWfNzSg28lXL5u5/Un9pOCJjqJ4Fz9b8XCfalgts=",
@@ -36,7 +33,7 @@ export default nix.lambda((args) => (() => {
       ]),
       makeFlags: nix.thunk(() => ["USE_PGXS=1"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Extension to support similarity queries on PostgreSQL",
         longDescription: "pg_similarity is an extension to support similarity queries on PostgreSQL. The implementation\nis tightly integrated in the RDBMS in the sense that it defines operators so instead of the traditional\noperators (= and <>) you can use ~~~ and ~!~ (any of these operators represents a similarity function).\n",
         homepage: "https://github.com/eulerto/pg_similarity",

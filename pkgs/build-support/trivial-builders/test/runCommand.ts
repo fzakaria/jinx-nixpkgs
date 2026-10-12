@@ -2,20 +2,18 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/runCommand.nix", [[["greeting", 5, 39]], [["message", 13, 9], ["greeting", 14, 9]], [["runCommandBasic", 5, 3], ["runCommandFinalAttrs", 10, 3]]]);
 const formals$1 = { args: { lib: false, runCommand: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/runCommand.nix", [["greeting", 5, 39]]);
-const pos$2 = nix.positions(here + "/runCommand.nix", [["message", 13, 9], ["greeting", 14, 9]]);
-const pos$3 = nix.positions(here + "/runCommand.nix", [["runCommandBasic", 5, 3], ["runCommandFinalAttrs", 10, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const lib = nix.arg($, "lib");
   const runCommand = nix.arg($, "runCommand");
   return nix.app(nix.sel(lib, "recurseIntoAttrs"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
-      runCommandBasic: nix.thunk(() => nix.app(runCommand, "hi", nix.thunk(() => ({ [nix.POS]: pos$1, greeting: "hello" })), "[[ $greeting == hello ]] || { echo wtf; exit 1; }\ntouch $out\n")),
+      [nix.POS]: $pos[2],
+      runCommandBasic: nix.thunk(() => nix.app(runCommand, "hi", nix.thunk(() => ({ [nix.POS]: $pos[0], greeting: "hello" })), "[[ $greeting == hello ]] || { echo wtf; exit 1; }\ntouch $out\n")),
       runCommandFinalAttrs: nix.thunk(() => nix.app(runCommand, "hi-finalAttrs", (finalAttrs) => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           message: nix.thunk(() => nix.sel(finalAttrs, "greeting")),
           greeting: "hello",
         }), (finalAttrs) => (() => {

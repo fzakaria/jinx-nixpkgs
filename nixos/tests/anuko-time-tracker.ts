@@ -2,28 +2,23 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/anuko-time-tracker.nix", [[["maintainers", 5, 5]], [["enable", 9, 35]], [["anuko-time-tracker", 9, 16]], [["services", 9, 7]], [["machine", 8, 5]], [["name", 3, 3], ["meta", 4, 3], ["nodes", 7, 3], ["testScript", 12, 3]]]);
 const formals$1 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/anuko-time-tracker.nix", [["maintainers", 5, 5]]);
-const pos$2 = nix.positions(here + "/anuko-time-tracker.nix", [["enable", 9, 35]]);
-const pos$3 = nix.positions(here + "/anuko-time-tracker.nix", [["anuko-time-tracker", 9, 16]]);
-const pos$4 = nix.positions(here + "/anuko-time-tracker.nix", [["services", 9, 7]]);
-const pos$5 = nix.positions(here + "/anuko-time-tracker.nix", [["machine", 8, 5]]);
-const pos$6 = nix.positions(here + "/anuko-time-tracker.nix", [["name", 3, 3], ["meta", 4, 3], ["nodes", 7, 3], ["testScript", 12, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   return {
-    [nix.POS]: pos$6,
+    [nix.POS]: $pos[5],
     name: "anuko-time-tracker",
-    meta: nix.thunk(() => ({ [nix.POS]: pos$1, maintainers: [] })),
+    meta: nix.thunk(() => ({ [nix.POS]: $pos[0], maintainers: [] })),
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       machine: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         services: nix.thunk(() => ({
-          [nix.POS]: pos$3,
-          "anuko-time-tracker": nix.thunk(() => ({ [nix.POS]: pos$2, enable: true })),
+          [nix.POS]: $pos[2],
+          "anuko-time-tracker": nix.thunk(() => ({ [nix.POS]: $pos[1], enable: true })),
         })),
       })),
     })),

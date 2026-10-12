@@ -2,11 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]], [["updateScript", 23, 12]], [["changelog", 26, 5], ["description", 27, 5], ["homepage", 28, 5], ["maintainers", 29, 5], ["license", 30, 5]], [["owner", 10, 3], ["domain", 11, 3], ["version", 12, 3], ["src", 14, 3], ["dependencies", 21, 3], ["passthru", 23, 3], ["meta", 25, 3]]]);
 const formals$1 = { args: { lib: false, buildHomeAssistantComponent: false, fetchFromGitHub: false, zigpy: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 23, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["changelog", 26, 5], ["description", 27, 5], ["homepage", 28, 5], ["maintainers", 29, 5], ["license", 30, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["owner", 10, 3], ["domain", 11, 3], ["version", 12, 3], ["src", 14, 3], ["dependencies", 21, 3], ["passthru", 23, 3], ["meta", 25, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,7 +17,7 @@ export default nix.lambda((args) => (() => {
       const domain = "xiaomi_gateway3";
       const version = "4.2.4";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "AlexxIT",
           repo: "XiaomiGateway3",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -28,11 +25,11 @@ export default nix.lambda((args) => (() => {
         }))));
       const dependencies = nix.thunk(() => [zigpy]);
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         changelog: nix.thunk(() => nix.str`https://github.com/AlexxIT/XiaomiGateway3/releases/tag/v${version}`),
         description: "Home Assistant custom component for control Xiaomi Multimode Gateway (aka Gateway 3), Xiaomi Multimode Gateway 2, Aqara Hub E1 on default firmwares over LAN",
         homepage: "https://github.com/AlexxIT/XiaomiGateway3",
@@ -42,7 +39,16 @@ export default nix.lambda((args) => (() => {
         })()),
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
       }));
-      return { [nix.POS]: pos$4, owner, domain, version, src, dependencies, passthru, meta };
+      return {
+        [nix.POS]: $pos[3],
+        owner,
+        domain,
+        version,
+        src,
+        dependencies,
+        passthru,
+        meta,
+      };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

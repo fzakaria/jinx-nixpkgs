@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 7, 5], ["sha256", 8, 5]], [["url", 15, 7], ["sha256", 16, 7]], [["pname", 3, 3], ["version", 4, 3], ["src", 6, 3], ["patches", 11, 3]]]);
 const formals$1 = { args: { callPackage: false, fetchurl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 7, 5], ["sha256", 8, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["url", 15, 7], ["sha256", 16, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 3, 3], ["version", 4, 3], ["src", 6, 3], ["patches", 11, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,18 +13,18 @@ export default nix.lambda((args) => (() => {
       const pname = "dvtm";
       const version = "0.15";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://www.brain-dump.org/projects/dvtm/dvtm-${version}.tar.gz`),
           sha256: "0475w514b7i3gxk6khy8pfj2gx9l7lv2pwacmq92zn1abv01a84g",
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/martanne/dvtm/commit/1f1ed664d64603f3f1ce1388571227dc723901b2.patch",
             sha256: "1cby8x3ckvhzqa8yxlfrwzgm8wk7yz84kr9psdjr7xwpnca1cqrd",
           })))),
       ]);
-      return { [nix.POS]: pos$3, pname, version, src, patches };
+      return { [nix.POS]: $pos[2], pname, version, src, patches };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

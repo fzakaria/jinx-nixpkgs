@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/test-corpus-decode.nix", [[["owner", 12, 5], ["repo", 13, 5], ["rev", 14, 5], ["sha256", 15, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["dontConfigure", 18, 3], ["dontBuild", 19, 3], ["doCheck", 21, 3], ["nativeCheckInputs", 22, 3], ["checkPhase", 24, 3], ["installPhase", 45, 3]]]);
 const formals$1 = { args: { stdenv: false, fetchFromGitHub: false, libde265: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/test-corpus-decode.nix", [["owner", 12, 5], ["repo", 13, 5], ["rev", 14, 5], ["sha256", 15, 5]]);
-const pos$2 = nix.positions(here + "/test-corpus-decode.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["dontConfigure", 18, 3], ["dontBuild", 19, 3], ["doCheck", 21, 3], ["nativeCheckInputs", 22, 3], ["checkPhase", 24, 3], ["installPhase", 45, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -12,11 +11,11 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const libde265 = nix.arg($, "libde265");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "libde265-test-corpus-decode",
       version: "unstable-2020-02-19",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "strukturag",
           repo: "libde265-data",
           rev: "bdfdfdbe682f514c5185c270c74eac42731a7fa8",

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 12, 5], ["exec", 13, 5], ["desktopName", 14, 5], ["genericName", 15, 5], ["mimeTypes", 16, 5], ["categories", 25, 5]], [["url", 42, 7], ["hash", 43, 7]], [["description", 63, 5], ["mainProgram", 64, 5], ["homepage", 65, 5], ["sourceProvenance", 66, 5], ["license", 67, 5], ["platforms", 68, 5], ["teams", 69, 5]], [["version", 34, 3], ["pname", 35, 3], ["src", 37, 3], ["patchPhase", 46, 3], ["installPhase", 50, 3], ["enableParallelBuilding", 60, 3], ["meta", 62, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, unzip: false, makeDesktopItem: false, jre8: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 12, 5], ["exec", 13, 5], ["desktopName", 14, 5], ["genericName", 15, 5], ["mimeTypes", 16, 5], ["categories", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 42, 7], ["hash", 43, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 63, 5], ["mainProgram", 64, 5], ["homepage", 65, 5], ["sourceProvenance", 66, 5], ["license", 67, 5], ["platforms", 68, 5], ["teams", 69, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["version", 34, 3], ["pname", 35, 3], ["src", 37, 3], ["patchPhase", 46, 3], ["installPhase", 50, 3], ["enableParallelBuilding", 60, 3], ["meta", 62, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const makeDesktopItem = nix.arg($, "makeDesktopItem");
   const jre8 = nix.arg($, "jre8");
   const desktopItem = nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: "jmol",
       exec: "jmol",
       desktopName: "JMol",
@@ -34,13 +31,13 @@ export default nix.lambda((args) => (() => {
       categories: nix.thunk(() => ["Graphics", "Education", "Science", "Chemistry"]),
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       version: "16.4.21",
       pname: "jmol",
       src: nix.thunk(() => (() => {
         const baseVersion = nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(finalAttrs, "version")))}.${nix.app(nix.sel(lib, "versions", "minor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}`);
         return nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: nix.thunk(() => nix.str`mirror://sourceforge/jmol/Jmol/Version%20${baseVersion}/Jmol%20${nix.sel(finalAttrs, "version")}/Jmol-${nix.sel(finalAttrs, "version")}-binary.tar.gz`),
             hash: "sha256-eZuRhI8r2I1kud6EG9aakWiFI6R40VDTfdQ7z/n5sJ8=",
           })));
@@ -57,7 +54,7 @@ cp jmol $out/bin
 `),
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Java 3D viewer for chemical structures",
         mainProgram: "jmol",
         homepage: "https://sourceforge.net/projects/jmol",

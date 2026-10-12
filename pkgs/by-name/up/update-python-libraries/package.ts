@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["buildInputs", 12, 5]]]);
 const formals$1 = { args: { lib: false, python3: false, runCommand: false, git: false, nix: false, "nix-prefetch-git": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["buildInputs", 12, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,7 +14,7 @@ export default nix.lambda((args) => (() => {
   const nix$ = nix.arg($, "nix");
   const nix_prefetch_git = nix.arg($, "nix-prefetch-git");
   return nix.app(runCommand, "update-python-libraries", nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       buildInputs: nix.thunk(() => [
         nix.thunk(() => nix.app(nix.sel(python3, "withPackages"), (ps) => (() => {
             const w = nix.withScope(ps, null);

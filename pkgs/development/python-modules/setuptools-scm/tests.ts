@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/tests.nix", [[["pname", 12, 3], ["version", 13, 28], ["src", 13, 36], ["pyproject", 14, 3], ["dontBuild", 16, 3], ["dontInstall", 17, 3], ["nativeCheckInputs", 19, 3], ["disabledTests", 28, 3]]]);
 const formals$1 = { args: { buildPythonPackage: false, "setuptools-scm": false, pytestCheckHook: false, git: false, mercurial: false, pip: false, virtualenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/tests.nix", [["pname", 12, 3], ["version", 13, 28], ["src", 13, 36], ["pyproject", 14, 3], ["dontBuild", 16, 3], ["dontInstall", 17, 3], ["nativeCheckInputs", 19, 3], ["disabledTests", 28, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const pip = nix.arg($, "pip");
   const virtualenv = nix.arg($, "virtualenv");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       pname: "setuptools-scm-tests",
       version: nix.thunk(() => nix.attr(setuptools_scm, "version")),
       src: nix.thunk(() => nix.attr(setuptools_scm, "src")),

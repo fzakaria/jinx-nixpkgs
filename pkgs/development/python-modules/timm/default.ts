@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 31, 5], ["repo", 32, 5], ["tag", 33, 5], ["hash", 34, 5]], [["description", 88, 5], ["homepage", 89, 5], ["changelog", 90, 5], ["license", 91, 5], ["maintainers", 92, 5]], [["pname", 25, 3], ["version", 26, 3], ["pyproject", 27, 3], ["__structuredAttrs", 28, 3], ["src", 30, 3], ["postPatch", 39, 3], ["build-system", 49, 3], ["dependencies", 51, 3], ["nativeCheckInputs", 59, 3], ["enabledTestPaths", 65, 3], ["disabledTests", 67, 3], ["disabledTestPaths", 77, 3], ["pythonImportsCheck", 82, 3], ["meta", 87, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitHub: false, pythonAtLeast: false, "pdm-backend": false, "huggingface-hub": false, pyyaml: false, safetensors: false, torch: false, torchvision: false, expecttest: false, pytestCheckHook: false, "pytest-timeout": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 31, 5], ["repo", 32, 5], ["tag", 33, 5], ["hash", 34, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 88, 5], ["homepage", 89, 5], ["changelog", 90, 5], ["license", 91, 5], ["maintainers", 92, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 25, 3], ["version", 26, 3], ["pyproject", 27, 3], ["__structuredAttrs", 28, 3], ["src", 30, 3], ["postPatch", 39, 3], ["build-system", 49, 3], ["dependencies", 51, 3], ["nativeCheckInputs", 59, 3], ["enabledTestPaths", 65, 3], ["disabledTests", 67, 3], ["disabledTestPaths", 77, 3], ["pythonImportsCheck", 82, 3], ["meta", 87, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,13 +22,13 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const pytest_timeout = nix.arg($, "pytest-timeout");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "timm",
       version: "1.0.30",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "huggingface",
           repo: "pytorch-image-models",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -45,7 +43,7 @@ export default nix.lambda((args) => (() => {
       disabledTestPaths: nix.thunk(() => ["tests/test_models.py"]),
       pythonImportsCheck: nix.thunk(() => ["timm", "timm.data"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "PyTorch image models, scripts, and pretrained weights",
         homepage: "https://huggingface.co/docs/timm/index",
         changelog: nix.thunk(() => nix.str`https://github.com/huggingface/pytorch-image-models/blob/${nix.sel(finalAttrs, "src", "tag")}/README.md#whats-new`),

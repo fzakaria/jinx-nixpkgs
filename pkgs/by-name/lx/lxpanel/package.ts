@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 34, 5], ["repo", 35, 5], ["tag", 36, 5], ["hash", 37, 5]], [["description", 73, 5], ["homepage", 74, 5], ["license", 75, 5], ["maintainers", 76, 5], ["platforms", 77, 5], ["mainProgram", 78, 5]], [["pname", 30, 3], ["version", 31, 3], ["src", 33, 3], ["enableParallelBuilding", 40, 3], ["nativeBuildInputs", 42, 3], ["buildInputs", 51, 3], ["configureFlags", 70, 3], ["meta", 72, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, autoreconfHook: false, "pkg-config": false, gettext: false, m4: false, intltool: false, libxmlxx: false, keybinder3: false, gtk3: false, libx11: false, libfm: false, libwnck: false, libxmu: false, libxpm: false, cairo: false, "gdk-pixbuf": false, "gdk-pixbuf-xlib": false, "menu-cache": false, "lxmenu-data": false, wirelesstools: false, curl: false, supportAlsa: true, "alsa-lib": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 34, 5], ["repo", 35, 5], ["tag", 36, 5], ["hash", 37, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 73, 5], ["homepage", 74, 5], ["license", 75, 5], ["maintainers", 76, 5], ["platforms", 77, 5], ["mainProgram", 78, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 30, 3], ["version", 31, 3], ["src", 33, 3], ["enableParallelBuilding", 40, 3], ["nativeBuildInputs", 42, 3], ["buildInputs", 51, 3], ["configureFlags", 70, 3], ["meta", 72, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -35,11 +33,11 @@ export default nix.lambda((args) => (() => {
   const supportAlsa = nix.argOr($, "supportAlsa", () => false);
   const alsa_lib = nix.arg($, "alsa-lib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "lxpanel",
       version: "0.11.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "lxde",
           repo: "lxpanel",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -66,7 +64,7 @@ export default nix.lambda((args) => (() => {
       ], nix.app(nix.sel(lib, "optional"), supportAlsa, alsa_lib))),
       configureFlags: nix.thunk(() => ["--enable-gtk3"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Lightweight X11 desktop panel for LXDE",
         homepage: "https://lxde.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

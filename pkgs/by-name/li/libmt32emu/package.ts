@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]], [["name", 46, 7], ["runtimeInputs", 48, 7], ["text", 52, 7]], [["rev-prefix", 65, 7]], [["name", 70, 7], ["runtimeInputs", 72, 7], ["text", 76, 7]], [["unfixVersionScript", 45, 5], ["updateTagScript", 64, 5], ["fixVersionScript", 69, 5], ["updateScript", 88, 5]], [["homepage", 96, 5], ["description", 97, 5], ["license", 98, 5], ["maintainers", 99, 5], ["platforms", 100, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["outputs", 23, 3], ["nativeBuildInputs", 28, 3], ["cmakeFlags", 32, 3], ["postFixup", 37, 3], ["passthru", 43, 3], ["meta", 95, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, gitUpdater: false, nix: false, writeShellApplication: false, "_experimental-update-script-combinators": false, cmake: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 46, 7], ["runtimeInputs", 48, 7], ["text", 52, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["rev-prefix", 65, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["name", 70, 7], ["runtimeInputs", 72, 7], ["text", 76, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["unfixVersionScript", 45, 5], ["updateTagScript", 64, 5], ["fixVersionScript", 69, 5], ["updateScript", 88, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["homepage", 96, 5], ["description", 97, 5], ["license", 98, 5], ["maintainers", 99, 5], ["platforms", 100, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["outputs", 23, 3], ["nativeBuildInputs", 28, 3], ["cmakeFlags", 32, 3], ["postFixup", 37, 3], ["passthru", 43, 3], ["meta", 95, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const _experimental_update_script_combinators = nix.arg($, "_experimental-update-script-combinators");
   const cmake = nix.arg($, "cmake");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "libmt32emu",
       version: "2.8.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "munt",
           repo: "munt",
           tag: nix.thunk(() => nix.str`libmt32emu_${nix.app(nix.sel(lib, "replaceStrings"), nix.thunk(() => ["."]), nix.thunk(() => ["_"]), nix.thunk(() => nix.sel(finalAttrs, "version")))}`),
@@ -37,16 +31,16 @@ export default nix.lambda((args) => (() => {
       cmakeFlags: nix.thunk(() => ["-Dmunt_WITH_MT32EMU_SMF2WAV=OFF", "-Dmunt_WITH_MT32EMU_QT=OFF"]),
       postFixup: "substituteInPlace \"$dev\"/lib/pkgconfig/mt32emu.pc \\\n  --replace '=${exec_prefix}//' '=/' \\\n  --replace \"$dev/$dev/\" \"$dev/\"\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         unfixVersionScript: nix.thunk(() => nix.app(writeShellApplication, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "unfix-libmt32emu-version",
             runtimeInputs: nix.thunk(() => [nix$]),
             text: "export UPDATE_NIX_ATTR_PATH=\"${UPDATE_NIX_ATTR_PATH:-libmt32emu}\"\n\npreUpdateScriptVersion=\"$(nix-instantiate . --eval --strict -A \"$UPDATE_NIX_ATTR_PATH.version\" | cut -d'\"' -f2)\"\nunfixedVersion=\"${preUpdateScriptVersion//\\./_}\"\n\npkgFile=\"$(nix-instantiate --eval -E \"with import ./. {}; (builtins.unsafeGetAttrPos \\\"version\\\" $UPDATE_NIX_ATTR_PATH).file\" | cut -d'\"' -f2)\"\n\nsed -i -e \"s/version = \\\"$preUpdateScriptVersion\\\"/version = \\\"$unfixedVersion\\\"/g\" \"$pkgFile\"\n",
           })))),
-        updateTagScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: pos$3, "rev-prefix": "libmt32emu_" })))),
+        updateTagScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({ [nix.POS]: $pos[2], "rev-prefix": "libmt32emu_" })))),
         fixVersionScript: nix.thunk(() => nix.app(writeShellApplication, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             name: "fix-libmt32emu-version",
             runtimeInputs: nix.thunk(() => [nix$]),
             text: "export UPDATE_NIX_ATTR_PATH=\"${UPDATE_NIX_ATTR_PATH:-libmt32emu}\"\n\npostUpdateScriptVersion=\"$(nix-instantiate . --eval --strict -A \"$UPDATE_NIX_ATTR_PATH.version\" | cut -d'\"' -f2)\"\nfixedVersion=\"${postUpdateScriptVersion//_/.}\"\n\npkgFile=\"$(nix-instantiate --eval -E \"with import ./. {}; (builtins.unsafeGetAttrPos \\\"version\\\" $UPDATE_NIX_ATTR_PATH).file\" | cut -d'\"' -f2)\"\n\nsed -i -e \"s/version = \\\"$postUpdateScriptVersion\\\"/version = \\\"$fixedVersion\\\"/g\" \"$pkgFile\"\n",
@@ -58,7 +52,7 @@ export default nix.lambda((args) => (() => {
           ]))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         homepage: "https://munt.sourceforge.net/",
         description: "Library to emulate Roland MT-32, CM-32L, CM-64 and LAPC-I devices",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21Plus")),

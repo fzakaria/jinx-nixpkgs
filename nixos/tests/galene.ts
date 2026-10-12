@@ -2,50 +2,14 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/galene.nix", [[["maintainers", 16, 36], ["platforms", 17, 9]], [["enable", 25, 28]], [["enable", 45, 13], ["insecure", 46, 13], ["httpPort", 47, 13], ["groupsDir", 48, 13]], [["xserver", 25, 20], ["galene", 44, 20]], [["username", 32, 19], ["password", 33, 19]], [["op", 30, 15], ["other", 36, 15]], [["source", 29, 40]], [["etc", 29, 13], ["systemPackages", 39, 13]], [["imports", 23, 11], ["services", 25, 11], ["environment", 27, 11]], [["machine", 20, 13]], [["name", 14, 7], ["meta", 15, 7], ["nodes", 20, 7], ["enableOCR", 52, 7], ["testScript", 54, 7]], [["maintainers", 99, 50], ["platforms", 100, 9]], [["enable", 108, 28]], [["enable", 129, 13], ["insecure", 130, 13], ["httpPort", 131, 13], ["groupsDir", 132, 13]], [["xserver", 108, 20], ["galene", 128, 20]], [["username", 115, 19], ["password", 116, 19]], [["op", 113, 15], ["other", 119, 15]], [["source", 112, 40]], [["etc", 112, 13], ["systemPackages", 122, 13]], [["imports", 106, 11], ["services", 108, 11], ["environment", 110, 11]], [["machine", 103, 13]], [["name", 97, 7], ["meta", 98, 7], ["nodes", 103, 7], ["enableOCR", 136, 7], ["testScript", 138, 7]], [["maintainers", 220, 36], ["platforms", 221, 9]], [["enable", 229, 28]], [["enable", 264, 13], ["insecure", 265, 13], ["httpPort", 266, 13], ["groupsDir", 267, 13]], [["xserver", 229, 20], ["galene", 263, 20]], [["username", 237, 21], ["password", 238, 21]], [["presenter", 235, 17], ["other", 241, 17]], [["source", 234, 38]], [["ghostscriptSupport", 248, 47]], [["nativeBuildInputs", 247, 21]], [["source", 244, 40]], [["etc", 233, 13], ["systemPackages", 256, 13]], [["imports", 227, 11], ["services", 229, 11], ["environment", 231, 11]], [["machine", 224, 13]], [["name", 217, 7], ["meta", 218, 7], ["nodes", 224, 7], ["enableOCR", 271, 7], ["testScript", 273, 7]], [["basic", 11, 3], ["file-transfer", 94, 3], ["stream", 207, 3]]]);
 const formals$1 = { args: { runTest: false }, ellipsis: false };
 const formals$2 = { args: { pkgs: false, lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/galene.nix", [["maintainers", 16, 36], ["platforms", 17, 9]]);
 const formals$3 = { args: { config: false, pkgs: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/galene.nix", [["enable", 25, 28]]);
-const pos$3 = nix.positions(here + "/galene.nix", [["enable", 45, 13], ["insecure", 46, 13], ["httpPort", 47, 13], ["groupsDir", 48, 13]]);
-const pos$4 = nix.positions(here + "/galene.nix", [["xserver", 25, 20], ["galene", 44, 20]]);
-const pos$5 = nix.positions(here + "/galene.nix", [["username", 32, 19], ["password", 33, 19]]);
-const pos$6 = nix.positions(here + "/galene.nix", [["op", 30, 15], ["other", 36, 15]]);
-const pos$7 = nix.positions(here + "/galene.nix", [["source", 29, 40]]);
-const pos$8 = nix.positions(here + "/galene.nix", [["etc", 29, 13], ["systemPackages", 39, 13]]);
-const pos$9 = nix.positions(here + "/galene.nix", [["imports", 23, 11], ["services", 25, 11], ["environment", 27, 11]]);
-const pos$10 = nix.positions(here + "/galene.nix", [["machine", 20, 13]]);
-const pos$11 = nix.positions(here + "/galene.nix", [["name", 14, 7], ["meta", 15, 7], ["nodes", 20, 7], ["enableOCR", 52, 7], ["testScript", 54, 7]]);
 const formals$4 = { args: { pkgs: false, lib: false }, ellipsis: true };
-const pos$12 = nix.positions(here + "/galene.nix", [["maintainers", 99, 50], ["platforms", 100, 9]]);
 const formals$5 = { args: { config: false, pkgs: false }, ellipsis: true };
-const pos$13 = nix.positions(here + "/galene.nix", [["enable", 108, 28]]);
-const pos$14 = nix.positions(here + "/galene.nix", [["enable", 129, 13], ["insecure", 130, 13], ["httpPort", 131, 13], ["groupsDir", 132, 13]]);
-const pos$15 = nix.positions(here + "/galene.nix", [["xserver", 108, 20], ["galene", 128, 20]]);
-const pos$16 = nix.positions(here + "/galene.nix", [["username", 115, 19], ["password", 116, 19]]);
-const pos$17 = nix.positions(here + "/galene.nix", [["op", 113, 15], ["other", 119, 15]]);
-const pos$18 = nix.positions(here + "/galene.nix", [["source", 112, 40]]);
-const pos$19 = nix.positions(here + "/galene.nix", [["etc", 112, 13], ["systemPackages", 122, 13]]);
-const pos$20 = nix.positions(here + "/galene.nix", [["imports", 106, 11], ["services", 108, 11], ["environment", 110, 11]]);
-const pos$21 = nix.positions(here + "/galene.nix", [["machine", 103, 13]]);
-const pos$22 = nix.positions(here + "/galene.nix", [["name", 97, 7], ["meta", 98, 7], ["nodes", 103, 7], ["enableOCR", 136, 7], ["testScript", 138, 7]]);
 const formals$6 = { args: { pkgs: false, lib: false }, ellipsis: true };
-const pos$23 = nix.positions(here + "/galene.nix", [["maintainers", 220, 36], ["platforms", 221, 9]]);
 const formals$7 = { args: { config: false, pkgs: false }, ellipsis: true };
-const pos$24 = nix.positions(here + "/galene.nix", [["enable", 229, 28]]);
-const pos$25 = nix.positions(here + "/galene.nix", [["enable", 264, 13], ["insecure", 265, 13], ["httpPort", 266, 13], ["groupsDir", 267, 13]]);
-const pos$26 = nix.positions(here + "/galene.nix", [["xserver", 229, 20], ["galene", 263, 20]]);
-const pos$27 = nix.positions(here + "/galene.nix", [["username", 237, 21], ["password", 238, 21]]);
-const pos$28 = nix.positions(here + "/galene.nix", [["presenter", 235, 17], ["other", 241, 17]]);
-const pos$29 = nix.positions(here + "/galene.nix", [["source", 234, 38]]);
-const pos$30 = nix.positions(here + "/galene.nix", [["ghostscriptSupport", 248, 47]]);
-const pos$31 = nix.positions(here + "/galene.nix", [["nativeBuildInputs", 247, 21]]);
-const pos$32 = nix.positions(here + "/galene.nix", [["source", 244, 40]]);
-const pos$33 = nix.positions(here + "/galene.nix", [["etc", 233, 13], ["systemPackages", 256, 13]]);
-const pos$34 = nix.positions(here + "/galene.nix", [["imports", 227, 11], ["services", 229, 11], ["environment", 231, 11]]);
-const pos$35 = nix.positions(here + "/galene.nix", [["machine", 224, 13]]);
-const pos$36 = nix.positions(here + "/galene.nix", [["name", 217, 7], ["meta", 218, 7], ["nodes", 224, 7], ["enableOCR", 271, 7], ["testScript", 273, 7]]);
-const pos$37 = nix.positions(here + "/galene.nix", [["basic", 11, 3], ["file-transfer", 94, 3], ["stream", 207, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -56,36 +20,36 @@ export default nix.lambda((args) => (() => {
   const galeneTestGroupAdminName = "admin";
   const galeneTestGroupAdminPassword = "1234";
   return {
-    [nix.POS]: pos$37,
+    [nix.POS]: $pos[36],
     basic: nix.thunk(() => nix.app(runTest, nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const pkgs = nix.arg($_1, "pkgs");
         const lib = nix.arg($_1, "lib");
         return {
-          [nix.POS]: pos$11,
+          [nix.POS]: $pos[10],
           name: "galene-works",
           meta: nix.thunk(() => (() => {
             const from = nix.thunk(() => nix.sel(pkgs, "galene", "meta"));
             return {
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             maintainers: nix.thunk(() => nix.attr(from, "maintainers")),
             platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
           };
           })()),
           nodes: nix.thunk(() => ({
-            [nix.POS]: pos$10,
+            [nix.POS]: $pos[9],
             machine: nix.lambda((args_2) => (() => {
               const $_2 = nix.formals(args_2, formals$3);
               const config = nix.arg($_2, "config");
               const pkgs_1 = nix.arg($_2, "pkgs");
               return {
-                [nix.POS]: pos$9,
+                [nix.POS]: $pos[8],
                 imports: nix.thunk(() => [nix.path(here, "./common/x11.nix")]),
                 services: nix.thunk(() => ({
-                  [nix.POS]: pos$4,
-                  xserver: nix.thunk(() => ({ [nix.POS]: pos$2, enable: true })),
+                  [nix.POS]: $pos[3],
+                  xserver: nix.thunk(() => ({ [nix.POS]: $pos[1], enable: true })),
                   galene: nix.thunk(() => ({
-                    [nix.POS]: pos$3,
+                    [nix.POS]: $pos[2],
                     enable: true,
                     insecure: true,
                     httpPort: galenePort,
@@ -93,15 +57,15 @@ export default nix.lambda((args) => (() => {
                   })),
                 })),
                 environment: nix.thunk(() => ({
-                  [nix.POS]: pos$8,
+                  [nix.POS]: $pos[7],
                   etc: nix.thunk(() => nix.attrsDyn({}, [
                     [galeneTestGroupFile, nix.thunk(() => ({
-                      [nix.POS]: pos$7,
+                      [nix.POS]: $pos[6],
                       source: nix.thunk(() => nix.app(nix.sel(nix.app(nix.sel(pkgs_1, "formats", "json"), nix.thunk(() => ({}))), "generate"), galeneTestGroupFile, nix.thunk(() => ({
-                          [nix.POS]: pos$6,
+                          [nix.POS]: $pos[5],
                           op: nix.thunk(() => [
                             nix.thunk(() => ({
-                              [nix.POS]: pos$5,
+                              [nix.POS]: $pos[4],
                               username: galeneTestGroupAdminName,
                               password: galeneTestGroupAdminPassword,
                             })),
@@ -162,30 +126,30 @@ with subtest("galene can join group"):
         const pkgs = nix.arg($_1, "pkgs");
         const lib = nix.arg($_1, "lib");
         return {
-          [nix.POS]: pos$22,
+          [nix.POS]: $pos[21],
           name: "galene-file-transfer-works",
           meta: nix.thunk(() => (() => {
             const from = nix.thunk(() => nix.sel(pkgs, "galene-file-transfer", "meta"));
             return {
-            [nix.POS]: pos$12,
+            [nix.POS]: $pos[11],
             maintainers: nix.thunk(() => nix.attr(from, "maintainers")),
             platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
           };
           })()),
           nodes: nix.thunk(() => ({
-            [nix.POS]: pos$21,
+            [nix.POS]: $pos[20],
             machine: nix.lambda((args_2) => (() => {
               const $_2 = nix.formals(args_2, formals$5);
               const config = nix.arg($_2, "config");
               const pkgs_1 = nix.arg($_2, "pkgs");
               return {
-                [nix.POS]: pos$20,
+                [nix.POS]: $pos[19],
                 imports: nix.thunk(() => [nix.path(here, "./common/x11.nix")]),
                 services: nix.thunk(() => ({
-                  [nix.POS]: pos$15,
-                  xserver: nix.thunk(() => ({ [nix.POS]: pos$13, enable: true })),
+                  [nix.POS]: $pos[14],
+                  xserver: nix.thunk(() => ({ [nix.POS]: $pos[12], enable: true })),
                   galene: nix.thunk(() => ({
-                    [nix.POS]: pos$14,
+                    [nix.POS]: $pos[13],
                     enable: true,
                     insecure: true,
                     httpPort: galenePort,
@@ -193,15 +157,15 @@ with subtest("galene can join group"):
                   })),
                 })),
                 environment: nix.thunk(() => ({
-                  [nix.POS]: pos$19,
+                  [nix.POS]: $pos[18],
                   etc: nix.thunk(() => nix.attrsDyn({}, [
                     [galeneTestGroupFile, nix.thunk(() => ({
-                      [nix.POS]: pos$18,
+                      [nix.POS]: $pos[17],
                       source: nix.thunk(() => nix.app(nix.sel(nix.app(nix.sel(pkgs_1, "formats", "json"), nix.thunk(() => ({}))), "generate"), galeneTestGroupFile, nix.thunk(() => ({
-                          [nix.POS]: pos$17,
+                          [nix.POS]: $pos[16],
                           op: nix.thunk(() => [
                             nix.thunk(() => ({
-                              [nix.POS]: pos$16,
+                              [nix.POS]: $pos[15],
                               username: galeneTestGroupAdminName,
                               password: galeneTestGroupAdminPassword,
                             })),
@@ -299,30 +263,30 @@ with subtest("galene-file-transfer works"):
         const galeneStreamFeedImage = "galene-stream-feed.png";
         const galeneStreamFeedLabel = "Example";
         return {
-          [nix.POS]: pos$36,
+          [nix.POS]: $pos[35],
           name: "galene-stream-works",
           meta: nix.thunk(() => (() => {
             const from = nix.thunk(() => nix.sel(pkgs, "galene", "meta"));
             return {
-            [nix.POS]: pos$23,
+            [nix.POS]: $pos[22],
             maintainers: nix.thunk(() => nix.attr(from, "maintainers")),
             platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
           };
           })()),
           nodes: nix.thunk(() => ({
-            [nix.POS]: pos$35,
+            [nix.POS]: $pos[34],
             machine: nix.lambda((args_2) => (() => {
               const $_2 = nix.formals(args_2, formals$7);
               const config = nix.arg($_2, "config");
               const pkgs_1 = nix.arg($_2, "pkgs");
               return {
-                [nix.POS]: pos$34,
+                [nix.POS]: $pos[33],
                 imports: nix.thunk(() => [nix.path(here, "./common/x11.nix")]),
                 services: nix.thunk(() => ({
-                  [nix.POS]: pos$26,
-                  xserver: nix.thunk(() => ({ [nix.POS]: pos$24, enable: true })),
+                  [nix.POS]: $pos[25],
+                  xserver: nix.thunk(() => ({ [nix.POS]: $pos[23], enable: true })),
                   galene: nix.thunk(() => ({
-                    [nix.POS]: pos$25,
+                    [nix.POS]: $pos[24],
                     enable: true,
                     insecure: true,
                     httpPort: galenePort,
@@ -330,15 +294,15 @@ with subtest("galene-file-transfer works"):
                   })),
                 })),
                 environment: nix.thunk(() => ({
-                  [nix.POS]: pos$33,
+                  [nix.POS]: $pos[32],
                   etc: nix.thunk(() => nix.attrsDyn({}, [
                     [galeneTestGroupFile, nix.thunk(() => ({
-                      [nix.POS]: pos$29,
+                      [nix.POS]: $pos[28],
                       source: nix.thunk(() => nix.app(nix.sel(nix.app(nix.sel(pkgs_1, "formats", "json"), nix.thunk(() => ({}))), "generate"), galeneTestGroupFile, nix.thunk(() => ({
-                          [nix.POS]: pos$28,
+                          [nix.POS]: $pos[27],
                           presenter: nix.thunk(() => [
                             nix.thunk(() => ({
-                              [nix.POS]: pos$27,
+                              [nix.POS]: $pos[26],
                               username: galeneTestGroupBotName,
                               password: galeneTestGroupBotPassword,
                             })),
@@ -347,13 +311,13 @@ with subtest("galene-file-transfer works"):
                         })))),
                     }))],
                     [galeneStreamFeedImage, nix.thunk(() => ({
-                      [nix.POS]: pos$32,
+                      [nix.POS]: $pos[31],
                       source: nix.thunk(() => nix.app(nix.sel(pkgs_1, "runCommand"), galeneStreamFeedImage, nix.thunk(() => ({
-                          [nix.POS]: pos$31,
+                          [nix.POS]: $pos[30],
                           nativeBuildInputs: nix.thunk(() => (() => {
                             const w = nix.withScope(pkgs_1, null);
                             return [
-                              nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "imagemagick"), "override"), nix.thunk(() => ({ [nix.POS]: pos$30, ghostscriptSupport: true })))),
+                              nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "imagemagick"), "override"), nix.thunk(() => ({ [nix.POS]: $pos[29], ghostscriptSupport: true })))),
                             ];
                           })()),
                         })), nix.thunk(() => nix.str`magick -size 400x400 -background white -fill black canvas:white -pointsize 70 -annotate +100+200 '${galeneStreamFeedLabel}' $out

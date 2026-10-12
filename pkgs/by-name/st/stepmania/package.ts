@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 28, 5], ["repo", 29, 5], ["rev", 30, 5], ["hash", 31, 5]], [["name", 37, 7], ["url", 38, 7], ["hash", 39, 7]], [["name", 43, 7], ["url", 44, 7], ["hash", 45, 7]], [["homepage", 96, 5], ["description", 97, 5], ["platforms", 98, 5], ["license", 99, 5], ["maintainers", 100, 5], ["mainProgram", 101, 5]], [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["patches", 34, 3], ["postPatch", 51, 3], ["nativeBuildInputs", 58, 3], ["buildInputs", 63, 3], ["cmakeFlags", 79, 3], ["postInstall", 85, 3], ["meta", 95, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch: false, cmake: false, nasm: false, "alsa-lib": false, ffmpeg_7: false, glew: false, glib: false, gtk3: false, libmad: false, libogg: false, libpng: false, libpulseaudio: false, libvorbis: false, udev: false, libxtst: false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 28, 5], ["repo", 29, 5], ["rev", 30, 5], ["hash", 31, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 37, 7], ["url", 38, 7], ["hash", 39, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 43, 7], ["url", 44, 7], ["hash", 45, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 96, 5], ["description", 97, 5], ["platforms", 98, 5], ["license", 99, 5], ["maintainers", 100, 5], ["mainProgram", 101, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["patches", 34, 3], ["postPatch", 51, 3], ["nativeBuildInputs", 58, 3], ["buildInputs", 63, 3], ["cmakeFlags", 79, 3], ["postInstall", 85, 3], ["meta", 95, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,11 +27,11 @@ export default nix.lambda((args) => (() => {
   const libxtst = nix.arg($, "libxtst");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "stepmania",
       version: "5.1.0-b2-unstable-2022-11-14",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "stepmania",
           repo: "stepmania",
           rev: "d55acb1ba26f1c5b5e3048d6d6c0bd116625216f",
@@ -43,13 +39,13 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "fix-building-with-newer-ffmpeg.patch",
             url: "https://github.com/stepmania/stepmania/commit/3fef5ef60b7674d6431f4e1e4ba8c69b0c21c023.patch?full_index=1",
             hash: "sha256-m+5sP+mIpcSjioRBdzChqja5zwNcwdSNAfvSJ2Lww+g=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "fix-crash-newer-ffmpeg.patch",
             url: "https://github.com/stepmania/stepmania/commit/e0d2a5182dcd855e181fffa086273460c553c7ff.patch?full_index=1",
             hash: "sha256-XacaMn29FwG3WgFBfB890I8mzVrvuOL4wPWcHHNYfXM=",
@@ -76,7 +72,7 @@ export default nix.lambda((args) => (() => {
       cmakeFlags: nix.thunk(() => ["-DWITH_SYSTEM_FFMPEG=1", "-DWITH_SYSTEM_PNG=on", "-DWITH_SYSTEM_ZLIB=on"]),
       postInstall: "mkdir -p $out/bin\nln -s $out/stepmania-5.1/stepmania $out/bin/stepmania\n\nmkdir -p $out/share/\ncp -r $src/icons $out/share/\n\ninstall -Dm444 $src/stepmania.desktop -t $out/share/applications\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://www.stepmania.com/",
         description: "Free dance and rhythm game for Windows, Mac, and Linux",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),

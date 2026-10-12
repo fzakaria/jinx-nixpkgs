@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 46, 7], ["hash", 47, 7]], [["model-utils", 65, 5]], [["updateScript", 100, 12]], [["changelog", 103, 5], ["description", 104, 5], ["downloadPage", 105, 5], ["homepage", 106, 5], ["license", 107, 5], ["platforms", 108, 5], ["sourceProvenance", 109, 5], ["maintainers", 110, 5], ["badPlatforms", 111, 5]], [["pname", 40, 3], ["version", 41, 3], ["format", 42, 3], ["src", 44, 3], ["nativeBuildInputs", 51, 3], ["buildInputs", 53, 3], ["dependencies", 55, 3], ["optional-dependencies", 64, 3], ["preFixup", 74, 3], ["autoPatchelfIgnoreMissingDeps", 81, 3], ["pythonRemoveDeps", 90, 3], ["pythonImportsCheck", 95, 3], ["passthru", 100, 3], ["meta", 102, 3]]]);
 const formals$1 = { args: { autoPatchelfHook: false, buildPythonPackage: false, fetchurl: false, lib: false, patchelf: false, python: false, pythonAtLeast: false, stdenv: false, "openvino-native": false, "backports-strenum": false, flatbuffers: false, numpy: false, protobuf: false, tqdm: false, "typing-extensions": false, lark: false, "ml-dtypes": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 46, 7], ["hash", 47, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["model-utils", 65, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["updateScript", 100, 12]]);
-const pos$4 = nix.positions(here + "/default.nix", [["changelog", 103, 5], ["description", 104, 5], ["downloadPage", 105, 5], ["homepage", 106, 5], ["license", 107, 5], ["platforms", 108, 5], ["sourceProvenance", 109, 5], ["maintainers", 110, 5], ["badPlatforms", 111, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 40, 3], ["version", 41, 3], ["format", 42, 3], ["src", 44, 3], ["nativeBuildInputs", 51, 3], ["buildInputs", 53, 3], ["dependencies", 55, 3], ["optional-dependencies", 64, 3], ["preFixup", 74, 3], ["autoPatchelfIgnoreMissingDeps", 81, 3], ["pythonRemoveDeps", 90, 3], ["pythonImportsCheck", 95, 3], ["passthru", 100, 3], ["meta", 102, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,19 +30,19 @@ export default nix.lambda((args) => (() => {
   const pythonMajorMinor = nix.thunk(() => nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(python, "version"))));
   const source = nix.thunk(() => nix.selOr(platform, () => nix.builtins.throw(nix.thunk(() => nix.str`ai-edge-litert: unsupported python version (${pythonMajorMinor})`)), nix.key(nix.force(pythonMajorMinor))));
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "ai-edge-litert",
       version: nix.thunk(() => nix.sel(release, "version")),
       format: "wheel",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.attr(source, "url")),
           hash: nix.thunk(() => nix.attr(source, "hash")),
         })))),
       nativeBuildInputs: nix.thunk(() => [autoPatchelfHook]),
       buildInputs: nix.thunk(() => [openvino_native]),
       dependencies: nix.thunk(() => [backports_strenum, flatbuffers, numpy, protobuf, tqdm, typing_extensions]),
-      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: pos$2, "model-utils": nix.thunk(() => [lark, ml_dtypes]) })),
+      "optional-dependencies": nix.thunk(() => ({ [nix.POS]: $pos[1], "model-utils": nix.thunk(() => [lark, ml_dtypes]) })),
       preFixup: nix.thunk(() => nix.str`while IFS= read -r -d "" so; do
   ${patchelf}/bin/patchelf --replace-needed libopenvino.so.2630 libopenvino.so "$so"
   ${patchelf}/bin/patchelf --replace-needed libopenvino_tensorflow_lite_frontend.so.2630 libopenvino_tensorflow_lite_frontend.so "$so"
@@ -55,9 +51,9 @@ done < <(find "$out" -type f \\( -name '*.so' -o -name '*.so.*' \\) -print0)
       autoPatchelfIgnoreMissingDeps: nix.thunk(() => ["libQnnHtp.so", "libQnnIr.so", "libQnnSaver.so", "libQnnSystem.so"]),
       pythonRemoveDeps: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(pythonAtLeast, "3.12")), nix.thunk(() => ["backports.strenum"]))),
       pythonImportsCheck: nix.thunk(() => ["ai_edge_litert", "ai_edge_litert.interpreter"]),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$3, updateScript: nix.path(here, "./update.py") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[2], updateScript: nix.path(here, "./update.py") })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         changelog: nix.thunk(() => nix.str`https://github.com/google-ai-edge/LiteRT/releases/tag/v${nix.sel(release, "version")}`),
         description: "LiteRT is for mobile and embedded devices",
         downloadPage: "https://github.com/google-ai-edge/LiteRT",

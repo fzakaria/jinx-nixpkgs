@@ -2,26 +2,10 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["stdenv", 41, 7], ["lib", 42, 7], ["fetchurl", 43, 7], ["gitUpdater", 44, 7]], [["lib", 49, 53]], [["docSupport", 117, 13], ["rubygemsSupport", 118, 13]], [["url", 128, 13], ["hash", 129, 21]], [["NIX_RUSTFLAGS", 179, 15]], [["NROFF", 183, 15]], [["src", 205, 38], ["cargoRoot", 205, 42], ["hash", 206, 17]], [["description", 352, 13], ["homepage", 353, 13], ["license", 354, 13], ["platforms", 355, 13], ["mainProgram", 356, 13], ["knownVulnerabilities", 357, 13]], [["buildEnv", 366, 23], ["bundler", 366, 32], ["bundix", 366, 40], ["ruby", 367, 15]], [["lib", 374, 19], ["stdenv", 375, 19], ["makeBinaryWrapper", 376, 19], ["buildRubyGem", 377, 19], ["buildEnv", 378, 19], ["gemConfig", 380, 17], ["ruby", 381, 17]], [["version", 361, 13], ["rubyEngine", 362, 13], ["libPath", 363, 13], ["gemPath", 364, 13], ["devEnv", 365, 13], ["rubygems", 370, 21], ["withPackages", 383, 15], ["buildGems", 384, 15], ["gems", 385, 15]], [["baseRuby", 389, 21]], [["pname", 124, 11], ["version", 125, 19], ["src", 127, 11], ["outputs", 132, 11], ["strictDeps", 134, 11], ["nativeBuildInputs", 136, 11], ["buildInputs", 151, 11], ["propagatedBuildInputs", 172, 11], ["env", 174, 11], ["enableParallelBuilding", 186, 11], ["enableParallelInstalling", 190, 11], ["patches", 192, 11], ["cargoRoot", 200, 11], ["cargoDeps", 202, 11], ["postUnpack", 213, 11], ["postPatch", 219, 11], ["configureFlags", 224, 11], ["preConfigure", 250, 11], ["doCheck", 259, 11], ["preInstall", 261, 11], ["installFlags", 267, 11], ["postInstall", 269, 11], ["installCheckPhase", 332, 11], ["doInstallCheck", 347, 11], ["disallowedRequisites", 349, 11], ["meta", 351, 11], ["passthru", 360, 11]], [["version", 402, 5], ["hash", 403, 5], ["cargoHash", 404, 5]], [["version", 408, 5], ["hash", 409, 5], ["cargoHash", 410, 5]], [["version", 414, 5], ["hash", 415, 5], ["cargoHash", 416, 5]], [["mkRubyVersion", 398, 3], ["mkRuby", 399, 3], ["ruby_3_3", 401, 3], ["ruby_3_4", 407, 3], ["ruby_4_0", 413, 3]]]);
 const formals$1 = { args: { stdenv: false, buildPackages: false, lib: false, fetchurl: false, fetchpatch: false, zlib: false, gdbm: false, ncurses: false, readline: false, groff: false, libyaml: false, libffi: false, jemalloc: false, autoreconfHook: false, bison: false, autoconf: false, libiconv: false, libunwind: false, buildEnv: false, bundler: false, bundix: false, rustPlatform: false, rustc: false, makeBinaryWrapper: false, buildRubyGem: false, defaultGemConfig: false, removeReferencesTo: false, openssl: false, linuxPackages: false, libsystemtap: false, gitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["stdenv", 41, 7], ["lib", 42, 7], ["fetchurl", 43, 7], ["gitUpdater", 44, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["lib", 49, 53]]);
 const formals$2 = { args: { version: false, hash: false, cargoHash: true }, ellipsis: false };
 const formals$3 = { args: { stdenv: false, buildPackages: false, lib: false, fetchurl: false, fetchpatch: false, rubygemsSupport: true, zlib: false, zlibSupport: true, openssl: false, opensslSupport: true, gdbm: false, gdbmSupport: true, ncurses: false, readline: false, cursesSupport: true, groff: false, docSupport: true, libyaml: false, yamlSupport: true, libffi: false, fiddleSupport: true, jemalloc: false, jemallocSupport: true, linuxPackages: false, systemtap: true, libsystemtap: false, dtraceSupport: true, removeReferencesTo: false, jitSupport: true, rustPlatform: false, rustc: false, yjitSupport: true, autoreconfHook: false, bison: false, autoconf: false, buildEnv: false, bundler: false, bundix: false, libiconv: false, libunwind: false, makeBinaryWrapper: false, buildRubyGem: false, defaultGemConfig: false, baseRuby: true, useBaseRuby: true, gitUpdater: false }, ellipsis: false };
-const pos$3 = nix.positions(here + "/default.nix", [["docSupport", 117, 13], ["rubygemsSupport", 118, 13]]);
-const pos$4 = nix.positions(here + "/default.nix", [["url", 128, 13], ["hash", 129, 21]]);
-const pos$5 = nix.positions(here + "/default.nix", [["NIX_RUSTFLAGS", 179, 15]]);
-const pos$6 = nix.positions(here + "/default.nix", [["NROFF", 183, 15]]);
-const pos$7 = nix.positions(here + "/default.nix", [["src", 205, 38], ["cargoRoot", 205, 42], ["hash", 206, 17]]);
-const pos$8 = nix.positions(here + "/default.nix", [["description", 352, 13], ["homepage", 353, 13], ["license", 354, 13], ["platforms", 355, 13], ["mainProgram", 356, 13], ["knownVulnerabilities", 357, 13]]);
-const pos$9 = nix.positions(here + "/default.nix", [["buildEnv", 366, 23], ["bundler", 366, 32], ["bundix", 366, 40], ["ruby", 367, 15]]);
-const pos$10 = nix.positions(here + "/default.nix", [["lib", 374, 19], ["stdenv", 375, 19], ["makeBinaryWrapper", 376, 19], ["buildRubyGem", 377, 19], ["buildEnv", 378, 19], ["gemConfig", 380, 17], ["ruby", 381, 17]]);
-const pos$11 = nix.positions(here + "/default.nix", [["version", 361, 13], ["rubyEngine", 362, 13], ["libPath", 363, 13], ["gemPath", 364, 13], ["devEnv", 365, 13], ["rubygems", 370, 21], ["withPackages", 383, 15], ["buildGems", 384, 15], ["gems", 385, 15]]);
-const pos$12 = nix.positions(here + "/default.nix", [["baseRuby", 389, 21]]);
-const pos$13 = nix.positions(here + "/default.nix", [["pname", 124, 11], ["version", 125, 19], ["src", 127, 11], ["outputs", 132, 11], ["strictDeps", 134, 11], ["nativeBuildInputs", 136, 11], ["buildInputs", 151, 11], ["propagatedBuildInputs", 172, 11], ["env", 174, 11], ["enableParallelBuilding", 186, 11], ["enableParallelInstalling", 190, 11], ["patches", 192, 11], ["cargoRoot", 200, 11], ["cargoDeps", 202, 11], ["postUnpack", 213, 11], ["postPatch", 219, 11], ["configureFlags", 224, 11], ["preConfigure", 250, 11], ["doCheck", 259, 11], ["preInstall", 261, 11], ["installFlags", 267, 11], ["postInstall", 269, 11], ["installCheckPhase", 332, 11], ["doInstallCheck", 347, 11], ["disallowedRequisites", 349, 11], ["meta", 351, 11], ["passthru", 360, 11]]);
-const pos$14 = nix.positions(here + "/default.nix", [["version", 402, 5], ["hash", 403, 5], ["cargoHash", 404, 5]]);
-const pos$15 = nix.positions(here + "/default.nix", [["version", 408, 5], ["hash", 409, 5], ["cargoHash", 410, 5]]);
-const pos$16 = nix.positions(here + "/default.nix", [["version", 414, 5], ["hash", 415, 5], ["cargoHash", 416, 5]]);
-const pos$17 = nix.positions(here + "/default.nix", [["mkRubyVersion", 398, 3], ["mkRuby", 399, 3], ["ruby_3_3", 401, 3], ["ruby_3_4", 407, 3], ["ruby_4_0", 413, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -61,13 +45,13 @@ export default nix.lambda((args) => (() => {
   const ops = nix.thunk(() => nix.sel(lib, "optionals"));
   const opString = nix.thunk(() => nix.sel(lib, "optionalString"));
   const rubygems = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./rubygems")), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       stdenv: stdenv,
       lib: lib,
       fetchurl: fetchurl,
       gitUpdater: gitUpdater,
     }))));
-  const rubyVersion = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./ruby-version.nix")), nix.thunk(() => ({ [nix.POS]: pos$2, lib: lib }))));
+  const rubyVersion = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./ruby-version.nix")), nix.thunk(() => ({ [nix.POS]: $pos[1], lib: lib }))));
   const generic = nix.lambda((args_2) => (() => {
     const $_1 = nix.formals(args_2, formals$2);
     const version = nix.arg($_1, "version");
@@ -120,15 +104,15 @@ export default nix.lambda((args) => (() => {
         const makeBinaryWrapper_1 = nix.arg($_2, "makeBinaryWrapper");
         const buildRubyGem_1 = nix.arg($_2, "buildRubyGem");
         const defaultGemConfig_1 = nix.arg($_2, "defaultGemConfig");
-        const baseRuby = nix.argOr($_2, "baseRuby", () => nix.app(nix.sel(buildPackages_1, "ruby", "override"), nix.thunk(() => ({ [nix.POS]: pos$3, docSupport: false, rubygemsSupport: false }))));
+        const baseRuby = nix.argOr($_2, "baseRuby", () => nix.app(nix.sel(buildPackages_1, "ruby", "override"), nix.thunk(() => ({ [nix.POS]: $pos[2], docSupport: false, rubygemsSupport: false }))));
         const useBaseRuby = nix.argOr($_2, "useBaseRuby", () => !nix.eq(nix.sel(stdenv_1, "hostPlatform"), nix.sel(stdenv_1, "buildPlatform")));
         const gitUpdater_1 = nix.arg($_2, "gitUpdater");
         return nix.app(nix.sel(stdenv_1, "mkDerivation"), (finalAttrs) => ({
-            [nix.POS]: pos$13,
+            [nix.POS]: $pos[12],
             pname: "ruby",
             version: version,
             src: nix.thunk(() => nix.app(fetchurl_1, nix.thunk(() => ({
-                [nix.POS]: pos$4,
+                [nix.POS]: $pos[3],
                 url: nix.thunk(() => nix.str`https://cache.ruby-lang.org/pub/ruby/${nix.sel(ver, "majMin")}/ruby-${ver}.tar.gz`),
                 hash: hash,
               })))),
@@ -138,15 +122,15 @@ export default nix.lambda((args) => (() => {
             buildInputs: nix.thunk(() => nix.concat([autoconf_1], nix.concat(nix.app(op, fiddleSupport, libffi_1), nix.concat(nix.app(ops, cursesSupport, nix.thunk(() => [ncurses_1, readline_1])), nix.concat(nix.app(op, zlibSupport, zlib_1), nix.concat(nix.app(op, opensslSupport, openssl_1), nix.concat(nix.app(op, gdbmSupport, gdbm_1), nix.concat(nix.app(op, yamlSupport, libyaml_1), nix.concat(nix.app(op, nix.thunk(() => (nix.asBool(!nix.asBool(cursesSupport)) && nix.asBool(nix.sel(stdenv_1, "hostPlatform", "isDarwin")))), readline_1), nix.app(ops, nix.thunk(() => nix.sel(stdenv_1, "hostPlatform", "isDarwin")), nix.thunk(() => [libiconv_1, libunwind_1]))))))))))),
             propagatedBuildInputs: nix.thunk(() => nix.app(op, jemallocSupport, jemalloc_1)),
             env: nix.thunk(() => nix.update(nix.app(nix.sel(lib_1, "optionalAttrs"), nix.thunk(() => (nix.asBool(!nix.eq(nix.sel(stdenv_1, "hostPlatform"), nix.sel(stdenv_1, "buildPlatform"))) && nix.asBool(yjitSupport))), nix.thunk(() => ({
-                [nix.POS]: pos$5,
+                [nix.POS]: $pos[4],
                 NIX_RUSTFLAGS: nix.thunk(() => nix.str`--target ${nix.sel(stdenv_1, "hostPlatform", "rust", "rustcTargetSpec")}`),
-              }))), nix.app(nix.sel(lib_1, "optionalAttrs"), docSupport, nix.thunk(() => ({ [nix.POS]: pos$6, NROFF: nix.thunk(() => nix.str`${groff_1}/bin/nroff`) }))))),
+              }))), nix.app(nix.sel(lib_1, "optionalAttrs"), docSupport, nix.thunk(() => ({ [nix.POS]: $pos[5], NROFF: nix.thunk(() => nix.str`${groff_1}/bin/nroff`) }))))),
             enableParallelBuilding: true,
             enableParallelInstalling: false,
             patches: nix.thunk(() => nix.concat(nix.app(op, useBaseRuby, nix.path(here, "./do-not-update-gems-baseruby-3.2.patch")), [nix.path(here, "./dont-refer-to-build-dir.patch")])),
             cargoRoot: nix.thunk(() => nix.app(opString, yjitSupport, "yjit")),
             cargoDeps: nix.thunk(() => (nix.asBool(yjitSupport) ? nix.app(nix.sel(rustPlatform_1, "fetchCargoVendor"), nix.thunk(() => ({
-                [nix.POS]: pos$7,
+                [nix.POS]: $pos[6],
                 src: nix.thunk(() => nix.attr(finalAttrs, "src")),
                 cargoRoot: nix.thunk(() => nix.attr(finalAttrs, "cargoRoot")),
                 hash: nix.thunk(() => (() => {
@@ -248,7 +232,7 @@ fi
             doInstallCheck: true,
             disallowedRequisites: nix.thunk(() => nix.concat(nix.app(op, nix.thunk(() => !nix.asBool(jitSupport)), nix.thunk(() => nix.sel(stdenv_1, "cc"))), nix.app(op, useBaseRuby, baseRuby))),
             meta: nix.thunk(() => ({
-              [nix.POS]: pos$8,
+              [nix.POS]: $pos[7],
               description: "Object-oriented language for quick and easy programming",
               homepage: "https://www.ruby-lang.org/",
               license: nix.thunk(() => nix.sel(lib_1, "licenses", "ruby")),
@@ -262,7 +246,7 @@ fi
               const libPath = nix.thunk(() => nix.str`lib/${rubyEngine}/${nix.sel(ver, "libDir")}`);
               const gemPath = nix.thunk(() => nix.str`lib/${rubyEngine}/gems/${nix.sel(ver, "libDir")}`);
               const devEnv = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./dev.nix")), nix.thunk(() => ({
-                  [nix.POS]: pos$9,
+                  [nix.POS]: $pos[8],
                   buildEnv: buildEnv_1,
                   bundler: bundler_1,
                   bundix: bundix_1,
@@ -270,7 +254,7 @@ fi
                 }))));
               const rubygems_1 = rubygems;
               const from = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../ruby-modules/with-packages")), nix.thunk(() => ({
-                  [nix.POS]: pos$10,
+                  [nix.POS]: $pos[9],
                   lib: lib_1,
                   stdenv: stdenv_1,
                   makeBinaryWrapper: makeBinaryWrapper_1,
@@ -283,7 +267,7 @@ fi
               const buildGems = nix.thunk(() => nix.attr(from, "buildGems"));
               const gems = nix.thunk(() => nix.attr(from, "gems"));
               return {
-                [nix.POS]: pos$11,
+                [nix.POS]: $pos[10],
                 version: version_1,
                 rubyEngine,
                 libPath,
@@ -294,29 +278,29 @@ fi
                 buildGems,
                 gems,
               };
-            })(), nix.app(nix.sel(lib_1, "optionalAttrs"), useBaseRuby, nix.thunk(() => ({ [nix.POS]: pos$12, baseRuby: baseRuby }))))),
+            })(), nix.app(nix.sel(lib_1, "optionalAttrs"), useBaseRuby, nix.thunk(() => ({ [nix.POS]: $pos[11], baseRuby: baseRuby }))))),
           }));
       })(), formals$3), args_1));
     return nix.force(rubyDrv);
   })(), formals$2);
   return {
-    [nix.POS]: pos$17,
+    [nix.POS]: $pos[16],
     mkRubyVersion: rubyVersion,
     mkRuby: generic,
     ruby_3_3: nix.thunk(() => nix.app(generic, nix.thunk(() => ({
-        [nix.POS]: pos$14,
+        [nix.POS]: $pos[13],
         version: nix.thunk(() => nix.app(rubyVersion, "3", "3", "10", "")),
         hash: "sha256-tVW6pGejBs/I5sbtJNDSeyfpob7R2R2VUJhZ6saw6Sg=",
         cargoHash: "sha256-xE7Cv+NVmOHOlXa/Mg72CTSaZRb72lOja98JBvxPvSs=",
       })))),
     ruby_3_4: nix.thunk(() => nix.app(generic, nix.thunk(() => ({
-        [nix.POS]: pos$15,
+        [nix.POS]: $pos[14],
         version: nix.thunk(() => nix.app(rubyVersion, "3", "4", "9", "")),
         hash: "sha256-e7TU9egHzCclHRTZ1ghtGCxbJYdRkeRKsVtwnNen3Zw=",
         cargoHash: "sha256-5Tp8Kth0yO89/LIcU8K01z6DdZRr8MAA0DPKqDEjIt0=",
       })))),
     ruby_4_0: nix.thunk(() => nix.app(generic, nix.thunk(() => ({
-        [nix.POS]: pos$16,
+        [nix.POS]: $pos[15],
         version: nix.thunk(() => nix.app(rubyVersion, "4", "0", "7", "")),
         hash: "sha256-kRrOIPkNBoyg5N2m0OTw+B5S5S8t1PQATHIeJTQS6C0=",
         cargoHash: "sha256-z7NwWc4TaR042hNx0xgRkh/BQEpEJtE53cfrN0qNiE0=",

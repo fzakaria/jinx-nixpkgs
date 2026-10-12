@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["django", 16, 7], ["django-allauth-async", 17, 7], ["glitchtip-rust", 18, 7]], [["self", 14, 5], ["packageOverrides", 15, 5]], [["owner", 86, 5], ["repo", 87, 5], ["tag", 88, 5], ["hash", 89, 5]], [["url", 95, 7], ["includes", 96, 7], ["hash", 100, 7]], [["glitchtip", 146, 36]], [["frontend", 144, 13], ["python", 144, 22], ["django-allauth-async", 145, 27], ["glitchtip-rust", 145, 48], ["tests", 146, 5], ["updateScript", 147, 5]], [["description", 151, 5], ["homepage", 152, 5], ["changelog", 153, 5], ["license", 154, 5], ["maintainers", 155, 5], ["mainProgram", 159, 5]], [["pname", 81, 3], ["version", 82, 3], ["pyproject", 83, 3], ["src", 85, 3], ["patches", 92, 3], ["postPatch", 104, 3], ["propagatedBuildInputs", 112, 3], ["nativeBuildInputs", 114, 3], ["buildPhase", 119, 3], ["installPhase", 131, 3], ["passthru", 143, 3], ["meta", 150, 3]]]);
 const formals$1 = { args: { lib: false, python314: false, fetchFromGitLab: false, fetchpatch: false, callPackage: false, stdenv: false, makeWrapper: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["django", 16, 7], ["django-allauth-async", 17, 7], ["glitchtip-rust", 18, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["self", 14, 5], ["packageOverrides", 15, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["owner", 86, 5], ["repo", 87, 5], ["tag", 88, 5], ["hash", 89, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["url", 95, 7], ["includes", 96, 7], ["hash", 100, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["glitchtip", 146, 36]]);
-const pos$6 = nix.positions(here + "/package.nix", [["frontend", 144, 13], ["python", 144, 22], ["django-allauth-async", 145, 27], ["glitchtip-rust", 145, 48], ["tests", 146, 5], ["updateScript", 147, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["description", 151, 5], ["homepage", 152, 5], ["changelog", 153, 5], ["license", 154, 5], ["maintainers", 155, 5], ["mainProgram", 159, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 81, 3], ["version", 82, 3], ["pyproject", 83, 3], ["src", 85, 3], ["patches", 92, 3], ["postPatch", 104, 3], ["propagatedBuildInputs", 112, 3], ["nativeBuildInputs", 114, 3], ["buildPhase", 119, 3], ["installPhase", 131, 3], ["passthru", 143, 3], ["meta", 150, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,10 +16,10 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const nixosTests = nix.arg($, "nixosTests");
   const python = nix.thunk(() => nix.app(nix.sel(python314, "override"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       self: python,
       packageOverrides: (final) => (prev) => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         django: nix.thunk(() => nix.sel(final, "django_6")),
         "django-allauth-async": nix.thunk(() => nix.app(nix.sel(final, "callPackage"), nix.path(here, "./django-allauth-async.nix"), nix.thunk(() => ({})))),
         "glitchtip-rust": nix.thunk(() => nix.app(nix.sel(final, "callPackage"), nix.path(here, "./glitchtip-rust.nix"), nix.thunk(() => ({})))),
@@ -78,12 +71,12 @@ export default nix.lambda((args) => (() => {
   })());
   const frontend = nix.thunk(() => nix.app(callPackage, nix.path(here, "./frontend.nix"), nix.thunk(() => ({}))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "glitchtip",
       version: "6.2.6",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           owner: "glitchtip",
           repo: "glitchtip-backend",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -91,7 +84,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             url: "https://gitlab.com/glitchtip/glitchtip-backend/-/commit/4cf8c9d1518f5835b71c0692a72b63d8a62bea4a.patch",
             includes: nix.thunk(() => ["glitchtip/ingest_asgi.py", "glitchtip/settings.py"]),
             hash: "sha256-FwOJYSsJcJoqUwuHwHPWkzQqVB81Chex4RFTIhl82XM=",
@@ -114,20 +107,20 @@ runHook postBuild
       passthru: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(python, "pkgs"));
         return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         frontend: frontend,
         python: python,
         "django-allauth-async": nix.thunk(() => nix.attr(from, "django-allauth-async")),
         "glitchtip-rust": nix.thunk(() => nix.attr(from, "glitchtip-rust")),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           glitchtip: nix.thunk(() => nix.attr(nixosTests, "glitchtip")),
         })),
         updateScript: nix.path(here, "./update.sh"),
       };
       })()),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "Open source Sentry API compatible error tracking platform",
         homepage: "https://glitchtip.com",
         changelog: nix.thunk(() => nix.str`https://gitlab.com/glitchtip/glitchtip-backend/-/blob/v${nix.sel(finalAttrs, "version")}/CHANGELOG`),

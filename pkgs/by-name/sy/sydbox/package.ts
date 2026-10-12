@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 23, 5], ["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]], [["package", 71, 7], ["command", 72, 7]], [["version", 70, 11]], [["tests", 70, 5], ["updateScript", 75, 5]], [["description", 79, 5], ["homepage", 80, 5], ["changelog", 81, 5], ["license", 82, 5], ["maintainers", 83, 5], ["mainProgram", 84, 5], ["platforms", 85, 5]], [["pname", 14, 3], ["version", 15, 3], ["outputs", 17, 3], ["src", 22, 3], ["cargoHash", 30, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 38, 3], ["makeFlags", 40, 3], ["checkFlags", 42, 3], ["postInstall", 63, 3], ["passthru", 69, 3], ["meta", 78, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitLab: false, libseccomp: false, mandoc: false, "nix-update-script": false, "pkg-config": false, rustPlatform: false, scdoc: false, testers: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 23, 5], ["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["package", 71, 7], ["command", 72, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 70, 11]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 70, 5], ["updateScript", 75, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 79, 5], ["homepage", 80, 5], ["changelog", 81, 5], ["license", 82, 5], ["maintainers", 83, 5], ["mainProgram", 84, 5], ["platforms", 85, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["outputs", 17, 3], ["src", 22, 3], ["cargoHash", 30, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 38, 3], ["makeFlags", 40, 3], ["checkFlags", 42, 3], ["postInstall", 63, 3], ["passthru", 69, 3], ["meta", 78, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const scdoc = nix.arg($, "scdoc");
   const testers = nix.arg($, "testers");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "sydbox",
       version: "3.51.2",
       outputs: nix.thunk(() => ["out", "man"]),
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "gitlab.exherbo.org",
           owner: "Sydbox",
           repo: "sydbox",
@@ -51,11 +46,11 @@ export default nix.lambda((args) => (() => {
       ]),
       postInstall: "mkdir -p $out/share/man/man{1,2,5,7}\n\nmake $makeFlags install-{man,vim}\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               command: "syd -V",
             })))),
@@ -63,7 +58,7 @@ export default nix.lambda((args) => (() => {
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Seccomp-based application sandbox",
         homepage: "https://gitlab.exherbo.org/sydbox/sydbox",
         changelog: nix.thunk(() => nix.str`https://gitlab.exherbo.org/sydbox/sydbox/-/blob/${nix.sel(finalAttrs, "src", "tag")}/ChangeLog.md`),

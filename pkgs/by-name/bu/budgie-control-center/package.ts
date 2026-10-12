@@ -2,16 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["budgie_desktop", 65, 7], ["wdisplays", 66, 15]], [["owner", 75, 5], ["repo", 76, 5], ["tag", 77, 5], ["fetchSubmodules", 78, 5], ["hash", 79, 5]], [["budgie_desktop", 84, 7], ["cups", 86, 9], ["shadow", 87, 9], ["networkmanagerapplet", 89, 15], ["tzdata", 89, 36]], [["extraLoaders", 151, 9]], [["package", 175, 43]], [["version", 175, 11]], [["tests", 175, 5], ["updateScript", 176, 5]], [["description", 180, 5], ["homepage", 181, 5], ["changelog", 182, 5], ["license", 183, 5], ["teams", 184, 5], ["mainProgram", 185, 5], ["platforms", 186, 5]], [["pname", 71, 3], ["version", 72, 3], ["src", 74, 3], ["patches", 82, 3], ["nativeBuildInputs", 93, 3], ["buildInputs", 104, 3], ["mesonFlags", 139, 3], ["preConfigure", 141, 3], ["postInstall", 146, 3], ["preFixup", 162, 3], ["separateDebugInfo", 172, 3], ["passthru", 174, 3], ["meta", 179, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, replaceVars: false, accountsservice: false, "budgie-desktop": false, colord: false, "colord-gtk": false, cups: false, "docbook-xsl-nons": false, fontconfig: false, gcr_3: false, "gdk-pixbuf": false, gettext: false, glib: false, "glib-networking": false, glibc: false, gnome: false, gst_all_1: false, "gnome-desktop": false, "gnome-settings-daemon": false, "gnome-tecla": false, "gsettings-desktop-schemas": false, gsound: false, gtk3: false, ibus: false, libepoxy: false, libgtop: false, libgudev: false, libhandy: false, libjxl: false, libkrb5: false, libnma: false, libpulseaudio: false, libpwquality: false, librsvg: false, libsecret: false, libxml2: false, libxslt: false, meson: false, modemmanager: false, networkmanager: false, networkmanagerapplet: false, ninja: false, "nix-update-script": false, "pkg-config": false, polkit: false, samba: false, shadow: false, "shared-mime-info": false, testers: false, tzdata: false, udisks: false, upower: false, wdisplays: false, "webp-pixbuf-loader": false, wrapGAppsHook3: false, enableSshSocket: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["budgie_desktop", 65, 7], ["wdisplays", 66, 15]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 75, 5], ["repo", 76, 5], ["tag", 77, 5], ["fetchSubmodules", 78, 5], ["hash", 79, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["budgie_desktop", 84, 7], ["cups", 86, 9], ["shadow", 87, 9], ["networkmanagerapplet", 89, 15], ["tzdata", 89, 36]]);
-const pos$4 = nix.positions(here + "/package.nix", [["extraLoaders", 151, 9]]);
-const pos$5 = nix.positions(here + "/package.nix", [["package", 175, 43]]);
-const pos$6 = nix.positions(here + "/package.nix", [["version", 175, 11]]);
-const pos$7 = nix.positions(here + "/package.nix", [["tests", 175, 5], ["updateScript", 176, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["description", 180, 5], ["homepage", 181, 5], ["changelog", 182, 5], ["license", 183, 5], ["teams", 184, 5], ["mainProgram", 185, 5], ["platforms", 186, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["pname", 71, 3], ["version", 72, 3], ["src", 74, 3], ["patches", 82, 3], ["nativeBuildInputs", 93, 3], ["buildInputs", 104, 3], ["mesonFlags", 139, 3], ["preConfigure", 141, 3], ["postInstall", 146, 3], ["preFixup", 162, 3], ["separateDebugInfo", 172, 3], ["passthru", 174, 3], ["meta", 179, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -73,13 +65,13 @@ export default nix.lambda((args) => (() => {
   const webp_pixbuf_loader = nix.arg($, "webp-pixbuf-loader");
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   const enableSshSocket = nix.argOr($, "enableSshSocket", () => false);
-  const introduction_list = nix.thunk(() => nix.app(replaceVars, nix.path(here, "./introduction.list"), nix.thunk(() => ({ [nix.POS]: pos$1, budgie_desktop: budgie_desktop, wdisplays: wdisplays }))));
+  const introduction_list = nix.thunk(() => nix.app(replaceVars, nix.path(here, "./introduction.list"), nix.thunk(() => ({ [nix.POS]: $pos[0], budgie_desktop: budgie_desktop, wdisplays: wdisplays }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       pname: "budgie-control-center",
       version: "2.1.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "BuddiesOfBudgie",
           repo: "budgie-control-center",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -88,7 +80,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./paths.patch"), nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             budgie_desktop: budgie_desktop,
             cups: cups,
             shadow: shadow,
@@ -147,7 +139,7 @@ addToSearchPath "XDG_DATA_DIRS" "${nix.sel(polkit, "out")}/share"
       postInstall: nix.thunk(() => nix.str`# Pull in WebP support for gnome-backgrounds.
 # In postInstall to run before gappsWrapperArgsHook.
 export GDK_PIXBUF_MODULE_FILE="${nix.app(nix.sel(gnome, "_gdkPixbufCacheBuilder_DO_NOT_USE"), nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           extraLoaders: nix.thunk(() => [libjxl, librsvg, webp_pixbuf_loader]),
         })))}"
 
@@ -163,18 +155,18 @@ install -Dm644 ${introduction_list} $out/share/budgie-control-center/introductio
 `),
       separateDebugInfo: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         description: "Fork of GNOME Control Center for the Budgie 10 Series",
         homepage: "https://github.com/BuddiesOfBudgie/budgie-control-center",
         changelog: nix.thunk(() => nix.str`https://github.com/BuddiesOfBudgie/budgie-control-center/releases/tag/v${nix.sel(finalAttrs, "version")}`),

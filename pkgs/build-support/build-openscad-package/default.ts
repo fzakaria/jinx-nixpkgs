@@ -2,10 +2,9 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 22, 9], ["version", 23, 9], ["libName", 24, 9], ["installTargets", 25, 9], ["__structuredAttrs", 28, 7], ["name", 29, 7], ["strictDeps", 31, 7], ["realBuilder", 34, 7], ["installPhase", 36, 7]], [["constructDrv", 8, 3], ["extendDrvArgs", 9, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, buildPackages: false }, ellipsis: false };
 const formals$2 = { args: { pname: false, version: false, libName: true, installTargets: true }, ellipsis: true };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 22, 9], ["version", 23, 9], ["libName", 24, 9], ["installTargets", 25, 9], ["__structuredAttrs", 28, 7], ["name", 29, 7], ["strictDeps", 31, 7], ["realBuilder", 34, 7], ["installPhase", 36, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["constructDrv", 8, 3], ["extendDrvArgs", 9, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,7 +12,7 @@ export default nix.lambda((args) => (() => {
   const stdenvNoCC = nix.arg($, "stdenvNoCC");
   const buildPackages = nix.arg($, "buildPackages");
   return nix.app(nix.sel(lib, "extendMkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       constructDrv: nix.thunk(() => nix.sel(stdenvNoCC, "mkDerivation")),
       extendDrvArgs: (finalAttrs) => nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
@@ -23,7 +22,7 @@ export default nix.lambda((args) => (() => {
         const libName = nix.argOr($_1, "libName", () => nix.force(pname));
         const installTargets = nix.argOr($_1, "installTargets", () => ["."]);
         return {
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           libName: libName,

@@ -2,11 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/build-neovim-plugin.nix", [[["lua_modules_path", 33, 7], ["lib_modules_path", 35, 7]], [["version", 28, 5], ["__intentionallyOverridingVersion", 29, 5], ["rockspecVersion", 30, 5], ["luarocksConfig", 31, 5]], [["nativeBuildInputs", 44, 9], ["version", 47, 9], ["__intentionallyOverridingVersion", 52, 9]]]);
 const formals$1 = { args: { lib: false, lua: false, toVimPlugin: false }, ellipsis: false };
 const formals$2 = { args: { luaAttr: true }, ellipsis: true };
-const pos$1 = nix.positions(here + "/build-neovim-plugin.nix", [["lua_modules_path", 33, 7], ["lib_modules_path", 35, 7]]);
-const pos$2 = nix.positions(here + "/build-neovim-plugin.nix", [["version", 28, 5], ["__intentionallyOverridingVersion", 29, 5], ["rockspecVersion", 30, 5], ["luarocksConfig", 31, 5]]);
-const pos$3 = nix.positions(here + "/build-neovim-plugin.nix", [["nativeBuildInputs", 44, 9], ["version", 47, 9], ["__intentionallyOverridingVersion", 52, 9]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,14 +18,14 @@ export default nix.lambda((args) => (() => {
     const luaAttr = nix.argOr($_1, "luaAttr", () => nix.sel(lua, "pkgs", nix.key(nix.app(normalizeName, nix.thunk(() => nix.sel(attrs, "pname"))))));
     const originalLuaDrv = nix.thunk(() => (nix.asBool(nix.eq(nix.app(nix.sel(lib, "typeOf"), luaAttr), "string")) ? nix.app(nix.sel(lib, "warn"), "luaAttr as string is deprecated since September 2024. Pass a lua derivation directly ( e.g., `buildNeovimPlugin { luaAttr = lua.pkgs.plenary-nvim; }`)", nix.thunk(() => nix.sel(lua, "pkgs", nix.key(nix.app(normalizeName, luaAttr))))) : nix.force(luaAttr)));
     const luaDrv = nix.thunk(() => nix.app(nix.sel(originalLuaDrv, "overrideAttrs"), (old) => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         version: nix.thunk(() => nix.selOr(attrs, () => nix.sel(old, "version"), "version")),
         __intentionallyOverridingVersion: true,
         rockspecVersion: nix.thunk(() => nix.sel(old, "rockspecVersion")),
-        luarocksConfig: nix.thunk(() => nix.update(nix.selOr(old, () => ({}), "luarocksConfig"), { [nix.POS]: pos$1, lua_modules_path: "lua", lib_modules_path: "lua" })),
+        luarocksConfig: nix.thunk(() => nix.update(nix.selOr(old, () => ({}), "luarocksConfig"), { [nix.POS]: $pos[0], lua_modules_path: "lua", lib_modules_path: "lua" })),
       })));
     const finalDrv = nix.thunk(() => nix.app(toVimPlugin, nix.thunk(() => nix.app(nix.sel(luaDrv, "overrideAttrs"), (old) => nix.update(attrs, {
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           nativeBuildInputs: nix.thunk(() => nix.concat(nix.selOr(old, () => [], "nativeBuildInputs"), [nix.thunk(() => nix.sel(lua, "pkgs", "luarocksMoveDataFolder"))])),
           version: nix.thunk(() => (nix.asBool(nix.has(attrs, "version")) ? nix.str`${nix.sel(originalLuaDrv, "version")}-unstable-${nix.sel(attrs, "version")}` : nix.sel(originalLuaDrv, "version"))),
           __intentionallyOverridingVersion: true,

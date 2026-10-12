@@ -2,15 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 19, 5], ["sha256", 20, 5]], [["NIX_LDFLAGS", 45, 7]], [["nativeBuildInputs", 77, 7], ["pythonImportsCheck", 78, 7], ["postBuild", 86, 7]], [["pythonModule", 74, 18]], [["tests", 74, 12]], [["description", 93, 5], ["mainProgram", 94, 5], ["homepage", 95, 5], ["changelog", 96, 5], ["license", 97, 5], ["platforms", 98, 5], ["maintainers", 99, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["postPatch", 23, 3], ["strictDeps", 35, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 37, 3], ["env", 45, 3], ["preConfigure", 55, 3], ["makeFlags", 61, 3], ["postFixup", 65, 3], ["passthru", 74, 3], ["meta", 92, 3]]]);
 const formals$1 = { args: { lib: false, fetchurl: false, stdenv: false, slang: false, popt: false, python3: false, gettext: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 19, 5], ["sha256", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_LDFLAGS", 45, 7]]);
 const formals$2 = { args: { nativeBuildInputs: false, postBuild: false }, ellipsis: true };
-const pos$3 = nix.positions(here + "/package.nix", [["nativeBuildInputs", 77, 7], ["pythonImportsCheck", 78, 7], ["postBuild", 86, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pythonModule", 74, 18]]);
-const pos$5 = nix.positions(here + "/package.nix", [["tests", 74, 12]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 93, 5], ["mainProgram", 94, 5], ["homepage", 95, 5], ["changelog", 96, 5], ["license", 97, 5], ["platforms", 98, 5], ["maintainers", 99, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["postPatch", 23, 3], ["strictDeps", 35, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 37, 3], ["env", 45, 3], ["preConfigure", 55, 3], ["makeFlags", 61, 3], ["postFixup", 65, 3], ["passthru", 74, 3], ["meta", 92, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const pname = "newt";
       const version = "0.52.24";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://releases.pagure.org/newt/newt-${version}.tar.gz`),
           sha256: "sha256-Xe1+Ih+F9kJSHEmxgmyN4ZhFqjcrr11jClF3S1RPvbs=",
         }))));
@@ -44,7 +38,7 @@ substituteInPlace Makefile.in \\
       const nativeBuildInputs = nix.thunk(() => [python3]);
       const buildInputs = nix.thunk(() => nix.concat([slang, popt], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [gettext]))));
       const env = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_LDFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.concat(["-lncurses"], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => [
               nix.thunk(() => nix.str`-L${python3}/lib`),
               nix.thunk(() => nix.str`-lpython${nix.sel(python3, "pythonVersion")}`),
@@ -62,16 +56,16 @@ install_name_tool -change libnewt.so.${version} $out/lib/libnewt.so.${version} \
 set +x
 `)));
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           pythonModule: nix.thunk(() => nix.app(nix.sel(nix.app(nix.sel(python3, "withPackages"), (ps) => [nix.thunk(() => nix.sel(ps, "snack"))]), "overrideAttrs"), nix.lambda((args_1) => (() => {
               const $_1 = nix.formals(args_1, formals$2);
               const _prevAttrs = args_1;
               const nativeBuildInputs_1 = nix.arg($_1, "nativeBuildInputs");
               const postBuild = nix.arg($_1, "postBuild");
               return {
-                [nix.POS]: pos$3,
+                [nix.POS]: $pos[2],
                 nativeBuildInputs: nix.thunk(() => nix.concat(nativeBuildInputs_1, [nix.thunk(() => nix.sel(python3, "pkgs", "pythonImportsCheckHook"))])),
                 pythonImportsCheck: nix.thunk(() => ["snack"]),
                 postBuild: nix.thunk(() => nix.add(postBuild, "runPhase pythonImportsCheckPhase\n")),
@@ -80,7 +74,7 @@ set +x
         })),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Library for color text mode, widget based user interfaces",
         mainProgram: "whiptail",
         homepage: "https://pagure.io/newt",
@@ -93,7 +87,7 @@ set +x
         })()),
       }));
       return {
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         pname,
         version,
         src,

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 13, 5], ["sha256", 14, 5]], [["CFLAGS", 17, 7]], [["description", 23, 5], ["homepage", 24, 5], ["license", 25, 5], ["platforms", 26, 5], ["maintainers", 27, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["env", 17, 3], ["preConfigure", 20, 3], ["meta", 22, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, libtool: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 13, 5], ["sha256", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["CFLAGS", 17, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 23, 5], ["homepage", 24, 5], ["license", 25, 5], ["platforms", 26, 5], ["maintainers", 27, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["env", 17, 3], ["preConfigure", 20, 3], ["meta", 22, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,18 +12,18 @@ export default nix.lambda((args) => (() => {
   const fetchurl = nix.arg($, "fetchurl");
   const libtool = nix.arg($, "libtool");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "libxmi",
       version: "1.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnu/libxmi/libxmi-${nix.sel(finalAttrs, "version")}.tar.gz`),
           sha256: "03d4ikh29l38rl1wavb0icw7m5pp7yilnv7bb2k8qij1dinsymlx",
         })))),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, CFLAGS: "-std=gnu89" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], CFLAGS: "-std=gnu89" })),
       preConfigure: nix.thunk(() => nix.str`cp ${libtool}/share/libtool/build-aux/config.sub .`),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Library for rasterizing 2-D vector graphics",
         homepage: "https://www.gnu.org/software/libxmi/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

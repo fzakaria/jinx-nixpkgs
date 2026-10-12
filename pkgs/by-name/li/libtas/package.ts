@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 28, 5], ["repo", 29, 5], ["rev", 30, 5], ["hash", 31, 5]], [["url", 36, 7], ["hash", 37, 7]], [["url", 41, 7], ["hash", 42, 7]], [["homepage", 90, 5], ["changelog", 91, 5], ["description", 92, 5], ["license", 93, 5], ["maintainers", 94, 5], ["mainProgram", 95, 5], ["platforms", 96, 5]], [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["patches", 33, 3], ["nativeBuildInputs", 46, 3], ["buildInputs", 51, 3], ["configureFlags", 59, 3], ["postInstall", 63, 3], ["enableParallelBuilding", 68, 3], ["postFixup", 70, 3], ["meta", 89, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchurl: false, fetchpatch2: false, autoreconfHook: false, "pkg-config": false, SDL2: false, "alsa-lib": false, ffmpeg: false, lua5_4: false, qt5: false, libxi: false, file: false, binutils: false, withForceX11: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 28, 5], ["repo", 29, 5], ["rev", 30, 5], ["hash", 31, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 36, 7], ["hash", 37, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 41, 7], ["hash", 42, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 90, 5], ["changelog", 91, 5], ["description", 92, 5], ["license", 93, 5], ["maintainers", 94, 5], ["mainProgram", 95, 5], ["platforms", 96, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 24, 3], ["version", 25, 3], ["src", 27, 3], ["patches", 33, 3], ["nativeBuildInputs", 46, 3], ["buildInputs", 51, 3], ["configureFlags", 59, 3], ["postInstall", 63, 3], ["enableParallelBuilding", 68, 3], ["postFixup", 70, 3], ["meta", 89, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,11 +24,11 @@ export default nix.lambda((args) => (() => {
   const binutils = nix.arg($, "binutils");
   const withForceX11 = nix.argOr($, "withForceX11", () => true);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "libtas",
       version: "1.4.6",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "clementgallet",
           repo: "libTAS",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -40,12 +36,12 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/clementgallet/libTAS/commit/779ff0fb0f3accfc62949680d85ecf96b28d18ef.patch",
             hash: "sha256-xAaTWIXt8FkMu6GE5mBWtLypROFZ1aEqmBTtG+6rTWk=",
           })))),
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: "https://github.com/clementgallet/libTAS/commit/9699b158c522cf778bcdf626d0520fdd0a8b83aa.patch?full_index=1",
             hash: "sha256-vM1f6rvKIFyzEGJ7k+b/Zp4gAv8u6mdDUD5evV+hCJU=",
           })))),
@@ -62,7 +58,7 @@ export default nix.lambda((args) => (() => {
   --set-default LIBTAS_SO_PATH $out/lib/libtas.so
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://clementgallet.github.io/libTAS/",
         changelog: nix.thunk(() => nix.str`https://github.com/clementgallet/libTAS/blob/${nix.sel(finalAttrs, "src", "rev")}/CHANGELOG.md`),
         description: "GNU/Linux software to give TAS tools to games",

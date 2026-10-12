@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/0.nix", [[["owner", 44, 5], ["repo", 45, 5], ["tag", 46, 5], ["hash", 47, 5]], [["LC_ALL", 61, 7]], [["name", 76, 7], ["url", 77, 7], ["hash", 78, 7]], [["changelog", 101, 5], ["description", 102, 5], ["homepage", 103, 5], ["license", 104, 5]], [["pname", 36, 3], ["version", 37, 3], ["pyproject", 38, 3], ["disabled", 41, 3], ["src", 43, 3], ["nativeBuildInputs", 50, 3], ["nativeCheckInputs", 55, 3], ["env", 61, 3], ["patches", 63, 3], ["checkPhase", 82, 3], ["doCheck", 93, 3], ["setupHook", 98, 3], ["meta", 100, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitHub: false, fetchpatch: false, setuptools: false, python: false, "pkg-config": false, pythonAtLeast: false, gdb: false, numpy: false, ncurses: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/0.nix", [["owner", 44, 5], ["repo", 45, 5], ["tag", 46, 5], ["hash", 47, 5]]);
-const pos$2 = nix.positions(here + "/0.nix", [["LC_ALL", 61, 7]]);
-const pos$3 = nix.positions(here + "/0.nix", [["name", 76, 7], ["url", 77, 7], ["hash", 78, 7]]);
-const pos$4 = nix.positions(here + "/0.nix", [["changelog", 101, 5], ["description", 102, 5], ["homepage", 103, 5], ["license", 104, 5]]);
-const pos$5 = nix.positions(here + "/0.nix", [["pname", 36, 3], ["version", 37, 3], ["pyproject", 38, 3], ["disabled", 41, 3], ["src", 43, 3], ["nativeBuildInputs", 50, 3], ["nativeCheckInputs", 55, 3], ["env", 61, 3], ["patches", 63, 3], ["checkPhase", 82, 3], ["doCheck", 93, 3], ["setupHook", 98, 3], ["meta", 100, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,13 +21,13 @@ export default nix.lambda((args) => (() => {
   const ncurses = nix.arg($, "ncurses");
   const excludedTests = nix.thunk(() => nix.concat(["reimport_from_subinterpreter"], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.selOr(stdenv, () => false, "cc", "isClang")), nix.thunk(() => ["cpdef_extern_func", "libcpp_algo"])), nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isAarch64")), nix.thunk(() => ["numpy_memoryview"])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isi686")), nix.thunk(() => ["future_division", "overflow_check_longlong"]))))));
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "cython",
       version: "0.29.37",
       pyproject: true,
       disabled: nix.thunk(() => nix.app(pythonAtLeast, "3.13")),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "cython",
           repo: "cython",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -39,11 +35,11 @@ export default nix.lambda((args) => (() => {
         })))),
       nativeBuildInputs: nix.thunk(() => [pkg_config, setuptools]),
       nativeCheckInputs: nix.thunk(() => [gdb, numpy, ncurses]),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, LC_ALL: "en_US.UTF-8" })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], LC_ALL: "en_US.UTF-8" })),
       patches: nix.thunk(() => [
         nix.path(here, "./trashcan.patch"),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "disable-trashcan.patch",
             url: "https://github.com/cython/cython/commit/e337825cdcf5e94d38ba06a0cb0188e99ce0cc92.patch",
             hash: "sha256-q0f63eetKrDpmP5Z4v8EuGxg26heSyp/62OYqhRoSso=",
@@ -57,7 +53,7 @@ ${nix.sel(python, "interpreter")} runtests.py -j$NIX_BUILD_CORES \\
       doCheck: false,
       setupHook: nix.path(here, "./setup-hook.sh"),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         changelog: nix.thunk(() => nix.str`https://github.com/cython/cython/blob/${nix.sel(finalAttrs, "version")}/CHANGES.rst`),
         description: "Optimising static compiler for both the Python programming language and the extended Cython programming language",
         homepage: "https://cython.org",

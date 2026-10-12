@@ -2,31 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["cases", 25, 9], ["out", 29, 17]], [["hash", 53, 13]], [["hash", 54, 13]], [["hash", 55, 13]], [["hash", 56, 13]], [["hash", 57, 13]], [["hash", 58, 13]], [["hash", 59, 13]], [["hash", 60, 13]], [["hash", 61, 13]], [["hash", 62, 13]], [["hash", 63, 13]], [["hash", 64, 13]], [["hash", 65, 13]], [["hash", 66, 13], ["rev", 67, 13]], [["hash", 68, 11]], [["hash", 69, 11]], [["hash", 70, 11]], [["hash", 71, 11]], [["hash", 72, 11]], [["2.5.0", 53, 5], ["2.4.0", 54, 5], ["2.3.0", 55, 5], ["2.2.0", 56, 5], ["2.1.0", 57, 5], ["2.0.0", 58, 5], ["1.6.0", 59, 5], ["1.5.6", 60, 5], ["1.5.5", 61, 5], ["1.5.4", 62, 5], ["1.5.3", 63, 5], ["1.5.2", 64, 5], ["1.5.1", 65, 5], ["1.5.0", 66, 5], ["1.4", 68, 5], ["1.3", 69, 5], ["1.2", 70, 5], ["1.1", 71, 5], ["1.0", 72, 5]], [["description", 92, 5], ["license", 93, 5]], [["namePrefix", 13, 3], ["pname", 17, 3], ["owner", 19, 3], ["version", 21, 11], ["defaultVersion", 22, 3], ["release", 52, 3], ["useCoqifVersion", 75, 3], ["useDuneifVersion", 77, 3], ["preConfigure", 79, 3], ["propagatedBuildInputs", 83, 3], ["meta", 91, 3]], [["useDune", 96, 49]]]);
 const formals$1 = { args: { coq: false, mkRocqDerivation: false, mathcomp: false, "mathcomp-finmap": false, "mathcomp-bigenough": false, lib: false, version: true, useDune: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["cases", 25, 9], ["out", 29, 17]]);
-const pos$2 = nix.positions(here + "/default.nix", [["hash", 53, 13]]);
-const pos$3 = nix.positions(here + "/default.nix", [["hash", 54, 13]]);
-const pos$4 = nix.positions(here + "/default.nix", [["hash", 55, 13]]);
-const pos$5 = nix.positions(here + "/default.nix", [["hash", 56, 13]]);
-const pos$6 = nix.positions(here + "/default.nix", [["hash", 57, 13]]);
-const pos$7 = nix.positions(here + "/default.nix", [["hash", 58, 13]]);
-const pos$8 = nix.positions(here + "/default.nix", [["hash", 59, 13]]);
-const pos$9 = nix.positions(here + "/default.nix", [["hash", 60, 13]]);
-const pos$10 = nix.positions(here + "/default.nix", [["hash", 61, 13]]);
-const pos$11 = nix.positions(here + "/default.nix", [["hash", 62, 13]]);
-const pos$12 = nix.positions(here + "/default.nix", [["hash", 63, 13]]);
-const pos$13 = nix.positions(here + "/default.nix", [["hash", 64, 13]]);
-const pos$14 = nix.positions(here + "/default.nix", [["hash", 65, 13]]);
-const pos$15 = nix.positions(here + "/default.nix", [["hash", 66, 13], ["rev", 67, 13]]);
-const pos$16 = nix.positions(here + "/default.nix", [["hash", 68, 11]]);
-const pos$17 = nix.positions(here + "/default.nix", [["hash", 69, 11]]);
-const pos$18 = nix.positions(here + "/default.nix", [["hash", 70, 11]]);
-const pos$19 = nix.positions(here + "/default.nix", [["hash", 71, 11]]);
-const pos$20 = nix.positions(here + "/default.nix", [["hash", 72, 11]]);
-const pos$21 = nix.positions(here + "/default.nix", [["2.5.0", 53, 5], ["2.4.0", 54, 5], ["2.3.0", 55, 5], ["2.2.0", 56, 5], ["2.1.0", 57, 5], ["2.0.0", 58, 5], ["1.6.0", 59, 5], ["1.5.6", 60, 5], ["1.5.5", 61, 5], ["1.5.4", 62, 5], ["1.5.3", 63, 5], ["1.5.2", 64, 5], ["1.5.1", 65, 5], ["1.5.0", 66, 5], ["1.4", 68, 5], ["1.3", 69, 5], ["1.2", 70, 5], ["1.1", 71, 5], ["1.0", 72, 5]]);
-const pos$22 = nix.positions(here + "/default.nix", [["description", 92, 5], ["license", 93, 5]]);
-const pos$23 = nix.positions(here + "/default.nix", [["namePrefix", 13, 3], ["pname", 17, 3], ["owner", 19, 3], ["version", 21, 11], ["defaultVersion", 22, 3], ["release", 52, 3], ["useCoqifVersion", 75, 3], ["useDuneifVersion", 77, 3], ["preConfigure", 79, 3], ["propagatedBuildInputs", 83, 3], ["meta", 91, 3]]);
-const pos$24 = nix.positions(here + "/default.nix", [["useDune", 96, 49]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -40,13 +17,13 @@ export default nix.lambda((args) => (() => {
   const version = nix.argOr($, "version", () => null);
   const useDune = nix.argOr($, "useDune", () => false);
   return nix.update(nix.app(mkRocqDerivation, nix.thunk(() => ({
-      [nix.POS]: pos$23,
+      [nix.POS]: $pos[22],
       namePrefix: nix.thunk(() => ["rocq", "mathcomp"]),
       pname: "multinomials",
       owner: "math-comp",
       version: version,
       defaultVersion: nix.thunk(() => (() => {
-        const case$ = (coq_1) => (mc) => (out) => ({ [nix.POS]: pos$1, cases: nix.thunk(() => [coq_1, mc]), out: out });
+        const case$ = (coq_1) => (mc) => (out) => ({ [nix.POS]: $pos[0], cases: nix.thunk(() => [coq_1, mc]), out: out });
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "versions")), null);
         return nix.app(nix.sel(lib, "switch"), nix.thunk(() => [
             nix.thunk(() => nix.sel(coq, "coq-version")),
@@ -69,82 +46,82 @@ export default nix.lambda((args) => (() => {
           ]), null);
       })()),
       release: nix.thunk(() => ({
-        [nix.POS]: pos$21,
+        [nix.POS]: $pos[20],
         "2.5.0": nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           hash: "sha256-e1C1NfulQV1Ep2XxNjjcxIoY5FGzndiCuwIy3upwO78=",
         })),
         "2.4.0": nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           hash: "sha256-7zfIddRH+Sl4nhEPtS/lMZwRUZI45AVFpcC/UC8Z0Yo=",
         })),
         "2.3.0": nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           hash: "sha256-usIcxHOAuN+f/j3WjVbPrjz8Hl9ac8R6kYeAKi3CEts=",
         })),
         "2.2.0": nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           hash: "sha256-Cie6paweITwPZy6ej9+qIvHFWknVR382uJPW927t/fo=",
         })),
         "2.1.0": nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           hash: "sha256-QT91SBJ6DXhyg4j/okTvPP6yj2DnnPbnSlJ/p8pvZbY=",
         })),
         "2.0.0": nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           hash: "sha256-2zWHzMBsO2j8EjN7CgCmKQcku9Be8aVlme0LD5p4ab8=",
         })),
         "1.6.0": nix.thunk(() => ({
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           hash: "sha256-lEM+sjqajIOm1c3lspHqcSIARgMR9RHbTQH4veHLJfU=",
         })),
         "1.5.6": nix.thunk(() => ({
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           hash: "sha256-cMixgc34T9Ic6v+tYmL49QUNpZpPV5ofaNuHqblX6oY=",
         })),
         "1.5.5": nix.thunk(() => ({
-          [nix.POS]: pos$10,
+          [nix.POS]: $pos[9],
           hash: "sha256-VdXA51vr7DZl/wT/15YYMywdD7Gh91dMP9t7ij47qNQ=",
         })),
         "1.5.4": nix.thunk(() => ({
-          [nix.POS]: pos$11,
+          [nix.POS]: $pos[10],
           hash: "sha256:0s4sbh4y88l125hdxahr56325hdhxxdmqmrz7vv8524llyv3fciq",
         })),
         "1.5.3": nix.thunk(() => ({
-          [nix.POS]: pos$12,
+          [nix.POS]: $pos[11],
           hash: "sha256:1462x40y2qydjd2wcg8r6qr8cx3xv4ixzh2h8vp9h7arylkja1qd",
         })),
         "1.5.2": nix.thunk(() => ({
-          [nix.POS]: pos$13,
+          [nix.POS]: $pos[12],
           hash: "sha256:15aspf3jfykp1xgsxf8knqkxv8aav2p39c2fyirw7pwsfbsv2c4s",
         })),
         "1.5.1": nix.thunk(() => ({
-          [nix.POS]: pos$14,
+          [nix.POS]: $pos[13],
           hash: "sha256:13nlfm2wqripaq671gakz5mn4r0xwm0646araxv0nh455p9ndjs3",
         })),
         "1.5.0": nix.thunk(() => ({
-          [nix.POS]: pos$15,
+          [nix.POS]: $pos[14],
           hash: "sha256:064rvc0x5g7y1a0nip6ic91vzmq52alf6in2bc2dmss6dmzv90hw",
           rev: "1.5",
         })),
         "1.4": nix.thunk(() => ({
-          [nix.POS]: pos$16,
+          [nix.POS]: $pos[15],
           hash: "sha256:0vnkirs8iqsv8s59yx1fvg1nkwnzydl42z3scya1xp1b48qkgn0p",
         })),
         "1.3": nix.thunk(() => ({
-          [nix.POS]: pos$17,
+          [nix.POS]: $pos[16],
           hash: "sha256:0l3vi5n094nx3qmy66hsv867fnqm196r8v605kpk24gl0aa57wh4",
         })),
         "1.2": nix.thunk(() => ({
-          [nix.POS]: pos$18,
+          [nix.POS]: $pos[17],
           hash: "sha256:1mh1w339dslgv4f810xr1b8v2w7rpx6fgk9pz96q0fyq49fw2xcq",
         })),
         "1.1": nix.thunk(() => ({
-          [nix.POS]: pos$19,
+          [nix.POS]: $pos[18],
           hash: "sha256:1q8alsm89wkc0lhcvxlyn0pd8rbl2nnxg81zyrabpz610qqjqc3s",
         })),
         "1.0": nix.thunk(() => ({
-          [nix.POS]: pos$20,
+          [nix.POS]: $pos[19],
           hash: "sha256:1qmbxp1h81cy3imh627pznmng0kvv37k4hrwi2faa101s6bcx55m",
         })),
       })),
@@ -159,10 +136,10 @@ export default nix.lambda((args) => (() => {
         mathcomp_bigenough,
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$22,
+        [nix.POS]: $pos[21],
         description: "Coq/SSReflect Library for Monoidal Rings and Multinomials",
         license: nix.thunk(() => nix.sel(lib, "licenses", "cecill-c")),
       })),
-    }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.has(args_1, "useDune")), nix.thunk(() => ({ [nix.POS]: pos$24, useDune: useDune }))));
+    }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.has(args_1, "useDune")), nix.thunk(() => ({ [nix.POS]: $pos[23], useDune: useDune }))));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 42, 26], ["version", 42, 32], ["hash", 43, 5]], [["MUJOCO_PATH", 69, 7], ["MUJOCO_PLUGIN_PATH", 70, 7], ["MUJOCO_CMAKE_ARGS", 71, 7]], [["description", 116, 5], ["homepage", 117, 27], ["changelog", 117, 36], ["license", 117, 46], ["maintainers", 118, 5]], [["pname", 31, 3], ["version", 32, 20], ["pyproject", 34, 3], ["__structuredAttrs", 35, 3], ["src", 41, 3], ["nativeBuildInputs", 46, 3], ["dontUseCmakeConfigure", 48, 3], ["build-system", 50, 3], ["buildInputs", 52, 3], ["dependencies", 57, 3], ["pythonImportsCheck", 67, 3], ["env", 69, 3], ["preConfigure", 76, 3], ["meta", 115, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchPypi: false, cmake: false, setuptools: false, mujoco: false, pybind11: false, "absl-py": false, etils: false, glfw: false, numpy: false, pyopengl: false, "typing-extensions": false, websockets: false, perl: false, python: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 42, 26], ["version", 42, 32], ["hash", 43, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["MUJOCO_PATH", 69, 7], ["MUJOCO_PLUGIN_PATH", 70, 7], ["MUJOCO_CMAKE_ARGS", 71, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 116, 5], ["homepage", 117, 27], ["changelog", 117, 36], ["license", 117, 46], ["maintainers", 118, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 31, 3], ["version", 32, 20], ["pyproject", 34, 3], ["__structuredAttrs", 35, 3], ["src", 41, 3], ["nativeBuildInputs", 46, 3], ["dontUseCmakeConfigure", 48, 3], ["build-system", 50, 3], ["buildInputs", 52, 3], ["dependencies", 57, 3], ["pythonImportsCheck", 67, 3], ["env", 69, 3], ["preConfigure", 76, 3], ["meta", 115, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,13 +25,13 @@ export default nix.lambda((args) => (() => {
   const perl = nix.arg($, "perl");
   const python = nix.arg($, "python");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "mujoco",
       version: nix.thunk(() => nix.attr(mujoco, "version")),
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-JqgL8mwxzFkiGrIHT5NkmnvuDbh/hkYgKZXcIGWiHn4=",
@@ -46,7 +43,7 @@ export default nix.lambda((args) => (() => {
       dependencies: nix.thunk(() => [absl_py, etils, glfw, numpy, pyopengl, typing_extensions, websockets]),
       pythonImportsCheck: nix.thunk(() => ["mujoco"]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         MUJOCO_PATH: nix.thunk(() => nix.str`${mujoco}`),
         MUJOCO_PLUGIN_PATH: nix.thunk(() => nix.str`${mujoco}/lib`),
         MUJOCO_CMAKE_ARGS: nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), " ", nix.thunk(() => [
@@ -78,7 +75,7 @@ ln -s ${nix.sel(mujoco, "pin", "abseil-cpp")} $build/_deps/abseil-cpp-src
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(mujoco, "meta"));
         return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Python bindings for MuJoCo: a general purpose physics simulator",
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         changelog: nix.thunk(() => nix.attr(from, "changelog")),

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]], [["description", 116, 5], ["homepage", 117, 5], ["changelog", 118, 5], ["license", 119, 5], ["maintainers", 120, 5], ["platforms", 121, 5], ["mainProgram", 122, 5]], [["pname", 12, 3], ["version", 13, 3], ["pyproject", 14, 3], ["__structuredAttrs", 16, 3], ["src", 18, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 29, 3], ["build-system", 34, 3], ["dependencies", 39, 3], ["pythonRelaxDeps", 66, 3], ["dontWrapQtApps", 76, 3], ["makeWrapperArgs", 77, 3], ["preFixup", 91, 3], ["nativeCheckInputs", 95, 3], ["disabledTests", 100, 3], ["preCheck", 108, 3], ["pythonImportsCheck", 113, 3], ["meta", 115, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, python3Packages: false, qt6: false, ffmpeg: false, mkvtoolnix: false, tesseract: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 116, 5], ["homepage", 117, 5], ["changelog", 118, 5], ["license", 119, 5], ["maintainers", 120, 5], ["platforms", 121, 5], ["mainProgram", 122, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["pyproject", 14, 3], ["__structuredAttrs", 16, 3], ["src", 18, 3], ["nativeBuildInputs", 25, 3], ["buildInputs", 29, 3], ["build-system", 34, 3], ["dependencies", 39, 3], ["pythonRelaxDeps", 66, 3], ["dontWrapQtApps", 76, 3], ["makeWrapperArgs", 77, 3], ["preFixup", 91, 3], ["nativeCheckInputs", 95, 3], ["disabledTests", 100, 3], ["preCheck", 108, 3], ["pythonImportsCheck", 113, 3], ["meta", 115, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const pyproject = true;
       const __structuredAttrs = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "cdgriffith",
           repo: "FastFlix",
           tag: version,
@@ -91,7 +89,7 @@ export default nix.lambda((args) => (() => {
       const preCheck = "export CI=true\nexport QT_QPA_PLATFORM=offscreen\n";
       const pythonImportsCheck = nix.thunk(() => ["fastflix"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Simple and friendly GUI for encoding videos",
         homepage: "https://github.com/cdgriffith/FastFlix",
         changelog: nix.thunk(() => nix.str`https://github.com/cdgriffith/FastFlix/releases/tag/${version}`),
@@ -104,7 +102,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "fastflix",
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         pyproject,

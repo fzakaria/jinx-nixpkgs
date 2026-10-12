@@ -2,12 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 41, 5], ["repo", 42, 5], ["tag", 43, 5], ["hash", 44, 5]], [["pname", 140, 26], ["version", 140, 32], ["rev-prefix", 141, 5]], [["updateScript", 139, 12]], [["description", 145, 5], ["homepage", 146, 5], ["downloadPage", 147, 5], ["changelog", 148, 5], ["license", 149, 5], ["platforms", 152, 5], ["maintainers", 156, 5], ["teams", 157, 5]], [["__structuredAttrs", 31, 3], ["strictDeps", 32, 3], ["name", 35, 3], ["pname", 37, 3], ["version", 38, 3], ["src", 40, 3], ["postPatch", 48, 3], ["outputs", 85, 3], ["nativeBuildInputs", 96, 3], ["buildInputs", 101, 3], ["cmakeFlags", 111, 3], ["enableParallelBuilding", 116, 3], ["propagatedBuildInputs", 118, 3], ["postInstall", 123, 3], ["passthru", 139, 3], ["meta", 144, 3]]]);
 const formals$1 = { args: { backendStdenv: false, catch2_3: false, cmake: false, cuda_cudart: false, cuda_nvcc: false, cuda_nvrtc: false, cudaNamePrefix: false, cudnn: false, fetchFromGitHub: false, gitUpdater: false, lib: false, libcublas: false, nlohmann_json: false, withSamples: true, withTests: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 41, 5], ["repo", 42, 5], ["tag", 43, 5], ["hash", 44, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 140, 26], ["version", 140, 32], ["rev-prefix", 141, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 139, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 145, 5], ["homepage", 146, 5], ["downloadPage", 147, 5], ["changelog", 148, 5], ["license", 149, 5], ["platforms", 152, 5], ["maintainers", 156, 5], ["teams", 157, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["__structuredAttrs", 31, 3], ["strictDeps", 32, 3], ["name", 35, 3], ["pname", 37, 3], ["version", 38, 3], ["src", 40, 3], ["postPatch", 48, 3], ["outputs", 85, 3], ["nativeBuildInputs", 96, 3], ["buildInputs", 101, 3], ["cmakeFlags", 111, 3], ["enableParallelBuilding", 116, 3], ["propagatedBuildInputs", 118, 3], ["postInstall", 123, 3], ["passthru", 139, 3], ["meta", 144, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -38,14 +34,14 @@ export default nix.lambda((args) => (() => {
   const compileFeatures = "target_compile_features(cudnn_frontend INTERFACE cxx_std_17)";
   const linkCudart = "target_link_libraries(cudnn_frontend INTERFACE CUDA::cudart)";
   return nix.app(nix.sel(backendStdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       __structuredAttrs: true,
       strictDeps: true,
       name: nix.thunk(() => nix.str`${cudaNamePrefix}-${nix.sel(finalAttrs, "pname")}-${nix.sel(finalAttrs, "version")}`),
       pname: "cudnn-frontend",
       version: "1.30.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "NVIDIA",
           repo: "cudnn-frontend",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -78,16 +74,16 @@ substituteInPlace ./cudnn_frontend-config.cmake.in \\
       propagatedBuildInputs: nix.thunk(() => [nlohmann_json, cuda_nvrtc]),
       postInstall: nix.thunk(() => nix.add(nix.add(nix.app(optionalString, withSamples, "moveToOutput \"bin/legacy_samples\" \"$legacy_samples\"\nmoveToOutput \"bin/samples\" \"$samples\"\n"), nix.app(optionalString, withTests, "moveToOutput \"bin/tests\" \"$tests\"\n")), "if [[ -e \"$out/bin\" ]]\nthen\n  nixErrorLog \"The bin directory in \\$out should no longer exist.\"\n  exit 1\nfi\n")),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
             version: nix.thunk(() => nix.attr(finalAttrs, "version")),
             "rev-prefix": "v",
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Python and C++ Graph API with SOTA attention (SDPA / Flash Attention), MoE grouped GEMM fusions, and FP8/MXFP8 kernels for Hopper and Blackwell GPUs",
         homepage: "https://github.com/NVIDIA/cudnn-frontend",
         downloadPage: "https://github.com/NVIDIA/cudnn-frontend/releases",

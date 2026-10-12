@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 15, 5], ["hash", 16, 5]], [["homepage", 37, 5], ["changelog", 38, 5], ["description", 39, 5], ["license", 40, 5], ["maintainers", 41, 5], ["platforms", 42, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["buildInputs", 19, 3], ["nativeBuildInputs", 23, 3], ["configureFlags", 28, 3], ["postInstall", 31, 3], ["meta", 36, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, polkit: false, gtk3: false, "pkg-config": false, intltool: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 37, 5], ["changelog", 38, 5], ["description", 39, 5], ["license", 40, 5], ["maintainers", 41, 5], ["platforms", 42, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["buildInputs", 19, 3], ["nativeBuildInputs", 23, 3], ["configureFlags", 28, 3], ["postInstall", 31, 3], ["meta", 36, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const intltool = nix.arg($, "intltool");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "polkit-gnome",
       version: "0.105",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnome/sources/polkit-gnome/${nix.sel(finalAttrs, "version")}/polkit-gnome-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-F4RJSWO4v5oA7txs06KGj7EjuKXlFuZsXtpI3xerk2k=",
         })))),
@@ -32,7 +30,7 @@ export default nix.lambda((args) => (() => {
 substituteAll ${nix.path(here, "./polkit-gnome-authentication-agent-1.desktop")} $out/etc/xdg/autostart/polkit-gnome-authentication-agent-1.desktop
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://gitlab.gnome.org/Archive/policykit-gnome",
         changelog: nix.thunk(() => nix.str`https://gitlab.gnome.org/Archive/policykit-gnome/-/blob/${nix.sel(finalAttrs, "version")}/NEWS?ref_type=tags`),
         description: "Dbus session bus service that is used to bring up authentication dialogs",

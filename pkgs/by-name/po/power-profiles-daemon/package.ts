@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 39, 5], ["owner", 40, 5], ["repo", 41, 5], ["rev", 42, 5], ["hash", 43, 5]], [["PKG_CONFIG_POLKIT_GOBJECT_1_POLICYDIR", 109, 7]], [["nixos", 127, 7]], [["updateScript", 125, 5], ["tests", 126, 5]], [["changelog", 132, 5], ["homepage", 133, 5], ["description", 134, 5], ["mainProgram", 135, 5], ["platforms", 136, 5], ["license", 137, 5], ["maintainers", 138, 5]], [["pname", 30, 3], ["version", 31, 3], ["outputs", 33, 3], ["src", 38, 3], ["nativeBuildInputs", 46, 3], ["buildInputs", 73, 3], ["strictDeps", 85, 3], ["checkInputs", 87, 3], ["nativeCheckInputs", 91, 3], ["mesonFlags", 96, 3], ["doCheck", 104, 3], ["dontWrapGApps", 107, 3], ["env", 109, 3], ["postPatch", 111, 3], ["postFixup", 120, 3], ["passthru", 124, 3], ["meta", 131, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, "bash-completion": false, "pkg-config": false, meson: false, mesonEmulatorHook: false, ninja: false, fetchFromGitLab: false, libgudev: false, glib: false, polkit: false, dbus: false, "gobject-introspection": false, wrapGAppsNoGuiHook: false, gettext: false, "gtk-doc": false, "docbook-xsl-nons": false, docbook_xml_dtd_412: false, libxml2: false, libxslt: false, upower: false, umockdev: false, python3: false, nixosTests: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 39, 5], ["owner", 40, 5], ["repo", 41, 5], ["rev", 42, 5], ["hash", 43, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["PKG_CONFIG_POLKIT_GOBJECT_1_POLICYDIR", 109, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["nixos", 127, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 125, 5], ["tests", 126, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["changelog", 132, 5], ["homepage", 133, 5], ["description", 134, 5], ["mainProgram", 135, 5], ["platforms", 136, 5], ["license", 137, 5], ["maintainers", 138, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 30, 3], ["version", 31, 3], ["outputs", 33, 3], ["src", 38, 3], ["nativeBuildInputs", 46, 3], ["buildInputs", 73, 3], ["strictDeps", 85, 3], ["checkInputs", 87, 3], ["nativeCheckInputs", 91, 3], ["mesonFlags", 96, 3], ["doCheck", 104, 3], ["dontWrapGApps", 107, 3], ["env", 109, 3], ["postPatch", 111, 3], ["postFixup", 120, 3], ["passthru", 124, 3], ["meta", 131, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -38,12 +33,12 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "power-profiles-daemon",
       version: "0.30",
       outputs: nix.thunk(() => ["out", "devdoc"]),
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "gitlab.freedesktop.org",
           owner: "upower",
           repo: "power-profiles-daemon",
@@ -94,21 +89,21 @@ export default nix.lambda((args) => (() => {
       doCheck: true,
       dontWrapGApps: true,
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         PKG_CONFIG_POLKIT_GOBJECT_1_POLICYDIR: nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/share/polkit-1/actions`),
       })),
       postPatch: "patchShebangs --build \\\n  tests/integration-test.py \\\n  tests/unittest_inspector.py\n\npatchShebangs --host \\\n  src/powerprofilesctl\n",
       postFixup: "wrapGApp \"$out/bin/powerprofilesctl\"\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           nixos: nix.thunk(() => nix.sel(nixosTests, "power-profiles-daemon")),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         changelog: nix.thunk(() => nix.str`https://gitlab.freedesktop.org/upower/power-profiles-daemon/-/releases/${nix.sel(finalAttrs, "version")}`),
         homepage: "https://gitlab.freedesktop.org/upower/power-profiles-daemon",
         description: "Makes user-selected power profiles handling available over D-Bus",

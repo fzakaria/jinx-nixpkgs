@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 18, 5], ["exec", 19, 5], ["icon", 20, 5], ["desktopName", 21, 5], ["genericName", 22, 5], ["comment", 23, 5], ["categories", 24, 5]], [["owner", 32, 5], ["repo", 33, 5], ["tag", 34, 5], ["hash", 35, 5]], [["NIX_LDFLAGS", 73, 7]], [["extraArgs", 118, 5]], [["updateScript", 117, 12]], [["description", 124, 5], ["changelog", 125, 5], ["homepage", 126, 5], ["mainProgram", 127, 5], ["platforms", 128, 5], ["badPlatforms", 129, 5], ["maintainers", 130, 5], ["license", 131, 5]], [["pname", 28, 3], ["version", 29, 3], ["src", 31, 3], ["buildInputs", 38, 3], ["nativeBuildInputs", 57, 3], ["patches", 66, 3], ["env", 73, 3], ["qtWrapperArgs", 79, 3], ["preConfigure", 86, 3], ["installPhase", 95, 3], ["passthru", 117, 3], ["meta", 123, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, "nix-update-script": false, qt6: false, "libusb-compat-0_1": false, gsl: false, blas: false, bison: false, flex: false, zlib: false, makeDesktopItem: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 18, 5], ["exec", 19, 5], ["icon", 20, 5], ["desktopName", 21, 5], ["genericName", 22, 5], ["comment", 23, 5], ["categories", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 32, 5], ["repo", 33, 5], ["tag", 34, 5], ["hash", 35, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["NIX_LDFLAGS", 73, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["extraArgs", 118, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["updateScript", 117, 12]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 124, 5], ["changelog", 125, 5], ["homepage", 126, 5], ["mainProgram", 127, 5], ["platforms", 128, 5], ["badPlatforms", 129, 5], ["maintainers", 130, 5], ["license", 131, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 28, 3], ["version", 29, 3], ["src", 31, 3], ["buildInputs", 38, 3], ["nativeBuildInputs", 57, 3], ["patches", 66, 3], ["env", 73, 3], ["qtWrapperArgs", 79, 3], ["preConfigure", 86, 3], ["installPhase", 95, 3], ["passthru", 117, 3], ["meta", 123, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,7 +20,7 @@ export default nix.lambda((args) => (() => {
   const zlib = nix.arg($, "zlib");
   const makeDesktopItem = nix.arg($, "makeDesktopItem");
   const desktopItem = nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: "goldencheetah",
       exec: "GoldenCheetah",
       icon: "goldencheetah",
@@ -36,11 +30,11 @@ export default nix.lambda((args) => (() => {
       categories: nix.thunk(() => ["Utility"]),
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "golden-cheetah",
       version: "3.8",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "GoldenCheetah",
           repo: "GoldenCheetah",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -69,7 +63,7 @@ export default nix.lambda((args) => (() => {
       })())),
       patches: nix.thunk(() => [nix.path(here, "./0001-Fix-building-with-bison-3.7.patch")]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         NIX_LDFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-lz", "-lgsl", "-lblas"]))),
       })),
       qtWrapperArgs: nix.thunk(() => [
@@ -95,14 +89,14 @@ install -Dm644 src/Resources/images/gc.png $out/share/icons/hicolor/512x512/apps
 runHook postInstall
 ` : (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? "runHook preInstall\nmkdir -p $out/Applications\ncp -r src/GoldenCheetah.app $out/Applications\nrunHook postInstall\n" : nix.builtins.abort("unsupported platform")))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             extraArgs: nix.thunk(() => ["--version-regex=v([0-9\\.]+)"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Performance software for cyclists, runners and triathletes. Built from source and without API tokens",
         changelog: nix.thunk(() => nix.str`https://github.com/GoldenCheetah/GoldenCheetah/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         homepage: "https://github.com/GoldenCheetah/GoldenCheetah",

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["hash", 33, 5]], [["metrics", 53, 5], ["valkey", 54, 5]], [["DATABASE_URL", 60, 5], ["VALKEY_URL", 61, 5]], [["description", 81, 5], ["homepage", 82, 5], ["changelog", 83, 5], ["license", 84, 5], ["maintainers", 85, 5], ["broken", 89, 5]], [["pname", 25, 3], ["version", 26, 3], ["pyproject", 27, 3], ["src", 29, 3], ["postPatch", 36, 3], ["build-system", 44, 3], ["dependencies", 46, 3], ["optional-dependencies", 52, 3], ["pythonImportsCheck", 57, 3], ["env", 59, 3], ["nativeCheckInputs", 64, 3], ["meta", 80, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, croniter: false, "dj-database-url": false, "django-valkey": false, "django-vcache": false, django: false, fetchFromGitLab: false, hatchling: false, orjson: false, postgresql: false, postgresqlTestHook: false, "prometheus-client": false, psycopg: false, "pytest-asyncio": false, "pytest-django": false, pytestCheckHook: false, pythonOlder: false, pyzstd: false, redisTestHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["hash", 33, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["metrics", 53, 5], ["valkey", 54, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["DATABASE_URL", 60, 5], ["VALKEY_URL", 61, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 81, 5], ["homepage", 82, 5], ["changelog", 83, 5], ["license", 84, 5], ["maintainers", 85, 5], ["broken", 89, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 25, 3], ["version", 26, 3], ["pyproject", 27, 3], ["src", 29, 3], ["postPatch", 36, 3], ["build-system", 44, 3], ["dependencies", 46, 3], ["optional-dependencies", 52, 3], ["pythonImportsCheck", 57, 3], ["env", 59, 3], ["nativeCheckInputs", 64, 3], ["meta", 80, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -36,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const version = "3.2.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "glitchtip",
           repo: "django-vtasks",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -46,13 +42,13 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [hatchling]);
       const dependencies = nix.thunk(() => [django, orjson, croniter]);
       const optional_dependencies = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         metrics: nix.thunk(() => [prometheus_client]),
         valkey: nix.thunk(() => nix.concat([django_vcache], nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.app(pythonOlder, "3.14")), pyzstd))),
       }));
       const pythonImportsCheck = nix.thunk(() => ["django_vtasks"]);
       const env = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         DATABASE_URL: "postgresql://postgres@%2Fbuild%2Frun%2Fpostgresql",
         VALKEY_URL: "redis://127.0.0.1:6379",
       }));
@@ -70,7 +66,7 @@ export default nix.lambda((args) => (() => {
         redisTestHook,
       ], nix.sel(psycopg, "optional-dependencies", "pool")));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Very fast valkey/postgres django tasks backend",
         homepage: "https://gitlab.com/glitchtip/django-vtasks",
         changelog: nix.thunk(() => nix.str`https://gitlab.com/glitchtip/django-vtasks/-/releases/${nix.sel(src, "tag")}`),
@@ -85,7 +81,7 @@ export default nix.lambda((args) => (() => {
         broken: nix.thunk(() => nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(django, "version")))), "6")),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         pyproject,

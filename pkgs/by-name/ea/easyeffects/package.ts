@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["withFftw3", 59, 35]], [["owner", 67, 5], ["repo", 68, 5], ["tag", 69, 5], ["hash", 70, 5]], [["updateScript", 151, 5]], [["description", 155, 5], ["homepage", 156, 5], ["changelog", 157, 5], ["license", 158, 5], ["maintainers", 159, 5], ["mainProgram", 164, 5], ["platforms", 165, 5]], [["pname", 63, 3], ["version", 64, 3], ["src", 66, 3], ["nativeBuildInputs", 73, 3], ["dontWrapGApps", 83, 3], ["buildInputs", 85, 3], ["preFixup", 123, 3], ["separateDebugInfo", 148, 3], ["passthru", 150, 3], ["meta", 154, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, calf: false, cmake: false, deepfilternet: false, fetchFromGitHub: false, fftw: false, fftwFloat: false, glib: false, gsl: false, intltool: false, kdePackages: false, "ladspa-header": false, libbs2b: false, libebur128: false, libmysofa: false, libsigcxx_3_0: false, libsndfile: false, lilv: false, "lsp-plugins": false, lv2: false, mda_lv2: false, ninja: false, "nix-update-script": false, nlohmann_json: false, pipewire: false, "pkg-config": false, qt6: false, rnnoise: false, rubberband: false, soundtouch: false, speexdsp: false, onetbb: false, "webrtc-audio-processing": false, "x42-plugins": false, "zam-plugins": false, "zita-convolver": false, wrapGAppsHook3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["withFftw3", 59, 35]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 67, 5], ["repo", 68, 5], ["tag", 69, 5], ["hash", 70, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 151, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 155, 5], ["homepage", 156, 5], ["changelog", 157, 5], ["license", 158, 5], ["maintainers", 159, 5], ["mainProgram", 164, 5], ["platforms", 165, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 63, 3], ["version", 64, 3], ["src", 66, 3], ["nativeBuildInputs", 73, 3], ["dontWrapGApps", 83, 3], ["buildInputs", 85, 3], ["preFixup", 123, 3], ["separateDebugInfo", 148, 3], ["passthru", 150, 3], ["meta", 154, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -61,13 +57,13 @@ export default nix.lambda((args) => (() => {
   const kirigami = nix.thunk(() => nix.attr(kdePackages, "kirigami"));
   const kirigami_addons = nix.thunk(() => nix.attr(kdePackages, "kirigami-addons"));
   const qqc2_desktop_style = nix.thunk(() => nix.attr(kdePackages, "qqc2-desktop-style"));
-  const speexdsp$ = nix.thunk(() => nix.app(nix.sel(speexdsp, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, withFftw3: false }))));
+  const speexdsp$ = nix.thunk(() => nix.app(nix.sel(speexdsp, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], withFftw3: false }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "easyeffects",
       version: "8.3.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "wwmm",
           repo: "easyeffects",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -129,11 +125,11 @@ export default nix.lambda((args) => (() => {
       })()),
       separateDebugInfo: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Audio effects for PipeWire applications",
         homepage: "https://github.com/wwmm/easyeffects",
         changelog: nix.thunk(() => nix.str`https://github.com/wwmm/easyeffects/blob/v${nix.sel(finalAttrs, "version")}/src/contents/docs/community/CHANGELOG.md`),

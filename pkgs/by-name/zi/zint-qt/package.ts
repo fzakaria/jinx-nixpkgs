@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]], [["description", 66, 5], ["longDescription", 67, 5], ["homepage", 73, 5], ["changelog", 74, 5], ["license", 75, 5], ["maintainers", 76, 5], ["platforms", 77, 5], ["mainProgram", 78, 5]], [["pname", 14, 3], ["version", 15, 3], ["outputs", 17, 3], ["src", 23, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 38, 3], ["propagatedBuildInputs", 44, 3], ["cmakeFlags", 49, 3], ["doInstallCheck", 56, 3], ["nativeCheckInputs", 57, 3], ["postInstall", 59, 3], ["meta", 65, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, ninja: false, libpng: false, qt6: false, versionCheckHook: false, zlib: false, withGUI: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 66, 5], ["longDescription", 67, 5], ["homepage", 73, 5], ["changelog", 74, 5], ["license", 75, 5], ["maintainers", 76, 5], ["platforms", 77, 5], ["mainProgram", 78, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["outputs", 17, 3], ["src", 23, 3], ["nativeBuildInputs", 30, 3], ["buildInputs", 38, 3], ["propagatedBuildInputs", 44, 3], ["cmakeFlags", 49, 3], ["doInstallCheck", 56, 3], ["nativeCheckInputs", 57, 3], ["postInstall", 59, 3], ["meta", 65, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,12 +18,12 @@ export default nix.lambda((args) => (() => {
   const zlib = nix.arg($, "zlib");
   const withGUI = nix.argOr($, "withGUI", () => true);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: nix.thunk(() => nix.str`zint${nix.app(nix.sel(lib, "optionalString"), withGUI, "-qt")}`),
       version: "2.16.0",
       outputs: nix.thunk(() => ["out", "lib", "dev"]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "zint",
           repo: "zint",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -43,7 +41,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [versionCheckHook]),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), withGUI, "install -Dm644 -t $out/share/applications $src/zint-qt.desktop\ninstall -Dm644 -t $out/share/icons/hicolor/48x48/apps $src/zint-qt.png\ninstall -Dm644 -t $out/share/icons/hicolor/scalable/apps $src/frontend_qt/images/scalable/zint-qt.svg\n")),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Barcode generating tool and library",
         longDescription: nix.thunk(() => nix.str`The Zint project aims to provide a complete cross-platform open source
 barcode generating solution. The package currently consists of "${nix.app(nix.sel(lib, "optionalString"), withGUI, "a Qt based GUI, ")}

@@ -2,10 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/melonds.nix", [[["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]], [["description", 26, 5], ["homepage", 27, 5], ["license", 28, 5]], [["core", 9, 3], ["version", 10, 3], ["src", 12, 3], ["extraBuildInputs", 19, 3], ["makefile", 23, 3], ["meta", 25, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, mkLibretroCore: false, libGLU: false, libGL: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/melonds.nix", [["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/melonds.nix", [["description", 26, 5], ["homepage", 27, 5], ["license", 28, 5]]);
-const pos$3 = nix.positions(here + "/melonds.nix", [["core", 9, 3], ["version", 10, 3], ["src", 12, 3], ["extraBuildInputs", 19, 3], ["makefile", 23, 3], ["meta", 25, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const libGLU = nix.arg($, "libGLU");
   const libGL = nix.arg($, "libGL");
   return nix.app(mkLibretroCore, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       core: "melonds",
       version: "0-unstable-2026-07-19",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "libretro",
           repo: "melonds",
           rev: "66b5d2634cd0a79030562811e6e05f5532f800ba",
@@ -28,7 +26,7 @@ export default nix.lambda((args) => (() => {
       extraBuildInputs: nix.thunk(() => [libGLU, libGL]),
       makefile: "Makefile",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Port of MelonDS to libretro",
         homepage: "https://github.com/libretro/melonds",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

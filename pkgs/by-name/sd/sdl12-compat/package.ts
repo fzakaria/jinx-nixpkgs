@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 33, 5], ["repo", 34, 5], ["rev", 35, 5], ["hash", 36, 5]], [["pkg-config", 99, 5], ["SDL_image", 102, 7], ["SDL_ttf", 103, 7], ["SDL_mixer", 104, 7], ["SDL_sound", 105, 7], ["dosbox", 106, 7]], [["tests", 98, 12]], [["homepage", 111, 5], ["description", 112, 5], ["license", 113, 5], ["mainProgram", 114, 5], ["maintainers", 115, 5], ["teams", 116, 5], ["platforms", 117, 5], ["pkgConfigModules", 118, 5]], [["pname", 29, 3], ["version", 30, 3], ["src", 32, 3], ["strictDeps", 39, 3], ["__structuredAttrs", 40, 3], ["nativeBuildInputs", 42, 3], ["propagatedNativeBuildInputs", 51, 3], ["buildInputs", 53, 3], ["dontPatchELF", 62, 3], ["cmakeFlags", 64, 3], ["enableParallelBuilding", 74, 3], ["doCheck", 77, 3], ["checkPhase", 78, 3], ["postInstall", 84, 3], ["patches", 90, 3], ["setupHook", 96, 3], ["passthru", 98, 3], ["meta", 110, 3]]]);
 const formals$1 = { args: { lib: false, "sdl2-compat": false, cmake: false, darwin: false, fetchFromGitHub: false, libGLU: false, libiconv: false, libx11: false, mesa: false, "pkg-config": false, "pkg-config-unwrapped": false, stdenv: false, testers: false, dosbox: false, SDL_image: false, SDL_ttf: false, SDL_mixer: false, SDL_sound: false, libGLSupported: true, openglSupport: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 33, 5], ["repo", 34, 5], ["rev", 35, 5], ["hash", 36, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pkg-config", 99, 5], ["SDL_image", 102, 7], ["SDL_ttf", 103, 7], ["SDL_mixer", 104, 7], ["SDL_sound", 105, 7], ["dosbox", 106, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 98, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 111, 5], ["description", 112, 5], ["license", 113, 5], ["mainProgram", 114, 5], ["maintainers", 115, 5], ["teams", 116, 5], ["platforms", 117, 5], ["pkgConfigModules", 118, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 29, 3], ["version", 30, 3], ["src", 32, 3], ["strictDeps", 39, 3], ["__structuredAttrs", 40, 3], ["nativeBuildInputs", 42, 3], ["propagatedNativeBuildInputs", 51, 3], ["buildInputs", 53, 3], ["dontPatchELF", 62, 3], ["cmakeFlags", 64, 3], ["enableParallelBuilding", 74, 3], ["doCheck", 77, 3], ["checkPhase", 78, 3], ["postInstall", 84, 3], ["patches", 90, 3], ["setupHook", 96, 3], ["passthru", 98, 3], ["meta", 110, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,11 +29,11 @@ export default nix.lambda((args) => (() => {
   const openglSupport = nix.argOr($, "openglSupport", () => nix.force(libGLSupported));
   const autoSignDarwinBinariesHook = nix.thunk(() => nix.attr(darwin, "autoSignDarwinBinariesHook"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "sdl12-compat",
       version: "1.2.78",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "libsdl-org",
           repo: "sdl12-compat",
           rev: nix.thunk(() => nix.add("release-", nix.sel(finalAttrs, "version"))),
@@ -64,9 +60,9 @@ export default nix.lambda((args) => (() => {
       patches: nix.thunk(() => [nix.path(here, "./find-headers.patch")]),
       setupHook: nix.path(here, "./setup-hook.sh"),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "testMetaPkgConfig"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
           SDL_image: SDL_image,
           SDL_ttf: SDL_ttf,
@@ -76,7 +72,7 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://www.libsdl.org/",
         description: "Cross-platform multimedia library - build SDL 1.2 applications against 2.0",
         license: nix.thunk(() => nix.sel(lib, "licenses", "zlib")),

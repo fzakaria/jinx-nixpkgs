@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 12, 5], ["sha256", 13, 5]], [["url", 22, 5], ["sha256", 23, 5]], [["description", 37, 5], ["mainProgram", 38, 5], ["homepage", 39, 5], ["sourceProvenance", 40, 5], ["license", 41, 5], ["maintainers", 42, 5], ["platforms", 43, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 21, 3], ["nativeBuildInputs", 26, 3], ["installPhase", 28, 3], ["meta", 36, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, fetchzip: false, jre: false, makeWrapper: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 12, 5], ["sha256", 13, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 22, 5], ["sha256", 23, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 37, 5], ["mainProgram", 38, 5], ["homepage", 39, 5], ["sourceProvenance", 40, 5], ["license", 41, 5], ["maintainers", 42, 5], ["platforms", 43, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 21, 3], ["nativeBuildInputs", 26, 3], ["installPhase", 28, 3], ["meta", 36, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,16 +14,16 @@ export default nix.lambda((args) => (() => {
   const jre = nix.arg($, "jre");
   const makeWrapper = nix.arg($, "makeWrapper");
   const translation_file = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: "https://gitlab.com/bmwinger/tr-patcher/-/raw/master/lib/Translation.txt?inline=false",
       sha256: "136zd2s73b4n1w2n34wxi656bm448748nn3y7a64fd89ysg9n7n8",
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "tr-patcher",
       version: "1.0.5",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: "https://gitlab.com/bmwinger/tr-patcher/uploads/b57899980b2351c136393f02977c4fab/tr-patcher-shadow.zip",
           sha256: "0va7nbmlgf3p2nc0z2b9n1285y4q5rpyjr4w93rdnx38wrhinxnw",
         })))),
@@ -38,7 +35,7 @@ makeWrapper ${jre}/bin/java $out/bin/tr-patcher \\
 --add-flags "-jar $out/lib/tr-patcher.jar"
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Allow to update dependencies of the Tamriel-Data mod for morrowind",
         mainProgram: "tr-patcher",
         homepage: "https://gitlab.com/bmwinger/tr-patcher",

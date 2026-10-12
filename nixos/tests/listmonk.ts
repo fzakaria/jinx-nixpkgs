@@ -2,47 +2,38 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/listmonk.nix", [[["maintainers", 5, 10]], [["enable", 10, 26]], [["enabled", 18, 17], ["host", 19, 17], ["port", 20, 17], ["tls_type", 21, 17]], [["smtp", 16, 22]], [["createLocally", 14, 13], ["settings", 16, 13]], [["enable", 12, 11], ["database", 13, 11]], [["mailhog", 10, 18], ["listmonk", 11, 18]], [["services", 10, 9]], [["machine", 7, 11]], [["name", 4, 5], ["meta", 5, 5], ["nodes", 7, 5], ["testScript", 28, 5]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/listmonk.nix", [["maintainers", 5, 10]]);
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$2 = nix.positions(here + "/listmonk.nix", [["enable", 10, 26]]);
-const pos$3 = nix.positions(here + "/listmonk.nix", [["enabled", 18, 17], ["host", 19, 17], ["port", 20, 17], ["tls_type", 21, 17]]);
-const pos$4 = nix.positions(here + "/listmonk.nix", [["smtp", 16, 22]]);
-const pos$5 = nix.positions(here + "/listmonk.nix", [["createLocally", 14, 13], ["settings", 16, 13]]);
-const pos$6 = nix.positions(here + "/listmonk.nix", [["enable", 12, 11], ["database", 13, 11]]);
-const pos$7 = nix.positions(here + "/listmonk.nix", [["mailhog", 10, 18], ["listmonk", 11, 18]]);
-const pos$8 = nix.positions(here + "/listmonk.nix", [["services", 10, 9]]);
-const pos$9 = nix.positions(here + "/listmonk.nix", [["machine", 7, 11]]);
-const pos$10 = nix.positions(here + "/listmonk.nix", [["name", 4, 5], ["meta", 5, 5], ["nodes", 7, 5], ["testScript", 28, 5]]);
 
 export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "./make-test-python.nix")), nix.lambda((args) => (() => {
     const $ = nix.formals(args, formals$1);
     const lib = nix.arg($, "lib");
     return {
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       name: "listmonk",
-      meta: nix.thunk(() => ({ [nix.POS]: pos$1, maintainers: [] })),
+      meta: nix.thunk(() => ({ [nix.POS]: $pos[0], maintainers: [] })),
       nodes: nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         machine: nix.lambda((args_1) => (() => {
           const $_1 = nix.formals(args_1, formals$2);
           const pkgs = nix.arg($_1, "pkgs");
           return {
-            [nix.POS]: pos$8,
+            [nix.POS]: $pos[7],
             services: nix.thunk(() => ({
-              [nix.POS]: pos$7,
-              mailhog: nix.thunk(() => ({ [nix.POS]: pos$2, enable: true })),
+              [nix.POS]: $pos[6],
+              mailhog: nix.thunk(() => ({ [nix.POS]: $pos[1], enable: true })),
               listmonk: nix.thunk(() => ({
-                [nix.POS]: pos$6,
+                [nix.POS]: $pos[5],
                 enable: true,
                 database: nix.thunk(() => ({
-                  [nix.POS]: pos$5,
+                  [nix.POS]: $pos[4],
                   createLocally: true,
                   settings: nix.thunk(() => ({
-                    [nix.POS]: pos$4,
+                    [nix.POS]: $pos[3],
                     smtp: nix.thunk(() => [
                       nix.thunk(() => ({
-                        [nix.POS]: pos$3,
+                        [nix.POS]: $pos[2],
                         enabled: true,
                         host: "localhost",
                         port: 1025n,

@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 46, 5], ["repo", 47, 5], ["rev", 48, 5], ["hash", 49, 5]], [["url", 96, 7], ["hash", 97, 7]], [["url", 100, 7], ["includes", 101, 7], ["hash", 102, 7]], [["url", 105, 7], ["hash", 106, 7]], [["homepage", 135, 5], ["description", 136, 5], ["platforms", 137, 5], ["license", 138, 5], ["maintainers", 139, 5]], [["pname", 42, 3], ["version", 43, 3], ["src", 45, 3], ["nativeBuildInputs", 52, 3], ["buildInputs", 76, 3], ["postPatch", 87, 3], ["patches", 94, 3], ["preConfigure", 115, 3], ["mesonFlags", 123, 3], ["meta", 134, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, fetchurl: false, fetchpatch: false, meson: false, ninja: false, m4: false, gperf: false, getent: false, acl: false, audit: false, dbus: false, libcap: false, libselinux: false, pam: false, gettext: false, "pkg-config": false, udev: false, eudev: false, "util-linux": false, libxslt: false, python3Packages: false, docbook5: false, docbook_xsl: false, docbook_xsl_ns: false, docbook_xml_dtd_42: false, docbook_xml_dtd_45: false, udevCheckHook: false, enableSystemd: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 46, 5], ["repo", 47, 5], ["rev", 48, 5], ["hash", 49, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 96, 7], ["hash", 97, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 100, 7], ["includes", 101, 7], ["hash", 102, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["url", 105, 7], ["hash", 106, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["homepage", 135, 5], ["description", 136, 5], ["platforms", 137, 5], ["license", 138, 5], ["maintainers", 139, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 42, 3], ["version", 43, 3], ["src", 45, 3], ["nativeBuildInputs", 52, 3], ["buildInputs", 76, 3], ["postPatch", 87, 3], ["patches", 94, 3], ["preConfigure", 115, 3], ["mesonFlags", 123, 3], ["meta", 134, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -44,11 +39,11 @@ export default nix.lambda((args) => (() => {
   const enableSystemd = nix.argOr($, "enableSystemd", () => false);
   const system = "/run/current-system/sw";
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "elogind",
       version: "255.27",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "elogind",
           repo: "elogind",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -77,18 +72,18 @@ export default nix.lambda((args) => (() => {
 `)))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/chimera-linux/cports/raw/49d65fe38be815b9918a15ac2d2ff2b123fc559a/main/elogind/patches/strerror_r.patch",
             hash: "sha256-amqXP12mLtrkWuAURb3/aoQeeTSRYlYqL2q2zrKbhxk=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: "https://github.com/chimera-linux/cports/raw/49d65fe38be815b9918a15ac2d2ff2b123fc559a/main/elogind/patches/xxx-musl-fixes.patch",
             includes: nix.thunk(() => ["src/libelogind/sd-journal/journal-file.h"]),
             hash: "sha256-3tNz0M8PNTxISDaLP5f3Ldy5z1a+F85P6NZWpGe71Nc=",
           })))),
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             url: "https://github.com/chimera-linux/cports/raw/49d65fe38be815b9918a15ac2d2ff2b123fc559a/main/elogind/patches/gshadow.patch",
             hash: "sha256-YBy1OeWD1EluLTeUvqUvZKyrZyoUbGg1mxwqG5+VNO0=",
           })))),
@@ -106,7 +101,7 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "mesonEnable"), "xenctrl", false)),
       ]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "https://github.com/elogind/elogind",
         description: "systemd project's 'logind', extracted to a standalone package",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),

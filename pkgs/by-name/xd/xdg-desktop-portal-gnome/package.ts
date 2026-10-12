@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 29, 5], ["hash", 30, 5]], [["extraLoaders", 61, 9]], [["packageName", 72, 7]], [["updateScript", 71, 5]], [["description", 77, 5], ["homepage", 78, 5], ["teams", 79, 5], ["platforms", 80, 5], ["license", 81, 5]], [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 41, 3], ["mesonFlags", 52, 3], ["postInstall", 56, 3], ["passthru", 70, 3], ["meta", 76, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchurl: false, fontconfig: false, glib: false, gnome: false, "gnome-desktop": false, "gsettings-desktop-schemas": false, gtk4: false, libadwaita: false, libjxl: false, librsvg: false, meson: false, ninja: false, "pkg-config": false, wayland: false, "wayland-scanner": false, "webp-pixbuf-loader": false, wrapGAppsHook4: false, "xdg-desktop-portal": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 29, 5], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["extraLoaders", 61, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["packageName", 72, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 71, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 77, 5], ["homepage", 78, 5], ["teams", 79, 5], ["platforms", 80, 5], ["license", 81, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["nativeBuildInputs", 33, 3], ["buildInputs", 41, 3], ["mesonFlags", 52, 3], ["postInstall", 56, 3], ["passthru", 70, 3], ["meta", 76, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -33,11 +28,11 @@ export default nix.lambda((args) => (() => {
   const wrapGAppsHook4 = nix.arg($, "wrapGAppsHook4");
   const xdg_desktop_portal = nix.arg($, "xdg-desktop-portal");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "xdg-desktop-portal-gnome",
       version: "50.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnome/sources/xdg-desktop-portal-gnome/${nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/xdg-desktop-portal-gnome-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-zu7y+2izSz9mo97wozKiKnCvJyZB+2xQBlt6L949V1k=",
         })))),
@@ -58,16 +53,16 @@ export default nix.lambda((args) => (() => {
       postInstall: nix.thunk(() => nix.str`# Pull in WebP and JXL support for gnome-backgrounds.
 # In postInstall to run before gappsWrapperArgsHook.
 export GDK_PIXBUF_MODULE_FILE="${nix.app(nix.sel(gnome, "_gdkPixbufCacheBuilder_DO_NOT_USE"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           extraLoaders: nix.thunk(() => [libjxl, librsvg, webp_pixbuf_loader]),
         })))}"
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$3, packageName: "xdg-desktop-portal-gnome" })))),
+        [nix.POS]: $pos[3],
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: $pos[2], packageName: "xdg-desktop-portal-gnome" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Backend implementation for xdg-desktop-portal for the GNOME desktop environment",
         homepage: "https://gitlab.gnome.org/GNOME/xdg-desktop-portal-gnome",
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "gnome"))]),

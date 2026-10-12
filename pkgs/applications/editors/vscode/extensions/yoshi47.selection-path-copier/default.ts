@@ -2,10 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["publisher", 9, 5], ["name", 10, 5], ["version", 11, 5], ["hash", 12, 5]], [["description", 15, 5], ["downloadPage", 16, 5], ["homepage", 17, 5], ["changelog", 18, 5], ["license", 19, 5], ["maintainers", 20, 5]], [["mktplcRef", 8, 3], ["meta", 14, 3]]]);
 const formals$1 = { args: { lib: false, "vscode-utils": false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["publisher", 9, 5], ["name", 10, 5], ["version", 11, 5], ["hash", 12, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 15, 5], ["downloadPage", 16, 5], ["homepage", 17, 5], ["changelog", 18, 5], ["license", 19, 5], ["maintainers", 20, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["mktplcRef", 8, 3], ["meta", 14, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,16 +11,16 @@ export default nix.lambda((args) => (() => {
   const vscode_utils = nix.arg($, "vscode-utils");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(vscode_utils, "buildVscodeMarketplaceExtension"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       mktplcRef: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         publisher: "yoshi47",
         name: "selection-path-copier",
         version: "1.6.0",
         hash: "sha256-KnV9WariqK3GMjoQARtamxriBkL0Pi9y7+fhfwObCWE=",
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Copy file paths with line numbers, code snippets, and GitHub permalinks in multiple formats",
         downloadPage: "https://marketplace.visualstudio.com/items?itemName=yoshi47.selection-path-copier",
         homepage: "https://github.com/yoshi47/selection-path-copier",

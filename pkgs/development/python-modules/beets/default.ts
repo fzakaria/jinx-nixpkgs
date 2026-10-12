@@ -2,87 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 120, 5], ["repo", 121, 5], ["tag", 122, 5], ["hash", 123, 5]], [["deprecated", 243, 11], ["testPaths", 244, 11]], [["testPaths", 247, 11]], [["deprecated", 250, 11], ["propagatedBuildInputs", 251, 11]], [["propagatedBuildInputs", 255, 11]], [["propagatedBuildInputs", 262, 11]], [["testPaths", 269, 11], ["wrapperBins", 270, 11]], [["propagatedBuildInputs", 276, 18]], [["testPaths", 277, 15]], [["testPaths", 279, 13]], [["deprecated", 282, 11], ["testPaths", 283, 11]], [["propagatedBuildInputs", 287, 11], ["wrapperBins", 288, 11]], [["wrapperBins", 292, 17]], [["propagatedBuildInputs", 294, 11], ["testPaths", 295, 11]], [["user_token", 303, 13]], [["config", 302, 28]], [["propagatedBuildInputs", 298, 11], ["singlePluginTest", 302, 11]], [["testPaths", 306, 20]], [["propagatedBuildInputs", 309, 11], ["wrapperBins", 310, 11]], [["propagatedBuildInputs", 312, 20]], [["propagatedBuildInputs", 315, 11], ["wrapperBins", 321, 11]], [["testPaths", 324, 14]], [["testPaths", 325, 21]], [["testPaths", 326, 22]], [["testPaths", 328, 15]], [["testPaths", 335, 16]], [["wrapperBins", 337, 19]], [["propagatedBuildInputs", 339, 11], ["testPaths", 340, 11]], [["propagatedBuildInputs", 342, 19]], [["propagatedBuildInputs", 344, 11], ["testPaths", 345, 11]], [["token", 349, 11], ["username", 350, 11]], [["config", 348, 39]], [["singlePluginTest", 348, 22]], [["propagatedBuildInputs", 353, 11], ["testPaths", 354, 11]], [["propagatedBuildInputs", 356, 16]], [["testPaths", 361, 22]], [["propagatedBuildInputs", 366, 11], ["testPaths", 367, 11]], [["testPaths", 369, 17]], [["propagatedBuildInputs", 370, 18]], [["propagatedBuildInputs", 372, 11], ["testPaths", 373, 11]], [["propagatedBuildInputs", 379, 18]], [["backend", 384, 35]], [["config", 384, 28]], [["singlePluginTest", 384, 11], ["wrapperBins", 385, 11]], [["testPaths", 391, 17]], [["testPaths", 392, 15]], [["propagatedBuildInputs", 395, 11], ["testPaths", 396, 11]], [["setup", 398, 34]], [["singlePluginTest", 398, 17]], [["propagatedBuildInputs", 403, 11], ["testPaths", 404, 11]], [["propagatedBuildInputs", 406, 24]], [["testPaths", 408, 11]], [["propagatedBuildInputs", 410, 15]], [["propagatedBuildInputs", 412, 19]], [["propagatedBuildInputs", 414, 11], ["wrapperBins", 418, 11]], [["testPaths", 420, 15]], [["testPaths", 421, 20]], [["propagatedBuildInputs", 422, 13]], [["testPaths", 428, 11]], [["testPaths", 431, 11]], [["absubmit", 242, 9], ["advancedrewrite", 246, 9], ["acousticbrainz", 249, 9], ["albumtypes", 253, 9], ["aura", 254, 9], ["autobpm", 261, 9], ["badfiles", 268, 9], ["bareasc", 275, 9], ["beatport", 276, 9], ["bench", 277, 9], ["bpd", 278, 9], ["bpm", 279, 9], ["bpsync", 280, 9], ["bucket", 285, 9], ["chroma", 286, 9], ["convert", 292, 9], ["deezer", 293, 9], ["discogs", 297, 9], ["duplicates", 306, 9], ["edit", 307, 9], ["embedart", 308, 9], ["embyupdate", 312, 9], ["export", 313, 9], ["fetchart", 314, 9], ["filefilter", 323, 9], ["fish", 324, 9], ["freedesktop", 325, 9], ["fromfilename", 326, 9], ["ftintitle", 327, 9], ["fuzzy", 328, 9], ["hook", 329, 9], ["ihate", 330, 9], ["importadded", 331, 9], ["importfeeds", 332, 9], ["importsource", 333, 9], ["info", 334, 9], ["inline", 335, 9], ["ipfs", 336, 9], ["keyfinder", 337, 9], ["kodiupdate", 338, 9], ["lastgenre", 342, 9], ["lastimport", 343, 9], ["limit", 347, 9], ["listenbrainz", 348, 9], ["loadext", 352, 9], ["lyrics", 356, 9], ["mbcollection", 361, 9], ["mbsubmit", 362, 9], ["mbsync", 363, 9], ["mbpseudo", 364, 9], ["metasync", 365, 9], ["missing", 369, 9], ["mpdstats", 370, 9], ["mpdupdate", 371, 9], ["musicbrainz", 375, 9], ["parentwork", 376, 9], ["permissions", 377, 9], ["play", 378, 9], ["playlist", 379, 9], ["plexupdate", 380, 9], ["random", 381, 9], ["replace", 382, 9], ["replaygain", 383, 9], ["rewrite", 391, 9], ["scrub", 392, 9], ["smartplaylist", 393, 9], ["sonosupdate", 394, 9], ["spotify", 398, 9], ["subsonicplaylist", 402, 9], ["subsonicupdate", 406, 9], ["substitute", 407, 9], ["tidal", 410, 9], ["the", 411, 9], ["titlecase", 412, 9], ["thumbnails", 413, 9], ["types", 420, 9], ["unimported", 421, 9], ["web", 422, 9], ["zero", 426, 9], ["_typing", 427, 9], ["_utils", 430, 9]], [["builtin", 435, 17]], [["config", 452, 15], ["setup", 453, 15]], [["name", 447, 13], ["enable", 448, 13], ["builtin", 449, 13], ["propagatedBuildInputs", 450, 13], ["singlePluginTest", 451, 13], ["testPaths", 455, 13], ["wrapperBins", 456, 13]], [["builtins", 241, 7], ["base", 434, 7], ["overrides", 437, 7], ["all", 442, 7], ["enabled", 460, 7], ["disabled", 461, 7], ["disabledTestPaths", 462, 7], ["wrapperBins", 465, 7]], [["my_special_plugin", 477, 30]], [["builtins", 477, 21]], [["plugins", 477, 13]], [["postPatch", 472, 11], ["passthru", 476, 11]], [["enable", 487, 20]], [["enable", 488, 21]], [["mpdstats", 487, 11], ["mpdupdate", 488, 11]], [["pluginOverrides", 483, 9]], [["with-new-builtin-plugin", 470, 7], ["with-mpd-plugins-disabled", 482, 7], ["mpd-plugins-really-disabled", 491, 7]], [["plugins", 517, 13]], [["enable", 526, 29]], [["disableAllPlugins", 524, 13], ["pluginOverrides", 525, 13], ["doCheck", 532, 13]], [["plugins", 240, 5], ["tests", 469, 5]], [["description", 570, 5], ["homepage", 571, 5], ["license", 572, 5], ["maintainers", 573, 5], ["platforms", 580, 5], ["mainProgram", 581, 5]], [["pname", 117, 3], ["version", 118, 3], ["src", 119, 3], ["pyproject", 125, 3], ["patches", 127, 3], ["build-system", 129, 3], ["dependencies", 133, 3], ["nativeBuildInputs", 156, 3], ["buildInputs", 161, 3], ["outputs", 167, 3], ["postInstall", 171, 3], ["makeWrapperArgs", 176, 3], ["nativeCheckInputs", 182, 3], ["doCheck", 199, 11], ["__darwinAllowLocalNetworking", 201, 3], ["disabledTestPaths", 203, 3], ["disabledTests", 210, 3], ["preCheck", 219, 3], ["passthru", 239, 3], ["meta", 569, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitHub: false, hatchling: false, confuse: false, "gst-python": false, jellyfish: false, mediafile: false, munkres: false, musicbrainzngs: false, packaging: false, platformdirs: false, pyyaml: false, unidecode: false, reflink: false, "requests-ratelimiter": false, "typing-extensions": false, lap: false, "gobject-introspection": false, gst_all_1: false, aacgain: false, beautifulsoup4: false, chromaprint: false, "dbus-python": false, "discogs-client": false, ffmpeg: false, flac: false, flask: false, "flask-cors": false, imagemagick: false, "keyfinder-cli": false, langdetect: false, librosa: false, mp3gain: false, mp3val: false, "python-mpd2": false, pyacoustid: false, pylast: false, pyxdg: false, requests: false, "requests-oauthlib": false, resampy: false, titlecase: false, soco: false, extraPatches: true, pluginOverrides: true, disableAllPlugins: true, extraDisabledTests: true, extraNativeBuildInputs: true, doCheck: true, pytestCheckHook: false, "pytest-cov-stub": false, "pytest-factoryboy": false, "pytest-flask": false, mock: false, py7zr: false, rarfile: false, responses: false, "requests-mock": false, pillow: false, tomli: false, writableTmpDirAsHomeHook: false, bashInteractive: false, diffPlugins: false, runtimeShell: false, writeScript: false, runCommand: false, beets: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 120, 5], ["repo", 121, 5], ["tag", 122, 5], ["hash", 123, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["deprecated", 243, 11], ["testPaths", 244, 11]]);
-const pos$3 = nix.positions(here + "/default.nix", [["testPaths", 247, 11]]);
-const pos$4 = nix.positions(here + "/default.nix", [["deprecated", 250, 11], ["propagatedBuildInputs", 251, 11]]);
-const pos$5 = nix.positions(here + "/default.nix", [["propagatedBuildInputs", 255, 11]]);
-const pos$6 = nix.positions(here + "/default.nix", [["propagatedBuildInputs", 262, 11]]);
-const pos$7 = nix.positions(here + "/default.nix", [["testPaths", 269, 11], ["wrapperBins", 270, 11]]);
-const pos$8 = nix.positions(here + "/default.nix", [["propagatedBuildInputs", 276, 18]]);
-const pos$9 = nix.positions(here + "/default.nix", [["testPaths", 277, 15]]);
-const pos$10 = nix.positions(here + "/default.nix", [["testPaths", 279, 13]]);
-const pos$11 = nix.positions(here + "/default.nix", [["deprecated", 282, 11], ["testPaths", 283, 11]]);
-const pos$12 = nix.positions(here + "/default.nix", [["propagatedBuildInputs", 287, 11], ["wrapperBins", 288, 11]]);
-const pos$13 = nix.positions(here + "/default.nix", [["wrapperBins", 292, 17]]);
-const pos$14 = nix.positions(here + "/default.nix", [["propagatedBuildInputs", 294, 11], ["testPaths", 295, 11]]);
-const pos$15 = nix.positions(here + "/default.nix", [["user_token", 303, 13]]);
-const pos$16 = nix.positions(here + "/default.nix", [["config", 302, 28]]);
-const pos$17 = nix.positions(here + "/default.nix", [["propagatedBuildInputs", 298, 11], ["singlePluginTest", 302, 11]]);
-const pos$18 = nix.positions(here + "/default.nix", [["testPaths", 306, 20]]);
-const pos$19 = nix.positions(here + "/default.nix", [["propagatedBuildInputs", 309, 11], ["wrapperBins", 310, 11]]);
-const pos$20 = nix.positions(here + "/default.nix", [["propagatedBuildInputs", 312, 20]]);
-const pos$21 = nix.positions(here + "/default.nix", [["propagatedBuildInputs", 315, 11], ["wrapperBins", 321, 11]]);
-const pos$22 = nix.positions(here + "/default.nix", [["testPaths", 324, 14]]);
-const pos$23 = nix.positions(here + "/default.nix", [["testPaths", 325, 21]]);
-const pos$24 = nix.positions(here + "/default.nix", [["testPaths", 326, 22]]);
-const pos$25 = nix.positions(here + "/default.nix", [["testPaths", 328, 15]]);
-const pos$26 = nix.positions(here + "/default.nix", [["testPaths", 335, 16]]);
-const pos$27 = nix.positions(here + "/default.nix", [["wrapperBins", 337, 19]]);
-const pos$28 = nix.positions(here + "/default.nix", [["propagatedBuildInputs", 339, 11], ["testPaths", 340, 11]]);
-const pos$29 = nix.positions(here + "/default.nix", [["propagatedBuildInputs", 342, 19]]);
-const pos$30 = nix.positions(here + "/default.nix", [["propagatedBuildInputs", 344, 11], ["testPaths", 345, 11]]);
-const pos$31 = nix.positions(here + "/default.nix", [["token", 349, 11], ["username", 350, 11]]);
-const pos$32 = nix.positions(here + "/default.nix", [["config", 348, 39]]);
-const pos$33 = nix.positions(here + "/default.nix", [["singlePluginTest", 348, 22]]);
-const pos$34 = nix.positions(here + "/default.nix", [["propagatedBuildInputs", 353, 11], ["testPaths", 354, 11]]);
-const pos$35 = nix.positions(here + "/default.nix", [["propagatedBuildInputs", 356, 16]]);
-const pos$36 = nix.positions(here + "/default.nix", [["testPaths", 361, 22]]);
-const pos$37 = nix.positions(here + "/default.nix", [["propagatedBuildInputs", 366, 11], ["testPaths", 367, 11]]);
-const pos$38 = nix.positions(here + "/default.nix", [["testPaths", 369, 17]]);
-const pos$39 = nix.positions(here + "/default.nix", [["propagatedBuildInputs", 370, 18]]);
-const pos$40 = nix.positions(here + "/default.nix", [["propagatedBuildInputs", 372, 11], ["testPaths", 373, 11]]);
-const pos$41 = nix.positions(here + "/default.nix", [["propagatedBuildInputs", 379, 18]]);
-const pos$42 = nix.positions(here + "/default.nix", [["backend", 384, 35]]);
-const pos$43 = nix.positions(here + "/default.nix", [["config", 384, 28]]);
-const pos$44 = nix.positions(here + "/default.nix", [["singlePluginTest", 384, 11], ["wrapperBins", 385, 11]]);
-const pos$45 = nix.positions(here + "/default.nix", [["testPaths", 391, 17]]);
-const pos$46 = nix.positions(here + "/default.nix", [["testPaths", 392, 15]]);
-const pos$47 = nix.positions(here + "/default.nix", [["propagatedBuildInputs", 395, 11], ["testPaths", 396, 11]]);
-const pos$48 = nix.positions(here + "/default.nix", [["setup", 398, 34]]);
-const pos$49 = nix.positions(here + "/default.nix", [["singlePluginTest", 398, 17]]);
-const pos$50 = nix.positions(here + "/default.nix", [["propagatedBuildInputs", 403, 11], ["testPaths", 404, 11]]);
-const pos$51 = nix.positions(here + "/default.nix", [["propagatedBuildInputs", 406, 24]]);
-const pos$52 = nix.positions(here + "/default.nix", [["testPaths", 408, 11]]);
-const pos$53 = nix.positions(here + "/default.nix", [["propagatedBuildInputs", 410, 15]]);
-const pos$54 = nix.positions(here + "/default.nix", [["propagatedBuildInputs", 412, 19]]);
-const pos$55 = nix.positions(here + "/default.nix", [["propagatedBuildInputs", 414, 11], ["wrapperBins", 418, 11]]);
-const pos$56 = nix.positions(here + "/default.nix", [["testPaths", 420, 15]]);
-const pos$57 = nix.positions(here + "/default.nix", [["testPaths", 421, 20]]);
-const pos$58 = nix.positions(here + "/default.nix", [["propagatedBuildInputs", 422, 13]]);
-const pos$59 = nix.positions(here + "/default.nix", [["testPaths", 428, 11]]);
-const pos$60 = nix.positions(here + "/default.nix", [["testPaths", 431, 11]]);
-const pos$61 = nix.positions(here + "/default.nix", [["absubmit", 242, 9], ["advancedrewrite", 246, 9], ["acousticbrainz", 249, 9], ["albumtypes", 253, 9], ["aura", 254, 9], ["autobpm", 261, 9], ["badfiles", 268, 9], ["bareasc", 275, 9], ["beatport", 276, 9], ["bench", 277, 9], ["bpd", 278, 9], ["bpm", 279, 9], ["bpsync", 280, 9], ["bucket", 285, 9], ["chroma", 286, 9], ["convert", 292, 9], ["deezer", 293, 9], ["discogs", 297, 9], ["duplicates", 306, 9], ["edit", 307, 9], ["embedart", 308, 9], ["embyupdate", 312, 9], ["export", 313, 9], ["fetchart", 314, 9], ["filefilter", 323, 9], ["fish", 324, 9], ["freedesktop", 325, 9], ["fromfilename", 326, 9], ["ftintitle", 327, 9], ["fuzzy", 328, 9], ["hook", 329, 9], ["ihate", 330, 9], ["importadded", 331, 9], ["importfeeds", 332, 9], ["importsource", 333, 9], ["info", 334, 9], ["inline", 335, 9], ["ipfs", 336, 9], ["keyfinder", 337, 9], ["kodiupdate", 338, 9], ["lastgenre", 342, 9], ["lastimport", 343, 9], ["limit", 347, 9], ["listenbrainz", 348, 9], ["loadext", 352, 9], ["lyrics", 356, 9], ["mbcollection", 361, 9], ["mbsubmit", 362, 9], ["mbsync", 363, 9], ["mbpseudo", 364, 9], ["metasync", 365, 9], ["missing", 369, 9], ["mpdstats", 370, 9], ["mpdupdate", 371, 9], ["musicbrainz", 375, 9], ["parentwork", 376, 9], ["permissions", 377, 9], ["play", 378, 9], ["playlist", 379, 9], ["plexupdate", 380, 9], ["random", 381, 9], ["replace", 382, 9], ["replaygain", 383, 9], ["rewrite", 391, 9], ["scrub", 392, 9], ["smartplaylist", 393, 9], ["sonosupdate", 394, 9], ["spotify", 398, 9], ["subsonicplaylist", 402, 9], ["subsonicupdate", 406, 9], ["substitute", 407, 9], ["tidal", 410, 9], ["the", 411, 9], ["titlecase", 412, 9], ["thumbnails", 413, 9], ["types", 420, 9], ["unimported", 421, 9], ["web", 422, 9], ["zero", 426, 9], ["_typing", 427, 9], ["_utils", 430, 9]]);
-const pos$62 = nix.positions(here + "/default.nix", [["builtin", 435, 17]]);
-const pos$63 = nix.positions(here + "/default.nix", [["config", 452, 15], ["setup", 453, 15]]);
-const pos$64 = nix.positions(here + "/default.nix", [["name", 447, 13], ["enable", 448, 13], ["builtin", 449, 13], ["propagatedBuildInputs", 450, 13], ["singlePluginTest", 451, 13], ["testPaths", 455, 13], ["wrapperBins", 456, 13]]);
-const pos$65 = nix.positions(here + "/default.nix", [["builtins", 241, 7], ["base", 434, 7], ["overrides", 437, 7], ["all", 442, 7], ["enabled", 460, 7], ["disabled", 461, 7], ["disabledTestPaths", 462, 7], ["wrapperBins", 465, 7]]);
-const pos$66 = nix.positions(here + "/default.nix", [["my_special_plugin", 477, 30]]);
-const pos$67 = nix.positions(here + "/default.nix", [["builtins", 477, 21]]);
-const pos$68 = nix.positions(here + "/default.nix", [["plugins", 477, 13]]);
-const pos$69 = nix.positions(here + "/default.nix", [["postPatch", 472, 11], ["passthru", 476, 11]]);
-const pos$70 = nix.positions(here + "/default.nix", [["enable", 487, 20]]);
-const pos$71 = nix.positions(here + "/default.nix", [["enable", 488, 21]]);
-const pos$72 = nix.positions(here + "/default.nix", [["mpdstats", 487, 11], ["mpdupdate", 488, 11]]);
-const pos$73 = nix.positions(here + "/default.nix", [["pluginOverrides", 483, 9]]);
-const pos$74 = nix.positions(here + "/default.nix", [["with-new-builtin-plugin", 470, 7], ["with-mpd-plugins-disabled", 482, 7], ["mpd-plugins-really-disabled", 491, 7]]);
-const pos$75 = nix.positions(here + "/default.nix", [["plugins", 517, 13]]);
-const pos$76 = nix.positions(here + "/default.nix", [["enable", 526, 29]]);
-const pos$77 = nix.positions(here + "/default.nix", [["disableAllPlugins", 524, 13], ["pluginOverrides", 525, 13], ["doCheck", 532, 13]]);
-const pos$78 = nix.positions(here + "/default.nix", [["plugins", 240, 5], ["tests", 469, 5]]);
-const pos$79 = nix.positions(here + "/default.nix", [["description", 570, 5], ["homepage", 571, 5], ["license", 572, 5], ["maintainers", 573, 5], ["platforms", 580, 5], ["mainProgram", 581, 5]]);
-const pos$80 = nix.positions(here + "/default.nix", [["pname", 117, 3], ["version", 118, 3], ["src", 119, 3], ["pyproject", 125, 3], ["patches", 127, 3], ["build-system", 129, 3], ["dependencies", 133, 3], ["nativeBuildInputs", 156, 3], ["buildInputs", 161, 3], ["outputs", 167, 3], ["postInstall", 171, 3], ["makeWrapperArgs", 176, 3], ["nativeCheckInputs", 182, 3], ["doCheck", 199, 11], ["__darwinAllowLocalNetworking", 201, 3], ["disabledTestPaths", 203, 3], ["disabledTests", 210, 3], ["preCheck", 219, 3], ["passthru", 239, 3], ["meta", 569, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -156,11 +77,11 @@ export default nix.lambda((args) => (() => {
   const runCommand = nix.arg($, "runCommand");
   const beets = nix.arg($, "beets");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$80,
+      [nix.POS]: $pos[79],
       pname: "beets",
       version: "2.14.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "beetbox",
           repo: "beets",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -238,128 +159,131 @@ CFG
 env EDITOR=true "$out/bin/beet" config -e
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$78,
+        [nix.POS]: $pos[77],
         plugins: nix.thunk(() => ({
-          [nix.POS]: pos$65,
+          [nix.POS]: $pos[64],
           builtins: nix.thunk(() => ({
-            [nix.POS]: pos$61,
-            absubmit: nix.thunk(() => ({ [nix.POS]: pos$2, deprecated: true, testPaths: [] })),
-            advancedrewrite: nix.thunk(() => ({ [nix.POS]: pos$3, testPaths: [] })),
+            [nix.POS]: $pos[60],
+            absubmit: nix.thunk(() => ({ [nix.POS]: $pos[1], deprecated: true, testPaths: [] })),
+            advancedrewrite: nix.thunk(() => ({ [nix.POS]: $pos[2], testPaths: [] })),
             acousticbrainz: nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               deprecated: true,
               propagatedBuildInputs: nix.thunk(() => [requests]),
             })),
             albumtypes: nix.thunk(() => ({})),
             aura: nix.thunk(() => ({
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               propagatedBuildInputs: nix.thunk(() => [flask, flask_cors, pillow]),
             })),
-            autobpm: nix.thunk(() => ({ [nix.POS]: pos$6, propagatedBuildInputs: nix.thunk(() => [librosa, resampy]) })),
+            autobpm: nix.thunk(() => ({
+              [nix.POS]: $pos[5],
+              propagatedBuildInputs: nix.thunk(() => [librosa, resampy]),
+            })),
             badfiles: nix.thunk(() => ({
-              [nix.POS]: pos$7,
+              [nix.POS]: $pos[6],
               testPaths: [],
               wrapperBins: nix.thunk(() => [mp3val, flac]),
             })),
             bareasc: nix.thunk(() => ({})),
             beatport: nix.thunk(() => ({
-              [nix.POS]: pos$8,
+              [nix.POS]: $pos[7],
               propagatedBuildInputs: nix.thunk(() => [requests_oauthlib]),
             })),
-            bench: nix.thunk(() => ({ [nix.POS]: pos$9, testPaths: [] })),
+            bench: nix.thunk(() => ({ [nix.POS]: $pos[8], testPaths: [] })),
             bpd: nix.thunk(() => ({})),
-            bpm: nix.thunk(() => ({ [nix.POS]: pos$10, testPaths: [] })),
-            bpsync: nix.thunk(() => ({ [nix.POS]: pos$11, deprecated: true, testPaths: [] })),
+            bpm: nix.thunk(() => ({ [nix.POS]: $pos[9], testPaths: [] })),
+            bpsync: nix.thunk(() => ({ [nix.POS]: $pos[10], deprecated: true, testPaths: [] })),
             bucket: nix.thunk(() => ({})),
             chroma: nix.thunk(() => ({
-              [nix.POS]: pos$12,
+              [nix.POS]: $pos[11],
               propagatedBuildInputs: nix.thunk(() => [pyacoustid]),
               wrapperBins: nix.thunk(() => [chromaprint]),
             })),
-            convert: nix.thunk(() => ({ [nix.POS]: pos$13, wrapperBins: nix.thunk(() => [ffmpeg]) })),
+            convert: nix.thunk(() => ({ [nix.POS]: $pos[12], wrapperBins: nix.thunk(() => [ffmpeg]) })),
             deezer: nix.thunk(() => ({
-              [nix.POS]: pos$14,
+              [nix.POS]: $pos[13],
               propagatedBuildInputs: nix.thunk(() => [requests]),
               testPaths: [],
             })),
             discogs: nix.thunk(() => ({
-              [nix.POS]: pos$17,
+              [nix.POS]: $pos[16],
               propagatedBuildInputs: nix.thunk(() => [discogs_client, requests]),
               singlePluginTest: nix.thunk(() => ({
-                [nix.POS]: pos$16,
-                config: nix.thunk(() => ({ [nix.POS]: pos$15, user_token: "test" })),
+                [nix.POS]: $pos[15],
+                config: nix.thunk(() => ({ [nix.POS]: $pos[14], user_token: "test" })),
               })),
             })),
-            duplicates: nix.thunk(() => ({ [nix.POS]: pos$18, testPaths: [] })),
+            duplicates: nix.thunk(() => ({ [nix.POS]: $pos[17], testPaths: [] })),
             edit: nix.thunk(() => ({})),
             embedart: nix.thunk(() => ({
-              [nix.POS]: pos$19,
+              [nix.POS]: $pos[18],
               propagatedBuildInputs: nix.thunk(() => [pillow]),
               wrapperBins: nix.thunk(() => [imagemagick]),
             })),
-            embyupdate: nix.thunk(() => ({ [nix.POS]: pos$20, propagatedBuildInputs: nix.thunk(() => [requests]) })),
+            embyupdate: nix.thunk(() => ({ [nix.POS]: $pos[19], propagatedBuildInputs: nix.thunk(() => [requests]) })),
             export: nix.thunk(() => ({})),
             fetchart: nix.thunk(() => ({
-              [nix.POS]: pos$21,
+              [nix.POS]: $pos[20],
               propagatedBuildInputs: nix.thunk(() => [beautifulsoup4, langdetect, pillow, requests]),
               wrapperBins: nix.thunk(() => [imagemagick]),
             })),
             filefilter: nix.thunk(() => ({})),
-            fish: nix.thunk(() => ({ [nix.POS]: pos$22, testPaths: [] })),
-            freedesktop: nix.thunk(() => ({ [nix.POS]: pos$23, testPaths: [] })),
-            fromfilename: nix.thunk(() => ({ [nix.POS]: pos$24, testPaths: [] })),
+            fish: nix.thunk(() => ({ [nix.POS]: $pos[21], testPaths: [] })),
+            freedesktop: nix.thunk(() => ({ [nix.POS]: $pos[22], testPaths: [] })),
+            fromfilename: nix.thunk(() => ({ [nix.POS]: $pos[23], testPaths: [] })),
             ftintitle: nix.thunk(() => ({})),
-            fuzzy: nix.thunk(() => ({ [nix.POS]: pos$25, testPaths: [] })),
+            fuzzy: nix.thunk(() => ({ [nix.POS]: $pos[24], testPaths: [] })),
             hook: nix.thunk(() => ({})),
             ihate: nix.thunk(() => ({})),
             importadded: nix.thunk(() => ({})),
             importfeeds: nix.thunk(() => ({})),
             importsource: nix.thunk(() => ({})),
             info: nix.thunk(() => ({})),
-            inline: nix.thunk(() => ({ [nix.POS]: pos$26, testPaths: [] })),
+            inline: nix.thunk(() => ({ [nix.POS]: $pos[25], testPaths: [] })),
             ipfs: nix.thunk(() => ({})),
-            keyfinder: nix.thunk(() => ({ [nix.POS]: pos$27, wrapperBins: nix.thunk(() => [keyfinder_cli]) })),
+            keyfinder: nix.thunk(() => ({ [nix.POS]: $pos[26], wrapperBins: nix.thunk(() => [keyfinder_cli]) })),
             kodiupdate: nix.thunk(() => ({
-              [nix.POS]: pos$28,
+              [nix.POS]: $pos[27],
               propagatedBuildInputs: nix.thunk(() => [requests]),
               testPaths: [],
             })),
-            lastgenre: nix.thunk(() => ({ [nix.POS]: pos$29, propagatedBuildInputs: nix.thunk(() => [pylast]) })),
+            lastgenre: nix.thunk(() => ({ [nix.POS]: $pos[28], propagatedBuildInputs: nix.thunk(() => [pylast]) })),
             lastimport: nix.thunk(() => ({
-              [nix.POS]: pos$30,
+              [nix.POS]: $pos[29],
               propagatedBuildInputs: nix.thunk(() => [pylast]),
               testPaths: [],
             })),
             limit: nix.thunk(() => ({})),
             listenbrainz: nix.thunk(() => ({
-              [nix.POS]: pos$33,
+              [nix.POS]: $pos[32],
               singlePluginTest: nix.thunk(() => ({
-                [nix.POS]: pos$32,
-                config: nix.thunk(() => ({ [nix.POS]: pos$31, token: "test", username: "test" })),
+                [nix.POS]: $pos[31],
+                config: nix.thunk(() => ({ [nix.POS]: $pos[30], token: "test", username: "test" })),
               })),
             })),
             loadext: nix.thunk(() => ({
-              [nix.POS]: pos$34,
+              [nix.POS]: $pos[33],
               propagatedBuildInputs: nix.thunk(() => [requests]),
               testPaths: [],
             })),
             lyrics: nix.thunk(() => ({
-              [nix.POS]: pos$35,
+              [nix.POS]: $pos[34],
               propagatedBuildInputs: nix.thunk(() => [beautifulsoup4, langdetect, requests]),
             })),
-            mbcollection: nix.thunk(() => ({ [nix.POS]: pos$36, testPaths: [] })),
+            mbcollection: nix.thunk(() => ({ [nix.POS]: $pos[35], testPaths: [] })),
             mbsubmit: nix.thunk(() => ({})),
             mbsync: nix.thunk(() => ({})),
             mbpseudo: nix.thunk(() => ({})),
             metasync: nix.thunk(() => ({
-              [nix.POS]: pos$37,
+              [nix.POS]: $pos[36],
               propagatedBuildInputs: nix.thunk(() => [dbus_python]),
               testPaths: [],
             })),
-            missing: nix.thunk(() => ({ [nix.POS]: pos$38, testPaths: [] })),
-            mpdstats: nix.thunk(() => ({ [nix.POS]: pos$39, propagatedBuildInputs: nix.thunk(() => [python_mpd2]) })),
+            missing: nix.thunk(() => ({ [nix.POS]: $pos[37], testPaths: [] })),
+            mpdstats: nix.thunk(() => ({ [nix.POS]: $pos[38], propagatedBuildInputs: nix.thunk(() => [python_mpd2]) })),
             mpdupdate: nix.thunk(() => ({
-              [nix.POS]: pos$40,
+              [nix.POS]: $pos[39],
               propagatedBuildInputs: nix.thunk(() => [python_mpd2]),
               testPaths: [],
             })),
@@ -367,75 +291,75 @@ env EDITOR=true "$out/bin/beet" config -e
             parentwork: nix.thunk(() => ({})),
             permissions: nix.thunk(() => ({})),
             play: nix.thunk(() => ({})),
-            playlist: nix.thunk(() => ({ [nix.POS]: pos$41, propagatedBuildInputs: nix.thunk(() => [requests]) })),
+            playlist: nix.thunk(() => ({ [nix.POS]: $pos[40], propagatedBuildInputs: nix.thunk(() => [requests]) })),
             plexupdate: nix.thunk(() => ({})),
             random: nix.thunk(() => ({})),
             replace: nix.thunk(() => ({})),
             replaygain: nix.thunk(() => ({
-              [nix.POS]: pos$44,
+              [nix.POS]: $pos[43],
               singlePluginTest: nix.thunk(() => ({
-                [nix.POS]: pos$43,
-                config: nix.thunk(() => ({ [nix.POS]: pos$42, backend: "gstreamer" })),
+                [nix.POS]: $pos[42],
+                config: nix.thunk(() => ({ [nix.POS]: $pos[41], backend: "gstreamer" })),
               })),
               wrapperBins: nix.thunk(() => [aacgain, ffmpeg, mp3gain]),
             })),
-            rewrite: nix.thunk(() => ({ [nix.POS]: pos$45, testPaths: [] })),
-            scrub: nix.thunk(() => ({ [nix.POS]: pos$46, testPaths: [] })),
+            rewrite: nix.thunk(() => ({ [nix.POS]: $pos[44], testPaths: [] })),
+            scrub: nix.thunk(() => ({ [nix.POS]: $pos[45], testPaths: [] })),
             smartplaylist: nix.thunk(() => ({})),
             sonosupdate: nix.thunk(() => ({
-              [nix.POS]: pos$47,
+              [nix.POS]: $pos[46],
               propagatedBuildInputs: nix.thunk(() => [soco]),
               testPaths: [],
             })),
             spotify: nix.thunk(() => ({
-              [nix.POS]: pos$49,
+              [nix.POS]: $pos[48],
               singlePluginTest: nix.thunk(() => ({
-                [nix.POS]: pos$48,
+                [nix.POS]: $pos[47],
                 setup: "mkdir -p $HOME/.config/beets\necho '{\"access_token\":\"test\"}' > $HOME/.config/beets/spotify_token.json\n",
               })),
             })),
             subsonicplaylist: nix.thunk(() => ({
-              [nix.POS]: pos$50,
+              [nix.POS]: $pos[49],
               propagatedBuildInputs: nix.thunk(() => [requests]),
               testPaths: [],
             })),
-            subsonicupdate: nix.thunk(() => ({ [nix.POS]: pos$51, propagatedBuildInputs: nix.thunk(() => [requests]) })),
-            substitute: nix.thunk(() => ({ [nix.POS]: pos$52, testPaths: [] })),
+            subsonicupdate: nix.thunk(() => ({ [nix.POS]: $pos[50], propagatedBuildInputs: nix.thunk(() => [requests]) })),
+            substitute: nix.thunk(() => ({ [nix.POS]: $pos[51], testPaths: [] })),
             tidal: nix.thunk(() => ({
-              [nix.POS]: pos$53,
+              [nix.POS]: $pos[52],
               propagatedBuildInputs: nix.thunk(() => [requests_oauthlib]),
             })),
             the: nix.thunk(() => ({})),
-            titlecase: nix.thunk(() => ({ [nix.POS]: pos$54, propagatedBuildInputs: nix.thunk(() => [titlecase]) })),
+            titlecase: nix.thunk(() => ({ [nix.POS]: $pos[53], propagatedBuildInputs: nix.thunk(() => [titlecase]) })),
             thumbnails: nix.thunk(() => ({
-              [nix.POS]: pos$55,
+              [nix.POS]: $pos[54],
               propagatedBuildInputs: nix.thunk(() => [pillow, pyxdg]),
               wrapperBins: nix.thunk(() => [imagemagick]),
             })),
             types: nix.thunk(() => ({
-              [nix.POS]: pos$56,
+              [nix.POS]: $pos[55],
               testPaths: nix.thunk(() => ["test/plugins/test_types_plugin.py"]),
             })),
-            unimported: nix.thunk(() => ({ [nix.POS]: pos$57, testPaths: [] })),
+            unimported: nix.thunk(() => ({ [nix.POS]: $pos[56], testPaths: [] })),
             web: nix.thunk(() => ({
-              [nix.POS]: pos$58,
+              [nix.POS]: $pos[57],
               propagatedBuildInputs: nix.thunk(() => [flask, flask_cors]),
             })),
             zero: nix.thunk(() => ({})),
-            _typing: nix.thunk(() => ({ [nix.POS]: pos$59, testPaths: [] })),
-            _utils: nix.thunk(() => ({ [nix.POS]: pos$60, testPaths: [] })),
+            _typing: nix.thunk(() => ({ [nix.POS]: $pos[58], testPaths: [] })),
+            _utils: nix.thunk(() => ({ [nix.POS]: $pos[59], testPaths: [] })),
           })),
-          base: nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (_) => (a) => nix.update({ [nix.POS]: pos$62, builtin: true }, a), nix.thunk(() => nix.sel(finalAttrs, "finalPackage", "passthru", "plugins", "builtins")))),
+          base: nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (_) => (a) => nix.update({ [nix.POS]: $pos[61], builtin: true }, a), nix.thunk(() => nix.sel(finalAttrs, "finalPackage", "passthru", "plugins", "builtins")))),
           overrides: nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (plugName) => nix.app(nix.sel(lib, "throwIf"), nix.thunk(() => nix.selOr(finalAttrs, () => false, "finalPackage", "passthru", "plugins", "builtins", nix.key(nix.force(plugName)), "deprecated")), nix.thunk(() => nix.str`beets evaluation error: Plugin ${plugName} was enabled in pluginOverrides, but it has been removed. Remove the override to fix evaluation.`)), pluginOverrides)),
           all: nix.thunk(() => nix.app(nix.sel(lib, "pipe"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage", "passthru", "plugins", "base")), nix.thunk(() => [
               (base) => nix.app(nix.sel(lib, "recursiveUpdate"), base, nix.thunk(() => nix.sel(finalAttrs, "finalPackage", "passthru", "plugins", "overrides"))),
               nix.thunk(() => nix.app(nix.sel(lib, "mapAttrs"), (n) => (a) => nix.app(nix.sel(lib, "recursiveUpdate"), nix.thunk(() => ({
-                    [nix.POS]: pos$64,
+                    [nix.POS]: $pos[63],
                     name: n,
                     enable: nix.thunk(() => !nix.asBool(disableAllPlugins)),
                     builtin: false,
                     propagatedBuildInputs: [],
-                    singlePluginTest: nix.thunk(() => ({ [nix.POS]: pos$63, config: nix.thunk(() => ({})), setup: "" })),
+                    singlePluginTest: nix.thunk(() => ({ [nix.POS]: $pos[62], config: nix.thunk(() => ({})), setup: "" })),
                     testPaths: nix.thunk(() => [nix.thunk(() => nix.str`test/plugins/test_${n}.py`)]),
                     wrapperBins: [],
                   })), a))),
@@ -446,24 +370,24 @@ env EDITOR=true "$out/bin/beet" config -e
           wrapperBins: nix.thunk(() => nix.app(nix.sel(lib, "concatMap"), (p) => nix.sel(p, "wrapperBins"), nix.thunk(() => nix.app(nix.sel(lib, "attrValues"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage", "passthru", "plugins", "enabled")))))),
         })),
         tests: nix.thunk(() => nix.update({
-          [nix.POS]: pos$74,
+          [nix.POS]: $pos[73],
           "with-new-builtin-plugin": nix.thunk(() => nix.app(nix.sel(finalAttrs, "finalPackage", "overrideAttrs"), (newAttrs) => (oldAttrs) => ({
-              [nix.POS]: pos$69,
+              [nix.POS]: $pos[68],
               postPatch: nix.thunk(() => nix.add(nix.selOr(oldAttrs, () => "", "postPatch"), "mkdir -p beetsplug/my_special_plugin\ntouch beetsplug/my_special_plugin/__init__.py\n")),
               passthru: nix.thunk(() => nix.app(nix.sel(lib, "recursiveUpdate"), nix.thunk(() => nix.sel(oldAttrs, "passthru")), nix.thunk(() => ({
-                  [nix.POS]: pos$68,
+                  [nix.POS]: $pos[67],
                   plugins: nix.thunk(() => ({
-                    [nix.POS]: pos$67,
-                    builtins: nix.thunk(() => ({ [nix.POS]: pos$66, my_special_plugin: nix.thunk(() => ({})) })),
+                    [nix.POS]: $pos[66],
+                    builtins: nix.thunk(() => ({ [nix.POS]: $pos[65], my_special_plugin: nix.thunk(() => ({})) })),
                   })),
                 })))),
             }))),
           "with-mpd-plugins-disabled": nix.thunk(() => nix.app(nix.sel(beets, "override"), nix.thunk(() => ({
-              [nix.POS]: pos$73,
+              [nix.POS]: $pos[72],
               pluginOverrides: nix.thunk(() => ({
-                [nix.POS]: pos$72,
-                mpdstats: nix.thunk(() => ({ [nix.POS]: pos$70, enable: false })),
-                mpdupdate: nix.thunk(() => ({ [nix.POS]: pos$71, enable: false })),
+                [nix.POS]: $pos[71],
+                mpdstats: nix.thunk(() => ({ [nix.POS]: $pos[69], enable: false })),
+                mpdupdate: nix.thunk(() => ({ [nix.POS]: $pos[70], enable: false })),
               })),
             })))),
           "mpd-plugins-really-disabled": nix.thunk(() => nix.app(runCommand, "beets-mpd-plugins-disabled-test", nix.thunk(() => ({})), nix.thunk(() => nix.str`set -euo pipefail
@@ -484,14 +408,14 @@ ${nix.sel(finalAttrs, "finalPackage", "passthru", "tests", "with-mpd-plugins-dis
         }, nix.app(nix.sel(lib, "pipe"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage", "passthru", "plugins", "all")), nix.thunk(() => [
             nix.thunk(() => nix.app(nix.sel(lib, "filterAttrs"), (_) => (pluginAttrs) => !nix.asBool(nix.selOr(pluginAttrs, () => false, "deprecated")))),
             nix.thunk(() => nix.app(nix.sel(lib, "concatMapAttrs"), (pluginName) => (pluginAttrs) => (() => {
-                const testConfig = nix.thunk(() => nix.update({ [nix.POS]: pos$75, plugins: nix.thunk(() => [pluginName]) }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(pluginAttrs, "singlePluginTest", "config"), {})), nix.thunk(() => nix.attrsDyn({}, [
+                const testConfig = nix.thunk(() => nix.update({ [nix.POS]: $pos[74], plugins: nix.thunk(() => [pluginName]) }, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.eq(nix.sel(pluginAttrs, "singlePluginTest", "config"), {})), nix.thunk(() => nix.attrsDyn({}, [
                     [nix.force(pluginName), nix.thunk(() => nix.sel(pluginAttrs, "singlePluginTest", "config"))],
                   ])))));
                 const beetsWithSinglePlugin = nix.thunk(() => nix.app(nix.sel(beets, "override"), nix.thunk(() => ({
-                    [nix.POS]: pos$77,
+                    [nix.POS]: $pos[76],
                     disableAllPlugins: true,
                     pluginOverrides: nix.thunk(() => nix.attrsDyn({}, [
-                      [nix.force(pluginName), nix.thunk(() => ({ [nix.POS]: pos$76, enable: true }))],
+                      [nix.force(pluginName), nix.thunk(() => ({ [nix.POS]: $pos[75], enable: true }))],
                     ])),
                     doCheck: false,
                   }))));
@@ -528,7 +452,7 @@ fi
           ])))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$79,
+        [nix.POS]: $pos[78],
         description: "Music tagger and library organizer",
         homepage: "https://beets.io",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

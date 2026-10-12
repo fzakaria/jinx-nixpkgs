@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 51, 5], ["repo", 52, 5], ["tag", 53, 5], ["fetchSubmodules", 54, 5], ["hash", 55, 5]], [["ffmpeg", 62, 7], ["x264", 63, 7]], [["url", 66, 7], ["hash", 67, 7]], [["NIX_CFLAGS_COMPILE", 72, 5], ["RUSTFLAGS", 79, 5]], [["ffmpeg-alvr", 155, 13], ["updateScript", 156, 5]], [["description", 160, 5], ["homepage", 161, 5], ["changelog", 162, 5], ["license", 163, 5], ["mainProgram", 164, 5], ["maintainers", 165, 5], ["platforms", 170, 5]], [["pname", 46, 3], ["version", 48, 3], ["src", 50, 3], ["cargoHash", 58, 3], ["patches", 60, 3], ["env", 71, 3], ["cargoBuildFlags", 90, 3], ["nativeBuildInputs", 95, 3], ["buildInputs", 102, 3], ["postBuild", 137, 3], ["postInstall", 142, 3], ["passthru", 154, 3], ["meta", 159, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchFromGitHub: false, fetchpatch: false, replaceVars: false, "nix-update-script": false, callPackage: false, "pkg-config": false, autoAddDriverRunpath: false, "alsa-lib": false, "android-tools": false, brotli: false, bzip2: false, celt: false, "ffmpeg-alvr": true, gmp: false, jack2: false, lame: false, libx11: false, libxi: false, libxrandr: false, libxcursor: false, libdrm: false, libglvnd: false, libogg: false, libpng: false, libtheora: false, libunwind: false, libva: false, libvdpau: false, libxkbcommon: false, openapv: false, openssl: false, openvr: false, pipewire: false, "rust-cbindgen": false, soxr: false, "vulkan-headers": false, "vulkan-loader": false, wayland: false, x264: false, xvidcore: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 51, 5], ["repo", 52, 5], ["tag", 53, 5], ["fetchSubmodules", 54, 5], ["hash", 55, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["ffmpeg", 62, 7], ["x264", 63, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 66, 7], ["hash", 67, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 72, 5], ["RUSTFLAGS", 79, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["ffmpeg-alvr", 155, 13], ["updateScript", 156, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 160, 5], ["homepage", 161, 5], ["changelog", 162, 5], ["license", 163, 5], ["mainProgram", 164, 5], ["maintainers", 165, 5], ["platforms", 170, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 46, 3], ["version", 48, 3], ["src", 50, 3], ["cargoHash", 58, 3], ["patches", 60, 3], ["env", 71, 3], ["cargoBuildFlags", 90, 3], ["nativeBuildInputs", 95, 3], ["buildInputs", 102, 3], ["postBuild", 137, 3], ["postInstall", 142, 3], ["passthru", 154, 3], ["meta", 159, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -56,11 +50,11 @@ export default nix.lambda((args) => (() => {
   const x264 = nix.arg($, "x264");
   const xvidcore = nix.arg($, "xvidcore");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "alvr",
       version: "20.14.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "alvr-org",
           repo: "ALVR",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -70,18 +64,18 @@ export default nix.lambda((args) => (() => {
       cargoHash: "sha256-OTCMWrlwnfpUhm6ssOE133e/3DaQFnOU+NunN2c1N+g=",
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix-finding-libs.patch"), nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             ffmpeg: nix.thunk(() => nix.app(nix.sel(lib, "getDev"), ffmpeg_alvr)),
             x264: nix.thunk(() => nix.app(nix.sel(lib, "getDev"), x264)),
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: "https://github.com/alvr-org/ALVR/commit/12a238b9ac9d63438163ff82cbd689733558a1e4.patch",
             hash: "sha256-yvIGjopXIwGXajs5/RlAo+eqfVNnXlomKy/VO/dL+gc=",
           })))),
       ]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-lbrotlicommon", "-lbrotlidec", "-lcrypto", "-lpng", "-lssl"]))),
         RUSTFLAGS: nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.builtins.map((a) => nix.str`-C link-arg=${a}`, nix.thunk(() => [
               "-Wl,--push-state,--no-as-needed",
@@ -144,12 +138,12 @@ cp -r ./build/alvr_streamer_linux/share/. $out/share
 ln -s $out/lib $out/lib64
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         "ffmpeg-alvr": ffmpeg_alvr,
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Stream VR games from your PC to your headset via Wi-Fi",
         homepage: "https://github.com/alvr-org/ALVR/",
         changelog: nix.thunk(() => nix.str`https://github.com/alvr-org/ALVR/releases/tag/v${nix.sel(finalAttrs, "version")}`),

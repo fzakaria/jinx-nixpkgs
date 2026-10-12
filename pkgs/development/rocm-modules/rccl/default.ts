@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 58, 5], ["repo", 59, 5], ["tag", 60, 5], ["hash", 61, 5]], [["CFLAGS", 119, 7], ["CXXFLAGS", 120, 7], ["LDFLAGS", 121, 7]], [["finalAttrs", 140, 54]], [["buildTests", 145, 5]], [["rccl", 144, 18]], [["updateScript", 140, 12], ["tests", 144, 12]], [["description", 149, 5], ["homepage", 150, 5], ["license", 151, 5], ["teams", 155, 5], ["platforms", 156, 5]], [["pname", 42, 3], ["version", 43, 3], ["outputs", 45, 3], ["patches", 52, 3], ["src", 57, 3], ["requiredSystemFeatures", 64, 3], ["nativeBuildInputs", 66, 3], ["buildInputs", 77, 3], ["cmakeFlags", 90, 3], ["env", 119, 3], ["postPatch", 122, 3], ["postInstall", 130, 3], ["passthru", 140, 3], ["meta", 148, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, rocmUpdateScript: false, cmake: false, "rocm-cmake": false, "rocm-smi": false, "rocm-core": false, "pkg-config": false, clr: false, mscclpp: false, perl: false, hipify: false, python3: false, fmt: false, gtest: false, chrpath: false, roctracer: false, rocprofiler: false, "rocprofiler-register": false, autoPatchelfHook: false, buildTests: true, gpuTargets: true, rccl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 58, 5], ["repo", 59, 5], ["tag", 60, 5], ["hash", 61, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["CFLAGS", 119, 7], ["CXXFLAGS", 120, 7], ["LDFLAGS", 121, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["finalAttrs", 140, 54]]);
-const pos$4 = nix.positions(here + "/default.nix", [["buildTests", 145, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["rccl", 144, 18]]);
-const pos$6 = nix.positions(here + "/default.nix", [["updateScript", 140, 12], ["tests", 144, 12]]);
-const pos$7 = nix.positions(here + "/default.nix", [["description", 149, 5], ["homepage", 150, 5], ["license", 151, 5], ["teams", 155, 5], ["platforms", 156, 5]]);
-const pos$8 = nix.positions(here + "/default.nix", [["pname", 42, 3], ["version", 43, 3], ["outputs", 45, 3], ["patches", 52, 3], ["src", 57, 3], ["requiredSystemFeatures", 64, 3], ["nativeBuildInputs", 66, 3], ["buildInputs", 77, 3], ["cmakeFlags", 90, 3], ["env", 119, 3], ["postPatch", 122, 3], ["postInstall", 130, 3], ["passthru", 140, 3], ["meta", 148, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -42,7 +35,7 @@ export default nix.lambda((args) => (() => {
   const useUbsan = buildTests;
   const san = nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool(useAsan) || nix.asBool(useUbsan))), nix.thunk(() => nix.add("-fno-gpu-sanitize -fsanitize=undefined ", nix.app(nix.sel(lib, "optionalString"), useAsan, "-fsanitize=address -shared-libsan ")))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: nix.thunk(() => nix.str`rccl${nix.sel(clr, "gpuArchSuffix")}`),
       version: "7.2.3",
       outputs: nix.thunk(() => nix.concat(["out"], nix.app(nix.sel(lib, "optionals"), buildTests, nix.thunk(() => ["test"])))),
@@ -51,7 +44,7 @@ export default nix.lambda((args) => (() => {
         nix.path(here, "./fix_hw_reg_hw_id_gt_gfx10.patch"),
       ]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ROCm",
           repo: "rccl",
           tag: nix.thunk(() => nix.str`rocm-${nix.sel(finalAttrs, "version")}`),
@@ -78,7 +71,7 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.str`-DGPU_TARGETS=${nix.app(nix.sel(lib, "concatStringsSep"), ";", gpuTargets)}`),
         ])), nix.app(nix.sel(lib, "optionals"), buildTests, nix.thunk(() => ["-DBUILD_TESTS=ON"]))))),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         CFLAGS: nix.thunk(() => nix.str`-I${clr}/include -I${roctracer}/include -O2 -fno-strict-aliasing ${san}-fno-omit-frame-pointer -momit-leaf-frame-pointer`),
         CXXFLAGS: nix.thunk(() => nix.str`-I${clr}/include -I${roctracer}/include -O2 -fno-strict-aliasing ${san}-fno-omit-frame-pointer -momit-leaf-frame-pointer`),
         LDFLAGS: nix.thunk(() => nix.str`${san}`),
@@ -92,15 +85,15 @@ substituteInPlace CMakeLists.txt \\
       postInstall: nix.thunk(() => nix.add(nix.app(nix.sel(lib, "optionalString"), useAsan, nix.thunk(() => nix.str`patchelf --add-needed ${clr}/llvm/lib/linux/libclang_rt.asan-${nix.sel(stdenv, "hostPlatform", "parsed", "cpu", "name")}.so $out/lib/librccl.so
 `)), nix.app(nix.sel(lib, "optionalString"), buildTests, "mkdir -p $test/bin\nmv $out/bin/* $test/bin\nrmdir $out/bin\n"))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
-        updateScript: nix.thunk(() => nix.app(rocmUpdateScript, nix.thunk(() => ({ [nix.POS]: pos$3, finalAttrs: finalAttrs })))),
+        [nix.POS]: $pos[5],
+        updateScript: nix.thunk(() => nix.app(rocmUpdateScript, nix.thunk(() => ({ [nix.POS]: $pos[2], finalAttrs: finalAttrs })))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$5,
-          rccl: nix.thunk(() => nix.app(nix.sel(rccl, "override"), nix.thunk(() => ({ [nix.POS]: pos$4, buildTests: true })))),
+          [nix.POS]: $pos[4],
+          rccl: nix.thunk(() => nix.app(nix.sel(rccl, "override"), nix.thunk(() => ({ [nix.POS]: $pos[3], buildTests: true })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "ROCm communication collectives library",
         homepage: "https://github.com/ROCm/rccl",
         license: nix.thunk(() => (() => {

@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 18, 5], ["hash", 19, 5]], [["name", 23, 5], ["exec", 24, 5], ["icon", 25, 5], ["desktopName", 26, 5], ["genericName", 27, 5], ["comment", 28, 5], ["categories", 29, 5], ["mimeTypes", 34, 5]], [["description", 41, 5], ["longDescription", 42, 5], ["homepage", 47, 5], ["maintainers", 48, 5], ["license", 52, 5], ["sourceProvenance", 57, 5], ["platforms", 61, 5], ["hydraPlatforms", 62, 5]], [["urls", 77, 7], ["hash", 81, 7]], [["pname", 67, 7], ["version", 68, 7], ["meta", 69, 7], ["srcIcon", 70, 7], ["desktopItem", 71, 7], ["preferLocalBuild", 74, 5], ["src", 76, 5], ["nativeBuildInputs", 84, 5], ["installPhase", 86, 5]], [["urls", 117, 7], ["hash", 121, 7]], [["pname", 112, 13], ["version", 112, 19], ["meta", 112, 27], ["preferLocalBuild", 114, 5], ["src", 116, 5], ["dontUnpack", 124, 5], ["nativeBuildInputs", 126, 5], ["installPhase", 128, 5]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, libGL: false, libxxf86vm: false, jre: false, makeDesktopItem: false, makeWrapper: false, unzip: false, language: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 23, 5], ["exec", 24, 5], ["icon", 25, 5], ["desktopName", 26, 5], ["genericName", 27, 5], ["comment", 28, 5], ["categories", 29, 5], ["mimeTypes", 34, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 41, 5], ["longDescription", 42, 5], ["homepage", 47, 5], ["maintainers", 48, 5], ["license", 52, 5], ["sourceProvenance", 57, 5], ["platforms", 61, 5], ["hydraPlatforms", 62, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["urls", 77, 7], ["hash", 81, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 67, 7], ["version", 68, 7], ["meta", 69, 7], ["srcIcon", 70, 7], ["desktopItem", 71, 7], ["preferLocalBuild", 74, 5], ["src", 76, 5], ["nativeBuildInputs", 84, 5], ["installPhase", 86, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["urls", 117, 7], ["hash", 121, 7]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 112, 13], ["version", 112, 19], ["meta", 112, 27], ["preferLocalBuild", 114, 5], ["src", 116, 5], ["dontUnpack", 124, 5], ["nativeBuildInputs", 126, 5], ["installPhase", 128, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,12 +20,12 @@ export default nix.lambda((args) => (() => {
   const pname = "geogebra";
   const version = "5-0-785-0";
   const srcIcon = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: "https://web.archive.org/web/20200227000442if_/https://static.geogebra.org/images/geogebra-logo.svg",
       hash: "sha256-Vd7Wteya04JJT4WNirXe8O1sfVKUgc0hKGOy7d47Xgc=",
     }))));
   const desktopItem = nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       name: "geogebra",
       exec: "geogebra",
       icon: "geogebra",
@@ -42,7 +36,7 @@ export default nix.lambda((args) => (() => {
       mimeTypes: nix.thunk(() => ["application/vnd.geogebra.file", "application/vnd.geogebra.tool"]),
     }))));
   const meta = nix.thunk(() => ({
-    [nix.POS]: pos$3,
+    [nix.POS]: $pos[2],
     description: "Dynamic mathematics software with graphics, algebra and spreadsheets",
     longDescription: "Dynamic mathematics software for all levels of education that brings\ntogether geometry, algebra, spreadsheets, graphing, statistics and\ncalculus in one easy-to-use package.\n",
     homepage: "https://www.geogebra.org/",
@@ -75,7 +69,7 @@ export default nix.lambda((args) => (() => {
     hydraPlatforms: [],
   }));
   const linuxPkg = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: pname,
       version: version,
       meta: meta,
@@ -83,7 +77,7 @@ export default nix.lambda((args) => (() => {
       desktopItem: desktopItem,
       preferLocalBuild: true,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           urls: nix.thunk(() => [
             nix.thunk(() => nix.str`https://download.geogebra.org/installers/5.0/GeoGebra-Linux-Portable-${version}.tar.bz2`),
             nix.thunk(() => nix.str`https://web.archive.org/web/20230627211902/https://download.geogebra.org/installers/5.0/GeoGebra-Linux-Portable-${version}.tar.bz2`),
@@ -110,13 +104,13 @@ install -Dm644 "${srcIcon}" \\
 `),
     }))));
   const darwinPkg = nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: pname,
       version: version,
       meta: meta,
       preferLocalBuild: true,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           urls: nix.thunk(() => [
             nix.thunk(() => nix.str`https://download.geogebra.org/installers/5.0/GeoGebra-MacOS-Installer-withJava-${version}-x64.zip`),
             nix.thunk(() => nix.str`https://web.archive.org/web/20230627211427/https://download.geogebra.org/installers/5.0/GeoGebra-MacOS-Installer-withJava-${version}-x64.zip`),

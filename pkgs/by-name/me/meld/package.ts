@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 30, 5], ["hash", 31, 5]], [["packageName", 72, 7], ["versionPolicy", 73, 7]], [["updateScript", 71, 5]], [["description", 78, 5], ["homepage", 79, 5], ["license", 80, 5], ["platforms", 81, 5], ["maintainers", 82, 5], ["mainProgram", 86, 5]], [["pname", 24, 3], ["version", 25, 3], ["pyproject", 27, 3], ["src", 29, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 48, 3], ["pythonPath", 55, 3], ["postPatch", 60, 3], ["dontWrapGApps", 64, 3], ["preFixup", 66, 3], ["passthru", 70, 3], ["meta", 77, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, gettext: false, itstool: false, python3: false, meson: false, ninja: false, wrapGAppsHook3: false, libxml2: false, "pkg-config": false, "desktop-file-utils": false, "gobject-introspection": false, gtk3: false, gtksourceview4: false, gnome: false, "adwaita-icon-theme": false, "gsettings-desktop-schemas": false, desktopToDarwinBundle: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 30, 5], ["hash", 31, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["packageName", 72, 7], ["versionPolicy", 73, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 71, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 78, 5], ["homepage", 79, 5], ["license", 80, 5], ["platforms", 81, 5], ["maintainers", 82, 5], ["mainProgram", 86, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 24, 3], ["version", 25, 3], ["pyproject", 27, 3], ["src", 29, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 48, 3], ["pythonPath", 55, 3], ["postPatch", 60, 3], ["dontWrapGApps", 64, 3], ["preFixup", 66, 3], ["passthru", 70, 3], ["meta", 77, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,12 +27,12 @@ export default nix.lambda((args) => (() => {
   const gsettings_desktop_schemas = nix.arg($, "gsettings-desktop-schemas");
   const desktopToDarwinBundle = nix.arg($, "desktopToDarwinBundle");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "meld",
       version: "3.24.0",
       pyproject: false,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnome/sources/meld/${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/meld-${nix.sel(finalAttrs, "version")}.tar.xz`),
           hash: "sha256-GfA2KX58iVFFFrzS5WGC2yuyuhO0hQiTwc5ZdEUBi5Q=",
         })))),
@@ -64,11 +60,11 @@ export default nix.lambda((args) => (() => {
       dontWrapGApps: true,
       preFixup: "makeWrapperArgs+=(\"${gappsWrapperArgs[@]}\")\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$2, packageName: "meld", versionPolicy: "none" })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: $pos[1], packageName: "meld", versionPolicy: "none" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Visual diff and merge tool",
         homepage: "https://meld.app/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

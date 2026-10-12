@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]], [["url", 27, 7], ["hash", 28, 7]], [["description", 56, 5], ["homepage", 57, 5], ["license", 58, 5], ["maintainers", 59, 5], ["mainProgram", 60, 5], ["platforms", 61, 5]], [["pname", 10, 3], ["version", 11, 3], ["npmDepsHash", 13, 3], ["dontNpmBuild", 15, 3], ["src", 17, 3], ["patches", 24, 3], ["nativeBuildInputs", 32, 3], ["doInstallCheck", 36, 3], ["postInstall", 38, 3], ["installCheckPhase", 51, 3], ["meta", 55, 3]]]);
 const formals$1 = { args: { buildNpmPackage: false, lib: false, fetchurl: false, fetchFromGitHub: false, patchelfUnstable: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["rev", 20, 5], ["hash", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 27, 7], ["hash", 28, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 56, 5], ["homepage", 57, 5], ["license", 58, 5], ["maintainers", 59, 5], ["mainProgram", 60, 5], ["platforms", 61, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["npmDepsHash", 13, 3], ["dontNpmBuild", 15, 3], ["src", 17, 3], ["patches", 24, 3], ["nativeBuildInputs", 32, 3], ["doInstallCheck", 36, 3], ["postInstall", 38, 3], ["installCheckPhase", 51, 3], ["meta", 55, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,7 +18,7 @@ export default nix.lambda((args) => (() => {
       const npmDepsHash = "sha256-WBGuJBxuOTBPOLGvO9VfTeVrA4+SMVf8LA+fBDCif1c=";
       const dontNpmBuild = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "holepunchto",
           repo: "hypershell",
           rev: nix.thunk(() => nix.str`v${version}`),
@@ -29,7 +26,7 @@ export default nix.lambda((args) => (() => {
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/holepunchto/hypershell/commit/a1775ee32d93bfe06b839da41d1727a575bccb3a.patch",
             hash: "sha256-xqQNXKaBN3sVWIEuzB67Ww43mQRkVQl7Div2SCMn0o0=",
           })))),
@@ -39,7 +36,7 @@ export default nix.lambda((args) => (() => {
       const postInstall = "# glibc 2.41+ refuses to make the stack executable if it isn't executable,\n# but a library loaded via `dlopen()` mandates it.\n# According to https://github.com/holepunchto/sodium-native/issues/214\n# this isn't necessary in this case.\nwhile IFS= read -r -d '' file; do\n  # Skip PEs with the same name\n  if patchelf --print-rpath \"$file\" &>/dev/null; then\n    patchelf \"$file\" --clear-execstack\n  fi\ndone < <(find $out/lib/node_modules -name 'sodium-native.node' -print0)\n";
       const installCheckPhase = "$out/bin/hypershell --help\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Spawn shells anywhere. Fully peer-to-peer, authenticated, and end to end encrypted",
         homepage: "https://github.com/holepunchto/hypershell",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -51,7 +48,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         npmDepsHash,

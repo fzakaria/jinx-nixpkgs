@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]], [["name", 25, 7], ["url", 26, 7], ["hash", 27, 7]], [["simple", 42, 5]], [["tests", 41, 12]], [["description", 51, 5], ["license", 52, 5], ["homepage", 53, 5], ["maintainers", 54, 5], ["platforms", 55, 5], ["mainProgram", 56, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["patches", 22, 3], ["buildInputs", 31, 3], ["installPhase", 33, 3], ["passthru", 41, 3], ["meta", 50, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch: false, zlib: false, kssd: false, runCommand: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 25, 7], ["url", 26, 7], ["hash", 27, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["simple", 42, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 41, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 51, 5], ["license", 52, 5], ["homepage", 53, 5], ["maintainers", 54, 5], ["platforms", 55, 5], ["mainProgram", 56, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["patches", 22, 3], ["buildInputs", 31, 3], ["installPhase", 33, 3], ["passthru", 41, 3], ["meta", 50, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const kssd = nix.arg($, "kssd");
   const runCommand = nix.arg($, "runCommand");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "kssd",
       version: "2.21-unstable-2024-05-27",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "yhg926",
           repo: "public_kssd",
           rev: "ce96b66dddc2d6c1ce611ad84cdf4c7ba62b4aa5",
@@ -32,7 +27,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "allocate-enough-memory.patch",
             url: "https://github.com/yhg926/public_kssd/commit/b1e66bbcc04687bc3201301cd742a0b26a87cb5d.patch",
             hash: "sha256-yFyJetpsGKeu+H6Oxrmn5ea4ESVtblb3YJDja4JEAEM=",
@@ -41,9 +36,9 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [zlib]),
       installPhase: "runHook preInstall\n\ninstall -vD kssd $out/bin/kssd\n\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           simple: nix.thunk(() => nix.app(runCommand, nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-test`), nix.thunk(() => ({})), nix.thunk(() => nix.str`mkdir $out
 ${nix.app(nix.sel(lib, "getExe"), kssd)} dist -L ${nix.sel(kssd, "src")}/shuf_file/L3K10.shuf -r ${nix.sel(kssd, "src")}/test_fna/seqs1 -o $out/reference
 ${nix.app(nix.sel(lib, "getExe"), kssd)} dist -L ${nix.sel(kssd, "src")}/shuf_file/L3K10.shuf -o $out/query ${nix.sel(kssd, "src")}/test_fna/seqs2
@@ -52,7 +47,7 @@ ${nix.app(nix.sel(lib, "getExe"), kssd)} dist -r $out/reference -o $out/distout 
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "K-mer substring space decomposition",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
         homepage: "https://github.com/yhg926/public_kssd",

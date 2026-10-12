@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 41, 5], ["repo", 42, 5], ["tag", 43, 5], ["fetchSubmodules", 44, 5], ["hash", 45, 5]], [["description", 108, 5], ["homepage", 109, 5], ["changelog", 110, 5], ["license", 111, 5], ["maintainers", 112, 5], ["platforms", 116, 5], ["mainProgram", 117, 5]], [["pname", 37, 3], ["version", 38, 3], ["src", 40, 3], ["preConfigure", 48, 3], ["depsBuildBuild", 52, 3], ["nativeBuildInputs", 57, 3], ["buildInputs", 69, 3], ["mesonFlags", 93, 3], ["doCheck", 99, 3], ["nativeInstallCheckInputs", 101, 3], ["versionCheckProgramArg", 104, 3], ["doInstallCheck", 105, 3], ["meta", 107, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, bison: false, buildPackages: false, cairo: false, check: false, fetchFromGitHub: false, flex: false, git: false, glib: false, librsvg: false, libstartup_notification: false, libxcb: false, libxkbcommon: false, meson: false, ninja: false, pandoc: false, pango: false, "pkg-config": false, versionCheckHook: false, wayland: false, "wayland-protocols": false, "wayland-scanner": false, which: false, "xcb-imdkit": false, "libxcb-util": false, "libxcb-cursor": false, "libxcb-keysyms": false, "libxcb-wm": false, xcbutilxrm: false, waylandSupport: true, x11Support: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 41, 5], ["repo", 42, 5], ["tag", 43, 5], ["fetchSubmodules", 44, 5], ["hash", 45, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 108, 5], ["homepage", 109, 5], ["changelog", 110, 5], ["license", 111, 5], ["maintainers", 112, 5], ["platforms", 116, 5], ["mainProgram", 117, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 37, 3], ["version", 38, 3], ["src", 40, 3], ["preConfigure", 48, 3], ["depsBuildBuild", 52, 3], ["nativeBuildInputs", 57, 3], ["buildInputs", 69, 3], ["mesonFlags", 93, 3], ["doCheck", 99, 3], ["nativeInstallCheckInputs", 101, 3], ["versionCheckProgramArg", 104, 3], ["doInstallCheck", 105, 3], ["meta", 107, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -42,11 +40,11 @@ export default nix.lambda((args) => (() => {
   const waylandSupport = nix.argOr($, "waylandSupport", () => true);
   const x11Support = nix.argOr($, "x11Support", () => true);
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "rofi-unwrapped",
       version: "2.0.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "davatorium",
           repo: "rofi",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -84,7 +82,7 @@ export default nix.lambda((args) => (() => {
       versionCheckProgramArg: "-version",
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Window switcher, run dialog and dmenu replacement",
         homepage: "https://github.com/davatorium/rofi",
         changelog: nix.thunk(() => nix.str`https://github.com/davatorium/rofi/releases/tag/${nix.sel(finalAttrs, "version")}`),

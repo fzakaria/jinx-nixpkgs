@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/2_4.nix", [[["series_2_4", 24, 30]], [["installer", 27, 30]], [["kernelModuleAttribute", 12, 3], ["kernelMinSupportedMajorMinor", 14, 3], ["kernelMaxSupportedMajorMinor", 15, 3], ["version", 18, 3], ["extraPatches", 21, 3], ["tests", 23, 3], ["maintainers", 30, 3], ["hash", 35, 3]]]);
 const formals$1 = { args: { callPackage: false, lib: false, nixosTests: false, stdenv: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/2_4.nix", [["series_2_4", 24, 30]]);
-const pos$2 = nix.positions(here + "/2_4.nix", [["installer", 27, 30]]);
-const pos$3 = nix.positions(here + "/2_4.nix", [["kernelModuleAttribute", 12, 3], ["kernelMinSupportedMajorMinor", 14, 3], ["kernelMaxSupportedMajorMinor", 15, 3], ["version", 18, 3], ["extraPatches", 21, 3], ["tests", 23, 3], ["maintainers", 30, 3], ["hash", 35, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const nixosTests = nix.arg($, "nixosTests");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(callPackage, nix.path(here, "./generic.nix"), args_1, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       kernelModuleAttribute: "zfs_2_4",
       kernelMinSupportedMajorMinor: "4.18",
       kernelMaxSupportedMajorMinor: "7.2",
@@ -23,10 +21,13 @@ export default nix.lambda((args) => (() => {
       extraPatches: [],
       tests: nix.thunk(() => nix.update((() => {
         const from = nix.thunk(() => nix.sel(nixosTests, "zfs"));
-        return { [nix.POS]: pos$1, series_2_4: nix.thunk(() => nix.attr(from, "series_2_4")) };
+        return {
+        [nix.POS]: $pos[0],
+        series_2_4: nix.thunk(() => nix.attr(from, "series_2_4")),
+      };
       })(), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isx86_64")), nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(nixosTests, "zfs"));
-          return { [nix.POS]: pos$2, installer: nix.thunk(() => nix.attr(from, "installer")) };
+          return { [nix.POS]: $pos[1], installer: nix.thunk(() => nix.attr(from, "installer")) };
         })())))),
       maintainers: nix.thunk(() => (() => {
         const w = nix.withScope(nix.thunk(() => nix.sel(lib, "maintainers")), null);

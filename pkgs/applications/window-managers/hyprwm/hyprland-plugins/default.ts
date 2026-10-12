@@ -2,23 +2,9 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["description", 28, 11], ["longDescription", 29, 11], ["platforms", 33, 11]], [["pname", 24, 9], ["nativeBuildInputs", 25, 9], ["buildInputs", 26, 9], ["meta", 27, 9]], [["constructDrv", 11, 5], ["extendDrvArgs", 13, 5]], [["hy3", 39, 7]], [["hypr-darkwindow", 40, 7]], [["hypr-dynamic-cursors", 41, 7]], [["hyprfocus", 42, 7]], [["hyprgrass", 43, 7]], [["hyprspace", 44, 7]], [["hyprsplit", 45, 7]], [["hyprtasking", 46, 7]], [["imgborders", 48, 7]], [["hycov", 50, 7], ["hyprscroller", 51, 7]], [["mkHyprlandPlugin", 55, 59]], [["mkHyprlandPlugin", 57, 11]]]);
 const formals$1 = { args: { config: false, lib: false, callPackage: false, "pkg-config": false, hyprland: false }, ellipsis: false };
 const formals$2 = { args: { pluginName: true, nativeBuildInputs: true, buildInputs: true, hyprland: true }, ellipsis: true };
-const pos$1 = nix.positions(here + "/default.nix", [["description", 28, 11], ["longDescription", 29, 11], ["platforms", 33, 11]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 24, 9], ["nativeBuildInputs", 25, 9], ["buildInputs", 26, 9], ["meta", 27, 9]]);
-const pos$3 = nix.positions(here + "/default.nix", [["constructDrv", 11, 5], ["extendDrvArgs", 13, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["hy3", 39, 7]]);
-const pos$5 = nix.positions(here + "/default.nix", [["hypr-darkwindow", 40, 7]]);
-const pos$6 = nix.positions(here + "/default.nix", [["hypr-dynamic-cursors", 41, 7]]);
-const pos$7 = nix.positions(here + "/default.nix", [["hyprfocus", 42, 7]]);
-const pos$8 = nix.positions(here + "/default.nix", [["hyprgrass", 43, 7]]);
-const pos$9 = nix.positions(here + "/default.nix", [["hyprspace", 44, 7]]);
-const pos$10 = nix.positions(here + "/default.nix", [["hyprsplit", 45, 7]]);
-const pos$11 = nix.positions(here + "/default.nix", [["hyprtasking", 46, 7]]);
-const pos$12 = nix.positions(here + "/default.nix", [["imgborders", 48, 7]]);
-const pos$13 = nix.positions(here + "/default.nix", [["hycov", 50, 7], ["hyprscroller", 51, 7]]);
-const pos$14 = nix.positions(here + "/default.nix", [["mkHyprlandPlugin", 55, 59]]);
-const pos$15 = nix.positions(here + "/default.nix", [["mkHyprlandPlugin", 57, 11]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,7 +15,7 @@ export default nix.lambda((args) => (() => {
   const pkg_config = nix.arg($, "pkg-config");
   const hyprland = nix.arg($, "hyprland");
   const mkHyprlandPlugin = nix.thunk(() => nix.app(nix.sel(lib, "extendMkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       constructDrv: nix.thunk(() => nix.sel(topLevelArgs, "hyprland", "stdenv", "mkDerivation")),
       extendDrvArgs: (finalAttrs) => nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
@@ -39,12 +25,12 @@ export default nix.lambda((args) => (() => {
         const buildInputs = nix.argOr($_1, "buildInputs", () => []);
         const hyprland_1 = nix.argOr($_1, "hyprland", () => nix.sel(topLevelArgs, "hyprland"));
         return {
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.str`${pluginName}`),
           nativeBuildInputs: nix.thunk(() => nix.concat([pkg_config], nativeBuildInputs)),
           buildInputs: nix.thunk(() => nix.concat([hyprland_1], nix.concat(nix.sel(hyprland_1, "buildInputs"), buildInputs))),
           meta: nix.thunk(() => nix.update(nix.sel(args_2, "meta"), {
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             description: nix.thunk(() => nix.selOr(args_2, () => "", "meta", "description")),
             longDescription: nix.thunk(() => nix.add(nix.selOr(args_2, () => "", "meta", "longDescription"), "\n\nPlugins can be installed via a plugin entry in the Hyprland NixOS or Home Manager options.")),
             platforms: nix.thunk(() => nix.selOr(args_2, () => nix.selOr(hyprland_1, () => [], "meta", "platforms"), "meta", "platforms")),
@@ -54,48 +40,48 @@ export default nix.lambda((args) => (() => {
     }))));
   const plugins = nix.thunk(() => nix.app(nix.sel(lib, "mergeAttrsList"), nix.thunk(() => [
       nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         hy3: nix.thunk(() => nix.builtins.import(nix.path(here, "./hy3.nix"))),
       })),
       nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         "hypr-darkwindow": nix.thunk(() => nix.builtins.import(nix.path(here, "./hypr-darkwindow.nix"))),
       })),
       nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         "hypr-dynamic-cursors": nix.thunk(() => nix.builtins.import(nix.path(here, "./hypr-dynamic-cursors.nix"))),
       })),
       nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         hyprfocus: nix.thunk(() => nix.builtins.import(nix.path(here, "./hyprfocus.nix"))),
       })),
       nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         hyprgrass: nix.thunk(() => nix.builtins.import(nix.path(here, "./hyprgrass.nix"))),
       })),
       nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         hyprspace: nix.thunk(() => nix.builtins.import(nix.path(here, "./hyprspace.nix"))),
       })),
       nix.thunk(() => ({
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         hyprsplit: nix.thunk(() => nix.builtins.import(nix.path(here, "./hyprsplit.nix"))),
       })),
       nix.thunk(() => ({
-        [nix.POS]: pos$11,
+        [nix.POS]: $pos[10],
         hyprtasking: nix.thunk(() => nix.builtins.import(nix.path(here, "./hyprtasking.nix"))),
       })),
       nix.thunk(() => nix.builtins.import(nix.path(here, "./hyprland-plugins.nix"))),
       nix.thunk(() => ({
-        [nix.POS]: pos$12,
+        [nix.POS]: $pos[11],
         imgborders: nix.thunk(() => nix.builtins.import(nix.path(here, "./imgborders.nix"))),
       })),
       nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(config, "allowAliases")), nix.thunk(() => ({
-          [nix.POS]: pos$13,
+          [nix.POS]: $pos[12],
           hycov: nix.thunk(() => nix.builtins.throw("hyprlandPlugins.hycov has been removed because it has been marked as broken since September 2024.")),
           hyprscroller: nix.thunk(() => nix.builtins.throw("hyprlandPlugins.hyprscroller has been removed as the upstream project is deprecated. Consider using `hyprlandPlugins.hyprscrolling`.")),
         })))),
     ])));
-  return nix.update(nix.app(nix.sel(lib, "mapAttrs"), (name) => (plugin) => nix.app(callPackage, plugin, nix.thunk(() => ({ [nix.POS]: pos$14, mkHyprlandPlugin: mkHyprlandPlugin }))), plugins), { [nix.POS]: pos$15, mkHyprlandPlugin: mkHyprlandPlugin });
+  return nix.update(nix.app(nix.sel(lib, "mapAttrs"), (name) => (plugin) => nix.app(callPackage, plugin, nix.thunk(() => ({ [nix.POS]: $pos[13], mkHyprlandPlugin: mkHyprlandPlugin }))), plugins), { [nix.POS]: $pos[14], mkHyprlandPlugin: mkHyprlandPlugin });
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

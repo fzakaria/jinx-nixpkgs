@@ -2,24 +2,19 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
-const pos$1 = nix.positions(here + "/systemd-user-linger-purge.nix", [["isNormalUser", 9, 9], ["linger", 10, 9], ["uid", 11, 9]]);
-const pos$2 = nix.positions(here + "/systemd-user-linger-purge.nix", [["bob", 8, 7]]);
-const pos$3 = nix.positions(here + "/systemd-user-linger-purge.nix", [["users", 7, 11]]);
-const pos$4 = nix.positions(here + "/systemd-user-linger-purge.nix", [["users", 7, 5]]);
-const pos$5 = nix.positions(here + "/systemd-user-linger-purge.nix", [["machine", 6, 9]]);
-const pos$6 = nix.positions(here + "/systemd-user-linger-purge.nix", [["name", 4, 3], ["nodes", 6, 3], ["testScript", 16, 3]]);
+const $pos = nix.positions(here + "/systemd-user-linger-purge.nix", [[["isNormalUser", 9, 9], ["linger", 10, 9], ["uid", 11, 9]], [["bob", 8, 7]], [["users", 7, 11]], [["users", 7, 5]], [["machine", 6, 9]], [["name", 4, 3], ["nodes", 6, 3], ["testScript", 16, 3]]]);
 
 export default nix.thunk(() => (() => {
   const name = "systemd-user-linger-purge";
   const nodes = nix.thunk(() => ({
-    [nix.POS]: pos$5,
+    [nix.POS]: $pos[4],
     machine: nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       users: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         users: nix.thunk(() => ({
-          [nix.POS]: pos$2,
-          bob: nix.thunk(() => ({ [nix.POS]: pos$1, isNormalUser: true, linger: false, uid: 1001n })),
+          [nix.POS]: $pos[1],
+          bob: nix.thunk(() => ({ [nix.POS]: $pos[0], isNormalUser: true, linger: false, uid: 1001n })),
         })),
       })),
     })),
@@ -43,6 +38,6 @@ with subtest("mutable users can linger"):
     machine.succeed("test -e /var/lib/systemd/linger/alice")
 `;
   })());
-  return { [nix.POS]: pos$6, name, nodes, testScript };
+  return { [nix.POS]: $pos[5], name, nodes, testScript };
 })());
 //# sourceMappingURL=systemd-user-linger-purge.ts.map

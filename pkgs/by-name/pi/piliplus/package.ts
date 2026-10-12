@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 24, 5], ["repo", 25, 5], ["rev", 26, 23], ["hash", 26, 27]], [["name", 74, 7], ["exec", 75, 7], ["icon", 76, 7], ["desktopName", 77, 7], ["categories", 78, 7], ["comment", 82, 7]], [["updateScript", 86, 12]], [["description", 89, 13], ["homepage", 90, 5], ["changelog", 91, 5], ["license", 92, 5], ["maintainers", 93, 5], ["platforms", 94, 5], ["mainProgram", 95, 5]], [["pname", 20, 3], ["version", 21, 11], ["src", 23, 3], ["patches", 29, 3], ["pubspecLock", 31, 3], ["gitHashes", 32, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 36, 3], ["preBuild", 45, 3], ["postInstall", 57, 3], ["desktopItems", 72, 3], ["passthru", 86, 3], ["meta", 88, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, flutter344: false, makeDesktopItem: false, copyDesktopItems: false, "alsa-lib": false, "mpv-unwrapped": false, libplacebo: false, libappindicator: false, webkitgtk_4_1: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 24, 5], ["repo", 25, 5], ["rev", 26, 23], ["hash", 26, 27]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 74, 7], ["exec", 75, 7], ["icon", 76, 7], ["desktopName", 77, 7], ["categories", 78, 7], ["comment", 82, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 86, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 89, 13], ["homepage", 90, 5], ["changelog", 91, 5], ["license", 92, 5], ["maintainers", 93, 5], ["platforms", 94, 5], ["mainProgram", 95, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 11], ["src", 23, 3], ["patches", 29, 3], ["pubspecLock", 31, 3], ["gitHashes", 32, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 36, 3], ["preBuild", 45, 3], ["postInstall", 57, 3], ["desktopItems", 72, 3], ["passthru", 86, 3], ["meta", 88, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,11 +21,11 @@ export default nix.lambda((args) => (() => {
   const description = "Third-party Bilibili client developed in Flutter";
   const version = "2.1.0";
   return nix.app(nix.sel(flutter344, "buildFlutterApplication"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "piliplus",
       version: version,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "bggRGjQaUbCoE",
           repo: "PiliPlus",
           rev: nix.thunk(() => nix.attr(srcInfo, "rev")),
@@ -53,7 +49,7 @@ EOL
       postInstall: "declare -A sizes=(\n  [mdpi]=128\n  [hdpi]=192\n  [xhdpi]=256\n  [xxhdpi]=384\n  [xxxhdpi]=512\n)\nfor var in \"${!sizes[@]}\"; do\n  width=${sizes[$var]}\n  install -Dm644 \"android/app/src/main/res/drawable-$var/splash.png\" \\\n    \"$out/share/icons/hicolor/${width}x$width/apps/piliplus.png\"\ndone\n",
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "piliplus",
             exec: "piliplus",
             icon: "piliplus",
@@ -62,9 +58,9 @@ EOL
             comment: description,
           })))),
       ]),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$3, updateScript: nix.path(here, "./update.rb") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[2], updateScript: nix.path(here, "./update.rb") })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: description,
         homepage: "https://github.com/bggRGjQaUbCoE/PiliPlus",
         changelog: nix.thunk(() => nix.str`https://github.com/bggRGjQaUbCoE/PiliPlus/releases/tag/${version}`),

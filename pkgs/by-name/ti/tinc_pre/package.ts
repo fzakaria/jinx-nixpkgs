@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]], [["tinc", 57, 43]], [["tests", 57, 12]], [["description", 60, 5], ["longDescription", 61, 5], ["homepage", 67, 5], ["license", 68, 5], ["platforms", 69, 5], ["maintainers", 70, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["outputs", 26, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 36, 3], ["prePatch", 45, 3], ["configureFlags", 52, 3], ["passthru", 57, 3], ["meta", 59, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, autoreconfHook: false, texinfo: false, ncurses: false, readline: false, zlib: false, lzo: false, openssl: false, nixosTests: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["tag", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["tinc", 57, 43]]);
-const pos$3 = nix.positions(here + "/package.nix", [["tests", 57, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 60, 5], ["longDescription", 61, 5], ["homepage", 67, 5], ["license", 68, 5], ["platforms", 69, 5], ["maintainers", 70, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["outputs", 26, 3], ["nativeBuildInputs", 32, 3], ["buildInputs", 36, 3], ["prePatch", 45, 3], ["configureFlags", 52, 3], ["passthru", 57, 3], ["meta", 59, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const openssl = nix.arg($, "openssl");
   const nixosTests = nix.arg($, "nixosTests");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "tinc",
       version: "1.1pre18",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "gsliepen",
           repo: "tinc",
           tag: nix.thunk(() => nix.str`release-${nix.sel(finalAttrs, "version")}`),
@@ -43,11 +39,11 @@ sed -i '/AC_INIT/s/m4_esyscmd_s.*/${nix.sel(finalAttrs, "version")})/' configure
 `),
       configureFlags: nix.thunk(() => ["--sysconfdir=/etc", "--localstatedir=/var"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        tests: nix.thunk(() => ({ [nix.POS]: pos$2, tinc: nix.thunk(() => nix.attr(nixosTests, "tinc")) })),
+        [nix.POS]: $pos[2],
+        tests: nix.thunk(() => ({ [nix.POS]: $pos[1], tinc: nix.thunk(() => nix.attr(nixosTests, "tinc")) })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "VPN daemon with full mesh routing",
         longDescription: "tinc is a Virtual Private Network (VPN) daemon that uses tunnelling and\nencryption to create a secure private network between hosts on the\nInternet.  It features full mesh routing, as well as encryption,\nauthentication, compression and ethernet bridging.\n",
         homepage: "http://www.tinc-vpn.org/",

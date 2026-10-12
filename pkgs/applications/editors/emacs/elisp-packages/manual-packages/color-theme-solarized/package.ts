@@ -2,10 +2,8 @@
 import * as nix from "../../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]], [["homepage", 22, 5], ["description", 23, 5], ["license", 24, 5], ["maintainers", 25, 5]], [["pname", 8, 3], ["ename", 9, 3], ["version", 10, 3], ["src", 12, 3], ["files", 19, 3], ["meta", 21, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, melpaBuild: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 22, 5], ["description", 23, 5], ["license", 24, 5], ["maintainers", 25, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["ename", 9, 3], ["version", 10, 3], ["src", 12, 3], ["files", 19, 3], ["meta", 21, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,12 +11,12 @@ export default nix.lambda((args) => (() => {
   const fetchFromGitHub = nix.arg($, "fetchFromGitHub");
   const melpaBuild = nix.arg($, "melpaBuild");
   return nix.app(melpaBuild, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "color-theme-solarized",
       ename: "solarized-theme",
       version: "0-unstable-2023-02-09",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "sellout",
           repo: "emacs-color-theme-solarized",
           rev: "b186e5d62d0b83cbf5cf38f7eb7a199dea9a3ee3",
@@ -26,7 +24,7 @@ export default nix.lambda((args) => (() => {
         })))),
       files: "(:defaults (:exclude \"color-theme-solarized-pkg.el\"))",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "http://ethanschoonover.com/solarized",
         description: "Precision colors for machines and people; Emacs implementation",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

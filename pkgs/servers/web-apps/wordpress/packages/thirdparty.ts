@@ -2,16 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/thirdparty.nix", [[["version", 11, 15], ["name", 12, 7], ["url", 13, 7], ["hash", 14, 7]], [["license", 21, 10]], [["pname", 8, 5], ["version", 9, 5], ["src", 10, 5], ["installPhase", 16, 5], ["meta", 21, 5]], [["civicrm", 7, 11]], [["version", 28, 17], ["name", 29, 9], ["url", 30, 9], ["hash", 31, 9]], [["license", 39, 12]], [["pname", 25, 7], ["version", 26, 7], ["src", 27, 7], ["installPhase", 33, 7], ["meta", 39, 7]], [["proton", 24, 5]], [["plugins", 7, 3], ["themes", 23, 3]]]);
 const formals$1 = { args: { fetchzip: false, stdenv: false, lib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/thirdparty.nix", [["version", 11, 15], ["name", 12, 7], ["url", 13, 7], ["hash", 14, 7]]);
-const pos$2 = nix.positions(here + "/thirdparty.nix", [["license", 21, 10]]);
-const pos$3 = nix.positions(here + "/thirdparty.nix", [["pname", 8, 5], ["version", 9, 5], ["src", 10, 5], ["installPhase", 16, 5], ["meta", 21, 5]]);
-const pos$4 = nix.positions(here + "/thirdparty.nix", [["civicrm", 7, 11]]);
-const pos$5 = nix.positions(here + "/thirdparty.nix", [["version", 28, 17], ["name", 29, 9], ["url", 30, 9], ["hash", 31, 9]]);
-const pos$6 = nix.positions(here + "/thirdparty.nix", [["license", 39, 12]]);
-const pos$7 = nix.positions(here + "/thirdparty.nix", [["pname", 25, 7], ["version", 26, 7], ["src", 27, 7], ["installPhase", 33, 7], ["meta", 39, 7]]);
-const pos$8 = nix.positions(here + "/thirdparty.nix", [["proton", 24, 5]]);
-const pos$9 = nix.positions(here + "/thirdparty.nix", [["plugins", 7, 3], ["themes", 23, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,14 +11,14 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const lib = nix.arg($, "lib");
   return {
-    [nix.POS]: pos$9,
+    [nix.POS]: $pos[8],
     plugins: nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       civicrm: nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => (() => {
           const pname = "civicrm";
           const version = "6.2.0";
           const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-              [nix.POS]: pos$1,
+              [nix.POS]: $pos[0],
               version: version,
               name: pname,
               url: nix.thunk(() => nix.str`https://download.civicrm.org/${pname}-${version}-wordpress.zip`),
@@ -34,27 +26,30 @@ export default nix.lambda((args) => (() => {
             }))));
           const installPhase = "runHook preInstall\ncp -r ./ -T $out\nrunHook postInstall\n";
           const meta = nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),
           }));
-          return { [nix.POS]: pos$3, pname, version, src, installPhase, meta };
+          return { [nix.POS]: $pos[2], pname, version, src, installPhase, meta };
         })()))),
     })),
     themes: nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       proton: nix.thunk(() => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => (() => {
           const pname = "proton";
           const version = "1.0.1";
           const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               version: version,
               name: pname,
               url: nix.thunk(() => nix.str`https://github.com/christophery/proton/archive/refs/tags/${version}.zip`),
               hash: "sha256-JgKyLJ3dRqh1uwlsNuffCOM7LPBigGkLVFqftjFAiP4=",
             }))));
           const installPhase = "runHook preInstall\nmkdir -p $out\ncp -r ./* $out/\nrunHook postInstall\n";
-          const meta = nix.thunk(() => ({ [nix.POS]: pos$6, license: nix.thunk(() => nix.sel(lib, "licenses", "mit")) }));
-          return { [nix.POS]: pos$7, pname, version, src, installPhase, meta };
+          const meta = nix.thunk(() => ({
+            [nix.POS]: $pos[5],
+            license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
+          }));
+          return { [nix.POS]: $pos[6], pname, version, src, installPhase, meta };
         })()))),
     })),
   };

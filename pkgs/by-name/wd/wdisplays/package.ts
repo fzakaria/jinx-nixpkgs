@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 34, 5], ["repo", 35, 5], ["rev", 36, 5], ["sha256", 37, 5]], [["description", 41, 5], ["homepage", 42, 5], ["maintainers", 43, 5], ["license", 44, 5], ["platforms", 45, 5], ["mainProgram", 46, 5]], [["pname", 16, 3], ["version", 17, 3], ["nativeBuildInputs", 19, 3], ["buildInputs", 27, 3], ["src", 33, 3], ["meta", 40, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, meson: false, ninja: false, "pkg-config": false, gtk3: false, libepoxy: false, wayland: false, "wayland-scanner": false, wrapGAppsHook3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 34, 5], ["repo", 35, 5], ["rev", 36, 5], ["sha256", 37, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 41, 5], ["homepage", 42, 5], ["maintainers", 43, 5], ["license", 44, 5], ["platforms", 45, 5], ["mainProgram", 46, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["nativeBuildInputs", 19, 3], ["buildInputs", 27, 3], ["src", 33, 3], ["meta", 40, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,20 +19,20 @@ export default nix.lambda((args) => (() => {
   const wayland_scanner = nix.arg($, "wayland-scanner");
   const wrapGAppsHook3 = nix.arg($, "wrapGAppsHook3");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "wdisplays",
       version: "1.3.0",
       nativeBuildInputs: nix.thunk(() => [meson, ninja, pkg_config, wrapGAppsHook3, wayland_scanner]),
       buildInputs: nix.thunk(() => [gtk3, libepoxy, wayland]),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "artizirk",
           repo: "wdisplays",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
           sha256: "sha256-y8tE3R0kGWVSqPFcT8EX2PBIwpdnyAaxICyXJ4J9NCA=",
         })))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Graphical application for configuring displays in Wayland compositors",
         homepage: "https://github.com/artizirk/wdisplays",
         maintainers: nix.thunk(() => (() => {

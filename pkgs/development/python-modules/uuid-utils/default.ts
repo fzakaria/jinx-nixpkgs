@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]], [["pname", 24, 26], ["src", 24, 32], ["version", 24, 36], ["hash", 25, 5]], [["description", 52, 5], ["homepage", 53, 5], ["changelog", 54, 5], ["license", 55, 5], ["maintainers", 56, 5]], [["pname", 11, 3], ["version", 12, 3], ["pyproject", 13, 3], ["__structuredAttrs", 14, 3], ["src", 16, 3], ["cargoDeps", 23, 3], ["nativeBuildInputs", 28, 3], ["build-system", 33, 3], ["nativeCheckInputs", 37, 3], ["disabledTests", 41, 3], ["pythonImportsCheck", 47, 3], ["meta", 51, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, maturin: false, pytestCheckHook: false, rustPlatform: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 24, 26], ["src", 24, 32], ["version", 24, 36], ["hash", 25, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 52, 5], ["homepage", 53, 5], ["changelog", 54, 5], ["license", 55, 5], ["maintainers", 56, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 11, 3], ["version", 12, 3], ["pyproject", 13, 3], ["__structuredAttrs", 14, 3], ["src", 16, 3], ["cargoDeps", 23, 3], ["nativeBuildInputs", 28, 3], ["build-system", 33, 3], ["nativeCheckInputs", 37, 3], ["disabledTests", 41, 3], ["pythonImportsCheck", 47, 3], ["meta", 51, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,20 +14,20 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const rustPlatform = nix.arg($, "rustPlatform");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "uuid-utils",
       version: "0.17.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "aminalaee",
           repo: "uuid-utils",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-AshQOXB6o1CMByRn9um8E2Y4sexyRu4W8H3NelFe1HM=",
         })))),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
@@ -48,7 +45,7 @@ export default nix.lambda((args) => (() => {
       disabledTests: nix.thunk(() => ["test_getnode"]),
       pythonImportsCheck: nix.thunk(() => ["uuid_utils"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Python bindings to Rust UUID",
         homepage: "https://github.com/aminalaee/uuid-utils",
         changelog: nix.thunk(() => nix.str`https://github.com/aminalaee/uuid-utils/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

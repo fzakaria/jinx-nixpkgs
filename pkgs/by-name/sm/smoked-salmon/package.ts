@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]], [["runtimeDeps", 86, 13]], [["description", 90, 5], ["homepage", 91, 5], ["license", 92, 5], ["mainProgram", 93, 5], ["maintainers", 94, 5]], [["pname", 21, 3], ["version", 22, 3], ["pyproject", 23, 3], ["src", 25, 3], ["pythonRelaxDeps", 33, 3], ["postPatch", 36, 3], ["build-system", 40, 3], ["dependencies", 42, 3], ["makeWrapperArgs", 78, 3], ["passthru", 85, 3], ["meta", 89, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, curl: false, flac: false, lame: false, mp3val: false, python3Packages: false, sox: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 26, 5], ["repo", 27, 5], ["tag", 28, 5], ["hash", 29, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["runtimeDeps", 86, 13]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 90, 5], ["homepage", 91, 5], ["license", 92, 5], ["mainProgram", 93, 5], ["maintainers", 94, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 3], ["pyproject", 23, 3], ["src", 25, 3], ["pythonRelaxDeps", 33, 3], ["postPatch", 36, 3], ["build-system", 40, 3], ["dependencies", 42, 3], ["makeWrapperArgs", 78, 3], ["passthru", 85, 3], ["meta", 89, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,12 +17,12 @@ export default nix.lambda((args) => (() => {
   const sox = nix.arg($, "sox");
   const runtimeDeps = nix.thunk(() => [curl, flac, lame, mp3val, sox]);
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "smoked-salmon",
       version: "0.10.1",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "smokin-salmon",
           repo: "smoked-salmon",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -76,9 +73,9 @@ export default nix.lambda((args) => (() => {
         ":",
         nix.thunk(() => nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => nix.sel(finalAttrs, "passthru", "runtimeDeps")))),
       ]),
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$2, runtimeDeps: runtimeDeps })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[1], runtimeDeps: runtimeDeps })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Toolkit for checking, editing and uploading music. Catered to Gazelle-based trackers",
         homepage: "https://github.com/smokin-salmon/smoked-salmon",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

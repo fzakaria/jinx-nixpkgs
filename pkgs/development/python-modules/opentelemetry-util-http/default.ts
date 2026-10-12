@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["homepage", 35, 5], ["description", 36, 5]], [["version", 10, 43], ["src", 10, 51], ["pname", 11, 3], ["pyproject", 12, 3], ["sourceRoot", 14, 3], ["build-system", 16, 3], ["nativeCheckInputs", 18, 3], ["disabledTests", 25, 3], ["pythonImportsCheck", 30, 3], ["__darwinAllowLocalNetworking", 32, 3], ["meta", 34, 3]]]);
 const formals$1 = { args: { buildPythonPackage: false, hatchling: false, "opentelemetry-instrumentation": false, "opentelemetry-test-utils": false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["homepage", 35, 5], ["description", 36, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["version", 10, 43], ["src", 10, 51], ["pname", 11, 3], ["pyproject", 12, 3], ["sourceRoot", 14, 3], ["build-system", 16, 3], ["nativeCheckInputs", 18, 3], ["disabledTests", 25, 3], ["pythonImportsCheck", 30, 3], ["__darwinAllowLocalNetworking", 32, 3], ["meta", 34, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const opentelemetry_test_utils = nix.arg($, "opentelemetry-test-utils");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       version: nix.thunk(() => nix.attr(opentelemetry_instrumentation, "version")),
       src: nix.thunk(() => nix.attr(opentelemetry_instrumentation, "src")),
       pname: "opentelemetry-util-http",
@@ -26,7 +25,7 @@ export default nix.lambda((args) => (() => {
       pythonImportsCheck: nix.thunk(() => ["opentelemetry.util.http"]),
       __darwinAllowLocalNetworking: true,
       meta: nix.thunk(() => nix.update(nix.sel(opentelemetry_instrumentation, "meta"), {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         homepage: "https://github.com/open-telemetry/opentelemetry-python-contrib/tree/main/util/opentelemetry-util-http",
         description: "Web util for OpenTelemetry",
       })),

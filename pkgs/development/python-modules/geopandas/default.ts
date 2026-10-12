@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 40, 5], ["repo", 41, 5], ["tag", 42, 5], ["hash", 43, 5]], [["doCheck", 60, 9]], [["doCheck", 66, 9]], [["all", 57, 5]], [["description", 93, 5], ["homepage", 94, 5], ["changelog", 95, 5], ["license", 96, 5], ["teams", 97, 5]], [["pname", 34, 3], ["version", 35, 3], ["pyproject", 36, 3], ["__structuredAttrs", 37, 3], ["src", 39, 3], ["build-system", 46, 3], ["dependencies", 48, 3], ["optional-dependencies", 56, 3], ["nativeCheckInputs", 76, 3], ["disabledTests", 83, 3], ["enabledTestPaths", 88, 3], ["pythonImportsCheck", 90, 3], ["meta", 92, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, packaging: false, pandas: false, pyogrio: false, pyproj: false, shapely: false, folium: false, geoalchemy2: false, geopy: false, mapclassify: false, matplotlib: false, psycopg: false, pyarrow: false, sqlalchemy: false, xyzservices: false, pytestCheckHook: false, rtree: false, writableTmpDirAsHomeHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 40, 5], ["repo", 41, 5], ["tag", 42, 5], ["hash", 43, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["doCheck", 60, 9]]);
-const pos$3 = nix.positions(here + "/default.nix", [["doCheck", 66, 9]]);
-const pos$4 = nix.positions(here + "/default.nix", [["all", 57, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["description", 93, 5], ["homepage", 94, 5], ["changelog", 95, 5], ["license", 96, 5], ["teams", 97, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 34, 3], ["version", 35, 3], ["pyproject", 36, 3], ["__structuredAttrs", 37, 3], ["src", 39, 3], ["build-system", 46, 3], ["dependencies", 48, 3], ["optional-dependencies", 56, 3], ["nativeCheckInputs", 76, 3], ["disabledTests", 83, 3], ["enabledTestPaths", 88, 3], ["pythonImportsCheck", 90, 3], ["meta", 92, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,13 +29,13 @@ export default nix.lambda((args) => (() => {
   const rtree = nix.arg($, "rtree");
   const writableTmpDirAsHomeHook = nix.arg($, "writableTmpDirAsHomeHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "geopandas",
       version: "1.1.4",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "geopandas",
           repo: "geopandas",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -49,12 +44,12 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [setuptools]),
       dependencies: nix.thunk(() => [packaging, pandas, pyogrio, pyproj, shapely]),
       "optional-dependencies": nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         all: nix.thunk(() => [
-          nix.thunk(() => nix.app(nix.sel(folium, "overridePythonAttrs"), (prevAttrs) => ({ [nix.POS]: pos$2, doCheck: false }))),
+          nix.thunk(() => nix.app(nix.sel(folium, "overridePythonAttrs"), (prevAttrs) => ({ [nix.POS]: $pos[1], doCheck: false }))),
           geoalchemy2,
           geopy,
-          nix.thunk(() => nix.app(nix.sel(mapclassify, "overridePythonAttrs"), (prevAttrs) => ({ [nix.POS]: pos$3, doCheck: false }))),
+          nix.thunk(() => nix.app(nix.sel(mapclassify, "overridePythonAttrs"), (prevAttrs) => ({ [nix.POS]: $pos[2], doCheck: false }))),
           matplotlib,
           psycopg,
           pyarrow,
@@ -67,7 +62,7 @@ export default nix.lambda((args) => (() => {
       enabledTestPaths: nix.thunk(() => ["geopandas"]),
       pythonImportsCheck: nix.thunk(() => ["geopandas"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Python geospatial data analysis framework",
         homepage: "https://geopandas.org",
         changelog: nix.thunk(() => nix.str`https://github.com/geopandas/geopandas/blob/${nix.sel(finalAttrs, "src", "tag")}/CHANGELOG.md`),

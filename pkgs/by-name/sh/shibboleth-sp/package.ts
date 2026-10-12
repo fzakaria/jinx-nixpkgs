@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]], [["name", 38, 7], ["url", 39, 7], ["hash", 40, 7]], [["name", 44, 7], ["url", 45, 7], ["includes", 46, 7], ["hash", 47, 7]], [["updateScript", 78, 12]], [["homepage", 81, 5], ["description", 82, 5], ["platforms", 83, 5], ["license", 84, 5], ["maintainers", 85, 5]], [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["patches", 36, 3], ["nativeBuildInputs", 51, 3], ["buildInputs", 55, 3], ["configureFlags", 66, 3], ["enableParallelBuilding", 76, 3], ["passthru", 78, 3], ["meta", 80, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromCodeberg: false, fetchpatch: false, autoreconfHook: false, boost: false, fcgi: false, openssl: false, "opensaml-cpp": false, log4shib: false, "pkg-config": false, xercesc: false, "xml-security-c": false, "xml-tooling-c": false, unstableGitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 38, 7], ["url", 39, 7], ["hash", 40, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 44, 7], ["url", 45, 7], ["includes", 46, 7], ["hash", 47, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 78, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["homepage", 81, 5], ["description", 82, 5], ["platforms", 83, 5], ["license", 84, 5], ["maintainers", 85, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["patches", 36, 3], ["nativeBuildInputs", 51, 3], ["buildInputs", 55, 3], ["configureFlags", 66, 3], ["enableParallelBuilding", 76, 3], ["passthru", 78, 3], ["meta", 80, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const xml_tooling_c = nix.arg($, "xml-tooling-c");
   const unstableGitUpdater = nix.arg($, "unstableGitUpdater");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "shibboleth-sp",
       version: "3.0.4.1",
       src: nix.thunk(() => nix.app(fetchFromCodeberg, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Shibboleth",
           repo: "cpp-sp",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -40,13 +35,13 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(nix.sel(stdenv, "cc", "isClang")) && nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(stdenv, "cc", "version")), "19")))), nix.thunk(() => [
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               name: "char-traits-ambig-1",
               url: "https://codeberg.org/Shibboleth/cpp-sp/commit/49cd05fa6d9935a45069fa555db7a26ca77d23db.diff",
               hash: "sha256-ZF0jsZJoHaxaPPjVbT6Wlq+wjyPQLTnEKcUxONji/hE=",
             })))),
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               name: "char-traits-ambig-2",
               url: "https://codeberg.org/Shibboleth/cpp-sp/commit/793663a67aaa4e9a4aa9172728d924f8cec45cf6.diff",
               includes: nix.thunk(() => ["shibsp/util/IPRange.cpp"]),
@@ -75,11 +70,11 @@ export default nix.lambda((args) => (() => {
       ]),
       enableParallelBuilding: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(unstableGitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "https://shibboleth.net/products/service-provider.html",
         description: "Enables SSO and Federation web applications written with any programming language or framework",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "unix")),

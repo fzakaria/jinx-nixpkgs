@@ -2,17 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/1.27.nix", [[["url", 31, 5], ["hash", 32, 5]], [["iana", 51, 7]], [["mailcap", 56, 15]], [["tzdata", 61, 15]], [["GOOS", 69, 40], ["GOARCH", 69, 45], ["GOARM", 69, 52], ["GOHOSTOS", 73, 5], ["GOHOSTARCH", 74, 5], ["GO386", 76, 5], ["CGO_ENABLED", 81, 5], ["GOROOT_BOOTSTRAP", 92, 5]], [["CC_FOR_TARGET", 97, 5], ["CXX_FOR_TARGET", 98, 5]], [["go", 180, 7], ["buildGoModule", 181, 7]], [["goBootstrap", 178, 13], ["tests", 179, 5]], [["changelog", 188, 5], ["description", 189, 5], ["homepage", 190, 5], ["license", 191, 5], ["teams", 192, 5], ["platforms", 193, 5], ["badPlatforms", 195, 5], ["mainProgram", 202, 5]], [["pname", 27, 3], ["version", 28, 3], ["src", 30, 3], ["strictDeps", 35, 3], ["buildInputs", 36, 3], ["depsBuildTarget", 41, 3], ["depsTargetTarget", 43, 3], ["postPatch", 45, 3], ["patches", 49, 3], ["env", 68, 3], ["buildPhase", 101, 3], ["preInstall", 129, 3], ["installPhase", 166, 3], ["disallowedReferences", 175, 3], ["passthru", 177, 3], ["__structuredAttrs", 185, 3], ["meta", 187, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, tzdata: false, replaceVars: false, "iana-etc": false, mailcap: false, buildPackages: false, pkgsBuildTarget: false, targetPackages: false, buildGo127Module: false, callPackage: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/1.27.nix", [["url", 31, 5], ["hash", 32, 5]]);
-const pos$2 = nix.positions(here + "/1.27.nix", [["iana", 51, 7]]);
-const pos$3 = nix.positions(here + "/1.27.nix", [["mailcap", 56, 15]]);
-const pos$4 = nix.positions(here + "/1.27.nix", [["tzdata", 61, 15]]);
-const pos$5 = nix.positions(here + "/1.27.nix", [["GOOS", 69, 40], ["GOARCH", 69, 45], ["GOARM", 69, 52], ["GOHOSTOS", 73, 5], ["GOHOSTARCH", 74, 5], ["GO386", 76, 5], ["CGO_ENABLED", 81, 5], ["GOROOT_BOOTSTRAP", 92, 5]]);
-const pos$6 = nix.positions(here + "/1.27.nix", [["CC_FOR_TARGET", 97, 5], ["CXX_FOR_TARGET", 98, 5]]);
-const pos$7 = nix.positions(here + "/1.27.nix", [["go", 180, 7], ["buildGoModule", 181, 7]]);
-const pos$8 = nix.positions(here + "/1.27.nix", [["goBootstrap", 178, 13], ["tests", 179, 5]]);
-const pos$9 = nix.positions(here + "/1.27.nix", [["changelog", 188, 5], ["description", 189, 5], ["homepage", 190, 5], ["license", 191, 5], ["teams", 192, 5], ["platforms", 193, 5], ["badPlatforms", 195, 5], ["mainProgram", 202, 5]]);
-const pos$10 = nix.positions(here + "/1.27.nix", [["pname", 27, 3], ["version", 28, 3], ["src", 30, 3], ["strictDeps", 35, 3], ["buildInputs", 36, 3], ["depsBuildTarget", 41, 3], ["depsTargetTarget", 43, 3], ["postPatch", 45, 3], ["patches", 49, 3], ["env", 68, 3], ["buildPhase", 101, 3], ["preInstall", 129, 3], ["installPhase", 166, 3], ["disallowedReferences", 175, 3], ["passthru", 177, 3], ["__structuredAttrs", 185, 3], ["meta", 187, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const targetCC = nix.thunk(() => nix.sel(pkgsBuildTarget, "targetPackages", "stdenv", "cc"));
   const isCross = nix.thunk(() => !nix.eq(nix.sel(stdenv, "buildPlatform"), nix.sel(stdenv, "targetPlatform")));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       pname: "go",
       version: "1.27.2",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://go.dev/dl/go${nix.sel(finalAttrs, "version")}.src.tar.gz`),
           hash: "sha256-A0ldorpkiU1A9cSZLklFT6eLUGkGBP+Stq//UIG3bmI=",
         })))),
@@ -46,9 +37,9 @@ export default nix.lambda((args) => (() => {
       depsTargetTarget: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.sel(stdenv, "targetPlatform", "isMinGW")), nix.thunk(() => nix.sel(targetPackages, "threads", "package")))),
       postPatch: "patchShebangs .\n",
       patches: nix.thunk(() => [
-        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./iana-etc-1.25.patch"), nix.thunk(() => ({ [nix.POS]: pos$2, iana: iana_etc })))),
-        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./mailcap-1.17.patch"), nix.thunk(() => ({ [nix.POS]: pos$3, mailcap: mailcap })))),
-        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./tzdata-1.19.patch"), nix.thunk(() => ({ [nix.POS]: pos$4, tzdata: tzdata })))),
+        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./iana-etc-1.25.patch"), nix.thunk(() => ({ [nix.POS]: $pos[1], iana: iana_etc })))),
+        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./mailcap-1.17.patch"), nix.thunk(() => ({ [nix.POS]: $pos[2], mailcap: mailcap })))),
+        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./tzdata-1.19.patch"), nix.thunk(() => ({ [nix.POS]: $pos[3], tzdata: tzdata })))),
         nix.path(here, "./remove-tools-1.11.patch"),
         nix.path(here, "./go_no_vendor_checks-1.27.patch"),
         nix.path(here, "./go-env-go_ldso.patch"),
@@ -56,7 +47,7 @@ export default nix.lambda((args) => (() => {
       env: nix.thunk(() => nix.update((() => {
         const from = nix.thunk(() => nix.sel(stdenv, "targetPlatform", "go"));
         return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         GOOS: nix.thunk(() => nix.attr(from, "GOOS")),
         GOARCH: nix.thunk(() => nix.attr(from, "GOARCH")),
         GOARM: nix.thunk(() => nix.attr(from, "GOARM")),
@@ -67,7 +58,7 @@ export default nix.lambda((args) => (() => {
         GOROOT_BOOTSTRAP: nix.thunk(() => nix.str`${goBootstrap}/share/go`),
       };
       })(), nix.app(nix.sel(lib, "optionalAttrs"), isCross, nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           CC_FOR_TARGET: nix.thunk(() => nix.str`${targetCC}/bin/${nix.sel(targetCC, "targetPrefix")}cc`),
           CXX_FOR_TARGET: nix.thunk(() => nix.str`${targetCC}/bin/${nix.sel(targetCC, "targetPrefix")}c++`),
         }))))),
@@ -107,17 +98,17 @@ ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool((nix.asBoo
       installPhase: "runHook preInstall\nmkdir -p $out/share/go\ncp -a bin pkg src lib misc api doc go.env VERSION $out/share/go\nmkdir -p $out/bin\nln -s $out/share/go/bin/* $out/bin\nrunHook postInstall\n",
       disallowedReferences: nix.thunk(() => [goBootstrap]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         goBootstrap: goBootstrap,
         tests: nix.thunk(() => nix.app(callPackage, nix.path(here, "./tests.nix"), nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             go: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             buildGoModule: buildGo127Module,
           })))),
       })),
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         changelog: nix.thunk(() => nix.str`https://go.dev/doc/devel/release#go${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}`),
         description: "Go Programming language",
         homepage: "https://go.dev/",

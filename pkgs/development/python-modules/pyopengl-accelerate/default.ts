@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["description", 24, 5], ["homepage", 25, 5], ["maintainers", 26, 29], ["license", 26, 41]], [["pname", 10, 3], ["pyproject", 11, 3], ["version", 13, 22], ["src", 13, 30], ["sourceRoot", 15, 3], ["build-system", 17, 3], ["meta", 23, 3]]]);
 const formals$1 = { args: { buildPythonPackage: false, cython: false, numpy: false, pyopengl: false, setuptools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["description", 24, 5], ["homepage", 25, 5], ["maintainers", 26, 29], ["license", 26, 41]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 10, 3], ["pyproject", 11, 3], ["version", 13, 22], ["src", 13, 30], ["sourceRoot", 15, 3], ["build-system", 17, 3], ["meta", 23, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const pyopengl = nix.arg($, "pyopengl");
   const setuptools = nix.arg($, "setuptools");
   return nix.app(buildPythonPackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "pyopengl-accelerate",
       pyproject: true,
       version: nix.thunk(() => nix.attr(pyopengl, "version")),
@@ -24,7 +23,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(pyopengl, "meta"));
         return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "This set of C (Cython) extensions provides acceleration of common operations for slow points in PyOpenGL 3.x",
         homepage: "https://github.com/mcfletch/pyopengl/tree/master/accelerate#readme",
         maintainers: nix.thunk(() => nix.attr(from, "maintainers")),

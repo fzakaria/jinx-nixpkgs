@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 9, 3], ["format", 10, 3], ["version", 11, 27], ["src", 11, 35], ["nativeBuildInputs", 13, 3], ["buildInputs", 14, 3], ["sourceRoot", 16, 3], ["pythonImportsCheck", 18, 3], ["meta", 21, 3]]]);
 const formals$1 = { args: { buildPythonPackage: false, sentencepiece: false, "pkg-config": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 9, 3], ["format", 10, 3], ["version", 11, 27], ["src", 11, 35], ["nativeBuildInputs", 13, 3], ["buildInputs", 14, 3], ["sourceRoot", 16, 3], ["pythonImportsCheck", 18, 3], ["meta", 21, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const pythonImportsCheck = nix.thunk(() => ["sentencepiece"]);
       const meta = nix.thunk(() => nix.builtins.removeAttrs(nix.thunk(() => nix.sel(sentencepiece, "meta")), nix.thunk(() => ["outputsToInstall"])));
       return {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         pname,
         format,
         version,

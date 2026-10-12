@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 33, 5], ["repo", 34, 5], ["tag", 35, 5], ["hash", 36, 5]], [["pname", 41, 7], ["version", 42, 7], ["src", 43, 7], ["pnpm", 45, 13], ["fetcherVersion", 46, 5], ["hash", 47, 5]], [["updateScript", 94, 12]], [["description", 97, 5], ["homepage", 98, 5], ["license", 99, 5], ["mainProgram", 100, 5], ["maintainers", 101, 5], ["platforms", 105, 5]], [["pname", 29, 3], ["version", 30, 3], ["src", 32, 3], ["pnpmDeps", 39, 3], ["postPatch", 50, 3], ["cargoRoot", 59, 3], ["cargoHash", 61, 3], ["buildAndTestSubdir", 63, 3], ["nativeBuildInputs", 65, 3], ["buildInputs", 78, 3], ["doCheck", 88, 3], ["postInstall", 90, 3], ["passthru", 94, 3], ["meta", 96, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, rustPlatform: false, fetchFromGitHub: false, fetchPnpmDeps: false, nodejs: false, pnpm_10: false, pnpmConfigHook: false, "cargo-tauri": false, jq: false, moreutils: false, "pkg-config": false, wrapGAppsHook3: false, makeBinaryWrapper: false, openssl: false, webkitgtk_4_1: false, gst_all_1: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 33, 5], ["repo", 34, 5], ["tag", 35, 5], ["hash", 36, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 41, 7], ["version", 42, 7], ["src", 43, 7], ["pnpm", 45, 13], ["fetcherVersion", 46, 5], ["hash", 47, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 94, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 97, 5], ["homepage", 98, 5], ["license", 99, 5], ["mainProgram", 100, 5], ["maintainers", 101, 5], ["platforms", 105, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 29, 3], ["version", 30, 3], ["src", 32, 3], ["pnpmDeps", 39, 3], ["postPatch", 50, 3], ["cargoRoot", 59, 3], ["cargoHash", 61, 3], ["buildAndTestSubdir", 63, 3], ["nativeBuildInputs", 65, 3], ["buildInputs", 78, 3], ["doCheck", 88, 3], ["postInstall", 90, 3], ["passthru", 94, 3], ["meta", 96, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,18 +27,18 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const pnpm = pnpm_10;
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "en-croissant",
       version: "0.15.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "franciscoBSalgueiro",
           repo: "en-croissant",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
           hash: "sha256-a+UVorsX3A8/NYjXJM+k2uDvCdySLr88UqzTq7ROJEM=",
         })))),
       pnpmDeps: nix.thunk(() => nix.app(fetchPnpmDeps, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -74,11 +70,11 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "makeWrapper \"$out\"/Applications/en-croissant.app/Contents/MacOS/en-croissant $out/bin/en-croissant\n")),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Ultimate Chess Toolkit",
         homepage: "https://github.com/franciscoBSalgueiro/en-croissant/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Only")),

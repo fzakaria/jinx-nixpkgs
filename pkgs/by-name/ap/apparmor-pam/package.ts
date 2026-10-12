@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["description", 38, 5]], [["pname", 11, 3], ["version", 13, 5], ["src", 14, 5], ["postPatch", 17, 3], ["nativeBuildInputs", 22, 3], ["buildInputs", 27, 3], ["sourceRoot", 32, 3], ["makeFlags", 34, 3], ["installFlags", 35, 3], ["meta", 37, 3]]]);
 const formals$1 = { args: { stdenv: false, "pkg-config": false, which: false, pam: false, libapparmor: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["description", 38, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 13, 5], ["src", 14, 5], ["postPatch", 17, 3], ["nativeBuildInputs", 22, 3], ["buildInputs", 27, 3], ["sourceRoot", 32, 3], ["makeFlags", 34, 3], ["installFlags", 35, 3], ["meta", 37, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const pam = nix.arg($, "pam");
   const libapparmor = nix.arg($, "libapparmor");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "apparmor-pam",
       version: nix.thunk(() => nix.attr(libapparmor, "version")),
       src: nix.thunk(() => nix.attr(libapparmor, "src")),
@@ -25,7 +24,7 @@ export default nix.lambda((args) => (() => {
       makeFlags: nix.thunk(() => ["USE_SYSTEM=1"]),
       installFlags: nix.thunk(() => ["DESTDIR=$(out)"]),
       meta: nix.thunk(() => nix.update(nix.sel(libapparmor, "meta"), {
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         description: "Mandatory access control system - PAM service",
       })),
     })));

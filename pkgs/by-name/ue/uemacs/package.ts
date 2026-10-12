@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 13, 5], ["rev", 14, 5], ["hash", 15, 5]], [["description", 40, 5], ["homepage", 41, 5], ["platforms", 42, 5], ["maintainers", 43, 5], ["mainProgram", 44, 5], ["license", 49, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["buildInputs", 18, 3], ["postPatch", 20, 3], ["makeFlags", 28, 3], ["strictDeps", 30, 3], ["enableParallelBuilding", 32, 3], ["installPhase", 34, 3], ["meta", 39, 3]]]);
 const formals$1 = { args: { lib: false, gccStdenv: false, fetchgit: false, ncurses: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 13, 5], ["rev", 14, 5], ["hash", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 40, 5], ["homepage", 41, 5], ["platforms", 42, 5], ["maintainers", 43, 5], ["mainProgram", 44, 5], ["license", 49, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["buildInputs", 18, 3], ["postPatch", 20, 3], ["makeFlags", 28, 3], ["strictDeps", 30, 3], ["enableParallelBuilding", 32, 3], ["installPhase", 34, 3], ["meta", 39, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const fetchgit = nix.arg($, "fetchgit");
   const ncurses = nix.arg($, "ncurses");
   return nix.app(nix.sel(gccStdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "uemacs",
       version: "4.0-unstable-2018-07-19",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://git.kernel.org/pub/scm/editors/uemacs/uemacs.git",
           rev: "1cdcf9df88144049750116e36fe20c8c39fa2517",
           hash: "sha256-QSouqZiBmKBU6FqRRfWtTGRIl5sqJ8tVPYwdytt/43w=",
@@ -30,7 +28,7 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: true,
       installPhase: "mkdir -p $out/{bin,share/uemacs}\nmake install\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Linus Torvalds's random version of microemacs with his personal modifications",
         homepage: "https://git.kernel.org/pub/scm/editors/uemacs/uemacs.git/about/",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 12, 5], ["name", 13, 5], ["hash", 14, 5]], [["pname", 19, 50], ["version", 19, 56], ["src", 19, 64]], [["description", 33, 5], ["homepage", 34, 5], ["license", 35, 5], ["maintainers", 36, 5], ["mainProgram", 37, 5], ["platforms", 38, 5], ["sourceProvenance", 39, 5], ["longDescription", 40, 5]], [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["extraInstallCommands", 17, 3], ["meta", 32, 3]]]);
 const formals$1 = { args: { lib: false, fetchurl: false, appimageTools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 12, 5], ["name", 13, 5], ["hash", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 19, 50], ["version", 19, 56], ["src", 19, 64]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 33, 5], ["homepage", 34, 5], ["license", 35, 5], ["maintainers", 36, 5], ["mainProgram", 37, 5], ["platforms", 38, 5], ["sourceProvenance", 39, 5], ["longDescription", 40, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 8, 3], ["version", 9, 3], ["src", 11, 3], ["extraInstallCommands", 17, 3], ["meta", 32, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,13 +14,13 @@ export default nix.lambda((args) => (() => {
       const pname = "kchat";
       const version = "3.5.1";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://download.storage5.infomaniak.com/kchat/kchat-desktop-${version}-linux-x86_64.AppImage`),
           name: nix.thunk(() => nix.str`kchat-${version}.AppImage`),
           hash: "sha256-3vF2a0Ej/io+045SywTKCQSfteTNhxSgoVbb5oAJN1Q=",
         }))));
       const extraInstallCommands = nix.thunk(() => (() => {
-        const contents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: pos$2, pname: pname, version: version, src: src }))));
+        const contents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: $pos[1], pname: pname, version: version, src: src }))));
         return nix.str`mkdir -p "$out/share/applications"
 mkdir -p "$out/share/lib/kchat"
 cp -r ${contents}/{locales,resources} "$out/share/lib/kchat"
@@ -35,7 +32,7 @@ substituteInPlace $out/share/applications/kchat-desktop.desktop --replace-fail '
 `;
       })());
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Instant messaging service part of Infomaniak KSuite",
         homepage: "https://www.infomaniak.com/en/apps/download-kchat",
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfree")),
@@ -45,7 +42,7 @@ substituteInPlace $out/share/applications/kchat-desktop.desktop --replace-fail '
         sourceProvenance: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "sourceTypes", "binaryNativeCode"))]),
         longDescription: "kChat is an instant messaging service which enables you to discuss, share and coordinate your teams in complete\nsecurity via your Internet browser, mobile phone, tablet or computer.\n",
       }));
-      return { [nix.POS]: pos$4, pname, version, src, extraInstallCommands, meta };
+      return { [nix.POS]: $pos[3], pname, version, src, extraInstallCommands, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

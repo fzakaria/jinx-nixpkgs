@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["updateScript", 11, 12]], [["description", 14, 5], ["homepage", 15, 5], ["license", 16, 5], ["platforms", 17, 5], ["mainProgram", 18, 5]], [["pname", 7, 3], ["exes", 8, 3], ["gemdir", 9, 3], ["passthru", 11, 3], ["meta", 13, 3]]]);
 const formals$1 = { args: { lib: false, bundlerApp: false, bundlerUpdateScript: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["updateScript", 11, 12]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 14, 5], ["homepage", 15, 5], ["license", 16, 5], ["platforms", 17, 5], ["mainProgram", 18, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 7, 3], ["exes", 8, 3], ["gemdir", 9, 3], ["passthru", 11, 3], ["meta", 13, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,16 +11,16 @@ export default nix.lambda((args) => (() => {
   const bundlerApp = nix.arg($, "bundlerApp");
   const bundlerUpdateScript = nix.arg($, "bundlerUpdateScript");
   return nix.app(bundlerApp, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "wayback_machine_downloader",
       exes: nix.thunk(() => ["wayback_machine_downloader"]),
       gemdir: nix.path(here, "./."),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         updateScript: nix.thunk(() => nix.app(bundlerUpdateScript, "wayback_machine_downloader")),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Download websites from the Internet Archive Wayback Machine",
         homepage: "https://github.com/hartator/wayback-machine-downloader",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 37, 5], ["repo", 38, 5], ["tag", 39, 5], ["hash", 40, 5]], [["aws", 54, 5], ["google", 58, 5], ["rapidjson", 63, 5], ["simplejson", 64, 5], ["ujson", 65, 5]], [["changelog", 80, 5], ["description", 81, 5], ["homepage", 82, 5], ["license", 83, 5], ["maintainers", 84, 5]], [["pname", 32, 3], ["version", 33, 3], ["pyproject", 34, 3], ["src", 36, 3], ["build-system", 43, 3], ["dependencies", 47, 3], ["optional-dependencies", 53, 3], ["doCheck", 68, 3], ["nativeCheckInputs", 70, 3], ["unittestFlagsArray", 77, 3], ["meta", 79, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, pythonAtLeast: false, fetchFromGitHub: false, setuptools: false, distutils: false, pyyaml: false, "standard-pipes": false, boto3: false, botocore: false, "google-cloud-dataproc": false, "google-cloud-logging": false, "google-cloud-storage": false, "python-rapidjson": false, simplejson: false, ujson: false, pyspark: false, unittestCheckHook: false, warcio: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 37, 5], ["repo", 38, 5], ["tag", 39, 5], ["hash", 40, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["aws", 54, 5], ["google", 58, 5], ["rapidjson", 63, 5], ["simplejson", 64, 5], ["ujson", 65, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["changelog", 80, 5], ["description", 81, 5], ["homepage", 82, 5], ["license", 83, 5], ["maintainers", 84, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 32, 3], ["version", 33, 3], ["pyproject", 34, 3], ["src", 36, 3], ["build-system", 43, 3], ["dependencies", 47, 3], ["optional-dependencies", 53, 3], ["doCheck", 68, 3], ["nativeCheckInputs", 70, 3], ["unittestFlagsArray", 77, 3], ["meta", 79, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.7.4";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Yelp",
           repo: "mrjob",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -43,7 +40,7 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [setuptools]);
       const dependencies = nix.thunk(() => [distutils, pyyaml, standard_pipes]);
       const optional_dependencies = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         aws: nix.thunk(() => [boto3, botocore]),
         google: nix.thunk(() => [google_cloud_dataproc, google_cloud_logging, google_cloud_storage]),
         rapidjson: nix.thunk(() => [python_rapidjson]),
@@ -54,7 +51,7 @@ export default nix.lambda((args) => (() => {
       const nativeCheckInputs = nix.thunk(() => nix.concat([pyspark, unittestCheckHook, warcio], nix.app(nix.sel(lib, "concatAttrValues"), optional_dependencies)));
       const unittestFlagsArray = nix.thunk(() => ["-v"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         changelog: nix.thunk(() => nix.str`https://github.com/Yelp/mrjob/blob/v${version}/CHANGES.txt`),
         description: "Run MapReduce jobs on Hadoop or Amazon Web Services",
         homepage: "https://github.com/Yelp/mrjob",
@@ -62,7 +59,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

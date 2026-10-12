@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 21, 13], ["version", 21, 19], ["hash", 22, 5]], [["graphviz", 27, 7]], [["ipython", 36, 5]], [["description", 48, 5], ["homepage", 49, 5], ["changelog", 50, 5], ["license", 51, 5], ["maintainers", 52, 5]], [["pname", 14, 3], ["version", 15, 3], ["pyproject", 16, 3], ["disabled", 18, 3], ["src", 20, 3], ["patches", 25, 3], ["build-system", 31, 3], ["optional-dependencies", 35, 3], ["pythonImportsCheck", 39, 3], ["checkPhase", 41, 3], ["meta", 47, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, graphviz: false, graphvizPkgs: false, isPyPy: false, python: false, replaceVars: false, setuptools: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 21, 13], ["version", 21, 19], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["graphviz", 27, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["ipython", 36, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 48, 5], ["homepage", 49, 5], ["changelog", 50, 5], ["license", 51, 5], ["maintainers", 52, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 14, 3], ["version", 15, 3], ["pyproject", 16, 3], ["disabled", 18, 3], ["src", 20, 3], ["patches", 25, 3], ["build-system", 31, 3], ["optional-dependencies", 35, 3], ["pythonImportsCheck", 39, 3], ["checkPhase", 41, 3], ["meta", 47, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,23 +22,23 @@ export default nix.lambda((args) => (() => {
       const pyproject = true;
       const disabled = isPyPy;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-ALny9A90IuPH9FphxNr9r4HwP/BknW6uyGbwEDDlGtg=",
         }))));
       const patches = nix.thunk(() => [
-        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./hardcode-graphviz-path.patch"), nix.thunk(() => ({ [nix.POS]: pos$2, graphviz: graphvizPkgs })))),
+        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./hardcode-graphviz-path.patch"), nix.thunk(() => ({ [nix.POS]: $pos[1], graphviz: graphvizPkgs })))),
       ]);
       const build_system = nix.thunk(() => [setuptools]);
-      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: pos$3, ipython: nix.thunk(() => [graphviz]) }));
+      const optional_dependencies = nix.thunk(() => ({ [nix.POS]: $pos[2], ipython: nix.thunk(() => [graphviz]) }));
       const pythonImportsCheck = nix.thunk(() => ["objgraph"]);
       const checkPhase = nix.thunk(() => nix.str`runHook preCheck
 ${nix.sel(python, "interpreter")} tests.py
 runHook postCheck
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Draws Python object reference graphs with graphviz",
         homepage: "https://mg.pov.lt/objgraph/",
         changelog: nix.thunk(() => nix.str`https://github.com/mgedmin/objgraph/blob/${version}/CHANGES.rst`),
@@ -53,7 +49,7 @@ runHook postCheck
         })()),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         pyproject,

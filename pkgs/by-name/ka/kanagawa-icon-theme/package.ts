@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]], [["broken", 43, 5], ["description", 44, 5], ["homepage", 45, 5], ["license", 46, 5], ["maintainers", 47, 5], ["platforms", 48, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["nativeBuildInputs", 19, 3], ["propagatedBuildInputs", 23, 3], ["dontDropIconThemeCache", 27, 3], ["installPhase", 29, 3], ["meta", 41, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchFromGitHub: false, gtk3: false, "hicolor-icon-theme": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["rev", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["broken", 43, 5], ["description", 44, 5], ["homepage", 45, 5], ["license", 46, 5], ["maintainers", 47, 5], ["platforms", 48, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["nativeBuildInputs", 19, 3], ["propagatedBuildInputs", 23, 3], ["dontDropIconThemeCache", 27, 3], ["installPhase", 29, 3], ["meta", 41, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const gtk3 = nix.arg($, "gtk3");
   const hicolor_icon_theme = nix.arg($, "hicolor-icon-theme");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "kanagawa-icon-theme",
       version: "0-unstable-2023-07-03",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Fausto-Korpsvart",
           repo: "Kanagawa-GKT-Theme",
           rev: "35936a1e3bbd329339991b29725fc1f67f192c1e",
@@ -30,7 +28,7 @@ export default nix.lambda((args) => (() => {
       dontDropIconThemeCache: true,
       installPhase: "runHook preInstall\n\nmkdir -p $out/share/icons\ncp -a icons/* $out/share/icons\nfor theme in $out/share/icons/*; do\n  gtk-update-icon-cache -f $theme\ndone\n\nrunHook postInstall\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         broken: nix.thunk(() => nix.sel(stdenvNoCC, "hostPlatform", "isDarwin")),
         description: "Icon theme for the Kanagawa colour palette",
         homepage: "https://github.com/Fausto-Korpsvart/Kanagawa-GKT-Theme",

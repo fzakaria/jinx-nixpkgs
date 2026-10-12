@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/electron.nix", [[["url", 14, 3], ["hash", 15, 3], ["stripRoot", 16, 3]], [["dist", 25, 9], ["src", 26, 9]], [["license", 30, 9], ["sourceProvenance", 31, 9]], [["name", 21, 7], ["version", 22, 15], ["pname", 23, 7], ["passthru", 24, 7], ["meta", 29, 7]]]);
 const formals$1 = { args: { fetchzip: false, lib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/electron.nix", [["url", 14, 3], ["hash", 15, 3], ["stripRoot", 16, 3]]);
-const pos$2 = nix.positions(here + "/electron.nix", [["dist", 25, 9], ["src", 26, 9]]);
-const pos$3 = nix.positions(here + "/electron.nix", [["license", 30, 9], ["sourceProvenance", 31, 9]]);
-const pos$4 = nix.positions(here + "/electron.nix", [["name", 21, 7], ["version", 22, 15], ["pname", 23, 7], ["passthru", 24, 7], ["meta", 29, 7]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,22 +11,22 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const version = "43.0.0";
   return nix.app(nix.sel(nix.app(fetchzip, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: nix.thunk(() => nix.str`https://github.com/castlabs/electron-releases/releases/download/v${version}+wvcus/electron-v${version}+wvcus-linux-x64.zip`),
       hash: "sha256-cUhDsxW4V13H2oWgCSyrWicoo5yTD36XQZQ0TvCfexc=",
       stripRoot: false,
     }))), "overrideAttrs"), (final) => (_) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       name: nix.thunk(() => nix.str`castlabs-electron-${version}`),
       version: version,
       pname: "castlabs-electron",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         dist: nix.thunk(() => nix.sel(final, "finalPackage", "outPath")),
         src: nix.thunk(() => nix.sel(final, "finalPackage")),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         license: nix.thunk(() => nix.sel(lib, "licenses", "unfreeRedistributable")),
         sourceProvenance: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "sourceTypes")), null);

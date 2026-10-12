@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 34, 5], ["hash", 35, 5]], [["odd-unstable", 98, 46]], [["updateScript", 98, 5]], [["homepage", 102, 5], ["description", 103, 5], ["license", 104, 5], ["maintainers", 105, 5]], [["pname", 23, 3], ["version", 24, 3], ["pyproject", 26, 3], ["outputs", 28, 3], ["src", 33, 3], ["patches", 38, 3], ["disabled", 44, 3], ["depsBuildBuild", 46, 3], ["nativeBuildInputs", 48, 3], ["buildInputs", 56, 3], ["propagatedBuildInputs", 61, 3], ["checkInputs", 66, 3], ["mesonFlags", 70, 3], ["installCheckPhase", 87, 3], ["preCheck", 93, 3], ["passthru", 97, 3], ["meta", 101, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchurl: false, fetchpatch: false, meson: false, ninja: false, "gst-python": false, "pkg-config": false, python: false, pygobject3: false, "gobject-introspection": false, gst_all_1: false, isPy3k: false, directoryListingUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 34, 5], ["hash", 35, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["odd-unstable", 98, 46]]);
-const pos$3 = nix.positions(here + "/default.nix", [["updateScript", 98, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["homepage", 102, 5], ["description", 103, 5], ["license", 104, 5], ["maintainers", 105, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 23, 3], ["version", 24, 3], ["pyproject", 26, 3], ["outputs", 28, 3], ["src", 33, 3], ["patches", 38, 3], ["disabled", 44, 3], ["depsBuildBuild", 46, 3], ["nativeBuildInputs", 48, 3], ["buildInputs", 56, 3], ["propagatedBuildInputs", 61, 3], ["checkInputs", 66, 3], ["mesonFlags", 70, 3], ["installCheckPhase", 87, 3], ["preCheck", 93, 3], ["passthru", 97, 3], ["meta", 101, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,7 +28,7 @@ export default nix.lambda((args) => (() => {
       const pyproject = false;
       const outputs = nix.thunk(() => ["out", "dev"]);
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://gstreamer.freedesktop.org/src/gst-python/gst-python-${version}.tar.xz`),
           hash: "sha256-NNWEQMU7VJWhI9Ckt7ervG6XkqWyGVTbhqB5Gxb24BI=",
         }))));
@@ -58,11 +54,11 @@ export default nix.lambda((args) => (() => {
       const preCheck = nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => nix.str`export DYLD_LIBRARY_PATH="${nix.sel(gst_all_1, "gst-plugins-base")}/lib"
 `)));
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(directoryListingUpdater, nix.thunk(() => ({ [nix.POS]: pos$2, "odd-unstable": true })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(directoryListingUpdater, nix.thunk(() => ({ [nix.POS]: $pos[1], "odd-unstable": true })))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://gstreamer.freedesktop.org",
         description: "Python bindings for GStreamer",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl2Plus")),
@@ -72,7 +68,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         pyproject,

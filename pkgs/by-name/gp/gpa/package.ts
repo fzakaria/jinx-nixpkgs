@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 19, 5], ["hash", 20, 5]], [["name", 25, 7], ["url", 26, 7], ["hash", 27, 7]], [["NIX_CFLAGS_COMPILE", 43, 7]], [["changelog", 46, 5], ["description", 47, 5], ["homepage", 48, 5], ["license", 49, 5], ["platforms", 50, 5], ["mainProgram", 51, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["patches", 23, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 36, 3], ["env", 43, 3], ["meta", 45, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, fetchpatch: false, intltool: false, "pkg-config": false, gtk3: false, gpgme: false, "libgpg-error": false, libassuan: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 25, 7], ["url", 26, 7], ["hash", 27, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 43, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["changelog", 46, 5], ["description", 47, 5], ["homepage", 48, 5], ["license", 49, 5], ["platforms", 50, 5], ["mainProgram", 51, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["patches", 23, 3], ["nativeBuildInputs", 31, 3], ["buildInputs", 36, 3], ["env", 43, 3], ["meta", 45, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,17 +18,17 @@ export default nix.lambda((args) => (() => {
   const libgpg_error = nix.arg($, "libgpg-error");
   const libassuan = nix.arg($, "libassuan");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "gpa",
       version: "0.11.0",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnupg/gpa/gpa-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           hash: "sha256-Jqj6W/cFQct0Hwxxt8/ikbHqVuq2jusHqpYs71zfM8w=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "remove-trust_item-stuff-to-make-it-build-with-gpgme-2.x.patch",
             url: "https://dev.gnupg.org/rGPAb6ba8bcc6db7765667cd6c49b7edc9a2073bc74f?diff=1",
             hash: "sha256-A3Cx4zub3Um09yjZ1mu0PZe/v7rmhXjND0Hg5WkcIf8=",
@@ -41,11 +37,11 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [intltool, pkg_config]),
       buildInputs: nix.thunk(() => [gtk3, gpgme, libgpg_error, libassuan]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         NIX_CFLAGS_COMPILE: "-Wno-error=implicit-function-declaration",
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         changelog: nix.thunk(() => nix.str`https://dev.gnupg.org/source/gpa/browse/master/NEWS;gpa-${nix.sel(finalAttrs, "version")}?view=raw`),
         description: "Graphical user interface for the GnuPG",
         homepage: "https://www.gnupg.org/related_software/gpa/",

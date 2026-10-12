@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/immich-models.nix", [[["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["hash", 25, 5]], [["description", 45, 5], ["homepage", 46, 5], ["license", 47, 5], ["maintainers", 48, 27], ["platforms", 48, 39]], [["pname", 16, 3], ["version", 17, 3], ["pyproject", 18, 3], ["__structuredAttrs", 19, 3], ["src", 21, 3], ["pythonRelaxDeps", 28, 3], ["build-system", 32, 3], ["dependencies", 36, 3], ["meta", 44, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, immich: false, buildPythonPackage: false, hatchling: false, numpy: false, onnx: false, "onnx-ir": false, onnxscript: false, safetensors: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/immich-models.nix", [["owner", 22, 5], ["repo", 23, 5], ["rev", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/immich-models.nix", [["description", 45, 5], ["homepage", 46, 5], ["license", 47, 5], ["maintainers", 48, 27], ["platforms", 48, 39]]);
-const pos$3 = nix.positions(here + "/immich-models.nix", [["pname", 16, 3], ["version", 17, 3], ["pyproject", 18, 3], ["__structuredAttrs", 19, 3], ["src", 21, 3], ["pythonRelaxDeps", 28, 3], ["build-system", 32, 3], ["dependencies", 36, 3], ["meta", 44, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,13 +18,13 @@ export default nix.lambda((args) => (() => {
   const onnxscript = nix.arg($, "onnxscript");
   const safetensors = nix.arg($, "safetensors");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "immich-models",
       version: "0-unstable-2026-10-06",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "immich-app",
           repo: "ml-models",
           rev: "8bf3fd1b44b0c8608f52fb6e50ddff52826576d8",
@@ -38,7 +36,7 @@ export default nix.lambda((args) => (() => {
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(immich, "meta"));
         return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: nix.thunk(() => nix.str`${nix.sel(immich, "meta", "description")} (machine learning models)`),
         homepage: "https://github.com/immich-app/ml-models",
         license: nix.thunk(() => nix.sel(lib, "licenses", "agpl3Only")),

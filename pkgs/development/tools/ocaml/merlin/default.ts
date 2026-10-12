@@ -2,12 +2,8 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 21, 5], ["sha256", 22, 5]], [["dot-merlin-reader", 29, 7], ["dune", 30, 7]], [["name", 34, 7], ["url", 35, 7], ["hash", 36, 7]], [["description", 52, 5], ["homepage", 53, 5], ["license", 54, 5], ["maintainers", 55, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["minimalOCamlVersion", 25, 3], ["patches", 27, 3], ["strictDeps", 40, 3], ["buildInputs", 42, 3], ["meta", 51, 3]]]);
 const formals$1 = { args: { lib: false, fetchurl: false, fetchpatch: false, buildDunePackage: false, replaceVars: false, "dot-merlin-reader": false, dune_2: false, yojson: false, csexp: false, result: false, seq: false, menhirSdk: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 21, 5], ["sha256", 22, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["dot-merlin-reader", 29, 7], ["dune", 30, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["name", 34, 7], ["url", 35, 7], ["hash", 36, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 52, 5], ["homepage", 53, 5], ["license", 54, 5], ["maintainers", 55, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["minimalOCamlVersion", 25, 3], ["patches", 27, 3], ["strictDeps", 40, 3], ["buildInputs", 42, 3], ["meta", 51, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,19 +23,19 @@ export default nix.lambda((args) => (() => {
       const pname = "merlin";
       const version = "3.8.0";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/ocaml/merlin/releases/download/v${version}/merlin-${version}.tbz`),
           sha256: "sha256-wmBGNwXL3BduF4o1sUXtAOUHJ4xmMvsWAxl/QdNj/28=",
         }))));
       const minimalOCamlVersion = "4.02.3";
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix-paths.patch"), nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             "dot-merlin-reader": nix.thunk(() => nix.str`${dot_merlin_reader}/bin/dot-merlin-reader`),
             dune: nix.thunk(() => nix.str`${dune_2}/bin/dune`),
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "vim-python-12-syntax-warning-fix.patch",
             url: "https://github.com/ocaml/merlin/commit/9e0c47b0d5fd0c4edc37c4c7ce927b155877557d.patch",
             hash: "sha256-HmdTISE/s45C5cwLgsCHNUW6OAPSsvQ/GcJE6VDEobs=",
@@ -48,14 +44,14 @@ export default nix.lambda((args) => (() => {
       const strictDeps = true;
       const buildInputs = nix.thunk(() => [dot_merlin_reader, yojson, csexp, result, seq, menhirSdk]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Editor-independent tool to ease the development of programs in OCaml",
         homepage: "https://github.com/ocaml/merlin",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "vbgl"))]),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         src,

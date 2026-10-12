@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["sha256", 67, 28], ["url", 67, 35]], [["name", 90, 7], ["desktopName", 91, 7], ["exec", 92, 7], ["icon", 93, 7], ["comment", 94, 7], ["categories", 95, 7]], [["updateScript", 135, 12]], [["description", 154, 5], ["homepage", 155, 5], ["sourceProvenance", 156, 5], ["license", 157, 5], ["platforms", 158, 5], ["maintainers", 159, 5]], [["pname", 64, 3], ["version", 65, 11], ["src", 67, 3], ["nativeBuildInputs", 69, 3], ["unpackCmd", 75, 3], ["dontBuild", 85, 3], ["desktopItems", 88, 3], ["installPhase", 102, 3], ["passthru", 135, 3], ["meta", 153, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, unzip: false, makeWrapper: false, libx11: false, zlib: false, libsm: false, libice: false, libxext: false, freetype: false, libxrender: false, fontconfig: false, libxft: false, libxinerama: false, libxcursor: false, cairo: false, libxfixes: false, libxscrnsaver: false, libnotify: false, glib: false, gtk3: false, libappindicator: false, curl: false, writeShellScript: false, "common-updater-scripts": false, xmlstarlet: false, makeDesktopItem: false, copyDesktopItems: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["sha256", 67, 28], ["url", 67, 35]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 90, 7], ["desktopName", 91, 7], ["exec", 92, 7], ["icon", 93, 7], ["comment", 94, 7], ["categories", 95, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 135, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 154, 5], ["homepage", 155, 5], ["sourceProvenance", 156, 5], ["license", 157, 5], ["platforms", 158, 5], ["maintainers", 159, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 64, 3], ["version", 65, 11], ["src", 67, 3], ["nativeBuildInputs", 69, 3], ["unpackCmd", 75, 3], ["dontBuild", 85, 3], ["desktopItems", 88, 3], ["installPhase", 102, 3], ["passthru", 135, 3], ["meta", 153, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -66,16 +62,16 @@ export default nix.lambda((args) => (() => {
       cairo,
     ])));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "hubstaff",
       version: version,
-      src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({ [nix.POS]: pos$1, sha256: sha256, url: url })))),
+      src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({ [nix.POS]: $pos[0], sha256: sha256, url: url })))),
       nativeBuildInputs: nix.thunk(() => [unzip, makeWrapper, copyDesktopItems]),
       unpackCmd: "# MojoSetups have a ZIP file at the end. ZIP’s magic string is\n# most often PK\\x03\\x04. This has worked for all past updates,\n# but feel free to come up with something more reasonable.\ndataZipOffset=$(grep --max-count=1 --byte-offset --only-matching --text $'PK\\x03\\x04' $curSrc | cut -d: -f1)\ndd bs=$dataZipOffset skip=1 if=$curSrc of=data.zip 2>/dev/null\nunzip -q data.zip \"data/*\"\nrm data.zip\n",
       dontBuild: true,
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "netsoft-com.netsoft.hubstaff",
             desktopName: "Hubstaff",
             exec: "HubstaffClient",
@@ -113,7 +109,7 @@ done
 runHook postInstall
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(writeShellScript, "hubstaff-updater", nix.thunk(() => nix.str`set -eu -o pipefail
 
 # Create a temporary file
@@ -132,7 +128,7 @@ ${common_updater_scripts}/bin/update-source-version hubstaff "$version" "sha256:
 `))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Time tracking software",
         homepage: "https://hubstaff.com/",
         sourceProvenance: nix.thunk(() => (() => {

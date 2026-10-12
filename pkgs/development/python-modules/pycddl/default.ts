@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 18, 13], ["version", 18, 19], ["hash", 19, 5]], [["pname", 40, 13], ["version", 40, 19], ["src", 40, 27], ["hash", 41, 5]], [["PYO3_USE_ABI3_FORWARD_COMPATIBILITY", 44, 7]], [["description", 61, 5], ["homepage", 62, 5], ["changelog", 63, 5], ["license", 64, 5], ["maintainers", 65, 5]], [["pname", 13, 3], ["version", 14, 3], ["pyproject", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 22, 3], ["postPatch", 27, 3], ["cargoDeps", 39, 3], ["env", 44, 3], ["nativeCheckInputs", 46, 3], ["disabledTests", 53, 3], ["pythonImportsCheck", 58, 3], ["meta", 60, 3]]]);
 const formals$1 = { args: { lib: false, fetchPypi: false, buildPythonPackage: false, rustPlatform: false, pytestCheckHook: false, psutil: false, cbor2: false, hypothesis: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 18, 13], ["version", 18, 19], ["hash", 19, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 40, 13], ["version", 40, 19], ["src", 40, 27], ["hash", 41, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["PYO3_USE_ABI3_FORWARD_COMPATIBILITY", 44, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 61, 5], ["homepage", 62, 5], ["changelog", 63, 5], ["license", 64, 5], ["maintainers", 65, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 13, 3], ["version", 14, 3], ["pyproject", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 22, 3], ["postPatch", 27, 3], ["cargoDeps", 39, 3], ["env", 44, 3], ["nativeCheckInputs", 46, 3], ["disabledTests", 53, 3], ["pythonImportsCheck", 58, 3], ["meta", 60, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,7 +20,7 @@ export default nix.lambda((args) => (() => {
       const version = "0.6.4";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-aUa6Q3e1RwvWN0NPqbJtWW3o/yzJxUc0g7gUGKUlOXo=",
@@ -38,18 +34,18 @@ export default nix.lambda((args) => (() => {
       })());
       const postPatch = "# We don't place pytest-benchmark in the closure because we have no\n# intention of running the benchmarks.  Make sure pip doesn't fail as a\n# result of it being missing by removing it from the requirements list.\nsed -i -e /pytest-benchmark/d requirements-dev.txt\n\n# Now that we've gotten rid of pytest-benchmark we need to get rid of the\n# benchmarks too, otherwise they fail at import time due to the missing\n# dependency.\nrm tests/test_benchmarks.py\n";
       const cargoDeps = nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: pname,
           version: version,
           src: src,
           hash: "sha256-cEpvkSqe/wRCxEajmM148jbo6a346x2t81pMRpKEJyE=",
         }))));
-      const env = nix.thunk(() => ({ [nix.POS]: pos$3, PYO3_USE_ABI3_FORWARD_COMPATIBILITY: 1n }));
+      const env = nix.thunk(() => ({ [nix.POS]: $pos[2], PYO3_USE_ABI3_FORWARD_COMPATIBILITY: 1n }));
       const nativeCheckInputs = nix.thunk(() => [hypothesis, pytestCheckHook, psutil, cbor2]);
       const disabledTests = nix.thunk(() => ["test_memory_usage"]);
       const pythonImportsCheck = nix.thunk(() => ["pycddl"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Python bindings for the Rust cddl crate",
         homepage: "https://gitlab.com/tahoe-lafs/pycddl",
         changelog: nix.thunk(() => nix.str`https://gitlab.com/tahoe-lafs/pycddl/-/tree/v${version}#release-notes`),
@@ -57,7 +53,7 @@ export default nix.lambda((args) => (() => {
         maintainers: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "maintainers", "exarkun"))]),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname,
         version,
         pyproject,

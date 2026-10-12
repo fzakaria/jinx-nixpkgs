@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]], [["OPENSSL_NO_VENDOR", 38, 5]], [["updateScript", 65, 12]], [["description", 68, 5], ["homepage", 69, 5], ["changelog", 70, 5], ["license", 71, 5], ["maintainers", 72, 5], ["mainProgram", 75, 5]], [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["cargoHash", 25, 3], ["buildFeatures", 27, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 34, 3], ["env", 36, 3], ["postInstall", 41, 3], ["doCheck", 56, 3], ["doInstallCheck", 57, 3], ["postInstallCheck", 58, 3], ["nativeInstallCheckInputs", 63, 3], ["passthru", 65, 3], ["meta", 67, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchFromGitHub: false, installShellFiles: false, "pkg-config": false, withNativeTls: true, stdenv: false, openssl: false, versionCheckHook: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 19, 5], ["repo", 20, 5], ["tag", 21, 5], ["hash", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["OPENSSL_NO_VENDOR", 38, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 65, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 68, 5], ["homepage", 69, 5], ["changelog", 70, 5], ["license", 71, 5], ["maintainers", 72, 5], ["mainProgram", 75, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 15, 3], ["version", 16, 3], ["src", 18, 3], ["cargoHash", 25, 3], ["buildFeatures", 27, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 34, 3], ["env", 36, 3], ["postInstall", 41, 3], ["doCheck", 56, 3], ["doInstallCheck", 57, 3], ["postInstallCheck", 58, 3], ["nativeInstallCheckInputs", 63, 3], ["passthru", 65, 3], ["meta", 67, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +18,11 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "xh",
       version: "0.26.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ducaale",
           repo: "xh",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -36,18 +32,18 @@ export default nix.lambda((args) => (() => {
       buildFeatures: nix.thunk(() => nix.app(nix.sel(lib, "optional"), withNativeTls, "native-tls")),
       nativeBuildInputs: nix.thunk(() => [installShellFiles, pkg_config]),
       buildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => (nix.asBool(withNativeTls) && nix.asBool(!nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))))), nix.thunk(() => [openssl]))),
-      env: nix.thunk(() => ({ [nix.POS]: pos$2, OPENSSL_NO_VENDOR: 1n })),
+      env: nix.thunk(() => ({ [nix.POS]: $pos[1], OPENSSL_NO_VENDOR: 1n })),
       postInstall: "installShellCompletion \\\n  completions/xh.{bash,fish} \\\n  --zsh completions/_xh\n\ninstallManPage doc/xh.1\nln -s $out/share/man/man1/xh.1 $out/share/man/man1/xhs.1\n\ninstall -m444 -Dt $out/share/doc/xh README.md CHANGELOG.md\n\nln -s $out/bin/xh $out/bin/xhs\n",
       doCheck: false,
       doInstallCheck: true,
       postInstallCheck: "$out/bin/xh --help > /dev/null\n$out/bin/xhs --help > /dev/null\n",
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Friendly and fast tool for sending HTTP requests",
         homepage: "https://github.com/ducaale/xh",
         changelog: nix.thunk(() => nix.str`https://github.com/ducaale/xh/blob/v${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

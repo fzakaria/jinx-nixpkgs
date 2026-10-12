@@ -2,87 +2,23 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["name", 13, 9], ["format", 14, 9], ["unpackPhase", 15, 9]], [["libraries", 28, 13]], [["name", 69, 15], ["destination", 70, 15], ["text", 71, 15]], [["enable", 79, 15]], [["ExecStart", 82, 15], ["Type", 83, 15]], [["description", 76, 21], ["requiredBy", 77, 13], ["confinement", 78, 13], ["serviceConfig", 81, 13]], [["packages", 67, 19], ["services", 75, 19]], [["systemd", 67, 11]], [["User", 112, 21], ["Group", 113, 21]], [["DynamicUser", 117, 21]], [["mode", 127, 31]], [["PrivateTmp", 132, 23]], [["confinement", 127, 19], ["serviceConfig", 129, 19]], [["description", 125, 17], ["config", 126, 17], ["testScript", 135, 17]], [["PrivateTmp", 172, 23]], [["serviceConfig", 169, 19]], [["description", 166, 17], ["config", 167, 17], ["testScript", 175, 17]], [["user", 221, 15], ["privateTmp", 226, 15]], [["libraries", 235, 9]], [["Type", 249, 25], ["ExecStart", 250, 25]], [["description", 243, 11], ["requiredBy", 244, 11], ["after", 245, 11], ["serviceConfig", 249, 11]], [["enable", 265, 23]], [["StandardInput", 266, 25], ["StandardError", 267, 25], ["ExecStart", 268, 25]], [["description", 264, 11], ["confinement", 265, 11], ["serviceConfig", 266, 11]], [["concurrent-driver", 242, 26], ["concurrent-client@", 263, 26]], [["ListenStream", 259, 24], ["Accept", 260, 24]], [["description", 257, 11], ["requiredBy", 258, 11], ["socketConfig", 259, 11]], [["concurrent-client", 256, 25]], [["services", 242, 17], ["sockets", 256, 17]], [["systemd", 242, 9]], [["BindReadOnlyPaths", 284, 36]], [["serviceConfig", 284, 22]], [["description", 283, 15], ["config", 284, 15], ["testScript", 285, 15]], [["target", 292, 19]], [["packages", 297, 36]], [["confinement", 297, 24]], [["description", 296, 17], ["config", 297, 17], ["testScript", 298, 17]], [["User", 305, 36], ["Group", 306, 36], ["StateDirectory", 307, 36], ["Restart", 311, 36], ["RestartMode", 312, 36]], [["serviceConfig", 305, 22]], [["description", 304, 15], ["config", 305, 15], ["testScript", 314, 15]], [["description", 327, 15], ["testScript", 328, 15]], [["binSh", 341, 34]], [["confinement", 341, 22]], [["description", 340, 15], ["config", 341, 15], ["testScript", 342, 15]], [["binSh", 350, 34]], [["confinement", 350, 22]], [["description", 349, 15], ["config", 350, 15], ["testScript", 351, 15]], [["FOOBAR", 363, 34]], [["environment", 363, 22]], [["description", 362, 15], ["config", 363, 15], ["testScript", 364, 15]], [["FOOBAR", 371, 34]], [["fullUnit", 372, 34]], [["environment", 371, 22], ["confinement", 372, 22]], [["description", 370, 15], ["config", 371, 15], ["testScript", 373, 15]], [["mode", 379, 34]], [["confinement", 379, 22]], [["description", 378, 15], ["config", 379, 15], ["rawUnit", 380, 15], ["testScript", 385, 15]], [["chroot-testgroup", 395, 27]], [["isSystemUser", 397, 9], ["description", 398, 9], ["group", 399, 9]], [["chroot-testuser", 396, 26]], [["groups", 395, 20], ["users", 396, 20]], [["users", 395, 14]], [["imports", 278, 7], ["config", 395, 7]], [["machine", 4, 9]], [["name", 2, 3], ["nodes", 4, 3], ["testScript", 403, 3]]]);
 const formals$1 = { args: { pkgs: false, lib: false, utils: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/default.nix", [["name", 13, 9], ["format", 14, 9], ["unpackPhase", 15, 9]]);
-const pos$2 = nix.positions(here + "/default.nix", [["libraries", 28, 13]]);
 const formals$2 = { args: { description: false, testScript: false, config: true, serviceName: true, rawUnit: true }, ellipsis: false };
-const pos$3 = nix.positions(here + "/default.nix", [["name", 69, 15], ["destination", 70, 15], ["text", 71, 15]]);
-const pos$4 = nix.positions(here + "/default.nix", [["enable", 79, 15]]);
-const pos$5 = nix.positions(here + "/default.nix", [["ExecStart", 82, 15], ["Type", 83, 15]]);
-const pos$6 = nix.positions(here + "/default.nix", [["description", 76, 21], ["requiredBy", 77, 13], ["confinement", 78, 13], ["serviceConfig", 81, 13]]);
-const pos$7 = nix.positions(here + "/default.nix", [["packages", 67, 19], ["services", 75, 19]]);
-const pos$8 = nix.positions(here + "/default.nix", [["systemd", 67, 11]]);
 const formals$3 = { args: { user: false, privateTmp: false }, ellipsis: false };
-const pos$9 = nix.positions(here + "/default.nix", [["User", 112, 21], ["Group", 113, 21]]);
-const pos$10 = nix.positions(here + "/default.nix", [["DynamicUser", 117, 21]]);
-const pos$11 = nix.positions(here + "/default.nix", [["mode", 127, 31]]);
-const pos$12 = nix.positions(here + "/default.nix", [["PrivateTmp", 132, 23]]);
-const pos$13 = nix.positions(here + "/default.nix", [["confinement", 127, 19], ["serviceConfig", 129, 19]]);
-const pos$14 = nix.positions(here + "/default.nix", [["description", 125, 17], ["config", 126, 17], ["testScript", 135, 17]]);
-const pos$15 = nix.positions(here + "/default.nix", [["PrivateTmp", 172, 23]]);
-const pos$16 = nix.positions(here + "/default.nix", [["serviceConfig", 169, 19]]);
-const pos$17 = nix.positions(here + "/default.nix", [["description", 166, 17], ["config", 167, 17], ["testScript", 175, 17]]);
-const pos$18 = nix.positions(here + "/default.nix", [["user", 221, 15], ["privateTmp", 226, 15]]);
-const pos$19 = nix.positions(here + "/default.nix", [["libraries", 235, 9]]);
-const pos$20 = nix.positions(here + "/default.nix", [["Type", 249, 25], ["ExecStart", 250, 25]]);
-const pos$21 = nix.positions(here + "/default.nix", [["description", 243, 11], ["requiredBy", 244, 11], ["after", 245, 11], ["serviceConfig", 249, 11]]);
-const pos$22 = nix.positions(here + "/default.nix", [["enable", 265, 23]]);
-const pos$23 = nix.positions(here + "/default.nix", [["StandardInput", 266, 25], ["StandardError", 267, 25], ["ExecStart", 268, 25]]);
-const pos$24 = nix.positions(here + "/default.nix", [["description", 264, 11], ["confinement", 265, 11], ["serviceConfig", 266, 11]]);
-const pos$25 = nix.positions(here + "/default.nix", [["concurrent-driver", 242, 26], ["concurrent-client@", 263, 26]]);
-const pos$26 = nix.positions(here + "/default.nix", [["ListenStream", 259, 24], ["Accept", 260, 24]]);
-const pos$27 = nix.positions(here + "/default.nix", [["description", 257, 11], ["requiredBy", 258, 11], ["socketConfig", 259, 11]]);
-const pos$28 = nix.positions(here + "/default.nix", [["concurrent-client", 256, 25]]);
-const pos$29 = nix.positions(here + "/default.nix", [["services", 242, 17], ["sockets", 256, 17]]);
-const pos$30 = nix.positions(here + "/default.nix", [["systemd", 242, 9]]);
-const pos$31 = nix.positions(here + "/default.nix", [["BindReadOnlyPaths", 284, 36]]);
-const pos$32 = nix.positions(here + "/default.nix", [["serviceConfig", 284, 22]]);
-const pos$33 = nix.positions(here + "/default.nix", [["description", 283, 15], ["config", 284, 15], ["testScript", 285, 15]]);
-const pos$34 = nix.positions(here + "/default.nix", [["target", 292, 19]]);
-const pos$35 = nix.positions(here + "/default.nix", [["packages", 297, 36]]);
-const pos$36 = nix.positions(here + "/default.nix", [["confinement", 297, 24]]);
-const pos$37 = nix.positions(here + "/default.nix", [["description", 296, 17], ["config", 297, 17], ["testScript", 298, 17]]);
-const pos$38 = nix.positions(here + "/default.nix", [["User", 305, 36], ["Group", 306, 36], ["StateDirectory", 307, 36], ["Restart", 311, 36], ["RestartMode", 312, 36]]);
-const pos$39 = nix.positions(here + "/default.nix", [["serviceConfig", 305, 22]]);
-const pos$40 = nix.positions(here + "/default.nix", [["description", 304, 15], ["config", 305, 15], ["testScript", 314, 15]]);
-const pos$41 = nix.positions(here + "/default.nix", [["description", 327, 15], ["testScript", 328, 15]]);
-const pos$42 = nix.positions(here + "/default.nix", [["binSh", 341, 34]]);
-const pos$43 = nix.positions(here + "/default.nix", [["confinement", 341, 22]]);
-const pos$44 = nix.positions(here + "/default.nix", [["description", 340, 15], ["config", 341, 15], ["testScript", 342, 15]]);
-const pos$45 = nix.positions(here + "/default.nix", [["binSh", 350, 34]]);
-const pos$46 = nix.positions(here + "/default.nix", [["confinement", 350, 22]]);
-const pos$47 = nix.positions(here + "/default.nix", [["description", 349, 15], ["config", 350, 15], ["testScript", 351, 15]]);
-const pos$48 = nix.positions(here + "/default.nix", [["FOOBAR", 363, 34]]);
-const pos$49 = nix.positions(here + "/default.nix", [["environment", 363, 22]]);
-const pos$50 = nix.positions(here + "/default.nix", [["description", 362, 15], ["config", 363, 15], ["testScript", 364, 15]]);
-const pos$51 = nix.positions(here + "/default.nix", [["FOOBAR", 371, 34]]);
-const pos$52 = nix.positions(here + "/default.nix", [["fullUnit", 372, 34]]);
-const pos$53 = nix.positions(here + "/default.nix", [["environment", 371, 22], ["confinement", 372, 22]]);
-const pos$54 = nix.positions(here + "/default.nix", [["description", 370, 15], ["config", 371, 15], ["testScript", 373, 15]]);
-const pos$55 = nix.positions(here + "/default.nix", [["mode", 379, 34]]);
-const pos$56 = nix.positions(here + "/default.nix", [["confinement", 379, 22]]);
-const pos$57 = nix.positions(here + "/default.nix", [["description", 378, 15], ["config", 379, 15], ["rawUnit", 380, 15], ["testScript", 385, 15]]);
-const pos$58 = nix.positions(here + "/default.nix", [["chroot-testgroup", 395, 27]]);
-const pos$59 = nix.positions(here + "/default.nix", [["isSystemUser", 397, 9], ["description", 398, 9], ["group", 399, 9]]);
-const pos$60 = nix.positions(here + "/default.nix", [["chroot-testuser", 396, 26]]);
-const pos$61 = nix.positions(here + "/default.nix", [["groups", 395, 20], ["users", 396, 20]]);
-const pos$62 = nix.positions(here + "/default.nix", [["users", 395, 14]]);
-const pos$63 = nix.positions(here + "/default.nix", [["imports", 278, 7], ["config", 395, 7]]);
-const pos$64 = nix.positions(here + "/default.nix", [["machine", 4, 9]]);
-const pos$65 = nix.positions(here + "/default.nix", [["name", 2, 3], ["nodes", 4, 3], ["testScript", 403, 3]]);
 
 export default nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../make-test-python.nix")), nix.thunk(() => ({
-    [nix.POS]: pos$65,
+    [nix.POS]: $pos[64],
     name: "systemd-confinement",
     nodes: nix.thunk(() => ({
-      [nix.POS]: pos$64,
+      [nix.POS]: $pos[63],
       machine: nix.lambda((args) => (() => {
         const $ = nix.formals(args, formals$1);
         const pkgs = nix.arg($, "pkgs");
         const lib = nix.arg($, "lib");
         const utils = nix.arg($, "utils");
         const testLib = nix.thunk(() => nix.app(nix.sel(pkgs, "python3Packages", "buildPythonPackage"), nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             name: "confinement-testlib",
             format: "setuptools",
             unpackPhase: nix.thunk(() => nix.str`cat > setup.py <<EOF
@@ -93,7 +29,7 @@ cp ${nix.path(here, "./checkperms.py")} checkperms.py
 `),
           }))));
         const mkTest = (name) => (testScript) => nix.app(nix.sel(pkgs, "writers", "writePython3"), nix.thunk(() => nix.str`${name}.py`), nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             libraries: nix.thunk(() => [nix.thunk(() => nix.sel(pkgs, "python3Packages", "pytest")), testLib]),
           })), nix.thunk(() => nix.str`# This runs our test script by using pytest's assertion rewriting, so
 # that whenever we use "assert <something>", the actual values are
@@ -124,23 +60,23 @@ exec(compile(tree, filename, 'exec', dont_inherit=True))
           const serviceName = nix.argOr($_1, "serviceName", () => nix.str`test${nix.builtins.toString(num)}`);
           const rawUnit = nix.argOr($_1, "rawUnit", () => null);
           return {
-            [nix.POS]: pos$8,
+            [nix.POS]: $pos[7],
             systemd: nix.thunk(() => ({
-              [nix.POS]: pos$7,
+              [nix.POS]: $pos[6],
               packages: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => !nix.eq(rawUnit, null)), nix.thunk(() => nix.app(nix.sel(pkgs, "writeTextFile"), nix.thunk(() => ({
-                    [nix.POS]: pos$3,
+                    [nix.POS]: $pos[2],
                     name: serviceName,
                     destination: nix.thunk(() => nix.str`/etc/systemd/system/${serviceName}.service`),
                     text: rawUnit,
                   })))))),
               services: nix.thunk(() => nix.attrsDyn({}, [
                 [nix.force(serviceName), nix.thunk(() => nix.update({
-                  [nix.POS]: pos$6,
+                  [nix.POS]: $pos[5],
                   description: description,
                   requiredBy: nix.thunk(() => ["multi-user.target"]),
-                  confinement: nix.thunk(() => nix.update(nix.selOr(config, () => ({}), "confinement"), { [nix.POS]: pos$4, enable: true })),
+                  confinement: nix.thunk(() => nix.update(nix.selOr(config, () => ({}), "confinement"), { [nix.POS]: $pos[3], enable: true })),
                   serviceConfig: nix.thunk(() => nix.update(nix.selOr(config, () => ({}), "serviceConfig"), {
-                    [nix.POS]: pos$5,
+                    [nix.POS]: $pos[4],
                     ExecStart: nix.thunk(() => nix.app(mkTest, serviceName, testScript)),
                     Type: "oneshot",
                   })),
@@ -155,15 +91,15 @@ exec(compile(tree, filename, 'exec', dont_inherit=True))
             const privateTmp = nix.arg($_1, "privateTmp");
             const isPrivateTmp = nix.thunk(() => nix.app(nix.sel(lib, "elem"), privateTmp, nix.thunk(() => [true, "disconnected"])));
             const withTmp = nix.thunk(() => (nix.asBool(nix.eq(privateTmp, true)) ? "with PrivateTmp=true" : (nix.asBool(nix.eq(privateTmp, "disconnected")) ? "with PrivateTmp=disconnected" : "without PrivateTmp")));
-            const serviceConfig = nix.thunk(() => (nix.asBool(nix.eq(user, "static-user")) ? { [nix.POS]: pos$9, User: "chroot-testuser", Group: "chroot-testgroup" } : (nix.asBool(nix.eq(user, "dynamic-user")) ? { [nix.POS]: pos$10, DynamicUser: true } : {})));
+            const serviceConfig = nix.thunk(() => (nix.asBool(nix.eq(user, "static-user")) ? { [nix.POS]: $pos[8], User: "chroot-testuser", Group: "chroot-testgroup" } : (nix.asBool(nix.eq(user, "dynamic-user")) ? { [nix.POS]: $pos[9], DynamicUser: true } : {})));
             return [
               nix.thunk(() => ({
-                [nix.POS]: pos$14,
+                [nix.POS]: $pos[13],
                 description: nix.thunk(() => nix.str`${user}, chroot-only confinement ${withTmp}`),
                 config: nix.thunk(() => ({
-                  [nix.POS]: pos$13,
-                  confinement: nix.thunk(() => ({ [nix.POS]: pos$11, mode: "chroot-only" })),
-                  serviceConfig: nix.thunk(() => nix.update(serviceConfig, nix.app(nix.sel(lib, "optionalAttrs"), isPrivateTmp, nix.thunk(() => ({ [nix.POS]: pos$12, PrivateTmp: true }))))),
+                  [nix.POS]: $pos[12],
+                  confinement: nix.thunk(() => ({ [nix.POS]: $pos[10], mode: "chroot-only" })),
+                  serviceConfig: nix.thunk(() => nix.update(serviceConfig, nix.app(nix.sel(lib, "optionalAttrs"), isPrivateTmp, nix.thunk(() => ({ [nix.POS]: $pos[11], PrivateTmp: true }))))),
                 })),
                 testScript: nix.thunk(() => (nix.asBool(nix.eq(user, "root")) ? nix.str`assert os.getuid() == 0
 assert os.getgid() == 0
@@ -190,11 +126,11 @@ assert_permissions({
 `)),
               })),
               nix.thunk(() => ({
-                [nix.POS]: pos$17,
+                [nix.POS]: $pos[16],
                 description: nix.thunk(() => nix.str`${user}, full APIVFS confinement ${withTmp}`),
                 config: nix.thunk(() => ({
-                  [nix.POS]: pos$16,
-                  serviceConfig: nix.thunk(() => nix.update(serviceConfig, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.asBool(isPrivateTmp)), nix.thunk(() => ({ [nix.POS]: pos$15, PrivateTmp: false }))))),
+                  [nix.POS]: $pos[15],
+                  serviceConfig: nix.thunk(() => nix.update(serviceConfig, nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.asBool(isPrivateTmp)), nix.thunk(() => ({ [nix.POS]: $pos[14], PrivateTmp: false }))))),
                 })),
                 testScript: nix.thunk(() => (nix.asBool(nix.eq(user, "root")) ? nix.str`assert os.getuid() == 0
 assert os.getgid() == 0
@@ -234,40 +170,40 @@ assert_permissions({
               })),
             ];
           })(), formals$3), nix.thunk(() => nix.app(nix.sel(lib, "cartesianProduct"), nix.thunk(() => ({
-              [nix.POS]: pos$18,
+              [nix.POS]: $pos[17],
               user: nix.thunk(() => ["root", "dynamic-user", "static-user"]),
               privateTmp: nix.thunk(() => [true, false, "disconnected"]),
             }))))));
         const concurrentRunner = nix.thunk(() => nix.app(nix.sel(pkgs, "writers", "writePython3"), "concurrent-runner", nix.thunk(() => ({
-            [nix.POS]: pos$19,
+            [nix.POS]: $pos[18],
             libraries: nix.thunk(() => [
               nix.thunk(() => nix.sel(pkgs, "python3Packages", "click")),
               nix.thunk(() => nix.sel(pkgs, "python3Packages", "hypothesis")),
             ]),
           })), nix.path(here, "./concurrent-runner.py")));
         const concurrentTest = nix.thunk(() => ({
-          [nix.POS]: pos$30,
+          [nix.POS]: $pos[29],
           systemd: nix.thunk(() => ({
-            [nix.POS]: pos$29,
+            [nix.POS]: $pos[28],
             services: nix.thunk(() => ({
-              [nix.POS]: pos$25,
+              [nix.POS]: $pos[24],
               "concurrent-driver": nix.thunk(() => ({
-                [nix.POS]: pos$21,
+                [nix.POS]: $pos[20],
                 description: "Driver for orchestrating concurrent processes",
                 requiredBy: nix.thunk(() => ["multi-user.target"]),
                 after: nix.thunk(() => ["network.target", "concurrent-client.socket"]),
                 serviceConfig: nix.thunk(() => ({
-                  [nix.POS]: pos$20,
+                  [nix.POS]: $pos[19],
                   Type: "oneshot",
                   ExecStart: nix.thunk(() => nix.app(nix.sel(utils, "escapeSystemdExecArgs"), nix.thunk(() => [concurrentRunner, "driver"]))),
                 })),
               })),
               "concurrent-client@": nix.thunk(() => ({
-                [nix.POS]: pos$24,
+                [nix.POS]: $pos[23],
                 description: "Process %I running concurrently with others",
-                confinement: nix.thunk(() => ({ [nix.POS]: pos$22, enable: true })),
+                confinement: nix.thunk(() => ({ [nix.POS]: $pos[21], enable: true })),
                 serviceConfig: nix.thunk(() => ({
-                  [nix.POS]: pos$23,
+                  [nix.POS]: $pos[22],
                   StandardInput: "socket",
                   StandardError: "journal",
                   ExecStart: nix.thunk(() => nix.app(nix.sel(utils, "escapeSystemdExecArgs"), nix.thunk(() => [
@@ -279,40 +215,40 @@ assert_permissions({
               })),
             })),
             sockets: nix.thunk(() => ({
-              [nix.POS]: pos$28,
+              [nix.POS]: $pos[27],
               "concurrent-client": nix.thunk(() => ({
-                [nix.POS]: pos$27,
+                [nix.POS]: $pos[26],
                 description: "Socket for concurrent processes",
                 requiredBy: nix.thunk(() => ["sockets.target"]),
-                socketConfig: nix.thunk(() => ({ [nix.POS]: pos$26, ListenStream: 12345n, Accept: true })),
+                socketConfig: nix.thunk(() => ({ [nix.POS]: $pos[25], ListenStream: 12345n, Accept: true })),
               })),
             })),
           })),
         }));
         return {
-          [nix.POS]: pos$63,
+          [nix.POS]: $pos[62],
           imports: nix.thunk(() => nix.concat(nix.app(nix.sel(lib, "imap1"), mkTestStep, nix.thunk(() => nix.concat(parametrisedTests, [
               nix.thunk(() => ({
-                [nix.POS]: pos$33,
+                [nix.POS]: $pos[32],
                 description: "existence of bind-mounted /etc",
                 config: nix.thunk(() => ({
-                  [nix.POS]: pos$32,
-                  serviceConfig: nix.thunk(() => ({ [nix.POS]: pos$31, BindReadOnlyPaths: nix.thunk(() => ["/etc"]) })),
+                  [nix.POS]: $pos[31],
+                  serviceConfig: nix.thunk(() => ({ [nix.POS]: $pos[30], BindReadOnlyPaths: nix.thunk(() => ["/etc"]) })),
                 })),
                 testScript: "assert Path('/etc/passwd').read_text()\n",
               })),
               nix.thunk(() => (() => {
                 const symlink = nix.thunk(() => nix.app(nix.sel(pkgs, "runCommand"), "symlink", nix.thunk(() => ({
-                    [nix.POS]: pos$34,
+                    [nix.POS]: $pos[33],
                     target: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "symlink-target", "got me")),
                   })), "ln -s \"$target\" \"$out\""));
                 return {
-                  [nix.POS]: pos$37,
+                  [nix.POS]: $pos[36],
                   description: "check if symlinks are properly bind-mounted",
                   config: nix.thunk(() => ({
-                    [nix.POS]: pos$36,
+                    [nix.POS]: $pos[35],
                     confinement: nix.thunk(() => ({
-                      [nix.POS]: pos$35,
+                      [nix.POS]: $pos[34],
                       packages: nix.thunk(() => nix.app(nix.sel(lib, "singleton"), symlink)),
                     })),
                   })),
@@ -321,12 +257,12 @@ assert_permissions({
                 };
               })()),
               nix.thunk(() => ({
-                [nix.POS]: pos$40,
+                [nix.POS]: $pos[39],
                 description: "check if StateDirectory works",
                 config: nix.thunk(() => ({
-                  [nix.POS]: pos$39,
+                  [nix.POS]: $pos[38],
                   serviceConfig: nix.thunk(() => ({
-                    [nix.POS]: pos$38,
+                    [nix.POS]: $pos[37],
                     User: "chroot-testuser",
                     Group: "chroot-testgroup",
                     StateDirectory: "testme",
@@ -337,76 +273,76 @@ assert_permissions({
                 testScript: "assert not Path('/tmp/canary').exists()\nPath('/tmp/canary').touch()\n\nif (foo := Path('/var/lib/testme/foo')).exists():\n  assert Path('/var/lib/testme/foo').read_text() == 'works'\nelse:\n  Path('/var/lib/testme/foo').write_text('works')\n  print('<4>Exiting with failure to check persistence on restart.')\n  raise SystemExit(1)\n",
               })),
               nix.thunk(() => ({
-                [nix.POS]: pos$41,
+                [nix.POS]: $pos[40],
                 description: "check if /bin/sh works",
                 testScript: "assert Path('/bin/sh').exists()\n\nresult = run(\n  ['/bin/sh', '-c', 'echo -n bar'],\n  capture_output=True,\n  check=True,\n)\nassert result.stdout == b'bar'\n",
               })),
               nix.thunk(() => ({
-                [nix.POS]: pos$44,
+                [nix.POS]: $pos[43],
                 description: "check if suppressing /bin/sh works",
                 config: nix.thunk(() => ({
-                  [nix.POS]: pos$43,
-                  confinement: nix.thunk(() => ({ [nix.POS]: pos$42, binSh: null })),
+                  [nix.POS]: $pos[42],
+                  confinement: nix.thunk(() => ({ [nix.POS]: $pos[41], binSh: null })),
                 })),
                 testScript: "assert not Path('/bin/sh').exists()\nwith pytest.raises(FileNotFoundError):\n  run(['/bin/sh', '-c', 'echo foo'])\n",
               })),
               nix.thunk(() => ({
-                [nix.POS]: pos$47,
+                [nix.POS]: $pos[46],
                 description: "check if we can set /bin/sh to something different",
                 config: nix.thunk(() => ({
-                  [nix.POS]: pos$46,
+                  [nix.POS]: $pos[45],
                   confinement: nix.thunk(() => ({
-                    [nix.POS]: pos$45,
+                    [nix.POS]: $pos[44],
                     binSh: nix.thunk(() => nix.str`${nix.sel(pkgs, "hello")}/bin/hello`),
                   })),
                 })),
                 testScript: "assert Path('/bin/sh').exists()\nresult = run(\n  ['/bin/sh', '-g', 'foo'],\n  capture_output=True,\n  check=True,\n)\nassert result.stdout == b'foo\\n'\n",
               })),
               nix.thunk(() => ({
-                [nix.POS]: pos$50,
+                [nix.POS]: $pos[49],
                 description: "check if only Exec* dependencies are included",
                 config: nix.thunk(() => ({
-                  [nix.POS]: pos$49,
+                  [nix.POS]: $pos[48],
                   environment: nix.thunk(() => ({
-                    [nix.POS]: pos$48,
+                    [nix.POS]: $pos[47],
                     FOOBAR: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "foobar", "eek")),
                   })),
                 })),
                 testScript: "with pytest.raises(FileNotFoundError):\n  Path(os.environ['FOOBAR']).read_text()\n",
               })),
               nix.thunk(() => ({
-                [nix.POS]: pos$54,
+                [nix.POS]: $pos[53],
                 description: "check if fullUnit includes all dependencies",
                 config: nix.thunk(() => ({
-                  [nix.POS]: pos$53,
+                  [nix.POS]: $pos[52],
                   environment: nix.thunk(() => ({
-                    [nix.POS]: pos$51,
+                    [nix.POS]: $pos[50],
                     FOOBAR: nix.thunk(() => nix.app(nix.sel(pkgs, "writeText"), "foobar", "eek")),
                   })),
-                  confinement: nix.thunk(() => ({ [nix.POS]: pos$52, fullUnit: true })),
+                  confinement: nix.thunk(() => ({ [nix.POS]: $pos[51], fullUnit: true })),
                 })),
                 testScript: "assert Path(os.environ['FOOBAR']).read_text() == 'eek'\n",
               })),
               nix.thunk(() => ({
-                [nix.POS]: pos$57,
+                [nix.POS]: $pos[56],
                 description: "check if shipped unit file still works",
                 config: nix.thunk(() => ({
-                  [nix.POS]: pos$56,
-                  confinement: nix.thunk(() => ({ [nix.POS]: pos$55, mode: "chroot-only" })),
+                  [nix.POS]: $pos[55],
+                  confinement: nix.thunk(() => ({ [nix.POS]: $pos[54], mode: "chroot-only" })),
                 })),
                 rawUnit: "[Service]\nSystemCallFilter=~kill\nSystemCallErrorNumber=ELOOP\n",
                 testScript: "with pytest.raises(OSError) as excinfo:\n  os.kill(os.getpid(), signal.SIGKILL)\nassert excinfo.value.errno == errno.ELOOP\n",
               })),
             ]))), [concurrentTest])),
           config: nix.thunk(() => ({
-            [nix.POS]: pos$62,
+            [nix.POS]: $pos[61],
             users: nix.thunk(() => ({
-              [nix.POS]: pos$61,
-              groups: nix.thunk(() => ({ [nix.POS]: pos$58, "chroot-testgroup": nix.thunk(() => ({})) })),
+              [nix.POS]: $pos[60],
+              groups: nix.thunk(() => ({ [nix.POS]: $pos[57], "chroot-testgroup": nix.thunk(() => ({})) })),
               users: nix.thunk(() => ({
-                [nix.POS]: pos$60,
+                [nix.POS]: $pos[59],
                 "chroot-testuser": nix.thunk(() => ({
-                  [nix.POS]: pos$59,
+                  [nix.POS]: $pos[58],
                   isSystemUser: true,
                   description: "Chroot Test User",
                   group: "chroot-testgroup",

@@ -2,16 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["llvmPackages", 46, 9], ["extraKleeuClibcConfig", 47, 17], ["debugRuntime", 47, 39], ["runtimeAsserts", 47, 52]], [["owner", 64, 5], ["repo", 65, 5], ["tag", 66, 5], ["hash", 67, 5]], [["name", 72, 7], ["url", 73, 7], ["hash", 74, 7]], [["python", 95, 21]], [["NIX_CFLAGS_COMPILE", 127, 7], ["FILECHECK_OPTS", 129, 7], ["LIT_XFAIL", 131, 7]], [["extraArgs", 249, 7]], [["updateScript", 248, 5], ["uclibc", 255, 5]], [["mainProgram", 261, 5], ["description", 262, 5], ["longDescription", 263, 5], ["homepage", 282, 5], ["license", 283, 5], ["platforms", 284, 5], ["maintainers", 285, 5], ["broken", 299, 5]], [["pname", 60, 3], ["version", 61, 3], ["src", 63, 3], ["patches", 70, 3], ["nativeBuildInputs", 78, 3], ["buildInputs", 80, 3], ["nativeCheckInputs", 89, 3], ["cmakeBuildType", 98, 3], ["cmakeFlags", 106, 3], ["env", 127, 3], ["prePatch", 237, 3], ["hardeningDisable", 242, 3], ["enableParallelBuilding", 244, 3], ["doCheck", 245, 3], ["passthru", 247, 3], ["__structuredAttrs", 258, 3], ["meta", 260, 3]]]);
 const formals$1 = { args: { lib: false, llvmPackages_19: false, callPackage: false, fetchFromGitHub: false, fetchpatch: false, cmake: false, python3: false, z3: false, stp: false, cryptominisat: false, gperftools: false, sqlite: false, gtest: false, lit: false, "nix-update-script": false, debug: true, includeDebugInfo: true, asserts: true, debugRuntime: true, runtimeAsserts: true, kleeuClibc: true, extraKleeuClibcConfig: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["llvmPackages", 46, 9], ["extraKleeuClibcConfig", 47, 17], ["debugRuntime", 47, 39], ["runtimeAsserts", 47, 52]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 64, 5], ["repo", 65, 5], ["tag", 66, 5], ["hash", 67, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 72, 7], ["url", 73, 7], ["hash", 74, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["python", 95, 21]]);
-const pos$5 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 127, 7], ["FILECHECK_OPTS", 129, 7], ["LIT_XFAIL", 131, 7]]);
-const pos$6 = nix.positions(here + "/package.nix", [["extraArgs", 249, 7]]);
-const pos$7 = nix.positions(here + "/package.nix", [["updateScript", 248, 5], ["uclibc", 255, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["mainProgram", 261, 5], ["description", 262, 5], ["longDescription", 263, 5], ["homepage", 282, 5], ["license", 283, 5], ["platforms", 284, 5], ["maintainers", 285, 5], ["broken", 299, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["pname", 60, 3], ["version", 61, 3], ["src", 63, 3], ["patches", 70, 3], ["nativeBuildInputs", 78, 3], ["buildInputs", 80, 3], ["nativeCheckInputs", 89, 3], ["cmakeBuildType", 98, 3], ["cmakeFlags", 106, 3], ["env", 127, 3], ["prePatch", 237, 3], ["hardeningDisable", 242, 3], ["enableParallelBuilding", 244, 3], ["doCheck", 245, 3], ["passthru", 247, 3], ["__structuredAttrs", 258, 3], ["meta", 260, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -38,7 +30,7 @@ export default nix.lambda((args) => (() => {
   const kleeuClibc = nix.argOr($, "kleeuClibc", () => null);
   const extraKleeuClibcConfig = nix.argOr($, "extraKleeuClibcConfig", () => ({}));
   const chosenKleeuClibc = nix.thunk(() => (nix.asBool(nix.eq(kleeuClibc, null)) ? nix.app(callPackage, nix.path(here, "./klee-uclibc.nix"), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       llvmPackages: llvmPackages,
       extraKleeuClibcConfig: extraKleeuClibcConfig,
       debugRuntime: debugRuntime,
@@ -50,11 +42,11 @@ export default nix.lambda((args) => (() => {
     })()));
   const llvmPackages = llvmPackages_19;
   return nix.app(nix.sel(llvmPackages, "stdenv", "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$9,
+      [nix.POS]: $pos[8],
       pname: "klee",
       version: "3.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "klee",
           repo: "klee",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -62,7 +54,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "missing-cstdint-include.patch",
             url: "https://github.com/klee/klee/commit/efa1e0529499f954885489d30210dfc7a3697258.patch",
             hash: "sha256-mhnyTG36iyVrCFxvP+2PWcacmRjZvGczMTto8xSrfhw=",
@@ -80,7 +72,7 @@ export default nix.lambda((args) => (() => {
       nativeCheckInputs: nix.thunk(() => [
         gtest,
         kleePython,
-        nix.thunk(() => nix.app(nix.sel(lit, "override"), nix.thunk(() => ({ [nix.POS]: pos$4, python: kleePython })))),
+        nix.thunk(() => nix.app(nix.sel(lit, "override"), nix.thunk(() => ({ [nix.POS]: $pos[3], python: kleePython })))),
       ]),
       cmakeBuildType: nix.thunk(() => (nix.asBool(debug) ? "Debug" : (nix.asBool((nix.asBool(!nix.asBool(debug)) && nix.asBool(includeDebugInfo))) ? "RelWithDebInfo" : "MinSizeRel"))),
       cmakeFlags: nix.thunk(() => (() => {
@@ -102,7 +94,7 @@ export default nix.lambda((args) => (() => {
         ];
       })()),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.builtins.toString(nix.thunk(() => ["-Wno-macro-redefined"]))),
         FILECHECK_OPTS: "--dump-input-filter=all",
         LIT_XFAIL: nix.thunk(() => nix.app(nix.sel(lib, "concatStringsSep"), ";", nix.thunk(() => [
@@ -216,16 +208,16 @@ export default nix.lambda((args) => (() => {
       enableParallelBuilding: true,
       doCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             extraArgs: nix.thunk(() => ["--version-regex", "v(\\d\\.\\d)"]),
           })))),
         uclibc: chosenKleeuClibc,
       })),
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         mainProgram: "klee",
         description: "Symbolic virtual machine built on top of LLVM",
         longDescription: "KLEE is a symbolic virtual machine built on top of the LLVM compiler\ninfrastructure. Currently, there are two primary components:\n\n1. The core symbolic virtual machine engine; this is responsible for\n   executing LLVM bitcode modules with support for symbolic values. This\n   is comprised of the code in lib/.\n\n2. A POSIX/Linux emulation layer oriented towards supporting uClibc, with\n   additional support for making parts of the operating system environment\n   symbolic.\n\nAdditionally, there is a simple library for replaying computed inputs on\nnative code (for closed programs). There is also a more complicated\ninfrastructure for replaying the inputs generated for the POSIX/Linux\nemulation layer, which handles running native programs in an environment\nthat matches a computed test input, including setting up files, pipes,\nenvironment variables, and passing command line arguments.\n",

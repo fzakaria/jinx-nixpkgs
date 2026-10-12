@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 37, 15], ["version", 37, 21], ["hash", 38, 7]], [["url", 44, 9], ["hash", 45, 9]], [["name", 49, 9], ["url", 50, 9], ["hash", 51, 9]], [["doCheck", 110, 9]], [["check", 109, 7]], [["tests", 108, 14]], [["description", 115, 7], ["homepage", 116, 7], ["changelog", 117, 7], ["license", 118, 7], ["maintainers", 119, 7]], [["pname", 32, 5], ["version", 33, 5], ["pyproject", 34, 5], ["src", 36, 5], ["patches", 41, 5], ["build-system", 55, 5], ["dependencies", 57, 5], ["nativeCheckInputs", 74, 5], ["pythonImportsCheck", 84, 5], ["disabledTests", 86, 5], ["doCheck", 106, 5], ["passthru", 108, 5], ["meta", 114, 5]]]);
 const formals$1 = { args: { lib: false, "absl-py": false, buildPythonPackage: false, distrax: false, "dm-env": false, "dm-haiku": false, "dm-sonnet": false, "dm-tree": false, fetchpatch: false, fetchPypi: false, frozendict: false, gym: false, matplotlib: false, mizani: false, optax: false, pandas: false, patsy: false, plotnine: false, pytestCheckHook: false, rlax: false, "scikit-image": false, scipy: false, setuptools: false, statsmodels: false, "tensorflow-probability": false, termcolor: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 37, 15], ["version", 37, 21], ["hash", 38, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["url", 44, 9], ["hash", 45, 9]]);
-const pos$3 = nix.positions(here + "/default.nix", [["name", 49, 9], ["url", 50, 9], ["hash", 51, 9]]);
-const pos$4 = nix.positions(here + "/default.nix", [["doCheck", 110, 9]]);
-const pos$5 = nix.positions(here + "/default.nix", [["check", 109, 7]]);
-const pos$6 = nix.positions(here + "/default.nix", [["tests", 108, 14]]);
-const pos$7 = nix.positions(here + "/default.nix", [["description", 115, 7], ["homepage", 116, 7], ["changelog", 117, 7], ["license", 118, 7], ["maintainers", 119, 7]]);
-const pos$8 = nix.positions(here + "/default.nix", [["pname", 32, 5], ["version", 33, 5], ["pyproject", 34, 5], ["src", 36, 5], ["patches", 41, 5], ["build-system", 55, 5], ["dependencies", 57, 5], ["nativeCheckInputs", 74, 5], ["pythonImportsCheck", 84, 5], ["disabledTests", 86, 5], ["doCheck", 106, 5], ["passthru", 108, 5], ["meta", 114, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -45,19 +38,19 @@ export default nix.lambda((args) => (() => {
       const version = "0.3.5";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: pname,
           version: version,
           hash: "sha256-ak9McvXl7Nz5toUaPaRaJek9lurxiQiIW209GnZEjX0=",
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/google-deepmind/bsuite/pull/48/commits/f8d81b2f1c27ef2c8c71ae286001ed879ea306ab.patch",
             hash: "sha256-FXtvVS+U8brulq8Z27+yWIimB+kigGiUOIv1SHb1TA8=",
           })))),
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "replace-imp.patch",
             url: "https://github.com/google-deepmind/bsuite/commit/d08b63655c7efa5b5bb0f35e825e17549d23e812.patch",
             hash: "sha256-V5p/6edNXTpEckuSuxJ/mvfJng5yE/pfeMoYbvlNpEo=",
@@ -109,14 +102,14 @@ export default nix.lambda((args) => (() => {
       ]);
       const doCheck = false;
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$5,
-          check: nix.thunk(() => nix.app(nix.sel(bsuite, "overridePythonAttrs"), (_) => ({ [nix.POS]: pos$4, doCheck: true }))),
+          [nix.POS]: $pos[4],
+          check: nix.thunk(() => nix.app(nix.sel(bsuite, "overridePythonAttrs"), (_) => ({ [nix.POS]: $pos[3], doCheck: true }))),
         })),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "Collection of experiments that investigate core capabilities of a reinforcement learning (RL) agent",
         homepage: "https://github.com/deepmind/bsuite",
         changelog: nix.thunk(() => nix.str`https://github.com/google-deepmind/bsuite/releases/tag/${version}`),
@@ -127,7 +120,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         pname,
         version,
         pyproject,

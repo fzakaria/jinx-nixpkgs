@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["description", 10, 5], ["homepage", 11, 5], ["downloadPage", 12, 5], ["license", 13, 5], ["sourceProvenance", 14, 5], ["maintainers", 15, 5], ["mainProgram", 19, 5], ["platforms", 20, 5]], [["updateScript", 22, 12]], [["pname", 27, 7], ["version", 28, 7], ["meta", 29, 7], ["passthru", 30, 7]], [["pname", 36, 7], ["version", 37, 7], ["meta", 38, 7], ["passthru", 39, 7]]]);
 const formals$1 = { args: { lib: false, stdenv: false, callPackage: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["description", 10, 5], ["homepage", 11, 5], ["downloadPage", 12, 5], ["license", 13, 5], ["sourceProvenance", 14, 5], ["maintainers", 15, 5], ["mainProgram", 19, 5], ["platforms", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 22, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 27, 7], ["version", 28, 7], ["meta", 29, 7], ["passthru", 30, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 36, 7], ["version", 37, 7], ["meta", 38, 7], ["passthru", 39, 7]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const version = "5.6.282";
   const pname = "gdevelop";
   const meta = nix.thunk(() => ({
-    [nix.POS]: pos$1,
+    [nix.POS]: $pos[0],
     description: "Graphical Game Development Studio",
     homepage: "https://gdevelop.io/",
     downloadPage: "https://github.com/4ian/GDevelop/releases",
@@ -35,15 +32,15 @@ export default nix.lambda((args) => (() => {
     mainProgram: "gdevelop",
     platforms: nix.thunk(() => nix.concat(["x86_64-linux"], nix.sel(lib, "platforms", "darwin"))),
   }));
-  const passthru = nix.thunk(() => ({ [nix.POS]: pos$2, updateScript: nix.path(here, "./update.sh") }));
+  const passthru = nix.thunk(() => ({ [nix.POS]: $pos[1], updateScript: nix.path(here, "./update.sh") }));
   return (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? nix.app(callPackage, nix.path(here, "./darwin.nix"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: pname,
       version: version,
       meta: meta,
       passthru: passthru,
     }))) : nix.app(callPackage, nix.path(here, "./linux.nix"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: pname,
       version: version,
       meta: meta,

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 11, 5], ["ruby", 12, 13], ["gemdir", 13, 5]], [["updateScript", 27, 12]], [["description", 30, 5], ["homepage", 31, 5], ["changelog", 32, 5], ["license", 33, 5], ["maintainers", 34, 5], ["platforms", 38, 5], ["mainProgram", 39, 5]], [["pname", 17, 3], ["version", 18, 3], ["dontUnpack", 20, 3], ["installPhase", 22, 3], ["passthru", 27, 3], ["meta", 29, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, bundlerEnv: false, ruby: false, bundlerUpdateScript: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 11, 5], ["ruby", 12, 13], ["gemdir", 13, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 27, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 30, 5], ["homepage", 31, 5], ["changelog", 32, 5], ["license", 33, 5], ["maintainers", 34, 5], ["platforms", 38, 5], ["mainProgram", 39, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["dontUnpack", 20, 3], ["installPhase", 22, 3], ["passthru", 27, 3], ["meta", 29, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,13 +13,13 @@ export default nix.lambda((args) => (() => {
   const ruby = nix.arg($, "ruby");
   const bundlerUpdateScript = nix.arg($, "bundlerUpdateScript");
   const env = nix.thunk(() => nix.app(bundlerEnv, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: "maphosts-gems",
       ruby: ruby,
       gemdir: nix.path(here, "./."),
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "maphosts",
       version: nix.thunk(() => nix.sel(env, "gems", "maphosts", "version")),
       dontUnpack: true,
@@ -30,11 +27,11 @@ export default nix.lambda((args) => (() => {
 ln -s "${env}/bin/maphosts" "$out/bin/maphosts"
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(bundlerUpdateScript, "maphosts")),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Small command line application for keeping your project hostnames in sync with /etc/hosts",
         homepage: "https://github.com/mpscholten/maphosts",
         changelog: nix.thunk(() => nix.str`https://github.com/mpscholten/maphosts/releases/tag/v${nix.sel(finalAttrs, "version")}`),

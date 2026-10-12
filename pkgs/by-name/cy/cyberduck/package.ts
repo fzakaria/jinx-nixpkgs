@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 16, 5], ["hash", 17, 5]], [["description", 47, 5], ["homepage", 48, 5], ["changelog", 49, 5], ["license", 50, 5], ["sourceProvenance", 51, 5], ["maintainers", 52, 5], ["platforms", 56, 5], ["mainProgram", 57, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["sourceRoot", 19, 3], ["nativeBuildInputs", 21, 3], ["installPhase", 26, 3], ["nativeInstallCheckInputs", 36, 3], ["versionCheckProgram", 37, 3], ["versionCheckProgramArg", 43, 3], ["doInstallCheck", 44, 3], ["meta", 46, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchurl: false, unzip: false, makeBinaryWrapper: false, versionCheckHook: false, writeShellScript: false, "re-plistbuddy": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 47, 5], ["homepage", 48, 5], ["changelog", 49, 5], ["license", 50, 5], ["sourceProvenance", 51, 5], ["maintainers", 52, 5], ["platforms", 56, 5], ["mainProgram", 57, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["sourceRoot", 19, 3], ["nativeBuildInputs", 21, 3], ["installPhase", 26, 3], ["nativeInstallCheckInputs", 36, 3], ["versionCheckProgram", 37, 3], ["versionCheckProgramArg", 43, 3], ["doInstallCheck", 44, 3], ["meta", 46, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const writeShellScript = nix.arg($, "writeShellScript");
   const re_plistbuddy = nix.arg($, "re-plistbuddy");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "cyberduck",
       version: "9.2.4.43667",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://update.cyberduck.io/Cyberduck-${nix.sel(finalAttrs, "version")}.zip`),
           hash: "sha256-fTJoNdgp6EWdloejk7XG2lJh1NErxFRmvx2fZiwvWuc=",
         })))),
@@ -40,7 +38,7 @@ echo $marketing_version.$build_version
       ]),
       doInstallCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Libre file transfer client for Mac and Windows",
         homepage: "https://cyberduck.io",
         changelog: "https://cyberduck.io/changelog/",

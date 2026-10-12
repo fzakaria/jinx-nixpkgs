@@ -2,17 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["TargetFramework", 17, 9]], [["name", 13, 5], ["src", 14, 5], ["nugetDeps", 15, 5], ["useDotnetFromEnv", 16, 5], ["env", 17, 5]], [["nativeBuildInputs", 21, 5], ["postFixup", 24, 5]], [["assertion", 34, 5], ["expected", 35, 5], ["actual", 36, 5]], [["DOTNET_ROOT", 53, 56]], [["env", 53, 52]], [["assertion", 50, 5], ["expected", 51, 5], ["actual", 52, 5]], [["dotnetRuntime", 61, 59]], [["assertion", 59, 5], ["expected", 60, 5], ["actual", 61, 5]], [["fallback", 33, 3], ["without-fallback", 42, 3], ["use-dotnet-root-env", 49, 3], ["use-dotnet-path-env", 58, 3]]]);
 const formals$1 = { args: { lib: false, "dotnet-sdk": false, buildPackages: false, testers: false, runCommand: false, removeReferencesTo: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["TargetFramework", 17, 9]]);
-const pos$2 = nix.positions(here + "/default.nix", [["name", 13, 5], ["src", 14, 5], ["nugetDeps", 15, 5], ["useDotnetFromEnv", 16, 5], ["env", 17, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["nativeBuildInputs", 21, 5], ["postFixup", 24, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["assertion", 34, 5], ["expected", 35, 5], ["actual", 36, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["DOTNET_ROOT", 53, 56]]);
-const pos$6 = nix.positions(here + "/default.nix", [["env", 53, 52]]);
-const pos$7 = nix.positions(here + "/default.nix", [["assertion", 50, 5], ["expected", 51, 5], ["actual", 52, 5]]);
-const pos$8 = nix.positions(here + "/default.nix", [["dotnetRuntime", 61, 59]]);
-const pos$9 = nix.positions(here + "/default.nix", [["assertion", 59, 5], ["expected", 60, 5], ["actual", 61, 5]]);
-const pos$10 = nix.positions(here + "/default.nix", [["fallback", 33, 3], ["without-fallback", 42, 3], ["use-dotnet-root-env", 49, 3], ["use-dotnet-path-env", 58, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,18 +16,18 @@ export default nix.lambda((args) => (() => {
   const buildDotnetModule = nix.thunk(() => nix.attr(buildPackages, "buildDotnetModule"));
   const dotnet_runtime = nix.thunk(() => nix.attr(buildPackages, "dotnet-runtime"));
   const app = nix.thunk(() => nix.app(buildDotnetModule, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       name: "use-dotnet-from-env-test-application",
       src: nix.path(here, "./src"),
       nugetDeps: nix.path(here, "./nuget-deps.json"),
       useDotnetFromEnv: true,
       env: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         TargetFramework: nix.thunk(() => nix.str`net${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.app(nix.sel(lib, "getVersion"), dotnet_sdk)))}`),
       })),
     }))));
   const appWithoutFallback = nix.thunk(() => nix.app(nix.sel(app, "overrideAttrs"), (oldAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       nativeBuildInputs: nix.thunk(() => nix.concat(nix.selOr(oldAttrs, () => [], "nativeBuildInputs"), [removeReferencesTo])),
       postFixup: nix.thunk(() => nix.add(nix.selOr(oldAttrs, () => "", "postFixup"), nix.str`remove-references-to -t ${dotnet_runtime} "$out/bin/Application"
 `)),
@@ -44,9 +35,9 @@ export default nix.lambda((args) => (() => {
   const runtimeVersion = nix.thunk(() => nix.app(nix.sel(lib, "head"), nix.thunk(() => nix.app(nix.sel(lib, "splitString"), "-", nix.thunk(() => nix.app(nix.sel(lib, "getVersion"), dotnet_runtime))))));
   const runtimeVersionFile = nix.thunk(() => nix.builtins.toFile("dotnet-version.txt", runtimeVersion));
   return {
-    [nix.POS]: pos$10,
+    [nix.POS]: $pos[9],
     fallback: nix.thunk(() => nix.app(nix.sel(testers, "testEqualContents"), nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         assertion: "buildDotnetModule sets fallback DOTNET_ROOT in wrapper",
         expected: runtimeVersionFile,
         actual: nix.thunk(() => nix.app(runCommand, "use-dotnet-from-env-fallback-test", nix.thunk(() => ({})), nix.thunk(() => nix.str`${app}/bin/Application >"$out"
@@ -55,23 +46,23 @@ export default nix.lambda((args) => (() => {
     "without-fallback": nix.thunk(() => nix.app(nix.sel(testers, "testBuildFailure"), nix.thunk(() => nix.app(runCommand, "use-dotnet-from-env-without-fallback-test", nix.thunk(() => ({})), nix.thunk(() => nix.str`${appWithoutFallback}/bin/Application >"$out"
 `))))),
     "use-dotnet-root-env": nix.thunk(() => nix.app(nix.sel(testers, "testEqualContents"), nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         assertion: "buildDotnetModule uses DOTNET_ROOT from environment in wrapper",
         expected: runtimeVersionFile,
         actual: nix.thunk(() => nix.app(runCommand, "use-dotnet-from-env-root-test", nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             env: nix.thunk(() => ({
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               DOTNET_ROOT: nix.thunk(() => nix.str`${dotnet_runtime}/share/dotnet`),
             })),
           })), nix.thunk(() => nix.str`${appWithoutFallback}/bin/Application >"$out"
 `))),
       })))),
     "use-dotnet-path-env": nix.thunk(() => nix.app(nix.sel(testers, "testEqualContents"), nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         assertion: "buildDotnetModule uses DOTNET_ROOT from dotnet in PATH in wrapper",
         expected: runtimeVersionFile,
-        actual: nix.thunk(() => nix.app(runCommand, "use-dotnet-from-env-path-test", nix.thunk(() => ({ [nix.POS]: pos$8, dotnetRuntime: dotnet_runtime })), nix.thunk(() => nix.str`PATH=$dotnetRuntime/bin\${PATH+:}$PATH ${appWithoutFallback}/bin/Application >"$out"
+        actual: nix.thunk(() => nix.app(runCommand, "use-dotnet-from-env-path-test", nix.thunk(() => ({ [nix.POS]: $pos[7], dotnetRuntime: dotnet_runtime })), nix.thunk(() => nix.str`PATH=$dotnetRuntime/bin\${PATH+:}$PATH ${appWithoutFallback}/bin/Application >"$out"
 `))),
       })))),
   };

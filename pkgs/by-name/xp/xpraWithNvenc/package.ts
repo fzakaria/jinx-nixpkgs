@@ -2,18 +2,17 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["libsOnly", 7, 52]], [["withNvenc", 6, 3], ["nvidia_x11", 7, 3]]]);
 const formals$1 = { args: { xpra: false, linuxPackages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["libsOnly", 7, 52]]);
-const pos$2 = nix.positions(here + "/package.nix", [["withNvenc", 6, 3], ["nvidia_x11", 7, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const xpra = nix.arg($, "xpra");
   const linuxPackages = nix.arg($, "linuxPackages");
   return nix.app(nix.sel(xpra, "override"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       withNvenc: true,
-      nvidia_x11: nix.thunk(() => nix.app(nix.sel(linuxPackages, "nvidia_x11", "override"), nix.thunk(() => ({ [nix.POS]: pos$1, libsOnly: true })))),
+      nvidia_x11: nix.thunk(() => nix.app(nix.sel(linuxPackages, "nvidia_x11", "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], libsOnly: true })))),
     })));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

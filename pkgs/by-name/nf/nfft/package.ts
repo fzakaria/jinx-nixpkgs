@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5]], [["name", 28, 7], ["url", 29, 7], ["hash", 30, 7]], [["NIX_CFLAGS_COMPILE", 52, 7]], [["description", 63, 5], ["homepage", 64, 5], ["license", 65, 5], ["maintainers", 66, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["patches", 26, 3], ["nativeBuildInputs", 34, 3], ["preConfigure", 42, 3], ["configureFlags", 46, 3], ["env", 52, 3], ["enableParallelBuilding", 54, 3], ["buildInputs", 56, 3], ["propagatedBuildInputs", 58, 3], ["doCheck", 60, 3], ["meta", 62, 3]]]);
 const formals$1 = { args: { autoconf: false, automake: false, cunit: false, fetchFromGitHub: false, fetchpatch: false, fftw: false, lib: false, libtool: false, llvmPackages: false, stdenv: false, bash: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 20, 5], ["repo", 21, 5], ["rev", 22, 5], ["hash", 23, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 28, 7], ["url", 29, 7], ["hash", 30, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 52, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 63, 5], ["homepage", 64, 5], ["license", 65, 5], ["maintainers", 66, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["patches", 26, 3], ["nativeBuildInputs", 34, 3], ["preConfigure", 42, 3], ["configureFlags", 46, 3], ["env", 52, 3], ["enableParallelBuilding", 54, 3], ["buildInputs", 56, 3], ["propagatedBuildInputs", 58, 3], ["doCheck", 60, 3], ["meta", 62, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +19,11 @@ export default nix.lambda((args) => (() => {
   const stdenv = nix.arg($, "stdenv");
   const bash = nix.arg($, "bash");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "nfft",
       version: "3.5.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "NFFT",
           repo: "nfft",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -35,7 +31,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "fix-gcc15.patch",
             url: "https://github.com/NFFT/nfft/commit/b06d01be964be7490aed797468f9722e2de1dbfa.patch",
             hash: "sha256-Ynhsyzf8ECVw4eBq50okd0oikiIfOCqFRHivuceg0KU=",
@@ -45,7 +41,7 @@ export default nix.lambda((args) => (() => {
       preConfigure: "bash bootstrap.sh\n",
       configureFlags: nix.thunk(() => ["--enable-all", "--enable-openmp", "--enable-portable-binary"]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         NIX_CFLAGS_COMPILE: "-Wno-error=incompatible-pointer-types",
       })),
       enableParallelBuilding: true,
@@ -53,7 +49,7 @@ export default nix.lambda((args) => (() => {
       propagatedBuildInputs: nix.thunk(() => [fftw]),
       doCheck: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Nonequispaced fast Fourier transform",
         homepage: "https://www-user.tu-chemnitz.de/~potts/nfft/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2Plus")),

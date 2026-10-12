@@ -2,21 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 20, 5], ["sha256", 21, 5]], [["url", 33, 11], ["name", 36, 19], ["sha256", 36, 24]], [["name", 41, 9], ["sha256", 42, 9]], [["name", 45, 9], ["sha256", 46, 9]], [["name", 49, 9], ["sha256", 50, 9]], [["name", 53, 9], ["sha256", 54, 9]], [["name", 57, 9], ["sha256", 58, 9]], [["name", 61, 9], ["sha256", 62, 9]], [["name", 65, 9], ["sha256", 66, 9]], [["name", 71, 9], ["url", 72, 9], ["sha256", 73, 9]], [["name", 76, 9], ["url", 77, 9], ["stripLen", 78, 9], ["hash", 79, 9]], [["description", 154, 5], ["license", 155, 5], ["homepage", 159, 5], ["platforms", 160, 5], ["maintainers", 161, 5]], [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["patches", 24, 3], ["outputs", 83, 3], ["nativeBuildInputs", 92, 3], ["buildInputs", 103, 3], ["preConfigure", 108, 3], ["configureFlags", 112, 3], ["postInstall", 134, 3], ["meta", 153, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPackages: false, fetchurl: false, fetchpatch: false, autoreconfHook: false, which: false, "pkg-config": false, perl: false, guile_2_2: false, libxml2: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 20, 5], ["sha256", 21, 5]]);
 const formals$2 = { args: { ver: true, name: false, sha256: false }, ellipsis: false };
-const pos$2 = nix.positions(here + "/package.nix", [["url", 33, 11], ["name", 36, 19], ["sha256", 36, 24]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 41, 9], ["sha256", 42, 9]]);
-const pos$4 = nix.positions(here + "/package.nix", [["name", 45, 9], ["sha256", 46, 9]]);
-const pos$5 = nix.positions(here + "/package.nix", [["name", 49, 9], ["sha256", 50, 9]]);
-const pos$6 = nix.positions(here + "/package.nix", [["name", 53, 9], ["sha256", 54, 9]]);
-const pos$7 = nix.positions(here + "/package.nix", [["name", 57, 9], ["sha256", 58, 9]]);
-const pos$8 = nix.positions(here + "/package.nix", [["name", 61, 9], ["sha256", 62, 9]]);
-const pos$9 = nix.positions(here + "/package.nix", [["name", 65, 9], ["sha256", 66, 9]]);
-const pos$10 = nix.positions(here + "/package.nix", [["name", 71, 9], ["url", 72, 9], ["sha256", 73, 9]]);
-const pos$11 = nix.positions(here + "/package.nix", [["name", 76, 9], ["url", 77, 9], ["stripLen", 78, 9], ["hash", 79, 9]]);
-const pos$12 = nix.positions(here + "/package.nix", [["description", 154, 5], ["license", 155, 5], ["homepage", 159, 5], ["platforms", 160, 5], ["maintainers", 161, 5]]);
-const pos$13 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 3], ["src", 19, 3], ["patches", 24, 3], ["outputs", 83, 3], ["nativeBuildInputs", 92, 3], ["buildInputs", 103, 3], ["preConfigure", 108, 3], ["configureFlags", 112, 3], ["postInstall", 134, 3], ["meta", 153, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const guile_2_2 = nix.arg($, "guile_2_2");
   const libxml2 = nix.arg($, "libxml2");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$13,
+      [nix.POS]: $pos[12],
       pname: "autogen",
       version: "5.18.16",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnu/autogen/rel${nix.sel(finalAttrs, "version")}/autogen-${nix.sel(finalAttrs, "version")}.tar.xz`),
           sha256: "16mlbdys8q4ckxlvxyhwkdnh1ay9f6g0cyp1kylkpalgnik398gq",
         })))),
@@ -47,7 +35,7 @@ export default nix.lambda((args) => (() => {
           const name = nix.arg($_1, "name");
           const sha256 = nix.arg($_1, "sha256");
           return nix.app(fetchurl, nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               url: nix.thunk(() => nix.add(nix.str`https://salsa.debian.org/debian/autogen/-/raw/debian/${ver}`, nix.str`/debian/patches/${name}?inline=false`)),
               name: name,
               sha256: sha256,
@@ -55,48 +43,48 @@ export default nix.lambda((args) => (() => {
         })(), formals$2);
         return [
           nix.thunk(() => nix.app(dp, nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               name: "20_no_Werror.diff",
               sha256: "08z4s2ifiqyaacjpd9pzr59w8m4j3548kkaq1bwvp2gjn29m680x",
             })))),
           nix.thunk(() => nix.app(dp, nix.thunk(() => ({
-              [nix.POS]: pos$4,
+              [nix.POS]: $pos[3],
               name: "30_ag_macros.m4_syntax_error.diff",
               sha256: "1z8vmbwbkz3505wd33i2xx91mlf8rwsa7klndq37nw821skxwyh3",
             })))),
           nix.thunk(() => nix.app(dp, nix.thunk(() => ({
-              [nix.POS]: pos$5,
+              [nix.POS]: $pos[4],
               name: "31_allow_overriding_AGexe_for_crossbuild.diff",
               sha256: "0h9wkc9bqb509knh8mymi43hg6n6sxg2lixvjlchcx7z0j7p8xkf",
             })))),
           nix.thunk(() => nix.app(dp, nix.thunk(() => ({
-              [nix.POS]: pos$6,
+              [nix.POS]: $pos[5],
               name: "40_suse_01-autogen-catch-race-error.patch",
               sha256: "1cfkym2zds1f85md1m74snxzqmzlj7wd5jivgmyl342856848xav",
             })))),
           nix.thunk(() => nix.app(dp, nix.thunk(() => ({
-              [nix.POS]: pos$7,
+              [nix.POS]: $pos[6],
               name: "40_suse_03-gcc9-fix-wrestrict.patch",
               sha256: "1ifdwi6gf96jc78jw7q4bfi5fgdldlf2nl55y20h6xb78kv0pznd",
             })))),
           nix.thunk(() => nix.app(dp, nix.thunk(() => ({
-              [nix.POS]: pos$8,
+              [nix.POS]: $pos[7],
               name: "40_suse_05-sprintf-overflow.patch",
               sha256: "136m62k68w1h5k7iapynvbyipidw35js6pq21lsc6rpxvgp0n469",
             })))),
           nix.thunk(() => nix.app(dp, nix.thunk(() => ({
-              [nix.POS]: pos$9,
+              [nix.POS]: $pos[8],
               name: "40_suse_06-autogen-avoid-GCC-code-analysis-bug.patch",
               sha256: "1d65zygzw2rpa00s0jy2y1bg29vkbhnjwlb5pv22rfv87zbk6z9q",
             })))),
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              [nix.POS]: pos$10,
+              [nix.POS]: $pos[9],
               name: "guile-3.patch",
               url: "https://gitweb.gentoo.org/repo/gentoo.git/plain/sys-devel/autogen/files/autogen-5.18.16-guile-3.patch?id=43bcc61c56a5a7de0eaf806efec7d8c0e4c01ae7",
               sha256: "18d7y1f6164dm1wlh7rzbacfygiwrmbc35a7qqsbdawpkhydm5lr",
             })))),
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              [nix.POS]: pos$11,
+              [nix.POS]: $pos[10],
               name: "lfs64.patch",
               url: "https://cygwin.com/cgit/cygwin-packages/autogen/plain/5.16.2-cygwin17.patch?id=6f39882873b3d1290ba3739e0557a84bfe05ba60",
               stripLen: 1n,
@@ -119,7 +107,7 @@ export default nix.lambda((args) => (() => {
       ], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.eq(nix.sel(stdenv, "hostPlatform"), nix.sel(stdenv, "buildPlatform"))), nix.thunk(() => ["libopts_cv_with_libregex=yes"])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["ac_cv_func_utimensat=no"]))))),
       postInstall: nix.thunk(() => nix.add("mkdir -p $dev/bin\nmv $bin/bin/autoopts-config $dev/bin\n\nfor f in $lib/lib/autogen/tpl-config.tlib $out/share/autogen/tpl-config.tlib; do\n  sed -e \"s|$dev/include|/no-such-autogen-include-path|\" -i $f\n  sed -e \"s|$bin/bin|/no-such-autogen-bin-path|\" -i $f\n  sed -e \"s|$lib/lib|/no-such-autogen-lib-path|\" -i $f\ndone\n\n", nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))), "# remove build directory (/build/**, or /tmp/nix-build-**) from RPATHs\nfor f in \"$bin\"/bin/*; do\n  local nrp=\"$(patchelf --print-rpath \"$f\" | sed -E 's@(:|^)'$NIX_BUILD_TOP'[^:]*:@\\1@g')\"\n  patchelf --set-rpath \"$nrp\" \"$f\"\ndone\n"))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$12,
+        [nix.POS]: $pos[11],
         description: "Automated text and program generation tool",
         license: nix.thunk(() => (() => {
           const w = nix.withScope(nix.thunk(() => nix.sel(lib, "licenses")), null);

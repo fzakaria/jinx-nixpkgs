@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 23, 5], ["owner", 24, 5], ["repo", 25, 5], ["rev", 26, 5], ["hash", 27, 5]], [["updateScript", 63, 5]], [["description", 67, 5], ["longDescription", 68, 5], ["homepage", 73, 5], ["changelog", 74, 5], ["license", 75, 5], ["maintainers", 76, 5], ["teams", 77, 5], ["platforms", 78, 5], ["mainProgram", 79, 5]], [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["runtimeDeps", 30, 3], ["buildInputs", 34, 3], ["nativeBuildInputs", 38, 3], ["dependencies", 50, 3], ["pyproject", 55, 3], ["dontWrapGApps", 56, 3], ["preFixup", 58, 3], ["passthru", 62, 3], ["meta", 66, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitLab: false, wrapGAppsHook4: false, appstream: false, "blueprint-compiler": false, "desktop-file-utils": false, gettext: false, "gobject-introspection": false, jp2a: false, libadwaita: false, meson: false, ninja: false, "pkg-config": false, python3Packages: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 23, 5], ["owner", 24, 5], ["repo", 25, 5], ["rev", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 63, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 67, 5], ["longDescription", 68, 5], ["homepage", 73, 5], ["changelog", 74, 5], ["license", 75, 5], ["maintainers", 76, 5], ["teams", 77, 5], ["platforms", 78, 5], ["mainProgram", 79, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 19, 3], ["version", 20, 3], ["src", 22, 3], ["runtimeDeps", 30, 3], ["buildInputs", 34, 3], ["nativeBuildInputs", 38, 3], ["dependencies", 50, 3], ["pyproject", 55, 3], ["dontWrapGApps", 56, 3], ["preFixup", 58, 3], ["passthru", 62, 3], ["meta", 66, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const python3Packages = nix.arg($, "python3Packages");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(python3Packages, "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "letterpress",
       version: "2.2",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "gitlab.gnome.org",
           owner: "World",
           repo: "letterpress",
@@ -62,11 +59,11 @@ export default nix.lambda((args) => (() => {
       preFixup: nix.thunk(() => nix.str`makeWrapperArgs+=(\${gappsWrapperArgs[@]} --prefix PATH : ${nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => nix.sel(finalAttrs, "runtimeDeps")))})
 `),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Create beautiful ASCII art",
         longDescription: "Letterpress converts your images into a picture made up of ASCII characters.\nYou can save the output to a file, copy it, and even change its resolution!\nHigh-res output can still be viewed comfortably by lowering the zoom factor.\n",
         homepage: "https://apps.gnome.org/Letterpress/",

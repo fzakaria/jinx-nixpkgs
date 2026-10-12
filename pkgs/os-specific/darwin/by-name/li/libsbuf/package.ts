@@ -2,13 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 24, 7], ["url", 25, 7], ["hash", 26, 7]], [["name", 29, 7], ["url", 30, 7], ["hash", 31, 7]], [["name", 34, 7], ["url", 35, 7], ["hash", 36, 7]], [["name", 39, 7], ["url", 40, 7], ["hash", 41, 7]], [["description", 78, 5], ["homepage", 79, 5], ["license", 80, 5], ["platforms", 84, 5]], [["pname", 13, 3], ["version", 14, 3], ["outputs", 16, 3], ["srcs", 22, 3], ["sourceRoot", 45, 3], ["unpackPhase", 47, 3], ["patches", 59, 3], ["postPatch", 64, 3], ["strictDeps", 68, 3], ["nativeBuildInputs", 70, 3], ["__structuredAttrs", 75, 3], ["meta", 77, 3]]]);
 const formals$1 = { args: { lib: false, bootstrapStdenv: false, fetchurl: false, meson: false, ninja: false, stdenv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 24, 7], ["url", 25, 7], ["hash", 26, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 29, 7], ["url", 30, 7], ["hash", 31, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 34, 7], ["url", 35, 7], ["hash", 36, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["name", 39, 7], ["url", 40, 7], ["hash", 41, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 78, 5], ["homepage", 79, 5], ["license", 80, 5], ["platforms", 84, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["outputs", 16, 3], ["srcs", 22, 3], ["sourceRoot", 45, 3], ["unpackPhase", 47, 3], ["patches", 59, 3], ["postPatch", 64, 3], ["strictDeps", 68, 3], ["nativeBuildInputs", 70, 3], ["__structuredAttrs", 75, 3], ["meta", 77, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,31 +14,31 @@ export default nix.lambda((args) => (() => {
   const ninja = nix.arg($, "ninja");
   const stdenv = nix.arg($, "stdenv");
   return nix.app(nix.sel(bootstrapStdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "libsbuf",
       version: "14.1.0",
       outputs: nix.thunk(() => ["out", "dev", "man"]),
       srcs: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             name: "subr_sbuf.c",
             url: nix.thunk(() => nix.str`https://cgit.freebsd.org/src/plain/sys/kern/subr_sbuf.c?h=release/${nix.sel(finalAttrs, "version")}`),
             hash: "sha256-+wIcXz2wuYzOXmbxjDYBh7lIpoVtw+SW/l7oMXFJUcc=",
           })))),
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "subr_prf.c",
             url: nix.thunk(() => nix.str`https://cgit.freebsd.org/src/plain/sys/kern/subr_prf.c?h=release/${nix.sel(finalAttrs, "version")}`),
             hash: "sha256-Sd+kJ7/RwwndK1N6YvqQqPTQRA0ajPAT0yk0rOPRpW8=",
           })))),
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "usbuf.h",
             url: nix.thunk(() => nix.str`https://cgit.freebsd.org/src/plain/sys/sys/sbuf.h?h=release/${nix.sel(finalAttrs, "version")}`),
             hash: "sha256-CCwh9kI/X1u16hHWiiBipvBzDKvo2S2OFtI4Jo6HF0E=",
           })))),
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$4,
+            [nix.POS]: $pos[3],
             name: "sbuf.9",
             url: nix.thunk(() => nix.str`https://cgit.freebsd.org/src/plain/share/man/man9/sbuf.9?h=release/${nix.sel(finalAttrs, "version")}`),
             hash: "sha256-43uUIGvYX0NvikcGTTJHrokHvubQ89ztLv/BK3MP0YY=",
@@ -58,7 +53,7 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [meson, ninja]),
       __structuredAttrs: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Safely compose and manipulate strings in C",
         homepage: "https://www.freebsd.org",
         license: nix.thunk(() => [

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]], [["url", 31, 7], ["hash", 32, 7]], [["description", 56, 5], ["homepage", 57, 5], ["license", 58, 5], ["teams", 59, 5], ["mainProgram", 60, 5], ["platforms", 61, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["patches", 27, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 42, 3], ["preFixup", 51, 3], ["meta", 55, 3]]]);
 const formals$1 = { args: { lib: false, gcc16Stdenv: false, fetchFromGitHub: false, fetchpatch: false, cmake: false, qt6: false, "pkg-config": false, hyprutils: false, pciutils: false, "hyprland-qt-support": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 21, 5], ["repo", 22, 5], ["tag", 23, 5], ["hash", 24, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 31, 7], ["hash", 32, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 56, 5], ["homepage", 57, 5], ["license", 58, 5], ["teams", 59, 5], ["mainProgram", 60, 5], ["platforms", 61, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["patches", 27, 3], ["nativeBuildInputs", 36, 3], ["buildInputs", 42, 3], ["preFixup", 51, 3], ["meta", 55, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,11 +20,11 @@ export default nix.lambda((args) => (() => {
   const from = nix.thunk(() => nix.sel(lib, "strings"));
   const makeBinPath = nix.thunk(() => nix.attr(from, "makeBinPath"));
   return nix.app(nix.sel(gcc16Stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "hyprsysteminfo",
       version: "0.1.3",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "hyprwm",
           repo: "hyprsysteminfo",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -35,7 +32,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/hyprwm/hyprsysteminfo/commit/fe81610278676d26ff47f62770ac238220285d3a.patch",
             hash: "sha256-rfKyV0gkfXEhTcPHlAB+yxZ+92umBV22YOK9aLMMBhM=",
           })))),
@@ -52,7 +49,7 @@ export default nix.lambda((args) => (() => {
       preFixup: nix.thunk(() => nix.str`qtWrapperArgs+=(--prefix PATH : "${nix.app(makeBinPath, nix.thunk(() => [pciutils]))}")
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Tiny qt6/qml application to display information about the running system",
         homepage: "https://github.com/hyprwm/hyprsysteminfo",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

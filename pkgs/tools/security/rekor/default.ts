@@ -2,14 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 21, 9], ["repo", 22, 9], ["rev", 23, 9], ["hash", 24, 9], ["leaveDotGit", 27, 9], ["postFetch", 28, 9]], [["description", 64, 17], ["homepage", 65, 9], ["changelog", 66, 9], ["license", 67, 9], ["maintainers", 68, 9]], [["pname", 17, 15], ["version", 18, 7], ["src", 20, 7], ["vendorHash", 37, 7], ["nativeBuildInputs", 39, 7], ["subPackages", 41, 7], ["ldflags", 43, 7], ["preBuild", 51, 7], ["postInstall", 56, 7], ["meta", 63, 7]], [["pname", 78, 5], ["packageToBuild", 79, 5], ["description", 80, 5]], [["pname", 83, 5], ["packageToBuild", 84, 5], ["description", 85, 5]], [["rekor-cli", 77, 3], ["rekor-server", 82, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildGoModule: false, fetchFromGitHub: false, installShellFiles: false }, ellipsis: false };
 const formals$2 = { args: { pname: false, packageToBuild: false, description: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 21, 9], ["repo", 22, 9], ["rev", 23, 9], ["hash", 24, 9], ["leaveDotGit", 27, 9], ["postFetch", 28, 9]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 64, 17], ["homepage", 65, 9], ["changelog", 66, 9], ["license", 67, 9], ["maintainers", 68, 9]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 17, 15], ["version", 18, 7], ["src", 20, 7], ["vendorHash", 37, 7], ["nativeBuildInputs", 39, 7], ["subPackages", 41, 7], ["ldflags", 43, 7], ["preBuild", 51, 7], ["postInstall", 56, 7], ["meta", 63, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 78, 5], ["packageToBuild", 79, 5], ["description", 80, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 83, 5], ["packageToBuild", 84, 5], ["description", 85, 5]]);
-const pos$6 = nix.positions(here + "/default.nix", [["rekor-cli", 77, 3], ["rekor-server", 82, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,7 +22,7 @@ export default nix.lambda((args) => (() => {
         const pname_1 = pname;
         const version = "1.5.4";
         const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             owner: "sigstore",
             repo: "rekor",
             rev: nix.thunk(() => nix.str`v${version}`),
@@ -51,7 +46,7 @@ export default nix.lambda((args) => (() => {
   --zsh <($out/bin/${pname_1} completion zsh)
 `)));
         const meta = nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           description: description,
           homepage: "https://github.com/sigstore/rekor",
           changelog: nix.thunk(() => nix.str`https://github.com/sigstore/rekor/releases/tag/v${version}`),
@@ -66,7 +61,7 @@ export default nix.lambda((args) => (() => {
           })()),
         }));
         return {
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           pname: pname_1,
           version,
           src,
@@ -81,15 +76,15 @@ export default nix.lambda((args) => (() => {
       })()));
   })(), formals$2);
   return {
-    [nix.POS]: pos$6,
+    [nix.POS]: $pos[5],
     "rekor-cli": nix.thunk(() => nix.app(generic, nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname: "rekor-cli",
         packageToBuild: "cmd/rekor-cli",
         description: "CLI client for Sigstore, the Signature Transparency Log",
       })))),
     "rekor-server": nix.thunk(() => nix.app(generic, nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         pname: "rekor-server",
         packageToBuild: "cmd/rekor-server",
         description: "Sigstore server, the Signature Transparency Log",

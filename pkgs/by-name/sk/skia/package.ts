@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 37, 5], ["rev", 40, 5], ["hash", 41, 5]], [["url", 48, 7], ["hash", 49, 7]], [["x86_64", 94, 11], ["i686", 95, 11], ["arm", 96, 11], ["aarch64", 97, 11], ["loongarch64", 98, 11]], [["NIX_LDFLAGS", 132, 7]], [["pkg-config", 177, 18]], [["tests", 177, 12]], [["description", 180, 5], ["homepage", 181, 5], ["license", 182, 5], ["maintainers", 183, 5], ["platforms", 184, 5], ["pkgConfigModules", 185, 5]], [["pname", 30, 3], ["version", 34, 3], ["src", 36, 3], ["patches", 44, 3], ["postPatch", 53, 3], ["strictDeps", 61, 3], ["nativeBuildInputs", 62, 3], ["buildInputs", 74, 3], ["gnFlags", 90, 3], ["env", 132, 3], ["installPhase", 135, 3], ["preFixup", 168, 3], ["passthru", 177, 3], ["meta", 179, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchgit: false, fetchpatch2: false, expat: false, fontconfig: false, freetype: false, harfbuzzFull: false, icu: false, gn: false, libGL: false, libjpeg: false, libwebp: false, libx11: false, ninja: false, python3: false, testers: false, "vulkan-headers": false, "vulkan-memory-allocator": false, xcbuild: false, cctools: false, zlib: false, fixDarwinDylibNames: false, enableVulkan: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 37, 5], ["rev", 40, 5], ["hash", 41, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 48, 7], ["hash", 49, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["x86_64", 94, 11], ["i686", 95, 11], ["arm", 96, 11], ["aarch64", 97, 11], ["loongarch64", 98, 11]]);
-const pos$4 = nix.positions(here + "/package.nix", [["NIX_LDFLAGS", 132, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pkg-config", 177, 18]]);
-const pos$6 = nix.positions(here + "/package.nix", [["tests", 177, 12]]);
-const pos$7 = nix.positions(here + "/package.nix", [["description", 180, 5], ["homepage", 181, 5], ["license", 182, 5], ["maintainers", 183, 5], ["platforms", 184, 5], ["pkgConfigModules", 185, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 30, 3], ["version", 34, 3], ["src", 36, 3], ["patches", 44, 3], ["postPatch", 53, 3], ["strictDeps", 61, 3], ["nativeBuildInputs", 62, 3], ["buildInputs", 74, 3], ["gnFlags", 90, 3], ["env", 132, 3], ["installPhase", 135, 3], ["preFixup", 168, 3], ["passthru", 177, 3], ["meta", 179, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -39,18 +32,18 @@ export default nix.lambda((args) => (() => {
   const fixDarwinDylibNames = nix.arg($, "fixDarwinDylibNames");
   const enableVulkan = nix.argOr($, "enableVulkan", () => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "skia",
       version: "148-unstable-2026-04-14",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://skia.googlesource.com/skia.git",
           rev: "e7c90ecca9444fe09598f1630ab7cee2c0ee027a",
           hash: "sha256-2+fxWqkNBStoN6l5Y3xMqkwvh69sCU6A//wz8fMnmjY=",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://salsa.debian.org/fonts-team/libskia/-/raw/6574ca599eab076a9cd5b8667f81aef0f67b3eeb/debian/patches/loong-build",
             hash: "sha256-6dUCQixmll2K8fqRGwhay7ee8gvdRq1NJjUHBHxIFvo=",
           })))),
@@ -76,7 +69,7 @@ export default nix.lambda((args) => (() => {
       ], nix.app(nix.sel(lib, "optionals"), enableVulkan, nix.thunk(() => [vulkan_headers, vulkan_memory_allocator])))),
       gnFlags: nix.thunk(() => (() => {
         const cpu = nix.thunk(() => nix.sel({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           x86_64: "x64",
           i686: "x86",
           arm: "arm",
@@ -99,7 +92,7 @@ export default nix.lambda((args) => (() => {
           ])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["skia_use_fontconfig=true", "skia_use_freetype=true", "skia_use_metal=true"])))));
       })()),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         NIX_LDFLAGS: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), "-lz")),
       })),
       installPhase: nix.thunk(() => nix.str`runHook preInstall
@@ -135,14 +128,14 @@ runHook postInstall
 `),
       preFixup: "# Some skia includes are assumed to be under an include sub directory by\n# other includes\nfor file in $(grep -rl '#include \"include/' $out/include); do\n  substituteInPlace \"$file\" \\\n    --replace-fail '#include \"include/' '#include \"'\ndone\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$5,
+          [nix.POS]: $pos[4],
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "testMetaPkgConfig"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage")))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "2D graphic library for drawing text, geometries and images",
         homepage: "https://skia.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

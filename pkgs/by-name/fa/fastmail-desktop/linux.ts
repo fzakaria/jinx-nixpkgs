@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/linux.nix", [[["pname", 15, 54], ["version", 15, 60], ["src", 15, 68]], [["mainProgram", 62, 5]], [["pname", 18, 11], ["version", 18, 17], ["passthru", 18, 25], ["dontUnpack", 20, 3], ["dontBuild", 21, 3], ["strictDeps", 23, 3], ["nativeBuildInputs", 25, 3], ["installPhase", 30, 3], ["meta", 61, 3]]]);
 const formals$1 = { args: { pname: false, version: false, src: false, passthru: false, meta: false, lib: false, stdenv: false, appimageTools: false, asar: false, makeWrapper: false, electron: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/linux.nix", [["pname", 15, 54], ["version", 15, 60], ["src", 15, 68]]);
-const pos$2 = nix.positions(here + "/linux.nix", [["mainProgram", 62, 5]]);
-const pos$3 = nix.positions(here + "/linux.nix", [["pname", 18, 11], ["version", 18, 17], ["passthru", 18, 25], ["dontUnpack", 20, 3], ["dontBuild", 21, 3], ["strictDeps", 23, 3], ["nativeBuildInputs", 25, 3], ["installPhase", 30, 3], ["meta", 61, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,9 +18,9 @@ export default nix.lambda((args) => (() => {
   const asar = nix.arg($, "asar");
   const makeWrapper = nix.arg($, "makeWrapper");
   const electron = nix.arg($, "electron");
-  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: pos$1, pname: pname, version: version, src: src }))));
+  const appimageContents = nix.thunk(() => nix.app(nix.sel(appimageTools, "extract"), nix.thunk(() => ({ [nix.POS]: $pos[0], pname: pname, version: version, src: src }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: pname,
       version: version,
       passthru: passthru,
@@ -61,7 +59,7 @@ makeWrapper "${electron}/bin/electron" "$out/bin/fastmail" \\
 
 runHook postInstall
 `),
-      meta: nix.thunk(() => nix.update(meta, { [nix.POS]: pos$2, mainProgram: "fastmail" })),
+      meta: nix.thunk(() => nix.update(meta, { [nix.POS]: $pos[1], mainProgram: "fastmail" })),
     }));
 })(), formals$1);
 //# sourceMappingURL=linux.ts.map

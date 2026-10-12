@@ -2,11 +2,8 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/test.nix", [[["gz", 15, 17]], [["formats", 14, 5], ["compressors", 15, 5]], [["gz", 19, 17]], [["formats", 18, 5], ["compressors", 19, 5]]]);
 const formals$1 = { args: { gzip: false, runCommand: false, compressDrv: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/test.nix", [["gz", 15, 17]]);
-const pos$2 = nix.positions(here + "/test.nix", [["formats", 14, 5], ["compressors", 15, 5]]);
-const pos$3 = nix.positions(here + "/test.nix", [["gz", 19, 17]]);
-const pos$4 = nix.positions(here + "/test.nix", [["formats", 18, 5], ["compressors", 19, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,18 +12,18 @@ export default nix.lambda((args) => (() => {
   const compressDrv = nix.arg($, "compressDrv");
   const example = nix.thunk(() => nix.app(runCommand, "sample-drv", nix.thunk(() => ({})), "mkdir $out\necho 42 > $out/1.txt\necho 43 > $out/1.md\ntouch $out/2.png\n"));
   const drv = nix.thunk(() => nix.app(compressDrv, example, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       formats: nix.thunk(() => ["txt"]),
       compressors: nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         gz: nix.thunk(() => nix.str`${gzip}/bin/gzip --force --keep --fast {}`),
       })),
     }))));
   const wrapped = nix.thunk(() => nix.app(compressDrv, drv, nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       formats: nix.thunk(() => ["md"]),
       compressors: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         gz: nix.thunk(() => nix.str`${gzip}/bin/gzip --force --keep --fast {}`),
       })),
     }))));

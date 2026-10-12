@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]], [["description", 119, 5], ["homepage", 120, 5], ["changelog", 121, 5], ["license", 122, 5], ["maintainers", 123, 5]], [["pname", 22, 3], ["version", 23, 3], ["pyproject", 24, 3], ["__structuredAttrs", 25, 3], ["src", 27, 3], ["build-system", 34, 3], ["dependencies", 38, 3], ["pythonImportsCheck", 45, 3], ["nativeCheckInputs", 47, 3], ["disabledTests", 52, 3], ["__darwinAllowLocalNetworking", 116, 3], ["meta", 118, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, numpy: false, safetensors: false, torch: false, "typing-extensions": false, expecttest: false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 28, 5], ["repo", 29, 5], ["tag", 30, 5], ["hash", 31, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 119, 5], ["homepage", 120, 5], ["changelog", 121, 5], ["license", 122, 5], ["maintainers", 123, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 22, 3], ["version", 23, 3], ["pyproject", 24, 3], ["__structuredAttrs", 25, 3], ["src", 27, 3], ["build-system", 34, 3], ["dependencies", 38, 3], ["pythonImportsCheck", 45, 3], ["nativeCheckInputs", 47, 3], ["disabledTests", 52, 3], ["__darwinAllowLocalNetworking", 116, 3], ["meta", 118, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,13 +19,13 @@ export default nix.lambda((args) => (() => {
   const expecttest = nix.arg($, "expecttest");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "torch-checkpointing",
       version: "0.1.0",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "meta-pytorch",
           repo: "torch_checkpointing",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -91,7 +89,7 @@ export default nix.lambda((args) => (() => {
         ]))))),
       __darwinAllowLocalNetworking: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "High-performance asynchronous checkpointing for PyTorch",
         homepage: "https://github.com/meta-pytorch/torch_checkpointing",
         changelog: nix.thunk(() => nix.str`https://github.com/meta-pytorch/torch_checkpointing/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),

@@ -2,8 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["baseName", 14, 3], ["scripts", 16, 3], ["buildInputs", 21, 3], ["propagatedBuildInputs", 25, 3]]]);
 const formals$1 = { args: { bash: false, faust: false, gtk2: false, jack2: false, "alsa-lib": false, opencv: false, libsndfile: false, which: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["baseName", 14, 3], ["scripts", 16, 3], ["buildInputs", 21, 3], ["propagatedBuildInputs", 25, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,7 +16,7 @@ export default nix.lambda((args) => (() => {
   const libsndfile = nix.arg($, "libsndfile");
   const which = nix.arg($, "which");
   return nix.app(nix.sel(faust, "wrapWithBuildEnv"), nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       baseName: "faust2jack",
       scripts: nix.thunk(() => ["faust2jack", "faust2jackconsole"]),
       buildInputs: nix.thunk(() => [bash]),

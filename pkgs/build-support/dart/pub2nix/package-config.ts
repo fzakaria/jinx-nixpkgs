@@ -2,10 +2,9 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package-config.nix", [[["src", 20, 5], ["packageRoot", 21, 19]], [["packages", 25, 11], ["nativeBuildInputs", 27, 3], ["__structuredAttrs", 32, 3]]]);
 const formals$1 = { args: { lib: false, runCommand: false, jq: false, yq: false }, ellipsis: false };
 const formals$2 = { args: { pname: true, dependencies: false, dependencySources: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package-config.nix", [["src", 20, 5], ["packageRoot", 21, 19]]);
-const pos$2 = nix.positions(here + "/package-config.nix", [["packages", 25, 11], ["nativeBuildInputs", 27, 3], ["__structuredAttrs", 32, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,10 +20,10 @@ export default nix.lambda((args) => (() => {
     const packages = nix.thunk(() => nix.app(nix.sel(lib, "genAttrs"), dependencies, (dependency) => (() => {
         const src = nix.thunk(() => nix.sel(dependencySources, nix.key(nix.force(dependency))));
         const packageRoot = nix.thunk(() => nix.attr(src, "packageRoot"));
-        return { [nix.POS]: pos$1, src, packageRoot };
+        return { [nix.POS]: $pos[0], src, packageRoot };
       })()));
     return nix.app(runCommand, nix.thunk(() => nix.str`${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(pname, null)), nix.thunk(() => nix.str`${pname}-`))}package-config.json`), nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         packages: packages,
         nativeBuildInputs: nix.thunk(() => [jq, yq]),
         __structuredAttrs: true,

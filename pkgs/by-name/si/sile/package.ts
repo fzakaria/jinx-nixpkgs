@@ -2,17 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 35, 5], ["hash", 36, 5]], [["pname", 40, 26], ["version", 40, 32], ["src", 40, 40], ["dontConfigure", 41, 5], ["nativeBuildInputs", 42, 5], ["hash", 43, 5]], [["fontDirectories", 102, 7]], [["FONTCONFIG_FILE", 101, 5], ["LUA", 106, 5]], [["FONTCONFIG_FILE", 164, 15]], [["nativeBuildInputs", 160, 11], ["env", 164, 11]], [["test", 157, 11]], [["luaPackages", 123, 5], ["luaEnv", 154, 5], ["tests", 157, 5]], [["description", 175, 5], ["longDescription", 176, 5], ["homepage", 186, 5], ["changelog", 187, 5], ["platforms", 188, 5], ["maintainers", 189, 5], ["license", 193, 5], ["mainProgram", 194, 5]], [["pname", 31, 3], ["version", 32, 3], ["src", 34, 3], ["cargoDeps", 39, 3], ["nativeBuildInputs", 46, 3], ["dontUseCmakeConfigure", 57, 3], ["buildInputs", 59, 3], ["configureFlags", 67, 3], ["outputs", 87, 3], ["postInstall", 96, 3], ["env", 100, 3], ["strictDeps", 109, 3], ["enableParallelBuilding", 111, 3], ["passthru", 113, 3], ["meta", 174, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, zstd: false, "pkg-config": false, jq: false, cargo: false, rustc: false, rustPlatform: false, luarocks: false, luajit: false, harfbuzz: false, icu: false, fontconfig: false, libiconv: false, makeFontsConf: false, "gentium-plus": false, runCommand: false, "poppler-utils": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 35, 5], ["hash", 36, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["pname", 40, 26], ["version", 40, 32], ["src", 40, 40], ["dontConfigure", 41, 5], ["nativeBuildInputs", 42, 5], ["hash", 43, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["fontDirectories", 102, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["FONTCONFIG_FILE", 101, 5], ["LUA", 106, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["FONTCONFIG_FILE", 164, 15]]);
-const pos$6 = nix.positions(here + "/package.nix", [["nativeBuildInputs", 160, 11], ["env", 164, 11]]);
-const pos$7 = nix.positions(here + "/package.nix", [["test", 157, 11]]);
-const pos$8 = nix.positions(here + "/package.nix", [["luaPackages", 123, 5], ["luaEnv", 154, 5], ["tests", 157, 5]]);
-const pos$9 = nix.positions(here + "/package.nix", [["description", 175, 5], ["longDescription", 176, 5], ["homepage", 186, 5], ["changelog", 187, 5], ["platforms", 188, 5], ["maintainers", 189, 5], ["license", 193, 5], ["mainProgram", 194, 5]]);
-const pos$10 = nix.positions(here + "/package.nix", [["pname", 31, 3], ["version", 32, 3], ["src", 34, 3], ["cargoDeps", 39, 3], ["nativeBuildInputs", 46, 3], ["dontUseCmakeConfigure", 57, 3], ["buildInputs", 59, 3], ["configureFlags", 67, 3], ["outputs", 87, 3], ["postInstall", 96, 3], ["env", 100, 3], ["strictDeps", 109, 3], ["enableParallelBuilding", 111, 3], ["passthru", 113, 3], ["meta", 174, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -36,16 +27,16 @@ export default nix.lambda((args) => (() => {
   const runCommand = nix.arg($, "runCommand");
   const poppler_utils = nix.arg($, "poppler-utils");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       pname: "sile",
       version: "0.15.13",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/sile-typesetter/sile/releases/download/v${nix.sel(finalAttrs, "version")}/sile-${nix.sel(finalAttrs, "version")}.tar.zst`),
           hash: "sha256-XpfBllGv9xBoe5MpLVNhy0EWUglLzIxiyBHBn3qBRks=",
         })))),
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -75,14 +66,14 @@ export default nix.lambda((args) => (() => {
       outputs: nix.thunk(() => ["out", "doc", "man", "dev"]),
       postInstall: "install -Dm0644 documentation/sile.pdf $out/share/doc/sile/manual.pdf\n",
       env: nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        FONTCONFIG_FILE: nix.thunk(() => nix.app(makeFontsConf, nix.thunk(() => ({ [nix.POS]: pos$3, fontDirectories: nix.thunk(() => [gentium_plus]) })))),
+        [nix.POS]: $pos[3],
+        FONTCONFIG_FILE: nix.thunk(() => nix.app(makeFontsConf, nix.thunk(() => ({ [nix.POS]: $pos[2], fontDirectories: nix.thunk(() => [gentium_plus]) })))),
         LUA: nix.thunk(() => nix.str`${nix.sel(finalAttrs, "finalPackage", "passthru", "luaEnv")}/bin/lua`),
       })),
       strictDeps: true,
       enableParallelBuilding: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$8,
+        [nix.POS]: $pos[7],
         luaPackages: nix.thunk(() => nix.concat([
           "cassowary",
           "cldr",
@@ -107,12 +98,12 @@ export default nix.lambda((args) => (() => {
         ], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(luajit, "luaversion")), "5.2")), nix.thunk(() => ["bit32"])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(nix.sel(lib, "versionOlder"), nix.thunk(() => nix.sel(luajit, "luaversion")), "5.3")), nix.thunk(() => ["compat53"]))))),
         luaEnv: nix.thunk(() => nix.app(nix.sel(luajit, "withPackages"), (ps) => nix.app(nix.sel(lib, "attrVals"), nix.thunk(() => nix.sel(finalAttrs, "finalPackage", "passthru", "luaPackages")), ps))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           test: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => !nix.asBool((nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) && nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64"))))), nix.thunk(() => nix.app(runCommand, nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-test`), nix.thunk(() => ({
-                [nix.POS]: pos$6,
+                [nix.POS]: $pos[5],
                 nativeBuildInputs: nix.thunk(() => [poppler_utils, nix.thunk(() => nix.sel(finalAttrs, "finalPackage"))]),
                 env: nix.thunk(() => ({
-                  [nix.POS]: pos$5,
+                  [nix.POS]: $pos[4],
                   FONTCONFIG_FILE: nix.thunk(() => nix.sel(finalAttrs, "env", "FONTCONFIG_FILE")),
                 })),
               })), nix.thunk(() => nix.str`output=$(mktemp -t selfcheck-XXXXXX.pdf)
@@ -122,7 +113,7 @@ pdfinfo $output | grep "SILE v${nix.sel(finalAttrs, "version")}" > $out
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         description: "Typesetting system",
         longDescription: "SILE is a typesetting system; its job is to produce beautiful\nprinted documents. Conceptually, SILE is similar to TeX—from\nwhich it borrows some concepts and even syntax and\nalgorithms—but the similarities end there. Rather than being a\nderivative of the TeX family SILE is a new typesetting and\nlayout engine written from the ground up using modern\ntechnologies and borrowing some ideas from graphical systems\nsuch as InDesign.\n",
         homepage: "https://sile-typesetter.org",

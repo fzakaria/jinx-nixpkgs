@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 37, 5], ["repo", 38, 5], ["tag", 39, 5], ["hash", 40, 5]], [["MPLBACKEND", 70, 5]], [["description", 156, 5], ["homepage", 157, 5], ["mainProgram", 158, 5], ["changelog", 159, 5], ["license", 160, 5], ["maintainers", 161, 5]], [["pname", 31, 3], ["version", 32, 3], ["pyproject", 33, 3], ["__structuredAttrs", 34, 3], ["src", 36, 3], ["build-system", 43, 3], ["dependencies", 47, 3], ["nativeCheckInputs", 61, 3], ["env", 68, 3], ["disabledTests", 73, 3], ["disabledTestPaths", 139, 3], ["pythonImportsCheck", 153, 3], ["meta", 155, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPythonPackage: false, fetchFromGitHub: false, setuptools: false, "ahocorasick-rs": false, appdirs: false, matplotlib: false, mhcgnomes: false, numpy: false, pandas: false, pyyaml: false, "scikit-learn": false, threadpoolctl: false, torch: false, tqdm: false, addBinToPathHook: false, gitMinimal: false, pytestCheckHook: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 37, 5], ["repo", 38, 5], ["tag", 39, 5], ["hash", 40, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["MPLBACKEND", 70, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 156, 5], ["homepage", 157, 5], ["mainProgram", 158, 5], ["changelog", 159, 5], ["license", 160, 5], ["maintainers", 161, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 31, 3], ["version", 32, 3], ["pyproject", 33, 3], ["__structuredAttrs", 34, 3], ["src", 36, 3], ["build-system", 43, 3], ["dependencies", 47, 3], ["nativeCheckInputs", 61, 3], ["env", 68, 3], ["disabledTests", 73, 3], ["disabledTestPaths", 139, 3], ["pythonImportsCheck", 153, 3], ["meta", 155, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -31,13 +28,13 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "mhcflurry",
       version: "2.3.13",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "openvax",
           repo: "mhcflurry",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -58,7 +55,7 @@ export default nix.lambda((args) => (() => {
         tqdm,
       ]),
       nativeCheckInputs: nix.thunk(() => [addBinToPathHook, gitMinimal, pytestCheckHook, versionCheckHook]),
-      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({ [nix.POS]: pos$2, MPLBACKEND: "Agg" })))),
+      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ({ [nix.POS]: $pos[1], MPLBACKEND: "Agg" })))),
       disabledTests: nix.thunk(() => nix.concat([
         "test_a1_mage_epitope_downloaded_models",
         "test_a1_titin_epitope_downloaded_models",
@@ -120,7 +117,7 @@ export default nix.lambda((args) => (() => {
       ]),
       pythonImportsCheck: nix.thunk(() => ["mhcflurry"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Peptide-MHC I binding affinity prediction",
         homepage: "https://github.com/openvax/mhcflurry",
         mainProgram: "mhcflurry",

@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["fontDirectories", 87, 21]], [["name", 141, 5], ["paths", 142, 5]], [["mpv-scripts-should-not-collide", 140, 18]], [["unwrapped", 138, 12], ["tests", 140, 12]], [["homepage", 175, 7], ["description", 176, 7], ["longDescription", 177, 7], ["maintainers", 178, 7], ["mainProgram", 180, 5]], [["pname", 130, 3], ["version", 131, 27], ["paths", 134, 3], ["nativeBuildInputs", 136, 3], ["passthru", 138, 3], ["postBuild", 160, 3], ["meta", 173, 3]]]);
 const formals$1 = { args: { stdenv: false, buildEnv: false, lib: false, makeBinaryWrapper: false, makeFontsConf: false, mpvScripts: false, "mpv-unwrapped": false, symlinkJoin: false, writeTextDir: false, "yt-dlp": false, extraMakeWrapperArgs: true, youtubeSupport: true, scripts: true, extraUmpvWrapperArgs: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["fontDirectories", 87, 21]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 141, 5], ["paths", 142, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["mpv-scripts-should-not-collide", 140, 18]]);
-const pos$4 = nix.positions(here + "/package.nix", [["unwrapped", 138, 12], ["tests", 140, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["homepage", 175, 7], ["description", 176, 7], ["longDescription", 177, 7], ["maintainers", 178, 7], ["mainProgram", 180, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 130, 3], ["version", 131, 27], ["paths", 134, 3], ["nativeBuildInputs", 136, 3], ["passthru", 138, 3], ["postBuild", 160, 3], ["meta", 173, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -48,7 +43,7 @@ export default nix.lambda((args) => (() => {
       return nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.eq(fontDirectories, [])), nix.thunk(() => nix.concat([
           "--set",
           "FONTCONFIG_FILE",
-          nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.app(makeFontsConf, nix.thunk(() => ({ [nix.POS]: pos$1, fontDirectories: fontDirectories })))))),
+          nix.thunk(() => nix.builtins.toString(nix.thunk(() => nix.app(makeFontsConf, nix.thunk(() => ({ [nix.POS]: $pos[0], fontDirectories: fontDirectories })))))),
         ], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")), nix.thunk(() => ["--add-flags", "--osd-font-provider=fontconfig"])))));
     })(), nix.concat(nix.app(nix.sel(lib, "lists", "flatten"), nix.thunk(() => nix.builtins.map((script) => (() => {
           const mkScriptArgs = (script_1) => (scriptName) => [
@@ -64,18 +59,18 @@ export default nix.lambda((args) => (() => {
       nix.thunk(() => nix.str`${nix.builtins.placeholder("out")}/bin/mpv`),
     ], extraUmpvWrapperArgs))));
   return nix.app(symlinkJoin, nix.thunk(() => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "mpv-with-scripts",
       version: nix.thunk(() => nix.attr(mpv_unwrapped, "version")),
       paths: nix.thunk(() => [nix.thunk(() => nix.sel(mpv_unwrapped, "all"))]),
       nativeBuildInputs: nix.thunk(() => [makeBinaryWrapper]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         unwrapped: mpv_unwrapped,
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           "mpv-scripts-should-not-collide": nix.thunk(() => nix.app(buildEnv, nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               name: "mpv-scripts-env",
               paths: nix.thunk(() => nix.app(nix.sel(lib, "pipe"), mpvScripts, nix.thunk(() => [
                   nix.thunk(() => nix.app(nix.sel(lib, "filterAttrs"), (key) => (script) => nix.sel(nix.builtins.tryEval(nix.thunk(() => nix.app(nix.sel(lib, "isDerivation"), script))), "success"))),
@@ -98,7 +93,7 @@ makeWrapper "${mpv_unwrapped}/Applications/mpv.app/Contents/MacOS/mpv" "$out/App
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(mpv_unwrapped, "meta"));
         return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         description: nix.thunk(() => nix.attr(from, "description")),
         longDescription: nix.thunk(() => nix.attr(from, "longDescription")),

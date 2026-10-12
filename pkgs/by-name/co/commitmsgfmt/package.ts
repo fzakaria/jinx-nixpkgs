@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]], [["package", 23, 5], ["command", 24, 5]], [["version", 22, 18]], [["tests", 22, 12], ["updateScript", 26, 12]], [["homepage", 29, 5], ["changelog", 30, 5], ["description", 31, 5], ["mainProgram", 32, 5], ["license", 33, 5], ["maintainers", 34, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["cargoHash", 20, 3], ["passthru", 22, 3], ["meta", 28, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchFromGitLab: false, testers: false, commitmsgfmt: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["hash", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["package", 23, 5], ["command", 24, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 22, 18]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 22, 12], ["updateScript", 26, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["homepage", 29, 5], ["changelog", 30, 5], ["description", 31, 5], ["mainProgram", 32, 5], ["license", 33, 5], ["maintainers", 34, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["cargoHash", 20, 3], ["passthru", 22, 3], ["meta", 28, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const commitmsgfmt = nix.arg($, "commitmsgfmt");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "commitmsgfmt",
       version: "1.7.0",
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "mkjeldsen",
           repo: "commitmsgfmt",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -31,15 +26,15 @@ export default nix.lambda((args) => (() => {
         })))),
       cargoHash: "sha256-Ewn7NCFtl8phC5cFyLWZcGZy4w+huummzeuXFRn64lQ=",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$2, package: commitmsgfmt, command: "commitmsgfmt -V" })))),
+          [nix.POS]: $pos[2],
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: $pos[1], package: commitmsgfmt, command: "commitmsgfmt -V" })))),
         })),
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "https://gitlab.com/mkjeldsen/commitmsgfmt",
         changelog: nix.thunk(() => nix.str`https://gitlab.com/mkjeldsen/commitmsgfmt/-/raw/v${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),
         description: "Formats commit messages better than fmt(1) and Vim",

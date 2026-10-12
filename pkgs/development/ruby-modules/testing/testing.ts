@@ -2,17 +2,14 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
-const pos$1 = nix.positions(here + "/testing.nix", [["result", 28, 5], ["description", 29, 5]]);
-const pos$2 = nix.positions(here + "/testing.nix", [["result", 33, 5], ["description", 34, 5]]);
-const pos$3 = nix.positions(here + "/testing.nix", [["result", 38, 19], ["description", 39, 5]]);
-const pos$4 = nix.positions(here + "/testing.nix", [["run", 72, 11], ["passed", 72, 15], ["failed", 72, 22]]);
+const $pos = nix.positions(here + "/testing.nix", [[["result", 28, 5], ["description", 29, 5]], [["result", 33, 5], ["description", 34, 5]], [["result", 38, 19], ["description", 39, 5]], [["run", 72, 11], ["passed", 72, 15], ["failed", 72, 22]]]);
 
 export default nix.thunk(() => (() => {
   const w = nix.withScope(nix.builtins, null);
-  const passed = (desc) => ({ [nix.POS]: pos$1, result: "pass", description: desc });
-  const failed = (desc) => ({ [nix.POS]: pos$2, result: "failed", description: desc });
+  const passed = (desc) => ({ [nix.POS]: $pos[0], result: "pass", description: desc });
+  const failed = (desc) => ({ [nix.POS]: $pos[1], result: "failed", description: desc });
   const prefixName = (name) => (res) => ({
-    [nix.POS]: pos$3,
+    [nix.POS]: $pos[2],
     result: nix.thunk(() => nix.attr(res, "result")),
     description: nix.thunk(() => nix.str`${name}: ${nix.sel(res, "description")}`),
   });
@@ -22,6 +19,6 @@ export default nix.thunk(() => (() => {
       nix.thunk(() => nix.app(prefixName, name, nix.thunk(() => (nix.asBool(nix.app(tests, under)) ? nix.app(passed, "passed") : nix.app(failed, "failed"))))),
     ] : [nix.thunk(() => nix.app(prefixName, name, res))]);
   })() : [failed, nix.thunk(() => nix.app(name, ": not a function, list or set"))])));
-  return { [nix.POS]: pos$4, run: run, passed: passed, failed: failed };
+  return { [nix.POS]: $pos[3], run: run, passed: passed, failed: failed };
 })());
 //# sourceMappingURL=testing.ts.map

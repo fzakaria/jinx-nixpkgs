@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/mpv.nix", [[["vapoursynthSupport", 9, 44]], [["mpv-unwrapped", 9, 3], ["extraMakeWrapperArgs", 10, 3]]]);
 const formals$1 = { args: { lib: false, mpv: false, "mpv-unwrapped": false, "ocl-icd": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/mpv.nix", [["vapoursynthSupport", 9, 44]]);
-const pos$2 = nix.positions(here + "/mpv.nix", [["mpv-unwrapped", 9, 3], ["extraMakeWrapperArgs", 10, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,8 +12,8 @@ export default nix.lambda((args) => (() => {
   const mpv_unwrapped = nix.arg($, "mpv-unwrapped");
   const ocl_icd = nix.arg($, "ocl-icd");
   return nix.app(nix.sel(mpv, "override"), nix.thunk(() => ({
-      [nix.POS]: pos$2,
-      "mpv-unwrapped": nix.thunk(() => nix.app(nix.sel(mpv_unwrapped, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, vapoursynthSupport: true })))),
+      [nix.POS]: $pos[1],
+      "mpv-unwrapped": nix.thunk(() => nix.app(nix.sel(mpv_unwrapped, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], vapoursynthSupport: true })))),
       extraMakeWrapperArgs: nix.thunk(() => [
         "--prefix",
         "LD_LIBRARY_PATH",

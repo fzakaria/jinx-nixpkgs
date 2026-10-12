@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["hash", 33, 5]], [["extraArgs", 95, 5]], [["updateScript", 94, 12]], [["description", 102, 5], ["homepage", 103, 5], ["changelog", 104, 5], ["license", 105, 5], ["maintainers", 106, 5]], [["pname", 25, 3], ["version", 26, 3], ["pyproject", 27, 3], ["src", 29, 3], ["sourceRoot", 36, 3], ["build-system", 38, 3], ["dependencies", 40, 3], ["pythonRelaxDeps", 50, 3], ["nativeCheckInputs", 52, 3], ["preCheck", 62, 3], ["disabledTestPaths", 71, 3], ["pythonImportsCheck", 89, 3], ["passthru", 94, 3], ["meta", 101, 3]]]);
 const formals$1 = { args: { lib: false, aiounittest: false, buildPythonPackage: false, fetchFromGitHub: false, freezegun: false, "google-api-core": false, "google-auth": false, "google-cloud-core": false, "google-cloud-testutils": false, grpcio: false, mock: false, "proto-plus": false, protobuf: false, "pytest-asyncio": false, pytestCheckHook: false, pythonAtLeast: false, pythonOlder: false, pyyaml: false, setuptools: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 30, 5], ["repo", 31, 5], ["tag", 32, 5], ["hash", 33, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["extraArgs", 95, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["updateScript", 94, 12]]);
-const pos$4 = nix.positions(here + "/default.nix", [["description", 102, 5], ["homepage", 103, 5], ["changelog", 104, 5], ["license", 105, 5], ["maintainers", 106, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 25, 3], ["version", 26, 3], ["pyproject", 27, 3], ["src", 29, 3], ["sourceRoot", 36, 3], ["build-system", 38, 3], ["dependencies", 40, 3], ["pythonRelaxDeps", 50, 3], ["nativeCheckInputs", 52, 3], ["preCheck", 62, 3], ["disabledTestPaths", 71, 3], ["pythonImportsCheck", 89, 3], ["passthru", 94, 3], ["meta", 101, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -32,12 +28,12 @@ export default nix.lambda((args) => (() => {
   const setuptools = nix.arg($, "setuptools");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "google-cloud-firestore",
       version: "2.31.0",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "googleapis",
           repo: "google-cloud-python",
           tag: nix.thunk(() => nix.str`google-cloud-firestore-v${nix.sel(finalAttrs, "version")}`),
@@ -73,14 +69,14 @@ export default nix.lambda((args) => (() => {
         ])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(pythonAtLeast, "3.14")), nix.thunk(() => ["tests/unit/v1/test_bundle.py::TestAsyncBundle::test_async_query"]))))),
       pythonImportsCheck: nix.thunk(() => ["google.cloud.firestore_v1", "google.cloud.firestore_admin_v1"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             extraArgs: nix.thunk(() => ["--version-regex", "google-cloud-firestore-v(.*)"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Google Cloud Firestore API client library",
         homepage: "https://github.com/googleapis/google-cloud-python/tree/main/packages/google-cloud-firestore",
         changelog: nix.thunk(() => nix.str`https://github.com/googleapis/google-cloud-python/tree/${nix.sel(finalAttrs, "src", "tag")}/packages/google-cloud-firestore/CHANGELOG.md`),

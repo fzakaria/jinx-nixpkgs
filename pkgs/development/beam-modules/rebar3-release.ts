@@ -2,15 +2,9 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/rebar3-release.nix", [[["name", 31, 7], ["buildInputs", 32, 7]], [["setupHook", 37, 7], ["configurePhase", 38, 7], ["buildPhase", 39, 7], ["installPhase", 40, 7]], [["plugins", 50, 5]], [["REBAR_IGNORE_DEPS", 78, 11]], [["platforms", 115, 33]], [["packageName", 121, 13], ["env", 122, 13]], [["version", 60, 17], ["pname", 60, 25], ["nativeBuildInputs", 62, 9], ["buildInputs", 67, 9], ["__structuredAttrs", 69, 9], ["strictDeps", 70, 9], ["stripDebugList", 73, 9], ["src", 75, 17], ["env", 77, 9], ["configurePhase", 81, 9], ["buildPhase", 87, 9], ["installPhase", 93, 9], ["postInstall", 105, 9], ["meta", 114, 9], ["passthru", 119, 9]]]);
 const formals$1 = { args: { stdenv: false, erlang: false, rebar3WithPlugins: false, openssl: false, lib: false }, ellipsis: false };
 const formals$2 = { args: { pname: false, version: false, src: false, beamDeps: true, buildPlugins: true, checkouts: true, releaseType: false, buildInputs: true, setupHook: true, profile: true, installPhase: true, buildPhase: true, configurePhase: true, meta: true }, ellipsis: true };
-const pos$1 = nix.positions(here + "/rebar3-release.nix", [["name", 31, 7], ["buildInputs", 32, 7]]);
-const pos$2 = nix.positions(here + "/rebar3-release.nix", [["setupHook", 37, 7], ["configurePhase", 38, 7], ["buildPhase", 39, 7], ["installPhase", 40, 7]]);
-const pos$3 = nix.positions(here + "/rebar3-release.nix", [["plugins", 50, 5]]);
-const pos$4 = nix.positions(here + "/rebar3-release.nix", [["REBAR_IGNORE_DEPS", 78, 11]]);
-const pos$5 = nix.positions(here + "/rebar3-release.nix", [["platforms", 115, 33]]);
-const pos$6 = nix.positions(here + "/rebar3-release.nix", [["packageName", 121, 13], ["env", 122, 13]]);
-const pos$7 = nix.positions(here + "/rebar3-release.nix", [["version", 60, 17], ["pname", 60, 25], ["nativeBuildInputs", 62, 9], ["buildInputs", 67, 9], ["__structuredAttrs", 69, 9], ["strictDeps", 70, 9], ["stripDebugList", 73, 9], ["src", 75, 17], ["env", 77, 9], ["configurePhase", 81, 9], ["buildPhase", 87, 9], ["installPhase", 93, 9], ["postInstall", 105, 9], ["meta", 114, 9], ["passthru", 119, 9]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -37,22 +31,22 @@ export default nix.lambda((args) => (() => {
     const configurePhase = nix.argOr($_1, "configurePhase", () => null);
     const meta = nix.argOr($_1, "meta", () => ({}));
     const shell = (drv) => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         name: nix.thunk(() => nix.str`interactive-shell-${nix.sel(drv, "pname")}`),
         buildInputs: nix.thunk(() => [drv]),
       })));
     const customPhases = nix.thunk(() => nix.app(nix.sel(lib, "filterAttrs"), (_) => (v) => !nix.eq(v, null), nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         setupHook: setupHook,
         configurePhase: configurePhase,
         buildPhase: buildPhase,
         installPhase: installPhase,
       }))));
-    const rebar3 = nix.thunk(() => nix.app(rebar3WithPlugins, nix.thunk(() => ({ [nix.POS]: pos$3, plugins: buildPlugins }))));
+    const rebar3 = nix.thunk(() => nix.app(rebar3WithPlugins, nix.thunk(() => ({ [nix.POS]: $pos[2], plugins: buildPlugins }))));
     const pkg = nix.thunk(() => (() => {
       nix.assert_((!nix.asBool(!nix.eq(beamDeps, [])) || nix.asBool(nix.eq(checkouts, null))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/development/beam-modules/rebar3-release.nix:54:5");
       return (self) => nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => nix.update(attrs, nix.update({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           version: version,
           pname: pname,
           nativeBuildInputs: nix.thunk(() => nix.concat(nix.selOr(attrs, () => [], "nativeBuildInputs"), [erlang, rebar3])),
@@ -61,7 +55,10 @@ export default nix.lambda((args) => (() => {
           strictDeps: true,
           stripDebugList: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.eq(releaseType, "release")), "rel")),
           src: src,
-          env: nix.thunk(() => nix.update(nix.selOr(attrs, () => ({}), "env"), { [nix.POS]: pos$4, REBAR_IGNORE_DEPS: nix.thunk(() => !nix.eq(beamDeps, [])) })),
+          env: nix.thunk(() => nix.update(nix.selOr(attrs, () => ({}), "env"), {
+            [nix.POS]: $pos[3],
+            REBAR_IGNORE_DEPS: nix.thunk(() => !nix.eq(beamDeps, [])),
+          })),
           configurePhase: nix.thunk(() => nix.str`runHook preConfigure
 ${nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => !nix.eq(checkouts, null)), nix.thunk(() => nix.str`cp --no-preserve=all -R ${checkouts}/_checkouts .`))}
 runHook postConfigure
@@ -86,10 +83,10 @@ done
 `))),
           meta: nix.thunk(() => nix.update((() => {
             const from = nix.thunk(() => nix.sel(erlang, "meta"));
-            return { [nix.POS]: pos$5, platforms: nix.thunk(() => nix.attr(from, "platforms")) };
+            return { [nix.POS]: $pos[4], platforms: nix.thunk(() => nix.attr(from, "platforms")) };
           })(), meta)),
           passthru: nix.thunk(() => nix.update({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             packageName: pname,
             env: nix.thunk(() => nix.app(shell, self)),
           }, (nix.asBool(nix.has(attrs, "passthru")) ? nix.sel(attrs, "passthru") : {}))),

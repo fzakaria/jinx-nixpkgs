@@ -2,13 +2,13 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["pname", 6, 21]]]);
 const formals$1 = { args: { discord: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/package.nix", [["pname", 6, 21]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const args_1 = args;
   const discord = nix.arg($, "discord");
-  return nix.app(nix.sel(discord, "override"), nix.thunk(() => nix.update({ [nix.POS]: pos$1, pname: "discord-ptb" }, nix.builtins.removeAttrs(args_1, nix.thunk(() => ["discord"])))));
+  return nix.app(nix.sel(discord, "override"), nix.thunk(() => nix.update({ [nix.POS]: $pos[0], pname: "discord-ptb" }, nix.builtins.removeAttrs(args_1, nix.thunk(() => ["discord"])))));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 30, 5], ["sha256", 31, 5]], [["packageName", 59, 7], ["versionPolicy", 60, 7]], [["updateScript", 58, 5]], [["description", 65, 5], ["teams", 66, 5], ["license", 67, 5], ["platforms", 68, 5]], [["pname", 20, 3], ["version", 21, 3], ["outputs", 23, 3], ["src", 29, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 48, 3], ["mesonFlags", 53, 3], ["passthru", 57, 3], ["meta", 64, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, meson: false, mesonEmulatorHook: false, ninja: false, "pkg-config": false, vala: false, "gtk-doc": false, "docbook-xsl-nons": false, docbook_xml_dtd_412: false, glib: false, "gdk-pixbuf": false, "gobject-introspection": false, gnome: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 30, 5], ["sha256", 31, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["packageName", 59, 7], ["versionPolicy", 60, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 58, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 65, 5], ["teams", 66, 5], ["license", 67, 5], ["platforms", 68, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["outputs", 23, 3], ["src", 29, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 48, 3], ["mesonFlags", 53, 3], ["passthru", 57, 3], ["meta", 64, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,12 +23,12 @@ export default nix.lambda((args) => (() => {
   const gobject_introspection = nix.arg($, "gobject-introspection");
   const gnome = nix.arg($, "gnome");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "libmediaart",
       version: "1.9.7",
       outputs: nix.thunk(() => ["out", "dev", "devdoc"]),
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://gnome/sources/libmediaart/${nix.app(nix.sel(lib, "versions", "majorMinor"), nix.thunk(() => nix.sel(finalAttrs, "version")))}/libmediaart-${nix.sel(finalAttrs, "version")}.tar.xz`),
           sha256: "K0Pdn1Tw2NC4nirduDNBqwbXuYyxsucEODWEr5xWD2s=",
         })))),
@@ -49,11 +45,11 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [glib, gdk_pixbuf]),
       mesonFlags: nix.thunk(() => ["-Dgtk_doc=true"]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
-        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: pos$2, packageName: "libmediaart", versionPolicy: "none" })))),
+        [nix.POS]: $pos[2],
+        updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({ [nix.POS]: $pos[1], packageName: "libmediaart", versionPolicy: "none" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Library tasked with managing, extracting and handling media art caches",
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "gnome"))]),
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),

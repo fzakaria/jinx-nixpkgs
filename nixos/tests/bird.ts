@@ -2,24 +2,9 @@
 import * as nix from "../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/bird.nix", [[["vlans", 12, 22]], [["systemPackages", 14, 19]], [["enable", 19, 18]], [["useNetworkd", 17, 9], ["useDHCP", 18, 9], ["firewall", 19, 9]], [["Address", 24, 23]], [["name", 23, 9], ["networkConfig", 24, 9]], [["01-eth1", 22, 32]], [["networks", 22, 23]], [["rules", 97, 24]], [["network", 22, 15], ["tmpfiles", 97, 15]], [["package", 28, 17], ["enable", 30, 9], ["config", 32, 9], ["preCheckConfig", 91, 9]], [["bird", 27, 16]], [["virtualisation", 12, 7], ["environment", 14, 7], ["networking", 16, 7], ["systemd", 22, 7], ["services", 27, 7]], [["host1", 107, 11], ["host2", 108, 11]], [["name", 105, 5], ["nodes", 107, 5], ["testScript", 110, 5]], [["twoNodeOSPF", 104, 3]]]);
 const formals$1 = { args: { lib: false, runTest: false, package: false }, ellipsis: false };
 const formals$2 = { args: { pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/bird.nix", [["vlans", 12, 22]]);
-const pos$2 = nix.positions(here + "/bird.nix", [["systemPackages", 14, 19]]);
-const pos$3 = nix.positions(here + "/bird.nix", [["enable", 19, 18]]);
-const pos$4 = nix.positions(here + "/bird.nix", [["useNetworkd", 17, 9], ["useDHCP", 18, 9], ["firewall", 19, 9]]);
-const pos$5 = nix.positions(here + "/bird.nix", [["Address", 24, 23]]);
-const pos$6 = nix.positions(here + "/bird.nix", [["name", 23, 9], ["networkConfig", 24, 9]]);
-const pos$7 = nix.positions(here + "/bird.nix", [["01-eth1", 22, 32]]);
-const pos$8 = nix.positions(here + "/bird.nix", [["networks", 22, 23]]);
-const pos$9 = nix.positions(here + "/bird.nix", [["rules", 97, 24]]);
-const pos$10 = nix.positions(here + "/bird.nix", [["network", 22, 15], ["tmpfiles", 97, 15]]);
-const pos$11 = nix.positions(here + "/bird.nix", [["package", 28, 17], ["enable", 30, 9], ["config", 32, 9], ["preCheckConfig", 91, 9]]);
-const pos$12 = nix.positions(here + "/bird.nix", [["bird", 27, 16]]);
-const pos$13 = nix.positions(here + "/bird.nix", [["virtualisation", 12, 7], ["environment", 14, 7], ["networking", 16, 7], ["systemd", 22, 7], ["services", 27, 7]]);
-const pos$14 = nix.positions(here + "/bird.nix", [["host1", 107, 11], ["host2", 108, 11]]);
-const pos$15 = nix.positions(here + "/bird.nix", [["name", 105, 5], ["nodes", 107, 5], ["testScript", 110, 5]]);
-const pos$16 = nix.positions(here + "/bird.nix", [["twoNodeOSPF", 104, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,36 +15,36 @@ export default nix.lambda((args) => (() => {
     const $_1 = nix.formals(args_1, formals$2);
     const pkgs = nix.arg($_1, "pkgs");
     return {
-      [nix.POS]: pos$13,
-      virtualisation: nix.thunk(() => ({ [nix.POS]: pos$1, vlans: nix.thunk(() => [1n]) })),
+      [nix.POS]: $pos[12],
+      virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[0], vlans: nix.thunk(() => [1n]) })),
       environment: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         systemPackages: nix.thunk(() => (() => {
           const w = nix.withScope(pkgs, null);
           return [nix.thunk(() => nix.lookup(w, "jq"))];
         })()),
       })),
       networking: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         useNetworkd: true,
         useDHCP: false,
-        firewall: nix.thunk(() => ({ [nix.POS]: pos$3, enable: false })),
+        firewall: nix.thunk(() => ({ [nix.POS]: $pos[2], enable: false })),
       })),
       systemd: nix.thunk(() => ({
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         network: nix.thunk(() => ({
-          [nix.POS]: pos$8,
+          [nix.POS]: $pos[7],
           networks: nix.thunk(() => ({
-            [nix.POS]: pos$7,
+            [nix.POS]: $pos[6],
             "01-eth1": nix.thunk(() => ({
-              [nix.POS]: pos$6,
+              [nix.POS]: $pos[5],
               name: "eth1",
-              networkConfig: nix.thunk(() => ({ [nix.POS]: pos$5, Address: nix.thunk(() => nix.str`10.0.0.${hostId}/24`) })),
+              networkConfig: nix.thunk(() => ({ [nix.POS]: $pos[4], Address: nix.thunk(() => nix.str`10.0.0.${hostId}/24`) })),
             })),
           })),
         })),
         tmpfiles: nix.thunk(() => ({
-          [nix.POS]: pos$9,
+          [nix.POS]: $pos[8],
           rules: nix.thunk(() => [
             nix.thunk(() => nix.str`f /etc/bird/static4.conf - - - - route 10.10.0.${hostId}/32 blackhole;`),
             nix.thunk(() => nix.str`f /etc/bird/static6.conf - - - - route fdff::${hostId}/128 blackhole;`),
@@ -67,9 +52,9 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       services: nix.thunk(() => ({
-        [nix.POS]: pos$12,
+        [nix.POS]: $pos[11],
         bird: nix.thunk(() => ({
-          [nix.POS]: pos$11,
+          [nix.POS]: $pos[10],
           package: package$,
           enable: true,
           config: nix.thunk(() => nix.str`log syslog all;
@@ -135,12 +120,12 @@ protocol ospf v3 ospf6 {
     };
   })(), formals$2);
   return {
-    [nix.POS]: pos$16,
+    [nix.POS]: $pos[15],
     twoNodeOSPF: nix.thunk(() => nix.app(runTest, nix.thunk(() => ({
-        [nix.POS]: pos$15,
+        [nix.POS]: $pos[14],
         name: nix.thunk(() => nix.str`bird${nix.app(nix.sel(lib, "versions", "major"), nix.thunk(() => nix.sel(package$, "version")))}-twoNodeOSPF`),
         nodes: nix.thunk(() => ({
-          [nix.POS]: pos$14,
+          [nix.POS]: $pos[13],
           host1: nix.thunk(() => nix.app(makeBirdHost, "1")),
           host2: nix.thunk(() => nix.app(makeBirdHost, "2")),
         })),

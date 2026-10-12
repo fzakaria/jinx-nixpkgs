@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 31, 5], ["repo", 32, 5], ["tag", 33, 5], ["hash", 34, 5]], [["url", 59, 7], ["hash", 60, 7]], [["dcompiler", 166, 13]], [["description", 170, 5], ["homepage", 171, 5], ["license", 172, 5], ["platforms", 173, 5]], [["pname", 27, 3], ["version", 28, 3], ["src", 30, 3], ["nativeBuildInputs", 37, 3], ["propagatedBuildInputs", 42, 3], ["patches", 57, 3], ["postPatch", 64, 3], ["makeFlags", 150, 3], ["postFixup", 158, 3], ["passthru", 165, 3], ["meta", 169, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch2: false, atk: false, cairo: false, dcompiler: true, "gdk-pixbuf": false, gst_all_1: false, ldc: false, librsvg: false, glib: false, gtk3: false, gtksourceview4: false, libpeas: false, pango: false, "pkg-config": false, which: false, vte: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 31, 5], ["repo", 32, 5], ["tag", 33, 5], ["hash", 34, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 59, 7], ["hash", 60, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["dcompiler", 166, 13]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 170, 5], ["homepage", 171, 5], ["license", 172, 5], ["platforms", 173, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 27, 3], ["version", 28, 3], ["src", 30, 3], ["nativeBuildInputs", 37, 3], ["propagatedBuildInputs", 42, 3], ["patches", 57, 3], ["postPatch", 64, 3], ["makeFlags", 150, 3], ["postFixup", 158, 3], ["passthru", 165, 3], ["meta", 169, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,11 +30,11 @@ export default nix.lambda((args) => (() => {
   const gst_plugins_base = nix.thunk(() => nix.attr(gst_all_1, "gst-plugins-base"));
   const gst_plugins_bad = nix.thunk(() => nix.attr(gst_all_1, "gst-plugins-bad"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "gtkd",
       version: "3.11.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "gtkd-developers",
           repo: "GtkD",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -61,7 +57,7 @@ export default nix.lambda((args) => (() => {
       ]),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch2, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/gtkd-developers/GtkD/commit/1e41b2da35c7dc2d18b118c632cb07137d048c2b.patch?full_index=1",
             hash: "sha256-8vQntjVrQH1+qHBBkB5PxcgLvucosEEPi43uqlnHe4g=",
           })))),
@@ -156,9 +152,9 @@ substituteInPlace generated/vte/vte/c/functions.d \\
         nix.thunk(() => nix.str`GTKD_VERSION=${nix.sel(finalAttrs, "version")}`),
       ]),
       postFixup: "for pc in $dev/lib/pkgconfig/*; do\n  substituteInPlace $pc \\\n    --replace \"$out/include\" \"$dev/include\"\ndone\n",
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$3, dcompiler: dcompiler })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[2], dcompiler: dcompiler })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "D binding and OO wrapper for GTK",
         homepage: "https://gtkd.org",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl3Plus")),

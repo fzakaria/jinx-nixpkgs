@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["sha256", 20, 5]], [["package", 55, 7], ["command", 56, 7]], [["version", 54, 5]], [["tests", 53, 12]], [["description", 61, 5], ["mainProgram", 62, 5], ["homepage", 63, 5], ["license", 64, 5], ["maintainers", 65, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["propagatedBuildInputs", 23, 3], ["pyproject", 28, 3], ["dontBuild", 30, 3], ["installPhase", 32, 3], ["makeWrapperArgs", 42, 3], ["passthru", 53, 3], ["meta", 60, 3]]]);
 const formals$1 = { args: { lib: false, python3: false, fetchFromGitHub: false, dbus: false, "signal-cli": false, xclip: false, testers: false, scli: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["sha256", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["package", 55, 7], ["command", 56, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 54, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 53, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 61, 5], ["mainProgram", 62, 5], ["homepage", 63, 5], ["license", 64, 5], ["maintainers", 65, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["propagatedBuildInputs", 23, 3], ["pyproject", 28, 3], ["dontBuild", 30, 3], ["installPhase", 32, 3], ["makeWrapperArgs", 42, 3], ["passthru", 53, 3], ["meta", 60, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const scli = nix.arg($, "scli");
   return nix.app(nix.sel(python3, "pkgs", "buildPythonApplication"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "scli",
       version: "0.7.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "isamert",
           repo: "scli",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -49,14 +44,18 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "makeBinPath"), nix.thunk(() => [dbus, signal_cli, xclip]))),
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$2, package: scli, command: "HOME=$(mktemp -d) scli --version" })))),
+          [nix.POS]: $pos[2],
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
+              [nix.POS]: $pos[1],
+              package: scli,
+              command: "HOME=$(mktemp -d) scli --version",
+            })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Simple terminal user interface for Signal",
         mainProgram: "scli",
         homepage: "https://github.com/isamert/scli",

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 40, 5], ["repo", 41, 5], ["tag", 42, 5], ["hash", 43, 5]], [["all", 59, 5], ["dicom", 60, 5], ["dicomfs", 61, 5], ["indexed_gzip", 62, 5], ["minc2", 63, 5], ["spm", 64, 5], ["viewers", 65, 5], ["zstd", 66, 5]], [["homepage", 82, 5], ["changelog", 83, 5], ["description", 84, 5], ["license", 85, 5], ["maintainers", 86, 5]], [["pname", 35, 3], ["version", 36, 3], ["pyproject", 37, 3], ["src", 39, 3], ["build-system", 46, 3], ["dependencies", 51, 3], ["optional-dependencies", 58, 3], ["nativeCheckInputs", 69, 3], ["pythonImportsCheck", 79, 3], ["meta", 81, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, pythonOlder: false, "hatch-vcs": false, hatchling: false, numpy: false, packaging: false, "importlib-resources": false, "typing-extensions": false, "backports-zstd": false, "indexed-gzip": false, matplotlib: false, pydicom: false, pillow: false, h5py: false, scipy: false, addBinToPathHook: false, gitMinimal: false, "pytest-doctestplus": false, "pytest-httpserver": false, "pytest-xdist": false, pytestCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 40, 5], ["repo", 41, 5], ["tag", 42, 5], ["hash", 43, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["all", 59, 5], ["dicom", 60, 5], ["dicomfs", 61, 5], ["indexed_gzip", 62, 5], ["minc2", 63, 5], ["spm", 64, 5], ["viewers", 65, 5], ["zstd", 66, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["homepage", 82, 5], ["changelog", 83, 5], ["description", 84, 5], ["license", 85, 5], ["maintainers", 86, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 35, 3], ["version", 36, 3], ["pyproject", 37, 3], ["src", 39, 3], ["build-system", 46, 3], ["dependencies", 51, 3], ["optional-dependencies", 58, 3], ["nativeCheckInputs", 69, 3], ["pythonImportsCheck", 79, 3], ["meta", 81, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,12 +31,12 @@ export default nix.lambda((args) => (() => {
   const pytest_xdist = nix.arg($, "pytest-xdist");
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "nibabel",
       version: "5.4.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "nipy",
           repo: "nibabel",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -48,7 +45,7 @@ export default nix.lambda((args) => (() => {
       "build-system": nix.thunk(() => [hatch_vcs, hatchling]),
       dependencies: nix.thunk(() => nix.concat([numpy, packaging], nix.concat(nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(pythonOlder, "3.12")), nix.thunk(() => [importlib_resources])), nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.app(pythonOlder, "3.13")), nix.thunk(() => [typing_extensions]))))),
       "optional-dependencies": nix.thunk(() => nix.app(nix.sel(lib, "fix"), (self) => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           all: nix.thunk(() => nix.concat(nix.sel(self, "dicomfs"), nix.concat(nix.sel(self, "indexed_gzip"), nix.concat(nix.sel(self, "minc2"), nix.concat(nix.sel(self, "spm"), nix.sel(self, "zstd")))))),
           dicom: nix.thunk(() => [pydicom]),
           dicomfs: nix.thunk(() => nix.concat([pillow], nix.sel(self, "dicom"))),
@@ -68,7 +65,7 @@ export default nix.lambda((args) => (() => {
       ], nix.sel(finalAttrs, "passthru", "optional-dependencies", "all"))),
       pythonImportsCheck: nix.thunk(() => ["nibabel"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         homepage: "https://nipy.org/nibabel",
         changelog: nix.thunk(() => nix.str`https://github.com/nipy/nibabel/blob/${nix.sel(finalAttrs, "version")}/Changelog`),
         description: "Access a multitude of neuroimaging data formats",

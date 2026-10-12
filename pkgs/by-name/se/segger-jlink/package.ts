@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 56, 15], ["hash", 57, 26], ["curlOpts", 58, 7]], [["src", 61, 57], ["version", 61, 61]], [["name", 85, 13], ["exec", 86, 13], ["icon", 87, 13], ["desktopName", 88, 13], ["genericName", 89, 13], ["categories", 90, 13], ["type", 91, 13], ["terminal", 92, 13], ["startupNotify", 93, 13]], [["nativeBuildInputs", 64, 5], ["buildInputs", 71, 5], ["appendRunpaths", 76, 5], ["desktopItems", 80, 5], ["installPhase", 112, 5]], [["nativeBuildInputs", 157, 5], ["unpackPhase", 165, 5], ["installPhase", 173, 5]], [["updateScript", 220, 14]], [["description", 223, 7], ["homepage", 224, 7], ["changelog", 225, 7], ["license", 226, 7], ["platforms", 227, 7], ["maintainers", 228, 7]], [["pname", 214, 5], ["src", 215, 13], ["version", 215, 17], ["dontConfigure", 217, 5], ["dontBuild", 218, 5], ["passthru", 220, 5], ["meta", 222, 5]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, callPackage: false, autoPatchelfHook: false, cpio: false, gzip: false, makeWrapper: false, rsync: false, xar: false, udev: false, config: false, acceptLicense: true, headless: true, makeDesktopItem: false, copyDesktopItems: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 56, 15], ["hash", 57, 26], ["curlOpts", 58, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["src", 61, 57], ["version", 61, 61]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 85, 13], ["exec", 86, 13], ["icon", 87, 13], ["desktopName", 88, 13], ["genericName", 89, 13], ["categories", 90, 13], ["type", 91, 13], ["terminal", 92, 13], ["startupNotify", 93, 13]]);
-const pos$4 = nix.positions(here + "/package.nix", [["nativeBuildInputs", 64, 5], ["buildInputs", 71, 5], ["appendRunpaths", 76, 5], ["desktopItems", 80, 5], ["installPhase", 112, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["nativeBuildInputs", 157, 5], ["unpackPhase", 165, 5], ["installPhase", 173, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["updateScript", 220, 14]]);
-const pos$7 = nix.positions(here + "/package.nix", [["description", 223, 7], ["homepage", 224, 7], ["changelog", 225, 7], ["license", 226, 7], ["platforms", 227, 7], ["maintainers", 228, 7]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 214, 5], ["src", 215, 13], ["version", 215, 17], ["dontConfigure", 217, 5], ["dontBuild", 218, 5], ["passthru", 220, 5], ["meta", 222, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -58,20 +51,20 @@ config.nix:
 [2]: https://www.segger.com/purchase/licensing/
 `)))), "/nix/store/rhsxvv1380jmchb5p3a43d24mhlmp2ry-source/pkgs/by-name/se/segger-jlink/package.nix:31:5");
     return nix.app(fetchurl, nix.thunk(() => ({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         url: url,
         hash: nix.thunk(() => nix.attr(platform, "hash")),
         curlOpts: "--data accept_license_agreement=accepted",
       })));
   })());
-  const qt4_bundled = nix.thunk(() => nix.app(callPackage, nix.path(here, "./qt4-bundled.nix"), nix.thunk(() => ({ [nix.POS]: pos$2, src: src, version: version }))));
+  const qt4_bundled = nix.thunk(() => nix.app(callPackage, nix.path(here, "./qt4-bundled.nix"), nix.thunk(() => ({ [nix.POS]: $pos[1], src: src, version: version }))));
   const buildAttrsLinux = nix.thunk(() => ({
-    [nix.POS]: pos$4,
+    [nix.POS]: $pos[3],
     nativeBuildInputs: nix.thunk(() => nix.concat([autoPatchelfHook], nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(headless)), nix.thunk(() => [copyDesktopItems])))),
     buildInputs: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(headless)), nix.thunk(() => [qt4_bundled]))),
     appendRunpaths: nix.thunk(() => [nix.thunk(() => nix.str`${udev}/lib`)]),
     desktopItems: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => !nix.asBool(headless)), nix.thunk(() => nix.builtins.map((entry) => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: entry,
             exec: entry,
             icon: "applications-utilities",
@@ -119,7 +112,7 @@ runHook postInstall
 `),
   }));
   const buildAttrsDarwin = nix.thunk(() => ({
-    [nix.POS]: pos$5,
+    [nix.POS]: $pos[4],
     nativeBuildInputs: nix.thunk(() => [cpio, gzip, makeWrapper, rsync, xar]),
     unpackPhase: "runHook preUnpack\n\nxar -xf $src\n\nrunHook postUnpack\n",
     installPhase: nix.thunk(() => nix.str`runHook preInstall
@@ -149,15 +142,15 @@ runHook postInstall
   }));
   const buildAttrs = nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) ? nix.force(buildAttrsLinux) : (nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")) ? nix.force(buildAttrsDarwin) : nix.builtins.throw("platform not supported"))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => nix.update(buildAttrs, {
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "segger-jlink",
       src: src,
       version: version,
       dontConfigure: true,
       dontBuild: true,
-      passthru: nix.thunk(() => ({ [nix.POS]: pos$6, updateScript: nix.path(here, "./update.py") })),
+      passthru: nix.thunk(() => ({ [nix.POS]: $pos[5], updateScript: nix.path(here, "./update.py") })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "J-Link Software and Documentation pack",
         homepage: "https://www.segger.com/downloads/jlink/#J-LinkSoftwareAndDocumentationPack",
         changelog: "https://www.segger.com/downloads/jlink/ReleaseNotes_JLink.html",

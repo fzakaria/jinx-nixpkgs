@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/build.zig.zon.nix", [[["url", 13, 7], ["rev", 14, 7], ["hash", 15, 7]], [["name", 11, 5], ["path", 12, 5]]]);
 const formals$1 = { args: { linkFarm: false, fetchzip: false, fetchgit: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/build.zig.zon.nix", [["url", 13, 7], ["rev", 14, 7], ["hash", 15, 7]]);
-const pos$2 = nix.positions(here + "/build.zig.zon.nix", [["name", 11, 5], ["path", 12, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -13,10 +12,10 @@ export default nix.lambda((args) => (() => {
   const fetchgit = nix.arg($, "fetchgit");
   return nix.app(linkFarm, "zig-packages", nix.thunk(() => [
       nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         name: "toml-0.3.2-YDcxkrdYAQB8b9k1q_sp51jt2ymgGLmOX_BD4kQi53Eo",
         path: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             url: "https://github.com/lepton9/zig-toml",
             rev: "8a9b79dde56ac1fc38960ed9c482efb9ff88a6a8",
             hash: "sha256-LAE/l049Bvh3VKT7XrTYEdj+Ekg3JWO2op37ec58sFU=",

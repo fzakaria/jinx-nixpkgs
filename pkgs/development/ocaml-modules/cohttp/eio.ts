@@ -2,9 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/eio.nix", [[["description", 48, 5]], [["pname", 18, 3], ["version", 20, 5], ["src", 21, 5], ["minimalOCamlVersion", 24, 3], ["propagatedBuildInputs", 26, 3], ["__darwinAllowLocalNetworking", 36, 3], ["doCheck", 38, 3], ["checkInputs", 39, 3], ["meta", 47, 3]]]);
 const formals$1 = { args: { buildDunePackage: false, cohttp: false, eio: false, fmt: false, http: false, logs: false, ptime: false, uri: false, alcotest: false, "ca-certs": false, eio_main: false, ppx_expect: false, "tls-eio": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/eio.nix", [["description", 48, 5]]);
-const pos$2 = nix.positions(here + "/eio.nix", [["pname", 18, 3], ["version", 20, 5], ["src", 21, 5], ["minimalOCamlVersion", 24, 3], ["propagatedBuildInputs", 26, 3], ["__darwinAllowLocalNetworking", 36, 3], ["doCheck", 38, 3], ["checkInputs", 39, 3], ["meta", 47, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,7 +21,7 @@ export default nix.lambda((args) => (() => {
   const ppx_expect = nix.arg($, "ppx_expect");
   const tls_eio = nix.arg($, "tls-eio");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       pname: "cohttp-eio",
       version: nix.thunk(() => nix.attr(cohttp, "version")),
       src: nix.thunk(() => nix.attr(cohttp, "src")),
@@ -31,7 +30,7 @@ export default nix.lambda((args) => (() => {
       __darwinAllowLocalNetworking: true,
       doCheck: true,
       checkInputs: nix.thunk(() => [alcotest, ca_certs, eio_main, ppx_expect, tls_eio]),
-      meta: nix.thunk(() => nix.update(nix.sel(cohttp, "meta"), { [nix.POS]: pos$1, description: "CoHTTP implementation with eio backend" })),
+      meta: nix.thunk(() => nix.update(nix.sel(cohttp, "meta"), { [nix.POS]: $pos[0], description: "CoHTTP implementation with eio backend" })),
     })));
 })(), formals$1);
 //# sourceMappingURL=eio.ts.map

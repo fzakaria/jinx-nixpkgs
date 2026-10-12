@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["region", 17, 45]], [["owner", 25, 5], ["repo", 26, 5], ["rev", 27, 5], ["hash", 28, 5]], [["name", 33, 7], ["url", 34, 7], ["hash", 35, 7]], [["homepage", 75, 5], ["description", 76, 5], ["longDescription", 77, 5], ["mainProgram", 82, 5], ["license", 83, 5], ["maintainers", 84, 5], ["platforms", 85, 5]], [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["patches", 31, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 45, 3], ["enableParallelBuilding", 51, 3], ["makeFlags", 53, 3], ["preBuild", 60, 3], ["installPhase", 65, 3], ["meta", 74, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch: false, python3: false, "pkg-config": false, audiofile: false, SDL2: false, libGL: false, hexdump: false, sm64baserom: false, region: true, _60fps: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["region", 17, 45]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 25, 5], ["repo", 26, 5], ["rev", 27, 5], ["hash", 28, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 33, 7], ["url", 34, 7], ["hash", 35, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["homepage", 75, 5], ["description", 76, 5], ["longDescription", 77, 5], ["mainProgram", 82, 5], ["license", 83, 5], ["maintainers", 84, 5], ["platforms", 85, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 21, 3], ["version", 22, 3], ["src", 24, 3], ["patches", 31, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 45, 3], ["enableParallelBuilding", 51, 3], ["makeFlags", 53, 3], ["preBuild", 60, 3], ["installPhase", 65, 3], ["meta", 74, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,13 +20,13 @@ export default nix.lambda((args) => (() => {
   const sm64baserom = nix.arg($, "sm64baserom");
   const region = nix.argOr($, "region", () => "us");
   const _60fps = nix.argOr($, "_60fps", () => true);
-  const baseRom = nix.thunk(() => nix.sel(nix.app(nix.sel(sm64baserom, "override"), nix.thunk(() => ({ [nix.POS]: pos$1, region: region }))), "romPath"));
+  const baseRom = nix.thunk(() => nix.sel(nix.app(nix.sel(sm64baserom, "override"), nix.thunk(() => ({ [nix.POS]: $pos[0], region: region }))), "romPath"));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "sm64ex",
       version: "0-unstable-2024-12-17",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "sm64pc",
           repo: "sm64ex",
           rev: "d7ca2c04364a6dd0dac58b47151e04e26887e6f0",
@@ -38,7 +34,7 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), _60fps, nix.thunk(() => [
           nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               name: "60fps_ex.patch",
               url: nix.thunk(() => nix.str`file://${nix.sel(finalAttrs, "src")}/enhancements/60fps_ex.patch`),
               hash: "sha256-2V7WcZ8zG8Ef0bHmXVz2iaR48XRRDjTvynC4RPxMkcA=",
@@ -59,7 +55,7 @@ cp build/${region}_pc/sm64.${region}.f3dex2e $out/bin/sm64ex
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://github.com/sm64pc/sm64ex",
         description: "Super Mario 64 port based off of decompilation",
         longDescription: "Note that you must supply a baserom yourself to extract assets from.\nIf you are not using an US baserom, you must overwrite the \"region\" attribute with either \"eu\" or \"jp\".\nIf you would like to use patches sm64ex distributes as makeflags, add them to the \"compileFlags\" attribute.\n",

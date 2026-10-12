@@ -2,56 +2,46 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/flatpak-builder.nix", [[["enable", 7, 22]], [["flatpak", 7, 14]], [["default", 11, 21]], [["common", 11, 14]], [["enable", 9, 7], ["extraPortals", 10, 7], ["config", 11, 7]], [["portal", 8, 9]], [["systemPackages", 13, 17]], [["diskSize", 16, 20]], [["enable", 17, 9]], [["services", 7, 5], ["xdg", 8, 5], ["environment", 13, 5], ["virtualisation", 16, 5], ["nix", 17, 5]], [["tested", 4, 3], ["testConfig", 6, 3], ["testRunnerFlags", 20, 3]]]);
 const formals$1 = { args: { pkgs: false, makeInstalledTest: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/flatpak-builder.nix", [["enable", 7, 22]]);
-const pos$2 = nix.positions(here + "/flatpak-builder.nix", [["flatpak", 7, 14]]);
-const pos$3 = nix.positions(here + "/flatpak-builder.nix", [["default", 11, 21]]);
-const pos$4 = nix.positions(here + "/flatpak-builder.nix", [["common", 11, 14]]);
-const pos$5 = nix.positions(here + "/flatpak-builder.nix", [["enable", 9, 7], ["extraPortals", 10, 7], ["config", 11, 7]]);
-const pos$6 = nix.positions(here + "/flatpak-builder.nix", [["portal", 8, 9]]);
-const pos$7 = nix.positions(here + "/flatpak-builder.nix", [["systemPackages", 13, 17]]);
-const pos$8 = nix.positions(here + "/flatpak-builder.nix", [["diskSize", 16, 20]]);
-const pos$9 = nix.positions(here + "/flatpak-builder.nix", [["enable", 17, 9]]);
-const pos$10 = nix.positions(here + "/flatpak-builder.nix", [["services", 7, 5], ["xdg", 8, 5], ["environment", 13, 5], ["virtualisation", 16, 5], ["nix", 17, 5]]);
-const pos$11 = nix.positions(here + "/flatpak-builder.nix", [["tested", 4, 3], ["testConfig", 6, 3], ["testRunnerFlags", 20, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const pkgs = nix.arg($, "pkgs");
   const makeInstalledTest = nix.arg($, "makeInstalledTest");
   return nix.app(makeInstalledTest, nix.thunk(() => ({
-      [nix.POS]: pos$11,
+      [nix.POS]: $pos[10],
       tested: nix.thunk(() => nix.sel(pkgs, "flatpak-builder")),
       testConfig: nix.thunk(() => ({
-        [nix.POS]: pos$10,
+        [nix.POS]: $pos[9],
         services: nix.thunk(() => ({
-          [nix.POS]: pos$2,
-          flatpak: nix.thunk(() => ({ [nix.POS]: pos$1, enable: true })),
+          [nix.POS]: $pos[1],
+          flatpak: nix.thunk(() => ({ [nix.POS]: $pos[0], enable: true })),
         })),
         xdg: nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           portal: nix.thunk(() => ({
-            [nix.POS]: pos$5,
+            [nix.POS]: $pos[4],
             enable: true,
             extraPortals: nix.thunk(() => (() => {
               const w = nix.withScope(pkgs, null);
               return [nix.thunk(() => nix.lookup(w, "xdg-desktop-portal-gtk"))];
             })()),
             config: nix.thunk(() => ({
-              [nix.POS]: pos$4,
-              common: nix.thunk(() => ({ [nix.POS]: pos$3, default: "gtk" })),
+              [nix.POS]: $pos[3],
+              common: nix.thunk(() => ({ [nix.POS]: $pos[2], default: "gtk" })),
             })),
           })),
         })),
         environment: nix.thunk(() => ({
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           systemPackages: nix.thunk(() => (() => {
             const w = nix.withScope(pkgs, null);
             return nix.concat([nix.thunk(() => nix.lookup(w, "flatpak-builder"))], nix.sel(nix.lookup(w, "flatpak-builder"), "installedTestsDependencies"));
           })()),
         })),
-        virtualisation: nix.thunk(() => ({ [nix.POS]: pos$8, diskSize: 2048n })),
-        nix: nix.thunk(() => ({ [nix.POS]: pos$9, enable: true })),
+        virtualisation: nix.thunk(() => ({ [nix.POS]: $pos[7], diskSize: 2048n })),
+        nix: nix.thunk(() => ({ [nix.POS]: $pos[8], enable: true })),
       })),
       testRunnerFlags: nix.thunk(() => ["--timeout", "3600"]),
     })));

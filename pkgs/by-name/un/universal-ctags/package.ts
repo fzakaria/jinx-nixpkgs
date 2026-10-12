@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 24, 5], ["repo", 25, 5], ["rev", 26, 5], ["hash", 27, 5]], [["homepage", 80, 5], ["description", 81, 5], ["longDescription", 82, 5], ["license", 88, 5], ["maintainers", 89, 5], ["platforms", 90, 5], ["mainProgram", 91, 5], ["priority", 92, 5]], [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["depsBuildBuild", 30, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 41, 3], ["configureFlags", 50, 3], ["patches", 52, 3], ["postPatch", 56, 3], ["postInstall", 65, 3], ["doCheck", 69, 3], ["checkFlags", 71, 3], ["meta", 79, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, autoreconfHook: false, buildPackages: false, coreutils: false, fetchFromGitHub: false, jansson: false, libiconv: false, perl: false, "pkg-config": false, python3: false, libseccomp: false, libyaml: false, pcre2: false, libxml2: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 24, 5], ["repo", 25, 5], ["rev", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["homepage", 80, 5], ["description", 81, 5], ["longDescription", 82, 5], ["license", 88, 5], ["maintainers", 89, 5], ["platforms", 90, 5], ["mainProgram", 91, 5], ["priority", 92, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["depsBuildBuild", 30, 3], ["nativeBuildInputs", 34, 3], ["buildInputs", 41, 3], ["configureFlags", 50, 3], ["patches", 52, 3], ["postPatch", 56, 3], ["postInstall", 65, 3], ["doCheck", 69, 3], ["checkFlags", 71, 3], ["meta", 79, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -25,11 +23,11 @@ export default nix.lambda((args) => (() => {
   const pcre2 = nix.arg($, "pcre2");
   const libxml2 = nix.arg($, "libxml2");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "universal-ctags",
       version: "6.2.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "universal-ctags",
           repo: "ctags",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -55,7 +53,7 @@ patchShebangs misc/*
       doCheck: true,
       checkFlags: nix.thunk(() => ["man-test", "tlib", "tmain", "tutil", "units"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         homepage: "https://docs.ctags.io/en/latest/",
         description: "Maintained ctags implementation",
         longDescription: "Universal Ctags (abbreviated as u-ctags) is a maintained implementation of\nctags. ctags generates an index (or tag) file of language objects found in\nsource files for programming languages. This index makes it easy for text\neditors and other tools to locate the indexed items.\n",

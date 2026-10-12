@@ -2,12 +2,8 @@
 import * as nix from "../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["url", 14, 5], ["sha256", 15, 5]], [["attrPath", 21, 7]], [["pythonPath", 19, 5], ["updateScript", 20, 5]], [["homepage", 26, 5], ["description", 27, 5], ["license", 28, 5], ["teams", 29, 5]], [["pname", 9, 3], ["namespace", 10, 3], ["version", 11, 3], ["src", 13, 3], ["passthru", 18, 3], ["meta", 25, 3]]]);
 const formals$1 = { args: { lib: false, rel: false, buildKodiAddon: false, fetchzip: false, addonUpdateScript: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["url", 14, 5], ["sha256", 15, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["attrPath", 21, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pythonPath", 19, 5], ["updateScript", 20, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["homepage", 26, 5], ["description", 27, 5], ["license", 28, 5], ["teams", 29, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 9, 3], ["namespace", 10, 3], ["version", 11, 3], ["src", 13, 3], ["passthru", 18, 3], ["meta", 25, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,23 +17,23 @@ export default nix.lambda((args) => (() => {
       const namespace = "script.module.chardet";
       const version = "5.1.0";
       const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://mirrors.kodi.tv/addons/${nix.app(nix.sel(lib, "toLower"), rel)}/${namespace}/${namespace}-${version}.zip`),
           sha256: "sha256-cIQIX6LVAoGf1sBRKWonXJd3XYqGOa5WIUttabV0HeU=",
         }))));
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pythonPath: "lib",
-        updateScript: nix.thunk(() => nix.app(addonUpdateScript, nix.thunk(() => ({ [nix.POS]: pos$2, attrPath: "kodi.packages.chardet" })))),
+        updateScript: nix.thunk(() => nix.app(addonUpdateScript, nix.thunk(() => ({ [nix.POS]: $pos[1], attrPath: "kodi.packages.chardet" })))),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://github.com/Freso/script.module.chardet",
         description: "Universal encoding detector",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl2Only")),
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "kodi"))]),
       }));
-      return { [nix.POS]: pos$5, pname, namespace, version, src, passthru, meta };
+      return { [nix.POS]: $pos[4], pname, namespace, version, src, passthru, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=default.ts.map

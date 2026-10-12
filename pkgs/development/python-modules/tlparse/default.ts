@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]], [["pname", 25, 26], ["version", 25, 32], ["src", 25, 40], ["hash", 26, 5]], [["pname", 40, 7], ["version", 41, 7], ["src", 42, 7], ["cargoHash", 43, 7]], [["integration", 38, 18]], [["tests", 38, 12]], [["description", 48, 5], ["homepage", 49, 5], ["changelog", 50, 5], ["license", 51, 5], ["maintainers", 52, 5], ["mainProgram", 53, 5]], [["pname", 11, 3], ["version", 12, 3], ["pyproject", 13, 3], ["__structuredAttrs", 14, 3], ["src", 16, 3], ["cargoHash", 23, 3], ["cargoDeps", 24, 3], ["build-system", 29, 3], ["doInstallCheck", 34, 3], ["nativeInstallCheckInputs", 35, 3], ["passthru", 38, 3], ["meta", 47, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, rustPlatform: false, pytestCheckHook: false, versionCheckHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["pname", 25, 26], ["version", 25, 32], ["src", 25, 40], ["hash", 26, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 40, 7], ["version", 41, 7], ["src", 42, 7], ["cargoHash", 43, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["integration", 38, 18]]);
-const pos$5 = nix.positions(here + "/default.nix", [["tests", 38, 12]]);
-const pos$6 = nix.positions(here + "/default.nix", [["description", 48, 5], ["homepage", 49, 5], ["changelog", 50, 5], ["license", 51, 5], ["maintainers", 52, 5], ["mainProgram", 53, 5]]);
-const pos$7 = nix.positions(here + "/default.nix", [["pname", 11, 3], ["version", 12, 3], ["pyproject", 13, 3], ["__structuredAttrs", 14, 3], ["src", 16, 3], ["cargoHash", 23, 3], ["cargoDeps", 24, 3], ["build-system", 29, 3], ["doInstallCheck", 34, 3], ["nativeInstallCheckInputs", 35, 3], ["passthru", 38, 3], ["meta", 47, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,13 +14,13 @@ export default nix.lambda((args) => (() => {
   const pytestCheckHook = nix.arg($, "pytestCheckHook");
   const versionCheckHook = nix.arg($, "versionCheckHook");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "tlparse",
       version: "0.4.8",
       pyproject: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "meta-pytorch",
           repo: "tlparse",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -34,7 +28,7 @@ export default nix.lambda((args) => (() => {
         })))),
       cargoHash: "sha256-q5JaOacChdg57dBL5vQjYd1ht2fBBYnw6+RFIWXYfkY=",
       cargoDeps: nix.thunk(() => nix.app(nix.sel(rustPlatform, "fetchCargoVendor"), nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -47,11 +41,11 @@ export default nix.lambda((args) => (() => {
       doInstallCheck: true,
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           integration: nix.thunk(() => nix.app(nix.sel(rustPlatform, "buildRustPackage"), nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
               version: nix.thunk(() => nix.attr(finalAttrs, "version")),
               src: nix.thunk(() => nix.attr(finalAttrs, "src")),
@@ -60,7 +54,7 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Top-level parser for PyTorch profiler and autograd traces",
         homepage: "https://github.com/meta-pytorch/tlparse",
         changelog: nix.thunk(() => nix.str`https://github.com/meta-pytorch/tlparse/releases/tag/v${nix.sel(finalAttrs, "version")}`),

@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["package", 71, 9], ["version", 72, 17]], [["version", 67, 13]], [["unwrapped", 66, 7], ["tests", 67, 7]], [["mainProgram", 77, 7]], [["pname", 36, 5], ["version", 37, 13], ["runScript", 39, 5], ["targetPkgs", 45, 5], ["nativeBuildInputs", 53, 5], ["extraInstallCommands", 55, 5], ["passthru", 65, 5], ["meta", 76, 5]], [["pname", 86, 38]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildFHSEnv: false, makeWrapper: false, testers: false, writeShellScript: false, "kiro-cli-unwrapped": false, waylandSupport: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["package", 71, 9], ["version", 72, 17]]);
-const pos$2 = nix.positions(here + "/package.nix", [["version", 67, 13]]);
-const pos$3 = nix.positions(here + "/package.nix", [["unwrapped", 66, 7], ["tests", 67, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["mainProgram", 77, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 36, 5], ["version", 37, 13], ["runScript", 39, 5], ["targetPkgs", 45, 5], ["nativeBuildInputs", 53, 5], ["extraInstallCommands", 55, 5], ["passthru", 65, 5], ["meta", 76, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 86, 38]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -23,7 +18,7 @@ export default nix.lambda((args) => (() => {
   const version = nix.thunk(() => nix.attr(kiro_cli_unwrapped, "version"));
   const meta = nix.thunk(() => nix.attr(kiro_cli_unwrapped, "meta"));
   const fhsenv = nix.thunk(() => nix.app(buildFHSEnv, nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "kiro-cli",
       version: version,
       runScript: nix.thunk(() => nix.app(writeShellScript, "kiro-cli", "command=\"$1\"\nshift\nexec \"$command\" \"$@\"\n")),
@@ -34,15 +29,15 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [makeWrapper]),
       extraInstallCommands: "mkdir -p $out/libexec/kiro-cli\nmv $out/bin/kiro-cli $out/libexec/kiro-cli/kiro-cli-wrapper\n\nfor command in kiro-cli kiro-cli-chat kiro-cli-term; do\n  makeWrapper \"$out/libexec/kiro-cli/kiro-cli-wrapper\" \"$out/bin/$command\" \\\n    --add-flags \"$command\"\ndone\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         unwrapped: kiro_cli_unwrapped,
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$2,
-          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: pos$1, package: kiro_cli_unwrapped, version: version })))),
+          [nix.POS]: $pos[1],
+          version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({ [nix.POS]: $pos[0], package: kiro_cli_unwrapped, version: version })))),
         })),
       })),
-      meta: nix.thunk(() => nix.update(meta, { [nix.POS]: pos$4, mainProgram: "kiro-cli" })),
+      meta: nix.thunk(() => nix.update(meta, { [nix.POS]: $pos[3], mainProgram: "kiro-cli" })),
     }))));
-  return (nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) ? nix.force(fhsenv) : nix.app(nix.sel(kiro_cli_unwrapped, "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: pos$6, pname: "kiro-cli" }))));
+  return (nix.asBool(nix.sel(stdenv, "hostPlatform", "isLinux")) ? nix.force(fhsenv) : nix.app(nix.sel(kiro_cli_unwrapped, "overrideAttrs"), nix.thunk(() => ({ [nix.POS]: $pos[5], pname: "kiro-cli" }))));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

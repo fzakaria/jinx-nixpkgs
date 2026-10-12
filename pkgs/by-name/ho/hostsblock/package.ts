@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 37, 5], ["repo", 38, 5], ["rev", 39, 5], ["sha256", 40, 5]], [["description", 76, 5], ["homepage", 77, 5], ["license", 78, 5], ["maintainers", 79, 5], ["platforms", 80, 5]], [["pname", 33, 3], ["version", 34, 3], ["src", 36, 3], ["installPhase", 43, 3], ["meta", 75, 3]]]);
 const formals$1 = { args: { lib: false, coreutils: false, curl: false, fetchFromGitHub: false, unzip: false, p7zip: false, gnused: false, gnugrep: false, stdenv: false, blacklist: true, whitelist: true }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 37, 5], ["repo", 38, 5], ["rev", 39, 5], ["sha256", 40, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 76, 5], ["homepage", 77, 5], ["license", 78, 5], ["maintainers", 79, 5], ["platforms", 80, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 33, 3], ["version", 34, 3], ["src", 36, 3], ["installPhase", 43, 3], ["meta", 75, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -38,11 +36,11 @@ export default nix.lambda((args) => (() => {
     ".bp.blogspot.com",
   ]);
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "hostsblock",
       version: "20161213",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "gaenserich",
           repo: "hostsblock",
           rev: "91cacbdfbfb5e7ae9ba3babf8de41e135270c310",
@@ -81,7 +79,7 @@ install -Dm644 systemd/hostsblock.service $out/share/dbus-1/system-services
 install -Dm644 systemd/hostsblock.timer $out/share/dbus-1/system-services
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Ad- and malware-blocking script for Linux",
         homepage: "http://gaenserich.github.io/hostsblock/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3")),

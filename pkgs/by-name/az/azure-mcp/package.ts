@@ -2,15 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 14, 7], ["hash", 15, 7]], [["url", 18, 7], ["hash", 19, 7]], [["url", 22, 7], ["hash", 23, 7]], [["url", 26, 7], ["hash", 27, 7]], [["x86_64-linux", 13, 5], ["aarch64-linux", 17, 5], ["x86_64-darwin", 21, 5], ["aarch64-darwin", 25, 5]], [["url", 32, 65], ["hash", 32, 69], ["stripRoot", 33, 5]], [["description", 67, 5], ["longDescription", 68, 5], ["homepage", 74, 5], ["changelog", 75, 5], ["license", 76, 5], ["sourceProvenance", 77, 5], ["platforms", 78, 5], ["mainProgram", 79, 5], ["maintainers", 80, 5]], [["pname", 37, 3], ["version", 38, 11], ["src", 38, 19], ["strictDeps", 40, 3], ["__structuredAttrs", 41, 3], ["nativeBuildInputs", 43, 3], ["buildInputs", 48, 3], ["dontConfigure", 52, 3], ["dontBuild", 53, 3], ["installPhase", 55, 3], ["meta", 66, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchzip: false, autoPatchelfHook: false, "azure-cli": false, makeWrapper: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 14, 7], ["hash", 15, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 18, 7], ["hash", 19, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 22, 7], ["hash", 23, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["url", 26, 7], ["hash", 27, 7]]);
-const pos$5 = nix.positions(here + "/package.nix", [["x86_64-linux", 13, 5], ["aarch64-linux", 17, 5], ["x86_64-darwin", 21, 5], ["aarch64-darwin", 25, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["url", 32, 65], ["hash", 32, 69], ["stripRoot", 33, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["description", 67, 5], ["longDescription", 68, 5], ["homepage", 74, 5], ["changelog", 75, 5], ["license", 76, 5], ["sourceProvenance", 77, 5], ["platforms", 78, 5], ["mainProgram", 79, 5], ["maintainers", 80, 5]]);
-const pos$8 = nix.positions(here + "/package.nix", [["pname", 37, 3], ["version", 38, 11], ["src", 38, 19], ["strictDeps", 40, 3], ["__structuredAttrs", 41, 3], ["nativeBuildInputs", 43, 3], ["buildInputs", 48, 3], ["dontConfigure", 52, 3], ["dontBuild", 53, 3], ["installPhase", 55, 3], ["meta", 66, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,24 +15,24 @@ export default nix.lambda((args) => (() => {
   const makeWrapper = nix.arg($, "makeWrapper");
   const version = "3.0.0-beta.33";
   const srcs = nix.thunk(() => ({
-    [nix.POS]: pos$5,
+    [nix.POS]: $pos[4],
     "x86_64-linux": nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       url: nix.thunk(() => nix.str`https://github.com/microsoft/mcp/releases/download/Azure.Mcp.Server-${version}/Azure.Mcp.Server-linux-x64-native.zip`),
       hash: "sha256-Zm55CQkPGvdHJDOqeh9A5wBX4HNXg/h2rhkfGRqy0Zk=",
     })),
     "aarch64-linux": nix.thunk(() => ({
-      [nix.POS]: pos$2,
+      [nix.POS]: $pos[1],
       url: nix.thunk(() => nix.str`https://github.com/microsoft/mcp/releases/download/Azure.Mcp.Server-${version}/Azure.Mcp.Server-linux-arm64.zip`),
       hash: "sha256-UY4cYtJE74+dWpOjq9ddhhjCPRavCwvA+VqFLabIV1o=",
     })),
     "x86_64-darwin": nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       url: nix.thunk(() => nix.str`https://github.com/microsoft/mcp/releases/download/Azure.Mcp.Server-${version}/Azure.Mcp.Server-osx-x64.zip`),
       hash: "sha256-aLGpa+DZBKzPlAqMDv3vg7ioN8+DL7AsyhsQvVRywnw=",
     })),
     "aarch64-darwin": nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       url: nix.thunk(() => nix.str`https://github.com/microsoft/mcp/releases/download/Azure.Mcp.Server-${version}/Azure.Mcp.Server-osx-arm64.zip`),
       hash: "sha256-HYvRa3/G+ZJ70w8RKKIoYX9UlOorKwjMheAvHYC8uss=",
     })),
@@ -48,14 +41,14 @@ export default nix.lambda((args) => (() => {
   const src = nix.thunk(() => nix.app(fetchzip, nix.thunk(() => (() => {
       const from = nix.thunk(() => nix.selOr(srcs, () => nix.force(unavailable), nix.key(nix.sel(stdenv, "hostPlatform", "system"))));
       return {
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       url: nix.thunk(() => nix.attr(from, "url")),
       hash: nix.thunk(() => nix.attr(from, "hash")),
       stripRoot: false,
     };
     })())));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$8,
+      [nix.POS]: $pos[7],
       pname: "azure-mcp",
       version: version,
       src: src,
@@ -75,7 +68,7 @@ wrapProgram $out/bin/azure-mcp \\
 runHook postInstall
 `),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$7,
+        [nix.POS]: $pos[6],
         description: "Model Context Protocol server for Azure services",
         longDescription: "The Azure MCP Server implements the Model Context Protocol (MCP)\nspecification to create a seamless connection between AI agents and\nAzure services. It provides 321+ tools for interacting with Azure\nresources including storage, compute, databases, and more.\n",
         homepage: "https://github.com/microsoft/mcp",

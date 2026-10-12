@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/driver.nix", [[["lib", 14, 13], ["fetchFromGitHub", 14, 17]], [["description", 56, 7], ["mainProgram", 57, 7], ["broken", 58, 7]], [["pname", 20, 5], ["version", 21, 5], ["nativeBuildInputs", 23, 5], ["makeFlags", 25, 5], ["doInstallCheck", 29, 5], ["installPhase", 31, 5], ["enableParallelBuilding", 53, 5], ["meta", 55, 5]]]);
 const formals$1 = { args: { coreutils: false, fetchFromGitHub: false, kernel: false, kernelModuleMakeFlags: false, stdenv: false, lib: false, udevCheckHook: false, "util-linux": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/driver.nix", [["lib", 14, 13], ["fetchFromGitHub", 14, 17]]);
-const pos$2 = nix.positions(here + "/driver.nix", [["description", 56, 7], ["mainProgram", 57, 7], ["broken", 58, 7]]);
-const pos$3 = nix.positions(here + "/driver.nix", [["pname", 20, 5], ["version", 21, 5], ["nativeBuildInputs", 23, 5], ["makeFlags", 25, 5], ["doInstallCheck", 29, 5], ["installPhase", 31, 5], ["enableParallelBuilding", 53, 5], ["meta", 55, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,9 +15,9 @@ export default nix.lambda((args) => (() => {
   const lib = nix.arg($, "lib");
   const udevCheckHook = nix.arg($, "udevCheckHook");
   const util_linux = nix.arg($, "util-linux");
-  const common = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../../development/python-modules/openrazer/common.nix")), nix.thunk(() => ({ [nix.POS]: pos$1, lib: lib, fetchFromGitHub: fetchFromGitHub }))));
+  const common = nix.thunk(() => nix.app(nix.builtins.import(nix.path(here, "../../../development/python-modules/openrazer/common.nix")), nix.thunk(() => ({ [nix.POS]: $pos[0], lib: lib, fetchFromGitHub: fetchFromGitHub }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => nix.update(common, {
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "openrazer",
       version: nix.thunk(() => nix.str`${nix.sel(common, "version")}-${nix.sel(kernel, "version")}`),
       nativeBuildInputs: nix.thunk(() => nix.concat([udevCheckHook], nix.sel(kernel, "moduleBuildDependencies"))),
@@ -49,7 +47,7 @@ runHook postInstall
 `),
       enableParallelBuilding: true,
       meta: nix.thunk(() => nix.update(nix.sel(common, "meta"), {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Entirely open source Linux driver that allows you to manage your Razer peripherals on GNU/Linux",
         mainProgram: "razer_mount",
         broken: nix.thunk(() => nix.app(nix.sel(kernel, "kernelOlder"), "4.19")),

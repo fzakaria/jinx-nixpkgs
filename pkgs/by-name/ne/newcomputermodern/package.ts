@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 14, 5], ["rev", 15, 5], ["hash", 16, 5]], [["updateScript", 40, 12]], [["description", 43, 5], ["homepage", 44, 5], ["changelog", 45, 5], ["license", 49, 5], ["maintainers", 50, 5], ["platforms", 51, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 19, 3], ["dontConfigure", 21, 3], ["buildPhase", 23, 3], ["installPhase", 34, 3], ["passthru", 40, 3], ["meta", 42, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchgit: false, fontforge: false, gitUpdater: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 14, 5], ["rev", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 40, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 43, 5], ["homepage", 44, 5], ["changelog", 45, 5], ["license", 49, 5], ["maintainers", 50, 5], ["platforms", 51, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["nativeBuildInputs", 19, 3], ["dontConfigure", 21, 3], ["buildPhase", 23, 3], ["installPhase", 34, 3], ["passthru", 40, 3], ["meta", 42, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const fontforge = nix.arg($, "fontforge");
   const gitUpdater = nix.arg($, "gitUpdater");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "newcomputermodern",
       version: "8.1.1",
       src: nix.thunk(() => nix.app(fetchgit, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: "https://git.gnu.org.ua/newcm.git",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
           hash: "sha256-THlCamuYsLyYjM4IU1ORyXwovOhhiHdmu3q+r4GkMZE=",
@@ -30,11 +27,11 @@ export default nix.lambda((args) => (() => {
       buildPhase: "runHook preBuild\nfor i in sfd/*.sfd; do\n  fontforge -lang=ff -c \\\n    'Open($1);\n    Generate($1:r + \".otf\");\n    ' $i;\ndone\nrunHook postBuild\n",
       installPhase: "runHook preInstall\ninstall -m444 -Dt $out/share/fonts/opentype/public sfd/*.otf\nrunHook postInstall\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Computer Modern fonts including matching non-latin alphabets",
         homepage: "https://ctan.org/pkg/newcomputermodern",
         changelog: "https://mirrors.rit.edu/CTAN/fonts/newcomputermodern/README",

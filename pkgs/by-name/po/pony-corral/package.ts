@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]], [["url", 24, 7], ["hash", 25, 7], ["includes", 26, 7]], [["arch", 30, 7]], [["updateScript", 50, 12]], [["description", 53, 5], ["homepage", 54, 5], ["changelog", 55, 5], ["license", 56, 5], ["maintainers", 57, 5], ["platforms", 61, 26]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["patches", 21, 3], ["env", 30, 3], ["strictDeps", 41, 3], ["nativeBuildInputs", 43, 3], ["installFlags", 45, 3], ["passthru", 50, 3], ["meta", 52, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchpatch: false, ponyc: false, "nix-update-script": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 24, 7], ["hash", 25, 7], ["includes", 26, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["arch", 30, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 50, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 53, 5], ["homepage", 54, 5], ["changelog", 55, 5], ["license", 56, 5], ["maintainers", 57, 5], ["platforms", 61, 26]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["patches", 21, 3], ["env", 30, 3], ["strictDeps", 41, 3], ["nativeBuildInputs", 43, 3], ["installFlags", 45, 3], ["passthru", 50, 3], ["meta", 52, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const ponyc = nix.arg($, "ponyc");
   const nix_update_script = nix.arg($, "nix-update-script");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "corral",
       version: "0.9.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "ponylang",
           repo: "corral",
           rev: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -31,14 +26,14 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "https://github.com/ponylang/corral/commit/10b85e36e5c7ec4503ecb80ff51aa2342e459805.patch",
             hash: "sha256-wDvoW1t/F3ieNlwS+HtxVzhlFX4TDTbAnxJnJnsCvtc=",
             includes: nix.thunk(() => ["corral/semver/version/compare_versions.pony"]),
           })))),
       ]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         arch: nix.thunk(() => (nix.asBool(nix.sel(stdenv, "hostPlatform", "isx86_64")) ? "x86-64" : (nix.asBool(nix.sel(stdenv, "hostPlatform", "isAarch64")) ? "generic" : nix.app(nix.sel(lib, "warn"), nix.thunk(() => nix.str`architecture '${nix.sel(stdenv, "hostPlatform", "system")}' compiles with native optimizations,
 this may result in crashes on incompatible CPUs!
 `), "native")))),
@@ -50,13 +45,13 @@ this may result in crashes on incompatible CPUs!
         "install",
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(ponyc, "meta"));
         return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Corral is a dependency management tool for ponylang (ponyc)",
         homepage: "https://www.ponylang.io",
         changelog: nix.thunk(() => nix.str`https://github.com/ponylang/corral/blob/${nix.sel(finalAttrs, "version")}/CHANGELOG.md`),

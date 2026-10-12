@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 29, 9], ["message", 30, 9], ["hash", 37, 9]], [["owner", 47, 5], ["repo", 48, 5], ["tag", 49, 5], ["hash", 50, 5], ["preFetch", 51, 5], ["fetchSubmodules", 56, 5]], [["name", 80, 7], ["icon", 81, 7], ["exec", 82, 7], ["comment", 83, 7], ["desktopName", 84, 7], ["categories", 85, 7]], [["description", 143, 5], ["homepage", 144, 5], ["license", 145, 5], ["maintainers", 155, 5], ["mainProgram", 156, 5], ["platforms", 157, 5]], [["pname", 43, 3], ["version", 44, 3], ["src", 46, 3], ["strictDeps", 59, 3], ["nativeBuildInputs", 61, 3], ["buildInputs", 72, 3], ["desktopItems", 78, 3], ["preConfigure", 89, 3], ["hardeningDisable", 107, 3], ["installPhase", 114, 3], ["preFixup", 132, 3], ["postFixup", 138, 3], ["meta", 142, 3]]]);
 const formals$1 = { args: { lib: false, mk64baserom: true, requireFile: false, fetchFromGitHub: false, llvmPackages_19: false, cmake: false, copyDesktopItems: false, installShellFiles: false, makeWrapper: false, ninja: false, "pkg-config": false, wrapGAppsHook3: false, SDL2: false, gtk3: false, "vulkan-loader": false, makeDesktopItem: false, n64recomp: false, "directx-shader-compiler": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 29, 9], ["message", 30, 9], ["hash", 37, 9]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 47, 5], ["repo", 48, 5], ["tag", 49, 5], ["hash", 50, 5], ["preFetch", 51, 5], ["fetchSubmodules", 56, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["name", 80, 7], ["icon", 81, 7], ["exec", 82, 7], ["comment", 83, 7], ["desktopName", 84, 7], ["categories", 85, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 143, 5], ["homepage", 144, 5], ["license", 145, 5], ["maintainers", 155, 5], ["mainProgram", 156, 5], ["platforms", 157, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 43, 3], ["version", 44, 3], ["src", 46, 3], ["strictDeps", 59, 3], ["nativeBuildInputs", 61, 3], ["buildInputs", 72, 3], ["desktopItems", 78, 3], ["preConfigure", 89, 3], ["hardeningDisable", 107, 3], ["installPhase", 114, 3], ["preFixup", 132, 3], ["postFixup", 138, 3], ["meta", 142, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -30,17 +26,17 @@ export default nix.lambda((args) => (() => {
   const n64recomp = nix.arg($, "n64recomp");
   const directx_shader_compiler = nix.arg($, "directx-shader-compiler");
   const baseRom = nix.thunk(() => (nix.asBool(!nix.eq(mk64baserom, null)) ? nix.force(mk64baserom) : nix.app(requireFile, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: "mk64.us.z64",
       message: "mariokart64recomp only supports the US version of Mario Kart 64.\nPlease dump your copy and rename it to mk64.us.z64\nand add it to the nix store using\nnix-store --add-fixed sha256 mk64.us.z64\nSee https://dumping.guide/carts/nintendo/n64 for more details.\n",
       hash: "sha256-1rhTjdY/ATLssoVufTKBbtPDDj5HmuzSPPg/troXpdo=",
     })))));
   return nix.app(nix.sel(llvmPackages_19, "stdenv", "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "mariokart64recomp",
       version: "0.9.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "sonicdcer",
           repo: "MarioKart64Recomp",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -62,7 +58,7 @@ export default nix.lambda((args) => (() => {
       buildInputs: nix.thunk(() => [SDL2, gtk3, vulkan_loader]),
       desktopItems: nix.thunk(() => [
         nix.thunk(() => nix.app(makeDesktopItem, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             name: "MarioKart64Recompiled",
             icon: "MarioKart64Recompiled",
             exec: "MarioKart64Recompiled",
@@ -94,7 +90,7 @@ substituteInPlace CMakeLists.txt \\
 `),
       postFixup: "wrapProgram $out/bin/MarioKart64Recompiled --chdir \"$out/share/mariokart64recomp\"\n",
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Recompilation of MarioKart 64",
         homepage: "https://github.com/sonicdcer/MarioKart64Recomp",
         license: nix.thunk(() => (() => {

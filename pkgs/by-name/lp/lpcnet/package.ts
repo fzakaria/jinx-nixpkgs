@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["sha256", 19, 5]], [["url", 30, 7], ["hash", 31, 7]], [["nnmodel", 29, 5]], [["description", 64, 5], ["homepage", 65, 5], ["license", 66, 5], ["maintainers", 67, 5], ["platforms", 68, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["patches", 22, 3], ["passthru", 27, 3], ["preConfigure", 35, 3], ["nativeBuildInputs", 42, 3], ["buildInputs", 46, 3], ["cmakeFlags", 50, 3], ["doCheck", 54, 3], ["nativeCheckInputs", 55, 3], ["meta", 63, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, fetchurl: false, cmake: false, codec2: false, sox: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 16, 5], ["repo", 17, 5], ["rev", 18, 5], ["sha256", 19, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 30, 7], ["hash", 31, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["nnmodel", 29, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 64, 5], ["homepage", 65, 5], ["license", 66, 5], ["maintainers", 67, 5], ["platforms", 68, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["patches", 22, 3], ["passthru", 27, 3], ["preConfigure", 35, 3], ["nativeBuildInputs", 42, 3], ["buildInputs", 46, 3], ["cmakeFlags", 50, 3], ["doCheck", 54, 3], ["nativeCheckInputs", 55, 3], ["meta", 63, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const codec2 = nix.arg($, "codec2");
   const sox = nix.arg($, "sox");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "LPCNet",
       version: "0.5-unstable-2025-01-19",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "drowe67",
           repo: "LPCNet",
           rev: "c8e51ac5e2fe674849cb53e7da44689b572cc246",
@@ -31,9 +27,9 @@ export default nix.lambda((args) => (() => {
         })))),
       patches: nix.thunk(() => [nix.path(here, "./darwin.patch")]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         nnmodel: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             url: "http://rowetel.com/downloads/deep/lpcnet_191005_v1.0.tgz",
             hash: "sha256-UJRAkkdR/dh/+qVoPuPd3ZN69cgzuRBMzOZdUWFJJsg=",
           })))),
@@ -51,7 +47,7 @@ cp \\
       doCheck: true,
       nativeCheckInputs: nix.thunk(() => [sox]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Experimental Neural Net speech coding for FreeDV",
         homepage: "https://github.com/drowe67/LPCNet",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),

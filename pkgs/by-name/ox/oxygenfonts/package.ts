@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 13, 5], ["hash", 14, 5]], [["description", 20, 5], ["longDescription", 21, 5], ["homepage", 46, 5], ["license", 47, 5], ["maintainers", 48, 5], ["platforms", 49, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["nativeBuildInputs", 17, 3], ["meta", 19, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, fetchzip: false, installFonts: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 13, 5], ["hash", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 20, 5], ["longDescription", 21, 5], ["homepage", 46, 5], ["license", 47, 5], ["maintainers", 48, 5], ["platforms", 49, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["nativeBuildInputs", 17, 3], ["meta", 19, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,17 +12,17 @@ export default nix.lambda((args) => (() => {
   const fetchzip = nix.arg($, "fetchzip");
   const installFonts = nix.arg($, "installFonts");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "oxygenfonts",
       version: "5.4.3",
       src: nix.thunk(() => nix.app(fetchzip, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://invent.kde.org/unmaintained/oxygen-fonts/-/archive/v${nix.sel(finalAttrs, "version")}/oxygen-fonts-v${nix.sel(finalAttrs, "version")}.zip`),
           hash: "sha256-N8fU5/iqgtFqaqdGuqbEVDsFCmVcHXLodo/T5NZMu8U=",
         })))),
       nativeBuildInputs: nix.thunk(() => [installFonts]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Desktop/gui font for integrated use with the KDE desktop",
         longDescription: "Oxygen Font is a font family originally aimed as a desktop/gui\nfont for integrated use with the KDE desktop.\n\nThe basic concept for Oxygen Font was to design a clear,\nlegible, sans serif, that would be rendered with Freetype on\nLinux-based devices. In addition a bold weight, plus regular and\nbold italics, and a monospace version will be made.\n\nOxygen is constructed closely with the gridfitting aspects of\nthe Freetype font rendering engine. The oxygen fonts are also\nautohinted with Werner Lemberg's \"ttfautohint\" library to\nfurther the compatibility with the Freetype engine. The aim of\nthis approach is to produce a family of freetype-specific\ndesktop fonts whose appearance will stay uniform under different\nscreen render settings, unlike more traditionally designed\n'screen fonts' that have tended to be designed for best\nlegibility on the Windows GDI render engine.\n\nThe main creator of Oxygen, Vernon Adams, suffered a heavy\ntraffic accident three months after its last release, causing him severe brain\ninjury. He finally passed away, sans oxygen, on August 25th 2016.\nSee: http://sansoxygen.com/\n",
         homepage: "https://github.com/vernnobile/oxygenFont",

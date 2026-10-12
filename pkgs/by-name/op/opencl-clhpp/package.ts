@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["fetchSubmodules", 21, 5], ["sha256", 22, 5]], [["package", 45, 7], ["moduleNames", 46, 7]], [["pkg-config", 44, 5]], [["tests", 43, 12]], [["description", 52, 5], ["homepage", 53, 5], ["license", 54, 5], ["maintainers", 55, 5], ["platforms", 56, 5]], [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 25, 3], ["propagatedBuildInputs", 30, 3], ["strictDeps", 32, 3], ["doCheck", 34, 3], ["checkInputs", 35, 3], ["nativeCheckInputs", 36, 3], ["cmakeFlags", 38, 3], ["passthru", 43, 3], ["meta", 51, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, cmake: false, python3: false, ruby: false, "opencl-headers": false, "khronos-ocl-icd-loader": false, testers: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 18, 5], ["repo", 19, 5], ["tag", 20, 5], ["fetchSubmodules", 21, 5], ["sha256", 22, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["package", 45, 7], ["moduleNames", 46, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pkg-config", 44, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 43, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 52, 5], ["homepage", 53, 5], ["license", 54, 5], ["maintainers", 55, 5], ["platforms", 56, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 14, 3], ["version", 15, 3], ["src", 17, 3], ["nativeBuildInputs", 25, 3], ["propagatedBuildInputs", 30, 3], ["strictDeps", 32, 3], ["doCheck", 34, 3], ["checkInputs", 35, 3], ["nativeCheckInputs", 36, 3], ["cmakeFlags", 38, 3], ["passthru", 43, 3], ["meta", 51, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -22,11 +17,11 @@ export default nix.lambda((args) => (() => {
   const khronos_ocl_icd_loader = nix.arg($, "khronos-ocl-icd-loader");
   const testers = nix.arg($, "testers");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "opencl-clhpp",
       version: "2026.05.29",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "KhronosGroup",
           repo: "OpenCL-CLHPP",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -44,18 +39,18 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.app(nix.sel(lib, "cmakeBool"), "BUILD_EXAMPLES", nix.thunk(() => nix.sel(finalAttrs, "finalPackage", "doCheck")))),
       ]),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "hasPkgConfigModules"), nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
               moduleNames: nix.thunk(() => ["OpenCL-CLHPP"]),
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "OpenCL Host API C++ bindings",
         homepage: "http://github.khronos.org/OpenCL-CLHPP/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),

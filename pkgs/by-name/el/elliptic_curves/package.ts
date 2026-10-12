@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 13, 5], ["sha256", 14, 5]], [["url", 19, 5], ["sha256", 20, 5]], [["description", 38, 5], ["longDescription", 39, 5], ["license", 47, 5], ["platforms", 48, 5], ["teams", 49, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["spkg-install", 18, 3], ["installPhase", 23, 3], ["meta", 37, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, python3: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 13, 5], ["sha256", 14, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 19, 5], ["sha256", 20, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 38, 5], ["longDescription", 39, 5], ["license", 47, 5], ["platforms", 48, 5], ["teams", 49, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["spkg-install", 18, 3], ["installPhase", 23, 3], ["meta", 37, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,12 +15,12 @@ export default nix.lambda((args) => (() => {
       const pname = "elliptic_curves";
       const version = "0.8.1";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sageupstream/${pname}/${pname}-${version}.tar.bz2`),
           sha256: "0l7xh4abw5sb4d37r0ylr3vwb88fpx2zrvfm5ql0c7yrv5q59fjz",
         }))));
       const spkg_install = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: nix.thunk(() => nix.str`https://raw.githubusercontent.com/sagemath/sage/07d6c37d18811e2b377a9689790a7c5e24da16ba/build/pkgs/${pname}/spkg-install.py`),
           sha256: "116g684i6mvs11fvb6fzfsr4fn903axn31vigdyb8bgpf8l4hvc5",
         }))));
@@ -40,7 +37,7 @@ export PYTHONPATH=$PWD
 ${nix.sel(python3, "interpreter")} ${spkg_install}
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Databases of elliptic curves",
         longDescription: "Includes two databases:\n\n * A small subset of the data in John Cremona's database of elliptic curves up\n   to conductor 10000. See http://www.warwick.ac.uk/~masgaj/ftp/data/ or\n   http://sage.math.washington.edu/cremona/INDEX.html\n * William Stein's database of interesting curves\n",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),
@@ -48,7 +45,7 @@ ${nix.sel(python3, "interpreter")} ${spkg_install}
         teams: nix.thunk(() => [nix.thunk(() => nix.sel(lib, "teams", "sage"))]),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

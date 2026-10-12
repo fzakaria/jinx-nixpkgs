@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]], [["SODIUM_INSTALL", 51, 7]], [["description", 56, 5], ["homepage", 57, 5], ["license", 58, 5], ["maintainers", 59, 5]], [["pname", 15, 3], ["version", 16, 3], ["outputs", 17, 3], ["pyproject", 21, 3], ["src", 23, 3], ["build-system", 30, 3], ["dependencies", 37, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 41, 3], ["propagatedNativeBuildInputs", 43, 3], ["nativeCheckInputs", 45, 3], ["env", 51, 3], ["pythonImportsCheck", 53, 3], ["meta", 55, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, cffi: false, fetchFromGitHub: false, hypothesis: false, libsodium: false, pytestCheckHook: false, "pytest-xdist": false, setuptools: false, sphinxHook: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 24, 5], ["repo", 25, 5], ["tag", 26, 5], ["hash", 27, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["SODIUM_INSTALL", 51, 7]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 56, 5], ["homepage", 57, 5], ["license", 58, 5], ["maintainers", 59, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 15, 3], ["version", 16, 3], ["outputs", 17, 3], ["pyproject", 21, 3], ["src", 23, 3], ["build-system", 30, 3], ["dependencies", 37, 3], ["nativeBuildInputs", 39, 3], ["buildInputs", 41, 3], ["propagatedNativeBuildInputs", 43, 3], ["nativeCheckInputs", 45, 3], ["env", 51, 3], ["pythonImportsCheck", 53, 3], ["meta", 55, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,7 +23,7 @@ export default nix.lambda((args) => (() => {
       const outputs = nix.thunk(() => ["out", "doc"]);
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "pyca",
           repo: "pynacl",
           tag: version,
@@ -38,10 +35,10 @@ export default nix.lambda((args) => (() => {
       const buildInputs = nix.thunk(() => [libsodium]);
       const propagatedNativeBuildInputs = nix.thunk(() => [cffi]);
       const nativeCheckInputs = nix.thunk(() => [hypothesis, pytestCheckHook, pytest_xdist]);
-      const env = nix.thunk(() => ({ [nix.POS]: pos$2, SODIUM_INSTALL: "system" }));
+      const env = nix.thunk(() => ({ [nix.POS]: $pos[1], SODIUM_INSTALL: "system" }));
       const pythonImportsCheck = nix.thunk(() => ["nacl"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Python binding to the Networking and Cryptography (NaCl) library",
         homepage: "https://github.com/pyca/pynacl/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "asl20")),
@@ -51,7 +48,7 @@ export default nix.lambda((args) => (() => {
         })()),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         outputs,

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 11, 5], ["hash", 12, 5]], [["description", 16, 5], ["longDescription", 17, 5], ["homepage", 22, 5]], [["pname", 4, 3], ["desktopName", 5, 3], ["version", 6, 3], ["icon", 7, 3], ["zip", 10, 3], ["meta", 15, 3]]]);
 const formals$1 = { args: { alephone: false, fetchurl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 11, 5], ["hash", 12, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 16, 5], ["longDescription", 17, 5], ["homepage", 22, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 4, 3], ["desktopName", 5, 3], ["version", 6, 3], ["icon", 7, 3], ["zip", 10, 3], ["meta", 15, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,17 +15,17 @@ export default nix.lambda((args) => (() => {
       const version = "20240510";
       const icon = nix.thunk(() => nix.add(nix.sel(alephone, "icons"), "/marathon.png"));
       const zip = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://github.com/Aleph-One-Marathon/alephone/releases/download/release-${version}/Marathon-${version}-Data.zip`),
           hash: "sha256-shZ82e7veaaT/petxDQ8Fd7YtJPmTgxSCStf0kGfrFs=",
         }))));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "First chapter of the Marathon trilogy",
         longDescription: "Alien forces have boarded the interstellar colony ship Marathon. The situation is dire. As a security officer onboard, it is your duty to defend the ship and its crew.\n\nExperience the start of Bungie’s iconic trilogy with Marathon. This release uses the original Marathon data files for the most authentic experience outside of a classic Mac or emulator.\n",
         homepage: "https://alephone.lhowon.org/games/marathon.html",
       }));
-      return { [nix.POS]: pos$3, pname, desktopName, version, icon, zip, meta };
+      return { [nix.POS]: $pos[2], pname, desktopName, version, icon, zip, meta };
     })()));
 })(), formals$1);
 //# sourceMappingURL=package.ts.map

@@ -2,55 +2,45 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/config.nix", [[["disable_signup", 11, 9], ["results_per_page", 12, 9]], [["address", 14, 14]], [["app", 10, 7], ["server", 14, 7]], [["enable", 4, 5], ["openFirewall", 5, 5], ["port", 7, 5], ["settings", 9, 5]], [["omnom", 3, 12]], [["extid", 28, 58]], [["passthru", 28, 37]], [["nixExtensions", 22, 7]], [["enable", 19, 5], ["package", 21, 5]], [["firefox", 18, 12]], [["services", 3, 3], ["programs", 18, 3]]]);
 const formals$1 = { args: { config: false, pkgs: false }, ellipsis: true };
-const pos$1 = nix.positions(here + "/config.nix", [["disable_signup", 11, 9], ["results_per_page", 12, 9]]);
-const pos$2 = nix.positions(here + "/config.nix", [["address", 14, 14]]);
-const pos$3 = nix.positions(here + "/config.nix", [["app", 10, 7], ["server", 14, 7]]);
-const pos$4 = nix.positions(here + "/config.nix", [["enable", 4, 5], ["openFirewall", 5, 5], ["port", 7, 5], ["settings", 9, 5]]);
-const pos$5 = nix.positions(here + "/config.nix", [["omnom", 3, 12]]);
-const pos$6 = nix.positions(here + "/config.nix", [["extid", 28, 58]]);
-const pos$7 = nix.positions(here + "/config.nix", [["passthru", 28, 37]]);
-const pos$8 = nix.positions(here + "/config.nix", [["nixExtensions", 22, 7]]);
-const pos$9 = nix.positions(here + "/config.nix", [["enable", 19, 5], ["package", 21, 5]]);
-const pos$10 = nix.positions(here + "/config.nix", [["firefox", 18, 12]]);
-const pos$11 = nix.positions(here + "/config.nix", [["services", 3, 3], ["programs", 18, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
   const config = nix.arg($, "config");
   const pkgs = nix.arg($, "pkgs");
   return {
-    [nix.POS]: pos$11,
+    [nix.POS]: $pos[10],
     services: nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       omnom: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         enable: true,
         openFirewall: true,
         port: 9090n,
         settings: nix.thunk(() => ({
-          [nix.POS]: pos$3,
-          app: nix.thunk(() => ({ [nix.POS]: pos$1, disable_signup: false, results_per_page: 50n })),
+          [nix.POS]: $pos[2],
+          app: nix.thunk(() => ({ [nix.POS]: $pos[0], disable_signup: false, results_per_page: 50n })),
           server: nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             address: nix.thunk(() => nix.str`0.0.0.0:${nix.builtins.toString(nix.thunk(() => nix.sel(config, "services", "omnom", "port")))}`),
           })),
         })),
       })),
     })),
     programs: nix.thunk(() => ({
-      [nix.POS]: pos$10,
+      [nix.POS]: $pos[9],
       firefox: nix.thunk(() => ({
-        [nix.POS]: pos$9,
+        [nix.POS]: $pos[8],
         enable: true,
         package: nix.thunk(() => nix.app(nix.sel(pkgs, "wrapFirefox"), nix.thunk(() => nix.sel(pkgs, "librewolf-unwrapped")), nix.thunk(() => ({
-            [nix.POS]: pos$8,
+            [nix.POS]: $pos[7],
             nixExtensions: nix.thunk(() => [
               nix.thunk(() => (() => {
                 const extid = "{f0bca7ce-0cda-41dc-9ea8-126a50fed280}";
                 return nix.app(nix.sel(pkgs, "runCommand"), "omnom", nix.thunk(() => ({
-                    [nix.POS]: pos$7,
-                    passthru: nix.thunk(() => ({ [nix.POS]: pos$6, extid: extid })),
+                    [nix.POS]: $pos[6],
+                    passthru: nix.thunk(() => ({ [nix.POS]: $pos[5], extid: extid })),
                   })), nix.thunk(() => nix.str`mkdir -p $out
 cp ${nix.sel(pkgs, "omnom")}/share/addons/omnom_ext_firefox.zip $out/${extid}.xpi
 `));

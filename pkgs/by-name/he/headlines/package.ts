@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 29, 5], ["repo", 30, 5], ["rev", 31, 5], ["hash", 32, 5]], [["gtkSupport", 57, 34]], [["description", 74, 5], ["homepage", 75, 5], ["license", 76, 5], ["platforms", 77, 5], ["maintainers", 78, 5], ["mainProgram", 79, 5]], [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 41, 3], ["preFixup", 61, 3], ["meta", 73, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, cmake: false, "pkg-config": false, libmicrohttpd: false, curl: false, openssl: false, jsoncpp: false, libxml2: false, gst_all_1: false, boost: false, websocketpp: false, libadwaita: false, gtkmm4: false, libsecret: false, fetchFromGitLab: false, wrapGAppsHook4: false, "xdg-utils": false, "youtube-dl": false, ffmpeg: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 29, 5], ["repo", 30, 5], ["rev", 31, 5], ["hash", 32, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["gtkSupport", 57, 34]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 74, 5], ["homepage", 75, 5], ["license", 76, 5], ["platforms", 77, 5], ["maintainers", 78, 5], ["mainProgram", 79, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 25, 3], ["version", 26, 3], ["src", 28, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 41, 3], ["preFixup", 61, 3], ["meta", 73, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,7 +31,7 @@ export default nix.lambda((args) => (() => {
       const pname = "headlines";
       const version = "0.7.2";
       const src = nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "caveman250",
           repo: "Headlines",
           rev: version,
@@ -58,7 +55,7 @@ export default nix.lambda((args) => (() => {
           nix.thunk(() => nix.lookup(w, "gstreamer")),
           nix.thunk(() => nix.lookup(w, "gst-libav")),
           nix.thunk(() => nix.lookup(w, "gst-plugins-base")),
-          nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "gst-plugins-good"), "override"), nix.thunk(() => ({ [nix.POS]: pos$2, gtkSupport: true })))),
+          nix.thunk(() => nix.app(nix.sel(nix.lookup(w, "gst-plugins-good"), "override"), nix.thunk(() => ({ [nix.POS]: $pos[1], gtkSupport: true })))),
           nix.thunk(() => nix.lookup(w, "gst-plugins-bad")),
         ];
       })()));
@@ -67,7 +64,7 @@ export default nix.lambda((args) => (() => {
 )
 `);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "GTK4 / Libadwaita Reddit client written in C++",
         homepage: "https://gitlab.com/caveman250/Headlines",
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl3Plus")),
@@ -79,7 +76,7 @@ export default nix.lambda((args) => (() => {
         mainProgram: "headlines",
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

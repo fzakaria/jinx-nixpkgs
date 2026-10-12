@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["name", 30, 5], ["paths", 31, 5]], [["url", 39, 5], ["hash", 40, 5]], [["url", 85, 5]], [["updateScript", 84, 12]], [["homepage", 89, 5], ["changelog", 90, 5], ["description", 91, 5], ["longDescription", 92, 5], ["license", 97, 5], ["platforms", 103, 5], ["maintainers", 104, 5]], [["pname", 35, 3], ["version", 36, 3], ["src", 38, 3], ["nativeBuildInputs", 43, 3], ["buildInputs", 48, 3], ["configureFlags", 56, 3], ["installFlags", 61, 3], ["postFixup", 63, 3], ["postInstall", 78, 3], ["passthru", 84, 3], ["meta", 88, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, directoryListingUpdater: false, fetchurl: false, "alsa-lib": false, "alsa-plugins": false, bashNonInteractive: false, gettext: false, makeWrapper: false, "pkg-config": false, ncurses: false, libsamplerate: false, pciutils: false, procps: false, tree: false, which: false, fftwFloat: false, pipewire: false, withPipewireLib: true, symlinkJoin: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["name", 30, 5], ["paths", 31, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["url", 39, 5], ["hash", 40, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 85, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 84, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["homepage", 89, 5], ["changelog", 90, 5], ["description", 91, 5], ["longDescription", 92, 5], ["license", 97, 5], ["platforms", 103, 5], ["maintainers", 104, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 35, 3], ["version", 36, 3], ["src", 38, 3], ["nativeBuildInputs", 43, 3], ["buildInputs", 48, 3], ["configureFlags", 56, 3], ["installFlags", 61, 3], ["postFixup", 63, 3], ["postInstall", 78, 3], ["passthru", 84, 3], ["meta", 88, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -34,16 +29,16 @@ export default nix.lambda((args) => (() => {
   const symlinkJoin = nix.arg($, "symlinkJoin");
   const plugin_packages = nix.thunk(() => nix.concat([alsa_plugins], nix.app(nix.sel(lib, "optional"), withPipewireLib, pipewire)));
   const plugin_dir = nix.thunk(() => nix.app(symlinkJoin, nix.thunk(() => ({
-      [nix.POS]: pos$1,
+      [nix.POS]: $pos[0],
       name: "all-plugins",
       paths: nix.thunk(() => nix.builtins.map((path) => nix.str`${path}/lib/alsa-lib`, plugin_packages)),
     }))));
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "alsa-utils",
       version: "1.2.16",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: nix.thunk(() => nix.str`mirror://alsa/utils/alsa-utils-${nix.sel(finalAttrs, "version")}.tar.bz2`),
           hash: "sha256-CSOZ1eh0mh1eGI45MVdSHOxLdWk7YOu3m7znKM/yIyw=",
         })))),
@@ -59,11 +54,11 @@ done
 `),
       postInstall: "# udev rules are super broken, violating `udevadm verify` in various creative ways.\n# NixOS has its own set of alsa udev rules, we can just delete the udev rules for this package\nrm -rf $out/lib/udev\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
-        updateScript: nix.thunk(() => nix.app(directoryListingUpdater, nix.thunk(() => ({ [nix.POS]: pos$3, url: "https://www.alsa-project.org/files/pub/utils/" })))),
+        [nix.POS]: $pos[3],
+        updateScript: nix.thunk(() => nix.app(directoryListingUpdater, nix.thunk(() => ({ [nix.POS]: $pos[2], url: "https://www.alsa-project.org/files/pub/utils/" })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "http://www.alsa-project.org/",
         changelog: nix.thunk(() => nix.str`https://github.com/alsa-project/alsa-utils/releases/tag/v${nix.sel(finalAttrs, "version")}`),
         description: "ALSA, the Advanced Linux Sound Architecture utils",

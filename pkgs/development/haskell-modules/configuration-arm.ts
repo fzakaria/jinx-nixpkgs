@@ -2,15 +2,9 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/configuration-arm.nix", [[["librarySystemDepends", 48, 7]], [["servant-docs", 35, 3], ["swagger2", 36, 3], ["happy", 39, 3], ["wiringPi", 42, 3]], [["BNFC", 59, 3], ["C-structs", 60, 3], ["Chart-tests", 61, 3], ["Jikka", 62, 3], ["accelerate", 63, 3], ["ad", 64, 3], ["autoapply", 65, 3], ["construct", 66, 3], ["exact-real", 67, 3], ["flight-kml", 68, 3], ["focuslist", 69, 3], ["grammatical-parsers", 70, 3], ["greskell", 71, 3], ["groupBy", 72, 3], ["haskell-time-range", 73, 3], ["headroom", 74, 3], ["hgeometry", 75, 3], ["hhp", 76, 3], ["hsakamai", 77, 3], ["hsemail-ns", 78, 3], ["html-validator-cli", 79, 3], ["hw-fingertree-strict", 80, 3], ["hw-packed-vector", 81, 3], ["hw-prim", 82, 3], ["hw-xml", 83, 3], ["language-nix", 84, 3], ["lens-regex", 85, 3], ["meep", 86, 3], ["openapi3", 87, 3], ["orbits", 88, 3], ["ranged-list", 89, 3], ["rank2classes", 90, 3], ["schedule", 91, 3], ["static", 92, 3], ["strict-writer", 93, 3], ["termonad", 94, 3], ["trifecta", 95, 3], ["twiml", 96, 3], ["twitter-conduit", 97, 3], ["validationt", 98, 3], ["vgrep", 99, 3], ["vinyl", 100, 3], ["vulkan-utils", 101, 3], ["xml-html-qq", 102, 3], ["yaml-combinators", 103, 3], ["yesod-paginator", 104, 3], ["half", 107, 3], ["ghc-prof", 110, 3]], [["cryptonite", 121, 3]], [["android-activity", 125, 3]], [["testFlags", 131, 5]], [["botan-low", 130, 3]]]);
 const formals$1 = { args: { pkgs: false, haskellLib: false }, ellipsis: false };
 const formals$2 = { args: { librarySystemDepends: true }, ellipsis: true };
-const pos$1 = nix.positions(here + "/configuration-arm.nix", [["librarySystemDepends", 48, 7]]);
-const pos$2 = nix.positions(here + "/configuration-arm.nix", [["servant-docs", 35, 3], ["swagger2", 36, 3], ["happy", 39, 3], ["wiringPi", 42, 3]]);
-const pos$3 = nix.positions(here + "/configuration-arm.nix", [["BNFC", 59, 3], ["C-structs", 60, 3], ["Chart-tests", 61, 3], ["Jikka", 62, 3], ["accelerate", 63, 3], ["ad", 64, 3], ["autoapply", 65, 3], ["construct", 66, 3], ["exact-real", 67, 3], ["flight-kml", 68, 3], ["focuslist", 69, 3], ["grammatical-parsers", 70, 3], ["greskell", 71, 3], ["groupBy", 72, 3], ["haskell-time-range", 73, 3], ["headroom", 74, 3], ["hgeometry", 75, 3], ["hhp", 76, 3], ["hsakamai", 77, 3], ["hsemail-ns", 78, 3], ["html-validator-cli", 79, 3], ["hw-fingertree-strict", 80, 3], ["hw-packed-vector", 81, 3], ["hw-prim", 82, 3], ["hw-xml", 83, 3], ["language-nix", 84, 3], ["lens-regex", 85, 3], ["meep", 86, 3], ["openapi3", 87, 3], ["orbits", 88, 3], ["ranged-list", 89, 3], ["rank2classes", 90, 3], ["schedule", 91, 3], ["static", 92, 3], ["strict-writer", 93, 3], ["termonad", 94, 3], ["trifecta", 95, 3], ["twiml", 96, 3], ["twitter-conduit", 97, 3], ["validationt", 98, 3], ["vgrep", 99, 3], ["vinyl", 100, 3], ["vulkan-utils", 101, 3], ["xml-html-qq", 102, 3], ["yaml-combinators", 103, 3], ["yesod-paginator", 104, 3], ["half", 107, 3], ["ghc-prof", 110, 3]]);
-const pos$4 = nix.positions(here + "/configuration-arm.nix", [["cryptonite", 121, 3]]);
-const pos$5 = nix.positions(here + "/configuration-arm.nix", [["android-activity", 125, 3]]);
-const pos$6 = nix.positions(here + "/configuration-arm.nix", [["testFlags", 131, 5]]);
-const pos$7 = nix.positions(here + "/configuration-arm.nix", [["botan-low", 130, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const lib = nix.thunk(() => nix.attr(pkgs, "lib"));
   const w = nix.withScope(haskellLib, null);
   return (self) => (super$) => nix.update({
-    [nix.POS]: pos$2,
+    [nix.POS]: $pos[1],
     "servant-docs": nix.thunk(() => nix.app(nix.lookup(w, "dontCheck"), nix.thunk(() => nix.sel(super$, "servant-docs")))),
     swagger2: nix.thunk(() => nix.app(nix.lookup(w, "dontHaddock"), nix.thunk(() => nix.app(nix.lookup(w, "dontCheck"), nix.thunk(() => nix.sel(super$, "swagger2")))))),
     happy: nix.thunk(() => nix.app(nix.lookup(w, "dontCheck"), nix.thunk(() => nix.sel(super$, "happy")))),
@@ -27,12 +21,12 @@ export default nix.lambda((args) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         const librarySystemDepends = nix.argOr($_1, "librarySystemDepends", () => []);
         return {
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           librarySystemDepends: nix.thunk(() => nix.concat(librarySystemDepends, [nix.thunk(() => nix.sel(pkgs, "wiringpi"))])),
         };
       })(), formals$2), nix.thunk(() => nix.sel(super$, "wiringPi")))),
   }, nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(pkgs, "stdenv", "hostPlatform", "isAarch64")), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       BNFC: nix.thunk(() => nix.app(nix.lookup(w, "dontCheck"), nix.thunk(() => nix.sel(super$, "BNFC")))),
       "C-structs": nix.thunk(() => nix.app(nix.lookup(w, "dontCheck"), nix.thunk(() => nix.sel(super$, "C-structs")))),
       "Chart-tests": nix.thunk(() => nix.app(nix.lookup(w, "dontCheck"), nix.thunk(() => nix.sel(super$, "Chart-tests")))),
@@ -82,21 +76,21 @@ export default nix.lambda((args) => (() => {
       half: nix.thunk(() => nix.app(nix.lookup(w, "dontCheck"), nix.thunk(() => nix.sel(super$, "half")))),
       "ghc-prof": nix.thunk(() => nix.app(nix.lookup(w, "dontCheck"), nix.thunk(() => nix.sel(super$, "ghc-prof")))),
     }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(pkgs, "stdenv", "hostPlatform", "isAarch32")), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       cryptonite: nix.thunk(() => nix.app(nix.lookup(w, "dontCheck"), nix.thunk(() => nix.sel(super$, "cryptonite")))),
     }))), nix.update(nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (() => {
       const w_1 = nix.withScope(nix.thunk(() => nix.sel(pkgs, "stdenv", "hostPlatform")), w);
       return (nix.asBool(nix.lookup(w_1, "isAarch")) && nix.asBool(nix.lookup(w_1, "isAndroid")));
     })()), nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       "android-activity": nix.thunk(() => nix.app(nix.lookup(w, "unmarkBroken"), nix.thunk(() => nix.sel(super$, "android-activity")))),
     }))), nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => (() => {
       const w_2 = nix.withScope(nix.thunk(() => nix.sel(pkgs, "stdenv", "hostPlatform")), w);
       return !nix.asBool(nix.lookup(w_2, "isDarwin"));
     })()), nix.thunk(() => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       "botan-low": nix.thunk(() => nix.app(nix.lookup(w, "overrideCabal"), (drv) => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           testFlags: nix.thunk(() => nix.concat(nix.selOr(drv, () => [], "testFlags"), nix.app(nix.sel(lib, "concatMap"), (x) => nix.concat(["--skip"], [x]), nix.thunk(() => [
               "/rdrand/rngInit/",
               "/rdrand/rngGet/",

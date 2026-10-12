@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]], [["description", 69, 5], ["longDescription", 70, 5], ["mainProgram", 71, 5], ["homepage", 72, 5], ["downloadPage", 73, 5], ["changelog", 74, 5], ["license", 75, 5], ["platforms", 76, 5], ["maintainers", 77, 5]], [["pname", 10, 3], ["version", 11, 3], ["strictDeps", 13, 3], ["__structuredAttrs", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 23, 3], ["buildInputs", 27, 3], ["configurePhase", 29, 3], ["enableParallelBuilding", 40, 3], ["installPhase", 42, 3], ["doInstallCheck", 57, 3], ["nativeInstallCheckInputs", 59, 3], ["qtWrapperArgs", 61, 3], ["meta", 68, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, stdenv: false, versionCheckHook: false, qt6: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 69, 5], ["longDescription", 70, 5], ["mainProgram", 71, 5], ["homepage", 72, 5], ["downloadPage", 73, 5], ["changelog", 74, 5], ["license", 75, 5], ["platforms", 76, 5], ["maintainers", 77, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["strictDeps", 13, 3], ["__structuredAttrs", 14, 3], ["src", 16, 3], ["nativeBuildInputs", 23, 3], ["buildInputs", 27, 3], ["configurePhase", 29, 3], ["enableParallelBuilding", 40, 3], ["installPhase", 42, 3], ["doInstallCheck", 57, 3], ["nativeInstallCheckInputs", 59, 3], ["qtWrapperArgs", 61, 3], ["meta", 68, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,13 +13,13 @@ export default nix.lambda((args) => (() => {
   const versionCheckHook = nix.arg($, "versionCheckHook");
   const qt6 = nix.arg($, "qt6");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "tux-manager",
       version: "1.0.8",
       strictDeps: true,
       __structuredAttrs: true,
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "benapetr",
           repo: "TuxManager",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -65,7 +63,7 @@ runHook postInstall
       nativeInstallCheckInputs: nix.thunk(() => [versionCheckHook]),
       qtWrapperArgs: nix.thunk(() => ["--prefix", "LD_LIBRARY_PATH", ":", "/run/opengl-driver/lib"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Linux system monitor inspired by Windows Task Manager",
         longDescription: "A Linux Task Manager alternative built with Qt6, inspired by the Windows Task Manager but designed to go further - providing deep visibility into system processes, performance metrics, users, and services.",
         mainProgram: "tux-manager",

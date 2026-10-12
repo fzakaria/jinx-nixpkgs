@@ -2,10 +2,8 @@
 import * as nix from "../../../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 50]], [["description", 50, 5], ["license", 51, 31], ["platforms", 51, 39], ["teams", 52, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["propagatedBuildInputs", 21, 3], ["buildCommand", 23, 3], ["meta", 49, 3]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, stdenvNoCC: false, darwin: false, swift_release: false, swift_sources: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["tag", 17, 5], ["hash", 18, 50]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 50, 5], ["license", 51, 31], ["platforms", 51, 39], ["teams", 52, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["propagatedBuildInputs", 21, 3], ["buildCommand", 23, 3], ["meta", 49, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -16,13 +14,13 @@ export default nix.lambda((args) => (() => {
   const swift_release = nix.arg($, "swift_release");
   const swift_sources = nix.arg($, "swift_sources");
   return nix.app(nix.sel(stdenvNoCC, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "swift-foundation-icu",
       version: nix.thunk(() => nix.app(nix.sel(lib, "getVersion"), nix.thunk(() => nix.sel(darwin, "ICU")))),
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => (() => {
           const from = nix.thunk(() => nix.sel(swift_sources, "swift-foundation-icu"));
           return {
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "swiftlang",
           repo: "swift-foundation-icu",
           tag: nix.thunk(() => nix.str`swift-${swift_release}-RELEASE`),
@@ -59,7 +57,7 @@ recordPropagatedDependencies
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(darwin, "ICU", "meta"));
         return {
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Shim package allowing the Darwin ICU packaging to be used with Swift Foundation.",
         license: nix.thunk(() => nix.attr(from, "license")),
         platforms: nix.thunk(() => nix.attr(from, "platforms")),

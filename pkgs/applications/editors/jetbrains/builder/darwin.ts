@@ -2,11 +2,9 @@
 import * as nix from "../../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/darwin.nix", [[["mainProgram", 57, 9]], [["desktopName", 34, 7], ["dontFixup", 36, 7], ["installPhase", 38, 7], ["nativeBuildInputs", 52, 7], ["sourceRoot", 54, 7], ["meta", 56, 7]], [["excludeDrvArgNames", 15, 11], ["constructDrv", 17, 3], ["extendDrvArgs", 19, 3]]]);
 const formals$1 = { args: { lib: false, stdenvNoCC: false, undmg: false, excludeDrvArgNames: false }, ellipsis: true };
 const formals$2 = { args: { product: false, productShort: true, nativeBuildInputs: true, meta: true }, ellipsis: true };
-const pos$1 = nix.positions(here + "/darwin.nix", [["mainProgram", 57, 9]]);
-const pos$2 = nix.positions(here + "/darwin.nix", [["desktopName", 34, 7], ["dontFixup", 36, 7], ["installPhase", 38, 7], ["nativeBuildInputs", 52, 7], ["sourceRoot", 54, 7], ["meta", 56, 7]]);
-const pos$3 = nix.positions(here + "/darwin.nix", [["excludeDrvArgNames", 15, 11], ["constructDrv", 17, 3], ["extendDrvArgs", 19, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -15,7 +13,7 @@ export default nix.lambda((args) => (() => {
   const undmg = nix.arg($, "undmg");
   const excludeDrvArgNames = nix.arg($, "excludeDrvArgNames");
   return nix.app(nix.sel(lib, "extendMkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       excludeDrvArgNames: excludeDrvArgNames,
       constructDrv: nix.thunk(() => nix.sel(stdenvNoCC, "mkDerivation")),
       extendDrvArgs: (finalAttrs) => nix.lambda((args_1) => (() => {
@@ -26,7 +24,7 @@ export default nix.lambda((args) => (() => {
         const meta = nix.argOr($_1, "meta", () => ({}));
         const loname = nix.thunk(() => nix.app(nix.sel(lib, "toLower"), productShort));
         return {
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           desktopName: product,
           dontFixup: true,
           installPhase: nix.thunk(() => nix.str`runHook preInstall
@@ -43,7 +41,7 @@ runHook postInstall
 `),
           nativeBuildInputs: nix.thunk(() => nix.concat(nativeBuildInputs, [undmg])),
           sourceRoot: ".",
-          meta: nix.thunk(() => nix.update(meta, { [nix.POS]: pos$1, mainProgram: loname })),
+          meta: nix.thunk(() => nix.update(meta, { [nix.POS]: $pos[0], mainProgram: loname })),
         };
       })(), formals$2),
     })));

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 20, 5], ["sha256", 21, 5]], [["name", 26, 7], ["url", 27, 7], ["sha256", 28, 7]], [["description", 63, 5], ["longDescription", 65, 5], ["homepage", 80, 5], ["license", 82, 5], ["maintainers", 84, 5], ["platforms", 85, 5]], [["pname", 16, 3], ["version", 17, 11], ["src", 19, 3], ["patches", 24, 3], ["postPatch", 32, 3], ["nativeBuildInputs", 39, 3], ["propagatedBuildInputs", 43, 3], ["configureFlags", 45, 3], ["doCheck", 58, 3], ["enableParallelBuilding", 60, 3], ["meta", 62, 3]]]);
 const formals$1 = { args: { fetchurl: false, fetchpatch: false, lib: false, stdenv: false, gmpxx: false, perl: false, gnum4: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 20, 5], ["sha256", 21, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 26, 7], ["url", 27, 7], ["sha256", 28, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 63, 5], ["longDescription", 65, 5], ["homepage", 80, 5], ["license", 82, 5], ["maintainers", 84, 5], ["platforms", 85, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 16, 3], ["version", 17, 11], ["src", 19, 3], ["patches", 24, 3], ["postPatch", 32, 3], ["nativeBuildInputs", 39, 3], ["propagatedBuildInputs", 43, 3], ["configureFlags", 45, 3], ["doCheck", 58, 3], ["enableParallelBuilding", 60, 3], ["meta", 62, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,17 +16,17 @@ export default nix.lambda((args) => (() => {
   const gnum4 = nix.arg($, "gnum4");
   const version = "1.2";
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "ppl",
       version: version,
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`https://mirror.metanet.ch/sage/spkg/upstream/ppl/ppl-${version}.tar.bz2`),
           sha256: "1wgxcbgmijgk11df43aiqfzv31r3bkxmgb4yl68g21194q60nird",
         })))),
       patches: nix.thunk(() => [
         nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "clang5-support.patch",
             url: "https://raw.githubusercontent.com/sagemath/sage/9.2/build/pkgs/ppl/patches/clang5-support.patch",
             sha256: "1zj90hm25pkgvk4jlkfzh18ak9b98217gbidl3731fdccbw6hr87",
@@ -47,7 +44,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       enableParallelBuilding: true,
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Parma Polyhedra Library",
         longDescription: "The Parma Polyhedra Library (PPL) provides numerical abstractions\nespecially targeted at applications in the field of analysis and\nverification of complex systems.  These abstractions include convex\npolyhedra, defined as the intersection of a finite number of (open or\nclosed) halfspaces, each described by a linear inequality (strict or\nnon-strict) with rational coefficients; some special classes of\npolyhedra shapes that offer interesting complexity/precision tradeoffs;\nand grids which represent regularly spaced points that satisfy a set of\nlinear congruence relations.  The library also supports finite\npowersets and products of (any kind of) polyhedra and grids and a mixed\ninteger linear programming problem solver using an exact-arithmetic\nversion of the simplex algorithm.\n",
         homepage: "http://bugseng.com/products/ppl/",

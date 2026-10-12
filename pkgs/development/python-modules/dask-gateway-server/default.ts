@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]], [["kerberos", 42, 5], ["jobqueue", 43, 5], ["local", 44, 5], ["yarn", 45, 5]], [["description", 61, 5], ["homepage", 62, 5], ["license", 63, 5], ["maintainers", 64, 5]], [["pname", 17, 3], ["version", 18, 3], ["pyproject", 19, 3], ["src", 21, 3], ["sourceRoot", 28, 3], ["nativeBuildInputs", 30, 3], ["build-system", 32, 3], ["dependencies", 34, 3], ["optional-dependencies", 41, 3], ["preBuild", 51, 3], ["doCheck", 56, 3], ["pythonImportsCheck", 58, 3], ["meta", 60, 3]]]);
 const formals$1 = { args: { lib: false, aiohttp: false, buildPythonPackage: false, colorlog: false, cryptography: false, fetchFromGitHub: false, go: false, pykerberos: false, hatchling: false, skein: false, sqlalchemy: false, traitlets: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["kerberos", 42, 5], ["jobqueue", 43, 5], ["local", 44, 5], ["yarn", 45, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 61, 5], ["homepage", 62, 5], ["license", 63, 5], ["maintainers", 64, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 17, 3], ["version", 18, 3], ["pyproject", 19, 3], ["src", 21, 3], ["sourceRoot", 28, 3], ["nativeBuildInputs", 30, 3], ["build-system", 32, 3], ["dependencies", 34, 3], ["optional-dependencies", 41, 3], ["preBuild", 51, 3], ["doCheck", 56, 3], ["pythonImportsCheck", 58, 3], ["meta", 60, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -27,7 +24,7 @@ export default nix.lambda((args) => (() => {
       const version = "2025.4.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "dask",
           repo: "dask-gateway",
           tag: version,
@@ -38,7 +35,7 @@ export default nix.lambda((args) => (() => {
       const build_system = nix.thunk(() => [hatchling]);
       const dependencies = nix.thunk(() => [aiohttp, colorlog, cryptography, traitlets]);
       const optional_dependencies = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         kerberos: nix.thunk(() => [pykerberos]),
         jobqueue: nix.thunk(() => [sqlalchemy]),
         local: nix.thunk(() => [sqlalchemy]),
@@ -48,14 +45,14 @@ export default nix.lambda((args) => (() => {
       const doCheck = false;
       const pythonImportsCheck = nix.thunk(() => ["dask_gateway_server"]);
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Multi-tenant server for securely deploying and managing multiple Dask clusters",
         homepage: "https://gateway.dask.org/",
         license: nix.thunk(() => nix.sel(lib, "licenses", "bsd3")),
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         pyproject,

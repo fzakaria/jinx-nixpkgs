@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["pname", 29, 26], ["version", 29, 32], ["hash", 30, 5]], [["connect", 54, 5], ["ml", 63, 5], ["mllib", 64, 5], ["pandas_on_spark", 65, 5], ["pipelines", 69, 5], ["sql", 71, 5]], [["description", 83, 5], ["homepage", 84, 5], ["sourceProvenance", 85, 5], ["license", 89, 5], ["maintainers", 90, 5]], [["pname", 24, 3], ["version", 25, 3], ["pyproject", 26, 3], ["src", 28, 3], ["postPatch", 34, 3], ["build-system", 38, 3], ["postFixup", 40, 3], ["dependencies", 51, 3], ["optional-dependencies", 53, 3], ["doCheck", 78, 3], ["pythonImportsCheck", 80, 3], ["meta", 82, 3]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchPypi: false, setuptools: false, py4j: false, "googleapis-common-protos": false, graphviz: false, "grpcio-status": false, grpcio: false, numpy: false, pandas: false, pyarrow: false, zstandard: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["pname", 29, 26], ["version", 29, 32], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/default.nix", [["connect", 54, 5], ["ml", 63, 5], ["mllib", 64, 5], ["pandas_on_spark", 65, 5], ["pipelines", 69, 5], ["sql", 71, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["description", 83, 5], ["homepage", 84, 5], ["sourceProvenance", 85, 5], ["license", 89, 5], ["maintainers", 90, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["pname", 24, 3], ["version", 25, 3], ["pyproject", 26, 3], ["src", 28, 3], ["postPatch", 34, 3], ["build-system", 38, 3], ["postFixup", 40, 3], ["dependencies", 51, 3], ["optional-dependencies", 53, 3], ["doCheck", 78, 3], ["pythonImportsCheck", 80, 3], ["meta", 82, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,12 +21,12 @@ export default nix.lambda((args) => (() => {
   const pyarrow = nix.arg($, "pyarrow");
   const zstandard = nix.arg($, "zstandard");
   return nix.app(buildPythonPackage, (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "pyspark",
       version: "4.1.2",
       pyproject: true,
       src: nix.thunk(() => nix.app(fetchPypi, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           pname: nix.thunk(() => nix.attr(finalAttrs, "pname")),
           version: nix.thunk(() => nix.attr(finalAttrs, "version")),
           hash: "sha256-+l1hWfcA0JkKB/T2LfG3RJQB3M7pzX1dbfiVdTCEFgI=",
@@ -39,7 +36,7 @@ export default nix.lambda((args) => (() => {
       postFixup: "# find_python_home.py has been wrapped as a shell script\nsubstituteInPlace $out/bin/find-spark-home \\\n    --replace 'export SPARK_HOME=$($PYSPARK_DRIVER_PYTHON \"$FIND_SPARK_HOME_PYTHON_SCRIPT\")' \\\n              'export SPARK_HOME=$(\"$FIND_SPARK_HOME_PYTHON_SCRIPT\")'\n# patch PYTHONPATH in pyspark so that it properly looks at SPARK_HOME\nsubstituteInPlace $out/bin/pyspark \\\n    --replace 'export PYTHONPATH=\"${SPARK_HOME}/python/:$PYTHONPATH\"' \\\n              'export PYTHONPATH=\"${SPARK_HOME}/..:${SPARK_HOME}/python/:$PYTHONPATH\"'\n",
       dependencies: nix.thunk(() => [py4j]),
       "optional-dependencies": nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         connect: nix.thunk(() => [
           pandas,
           pyarrow,
@@ -58,7 +55,7 @@ export default nix.lambda((args) => (() => {
       doCheck: false,
       pythonImportsCheck: nix.thunk(() => ["pyspark"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Python bindings for Apache Spark",
         homepage: "https://github.com/apache/spark/tree/master/python",
         sourceProvenance: nix.thunk(() => (() => {

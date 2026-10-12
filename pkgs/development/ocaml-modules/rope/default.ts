@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["0.6.2", 20, 9], ["0.6.3", 21, 9]], [["url", 17, 5], ["hash", 18, 5]], [["url", 29, 5], ["hash", 30, 5]], [["homepage", 34, 5], ["description", 35, 5], ["license", 36, 5], ["maintainers", 37, 5]], [["pname", 12, 3], ["version", 13, 11], ["minimalOCamlVersion", 14, 3], ["src", 16, 3], ["buildInputs", 26, 3], ["patches", 28, 3], ["meta", 33, 3]]]);
 const formals$1 = { args: { lib: false, fetchurl: false, fetchpatch: false, ocaml: false, buildDunePackage: false, version: true, benchmark: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["0.6.2", 20, 9], ["0.6.3", 21, 9]]);
-const pos$2 = nix.positions(here + "/default.nix", [["url", 17, 5], ["hash", 18, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["url", 29, 5], ["hash", 30, 5]]);
-const pos$4 = nix.positions(here + "/default.nix", [["homepage", 34, 5], ["description", 35, 5], ["license", 36, 5], ["maintainers", 37, 5]]);
-const pos$5 = nix.positions(here + "/default.nix", [["pname", 12, 3], ["version", 13, 11], ["minimalOCamlVersion", 14, 3], ["src", 16, 3], ["buildInputs", 26, 3], ["patches", 28, 3], ["meta", 33, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,27 +15,27 @@ export default nix.lambda((args) => (() => {
   const version = nix.argOr($, "version", () => (nix.asBool(nix.app(nix.sel(lib, "versionAtLeast"), nix.thunk(() => nix.sel(ocaml, "version")), "5.0")) ? "0.6.3" : "0.6.2"));
   const benchmark = nix.arg($, "benchmark");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "rope",
       version: version,
       minimalOCamlVersion: "4.03",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           url: nix.thunk(() => nix.str`https://github.com/Chris00/ocaml-rope/releases/download/${version}/rope-${version}.tbz`),
           hash: nix.thunk(() => nix.sel({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             "0.6.2": "sha256:15cvfa0s1vjx7gjd07d3fkznilishqf4z4h2q5f20wm9ysjh2h2i",
             "0.6.3": "sha256-M14fiP9BDiz3WEoMqAJqZaXk4PoZ8Z1YjOk+F97z05Y=",
           }, nix.key(nix.str`${version}`))),
         })))),
       buildInputs: nix.thunk(() => [benchmark]),
       patches: nix.thunk(() => nix.app(nix.sel(lib, "optional"), nix.thunk(() => nix.eq(version, "0.6.3")), nix.thunk(() => nix.app(fetchpatch, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             url: "https://github.com/Chris00/ocaml-rope/commit/be53daa18dd3d1450a92881b33c997eafb1dc958.patch",
             hash: "sha256-fHJNfD1ph3+QLmVJ8C4hhJ8hvrWIh7D0EL0XhOW2yqQ=",
           })))))),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         homepage: "https://github.com/Chris00/ocaml-rope",
         description: "Ropes (“heavyweight strings”) in OCaml",
         license: nix.thunk(() => nix.sel(lib, "licenses", "lgpl21")),

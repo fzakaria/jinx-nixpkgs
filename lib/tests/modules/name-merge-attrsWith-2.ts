@@ -2,21 +2,10 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/name-merge-attrsWith-2.nix", [[["type", 17, 17], ["default", 18, 17]], [["nested", 16, 23]], [["options", 16, 15]], [["placeholder", 14, 13], ["elemType", 15, 13]], [["default", 12, 11], ["type", 13, 11]], [["mergedName", 11, 17]], [["options", 11, 9]], [["placeholder", 31, 13], ["elemType", 32, 13]], [["type", 30, 11]], [["mergedName", 29, 17]], [["options", 29, 9]], [["imports", 6, 3]]]);
 const formals$1 = { args: { lib: false }, ellipsis: true };
 const formals$2 = { args: {  }, ellipsis: true };
-const pos$1 = nix.positions(here + "/name-merge-attrsWith-2.nix", [["type", 17, 17], ["default", 18, 17]]);
-const pos$2 = nix.positions(here + "/name-merge-attrsWith-2.nix", [["nested", 16, 23]]);
-const pos$3 = nix.positions(here + "/name-merge-attrsWith-2.nix", [["options", 16, 15]]);
-const pos$4 = nix.positions(here + "/name-merge-attrsWith-2.nix", [["placeholder", 14, 13], ["elemType", 15, 13]]);
-const pos$5 = nix.positions(here + "/name-merge-attrsWith-2.nix", [["default", 12, 11], ["type", 13, 11]]);
-const pos$6 = nix.positions(here + "/name-merge-attrsWith-2.nix", [["mergedName", 11, 17]]);
-const pos$7 = nix.positions(here + "/name-merge-attrsWith-2.nix", [["options", 11, 9]]);
 const formals$3 = { args: {  }, ellipsis: true };
-const pos$8 = nix.positions(here + "/name-merge-attrsWith-2.nix", [["placeholder", 31, 13], ["elemType", 32, 13]]);
-const pos$9 = nix.positions(here + "/name-merge-attrsWith-2.nix", [["type", 30, 11]]);
-const pos$10 = nix.positions(here + "/name-merge-attrsWith-2.nix", [["mergedName", 29, 17]]);
-const pos$11 = nix.positions(here + "/name-merge-attrsWith-2.nix", [["options", 29, 9]]);
-const pos$12 = nix.positions(here + "/name-merge-attrsWith-2.nix", [["imports", 6, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,25 +13,29 @@ export default nix.lambda((args) => (() => {
   const types = nix.thunk(() => nix.attr(lib, "types"));
   const mkOption = nix.thunk(() => nix.attr(lib, "mkOption"));
   return {
-    [nix.POS]: pos$12,
+    [nix.POS]: $pos[11],
     imports: nix.thunk(() => [
       nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$2);
         return {
-          [nix.POS]: pos$7,
+          [nix.POS]: $pos[6],
           options: nix.thunk(() => ({
-            [nix.POS]: pos$6,
+            [nix.POS]: $pos[5],
             mergedName: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                [nix.POS]: pos$5,
+                [nix.POS]: $pos[4],
                 default: nix.thunk(() => ({})),
                 type: nix.thunk(() => nix.app(nix.sel(types, "attrsWith"), nix.thunk(() => ({
-                    [nix.POS]: pos$4,
+                    [nix.POS]: $pos[3],
                     placeholder: "id",
                     elemType: nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({
-                        [nix.POS]: pos$3,
+                        [nix.POS]: $pos[2],
                         options: nix.thunk(() => ({
-                          [nix.POS]: pos$2,
-                          nested: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({ [nix.POS]: pos$1, type: nix.thunk(() => nix.sel(types, "int")), default: 1n })))),
+                          [nix.POS]: $pos[1],
+                          nested: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
+                              [nix.POS]: $pos[0],
+                              type: nix.thunk(() => nix.sel(types, "int")),
+                              default: 1n,
+                            })))),
                         })),
                       })))),
                   })))),
@@ -53,13 +46,13 @@ export default nix.lambda((args) => (() => {
       nix.lambda((args_1) => (() => {
         const $_1 = nix.formals(args_1, formals$3);
         return {
-          [nix.POS]: pos$11,
+          [nix.POS]: $pos[10],
           options: nix.thunk(() => ({
-            [nix.POS]: pos$10,
+            [nix.POS]: $pos[9],
             mergedName: nix.thunk(() => nix.app(mkOption, nix.thunk(() => ({
-                [nix.POS]: pos$9,
+                [nix.POS]: $pos[8],
                 type: nix.thunk(() => nix.app(nix.sel(types, "attrsWith"), nix.thunk(() => ({
-                    [nix.POS]: pos$8,
+                    [nix.POS]: $pos[7],
                     placeholder: "other",
                     elemType: nix.thunk(() => nix.app(nix.sel(types, "submodule"), nix.thunk(() => ({})))),
                   })))),

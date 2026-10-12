@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 21, 5], ["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]], [["extraArgs", 64, 5]], [["updateScript", 61, 12]], [["changelog", 71, 5], ["description", 72, 5], ["longDescription", 73, 5], ["homepage", 82, 5], ["license", 83, 5], ["maintainers", 84, 5], ["mainProgram", 85, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["vendorHash", 28, 3], ["nativeBuildInputs", 30, 3], ["postPatch", 40, 3], ["preBuild", 44, 3], ["subPackages", 52, 3], ["postInstall", 56, 3], ["passthru", 61, 3], ["meta", 70, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitea: false, "nix-update-script": false, brotli: false, zopfli: false, clang: false, tinygo: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 21, 5], ["owner", 22, 5], ["repo", 23, 5], ["tag", 24, 5], ["hash", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["extraArgs", 64, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 61, 12]]);
-const pos$4 = nix.positions(here + "/package.nix", [["changelog", 71, 5], ["description", 72, 5], ["longDescription", 73, 5], ["homepage", 82, 5], ["license", 83, 5], ["maintainers", 84, 5], ["mainProgram", 85, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["vendorHash", 28, 3], ["nativeBuildInputs", 30, 3], ["postPatch", 40, 3], ["preBuild", 44, 3], ["subPackages", 52, 3], ["postInstall", 56, 3], ["passthru", 61, 3], ["meta", 70, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -20,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const clang = nix.arg($, "clang");
   const tinygo = nix.arg($, "tinygo");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "go-away",
       version: "0.7.0",
       src: nix.thunk(() => nix.app(fetchFromGitea, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "git.gammaspectra.live",
           owner: "git",
           repo: "go-away",
@@ -38,14 +34,14 @@ export default nix.lambda((args) => (() => {
       subPackages: nix.thunk(() => ["cmd/go-away"]),
       postInstall: "mkdir -p $out/lib/go-away\ncp -rv examples/snippets $out/lib/go-away/\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             extraArgs: nix.thunk(() => ["--url", "https://codeberg.org/gone/go-away"]),
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         changelog: nix.thunk(() => nix.str`https://git.gammaspectra.live/git/go-away/releases/tag/${nix.sel(finalAttrs, "src", "tag")}`),
         description: "Self-hosted abuse detection and rule enforcement against low-effort mass AI scraping and bots",
         longDescription: "go-away sits in between your site and the Internet / upstream proxy.\n\nIncoming requests can be selected by rules to be actioned or challenged to filter suspicious requests.\n\nThe tool is designed highly flexible so the operator can minimize impact to legit users, while surgically targeting heavy endpoints or scrapers.\n\nChallenges can be transparent (not shown to user, depends on backend or other logic), non-JavaScript (challenges common browser properties), or custom JavaScript (from Proof of Work to fingerprinting or Captcha is supported)\n",

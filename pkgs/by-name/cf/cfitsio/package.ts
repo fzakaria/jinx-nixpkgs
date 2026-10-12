@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]], [["NIX_CFLAGS_COMPILE", 49, 5]], [["rev-prefix", 72, 33]], [["updateScript", 72, 5]], [["homepage", 76, 5], ["description", 77, 5], ["longDescription", 78, 5], ["changelog", 87, 5], ["license", 88, 5], ["maintainers", 89, 5], ["platforms", 93, 5]], [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["outputs", 23, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 33, 3], ["cmakeFlags", 39, 3], ["env", 46, 3], ["hardeningDisable", 51, 3], ["doCheck", 53, 3], ["doInstallCheck", 54, 3], ["installCheckPhase", 57, 3], ["postInstall", 65, 3], ["passthru", 71, 3], ["meta", 75, 3]]]);
 const formals$1 = { args: { stdenv: false, lib: false, fetchFromGitHub: false, gitUpdater: false, cmake: false, bzip2: false, curl: false, zlib: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 17, 5], ["repo", 18, 5], ["tag", 19, 5], ["hash", 20, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 49, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["rev-prefix", 72, 33]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 72, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["homepage", 76, 5], ["description", 77, 5], ["longDescription", 78, 5], ["changelog", 87, 5], ["license", 88, 5], ["maintainers", 89, 5], ["platforms", 93, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 13, 3], ["version", 14, 3], ["src", 16, 3], ["outputs", 23, 3], ["nativeBuildInputs", 29, 3], ["buildInputs", 33, 3], ["cmakeFlags", 39, 3], ["env", 46, 3], ["hardeningDisable", 51, 3], ["doCheck", 53, 3], ["doInstallCheck", 54, 3], ["installCheckPhase", 57, 3], ["postInstall", 65, 3], ["passthru", 71, 3], ["meta", 75, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -21,11 +16,11 @@ export default nix.lambda((args) => (() => {
   const curl = nix.arg($, "curl");
   const zlib = nix.arg($, "zlib");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "cfitsio",
       version: "4.7.0",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "HEASARC",
           repo: "cfitsio",
           tag: nix.thunk(() => nix.str`cfitsio-${nix.sel(finalAttrs, "version")}`),
@@ -35,21 +30,21 @@ export default nix.lambda((args) => (() => {
       nativeBuildInputs: nix.thunk(() => [cmake]),
       buildInputs: nix.thunk(() => [bzip2, curl, zlib]),
       cmakeFlags: nix.thunk(() => ["-DUSE_PTHREADS=ON", "-DTESTS=ON", "-DUTILS=ON", "-DUSE_BZIP2=ON"]),
-      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isFreeBSD")), nix.thunk(() => ({ [nix.POS]: pos$2, NIX_CFLAGS_COMPILE: "-D__BSD_VISIBLE=1" })))),
+      env: nix.thunk(() => nix.app(nix.sel(lib, "optionalAttrs"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isFreeBSD")), nix.thunk(() => ({ [nix.POS]: $pos[1], NIX_CFLAGS_COMPILE: "-D__BSD_VISIBLE=1" })))),
       hardeningDisable: nix.thunk(() => ["format"]),
       doCheck: true,
       doInstallCheck: true,
       installCheckPhase: "./TestProg > testprog.lis\ndiff -s testprog.lis ../testprog.out\ncmp testprog.fit ../testprog.std\n",
       postInstall: "rm \"$out/bin/cookbook\"\nrmdir \"$out/bin\"\nrm \"$bin/bin/smem\" \"$bin/bin/speed\"\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(gitUpdater, nix.thunk(() => ({
-            [nix.POS]: pos$3,
+            [nix.POS]: $pos[2],
             "rev-prefix": nix.thunk(() => nix.str`${nix.sel(finalAttrs, "pname")}-`),
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         homepage: "https://heasarc.gsfc.nasa.gov/docs/software/fitsio/",
         description: "Library for reading and writing FITS data files",
         longDescription: "CFITSIO is a library of C and Fortran subroutines for reading and\nwriting data files in FITS (Flexible Image Transport System) data\nformat.  CFITSIO provides simple high-level routines for reading and\nwriting FITS files that insulate the programmer from the internal\ncomplexities of the FITS format.  CFITSIO also provides many\nadvanced features for manipulating and filtering the information in\nFITS files.\n",

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["domain", 31, 5], ["owner", 32, 5], ["repo", 33, 5], ["tag", 34, 5], ["hash", 35, 5]], [["packageName", 94, 7], ["versionPolicy", 95, 7]], [["updateScript", 93, 5]], [["description", 100, 5], ["homepage", 101, 5], ["changelog", 102, 5], ["license", 103, 5], ["maintainers", 104, 5], ["platforms", 105, 5], ["longDescription", 107, 5]], [["pname", 22, 3], ["version", 23, 3], ["outputs", 25, 3], ["src", 30, 3], ["postPatch", 38, 3], ["strictDeps", 45, 3], ["nativeBuildInputs", 47, 3], ["buildInputs", 55, 3], ["nativeCheckInputs", 61, 3], ["propagatedBuildInputs", 65, 3], ["preConfigure", 76, 3], ["doCheck", 80, 3], ["preCheck", 82, 3], ["postInstall", 86, 3], ["passthru", 92, 3], ["meta", 99, 3]]]);
 const formals$1 = { args: { fetchFromGitLab: false, lib: false, stdenv: false, autoreconfHook: false, "gtk-doc": false, "pkg-config": false, intltool: false, gettext: false, glib: false, libxml2: false, zlib: false, bzip2: false, perl: false, "gdk-pixbuf": false, libiconv: false, libintl: false, gnome: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["domain", 31, 5], ["owner", 32, 5], ["repo", 33, 5], ["tag", 34, 5], ["hash", 35, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["packageName", 94, 7], ["versionPolicy", 95, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["updateScript", 93, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 100, 5], ["homepage", 101, 5], ["changelog", 102, 5], ["license", 103, 5], ["maintainers", 104, 5], ["platforms", 105, 5], ["longDescription", 107, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 22, 3], ["version", 23, 3], ["outputs", 25, 3], ["src", 30, 3], ["postPatch", 38, 3], ["strictDeps", 45, 3], ["nativeBuildInputs", 47, 3], ["buildInputs", 55, 3], ["nativeCheckInputs", 61, 3], ["propagatedBuildInputs", 65, 3], ["preConfigure", 76, 3], ["doCheck", 80, 3], ["preCheck", 82, 3], ["postInstall", 86, 3], ["passthru", 92, 3], ["meta", 99, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,12 +25,12 @@ export default nix.lambda((args) => (() => {
   const libintl = nix.arg($, "libintl");
   const gnome = nix.arg($, "gnome");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "libgsf",
       version: "1.14.58",
       outputs: nix.thunk(() => ["out", "dev"]),
       src: nix.thunk(() => nix.app(fetchFromGitLab, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           domain: "gitlab.gnome.org",
           owner: "GNOME",
           repo: "libgsf",
@@ -52,15 +48,15 @@ export default nix.lambda((args) => (() => {
       preCheck: "patchShebangs ./tests/\n",
       postInstall: "substituteInPlace $out/share/thumbnailers/gsf-office.thumbnailer \\\n  --replace-fail \"TryExec=gsf-office-thumbnailer\" \"TryExec=$out/bin/gsf-office-thumbnailer\" \\\n  --replace-fail \"Exec=gsf-office-thumbnailer\" \"Exec=$out/bin/gsf-office-thumbnailer\"\n",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         updateScript: nix.thunk(() => nix.app(nix.sel(gnome, "updateScript"), nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             packageName: nix.thunk(() => nix.sel(finalAttrs, "pname")),
             versionPolicy: "odd-unstable",
           })))),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "GNOME's Structured File Library",
         homepage: "https://gitlab.gnome.org/GNOME/libgsf",
         changelog: nix.thunk(() => nix.str`https://gitlab.gnome.org/GNOME/libgsf/-/blob/${nix.sel(finalAttrs, "src", "tag")}/ChangeLog`),

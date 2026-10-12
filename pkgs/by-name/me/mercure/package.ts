@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]], [["version", 40, 7], ["package", 41, 7], ["command", 42, 7]], [["version", 39, 11]], [["updateScript", 38, 5], ["tests", 39, 5]], [["description", 47, 5], ["homepage", 48, 5], ["changelog", 49, 5], ["license", 50, 5], ["maintainers", 51, 5], ["platforms", 52, 5], ["mainProgram", 53, 5]], [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["sourceRoot", 21, 3], ["vendorHash", 23, 3], ["subPackages", 25, 3], ["excludedPackages", 26, 3], ["ldflags", 28, 3], ["doCheck", 35, 3], ["passthru", 37, 3], ["meta", 46, 3]]]);
 const formals$1 = { args: { lib: false, buildGoModule: false, fetchFromGitHub: false, "nix-update-script": false, testers: false, mercure: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 15, 5], ["repo", 16, 5], ["rev", 17, 5], ["hash", 18, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["version", 40, 7], ["package", 41, 7], ["command", 42, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 39, 11]]);
-const pos$4 = nix.positions(here + "/package.nix", [["updateScript", 38, 5], ["tests", 39, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 47, 5], ["homepage", 48, 5], ["changelog", 49, 5], ["license", 50, 5], ["maintainers", 51, 5], ["platforms", 52, 5], ["mainProgram", 53, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["pname", 11, 3], ["version", 12, 3], ["src", 14, 3], ["sourceRoot", 21, 3], ["vendorHash", 23, 3], ["subPackages", 25, 3], ["excludedPackages", 26, 3], ["ldflags", 28, 3], ["doCheck", 35, 3], ["passthru", 37, 3], ["meta", 46, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,11 +14,11 @@ export default nix.lambda((args) => (() => {
   const testers = nix.arg($, "testers");
   const mercure = nix.arg($, "mercure");
   return nix.app(buildGoModule, (finalAttrs) => ({
-      [nix.POS]: pos$6,
+      [nix.POS]: $pos[5],
       pname: "mercure",
       version: "0.24.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "dunglas",
           repo: "mercure",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -41,12 +36,12 @@ export default nix.lambda((args) => (() => {
       ]),
       doCheck: false,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               version: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
               package: mercure,
               command: "mercure version",
@@ -54,7 +49,7 @@ export default nix.lambda((args) => (() => {
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Open, easy, fast, reliable and battery-efficient solution for real-time communications",
         homepage: "https://github.com/dunglas/mercure",
         changelog: nix.thunk(() => nix.str`https://github.com/dunglas/mercure/releases/tag/v${nix.sel(finalAttrs, "version")}`),

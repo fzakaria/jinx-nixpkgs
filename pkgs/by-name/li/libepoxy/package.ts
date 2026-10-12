@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 23, 7], ["repo", 24, 7], ["rev", 25, 7], ["sha256", 26, 7]], [["NIX_CFLAGS_COMPILE", 72, 7]], [["package", 80, 7]], [["pkg-config", 79, 5]], [["tests", 78, 12]], [["description", 85, 5], ["homepage", 86, 5], ["license", 87, 5], ["maintainers", 88, 5], ["platforms", 89, 5], ["pkgConfigModules", 90, 5]], [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["patches", 29, 3], ["postPatch", 31, 3], ["outputs", 44, 3], ["nativeBuildInputs", 49, 3], ["propagatedBuildInputs", 57, 3], ["mesonFlags", 65, 3], ["env", 72, 3], ["doCheck", 76, 3], ["passthru", 78, 3], ["meta", 84, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, meson: false, ninja: false, "pkg-config": false, "util-macros": false, python3: false, libGL: false, libx11: false, x11Support: true, testers: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 23, 7], ["repo", 24, 7], ["rev", 25, 7], ["sha256", 26, 7]]);
-const pos$2 = nix.positions(here + "/package.nix", [["NIX_CFLAGS_COMPILE", 72, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["package", 80, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pkg-config", 79, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["tests", 78, 12]]);
-const pos$6 = nix.positions(here + "/package.nix", [["description", 85, 5], ["homepage", 86, 5], ["license", 87, 5], ["maintainers", 88, 5], ["platforms", 89, 5], ["pkgConfigModules", 90, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 17, 3], ["version", 18, 3], ["src", 20, 3], ["patches", 29, 3], ["postPatch", 31, 3], ["outputs", 44, 3], ["nativeBuildInputs", 49, 3], ["propagatedBuildInputs", 57, 3], ["mesonFlags", 65, 3], ["env", 72, 3], ["doCheck", 76, 3], ["passthru", 78, 3], ["meta", 84, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,13 +20,13 @@ export default nix.lambda((args) => (() => {
   const x11Support = nix.argOr($, "x11Support", () => !nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin")));
   const testers = nix.arg($, "testers");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "libepoxy",
       version: "1.5.10",
       src: nix.thunk(() => (() => {
         const w = nix.withScope(finalAttrs, null);
         return nix.app(fetchFromGitHub, nix.thunk(() => ({
-            [nix.POS]: pos$1,
+            [nix.POS]: $pos[0],
             owner: "anholt",
             repo: "libepoxy",
             rev: nix.thunk(() => nix.lookup(w, "version")),
@@ -51,22 +45,22 @@ export default nix.lambda((args) => (() => {
         nix.thunk(() => nix.str`-Dx11=${nix.app(nix.sel(lib, "boolToString"), x11Support)}`),
       ]),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         NIX_CFLAGS_COMPILE: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => (nix.asBool(x11Support) && nix.asBool(!nix.asBool(nix.sel(stdenv, "hostPlatform", "isDarwin"))))), nix.thunk(() => nix.str`-DLIBGL_PATH="${nix.app(nix.sel(lib, "getLib"), libGL)}/lib"`))),
       })),
       doCheck: true,
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$4,
+          [nix.POS]: $pos[3],
           "pkg-config": nix.thunk(() => nix.app(nix.sel(testers, "hasPkgConfigModules"), nix.thunk(() => ({
-              [nix.POS]: pos$3,
+              [nix.POS]: $pos[2],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         })),
       })),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         description: "Library for handling OpenGL function pointer management",
         homepage: "https://github.com/anholt/libepoxy",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 24, 5], ["sha256", 25, 5]], [["name", 31, 7], ["url", 32, 7], ["sha256", 33, 7]], [["description", 60, 5], ["longDescription", 61, 5], ["homepage", 68, 5], ["license", 69, 5], ["maintainers", 70, 5], ["platforms", 71, 5]], [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["patches", 28, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 39, 3], ["enableParallelBuilding", 52, 3], ["preConfigure", 54, 3], ["meta", 59, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, "pkg-config": false, freetype: false, fribidi: false, libxext: false, libxft: false, libxpm: false, libxrandr: false, libxrender: false, xorgproto: false, libxinerama: false, imlib2: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 24, 5], ["sha256", 25, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["name", 31, 7], ["url", 32, 7], ["sha256", 33, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 60, 5], ["longDescription", 61, 5], ["homepage", 68, 5], ["license", 69, 5], ["maintainers", 70, 5], ["platforms", 71, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 20, 3], ["version", 21, 3], ["src", 23, 3], ["patches", 28, 3], ["nativeBuildInputs", 37, 3], ["buildInputs", 39, 3], ["enableParallelBuilding", 52, 3], ["preConfigure", 54, 3], ["meta", 59, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -28,13 +25,13 @@ export default nix.lambda((args) => (() => {
       const pname = "fluxbox";
       const version = "1.3.7";
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/fluxbox/fluxbox-${version}.tar.xz`),
           sha256: "1h1f70y40qd225dqx937vzb4k2cz219agm1zvnjxakn5jkz7b37w",
         }))));
       const patches = nix.thunk(() => [
         nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             name: "gcc-11.patch",
             url: "http://git.fluxbox.org/fluxbox.git/patch/?id=22866c4d30f5b289c429c5ca88d800200db4fc4f",
             sha256: "1x7126rlmzky51lk370fczssgnjs7i6wgfaikfib9pvn4vv945ai",
@@ -56,7 +53,7 @@ export default nix.lambda((args) => (() => {
       const enableParallelBuilding = true;
       const preConfigure = "substituteInPlace util/fluxbox-generate_menu.in \\\n  --subst-var-by PREFIX \"$out\"\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Full-featured, light-resource X window manager",
         longDescription: "Fluxbox is a X window manager based on Blackbox 0.61.1 window\nmanager sources.  It is very light on resources and easy to\nhandle but yet full of features to make an easy, and extremely\nfast, desktop experience. It is written in C++ and licensed\nunder MIT license.\n",
         homepage: "https://fluxbox.org/",
@@ -65,7 +62,7 @@ export default nix.lambda((args) => (() => {
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "linux")),
       }));
       return {
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         pname,
         version,
         src,

@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["coreutils", 28, 15], ["imagemagick", 28, 25]], [["description", 45, 5], ["homepage", 46, 5], ["license", 47, 5], ["maintainers", 48, 5]], [["pname", 19, 3], ["duneVersion", 20, 3], ["src", 22, 22], ["version", 22, 26], ["minimalOCamlVersion", 24, 3], ["patches", 26, 3], ["buildInputs", 32, 3], ["meta", 44, 3]]]);
 const formals$1 = { args: { lib: false, buildDunePackage: false, replaceVars: false, base64: false, cmdliner: false, digestif: false, "git-unix": false, kicadsch: false, lwt: false, lwt_ppx: false, sha: false, tyxml: false, coreutils: false, imagemagick: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["coreutils", 28, 15], ["imagemagick", 28, 25]]);
-const pos$2 = nix.positions(here + "/default.nix", [["description", 45, 5], ["homepage", 46, 5], ["license", 47, 5], ["maintainers", 48, 5]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pname", 19, 3], ["duneVersion", 20, 3], ["src", 22, 22], ["version", 22, 26], ["minimalOCamlVersion", 24, 3], ["patches", 26, 3], ["buildInputs", 32, 3], ["meta", 44, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -24,18 +22,18 @@ export default nix.lambda((args) => (() => {
   const coreutils = nix.arg($, "coreutils");
   const imagemagick = nix.arg($, "imagemagick");
   return nix.app(buildDunePackage, nix.thunk(() => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "plotkicadsch",
       duneVersion: "3",
       src: nix.thunk(() => nix.attr(kicadsch, "src")),
       version: nix.thunk(() => nix.attr(kicadsch, "version")),
       minimalOCamlVersion: "4.09",
       patches: nix.thunk(() => [
-        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix-paths.patch"), nix.thunk(() => ({ [nix.POS]: pos$1, coreutils: coreutils, imagemagick: imagemagick })))),
+        nix.thunk(() => nix.app(replaceVars, nix.path(here, "./fix-paths.patch"), nix.thunk(() => ({ [nix.POS]: $pos[0], coreutils: coreutils, imagemagick: imagemagick })))),
       ]),
       buildInputs: nix.thunk(() => [base64, cmdliner, digestif, git_unix, kicadsch, lwt, lwt_ppx, sha, tyxml]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Tool to export Kicad Sch files to SVG pictures",
         homepage: "https://github.com/jnavila/plotkicadsch",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),

@@ -2,14 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 45, 5], ["repo", 46, 5], ["rev", 47, 5], ["hash", 48, 5]], [["package", 104, 7]], [["version", 103, 5]], [["tests", 102, 12]], [["description", 109, 5], ["homepage", 110, 5], ["changelog", 111, 5], ["maintainers", 112, 5], ["license", 116, 5], ["platforms", 117, 5], ["mainProgram", 118, 5]], [["priority", 123, 5]], [["pname", 41, 3], ["version", 42, 3], ["src", 44, 3], ["nativeBuildInputs", 51, 3], ["buildInputs", 53, 3], ["postFixup", 65, 3], ["passthru", 102, 3], ["meta", 108, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchFromGitHub: false, boost: false, brotli: false, bzip2: false, bzip3: false, lz4: false, makeWrapper: false, pcre2: false, testers: false, xz: false, zlib: false, zstd: false, "poppler-utils": false, antiword: false, pandoc: false, exiftool: false, wrapWithFilterUtils: true, createGrepReplacementLinks: true, gnugrep: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 45, 5], ["repo", 46, 5], ["rev", 47, 5], ["hash", 48, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["package", 104, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 103, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["tests", 102, 12]]);
-const pos$5 = nix.positions(here + "/package.nix", [["description", 109, 5], ["homepage", 110, 5], ["changelog", 111, 5], ["maintainers", 112, 5], ["license", 116, 5], ["platforms", 117, 5], ["mainProgram", 118, 5]]);
-const pos$6 = nix.positions(here + "/package.nix", [["priority", 123, 5]]);
-const pos$7 = nix.positions(here + "/package.nix", [["pname", 41, 3], ["version", 42, 3], ["src", 44, 3], ["nativeBuildInputs", 51, 3], ["buildInputs", 53, 3], ["postFixup", 65, 3], ["passthru", 102, 3], ["meta", 108, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -35,11 +29,11 @@ export default nix.lambda((args) => (() => {
   const createGrepReplacementLinks = nix.argOr($, "createGrepReplacementLinks", () => false);
   const gnugrep = nix.arg($, "gnugrep");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$7,
+      [nix.POS]: $pos[6],
       pname: "ugrep",
       version: "7.8.5",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "Genivia",
           repo: "ugrep",
           rev: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -62,17 +56,17 @@ for i in ${nix.app(nix.sel(lib, "concatStringsSep"), " ", nix.thunk(() => ["grep
 done
 `)))),
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           version: nix.thunk(() => nix.app(nix.sel(testers, "testVersion"), nix.thunk(() => ({
-              [nix.POS]: pos$2,
+              [nix.POS]: $pos[1],
               package: nix.thunk(() => nix.sel(finalAttrs, "finalPackage")),
             })))),
         })),
       })),
       meta: nix.thunk(() => nix.update({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Ultra fast grep with interactive query UI",
         homepage: "https://github.com/Genivia/ugrep",
         changelog: nix.thunk(() => nix.str`https://github.com/Genivia/ugrep/releases/tag/v${nix.sel(finalAttrs, "version")}`),
@@ -87,7 +81,7 @@ done
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
         mainProgram: "ug",
       }, nix.app(nix.sel(lib, "optionalAttrs"), createGrepReplacementLinks, nix.thunk(() => ({
-          [nix.POS]: pos$6,
+          [nix.POS]: $pos[5],
           priority: nix.thunk(() => nix.sub(nix.selOr(gnugrep, () => nix.sel(lib, "meta", "defaultPriority"), "meta", "priority"), 1n)),
         }))))),
     }));

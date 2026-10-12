@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["sha256", 17, 5]], [["description", 53, 5], ["homepage", 54, 5], ["license", 55, 5], ["maintainers", 56, 5], ["mainProgram", 57, 5], ["broken", 58, 5]], [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["cargoHash", 20, 3], ["cargoBuildFlags", 21, 3], ["doCheck", 27, 3], ["cargoTestFlags", 30, 3], ["checkFeatures", 34, 3], ["nativeBuildInputs", 36, 3], ["postInstall", 41, 3], ["doInstallCheck", 45, 3], ["installCheckPhase", 46, 3], ["meta", 52, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, rustPlatform: false, fetchFromBitbucket: false, installShellFiles: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 14, 5], ["repo", 15, 5], ["rev", 16, 5], ["sha256", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 53, 5], ["homepage", 54, 5], ["license", 55, 5], ["maintainers", 56, 5], ["mainProgram", 57, 5], ["broken", 58, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 10, 3], ["version", 11, 3], ["src", 13, 3], ["cargoHash", 20, 3], ["cargoBuildFlags", 21, 3], ["doCheck", 27, 3], ["cargoTestFlags", 30, 3], ["checkFeatures", 34, 3], ["nativeBuildInputs", 36, 3], ["postInstall", 41, 3], ["doInstallCheck", 45, 3], ["installCheckPhase", 46, 3], ["meta", 52, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -18,7 +16,7 @@ export default nix.lambda((args) => (() => {
       const pname = "bore";
       const version = "0.4.1";
       const src = nix.thunk(() => nix.app(fetchFromBitbucket, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "delan",
           repo: "nonymous",
           rev: nix.thunk(() => nix.str`${pname}-${version}`),
@@ -34,7 +32,7 @@ export default nix.lambda((args) => (() => {
       const doInstallCheck = true;
       const installCheckPhase = "printf '\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0' \\\n| $out/bin/bore --decode \\\n| grep -q ';; NoError #0 Query 0 0 0 0 flags'\n";
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "DNS query tool",
         homepage: "https://crates.io/crates/bore",
         license: nix.thunk(() => nix.sel(lib, "licenses", "isc")),
@@ -43,7 +41,7 @@ export default nix.lambda((args) => (() => {
         broken: nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isDarwin")),
       }));
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         pname,
         version,
         src,

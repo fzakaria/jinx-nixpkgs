@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["url", 16, 5], ["sha256", 17, 5]], [["description", 35, 5], ["homepage", 36, 5], ["license", 37, 5], ["maintainers", 38, 5], ["platforms", 39, 5]], [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["outputs", 20, 3], ["outputMan", 25, 3], ["propagatedBuildInputs", 27, 3], ["meta", 34, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, zlib: false, libpng: false, libjpeg: false, lcms2: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["url", 16, 5], ["sha256", 17, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["description", 35, 5], ["homepage", 36, 5], ["license", 37, 5], ["maintainers", 38, 5], ["platforms", 39, 5]]);
-const pos$3 = nix.positions(here + "/package.nix", [["pname", 12, 3], ["version", 13, 3], ["src", 15, 3], ["outputs", 20, 3], ["outputMan", 25, 3], ["propagatedBuildInputs", 27, 3], ["meta", 34, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +15,11 @@ export default nix.lambda((args) => (() => {
   const libjpeg = nix.arg($, "libjpeg");
   const lcms2 = nix.arg($, "lcms2");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$3,
+      [nix.POS]: $pos[2],
       pname: "libmng",
       version: "2.0.3",
       src: nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           url: nix.thunk(() => nix.str`mirror://sourceforge/libmng/libmng-${nix.sel(finalAttrs, "version")}.tar.xz`),
           sha256: "1lvxnpds0vcf0lil6ia2036ghqlbl740c4d2sz0q5g6l93fjyija",
         })))),
@@ -29,7 +27,7 @@ export default nix.lambda((args) => (() => {
       outputMan: "devdoc",
       propagatedBuildInputs: nix.thunk(() => [zlib, libpng, libjpeg, lcms2]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         description: "Reference library for reading, displaying, writing and examining Multiple-Image Network Graphics",
         homepage: "http://www.libmng.com",
         license: nix.thunk(() => nix.sel(lib, "licenses", "zlib")),

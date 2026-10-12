@@ -2,13 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/default.nix", [[["owner", 20, 7], ["repo", 21, 7], ["tag", 22, 7], ["hash", 23, 7]], [["doCheck", 54, 43]], [["pytest", 54, 7]], [["tests", 53, 14]], [["description", 58, 7], ["homepage", 59, 7], ["license", 60, 7], ["broken", 61, 7], ["maintainers", 62, 7]], [["pname", 15, 5], ["version", 16, 5], ["pyproject", 17, 5], ["src", 19, 5], ["build-system", 26, 5], ["dependencies", 28, 5], ["pythonImportsCheck", 33, 5], ["nativeCheckInputs", 35, 5], ["disabledTests", 41, 5], ["preCheck", 46, 5], ["doCheck", 52, 5], ["passthru", 53, 5], ["meta", 57, 5]]]);
 const formals$1 = { args: { lib: false, buildPythonPackage: false, fetchFromGitHub: false, hatchling: false, pydantic: false, "python-dotenv": false, pytestCheckHook: false, "pytest-examples": false, "pytest-mock": false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/default.nix", [["owner", 20, 7], ["repo", 21, 7], ["tag", 22, 7], ["hash", 23, 7]]);
-const pos$2 = nix.positions(here + "/default.nix", [["doCheck", 54, 43]]);
-const pos$3 = nix.positions(here + "/default.nix", [["pytest", 54, 7]]);
-const pos$4 = nix.positions(here + "/default.nix", [["tests", 53, 14]]);
-const pos$5 = nix.positions(here + "/default.nix", [["description", 58, 7], ["homepage", 59, 7], ["license", 60, 7], ["broken", 61, 7], ["maintainers", 62, 7]]);
-const pos$6 = nix.positions(here + "/default.nix", [["pname", 15, 5], ["version", 16, 5], ["pyproject", 17, 5], ["src", 19, 5], ["build-system", 26, 5], ["dependencies", 28, 5], ["pythonImportsCheck", 33, 5], ["nativeCheckInputs", 35, 5], ["disabledTests", 41, 5], ["preCheck", 46, 5], ["doCheck", 52, 5], ["passthru", 53, 5], ["meta", 57, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -26,7 +21,7 @@ export default nix.lambda((args) => (() => {
       const version = "2.12.0";
       const pyproject = true;
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "pydantic",
           repo: "pydantic-settings",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -40,14 +35,14 @@ export default nix.lambda((args) => (() => {
       const preCheck = "export HOME=$TMPDIR\n";
       const doCheck = false;
       const passthru = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         tests: nix.thunk(() => ({
-          [nix.POS]: pos$3,
-          pytest: nix.thunk(() => nix.app(nix.sel(self, "overridePythonAttrs"), nix.thunk(() => ({ [nix.POS]: pos$2, doCheck: true })))),
+          [nix.POS]: $pos[2],
+          pytest: nix.thunk(() => nix.app(nix.sel(self, "overridePythonAttrs"), nix.thunk(() => ({ [nix.POS]: $pos[1], doCheck: true })))),
         })),
       }));
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         description: "Settings management using pydantic",
         homepage: "https://github.com/pydantic/pydantic-settings",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),
@@ -55,7 +50,7 @@ export default nix.lambda((args) => (() => {
         maintainers: [],
       }));
       return {
-        [nix.POS]: pos$6,
+        [nix.POS]: $pos[5],
         pname,
         version,
         pyproject,

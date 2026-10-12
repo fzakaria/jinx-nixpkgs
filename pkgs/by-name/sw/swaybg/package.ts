@@ -2,11 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]], [["extraLoaders", 64, 9]], [["description", 74, 5], ["homepage", 75, 35], ["longDescription", 76, 5], ["license", 81, 5], ["mainProgram", 82, 5], ["maintainers", 83, 5], ["platforms", 86, 5]], [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["strictDeps", 33, 3], ["depsBuildBuild", 34, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 44, 3], ["mesonFlags", 52, 3], ["hardeningDisable", 58, 3], ["postInstall", 61, 3], ["meta", 73, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, buildPackages: false, fetchFromGitHub: false, meson: false, ninja: false, "pkg-config": false, scdoc: false, wayland: false, "wayland-protocols": false, cairo: false, "gdk-pixbuf": false, gnome: false, "webp-pixbuf-loader": false, "wayland-scanner": false, wrapGAppsNoGuiHook: false, librsvg: false, libjxl: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 27, 5], ["repo", 28, 5], ["tag", 29, 5], ["hash", 30, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["extraLoaders", 64, 9]]);
-const pos$3 = nix.positions(here + "/package.nix", [["description", 74, 5], ["homepage", 75, 35], ["longDescription", 76, 5], ["license", 81, 5], ["mainProgram", 82, 5], ["maintainers", 83, 5], ["platforms", 86, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["pname", 23, 3], ["version", 24, 3], ["src", 26, 3], ["strictDeps", 33, 3], ["depsBuildBuild", 34, 3], ["nativeBuildInputs", 35, 3], ["buildInputs", 44, 3], ["mesonFlags", 52, 3], ["hardeningDisable", 58, 3], ["postInstall", 61, 3], ["meta", 73, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,11 +26,11 @@ export default nix.lambda((args) => (() => {
   const librsvg = nix.arg($, "librsvg");
   const libjxl = nix.arg($, "libjxl");
   return nix.app(nix.sel(stdenv, "mkDerivation"), (finalAttrs) => ({
-      [nix.POS]: pos$4,
+      [nix.POS]: $pos[3],
       pname: "swaybg",
       version: "1.2.2",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "swaywm",
           repo: "swaybg",
           tag: nix.thunk(() => nix.str`v${nix.sel(finalAttrs, "version")}`),
@@ -54,14 +51,14 @@ export default nix.lambda((args) => (() => {
       mesonFlags: nix.thunk(() => ["-Dgdk-pixbuf=enabled", "-Dman-pages=enabled"]),
       hardeningDisable: nix.thunk(() => nix.app(nix.sel(lib, "optionals"), nix.thunk(() => nix.sel(stdenv, "hostPlatform", "isFreeBSD")), nix.thunk(() => ["fortify"]))),
       postInstall: nix.thunk(() => nix.app(nix.sel(lib, "optionalString"), nix.thunk(() => nix.app(nix.sel(stdenv, "hostPlatform", "emulatorAvailable"), buildPackages)), nix.thunk(() => nix.str`export GDK_PIXBUF_MODULE_FILE="${nix.app(nix.sel(gnome, "_gdkPixbufCacheBuilder_DO_NOT_USE"), nix.thunk(() => ({
-            [nix.POS]: pos$2,
+            [nix.POS]: $pos[1],
             extraLoaders: nix.thunk(() => [librsvg, webp_pixbuf_loader, libjxl]),
           })))}"
 `))),
       meta: nix.thunk(() => (() => {
         const from = nix.thunk(() => nix.sel(finalAttrs, "src", "meta"));
         return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         description: "Wallpaper tool for Wayland compositors",
         homepage: nix.thunk(() => nix.attr(from, "homepage")),
         longDescription: "A wallpaper utility for Wayland compositors, that is compatible with any\nWayland compositor which implements the following Wayland protocols:\nwlr-layer-shell, xdg-output, and xdg-shell.\n",

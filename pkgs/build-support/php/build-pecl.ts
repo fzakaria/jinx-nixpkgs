@@ -2,11 +2,9 @@
 import * as nix from "../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/build-pecl.nix", [[["url", 22, 7]], [["isPhpExtension", 68, 7], ["updateScript", 69, 7]], [["name", 39, 5], ["extensionName", 40, 5], ["src", 42, 13], ["strictDeps", 44, 5], ["nativeBuildInputs", 45, 5], ["buildInputs", 51, 5], ["makeFlags", 53, 5], ["autoreconfPhase", 55, 5], ["checkPhase", 62, 5], ["passthru", 64, 5]]]);
 const formals$1 = { args: { stdenv: false, lib: false, php: false, autoreconfHook: false, fetchurl: false, re2c: false, "nix-update-script": false }, ellipsis: false };
 const formals$2 = { args: { pname: false, version: false, internalDeps: true, peclDeps: true, buildInputs: true, nativeBuildInputs: true, postPhpize: true, makeFlags: true, src: true, passthru: true }, ellipsis: true };
-const pos$1 = nix.positions(here + "/build-pecl.nix", [["url", 22, 7]]);
-const pos$2 = nix.positions(here + "/build-pecl.nix", [["isPhpExtension", 68, 7], ["updateScript", 69, 7]]);
-const pos$3 = nix.positions(here + "/build-pecl.nix", [["name", 39, 5], ["extensionName", 40, 5], ["src", 42, 13], ["strictDeps", 44, 5], ["nativeBuildInputs", 45, 5], ["buildInputs", 51, 5], ["makeFlags", 53, 5], ["autoreconfPhase", 55, 5], ["checkPhase", 62, 5], ["passthru", 64, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -29,12 +27,12 @@ export default nix.lambda((args) => (() => {
     const postPhpize = nix.argOr($_1, "postPhpize", () => "");
     const makeFlags = nix.argOr($_1, "makeFlags", () => []);
     const src = nix.argOr($_1, "src", () => nix.app(fetchurl, nix.thunk(() => nix.update({
-        [nix.POS]: pos$1,
+        [nix.POS]: $pos[0],
         url: nix.thunk(() => nix.str`https://pecl.php.net/get/${pname}-${version}.tgz`),
       }, nix.app(nix.sel(lib, "filterAttrs"), (attrName) => (_) => nix.app(nix.sel(lib, "elem"), attrName, nix.thunk(() => ["sha256", "hash"])), args_2)))));
     const passthru = nix.argOr($_1, "passthru", () => ({}));
     return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => nix.update(args_2, {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         name: nix.thunk(() => nix.str`php-${pname}-${version}`),
         extensionName: pname,
         src: src,
@@ -48,7 +46,7 @@ ${nix.app(nix.sel(lib, "concatMapStringsSep"), "\n", (dep) => nix.str`mkdir -p e
 `),
         checkPhase: "NO_INTERACTON=yes make test",
         passthru: nix.thunk(() => nix.update(passthru, {
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           isPhpExtension: true,
           updateScript: nix.thunk(() => nix.selOr(passthru, () => nix.app(nix_update_script, nix.thunk(() => ({}))), "updateScript")),
         })),

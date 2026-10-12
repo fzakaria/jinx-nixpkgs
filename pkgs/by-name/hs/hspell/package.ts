@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["pname", 14, 5], ["version", 15, 5]], [["PERL_USE_UNSAFE_INC", 18, 7]], [["url", 21, 5], ["hash", 22, 5]], [["description", 53, 5], ["homepage", 54, 5], ["platforms", 55, 5], ["license", 56, 5]], [["name", 11, 3], ["passthru", 13, 3], ["env", 18, 3], ["src", 20, 3], ["patches", 25, 3], ["postPatch", 26, 3], ["preBuild", 27, 3], ["postInstall", 37, 3], ["nativeBuildInputs", 40, 3], ["buildInputs", 44, 3], ["strictDeps", 49, 3], ["__structuredAttrs", 50, 3], ["meta", 52, 3]]]);
 const formals$1 = { args: { lib: false, stdenv: false, fetchurl: false, perl: false, zlib: false, buildPackages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["pname", 14, 5], ["version", 15, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["PERL_USE_UNSAFE_INC", 18, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["url", 21, 5], ["hash", 22, 5]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 53, 5], ["homepage", 54, 5], ["platforms", 55, 5], ["license", 56, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["name", 11, 3], ["passthru", 13, 3], ["env", 18, 3], ["src", 20, 3], ["patches", 25, 3], ["postPatch", 26, 3], ["preBuild", 27, 3], ["postInstall", 37, 3], ["nativeBuildInputs", 40, 3], ["buildInputs", 44, 3], ["strictDeps", 49, 3], ["__structuredAttrs", 50, 3], ["meta", 52, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -19,10 +15,10 @@ export default nix.lambda((args) => (() => {
   const buildPackages = nix.arg($, "buildPackages");
   return nix.app(nix.sel(stdenv, "mkDerivation"), nix.thunk(() => (() => {
       const name = nix.thunk(() => nix.str`${nix.sel(passthru, "pname")}-${nix.sel(passthru, "version")}`);
-      const passthru = nix.thunk(() => ({ [nix.POS]: pos$1, pname: "hspell", version: "1.4" }));
-      const env = nix.thunk(() => ({ [nix.POS]: pos$2, PERL_USE_UNSAFE_INC: "1" }));
+      const passthru = nix.thunk(() => ({ [nix.POS]: $pos[0], pname: "hspell", version: "1.4" }));
+      const env = nix.thunk(() => ({ [nix.POS]: $pos[1], PERL_USE_UNSAFE_INC: "1" }));
       const src = nix.thunk(() => nix.app(fetchurl, nix.thunk(() => ({
-          [nix.POS]: pos$3,
+          [nix.POS]: $pos[2],
           url: nix.thunk(() => nix.str`${nix.sel(meta, "homepage")}${name}.tar.gz`),
           hash: "sha256-cxD11YdA0h1tIVwReWWGAu99qXqBa8FJfIdkvpeqvqM=",
         }))));
@@ -43,14 +39,14 @@ substituteInPlace Makefile --replace "STRIP=strip" "STRIP=${nix.app(nix.sel(lib,
       const strictDeps = true;
       const __structuredAttrs = true;
       const meta = nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Hebrew spell checker",
         homepage: "http://hspell.ivrix.org.il/",
         platforms: nix.thunk(() => nix.sel(lib, "platforms", "all")),
         license: nix.thunk(() => nix.sel(lib, "licenses", "gpl2")),
       }));
       return {
-        [nix.POS]: pos$5,
+        [nix.POS]: $pos[4],
         name,
         passthru,
         env,

@@ -2,12 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["owner", 13, 5], ["repo", 14, 5], ["tag", 15, 5], ["hash", 16, 5]], [["updateScript", 21, 12]], [["NIX_USER_CHROOT_TEST_BUSYBOX", 23, 7]], [["description", 29, 5], ["homepage", 30, 5], ["license", 31, 5], ["platforms", 32, 5], ["maintainers", 33, 5], ["mainProgram", 37, 5]], [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["cargoHash", 19, 3], ["passthru", 21, 3], ["env", 23, 3], ["checkFlags", 24, 3], ["meta", 28, 3]]]);
 const formals$1 = { args: { lib: false, rustPlatform: false, fetchFromGitHub: false, "nix-update-script": false, pkgsStatic: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["owner", 13, 5], ["repo", 14, 5], ["tag", 15, 5], ["hash", 16, 5]]);
-const pos$2 = nix.positions(here + "/package.nix", [["updateScript", 21, 12]]);
-const pos$3 = nix.positions(here + "/package.nix", [["NIX_USER_CHROOT_TEST_BUSYBOX", 23, 7]]);
-const pos$4 = nix.positions(here + "/package.nix", [["description", 29, 5], ["homepage", 30, 5], ["license", 31, 5], ["platforms", 32, 5], ["maintainers", 33, 5], ["mainProgram", 37, 5]]);
-const pos$5 = nix.positions(here + "/package.nix", [["pname", 9, 3], ["version", 10, 3], ["src", 12, 3], ["cargoHash", 19, 3], ["passthru", 21, 3], ["env", 23, 3], ["checkFlags", 24, 3], ["meta", 28, 3]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -17,11 +13,11 @@ export default nix.lambda((args) => (() => {
   const nix_update_script = nix.arg($, "nix-update-script");
   const pkgsStatic = nix.arg($, "pkgsStatic");
   return nix.app(nix.sel(rustPlatform, "buildRustPackage"), (finalAttrs) => ({
-      [nix.POS]: pos$5,
+      [nix.POS]: $pos[4],
       pname: "nix-user-chroot",
       version: "2.1.1",
       src: nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$1,
+          [nix.POS]: $pos[0],
           owner: "nix-community",
           repo: "nix-user-chroot",
           tag: nix.thunk(() => nix.sel(finalAttrs, "version")),
@@ -29,16 +25,16 @@ export default nix.lambda((args) => (() => {
         })))),
       cargoHash: "sha256-VgwLuR+ZGIZi2aTBAevngTyZLswduFbKzoFgL9TFUj4=",
       passthru: nix.thunk(() => ({
-        [nix.POS]: pos$2,
+        [nix.POS]: $pos[1],
         updateScript: nix.thunk(() => nix.app(nix_update_script, nix.thunk(() => ({})))),
       })),
       env: nix.thunk(() => ({
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         NIX_USER_CHROOT_TEST_BUSYBOX: nix.thunk(() => nix.str`${nix.sel(pkgsStatic, "busybox")}/bin/busybox`),
       })),
       checkFlags: nix.thunk(() => ["--skip=run_nix_install"]),
       meta: nix.thunk(() => ({
-        [nix.POS]: pos$4,
+        [nix.POS]: $pos[3],
         description: "Install & Run Nix Programs without root permissions",
         homepage: "https://github.com/nix-community/nix-user-chroot",
         license: nix.thunk(() => nix.sel(lib, "licenses", "mit")),

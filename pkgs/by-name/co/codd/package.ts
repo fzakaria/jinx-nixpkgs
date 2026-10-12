@@ -2,10 +2,8 @@
 import * as nix from "../../../../.jinx/runtime/index.ts";
 
 const here = nix.here(import.meta.url);
+const $pos = nix.positions(here + "/package.nix", [[["haxl", 20, 61]], [["owner", 25, 7], ["repo", 26, 7], ["tag", 27, 7], ["hash", 28, 7]], [["version", 23, 5], ["src", 24, 5], ["testFlags", 34, 5], ["isLibrary", 41, 5], ["testToolDepends", 42, 5], ["description", 44, 5], ["homepage", 46, 5], ["changelog", 48, 5], ["maintainers", 50, 5]]]);
 const formals$1 = { args: { lib: false, fetchFromGitHub: false, haskell: false, haskellPackages: false }, ellipsis: false };
-const pos$1 = nix.positions(here + "/package.nix", [["haxl", 20, 61]]);
-const pos$2 = nix.positions(here + "/package.nix", [["owner", 25, 7], ["repo", 26, 7], ["tag", 27, 7], ["hash", 28, 7]]);
-const pos$3 = nix.positions(here + "/package.nix", [["version", 23, 5], ["src", 24, 5], ["testFlags", 34, 5], ["isLibrary", 41, 5], ["testToolDepends", 42, 5], ["description", 44, 5], ["homepage", 46, 5], ["changelog", 48, 5], ["maintainers", 50, 5]]);
 
 export default nix.lambda((args) => (() => {
   const $ = nix.formals(args, formals$1);
@@ -14,11 +12,11 @@ export default nix.lambda((args) => (() => {
   const haskell = nix.arg($, "haskell");
   const haskellPackages = nix.arg($, "haskellPackages");
   const haxlJailbroken = nix.thunk(() => nix.app(nix.sel(haskell, "lib", "markUnbroken"), nix.thunk(() => nix.app(nix.sel(haskell, "lib", "doJailbreak"), nix.thunk(() => nix.sel(haskellPackages, "haxl"))))));
-  const generated = nix.thunk(() => nix.app(nix.sel(haskellPackages, "callPackage"), nix.path(here, "./generated.nix"), nix.thunk(() => ({ [nix.POS]: pos$1, haxl: haxlJailbroken }))));
+  const generated = nix.thunk(() => nix.app(nix.sel(haskellPackages, "callPackage"), nix.path(here, "./generated.nix"), nix.thunk(() => ({ [nix.POS]: $pos[0], haxl: haxlJailbroken }))));
   const derivationWithVersion = nix.thunk(() => nix.app(nix.sel(haskell, "lib", "compose", "overrideCabal"), nix.thunk(() => (() => {
       const version = "0.1.8";
       const src = nix.thunk(() => nix.app(fetchFromGitHub, nix.thunk(() => ({
-          [nix.POS]: pos$2,
+          [nix.POS]: $pos[1],
           owner: "mzabani",
           repo: "codd",
           tag: nix.thunk(() => nix.str`v${version}`),
@@ -35,7 +33,7 @@ export default nix.lambda((args) => (() => {
         return [nix.thunk(() => nix.lookup(w, "mzabani"))];
       })());
       return {
-        [nix.POS]: pos$3,
+        [nix.POS]: $pos[2],
         version,
         src,
         testFlags,
